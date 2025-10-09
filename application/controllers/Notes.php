@@ -311,7 +311,7 @@ class Notes extends CI_Controller {
 
         // Validate required fields
         if (empty($category) || empty($title)) {
-            $this->output->set_content_type('application/json')->set_output(json_encode(['success' => false, 'message' => 'Category and title are required']));
+            $this->output->set_content_type('application/json')->set_output(json_encode(['success' => false, 'message' => __("Category and title are required")]));
             return;
         }
 
@@ -325,23 +325,23 @@ class Notes extends CI_Controller {
             // Edit existing note
             $clean_id = $this->security->xss_clean($id);
             if (!is_numeric($clean_id) || !$this->note->belongs_to_user($clean_id, $user_id)) {
-                $this->output->set_content_type('application/json')->set_output(json_encode(['success' => false, 'message' => 'Note not found or not allowed']));
+                $this->output->set_content_type('application/json')->set_output(json_encode(['success' => false, 'message' => __("Note not found or not allowed")]));
                 return;
             }
 
             // If content is empty, delete the note
             if (empty(trim($content))) {
                 $this->note->delete($clean_id);
-                $this->output->set_content_type('application/json')->set_output(json_encode(['success' => true, 'message' => 'Note deleted', 'deleted' => true]));
+                $this->output->set_content_type('application/json')->set_output(json_encode(['success' => true, 'message' => __("Note deleted"), 'deleted' => true]));
             } else {
                 // Update the note
                 $this->note->edit($clean_id, $category, $title, $content);
-                $this->output->set_content_type('application/json')->set_output(json_encode(['success' => true, 'message' => 'Note updated', 'id' => $clean_id]));
+                $this->output->set_content_type('application/json')->set_output(json_encode(['success' => true, 'message' => __("Note updated"), 'id' => $clean_id]));
             }
         } else {
             // Create new note
             if (empty(trim($content))) {
-                $this->output->set_content_type('application/json')->set_output(json_encode(['success' => false, 'message' => 'Cannot create empty note']));
+                $this->output->set_content_type('application/json')->set_output(json_encode(['success' => false, 'message' => __("Cannot create empty note")]));
                 return;
             }
 
@@ -349,7 +349,7 @@ class Notes extends CI_Controller {
             if ($category === 'Contacts') {
                 $existing_id = $this->note->get_note_id_by_category($user_id, $category, $title);
                 if ($existing_id) {
-                    $this->output->set_content_type('application/json')->set_output(json_encode(['success' => false, 'message' => 'A note with this callsign already exists']));
+                    $this->output->set_content_type('application/json')->set_output(json_encode(['success' => false, 'message' => __("A note with this callsign already exists")]));
                     return;
                 }
             }
@@ -359,7 +359,7 @@ class Notes extends CI_Controller {
 
             // Get the new note ID
             $new_id = $this->note->get_note_id_by_category($user_id, $category, $title);
-            $this->output->set_content_type('application/json')->set_output(json_encode(['success' => true, 'message' => 'Note created', 'id' => $new_id]));
+            $this->output->set_content_type('application/json')->set_output(json_encode(['success' => true, 'message' => __("Note created"), 'id' => $new_id]));
         }
     }
 

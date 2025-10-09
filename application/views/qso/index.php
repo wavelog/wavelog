@@ -637,7 +637,7 @@ switch ($date_format) {
           <!-- Comment Panel Contents -->
           <div class="tab-pane fade" id="nav-notes" role="tabpanel" aria-labelledby="notes-tab">
            <div class="mb-3">
-              <label for="notes"><?= __("Comment"); ?></label>
+              <label for="notes"><?= __("QSO Comment"); ?></label>
               <textarea  type="text" class="form-control" id="notes" name="notes" rows="10"></textarea>
               <div class="small form-text text-muted"><?= __("Note: Gets exported to third-party services.") ?></div>
             </div>
@@ -709,7 +709,10 @@ switch ($date_format) {
     </div>
 
 	<!--- Notes --->
-	<?php if ($this->session->userdata('user_show_notes')==1) { ?>
+	<script>
+		var user_show_notes = <?php echo ($this->session->userdata('user_show_notes')) ? 'true' : 'false'; ?>;
+	</script>
+
 	<div class="card callsign-notes" id="callsign-notes">
         <div class="card-header">
           <h4 style="font-size: 16px; font-weight: bold;" class="card-title">
@@ -719,14 +722,13 @@ switch ($date_format) {
             </span>
           </h4>
         </div>
-			<div class="card-body">
-                    <textarea id="callsign_note_content" class="form-control" rows="6"></textarea>
-                    <input type="hidden" id="callsign-note-id" value="" />
-                    <button id="callsign-note-edit-btn" class="btn btn-primary mt-2" style="display:none;"><i class="fas fa-edit"></i> <?= __("Edit Note"); ?></button>
-					<button id="callsign-note-save-btn" class="btn btn-primary mt-2" style="display:none;"><i class="fas fa-save"></i> <?= __("Save Note"); ?></button>
-			</div>
+		<div class="card-body">
+				<textarea id="callsign_note_content" class="form-control" rows="6"></textarea>
+				<input type="hidden" id="callsign-note-id" value="" />
+				<button id="callsign-note-edit-btn" class="btn btn-primary mt-2" style="display:none;"><i class="fas fa-edit"></i> <?= __("Edit Note"); ?></button>
+				<button id="callsign-note-save-btn" class="btn btn-primary mt-2" style="display:none;"><i class="fas fa-save"></i> <?= __("Save Note"); ?></button>
 		</div>
-	<?php } ?>
+	</div>
 
   </div>
   <div class="col-sm-7">

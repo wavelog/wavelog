@@ -112,27 +112,19 @@ function getUTCDateStamp(el) {
 	$(el).attr('value', formatted_date);
 }
 
-
-	var saveBtn = document.getElementById('callsign-note-save-btn');
-	function setNoteEditorState(state, noteText, saveBtn) {
-		if (!noteEditor) return;
-		if (state === 'no_callsign') {
-
-		} else if (state === 'no_note') {
-
-		} else if (state === 'has_note') {
-
-		}
-	}
-
-
 // Note card state logic including EasyMDE initialization and handling
-function setNotesVisibility(state, noteText = "") {
+function setNotesVisibility(state, noteText = "",show_notes = user_show_notes) {
 	var $noteCard = $('#callsign-notes');
 	var $saveBtn = $('#callsign-note-save-btn');
 	var $editorElem = $('#callsign_note_content');
 	var noteEditor = $editorElem.data('easymde');
 	var $editBtn = $('#callsign-note-edit-btn');
+
+	// Do nothing if user preference is to hide notes
+	if (!show_notes) {
+		$noteCard.hide();
+		return;
+	}
 
 	// Initialize EasyMDE if not already done
 	if (!noteEditor && typeof EasyMDE !== 'undefined') {
@@ -164,7 +156,7 @@ function setNotesVisibility(state, noteText = "") {
 
 		// Hide editor toolbar, set value and show preview
 		document.querySelector('.EasyMDEContainer .editor-toolbar').style.display = 'none';
-		noteEditor.value('No notes found for this callsign - click Edit Note to add notes.');
+		noteEditor.value(lang_qso_note_missing);
 		noteEditor.togglePreview();
 		noteEditor.codemirror.setOption('readOnly', true);
 
@@ -1012,7 +1004,7 @@ function reset_fields() {
 }
 
 // Get status of notes for this callsign
-function get_note_icon(callsign){
+function get_note_status(callsign){
 		$.get(
 			window.base_url + 'index.php/notes/check_duplicate',
 			{
@@ -1035,11 +1027,11 @@ function get_note_icon(callsign){
 								$('#callsign-note-id').val(data.id);
 								setNotesVisibility(2, noteData.content);
 							} else {
-								setNotesVisibility(2,'Error');
+								setNotesVisibility(2, lang_general_word_error);
 							}
 						}
 					).fail(function() {
-						setNotesVisibility(2,'Error');
+						setNotesVisibility(2, lang_general_word_error);
 					});
 				} else {
 					setNotesVisibility(1);
@@ -1087,7 +1079,7 @@ $("#callsign").on("focusout", function () {
 				resetDefaultQSOFields();
 
 				// Set qso icon
-				get_note_icon(result.callsign);
+				get_note_status(result.callsign);
 
 				if (result.dxcc.entity != undefined) {
 					$('#country').val(convert_case(result.dxcc.entity));
@@ -2633,7 +2625,7 @@ $(document).ready(function () {
 						// Reset to state 1 (callsign, no note)
 						setNotesVisibility(1);
 						// Show success message
-						showToast("Note deleted", "Note deleted successfully");
+						showToast(lang_qso_note_toast_title, lang_qso_note_deleted);
 					} else {
 						// Success - switch back to preview mode
 						if (noteEditor) {
@@ -2651,24 +2643,24 @@ $(document).ready(function () {
 							$('#callsign-note-id').val(response.id);
 
 							// Show success message briefly
-							showToast("Note created", "Note created successfully");
+							showToast(lang_qso_note_toast_title, lang_qso_note_created);
 						} else {
 							// Show success message briefly
-							showToast("Note saved", "Note saved successfully");
+							showToast(lang_qso_note_toast_title, lang_qso_note_saved);
 						}
 
 
 					}
 				} else {
-					alert('Error saving note: ' + (response.message || 'Unknown error'));
+					alert(lang_qso_note_error_saving + ': ' + (response.message || lang_general_word_error));
 				}
 			})
 			.fail(function() {
-				alert('Failed to save note. Please try again.');
+				alert(lang_qso_note_error_saving);
 			});
 	});
 
 	// everything loaded and ready 2 go
-	   bc.postMessage('ready');
+	bc.postMessage('ready');
 
 	});
