@@ -126,11 +126,8 @@ function getUTCDateStamp(el) {
 	}
 
 
-// Note icon state logic
+// Note card state logic including EasyMDE initialization and handling
 function setNotesVisibility(state, noteText = "") {
-	var $icon = $('#note_create_edit');
-	$icon.removeClass('text-secondary text-info');
-	$icon.removeAttr('data-bs-original-title title');
 	var $noteCard = $('#callsign-notes');
 	var $saveBtn = $('#callsign-note-save-btn');
 	var $editorElem = $('#callsign_note_content');
@@ -158,17 +155,11 @@ function setNotesVisibility(state, noteText = "") {
 	}
 
 	if (state === 0) {
-		// No callsign
-		$icon.hide().attr('data-bs-original-title', lang_qso_note_no_callsign);
-
-		// Hide note card
+		// No callsign - Hide note card
 		$noteCard.hide();
 
 	} else if (state === 1) {
-		// Callsign, no note yet
-		$icon.show().attr('data-bs-original-title', lang_qso_note_add);
-
-		// Show note card
+		// Callsign, no note yet - show note card with message
 		$noteCard.show();
 
 		// Hide editor toolbar, set value and show preview
@@ -178,10 +169,7 @@ function setNotesVisibility(state, noteText = "") {
 		noteEditor.codemirror.setOption('readOnly', true);
 
 	} else if (state === 2) {
-		// Callsign with existing note
-		$icon.show().addClass('text-info').attr('data-bs-original-title', lang_qso_note_edit);
-
-		// Show note card
+		// Callsign with existing notes - show note card with notes
 		$noteCard.show();
 
 		// Hide editor toolbar, set value and show preview
@@ -201,11 +189,6 @@ function setNotesVisibility(state, noteText = "") {
     } else {
         $editBtn.addClass('d-none').hide();
     }
-
-	// If Bootstrap tooltip is initialized, update it
-	if ($icon.data('bs.tooltip')) {
-		$icon.tooltip('dispose').tooltip();
-	}
 }
 
 $('#stationProfile').on('change', function () {
@@ -1025,7 +1008,7 @@ function reset_fields() {
 	clearTimeout();
 	set_timers();
 	resetTimers(qso_manual);
-	setNotesVisibility(0); // Always gray out note icon on reset
+	setNotesVisibility(0); // Set note card to hidden
 }
 
 // Get status of notes for this callsign
@@ -2288,7 +2271,7 @@ function resetDefaultQSOFields() {
 	$('.awardpane').remove();
 	$('#timesWorked').html(lang_qso_title_previous_contacts);
 
-	setNotesVisibility(0); // Always gray out note icon on reset
+	setNotesVisibility(0); // Set default note card visibility to 0 (hidden)
 }
 
 function closeModal() {
@@ -2351,7 +2334,7 @@ $(document).ready(function () {
 	set_timers();
 	updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputQso');
 
-	setNotesVisibility(0); /// Grey-out note icon
+	setNotesVisibility(0); // Set default note card visibility to 0 (hidden)
 
 	// Clear the localStorage for the qrg units, except the quicklogCallsign and a possible backlog
 	clearQrgUnits();
@@ -2579,37 +2562,6 @@ $(document).ready(function () {
 			set_qrg();
 		});
 	}
-
-	// Note create/edit icon click handler
-	$('#note_create_edit').on('click', function() {
-		var callsign = $('#callsign').val().trim();
-		if (!callsign || callsign.length < 3) {
-			return;
-		}
-		// AJAX to check if note exists for this callsign in Contacts category
-		$.get(
-			window.base_url + 'index.php/notes/check_duplicate',
-			{
-				category: 'Contacts',
-				title: callsign
-			},
-			function(data) {
-				// Defensive: try to parse if string
-				if (typeof data === 'string') {
-					try { data = JSON.parse(data); } catch (e) { data = {}; }
-				}
-				if (data && data.exists === true && data.id) {
-					window.open(window.base_url + 'index.php/notes/edit/' + data.id, '_blank');
-				} else if (data && data.exists === false) {
-					// Open add with prefilled title and Contacts category
-					var url = window.base_url + 'index.php/notes/add?title=' + encodeURIComponent(callsign) + '&category=Contacts';
-					window.open(url, '_blank');
-				} else {
-					// Unexpected response, do nothing
-				}
-			}
-		);
-	});
 
 	// Edit button click handler for inline editing
 	$(document).on('click', '#callsign-note-edit-btn', function() {

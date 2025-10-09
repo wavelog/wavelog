@@ -154,7 +154,7 @@ switch ($date_format) {
               <!-- Callsign Input -->
               <div class="row">
                 <div class="mb-3 col-md-12">
-                  <label for="callsign"><?= __("Callsign"); ?></label>&nbsp;<i id="check_cluster" data-bs-toggle="tooltip" title="<?= __("Search DXCluster for latest Spot"); ?>" class="fas fa-search"></i></label>&nbsp;<i id="note_create_edit" style="display:none;" data-bs-toggle="tooltip" title="" class="fas fa-sticky-note"></i>
+                  <label for="callsign"><?= __("Callsign"); ?></label>&nbsp;<i id="check_cluster" data-bs-toggle="tooltip" title="<?= __("Search DXCluster for latest Spot"); ?>" class="fas fa-search"></i></label>
                   <div class="input-group">
                     <input tabindex="7" type="text" class="form-control uppercase" id="callsign" name="callsign" autocomplete="off" required>
                     <span id="qrz_info" class="input-group-text btn-included-on-field d-none py-0"></span>
@@ -714,7 +714,7 @@ switch ($date_format) {
         <div class="card-header">
           <h4 style="font-size: 16px; font-weight: bold;" class="card-title">
             <?= __("Callsign Notes"); ?>
-            <span class="ms-1" data-bs-toggle="tooltip" title="<?= __("Callsign Notes let you store information about your QSO partner. They are private, not shared, and never exported to external services.") ?>">
+            <span class="ms-1" data-bs-toggle="tooltip" title="<?= __("Store private information about your QSO partner. These notes are never shared or exported to external services.") ?>">
               <i class="fa fa-question-circle"></i>
             </span>
           </h4>
