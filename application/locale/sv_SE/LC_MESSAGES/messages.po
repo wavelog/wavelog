@@ -459,6 +459,7 @@ msgstr " och "
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:21
 #: application/views/logbookadvanced/index.php:369
+#: application/controllers/Logbook.php:1317
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -481,6 +482,7 @@ msgstr "SOTA"
 #: application/views/user/edit.php:342
 #: application/views/view_log/partial/log_ajax.php:10
 #: application/views/logbookadvanced/index.php:391
+#: application/controllers/Logbook.php:1318
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -504,6 +506,7 @@ msgstr "WWFF"
 #: application/views/view_log/partial/log_ajax.php:11
 #: application/views/logbookadvanced/index.php:373
 #: application/views/logbookadvanced/index.php:833
+#: application/controllers/Logbook.php:1319
 msgid "POTA"
 msgstr "POTA"
 
@@ -771,6 +774,7 @@ msgstr "Ingen användare har konfigurerat Clublog."
 #: application/views/view_log/partial/log_ajax.php:222
 #: application/views/view_log/qso.php:565
 #: application/views/view_log/qso.php:570
+#: application/controllers/Logbook.php:696
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -1289,6 +1293,8 @@ msgstr "Loggbok"
 #: application/views/timeline/index.php:56 application/views/user/edit.php:591
 #: application/views/user/edit.php:784
 #: application/views/logbookadvanced/index.php:794
+#: application/controllers/Logbook.php:684
+#: application/controllers/Logbook.php:699
 msgid "QSL"
 msgstr "QSL"
 
@@ -1326,6 +1332,7 @@ msgstr "QSL"
 #: application/views/timeline/index.php:60 application/views/user/edit.php:592
 #: application/views/user/edit.php:794 application/views/view_log/qso.php:531
 #: application/views/view_log/qso.php:536
+#: application/controllers/Logbook.php:687
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1360,6 +1367,7 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:309
 #: application/views/timeline/index.php:64 application/views/user/edit.php:593
 #: application/views/user/edit.php:802 application/views/user/edit.php:876
+#: application/controllers/Logbook.php:690
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1447,6 +1455,7 @@ msgstr "eQSL"
 #: application/views/widgets/qsos.php:18
 #: application/views/logbookadvanced/index.php:270
 #: application/views/logbookadvanced/index.php:764
+#: application/controllers/Logbook.php:1312
 msgid "Mode"
 msgstr "Trafiksätt"
 
@@ -1477,6 +1486,7 @@ msgstr "Trafiksätt"
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:113 application/views/visitor/index.php:9
 #: application/views/logbookadvanced/index.php:767
+#: application/controllers/Logbook.php:1313
 msgid "RST (S)"
 msgstr "RST (S)"
 
@@ -1508,6 +1518,7 @@ msgstr "RST (S)"
 #: application/views/view_log/qso.php:118
 #: application/views/visitor/index.php:12
 #: application/views/logbookadvanced/index.php:770
+#: application/controllers/Logbook.php:1314
 msgid "RST (R)"
 msgstr "RST (R)"
 
@@ -1529,6 +1540,7 @@ msgstr "RST (R)"
 #: application/views/view_log/qso.php:331
 #: application/views/view_log/qso.php:687
 #: application/views/visitor/index.php:15
+#: application/controllers/Logbook.php:1315
 msgid "Country"
 msgstr "Land"
 
@@ -1559,6 +1571,7 @@ msgstr "Land"
 #: application/views/visitor/index.php:18
 #: application/views/logbookadvanced/index.php:379
 #: application/views/logbookadvanced/index.php:830
+#: application/controllers/Logbook.php:1316
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -1589,6 +1602,7 @@ msgstr "IOTA"
 #: application/views/visitor/index.php:24
 #: application/views/logbookadvanced/index.php:260
 #: application/views/logbookadvanced/index.php:818
+#: application/controllers/Logbook.php:1320
 msgid "State"
 msgstr "Delstat"
 
@@ -1636,6 +1650,7 @@ msgstr "Delstat"
 #: application/views/visitor/index.php:27
 #: application/views/logbookadvanced/index.php:266
 #: application/views/logbookadvanced/index.php:779
+#: application/controllers/Logbook.php:1321
 msgid "Gridsquare"
 msgstr "Rutnätsruta"
 
@@ -1665,6 +1680,7 @@ msgstr "Rutnätsruta"
 #: application/views/view_log/partial/log_ajax.php:14
 #: application/views/visitor/index.php:30
 #: application/views/logbookadvanced/index.php:869
+#: application/controllers/Logbook.php:1322
 msgid "Distance"
 msgstr "Avstånd"
 
@@ -1750,6 +1766,7 @@ msgstr "Avstånd"
 #: application/views/widgets/qsos.php:21
 #: application/views/logbookadvanced/index.php:281
 #: application/views/logbookadvanced/index.php:773
+#: application/controllers/Logbook.php:1323
 msgid "Band"
 msgstr "Band"
 
@@ -1776,6 +1793,7 @@ msgstr "Band"
 #: application/views/view_log/partial/log_ajax.php:16
 #: application/views/view_log/qso.php:95 application/views/visitor/index.php:36
 #: application/views/logbookadvanced/index.php:776
+#: application/controllers/Logbook.php:1324
 msgid "Frequency"
 msgstr "Frekvens"
 
@@ -1802,6 +1820,7 @@ msgstr "Frekvens"
 #: application/views/visitor/index.php:39
 #: application/views/logbookadvanced/index.php:395
 #: application/views/logbookadvanced/index.php:851
+#: application/controllers/Logbook.php:1325
 msgid "Operator"
 msgstr "Operatör"
 
@@ -1831,6 +1850,7 @@ msgstr "Operatör"
 #: application/views/view_log/qso.php:335
 #: application/views/view_log/qso.php:688
 #: application/views/logbookadvanced/index.php:252
+#: application/controllers/Logbook.php:1346
 msgid "Deleted DXCC"
 msgstr "Struket DXCC"
 
