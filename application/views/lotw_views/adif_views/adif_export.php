@@ -226,9 +226,8 @@ $sign_string = strtoupper($sign_string);
 $signed_item = trim($CI->signlog($lotw_cert_info->cert_key, $sign_string));
 print "<SIGN_LOTW_V2.0:".(strlen($signed_item)+intdiv(strlen($signed_item),64)+1).":6>";
 for ($i=0; $i<strlen($signed_item); $i+=64) {
-	print substr($signed_item, $i, 64);
+	print substr($signed_item, $i, 64)."\n";
 }
-print "\n";
 print "<SIGNDATA:".strlen($sign_string).">".$sign_string."\n";
 ?>
 <eor>
