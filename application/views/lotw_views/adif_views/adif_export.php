@@ -120,14 +120,22 @@ print "<QSO_TIME:".strlen($new_on."Z").">".$new_on."Z\n";
 
 $sign_string = "";
 
-// Adds CA Province
-if($station_profile->state != "" && $station_profile->station_country == "CANADA") {
-	$sign_string .= strtoupper($CI->lotw_ca_province_map($station_profile->state));
+if ($lotw_cert_info->cert_dxcc_id == 150) { // If state is Australia add AU state
+	if($station_profile->state != "") {
+		$sign_string .= $station_profile->state;
+	}
 }
 
-// Adds CN Province
-if($station_profile->state != "" && $station_profile->station_country == "CHINA") {
-	$sign_string .= strtoupper($station_profile->state);
+if ($lotw_cert_info->cert_dxcc_id == 1) { // If state is Canada add CA province
+	if($station_profile->state != "") {
+		$sign_string .= $CI->lotw_ca_province_map($station_profile->state);
+	}
+}
+
+if ($lotw_cert_info->cert_dxcc_id == 318) { // If state is China add CN province
+	if($station_profile->state != "") {
+		$sign_string .= $station_profile->state;
+	}
 }
 
 // Add CQ Zone
@@ -135,86 +143,88 @@ if($station_profile->station_cq) {
 	$sign_string .= $station_profile->station_cq;
 }
 
+if ($lotw_cert_info->cert_dxcc_id == 224) { // If state is Finland add FI kunta
+	$sign_string .= $station_profile->state;
+}
+
 // Add Gridsquare
 if($station_profile->station_gridsquare) {
-	$sign_string .= strtoupper($station_profile->station_gridsquare);
+	$sign_string .= $station_profile->station_gridsquare;
 }
 
 if($station_profile->station_iota) {
-	$sign_string .= strtoupper($station_profile->station_iota);
+	$sign_string .= $station_profile->station_iota;
 }
 
 if($station_profile->station_itu) {
 	$sign_string .= $station_profile->station_itu;
 }
 
-if($station_profile->station_cnty != "" && $station_profile->station_country == "UNITED STATES OF AMERICA") {
-	$sign_string .= strtoupper($station_profile->station_cnty);
+if ($lotw_cert_info->cert_dxcc_id == 339) { // If state is Japan add JA city/gun/ku and prefecture
+	if($station_profile->station_cnty != "") {
+		$sign_string .= $station_profile->station_cnty;
+	}
+	if($station_profile->state != "") {
+		$sign_string .= $station_profile->state;
+	}
 }
 
-if($station_profile->station_cnty != "" && $station_profile->station_country == "ALASKA") {
-	$sign_string .= strtoupper($station_profile->station_cnty);
+if (in_array($lotw_cert_info->cert_dxcc_id, array(15, 54, 61, 125, 151))) { // If state is Russia add RU oblast
+	$sign_string .= $CI->lotw_ru_oblast_map($station_profile->state);
 }
 
-if($station_profile->station_cnty != "" && $station_profile->station_country == "HAWAII") {
-	$sign_string .= strtoupper($station_profile->station_cnty);
-}
-
-if($station_profile->state != "" && $station_profile->station_country == "UNITED STATES OF AMERICA") {
-	$sign_string .= strtoupper($station_profile->state);
-}
-
-if($station_profile->state != "" && $station_profile->station_country == "ALASKA") {
-	$sign_string .= strtoupper($station_profile->state);
-}
-
-if($station_profile->state != "" && $station_profile->station_country == "HAWAII") {
-	$sign_string .= strtoupper($station_profile->state);
+if (in_array($lotw_cert_info->cert_dxcc_id, array(6, 110, 291))) { // If state is US, Alaska or Hawaii add US cnty and state
+	if($station_profile->station_cnty != "") {
+		$sign_string .= $station_profile->station_cnty;
+	}
+	if($station_profile->state != "") {
+		$sign_string .= $station_profile->state;
+	}
 }
 
 if($qso->COL_BAND) {
-	$sign_string .= strtoupper($qso->COL_BAND);
+	$sign_string .= $qso->COL_BAND;
 }
 
 if($qso->COL_BAND_RX) {
-	$sign_string .= strtoupper($qso->COL_BAND_RX);
+	$sign_string .= $qso->COL_BAND_RX;
 }
 
 if($qso->COL_CALL) {
-	$sign_string .= strtoupper($qso->COL_CALL);
+	$sign_string .= $qso->COL_CALL;
 }
 
 if(isset($freq_in_mhz)) {
-	$sign_string .= strtoupper($freq_in_mhz);
+	$sign_string .= $freq_in_mhz;
 }
 
 if(isset($freq_in_mhz_rx)) {
-	$sign_string .= strtoupper($freq_in_mhz_rx);
+	$sign_string .= $freq_in_mhz_rx;
 }
 
 if($qso->COL_MODE) {
-	$sign_string .= strtoupper($CI->mode_map($qso->COL_MODE, $qso->COL_SUBMODE));
+	$sign_string .= $CI->mode_map($qso->COL_MODE, $qso->COL_SUBMODE);
 }
 
 if($qso->COL_PROP_MODE) {
-	$sign_string .= strtoupper($qso->COL_PROP_MODE);
+	$sign_string .= $qso->COL_PROP_MODE;
 }
 
 $sign_string .= $new_date;
 $sign_string .= $new_on."Z";
 
 if($qso->COL_SAT_NAME) {
-	$sign_string .= strtoupper($qso->COL_SAT_NAME);
+	$sign_string .= $qso->COL_SAT_NAME;
 }
+
+$sign_string = strtoupper($sign_string);
 
 $signed_item = trim($CI->signlog($lotw_cert_info->cert_key, $sign_string));
 print "<SIGN_LOTW_V2.0:".(strlen($signed_item)+intdiv(strlen($signed_item),64)+1).":6>";
 for ($i=0; $i<strlen($signed_item); $i+=64) {
    print substr($signed_item, $i, 64);
-   if ($i < (strlen($signed_item) - 64)) {
-      print "\n";
-   }
 }
+print "\n";
 print "<SIGNDATA:".strlen($sign_string).">".$sign_string."\n";
 ?>
 <eor>
