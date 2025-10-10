@@ -61,8 +61,31 @@ async function set_qrg() {
 }
 
 async function set_new_qrg() {
-	let new_qrg = $('#freq_calculated').val().trim();
+	let new_qrg = $('#freq_calculated').val();
+
+	// Trim and validate input
+	if (new_qrg !== null && new_qrg !== undefined) {
+		new_qrg = new_qrg.trim();
+	}
+
 	let parsed_qrg = parseFloat(new_qrg);
+
+	// If field is empty or parsing failed, fetch default frequency for current band/mode
+	if (!new_qrg || new_qrg === '' || isNaN(parsed_qrg) || !isFinite(parsed_qrg) || parsed_qrg <= 0) {
+		if (typeof base_url !== 'undefined') {
+			try {
+				const result = await $.get(base_url + 'index.php/qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val());
+				$('#frequency').val(result);
+				await set_qrg();
+				return;
+			} catch (error) {
+				console.error('Failed to fetch default frequency:', error);
+				return;
+			}
+		}
+		return;
+	}
+
 	let unit = $('#qrg_unit').html();
 
 	// check if the input contains a unit and parse the qrg
@@ -131,6 +154,14 @@ $('#freq_calculated').on('change', function () {
 
 $('#freq_calculated').on('keydown', function (e) {
 	if (e.which === 13) {
+		// Check if DX Waterfall is active - if so, let it handle Enter key
+		if (typeof dxWaterfall !== 'undefined' && $('#dxWaterfall').length > 0) {
+			// DX Waterfall is active, don't handle Enter here
+			// Let dxwaterfall.js handle it instead
+			return;
+		}
+
+		// DX Waterfall not active, use normal behavior
 		e.preventDefault();
 		if ($('#callsign').val() != '') {
 			set_new_qrg().then(() => {

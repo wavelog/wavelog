@@ -40,6 +40,152 @@ switch ($date_format) {
   var user_date_format = "<?php echo $date_format; ?>"; // Pass the user's date format to JavaScript
 </script>
 
+<!--- DX Waterfall --->
+<?php if ($this->session->userdata('user_dxwaterfall_enable') == 'Y' && $manual_mode == 0) { ?>
+<script language="javascript">
+  let dxwaterfall_decont = '<?php echo $this->optionslib->get_option('dxcluster_decont'); ?>';
+  let dxwaterfall_maxage = '<?php echo $this->optionslib->get_option('dxcluster_maxage'); ?>';
+  let dxwaterfall_allowcat = 0;
+  let dxwaterfall_caturl = "";
+</script>
+
+<style>
+	#dxWaterfall {
+		width: 100%;
+		height: 200px;
+		display: block;
+		border-left: 1px solid #000000;
+		border-right: 1px solid #000000;
+	}
+	#dxWaterfallSpot {
+		width: 100%;
+		background-color: #000000;
+		color: #FFFFFF;
+		padding: 5px;
+		font-family: "Consolas", "Courier New", monospace;
+		font-size: 11px;
+		border-left: 1px solid #000000;
+		border-right: 1px solid #000000;
+		border-top: 1px solid #000000;
+		min-height: 20px;
+		line-height: 1.4;
+		word-wrap: break-word;
+		overflow-wrap: break-word;
+	}
+	#dxWaterfallMenu {
+		width: 100%;
+		background-color: #000000;
+		color: #FFFFFF;
+		padding: 5px;
+		font-family: "Consolas", "Courier New", monospace;
+		font-size: 11px;
+		border-left: 1px solid #000000;
+		border-right: 1px solid #000000;
+		border-bottom: 1px solid #000000;
+		min-height: 20px;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 10px;
+	}
+	#dxWaterfallMenu .zoom-in-icon,
+	#dxWaterfallMenu .zoom-out-icon,
+	#dxWaterfallMenu .zoom-reset-icon,
+	#dxWaterfallMenu .prev-spot-icon,
+	#dxWaterfallMenu .next-spot-icon,
+	#dxWaterfallMenu .smart-hunter-icon,
+	#dxWaterfallMenu .continent-cycle-icon,
+	#dxWaterfallMenu .mode-filter-icon {
+		cursor: pointer;
+		color: #FFFFFF;
+		margin: 0 2px;
+		font-size: 12px;
+		transition: color 0.2s;
+	}
+	#dxWaterfallMenu .zoom-in-icon:hover:not(.disabled),
+	#dxWaterfallMenu .zoom-out-icon:hover:not(.disabled),
+	#dxWaterfallMenu .zoom-reset-icon:hover:not(.disabled),
+	#dxWaterfallMenu .prev-spot-icon:hover:not(.disabled),
+	#dxWaterfallMenu .next-spot-icon:hover:not(.disabled),
+	#dxWaterfallMenu .smart-hunter-icon:hover:not(.disabled),
+	#dxWaterfallMenu .smart-hunter-text:hover:not(.disabled),
+	#dxWaterfallMenu .continent-cycle-icon:hover:not(.disabled),
+	#dxWaterfallMenu .continent-cycle-text:hover:not(.disabled),
+	#dxWaterfallMenu .mode-filter-icon:hover:not(.disabled) {
+		color: #AAAAAA;
+	}
+	#dxWaterfallMenu .smart-hunter-text,
+	#dxWaterfallMenu .continent-cycle-text {
+		cursor: pointer;
+		color: #FFFFFF;
+		margin-left: 5px;
+		font-size: 11px;
+		transition: color 0.2s;
+		user-select: none;
+	}
+	#dxWaterfallMenu .mode-filter-phone,
+	#dxWaterfallMenu .mode-filter-cw,
+	#dxWaterfallMenu .mode-filter-digi {
+		user-select: none;
+	}
+	#dxWaterfallMenu .mode-filter-phone:hover:not(.disabled),
+	#dxWaterfallMenu .mode-filter-cw:hover:not(.disabled),
+	#dxWaterfallMenu .mode-filter-digi:hover:not(.disabled) {
+		opacity: 0.7;
+	}
+	@keyframes blink {
+		0%, 49% { opacity: 1; }
+		50%, 100% { opacity: 0.3; }
+	}
+	#dxWaterfallSpot .flag-emoji {
+		font-family: "Twemoji Country Flags", "Helvetica", "Comic Sans", sans-serif !important;
+		font-style: normal !important;
+		font-variant: normal !important;
+	}
+	#dxWaterfallSpot .copy-icon,
+	#dxWaterfallSpot .tune-icon,
+	#dxWaterfallSpot .cycle-spot-icon {
+		cursor: pointer;
+		color: #FFFFFF;
+		margin-right: 5px;
+		font-size: 12px;
+		transition: color 0.2s;
+	}
+	#dxWaterfallSpot .copy-icon:hover,
+	#dxWaterfallSpot .tune-icon:hover,
+	#dxWaterfallSpot .cycle-spot-icon:hover {
+		color: #AAAAAA;
+	}
+	#dxWaterfallSpot .new-continent-icon {
+		color: #FFD700; /* Gold */
+		margin-left: 5px;
+		font-size: 12px;
+	}
+	#dxWaterfallSpot .new-dxcc-icon {
+		color: #C0C0C0; /* Silver */
+		margin-left: 5px;
+		font-size: 12px;
+	}
+	#dxWaterfallSpot .new-callsign-icon {
+		color: #CD7F32; /* Bronze */
+		margin-left: 5px;
+		font-size: 12px;
+	}
+
+  .dxwaterfallpane{
+    margin-bottom: 2px;
+  }
+
+</style>
+<div class="row dxwaterfallpane">
+  <div class="col-sm-12"><div id="dxWaterfallSpot">&nbsp;</div></div>
+	<div class="col-sm-12">
+		<canvas id="dxWaterfall"></canvas>
+	</div>
+  <div class="col-sm-12"><div id="dxWaterfallMenu">&nbsp;</div></div>
+</div>
+<?php } ?>
+
 <div class="row qsopane">
 
   <div class="col-sm-5">
@@ -818,7 +964,7 @@ switch ($date_format) {
 		<?php
 		$result = $this->optionslib->get_option('disable_refresh_past_contacts');
 		if($result === null) { ?>
-			<div id="qso-last-table" hx-get="<?php echo site_url('/qso/component_past_contacts'); ?>" hx-trigger="load, qso_event, every 5s">
+			<div id="qso-last-table" hx-get="<?php echo site_url('/qso/component_past_contacts'); ?>" hx-trigger="load, qso_event, every 15s">
 		<?php } else { ?>
 			<div id="qso-last-table" hx-get="<?php echo site_url('/qso/component_past_contacts'); ?>" hx-trigger="load, qso_event">
 		<?php } ?>

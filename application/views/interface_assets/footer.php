@@ -69,6 +69,47 @@
     var lang_notes_duplication_disabled_short = "<?= __("Duplication Disabled"); ?>";
     var lang_notes_not_found = "<?= __("No notes were found"); ?>";
 
+    /*
+    DX Waterfall Language
+    */
+    var lang_dxwaterfall_tune_to_spot = "<?= __("Tune to spot frequency [Ctrl+Shift+Space]"); ?>";
+    var lang_dxwaterfall_cycle_through = "<?= __("Cycle through"); ?>";
+    var lang_dxwaterfall_spots_currently_showing = "<?= __("spots (currently showing"); ?>";
+    var lang_dxwaterfall_log_qso_with = "<?= __("Log QSO with"); ?>";
+    var lang_dxwaterfall_new_continent = "<?= __("New Continent"); ?>";
+    var lang_dxwaterfall_new_dxcc = "<?= __("New DXCC"); ?>";
+    var lang_dxwaterfall_new_callsign = "<?= __("New Callsign"); ?>";
+    var lang_dxwaterfall_previous_spot = "<?= __("Previous spot [Ctrl+Left] | First spot [Ctrl+Down]"); ?>";
+    var lang_dxwaterfall_no_spots_lower = "<?= __("No spots at lower frequency"); ?>";
+    var lang_dxwaterfall_next_spot = "<?= __("Next spot [Ctrl+Right] | Last spot [Ctrl+Up]"); ?>";
+    var lang_dxwaterfall_no_spots_higher = "<?= __("No spots at higher frequency"); ?>";
+    var lang_dxwaterfall_no_spots_available = "<?= __("No spots available"); ?>";
+    var lang_dxwaterfall_cycle_unworked = "<?= __("Cycle through unworked continents/DXCC"); ?>";
+    var lang_dxwaterfall_dx_hunter = "<?= __("DX Hunter"); ?>";
+    var lang_dxwaterfall_no_unworked = "<?= __("No unworked continents/DXCC on this band"); ?>";
+    var lang_dxwaterfall_fetching_spots = "<?= __("Fetching spots..."); ?>";
+    var lang_dxwaterfall_click_to_cycle = "<?= __("Click to cycle or wait 1.5s to apply"); ?>";
+    var lang_dxwaterfall_change_continent = "<?= __("Change spotter continent"); ?>";
+    var lang_dxwaterfall_filter_by_mode = "<?= __("Filter by mode"); ?>";
+    var lang_dxwaterfall_toggle_phone = "<?= __("Toggle Phone mode filter"); ?>";
+    var lang_dxwaterfall_phone = "<?= __("Phone"); ?>";
+    var lang_dxwaterfall_toggle_cw = "<?= __("Toggle CW mode filter"); ?>";
+    var lang_dxwaterfall_cw = "<?= __("CW"); ?>";
+    var lang_dxwaterfall_toggle_digi = "<?= __("Toggle Digital mode filter"); ?>";
+    var lang_dxwaterfall_digi = "<?= __("Digi"); ?>";
+    var lang_dxwaterfall_zoom_out = "<?= __("Zoom out [Ctrl+-]"); ?>";
+    var lang_dxwaterfall_reset_zoom = "<?= __("Reset zoom to default (3)"); ?>";
+    var lang_dxwaterfall_zoom_in = "<?= __("Zoom in [Ctrl++]"); ?>";
+    var lang_dxwaterfall_waiting_data = "<?= __("Waiting for DX Cluster data..."); ?>";
+    var lang_dxwaterfall_comment = "<?= __("Comment: "); ?>";
+    var lang_dxwaterfall_modes_label = "<?= __("modes:"); ?>";
+    var lang_dxwaterfall_out_of_bandplan = "<?= __("OUT OF BANDPLAN"); ?>";
+    var lang_dxwaterfall_changing_frequency = "<?= __("Changing radio frequency..."); ?>";
+    var lang_dxwaterfall_spots_fetched = "<?= __("spot(s) de"); ?>";
+    var lang_dxwaterfall_fetched_for_band = "<?= __("fetched from DXCluster for band"); ?>";
+    var lang_dxwaterfall_displaying = "<?= __(", displaying"); ?>";
+    var lang_dxwaterfall_invalid = "<?= __("INVALID"); ?>";
+
 </script>
 
 <!-- General JS Files used across Wavelog -->
@@ -1096,6 +1137,9 @@ $($('#callsign')).on('keypress',function(e) {
 <?php if ($this->uri->segment(1) == "qso") { ?>
 
 <script src="<?php echo base_url() ;?>assets/js/sections/qso.js"></script>
+<?php if ($this->session->userdata('user_dxwaterfall_enable') == 'Y') { ?>
+    <script src="<?php echo base_url() ;?>assets/js/dxwaterfall.js"></script>
+<?php } ?>
 <script src="<?php echo base_url() ;?>assets/js/sections/satellite_functions.js"></script>
 <script src="<?php echo base_url() ;?>assets/js/bootstrap-multiselect.js"></script>
 <?php if ($this->session->userdata('isWinkeyEnabled')) { ?>
@@ -1366,6 +1410,9 @@ mymap.on('mousemove', onQsoMapMove);
     <script>
     $( document ).ready(function() {
 	    // Javascript for controlling rig frequency.
+        var updateFromCAT_lock =0; // This mechanism prevents multiple simultaneous calls to query the CAT interface information
+        var dxwaterfall_cat_debounce_lock = 0; // Lock to prevent CAT frequency updates when sending commands from waterfall
+        window.dxwaterfall_cat_debounce_lock = dxwaterfall_cat_debounce_lock; // Make it global for waterfall access
 	    var updateFromCAT = function() {
 		    var cat2UI = function(ui, cat, allow_empty, allow_zero, callback_on_update) {
 			    // Check, if cat-data is available
@@ -1385,8 +1432,11 @@ mymap.on('mousemove', onQsoMapMove);
 		    }
 
 		    if($('select.radios option:selected').val() != '0') {
+
 			    radioID = $('select.radios option:selected').val();
-			    if ((typeof radioID !== 'undefined') && (radioID !== null) && (radioID !== "")) {
+			    if ((typeof radioID !== 'undefined') && (radioID !== null) && (radioID !== "") && (updateFromCAT_lock == 0)) {
+                    updateFromCAT_lock = 1;
+                    // Debug: Log that we're polling CAT
 				    $.getJSON( "radio/json/" + radioID, function( data ) {
 	/* {
 	"frequency": "2400210000",
@@ -1410,31 +1460,79 @@ mymap.on('mousemove', onQsoMapMove);
 						    if($('.radio_login_error').length != 0) {
 							    $(".radio_login_error" ).remove();
 						    }
-						    cat2UI($('#frequency'),data.frequency,false,true,function(d){
-                                $('#frequency').trigger('change');
-							    if ($("#band").val() != frequencyToBand(d)) {
-								    $("#band").val(frequencyToBand(d)).trigger('change');	// Let's only change if we really have a different band!
-							    }
-						    });
-
-						    cat2UI($('#frequency_rx'),data.frequency_rx,false,true,function(d){$("#band_rx").val(frequencyToBand(d))});
-						    cat2UI($('.mode'),data.mode,false,false,function(d){setRst($(".mode").val())});
-						    cat2UI($('#sat_name'),data.satname,false,false);
-						    cat2UI($('#sat_mode'),data.satmode,false,false);
-						    cat2UI($('#transmit_power'),data.power,false,false);
-						    cat2UI($('#selectPropagation'),data.prop_mode,false,false);
 
 						    // Display CAT Timeout warning based on the figure given in the config file
 						    var minutes = Math.floor(<?php echo $this->optionslib->get_option('cat_timeout_interval'); ?> / 60);
 
 						    if(data.updated_minutes_ago > minutes) {
+
+                                dxwaterfall_allowcat = false;
 							    $(".radio_cat_state" ).remove();
 							    if($('.radio_timeout_error').length == 0) {
 								    $('#radio_status').prepend('<div class="alert alert-danger radio_timeout_error" role="alert"><i class="fas fa-broadcast-tower"></i> Radio connection timed-out: ' + $('select.radios option:selected').text() + ' data is ' + data.updated_minutes_ago + ' minutes old.</div>');
 							    } else {
 								    $('.radio_timeout_error').html('Radio connection timed-out: ' + $('select.radios option:selected').text() + ' data is ' + data.updated_minutes_ago + ' minutes old.');
 							    }
+
+                                dxwaterfall_caturl = "";
 						    } else {
+
+                                // Handle frequency updates with waterfall debounce lock
+                                // Sync local variable with global one
+                                dxwaterfall_cat_debounce_lock = window.dxwaterfall_cat_debounce_lock || 0;
+
+                                if (dxwaterfall_cat_debounce_lock == 0) {
+                                    // Normal case - no lock, update frequency as usual
+                                    cat2UI($('#frequency'),data.frequency,false,true,function(d){
+                                        $('#frequency').trigger('change');
+                                        if ($("#band").val() != frequencyToBand(d)) {
+                                            $("#band").val(frequencyToBand(d)).trigger('change');	// Let's only change if we really have a different band!
+                                        }
+                                    });
+                                } else {
+                                    // Locked - check if radio confirms our sent frequency
+                                    if (typeof window.dxwaterfall_expected_frequency !== 'undefined' && window.dxwaterfall_expected_frequency) {
+                                        var expectedFreq = parseFloat(window.dxwaterfall_expected_frequency);
+                                        var actualFreq = parseFloat(data.frequency);
+                                        var tolerance = 1000; // 1000 Hz tolerance (1 kHz)
+                                        var diff = Math.abs(expectedFreq - actualFreq);
+
+                                        if (diff <= tolerance) {
+                                            // Radio confirmed the frequency change - unlock and update
+                                            dxwaterfall_cat_debounce_lock = 0;
+                                            window.dxwaterfall_cat_debounce_lock = 0;
+                                            window.dxwaterfall_expected_frequency = null;
+
+                                            cat2UI($('#frequency'),data.frequency,false,true,function(d){
+                                                $('#frequency').trigger('change');
+                                                if ($("#band").val() != frequencyToBand(d)) {
+                                                    $("#band").val(frequencyToBand(d)).trigger('change');
+                                                }
+                                                // Invalidate waterfall frequency cache to force update from new CAT frequency
+                                                if (typeof dxWaterfall !== 'undefined' && dxWaterfall.invalidateFrequencyCache) {
+                                                    dxWaterfall.invalidateFrequencyCache();
+                                                }
+                                                // Update waterfall cached frequency after CAT frequency change
+                                                if (typeof dxWaterfall !== 'undefined' && dxWaterfall.commitFrequency) {
+                                                    dxWaterfall.commitFrequency();
+                                                }
+                                            });
+                                        }
+                                        // If frequency doesn't match, stay locked and don't update
+                                    } else {
+                                    }
+                                }
+
+                                cat2UI($('#frequency_rx'),data.frequency_rx,false,true,function(d){$("#band_rx").val(frequencyToBand(d))});
+                                cat2UI($('.mode'),data.mode,false,false,function(d){setRst($(".mode").val())});
+                                cat2UI($('#sat_name'),data.satname,false,false);
+                                cat2UI($('#sat_mode'),data.satmode,false,false);
+                                cat2UI($('#transmit_power'),data.power,false,false);
+                                cat2UI($('#selectPropagation'),data.prop_mode,false,false);
+
+                                dxwaterfall_allowcat = true;
+                                dxwaterfall_caturl=data.cat_url;
+
 							    $(".radio_timeout_error" ).remove();
                                 separator = '<span style="margin-left:10px"></span>';
 							    text = '<i class="fas fa-broadcast-tower"></i>' + separator + '<b>TX:</b> ' + data.frequency_formatted;
@@ -1465,13 +1563,19 @@ mymap.on('mousemove', onQsoMapMove);
 							    }
 						    }
 					    }
+                        updateFromCAT_lock = 0;
 				    });
 			    }
 		    }
 	    };
 
-	    // Update frequency every three second
-	    setInterval(updateFromCAT, 3000);
+	    // Update frequency from CAT
+	    // Add a small delay (500ms) before first poll to allow radio interface to initialize
+	    setTimeout(function() {
+	        updateFromCAT();
+	        // Then poll every 500ms
+	        setInterval(updateFromCAT, 500 * 1); // Note: this is minimum update intervals, there is a lock mechanism to prevent overlapping calls.
+	    }, 500);
 
 	    // If a radios selected from drop down select radio update.
 	    $('.radios').change(updateFromCAT);
