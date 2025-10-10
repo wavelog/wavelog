@@ -207,8 +207,8 @@ if($qso->COL_SAT_NAME) {
 	$sign_string .= strtoupper($qso->COL_SAT_NAME);
 }
 
-$signed_item = $CI->signlog($lotw_cert_info->cert_key, $sign_string);
-print "<SIGN_LOTW_V2.0:".(strlen($signed_item)+1).":6>";
+$signed_item = trim($CI->signlog($lotw_cert_info->cert_key, $sign_string));
+print "<SIGN_LOTW_V2.0:".(strlen($signed_item)+intdiv(strlen($signed_item),64)+1).":6>";
 for ($i=0; $i<strlen($signed_item); $i+=64) {
    print substr($signed_item, $i, 64);
    if ($i < (strlen($signed_item) - 64)) {
