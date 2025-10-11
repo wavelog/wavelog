@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-10-09 06:41+0000\n"
+"POT-Creation-Date: 2025-10-09 16:21+0000\n"
 "PO-Revision-Date: 2025-10-09 16:21+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
@@ -57,8 +57,8 @@ msgstr ""
 #: application/controllers/Cfdexport.php:29 application/controllers/Club.php:48
 #: application/controllers/Club.php:74 application/controllers/Club.php:122
 #: application/controllers/Club.php:151 application/controllers/Club.php:178
-#: application/controllers/Clublog.php:84
-#: application/controllers/Clublog.php:143
+#: application/controllers/Clublog.php:88
+#: application/controllers/Clublog.php:147
 #: application/controllers/Components.php:13
 #: application/controllers/Contestcalendar.php:15
 #: application/controllers/Contesting.php:14
@@ -144,8 +144,6 @@ msgstr ""
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
-#: application/controllers/Clublog.php:88
-#: application/controllers/Clublog.php:147
 msgid "You're not allowed to do that!"
 msgstr "Das ist Dir nicht gestattet!"
 
@@ -758,16 +756,13 @@ msgid "Maintenance Mode is active. Try again later."
 msgstr "Wartungmodus aktiv. Bitte später erneut versuchen."
 
 #: application/controllers/Clublog.php:44
-#: application/controllers/Clublog.php:66
-#: application/controllers/Clublog.php:126
-#: application/controllers/Clublog.php:163
 #: application/controllers/Clublog.php:70
 #: application/controllers/Clublog.php:130
 #: application/controllers/Clublog.php:167
 msgid "No user has configured Clublog."
 msgstr "Kein Benutzer hat Clublog konfiguriert."
 
-#: application/controllers/Clublog.php:89
+#: application/controllers/Clublog.php:93
 #: application/controllers/Logbook.php:696
 #: application/views/awards/dok/index.php:72
 #: application/views/awards/dxcc/index.php:87
@@ -787,11 +782,9 @@ msgstr "Kein Benutzer hat Clublog konfiguriert."
 #: application/views/view_log/partial/log_ajax.php:222
 #: application/views/view_log/qso.php:565
 #: application/views/view_log/qso.php:570
-#: application/controllers/Clublog.php:93
 msgid "Clublog"
 msgstr "Clublog"
 
-#: application/controllers/Clublog.php:145
 #: application/controllers/Clublog.php:149
 msgid "Clublog QSL Import"
 msgstr "Clublog QSL-Import"
@@ -9697,8 +9690,8 @@ msgstr ""
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
-"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an "
-"eQSL.cc."
+"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an eQSL."
+"cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -11954,8 +11947,8 @@ msgstr "E-Mail Adresse"
 msgid ""
 "The email address from which the emails are sent, e.g. 'wavelog@example.com'"
 msgstr ""
-"Die E-Mail Adresse von der die Mails versendet werden, z.B. "
-"'wavelog@example.com'"
+"Die E-Mail Adresse von der die Mails versendet werden, z.B. 'wavelog@example."
+"com'"
 
 #: application/views/options/email.php:80
 msgid "SMTP Host"
@@ -14145,9 +14138,9 @@ msgid ""
 msgstr ""
 "Um zu beginnen, stelle sicher, dass du die Felder auf der linken Seite "
 "bereits mit Datum, Stationsrufzeichen/-standort und Rufzeichen des Operators "
-"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, "
-"z.B. '7.145'), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was "
-"im wesentlichen das Rufzeichen ist."
+"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, z."
+"B. '7.145'), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
+"wesentlichen das Rufzeichen ist."
 
 #: application/views/simplefle/syntax_help.php:9
 msgid "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB."
@@ -14974,9 +14967,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Erstelle einen neuen Ordner in 'assets/css/' und lade eine "
-"'bootstrap.min.css' Datei hoch, welche die grundlegende Styling-Regeln "
-"enthält. Wir verwenden die Themes von %s"
+"Erstelle einen neuen Ordner in 'assets/css/' und lade eine 'bootstrap.min."
+"css' Datei hoch, welche die grundlegende Styling-Regeln enthält. Wir "
+"verwenden die Themes von %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
