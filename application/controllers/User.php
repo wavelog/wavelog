@@ -1534,13 +1534,13 @@ class User extends CI_Controller {
 	}
 
    	function https_check() {
-		if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+		if (isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) === 'on') {
 			return true;
 		}
-		if (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+		if (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && strtolower($_SERVER['HTTP_X_FORWARDED_PROTO']) === 'https') {
 			return true;
 		}
-		if (!empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] === 'on') {
+		if (!empty($_SERVER['HTTP_X_FORWARDED_SSL']) && strtolower($_SERVER['HTTP_X_FORWARDED_SSL']) === 'on') {
 			return true;
 		}
 		return false;
