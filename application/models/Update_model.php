@@ -287,8 +287,7 @@ class Update_model extends CI_Model {
         }
 
         rewind($f);
-        $this->db->empty_table("lotw_users");
-        $this->db->query("ALTER TABLE lotw_users AUTO_INCREMENT 1");
+ 		$this->db->query("TRUNCATE TABLE lotw_users");
         $i = 0;
         $data = fgetcsv($f, 1000, ",", '"', '\\');
         do {
@@ -371,10 +370,6 @@ class Update_model extends CI_Model {
 
 		$this->update_norad_ids();
 
-		// Clear all TLE so that reentered birds disappear from planner and path prediction
-		$sql = "UPDATE `tle` SET `tle` = NULL WHERE 1;";
-		$this->db->query($sql);
-
 		$url = 'https://www.amsat.org/tle/dailytle.txt';
 		$curl = curl_init($url);
 
@@ -383,47 +378,58 @@ class Update_model extends CI_Model {
 
 		$response = curl_exec($curl);
 
-		$count = 0;
+		if (strlen($response) >= 140) {
 
-		if ($response === false) {
-			return 'Error: ' . curl_error($curl);
-		} else {
-			// Split the response into an array of lines
-			$lines = explode("\n", $response);
+			// Clear all TLE so that reentered birds disappear from planner and path prediction
+			$sql = "UPDATE `tle` SET `tle` = NULL WHERE 1;";
+			$this->db->query($sql);
 
-			$satname = '';
-			$tleline1 = '';
-			$tleline2 = '';
-			// Process each line
-			for ($i = 0; $i < count($lines); $i += 3) {
-				$count++;
-				// Check if there are at least three lines remaining
-				if (isset($lines[$i], $lines[$i + 1], $lines[$i + 2])) {
-					// Get the three lines
-					$satname = substr($lines[$i+1], 2, 5);
-					$tleline1 = $lines[$i + 1];
-					$tleline2 = $lines[$i + 2];
-					$sql = "
-					INSERT INTO tle (satelliteid, tle)
-					SELECT id, ?
-					FROM satellite
-					WHERE norad_id = ?
-					ON DUPLICATE KEY UPDATE
-					tle = VALUES(tle), updated = now()
-				";
-				$this->db->query($sql, array($tleline1 . "\n" . $tleline2, $satname));
+			$count = 0;
+
+			if ($response === false) {
+				return 'Error: ' . curl_error($curl);
+			} else {
+				// Split the response into an array of lines
+				$lines = explode("\n", $response);
+
+				$satname = '';
+				$tleline1 = '';
+				$tleline2 = '';
+				// Process each line
+				for ($i = 0; $i < count($lines); $i += 3) {
+					$count++;
+					// Check if there are at least three lines remaining
+					if (isset($lines[$i], $lines[$i + 1], $lines[$i + 2])) {
+						// Get the three lines
+						$satname = substr($lines[$i+1], 2, 5);
+						$tleline1 = $lines[$i + 1];
+						$tleline2 = $lines[$i + 2];
+						$sql = "
+						INSERT INTO tle (satelliteid, tle)
+						SELECT id, ?
+						FROM satellite
+						WHERE norad_id = ?
+						ON DUPLICATE KEY UPDATE
+						tle = VALUES(tle), updated = now()
+					";
+					$this->db->query($sql, array($tleline1 . "\n" . $tleline2, $satname));
+					}
 				}
 			}
+
+			curl_close($curl);
+
+			$mtime = microtime();
+			$mtime = explode(" ",$mtime);
+			$mtime = $mtime[1] + $mtime[0];
+			$endtime = $mtime;
+			$totaltime = ($endtime - $starttime);
+			return "This page was created in ".$totaltime." seconds <br />Records inserted: " . $count;
+
+		} else {
+			curl_close($curl);
+			return "Error: Received file was empty";
 		}
-
-		curl_close($curl);
-
-		$mtime = microtime();
-		$mtime = explode(" ",$mtime);
-		$mtime = $mtime[1] + $mtime[0];
-		$endtime = $mtime;
-		$totaltime = ($endtime - $starttime);
-		return "This page was created in ".$totaltime." seconds <br />Records inserted: " . $count;
 	}
 
 	 function lotw_sats() {
@@ -557,8 +563,7 @@ class Update_model extends CI_Model {
 		if ($http_result['http_code'] == "200") {
 			$lines = explode("\n", $response);
 			if (count($lines) > 0) {	// Check if there was data, otherwise skip parsing / truncating the table and preserve whats there
-				$this->db->empty_table("hams_of_note");
-				$this->db->query("ALTER TABLE hams_of_note AUTO_INCREMENT 1");
+				$this->db->query("TRUNCATE TABLE hams_of_note");
 				$i = 0;
 				foreach($lines as $data) {
 					$line = trim($data);

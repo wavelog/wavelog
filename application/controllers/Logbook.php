@@ -77,9 +77,13 @@ class Logbook extends CI_Controller {
 
 		// Normalize the date only if it's not empty
 		if (!empty($date)) {
+			// Characters '/' and ',' are not URL safe, so we replace
+			// them with  '_' and '%'. Switch them back here.
 			if (strpos($date, '_') !== false) {
-				// Replace slashes with dashes for URL processing
 				$date = str_replace('_', '/', $date);
+			}
+			if (strpos($date, '%') !== false) {
+				$date = str_replace('%', ',', $date);
 			}
 			// Get user-preferred date format
 			if ($this->session->userdata('user_date_format')) {
