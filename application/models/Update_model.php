@@ -287,8 +287,7 @@ class Update_model extends CI_Model {
         }
 
         rewind($f);
-        $this->db->empty_table("lotw_users");
-        $this->db->query("ALTER TABLE lotw_users AUTO_INCREMENT 1");
+ 		$this->db->query("TRUNCATE TABLE lotw_users");
         $i = 0;
         $data = fgetcsv($f, 1000, ",", '"', '\\');
         do {
@@ -564,8 +563,7 @@ class Update_model extends CI_Model {
 		if ($http_result['http_code'] == "200") {
 			$lines = explode("\n", $response);
 			if (count($lines) > 0) {	// Check if there was data, otherwise skip parsing / truncating the table and preserve whats there
-				$this->db->empty_table("hams_of_note");
-				$this->db->query("ALTER TABLE hams_of_note AUTO_INCREMENT 1");
+				$this->db->query("TRUNCATE TABLE hams_of_note");
 				$i = 0;
 				foreach($lines as $data) {
 					$line = trim($data);
