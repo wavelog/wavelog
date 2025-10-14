@@ -2285,8 +2285,7 @@ class Awards extends CI_Controller {
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 
-	public function wpx_details()
-	{
+	public function wpx_details() {
 		$postdata['band'] = $this->input->post('band', true);
 		$postdata['status'] = $this->input->post('status', true);
 		$postdata['sat'] = $this->security->xss_clean($this->input->post('sats'));
@@ -2304,6 +2303,7 @@ class Awards extends CI_Controller {
 		$postdata['SouthAmerica'] = ($this->input->post('SouthAmerica', true) ?? 0) == 0 ? NULL: 1;
 		$postdata['Oceania'] = ($this->input->post('Oceania', true) ?? 0) == 0 ? NULL: 1;
 		$postdata['Antarctica'] = ($this->input->post('Antarctica', true) ?? 0) == 0 ? NULL: 1;
+		$postdata['summaryband'] = $this->input->post('summaryband', true);
 
 		$this->load->model('wpx');
 		$this->load->model('modes');

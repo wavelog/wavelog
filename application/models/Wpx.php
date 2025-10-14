@@ -441,7 +441,12 @@ class WPX extends CI_Model {
 						$bindings[] = $postdata['mode'];
 						$bindings[] = $postdata['mode'];
 					}
-					$sql .= $this->addBandToQuery($postdata['band'], $bindings);
+
+					if ($postdata['band'] == $postdata['summaryband'] || $postdata['summaryband'] != 'Total') {
+						$sql .= $this->addBandToQuery($postdata['summaryband'], $bindings);
+					} else {
+						$sql .= $this->addBandToQuery($postdata['band'], $bindings);
+					}
 
 					if ($postdata['status'] === 'confirmed') {
 						$sql .= $this->addQslToQuery($postdata);
@@ -509,18 +514,18 @@ class WPX extends CI_Model {
 		return $sql;
 	}
 
-	function addBandToQuery($band,&$binding) {
+	function addBandToQuery($band, &$binding) {
 		$sql = '';
 		if ($band == 'SAT') {
 			$sql .= " and col_prop_mode = ?";
-			$binding[]=$band;
+			$binding[] = $band;
 		} else {
 			if ($band == 'All' || $band == 'Total') {
 				$sql .=" and (col_prop_mode!='SAT' or col_prop_mode is null)";
 			} else {
 				$sql .=" and (col_prop_mode!='SAT' or col_prop_mode is null)";
 				$sql .= " and col_band = ?";
-				$binding[]=$band;
+				$binding[] = $band;
 			}
 		}
 

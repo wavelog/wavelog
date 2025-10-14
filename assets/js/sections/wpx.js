@@ -14,7 +14,7 @@ function wpxLoadDetails(status, band) {
 		url: site_url + '/awards/wpx_details',
 		type: 'post',
 		data: {
-			band: band,
+			band: $('#band2').val(),
 			mode: $('#mode').val(),
 			status: status,
 			sats: $('#sats').val(),
@@ -31,6 +31,7 @@ function wpxLoadDetails(status, band) {
 			eqsl: $('#eqsl').is(':checked') ? 1 : 0,
 			qrz: $('#qrz').is(':checked') ? 1 : 0,
 			clublog: $('#clublog').is(':checked') ? 1 : 0,
+			summaryband: band
 		},
 		type: 'post',
 		success: function (html) {
