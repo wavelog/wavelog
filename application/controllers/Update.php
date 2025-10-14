@@ -255,9 +255,9 @@ class Update extends CI_Controller {
 			}
 
 			// Clear the tables, ready for new data
-			$this->db->empty_table("dxcc_entities");
-			$this->db->empty_table("dxcc_exceptions");
-			$this->db->empty_table("dxcc_prefixes");
+			$this->db->query("TRUNCATE TABLE dxcc_entities");
+			$this->db->query("TRUNCATE TABLE dxcc_exceptions");
+			$this->db->query("TRUNCATE TABLE dxcc_prefixes");
 			$this->update_status();
 
 			// Parse the three sections of the file and update the tables
