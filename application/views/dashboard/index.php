@@ -151,7 +151,7 @@ function getDistance($distance) {
 	<?php if (($linkedCount > 0) && $active_not_linked && !$is_first_login) { ?>
 		<div class="alert alert-danger alert-dismissible fade show" role="alert">
 		<?= sprintf(
-				_pgettext("Dashboard Warning", "Your active Station Location isn't linked to your Logbook. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
+				_pgettext("Dashboard Warning", "Your active station location is not linked to your active station logbook. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
 			); ?>
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
@@ -160,7 +160,7 @@ function getDistance($distance) {
 	<?php if ($linkedCount == 0 && !$is_first_login) { ?>
 		<div class="alert alert-danger alert-dismissible fade show" role="alert">
 		<?= sprintf(
-				_pgettext("Dashboard Warning", "You have no station linked to your Logbook. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
+				_pgettext("Dashboard Warning", "You have no station linked to your logbook. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
 			); ?>
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
