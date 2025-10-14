@@ -127,6 +127,13 @@ class WPX extends CI_Model {
 
 					$sql .= $this->addOrbitToQuery($postdata, $bindings);
 
+					if ($band == 'SAT') {
+						if ($postdata['sat'] != 'All') {
+							$sql .= " and col_sat_name = ?";
+							$bindings[] = $postdata['sat'];
+						}
+					}
+
 				$sql .= " ) AS s
 					) AS t
 					) as x";
@@ -230,6 +237,13 @@ class WPX extends CI_Model {
 				$sql .= $this->addContinentsToQuery($postdata);
 
 				$sql .= $this->addOrbitToQuery($postdata,$bindings);
+
+				if ($band == 'SAT') {
+						if ($postdata['sat'] != 'All') {
+							$sql .= " and col_sat_name = ?";
+							$bindings[] = $postdata['sat'];
+						}
+					}
 
 				$sql .= " ) AS s
 					) AS t
@@ -434,6 +448,13 @@ class WPX extends CI_Model {
 					}
 					$sql .= $this->addContinentsToQuery($postdata);
 
+					if ($band == 'SAT') {
+						if ($postdata['sat'] != 'All') {
+							$sql .= " and col_sat_name = ?";
+							$bindings[] = $postdata['sat'];
+						}
+					}
+
 				$sql .= " ) AS s
 					) AS t
 					) as x
@@ -497,9 +518,9 @@ class WPX extends CI_Model {
 			$binding[]=$band;
 		} else {
 			if ($band == 'All' || $band == 'Total') {
-				$sql .= " and col_prop_mode !='SAT'";
+				$sql .=" and (col_prop_mode!='SAT' or col_prop_mode is null)";
 			} else {
-				$sql .= " and col_prop_mode !='SAT'";
+				$sql .=" and (col_prop_mode!='SAT' or col_prop_mode is null)";
 				$sql .= " and col_band = ?";
 				$binding[]=$band;
 			}

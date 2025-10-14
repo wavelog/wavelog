@@ -10,8 +10,8 @@
 		<div class="mb-4 text-center">
 			<div class="dropdown" data-bs-auto-close="outside">
 
-			<button id="button1id" type="submit" name="button1id" class="btn btn-sm btn-primary"><?= __("Show"); ?></button>
 			<button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false"><?= __("Filters") ?></button>
+			<button id="button1id" type="submit" name="button1id" class="btn btn-sm btn-primary"><?= __("Show"); ?></button>
 
 	<!-- Dropdown Menu with Filter Content -->
 	<div class="dropdown-menu start-50 translate-middle-x p-3 mt-5" aria-labelledby="filterDropdown" style="min-width: 250px;">
