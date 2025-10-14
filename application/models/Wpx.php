@@ -330,10 +330,10 @@ class WPX extends CI_Model {
 		$location_list = "'".implode("','",$logbooks_locations_array)."'";
 
 		$bindings = [];
-		$sql = "select wpx_prefix, col_call, col_time_on, col_band, col_mode, col_submode,
+		$sql = "select wpx_prefix, col_primary_key, col_call, col_time_on, col_band, col_mode, col_submode,
 					col_lotw_qsl_rcvd, col_qsl_rcvd, col_eqsl_qsl_rcvd, COL_QRZCOM_QSO_DOWNLOAD_STATUS, COL_CLUBLOG_QSO_DOWNLOAD_STATUS
 				from (
-				select wpx_prefix, col_call, col_time_on, col_band, col_mode, col_submode,
+				select wpx_prefix, col_primary_key, col_call, col_time_on, col_band, col_mode, col_submode,
 				col_lotw_qsl_rcvd, col_qsl_rcvd, col_eqsl_qsl_rcvd, COL_QRZCOM_QSO_DOWNLOAD_STATUS, COL_CLUBLOG_QSO_DOWNLOAD_STATUS,
 				ROW_NUMBER() OVER (
 					PARTITION BY wpx_prefix
@@ -351,7 +351,7 @@ class WPX extends CI_Model {
 						/* Then by time */
 						col_time_on ASC
 				) as rn  from (
-				SELECT col_call, col_time_on, col_band, col_mode, col_submode,
+				SELECT col_primary_key, col_call, col_time_on, col_band, col_mode, col_submode,
 				col_lotw_qsl_rcvd, col_qsl_rcvd, col_eqsl_qsl_rcvd, COL_QRZCOM_QSO_DOWNLOAD_STATUS, COL_CLUBLOG_QSO_DOWNLOAD_STATUS,
 				CASE
 					/* case 1: /digit suffix → handle multi-digit prefixes correctly */
@@ -398,7 +398,7 @@ class WPX extends CI_Model {
 				END AS wpx_prefix
 				FROM (
 				SELECT
-					col_call, col_time_on, col_band, col_mode, col_submode,
+					col_primary_key, col_call, col_time_on, col_band, col_mode, col_submode,
 					col_lotw_qsl_rcvd, col_qsl_rcvd, col_eqsl_qsl_rcvd, COL_QRZCOM_QSO_DOWNLOAD_STATUS, COL_CLUBLOG_QSO_DOWNLOAD_STATUS,
 					CASE
 					WHEN num_slashes >= 2 THEN left_part
@@ -412,7 +412,7 @@ class WPX extends CI_Model {
 					END AS call_core
 				FROM (
 					SELECT
-					col_call, col_time_on, col_band, col_mode, col_submode, col_lotw_qsl_rcvd, col_qsl_rcvd, col_eqsl_qsl_rcvd, COL_QRZCOM_QSO_DOWNLOAD_STATUS, COL_CLUBLOG_QSO_DOWNLOAD_STATUS,
+					col_primary_key, col_call, col_time_on, col_band, col_mode, col_submode, col_lotw_qsl_rcvd, col_qsl_rcvd, col_eqsl_qsl_rcvd, COL_QRZCOM_QSO_DOWNLOAD_STATUS, COL_CLUBLOG_QSO_DOWNLOAD_STATUS,
 					UPPER(TRIM(col_call)) AS call_raw,
 					(LENGTH(UPPER(TRIM(col_call))) - LENGTH(REPLACE(UPPER(TRIM(col_call)), '/', ''))) AS num_slashes,
 					SUBSTRING_INDEX(UPPER(TRIM(col_call)), '/', 1) AS left_part,
