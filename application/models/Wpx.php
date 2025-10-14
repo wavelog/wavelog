@@ -121,7 +121,7 @@ class WPX extends CI_Model {
 						$bindings[] = $postdata['mode'];
 						$bindings[] = $postdata['mode'];
 					}
-					$sql .= $this->genfunctions->addBandToQuery($band, $bindings);
+					$sql .= $this->addBandToQuery($band, $bindings);
 
 					$sql .= $this->addContinentsToQuery($postdata);
 
@@ -217,7 +217,7 @@ class WPX extends CI_Model {
 						WHERE station_id in (" . $location_list . ") ";
 				$sql .= $this->genfunctions->addQslToQuery($postdata);
 
-				$sql .= $this->genfunctions->addBandToQuery($band, $bindings);
+				$sql .= $this->addBandToQuery($band, $bindings);
 
 				$sql .= $this->addContinentsToQuery($postdata);
 
@@ -304,10 +304,7 @@ class WPX extends CI_Model {
 			$this->db->where('station_id', $station_id);
 		}
 
-		// filter by band (skip if "Total")
-		if ($band !== 'Total') {
-			$this->db->where('col_band', $band);
-		}
+		$this->db->where('col_band', $band);
 
 		// filter by status
 		if ($status === 'confirmed') {
@@ -430,10 +427,7 @@ class WPX extends CI_Model {
 						$bindings[] = $postdata['mode'];
 						$bindings[] = $postdata['mode'];
 					}
-					// filter by band (skip if "Total")
-					if ($postdata['band'] !== 'Total') {
-						$sql .= $this->genfunctions->addBandToQuery($postdata['band'], $bindings);
-					}
+					$sql .= $this->addBandToQuery($postdata['band'], $bindings);
 
 					if ($postdata['status'] === 'confirmed') {
 						$sql .= $this->addQslToQuery($postdata);
@@ -493,6 +487,24 @@ class WPX extends CI_Model {
 		} else {
 			$sql.=' and 1=0';
 		}
+		return $sql;
+	}
+
+	function addBandToQuery($band,&$binding) {
+		$sql = '';
+		if ($band == 'SAT') {
+			$sql .= " and col_prop_mode = ?";
+			$binding[]=$band;
+		} else {
+			if ($band == 'All' || $band == 'Total') {
+				$sql .= " and col_prop_mode !='SAT'";
+			} else {
+				$sql .= " and col_prop_mode !='SAT'";
+				$sql .= " and col_band = ?";
+				$binding[]=$band;
+			}
+		}
+
 		return $sql;
 	}
 
