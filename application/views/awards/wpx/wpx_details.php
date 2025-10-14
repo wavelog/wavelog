@@ -34,7 +34,7 @@ if ($this->session->userdata('user_date_format')) {
 				<td><a href="javascript:displayQso(<?php echo $qso->col_primary_key; ?>)"><?php echo $qso->col_call; ?></a></td>
 				<td><?php echo date($custom_date_format, $qsotimestamp) . ' ' . date('H:i', $qsotimestamp); ?></td>
 				<td><?php echo $qso->col_band; ?></td>
-				<td><?php echo $qso->col_submode ?? $qso->col_mode; ?></td>
+				<td><?php echo (($qso->col_submode ?? '') == '') ? $qso->col_mode : $qso->col_submode; ?></td>
 				<td><?php echo cf_type($qso->col_qsl_rcvd, $qso->col_lotw_qsl_rcvd, $qso->col_eqsl_qsl_rcvd, $qso->COL_QRZCOM_QSO_DOWNLOAD_STATUS, $qso->COL_CLUBLOG_QSO_DOWNLOAD_STATUS); ?></td>
             </tr>
         <?php endforeach; ?>
