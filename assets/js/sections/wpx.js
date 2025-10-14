@@ -17,7 +17,7 @@ function wpxLoadDetails(status, band) {
 			band: band,
 			mode: $('#mode').val(),
 			status: status,
-			sats: $('#sats').is(':checked') ? 1 : 0,
+			sats: $('#sats').val(),
 			orbit: $('#orbit').is(':checked') ? 1 : 0,
 			Asia: $('#Asia').is(':checked') ? 1 : 0,
 			Africa: $('#Africa').is(':checked') ? 1 : 0,

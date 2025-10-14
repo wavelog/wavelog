@@ -448,11 +448,9 @@ class WPX extends CI_Model {
 					}
 					$sql .= $this->addContinentsToQuery($postdata);
 
-					if ($band == 'SAT') {
-						if ($postdata['sat'] != 'All') {
-							$sql .= " and col_sat_name = ?";
-							$bindings[] = $postdata['sat'];
-						}
+					if ($postdata['sat'] != 'All') {
+						$sql .= " and col_sat_name = ?";
+						$bindings[] = $postdata['sat'];
 					}
 
 				$sql .= " ) AS s
