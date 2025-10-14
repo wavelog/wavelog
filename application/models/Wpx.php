@@ -295,7 +295,7 @@ class WPX extends CI_Model {
 	}
 
 		// Adds orbit type to query
-	function addOrbitToQuery($postdata,&$binding) {
+	function addOrbitToQuery($postdata, &$binding) {
 		$sql = '';
 		if ($postdata['orbit'] != 'All') {
 			$sql .= ' AND satellite.orbit = ?';
