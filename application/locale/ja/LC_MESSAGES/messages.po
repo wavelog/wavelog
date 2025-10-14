@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-10-09 16:21+0000\n"
+"POT-Creation-Date: 2025-10-14 06:48+0000\n"
 "PO-Revision-Date: 2025-10-09 16:21+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
@@ -3411,50 +3411,50 @@ msgstr "アンテナ"
 msgid "In Contacts category, the titles of the notes need to be unique."
 msgstr "連絡先カテゴリでは、メモのタイトルは一意である必要があります。"
 
-#: application/models/Update_model.php:353
+#: application/models/Update_model.php:352
 msgid "Newer release available:"
 msgstr "新しいリリースが利用可能です:"
 
-#: application/models/Update_model.php:357
+#: application/models/Update_model.php:356
 msgid "You are running the latest version."
 msgstr "最新バージョンを実行しています。"
 
-#: application/models/Update_model.php:447
+#: application/models/Update_model.php:446
 msgid "cURL error:"
 msgstr "cURL エラー:"
 
-#: application/models/Update_model.php:482
+#: application/models/Update_model.php:481
 msgid "SAT already existing. LoTW status updated."
 msgstr "SAT は既に存在します。LoTW ステータスが更新されました。"
 
-#: application/models/Update_model.php:485
-#: application/models/Update_model.php:514
+#: application/models/Update_model.php:484
+#: application/models/Update_model.php:513
 #, php-format
 msgid "LoTW status for %d QSO updated"
 msgid_plural "LoTW status for %d QSOs updated"
 msgstr[0] "LoTWステータス %d 件の QSO が更新されました"
 
-#: application/models/Update_model.php:488
+#: application/models/Update_model.php:487
 msgid "SAT already existing. Updating LoTW status failed."
 msgstr "SAT は既に存在します。LoTW ステータスの更新に失敗しました。"
 
-#: application/models/Update_model.php:491
+#: application/models/Update_model.php:490
 msgid "SAT already existing. Ignored."
 msgstr "SAT はすでに存在します。無視されます。"
 
-#: application/models/Update_model.php:498
+#: application/models/Update_model.php:497
 msgid "SAT already existing. Display name updated."
 msgstr "SAT は既に存在します。表示名を更新しました。"
 
-#: application/models/Update_model.php:500
+#: application/models/Update_model.php:499
 msgid "SAT already existing. Updating display name failed."
 msgstr "SAT は既に存在します。表示名の更新に失敗しました。"
 
-#: application/models/Update_model.php:510
+#: application/models/Update_model.php:509
 msgid "New SAT. Inserted."
 msgstr "新しいSATを挿入しました。"
 
-#: application/models/Update_model.php:518
+#: application/models/Update_model.php:517
 msgid "New SAT. Insert failed."
 msgstr "新しい SAT。挿入に失敗しました。"
 
@@ -8264,19 +8264,15 @@ msgstr ""
 #, php-format
 msgctxt "Dashboard Warning"
 msgid ""
-"Your active Station Location isn't linked to your Logbook. Click %shere%s to "
-"do it."
+"Your active station location is not linked to your active station logbook. "
+"Click %shere%s to do it."
 msgstr ""
-"現在のステーション位置がログブックとリンクされていません。リンクするに"
-"は、%shere%s をクリックしてください。"
 
 #: application/views/dashboard/index.php:163
 #, php-format
 msgctxt "Dashboard Warning"
-msgid "You have no station linked to your Logbook. Click %shere%s to do it."
+msgid "You have no station linked to your logbook. Click %shere%s to do it."
 msgstr ""
-"ログブックにリンクされたステーションがありません。%shere%s をクリックしてリン"
-"クしてください。"
 
 #: application/views/dashboard/index.php:173
 #, php-format
@@ -16269,6 +16265,22 @@ msgstr "リクエストを送信"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "受信"
+
+#, php-format
+#~ msgctxt "Dashboard Warning"
+#~ msgid ""
+#~ "Your active Station Location isn't linked to your Logbook. Click %shere%s "
+#~ "to do it."
+#~ msgstr ""
+#~ "現在のステーション位置がログブックとリンクされていません。リンクするに"
+#~ "は、%shere%s をクリックしてください。"
+
+#, php-format
+#~ msgctxt "Dashboard Warning"
+#~ msgid "You have no station linked to your Logbook. Click %shere%s to do it."
+#~ msgstr ""
+#~ "ログブックにリンクされたステーションがありません。%shere%s をクリックして"
+#~ "リンクしてください。"
 
 #~ msgid "Select if want to import QSOs, even if they already exist."
 #~ msgstr "QSO がすでに存在する場合でもインポートする場合は選択します。"
