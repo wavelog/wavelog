@@ -55,7 +55,10 @@ class WPX extends CI_Model {
 							REGEXP_REPLACE(
 							SUBSTRING_INDEX(col_call, '/', 1),
 							'^([0-9]?[A-Z]{1,3}[0-9]*)[0-9].*$',
-							'\\\\1'
+							CASE
+								WHEN VERSION() LIKE '%MariaDB%' THEN '\\\\1'
+								ELSE '$1'
+							END
 							),
 							SUBSTRING_INDEX(col_call, '/', -1)
 						)
@@ -65,7 +68,10 @@ class WPX extends CI_Model {
 							REGEXP_REPLACE(
 							SUBSTRING_INDEX(col_call, '/', 1),
 							'^([0-9]?[A-Z]{1,3})[0-9].*$',
-							'\\\\1'
+							CASE
+								WHEN VERSION() LIKE '%MariaDB%' THEN '\\\\1'
+								ELSE '$1'
+							END
 							),
 							SUBSTRING_INDEX(col_call, '/', -1)
 						)
@@ -76,7 +82,11 @@ class WPX extends CI_Model {
 
 					/* case 3: normal/anniversary calls → keep prefix+digits */
 					ELSE
-					REGEXP_REPLACE(call_core, '^([0-9]?[A-Z]{1,3}[0-9]{1,4}).*$', '\\\\1')
+					REGEXP_REPLACE(call_core, '^([0-9]?[A-Z]{1,3}[0-9]{1,4}).*$',
+					CASE
+						WHEN VERSION() LIKE '%MariaDB%' THEN '\\\\1'
+						ELSE '$1'
+					END)
 				END AS wpx_prefix
 				FROM (
 				SELECT
@@ -145,7 +155,10 @@ class WPX extends CI_Model {
 							REGEXP_REPLACE(
 							SUBSTRING_INDEX(col_call, '/', 1),
 							'^([0-9]?[A-Z]{1,3}[0-9]*)[0-9].*$',
-							'\\\\1'
+							CASE
+								WHEN VERSION() LIKE '%MariaDB%' THEN '\\\\1'
+								ELSE '$1'
+							END
 							),
 							SUBSTRING_INDEX(col_call, '/', -1)
 						)
@@ -155,7 +168,10 @@ class WPX extends CI_Model {
 							REGEXP_REPLACE(
 							SUBSTRING_INDEX(col_call, '/', 1),
 							'^([0-9]?[A-Z]{1,3})[0-9].*$',
-							'\\\\1'
+							CASE
+								WHEN VERSION() LIKE '%MariaDB%' THEN '\\\\1'
+								ELSE '$1'
+							END
 							),
 							SUBSTRING_INDEX(col_call, '/', -1)
 						)
@@ -166,7 +182,11 @@ class WPX extends CI_Model {
 
 					/* case 3: normal/anniversary calls → keep prefix+digits */
 					ELSE
-					REGEXP_REPLACE(call_core, '^([0-9]?[A-Z]{1,3}[0-9]{1,4}).*$', '\\\\1')
+					REGEXP_REPLACE(call_core, '^([0-9]?[A-Z]{1,3}[0-9]{1,4}).*$',
+					CASE
+						WHEN VERSION() LIKE '%MariaDB%' THEN '\\\\1'
+						ELSE '$1'
+					END)
 				END AS wpx_prefix
 				FROM (
 				SELECT
@@ -343,7 +363,10 @@ class WPX extends CI_Model {
 							REGEXP_REPLACE(
 							SUBSTRING_INDEX(col_call, '/', 1),
 							'^([0-9]?[A-Z]{1,3}[0-9]*)[0-9].*$',
-							'\\\\1'
+							CASE
+								WHEN VERSION() LIKE '%MariaDB%' THEN '\\\\1'
+								ELSE '$1'
+							END
 							),
 							SUBSTRING_INDEX(col_call, '/', -1)
 						)
@@ -353,7 +376,10 @@ class WPX extends CI_Model {
 							REGEXP_REPLACE(
 							SUBSTRING_INDEX(col_call, '/', 1),
 							'^([0-9]?[A-Z]{1,3})[0-9].*$',
-							'\\\\1'
+							CASE
+								WHEN VERSION() LIKE '%MariaDB%' THEN '\\\\1'
+								ELSE '$1'
+							END
 							),
 							SUBSTRING_INDEX(col_call, '/', -1)
 						)
@@ -364,7 +390,11 @@ class WPX extends CI_Model {
 
 					/* case 3: normal/anniversary calls → keep prefix+digits */
 					ELSE
-					REGEXP_REPLACE(call_core, '^([0-9]?[A-Z]{1,3}[0-9]{1,4}).*$', '\\\\1')
+					REGEXP_REPLACE(call_core, '^([0-9]?[A-Z]{1,3}[0-9]{1,4}).*$',
+					CASE
+						WHEN VERSION() LIKE '%MariaDB%' THEN '\\\\1'
+						ELSE '$1'
+					END)
 				END AS wpx_prefix
 				FROM (
 				SELECT
