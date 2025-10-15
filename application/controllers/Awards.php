@@ -2209,4 +2209,113 @@ class Awards extends CI_Controller {
 		$this->load->view('awards/73on73/index');
 		$this->load->view('interface_assets/footer');
 	}
+
+	public function wpx ()	{
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/wpx.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/wpx.js")),
+		];
+
+		$this->load->model('wpx');
+		$this->load->model('modes');
+		$this->load->model('bands');
+
+		$data['orbits'] = $this->bands->get_worked_orbits();
+		$data['sats_available'] = $this->bands->get_worked_sats();
+		$data['user_default_band'] = $this->session->userdata('user_default_band');
+
+		$data['worked_bands'] = $this->bands->get_worked_bands('dxcc'); // Used in the view for band select
+		$data['modes'] = $this->modes->active(); // Used in the view for mode select
+
+		if ($this->input->post('band') != NULL) {   // Band is not set when page first loads.
+			if ($this->input->post('band') == 'All') {         // Did the user specify a band? If not, use all bands
+				$bands = $data['worked_bands'];
+			} else {
+				$bands[] = $this->security->xss_clean($this->input->post('band'));
+			}
+		} else {
+			$bands = $data['worked_bands'];
+		}
+
+		$data['bands'] = $bands; // Used for displaying selected band(s) in the table in the view
+
+		if($this->input->method() === 'post') {
+			$postdata['qsl'] = ($this->input->post('qsl',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['lotw'] = ($this->input->post('lotw',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['eqsl'] = ($this->input->post('eqsl',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['qrz'] = ($this->input->post('qrz',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['clublog'] = ($this->input->post('clublog',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['Africa'] = ($this->input->post('Africa',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['Asia'] = ($this->input->post('Asia',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['Europe'] = ($this->input->post('Europe',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['NorthAmerica'] = ($this->input->post('NorthAmerica',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['SouthAmerica'] = ($this->input->post('SouthAmerica',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['Oceania'] = ($this->input->post('Oceania',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['Antarctica'] = ($this->input->post('Antarctica',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['band'] = $this->security->xss_clean($this->input->post('band'));
+			$postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+			$postdata['sat'] = $this->security->xss_clean($this->input->post('sats'));
+			$postdata['orbit'] = $this->security->xss_clean($this->input->post('orbits'));
+		} else { // Setting default values at first load of page
+			$postdata['qsl'] = 1;
+			$postdata['lotw'] = 1;
+			$postdata['eqsl'] = NULL;
+			$postdata['qrz'] = NULL;
+			$postdata['clublog'] = NULL;
+			$postdata['Africa'] = 1;
+			$postdata['Asia'] = 1;
+			$postdata['Europe'] = 1;
+			$postdata['NorthAmerica'] = 1;
+			$postdata['SouthAmerica'] = 1;
+			$postdata['Oceania'] = 1;
+			$postdata['Antarctica'] = 1;
+			$postdata['band'] = 'All';
+			$postdata['mode'] = 'All';
+			$postdata['sat'] = 'All';
+			$postdata['orbit'] = 'All';
+		}
+
+		$data['wpx_array'] = $this->wpx->get_wpx_array($bands, $postdata);
+
+		// Render Page
+		$data['page_title'] = sprintf(__("Awards - %s"), __("WPX"));
+		$data['posted_band']=$postdata['band'];
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('awards/wpx/index');
+		$this->load->view('interface_assets/footer', $footerData);
+	}
+
+	public function wpx_details() {
+		$postdata['band'] = $this->input->post('band', true);
+		$postdata['status'] = $this->input->post('status', true);
+		$postdata['sat'] = $this->security->xss_clean($this->input->post('sats'));
+		$postdata['orbit'] = $this->security->xss_clean($this->input->post('orbits'));
+		$postdata['mode'] = $this->input->post('mode');
+		$postdata['qsl'] = ($this->input->post('qsl', true) ?? 0) == 0 ? NULL: 1;
+		$postdata['lotw'] = ($this->input->post('lotw', true) ?? 0) == 0 ? NULL: 1;
+		$postdata['eqsl'] = ($this->input->post('eqsl', true) ?? 0) == 0 ? NULL: 1;
+		$postdata['qrz'] = ($this->input->post('qrz', true) ?? 0) == 0 ? NULL: 1;
+		$postdata['clublog'] = ($this->input->post('clublog', true) ?? 0) == 0 ? NULL: 1;
+		$postdata['Africa'] = ($this->input->post('Africa', true) ?? 0) == 0 ? NULL: 1;
+		$postdata['Asia'] = ($this->input->post('Asia', true) ?? 0) == 0 ? NULL: 1;
+		$postdata['Europe'] = ($this->input->post('Europe', true) ?? 0) == 0 ? NULL: 1;
+		$postdata['NorthAmerica'] = ($this->input->post('NorthAmerica', true) ?? 0) == 0 ? NULL: 1;
+		$postdata['SouthAmerica'] = ($this->input->post('SouthAmerica', true) ?? 0) == 0 ? NULL: 1;
+		$postdata['Oceania'] = ($this->input->post('Oceania', true) ?? 0) == 0 ? NULL: 1;
+		$postdata['Antarctica'] = ($this->input->post('Antarctica', true) ?? 0) == 0 ? NULL: 1;
+		$postdata['summaryband'] = $this->input->post('summaryband', true);
+
+		$this->load->model('wpx');
+		$this->load->model('modes');
+		$this->load->model('bands');
+
+		$results = $this->wpx->getWpxBandDetails($postdata);
+
+		$data['band']    = $postdata['band'];
+		$data['status']  = $postdata['status'];
+		$data['results'] = $results;
+
+		$this->load->view('awards/wpx/wpx_details', $data);
+	}
+
 }
