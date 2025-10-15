@@ -153,6 +153,7 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('user_name', 'Username', 'required');
 		$this->form_validation->set_rules('user_name', 'Username', 'required|callback_check_username');
 		$this->form_validation->set_rules('user_email', 'E-mail', 'required');
+		$this->form_validation->set_rules('user_clublog_name', 'Clublog Username', 'valid_email');
 		$this->form_validation->set_rules('user_password', 'Password', 'required');
 		$this->form_validation->set_rules('user_type', 'Type', 'required');
 		$this->form_validation->set_rules('user_callsign', 'Callsign', 'required');
@@ -206,6 +207,7 @@ class User extends CI_Controller {
 				$data['user_measurement_base'] = $this->input->post('user_measurement_base') ?? 'K';
 				$data['user_dashboard_map'] = $this->input->post('user_dashboard_map') ?? 'Y';
 				$data['user_dashboard_banner'] = $this->input->post('user_dashboard_banner') ?? 'Y';
+				$data['user_dashboard_solar'] = $this->input->post('user_dashboard_solar') ?? 'Y';
 				$data['user_stylesheet'] = $this->input->post('user_stylesheet');
 				$data['user_qth_lookup'] = $this->input->post('user_qth_lookup');
 				$data['user_sota_lookup'] = $this->input->post('user_sota_lookup');
@@ -299,6 +301,7 @@ class User extends CI_Controller {
 				$this->input->post('on_air_widget_show_only_most_recent_radio'),
 				$this->input->post('qso_widget_display_qso_time'),
 				$this->input->post('user_dashboard_banner') ?? 'Y',
+				$this->input->post('user_dashboard_solar') ?? 'Y',
 				$this->input->post('clubstation') == '1' ? true : false,
 				$this->input->post('global_oqrs_text') ?? '',
 				$this->input->post('oqrs_grouped_search') ?? 'off',
@@ -336,6 +339,7 @@ class User extends CI_Controller {
 			$data['user_measurement_base'] = $this->input->post('user_measurement_base');
 			$data['user_dashboard_map'] = $this->input->post('user_dashboard_map') ?? 'Y';
 			$data['user_dashboard_banner'] = $this->input->post('user_dashboard_banner') ?? 'Y';
+			$data['user_dashboard_solar'] = $this->input->post('user_dashboard_solar') ?? 'Y';
 			$data['user_stylesheet'] = $this->input->post('user_stylesheet');
 			$data['user_qth_lookup'] = $this->input->post('user_qth_lookup');
 			$data['user_sota_lookup'] = $this->input->post('user_sota_lookup');
@@ -383,6 +387,7 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('user_name', 'Username', 'required|xss_clean');
 		$this->form_validation->set_rules('user_name', 'Username', 'required|callback_check_username');
 		$this->form_validation->set_rules('user_email', 'E-mail', 'required|xss_clean');
+		$this->form_validation->set_rules('user_clublog_name', 'Clublog Username', 'valid_email');
 		if($this->session->userdata('user_type') == 99)
 		{
 			$this->form_validation->set_rules('user_type', 'Type', 'required|xss_clean');
@@ -393,6 +398,7 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('user_locator', 'Locator', 'callback_check_locator');
 		$this->form_validation->set_rules('user_email', 'EMail', 'required|callback_check_email');
 		$this->form_validation->set_rules('user_email', 'EMail', 'required|valid_email');
+		$this->form_validation->set_rules('user_clublog_name', 'Clublog Username', 'valid_email');
 		$this->form_validation->set_rules('user_timezone', 'Timezone', 'required');
 
 		$data['user_form_action'] = site_url('user/edit')."/".$this->uri->segment(3);
@@ -714,6 +720,16 @@ class User extends CI_Controller {
 				$dkey_opt=$this->user_options_model->get_options('dashboard',array('option_name'=>'show_dashboard_banner','option_key'=>'boolean'), $this->uri->segment(3))->result();
 				if (count($dkey_opt)>0) {
 					$data['user_dashboard_banner'] = $dkey_opt[0]->option_value;
+				}
+			}
+
+			// Dashboard solar data information widget
+			if($this->input->post('user_dashboard_solar')) {
+				$data['user_dashboard_solar'] = $this->input->post('user_dashboard_solar', false);
+			} else {
+				$dkey_opt=$this->user_options_model->get_options('dashboard',array('option_name'=>'show_dashboard_solar','option_key'=>'boolean'), $this->uri->segment(3))->result();
+				if (count($dkey_opt)>0) {
+					$data['user_dashboard_solar'] = $dkey_opt[0]->option_value;
 				}
 			}
 
@@ -1096,6 +1112,8 @@ class User extends CI_Controller {
 				if ($user->clubstation == 1) {
 					log_message('debug', "User ID: [$uid] Login rejected because of a external clubstation login attempt with a modified cookie. Attack?");
 					$this->session->set_flashdata('error', __("This is not allowed!"));
+					$this->output->set_header('X-Login-Status: failed');
+					$this->output->_display();
 					redirect('user/login');
 				}
 
@@ -1131,6 +1149,8 @@ class User extends CI_Controller {
 					$this->input->set_cookie('keep_login', '', -3600, '');
 					$this->input->set_cookie('re_login', '', -3600, '');
 					$this->session->set_flashdata('error', __("Login failed. Try again."));
+					$this->set_header('X-Login-Status: failed');
+					$this->output->_display();
 					redirect('user/login');
 				}
 			} catch (Exception $e) {
@@ -1140,8 +1160,9 @@ class User extends CI_Controller {
 				// Delete keep_login cookie
 				$this->input->set_cookie('keep_login', '', -3600, '');
 				$this->input->set_cookie('re_login', '', -3600, '');
-
+				$this->set_header('X-Login-Status: failed');
 				$this->session->set_flashdata('error', __("Login failed. Try again."));
+				$this->output->_display();
 				redirect('user/login');
 			}
 
@@ -1197,6 +1218,8 @@ class User extends CI_Controller {
 					redirect('user/login');
 				} else {
 					$this->session->set_flashdata('error', __("Incorrect username or password!"));
+					$this->output->set_header('X-Login-Status: failed');
+					$this->output->_display();
 					redirect('user/login');
 				}
 			}
@@ -1511,13 +1534,13 @@ class User extends CI_Controller {
 	}
 
    	function https_check() {
-		if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+		if (isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) === 'on') {
 			return true;
 		}
-		if (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+		if (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && strtolower($_SERVER['HTTP_X_FORWARDED_PROTO']) === 'https') {
 			return true;
 		}
-		if (!empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] === 'on') {
+		if (!empty($_SERVER['HTTP_X_FORWARDED_SSL']) && strtolower($_SERVER['HTTP_X_FORWARDED_SSL']) === 'on') {
 			return true;
 		}
 		return false;

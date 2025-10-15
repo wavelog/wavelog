@@ -79,10 +79,19 @@ class Dashboard extends CI_Controller {
 			$data['dashboard_banner'] = 'N';
 		}
 
+		// Check user preferrence to show Solar Data on Dashboard
+		// Default to not show
+		if (($this->session->userdata('user_dashboard_solar') ?? '') != '') {
+			$data['dashboard_solar'] = $this->session->userdata('user_dashboard_solar') ?? 'N';
+		} else {
+			$data['dashboard_solar'] = 'N'; // Default to not show
+		}
+
 		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
 		$this->load->model('cat');
 		$this->load->model('vucc');
+		$this->load->model('dayswithqso_model');
 
 		$data['radio_status'] = $this->cat->recent_status();
 
@@ -91,6 +100,13 @@ class Dashboard extends CI_Controller {
 		$data['total_qsos'] = $this->logbook_model->total_qsos($logbooks_locations_array);
 		$data['month_qsos'] = $this->logbook_model->month_qsos($logbooks_locations_array);
 		$data['year_qsos'] = $this->logbook_model->year_qsos($logbooks_locations_array);
+
+		$rawstreak=$this->dayswithqso_model->getAlmostCurrentStreak();
+		if (is_array($rawstreak)) {
+			$data['current_streak']=$rawstreak['highstreak'];
+		} else {
+			$data['current_streak']=0;
+		}
 
 		// Load  Countries Breakdown data into array
 		$CountriesBreakdown = $this->logbook_model->total_countries_confirmed($logbooks_locations_array);
@@ -179,6 +195,23 @@ class Dashboard extends CI_Controller {
 
 		$data['total_countries_needed'] = count($dxcc->result()) - $current;
 
+		// Check user preferrence to show Solar Data on Dashboard and load data if yes
+		// Default to not show
+		if($data['dashboard_solar'] == 'Y') {
+			$this->load->model('Hamqsl_model');	// Load HAMQSL model
+
+			if (!$this->Hamqsl_model->set_solardata()) {
+				// Problem getting data, set to null
+				$data['solar_bandconditions'] = null;
+				$data['solar_solardata'] = null;
+			} else {
+				// Load data into arrays
+				$data['solar_bandconditions'] = $this->Hamqsl_model->get_bandconditions_array();
+				$data['solar_solardata'] = $this->Hamqsl_model->get_solarinformation_array();
+			}
+		}
+
+		// Load the views
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('dashboard/index');
 		$this->load->view('interface_assets/footer', $footerData);

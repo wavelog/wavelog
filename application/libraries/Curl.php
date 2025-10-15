@@ -100,7 +100,6 @@ class Curl {
 		// Add the filepath
 		$url .= $file_path;
 
-		$this->option(CURLOPT_BINARYTRANSFER, TRUE);
 		$this->option(CURLOPT_VERBOSE, TRUE);
 
 		return $this->execute();

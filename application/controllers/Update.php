@@ -8,32 +8,29 @@ class Update extends CI_Controller {
 			lotw_users - imports lotw users
 	*/
 
-    function __construct()
-	{
+	function __construct() {
 		parent::__construct();
 
 		if (ENVIRONMENT == 'maintenance' && $this->session->userdata('user_id') == '') {
-            echo __("Maintenance Mode is active. Try again later.")."\n";
+			echo __("Maintenance Mode is active. Try again later.")."\n";
 			redirect('user/login');
 		}
 	}
 
-	public function index()
-	{
-        $this->load->model('user_model');
+	public function index() {
+		$this->load->model('user_model');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
-	    $data['page_title'] = __("Updates");
-	    $this->load->view('interface_assets/header', $data);
-	    $this->load->view('update/index');
-	    $this->load->view('interface_assets/footer');
-
+		$data['page_title'] = __("Updates");
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('update/index');
+		$this->load->view('interface_assets/footer');
 	}
 
 	/*
 	* Load the DXCC entities
 	*/
-	public function dxcc_entities($xml_data = null) {
+	private function dxcc_entities($xml_data = null) {
 		// Ensure the Paths library is loaded
 		if (!$this->load->is_loaded('Paths')) {
 			$this->load->library('Paths');
@@ -98,7 +95,7 @@ class Update extends CI_Controller {
 	/*
      * Load the dxcc prefixes
      */
-	public function dxcc_exceptions($xml_data = null) {
+	private function dxcc_exceptions($xml_data = null) {
 		// Ensure the Paths library is loaded
 		if (!$this->load->is_loaded('Paths')) {
 			$this->load->library('Paths');
@@ -149,7 +146,7 @@ class Update extends CI_Controller {
 	/*
      * Load the dxcc prefixes
      */
-	public function dxcc_prefixes($xml_data = null) {
+	private function dxcc_prefixes($xml_data = null) {
 		// Load the cty file
 		if (!$this->load->is_loaded('Paths')) {
 			$this->load->library('Paths');
@@ -199,82 +196,100 @@ class Update extends CI_Controller {
 
 	// Updates the DXCC & Exceptions from the Club Log Cty.xml file.
 	public function dxcc() {
+		$lockfilename='/tmp/.update_dxcc_running';
+		if (!file_exists($lockfilename)) {
+			touch($lockfilename);
 
-		if(!$this->load->is_loaded('Paths')) {
-        	$this->load->library('Paths');
-		}
+			if(!$this->load->is_loaded('Paths')) {
+				$this->load->library('Paths');
+			}
 
-        // set the last run in cron table for the correct cron id
-        $this->load->model('cron_model');
-        $this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+			// set the last run in cron table for the correct cron id
+			$this->load->model('cron_model');
+			$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
 
-        $this->update_status("Downloading file");
+			$this->update_status("Downloading file");
 
-        // give it 10 minutes...
-        set_time_limit(600);
+			// give it 10 minutes...
+			set_time_limit(600);
 
-        // Load Migration data if any.
-        $this->load->library('migration');
-        $this->fix_migrations();
-        $this->migration->latest();
+			// Load Migration data if any.
+			$this->load->library('migration');
+			$this->fix_migrations();
+			$this->migration->latest();
 
-        // Download latest file.
-        $url = "https://cdn.clublog.org/cty.php?api=608df94896cb9c5421ae748235492b43815610c9";
+			// Download latest file.
+			$url = "https://cdn.clublog.org/cty.php?api=608df94896cb9c5421ae748235492b43815610c9";
 
-        $gz = gzopen($url, 'r');
-        if ($gz === FALSE) {
-			$msg = "FAILED: Could not download data from clublog.org. Trying alternative URL.";
-            $this->update_status($msg);
-            log_message('error', $msg);
-
-			$alt_url = "https://github.com/wavelog/dxcc_data/raw/refs/heads/master/cty.xml.gz";
-			$gz = gzopen($alt_url, 'r');
-
+			$gz = gzopen($url, 'r');
 			if ($gz === FALSE) {
-				$msg = "FAILED: Could not download dxcc data. Please check your internet connection.";
+				$msg = "FAILED: Could not download data from clublog.org. Trying alternative URL.";
 				$this->update_status($msg);
 				log_message('error', $msg);
-				exit();
-			} else {
-				$msg = "Downloaded data successfully from alternative URL (github).";
-				$this->update_status($msg);
-				log_message('debug', $msg);
+
+				$alt_url = "https://github.com/wavelog/dxcc_data/raw/refs/heads/master/cty.xml.gz";
+				$gz = gzopen($alt_url, 'r');
+
+				if ($gz === FALSE) {
+					$msg = "FAILED: Could not download dxcc data. Please check your internet connection.";
+					$this->update_status($msg);
+					log_message('error', $msg);
+					exit();
+				} else {
+					$msg = "Downloaded data successfully from alternative URL (github).";
+					$this->update_status($msg);
+					log_message('debug', $msg);
+				}
 			}
-        }
 
-        $data = "";
-        while (!gzeof($gz)) {
-        $data .= gzgetc($gz);
-        }
-        gzclose($gz);
+			$data = "";
+			while (!gzeof($gz)) {
+				$data .= gzgetc($gz);
+			}
+			gzclose($gz);
 
-        if (file_put_contents($this->paths->make_update_path("cty.xml"), $data) === FALSE) {
-            $this->update_status("FAILED: Could not write to cty.xml file");
-			log_message('error', 'DXCC UPDATE FAILED: Could not write to cty.xml file');
-            exit();
-        }
+			if (file_put_contents($this->paths->make_update_path("cty.xml"), $data) === FALSE) {
+				$this->update_status("FAILED: Could not write to cty.xml file");
+				log_message('error', 'DXCC UPDATE FAILED: Could not write to cty.xml file');
+				exit();
+			}
 
-        // Clear the tables, ready for new data
-        $this->db->empty_table("dxcc_entities");
-        $this->db->empty_table("dxcc_exceptions");
-        $this->db->empty_table("dxcc_prefixes");
-        $this->update_status();
+			// Clear the tables, ready for new data
+			$this->db->query("TRUNCATE TABLE dxcc_entities");
+			$this->db->query("TRUNCATE TABLE dxcc_exceptions");
+			$this->db->query("TRUNCATE TABLE dxcc_prefixes");
+			$this->update_status();
 
-        // Parse the three sections of the file and update the tables
-        $this->db->trans_start();
-		$xml_data = simplexml_load_file($this->paths->make_update_path("cty.xml"));
-        $this->dxcc_exceptions($xml_data);
-        $this->dxcc_entities($xml_data);
-        $this->dxcc_prefixes($xml_data);
-		$sql = "update dxcc_entities
-		join dxcc_temp on dxcc_entities.adif = dxcc_temp.adif
-		set dxcc_entities.ituz = dxcc_temp.ituz;";
-		$this->db->query($sql);
-        $this->db->trans_complete();
+			// Parse the three sections of the file and update the tables
+			$this->db->trans_start();
+			$xml_data = simplexml_load_file($this->paths->make_update_path("cty.xml"));
+			$this->dxcc_exceptions($xml_data);
+			$this->dxcc_entities($xml_data);
+			$this->dxcc_prefixes($xml_data);
+			$sql = "update dxcc_entities
+				join dxcc_temp on dxcc_entities.adif = dxcc_temp.adif
+				set dxcc_entities.ituz = dxcc_temp.ituz;";
+			$this->db->query($sql);
+			$this->db->trans_complete();
 
-        $this->update_status(__("DONE"));
+			$this->update_status(__("DONE"));
 
-		echo 'success';
+			echo 'success';
+			unlink($lockfilename);
+		} else {
+			log_message('debug', 'There is a lockfile for this job. Checking the age...');
+			$lockfile_time = filemtime($lockfilename);
+			$tdiff = time() - $lockfile_time;
+			if ($tdiff > 120) {
+
+				unlink($lockfilename);
+				log_message('debug', 'Deleted lockfile because it was older then 120seconds.');
+			} else {
+				log_message('debug', 'Process is currently locked. Further calls are ignored.');
+				echo 'locked - running';
+			}
+		}
+
 	}
 
 	public function update_status($done=""){
@@ -345,151 +360,339 @@ class Update extends CI_Controller {
         $this->logbook_model->check_missing_grid_id($all);
 	}
 
-    public function update_clublog_scp() {
+	public function update_clublog_scp() {
+		$lockfilename='/tmp/.update_clublog_scp_running';
+		if (!file_exists($lockfilename)) {
+			touch($lockfilename);
 
-        $this->load->model('Update_model');
-        $result = $this->Update_model->clublog_scp();
-        if($this->session->userdata('user_type') == '99') {
-			if (substr($result, 0, 4) == 'DONE') {
-				$this->session->set_flashdata('success', __("SCP Update complete. Result: ") . "'" . $result . "'");
+			$this->load->model('Update_model');
+			$result = $this->Update_model->clublog_scp();
+			unlink($lockfilename);
+			if($this->session->userdata('user_type') == '99') {
+				if (substr($result, 0, 4) == 'DONE') {
+					$this->session->set_flashdata('success', __("SCP Update complete. Result: ") . "'" . $result . "'");
+				} else {
+					$this->session->set_flashdata('error', __("SCP Update failed. Result: ") . "'" . $result . "'");
+				}
+				redirect('debug');
 			} else {
-				$this->session->set_flashdata('error', __("SCP Update failed. Result: ") . "'" . $result . "'");
+				echo $result;
 			}
-			redirect('debug');
 		} else {
-        	echo $result;
-		}
-    }
+			log_message('debug', 'There is a lockfile for this job. Checking the age...');
+			$lockfile_time = filemtime($lockfilename);
+			$tdiff = time() - $lockfile_time;
+			if ($tdiff > 120) {
 
-    public function download_lotw_users() {
-        $this->lotw_users();
-    }
-
-    public function lotw_users() {
-
-        $this->load->model('Update_model');
-        $result = $this->Update_model->lotw_users();
-        if($this->session->userdata('user_type') == '99') {
-			if (substr($result, 0, 7) == 'Records') {
-				$this->session->set_flashdata('success', __("LoTW Users Update complete. Result: ") . "'" . $result . "'");
+				unlink($lockfilename);
+				log_message('debug', 'Deleted lockfile because it was older then 120seconds.');
 			} else {
-				$this->session->set_flashdata('error', __("LoTW Users Update failed. Result: ") . "'" . $result . "'");
+				log_message('debug', 'Process is currently locked. Further calls are ignored.');
+				echo 'locked - running';
 			}
-			redirect('debug');
-		} else {
-        	echo $result;
 		}
-    }
+
+	}
+
+	public function download_lotw_users() {
+		$this->lotw_users();
+	}
+
+	public function lotw_users() {
+		$lockfilename='/tmp/.update_lotw_users_running';
+		if (!file_exists($lockfilename)) {
+			touch($lockfilename);
+
+
+			$this->load->model('Update_model');
+			$result = $this->Update_model->lotw_users();
+			unlink($lockfilename);
+			if($this->session->userdata('user_type') == '99') {
+				if (substr($result, 0, 7) == 'Records') {
+					$this->session->set_flashdata('success', __("LoTW Users Update complete. Result: ") . "'" . $result . "'");
+				} else {
+					$this->session->set_flashdata('error', __("LoTW Users Update failed. Result: ") . "'" . $result . "'");
+				}
+				redirect('debug');
+			} else {
+				echo $result;
+			}
+		} else {
+			log_message('debug', 'There is a lockfile for this job. Checking the age...');
+			$lockfile_time = filemtime($lockfilename);
+			$tdiff = time() - $lockfile_time;
+			if ($tdiff > 120) {
+
+				unlink($lockfilename);
+				log_message('debug', 'Deleted lockfile because it was older then 120seconds.');
+			} else {
+				log_message('debug', 'Process is currently locked. Further calls are ignored.');
+				echo 'locked - running';
+			}
+		}
+
+	}
 
     /*
      * Used for autoupdating the DOK file which is used in the QSO entry dialog for autocompletion.
      */
-    public function update_dok() {
+	public function update_dok() {
+		$lockfilename='/tmp/.update_dok_running';
+		if (!file_exists($lockfilename)) {
+			touch($lockfilename);
 
-        $this->load->model('Update_model');
-        $result = $this->Update_model->dok();
-		if($this->session->userdata('user_type') == '99') {
-			if (substr($result, 0, 4) == 'DONE') {
-				$this->session->set_flashdata('success', __("DOK Update complete. Result: ") . "'" . $result . "'");
+			$this->load->model('Update_model');
+			$result = $this->Update_model->dok();
+			unlink($lockfilename);
+			if($this->session->userdata('user_type') == '99') {
+				if (substr($result, 0, 4) == 'DONE') {
+					$this->session->set_flashdata('success', __("DOK Update complete. Result: ") . "'" . $result . "'");
+				} else {
+					$this->session->set_flashdata('error', __("DOK Update failed. Result: ") . "'" . $result . "'");
+				}
+				redirect('debug');
 			} else {
-				$this->session->set_flashdata('error', __("DOK Update failed. Result: ") . "'" . $result . "'");
+				echo $result;
 			}
-			redirect('debug');
 		} else {
-        	echo $result;
+			log_message('debug', 'There is a lockfile for this job. Checking the age...');
+			$lockfile_time = filemtime($lockfilename);
+			$tdiff = time() - $lockfile_time;
+			if ($tdiff > 120) {
+				unlink($lockfilename);
+				log_message('debug', 'Deleted lockfile because it was older then 120seconds.');
+			} else {
+				log_message('debug', 'Process is currently locked. Further calls are ignored.');
+				echo 'locked - running';
+			}
 		}
-    }
+	}
 
     /*
      * Used for autoupdating the SOTA file which is used in the QSO entry dialog for autocompletion.
      */
-    public function update_sota() {
+	public function update_sota() {
+		$lockfilename='/tmp/.update_sota_running';
+		if (!file_exists($lockfilename)) {
+			touch($lockfilename);
 
-        $this->load->model('Update_model');
-        $result = $this->Update_model->sota();
-        if($this->session->userdata('user_type') == '99') {
-			if (substr($result, 0, 4) == 'DONE') {
-				$this->session->set_flashdata('success', __("SOTA Update complete. Result: ") . "'" . $result . "'");
+			$this->load->model('Update_model');
+			$result = $this->Update_model->sota();
+			unlink($lockfilename);
+			if($this->session->userdata('user_type') == '99') {
+				if (substr($result, 0, 4) == 'DONE') {
+					$this->session->set_flashdata('success', __("SOTA Update complete. Result: ") . "'" . $result . "'");
+				} else {
+					$this->session->set_flashdata('error', __("SOTA Update failed. Result: ") . "'" . $result . "'");
+				}
+				redirect('debug');
 			} else {
-				$this->session->set_flashdata('error', __("SOTA Update failed. Result: ") . "'" . $result . "'");
+				echo $result;
 			}
-			redirect('debug');
 		} else {
-        	echo $result;
+			log_message('debug', 'There is a lockfile for this job. Checking the age...');
+			$lockfile_time = filemtime($lockfilename);
+			$tdiff = time() - $lockfile_time;
+			if ($tdiff > 120) {
+				unlink($lockfilename);
+				log_message('debug', 'Deleted lockfile because it was older then 120seconds.');
+			} else {
+				log_message('debug', 'Process is currently locked. Further calls are ignored.');
+				echo 'locked - running';
+			}
 		}
-    }
+	}
 
     /*
      * Pulls the WWFF directory for autocompletion in QSO dialogs
      */
-    public function update_wwff() {
+	public function update_wwff() {
+		$lockfilename='/tmp/.update_wwff_running';
+		if (!file_exists($lockfilename)) {
+			touch($lockfilename);
 
-        $this->load->model('Update_model');
-        $result = $this->Update_model->wwff();
-        if($this->session->userdata('user_type') == '99') {
-			if (substr($result, 0, 4) == 'DONE') {
-				$this->session->set_flashdata('success', __("WWFF Update complete. Result: ") . "'" . $result . "'");
+			$this->load->model('Update_model');
+			$result = $this->Update_model->wwff();
+			unlink($lockfilename);
+			if($this->session->userdata('user_type') == '99') {
+				if (substr($result, 0, 4) == 'DONE') {
+					$this->session->set_flashdata('success', __("WWFF Update complete. Result: ") . "'" . $result . "'");
+				} else {
+					$this->session->set_flashdata('error', __("WWFF Update failed. Result: ") . "'" . $result . "'");
+				}
+				redirect('debug');
 			} else {
-				$this->session->set_flashdata('error', __("WWFF Update failed. Result: ") . "'" . $result . "'");
+				echo $result;
 			}
-			redirect('debug');
 		} else {
-        	echo $result;
-		}
-    }
-
-    public function update_pota() {
-
-        $this->load->model('Update_model');
-        $result = $this->Update_model->pota();
-        if($this->session->userdata('user_type') == '99') {
-			if (substr($result, 0, 4) == 'DONE') {
-				$this->session->set_flashdata('success', __("POTA Update complete. Result: ") . "'" . $result . "'");
+			log_message('debug', 'There is a lockfile for this job. Checking the age...');
+			$lockfile_time = filemtime($lockfilename);
+			$tdiff = time() - $lockfile_time;
+			if ($tdiff > 120) {
+				unlink($lockfilename);
+				log_message('debug', 'Deleted lockfile because it was older then 120seconds.');
 			} else {
-				$this->session->set_flashdata('error', __("POTA Update failed. Result: ") . "'" . $result . "'");
+				log_message('debug', 'Process is currently locked. Further calls are ignored.');
+				echo 'locked - running';
 			}
-			redirect('debug');
-		} else {
-        	echo $result;
 		}
-    }
 
-    public function update_tle($returnpath = 'debug') {
-        $this->load->model('Update_model');
-        $result = $this->Update_model->tle();
-        if($this->session->userdata('user_type') == '99') {
-			if (substr($result, 0, 4) == 'This') {
-				$this->session->set_flashdata('success', __("TLE Update complete. Result: ") . "'" . $result . "'");
+	}
+
+	/*
+     * Pulls the solarxml.php data from hamqsl
+     */
+	public function update_hamqsl() {
+		$lockfilename='/tmp/.update_hamqsl_running';
+		if (!file_exists($lockfilename)) {
+			touch($lockfilename);
+
+			$this->load->model('Update_model');
+			$result = $this->Update_model->hamqsl();
+			unlink($lockfilename);
+			if($this->session->userdata('user_type') == '99') {
+				if (substr($result, 0, 4) == 'DONE') {
+					$this->session->set_flashdata('success', __("HAMqsl Update complete. Result: ") . "'" . $result . "'");
+				} else {
+					$this->session->set_flashdata('error', __("HAMqsl Update failed. Result: ") . "'" . $result . "'");
+				}
+
+				$this->load->model('cron_model');
+				$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+
+				redirect('debug');
 			} else {
-				$this->session->set_flashdata('error', __("TLE Update failed. Result: ") . "'" . $result . "'");
+				echo $result;
 			}
-			redirect($returnpath);
 		} else {
-        	echo $result;
+			log_message('debug', 'There is a lockfile for this job. Checking the age...');
+			$lockfile_time = filemtime($lockfilename);
+			$tdiff = time() - $lockfile_time;
+			if ($tdiff > 120) {
+				unlink($lockfilename);
+				log_message('debug', 'Deleted lockfile because it was older then 120seconds.');
+			} else {
+				log_message('debug', 'Process is currently locked. Further calls are ignored.');
+				echo 'locked - running';
+			}
 		}
-    }
+	}
 
-    public function update_lotw_sats() {
-       $this->load->model('Update_model');
-       $bodyData['satupdates'] = $this->Update_model->lotw_sats();
-       $data['page_title'] = __("LoTW SAT Update");
-       $this->load->view('interface_assets/header', $data);
-       $this->load->view('lotw/satupdate', $bodyData);
-       $this->load->view('interface_assets/footer');
-    }
+	public function update_pota() {
+		$lockfilename='/tmp/.update_pota_running';
+		if (!file_exists($lockfilename)) {
+			touch($lockfilename);
+			$this->load->model('Update_model');
+			$result = $this->Update_model->pota();
+			unlink($lockfilename);
+			if($this->session->userdata('user_type') == '99') {
+				if (substr($result, 0, 4) == 'DONE') {
+					$this->session->set_flashdata('success', __("POTA Update complete. Result: ") . "'" . $result . "'");
+				} else {
+					$this->session->set_flashdata('error', __("POTA Update failed. Result: ") . "'" . $result . "'");
+				}
+				redirect('debug');
+			} else {
+				echo $result;
+			}
+		} else {
+			log_message('debug', 'There is a lockfile for this job. Checking the age...');
+			$lockfile_time = filemtime($lockfilename);
+			$tdiff = time() - $lockfile_time;
+			if ($tdiff > 120) {
+				unlink($lockfilename);
+				log_message('debug', 'Deleted lockfile because it was older then 120seconds.');
+			} else {
+				log_message('debug', 'Process is currently locked. Further calls are ignored.');
+				echo 'locked - running';
+			}
+		}
+	}
 
-	public function update_hamsofnote() {
-		$this->load->model('cron_model');
-		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
-		$this->load->model('Update_model');
-		$bodyData['hamsofnote'] = $this->Update_model->update_hams_of_note();
-		if ($this->session->userdata('user_type') == '99') {
-			$data['page_title'] = __("Update of Hams of Note");
+	public function update_tle($returnpath = 'debug') {
+		$lockfilename='/tmp/.update_tle_running';
+		if (!file_exists($lockfilename)) {
+			touch($lockfilename);
+			$this->load->model('Update_model');
+			$result = $this->Update_model->tle();
+			unlink($lockfilename);
+			if($this->session->userdata('user_type') == '99') {
+				if (substr($result, 0, 4) == 'This') {
+					$this->session->set_flashdata('success', __("TLE Update complete. Result: ") . "'" . $result . "'");
+				} else {
+					$this->session->set_flashdata('error', __("TLE Update failed. Result: ") . "'" . $result . "'");
+				}
+				redirect($returnpath);
+			} else {
+				echo $result;
+			}
+		} else {
+			log_message('debug', 'There is a lockfile for this job. Checking the age...');
+			$lockfile_time = filemtime($lockfilename);
+			$tdiff = time() - $lockfile_time;
+			if ($tdiff > 120) {
+				unlink($lockfilename);
+				log_message('debug', 'Deleted lockfile because it was older then 120seconds.');
+			} else {
+				log_message('debug', 'Process is currently locked. Further calls are ignored.');
+				echo 'locked - running';
+			}
+		}
+	}
+
+	public function update_lotw_sats() {
+		$lockfilename='/tmp/.update_lotw_sats_running';
+		if (!file_exists($lockfilename)) {
+			touch($lockfilename);
+			$this->load->model('Update_model');
+			$bodyData['satupdates'] = $this->Update_model->lotw_sats();
+			unlink($lockfilename);
+			$data['page_title'] = __("LoTW SAT Update");
 			$this->load->view('interface_assets/header', $data);
-			$this->load->view('update/hamsofnote', $bodyData);
+			$this->load->view('lotw/satupdate', $bodyData);
 			$this->load->view('interface_assets/footer');
 		} else {
-			echo "Hams of note updated. Inserted ".count($bodyData['hamsofnote'])." records.";
+			log_message('debug', 'There is a lockfile for this job. Checking the age...');
+			$lockfile_time = filemtime($lockfilename);
+			$tdiff = time() - $lockfile_time;
+			if ($tdiff > 120) {
+				unlink($lockfilename);
+				log_message('debug', 'Deleted lockfile because it was older then 120seconds.');
+			} else {
+				log_message('debug', 'Process is currently locked. Further calls are ignored.');
+				echo 'locked - running';
+			}
+		}
+	}
+
+	public function update_hamsofnote() {
+		$lockfilename='/tmp/.update_hon_running';
+		if (!file_exists($lockfilename)) {
+			touch($lockfilename);
+			$this->load->model('cron_model');
+			$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+			$this->load->model('Update_model');
+			$bodyData['hamsofnote'] = $this->Update_model->update_hams_of_note();
+			unlink($lockfilename);
+			if ($this->session->userdata('user_type') == '99') {
+				$data['page_title'] = __("Update of Hams of Note");
+				$this->load->view('interface_assets/header', $data);
+				$this->load->view('update/hamsofnote', $bodyData);
+				$this->load->view('interface_assets/footer');
+			} else {
+				echo "Hams of note updated. Inserted ".count($bodyData['hamsofnote'])." records.";
+			}
+		} else {
+			log_message('debug', 'There is a lockfile for this job. Checking the age...');
+			$lockfile_time = filemtime($lockfilename);
+			$tdiff = time() - $lockfile_time;
+			if ($tdiff > 120) {
+				unlink($lockfilename);
+				log_message('debug', 'Deleted lockfile because it was older then 120seconds.');
+			} else {
+				log_message('debug', 'Process is currently locked. Further calls are ignored.');
+				echo 'locked - running';
+			}
 		}
 	}
 

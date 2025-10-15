@@ -106,95 +106,113 @@ function getDistance($distance) {
 <div class="container dashboard">
 <?php if(($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE) { ?>
 
-	<?php if (version_compare(PHP_VERSION, '7.4.0') <= 0) { ?>
-		<div class="alert alert-danger" role="alert">
-		<?= __("You need to upgrade your PHP version. Minimum version is 7.4. Your version is") . ' ' . PHP_VERSION . '.';?>
+	<?php if (version_compare(PHP_VERSION, '8.0.0') <= 0) { ?>
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
+			<?= sprintf(__("You need to upgrade your PHP version. Minimum version is %s. Your version is: %s."), "8.0", PHP_VERSION); ?>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	<?php } ?>
 	<?php if(($this->session->userdata('user_type') == 99) && !($this->config->item('disable_version_check') ?? false) && $this->optionslib->get_option('latest_release')) { ?>
 		<?php if (version_compare($this->optionslib->get_option('latest_release'), $this->optionslib->get_option('version'), '>')) { ?>
-			<div class="alert alert-success" role="alert" style="margin-top: 1rem;">
+			<div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 1rem;">
 				<?= sprintf(_pgettext("Dashboard Warning", "A new version of Wavelog has been published. See: %s."), "<a href=\"https://github.com/wavelog/wavelog/releases/tag/".$this->optionslib->get_option('latest_release')."\" target=\"_blank\"><u>Release ".$this->optionslib->get_option('latest_release')."</u></a>"); ?>
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 		<?php } ?>
 	<?php } ?>
 
 	<?php if ($countryCount == 0) { ?>
-		<div class="alert alert-danger mt-3" role="alert">
+		<div class="alert alert-danger mt-3 alert-dismissible fade show" role="alert">
 		<?= sprintf(
 				_pgettext("Dashboard Warning", "You need to update country files! Click %shere%s to do it."), '<u><a href="' . site_url('update') . '">', "</a></u>"
 			); ?>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	<?php } ?>
 
 	<?php if ($locationCount == 0 && !$is_first_login) { ?>
-		<div class="alert alert-danger" role="alert">
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
 		<?= sprintf(
 				_pgettext("Dashboard Warning", "You have no station locations. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
 			); ?>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	<?php } ?>
 
 	<?php if ($logbookCount == 0 && !$is_first_login) { ?>
-		<div class="alert alert-danger" role="alert">
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
 		<?= sprintf(
 				_pgettext("Dashboard Warning", "You have no station logbook. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
 			); ?>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	<?php } ?>
 
 	<?php if (($linkedCount > 0) && $active_not_linked && !$is_first_login) { ?>
-		<div class="alert alert-danger" role="alert">
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
 		<?= sprintf(
-				_pgettext("Dashboard Warning", "Your active Station Location isn't linked to your Logbook. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
+				_pgettext("Dashboard Warning", "Your active station location is not linked to your active station logbook. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
 			); ?>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	<?php } ?>
 
 	<?php if ($linkedCount == 0 && !$is_first_login) { ?>
-		<div class="alert alert-danger" role="alert">
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
 		<?= sprintf(
-				_pgettext("Dashboard Warning", "You have no station linked to your Logbook. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
+				_pgettext("Dashboard Warning", "You have no station linked to your logbook. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
 			); ?>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	<?php } ?>
 
 	<?php if($dashboard_banner != "false" && $this->session->userdata('clubstation') == 0) { ?>
 	<?php if($todays_qsos >= 1) { ?>
-		<div class="alert alert-success" role="alert" style="margin-top: 1rem;">
+		<div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 1rem;">
 			<?= sprintf(
 					_ngettext("You have had %d QSO today", "You have had %d QSOs today", intval($todays_qsos)),
 					intval($todays_qsos)
 				); ?>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	<?php } else { ?>
-		<div class="alert alert-warning" role="alert" style="margin-top: 1rem;">
-			  <span class="badge text-bg-info"><?= __("Important"); ?></span> <i class="fas fa-broadcast-tower"></i> <?= __("You have made no QSOs today; time to turn on the radio!"); ?>
+		<div class="alert alert-warning alert-dismissible fade show" role="alert" style="margin-top: 1rem;">
+			<span class="badge text-bg-info"><?= __("Important"); ?></span> <i class="fas fa-broadcast-tower"></i> 
+			<?php if (($current_streak ?? 0)>0) { 
+				echo sprintf(__("Don't loose your streak - You have already had at least one QSO for the last %s consecutive days."),$current_streak); 
+			} else {
+				echo __("You have made no QSOs today; time to turn on the radio!"); 
+			} ?>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	<?php } ?>
 	<?php } ?>
 
 	<?php if($current_active == 0 && !$is_first_login) { ?>
-		<div class="alert alert-danger" role="alert">
-		  <?= __("Attention: you need to set an active station location."); ?>
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
+			<?= __("Attention: you need to set an active station location."); ?>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	<?php } ?>
 
 	<?php if($themesWithoutMode != 0) { ?>
-		<div class="alert alert-danger" role="alert">
-		  	<?= __("You have themes without defined theme mode. Please ask the admin to edit the themes."); ?>
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
+			<?= __("You have themes without defined theme mode. Please ask the admin to edit the themes."); ?>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	<?php } ?>
 
 	<?php if ($this->session->userdata('user_id')) { ?>
 		<?php
 			if($lotw_cert_expired == true) { ?>
-			<div class="alert alert-danger" role="alert">
+			<div class="alert alert-danger alert-dismissible fade show" role="alert">
 				<span class="badge text-bg-info"><?= __("Important"); ?></span> <i class="fas fa-hourglass-end"></i> <?= sprintf(_pgettext("LoTW Warning", "At least one of your %sLoTW certificates%s is expired!"), '<u><a href="' . site_url('lotw') . '">', "</a></u>"); ?>
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 		<?php } elseif($lotw_cert_expiring == true) { ?>
-			<div class="alert alert-warning" role="alert">
+			<div class="alert alert-warning alert-dismissible fade show" role="alert">
 				<span class="badge text-bg-info"><?= __("Important"); ?></span> <i class="fas fa-hourglass-half"></i> <?= sprintf(_pgettext("LoTW Warning", "At least one of your %sLoTW certificates%s is about to expire!"), '<u><a href="' . site_url('lotw') . '">', "</a></u>"); ?>
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 		<?php } ?>
 	<?php } ?>
@@ -342,13 +360,13 @@ function getDistance($distance) {
 			<tr>
 				<td width="50%"><?= __("Sent"); ?></td>
 				<td width="25%"><?php echo $total_qsl_sent; ?></td>
-				<td width="25%"><a href="javascript:displayContacts('','All','All','All','All','QSLSDATE','');"><?php echo $qsl_sent_today; ?></a></td>
+				<td width="25%"><?php echo $qsl_sent_today != 0 ? "<a href=\"javascript:displayContacts('','All','All','All','All','QSLSDATE','');\">".$qsl_sent_today."</a>" : "0"; ?></td>
 			</tr>
 
 			<tr>
 				<td width="50%"><?= __("Received"); ?></td>
 				<td width="25%"><?php echo $total_qsl_rcvd; ?></td>
-				<td width="25%"><a href="javascript:displayContacts('','All','All','All','All','QSLRDATE','');"><?php echo $qsl_rcvd_today; ?></a></td>
+				<td width="25%"><?php echo $qsl_rcvd_today != 0 ? "<a href=\"javascript:displayContacts('','All','All','All','All','QSLRDATE','');\">".$qsl_rcvd_today."</a>" : "0"; ?></td>
 			</tr>
 
 			<tr>
@@ -369,13 +387,13 @@ function getDistance($distance) {
 			<tr>
 				<td width="50%"><?= __("Sent"); ?></td>
 				<td width="25%"><?php echo $total_lotw_sent; ?></td>
-				<td width="25%"><a href="javascript:displayContacts('','all','all','All','All','LOTWSDATE','');"><?php echo $lotw_sent_today; ?></a></td>
+				<td width="25%"><?php echo $lotw_sent_today != 0 ? "<a href=\"javascript:displayContacts('','all','all','All','All','LOTWSDATE','');\">".$lotw_sent_today."</a>" : "0"; ?></td>
 			</tr>
 
 			<tr>
 				<td width="50%"><?= __("Received"); ?></td>
 				<td width="25%"><?php echo $total_lotw_rcvd; ?></td>
-				<td width="25%"><a href="javascript:displayContacts('','all','all','All','All','LOTWRDATE','');"><?php echo $lotw_rcvd_today; ?></a></td>
+				<td width="25%"><?php echo $lotw_rcvd_today != 0 ? "<a href=\"javascript:displayContacts('','all','all','All','All','LOTWRDATE','');\">".$lotw_rcvd_today."</a>" : "0"; ?></td>
 			</tr>
 		</table>
 		<?php } ?>
@@ -390,13 +408,13 @@ function getDistance($distance) {
 			<tr>
 				<td width="50%"><?= __("Sent"); ?></td>
 				<td width="25%"><?php echo $total_eqsl_sent; ?></td>
-            <td width="25%"><a href="javascript:displayContacts('','All','All','All','All','EQSLSDATE','');"><?php echo $eqsl_sent_today; ?></a></td>
+				<td width="25%"><?php echo $eqsl_sent_today != 0 ? "<a href=\"javascript:displayContacts('','All','All','All','All','EQSLSDATE','');\">".$eqsl_sent_today."</a>" : "0"; ?></td>
 			</tr>
 
 			<tr>
 				<td width="50%"><?= __("Received"); ?></td>
 				<td width="25%"><?php echo $total_eqsl_rcvd; ?></td>
-				<td width="25%"><a href="javascript:displayContacts('','All','All','All','All','EQSLRDATE','');"><?php echo $eqsl_rcvd_today; ?></a></td>
+				<td width="25%"><?php echo $eqsl_rcvd_today != 0 ? "<a href=\"javascript:displayContacts('','All','All','All','All','EQSLRDATE','');\">".$eqsl_rcvd_today."</a>" : "0"; ?></td>
 			</tr>
 		</table>
 		<?php } ?>
@@ -411,13 +429,13 @@ function getDistance($distance) {
 			<tr>
 				<td width="50%"><?= __("Sent"); ?></td>
 				<td width="25%"><?php echo $total_qrz_sent; ?></td>
-				<td width="25%"><a href="javascript:displayContacts('','all','all','All','All','QRZSDATE','');"><?php echo $qrz_sent_today; ?></a></td>
+				<td width="25%"><?php echo $qrz_sent_today != 0 ? "<a href=\"javascript:displayContacts('','all','all','All','All','QRZSDATE','');\">".$qrz_sent_today."</a>" : "0"; ?></td>
 			</tr>
 
 			<tr>
 				<td width="50%"><?= __("Received"); ?></td>
 				<td width="25%"><?php echo $total_qrz_rcvd; ?></td>
-				<td width="25%"><a href="javascript:displayContacts('','all','all','All','All','QRZRDATE','');"><?php echo $qrz_rcvd_today; ?></a></td>
+				<td width="25%"><?php echo $qrz_rcvd_today != 0 ? "<a href=\"javascript:displayContacts('','all','all','All','All','QRZRDATE','');\">".$qrz_rcvd_today."</a>" : "0"; ?></td>
 			</tr>
 		</table>
 		<?php } ?>
@@ -443,6 +461,85 @@ function getDistance($distance) {
 
     </table>
     <?php } ?>
+
+<?php if ((($solar_bandconditions ?? '') != '') && (($solar_solardata ?? '') != '')){ ?>
+		<!-- Solar Data -->
+		<table class="table table-striped border-top">
+			<tr class="titles">
+				<td colspan="10" style="display: flex; justify-content: space-between; align-items: center;">
+					<div>
+						<div><i class="fas fa-sun"></i> <?= __("Solar Data & Propagation"); ?></div>
+						<div class="small fst-italic text-muted">
+							<?= sprintf(__("Last update at %s."), $solar_solardata['updated']); ?>
+						</div>
+					</div>
+					<a class="ms-2 text-body fas fa-info-circle float-end"
+						data-bs-toggle="tooltip"
+						data-bs-placement="top"
+						data-bs-html="true"
+						href="https://www.hamqsl.com/"
+						target="_blank"
+						title="<?= __("Data provided by HAMqsl."); ?>"
+						style="cursor: pointer;">
+					</a>
+				</td>
+			<tr>
+				<td colspan="10">
+					<table class="table table-sm small text-center table-striped">
+						<tr>
+							<th width="20%">&nbsp;</th>
+							<th width="20%">80m-40m</th>
+							<th width="20%">30m-20m</th>
+							<th width="20%">17m-15m</th>
+							<th width="20%">12m-10m</th>
+						</tr>
+						<tr>
+							<td>Day</td>
+							<td><?= $solar_bandconditions['80m-40m']['day'] ?></td>
+							<td><?= $solar_bandconditions['30m-20m']['day'] ?></td>
+							<td><?= $solar_bandconditions['17m-15m']['day'] ?></td>
+							<td><?= $solar_bandconditions['12m-10m']['day'] ?></td>
+						</tr>
+						<tr>
+							<td>Night</td>
+							<td><?= $solar_bandconditions['80m-40m']['night'] ?></td>
+							<td><?= $solar_bandconditions['30m-20m']['night'] ?></td>
+							<td><?= $solar_bandconditions['17m-15m']['night'] ?></td>
+							<td><?= $solar_bandconditions['12m-10m']['night'] ?></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="10">
+					<table class="table table-sm small text-center table-striped">
+						<tr>
+							<th width="5%">Kp</th>
+							<th width="5%">A</th>
+							<th width="15%">SFI</th>
+							<th width="15%">SW</th>
+							<th width="15%">SS</th>
+							<th width="15%">X</th>
+							<th width="20%">Noise</th>
+							<th width="20%">Aurora</th>
+						</tr>
+						<tr>
+							<td><?= $solar_solardata['kindex'] ?></td>
+							<td><?= $solar_solardata['aindex'] ?></td>
+							<td><?= $solar_solardata['solarflux'] ?></td>
+							<td><?= $solar_solardata['solarwind'] ?></td>
+							<td><?= $solar_solardata['signalnoise'] ?></td>
+							<td><?= $solar_solardata['xray'] ?></td>
+							<td><?= $solar_solardata['sunspots'] ?></td>
+							<td><?= $solar_solardata['aurora'] ?></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+	<?php } ?>
+
 	</div>
   </div>
 </div>

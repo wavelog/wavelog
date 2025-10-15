@@ -609,7 +609,7 @@ class Lotw extends CI_Controller {
 				$table .= "<td>".$record['qsl_rcvd']."</td>";
 				$table .= "<td>".$qsl_date."</td>";
 				$table .= "<td>".$state."</td>";
-				$table .= "<td>".(($qsl_gridsquare != '' ? $qsl_gridsquare : ($record['gridsquare'] ?? '')) ?? $qsl_vucc_grids)."</td>";
+				$table .= "<td>".($qsl_gridsquare != '' ? $qsl_gridsquare : $qsl_vucc_grids)."</td>";
 				$table .= "<td>".$iota."</td>";
 				$table .= "<td>QSO Record: ".$status[0]."</td>";
 				$table .= "<td>LoTW Record: ".$lotw_status."</td>";
@@ -1118,6 +1118,23 @@ class Lotw extends CI_Controller {
 				break;
 			default:
 				return $ca_prov;
+		endswitch;
+	}
+
+	/*
+	|	Function: lotw_ru_oblast_map
+	|	Requires: russian oblast map $ru_oblast
+	*/
+	function lotw_ru_oblast_map($ru_oblast) {
+		switch ($ru_oblast):
+			case "YR":
+				return "JA";
+				break;
+			case "YN":
+				return "JN";
+				break;
+			default:
+				return $ru_oblast;
 		endswitch;
 	}
 

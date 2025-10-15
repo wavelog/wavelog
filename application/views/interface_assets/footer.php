@@ -56,6 +56,19 @@
     var lang_general_word_please_wait = "<?= __("Please Wait ..."); ?>";
     var lang_general_states_deprecated = "<?= _pgettext("Word for country states that are deprecated but kept for legacy reasons.", "deprecated"); ?>";
     var lang_gen_hamradio_sat_info = "<?= __("Satellite Information"); ?>";
+    var lang_notes_error_loading = "<?= __("Error loading notes"); ?>";
+    var lang_notes_sort = "<?= __("Sorting"); ?>";
+    var lang_notes_duplication_disabled = "<?= __("Duplication is disabled for Contacts notes"); ?>";
+    var lang_notes_duplicate = "<?= __("Duplicate"); ?>";
+    var lang_general_word_delete = "<?= __("Delete"); ?>";
+    var lang_general_word_duplicate = "<?= __("Duplicate"); ?>";
+    var lang_notes_delete = "<?= __("Delete Note"); ?>";
+    var lang_notes_duplicate = "<?= __("Duplicate Note"); ?>";
+    var lang_notes_delete_confirmation = "<?= __("Delete this note?"); ?>";
+    var lang_notes_duplicate_confirmation = "<?= __("Duplicate this note?"); ?>";
+    var lang_notes_duplication_disabled_short = "<?= __("Duplication Disabled"); ?>";
+    var lang_notes_not_found = "<?= __("No notes were found"); ?>";
+
 </script>
 
 <!-- General JS Files used across Wavelog -->
@@ -278,9 +291,11 @@ function stopImpersonate_modal() {
     <script src="<?php echo base_url() ;?>assets/js/jszip.min.js"></script>
 <?php } ?>
 
-<?php if ($this->uri->segment(1) == "notes" && ($this->uri->segment(2) == "add" || $this->uri->segment(2) == "edit") ) { ?>
+<?php if ($this->uri->segment(1) == "notes" ) { ?>
     <!-- Javascript used for Notes Area -->
+	<?php if ($this->uri->segment(2) == "add" || $this->uri->segment(2) == "edit") { ?>
     <script src="<?php echo base_url() ;?>assets/plugins/easymde/easymde.min.js"></script>
+	<?php } ?>
     <script src="<?php echo base_url() ;?>assets/js/sections/notes.js"></script>
 <?php } ?>
 
@@ -1867,7 +1882,7 @@ $(document).ready(function(){
 		<script src="<?php echo base_url(); ?>assets/js/sections/webadif.js"></script>
 	<?php } ?>
 
-<?php if ($this->uri->segment(2) == "dxcc" || $this->uri->segment(2) == "wae") { ?>
+<?php if ($this->uri->segment(2) == "dxcc" || $this->uri->segment(2) == "wae" || $this->uri->segment(2) == "wpx") { ?>
 <script>
     $('.tabledxcc').DataTable({
         "pageLength": 25,
@@ -1884,7 +1899,7 @@ $(document).ready(function(){
         buttons: [
 			{
 				extend: 'csv',
-				className: 'mb-1 btn btn-primary', // Bootstrap classes
+				className: 'mb-1 btn btn-sm btn-primary', // Bootstrap classes
 					init: function(api, node, config) {
 						$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
 					},
@@ -1907,7 +1922,7 @@ $(document).ready(function(){
         buttons: [
             {
 				extend: 'csv',
-				className: 'mb-1 btn btn-primary', // Bootstrap classes
+				className: 'mb-1 btn btn-sm btn-primary', // Bootstrap classes
 					init: function(api, node, config) {
 						$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
 					},
@@ -1921,7 +1936,7 @@ $(document).ready(function(){
     }
  </script>
     <?php } ?>
-	<?php if ($this->uri->segment(2) == "wae") { ?>
+	<?php if ($this->uri->segment(2) == "wae" || $this->uri->segment(2) == "wpx") { ?>
 		<script>
 	$('#band2').change(function(){
    var band = $("#band2 option:selected").text();
@@ -1985,7 +2000,7 @@ $('#sats').change(function(){
         buttons: [
             {
 				extend: 'csv',
-				className: 'mb-1 btn btn-primary', // Bootstrap classes
+				className: 'mb-1 btn-sm btn btn-primary', // Bootstrap classes
 					init: function(api, node, config) {
 						$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
 					},
@@ -2017,7 +2032,7 @@ $('#sats').change(function(){
         buttons: [
             {
 				extend: 'csv',
-				className: 'mb-1 btn btn-primary', // Bootstrap classes
+				className: 'mb-1 btn btn-sm btn-primary', // Bootstrap classes
 					init: function(api, node, config) {
 						$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
 					},
@@ -2040,7 +2055,7 @@ $('#sats').change(function(){
         buttons: [
             {
 				extend: 'csv',
-				className: 'mb-1 btn btn-primary', // Bootstrap classes
+				className: 'mb-1 btn btn-sm btn-primary', // Bootstrap classes
 					init: function(api, node, config) {
 						$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
 					},
@@ -2072,7 +2087,7 @@ $('#sats').change(function(){
         buttons: [
             {
 				extend: 'csv',
-				className: 'mb-1 btn btn-primary', // Bootstrap classes
+				className: 'mb-1 btn btn-sm btn-primary', // Bootstrap classes
 					init: function(api, node, config) {
 						$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
 					},
@@ -2095,7 +2110,7 @@ $('#sats').change(function(){
         buttons: [
             {
 				extend: 'csv',
-				className: 'mb-1 btn btn-primary', // Bootstrap classes
+				className: 'mb-1 btn btn-sm btn-primary', // Bootstrap classes
 					init: function(api, node, config) {
 						$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
 					},
@@ -2720,6 +2735,14 @@ function viewEqsl(picture, callsign) {
 			    nl2br: false,
 			    message: html,
 			    onshown: function(dialog) {
+					// Block propagation on the modal body
+					L.DomEvent.disableScrollPropagation(dialog.getModalBody()[0]);
+					L.DomEvent.disableClickPropagation(dialog.getModalBody()[0]);
+
+					// Also block on the DataTables scroll container once it exists
+					dialog.getModalBody().find('.dataTables_scrollBody').each(function() {
+						L.DomEvent.disableScrollPropagation(this);
+					});
 				    $('[data-bs-toggle="tooltip"]').tooltip();
 				    $('.displaycontactstable').DataTable({
 				    "pageLength": 25,

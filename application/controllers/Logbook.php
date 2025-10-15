@@ -77,9 +77,13 @@ class Logbook extends CI_Controller {
 
 		// Normalize the date only if it's not empty
 		if (!empty($date)) {
+			// Characters '/' and ',' are not URL safe, so we replace
+			// them with  '_' and '%'. Switch them back here.
 			if (strpos($date, '_') !== false) {
-				// Replace slashes with dashes for URL processing
 				$date = str_replace('_', '/', $date);
+			}
+			if (strpos($date, '%') !== false) {
+				$date = str_replace('%', ',', $date);
 			}
 			// Get user-preferred date format
 			if ($this->session->userdata('user_date_format')) {
@@ -145,7 +149,8 @@ class Logbook extends CI_Controller {
 
 		$return['dxcc'] = $this->dxcheck($callsign,$date);
 
-		$lookupcall = $this->logbook_model->get_plaincall($callsign);
+		$this->load->library('callbook');
+		$lookupcall = $this->callbook->get_plaincall($callsign);
 
 		$callbook = $this->logbook_model->loadCallBook($callsign, $this->config->item('use_fullname'));
 
@@ -428,7 +433,7 @@ class Logbook extends CI_Controller {
 			}
 
 			$this->db->where_in('station_id', $logbooks_locations_array);
-			$this->db->where('COL_COUNTRY', urldecode($country));
+			$this->db->where('COL_DXCC', urldecode($country));
 
 			$query = $this->db->get($this->config->item('table_name'), 1, 0);
 			foreach ($query->result() as $workedBeforeRow)
@@ -481,7 +486,7 @@ class Logbook extends CI_Controller {
 			}
 
 			$this->db->where_in('station_id', $logbooks_locations_array);
-			$this->db->where('COL_COUNTRY', urldecode($country));
+			$this->db->where('COL_DXCC', urldecode($country));
 
 			$query = $this->db->get($this->config->item('table_name'), 1, 0);
 			foreach ($query->result() as $workedBeforeRow) {
