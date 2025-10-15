@@ -761,6 +761,13 @@ switch ($date_format) {
 				<button id="morsekey_func3" onclick="morsekey_func3()" class="btn btn-sm btn-warning" style="margin-left: 2px; margin-right: 2px;">F3</button>
 				<button id="morsekey_func4" onclick="morsekey_func4()" class="btn btn-sm btn-warning" style="margin-left: 2px; margin-right: 2px;">F4</button>
 				<button id="morsekey_func5" onclick="morsekey_func5()" class="btn btn-sm btn-warning" style="margin-left: 2px; margin-right: 2px;">F5</button>
+			</div>
+			<div class="form-inline d-flex align-items-center mb-2">
+				<button id="morsekey_func6" onclick="morsekey_func6()" class="btn btn-sm btn-warning" style="margin-left: 2px; margin-right: 2px;">F6</button>
+				<button id="morsekey_func7" onclick="morsekey_func7()" class="btn btn-sm btn-warning" style="margin-left: 2px; margin-right: 2px;">F7</button>
+				<button id="morsekey_func8" onclick="morsekey_func8()" class="btn btn-sm btn-warning" style="margin-left: 2px; margin-right: 2px;">F8</button>
+				<button id="morsekey_func9" onclick="morsekey_func9()" class="btn btn-sm btn-warning" style="margin-left: 2px; margin-right: 2px;">F9</button>
+				<button id="morsekey_func10" onclick="morsekey_func10()" class="btn btn-sm btn-warning" style="margin-left: 2px; margin-right: 2px;">F10</button>
 				<label class="mx-2 mb-1 w-auto" for="cwspeed"><?= __("CW Speed"); ?></label>
 				<input class="w-auto form-control form-control-sm" type="number" id="winkeycwspeed" name="cwspeed" min="1" max="100" value="20" step="1">
 			</div>

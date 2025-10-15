@@ -353,6 +353,16 @@ function getMacros() {
         function4Macro = data.function4_macro;
         function5Name = data.function5_name;
         function5Macro = data.function5_macro;
+		function6Name = data.function6_name;
+        function6Macro = data.function6_macro;
+		function7Name = data.function7_name;
+        function7Macro = data.function7_macro;
+		function8Name = data.function8_name;
+        function8Macro = data.function8_macro;
+		function9Name = data.function9_name;
+        function9Macro = data.function9_macro;
+		function10Name = data.function10_name;
+        function10Macro = data.function10_macro;
 
         const morsekey_func1_Button = document.getElementById('morsekey_func1');
         morsekey_func1_Button.textContent = 'F1 (' + function1Name + ')';
@@ -368,6 +378,21 @@ function getMacros() {
 
         const morsekey_func5_Button = document.getElementById('morsekey_func5');
         morsekey_func5_Button.textContent = 'F5 (' + function5Name + ')';
+
+		const morsekey_func6_Button = document.getElementById('morsekey_func6');
+        morsekey_func6_Button.textContent = 'F6 (' + function6Name + ')';
+
+		const morsekey_func7_Button = document.getElementById('morsekey_func7');
+        morsekey_func7_Button.textContent = 'F7 (' + function7Name + ')';
+
+		const morsekey_func8_Button = document.getElementById('morsekey_func8');
+        morsekey_func8_Button.textContent = 'F8 (' + function8Name + ')';
+
+		const morsekey_func9_Button = document.getElementById('morsekey_func9');
+        morsekey_func9_Button.textContent = 'F9 (' + function9Name + ')';
+
+		const morsekey_func10_Button = document.getElementById('morsekey_func10');
+        morsekey_func10_Button.textContent = 'F10 (' + function10Name + ')';
     });
 }
 
@@ -425,6 +450,16 @@ function winkey_macro_save() {
 			function4_macro: $('#function4_macro').val(),
 			function5_name: $('#function5_name').val(),
 			function5_macro: $('#function5_macro').val(),
+			function6_name: $('#function6_name').val(),
+			function6_macro: $('#function6_macro').val(),
+			function7_name: $('#function7_name').val(),
+			function7_macro: $('#function7_macro').val(),
+			function8_name: $('#function8_name').val(),
+			function8_macro: $('#function8_macro').val(),
+			function9_name: $('#function9_name').val(),
+			function9_macro: $('#function9_macro').val(),
+			function10_name: $('#function10_name').val(),
+			function10_macro: $('#function10_macro').val(),
 		},
 		success: function (html) {
 			BootstrapDialog.alert({
