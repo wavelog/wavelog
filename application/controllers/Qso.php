@@ -221,7 +221,7 @@ class QSO extends CI_Controller {
 				->row();
 
 			// Decode JSON stored in option_value
-			$decoded = json_decode($row->option_value);
+			$decoded = json_decode($row->option_value ?? '');
 
 			// Make sure it's an object (in case it's null)
 			$name  = isset($decoded->name) ? $decoded->name : '';
