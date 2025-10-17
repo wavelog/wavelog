@@ -24,7 +24,7 @@
 						<button type="button" class="btn btn-sm btn-outline-secondary btn-light category-btn active" data-category="__all__">
 							<?= __("All Categories"); ?> <span class="badge bg-secondary"><?= $all_notes_count ?></span>
 						</button>
-						<?php 
+						<?php
 						// Decode HTML entities for proper display
 						$decoded_categories = array();
 						foreach ($categories as $key => $value) {
@@ -51,6 +51,9 @@
 					<!-- Search box and reset button -->
 					<div class="input-group">
 						<input type="text" id="notesSearchBox" class="form-control form-control-sm" maxlength="50" placeholder="<?= __("Search notes (min. 3 chars)") ?>">
+						<button class="btn btn-outline-secondary btn-sm btn-light" id="notesAddStrokedZero" type="button" title="<?= __("Add stroked zero (Ø)") ?>" data-bs-toggle="tooltip">
+							Ø
+						</button>
 						<button class="btn btn-outline-secondary btn-sm btn-light" id="notesSearchReset" type="button" title="<?= __("Reset search") ?>">
 							<i class="fa fa-times"></i>
 						</button>

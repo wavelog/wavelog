@@ -621,6 +621,12 @@ class Logbook extends CI_Controller {
 		$data['query'] = $this->logbook_model->get_qso($id);
 		$data['dxccFlag'] = $this->dxccflag->get($data['query']->result()[0]->COL_DXCC);
 
+		// Check for note for this callsign and current user
+		$callsign = $data['query']->result()[0]->COL_CALL;
+		$user_id = $this->session->userdata('user_id');
+		$this->load->model('note');
+		$data['contacts_note_id'] = $this->note->get_note_id_by_category($user_id, 'Contacts', $callsign);
+
 		if ($this->session->userdata('user_measurement_base') == NULL) {
 			$data['measurement_base'] = $this->config->item('measurement_base');
 		}

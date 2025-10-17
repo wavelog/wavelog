@@ -29,7 +29,18 @@
       <form method="post" action="<?php echo site_url('notes/add'); ?>" name="notes_add" id="notes_add">
         <div class="mb-3">
           <label for="inputTitle"><?= __("Title"); ?></label>
-          <input type="text" name="title" class="form-control" id="inputTitle" value="<?php echo isset($suggested_title) && $suggested_title ? $suggested_title : set_value('title'); ?>">
+      <input type="text" name="title" class="form-control" id="inputTitle" value="<?php
+      // Priority: suggested_title > POST value > prefill_title > ''
+      if (isset($suggested_title) && $suggested_title) {
+        echo $suggested_title;
+      } elseif (set_value('title')) {
+        echo set_value('title');
+      } elseif (isset($prefill_title) && $prefill_title) {
+        echo htmlspecialchars($prefill_title);
+      } else {
+        echo '';
+      }
+      ?>">
         </div>
         <div class="mb-3">
           <label for="catSelect">
@@ -39,8 +50,10 @@
             </span>
           </label>
           <select name="category" class="form-select" id="catSelect">
-            <?php foreach (Note::get_possible_categories() as $category_key => $category_label): ?>
-              <option value="<?= htmlspecialchars($category_key) ?>"<?= (set_value('category', 'General') == $category_key ? ' selected="selected"' : '') ?>><?= $category_label ?></option>
+            <?php
+              $selected_category = set_value('category', isset($category) ? $category : (isset($prefill_category) ? $prefill_category : 'General'));
+              foreach (Note::get_possible_categories() as $category_key => $category_label): ?>
+                <option value="<?= htmlspecialchars($category_key) ?>"<?= ($selected_category == $category_key ? ' selected="selected"' : '') ?>><?= $category_label ?></option>
             <?php endforeach; ?>
           </select>
         </div>

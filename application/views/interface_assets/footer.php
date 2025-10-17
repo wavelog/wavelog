@@ -68,7 +68,12 @@
     var lang_notes_duplicate_confirmation = "<?= __("Duplicate this note?"); ?>";
     var lang_notes_duplication_disabled_short = "<?= __("Duplication Disabled"); ?>";
     var lang_notes_not_found = "<?= __("No notes were found"); ?>";
-
+	var lang_qso_note_missing = "<?= __("No notes for this callsign"); ?>";
+	var lang_qso_note_toast_title = "<?= __("Callsign Note"); ?>";
+	var lang_qso_note_deleted = "<?= __("Note deleted successfully"); ?>";
+	var lang_qso_note_created = "<?= __("Note created successfully"); ?>";
+	var lang_qso_note_saved = "<?= __("Note saved successfully"); ?>";
+	var lang_qso_note_error_saving = "<?= __("Error saving note"); ?>";
 </script>
 
 <!-- General JS Files used across Wavelog -->
@@ -297,6 +302,11 @@ function stopImpersonate_modal() {
     <script src="<?php echo base_url() ;?>assets/plugins/easymde/easymde.min.js"></script>
 	<?php } ?>
     <script src="<?php echo base_url() ;?>assets/js/sections/notes.js"></script>
+<?php } ?>
+
+<?php if ($this->uri->segment(1) == "qso" ) { ?>
+    <!-- Javascript used for QSO Notes Area -->
+    <script src="<?php echo base_url() ;?>assets/plugins/easymde/easymde.min.js"></script>
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "notes" && ($this->uri->segment(2) == "view") ) { ?>
