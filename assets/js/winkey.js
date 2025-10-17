@@ -297,62 +297,52 @@ function clickSend() {
 }
 
 function morsekey_func1() {
-    console.log("F1: " + UpdateMacros(function1Macro));
     writeToStream(UpdateMacros(function1Macro));
     //and clear the input field, so it's clear it has been sent
     sendText.value = "";
 }
 
 function morsekey_func2() {
-    console.log("F2: " + UpdateMacros(function2Macro));
     writeToStream(UpdateMacros(function2Macro));
     sendText.value = "";
 }
 
 function morsekey_func3() {
-    console.log("F3: " + UpdateMacros(function3Macro));
     writeToStream(UpdateMacros(function3Macro));
     sendText.value = "";
 }
 
 function morsekey_func4() {
-    console.log("F4: " + UpdateMacros(function4Macro));
     writeToStream(UpdateMacros(function4Macro));
     sendText.value = "";
 }
 
 function morsekey_func5() {
-    console.log("F5: " + UpdateMacros(function5Macro));
     writeToStream(UpdateMacros(function5Macro));
     sendText.value = "";
 }
 
 function morsekey_func6() {
-    console.log("F6: " + UpdateMacros(function6Macro));
     writeToStream(UpdateMacros(function6Macro));
     sendText.value = "";
 }
 
 function morsekey_func7() {
-    console.log("F7: " + UpdateMacros(function7Macro));
     writeToStream(UpdateMacros(function7Macro));
     sendText.value = "";
 }
 
 function morsekey_func8() {
-    console.log("F8: " + UpdateMacros(function8Macro));
     writeToStream(UpdateMacros(function8Macro));
     sendText.value = "";
 }
 
 function morsekey_func9() {
-    console.log("F9: " + UpdateMacros(function9Macro));
     writeToStream(UpdateMacros(function9Macro));
     sendText.value = "";
 }
 
 function morsekey_func10() {
-    console.log("F10: " + UpdateMacros(function10Macro));
     writeToStream(UpdateMacros(function10Macro));
     sendText.value = "";
 }
@@ -367,7 +357,6 @@ async function readLoop() {
             break;
         }
 
-        console.log(value);
         //When recieved something add it to the big textarea
         receiveText.value += value;
         //Scroll to the bottom of the text field
@@ -385,7 +374,6 @@ function UpdateMacros(macrotext) {
     newString = macrotext.replace(/\[MYCALL\]/g, my_call);
     newString = newString.replace(/\[CALL\]/g, CALL);
     newString = newString.replace(/\[RSTS\]/g, RSTS);
-    console.log(newString);
     return newString;
 }
 
