@@ -42,7 +42,7 @@ $('#winkeycwspeed').change(function (event) {
     sendHexToSerial(command);
 });
 
-let function1Name, function1Macro, function2Name, function2Macro, function3Name, function3Macro, function4Name, function4Macro, function5Name, function5Macro;
+let function1Name, function1Macro, function2Name, function2Macro, function3Name, function3Macro, function4Name, function4Macro, function5Name, function5Macro, function6Name, function6Macro, function7Name, function7Macro, function8Name, function8Macro, function9Name, function9Macro, function10Name, function10Macro;
 
 getMacros();
 
@@ -71,6 +71,31 @@ document.addEventListener('keydown', function(event) {
     if (event.key === 'F5') {
         event.preventDefault();
         morsekey_func5();
+    }
+
+    if (event.key === 'F6') {
+        event.preventDefault();
+        morsekey_func6();
+    }
+
+    if (event.key === 'F7') {
+        event.preventDefault();
+        morsekey_func7();
+    }
+
+    if (event.key === 'F8') {
+        event.preventDefault();
+        morsekey_func8();
+    }
+
+    if (event.key === 'F9') {
+        event.preventDefault();
+        morsekey_func9();
+    }
+
+    if (event.key === 'F10') {
+        event.preventDefault();
+        morsekey_func10();
     }
   });
 
@@ -306,6 +331,41 @@ function morsekey_func5() {
     sendText.value = "";
 }
 
+function morsekey_func6() {
+    console.log("F6: " + UpdateMacros(function6Macro));
+    writeToStream(UpdateMacros(function6Macro));
+    //and clear the input field, so it's clear it has been sent
+    sendText.value = "";
+}
+
+function morsekey_func7() {
+    console.log("F7: " + UpdateMacros(function7Macro));
+    writeToStream(UpdateMacros(function7Macro));
+    //and clear the input field, so it's clear it has been sent
+    sendText.value = "";
+}
+
+function morsekey_func8() {
+    console.log("F8: " + UpdateMacros(function8Macro));
+    writeToStream(UpdateMacros(function8Macro));
+    //and clear the input field, so it's clear it has been sent
+    sendText.value = "";
+}
+
+function morsekey_func9() {
+    console.log("F9: " + UpdateMacros(function9Macro));
+    writeToStream(UpdateMacros(function9Macro));
+    //and clear the input field, so it's clear it has been sent
+    sendText.value = "";
+}
+
+function morsekey_func10() {
+    console.log("F10: " + UpdateMacros(function10Macro));
+    writeToStream(UpdateMacros(function10Macro));
+    //and clear the input field, so it's clear it has been sent
+    sendText.value = "";
+}
+
 
 
 //Read the incoming data
@@ -353,15 +413,15 @@ function getMacros() {
         function4Macro = data.function4_macro;
         function5Name = data.function5_name;
         function5Macro = data.function5_macro;
-		function6Name = data.function6_name;
+        function6Name = data.function6_name;
         function6Macro = data.function6_macro;
-		function7Name = data.function7_name;
+        function7Name = data.function7_name;
         function7Macro = data.function7_macro;
-		function8Name = data.function8_name;
+        function8Name = data.function8_name;
         function8Macro = data.function8_macro;
-		function9Name = data.function9_name;
+        function9Name = data.function9_name;
         function9Macro = data.function9_macro;
-		function10Name = data.function10_name;
+        function10Name = data.function10_name;
         function10Macro = data.function10_macro;
 
         const morsekey_func1_Button = document.getElementById('morsekey_func1');
