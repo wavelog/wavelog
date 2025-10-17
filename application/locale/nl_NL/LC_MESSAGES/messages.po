@@ -10,11 +10,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-10-14 17:46+0000\n"
+"POT-Creation-Date: 2025-10-17 14:51+0000\n"
 "PO-Revision-Date: 2025-10-15 05:17+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
-"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/nl/>\n"
+"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/nl/>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -85,8 +85,8 @@ msgstr ""
 #: application/controllers/Qsl.php:57 application/controllers/Qslprint.php:24
 #: application/controllers/Qslprint.php:147 application/controllers/Qso.php:8
 #: application/controllers/Qso.php:22 application/controllers/Qso.php:187
-#: application/controllers/Qso.php:287 application/controllers/Qso.php:308
-#: application/controllers/Qso.php:331 application/controllers/Qso.php:629
+#: application/controllers/Qso.php:301 application/controllers/Qso.php:322
+#: application/controllers/Qso.php:345 application/controllers/Qso.php:643
 #: application/controllers/Radio.php:32 application/controllers/Radio.php:291
 #: application/controllers/Radio.php:317 application/controllers/Radio.php:333
 #: application/controllers/Reg1test.php:17
@@ -2219,15 +2219,15 @@ msgstr "Aangevraagde QSL's afdrukken"
 msgid "Add QSO"
 msgstr "QSO toevoegen"
 
-#: application/controllers/Qso.php:690
+#: application/controllers/Qso.php:704
 msgid "You have to be logged in to access this URL."
 msgstr "Je moet ingelogd zijn om deze URL te openen."
 
-#: application/controllers/Qso.php:696
+#: application/controllers/Qso.php:710
 msgid "Call Transfer"
 msgstr "Roepnaam overdracht"
 
-#: application/controllers/Qso.php:703
+#: application/controllers/Qso.php:717
 msgid "No callsign provided."
 msgstr "Geen roepnaam opgegeven."
 
@@ -8441,7 +8441,7 @@ msgstr ""
 "Ten minste een van je %sLoTW-certificaten%s staat op het punt te verlopen!"
 
 #: application/views/dashboard/index.php:292
-#: application/views/qso/index.php:810
+#: application/views/qso/index.php:828
 #, php-format
 msgid "Max. %d previous contact is shown"
 msgid_plural "Max. %d previous contacts are shown"
@@ -12869,20 +12869,12 @@ msgstr "Plaatsen op Bluesky"
 msgid "Toot on Mastodon"
 msgstr "Toet op Mastodon"
 
-#: application/views/qso/components/winkeysettings.php:3
-#: application/views/qso/components/winkeysettings.php:19
-#: application/views/qso/components/winkeysettings.php:35
-#: application/views/qso/components/winkeysettings.php:51
-#: application/views/qso/components/winkeysettings.php:67
+#: application/views/qso/components/winkeysettings.php:5
 #, php-format
 msgid "Function %d - Name"
 msgstr "Functie %d - Naam"
 
-#: application/views/qso/components/winkeysettings.php:10
-#: application/views/qso/components/winkeysettings.php:26
-#: application/views/qso/components/winkeysettings.php:42
-#: application/views/qso/components/winkeysettings.php:58
-#: application/views/qso/components/winkeysettings.php:74
+#: application/views/qso/components/winkeysettings.php:21
 #, php-format
 msgid "Function %d - Macro"
 msgstr "Functie %d - Macro"
@@ -13058,7 +13050,7 @@ msgstr "Wijzigingen opslaan"
 msgid "TimeOff is less than TimeOn"
 msgstr "TimeOff is minder dan TimeOn"
 
-#: application/views/qso/index.php:30 application/views/qso/index.php:796
+#: application/views/qso/index.php:30 application/views/qso/index.php:814
 msgid "Previous Contacts"
 msgstr "Eerdere verbindingen"
 
@@ -13201,31 +13193,35 @@ msgstr "Winkey"
 msgid "Connect"
 msgstr "Verbinden"
 
-#: application/views/qso/index.php:756
-msgid "Stop"
-msgstr "Stoppen"
-
-#: application/views/qso/index.php:757
-msgid "Tune"
-msgstr "Afstemmen"
-
-#: application/views/qso/index.php:758
-msgid "Stop Tune"
-msgstr "Stop afstemmen"
-
-#: application/views/qso/index.php:764
+#: application/views/qso/index.php:775
 msgid "CW Speed"
 msgstr "CW-snelheid"
 
-#: application/views/qso/index.php:769
+#: application/views/qso/index.php:777
+msgid "Stop"
+msgstr "Stoppen"
+
+#: application/views/qso/index.php:778
+msgid "Tune"
+msgstr "Afstemmen"
+
+#: application/views/qso/index.php:779
+msgid "Stop Tune"
+msgstr "Stop afstemmen"
+
+#: application/views/qso/index.php:784
+msgid "Enter text..."
+msgstr ""
+
+#: application/views/qso/index.php:785
 msgid "Send"
 msgstr "Zend"
 
-#: application/views/qso/index.php:779
+#: application/views/qso/index.php:797
 msgid "Suggestions"
 msgstr "Suggesties"
 
-#: application/views/qso/index.php:786
+#: application/views/qso/index.php:804
 msgid "Profile Picture"
 msgstr "Profielfoto"
 
@@ -15734,10 +15730,6 @@ msgid "Main URL of your Mastodon server, e.g. %s"
 msgstr "Hoofd-URL van je Mastodon-server, bijv. %s"
 
 #: application/views/user/edit.php:1046
-msgid "Experimental"
-msgstr "Experimenteel"
-
-#: application/views/user/edit.php:1046
 msgid "Winkeyer"
 msgstr "Winkeyer"
 
@@ -16474,6 +16466,9 @@ msgstr "Verzoek indienen"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Ontvangen"
+
+#~ msgid "Experimental"
+#~ msgstr "Experimenteel"
 
 #, php-format
 #~ msgctxt "Dashboard Warning"

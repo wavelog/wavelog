@@ -8,11 +8,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-10-14 17:46+0000\n"
+"POT-Creation-Date: 2025-10-17 14:51+0000\n"
 "PO-Revision-Date: 2025-10-15 05:17+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -83,8 +83,8 @@ msgstr ""
 #: application/controllers/Qsl.php:57 application/controllers/Qslprint.php:24
 #: application/controllers/Qslprint.php:147 application/controllers/Qso.php:8
 #: application/controllers/Qso.php:22 application/controllers/Qso.php:187
-#: application/controllers/Qso.php:287 application/controllers/Qso.php:308
-#: application/controllers/Qso.php:331 application/controllers/Qso.php:629
+#: application/controllers/Qso.php:301 application/controllers/Qso.php:322
+#: application/controllers/Qso.php:345 application/controllers/Qso.php:643
 #: application/controllers/Radio.php:32 application/controllers/Radio.php:291
 #: application/controllers/Radio.php:317 application/controllers/Radio.php:333
 #: application/controllers/Reg1test.php:17
@@ -2208,15 +2208,15 @@ msgstr "リクエストされたQSLを印刷する"
 msgid "Add QSO"
 msgstr "QSOを追加"
 
-#: application/controllers/Qso.php:690
+#: application/controllers/Qso.php:704
 msgid "You have to be logged in to access this URL."
 msgstr "この URL にアクセスするにはログインする必要があります。"
 
-#: application/controllers/Qso.php:696
+#: application/controllers/Qso.php:710
 msgid "Call Transfer"
 msgstr "通話転送"
 
-#: application/controllers/Qso.php:703
+#: application/controllers/Qso.php:717
 msgid "No callsign provided."
 msgstr "コールサインが提供されていません。"
 
@@ -8374,7 +8374,7 @@ msgstr ""
 "あなたの%sLoTW証明書%sの少なくとも1つが、まもなく有効期限切れになります！"
 
 #: application/views/dashboard/index.php:292
-#: application/views/qso/index.php:810
+#: application/views/qso/index.php:828
 #, php-format
 msgid "Max. %d previous contact is shown"
 msgid_plural "Max. %d previous contacts are shown"
@@ -12761,20 +12761,12 @@ msgstr "Blueskyに投稿する"
 msgid "Toot on Mastodon"
 msgstr "マストドンで投稿する"
 
-#: application/views/qso/components/winkeysettings.php:3
-#: application/views/qso/components/winkeysettings.php:19
-#: application/views/qso/components/winkeysettings.php:35
-#: application/views/qso/components/winkeysettings.php:51
-#: application/views/qso/components/winkeysettings.php:67
+#: application/views/qso/components/winkeysettings.php:5
 #, php-format
 msgid "Function %d - Name"
 msgstr "関数 %d - 名前"
 
-#: application/views/qso/components/winkeysettings.php:10
-#: application/views/qso/components/winkeysettings.php:26
-#: application/views/qso/components/winkeysettings.php:42
-#: application/views/qso/components/winkeysettings.php:58
-#: application/views/qso/components/winkeysettings.php:74
+#: application/views/qso/components/winkeysettings.php:21
 #, php-format
 msgid "Function %d - Macro"
 msgstr "関数 %d - マクロ"
@@ -12951,7 +12943,7 @@ msgstr "変更を保存"
 msgid "TimeOff is less than TimeOn"
 msgstr "TimeOff が TimeOn より短い"
 
-#: application/views/qso/index.php:30 application/views/qso/index.php:796
+#: application/views/qso/index.php:30 application/views/qso/index.php:814
 msgid "Previous Contacts"
 msgstr "以前の連絡先"
 
@@ -13094,31 +13086,35 @@ msgstr "Winkey"
 msgid "Connect"
 msgstr "接続する"
 
-#: application/views/qso/index.php:756
-msgid "Stop"
-msgstr "停止"
-
-#: application/views/qso/index.php:757
-msgid "Tune"
-msgstr "チューニング"
-
-#: application/views/qso/index.php:758
-msgid "Stop Tune"
-msgstr "チューニングを停止"
-
-#: application/views/qso/index.php:764
+#: application/views/qso/index.php:775
 msgid "CW Speed"
 msgstr "CW速度"
 
-#: application/views/qso/index.php:769
+#: application/views/qso/index.php:777
+msgid "Stop"
+msgstr "停止"
+
+#: application/views/qso/index.php:778
+msgid "Tune"
+msgstr "チューニング"
+
+#: application/views/qso/index.php:779
+msgid "Stop Tune"
+msgstr "チューニングを停止"
+
+#: application/views/qso/index.php:784
+msgid "Enter text..."
+msgstr ""
+
+#: application/views/qso/index.php:785
 msgid "Send"
 msgstr "送信"
 
-#: application/views/qso/index.php:779
+#: application/views/qso/index.php:797
 msgid "Suggestions"
 msgstr "提案"
 
-#: application/views/qso/index.php:786
+#: application/views/qso/index.php:804
 msgid "Profile Picture"
 msgstr "プロフィール写真"
 
@@ -15591,10 +15587,6 @@ msgid "Main URL of your Mastodon server, e.g. %s"
 msgstr "MastodonサーバーのメインURL、例： %s"
 
 #: application/views/user/edit.php:1046
-msgid "Experimental"
-msgstr "実験的"
-
-#: application/views/user/edit.php:1046
 msgid "Winkeyer"
 msgstr "Winkeyer"
 
@@ -16319,6 +16311,9 @@ msgstr "リクエストを送信"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "受信"
+
+#~ msgid "Experimental"
+#~ msgstr "実験的"
 
 #, php-format
 #~ msgctxt "Dashboard Warning"

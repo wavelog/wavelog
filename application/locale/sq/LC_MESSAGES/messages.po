@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-10-14 17:46+0000\n"
+"POT-Creation-Date: 2025-10-17 14:51+0000\n"
 "PO-Revision-Date: 2024-08-17 10:49+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Albanian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -81,8 +81,8 @@ msgstr ""
 #: application/controllers/Qsl.php:57 application/controllers/Qslprint.php:24
 #: application/controllers/Qslprint.php:147 application/controllers/Qso.php:8
 #: application/controllers/Qso.php:22 application/controllers/Qso.php:187
-#: application/controllers/Qso.php:287 application/controllers/Qso.php:308
-#: application/controllers/Qso.php:331 application/controllers/Qso.php:629
+#: application/controllers/Qso.php:301 application/controllers/Qso.php:322
+#: application/controllers/Qso.php:345 application/controllers/Qso.php:643
 #: application/controllers/Radio.php:32 application/controllers/Radio.php:291
 #: application/controllers/Radio.php:317 application/controllers/Radio.php:333
 #: application/controllers/Reg1test.php:17
@@ -2184,15 +2184,15 @@ msgstr ""
 msgid "Add QSO"
 msgstr ""
 
-#: application/controllers/Qso.php:690
+#: application/controllers/Qso.php:704
 msgid "You have to be logged in to access this URL."
 msgstr ""
 
-#: application/controllers/Qso.php:696
+#: application/controllers/Qso.php:710
 msgid "Call Transfer"
 msgstr ""
 
-#: application/controllers/Qso.php:703
+#: application/controllers/Qso.php:717
 msgid "No callsign provided."
 msgstr ""
 
@@ -7987,7 +7987,7 @@ msgid "At least one of your %sLoTW certificates%s is about to expire!"
 msgstr ""
 
 #: application/views/dashboard/index.php:292
-#: application/views/qso/index.php:810
+#: application/views/qso/index.php:828
 #, php-format
 msgid "Max. %d previous contact is shown"
 msgid_plural "Max. %d previous contacts are shown"
@@ -12177,20 +12177,12 @@ msgstr ""
 msgid "Toot on Mastodon"
 msgstr ""
 
-#: application/views/qso/components/winkeysettings.php:3
-#: application/views/qso/components/winkeysettings.php:19
-#: application/views/qso/components/winkeysettings.php:35
-#: application/views/qso/components/winkeysettings.php:51
-#: application/views/qso/components/winkeysettings.php:67
+#: application/views/qso/components/winkeysettings.php:5
 #, php-format
 msgid "Function %d - Name"
 msgstr ""
 
-#: application/views/qso/components/winkeysettings.php:10
-#: application/views/qso/components/winkeysettings.php:26
-#: application/views/qso/components/winkeysettings.php:42
-#: application/views/qso/components/winkeysettings.php:58
-#: application/views/qso/components/winkeysettings.php:74
+#: application/views/qso/components/winkeysettings.php:21
 #, php-format
 msgid "Function %d - Macro"
 msgstr ""
@@ -12366,7 +12358,7 @@ msgstr ""
 msgid "TimeOff is less than TimeOn"
 msgstr ""
 
-#: application/views/qso/index.php:30 application/views/qso/index.php:796
+#: application/views/qso/index.php:30 application/views/qso/index.php:814
 msgid "Previous Contacts"
 msgstr ""
 
@@ -12509,31 +12501,35 @@ msgstr ""
 msgid "Connect"
 msgstr ""
 
-#: application/views/qso/index.php:756
-msgid "Stop"
-msgstr ""
-
-#: application/views/qso/index.php:757
-msgid "Tune"
-msgstr ""
-
-#: application/views/qso/index.php:758
-msgid "Stop Tune"
-msgstr ""
-
-#: application/views/qso/index.php:764
+#: application/views/qso/index.php:775
 msgid "CW Speed"
 msgstr ""
 
-#: application/views/qso/index.php:769
-msgid "Send"
+#: application/views/qso/index.php:777
+msgid "Stop"
+msgstr ""
+
+#: application/views/qso/index.php:778
+msgid "Tune"
 msgstr ""
 
 #: application/views/qso/index.php:779
+msgid "Stop Tune"
+msgstr ""
+
+#: application/views/qso/index.php:784
+msgid "Enter text..."
+msgstr ""
+
+#: application/views/qso/index.php:785
+msgid "Send"
+msgstr ""
+
+#: application/views/qso/index.php:797
 msgid "Suggestions"
 msgstr ""
 
-#: application/views/qso/index.php:786
+#: application/views/qso/index.php:804
 msgid "Profile Picture"
 msgstr ""
 
@@ -14825,10 +14821,6 @@ msgstr ""
 #: application/views/user/edit.php:1037
 #, php-format
 msgid "Main URL of your Mastodon server, e.g. %s"
-msgstr ""
-
-#: application/views/user/edit.php:1046
-msgid "Experimental"
 msgstr ""
 
 #: application/views/user/edit.php:1046
