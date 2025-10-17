@@ -288,11 +288,12 @@ async function disconnect() {
 
 //When the send button is pressed
 function clickSend() {
-    writeToStream(sendText.value).then(function() {
-		// writeToStream("\r");
-		//and clear the input field, so it's clear it has been sent
-		$('#sendText').val('');
-	});
+    text2send = sendText.value.replaceAll('Ø', '0');
+    writeToStream(text2send).then(function() {
+        // writeToStream("\r");
+        //and clear the input field, so it's clear it has been sent
+        $('#sendText').val('');
+    });
 
 }
 
