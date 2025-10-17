@@ -306,63 +306,54 @@ function morsekey_func1() {
 function morsekey_func2() {
     console.log("F2: " + UpdateMacros(function2Macro));
     writeToStream(UpdateMacros(function2Macro));
-    //and clear the input field, so it's clear it has been sent
     sendText.value = "";
 }
 
 function morsekey_func3() {
     console.log("F3: " + UpdateMacros(function3Macro));
     writeToStream(UpdateMacros(function3Macro));
-    //and clear the input field, so it's clear it has been sent
     sendText.value = "";
 }
 
 function morsekey_func4() {
     console.log("F4: " + UpdateMacros(function4Macro));
     writeToStream(UpdateMacros(function4Macro));
-    //and clear the input field, so it's clear it has been sent
     sendText.value = "";
 }
 
 function morsekey_func5() {
     console.log("F5: " + UpdateMacros(function5Macro));
     writeToStream(UpdateMacros(function5Macro));
-    //and clear the input field, so it's clear it has been sent
     sendText.value = "";
 }
 
 function morsekey_func6() {
     console.log("F6: " + UpdateMacros(function6Macro));
     writeToStream(UpdateMacros(function6Macro));
-    //and clear the input field, so it's clear it has been sent
     sendText.value = "";
 }
 
 function morsekey_func7() {
     console.log("F7: " + UpdateMacros(function7Macro));
     writeToStream(UpdateMacros(function7Macro));
-    //and clear the input field, so it's clear it has been sent
     sendText.value = "";
 }
 
 function morsekey_func8() {
     console.log("F8: " + UpdateMacros(function8Macro));
     writeToStream(UpdateMacros(function8Macro));
-    //and clear the input field, so it's clear it has been sent
     sendText.value = "";
 }
 
 function morsekey_func9() {
     console.log("F9: " + UpdateMacros(function9Macro));
     writeToStream(UpdateMacros(function9Macro));
-    //and clear the input field, so it's clear it has been sent
     sendText.value = "";
 }
 
 function morsekey_func10() {
     console.log("F10: " + UpdateMacros(function10Macro));
     writeToStream(UpdateMacros(function10Macro));
-    //and clear the input field, so it's clear it has been sent
     sendText.value = "";
 }
 
