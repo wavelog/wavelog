@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2025-10-17 14:51+0000\n"
 "PO-Revision-Date: 2025-10-18 06:44+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
-"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/sv/>\n"
+"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/sv/>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1285,7 +1285,7 @@ msgstr "Loggbok"
 #: application/views/qslprint/qsolist.php:18
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:75
 #: application/views/timeline/index.php:56 application/views/user/edit.php:591
-#: application/views/user/edit.php:784
+#: application/views/user/edit.php:784 application/views/gridmap/index.php:123
 msgid "QSL"
 msgstr "QSL"
 
@@ -1324,6 +1324,7 @@ msgstr "QSL"
 #: application/views/timeline/index.php:60 application/views/user/edit.php:592
 #: application/views/user/edit.php:794 application/views/view_log/qso.php:531
 #: application/views/view_log/qso.php:536
+#: application/views/gridmap/index.php:131
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1359,6 +1360,7 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:309
 #: application/views/timeline/index.php:64 application/views/user/edit.php:593
 #: application/views/user/edit.php:802 application/views/user/edit.php:876
+#: application/views/gridmap/index.php:139
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1446,7 +1448,7 @@ msgstr "eQSL"
 #: application/views/view_log/partial/log.php:9
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:108 application/views/visitor/index.php:6
-#: application/views/widgets/qsos.php:18
+#: application/views/widgets/qsos.php:18 application/views/gridmap/index.php:98
 msgid "Mode"
 msgstr "Trafiksätt"
 
@@ -1628,6 +1630,7 @@ msgstr "Delstat"
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/view_log/qso.php:674
 #: application/views/visitor/index.php:27
+#: application/views/gridmap/index.php:175
 msgid "Gridsquare"
 msgstr "Rutnätsruta"
 
@@ -1656,6 +1659,7 @@ msgstr "Rutnätsruta"
 #: application/views/user/edit.php:346
 #: application/views/view_log/partial/log_ajax.php:14
 #: application/views/visitor/index.php:30
+#: application/views/gridmap/index.php:177
 msgid "Distance"
 msgstr "Avstånd"
 
@@ -1740,7 +1744,7 @@ msgstr "Avstånd"
 #: application/views/view_log/partial/log.php:12
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:88 application/views/visitor/index.php:33
-#: application/views/widgets/qsos.php:21
+#: application/views/widgets/qsos.php:21 application/views/gridmap/index.php:20
 msgid "Band"
 msgstr "Band"
 
@@ -3404,6 +3408,7 @@ msgstr "QSO uppdaterad"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/views/gridmap/index.php:179
 msgid "Bearing"
 msgstr "Bäring"
 
@@ -3645,6 +3650,11 @@ msgstr "Skillnad"
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:768
 #: application/views/visitor/layout/footer.php:172
+#: application/views/gridmap/index.php:23
+#: application/views/gridmap/index.php:38
+#: application/views/gridmap/index.php:72
+#: application/views/gridmap/index.php:87
+#: application/views/gridmap/index.php:101
 msgid "All"
 msgstr "Alla"
 
@@ -3693,6 +3703,7 @@ msgstr "Period"
 #: application/views/timeline/index.php:79 application/views/user/edit.php:351
 #: application/views/view_log/partial/log_ajax.php:21
 #: application/views/view_log/qso.php:230
+#: application/views/gridmap/index.php:35
 msgid "Propagation"
 msgstr "Utbredning"
 
@@ -3710,6 +3721,7 @@ msgstr "Alla utom SAT"
 #: application/views/logbookadvanced/edit.php:215
 #: application/views/logbookadvanced/index.php:406
 #: application/views/timeline/index.php:84
+#: application/views/gridmap/index.php:39
 msgid "None/Empty"
 msgstr "Inget"
 
@@ -3723,6 +3735,7 @@ msgstr "Inget"
 #: application/views/timeline/index.php:85
 #: application/views/view_log/partial/log_ajax.php:55
 #: application/views/view_log/qso.php:233
+#: application/views/gridmap/index.php:41
 msgctxt "Propagation Mode"
 msgid "Aircraft Scatter"
 msgstr "Flygplans Scatter"
@@ -3737,6 +3750,7 @@ msgstr "Flygplans Scatter"
 #: application/views/timeline/index.php:86
 #: application/views/view_log/partial/log_ajax.php:58
 #: application/views/view_log/qso.php:236
+#: application/views/gridmap/index.php:42
 msgctxt "Propagation Mode"
 msgid "Aurora"
 msgstr "Aurora"
@@ -3751,6 +3765,7 @@ msgstr "Aurora"
 #: application/views/timeline/index.php:87
 #: application/views/view_log/partial/log_ajax.php:61
 #: application/views/view_log/qso.php:239
+#: application/views/gridmap/index.php:43
 msgctxt "Propagation Mode"
 msgid "Aurora-E"
 msgstr "Aurora-E"
@@ -3765,6 +3780,7 @@ msgstr "Aurora-E"
 #: application/views/timeline/index.php:88
 #: application/views/view_log/partial/log_ajax.php:64
 #: application/views/view_log/qso.php:242
+#: application/views/gridmap/index.php:44
 msgctxt "Propagation Mode"
 msgid "Back scatter"
 msgstr "Back scatter"
@@ -3779,6 +3795,7 @@ msgstr "Back scatter"
 #: application/views/timeline/index.php:89
 #: application/views/view_log/partial/log_ajax.php:67
 #: application/views/view_log/qso.php:245
+#: application/views/gridmap/index.php:45
 msgctxt "Propagation Mode"
 msgid "EchoLink"
 msgstr "EchoLink"
@@ -3793,6 +3810,7 @@ msgstr "EchoLink"
 #: application/views/timeline/index.php:90
 #: application/views/view_log/partial/log_ajax.php:70
 #: application/views/view_log/qso.php:248
+#: application/views/gridmap/index.php:46
 msgctxt "Propagation Mode"
 msgid "Earth-Moon-Earth"
 msgstr "Earth-Moon-Earth"
@@ -3807,6 +3825,7 @@ msgstr "Earth-Moon-Earth"
 #: application/views/timeline/index.php:91
 #: application/views/view_log/partial/log_ajax.php:73
 #: application/views/view_log/qso.php:251
+#: application/views/gridmap/index.php:47
 msgctxt "Propagation Mode"
 msgid "Sporadic E"
 msgstr "Sporadisk E"
@@ -3821,6 +3840,7 @@ msgstr "Sporadisk E"
 #: application/views/timeline/index.php:92
 #: application/views/view_log/partial/log_ajax.php:76
 #: application/views/view_log/qso.php:254
+#: application/views/gridmap/index.php:48
 msgctxt "Propagation Mode"
 msgid "Field Aligned Irregularities"
 msgstr "Fältjusterade oregelbundenheter"
@@ -3835,6 +3855,7 @@ msgstr "Fältjusterade oregelbundenheter"
 #: application/views/timeline/index.php:93
 #: application/views/view_log/partial/log_ajax.php:79
 #: application/views/view_log/qso.php:257
+#: application/views/gridmap/index.php:49
 msgctxt "Propagation Mode"
 msgid "F2 Reflection"
 msgstr "F2-reflektion"
@@ -3849,6 +3870,7 @@ msgstr "F2-reflektion"
 #: application/views/timeline/index.php:94
 #: application/views/view_log/partial/log_ajax.php:82
 #: application/views/view_log/qso.php:260
+#: application/views/gridmap/index.php:50
 msgctxt "Propagation Mode"
 msgid "Internet-assisted"
 msgstr "Internet-assisterad"
@@ -3863,6 +3885,7 @@ msgstr "Internet-assisterad"
 #: application/views/timeline/index.php:95
 #: application/views/view_log/partial/log_ajax.php:85
 #: application/views/view_log/qso.php:263
+#: application/views/gridmap/index.php:51
 msgctxt "Propagation Mode"
 msgid "Ionoscatter"
 msgstr "Ionoscatter"
@@ -3877,6 +3900,7 @@ msgstr "Ionoscatter"
 #: application/views/timeline/index.php:96
 #: application/views/view_log/partial/log_ajax.php:88
 #: application/views/view_log/qso.php:266
+#: application/views/gridmap/index.php:52
 msgctxt "Propagation Mode"
 msgid "IRLP"
 msgstr "IRLP"
@@ -3891,6 +3915,7 @@ msgstr "IRLP"
 #: application/views/timeline/index.php:97
 #: application/views/view_log/partial/log_ajax.php:91
 #: application/views/view_log/qso.php:269
+#: application/views/gridmap/index.php:53
 msgctxt "Propagation Mode"
 msgid "Meteor scatter"
 msgstr "Meteor scatter"
@@ -3905,6 +3930,7 @@ msgstr "Meteor scatter"
 #: application/views/timeline/index.php:98
 #: application/views/view_log/partial/log_ajax.php:94
 #: application/views/view_log/qso.php:272
+#: application/views/gridmap/index.php:54
 msgctxt "Propagation Mode"
 msgid "Terrestrial or atmospheric repeater or transponder"
 msgstr "Markbunden eller atmosfärisk repeater eller transponder"
@@ -3919,6 +3945,7 @@ msgstr "Markbunden eller atmosfärisk repeater eller transponder"
 #: application/views/timeline/index.php:99
 #: application/views/view_log/partial/log_ajax.php:97
 #: application/views/view_log/qso.php:275
+#: application/views/gridmap/index.php:55
 msgctxt "Propagation Mode"
 msgid "Rain scatter"
 msgstr "Regnscatter"
@@ -3933,6 +3960,7 @@ msgstr "Regnscatter"
 #: application/views/timeline/index.php:100
 #: application/views/view_log/partial/log_ajax.php:100
 #: application/views/view_log/qso.php:278
+#: application/views/gridmap/index.php:56
 msgctxt "Propagation Mode"
 msgid "Satellite"
 msgstr "Satellit"
@@ -3947,6 +3975,7 @@ msgstr "Satellit"
 #: application/views/timeline/index.php:101
 #: application/views/view_log/partial/log_ajax.php:103
 #: application/views/view_log/qso.php:281
+#: application/views/gridmap/index.php:57
 msgctxt "Propagation Mode"
 msgid "Trans-equatorial"
 msgstr "Trans-ekvatoriell"
@@ -3961,6 +3990,7 @@ msgstr "Trans-ekvatoriell"
 #: application/views/timeline/index.php:102
 #: application/views/view_log/partial/log_ajax.php:106
 #: application/views/view_log/qso.php:284
+#: application/views/gridmap/index.php:58
 msgctxt "Propagation Mode"
 msgid "Tropospheric ducting"
 msgstr "Troposfärisk ducting"
@@ -4024,6 +4054,7 @@ msgstr "Visa"
 #: application/views/satellite/skedtable.php:35
 #: application/views/sattimers/index.php:38
 #: application/views/statistics/index.php:24
+#: application/views/gridmap/index.php:67
 msgid "Satellite"
 msgstr "Satellit"
 
@@ -4043,6 +4074,7 @@ msgstr "Satellit"
 #: application/views/satellite/satinfo.php:12
 #: application/views/statistics/antennaanalytics.php:60
 #: application/views/statistics/antennaanalytics.php:98
+#: application/views/gridmap/index.php:82
 msgid "Orbit"
 msgstr "Bana"
 
@@ -4050,6 +4082,7 @@ msgstr "Bana"
 #: application/views/awards/wab/index.php:65
 #: application/views/gridmap/index.php:92
 #: application/views/timeline/index.php:52
+#: application/views/gridmap/index.php:114
 msgid "Confirmation"
 msgstr "Bekräftelse"
 
@@ -4071,16 +4104,19 @@ msgstr "Bekräftelse"
 #: application/views/awards/was/index.php:68
 #: application/views/awards/wpx/index.php:40
 #: application/views/gridmap/index.php:125 application/views/user/edit.php:810
+#: application/views/gridmap/index.php:147
 msgid "QRZ.com"
 msgstr "QRZ.com"
 
 #: application/views/activated_gridmap/index.php:86
 #: application/views/gridmap/index.php:130
+#: application/views/gridmap/index.php:11
 msgid "Plot"
 msgstr "Plot"
 
 #: application/views/activated_gridmap/index.php:87
 #: application/views/gridmap/index.php:131
+#: application/views/gridmap/index.php:12
 msgid "Clear Markers"
 msgstr "Rensa markörer"
 
@@ -4089,6 +4125,7 @@ msgstr "Rensa markörer"
 #: application/views/awards/gridmaster/index.php:46
 #: application/views/gridmap/index.php:148
 #: application/views/logbookadvanced/index.php:10
+#: application/views/gridmap/index.php:171
 msgid "Latitude"
 msgstr "Latitud"
 
@@ -4097,6 +4134,7 @@ msgstr "Latitud"
 #: application/views/awards/gridmaster/index.php:48
 #: application/views/gridmap/index.php:150
 #: application/views/logbookadvanced/index.php:11
+#: application/views/gridmap/index.php:173
 msgid "Longitude"
 msgstr "Longitud"
 
@@ -5645,6 +5683,7 @@ msgstr ""
 #: application/views/awards/wpx/index.php:13
 #: application/views/logbookadvanced/index.php:221
 #: application/views/mode/index.php:80 application/views/usermode/index.php:68
+#: application/views/gridmap/index.php:10
 msgid "Filters"
 msgstr "Filter"
 
@@ -6652,8 +6691,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
-"Reef/506) och giltig stat (ADIF: DXCC och STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
+"506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/wapc/index.php:119
 msgid "Code"
@@ -7408,6 +7447,7 @@ msgstr "Inga tävlingar hittades i din logg."
 
 #: application/views/callstats/index.php:70
 #: application/views/gridmap/index.php:43
+#: application/views/gridmap/index.php:40
 msgid "All except SAT"
 msgstr "Alla utom SAT"
 
@@ -14895,8 +14935,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 (t."
-"ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
+"(t.ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"

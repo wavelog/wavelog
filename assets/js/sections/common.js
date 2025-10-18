@@ -1148,7 +1148,7 @@ $(document).ready(function() {
 });
 
 // auto setting of gridmap height
-function set_map_height() {
+function set_map_height(extra_height = 0) {
     //header menu
     var headerNavHeight = $('nav').outerHeight();
     // console.log('nav: ' + headerNavHeight);
@@ -1162,7 +1162,7 @@ function set_map_height() {
     // console.log('.gridsquare_map_form: ' + gridsquareFormHeight);
 
     // calculate correct map height
-    var gridsquareMapHeight = window.innerHeight - headerNavHeight - coordinatesHeight - gridsquareFormHeight;
+    var gridsquareMapHeight = window.innerHeight - headerNavHeight - coordinatesHeight - gridsquareFormHeight - extra_height;
 
     // and set it
     $('#gridsquare_map').css('height', gridsquareMapHeight + 'px');
