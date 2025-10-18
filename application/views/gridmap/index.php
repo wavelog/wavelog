@@ -108,6 +108,18 @@
                                         ?>
                                     </select>
                                 </div>
+								<?php if(count($countries->result()) > 0) { ?>
+									<label class="col-md-2" for="country">Country</label>
+									<div class="col-sm-3">
+										<select class="form-select form-select-sm" id="dxcc">
+											<option value="All"><?= __("All") ?></option>
+											<?php foreach($countries->result() as $country_option) {
+												echo '<option value="' . $country_option->adif . '"';
+												echo '>' . $country_option->prefix . ' - ' . ucwords(strtolower($country_option->name)). '</option>' . "\n";
+											} ?>
+										</select>
+									</div>
+								<?php } ?>
 
 							</div>
 							<div class="row mb-2">

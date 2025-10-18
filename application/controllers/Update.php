@@ -704,5 +704,10 @@ class Update extends CI_Controller {
 		$this->load->model('Update_model');
 		$this->Update_model->update_check();
 	}
+
+	public function update_vucc_grids() {
+		$this->load->model('Update_model');
+		$this->Update_model->update_vucc_grids();
+	}
 }
 ?>

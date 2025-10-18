@@ -625,4 +625,47 @@ class Update_model extends CI_Model {
 		return $result;
 	}
 
+	function update_vucc_grids() {
+		// set the last run in cron table for the correct cron id
+		$this->load->model('cron_model');
+		$this->cron_model->set_last_run($this->router->class . '_' . $this->router->method);
+
+		// $url = 'https://sourceforge.net/p/trustedqsl/tqsl/ci/master/plain/apps/vuccgrids.dat';
+		$url = 'https://sourceforge.net/p/trustedqsl/tqsl/ci/master/tree/apps/vuccgrids.dat?format=raw';
+		$curl = curl_init($url);
+
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+
+		$response = curl_exec($curl);
+
+		$xml = @simplexml_load_string($response);
+
+        if ($xml === false) {
+			die("Failed to parse XML.");
+        }
+
+		// Truncate the table first
+		$this->db->query("TRUNCATE TABLE vuccgrids;");
+
+		// Loop through <vucc> elements
+		foreach ($xml->vucc as $vucc) {
+			$adif = (int)$vucc['entity']; // assuming "entity" attribute is ADIF
+			$grid = strtoupper(trim((string)$vucc['grid']));
+
+			if ($adif > 0 && $grid !== '') {
+				// Insert with duplicate handling
+				$sql = "INSERT INTO vuccgrids (adif, gridsquare)
+						VALUES (?, ?)
+						ON DUPLICATE KEY UPDATE id = id";
+
+				$this->db->query($sql, [$adif, $grid]);
+			}
+		}
+
+		curl_close($curl);
+
+		return;
+	}
+
 }
