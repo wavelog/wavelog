@@ -1,5 +1,15 @@
 var modalloading=false;
 
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll('.dropdown').forEach(dd => {
+		dd.addEventListener('hide.bs.dropdown', function (e) {
+			if (e.clickEvent && e.clickEvent.target.closest('.dropdown-menu')) {
+				e.preventDefault(); // stop Bootstrap from closing
+			}
+		});
+	});
+});
+
 $('#band').change(function(){
 	var band = $("#band option:selected").text();
 	if (band != "SAT") {
@@ -44,7 +54,7 @@ function gridPlot(form, visitor=true) {
         container._leaflet_id = null;
         container.remove();
         $("#gridmapcontainer").append('<div id="gridsquare_map" class="map-leaflet" style="width: 100%;"></div>');
-        set_map_height();
+        set_map_height(50);
     }
 
     if (typeof type == 'undefined') { type=''; }
@@ -73,7 +83,7 @@ function gridPlot(form, visitor=true) {
 		},
 		success: function (data) {
             $('.cohidden').show();
-            set_map_height();
+            set_map_height(25);
             $(".ld-ext-right-plot").removeClass('running');
             $(".ld-ext-right-plot").prop('disabled', false);
             $('#plot').prop("disabled", false);
