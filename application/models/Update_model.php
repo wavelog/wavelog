@@ -628,9 +628,8 @@ class Update_model extends CI_Model {
 	function update_vucc_grids() {
 		// set the last run in cron table for the correct cron id
 		$this->load->model('cron_model');
-		$this->cron_model->set_last_run($this->router->class . '_' . $this->router->method);
+		$this->cron_model->set_last_run('vucc_grid_file');
 
-		// $url = 'https://sourceforge.net/p/trustedqsl/tqsl/ci/master/plain/apps/vuccgrids.dat';
 		$url = 'https://sourceforge.net/p/trustedqsl/tqsl/ci/master/tree/apps/vuccgrids.dat?format=raw';
 		$curl = curl_init($url);
 
