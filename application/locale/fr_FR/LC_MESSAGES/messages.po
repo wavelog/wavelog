@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-10-18 17:02+0000\n"
-"PO-Revision-Date: 2025-10-19 10:34+0000\n"
+"PO-Revision-Date: 2025-10-20 10:48+0000\n"
 "Last-Translator: F5MQU <f5mqu.p@gmail.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/fr/>\n"
@@ -256,11 +256,11 @@ msgstr "Données DCL importées"
 
 #: application/controllers/Adif.php:368
 msgid "POTA Import"
-msgstr ""
+msgstr "Importation des POTA"
 
 #: application/controllers/Adif.php:425
 msgid "POTA Data Imported"
-msgstr ""
+msgstr "Données des POTA importées"
 
 #: application/controllers/Api.php:14
 msgid "API"
@@ -375,7 +375,7 @@ msgstr "DXCC"
 
 #: application/controllers/Awards.php:252
 msgid "Awards - WAPC"
-msgstr ""
+msgstr "Trophées - WAPC"
 
 #: application/controllers/Awards.php:331
 msgid "Awards - WAJA"
@@ -508,7 +508,7 @@ msgstr "POTA"
 
 #: application/controllers/Awards.php:672
 msgid "CQ WAZ (Worked All Zones)"
-msgstr ""
+msgstr "CQ WAZ (Toutes Zones contactées)"
 
 #: application/controllers/Awards.php:733
 #: application/views/accumulate/index.php:54
@@ -578,7 +578,7 @@ msgstr "Trophées - SIG - "
 
 #: application/controllers/Awards.php:1374 application/views/bands/index.php:60
 msgid "WAP"
-msgstr ""
+msgstr "WAP"
 
 #: application/controllers/Awards.php:1988
 #: application/views/awards/itu/index.php:20
@@ -603,7 +603,7 @@ msgstr "73 sur 73"
 #: application/controllers/Awards.php:2281
 #: application/views/awards/wpx/wpx_details.php:19
 msgid "WPX"
-msgstr ""
+msgstr "WPX"
 
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:318
@@ -906,7 +906,7 @@ msgstr "Jours avec des QSOs"
 #: application/controllers/Dcl.php:33
 #: application/views/dcl_views/key_import.php:3
 msgid "DCL Key Import"
-msgstr ""
+msgstr "Importation de la clé DCL"
 
 #: application/controllers/Dcl.php:68 application/views/dcl_views/import.php:3
 #: application/views/dcl_views/index.php:3
@@ -919,31 +919,31 @@ msgstr ""
 #: application/views/view_log/qso.php:575
 #: application/views/view_log/qso.php:580
 msgid "DCL"
-msgstr ""
+msgstr "DCL"
 
 #: application/controllers/Dcl.php:139
 msgid "No QSOs to upload."
-msgstr ""
+msgstr "Aucun QSO à télécharger."
 
 #: application/controllers/Dcl.php:186 application/controllers/Dcl.php:198
 msgid "Upload Failed"
-msgstr ""
+msgstr "Echec du téléchargement"
 
 #: application/controllers/Dcl.php:188
 msgid "Timeout reached. Stopping subsequent uploads."
-msgstr ""
+msgstr "Délai d'attente dépassé. Arrêt des téléchargements suivants."
 
 #: application/controllers/Dcl.php:201
 msgid "Upload Successful"
-msgstr ""
+msgstr "Téléchargement réussi"
 
 #: application/controllers/Dcl.php:211
 msgid "No Station Profiles found to upload to DCL"
-msgstr ""
+msgstr "Aucun profil de station n'a été trouvé pour être télécharger vers DCL"
 
 #: application/controllers/Dcl.php:229
 msgid "Key(s) Deleted."
-msgstr ""
+msgstr "Clé(s) effacée(s)."
 
 #: application/controllers/Debug.php:117
 msgid "Debug"
@@ -1058,7 +1058,7 @@ msgstr "Mauvais utilisateur ou mot de passe pour eQSL"
 #: application/controllers/Eqsl.php:199
 #, php-format
 msgid "No such eQSL QTH Nickname: %s"
-msgstr "Nom d’utilisateur eQSL invalide: %s"
+msgstr "Nom d’utilisateur eQSL invalide : %s"
 
 #: application/controllers/Eqsl.php:437
 msgid "eQSL Tools"
@@ -1096,7 +1096,7 @@ msgstr "Hamsat - Chasseur itinérant de satellite"
 
 #: application/controllers/Hrdlog.php:70 application/controllers/Hrdlog.php:71
 msgid "HRD Log upload for this station is disabled."
-msgstr ""
+msgstr "Le téléchargement du log HRD de cette station a été désactivé."
 
 #: application/controllers/Hrdlog.php:93
 #, php-format
@@ -2369,15 +2369,15 @@ msgstr ""
 
 #: application/controllers/Satellite.php:256
 msgid "Satellite pass"
-msgstr ""
+msgstr "Survol du satellite"
 
 #: application/controllers/Satellite.php:313
 msgid "Failed to save pass settings!"
-msgstr ""
+msgstr "Echec de la sauvegarde des paramètres de survol !"
 
 #: application/controllers/Satellite.php:316
 msgid "Pass settings saved!"
-msgstr ""
+msgstr "Paramètres de survol sauvegardés !"
 
 #: application/controllers/Satellite.php:329
 msgid "No settings found!"
@@ -2798,11 +2798,11 @@ msgstr "Mise à jour WWFF échouée. Résultat : "
 
 #: application/controllers/Update.php:555
 msgid "HAMqsl Update complete. Result: "
-msgstr ""
+msgstr "Mise à jour HAMqsl terminée. Résultats : "
 
 #: application/controllers/Update.php:557
 msgid "HAMqsl Update failed. Result: "
-msgstr ""
+msgstr "Echec de la mise à jour HAMqsl. Résultats : "
 
 #: application/controllers/Update.php:590
 msgid "POTA Update complete. Result: "
@@ -3033,12 +3033,16 @@ msgstr "Mot de passe réinitialisé"
 msgid ""
 "Couldn't set account to this username. Please try another one than \"%s\"."
 msgstr ""
+"Impossible d'afficher le compte de cet utilisateur. Essayez avec un "
+"utilisateur différent de \"%s\"."
 
 #: application/controllers/User.php:1514
 #, php-format
 msgid ""
 "Couldn't set account to this email. Please try another address than \"%s\"."
 msgstr ""
+"Impossible d'attribuer un compte à cet email. Essayez une adresse autre que "
+"\"%s\"."
 
 #: application/controllers/User.php:1553
 #, php-format
@@ -3267,7 +3271,7 @@ msgstr "Quelque chose s'est mal passé avec eQSL.cc !"
 
 #: application/models/Eqslmethods_model.php:308
 msgid "QTH Nickname does not exist at eQSL"
-msgstr ""
+msgstr "Le QTH n'existe pas dans eQSL"
 
 #: application/models/Eqslmethods_model.php:317
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
@@ -4956,7 +4960,7 @@ msgstr ""
 
 #: application/views/api/index.php:13
 msgid "Links to 3rd-Party-Software which works with Wavelog:"
-msgstr "Liens vers des logiciels fonctionnant avec Wavelog:"
+msgstr "Liens vers des logiciels tiers fonctionnant avec Wavelog :"
 
 #: application/views/api/index.php:16
 msgid "More Tools"
@@ -7362,7 +7366,7 @@ msgstr "Aucun concours trouvé dans votre journal de trafic."
 #: application/views/callstats/index.php:70
 #: application/views/gridmap/index.php:40
 msgid "All except SAT"
-msgstr "Tous sauf le SAT."
+msgstr "Tout sauf le SAT"
 
 #: application/views/callstats/index.php:148
 msgid "#QSOs"
@@ -9257,18 +9261,18 @@ msgstr "Bonjour %s"
 msgid "An admin initiated a password reset for your Wavelog account."
 msgstr ""
 "Le mot de passe de votre compte Wavelog a été réinitialisé par un "
-"administrateur"
+"administrateur."
 
 #: application/views/email/admin_reset_password.php:9
 #, php-format
 msgid "Your username is: %s"
-msgstr "Votre nom d’utilisateur est: %s"
+msgstr "Votre nom d’utilisateur est : %s"
 
 #: application/views/email/admin_reset_password.php:11
 #: application/views/email/forgot_password.php:11
 #, php-format
 msgid "Click here to reset your password: %s"
-msgstr "Cliquez ici pour réinitialiser votre mot de passe: %s"
+msgstr "Cliquez ici pour réinitialiser votre mot de passe : %s"
 
 #: application/views/email/admin_reset_password.php:13
 msgid ""
@@ -10146,7 +10150,7 @@ msgstr ""
 
 #: application/views/interface_assets/header.php:432
 msgid "Switch to Clubstation:"
-msgstr "Changer pour club:"
+msgstr "Changer pour club :"
 
 #: application/views/interface_assets/header.php:436
 #, php-format
@@ -15806,7 +15810,7 @@ msgstr ""
 
 #: application/views/visitor/layout/header.php:95
 msgid "Please enter a callsign!"
-msgstr "Merci d’entrer un indicatif"
+msgstr "Merci d’entrer un indicatif !"
 
 #: application/views/webadif/export.php:22
 msgid ""
