@@ -652,23 +652,39 @@ class Update_model extends CI_Model {
 		$this->db->query("TRUNCATE TABLE vuccgrids;");
 
 		// Loop through <vucc> elements
-		$nCount = 0;
+		$batchSize = 2000;
+		$vuccdata = [];
+		$total_inserted  = 0;
 		foreach ($xml->vucc as $vucc) {
 			$adif = (int)$vucc['entity']; // assuming "entity" attribute is ADIF
 			$grid = strtoupper(trim((string)$vucc['grid']));
 
 			if ($adif > 0 && $grid !== '') {
-				// Insert with duplicate handling
-				$sql = "INSERT INTO vuccgrids (adif, gridsquare)
-						VALUES (?, ?)
-						ON DUPLICATE KEY UPDATE id = id";
+				$key = $adif . '-' . $grid;
 
-				$this->db->query($sql, [$adif, $grid]);
-
-				 // Count only new inserts
-				if ($this->db->affected_rows() > 0) {
-					$nCount++;
+				// Only add if not already in array
+				if (!isset($vuccdata[$key])) {
+					$vuccdata[$key] = [
+						'adif' => $adif,
+						'gridsquare' => $grid
+					];
 				}
+
+                if (count($vuccdata) >= $batchSize) {
+					$rows = $this->db->insert_batch('vuccgrids', array_values($vuccdata));
+					if ($rows !== false) {
+						$total_inserted += $rows;
+					}
+					$vuccdata = []; // clear after insert
+				}
+			}
+		}
+
+		// insert any remaining rows
+		if (!empty($vuccdata)) {
+			$rows = $this->db->insert_batch('vuccgrids', array_values($vuccdata));
+			if ($rows !== false) {
+				$total_inserted += $rows;
 			}
 		}
 
@@ -680,8 +696,8 @@ class Update_model extends CI_Model {
 		$endtime = $mtime;
 		$totaltime = ($endtime - $starttime);
 
-		if ($nCount > 0) {
-            return "DONE: This page was created in ".$totaltime." seconds.<br />" . number_format($nCount) . " Grids saved";
+		if ($total_inserted > 0) {
+            return "DONE: This page was created in ".$totaltime." seconds.<br />" . number_format($total_inserted ) . " Grids saved";
         } else {
             return "FAILED: Empty file";
         }
