@@ -641,13 +641,14 @@ class Update_model extends CI_Model {
 		$xml = @simplexml_load_string($response);
 
         if ($xml === false) {
-			die("Failed to parse XML.");
+			return "Failed to parse TQSL VUCC grid file XML.";
         }
 
 		// Truncate the table first
 		$this->db->query("TRUNCATE TABLE vuccgrids;");
 
 		// Loop through <vucc> elements
+		$nCount = 0;
 		foreach ($xml->vucc as $vucc) {
 			$adif = (int)$vucc['entity']; // assuming "entity" attribute is ADIF
 			$grid = strtoupper(trim((string)$vucc['grid']));
@@ -659,12 +660,21 @@ class Update_model extends CI_Model {
 						ON DUPLICATE KEY UPDATE id = id";
 
 				$this->db->query($sql, [$adif, $grid]);
+
+				 // Count only new inserts
+				if ($this->db->affected_rows() > 0) {
+					$nCount++;
+				}
 			}
 		}
 
 		curl_close($curl);
 
-		return;
+		if ($nCount > 0) {
+            return "DONE: " . number_format($nCount) . " Grids saved";
+        } else {
+            return "FAILED: Empty file";
+        }
 	}
 
 }
