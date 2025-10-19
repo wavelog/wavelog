@@ -629,6 +629,10 @@ class Update_model extends CI_Model {
 		// set the last run in cron table for the correct cron id
 		$this->load->model('cron_model');
 		$this->cron_model->set_last_run('vucc_grid_file');
+		$mtime = microtime();
+		$mtime = explode(" ",$mtime);
+		$mtime = $mtime[1] + $mtime[0];
+		$starttime = $mtime;
 
 		$url = 'https://sourceforge.net/p/trustedqsl/tqsl/ci/master/tree/apps/vuccgrids.dat?format=raw';
 		$curl = curl_init($url);
@@ -670,8 +674,14 @@ class Update_model extends CI_Model {
 
 		curl_close($curl);
 
+		$mtime = microtime();
+		$mtime = explode(" ",$mtime);
+		$mtime = $mtime[1] + $mtime[0];
+		$endtime = $mtime;
+		$totaltime = ($endtime - $starttime);
+
 		if ($nCount > 0) {
-            return "DONE: " . number_format($nCount) . " Grids saved";
+            return "DONE: This page was created in ".$totaltime." seconds.<br />" . number_format($nCount) . " Grids saved";
         } else {
             return "FAILED: Empty file";
         }
