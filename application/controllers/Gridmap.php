@@ -146,6 +146,10 @@ class Gridmap extends CI_Controller {
 
 				$grids = explode(",", $row->COL_VUCC_GRIDS);
 
+				if ($data['grids']) {
+					$grids = array_intersect($data['grids'], $grids);
+				}
+
 				foreach($grids as $key) {
 					$grid_two = strtoupper(substr(trim($key),0,2));
 					$grid_four = strtoupper(substr(trim($key),0,4));
@@ -170,6 +174,10 @@ class Gridmap extends CI_Controller {
 			foreach ($query_vucc->result() as $row) 			{
 
 				$grids = explode(",", $row->COL_VUCC_GRIDS);
+
+				if ($data['grids']) {
+					$grids = array_intersect($data['grids'], $grids);
+				}
 
 				foreach($grids as $key) {
 					$grid_2char_confirmed = strtoupper(substr(trim($key),0,2));
