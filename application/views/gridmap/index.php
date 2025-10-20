@@ -190,6 +190,10 @@
     <div class="cohidden col-auto text-success fw-bold" id="distance"></div>
     <div class="cohidden"><?= __("Bearing") ?>:&nbsp;</div>
     <div class="cohidden col-auto text-success fw-bold" id="bearing"></div>
+	<div class="cohidden"><?= __("CQ Zone") ?>:&nbsp;</div>
+    <div class="cohidden col-auto text-success fw-bold" id="cqzonedisplay"></div>
+	<div class="cohidden"><?= __("ITU Zone") ?>:&nbsp;</div>
+    <div class="cohidden col-auto text-success fw-bold" id="ituzonedisplay"></div>
 </div>
 
 <script>
