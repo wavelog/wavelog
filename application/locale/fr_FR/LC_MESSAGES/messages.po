@@ -12,20 +12,21 @@
 # André Aubin <andre@andral.xyz>, 2025.
 # KARIM MALFI <karim.malfi@sfr.fr>, 2025.
 # Stephane Tauziede <contact@f4izc.com>, 2025.
+# F5MQU <f5mqu.p@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-10-18 17:02+0000\n"
-"PO-Revision-Date: 2025-07-31 03:15+0000\n"
-"Last-Translator: Stephane Tauziede <contact@f4izc.com>\n"
-"Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/fr/>\n"
+"PO-Revision-Date: 2025-10-20 20:07+0000\n"
+"Last-Translator: F5MQU <f5mqu.p@gmail.com>\n"
+"Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/fr/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.12.2\n"
+"X-Generator: Weblate 5.13.2\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -134,7 +135,7 @@ msgstr ""
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
 msgid "You're not allowed to do that!"
-msgstr "Vous n'as pas le droit de faire ça !"
+msgstr "Vous n'avez pas le droit de faire ça !"
 
 #: application/controllers/Accumulated.php:19
 #: application/views/interface_assets/header.php:162
@@ -255,11 +256,11 @@ msgstr "Données DCL importées"
 
 #: application/controllers/Adif.php:368
 msgid "POTA Import"
-msgstr ""
+msgstr "Importation des POTA"
 
 #: application/controllers/Adif.php:425
 msgid "POTA Data Imported"
-msgstr ""
+msgstr "Données des POTA importées"
 
 #: application/controllers/Api.php:14
 msgid "API"
@@ -374,7 +375,7 @@ msgstr "DXCC"
 
 #: application/controllers/Awards.php:252
 msgid "Awards - WAPC"
-msgstr ""
+msgstr "Trophées - WAPC"
 
 #: application/controllers/Awards.php:331
 msgid "Awards - WAJA"
@@ -507,7 +508,7 @@ msgstr "POTA"
 
 #: application/controllers/Awards.php:672
 msgid "CQ WAZ (Worked All Zones)"
-msgstr ""
+msgstr "CQ WAZ (Toutes Zones contactées)"
 
 #: application/controllers/Awards.php:733
 #: application/views/accumulate/index.php:54
@@ -577,7 +578,7 @@ msgstr "Trophées - SIG - "
 
 #: application/controllers/Awards.php:1374 application/views/bands/index.php:60
 msgid "WAP"
-msgstr ""
+msgstr "WAP"
 
 #: application/controllers/Awards.php:1988
 #: application/views/awards/itu/index.php:20
@@ -602,7 +603,7 @@ msgstr "73 sur 73"
 #: application/controllers/Awards.php:2281
 #: application/views/awards/wpx/wpx_details.php:19
 msgid "WPX"
-msgstr ""
+msgstr "WPX"
 
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:318
@@ -905,7 +906,7 @@ msgstr "Jours avec des QSOs"
 #: application/controllers/Dcl.php:33
 #: application/views/dcl_views/key_import.php:3
 msgid "DCL Key Import"
-msgstr ""
+msgstr "Importation de la clé DCL"
 
 #: application/controllers/Dcl.php:68 application/views/dcl_views/import.php:3
 #: application/views/dcl_views/index.php:3
@@ -918,31 +919,31 @@ msgstr ""
 #: application/views/view_log/qso.php:575
 #: application/views/view_log/qso.php:580
 msgid "DCL"
-msgstr ""
+msgstr "DCL"
 
 #: application/controllers/Dcl.php:139
 msgid "No QSOs to upload."
-msgstr ""
+msgstr "Aucun QSO à télécharger."
 
 #: application/controllers/Dcl.php:186 application/controllers/Dcl.php:198
 msgid "Upload Failed"
-msgstr ""
+msgstr "Echec du téléchargement"
 
 #: application/controllers/Dcl.php:188
 msgid "Timeout reached. Stopping subsequent uploads."
-msgstr ""
+msgstr "Délai d'attente dépassé. Arrêt des téléchargements suivants."
 
 #: application/controllers/Dcl.php:201
 msgid "Upload Successful"
-msgstr ""
+msgstr "Téléchargement réussi"
 
 #: application/controllers/Dcl.php:211
 msgid "No Station Profiles found to upload to DCL"
-msgstr ""
+msgstr "Aucun profil de station n'a été trouvé pour être télécharger vers DCL"
 
 #: application/controllers/Dcl.php:229
 msgid "Key(s) Deleted."
-msgstr ""
+msgstr "Clé(s) effacée(s)."
 
 #: application/controllers/Debug.php:117
 msgid "Debug"
@@ -1057,7 +1058,7 @@ msgstr "Mauvais utilisateur ou mot de passe pour eQSL"
 #: application/controllers/Eqsl.php:199
 #, php-format
 msgid "No such eQSL QTH Nickname: %s"
-msgstr "Nom d’utilisateur eQSL invalide: %s"
+msgstr "Nom d’utilisateur eQSL invalide : %s"
 
 #: application/controllers/Eqsl.php:437
 msgid "eQSL Tools"
@@ -1095,7 +1096,7 @@ msgstr "Hamsat - Chasseur itinérant de satellite"
 
 #: application/controllers/Hrdlog.php:70 application/controllers/Hrdlog.php:71
 msgid "HRD Log upload for this station is disabled."
-msgstr ""
+msgstr "Le téléchargement du log HRD de cette station a été désactivé."
 
 #: application/controllers/Hrdlog.php:93
 #, php-format
@@ -1973,6 +1974,8 @@ msgid ""
 "A note with this callsign already exists in your Contacts. Please enter a "
 "unique callsign."
 msgstr ""
+"Une note avec cet indicatif existe déjà dans vos contacts. Veuillez saisir "
+"un indicatif unique."
 
 #: application/controllers/Options.php:23
 #: application/controllers/Options.php:33
@@ -2139,11 +2142,11 @@ msgstr "OQRS Demandes"
 
 #: application/controllers/Oqrs.php:361
 msgid "QSO match deleted successfully."
-msgstr ""
+msgstr "Le QSO correspondant a été supprimé avec succès."
 
 #: application/controllers/Oqrs.php:370
 msgid "QSO match added successfully."
-msgstr ""
+msgstr "Le QSO correspondant a été ajouté avec succès."
 
 #: application/controllers/Qrbcalc.php:17
 msgid "QRB Calculator"
@@ -2364,19 +2367,19 @@ msgstr "Modifier le satellite"
 #: application/controllers/Satellite.php:213
 #: application/views/interface_assets/header.php:295
 msgid "Satellite Flightpath"
-msgstr ""
+msgstr "Trajectoire du satellite"
 
 #: application/controllers/Satellite.php:256
 msgid "Satellite pass"
-msgstr ""
+msgstr "Survol du satellite"
 
 #: application/controllers/Satellite.php:313
 msgid "Failed to save pass settings!"
-msgstr ""
+msgstr "Echec de la sauvegarde des paramètres de survol !"
 
 #: application/controllers/Satellite.php:316
 msgid "Pass settings saved!"
-msgstr ""
+msgstr "Paramètres de survol sauvegardés !"
 
 #: application/controllers/Satellite.php:329
 msgid "No settings found!"
@@ -2797,11 +2800,11 @@ msgstr "Mise à jour WWFF échouée. Résultat : "
 
 #: application/controllers/Update.php:555
 msgid "HAMqsl Update complete. Result: "
-msgstr ""
+msgstr "Mise à jour HAMqsl terminée. Résultats : "
 
 #: application/controllers/Update.php:557
 msgid "HAMqsl Update failed. Result: "
-msgstr ""
+msgstr "Echec de la mise à jour HAMqsl. Résultats : "
 
 #: application/controllers/Update.php:590
 msgid "POTA Update complete. Result: "
@@ -3032,12 +3035,16 @@ msgstr "Mot de passe réinitialisé"
 msgid ""
 "Couldn't set account to this username. Please try another one than \"%s\"."
 msgstr ""
+"Impossible d'afficher le compte de cet utilisateur. Essayez avec un "
+"utilisateur différent de \"%s\"."
 
 #: application/controllers/User.php:1514
 #, php-format
 msgid ""
 "Couldn't set account to this email. Please try another address than \"%s\"."
 msgstr ""
+"Impossible d'attribuer un compte à cet email. Essayez une adresse autre que "
+"\"%s\"."
 
 #: application/controllers/User.php:1553
 #, php-format
@@ -3266,7 +3273,7 @@ msgstr "Quelque chose s'est mal passé avec eQSL.cc !"
 
 #: application/models/Eqslmethods_model.php:308
 msgid "QTH Nickname does not exist at eQSL"
-msgstr ""
+msgstr "Le QTH n'existe pas dans eQSL"
 
 #: application/models/Eqslmethods_model.php:317
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
@@ -3293,6 +3300,8 @@ msgstr ""
 msgid ""
 "An uncaught Error occured while uploading QSOs. Perhaps eQSL has hiccups"
 msgstr ""
+"Une erreur inattendue s'est produite lors du téléchargement des QSO. Peut-"
+"être que eQSL rencontre des problèmes"
 
 #: application/models/Hrdlog_model.php:22
 msgid ""
@@ -3316,7 +3325,7 @@ msgstr "ID de station non autorisé"
 
 #: application/models/Logbook_model.php:1299
 msgid "No Call given"
-msgstr ""
+msgstr "Aucun indicatif n'a été donné"
 
 #: application/models/Logbook_model.php:1369
 #: application/models/Logbook_model.php:1571
@@ -3408,11 +3417,11 @@ msgstr "inconnu"
 
 #: application/models/Logbook_model.php:4957
 msgid "POTA reference already in log"
-msgstr ""
+msgstr "Les références du POTA sont déjà dans le log"
 
 #: application/models/Logbook_model.php:4960
 msgid "QSO updated"
-msgstr ""
+msgstr "QSO mis à jour"
 
 #: application/models/Logbook_model.php:5814
 #: application/views/activated_gridmap/index.php:110
@@ -3430,7 +3439,7 @@ msgstr "Azimut"
 
 #: application/models/Note.php:7
 msgid "Contacts"
-msgstr ""
+msgstr "Contacts"
 
 #: application/models/Note.php:8 application/views/qso/index.php:61
 #: application/views/statistics/index.php:46
@@ -3444,7 +3453,7 @@ msgstr "Antennes"
 
 #: application/models/Note.php:45 application/models/Note.php:69
 msgid "In Contacts category, the titles of the notes need to be unique."
-msgstr ""
+msgstr "Dans la catégorie Contacts, le titre des notes doit être unique."
 
 #: application/models/Update_model.php:352
 msgid "Newer release available:"
@@ -4447,7 +4456,7 @@ msgstr "Sélectionner une Localisation"
 
 #: application/views/adif/import.php:91
 msgid "Choose ADIF File"
-msgstr ""
+msgstr "Choisissez le fichier ADIF"
 
 #: application/views/adif/import.php:97
 msgid "Add QSOs to Contest"
@@ -4463,10 +4472,12 @@ msgid ""
 "Type in the operators callsign of the imported QSOs. Leave empty to use the "
 "operator callsign in the ADIF file."
 msgstr ""
+"Saisissez l'indicatif de l'opérateur des QSO importés. Laissez vide pour "
+"utiliser l'indicatif de l'opérateur dans le fichier ADIF."
 
 #: application/views/adif/import.php:117
 msgid "Basic Settings"
-msgstr ""
+msgstr "Paramètres de base"
 
 #: application/views/adif/import.php:124
 msgid "Import duplicate QSOs"
@@ -4475,6 +4486,7 @@ msgstr "Importer les QSO en double"
 #: application/views/adif/import.php:126
 msgid "Select if QSOs shall be imported, even if they already exist."
 msgstr ""
+"Sélectionner si les QSO doivent être importés, même s'ils existent déjà."
 
 #: application/views/adif/import.php:131
 msgid "Use DXCC information from ADIF"
@@ -4497,7 +4509,7 @@ msgstr "DANGER"
 
 #: application/views/adif/import.php:141
 msgid "Ignore Station callsign on import"
-msgstr ""
+msgstr "Ignorer l'indicatif de la station lors de l'importation"
 
 #: application/views/adif/import.php:143
 #, php-format
@@ -4516,6 +4528,8 @@ msgstr ""
 #: application/views/adif/import.php:160
 msgid "Mark QSOs as uploaded (This does NOT upload QSOs to these services!)"
 msgstr ""
+"Marquer les QSO comme téléchargés (cela ne TELECHARGE PAS ces QSO vers les "
+"services !)"
 
 #: application/views/adif/import.php:167
 msgid "Mark imported QSOs as uploaded to LoTW"
@@ -4552,7 +4566,7 @@ msgstr "Marquer les QSOs importés comme téléchargés dans le carnet de bord D
 
 #: application/views/adif/import.php:216
 msgid "Toggle all checkboxes"
-msgstr ""
+msgstr "Activer/désactiver toutes les cases à cocher"
 
 #: application/views/adif/import.php:221 application/views/adif/import.php:364
 #: application/views/adif/import.php:384 application/views/adif/import.php:422
@@ -4607,7 +4621,7 @@ msgstr "au"
 
 #: application/views/adif/import.php:269
 msgid "Export options"
-msgstr ""
+msgstr "Options de l'exportation"
 
 #: application/views/adif/import.php:276
 msgid "Mark exported QSOs as uploaded to LoTW"
@@ -4698,6 +4712,8 @@ msgid ""
 "An example for a tool to export the POTA hunter log in ADIF format is %s "
 "made by AF0G and available on GitHub."
 msgstr ""
+"Un exemple d'outil pour l'exportation du log d'un chasseur de POTA dans un "
+"format ADIF est %s créé par AF0G et disponible sur GitHub."
 
 #: application/views/adif/import.php:399
 msgid ""
@@ -4783,7 +4799,7 @@ msgstr ""
 
 #: application/views/adif/import_success.php:22
 msgid "Yay, it's imported!"
-msgstr ""
+msgstr "Ouais, c'est importé !"
 
 #: application/views/adif/import_success.php:23
 msgid "The ADIF File has been imported."
@@ -4791,7 +4807,7 @@ msgstr "Le fichier ADIF a été importé."
 
 #: application/views/adif/import_success.php:25
 msgid "Number of QSOs imported:"
-msgstr ""
+msgstr "Nombre de QSO importés :"
 
 #: application/views/adif/import_success.php:31
 msgid "Dupes were inserted!"
@@ -4803,7 +4819,7 @@ msgstr "Les doublons ont été ignorés."
 
 #: application/views/adif/import_success.php:40
 msgid "Contest logs imported"
-msgstr ""
+msgstr "Logs de concours importés"
 
 #: application/views/adif/import_success.php:42
 msgid ""
@@ -4860,29 +4876,31 @@ msgstr "Les QSO ont été marqués comme téléchargés sur LoTW."
 
 #: application/views/adif/pota_success.php:12
 msgid "Results of POTA Update"
-msgstr ""
+msgstr "Résultats de la mise à jour des POTA"
 
 #: application/views/adif/pota_success.php:17
 msgid "POTA references for existing QSOs has been updated."
-msgstr ""
+msgstr "Les références des POTA pour les QSO existants ont été mises à jour."
 
 #: application/views/adif/pota_success.php:25
 msgid "POTA Update Errors"
-msgstr ""
+msgstr "Erreurs de mise à jour des POTA"
 
 #: application/views/adif/pota_success.php:26
 msgid ""
 "There is different data for POTA references in your log compared to imported "
 "data or QSO data could not be matched"
 msgstr ""
+"Les données des POTA de votre log ne correspondent pas avec les data "
+"importées ou les données des QSO ne trouvent pas de correspondance"
 
 #: application/views/adif/pota_success.php:34
 msgid "POTA REF in Log"
-msgstr ""
+msgstr "REF POTA dans le log"
 
 #: application/views/adif/pota_success.php:35
 msgid "POTA REF in ADIF"
-msgstr ""
+msgstr "REF POTA en ADIF"
 
 #: application/views/adif/pota_success.php:36
 #: application/views/api/index.php:37 application/views/cron/index.php:67
@@ -4955,7 +4973,7 @@ msgstr ""
 
 #: application/views/api/index.php:13
 msgid "Links to 3rd-Party-Software which works with Wavelog:"
-msgstr "Liens vers des logiciels fonctionnant avec Wavelog:"
+msgstr "Liens vers des logiciels tiers fonctionnant avec Wavelog :"
 
 #: application/views/api/index.php:16
 msgid "More Tools"
@@ -5268,7 +5286,7 @@ msgstr "Survoler une zone"
 
 #: application/views/awards/cq/index.php:20
 msgid "CQ WAZ (Worked All Zones) Award"
-msgstr ""
+msgstr "Trophée CQ WAZ (Toutes zones contactées)"
 
 #: application/views/awards/cq/index.php:21
 msgid ""
@@ -5277,6 +5295,10 @@ msgid ""
 "magazine first appeared in January 1945 and focuses on awards and the "
 "practical aspects of amateur radio."
 msgstr ""
+"Le magazine CQ, basé aux États-Unis, était l'un des magazines de "
+"radioamateur les plus populaires au monde. Il a cessé ses activités fin "
+"2023. Paru pour la première fois en janvier 1945, il se concentre sur les "
+"récompenses et les aspects pratiques du radioamateurisme."
 
 #: application/views/awards/cq/index.php:22
 msgid ""
@@ -5285,19 +5307,24 @@ msgid ""
 "Magazine does no longer exists the CQ WAZ Awards is now managed directly by "
 "N4BAA."
 msgstr ""
+"Le trophée WAZ (\"Worked All Zones\" cad toutes zones contactées) nécessite "
+"de contacter et de confirmer les 40 zones CQ. Le magazine CQ n'existant "
+"plus, les prix CQ WAZ sont désormais gérés directement par N4BAA."
 
 #: application/views/awards/cq/index.php:23
 #, php-format
 msgid "You can find all the information and rules on the Website of N4BAA: %s"
 msgstr ""
+"Vous pouvez trouver l'ensemble des informations et réglement sur le site de "
+"N4BAA : %s"
 
 #: application/views/awards/cq/index.php:24
 msgid "Fields taken for this Award: CQ-Zone (ADIF: CQZ)"
-msgstr ""
+msgstr "Champs pris en compte pour ce trophée : CQ-Zone (ADIF : CQZ)"
 
 #: application/views/awards/cq/index.php:26
 msgid "Awards - CQ WAZ"
-msgstr ""
+msgstr "Trophée - CQ WAZ"
 
 #: application/views/awards/cq/index.php:35
 #: application/views/awards/itu/index.php:35
@@ -5561,7 +5588,7 @@ msgstr ""
 
 #: application/views/awards/dok/index.php:11
 msgid "Fields taken for this Award: DOK (ADIF: DARC_DOK)"
-msgstr ""
+msgstr "Champs pris en compte pour ce trophée : DOK (ADIF : DARC_DOK)"
 
 #: application/views/awards/dok/index.php:21
 msgid "DOK / SDOK"
@@ -5645,10 +5672,13 @@ msgstr ""
 "DXCC sont obsolètes et ne sont plus valides."
 
 #: application/views/awards/dxcc/index.php:18
+#, fuzzy
 msgid ""
 "Fields taken for this Award: DXCC (Needs to be a valid one out of the DXCC-"
 "ADIF-Spec-List"
 msgstr ""
+"Champs pris en compte pour ce trophée : DXCC (doit être valide et figurer "
+"dans la liste DXCC-ADIF-Spec"
 
 #: application/views/awards/dxcc/index.php:28
 #: application/views/awards/wpx/index.php:13
@@ -5762,31 +5792,31 @@ msgstr "Océanie"
 #: application/views/awards/iota/index.php:121
 #: application/views/awards/wpx/index.php:81
 msgid "Every band (w/o SAT)"
-msgstr ""
+msgstr "Toutes les bandes (sans SAT)"
 
 #: application/views/awards/dxcc/index.php:221
 msgid "Legend:"
-msgstr ""
+msgstr "Légende :"
 
 #: application/views/awards/dxcc/index.php:222
 msgid "(Q)SL-Paper-Card"
-msgstr ""
+msgstr "(Q)SL - Carte Papier"
 
 #: application/views/awards/dxcc/index.php:223
 msgid "(L)oTW"
-msgstr ""
+msgstr "(L)oTW"
 
 #: application/views/awards/dxcc/index.php:224
 msgid "(e)QSL"
-msgstr ""
+msgstr "(e)QSL"
 
 #: application/views/awards/dxcc/index.php:225
 msgid "QR(Z)-\"confirmation\""
-msgstr ""
+msgstr "QR(Z) - \"confirmation\""
 
 #: application/views/awards/dxcc/index.php:226
 msgid "(C)lublog"
-msgstr ""
+msgstr "(C)lublog"
 
 #: application/views/awards/dxcc/index.php:227
 msgid "(W)orked"
@@ -5920,18 +5950,24 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be Germany), Gridsquare, Propagation-"
 "Mode and SAT-Name"
 msgstr ""
+"Champs requis pour ce trophée : DXCC (doit être l'Allemagne), Locator, mode "
+"de propagation et nom du SAT"
 
 #: application/views/awards/gridmaster/index.php:23
 msgid ""
 "Fields taken for this Award: DXCC (Must be Luxembourg), Gridsquare, "
 "Propagation-Mode and SAT-Name"
 msgstr ""
+"Champs requis pour ce trophée : DXCC (doit être le Luxembourg), Locator, "
+"mode de propagation et nom du SAT"
 
 #: application/views/awards/gridmaster/index.php:26
 msgid ""
 "Fields taken for this Award: DXCC (Must be Japan), Gridsquare, Propagation-"
 "Mode and SAT-Name"
 msgstr ""
+"Champs requis pour ce trophée : DXCC (doit être le Japon), Locator, mode de "
+"propagation et nom du SAT"
 
 #: application/views/awards/helvetia/index.php:3
 msgctxt "Switzerland Canton"
@@ -5974,6 +6010,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be Switzerland) and STATE (Must "
 "contain a valid state abbreviation!)"
 msgstr ""
+"Champs requis pour ce trophée : DXCC (doit être la Suisse), Locator, mode de "
+"propagation et nom du SAT"
 
 #: application/views/awards/helvetia/index.php:115
 msgid "Show Helvetia Map"
@@ -6043,6 +6081,8 @@ msgid ""
 "Fields taken for this Award: IOTA (ADIF: IOTA) must contain valid IOTA-"
 "Reference"
 msgstr ""
+"Champs requis pour ce trophée : IOTA (ADIF : IOTA) doit contenir une "
+"référence IOTA valide"
 
 #: application/views/awards/iota/index.php:30
 msgid "Deleted IOTA"
@@ -6118,7 +6158,7 @@ msgstr "Vous pouvez trouver plus d'informations sur le site web de %s."
 
 #: application/views/awards/itu/index.php:24
 msgid "Fields taken for this Award: ITU-Zone (ADIF: ITUZ)"
-msgstr ""
+msgstr "Champs requis pour ce trophée : ITU-Zone (ADIF : ITUZ)"
 
 #: application/views/awards/itu/index.php:26
 msgid "Awards - ITU Zones"
@@ -6158,6 +6198,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Japan) and County (Must contain a valid "
 "reference!)"
 msgstr ""
+"Champs requis pour ce trophée : DXCC (Japon) et Comté (doit contenir une "
+"référence valide !)"
 
 #: application/views/awards/jcc/index.php:116
 msgid "Show JCC Map"
@@ -6231,6 +6273,8 @@ msgstr ""
 #: application/views/awards/pota/index.php:11
 msgid "Fields taken for this Award: POTA_REF (must contain Park-Reference)"
 msgstr ""
+"Champs requis pour ce trophée : POTA_REF (doit contenir une référence de "
+"parc)"
 
 #: application/views/awards/pota/index.php:32
 #: application/views/qso/index.php:274 application/views/qso/index.php:567
@@ -6382,10 +6426,13 @@ msgid "Only VHF/UHF bands are relevant."
 msgstr "Seules les bandes VHF/UHF sont pertinentes."
 
 #: application/views/awards/vucc/index.php:11
+#, fuzzy
 msgid ""
 "Fields taken for this Award: Gridsquare and vucc_grids (ADIF: GRIDSQUARE, "
 "VUCC_GRIDS)"
 msgstr ""
+"Champs requis pour ce trophée : Locator et vucc_grids (ADIF: GRIDSQUARE, "
+"VUCC_GRIDS)"
 
 #: application/views/awards/vucc/index.php:23
 msgid "Grids Worked"
@@ -6727,7 +6774,7 @@ msgstr ""
 #: application/views/backup/adif_view.php:9
 #: application/views/backup/notes_view.php:9
 msgid "You could automate this process by making it a cronjob."
-msgstr "Vous pourrais automatiser ce processus en en faisant un cronjob."
+msgstr "Vous pouvez automatiser ce processus en faisant un cronjob."
 
 #: application/views/backup/adif_view.php:13
 #: application/views/backup/notes_view.php:13
@@ -7361,7 +7408,7 @@ msgstr "Aucun concours trouvé dans votre journal de trafic."
 #: application/views/callstats/index.php:70
 #: application/views/gridmap/index.php:40
 msgid "All except SAT"
-msgstr "Tous sauf le SAT."
+msgstr "Tout sauf le SAT"
 
 #: application/views/callstats/index.php:148
 msgid "#QSOs"
@@ -9256,18 +9303,18 @@ msgstr "Bonjour %s"
 msgid "An admin initiated a password reset for your Wavelog account."
 msgstr ""
 "Le mot de passe de votre compte Wavelog a été réinitialisé par un "
-"administrateur"
+"administrateur."
 
 #: application/views/email/admin_reset_password.php:9
 #, php-format
 msgid "Your username is: %s"
-msgstr "Votre nom d’utilisateur est: %s"
+msgstr "Votre nom d’utilisateur est : %s"
 
 #: application/views/email/admin_reset_password.php:11
 #: application/views/email/forgot_password.php:11
 #, php-format
 msgid "Click here to reset your password: %s"
-msgstr "Cliquez ici pour réinitialiser votre mot de passe: %s"
+msgstr "Cliquez ici pour réinitialiser votre mot de passe : %s"
 
 #: application/views/email/admin_reset_password.php:13
 msgid ""
@@ -10145,7 +10192,7 @@ msgstr ""
 
 #: application/views/interface_assets/header.php:432
 msgid "Switch to Clubstation:"
-msgstr "Changer pour club:"
+msgstr "Changer pour club :"
 
 #: application/views/interface_assets/header.php:436
 #, php-format
@@ -15805,7 +15852,7 @@ msgstr ""
 
 #: application/views/visitor/layout/header.php:95
 msgid "Please enter a callsign!"
-msgstr "Merci d’entrer un indicatif"
+msgstr "Merci d’entrer un indicatif !"
 
 #: application/views/webadif/export.php:22
 msgid ""
