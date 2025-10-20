@@ -922,7 +922,7 @@ function findlotwunconfirmed(){
             buttons: [
 				{
 					extend: 'csv',
-					className: 'mb-1 btn btn-primary', // Bootstrap classes
+					className: 'mb-1 btn-sm btn btn-primary', // Bootstrap classes
 						init: function(api, node, config) {
 							$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
 						},
@@ -954,7 +954,7 @@ function findincorrectcqzones() {
 	    buttons: [
 			{
 				extend: 'csv',
-				className: 'mb-1 btn btn-primary', // Bootstrap classes
+				className: 'mb-1 btn-sm btn btn-primary', // Bootstrap classes
 					init: function(api, node, config) {
 						$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
 					},
@@ -1000,7 +1000,7 @@ function findincorrectituzones() {
 	    buttons: [
 			{
 				extend: 'csv',
-				className: 'mb-1 btn btn-primary', // Bootstrap classes
+				className: 'mb-1 btn btn-sm btn-primary', // Bootstrap classes
 					init: function(api, node, config) {
 						$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
 					},
