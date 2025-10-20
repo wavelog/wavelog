@@ -58,16 +58,11 @@ L.Maidenhead = L.LayerGroup.extend({
 		for (var lon = left; lon < right; lon += (unit*2)) {
 			if (lon > -180 || lon < 180) {
 				for (var lat = bottom; lat < top; lat += unit) {
-					if (zoom == 10) {
-						var bounds = [[lat,lon],[lat-unit,lon+(unit*2)]];
-					} else if (zoom == 11) { // TODO: needs fixing, 6 char grid is placed wrong
-						var bounds = [[lat,lon],[lat+unit,lon+(unit*2)]];
-					} else if (zoom == 12) { // TODO: needs fixing, 6 char grid is placed wrong
-						var bounds = [[lat,lon],[lat+unit,lon+(unit*2)]];
-					} else {
-						var bounds = [[lat,lon],[lat+unit,lon+(unit*2)]];
-					}
-					var locator = this._getLocator(lon,lat);
+					// southwest is (lat,lon), northeast is (lat+unit, lon+2*unit)
+					var bounds = [[lat, lon], [lat + unit, lon + (unit * 2)]];
+
+					// use the center of the rectangle to avoid edge/boundary rounding errors
+					var locator = this._getLocator(lon + unit, lat + (unit / 2));
 
 					if(grid_two.includes(locator) || grid_four.includes(locator) || grid_six.includes(locator)) {
 
