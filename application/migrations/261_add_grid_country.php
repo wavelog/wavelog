@@ -14,6 +14,8 @@ class Migration_add_grid_country extends CI_Migration {
 			id INT AUTO_INCREMENT PRIMARY KEY,
 			adif INT NOT NULL,
 			gridsquare VARCHAR(8) NOT NULL,
+			creation_date TIMESTAMP NOT NULL default CURRENT_TIMESTAMP,
+			last_modified TIMESTAMP NOT NULL default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 			UNIQUE KEY uq_adif_grid (adif, gridsquare)
 		);";
 
