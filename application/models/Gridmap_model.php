@@ -2,7 +2,7 @@
 
 class Gridmap_model extends CI_Model {
 
-	function get_band_confirmed($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $dxcc) {
+	function get_band_confirmed($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $dxcc, $grids) {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -62,12 +62,8 @@ class Gridmap_model extends CI_Model {
 		}
 
 		if ($dxcc != 'All') {
-			$gridsql = 'select gridsquare from vuccgrids where adif = ?';
-			$gridquery = $this->db->query($gridsql, array($dxcc));
-			$gridarray = array_column($gridquery->result_array(), 'gridsquare'); // ✅ extract values
-
-			if (!empty($gridarray)) {
-				$sql .= ' AND substring(COL_GRIDSQUARE,1,4) IN (\'' . implode("','", $gridarray) . '\')';
+			if (!empty($grids)) {
+				$sql .= ' AND substring(COL_GRIDSQUARE,1,4) IN (\'' . implode("','", $grids) . '\')';
 			}
 		}
 
@@ -76,7 +72,7 @@ class Gridmap_model extends CI_Model {
 		return $this->db->query($sql, $binding);
 	}
 
-	function get_band($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $dxcc) {
+	function get_band($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $dxcc, $grids) {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -136,19 +132,15 @@ class Gridmap_model extends CI_Model {
 		}
 
 		if ($dxcc != 'All') {
-			$gridsql = 'select gridsquare from vuccgrids where adif = ?';
-			$gridquery = $this->db->query($gridsql, array($dxcc));
-			$gridarray = array_column($gridquery->result_array(), 'gridsquare'); // ✅ extract values
-
-			if (!empty($gridarray)) {
-				$sql .= ' AND substring(COL_GRIDSQUARE,1,4) IN (\'' . implode("','", $gridarray) . '\')';
+			if (!empty($grids)) {
+				$sql .= ' AND substring(COL_GRIDSQUARE,1,4) IN (\'' . implode("','", $grids) . '\')';
 			}
 		}
 
 		return $this->db->query($sql, $binding);
 	}
 
-	function get_band_worked_vucc_squares($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $dxcc) {
+	function get_band_worked_vucc_squares($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation) {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -210,7 +202,7 @@ class Gridmap_model extends CI_Model {
 		return $this->db->query($sql, $binding);
 	}
 
-	function get_band_confirmed_vucc_squares($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $dxcc) {
+	function get_band_confirmed_vucc_squares($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation) {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
