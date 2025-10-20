@@ -146,22 +146,39 @@ class Gridmap extends CI_Controller {
 
 				$grids = explode(",", $row->COL_VUCC_GRIDS);
 
-				if ($data['grids']) {
-					$grids = array_intersect($data['grids'], $grids);
+				if (!empty($data['grids'])) {
+					$filtered = [];
+					foreach ($grids as $g6) {
+						foreach ($data['grids'] as $g4) {
+							if (strpos($g6, $g4) === 0) {
+								$filtered[] = $g6;
+								break;
+							}
+						}
+					}
+					$grids = $filtered;
 				}
 
 				foreach($grids as $key) {
 					$grid_two = strtoupper(substr(trim($key),0,2));
 					$grid_four = strtoupper(substr(trim($key),0,4));
+					if ($this->config->item('map_6digit_grids')) {
+						$grid_six = strtoupper(substr(trim($key),0,6));
+					}
 
 					// Check if 2 Char is in array
 					if(!in_array($grid_two, $array_grid_2char)){
 						array_push($array_grid_2char, $grid_two);
 					}
 
-
 					if(!in_array($grid_four, $array_grid_4char)){
 						array_push($array_grid_4char, $grid_four);
+					}
+
+					if ($this->config->item('map_6digit_grids')) {
+						if(!in_array($grid_six, $array_grid_6char)){
+							array_push($array_grid_6char, $grid_six);
+						}
 					}
 				}
 			}
@@ -175,22 +192,40 @@ class Gridmap extends CI_Controller {
 
 				$grids = explode(",", $row->COL_VUCC_GRIDS);
 
-				if ($data['grids']) {
-					$grids = array_intersect($data['grids'], $grids);
+				if (!empty($data['grids'])) {
+					$filtered = [];
+					foreach ($grids as $g6) {
+						foreach ($data['grids'] as $g4) {
+							if (strpos($g6, $g4) === 0) {
+								$filtered[] = $g6;
+								break;
+							}
+						}
+					}
+					$grids = $filtered;
 				}
 
 				foreach($grids as $key) {
 					$grid_2char_confirmed = strtoupper(substr(trim($key),0,2));
 					$grid_4char_confirmed = strtoupper(substr(trim($key),0,4));
 
+					if ($this->config->item('map_6digit_grids')) {
+						$grid_6char_confirmed = strtoupper(substr(trim($key),0,6));
+					}
+
 					// Check if 2 Char is in array
 					if(!in_array($grid_2char_confirmed, $array_grid_2char_confirmed)){
 						array_push($array_grid_2char_confirmed, $grid_2char_confirmed);
 					}
 
-
 					if(!in_array($grid_4char_confirmed, $array_grid_4char_confirmed)){
 						array_push($array_grid_4char_confirmed, $grid_4char_confirmed);
+					}
+
+					if ($this->config->item('map_6digit_grids')) {
+						if(!in_array($grid_6char_confirmed, $array_grid_6char_confirmed)){
+							array_push($array_grid_6char_confirmed, $grid_6char_confirmed);
+						}
 					}
 				}
 			}
