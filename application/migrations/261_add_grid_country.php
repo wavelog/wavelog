@@ -26,10 +26,10 @@ class Migration_add_grid_country extends CI_Migration {
 				array(
 					'id' => 'vucc_grid_file',
 					'enabled' => '0',
-					'status' => 'disabled',
+					'status' => 'enabled',
 					'description' => 'Update TQSL VUCC Grids file',
 					'function' => 'index.php/update/update_vucc_grids',
-					'expression' => '45 4 * * *',
+					'expression' => '0 0 1 * *',
 					'last_run' => null,
 					'next_run' => null
 				));
