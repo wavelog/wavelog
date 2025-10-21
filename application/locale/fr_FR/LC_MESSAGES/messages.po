@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-10-18 17:02+0000\n"
-"PO-Revision-Date: 2025-10-20 20:07+0000\n"
+"PO-Revision-Date: 2025-10-21 17:00+0000\n"
 "Last-Translator: F5MQU <f5mqu.p@gmail.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/fr/>\n"
@@ -5140,6 +5140,8 @@ msgid ""
 "Paul Stoetzer N8HM is sponsoring an award for contacts made via the AO-73 "
 "(FUNcube-1) amateur radio satellite."
 msgstr ""
+"Paul Stoetzer N8HM sponsorise un trophée pour les contacts établis via le "
+"satellite radio amateur AO-73 (FUNcube-1)."
 
 #: application/views/awards/73on73/index.php:9
 #: application/views/awards/helvetia/index.php:23
@@ -5157,6 +5159,8 @@ msgid ""
 "Fields taken for this Award: Propagation-Mode and SAT-Name (ADIF: "
 "PROP_MODE=SAT, SAT_NAME='AO-73')"
 msgstr ""
+"Champs requis pour ce trophée : Mode de propagation et nom du satellite "
+"(ADIF: PROP_MODE=SAT, SAT_NAME='AO-73')"
 
 #: application/views/awards/73on73/index.php:32
 #: application/views/awards/jcc/index.php:152
@@ -5193,6 +5197,10 @@ msgid ""
 "contacts with specified numbers of U.S. counties under rules and conditions "
 "you can find %s."
 msgstr ""
+"Le trophée des comtés des États-Unis d'Amérique (USA-CA), sponsorisé par "
+"MARAC (Mobile Amateur Radio Awards Club), est décerné pour les contacts "
+"radio bidirectionnels confirmés avec un nombre spécifié de comtés américains "
+"selon les règles et conditions que vous pouvez trouver %s."
 
 #: application/views/awards/counties/index.php:9
 msgid ""
@@ -5216,6 +5224,8 @@ msgid ""
 "Fields taken for this Award: State (ADIF: STATE), Stations County (ADIF: "
 "CNTY), DXCC (Must be one of 291 (U.S.A.) ,6 (ALASKA) or 110 (HAWAII))"
 msgstr ""
+"Champs requis pour ce trophée : Etat (ADIF: STATE), Comté (ADIF : CNTY), "
+"DXCC (Doit être un des 291 (U.S.A.) ,6 (ALASKA) ou 110 (HAWAII))"
 
 #: application/views/awards/counties/index.php:22
 msgid "Counties Worked"
@@ -5866,6 +5876,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be USA), Gridsquare (Must contain a "
 "grid from one of the 488 mainland gridsquares!), Band must be 6M."
 msgstr ""
+"Champs requis pour ce trophée : DXCC (Doit être USA), Locator (Doit contenir "
+"un carré  des 488 locators continentaux !), Bande doit être le 6 m."
 
 #: application/views/awards/gridmaster/index.php:8
 msgid "US Gridmaster Award"
@@ -5921,6 +5933,9 @@ msgid ""
 "grid from one of the 488 mainland gridsquares!), Propagation-Mode and SAT-"
 "Name"
 msgstr ""
+"Champs requis pour ce trophée : DXCC (Doit être USA), Locator (Doit contenir "
+"un carré des 488 locators continentaux !), mode de propagation et nom du "
+"satellite"
 
 #: application/views/awards/gridmaster/index.php:14
 msgid "Gridmaster Award"
@@ -6308,6 +6323,9 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
+"La catégorie SIG ou \"groupe d'intérêt spécial\" offre la possibilité "
+"d'utiliser n'importe quel type de « trophées de groupe d'intérêt spécial » "
+"pour les trophées qui ne sont pas présents dans Wavelog."
 
 #: application/views/awards/sig/index.php:9
 msgid ""
@@ -6315,6 +6333,10 @@ msgid ""
 "dedicated fields for certain awards. SIG still makes it possible to use and "
 "evaluate all other types of markers for special interest groups."
 msgstr ""
+"Cela s'explique par le fait que le format ADIF commun ne propose que "
+"quelques champs dédiés à certains trophées. SIG permet néanmoins d'utiliser "
+"et d'évaluer tous les autres types de marqueurs pour des groupes d'intérêt "
+"spécifiques."
 
 #: application/views/awards/sig/index.php:10
 msgid ""
@@ -6323,11 +6345,15 @@ msgid ""
 "in the award evaluation, and 'SIG INFO,' which contains the actual "
 "reference(s). Both fields are freely customizable."
 msgstr ""
+"Lors du traitement des QSO, vous trouverez deux champs : « SIG » contient "
+"l'abréviation du nom du groupe d'intérêt qui est également visible dans "
+"l'évaluation du trophée, et « INFO SIG », qui contient la ou les références "
+"réelles. Ces deux champs sont personnalisables."
 
 #: application/views/awards/sig/index.php:21
 #: application/views/station_profile/edit.php:288
 msgid "Special Interest Group"
-msgstr ""
+msgstr "Groupe d'intérêt spécial"
 
 #: application/views/awards/sig/index.php:22
 #: application/views/continents/index.php:17
@@ -6465,6 +6491,8 @@ msgid ""
 "Fields taken for this Award: SIG (Has to be 'WAB') and SIG_INFO (should "
 "contain valid WAB-Grid)"
 msgstr ""
+"Champs requis pour ce trophée : SIG (Doit être 'WAB') et SIG_INFO (doit "
+"contenir un carré WAB valide)"
 
 #: application/views/awards/wab/index.php:110
 msgid "List"
@@ -6490,6 +6518,8 @@ msgid ""
 "Fields taken for this Award: Continent (ADIF tag 'CONT'). Must contain a "
 "valid continent-abbreviation!"
 msgstr ""
+"Champs requis pour ce trophée : Continent (balise ADIF 'CONT'). Doit "
+"contenir une abréviation de continent valide !"
 
 #: application/views/awards/wac/index.php:14
 msgid "Awards - Worked All Continents (WAC)"
@@ -6509,7 +6539,7 @@ msgstr "Continent"
 
 #: application/views/awards/wae/index.php:7
 msgid "WAE Award"
-msgstr ""
+msgstr "Trophée WAE"
 
 #: application/views/awards/wae/index.php:8
 msgid ""
