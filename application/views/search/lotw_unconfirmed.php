@@ -29,15 +29,15 @@
         <?= __("The search displays QSOs which are unconfirmed on LoTW, but the callsign worked has uploaded to LoTW after your QSO date."); ?><br/><br />
 	  	<form method="post" action="" id="search_box" name="test">
 		  <div class="mb-3 row">
-		    <label for="callsign" class="col-sm-2 col-form-label"><?= __("Station location"); ?>:</label>
-		    <select id="station_id" name="station_profile" class="form-select col-sm-3 mb-3 me-sm-3 w-auto">
+		    <label for="callsign" class="w-auto col-form-label"><?= __("Station location"); ?>:</label>
+		    <select id="station_id" name="station_profile" class="form-select form-select-sm mb-3 w-auto">
 					<option value="All"><?= __("All"); ?></option>
                     <?php foreach ($station_profile->result() as $station) { ?>
                     <option value="<?php echo $station->station_id; ?>"><?= __("Callsign"); ?>: <?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)</option>
                     <?php } ?>
                     </select>
 		    <div class="col-sm-2">
-		    	<button onclick="findlotwunconfirmed();" class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i> <?= __("Search"); ?></button>
+		    	<button onclick="findlotwunconfirmed();" class="btn btn-sm btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i> <?= __("Search"); ?></button>
 		    </div>
 		  </div>
 		</form>

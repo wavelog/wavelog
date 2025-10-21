@@ -20,7 +20,7 @@
 
 Wavelog is a self-hosted PHP application that allows you to log your amateur radio contacts anywhere. All you need is a web browser and active internet connection.
 
-Wavelog itself is an enhanced fork of Cloudlog by 2M0SQL.
+Wavelog itself is an enhanced fork of Cloudlog by MM9SQL (ex 2M0SQL).
 If you would like to contribute to Wavelog please see the [Contributing](#contributing) section below.
 
 The Core-Dev-Team for Wavelog are (in Alphabetic order of the Call):
@@ -41,8 +41,8 @@ https://demo.wavelog.org
 ### Recommended: Classic-LAMP-Stack:
 * Linux based Operating System (Windows stack may also work)
 * Apache (Nginx should work)
-* PHP Version 8.0 up to PHP 8.2 (PHP 8.4. in friendly Usertest)
-* MySQL or MariaDB (MySQL 5.7 or higher // MariaDB 10.1 or higher)
+* PHP Version 8.0 up to PHP 8.3 (PHP 8.4. in friendly Usertest)
+* MySQL or MariaDB (MySQL 8 or higher // MariaDB 10.2 or higher)
 
 ### Alternative - Easy start with prebuilt Docker-image:
 * [Docker Support](https://github.com/wavelog/wavelog/wiki/Installation-via-Docker)
