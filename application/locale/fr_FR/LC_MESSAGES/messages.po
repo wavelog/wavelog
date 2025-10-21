@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-10-18 17:02+0000\n"
-"PO-Revision-Date: 2025-10-21 21:45+0000\n"
+"PO-Revision-Date: 2025-10-21 22:19+0000\n"
 "Last-Translator: F5MQU <f5mqu.p@gmail.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/fr/>\n"
@@ -7520,85 +7520,94 @@ msgid ""
 "appropriate authorizations. Add users to the table below and set the "
 "appropriate permission."
 msgstr ""
+"Pour que les utilisateurs puissent enregistrer des QSO avec cet indicatif "
+"spécial ou de radioclub, ils doivent disposer des autorisations appropriées. "
+"Ajoutez des utilisateurs au tableau ci-dessous et définissez les "
+"autorisations appropriées."
 
 #: application/views/club/permissions.php:14
 msgid "See available Permissions"
-msgstr ""
+msgstr "Voir les autorisations disponibles"
 
 #: application/views/club/permissions.php:19
 msgid "Available Permissions"
-msgstr ""
+msgstr "Autorisations disponibles"
 
 #: application/views/club/permissions.php:26
 #: application/views/eqsl/download.php:45
 msgid "Action"
-msgstr ""
+msgstr "Action"
 
 #: application/views/club/permissions.php:33
 msgid "Log QSOs via Web GUI (live and post)"
 msgstr ""
+"Enregistrez les QSO via l'interface graphique Web (immédiatement et à "
+"posteriori)"
 
 #: application/views/club/permissions.php:41
 msgid "Log QSOs via API"
-msgstr ""
+msgstr "Enregistrer les QSO via API"
 
 #: application/views/club/permissions.php:49
 msgid "Edit a QSO"
-msgstr ""
+msgstr "Modifier un QSO"
 
 #: application/views/club/permissions.php:54
 #: application/views/club/permissions.php:72
 msgid "QSO was done by the operator"
-msgstr ""
+msgstr "Le QSO a été effectué par l'opérateur"
 
 #: application/views/club/permissions.php:59
 #: application/views/club/permissions.php:77
 msgid "QSO was done by another operator"
-msgstr ""
+msgstr "Le QSO a été effectué par un autre opérateur"
 
 #: application/views/club/permissions.php:67
 msgid "Delete a QSO"
-msgstr ""
+msgstr "Effacer un QSO"
 
 #: application/views/club/permissions.php:85
 msgid "Manage Stationsetup (edit/create logbooks and locations)"
 msgstr ""
+"Gérer la configuration de la station (modifier/créer des journaux de trafic "
+"et des localisations)"
 
 #: application/views/club/permissions.php:93
 msgid "Manage Third-Party services"
-msgstr ""
+msgstr "Gérer les services tiers"
 
 #: application/views/club/permissions.php:101
 msgid "Import QSO per ADIF"
-msgstr ""
+msgstr "Importer des QSO par ADIF"
 
 #: application/views/club/permissions.php:110
 msgid "Export QSO per ADIF"
-msgstr ""
+msgstr "Exporter des QSO par ADIF"
 
 #: application/views/club/permissions.php:118
 msgid "User Management"
-msgstr ""
+msgstr "Gestion des utilisateurs"
 
 #: application/views/club/permissions.php:123
 msgid "Can create new users in Wavelog"
-msgstr ""
+msgstr "Peut créer de nouveaux utilisateurs dans Wavelog"
 
 #: application/views/club/permissions.php:128
 msgid "Can edit other users in Wavelog"
-msgstr ""
+msgstr "Peut modifier d'autres utilisateurs dans Wavelog"
 
 #: application/views/club/permissions.php:133
 msgid "Can edit Club permissions and add/remove users"
 msgstr ""
+"Peut modifier les autorisations du club et ajouter/supprimer des utilisateurs"
 
 #: application/views/club/permissions.php:151
 msgid "Users with Permissions"
-msgstr ""
+msgstr "Utilisateurs avec autorisations"
 
 #: application/views/club/permissions.php:161
 msgid "Add new User to Club"
-msgstr ""
+msgstr "Ajouter un nouvel utilisateur au Club"
 
 #: application/views/club/permissions.php:167
 #, php-format
@@ -7606,48 +7615,54 @@ msgid ""
 "You can only add users to the %s Clubstation if they already exist on this "
 "Wavelog Server."
 msgstr ""
+"Vous ne pouvez ajouter des utilisateurs à la station du Club %s que s'ils "
+"existent déjà sur ce serveur Wavelog."
 
 #: application/views/club/permissions.php:168
 msgid ""
 "If they don't exist, please ask your Wavelog Administrator to create an "
 "account for them."
 msgstr ""
+"S'ils n'existent pas, veuillez demander à votre administrateur Wavelog de "
+"créer un compte pour eux."
 
 #: application/views/club/permissions.php:169
 msgid ""
 "Search for the user by their callsign or first/lastname and select the "
 "permission level."
 msgstr ""
+"Recherchez l'utilisateur par son indicatif ou son prénom/nom et sélectionnez "
+"le niveau d'autorisation."
 
 #: application/views/club/permissions.php:175
 msgid "User (Callsign or Name)"
-msgstr ""
+msgstr "Utilisateur (Indicatif ou Nom)"
 
 #: application/views/club/permissions.php:176
 #: application/views/club/permissions.php:225
 #: application/views/club/permissions.php:269
 msgid "Permission"
-msgstr ""
+msgstr "Autorisation"
 
 #: application/views/club/permissions.php:183
 msgid "Type at least 2 characters."
-msgstr ""
+msgstr "Saisissez au moins 2 caractères."
 
 #: application/views/club/permissions.php:194
 msgid "Notify the user via email"
-msgstr ""
+msgstr "Avertir l'utilisateur par email"
 
 #: application/views/club/permissions.php:213
 msgid "No users currently have access to this club station."
-msgstr ""
+msgstr "Aucun utilisateur n'a actuellement accès à cette station de club."
 
 #: application/views/club/permissions.php:220
 msgid "Firstname"
-msgstr ""
+msgstr "Prénom"
 
 #: application/views/club/permissions.php:221
 msgid "Lastname"
-msgstr ""
+msgstr "Nom"
 
 #: application/views/club/permissions.php:223
 #: application/views/user/edit.php:56 application/views/user/index.php:152
@@ -7658,47 +7673,49 @@ msgstr "Utilisateur"
 
 #: application/views/club/permissions.php:224
 msgid "E-Mail"
-msgstr ""
+msgstr "Courriel"
 
 #: application/views/club/permissions.php:244
 msgid "Wavelog Administrator"
-msgstr ""
+msgstr "Administrateur Wavelog"
 
 #: application/views/club/permissions.php:261
 msgid "You can modify the users permission level for this Clubstation."
 msgstr ""
+"Vous pouvez modifier le niveau d'autorisation des utilisateurs pour ce "
+"station de Club."
 
 #: application/views/club/permissions.php:268
 msgid "User Callsign"
-msgstr ""
+msgstr "Indicatif de l'utilisateur"
 
 #: application/views/club/permissions.php:286
 msgid "Notify the user via email about the change"
-msgstr ""
+msgstr "Informer l'utilisateur du changement par courriel"
 
 #: application/views/club/permissions.php:309
 msgid "Delete User"
-msgstr ""
+msgstr "Supprimer l'utilisateur"
 
 #: application/views/club/permissions.php:316
 msgid "Are you sure you want to delete this user from the club?"
-msgstr ""
+msgstr "Etes-vous certain de vouloir supprimer cet utilisateur du club ?"
 
 #: application/views/club/permissions.php:320
 #, php-format
 msgid "Callsign: %s"
-msgstr ""
+msgstr "Indicatif :%s"
 
 #: application/views/club/permissions.php:321
 #, php-format
 msgid "Role: %s"
-msgstr ""
+msgstr "Rôle : %s"
 
 #: application/views/clublog/export.php:10
 #: application/views/hrdlog/export.php:10 application/views/qrz/export.php:10
 #: application/views/webadif/export.php:10
 msgid "Upload Logbook"
-msgstr ""
+msgstr "Télécharger le journal de trafic"
 
 #: application/views/clublog/export.php:14
 #: application/views/eqsl/analysis.php:11 application/views/eqsl/download.php:9
@@ -7706,23 +7723,28 @@ msgstr ""
 #: application/views/eqsl/result.php:11 application/views/eqsl/tools.php:7
 #: application/views/qrz/export.php:14
 msgid "Download QSLs"
-msgstr ""
+msgstr "Télécharger les QSL"
 
 #: application/views/clublog/export.php:24
 msgid "The next automatic Upload to Clublog will happen at: "
-msgstr ""
+msgstr "Le prochain téléchargement automatique sur Clublog aura lieu à : "
 
 #: application/views/clublog/export.php:25
 msgid ""
 "Here you can see all QSOs which have not been previously uploaded to a "
 "Clublog logbook."
 msgstr ""
+"Ici, vous pouvez voir tous les QSO qui n'ont pas été précédemment "
+"téléchargés dans un journal de trafic de Clublog."
 
 #: application/views/clublog/export.php:26
 msgid ""
 "You need to set a username and password in your user account. You will also "
 "need to enable upload for each station profile ."
 msgstr ""
+"Vous devez définir un nom d'utilisateur et un mot de passe dans votre compte "
+"utilisateur. Vous devrez également activer le téléchargement pour chaque "
+"profil de station."
 
 #: application/views/clublog/export.php:34
 #: application/views/hrdlog/export.php:34
@@ -7733,45 +7755,48 @@ msgstr ""
 #: application/views/qslprint/qsolist.php:15
 #: application/views/webadif/export.php:41
 msgid "Profile name"
-msgstr ""
+msgstr "Nom du profil"
 
 #: application/views/clublog/export.php:35
 #: application/views/hrdlog/export.php:35
 #: application/views/oqrs/showrequests.php:91
 #: application/views/qrz/export.php:40 application/views/webadif/export.php:42
 msgid "Station callsign"
-msgstr ""
+msgstr "Indicatif de la station"
 
 #: application/views/clublog/export.php:36
 #: application/views/hrdlog/export.php:36 application/views/qrz/export.php:41
 msgid "Edited QSOs not uploaded"
-msgstr ""
+msgstr "Modifier les QSO qui n'ont pas été téléchargés"
 
 #: application/views/clublog/export.php:37
 #: application/views/hrdlog/export.php:37 application/views/qrz/export.php:42
 #: application/views/webadif/export.php:43
 msgid "Total QSOs not uploaded"
-msgstr ""
+msgstr "Total de QSO non téléchargés"
 
 #: application/views/clublog/export.php:38
 #: application/views/hrdlog/export.php:38 application/views/qrz/export.php:43
 #: application/views/webadif/export.php:44
 msgid "Total QSOs uploaded"
-msgstr ""
+msgstr "Total des QSO téléchargés"
 
 #: application/views/clublog/export.php:69
 msgid "The next automatic Download from Clublog-QSLs will happen at: "
 msgstr ""
+"Le prochain téléchargement automatique des QSL de Clublog aura lieu à : "
 
 #: application/views/clublog/export.php:70 application/views/qrz/export.php:75
 msgid ""
 "If no startdate is given then the QSLs after last confirmation will be "
 "downloaded/updated!"
 msgstr ""
+"Si aucune date de début n'est indiquée, les QSL après la dernière "
+"confirmation seront téléchargées/mises à jour !"
 
 #: application/views/clublog/export.php:78
 msgid "Download QSLs from Clublog"
-msgstr ""
+msgstr "Téléchargez les QSL depuis Clublog"
 
 #: application/views/components/hamsat/table.php:3
 #: application/views/hamsat/index.php:7
@@ -7783,11 +7808,11 @@ msgstr ""
 #: application/views/dxcalendar/index.php:4
 #: application/views/hamsat/index.php:8
 msgid "This data comes from"
-msgstr ""
+msgstr "Ces données proviennent de"
 
 #: application/views/components/hamsat/table.php:11
 msgid "Show All Passes"
-msgstr ""
+msgstr "Afficher tous les passages"
 
 #: application/views/components/hamsat/table.php:14
 msgid "Private feed key empty. Please set the feed key in your profile."
