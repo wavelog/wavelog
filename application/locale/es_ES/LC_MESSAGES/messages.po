@@ -15,10 +15,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-10-18 17:02+0000\n"
-"PO-Revision-Date: 2025-09-22 07:12+0000\n"
-"Last-Translator: Fabian <fabian@eb1tr.com>\n"
-"Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/es/>\n"
+"PO-Revision-Date: 2025-10-22 00:19+0000\n"
+"Last-Translator: David Quental <ct1drb72@gmail.com>\n"
+"Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/es/>\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -601,7 +601,7 @@ msgstr "73 en 73"
 #: application/controllers/Awards.php:2281
 #: application/views/awards/wpx/wpx_details.php:19
 msgid "WPX"
-msgstr ""
+msgstr "WPX"
 
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:318
@@ -1965,12 +1965,16 @@ msgid ""
 "Contacts note title must be a callsign only, without prefix/suffix. "
 "Suggested: %s"
 msgstr ""
+"El título de la nota de contactos debe ser solo un indicativo de llamada, "
+"sin prefijo/sufijo. Sugerido: %s"
 
 #: application/controllers/Notes.php:284 application/controllers/Notes.php:311
 msgid ""
 "A note with this callsign already exists in your Contacts. Please enter a "
 "unique callsign."
 msgstr ""
+"Ya existe una nota con este indicativo en tus contactos. Por favor, "
+"introduce un indicativo único."
 
 #: application/controllers/Options.php:23
 #: application/controllers/Options.php:33
@@ -2797,11 +2801,11 @@ msgstr "Actualización de WWFF fallida. Resultado: "
 
 #: application/controllers/Update.php:555
 msgid "HAMqsl Update complete. Result: "
-msgstr ""
+msgstr "Actualización de HAMqsl completa. Resultado: "
 
 #: application/controllers/Update.php:557
 msgid "HAMqsl Update failed. Result: "
-msgstr ""
+msgstr "Actualización de HAMqsl fallida. Resultado: "
 
 #: application/controllers/Update.php:590
 msgid "POTA Update complete. Result: "
@@ -3353,6 +3357,8 @@ msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
 "imported. It's invalid"
 msgstr ""
+"QSO en %s: Intentaste importar un QSO sin la banda. Este QSO no fue "
+"importado. Es inválido"
 
 #: application/models/Logbook_model.php:4388
 msgid "the qslrdate is invalid (YYYYMMDD)"
@@ -3435,7 +3441,7 @@ msgstr "Dirección"
 
 #: application/models/Note.php:7
 msgid "Contacts"
-msgstr ""
+msgstr "Contactos"
 
 #: application/models/Note.php:8 application/views/qso/index.php:61
 #: application/views/statistics/index.php:46
@@ -3450,6 +3456,7 @@ msgstr "Antenas"
 #: application/models/Note.php:45 application/models/Note.php:69
 msgid "In Contacts category, the titles of the notes need to be unique."
 msgstr ""
+"En la categoría de Contactos, los títulos de las notas deben ser únicos."
 
 #: application/models/Update_model.php:352
 msgid "Newer release available:"
@@ -4481,7 +4488,7 @@ msgstr "Importar QSOs duplicadas"
 
 #: application/views/adif/import.php:126
 msgid "Select if QSOs shall be imported, even if they already exist."
-msgstr ""
+msgstr "Selecciona si los QSOs deben importarse, incluso si ya existen."
 
 #: application/views/adif/import.php:131
 msgid "Use DXCC information from ADIF"
@@ -4706,6 +4713,8 @@ msgid ""
 "An example for a tool to export the POTA hunter log in ADIF format is %s "
 "made by AF0G and available on GitHub."
 msgstr ""
+"Un ejemplo de una herramienta para exportar el registro de cazadores POTA en "
+"formato ADIF es %s hecho por AF0G y disponible en GitHub."
 
 #: application/views/adif/import.php:399
 msgid ""
@@ -4871,25 +4880,27 @@ msgstr "Resultados de la actualización de POTA"
 
 #: application/views/adif/pota_success.php:17
 msgid "POTA references for existing QSOs has been updated."
-msgstr ""
+msgstr "Las referencias de POTA para QSOs existentes se han actualizado."
 
 #: application/views/adif/pota_success.php:25
 msgid "POTA Update Errors"
-msgstr ""
+msgstr "Errores de actualización de POTA"
 
 #: application/views/adif/pota_success.php:26
 msgid ""
 "There is different data for POTA references in your log compared to imported "
 "data or QSO data could not be matched"
 msgstr ""
+"Hay datos diferentes para las referencias POTA en tu registro en comparación "
+"con los datos importados o los datos QSO no pudieron ser emparejados"
 
 #: application/views/adif/pota_success.php:34
 msgid "POTA REF in Log"
-msgstr ""
+msgstr "Referencia POTA en el registro"
 
 #: application/views/adif/pota_success.php:35
 msgid "POTA REF in ADIF"
-msgstr ""
+msgstr "Referencia POTA en ADIF"
 
 #: application/views/adif/pota_success.php:36
 #: application/views/api/index.php:37 application/views/cron/index.php:67
@@ -6782,7 +6793,7 @@ msgstr "Mostrar mapa WAS"
 
 #: application/views/awards/wpx/index.php:76
 msgid "Band / Satellite / Orbit"
-msgstr ""
+msgstr "Banda / Satélite / Órbita"
 
 #: application/views/awards/wpx/wpx_details.php:21
 #: application/views/oqrs/showrequests.php:86
@@ -7039,11 +7050,13 @@ msgid ""
 "Changes made here are instance-wide and will affect EVERY User. You see "
 "this, because you're an instance-admin"
 msgstr ""
+"Aqui se realizan cambios a nivel de instancia y afectarán a TODOS los "
+"usuarios. Ves esto porque eres un administrador de instancia"
 
 #: application/views/bands/edit.php:2 application/views/update/index.php:35
 #: application/views/update/index.php:59
 msgid "WARNING"
-msgstr ""
+msgstr "ADVERTENCIA"
 
 #: application/views/bands/index.php:38
 msgid ""
@@ -7738,7 +7751,7 @@ msgstr "Subir libro de registro"
 #: application/views/eqsl/result.php:11 application/views/eqsl/tools.php:7
 #: application/views/qrz/export.php:14
 msgid "Download QSLs"
-msgstr ""
+msgstr "Descargar QSLs"
 
 #: application/views/clublog/export.php:24
 msgid "The next automatic Upload to Clublog will happen at: "
@@ -7804,10 +7817,12 @@ msgid ""
 "If no startdate is given then the QSLs after last confirmation will be "
 "downloaded/updated!"
 msgstr ""
+"Si no se da una fecha de inicio, las QSLs después de la última confirmación "
+"serán descargadas/actualizadas!"
 
 #: application/views/clublog/export.php:78
 msgid "Download QSLs from Clublog"
-msgstr ""
+msgstr "Descargar QSLs desde Clublog"
 
 #: application/views/components/hamsat/table.php:3
 #: application/views/hamsat/index.php:7
@@ -8276,7 +8291,7 @@ msgstr "Cómo funciona"
 #: application/views/cron/index.php:21
 #, php-format
 msgid "For more information or help, take a look in the %s."
-msgstr ""
+msgstr "Para más información o ayuda, echa un vistazo en el %s."
 
 #: application/views/cron/index.php:28
 msgid ""
@@ -8382,6 +8397,8 @@ msgid ""
 "You need to upgrade your PHP version. Minimum version is %s. Your version "
 "is: %s."
 msgstr ""
+"Necesitas actualizar tu versión de PHP. La versión mínima es %s. Tu versión "
+"es %s."
 
 #: application/views/dashboard/index.php:118
 #, php-format
@@ -8417,12 +8434,16 @@ msgid ""
 "Your active station location is not linked to your active station logbook. "
 "Click %shere%s to do it."
 msgstr ""
+"La ubicación de tu estación activa no está vinculada a tu libro de bitácora "
+"de estación activa. Haz clic %saquí%s para hacerlo."
 
 #: application/views/dashboard/index.php:163
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station linked to your logbook. Click %shere%s to do it."
 msgstr ""
+"No tienes ninguna estación vinculada a tu libro de registro. Haz clic "
+"%saquí%s para hacerlo."
 
 #: application/views/dashboard/index.php:173
 #, php-format
@@ -8437,6 +8458,8 @@ msgid ""
 "Don't loose your streak - You have already had at least one QSO for the last "
 "%s consecutive days."
 msgstr ""
+"No pierdas tu racha - Ya has tenido al menos un QSO durante los últimos %s "
+"días consecutivos."
 
 #: application/views/dashboard/index.php:184
 msgid "You have made no QSOs today; time to turn on the radio!"
@@ -8613,16 +8636,16 @@ msgstr "Cuadrículas VUCC"
 
 #: application/views/dashboard/index.php:471
 msgid "Solar Data & Propagation"
-msgstr ""
+msgstr "Datos solares y propagación"
 
 #: application/views/dashboard/index.php:473
 #, php-format
 msgid "Last update at %s."
-msgstr ""
+msgstr "Última actualización a las %s."
 
 #: application/views/dashboard/index.php:482
 msgid "Data provided by HAMqsl."
-msgstr ""
+msgstr "Datos proporcionados por HAMqsl."
 
 #: application/views/dayswithqso/index.php:3
 msgid "Number of QSOs for this day of the week"
@@ -8740,11 +8763,11 @@ msgstr "Opciones de importación"
 
 #: application/views/dcl_views/import.php:25
 msgid "Pull DCL data for me"
-msgstr ""
+msgstr "Extrae los datos de DCL para mí"
 
 #: application/views/dcl_views/import.php:36
 msgid "Select callsign to pull DCL confirmations for."
-msgstr ""
+msgstr "Selecciona el indicativo para obtener confirmaciones de DCL."
 
 #: application/views/dcl_views/import.php:50
 msgid ""
@@ -8753,38 +8776,42 @@ msgid ""
 "confirmations since chosen date, or since your last DCL confirmation "
 "(fetched from your log), up until now."
 msgstr ""
+"Wavelog utilizará las claves DCL almacenadas en tu perfil de usuario para "
+"descargar un informe de DCL para ti. El informe que Wavelog descargue tendrá "
+"todas las confirmaciones desde la fecha elegida, o desde tu última "
+"confirmación DCL (obtenida de tu registro), hasta ahora."
 
 #: application/views/dcl_views/import.php:54
 msgid "Import DCL Matches"
-msgstr ""
+msgstr "Importar DCL Matches"
 
 #: application/views/dcl_views/index.php:8
 msgid "Delete Keys"
-msgstr ""
+msgstr "Eliminar claves"
 
 #: application/views/dcl_views/index.php:9
 msgid "Available DCL-Keys"
-msgstr ""
+msgstr "Claves DCL disponibles"
 
 #: application/views/dcl_views/index.php:9
 msgid "Request DCL Key"
-msgstr ""
+msgstr "Solitud clave DCL"
 
 #: application/views/dcl_views/index.php:28
 msgid "Valid from"
-msgstr ""
+msgstr "Válido desde"
 
 #: application/views/dcl_views/index.php:29
 msgid "Valid till"
-msgstr ""
+msgstr "Válido hasta"
 
 #: application/views/dcl_views/index.php:61
 msgid "You need to request DCL keys to use this function."
-msgstr ""
+msgstr "Necesitas solicitar claves DCL para usar esta función."
 
 #: application/views/dcl_views/index.php:80
 msgid "The next automatic sync with DCL will happen at: "
-msgstr ""
+msgstr "La próxima sincronización automática con DCL ocurrirá a las: "
 
 #: application/views/dcl_views/index.php:82
 #: application/views/lotw_views/index.php:143
@@ -8798,38 +8825,42 @@ msgstr "corriendo..."
 
 #: application/views/dcl_views/key_import.php:8
 msgid "DCL Key Management"
-msgstr ""
+msgstr "Gestión de claves DCL"
 
 #: application/views/dcl_views/key_import.php:13
 msgid "Import Key"
-msgstr ""
+msgstr "Importar clave"
 
 #: application/views/dcl_views/key_import.php:14
 msgid ""
 "You requested a key for DCL-Dataexchange, which was successful. The "
 "following data has been imported"
 msgstr ""
+"Solicitaste una clave para DCL-Dataexchange, lo cual fue exitoso. Se han "
+"importado los siguientes datos"
 
 #: application/views/dcl_views/key_import.php:19
 msgid "Received a valid DCL-Key"
-msgstr ""
+msgstr "Llave DCL válida recibida"
 
 #: application/views/dcl_views/key_import.php:20
 msgid "DOK History"
-msgstr ""
+msgstr "Historia de DOK"
 
 #: application/views/dcl_views/key_import.php:24
 #: application/views/dcl_views/key_import.php:46
 msgid "Validity"
-msgstr ""
+msgstr "Validez"
 
 #: application/views/dcl_views/key_import.php:42
 msgid "Call History"
-msgstr ""
+msgstr "Historial de llamadas"
 
 #: application/views/dcl_views/key_import.php:63
 msgid "Received an invalid DCL-Key. Please check your DCL-Login, and try again"
 msgstr ""
+"Se recibió una clave DCL inválida. Por favor, revisa tu inicio de sesión en "
+"DCL e inténtalo de nuevo"
 
 #: application/views/dcl_views/upload_cert.php:8
 #: application/views/dcl_views/upload_cert.php:33
@@ -9190,7 +9221,7 @@ msgstr "Actualización de Hams Of Note"
 
 #: application/views/debug/index.php:568
 msgid "HAMqsl"
-msgstr ""
+msgstr "HAMqsl"
 
 #: application/views/debug/index.php:577
 msgid "QSO-DB Maintenance"
@@ -9963,20 +9994,20 @@ msgstr "Información del satélite"
 
 #: application/views/interface_assets/footer.php:59
 msgid "Error loading notes"
-msgstr ""
+msgstr "Error al cargar las notas"
 
 #: application/views/interface_assets/footer.php:60
 msgid "Sorting"
-msgstr ""
+msgstr "Clasificación"
 
 #: application/views/interface_assets/footer.php:61
 msgid "Duplication is disabled for Contacts notes"
-msgstr ""
+msgstr "La duplicación está desactivada para las notas de Contactos"
 
 #: application/views/interface_assets/footer.php:62
 #: application/views/interface_assets/footer.php:64
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplicar"
 
 #: application/views/interface_assets/footer.php:65
 #: application/views/notes/view.php:48
@@ -9985,23 +10016,23 @@ msgstr "Borrar nota"
 
 #: application/views/interface_assets/footer.php:66
 msgid "Duplicate Note"
-msgstr ""
+msgstr "Nota duplicada"
 
 #: application/views/interface_assets/footer.php:67
 msgid "Delete this note?"
-msgstr ""
+msgstr "¿Eliminar esta nota?"
 
 #: application/views/interface_assets/footer.php:68
 msgid "Duplicate this note?"
-msgstr ""
+msgstr "¿Duplicar esta nota?"
 
 #: application/views/interface_assets/footer.php:69
 msgid "Duplication Disabled"
-msgstr ""
+msgstr "Duplicación desactivada"
 
 #: application/views/interface_assets/footer.php:70
 msgid "No notes were found"
-msgstr ""
+msgstr "No se encontraron notas"
 
 #: application/views/interface_assets/footer.php:152
 #: application/views/interface_assets/header.php:515
@@ -10260,7 +10291,7 @@ msgstr "Trabajado Toda Europa (WAE)"
 
 #: application/views/interface_assets/header.php:192
 msgid "Worked All Prefixes (WPX)"
-msgstr ""
+msgstr "Trabajado Todos los Prefijos (WPX)"
 
 #: application/views/interface_assets/header.php:214
 msgid "Canada"
@@ -10438,7 +10469,7 @@ msgstr "Importación / Exportación de Clublog"
 
 #: application/views/interface_assets/header.php:504
 msgid "DCL Export"
-msgstr ""
+msgstr "Exportación DCL"
 
 #: application/views/interface_assets/header.php:516
 #: application/views/logbookadvanced/index.php:741
@@ -10766,7 +10797,7 @@ msgstr "Por favor, elige la columna a editar:"
 
 #: application/views/logbookadvanced/edit.php:5
 msgid "QSO details"
-msgstr ""
+msgstr "Detalles del QSO"
 
 #: application/views/logbookadvanced/edit.php:9
 msgid "Contest Exch (S)"
@@ -10774,7 +10805,7 @@ msgstr "Intercambio del Concurso (S)"
 
 #: application/views/logbookadvanced/edit.php:19
 msgid "Station Power"
-msgstr ""
+msgstr "Potencia de la estación"
 
 #: application/views/logbookadvanced/edit.php:31
 #: application/views/logbookadvanced/index.php:848
@@ -10786,7 +10817,7 @@ msgstr "Región"
 
 #: application/views/logbookadvanced/edit.php:37
 msgid "QSL / LoTW / Clublog / eQSL / QRZ / DCL"
-msgstr ""
+msgstr "QSL / LoTW / Clublog / eQSL / QRZ / DCL"
 
 #: application/views/logbookadvanced/edit.php:38
 msgid "Clublog Received"
@@ -10798,11 +10829,11 @@ msgstr "Clublog enviado"
 
 #: application/views/logbookadvanced/edit.php:40
 msgid "DCL Sent"
-msgstr ""
+msgstr "DCL enviado"
 
 #: application/views/logbookadvanced/edit.php:41
 msgid "DCL Received"
-msgstr ""
+msgstr "DCL recibido"
 
 #: application/views/logbookadvanced/edit.php:42
 msgid "eQSL Received"
@@ -10830,11 +10861,11 @@ msgstr "QRZ enviado"
 
 #: application/views/logbookadvanced/edit.php:48
 msgid "QSL Received"
-msgstr ""
+msgstr "QSL recibidas"
 
 #: application/views/logbookadvanced/edit.php:49
 msgid "QSL Sent"
-msgstr ""
+msgstr "QSL enviada"
 
 #: application/views/logbookadvanced/edit.php:50
 msgid "QSLMSG"
@@ -10842,11 +10873,11 @@ msgstr "Mensaje QSL"
 
 #: application/views/logbookadvanced/edit.php:51
 msgid "QSL Received Method"
-msgstr ""
+msgstr "Método de recepción de QSL"
 
 #: application/views/logbookadvanced/edit.php:52
 msgid "QSL Sent Method"
-msgstr ""
+msgstr "Método de envío de QSL"
 
 #: application/views/logbookadvanced/edit.php:53
 #: application/views/logbookadvanced/index.php:570
@@ -11267,11 +11298,11 @@ msgstr "Recibido por eQSL"
 
 #: application/views/logbookadvanced/index.php:550
 msgid "DCL sent"
-msgstr ""
+msgstr "DCL enviado"
 
 #: application/views/logbookadvanced/index.php:559
 msgid "DCL received"
-msgstr ""
+msgstr "DCL recibido"
 
 #: application/views/logbookadvanced/index.php:574
 msgid "QSL Images"
@@ -11799,6 +11830,10 @@ msgid ""
 "store information about QSO partners. These notes are private and are not "
 "shared with other users nor exported to external services."
 msgstr ""
+"Contactos es una categoría especial de notas utilizada en varios lugares de "
+"Wavelog para almacenar información sobre socios de QSO. Estas notas son "
+"privadas y no se comparten con otros usuarios ni se exportan a servicios "
+"externos."
 
 #: application/views/notes/add.php:48 application/views/notes/edit.php:56
 msgid "Note Contents"
@@ -11810,27 +11845,27 @@ msgstr "Guardar nota"
 
 #: application/views/notes/main.php:25
 msgid "All Categories"
-msgstr ""
+msgstr "Todas las categorías"
 
 #: application/views/notes/main.php:53
 msgid "Search notes (min. 3 chars)"
-msgstr ""
+msgstr "Buscar notas (mín. 3 caracteres)"
 
 #: application/views/notes/main.php:54
 msgid "Reset search"
-msgstr ""
+msgstr "Restablecer búsqueda"
 
 #: application/views/notes/main.php:72
 msgid "Creation"
-msgstr ""
+msgstr "Creación"
 
 #: application/views/notes/main.php:73
 msgid "Last Modification"
-msgstr ""
+msgstr "Última modificación"
 
 #: application/views/notes/view.php:20
 msgid "View Note"
-msgstr ""
+msgstr "Ver nota"
 
 #: application/views/operator/index.php:9
 msgid ""
@@ -12596,7 +12631,7 @@ msgstr "La próxima descarga automática de QRZ-QSLs ocurrirá en: "
 
 #: application/views/qrz/export.php:83
 msgid "Download QSLs from QRZ Logbook"
-msgstr ""
+msgstr "Descargar QSLs del libro de registros QRZ"
 
 #: application/views/qrz/export.php:109
 msgid "Mark QSOs as exported to QRZ Logbook"
@@ -12681,11 +12716,11 @@ msgstr "Exportar QSL Solicitadas para Imprimirse"
 
 #: application/views/qslprint/index.php:31
 msgid "Show Band or Frequency:"
-msgstr ""
+msgstr "Mostrar banda o frecuencia:"
 
 #: application/views/qslprint/index.php:35
 msgid "Band & Frequency"
-msgstr ""
+msgstr "Banda y Frecuencia"
 
 #: application/views/qslprint/index.php:39
 msgid ""
@@ -12737,15 +12772,15 @@ msgstr "Lista de QSOs"
 
 #: application/views/qslprint/qslprint.php:78
 msgid "Mark QSOs for a certain QSL Method:"
-msgstr ""
+msgstr "Marca los QSOs para un cierto método de QSL:"
 
 #: application/views/qslprint/qslprint.php:86
 msgid "Mark all QSOs for the chosen QSL method"
-msgstr ""
+msgstr "Marca todos los QSOs para el método QSL elegido"
 
 #: application/views/qslprint/qslprint.php:87
 msgid "Unmark every QSO"
-msgstr ""
+msgstr "Desmarcar cada QSO"
 
 #: application/views/qslprint/qslprint.php:92
 msgid "Update QSOs"
@@ -13243,7 +13278,7 @@ msgstr "Detener sintonización"
 
 #: application/views/qso/index.php:784
 msgid "Enter text..."
-msgstr ""
+msgstr "Introduce el texto..."
 
 #: application/views/qso/index.php:785
 msgid "Send"
@@ -13890,6 +13925,7 @@ msgstr "No trabajado"
 #: application/views/search/result.php:58
 msgid "Grid is auto-detected by callbook and probably wrong"
 msgstr ""
+"El grid es detectado automáticamente por el callbook y probablemente esté mal"
 
 #: application/views/search/search_result_ajax.php:463
 #: application/views/view_log/partial/log.php:142
@@ -14736,7 +14772,7 @@ msgstr ""
 
 #: application/views/stationsetup/stationsetup.php:35
 msgid "Edit Linked locations"
-msgstr ""
+msgstr "Editar ubicaciones vinculadas"
 
 #: application/views/stationsetup/stationsetup.php:37
 msgid "Visitor site"
@@ -15155,6 +15191,9 @@ msgid ""
 "deprectated and will be removed in a future version of Wavelog. As "
 "replacement use the Logbook-Advanced!"
 msgstr ""
+"Esto afecta a TODOS los QSOs de CUALQUIER usuario en esta instancia. La "
+"función está obsoleta y se eliminará en una versión futura de Wavelog. ¡Como "
+"reemplazo, utiliza el Logbook-Advanced!"
 
 #: application/views/update/index.php:42
 msgid "Check QSOs missing DXCC data"
@@ -15527,12 +15566,14 @@ msgstr ""
 
 #: application/views/user/edit.php:641
 msgid "Dashboard solar and propagation data"
-msgstr ""
+msgstr "Datos solares y de propagación del panel de control"
 
 #: application/views/user/edit.php:647
 msgid ""
 "This switches the display of the solar and propagation data on the dashboard."
 msgstr ""
+"Esto cambia la visualización de los datos solares y de propagación en el "
+"panel."
 
 #: application/views/user/edit.php:655
 msgid "Show Reference Fields on QSO Tab"
@@ -15664,7 +15705,7 @@ msgstr "Club Log"
 
 #: application/views/user/edit.php:905
 msgid "Club Log Email"
-msgstr ""
+msgstr "Correo de Club Log"
 
 #: application/views/user/edit.php:911
 msgid "Club Log Password"
@@ -16352,7 +16393,7 @@ msgstr "Este QSO está confirmado en Clublog."
 
 #: application/views/view_log/qso.php:581
 msgid "This QSO is confirmed on DCL."
-msgstr ""
+msgstr "Este QSO está confirmado en DCL."
 
 #: application/views/view_log/qso.php:594
 msgid "More QSOs"
