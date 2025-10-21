@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-10-18 17:02+0000\n"
-"PO-Revision-Date: 2025-10-21 17:00+0000\n"
+"PO-Revision-Date: 2025-10-21 21:14+0000\n"
 "Last-Translator: F5MQU <f5mqu.p@gmail.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/fr/>\n"
@@ -6679,6 +6679,8 @@ msgid ""
 "The award can be earned through long-term accumulation of contacts or "
 "achieved in a single effort during the annual WAPC Contest."
 msgstr ""
+"Le trophée peut être gagné grâce à une accumulation de contacts à long terme "
+"ou obtenu en une seule fois lors du concours annuel WAPC."
 
 #: application/views/awards/wapc/index.php:11
 msgid ""
@@ -6686,10 +6688,13 @@ msgid ""
 "Macao/152, Taiwan/386, Pratas Isl./505 or Scarborough Reef/506) and valid "
 "State (ADIF: DXCC and STATE)"
 msgstr ""
+"Champs requis pour ce trophée : DXCC (Doit être l'un des pays suivants : "
+"Chine/318, HongKong/321, Macao/152, Taiwan/386, l'ile de Pratas/505 ou "
+"Scarborough Reef/506) et Etat valide (ADIF : DXCC et ETAT)"
 
 #: application/views/awards/wapc/index.php:119
 msgid "Code"
-msgstr ""
+msgstr "Code"
 
 #: application/views/awards/was/index.php:3
 msgctxt "USA State"
@@ -6725,6 +6730,12 @@ msgid ""
 "possessions must be members of ARRL to apply for a WAS. Applicants from "
 "outside the U.S. are exempt from this requirement."
 msgstr ""
+"Le trophée WAS (Worked All States, cad tous les états contactés) est "
+"accessible à tous les amateurs du monde entier qui fournissent une preuve "
+"écrite de leurs contacts avec chacun des 50 états des États-Unis. Les "
+"amateurs résidant aux États-Unis et dans ses territoires doivent être "
+"membres de l'ARRL pour postuler au WAS. Les candidats résidant hors des "
+"États-Unis sont exemptés de cette obligation."
 
 #: application/views/awards/was/index.php:23
 #, php-format
@@ -6739,6 +6750,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be one of U.S.A., Alaska or Hawaii) "
 "and STATE (Must contain a valid U.S. state abbreviation!)"
 msgstr ""
+"Champs requis pour ce trophée : DXCC (doit être les États-Unis, l'Alaska ou "
+"Hawaï) et ÉTAT (doit contenir l'abréviation d'un état américain valide !)"
 
 #: application/views/awards/was/index.php:115
 msgid "Show WAS Map"
@@ -6746,13 +6759,13 @@ msgstr "Afficher la carte WAS"
 
 #: application/views/awards/wpx/index.php:76
 msgid "Band / Satellite / Orbit"
-msgstr ""
+msgstr "Bande / Satellite / Orbite"
 
 #: application/views/awards/wpx/wpx_details.php:21
 #: application/views/oqrs/showrequests.php:86
 #: application/views/simplefle/index.php:78
 msgid "QSO Date"
-msgstr ""
+msgstr "Date du QSO"
 
 #: application/views/awards/wwff/index.php:7
 msgid "WWFF - World Wide Flora and Fauna Award"
@@ -6781,7 +6794,7 @@ msgstr ""
 
 #: application/views/awards/wwff/index.php:11
 msgid "Fields taken for this Award: WWFF (ADIF: WWFF_REF)"
-msgstr ""
+msgstr "Champs requis pour ce trophée : WWFF (ADIF : WWFF_REF)"
 
 #: application/views/awards/wwff/index.php:32
 #: application/views/qso/index.php:262 application/views/qso/index.php:554
@@ -6846,7 +6859,7 @@ msgstr ""
 
 #: application/views/bandmap/index.php:15 application/views/bandmap/list.php:56
 msgid "BandMap"
-msgstr ""
+msgstr "Carte de la bande"
 
 #: application/views/bandmap/index.php:18 application/views/bandmap/list.php:59
 msgid "BandList"
@@ -6885,23 +6898,23 @@ msgstr "Non réalisés"
 
 #: application/views/bandmap/list.php:82
 msgid "Worked, not Confirmed"
-msgstr ""
+msgstr "Contacté, non Confirmé"
 
 #: application/views/bandmap/list.php:113
 msgid "Phone"
-msgstr ""
+msgstr "Phonie"
 
 #: application/views/bandmap/list.php:114
 msgid "CW"
-msgstr ""
+msgstr "CW"
 
 #: application/views/bandmap/list.php:115
 msgid "Digi"
-msgstr ""
+msgstr "Digi"
 
 #: application/views/bandmap/list.php:131
 msgid "WAC"
-msgstr ""
+msgstr "WAC"
 
 #: application/views/bandmap/list.php:132
 msgid "Spotter"
@@ -6921,11 +6934,11 @@ msgstr "Dernière activité"
 
 #: application/views/bands/bandedges.php:2
 msgid "Please enter valid numbers for frequency"
-msgstr ""
+msgstr "Veuillez saisir des chiffres valides pour la fréquence"
 
 #: application/views/bands/bandedges.php:3
 msgid "The 'From' frequency must be less than the 'To' frequency."
-msgstr ""
+msgstr "La fréquence « De » doit être inférieure à la fréquence « À »."
 
 #: application/views/bands/bandedges.php:4
 msgid "The Frequency overlaps with an existing entry."
