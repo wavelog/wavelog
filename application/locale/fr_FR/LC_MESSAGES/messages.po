@@ -17,10 +17,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-10-22 15:45+0000\n"
-"PO-Revision-Date: 2025-10-21 22:42+0000\n"
+"PO-Revision-Date: 2025-10-22 22:00+0000\n"
 "Last-Translator: F5MQU <f5mqu.p@gmail.com>\n"
-"Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/fr/>\n"
+"Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/fr/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -13027,83 +13027,92 @@ msgstr ""
 
 #: application/views/qso/index.php:784
 msgid "Enter text..."
-msgstr ""
+msgstr "Entrer du texte..."
 
 #: application/views/qso/index.php:785
 msgid "Send"
-msgstr ""
+msgstr "Envoyer"
 
 #: application/views/qso/index.php:797
 msgid "Suggestions"
-msgstr ""
+msgstr "Suggestions"
 
 #: application/views/qso/index.php:804
 msgid "Profile Picture"
-msgstr ""
+msgstr "Photo de profil"
 
 #: application/views/qso/log_qso.php:9
 msgid "Redirecting to QSO logging page..."
-msgstr ""
+msgstr "Redirection vers la page d'enregistrement du QSO..."
 
 #: application/views/qso/log_qso.php:75
 msgid "The data was redirected. You can close this window."
-msgstr ""
+msgstr "Les données ont été redirigées. Vous pouvez fermer cette fenêtre."
 
 #: application/views/radio/edit.php:18
 msgid "CAT URL"
-msgstr ""
+msgstr "URL du CAT"
 
 #: application/views/radio/edit.php:20
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "Called URL when a spot at DXCluster is clicked. Notice: The trailing slash "
 "(/) and QRG is added automatically. Default is %s"
 msgstr ""
+"URL appelée lorsqu'un spot sur le DXCluster est cliqué. Remarque : La barre "
+"oblique finale (/) et la QRG sont ajoutés automatiquement. La valeur par "
+"défaut est %s."
 
 #: application/views/radio/index.php:20
 msgid "Active Radios"
-msgstr ""
+msgstr "Radios actives"
 
 #: application/views/radio/index.php:23
 msgid "Below is a list of active radios that are connected to Wavelog."
 msgstr ""
+"Vous trouverez ci-dessous une liste des radios actives connectées à Wavelog."
 
 #: application/views/radio/index.php:24
 msgid ""
 "If you haven't connected any radios yet, see the API page to generate API "
 "keys."
 msgstr ""
+"Si vous n'avez pas encore connecté de radios, consultez la page API pour "
+"générer des clés API."
 
 #: application/views/radio/index.php:26 application/views/search/filter.php:72
 #, php-format
 msgid "You can find out how to use the %s in the wiki."
-msgstr ""
+msgstr "Vous pouvez découvrir comment utiliser le %s dans le wiki."
 
 #: application/views/radio/index.php:26
 msgid "radio functions"
-msgstr ""
+msgstr "Fonctions radio"
 
 #: application/views/radio/index.php:31
 msgid "Please wait..."
-msgstr ""
+msgstr "Attendez s'il vous plait..."
 
 #: application/views/reg1test/index.php:6
 msgid "Select Band"
-msgstr ""
+msgstr "Sélectionner une bande"
 
 #: application/views/reg1test/index.php:8
 msgid ""
 "Bands below 50Mhz are not valid for the EDI REG1TEST format and will produce "
 "invalid files."
 msgstr ""
+"Les bandes inférieures à 50 MHz ne sont pas valides pour le format EDI "
+"REG1TEST et produiront des fichiers invalides."
 
 #: application/views/reg1test/index.php:18
 msgid "Export a contest to a REG1TEST EDI log"
-msgstr ""
+msgstr "Exporter un concours vers un journal EDI REG1TEST"
 
 #: application/views/reg1test/index.php:48
+#, fuzzy
 msgid "Sent Exchange"
-msgstr ""
+msgstr "Echange envoyé"
 
 #: application/views/reg1test/index.php:50
 msgid ""
@@ -13111,127 +13120,140 @@ msgid ""
 "information, e.g. Province, DOK, County, State, Power, Name. Max. length: 6 "
 "characters."
 msgstr ""
+"Le report qui est envoyé pendant le concours. Il peut s'agir de tout type "
+"d'information, par exemple : province, département, état, puissance, nom. "
+"Longueur maximale : 6 caractères."
 
 #: application/views/reg1test/index.php:55
 msgid ""
 "Describes the callsign of the radio club where operator(s) are member. E.g. "
 "can be used if points are accumulated to the club."
 msgstr ""
+"Indique l'indicatif du radioclub dont le ou les opérateurs sont membres. Par "
+"exemple, il peut être utilisé pour cumuler des points au profit du club."
 
 #: application/views/reg1test/index.php:66
 msgid "Callsign of responsible operator"
-msgstr ""
+msgstr "Indicatif de l'opérateur responsable"
 
 #: application/views/reg1test/index.php:72
 msgid ""
 "List of all operators. Seperated with a semicolon ';'. The responsible "
 "operator is not needed here."
 msgstr ""
+"Liste de tous les opérateurs. Séparés par un point-virgule « ; ». "
+"L'opérateur responsable n'est pas nécessaire ici."
 
 #: application/views/reg1test/index.php:75
 msgid "Contest Address 1"
-msgstr ""
+msgstr "Concours Adresse 1"
 
 #: application/views/reg1test/index.php:77
 msgid "Address of the QTH used during the contest."
-msgstr ""
+msgstr "Adresse du QTH utilisé pendant le concours."
 
 #: application/views/reg1test/index.php:80
 msgid "Contest Address 2"
-msgstr ""
+msgstr "Concours Adresse 2"
 
 #: application/views/reg1test/index.php:84
 msgid "Operator Address 1"
-msgstr ""
+msgstr "Opérateur Adresse 1"
 
 #: application/views/reg1test/index.php:86
 msgid "Address of the responsible operator."
-msgstr ""
+msgstr "Adresse de l'opérateur responsable."
 
 #: application/views/reg1test/index.php:89
 msgid "Operator Address 2"
-msgstr ""
+msgstr "Opérateur Adresse 2"
 
 #: application/views/reg1test/index.php:93
 msgid "Operator Address Postalcode"
-msgstr ""
+msgstr "Code postal de l'adresse de l'opérateur"
 
 #: application/views/reg1test/index.php:97
 msgid "Operator Address City"
-msgstr ""
+msgstr "Adresse de la ville de l'opérateur"
 
 #: application/views/reg1test/index.php:101
 msgid "Operator Address Country"
-msgstr ""
+msgstr "Adresse du pays de l'opérateur"
 
 #: application/views/reg1test/index.php:105
 msgid "Operator Phone Number"
-msgstr ""
+msgstr "Numéro de téléphone de l'opérateur"
 
 #: application/views/reg1test/index.php:109
 msgid "Transmit Equipment Description"
-msgstr ""
+msgstr "Description de l'équipement de transmission"
 
 #: application/views/reg1test/index.php:111
 msgid "Short description of the used equipment."
-msgstr ""
+msgstr "Brève description du matériel utilisé."
 
 #: application/views/reg1test/index.php:116
 msgid "TX Power during the contest in Watt."
-msgstr ""
+msgstr "Puissance d'émission (en Watt) pendant le concours."
 
 #: application/views/reg1test/index.php:119
 msgid "Receive Equipment Description"
-msgstr ""
+msgstr "Description du matériel de réception"
 
 #: application/views/reg1test/index.php:121
 msgid "If you used another gear for RX, then describe it here."
 msgstr ""
+"Si vous avez utilisé un autre matériel pour la réception, décrivez-le ici."
 
 #: application/views/reg1test/index.php:124
 msgid "Antenna Description"
-msgstr ""
+msgstr "Description de l'antenne"
 
 #: application/views/reg1test/index.php:126
 msgid "What kind of antenna was used."
-msgstr ""
+msgstr "Quel type d'antenne a été utilisé."
 
 #: application/views/reg1test/index.php:129
 msgid "Antenna Height Above Ground (m)"
-msgstr ""
+msgstr "Hauteur de l'antenne par rapport au sol (m)"
 
 #: application/views/reg1test/index.php:131
 msgid "Height of the antenna above the ground."
-msgstr ""
+msgstr "Hauteur de l'antenne au-dessus du sol."
 
 #: application/views/reg1test/index.php:134
+#, fuzzy
 msgid "Band multiplicator"
-msgstr ""
+msgstr "Multiplicateur par bande"
 
 #: application/views/reg1test/index.php:136
 msgid ""
 "Band multiplicator. This is usually 1. Only change this if necessary "
 "according to the contest scoring rules."
 msgstr ""
+"Multiplicateur par bande. Il est généralement égal à 1. Ne le modifiez que "
+"si nécessaire, conformément aux règles de notation du concours."
 
 #: application/views/reg1test/index.php:141
 msgid "Any other remarks."
-msgstr ""
+msgstr "Autres remarques."
 
 #: application/views/satellite/create.php:23
+#, fuzzy
 msgid "Satellite Display Name"
-msgstr ""
+msgstr "Alias du satellite"
 
 #: application/views/satellite/create.php:25
 #: application/views/satellite/edit.php:9
+#, fuzzy
 msgid "Display / cleartext name of the satellite"
-msgstr ""
+msgstr "Alias / nom en clair du satellite"
 
 #: application/views/satellite/create.php:28
 #: application/views/satellite/edit.php:12
 #: application/views/satellite/index.php:52
 msgid "LoTW Name"
-msgstr ""
+msgstr "Nom LOTW"
 
 #: application/views/satellite/create.php:30
 #: application/views/satellite/edit.php:14
@@ -13239,69 +13261,71 @@ msgid ""
 "Satellite name as accepted by LoTW. Not necessarily the same as the display "
 "name. Can be set/changed later when added to LoTW."
 msgstr ""
+"Nom du satellite tel qu'accepté par LoTW. Peut être différent de l'alias "
+"affiché. Peut être défini/modifié ultérieurement lors de l'ajout à LoTW."
 
 #: application/views/satellite/create.php:41
 #: application/views/satellite/edit.php:25
 msgid "Enter which orbit the satellite has (LEO, MEO, GEO)"
-msgstr ""
+msgstr "Entrer l'orbite du satellite (LEO, MEO, GEO)"
 
 #: application/views/satellite/create.php:44
 msgid "Satellite mode name"
-msgstr ""
+msgstr "Nom du mode satellite"
 
 #: application/views/satellite/create.php:46
 msgid "Enter satellite mode"
-msgstr ""
+msgstr "Entrer le mode satellite"
 
 #: application/views/satellite/create.php:51
 #: application/views/satellite/edit.php:52
 #: application/views/satellite/satinfo.php:8
 msgid "Uplink mode"
-msgstr ""
+msgstr "Mode de liaison montante"
 
 #: application/views/satellite/create.php:53
 msgid "Enter modulation used for uplink"
-msgstr ""
+msgstr "Entrer la modulation utilisée en liaison montante"
 
 #: application/views/satellite/create.php:56
 #: application/views/satellite/edit.php:53
 #: application/views/satellite/satinfo.php:9
 msgid "Uplink frequency"
-msgstr ""
+msgstr "Fréquence de la liaison montante"
 
 #: application/views/satellite/create.php:58
 msgid "Enter frequency (in Hz) used for uplink"
-msgstr ""
+msgstr "Entrer la fréquence (en Hz) utilisée pour la liaison montante"
 
 #: application/views/satellite/create.php:63
 #: application/views/satellite/edit.php:54
 #: application/views/satellite/satinfo.php:10
 msgid "Downlink mode"
-msgstr ""
+msgstr "Mode de la liaison descendante"
 
 #: application/views/satellite/create.php:65
 msgid "Enter modulation used for downlink"
-msgstr ""
+msgstr "Entrer la modulation utilisée pour la liaison descendante"
 
 #: application/views/satellite/create.php:68
 #: application/views/satellite/edit.php:55
 #: application/views/satellite/satinfo.php:11
 msgid "Downlink frequency"
-msgstr ""
+msgstr "Fréquence de la liaison descendante"
 
 #: application/views/satellite/create.php:70
 msgid "Enter frequency (in Hz) used for downlink"
-msgstr ""
+msgstr "Entrer la fréquence (en Hz) utilisée pour la liaison descendante"
 
 #: application/views/satellite/create.php:73
 #: application/views/satellite/edit.php:28
 msgid "Accepted by LoTW"
-msgstr ""
+msgstr "Accepté par LoTW"
 
 #: application/views/satellite/create.php:78
 #: application/views/satellite/edit.php:38
 msgid "Set to yes only if satellite is accepted my LoTW"
-msgstr ""
+msgstr "Sélectionner oui seulement si le satellite est accepté par mon LoTW"
 
 #: application/views/satellite/edit.php:7
 msgid "Satellite Display Name "
@@ -13309,11 +13333,11 @@ msgstr ""
 
 #: application/views/satellite/edit.php:42
 msgid "Save satellite"
-msgstr ""
+msgstr "Sauvegarder le satellite"
 
 #: application/views/satellite/edit.php:76
 msgid "Add satellite mode"
-msgstr ""
+msgstr "Ajouter le mode satellite"
 
 #: application/views/satellite/flightpath.php:51
 msgid ""
