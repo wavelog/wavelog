@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-10-18 17:02+0000\n"
+"POT-Creation-Date: 2025-10-22 07:28+0000\n"
 "PO-Revision-Date: 2025-02-11 12:33+0000\n"
 "Last-Translator: tviitkar <tambet@viitkar.ee>\n"
 "Language-Team: Estonian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -140,7 +140,7 @@ msgstr "Aktiveeritud ruutkaart"
 #: application/controllers/Activated_gridmap.php:31
 #: application/controllers/Awards.php:1003
 #: application/controllers/Awards.php:1035
-#: application/controllers/Gridmap.php:31
+#: application/controllers/Gridmap.php:32
 #: application/controllers/Visitor.php:385
 #: application/views/activators/index.php:100
 #: application/views/interface_assets/footer.php:47
@@ -150,13 +150,13 @@ msgid "Gridsquares"
 msgstr "Ruutkaardistik"
 
 #: application/controllers/Activated_gridmap.php:32
-#: application/controllers/Gridmap.php:32
+#: application/controllers/Gridmap.php:33
 #: application/controllers/Visitor.php:386
 msgid "Gridsquares confirmed"
 msgstr "Kinnitatud ruudkaardistik"
 
 #: application/controllers/Activated_gridmap.php:33
-#: application/controllers/Gridmap.php:33
+#: application/controllers/Gridmap.php:34
 #: application/controllers/Visitor.php:387
 msgid "Gridsquares not confirmed"
 msgstr "Kinnitamata ruudkaardistik"
@@ -166,25 +166,25 @@ msgid "Total gridsquares activated"
 msgstr "Kõik aktiveeritud kaardiruudud"
 
 #: application/controllers/Activated_gridmap.php:36
-#: application/controllers/Gridmap.php:36
+#: application/controllers/Gridmap.php:37
 #: application/controllers/Visitor.php:390
 msgid "Fields"
 msgstr ""
 
 #: application/controllers/Activated_gridmap.php:37
-#: application/controllers/Gridmap.php:37
+#: application/controllers/Gridmap.php:38
 #: application/controllers/Visitor.php:391
 msgid "Fields confirmed"
 msgstr ""
 
 #: application/controllers/Activated_gridmap.php:38
-#: application/controllers/Gridmap.php:38
+#: application/controllers/Gridmap.php:39
 #: application/controllers/Visitor.php:392
 msgid "Fields not confirmed"
 msgstr ""
 
 #: application/controllers/Activated_gridmap.php:39
-#: application/controllers/Gridmap.php:39
+#: application/controllers/Gridmap.php:40
 #: application/controllers/Visitor.php:393
 msgid "Total fields worked"
 msgstr ""
@@ -818,7 +818,7 @@ msgstr "Muuda Croni kirjeid"
 #: application/views/debug/index.php:539 application/views/debug/index.php:544
 #: application/views/debug/index.php:549 application/views/debug/index.php:554
 #: application/views/debug/index.php:559 application/views/debug/index.php:564
-#: application/views/debug/index.php:569
+#: application/views/debug/index.php:569 application/views/debug/index.php:574
 msgid "never"
 msgstr "ei iial"
 
@@ -924,42 +924,42 @@ msgstr ""
 msgid "Key(s) Deleted."
 msgstr ""
 
-#: application/controllers/Debug.php:117
+#: application/controllers/Debug.php:118
 msgid "Debug"
 msgstr "Silumine"
 
-#: application/controllers/Debug.php:156
+#: application/controllers/Debug.php:157
 msgid "Migrate data now"
 msgstr "Migreeri andmed"
 
-#: application/controllers/Debug.php:159
+#: application/controllers/Debug.php:160
 msgid "Migration already done. Run again?"
 msgstr "Migreerimine lõpetatud. Käivita uuesti?"
 
-#: application/controllers/Debug.php:163
+#: application/controllers/Debug.php:164
 msgid "No data to migrate"
 msgstr "Pole midagi migreerida"
 
-#: application/controllers/Debug.php:167 application/controllers/Debug.php:172
+#: application/controllers/Debug.php:168 application/controllers/Debug.php:173
 msgid "No migration possible"
 msgstr "Migratsioon pole võimalik"
 
-#: application/controllers/Debug.php:237
+#: application/controllers/Debug.php:238
 msgid "Wavelog was updated successfully!"
 msgstr "Wavelog edukalt uuendatud!"
 
-#: application/controllers/Debug.php:255
+#: application/controllers/Debug.php:256
 msgid "Selfupdate() not available. Check the Error Log."
 msgstr ""
 
-#: application/controllers/Debug.php:299
+#: application/controllers/Debug.php:300
 msgid ""
 "File Migration was successfull, but please check also manually. If "
 "everything seems right you can delete the folders 'assets/qslcard' and "
 "'images/eqsl_card_images'."
 msgstr ""
 
-#: application/controllers/Debug.php:302
+#: application/controllers/Debug.php:303
 msgid "File Migration failed. Please check the Error Log."
 msgstr ""
 
@@ -1060,7 +1060,7 @@ msgstr ""
 msgid "Gridsquare Map"
 msgstr "Ruutvõrgustiku kaart"
 
-#: application/controllers/Gridmap.php:34
+#: application/controllers/Gridmap.php:35
 #: application/controllers/Visitor.php:388
 msgid "Total gridsquares worked"
 msgstr "Töötatud ruudvõrgustiku ruudud"
@@ -1261,7 +1261,7 @@ msgstr "Logiraamat"
 #: application/views/awards/wapc/index.php:44
 #: application/views/awards/was/index.php:56
 #: application/views/awards/wpx/index.php:28
-#: application/views/gridmap/index.php:123
+#: application/views/gridmap/index.php:135
 #: application/views/logbookadvanced/index.php:794
 #: application/views/logbookadvanced/useroptions.php:74
 #: application/views/oqrs/qsolist.php:12
@@ -1294,7 +1294,7 @@ msgstr "QSL"
 #: application/views/awards/was/index.php:60
 #: application/views/awards/wpx/index.php:32
 #: application/views/dashboard/index.php:339
-#: application/views/gridmap/index.php:131
+#: application/views/gridmap/index.php:143
 #: application/views/logbookadvanced/useroptions.php:82
 #: application/views/oqrs/qsolist.php:17 application/views/oqrs/qsolist.php:160
 #: application/views/oqrs/qsolist.php:175
@@ -1331,7 +1331,7 @@ msgstr "LoTW"
 #: application/views/awards/was/index.php:64
 #: application/views/awards/wpx/index.php:36
 #: application/views/dashboard/index.php:339
-#: application/views/gridmap/index.php:139
+#: application/views/gridmap/index.php:151
 #: application/views/logbookadvanced/useroptions.php:78
 #: application/views/oqrs/qsolist.php:14 application/views/oqrs/qsolist.php:131
 #: application/views/oqrs/qsolist.php:144
@@ -1382,7 +1382,7 @@ msgstr "eQSL"
 #: application/views/contesting/index.php:264
 #: application/views/continents/index.php:39 application/views/csv/index.php:42
 #: application/views/dashboard/index.php:4
-#: application/views/debug/index.php:592
+#: application/views/debug/index.php:597
 #: application/views/distancerecords/index.php:19
 #: application/views/dxatlas/index.php:42
 #: application/views/eqsl/analysis.php:39
@@ -1579,7 +1579,7 @@ msgstr "Osariik"
 #: application/views/contesting/index.php:26
 #: application/views/contesting/index.php:271
 #: application/views/dashboard/index.php:13
-#: application/views/gridmap/index.php:175
+#: application/views/gridmap/index.php:187
 #: application/views/labels/index.php:125
 #: application/views/logbookadvanced/edit.php:27
 #: application/views/logbookadvanced/index.php:12
@@ -1623,7 +1623,7 @@ msgstr "Ruutvõrgustik"
 #: application/views/dashboard/index.php:14
 #: application/views/distancerecords/index.php:15
 #: application/views/distances/index.php:13
-#: application/views/gridmap/index.php:177
+#: application/views/gridmap/index.php:189
 #: application/views/logbookadvanced/edit.php:11
 #: application/views/logbookadvanced/index.php:14
 #: application/views/logbookadvanced/index.php:869
@@ -1679,7 +1679,7 @@ msgstr "Distants"
 #: application/views/contesting/index.php:263
 #: application/views/continents/index.php:30 application/views/csv/index.php:31
 #: application/views/dashboard/index.php:15
-#: application/views/debug/index.php:593 application/views/dxatlas/index.php:31
+#: application/views/debug/index.php:598 application/views/dxatlas/index.php:31
 #: application/views/eqsl/download.php:41
 #: application/views/eqslcard/index.php:32
 #: application/views/gridmap/index.php:20 application/views/kml/index.php:19
@@ -2782,6 +2782,14 @@ msgstr ""
 msgid "Update of Hams of Note"
 msgstr ""
 
+#: application/controllers/Update.php:718
+msgid "VUCC Grid file update complete. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:720
+msgid "VUCC Grid file update failed. Result: "
+msgstr ""
+
 #: application/controllers/User.php:50
 #: application/views/interface_assets/header.php:306
 msgid "User Accounts"
@@ -2903,7 +2911,7 @@ msgstr "Kasutaja %s välja logitud."
 msgid "Station Name"
 msgstr "Jaama nimi"
 
-#: application/controllers/User.php:1262 application/views/debug/index.php:594
+#: application/controllers/User.php:1262 application/views/debug/index.php:599
 #: application/views/public_search/result.php:17
 #: application/views/station_profile/create.php:61
 #: application/views/station_profile/edit.php:77
@@ -3331,7 +3339,7 @@ msgstr ""
 #: application/views/awards/ffma/index.php:39
 #: application/views/awards/gridmaster/index.php:54
 #: application/views/dashboard/index.php:19
-#: application/views/gridmap/index.php:179
+#: application/views/gridmap/index.php:191
 #: application/views/logbookadvanced/index.php:15
 #: application/views/user/edit.php:256 application/views/user/edit.php:279
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
@@ -3529,6 +3537,7 @@ msgstr ""
 #: application/views/gridmap/index.php:72
 #: application/views/gridmap/index.php:87
 #: application/views/gridmap/index.php:101
+#: application/views/gridmap/index.php:115
 #: application/views/interface_assets/footer.php:46
 #: application/views/interface_assets/footer.php:1692
 #: application/views/interface_assets/footer.php:1831
@@ -3981,7 +3990,7 @@ msgstr ""
 
 #: application/views/activated_gridmap/index.php:50
 #: application/views/awards/wab/index.php:65
-#: application/views/gridmap/index.php:114
+#: application/views/gridmap/index.php:126
 #: application/views/timeline/index.php:52
 msgid "Confirmation"
 msgstr ""
@@ -4003,7 +4012,7 @@ msgstr ""
 #: application/views/awards/wapc/index.php:56
 #: application/views/awards/was/index.php:68
 #: application/views/awards/wpx/index.php:40
-#: application/views/gridmap/index.php:147 application/views/user/edit.php:810
+#: application/views/gridmap/index.php:159 application/views/user/edit.php:810
 msgid "QRZ.com"
 msgstr ""
 
@@ -4020,7 +4029,7 @@ msgstr ""
 #: application/views/activated_gridmap/index.php:102
 #: application/views/awards/ffma/index.php:31
 #: application/views/awards/gridmaster/index.php:46
-#: application/views/gridmap/index.php:171
+#: application/views/gridmap/index.php:183
 #: application/views/logbookadvanced/index.php:10
 msgid "Latitude"
 msgstr ""
@@ -4028,7 +4037,7 @@ msgstr ""
 #: application/views/activated_gridmap/index.php:104
 #: application/views/awards/ffma/index.php:33
 #: application/views/awards/gridmaster/index.php:48
-#: application/views/gridmap/index.php:173
+#: application/views/gridmap/index.php:185
 #: application/views/logbookadvanced/index.php:11
 msgid "Longitude"
 msgstr ""
@@ -4200,7 +4209,7 @@ msgstr ""
 #: application/views/contesting/index.php:103
 #: application/views/contesting/index.php:261
 #: application/views/dashboard/index.php:239
-#: application/views/debug/index.php:589
+#: application/views/debug/index.php:594
 #: application/views/distancerecords/index.php:16
 #: application/views/eqsl/analysis.php:36
 #: application/views/eqsl/download.php:36 application/views/eqsl/result.php:33
@@ -4246,7 +4255,7 @@ msgstr ""
 #: application/views/contesting/index.php:108
 #: application/views/contesting/index.php:261
 #: application/views/dashboard/index.php:242
-#: application/views/debug/index.php:590
+#: application/views/debug/index.php:595
 #: application/views/distancerecords/index.php:17
 #: application/views/eqsl/analysis.php:37
 #: application/views/eqsl/download.php:37 application/views/eqsl/result.php:34
@@ -4275,7 +4284,7 @@ msgstr ""
 #: application/views/bandmap/list.php:129
 #: application/views/contesting/index.php:262
 #: application/views/dcl_views/key_import.php:45
-#: application/views/debug/index.php:591 application/views/debug/index.php:626
+#: application/views/debug/index.php:596 application/views/debug/index.php:631
 #: application/views/dxcalendar/index.php:12
 #: application/views/eqsl/analysis.php:38
 #: application/views/eqsl/download.php:38 application/views/eqsl/result.php:35
@@ -4337,7 +4346,7 @@ msgstr ""
 #: application/views/adif/import.php:349
 #: application/views/clublog/export.php:70
 #: application/views/debug/index.php:193 application/views/debug/index.php:210
-#: application/views/debug/index.php:581 application/views/hrdlog/export.php:25
+#: application/views/debug/index.php:586 application/views/hrdlog/export.php:25
 #: application/views/hrdlog/export.php:74
 #: application/views/interface_assets/footer.php:37
 #: application/views/notes/add.php:23 application/views/notes/edit.php:29
@@ -5086,7 +5095,8 @@ msgstr ""
 
 #: application/views/awards/cq/index.php:3
 #: application/views/awards/cq/index.php:151 application/views/csv/index.php:80
-#: application/views/dxatlas/index.php:80 application/views/kml/index.php:65
+#: application/views/dxatlas/index.php:80
+#: application/views/gridmap/index.php:193 application/views/kml/index.php:65
 #: application/views/logbookadvanced/edit.php:24
 #: application/views/logbookadvanced/index.php:22
 #: application/views/logbookadvanced/index.php:335
@@ -5856,6 +5866,7 @@ msgstr ""
 
 #: application/views/awards/itu/index.php:3
 #: application/views/awards/itu/index.php:151
+#: application/views/gridmap/index.php:195
 #: application/views/logbookadvanced/edit.php:29
 #: application/views/logbookadvanced/index.php:21
 #: application/views/logbookadvanced/index.php:349
@@ -8658,6 +8669,7 @@ msgstr ""
 #: application/views/debug/index.php:545 application/views/debug/index.php:550
 #: application/views/debug/index.php:555 application/views/debug/index.php:560
 #: application/views/debug/index.php:565 application/views/debug/index.php:570
+#: application/views/debug/index.php:575
 #: application/views/station_profile/edit.php:53
 msgid "Update"
 msgstr ""
@@ -8698,11 +8710,15 @@ msgstr ""
 msgid "HAMqsl"
 msgstr ""
 
-#: application/views/debug/index.php:577
+#: application/views/debug/index.php:573
+msgid "VUCCGrids"
+msgstr ""
+
+#: application/views/debug/index.php:582
 msgid "QSO-DB Maintenance"
 msgstr ""
 
-#: application/views/debug/index.php:581
+#: application/views/debug/index.php:586
 #, php-format
 msgid "The Database contains %d QSO without a station-profile (location)"
 msgid_plural ""
@@ -8710,140 +8726,140 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: application/views/debug/index.php:619
+#: application/views/debug/index.php:624
 msgid "Please mark QSOs and reassign them to an existing station location:"
 msgstr ""
 
-#: application/views/debug/index.php:627
+#: application/views/debug/index.php:632
 msgctxt "Stationlocation"
 msgid "Target Location"
 msgstr ""
 
-#: application/views/debug/index.php:628 application/views/debug/index.php:639
+#: application/views/debug/index.php:633 application/views/debug/index.php:644
 msgid "Reassign"
 msgstr ""
 
-#: application/views/debug/index.php:648
+#: application/views/debug/index.php:653
 msgid "Every QSO in your Database is assigned to a station-profile (location)"
 msgstr ""
 
-#: application/views/debug/index.php:648
+#: application/views/debug/index.php:653
 msgid "Everything ok"
 msgstr ""
 
-#: application/views/debug/index.php:673
+#: application/views/debug/index.php:678
 msgid "Albanian"
 msgstr "Albaania"
 
-#: application/views/debug/index.php:674
+#: application/views/debug/index.php:679
 msgid "Armenian"
 msgstr ""
 
-#: application/views/debug/index.php:675
+#: application/views/debug/index.php:680
 msgid "Bosnian"
 msgstr "Bosnia"
 
-#: application/views/debug/index.php:676
+#: application/views/debug/index.php:681
 msgid "Bulgarian"
 msgstr "Bulgaaria"
 
-#: application/views/debug/index.php:677
+#: application/views/debug/index.php:682
 msgid "Chinese (Simplified)"
 msgstr "Hiina (lihtsustatud)"
 
-#: application/views/debug/index.php:678
+#: application/views/debug/index.php:683
 msgid "Croatian"
 msgstr "Horvaatia"
 
-#: application/views/debug/index.php:679
+#: application/views/debug/index.php:684
 msgid "Czech"
 msgstr "Tšehhi"
 
-#: application/views/debug/index.php:680
+#: application/views/debug/index.php:685
 msgid "Dutch"
 msgstr "Hollandi"
 
-#: application/views/debug/index.php:681
+#: application/views/debug/index.php:686
 msgid "English"
 msgstr "Inglise"
 
-#: application/views/debug/index.php:682
+#: application/views/debug/index.php:687
 msgid "Estonian"
 msgstr "Eesti"
 
-#: application/views/debug/index.php:683
+#: application/views/debug/index.php:688
 msgid "Finnish"
 msgstr "Soome"
 
-#: application/views/debug/index.php:684
+#: application/views/debug/index.php:689
 msgid "French"
 msgstr "Prantsuse"
 
-#: application/views/debug/index.php:685
+#: application/views/debug/index.php:690
 msgid "German"
 msgstr "Saksa"
 
-#: application/views/debug/index.php:686
+#: application/views/debug/index.php:691
 msgid "Greek"
 msgstr "Kreeka"
 
-#: application/views/debug/index.php:687
+#: application/views/debug/index.php:692
 msgid "Hungarian"
 msgstr ""
 
-#: application/views/debug/index.php:688
+#: application/views/debug/index.php:693
 msgid "Italian"
 msgstr "Itaalia"
 
-#: application/views/debug/index.php:689
+#: application/views/debug/index.php:694
 msgid "Japanese"
 msgstr ""
 
-#: application/views/debug/index.php:690
+#: application/views/debug/index.php:695
 msgid "Latvian"
 msgstr "Läti"
 
-#: application/views/debug/index.php:691
+#: application/views/debug/index.php:696
 msgid "Lithuanian"
 msgstr "Leedu"
 
-#: application/views/debug/index.php:692
+#: application/views/debug/index.php:697
 msgid "Montenegrin"
 msgstr "Montenegro"
 
-#: application/views/debug/index.php:693
+#: application/views/debug/index.php:698
 msgid "Polish"
 msgstr "Poola"
 
-#: application/views/debug/index.php:694
+#: application/views/debug/index.php:699
 msgid "Portuguese"
 msgstr "Portugali"
 
-#: application/views/debug/index.php:695
+#: application/views/debug/index.php:700
 msgid "Russian"
 msgstr "Vene"
 
-#: application/views/debug/index.php:696
+#: application/views/debug/index.php:701
 msgid "Serbian"
 msgstr "Serbia"
 
-#: application/views/debug/index.php:697
+#: application/views/debug/index.php:702
 msgid "Slovak"
 msgstr ""
 
-#: application/views/debug/index.php:698
+#: application/views/debug/index.php:703
 msgid "Slovenian"
 msgstr ""
 
-#: application/views/debug/index.php:699
+#: application/views/debug/index.php:704
 msgid "Spanish"
 msgstr "Hispaania"
 
-#: application/views/debug/index.php:700
+#: application/views/debug/index.php:705
 msgid "Swedish"
 msgstr "Rootsi"
 
-#: application/views/debug/index.php:701
+#: application/views/debug/index.php:706
 msgid "Turkish"
 msgstr "Türgi"
 
