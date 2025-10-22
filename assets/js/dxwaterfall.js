@@ -249,8 +249,26 @@ var DX_WATERFALL_UTILS = {
             return mode && mode.toLowerCase().includes('cw');
         },
 
+        isPhone: function(mode) {
+            if (!mode) return false;
+            const m = mode.toLowerCase();
+            return m.includes('ssb') || m.includes('lsb') || m.includes('usb') ||
+                   m.includes('am') || m.includes('fm') || m === 'phone';
+        },
+
+        isDigi: function(mode) {
+            if (!mode) return false;
+            const m = mode.toLowerCase();
+            return m.includes('ft') || m.includes('rtty') || m.includes('psk') ||
+                   m.includes('jt') || m.includes('mfsk') || m.includes('olivia') ||
+                   m.includes('contestia') || m.includes('hell') || m.includes('throb') ||
+                   m.includes('sstv') || m.includes('fax') || m === 'digi' || m === 'data';
+        },
+
         getModeCategory: function(mode) {
             if (this.isCw(mode)) return 'cw';
+            if (this.isPhone(mode)) return 'phone';
+            if (this.isDigi(mode)) return 'digi';
             return 'other';
         },
 
@@ -2444,7 +2462,8 @@ var dxWaterfall = {
 
             if (spotFreq && spot.spotted && spot.mode) {
                 // Apply mode filter
-                if (!this.spotMatchesModeFilter(spot)) {
+                var matchesFilter = this.spotMatchesModeFilter(spot);
+                if (!matchesFilter) {
                     continue;
                 }
 
@@ -2518,33 +2537,37 @@ var dxWaterfall = {
 
         // Determine sideband type
         var modeStr = mode.toLowerCase();
-        var sidebandType = modeStr;
+        var sidebandType = 'centered'; // Default to centered
 
         // For phone/ssb modes, determine actual sideband based on frequency
         if (modeStr === 'phone' || modeStr === 'ssb') {
             var freq = parseFloat(spotFreq);
             sidebandType = DX_WATERFALL_UTILS.modes.determineSSBMode(freq).toLowerCase();
+        } else if (modeStr === 'lsb' || modeStr === 'usb') {
+            sidebandType = modeStr;
         }
+        // AM and FM stay as 'centered' (default)
+        // CW, digital modes also stay as 'centered' (default)
 
         // Create gradient based on sideband type
         var gradient;
         if (sidebandType === 'lsb') {
             // LSB: Most visible at spot frequency, fade to the left (lower frequencies)
             gradient = this.ctx.createLinearGradient(exactFreqX, 0, startX, 0);
-            gradient.addColorStop(0, baseColor + '0.4)'); // Strong at spot frequency
-            gradient.addColorStop(1, baseColor + '0.05)'); // Fade at left edge
+            gradient.addColorStop(0, baseColor + '0.6)'); // Strong at spot frequency
+            gradient.addColorStop(1, baseColor + '0.1)'); // Fade at left edge
         } else if (sidebandType === 'usb') {
             // USB: Most visible at spot frequency, fade to the right (higher frequencies)
             gradient = this.ctx.createLinearGradient(exactFreqX, 0, endX, 0);
-            gradient.addColorStop(0, baseColor + '0.4)'); // Strong at spot frequency
-            gradient.addColorStop(1, baseColor + '0.05)'); // Fade at right edge
+            gradient.addColorStop(0, baseColor + '0.6)'); // Strong at spot frequency
+            gradient.addColorStop(1, baseColor + '0.1)'); // Fade at right edge
         } else {
             // CW, digital modes (FT8, FT4, RTTY, digi), and other centered modes
             // Create horizontal linear gradient from center outward
             gradient = this.ctx.createLinearGradient(startX, 0, endX, 0);
-            gradient.addColorStop(0, baseColor + '0.05)'); // Fade at left edge
-            gradient.addColorStop(0.5, baseColor + '0.4)'); // Strong at center
-            gradient.addColorStop(1, baseColor + '0.05)'); // Fade at right edge
+            gradient.addColorStop(0, baseColor + '0.1)'); // Fade at left edge
+            gradient.addColorStop(0.5, baseColor + '0.6)'); // Strong at center
+            gradient.addColorStop(1, baseColor + '0.1)'); // Fade at right edge
         }
 
         // Apply gradient and draw
