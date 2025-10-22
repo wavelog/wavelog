@@ -1,3 +1,9 @@
+<style>
+	/* Force left alignment for Bootstrap Multiselect button */
+	.multiselect.dropdown-toggle {
+		text-align: left !important;
+	}
+</style>
 <div class="container gridsquare_map_form">
     <br>
 
