@@ -11,7 +11,9 @@ document.addEventListener("DOMContentLoaded", function() {
 	$('#dxcc').multiselect({
 		// template is needed for bs5 support
 		templates: {
-			button: '<button type="button" class="multiselect dropdown-toggle btn btn-secondary form-select form-select-sm" data-bs-toggle="dropdown" aria-expanded="false"><span class="multiselect-selected-text"></span></button>',
+			button: '<button type="button" class="multiselect dropdown-toggle btn btn-sm btn-secondary form-select form-select-sm" data-bs-toggle="dropdown" aria-expanded="false"><span class="multiselect-selected-text"></span></button>',
+			option: '<button type="button" class="multiselect-option dropdown-item-sm dropdown-item"></button>',
+			popupContainer: '<div class="multiselect-container dropdown-menu dropdown-menu-sm"></div>',
 		},
 		enableFiltering: true,
 		enableFullValueFiltering: false,
@@ -20,11 +22,14 @@ document.addEventListener("DOMContentLoaded", function() {
 		numberDisplayed: 1,
 		inheritClass: true,
 		buttonWidth: '100%',
-		maxHeight: 600
+		maxHeight: 600,
+		buttonContainer: '<div class="btn-group-sm" />',
 	});
-	$('.multiselect-container .multiselect-filter', $('#dxcc').parent()).css({
-		'position': 'sticky', 'top': '0px', 'z-index': 1, 'background-color':'inherit', 'width':'100%', 'height':'37px'
+
+		$('.multiselect-container .multiselect-filter', $('#dxcc').parent()).css({
+		'position': 'sticky', 'top': '0px', 'z-index': 1, 'background-color':'inherit', 'height':'37px'
 	})
+
 });
 
 $('#band').change(function(){
