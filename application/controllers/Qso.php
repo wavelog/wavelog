@@ -220,10 +220,8 @@ class QSO extends CI_Controller {
 				->get_options('cwmacros', ['option_name' => "macro{$i}"])
 				->row();
 
-			// Decode JSON stored in option_value
 			$decoded = json_decode($row->option_value ?? '');
 
-			// Make sure it's an object (in case it's null)
 			$name  = isset($decoded->name) ? $decoded->name : '';
 			$macro = isset($decoded->macro) ? $decoded->macro : '';
 
@@ -233,8 +231,27 @@ class QSO extends CI_Controller {
 			];
 		}
 
+		// Check if all are empty
+		$allEmpty = true;
+		foreach ($cwmacros as $macro) {
+			if (!empty($macro['name']) || !empty($macro['macro'])) {
+				$allEmpty = false;
+				break;
+			}
+		}
+
+		// Apply defaults to first 5 if all are empty
+		if ($allEmpty) {
+			$cwmacros['macro1'] = ['name' => 'CQ',   'macro' => 'CQ CQ CQ DE [MYCALL] [MYCALL] K'];
+			$cwmacros['macro2'] = ['name' => 'REPT', 'macro' => '[CALL] DE [MYCALL] [RSTS] [RSTS] K'];
+			$cwmacros['macro3'] = ['name' => 'TU',   'macro' => '[CALL] TU 73 DE [MYCALL] K'];
+			$cwmacros['macro4'] = ['name' => 'QRZ',  'macro' => 'QRZ DE [MYCALL] K'];
+			$cwmacros['macro5'] = ['name' => 'TEST', 'macro' => 'TEST DE [MYCALL] K'];
+		}
+
 		$this->load->view('qso/components/winkeysettings', $cwmacros);
 	}
+
 
 	function cwmacrosave(){
 		$this->load->model('user_options_model');
@@ -260,7 +277,7 @@ class QSO extends CI_Controller {
 				->row();
 
 			// Decode JSON stored in option_value
-			$decoded = json_decode($row->option_value);
+			$decoded = json_decode($row->option_value ?? '');
 
 			// Make sure it's an object (in case it's null)
 			$name  = isset($decoded->name) ? $decoded->name : '';

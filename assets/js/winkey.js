@@ -384,26 +384,43 @@ function getMacros() {
     fetch(base_url + 'index.php/qso/cwmacros_json')
     .then(response => response.json())
     .then(data => {
-        function1Name = data.function1_name;
-        function1Macro = data.function1_macro;
-        function2Name = data.function2_name;
-        function2Macro = data.function2_macro;
-        function3Name = data.function3_name;
-        function3Macro = data.function3_macro;
-        function4Name = data.function4_name;
-        function4Macro = data.function4_macro;
-        function5Name = data.function5_name;
-        function5Macro = data.function5_macro;
-        function6Name = data.function6_name;
-        function6Macro = data.function6_macro;
-        function7Name = data.function7_name;
-        function7Macro = data.function7_macro;
-        function8Name = data.function8_name;
-        function8Macro = data.function8_macro;
-        function9Name = data.function9_name;
-        function9Macro = data.function9_macro;
-        function10Name = data.function10_name;
-        function10Macro = data.function10_macro;
+		// Check if all fields are empty
+        const allEmpty = Object.values(data).every(value => value === "");
+
+		if (allEmpty) {
+            // Set default values
+            function1Name = 'CQ';
+            function1Macro = 'CQ CQ CQ DE [MYCALL] [MYCALL] K';
+            function2Name = 'REPT';
+            function2Macro = '[CALL] DE [MYCALL] [RSTS] [RSTS] K';
+            function3Name = 'TU';
+            function3Macro = '[CALL] TU 73 DE [MYCALL] K';
+            function4Name = 'QRZ';
+            function4Macro = 'QRZ DE [MYCALL] K';
+            function5Name = 'TEST';
+            function5Macro = 'TEST DE [MYCALL] K';
+        } else {
+			function1Name = data.function1_name;
+			function1Macro = data.function1_macro;
+			function2Name = data.function2_name;
+			function2Macro = data.function2_macro;
+			function3Name = data.function3_name;
+			function3Macro = data.function3_macro;
+			function4Name = data.function4_name;
+			function4Macro = data.function4_macro;
+			function5Name = data.function5_name;
+			function5Macro = data.function5_macro;
+			function6Name = data.function6_name;
+			function6Macro = data.function6_macro;
+			function7Name = data.function7_name;
+			function7Macro = data.function7_macro;
+			function8Name = data.function8_name;
+			function8Macro = data.function8_macro;
+			function9Name = data.function9_name;
+			function9Macro = data.function9_macro;
+			function10Name = data.function10_name;
+			function10Macro = data.function10_macro;
+		}
 
         const morsekey_func1_Button = document.getElementById('morsekey_func1');
         morsekey_func1_Button.textContent = 'F1 (' + function1Name + ')';
