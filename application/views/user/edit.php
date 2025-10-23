@@ -902,8 +902,8 @@
 								<div class="card-header"><?= __("Club Log"); ?></div>
 								<div class="card-body">
 									<div class="mb-3">
-										<label><?= __("Club Log Email/Callsign"); ?></label>
-										<input class="form-control" type="text" name="user_clublog_name" value="<?php if(isset($user_clublog_name)) { echo $user_clublog_name; } ?>" />
+										<label><?= __("Club Log Email"); ?></label>
+										<input class="form-control" type="email" name="user_clublog_name" value="<?php if(isset($user_clublog_name)) { echo $user_clublog_name; } ?>" />
 										<?php if(isset($userclublogname_error)) { echo "<small class=\"badge bg-danger\">".$userclublogname_error."</small>"; } ?>
 									</div>
 
@@ -1043,7 +1043,7 @@
 						<!-- Winkeyer -->
 						<div class="col-md">
 							<div class="card">
-								<div class="card-header"><?= __("Winkeyer"); ?> <span class="badge text-bg-danger float-end"><?= __("Experimental"); ?></span></div>
+								<div class="card-header"><?= __("Winkeyer"); ?></div>
 								<div class="card-body">
 									<div class="mb-3">
 										<label><?= __("Winkeyer Features Enabled"); ?></label>

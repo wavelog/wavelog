@@ -255,9 +255,9 @@ class Update extends CI_Controller {
 			}
 
 			// Clear the tables, ready for new data
-			$this->db->empty_table("dxcc_entities");
-			$this->db->empty_table("dxcc_exceptions");
-			$this->db->empty_table("dxcc_prefixes");
+			$this->db->query("TRUNCATE TABLE dxcc_entities");
+			$this->db->query("TRUNCATE TABLE dxcc_exceptions");
+			$this->db->query("TRUNCATE TABLE dxcc_prefixes");
 			$this->update_status();
 
 			// Parse the three sections of the file and update the tables
@@ -703,6 +703,41 @@ class Update extends CI_Controller {
 
 		$this->load->model('Update_model');
 		$this->Update_model->update_check();
+	}
+
+	public function update_vucc_grids() {
+		$lockfilename='/tmp/.update_vucc_grids_running';
+		if (!file_exists($lockfilename)) {
+			touch($lockfilename);
+			$this->load->model('Update_model');
+			$result = $this->Update_model->update_vucc_grids();
+			unlink($lockfilename);
+
+			if($this->session->userdata('user_type') == '99') {
+				if (substr($result, 0, 4) == 'DONE') {
+					$this->session->set_flashdata('success', __("VUCC Grid file update complete. Result: ") . "'" . $result . "'");
+				} else {
+					$this->session->set_flashdata('error', __("VUCC Grid file update failed. Result: ") . "'" . $result . "'");
+				}
+
+
+				redirect('debug');
+				} else {
+					echo $result;
+				}
+		} else {
+			log_message('debug', 'There is a lockfile for this job. Checking the age...');
+			$lockfile_time = filemtime($lockfilename);
+			$tdiff = time() - $lockfile_time;
+			if ($tdiff > 120) {
+				unlink($lockfilename);
+				log_message('debug', 'Deleted lockfile because it was older then 120seconds.');
+			} else {
+				log_message('debug', 'Process is currently locked. Further calls are ignored.');
+				echo 'locked - running';
+			}
+		}
+
 	}
 }
 ?>
