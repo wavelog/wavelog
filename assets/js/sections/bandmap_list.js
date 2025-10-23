@@ -231,6 +231,7 @@ $(function() {
 	},500);
 
 	let bc2qso = new BroadcastChannel('qso_wish');
+	var CatCallbackURL = "http://127.0.0.1:54321";
 
 	// set some times
 	let wait4pong = 2000; // we wait in max 2 seconds for the pong
@@ -310,7 +311,6 @@ $(function() {
 	let reconnectAttempts = 0;
 	let websocketEnabled = false;
 	let CATInterval=null;
-	var CatCallbackURL = "http://127.0.0.1:54321";
 
 	function initializeWebSocketConnection() {
 		try {
@@ -356,6 +356,7 @@ $(function() {
 		// Handle radio status updates
 		if (data.type === 'radio_status' && data.radio && ($(".radios option:selected").val() == 'ws')) {
 			data.updated_minutes_ago = Math.floor((Date.now() - data.timestamp) / 60000);
+			data.cat_url = 'http://127.0.0.1:54321';
 			// Cache the radio data
 			updateCATui(data);
 		}
