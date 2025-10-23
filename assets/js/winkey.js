@@ -288,7 +288,7 @@ async function disconnect() {
 
 //When the send button is pressed
 function clickSend() {
-    writeToStream(text2send).then(function() {
+    writeToStream(sendText.value).then(function() {
         // writeToStream("\r");
         //and clear the input field, so it's clear it has been sent
         $('#sendText').val('');
