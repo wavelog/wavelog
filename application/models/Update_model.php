@@ -625,4 +625,82 @@ class Update_model extends CI_Model {
 		return $result;
 	}
 
+	function update_vucc_grids() {
+		// set the last run in cron table for the correct cron id
+		$this->load->model('cron_model');
+		$this->cron_model->set_last_run('vucc_grid_file');
+		$mtime = microtime();
+		$mtime = explode(" ",$mtime);
+		$mtime = $mtime[1] + $mtime[0];
+		$starttime = $mtime;
+
+		$url = 'https://sourceforge.net/p/trustedqsl/tqsl/ci/master/tree/apps/vuccgrids.dat?format=raw';
+		$curl = curl_init($url);
+
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+
+		$response = curl_exec($curl);
+
+		$xml = @simplexml_load_string($response);
+
+        if ($xml === false) {
+			return "Failed to parse TQSL VUCC grid file XML.";
+        }
+
+		// Truncate the table first
+		$this->db->query("TRUNCATE TABLE vuccgrids;");
+
+		// Loop through <vucc> elements
+		$batchSize = 2000;
+		$vuccdata = [];
+		$total_inserted  = 0;
+		foreach ($xml->vucc as $vucc) {
+			$adif = (int)$vucc['entity']; // assuming "entity" attribute is ADIF
+			$grid = strtoupper(trim((string)$vucc['grid']));
+
+			if ($adif > 0 && $grid !== '') {
+				$key = $adif . '-' . $grid;
+
+				// Only add if not already in array
+				if (!isset($vuccdata[$key])) {
+					$vuccdata[$key] = [
+						'adif' => $adif,
+						'gridsquare' => $grid
+					];
+				}
+
+                if (count($vuccdata) >= $batchSize) {
+					$rows = $this->db->insert_batch('vuccgrids', array_values($vuccdata));
+					if ($rows !== false) {
+						$total_inserted += $rows;
+					}
+					$vuccdata = []; // clear after insert
+				}
+			}
+		}
+
+		// insert any remaining rows
+		if (!empty($vuccdata)) {
+			$rows = $this->db->insert_batch('vuccgrids', array_values($vuccdata));
+			if ($rows !== false) {
+				$total_inserted += $rows;
+			}
+		}
+
+		curl_close($curl);
+
+		$mtime = microtime();
+		$mtime = explode(" ",$mtime);
+		$mtime = $mtime[1] + $mtime[0];
+		$endtime = $mtime;
+		$totaltime = ($endtime - $starttime);
+
+		if ($total_inserted > 0) {
+            return "DONE: This page was created in ".$totaltime." seconds.<br />" . number_format($total_inserted ) . " Grids saved";
+        } else {
+            return "FAILED: Empty file";
+        }
+	}
+
 }
