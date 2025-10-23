@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-10-22 15:45+0000\n"
-"PO-Revision-Date: 2025-10-23 20:25+0000\n"
+"PO-Revision-Date: 2025-10-23 21:02+0000\n"
 "Last-Translator: F5MQU <f5mqu.p@gmail.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/fr/>\n"
@@ -13649,22 +13649,22 @@ msgstr "Aucun QSO en attente de téléchargement LoTW n'a été trouvé."
 
 #: application/views/search/main.php:31
 msgid "Callsign / Gridsquare"
-msgstr ""
+msgstr "Indicatif / Locator"
 
 #: application/views/search/result.php:2
 #, php-format
 msgid "Results for %s"
-msgstr ""
+msgstr "Résultats pour %s"
 
 #: application/views/search/result.php:4
 #, php-format
 msgid "Sorry, but we didn't find any past QSOs with %s"
-msgstr ""
+msgstr "Désolé, mais nous n'avons trouvé aucun QSO effectué avec %s"
 
 #: application/views/search/result.php:6
 #, php-format
 msgid "Callbook Search for %s"
-msgstr ""
+msgstr "Recherche dans le Carnet de trafic pour %s"
 
 #: application/views/search/result.php:39
 msgid "Not Worked"
@@ -13673,53 +13673,54 @@ msgstr "Non contacté"
 #: application/views/search/result.php:58
 msgid "Grid is auto-detected by callbook and probably wrong"
 msgstr ""
+"Locator détecté automatiquement par le carnet de trafic et probablement faux"
 
 #: application/views/search/search_result_ajax.php:463
 #: application/views/view_log/partial/log.php:142
 #: application/views/view_log/partial/log_ajax.php:534
 msgid "Mark QSL Sent (Bureau)"
-msgstr "Marquer QSL Envoyée (Bureau)"
+msgstr "Marquer les QSL comme Envoyées (Bureau)"
 
 #: application/views/search/search_result_ajax.php:464
 #: application/views/view_log/partial/log.php:143
 #: application/views/view_log/partial/log_ajax.php:535
 msgid "Mark QSL Sent (Direct)"
-msgstr "Marquer QSL Envoyée (Direct)"
+msgstr "Marquer les QSL comme Envoyées (Direct)"
 
 #: application/views/search/search_result_ajax.php:471
 #: application/views/view_log/partial/log.php:150
 #: application/views/view_log/partial/log_ajax.php:545
 #: application/views/view_log/qso.php:811
 msgid "Mark QSL Received (Bureau)"
-msgstr "Marquer QSL Reçue (Bureau)"
+msgstr "Marquer les QSL comme Reçues (Bureau)"
 
 #: application/views/search/search_result_ajax.php:472
 #: application/views/view_log/partial/log.php:151
 #: application/views/view_log/partial/log_ajax.php:546
 #: application/views/view_log/qso.php:813
 msgid "Mark QSL Received (Direct)"
-msgstr "Marquer QSL Reçue (Direct)"
+msgstr "Marquer les QSL comme Reçues (Direct)"
 
 #: application/views/search/search_result_ajax.php:473
 #: application/views/view_log/partial/log.php:152
 #: application/views/view_log/partial/log_ajax.php:536
 #: application/views/view_log/qso.php:821
 msgid "Mark QSL Card Requested (Bureau)"
-msgstr "Marquer Carte QSL comme demandé (Bureau)"
+msgstr "Marquer les QSL comme demandées (Bureau)"
 
 #: application/views/search/search_result_ajax.php:474
 #: application/views/view_log/partial/log.php:153
 #: application/views/view_log/partial/log_ajax.php:537
 #: application/views/view_log/qso.php:823
 msgid "Mark QSL Card Requested (Direct)"
-msgstr "Marquer Carte QSL comme demandé (Direct)"
+msgstr "Marquer les QSL comme demandées (Direct)"
 
 #: application/views/search/search_result_ajax.php:475
 #: application/views/view_log/partial/log.php:154
 #: application/views/view_log/partial/log_ajax.php:538
 #: application/views/view_log/qso.php:825
 msgid "Mark QSL Card Not Required"
-msgstr "Marquer Carte QSL comme non requise"
+msgstr "Marquer les QSL comme non requises"
 
 #: application/views/search/search_result_ajax.php:482
 #: application/views/view_log/partial/log_ajax.php:553
@@ -13733,11 +13734,11 @@ msgstr "Rechercher sur HamQTH"
 
 #: application/views/search/stored_queries.php:9
 msgid "Query"
-msgstr ""
+msgstr "Requête"
 
 #: application/views/simplefle/index.php:13
 msgid "Simple Fast Log Entry (FLE)"
-msgstr ""
+msgstr "Entrée de journal simple et rapide (FLE)"
 
 #: application/views/simplefle/index.php:14
 msgid ""
@@ -13745,6 +13746,11 @@ msgid ""
 "efficiently. Due to its syntax, only a minimum of input is required to log "
 "many QSOs with as little effort as possible."
 msgstr ""
+"«Fast Log Entry », ou simplement « FLE » pour "
+"\"entrée rapide dans le journal\" est un système permettant d'enregistrer "
+"des QSO très rapidement et efficacement. Grâce à sa syntaxe, seule une "
+"saisie minimale est nécessaire pour enregistrer de nombreux QSO avec un "
+"minimum d'effort."
 
 #: application/views/simplefle/index.php:15
 msgid ""
@@ -13752,6 +13758,9 @@ msgid ""
 "website. Simple FLE was written by OK2CQR based on DF3CB's FLE and provides "
 "a web interface to log QSOs."
 msgstr ""
+"FLE a été initialement développé par DF3CB. Ce dernier propose un programme "
+"pour Windows sur son site web. SIMPLE FLE a été développé par OK2CQR, basé "
+"sur FLE de DF3CB, et propose une interface web pour enregistrer les QSO."
 
 #: application/views/simplefle/index.php:16
 #, php-format
@@ -13760,108 +13769,126 @@ msgid ""
 "session and now SimpleFLE is also available in Wavelog. Information about "
 "the syntax and how FLE works can be found %s."
 msgstr ""
+"Un cas courant d'utilisation est l'importation de journaux de trafic en "
+"papier depuis une session en extérieur. SimpleFLE est désormais également "
+"disponible dans Wavelog. Des informations sur la syntaxe et le "
+"fonctionnement de SimpleFLE sont disponibles dans la section %s."
 
 #: application/views/simplefle/index.php:17
 #: application/views/simplefle/index.php:184
 msgid "Syntax Help"
-msgstr ""
+msgstr "Aide à la syntaxe"
 
 #: application/views/simplefle/index.php:18
 msgid "Syntax for FLE"
-msgstr ""
+msgstr "Syntaxe pour FLE"
 
 #: application/views/simplefle/index.php:19
 msgid "Close and Load Sample Data"
-msgstr ""
+msgstr "Fermer et charger des exemples de données"
 
 #: application/views/simplefle/index.php:23
 msgid "Band is missing!"
-msgstr ""
+msgstr "La Bande est manquante !"
 
 #: application/views/simplefle/index.php:24
 msgid "Mode is missing!"
-msgstr ""
+msgstr "Le Mode est manquant !"
 
 #: application/views/simplefle/index.php:25
 msgid "Time is not set!"
-msgstr ""
+msgstr "L'heure n'est pas réglée !"
 
 #: application/views/simplefle/index.php:26
 msgid "Invalid date"
-msgstr ""
+msgstr "Date invalide"
 
 #: application/views/simplefle/index.php:29
 msgid "Station Call is not selected"
-msgstr ""
+msgstr "L'indicatif de la station n'est pas sélectionné"
 
 #: application/views/simplefle/index.php:30
 msgid "'Operator' Field is empty"
-msgstr ""
+msgstr "Le champs \"opérateur\" est vide"
 
 #: application/views/simplefle/index.php:31
 msgid "Warning! Do you really want to reset everything?"
-msgstr ""
+msgstr "Attention ! Voulez-vous vraiment tout réinitialiser ?"
 
 #: application/views/simplefle/index.php:32
 msgid ""
 "Warning! You can't log the QSO List, because some QSO don't have band and/or "
 "mode defined!"
 msgstr ""
+"Attention ! Impossible d'enregistrer la liste des QSO, car certains QSO "
+"n'ont pas de bande, ni de mode définis !"
 
 #: application/views/simplefle/index.php:33
 msgid ""
 "Warning! You can't log the QSO List, because some QSO don't have a time "
 "defined!"
 msgstr ""
+"Attention ! Impossible d'enregistrer la liste des QSO, car certains QSO "
+"n'ont pas d'heure définie !"
 
 #: application/views/simplefle/index.php:34
 msgid ""
 "Attention! The Data Field containes example data. First Clear Logging "
 "Session!"
 msgstr ""
+"Attention ! Le champ des données ne contient que des exemples de données. "
+"Veuillez d'abord effacer la session d'enregistrement !"
 
 #: application/views/simplefle/index.php:35
 msgid ""
 "Attention! Either you have set a contest, but included no exchange, or you "
 "have logged contest-data but did not select a contest."
 msgstr ""
+"Attention ! Soit vous avez lancé un concours sans inclure de report, soit "
+"vous avez enregistré des données de concours sans sélectionner le type de "
+"concours."
 
 #: application/views/simplefle/index.php:36
 msgid ""
 "Are you sure that you want to add these QSO to the Log and clear the session?"
 msgstr ""
+"Êtes-vous sûr de vouloir ajouter ces QSO au journal et d'effacer la session ?"
 
 #: application/views/simplefle/index.php:37
 msgid "QSO Logged!"
-msgstr ""
+msgstr "QSO enregistrés !"
 
 #: application/views/simplefle/index.php:38
 msgid "The QSO were successfully logged in the logbook! Dupes were skipped."
 msgstr ""
+"Les QSO ont été enregistrés avec succès dans le carnet de trafic ! Les "
+"doublons ont été ignorés."
 
 #: application/views/simplefle/index.php:40
 msgid "An error occurred while saving the QSO to the logbook! Error: "
 msgstr ""
+"Une erreur s'est produite lors de l'enregistrement du QSO dans le carnet de "
+"trafic ! Erreur : "
 
 #: application/views/simplefle/index.php:44
 msgid "What is that?"
-msgstr ""
+msgstr "Qu'est-ce que c'est ?"
 
 #: application/views/simplefle/index.php:47
 msgid "Current UTC Time"
-msgstr ""
+msgstr "Heure UTC actuelle"
 
 #: application/views/simplefle/index.php:80
 msgid "If you don't choose a date, today's date will be used."
-msgstr ""
+msgstr "Si vous ne choisissez pas de date, la date du jour sera utilisée."
 
 #: application/views/simplefle/index.php:92
 msgid "You can add the entered QSOs to a contest."
-msgstr ""
+msgstr "Vous pouvez ajouter les QSO saisis à un concours."
 
 #: application/views/simplefle/index.php:99
 msgid "Station Call/Location"
-msgstr ""
+msgstr "Indicatif / Emplacement"
 
 #: application/views/simplefle/index.php:111
 #, php-format
@@ -13869,56 +13896,61 @@ msgid ""
 "If you did operate from a new location, first create a new %sStation "
 "Location%s"
 msgstr ""
+"Si vous avez opéré à partir d'un nouvel emplacement, créez d'abord un nouvel "
+"%sEmplacement de station%s"
 
 #: application/views/simplefle/index.php:117
 msgid "e.g. OK2CQR"
-msgstr ""
+msgstr "Par exemple OK2CQR"
 
 #: application/views/simplefle/index.php:120
 msgid "This is callsign of the operator. Without any pre- or suffixes."
-msgstr ""
+msgstr "Il s'agit de l'indicatif de l'opérateur. Sans préfixe, ni suffixe."
 
 #: application/views/simplefle/index.php:133
 msgid "Enter the Data"
-msgstr ""
+msgstr "Entrer les données"
 
 #: application/views/simplefle/index.php:162
 msgid "Refs"
-msgstr ""
+msgstr "Réf."
 
 #: application/views/simplefle/index.php:174
 #, php-format
 msgid "The Refs can be either %sS%sOTA, %sI%sOTA, %sP%sOTA, or %sW%sWFF"
-msgstr ""
+msgstr "Les références peuvent être %sS%sOTA, %sI%sOTA, %sP%sOTA ou %sW%sWFF"
 
 #: application/views/simplefle/index.php:181
 msgid "Reload QSO List"
-msgstr ""
+msgstr "Recharger la liste des QSO"
 
 #: application/views/simplefle/index.php:182
 msgid "Save in Wavelog"
-msgstr ""
+msgstr "Sauvegarder dans Wavelog"
 
 #: application/views/simplefle/index.php:183
 msgid "Clear Logging Session"
-msgstr ""
+msgstr "Effacer la session d'enregistrement"
 
 #: application/views/simplefle/options.php:20
 msgid "No Options yet"
-msgstr ""
+msgstr "Aucune option pour le moment"
 
 #: application/views/simplefle/syntax_help.php:1
 msgid "Before starting to log a QSO, please note the basic rules."
 msgstr ""
+"Avant de commencer à enregistrer un QSO, veuillez noter les règles de base."
 
 #: application/views/simplefle/syntax_help.php:2
 msgid "- Each new QSO should be on a new line."
-msgstr ""
+msgstr "- Chaque nouveau QSO doit être sur une nouvelle ligne."
 
 #: application/views/simplefle/syntax_help.php:3
 msgid ""
 "- On each new line, only write data that has changed from the previous QSO."
 msgstr ""
+"- Sur chaque nouvelle ligne, écrivez uniquement les données qui ont changé "
+"par rapport au QSO précédent."
 
 #: application/views/simplefle/syntax_help.php:4
 msgid ""
