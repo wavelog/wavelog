@@ -72,16 +72,20 @@
     /*
     DX Waterfall Language
     */
-    var lang_dxwaterfall_tune_to_spot = "<?= __("Tune to spot frequency [Ctrl+Shift+Space]"); ?>";
+    // Detect platform for keyboard shortcuts (Cmd on Mac, Ctrl on Windows/Linux)
+    var isMac = navigator.userAgent.toUpperCase().indexOf('MAC') >= 0;
+    var modKey = isMac ? 'Cmd' : 'Ctrl';
+    
+    var lang_dxwaterfall_tune_to_spot = "<?= __("Tune to spot frequency"); ?>" + " [" + modKey + "+Shift+Space]";
     var lang_dxwaterfall_cycle_through = "<?= __("Cycle through"); ?>";
     var lang_dxwaterfall_spots_currently_showing = "<?= __("spots (currently showing"); ?>";
     var lang_dxwaterfall_log_qso_with = "<?= __("Log QSO with"); ?>";
     var lang_dxwaterfall_new_continent = "<?= __("New Continent"); ?>";
     var lang_dxwaterfall_new_dxcc = "<?= __("New DXCC"); ?>";
     var lang_dxwaterfall_new_callsign = "<?= __("New Callsign"); ?>";
-    var lang_dxwaterfall_previous_spot = "<?= __("Previous spot [Ctrl+Left] | First spot [Ctrl+Down]"); ?>";
+    var lang_dxwaterfall_previous_spot = "<?= __("Previous spot"); ?>" + " [" + modKey + "+Left] | <?= __("First spot"); ?> [" + modKey + "+Down]";
     var lang_dxwaterfall_no_spots_lower = "<?= __("No spots at lower frequency"); ?>";
-    var lang_dxwaterfall_next_spot = "<?= __("Next spot [Ctrl+Right] | Last spot [Ctrl+Up]"); ?>";
+    var lang_dxwaterfall_next_spot = "<?= __("Next spot"); ?>" + " [" + modKey + "+Right] | <?= __("Last spot"); ?> [" + modKey + "+Up]";
     var lang_dxwaterfall_no_spots_higher = "<?= __("No spots at higher frequency"); ?>";
     var lang_dxwaterfall_no_spots_available = "<?= __("No spots available"); ?>";
     var lang_dxwaterfall_cycle_unworked = "<?= __("Cycle through unworked continents/DXCC"); ?>";
@@ -97,9 +101,9 @@
     var lang_dxwaterfall_cw = "<?= __("CW"); ?>";
     var lang_dxwaterfall_toggle_digi = "<?= __("Toggle Digital mode filter"); ?>";
     var lang_dxwaterfall_digi = "<?= __("Digi"); ?>";
-    var lang_dxwaterfall_zoom_out = "<?= __("Zoom out [Ctrl+-]"); ?>";
+    var lang_dxwaterfall_zoom_out = "<?= __("Zoom out"); ?>" + " [" + modKey + "+-]";
     var lang_dxwaterfall_reset_zoom = "<?= __("Reset zoom to default (3)"); ?>";
-    var lang_dxwaterfall_zoom_in = "<?= __("Zoom in [Ctrl++]"); ?>";
+    var lang_dxwaterfall_zoom_in = "<?= __("Zoom in"); ?>" + " [" + modKey + "++]";
     var lang_dxwaterfall_waiting_data = "<?= __("Waiting for DX Cluster data..."); ?>";
     var lang_dxwaterfall_comment = "<?= __("Comment: "); ?>";
     var lang_dxwaterfall_modes_label = "<?= __("modes:"); ?>";

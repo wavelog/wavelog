@@ -243,6 +243,36 @@ var DX_WATERFALL_UTILS = {
         }
     },
 
+    // Platform detection utilities
+    platform: {
+        isMac: function() {
+            // Use modern userAgentData API if available, fallback to userAgent
+            if (navigator.userAgentData && navigator.userAgentData.platform) {
+                return navigator.userAgentData.platform.toUpperCase().indexOf('MAC') >= 0;
+            }
+            return navigator.userAgent.toUpperCase().indexOf('MAC') >= 0;
+        },
+
+        isWindows: function() {
+            if (navigator.userAgentData && navigator.userAgentData.platform) {
+                return navigator.userAgentData.platform.toUpperCase().indexOf('WIN') >= 0;
+            }
+            return navigator.userAgent.toUpperCase().indexOf('WIN') >= 0;
+        },
+
+        isLinux: function() {
+            if (navigator.userAgentData && navigator.userAgentData.platform) {
+                return navigator.userAgentData.platform.toUpperCase().indexOf('LINUX') >= 0;
+            }
+            return navigator.userAgent.toUpperCase().indexOf('LINUX') >= 0;
+        },
+
+        // Check if the modifier key is pressed (Cmd on Mac, Ctrl on Windows/Linux)
+        isModifierKey: function(event) {
+            return this.isMac() ? event.metaKey : event.ctrlKey;
+        }
+    },
+
     // Mode classification utilities
     modes: {
         isCw: function(mode) {
@@ -1112,17 +1142,14 @@ var dxWaterfall = {
             self.userEditingFrequency = true;
         });
 
-        // Use keydown instead of keypress to catch Enter before qrg_handler.js
-        // Also stop immediate propagation to prevent other handlers from running
+        // Use keydown to catch Enter key for frequency commits
         this.$freqCalculated.on('keydown', function(e) {
             if (e.which === 13) { // Enter key
                 e.preventDefault(); // Prevent form submission
-                e.stopPropagation(); // Stop event from bubbling up
-                e.stopImmediatePropagation(); // Stop other handlers on same element
                 self.userEditingFrequency = false; // User finished editing
                 self.commitFrequency();
                 $(this).blur(); // Remove focus from the field
-                return false; // Extra safety to prevent default behavior
+                return false;
             }
         });
 
@@ -4528,38 +4555,41 @@ $(document).ready(function() {
             return; // Don't handle keys during frequency changes
         }
 
-        // Ctrl+Left: Previous spot
-        if (e.ctrlKey && !e.shiftKey && e.key === 'ArrowLeft') {
+        // Use Cmd on Mac, Ctrl on Windows/Linux
+        var modKey = DX_WATERFALL_UTILS.platform.isModifierKey(e);
+
+        // Ctrl/Cmd+Left: Previous spot
+        if (modKey && !e.shiftKey && e.key === 'ArrowLeft') {
             e.preventDefault();
             dxWaterfall.prevSpot();
         }
-        // Ctrl+Right: Next spot
-        else if (e.ctrlKey && !e.shiftKey && e.key === 'ArrowRight') {
+        // Ctrl/Cmd+Right: Next spot
+        else if (modKey && !e.shiftKey && e.key === 'ArrowRight') {
             e.preventDefault();
             dxWaterfall.nextSpot();
         }
-        // Ctrl+Up: Jump to last spot in band
-        else if (e.ctrlKey && !e.shiftKey && e.key === 'ArrowUp') {
+        // Ctrl/Cmd+Up: Jump to last spot in band
+        else if (modKey && !e.shiftKey && e.key === 'ArrowUp') {
             e.preventDefault();
             dxWaterfall.lastSpot();
         }
-        // Ctrl+Down: Jump to first spot in band
-        else if (e.ctrlKey && !e.shiftKey && e.key === 'ArrowDown') {
+        // Ctrl/Cmd+Down: Jump to first spot in band
+        else if (modKey && !e.shiftKey && e.key === 'ArrowDown') {
             e.preventDefault();
             dxWaterfall.firstSpot();
         }
-        // Ctrl++: Zoom in
-        else if (e.ctrlKey && !e.shiftKey && (e.key === '+' || e.key === '=')) {
+        // Ctrl/Cmd++: Zoom in
+        else if (modKey && !e.shiftKey && (e.key === '+' || e.key === '=')) {
             e.preventDefault();
             dxWaterfall.zoomIn();
         }
-        // Ctrl+-: Zoom out
-        else if (e.ctrlKey && !e.shiftKey && (e.key === '-' || e.key === '_')) {
+        // Ctrl/Cmd+-: Zoom out
+        else if (modKey && !e.shiftKey && (e.key === '-' || e.key === '_')) {
             e.preventDefault();
             dxWaterfall.zoomOut();
         }
-        // Ctrl+Shift+Space: Tune to current spot frequency
-        else if (e.ctrlKey && e.shiftKey && e.key === ' ') {
+        // Ctrl/Cmd+Shift+Space: Tune to current spot frequency
+        else if (modKey && e.shiftKey && e.key === ' ') {
             e.preventDefault();
             // Find the tune icon in the spot info div and trigger it
             var tuneIcon = $('#dxWaterfallSpot .tune-icon');
@@ -4567,8 +4597,8 @@ $(document).ready(function() {
                 tuneIcon.trigger('click');
             }
         }
-        // Ctrl+Space: Copy callsign from current spot info
-        else if (e.ctrlKey && !e.shiftKey && e.key === ' ') {
+        // Ctrl/Cmd+Space: Copy callsign from current spot info
+        else if (modKey && !e.shiftKey && e.key === ' ') {
             e.preventDefault();
             // Find the copy icon in the spot info div and trigger it
             var copyIcon = $('#dxWaterfallSpot .copy-icon');
