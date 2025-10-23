@@ -1575,7 +1575,13 @@ mymap.on('mousemove', onQsoMapMove);
 
 	    // Update frequency from CAT
 	    // Add a small delay before first poll to allow radio interface to initialize
-	    var catPollInterval = <?php echo $this->config->item('cat_poll_interval') ?? 500; ?>;
+	    var catPollInterval = <?php echo $this->config->item('cat_poll_interval') ?? 3000; ?>;
+
+	    // Initialize DX_WATERFALL_CONSTANTS CAT timings based on poll interval
+	    if (typeof initCATTimings === 'function') {
+	        initCATTimings(catPollInterval);
+	    }
+
 	    setTimeout(function() {
 	        updateFromCAT();
 	        // Then poll at configured interval

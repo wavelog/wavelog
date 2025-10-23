@@ -25,9 +25,11 @@ var DX_WATERFALL_CONSTANTS = {
     },
 
     // CAT and radio control
+    // Note: These values are initialized and will be recalculated based on catPollInterval
     CAT: {
-        TUNING_FLAG_FALLBACK_MS: 2000,    	// Fallback timeout for tuning flags (2 seconds)
-        FREQUENCY_WAIT_TIMEOUT_MS: 3000   	// Initial load wait time for CAT frequency
+        POLL_INTERVAL_MS: 3000,           	// Default CAT polling interval (can be overridden by config)
+        TUNING_FLAG_FALLBACK_MS: 4500,    	// Fallback timeout for tuning flags (1.5x poll interval)
+        FREQUENCY_WAIT_TIMEOUT_MS: 6000   	// Initial load wait time for CAT frequency (2x poll interval)
     },
 
     // Visual timing
@@ -114,7 +116,7 @@ var DX_WATERFALL_CONSTANTS = {
     FONTS: {
         RULER: '11px "Consolas", "Courier New", monospace',
         CENTER_MARKER: '12px "Consolas", "Courier New", monospace',
-        SPOT_LABELS: 'bold 12px "Consolas", "Courier New", monospace',
+        SPOT_LABELS: 'bold 13px "Consolas", "Courier New", monospace',  // Increased from 12px to 13px (5% larger)
         SPOT_INFO: '11px "Consolas", "Courier New", monospace',
         WAITING_MESSAGE: '16px "Consolas", "Courier New", monospace',
         TITLE_LARGE: 'bold 24px "Consolas", "Courier New", monospace',
@@ -147,6 +149,21 @@ var DX_WATERFALL_CONSTANTS = {
     // Static FT8 frequencies (in kHz)
     FT8_FREQUENCIES: [1840, 3573, 7074, 10136, 14074, 18100, 21074, 24915, 28074, 50313, 144174, 432065]
 };
+
+// ========================================
+// CAT TIMING INITIALIZATION
+// ========================================
+
+/**
+ * Initialize CAT timing constants based on configured poll interval
+ * Called automatically from footer.php after catPollInterval is set
+ * @param {number} pollInterval - CAT polling interval in milliseconds
+ */
+function initCATTimings(pollInterval) {
+    DX_WATERFALL_CONSTANTS.CAT.POLL_INTERVAL_MS = pollInterval;
+    DX_WATERFALL_CONSTANTS.CAT.TUNING_FLAG_FALLBACK_MS = pollInterval * 1.5;
+    DX_WATERFALL_CONSTANTS.CAT.FREQUENCY_WAIT_TIMEOUT_MS = pollInterval * 2;
+}
 
 // ========================================
 // UTILITY FUNCTIONS
@@ -474,10 +491,39 @@ var DX_WATERFALL_UTILS = {
             options = options || {};
             var spotFreq = parseFloat(spot.frequency);
 
+            // Determine the correct mode to use
+            // Priority: program-specific mode from DXCC data > generic mode field
+            // Check for POTA, SOTA, WWFF, or IOTA specific modes
+            var spotMode = spot.mode || '';
+            
+            if (spot.dxcc_spotted) {
+                // Check for program-specific modes in priority order
+                if (spot.dxcc_spotted.pota_mode) {
+                    spotMode = spot.dxcc_spotted.pota_mode;
+                } else if (spot.dxcc_spotted.sota_mode) {
+                    spotMode = spot.dxcc_spotted.sota_mode;
+                } else if (spot.dxcc_spotted.wwff_mode) {
+                    spotMode = spot.dxcc_spotted.wwff_mode;
+                } else if (spot.dxcc_spotted.iota_mode) {
+                    spotMode = spot.dxcc_spotted.iota_mode;
+                }
+            } else if (spot.dxcc_spotter) {
+                // Fallback to spotter's DXCC data
+                if (spot.dxcc_spotter.pota_mode) {
+                    spotMode = spot.dxcc_spotter.pota_mode;
+                } else if (spot.dxcc_spotter.sota_mode) {
+                    spotMode = spot.dxcc_spotter.sota_mode;
+                } else if (spot.dxcc_spotter.wwff_mode) {
+                    spotMode = spot.dxcc_spotter.wwff_mode;
+                } else if (spot.dxcc_spotter.iota_mode) {
+                    spotMode = spot.dxcc_spotter.iota_mode;
+                }
+            }
+
             var spotObj = {
                 callsign: spot.spotted,
                 frequency: spotFreq,
-                mode: spot.mode || ''
+                mode: spotMode
             };
 
             // Add optional fields based on options
@@ -679,6 +725,33 @@ var DX_WATERFALL_UTILS = {
         pendingPopulationTimer: null,
         pendingLookupTimer: null,
 
+        // Cached jQuery selectors for performance
+        $btnReset: null,
+
+        /**
+         * Initialize cached selectors
+         * Call this once when DOM is ready
+         */
+        initCache: function() {
+            this.$btnReset = $('#btn_reset');
+        },
+
+        /**
+         * Clear the QSO form by clicking the reset button
+         * Uses cached selector for performance
+         */
+        clearForm: function() {
+            // Initialize cache if not done yet
+            if (!this.$btnReset) {
+                this.initCache();
+            }
+
+            // Check if button exists and click it
+            if (this.$btnReset && this.$btnReset.length > 0) {
+                this.$btnReset.click();
+            }
+        },
+
         /**
          * Populate QSO form with spot data (callsign, mode, and park references)
          * @param {Object} spotData - Spot data object
@@ -805,7 +878,7 @@ var DX_WATERFALL_UTILS = {
             // Set frequency to the spot (like clicking behavior)
             if (targetSpot.frequency) {
                 // Clear the QSO form when navigating to a new spot
-                $('#btn_reset').click();
+                DX_WATERFALL_UTILS.qsoForm.clearForm();
 
                 // Check if frequency is far outside current band and update band if needed
                 if (waterfallContext.isFrequencyFarOutsideBand(targetSpot.frequency)) {
@@ -815,49 +888,37 @@ var DX_WATERFALL_UTILS = {
                 // Use the same frequency setting approach as clicking
                 setFrequency(targetSpot.frequency, true); // Pass true to indicate waterfall-initiated change
 
-                // Get the complete spot data from the stored reference
-                // targetSpot from allBandSpots has a reference to the original spot
-                var completeSpot = targetSpot._originalSpot || null;
+                // Manually set the frequency in the input field immediately
+                var formattedFreq = Math.round(targetSpot.frequency * 1000); // Convert to Hz
+                $('#frequency').val(formattedFreq);
 
-                // Populate callsign and trigger lookup after form is cleared
-                var self = this;
-                this.pendingNavigationTimer = setTimeout(function() {
-                    // Use complete spot data if found, otherwise use targetSpot
-                    var spotData;
-                    if (completeSpot) {
-                        // Use all data from the complete spot to ensure consistency
-                        spotData = {
-                            callsign: completeSpot.spotted,
-                            mode: completeSpot.mode,
-                            sotaRef: completeSpot.sotaRef || '',
-                            potaRef: completeSpot.potaRef || '',
-                            iotaRef: completeSpot.iotaRef || '',
-                            wwffRef: completeSpot.wwffRef || ''
-                        };
-                    } else {
-                        // Fallback to targetSpot data
-                        spotData = {
-                            callsign: targetSpot.callsign,
-                            mode: targetSpot.mode,
-                            sotaRef: targetSpot.sotaRef || '',
-                            potaRef: targetSpot.potaRef || '',
-                            iotaRef: targetSpot.iotaRef || '',
-                            wwffRef: targetSpot.wwffRef || ''
-                        };
-                    }
+                // CRITICAL: Directly update the cache to the target frequency
+                // getCachedMiddleFreq() uses lastValidCommittedFreq which isn't updated by just setting the input value
+                // So we bypass the cache and set it directly to ensure getSpotInfo() uses the correct frequency
+                waterfallContext.cache.middleFreq = targetSpot.frequency; // Already in kHz
+                waterfallContext.lastFreqInput = formattedFreq;
+                waterfallContext.lastValidCommittedFreq = formattedFreq;
+                waterfallContext.lastValidCommittedUnit = 'kHz';
 
-                    DX_WATERFALL_UTILS.qsoForm.populateFromSpot(spotData, true);
-                    self.pendingNavigationTimer = null;
-                }, 100);
+                var cachedFreq = waterfallContext.getCachedMiddleFreq();
 
-                // Commit the new frequency so waterfall doesn't shift when user types later
-                // Use a small delay to ensure the frequency field has been updated
+                // Now get spot info - this will use the new frequency we just set
+                var spotInfo = waterfallContext.getSpotInfo();
+
+                // Populate form after a brief delay (same as click handler)
+                if (spotInfo) {
+                    var self = this;
+                    this.pendingNavigationTimer = setTimeout(function() {
+                        DX_WATERFALL_UTILS.qsoForm.populateFromSpot(spotInfo, true);
+                        self.pendingNavigationTimer = null;
+                    }, 100);
+                }
+                // If no spot found, form remains cleared (already cleared above)
+
+                // Commit the new frequency
                 setTimeout(function() {
                     waterfallContext.commitFrequency();
                 }, 50);
-
-                // After frequency change, sync the relevant spot index
-                waterfallContext.syncRelevantSpotIndex(targetSpot);
             }
 
             // Update zoom menu to reflect new position
@@ -1081,7 +1142,6 @@ var dxWaterfall = {
 
         // Check if canvas element exists
         if (!this.canvas) {
-            console.log('[INIT] Canvas element not found!');
             return;
         }
 
@@ -1492,6 +1552,29 @@ var dxWaterfall = {
             this.lastValidCommittedUnit = currentUnit;
             this.committedFreqInput = currentInput;
             this.committedQrgUnit = currentUnit;
+
+            // Check if there's a relevant spot at the new frequency and populate form
+            this.checkAndPopulateSpotAtFrequency();
+        }
+    },
+
+    // Check if there's a relevant spot at current frequency and populate the QSO form
+    checkAndPopulateSpotAtFrequency: function() {
+        // Get spot info at current frequency
+        var spotInfo = this.getSpotInfo();
+
+        if (spotInfo && spotInfo.callsign) {
+            // Clear the form first
+            DX_WATERFALL_UTILS.qsoForm.clearForm();
+
+            // Populate form with spot data after a short delay
+            setTimeout(function() {
+                if (typeof DX_WATERFALL_UTILS !== 'undefined' &&
+                    typeof DX_WATERFALL_UTILS.qsoForm !== 'undefined' &&
+                    typeof DX_WATERFALL_UTILS.qsoForm.populateFromSpot === 'function') {
+                    DX_WATERFALL_UTILS.qsoForm.populateFromSpot(spotInfo, true);
+                }
+            }, 100);
         }
     },
 
@@ -1946,6 +2029,9 @@ var dxWaterfall = {
 
                     // Populate menu after first successful data fetch
                     self.updateZoomMenu();
+
+                    // Check if we're standing on a spot and auto-populate QSO form
+                    self.checkAndPopulateSpotAtFrequency();
                 } else {
                     // No spots or error in response
                     self.dxSpots = [];
@@ -2624,6 +2710,19 @@ var dxWaterfall = {
         this.ctx.fillRect(startX, 0, endX - startX, height);
     },
 
+    /**
+     * Get colors for spot label based on worked/confirmed status
+     * @param {Object} spot - Spot object with status flags
+     * @returns {Object} {bgColor, borderColor, tickboxColor}
+     */
+    getSpotColors: function(spot) {
+        return {
+            bgColor: spot.cnfmd_dxcc ? '#00FF00' : (spot.worked_dxcc ? '#FFA500' : '#FF0000'),
+            borderColor: spot.cnfmd_continent ? '#00FF00' : (spot.worked_continent ? '#FFA500' : '#FF0000'),
+            tickboxColor: spot.cnfmd_call ? '#00FF00' : (spot.worked_call ? '#FFA500' : '#FF0000')
+        };
+    },
+
     // Draw DX spots if available
     drawDxSpots: function() {
         if (!this.dxSpots || this.dxSpots.length === 0) {
@@ -2634,6 +2733,10 @@ var dxWaterfall = {
         var rulerY = this.canvas.height - DX_WATERFALL_CONSTANTS.CANVAS.RULER_HEIGHT;
         var middleFreq = this.getCachedMiddleFreq(); // Use cached frequency
         var pixelsPerKHz = this.getCachedPixelsPerKHz(); // Use cached scaling
+
+        // Get the spot shown in center (if any) to avoid drawing it twice
+        var centerSpotInfo = this.getSpotInfo();
+        var centerCallsign = centerSpotInfo ? centerSpotInfo.callsign : null;
 
         // Separate spots into left and right of center frequency
         var leftSpots = [];
@@ -2662,6 +2765,11 @@ var dxWaterfall = {
                         includeWorkStatus: true
                     });
 
+                    // Skip this spot if it's currently shown in the center label
+                    if (centerCallsign && spotData.callsign === centerCallsign) {
+                        continue;
+                    }
+
                     if (freqOffset < 0) {
                         leftSpots.push(spotData);
                     } else if (freqOffset > 0) {
@@ -2679,32 +2787,37 @@ var dxWaterfall = {
         var bottomY = rulerY - bottomMargin;
         var availableHeight = bottomY - topY;
 
-        // Capture reference to fonts for use in nested function
-        var fonts = this.fonts;
+		// Check if center label is shown to avoid that area
+		var centerSpotShown = centerCallsign !== null;
+		var centerY = (this.canvas.height - DX_WATERFALL_CONSTANTS.CANVAS.RULER_HEIGHT) / 2;
+		var centerExclusionHeight = Math.ceil(13 * 1.2) + 20; // Center label height (13px base * 1.2) + 20px margin
+		var centerExclusionTop = centerY - (centerExclusionHeight / 2);
+		var centerExclusionBottom = centerY + (centerExclusionHeight / 2);
 
-        // Function to distribute spots vertically
+		// Capture references for use in nested function
+		var self = this;
+		var fonts = this.fonts;
+
+		// Function to distribute spots vertically
 		var drawSpotsSide = function(spots, ctx) {
 			if (spots.length === 0) return;
 
 			// Function to draw a single spot
 			var drawSpot = function(spot, y) {
-			// Determine background color based on DXCC status
-			var bgColor = spot.cnfmd_dxcc ? '#00FF00' : (spot.worked_dxcc ? '#FFA500' : '#FF0000');
+			// Get colors using utility function
+			var colors = self.getSpotColors(spot);
+			var bgColor = colors.bgColor;
+			var borderColor = colors.borderColor;
+			var tickboxColor = colors.tickboxColor;
 
-			// Determine border color based on continent status
-			var borderColor = spot.cnfmd_continent ? '#00FF00' : (spot.worked_continent ? '#FFA500' : '#FF0000');
-
-			// Determine tickbox color based on callsign status
-			var tickboxColor = spot.cnfmd_call ? '#00FF00' : (spot.worked_call ? '#FFA500' : '#FF0000');
-
-			// Calculate dimensions
+			// Calculate dimensions (increased by 5% from original 12px base)
 			ctx.font = fonts.spotLabels;
 			var textWidth = ctx.measureText(spot.callsign).width;
 			var padding = DX_WATERFALL_CONSTANTS.CANVAS.SPOT_PADDING;
 			var rectX = spot.x - (textWidth / 2) - padding;
-			var rectY = y - 6;
+			var rectY = y - 7; // Adjusted from -6 to -7 for 13px height
 			var rectWidth = textWidth + (padding * 2);
-			var rectHeight = 12;
+			var rectHeight = 13; // Increased from 12 to 13
 
 			// Draw background rectangle
 			ctx.fillStyle = bgColor;
@@ -2738,14 +2851,53 @@ var dxWaterfall = {
 			};
 
 			if (spots.length === 1) {
-			// Single spot - place in middle of available space
-			drawSpot(spots[0], topY + (availableHeight / 2));
+				// Single spot - place in middle of available space (or top/bottom if center is occupied)
+				if (centerSpotShown) {
+					// Place in top section if center is occupied
+					var topSectionMiddle = topY + ((centerExclusionTop - topY) / 2);
+					drawSpot(spots[0], topSectionMiddle);
+				} else {
+					drawSpot(spots[0], topY + (availableHeight / 2));
+				}
 			} else {
-			// Multiple spots - distribute evenly
-			var spacing = availableHeight / (spots.length - 1);
-			for (var i = 0; i < spots.length; i++) {
-				drawSpot(spots[i], topY + (spacing * i));
-			}
+				// Multiple spots - distribute evenly avoiding center if needed
+				if (centerSpotShown) {
+					// Split spots between top and bottom sections
+					var topSectionHeight = centerExclusionTop - topY;
+					var bottomSectionHeight = bottomY - centerExclusionBottom;
+					var topSectionStart = topY;
+					var bottomSectionStart = centerExclusionBottom;
+
+					// Distribute spots proportionally between top and bottom
+					var halfSpots = Math.ceil(spots.length / 2);
+
+					// Top section
+					if (halfSpots === 1) {
+						drawSpot(spots[0], topSectionStart + (topSectionHeight / 2));
+					} else if (topSectionHeight > 0) {
+						var topSpacing = topSectionHeight / (halfSpots - 1);
+						for (var i = 0; i < halfSpots && i < spots.length; i++) {
+							drawSpot(spots[i], topSectionStart + (topSpacing * i));
+						}
+					}
+
+					// Bottom section
+					var bottomSpots = spots.length - halfSpots;
+					if (bottomSpots === 1) {
+						drawSpot(spots[halfSpots], bottomSectionStart + (bottomSectionHeight / 2));
+					} else if (bottomSpots > 0 && bottomSectionHeight > 0) {
+						var bottomSpacing = bottomSectionHeight / (bottomSpots - 1);
+						for (var j = 0; j < bottomSpots; j++) {
+							drawSpot(spots[halfSpots + j], bottomSectionStart + (bottomSpacing * j));
+						}
+					}
+				} else {
+					// No center label - distribute evenly across full height
+					var spacing = availableHeight / (spots.length - 1);
+					for (var i = 0; i < spots.length; i++) {
+						drawSpot(spots[i], topY + (spacing * i));
+					}
+				}
 			}
 		};
 
@@ -2785,6 +2937,68 @@ var dxWaterfall = {
 
         // Restore context state
         ctx.restore();
+    },
+
+    // Draw center callsign label when standing at a relevant spot frequency
+    drawCenterCallsignLabel: function() {
+        // Get the current spot info
+        var spotInfo = this.getSpotInfo();
+
+        if (!spotInfo) {
+            return; // No spot at current frequency
+        }
+
+        var ctx = this.ctx;
+        var callsign = spotInfo.callsign;
+
+        // Calculate center position
+        var centerX = this.canvas.width / 2;
+        var waterfallHeight = this.canvas.height - DX_WATERFALL_CONSTANTS.CANVAS.RULER_HEIGHT;
+        var centerY = waterfallHeight / 2;
+
+        // Get colors using same logic as spots
+        var colors = this.getSpotColors(spotInfo);
+
+        // Use 20% larger font than regular spots (13px -> ~15px with 5% increase applied)
+        ctx.font = 'bold 15px "Consolas", "Courier New", monospace';
+        var textWidth = ctx.measureText(callsign).width;
+
+        // Calculate background rectangle dimensions (scaled 20% larger than 13px base)
+        var padding = Math.ceil(DX_WATERFALL_CONSTANTS.CANVAS.SPOT_PADDING * 1.2);
+        var rectHeight = Math.ceil(13 * 1.2); // Spot label height (13px) scaled
+        var rectWidth = textWidth + (padding * 2);
+        var rectX = centerX - (textWidth / 2) - padding;
+        var rectY = centerY - (rectHeight / 2);
+
+        // Draw background rectangle using DXCC status color
+        ctx.fillStyle = colors.bgColor;
+        ctx.fillRect(rectX, rectY, rectWidth, rectHeight);
+
+        // Draw border using continent status color
+        ctx.strokeStyle = colors.borderColor;
+        ctx.lineWidth = 1;
+        ctx.strokeRect(rectX, rectY, rectWidth, rectHeight);
+
+        // Draw small tickbox at top-right corner using callsign status color
+        var tickboxSize = Math.ceil(DX_WATERFALL_CONSTANTS.CANVAS.SPOT_TICKBOX_SIZE * 1.2);
+        ctx.fillStyle = colors.tickboxColor;
+        ctx.fillRect(rectX + rectWidth - tickboxSize, rectY, tickboxSize, tickboxSize);
+
+        // Draw the callsign text in black (same as spots)
+        ctx.fillStyle = '#000000';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(callsign, centerX, centerY);
+
+        // Draw underline if LoTW user (same as spots)
+        if (spotInfo.lotw_user) {
+            ctx.strokeStyle = '#000000';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(centerX - (textWidth / 2), centerY + 3);
+            ctx.lineTo(centerX + (textWidth / 2), centerY + 3);
+            ctx.stroke();
+        }
     },
 
     /**
@@ -2909,6 +3123,7 @@ var dxWaterfall = {
                 this.drawFrequencyRuler();
                 this.drawCenterMarker();
                 this.drawDxSpots();
+                this.drawCenterCallsignLabel();
 
                 // Only show tuning message if CAT is actually available
                 var catAvailable = (typeof dxwaterfall_allowcat !== 'undefined' && dxwaterfall_allowcat !== null &&
@@ -2957,6 +3172,9 @@ var dxWaterfall = {
             // Draw DX spots
             this.drawDxSpots();
 
+            // Draw center callsign label (on top of everything)
+            this.drawCenterCallsignLabel();
+
             // Update spot info in the div above canvas (prevents update on every frame)
             this.updateSpotInfoDiv();
 
@@ -2984,6 +3202,7 @@ var dxWaterfall = {
 
         var middleFreq = this.getCachedMiddleFreq(); // Use cached frequency
         var currentMode = this.getCurrentMode().toLowerCase();
+
         var relevantSpots = [];
 
         // Get current bandwidth parameters for signal width detection (with caching)
@@ -2992,26 +3211,13 @@ var dxWaterfall = {
 
         // Determine detection range based on mode
         var detectionRange = 0;
-        var isLSB = false;
-        var isUSB = false;
-        var isCentered = false; // For CW and other centered modes
+        var isCentered = false; // For modes with symmetric detection (CW, SSB, etc.)
 
-        if (currentMode === 'lsb') {
-            isLSB = true;
-            detectionRange = signalBandwidth * 0.15; // 15% tolerance for LSB
-        } else if (currentMode === 'usb') {
-            isUSB = true;
-            detectionRange = signalBandwidth * 0.15; // 15% tolerance for USB
-        } else if (currentMode === 'phone') {
-            // Phone mode uses LSB/USB depending on frequency band
-            var freq = this.getCachedMiddleFreq(); // Use cached frequency
-            var ssbMode = DX_WATERFALL_UTILS.modes.determineSSBMode(freq);
-            if (ssbMode === 'LSB') {
-                isLSB = true;
-            } else { // USB
-                isUSB = true;
-            }
-            detectionRange = signalBandwidth * 0.15; // 15% tolerance for phone
+        if (currentMode === 'lsb' || currentMode === 'usb' || currentMode === 'phone') {
+            // SSB modes: Use symmetric ±1 kHz detection range
+            // This allows spots within ±1 kHz to be detected regardless of sideband
+            isCentered = true;
+            detectionRange = 1.0; // ±1 kHz symmetric range for SSB
         } else if (currentMode === 'cw') {
             isCentered = true;
             detectionRange = DX_WATERFALL_CONSTANTS.SIGNAL_BANDWIDTHS.CW_DETECTION_KHZ;
@@ -3028,24 +3234,11 @@ var dxWaterfall = {
                 var freqOffset = spotFreq - middleFreq;
                 var absOffset = Math.abs(freqOffset);
 
-                var isInRange = false;
-                var isCorrectSideband = false;
+                // All modes now use centered/symmetric detection
+                // For SSB/CW/Digital: spots within ±detectionRange are considered relevant
+                var isInRange = absOffset <= detectionRange;
 
-                if (isCentered) {
-                    // For CW and other centered modes: look within range on both sides
-                    isInRange = absOffset <= detectionRange;
-                    isCorrectSideband = true; // Any side is valid for centered modes
-                } else if (isLSB) {
-                    // LSB: spots below our frequency (with tolerance above for drift)
-                    isInRange = absOffset <= (signalBandwidth / 2) + detectionRange;
-                    isCorrectSideband = freqOffset < detectionRange;
-                } else if (isUSB) {
-                    // USB: spots above our frequency (with tolerance below for drift)
-                    isInRange = absOffset <= (signalBandwidth / 2) + detectionRange;
-                    isCorrectSideband = freqOffset > -detectionRange;
-                }
-
-                if (isInRange && isCorrectSideband) {
+                if (isInRange) {
                     // Apply mode filter
                     if (!this.spotMatchesModeFilter(spot)) {
                         continue;
@@ -3713,7 +3906,7 @@ var dxWaterfall = {
             // Set frequency to the spot
             if (targetSpot.frequency) {
                 // Clear the QSO form when navigating to a new spot
-                $('#btn_reset').click();
+                DX_WATERFALL_UTILS.qsoForm.clearForm();
 
                 // Check if frequency is far outside current band and update band if needed
                 if (this.isFrequencyFarOutsideBand(targetSpot.frequency)) {
@@ -4034,9 +4227,16 @@ var dxWaterfall = {
 };
 
 // Helper function to safely set the mode with fallback
-function setMode(mode) {
+// @param mode - Mode to set
+// @param skipTrigger - If true, don't trigger change event (prevents side effects)
+function setMode(mode, skipTrigger) {
     if (!mode) {
         return false;
+    }
+
+    // Default skipTrigger to false
+    if (typeof skipTrigger === 'undefined') {
+        skipTrigger = false;
     }
 
     var modeSelect = $('#mode');
@@ -4087,7 +4287,11 @@ function setMode(mode) {
         dxWaterfall.programmaticModeChange = true;
 
         modeSelect.val(modeUpper);
-        modeSelect.trigger('change');
+
+        // Only trigger change if skipTrigger is false
+        if (!skipTrigger) {
+            modeSelect.trigger('change');
+        }
 
         // Reset the flag after a short delay
         setTimeout(function() {
@@ -4101,7 +4305,12 @@ function setMode(mode) {
         if (firstOption) {
             dxWaterfall.programmaticModeChange = true;
             modeSelect.val(firstOption);
-            modeSelect.trigger('change');
+
+            // Only trigger change if skipTrigger is false
+            if (!skipTrigger) {
+                modeSelect.trigger('change');
+            }
+
             setTimeout(function() {
                 dxWaterfall.programmaticModeChange = false;
             }, 100);
@@ -4281,8 +4490,13 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
     }
 
     // CAT not available - use manual frequency setting
+    // Don't trigger change events to avoid side effects like form clearing
     $('#frequency').val(formattedFreq);
-    $('#frequency').trigger('change');
+
+    // Only trigger change if this is NOT from waterfall (external frequency change)
+    if (!fromWaterfall) {
+        $('#frequency').trigger('change');
+    }
 
     // Clear navigation flags immediately since no CAT operation is happening
     if (typeof dxWaterfall !== 'undefined') {
@@ -4374,6 +4588,17 @@ $(document).ready(function() {
             dxWaterfall.lastSpotInfoText = null; // Reset to force update
             dxWaterfall.updateSpotInfoDiv();
 
+            // Clear QSO form first
+            DX_WATERFALL_UTILS.qsoForm.clearForm();
+
+            // Populate form with the new spot data after delay
+            setTimeout(function() {
+                var spotInfo = dxWaterfall.getSpotInfo();
+                if (spotInfo) {
+                    DX_WATERFALL_UTILS.qsoForm.populateFromSpot(spotInfo, true);
+                }
+            }, 100);
+
             // Visual feedback - briefly change icon color
             var icon = $(this);
             icon.css('color', '#FFFF00');
@@ -4391,25 +4616,15 @@ $(document).ready(function() {
         var mode = $(this).data('mode');
 
         if (frequency) {
-            // Clear the QSO form when tuning to a frequency
-            $('#btn_reset').click();
-
-            // Set preventLookup flag to prevent callsign lookup when changing mode
-            if (typeof preventLookup !== 'undefined') {
-                preventLookup = true;
-            }
-
-            // Set the mode if available
+            // Set the mode if available - use skipTrigger=true to prevent change events
+            // This prevents the form from being cleared by event handlers
             if (mode) {
-                setMode(mode);
+                setMode(mode, true); // Skip triggering change event
             }
 
-            // Clear preventLookup flag after a short delay
-            setTimeout(function() {
-                if (typeof preventLookup !== 'undefined') {
-                    preventLookup = false;
-                }
-            }, 100);
+            // Use helper function to set frequency
+            // fromWaterfall=true prevents frequency change event from being triggered
+            setFrequency(frequency, true);
 
             // Visual feedback - briefly change icon color
             var icon = $(this);
@@ -4417,9 +4632,6 @@ $(document).ready(function() {
             setTimeout(function() {
                 icon.css('color', '#FFFFFF');
             }, 200);
-
-            // Use helper function to set frequency
-            setFrequency(frequency, true); // Pass true to indicate waterfall-initiated change
         }
     });
 
@@ -4560,11 +4772,30 @@ $(document).ready(function() {
             dxWaterfall.updateBandFromFrequency(clickedFreq);
         }
 
-        // Use helper function to set frequency
-        setFrequency(clickedFreq, true); // Pass true to indicate waterfall-initiated change
+        // Set the frequency to where user clicked
+        setFrequency(clickedFreq, true);
 
-        // Commit the new frequency so waterfall doesn't shift when user types later
-        // Use a small delay to ensure the frequency field has been updated
+        // Update cache directly (same as navigation fix)
+        var formattedFreq = Math.round(clickedFreq * 1000); // Convert to Hz
+        dxWaterfall.cache.middleFreq = clickedFreq;
+        dxWaterfall.lastFreqInput = formattedFreq;
+        dxWaterfall.lastValidCommittedFreq = formattedFreq;
+        dxWaterfall.lastValidCommittedUnit = 'kHz';
+
+        // Try to find a nearby spot at this frequency and populate QSO form
+        var spotInfo = dxWaterfall.getSpotInfo();
+
+        if (spotInfo) {
+            // Clear the QSO form first
+            DX_WATERFALL_UTILS.qsoForm.clearForm();
+
+            // Populate from the spot
+            setTimeout(function() {
+                DX_WATERFALL_UTILS.qsoForm.populateFromSpot(spotInfo, true);
+            }, 100);
+        }
+
+        // Commit the new frequency
         setTimeout(function() {
             dxWaterfall.commitFrequency();
         }, 50);
