@@ -1100,6 +1100,28 @@ var dxWaterfall = {
         this.$bandSelect = $('#band');
         this.$modeSelect = $('#mode');
 
+        // Set up mouse wheel for zooming (must use passive: false to prevent page scroll)
+        this.canvas.addEventListener('wheel', function(e) {
+            // Block zooming when frequency is changing
+            if (self.frequencyChanging) {
+                return;
+            }
+
+            // Prevent page scroll when zooming over the canvas
+            e.preventDefault();
+            e.stopPropagation();
+
+            // Get wheel direction (negative = scroll up = zoom in, positive = scroll down = zoom out)
+            var delta = e.deltaY;
+
+            // Zoom in on scroll up, zoom out on scroll down
+            if (delta < 0) {
+                self.zoomIn();
+            } else if (delta > 0) {
+                self.zoomOut();
+            }
+        }, { passive: false }); // passive: false is required for preventDefault to work
+
         // Set page load time for waiting state management
         this.pageLoadTime = Date.now();
         this.operationStartTime = Date.now(); // Initialize operation timer
