@@ -1365,6 +1365,67 @@ mymap.on('mousemove', onQsoMapMove);
 
     <script>
     $( document ).ready(function() {
+	    let websocket = null;
+	    let reconnectAttempts = 0;
+	    let websocketEnabled = false;
+	    let CATInterval=null;
+
+	    function initializeWebSocketConnection() {
+		    try {
+			    websocket = new WebSocket('ws://localhost:54322');
+
+			    websocket.onopen = function(event) {
+				    reconnectAttempts = 0;
+				    websocketEnabled = true;
+			    };
+
+			    websocket.onmessage = function(event) {
+				    try {
+					    const data = JSON.parse(event.data);
+					    handleWebSocketData(data);
+				    } catch (error) {
+				    }
+			    };
+
+			    websocket.onerror = function(error) {
+				    websocketEnabled=false;
+			    };
+
+			    websocket.onclose = function(event) {
+				    websocketEnabled = false;
+
+				    if (reconnectAttempts < 5) {
+					    setTimeout(() => {
+					    reconnectAttempts++;
+					    initializeWebSocketConnection();
+				    }, 2000 * reconnectAttempts);
+				    } else {
+					    $(".radio_cat_state" ).remove();
+					    $('#radio_status').html('<div class="alert alert-danger radio_timeout_error" role="alert"><i class="fas fa-broadcast-tower"></i> Radio connection timed-out: ' + $('select.radios option:selected').text() + ' Websocket connection lost, chose another radio.</div>');
+					    websocketEnabled = false;
+				    }
+			    };
+
+		    } catch (error) {
+			    websocketEnabled=false;
+		    }
+	    }
+
+	    function handleWebSocketData(data) {
+		    // Handle welcome message
+		    if (data.type === 'welcome') {
+			    return;
+		    }
+
+		    // Handle radio status updates
+		    if (data.type === 'radio_status' && data.radio) {
+			    data.updated_minutes_ago = Math.floor((Date.now() - data.timestamp) / 60000);
+			    // Cache the radio data
+			    updateCATui(data);
+		    }
+	    }
+
+
 	    // Javascript for controlling rig frequency.
 	    const cat2UI = function(ui, cat, allow_empty, allow_zero, callback_on_update) {
 		    // Check, if cat-data is available
@@ -1411,7 +1472,25 @@ mymap.on('mousemove', onQsoMapMove);
 		    } else {
 			    $(".radio_timeout_error" ).remove();
 			    separator = '<span style="margin-left:10px"></span>';
-			    text = '<i class="fas fa-broadcast-tower"></i>' + separator + '<b>TX:</b> ' + data.frequency_formatted;
+
+			    if (!(data.frequency_formatted)) {
+				    let qrgunit = localStorage.getItem('qrgunit_' + $('#band').val());
+				    if (qrgunit == 'Hz') {
+					    data.frequency_formatted=data.frequency;
+				    } else if (qrgunit == 'kHz') {
+					    data.frequency_formatted=(data.frequency / 1000);
+				    } else if (qrgunit == 'MHz') {
+					    data.frequency_formatted=(data.frequency / 1000000);
+				    } else if (qrgunit == 'GHz') {
+					    data.frequency_formatted=(data.frequency / 1000000000);
+				    }
+				data.frequency_formatted=data.frequency_formatted+''+qrgunit;
+			    }
+
+			    if (data.frequency_formatted) {
+				    text = '<i class="fas fa-broadcast-tower"></i>' + separator + '<b>TX:</b> ' + data.frequency_formatted;
+			    }
+
 			    if(data.mode != null) {
 				    text = text + separator + data.mode;
 			    }
@@ -1474,15 +1553,18 @@ mymap.on('mousemove', onQsoMapMove);
 		    }
 	    };
 
-	    // Update frequency every three second
-	    setInterval(updateFromCAT, 3000);
-
-	    // If a radios selected from drop down select radio update.
-	    $('.radios').change(updateFromCAT);
 
 	    // If no radio is selected clear data
 	    $( ".radios" ).change(function() {
-		    if ($(".radios option:selected").val() == 0) {
+		    if (CATInterval) {	// We've a change - stop polling if active
+			    clearInterval(CATInterval);
+			    CATInterval=null;
+		    }
+		    if (websocket) {	// close possible websocket connection
+			    websocket.close();
+			    websocketEnabled = false;
+		    }
+		    if ($(".radios option:selected").val() == '0') {
 			    $("#sat_name").val("");
 			    $("#sat_mode").val("");
 			    $("#frequency").val("");
@@ -1491,8 +1573,14 @@ mymap.on('mousemove', onQsoMapMove);
 			    $("#selectPropagation").val($("#selectPropagation option:first").val());
 			    $(".radio_timeout_error" ).remove();
 			    $(".radio_cat_state" ).remove();
+		    } else if ($(".radios option:selected").val() == 'ws') {
+			    initializeWebSocketConnection();
+		    } else {
+			    // Update frequency every three second
+			    CATInterval=setInterval(updateFromCAT, 3000);
 		    }
 	    });
+	    $('.radios').change();	// Initial trigger for pre-chosen radio
     });
   </script>
 
