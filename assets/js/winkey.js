@@ -288,7 +288,6 @@ async function disconnect() {
 
 //When the send button is pressed
 function clickSend() {
-    text2send = sendText.value.replaceAll('Ø', '0');
     writeToStream(text2send).then(function() {
         // writeToStream("\r");
         //and clear the input field, so it's clear it has been sent
@@ -369,9 +368,11 @@ function UpdateMacros(macrotext) {
 
     // Get the values from the form set to uppercase
     let CALL = document.getElementById("callsign").value.toUpperCase();
+	CALL = CALL.replaceAll('Ø', '0');
     let RSTS = document.getElementById("rst_sent").value;
 
     let newString;
+	my_call = my_call.replaceAll('Ø', '0');
     newString = macrotext.replace(/\[MYCALL\]/g, my_call);
     newString = newString.replace(/\[CALL\]/g, CALL);
     newString = newString.replace(/\[RSTS\]/g, RSTS);
