@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-10-22 15:45+0000\n"
-"PO-Revision-Date: 2025-10-22 22:00+0000\n"
+"PO-Revision-Date: 2025-10-23 20:25+0000\n"
 "Last-Translator: F5MQU <f5mqu.p@gmail.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/fr/>\n"
@@ -13340,53 +13340,56 @@ msgid ""
 "No satellites with TLE found. Please update via CRON or satellite page. If "
 "you have no access to do this, ask your admin!"
 msgstr ""
+"Aucun satellite avec TLE n'a été trouvé. Veuillez effectuer la mise à jour "
+"via CRON ou la page satellite. Si vous n'y avez pas accès, contactez votre "
+"administrateur !"
 
 #: application/views/satellite/index.php:44
 msgid "Add a satellite"
-msgstr ""
+msgstr "Ajouter un satellite"
 
 #: application/views/satellite/index.php:45
 msgid "Sync Satellites from LoTW"
-msgstr ""
+msgstr "Synchroniser les satellites depuis LoTW"
 
 #: application/views/satellite/index.php:46
 msgid "Update Satellite TLE"
-msgstr ""
+msgstr "Mise à jour du satellite TLE"
 
 #: application/views/satellite/index.php:57
 msgid "TLE"
-msgstr ""
+msgstr "TLE"
 
 #: application/views/satellite/pass.php:6
 msgid "Satellite passes"
-msgstr ""
+msgstr "Passages de satellite"
 
 #: application/views/satellite/pass.php:13
 msgid "Your station"
-msgstr ""
+msgstr "Votre station"
 
 #: application/views/satellite/pass.php:26
 #: application/views/satellite/pass.php:65
 msgid "Min. Satellite Elevation"
-msgstr ""
+msgstr "Elévation minimal du satellite"
 
 #: application/views/satellite/pass.php:30
 #: application/views/satellite/pass.php:69
 msgid "Min. Azimuth"
-msgstr ""
+msgstr "Azimuth minimum"
 
 #: application/views/satellite/pass.php:38
 #: application/views/satellite/pass.php:77
 msgid "Max. Azimuth"
-msgstr ""
+msgstr "Azimuth maximum"
 
 #: application/views/satellite/pass.php:54
 msgid "Min. time"
-msgstr ""
+msgstr "Heure minimale"
 
 #: application/views/satellite/pass.php:63
 msgid "Sked partner"
-msgstr ""
+msgstr "Partenaire de Sked"
 
 #: application/views/satellite/pass.php:91
 msgid "Load predictions"
@@ -13394,123 +13397,125 @@ msgstr ""
 
 #: application/views/satellite/pass.php:92
 msgid "Add sked partner"
-msgstr ""
+msgstr "Ajouter un partenaire de Sked"
 
 #: application/views/satellite/pass.php:94
 msgid "Presets"
-msgstr ""
+msgstr "Préréglages"
 
 #: application/views/satellite/pass.php:96
 msgid "Save current settings"
-msgstr ""
+msgstr "Enregistrer les paramètres actuels"
 
 #: application/views/satellite/pass.php:105
 msgid "Save Settings"
-msgstr ""
+msgstr "Enregistrer les paramètres"
 
 #: application/views/satellite/pass.php:109
 msgid "Settings Name"
-msgstr ""
+msgstr "Nom des paramètres"
 
 #: application/views/satellite/pass.php:110
 msgid "Enter a name"
-msgstr ""
+msgstr "Entrer un nom"
 
 #: application/views/satellite/pass.php:121
 msgid "No TLE information detected. Please update TLE's."
-msgstr ""
+msgstr "Aucune information TLE détectée. Veuillez mettre à jour les TLE."
 
 #: application/views/satellite/passtable.php:7
 #: application/views/satellite/skedtable.php:36
 msgid "AOS Time"
-msgstr ""
+msgstr "Heure AOS"
 
 #: application/views/satellite/passtable.php:8
 #: application/views/satellite/skedtable.php:40
 msgid "LOS Time"
-msgstr ""
+msgstr "Heure LOS"
 
 #: application/views/satellite/passtable.php:9
 #: application/views/satellite/skedtable.php:10
 #: application/views/satellite/skedtable.php:37
 #: application/views/sattimers/index.php:46
 msgid "Duration"
-msgstr ""
+msgstr "Durée"
 
 #: application/views/satellite/passtable.php:10
 msgid "Path"
-msgstr ""
+msgstr "Chemin"
 
 #: application/views/satellite/passtable.php:11
 msgid "Max Elevation (Azimuth)"
-msgstr ""
+msgstr "Elévation maximale (Azimuth)"
 
 #: application/views/satellite/passtable.php:12
 #: application/views/satellite/skedtable.php:38
 msgid "AOS Azimuth"
-msgstr ""
+msgstr "Azimuth AOS"
 
 #: application/views/satellite/passtable.php:13
 #: application/views/satellite/skedtable.php:41
 msgid "LOS Azimuth"
-msgstr ""
+msgstr "Azimuth LOS"
 
 #: application/views/satellite/passtable.php:55
 #: application/views/satellite/skedtable.php:84
 msgid "Search failed!"
-msgstr ""
+msgstr "Echec de la recherche !"
 
 #: application/views/satellite/passtable.php:56
 msgid "No passes found. Please check the input parameters."
-msgstr ""
+msgstr "Aucun passage trouvé. Veuillez vérifier les paramètres d'entrée."
 
 #: application/views/satellite/passtable.php:73
 #: application/views/satellite/skedtable.php:94
 msgid "min"
-msgstr ""
+msgstr "Min"
 
 #: application/views/satellite/satinfo.php:14
 msgid "TLE date"
-msgstr ""
+msgstr "Date TLE"
 
 #: application/views/satellite/skedtable.php:8
 msgid "Sked AOS Time"
-msgstr ""
+msgstr "Heure du Sked AOS"
 
 #: application/views/satellite/skedtable.php:9
 msgid "Sked LOS Time"
-msgstr ""
+msgstr "Heure du Sked LOS"
 
 #: application/views/satellite/skedtable.php:34
 msgid "Grid"
-msgstr ""
+msgstr "Locator"
 
 #: application/views/satellite/skedtable.php:39
 #: application/views/sattimers/index.php:45
 msgid "Max Elevation"
-msgstr ""
+msgstr "Elévation maximale"
 
 #: application/views/satellite/skedtable.php:85
 msgid "No overlapping passes found. Please check the input parameters."
 msgstr ""
+"Aucun chevauchement de passages n'a été détecté. Veuillez vérifier les "
+"paramètres d'entrée."
 
 #: application/views/satellite/tleinfo.php:6
 #, php-format
 msgid "TLE information for %s (last updated: %s)"
-msgstr ""
+msgstr "Informations TLE pour %s (dernière mise à jour : %s)"
 
 #: application/views/satellite/tleinfo.php:8
 msgid "Delete TLE"
-msgstr ""
+msgstr "TLE effacé"
 
 #: application/views/satellite/tleinfo.php:10
 #, php-format
 msgid "No TLE information found for %s"
-msgstr ""
+msgstr "Aucune information TLE trouvée pour %s"
 
 #: application/views/satellite/tleinfo.php:11
 msgid "Add TLE"
-msgstr ""
+msgstr "Ajouter TLE"
 
 #: application/views/sattimers/index.php:15
 #, php-format
@@ -13518,23 +13523,25 @@ msgid ""
 "This data comes from %s and is calculated for the current stationlocation "
 "grid %s."
 msgstr ""
+"Ces données proviennent de %s et sont calculées pour le Locator actuel de la "
+"station %s."
 
 #: application/views/sattimers/index.php:40
 msgid "Time(d)-Out"
-msgstr ""
+msgstr "Temps (d) - Dépassé"
 
 #: application/views/sattimers/index.php:43
 #: application/views/sattimers/index.php:44
 #: application/views/statistics/antennaanalytics.php:8
 msgid "Azimuth"
-msgstr ""
+msgstr "Azimuth"
 
 #: application/views/search/cqzones.php:5
 #: application/views/search/ituzones.php:5
 #: application/views/search/lotw_unconfirmed.php:5
 #: application/views/search/main.php:5
 msgid "Ready to find a QSO?"
-msgstr ""
+msgstr "Prêt à trouver un QSO ?"
 
 #: application/views/search/cqzones.php:15
 #: application/views/search/filter.php:4 application/views/search/filter.php:23
@@ -13542,7 +13549,7 @@ msgstr ""
 #: application/views/search/lotw_unconfirmed.php:15
 #: application/views/search/main.php:15
 msgid "Advanced Search"
-msgstr ""
+msgstr "Recherches avancées"
 
 #: application/views/search/cqzones.php:18
 #: application/views/search/filter.php:26
@@ -13550,7 +13557,7 @@ msgstr ""
 #: application/views/search/lotw_unconfirmed.php:18
 #: application/views/search/main.php:18
 msgid "Incorrect CQ Zones"
-msgstr ""
+msgstr "Zones CQ incorrectes"
 
 #: application/views/search/cqzones.php:21
 #: application/views/search/filter.php:29
@@ -13558,7 +13565,7 @@ msgstr ""
 #: application/views/search/lotw_unconfirmed.php:21
 #: application/views/search/main.php:21
 msgid "Incorrect ITU Zones"
-msgstr ""
+msgstr "Zones ITU inconrrectes"
 
 #: application/views/search/cqzones.php:24
 #: application/views/search/filter.php:32
@@ -13566,71 +13573,79 @@ msgstr ""
 #: application/views/search/lotw_unconfirmed.php:24
 #: application/views/search/main.php:24
 msgid "QSOs unconfirmed on LoTW"
-msgstr ""
+msgstr "QSO non confirmés sur LoTW"
 
 #: application/views/search/cqzones.php:31
 #: application/views/search/ituzones.php:31
 msgid "Station location:"
-msgstr ""
+msgstr "Emplacement de la station :"
 
 #: application/views/search/cqzones_result.php:3
 msgid ""
 "The following QSOs were found to have an incorrect CQ zone that this DXCC "
 "normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
+"Les QSO suivants n'ont pas une zone CQ correcte pour ce DXCC (un maximum de "
+"5 000 QSO sont affichés) :"
 
 #: application/views/search/cqzones_result.php:14
 msgid "DXCC CQ Zone"
-msgstr ""
+msgstr "Zone CQ DXCC"
 
 #: application/views/search/cqzones_result.php:51
 #: application/views/search/ituzones_result.php:51
 msgid "No incorrect CQ Zones were found."
-msgstr ""
+msgstr "Aucune zone CQ incorrecte n'a été trouvée."
 
 #: application/views/search/filter.php:46
 msgid "Save query"
-msgstr ""
+msgstr "Enregistrer la requête"
 
 #: application/views/search/filter.php:53
 msgid "Stored queries"
-msgstr ""
+msgstr "Requêtes stockées"
 
 #: application/views/search/filter.php:72
+#, fuzzy
 msgid "search filter functions"
-msgstr ""
+msgstr "Fonctions filtres de recherche"
 
 #: application/views/search/filter.php:82
 msgid "Search Results"
-msgstr ""
+msgstr "Résultats de la recherche"
 
 #: application/views/search/ituzones_result.php:3
 msgid ""
 "The following QSOs were found to have an incorrect ITU zone that this DXCC "
 "normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
+"Les QSO suivants n'ont pas une zone ITU correcte pour ce DXCC (un maximum de "
+"5 000 QSO sont affichés) :"
 
 #: application/views/search/ituzones_result.php:14
 msgid "DXCC ITU Zone"
-msgstr ""
+msgstr "Zone ITU du DXCC"
 
 #: application/views/search/lotw_unconfirmed.php:29
 msgid ""
 "The search displays QSOs which are unconfirmed on LoTW, but the callsign "
 "worked has uploaded to LoTW after your QSO date."
 msgstr ""
+"La recherche affiche les QSO qui ne sont pas confirmés sur LoTW, mais "
+"l'indicatif d'appel contacté a été téléchargé sur LoTW après la date de "
+"votre QSO."
 
 #: application/views/search/lotw_unconfirmed.php:32
 msgid "Station location"
-msgstr ""
+msgstr "Emplacement de la Station"
 
 #: application/views/search/lotw_unconfirmed_result.php:10
 msgid "Last LoTW upload"
-msgstr ""
+msgstr "Dernier téléchargement de LoTW"
 
 #: application/views/search/lotw_unconfirmed_result.php:41
 msgid "No QSOs with outstanding LoTW upload were found."
-msgstr ""
+msgstr "Aucun QSO en attente de téléchargement LoTW n'a été trouvé."
 
 #: application/views/search/main.php:31
 msgid "Callsign / Gridsquare"
