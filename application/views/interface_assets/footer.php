@@ -1444,6 +1444,21 @@ mymap.on('mousemove', onQsoMapMove);
 		    }
 	    }
 
+	    function format_frequency(freq) {
+		    const qrgunit = localStorage.getItem('qrgunit_' + $('#band').val());
+		    let frequency_formatted=null;
+		    if (qrgunit == 'Hz') {
+			    frequency_formatted=freq;
+		    } else if (qrgunit == 'kHz') {
+			    frequency_formatted=(freq / 1000);
+		    } else if (qrgunit == 'MHz') {
+			    frequency_formatted=(freq / 1000000);
+		    } else if (qrgunit == 'GHz') {
+			    frequency_formatted=(freq / 1000000000);
+		    }
+		    return frequency_formatted+''+qrgunit;
+	    }
+
 	    function updateCATui(data) {
 		    cat2UI($('#frequency'),data.frequency,false,true,function(d){
 			    $('#frequency').trigger('change');
@@ -1474,17 +1489,7 @@ mymap.on('mousemove', onQsoMapMove);
 			    separator = '<span style="margin-left:10px"></span>';
 
 			    if (!(data.frequency_formatted)) {
-				    let qrgunit = localStorage.getItem('qrgunit_' + $('#band').val());
-				    if (qrgunit == 'Hz') {
-					    data.frequency_formatted=data.frequency;
-				    } else if (qrgunit == 'kHz') {
-					    data.frequency_formatted=(data.frequency / 1000);
-				    } else if (qrgunit == 'MHz') {
-					    data.frequency_formatted=(data.frequency / 1000000);
-				    } else if (qrgunit == 'GHz') {
-					    data.frequency_formatted=(data.frequency / 1000000000);
-				    }
-				data.frequency_formatted=data.frequency_formatted+''+qrgunit;
+				data.frequency_formatted=format_frequency(data.frequency);
 			    }
 
 			    if (data.frequency_formatted) {
@@ -1506,6 +1511,7 @@ mymap.on('mousemove', onQsoMapMove);
 					    }
 				    }
 			    if(data.frequency_rx != null && data.frequency_rx != 0) {
+				    data.frequency_rx_formatted=format_frequency(data.frequency_rx);
 				    complementary_info.push('<b>RX:</b> ' + data.frequency_rx_formatted);
 			    }
 			    if( complementary_info.length > 0) {
