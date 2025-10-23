@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-10-22 15:45+0000\n"
-"PO-Revision-Date: 2025-10-23 21:08+0000\n"
+"PO-Revision-Date: 2025-10-23 22:37+0000\n"
 "Last-Translator: F5MQU <f5mqu.p@gmail.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/fr/>\n"
@@ -13987,6 +13987,10 @@ msgid ""
 "write down 6 because this is the only data that changed here. The "
 "information about band and mode didn't change, so this data is omitted."
 msgstr ""
+"Le premier QSO a eu lieu à 21h34, et le second deux minutes plus tard, à "
+"21h36. Nous saisissons 6 car c'est la seule donnée qui a changé ici. Les "
+"informations sur la bande et le mode n'ont pas changé, ces données sont donc "
+"omises."
 
 #: application/views/simplefle/syntax_help.php:17
 msgid ""
@@ -13995,26 +13999,34 @@ msgid ""
 "every new QSO. Therefore we can add another QSO which took place at the "
 "exact same time two days later. The date must be in format YYYY-MM-DD."
 msgstr ""
+"Pour le prochain QSO, le 14 mai 2021 à 21h40, nous avons changé la bande à "
+"40 m, mais toujours en SSB. Si aucune information RST n'est fournie, la "
+"syntaxe utilisera 59 pour chaque nouveau QSO. Nous pouvons donc ajouter un "
+"autre QSO ayant eu lieu exactement à la même heure mais deux jours plus "
+"tard. La date doit être au format AAAA-MM-JJ."
 
 #: application/views/simplefle/syntax_help.php:28
 msgid "Additional informations can be submitted in the following way:"
 msgstr ""
+"Des informations complémentaires peuvent être soumises de la manière "
+"suivante :"
 
 #: application/views/simplefle/syntax_help.php:29
 msgid "Notes:"
-msgstr ""
+msgstr "Notes :"
 
 #: application/views/simplefle/syntax_help.php:33
 msgid "Operator Name:"
-msgstr ""
+msgstr "Nom de l'opérateur :"
 
 #: application/views/simplefle/syntax_help.php:37
 msgid "QSL-message (Caution! Not visible in wavelog currently!):"
-msgstr ""
+msgstr "Message QSL (Attention ! Non visible dans Wavelog actuellement !) :"
 
 #: application/views/simplefle/syntax_help.php:41
 msgid "Contest exchange; serials or other exchange - or even both:"
 msgstr ""
+"Report pendant les concours ; numéro progressif ou autre - ou même les deux :"
 
 #: application/views/simplefle/syntax_help.php:48
 msgid ""
@@ -14025,24 +14037,38 @@ msgid ""
 "single comma ','. To automatically increment the sent serial, use ',++' and "
 "give an initial sent exchange. To deactivate, use ',+0':"
 msgstr ""
+"Les reports reçus doivent être préfixés par un point « . », et les reports "
+"envoyés par une virgule « , ». Les deux dernières lignes sont équivalentes ; "
+"les espaces importent peu, l'ordre importe peu. Les reports envoyés seront "
+"automatiquement inclus dans le prochain QSO, s'il contient des reports reçus "
+"ou si vous utilisez une simple virgule « , ». Pour incrémenter "
+"automatiquement le numéro progressif envoyé, utilisez « ,++ » et indiquez un "
+"report initial. Pour désactiver, utilisez \" ,+0 \" :"
 
 #: application/views/simplefle/syntax_help.php:54
 msgid ""
 "Here, the first qso uses the set serial 1, and the second will use 2 as the "
 "serial. If you want to wipe your sent exchange, use ',-':"
 msgstr ""
+"Ici, le premier QSO utilise le numéro progressif 1, et le second le numéro "
+"2. Pour effacer vos échanges, utilisez « ,- » :"
 
 #: application/views/simplefle/syntax_help.php:59
 msgid ""
 "First, all previous exchange is wiped, then only a serial is set. Otherwise "
 "the previous exchange 'D23' would have been set also."
 msgstr ""
+"Tout d'abord, tous les reports précédents sont effacés, puis seul un numéro "
+"progressif est défini. Sinon, le report précédent « D23 » aurait également "
+"été défini."
 
 #: application/views/simplefle/syntax_help.php:60
 msgid ""
 "You may use the comment syntax, to fill adif-fields supported by the Wavelog-"
 "Import:"
 msgstr ""
+"Vous pouvez utiliser la syntaxe de commentaire pour remplir les champs adif "
+"pris en charge par Wavelog-Import :"
 
 #: application/views/simplefle/syntax_help.php:64
 #, php-format
@@ -14050,54 +14076,56 @@ msgid ""
 "A full summary of all commands and the necessary syntax can be found in "
 "%sthis article%s of our Wiki."
 msgstr ""
+"Un résumé complet de toutes les commandes et de la syntaxe nécessaire peut "
+"être trouvé dans %scet article%s de notre Wiki."
 
 #: application/views/station_profile/create.php:55
 #: application/views/station_profile/edit.php:71
 msgid "Location Name"
-msgstr ""
+msgstr "Nom de l'emplacement"
 
 #: application/views/station_profile/create.php:56
 #: application/views/station_profile/create.php:57
 #: application/views/station_profile/edit.php:73
 msgctxt "Station Location Setup"
 msgid "Home QTH"
-msgstr ""
+msgstr "QTH"
 
 #: application/views/station_profile/create.php:57
 #: application/views/station_profile/edit.php:73
 #, php-format
 msgid "Shortname for the station location. For example: %s"
-msgstr ""
+msgstr "Nom abrégé de l'emplacement de la station. Par exemple : %s"
 
 #: application/views/station_profile/create.php:63
 #: application/views/station_profile/edit.php:79
 msgid "Station callsign. For example: 4W7EST/P"
-msgstr ""
+msgstr "Indicatif de la station. Par example : 4W7EST/P"
 
 #: application/views/station_profile/create.php:67
 #: application/views/station_profile/edit.php:83
 msgid "Station Power (W)"
-msgstr ""
+msgstr "Puissance de la station (W)"
 
 #: application/views/station_profile/create.php:69
 #: application/views/station_profile/edit.php:85
 msgid "Default station power in Watt. Overwritten by CAT."
-msgstr ""
+msgstr "Puissance de la station par défaut, en Watt. Réécrit par le CAT."
 
 #: application/views/station_profile/create.php:82
 #: application/views/station_profile/edit.php:116
 msgid "Station DXCC entity. For example: Bolivia"
-msgstr ""
+msgstr "Entité DXCC de la station. Par exemple : Bolivie"
 
 #: application/views/station_profile/create.php:87
 #: application/views/station_profile/edit.php:122
 msgid "Station City"
-msgstr ""
+msgstr "Ville de la station"
 
 #: application/views/station_profile/create.php:89
 #: application/views/station_profile/edit.php:124
 msgid "Station city. For example: Oslo"
-msgstr ""
+msgstr "Ville de la station. Par exemple : Oslo"
 
 #: application/views/station_profile/create.php:98
 #: application/views/station_profile/edit.php:136
