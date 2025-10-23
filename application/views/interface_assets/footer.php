@@ -1418,7 +1418,7 @@ mymap.on('mousemove', onQsoMapMove);
 		    }
 
 		    // Handle radio status updates
-		    if (data.type === 'radio_status' && data.radio) {
+		    if (data.type === 'radio_status' && data.radio && ($(".radios option:selected").val() == 'ws')) {
 			    data.updated_minutes_ago = Math.floor((Date.now() - data.timestamp) / 60000);
 			    // Cache the radio data
 			    updateCATui(data);
