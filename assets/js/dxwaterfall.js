@@ -131,9 +131,6 @@ var DX_WATERFALL_CONSTANTS = {
     // Logo configuration
     LOGO_FILENAME: 'assets/logo/wavelog_logo_darkly_wide.png',
 
-    // Data file paths
-    IARU_BANDPLANS_PATH: 'assets/json/iaru_bandplans.json',
-
     // Frequency thresholds (in kHz)
     LSB_USB_THRESHOLD_KHZ: 10000, // Below 10 MHz = LSB, above = USB
 
@@ -495,7 +492,7 @@ var DX_WATERFALL_UTILS = {
             // Priority: program-specific mode from DXCC data > generic mode field
             // Check for POTA, SOTA, WWFF, or IOTA specific modes
             var spotMode = spot.mode || '';
-            
+
             if (spot.dxcc_spotted) {
                 // Check for program-specific modes in priority order
                 if (spot.dxcc_spotted.pota_mode) {
@@ -1017,8 +1014,8 @@ var dxWaterfall = {
     // USER INTERFACE STATE
     // ========================================
     userEditingFrequency: false, // Track if user is actively editing frequency
-    lastSpotInfoText: null, // Track last displayed spot info to prevent redundant updates
     spotInfoDiv: null, // Reference to the dxWaterfallSpot div
+    lastSpotInfoKey: null, // Track last displayed spot to prevent unnecessary re-renders
     currentContinent: 'NA', // Track current continent filter
     currentMaxAge: 60, // Track current max age filter
 
@@ -1124,8 +1121,9 @@ var dxWaterfall = {
     ft8Frequencies: DX_WATERFALL_CONSTANTS.FT8_FREQUENCIES,
 
     // Band plan management
-    bandPlans: null, // Cached band plans from JSON
-    currentRegion: null, // Current IARU region (R1, R2, R3)
+    bandPlans: null, // Cached band plans from database
+    bandEdgesData: null, // Raw band edges data with mode information for mode indicators
+    currentRegion: null, // Current IARU region (1, 2, 3)
     bandLimitsCache: null, // Cached band limits for current band+region
 
     // ========================================
@@ -1342,9 +1340,9 @@ var dxWaterfall = {
         if (isFrequencyInvalid || isBandInvalid) {
             this.waitingForData = true;
             this.dataReceived = false;
-            this.lastSpotInfoText = null;
             this.relevantSpots = [];
             this.currentSpotIndex = 0;
+            this.lastSpotInfoKey = null; // Reset spot info key
             if (this.spotInfoDiv) {
                 this.spotInfoDiv.innerHTML = '&nbsp;';
             }
@@ -1374,11 +1372,10 @@ var dxWaterfall = {
                 // Band changed after initial load, reset waiting state
                 this.waitingForData = true;
                 this.dataReceived = false;
-                // Reset spot info text to force update
-                this.lastSpotInfoText = null;
                 // Reset relevant spots array and index
                 this.relevantSpots = [];
                 this.currentSpotIndex = 0;
+                this.lastSpotInfoKey = null; // Reset spot info key
                 if (this.spotInfoDiv) {
                     this.spotInfoDiv.innerHTML = '&nbsp;';
                 }
@@ -1621,21 +1618,21 @@ var dxWaterfall = {
         switch(continent) {
             case 'EU': // Europe
             case 'AF': // Africa
-                return 'R1';
+                return 1; // IARU Region 1
             case 'NA': // North America
             case 'SA': // South America
-                return 'R2';
+                return 2; // IARU Region 2
             case 'AS': // Asia
             case 'OC': // Oceania
-                return 'R3';
+                return 3; // IARU Region 3
             case 'AN': // Antarctica
-                return 'R1'; // Default to R1 for Antarctica
+                return 1; // Default to Region 1 for Antarctica
             default:
-                return 'R1'; // Default to R1 if unknown
+                return 1; // Default to Region 1 if unknown
         }
     },
 
-    // Load band plans from JSON file
+    // Load band plans from database
     loadBandPlans: function() {
         var self = this;
 
@@ -1654,13 +1651,20 @@ var dxWaterfall = {
             return;
         }
 
+        // Determine region from current continent using the same logic as JSON bandplans
+        // Region selection not yet fully implemented, but prepared for future use
+        var region = this.continentToRegion(this.currentContinent);
+
         $.ajax({
-            url: baseUrl + DX_WATERFALL_CONSTANTS.IARU_BANDPLANS_PATH,
+            url: baseUrl + 'index.php/band/get_user_bandedges?region=' + region,
             type: 'GET',
             dataType: 'json',
             cache: true, // Cache the band plans
             success: function(data) {
-                self.bandPlans = data;
+                // Transform the database format to the expected band plans format
+                // Database returns: [{frequencyfrom: 14000000, frequencyto: 14070000, mode: "CW"}, ...]
+                // Need to group by band and create structure for getBandLimits
+                self.bandPlans = self.transformBandEdgesToBandPlans(data, region);
                 // Invalidate cache to trigger redraw with band limits
                 self.bandLimitsCache = null;
             },
@@ -1670,10 +1674,99 @@ var dxWaterfall = {
         });
     },
 
+    // Transform band edges from database into band plans structure
+    transformBandEdgesToBandPlans: function(bandEdges, region) {
+        if (!bandEdges || bandEdges.length === 0) {
+            return {};
+        }
+
+        var bandPlans = {};
+        var regionKey = 'region' + region;
+        bandPlans[regionKey] = {};
+
+        // Also store raw band edges data grouped by band for mode indicators
+        if (!this.bandEdgesData) {
+            this.bandEdgesData = {};
+        }
+        this.bandEdgesData[regionKey] = {};
+
+        // Group by band - find min/max frequencies for each band
+        var bandRanges = {};
+        
+        for (var i = 0; i < bandEdges.length; i++) {
+            var edge = bandEdges[i];
+            var freqFrom = parseInt(edge.frequencyfrom);
+            var freqTo = parseInt(edge.frequencyto);
+            
+            // Determine band from frequency (use center frequency)
+            var centerFreq = (freqFrom + freqTo) / 2;
+            var band = this.getFrequencyBandFromHz(centerFreq);
+            
+            if (band) {
+                // Store band ranges for limits
+                if (!bandRanges[band]) {
+                    bandRanges[band] = {
+                        start_hz: freqFrom,
+                        end_hz: freqTo
+                    };
+                } else {
+                    // Expand range if this edge extends beyond current range
+                    if (freqFrom < bandRanges[band].start_hz) {
+                        bandRanges[band].start_hz = freqFrom;
+                    }
+                    if (freqTo > bandRanges[band].end_hz) {
+                        bandRanges[band].end_hz = freqTo;
+                    }
+                }
+
+                // Store raw band edges for mode indicators
+                if (!this.bandEdgesData[regionKey][band]) {
+                    this.bandEdgesData[regionKey][band] = [];
+                }
+                this.bandEdgesData[regionKey][band].push({
+                    frequencyfrom: freqFrom,
+                    frequencyto: freqTo,
+                    mode: edge.mode
+                });
+            }
+        }
+
+        // Convert to expected format
+        bandPlans[regionKey] = bandRanges;
+        return bandPlans;
+    },
+
+    // Helper function to determine band from frequency in Hz
+    getFrequencyBandFromHz: function(frequencyHz) {
+        // Check if frequencyToBand function exists
+        if (typeof frequencyToBand === 'function') {
+            return frequencyToBand(frequencyHz);
+        }
+
+        // Fallback: simple band detection based on common amateur radio bands
+        var freqMhz = frequencyHz / 1000000;
+        
+        if (freqMhz >= 1.8 && freqMhz < 2.0) return '160m';
+        if (freqMhz >= 3.5 && freqMhz < 4.0) return '80m';
+        if (freqMhz >= 7.0 && freqMhz < 7.3) return '40m';
+        if (freqMhz >= 10.1 && freqMhz < 10.15) return '30m';
+        if (freqMhz >= 14.0 && freqMhz < 14.35) return '20m';
+        if (freqMhz >= 18.068 && freqMhz < 18.168) return '17m';
+        if (freqMhz >= 21.0 && freqMhz < 21.45) return '15m';
+        if (freqMhz >= 24.89 && freqMhz < 24.99) return '12m';
+        if (freqMhz >= 28.0 && freqMhz < 29.7) return '10m';
+        if (freqMhz >= 50.0 && freqMhz < 54.0) return '6m';
+        if (freqMhz >= 144.0 && freqMhz < 148.0) return '2m';
+        if (freqMhz >= 420.0 && freqMhz < 450.0) return '70cm';
+        
+        return null;
+    },
+
     // Get band limits for current band and region
     getBandLimits: function() {
         var currentBand = this.getCurrentBand();
         var currentRegion = this.continentToRegion(this.currentContinent);
+        var regionKey = 'region' + currentRegion;
 
         // Check if we need to update cache
         if (this.bandLimitsCache &&
@@ -1695,9 +1788,9 @@ var dxWaterfall = {
 
         // Get limits from band plans
         var limits = null;
-        if (this.bandPlans && this.bandPlans[currentRegion]) {
-            if (this.bandPlans[currentRegion][currentBand]) {
-                var bandData = this.bandPlans[currentRegion][currentBand];
+        if (this.bandPlans && this.bandPlans[regionKey]) {
+            if (this.bandPlans[regionKey][currentBand]) {
+                var bandData = this.bandPlans[regionKey][currentBand];
                 limits = {
                     start_khz: bandData.start_hz / 1000, // Convert Hz to kHz
                     end_khz: bandData.end_hz / 1000       // Convert Hz to kHz
@@ -1775,6 +1868,78 @@ var dxWaterfall = {
     // ========================================
     // CANVAS DRAWING AND RENDERING FUNCTIONS
     // ========================================
+
+    // Draw band mode indicators (colored lines below ruler showing CW/DIGI/PHONE segments)
+    drawBandModeIndicators: function() {
+        // Get current region and band
+        var currentBand = this.getCurrentBand();
+        var currentRegion = this.continentToRegion(this.currentContinent);
+        var regionKey = 'region' + currentRegion;
+
+        // Check if we have band plans loaded
+        if (!this.bandPlans || this.bandPlans === 'loading' || !this.bandPlans[regionKey]) {
+            return;
+        }
+
+        // Get band edges from the raw data (we need mode information)
+        // We need to access the original band edges data with mode info
+        if (!this.bandEdgesData || !this.bandEdgesData[regionKey]) {
+            return;
+        }
+
+        var centerX = this.canvas.width / 2;
+        var middleFreq = this.getCachedMiddleFreq(); // In kHz
+        var pixelsPerKHz = this.getCachedPixelsPerKHz();
+        var rulerY = this.canvas.height - DX_WATERFALL_CONSTANTS.CANVAS.RULER_HEIGHT;
+
+        // Get band edges for current band
+        var bandEdges = this.bandEdgesData[regionKey][currentBand];
+        if (!bandEdges || bandEdges.length === 0) {
+            return;
+        }
+
+        // Draw mode indicators as 2px lines below the ruler
+        this.ctx.lineWidth = 2;
+        var indicatorY = rulerY + 2; // 2px below the ruler line
+
+        for (var i = 0; i < bandEdges.length; i++) {
+            var edge = bandEdges[i];
+            var freqFromKhz = edge.frequencyfrom / 1000; // Convert Hz to kHz
+            var freqToKhz = edge.frequencyto / 1000;
+            var mode = edge.mode.toLowerCase();
+
+            // Calculate pixel positions
+            var startX = this.freqToPixel(freqFromKhz, centerX, middleFreq, pixelsPerKHz);
+            var endX = this.freqToPixel(freqToKhz, centerX, middleFreq, pixelsPerKHz);
+
+            // Clip to canvas bounds
+            startX = Math.max(0, Math.min(startX, this.canvas.width));
+            endX = Math.max(0, Math.min(endX, this.canvas.width));
+
+            // Only draw if visible on canvas
+            if (endX > 0 && startX < this.canvas.width && endX > startX) {
+                // Determine color based on mode
+                var color;
+                if (mode === 'cw') {
+                    color = DX_WATERFALL_CONSTANTS.COLORS.SPOT_CW;
+                } else if (mode === 'digi' || mode === 'data') {
+                    color = DX_WATERFALL_CONSTANTS.COLORS.SPOT_DIGI;
+                } else if (mode === 'phone' || mode === 'ssb' || mode === 'lsb' || mode === 'usb') {
+                    color = DX_WATERFALL_CONSTANTS.COLORS.SPOT_PHONE;
+                } else {
+                    // Unknown mode, skip
+                    continue;
+                }
+
+                // Draw the mode indicator line
+                this.ctx.strokeStyle = color;
+                this.ctx.beginPath();
+                this.ctx.moveTo(startX, indicatorY);
+                this.ctx.lineTo(endX, indicatorY);
+                this.ctx.stroke();
+            }
+        }
+    },
 
     // Draw band limit overlays (out-of-band areas)
     drawBandLimits: function() {
@@ -2315,6 +2480,9 @@ var dxWaterfall = {
         this.ctx.lineTo(this.canvas.width, rulerY);
         this.ctx.stroke();
 
+        // Draw band mode indicators (colored lines showing CW/DIGI/PHONE segments)
+        this.drawBandModeIndicators();
+
         // Calculate frequency range based on canvas width
         var halfWidthKHz = (this.canvas.width / 2) / pixelsPerKHz;
         var startFreq = middleFreq - halfWidthKHz;
@@ -2798,106 +2966,161 @@ var dxWaterfall = {
 		var self = this;
 		var fonts = this.fonts;
 
-		// Function to distribute spots vertically
+		// Label height constants for overlap detection
+		var labelHeight = 13; // Base label height in pixels
+		var minSpacing = 3; // Minimum spacing between labels in pixels
+
+		// Function to distribute spots vertically with anti-overlap algorithm
 		var drawSpotsSide = function(spots, ctx) {
 			if (spots.length === 0) return;
 
+			// Pre-calculate label widths for all spots
+			ctx.font = fonts.spotLabels;
+			var padding = DX_WATERFALL_CONSTANTS.CANVAS.SPOT_PADDING;
+			for (var p = 0; p < spots.length; p++) {
+				var textWidth = ctx.measureText(spots[p].callsign).width;
+				spots[p].labelWidth = textWidth + (padding * 2);
+			}
+
+			// Sort spots by absolute frequency offset (closest to center first)
+			// This helps prioritize important spots and improves distribution
+			spots.sort(function(a, b) {
+				return Math.abs(a.absOffset) - Math.abs(b.absOffset);
+			});
+
 			// Function to draw a single spot
 			var drawSpot = function(spot, y) {
-			// Get colors using utility function
-			var colors = self.getSpotColors(spot);
-			var bgColor = colors.bgColor;
-			var borderColor = colors.borderColor;
-			var tickboxColor = colors.tickboxColor;
+				// Get colors using utility function
+				var colors = self.getSpotColors(spot);
+				var bgColor = colors.bgColor;
+				var borderColor = colors.borderColor;
+				var tickboxColor = colors.tickboxColor;
 
-			// Calculate dimensions (increased by 5% from original 12px base)
-			ctx.font = fonts.spotLabels;
-			var textWidth = ctx.measureText(spot.callsign).width;
-			var padding = DX_WATERFALL_CONSTANTS.CANVAS.SPOT_PADDING;
-			var rectX = spot.x - (textWidth / 2) - padding;
-			var rectY = y - 7; // Adjusted from -6 to -7 for 13px height
-			var rectWidth = textWidth + (padding * 2);
-			var rectHeight = 13; // Increased from 12 to 13
+				// Calculate dimensions (increased by 5% from original 12px base)
+				var rectX = spot.x - (spot.labelWidth / 2);
+				var rectY = y - 7; // Adjusted from -6 to -7 for 13px height
+				var rectWidth = spot.labelWidth;
+				var rectHeight = 13; // Increased from 12 to 13
 
-			// Draw background rectangle
-			ctx.fillStyle = bgColor;
-			ctx.fillRect(rectX, rectY, rectWidth, rectHeight);
+				// Draw background rectangle
+				ctx.fillStyle = bgColor;
+				ctx.fillRect(rectX, rectY, rectWidth, rectHeight);
 
-			// Draw border around the rectangle
-			ctx.strokeStyle = borderColor;
-			ctx.lineWidth = 1;
-			ctx.strokeRect(rectX, rectY, rectWidth, rectHeight);
-
-			// Draw small tickbox at top-right corner
-			var tickboxSize = DX_WATERFALL_CONSTANTS.CANVAS.SPOT_TICKBOX_SIZE;
-			ctx.fillStyle = tickboxColor;
-			ctx.fillRect(rectX + rectWidth - tickboxSize, rectY, tickboxSize, tickboxSize);
-
-			// Draw the callsign text in black
-			ctx.fillStyle = '#000000';
-			ctx.textAlign = 'center';
-			ctx.textBaseline = 'middle';
-			ctx.fillText(spot.callsign, spot.x, y + 1);
-
-			// Draw underline if LoTW user
-			if (spot.lotw_user) {
-				ctx.strokeStyle = '#000000';
+				// Draw border around the rectangle
+				ctx.strokeStyle = borderColor;
 				ctx.lineWidth = 1;
-				ctx.beginPath();
-				ctx.moveTo(spot.x - (textWidth / 2), y + 3);
-				ctx.lineTo(spot.x + (textWidth / 2), y + 3);
-				ctx.stroke();
-			}
+				ctx.strokeRect(rectX, rectY, rectWidth, rectHeight);
+
+				// Draw small tickbox at top-right corner
+				var tickboxSize = DX_WATERFALL_CONSTANTS.CANVAS.SPOT_TICKBOX_SIZE;
+				ctx.fillStyle = tickboxColor;
+				ctx.fillRect(rectX + rectWidth - tickboxSize, rectY, tickboxSize, tickboxSize);
+
+				// Draw the callsign text in black
+				ctx.fillStyle = '#000000';
+				ctx.textAlign = 'center';
+				ctx.textBaseline = 'middle';
+				ctx.fillText(spot.callsign, spot.x, y + 1);
+
+				// Draw underline if LoTW user
+				if (spot.lotw_user) {
+					var textWidth = spot.labelWidth - (padding * 2);
+					ctx.strokeStyle = '#000000';
+					ctx.lineWidth = 1;
+					ctx.beginPath();
+					ctx.moveTo(spot.x - (textWidth / 2), y + 3);
+					ctx.lineTo(spot.x + (textWidth / 2), y + 3);
+					ctx.stroke();
+				}
 			};
 
-			if (spots.length === 1) {
-				// Single spot - place in middle of available space (or top/bottom if center is occupied)
+			// Check if a position would overlap with center label, other spots, or horizontally with nearby spots
+			var checkOverlap = function(spot, y, occupiedPositions) {
+				var spotLeft = spot.x - (spot.labelWidth / 2);
+				var spotRight = spot.x + (spot.labelWidth / 2);
+				var spotTop = y - (labelHeight / 2);
+				var spotBottom = y + (labelHeight / 2);
+
+				// Check center label overlap
 				if (centerSpotShown) {
-					// Place in top section if center is occupied
-					var topSectionMiddle = topY + ((centerExclusionTop - topY) / 2);
-					drawSpot(spots[0], topSectionMiddle);
-				} else {
-					drawSpot(spots[0], topY + (availableHeight / 2));
+					if (!(spotBottom < centerExclusionTop || spotTop > centerExclusionBottom)) {
+						return true; // Overlaps center vertically
+					}
 				}
-			} else {
-				// Multiple spots - distribute evenly avoiding center if needed
+
+				// Check overlap with other spots (both vertical and horizontal)
+				for (var i = 0; i < occupiedPositions.length; i++) {
+					var other = occupiedPositions[i];
+					var otherLeft = other.x - (other.labelWidth / 2);
+					var otherRight = other.x + (other.labelWidth / 2);
+					var otherTop = other.y - (labelHeight / 2);
+					var otherBottom = other.y + (labelHeight / 2);
+
+					// Check if rectangles overlap (both horizontally AND vertically)
+					var horizontalOverlap = !(spotRight < otherLeft - minSpacing || spotLeft > otherRight + minSpacing);
+					var verticalOverlap = !(spotBottom < otherTop - minSpacing || spotTop > otherBottom + minSpacing);
+
+					if (horizontalOverlap && verticalOverlap) {
+						return true; // Overlaps both ways
+					}
+				}
+
+				return false; // No overlap
+			};
+
+			// Find best vertical position for a spot
+			var findBestPosition = function(spot, occupiedPositions) {
+				// Create candidate positions - distribute across available space
+				var candidates = [];
+				var numCandidates = Math.max(20, spots.length * 3); // More candidates for better distribution
+
+				// Generate candidate positions
 				if (centerSpotShown) {
-					// Split spots between top and bottom sections
+					// Split candidates between top and bottom sections
 					var topSectionHeight = centerExclusionTop - topY;
 					var bottomSectionHeight = bottomY - centerExclusionBottom;
-					var topSectionStart = topY;
-					var bottomSectionStart = centerExclusionBottom;
+					var halfCandidates = Math.floor(numCandidates / 2);
 
-					// Distribute spots proportionally between top and bottom
-					var halfSpots = Math.ceil(spots.length / 2);
-
-					// Top section
-					if (halfSpots === 1) {
-						drawSpot(spots[0], topSectionStart + (topSectionHeight / 2));
-					} else if (topSectionHeight > 0) {
-						var topSpacing = topSectionHeight / (halfSpots - 1);
-						for (var i = 0; i < halfSpots && i < spots.length; i++) {
-							drawSpot(spots[i], topSectionStart + (topSpacing * i));
-						}
+					// Top section candidates
+					for (var i = 0; i < halfCandidates; i++) {
+						candidates.push(topY + (topSectionHeight * i / (halfCandidates - 1 || 1)));
 					}
 
-					// Bottom section
-					var bottomSpots = spots.length - halfSpots;
-					if (bottomSpots === 1) {
-						drawSpot(spots[halfSpots], bottomSectionStart + (bottomSectionHeight / 2));
-					} else if (bottomSpots > 0 && bottomSectionHeight > 0) {
-						var bottomSpacing = bottomSectionHeight / (bottomSpots - 1);
-						for (var j = 0; j < bottomSpots; j++) {
-							drawSpot(spots[halfSpots + j], bottomSectionStart + (bottomSpacing * j));
-						}
+					// Bottom section candidates
+					for (var j = 0; j < (numCandidates - halfCandidates); j++) {
+						candidates.push(centerExclusionBottom + (bottomSectionHeight * j / ((numCandidates - halfCandidates - 1) || 1)));
 					}
 				} else {
-					// No center label - distribute evenly across full height
-					var spacing = availableHeight / (spots.length - 1);
-					for (var i = 0; i < spots.length; i++) {
-						drawSpot(spots[i], topY + (spacing * i));
+					// Full height candidates
+					for (var k = 0; k < numCandidates; k++) {
+						candidates.push(topY + (availableHeight * k / (numCandidates - 1 || 1)));
 					}
 				}
+
+				// Find first non-overlapping candidate
+				for (var m = 0; m < candidates.length; m++) {
+					if (!checkOverlap(spot, candidates[m], occupiedPositions)) {
+						return candidates[m];
+					}
+				}
+
+				// If no good position found, return middle position (fallback)
+				return topY + (availableHeight / 2);
+			};
+
+			// Track occupied positions with full rectangle info
+			var occupiedPositions = [];
+
+			// Position and draw each spot
+			for (var i = 0; i < spots.length; i++) {
+				var spot = spots[i];
+				var bestY = findBestPosition(spot, occupiedPositions);
+				occupiedPositions.push({
+					x: spot.x,
+					y: bestY,
+					labelWidth: spot.labelWidth
+				});
+				drawSpot(spot, bestY);
 			}
 		};
 
@@ -3308,41 +3531,37 @@ var dxWaterfall = {
         if (this.waitingForData || this.waitingForCATFrequency || this.frequencyChanging || this.catTuning) {
             if (this.spotInfoDiv.innerHTML !== '&nbsp;') {
                 this.spotInfoDiv.innerHTML = '&nbsp;';
-                this.lastSpotInfoText = null;
+                this.lastSpotInfoKey = null;
             }
             return;
         }
 
         var spotInfo = this.getSpotInfo();
 
-        // Count how many spots are displayed after filtering
-        var displayedSpotsCount = 0;
-        if (this.dxSpots && this.dxSpots.length > 0) {
-            for (var i = 0; i < this.dxSpots.length; i++) {
-                if (this.spotMatchesModeFilter(this.dxSpots[i])) {
-                    displayedSpotsCount++;
-                }
-            }
+        // Create a unique key for the current spot state to detect changes
+        var currentKey;
+        if (!spotInfo) {
+            currentKey = 'no-spot';
+        } else {
+            // Include spot details and index in the key to detect any meaningful change
+            currentKey = spotInfo.callsign + '|' + spotInfo.frequency + '|' + 
+                         this.currentSpotIndex + '|' + this.relevantSpots.length;
         }
+
+        // Only update if the spot has actually changed
+        if (this.lastSpotInfoKey === currentKey) {
+            return; // No change, skip re-rendering
+        }
+
+        // Store the new key
+        this.lastSpotInfoKey = currentKey;
 
         var infoText;
         if (!spotInfo) {
-            // No active spot in bandwidth - show summary information
-            // Format: "x spots fetched from DXCluster for band 40m, displaying y; showing spots de EU; maximum age of spot is set to 30 minutes; last update at HH:MM"
-            var updateTimeStr = '';
-            if (this.lastUpdateTime) {
-                var hours = String(this.lastUpdateTime.getHours()).padStart(2, '0');
-                var minutes = String(this.lastUpdateTime.getMinutes()).padStart(2, '0');
-                updateTimeStr = hours + ':' + minutes;
-            }
-
-            var currentBand = this.getCurrentBand();
-            infoText = this.totalSpotsCount + ' ' + lang_dxwaterfall_spots_fetched + ' ' + this.currentContinent + ' ' + lang_dxwaterfall_fetched_for_band + ' ' + currentBand + lang_dxwaterfall_displaying + ' ' + displayedSpotsCount;
-            if (updateTimeStr) {
-                infoText += ' (updated at ' + updateTimeStr + ' local time)';
-            }
+            // No active spot in bandwidth - clear the div (don't show cluster statistics here)
+            infoText = '&nbsp;';
         } else {
-            // Active spot in bandwidth - show spot details (no count prefix)
+            // Active spot in bandwidth - show spot details
 
             // Get detailed submode information using centralized function
             var submodeInfo = DX_WATERFALL_UTILS.modes.getDetailedSubmode(spotInfo);
@@ -3370,28 +3589,12 @@ var dxWaterfall = {
                 var cycleIcon = '';
                 var spotCounter = '';
                 if (this.relevantSpots.length > 1) {
-                    cycleIcon = '<i class="fas fa-exchange-alt cycle-spot-icon" title="' + lang_dxwaterfall_cycle_through + ' ' + this.relevantSpots.length + ' ' + lang_dxwaterfall_spots_currently_showing + ' ' + (this.currentSpotIndex + 1) + '/' + this.relevantSpots.length + ')"></i> ';
+                    cycleIcon = '<i class="fas fa-exchange-alt cycle-spot-icon" title="' + lang_dxwaterfall_cycle_nearby_spots + '"></i> ';
                     spotCounter = '[' + (this.currentSpotIndex + 1) + '/' + this.relevantSpots.length + '] ';
                 }
 
-                // Use pre-calculated park references (extracted once during fetch)
-                // Fall back to extraction if not available (for backwards compatibility)
-                var sotaRef = spotInfo.sotaRef !== undefined ? spotInfo.sotaRef : '';
-                var potaRef = spotInfo.potaRef !== undefined ? spotInfo.potaRef : '';
-                var iotaRef = spotInfo.iotaRef !== undefined ? spotInfo.iotaRef : '';
-                var wwffRef = spotInfo.wwffRef !== undefined ? spotInfo.wwffRef : '';
-
-                // Fallback: if not pre-calculated, extract them
-                if (spotInfo.sotaRef === undefined) {
-                    var parkRefs = DX_WATERFALL_UTILS.parkRefs.extract(spotInfo);
-                    sotaRef = parkRefs.sotaRef;
-                    potaRef = parkRefs.potaRef;
-                    iotaRef = parkRefs.iotaRef;
-                    wwffRef = parkRefs.wwffRef;
-                }
-
-                // Add mode label after DXCC number (use detailed submode)
-                prefixText = '<i class="fas fa-pen-to-square copy-icon" title="' + lang_dxwaterfall_log_qso_with + ' ' + spotInfo.callsign + ' [Ctrl+Space]" data-callsign="' + spotInfo.callsign + '" data-mode="' + modeForField + '" data-sota-ref="' + sotaRef + '" data-pota-ref="' + potaRef + '" data-iota-ref="' + iotaRef + '" data-wwff-ref="' + wwffRef + '"></i> ' + tuneIcon + cycleIcon + spotCounter + flagPart + continent + ' ' + entity + ' (' + dxccId + ') ' + modeLabel + lotwIndicator + ' ';
+                // Build prefix with tune and cycle icons, then spot info
+                prefixText = tuneIcon + cycleIcon + spotCounter + flagPart + continent + ' ' + entity + ' (' + dxccId + ') ' + modeLabel + lotwIndicator + ' ';
             }
 
             // Format the date/time with UTC
@@ -3418,11 +3621,8 @@ var dxWaterfall = {
             infoText += awards + ' ' + lang_dxwaterfall_comment + spotInfo.message;
         }
 
-        // Only update if the text has changed to prevent redundant DOM updates
-        if (this.lastSpotInfoText !== infoText) {
-            this.spotInfoDiv.innerHTML = infoText;
-            this.lastSpotInfoText = infoText;
-        }
+        // Update the div only when content actually changed
+        this.spotInfoDiv.innerHTML = infoText;
     },
 
     // Update zoom menu display
@@ -3582,6 +3782,31 @@ var dxWaterfall = {
             digiStyle += ' cursor: pointer;';
             zoomHTML += '<span class="' + digiClass + '" title="' + lang_dxwaterfall_toggle_digi + '" style="' + digiStyle + ' margin: 0 3px; font-size: 11px; transition: color 0.2s;">' + lang_dxwaterfall_digi + '</span>';
 
+        zoomHTML += '</div>';
+
+        // Center section: spot count information
+        // Format: "31/43 20m NA spots @22:16LT"
+        zoomHTML += '<div style="flex: 1; display: flex; justify-content: center; align-items: center;">';
+        if (this.dataReceived && this.lastUpdateTime) {
+            // Count displayed spots
+            var displayedSpotsCount = 0;
+            if (this.dxSpots && this.dxSpots.length > 0) {
+                for (var i = 0; i < this.dxSpots.length; i++) {
+                    if (this.spotMatchesModeFilter(this.dxSpots[i])) {
+                        displayedSpotsCount++;
+                    }
+                }
+            }
+
+            var hours = String(this.lastUpdateTime.getHours()).padStart(2, '0');
+            var minutes = String(this.lastUpdateTime.getMinutes()).padStart(2, '0');
+            var updateTimeStr = hours + ':' + minutes;
+            var currentBand = this.getCurrentBand();
+
+            zoomHTML += '<span style="font-size: 11px; color: #888888;">';
+            zoomHTML += displayedSpotsCount + '/' + this.totalSpotsCount + ' ' + currentBand + ' ' + this.currentContinent + ' ' + lang_dxwaterfall_spots + ' @' + updateTimeStr + 'LT';
+            zoomHTML += '</span>';
+        }
         zoomHTML += '</div>';
 
         // Right side: zoom controls
@@ -3753,7 +3978,6 @@ var dxWaterfall = {
                 this.currentSpotIndex = i;
                 found = true;
                 // Force update of spot info display
-                this.lastSpotInfoText = null;
                 this.updateSpotInfoDiv();
                 break;
             }
@@ -4048,10 +4272,16 @@ var dxWaterfall = {
             // Invalidate band limits cache (region may have changed)
             self.bandLimitsCache = null;
 
+            // Reset band plans to force reload for new region
+            self.bandPlans = null;
+            self.bandEdgesData = null;
+            
+            // Load band plans for new region (based on new continent)
+            self.loadBandPlans();
+
             // Enter waiting state
             self.waitingForData = true;
             self.dataReceived = false;
-            self.lastSpotInfoText = null;
 
             // Set spot info to nbsp to maintain layout height
             if (self.spotInfoDiv) {
@@ -4066,6 +4296,7 @@ var dxWaterfall = {
             self.currentBandSpotIndex = 0;
             self.currentSmartHunterIndex = 0;
             self.currentSpotIndex = 0;
+            self.lastSpotInfoKey = null; // Reset spot info key
 
             // Update zoom menu to show new continent and waiting state
             self.updateZoomMenu();
@@ -4159,9 +4390,6 @@ var dxWaterfall = {
             // Just re-collect spots with the new filters applied
             self.collectAllBandSpots(true); // Update band spot collection (force after filter change)
             self.collectSmartHunterSpots(); // Update smart hunter spots
-
-            // Reset spot info to force update
-            self.lastSpotInfoText = null;
 
             // Update zoom menu to show new state
             self.updateZoomMenu();
@@ -4550,42 +4778,22 @@ $(document).ready(function() {
         dxWaterfall.updateDimensions();
     });
 
-    // Handle click on the copy icon in dxWaterfallSpot div to populate callsign
-    $('#dxWaterfallSpot').on('click', '.copy-icon', function(e) {
-        e.stopPropagation(); // Prevent event bubbling
-
-        var spotData = {
-            callsign: $(this).data('callsign'),
-            mode: $(this).data('mode'),
-            sotaRef: $(this).data('sota-ref'),
-            potaRef: $(this).data('pota-ref'),
-            iotaRef: $(this).data('iota-ref'),
-            wwffRef: $(this).data('wwff-ref')
-        };
-
-        if (spotData.callsign) {
-            // Use the utility function to populate the form
-            DX_WATERFALL_UTILS.qsoForm.populateFromSpot(spotData, true);
-
-            // Visual feedback - briefly change icon color
-            var icon = $(this);
-            icon.css('color', '#FFFF00');
-            setTimeout(function() {
-                icon.css('color', '#FFFFFF');
-            }, 200);
-        }
-    });
-
     // Handle click on the cycle icon in dxWaterfallSpot div to cycle through spots
     $('#dxWaterfallSpot').on('click', '.cycle-spot-icon', function(e) {
         e.stopPropagation(); // Prevent event bubbling
 
+        // Prevent rapid clicking - check if navigation is in progress
+        if (dxWaterfall.spotNavigating) {
+            return;
+        }
+
         // Cycle to next spot
         if (dxWaterfall.relevantSpots.length > 1) {
+            dxWaterfall.spotNavigating = true;
+
             dxWaterfall.currentSpotIndex = (dxWaterfall.currentSpotIndex + 1) % dxWaterfall.relevantSpots.length;
 
-            // Force update of spot info display
-            dxWaterfall.lastSpotInfoText = null; // Reset to force update
+            // Update spot info display
             dxWaterfall.updateSpotInfoDiv();
 
             // Clear QSO form first
@@ -4597,13 +4805,18 @@ $(document).ready(function() {
                 if (spotInfo) {
                     DX_WATERFALL_UTILS.qsoForm.populateFromSpot(spotInfo, true);
                 }
+                
+                // Re-enable navigation after operation completes
+                setTimeout(function() {
+                    dxWaterfall.spotNavigating = false;
+                }, 100);
             }, 100);
 
-            // Visual feedback - briefly change icon color
+            // Visual feedback - briefly change icon color (with transition for smooth effect)
             var icon = $(this);
-            icon.css('color', '#FFFF00');
+            icon.css({'color': '#FFFF00', 'transition': 'color 0.2s'});
             setTimeout(function() {
-                icon.css('color', '#FFFFFF');
+                icon.css('color', '');
             }, 200);
         }
     });
@@ -4626,11 +4839,11 @@ $(document).ready(function() {
             // fromWaterfall=true prevents frequency change event from being triggered
             setFrequency(frequency, true);
 
-            // Visual feedback - briefly change icon color
+            // Visual feedback - briefly change icon color (with transition for smooth effect)
             var icon = $(this);
-            icon.css('color', '#FFFF00');
+            icon.css({'color': '#FFFF00', 'transition': 'color 0.2s'});
             setTimeout(function() {
-                icon.css('color', '#FFFFFF');
+                icon.css('color', '');
             }, 200);
         }
     });
@@ -4850,15 +5063,7 @@ $(document).ready(function() {
                 tuneIcon.trigger('click');
             }
         }
-        // Ctrl/Cmd+Space: Copy callsign from current spot info
-        else if (modKey && !e.shiftKey && e.key === ' ') {
-            e.preventDefault();
-            // Find the copy icon in the spot info div and trigger it
-            var copyIcon = $('#dxWaterfallSpot .copy-icon');
-            if (copyIcon.length > 0) {
-                copyIcon.trigger('click');
-            }
-        }
     });
 });
+
 

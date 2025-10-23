@@ -99,7 +99,10 @@ class Bands extends CI_Model {
 		return $this->db->get()->result();
 	}
 
-	function get_all_bandedges_for_user() {
+	function get_all_bandedges_for_user($region = 1) {
+		// Note: $region parameter is for future IARU region support
+		// Currently not implemented - defaults to region 1
+		
 		$this->db->from('bandedges');
 		$this->db->where('bandedges.userid', $this->session->userdata('user_id'));
 		$this->db->order_by('frequencyfrom', 'ASC');

@@ -77,9 +77,8 @@
     var modKey = isMac ? 'Cmd' : 'Ctrl';
 
     var lang_dxwaterfall_tune_to_spot = "<?= __("Tune to spot frequency"); ?>" + " [" + modKey + "+Shift+Space]";
-    var lang_dxwaterfall_cycle_through = "<?= __("Cycle through"); ?>";
-    var lang_dxwaterfall_spots_currently_showing = "<?= __("spots (currently showing"); ?>";
-    var lang_dxwaterfall_log_qso_with = "<?= __("Log QSO with"); ?>";
+    var lang_dxwaterfall_cycle_nearby_spots = "<?= __("Cycle to nearby spots"); ?>";
+    var lang_dxwaterfall_spots = "<?= __("spots"); ?>";
     var lang_dxwaterfall_new_continent = "<?= __("New Continent"); ?>";
     var lang_dxwaterfall_new_dxcc = "<?= __("New DXCC"); ?>";
     var lang_dxwaterfall_new_callsign = "<?= __("New Callsign"); ?>";
@@ -109,9 +108,6 @@
     var lang_dxwaterfall_modes_label = "<?= __("modes:"); ?>";
     var lang_dxwaterfall_out_of_bandplan = "<?= __("OUT OF BANDPLAN"); ?>";
     var lang_dxwaterfall_changing_frequency = "<?= __("Changing radio frequency..."); ?>";
-    var lang_dxwaterfall_spots_fetched = "<?= __("spot(s) de"); ?>";
-    var lang_dxwaterfall_fetched_for_band = "<?= __("fetched from DXCluster for band"); ?>";
-    var lang_dxwaterfall_displaying = "<?= __(", displaying"); ?>";
     var lang_dxwaterfall_invalid = "<?= __("INVALID"); ?>";
 
 </script>
