@@ -75,7 +75,7 @@
     // Detect platform for keyboard shortcuts (Cmd on Mac, Ctrl on Windows/Linux)
     var isMac = navigator.userAgent.toUpperCase().indexOf('MAC') >= 0;
     var modKey = isMac ? 'Cmd' : 'Ctrl';
-    
+
     var lang_dxwaterfall_tune_to_spot = "<?= __("Tune to spot frequency"); ?>" + " [" + modKey + "+Shift+Space]";
     var lang_dxwaterfall_cycle_through = "<?= __("Cycle through"); ?>";
     var lang_dxwaterfall_spots_currently_showing = "<?= __("spots (currently showing"); ?>";
