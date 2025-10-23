@@ -169,18 +169,6 @@ class Migration_more_contests extends CI_Migration {
 			}
 		}
 
-		// Run the querys
-		try {
-			foreach ($qso_fields as $query) {
-				$this->db->query($query);
-			}
-		} catch (Exception $e) {
-			$this->db->trans_rollback();
-			log_message('error', 'Migration failed: ' . $e->getMessage());
-			log_message('error', 'The query was: ' . $query);
-			return false;
-		}
-
 	}
 
 	public function down() {
