@@ -2152,10 +2152,11 @@ var dxWaterfall = {
         // Mark fetch as in progress
         this.fetchInProgress = true;
 
-        // Reset timer only for user-initiated fetches (band changes, continent changes)
-        // Don't reset timer for background spot refreshes
-        if (this.userInitiatedFetch) {
+        // Reset timer for user-initiated fetches (band changes, continent changes)
+        // Also set timer for initial load (even though not user-initiated)
+        if (this.userInitiatedFetch || !this.dataReceived) {
             this.operationStartTime = Date.now();
+            this.updateZoomMenu(); // Immediately show timer/hourglass
         }
 
         $.ajax({
