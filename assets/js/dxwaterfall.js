@@ -1149,7 +1149,7 @@ var dxWaterfall = {
         this.canvas.height = $waterfall.height();
 
         // Get reference to spot info div and menu div
-        this.spotInfoDiv = document.getElementById('dxWaterfallSpot');
+        this.spotInfoDiv = document.getElementById('dxWaterfallSpotContent');
         this.zoomMenuDiv = document.getElementById('dxWaterfallMenu');
 
         // Cache frequently accessed DOM elements for performance
@@ -1202,6 +1202,17 @@ var dxWaterfall = {
         this.$freqCalculated.on('focus', function() {
             // Mark that user is actively editing
             self.userEditingFrequency = true;
+
+            // Clear any stuck CAT tuning or frequency changing flags when user manually interacts
+            // This ensures that even if CAT is in an error state, user can still change frequency
+            if (self.catTuning || self.frequencyChanging) {
+                self.catTuning = false;
+                self.frequencyChanging = false;
+                self.catTuningStartTime = null;
+                // Force refresh to update the display
+                self.updateZoomMenu();
+            }
+
             // When user starts editing, commit current value first (if valid and not already committed)
             if (self.lastValidCommittedFreq === null) {
                 var currentFreq = parseFloat($(this).val()) || 0;
@@ -1286,6 +1297,11 @@ var dxWaterfall = {
     // Commit the current frequency value (called on blur or Enter key)
     // This prevents the waterfall from shifting while the user is typing
     commitFrequency: function() {
+        // Safety check: return early if waterfall is not initialized (destroyed or not yet ready)
+        if (!this.$freqCalculated || !this.$qrgUnit) {
+            return;
+        }
+
         this.committedFreqInput = this.$freqCalculated.val();
         this.committedQrgUnit = this.$qrgUnit.text() || 'kHz';
 
@@ -1426,6 +1442,11 @@ var dxWaterfall = {
 
     // Force invalidate frequency cache - called when CAT updates frequency
     invalidateFrequencyCache: function() {
+        // Safety check: Don't run if waterfall is not initialized
+        if (!this.canvas) {
+            return;
+        }
+
         // Don't invalidate cache if user is actively editing frequency
         if (this.userEditingFrequency) {
             return;
@@ -1465,7 +1486,11 @@ var dxWaterfall = {
 
         // Force immediate cache refresh and visual update to move marker
         this.lastFrequencyRefreshTime = 0; // Reset throttle to allow immediate refresh
-        this.refreshFrequencyCache();
+
+        // Only refresh from DOM if CAT is available - otherwise keep waterfall frequency independent
+        if (catAvailable) {
+            this.refreshFrequencyCache();
+        }
 
         // Force immediate refresh to draw marker at new position (with overlay still visible)
         if (this.canvas && this.ctx) {
@@ -1504,6 +1529,11 @@ var dxWaterfall = {
 
     // Periodically refresh frequency cache to ensure display stays current
     refreshFrequencyCache: function() {
+        // Safety check: Don't run if waterfall is not initialized
+        if (!this.$freqCalculated || !this.$qrgUnit) {
+            return;
+        }
+
         // Don't interfere during waterfall-initiated frequency changes or when user is editing
         if (this.frequencyChanging || this.userEditingFrequency) {
             return;
@@ -2236,6 +2266,10 @@ var dxWaterfall = {
 
     // Get current band from form or default to 20m
     getCurrentBand: function() {
+        // Safety check: return default if not initialized
+        if (!this.$bandSelect) {
+            return '20m';
+        }
         // Try to get band from form - adjust selector based on your HTML structure
         var band = this.$bandSelect.val() || '20m';
         return band;
@@ -2243,6 +2277,10 @@ var dxWaterfall = {
 
     // Get current mode from form or default to All
     getCurrentMode: function() {
+        // Safety check: return default if not initialized
+        if (!this.$modeSelect) {
+            return 'All';
+        }
         // Try to get mode from form - adjust selector based on your HTML structure
         var mode = this.$modeSelect.val() || 'All';
         return mode;
@@ -3643,7 +3681,9 @@ var dxWaterfall = {
         // Show hourglass with counter during DX cluster fetch
         if (this.fetchInProgress) {
             var elapsed = ((Date.now() - this.operationStartTime) / 1000).toFixed(1);
-            this.zoomMenuDiv.innerHTML = '<div style="display: flex; align-items: center; flex: 1;"><i class="fas fa-hourglass-half" style="margin-right: 5px; animation: blink 1s infinite;"></i><span style="margin-right: 10px;">' + elapsed + 's</span></div>';
+            // Show "Warming up..." for the first second, then show counter
+            var displayText = elapsed < 1.0 ? lang_dxwaterfall_warming_up : elapsed + 's';
+            this.zoomMenuDiv.innerHTML = '<div style="display: flex; align-items: center; flex: 1;"><i class="fas fa-hourglass-half" style="margin-right: 5px; animation: blink 1s infinite;"></i><span style="margin-right: 10px;">' + displayText + '</span></div>';
             return;
         }
 
@@ -3654,10 +3694,12 @@ var dxWaterfall = {
             if (this.waitingForData && this.userInitiatedFetch) {
                 // Show loading indicator with counter for user-initiated operations
                 var elapsed = ((Date.now() - this.operationStartTime) / 1000).toFixed(1);
-                this.zoomMenuDiv.innerHTML = '<div style="display: flex; align-items: center; flex: 1;"><i class="fas fa-hourglass-half" style="margin-right: 5px; animation: blink 1s infinite;"></i><span style="margin-right: 10px;">' + elapsed + 's</span><span style="margin: 0 10px; opacity: 0; color: #000000;">|</span></div>';
+                // Show "Warming up..." for the first second, then show counter
+                var displayText = elapsed < 1.0 ? lang_dxwaterfall_warming_up : elapsed + 's';
+                this.zoomMenuDiv.innerHTML = '<div style="display: flex; align-items: center; flex: 1;"><i class="fas fa-hourglass-half" style="margin-right: 5px; animation: blink 1s infinite;"></i><span style="margin-right: 10px;">' + displayText + '</span><span style="margin: 0 10px; opacity: 0; color: #000000;">|</span></div>';
             } else {
-                // No data yet and not in proper loading state - show placeholder hourglass
-                this.zoomMenuDiv.innerHTML = '<div style="display: flex; align-items: center; flex: 1;"><i class="fas fa-hourglass-half" style="margin-right: 5px; animation: blink 1s infinite;"></i></div>';
+                // No data yet and not in proper loading state - show placeholder with "Warming up..."
+                this.zoomMenuDiv.innerHTML = '<div style="display: flex; align-items: center; flex: 1;"><i class="fas fa-hourglass-half" style="margin-right: 5px; animation: blink 1s infinite;"></i><span style="margin-right: 10px;">' + lang_dxwaterfall_warming_up + '</span></div>';
             }
             return;
         }
@@ -3675,7 +3717,9 @@ var dxWaterfall = {
         if (showLoadingIndicator) {
             // Calculate elapsed time with tenths of seconds
             var elapsed = ((Date.now() - this.operationStartTime) / 1000).toFixed(1);
-            zoomHTML += '<i class="fas fa-hourglass-half" style="margin-right: 5px; animation: blink 1s infinite;"></i><span style="margin-right: 10px;">' + elapsed + 's</span>';
+            // Show "Warming up..." for the first second, then show counter
+            var displayText = elapsed < 1.0 ? lang_dxwaterfall_warming_up : elapsed + 's';
+            zoomHTML += '<i class="fas fa-hourglass-half" style="margin-right: 5px; animation: blink 1s infinite;"></i><span style="margin-right: 10px;">' + displayText + '</span>';
         }
 
         // Add band spot navigation controls - always show them
@@ -4421,18 +4465,15 @@ var dxWaterfall = {
             this.catFrequencyWaitTimer = null;
         }
 
-        // Unbind all event handlers
+        // Unbind event handlers that were added in init()
+        // Note: Event handlers registered outside dxWaterfall object (like menu clicks)
+        // should NOT be unbound here as they are global and persistent
         if (this.$freqCalculated) {
             this.$freqCalculated.off('focus blur input keydown');
         }
         if (this.canvas) {
-            $(this.canvas).off('click');
-        }
-        if (this.zoomMenuDiv) {
-            $(this.zoomMenuDiv).off('click');
-        }
-        if (this.spotInfoDiv) {
-            $(this.spotInfoDiv).off('click');
+            // Only unbind wheel event (added in init), not click events from global handlers
+            $(this.canvas).off('wheel');
         }
 
         // Clear canvas
@@ -4449,6 +4490,84 @@ var dxWaterfall = {
         // Clear cache references
         this.cache.noise1 = null;
         this.cache.noise2 = null;
+        this.cache.middleFreq = null;
+        this.cache.lastFreqInput = null;
+        this.cache.lastQrgUnit = null;
+        this.cache.lastModeForCache = null;
+        this.cache.committedFreqInput = null;
+        this.cache.committedQrgUnit = null;
+        this.cache.lastValidCommittedFreq = null;
+        this.cache.lastValidCommittedUnit = null;
+
+        // Clear frequency tracking properties (used in getCachedMiddleFreq)
+        this.lastFreqInput = null;
+        this.lastQrgUnit = null;
+        this.lastModeForCache = null;
+        this.lastValidCommittedFreq = null;
+        this.lastValidCommittedUnit = null;
+        this.committedFreqInput = null;
+        this.committedQrgUnit = null;
+
+        // Clear cached pixels per kHz
+        this.cachedPixelsPerKHz = null;
+
+        // Reset all state flags
+        this.waitingForData = true;
+        this.dataReceived = false;
+        this.initialFetchDone = false;
+        this.waitingForCATFrequency = true;
+        this.userEditingFrequency = false;
+        this.userChangedBand = false;
+        this.programmaticModeChange = false;
+        this.zoomChanging = false;
+        this.spotNavigating = false;
+        this.smartHunterActive = false;
+        this.continentChanging = false;
+        this.initialLoadDone = false;
+        this.frequencyChanging = false;
+        this.catTuning = false;
+        this.userInitiatedFetch = false;
+        this.fetchInProgress = false;
+
+        // Reset indices
+        this.currentSpotIndex = 0;
+        this.currentBandSpotIndex = 0;
+        this.currentSmartHunterIndex = 0;
+
+        // Reset zoom level to default
+        this.currentZoomLevel = DX_WATERFALL_CONSTANTS.ZOOM.DEFAULT_LEVEL;
+
+        // Clear pending states
+        this.pendingContinent = null;
+        this.pendingModeFilters = null;
+
+        // Reset spot info key
+        this.lastSpotInfoKey = null;
+
+        // Clear band/mode tracking
+        this.lastBand = null;
+        this.lastMode = null;
+        this.lastFetchBand = null;
+        this.lastFetchContinent = null;
+        this.lastFetchAge = null;
+
+        // Reset timestamps
+        this.lastUpdateTime = null;
+        this.lastWaterfallFrequencyCommandTime = 0;
+        this.lastFrequencyRefreshTime = 0;
+        this.lastSpotCollectionTime = 0;
+
+        // Clear canvas and context references to force reinitialization
+        this.canvas = null;
+        this.ctx = null;
+
+        // Clear DOM element references
+        this.spotInfoDiv = null;
+        this.zoomMenuDiv = null;
+        this.$freqCalculated = null;
+        this.$qrgUnit = null;
+        this.$bandSelect = null;
+        this.$modeSelect = null;
 
         // Mark as not initialized
         this.initializationComplete = false;
@@ -4719,8 +4838,12 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
     }
 
     // CAT not available - use manual frequency setting
-    // Don't trigger change events to avoid side effects like form clearing
+    // Update both frequency fields
     $('#frequency').val(formattedFreq);
+
+    // Also update freq_calculated field that waterfall reads from
+    var freqInKHz = frequencyInKHz;
+    $('#freq_calculated').val(freqInKHz);
 
     // Only trigger change if this is NOT from waterfall (external frequency change)
     if (!fromWaterfall) {
@@ -4732,10 +4855,8 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
         dxWaterfall.frequencyChanging = false;
         dxWaterfall.catTuning = false; // No CAT, so no CAT tuning
         dxWaterfall.spotNavigating = false; // Clear navigation flag immediately
-        // Invalidate frequency cache to ensure waterfall updates immediately
-        if (dxWaterfall.invalidateFrequencyCache) {
-            dxWaterfall.invalidateFrequencyCache();
-        }
+        // Don't call invalidateFrequencyCache - it's for CAT confirmation
+        // When CAT is disabled, waterfall frequency is managed independently
     }
 }
 
@@ -4743,27 +4864,16 @@ $(document).ready(function() {
     // Function to try initializing the canvas with retries
     function tryInitCanvas() {
         if (document.getElementById('dxWaterfall')) {
-            // Canvas found, initialize normally
-            dxWaterfall.init(); // This calls refresh() which calls fetchDxSpots()
+            // Canvas found, but DON'T auto-initialize
+            // Wait for user to click the power button
 
-            // Set up periodic refresh - faster during CAT operations for spinner animation
+            // Set up DX spots fetching at regular intervals (only when initialized)
             setInterval(function() {
-                if (dxWaterfall.catTuning || dxWaterfall.frequencyChanging) {
-                    // Fast refresh during CAT operations for spinner animation
-                    dxWaterfall.refresh();
-                } else {
-                    // Normal refresh when idle
-                    dxWaterfall.refresh();
+                if (dxWaterfall.canvas) { // Only fetch if waterfall has been initialized
+                    dxWaterfall.fetchDxSpots(true, false); // Background fetch - NOT user-initiated
                 }
-            }, DX_WATERFALL_CONSTANTS.VISUAL.STATIC_NOISE_REFRESH_MS); // Faster refresh for smooth spinner animation
-
-            // Set up DX spots fetching at regular intervals
-            setInterval(function() {
-                dxWaterfall.fetchDxSpots(true, false); // Background fetch - NOT user-initiated
             }, DX_WATERFALL_CONSTANTS.DEBOUNCE.DX_SPOTS_FETCH_INTERVAL_MS);
 
-            // Initial fetch is handled by init() -> refresh() -> fetchDxSpots()
-            // No need for additional delayed fetch
         } else {
             // Canvas not found, try again in 100ms
             setTimeout(tryInitCanvas, 100);
@@ -4779,8 +4889,8 @@ $(document).ready(function() {
         dxWaterfall.updateDimensions();
     });
 
-    // Handle click on the cycle icon in dxWaterfallSpot div to cycle through spots
-    $('#dxWaterfallSpot').on('click', '.cycle-spot-icon', function(e) {
+    // Handle click on the cycle icon in dxWaterfallSpotContent div to cycle through spots
+    $('#dxWaterfallSpotContent').on('click', '.cycle-spot-icon', function(e) {
         e.stopPropagation(); // Prevent event bubbling
 
         // Prevent rapid clicking - check if navigation is in progress
@@ -4822,8 +4932,8 @@ $(document).ready(function() {
         }
     });
 
-    // Handle click on the tune icon in dxWaterfallSpot div to set frequency
-    $('#dxWaterfallSpot').on('click', '.tune-icon', function(e) {
+    // Handle click on the tune icon in dxWaterfallSpotContent div to set frequency
+    $('#dxWaterfallSpotContent').on('click', '.tune-icon', function(e) {
         e.stopPropagation(); // Prevent event bubbling
 
         var frequency = parseFloat($(this).data('frequency'));
@@ -4989,12 +5099,13 @@ $(document).ready(function() {
         // Set the frequency to where user clicked
         setFrequency(clickedFreq, true);
 
-        // Update cache directly (same as navigation fix)
+        // Update cache directly AND sync tracking variables to prevent recalculation
         var formattedFreq = Math.round(clickedFreq * 1000); // Convert to Hz
         dxWaterfall.cache.middleFreq = clickedFreq;
-        dxWaterfall.lastFreqInput = formattedFreq;
-        dxWaterfall.lastValidCommittedFreq = formattedFreq;
+        dxWaterfall.lastFreqInput = clickedFreq; // Store in kHz to match cache
+        dxWaterfall.lastValidCommittedFreq = clickedFreq; // Store in kHz
         dxWaterfall.lastValidCommittedUnit = 'kHz';
+        dxWaterfall.lastQrgUnit = 'kHz';
 
         // Try to find a nearby spot at this frequency and populate QSO form
         var spotInfo = dxWaterfall.getSpotInfo();
@@ -5059,11 +5170,107 @@ $(document).ready(function() {
         else if (modKey && e.shiftKey && e.key === ' ') {
             e.preventDefault();
             // Find the tune icon in the spot info div and trigger it
-            var tuneIcon = $('#dxWaterfallSpot .tune-icon');
+            var tuneIcon = $('#dxWaterfallSpotContent .tune-icon');
             if (tuneIcon.length > 0) {
                 tuneIcon.trigger('click');
             }
         }
+    });
+
+    // Handle DX Waterfall power on/off
+    var waterfallActive = false;
+    var waterfallRefreshInterval = null; // Store interval ID for cleanup
+
+    // Initialize UI text and tooltip from language variables
+    $('#dxWaterfallMessage').text(lang_dxwaterfall_turn_on);
+    $('#dxWaterfallPowerOnIcon').attr('title', lang_dxwaterfall_turn_on);
+    $('#dxWaterfallPowerOffIcon').attr('title', lang_dxwaterfall_turn_off);
+
+    // Function to turn on waterfall (shared by icon and message click)
+    var turnOnWaterfall = function(e) {
+        if (waterfallActive) {
+            return; // Already active, prevent double initialization
+        }
+
+        waterfallActive = true;
+
+        // Update UI - hide header, show content area, show power-off icon, update container styling
+        $('#dxWaterfallSpot').addClass('active');
+        $('#dxWaterfallSpotHeader').addClass('hidden');
+        $('#dxWaterfallSpotContent').addClass('active');
+        $('#dxWaterfallPowerOffIcon').addClass('active');
+
+        // Show waterfall and menu
+        $('#dxWaterfallCanvasContainer').show();
+        $('#dxWaterfallMenuContainer').show();
+
+        // Initialize waterfall from scratch (destroy ensures clean state)
+        if (typeof dxWaterfall !== 'undefined') {
+            // Force reinitialization by ensuring canvas is null
+            if (dxWaterfall.canvas) {
+                console.warn('DX Waterfall canvas still exists, forcing cleanup');
+                dxWaterfall.destroy();
+            }
+
+            // Now initialize from clean state
+            dxWaterfall.init();
+
+            // Set up periodic refresh - faster during CAT operations for spinner animation
+            waterfallRefreshInterval = setInterval(function() {
+                if (dxWaterfall.canvas) {
+                    if (dxWaterfall.catTuning || dxWaterfall.frequencyChanging) {
+                        // Fast refresh during CAT operations for spinner animation
+                        dxWaterfall.refresh();
+                    } else {
+                        // Normal refresh when idle
+                        dxWaterfall.refresh();
+                    }
+                }
+            }, DX_WATERFALL_CONSTANTS.VISUAL.STATIC_NOISE_REFRESH_MS);
+        }
+    };
+
+    // Click anywhere on the header div to turn on waterfall
+    $('#dxWaterfallSpotHeader').on('click', turnOnWaterfall);
+
+    // Click on power-off icon to turn off waterfall
+    $('#dxWaterfallPowerOffIcon').on('click', function(e) {
+        e.stopPropagation(); // Prevent triggering parent click
+
+        if (!waterfallActive) {
+            return; // Already inactive
+        }
+
+        waterfallActive = false;
+
+        // Stop the refresh interval
+        if (waterfallRefreshInterval) {
+            clearInterval(waterfallRefreshInterval);
+            waterfallRefreshInterval = null;
+        }
+
+        // Destroy the waterfall component (cleanup memory, timers, event handlers)
+        if (typeof dxWaterfall !== 'undefined' && dxWaterfall.canvas) {
+            dxWaterfall.destroy();
+        }
+
+        // Clear spot info and menu divs
+        if (dxWaterfall.spotInfoDiv) {
+            dxWaterfall.spotInfoDiv.innerHTML = '&nbsp;';
+        }
+        if (dxWaterfall.zoomMenuDiv) {
+            dxWaterfall.zoomMenuDiv.innerHTML = '&nbsp;';
+        }
+
+        // Update UI - show header, hide content area, hide power-off icon, update container styling
+        $('#dxWaterfallSpot').removeClass('active');
+        $('#dxWaterfallSpotHeader').removeClass('hidden');
+        $('#dxWaterfallSpotContent').removeClass('active');
+        $('#dxWaterfallPowerOffIcon').removeClass('active');
+
+        // Hide waterfall and menu
+        $('#dxWaterfallCanvasContainer').hide();
+        $('#dxWaterfallMenuContainer').hide();
     });
 });
 

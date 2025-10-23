@@ -109,6 +109,9 @@
     var lang_dxwaterfall_out_of_bandplan = "<?= __("OUT OF BANDPLAN"); ?>";
     var lang_dxwaterfall_changing_frequency = "<?= __("Changing radio frequency..."); ?>";
     var lang_dxwaterfall_invalid = "<?= __("INVALID"); ?>";
+    var lang_dxwaterfall_turn_on = "<?= __("Click to turn on the DX Waterfall"); ?>";
+    var lang_dxwaterfall_turn_off = "<?= __("Turn off DX Waterfall"); ?>";
+    var lang_dxwaterfall_warming_up = "<?= __("Warming up..."); ?>";
 
 </script>
 

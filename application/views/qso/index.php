@@ -71,6 +71,69 @@ switch ($date_format) {
 		line-height: 1.4;
 		word-wrap: break-word;
 		overflow-wrap: break-word;
+		position: relative;
+		border-radius: 5px 5px 5px 5px;
+		transition: border-radius 0.3s;
+	}
+	#dxWaterfallSpot.active {
+		border-radius: 5px 5px 0 0;
+		border-bottom: none;
+	}
+	#dxWaterfallSpotHeader {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		position: relative;
+		cursor: pointer;
+	}
+	#dxWaterfallSpotHeader.hidden {
+		display: none;
+	}
+	#dxWaterfallSpotContent {
+		display: none;
+		width: 100%;
+		padding-right: 30px;
+	}
+	#dxWaterfallSpotContent.active {
+		display: block;
+	}
+	#dxWaterfallSpotLeft {
+		display: flex;
+		align-items: center;
+		flex: 1;
+	}
+	#dxWaterfallPowerOnIcon {
+		position: absolute;
+		top: 50%;
+		right: 0px;
+		transform: translateY(-50%);
+		cursor: pointer;
+		color: #FF0000;
+		flex-shrink: 0;
+		transition: color 0.3s;
+	}
+	#dxWaterfallPowerOnIcon:hover {
+		color: #DD0000;
+	}
+	#dxWaterfallMessage {
+		text-align: left;
+	}
+	#dxWaterfallPowerOffIcon {
+		position: absolute;
+		top: 50%;
+		right: 5px;
+		transform: translateY(-50%);
+		cursor: pointer;
+		color: #00FF00;
+		flex-shrink: 0;
+		transition: color 0.2s;
+		display: none;
+	}
+	#dxWaterfallPowerOffIcon.active {
+		display: block;
+	}
+	#dxWaterfallPowerOffIcon:hover {
+		color: #00DD00;
 	}
 	#dxWaterfallMenu {
 		width: 100%;
@@ -82,6 +145,7 @@ switch ($date_format) {
 		border-left: 1px solid #000000;
 		border-right: 1px solid #000000;
 		border-bottom: 1px solid #000000;
+		border-radius: 0 0 5px 5px;
 		min-height: 20px;
 		display: flex;
 		flex-wrap: wrap;
@@ -178,11 +242,24 @@ switch ($date_format) {
 
 </style>
 <div class="row dxwaterfallpane">
-  <div class="col-sm-12"><div id="dxWaterfallSpot">&nbsp;</div></div>
-	<div class="col-sm-12">
+  <div class="col-sm-12">
+		<div id="dxWaterfallSpot">
+			<div id="dxWaterfallSpotHeader">
+				<div id="dxWaterfallSpotLeft">
+					<span id="dxWaterfallMessage"></span>
+				</div>
+				<i id="dxWaterfallPowerOnIcon" class="fas fa-power-off"></i>
+			</div>
+			<div id="dxWaterfallSpotContent"></div>
+			<i id="dxWaterfallPowerOffIcon" class="fas fa-power-off"></i>
+		</div>
+	</div>
+	<div class="col-sm-12" id="dxWaterfallCanvasContainer" style="display: none;">
 		<canvas id="dxWaterfall"></canvas>
 	</div>
-  <div class="col-sm-12"><div id="dxWaterfallMenu">&nbsp;</div></div>
+  <div class="col-sm-12" id="dxWaterfallMenuContainer" style="display: none;">
+		<div id="dxWaterfallMenu">&nbsp;</div>
+	</div>
 </div>
 <?php } ?>
 
