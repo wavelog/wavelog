@@ -1411,7 +1411,7 @@ mymap.on('mousemove', onQsoMapMove);
 							    $(".radio_login_error" ).remove();
 						    }
 						    cat2UI($('#frequency'),data.frequency,false,true,function(d){
-                                $('#frequency').trigger('change');
+							    $('#frequency').trigger('change');
 							    if ($("#band").val() != frequencyToBand(d)) {
 								    $("#band").val(frequencyToBand(d)).trigger('change');	// Let's only change if we really have a different band!
 							    }
@@ -1436,7 +1436,7 @@ mymap.on('mousemove', onQsoMapMove);
 							    }
 						    } else {
 							    $(".radio_timeout_error" ).remove();
-                                separator = '<span style="margin-left:10px"></span>';
+							    separator = '<span style="margin-left:10px"></span>';
 							    text = '<i class="fas fa-broadcast-tower"></i>' + separator + '<b>TX:</b> ' + data.frequency_formatted;
 							    if(data.mode != null) {
 								    text = text + separator + data.mode;
@@ -1444,20 +1444,20 @@ mymap.on('mousemove', onQsoMapMove);
 							    if(data.power != null && data.power != 0) {
 								    text = text + separator + data.power+' W';
 							    }
-                                complementary_info = []
-							    if(data.prop_mode != null && data.prop_mode != '') {
-								    if (data.prop_mode == 'SAT') {
-									    complementary_info.push(data.prop_mode + ' ' + data.satname);
-								    } else {
-                                        complementary_info.push(data.prop_mode);
-                                    }
-							    }
+							    complementary_info = []
+								    if(data.prop_mode != null && data.prop_mode != '') {
+									    if (data.prop_mode == 'SAT') {
+										    complementary_info.push(data.prop_mode + ' ' + data.satname);
+									    } else {
+										    complementary_info.push(data.prop_mode);
+									    }
+								    }
 							    if(data.frequency_rx != null && data.frequency_rx != 0) {
-                                    complementary_info.push('<b>RX:</b> ' + data.frequency_rx_formatted);
+								    complementary_info.push('<b>RX:</b> ' + data.frequency_rx_formatted);
 							    }
 							    if( complementary_info.length > 0) {
-                                    text = text + separator + '(' + complementary_info.join(separator) + ')';
-                                }
+								    text = text + separator + '(' + complementary_info.join(separator) + ')';
+							    }
 							    if (! $('#radio_cat_state').length) {
 								    $('#radio_status').prepend('<div aria-hidden="true"><div id="radio_cat_state" class="alert alert-success radio_cat_state" role="alert">'+text+'</div></div>');
 							    } else {
@@ -1486,7 +1486,7 @@ mymap.on('mousemove', onQsoMapMove);
 			    $("#band_rx").val("");
 			    $("#selectPropagation").val($("#selectPropagation option:first").val());
 			    $(".radio_timeout_error" ).remove();
-                $(".radio_cat_state" ).remove();
+			    $(".radio_cat_state" ).remove();
 		    }
 	    });
     });
