@@ -1692,16 +1692,16 @@ var dxWaterfall = {
 
         // Group by band - find min/max frequencies for each band
         var bandRanges = {};
-        
+
         for (var i = 0; i < bandEdges.length; i++) {
             var edge = bandEdges[i];
             var freqFrom = parseInt(edge.frequencyfrom);
             var freqTo = parseInt(edge.frequencyto);
-            
+
             // Determine band from frequency (use center frequency)
             var centerFreq = (freqFrom + freqTo) / 2;
             var band = this.getFrequencyBandFromHz(centerFreq);
-            
+
             if (band) {
                 // Store band ranges for limits
                 if (!bandRanges[band]) {
@@ -1745,7 +1745,7 @@ var dxWaterfall = {
 
         // Fallback: simple band detection based on common amateur radio bands
         var freqMhz = frequencyHz / 1000000;
-        
+
         if (freqMhz >= 1.8 && freqMhz < 2.0) return '160m';
         if (freqMhz >= 3.5 && freqMhz < 4.0) return '80m';
         if (freqMhz >= 7.0 && freqMhz < 7.3) return '40m';
@@ -1758,7 +1758,7 @@ var dxWaterfall = {
         if (freqMhz >= 50.0 && freqMhz < 54.0) return '6m';
         if (freqMhz >= 144.0 && freqMhz < 148.0) return '2m';
         if (freqMhz >= 420.0 && freqMhz < 450.0) return '70cm';
-        
+
         return null;
     },
 
@@ -3544,7 +3544,7 @@ var dxWaterfall = {
             currentKey = 'no-spot';
         } else {
             // Include spot details and index in the key to detect any meaningful change
-            currentKey = spotInfo.callsign + '|' + spotInfo.frequency + '|' + 
+            currentKey = spotInfo.callsign + '|' + spotInfo.frequency + '|' +
                          this.currentSpotIndex + '|' + this.relevantSpots.length;
         }
 
@@ -4275,7 +4275,7 @@ var dxWaterfall = {
             // Reset band plans to force reload for new region
             self.bandPlans = null;
             self.bandEdgesData = null;
-            
+
             // Load band plans for new region (based on new continent)
             self.loadBandPlans();
 
@@ -4805,7 +4805,7 @@ $(document).ready(function() {
                 if (spotInfo) {
                     DX_WATERFALL_UTILS.qsoForm.populateFromSpot(spotInfo, true);
                 }
-                
+
                 // Re-enable navigation after operation completes
                 setTimeout(function() {
                     dxWaterfall.spotNavigating = false;
