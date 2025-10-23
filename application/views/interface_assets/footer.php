@@ -1574,12 +1574,14 @@ mymap.on('mousemove', onQsoMapMove);
 	    };
 
 	    // Update frequency from CAT
-	    // Add a small delay (500ms) before first poll to allow radio interface to initialize
+	    // Add a small delay before first poll to allow radio interface to initialize
+	    var catPollInterval = <?php echo $this->config->item('cat_poll_interval') ?? 500; ?>;
 	    setTimeout(function() {
 	        updateFromCAT();
-	        // Then poll every 500ms
-	        setInterval(updateFromCAT, 500 * 1); // Note: this is minimum update intervals, there is a lock mechanism to prevent overlapping calls.
-	    }, 500);
+	        // Then poll at configured interval
+
+	        setInterval(updateFromCAT, catPollInterval); // Note: this is minimum update intervals, there is a lock mechanism to prevent overlapping calls.
+	    }, catPollInterval);
 
 	    // If a radios selected from drop down select radio update.
 	    $('.radios').change(updateFromCAT);

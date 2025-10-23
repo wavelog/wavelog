@@ -729,6 +729,26 @@ $config['disable_version_check'] = false;
 
 /*
 |--------------------------------------------------------------------------
+| CAT Configuration
+|--------------------------------------------------------------------------
+|
+| This defines various CAT related settings. More information can be found
+| on the Wiki: https://github.com/wavelog/Wavelog/wiki/CAT
+|
+| cat_poll_interval            	Polling interval for CAT in milliseconds
+|								Default is 3000ms (3 seconds)
+| 								This control how often the CAT status is
+| 								polled from the radio, in milliseconds.
+| 								Lower values increase the load on the server,
+|								higher values make the CAT less responsive.
+|							    Good values are between 250ms and 5000ms.
+|
+|*/
+
+$config['cat_poll_interval'] = 3000;
+
+/*
+|--------------------------------------------------------------------------
 | trx-control Configuration
 |--------------------------------------------------------------------------
 |
@@ -761,7 +781,7 @@ $config['disable_version_check'] = false;
 
 /*
 |--------------------------------------------------------------------------
-| eqsl.cc Massdownloa
+| eqsl.cc Massdownload
 |--------------------------------------------------------------------------
 |
 | The eqsl.cc mass download function is not threadsafe. So it is disabled by default.
@@ -782,7 +802,7 @@ $config['max_login_attempts'] = 3;
 |--------------------------------------------------------------------------
 | Disable User QSO Count in User List (Admin Menu)
 | Reason for this setting is to prevent performance issues on large installations
-| where the QSO count is not needed. Set to true to disable the QSO count. 
+| where the QSO count is not needed. Set to true to disable the QSO count.
 | This also hides the last Operator for CLubstations. Default is false.
 |--------------------------------------------------------------------------
  */
