@@ -578,15 +578,16 @@ class Stations extends CI_Model {
 	}
 
 	public function get_station_power($id) {
-		$this->db->select('station_power');
+		$this->db->select('station_power, station_callsign');
 		$this->db->where('user_id', $this->session->userdata('user_id'));
 		$this->db->where('station_id', $id);
 		$query = $this->db->get('station_profile');
 		if($query->num_rows() >= 1) {
-			foreach ($query->result() as $row)
-			{
-				return $row->station_power;
-			}
+			$row = $query->row(); // only one result expected
+			return [
+				'station_power' => $row->station_power,
+				'station_callsign' => $row->station_callsign
+			];
 		} else {
 			return null;
 		}

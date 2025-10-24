@@ -341,7 +341,7 @@ switch ($date_format) {
                    $power = '';
                       foreach ($stations->result() as $stationrow) {
                 ?>
-                <option value="<?php echo $stationrow->station_id; ?>" <?php if($active_station_profile == $stationrow->station_id) { echo "selected=\"selected\""; $power = $stationrow->station_power; } ?>><?php echo $stationrow->station_profile_name; ?></option>
+                <option value="<?php echo $stationrow->station_id; ?>" <?php if($active_station_profile == $stationrow->station_id) { echo "selected=\"selected\""; $power = $stationrow->station_power; $station_callsign = $stationrow->station_callsign; } ?>><?php echo $stationrow->station_profile_name; ?></option>
                 <?php } ?>
               </select>
             </div>
@@ -832,3 +832,6 @@ switch ($date_format) {
 </div>
 
 </div>
+<script>
+	var station_callsign = "<?php echo $station_callsign; ?>";
+</script>
