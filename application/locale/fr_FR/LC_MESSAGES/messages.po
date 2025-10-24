@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-10-24 15:56+0000\n"
-"PO-Revision-Date: 2025-10-24 20:22+0000\n"
+"PO-Revision-Date: 2025-10-24 21:05+0000\n"
 "Last-Translator: F5MQU <f5mqu.p@gmail.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/fr/>\n"
@@ -6681,19 +6681,21 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be Netherlands) and STATE (Must "
 "contain a valid state abbreviation!)"
 msgstr ""
+"Champs requis pour ce trophée : DXCC (doit être les Pays-Bas) et STATE (doit "
+"contenir une abréviation d'état valide !)"
 
 #: application/views/awards/wap/index.php:115
 msgid "Show WAP Map"
-msgstr ""
+msgstr "Afficher la carte WAP"
 
 #: application/views/awards/wap/index.php:152
 #: application/views/awards/wapc/index.php:120
 msgid "Province"
-msgstr ""
+msgstr "Province"
 
 #: application/views/awards/wapc/index.php:7
 msgid "WAPC - Worked All Provinces of China"
-msgstr ""
+msgstr "WAPC - Toutes les provinces de la Chine contactées"
 
 #: application/views/awards/wapc/index.php:8
 msgid ""
@@ -6702,6 +6704,11 @@ msgid ""
 "municipalities, autonomous regions, and special administrative regions of "
 "China, fostering a deeper understanding of China."
 msgstr ""
+"Le trophée WAPC, décerné par le Mulan DX Club, vise à promouvoir la "
+"communication entre les opérateurs radio amateurs du monde entier et les "
+"opérateurs de toutes les provinces, municipalités, régions autonomes et "
+"régions administratives spéciales de la Chine, favorisant une compréhension "
+"plus approfondie de ce pays."
 
 #: application/views/awards/wapc/index.php:9
 msgid ""
@@ -7871,20 +7878,20 @@ msgstr "Locator(s)"
 #: application/views/components/hamsat/table.php:32
 #: application/views/hamsat/index.php:35
 msgid "Workable"
-msgstr ""
+msgstr "Réalisable"
 
 #: application/views/components/hamsat/table.php:134
 msgctxt "Hamsat - Track Satellites"
 msgid "Track"
-msgstr ""
+msgstr "Piste"
 
 #: application/views/components/hamsat/table.php:146
 msgid "Sked"
-msgstr ""
+msgstr "Sked"
 
 #: application/views/components/radio_display_table.php:5
 msgid "Radio Status"
-msgstr ""
+msgstr "Statut Radio"
 
 #: application/views/contestcalendar/index.php:16
 msgid "No Contests"
@@ -7926,7 +7933,7 @@ msgstr "Aujourd'hui"
 
 #: application/views/contestcalendar/index.php:55
 msgid "Weekend"
-msgstr ""
+msgstr "Fin de semaine"
 
 #: application/views/contestcalendar/index.php:66
 msgid "Next Week"
@@ -7990,7 +7997,7 @@ msgstr "Désactiver"
 
 #: application/views/contesting/add.php:54
 msgid "DANGER!"
-msgstr ""
+msgstr "DANGER !"
 
 #: application/views/contesting/add.php:55
 msgid "Warning! Are you sure you want to delete the following contest: "
@@ -8046,10 +8053,13 @@ msgstr "(Si 'Activer', le concours sera affiché dans la liste des concours)"
 #: application/views/contesting/index.php:2
 msgid "You need to start a new session before you can change the contest name!"
 msgstr ""
+"Vous devez démarrer une nouvelle session avant de pouvoir modifier le nom du "
+"concours !"
 
 #: application/views/contesting/index.php:3
 msgid "Are you really sure you want to start a new contest session?"
 msgstr ""
+"Etes-vous vraiment sûr de vouloir démarrer une nouvelle session de concours ?"
 
 #: application/views/contesting/index.php:11
 msgid "Start new Contest Session"
@@ -8077,7 +8087,7 @@ msgstr "N° QSO + Locator"
 
 #: application/views/contesting/index.php:30
 msgid "Serial + Gridsquare + Exchange"
-msgstr ""
+msgstr "Numéro progressif + Locator + Report"
 
 #: application/views/contesting/index.php:45
 #: application/views/operator/index.php:5
@@ -8088,7 +8098,7 @@ msgstr "Indicatif de l'opérateur"
 #: application/views/contesting/index.php:50
 #: application/views/contesting/index.php:55
 msgid "More Settings"
-msgstr ""
+msgstr "Plus de paramètres"
 
 #: application/views/contesting/index.php:59
 msgid "Copy received exchange to"
@@ -8097,6 +8107,7 @@ msgstr "Copiez l'échange reçu dans le champ"
 #: application/views/contesting/index.php:61
 msgid "Exchange is only copied if it is matching rules for the selected field!"
 msgstr ""
+"Le report n'est copié que s'il correspond aux règles du champ sélectionné !"
 
 #: application/views/contesting/index.php:65
 msgid "Age"
@@ -8108,24 +8119,26 @@ msgstr "Puissance RX (W)"
 
 #: application/views/contesting/index.php:68
 msgid "Locator"
-msgstr ""
+msgstr "Locator"
 
 #: application/views/contesting/index.php:69
 #: application/views/logbookadvanced/index.php:785
 #: application/views/logbookadvanced/useroptions.php:62
 #: application/views/qso/edit_ajax.php:177
 msgid "QTH"
-msgstr ""
+msgstr "QTH"
 
 #: application/views/contesting/index.php:74
 msgid "Sequence of Exchanges"
-msgstr ""
+msgstr "Séquence de reports"
 
 #: application/views/contesting/index.php:77
 msgid ""
 "Choose in which order you want to type in the different reports. However, "
 "only the elements contained in the selected exchange type are displayed."
 msgstr ""
+"Choisissez l'ordre de saisie des différents repports. Seuls les éléments du "
+"type d'échange sélectionné sont affichés."
 
 #: application/views/contesting/index.php:82
 #: application/views/contesting/index.php:83
@@ -8135,7 +8148,7 @@ msgstr ""
 #: application/views/contesting/index.php:87
 msgctxt "Keep the translation short!"
 msgid "Exchange"
-msgstr ""
+msgstr "Echange"
 
 #: application/views/contesting/index.php:82
 #: application/views/contesting/index.php:83
@@ -8145,7 +8158,7 @@ msgstr ""
 #: application/views/contesting/index.php:87
 msgctxt "Keep the translation short!"
 msgid "Grid"
-msgstr ""
+msgstr "Locator"
 
 #: application/views/contesting/index.php:82
 #: application/views/contesting/index.php:83
@@ -8155,7 +8168,7 @@ msgstr ""
 #: application/views/contesting/index.php:87
 msgctxt "Keep the translation short!"
 msgid "Serial"
-msgstr ""
+msgstr "Série"
 
 #: application/views/contesting/index.php:186
 #: application/views/contesting/index.php:269
@@ -8207,16 +8220,16 @@ msgstr "Journal de trafic du concours"
 #: application/views/contesting/index.php:272
 #: application/views/qso/edit_ajax.php:165
 msgid "VUCC Gridsquare"
-msgstr ""
+msgstr "Locator VUCC"
 
 #: application/views/continents/index.php:63
 #: application/views/statistics/index.php:20
 msgid "# of QSOs worked"
-msgstr ""
+msgstr "# de QSOs réalisés"
 
 #: application/views/cron/edit.php:11
 msgid "Identifier"
-msgstr ""
+msgstr "Identifier"
 
 #: application/views/cron/edit.php:22
 #: application/views/options/appearance.php:56
@@ -8235,89 +8248,94 @@ msgstr "Activé"
 
 #: application/views/cron/edit.php:36 application/views/cron/index.php:68
 msgid "Intervall"
-msgstr ""
+msgstr "Intervalle"
 
 #: application/views/cron/edit.php:38
 msgid "Choose a preset from the dropdown"
-msgstr ""
+msgstr "Choisissez un préréglage dans la liste déroulante"
 
 #: application/views/cron/edit.php:43
 msgid "Every 5 Minutes"
-msgstr ""
+msgstr "Toutes les 5 minutes"
 
 #: application/views/cron/edit.php:44
 msgid "Every 15 Minutes"
-msgstr ""
+msgstr "Toutes les 15 minutes"
 
 #: application/views/cron/edit.php:45
 msgid "Every Hour"
-msgstr ""
+msgstr "Toutes les heures"
 
 #: application/views/cron/edit.php:46
 msgid "Every 2 Hours"
-msgstr ""
+msgstr "Toutes les 2 heures"
 
 #: application/views/cron/edit.php:47
 msgid "Every Day at Midnight"
-msgstr ""
+msgstr "Tous les jours à minuit"
 
 #: application/views/cron/edit.php:48
 msgid "Every Monday at 03:00"
-msgstr ""
+msgstr "Tous les lundis à 3h"
 
 #: application/views/cron/edit.php:49
 msgid "First Day of Every Month at midnight"
-msgstr ""
+msgstr "Premier jour de chaque mois à minuit"
 
 #: application/views/cron/edit.php:50
 msgid "Every 2 Months at 02:00"
-msgstr ""
+msgstr "Tous les 2 mois à 2h"
 
 #: application/views/cron/edit.php:62
+#, fuzzy
 msgid "OR"
-msgstr ""
+msgstr "OU"
 
 #: application/views/cron/edit.php:63
 msgid "Enter your own Cron Expression"
-msgstr ""
+msgstr "Saisissez votre propre expression Cron"
 
 #: application/views/cron/index.php:9
 msgid "How it works"
-msgstr ""
+msgstr "Comment ça fonctionne"
 
 #: application/views/cron/index.php:21
 #, php-format
 msgid "For more information or help, take a look in the %s."
-msgstr ""
+msgstr "Pour plus d'informations ou d'aide, jetez un coup d'œil au %s."
 
 #: application/views/cron/index.php:28
 msgid ""
 "The Cron Manager assists the administrator in managing cron jobs without "
 "requiring CLI access."
 msgstr ""
+"Le gestionnaire Cron aide l'administrateur à gérer les tâches Cron sans "
+"nécessiter d'accès CLI."
 
 #: application/views/cron/index.php:32
 msgid ""
 "To execute cron jobs based on the data below, remove all old cron jobs and "
 "create a new one:"
 msgstr ""
+"Pour exécuter des tâches Cron basées sur les données ci-dessous, supprimez "
+"toutes les anciennes tâches Cron et créez-en une nouvelle :"
 
 #: application/views/cron/index.php:42 application/views/cron/index.php:46
 msgid "Status Master-Cron:"
-msgstr ""
+msgstr "statut Master-Cron :"
 
 #: application/views/cron/index.php:46
 msgctxt "PHP Version"
 msgid "Min. Version is"
-msgstr ""
+msgstr "La version minimale est"
 
 #: application/views/cron/index.php:46
 msgid "PHP Version not supported."
-msgstr ""
+msgstr "Version PHP non prise en charge."
 
 #: application/views/cron/index.php:56
 msgid "Cron List"
-msgstr ""
+msgstr "Liste Cron"
 
 #: application/views/cron/index.php:65
 #: application/views/stationsetup/stationsetup.php:124
@@ -8325,28 +8343,34 @@ msgid "ID"
 msgstr ""
 
 #: application/views/cron/index.php:69
+#, fuzzy
 msgid "Last Run"
-msgstr ""
+msgstr "Dernière course"
 
 #: application/views/cron/index.php:70
+#, fuzzy
 msgid "Next Run"
-msgstr ""
+msgstr "Prochaine course"
 
 #: application/views/cron/index.php:115
 msgid "Your Mastercron isn't running."
-msgstr ""
+msgstr "Votre Mastercron ne fonctionne pas."
 
 #: application/views/cron/index.php:116
 msgid ""
 "Copy the cron above to a external cron service or into your server's cron to "
 "use this cron manager."
 msgstr ""
+"Copiez le Cron ci-dessus sur un service Cron externe ou dans le Cron de "
+"votre serveur pour utiliser ce gestionnaire Cron."
 
 #: application/views/cron/index.php:117
 msgid ""
 "On a basic linux server with shell access use this command to edit your "
 "crons:"
 msgstr ""
+"Sur un serveur Linux de base avec accès shell, utilisez cette commande pour "
+"modifier vos Crons :"
 
 #: application/views/cron/index.php:124
 #, php-format
@@ -8354,6 +8378,8 @@ msgid ""
 "You need to upgrade your PHP version. Minimum version is %s. Your Version is "
 "%s"
 msgstr ""
+"Vous devez mettre à jour votre version de PHP. La version minimale est %s. "
+"Votre version est %s"
 
 #: application/views/csv/index.php:7
 msgid "Export your logbook for SOTA uploads."
@@ -8372,11 +8398,11 @@ msgstr "Mode Propagation"
 
 #: application/views/dashboard/index.php:5
 msgid "RSTS"
-msgstr ""
+msgstr "RSTS"
 
 #: application/views/dashboard/index.php:6
 msgid "RSTR"
-msgstr ""
+msgstr "RSTR"
 
 #: application/views/dashboard/index.php:111
 #, php-format
@@ -8384,30 +8410,35 @@ msgid ""
 "You need to upgrade your PHP version. Minimum version is %s. Your version "
 "is: %s."
 msgstr ""
+"Vous devez mettre à jour votre version de PHP. La version minimale est %s. "
+"Votre version est : %s."
 
 #: application/views/dashboard/index.php:118
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "A new version of Wavelog has been published. See: %s."
-msgstr ""
+msgstr "Une nouvelle version de Wavelog a été publiée. Voir : %s."
 
 #: application/views/dashboard/index.php:127
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You need to update country files! Click %shere%s to do it."
 msgstr ""
+"Vous devez mettre à jour les fichiers des pays ! Cliquez %s ici%s pour le "
+"faire."
 
 #: application/views/dashboard/index.php:136
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station locations. Click %shere%s to do it."
 msgstr ""
+"Vous n'avez aucun emplacement de station ! Cliquez %s ici%s pour le faire."
 
 #: application/views/dashboard/index.php:145
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station logbook. Click %shere%s to do it."
-msgstr ""
+msgstr "Vous n'avez aucun journal de trafic ! Cliquez %s ici%s pour le faire."
 
 #: application/views/dashboard/index.php:154
 #, php-format
@@ -8416,19 +8447,23 @@ msgid ""
 "Your active station location is not linked to your active station logbook. "
 "Click %shere%s to do it."
 msgstr ""
+"L' emplacement actuel de votre station n'est pas lié à votre journal de "
+"trafic sélectionné ! Cliquez %s ici%s pour le faire."
 
 #: application/views/dashboard/index.php:163
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station linked to your logbook. Click %shere%s to do it."
 msgstr ""
+"Vous n'avez aucune station liée à votre journal de trafic ! Cliquez %s ici%s "
+"pour le faire."
 
 #: application/views/dashboard/index.php:173
-#, php-format
+#, fuzzy, php-format
 msgid "You have had %d QSO today"
 msgid_plural "You have had %d QSOs today"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vous avez eu %d QSO aujourd'hui"
+msgstr[1] "Vous avez eu %d QSO aujourd'hui"
 
 #: application/views/dashboard/index.php:182
 #, php-format
@@ -8436,6 +8471,8 @@ msgid ""
 "Don't loose your streak - You have already had at least one QSO for the last "
 "%s consecutive days."
 msgstr ""
+"Ne perdez pas votre série - Vous avez déjà eu au moins un QSO au cours des "
+"%s derniers jours consécutifs."
 
 #: application/views/dashboard/index.php:184
 msgid "You have made no QSOs today; time to turn on the radio!"
@@ -8451,6 +8488,8 @@ msgid ""
 "You have themes without defined theme mode. Please ask the admin to edit the "
 "themes."
 msgstr ""
+"Certains thèmes ne disposent pas d'un mode thématique défini. Veuillez "
+"demander à l'administrateur de les modifier."
 
 #: application/views/dashboard/index.php:213
 #, php-format
@@ -8459,31 +8498,35 @@ msgid ""
 "LoTW Warning: There is an issue with at least one of your %sLoTW "
 "certificates%s!"
 msgstr ""
+"Alerte LoTW : il y a un problème avec au moins un de vos %scertificat(s) "
+"LoTW%s !"
 
 #: application/views/dashboard/index.php:216
 msgid "At least one of your certificates is expired"
-msgstr ""
+msgstr "Au moins un de vos certificats est expiré"
 
 #: application/views/dashboard/index.php:217
 msgid "At least one of your certificates is expiring"
-msgstr ""
+msgstr "Au moins un de vos certificats expire"
 
 #: application/views/dashboard/index.php:218
 msgid "The QSO end date of at least one of your certificates was exceeded"
-msgstr ""
+msgstr "La date de fin de QSO d'au moins un de vos certificats a été dépassée"
 
 #: application/views/dashboard/index.php:219
 msgid ""
 "The QSO end date of at least one of your certificates is about to be exceeded"
 msgstr ""
+"La date de fin de QSO d'au moins un de vos certificats est sur le point "
+"d'être dépassée"
 
 #: application/views/dashboard/index.php:297
 #: application/views/qso/index.php:828
-#, php-format
+#, fuzzy, php-format
 msgid "Max. %d previous contact is shown"
 msgid_plural "Max. %d previous contacts are shown"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Max. %d contact précédent est affiché"
+msgstr[1] "Max. %d contacts précédents sont affichés"
 
 #: application/views/dashboard/index.php:313
 #: application/views/visitor/index.php:241
@@ -8493,7 +8536,7 @@ msgstr "QSO Breakdown"
 #: application/views/dashboard/index.php:336
 #: application/views/visitor/index.php:262
 msgid "DXCCs Breakdown"
-msgstr ""
+msgstr "Répartition des DXCC"
 
 #: application/views/dashboard/index.php:353
 #: application/views/visitor/index.php:279
@@ -8616,40 +8659,40 @@ msgstr "Demandées"
 #: application/views/dashboard/index.php:388
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
-msgstr ""
+msgstr "Logbook of the World"
 
 #: application/views/dashboard/index.php:451
 msgid "VUCC-Grids"
-msgstr ""
+msgstr "Locator VUCC"
 
 #: application/views/dashboard/index.php:476
 msgid "Solar Data & Propagation"
-msgstr ""
+msgstr "Données solaires et propagation"
 
 #: application/views/dashboard/index.php:478
 #, php-format
 msgid "Last update at %s."
-msgstr ""
+msgstr "Dernière mis à jour à %s."
 
 #: application/views/dashboard/index.php:487
 msgid "Data provided by HAMqsl."
-msgstr ""
+msgstr "Données fournies par HAMqsl."
 
 #: application/views/dayswithqso/index.php:3
 msgid "Number of QSOs for this day of the week"
-msgstr ""
+msgstr "Nombre de QSO pour ce jour de la semaine"
 
 #: application/views/dayswithqso/index.php:4
 msgid "Number of QSOs for this month of the year"
-msgstr ""
+msgstr "Nombre de QSO pour ce mois de l'année"
 
 #: application/views/dayswithqso/index.php:18
 msgid "Days of the week"
-msgstr ""
+msgstr "Jours de la semaine"
 
 #: application/views/dayswithqso/index.php:21
 msgid "Months of the year"
-msgstr ""
+msgstr "Mois de l'année"
 
 #: application/views/dayswithqso/index.php:24
 msgid "Streaks"
