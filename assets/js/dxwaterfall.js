@@ -1707,8 +1707,8 @@ var dxWaterfall = {
      */
     saveFontSizeToCookie: function() {
         DX_WATERFALL_UTILS.cookie.set(
-            DX_WATERFALL_CONSTANTS.COOKIE.NAME_FONT_SIZE, 
-            this.labelSizeLevel.toString(), 
+            DX_WATERFALL_CONSTANTS.COOKIE.NAME_FONT_SIZE,
+            this.labelSizeLevel.toString(),
             DX_WATERFALL_CONSTANTS.COOKIE.EXPIRY_DAYS
         );
     },
@@ -1733,8 +1733,8 @@ var dxWaterfall = {
      */
     saveModeFiltersToCookie: function() {
         DX_WATERFALL_UTILS.cookie.set(
-            DX_WATERFALL_CONSTANTS.COOKIE.NAME_MODE_FILTERS, 
-            JSON.stringify(this.modeFilters), 
+            DX_WATERFALL_CONSTANTS.COOKIE.NAME_MODE_FILTERS,
+            JSON.stringify(this.modeFilters),
             DX_WATERFALL_CONSTANTS.COOKIE.EXPIRY_DAYS
         );
     },
@@ -1749,8 +1749,8 @@ var dxWaterfall = {
             try {
                 var filters = JSON.parse(cookieValue);
                 // Validate that it has the expected properties
-                if (typeof filters.phone === 'boolean' && 
-                    typeof filters.cw === 'boolean' && 
+                if (typeof filters.phone === 'boolean' &&
+                    typeof filters.cw === 'boolean' &&
                     typeof filters.digi === 'boolean') {
                     return filters;
                 }
@@ -4051,7 +4051,7 @@ var dxWaterfall = {
         ];
         var labelSizeText = labelSizeNames[this.labelSizeLevel];
         zoomHTML += '<i class="fas fa-font label-size-icon" title="' + lang_dxwaterfall_label_size_cycle + ' (' + labelSizeText + ')"></i>';
-        
+
         // Separator
         zoomHTML += '<span style="color: #666666; margin: 0 8px;">|</span>';
 
@@ -5198,12 +5198,12 @@ $(document).ready(function() {
         // Visual feedback - briefly change icon color BEFORE updating menu
         var icon = $(this);
         icon.css({'color': '#FFFF00', 'transition': 'color 0.2s'});
-        
+
         // Wait for visual feedback, then update menu and refresh
         setTimeout(function() {
             // Update the menu to show new size in tooltip (this replaces the icon)
             dxWaterfall.updateZoomMenu();
-            
+
             // Refresh the display to show new label sizes
             dxWaterfall.refresh();
         }, DX_WATERFALL_CONSTANTS.DEBOUNCE.ZOOM_ICON_FEEDBACK_MS);
