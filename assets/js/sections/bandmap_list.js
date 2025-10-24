@@ -443,6 +443,6 @@ $(function() {
 $.fn.dataTable.moment(custom_date_format + ' HH:mm');
 
 // If a radios selected from drop down select radio update.
-$('.radios').change(updateFromCAT);
+$('#radio').change();
 
 });
