@@ -127,5 +127,29 @@ class Lotw_model extends CI_Model {
 		}
 	}
 
+	function lotw_cert_qsoenddate_expired($user_id, $date) {
+		$array = array('user_id' => $user_id, 'qso_end_date <' => $date);
+		$this->db->where($array);
+		$query = $this->db->get('lotw_certs');
+
+		if ($query->num_rows() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	function lotw_cert_qsoenddate_expiring($user_id, $date) {
+		$array = array('user_id' => $user_id, 'DATE_SUB(qso_end_date, INTERVAL 30 DAY) <' => $date, 'qso_end_date >' => $date);
+		$this->db->where($array);
+		$query = $this->db->get('lotw_certs');
+
+		if ($query->num_rows() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 }
 ?>
