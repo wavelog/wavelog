@@ -118,6 +118,7 @@
     var lang_dxwaterfall_label_size_medium = "<?= __("Medium"); ?>";
     var lang_dxwaterfall_label_size_large = "<?= __("Large"); ?>";
     var lang_dxwaterfall_label_size_xlarge = "<?= __("X-Large"); ?>";
+    var lang_dxwaterfall_spotted_by = "<?= __("by:"); ?>";
 
 </script>
 

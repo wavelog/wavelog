@@ -828,9 +828,13 @@ var DX_WATERFALL_UTILS = {
             var formattedCallsign = spotData.callsign.toUpperCase().replace(/0/g, 'Ø');
             callsignInput.val(formattedCallsign);
 
-            // Set the mode if available (this triggers mode change handler which calls $("#callsign").blur())
+            // Set the mode if available - determine the actual radio mode
             if (spotData.mode) {
-                setMode(spotData.mode);
+                // Use determineRadioMode to get the correct radio mode (same as clicking)
+                var radioMode = DX_WATERFALL_UTILS.navigation.determineRadioMode(spotData);
+                // Use skipTrigger=true to prevent change event race condition
+                setMode(radioMode, true);
+            } else {
             }
 
             // Populate SOTA reference if available (selectize field)
@@ -891,7 +895,13 @@ var DX_WATERFALL_UTILS = {
                     }
                     callsignInput.trigger('focusout');
                     self.pendingLookupTimer = null;
+
+                    // Clear navigation flag after form population completes
+                    DX_WATERFALL_UTILS.navigation.navigating = false;
                 }, 50);
+            } else {
+                // No lookup - clear navigation flag immediately
+                DX_WATERFALL_UTILS.navigation.navigating = false;
             }
         }
     },
@@ -900,10 +910,76 @@ var DX_WATERFALL_UTILS = {
     navigation: {
         // Timer for pending navigation actions
         pendingNavigationTimer: null,
+        // Flag to block interference during navigation
+        navigating: false,
+
+        /**
+         * Determine the appropriate radio mode to set based on spot mode and frequency
+         * @param {Object} spot - Spot object with mode and frequency
+         * @returns {string} - The mode to set (CW, USB, LSB, RTTY, etc.)
+         */
+        determineRadioMode: function(spot) {
+
+            if (!spot) {
+                return 'USB'; // Default fallback
+            }
+
+            var spotMode = (spot.mode || '').toUpperCase();
+            var frequency = parseFloat(spot.frequency); // Frequency in kHz
+
+
+            // CW mode - always use CW
+            if (spotMode === 'CW' || spotMode === 'A1A') {
+                return 'CW';
+            }
+
+            // Digital modes - use RTTY as the standard digital mode
+            var digiModes = ['FT8', 'FT4', 'JT65', 'JT9', 'Q65', 'QRA64', 'FST4', 'FST4W',
+                           'WSPR', 'MSK144', 'ISCAT', 'JS8', 'JTMS', 'FSK441',
+                           'PSK', 'QPSK', '8PSK', 'PSK31', 'PSK63', 'PSK125', 'PSK250',
+                           'RTTY', 'RTTYM', 'OLIVIA', 'CONTESTIA', 'THOR', 'THROB',
+                           'MFSK', 'HELL', 'MT63', 'DOMINO', 'PACKET', 'PACTOR', 'CLOVER',
+                           'AMTOR', 'SITOR', 'NAVTEX', 'SSTV', 'FAX', 'CHIP', 'CHIP64',
+                           'ROS', 'JT4', 'JT6M', 'OPERA', 'RTTYFSK', 'DIGITALVOICE', 'DSTAR',
+                           'VARA', 'ARDOP', 'C4FM', 'DMR', 'FREEDV', 'M17', 'MFSK16', 'MFSK8'];
+
+            for (var i = 0; i < digiModes.length; i++) {
+                if (spotMode.indexOf(digiModes[i]) !== -1) {
+                    return 'RTTY';
+                }
+            }
+
+            // Phone modes - determine USB or LSB based on frequency
+            var phoneModes = ['SSB', 'LSB', 'USB', 'AM', 'FM', 'SAM', 'DSB', 'J3E', 'A3E', 'PHONE'];
+            var isPhoneMode = false;
+            for (var j = 0; j < phoneModes.length; j++) {
+                if (spotMode === phoneModes[j]) {
+                    isPhoneMode = true;
+                    break;
+                }
+            }
+
+            if (isPhoneMode || !spotMode) {
+                // Use frequency-based determination for phone modes or unknown modes
+                // Use the same logic as bandwidth drawing for consistency
+                var ssbMode = DX_WATERFALL_UTILS.modes.determineSSBMode(frequency);
+                return ssbMode;
+            }
+
+            // For any other unrecognized mode, default to USB/LSB based on frequency
+            var defaultMode = DX_WATERFALL_UTILS.modes.determineSSBMode(frequency);
+            return defaultMode;
+        },
 
         // Common navigation logic shared by all spot navigation functions
         navigateToSpot: function(waterfallContext, targetSpot, targetIndex) {
-            if (!targetSpot) return false;
+
+            if (!targetSpot) {
+                return false;
+            }
+
+            // Set navigation flag to block refresh interference
+            this.navigating = true;
 
             // Cancel any pending navigation timers
             if (this.pendingNavigationTimer) {
@@ -924,10 +1000,25 @@ var DX_WATERFALL_UTILS = {
                     waterfallContext.updateBandFromFrequency(targetSpot.frequency);
                 }
 
-                // Use the same frequency setting approach as clicking
-                setFrequency(targetSpot.frequency, true); // Pass true to indicate waterfall-initiated change
+            // CRITICAL: Set mode FIRST before calling setFrequency
+            // setFrequency reads the mode from $('#mode').val(), so the mode must be set first
+            var radioMode = this.determineRadioMode(targetSpot);
 
-                // Manually set the frequency in the input field immediately
+            // Set CAT debounce lock early to block incoming CAT updates during navigation
+            if (typeof setFrequency.catDebounceLock !== 'undefined') {
+                setFrequency.catDebounceLock = 1;
+            }
+
+            setMode(radioMode, true); // skipTrigger = true to prevent change event
+
+            // Now set frequency - it will read the correct mode from the dropdown
+            setFrequency(targetSpot.frequency, true); // Pass true to indicate waterfall-initiated change
+
+            // Send frequency command again after short delay to correct any drift from mode change
+            // (radio control lib bug: mode change can cause slight frequency shift)
+            setTimeout(function() {
+                setFrequency(targetSpot.frequency, true);
+            }, 200); // 200ms delay to let mode change settle                // Manually set the frequency in the input field immediately
                 var formattedFreq = Math.round(targetSpot.frequency * 1000); // Convert to Hz
                 $('#frequency').val(formattedFreq);
 
@@ -950,7 +1041,12 @@ var DX_WATERFALL_UTILS = {
                     this.pendingNavigationTimer = setTimeout(function() {
                         DX_WATERFALL_UTILS.qsoForm.populateFromSpot(spotInfo, true);
                         self.pendingNavigationTimer = null;
+                        // Clear navigation flag after population completes
+                        self.navigating = false;
                     }, 100);
+                } else {
+                    // Clear navigation flag immediately if no spot to populate
+                    this.navigating = false;
                 }
                 // If no spot found, form remains cleared (already cleared above)
 
@@ -1057,6 +1153,7 @@ var dxWaterfall = {
     // ========================================
     userEditingFrequency: false, // Track if user is actively editing frequency
     spotInfoDiv: null, // Reference to the dxWaterfallSpot div
+    spotTooltipDiv: null, // Reference to the spot tooltip div
     lastSpotInfoKey: null, // Track last displayed spot to prevent unnecessary re-renders
     currentContinent: 'NA', // Track current continent filter
     currentMaxAge: 60, // Track current max age filter
@@ -1222,6 +1319,11 @@ var dxWaterfall = {
                 self.zoomOut();
             }
         }, { passive: false }); // passive: false is required for preventDefault to work
+
+        // Set up mousemove for spot label tooltips (efficient - only when mouse is over canvas)
+        this.canvas.addEventListener('mousemove', function(e) {
+            self.handleSpotLabelHover(e);
+        });
 
         // Set page load time for waiting state management
         this.pageLoadTime = Date.now();
@@ -1755,7 +1857,7 @@ var dxWaterfall = {
                     return filters;
                 }
             } catch (e) {
-                console.log('[DX Waterfall] Error parsing mode filters cookie:', e);
+                // Silently ignore invalid cookie data
             }
         }
         return null;
@@ -1769,7 +1871,6 @@ var dxWaterfall = {
         var savedFontSize = this.loadFontSizeFromCookie();
         if (savedFontSize !== null) {
             this.labelSizeLevel = savedFontSize;
-            console.log('[DX Waterfall] Loaded font size from cookie:', savedFontSize);
         }
 
         // Load mode filters
@@ -1778,7 +1879,202 @@ var dxWaterfall = {
             this.modeFilters.phone = savedModeFilters.phone;
             this.modeFilters.cw = savedModeFilters.cw;
             this.modeFilters.digi = savedModeFilters.digi;
-            console.log('[DX Waterfall] Loaded mode filters from cookie:', savedModeFilters);
+        }
+    },
+
+    // ========================================
+    // SPOT LABEL TOOLTIP HANDLER
+    // ========================================
+
+    /**
+     * Handle mousemove over canvas to show spot label tooltips
+     * Efficient implementation - only creates tooltip when needed
+     */
+    handleSpotLabelHover: function(e) {
+        // Don't show tooltips while waiting for data or if no spots
+        if (this.waitingForData || !this.dxSpots || this.dxSpots.length === 0) {
+            this.hideSpotTooltip();
+            return;
+        }
+
+        var rect = this.canvas.getBoundingClientRect();
+        var mouseX = e.clientX - rect.left;
+        var mouseY = e.clientY - rect.top;
+
+        // Find if mouse is over any spot label
+        var hoveredSpot = this.findSpotAtPosition(mouseX, mouseY);
+
+        if (hoveredSpot) {
+            this.canvas.style.cursor = 'pointer'; // Change cursor to pointer when over spot
+            this.showSpotTooltip(hoveredSpot, e.clientX, e.clientY);
+        } else {
+            this.canvas.style.cursor = 'default'; // Reset cursor when not over spot
+            this.hideSpotTooltip();
+        }
+    },
+
+    /**
+     * Find spot at mouse position (checks both left and right spots + center spot)
+     */
+    findSpotAtPosition: function(x, y) {
+        var labelHeight = this.getCurrentLabelHeight();
+        var tolerance = 2; // Pixels tolerance for easier hovering
+
+        // Check center spot first
+        var centerSpot = this.getSpotInfo();
+        if (centerSpot && centerSpot.callsign) {
+            var centerX = this.canvas.width / 2;
+            var waterfallHeight = this.canvas.height - DX_WATERFALL_CONSTANTS.CANVAS.RULER_HEIGHT;
+            var centerY = waterfallHeight / 2;
+
+            this.ctx.font = this.getCurrentCenterLabelFont();
+            var textWidth = this.ctx.measureText(centerSpot.callsign).width;
+            var padding = 5; // Padding around text
+            var centerLabelWidth = textWidth + (padding * 2);
+            var centerLabelHeight = labelHeight + 1;
+
+            var centerLeft = centerX - centerLabelWidth / 2;
+            var centerRight = centerX + centerLabelWidth / 2;
+            var centerTop = centerY - centerLabelHeight / 2;
+            var centerBottom = centerY + centerLabelHeight / 2;
+
+            if (x >= centerLeft - tolerance && x <= centerRight + tolerance &&
+                y >= centerTop - tolerance && y <= centerBottom + tolerance) {
+                return centerSpot;
+            }
+        }
+
+        // Check all visible spots (left and right)
+        for (var i = 0; i < this.dxSpots.length; i++) {
+            var spot = this.dxSpots[i];
+            if (spot.x !== undefined && spot.y !== undefined && spot.labelWidth !== undefined) {
+                // spot.x is the CENTER of the label
+                // spot.y is the CENTER of the text (y + 1 from drawing)
+                // spot.labelWidth is the full width of the label
+
+                var spotLeft = spot.x - spot.labelWidth / 2;
+                var spotRight = spot.x + spot.labelWidth / 2;
+                var spotTop = spot.y - labelHeight / 2;
+                var spotBottom = spot.y + labelHeight / 2;
+
+                if (x >= spotLeft - tolerance && x <= spotRight + tolerance &&
+                    y >= spotTop - tolerance && y <= spotBottom + tolerance) {
+                    // Return a properly formatted spot object (like getSpotInfo does)
+                    return DX_WATERFALL_UTILS.spots.createSpotObject(spot, {
+                        includeSpotter: true,
+                        includeTimestamp: true,
+                        includeMessage: true,
+                        includeWorkStatus: true
+                    });
+                }
+            }
+        }
+
+        return null;
+    },
+
+    /**
+     * Show tooltip for a spot
+     */
+    showSpotTooltip: function(spot, clientX, clientY) {
+        // Create tooltip div if it doesn't exist
+        if (!this.spotTooltipDiv) {
+            this.spotTooltipDiv = document.createElement('div');
+            this.spotTooltipDiv.id = 'dxWaterfallTooltip';
+            this.spotTooltipDiv.style.position = 'fixed';
+            this.spotTooltipDiv.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+            this.spotTooltipDiv.style.color = '#FFFFFF';
+            this.spotTooltipDiv.style.padding = '5px 10px';
+            this.spotTooltipDiv.style.borderRadius = '4px';
+            this.spotTooltipDiv.style.fontSize = '11px';
+            this.spotTooltipDiv.style.fontFamily = '"Consolas", "Courier New", monospace';
+            this.spotTooltipDiv.style.pointerEvents = 'none';
+            this.spotTooltipDiv.style.zIndex = '10000';
+            this.spotTooltipDiv.style.whiteSpace = 'nowrap';
+            document.body.appendChild(this.spotTooltipDiv);
+        }
+
+        // Build tooltip content with all information
+        var tooltipParts = [];
+
+        // Spotter name (already cleaned during data load)
+        if (spot.spotter) {
+            tooltipParts.push(lang_dxwaterfall_spotted_by + ' ' + spot.spotter);
+        }
+
+        // Time from when_pretty field (format: "DD/MM/YY HH:MM")
+        if (spot.when_pretty) {
+            var parts = spot.when_pretty.split(' ');
+            if (parts.length === 2) {
+                // Extract just the time part (HH:MM) and add Z for UTC
+                tooltipParts.push('@' + parts[1] + 'Z');
+            }
+        }
+
+        // Add worked status indicators
+        // Check both transformed properties (newContinent, newDxcc, newCallsign)
+        // and raw properties (worked_continent, worked_dxcc, worked_call)
+        var statusParts = [];
+
+        // New continent: check newContinent or worked_continent === false
+        if (spot.newContinent || spot.worked_continent === false) {
+            statusParts.push(lang_dxwaterfall_new_continent);
+        }
+
+        // New DXCC: check newDxcc or worked_dxcc === false
+        if (spot.newDxcc || spot.worked_dxcc === false) {
+            statusParts.push(lang_dxwaterfall_new_dxcc);
+        }
+
+        // New callsign: check newCallsign or worked_call === false
+        if (spot.newCallsign || spot.worked_call === false) {
+            statusParts.push(lang_dxwaterfall_new_callsign);
+        }
+
+        if (statusParts.length > 0) {
+            tooltipParts.push('(' + statusParts.join(') (') + ')');
+        }
+
+        this.spotTooltipDiv.textContent = tooltipParts.join(' ');
+
+        // Get canvas boundaries to keep tooltip inside
+        var canvasRect = this.canvas.getBoundingClientRect();
+
+        // Calculate tooltip dimensions (need to show it briefly to measure)
+        this.spotTooltipDiv.style.display = 'block';
+        var tooltipWidth = this.spotTooltipDiv.offsetWidth;
+        var tooltipHeight = this.spotTooltipDiv.offsetHeight;
+
+        // Default position (offset from cursor)
+        var tooltipLeft = clientX + 15;
+        var tooltipTop = clientY + 10;
+
+        // Keep tooltip inside canvas horizontally
+        if (tooltipLeft + tooltipWidth > canvasRect.right) {
+            tooltipLeft = clientX - tooltipWidth - 15; // Show on left side of cursor
+        }
+        if (tooltipLeft < canvasRect.left) {
+            tooltipLeft = canvasRect.left + 5; // Clamp to left edge
+        }
+
+        // Keep tooltip inside canvas vertically
+        if (tooltipTop + tooltipHeight > canvasRect.bottom) {
+            tooltipTop = clientY - tooltipHeight - 10; // Show above cursor
+        }
+        if (tooltipTop < canvasRect.top) {
+            tooltipTop = canvasRect.top + 5; // Clamp to top edge
+        }
+
+        this.spotTooltipDiv.style.left = tooltipLeft + 'px';
+        this.spotTooltipDiv.style.top = tooltipTop + 'px';
+    },
+
+    /**
+     * Hide tooltip
+     */
+    hideSpotTooltip: function() {
+        if (this.spotTooltipDiv) {
+            this.spotTooltipDiv.style.display = 'none';
         }
     },
 
@@ -2385,6 +2681,11 @@ var dxWaterfall = {
                         data[i].potaRef = parkRefs.potaRef;
                         data[i].iotaRef = parkRefs.iotaRef;
                         data[i].wwffRef = parkRefs.wwffRef;
+
+                        // Clean up spotter callsign (remove -# suffix)
+                        if (data[i].spotter) {
+                            data[i].spotter = data[i].spotter.replace(/-#$/, '');
+                        }
                     }
 
                     self.dxSpots = data;
@@ -3154,6 +3455,9 @@ var dxWaterfall = {
                         continue;
                     }
 
+                    // Store reference to original spot for updating coordinates later
+                    spotData.originalSpot = spot;
+
                     if (freqOffset < 0) {
                         leftSpots.push(spotData);
                     } else if (freqOffset > 0) {
@@ -3242,6 +3546,13 @@ var dxWaterfall = {
 				ctx.textAlign = 'center';
 				ctx.textBaseline = 'middle';
 				ctx.fillText(spot.callsign, spot.x, y + 1);
+
+				// Store coordinates and dimensions in original spot for tooltip hover detection
+				if (spot.originalSpot) {
+					spot.originalSpot.x = spot.x;
+					spot.originalSpot.y = y + 1;
+					spot.originalSpot.labelWidth = spot.labelWidth;
+				}
 
 				// Draw underline if LoTW user
 				if (spot.lotw_user) {
@@ -3718,7 +4029,8 @@ var dxWaterfall = {
         }
 
         // Return the currently selected spot
-        return relevantSpots[this.currentSpotIndex];
+        var selectedSpot = relevantSpots[this.currentSpotIndex];
+        return selectedSpot;
     },
 
     // Format spot date/time from "DD/MM/YY HH:MM" to "YY-MM-DD HH:MM UTC"
@@ -3747,6 +4059,11 @@ var dxWaterfall = {
     // Update spot information in the dxWaterfallSpot div
     updateSpotInfoDiv: function() {
         if (!this.spotInfoDiv) {
+            return;
+        }
+
+        // Block updates during navigation to prevent interference
+        if (DX_WATERFALL_UTILS.navigation.navigating) {
             return;
         }
 
@@ -4380,7 +4697,24 @@ var dxWaterfall = {
                     this.updateBandFromFrequency(targetSpot.frequency);
                 }
 
+                // CRITICAL: Set mode FIRST before calling setFrequency
+                var radioMode = DX_WATERFALL_UTILS.navigation.determineRadioMode(targetSpot);
+
+                // Set CAT debounce lock early to block incoming CAT updates during navigation
+                if (typeof setFrequency.catDebounceLock !== 'undefined') {
+                    setFrequency.catDebounceLock = 1;
+                }
+
+                setMode(radioMode, true); // skipTrigger = true to prevent change event
+
+                // Now set frequency - it will read the correct mode from the dropdown
                 setFrequency(targetSpot.frequency, true); // Pass true to indicate waterfall-initiated change
+
+                // Send frequency command again after short delay to correct any drift from mode change
+                // (radio control lib bug: mode change can cause slight frequency shift)
+                setTimeout(function() {
+                    setFrequency(targetSpot.frequency, true);
+                }, 200); // 200ms delay to let mode change settle
 
                 // Get the complete spot data from the stored reference
                 // targetSpot from smartHunterSpots has a reference to the original spot
@@ -4873,6 +5207,7 @@ function setMode(mode, skipTrigger) {
 // @param frequencyInKHz - Target frequency in kHz
 // @param fromWaterfall - True if this change was initiated by waterfall (clicking spot/tune icon), false for external calls
 function setFrequency(frequencyInKHz, fromWaterfall) {
+
     if (!frequencyInKHz) {
         return;
     }
@@ -4882,24 +5217,29 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
         fromWaterfall = false;
     }
 
+    // Hide spot tooltip when changing frequency
+    if (typeof dxWaterfall !== 'undefined' && dxWaterfall.hideSpotTooltip) {
+        dxWaterfall.hideSpotTooltip();
+    }
+
     // Check if already changing frequency and block rapid commands
     if (typeof dxWaterfall !== 'undefined' && dxWaterfall.frequencyChanging) {
         return;
     }
 
     // Add simple debounce to prevent rapid-fire calls
+    // But allow waterfall-initiated calls (spot clicks) to bypass debounce
     var now = Date.now();
     if (typeof setFrequency.lastCall === 'undefined') {
         setFrequency.lastCall = 0;
     }
-    if (now - setFrequency.lastCall < 500) { // 500ms debounce - prevent rapid navigation
+    if (!fromWaterfall && now - setFrequency.lastCall < 500) { // Only debounce external calls
         return;
     }
     setFrequency.lastCall = now;
 
     var formattedFreq = Math.round(frequencyInKHz * 1000); // Convert to Hz and round to integer
     var modeVal = $('#mode').val();
-    var mode = modeVal ? modeVal.toLowerCase() : '';
 
     // Check if CAT is enabled and configured
     var catAvailable = (typeof dxwaterfall_allowcat !== 'undefined' && dxwaterfall_allowcat !== null &&
@@ -4910,38 +5250,49 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
         // Set the radio frequency via CAT command
         // Use formattedFreq (in Hz) for consistency - rounded to integer for radio compatibility
 
-        // Map current mode to CAT mode parameter
-        var catMode = 'phone'; // Default fallback
-            if (mode) {
-                var modeUpper = mode.toUpperCase();
+        // Map UI mode to CAT mode parameter using determineRadioMode logic
+        // CAT expects specific modes like: CW, RTTY, PSK, USB, LSB, AM, FM
+        var catMode = 'usb'; // Default fallback
 
-                // CW modes
-                if (modeUpper === 'CW' || modeUpper === 'A1A') {
-                    catMode = 'cw';
-                }
-                // Digital modes
-                else if (modeUpper === 'FT8' || modeUpper === 'FT4' || modeUpper === 'RTTY' ||
-                         modeUpper === 'PSK31' || modeUpper === 'JT65' || modeUpper === 'JT9' ||
-                         modeUpper === 'WSPR' || modeUpper === 'MFSK' || modeUpper === 'OLIVIA' ||
-                         modeUpper === 'CONTESTIA' || modeUpper === 'MT63' || modeUpper === 'SSTV' ||
-                         modeUpper === 'PACKET' || modeUpper === 'FSK441' || modeUpper === 'ISCAT' ||
-                         modeUpper === 'MSK144' || modeUpper === 'Q65' || modeUpper === 'QRA64' ||
-                         modeUpper === 'FST4' || modeUpper === 'FST4W' || modeUpper === 'JS8' ||
-                         modeUpper === 'VARA' || modeUpper === 'VARAC' || modeUpper === 'DMR' ||
-                         modeUpper === 'DSTAR' || modeUpper === 'C4FM' || modeUpper === 'FREEDV' ||
-                         modeUpper === 'M17' || modeUpper === 'DYNAMIC' ||
-                         modeUpper.indexOf('PSK') !== -1 || modeUpper.indexOf('HELL') !== -1 ||
-                         modeUpper.indexOf('THOR') !== -1 || modeUpper.indexOf('THROB') !== -1 ||
-                         modeUpper.indexOf('DOM') !== -1 || modeUpper.indexOf('MFSK') !== -1) {
-                    catMode = 'digi';
-                }
-                // Phone modes (SSB, AM, FM, etc.) - default to 'phone'
-                else {
-                    catMode = 'phone';
-                }
+        if (modeVal) {
+            var modeUpper = modeVal.toUpperCase();
+
+            // Use the same logic as determineRadioMode for consistency
+            // CW modes
+            if (modeUpper === 'CW' || modeUpper === 'A1A') {
+                catMode = 'cw';
             }
+            // Digital modes that should be sent as RTTY
+            else if (modeUpper === 'RTTY') {
+                catMode = 'rtty';
+            }
+            // PSK modes - transceiver expects 'psk'
+            else if (modeUpper.indexOf('PSK') !== -1) {
+                catMode = 'psk';
+            }
+            // AM mode
+            else if (modeUpper === 'AM') {
+                catMode = 'am';
+            }
+            // FM mode
+            else if (modeUpper === 'FM') {
+                catMode = 'fm';
+            }
+            // USB/LSB - pass through directly (already in correct format from determineRadioMode)
+            else if (modeUpper === 'USB') {
+                catMode = 'usb';
+            }
+            else if (modeUpper === 'LSB') {
+                catMode = 'lsb';
+            }
+            // Any other mode - default to frequency-based USB/LSB
+            else {
+                var ssbMode = DX_WATERFALL_UTILS.modes.determineSSBMode(frequencyInKHz);
+                catMode = ssbMode.toLowerCase();
+            }
+        }
 
-            var catUrl = dxwaterfall_caturl + '/' + formattedFreq + '/' + catMode;
+        var catUrl = dxwaterfall_caturl + '/' + formattedFreq + '/' + catMode;
 
             // Set frequency changing flag and show visual feedback
             if (typeof dxWaterfall !== 'undefined') {
@@ -5299,7 +5650,44 @@ $(document).ready(function() {
         var x = e.clientX - rect.left;
         var y = e.clientY - rect.top;
 
-        // Calculate frequency at clicked position
+        // First check if user clicked on a spot label - if so, tune to that exact spot frequency
+        var clickedSpot = dxWaterfall.findSpotAtPosition(x, y);
+        if (clickedSpot && clickedSpot.frequency) {
+            // User clicked on a spot label - tune to exact spot frequency and set mode
+
+            // Set navigation flag to block refresh interference during spot click
+            DX_WATERFALL_UTILS.navigation.navigating = true;
+
+            // Set CAT debounce lock BEFORE mode/frequency changes to block incoming CAT updates
+            if (typeof window.dxwaterfall_cat_debounce_lock !== 'undefined') {
+                window.dxwaterfall_cat_debounce_lock = 1;
+            }
+
+            if (dxWaterfall.isFrequencyFarOutsideBand(clickedSpot.frequency)) {
+                dxWaterfall.updateBandFromFrequency(clickedSpot.frequency);
+            }
+
+            // CRITICAL: Set mode FIRST (without triggering change event), THEN set frequency
+            // This ensures setFrequency() reads the correct mode from the dropdown
+            var radioMode = DX_WATERFALL_UTILS.navigation.determineRadioMode(clickedSpot);
+            setMode(radioMode, true); // skipTrigger = true to prevent change event
+
+            // Now set frequency - it will read the correct mode from the dropdown
+            setFrequency(clickedSpot.frequency, true);
+
+            // Send frequency command again after short delay to correct any drift from mode change
+            // (radio control lib bug: mode change can cause slight frequency shift)
+            setTimeout(function() {
+                setFrequency(clickedSpot.frequency, true);
+            }, 200); // 200ms delay to let mode change settle
+
+            // Populate QSO form - flag will be cleared when population completes
+            DX_WATERFALL_UTILS.qsoForm.populateFromSpot(clickedSpot, true);
+
+            return; // Don't calculate frequency from position
+        }
+
+        // No spot label clicked - calculate frequency at clicked position
         var centerX = canvas.width / 2;
         var middleFreq = dxWaterfall.getCachedMiddleFreq(); // Use cached frequency
         var pixelsPerKHz = dxWaterfall.getPixelsPerKHz(); // Mode-aware scaling
