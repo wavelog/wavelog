@@ -37,6 +37,13 @@ var DX_WATERFALL_CONSTANTS = {
         STATIC_NOISE_REFRESH_MS: 100      	// Static noise animation frame rate
     },
 
+    // Cookie configuration
+    COOKIE: {
+        NAME_FONT_SIZE: 'dxwaterfall_fontsize',  // Cookie name for font size
+        NAME_MODE_FILTERS: 'dxwaterfall_modefilters', // Cookie name for mode filters
+        EXPIRY_DAYS: 365                         // Cookie expiration in days
+    },
+
     // Canvas dimensions and spacing
     CANVAS: {
         MIN_TEXT_AREA_WIDTH: 100,          	// Minimum width to display text labels
@@ -120,7 +127,7 @@ var DX_WATERFALL_CONSTANTS = {
         SPOT_INFO: '11px "Consolas", "Courier New", monospace',
         WAITING_MESSAGE: '16px "Consolas", "Courier New", monospace',
         TITLE_LARGE: 'bold 24px "Consolas", "Courier New", monospace',
-        FREQUENCY_CHANGE: 'bold 18px "Consolas", "Courier New", monospace',
+        FREQUENCY_CHANGE: '18px "Consolas", "Courier New", monospace',
         OUT_OF_BAND: 'bold 14px "Consolas", "Courier New", monospace',
         SMALL_MONO: '12px "Consolas", "Courier New", monospace'
     },
@@ -241,6 +248,41 @@ var DX_WATERFALL_UTILS = {
                 }
                 context[timerProperty] = setTimeout(later, wait);
             };
+        }
+    },
+
+    // Cookie utilities
+    cookie: {
+        /**
+         * Set a cookie
+         * @param {string} name - Cookie name
+         * @param {string} value - Cookie value
+         * @param {number} days - Days until expiration
+         */
+        set: function(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        },
+
+        /**
+         * Get a cookie value
+         * @param {string} name - Cookie name
+         * @returns {string|null} Cookie value or null if not found
+         */
+        get: function(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
         }
     },
 
@@ -1036,6 +1078,7 @@ var dxWaterfall = {
     // VISUAL CONFIGURATION
     // ========================================
     fonts: DX_WATERFALL_CONSTANTS.FONTS, // Font configuration
+    labelSizeLevel: 2, // 0 = x-small (11px), 1 = small (12px), 2 = medium (13px - default), 3 = large (15px), 4 = x-large (17px)
 
     // ========================================
     // PERFORMANCE CACHING
@@ -1183,6 +1226,9 @@ var dxWaterfall = {
         // Set page load time for waiting state management
         this.pageLoadTime = Date.now();
         this.operationStartTime = Date.now(); // Initialize operation timer
+
+        // Load saved settings from cookies
+        this.loadSettingsFromCookies();
 
         // Set top div to &nbsp; to maintain layout height
         if (this.spotInfoDiv) {
@@ -1602,6 +1648,137 @@ var dxWaterfall = {
                     DX_WATERFALL_UTILS.qsoForm.populateFromSpot(spotInfo, true);
                 }
             }, 100);
+        }
+    },
+
+    // Get the current label font based on labelSizeLevel
+    getCurrentLabelFont: function() {
+        // 0 = x-small (11px), 1 = small (12px), 2 = medium (13px - default), 3 = large (15px), 4 = x-large (17px)
+        switch(this.labelSizeLevel) {
+            case 0:
+                return 'bold 11px "Consolas", "Courier New", monospace';
+            case 1:
+                return 'bold 12px "Consolas", "Courier New", monospace';
+            case 3:
+                return 'bold 15px "Consolas", "Courier New", monospace';
+            case 4:
+                return 'bold 17px "Consolas", "Courier New", monospace';
+            default:
+                return DX_WATERFALL_CONSTANTS.FONTS.SPOT_LABELS; // 13px (level 2 - medium)
+        }
+    },
+
+    // Get the current CENTER label font (1px larger than regular labels)
+    getCurrentCenterLabelFont: function() {
+        // Center label is always 1px larger than regular labels
+        // 0 = 12px, 1 = 13px, 2 = 14px, 3 = 16px, 4 = 18px
+        switch(this.labelSizeLevel) {
+            case 0:
+                return 'bold 12px "Consolas", "Courier New", monospace';
+            case 1:
+                return 'bold 13px "Consolas", "Courier New", monospace';
+            case 3:
+                return 'bold 16px "Consolas", "Courier New", monospace';
+            case 4:
+                return 'bold 18px "Consolas", "Courier New", monospace';
+            default:
+                return 'bold 14px "Consolas", "Courier New", monospace'; // default 13px + 1 (level 2)
+        }
+    },
+
+    // Get the current label height in pixels based on labelSizeLevel
+    getCurrentLabelHeight: function() {
+        // 0 = 11px, 1 = 12px, 2 = 13px, 3 = 15px, 4 = 17px
+        switch(this.labelSizeLevel) {
+            case 0: return 11;
+            case 1: return 12;
+            case 3: return 15;
+            case 4: return 17;
+            default: return 13; // level 2 - medium
+        }
+    },
+
+    // ========================================
+    // COOKIE MANAGEMENT
+    // ========================================
+
+    /**
+     * Save font size to cookie
+     */
+    saveFontSizeToCookie: function() {
+        DX_WATERFALL_UTILS.cookie.set(
+            DX_WATERFALL_CONSTANTS.COOKIE.NAME_FONT_SIZE, 
+            this.labelSizeLevel.toString(), 
+            DX_WATERFALL_CONSTANTS.COOKIE.EXPIRY_DAYS
+        );
+    },
+
+    /**
+     * Load font size from cookie
+     * @returns {number|null} Font size level (0-4) or null if not found
+     */
+    loadFontSizeFromCookie: function() {
+        var cookieValue = DX_WATERFALL_UTILS.cookie.get(DX_WATERFALL_CONSTANTS.COOKIE.NAME_FONT_SIZE);
+        if (cookieValue !== null) {
+            var level = parseInt(cookieValue, 10);
+            if (!isNaN(level) && level >= 0 && level <= 4) {
+                return level;
+            }
+        }
+        return null;
+    },
+
+    /**
+     * Save mode filters to cookie
+     */
+    saveModeFiltersToCookie: function() {
+        DX_WATERFALL_UTILS.cookie.set(
+            DX_WATERFALL_CONSTANTS.COOKIE.NAME_MODE_FILTERS, 
+            JSON.stringify(this.modeFilters), 
+            DX_WATERFALL_CONSTANTS.COOKIE.EXPIRY_DAYS
+        );
+    },
+
+    /**
+     * Load mode filters from cookie
+     * @returns {Object|null} Mode filters object or null if not found
+     */
+    loadModeFiltersFromCookie: function() {
+        var cookieValue = DX_WATERFALL_UTILS.cookie.get(DX_WATERFALL_CONSTANTS.COOKIE.NAME_MODE_FILTERS);
+        if (cookieValue) {
+            try {
+                var filters = JSON.parse(cookieValue);
+                // Validate that it has the expected properties
+                if (typeof filters.phone === 'boolean' && 
+                    typeof filters.cw === 'boolean' && 
+                    typeof filters.digi === 'boolean') {
+                    return filters;
+                }
+            } catch (e) {
+                console.log('[DX Waterfall] Error parsing mode filters cookie:', e);
+            }
+        }
+        return null;
+    },
+
+    /**
+     * Load saved settings from cookies on initialization
+     */
+    loadSettingsFromCookies: function() {
+        // Load font size
+        var savedFontSize = this.loadFontSizeFromCookie();
+        if (savedFontSize !== null) {
+            this.labelSizeLevel = savedFontSize;
+            console.log('[DX Waterfall] Loaded font size from cookie:', savedFontSize);
+        }
+
+        // Load mode filters
+        var savedModeFilters = this.loadModeFiltersFromCookie();
+        if (savedModeFilters) {
+            this.modeFilters.phone = savedModeFilters.phone;
+            this.modeFilters.cw = savedModeFilters.cw;
+            this.modeFilters.digi = savedModeFilters.digi;
+            console.log('[DX Waterfall] Loaded mode filters from cookie:', savedModeFilters);
         }
     },
 
@@ -2997,7 +3174,9 @@ var dxWaterfall = {
 		// Check if center label is shown to avoid that area
 		var centerSpotShown = centerCallsign !== null;
 		var centerY = (this.canvas.height - DX_WATERFALL_CONSTANTS.CANVAS.RULER_HEIGHT) / 2;
-		var centerExclusionHeight = Math.ceil(13 * 1.2) + 20; // Center label height (13px base * 1.2) + 20px margin
+		var baseLabelHeight = this.getCurrentLabelHeight(); // Regular label height
+		var centerLabelHeight = baseLabelHeight + 1; // Center is 1px taller
+		var centerExclusionHeight = Math.ceil(centerLabelHeight * 1.2) + 20; // Center label height + 20px margin
 		var centerExclusionTop = centerY - (centerExclusionHeight / 2);
 		var centerExclusionBottom = centerY + (centerExclusionHeight / 2);
 
@@ -3005,8 +3184,11 @@ var dxWaterfall = {
 		var self = this;
 		var fonts = this.fonts;
 
-		// Label height constants for overlap detection
-		var labelHeight = 13; // Base label height in pixels
+		// Get current label font based on size level
+		var currentLabelFont = this.getCurrentLabelFont();
+
+		// Label height constants for overlap detection - adjust based on label size
+		var labelHeight = this.getCurrentLabelHeight();
 		var minSpacing = 3; // Minimum spacing between labels in pixels
 
 		// Function to distribute spots vertically with anti-overlap algorithm
@@ -3014,7 +3196,7 @@ var dxWaterfall = {
 			if (spots.length === 0) return;
 
 			// Pre-calculate label widths for all spots
-			ctx.font = fonts.spotLabels;
+			ctx.font = currentLabelFont;
 			var padding = DX_WATERFALL_CONSTANTS.CANVAS.SPOT_PADDING;
 			for (var p = 0; p < spots.length; p++) {
 				var textWidth = ctx.measureText(spots[p].callsign).width;
@@ -3035,11 +3217,11 @@ var dxWaterfall = {
 				var borderColor = colors.borderColor;
 				var tickboxColor = colors.tickboxColor;
 
-				// Calculate dimensions (increased by 5% from original 12px base)
+				// Calculate dimensions based on label size level
+				var rectHeight = labelHeight;
 				var rectX = spot.x - (spot.labelWidth / 2);
-				var rectY = y - 7; // Adjusted from -6 to -7 for 13px height
+				var rectY = y - Math.floor(rectHeight / 2) - 1; // Center vertically
 				var rectWidth = spot.labelWidth;
-				var rectHeight = 13; // Increased from 12 to 13
 
 				// Draw background rectangle
 				ctx.fillStyle = bgColor;
@@ -3221,13 +3403,15 @@ var dxWaterfall = {
         // Get colors using same logic as spots
         var colors = this.getSpotColors(spotInfo);
 
-        // Use 20% larger font than regular spots (13px -> ~15px with 5% increase applied)
-        ctx.font = 'bold 15px "Consolas", "Courier New", monospace';
+        // Use center label font (1px larger than regular spots, scales with labelSizeLevel)
+        ctx.font = this.getCurrentCenterLabelFont();
         var textWidth = ctx.measureText(callsign).width;
 
-        // Calculate background rectangle dimensions (scaled 20% larger than 13px base)
-        var padding = Math.ceil(DX_WATERFALL_CONSTANTS.CANVAS.SPOT_PADDING * 1.2);
-        var rectHeight = Math.ceil(13 * 1.2); // Spot label height (13px) scaled
+        // Calculate background rectangle dimensions based on current label size
+        var baseLabelHeight = this.getCurrentLabelHeight(); // Same as regular labels
+        var centerLabelHeight = baseLabelHeight + 1; // Center is 1px taller
+        var padding = Math.ceil(DX_WATERFALL_CONSTANTS.CANVAS.SPOT_PADDING * 1.1); // Slightly more padding for center
+        var rectHeight = centerLabelHeight;
         var rectWidth = textWidth + (padding * 2);
         var rectX = centerX - (textWidth / 2) - padding;
         var rectY = centerY - (rectHeight / 2);
@@ -3242,7 +3426,7 @@ var dxWaterfall = {
         ctx.strokeRect(rectX, rectY, rectWidth, rectHeight);
 
         // Draw small tickbox at top-right corner using callsign status color
-        var tickboxSize = Math.ceil(DX_WATERFALL_CONSTANTS.CANVAS.SPOT_TICKBOX_SIZE * 1.2);
+        var tickboxSize = DX_WATERFALL_CONSTANTS.CANVAS.SPOT_TICKBOX_SIZE;
         ctx.fillStyle = colors.tickboxColor;
         ctx.fillRect(rectX + rectWidth - tickboxSize, rectY, tickboxSize, tickboxSize);
 
@@ -3854,8 +4038,22 @@ var dxWaterfall = {
         }
         zoomHTML += '</div>';
 
-        // Right side: zoom controls
+        // Right side: label size and zoom controls
         zoomHTML += '<div style="display: flex; align-items: center; white-space: nowrap;">';
+
+        // Label size cycle icon with tooltip showing current size
+        var labelSizeNames = [
+            lang_dxwaterfall_label_size_xsmall,
+            lang_dxwaterfall_label_size_small,
+            lang_dxwaterfall_label_size_medium,
+            lang_dxwaterfall_label_size_large,
+            lang_dxwaterfall_label_size_xlarge
+        ];
+        var labelSizeText = labelSizeNames[this.labelSizeLevel];
+        zoomHTML += '<i class="fas fa-font label-size-icon" title="' + lang_dxwaterfall_label_size_cycle + ' (' + labelSizeText + ')"></i>';
+        
+        // Separator
+        zoomHTML += '<span style="color: #666666; margin: 0 8px;">|</span>';
 
         // Zoom out button (disabled if at level 1)
         if (this.currentZoomLevel > 1) {
@@ -4431,6 +4629,9 @@ var dxWaterfall = {
             self.modeFilters.other = self.pendingModeFilters.other;
             self.pendingModeFilters = null;
 
+            // Save to cookie
+            self.saveModeFiltersToCookie();
+
             // No need to fetch new spots - we already have all modes from cluster
             // Just re-collect spots with the new filters applied
             self.collectAllBandSpots(true); // Update band spot collection (force after filter change)
@@ -4981,6 +5182,31 @@ $(document).ready(function() {
         e.preventDefault();
 
         dxWaterfall.resetZoom();
+    });
+
+    // Handle click on label size cycle button
+    $('#dxWaterfallMenu').on('click', '.label-size-icon', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+
+        // Cycle through 5 label sizes: 0 -> 1 -> 2 -> 3 -> 4 -> 0
+        dxWaterfall.labelSizeLevel = (dxWaterfall.labelSizeLevel + 1) % 5;
+
+        // Save to cookie
+        dxWaterfall.saveFontSizeToCookie();
+
+        // Visual feedback - briefly change icon color BEFORE updating menu
+        var icon = $(this);
+        icon.css({'color': '#FFFF00', 'transition': 'color 0.2s'});
+        
+        // Wait for visual feedback, then update menu and refresh
+        setTimeout(function() {
+            // Update the menu to show new size in tooltip (this replaces the icon)
+            dxWaterfall.updateZoomMenu();
+            
+            // Refresh the display to show new label sizes
+            dxWaterfall.refresh();
+        }, DX_WATERFALL_CONSTANTS.DEBOUNCE.ZOOM_ICON_FEEDBACK_MS);
     });
 
     // Handle click on previous band spot button

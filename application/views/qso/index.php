@@ -159,7 +159,8 @@ switch ($date_format) {
 	#dxWaterfallMenu .next-spot-icon,
 	#dxWaterfallMenu .smart-hunter-icon,
 	#dxWaterfallMenu .continent-cycle-icon,
-	#dxWaterfallMenu .mode-filter-icon {
+	#dxWaterfallMenu .mode-filter-icon,
+	#dxWaterfallMenu .label-size-icon {
 		cursor: pointer;
 		color: #FFFFFF;
 		margin: 0 2px;
@@ -175,7 +176,8 @@ switch ($date_format) {
 	#dxWaterfallMenu .smart-hunter-text:hover:not(.disabled),
 	#dxWaterfallMenu .continent-cycle-icon:hover:not(.disabled),
 	#dxWaterfallMenu .continent-cycle-text:hover:not(.disabled),
-	#dxWaterfallMenu .mode-filter-icon:hover:not(.disabled) {
+	#dxWaterfallMenu .mode-filter-icon:hover:not(.disabled),
+	#dxWaterfallMenu .label-size-icon:hover {
 		color: #AAAAAA;
 	}
 	#dxWaterfallMenu .smart-hunter-text,

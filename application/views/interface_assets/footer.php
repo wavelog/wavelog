@@ -112,6 +112,12 @@
     var lang_dxwaterfall_turn_on = "<?= __("Click to turn on the DX Waterfall"); ?>";
     var lang_dxwaterfall_turn_off = "<?= __("Turn off DX Waterfall"); ?>";
     var lang_dxwaterfall_warming_up = "<?= __("Warming up..."); ?>";
+    var lang_dxwaterfall_label_size_cycle = "<?= __("Cycle label size"); ?>";
+    var lang_dxwaterfall_label_size_xsmall = "<?= __("X-Small"); ?>";
+    var lang_dxwaterfall_label_size_small = "<?= __("Small"); ?>";
+    var lang_dxwaterfall_label_size_medium = "<?= __("Medium"); ?>";
+    var lang_dxwaterfall_label_size_large = "<?= __("Large"); ?>";
+    var lang_dxwaterfall_label_size_xlarge = "<?= __("X-Large"); ?>";
 
 </script>
 
