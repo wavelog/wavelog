@@ -373,7 +373,7 @@ function UpdateMacros(macrotext) {
 
     let newString;
 	my_call = my_call.replaceAll('Ø', '0');
-    newString = macrotext.replace(/\[MYCALL\]/g, my_call);
+    newString = macrotext.replace(/\[MYCALL\]/g, station_callsign);
     newString = newString.replace(/\[CALL\]/g, CALL);
     newString = newString.replace(/\[RSTS\]/g, RSTS);
     return newString;

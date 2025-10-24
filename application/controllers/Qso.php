@@ -647,7 +647,9 @@ class QSO extends CI_Controller {
 		$this->load->model('stations');
 		$this->load->library('qra');
 		$stationProfile = $this->input->post('stationProfile', TRUE);
-		$data = array('station_power' => $this->stations->get_station_power($stationProfile));
+		$result = $this->stations->get_station_power($stationProfile);
+		$data['station_power'] = $result['station_power'];
+		$data['station_callsign'] = $result['station_callsign'];
 		[$data['lat'], $data['lng']] = $this->qra->qra2latlong($this->stations->gridsquare_from_station($stationProfile));
 
 		header('Content-Type: application/json');
