@@ -385,8 +385,17 @@ $("#callsign").on( "blur", function() {
 
 var scps=[];
 
+$("#callsign").on("compositionstart", function(){ this.isComposing = true; });
+$("#callsign").on("compositionend", function(e){
+	this.isComposing = false;
+	$(this).trigger("keyup");
+});
+
 // On Key up check and suggest callsigns
 $("#callsign").keyup(async function (e) {
+	// Prevent checking when the user's composing in IME
+	if (this.isComposing || e.isComposing) return;
+
 	var call = $(this).val();
 	if ((!((e.keyCode == 10 || e.keyCode == 13) && (e.ctrlKey || e.metaKey))) && (call.length >= 3)) {	// prevent checking again when pressing CTRL-Enter
 

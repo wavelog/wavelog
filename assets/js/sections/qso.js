@@ -99,6 +99,12 @@ $('.qso_panel .qso_eqsl_qslmsg_update').off('click').on('click', function () {
 	$('#charsLeft').text(" ");
 });
 
+$("#callsign").on("compositionstart", function(){ this.isComposing = true; });
+$("#callsign").on("compositionend", function(e){
+	this.isComposing = false;
+	$(this).trigger("input");
+});
+
 $(document).on("keydown", function (e) {
 	if (e.key === "Escape" && $('#callsign').val() != '') { // escape key maps to keycode `27`
 		// console.log("Escape key pressed");
@@ -109,6 +115,9 @@ $(document).on("keydown", function (e) {
 
 // Sanitize some input data
 $('#callsign').on('input', function () {
+	// Prevent checking when the user's composing in IME
+	if (this.isComposing) return;
+
 	$(this).val($(this).val().replace(/\s/g, ''));
 	$(this).val($(this).val().replace(/0/g, 'Ø'));
 	$(this).val($(this).val().replace(/\./g, '/P'));
