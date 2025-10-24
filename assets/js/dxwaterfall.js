@@ -4307,13 +4307,6 @@ var dxWaterfall = {
             zoomHTML += '<i class="fas fa-filter mode-filter-icon" title="' + lang_dxwaterfall_filter_by_mode + '"></i>';
             zoomHTML += '<span style="margin-left: 5px; margin-right: 3px; font-size: 11px;">' + lang_dxwaterfall_modes_label + '</span>';
 
-            // Phone filter - Green
-            var phoneClass = activeFilters.phone ? 'mode-filter-phone active' : 'mode-filter-phone';
-            var phoneStyle = activeFilters.phone ? 'color: #00FF00; font-weight: bold;' : 'color: #888888;';
-            if (this.pendingModeFilters) phoneStyle += ' ' + blinkStyle;
-            phoneStyle += ' cursor: pointer;';
-            zoomHTML += '<span class="' + phoneClass + '" title="' + lang_dxwaterfall_toggle_phone + '" style="' + phoneStyle + ' margin: 0 3px; font-size: 11px; transition: color 0.2s;">' + lang_dxwaterfall_phone + '</span>';
-
             // CW filter - Orange
             var cwClass = activeFilters.cw ? 'mode-filter-cw active' : 'mode-filter-cw';
             var cwStyle = activeFilters.cw ? 'color: #FFA500; font-weight: bold;' : 'color: #888888;';
@@ -4327,6 +4320,13 @@ var dxWaterfall = {
             if (this.pendingModeFilters) digiStyle += ' ' + blinkStyle;
             digiStyle += ' cursor: pointer;';
             zoomHTML += '<span class="' + digiClass + '" title="' + lang_dxwaterfall_toggle_digi + '" style="' + digiStyle + ' margin: 0 3px; font-size: 11px; transition: color 0.2s;">' + lang_dxwaterfall_digi + '</span>';
+
+            // Phone filter - Green
+            var phoneClass = activeFilters.phone ? 'mode-filter-phone active' : 'mode-filter-phone';
+            var phoneStyle = activeFilters.phone ? 'color: #00FF00; font-weight: bold;' : 'color: #888888;';
+            if (this.pendingModeFilters) phoneStyle += ' ' + blinkStyle;
+            phoneStyle += ' cursor: pointer;';
+            zoomHTML += '<span class="' + phoneClass + '" title="' + lang_dxwaterfall_toggle_phone + '" style="' + phoneStyle + ' margin: 0 3px; font-size: 11px; transition: color 0.2s;">' + lang_dxwaterfall_phone + '</span>';
 
         zoomHTML += '</div>';
 
