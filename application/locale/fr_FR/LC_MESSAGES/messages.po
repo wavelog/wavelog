@@ -19,8 +19,8 @@ msgstr ""
 "POT-Creation-Date: 2025-10-22 15:45+0000\n"
 "PO-Revision-Date: 2025-10-23 22:37+0000\n"
 "Last-Translator: F5MQU <f5mqu.p@gmail.com>\n"
-"Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/fr/>\n"
+"Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/fr/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -134,6 +134,9 @@ msgstr ""
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/Lotw.php:383 application/controllers/Lotw.php:406
+#: application/controllers/Lotw.php:763 application/controllers/Lotw.php:847
+#: application/controllers/Lotw.php:952
 msgid "You're not allowed to do that!"
 msgstr "Vous n'avez pas le droit de faire ça !"
 
@@ -894,6 +897,7 @@ msgstr "SOTA - Export CSV"
 
 #: application/controllers/Dashboard.php:152
 #: application/controllers/Visitor.php:134
+#: application/controllers/Dashboard.php:154
 msgid "Dashboard"
 msgstr "Tableau de bord"
 
@@ -1028,6 +1032,7 @@ msgstr "Calendrier des DX"
 #: application/views/dashboard/index.php:404
 #: application/views/eqslcard/index.php:5
 #: application/views/visitor/index.php:310
+#: application/views/dashboard/index.php:409
 msgid "eQSL Cards"
 msgstr "Cartes eQSL"
 
@@ -1340,6 +1345,7 @@ msgstr "QSL"
 #: application/views/timeline/index.php:60 application/views/user/edit.php:592
 #: application/views/user/edit.php:794 application/views/view_log/qso.php:531
 #: application/views/view_log/qso.php:536
+#: application/views/dashboard/index.php:344
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1375,6 +1381,7 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:309
 #: application/views/timeline/index.php:64 application/views/user/edit.php:593
 #: application/views/user/edit.php:802 application/views/user/edit.php:876
+#: application/views/dashboard/index.php:344
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1834,6 +1841,7 @@ msgstr "Opérateur"
 #: application/views/view_log/partial/log_ajax.php:31
 #: application/views/view_log/qso.php:335
 #: application/views/view_log/qso.php:688
+#: application/views/lotw_views/index.php:50
 msgid "Deleted DXCC"
 msgstr "DXCC Supprimé"
 
@@ -1863,11 +1871,11 @@ msgstr "Certificat importé."
 msgid "Certificate Updated."
 msgstr "Certificat mis à jour."
 
-#: application/controllers/Lotw.php:381
+#: application/controllers/Lotw.php:381 application/controllers/Lotw.php:389
 msgid "Certificate Deleted."
 msgstr "Certificat supprimé."
 
-#: application/controllers/Lotw.php:410
+#: application/controllers/Lotw.php:410 application/controllers/Lotw.php:418
 #, php-format
 msgid ""
 "Found no certificate in file %s. If the filename contains 'key-only' this is "
@@ -1877,52 +1885,55 @@ msgstr ""
 "'key-only', il s'agit généralement d'une demande de certificat qui n'a pas "
 "encore été traitée par LoTW."
 
-#: application/controllers/Lotw.php:646
+#: application/controllers/Lotw.php:646 application/controllers/Lotw.php:654
 msgid "LoTW ADIF Information"
 msgstr "Information ADIF LoTW"
 
 #: application/controllers/Lotw.php:812 application/controllers/Lotw.php:815
+#: application/controllers/Lotw.php:820 application/controllers/Lotw.php:823
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr "Échec de la connexion LoTW pour l'utilisateur %s : %s."
 
-#: application/controllers/Lotw.php:815
+#: application/controllers/Lotw.php:815 application/controllers/Lotw.php:823
 msgid "Username/password incorrect"
 msgstr "Nom d'utilisateur/mot de passe incorrect"
 
-#: application/controllers/Lotw.php:818
+#: application/controllers/Lotw.php:818 application/controllers/Lotw.php:826
 msgid "LoTW login OK!"
 msgstr "Connexion LoTW OK !"
 
-#: application/controllers/Lotw.php:822
+#: application/controllers/Lotw.php:822 application/controllers/Lotw.php:830
 msgid "LoTW currently not available. Try again later."
 msgstr "LoTW actuellement indisponible. Réessayez plus tard."
 
-#: application/controllers/Lotw.php:827
+#: application/controllers/Lotw.php:827 application/controllers/Lotw.php:835
 msgid "No LoTW credentials provided."
 msgstr "Aucun identifiant LoTW fourni."
 
-#: application/controllers/Lotw.php:845
+#: application/controllers/Lotw.php:845 application/controllers/Lotw.php:853
 msgid "LoTW ADIF Import"
 msgstr "Importation ADIF LoTW"
 
 #: application/controllers/Lotw.php:871 application/controllers/Lotw.php:979
+#: application/controllers/Lotw.php:879 application/controllers/Lotw.php:987
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Vous n'avez pas défini vos identifiants ARRL LoTW !"
 
-#: application/controllers/Lotw.php:946
+#: application/controllers/Lotw.php:946 application/controllers/Lotw.php:954
 msgid "LoTW .TQ8 Upload"
 msgstr "Télécharger .TQ8 LoTW"
 
-#: application/controllers/Lotw.php:1024
+#: application/controllers/Lotw.php:1024 application/controllers/Lotw.php:1032
 msgid "Your ARRL username and/or password is incorrect."
 msgstr "Votre nom d'utilisateur et/ou mot de passe ARRL est incorrect."
 
 #: application/controllers/Lotw.php:1043 application/controllers/Lotw.php:1048
+#: application/controllers/Lotw.php:1051 application/controllers/Lotw.php:1056
 msgid "LoTW .TQ8 Sent"
 msgstr ".TQ8 LoTW Envoyé"
 
-#: application/controllers/Lotw.php:1055
+#: application/controllers/Lotw.php:1055 application/controllers/Lotw.php:1063
 msgid "LoTW .TQ8 Not Sent"
 msgstr ".TQ8 LoTW Pas Envoyé"
 
@@ -2209,6 +2220,8 @@ msgstr "Informations ADIF QRZ"
 #: application/views/dashboard/index.php:356
 #: application/views/qslcard/index.php:5
 #: application/views/visitor/index.php:287
+#: application/views/dashboard/index.php:344
+#: application/views/dashboard/index.php:361
 msgid "QSL Cards"
 msgstr "Cartes QSL"
 
@@ -2333,6 +2346,7 @@ msgstr "Editer"
 #: application/views/stationsetup/stationsetup.php:197
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:772
+#: application/views/lotw_views/index.php:128
 msgid "Delete"
 msgstr "Supprimer"
 
@@ -3070,8 +3084,8 @@ msgid ""
 "encryption_key in your config.php file first!"
 msgstr ""
 "Vous ne pouvez actuellement pas usurper l'identité d'un autre utilisateur. "
-"Veuillez d'abord changer la clé de chiffrement dans votre fichier config."
-"php !"
+"Veuillez d'abord changer la clé de chiffrement dans votre fichier "
+"config.php !"
 
 #: application/controllers/User.php:1574
 msgid "Invalid Hash"
@@ -3543,6 +3557,7 @@ msgstr "Nombre total de WAJA contactés"
 #: application/views/statistics/index.php:38
 #: application/views/timeline/index.php:107
 #: application/views/visitor/index.php:250
+#: application/views/dashboard/index.php:322
 msgid "Year"
 msgstr "Année"
 
@@ -3555,6 +3570,7 @@ msgstr "Annuel"
 #: application/views/accumulate/index.php:10
 #: application/views/dashboard/index.php:322
 #: application/views/visitor/index.php:255
+#: application/views/dashboard/index.php:327
 msgid "Month"
 msgstr "Mois"
 
@@ -4229,6 +4245,7 @@ msgstr "Rien trouvé !"
 #: application/views/user/edit.php:137 application/views/user/index.php:28
 #: application/views/user/index.php:153 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:666
+#: application/views/dashboard/index.php:249
 msgid "Callsign"
 msgstr "Indicatif"
 
@@ -4338,6 +4355,7 @@ msgstr "Différence de données DOK entre votre journal de travail et DCL"
 #: application/views/view_log/partial/log_ajax.php:196
 #: application/views/visitor/index.php:151
 #: application/views/widgets/qsos.php:16
+#: application/views/dashboard/index.php:244
 msgid "Date"
 msgstr "Date"
 
@@ -4372,6 +4390,7 @@ msgstr "Date"
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:198
 #: application/views/visitor/index.php:154
+#: application/views/dashboard/index.php:247
 msgid "Time"
 msgstr "Heure"
 
@@ -4428,6 +4447,7 @@ msgstr "Importation CBR"
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
 #: application/views/lotw_views/index.php:4
 #: application/views/options/maptiles.php:48
+#: application/views/dashboard/index.php:213
 msgid "Important"
 msgstr "Important"
 
@@ -4742,6 +4762,7 @@ msgstr ""
 #: application/views/adif/import_success.php:40
 #: application/views/dcl_views/index.php:76
 #: application/views/lotw_views/index.php:137
+#: application/views/lotw_views/index.php:154
 msgid "Information"
 msgstr "Information"
 
@@ -5275,6 +5296,7 @@ msgstr "Comtés Confirmés"
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
+#: application/views/dashboard/index.php:317
 msgid "Total"
 msgstr "Total"
 
@@ -5357,6 +5379,8 @@ msgstr "Trophée - CQ WAZ"
 #: application/views/interface_assets/footer.php:43
 #: application/views/search/result.php:32
 #: application/views/visitor/index.php:270
+#: application/views/dashboard/index.php:344
+#: application/views/dashboard/index.php:462
 msgid "Confirmed"
 msgstr "Confirmés"
 
@@ -5368,6 +5392,8 @@ msgstr "Confirmés"
 #: application/views/dashboard/index.php:451
 #: application/views/search/result.php:35
 #: application/views/visitor/index.php:266
+#: application/views/dashboard/index.php:340
+#: application/views/dashboard/index.php:456
 msgid "Worked"
 msgstr "Réalisés"
 
@@ -6257,6 +6283,7 @@ msgstr "Ville"
 #: application/views/qslprint/qslprint.php:58
 #: application/views/qslprint/qsolist.php:44
 #: application/views/qslprint/qsolist.php:45
+#: application/views/dashboard/index.php:452
 msgid "SAT"
 msgstr "SAT"
 
@@ -7903,6 +7930,10 @@ msgstr "Afficher les détails"
 #: application/views/dashboard/index.php:384
 #: application/views/dashboard/index.php:405
 #: application/views/dashboard/index.php:426
+#: application/views/dashboard/index.php:362
+#: application/views/dashboard/index.php:389
+#: application/views/dashboard/index.php:410
+#: application/views/dashboard/index.php:431
 msgid "Today"
 msgstr "Aujourd'hui"
 
@@ -8448,6 +8479,7 @@ msgstr ""
 
 #: application/views/dashboard/index.php:292
 #: application/views/qso/index.php:828
+#: application/views/dashboard/index.php:297
 #, php-format
 msgid "Max. %d previous contact is shown"
 msgid_plural "Max. %d previous contacts are shown"
@@ -8456,16 +8488,19 @@ msgstr[1] ""
 
 #: application/views/dashboard/index.php:308
 #: application/views/visitor/index.php:241
+#: application/views/dashboard/index.php:313
 msgid "QSOs Breakdown"
 msgstr "QSO Breakdown"
 
 #: application/views/dashboard/index.php:331
 #: application/views/visitor/index.php:262
+#: application/views/dashboard/index.php:336
 msgid "DXCCs Breakdown"
 msgstr ""
 
 #: application/views/dashboard/index.php:348
 #: application/views/visitor/index.php:279
+#: application/views/dashboard/index.php:353
 msgid "Needed"
 msgstr "Demandés"
 
@@ -8502,7 +8537,10 @@ msgstr "Demandés"
 #: application/views/widgets/qsos.php:19 src/QSLManager/QSO.php:403
 #: src/QSLManager/QSO.php:504 src/QSLManager/QSO.php:554
 #: src/QSLManager/QSO.php:607 src/QSLManager/QSO.php:666
-#: src/QSLManager/QSO.php:731
+#: src/QSLManager/QSO.php:731 application/views/dashboard/index.php:366
+#: application/views/dashboard/index.php:393
+#: application/views/dashboard/index.php:414
+#: application/views/dashboard/index.php:435
 msgid "Sent"
 msgstr "Envoyées"
 
@@ -8538,7 +8576,10 @@ msgstr "Envoyées"
 #: application/views/visitor/index.php:337 src/QSLManager/QSO.php:448
 #: src/QSLManager/QSO.php:527 src/QSLManager/QSO.php:577
 #: src/QSLManager/QSO.php:646 src/QSLManager/QSO.php:705
-#: src/QSLManager/QSO.php:755
+#: src/QSLManager/QSO.php:755 application/views/dashboard/index.php:372
+#: application/views/dashboard/index.php:399
+#: application/views/dashboard/index.php:420
+#: application/views/dashboard/index.php:441
 msgid "Received"
 msgstr "Reçues"
 
@@ -8578,29 +8619,34 @@ msgstr "Reçues"
 #: application/views/visitor/index.php:301 src/QSLManager/QSO.php:409
 #: src/QSLManager/QSO.php:454 src/QSLManager/QSO.php:512
 #: src/QSLManager/QSO.php:535 src/QSLManager/QSO.php:739
-#: src/QSLManager/QSO.php:764
+#: src/QSLManager/QSO.php:764 application/views/dashboard/index.php:378
 msgid "Requested"
 msgstr "Demandées"
 
 #: application/views/dashboard/index.php:383
+#: application/views/dashboard/index.php:388
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
 msgstr ""
 
 #: application/views/dashboard/index.php:446
+#: application/views/dashboard/index.php:451
 msgid "VUCC-Grids"
 msgstr ""
 
 #: application/views/dashboard/index.php:471
+#: application/views/dashboard/index.php:476
 msgid "Solar Data & Propagation"
 msgstr ""
 
 #: application/views/dashboard/index.php:473
+#: application/views/dashboard/index.php:478
 #, php-format
 msgid "Last update at %s."
 msgstr ""
 
 #: application/views/dashboard/index.php:482
+#: application/views/dashboard/index.php:487
 msgid "Data provided by HAMqsl."
 msgstr ""
 
@@ -8766,11 +8812,13 @@ msgstr ""
 
 #: application/views/dcl_views/index.php:82
 #: application/views/lotw_views/index.php:143
+#: application/views/lotw_views/index.php:160
 msgid "Manual Sync"
 msgstr "Synchro manuelle"
 
 #: application/views/dcl_views/index.php:84
 #: application/views/lotw_views/index.php:145
+#: application/views/lotw_views/index.php:162
 msgid "running..."
 msgstr ""
 
@@ -9637,8 +9685,8 @@ msgstr ""
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
-"Cliquer sur 'Téléverser les QSOs' enverra les informations de QSO vers eQSL."
-"cc."
+"Cliquer sur 'Téléverser les QSOs' enverra les informations de QSO vers "
+"eQSL.cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -11545,24 +11593,29 @@ msgid "Valid"
 msgstr "Valide"
 
 #: application/views/lotw_views/index.php:98
+#: application/views/lotw_views/index.php:115
 #, php-format
 msgid "Last success: %s"
 msgstr ""
 
 #: application/views/lotw_views/index.php:101
+#: application/views/lotw_views/index.php:118
 #, php-format
 msgid "Last fail: %s"
 msgstr ""
 
 #: application/views/lotw_views/index.php:107
+#: application/views/lotw_views/index.php:124
 msgid "Not Synced"
 msgstr "Non synchronisé"
 
 #: application/views/lotw_views/index.php:122
+#: application/views/lotw_views/index.php:139
 msgid "You need to upload some LoTW p12 certificates to use this area."
 msgstr "Vous devez envoyer des certificats p1 pour utiliser cette zone."
 
 #: application/views/lotw_views/index.php:141
+#: application/views/lotw_views/index.php:158
 msgid "The next automatic sync with LoTW will happen at: "
 msgstr ""
 
@@ -13746,11 +13799,10 @@ msgid ""
 "efficiently. Due to its syntax, only a minimum of input is required to log "
 "many QSOs with as little effort as possible."
 msgstr ""
-"«Fast Log Entry », ou simplement « FLE » pour "
-"\"entrée rapide dans le journal\" est un système permettant d'enregistrer "
-"des QSO très rapidement et efficacement. Grâce à sa syntaxe, seule une "
-"saisie minimale est nécessaire pour enregistrer de nombreux QSO avec un "
-"minimum d'effort."
+"«Fast Log Entry », ou simplement « FLE » pour \"entrée rapide dans le "
+"journal\" est un système permettant d'enregistrer des QSO très rapidement et "
+"efficacement. Grâce à sa syntaxe, seule une saisie minimale est nécessaire "
+"pour enregistrer de nombreux QSO avec un minimum d'effort."
 
 #: application/views/simplefle/index.php:15
 msgid ""
@@ -13961,9 +14013,9 @@ msgid ""
 msgstr ""
 "Pour commencer, assurez-vous d'avoir rempli le formulaire sur la gauche avec "
 "la date, l'indicatif de la station et l'indicatif de l'opérateur. Les "
-"données principales incluent la bande (ou QRG en MHz, par exemple « 7.145 »)"
-", le mode et l'heure. Après l'heure, indiquez le premier QSO, qui correspond "
-"essentiellement à l'indicatif."
+"données principales incluent la bande (ou QRG en MHz, par exemple "
+"« 7.145 »), le mode et l'heure. Après l'heure, indiquez le premier QSO, qui "
+"correspond essentiellement à l'indicatif."
 
 #: application/views/simplefle/syntax_help.php:9
 msgid "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB."
@@ -13976,9 +14028,9 @@ msgid ""
 "data). Our next QSO wasn't 59 on both sides, so we provide the information "
 "with the sent RST first. It was 2 minutes later than the first QSO."
 msgstr ""
-"Si vous ne saisissez pas le RST, la syntaxe utilisera 59 (599 pour les data)"
-". Le QSO suivant n'était pas 59 des deux côtés, nous fournissons donc les "
-"informations avec le RST envoyé en premier. C'était 2 minutes après le "
+"Si vous ne saisissez pas le RST, la syntaxe utilisera 59 (599 pour les "
+"data). Le QSO suivant n'était pas 59 des deux côtés, nous fournissons donc "
+"les informations avec le RST envoyé en premier. C'était 2 minutes après le "
 "premier QSO."
 
 #: application/views/simplefle/syntax_help.php:16
@@ -16139,6 +16191,47 @@ msgstr "Soumettre la demande"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Reçu"
+
+#: application/views/dashboard/index.php:213
+#, php-format
+msgctxt "LoTW Warning"
+msgid ""
+"LoTW Warning: There is an issue with at least one of your %sLoTW "
+"certificates%s!"
+msgstr ""
+
+#: application/views/dashboard/index.php:216
+msgid "At least one of your certificates is expired"
+msgstr ""
+
+#: application/views/dashboard/index.php:217
+msgid "At least one of your certificates is expiring"
+msgstr ""
+
+#: application/views/dashboard/index.php:218
+msgid "The QSO end date of at least one of your certificates was exceeded"
+msgstr ""
+
+#: application/views/dashboard/index.php:219
+msgid ""
+"The QSO end date of at least one of your certificates is about to be exceeded"
+msgstr ""
+
+#: application/views/lotw_views/index.php:96
+msgid "Certificate expired"
+msgstr ""
+
+#: application/views/lotw_views/index.php:98
+msgid "Certificate expiring"
+msgstr ""
+
+#: application/views/lotw_views/index.php:100
+msgid "Certificate valid"
+msgstr ""
+
+#: application/views/lotw_views/index.php:105
+msgid "QSO end date nearing"
+msgstr ""
 
 #~ msgid "Experimental"
 #~ msgstr "Expérimental"

@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2025-10-22 15:45+0000\n"
 "PO-Revision-Date: 2025-10-23 10:14+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
-"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/sv/>\n"
+"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/sv/>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -126,6 +126,9 @@ msgstr ""
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/Lotw.php:383 application/controllers/Lotw.php:406
+#: application/controllers/Lotw.php:763 application/controllers/Lotw.php:847
+#: application/controllers/Lotw.php:952
 msgid "You're not allowed to do that!"
 msgstr "Det är inte tillåtet!"
 
@@ -881,6 +884,7 @@ msgstr "SOTA CSV-export"
 
 #: application/controllers/Dashboard.php:152
 #: application/controllers/Visitor.php:134
+#: application/controllers/Dashboard.php:154
 msgid "Dashboard"
 msgstr "Instrumentpanel"
 
@@ -1014,6 +1018,7 @@ msgstr "DX Kalender"
 #: application/views/dashboard/index.php:404
 #: application/views/eqslcard/index.php:5
 #: application/views/visitor/index.php:310
+#: application/views/dashboard/index.php:409
 msgid "eQSL Cards"
 msgstr "eQSL-kort"
 
@@ -1324,6 +1329,7 @@ msgstr "QSL"
 #: application/views/timeline/index.php:60 application/views/user/edit.php:592
 #: application/views/user/edit.php:794 application/views/view_log/qso.php:531
 #: application/views/view_log/qso.php:536
+#: application/views/dashboard/index.php:344
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1359,6 +1365,7 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:309
 #: application/views/timeline/index.php:64 application/views/user/edit.php:593
 #: application/views/user/edit.php:802 application/views/user/edit.php:876
+#: application/views/dashboard/index.php:344
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1818,6 +1825,7 @@ msgstr "Operatör"
 #: application/views/view_log/partial/log_ajax.php:31
 #: application/views/view_log/qso.php:335
 #: application/views/view_log/qso.php:688
+#: application/views/lotw_views/index.php:50
 msgid "Deleted DXCC"
 msgstr "Struket DXCC"
 
@@ -1847,11 +1855,11 @@ msgstr "Certifikat importerat."
 msgid "Certificate Updated."
 msgstr "Certifikat uppdaterat."
 
-#: application/controllers/Lotw.php:381
+#: application/controllers/Lotw.php:381 application/controllers/Lotw.php:389
 msgid "Certificate Deleted."
 msgstr "Certifikat raderat."
 
-#: application/controllers/Lotw.php:410
+#: application/controllers/Lotw.php:410 application/controllers/Lotw.php:418
 #, php-format
 msgid ""
 "Found no certificate in file %s. If the filename contains 'key-only' this is "
@@ -1860,52 +1868,55 @@ msgstr ""
 "Hittade inget certifikat i filen %s. Om filnamnet innehåller 'key-only' är "
 "detta vanligtvis en certifikatförfrågan som ännu inte har behandlats av LoTW."
 
-#: application/controllers/Lotw.php:646
+#: application/controllers/Lotw.php:646 application/controllers/Lotw.php:654
 msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF-information"
 
 #: application/controllers/Lotw.php:812 application/controllers/Lotw.php:815
+#: application/controllers/Lotw.php:820 application/controllers/Lotw.php:823
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr "LoTW-inloggning misslyckades för användare %s: %s."
 
-#: application/controllers/Lotw.php:815
+#: application/controllers/Lotw.php:815 application/controllers/Lotw.php:823
 msgid "Username/password incorrect"
 msgstr "Användarnamn/lösenord felaktigt"
 
-#: application/controllers/Lotw.php:818
+#: application/controllers/Lotw.php:818 application/controllers/Lotw.php:826
 msgid "LoTW login OK!"
 msgstr "LoTW-inloggning OK!"
 
-#: application/controllers/Lotw.php:822
+#: application/controllers/Lotw.php:822 application/controllers/Lotw.php:830
 msgid "LoTW currently not available. Try again later."
 msgstr "LoTW är för närvarande inte tillgänglig. Försök igen senare."
 
-#: application/controllers/Lotw.php:827
+#: application/controllers/Lotw.php:827 application/controllers/Lotw.php:835
 msgid "No LoTW credentials provided."
 msgstr "Inga LoTW detaljer angivna."
 
-#: application/controllers/Lotw.php:845
+#: application/controllers/Lotw.php:845 application/controllers/Lotw.php:853
 msgid "LoTW ADIF Import"
 msgstr "LoTW ADIF-import"
 
 #: application/controllers/Lotw.php:871 application/controllers/Lotw.php:979
+#: application/controllers/Lotw.php:879 application/controllers/Lotw.php:987
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Du har inte angivit dina ARRL LoTW-uppgifter!"
 
-#: application/controllers/Lotw.php:946
+#: application/controllers/Lotw.php:946 application/controllers/Lotw.php:954
 msgid "LoTW .TQ8 Upload"
 msgstr "LoTW .TQ8 uppladdning"
 
-#: application/controllers/Lotw.php:1024
+#: application/controllers/Lotw.php:1024 application/controllers/Lotw.php:1032
 msgid "Your ARRL username and/or password is incorrect."
 msgstr "Ditt ARRL-användarnamn och/eller lösenord är felaktigt."
 
 #: application/controllers/Lotw.php:1043 application/controllers/Lotw.php:1048
+#: application/controllers/Lotw.php:1051 application/controllers/Lotw.php:1056
 msgid "LoTW .TQ8 Sent"
 msgstr "LoTW .TQ8 skickad"
 
-#: application/controllers/Lotw.php:1055
+#: application/controllers/Lotw.php:1055 application/controllers/Lotw.php:1063
 msgid "LoTW .TQ8 Not Sent"
 msgstr "LoTW .TQ8 Ej skickad"
 
@@ -2191,6 +2202,8 @@ msgstr "QRZ ADIF-information"
 #: application/views/dashboard/index.php:356
 #: application/views/qslcard/index.php:5
 #: application/views/visitor/index.php:287
+#: application/views/dashboard/index.php:344
+#: application/views/dashboard/index.php:361
 msgid "QSL Cards"
 msgstr "QSL-kort"
 
@@ -2315,6 +2328,7 @@ msgstr "Redigera"
 #: application/views/stationsetup/stationsetup.php:197
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:772
+#: application/views/lotw_views/index.php:128
 msgid "Delete"
 msgstr "Radera"
 
@@ -3513,6 +3527,7 @@ msgstr "Ackumulerat antal WAJA kontaktade"
 #: application/views/statistics/index.php:38
 #: application/views/timeline/index.php:107
 #: application/views/visitor/index.php:250
+#: application/views/dashboard/index.php:322
 msgid "Year"
 msgstr "I år"
 
@@ -3525,6 +3540,7 @@ msgstr "Årligen"
 #: application/views/accumulate/index.php:10
 #: application/views/dashboard/index.php:322
 #: application/views/visitor/index.php:255
+#: application/views/dashboard/index.php:327
 msgid "Month"
 msgstr "Denna månad"
 
@@ -4199,6 +4215,7 @@ msgstr "Inget hittades!"
 #: application/views/user/edit.php:137 application/views/user/index.php:28
 #: application/views/user/index.php:153 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:666
+#: application/views/dashboard/index.php:249
 msgid "Callsign"
 msgstr "Anropssignal"
 
@@ -4308,6 +4325,7 @@ msgstr "Det finns olika data för DOK i din logg jämfört med DCL"
 #: application/views/view_log/partial/log_ajax.php:196
 #: application/views/visitor/index.php:151
 #: application/views/widgets/qsos.php:16
+#: application/views/dashboard/index.php:244
 msgid "Date"
 msgstr "Datum"
 
@@ -4342,6 +4360,7 @@ msgstr "Datum"
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:198
 #: application/views/visitor/index.php:154
+#: application/views/dashboard/index.php:247
 msgid "Time"
 msgstr "Tid"
 
@@ -4398,6 +4417,7 @@ msgstr "CBR-import"
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
 #: application/views/lotw_views/index.php:4
 #: application/views/options/maptiles.php:48
+#: application/views/dashboard/index.php:213
 msgid "Important"
 msgstr "Viktigt"
 
@@ -4707,6 +4727,7 @@ msgstr ""
 #: application/views/adif/import_success.php:40
 #: application/views/dcl_views/index.php:76
 #: application/views/lotw_views/index.php:137
+#: application/views/lotw_views/index.php:154
 msgid "Information"
 msgstr "Information"
 
@@ -5231,6 +5252,7 @@ msgstr "Län bekräftade"
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
+#: application/views/dashboard/index.php:317
 msgid "Total"
 msgstr "Totalt"
 
@@ -5311,6 +5333,8 @@ msgstr "Diplom - CQ WAZ"
 #: application/views/interface_assets/footer.php:43
 #: application/views/search/result.php:32
 #: application/views/visitor/index.php:270
+#: application/views/dashboard/index.php:344
+#: application/views/dashboard/index.php:462
 msgid "Confirmed"
 msgstr "Bekräftade"
 
@@ -5322,6 +5346,8 @@ msgstr "Bekräftade"
 #: application/views/dashboard/index.php:451
 #: application/views/search/result.php:35
 #: application/views/visitor/index.php:266
+#: application/views/dashboard/index.php:340
+#: application/views/dashboard/index.php:456
 msgid "Worked"
 msgstr "Kontaktade"
 
@@ -6200,6 +6226,7 @@ msgstr "Stad"
 #: application/views/qslprint/qslprint.php:58
 #: application/views/qslprint/qsolist.php:44
 #: application/views/qslprint/qsolist.php:45
+#: application/views/dashboard/index.php:452
 msgid "SAT"
 msgstr "SAT"
 
@@ -6664,8 +6691,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
-"Reef/506) och giltig stat (ADIF: DXCC och STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
+"506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/wapc/index.php:119
 msgid "Code"
@@ -7843,6 +7870,10 @@ msgstr "Visa detaljer"
 #: application/views/dashboard/index.php:384
 #: application/views/dashboard/index.php:405
 #: application/views/dashboard/index.php:426
+#: application/views/dashboard/index.php:362
+#: application/views/dashboard/index.php:389
+#: application/views/dashboard/index.php:410
+#: application/views/dashboard/index.php:431
 msgid "Today"
 msgstr "Idag"
 
@@ -8403,6 +8434,7 @@ msgstr "Minst ett av dina %sLoTW-certifikat%s håller på att gå ut!"
 
 #: application/views/dashboard/index.php:292
 #: application/views/qso/index.php:828
+#: application/views/dashboard/index.php:297
 #, php-format
 msgid "Max. %d previous contact is shown"
 msgid_plural "Max. %d previous contacts are shown"
@@ -8411,16 +8443,19 @@ msgstr[1] "Max. %d tidigare kontakter visas"
 
 #: application/views/dashboard/index.php:308
 #: application/views/visitor/index.php:241
+#: application/views/dashboard/index.php:313
 msgid "QSOs Breakdown"
 msgstr "QSOs-fördelning"
 
 #: application/views/dashboard/index.php:331
 #: application/views/visitor/index.php:262
+#: application/views/dashboard/index.php:336
 msgid "DXCCs Breakdown"
 msgstr "DXCC-fördelning"
 
 #: application/views/dashboard/index.php:348
 #: application/views/visitor/index.php:279
+#: application/views/dashboard/index.php:353
 msgid "Needed"
 msgstr "Behövs"
 
@@ -8457,7 +8492,10 @@ msgstr "Behövs"
 #: application/views/widgets/qsos.php:19 src/QSLManager/QSO.php:403
 #: src/QSLManager/QSO.php:504 src/QSLManager/QSO.php:554
 #: src/QSLManager/QSO.php:607 src/QSLManager/QSO.php:666
-#: src/QSLManager/QSO.php:731
+#: src/QSLManager/QSO.php:731 application/views/dashboard/index.php:366
+#: application/views/dashboard/index.php:393
+#: application/views/dashboard/index.php:414
+#: application/views/dashboard/index.php:435
 msgid "Sent"
 msgstr "Skickad"
 
@@ -8493,7 +8531,10 @@ msgstr "Skickad"
 #: application/views/visitor/index.php:337 src/QSLManager/QSO.php:448
 #: src/QSLManager/QSO.php:527 src/QSLManager/QSO.php:577
 #: src/QSLManager/QSO.php:646 src/QSLManager/QSO.php:705
-#: src/QSLManager/QSO.php:755
+#: src/QSLManager/QSO.php:755 application/views/dashboard/index.php:372
+#: application/views/dashboard/index.php:399
+#: application/views/dashboard/index.php:420
+#: application/views/dashboard/index.php:441
 msgid "Received"
 msgstr "Mottagen"
 
@@ -8533,29 +8574,34 @@ msgstr "Mottagen"
 #: application/views/visitor/index.php:301 src/QSLManager/QSO.php:409
 #: src/QSLManager/QSO.php:454 src/QSLManager/QSO.php:512
 #: src/QSLManager/QSO.php:535 src/QSLManager/QSO.php:739
-#: src/QSLManager/QSO.php:764
+#: src/QSLManager/QSO.php:764 application/views/dashboard/index.php:378
 msgid "Requested"
 msgstr "Begärt"
 
 #: application/views/dashboard/index.php:383
+#: application/views/dashboard/index.php:388
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
 #: application/views/dashboard/index.php:446
+#: application/views/dashboard/index.php:451
 msgid "VUCC-Grids"
 msgstr "VUCC-rutnät"
 
 #: application/views/dashboard/index.php:471
+#: application/views/dashboard/index.php:476
 msgid "Solar Data & Propagation"
 msgstr "Soldata och vågutbredning"
 
 #: application/views/dashboard/index.php:473
+#: application/views/dashboard/index.php:478
 #, php-format
 msgid "Last update at %s."
 msgstr "Senaste uppdateringen kl. %s."
 
 #: application/views/dashboard/index.php:482
+#: application/views/dashboard/index.php:487
 msgid "Data provided by HAMqsl."
 msgstr "Data tillhandahålls av HAMqsl."
 
@@ -8727,11 +8773,13 @@ msgstr "Nästa automatiska synkronisering med DCL kommer att ske kl: "
 
 #: application/views/dcl_views/index.php:82
 #: application/views/lotw_views/index.php:143
+#: application/views/lotw_views/index.php:160
 msgid "Manual Sync"
 msgstr "Manuell synk"
 
 #: application/views/dcl_views/index.php:84
 #: application/views/lotw_views/index.php:145
+#: application/views/lotw_views/index.php:162
 msgid "running..."
 msgstr "jobbar..."
 
@@ -11589,25 +11637,30 @@ msgid "Valid"
 msgstr "Giltig"
 
 #: application/views/lotw_views/index.php:98
+#: application/views/lotw_views/index.php:115
 #, php-format
 msgid "Last success: %s"
 msgstr "Senaste framgång: %s"
 
 #: application/views/lotw_views/index.php:101
+#: application/views/lotw_views/index.php:118
 #, php-format
 msgid "Last fail: %s"
 msgstr "Senaste misslyckande: %s"
 
 #: application/views/lotw_views/index.php:107
+#: application/views/lotw_views/index.php:124
 msgid "Not Synced"
 msgstr "Ej synkad"
 
 #: application/views/lotw_views/index.php:122
+#: application/views/lotw_views/index.php:139
 msgid "You need to upload some LoTW p12 certificates to use this area."
 msgstr ""
 "Du behöver ladda upp LoTW p12 certifikat för att kunna använda denna area."
 
 #: application/views/lotw_views/index.php:141
+#: application/views/lotw_views/index.php:158
 msgid "The next automatic sync with LoTW will happen at: "
 msgstr "Nästa automatiska synkronisering med LoTW kommer att ske kl: "
 
@@ -14912,8 +14965,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 (t."
-"ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
+"(t.ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
@@ -16366,6 +16419,47 @@ msgstr "Skicka förfrågan"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Mottagen"
+
+#: application/views/dashboard/index.php:213
+#, php-format
+msgctxt "LoTW Warning"
+msgid ""
+"LoTW Warning: There is an issue with at least one of your %sLoTW "
+"certificates%s!"
+msgstr ""
+
+#: application/views/dashboard/index.php:216
+msgid "At least one of your certificates is expired"
+msgstr ""
+
+#: application/views/dashboard/index.php:217
+msgid "At least one of your certificates is expiring"
+msgstr ""
+
+#: application/views/dashboard/index.php:218
+msgid "The QSO end date of at least one of your certificates was exceeded"
+msgstr ""
+
+#: application/views/dashboard/index.php:219
+msgid ""
+"The QSO end date of at least one of your certificates is about to be exceeded"
+msgstr ""
+
+#: application/views/lotw_views/index.php:96
+msgid "Certificate expired"
+msgstr ""
+
+#: application/views/lotw_views/index.php:98
+msgid "Certificate expiring"
+msgstr ""
+
+#: application/views/lotw_views/index.php:100
+msgid "Certificate valid"
+msgstr ""
+
+#: application/views/lotw_views/index.php:105
+msgid "QSO end date nearing"
+msgstr ""
 
 #~ msgid "Experimental"
 #~ msgstr "Experimentell"
