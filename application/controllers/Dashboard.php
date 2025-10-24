@@ -19,6 +19,8 @@ class Dashboard extends CI_Controller {
 		$current_date = date('Y-m-d H:i:s');
 		$data['lotw_cert_expired'] = $this->Lotw_model->lotw_cert_expired($this->session->userdata('user_id'), $current_date);
 		$data['lotw_cert_expiring'] = $this->Lotw_model->lotw_cert_expiring($this->session->userdata('user_id'), $current_date);
+		$data['lotw_cert_qsoenddate_expired'] = $this->Lotw_model->lotw_cert_qsoenddate_expired($this->session->userdata('user_id'), $current_date);
+		$data['lotw_cert_qsoenddate_expiring'] = $this->Lotw_model->lotw_cert_qsoenddate_expiring($this->session->userdata('user_id'), $current_date);
 
 
 		$this->load->model('logbooks_model');

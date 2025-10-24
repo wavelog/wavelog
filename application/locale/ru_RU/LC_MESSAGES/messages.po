@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-10-22 15:45+0000\n"
+"POT-Creation-Date: 2025-10-24 15:56+0000\n"
 "PO-Revision-Date: 2025-10-20 10:48+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -77,9 +77,9 @@ msgstr ""
 #: application/controllers/Logbookadvanced.php:16
 #: application/controllers/Lookup.php:17 application/controllers/Lotw.php:44
 #: application/controllers/Lotw.php:79 application/controllers/Lotw.php:105
-#: application/controllers/Lotw.php:375 application/controllers/Lotw.php:398
-#: application/controllers/Lotw.php:755 application/controllers/Lotw.php:839
-#: application/controllers/Lotw.php:944 application/controllers/Mode.php:15
+#: application/controllers/Lotw.php:383 application/controllers/Lotw.php:406
+#: application/controllers/Lotw.php:763 application/controllers/Lotw.php:847
+#: application/controllers/Lotw.php:952 application/controllers/Mode.php:15
 #: application/controllers/Notes.php:11 application/controllers/Options.php:14
 #: application/controllers/Oqrs.php:15 application/controllers/Oqrs.php:165
 #: application/controllers/Qrbcalc.php:13 application/controllers/Qrz.php:200
@@ -88,8 +88,8 @@ msgstr ""
 #: application/controllers/Qsl.php:57 application/controllers/Qslprint.php:24
 #: application/controllers/Qslprint.php:147 application/controllers/Qso.php:8
 #: application/controllers/Qso.php:22 application/controllers/Qso.php:187
-#: application/controllers/Qso.php:301 application/controllers/Qso.php:322
-#: application/controllers/Qso.php:345 application/controllers/Qso.php:643
+#: application/controllers/Qso.php:318 application/controllers/Qso.php:339
+#: application/controllers/Qso.php:362 application/controllers/Qso.php:662
 #: application/controllers/Radio.php:32 application/controllers/Radio.php:291
 #: application/controllers/Radio.php:317 application/controllers/Radio.php:333
 #: application/controllers/Reg1test.php:17
@@ -887,7 +887,7 @@ msgstr "Не работает"
 msgid "SOTA CSV Export"
 msgstr "Экспорт SOTA в CSV"
 
-#: application/controllers/Dashboard.php:152
+#: application/controllers/Dashboard.php:154
 #: application/controllers/Visitor.php:134
 msgid "Dashboard"
 msgstr "Панель управления"
@@ -1020,7 +1020,7 @@ msgid "DX Calendar"
 msgstr "Календарь DX экспедиций"
 
 #: application/controllers/Eqsl.php:34
-#: application/views/dashboard/index.php:404
+#: application/views/dashboard/index.php:409
 #: application/views/eqslcard/index.php:5
 #: application/views/visitor/index.php:310
 msgid "eQSL Cards"
@@ -1318,7 +1318,7 @@ msgstr "QSL"
 #: application/views/awards/wapc/index.php:48
 #: application/views/awards/was/index.php:60
 #: application/views/awards/wpx/index.php:32
-#: application/views/dashboard/index.php:339
+#: application/views/dashboard/index.php:344
 #: application/views/gridmap/index.php:149
 #: application/views/logbookadvanced/useroptions.php:82
 #: application/views/oqrs/qsolist.php:17 application/views/oqrs/qsolist.php:160
@@ -1355,7 +1355,7 @@ msgstr "LoTW"
 #: application/views/awards/wapc/index.php:52
 #: application/views/awards/was/index.php:64
 #: application/views/awards/wpx/index.php:36
-#: application/views/dashboard/index.php:339
+#: application/views/dashboard/index.php:344
 #: application/views/gridmap/index.php:157
 #: application/views/logbookadvanced/useroptions.php:78
 #: application/views/oqrs/qsolist.php:14 application/views/oqrs/qsolist.php:131
@@ -1814,7 +1814,7 @@ msgstr "Оператор"
 #: application/views/kml/index.php:54
 #: application/views/logbookadvanced/index.php:252
 #: application/views/lookup/index.php:47
-#: application/views/lotw_views/index.php:49
+#: application/views/lotw_views/index.php:50
 #: application/views/qso/components/previous_contacts.php:59
 #: application/views/qso/edit_ajax.php:252 application/views/qso/index.php:410
 #: application/views/station_profile/create.php:77
@@ -1857,11 +1857,11 @@ msgstr "Сертификат импортирован."
 msgid "Certificate Updated."
 msgstr "Сертификат обновлен."
 
-#: application/controllers/Lotw.php:381
+#: application/controllers/Lotw.php:389
 msgid "Certificate Deleted."
 msgstr "Сертификат удален."
 
-#: application/controllers/Lotw.php:410
+#: application/controllers/Lotw.php:418
 #, php-format
 msgid ""
 "Found no certificate in file %s. If the filename contains 'key-only' this is "
@@ -1870,52 +1870,52 @@ msgstr ""
 "В файле %s не найдено сертификата. Если имя файла содержит 'key-only', это "
 "обычно запрос на сертификат, который еще не обработан LoTW."
 
-#: application/controllers/Lotw.php:646
+#: application/controllers/Lotw.php:654
 msgid "LoTW ADIF Information"
 msgstr "LoTW. Информация ADIF"
 
-#: application/controllers/Lotw.php:812 application/controllers/Lotw.php:815
+#: application/controllers/Lotw.php:820 application/controllers/Lotw.php:823
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr "Пользователю %s (%s) не удалось войти в LoTW."
 
-#: application/controllers/Lotw.php:815
+#: application/controllers/Lotw.php:823
 msgid "Username/password incorrect"
 msgstr "Имя пользователя/пароль неверны"
 
-#: application/controllers/Lotw.php:818
+#: application/controllers/Lotw.php:826
 msgid "LoTW login OK!"
 msgstr "Вход в LoTW выполнен успешно!"
 
-#: application/controllers/Lotw.php:822
+#: application/controllers/Lotw.php:830
 msgid "LoTW currently not available. Try again later."
 msgstr "LoTW в настоящее время недоступен. Попробуйте позже."
 
-#: application/controllers/Lotw.php:827
+#: application/controllers/Lotw.php:835
 msgid "No LoTW credentials provided."
 msgstr "Отсутствуют учетные данные LoTW."
 
-#: application/controllers/Lotw.php:845
+#: application/controllers/Lotw.php:853
 msgid "LoTW ADIF Import"
 msgstr "LoTW. Импорт ADIF"
 
-#: application/controllers/Lotw.php:871 application/controllers/Lotw.php:979
+#: application/controllers/Lotw.php:879 application/controllers/Lotw.php:987
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Вы не указали свои учетные данные ARRL LoTW!"
 
-#: application/controllers/Lotw.php:946
+#: application/controllers/Lotw.php:954
 msgid "LoTW .TQ8 Upload"
 msgstr "LoTW. TQ8 загрузка"
 
-#: application/controllers/Lotw.php:1024
+#: application/controllers/Lotw.php:1032
 msgid "Your ARRL username and/or password is incorrect."
 msgstr "Ваше имя пользователя и/или пароль ARRL неверны."
 
-#: application/controllers/Lotw.php:1043 application/controllers/Lotw.php:1048
+#: application/controllers/Lotw.php:1051 application/controllers/Lotw.php:1056
 msgid "LoTW .TQ8 Sent"
 msgstr "LoTW. TQ8 загружен"
 
-#: application/controllers/Lotw.php:1055
+#: application/controllers/Lotw.php:1063
 msgid "LoTW .TQ8 Not Sent"
 msgstr "LoTW. TQ8 не загружен"
 
@@ -2201,8 +2201,8 @@ msgstr "QRZ. Импорт QSL"
 msgid "QRZ ADIF Information"
 msgstr "QRZ. Информация ADIF"
 
-#: application/controllers/Qsl.php:25 application/views/dashboard/index.php:339
-#: application/views/dashboard/index.php:356
+#: application/controllers/Qsl.php:25 application/views/dashboard/index.php:344
+#: application/views/dashboard/index.php:361
 #: application/views/qslcard/index.php:5
 #: application/views/visitor/index.php:287
 msgid "QSL Cards"
@@ -2224,15 +2224,15 @@ msgstr "Распечатать запрошенные QSL"
 msgid "Add QSO"
 msgstr "Добавить QSO"
 
-#: application/controllers/Qso.php:704
+#: application/controllers/Qso.php:723
 msgid "You have to be logged in to access this URL."
 msgstr "Для доступа к этому URL необходимо войти в систему."
 
-#: application/controllers/Qso.php:710
+#: application/controllers/Qso.php:729
 msgid "Call Transfer"
 msgstr "Перевод вызова"
 
-#: application/controllers/Qso.php:717
+#: application/controllers/Qso.php:736
 msgid "No callsign provided."
 msgstr "Позывной не указан."
 
@@ -2316,7 +2316,7 @@ msgstr "Редактировать"
 #: application/views/interface_assets/footer.php:2859
 #: application/views/labels/index.php:48 application/views/labels/index.php:84
 #: application/views/logbookadvanced/index.php:734
-#: application/views/lotw_views/index.php:111
+#: application/views/lotw_views/index.php:128
 #: application/views/mode/index.php:67
 #: application/views/oqrs/showrequests.php:75
 #: application/views/qslcard/index.php:76
@@ -3525,7 +3525,7 @@ msgid "Accumulated number of WAJA worked"
 msgstr "Накопленное количество отработанных WAJA"
 
 #: application/views/accumulate/index.php:8
-#: application/views/dashboard/index.php:317
+#: application/views/dashboard/index.php:322
 #: application/views/dayswithqso/index.php:42
 #: application/views/dayswithqso/index.php:82
 #: application/views/statistics/index.php:19
@@ -3542,7 +3542,7 @@ msgid "Yearly"
 msgstr "Ежегодно"
 
 #: application/views/accumulate/index.php:10
-#: application/views/dashboard/index.php:322
+#: application/views/dashboard/index.php:327
 #: application/views/visitor/index.php:255
 msgid "Month"
 msgstr "Месяц"
@@ -4185,7 +4185,7 @@ msgstr "Не найдено!"
 #: application/views/club/permissions.php:222
 #: application/views/components/hamsat/table.php:27
 #: application/views/contesting/index.php:170
-#: application/views/csv/index.php:23 application/views/dashboard/index.php:244
+#: application/views/csv/index.php:23 application/views/dashboard/index.php:249
 #: application/views/dcl_views/index.php:27
 #: application/views/distancerecords/index.php:18
 #: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:42
@@ -4294,7 +4294,7 @@ msgstr "Данные DOK в вашем логе отличаются от DCL"
 #: application/views/components/hamsat/table.php:25
 #: application/views/contesting/index.php:103
 #: application/views/contesting/index.php:261
-#: application/views/dashboard/index.php:239
+#: application/views/dashboard/index.php:244
 #: application/views/debug/index.php:594
 #: application/views/distancerecords/index.php:16
 #: application/views/eqsl/analysis.php:36
@@ -4340,7 +4340,7 @@ msgstr "Дата"
 #: application/views/components/hamsat/table.php:26
 #: application/views/contesting/index.php:108
 #: application/views/contesting/index.php:261
-#: application/views/dashboard/index.php:242
+#: application/views/dashboard/index.php:247
 #: application/views/debug/index.php:595
 #: application/views/distancerecords/index.php:17
 #: application/views/eqsl/analysis.php:37
@@ -4412,8 +4412,7 @@ msgstr "Импорт CBR"
 #: application/views/adif/import.php:73 application/views/adif/import.php:379
 #: application/views/adif/import.php:400 application/views/api/index.php:22
 #: application/views/dashboard/index.php:180
-#: application/views/dashboard/index.php:209
-#: application/views/dashboard/index.php:214
+#: application/views/dashboard/index.php:213
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
 #: application/views/lotw_views/index.php:4
 #: application/views/options/maptiles.php:48
@@ -4726,7 +4725,7 @@ msgstr ""
 #: application/views/adif/import.php:399
 #: application/views/adif/import_success.php:40
 #: application/views/dcl_views/index.php:76
-#: application/views/lotw_views/index.php:137
+#: application/views/lotw_views/index.php:154
 msgid "Information"
 msgstr "Информация"
 
@@ -5241,7 +5240,7 @@ msgstr "Подтверждённые графства"
 #: application/views/awards/wapc/index.php:145
 #: application/views/awards/was/index.php:180
 #: application/views/awards/wpx/index.php:172
-#: application/views/dashboard/index.php:312
+#: application/views/dashboard/index.php:317
 #: application/views/simplefle/index.php:27
 #: application/views/statistics/qsltable.php:54
 #: application/views/statistics/qsltable.php:109
@@ -5331,8 +5330,8 @@ msgstr "Дипломы - CQ WAZ"
 #: application/views/awards/wac/index.php:23
 #: application/views/awards/wpx/wpx_details.php:24
 #: application/views/bandmap/list.php:81
-#: application/views/dashboard/index.php:339
-#: application/views/dashboard/index.php:457
+#: application/views/dashboard/index.php:344
+#: application/views/dashboard/index.php:462
 #: application/views/interface_assets/footer.php:43
 #: application/views/search/result.php:32
 #: application/views/visitor/index.php:270
@@ -5343,8 +5342,8 @@ msgstr "Подтверждено"
 #: application/views/awards/itu/index.php:35
 #: application/views/awards/wac/index.php:23
 #: application/views/bandmap/list.php:80
-#: application/views/dashboard/index.php:335
-#: application/views/dashboard/index.php:451
+#: application/views/dashboard/index.php:340
+#: application/views/dashboard/index.php:456
 #: application/views/search/result.php:35
 #: application/views/visitor/index.php:266
 msgid "Worked"
@@ -6229,7 +6228,7 @@ msgid "City"
 msgstr "Город"
 
 #: application/views/awards/jcc/index.php:188
-#: application/views/dashboard/index.php:447
+#: application/views/dashboard/index.php:452
 #: application/views/distances/index.php:23
 #: application/views/qslprint/qslprint.php:57
 #: application/views/qslprint/qslprint.php:58
@@ -7892,10 +7891,10 @@ msgid "Show Details"
 msgstr "Подробно"
 
 #: application/views/contestcalendar/index.php:45
-#: application/views/dashboard/index.php:357
-#: application/views/dashboard/index.php:384
-#: application/views/dashboard/index.php:405
-#: application/views/dashboard/index.php:426
+#: application/views/dashboard/index.php:362
+#: application/views/dashboard/index.php:389
+#: application/views/dashboard/index.php:410
+#: application/views/dashboard/index.php:431
 msgid "Today"
 msgstr "Сегодня"
 
@@ -8453,22 +8452,32 @@ msgstr ""
 "У вас есть темы без определенного режима темы. Пожалуйста, попросите "
 "администратора отредактировать темы."
 
-#: application/views/dashboard/index.php:209
+#: application/views/dashboard/index.php:213
 #, php-format
 msgctxt "LoTW Warning"
-msgid "At least one of your %sLoTW certificates%s is expired!"
+msgid ""
+"LoTW Warning: There is an issue with at least one of your %sLoTW "
+"certificates%s!"
 msgstr ""
-"Срок действия, по крайней мере, одного из ваших %sLoTW сертификатов%s истек!"
 
-#: application/views/dashboard/index.php:214
-#, php-format
-msgctxt "LoTW Warning"
-msgid "At least one of your %sLoTW certificates%s is about to expire!"
+#: application/views/dashboard/index.php:216
+msgid "At least one of your certificates is expired"
 msgstr ""
-"Срок действия, по крайней мере, одного из ваших %sLoTW сертификатов%s скоро "
-"истечет!"
 
-#: application/views/dashboard/index.php:292
+#: application/views/dashboard/index.php:217
+msgid "At least one of your certificates is expiring"
+msgstr ""
+
+#: application/views/dashboard/index.php:218
+msgid "The QSO end date of at least one of your certificates was exceeded"
+msgstr ""
+
+#: application/views/dashboard/index.php:219
+msgid ""
+"The QSO end date of at least one of your certificates is about to be exceeded"
+msgstr ""
+
+#: application/views/dashboard/index.php:297
 #: application/views/qso/index.php:828
 #, php-format
 msgid "Max. %d previous contact is shown"
@@ -8477,25 +8486,25 @@ msgstr[0] "Отображается до %d предыдущего контак�
 msgstr[1] "Отображается до %d предыдущих контактов"
 msgstr[2] "Отображается до %d предыдущих контактов"
 
-#: application/views/dashboard/index.php:308
+#: application/views/dashboard/index.php:313
 #: application/views/visitor/index.php:241
 msgid "QSOs Breakdown"
 msgstr "Статистика QSO"
 
-#: application/views/dashboard/index.php:331
+#: application/views/dashboard/index.php:336
 #: application/views/visitor/index.php:262
 msgid "DXCCs Breakdown"
 msgstr "Статистика по DXCC"
 
-#: application/views/dashboard/index.php:348
+#: application/views/dashboard/index.php:353
 #: application/views/visitor/index.php:279
 msgid "Needed"
 msgstr "Необходимо"
 
-#: application/views/dashboard/index.php:361
-#: application/views/dashboard/index.php:388
-#: application/views/dashboard/index.php:409
-#: application/views/dashboard/index.php:430
+#: application/views/dashboard/index.php:366
+#: application/views/dashboard/index.php:393
+#: application/views/dashboard/index.php:414
+#: application/views/dashboard/index.php:435
 #: application/views/oqrs/qsolist.php:51 application/views/oqrs/qsolist.php:131
 #: application/views/oqrs/qsolist.php:160
 #: application/views/qslprint/qsolist.php:62
@@ -8529,10 +8538,10 @@ msgstr "Необходимо"
 msgid "Sent"
 msgstr "Отправлено"
 
-#: application/views/dashboard/index.php:367
-#: application/views/dashboard/index.php:394
-#: application/views/dashboard/index.php:415
-#: application/views/dashboard/index.php:436
+#: application/views/dashboard/index.php:372
+#: application/views/dashboard/index.php:399
+#: application/views/dashboard/index.php:420
+#: application/views/dashboard/index.php:441
 #: application/views/oqrs/qsolist.php:93 application/views/oqrs/qsolist.php:144
 #: application/views/oqrs/qsolist.php:175
 #: application/views/qslprint/qsolist.php:104
@@ -8565,7 +8574,7 @@ msgstr "Отправлено"
 msgid "Received"
 msgstr "Принято"
 
-#: application/views/dashboard/index.php:373
+#: application/views/dashboard/index.php:378
 #: application/views/logbookadvanced/edit.php:168
 #: application/views/logbookadvanced/edit.php:175
 #: application/views/logbookadvanced/edit.php:201
@@ -8605,25 +8614,25 @@ msgstr "Принято"
 msgid "Requested"
 msgstr "Запрошено"
 
-#: application/views/dashboard/index.php:383
+#: application/views/dashboard/index.php:388
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
-#: application/views/dashboard/index.php:446
+#: application/views/dashboard/index.php:451
 msgid "VUCC-Grids"
 msgstr "Квадраты VUCC"
 
-#: application/views/dashboard/index.php:471
+#: application/views/dashboard/index.php:476
 msgid "Solar Data & Propagation"
 msgstr "Солнечная активность и похождение"
 
-#: application/views/dashboard/index.php:473
+#: application/views/dashboard/index.php:478
 #, php-format
 msgid "Last update at %s."
 msgstr "Последнее обновление в %s."
 
-#: application/views/dashboard/index.php:482
+#: application/views/dashboard/index.php:487
 msgid "Data provided by HAMqsl."
 msgstr "Данные предоставлены HAMqsl."
 
@@ -8795,12 +8804,12 @@ msgid "The next automatic sync with DCL will happen at: "
 msgstr "Следующая автоматическая синхронизация с DCL произойдет в: "
 
 #: application/views/dcl_views/index.php:82
-#: application/views/lotw_views/index.php:143
+#: application/views/lotw_views/index.php:160
 msgid "Manual Sync"
 msgstr "Ручная синхронизация"
 
 #: application/views/dcl_views/index.php:84
-#: application/views/lotw_views/index.php:145
+#: application/views/lotw_views/index.php:162
 msgid "running..."
 msgstr "запущен..."
 
@@ -9207,7 +9216,7 @@ msgid "HAMqsl"
 msgstr "HAMqsl"
 
 #: application/views/debug/index.php:573
-msgid "VUCCGrids"
+msgid "VUCC Grids"
 msgstr ""
 
 #: application/views/debug/index.php:582
@@ -11659,39 +11668,43 @@ msgstr "Дата окончания срока действия"
 msgid "Last Upload"
 msgstr "Последняя загрузка"
 
-#: application/views/lotw_views/index.php:84
-msgid "Expired"
-msgstr "Истёк"
-
-#: application/views/lotw_views/index.php:86
-msgid "Expiring"
-msgstr "Истекает"
-
-#: application/views/lotw_views/index.php:88
-msgid "Valid"
-msgstr "Действительный"
+#: application/views/lotw_views/index.php:96
+msgid "Certificate expired"
+msgstr ""
 
 #: application/views/lotw_views/index.php:98
+msgid "Certificate expiring"
+msgstr ""
+
+#: application/views/lotw_views/index.php:100
+msgid "Certificate valid"
+msgstr ""
+
+#: application/views/lotw_views/index.php:105
+msgid "QSO end date nearing"
+msgstr ""
+
+#: application/views/lotw_views/index.php:115
 #, php-format
 msgid "Last success: %s"
 msgstr "Последнее успеное: %s"
 
-#: application/views/lotw_views/index.php:101
+#: application/views/lotw_views/index.php:118
 #, php-format
 msgid "Last fail: %s"
 msgstr "Последнее неуспешное: %s"
 
-#: application/views/lotw_views/index.php:107
+#: application/views/lotw_views/index.php:124
 msgid "Not Synced"
 msgstr "Не синхронизирован"
 
-#: application/views/lotw_views/index.php:122
+#: application/views/lotw_views/index.php:139
 msgid "You need to upload some LoTW p12 certificates to use this area."
 msgstr ""
 "Вам необходимо загрузить сертификат LoTW в формате p12 для использования "
 "этих функций."
 
-#: application/views/lotw_views/index.php:141
+#: application/views/lotw_views/index.php:158
 msgid "The next automatic sync with LoTW will happen at: "
 msgstr "Следующая автоматическая синхронизация с LoTW произойдет в: "
 
@@ -16468,6 +16481,29 @@ msgstr "Отправить запрос"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Получено"
+
+#, php-format
+#~ msgctxt "LoTW Warning"
+#~ msgid "At least one of your %sLoTW certificates%s is expired!"
+#~ msgstr ""
+#~ "Срок действия, по крайней мере, одного из ваших %sLoTW сертификатов%s "
+#~ "истек!"
+
+#, php-format
+#~ msgctxt "LoTW Warning"
+#~ msgid "At least one of your %sLoTW certificates%s is about to expire!"
+#~ msgstr ""
+#~ "Срок действия, по крайней мере, одного из ваших %sLoTW сертификатов%s "
+#~ "скоро истечет!"
+
+#~ msgid "Expired"
+#~ msgstr "Истёк"
+
+#~ msgid "Expiring"
+#~ msgstr "Истекает"
+
+#~ msgid "Valid"
+#~ msgstr "Действительный"
 
 #~ msgid "Experimental"
 #~ msgstr "Экспериментально"
