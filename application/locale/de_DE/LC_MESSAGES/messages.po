@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-10-24 10:17+0000\n"
-"PO-Revision-Date: 2025-10-22 22:41+0000\n"
+"POT-Creation-Date: 2025-10-24 15:56+0000\n"
+"PO-Revision-Date: 2025-10-24 10:29+0000\n"
 "Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
@@ -101,8 +101,8 @@ msgstr ""
 #: application/controllers/Qsl.php:57 application/controllers/Qslprint.php:24
 #: application/controllers/Qslprint.php:147 application/controllers/Qso.php:8
 #: application/controllers/Qso.php:22 application/controllers/Qso.php:187
-#: application/controllers/Qso.php:301 application/controllers/Qso.php:322
-#: application/controllers/Qso.php:345 application/controllers/Qso.php:643
+#: application/controllers/Qso.php:318 application/controllers/Qso.php:339
+#: application/controllers/Qso.php:362 application/controllers/Qso.php:662
 #: application/controllers/Radio.php:32 application/controllers/Radio.php:291
 #: application/controllers/Radio.php:317 application/controllers/Radio.php:333
 #: application/controllers/Reg1test.php:17
@@ -2233,15 +2233,15 @@ msgstr "Druck angefragter QSLs"
 msgid "Add QSO"
 msgstr "Logge QSO"
 
-#: application/controllers/Qso.php:704
+#: application/controllers/Qso.php:723
 msgid "You have to be logged in to access this URL."
 msgstr "Du musst eingeloggt sein, um auf diese URL zugreifen zu können."
 
-#: application/controllers/Qso.php:710
+#: application/controllers/Qso.php:729
 msgid "Call Transfer"
 msgstr "Rufzeichen Transfer"
 
-#: application/controllers/Qso.php:717
+#: application/controllers/Qso.php:736
 msgid "No callsign provided."
 msgstr "Kein Rufzeichen angegeben."
 
@@ -2842,11 +2842,11 @@ msgstr "Update von 'Hams of Note'"
 
 #: application/controllers/Update.php:718
 msgid "VUCC Grid file update complete. Result: "
-msgstr ""
+msgstr "Update der VUCC-Planquadat-Datei erfolgt. Ergebnis: "
 
 #: application/controllers/Update.php:720
 msgid "VUCC Grid file update failed. Result: "
-msgstr ""
+msgstr "Update der VUCC-Planquadrat-Datei fehlgeschlagen. Ergebnis: "
 
 #: application/controllers/User.php:50
 #: application/views/interface_assets/header.php:306
@@ -8485,23 +8485,25 @@ msgid ""
 "LoTW Warning: There is an issue with at least one of your %sLoTW "
 "certificates%s!"
 msgstr ""
+"LoTW Warnung: Es gibt ein Problem mit mindestens einem deiner %sLoTW-"
+"Zertifikate%s!"
 
 #: application/views/dashboard/index.php:216
 msgid "At least one of your certificates is expired"
-msgstr ""
+msgstr "Mindestens eines deiner Zertifikate ist abgelaufen"
 
 #: application/views/dashboard/index.php:217
 msgid "At least one of your certificates is expiring"
-msgstr ""
+msgstr "Mindestens eines deiner Zertifikate läuft bald ab"
 
 #: application/views/dashboard/index.php:218
 msgid "The QSO end date of at least one of your certificates was exceeded"
-msgstr ""
+msgstr "Das QSO-Enddatum von einem deiner Zertifikate ist überschritten"
 
 #: application/views/dashboard/index.php:219
 msgid ""
 "The QSO end date of at least one of your certificates is about to be exceeded"
-msgstr ""
+msgstr "Das QSO-Enddatum von einem deiner Zertifikate wird bald überschritten"
 
 #: application/views/dashboard/index.php:297
 #: application/views/qso/index.php:828
@@ -9239,8 +9241,8 @@ msgid "HAMqsl"
 msgstr "HAMqsl"
 
 #: application/views/debug/index.php:573
-msgid "VUCCGrids"
-msgstr ""
+msgid "VUCC Grids"
+msgstr "VUCC-Locator"
 
 #: application/views/debug/index.php:582
 msgid "QSO-DB Maintenance"
@@ -11701,19 +11703,19 @@ msgstr "Letzter Upload"
 
 #: application/views/lotw_views/index.php:96
 msgid "Certificate expired"
-msgstr ""
+msgstr "Zertifikat abgelaufen"
 
 #: application/views/lotw_views/index.php:98
 msgid "Certificate expiring"
-msgstr ""
+msgstr "Zertifikat ablaufend"
 
 #: application/views/lotw_views/index.php:100
 msgid "Certificate valid"
-msgstr ""
+msgstr "Zertifikat gültig"
 
 #: application/views/lotw_views/index.php:105
 msgid "QSO end date nearing"
-msgstr ""
+msgstr "QSO-Enddatum nähert sich"
 
 #: application/views/lotw_views/index.php:115
 #, php-format
@@ -16558,6 +16560,9 @@ msgstr "Anfrage senden"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Rcvd"
+
+#~ msgid "VUCCGrids"
+#~ msgstr "VUCC-Planquadrate"
 
 #, php-format
 #~ msgctxt "LoTW Warning"
