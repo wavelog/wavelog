@@ -42,15 +42,15 @@ class Lotw_model extends CI_Model {
 
 	function store_certificate($user_id, $callsign, $dxcc, $date_created, $date_expires, $qso_start_date, $qso_end_date, $cert_key, $general_cert) {
 		$data = array(
-		    'user_id' => $user_id,
-		    'callsign' => $callsign,
-		    'cert_dxcc_id' => $dxcc,
-		    'date_created' => $date_created,
-		    'date_expires' => $date_expires,
-		    'qso_start_date' => $qso_start_date,
-		    'qso_end_date' => $qso_end_date . ' 23:59:59',
-		    'cert_key' => $cert_key,
-		    'cert' => $general_cert,
+			'user_id' => $user_id,
+			'callsign' => $callsign,
+			'cert_dxcc_id' => $dxcc,
+			'date_created' => $date_created,
+			'date_expires' => $date_expires,
+			'qso_start_date' => $qso_start_date,
+			'qso_end_date' => $qso_end_date . ' 23:59:59',
+			'cert_key' => $cert_key,
+			'cert' => $general_cert,
 		);
 
 		$this->db->insert('lotw_certs', $data);
@@ -58,13 +58,13 @@ class Lotw_model extends CI_Model {
 
 	function update_certificate($user_id, $callsign, $dxcc, $date_created, $date_expires, $qso_start_date, $qso_end_date, $cert_key, $general_cert) {
 		$data = array(
-		    'cert_dxcc_id' => $dxcc,
-		    'date_created' => $date_created,
-		    'date_expires' => $date_expires,
-		    'qso_start_date' => $qso_start_date,
-		    'qso_end_date' => $qso_end_date . ' 23:59:59',
-		    'cert_key' => $cert_key,
-		    'cert' => $general_cert
+			'cert_dxcc_id' => $dxcc,
+			'date_created' => $date_created,
+			'date_expires' => $date_expires,
+			'qso_start_date' => $qso_start_date,
+			'qso_end_date' => $qso_end_date . ' 23:59:59',
+			'cert_key' => $cert_key,
+			'cert' => $general_cert
 		);
 
 		$this->db->where('user_id', $user_id);
@@ -103,29 +103,49 @@ class Lotw_model extends CI_Model {
 		}
 	}
 
-   function lotw_cert_expired($user_id, $date) {
-      $array = array('user_id' => $user_id, 'date_expires <' => $date);
-      $this->db->where($array);
-      $query = $this->db->get('lotw_certs');
+	function lotw_cert_expired($user_id, $date) {
+		$sql = "SELECT * FROM `lotw_certs` WHERE `user_id` = ? AND `date_expires` < ?;";
+		$query = $this->db->query($sql, array($user_id, $date));
 
-      if ($query->num_rows() > 0) {
-         return true;
-      } else {
-         return false;
-      }
-   }
+		if ($query->num_rows() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
-   function lotw_cert_expiring($user_id, $date) {
-      $array = array('user_id' => $user_id, 'DATE_SUB(date_expires, INTERVAL 30 DAY) <' => $date, 'date_expires >' => $date);
-      $this->db->where($array);
-      $query = $this->db->get('lotw_certs');
+	function lotw_cert_expiring($user_id, $date) {
+		$sql = "SELECT * FROM `lotw_certs` WHERE `user_id` = ? AND DATE_SUB(date_expires, INTERVAL 30 DAY) < ? AND `date_expires` > ?;";
+		$query = $this->db->query($sql, array($user_id, $date, $date));
 
-      if ($query->num_rows() > 0) {
-         return true;
-      } else {
-         return false;
-      }
-   }
+		if ($query->num_rows() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	function lotw_cert_qsoenddate_expired($user_id, $date) {
+		$sql = "SELECT * FROM `lotw_certs` WHERE `user_id` = ? AND `qso_end_date` < ?;";
+		$query = $this->db->query($sql, array($user_id, $date));
+
+		if ($query->num_rows() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	function lotw_cert_qsoenddate_expiring($user_id, $date) {
+		$sql = "SELECT * FROM `lotw_certs` WHERE `user_id` = ? AND DATE_SUB(qso_end_date, INTERVAL 30 DAY) < ? AND `qso_end_date` > ?;";
+		$query = $this->db->query($sql, array($user_id, $date, $date));
+
+		if ($query->num_rows() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 }
 ?>

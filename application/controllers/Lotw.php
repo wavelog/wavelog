@@ -222,11 +222,19 @@ class Lotw extends CI_Controller {
 				// Check if LoTW certificate itself is valid
 				// Validty of QSO dates will be checked later
 				$current_date = date('Y-m-d H:i:s');
-				if ($current_date <= $data['lotw_cert_info']->date_created) {
+				if ($current_date < $data['lotw_cert_info']->qso_start_date) {
+					echo $data['lotw_cert_info']->callsign.": QSO start date of LoTW certificate not reached yet!<br>";
+					continue;
+				}
+				if ($current_date > $data['lotw_cert_info']->qso_end_date) {
+					echo $data['lotw_cert_info']->callsign.": QSO end date of LoTW certificate exceeded!<br>";
+					continue;
+				}
+				if ($current_date < $data['lotw_cert_info']->date_created) {
 					echo $data['lotw_cert_info']->callsign.": LoTW certificate not valid yet!<br>";
 					continue;
 				}
-				if ($current_date >= $data['lotw_cert_info']->date_expires) {
+				if ($current_date > $data['lotw_cert_info']->date_expires) {
 					echo $data['lotw_cert_info']->callsign.": LoTW certificate expired!<br>";
 					continue;
 				}

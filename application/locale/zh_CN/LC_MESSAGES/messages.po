@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-10-22 15:45+0000\n"
+"POT-Creation-Date: 2025-10-24 10:17+0000\n"
 "PO-Revision-Date: 2025-09-30 06:37+0000\n"
 "Last-Translator: YuanRetro <lijiaxuan1811@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -85,9 +85,9 @@ msgstr ""
 #: application/controllers/Logbookadvanced.php:16
 #: application/controllers/Lookup.php:17 application/controllers/Lotw.php:44
 #: application/controllers/Lotw.php:79 application/controllers/Lotw.php:105
-#: application/controllers/Lotw.php:375 application/controllers/Lotw.php:398
-#: application/controllers/Lotw.php:755 application/controllers/Lotw.php:839
-#: application/controllers/Lotw.php:944 application/controllers/Mode.php:15
+#: application/controllers/Lotw.php:383 application/controllers/Lotw.php:406
+#: application/controllers/Lotw.php:763 application/controllers/Lotw.php:847
+#: application/controllers/Lotw.php:952 application/controllers/Mode.php:15
 #: application/controllers/Notes.php:11 application/controllers/Options.php:14
 #: application/controllers/Oqrs.php:15 application/controllers/Oqrs.php:165
 #: application/controllers/Qrbcalc.php:13 application/controllers/Qrz.php:200
@@ -891,7 +891,7 @@ msgstr "未运行"
 msgid "SOTA CSV Export"
 msgstr "SOTA CSV 导出"
 
-#: application/controllers/Dashboard.php:152
+#: application/controllers/Dashboard.php:154
 #: application/controllers/Visitor.php:134
 msgid "Dashboard"
 msgstr "仪表盘"
@@ -1022,7 +1022,7 @@ msgid "DX Calendar"
 msgstr "DX 日历"
 
 #: application/controllers/Eqsl.php:34
-#: application/views/dashboard/index.php:404
+#: application/views/dashboard/index.php:409
 #: application/views/eqslcard/index.php:5
 #: application/views/visitor/index.php:310
 msgid "eQSL Cards"
@@ -1312,7 +1312,7 @@ msgstr "QSL"
 #: application/views/awards/wapc/index.php:48
 #: application/views/awards/was/index.php:60
 #: application/views/awards/wpx/index.php:32
-#: application/views/dashboard/index.php:339
+#: application/views/dashboard/index.php:344
 #: application/views/gridmap/index.php:149
 #: application/views/logbookadvanced/useroptions.php:82
 #: application/views/oqrs/qsolist.php:17 application/views/oqrs/qsolist.php:160
@@ -1349,7 +1349,7 @@ msgstr "LoTW"
 #: application/views/awards/wapc/index.php:52
 #: application/views/awards/was/index.php:64
 #: application/views/awards/wpx/index.php:36
-#: application/views/dashboard/index.php:339
+#: application/views/dashboard/index.php:344
 #: application/views/gridmap/index.php:157
 #: application/views/logbookadvanced/useroptions.php:78
 #: application/views/oqrs/qsolist.php:14 application/views/oqrs/qsolist.php:131
@@ -1808,7 +1808,7 @@ msgstr "操作员"
 #: application/views/kml/index.php:54
 #: application/views/logbookadvanced/index.php:252
 #: application/views/lookup/index.php:47
-#: application/views/lotw_views/index.php:49
+#: application/views/lotw_views/index.php:50
 #: application/views/qso/components/previous_contacts.php:59
 #: application/views/qso/edit_ajax.php:252 application/views/qso/index.php:410
 #: application/views/station_profile/create.php:77
@@ -1851,11 +1851,11 @@ msgstr "呼号证书已导入。"
 msgid "Certificate Updated."
 msgstr "呼号证书已更新。"
 
-#: application/controllers/Lotw.php:381
+#: application/controllers/Lotw.php:389
 msgid "Certificate Deleted."
 msgstr "呼号证书已删除。"
 
-#: application/controllers/Lotw.php:410
+#: application/controllers/Lotw.php:418
 #, php-format
 msgid ""
 "Found no certificate in file %s. If the filename contains 'key-only' this is "
@@ -1864,52 +1864,52 @@ msgstr ""
 "未能在文件 %s 中找到呼号证书。如果文件名包含了 'key-only'，则此文件通常为呼号"
 "证书的申请文件，LoTW 的工作人员依此来发放正式的呼号证书。"
 
-#: application/controllers/Lotw.php:646
+#: application/controllers/Lotw.php:654
 msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF 信息"
 
-#: application/controllers/Lotw.php:812 application/controllers/Lotw.php:815
+#: application/controllers/Lotw.php:820 application/controllers/Lotw.php:823
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr "LoTW 用户 %s 登录失败：%s。"
 
-#: application/controllers/Lotw.php:815
+#: application/controllers/Lotw.php:823
 msgid "Username/password incorrect"
 msgstr "用户名/密码不正确"
 
-#: application/controllers/Lotw.php:818
+#: application/controllers/Lotw.php:826
 msgid "LoTW login OK!"
 msgstr "LoTW 登录成功！"
 
-#: application/controllers/Lotw.php:822
+#: application/controllers/Lotw.php:830
 msgid "LoTW currently not available. Try again later."
 msgstr "LoTW当前不可用。请稍后再试。"
 
-#: application/controllers/Lotw.php:827
+#: application/controllers/Lotw.php:835
 msgid "No LoTW credentials provided."
 msgstr "没有提供 LoTW 证书。"
 
-#: application/controllers/Lotw.php:845
+#: application/controllers/Lotw.php:853
 msgid "LoTW ADIF Import"
 msgstr "LoTW ADIF 导入"
 
-#: application/controllers/Lotw.php:871 application/controllers/Lotw.php:979
+#: application/controllers/Lotw.php:879 application/controllers/Lotw.php:987
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "未配置 LoTW 登录信息！"
 
-#: application/controllers/Lotw.php:946
+#: application/controllers/Lotw.php:954
 msgid "LoTW .TQ8 Upload"
 msgstr "LoTW .TQ8 导入"
 
-#: application/controllers/Lotw.php:1024
+#: application/controllers/Lotw.php:1032
 msgid "Your ARRL username and/or password is incorrect."
 msgstr "LoTW 用户名/密码错误。"
 
-#: application/controllers/Lotw.php:1043 application/controllers/Lotw.php:1048
+#: application/controllers/Lotw.php:1051 application/controllers/Lotw.php:1056
 msgid "LoTW .TQ8 Sent"
 msgstr "LoTW .TQ8 已发送"
 
-#: application/controllers/Lotw.php:1055
+#: application/controllers/Lotw.php:1063
 msgid "LoTW .TQ8 Not Sent"
 msgstr "LoTW .TQ8 未发送"
 
@@ -2181,8 +2181,8 @@ msgstr "QRZ QSL 导入"
 msgid "QRZ ADIF Information"
 msgstr "QRZ ADIF 信息"
 
-#: application/controllers/Qsl.php:25 application/views/dashboard/index.php:339
-#: application/views/dashboard/index.php:356
+#: application/controllers/Qsl.php:25 application/views/dashboard/index.php:344
+#: application/views/dashboard/index.php:361
 #: application/views/qslcard/index.php:5
 #: application/views/visitor/index.php:287
 msgid "QSL Cards"
@@ -2296,7 +2296,7 @@ msgstr "编辑"
 #: application/views/interface_assets/footer.php:2859
 #: application/views/labels/index.php:48 application/views/labels/index.php:84
 #: application/views/logbookadvanced/index.php:734
-#: application/views/lotw_views/index.php:111
+#: application/views/lotw_views/index.php:128
 #: application/views/mode/index.php:67
 #: application/views/oqrs/showrequests.php:75
 #: application/views/qslcard/index.php:76
@@ -3460,7 +3460,7 @@ msgid "Accumulated number of WAJA worked"
 msgstr "累计通联的 WAJA 数量"
 
 #: application/views/accumulate/index.php:8
-#: application/views/dashboard/index.php:317
+#: application/views/dashboard/index.php:322
 #: application/views/dayswithqso/index.php:42
 #: application/views/dayswithqso/index.php:82
 #: application/views/statistics/index.php:19
@@ -3477,7 +3477,7 @@ msgid "Yearly"
 msgstr "每年"
 
 #: application/views/accumulate/index.php:10
-#: application/views/dashboard/index.php:322
+#: application/views/dashboard/index.php:327
 #: application/views/visitor/index.php:255
 msgid "Month"
 msgstr "月"
@@ -4120,7 +4120,7 @@ msgstr "未找到！"
 #: application/views/club/permissions.php:222
 #: application/views/components/hamsat/table.php:27
 #: application/views/contesting/index.php:170
-#: application/views/csv/index.php:23 application/views/dashboard/index.php:244
+#: application/views/csv/index.php:23 application/views/dashboard/index.php:249
 #: application/views/dcl_views/index.php:27
 #: application/views/distancerecords/index.php:18
 #: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:42
@@ -4229,7 +4229,7 @@ msgstr "与 DCL 相比，日志中 DOK 的数据不同"
 #: application/views/components/hamsat/table.php:25
 #: application/views/contesting/index.php:103
 #: application/views/contesting/index.php:261
-#: application/views/dashboard/index.php:239
+#: application/views/dashboard/index.php:244
 #: application/views/debug/index.php:594
 #: application/views/distancerecords/index.php:16
 #: application/views/eqsl/analysis.php:36
@@ -4275,7 +4275,7 @@ msgstr "日期"
 #: application/views/components/hamsat/table.php:26
 #: application/views/contesting/index.php:108
 #: application/views/contesting/index.php:261
-#: application/views/dashboard/index.php:242
+#: application/views/dashboard/index.php:247
 #: application/views/debug/index.php:595
 #: application/views/distancerecords/index.php:17
 #: application/views/eqsl/analysis.php:37
@@ -4347,8 +4347,7 @@ msgstr "CBR 导入"
 #: application/views/adif/import.php:73 application/views/adif/import.php:379
 #: application/views/adif/import.php:400 application/views/api/index.php:22
 #: application/views/dashboard/index.php:180
-#: application/views/dashboard/index.php:209
-#: application/views/dashboard/index.php:214
+#: application/views/dashboard/index.php:213
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
 #: application/views/lotw_views/index.php:4
 #: application/views/options/maptiles.php:48
@@ -4639,7 +4638,7 @@ msgstr ""
 #: application/views/adif/import.php:399
 #: application/views/adif/import_success.php:40
 #: application/views/dcl_views/index.php:76
-#: application/views/lotw_views/index.php:137
+#: application/views/lotw_views/index.php:154
 msgid "Information"
 msgstr "信息"
 
@@ -5131,7 +5130,7 @@ msgstr "已确认的县"
 #: application/views/awards/wapc/index.php:145
 #: application/views/awards/was/index.php:180
 #: application/views/awards/wpx/index.php:172
-#: application/views/dashboard/index.php:312
+#: application/views/dashboard/index.php:317
 #: application/views/simplefle/index.php:27
 #: application/views/statistics/qsltable.php:54
 #: application/views/statistics/qsltable.php:109
@@ -5220,8 +5219,8 @@ msgstr "CQ WAZ 奖"
 #: application/views/awards/wac/index.php:23
 #: application/views/awards/wpx/wpx_details.php:24
 #: application/views/bandmap/list.php:81
-#: application/views/dashboard/index.php:339
-#: application/views/dashboard/index.php:457
+#: application/views/dashboard/index.php:344
+#: application/views/dashboard/index.php:462
 #: application/views/interface_assets/footer.php:43
 #: application/views/search/result.php:32
 #: application/views/visitor/index.php:270
@@ -5232,8 +5231,8 @@ msgstr "已确认"
 #: application/views/awards/itu/index.php:35
 #: application/views/awards/wac/index.php:23
 #: application/views/bandmap/list.php:80
-#: application/views/dashboard/index.php:335
-#: application/views/dashboard/index.php:451
+#: application/views/dashboard/index.php:340
+#: application/views/dashboard/index.php:456
 #: application/views/search/result.php:35
 #: application/views/visitor/index.php:266
 msgid "Worked"
@@ -6062,7 +6061,7 @@ msgid "City"
 msgstr "城市"
 
 #: application/views/awards/jcc/index.php:188
-#: application/views/dashboard/index.php:447
+#: application/views/dashboard/index.php:452
 #: application/views/distances/index.php:23
 #: application/views/qslprint/qslprint.php:57
 #: application/views/qslprint/qslprint.php:58
@@ -7633,10 +7632,10 @@ msgid "Show Details"
 msgstr "显示详情"
 
 #: application/views/contestcalendar/index.php:45
-#: application/views/dashboard/index.php:357
-#: application/views/dashboard/index.php:384
-#: application/views/dashboard/index.php:405
-#: application/views/dashboard/index.php:426
+#: application/views/dashboard/index.php:362
+#: application/views/dashboard/index.php:389
+#: application/views/dashboard/index.php:410
+#: application/views/dashboard/index.php:431
 msgid "Today"
 msgstr "今天"
 
@@ -8160,44 +8159,57 @@ msgid ""
 "themes."
 msgstr "您的主题没有定义主题模式。请向管理员请求编辑主题。"
 
-#: application/views/dashboard/index.php:209
+#: application/views/dashboard/index.php:213
 #, php-format
 msgctxt "LoTW Warning"
-msgid "At least one of your %sLoTW certificates%s is expired!"
-msgstr "你的 %s LoTW 证书 %s 至少过期了一个！"
+msgid ""
+"LoTW Warning: There is an issue with at least one of your %sLoTW "
+"certificates%s!"
+msgstr ""
 
-#: application/views/dashboard/index.php:214
-#, php-format
-msgctxt "LoTW Warning"
-msgid "At least one of your %sLoTW certificates%s is about to expire!"
-msgstr "你的 %s LoTW 证书 %s 至少有一个快过期了！"
+#: application/views/dashboard/index.php:216
+msgid "At least one of your certificates is expired"
+msgstr ""
 
-#: application/views/dashboard/index.php:292
+#: application/views/dashboard/index.php:217
+msgid "At least one of your certificates is expiring"
+msgstr ""
+
+#: application/views/dashboard/index.php:218
+msgid "The QSO end date of at least one of your certificates was exceeded"
+msgstr ""
+
+#: application/views/dashboard/index.php:219
+msgid ""
+"The QSO end date of at least one of your certificates is about to be exceeded"
+msgstr ""
+
+#: application/views/dashboard/index.php:297
 #: application/views/qso/index.php:828
 #, php-format
 msgid "Max. %d previous contact is shown"
 msgid_plural "Max. %d previous contacts are shown"
 msgstr[0] "已显示最多 %d 个先前通联"
 
-#: application/views/dashboard/index.php:308
+#: application/views/dashboard/index.php:313
 #: application/views/visitor/index.php:241
 msgid "QSOs Breakdown"
 msgstr "QSO 分析"
 
-#: application/views/dashboard/index.php:331
+#: application/views/dashboard/index.php:336
 #: application/views/visitor/index.php:262
 msgid "DXCCs Breakdown"
 msgstr "DXCC 分析"
 
-#: application/views/dashboard/index.php:348
+#: application/views/dashboard/index.php:353
 #: application/views/visitor/index.php:279
 msgid "Needed"
 msgstr "待通联"
 
-#: application/views/dashboard/index.php:361
-#: application/views/dashboard/index.php:388
-#: application/views/dashboard/index.php:409
-#: application/views/dashboard/index.php:430
+#: application/views/dashboard/index.php:366
+#: application/views/dashboard/index.php:393
+#: application/views/dashboard/index.php:414
+#: application/views/dashboard/index.php:435
 #: application/views/oqrs/qsolist.php:51 application/views/oqrs/qsolist.php:131
 #: application/views/oqrs/qsolist.php:160
 #: application/views/qslprint/qsolist.php:62
@@ -8231,10 +8243,10 @@ msgstr "待通联"
 msgid "Sent"
 msgstr "已发送"
 
-#: application/views/dashboard/index.php:367
-#: application/views/dashboard/index.php:394
-#: application/views/dashboard/index.php:415
-#: application/views/dashboard/index.php:436
+#: application/views/dashboard/index.php:372
+#: application/views/dashboard/index.php:399
+#: application/views/dashboard/index.php:420
+#: application/views/dashboard/index.php:441
 #: application/views/oqrs/qsolist.php:93 application/views/oqrs/qsolist.php:144
 #: application/views/oqrs/qsolist.php:175
 #: application/views/qslprint/qsolist.php:104
@@ -8267,7 +8279,7 @@ msgstr "已发送"
 msgid "Received"
 msgstr "已收到"
 
-#: application/views/dashboard/index.php:373
+#: application/views/dashboard/index.php:378
 #: application/views/logbookadvanced/edit.php:168
 #: application/views/logbookadvanced/edit.php:175
 #: application/views/logbookadvanced/edit.php:201
@@ -8307,25 +8319,25 @@ msgstr "已收到"
 msgid "Requested"
 msgstr "已（被）请求"
 
-#: application/views/dashboard/index.php:383
+#: application/views/dashboard/index.php:388
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
 msgstr "Logbook of the World(LoTW)"
 
-#: application/views/dashboard/index.php:446
+#: application/views/dashboard/index.php:451
 msgid "VUCC-Grids"
 msgstr "VUCC 网格"
 
-#: application/views/dashboard/index.php:471
+#: application/views/dashboard/index.php:476
 msgid "Solar Data & Propagation"
 msgstr "太阳与传播数据"
 
-#: application/views/dashboard/index.php:473
+#: application/views/dashboard/index.php:478
 #, php-format
 msgid "Last update at %s."
 msgstr "上次更新时间：%s。"
 
-#: application/views/dashboard/index.php:482
+#: application/views/dashboard/index.php:487
 msgid "Data provided by HAMqsl."
 msgstr "数据由 HAMqsl 提供。"
 
@@ -8493,12 +8505,12 @@ msgid "The next automatic sync with DCL will happen at: "
 msgstr "下一次与 DCL 的自动同步将在： "
 
 #: application/views/dcl_views/index.php:82
-#: application/views/lotw_views/index.php:143
+#: application/views/lotw_views/index.php:160
 msgid "Manual Sync"
 msgstr "手动同步"
 
 #: application/views/dcl_views/index.php:84
-#: application/views/lotw_views/index.php:145
+#: application/views/lotw_views/index.php:162
 msgid "running..."
 msgstr "运行中……"
 
@@ -11284,37 +11296,41 @@ msgstr "过期日期"
 msgid "Last Upload"
 msgstr "最后一次上传是"
 
-#: application/views/lotw_views/index.php:84
-msgid "Expired"
-msgstr "过期"
-
-#: application/views/lotw_views/index.php:86
-msgid "Expiring"
-msgstr "即将到期"
-
-#: application/views/lotw_views/index.php:88
-msgid "Valid"
-msgstr "有效"
+#: application/views/lotw_views/index.php:96
+msgid "Certificate expired"
+msgstr ""
 
 #: application/views/lotw_views/index.php:98
+msgid "Certificate expiring"
+msgstr ""
+
+#: application/views/lotw_views/index.php:100
+msgid "Certificate valid"
+msgstr ""
+
+#: application/views/lotw_views/index.php:105
+msgid "QSO end date nearing"
+msgstr ""
+
+#: application/views/lotw_views/index.php:115
 #, php-format
 msgid "Last success: %s"
 msgstr "上次成功：%s"
 
-#: application/views/lotw_views/index.php:101
+#: application/views/lotw_views/index.php:118
 #, php-format
 msgid "Last fail: %s"
 msgstr "上次失败：%s"
 
-#: application/views/lotw_views/index.php:107
+#: application/views/lotw_views/index.php:124
 msgid "Not Synced"
 msgstr "未同步"
 
-#: application/views/lotw_views/index.php:122
+#: application/views/lotw_views/index.php:139
 msgid "You need to upload some LoTW p12 certificates to use this area."
 msgstr "你需要上传 LoTW p12 证书以使用该功能。"
 
-#: application/views/lotw_views/index.php:141
+#: application/views/lotw_views/index.php:158
 msgid "The next automatic sync with LoTW will happen at: "
 msgstr "LoTW 下次自动同步时间： "
 
@@ -15860,6 +15876,25 @@ msgstr "提交请求"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "收"
+
+#, php-format
+#~ msgctxt "LoTW Warning"
+#~ msgid "At least one of your %sLoTW certificates%s is expired!"
+#~ msgstr "你的 %s LoTW 证书 %s 至少过期了一个！"
+
+#, php-format
+#~ msgctxt "LoTW Warning"
+#~ msgid "At least one of your %sLoTW certificates%s is about to expire!"
+#~ msgstr "你的 %s LoTW 证书 %s 至少有一个快过期了！"
+
+#~ msgid "Expired"
+#~ msgstr "过期"
+
+#~ msgid "Expiring"
+#~ msgstr "即将到期"
+
+#~ msgid "Valid"
+#~ msgstr "有效"
 
 #~ msgid "Experimental"
 #~ msgstr "实验性功能"
