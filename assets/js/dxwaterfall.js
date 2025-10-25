@@ -1452,6 +1452,7 @@ var dxWaterfall = {
 
     // State flags
     programmaticModeChange: false, // Flag to prevent fetching spots when mode is changed by waterfall
+    programmaticBandUpdate: false, // Flag to indicate band was changed programmatically by CAT (not user)
     userChangedBand: false, // Flag to prevent auto band update when user manually changed band
     initializationComplete: false, // Flag to track if initial setup is done
     lastPopulatedSpot: null, // Track the last spot that was used to populate the form
@@ -1677,19 +1678,24 @@ var dxWaterfall = {
         this.lastBand = this.getCurrentBand();
         this.lastMode = this.getCurrentMode();
 
-        // Set up delay for CAT frequency to arrive
-        // After timeout, proceed with initial fetch regardless
+        // Set up adaptive timeout for CAT frequency to arrive
+        // WebSocket connections are much faster, so use shorter timeout
+        var timings = getCATTimings();
+        var catWaitTimeout = timings.confirmTimeout; // 500ms for WebSocket, 3000ms for polling
+
         this.catFrequencyWaitTimer = setTimeout(function() {
+            console.log('[DX Waterfall] INIT: CAT frequency wait timeout (' + catWaitTimeout + 'ms), proceeding with fetch');
             self.waitingForCATFrequency = false;
             // Trigger refresh which will now perform the initial fetch
             if (!self.initialFetchDone) {
                 self.refresh();
             }
-        }, DX_WATERFALL_CONSTANTS.CAT.FREQUENCY_WAIT_TIMEOUT_MS);
+        }, catWaitTimeout);
 
         // Safety fallback: If we're still stuck after 10 seconds, force the initial fetch
         setTimeout(function() {
             if (!self.initialFetchDone && !self.dataReceived) {
+                console.log('[DX Waterfall] INIT: 10-second safety timeout, forcing fetch');
                 self.waitingForCATFrequency = false;
                 if (self.catFrequencyWaitTimer) {
                     clearTimeout(self.catFrequencyWaitTimer);
@@ -1748,6 +1754,21 @@ var dxWaterfall = {
             this.lastValidCommittedFreq = currentInput;
             this.lastValidCommittedUnit = currentUnit;
 
+            // CRITICAL: Update band from frequency BEFORE refresh() is called
+            // This ensures programmaticBandUpdate flag is set before hasParametersChanged() runs
+            // BUT only do this if the band actually needs to change (frequency is outside current band)
+            var currentFreqKhz = DX_WATERFALL_UTILS.frequency.convertToKhz(freqValue, currentUnit);
+            if (currentFreqKhz > 0) {
+                var expectedBand = this.getFrequencyBand(currentFreqKhz);
+                var currentBand = this.getCurrentBand();
+
+                // Only update band if frequency's band differs from current band
+                // This prevents overriding manual band changes when frequency is already in that band
+                if (expectedBand && currentBand && expectedBand !== currentBand) {
+                    this.updateBandFromFrequency(currentFreqKhz);
+                }
+            }
+
             // If we're still waiting for CAT frequency and user manually set a frequency, cancel the wait
             // Only cancel if initialization is complete (don't cancel during initial page load)
             if (this.waitingForCATFrequency && this.initializationComplete) {
@@ -1792,11 +1813,9 @@ var dxWaterfall = {
             this.waitingForData = true;
         }
 
-        // Block parameter checks during band change cooldown to prevent race conditions
-        if (this.userChangedBand) {
-            console.log('[DX Waterfall] PARAMS CHECK: Blocked during band change cooldown');
-            return false;
-        }
+        // Note: We DON'T block during userChangedBand cooldown anymore
+        // Instead, we allow the parameter check to proceed, but we handle the fetch differently
+        // Manual band changes should still fetch spots (user expects to see new band data)
 
         console.log('[DX Waterfall] PARAMS CHECK: Band=' + currentBand + ', Mode=' + currentMode +
                     ' (last: Band=' + this.lastBand + ', Mode=' + this.lastMode + ')');
@@ -1860,12 +1879,30 @@ var dxWaterfall = {
                 this.operationStartTime = Date.now();
                 // Immediately update menu to show loading indicator
                 this.updateZoomMenu();
-                // Block automatic band changes for 2 seconds to prevent race conditions
-                this.userChangedBand = true;
-                var self = this;
-                setTimeout(function() {
-                    self.userChangedBand = false;
-                }, 2000);
+
+                // Determine if this is a programmatic (CAT) change or manual user change
+                // Programmatic changes bypass cooldown, manual changes set cooldown (if not already active)
+                if (this.programmaticBandUpdate) {
+                    console.log('[DX Waterfall] BAND CHANGE: Programmatic (CAT) - no cooldown, fetching immediately');
+                    // Reset the flag immediately after use
+                    this.programmaticBandUpdate = false;
+                    // If there was a manual change cooldown active, cancel it (CAT takes priority)
+                    if (this.userChangedBand) {
+                        this.userChangedBand = false;
+                    }
+                } else if (!this.userChangedBand) {
+                    // Manual change AND no cooldown already active
+                    // This happens when waterfall detects band is outside frequency range
+                    console.log('[DX Waterfall] BAND CHANGE: Auto-detected from frequency - setting 2s cooldown');
+                    this.userChangedBand = true;
+                    var self = this;
+                    setTimeout(function() {
+                        self.userChangedBand = false;
+                    }, 2000);
+                } else {
+                    // Manual change and cooldown already active (from qso.js)
+                    console.log('[DX Waterfall] BAND CHANGE: Manual user change - cooldown already active');
+                }
             }
         }
 
@@ -2862,13 +2899,34 @@ var dxWaterfall = {
             var bandExists = this.$bandSelect.find('option[value="' + newBand + '"]').length > 0;
 
             if (bandExists) {
+                // Set flag to prevent band change event handler from running
+                // This prevents form reset during CAT/WebSocket frequency updates
+                window.programmaticBandChange = true;
+
+                // CRITICAL: Set waterfall flag IMMEDIATELY before the band changes
+                // This ensures hasParametersChanged() can detect this was programmatic
+                this.programmaticBandUpdate = true;
+
                 // Update the band dropdown (in the QSO form)
                 this.$bandSelect.val(newBand);
+
+                // Reset flags after a short delay to allow event to process
+                var self = this;
+                setTimeout(function() {
+                    window.programmaticBandChange = false;
+                    // Keep waterfall flag longer to survive the parameter check
+                }, 50);
             } else {
                 // Band doesn't exist in dropdown, select the first available option as fallback
                 var firstOption = this.$bandSelect.find('option:first').val();
                 if (firstOption) {
+                    window.programmaticBandChange = true;
+                    this.programmaticBandUpdate = true;
                     this.$bandSelect.val(firstOption);
+                    var self = this;
+                    setTimeout(function() {
+                        window.programmaticBandChange = false;
+                    }, 50);
                 }
             }
         }
@@ -3225,8 +3283,9 @@ var dxWaterfall = {
                     self.collectAllBandSpots(true); // Update band spot collection for navigation (force after data fetch)
                     self.collectSmartHunterSpots(); // Update smart hunter spots collection
 
-                    // Populate menu after first successful data fetch
-                    self.updateZoomMenu();
+                    // Force menu update after data fetch - bypass catTuning/frequencyChanging check
+                    // This ensures menu shows data immediately even if frequency is still settling
+                    self.updateZoomMenu(true); // Pass true to force update
 
                     // Check if we're standing on a spot and auto-populate QSO form
                     self.checkAndPopulateSpotAtFrequency();
@@ -3442,10 +3501,9 @@ var dxWaterfall = {
             return;
         }
 
-        // Hide zoom menu while waiting for data
-        if (this.zoomMenuDiv) {
-            this.zoomMenuDiv.innerHTML = '';
-        }
+        // Don't clear zoom menu here - let updateZoomMenu() handle it
+        // This prevents brief empty states when displayWaitingMessage() is called
+        // followed immediately by updateZoomMenu()
 
         // Update canvas dimensions to match current CSS dimensions
         this.updateDimensions();
@@ -4842,14 +4900,16 @@ var dxWaterfall = {
     },
 
     // Update zoom menu display
-    updateZoomMenu: function() {
+    // @param {boolean} forceUpdate - If true, bypass catTuning/frequencyChanging check
+    updateZoomMenu: function(forceUpdate) {
         if (!this.zoomMenuDiv) {
             return;
         }
 
         // Don't show menu at all during frequency changes or CAT tuning
         // Don't show hourglass either - frequency changes should be invisible to user
-        if (this.catTuning || this.frequencyChanging) {
+        // UNLESS forceUpdate is true (e.g., after data fetch completes)
+        if (!forceUpdate && (this.catTuning || this.frequencyChanging)) {
             // Don't update menu during frequency changes - keep showing last state
             return;
         }
@@ -4874,8 +4934,9 @@ var dxWaterfall = {
         // Once data is received, always show full menu (with loading indicator if needed)
         // Show loading indicator for both user-initiated and pending fetches to avoid layout shifts
         if (!this.dataReceived) {
-            if (this.waitingForData) {
+            if (this.waitingForData || this.operationStartTime) {
                 // Show loading indicator with counter for any waiting state
+                // Use operationStartTime check as fallback to catch brief transition moments
                 if (this.operationStartTime) {
                     var elapsed = ((Date.now() - this.operationStartTime) / 1000).toFixed(1);
                     // Only show "Warming up..." if we haven't received ANY data yet and elapsed < 1s
@@ -4883,11 +4944,11 @@ var dxWaterfall = {
                     this.zoomMenuDiv.innerHTML = '<div style="display: flex; align-items: center; flex: 1;"><i class="fas fa-hourglass-half" style="margin-right: 5px; animation: blink 1s infinite;"></i><span style="margin-right: 10px;">' + displayText + '</span></div>';
                 } else {
                     // Waiting but no timer started yet - show hourglass without counter
-                    this.zoomMenuDiv.innerHTML = '<div style="display: flex; align-items: center; flex: 1;"><i class="fas fa-hourglass-half" style="margin-right: 5px; animation: blink 1s infinite;"></i><span style="margin-right: 10px;">&nbsp;</span></div>';
+                    this.zoomMenuDiv.innerHTML = '<div style="display: flex; align-items: center; flex: 1;"><i class="fas fa-hourglass-half" style="margin-right: 5px; animation: blink 1s infinite;"></i><span style="margin-right: 10px;">' + lang_dxwaterfall_warming_up + '</span></div>';
                 }
             } else {
-                // No data yet and not waiting - show placeholder to maintain height
-                this.zoomMenuDiv.innerHTML = '<div style="display: flex; align-items: center; flex: 1;"><span style="margin-right: 10px;">&nbsp;</span></div>';
+                // No data yet and not waiting - show hourglass placeholder to maintain height and prevent empty state
+                this.zoomMenuDiv.innerHTML = '<div style="display: flex; align-items: center; flex: 1;"><i class="fas fa-hourglass-half" style="margin-right: 5px; color: transparent;"></i><span style="margin-right: 10px;">&nbsp;</span></div>';
             }
             return;
         }

@@ -1811,10 +1811,18 @@ $('.mode').on('change', function () {
 $('#band').on('change', function () {
 	const selectedBand = $(this).val();
 
+	// Skip if this is a programmatic change from CAT/waterfall
+	if (typeof window.programmaticBandChange !== 'undefined' && window.programmaticBandChange) {
+		console.log('[QSO] Band change ignored (programmatic from CAT/waterfall)');
+		return;
+	}
+
 	// Skip resetting frequency if CAT is currently updating
 	if (typeof cat_updating_frequency !== 'undefined' && cat_updating_frequency) {
 		return;
 	}
+
+	console.log('[QSO] Band manually changed to:', selectedBand);
 
 	// Clear the QSO form when band is manually changed
 	$('#btn_reset').click();
