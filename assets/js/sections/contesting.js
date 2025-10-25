@@ -650,6 +650,10 @@ function logQso() {
 		// Only "Start a new contest session" will enable it again
 		disabledContestnameSelect(true);
 
+		// Avoid resubmission by disabling the button
+		var saveQsoButtonText = $("#saveQso").html();
+		$("#saveQso").html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span> ' + saveQsoButtonText + '...').prop('disabled', true);
+
 		$('.callsign-suggestions').text("");
 		$('#callsign_info').text("");
 
@@ -747,6 +751,8 @@ function logQso() {
 				var qTable = $('.qsotable').DataTable();
 				qTable.search('').order([0, 'desc']).draw();
 
+				// Re-enable the previously disabled button for resubmission avoidance
+				$("#saveQso").html(saveQsoButtonText).prop("disabled", false);
 			}
 		});
 	}

@@ -236,7 +236,7 @@
                         </div>
 
                         <button type="button" class="mb-3 btn btn-sm btn-secondary" onclick="reset_log_fields()"><i class="fas fa-sync-alt"></i> <?= __("Reset QSO"); ?></button>
-                        <button type="button" class="mb-3 btn btn-sm btn-primary" onclick="logQso();"><i class="fas fa-save"></i> <?= __("Save QSO"); ?></button>
+                        <button type="button" class="mb-3 btn btn-sm btn-primary" onclick="logQso();" id="saveQso"><i class="fas fa-save"></i> <?= __("Save QSO"); ?></button>
                     </form>
                 </div>
             </div>
