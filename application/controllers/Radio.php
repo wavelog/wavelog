@@ -353,10 +353,10 @@ class Radio extends CI_Controller {
 			return;
 		}
 
-		// Validate frequency parameter
-		if (empty($frequency)) {
+		// Validate frequency parameter (must be numeric and positive)
+		if (empty($frequency) || !is_numeric($frequency) || $frequency <= 0) {
 			header('Content-Type: application/json');
-			echo json_encode(array('error' => 'missing_frequency'), JSON_PRETTY_PRINT);
+			echo json_encode(array('error' => 'invalid_frequency'), JSON_PRETTY_PRINT);
 			return;
 		}
 
@@ -396,9 +396,14 @@ class Radio extends CI_Controller {
 			}
 		}
 
-		// Format: {cat_url}/{frequency}/{mode}
-		// If mode is not provided, default to 'usb'
+		// Validate and normalize mode parameter
+		$valid_modes = array('lsb', 'usb', 'cw', 'fm', 'am', 'rtty', 'pkt', 'dig', 'pktlsb', 'pktusb', 'pktfm');
 		$cat_mode = !empty($mode) ? strtolower($mode) : 'usb';
+		if (!in_array($cat_mode, $valid_modes)) {
+			$cat_mode = 'usb'; // Default to USB for invalid modes
+		}
+
+		// Format: {cat_url}/{frequency}/{mode}
 		$url = $cat_url . '/' . $frequency . '/' . $cat_mode;
 
 		// Initialize cURL for GET request
@@ -406,8 +411,9 @@ class Radio extends CI_Controller {
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2); // Separate connection timeout
 
-		// Execute request (gateway requires two requests due to known issue of changing mod see https://github.com/wavelog/WaveLogGate/issues/82)
+		// Execute request (gateway requires two requests due to known issue of changing mode see https://github.com/wavelog/WaveLogGate/issues/82)
 		// First request
 		$response = curl_exec($ch);
 		$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);

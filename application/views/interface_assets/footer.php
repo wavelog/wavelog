@@ -59,7 +59,6 @@
     var lang_notes_error_loading = "<?= __("Error loading notes"); ?>";
     var lang_notes_sort = "<?= __("Sorting"); ?>";
     var lang_notes_duplication_disabled = "<?= __("Duplication is disabled for Contacts notes"); ?>";
-    var lang_notes_duplicate = "<?= __("Duplicate"); ?>";
     var lang_general_word_delete = "<?= __("Delete"); ?>";
     var lang_general_word_duplicate = "<?= __("Duplicate"); ?>";
     var lang_notes_delete = "<?= __("Delete Note"); ?>";
@@ -1433,9 +1432,6 @@ mymap.on('mousemove', onQsoMapMove);
     // Global variable for currently selected radio
     var selectedRadioId = null;
 
-    // CAT poll interval (used even without DX Waterfall)
-    var catPollInterval = <?php echo $this->config->item('cat_poll_interval') ?? 3000; ?>;
-
     $( document ).ready(function() {
 	    // Javascript for controlling rig frequency.
 	    let websocket = null;
@@ -1443,7 +1439,17 @@ mymap.on('mousemove', onQsoMapMove);
 	    let websocketEnabled = false;
 	    let websocketIntentionallyClosed = false; // Flag to prevent auto-reconnect when user switches away
 	    let CATInterval=null;
-	    var updateFromCAT_lock =0; // This mechanism prevents multiple simultaneous calls to query the CAT interface information
+	    var updateFromCAT_lock = 0; // This mechanism prevents multiple simultaneous calls to query the CAT interface information
+	    var updateFromCAT_lockTimeout = null; // Timeout to release lock if AJAX fails
+
+	    // CAT Configuration Constants
+	    const CAT_CONFIG = {
+	        POLL_INTERVAL: <?php echo $this->config->item('cat_poll_interval') ?? 3000; ?>,
+	        WEBSOCKET_RECONNECT_MAX: 5,
+	        WEBSOCKET_RECONNECT_DELAY_MS: 2000,
+	        AJAX_TIMEOUT_MS: 5000,
+	        LOCK_TIMEOUT_MS: 10000
+	    };
 
 	    function initializeWebSocketConnection() {
 		    try {
@@ -1458,12 +1464,13 @@ mymap.on('mousemove', onQsoMapMove);
 				    try {
 					    const data = JSON.parse(event.data);
 					    handleWebSocketData(data);
-						console.log("websocket data received:", data);
 				    } catch (error) {
+					    console.error("WebSocket message parsing error:", error, event.data);
 				    }
 			    };
 
 			    websocket.onerror = function(error) {
+				    console.error("WebSocket error:", error);
 				    websocketEnabled=false;
 			    };
 
@@ -1471,11 +1478,11 @@ mymap.on('mousemove', onQsoMapMove);
 			    websocketEnabled = false;
 
 			    // Only attempt to reconnect if the closure was not intentional
-			    if (!websocketIntentionallyClosed && reconnectAttempts < 5) {
+			    if (!websocketIntentionallyClosed && reconnectAttempts < CAT_CONFIG.WEBSOCKET_RECONNECT_MAX) {
 				    setTimeout(() => {
 				    reconnectAttempts++;
 				    initializeWebSocketConnection();
-			    }, 2000 * reconnectAttempts);
+			    }, CAT_CONFIG.WEBSOCKET_RECONNECT_DELAY_MS * reconnectAttempts);
 			    } else if (!websocketIntentionallyClosed) {
 				    // Only show error if it wasn't an intentional close
 				    $(".radio_cat_state" ).remove();
@@ -1589,7 +1596,7 @@ mymap.on('mousemove', onQsoMapMove);
 					    mode: mode
 				    },
 				    dataType: 'text',
-				    timeout: 5000,
+				    timeout: CAT_CONFIG.AJAX_TIMEOUT_MS,
 				    success: function(data, textStatus, jqXHR) {
 					    if (typeof onSuccess === 'function') {
 						    onSuccess(data, textStatus, jqXHR);
@@ -1605,6 +1612,13 @@ mymap.on('mousemove', onQsoMapMove);
 	    }
 
 	    function updateCATui(data) {
+		    // Cache frequently used DOM selectors
+		    var $frequency = $('#frequency');
+		    var $band = $('#band');
+		    var $frequencyRx = $('#frequency_rx');
+		    var $bandRx = $('#band_rx');
+		    var $mode = $('.mode');
+
 		    // If radio name is not in data, get it from the selected radio dropdown
 		    if (!data.radio || data.radio == null || data.radio == '') {
 			    data.radio = $('select.radios option:selected').text();
@@ -1612,46 +1626,46 @@ mymap.on('mousemove', onQsoMapMove);
 
 		    <?php if ($this->session->userdata('user_dxwaterfall_enable') == 'Y') { ?>
 		    // DX Waterfall: Force update by clearing catValue (prevents cat2UI from blocking updates)
-		    $('#frequency').removeData('catValue');
+		    $frequency.removeData('catValue');
 		    cat_updating_frequency = true; // Set flag before CAT update
 
 		    // DX Waterfall: Check debounce lock before updating frequency
 		    if (typeof handleCATFrequencyUpdate === 'function') {
 			    handleCATFrequencyUpdate(data.frequency, function() {
-				    cat2UI($('#frequency'),data.frequency,false,true,function(d){
-					    $('#frequency').trigger('change'); // Trigger for other event handlers
+				    cat2UI($frequency,data.frequency,false,true,function(d){
+					    $frequency.trigger('change'); // Trigger for other event handlers
 					    const newBand = frequencyToBand(d);
-					    if ($("#band").val() != newBand) {
-						    $("#band").val(newBand).trigger('change'); // Trigger band change
+					    if ($band.val() != newBand) {
+						    $band.val(newBand).trigger('change'); // Trigger band change
 					    }
 					    cat_updating_frequency = false; // Clear flag after updates
 				    });
 			    });
 		    } else {
 			    // Fallback if dxwaterfall.js not loaded
-			    cat2UI($('#frequency'),data.frequency,false,true,function(d){
-				    $('#frequency').trigger('change');
-				    if ($("#band").val() != frequencyToBand(d)) {
-					    $("#band").val(frequencyToBand(d)).trigger('change');
+			    cat2UI($frequency,data.frequency,false,true,function(d){
+				    $frequency.trigger('change');
+				    if ($band.val() != frequencyToBand(d)) {
+					    $band.val(frequencyToBand(d)).trigger('change');
 				    }
 				    cat_updating_frequency = false;
 			    });
 		    }
 		    <?php } else { ?>
 		    // Standard frequency update
-		    $('#frequency').removeData('catValue');
+		    $frequency.removeData('catValue');
 		    cat_updating_frequency = true; // Set flag before CAT update
-		    cat2UI($('#frequency'),data.frequency,false,true,function(d){
-			    $('#frequency').trigger('change');
-			    if ($("#band").val() != frequencyToBand(d)) {
-				    $("#band").val(frequencyToBand(d)).trigger('change');
+		    cat2UI($frequency,data.frequency,false,true,function(d){
+			    $frequency.trigger('change');
+			    if ($band.val() != frequencyToBand(d)) {
+				    $band.val(frequencyToBand(d)).trigger('change');
 			    }
 			    cat_updating_frequency = false; // Clear flag after updates
 		    });
 		    <?php } ?>
 
-		    cat2UI($('#frequency_rx'),data.frequency_rx,false,true,function(d){$("#band_rx").val(frequencyToBand(d))});
-		    cat2UI($('.mode'),catmode(data.mode),false,false,function(d){setRst($(".mode").val())});
+		    cat2UI($frequencyRx,data.frequency_rx,false,true,function(d){$bandRx.val(frequencyToBand(d))});
+		    cat2UI($mode,catmode(data.mode),false,false,function(d){setRst($mode.val())});
 		    cat2UI($('#sat_name'),data.satname,false,false);
 		    cat2UI($('#sat_mode'),data.satmode,false,false);
 		    cat2UI($('#transmit_power'),data.power,false,false);
@@ -1727,97 +1741,53 @@ mymap.on('mousemove', onQsoMapMove);
 	    }
 
 	    var updateFromCAT = function() {
-		    if($('select.radios option:selected').val() != '0') {
+		    if ($('select.radios option:selected').val() != '0') {
+			    var radioID = $('select.radios option:selected').val();
 
-			    radioID = $('select.radios option:selected').val();
-			    if ((typeof radioID !== 'undefined') && (radioID !== null) && (radioID !== "") && (updateFromCAT_lock == 0)) {
-                    updateFromCAT_lock = 1;
-				    $.getJSON( "radio/json/" + radioID, function( data ) {
+			    if ((typeof radioID !== 'undefined') && (radioID !== null) && (radioID !== '') && (updateFromCAT_lock == 0)) {
+				    updateFromCAT_lock = 1;
 
+				    // Set timeout to release lock if AJAX fails
+				    if (updateFromCAT_lockTimeout) {
+					    clearTimeout(updateFromCAT_lockTimeout);
+				    }
+				    updateFromCAT_lockTimeout = setTimeout(function() {
+					    console.warn('CAT lock timeout - forcing release');
+					    updateFromCAT_lock = 0;
+				    }, CAT_CONFIG.LOCK_TIMEOUT_MS);
+
+				    $.getJSON('radio/json/' + radioID, function(data) {
 					    if (data.error) {
 						    if (data.error == 'not_logged_in') {
-							    $(".radio_cat_state" ).remove();
-							    if($('.radio_login_error').length == 0) {
+							    $('.radio_cat_state').remove();
+							    if ($('.radio_login_error').length == 0) {
 								    $('.qso_panel').prepend('<div class="alert alert-danger radio_login_error" role="alert"><i class="fas fa-broadcast-tower"></i> ' + "<?= sprintf(__("You're not logged in. Please %slogin%s"), '<a href=\"' . base_url() . '\">', '</a>'); ?>" + '</div>');
 							    }
 						    }
 						    // Put future Errorhandling here
 					    } else {
-						    if($('.radio_login_error').length != 0) {
-							    $(".radio_login_error" ).remove();
+						    if ($('.radio_login_error').length != 0) {
+							    $('.radio_login_error').remove();
 						    }
 
-						    // Display CAT Timeout warning based on the figure given in the config file
-						    var minutes = Math.floor(<?php echo $this->optionslib->get_option('cat_timeout_interval'); ?> / 60);
-
-						    if(data.updated_minutes_ago > minutes) {
-
-                                <?php if ($this->session->userdata('user_dxwaterfall_enable') == 'Y') { ?>
-                                dxwaterfall_cat_state = "none";
-                                <?php } ?>
-							    $(".radio_cat_state" ).remove();
-							    if($('.radio_timeout_error').length == 0) {
-								    $('#radio_status').prepend('<div class="alert alert-danger radio_timeout_error" role="alert"><i class="fas fa-broadcast-tower"></i> Radio connection timed-out: ' + $('select.radios option:selected').text() + ' data is ' + data.updated_minutes_ago + ' minutes old.</div>');
-							    } else {
-								    $('.radio_timeout_error').html('Radio connection timed-out: ' + $('select.radios option:selected').text() + ' data is ' + data.updated_minutes_ago + ' minutes old.');
-							    }
-						    } else {
-
-                                // Handle frequency updates
-                                <?php if ($this->session->userdata('user_dxwaterfall_enable') == 'Y') { ?>
-                                // DX Waterfall: Check debounce lock before updating frequency
-                                if (typeof handleCATFrequencyUpdate === 'function') {
-                                    handleCATFrequencyUpdate(data.frequency, function() {
-                                        cat2UI($('#frequency'),data.frequency,false,true,function(d){
-                                            $('#frequency').trigger('change');
-                                            if ($("#band").val() != frequencyToBand(d)) {
-                                                $("#band").val(frequencyToBand(d)).trigger('change');
-                                            }
-                                        });
-                                    });
-		    } else {
-			    // Fallback if dxwaterfall.js not loaded
-			    cat_frequency_updating = true;
-			    $('#frequency').removeData('catValue'); // Force update
-			    cat2UI($('#frequency'),data.frequency,false,true,function(d){
-				    // $('#frequency').trigger('change');
-				    if ($("#band").val() != frequencyToBand(d)) {
-					    $("#band").val(frequencyToBand(d)); // Update silently
-				    }
-				    cat_frequency_updating = false;
-			    });
-		    }
-		    <?php } else { ?>
-		    // Standard frequency update
-		    cat_frequency_updating = true;
-		    $('#frequency').removeData('catValue'); // Force update
-		    cat2UI($('#frequency'),data.frequency,false,true,function(d){
-			    // $('#frequency').trigger('change');
-			    if ($("#band").val() != frequencyToBand(d)) {
-				    $("#band").val(frequencyToBand(d)); // Update silently
-			    }
-			    cat_frequency_updating = false;
-		    });
-		    <?php } ?>
-                                cat2UI($('#frequency_rx'),data.frequency_rx,false,true,function(d){$("#band_rx").val(frequencyToBand(d))});
-                                cat2UI($('.mode'),catmode(data.mode),false,false,function(d){setRst($(".mode").val())});
-                                cat2UI($('#sat_name'),data.satname,false,false);
-                                cat2UI($('#sat_mode'),data.satmode,false,false);
-                                cat2UI($('#transmit_power'),data.power,false,false);
-                                cat2UI($('#selectPropagation'),data.prop_mode,false,false);
-
-                                <?php if ($this->session->userdata('user_dxwaterfall_enable') == 'Y') { ?>
-                                // Set CAT state based on active radio connection type
-                                if ($(".radios option:selected").val() == 'ws') {
-                                    dxwaterfall_cat_state = "websocket";
-                                } else {
-                                    dxwaterfall_cat_state = "polling";
-                                }
-                                <?php } ?>
-						    }
+						    // Update CAT UI with received data
 						    updateCATui(data);
 					    }
+
+					    // Clear lock timeout and release lock
+					    if (updateFromCAT_lockTimeout) {
+						    clearTimeout(updateFromCAT_lockTimeout);
+						    updateFromCAT_lockTimeout = null;
+					    }
 					    updateFromCAT_lock = 0;
+				    }).fail(function() {
+					    // Release lock on AJAX failure
+					    if (updateFromCAT_lockTimeout) {
+						    clearTimeout(updateFromCAT_lockTimeout);
+						    updateFromCAT_lockTimeout = null;
+					    }
+					    updateFromCAT_lock = 0;
+					    console.error('CAT AJAX request failed');
 				    });
 			    }
 		    }
@@ -1826,14 +1796,14 @@ mymap.on('mousemove', onQsoMapMove);
 	    // Initialize DX_WATERFALL_CONSTANTS CAT timings based on poll interval
 	    <?php if ($this->session->userdata('user_dxwaterfall_enable') == 'Y') { ?>
 	    if (typeof initCATTimings === 'function') {
-	        initCATTimings(catPollInterval);
+	        initCATTimings(CAT_CONFIG.POLL_INTERVAL);
 	    }
 	    <?php } ?>
 
 	    // If no radio is selected clear data
-	    $( ".radios" ).change(function() {
+	    $('.radios').change(function() {
 		    // Update global selected radio variable
-		    selectedRadioId = $(".radios option:selected").val();
+		    selectedRadioId = $('.radios option:selected').val();
 
 		    if (CATInterval) {	// We've a change - stop polling if active
 			    clearInterval(CATInterval);
@@ -1845,14 +1815,14 @@ mymap.on('mousemove', onQsoMapMove);
 			    websocketEnabled = false;
 		    }
 		    if (selectedRadioId == '0') {
-			    $("#sat_name").val("");
-			    $("#sat_mode").val("");
-			    $("#frequency").val("");
-			    $("#frequency_rx").val("");
-			    $("#band_rx").val("");
-			    $("#selectPropagation").val($("#selectPropagation option:first").val());
-			    $(".radio_timeout_error" ).remove();
-			    $(".radio_cat_state" ).remove();
+			    $('#sat_name').val('');
+			    $('#sat_mode').val('');
+			    $('#frequency').val('');
+			    $('#frequency_rx').val('');
+			    $('#band_rx').val('');
+			    $('#selectPropagation').val($('#selectPropagation option:first').val());
+			    $('.radio_timeout_error').remove();
+			    $('.radio_cat_state').remove();
 			    <?php if ($this->session->userdata('user_dxwaterfall_enable') == 'Y') { ?>
 			    dxwaterfall_cat_state = "none";
 			    <?php } ?>
@@ -1868,7 +1838,7 @@ mymap.on('mousemove', onQsoMapMove);
 			    dxwaterfall_cat_state = "polling";
 			    <?php } ?>
 			    // Update frequency at configured interval
-			    CATInterval=setInterval(updateFromCAT, catPollInterval);
+			    CATInterval=setInterval(updateFromCAT, CAT_CONFIG.POLL_INTERVAL);
 		    }
 	    });
 	    $('.radios').change();	// Initial trigger for pre-chosen radio
