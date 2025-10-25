@@ -1407,6 +1407,7 @@ mymap.on('mousemove', onQsoMapMove);
 				    try {
 					    const data = JSON.parse(event.data);
 					    handleWebSocketData(data);
+						console.log("WebSocket message received:", data);
 				    } catch (error) {
 					    console.error("WebSocket message parsing error:", error, event.data);
 				    }
