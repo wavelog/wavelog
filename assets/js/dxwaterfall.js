@@ -23,7 +23,7 @@ var DX_WATERFALL_CONSTANTS = {
         ICON_FEEDBACK_MS: 200,             	// Visual feedback duration for icon clicks
         ZOOM_ICON_FEEDBACK_MS: 150,        	// Visual feedback duration for zoom icons
         MODE_CHANGE_SETTLE_MS: 200,        	// Delay for radio mode change to settle
-        FORM_POPULATE_DELAY_MS: 100,       	// Delay before populating QSO form
+        FORM_POPULATE_DELAY_MS: 50,        	// Delay before populating QSO form
         SPOT_NAVIGATION_COMPLETE_MS: 100,  	// Delay for spot navigation completion
         ZOOM_MENU_UPDATE_DELAY_MS: 150     	// Delay for zoom menu update after navigation
     },
@@ -1993,7 +1993,7 @@ var dxWaterfall = {
                         typeof DX_WATERFALL_UTILS.qsoForm.populateFromSpot === 'function') {
                         DX_WATERFALL_UTILS.qsoForm.populateFromSpot(spotInfo, true);
                     }
-                }, 100);
+                }, DX_WATERFALL_CONSTANTS.DEBOUNCE.FORM_POPULATE_DELAY_MS);
             }
         } else {
             // No spot at current frequency, clear the last populated spot tracker
@@ -3080,12 +3080,18 @@ var dxWaterfall = {
                     // Check if we're standing on a spot and auto-populate QSO form
                     self.checkAndPopulateSpotAtFrequency();
                 } else {
-                    // No spots or error in response
+                    // No spots or error in response (e.g., {"error": "not found"})
                     self.dxSpots = [];
                     self.totalSpotsCount = 0;
                     self.dataReceived = true; // Mark as received even if empty
                     self.waitingForData = false; // Stop waiting
                     self.userInitiatedFetch = false; // Clear user-initiated flag
+                    self.lastUpdateTime = new Date(); // Record update time even on error
+
+                    // Track fetch parameters to prevent duplicate fetches
+                    self.lastFetchBand = band;
+                    self.lastFetchContinent = de;
+                    self.lastFetchAge = age;
 
                     // Invalidate caches when spots are cleared
                     self.cache.visibleSpots = null;
@@ -3859,6 +3865,27 @@ var dxWaterfall = {
         var leftSpots = visibleSpots.left;
         var rightSpots = visibleSpots.right;
 
+        // Smart label culling based on zoom level to prevent overcrowding
+        // At lower zoom levels (zoomed out), limit the number of labels shown
+        // Increased limits to show more spots at all zoom levels
+        var maxLabelsPerSide = Math.max(15, Math.floor(30 + (this.currentZoomLevel * 15)));
+
+        // If we have too many spots, keep only the closest ones to center
+        if (leftSpots.length > maxLabelsPerSide) {
+            // Sort by absolute frequency offset (closest first)
+            leftSpots.sort(function(a, b) {
+                return Math.abs(a.freqOffset) - Math.abs(b.freqOffset);
+            });
+            leftSpots = leftSpots.slice(0, maxLabelsPerSide);
+        }
+
+        if (rightSpots.length > maxLabelsPerSide) {
+            rightSpots.sort(function(a, b) {
+                return Math.abs(a.freqOffset) - Math.abs(b.freqOffset);
+            });
+            rightSpots = rightSpots.slice(0, maxLabelsPerSide);
+        }
+
         // Calculate available vertical space - from top margin to above ruler line
         var topMargin = DX_WATERFALL_CONSTANTS.CANVAS.TOP_MARGIN;
         var bottomMargin = DX_WATERFALL_CONSTANTS.CANVAS.BOTTOM_MARGIN;
@@ -4301,8 +4328,9 @@ var dxWaterfall = {
             // 1. We're waiting for data AND either:
             //    a) It's the initial load and we haven't received data OR haven't waited 5 seconds yet
             //    b) It's a parameter change and we haven't received new data yet (no time wait)
-            var shouldShowWaiting = this.waitingForData &&
-                                  (isInitialLoad ? (!this.dataReceived || timeSincePageLoad < this.minWaitTime) : !this.dataReceived);
+            // BUT if we've already received data (including error responses), don't show waiting
+            var shouldShowWaiting = this.waitingForData && !this.dataReceived &&
+                                  (isInitialLoad ? timeSincePageLoad < this.minWaitTime : true);
 
             if (shouldShowWaiting) {
                 this.displayWaitingMessage();
@@ -5413,7 +5441,17 @@ var dxWaterfall = {
         // Toggle the specified filter
         this.pendingModeFilters[modeType] = !this.pendingModeFilters[modeType];
 
-        // Update menu immediately to show the pending state
+        // Apply filter changes immediately for instant visual feedback
+        this.modeFilters.phone = this.pendingModeFilters.phone;
+        this.modeFilters.cw = this.pendingModeFilters.cw;
+        this.modeFilters.digi = this.pendingModeFilters.digi;
+        this.modeFilters.other = this.pendingModeFilters.other;
+
+        // Invalidate visible spots cache immediately for instant update
+        this.cache.visibleSpots = null;
+        this.cache.visibleSpotsParams = null;
+
+        // Update menu immediately to show the new state
         this.updateZoomMenu();
 
         // Clear existing timer if there is one
@@ -5421,18 +5459,14 @@ var dxWaterfall = {
             clearTimeout(this.modeFilterChangeTimer);
         }
 
-        // Set new timer - actual change happens after 0.5 seconds of no clicks
+        // Set new timer - for saving and collection updates after 0.5 seconds of no clicks
         this.modeFilterChangeTimer = setTimeout(function() {
             // Only proceed if we have pending filters
             if (!self.pendingModeFilters) {
                 return;
             }
 
-            // Apply the filter changes
-            self.modeFilters.phone = self.pendingModeFilters.phone;
-            self.modeFilters.cw = self.pendingModeFilters.cw;
-            self.modeFilters.digi = self.pendingModeFilters.digi;
-            self.modeFilters.other = self.pendingModeFilters.other;
+            // Clear pending filters
             self.pendingModeFilters = null;
 
             // Save to cookie
@@ -5443,7 +5477,7 @@ var dxWaterfall = {
             self.collectAllBandSpots(true); // Update band spot collection (force after filter change)
             self.collectSmartHunterSpots(); // Update smart hunter spots
 
-            // Update zoom menu to show new state
+            // Update zoom menu to show final state
             self.updateZoomMenu();
 
         }, DX_WATERFALL_CONSTANTS.DEBOUNCE.MODE_FILTER_CHANGE_MS);
@@ -6252,6 +6286,15 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
         else if (modKey && !e.shiftKey && (e.key === '-' || e.key === '_')) {
             e.preventDefault();
             dxWaterfall.zoomOut();
+        }
+        // Ctrl/Cmd+Space: Cycle through nearby spots
+        else if (modKey && !e.shiftKey && e.key === ' ') {
+            e.preventDefault();
+            // Trigger the existing cycle icon click
+            var cycleIcon = $('#dxWaterfallSpotContent .cycle-spot-icon');
+            if (cycleIcon.length > 0) {
+                cycleIcon.trigger('click');
+            }
         }
         // Ctrl/Cmd+Shift+Space: Tune to current spot frequency
         else if (modKey && e.shiftKey && e.key === ' ') {

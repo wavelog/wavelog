@@ -12,7 +12,7 @@
 		var modKey = isMac ? 'Cmd' : 'Ctrl';
 
 		var lang_dxwaterfall_tune_to_spot = "<?= __("Tune to spot frequency"); ?>" + " [" + modKey + "+Shift+Space]";
-		var lang_dxwaterfall_cycle_nearby_spots = "<?= __("Cycle to nearby spots"); ?>";
+		var lang_dxwaterfall_cycle_nearby_spots = "<?= __("Cycle through nearby spots"); ?>" + " [" + modKey + "+Space]";
 		var lang_dxwaterfall_spots = "<?= __("spots"); ?>";
 		var lang_dxwaterfall_new_continent = "<?= __("New Continent"); ?>";
 		var lang_dxwaterfall_new_dxcc = "<?= __("New DXCC"); ?>";
