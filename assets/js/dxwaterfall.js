@@ -21,7 +21,11 @@ var DX_WATERFALL_CONSTANTS = {
         FREQUENCY_COMMIT_SHORT_MS: 50,     	// Very short delay for CAT command completion
         FREQUENCY_COMMIT_RETRY_MS: 100,    	// Retry delay for frequency commit
         ICON_FEEDBACK_MS: 200,             	// Visual feedback duration for icon clicks
-        ZOOM_ICON_FEEDBACK_MS: 150         	// Visual feedback duration for zoom icons
+        ZOOM_ICON_FEEDBACK_MS: 150,        	// Visual feedback duration for zoom icons
+        MODE_CHANGE_SETTLE_MS: 200,        	// Delay for radio mode change to settle
+        FORM_POPULATE_DELAY_MS: 100,       	// Delay before populating QSO form
+        SPOT_NAVIGATION_COMPLETE_MS: 100,  	// Delay for spot navigation completion
+        ZOOM_MENU_UPDATE_DELAY_MS: 150     	// Delay for zoom menu update after navigation
     },
 
     // CAT and radio control
@@ -76,17 +80,21 @@ var DX_WATERFALL_CONSTANTS = {
         FT8_FREQUENCY_TOLERANCE: 5,        	// FT8 frequency detection tolerance in kHz
         BAND_CHANGE_THRESHOLD: 1000,       	// kHz outside band before recalculation
         MAJOR_TICK_TOLERANCE: 0.05,        	// Floating point precision for major tick detection
-        SPOT_FREQUENCY_MATCH: 0.01         	// Frequency match tolerance for spot navigation (kHz)
+        SPOT_FREQUENCY_MATCH: 0.01,        	// Frequency match tolerance for spot navigation (kHz)
+        CAT_FREQUENCY_HZ: 1000,            	// CAT frequency confirmation tolerance (Hz)
+        FREQUENCY_MATCH_KHZ: 0.1,          	// General frequency matching tolerance (kHz)
+        CENTER_SPOT_TOLERANCE_KHZ: 0.1     	// Tolerance for center spot frequency matching (kHz)
     },
 
     // Zoom levels configuration
     ZOOM: {
         DEFAULT_LEVEL: 3,                 	// Default zoom level
         MAX_LEVEL: 5,                       // Maximum zoom level
-        MIN_LEVEL: 1,                       // Minimum zoom level
+        MIN_LEVEL: 0,                       // Minimum zoom level
         // Pixels per kHz for each zoom level
         PIXELS_PER_KHZ: {
-            1: 4,   // ±25 kHz view (widest)
+            0: 2,   // ±50 kHz view (widest - new level)
+            1: 4,   // ±25 kHz view
             2: 8,   // ±12.5 kHz view
             3: 20,  // ±5 kHz view (default)
             4: 32,  // ±3.125 kHz view
@@ -98,8 +106,11 @@ var DX_WATERFALL_CONSTANTS = {
     COLORS: {
         // Background and base
         CANVAS_BORDER: '#000000',
+        BLACK: '#000000',
+        WHITE: '#FFFFFF',
         OVERLAY_BACKGROUND: 'rgba(0, 0, 0, 0.7)',
         OVERLAY_DARK_GREY: 'rgba(64, 64, 64, 0.7)',
+        TOOLTIP_BACKGROUND: 'rgba(0, 0, 0, 0.9)',
 
         // Frequency ruler
         RULER_BACKGROUND: '#000000bb',
@@ -109,11 +120,13 @@ var DX_WATERFALL_CONSTANTS = {
 
         // Center marker and bandwidth
         CENTER_MARKER: '#FF0000',
+        RED: '#FF0000',
         BANDWIDTH_INDICATOR: 'rgba(255, 255, 0, 0.3)',
 
         // Messages and text
         MESSAGE_TEXT_WHITE: '#FFFFFF',
         WATERFALL_LINK: '#888888',
+        GREY: '#888888',
 
         // Static noise RGB components
         STATIC_NOISE_RGB: {R: 34, G: 34, B: 34}, // Base RGB values for noise generation
@@ -122,13 +135,27 @@ var DX_WATERFALL_CONSTANTS = {
         SPOT_PHONE: '#00FF00',
         SPOT_CW: '#FFA500',
         SPOT_DIGI: '#0096FF',
+        SPOT_OTHER: 'rgba(160, 32, 240, ', // Purple - incomplete for opacity
+
+        // Spot status colors
+        GREEN: '#00FF00',        // Confirmed
+        ORANGE: '#FFA500',       // Worked
+
+        // Spot mode color bases (for rgba with variable opacity)
+        PHONE_RGB: 'rgba(0, 255, 0, ',      // Green
+        CW_RGB: 'rgba(255, 165, 0, ',       // Orange
+        DIGI_RGB: 'rgba(0, 150, 255, ',     // Blue
+        OTHER_RGB: 'rgba(160, 32, 240, ',   // Purple
 
         // Band limits
-        OUT_OF_BAND: 'rgba(255, 0, 0, 0.2)'
+        OUT_OF_BAND: 'rgba(255, 0, 0, 0.2)',
+        OUT_OF_BAND_BORDER_LIGHT: 'rgba(255, 0, 0, 0.3)',
+        OUT_OF_BAND_BORDER_DARK: 'rgba(255, 0, 0, 0.6)'
     },
 
     // Font configurations
     FONTS: {
+        FAMILY: '"Consolas", "Courier New", monospace',
         RULER: '11px "Consolas", "Courier New", monospace',
         CENTER_MARKER: '12px "Consolas", "Courier New", monospace',
         SPOT_LABELS: 'bold 13px "Consolas", "Courier New", monospace',  // Increased from 12px to 13px (5% larger)
@@ -137,11 +164,31 @@ var DX_WATERFALL_CONSTANTS = {
         TITLE_LARGE: 'bold 24px "Consolas", "Courier New", monospace',
         FREQUENCY_CHANGE: '18px "Consolas", "Courier New", monospace',
         OUT_OF_BAND: 'bold 14px "Consolas", "Courier New", monospace',
-        SMALL_MONO: '12px "Consolas", "Courier New", monospace'
+        SMALL_MONO: '12px "Consolas", "Courier New", monospace',
+
+        // Label size configurations (x-small, small, medium, large, x-large)
+        LABEL_SIZES: [11, 12, 13, 15, 17],        // Regular spot label sizes
+        LABEL_HEIGHTS: [13, 14, 15, 17, 19]       // Heights for overlap detection
     },
 
     // Available continents for cycling
     CONTINENTS: ['AF', 'AN', 'AS', 'EU', 'NA', 'OC', 'SA'],
+
+    // Mode classification lists (consolidated from multiple locations)
+    MODE_LISTS: {
+        PHONE: ['SSB', 'LSB', 'USB', 'AM', 'FM', 'SAM', 'DSB', 'J3E', 'A3E', 'PHONE'],
+        WSJT: ['FT8', 'FT4', 'JT65', 'JT65B', 'JT6C', 'JT6M', 'JT9', 'JT9-1',
+               'Q65', 'QRA64', 'FST4', 'FST4W', 'WSPR', 'MSK144', 'ISCAT',
+               'ISCAT-A', 'ISCAT-B', 'JS8', 'JTMS', 'FSK441', 'JT4', 'OPERA'],
+        DIGITAL_OTHER: ['RTTY', 'NAVTEX', 'SITORB', 'DIGI', 'DYNAMIC', 'RTTYFSK', 'RTTYM'],
+        PSK: ['PSK', 'QPSK', '8PSK', 'PSK31', 'PSK63', 'PSK125', 'PSK250'],
+        DIGITAL_MODES: ['OLIVIA', 'CONTESTIA', 'THOR', 'THROB', 'MFSK', 'MFSK8', 'MFSK16',
+                        'HELL', 'MT63', 'DOMINO', 'PACKET', 'PACTOR', 'CLOVER', 'AMTOR',
+                        'SITOR', 'SSTV', 'FAX', 'CHIP', 'CHIP64', 'ROS'],
+        DIGITAL_VOICE: ['DIGITALVOICE', 'DSTAR', 'C4FM', 'DMR', 'FREEDV', 'M17'],
+        DIGITAL_HF: ['VARA', 'ARDOP'],
+        CW: ['CW', 'A1A']
+    },
 
     // Logo configuration
     LOGO_FILENAME: 'assets/logo/wavelog_logo_darkly_wide.png',
@@ -221,7 +268,7 @@ function handleCATFrequencyUpdate(radioFrequency, updateCallback) {
     if (typeof window.dxwaterfall_expected_frequency !== 'undefined' && window.dxwaterfall_expected_frequency) {
         var expectedFreq = parseFloat(window.dxwaterfall_expected_frequency);
         var actualFreq = parseFloat(radioFrequency);
-        var tolerance = 1000; // 1 kHz tolerance
+        var tolerance = DX_WATERFALL_CONSTANTS.THRESHOLDS.CAT_FREQUENCY_HZ;
         var diff = Math.abs(expectedFreq - actualFreq);
 
         if (diff <= tolerance) {
@@ -461,13 +508,13 @@ var DX_WATERFALL_UTILS = {
         getModeColorBase: function(classifiedMode) {
             switch (classifiedMode) {
                 case 'phone':
-                    return 'rgba(0, 255, 0, ';
+                    return DX_WATERFALL_CONSTANTS.COLORS.PHONE_RGB;
                 case 'cw':
-                    return 'rgba(255, 165, 0, ';
+                    return DX_WATERFALL_CONSTANTS.COLORS.CW_RGB;
                 case 'digi':
-                    return 'rgba(0, 150, 255, ';
+                    return DX_WATERFALL_CONSTANTS.COLORS.DIGI_RGB;
                 default:
-                    return 'rgba(160, 32, 240, ';
+                    return DX_WATERFALL_CONSTANTS.COLORS.OTHER_RGB;
             }
         },
 
@@ -535,8 +582,9 @@ var DX_WATERFALL_UTILS = {
                 }
             }
 
-            // Phone modes from message (optimized with regex word boundary)
-            var phoneModes = [
+            // Phone modes from message (use constants)
+            var phoneModes = DX_WATERFALL_CONSTANTS.MODE_LISTS.PHONE.slice(0, 5); // LSB, USB, SSB, AM, FM
+            var phonePatterns = [
                 { patterns: ['LSB'], submode: 'LSB' },
                 { patterns: ['USB'], submode: 'USB' },
                 { patterns: ['SSB'], submode: 'SSB' },
@@ -545,8 +593,8 @@ var DX_WATERFALL_UTILS = {
             ];
 
             // Optimized loop - breaks early on first match
-            for (var i = 0; i < phoneModes.length; i++) {
-                var mode = phoneModes[i];
+            for (var i = 0; i < phonePatterns.length; i++) {
+                var mode = phonePatterns[i];
                 for (var j = 0; j < mode.patterns.length; j++) {
                     // Use word boundary to avoid false matches
                     var pattern = '\\b' + mode.patterns[j] + '\\b';
@@ -561,21 +609,17 @@ var DX_WATERFALL_UTILS = {
 
         classifyFromMode: function(mode) {
             // CW modes
-            if (mode === 'CW' || mode === 'A1A') {
+            if (DX_WATERFALL_CONSTANTS.MODE_LISTS.CW.indexOf(mode) !== -1) {
                 return { category: 'cw', submode: 'CW', confidence: 1 };
             }
 
-            // Phone modes
-            var phoneModes = ['SSB', 'LSB', 'USB', 'AM', 'FM', 'SAM', 'DSB', 'J3E', 'A3E', 'PHONE'];
-            if (phoneModes.indexOf(mode) !== -1) {
+            // Phone modes (use constants)
+            if (DX_WATERFALL_CONSTANTS.MODE_LISTS.PHONE.indexOf(mode) !== -1) {
                 return { category: 'phone', submode: mode, confidence: 1 };
             }
 
-            // Digital modes - WSJT-X family
-            var wsjtModes = ['FT8', 'FT4', 'JT65', 'JT65B', 'JT6C', 'JT6M', 'JT9', 'JT9-1',
-                           'Q65', 'QRA64', 'FST4', 'FST4W', 'WSPR', 'MSK144', 'ISCAT',
-                           'ISCAT-A', 'ISCAT-B', 'JS8', 'JTMS', 'FSK441'];
-            if (wsjtModes.indexOf(mode) !== -1) {
+            // Digital modes - WSJT-X family (use constants)
+            if (DX_WATERFALL_CONSTANTS.MODE_LISTS.WSJT.indexOf(mode) !== -1) {
                 return { category: 'digi', submode: mode, confidence: 1 };
             }
 
@@ -584,9 +628,8 @@ var DX_WATERFALL_UTILS = {
                 return { category: 'digi', submode: mode, confidence: 1 };
             }
 
-            // Other digital modes
-            var otherDigiModes = ['RTTY', 'NAVTEX', 'SITORB', 'DIGI', 'DYNAMIC'];
-            if (otherDigiModes.indexOf(mode) !== -1) {
+            // Other digital modes (use constants)
+            if (DX_WATERFALL_CONSTANTS.MODE_LISTS.DIGITAL_OTHER.indexOf(mode) !== -1) {
                 return { category: 'digi', submode: mode, confidence: 1 };
             }
 
@@ -1022,19 +1065,18 @@ var DX_WATERFALL_UTILS = {
 
 
             // CW mode - always use CW
-            if (spotMode === 'CW' || spotMode === 'A1A') {
+            if (DX_WATERFALL_CONSTANTS.MODE_LISTS.CW.indexOf(spotMode) !== -1) {
                 return 'CW';
             }
 
-            // Digital modes - use RTTY as the standard digital mode
-            var digiModes = ['FT8', 'FT4', 'JT65', 'JT9', 'Q65', 'QRA64', 'FST4', 'FST4W',
-                           'WSPR', 'MSK144', 'ISCAT', 'JS8', 'JTMS', 'FSK441',
-                           'PSK', 'QPSK', '8PSK', 'PSK31', 'PSK63', 'PSK125', 'PSK250',
-                           'RTTY', 'RTTYM', 'OLIVIA', 'CONTESTIA', 'THOR', 'THROB',
-                           'MFSK', 'HELL', 'MT63', 'DOMINO', 'PACKET', 'PACTOR', 'CLOVER',
-                           'AMTOR', 'SITOR', 'NAVTEX', 'SSTV', 'FAX', 'CHIP', 'CHIP64',
-                           'ROS', 'JT4', 'JT6M', 'OPERA', 'RTTYFSK', 'DIGITALVOICE', 'DSTAR',
-                           'VARA', 'ARDOP', 'C4FM', 'DMR', 'FREEDV', 'M17', 'MFSK16', 'MFSK8'];
+            // Digital modes - use RTTY as the standard digital mode (use constants)
+            var digiModes = DX_WATERFALL_CONSTANTS.MODE_LISTS.WSJT.concat(
+                DX_WATERFALL_CONSTANTS.MODE_LISTS.PSK,
+                DX_WATERFALL_CONSTANTS.MODE_LISTS.DIGITAL_MODES,
+                DX_WATERFALL_CONSTANTS.MODE_LISTS.DIGITAL_VOICE,
+                DX_WATERFALL_CONSTANTS.MODE_LISTS.DIGITAL_HF,
+                DX_WATERFALL_CONSTANTS.MODE_LISTS.DIGITAL_OTHER
+            );
 
             for (var i = 0; i < digiModes.length; i++) {
                 if (spotMode.indexOf(digiModes[i]) !== -1) {
@@ -1042,15 +1084,8 @@ var DX_WATERFALL_UTILS = {
                 }
             }
 
-            // Phone modes - determine USB or LSB based on frequency
-            var phoneModes = ['SSB', 'LSB', 'USB', 'AM', 'FM', 'SAM', 'DSB', 'J3E', 'A3E', 'PHONE'];
-            var isPhoneMode = false;
-            for (var j = 0; j < phoneModes.length; j++) {
-                if (spotMode === phoneModes[j]) {
-                    isPhoneMode = true;
-                    break;
-                }
-            }
+            // Phone modes - determine USB or LSB based on frequency (use constants)
+            var isPhoneMode = DX_WATERFALL_CONSTANTS.MODE_LISTS.PHONE.indexOf(spotMode) !== -1;
 
             if (isPhoneMode || !spotMode) {
                 // Use frequency-based determination for phone modes or unknown modes
@@ -1111,7 +1146,7 @@ var DX_WATERFALL_UTILS = {
             // (radio control lib bug: mode change can cause slight frequency shift)
             setTimeout(function() {
                 setFrequency(targetSpot.frequency, true);
-            }, 200); // 200ms delay to let mode change settle                // Manually set the frequency in the input field immediately
+            }, DX_WATERFALL_CONSTANTS.DEBOUNCE.MODE_CHANGE_SETTLE_MS);                // Manually set the frequency in the input field immediately
                 var formattedFreq = Math.round(targetSpot.frequency * 1000); // Convert to Hz
                 $('#frequency').val(formattedFreq);
 
@@ -1119,7 +1154,6 @@ var DX_WATERFALL_UTILS = {
                 // getCachedMiddleFreq() uses lastValidCommittedFreq which isn't updated by just setting the input value
                 // So we bypass the cache and set it directly to ensure getSpotInfo() uses the correct frequency
                 waterfallContext.cache.middleFreq = targetSpot.frequency; // Already in kHz
-                waterfallContext.lastFreqInput = formattedFreq;
                 waterfallContext.lastValidCommittedFreq = formattedFreq;
                 waterfallContext.lastValidCommittedUnit = 'kHz';
 
@@ -1136,7 +1170,7 @@ var DX_WATERFALL_UTILS = {
                         self.pendingNavigationTimer = null;
                         // Clear navigation flag after population completes
                         self.navigating = false;
-                    }, 100);
+                    }, DX_WATERFALL_CONSTANTS.DEBOUNCE.FORM_POPULATE_DELAY_MS);
                 } else {
                     // Clear navigation flag immediately if no spot to populate
                     this.navigating = false;
@@ -1151,7 +1185,7 @@ var DX_WATERFALL_UTILS = {
                 // Update zoom menu after a brief delay to ensure frequency change is complete
                 setTimeout(function() {
                     waterfallContext.updateZoomMenu();
-                }, 150);
+                }, DX_WATERFALL_CONSTANTS.DEBOUNCE.ZOOM_MENU_UPDATE_DELAY_MS);
             }
 
             return true;
@@ -1288,13 +1322,13 @@ var dxWaterfall = {
         middleFreq: null,
 
         // Input state caching
-        lastFreqInput: null,
         lastQrgUnit: null,
-        lastModeForCache: null,
-        committedFreqInput: null, // Frequency value committed on blur/Enter
-        committedQrgUnit: null, // Unit value committed on blur/Enter
         lastValidCommittedFreq: null, // Last VALID committed frequency
-        lastValidCommittedUnit: null // Last VALID committed unit
+        lastValidCommittedUnit: null, // Last VALID committed unit
+
+        // Visible spots caching
+        visibleSpots: null, // Cached filtered and positioned spots
+        visibleSpotsParams: null // Parameters used to generate cached visible spots
     },
 
     // State flags
@@ -1546,14 +1580,14 @@ var dxWaterfall = {
             return;
         }
 
-        this.committedFreqInput = this.$freqCalculated.val();
-        this.committedQrgUnit = this.$qrgUnit.text() || 'kHz';
+        var currentInput = this.$freqCalculated.val();
+        var currentUnit = this.$qrgUnit.text() || 'kHz';
 
         // If this is a valid frequency, save it as the last valid committed frequency
-        var freqValue = parseFloat(this.committedFreqInput) || 0;
+        var freqValue = parseFloat(currentInput) || 0;
         if (freqValue > 0) {
-            this.lastValidCommittedFreq = this.committedFreqInput;
-            this.lastValidCommittedUnit = this.committedQrgUnit;
+            this.lastValidCommittedFreq = currentInput;
+            this.lastValidCommittedUnit = currentUnit;
 
             // If we're still waiting for CAT frequency and user manually set a frequency, cancel the wait
             // Only cancel if initialization is complete (don't cancel during initial page load)
@@ -1571,7 +1605,6 @@ var dxWaterfall = {
         }
 
         // Invalidate the cached frequency to force recalculation
-        this.lastFreqInput = null;
         this.lastQrgUnit = null;
 
         // Force an immediate refresh to update the display with the new frequency
@@ -1626,6 +1659,10 @@ var dxWaterfall = {
             // Invalidate band limits cache (band changed)
             this.bandLimitsCache = null;
 
+            // Invalidate visible spots cache (new band means new spots)
+            this.cache.visibleSpots = null;
+            this.cache.visibleSpotsParams = null;
+
             // Only reset waiting state if we've already received initial data
             // This prevents treating initial parameter setting as a "change"
             if (this.lastBand !== null) {
@@ -1674,8 +1711,8 @@ var dxWaterfall = {
         }
 
         // Invalidate cache if input OR unit changes
-        if (this.lastFreqInput !== currentInput || this.lastQrgUnit !== currentUnit) {
-            this.lastFreqInput = currentInput;
+        if (this.lastValidCommittedFreq !== currentInput || this.lastQrgUnit !== currentUnit) {
+            this.lastValidCommittedFreq = currentInput;
             this.lastQrgUnit = currentUnit;
 
             // Convert to kHz using utility function
@@ -1806,7 +1843,6 @@ var dxWaterfall = {
         if (!this.cache.middleFreq || Math.abs(currentFreqFromDOM - this.cache.middleFreq) > 0.1) {
             // Clear all frequency-related cache to ensure fresh read
             this.cache.middleFreq = null;
-            this.lastFreqInput = null;
             this.lastQrgUnit = null;
             this.lastMarkerFreq = undefined;
 
@@ -1817,8 +1853,6 @@ var dxWaterfall = {
             // This ensures that getCachedMiddleFreq() will use the updated frequency instead of old committed values
             this.lastValidCommittedFreq = currentInput;
             this.lastValidCommittedUnit = currentUnit;
-            this.committedFreqInput = currentInput;
-            this.committedQrgUnit = currentUnit;
 
             // Check if there's a relevant spot at the new frequency and populate form
             this.checkAndPopulateSpotAtFrequency();
@@ -1847,49 +1881,19 @@ var dxWaterfall = {
 
     // Get the current label font based on labelSizeLevel
     getCurrentLabelFont: function() {
-        // 0 = x-small (11px), 1 = small (12px), 2 = medium (13px - default), 3 = large (15px), 4 = x-large (17px)
-        switch(this.labelSizeLevel) {
-            case 0:
-                return 'bold 11px "Consolas", "Courier New", monospace';
-            case 1:
-                return 'bold 12px "Consolas", "Courier New", monospace';
-            case 3:
-                return 'bold 15px "Consolas", "Courier New", monospace';
-            case 4:
-                return 'bold 17px "Consolas", "Courier New", monospace';
-            default:
-                return DX_WATERFALL_CONSTANTS.FONTS.SPOT_LABELS; // 13px (level 2 - medium)
-        }
+        var size = DX_WATERFALL_CONSTANTS.FONTS.LABEL_SIZES[this.labelSizeLevel] || 13;
+        return 'bold ' + size + 'px ' + DX_WATERFALL_CONSTANTS.FONTS.FAMILY;
     },
 
     // Get the current CENTER label font (1px larger than regular labels)
     getCurrentCenterLabelFont: function() {
-        // Center label is always 1px larger than regular labels
-        // 0 = 12px, 1 = 13px, 2 = 14px, 3 = 16px, 4 = 18px
-        switch(this.labelSizeLevel) {
-            case 0:
-                return 'bold 12px "Consolas", "Courier New", monospace';
-            case 1:
-                return 'bold 13px "Consolas", "Courier New", monospace';
-            case 3:
-                return 'bold 16px "Consolas", "Courier New", monospace';
-            case 4:
-                return 'bold 18px "Consolas", "Courier New", monospace';
-            default:
-                return 'bold 14px "Consolas", "Courier New", monospace'; // default 13px + 1 (level 2)
-        }
+        var size = (DX_WATERFALL_CONSTANTS.FONTS.LABEL_SIZES[this.labelSizeLevel] || 13) + 1;
+        return 'bold ' + size + 'px ' + DX_WATERFALL_CONSTANTS.FONTS.FAMILY;
     },
 
     // Get the current label height in pixels based on labelSizeLevel
     getCurrentLabelHeight: function() {
-        // 0 = 11px, 1 = 12px, 2 = 13px, 3 = 15px, 4 = 17px
-        switch(this.labelSizeLevel) {
-            case 0: return 11;
-            case 1: return 12;
-            case 3: return 15;
-            case 4: return 17;
-            default: return 13; // level 2 - medium
-        }
+        return DX_WATERFALL_CONSTANTS.FONTS.LABEL_HEIGHTS[this.labelSizeLevel] || 15;
     },
 
     // ========================================
@@ -2114,8 +2118,8 @@ var dxWaterfall = {
             this.spotTooltipDiv = document.createElement('div');
             this.spotTooltipDiv.id = 'dxWaterfallTooltip';
             this.spotTooltipDiv.style.position = 'fixed';
-            this.spotTooltipDiv.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
-            this.spotTooltipDiv.style.color = '#FFFFFF';
+            this.spotTooltipDiv.style.backgroundColor = DX_WATERFALL_CONSTANTS.COLORS.TOOLTIP_BACKGROUND;
+            this.spotTooltipDiv.style.color = DX_WATERFALL_CONSTANTS.COLORS.WHITE;
             this.spotTooltipDiv.style.padding = '5px 10px';
             this.spotTooltipDiv.style.borderRadius = '4px';
             this.spotTooltipDiv.style.fontSize = '11px';
@@ -2218,6 +2222,115 @@ var dxWaterfall = {
             this.cachedPixelsPerKHz = this.getPixelsPerKHz();
         }
         return this.cachedPixelsPerKHz;
+    },
+
+    /**
+     * Get visible spots with caching to avoid re-filtering on every render
+     * Cache is invalidated when spots, frequency, canvas size, or mode filter changes
+     * @returns {{left: Array, right: Array}} Object with left and right spot arrays
+     */
+    getVisibleSpots: function() {
+        var centerX = this.canvas.width / 2;
+        var middleFreq = this.getCachedMiddleFreq();
+        var pixelsPerKHz = this.getCachedPixelsPerKHz();
+        var currentMode = this.getCurrentMode();
+
+        // Create cache key based on parameters that affect visible spots
+        var cacheKey = {
+            spotsLength: this.dxSpots ? this.dxSpots.length : 0,
+            middleFreq: middleFreq,
+            canvasWidth: this.canvas.width,
+            mode: currentMode,
+            labelSizeLevel: this.labelSizeLevel,
+            phoneFilter: this.modeFilters.phone,
+            cwFilter: this.modeFilters.cw,
+            digiFilter: this.modeFilters.digi
+        };
+
+        // Check if cache is valid
+        if (this.cache.visibleSpots && this.cache.visibleSpotsParams) {
+            var params = this.cache.visibleSpotsParams;
+            if (params.spotsLength === cacheKey.spotsLength &&
+                params.middleFreq === cacheKey.middleFreq &&
+                params.canvasWidth === cacheKey.canvasWidth &&
+                params.mode === cacheKey.mode &&
+                params.labelSizeLevel === cacheKey.labelSizeLevel &&
+                params.phoneFilter === cacheKey.phoneFilter &&
+                params.cwFilter === cacheKey.cwFilter &&
+                params.digiFilter === cacheKey.digiFilter) {
+                return this.cache.visibleSpots;
+            }
+        }
+
+        // Cache miss - rebuild visible spots
+        var leftSpots = [];
+        var rightSpots = [];
+        var centerFrequency = middleFreq;
+        var centerFrequencyTolerance = DX_WATERFALL_CONSTANTS.THRESHOLDS.CENTER_SPOT_TOLERANCE_KHZ;
+
+        for (var i = 0; i < this.dxSpots.length; i++) {
+            var spot = this.dxSpots[i];
+            var spotFreq = parseFloat(spot.frequency);
+
+            if (spotFreq && spot.spotted && spot.mode) {
+                // Apply mode filter
+                if (!this.spotMatchesModeFilter(spot)) {
+                    continue;
+                }
+
+                var freqOffset = spotFreq - middleFreq;
+                var x = centerX + (freqOffset * pixelsPerKHz);
+
+                // Only include if within canvas bounds
+                if (x >= 0 && x <= this.canvas.width) {
+                    // Skip spots at center frequency (within tolerance)
+                    if (centerFrequency && Math.abs(spotFreq - centerFrequency) <= centerFrequencyTolerance) {
+                        continue;
+                    }
+
+                    var spotData = DX_WATERFALL_UTILS.spots.createSpotObject(spot, {
+                        includePosition: true,
+                        x: x,
+                        includeOffsets: true,
+                        middleFreq: middleFreq,
+                        includeWorkStatus: true
+                    });
+
+                    // Store reference to original spot
+                    spotData.originalSpot = spot;
+
+                    if (freqOffset < 0) {
+                        leftSpots.push(spotData);
+                    } else if (freqOffset > 0) {
+                        rightSpots.push(spotData);
+                    }
+                }
+            }
+        }
+
+        // Pre-calculate label widths for all spots (cached with visible spots)
+        if (this.ctx) {
+            var currentLabelFont = this.getCurrentLabelFont();
+            this.ctx.font = currentLabelFont;
+            var padding = DX_WATERFALL_CONSTANTS.CANVAS.SPOT_PADDING;
+
+            for (var j = 0; j < leftSpots.length; j++) {
+                var textWidth = this.ctx.measureText(leftSpots[j].callsign).width;
+                leftSpots[j].labelWidth = textWidth + (padding * 2);
+            }
+
+            for (var k = 0; k < rightSpots.length; k++) {
+                var textWidthRight = this.ctx.measureText(rightSpots[k].callsign).width;
+                rightSpots[k].labelWidth = textWidthRight + (padding * 2);
+            }
+        }
+
+        // Cache the result
+        var result = { left: leftSpots, right: rightSpots };
+        this.cache.visibleSpots = result;
+        this.cache.visibleSpotsParams = cacheKey;
+
+        return result;
     },
 
     // Get cached bandwidth parameters to avoid repeated calculations
@@ -2626,7 +2739,7 @@ var dxWaterfall = {
         this.ctx.fillRect(x, y, width, height);
 
         // Draw red diagonal stripes pattern (clipped to area)
-        this.ctx.strokeStyle = 'rgba(255, 0, 0, 0.3)';
+        this.ctx.strokeStyle = DX_WATERFALL_CONSTANTS.COLORS.OUT_OF_BAND_BORDER_LIGHT;
         this.ctx.lineWidth = 2;
         var stripeSpacing = 15; // Distance between stripes
 
@@ -2642,7 +2755,7 @@ var dxWaterfall = {
         this.ctx.restore();
 
         // Draw red border only on the side facing the valid band
-        this.ctx.strokeStyle = 'rgba(255, 0, 0, 0.6)';
+        this.ctx.strokeStyle = DX_WATERFALL_CONSTANTS.COLORS.OUT_OF_BAND_BORDER_DARK;
         this.ctx.lineWidth = 3;
         this.ctx.beginPath();
         if (borderSide === 'right') {
@@ -3083,6 +3196,9 @@ var dxWaterfall = {
         // Level-specific scaling for better usability
         var pixelsPerKHz;
         switch(this.currentZoomLevel) {
+            case 0:
+                pixelsPerKHz = 2;  // ±50 kHz range (widest)
+                break;
             case 1:
                 pixelsPerKHz = 4;  // ±25 kHz range
                 break;
@@ -3148,7 +3264,7 @@ var dxWaterfall = {
         var startTick = Math.floor(startFreq / tickInterval) * tickInterval;
         var endTick = Math.ceil(endFreq / tickInterval) * tickInterval;
 
-        // For zoom level 1, track which major tick we're on to skip every other label
+        // For very wide zoom levels, track which major tick we're on to skip labels
         var majorTickCounter = 0;
 
         for (var freq = startTick; freq <= endTick; freq += tickInterval) {
@@ -3175,9 +3291,14 @@ var dxWaterfall = {
 
                 // Draw frequency label for major ticks
                 if (isMajorTick) {
-                    // For zoom level 1, only show every 2nd label to reduce clutter
+                    // For very wide zoom levels, skip labels to reduce clutter
                     var shouldShowLabel = true;
-                    if (this.currentZoomLevel === 1) {
+                    if (this.currentZoomLevel === 0) {
+                        // Zoom level 0: show every 4th label (widest view)
+                        shouldShowLabel = (majorTickCounter % 4 === 0);
+                        majorTickCounter++;
+                    } else if (this.currentZoomLevel === 1) {
+                        // Zoom level 1: show every 2nd label
                         shouldShowLabel = (majorTickCounter % 2 === 0);
                         majorTickCounter++;
                     }
@@ -3534,9 +3655,9 @@ var dxWaterfall = {
      */
     getSpotColors: function(spot) {
         return {
-            bgColor: spot.cnfmd_dxcc ? '#00FF00' : (spot.worked_dxcc ? '#FFA500' : '#FF0000'),
-            borderColor: spot.cnfmd_continent ? '#00FF00' : (spot.worked_continent ? '#FFA500' : '#FF0000'),
-            tickboxColor: spot.cnfmd_call ? '#00FF00' : (spot.worked_call ? '#FFA500' : '#FF0000')
+            bgColor: spot.cnfmd_dxcc ? DX_WATERFALL_CONSTANTS.COLORS.GREEN : (spot.worked_dxcc ? DX_WATERFALL_CONSTANTS.COLORS.ORANGE : DX_WATERFALL_CONSTANTS.COLORS.RED),
+            borderColor: spot.cnfmd_continent ? DX_WATERFALL_CONSTANTS.COLORS.GREEN : (spot.worked_continent ? DX_WATERFALL_CONSTANTS.COLORS.ORANGE : DX_WATERFALL_CONSTANTS.COLORS.RED),
+            tickboxColor: spot.cnfmd_call ? DX_WATERFALL_CONSTANTS.COLORS.GREEN : (spot.worked_call ? DX_WATERFALL_CONSTANTS.COLORS.ORANGE : DX_WATERFALL_CONSTANTS.COLORS.RED)
         };
     },
 
@@ -3551,55 +3672,10 @@ var dxWaterfall = {
         var middleFreq = this.getCachedMiddleFreq(); // Use cached frequency
         var pixelsPerKHz = this.getCachedPixelsPerKHz(); // Use cached scaling
 
-        // Get the spot shown in center (if any) to avoid drawing it twice
-        var centerSpotInfo = this.getSpotInfo();
-        var centerFrequency = middleFreq; // Use the tuned frequency, not selected spot frequency
-        var centerFrequencyTolerance = 0.1; // 0.1 kHz tolerance for center frequency
-
-        // Separate spots into left and right of center frequency
-        var leftSpots = [];
-        var rightSpots = [];
-
-        for (var i = 0; i < this.dxSpots.length; i++) {
-            var spot = this.dxSpots[i];
-            var spotFreq = parseFloat(spot.frequency);
-
-            if (spotFreq && spot.spotted && spot.mode) {
-                // Apply mode filter
-                if (!this.spotMatchesModeFilter(spot)) {
-                    continue;
-                }
-
-                var freqOffset = spotFreq - middleFreq;
-                var x = centerX + (freqOffset * pixelsPerKHz);
-
-                // Only include if within canvas bounds
-                if (x >= 0 && x <= this.canvas.width) {
-                    var spotData = DX_WATERFALL_UTILS.spots.createSpotObject(spot, {
-                        includePosition: true,
-                        x: x,
-                        includeOffsets: true,
-                        middleFreq: middleFreq,
-                        includeWorkStatus: true
-                    });
-
-                    // Skip this spot if it's at the same frequency as center spot (within tolerance)
-                    if (centerFrequency && Math.abs(spotFreq - centerFrequency) <= centerFrequencyTolerance) {
-                        continue;
-                    }
-
-                    // Store reference to original spot for updating coordinates later
-                    spotData.originalSpot = spot;
-
-                    if (freqOffset < 0) {
-                        leftSpots.push(spotData);
-                    } else if (freqOffset > 0) {
-                        rightSpots.push(spotData);
-                    }
-                    // Skip spots exactly on center frequency to avoid overlap with center marker
-                }
-            }
-        }
+        // Get visible spots using cached method - this avoids re-filtering on every render
+        var visibleSpots = this.getVisibleSpots();
+        var leftSpots = visibleSpots.left;
+        var rightSpots = visibleSpots.right;
 
         // Calculate available vertical space - from top margin to above ruler line
         var topMargin = DX_WATERFALL_CONSTANTS.CANVAS.TOP_MARGIN;
@@ -3609,6 +3685,7 @@ var dxWaterfall = {
         var availableHeight = bottomY - topY;
 
 		// Check if center label is shown to avoid that area
+		var centerFrequency = middleFreq;
 		var centerSpotShown = centerFrequency !== null;
 		var centerY = (this.canvas.height - DX_WATERFALL_CONSTANTS.CANVAS.RULER_HEIGHT) / 2;
 		var baseLabelHeight = this.getCurrentLabelHeight(); // Regular label height
@@ -3632,13 +3709,9 @@ var dxWaterfall = {
 		var drawSpotsSide = function(spots, ctx) {
 			if (spots.length === 0) return;
 
-			// Pre-calculate label widths for all spots
+			// Note: Label widths are already pre-calculated in getVisibleSpots() and cached
+			// Set font for drawing (not for measuring)
 			ctx.font = currentLabelFont;
-			var padding = DX_WATERFALL_CONSTANTS.CANVAS.SPOT_PADDING;
-			for (var p = 0; p < spots.length; p++) {
-				var textWidth = ctx.measureText(spots[p].callsign).width;
-				spots[p].labelWidth = textWidth + (padding * 2);
-			}
 
 			// Sort spots by absolute frequency offset (closest to center first)
 			// This helps prioritize important spots and improves distribution
@@ -3844,7 +3917,7 @@ var dxWaterfall = {
         // Check if we have multiple spots near the CENTER/TUNED frequency
         var centerFreq = this.getCachedMiddleFreq(); // Use the actual tuned frequency
         var spotsAtSameFreq = [];
-        var frequencyTolerance = 0.1; // 0.1 kHz tolerance for "same frequency"
+        var frequencyTolerance = DX_WATERFALL_CONSTANTS.THRESHOLDS.CENTER_SPOT_TOLERANCE_KHZ;
 
         for (var i = 0; i < this.relevantSpots.length; i++) {
             var spot = this.relevantSpots[i];
@@ -4582,16 +4655,16 @@ var dxWaterfall = {
         // Separator
         zoomHTML += '<span style="color: #666666; margin: 0 8px;">|</span>';
 
-        // Zoom out button (disabled if at level 1)
-        if (this.currentZoomLevel > 1) {
+        // Zoom out button (disabled if at minimum level)
+        if (this.currentZoomLevel > DX_WATERFALL_CONSTANTS.ZOOM.MIN_LEVEL) {
             zoomHTML += '<i class="fas fa-search-minus zoom-out-icon" title="' + lang_dxwaterfall_zoom_out + '"></i> ';
         } else {
             zoomHTML += '<i class="fas fa-search-minus zoom-out-icon disabled" title="' + lang_dxwaterfall_zoom_out + '" style="opacity: 0.3; cursor: not-allowed;"></i> ';
         }
 
-        // Reset zoom button (disabled if already at level 3)
-        if (this.currentZoomLevel !== 3) {
-            zoomHTML += '<i class="fas fa-undo zoom-reset-icon" title="' + lang_dxwaterfall_reset_zoom + '" style="margin: 0 5px; cursor: pointer; color: #FFFFFF; font-size: 12px;"></i> ';
+        // Reset zoom button (disabled if already at default level)
+        if (this.currentZoomLevel !== DX_WATERFALL_CONSTANTS.ZOOM.DEFAULT_LEVEL) {
+            zoomHTML += '<i class="fas fa-undo zoom-reset-icon" title="' + lang_dxwaterfall_reset_zoom + '" style="margin: 0 5px; cursor: pointer; color: ' + DX_WATERFALL_CONSTANTS.COLORS.WHITE + '; font-size: 12px;"></i> ';
         } else {
             zoomHTML += '<i class="fas fa-undo zoom-reset-icon disabled" title="' + lang_dxwaterfall_reset_zoom + '" style="margin: 0 5px; opacity: 0.3; cursor: not-allowed; font-size: 12px;"></i> ';
         }
@@ -4620,6 +4693,8 @@ var dxWaterfall = {
             this.currentZoomLevel++;
             this.cachedPixelsPerKHz = null; // Invalidate cache
             this.lastModeForCache = null; // Force recalculation
+            this.cache.visibleSpots = null; // Invalidate visible spots cache
+            this.cache.visibleSpotsParams = null;
 
             // Update zoom menu and reset flag after a delay
             var self = this;
@@ -4637,11 +4712,13 @@ var dxWaterfall = {
             return;
         }
 
-        if (this.currentZoomLevel > 1) {
+        if (this.currentZoomLevel > DX_WATERFALL_CONSTANTS.ZOOM.MIN_LEVEL) {
             this.zoomChanging = true;
             this.currentZoomLevel--;
             this.cachedPixelsPerKHz = null; // Invalidate cache
             this.lastModeForCache = null; // Force recalculation
+            this.cache.visibleSpots = null; // Invalidate visible spots cache
+            this.cache.visibleSpotsParams = null;
 
             // Update zoom menu and reset flag after a delay
             var self = this;
@@ -4659,11 +4736,13 @@ var dxWaterfall = {
             return;
         }
 
-        if (this.currentZoomLevel !== 3) {
+        if (this.currentZoomLevel !== DX_WATERFALL_CONSTANTS.ZOOM.DEFAULT_LEVEL) {
             this.zoomChanging = true;
-            this.currentZoomLevel = 3;
+            this.currentZoomLevel = DX_WATERFALL_CONSTANTS.ZOOM.DEFAULT_LEVEL;
             this.cachedPixelsPerKHz = null; // Invalidate cache
             this.lastModeForCache = null; // Force recalculation
+            this.cache.visibleSpots = null; // Invalidate visible spots cache
+            this.cache.visibleSpotsParams = null;
 
             // Update zoom menu and reset flag after a delay
             var self = this;
@@ -4678,61 +4757,58 @@ var dxWaterfall = {
     // SPOT NAVIGATION AND FREQUENCY FUNCTIONS
     // ========================================
 
-    // Navigate to previous spot (nearest spot to the left of current frequency)
-    prevSpot: function() {
-        // Check if navigation is allowed
+    /**
+     * Find nearest spot in a given direction (prev/next)
+     * @param {string} direction - 'prev' (lower frequency) or 'next' (higher frequency)
+     * @returns {object|null} Object with {spot, index} or null if not found
+     */
+    findNearestSpot: function(direction) {
         if (!DX_WATERFALL_UTILS.navigation.canNavigate(this)) {
-            return;
+            return null;
         }
 
-        // Get current frequency
         var currentFreq = this.getCachedMiddleFreq();
         var targetSpot = null;
         var targetIndex = -1;
 
-        // Find the nearest spot to the left (lower frequency) of current position
-        // Since allBandSpots is sorted by frequency ascending, iterate backwards
-        for (var i = this.allBandSpots.length - 1; i >= 0; i--) {
-            if (this.allBandSpots[i].frequency < currentFreq) {
-                targetSpot = this.allBandSpots[i];
-                targetIndex = i;
-                break;
+        if (direction === 'prev') {
+            // Find nearest spot to the left (lower frequency)
+            // Iterate backwards since allBandSpots is sorted ascending
+            for (var i = this.allBandSpots.length - 1; i >= 0; i--) {
+                if (this.allBandSpots[i].frequency < currentFreq) {
+                    targetSpot = this.allBandSpots[i];
+                    targetIndex = i;
+                    break;
+                }
+            }
+        } else if (direction === 'next') {
+            // Find nearest spot to the right (higher frequency)
+            // Iterate forward since allBandSpots is sorted ascending
+            for (var i = 0; i < this.allBandSpots.length; i++) {
+                if (this.allBandSpots[i].frequency > currentFreq) {
+                    targetSpot = this.allBandSpots[i];
+                    targetIndex = i;
+                    break;
+                }
             }
         }
 
-        // Don't wrap around - only navigate if a spot exists to the left
-        // If no spot found to the left, do nothing (button should be disabled)
-        if (targetSpot) {
-            DX_WATERFALL_UTILS.navigation.navigateToSpot(this, targetSpot, targetIndex);
+        return targetSpot ? {spot: targetSpot, index: targetIndex} : null;
+    },
+
+    // Navigate to previous spot (nearest spot to the left of current frequency)
+    prevSpot: function() {
+        var result = this.findNearestSpot('prev');
+        if (result) {
+            DX_WATERFALL_UTILS.navigation.navigateToSpot(this, result.spot, result.index);
         }
     },
 
     // Navigate to next spot (nearest spot to the right of current frequency)
     nextSpot: function() {
-        // Check if navigation is allowed
-        if (!DX_WATERFALL_UTILS.navigation.canNavigate(this)) {
-            return;
-        }
-
-        // Get current frequency
-        var currentFreq = this.getCachedMiddleFreq();
-        var targetSpot = null;
-        var targetIndex = -1;
-
-        // Find the nearest spot to the right (higher frequency) of current position
-        // Since allBandSpots is sorted by frequency ascending, iterate forward
-        for (var i = 0; i < this.allBandSpots.length; i++) {
-            if (this.allBandSpots[i].frequency > currentFreq) {
-                targetSpot = this.allBandSpots[i];
-                targetIndex = i;
-                break;
-            }
-        }
-
-        // Don't wrap around - only navigate if a spot exists to the right
-        // If no spot found to the right, do nothing (button should be disabled)
-        if (targetSpot) {
-            DX_WATERFALL_UTILS.navigation.navigateToSpot(this, targetSpot, targetIndex);
+        var result = this.findNearestSpot('next');
+        if (result) {
+            DX_WATERFALL_UTILS.navigation.navigateToSpot(this, result.spot, result.index);
         }
     },
 
@@ -5085,6 +5161,10 @@ var dxWaterfall = {
             self.currentSpotIndex = 0;
             self.lastSpotInfoKey = null; // Reset spot info key
 
+            // Invalidate visible spots cache
+            self.cache.visibleSpots = null;
+            self.cache.visibleSpotsParams = null;
+
             // Update zoom menu to show new continent and waiting state
             self.updateZoomMenu();
 
@@ -5236,22 +5316,17 @@ var dxWaterfall = {
         this.cache.noise1 = null;
         this.cache.noise2 = null;
         this.cache.middleFreq = null;
-        this.cache.lastFreqInput = null;
         this.cache.lastQrgUnit = null;
-        this.cache.lastModeForCache = null;
-        this.cache.committedFreqInput = null;
-        this.cache.committedQrgUnit = null;
         this.cache.lastValidCommittedFreq = null;
         this.cache.lastValidCommittedUnit = null;
+        this.cache.visibleSpots = null;
+        this.cache.visibleSpotsParams = null;
 
         // Clear frequency tracking properties (used in getCachedMiddleFreq)
-        this.lastFreqInput = null;
         this.lastQrgUnit = null;
         this.lastModeForCache = null;
         this.lastValidCommittedFreq = null;
         this.lastValidCommittedUnit = null;
-        this.committedFreqInput = null;
-        this.committedQrgUnit = null;
 
         // Clear cached pixels per kHz
         this.cachedPixelsPerKHz = null;
@@ -5926,7 +6001,6 @@ $(document).ready(function() {
         // Update cache directly AND sync tracking variables to prevent recalculation
         var formattedFreq = Math.round(clickedFreq * 1000); // Convert to Hz
         dxWaterfall.cache.middleFreq = clickedFreq;
-        dxWaterfall.lastFreqInput = clickedFreq; // Store in kHz to match cache
         dxWaterfall.lastValidCommittedFreq = clickedFreq; // Store in kHz
         dxWaterfall.lastValidCommittedUnit = 'kHz';
         dxWaterfall.lastQrgUnit = 'kHz';

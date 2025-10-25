@@ -59,7 +59,7 @@ switch ($date_format) {
 		width: 100%;
 		background-color: #000000;
 		color: #FFFFFF;
-		padding: 5px;
+		padding: 5px 8px;
 		font-family: "Consolas", "Courier New", monospace;
 		font-size: 11px;
 		border-left: 1px solid #000000;
@@ -137,7 +137,7 @@ switch ($date_format) {
 		width: 100%;
 		background-color: #000000;
 		color: #FFFFFF;
-		padding: 5px;
+		padding: 5px 8px;
 		font-family: "Consolas", "Courier New", monospace;
 		font-size: 11px;
 		border-left: 1px solid #000000;
