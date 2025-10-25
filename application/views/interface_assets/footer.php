@@ -1468,7 +1468,7 @@ mymap.on('mousemove', onQsoMapMove);
 		    });
 
 		    cat2UI($('#frequency_rx'),data.frequency_rx,false,true,function(d){$("#band_rx").val(frequencyToBand(d))});
-		    cat2UI($('.mode'),data.mode,false,false,function(d){setRst($(".mode").val())});
+		    cat2UI($('.mode'),catmode(data.mode),false,false,function(d){setRst($(".mode").val())});
 		    cat2UI($('#sat_name'),data.satname,false,false);
 		    cat2UI($('#sat_mode'),data.satmode,false,false);
 		    cat2UI($('#transmit_power'),data.power,false,false);
