@@ -1147,10 +1147,13 @@ var DX_WATERFALL_UTILS = {
                 setTimeout(function() {
                     waterfallContext.commitFrequency();
                 }, 50);
+
+                // Update zoom menu after a brief delay to ensure frequency change is complete
+                setTimeout(function() {
+                    waterfallContext.updateZoomMenu();
+                }, 150);
             }
 
-            // Update zoom menu to reflect new position
-            waterfallContext.updateZoomMenu();
             return true;
         },
 
@@ -4434,12 +4437,11 @@ var dxWaterfall = {
         // Add band spot navigation controls - always show them
         if (this.allBandSpots.length > 0) {
             var currentFreq = this.getCachedMiddleFreq();
-            var freqTolerance = 0.001; // 1 Hz tolerance for frequency comparison
 
             // Check if there's any spot with lower frequency (for prev/left)
             var hasPrevSpot = false;
             for (var i = 0; i < this.allBandSpots.length; i++) {
-                if (this.allBandSpots[i].frequency < (currentFreq - freqTolerance)) {
+                if (this.allBandSpots[i].frequency < currentFreq) {
                     hasPrevSpot = true;
                     break;
                 }
@@ -4448,7 +4450,7 @@ var dxWaterfall = {
             // Check if there's any spot with higher frequency (for next/right)
             var hasNextSpot = false;
             for (var i = 0; i < this.allBandSpots.length; i++) {
-                if (this.allBandSpots[i].frequency > (currentFreq + freqTolerance)) {
+                if (this.allBandSpots[i].frequency > currentFreq) {
                     hasNextSpot = true;
                     break;
                 }
