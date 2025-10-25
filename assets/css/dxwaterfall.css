@@ -1,0 +1,191 @@
+	#dxWaterfall {
+		width: 100%;
+		height: 200px;
+		display: block;
+		border-left: 1px solid #000000;
+		border-right: 1px solid #000000;
+	}
+	#dxWaterfallSpot {
+		width: 100%;
+		background-color: #000000;
+		color: #FFFFFF;
+		padding: 5px 8px;
+		font-family: "Consolas", "Courier New", monospace;
+		font-size: 11px;
+		border-left: 1px solid #000000;
+		border-right: 1px solid #000000;
+		border-top: 1px solid #000000;
+		min-height: 20px;
+		line-height: 1.4;
+		word-wrap: break-word;
+		overflow-wrap: break-word;
+		position: relative;
+		border-radius: 5px 5px 5px 5px;
+		transition: border-radius 0.3s;
+	}
+	#dxWaterfallSpot.active {
+		border-radius: 5px 5px 0 0;
+		border-bottom: none;
+	}
+	#dxWaterfallSpotHeader {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		position: relative;
+		cursor: pointer;
+	}
+	#dxWaterfallSpotHeader.hidden {
+		display: none;
+	}
+	#dxWaterfallSpotContent {
+		display: none;
+		width: 100%;
+		padding-right: 30px;
+	}
+	#dxWaterfallSpotContent.active {
+		display: block;
+	}
+	#dxWaterfallSpotLeft {
+		display: flex;
+		align-items: center;
+		flex: 1;
+	}
+	#dxWaterfallPowerOnIcon {
+		position: absolute;
+		top: 50%;
+		right: 0px;
+		transform: translateY(-50%);
+		cursor: pointer;
+		color: #FF0000;
+		flex-shrink: 0;
+		transition: color 0.3s;
+	}
+	#dxWaterfallPowerOnIcon:hover {
+		color: #DD0000;
+	}
+	#dxWaterfallMessage {
+		text-align: left;
+	}
+	#dxWaterfallPowerOffIcon {
+		position: absolute;
+		top: 50%;
+		right: 5px;
+		transform: translateY(-50%);
+		cursor: pointer;
+		color: #00FF00;
+		flex-shrink: 0;
+		transition: color 0.2s;
+		display: none;
+	}
+	#dxWaterfallPowerOffIcon.active {
+		display: block;
+	}
+	#dxWaterfallPowerOffIcon:hover {
+		color: #00DD00;
+	}
+	#dxWaterfallMenu {
+		width: 100%;
+		background-color: #000000;
+		color: #FFFFFF;
+		padding: 5px 8px;
+		font-family: "Consolas", "Courier New", monospace;
+		font-size: 11px;
+		border-left: 1px solid #000000;
+		border-right: 1px solid #000000;
+		border-bottom: 1px solid #000000;
+		border-radius: 0 0 5px 5px;
+		min-height: 20px;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 10px;
+	}
+	#dxWaterfallMenu .zoom-in-icon,
+	#dxWaterfallMenu .zoom-out-icon,
+	#dxWaterfallMenu .zoom-reset-icon,
+	#dxWaterfallMenu .prev-spot-icon,
+	#dxWaterfallMenu .next-spot-icon,
+	#dxWaterfallMenu .smart-hunter-icon,
+	#dxWaterfallMenu .continent-cycle-icon,
+	#dxWaterfallMenu .mode-filter-icon,
+	#dxWaterfallMenu .label-size-icon {
+		cursor: pointer;
+		color: #FFFFFF;
+		margin: 0 2px;
+		font-size: 12px;
+		transition: color 0.2s;
+	}
+	#dxWaterfallMenu .zoom-in-icon:hover:not(.disabled),
+	#dxWaterfallMenu .zoom-out-icon:hover:not(.disabled),
+	#dxWaterfallMenu .zoom-reset-icon:hover:not(.disabled),
+	#dxWaterfallMenu .prev-spot-icon:hover:not(.disabled),
+	#dxWaterfallMenu .next-spot-icon:hover:not(.disabled),
+	#dxWaterfallMenu .smart-hunter-icon:hover:not(.disabled),
+	#dxWaterfallMenu .smart-hunter-text:hover:not(.disabled),
+	#dxWaterfallMenu .continent-cycle-icon:hover:not(.disabled),
+	#dxWaterfallMenu .continent-cycle-text:hover:not(.disabled),
+	#dxWaterfallMenu .mode-filter-icon:hover:not(.disabled),
+	#dxWaterfallMenu .label-size-icon:hover {
+		color: #AAAAAA;
+	}
+	#dxWaterfallMenu .smart-hunter-text,
+	#dxWaterfallMenu .continent-cycle-text {
+		cursor: pointer;
+		color: #FFFFFF;
+		margin-left: 5px;
+		font-size: 11px;
+		transition: color 0.2s;
+		user-select: none;
+	}
+	#dxWaterfallMenu .mode-filter-phone,
+	#dxWaterfallMenu .mode-filter-cw,
+	#dxWaterfallMenu .mode-filter-digi {
+		user-select: none;
+	}
+	#dxWaterfallMenu .mode-filter-phone:hover:not(.disabled),
+	#dxWaterfallMenu .mode-filter-cw:hover:not(.disabled),
+	#dxWaterfallMenu .mode-filter-digi:hover:not(.disabled) {
+		opacity: 0.7;
+	}
+	@keyframes blink {
+		0%, 49% { opacity: 1; }
+		50%, 100% { opacity: 0.3; }
+	}
+	#dxWaterfallSpot .flag-emoji {
+		font-family: "Twemoji Country Flags", "Helvetica", "Comic Sans", sans-serif !important;
+		font-style: normal !important;
+		font-variant: normal !important;
+	}
+	#dxWaterfallSpot .copy-icon,
+	#dxWaterfallSpot .tune-icon,
+	#dxWaterfallSpot .cycle-spot-icon {
+		cursor: pointer;
+		color: #FFFFFF;
+		margin-right: 5px;
+		font-size: 12px;
+		transition: color 0.2s;
+	}
+	#dxWaterfallSpot .copy-icon:hover,
+	#dxWaterfallSpot .tune-icon:hover,
+	#dxWaterfallSpot .cycle-spot-icon:hover {
+		color: #AAAAAA;
+	}
+	#dxWaterfallSpot .new-continent-icon {
+		color: #FFD700; /* Gold */
+		margin-left: 5px;
+		font-size: 12px;
+	}
+	#dxWaterfallSpot .new-dxcc-icon {
+		color: #C0C0C0; /* Silver */
+		margin-left: 5px;
+		font-size: 12px;
+	}
+	#dxWaterfallSpot .new-callsign-icon {
+		color: #CD7F32; /* Bronze */
+		margin-left: 5px;
+		font-size: 12px;
+	}
+
+  .dxwaterfallpane{
+    margin-bottom: 2px;
+  }
