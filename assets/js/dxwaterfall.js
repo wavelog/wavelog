@@ -469,6 +469,58 @@ var DX_WATERFALL_UTILS = {
         }
     },
 
+    // Field mapping utilities - allows pages to remap field IDs
+    fieldMapping: {
+        /**
+         * Get the actual field ID for a logical field name
+         * @param {string} fieldName - Logical field name (e.g., 'callsign', 'freq_calculated')
+         * @param {boolean} isOptional - Whether this is an optional field
+         * @returns {string} Actual DOM element ID
+         */
+        getFieldId: function(fieldName, isOptional) {
+            isOptional = isOptional || false;
+
+            // Check if page has defined a field mapping
+            if (window.DX_WATERFALL_FIELD_MAP) {
+                var category = isOptional ? 'optional' : 'required';
+                if (window.DX_WATERFALL_FIELD_MAP[category] &&
+                    window.DX_WATERFALL_FIELD_MAP[category][fieldName]) {
+                    return window.DX_WATERFALL_FIELD_MAP[category][fieldName];
+                }
+            }
+
+            // Fallback to default field name (for backward compatibility)
+            return fieldName;
+        },
+
+        /**
+         * Get jQuery element for a field by logical name
+         * @param {string} fieldName - Logical field name
+         * @param {boolean} isOptional - Whether this is an optional field
+         * @returns {jQuery} jQuery element or empty jQuery object if not found
+         */
+        getField: function(fieldName, isOptional) {
+            var fieldId = this.getFieldId(fieldName, isOptional);
+            return $('#' + fieldId);
+        },
+
+        /**
+         * Check if an optional field exists on the page
+         * @param {string} fieldName - Logical field name
+         * @returns {boolean} True if field exists in DOM
+         */
+        hasOptionalField: function(fieldName) {
+            // Use custom checker if provided
+            if (window.DX_WATERFALL_HAS_FIELD && typeof window.DX_WATERFALL_HAS_FIELD === 'function') {
+                return window.DX_WATERFALL_HAS_FIELD(fieldName);
+            }
+
+            // Fallback to checking DOM
+            var fieldId = this.getFieldId(fieldName, true);
+            return document.getElementById(fieldId) !== null;
+        }
+    },
+
     // Mode classification utilities
     modes: {
         isCw: function(mode) {
@@ -1243,11 +1295,6 @@ var DX_WATERFALL_UTILS = {
         }
     },
 };
-
-// Initialize DOM cache
-$(document).ready(function() {
-    DX_WATERFALL_UTILS.dom.init();
-});
 
 // ========================================
 // MAIN DX WATERFALL OBJECT
@@ -5697,9 +5744,16 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
     }
 }
 
-$(document).ready(function() {
-    // Function to try initializing the canvas with retries
-    function tryInitCanvas() {
+// Wait for jQuery to be available before initializing
+(function waitForJQuery() {
+    if (typeof jQuery !== 'undefined') {
+        // jQuery is loaded, proceed with initialization
+        $(document).ready(function() {
+            // Initialize DOM cache
+            DX_WATERFALL_UTILS.dom.init();
+
+            // Function to try initializing the canvas with retries
+            function tryInitCanvas() {
         if (document.getElementById('dxWaterfall')) {
             // Canvas found, but DON'T auto-initialize
             // Wait for user to click the power button
@@ -6169,6 +6223,11 @@ $(document).ready(function() {
         $('#dxWaterfallCanvasContainer').hide();
         $('#dxWaterfallMenuContainer').hide();
     });
-});
+        }); // End of $(document).ready()
+    } else {
+        // jQuery not loaded yet, try again in 50ms
+        setTimeout(waitForJQuery, 50);
+    }
+})(); // End of waitForJQuery IIFE
 
 

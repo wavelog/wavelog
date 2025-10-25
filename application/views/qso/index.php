@@ -43,6 +43,35 @@ switch ($date_format) {
 <!--- DX Waterfall --->
 <?php $this->load->view('components/dxwaterfall'); ?>
 
+<script>
+// DX Waterfall Field Mapping Configuration
+// This maps the dxwaterfall.js expected field IDs to the actual form fields on this page
+// Required for dxwaterfall.js to interact with the QSO form
+if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
+    window.DX_WATERFALL_FIELD_MAP = {
+        // REQUIRED FIELDS - These must exist for dxwaterfall.js to function
+        required: {
+            callsign: 'callsign',           // Callsign input field
+            freq_calculated: 'freq_calculated', // Displayed frequency field (kHz)
+            qrg_unit: 'qrg_unit',           // Frequency unit label (MHz/kHz display)
+            band: 'band',                    // Band selector dropdown
+            mode: 'mode',                    // Mode selector dropdown
+            frequency: 'frequency'           // Hidden frequency field (Hz) - used for internal frequency storage and radio control
+        },
+
+        // OPTIONAL FIELDS - These are used if present, but won't cause errors if missing
+        optional: {
+            sota_ref: 'sota_ref',           // SOTA reference field (Summits on the Air)
+            pota_ref: 'pota_ref',           // POTA reference field (Parks on the Air)
+            iota_ref: 'iota_ref',           // IOTA reference field (Islands on the Air)
+            wwff_ref: 'wwff_ref',           // WWFF reference field (World Wide Flora Fauna)
+            btn_reset: 'btn_reset'          // QSO form reset/clear button
+        }
+    };
+}
+
+</script>
+
 <div class="row qsopane">
 
   <div class="col-sm-5">
