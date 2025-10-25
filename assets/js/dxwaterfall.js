@@ -1777,10 +1777,10 @@ var dxWaterfall = {
             // Convert to kHz using utility function
             this.cache.middleFreq = DX_WATERFALL_UTILS.frequency.convertToKhz(currentInput, currentUnit);
         }
-        
+
         // Update split operation state and get display configuration
         this.updateSplitOperationState();
-        
+
         return this.displayConfig.centerFrequency;
     },
 
@@ -1792,12 +1792,12 @@ var dxWaterfall = {
             var $frequencyRx = DX_WATERFALL_UTILS.fieldMapping.getField('frequency_rx', true);
             frequencyRxValue = $frequencyRx.val();
         }
-        
+
         if (frequencyRxValue && frequencyRxValue != '' && parseFloat(frequencyRxValue) > 0) {
             // SPLIT OPERATION MODE
             var rxFreq = parseFloat(frequencyRxValue) / 1000; // Convert Hz to kHz
             var txFreq = this.cache.middleFreq; // TX is from main frequency field
-            
+
             this.displayConfig = {
                 isSplit: true,
                 centerFrequency: rxFreq,           // Waterfall centered on RX
@@ -1978,11 +1978,11 @@ var dxWaterfall = {
         if (spotInfo && spotInfo.callsign) {
             // Create a unique identifier for this spot
             var spotId = spotInfo.callsign + '_' + spotInfo.frequency + '_' + (spotInfo.mode || '');
-            
+
             // Only populate if this is a different spot than the last one we populated
             if (this.lastPopulatedSpot !== spotId) {
                 this.lastPopulatedSpot = spotId;
-                
+
                 // Clear the form first
                 DX_WATERFALL_UTILS.qsoForm.clearForm();
 
@@ -3065,12 +3065,12 @@ var dxWaterfall = {
                     self.lastFetchBand = band;
                     self.lastFetchContinent = de;
                     self.lastFetchAge = age;
-                    
+
                     // Invalidate caches when spots are updated
                     self.cache.visibleSpots = null;
                     self.cache.visibleSpotsParams = null;
                     self.relevantSpots = [];
-                    
+
                     self.collectAllBandSpots(true); // Update band spot collection for navigation (force after data fetch)
                     self.collectSmartHunterSpots(); // Update smart hunter spots collection
 
@@ -3086,12 +3086,12 @@ var dxWaterfall = {
                     self.dataReceived = true; // Mark as received even if empty
                     self.waitingForData = false; // Stop waiting
                     self.userInitiatedFetch = false; // Clear user-initiated flag
-                    
+
                     // Invalidate caches when spots are cleared
                     self.cache.visibleSpots = null;
                     self.cache.visibleSpotsParams = null;
                     self.relevantSpots = [];
-                    
+
                     self.allBandSpots = []; // Clear band spots
                     self.currentBandSpotIndex = 0;
                     self.smartHunterSpots = []; // Clear smart hunter spots
@@ -3110,12 +3110,12 @@ var dxWaterfall = {
                 self.totalSpotsCount = 0;
                 self.dataReceived = true; // Mark as received to stop waiting state
                 self.waitingForData = false; // Stop waiting
-                
+
                 // Invalidate caches on error
                 self.cache.visibleSpots = null;
                 self.cache.visibleSpotsParams = null;
                 self.relevantSpots = [];
-                
+
                 self.allBandSpots = []; // Clear band spots
                 self.currentBandSpotIndex = 0;
                 self.smartHunterSpots = []; // Clear smart hunter spots
@@ -3467,7 +3467,7 @@ var dxWaterfall = {
         if (!this.displayConfig.showBandwidthIndicator) {
             return;
         }
-        
+
         var centerX = this.canvas.width / 2;
         var rulerY = this.canvas.height - DX_WATERFALL_CONSTANTS.CANVAS.RULER_HEIGHT;
         var middleFreq = this.getCachedMiddleFreq(); // Use cached frequency
@@ -3512,7 +3512,7 @@ var dxWaterfall = {
         // Draw all configured markers
         for (var i = 0; i < this.displayConfig.markers.length; i++) {
             var marker = this.displayConfig.markers[i];
-            
+
             // Calculate marker position relative to center frequency
             var offset = (marker.frequency - centerFreq) * pixelsPerKhz;
             var markerX = centerX + offset;
@@ -3530,10 +3530,10 @@ var dxWaterfall = {
                 // In split mode, if TX marker is off-screen, draw arrow indicator on ruler
                 var arrowY = rulerY + 10; // Position on ruler
                 var arrowSize = 6;
-                
+
                 this.ctx.fillStyle = marker.color;
                 this.ctx.beginPath();
-                
+
                 if (markerX < 0) {
                     // TX is to the left (below current view) - draw left-pointing arrow on left side
                     var arrowX = 10;
@@ -3547,7 +3547,7 @@ var dxWaterfall = {
                     this.ctx.lineTo(arrowX, arrowY);
                     this.ctx.lineTo(arrowX - arrowSize, arrowY + arrowSize);
                 }
-                
+
                 this.ctx.closePath();
                 this.ctx.fill();
             }
