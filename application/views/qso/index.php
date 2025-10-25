@@ -61,6 +61,7 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
 
         // OPTIONAL FIELDS - These are used if present, but won't cause errors if missing
         optional: {
+            frequency_rx: 'frequency_rx',   // RX frequency field (for split operation)
             sota_ref: 'sota_ref',           // SOTA reference field (Summits on the Air)
             pota_ref: 'pota_ref',           // POTA reference field (Parks on the Air)
             iota_ref: 'iota_ref',           // IOTA reference field (Islands on the Air)

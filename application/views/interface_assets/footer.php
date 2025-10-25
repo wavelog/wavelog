@@ -1608,6 +1608,16 @@ mymap.on('mousemove', onQsoMapMove);
 		    <?php } ?>
 
 		    cat2UI($frequencyRx,data.frequency_rx,false,true,function(d){$bandRx.val(frequencyToBand(d))});
+
+		    // If frequency_rx is not provided by radio, clear the field
+		    if (!data.frequency_rx || data.frequency_rx == 0 || data.frequency_rx == null) {
+			    if ($frequencyRx.val() != '' && $frequencyRx.val() != '0') {
+				    $frequencyRx.val('');
+				    $frequencyRx.removeData('catValue'); // Clear cache so cat2UI can update again
+				    $bandRx.val('');
+			    }
+		    }
+
 		    cat2UI($mode,catmode(data.mode),false,false,function(d){setRst($mode.val())});
 		    cat2UI($('#sat_name'),data.satname,false,false);
 		    cat2UI($('#sat_mode'),data.satmode,false,false);
@@ -1653,7 +1663,7 @@ mymap.on('mousemove', onQsoMapMove);
 				    }
 				    text = text + ' ';
 			    }
-			    
+
 			    // Check if we have RX frequency (split operation)
 			    if(data.frequency_rx != null && data.frequency_rx != 0) {
 				    // Split operation: show TX and RX separately

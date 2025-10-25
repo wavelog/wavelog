@@ -120,7 +120,10 @@ var DX_WATERFALL_CONSTANTS = {
 
         // Center marker and bandwidth
         CENTER_MARKER: '#FF0000',
+        CENTER_MARKER_RX: '#00FF00', // Green for RX in split operation
+        CENTER_MARKER_TX: '#FF0000', // Red for TX in split operation
         RED: '#FF0000',
+        GREEN: '#00FF00',
         BANDWIDTH_INDICATOR: 'rgba(255, 255, 0, 0.3)',
 
         // Messages and text
@@ -1382,6 +1385,15 @@ var dxWaterfall = {
     programmaticModeChange: false, // Flag to prevent fetching spots when mode is changed by waterfall
     userChangedBand: false, // Flag to prevent auto band update when user manually changed band
     initializationComplete: false, // Flag to track if initial setup is done
+    lastPopulatedSpot: null, // Track the last spot that was used to populate the form
+
+    // Display configuration - centralized mapping for simplex/split operation
+    displayConfig: {
+        isSplit: false,
+        centerFrequency: null,
+        markers: [],
+        showBandwidthIndicator: true
+    },
 
     // ========================================
     // ZOOM AND NAVIGATION STATE
@@ -1765,7 +1777,59 @@ var dxWaterfall = {
             // Convert to kHz using utility function
             this.cache.middleFreq = DX_WATERFALL_UTILS.frequency.convertToKhz(currentInput, currentUnit);
         }
-        return this.cache.middleFreq;
+        
+        // Update split operation state and get display configuration
+        this.updateSplitOperationState();
+        
+        return this.displayConfig.centerFrequency;
+    },
+
+    // Update split operation state and configure display parameters
+    updateSplitOperationState: function() {
+        // Check if frequency_rx field exists and has a value
+        var frequencyRxValue = null;
+        if (DX_WATERFALL_UTILS.fieldMapping.hasOptionalField('frequency_rx')) {
+            var $frequencyRx = DX_WATERFALL_UTILS.fieldMapping.getField('frequency_rx', true);
+            frequencyRxValue = $frequencyRx.val();
+        }
+        
+        if (frequencyRxValue && frequencyRxValue != '' && parseFloat(frequencyRxValue) > 0) {
+            // SPLIT OPERATION MODE
+            var rxFreq = parseFloat(frequencyRxValue) / 1000; // Convert Hz to kHz
+            var txFreq = this.cache.middleFreq; // TX is from main frequency field
+            
+            this.displayConfig = {
+                isSplit: true,
+                centerFrequency: rxFreq,           // Waterfall centered on RX
+                markers: [
+                    {
+                        frequency: rxFreq,
+                        color: DX_WATERFALL_CONSTANTS.COLORS.CENTER_MARKER_RX,
+                        label: 'RX'
+                    },
+                    {
+                        frequency: txFreq,
+                        color: DX_WATERFALL_CONSTANTS.COLORS.CENTER_MARKER_TX,
+                        label: 'TX'
+                    }
+                ],
+                showBandwidthIndicator: false
+            };
+        } else {
+            // SIMPLEX OPERATION MODE
+            this.displayConfig = {
+                isSplit: false,
+                centerFrequency: this.cache.middleFreq,
+                markers: [
+                    {
+                        frequency: this.cache.middleFreq,
+                        color: DX_WATERFALL_CONSTANTS.COLORS.CENTER_MARKER,
+                        label: 'CENTER'
+                    }
+                ],
+                showBandwidthIndicator: true
+            };
+        }
     },
 
     // Force invalidate frequency cache - called when CAT updates frequency
@@ -1912,17 +1976,28 @@ var dxWaterfall = {
         var spotInfo = this.getSpotInfo();
 
         if (spotInfo && spotInfo.callsign) {
-            // Clear the form first
-            DX_WATERFALL_UTILS.qsoForm.clearForm();
+            // Create a unique identifier for this spot
+            var spotId = spotInfo.callsign + '_' + spotInfo.frequency + '_' + (spotInfo.mode || '');
+            
+            // Only populate if this is a different spot than the last one we populated
+            if (this.lastPopulatedSpot !== spotId) {
+                this.lastPopulatedSpot = spotId;
+                
+                // Clear the form first
+                DX_WATERFALL_UTILS.qsoForm.clearForm();
 
-            // Populate form with spot data after a short delay
-            setTimeout(function() {
-                if (typeof DX_WATERFALL_UTILS !== 'undefined' &&
-                    typeof DX_WATERFALL_UTILS.qsoForm !== 'undefined' &&
-                    typeof DX_WATERFALL_UTILS.qsoForm.populateFromSpot === 'function') {
-                    DX_WATERFALL_UTILS.qsoForm.populateFromSpot(spotInfo, true);
-                }
-            }, 100);
+                // Populate form with spot data after a short delay
+                setTimeout(function() {
+                    if (typeof DX_WATERFALL_UTILS !== 'undefined' &&
+                        typeof DX_WATERFALL_UTILS.qsoForm !== 'undefined' &&
+                        typeof DX_WATERFALL_UTILS.qsoForm.populateFromSpot === 'function') {
+                        DX_WATERFALL_UTILS.qsoForm.populateFromSpot(spotInfo, true);
+                    }
+                }, 100);
+            }
+        } else {
+            // No spot at current frequency, clear the last populated spot tracker
+            this.lastPopulatedSpot = null;
         }
     },
 
@@ -2990,6 +3065,12 @@ var dxWaterfall = {
                     self.lastFetchBand = band;
                     self.lastFetchContinent = de;
                     self.lastFetchAge = age;
+                    
+                    // Invalidate caches when spots are updated
+                    self.cache.visibleSpots = null;
+                    self.cache.visibleSpotsParams = null;
+                    self.relevantSpots = [];
+                    
                     self.collectAllBandSpots(true); // Update band spot collection for navigation (force after data fetch)
                     self.collectSmartHunterSpots(); // Update smart hunter spots collection
 
@@ -3005,6 +3086,12 @@ var dxWaterfall = {
                     self.dataReceived = true; // Mark as received even if empty
                     self.waitingForData = false; // Stop waiting
                     self.userInitiatedFetch = false; // Clear user-initiated flag
+                    
+                    // Invalidate caches when spots are cleared
+                    self.cache.visibleSpots = null;
+                    self.cache.visibleSpotsParams = null;
+                    self.relevantSpots = [];
+                    
                     self.allBandSpots = []; // Clear band spots
                     self.currentBandSpotIndex = 0;
                     self.smartHunterSpots = []; // Clear smart hunter spots
@@ -3023,6 +3110,12 @@ var dxWaterfall = {
                 self.totalSpotsCount = 0;
                 self.dataReceived = true; // Mark as received to stop waiting state
                 self.waitingForData = false; // Stop waiting
+                
+                // Invalidate caches on error
+                self.cache.visibleSpots = null;
+                self.cache.visibleSpotsParams = null;
+                self.relevantSpots = [];
+                
                 self.allBandSpots = []; // Clear band spots
                 self.currentBandSpotIndex = 0;
                 self.smartHunterSpots = []; // Clear smart hunter spots
@@ -3370,6 +3463,11 @@ var dxWaterfall = {
 
     // Draw receiving bandwidth indicator
     drawReceivingBandwidth: function() {
+        // Skip bandwidth indicator if disabled in display config
+        if (!this.displayConfig.showBandwidthIndicator) {
+            return;
+        }
+        
         var centerX = this.canvas.width / 2;
         var rulerY = this.canvas.height - DX_WATERFALL_CONSTANTS.CANVAS.RULER_HEIGHT;
         var middleFreq = this.getCachedMiddleFreq(); // Use cached frequency
@@ -3404,19 +3502,56 @@ var dxWaterfall = {
         }
     },
 
-    // Draw red center line marker
+    // Draw center line marker(s) - uses displayConfig mapping
     drawCenterMarker: function() {
         var centerX = this.canvas.width / 2;
         var rulerY = this.canvas.height - DX_WATERFALL_CONSTANTS.CANVAS.RULER_HEIGHT;
+        var pixelsPerKhz = this.getPixelsPerKHz();
+        var centerFreq = this.displayConfig.centerFrequency;
 
-        // Draw red line from top to ruler
-        this.ctx.strokeStyle = DX_WATERFALL_CONSTANTS.COLORS.CENTER_MARKER;
-        this.ctx.lineWidth = 2;
-        this.ctx.beginPath();
-        this.ctx.moveTo(centerX, 0);
-        this.ctx.lineTo(centerX, rulerY+5);
-        this.ctx.stroke();
+        // Draw all configured markers
+        for (var i = 0; i < this.displayConfig.markers.length; i++) {
+            var marker = this.displayConfig.markers[i];
+            
+            // Calculate marker position relative to center frequency
+            var offset = (marker.frequency - centerFreq) * pixelsPerKhz;
+            var markerX = centerX + offset;
 
+            // Check if marker is within canvas bounds
+            if (markerX >= 0 && markerX <= this.canvas.width) {
+                // Draw marker line
+                this.ctx.strokeStyle = marker.color;
+                this.ctx.lineWidth = 2;
+                this.ctx.beginPath();
+                this.ctx.moveTo(markerX, 0);
+                this.ctx.lineTo(markerX, rulerY + 5);
+                this.ctx.stroke();
+            } else if (this.displayConfig.isSplit && marker.label === 'TX') {
+                // In split mode, if TX marker is off-screen, draw arrow indicator on ruler
+                var arrowY = rulerY + 10; // Position on ruler
+                var arrowSize = 6;
+                
+                this.ctx.fillStyle = marker.color;
+                this.ctx.beginPath();
+                
+                if (markerX < 0) {
+                    // TX is to the left (below current view) - draw left-pointing arrow on left side
+                    var arrowX = 10;
+                    this.ctx.moveTo(arrowX + arrowSize, arrowY - arrowSize);
+                    this.ctx.lineTo(arrowX, arrowY);
+                    this.ctx.lineTo(arrowX + arrowSize, arrowY + arrowSize);
+                } else {
+                    // TX is to the right (above current view) - draw right-pointing arrow on right side
+                    var arrowX = this.canvas.width - 10;
+                    this.ctx.moveTo(arrowX - arrowSize, arrowY - arrowSize);
+                    this.ctx.lineTo(arrowX, arrowY);
+                    this.ctx.lineTo(arrowX - arrowSize, arrowY + arrowSize);
+                }
+                
+                this.ctx.closePath();
+                this.ctx.fill();
+            }
+        }
     },
 
     /**
