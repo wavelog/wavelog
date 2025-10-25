@@ -1,6 +1,6 @@
 function frequencyToBand(frequency) {
 	result = parseInt(frequency);
-				
+
 	if(result >= 14000000 && result <= 14400000) {
 		return '20m';
 	}
@@ -66,6 +66,34 @@ function frequencyToBand(frequency) {
 	}
 }
 
+function catmode(mode) {
+	switch ((mode || '').toUpperCase()) {
+		case 'CW-U':
+		case 'CW-L':
+		case 'CW-R':
+		case 'CWU':
+		case 'CWL':
+			return 'CW';
+			break;
+		case 'RTTY-L':
+		case 'RTTY-U':
+		case 'RTTY-R':
+			return 'RTTY';
+			break;
+		case 'USB-D':
+		case 'USB-D1':
+			return 'USB';
+			break;
+		case 'LSB-D':
+		case 'LSB-D1':
+			return 'LSB';
+			break;
+		default:
+			return (mode || '');;
+			break;
+	}
+}
+
 function LatLng2Loc(y, x, num) {
 	if (x<-180) {x=x+360;}
 	if (x>180) {x=x-360;}
@@ -95,5 +123,5 @@ function LatLng2Loc(y, x, num) {
     if (num >= 8) qthloc+=' ' + String.fromCharCode(yn[6] + 0x30) + String.fromCharCode(yn[7] + 0x30);
     if (num >= 10) qthloc+=String.fromCharCode(yn[8] + 0x61) + String.fromCharCode(yn[9] + 0x61);
 	return qthloc;
-	
+
 }

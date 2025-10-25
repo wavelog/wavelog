@@ -25,16 +25,25 @@ var DX_WATERFALL_CONSTANTS = {
     },
 
     // CAT and radio control
-    // Note: These values are initialized and will be recalculated based on catPollInterval
+    // Note: Some values are initialized and will be recalculated based on catPollInterval
     CAT: {
         POLL_INTERVAL_MS: 3000,           	// Default CAT polling interval (can be overridden by config)
         TUNING_FLAG_FALLBACK_MS: 4500,    	// Fallback timeout for tuning flags (1.5x poll interval)
-        FREQUENCY_WAIT_TIMEOUT_MS: 6000   	// Initial load wait time for CAT frequency (2x poll interval)
+        FREQUENCY_WAIT_TIMEOUT_MS: 6000,  	// Initial load wait time for CAT frequency (2x poll interval)
+
+        // WebSocket timing (low latency)
+        WEBSOCKET_CONFIRM_TIMEOUT_MS: 500,  // WebSocket: Fast confirmation timeout (vs 3000ms polling)
+        WEBSOCKET_FALLBACK_TIMEOUT_MS: 750, // WebSocket: Fast fallback timeout (vs 1.5x poll interval)
+        WEBSOCKET_COMMIT_DELAY_MS: 20,      // WebSocket: Fast commit delay (vs 50ms polling)
+
+        // Polling timing (standard latency)
+        POLLING_CONFIRM_TIMEOUT_MS: 3000,   // Polling: Standard confirmation timeout
+        POLLING_COMMIT_DELAY_MS: 50         // Polling: Standard commit delay (from DEBOUNCE.FREQUENCY_COMMIT_SHORT_MS)
     },
 
     // Visual timing
     VISUAL: {
-        STATIC_NOISE_REFRESH_MS: 100      	// Static noise animation frame rate
+        STATIC_NOISE_REFRESH_MS: 100      	// Static noise animation frame rate (100ms = 10fps, twice as fast as before)
     },
 
     // Cookie configuration
@@ -104,7 +113,6 @@ var DX_WATERFALL_CONSTANTS = {
 
         // Messages and text
         MESSAGE_TEXT_WHITE: '#FFFFFF',
-        MESSAGE_TEXT_YELLOW: '#FFFF00',
         WATERFALL_LINK: '#888888',
 
         // Static noise RGB components
@@ -167,6 +175,91 @@ function initCATTimings(pollInterval) {
     DX_WATERFALL_CONSTANTS.CAT.POLL_INTERVAL_MS = pollInterval;
     DX_WATERFALL_CONSTANTS.CAT.TUNING_FLAG_FALLBACK_MS = pollInterval * 1.5;
     DX_WATERFALL_CONSTANTS.CAT.FREQUENCY_WAIT_TIMEOUT_MS = pollInterval * 2;
+}
+
+/**
+ * Get CAT timing based on connection type (WebSocket vs Polling)
+ * WebSocket connections have much lower latency and can use shorter timeouts
+ * @returns {object} - Object with timeout values appropriate for current connection type
+ */
+function getCATTimings() {
+    var isWebSocket = typeof dxwaterfall_cat_state !== 'undefined' && dxwaterfall_cat_state === 'websocket';
+
+    if (isWebSocket) {
+        return {
+            confirmTimeout: DX_WATERFALL_CONSTANTS.CAT.WEBSOCKET_CONFIRM_TIMEOUT_MS,
+            fallbackTimeout: DX_WATERFALL_CONSTANTS.CAT.WEBSOCKET_FALLBACK_TIMEOUT_MS,
+            commitDelay: DX_WATERFALL_CONSTANTS.CAT.WEBSOCKET_COMMIT_DELAY_MS
+        };
+    } else {
+        return {
+            confirmTimeout: DX_WATERFALL_CONSTANTS.CAT.POLLING_CONFIRM_TIMEOUT_MS,
+            fallbackTimeout: DX_WATERFALL_CONSTANTS.CAT.TUNING_FLAG_FALLBACK_MS,
+            commitDelay: DX_WATERFALL_CONSTANTS.CAT.POLLING_COMMIT_DELAY_MS
+        };
+    }
+}
+
+/**
+ * Handle CAT frequency update with debounce lock
+ * Returns true if frequency should be updated, false if blocked by debounce
+ * Also handles frequency confirmation and cache invalidation
+ * @param {number} radioFrequency - Frequency from CAT in Hz
+ * @param {Function} updateCallback - Function to call if update should proceed
+ * @returns {boolean} - True if update was allowed, false if blocked
+ */
+function handleCATFrequencyUpdate(radioFrequency, updateCallback) {
+    // Check debounce lock
+    var lock = window.dxwaterfall_cat_debounce_lock || 0;
+
+    if (lock === 0) {
+        // No lock - allow normal update
+        if (updateCallback) updateCallback();
+        return true;
+    }
+    // Locked - check if radio confirms our expected frequency
+    if (typeof window.dxwaterfall_expected_frequency !== 'undefined' && window.dxwaterfall_expected_frequency) {
+        var expectedFreq = parseFloat(window.dxwaterfall_expected_frequency);
+        var actualFreq = parseFloat(radioFrequency);
+        var tolerance = 1000; // 1 kHz tolerance
+        var diff = Math.abs(expectedFreq - actualFreq);
+
+        if (diff <= tolerance) {
+            // Radio confirmed - unlock and update
+            window.dxwaterfall_cat_debounce_lock = 0;
+            window.dxwaterfall_expected_frequency = null;
+
+            if (updateCallback) {
+                updateCallback();
+                // Invalidate cache and commit frequency
+                if (typeof dxWaterfall !== 'undefined') {
+                    if (dxWaterfall.invalidateFrequencyCache) {
+                        dxWaterfall.invalidateFrequencyCache();
+                    }
+                    if (dxWaterfall.commitFrequency) {
+                        dxWaterfall.commitFrequency();
+                    }
+                }
+            }
+            return true;
+        }
+    }
+
+    // Frequency doesn't match - stay locked, block update
+    return false;
+}
+
+/**
+ * Check if CAT control is available
+ * @returns {boolean} - True if CAT is available (polling or websocket)
+ */
+function isCATAvailable() {
+    var state = typeof dxwaterfall_cat_state !== 'undefined' ? dxwaterfall_cat_state : 'undefined';
+    var result = (typeof dxwaterfall_cat_state !== 'undefined' &&
+            dxwaterfall_cat_state !== null &&
+            (dxwaterfall_cat_state === "polling" || dxwaterfall_cat_state === "websocket") &&
+            typeof tuneRadioToFrequency === 'function');
+    return result;
 }
 
 // ========================================
@@ -1623,11 +1716,7 @@ var dxWaterfall = {
         }
 
         // Only set completion overlay if CAT is actually available (this function was called due to CAT)
-        var catAvailable = (typeof dxwaterfall_allowcat !== 'undefined' && dxwaterfall_allowcat !== null &&
-                           typeof dxwaterfall_caturl !== 'undefined' && dxwaterfall_caturl !== null &&
-                           dxwaterfall_allowcat && dxwaterfall_caturl !== "");
-
-        if (catAvailable) {
+        if (isCATAvailable()) {
             // Set a temporary overlay flag to keep message visible while marker moves
             this.showingCompletionOverlay = true;
         }
@@ -1636,7 +1725,7 @@ var dxWaterfall = {
         this.lastFrequencyRefreshTime = 0; // Reset throttle to allow immediate refresh
 
         // Only refresh from DOM if CAT is available - otherwise keep waterfall frequency independent
-        if (catAvailable) {
+        if (isCATAvailable()) {
             this.refreshFrequencyCache();
         }
 
@@ -1646,7 +1735,7 @@ var dxWaterfall = {
         }
 
         // Clear the overlay after marker has had time to move (only if we set it)
-        if (catAvailable) {
+        if (isCATAvailable()) {
             var self = this;
             setTimeout(function() {
                 self.showingCompletionOverlay = false;
@@ -1920,27 +2009,67 @@ var dxWaterfall = {
         var labelHeight = this.getCurrentLabelHeight();
         var tolerance = 2; // Pixels tolerance for easier hovering
 
-        // Check center spot first
+        // Check center spot(s) first
         var centerSpot = this.getSpotInfo();
-        if (centerSpot && centerSpot.callsign) {
+        if (centerSpot && this.relevantSpots && this.relevantSpots.length > 0) {
             var centerX = this.canvas.width / 2;
             var waterfallHeight = this.canvas.height - DX_WATERFALL_CONSTANTS.CANVAS.RULER_HEIGHT;
             var centerY = waterfallHeight / 2;
 
+            // Check if we have multiple spots near the center frequency (same logic as drawCenterCallsignLabel)
+            var centerFreq = this.getCachedMiddleFreq(); // Use the actual tuned frequency
+            var spotsAtSameFreq = [];
+            var frequencyTolerance = 0.1; // Same as in drawCenterCallsignLabel
+
+            for (var i = 0; i < this.relevantSpots.length; i++) {
+                var spot = this.relevantSpots[i];
+                var spotFreq = parseFloat(spot.frequency);
+                if (Math.abs(spotFreq - centerFreq) <= frequencyTolerance) {
+                    spotsAtSameFreq.push(spot);
+                }
+            }
+
             this.ctx.font = this.getCurrentCenterLabelFont();
-            var textWidth = this.ctx.measureText(centerSpot.callsign).width;
-            var padding = 5; // Padding around text
-            var centerLabelWidth = textWidth + (padding * 2);
+            var padding = Math.ceil(DX_WATERFALL_CONSTANTS.CANVAS.SPOT_PADDING * 1.1);
             var centerLabelHeight = labelHeight + 1;
+            var spacing = 4;
 
-            var centerLeft = centerX - centerLabelWidth / 2;
-            var centerRight = centerX + centerLabelWidth / 2;
-            var centerTop = centerY - centerLabelHeight / 2;
-            var centerBottom = centerY + centerLabelHeight / 2;
+            if (spotsAtSameFreq.length > 1) {
+                // Check each stacked label
+                var totalHeight = (spotsAtSameFreq.length * centerLabelHeight) + ((spotsAtSameFreq.length - 1) * spacing);
+                var startY = centerY - (totalHeight / 2);
 
-            if (x >= centerLeft - tolerance && x <= centerRight + tolerance &&
-                y >= centerTop - tolerance && y <= centerBottom + tolerance) {
-                return centerSpot;
+                for (var j = 0; j < spotsAtSameFreq.length; j++) {
+                    var stackedSpot = spotsAtSameFreq[j];
+                    var textWidth = this.ctx.measureText(stackedSpot.callsign).width;
+                    var centerLabelWidth = textWidth + (padding * 2);
+
+                    var rectY = startY + (j * (centerLabelHeight + spacing));
+                    var centerLeft = centerX - centerLabelWidth / 2;
+                    var centerRight = centerX + centerLabelWidth / 2;
+                    var centerTop = rectY;
+                    var centerBottom = rectY + centerLabelHeight;
+
+                    if (x >= centerLeft - tolerance && x <= centerRight + tolerance &&
+                        y >= centerTop - tolerance && y <= centerBottom + tolerance) {
+                        return stackedSpot;
+                    }
+                }
+            } else {
+                // Single center spot
+                var textWidth = this.ctx.measureText(centerSpot.callsign).width;
+                var centerLabelWidth = textWidth + (padding * 2);
+                var centerLabelHeight = labelHeight + 1;
+
+                var centerLeft = centerX - centerLabelWidth / 2;
+                var centerRight = centerX + centerLabelWidth / 2;
+                var centerTop = centerY - centerLabelHeight / 2;
+                var centerBottom = centerY + centerLabelHeight / 2;
+
+                if (x >= centerLeft - tolerance && x <= centerRight + tolerance &&
+                    y >= centerTop - tolerance && y <= centerBottom + tolerance) {
+                    return centerSpot;
+                }
             }
         }
 
@@ -2936,7 +3065,7 @@ var dxWaterfall = {
 
         // Default values for backward compatibility
         var displayMessage = message || 'Changing frequency...';
-        var displayColor = color || 'MESSAGE_TEXT_YELLOW';
+        var displayColor = color || 'MESSAGE_TEXT_WHITE';
 
         // Update canvas dimensions to match current CSS dimensions
         this.updateDimensions();
@@ -3421,7 +3550,8 @@ var dxWaterfall = {
 
         // Get the spot shown in center (if any) to avoid drawing it twice
         var centerSpotInfo = this.getSpotInfo();
-        var centerCallsign = centerSpotInfo ? centerSpotInfo.callsign : null;
+        var centerFrequency = middleFreq; // Use the tuned frequency, not selected spot frequency
+        var centerFrequencyTolerance = 0.1; // 0.1 kHz tolerance for center frequency
 
         // Separate spots into left and right of center frequency
         var leftSpots = [];
@@ -3450,8 +3580,8 @@ var dxWaterfall = {
                         includeWorkStatus: true
                     });
 
-                    // Skip this spot if it's currently shown in the center label
-                    if (centerCallsign && spotData.callsign === centerCallsign) {
+                    // Skip this spot if it's at the same frequency as center spot (within tolerance)
+                    if (centerFrequency && Math.abs(spotFreq - centerFrequency) <= centerFrequencyTolerance) {
                         continue;
                     }
 
@@ -3476,7 +3606,7 @@ var dxWaterfall = {
         var availableHeight = bottomY - topY;
 
 		// Check if center label is shown to avoid that area
-		var centerSpotShown = centerCallsign !== null;
+		var centerSpotShown = centerFrequency !== null;
 		var centerY = (this.canvas.height - DX_WATERFALL_CONSTANTS.CANVAS.RULER_HEIGHT) / 2;
 		var baseLabelHeight = this.getCurrentLabelHeight(); // Regular label height
 		var centerLabelHeight = baseLabelHeight + 1; // Center is 1px taller
@@ -3696,65 +3826,148 @@ var dxWaterfall = {
 
     // Draw center callsign label when standing at a relevant spot frequency
     drawCenterCallsignLabel: function() {
-        // Get the current spot info
+        // Get the current spot info (populates this.relevantSpots)
         var spotInfo = this.getSpotInfo();
 
-        if (!spotInfo) {
+        if (!spotInfo || !this.relevantSpots || this.relevantSpots.length === 0) {
             return; // No spot at current frequency
         }
 
         var ctx = this.ctx;
-        var callsign = spotInfo.callsign;
-
-        // Calculate center position
         var centerX = this.canvas.width / 2;
         var waterfallHeight = this.canvas.height - DX_WATERFALL_CONSTANTS.CANVAS.RULER_HEIGHT;
         var centerY = waterfallHeight / 2;
 
-        // Get colors using same logic as spots
-        var colors = this.getSpotColors(spotInfo);
+        // Check if we have multiple spots near the CENTER/TUNED frequency
+        var centerFreq = this.getCachedMiddleFreq(); // Use the actual tuned frequency
+        var spotsAtSameFreq = [];
+        var frequencyTolerance = 0.1; // 0.1 kHz tolerance for "same frequency"
 
-        // Use center label font (1px larger than regular spots, scales with labelSizeLevel)
-        ctx.font = this.getCurrentCenterLabelFont();
-        var textWidth = ctx.measureText(callsign).width;
+        for (var i = 0; i < this.relevantSpots.length; i++) {
+            var spot = this.relevantSpots[i];
+            var spotFreq = parseFloat(spot.frequency);
+            if (Math.abs(spotFreq - centerFreq) <= frequencyTolerance) {
+                spotsAtSameFreq.push({
+                    spot: spot,
+                    index: i
+                });
+            }
+        }
 
-        // Calculate background rectangle dimensions based on current label size
-        var baseLabelHeight = this.getCurrentLabelHeight(); // Same as regular labels
-        var centerLabelHeight = baseLabelHeight + 1; // Center is 1px taller
-        var padding = Math.ceil(DX_WATERFALL_CONSTANTS.CANVAS.SPOT_PADDING * 1.1); // Slightly more padding for center
-        var rectHeight = centerLabelHeight;
-        var rectWidth = textWidth + (padding * 2);
-        var rectX = centerX - (textWidth / 2) - padding;
-        var rectY = centerY - (rectHeight / 2);
+        // If we have multiple spots at the same frequency, stack them
+        if (spotsAtSameFreq.length > 1) {
+            // Calculate dimensions for labels
+            var baseLabelHeight = this.getCurrentLabelHeight();
+            var centerLabelHeight = baseLabelHeight + 1;
+            var padding = Math.ceil(DX_WATERFALL_CONSTANTS.CANVAS.SPOT_PADDING * 1.1);
+            var spacing = 4; // Spacing between stacked labels
 
-        // Draw background rectangle using DXCC status color
-        ctx.fillStyle = colors.bgColor;
-        ctx.fillRect(rectX, rectY, rectWidth, rectHeight);
+            // Use center label font
+            ctx.font = this.getCurrentCenterLabelFont();
 
-        // Draw border using continent status color
-        ctx.strokeStyle = colors.borderColor;
-        ctx.lineWidth = 1;
-        ctx.strokeRect(rectX, rectY, rectWidth, rectHeight);
+            // Calculate total height needed for all labels
+            var totalHeight = (spotsAtSameFreq.length * centerLabelHeight) + ((spotsAtSameFreq.length - 1) * spacing);
+            var startY = centerY - (totalHeight / 2);
 
-        // Draw small tickbox at top-right corner using callsign status color
-        var tickboxSize = DX_WATERFALL_CONSTANTS.CANVAS.SPOT_TICKBOX_SIZE;
-        ctx.fillStyle = colors.tickboxColor;
-        ctx.fillRect(rectX + rectWidth - tickboxSize, rectY, tickboxSize, tickboxSize);
+            // Draw each spot at the same frequency
+            for (var j = 0; j < spotsAtSameFreq.length; j++) {
+                var spotData = spotsAtSameFreq[j];
+                var spot = spotData.spot;
+                var callsign = spot.callsign;
+                var isSelected = (spotData.index === this.currentSpotIndex);
 
-        // Draw the callsign text in black (same as spots)
-        ctx.fillStyle = '#000000';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(callsign, centerX, centerY);
+                // Get colors using same logic as spots
+                var colors = this.getSpotColors(spot);
 
-        // Draw underline if LoTW user (same as spots)
-        if (spotInfo.lotw_user) {
-            ctx.strokeStyle = '#000000';
+                // Measure text
+                var textWidth = ctx.measureText(callsign).width;
+
+                // Calculate position for this label
+                var rectHeight = centerLabelHeight;
+                var rectWidth = textWidth + (padding * 2);
+                var rectX = centerX - (textWidth / 2) - padding;
+                var rectY = startY + (j * (centerLabelHeight + spacing));
+                var labelCenterY = rectY + (rectHeight / 2);
+
+                // Draw background rectangle using DXCC status color
+                ctx.fillStyle = colors.bgColor;
+                ctx.fillRect(rectX, rectY, rectWidth, rectHeight);
+
+                // Draw border - use thicker border for selected spot
+                ctx.strokeStyle = colors.borderColor;
+                ctx.lineWidth = isSelected ? 2 : 1;
+                ctx.strokeRect(rectX, rectY, rectWidth, rectHeight);
+
+                // Draw small tickbox at top-right corner using callsign status color
+                var tickboxSize = DX_WATERFALL_CONSTANTS.CANVAS.SPOT_TICKBOX_SIZE;
+                ctx.fillStyle = colors.tickboxColor;
+                ctx.fillRect(rectX + rectWidth - tickboxSize, rectY, tickboxSize, tickboxSize);
+
+                // Draw the callsign text in black (same as spots)
+                ctx.fillStyle = '#000000';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(callsign, centerX, labelCenterY);
+
+                // Draw underline if LoTW user (same as spots)
+                if (spot.lotw_user) {
+                    ctx.strokeStyle = '#000000';
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(centerX - (textWidth / 2), labelCenterY + 3);
+                    ctx.lineTo(centerX + (textWidth / 2), labelCenterY + 3);
+                    ctx.stroke();
+                }
+            }
+        } else {
+            // Original logic: Draw single selected spot label
+            var callsign = spotInfo.callsign;
+
+            // Get colors using same logic as spots
+            var colors = this.getSpotColors(spotInfo);
+
+            // Use center label font (1px larger than regular spots, scales with labelSizeLevel)
+            ctx.font = this.getCurrentCenterLabelFont();
+            var textWidth = ctx.measureText(callsign).width;
+
+            // Calculate background rectangle dimensions based on current label size
+            var baseLabelHeight = this.getCurrentLabelHeight(); // Same as regular labels
+            var centerLabelHeight = baseLabelHeight + 1; // Center is 1px taller
+            var padding = Math.ceil(DX_WATERFALL_CONSTANTS.CANVAS.SPOT_PADDING * 1.1); // Slightly more padding for center
+            var rectHeight = centerLabelHeight;
+            var rectWidth = textWidth + (padding * 2);
+            var rectX = centerX - (textWidth / 2) - padding;
+            var rectY = centerY - (rectHeight / 2);
+
+            // Draw background rectangle using DXCC status color
+            ctx.fillStyle = colors.bgColor;
+            ctx.fillRect(rectX, rectY, rectWidth, rectHeight);
+
+            // Draw border using continent status color
+            ctx.strokeStyle = colors.borderColor;
             ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(centerX - (textWidth / 2), centerY + 3);
-            ctx.lineTo(centerX + (textWidth / 2), centerY + 3);
-            ctx.stroke();
+            ctx.strokeRect(rectX, rectY, rectWidth, rectHeight);
+
+            // Draw small tickbox at top-right corner using callsign status color
+            var tickboxSize = DX_WATERFALL_CONSTANTS.CANVAS.SPOT_TICKBOX_SIZE;
+            ctx.fillStyle = colors.tickboxColor;
+            ctx.fillRect(rectX + rectWidth - tickboxSize, rectY, tickboxSize, tickboxSize);
+
+            // Draw the callsign text in black (same as spots)
+            ctx.fillStyle = '#000000';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(callsign, centerX, centerY);
+
+            // Draw underline if LoTW user (same as spots)
+            if (spotInfo.lotw_user) {
+                ctx.strokeStyle = '#000000';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(centerX - (textWidth / 2), centerY + 3);
+                ctx.lineTo(centerX + (textWidth / 2), centerY + 3);
+                ctx.stroke();
+            }
         }
     },
 
@@ -3848,7 +4061,6 @@ var dxWaterfall = {
 
                 var catTuningDuration = currentTime - this.catTuningStartTime;
                 if (catTuningDuration > DX_WATERFALL_CONSTANTS.CAT.TUNING_FLAG_FALLBACK_MS) {
-                    console.warn('DX Waterfall: CAT tuning timeout after 2 seconds, clearing flags');
                     this.catTuning = false;
                     this.frequencyChanging = false;
                     this.catTuningStartTime = null;
@@ -3865,7 +4077,7 @@ var dxWaterfall = {
 
             // Check if frequency is changing (CAT command in progress)
             if (this.frequencyChanging) {
-                this.displayChangingFrequencyMessage();
+                this.displayChangingFrequencyMessage(lang_dxwaterfall_changing_frequency, 'MESSAGE_TEXT_WHITE');
                 this.updateZoomMenu(); // Update menu to show loading indicator
                 return; // Don't draw normal display or process inputs
             }
@@ -3883,11 +4095,7 @@ var dxWaterfall = {
                 this.drawCenterCallsignLabel();
 
                 // Only show tuning message if CAT is actually available
-                var catAvailable = (typeof dxwaterfall_allowcat !== 'undefined' && dxwaterfall_allowcat !== null &&
-                                   typeof dxwaterfall_caturl !== 'undefined' && dxwaterfall_caturl !== null &&
-                                   dxwaterfall_allowcat && dxwaterfall_caturl !== "");
-
-                if (catAvailable) {
+                if (isCATAvailable()) {
                     // Then draw overlay message on top
                     this.displayChangingFrequencyMessage(lang_dxwaterfall_changing_frequency, 'MESSAGE_TEXT_WHITE');
                 }
@@ -5242,11 +5450,7 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
     var modeVal = $('#mode').val();
 
     // Check if CAT is enabled and configured
-    var catAvailable = (typeof dxwaterfall_allowcat !== 'undefined' && dxwaterfall_allowcat !== null &&
-                       typeof dxwaterfall_caturl !== 'undefined' && dxwaterfall_caturl !== null &&
-                       dxwaterfall_allowcat && dxwaterfall_caturl !== "");
-
-    if (catAvailable) {
+    if (isCATAvailable()) {
         // Set the radio frequency via CAT command
         // Use formattedFreq (in Hz) for consistency - rounded to integer for radio compatibility
 
@@ -5292,8 +5496,8 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
             }
         }
 
-        var catUrl = dxwaterfall_caturl + '/' + formattedFreq + '/' + catMode;
-
+        // Use the new unified tuneRadioToFrequency function with callbacks
+        if (typeof tuneRadioToFrequency === 'function') {
             // Set frequency changing flag and show visual feedback
             if (typeof dxWaterfall !== 'undefined') {
                 dxWaterfall.frequencyChanging = true;
@@ -5317,76 +5521,80 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
                 window.dxwaterfall_expected_frequency = formattedFreq; // Store expected frequency for confirmation
             }
 
-            // Add timeout and better error handling
-            $.ajax({
-                url: catUrl,
-                type: 'GET',
-                dataType: 'text', // Accept any response format, not just JSON
-                timeout: 5000, // 5 second timeout
-                success: function(data, textStatus, jqXHR) {
-                    // Optionally log response if it contains useful info
-                    if (data && data.trim() !== '') {
-						// Do nothing
-                    }
+            // Define success callback
+            var onSuccess = function(data, textStatus, jqXHR) {
+                // Optionally log response if it contains useful info
+                if (data && data.trim() !== '') {
+                    // Response received
+                }
 
-                    // Clear frequency changing flag on successful command
-                    if (typeof dxWaterfall !== 'undefined') {
-                        // Clear frequency changing flag immediately since CAT command succeeded
-                        // The catTuning flag will be cleared by invalidateFrequencyCache() when frequency is confirmed
-                        setTimeout(function() {
-                            dxWaterfall.frequencyChanging = false;
-                        }, 50); // Very short delay just to show the message briefly
-                    }
+                // Get timing based on connection type (WebSocket vs Polling)
+                var timings = getCATTimings();
 
-                    // Set a timeout to unlock if radio doesn't confirm within 3 seconds
+                // Clear frequency changing flag on successful command
+                if (typeof dxWaterfall !== 'undefined') {
+                    // Clear frequency changing flag immediately since CAT command succeeded
+                    // The catTuning flag will be cleared by invalidateFrequencyCache() when frequency is confirmed
                     setTimeout(function() {
-                        if (typeof window.dxwaterfall_cat_debounce_lock !== 'undefined' && window.dxwaterfall_cat_debounce_lock === 1) {
-                            window.dxwaterfall_cat_debounce_lock = 0;
-                            window.dxwaterfall_expected_frequency = null;
-                            // Also clear CAT tuning flag on timeout and force cache refresh
-                            if (typeof dxWaterfall !== 'undefined') {
-                                dxWaterfall.catTuning = false;
-                                dxWaterfall.frequencyChanging = false;
-                                dxWaterfall.catTuningStartTime = null;
-                                dxWaterfall.spotNavigating = false; // Clear navigation flag on timeout
-                                // Force immediate cache refresh and visual update when timeout occurs
-                                dxWaterfall.refreshFrequencyCache();
-                                if (dxWaterfall.canvas && dxWaterfall.ctx) {
-                                    dxWaterfall.ctx.clearRect(0, 0, dxWaterfall.canvas.width, dxWaterfall.canvas.height);
-                                    dxWaterfall.refresh();
-                                }
-                            }
-                        }
-                    }, 3000);
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    // Clear frequency changing flag on error
-                    if (typeof dxWaterfall !== 'undefined') {
                         dxWaterfall.frequencyChanging = false;
-                        dxWaterfall.catTuning = false; // Clear CAT tuning flag on error
-                        dxWaterfall.spotNavigating = false; // Clear navigation flag on error
-                        // Force clear canvas on error too
-                        if (dxWaterfall.canvas && dxWaterfall.ctx) {
-                            dxWaterfall.ctx.clearRect(0, 0, dxWaterfall.canvas.width, dxWaterfall.canvas.height);
-                        }
-                    }
+                    }, timings.commitDelay); // WebSocket: 20ms, Polling: 50ms
+                }
 
-                    // Clear lock on error
-                    if (typeof window.dxwaterfall_cat_debounce_lock !== 'undefined') {
+                // Set a timeout to unlock if radio doesn't confirm - WebSocket uses 500ms, Polling uses 3000ms
+                setTimeout(function() {
+                    if (typeof window.dxwaterfall_cat_debounce_lock !== 'undefined' && window.dxwaterfall_cat_debounce_lock === 1) {
                         window.dxwaterfall_cat_debounce_lock = 0;
                         window.dxwaterfall_expected_frequency = null;
-                    }
-
-                    // Only log if it's not a simple timeout or network issue
-                    if (textStatus !== 'timeout' && jqXHR.status !== 0) {
-                        if (jqXHR.responseText) {
-                            console.warn('DX Waterfall: CAT command failed: Response text:', jqXHR.responseText);
+                        // Also clear CAT tuning flag on timeout and force cache refresh
+                        if (typeof dxWaterfall !== 'undefined') {
+                            dxWaterfall.catTuning = false;
+                            dxWaterfall.frequencyChanging = false;
+                            dxWaterfall.catTuningStartTime = null;
+                            dxWaterfall.spotNavigating = false; // Clear navigation flag on timeout
+                            // Force immediate cache refresh and visual update when timeout occurs
+                            dxWaterfall.refreshFrequencyCache();
+                            if (dxWaterfall.canvas && dxWaterfall.ctx) {
+                                dxWaterfall.ctx.clearRect(0, 0, dxWaterfall.canvas.width, dxWaterfall.canvas.height);
+                                dxWaterfall.refresh();
+                            }
                         }
                     }
-                    // Silently fall through to manual frequency setting
+                }, timings.confirmTimeout); // WebSocket: 500ms, Polling: 3000ms
+            };
+
+            // Define error callback
+            var onError = function(jqXHR, textStatus, errorThrown) {
+                // Clear frequency changing flag on error
+                if (typeof dxWaterfall !== 'undefined') {
+                    dxWaterfall.frequencyChanging = false;
+                    dxWaterfall.catTuning = false; // Clear CAT tuning flag on error
+                    dxWaterfall.spotNavigating = false; // Clear navigation flag on error
+                    // Force clear canvas on error too
+                    if (dxWaterfall.canvas && dxWaterfall.ctx) {
+                        dxWaterfall.ctx.clearRect(0, 0, dxWaterfall.canvas.width, dxWaterfall.canvas.height);
+                    }
                 }
-            });
-            return;
+
+                // Clear lock on error
+                if (typeof window.dxwaterfall_cat_debounce_lock !== 'undefined') {
+                    window.dxwaterfall_cat_debounce_lock = 0;
+                    window.dxwaterfall_expected_frequency = null;
+                }
+
+                // Only log if it's not a simple timeout or network issue
+                if (textStatus !== 'timeout' && jqXHR.status !== 0) {
+                    if (jqXHR.responseText) {
+                        console.warn('DX Waterfall: CAT command failed: Response text:', jqXHR.responseText);
+                    }
+                }
+                // Silently fall through to manual frequency setting
+            };
+
+            // Call unified tuning function with callbacks
+            // Pass skipWaterfall=true to prevent infinite loop (don't call setFrequency again)
+            tuneRadioToFrequency(null, formattedFreq, catMode, onSuccess, onError, true);
+        }
+        return;
     }
 
     // CAT not available - use manual frequency setting
@@ -5822,7 +6030,6 @@ $(document).ready(function() {
         if (typeof dxWaterfall !== 'undefined') {
             // Force reinitialization by ensuring canvas is null
             if (dxWaterfall.canvas) {
-                console.warn('DX Waterfall canvas still exists, forcing cleanup');
                 dxWaterfall.destroy();
             }
 

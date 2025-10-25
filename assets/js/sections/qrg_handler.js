@@ -134,6 +134,10 @@ async function set_new_qrg() {
 	$('#freq_calculated').val(parsed_qrg);
 	$('#band').val(frequencyToBand(qrg_hz));
 
+	// Tune the radio to the new frequency if CAT is available (using global selectedRadioId)
+	if (typeof tuneRadioToFrequency === 'function') {
+		tuneRadioToFrequency(null, qrg_hz);  // null = use global selectedRadioId
+	}
 }
 
 $('#frequency').on('change', function () {
@@ -143,32 +147,7 @@ $('#frequency').on('change', function () {
 
 $('#freq_calculated').on('input', function () {
 	if (window.innerWidth > 768) {
-    	$(this).val($(this).val().replace(',', '.'));
+		$(this).val($(this).val().replace(',', '.'));
 	}
 });
 
-$('#freq_calculated').on('change', function () {
-	// console.log('freq_calculated changed');
-	set_new_qrg();
-});
-
-$('#freq_calculated').on('keydown', function (e) {
-	if (e.which === 13) {
-		// Check if DX Waterfall is active - if so, let it handle Enter key
-		if (typeof dxWaterfall !== 'undefined' && $('#dxWaterfall').length > 0) {
-			// DX Waterfall is active, don't handle Enter here
-			// Let dxwaterfall.js handle it instead
-			return;
-		}
-
-		// DX Waterfall not active, use normal behavior
-		e.preventDefault();
-		if ($('#callsign').val() != '') {
-			set_new_qrg().then(() => {
-				$("#qso_input").trigger('submit');
-			});
-		} else {
-			set_new_qrg();
-		}
-    }
-});

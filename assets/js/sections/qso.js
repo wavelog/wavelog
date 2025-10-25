@@ -1811,6 +1811,11 @@ $('.mode').on('change', function () {
 $('#band').on('change', function () {
 	const selectedBand = $(this).val();
 
+	// Skip resetting frequency if CAT is currently updating
+	if (typeof cat_updating_frequency !== 'undefined' && cat_updating_frequency) {
+		return;
+	}
+
 	// Clear the QSO form when band is manually changed
 	$('#btn_reset').click();
 
@@ -1824,12 +1829,16 @@ $('#band').on('change', function () {
 			dxWaterfall.userChangedBand = false;
 		}, 10000);
 
-		// Reset operation timer when band is manually changed
-		dxWaterfall.operationStartTime = Date.now();
-	}
+	// Reset operation timer when band is manually changed
+	dxWaterfall.operationStartTime = Date.now();
+}
 
-	// Always fetch default frequency for the new band when band is changed manually
-	// This ensures frequency field matches the selected band
+// Check if current frequency is already in the selected band
+const currentFreq = $('#frequency').val();
+const currentBand = currentFreq ? frequencyToBand(currentFreq) : '';
+
+// Only fetch default frequency if current frequency is not already in the selected band
+if (!currentFreq || currentBand !== selectedBand) {
 	$.get(base_url + 'index.php/qso/band_to_freq/' + selectedBand + '/' + $('.mode').val(), function (result) {
 		// Set the frequency
 		$('#frequency').val(result);
@@ -1837,22 +1846,17 @@ $('#band').on('change', function () {
 		// Update the displayed frequency field with proper units
 		set_qrg();
 
-		// If DX Waterfall is active and CAT is available, tune the radio
-		if (typeof dxWaterfall !== 'undefined' && $('#dxWaterfall').length > 0) {
-			// Check if CAT is available (same check as in dxwaterfall.js)
-			const catAvailable = (typeof dxwaterfall_allowcat !== 'undefined' && dxwaterfall_allowcat !== null &&
-								 typeof dxwaterfall_caturl !== 'undefined' && dxwaterfall_caturl !== null &&
-								 dxwaterfall_allowcat && dxwaterfall_caturl !== "");
-
-			if (catAvailable && typeof setFrequency === 'function') {
-				// Convert Hz to kHz and tune the radio
-				const freqKHz = result / 1000;
-				setFrequency(freqKHz);
-			}
+		// Tune the radio to the new frequency (using global selectedRadioId)
+		if (typeof tuneRadioToFrequency === 'function') {
+			tuneRadioToFrequency(null, result);  // null = use global selectedRadioId
 		}
 	});
+} else {
+	// Frequency is already in the selected band, just update display
+	set_qrg();
+}
 
-	$('#frequency_rx').val("");
+$('#frequency_rx').val("");
 	$('#band_rx').val("");
 	$("#selectPropagation").val("");
 	$("#sat_name").val("");
@@ -2444,6 +2448,28 @@ $(document).ready(function () {
 			set_qrg();
 		});
 	}
+
+	// Handle manual frequency entry - tune radio when user changes frequency
+	$('#freq_calculated').on('change', function() {
+		// set_new_qrg() is defined in qrg_handler.js and will:
+		// 1. Parse the frequency value and convert to Hz
+		// 2. Update #frequency (hidden field)
+		// 3. Tune the radio via tuneRadioToFrequency()
+		if (typeof set_new_qrg === 'function') {
+			set_new_qrg();
+		}
+	});
+
+	$('#freq_calculated').on('keydown', function(event) {
+		// Check if Enter key was pressed
+		if (event.key === 'Enter' || event.keyCode === 13) {
+			event.preventDefault(); // Prevent form submission
+			// Trigger the change event to process the frequency
+			$(this).trigger('change');
+			// Move focus to next field (optional - mimics typical form behavior)
+			$(this).blur();
+		}
+	});
 
 	// everything loaded and ready 2 go
 	bc.postMessage('ready');

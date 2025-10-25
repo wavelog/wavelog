@@ -338,4 +338,107 @@ class Radio extends CI_Controller {
 		$this->user_options_model->del_option('cat', 'default_radio');
 		$this->session->unset_userdata('radio');
 	}
+
+	function set_radio_frequency() {
+		// Get parameters from POST
+		$radio_id = $this->security->xss_clean($this->input->post('radio_id'));
+		$frequency = $this->security->xss_clean($this->input->post('frequency'));
+		$mode = $this->security->xss_clean($this->input->post('mode'));
+
+		// Check Auth
+		$this->load->model('user_model');
+		if (!$this->user_model->authorize(3)) {
+			header('Content-Type: application/json');
+			echo json_encode(array('error' => 'not_authorized'), JSON_PRETTY_PRINT);
+			return;
+		}
+
+		// Validate frequency parameter
+		if (empty($frequency)) {
+			header('Content-Type: application/json');
+			echo json_encode(array('error' => 'missing_frequency'), JSON_PRETTY_PRINT);
+			return;
+		}
+
+		// If radio_id is empty or null, get the default radio for the user
+		if (empty($radio_id)) {
+			$default_radio = $this->user_options_model->get_options('cat', array('option_name' => 'default_radio'))->row()->option_value ?? NULL;
+			if ($default_radio) {
+				$radio_id = $default_radio;
+			} else {
+				header('Content-Type: application/json');
+				echo json_encode(array('error' => 'no_radio_configured'), JSON_PRETTY_PRINT);
+				return;
+			}
+		}
+
+		// Check if radio_id is 'ws' (WebSocket) - use default localhost URL
+		if ($radio_id === 'ws') {
+			$cat_url = 'http://127.0.0.1:54321';
+		} else {
+			// Load CAT model and get radio details from database
+			$this->load->model('cat');
+			$radio = $this->cat->radio_status($radio_id);
+
+			if ($radio->num_rows() == 0) {
+				header('Content-Type: application/json');
+				echo json_encode(array('error' => 'radio_not_found'), JSON_PRETTY_PRINT);
+				return;
+			}
+
+			$radio_data = $radio->row();
+			$cat_url = $radio_data->cat_url;
+
+			if (empty($cat_url)) {
+				header('Content-Type: application/json');
+				echo json_encode(array('error' => 'no_cat_url'), JSON_PRETTY_PRINT);
+				return;
+			}
+		}
+
+		// Format: {cat_url}/{frequency}/{mode}
+		// If mode is not provided, default to 'usb'
+		$cat_mode = !empty($mode) ? strtolower($mode) : 'usb';
+		$url = $cat_url . '/' . $frequency . '/' . $cat_mode;
+
+		// Initialize cURL for GET request
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+
+		// Execute request (gateway requires two requests due to known issue of changing mod see https://github.com/wavelog/WaveLogGate/issues/82)
+		// First request
+		$response = curl_exec($ch);
+		$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		$curl_error = curl_error($ch);
+
+		// Wait 100ms before second request
+		usleep(100000); // 100ms = 100,000 microseconds
+
+		// Second request (after first completes) - gateway workaround
+		curl_setopt($ch, CURLOPT_URL, $url);
+		$response = curl_exec($ch);
+		$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		$curl_error = curl_error($ch);
+		curl_close($ch);
+
+		// Return response
+		// Note: Gateway returns empty response with HTTP 200 on success
+		header('Content-Type: application/json');
+		if ($response === false || ($http_code != 200 && $http_code != 0)) {
+			echo json_encode(array(
+				'success' => false,
+				'error' => $curl_error ?: 'request_failed',
+				'http_code' => $http_code
+			), JSON_PRETTY_PRINT);
+		} else {
+			echo json_encode(array(
+				'success' => true,
+				'frequency' => $frequency,
+				'mode' => $cat_mode,
+				'radio_id' => $radio_id
+			), JSON_PRETTY_PRINT);
+		}
+	}
 }
