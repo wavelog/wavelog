@@ -17,10 +17,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-10-26 12:27+0000\n"
-"PO-Revision-Date: 2025-10-25 22:42+0000\n"
+"PO-Revision-Date: 2025-10-27 04:27+0000\n"
 "Last-Translator: F5MQU <f5mqu.p@gmail.com>\n"
-"Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/fr/>\n"
+"Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/fr/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1967,42 +1967,44 @@ msgid ""
 "Duplicate note title for this category and user - not allowed for Contacts "
 "category."
 msgstr ""
+"Titre de note en double pour cette catégorie et cet utilisateur - non "
+"autorisé pour la catégorie Contacts."
 
 #: application/controllers/Notes.php:283
 msgid "Not found or not allowed"
-msgstr ""
+msgstr "Non trouvé ou non autorisé"
 
 #: application/controllers/Notes.php:298
 msgid "Not found"
-msgstr ""
+msgstr "Non trouvé"
 
 #: application/controllers/Notes.php:314
 msgid "Category and title are required"
-msgstr ""
+msgstr "La catégorie et le titre sont obligatoires"
 
 #: application/controllers/Notes.php:328
 msgid "Note not found or not allowed"
-msgstr ""
+msgstr "Note non trouvée ou non autorisée"
 
 #: application/controllers/Notes.php:335
 msgid "Note deleted"
-msgstr ""
+msgstr "Note supprimée"
 
 #: application/controllers/Notes.php:339
 msgid "Note updated"
-msgstr ""
+msgstr "Note mise à jour"
 
 #: application/controllers/Notes.php:344
 msgid "Cannot create empty note"
-msgstr ""
+msgstr "Impossible de créer une note vide"
 
 #: application/controllers/Notes.php:352
 msgid "A note with this callsign already exists"
-msgstr ""
+msgstr "Une note avec cet indicatif existe déjà"
 
 #: application/controllers/Notes.php:362
 msgid "Note created"
-msgstr ""
+msgstr "Note créée"
 
 #: application/controllers/Notes.php:376 application/controllers/Notes.php:400
 #, php-format
@@ -2880,7 +2882,7 @@ msgstr "Mise à jour du fichier Locator VUCC terminée. Résultat : "
 
 #: application/controllers/Update.php:720
 msgid "VUCC Grid file update failed. Result: "
-msgstr ""
+msgstr "Échec de la mise à jour du fichier Locator de VUCC. Résultat : "
 
 #: application/controllers/User.php:50
 #: application/views/interface_assets/header.php:306
@@ -3409,6 +3411,8 @@ msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
 "imported. It's invalid"
 msgstr ""
+"QSO sur %s : Vous avez essayé d'importer un QSO sans bande spécifiée. Ce QSO "
+"n'a pas été importé. Il est invalide."
 
 #: application/models/Logbook_model.php:4388
 msgid "the qslrdate is invalid (YYYYMMDD)"
@@ -4564,11 +4568,14 @@ msgid "Ignore Station callsign on import"
 msgstr "Ignorer l'indicatif de la station lors de l'importation"
 
 #: application/views/adif/import.php:143
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "If selected, Wavelog will try to import %sall%s QSOs from the ADIF, "
 "regardless if they match to the chosen station-location."
 msgstr ""
+"Si cette option est sélectionnée, Wavelog essaiera d'importer %sall%s QSO "
+"depuis l'ADIF, qu'ils correspondent ou non à l'emplacement de la station "
+"choisi."
 
 #: application/views/adif/import.php:150
 msgid ""
@@ -5882,7 +5889,7 @@ msgstr "(C)lublog"
 
 #: application/views/awards/dxcc/index.php:227
 msgid "(W)orked"
-msgstr ""
+msgstr "(W) Contacté"
 
 #: application/views/awards/dxcc/index.php:233
 msgid "DXCC Name"
@@ -6601,6 +6608,10 @@ msgid ""
 "contacts with amateur radio stations in European countries and on islands "
 "listed in the WAE country list on different bands."
 msgstr ""
+"Le plus ancien et le plus renommé de tous les certificats DARC est décerné "
+"pour les contacts avec des stations de radio amateur dans les pays européens "
+"et sur les îles répertoriées dans la liste des pays WAE sur différentes "
+"bandes."
 
 #: application/views/awards/wae/index.php:9
 msgid ""
@@ -6608,10 +6619,13 @@ msgid ""
 "Digital and Mixed Modes. It is issued in five classes: WAE III, WAE II, WAE "
 "I, WAE TOP and the WAE Trophy."
 msgstr ""
+"Le WAE sera délivré dans les modes suivants : CW, SSB, Phonie, RTTY, FT8, "
+"Numérique et Mixte. Il est disponible en cinq classes : Trophées WAE III, "
+"WAE II, WAE I, WAE TOP et WAE."
 
 #: application/views/awards/wae/index.php:11
 msgid "Fields taken for this Award: Region, DXCC"
-msgstr ""
+msgstr "Champs requis pour ce trophée : Région, DXCC"
 
 #: application/views/awards/wae/index.php:162
 msgid "WAE Name"
@@ -6656,6 +6670,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Japan) and STATE (Must contain a valid "
 "prefecture!)"
 msgstr ""
+"Champs requis pour ce trophée : DXCC (Japon) et ETAT "
+"(doit contenir une préfecture valide !)"
 
 #: application/views/awards/waja/index.php:119
 msgid "Show WAJA Map"
@@ -8386,7 +8402,7 @@ msgstr "Liste Cron"
 #: application/views/cron/index.php:65
 #: application/views/stationsetup/stationsetup.php:124
 msgid "ID"
-msgstr ""
+msgstr "Identité"
 
 #: application/views/cron/index.php:69
 msgid "Last Run"
@@ -8776,19 +8792,20 @@ msgstr "Plus"
 
 #: application/views/dayswithqso/index.php:102
 msgid "Calendar with QSOs"
-msgstr ""
+msgstr "Calendrier avec QSO"
 
 #: application/views/dayswithqso/index.php:111
 msgid "Longest streak with QSOs in the log"
-msgstr ""
+msgstr "La plus longue séquence avec des QSO dans le journal"
 
 #: application/views/dayswithqso/index.php:112
 msgid "A maximum of the 10 longest streaks are shown!"
-msgstr ""
+msgstr "Un maximum des 10 séquences les plus longues sont affichées !"
 
 #: application/views/dayswithqso/index.php:130
+#, fuzzy
 msgid "Streak (continuous days with QSOs)"
-msgstr ""
+msgstr "Série (journées continues avec QSO)"
 
 #: application/views/dayswithqso/index.php:131
 #: application/views/dayswithqso/index.php:159
@@ -8806,28 +8823,34 @@ msgid "End Date"
 msgstr "Date fin"
 
 #: application/views/dayswithqso/index.php:148
+#, fuzzy
 msgctxt "Days with QSOs"
 msgid "No streak found!"
-msgstr ""
+msgstr "Aucune série trouvée !"
 
 #: application/views/dayswithqso/index.php:152
+#, fuzzy
 msgid "Current streak with QSOs in the log"
-msgstr ""
+msgstr "Série actuelle avec QSO dans le carnet de trafic"
 
 #: application/views/dayswithqso/index.php:158
 #: application/views/dayswithqso/index.php:180
+#, fuzzy
 msgid "Current streak (continuous days with QSOs)"
-msgstr ""
+msgstr "Série actuelle (jours continus avec QSO)"
 
 #: application/views/dayswithqso/index.php:175
 msgid ""
 "If you make a QSO today, you can continue to extend your streak... or else "
 "your current streak will be broken!"
 msgstr ""
+"Si vous faites un QSO aujourd'hui, vous pouvez continuer à prolonger votre "
+"série... sinon votre série actuelle sera interrompue !"
 
 #: application/views/dayswithqso/index.php:196
+#, fuzzy
 msgid "No current streak found!"
-msgstr ""
+msgstr "Aucune série actuelle trouvée !"
 
 #: application/views/dcl_views/import.php:12
 #: application/views/lotw/import.php:12
@@ -8836,11 +8859,11 @@ msgstr "Options d'import"
 
 #: application/views/dcl_views/import.php:25
 msgid "Pull DCL data for me"
-msgstr ""
+msgstr "Extraire les données DCL pour moi"
 
 #: application/views/dcl_views/import.php:36
 msgid "Select callsign to pull DCL confirmations for."
-msgstr ""
+msgstr "Sélectionnez l'indicatif pour lequel récupérer les confirmations DCL."
 
 #: application/views/dcl_views/import.php:50
 msgid ""
@@ -8849,38 +8872,42 @@ msgid ""
 "confirmations since chosen date, or since your last DCL confirmation "
 "(fetched from your log), up until now."
 msgstr ""
+"Wavelog utilisera les clés DCL enregistrées dans votre profil utilisateur "
+"pour télécharger un rapport DCL. Ce rapport contiendra toutes les "
+"confirmations depuis la date choisie ou depuis votre dernière confirmation "
+"DCL (extraite de votre journal) jusqu'à aujourd'hui."
 
 #: application/views/dcl_views/import.php:54
 msgid "Import DCL Matches"
-msgstr ""
+msgstr "Importer des correspondances DCL"
 
 #: application/views/dcl_views/index.php:8
 msgid "Delete Keys"
-msgstr ""
+msgstr "Clés supprimées"
 
 #: application/views/dcl_views/index.php:9
 msgid "Available DCL-Keys"
-msgstr ""
+msgstr "Clés DCL disponibles"
 
 #: application/views/dcl_views/index.php:9
 msgid "Request DCL Key"
-msgstr ""
+msgstr "Demande de clés DCL"
 
 #: application/views/dcl_views/index.php:28
 msgid "Valid from"
-msgstr ""
+msgstr "Valable à partir de"
 
 #: application/views/dcl_views/index.php:29
 msgid "Valid till"
-msgstr ""
+msgstr "Valable jusqu'au"
 
 #: application/views/dcl_views/index.php:61
 msgid "You need to request DCL keys to use this function."
-msgstr ""
+msgstr "Vous devez demander des clés DCL pour utiliser cette fonction."
 
 #: application/views/dcl_views/index.php:80
 msgid "The next automatic sync with DCL will happen at: "
-msgstr ""
+msgstr "La prochaine synchronisation automatique avec DCL aura lieu à : "
 
 #: application/views/dcl_views/index.php:82
 #: application/views/lotw_views/index.php:160
@@ -8890,42 +8917,47 @@ msgstr "Synchro manuelle"
 #: application/views/dcl_views/index.php:84
 #: application/views/lotw_views/index.php:162
 msgid "running..."
-msgstr ""
+msgstr "En cours..."
 
 #: application/views/dcl_views/key_import.php:8
 msgid "DCL Key Management"
-msgstr ""
+msgstr "Gestion des clés DCL"
 
 #: application/views/dcl_views/key_import.php:13
+#, fuzzy
 msgid "Import Key"
-msgstr ""
+msgstr "Clé d'importation"
 
 #: application/views/dcl_views/key_import.php:14
+#, fuzzy
 msgid ""
 "You requested a key for DCL-Dataexchange, which was successful. The "
 "following data has been imported"
 msgstr ""
+"Vous avez demandé une clé pour DCL-Dataexchange, et votre demande a été "
+"acceptée. Les données suivantes ont été importées"
 
 #: application/views/dcl_views/key_import.php:19
 msgid "Received a valid DCL-Key"
-msgstr ""
+msgstr "Clé DCL valide reçue"
 
 #: application/views/dcl_views/key_import.php:20
 msgid "DOK History"
-msgstr ""
+msgstr "Historique des DOK"
 
 #: application/views/dcl_views/key_import.php:24
 #: application/views/dcl_views/key_import.php:46
 msgid "Validity"
-msgstr ""
+msgstr "Validité"
 
 #: application/views/dcl_views/key_import.php:42
 msgid "Call History"
-msgstr ""
+msgstr "Historique des indicatifs"
 
 #: application/views/dcl_views/key_import.php:63
 msgid "Received an invalid DCL-Key. Please check your DCL-Login, and try again"
 msgstr ""
+"Clé DCL invalide reçue. Veuillez vérifier votre identifiant DCL et réessayer"
 
 #: application/views/dcl_views/upload_cert.php:8
 #: application/views/dcl_views/upload_cert.php:33
@@ -8942,7 +8974,7 @@ msgstr "Instruction pour l'export des fichiers .p12"
 #: application/views/dcl_views/upload_cert.php:22
 #: application/views/lotw_views/upload_cert.php:22
 msgid "Use at least version 2.7 of TQSL"
-msgstr ""
+msgstr "Utilisez au moins la version 2.7 de TQSL"
 
 #: application/views/dcl_views/upload_cert.php:23
 #: application/views/lotw_views/upload_cert.php:23
@@ -8957,17 +8989,17 @@ msgstr "Click droit sur l'indicatif désiré"
 #: application/views/dcl_views/upload_cert.php:25
 #: application/views/lotw_views/upload_cert.php:25
 msgid "Click 'Save Callsign Certificate File'"
-msgstr ""
+msgstr "Cliquez sur « Enregistrer le fichier de certificat d'indicatif »"
 
 #: application/views/dcl_views/upload_cert.php:26
 #: application/views/lotw_views/upload_cert.php:26
 msgid "Do not add a password"
-msgstr ""
+msgstr "N'ajoutez pas de mot de passe"
 
 #: application/views/dcl_views/upload_cert.php:27
 #: application/views/lotw_views/upload_cert.php:27
 msgid "Upload File below"
-msgstr ""
+msgstr "Téléchargez le fichier ci-dessous"
 
 #: application/views/dcl_views/upload_cert.php:37
 #: application/views/lotw_views/upload_cert.php:37
@@ -8976,39 +9008,39 @@ msgstr "Envoyer le fichier"
 
 #: application/views/debug/index.php:23
 msgid "Wavelog Information"
-msgstr ""
+msgstr "Informations sur Wavelog"
 
 #: application/views/debug/index.php:27
 msgid "Version"
-msgstr ""
+msgstr "Version"
 
 #: application/views/debug/index.php:30
 msgid "Latest Version"
-msgstr ""
+msgstr "Dernière version"
 
 #: application/views/debug/index.php:36
 msgid "Latest Release"
-msgstr ""
+msgstr "Derniére version"
 
 #: application/views/debug/index.php:41
 msgid "Language"
-msgstr ""
+msgstr "Langue"
 
 #: application/views/debug/index.php:45
 msgid "Base URL"
-msgstr ""
+msgstr "URL de base"
 
 #: application/views/debug/index.php:49
 msgid "Migration"
-msgstr ""
+msgstr "Migration"
 
 #: application/views/debug/index.php:50
 msgid "There is something wrong with your Migration in Database!"
-msgstr ""
+msgstr "Il y a un problème avec votre migration dans la base de données !"
 
 #: application/views/debug/index.php:55
 msgid "Migration is outdated and locked!"
-msgstr ""
+msgstr "La migration est obsolète et verrouillée !"
 
 #: application/views/debug/index.php:56
 #, php-format
@@ -9018,37 +9050,41 @@ msgid ""
 "locked due to a previously failed process. Delete the file %s to force the "
 "migration to run again."
 msgstr ""
+"La migration actuelle n'est pas la version prévue. Veuillez recharger cette "
+"page après %s secondes. Si cet avertissement persiste, votre migration est "
+"probablement bloquée en raison d'un échec antérieur. Supprimez le fichier %s "
+"pour forcer la migration à se relancer."
 
 #: application/views/debug/index.php:57
-#, php-format
+#, fuzzy, php-format
 msgid "Check this wiki article %shere%s for more information."
-msgstr ""
+msgstr "Consultez cet article wiki %ici%s pour plus d'informations."
 
 #: application/views/debug/index.php:58
 #, php-format
 msgid "Current migration is %s"
-msgstr ""
+msgstr "La migration actuelle est de %s"
 
 #: application/views/debug/index.php:59
 #, php-format
 msgid "Migration should be %s"
-msgstr ""
+msgstr "La migration devrait être %s"
 
 #: application/views/debug/index.php:64
 msgid "Environment"
-msgstr ""
+msgstr "Environnement"
 
 #: application/views/debug/index.php:68
 msgid "System Time"
-msgstr ""
+msgstr "Heure Système"
 
 #: application/views/debug/index.php:76
 msgid "Total QSO on this instance"
-msgstr ""
+msgstr "Nombre total de QSO sur cette instance"
 
 #: application/views/debug/index.php:80
 msgid "Total User"
-msgstr ""
+msgstr "Nombre total d'utilisateurs"
 
 #: application/views/debug/index.php:81 application/views/user/index.php:27
 msgid "User"
@@ -9058,89 +9094,94 @@ msgstr[1] "Utilisateurs"
 
 #: application/views/debug/index.php:88
 msgid "Server Information"
-msgstr ""
+msgstr "Informations sur le serveur"
 
 #: application/views/debug/index.php:92
 msgid "Server Software"
-msgstr ""
+msgstr "Logiciel du serveur"
 
 #: application/views/debug/index.php:97
 msgid "PHP Version"
-msgstr ""
+msgstr "Version PHP"
 
 #: application/views/debug/index.php:103
 msgid "Deprecated"
-msgstr ""
+msgstr "Obsolète"
 
 #: application/views/debug/index.php:110
 msgid "MySQL Version"
-msgstr ""
+msgstr "Version de MySQL"
 
 #: application/views/debug/index.php:114
 msgid "Codeigniter Version"
-msgstr ""
+msgstr "Version de Codeigniter"
 
 #: application/views/debug/index.php:122
 msgid "Folder Permissions"
-msgstr ""
+msgstr "Autorisations de dossier"
 
 #: application/views/debug/index.php:124
 msgid ""
 "This verifies that the folders used by Wavelog have read and write "
 "permissions by PHP."
 msgstr ""
+"Cela vérifie que les dossiers utilisés par Wavelog disposent des "
+"autorisations de lecture et d'écriture par PHP."
 
 #: application/views/debug/index.php:130 application/views/debug/index.php:141
 #: application/views/debug/index.php:152 application/views/debug/index.php:163
 #: application/views/debug/index.php:175
 msgid "Success"
-msgstr ""
+msgstr "Succès"
 
 #: application/views/debug/index.php:132 application/views/debug/index.php:143
 #: application/views/debug/index.php:154 application/views/debug/index.php:165
 #: application/views/debug/index.php:177
 msgid "Failed"
-msgstr ""
+msgstr "Echoué"
 
 #: application/views/debug/index.php:187
 msgid "Config Maintenance"
-msgstr ""
+msgstr "Maintenance de la configuration"
 
 #: application/views/debug/index.php:193
 msgid "Your authentication mode is outdated and possibly unsafe"
-msgstr ""
+msgstr "Votre mode d'authentification est obsolète et potentiellement dangereux"
 
 #: application/views/debug/index.php:195 application/views/debug/index.php:212
 #, php-format
 msgid "Please edit your %s File:"
-msgstr ""
+msgstr "Veuillez modifier votre fichier %s :"
 
 #: application/views/debug/index.php:196
 msgid ""
 "Go to your application/config Folder and compare config.sample.php with your "
 "config.php"
 msgstr ""
+"Accédez à votre dossier application/config et comparez config.sample.php "
+"avec votre config.php"
 
 #: application/views/debug/index.php:197
 #, php-format
 msgid "Change %s to the value %s (Strongly recommended)"
-msgstr ""
+msgstr "Remplacez %s par la valeur %s (fortement recommandé)"
 
 #: application/views/debug/index.php:203
 msgid "Authentication Mode is set correctly"
-msgstr ""
+msgstr "Le mode d'authentification est correctement défini"
 
 #: application/views/debug/index.php:203 application/views/debug/index.php:220
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: application/views/debug/index.php:210
 msgid "You use the default encryption key. You should change it!"
 msgstr ""
+"Vous utilisez la clé de chiffrement par défaut. Vous devriez la modifier !"
 
 #: application/views/debug/index.php:213
 msgid "This will also enable the 'Keep me logged in' feature."
-msgstr ""
+msgstr "Cela activera également la fonctionnalité « Rester connecté »."
 
 #: application/views/debug/index.php:214
 #, php-format
@@ -9148,85 +9189,94 @@ msgid ""
 "Change the value of %s to a new encryption key other then "
 "'flossie1234555541'. Choose a safe and long password. (Strongly recommended)"
 msgstr ""
+"Remplacez la valeur de %s par une nouvelle clé de chiffrement autre que « "
+"flossie1234555541 ». Choisissez un mot de passe long et sûr. "
+"(Fortement recommandé)"
 
 #: application/views/debug/index.php:220
 msgid "You do not use the default encryption key"
-msgstr ""
+msgstr "Vous n'utilisez pas la clé de chiffrement par défaut"
 
 #: application/views/debug/index.php:227
 msgid "Migrate Userdata"
-msgstr ""
+msgstr "Migrer les données utilisateur"
 
 #: application/views/debug/index.php:229
 msgid ""
 "Here you can migrate existing QSL cards and eQSL cards to the new userdata "
 "folder."
 msgstr ""
+"Ici, vous pouvez migrer les cartes QSL et eQSL existantes vers le nouveau "
+"dossier userdata."
 
 #: application/views/debug/index.php:242
 msgid "Modules"
-msgstr ""
+msgstr "Modules"
 
 #: application/views/debug/index.php:248 application/views/debug/index.php:259
 #: application/views/debug/index.php:270 application/views/debug/index.php:281
 #: application/views/debug/index.php:292 application/views/debug/index.php:303
 msgid "Installed"
-msgstr ""
+msgstr "Installé"
 
 #: application/views/debug/index.php:250 application/views/debug/index.php:261
 #: application/views/debug/index.php:272 application/views/debug/index.php:283
 #: application/views/debug/index.php:294 application/views/debug/index.php:305
 msgid "Not Installed"
-msgstr ""
+msgstr "Non installé"
 
 #: application/views/debug/index.php:441
 msgid "Git Information"
-msgstr ""
+msgstr "Informations Git"
 
 #: application/views/debug/index.php:445
+#, fuzzy
 msgid "Branch"
-msgstr ""
+msgstr "Autre direction"
 
 #: application/views/debug/index.php:456 application/views/debug/index.php:467
 #: application/views/debug/index.php:477
 msgid "n/a"
-msgstr ""
+msgstr "Non disponible"
 
 #: application/views/debug/index.php:462
+#, fuzzy
 msgid "Commit"
-msgstr ""
+msgstr "Engager"
 
 #: application/views/debug/index.php:472
+#, fuzzy
 msgid "Tag"
-msgstr ""
+msgstr "Etiquette"
 
 #: application/views/debug/index.php:482
 msgid "Last Fetch"
-msgstr ""
+msgstr "Dernière récupération"
 
 #: application/views/debug/index.php:494
 msgid "Check for new version"
-msgstr ""
+msgstr "Rechercher une nouvelle version"
 
 #: application/views/debug/index.php:495
 msgid "Update now"
-msgstr ""
+msgstr "Mettre à jour maintenant"
 
 #: application/views/debug/index.php:513
 msgid "File download date"
-msgstr ""
+msgstr "Date de téléchargement du fichier"
 
 #: application/views/debug/index.php:517
+#, fuzzy
 msgid "File"
-msgstr ""
+msgstr "Fichier"
 
 #: application/views/debug/index.php:518
 msgid "Last update"
-msgstr ""
+msgstr "Dernière mise à jour"
 
 #: application/views/debug/index.php:522
 msgid "DXCC update from Club Log"
-msgstr ""
+msgstr "Mise à jour du DXCC depuis Club Log"
 
 #: application/views/debug/index.php:524 application/views/debug/index.php:530
 #: application/views/debug/index.php:535 application/views/debug/index.php:540
@@ -9240,31 +9290,31 @@ msgstr "Mettre à jour"
 
 #: application/views/debug/index.php:528
 msgid "DOK file download"
-msgstr ""
+msgstr "Téléchargement du fichier DOK"
 
 #: application/views/debug/index.php:533
 msgid "LoTW users download"
-msgstr ""
+msgstr "Téléchargement des utilisateurs de LoTW"
 
 #: application/views/debug/index.php:538
 msgid "POTA file download"
-msgstr ""
+msgstr "Téléchargement du fichier POTA"
 
 #: application/views/debug/index.php:543
 msgid "SCP file download"
-msgstr ""
+msgstr "Téléchargement du fichier SCP"
 
 #: application/views/debug/index.php:548
 msgid "SOTA file download"
-msgstr ""
+msgstr "Téléchargement du fichier SOTA"
 
 #: application/views/debug/index.php:553
 msgid "WWFF file download"
-msgstr ""
+msgstr "Téléchargement du fichier WWFF"
 
 #: application/views/debug/index.php:558
 msgid "TLE update"
-msgstr ""
+msgstr "Mise à jour TLE"
 
 #: application/views/debug/index.php:563
 msgid "Hams Of Note update"
@@ -9272,164 +9322,170 @@ msgstr ""
 
 #: application/views/debug/index.php:568
 msgid "HAMqsl"
-msgstr ""
+msgstr "HAMqsl"
 
 #: application/views/debug/index.php:573
 msgid "VUCC Grids"
-msgstr ""
+msgstr "Locators VUCC"
 
 #: application/views/debug/index.php:582
 msgid "QSO-DB Maintenance"
-msgstr ""
+msgstr "Maintenance de la base de données des QSO"
 
 #: application/views/debug/index.php:586
-#, php-format
+#, fuzzy, php-format
 msgid "The Database contains %d QSO without a station-profile (location)"
 msgid_plural ""
 "The Database contains %d QSOs without a station-profile (location)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "La base de données contient %d QSO sans profil de station (emplacement)"
+msgstr[1] "La base de données contient %d QSO sans profil de station (emplacement)"
 
 #: application/views/debug/index.php:624
 msgid "Please mark QSOs and reassign them to an existing station location:"
 msgstr ""
+"Veuillez marquer les QSO et les réaffecter à un emplacement de station "
+"existant :"
 
 #: application/views/debug/index.php:632
 msgctxt "Stationlocation"
 msgid "Target Location"
-msgstr ""
+msgstr "Emplacement de la cible"
 
 #: application/views/debug/index.php:633 application/views/debug/index.php:644
 msgid "Reassign"
-msgstr ""
+msgstr "Réaffecter"
 
 #: application/views/debug/index.php:653
 msgid "Every QSO in your Database is assigned to a station-profile (location)"
 msgstr ""
+"Chaque QSO de votre base de données est attribué à un profil de station "
+"(emplacement)"
 
 #: application/views/debug/index.php:653
 msgid "Everything ok"
-msgstr ""
+msgstr "Tout va bien"
 
 #: application/views/debug/index.php:678
 msgid "Albanian"
-msgstr ""
+msgstr "Albanais"
 
 #: application/views/debug/index.php:679
 msgid "Armenian"
-msgstr ""
+msgstr "Arménien"
 
 #: application/views/debug/index.php:680
 msgid "Bosnian"
-msgstr ""
+msgstr "Bosniaque"
 
 #: application/views/debug/index.php:681
 msgid "Bulgarian"
-msgstr ""
+msgstr "Bulgare"
 
 #: application/views/debug/index.php:682
 msgid "Chinese (Simplified)"
-msgstr ""
+msgstr "Chinois (simplifié)"
 
 #: application/views/debug/index.php:683
 msgid "Croatian"
-msgstr ""
+msgstr "Croate"
 
 #: application/views/debug/index.php:684
 msgid "Czech"
-msgstr ""
+msgstr "Tchèque"
 
 #: application/views/debug/index.php:685
 msgid "Dutch"
-msgstr ""
+msgstr "Néerlandais"
 
 #: application/views/debug/index.php:686
 msgid "English"
-msgstr ""
+msgstr "Anglais"
 
 #: application/views/debug/index.php:687
 msgid "Estonian"
-msgstr ""
+msgstr "Estonien"
 
 #: application/views/debug/index.php:688
 msgid "Finnish"
-msgstr ""
+msgstr "Finlandais"
 
 #: application/views/debug/index.php:689
 msgid "French"
-msgstr ""
+msgstr "Français"
 
 #: application/views/debug/index.php:690
 msgid "German"
-msgstr ""
+msgstr "Allemand"
 
 #: application/views/debug/index.php:691
 msgid "Greek"
-msgstr ""
+msgstr "Grecque"
 
 #: application/views/debug/index.php:692
 msgid "Hungarian"
-msgstr ""
+msgstr "Hongrois"
 
 #: application/views/debug/index.php:693
 msgid "Italian"
-msgstr ""
+msgstr "Italien"
 
 #: application/views/debug/index.php:694
 msgid "Japanese"
-msgstr ""
+msgstr "Japonais"
 
 #: application/views/debug/index.php:695
 msgid "Latvian"
-msgstr ""
+msgstr "Letton"
 
 #: application/views/debug/index.php:696
 msgid "Lithuanian"
-msgstr ""
+msgstr "Lituanien"
 
 #: application/views/debug/index.php:697
 msgid "Montenegrin"
-msgstr ""
+msgstr "Monténégrin"
 
 #: application/views/debug/index.php:698
 msgid "Polish"
-msgstr ""
+msgstr "Polonais"
 
 #: application/views/debug/index.php:699
 msgid "Portuguese"
-msgstr ""
+msgstr "Portugais"
 
 #: application/views/debug/index.php:700
 msgid "Russian"
-msgstr ""
+msgstr "Russe"
 
 #: application/views/debug/index.php:701
 msgid "Serbian"
-msgstr ""
+msgstr "Serbe"
 
 #: application/views/debug/index.php:702
 msgid "Slovak"
-msgstr ""
+msgstr "Slovaque"
 
 #: application/views/debug/index.php:703
 msgid "Slovenian"
-msgstr ""
+msgstr "Slovène"
 
 #: application/views/debug/index.php:704
 msgid "Spanish"
-msgstr ""
+msgstr "Espagnol"
 
 #: application/views/debug/index.php:705
 msgid "Swedish"
-msgstr ""
+msgstr "Suédois"
 
 #: application/views/debug/index.php:706
 msgid "Turkish"
-msgstr ""
+msgstr "Turque"
 
 #: application/views/distancerecords/index.php:4
 msgid "This page lists distance records per satellite based on gridsquares."
 msgstr ""
+"Cette page répertorie les enregistrements de distance par satellite en "
+"fonction des locators."
 
 #: application/views/distancerecords/index.php:20
 msgid "My Gridsquare"
@@ -9448,7 +9504,7 @@ msgstr "Données du QSO"
 #: application/views/distances/index.php:9
 #, php-format
 msgid "contacts were plotted.%s Your furthest contact was with"
-msgstr ""
+msgstr "Les contacts ont été tracés.%s Votre contact le plus éloigné était avec"
 
 #: application/views/distances/index.php:10
 msgid "in gridsquare"
@@ -9484,11 +9540,11 @@ msgstr "Seuls les QSO avec un Locator défini seront exportés !"
 
 #: application/views/dxcalendar/index.php:9
 msgid "Date from"
-msgstr ""
+msgstr "Dater de"
 
 #: application/views/dxcalendar/index.php:10
 msgid "Date to"
-msgstr ""
+msgstr "Date à"
 
 #: application/views/dxcalendar/index.php:13
 #: application/views/view_log/qso.php:495
@@ -9497,12 +9553,12 @@ msgstr "Info QSL"
 
 #: application/views/dxcalendar/index.php:14
 msgid "Source"
-msgstr ""
+msgstr "Source"
 
 #: application/views/email/admin_reset_password.php:3
 #: application/views/email/forgot_password.php:3
 msgid "Wavelog Account Password Reset"
-msgstr ""
+msgstr "Réinitialisation du mot de passe du compte Wavelog"
 
 #: application/views/email/admin_reset_password.php:5
 #, php-format
@@ -9535,11 +9591,18 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Si vous n'avez demandé aucune réinitialisation de mot de passe, ignorez "
+"simplement cet e-mail et parlez à un administrateur de votre compte Wavelog."
+"\n"
+"\n"
+"Cordialement,\n"
+"\n"
+"Wavelog"
 
 #: application/views/email/club/modified_member.php:3
 #, php-format
 msgid "Your permission level for Clubstation %s has been changed"
-msgstr ""
+msgstr "Votre niveau d'autorisation pour Clubstation %s a été modifié"
 
 #: application/views/email/club/modified_member.php:5
 #, php-format
@@ -9549,11 +9612,15 @@ msgid ""
 "Your permission level for Clubstation %s has been changed. You can access "
 "this callsign through your account at %s."
 msgstr ""
+"Cher %s,\n"
+"\n"
+"Votre niveau d'autorisation pour Clubstation %s a été modifié. Vous pouvez "
+"accéder à cet indicatif via votre compte %s."
 
 #: application/views/email/club/modified_member.php:9
 #, php-format
 msgid "Your new permission level is: %s"
-msgstr ""
+msgstr "Votre nouveau niveau d'autorisation est : %s"
 
 #: application/views/email/club/modified_member.php:11
 #: application/views/email/club/new_member.php:11
@@ -9564,11 +9631,16 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Connectez-vous et découvrez-le !\n"
+"\n"
+"Cordialement,\n"
+"\n"
+"Wavelog"
 
 #: application/views/email/club/new_member.php:3
 #, php-format
 msgid "New %s Membership on Wavelog!"
-msgstr ""
+msgstr "Nouvelle adhésion %s sur Wavelog !"
 
 #: application/views/email/club/new_member.php:5
 #, php-format
@@ -9578,11 +9650,15 @@ msgid ""
 "You have been added to the Clubstation %s. You can now access this callsign "
 "through your account on %s."
 msgstr ""
+"Cher %s\n"
+"\n"
+"Vous avez été ajouté(e) à la station du Club %s. Vous pouvez désormais "
+"accéder à cet indicatif via votre compte sur %s."
 
 #: application/views/email/club/new_member.php:9
 #, php-format
 msgid "Your permission level is: %s"
-msgstr ""
+msgstr "Votre niveau d'autorisation est : %s"
 
 #: application/views/email/forgot_password.php:5
 msgid ""
@@ -9590,6 +9666,10 @@ msgid ""
 "\n"
 "You or someone else has requested a password reset on your Wavelog account."
 msgstr ""
+"Bonjour,\n"
+"\n"
+"Vous ou une autre personne avez demandé une réinitialisation du mot de passe "
+"de votre compte Wavelog."
 
 #: application/views/email/forgot_password.php:13
 msgid ""
@@ -9599,19 +9679,24 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Si vous n'avez pas demandé cela, ignorez-le.\n"
+"\n"
+"Cordialement,\n"
+"\n"
+"Wavelog"
 
 #: application/views/email/oqrs_request.php:3
 #, php-format
 msgid "Wavelog OQRS from %s"
-msgstr ""
+msgstr "OQRS Wavelog de %s"
 
 #: application/views/email/oqrs_request.php:6
 msgid "The user entered the following message: "
-msgstr ""
+msgstr "L'utilisateur a saisi le message suivant : "
 
 #: application/views/email/oqrs_request.php:11
 msgid "The user did not enter any additional message."
-msgstr ""
+msgstr "L'utilisateur n'a saisi aucun message supplémentaire."
 
 #: application/views/email/oqrs_request.php:14
 #, php-format
@@ -9667,20 +9752,20 @@ msgstr "Outils"
 #: application/views/eqsl/import.php:18 application/views/eqsl/result.php:20
 #: application/views/eqsl/tools.php:19
 msgid "Download eQSL cards"
-msgstr ""
+msgstr "Télécharger les cartes eQSL"
 
 #: application/views/eqsl/analysis.php:40
 #: application/views/eqsl/download.php:40 application/views/eqsl/result.php:37
 msgid "Submode"
-msgstr ""
+msgstr "Sous-mode"
 
 #: application/views/eqsl/analysis.php:41
 msgid "eQSL Received Date"
-msgstr ""
+msgstr "Date de réception de l'eQSL"
 
 #: application/views/eqsl/analysis.php:42
 msgid "Log Status"
-msgstr ""
+msgstr "Etat du journal de trafic"
 
 #: application/views/eqsl/analysis.php:43 application/views/eqsl/result.php:38
 msgid "eQSL Status"
@@ -9688,13 +9773,15 @@ msgstr "Status eQSL"
 
 #: application/views/eqsl/analysis.php:68
 msgid "There are no QSO confirmations waiting for you at eQSL.cc"
-msgstr ""
+msgstr "Aucune confirmation de QSO ne vous attend sur eQSL.cc"
 
 #: application/views/eqsl/download.php:31
 msgid ""
 "Below is a table of QSOs that have been confirmed on eQSL but QSL images "
 "have not been downloaded yet."
 msgstr ""
+"Vous trouverez ci-dessous un tableau des QSO qui ont été confirmés sur eQSL "
+"mais les images QSL n'ont pas encore été téléchargées."
 
 #: application/views/eqsl/download.php:42
 #: application/views/eqslcard/index.php:34
@@ -9704,7 +9791,7 @@ msgstr "Message QSL"
 
 #: application/views/eqsl/download.php:44
 msgid "eQSL Receive Date"
-msgstr ""
+msgstr "Date de réception de l'eQSL"
 
 #: application/views/eqsl/download.php:72
 msgid "View/Download"
@@ -9751,6 +9838,9 @@ msgid ""
 "Please make sure the 'eQSL QTH Nickname' field is set in your station "
 "profile and that the value matches the QTH Nickname you set within eQSL."
 msgstr ""
+"Assurez-vous que le champ « Surnom, QTH, eQSL » est défini dans votre profil "
+"de station et que la valeur correspond au QTH de votre surnom que vous avez "
+"défini dans eQSL."
 
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
@@ -9794,6 +9884,7 @@ msgstr ""
 #: application/views/eqsl/import.php:35
 msgid "Choose Station(location) eQSL File belongs to:"
 msgstr ""
+"Choisissez la station (emplacement) à laquelle appartient le fichier eQSL :"
 
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
 msgid "Log files must have the file type .adi"
@@ -9861,7 +9952,7 @@ msgstr "votre profil"
 #: application/views/hrdlog/export.php:13 application/views/qrz/export.php:18
 #: application/views/webadif/export.php:13
 msgid "Mark QSOs"
-msgstr ""
+msgstr "Marquer les QSO"
 
 #: application/views/hrdlog/export.php:22
 msgid ""
@@ -9895,20 +9986,23 @@ msgid ""
 "No Station Locations with valid HRDlog-Settings found. Check the HRDlog "
 "Credentials in the Station Location Settings!"
 msgstr ""
+"Aucun emplacement de station avec des paramètres HRDlog valides n'a été "
+"trouvée. Vérifiez les identifiants HRDlog dans les paramètres de "
+"l'emplacement de la station !"
 
 #: application/views/hrdlog/export.php:87
 msgid "Mark QSOs as exported to HRDLog Logbook"
-msgstr ""
+msgstr "Marquer les QSO comme exportés vers le carnet de trafic HRDLog"
 
 #: application/views/hrdlog/mark_hrdlog.php:15
 #: application/views/qrz/mark_qrz.php:15
 #: application/views/webadif/mark_webadif.php:15
 msgid "Yay, it's done!"
-msgstr ""
+msgstr "Ouais, c'est fait !"
 
 #: application/views/hrdlog/mark_hrdlog.php:16
 msgid "The QSOs are marked as exported to HRDLog Logbook."
-msgstr ""
+msgstr "Les QSO sont marqués comme exportés vers le carnet de trafic HRDLog."
 
 #: application/views/interface_assets/footer.php:32
 #: application/views/search/search_result_ajax.php:456
@@ -9920,15 +10014,15 @@ msgstr "Editer QSO"
 
 #: application/views/interface_assets/footer.php:33
 msgid "Share QSO"
-msgstr ""
+msgstr "Partager le QSO"
 
 #: application/views/interface_assets/footer.php:35
 msgid "ERROR"
-msgstr ""
+msgstr "ERREUR"
 
 #: application/views/interface_assets/footer.php:36
 msgid "Attention"
-msgstr ""
+msgstr "Attention"
 
 #: application/views/interface_assets/footer.php:41
 msgid "Warning! Are you sure you want delete QSO with "
@@ -10031,27 +10125,27 @@ msgstr "Aucune note n'a été trouvée"
 
 #: application/views/interface_assets/footer.php:71
 msgid "No notes for this callsign"
-msgstr ""
+msgstr "Aucune note pour cet indicatif"
 
 #: application/views/interface_assets/footer.php:72
 msgid "Callsign Note"
-msgstr ""
+msgstr "Remarque sur l'indicatif"
 
 #: application/views/interface_assets/footer.php:73
 msgid "Note deleted successfully"
-msgstr ""
+msgstr "Note supprimée avec succès"
 
 #: application/views/interface_assets/footer.php:74
 msgid "Note created successfully"
-msgstr ""
+msgstr "Note créée avec succès"
 
 #: application/views/interface_assets/footer.php:75
 msgid "Note saved successfully"
-msgstr ""
+msgstr "Note enregistrée avec succès"
 
 #: application/views/interface_assets/footer.php:76
 msgid "Error saving note"
-msgstr ""
+msgstr "Erreur lors de l'enregistrement de la note"
 
 #: application/views/interface_assets/footer.php:157
 #: application/views/interface_assets/header.php:515
@@ -11712,29 +11806,29 @@ msgstr "Dernier téléchargement"
 
 #: application/views/lotw_views/index.php:96
 msgid "Certificate expired"
-msgstr ""
+msgstr "Certificat expiré"
 
 #: application/views/lotw_views/index.php:98
 msgid "Certificate expiring"
-msgstr ""
+msgstr "Certificat expirant"
 
 #: application/views/lotw_views/index.php:100
 msgid "Certificate valid"
-msgstr ""
+msgstr "Certificat valide"
 
 #: application/views/lotw_views/index.php:105
 msgid "QSO end date nearing"
-msgstr ""
+msgstr "La date de fin du QSO approche"
 
 #: application/views/lotw_views/index.php:115
 #, php-format
 msgid "Last success: %s"
-msgstr ""
+msgstr "Dernier succès : %s"
 
 #: application/views/lotw_views/index.php:118
 #, php-format
 msgid "Last fail: %s"
-msgstr ""
+msgstr "Dernier échec : %s"
 
 #: application/views/lotw_views/index.php:124
 msgid "Not Synced"
@@ -11746,80 +11840,86 @@ msgstr "Vous devez envoyer des certificats p1 pour utiliser cette zone."
 
 #: application/views/lotw_views/index.php:158
 msgid "The next automatic sync with LoTW will happen at: "
-msgstr ""
+msgstr "La prochaine synchronisation automatique avec LoTW aura lieu à : "
 
 #: application/views/mode/create.php:24 application/views/mode/edit.php:33
 msgctxt "Name of mode in ADIF-specification"
 msgid "ADIF Mode"
-msgstr ""
+msgstr "Mode ADIF"
 
 #: application/views/mode/create.php:26 application/views/mode/edit.php:35
 msgid "Name of mode in ADIF-specification"
-msgstr ""
+msgstr "Nom du mode dans la spécification ADIF"
 
 #: application/views/mode/create.php:30 application/views/mode/edit.php:39
 msgctxt "Name of sub-mode in ADIF-specification"
 msgid "ADIF Sub-Mode"
-msgstr ""
+msgstr "Sous-Mode ADIF"
 
 #: application/views/mode/create.php:32 application/views/mode/edit.php:41
 msgid "Name of sub-mode in ADIF-specification"
-msgstr ""
+msgstr "Nom du sous-mode dans la spécification ADIF"
 
 #: application/views/mode/create.php:42 application/views/mode/edit.php:53
 msgid "Defines the QRG-segment in bandplan."
-msgstr ""
+msgstr "Définit le segment des QRG dans le plan de bande."
 
 #: application/views/mode/create.php:49 application/views/mode/edit.php:61
 #: application/views/mode/index.php:9 application/views/mode/index.php:55
 #: application/views/usermode/index.php:7
 #: application/views/usermode/index.php:51
 msgid "Not active"
-msgstr ""
+msgstr "Pas actif"
 
 #: application/views/mode/create.php:51 application/views/mode/edit.php:64
 msgid "Set to active if to be listed in Modes-list"
 msgstr ""
+"Définir comme actif si vous souhaitez être répertorié dans la liste des modes"
 
 #: application/views/mode/create.php:54 application/views/mode/index.php:2
 msgid "Create mode"
-msgstr ""
+msgstr "Mode Création"
 
 #: application/views/mode/edit.php:67
 msgid "Update mode"
-msgstr ""
+msgstr "Mode de mise à jour"
 
 #: application/views/mode/index.php:3
 msgid "Warning! Are you sure you want to delete the following mode?:"
-msgstr ""
+msgstr "Attention ! Voulez-vous vraiment supprimer le mode suivant ? :"
 
 #: application/views/mode/index.php:4 application/views/usermode/index.php:2
 msgid "Warning! Are you sure you want to activate all modes?"
-msgstr ""
+msgstr "Attention ! Voulez-vous vraiment activer tous les modes ?"
 
 #: application/views/mode/index.php:5 application/views/usermode/index.php:3
 msgid "Warning! Are you sure you want to deactivate all modes?"
-msgstr ""
+msgstr "Attention ! Voulez-vous vraiment désactiver tous les modes ?"
 
 #: application/views/mode/index.php:31 application/views/usermode/index.php:29
 msgid ""
 "Using the modes list you can control which modes are shown when creating a "
 "new QSO."
 msgstr ""
+"En utilisant la liste des modes, vous pouvez contrôler les modes affichés "
+"lors de la création d'un nouveau QSO."
 
 #: application/views/mode/index.php:34 application/views/usermode/index.php:32
 msgid ""
 "Active modes will be shown in the QSO 'Mode' drop-down, while inactive modes "
 "will be hidden and cannot be selected."
 msgstr ""
+"Les modes actifs seront affichés dans la liste déroulante « Mode » du QSO, "
+"tandis que les modes inactifs seront masqués et ne pourront pas être "
+"sélectionnés."
 
 #: application/views/mode/index.php:41 application/views/usermode/index.php:39
 msgid "Sub-Mode"
-msgstr ""
+msgstr "Sous-Mode"
 
 #: application/views/mode/index.php:88
 msgid "Create a Mode"
-msgstr ""
+msgstr "Créer un mode"
 
 #: application/views/notes/add.php:9 application/views/notes/edit.php:10
 #: application/views/notes/main.php:9 application/views/notes/view.php:10
@@ -11849,6 +11949,10 @@ msgid ""
 "store information about QSO partners. These notes are private and are not "
 "shared with other users nor exported to external services."
 msgstr ""
+"Les contacts sont une catégorie spéciale de notes utilisée à divers endroits "
+"de Wavelog pour stocker des informations sur les partenaires de QSO. Ces "
+"notes sont privées et ne sont, ni partagées avec d'autres utilisateurs, ni "
+"exportées vers des services externes."
 
 #: application/views/notes/add.php:61 application/views/notes/edit.php:56
 msgid "Note Contents"
@@ -11861,45 +11965,48 @@ msgstr "Enregistrer"
 
 #: application/views/notes/main.php:25
 msgid "All Categories"
-msgstr ""
+msgstr "Toutes les catégories"
 
 #: application/views/notes/main.php:53
 msgid "Search notes (min. 3 chars)"
-msgstr ""
+msgstr "Notes de recherche (min. 3 caractères)"
 
 #: application/views/notes/main.php:54
 msgid "Add stroked zero (Ø)"
-msgstr ""
+msgstr "Ajouter un zéro barré (Ø)"
 
 #: application/views/notes/main.php:57
 msgid "Reset search"
-msgstr ""
+msgstr "Réinitialiser la recherche"
 
 #: application/views/notes/main.php:75
 msgid "Creation"
-msgstr ""
+msgstr "Création"
 
 #: application/views/notes/main.php:76
 msgid "Last Modification"
-msgstr ""
+msgstr "Dernière modification"
 
 #: application/views/notes/view.php:20
+#, fuzzy
 msgid "View Note"
-msgstr ""
+msgstr "Voir la note"
 
 #: application/views/operator/index.php:9
 msgid ""
 "Please provide your personal call sign. This makes sure that QSOs are logged "
 "and exported with correct operator information."
 msgstr ""
+"Veuillez indiquer votre indicatif personnel. Cela permettra d'enregistrer et "
+"d'exporter les QSO avec des informations d'opérateur correctes."
 
 #: application/views/operator/index.php:13
 msgid "Your personal Callsign:"
-msgstr ""
+msgstr "Votre indicatif personnel :"
 
 #: application/views/operator/index.php:16
 msgid "You have to provide your personal callsign."
-msgstr ""
+msgstr "Vous devez fournir votre indicatif personnel."
 
 #: application/views/options/appearance.php:39
 #: application/views/user/edit.php:171
@@ -11909,48 +12016,55 @@ msgstr "Thème"
 #: application/views/options/appearance.php:51
 msgid "Global Theme Choice, this is used when users arent logged in."
 msgstr ""
+"Choix de thème global, celui-ci est utilisé lorsque les utilisateurs ne sont "
+"pas connectés."
 
 #: application/views/options/appearance.php:61
 msgid "Logbook Map"
-msgstr ""
+msgstr "Carte du carnet de trafic"
 
 #: application/views/options/appearance.php:66
 msgid "This allows to disable the map in the logbook."
-msgstr ""
+msgstr "Cela permet de désactiver la carte dans le journal de bord."
 
 #: application/views/options/appearance.php:70
 msgid "Public Maps"
-msgstr ""
+msgstr "Cartes Publiques"
 
 #: application/views/options/appearance.php:75
 msgid ""
 "This allows to disable all maps in the public view. This affects the main "
 "map and the gridsquares map."
 msgstr ""
+"Cela permet de désactiver toutes les cartes en vue publique. Ceci affecte la "
+"carte principale et la carte Locator."
 
 #: application/views/options/appearance.php:79
 msgid "Public Github Button"
-msgstr ""
+msgstr "Bouton Github public"
 
 #: application/views/options/appearance.php:84
 msgid "This enables the button to Wavelog's Github page in the public view"
 msgstr ""
+"Cela active le bouton vers la page Github de Wavelog dans la vue publique"
 
 #: application/views/options/appearance.php:88
+#, fuzzy
 msgid "Public Login Button"
-msgstr ""
+msgstr "Bouton de connexion publique"
 
 #: application/views/options/appearance.php:93
 msgid "This enables the button to login to Wavelog in the public view"
-msgstr ""
+msgstr "Cela permet au bouton de se connecter à Wavelog dans la vue publique"
 
 #: application/views/options/dxcluster.php:38
+#, fuzzy
 msgid "Provider of DXClusterCache"
-msgstr ""
+msgstr "Fournisseur de DXClusterCache"
 
 #: application/views/options/dxcluster.php:39
 msgid "DXClusterAPI"
-msgstr ""
+msgstr "API DXCluster"
 
 #: application/views/options/dxcluster.php:39
 #, php-format
@@ -11958,67 +12072,71 @@ msgid ""
 "The Provider of the DXCluster-Cache. You can set up your own Cache with %s "
 "or use a public one"
 msgstr ""
+"Fournisseur du cache DXCluster. Vous pouvez configurer votre propre cache "
+"avec %s ou utiliser un cache public"
 
 #: application/views/options/dxcluster.php:41
 #, php-format
 msgid "URL of the DXCluster-Cache. e.g. %s"
-msgstr ""
+msgstr "URL du DXCluster-Cache. Par exemple %s"
 
 #: application/views/options/dxcluster.php:44
 msgid "Maximum Age of spots taken care of"
-msgstr ""
+msgstr "Âge maximal des spots traités"
 
 #: application/views/options/dxcluster.php:46
 msgid "2 Hours"
-msgstr ""
+msgstr "2 heures"
 
 #: application/views/options/dxcluster.php:47
 msgid "60 Minutes"
-msgstr ""
+msgstr "60 Minutes"
 
 #: application/views/options/dxcluster.php:48
 msgid "30 Minutes"
-msgstr ""
+msgstr "30 Minutes"
 
 #: application/views/options/dxcluster.php:50
 msgid "The Age in Minutes of spots, that will be taken care at bandplan/lookup"
 msgstr ""
+"L'âge en minutes des spots, qui seront pris en charge au niveau du plan de "
+"bande/recherche"
 
 #: application/views/options/dxcluster.php:53
 msgid "Show spots which are spotted from following continent"
-msgstr ""
+msgstr "Afficher les spots signalés depuis le continent suivant"
 
 #: application/views/options/dxcluster.php:63
 msgid "Only spots by spotters from this continent are shown"
-msgstr ""
+msgstr "Seuls les spots d'opérateurs de ce continent sont affichés"
 
 #: application/views/options/email.php:45
 msgid "Outgoing Protocol"
-msgstr ""
+msgstr "Protocole sortant"
 
 #: application/views/options/email.php:50
 msgid "The protocol that will be used to send out emails."
-msgstr ""
+msgstr "Le protocole qui sera utilisé pour envoyer des e-mails."
 
 #: application/views/options/email.php:54
 msgid "SMTP Encryption"
-msgstr ""
+msgstr "Cryptage SMTP"
 
 #: application/views/options/email.php:56
 msgid "No Encryption"
-msgstr ""
+msgstr "Pas de cryptage"
 
 #: application/views/options/email.php:60
 msgid "Choose whether emails should be sent with TLS or SSL."
-msgstr ""
+msgstr "Choisissez si les e-mails doivent être envoyés avec TLS ou SSL."
 
 #: application/views/options/email.php:64
 msgid "Email Sender Name"
-msgstr ""
+msgstr "Nom de l'expéditeur de l'e-mail"
 
 #: application/views/options/email.php:67
 msgid "The email sender name, e.g. 'Wavelog'"
-msgstr ""
+msgstr "Le nom de l'expéditeur de l'e-mail, par exemple « Wavelog »"
 
 #: application/views/options/email.php:72 application/views/user/edit.php:62
 #: application/views/user/forgot_password.php:47
@@ -12029,52 +12147,61 @@ msgstr "Email"
 msgid ""
 "The email address from which the emails are sent, e.g. 'wavelog@example.com'"
 msgstr ""
+"L'adresse e-mail à partir de laquelle les e-mails sont envoyés, par exemple «"
+" wavelog@example.com »"
 
 #: application/views/options/email.php:80
 msgid "SMTP Host"
-msgstr ""
+msgstr "Hôte SMTP"
 
 #: application/views/options/email.php:83
 msgid ""
 "The hostname of the mail server, e.g. 'mail.example.com' (without 'ssl://' "
 "or 'tls://')"
 msgstr ""
+"Le nom d'hôte du serveur de messagerie, par exemple « mail.example.com » "
+"(sans « ssl:// » ou « tls:// »)"
 
 #: application/views/options/email.php:88
 msgid "SMTP Port"
-msgstr ""
+msgstr "Port SMTP"
 
 #: application/views/options/email.php:91
 msgid ""
 "The SMTP port of the mail server, e.g. if TLS is used -> '587', if SSL is "
 "used -> '465'"
 msgstr ""
+"Le port SMTP du serveur de messagerie, par exemple si TLS est utilisé -> "
+"'587', si SSL est utilisé -> '465'"
 
 #: application/views/options/email.php:96
 msgid "SMTP Username"
-msgstr ""
+msgstr "Nom d'utilisateur SMTP"
 
 #: application/views/options/email.php:99
 msgid ""
 "The username to log in to the mail server, usually this is the email address "
 "that is used."
 msgstr ""
+"Le nom d'utilisateur pour se connecter au serveur de messagerie, il s'agit "
+"généralement de l'adresse e-mail utilisée."
 
 #: application/views/options/email.php:104
 msgid "SMTP Password"
-msgstr ""
+msgstr "Mot de passe SMTP"
 
 #: application/views/options/email.php:107
 msgid "The password to log in to the mail server."
-msgstr ""
+msgstr "Le mot de passe pour se connecter au serveur de messagerie."
 
 #: application/views/options/email.php:116
 msgid "Send Test-Mail"
-msgstr ""
+msgstr "Envoyer un e-mail de test"
 
 #: application/views/options/email.php:117
 msgid "The email will be sent to the address defined in your account settings."
 msgstr ""
+"L'e-mail sera envoyé à l'adresse définie dans les paramètres de votre compte."
 
 #: application/views/options/hon.php:38
 msgid "Provider for Hams Of Note"
@@ -12089,7 +12216,7 @@ msgstr ""
 
 #: application/views/options/hon.php:39
 msgid "Wiki"
-msgstr ""
+msgstr "Wiki"
 
 #: application/views/options/hon.php:41
 #, php-format
@@ -12101,6 +12228,9 @@ msgid ""
 "Wavelog Options are global settings used for all users of the installation, "
 "which are overridden if there's a setting on a user level."
 msgstr ""
+"Les options Wavelog sont des paramètres globaux utilisés pour tous les "
+"utilisateurs de l'installation, qui sont remplacés s'il existe un paramètre "
+"au niveau de l'utilisateur."
 
 #: application/views/options/maptiles.php:49
 #, php-format
@@ -12109,6 +12239,9 @@ msgid ""
 "change any values here unless you are confident in what you are doing. Test "
 "each change on your %sDashboard%s!"
 msgstr ""
+"Ceci modifie la source de la carte à différents endroits dans Wavelog. Ne "
+"modifiez aucune valeur ici, sauf si vous êtes sûr de votre méthode. Testez "
+"chaque modification sur votre %sDashboard%s !"
 
 #: application/views/options/maptiles.php:50
 #, php-format
@@ -12116,96 +12249,109 @@ msgid ""
 "You can find a list of tested settings and all default values in the "
 "%sWavelog Wiki%s."
 msgstr ""
+"Vous pouvez trouver une liste des paramètres testés et de toutes les valeurs "
+"par défaut dans le %sWavelog Wiki%s."
 
 #: application/views/options/maptiles.php:54
 msgid "Maptiles Server URL"
-msgstr ""
+msgstr "URL du serveur de cartes"
 
 #: application/views/options/maptiles.php:56
 msgid "URL of the map server which serves the maptiles."
-msgstr ""
+msgstr "URL du serveur de carte qui sert de quadrillage."
 
 #: application/views/options/maptiles.php:59
+#, fuzzy
 msgid "Maptiles Server URL for Dark Tiles - ONLY Static Map API"
 msgstr ""
+"URL du serveur de cartes pour les carreaux sombres – API de carte statique "
+"UNIQUEMENT"
 
 #: application/views/options/maptiles.php:61
 msgid ""
 "URL of the map server which serves the dark maptiles. Only used for Static "
 "Map."
 msgstr ""
+"URL du serveur de carte qui gère les carreaux sombres. Utilisé uniquement "
+"pour la carte statique."
 
 #: application/views/options/maptiles.php:64
 msgid "Subdomain System of Maptile Server"
-msgstr ""
+msgstr "Système de sous-domaines du serveur de carte"
 
 #: application/views/options/maptiles.php:66
 msgid ""
 "System of the subdomains at this server ({s} in the URL). They are used for "
 "loadbalancing."
 msgstr ""
+"Système des sous-domaines de ce serveur ({s} dans l'URL). Ils servent à "
+"l'équilibrage de charge."
 
 #: application/views/options/maptiles.php:69
 msgid "URL of the Copyright Source"
-msgstr ""
+msgstr "URL de la source du droit d'auteur"
 
 #: application/views/options/maptiles.php:71
 msgid "Source URL for the copyright tag."
-msgstr ""
+msgstr "URL source de l'étiquette du copyright."
 
 #: application/views/options/maptiles.php:74
 msgid "Name of the Copyright Source"
-msgstr ""
+msgstr "Nom de la source du droit d'auteur"
 
 #: application/views/options/maptiles.php:76
 msgid "Text for the copyright tag."
-msgstr ""
+msgstr "Texte pour l'étiquette du copyright."
 
 #: application/views/options/maptiles.php:81
 msgid "Reset to Defaults"
-msgstr ""
+msgstr "Réinitialiser les paramètres par défaut"
 
 #: application/views/options/radios.php:38
 msgid "Radio Timeout Warning"
-msgstr ""
+msgstr "Avertissement de dépassement de délai radio"
 
 #: application/views/options/radios.php:39
 msgid ""
 "The Radio Timeout Warning is used on the QSO entry panel to alert you to "
 "radio interface disconnects."
 msgstr ""
+"L'avertissement de dépassement de délai radio est utilisé sur le panneau "
+"d'entrée QSO pour vous alerter des déconnexions de l'interface radio."
 
 #: application/views/options/radios.php:41
 msgid "This number is in seconds."
-msgstr ""
+msgstr "Ce nombre est en secondes."
 
 #: application/views/options/sidebar.php:5
 msgid "Radios"
-msgstr ""
+msgstr "Radios"
 
 #: application/views/options/version_dialog.php:47
 msgid "Version Info Header"
-msgstr ""
+msgstr "En-tête d'informations sur la version"
 
 #: application/views/options/version_dialog.php:49
 msgid "You can change the header of the version info dialog."
 msgstr ""
+"Vous pouvez modifier l'en-tête de la boîte de dialogue d'informations sur la "
+"version."
 
 #: application/views/options/version_dialog.php:53
 msgid "Version Info Mode"
-msgstr ""
+msgstr "Mode d'informations sur la version"
 
 #: application/views/options/version_dialog.php:57
 msgid "Only Release Notes"
-msgstr ""
+msgstr "Notes de publication uniquement"
 
 #: application/views/options/version_dialog.php:60
 msgid "Only Custom Text"
-msgstr ""
+msgstr "Texte personnalisé uniquement"
 
 #: application/views/options/version_dialog.php:63
 msgid "Release Notes and Custom Text"
-msgstr ""
+msgstr "Notes de version et texte personnalisé"
 
 #: application/views/options/version_dialog.php:68
 msgid ""
@@ -12213,18 +12359,25 @@ msgid ""
 "the dialog after he read it. Select if you want to show only release notes "
 "(fetched from github), only custom text or both."
 msgstr ""
+"Les informations de version sont visibles pour tous les utilisateurs. Ces "
+"derniers peuvent fermer la boîte de dialogue après l'avoir lue. Vous pouvez "
+"choisir d'afficher uniquement les notes de version (récupérées sur GitHub), "
+"uniquement le texte personnalisé, ou les deux."
 
 #: application/views/options/version_dialog.php:72
 msgid "Version Info Custom Text"
-msgstr ""
+msgstr "Informations sur la version, Texte personnalisé"
 
 #: application/views/options/version_dialog.php:74
 msgid "This is the custom text which is shown in the dialog."
 msgstr ""
+"Il s'agit du texte personnalisé qui s'affiche dans la boîte de dialogue."
 
 #: application/views/options/version_dialog.php:84
 msgid "Show/Hide Version Info Dialog for all Users"
 msgstr ""
+"Afficher/Masquer la boîte de dialogue d'informations sur la version pour "
+"tous les utilisateurs"
 
 #: application/views/options/version_dialog.php:97
 msgid "Show for all Users"
