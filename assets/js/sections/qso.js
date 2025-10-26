@@ -2000,14 +2000,14 @@ $('#band').on('change', function () {
 		dxWaterfall.waitingForData = true;
 		dxWaterfall.dataReceived = false;
 		dxWaterfall.waitingForFrequencyUpdate = true; // Prevent spot fetch from clearing waitingForData
-		
+
 		// Invalidate frequency cache to prevent using stale frequency during band change
 		// This forces getCachedMiddleFreq() to wait for new frequency
 		if (dxWaterfall.lastValidCommittedFreq) {
 			dxWaterfall.lastValidCommittedFreq = null;
 			dxWaterfall.cache.middleFreq = null;
 		}
-		
+
 		console.log('[QSO] Set waitingForFrequencyUpdate=true, waitingForData=true, invalidated freq cache');
 	}
 
