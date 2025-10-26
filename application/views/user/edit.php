@@ -873,7 +873,7 @@
 						<!-- eQSL -->
 						<div class="col-md">
 							<div class="card">
-								<div class="card-header"><?= __("eQSL"); ?></div>
+								<div class="card-header"><?= __("eQSL"); ?> <span class="badge text-bg-warning"><?= sprintf(__("Trouble? Check the %swiki%s."), '<a href="https://github.com/wavelog/wavelog/wiki/eQSL#read-common-pitfalls-with-eqsl" target="_blank">', '</a>'); ?></span></div>
 								<div class="card-body">
 									<div class="mb-3">
 										<label><?= __("eQSL.cc Username"); ?></label>
@@ -1043,7 +1043,7 @@
 						<!-- Winkeyer -->
 						<div class="col-md">
 							<div class="card">
-								<div class="card-header"><?= __("Winkeyer"); ?> <span class="badge text-bg-danger float-end"><?= __("Experimental"); ?></span></div>
+								<div class="card-header"><?= __("Winkeyer"); ?></div>
 								<div class="card-body">
 									<div class="mb-3">
 										<label><?= __("Winkeyer Features Enabled"); ?></label>

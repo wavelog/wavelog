@@ -157,6 +157,7 @@
                                 <label for="inputRadio"><?= __("Radio"); ?></label>
                                 <select class="form-select form-select-sm radios" id="radio" name="radio">
                                     <option value="0" selected="selected"><?= __("None"); ?></option>
+				    <option value="ws"<?php if ($this->session->userdata('radio') == 'ws') { echo ' selected="selected"'; } ?>><?= __("WebSocket (Requires WLGate>1.1.10)"); ?></option>
                                         <?php foreach ($radios->result() as $row) { ?>
                                         <option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id) { echo "selected=\"selected\""; } ?>><?php echo $row->radio; ?> <?php if ($radio_last_updated->id == $row->id) { echo "(".__("last updated").")"; } else { echo ''; } ?></option>
                                         <?php } ?>
@@ -236,7 +237,7 @@
                         </div>
 
                         <button type="button" class="mb-3 btn btn-sm btn-secondary" onclick="reset_log_fields()"><i class="fas fa-sync-alt"></i> <?= __("Reset QSO"); ?></button>
-                        <button type="button" class="mb-3 btn btn-sm btn-primary" onclick="logQso();"><i class="fas fa-save"></i> <?= __("Save QSO"); ?></button>
+                        <button type="button" class="mb-3 btn btn-sm btn-primary" onclick="logQso();" id="saveQso"><i class="fas fa-save"></i> <?= __("Save QSO"); ?></button>
                     </form>
                 </div>
             </div>

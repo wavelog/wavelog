@@ -341,7 +341,7 @@ switch ($date_format) {
                    $power = '';
                       foreach ($stations->result() as $stationrow) {
                 ?>
-                <option value="<?php echo $stationrow->station_id; ?>" <?php if($active_station_profile == $stationrow->station_id) { echo "selected=\"selected\""; $power = $stationrow->station_power; } ?>><?php echo $stationrow->station_profile_name; ?></option>
+                <option value="<?php echo $stationrow->station_id; ?>" <?php if($active_station_profile == $stationrow->station_id) { echo "selected=\"selected\""; $power = $stationrow->station_power; $station_callsign = $stationrow->station_callsign; } ?>><?php echo $stationrow->station_profile_name; ?></option>
                 <?php } ?>
               </select>
             </div>
@@ -350,6 +350,7 @@ switch ($date_format) {
               <label for="radio"><?= __("Radio"); ?></label>
               <select class="form-select radios" id="radio" name="radio">
                 <option value="0" selected="selected"><?= __("None"); ?></option>
+		<option value="ws"<?php if ($this->session->userdata('radio') == 'ws') { echo ' selected="selected"'; } ?>><?= __("WebSocket (Requires WLGate>1.1.10)"); ?></option>
                 <?php foreach ($radios->result() as $row) { ?>
                   <option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id) { echo "selected=\"selected\""; } ?>><?php echo $row->radio; ?> <?php if ($radio_last_updated->id == $row->id) { echo "(".__("last updated").")"; } else { echo ''; } ?></option>
                 <?php } ?>
@@ -770,26 +771,44 @@ switch ($date_format) {
 			</h4>
         </div>
 
-        <div id="winkey_buttons" class="card-body">
-			<div class="form-inline d-flex align-items-center mb-2">
-				<button onclick="stop_cw_sending()" class="btn btn-sm btn-danger" style="margin-left: 2px; margin-right: 2px;"><?= __("Stop"); ?></button>
-				<button onclick="send_carrier()" id="send_carrier" class="btn btn-sm btn-danger" style="margin-left: 2px; margin-right: 2px;"><?= __("Tune"); ?></button>
-				<button hidden id="stop_carrier" onclick="stop_carrier()" class="btn btn-sm btn-danger" style="margin-left: 2px; margin-right: 2px;"><?= __("Stop Tune"); ?></button>
-				<button id="morsekey_func1" onclick="morsekey_func1()" class="btn btn-sm btn-warning" style="margin-left: 2px; margin-right: 2px;">F1</button>
-				<button id="morsekey_func2" onclick="morsekey_func2()" class="btn btn-sm btn-warning" style="margin-left: 2px; margin-right: 2px;">F2</button>
-				<button id="morsekey_func3" onclick="morsekey_func3()" class="btn btn-sm btn-warning" style="margin-left: 2px; margin-right: 2px;">F3</button>
-				<button id="morsekey_func4" onclick="morsekey_func4()" class="btn btn-sm btn-warning" style="margin-left: 2px; margin-right: 2px;">F4</button>
-				<button id="morsekey_func5" onclick="morsekey_func5()" class="btn btn-sm btn-warning" style="margin-left: 2px; margin-right: 2px;">F5</button>
-				<label class="mx-2 mb-1 w-auto" for="cwspeed"><?= __("CW Speed"); ?></label>
-				<input class="w-auto form-control form-control-sm" type="number" id="winkeycwspeed" name="cwspeed" min="1" max="100" value="20" step="1">
+		<div id="winkey_buttons" class="card-body">
+			<!-- Function buttons -->
+			<div class="d-flex flex-wrap flex-column gap-2 mb-3">
+				<div class="d-flex flex-wrap gap-2">
+				<button id="morsekey_func1" onclick="morsekey_func1()" class="btn btn-sm btn-warning">F1</button>
+				<button id="morsekey_func2" onclick="morsekey_func2()" class="btn btn-sm btn-warning">F2</button>
+				<button id="morsekey_func3" onclick="morsekey_func3()" class="btn btn-sm btn-warning">F3</button>
+				<button id="morsekey_func4" onclick="morsekey_func4()" class="btn btn-sm btn-warning">F4</button>
+				<button id="morsekey_func5" onclick="morsekey_func5()" class="btn btn-sm btn-warning">F5</button>
+				</div>
+				<div class="d-flex flex-wrap gap-2">
+				<button id="morsekey_func6" onclick="morsekey_func6()" class="btn btn-sm btn-warning">F6</button>
+				<button id="morsekey_func7" onclick="morsekey_func7()" class="btn btn-sm btn-warning">F7</button>
+				<button id="morsekey_func8" onclick="morsekey_func8()" class="btn btn-sm btn-warning">F8</button>
+				<button id="morsekey_func9" onclick="morsekey_func9()" class="btn btn-sm btn-warning">F9</button>
+				<button id="morsekey_func10" onclick="morsekey_func10()" class="btn btn-sm btn-warning">F10</button>
+				</div>
 			</div>
 
-			<input id="sendText" type="text" class="form-control mb-1">
-			<button id="sendButton" type="button" class="btn btn-sm btn-success"><?= __("Send"); ?></button>
+			<!-- CW Speed and control buttons -->
+			<div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+				<label for="cwspeed" class="form-label mb-0"><?= __("CW Speed"); ?></label>
+				<input class="form-control form-control-sm w-auto" type="number" id="winkeycwspeed" name="cwspeed" min="1" max="100" value="20" step="1">
+				<button onclick="stop_cw_sending()" class="btn btn-sm btn-danger"><?= __("Stop"); ?></button>
+				<button onclick="send_carrier()" id="send_carrier" class="btn btn-sm btn-danger"><?= __("Tune"); ?></button>
+				<button hidden id="stop_carrier" onclick="stop_carrier()" class="btn btn-sm btn-danger"><?= __("Stop Tune"); ?></button>
+			</div>
 
-			<span id="statusBar"></span>
+			<!-- Text send input -->
+			<div class="input-group mb-2">
+				<input id="sendText" type="text" class="form-control form-control-sm" placeholder="<?= __('Enter text...'); ?>">
+				<button id="sendButton" type="button" class="btn btn-sm btn-success"><?= __("Send"); ?></button>
+			</div>
 
-        </div>
+			<!-- Status bar -->
+			<span id="statusBar" class="small text-muted"></span>
+		</div>
+
     </div>
     <?php } // end of isWinkeyEnabled if statement ?>
     <!-- Winkey Ends -->
@@ -836,3 +855,7 @@ switch ($date_format) {
 
 <!-- Toast Notification : TBD move to footer -->
 <div id="toast-container" class="position-fixed bottom-0 end-0 p-3" style="z-index: 1100;"></div>
+
+<script>
+	var station_callsign = "<?php echo $station_callsign; ?>";
+</script>
