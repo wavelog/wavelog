@@ -101,7 +101,7 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
 <?php } ?>
 
           <li class="nav-item">
-            <a class="nav-link" id="notes-tab" data-bs-toggle="tab" href="#nav-notes" role="tab" aria-controls="notes" aria-selected="false"><?= __("Notes"); ?></a>
+            <a class="nav-link" id="notes-tab" data-bs-toggle="tab" href="#nav-notes" role="tab" aria-controls="notes" aria-selected="false"><?= __("Comment"); ?></a>
           </li>
 
           <li class="nav-item">
@@ -187,7 +187,7 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
               <!-- Callsign Input -->
               <div class="row">
                 <div class="mb-3 col-md-12">
-                  <label for="callsign"><?= __("Callsign"); ?></label>&nbsp;<i id="check_cluster" data-bs-toggle="tooltip" title="<?= __("Search DXCluster for latest Spot"); ?>" class="fas fa-search"></i>
+                  <label for="callsign"><?= __("Callsign"); ?></label>&nbsp;<i id="check_cluster" data-bs-toggle="tooltip" title="<?= __("Search DXCluster for latest Spot"); ?>" class="fas fa-search"></i></label>
                   <div class="input-group">
                     <input tabindex="7" type="text" class="form-control uppercase" id="callsign" name="callsign" autocomplete="off" required>
                     <span id="qrz_info" class="input-group-text btn-included-on-field d-none py-0"></span>
@@ -635,8 +635,6 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
               <input class="form-control" id="email" type="text" name="email" value="" />
               <small id="MailHelp" class="form-text text-muted"><?= __("E-mail address of QSO-partner"); ?></small>
             </div>
-
-
           </div>
 
           <!-- Satellite Panel -->
@@ -670,10 +668,10 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
             </div>
           </div>
 
-          <!-- Notes Panel Contents -->
+          <!-- Comment Panel Contents -->
           <div class="tab-pane fade" id="nav-notes" role="tabpanel" aria-labelledby="notes-tab">
            <div class="mb-3">
-              <label for="notes"><?= __("Notes"); ?></label>
+              <label for="notes"><?= __("QSO Comment"); ?></label>
               <textarea  type="text" class="form-control" id="notes" name="notes" rows="10"></textarea>
               <div class="small form-text text-muted"><?= __("Note: Gets exported to third-party services.") ?></div>
             </div>
@@ -743,9 +741,33 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
       </div>
     </form>
     </div>
+
+	<!--- Notes --->
+	<script>
+		var user_show_notes = <?php echo ($this->session->userdata('user_show_notes')) ? 'true' : 'false'; ?>;
+	</script>
+
+	<div class="card callsign-notes" id="callsign-notes">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h4 style="font-size: 16px; font-weight: bold;" class="card-title mb-0">
+            <?= __("Callsign Notes"); ?>
+            <span class="ms-1" data-bs-toggle="tooltip" title="<?= __("Store private information about your QSO partner. These notes are never shared or exported to external services.") ?>">
+              <i class="fa fa-question-circle"></i>
+            </span>
+          </h4>
+          <button class="btn btn-sm btn-link p-0" type="button" data-bs-toggle="collapse" data-bs-target="#callsign-notes-body" aria-expanded="false" aria-controls="callsign-notes-body">
+            <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+		<div class="card-body collapse" id="callsign-notes-body">
+				<textarea id="callsign_note_content" class="form-control" rows="6"></textarea>
+				<input type="hidden" id="callsign-note-id" value="" />
+				<button id="callsign-note-edit-btn" class="btn btn-primary mt-2" style="display:none;"><i class="fas fa-edit"></i> <?= __("Edit Note"); ?></button>
+				<button id="callsign-note-save-btn" class="btn btn-primary mt-2" style="display:none;"><i class="fas fa-save"></i> <?= __("Save Note"); ?></button>
+		</div>
+	</div>
+
   </div>
-
-
   <div class="col-sm-7">
 
 <div id="noticer" role="alert"></div>
@@ -866,6 +888,10 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
 </div>
 
 </div>
+
+<!-- Toast Notification : TBD move to footer -->
+<div id="toast-container" class="position-fixed bottom-0 end-0 p-3" style="z-index: 1100;"></div>
+
 <script>
 	var station_callsign = "<?php echo $station_callsign; ?>";
 </script>
