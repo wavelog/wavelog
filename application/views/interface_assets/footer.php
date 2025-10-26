@@ -1567,6 +1567,22 @@ mymap.on('mousemove', onQsoMapMove);
 	    }
 
 	    function updateCATui(data) {
+		    // Check if data is too old FIRST - before any UI updates
+		    var minutes = Math.floor(<?php echo $this->optionslib->get_option('cat_timeout_interval'); ?> / 60);
+
+		    if(data.updated_minutes_ago > minutes) {
+			    <?php if ($this->session->userdata('user_dxwaterfall_enable') == 'Y') { ?>
+			    dxwaterfall_cat_state = "none";
+			    <?php } ?>
+			    $(".radio_cat_state" ).remove();
+			    if($('.radio_timeout_error').length == 0) {
+				    $('#radio_status').prepend('<div class="alert alert-danger radio_timeout_error" role="alert"><i class="fas fa-radio"></i> Radio connection timed-out: ' + $('select.radios option:selected').text() + ' data is ' + data.updated_minutes_ago + ' minutes old.</div>');
+			    } else {
+				    $('.radio_timeout_error').html('Radio connection timed-out: ' + $('select.radios option:selected').text() + ' data is ' + data.updated_minutes_ago + ' minutes old.');
+			    }
+			    return; // Exit early - do not update any fields with old data
+		    }
+
 		    // Cache frequently used DOM selectors
 		    var $frequency = $('#frequency');
 		    var $band = $('#band');
@@ -1639,34 +1655,21 @@ mymap.on('mousemove', onQsoMapMove);
 		    cat2UI($('#transmit_power'),data.power,false,false);
 		    cat2UI($('#selectPropagation'),data.prop_mode,false,false);
 
-		    // Display CAT Timeout warning based on the figure given in the config file
-		    var minutes = Math.floor(<?php echo $this->optionslib->get_option('cat_timeout_interval'); ?> / 60);
-
-		    if(data.updated_minutes_ago > minutes) {
-			    <?php if ($this->session->userdata('user_dxwaterfall_enable') == 'Y') { ?>
-			    dxwaterfall_cat_state = "none";
-			    <?php } ?>
-			    $(".radio_cat_state" ).remove();
-			    if($('.radio_timeout_error').length == 0) {
-				    $('#radio_status').prepend('<div class="alert alert-danger radio_timeout_error" role="alert"><i class="fas fa-radio"></i> Radio connection timed-out: ' + $('select.radios option:selected').text() + ' data is ' + data.updated_minutes_ago + ' minutes old.</div>');
-			    } else {
-				    $('.radio_timeout_error').html('Radio connection timed-out: ' + $('select.radios option:selected').text() + ' data is ' + data.updated_minutes_ago + ' minutes old.');
-			    }
+		    // Data is fresh (timeout check already passed at function start)
+		    <?php if ($this->session->userdata('user_dxwaterfall_enable') == 'Y') { ?>
+		    // Set CAT state for waterfall
+		    if ($(".radios option:selected").val() == 'ws') {
+			    dxwaterfall_cat_state = "websocket";
 		    } else {
-			    <?php if ($this->session->userdata('user_dxwaterfall_enable') == 'Y') { ?>
-			    // Set CAT state for waterfall
-			    if ($(".radios option:selected").val() == 'ws') {
-				    dxwaterfall_cat_state = "websocket";
-			    } else {
-				    dxwaterfall_cat_state = "polling";
-			    }
-			    <?php } ?>
-			    $(".radio_timeout_error" ).remove();
-			    separator = '<span style="margin-left:10px"></span>';
+			    dxwaterfall_cat_state = "polling";
+		    }
+		    <?php } ?>
+		    $(".radio_timeout_error" ).remove();
+		    separator = '<span style="margin-left:10px"></span>';
 
-			    if (!(data.frequency_formatted)) {
-				data.frequency_formatted=format_frequency(data.frequency);
-			    }
+		    if (!(data.frequency_formatted)) {
+			data.frequency_formatted=format_frequency(data.frequency);
+		    }
 
 		    if (data.frequency_formatted) {
 			    text = '<i class="fas fa-radio"></i>' + separator + '<b>';
@@ -1713,7 +1716,6 @@ mymap.on('mousemove', onQsoMapMove);
 			    } else {
 				    $('#radio_cat_state').html(text);
 			    }
-		    }
 	    }
 
 	    var updateFromCAT = function() {
