@@ -25,7 +25,6 @@
 		var lang_dxwaterfall_cycle_unworked = "<?= __("Cycle through unworked continents/DXCC"); ?>";
 		var lang_dxwaterfall_dx_hunter = "<?= __("DX Hunter"); ?>";
 		var lang_dxwaterfall_no_unworked = "<?= __("No unworked continents/DXCC on this band"); ?>";
-		var lang_dxwaterfall_fetching_spots = "<?= __("Fetching spots..."); ?>";
 		var lang_dxwaterfall_click_to_cycle = "<?= __("Click to cycle or wait 1.5s to apply"); ?>";
 		var lang_dxwaterfall_change_continent = "<?= __("Change spotter continent"); ?>";
 		var lang_dxwaterfall_filter_by_mode = "<?= __("Filter by mode"); ?>";
@@ -38,7 +37,7 @@
 		var lang_dxwaterfall_zoom_out = "<?= __("Zoom out"); ?>" + " [" + modKey + "+-]";
 		var lang_dxwaterfall_reset_zoom = "<?= __("Reset zoom to default (3)"); ?>";
 		var lang_dxwaterfall_zoom_in = "<?= __("Zoom in"); ?>" + " [" + modKey + "++]";
-		var lang_dxwaterfall_waiting_data = "<?= __("Waiting for DX Cluster data..."); ?>";
+		var lang_dxwaterfall_downloading_data = "<?= __("Downloading DX Cluster data"); ?>";
 		var lang_dxwaterfall_comment = "<?= __("Comment: "); ?>";
 		var lang_dxwaterfall_modes_label = "<?= __("modes:"); ?>";
 		var lang_dxwaterfall_out_of_bandplan = "<?= __("OUT OF BANDPLAN"); ?>";
@@ -46,7 +45,7 @@
 		var lang_dxwaterfall_invalid = "<?= __("INVALID"); ?>";
 		var lang_dxwaterfall_turn_on = "<?= __("Click to turn on the DX Waterfall"); ?>";
 		var lang_dxwaterfall_turn_off = "<?= __("Turn off DX Waterfall"); ?>";
-		var lang_dxwaterfall_warming_up = "<?= __("Warming up..."); ?>";
+		var lang_dxwaterfall_please_wait = "<?= __("Please wait"); ?>";
 		var lang_dxwaterfall_label_size_cycle = "<?= __("Cycle label size"); ?>";
 		var lang_dxwaterfall_label_size_xsmall = "<?= __("X-Small"); ?>";
 		var lang_dxwaterfall_label_size_small = "<?= __("Small"); ?>";

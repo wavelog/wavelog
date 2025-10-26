@@ -3282,7 +3282,8 @@ var dxWaterfall = {
                     self.currentSmartHunterIndex = 0;
 
                     // Populate menu even if no spots (so user can still interact)
-                    self.updateZoomMenu();
+                    // Force update to bypass catTuning/frequencyChanging check
+                    self.updateZoomMenu(true); // Pass true to force update
                 }
             },
             error: function(xhr, status, error) {
@@ -3491,8 +3492,8 @@ var dxWaterfall = {
         // Text position (moved down lower for more space)
         var textY = centerY + DX_WATERFALL_CONSTANTS.CANVAS.TEXT_OFFSET_Y;
 
-        // Draw "Waiting for DX Cluster data..." message
-        DX_WATERFALL_UTILS.drawing.drawCenteredText(this.ctx, lang_dxwaterfall_waiting_data, centerX, textY, 'WAITING_MESSAGE', 'MESSAGE_TEXT_WHITE');
+        // Draw "Downloading DX Cluster data" message
+        DX_WATERFALL_UTILS.drawing.drawCenteredText(this.ctx, lang_dxwaterfall_downloading_data, centerX, textY, 'WAITING_MESSAGE', 'MESSAGE_TEXT_WHITE');
 
         // Reset opacity
         this.ctx.globalAlpha = 1.0;
@@ -4886,9 +4887,9 @@ var dxWaterfall = {
         if (this.fetchInProgress) {
             if (this.operationStartTime) {
                 var elapsed = ((Date.now() - this.operationStartTime) / 1000).toFixed(1);
-                // Only show "Warming up..." if we haven't received ANY data yet
-                // Once we have data, always show counter (prevents "Warming up" from reappearing)
-                var displayText = (!this.dataReceived && elapsed < 1.0) ? lang_dxwaterfall_warming_up : elapsed + 's';
+                // Only show "Please wait" if we haven't received ANY data yet
+                // Once we have data, always show counter (prevents "Please wait" from reappearing)
+                var displayText = (!this.dataReceived && elapsed < 1.0) ? lang_dxwaterfall_please_wait : elapsed + 's';
                 this.zoomMenuDiv.innerHTML = '<div style="display: flex; align-items: center; flex: 1;"><i class="fas fa-hourglass-half" style="margin-right: 5px; animation: blink 1s infinite;"></i><span style="margin-right: 10px;">' + displayText + '</span></div>';
             } else {
                 // Fetch in progress but timer not started - show hourglass without counter
@@ -4906,12 +4907,12 @@ var dxWaterfall = {
                 // Use operationStartTime check as fallback to catch brief transition moments
                 if (this.operationStartTime) {
                     var elapsed = ((Date.now() - this.operationStartTime) / 1000).toFixed(1);
-                    // Only show "Warming up..." if we haven't received ANY data yet and elapsed < 1s
-                    var displayText = (!this.dataReceived && elapsed < 1.0) ? lang_dxwaterfall_warming_up : elapsed + 's';
+                    // Only show "Please wait" if we haven't received ANY data yet and elapsed < 1s
+                    var displayText = (!this.dataReceived && elapsed < 1.0) ? lang_dxwaterfall_please_wait : elapsed + 's';
                     this.zoomMenuDiv.innerHTML = '<div style="display: flex; align-items: center; flex: 1;"><i class="fas fa-hourglass-half" style="margin-right: 5px; animation: blink 1s infinite;"></i><span style="margin-right: 10px;">' + displayText + '</span></div>';
                 } else {
                     // Waiting but no timer started yet - show hourglass without counter
-                    this.zoomMenuDiv.innerHTML = '<div style="display: flex; align-items: center; flex: 1;"><i class="fas fa-hourglass-half" style="margin-right: 5px; animation: blink 1s infinite;"></i><span style="margin-right: 10px;">' + lang_dxwaterfall_warming_up + '</span></div>';
+                    this.zoomMenuDiv.innerHTML = '<div style="display: flex; align-items: center; flex: 1;"><i class="fas fa-hourglass-half" style="margin-right: 5px; animation: blink 1s infinite;"></i><span style="margin-right: 10px;">' + lang_dxwaterfall_please_wait + '</span></div>';
                 }
             } else {
                 // No data yet and not waiting - show hourglass placeholder to maintain height and prevent empty state
@@ -4934,9 +4935,9 @@ var dxWaterfall = {
             if (this.operationStartTime) {
                 // Calculate elapsed time with tenths of seconds
                 var elapsed = ((Date.now() - this.operationStartTime) / 1000).toFixed(1);
-                // Only show "Warming up..." if we haven't received ANY data yet
-                // Once we have data, always show counter (prevents "Warming up" from reappearing)
-                var displayText = (!this.dataReceived && elapsed < 1.0) ? lang_dxwaterfall_warming_up : elapsed + 's';
+                // Only show "Please wait" if we haven't received ANY data yet
+                // Once we have data, always show counter (prevents "Please wait" from reappearing)
+                var displayText = (!this.dataReceived && elapsed < 1.0) ? lang_dxwaterfall_please_wait : elapsed + 's';
                 zoomHTML += '<i class="fas fa-hourglass-half" style="margin-right: 5px; animation: blink 1s infinite;"></i><span style="margin-right: 10px;">' + displayText + '</span>';
             } else {
                 // Show hourglass without counter if timer not started yet
@@ -5005,8 +5006,8 @@ var dxWaterfall = {
             // Add continent cycling controls
             if (this.continentChanging) {
                 // Fetching data - show as disabled
-                zoomHTML += '<i class="fas fa-globe-americas continent-cycle-icon disabled" title="' + lang_dxwaterfall_fetching_spots + '" style="opacity: 0.3; cursor: not-allowed;"></i>';
-                zoomHTML += '<span class="continent-cycle-text disabled" title="' + lang_dxwaterfall_fetching_spots + '" style="opacity: 0.3; cursor: not-allowed;">de ' + this.currentContinent + '</span>';
+                zoomHTML += '<i class="fas fa-globe-americas continent-cycle-icon disabled" title="' + lang_dxwaterfall_downloading_data + '" style="opacity: 0.3; cursor: not-allowed;"></i>';
+                zoomHTML += '<span class="continent-cycle-text disabled" title="' + lang_dxwaterfall_downloading_data + '" style="opacity: 0.3; cursor: not-allowed;">de ' + this.currentContinent + '</span>';
             } else if (this.pendingContinent) {
                 // Pending change - show with blinking effect
                 zoomHTML += '<i class="fas fa-globe-americas continent-cycle-icon" title="' + lang_dxwaterfall_click_to_cycle + '" style="animation: blink 0.5s linear infinite;"></i>';
