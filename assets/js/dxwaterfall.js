@@ -316,12 +316,18 @@ function handleCATFrequencyUpdate(radioFrequency, updateCallback) {
 
     // Only invalidate cache and commit if frequency actually changed
     if (typeof dxWaterfall !== 'undefined' && (frequencyChanged || isInitialLoad)) {
-        // IMPORTANT: Commit BEFORE invalidating cache
-        if (dxWaterfall.commitFrequency) {
-            dxWaterfall.commitFrequency();
-        }
-        if (dxWaterfall.invalidateFrequencyCache) {
-            dxWaterfall.invalidateFrequencyCache();
+        // Skip frequency commit if user just manually changed the band (2-second cooldown)
+        // This prevents race condition where CAT sends old frequency before radio catches up
+        if (dxWaterfall.userChangedBand) {
+            console.log('[DX Waterfall] CAT CHECK: Skipping commit - user changed band (cooldown active)');
+        } else {
+            // IMPORTANT: Commit BEFORE invalidating cache
+            if (dxWaterfall.commitFrequency) {
+                dxWaterfall.commitFrequency();
+            }
+            if (dxWaterfall.invalidateFrequencyCache) {
+                dxWaterfall.invalidateFrequencyCache();
+            }
         }
 
         // Clear any existing auto-populate timer (not used anymore, but clean up if exists)
@@ -1367,6 +1373,7 @@ var dxWaterfall = {
     dataReceived: false, // Track if we've received any data
     waitingForCATFrequency: true, // Track if we're waiting for CAT frequency on initial load
     catFrequencyWaitTimer: null, // Timer for CAT frequency wait
+    waitingForFrequencyUpdate: false, // Track if we're waiting for frequency to be set after band change
 
     // ========================================
     // USER INTERFACE STATE
@@ -1495,6 +1502,7 @@ var dxWaterfall = {
     bandEdgesData: null, // Raw band edges data with mode information for mode indicators
     currentRegion: null, // Current IARU region (1, 2, 3)
     bandLimitsCache: null, // Cached band limits for current band+region
+    cachedBandForEdges: null, // The band for which band edges are currently cached
 
     // ========================================
     // INITIALIZATION AND SETUP FUNCTIONS
@@ -1830,6 +1838,11 @@ var dxWaterfall = {
 
             // Invalidate band limits cache (band changed)
             this.bandLimitsCache = null;
+
+            // Set cached band for edges to current band (will be validated before first render)
+            // This prevents drawing any band edges until frequency is confirmed to match
+            this.cachedBandForEdges = currentBand;
+            console.log('[DX Waterfall] BAND CHANGE: Set cachedBandForEdges to ' + currentBand);
 
             // Invalidate visible spots cache (new band means new spots)
             this.cache.visibleSpots = null;
@@ -2930,6 +2943,25 @@ var dxWaterfall = {
         var pixelsPerKHz = this.getCachedPixelsPerKHz();
         var rulerY = this.canvas.height - DX_WATERFALL_CONSTANTS.CANVAS.RULER_HEIGHT;
 
+        // SAFETY CHECK: Verify frequency matches the band before drawing band edges
+        // This prevents drawing band edges for the wrong band during band changes
+        var frequencyBand = this.getFrequencyBand(middleFreq);
+        if (frequencyBand !== currentBand) {
+            console.log('[DX Waterfall] BAND EDGE SKIP: Frequency band (' + frequencyBand + ') does not match current band (' + currentBand + ')');
+            return; // Don't draw band edges if frequency doesn't match band
+        }
+
+        // CACHE VALIDATION: Only render if cached band matches current band AND we've validated frequency
+        // After band change, cachedBandForEdges is set to new band but we need frequency to match before first render
+        if (this.cachedBandForEdges !== currentBand) {
+            console.log('[DX Waterfall] BAND EDGE SKIP: Cached band (' + this.cachedBandForEdges + ') does not match current band (' + currentBand + ')');
+            return; // Don't draw until cache is validated
+        }
+
+        // Both checks passed: frequency matches band AND cache matches band
+        // Render is safe - band edges will be correct
+        console.log('[DX Waterfall] BAND EDGE RENDER: Validated - rendering band edges for ' + currentBand);
+
         // Get band edges for current band
         var bandEdges = this.bandEdgesData[regionKey][currentBand];
         if (!bandEdges || bandEdges.length === 0) {
@@ -3238,7 +3270,14 @@ var dxWaterfall = {
                     self.dxSpots = data;
                     self.totalSpotsCount = data.length;
                     self.dataReceived = true; // Mark that we've received data
-                    self.waitingForData = false; // No longer waiting
+                    // Only clear waitingForData if we're NOT waiting for a frequency update
+                    // This prevents drawing with wrong band edges when frequency hasn't been set yet
+                    if (!self.waitingForFrequencyUpdate) {
+                        console.log('[DX Waterfall] FETCH SPOTS: Clearing waitingForData (not waiting for frequency)');
+                        self.waitingForData = false; // No longer waiting
+                    } else {
+                        console.log('[DX Waterfall] FETCH SPOTS: Keeping waitingForData=true (waiting for frequency update)');
+                    }
                     self.userInitiatedFetch = false; // Clear user-initiated flag
                     self.lastUpdateTime = new Date(); // Record update time
                     // Track fetch parameters to prevent duplicate fetches
@@ -4539,10 +4578,15 @@ var dxWaterfall = {
             //    a) It's the initial load and we haven't received data OR haven't waited 5 seconds yet
             //    b) It's a parameter change and we haven't received new data yet (no time wait)
             // BUT if we've already received data (including error responses), don't show waiting
-            var shouldShowWaiting = this.waitingForData && !this.dataReceived &&
-                                  (isInitialLoad ? timeSincePageLoad < this.minWaitTime : true);
+            // OR if we're specifically waiting for frequency update (band change) - always wait
+            var shouldShowWaiting = (this.waitingForData && !this.dataReceived &&
+                                  (isInitialLoad ? timeSincePageLoad < this.minWaitTime : true)) ||
+                                  this.waitingForFrequencyUpdate;
 
             if (shouldShowWaiting) {
+                if (this.waitingForFrequencyUpdate) {
+                    console.log('[DX Waterfall] REFRESH: Blocking render - waiting for frequency update');
+                }
                 this.displayWaitingMessage();
                 this.updateZoomMenu(); // Update menu to show loading indicator
                 return; // Don't draw the normal display

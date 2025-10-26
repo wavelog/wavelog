@@ -1590,7 +1590,8 @@ mymap.on('mousemove', onQsoMapMove);
 				    cat2UI($frequency,data.frequency,false,true,function(d){
 					    $frequency.trigger('change'); // Trigger for other event handlers
 					    const newBand = frequencyToBand(d);
-					    if ($band.val() != newBand) {
+					    // Don't auto-update band if user just manually changed it (prevents race condition)
+					    if ($band.val() != newBand && (typeof dxWaterfall === 'undefined' || !dxWaterfall.userChangedBand)) {
 						    $band.val(newBand).trigger('change'); // Trigger band change
 					    }
 					    cat_updating_frequency = false; // Clear flag after updates
@@ -1600,7 +1601,8 @@ mymap.on('mousemove', onQsoMapMove);
 			    // Fallback if dxwaterfall.js not loaded
 			    cat2UI($frequency,data.frequency,false,true,function(d){
 				    $frequency.trigger('change');
-				    if ($band.val() != frequencyToBand(d)) {
+				    // Don't auto-update band if user just manually changed it (prevents race condition)
+				    if ($band.val() != frequencyToBand(d) && (typeof dxWaterfall === 'undefined' || !dxWaterfall.userChangedBand)) {
 					    $band.val(frequencyToBand(d)).trigger('change');
 				    }
 				    cat_updating_frequency = false;
@@ -1612,7 +1614,8 @@ mymap.on('mousemove', onQsoMapMove);
 		    cat_updating_frequency = true; // Set flag before CAT update
 		    cat2UI($frequency,data.frequency,false,true,function(d){
 			    $frequency.trigger('change');
-			    if ($band.val() != frequencyToBand(d)) {
+			    // Don't auto-update band if user just manually changed it (prevents race condition)
+			    if ($band.val() != frequencyToBand(d) && (typeof dxWaterfall === 'undefined' || !dxWaterfall.userChangedBand)) {
 				    $band.val(frequencyToBand(d)).trigger('change');
 			    }
 			    cat_updating_frequency = false; // Clear flag after updates

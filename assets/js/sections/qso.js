@@ -1992,31 +1992,69 @@ $('#band').on('change', function () {
 			dxWaterfall.userChangedBand = false;
 		}, 10000);
 
-	// Reset operation timer when band is manually changed
-	dxWaterfall.operationStartTime = Date.now();
-}
+		// Reset operation timer when band is manually changed
+		dxWaterfall.operationStartTime = Date.now();
 
-// Check if current frequency is already in the selected band
-const currentFreq = $('#frequency').val();
-const currentBand = currentFreq ? frequencyToBand(currentFreq) : '';
-
-// Only fetch default frequency if current frequency is not already in the selected band
-if (!currentFreq || currentBand !== selectedBand) {
-	$.get(base_url + 'index.php/qso/band_to_freq/' + selectedBand + '/' + $('.mode').val(), function (result) {
-		// Set the frequency
-		$('#frequency').val(result);
-
-		// Update the displayed frequency field with proper units
-		set_qrg();
-
-		// Tune the radio to the new frequency (using global selectedRadioId)
-		if (typeof tuneRadioToFrequency === 'function') {
-			tuneRadioToFrequency(null, result);  // null = use global selectedRadioId
+		// Set waiting flags to prevent waterfall from rendering with wrong band edges
+		// This will be cleared after the frequency is loaded
+		dxWaterfall.waitingForData = true;
+		dxWaterfall.dataReceived = false;
+		dxWaterfall.waitingForFrequencyUpdate = true; // Prevent spot fetch from clearing waitingForData
+		
+		// Invalidate frequency cache to prevent using stale frequency during band change
+		// This forces getCachedMiddleFreq() to wait for new frequency
+		if (dxWaterfall.lastValidCommittedFreq) {
+			dxWaterfall.lastValidCommittedFreq = null;
+			dxWaterfall.cache.middleFreq = null;
 		}
+		
+		console.log('[QSO] Set waitingForFrequencyUpdate=true, waitingForData=true, invalidated freq cache');
+	}
+
+	// Check if current frequency is already in the selected band
+	const currentFreq = $('#frequency').val();
+	const currentBand = currentFreq ? frequencyToBand(currentFreq) : '';
+
+	// Only fetch default frequency if current frequency is not already in the selected band
+	if (!currentFreq || currentBand !== selectedBand) {
+		$.get(base_url + 'index.php/qso/band_to_freq/' + selectedBand + '/' + $('.mode').val(), function (result) {
+			// Set the frequency
+			$('#frequency').val(result);
+
+			// Update the displayed frequency field with proper units
+			set_qrg();
+
+			// Commit the new frequency to waterfall and invalidate cache
+			// Then clear waiting flag so waterfall can render with correct band edges
+			if (typeof dxWaterfall !== 'undefined') {
+				// First commit the new frequency so waterfall knows about it
+				if (dxWaterfall.commitFrequency) {
+					dxWaterfall.commitFrequency();
+				}
+				// Then invalidate cache to trigger a refresh
+				if (dxWaterfall.invalidateFrequencyCache) {
+					dxWaterfall.invalidateFrequencyCache();
+				}
+				// Frequency is now set, allow waterfall to render
+				dxWaterfall.waitingForData = false;
+				dxWaterfall.waitingForFrequencyUpdate = false;
+				console.log('[QSO] Frequency set to ' + result + ', cleared waitingForFrequencyUpdate');
+			}
+
+			// Tune the radio to the new frequency (using global selectedRadioId)
+			if (typeof tuneRadioToFrequency === 'function') {
+				tuneRadioToFrequency(null, result);  // null = use global selectedRadioId
+			}
 	});
 } else {
 	// Frequency is already in the selected band, just update display
 	set_qrg();
+
+	// Clear waiting flags immediately since no frequency change needed
+	if (typeof dxWaterfall !== 'undefined') {
+		dxWaterfall.waitingForData = false;
+		dxWaterfall.waitingForFrequencyUpdate = false;
+	}
 }
 
 $('#frequency_rx').val("");
