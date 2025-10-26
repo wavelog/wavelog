@@ -1,7 +1,7 @@
 <!-- DX Waterfall Component - START -->
 <?php if ($this->session->userdata('user_dxwaterfall_enable') == 'Y' && isset($manual_mode) && $manual_mode == 0) { ?>
 	<!-- DX Waterfall Component - JS -->
-	<script src="<?php echo base_url() ;?>assets/js/dxwaterfall.js"></script>
+	<script src="<?php echo base_url() ;?>assets/js/dxwaterfall.js?v=<?php echo time(); ?>"></script>
 	<script language="javascript">
 		/*
 		DX Waterfall Language
@@ -11,7 +11,7 @@
 		var isMac = navigator.userAgent.toUpperCase().indexOf('MAC') >= 0;
 		var modKey = isMac ? 'Cmd' : 'Ctrl';
 
-		var lang_dxwaterfall_tune_to_spot = "<?= __("Tune to spot frequency"); ?>" + " [" + modKey + "+Shift+Space]";
+		var lang_dxwaterfall_tune_to_spot = "<?= __("Tune to spot frequency and start logging QSO"); ?>" + " [" + modKey + "+Shift+Space]";
 		var lang_dxwaterfall_cycle_nearby_spots = "<?= __("Cycle through nearby spots"); ?>" + " [" + modKey + "+Space]";
 		var lang_dxwaterfall_spots = "<?= __("spots"); ?>";
 		var lang_dxwaterfall_new_continent = "<?= __("New Continent"); ?>";

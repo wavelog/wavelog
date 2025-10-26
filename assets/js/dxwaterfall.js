@@ -324,46 +324,12 @@ function handleCATFrequencyUpdate(radioFrequency, updateCallback) {
             dxWaterfall.invalidateFrequencyCache();
         }
 
-        // Auto-populate spot when user stops tuning (debounced)
-        // Clear any existing auto-populate timer
+        // Clear any existing auto-populate timer (not used anymore, but clean up if exists)
         if (window.catFrequencyDebounce.autoPopulateTimer) {
             clearTimeout(window.catFrequencyDebounce.autoPopulateTimer);
             window.catFrequencyDebounce.autoPopulateTimer = null;
         }
 
-        // Set new timer to auto-populate after user stops tuning
-        // Only do this if frequency change was NOT initiated by waterfall (spotNavigating would be true)
-        if (!dxWaterfall.spotNavigating) {
-            window.catFrequencyDebounce.autoPopulateTimer = setTimeout(function() {
-                console.log('[DX Waterfall] AUTO-POPULATE: User stopped tuning, checking for nearby spot');
-
-                // Get current spot at this frequency
-                var currentSpotInfo = dxWaterfall.getSpotInfo ? dxWaterfall.getSpotInfo() : null;
-
-                if (currentSpotInfo && currentSpotInfo.callsign) {
-                    // Create unique identifier for this spot
-                    var currentSpotId = currentSpotInfo.callsign + '_' + currentSpotInfo.frequency + '_' + (currentSpotInfo.mode || '');
-
-                    // Only populate if this is a DIFFERENT spot than what's already populated
-                    if (dxWaterfall.lastPopulatedSpot !== currentSpotId) {
-                        console.log('[DX Waterfall] AUTO-POPULATE: New spot detected (' + currentSpotInfo.callsign + '), populating form');
-                        if (dxWaterfall.checkAndPopulateSpotAtFrequency) {
-                            dxWaterfall.checkAndPopulateSpotAtFrequency();
-                        }
-                    } else {
-                        console.log('[DX Waterfall] AUTO-POPULATE: Still within same spot area (' + currentSpotInfo.callsign + '), skipping re-populate');
-                    }
-                } else {
-                    console.log('[DX Waterfall] AUTO-POPULATE: No spot at current frequency');
-                    // Clear last populated spot since we're not on any spot
-                    dxWaterfall.lastPopulatedSpot = null;
-                }
-
-                window.catFrequencyDebounce.autoPopulateTimer = null;
-            }, DX_WATERFALL_CONSTANTS.CAT.TUNING_STOPPED_DELAY_MS);
-        } else {
-            console.log('[DX Waterfall] AUTO-POPULATE: Skipping (spotNavigating active)');
-        }
     }
 
     return true;
@@ -1225,7 +1191,9 @@ var DX_WATERFALL_UTILS = {
         },
 
         // Common navigation logic shared by all spot navigation functions
-        navigateToSpot: function(waterfallContext, targetSpot, targetIndex) {
+        navigateToSpot: function(waterfallContext, targetSpot, targetIndex, shouldPrefill) {
+            // Default to false - only prefill if explicitly requested
+            shouldPrefill = (typeof shouldPrefill !== 'undefined') ? shouldPrefill : false;
 
             if (!targetSpot) {
                 return false;
@@ -1245,33 +1213,37 @@ var DX_WATERFALL_UTILS = {
 
             // Set frequency to the spot (like clicking behavior)
             if (targetSpot.frequency) {
-                // Clear the QSO form when navigating to a new spot
-                DX_WATERFALL_UTILS.qsoForm.clearForm();
+                // Only clear form if we're going to prefill it
+                if (shouldPrefill) {
+                    DX_WATERFALL_UTILS.qsoForm.clearForm();
+                }
 
                 // Check if frequency is far outside current band and update band if needed
                 if (waterfallContext.isFrequencyFarOutsideBand(targetSpot.frequency)) {
                     waterfallContext.updateBandFromFrequency(targetSpot.frequency);
                 }
 
-            // CRITICAL: Set mode FIRST before calling setFrequency
-            // setFrequency reads the mode from $('#mode').val(), so the mode must be set first
-            var radioMode = this.determineRadioMode(targetSpot);
+                // CRITICAL: Set mode FIRST before calling setFrequency
+                // setFrequency reads the mode from $('#mode').val(), so the mode must be set first
+                var radioMode = this.determineRadioMode(targetSpot);
 
-            // Set CAT debounce lock early to block incoming CAT updates during navigation
-            if (typeof setFrequency.catDebounceLock !== 'undefined') {
-                setFrequency.catDebounceLock = 1;
-            }
+                // Set CAT debounce lock early to block incoming CAT updates during navigation
+                if (typeof setFrequency.catDebounceLock !== 'undefined') {
+                    setFrequency.catDebounceLock = 1;
+                }
 
-            setMode(radioMode, true); // skipTrigger = true to prevent change event
+                setMode(radioMode, true); // skipTrigger = true to prevent change event
 
-            // Now set frequency - it will read the correct mode from the dropdown
-            setFrequency(targetSpot.frequency, true); // Pass true to indicate waterfall-initiated change
+                // Now set frequency - it will read the correct mode from the dropdown
+                setFrequency(targetSpot.frequency, true); // Pass true to indicate waterfall-initiated change
 
-            // Send frequency command again after short delay to correct any drift from mode change
-            // (radio control lib bug: mode change can cause slight frequency shift)
-            setTimeout(function() {
-                setFrequency(targetSpot.frequency, true);
-            }, DX_WATERFALL_CONSTANTS.DEBOUNCE.MODE_CHANGE_SETTLE_MS);                // Manually set the frequency in the input field immediately
+                // Send frequency command again after short delay to correct any drift from mode change
+                // (radio control lib bug: mode change can cause slight frequency shift)
+                setTimeout(function() {
+                    setFrequency(targetSpot.frequency, true);
+                }, DX_WATERFALL_CONSTANTS.DEBOUNCE.MODE_CHANGE_SETTLE_MS);
+
+                // Manually set the frequency in the input field immediately
                 var formattedFreq = Math.round(targetSpot.frequency * 1000); // Convert to Hz
                 $('#frequency').val(formattedFreq);
 
@@ -1287,8 +1259,8 @@ var DX_WATERFALL_UTILS = {
                 // Now get spot info - this will use the new frequency we just set
                 var spotInfo = waterfallContext.getSpotInfo();
 
-                // Populate form after a brief delay (same as click handler)
-                if (spotInfo) {
+                // Only populate form if explicitly requested
+                if (shouldPrefill && spotInfo) {
                     var self = this;
                     this.pendingNavigationTimer = setTimeout(function() {
                         DX_WATERFALL_UTILS.qsoForm.populateFromSpot(spotInfo, true);
@@ -1297,10 +1269,9 @@ var DX_WATERFALL_UTILS = {
                         self.navigating = false;
                     }, DX_WATERFALL_CONSTANTS.DEBOUNCE.FORM_POPULATE_DELAY_MS);
                 } else {
-                    // Clear navigation flag immediately if no spot to populate
+                    // Clear navigation flag immediately if not populating
                     this.navigating = false;
                 }
-                // If no spot found, form remains cleared (already cleared above)
 
                 // Commit the new frequency
                 setTimeout(function() {
@@ -2141,8 +2112,6 @@ var dxWaterfall = {
             this.lastValidCommittedFreq = currentInput;
             this.lastValidCommittedUnit = currentUnit;
 
-            // Check if there's a relevant spot at the new frequency and populate form
-            this.checkAndPopulateSpotAtFrequency();
         }
     },
 
@@ -3287,8 +3256,6 @@ var dxWaterfall = {
                     // This ensures menu shows data immediately even if frequency is still settling
                     self.updateZoomMenu(true); // Pass true to force update
 
-                    // Check if we're standing on a spot and auto-populate QSO form
-                    self.checkAndPopulateSpotAtFrequency();
                 } else {
                     // No spots or error in response (e.g., {"error": "not found"})
                     console.log('[DX Waterfall] FETCH SPOTS: Error response - no spots found');
@@ -5270,7 +5237,7 @@ var dxWaterfall = {
     prevSpot: function() {
         var result = this.findNearestSpot('prev');
         if (result) {
-            DX_WATERFALL_UTILS.navigation.navigateToSpot(this, result.spot, result.index);
+            DX_WATERFALL_UTILS.navigation.navigateToSpot(this, result.spot, result.index, false); // Don't prefill
         }
     },
 
@@ -5278,7 +5245,7 @@ var dxWaterfall = {
     nextSpot: function() {
         var result = this.findNearestSpot('next');
         if (result) {
-            DX_WATERFALL_UTILS.navigation.navigateToSpot(this, result.spot, result.index);
+            DX_WATERFALL_UTILS.navigation.navigateToSpot(this, result.spot, result.index, false); // Don't prefill
         }
     },
 
@@ -5549,7 +5516,7 @@ var dxWaterfall = {
 
         var spot = this.allBandSpots[0];
         if (spot) {
-            DX_WATERFALL_UTILS.navigation.navigateToSpot(this, spot, 0);
+            DX_WATERFALL_UTILS.navigation.navigateToSpot(this, spot, 0, false); // Don't prefill
         }
     },
 
@@ -5563,7 +5530,7 @@ var dxWaterfall = {
         var lastIndex = this.allBandSpots.length - 1;
         var spot = this.allBandSpots[lastIndex];
         if (spot) {
-            DX_WATERFALL_UTILS.navigation.navigateToSpot(this, spot, lastIndex);
+            DX_WATERFALL_UTILS.navigation.navigateToSpot(this, spot, lastIndex, false); // Don't prefill
         }
     },
 
@@ -6270,6 +6237,19 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
             // fromWaterfall=true prevents frequency change event from being triggered
             setFrequency(frequency, true);
 
+            // Populate the QSO form with spot data
+            // Get spot info at this frequency
+            var spotInfo = dxWaterfall.getSpotInfo();
+            if (spotInfo) {
+                // Clear form first
+                DX_WATERFALL_UTILS.qsoForm.clearForm();
+
+                // Populate from spot with a brief delay (same as other prefill paths)
+                setTimeout(function() {
+                    DX_WATERFALL_UTILS.qsoForm.populateFromSpot(spotInfo, true);
+                }, DX_WATERFALL_CONSTANTS.DEBOUNCE.FORM_POPULATE_DELAY_MS);
+            }
+
             // Visual feedback - briefly change icon color (with transition for smooth effect)
             var icon = $(this);
             icon.css({'color': '#FFFF00', 'transition': 'color 0.2s'});
@@ -6488,21 +6468,9 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
         dxWaterfall.lastValidCommittedUnit = 'kHz';
         dxWaterfall.lastQrgUnit = 'kHz';
 
-        // Try to find a nearby spot at this frequency and populate QSO form
-        var spotInfo = dxWaterfall.getSpotInfo();
-
-        if (spotInfo) {
-            // Clear the QSO form first
-            DX_WATERFALL_UTILS.qsoForm.clearForm();
-
-            // Populate from the spot
-            setTimeout(function() {
-                DX_WATERFALL_UTILS.qsoForm.populateFromSpot(spotInfo, true);
-            }, 100);
-        }
 
         // Note: No need to call commitFrequency() here since we already set
-        // lastValidCommittedFreq directly above (line 6407-6408)
+        // lastValidCommittedFreq directly above
     });
 
     // Handle keyboard shortcuts
