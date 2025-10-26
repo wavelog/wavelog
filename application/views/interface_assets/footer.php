@@ -1540,27 +1540,90 @@ mymap.on('mousemove', onQsoMapMove);
 			    }
 		    }
 
-		    // Standard API call (used when DX Waterfall is not active OR when skipWaterfall is true)
+		    // Direct client-side radio control (replaces server-side set_radio_frequency)
 		    if (radioId && radioId != 0 && radioId != '') {
-			    $.ajax({
-				    url: base_url + 'index.php/radio/set_radio_frequency',
-				    type: 'POST',
-				    data: {
-					    radio_id: radioId,
-					    frequency: freqHz,
-					    mode: mode
-				    },
-				    dataType: 'text',
-				    timeout: CAT_CONFIG.AJAX_TIMEOUT_MS,
-				    success: function(data, textStatus, jqXHR) {
-					    if (typeof onSuccess === 'function') {
-						    onSuccess(data, textStatus, jqXHR);
+			    // Get the CAT URL for the radio
+			    let catUrl;
+
+			    if (radioId === 'ws') {
+				    // WebSocket radio uses localhost gateway
+				    catUrl = 'http://127.0.0.1:54321';
+			    } else {
+				    // Get CAT URL from radio data (this would need to be made available to JS)
+				    // For now, we'll make an AJAX call to get radio details
+				    $.ajax({
+					    url: base_url + 'index.php/radio/json/' + radioId,
+					    type: 'GET',
+					    dataType: 'json',
+					    timeout: CAT_CONFIG.AJAX_TIMEOUT_MS,
+					    success: function(radioData) {
+						    if (radioData.cat_url) {
+							    performRadioTuning(radioData.cat_url, freqHz, mode, onSuccess, onError);
+						    } else {
+							    if (typeof onError === 'function') {
+								    onError(null, 'error', 'No CAT URL configured for this radio');
+							    }
+						    }
+					    },
+					    error: function(jqXHR, textStatus, errorThrown) {
+						    if (typeof onError === 'function') {
+							    onError(jqXHR, textStatus, errorThrown);
+						    }
 					    }
-				    },
-				    error: function(jqXHR, textStatus, errorThrown) {
-					    if (typeof onError === 'function') {
-						    onError(jqXHR, textStatus, errorThrown);
-					    }
+				    });
+				    return; // Exit here for non-WebSocket radios
+			    }
+
+			    // For WebSocket radios, tune immediately
+			    performRadioTuning(catUrl, freqHz, mode, onSuccess, onError);
+		    }
+
+		    // Helper function to perform the actual radio tuning
+		    function performRadioTuning(catUrl, freqHz, mode, onSuccess, onError) {
+			    // Validate and normalize mode parameter
+			    const validModes = ['lsb', 'usb', 'cw', 'fm', 'am', 'rtty', 'pkt', 'dig', 'pktlsb', 'pktusb', 'pktfm'];
+			    const catMode = mode && validModes.includes(mode.toLowerCase()) ? mode.toLowerCase() : 'usb';
+
+			    // Format: {cat_url}/{frequency}/{mode}
+			    const url = catUrl + '/' + freqHz + '/' + catMode;
+
+			    // Make first request
+			    fetch(url, {
+				    method: 'GET',
+				    mode: 'cors',
+				    timeout: 5000
+			    })
+			    .then(response => {
+				    // Wait 100ms before second request (gateway workaround)
+				    setTimeout(() => {
+					    fetch(url, {
+						    method: 'GET',
+						    mode: 'cors',
+						    timeout: 5000
+					    })
+					    .then(secondResponse => {
+						    if (secondResponse.ok || secondResponse.status === 0) {
+							    if (typeof onSuccess === 'function') {
+								    onSuccess({
+									    success: true,
+									    frequency: freqHz,
+									    mode: catMode
+								    });
+							    }
+						    } else {
+							    throw new Error('Request failed with status: ' + secondResponse.status);
+						    }
+					    })
+					    .catch(error => {
+						    if (typeof onError === 'function') {
+							    onError(null, 'error', error.message);
+						    }
+					    });
+				    }, 100);
+			    })
+			    .catch(error => {
+				    if (typeof onError === 'function') {
+					    onError(null, 'error', error.message);
 				    }
 			    });
 		    }
