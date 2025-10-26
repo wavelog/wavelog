@@ -151,7 +151,7 @@ function getDistance($distance) {
 	<?php if (($linkedCount > 0) && $active_not_linked && !$is_first_login) { ?>
 		<div class="alert alert-danger alert-dismissible fade show" role="alert">
 		<?= sprintf(
-				_pgettext("Dashboard Warning", "Your active Station Location isn't linked to your Logbook. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
+				_pgettext("Dashboard Warning", "Your active station location is not linked to your active station logbook. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
 			); ?>
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
@@ -160,7 +160,7 @@ function getDistance($distance) {
 	<?php if ($linkedCount == 0 && !$is_first_login) { ?>
 		<div class="alert alert-danger alert-dismissible fade show" role="alert">
 		<?= sprintf(
-				_pgettext("Dashboard Warning", "You have no station linked to your Logbook. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
+				_pgettext("Dashboard Warning", "You have no station linked to your logbook. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
 			); ?>
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
@@ -177,7 +177,12 @@ function getDistance($distance) {
 		</div>
 	<?php } else { ?>
 		<div class="alert alert-warning alert-dismissible fade show" role="alert" style="margin-top: 1rem;">
-			<span class="badge text-bg-info"><?= __("Important"); ?></span> <i class="fas fa-broadcast-tower"></i> <?= __("You have made no QSOs today; time to turn on the radio!"); ?>
+			<span class="badge text-bg-info"><?= __("Important"); ?></span> <i class="fas fa-broadcast-tower"></i> 
+			<?php if (($current_streak ?? 0)>0) { 
+				echo sprintf(__("Don't loose your streak - You have already had at least one QSO for the last %s consecutive days."),$current_streak); 
+			} else {
+				echo __("You have made no QSOs today; time to turn on the radio!"); 
+			} ?>
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	<?php } ?>
