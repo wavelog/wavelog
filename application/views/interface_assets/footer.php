@@ -1492,7 +1492,12 @@ mymap.on('mousemove', onQsoMapMove);
 	    }
 
 	    function format_frequency(freq) {
-		    const qrgunit = localStorage.getItem('qrgunit_' + $('#band').val());
+		    // Return null if frequency is invalid
+		    if (freq == null || freq == 0 || freq == '' || isNaN(freq)) {
+			    return null;
+		    }
+
+		    const qrgunit = localStorage.getItem('qrgunit_' + $('#band').val()) || 'kHz'; // Default to kHz if not set
 		    let frequency_formatted=null;
 		    if (qrgunit == 'Hz') {
 			    frequency_formatted=freq;
@@ -1730,11 +1735,17 @@ mymap.on('mousemove', onQsoMapMove);
 		    $(".radio_timeout_error" ).remove();
 		    separator = '<span style="margin-left:10px"></span>';
 
-		    if (!(data.frequency_formatted)) {
-			data.frequency_formatted=format_frequency(data.frequency);
+		    // Format frequency - always recalculate if it contains 'null' (from previous invalid formatting)
+		    if (!(data.frequency_formatted) || (typeof data.frequency_formatted === 'string' && data.frequency_formatted.includes('null'))) {
+			    console.log('[CAT UI] Formatting frequency:', data.frequency, 'previous formatted:', data.frequency_formatted);
+			    data.frequency_formatted=format_frequency(data.frequency);
+			    console.log('[CAT UI] New formatted:', data.frequency_formatted);
 		    }
 
-		    if (data.frequency_formatted) {
+		    console.log('[CAT UI] Checking frequency_formatted:', data.frequency_formatted, 'type:', typeof data.frequency_formatted);
+
+		    // Only display radio info if we have valid frequency (not null and doesn't contain 'null' string)
+		    if (data.frequency_formatted && (typeof data.frequency_formatted !== 'string' || !data.frequency_formatted.includes('null'))) {
 			    text = '<i class="fas fa-radio"></i>' + separator + '<b>';
 			    if (data.radio != null && data.radio != '') {
 				    text = text + data.radio;
@@ -1750,35 +1761,46 @@ mymap.on('mousemove', onQsoMapMove);
 				    // Split operation: show TX and RX separately
 				    text = text + 'TX:</b> ' + data.frequency_formatted;
 				    data.frequency_rx_formatted = format_frequency(data.frequency_rx);
-				    text = text + separator + '<b>RX:</b> ' + data.frequency_rx_formatted;
+				    if (data.frequency_rx_formatted) {
+					    text = text + separator + '<b>RX:</b> ' + data.frequency_rx_formatted;
+				    }
 			    } else {
 				    // Simplex operation: show TX/RX combined
 				    text = text + 'TX/RX:</b> ' + data.frequency_formatted;
 			    }
-		    }
-		    if(data.mode != null) {
+
+			    // Add mode and power (only if we have valid frequency)
+			    if(data.mode != null) {
 				    text = text + separator + data.mode;
 			    }
 			    if(data.power != null && data.power != 0) {
 				    text = text + separator + data.power+'W';
 			    }
+
+			    // Add complementary info
 			    complementary_info = []
-				    if(data.prop_mode != null && data.prop_mode != '') {
-					    if (data.prop_mode == 'SAT') {
-						    complementary_info.push(data.prop_mode + ' ' + data.satname);
-					    } else {
-						    complementary_info.push(data.prop_mode);
-					    }
+			    if(data.prop_mode != null && data.prop_mode != '') {
+				    if (data.prop_mode == 'SAT') {
+					    complementary_info.push(data.prop_mode + ' ' + data.satname);
+				    } else {
+					    complementary_info.push(data.prop_mode);
 				    }
+			    }
 			    // Note: RX frequency is now displayed inline, not in complementary_info
 			    if( complementary_info.length > 0) {
 				    text = text + separator + '(' + complementary_info.join(separator) + ')';
 			    }
+
+			    // Update the DOM
 			    if (! $('#radio_cat_state').length) {
 				    $('#radio_status').prepend('<div aria-hidden="true"><div id="radio_cat_state" class="alert alert-success radio_cat_state" role="alert">'+text+'</div></div>');
 			    } else {
 				    $('#radio_cat_state').html(text);
 			    }
+		    } else {
+			    // No valid frequency - remove radio panel if it exists
+			    $('#radio_cat_state').remove();
+		    }
 	    }
 
 	    var updateFromCAT = function() {
