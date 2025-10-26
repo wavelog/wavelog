@@ -231,6 +231,7 @@ $(function() {
 	},500);
 
 	let bc2qso = new BroadcastChannel('qso_wish');
+	var CatCallbackURL = "http://127.0.0.1:54321";
 
 	// set some times
 	let wait4pong = 2000; // we wait in max 2 seconds for the pong
@@ -306,67 +307,142 @@ $(function() {
 		}
 	});
 
-	var CatCallbackURL = "http://127.0.0.1:54321";
-	var updateFromCAT = function() {
+	let websocket = null;
+	let reconnectAttempts = 0;
+	let websocketEnabled = false;
+	let CATInterval=null;
 
-	if($('select.radios option:selected').val() != '0') {
-		radioID = $('select.radios option:selected').val();
-		$.getJSON( base_url+"index.php/radio/json/" + radioID, function( data ) {
-
-			if (data.error) {
-				if (data.error == 'not_logged_in') {
-					$(".radio_cat_state" ).remove();
-					if($('.radio_login_error').length == 0) {
-						$('.messages').prepend('<div class="alert alert-danger radio_login_error" role="alert"><i class="fas fa-broadcast-tower"></i> You\'re not logged it. Please <a href="'+base_url+'">login</a></div>');
-					}
+	function initializeWebSocketConnection() {
+		try {
+			websocket = new WebSocket('ws://localhost:54322');
+			websocket.onopen = function(event) {
+				reconnectAttempts = 0;
+				websocketEnabled = true;
+			};
+			websocket.onmessage = function(event) {
+				try {
+					const data = JSON.parse(event.data);
+					handleWebSocketData(data);
+				} catch (error) {
 				}
-				// Put future Errorhandling here
-			} else {
-				if($('.radio_login_error').length != 0) {
-					$(".radio_login_error" ).remove();
-				}
-				var band = frequencyToBand(data.frequency);
-				CatCallbackURL=data.cat_url;
-				if (band !== $("#band").val()) {
-					$("#band").val(band);
-					$("#band").trigger("change");
-				}
+			};
+			websocket.onerror = function(error) {
+				websocketEnabled=false;
+			};
+			websocket.onclose = function(event) {
+				websocketEnabled = false;
 
-				var minutes = Math.floor(cat_timeout_interval / 60);
-
-				if(data.updated_minutes_ago > minutes) {
-					$(".radio_cat_state" ).remove();
-					if($('.radio_timeout_error').length == 0) {
-						$('.messages').prepend('<div class="alert alert-danger radio_timeout_error" role="alert"><i class="fas fa-broadcast-tower"></i> Radio connection timed-out: ' + $('select.radios option:selected').text() + ' data is ' + data.updated_minutes_ago + ' minutes old.</div>');
-					} else {
-						$('.radio_timeout_error').html('Radio connection timed-out: ' + $('select.radios option:selected').text() + ' data is ' + data.updated_minutes_ago + ' minutes old.');
-					}
+				if (reconnectAttempts < 5) {
+					setTimeout(() => {
+						reconnectAttempts++;
+						initializeWebSocketConnection();
+					}, 2000 * reconnectAttempts);
 				} else {
-					$(".radio_timeout_error" ).remove();
-					text = '<i class="fas fa-broadcast-tower"></i><span style="margin-left:10px;"></span><b>TX:</b> '+(Math.round(parseInt(data.frequency)/100)/10000).toFixed(4)+' MHz';
-					highlight_current_qrg((parseInt(data.frequency))/1000);
-					if(data.mode != null) {
-						text = text+'<span style="margin-left:10px"></span>'+data.mode;
-					}
-					if(data.power != null && data.power != 0) {
-						text = text+'<span style="margin-left:10px"></span>'+data.power+' W';
-					}
-					if (! $('#radio_cat_state').length) {
-						$('.messages').prepend('<div aria-hidden="true"><div id="radio_cat_state" class="alert alert-success radio_cat_state" role="alert">'+text+'</div></div>');
-					} else {
-						$('#radio_cat_state').html(text);
-					}
+					$(".radio_cat_state" ).remove();
+					$('#radio_status').html('<div class="alert alert-danger radio_timeout_error" role="alert"><i class="fas fa-broadcast-tower"></i> Radio connection timed-out: ' + $('select.radios option:selected').text() + ' Websocket connection lost, chose another radio.</div>');
+					websocketEnabled = false;
 				}
-			}
-		});
+			};
+		} catch (error) {
+			websocketEnabled=false;
+		}
 	}
-};
+
+	function handleWebSocketData(data) {
+		// Handle welcome message
+		if (data.type === 'welcome') {
+			return;
+		}
+		// Handle radio status updates
+		if (data.type === 'radio_status' && data.radio && ($(".radios option:selected").val() == 'ws')) {
+			data.updated_minutes_ago = Math.floor((Date.now() - data.timestamp) / 60000);
+			data.cat_url = 'http://127.0.0.1:54321';
+			// Cache the radio data
+			updateCATui(data);
+		}
+	}
+
+
+	$( "#radio" ).change(function() {
+		if (CATInterval) {	// We've a change - stop polling if active
+			clearInterval(CATInterval);
+			CATInterval=null;
+		}
+		if (websocket) {	// close possible websocket connection
+			websocket.close();
+			websocketEnabled = false;
+		}
+		if ($("#radio option:selected").val() == '0') {
+			$(".radio_cat_state" ).remove();
+		} else if ($("#radio option:selected").val() == 'ws') {
+			initializeWebSocketConnection();
+		} else {
+			// Update frequency every three second
+			CATInterval=setInterval(updateFromCAT, 3000);
+		}
+	});
+
+	function updateCATui(data) {
+		const band = frequencyToBand(data.frequency);
+		CatCallbackURL=data.cat_url;
+		if (band !== $("#band").val()) {
+			$("#band").val(band);
+			$("#band").trigger("change");
+		}
+
+		const minutes = Math.floor(cat_timeout_interval / 60);
+
+		if(data.updated_minutes_ago > minutes) {
+			$(".radio_cat_state" ).remove();
+			if($('.radio_timeout_error').length == 0) {
+				$('.messages').prepend('<div class="alert alert-danger radio_timeout_error" role="alert"><i class="fas fa-broadcast-tower"></i> Radio connection timed-out: ' + $('select.radios option:selected').text() + ' data is ' + data.updated_minutes_ago + ' minutes old.</div>');
+			} else {
+				$('.radio_timeout_error').html('Radio connection timed-out: ' + $('select.radios option:selected').text() + ' data is ' + data.updated_minutes_ago + ' minutes old.');
+			}
+		} else {
+			$(".radio_timeout_error" ).remove();
+			text = '<i class="fas fa-broadcast-tower"></i><span style="margin-left:10px;"></span><b>TX:</b> '+(Math.round(parseInt(data.frequency)/100)/10000).toFixed(4)+' MHz';
+			highlight_current_qrg((parseInt(data.frequency))/1000);
+			if(data.mode != null) {
+				text = text+'<span style="margin-left:10px"></span>'+data.mode;
+			}
+			if(data.power != null && data.power != 0) {
+				text = text+'<span style="margin-left:10px"></span>'+data.power+' W';
+			}
+			if (! $('#radio_cat_state').length) {
+				$('.messages').prepend('<div aria-hidden="true"><div id="radio_cat_state" class="alert alert-success radio_cat_state" role="alert">'+text+'</div></div>');
+			} else {
+				$('#radio_cat_state').html(text);
+			}
+		}
+	}
+
+	var updateFromCAT = function() {
+		if($('select.radios option:selected').val() != '0') {
+			radioID = $('select.radios option:selected').val();
+			$.getJSON( base_url+"index.php/radio/json/" + radioID, function( data ) {
+
+				if (data.error) {
+					if (data.error == 'not_logged_in') {
+						$(".radio_cat_state" ).remove();
+						if($('.radio_login_error').length == 0) {
+							$('.messages').prepend('<div class="alert alert-danger radio_login_error" role="alert"><i class="fas fa-broadcast-tower"></i> You\'re not logged it. Please <a href="'+base_url+'">login</a></div>');
+						}
+					}
+					// Put future Errorhandling here
+				} else {
+					if($('.radio_login_error').length != 0) {
+						$(".radio_login_error" ).remove();
+					}
+					updateCATui(data);
+				}
+			});
+		}
+	};
 
 $.fn.dataTable.moment(custom_date_format + ' HH:mm');
-// Update frequency every three second
-setInterval(updateFromCAT, 3000);
 
 // If a radios selected from drop down select radio update.
-$('.radios').change(updateFromCAT);
+$('#radio').change();
 
 });

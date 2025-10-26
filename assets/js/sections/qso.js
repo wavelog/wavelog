@@ -83,6 +83,7 @@ $('#stationProfile').on('change', function () {
 		success: function (res) {
 			$('#transmit_power').val(res.station_power);
 			latlng=[res.lat,res.lng];
+			station_callsign = res.station_callsign;
 			$("#sat_name").change();
 		},
 		error: function () {
@@ -399,7 +400,7 @@ function parseUserDate(user_provided_date) {	// creates JS-Date out of user-prov
 			month = parseInt(parts[1], 10) - 1;
 			year = parseInt(parts[2], 10);
 	}
-	if (isNaN(day) || day < 1 || day > 31 || isNaN(month) || month < 0 || month > 11 || isNaN(year)) return null; 
+	if (isNaN(day) || day < 1 || day > 31 || isNaN(month) || month < 0 || month > 11 || isNaN(year)) return null;
 	return new Date(year, month, day);
 }
 

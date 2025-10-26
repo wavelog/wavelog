@@ -1365,25 +1365,167 @@ mymap.on('mousemove', onQsoMapMove);
 
     <script>
     $( document ).ready(function() {
-	    // Javascript for controlling rig frequency.
-	    var updateFromCAT = function() {
-		    var cat2UI = function(ui, cat, allow_empty, allow_zero, callback_on_update) {
-			    // Check, if cat-data is available
-			    if(cat == null) {
-				    return;
-			    } else if (typeof allow_empty !== 'undefined' && !allow_empty && cat == '') {
-				    return;
-			    } else if (typeof allow_zero !== 'undefined' && !allow_zero && cat == '0' ) {
-				    return;
-			    }
-			    // Only update the ui-element, if cat-data has changed
-			    if (ui.data('catValue') != cat) {
-				    ui.val(cat);
-				    ui.data('catValue',cat);
-				    if (typeof callback_on_update === 'function') { callback_on_update(cat); }
-			    }
+	    let websocket = null;
+	    let reconnectAttempts = 0;
+	    let websocketEnabled = false;
+	    let CATInterval=null;
+
+	    function initializeWebSocketConnection() {
+		    try {
+			    websocket = new WebSocket('ws://localhost:54322');
+
+			    websocket.onopen = function(event) {
+				    reconnectAttempts = 0;
+				    websocketEnabled = true;
+			    };
+
+			    websocket.onmessage = function(event) {
+				    try {
+					    const data = JSON.parse(event.data);
+					    handleWebSocketData(data);
+				    } catch (error) {
+				    }
+			    };
+
+			    websocket.onerror = function(error) {
+				    websocketEnabled=false;
+			    };
+
+			    websocket.onclose = function(event) {
+				    websocketEnabled = false;
+
+				    if (reconnectAttempts < 5) {
+					    setTimeout(() => {
+					    reconnectAttempts++;
+					    initializeWebSocketConnection();
+				    }, 2000 * reconnectAttempts);
+				    } else {
+					    $(".radio_cat_state" ).remove();
+					    $('#radio_status').html('<div class="alert alert-danger radio_timeout_error" role="alert"><i class="fas fa-broadcast-tower"></i> Radio connection timed-out: ' + $('select.radios option:selected').text() + ' Websocket connection lost, chose another radio.</div>');
+					    websocketEnabled = false;
+				    }
+			    };
+
+		    } catch (error) {
+			    websocketEnabled=false;
+		    }
+	    }
+
+	    function handleWebSocketData(data) {
+		    // Handle welcome message
+		    if (data.type === 'welcome') {
+			    return;
 		    }
 
+		    // Handle radio status updates
+		    if (data.type === 'radio_status' && data.radio && ($(".radios option:selected").val() == 'ws')) {
+			    data.updated_minutes_ago = Math.floor((Date.now() - data.timestamp) / 60000);
+			    // Cache the radio data
+			    updateCATui(data);
+		    }
+	    }
+
+
+	    // Javascript for controlling rig frequency.
+	    const cat2UI = function(ui, cat, allow_empty, allow_zero, callback_on_update) {
+		    // Check, if cat-data is available
+		    if(cat == null) {
+			    return;
+		    } else if (typeof allow_empty !== 'undefined' && !allow_empty && cat == '') {
+			    return;
+		    } else if (typeof allow_zero !== 'undefined' && !allow_zero && cat == '0' ) {
+			    return;
+		    }
+		    // Only update the ui-element, if cat-data has changed
+		    if (ui.data('catValue') != cat) {
+			    ui.val(cat);
+			    ui.data('catValue',cat);
+			    if (typeof callback_on_update === 'function') { callback_on_update(cat); }
+		    }
+	    }
+
+	    function format_frequency(freq) {
+		    const qrgunit = localStorage.getItem('qrgunit_' + $('#band').val());
+		    let frequency_formatted=null;
+		    if (qrgunit == 'Hz') {
+			    frequency_formatted=freq;
+		    } else if (qrgunit == 'kHz') {
+			    frequency_formatted=(freq / 1000);
+		    } else if (qrgunit == 'MHz') {
+			    frequency_formatted=(freq / 1000000);
+		    } else if (qrgunit == 'GHz') {
+			    frequency_formatted=(freq / 1000000000);
+		    }
+		    return frequency_formatted+''+qrgunit;
+	    }
+
+	    function updateCATui(data) {
+		    cat2UI($('#frequency'),data.frequency,false,true,function(d){
+			    $('#frequency').trigger('change');
+			    if ($("#band").val() != frequencyToBand(d)) {
+				    $("#band").val(frequencyToBand(d)).trigger('change');	// Let's only change if we really have a different band!
+			    }
+		    });
+
+		    cat2UI($('#frequency_rx'),data.frequency_rx,false,true,function(d){$("#band_rx").val(frequencyToBand(d))});
+		    cat2UI($('.mode'),catmode(data.mode),false,false,function(d){setRst($(".mode").val())});
+		    cat2UI($('#sat_name'),data.satname,false,false);
+		    cat2UI($('#sat_mode'),data.satmode,false,false);
+		    cat2UI($('#transmit_power'),data.power,false,false);
+		    cat2UI($('#selectPropagation'),data.prop_mode,false,false);
+
+		    // Display CAT Timeout warning based on the figure given in the config file
+		    var minutes = Math.floor(<?php echo $this->optionslib->get_option('cat_timeout_interval'); ?> / 60);
+
+		    if(data.updated_minutes_ago > minutes) {
+			    $(".radio_cat_state" ).remove();
+			    if($('.radio_timeout_error').length == 0) {
+				    $('#radio_status').prepend('<div class="alert alert-danger radio_timeout_error" role="alert"><i class="fas fa-broadcast-tower"></i> Radio connection timed-out: ' + $('select.radios option:selected').text() + ' data is ' + data.updated_minutes_ago + ' minutes old.</div>');
+			    } else {
+				    $('.radio_timeout_error').html('Radio connection timed-out: ' + $('select.radios option:selected').text() + ' data is ' + data.updated_minutes_ago + ' minutes old.');
+			    }
+		    } else {
+			    $(".radio_timeout_error" ).remove();
+			    separator = '<span style="margin-left:10px"></span>';
+
+			    if (!(data.frequency_formatted)) {
+				data.frequency_formatted=format_frequency(data.frequency);
+			    }
+
+			    if (data.frequency_formatted) {
+				    text = '<i class="fas fa-broadcast-tower"></i>' + separator + '<b>TX:</b> ' + data.frequency_formatted;
+			    }
+
+			    if(data.mode != null) {
+				    text = text + separator + data.mode;
+			    }
+			    if(data.power != null && data.power != 0) {
+				    text = text + separator + data.power+' W';
+			    }
+			    complementary_info = []
+				    if(data.prop_mode != null && data.prop_mode != '') {
+					    if (data.prop_mode == 'SAT') {
+						    complementary_info.push(data.prop_mode + ' ' + data.satname);
+					    } else {
+						    complementary_info.push(data.prop_mode);
+					    }
+				    }
+			    if(data.frequency_rx != null && data.frequency_rx != 0) {
+				    data.frequency_rx_formatted=format_frequency(data.frequency_rx);
+				    complementary_info.push('<b>RX:</b> ' + data.frequency_rx_formatted);
+			    }
+			    if( complementary_info.length > 0) {
+				    text = text + separator + '(' + complementary_info.join(separator) + ')';
+			    }
+			    if (! $('#radio_cat_state').length) {
+				    $('#radio_status').prepend('<div aria-hidden="true"><div id="radio_cat_state" class="alert alert-success radio_cat_state" role="alert">'+text+'</div></div>');
+			    } else {
+				    $('#radio_cat_state').html(text);
+			    }
+		    }
+	    }
+
+	    var updateFromCAT = function() {
 		    if($('select.radios option:selected').val() != '0') {
 			    radioID = $('select.radios option:selected').val();
 			    if ((typeof radioID !== 'undefined') && (radioID !== null) && (radioID !== "")) {
@@ -1410,75 +1552,25 @@ mymap.on('mousemove', onQsoMapMove);
 						    if($('.radio_login_error').length != 0) {
 							    $(".radio_login_error" ).remove();
 						    }
-						    cat2UI($('#frequency'),data.frequency,false,true,function(d){
-                                $('#frequency').trigger('change');
-							    if ($("#band").val() != frequencyToBand(d)) {
-								    $("#band").val(frequencyToBand(d)).trigger('change');	// Let's only change if we really have a different band!
-							    }
-						    });
-
-						    cat2UI($('#frequency_rx'),data.frequency_rx,false,true,function(d){$("#band_rx").val(frequencyToBand(d))});
-						    cat2UI($('.mode'),data.mode,false,false,function(d){setRst($(".mode").val())});
-						    cat2UI($('#sat_name'),data.satname,false,false);
-						    cat2UI($('#sat_mode'),data.satmode,false,false);
-						    cat2UI($('#transmit_power'),data.power,false,false);
-						    cat2UI($('#selectPropagation'),data.prop_mode,false,false);
-
-						    // Display CAT Timeout warning based on the figure given in the config file
-						    var minutes = Math.floor(<?php echo $this->optionslib->get_option('cat_timeout_interval'); ?> / 60);
-
-						    if(data.updated_minutes_ago > minutes) {
-							    $(".radio_cat_state" ).remove();
-							    if($('.radio_timeout_error').length == 0) {
-								    $('#radio_status').prepend('<div class="alert alert-danger radio_timeout_error" role="alert"><i class="fas fa-broadcast-tower"></i> Radio connection timed-out: ' + $('select.radios option:selected').text() + ' data is ' + data.updated_minutes_ago + ' minutes old.</div>');
-							    } else {
-								    $('.radio_timeout_error').html('Radio connection timed-out: ' + $('select.radios option:selected').text() + ' data is ' + data.updated_minutes_ago + ' minutes old.');
-							    }
-						    } else {
-							    $(".radio_timeout_error" ).remove();
-                                separator = '<span style="margin-left:10px"></span>';
-							    text = '<i class="fas fa-broadcast-tower"></i>' + separator + '<b>TX:</b> ' + data.frequency_formatted;
-							    if(data.mode != null) {
-								    text = text + separator + data.mode;
-							    }
-							    if(data.power != null && data.power != 0) {
-								    text = text + separator + data.power+' W';
-							    }
-                                complementary_info = []
-							    if(data.prop_mode != null && data.prop_mode != '') {
-								    if (data.prop_mode == 'SAT') {
-									    complementary_info.push(data.prop_mode + ' ' + data.satname);
-								    } else {
-                                        complementary_info.push(data.prop_mode);
-                                    }
-							    }
-							    if(data.frequency_rx != null && data.frequency_rx != 0) {
-                                    complementary_info.push('<b>RX:</b> ' + data.frequency_rx_formatted);
-							    }
-							    if( complementary_info.length > 0) {
-                                    text = text + separator + '(' + complementary_info.join(separator) + ')';
-                                }
-							    if (! $('#radio_cat_state').length) {
-								    $('#radio_status').prepend('<div aria-hidden="true"><div id="radio_cat_state" class="alert alert-success radio_cat_state" role="alert">'+text+'</div></div>');
-							    } else {
-								    $('#radio_cat_state').html(text);
-							    }
-						    }
+						    updateCATui(data);
 					    }
 				    });
 			    }
 		    }
 	    };
 
-	    // Update frequency every three second
-	    setInterval(updateFromCAT, 3000);
-
-	    // If a radios selected from drop down select radio update.
-	    $('.radios').change(updateFromCAT);
 
 	    // If no radio is selected clear data
 	    $( ".radios" ).change(function() {
-		    if ($(".radios option:selected").val() == 0) {
+		    if (CATInterval) {	// We've a change - stop polling if active
+			    clearInterval(CATInterval);
+			    CATInterval=null;
+		    }
+		    if (websocket) {	// close possible websocket connection
+			    websocket.close();
+			    websocketEnabled = false;
+		    }
+		    if ($(".radios option:selected").val() == '0') {
 			    $("#sat_name").val("");
 			    $("#sat_mode").val("");
 			    $("#frequency").val("");
@@ -1486,9 +1578,15 @@ mymap.on('mousemove', onQsoMapMove);
 			    $("#band_rx").val("");
 			    $("#selectPropagation").val($("#selectPropagation option:first").val());
 			    $(".radio_timeout_error" ).remove();
-                $(".radio_cat_state" ).remove();
+			    $(".radio_cat_state" ).remove();
+		    } else if ($(".radios option:selected").val() == 'ws') {
+			    initializeWebSocketConnection();
+		    } else {
+			    // Update frequency every three second
+			    CATInterval=setInterval(updateFromCAT, 3000);
 		    }
 	    });
+	    $('.radios').change();	// Initial trigger for pre-chosen radio
     });
   </script>
 

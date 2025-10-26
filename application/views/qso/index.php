@@ -350,6 +350,7 @@ switch ($date_format) {
               <label for="radio"><?= __("Radio"); ?></label>
               <select class="form-select radios" id="radio" name="radio">
                 <option value="0" selected="selected"><?= __("None"); ?></option>
+		<option value="ws"<?php if ($this->session->userdata('radio') == 'ws') { echo ' selected="selected"'; } ?>><?= __("WebSocket (Requires WLGate>1.1.10)"); ?></option>
                 <?php foreach ($radios->result() as $row) { ?>
                   <option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id) { echo "selected=\"selected\""; } ?>><?php echo $row->radio; ?> <?php if ($radio_last_updated->id == $row->id) { echo "(".__("last updated").")"; } else { echo ''; } ?></option>
                 <?php } ?>
