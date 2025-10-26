@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-10-26 12:27+0000\n"
-"PO-Revision-Date: 2025-10-26 06:05+0000\n"
+"PO-Revision-Date: 2025-10-27 04:28+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1951,43 +1951,44 @@ msgstr "メモを編集"
 msgid ""
 "Duplicate note title for this category and user - not allowed for Contacts "
 "category."
-msgstr ""
+msgstr "このカテゴリとユーザーのメモタイトルが重複しています。連絡先カテゴリでは許可"
+"されません。"
 
 #: application/controllers/Notes.php:283
 msgid "Not found or not allowed"
-msgstr ""
+msgstr "見つかりません、または許可されていません"
 
 #: application/controllers/Notes.php:298
 msgid "Not found"
-msgstr ""
+msgstr "見つかりません"
 
 #: application/controllers/Notes.php:314
 msgid "Category and title are required"
-msgstr ""
+msgstr "カテゴリーとタイトルは必須です"
 
 #: application/controllers/Notes.php:328
 msgid "Note not found or not allowed"
-msgstr ""
+msgstr "メモが見つからないか、許可されていません"
 
 #: application/controllers/Notes.php:335
 msgid "Note deleted"
-msgstr ""
+msgstr "メモを削除しました"
 
 #: application/controllers/Notes.php:339
 msgid "Note updated"
-msgstr ""
+msgstr "メモを更新しました"
 
 #: application/controllers/Notes.php:344
 msgid "Cannot create empty note"
-msgstr ""
+msgstr "空のメモを作成できません"
 
 #: application/controllers/Notes.php:352
 msgid "A note with this callsign already exists"
-msgstr ""
+msgstr "このコールサインのノートは既に存在します"
 
 #: application/controllers/Notes.php:362
 msgid "Note created"
-msgstr ""
+msgstr "メモを作成しました"
 
 #: application/controllers/Notes.php:376 application/controllers/Notes.php:400
 #, php-format
@@ -9978,27 +9979,27 @@ msgstr "メモが見つかりませんでした"
 
 #: application/views/interface_assets/footer.php:71
 msgid "No notes for this callsign"
-msgstr ""
+msgstr "このコールサインに関するメモはありません"
 
 #: application/views/interface_assets/footer.php:72
 msgid "Callsign Note"
-msgstr ""
+msgstr "コールサインメモ"
 
 #: application/views/interface_assets/footer.php:73
 msgid "Note deleted successfully"
-msgstr ""
+msgstr "メモは正常に削除されました"
 
 #: application/views/interface_assets/footer.php:74
 msgid "Note created successfully"
-msgstr ""
+msgstr "メモが正常に作成されました"
 
 #: application/views/interface_assets/footer.php:75
 msgid "Note saved successfully"
-msgstr ""
+msgstr "メモは正常に保存されました"
 
 #: application/views/interface_assets/footer.php:76
 msgid "Error saving note"
-msgstr ""
+msgstr "メモの保存中にエラーが発生しました"
 
 #: application/views/interface_assets/footer.php:157
 #: application/views/interface_assets/header.php:515
@@ -11811,7 +11812,7 @@ msgstr "検索ノート（最低3文字）"
 
 #: application/views/notes/main.php:54
 msgid "Add stroked zero (Ø)"
-msgstr ""
+msgstr "ストローク付きゼロ（Ø）を追加"
 
 #: application/views/notes/main.php:57
 msgid "Reset search"
@@ -13181,7 +13182,7 @@ msgstr "衛星モード"
 
 #: application/views/qso/index.php:641
 msgid "QSO Comment"
-msgstr ""
+msgstr "QSOコメント"
 
 #: application/views/qso/index.php:684
 msgid "QSL MSG"
@@ -13193,13 +13194,14 @@ msgstr "デフォルトにリセット"
 
 #: application/views/qso/index.php:720
 msgid "Callsign Notes"
-msgstr ""
+msgstr "コールサインに関する注記"
 
 #: application/views/qso/index.php:721
 msgid ""
 "Store private information about your QSO partner. These notes are never "
 "shared or exported to external services."
-msgstr ""
+msgstr "QSO相手の個人情報を保存します。これらのメモは外部サービスと共有またはエクスポ"
+"ートされることはありません。"
 
 #: application/views/qso/index.php:768
 msgid "Winkey"
@@ -16191,7 +16193,7 @@ msgstr "QSL管理"
 
 #: application/views/view_log/qso.php:86
 msgid "View note for this callsign"
-msgstr ""
+msgstr "このコールサインのメモを表示"
 
 #: application/views/view_log/qso.php:138
 msgid "Total Distance"
