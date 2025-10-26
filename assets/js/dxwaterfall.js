@@ -1735,7 +1735,9 @@ var dxWaterfall = {
 
                 // Only update band if frequency's band differs from current band
                 // This prevents overriding manual band changes when frequency is already in that band
-                if (expectedBand && currentBand && expectedBand !== currentBand) {
+                // ALSO: Don't auto-update band if user just manually changed it (userChangedBand cooldown active)
+                // This prevents race condition where CAT sends old frequency before radio catches up to new band
+                if (expectedBand && currentBand && expectedBand !== currentBand && !this.userChangedBand) {
                     this.updateBandFromFrequency(currentFreqKhz);
                 }
             }

@@ -2636,6 +2636,8 @@ $(document).ready(function () {
 			// Move focus to next field (optional - mimics typical form behavior)
 			$(this).blur();
 		}
+	});
+
 	// Edit button click handler for inline editing
 	$(document).on('click', '#callsign-note-edit-btn', function() {
 		var $editorElem = $('#callsign_note_content');
@@ -2743,5 +2745,4 @@ $(document).ready(function () {
 
 	// everything loaded and ready 2 go
 	bc.postMessage('ready');
-
-	});
+});
