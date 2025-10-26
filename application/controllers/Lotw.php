@@ -211,11 +211,23 @@ class Lotw extends CI_Controller {
 				// Get Certificate Data
 				$this->load->model('Lotw_model');
 				$data['station_profile'] = $station_profile;
-				$data['lotw_cert_info'] = $this->Lotw_model->lotw_cert_details($station_profile->station_callsign, $station_profile->station_dxcc, $station_profile->user_id);
+
+				$cert_query = $this->Lotw_model->lotw_cert_details($station_profile->station_callsign, $station_profile->user_id);
+				if ($cert_query->num_rows() > 1) {
+					echo $station_profile->station_callsign.": Multiple matching LoTW certificates found. Skipping.<br>";
+					continue;
+				}
 
 				// If Station Profile has no LoTW Cert continue on.
-				if(!isset($data['lotw_cert_info']->cert_dxcc_id)) {
+				if ($cert_query->num_rows() == 0) {
 					echo $station_profile->station_callsign.": No LoTW certificate for station callsign found.<br>";
+					continue;
+				}
+
+				$data['lotw_cert_info'] = $cert_query->row();
+				// Check if station profile DXCC matches cert DXCC
+				if ($data['lotw_cert_info']->cert_dxcc_id != $station_profile->station_dxcc) {
+					echo $station_profile->station_callsign.": DXCC of station profile does not match DXCC of LoTW certificate.<br>";
 					continue;
 				}
 

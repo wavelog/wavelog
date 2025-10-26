@@ -20,6 +20,45 @@ function resetTimers(qso_manual) {
 	}
 }
 
+// Show Bootstrap Toast - TBD move to general JS file
+function showToast(title, text, type = 'bg-success text-white', delay = 3000) {
+	/*
+	Examples:
+	showToast('Saved', 'Your data was saved!', 'bg-success text-white', 3000);
+	showToast('Error', 'Failed to connect to server.', 'bg-danger text-white', 5000);
+	showToast('Warning', 'Please check your input.', 'bg-warning text-dark', 4000);
+	showToast('Info', 'System will restart soon.', 'bg-info text-dark', 4000);
+	*/
+
+	const container = document.getElementById('toast-container');
+
+	// Create toast element
+	const toastEl = document.createElement('div');
+	toastEl.className = `toast align-items-center ${type}`;
+	toastEl.setAttribute('role', 'alert');
+	toastEl.setAttribute('aria-live', 'assertive');
+	toastEl.setAttribute('aria-atomic', 'true');
+	toastEl.setAttribute('data-bs-delay', delay);
+
+	// Toast inner HTML
+	toastEl.innerHTML = `
+		<div class="d-flex">
+		<div class="toast-body">
+			<strong>${title}</strong><br>${text}
+		</div>
+		<button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+		</div>
+	`;
+
+	// Append and show
+	container.appendChild(toastEl);
+	const bsToast = new bootstrap.Toast(toastEl);
+	bsToast.show();
+
+	// Remove from DOM when hidden
+	toastEl.addEventListener('hidden.bs.toast', () => toastEl.remove());
+}
+
 function getUTCTimeStamp(el) {
 	var now = new Date();
 	$(el).attr('value', ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2) + ':' + ("0" + now.getUTCSeconds()).slice(-2));
@@ -73,6 +112,76 @@ function getUTCDateStamp(el) {
 	$(el).attr('value', formatted_date);
 }
 
+// Note card state logic including EasyMDE initialization and handling
+function setNotesVisibility(state, noteText = "",show_notes = user_show_notes) {
+	var $noteCard = $('#callsign-notes');
+	var $saveBtn = $('#callsign-note-save-btn');
+	var $editorElem = $('#callsign_note_content');
+	var noteEditor = $editorElem.data('easymde');
+	var $editBtn = $('#callsign-note-edit-btn');
+
+	// Do nothing if user preference is to hide notes
+	if (!show_notes) {
+		$noteCard.hide();
+		return;
+	}
+
+	// Initialize EasyMDE if not already done
+	if (!noteEditor && typeof EasyMDE !== 'undefined') {
+		noteEditor = new EasyMDE({
+			element: $editorElem[0],
+			spellChecker: false,
+			toolbar: [
+				"bold", "italic", "heading", "|","preview", "|",
+				"quote", "unordered-list", "ordered-list", "|",
+				"link", "image", "|",
+				"guide"
+			],
+			forceSync: true,
+			status: false,
+			maxHeight: '150px',
+			autoDownloadFontAwesome: false,
+			autoRefresh: { delay: 250 },
+		});
+		$editorElem.data('easymde', noteEditor);
+	}
+
+	if (state === 0) {
+		// No callsign - Hide note card
+		$noteCard.hide();
+
+	} else if (state === 1) {
+		// Callsign, no note yet - show note card with message
+		$noteCard.show();
+
+		// Hide editor toolbar, set value and show preview
+		document.querySelector('.EasyMDEContainer .editor-toolbar').style.display = 'none';
+		noteEditor.value(lang_qso_note_missing);
+		noteEditor.togglePreview();
+		noteEditor.codemirror.setOption('readOnly', true);
+
+	} else if (state === 2) {
+		// Callsign with existing notes - show note card with notes
+		$noteCard.show();
+
+		// Hide editor toolbar, set value and show preview
+		document.querySelector('.EasyMDEContainer .editor-toolbar').style.display = 'none';
+		noteEditor.value(noteText);
+		noteEditor.togglePreview();
+		noteEditor.codemirror.setOption('readOnly', true);
+	}
+
+	// Hide buttons per default here
+	$saveBtn.addClass('d-none').hide();
+	$editBtn.addClass('d-none').hide();
+
+	// Show Edit button for states 1 and 2
+    if (state === 1 || state === 2) {
+        $editBtn.removeClass('d-none').show();
+    } else {
+        $editBtn.addClass('d-none').hide();
+    }
+}
 
 $('#stationProfile').on('change', function () {
 	var stationProfile = $('#stationProfile').val();
@@ -892,8 +1001,50 @@ function reset_fields() {
 	clearTimeout();
 	set_timers();
 	resetTimers(qso_manual);
+	setNotesVisibility(0); // Set note card to hidden
 }
 
+// Get status of notes for this callsign
+function get_note_status(callsign){
+		$.get(
+			window.base_url + 'index.php/notes/check_duplicate',
+			{
+				category: 'Contacts',
+				title: callsign
+			},
+			function(data) {
+				if (typeof data === 'string') {
+					try { data = JSON.parse(data); } catch (e) { data = {}; }
+				}
+				if (data && data.exists === true && data.id) {
+					// Get the note content using the note ID
+					$.get(
+						window.base_url + 'index.php/notes/get/' + data.id,
+						function(noteData) {
+							if (typeof noteData === 'string') {
+								try { noteData = JSON.parse(noteData); } catch (e) { noteData = {}; }
+							}
+							if (noteData && noteData.content) {
+								$('#callsign-note-id').val(data.id);
+								setNotesVisibility(2, noteData.content);
+							} else {
+								$('#callsign-note-id').val('');
+								setNotesVisibility(2, lang_general_word_error);
+							}
+						}
+					).fail(function() {
+						$('#callsign-note-id').val('');
+						setNotesVisibility(2, lang_general_word_error);
+					});
+				} else {
+					$('#callsign-note-id').val('');
+					setNotesVisibility(1);
+				}
+			}
+		);
+}
+
+// Lookup callsign on focusout - if the callsign is 3 chars or longer
 $("#callsign").on("focusout", function () {
 	if ($(this).val().length >= 3 && preventLookup == false) {
 
@@ -935,6 +1086,9 @@ $("#callsign").on("focusout", function () {
 
 				// Reset QSO fields
 				resetDefaultQSOFields();
+
+				// Set qso icon
+				get_note_status(result.callsign);
 
 				if (result.dxcc.entity != undefined) {
 					$('#country').val(convert_case(result.dxcc.entity));
@@ -2117,6 +2271,8 @@ function resetDefaultQSOFields() {
 	$('#callsign-image-content').text("");
 	$('.awardpane').remove();
 	$('#timesWorked').html(lang_qso_title_previous_contacts);
+
+	setNotesVisibility(0); // Set default note card visibility to 0 (hidden)
 }
 
 function closeModal() {
@@ -2178,6 +2334,8 @@ $(document).ready(function () {
 	clearTimeout();
 	set_timers();
 	updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputQso');
+
+	setNotesVisibility(0); // Set default note card visibility to 0 (hidden)
 
 	// Clear the localStorage for the qrg units, except the quicklogCallsign and a possible backlog
 	clearQrgUnits();
@@ -2406,6 +2564,112 @@ $(document).ready(function () {
 		});
 	}
 
+	// Edit button click handler for inline editing
+	$(document).on('click', '#callsign-note-edit-btn', function() {
+		var $editorElem = $('#callsign_note_content');
+		var noteEditor = $editorElem.data('easymde');
+		var $saveBtn = $('#callsign-note-save-btn');
+		var $editBtn = $('#callsign-note-edit-btn');
+		var noteId = $('#callsign-note-id').val();
+
+		if (noteEditor) {
+			// Switch to edit mode
+			noteEditor.codemirror.setOption('readOnly', false);
+			if (noteEditor.isPreviewActive()) {
+				noteEditor.togglePreview(); // Exit preview mode
+			}
+
+			// If no note exists (state 1), set dynamic timestamp content
+			if (!noteId || noteId === '') {
+				var timestamp = new Date().toLocaleString();
+				noteEditor.value('#' + timestamp + '\n');
+				noteEditor.codemirror.refresh();
+			}
+
+			// Show toolbar and buttons
+			document.querySelector('.EasyMDEContainer .editor-toolbar').style.display = '';
+			$saveBtn.removeClass('d-none').show();
+			$editBtn.addClass('d-none').hide();
+		}
+	});
+
+	// Save button click handler for saving notes
+	$(document).on('click', '#callsign-note-save-btn', function() {
+		var $editorElem = $('#callsign_note_content');
+		var noteEditor = $editorElem.data('easymde');
+		var noteId = $('#callsign-note-id').val();
+		var callsign = $('#callsign').val().trim();
+		var noteContent = noteEditor ? noteEditor.value() : '';
+
+		if (!callsign || callsign.length < 3) {
+			return;
+		}
+
+		var isEdit = noteId && noteId !== '';
+		var url = isEdit ?
+			window.base_url + 'index.php/notes/save/' + noteId :
+			window.base_url + 'index.php/notes/save';
+
+		var postData = {
+			category: 'Contacts',
+			title: callsign,
+			content: noteContent
+		};
+
+		if (isEdit) {
+			postData.id = noteId;
+		}
+
+		$.post(url, postData)
+			.done(function(response) {
+				if (typeof response === 'string') {
+					try { response = JSON.parse(response); } catch (e) { response = {}; }
+				}
+
+				if (response.success || response.status === 'ok') {
+					// Check if note was deleted (empty content)
+					if (response.deleted) {
+						// Clear the note ID since note was deleted
+						$('#callsign-note-id').val('');
+						// Reset to state 1 (callsign, no note)
+						setNotesVisibility(1);
+						// Show success message
+						showToast(lang_qso_note_toast_title, lang_qso_note_deleted);
+					} else {
+						// Success - switch back to preview mode
+						if (noteEditor) {
+							noteEditor.codemirror.setOption('readOnly', true);
+							if (!noteEditor.isPreviewActive()) {
+								noteEditor.togglePreview(); // Switch to preview mode
+							}
+							document.querySelector('.EasyMDEContainer .editor-toolbar').style.display = 'none';
+						}
+						$('#callsign-note-save-btn').addClass('d-none').hide();
+						$('#callsign-note-edit-btn').removeClass('d-none').show();
+
+						// If it was a new note, store the returned ID
+						if (!isEdit && response.id) {
+							$('#callsign-note-id').val(response.id);
+
+							// Show success message briefly
+							showToast(lang_qso_note_toast_title, lang_qso_note_created);
+						} else {
+							// Show success message briefly
+							showToast(lang_qso_note_toast_title, lang_qso_note_saved);
+						}
+
+
+					}
+				} else {
+					alert(lang_qso_note_error_saving + ': ' + (response.message || lang_general_word_error));
+				}
+			})
+			.fail(function() {
+				alert(lang_qso_note_error_saving);
+			});
+	});
+
 	// everything loaded and ready 2 go
 	bc.postMessage('ready');
-});
+
+	});
