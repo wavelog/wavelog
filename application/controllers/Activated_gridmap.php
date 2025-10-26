@@ -42,7 +42,8 @@ class Activated_gridmap extends CI_Controller {
 		$footerData['scripts'] = [
 			'assets/js/leaflet/geocoding.js',
 			'assets/js/leaflet/L.MaidenheadColouredGridMap.js',
-			'assets/js/sections/gridmap.js?'
+			'assets/js/sections/gridmap.js?',
+			'assets/js/bootstrap-multiselect.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/bootstrap-multiselect.js")),
 		];
 
 		$this->load->view('interface_assets/header', $data);
@@ -194,6 +195,7 @@ class Activated_gridmap extends CI_Controller {
 		$data['grid_2char'] = ($array_grid_2char);
 		$data['grid_4char'] = ($array_grid_4char);
 		$data['grid_6char'] = ($array_grid_6char);
+		$data['grids'] = array();
 
 		header('Content-Type: application/json');
 		echo json_encode($data);
