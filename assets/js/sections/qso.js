@@ -83,6 +83,7 @@ $('#stationProfile').on('change', function () {
 		success: function (res) {
 			$('#transmit_power').val(res.station_power);
 			latlng=[res.lat,res.lng];
+			station_callsign = res.station_callsign;
 			$("#sat_name").change();
 		},
 		error: function () {

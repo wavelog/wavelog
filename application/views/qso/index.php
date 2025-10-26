@@ -374,7 +374,7 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
                    $power = '';
                       foreach ($stations->result() as $stationrow) {
                 ?>
-                <option value="<?php echo $stationrow->station_id; ?>" <?php if($active_station_profile == $stationrow->station_id) { echo "selected=\"selected\""; $power = $stationrow->station_power; } ?>><?php echo $stationrow->station_profile_name; ?></option>
+                <option value="<?php echo $stationrow->station_id; ?>" <?php if($active_station_profile == $stationrow->station_id) { echo "selected=\"selected\""; $power = $stationrow->station_power; $station_callsign = $stationrow->station_callsign; } ?>><?php echo $stationrow->station_profile_name; ?></option>
                 <?php } ?>
               </select>
             </div>
@@ -383,7 +383,7 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
               <label for="radio"><?= __("Radio"); ?></label>
               <select class="form-select radios" id="radio" name="radio">
                 <option value="0" selected="selected"><?= __("None"); ?></option>
-				<option value="ws"<?php if ($this->session->userdata('radio') == 'ws') { echo ' selected="selected"'; } ?>><?= __("WebSocket (Requires WLGate>1.1.10)"); ?></option>
+		            <option value="ws"<?php if ($this->session->userdata('radio') == 'ws') { echo ' selected="selected"'; } ?>><?= __("WebSocket (Requires WLGate>1.1.10)"); ?></option>
                 <?php foreach ($radios->result() as $row) { ?>
                   <option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id) { echo "selected=\"selected\""; } ?>><?php echo $row->radio; ?> <?php if ($radio_last_updated->id == $row->id) { echo "(".__("last updated").")"; } else { echo ''; } ?></option>
                 <?php } ?>
@@ -866,3 +866,6 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
 </div>
 
 </div>
+<script>
+	var station_callsign = "<?php echo $station_callsign; ?>";
+</script>

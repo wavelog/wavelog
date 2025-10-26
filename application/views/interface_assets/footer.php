@@ -1618,6 +1618,7 @@ mymap.on('mousemove', onQsoMapMove);
 				    $bandRx.val('');
 			    }
 		    }
+	    }
 
 		    cat2UI($mode,catmode(data.mode),false,false,function(d){setRst($mode.val())});
 		    cat2UI($('#sat_name'),data.satname,false,false);

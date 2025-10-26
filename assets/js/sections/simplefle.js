@@ -229,6 +229,8 @@ function handleInput() {
 	var stx_incr_mode = 0;
 	var prev_stx = "";
 	var prev_stx_string = "";
+	var retained_info = {};
+
 	qsoList = [];
 	var timezoneOffsetHours = 0;
 	$("#qsoTable tbody").empty();
@@ -251,14 +253,27 @@ function handleInput() {
 		var srx = "";
 		var stx = "";
 		var call_rec = false;
-		var add_info = {};
+		var add_info = structuredClone(retained_info);
 
 		// First, search for <...>- and [...]-Patterns, which may contain comments (... or additional fields) / qsl-notes
 		let addInfoMatches = row.matchAll(/<([^>]*)>|\[([^\]]*)\]/g);
 		for (const item of addInfoMatches) {
 			row = row.replace(item[0], "");
 			let kv;
-			if (item[0][0] == '<' && (kv = item[1].match(/^([a-z_]+): *(.*)$/))) {
+			if (item[0][0] == '<' && (kv = item[1].match(/^([A-Za-z_]+): *(.*)$/))) {
+
+				kv[1] = kv[1].toLowerCase();
+
+				if (kv[2] == '') {
+					if (retained_info.hasOwnProperty(kv[1])) delete retained_info[kv[1]];
+					if (add_info.hasOwnProperty(kv[1])) delete add_info[kv[1]];
+					continue;
+				}
+
+				if (kv[1].match(/^(my_|tx_pwr$)/) !== null) {
+					retained_info[kv[1]] = kv[2];
+				}
+
 				add_info[kv[1]] = kv[2];
 			} else if (item[0][0] == '[') {
 				add_info.qslmsg = item[2];

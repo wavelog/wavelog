@@ -570,7 +570,7 @@
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_hamqsl'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
 						<tr>
-                            <td><?= __("VUCCGrids"); ?></td>
+                            <td><?= __("VUCC Grids"); ?></td>
                             <td><?php echo $vucc_grids_update->last_run ?? __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_vucc_grids'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
