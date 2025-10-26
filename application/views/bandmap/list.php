@@ -67,6 +67,7 @@
 			<label class="my-1 me-2" for="radio"><?= __("Radio"); ?></label>
 			<select class="form-select form-select-sm radios my-1 me-sm-2 w-auto" id="radio" name="radio">
 				<option value="0" selected="selected"><?= __("None"); ?></option>
+				<option value="ws"<?php if ($this->session->userdata('radio') == 'ws') { echo ' selected="selected"'; } ?>><?= __("WebSocket (Requires WLGate>1.1.10)"); ?></option>
 				<?php foreach ($radios->result() as $row) { ?>
 					<option value="<?php echo $row->id; ?>" <?php if ($this->session->userdata('radio') == $row->id) {
 																echo "selected=\"selected\"";

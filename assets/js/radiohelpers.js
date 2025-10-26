@@ -66,6 +66,34 @@ function frequencyToBand(frequency) {
 	}
 }
 
+function catmode(mode) {
+	switch ((mode || '').toUpperCase()) {
+		case 'CW-U':
+		case 'CW-L':
+		case 'CW-R':
+		case 'CWU':
+		case 'CWL':
+			return 'CW';
+			break;
+		case 'RTTY-L':
+		case 'RTTY-U':
+		case 'RTTY-R':
+			return 'RTTY';
+			break;
+		case 'USB-D':
+		case 'USB-D1':
+			return 'USB';
+			break;
+		case 'LSB-D':
+		case 'LSB-D1':
+			return 'LSB';
+			break;
+		default:
+			return (mode || '');;
+			break;
+	}
+}
+
 function LatLng2Loc(y, x, num) {
 	if (x<-180) {x=x+360;}
 	if (x>180) {x=x-360;}
