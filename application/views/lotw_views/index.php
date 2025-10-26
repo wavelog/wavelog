@@ -11,7 +11,7 @@
 	<!-- Card Starts -->
 	<div class="card">
 		<div class="card-header">
-			<a class="btn btn-outline-success btn-sm float-end" href="<?php echo site_url('/lotw/cert_upload'); ?>" role="button"><i class="fas fa-cloud-upload-alt"></i> <?= __("Upload Certificate"); ?></a><i class="fab fa-expeditedssl"></i> <?= __("Available Certificates"); ?>
+			<a class="btn btn-outline-success btn-sm float-end" href="<?php echo site_url('/lotw/cert_upload'); ?>" role="button"><i class="fas fa-cloud-upload-alt"></i> <?= __("Upload Certificate"); ?></a><i class="fab fa-expeditedssl"></i> <?= __("Available Certificates"); ?> <span class="badge bg-primary ms-1"><?php echo $lotw_cert_results->num_rows(); ?></span>
 		</div>
 
 		<div class="lotw-cert-list">
