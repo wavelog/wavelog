@@ -1398,7 +1398,7 @@ mymap.on('mousemove', onQsoMapMove);
 
 	    // CAT Configuration Constants
 	    const CAT_CONFIG = {
-	        POLL_INTERVAL: <?php echo $this->config->item('cat_poll_interval') ?? 3000; ?>,
+	        POLL_INTERVAL: 3000, // Polling interval in milliseconds
 	        WEBSOCKET_RECONNECT_MAX: 5,
 	        WEBSOCKET_RECONNECT_DELAY_MS: 2000,
 	        AJAX_TIMEOUT_MS: 5000,

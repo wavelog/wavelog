@@ -729,26 +729,6 @@ $config['disable_version_check'] = false;
 
 /*
 |--------------------------------------------------------------------------
-| CAT Configuration
-|--------------------------------------------------------------------------
-|
-| This defines various CAT related settings. More information can be found
-| on the Wiki: https://github.com/wavelog/Wavelog/wiki/CAT
-|
-| cat_poll_interval            	Polling interval for CAT in milliseconds
-|								Default is 3000ms (3 seconds)
-| 								This control how often the CAT status is
-| 								polled from the radio, in milliseconds.
-| 								Lower values increase the load on the server,
-|								higher values make the CAT less responsive.
-|							    Good values are between 250ms and 5000ms.
-|
-|*/
-
-$config['cat_poll_interval'] = 3000;
-
-/*
-|--------------------------------------------------------------------------
 | trx-control Configuration
 |--------------------------------------------------------------------------
 |
