@@ -929,8 +929,8 @@ class User extends CI_Controller {
 						}
 						$this->user_options_model->set_option('map_custom','gridsquare',array('show'=>xss_clean($this->input->post('user_map_gridsquare_show', true))), $user_id);
 					} else {
-						$this->user_options_model->del_option('map_custom','icon', $user_id);
-						$this->user_options_model->del_option('map_custom','gridsquare', $user_id);
+						$this->user_options_model->del_option('map_custom','icon', null, $user_id);
+						$this->user_options_model->del_option('map_custom','gridsquare', null, $user_id);
 					}
 					$this->user_options_model->set_option('header_menu', 'locations_quickswitch', array('boolean'=>xss_clean($this->input->post('user_locations_quickswitch', true))), $user_id);
 					$this->user_options_model->set_option('header_menu', 'utc_headermenu', array('boolean'=>xss_clean($this->input->post('user_utc_headermenu', true))), $user_id);
