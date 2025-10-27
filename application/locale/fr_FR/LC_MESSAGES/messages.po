@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-10-26 12:27+0000\n"
-"PO-Revision-Date: 2025-10-27 21:39+0000\n"
+"PO-Revision-Date: 2025-10-27 22:16+0000\n"
 "Last-Translator: F5MQU <f5mqu.p@gmail.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/fr/>\n"
@@ -14600,34 +14600,38 @@ msgid ""
 "Station POTA reference(s). Multiple comma separated values allowed. You can "
 "look up POTA references at the %s."
 msgstr ""
+"Référence(s) POTA de la station. Plusieurs valeurs séparées par des virgules "
+"sont autorisées. Vous pouvez rechercher des références POTA à l'adresse %s."
 
 #: application/views/station_profile/create.php:189
 msgid "Signature Name"
-msgstr ""
+msgstr "Nom de la signature"
 
 #: application/views/station_profile/create.php:191
 msgid "Station Special Interest Group Name (e.g. GMA)."
-msgstr ""
+msgstr "Nom du groupe d'intérêt spécial de la station (par exemple, GMA)."
 
 #: application/views/station_profile/create.php:195
 msgid "Signature Information"
-msgstr ""
+msgstr "Information sur la signature"
 
 #: application/views/station_profile/create.php:197
 #: application/views/station_profile/edit.php:299
 msgid "Station Special Interest Group Info (e.g. DA/NW-357)."
 msgstr ""
+"Informations sur le groupe d'intérêt spécial de la station "
+"(par exemple DA/NW-357)."
 
 #: application/views/station_profile/create.php:201
 #: application/views/station_profile/edit.php:312
 msgctxt "Probably no translation needed"
 msgid "eQSL QTH Nickname"
-msgstr ""
+msgstr "eQSL QTH Surnom"
 
 #: application/views/station_profile/create.php:203
 #: application/views/station_profile/edit.php:314
 msgid "The QTH Nickname which is configured in your eQSL Profile"
-msgstr ""
+msgstr "Le surnom du QTH qui est configuré dans votre profil eQSL"
 
 #: application/views/station_profile/create.php:207
 #: application/views/station_profile/edit.php:317
@@ -14646,7 +14650,7 @@ msgstr ""
 #: application/views/station_profile/create.php:213
 #: application/views/station_profile/edit.php:360
 msgid "Ignore Clublog Upload"
-msgstr ""
+msgstr "Ignorer le téléchargement de Clublog"
 
 #: application/views/station_profile/create.php:218
 #: application/views/station_profile/edit.php:365
@@ -14655,98 +14659,104 @@ msgid ""
 "Clublog. If this is deactivated on it's own please check if the Call is "
 "properly configured at Clublog"
 msgstr ""
+"Si cette option est activée, les QSO effectués depuis cet emplacement ne "
+"seront pas téléchargés sur Clublog. Si cette option est désactivée, veuillez "
+"vérifier que l'appel est correctement configuré sur Clublog"
 
 #: application/views/station_profile/create.php:221
 #: application/views/station_profile/edit.php:368
 msgid "ClubLog Realtime Upload"
-msgstr ""
+msgstr "Téléchargement en temps réel de ClubLog"
 
 #: application/views/station_profile/create.php:230
 #: application/views/station_profile/edit.php:384
 msgid "HRDLog.net Username"
-msgstr ""
+msgstr "Nom d'utilisateur sur HRDLog.net"
 
 #: application/views/station_profile/create.php:232
 #: application/views/station_profile/edit.php:386
 msgid ""
 "The username you are registered with at HRDlog.net (usually your callsign)."
 msgstr ""
+"Le nom d'utilisateur avec lequel vous êtes inscrit sur HRDlog.net "
+"(généralement votre indicatif)."
 
 #: application/views/station_profile/create.php:235
 #: application/views/station_profile/edit.php:389
 msgid "HRDLog.net API Key"
-msgstr ""
+msgstr "Clé API HRDLog.net"
 
 #: application/views/station_profile/create.php:237
 #: application/views/station_profile/edit.php:394
 #, php-format
 msgctxt "HRDLog.net Userprofile page"
 msgid "Create your API Code on your %s"
-msgstr ""
+msgstr "Créez votre code API sur votre %s"
 
 #: application/views/station_profile/create.php:237
 #: application/views/station_profile/edit.php:394
 msgid "HRDLog.net Userprofile page"
-msgstr ""
+msgstr "Page de profil utilisateur sur HRDLog.net"
 
 #: application/views/station_profile/create.php:240
 #: application/views/station_profile/edit.php:397
 msgid "HRDLog.net Logbook Realtime Upload"
-msgstr ""
+msgstr "Téléchargement en temps réel du carnet de trafic HRDLog.net"
 
 #: application/views/station_profile/create.php:250
 #: application/views/station_profile/edit.php:328
 msgid "Subscription Required"
-msgstr ""
+msgstr "Abonnement requis"
 
 #: application/views/station_profile/create.php:255
 msgctxt "Probably no translation needed"
 msgid "QRZ.com Logbook API Key"
-msgstr ""
+msgstr "Clé API du carnet de trafic sur QRZ.com"
 
 #: application/views/station_profile/create.php:258
+#, fuzzy
 msgid "Test API-Key"
-msgstr ""
+msgstr "Test  de la clé API"
 
 #: application/views/station_profile/create.php:261
 #: application/views/station_profile/edit.php:338
 #, php-format
 msgctxt "the QRZ.com Logbook settings page"
 msgid "Find your API key on %s"
-msgstr ""
+msgstr "Trouvez votre clé API sur %s"
 
 #: application/views/station_profile/create.php:261
 #: application/views/station_profile/edit.php:338
 msgid "the QRZ.com Logbook settings page"
-msgstr ""
+msgstr "la page des paramètres du carnet de trafic sur QRZ.com"
 
 #: application/views/station_profile/create.php:264
 #: application/views/station_profile/edit.php:342
 msgid "QRZ.com Logbook Upload"
-msgstr ""
+msgstr "Téléchargement du carnet de trafic sur QRZ.com"
 
 #: application/views/station_profile/create.php:267
 #: application/views/station_profile/edit.php:345
 msgid "Realtime"
-msgstr ""
+msgstr "En temps réel"
 
 #: application/views/station_profile/create.php:275
 #: application/views/station_profile/edit.php:414
 msgctxt "Probably no translation needed"
 msgid "QO-100 Dx Club API Key"
-msgstr ""
+msgstr "Clé API QO-100 Dx Club"
 
 #: application/views/station_profile/create.php:277
 #: application/views/station_profile/edit.php:419
 #, php-format
 msgctxt "QO-100 Dx Club's profile page"
 msgid "Create your API key on your %s"
-msgstr ""
+msgstr "Créez votre clé API sur votre %s"
 
 #: application/views/station_profile/create.php:277
 #: application/views/station_profile/edit.php:419
 msgid "QO-100 Dx Club's profile page"
-msgstr ""
+msgstr "Page de profil du QO-100 Dx Club"
 
 #: application/views/station_profile/create.php:280
 #: application/views/station_profile/edit.php:422
@@ -14767,73 +14777,76 @@ msgstr "OQRS Alerte par email"
 #: application/views/station_profile/edit.php:452
 msgid "Make sure email is set up under admin and global options."
 msgstr ""
+"Assurez-vous que l'e-mail est configuré dans les options d'administration et "
+"globales."
 
 #: application/views/station_profile/create.php:305
 #: application/views/station_profile/edit.php:455
 msgid "OQRS Text"
-msgstr ""
+msgstr "Texte OQRS"
 
 #: application/views/station_profile/create.php:307
 #: application/views/station_profile/edit.php:457
 msgid "Some info you want to add regarding QSL'ing."
-msgstr ""
+msgstr "Quelques informations que vous souhaitez ajouter concernant la QSL."
 
 #: application/views/station_profile/edit.php:153
 msgid "Zones"
-msgstr ""
+msgstr "Zones"
 
 #: application/views/station_profile/edit.php:291
 msgid "Special Interest Group Name"
-msgstr ""
+msgstr "Nom du groupe d'intérêt spécial"
 
 #: application/views/station_profile/edit.php:293
 msgid "Station Special Interest Group Name (e.g. GMA).."
-msgstr ""
+msgstr "Nom du groupe d'intérêt spécial de la station (par exemple, GMA)."
 
 #: application/views/station_profile/edit.php:297
 msgid "Special Interest Group Information"
-msgstr ""
+msgstr "Informations sur les groupes d'intérêt spéciaux"
 
 #: application/views/station_profile/edit.php:309
 #: application/views/user/edit.php:876
 #, php-format
 msgid "Trouble? Check the %swiki%s."
-msgstr ""
+msgstr "Problème ? Consultez le %swiki%s."
 
 #: application/views/stationsetup/create.php:17
 msgid "Station Logbook Name"
-msgstr ""
+msgstr "Nom du carnet de trafic de la station"
 
 #: application/views/stationsetup/create.php:19
 msgid "You can call a station logbook anything."
 msgstr ""
+"Vous pouvez appeler un carnet de trafic de station comme vous le souhaitez."
 
 #: application/views/stationsetup/edit.php:18
 msgid "Container name"
-msgstr ""
+msgstr "Nom du conteneur"
 
 #: application/views/stationsetup/edit.php:20
 msgid "You can call a container anything."
-msgstr ""
+msgstr "Vous pouvez appeler un conteneur comme vous le souhaitez."
 
 #: application/views/stationsetup/exportmapoptions.php:11
 msgctxt "Map Options"
 msgid "CQ Zone overlay"
-msgstr ""
+msgstr "Superposition de zone CQ"
 
 #: application/views/stationsetup/exportmapoptions.php:15
 msgctxt "Map Options"
 msgid "Gridsquare overlay"
-msgstr ""
+msgstr "Superposition de grilles Locator"
 
 #: application/views/stationsetup/exportmapoptions.php:19
 msgctxt "Map Options"
 msgid "Night shadow overlay"
-msgstr ""
+msgstr "Superposition d'ombres nocturnes"
 
 #: application/views/stationsetup/exportmapoptions.php:27
 msgid "# QSOs shown"
-msgstr ""
+msgstr "# QSO affichés"
 
 #: application/views/stationsetup/exportmapoptions.php:46
 msgid "Visit export map"
