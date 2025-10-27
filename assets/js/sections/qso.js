@@ -2042,8 +2042,9 @@ $('#band').on('change', function () {
 			}
 
 			// Tune the radio to the new frequency (using global selectedRadioId)
+			// Use skipWaterfall=true to force direct radio tuning when band is manually changed
 			if (typeof tuneRadioToFrequency === 'function') {
-				tuneRadioToFrequency(null, result);  // null = use global selectedRadioId
+				tuneRadioToFrequency(null, result, null, null, null, true);  // skipWaterfall=true
 			}
 	});
 } else {

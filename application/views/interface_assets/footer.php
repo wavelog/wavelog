@@ -1593,41 +1593,43 @@ mymap.on('mousemove', onQsoMapMove);
 
 		    // For WebSocket radios, tune immediately
 		    performRadioTuning(catUrl, freqHz, mode, onSuccess, onError);
-	    }		    // Helper function to perform the actual radio tuning
-		    function performRadioTuning(catUrl, freqHz, mode, onSuccess, onError) {
-			    // Validate and normalize mode parameter
-			    const validModes = ['lsb', 'usb', 'cw', 'fm', 'am', 'rtty', 'pkt', 'dig', 'pktlsb', 'pktusb', 'pktfm'];
-			    const catMode = mode && validModes.includes(mode.toLowerCase()) ? mode.toLowerCase() : 'usb';
-
-			    // Format: {cat_url}/{frequency}/{mode}
-			    const url = catUrl + '/' + freqHz + '/' + catMode;
-
-			    // Make request
-			    fetch(url, {
-				    method: 'GET',
-				    mode: 'cors',
-				    timeout: 5000
-			    })
-			    .then(response => {
-				    if (response.ok || response.status === 0) {
-					    if (typeof onSuccess === 'function') {
-						    onSuccess({
-							    success: true,
-							    frequency: freqHz,
-							    mode: catMode
-						    });
-					    }
-				    } else {
-					    throw new Error('Request failed with status: ' + response.status);
-				    }
-			    })
-			    .catch(error => {
-				    if (typeof onError === 'function') {
-					    onError(null, 'error', error.message);
-				    }
-			    });
-		    }
 	    }
+
+	    // Helper function to perform the actual radio tuning
+	    function performRadioTuning(catUrl, freqHz, mode, onSuccess, onError) {
+		    // Validate and normalize mode parameter
+		    const validModes = ['lsb', 'usb', 'cw', 'fm', 'am', 'rtty', 'pkt', 'dig', 'pktlsb', 'pktusb', 'pktfm'];
+		    const catMode = mode && validModes.includes(mode.toLowerCase()) ? mode.toLowerCase() : 'usb';
+
+		    // Format: {cat_url}/{frequency}/{mode}
+		    const url = catUrl + '/' + freqHz + '/' + catMode;
+
+		    // Make request
+		    fetch(url, {
+			    method: 'GET',
+			    mode: 'cors',
+			    timeout: 5000
+		    })
+		    .then(response => {
+			    if (response.ok || response.status === 0) {
+				    if (typeof onSuccess === 'function') {
+					    onSuccess({
+						    success: true,
+						    frequency: freqHz,
+						    mode: catMode
+					    });
+				    }
+			    } else {
+				    throw new Error('Request failed with status: ' + response.status);
+			    }
+		    })
+		    .catch(error => {
+			    if (typeof onError === 'function') {
+				    onError(null, 'error', error.message);
+			    }
+		    });
+	    }
+    }
 
 	    function updateCATui(data) {
 		    // Check if data is too old FIRST - before any UI updates
