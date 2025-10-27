@@ -913,32 +913,35 @@ class User extends CI_Controller {
 						);
 						$this->input->set_cookie($cookie);
 					}
-					if($this->session->userdata('user_id') == $this->input->post('id', true)) {
-						// [MAP Custom] ADD to user options //
-						$array_icon = array('station','qso','qsoconfirm');
+
+					$user_id = $this->input->post('id', true);
+
+					// [MAP Custom] ADD to user options //
+					$array_icon = array('station','qso','qsoconfirm');
+					foreach ($array_icon as $icon) {
+						$data_options['user_map_'.$icon.'_icon'] = xss_clean($this->input->post('user_map_'.$icon.'_icon', true));
+						$data_options['user_map_'.$icon.'_color'] = xss_clean($this->input->post('user_map_'.$icon.'_color', true));
+					}
+					if (!empty($data_options['user_map_qso_icon'])) {
 						foreach ($array_icon as $icon) {
-							$data_options['user_map_'.$icon.'_icon'] = xss_clean($this->input->post('user_map_'.$icon.'_icon', true));
-							$data_options['user_map_'.$icon.'_color'] = xss_clean($this->input->post('user_map_'.$icon.'_color', true));
+							$json = json_encode(array('icon'=>$data_options['user_map_'.$icon.'_icon'], 'color'=>$data_options['user_map_'.$icon.'_color']));
+							$this->user_options_model->set_option('map_custom','icon',array($icon=>$json), $user_id);
 						}
-						if (!empty($data_options['user_map_qso_icon'])) {
-							foreach ($array_icon as $icon) {
-								$json = json_encode(array('icon'=>$data_options['user_map_'.$icon.'_icon'], 'color'=>$data_options['user_map_'.$icon.'_color']));
-								$this->user_options_model->set_option('map_custom','icon',array($icon=>$json));
-							}
-							$this->user_options_model->set_option('map_custom','gridsquare',array('show'=>xss_clean($this->input->post('user_map_gridsquare_show', true))));
-						} else {
-							$this->user_options_model->del_option('map_custom','icon');
-							$this->user_options_model->del_option('map_custom','gridsquare');
-						}
-						$this->user_options_model->set_option('header_menu', 'locations_quickswitch', array('boolean'=>xss_clean($this->input->post('user_locations_quickswitch', true))));
-						$this->user_options_model->set_option('header_menu', 'utc_headermenu', array('boolean'=>xss_clean($this->input->post('user_utc_headermenu', true))));
+						$this->user_options_model->set_option('map_custom','gridsquare',array('show'=>xss_clean($this->input->post('user_map_gridsquare_show', true))), $user_id);
+					} else {
+						$this->user_options_model->del_option('map_custom','icon', $user_id);
+						$this->user_options_model->del_option('map_custom','gridsquare', $user_id);
+					}
+					$this->user_options_model->set_option('header_menu', 'locations_quickswitch', array('boolean'=>xss_clean($this->input->post('user_locations_quickswitch', true))), $user_id);
+					$this->user_options_model->set_option('header_menu', 'utc_headermenu', array('boolean'=>xss_clean($this->input->post('user_utc_headermenu', true))), $user_id);
 
-						$this->user_options_model->set_option('oqrs', 'global_oqrs_text', array('text'=>$this->input->post('global_oqrs_text', true)));
-						$this->user_options_model->set_option('oqrs', 'oqrs_grouped_search', array('boolean'=>$this->input->post('oqrs_grouped_search', true)));
-						$this->user_options_model->set_option('oqrs', 'oqrs_grouped_search_show_station_name', array('boolean'=>$this->input->post('oqrs_grouped_search_show_station_name', true)));
-						$this->user_options_model->set_option('oqrs', 'oqrs_auto_matching', array('boolean'=>$this->input->post('oqrs_auto_matching', true)));
-						$this->user_options_model->set_option('oqrs', 'oqrs_direct_auto_matching', array('boolean'=>$this->input->post('oqrs_direct_auto_matching', true)));
+					$this->user_options_model->set_option('oqrs', 'global_oqrs_text', array('text'=>$this->input->post('global_oqrs_text', true)), $user_id);
+					$this->user_options_model->set_option('oqrs', 'oqrs_grouped_search', array('boolean'=>$this->input->post('oqrs_grouped_search', true)), $user_id);
+					$this->user_options_model->set_option('oqrs', 'oqrs_grouped_search_show_station_name', array('boolean'=>$this->input->post('oqrs_grouped_search_show_station_name', true)), $user_id);
+					$this->user_options_model->set_option('oqrs', 'oqrs_auto_matching', array('boolean'=>$this->input->post('oqrs_auto_matching', true)), $user_id);
+					$this->user_options_model->set_option('oqrs', 'oqrs_direct_auto_matching', array('boolean'=>$this->input->post('oqrs_direct_auto_matching', true)), $user_id);
 
+					if($this->session->userdata('user_id') == $user_id) {
 						$this->session->set_flashdata('success', sprintf(__("User %s edited"), $this->input->post('user_name', true)));
 						redirect('user/edit/'.$this->uri->segment(3));
 					} else {
