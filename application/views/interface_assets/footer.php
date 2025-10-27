@@ -1386,6 +1386,9 @@ mymap.on('mousemove', onQsoMapMove);
     // Global variable for currently selected radio
     var selectedRadioId = null;
 
+    // Cache for radio CAT URLs to avoid repeated AJAX calls
+    var radioCatUrlCache = {};
+
     $( document ).ready(function() {
 	    // Javascript for controlling rig frequency.
 	    let websocket = null;
@@ -1545,17 +1548,23 @@ mymap.on('mousemove', onQsoMapMove);
 			    }
 		    }
 
-		    // Direct client-side radio control (replaces server-side set_radio_frequency)
-		    if (radioId && radioId != 0 && radioId != '') {
-			    // Get the CAT URL for the radio
-			    let catUrl;
+	    // Direct client-side radio control (replaces server-side set_radio_frequency)
+	    if (radioId && radioId != 0 && radioId != '') {
+		    // Get the CAT URL for the radio
+		    let catUrl;
 
-			    if (radioId === 'ws') {
-				    // WebSocket radio uses localhost gateway
-				    catUrl = 'http://127.0.0.1:54321';
+		    if (radioId === 'ws') {
+			    // WebSocket radio uses localhost gateway
+			    catUrl = 'http://127.0.0.1:54321';
+		    } else {
+			    // Check if CAT URL is cached
+			    if (radioCatUrlCache[radioId]) {
+				    // Use cached CAT URL
+				    catUrl = radioCatUrlCache[radioId];
+				    performRadioTuning(catUrl, freqHz, mode, onSuccess, onError);
+				    return;
 			    } else {
-				    // Get CAT URL from radio data (this would need to be made available to JS)
-				    // For now, we'll make an AJAX call to get radio details
+				    // Fetch CAT URL from radio data and cache it
 				    $.ajax({
 					    url: base_url + 'index.php/radio/json/' + radioId,
 					    type: 'GET',
@@ -1563,6 +1572,8 @@ mymap.on('mousemove', onQsoMapMove);
 					    timeout: CAT_CONFIG.AJAX_TIMEOUT_MS,
 					    success: function(radioData) {
 						    if (radioData.cat_url) {
+							    // Cache the CAT URL for future use
+							    radioCatUrlCache[radioId] = radioData.cat_url;
 							    performRadioTuning(radioData.cat_url, freqHz, mode, onSuccess, onError);
 						    } else {
 							    if (typeof onError === 'function') {
@@ -1578,12 +1589,11 @@ mymap.on('mousemove', onQsoMapMove);
 				    });
 				    return; // Exit here for non-WebSocket radios
 			    }
-
-			    // For WebSocket radios, tune immediately
-			    performRadioTuning(catUrl, freqHz, mode, onSuccess, onError);
 		    }
 
-		    // Helper function to perform the actual radio tuning
+		    // For WebSocket radios, tune immediately
+		    performRadioTuning(catUrl, freqHz, mode, onSuccess, onError);
+	    }		    // Helper function to perform the actual radio tuning
 		    function performRadioTuning(catUrl, freqHz, mode, onSuccess, onError) {
 			    // Validate and normalize mode parameter
 			    const validModes = ['lsb', 'usb', 'cw', 'fm', 'am', 'rtty', 'pkt', 'dig', 'pktlsb', 'pktusb', 'pktfm'];
@@ -1852,6 +1862,9 @@ mymap.on('mousemove', onQsoMapMove);
 	    $('.radios').change(function() {
 		    // Update global selected radio variable
 		    selectedRadioId = $('.radios option:selected').val();
+
+		    // Clear the CAT URL cache when radio changes
+		    radioCatUrlCache = {};
 
 		    if (CATInterval) {	// We've a change - stop polling if active
 			    clearInterval(CATInterval);
