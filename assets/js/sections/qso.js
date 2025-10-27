@@ -1968,7 +1968,6 @@ $('#band').on('change', function () {
 
 	// Skip if this is a programmatic change from CAT/waterfall
 	if (typeof window.programmaticBandChange !== 'undefined' && window.programmaticBandChange) {
-		console.log('[QSO] Band change ignored (programmatic from CAT/waterfall)');
 		return;
 	}
 
@@ -2033,6 +2032,14 @@ $('#band').on('change', function () {
 } else {
 	// Frequency is already in the selected band, just update display
 	set_qrg();
+
+	// Still tune the radio to the current frequency (user may have changed band but frequency stayed the same)
+	if (typeof tuneRadioToFrequency === 'function') {
+		const currentFreqHz = $('#frequency').val();
+		if (currentFreqHz) {
+			tuneRadioToFrequency(null, currentFreqHz, null, null, null, true);  // skipWaterfall=true
+		}
+	}
 
 	// Clear waiting flags immediately since no frequency change needed
 	if (typeof dxWaterfall !== 'undefined') {
