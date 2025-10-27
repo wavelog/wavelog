@@ -73,6 +73,24 @@
 	var lang_qso_note_created = "<?= __("Note created successfully"); ?>";
 	var lang_qso_note_saved = "<?= __("Note saved successfully"); ?>";
 	var lang_qso_note_error_saving = "<?= __("Error saving note"); ?>";
+	var lang_cat_live = "<?= __("live"); ?>";
+	var lang_cat_polling = "<?= __("polling"); ?>";
+	var lang_cat_polling_tooltip = "<?= __("Periodic polling is slow. When operating locally, WebSockets are a more convenient way to control your radio in real-time."); ?>";
+	var lang_cat_tx = "<?= __("TX"); ?>";
+	var lang_cat_rx = "<?= __("RX"); ?>";
+	var lang_cat_tx_rx = "<?= __("TX/RX"); ?>";
+	var lang_cat_mode = "<?= __("Mode"); ?>";
+	var lang_cat_power = "<?= __("Power"); ?>";
+	var lang_cat_connection_error = "<?= __("Radio connection error"); ?>";
+	var lang_cat_connection_lost = "<?= __("Connection lost, please select another radio."); ?>";
+	var lang_cat_connection_timeout = "<?= __("Radio connection timeout"); ?>";
+	var lang_cat_data_stale = "<?= __("Data is stale, please select another radio."); ?>";
+	var lang_cat_not_logged_in = "<?= __("You're not logged in. Please log in."); ?>";
+	var lang_cat_radio_tuning_failed = "<?= __("Radio Tuning Failed"); ?>";
+	var lang_cat_failed_to_tune = "<?= __("Failed to tune radio to"); ?>";
+	var lang_cat_not_responding = "<?= __("CAT interface not responding. Please check your radio connection."); ?>";
+	var lang_cat_no_url_configured = "<?= __("No CAT URL configured for this radio"); ?>";
+	var lang_cat_websocket_radio = "<?= __("WebSocket Radio"); ?>";
 </script>
 
 <!-- General JS Files used across Wavelog -->
@@ -1636,7 +1654,7 @@ mymap.on('mousemove', onQsoMapMove);
 									performRadioTuning(radioData.cat_url, freqHz, mode, onSuccess, onError);
 								} else {
 									if (typeof onError === 'function') {
-										onError(null, 'error', 'No CAT URL configured for this radio');
+										onError(null, 'error', lang_cat_no_url_configured);
 									}
 								}
 							},
@@ -1694,8 +1712,8 @@ mymap.on('mousemove', onQsoMapMove);
 			.catch(error => {
 				// Only show error on actual failures (network error, HTTP error, etc.)
 				const freqMHz = (freqHz / 1000000).toFixed(3);
-				const errorTitle = 'Radio Tuning Failed';
-				const errorMsg = 'Failed to tune radio to ' + freqMHz + ' MHz (' + catMode.toUpperCase() + '). ' + 'CAT interface not responding. Please check your radio connection.';
+				const errorTitle = lang_cat_radio_tuning_failed;
+				const errorMsg = lang_cat_failed_to_tune + ' ' + freqMHz + ' MHz (' + catMode.toUpperCase() + '). ' + lang_cat_not_responding;
 
 				// Use showToast if available (from qso.js), otherwise use Bootstrap alert
 				if (typeof showToast === 'function') {
@@ -1717,21 +1735,21 @@ mymap.on('mousemove', onQsoMapMove);
 	     * @param {object|string} data - Radio data object (success) or radio name string (error/timeout/not_logged_in)
 	     */
 	    function displayRadioStatus(state, data) {
-		    var iconColor, content;
+		    var iconClass, content;
 		    var baseStyle = '<div style="display: flex; align-items: center; font-size: calc(1rem - 2px);">';
 
 		    if (state === 'success') {
 			    // Success state - display radio info
-			    iconColor = '#28a745'; // Green for success
+			    iconClass = 'text-success'; // Bootstrap green for success
 
 		    // Determine connection type
 		    var connectionType = '';
 		    var connectionTooltip = '';
 		    if ($(".radios option:selected").val() == 'ws') {
-			    connectionType = ' (live)';
+			    connectionType = ' (' + lang_cat_live + ')';
 		    } else {
-			    connectionType = ' (polling)';
-			    connectionTooltip = ' <i class="fas fa-question-circle" style="font-size: 0.9em; cursor: help;" data-bs-toggle="tooltip" title="Periodic polling is slow. When operating locally, WebSockets are a more convenient way to control your radio in real-time."></i>';
+			    connectionType = ' (' + lang_cat_polling + ')';
+			    connectionTooltip = ' <i class="fas fa-question-circle" style="font-size: 0.9em; cursor: help;" data-bs-toggle="tooltip" title="' + lang_cat_polling_tooltip + '"></i>';
 		    }
 
 		    // Build radio info line
@@ -1747,22 +1765,22 @@ mymap.on('mousemove', onQsoMapMove);
 			// Check if we have RX frequency (split operation)
 			if(data.frequency_rx != null && data.frequency_rx != 0) {
 				// Split operation: show TX and RX separately
-				freqLine = '<b>TX:</b> ' + data.frequency_formatted;
+				freqLine = '<b>' + lang_cat_tx + ':</b> ' + data.frequency_formatted;
 				data.frequency_rx_formatted = format_frequency(data.frequency_rx);
 				if (data.frequency_rx_formatted) {
-					freqLine = freqLine + separator + '<b>RX:</b> ' + data.frequency_rx_formatted;
+					freqLine = freqLine + separator + '<b>' + lang_cat_rx + ':</b> ' + data.frequency_rx_formatted;
 				}
 			} else {
 				// Simplex operation: show TX/RX combined
-				freqLine = '<b>TX/RX:</b> ' + data.frequency_formatted;
+				freqLine = '<b>' + lang_cat_tx_rx + ':</b> ' + data.frequency_formatted;
 			}
 
 			// Add mode and power (only if we have valid frequency)
 			if(data.mode != null) {
-				freqLine = freqLine + separator + '<b>Mode:</b> ' + data.mode;
+				freqLine = freqLine + separator + '<b>' + lang_cat_mode + ':</b> ' + data.mode;
 			}
 			if(data.power != null && data.power != 0) {
-				freqLine = freqLine + separator + '<b>Power:</b> ' + data.power+'W';
+				freqLine = freqLine + separator + '<b>' + lang_cat_power + ':</b> ' + data.power+'W';
 			}
 
 		    // Add complementary info to frequency line
@@ -1790,38 +1808,41 @@ mymap.on('mousemove', onQsoMapMove);
 
 			} else if (state === 'error') {
 				// Error state - WebSocket connection error
-				iconColor = '#dc3545'; // Red for error
+				iconClass = 'text-danger'; // Bootstrap red for error
 				var radioName = typeof data === 'string' ? data : $('select.radios option:selected').text();
-				content = '<div>Radio connection error: <b>' + radioName + '</b>. Connection lost, please select another radio.</div>';
+				content = '<div>' + lang_cat_connection_error + ': <b>' + radioName + '</b>. ' + lang_cat_connection_lost + '</div>';
 
 			} else if (state === 'timeout') {
 				// Timeout state - data too old
-				iconColor = '#ffc107'; // Yellow/amber for timeout
+				iconClass = 'text-warning'; // Bootstrap yellow/amber for timeout
 				var radioName = typeof data === 'string' ? data : $('select.radios option:selected').text();
-				content = '<div>Radio connection timeout: <b>' + radioName + '</b>. Data is stale, please select another radio.</div>';
+				content = '<div>' + lang_cat_connection_timeout + ': <b>' + radioName + '</b>. ' + lang_cat_data_stale + '</div>';
 
 			} else if (state === 'not_logged_in') {
 				// Not logged in state
-				iconColor = '#dc3545'; // Red for error
-				content = '<div>You\'re not logged in. Please log in.</div>';
+				iconClass = 'text-danger'; // Bootstrap red for error
+				content = '<div>' + lang_cat_not_logged_in + '</div>';
 			}
 
-			// Build icon with dynamic color and ID for animation
-			var icon = '<i id="radio-status-icon" class="fas fa-radio" style="margin-right: 10px; font-size: 1.2em; color: ' + iconColor + ';"></i>';
+			// Build icon with Bootstrap color class and ID for animation
+			var icon = '<i id="radio-status-icon" class="fas fa-radio ' + iconClass + '" style="margin-right: 10px; font-size: 1.2em;"></i>';
 			var html = baseStyle + icon + content + '</div>';
 
-			// Update DOM
-			if (!$('#radio_cat_state').length) {
-				// Create panel if it doesn't exist
-				$('#radio_status').prepend('<div id="radio_cat_state" class="card"><div class="card-body">' + html + '</div></div>');
-			} else {
-				// Dispose of existing tooltips before updating content
-				$('#radio_cat_state [data-bs-toggle="tooltip"]').tooltip('dispose');
-				// Update existing panel content
-				$('#radio_cat_state .card-body').html(html);
-			}
-
-			// Initialize Bootstrap tooltips for any new tooltip elements in the radio panel
+		// Update DOM
+		if (!$('#radio_cat_state').length) {
+			// Create panel if it doesn't exist
+			$('#radio_status').prepend('<div id="radio_cat_state" class="card"><div class="card-body">' + html + '</div></div>');
+		} else {
+			// Dispose of existing tooltips before updating content
+			$('#radio_cat_state [data-bs-toggle="tooltip"]').each(function() {
+				var tooltipInstance = bootstrap.Tooltip.getInstance(this);
+				if (tooltipInstance) {
+					tooltipInstance.dispose();
+				}
+			});
+			// Update existing panel content
+			$('#radio_cat_state .card-body').html(html);
+		}			// Initialize Bootstrap tooltips for any new tooltip elements in the radio panel
 			$('#radio_cat_state [data-bs-toggle="tooltip"]').each(function() {
 				new bootstrap.Tooltip(this);
 			});
@@ -1871,7 +1892,7 @@ mymap.on('mousemove', onQsoMapMove);
 					data.radio = radioNameCache[currentRadioId];
 				} else if (currentRadioId == 'ws') {
 					// WebSocket radio - use default name if not provided
-					data.radio = 'WebSocket Radio';
+					data.radio = lang_cat_websocket_radio;
 				} else {
 					// Fall back to dropdown text
 					data.radio = $('select.radios option:selected').text();

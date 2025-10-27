@@ -2094,7 +2094,6 @@ var dxWaterfall = {
             }
         } else {
             // Waiting for target frequency - skip normal processing, CAT will confirm later
-            console.log('[DX Waterfall] INVALIDATE CACHE: Skipping (waiting for targetFrequencyHz=' + this.targetFrequencyHz + 'Hz)');
             return; // Exit early
         }
 
@@ -4802,7 +4801,6 @@ var dxWaterfall = {
 
                 var catTuningDuration = currentTime - this.catTuningStartTime;
                 if (catTuningDuration > DX_WATERFALL_CONSTANTS.CAT.TUNING_FLAG_FALLBACK_MS && !this.targetFrequencyHz) {
-                    console.log('[DX Waterfall] TIMEOUT: Clearing catTuning flags after ' + catTuningDuration + 'ms');
                     this.catTuning = false;
                     this.frequencyChanging = false;
                     this.catTuningStartTime = null;
