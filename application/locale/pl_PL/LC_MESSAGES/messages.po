@@ -16,17 +16,17 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-10-26 12:27+0000\n"
-"PO-Revision-Date: 2025-10-18 06:44+0000\n"
+"PO-Revision-Date: 2025-10-27 12:55+0000\n"
 "Last-Translator: Szymon <sp9spm@cqops.com>\n"
-"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/pl/>\n"
+"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/pl/>\n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.13.2\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && "
+"(n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 5.14\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -1961,42 +1961,44 @@ msgid ""
 "Duplicate note title for this category and user - not allowed for Contacts "
 "category."
 msgstr ""
+"Zduplikowane tytuły notatki dla tej kategorii oraz użytkownika - to nie jest "
+"dozwolone w kategorii Kontakty."
 
 #: application/controllers/Notes.php:283
 msgid "Not found or not allowed"
-msgstr ""
+msgstr "Nie znaleziono lub brak dostępu"
 
 #: application/controllers/Notes.php:298
 msgid "Not found"
-msgstr ""
+msgstr "Nie znaleziono"
 
 #: application/controllers/Notes.php:314
 msgid "Category and title are required"
-msgstr ""
+msgstr "Kategoria oraz tytuł są wymagane"
 
 #: application/controllers/Notes.php:328
 msgid "Note not found or not allowed"
-msgstr ""
+msgstr "Nie znaleziono notatki lub brak dostępu"
 
 #: application/controllers/Notes.php:335
 msgid "Note deleted"
-msgstr ""
+msgstr "Skasowano notatkę"
 
 #: application/controllers/Notes.php:339
 msgid "Note updated"
-msgstr ""
+msgstr "Zaktualizowano notatkę"
 
 #: application/controllers/Notes.php:344
 msgid "Cannot create empty note"
-msgstr ""
+msgstr "Nie można utworzyć pustej notatki"
 
 #: application/controllers/Notes.php:352
 msgid "A note with this callsign already exists"
-msgstr ""
+msgstr "Notatka z tym znakiem wywoławczym już istnieje"
 
 #: application/controllers/Notes.php:362
 msgid "Note created"
-msgstr ""
+msgstr "Utworzono notatkę"
 
 #: application/controllers/Notes.php:376 application/controllers/Notes.php:400
 #, php-format
@@ -2874,11 +2876,11 @@ msgstr "Aktualizacja Hams of Note"
 
 #: application/controllers/Update.php:718
 msgid "VUCC Grid file update complete. Result: "
-msgstr ""
+msgstr "Przesyłanie pliku VUCC Grid zostało zakończone. Wynik: "
 
 #: application/controllers/Update.php:720
 msgid "VUCC Grid file update failed. Result: "
-msgstr ""
+msgstr "Przesyłanie pliku VUCC Grid nie powiodło się. Wynik: "
 
 #: application/controllers/User.php:50
 #: application/views/interface_assets/header.php:306
@@ -6952,7 +6954,7 @@ msgstr "Kliknij, aby przygotować logowanie."
 #: application/views/contesting/index.php:160
 #: application/views/qso/index.php:353
 msgid "WebSocket (Requires WLGate>1.1.10)"
-msgstr ""
+msgstr "WebSocket (Wymaga WLGate>1.1.10)"
 
 #: application/views/bandmap/list.php:77
 msgid "DXCC-Status"
@@ -8508,23 +8510,27 @@ msgid ""
 "LoTW Warning: There is an issue with at least one of your %sLoTW "
 "certificates%s!"
 msgstr ""
+"Ostrzeżenie LoTW: Wykryto problem z co najmniej jednym %scertyfikatem LoTW%s!"
 
 #: application/views/dashboard/index.php:216
 msgid "At least one of your certificates is expired"
-msgstr ""
+msgstr "Co najmniej jeden z certyfikatów wygasł"
 
 #: application/views/dashboard/index.php:217
 msgid "At least one of your certificates is expiring"
-msgstr ""
+msgstr "Co najmniej jeden z certyfikatów wygasa"
 
 #: application/views/dashboard/index.php:218
 msgid "The QSO end date of at least one of your certificates was exceeded"
 msgstr ""
+"Data zakończenia QSO co najmniej jednego z certyfikatów została przekroczona"
 
 #: application/views/dashboard/index.php:219
 msgid ""
 "The QSO end date of at least one of your certificates is about to be exceeded"
 msgstr ""
+"Data zakończenia QSO co najmniej jednego z certyfikatów jest blisko "
+"przekroczenia"
 
 #: application/views/dashboard/index.php:297
 #: application/views/qso/index.php:851
@@ -9264,7 +9270,7 @@ msgstr "HAMqsl"
 
 #: application/views/debug/index.php:573
 msgid "VUCC Grids"
-msgstr ""
+msgstr "VUCC Grids"
 
 #: application/views/debug/index.php:582
 msgid "QSO-DB Maintenance"
@@ -10067,27 +10073,27 @@ msgstr "Nie znaleziono notatek"
 
 #: application/views/interface_assets/footer.php:71
 msgid "No notes for this callsign"
-msgstr ""
+msgstr "Brak notatek dla tego znaku wywoławczego"
 
 #: application/views/interface_assets/footer.php:72
 msgid "Callsign Note"
-msgstr ""
+msgstr "Notatka znaku wywoławczego"
 
 #: application/views/interface_assets/footer.php:73
 msgid "Note deleted successfully"
-msgstr ""
+msgstr "Usunięto notatkę"
 
 #: application/views/interface_assets/footer.php:74
 msgid "Note created successfully"
-msgstr ""
+msgstr "Utworzono notatkę"
 
 #: application/views/interface_assets/footer.php:75
 msgid "Note saved successfully"
-msgstr ""
+msgstr "Zapisano notatkę"
 
 #: application/views/interface_assets/footer.php:76
 msgid "Error saving note"
-msgstr ""
+msgstr "Błąd zapisywania notatki"
 
 #: application/views/interface_assets/footer.php:157
 #: application/views/interface_assets/header.php:515
@@ -11739,19 +11745,19 @@ msgstr "Last upload"
 
 #: application/views/lotw_views/index.php:96
 msgid "Certificate expired"
-msgstr ""
+msgstr "Certyfikat wygasł"
 
 #: application/views/lotw_views/index.php:98
 msgid "Certificate expiring"
-msgstr ""
+msgstr "Certyfikat wygasa"
 
 #: application/views/lotw_views/index.php:100
 msgid "Certificate valid"
-msgstr ""
+msgstr "Ważny certyfikat"
 
 #: application/views/lotw_views/index.php:105
 msgid "QSO end date nearing"
-msgstr ""
+msgstr "Nadchodzi data końca QSO"
 
 #: application/views/lotw_views/index.php:115
 #, php-format
@@ -11903,7 +11909,7 @@ msgstr "Wyszukaj notatki (min. 3 znaki)"
 
 #: application/views/notes/main.php:54
 msgid "Add stroked zero (Ø)"
-msgstr ""
+msgstr "Dodaj przekreślone zero (Ø)"
 
 #: application/views/notes/main.php:57
 msgid "Reset search"
@@ -13288,7 +13294,7 @@ msgstr "Tryb Satelitarny"
 
 #: application/views/qso/index.php:641
 msgid "QSO Comment"
-msgstr ""
+msgstr "Komentarz do QSO"
 
 #: application/views/qso/index.php:684
 msgid "QSL MSG"
@@ -13300,13 +13306,15 @@ msgstr "Przywróć domyślne ustawienia"
 
 #: application/views/qso/index.php:720
 msgid "Callsign Notes"
-msgstr ""
+msgstr "Notatki znaku wywoławczego"
 
 #: application/views/qso/index.php:721
 msgid ""
 "Store private information about your QSO partner. These notes are never "
 "shared or exported to external services."
 msgstr ""
+"Przechowuje notatki dotyczące parterów QSO. Te notatki nigdy nie są "
+"udostępniane lub przesyłane do usług zewnętrznych."
 
 #: application/views/qso/index.php:768
 msgid "Winkey"
@@ -16353,7 +16361,7 @@ msgstr "Zarządzanie kartami"
 
 #: application/views/view_log/qso.php:86
 msgid "View note for this callsign"
-msgstr ""
+msgstr "Zobacz notatkę dla tego znaku wywoławczego"
 
 #: application/views/view_log/qso.php:138
 msgid "Total Distance"
