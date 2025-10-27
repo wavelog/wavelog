@@ -383,9 +383,9 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
               <label for="radio"><?= __("Radio"); ?></label>
               <select class="form-select radios" id="radio" name="radio">
                 <option value="0" selected="selected"><?= __("None"); ?></option>
-		            <option value="ws"<?php if ($this->session->userdata('radio') == 'ws') { echo ' selected="selected"'; } ?>><?= __("WebSocket (Requires WLGate>1.1.10)"); ?></option>
+		            <option value="ws"<?php if ($this->session->userdata('radio') == 'ws') { echo ' selected="selected"'; } ?>><?= __("Live - ") . __("WebSocket (Requires WLGate>1.1.10)"); ?></option>
                 <?php foreach ($radios->result() as $row) { ?>
-                  <option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id) { echo "selected=\"selected\""; } ?>><?php echo $row->radio; ?> <?php if ($radio_last_updated->id == $row->id) { echo "(".__("last updated").")"; } else { echo ''; } ?></option>
+                  <option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id) { echo "selected=\"selected\""; } ?>><?= __("Pooling - ") . $row->radio; ?> <?php if ($radio_last_updated->id == $row->id) { echo "(".__("last updated").")"; } else { echo ''; } ?></option>
                 <?php } ?>
                 </select>
             </div>
@@ -783,12 +783,15 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
 </div>
 <?php } ?>
 
+	<!-- Radio status -->
+	<div id="radio_status"></div>
+
     <!-- QSO Map -->
     <div class="card qso-map">
             <div id="qsomap" class="map-leaflet" style="width: 100%; height: 200px;"></div>
     </div>
 
-    <div id="radio_status"></div>
+
 
     <!-- Winkey Starts -->
 

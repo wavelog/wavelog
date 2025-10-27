@@ -67,12 +67,12 @@
     var lang_notes_duplicate_confirmation = "<?= __("Duplicate this note?"); ?>";
     var lang_notes_duplication_disabled_short = "<?= __("Duplication Disabled"); ?>";
     var lang_notes_not_found = "<?= __("No notes were found"); ?>";
-	  var lang_qso_note_missing = "<?= __("No notes for this callsign"); ?>";
-	  var lang_qso_note_toast_title = "<?= __("Callsign Note"); ?>";
-	  var lang_qso_note_deleted = "<?= __("Note deleted successfully"); ?>";
-	  var lang_qso_note_created = "<?= __("Note created successfully"); ?>";
-	  var lang_qso_note_saved = "<?= __("Note saved successfully"); ?>";
-	  var lang_qso_note_error_saving = "<?= __("Error saving note"); ?>";
+	var lang_qso_note_missing = "<?= __("No notes for this callsign"); ?>";
+	var lang_qso_note_toast_title = "<?= __("Callsign Note"); ?>";
+	var lang_qso_note_deleted = "<?= __("Note deleted successfully"); ?>";
+	var lang_qso_note_created = "<?= __("Note created successfully"); ?>";
+	var lang_qso_note_saved = "<?= __("Note saved successfully"); ?>";
+	var lang_qso_note_error_saving = "<?= __("Error saving note"); ?>";
 </script>
 
 <!-- General JS Files used across Wavelog -->
@@ -1130,6 +1130,16 @@ $($('#callsign')).on('keypress',function(e) {
 .grid-text {
   word-wrap: normal !important;
 }
+
+/* Radio icon blink animation */
+@keyframes radio-icon-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.radio-icon-blink {
+  animation: radio-icon-blink 0.4s ease-in-out;
+}
 </style>
 <script>
   var lang_gen_hamradio_gridsquares = '<?= _pgettext("Map Options", "Gridsquares"); ?>';
@@ -1380,16 +1390,38 @@ mymap.on('mousemove', onQsoMapMove);
     var dxwaterfall_cat_state = "none";
     <?php } ?>
 
-    // Global flag for CAT updates (used by all pages, not just DX Waterfall)
-    var cat_updating_frequency = false;
-
-    // Global variable for currently selected radio
-    var selectedRadioId = null;
-
-    // Cache for radio CAT URLs to avoid repeated AJAX calls
-    var radioCatUrlCache = {};
-
     $( document ).ready(function() {
+	    /******************************************************************************
+		 * TBD: Extract to separate JS file for reuse across multiple pages
+		 *
+	     * RADIO CAT CONTROL FUNCTIONS
+	     *
+	     * Connection Types:
+	     * - WebSocket ('ws'): Real-time communication for live updates
+	     * - AJAX Polling: Periodic requests every 3 seconds for non-WebSocket radios
+	     *
+	     * Data Flow:
+	     * WebSocket: Server → handleWebSocketData() → updateCATui() → displayRadioStatus()
+	     * Polling:   updateFromCAT() → AJAX → updateCATui() → displayRadioStatus()
+	     *
+	     ******************************************************************************/
+
+	    // Global flag for CAT updates (used by all pages, not just DX Waterfall)
+	    var cat_updating_frequency = false;
+
+	    // Global variable for currently selected radio
+	    var selectedRadioId = null;
+
+	    // Cache for radio CAT URLs to avoid repeated AJAX calls
+	    var radioCatUrlCache = {};
+
+	    // Cache for radio names to avoid repeated AJAX calls
+	    var radioNameCache = {};
+
+	    /**
+	     * Initialize WebSocket connection for real-time radio updates
+	     * Handles connection, reconnection logic, and error states
+	     */
 	    // Javascript for controlling rig frequency.
 	    let websocket = null;
 	    let reconnectAttempts = 0;
@@ -1410,6 +1442,8 @@ mymap.on('mousemove', onQsoMapMove);
 
 	    function initializeWebSocketConnection() {
 		    try {
+			    // Note: Browser will log WebSocket connection errors to console if server is unreachable
+			    // This is native browser behavior and cannot be suppressed - errors are handled in GUI via onerror handler
 			    websocket = new WebSocket('ws://localhost:54322');
 
 			    websocket.onopen = function(event) {
@@ -1421,107 +1455,129 @@ mymap.on('mousemove', onQsoMapMove);
 				    try {
 					    const data = JSON.parse(event.data);
 					    handleWebSocketData(data);
-						console.log("WebSocket message received:", data);
 				    } catch (error) {
-					    console.error("WebSocket message parsing error:", error, event.data);
+						// Invalid JSON data received - silently ignore
 				    }
 			    };
 
 			    websocket.onerror = function(error) {
-				    console.error("WebSocket error:", error);
-				    websocketEnabled=false;
+				    if ($('.radios option:selected').val() != '0') {
+					    var radioName = $('select.radios option:selected').text();
+					    displayRadioStatus('error', radioName);
+				    }
+				    websocketEnabled = false;
 			    };
 
 		    websocket.onclose = function(event) {
 			    websocketEnabled = false;
 
-			    // Only attempt to reconnect if the closure was not intentional
-			    if (!websocketIntentionallyClosed && reconnectAttempts < CAT_CONFIG.WEBSOCKET_RECONNECT_MAX) {
-				    setTimeout(() => {
-				    reconnectAttempts++;
-				    initializeWebSocketConnection();
-			    }, CAT_CONFIG.WEBSOCKET_RECONNECT_DELAY_MS * reconnectAttempts);
-			    } else if (!websocketIntentionallyClosed) {
-				    // Only show error if it wasn't an intentional close
-				    $(".radio_cat_state" ).remove();
-				    $('#radio_status').html('<div class="alert alert-danger radio_timeout_error" role="alert"><i class="fas fa-broadcast-tower"></i> Radio connection timed-out: ' + $('select.radios option:selected').text() + ' Websocket connection lost, chose another radio.</div>');
-				    websocketEnabled = false;
-			    }
-		    };
-		    } catch (error) {
-			    websocketEnabled=false;
-		    }
-	    }
+				// Only attempt to reconnect if the closure was not intentional
+				if (!websocketIntentionallyClosed && reconnectAttempts < CAT_CONFIG.WEBSOCKET_RECONNECT_MAX) {
+					setTimeout(() => {
+					reconnectAttempts++;
+					initializeWebSocketConnection();
+				}, CAT_CONFIG.WEBSOCKET_RECONNECT_DELAY_MS * reconnectAttempts);
+				} else if (!websocketIntentionallyClosed) {
+					// Only show error if it wasn't an intentional close AND radio is not "None"
+					if ($('.radios option:selected').val() != '0') {
+						var radioName = $('select.radios option:selected').text();
+						displayRadioStatus('error', radioName);
+					}
+					websocketEnabled = false;
+				}
+			};
+			} catch (error) {
+				websocketEnabled=false;
+			}
+		}
 
-	    function handleWebSocketData(data) {
-		    // Handle welcome message
-		    if (data.type === 'welcome') {
-			    return;
-		    }
+		/**
+		 * Handle incoming WebSocket data messages
+		 * Processes 'welcome' and 'radio_status' message types
+		 * @param {object} data - Message data from WebSocket server
+		 */
+		function handleWebSocketData(data) {
+			// Handle welcome message
+			if (data.type === 'welcome') {
+				return;
+			}
 
-		    // Handle radio status updates
-		    if (data.type === 'radio_status' && data.radio && ($(".radios option:selected").val() == 'ws')) {
-			    data.updated_minutes_ago = Math.floor((Date.now() - data.timestamp) / 60000);
-			    // Cache the radio data
-			    updateCATui(data);
-		    }
-	    }
+			// Handle radio status updates
+			if (data.type === 'radio_status' && data.radio && ($(".radios option:selected").val() == 'ws')) {
+				data.updated_minutes_ago = Math.floor((Date.now() - data.timestamp) / 60000);
+				// Cache the radio data
+				updateCATui(data);
+			}
+		}
 
+		/**
+		 * Update UI elements from CAT data
+		 * Maps CAT values to form fields, handling empty/zero values appropriately
+		 * @param {string} ui - jQuery selector for UI element
+		 * @param {*} cat - CAT data value to display
+		 * @param {boolean} allow_empty - Whether to update UI with empty values
+		 * @param {boolean} allow_zero - Whether to update UI with zero values
+		 * @param {function} callback_on_update - Optional callback when update occurs
+		 */
+		const cat2UI = function(ui, cat, allow_empty, allow_zero, callback_on_update) {
+			// Check, if cat-data is available
+			if(cat == null) {
+				return;
+			} else if (typeof allow_empty !== 'undefined' && !allow_empty && cat == '') {
+				return;
+			} else if (typeof allow_zero !== 'undefined' && !allow_zero && cat == '0' ) {
+				return;
+			}
 
-	    // Javascript for controlling rig frequency.
-	    const cat2UI = function(ui, cat, allow_empty, allow_zero, callback_on_update) {
-		    // Check, if cat-data is available
-		    if(cat == null) {
-			    return;
-		    } else if (typeof allow_empty !== 'undefined' && !allow_empty && cat == '') {
-			    return;
-		    } else if (typeof allow_zero !== 'undefined' && !allow_zero && cat == '0' ) {
-			    return;
-		    }
+			// Don't update frequency field if user is currently editing it
+			if (ui.attr('id') === 'frequency' || ui.attr('id') === 'freq_calculated') {
+				if (ui.is(':focus') || $('#freq_calculated').is(':focus')) {
+					return;
+				}
+			}
 
-		    // Don't update frequency field if user is currently editing it
-		    if (ui.attr('id') === 'frequency' || ui.attr('id') === 'freq_calculated') {
-			    if (ui.is(':focus') || $('#freq_calculated').is(':focus')) {
-				    return;
-			    }
-		    }
+			// Only update the ui-element, if cat-data has changed
+			if (ui.data('catValue') != cat) {
+				ui.val(cat);
+				ui.data('catValue',cat);
+				if (typeof callback_on_update === 'function') { callback_on_update(cat); }
+			}
+		}
 
-		    // Only update the ui-element, if cat-data has changed
-		    if (ui.data('catValue') != cat) {
-			    ui.val(cat);
-			    ui.data('catValue',cat);
-			    if (typeof callback_on_update === 'function') { callback_on_update(cat); }
-		    }
-	    }
+		/**
+		 * Format frequency for display based on user preference
+		 * @param {number} freq - Frequency in Hz
+		 * @returns {string|null} Formatted frequency with unit or null if invalid
+		 */
+		function format_frequency(freq) {
+			// Return null if frequency is invalid
+			if (freq == null || freq == 0 || freq == '' || isNaN(freq)) {
+				return null;
+			}
 
-	    function format_frequency(freq) {
-		    // Return null if frequency is invalid
-		    if (freq == null || freq == 0 || freq == '' || isNaN(freq)) {
-			    return null;
-		    }
+			const qrgunit = localStorage.getItem('qrgunit_' + $('#band').val()) || 'kHz'; // Default to kHz if not set
+			let frequency_formatted=null;
+			if (qrgunit == 'Hz') {
+				frequency_formatted=freq;
+			} else if (qrgunit == 'kHz') {
+				frequency_formatted=(freq / 1000);
+			} else if (qrgunit == 'MHz') {
+				frequency_formatted=(freq / 1000000);
+			} else if (qrgunit == 'GHz') {
+				frequency_formatted=(freq / 1000000000);
+			}
+			return frequency_formatted+''+qrgunit;
+		}
 
-		    const qrgunit = localStorage.getItem('qrgunit_' + $('#band').val()) || 'kHz'; // Default to kHz if not set
-		    let frequency_formatted=null;
-		    if (qrgunit == 'Hz') {
-			    frequency_formatted=freq;
-		    } else if (qrgunit == 'kHz') {
-			    frequency_formatted=(freq / 1000);
-		    } else if (qrgunit == 'MHz') {
-			    frequency_formatted=(freq / 1000000);
-		    } else if (qrgunit == 'GHz') {
-			    frequency_formatted=(freq / 1000000000);
-		    }
-		    return frequency_formatted+''+qrgunit;
-	    }
-
-	    // Global function to tune radio to a specific frequency (works with or without DX Waterfall)
-	    // Parameters:
-	    //   radioId: Radio ID (or 'ws' for WebSocket), optional - defaults to selectedRadioId global variable
-	    //   freqHz: Frequency in Hz
-	    //   mode: Radio mode (e.g., 'usb', 'lsb', 'cw'), optional - defaults to current mode or auto-detect
-	    //   onSuccess: Optional callback function called on successful tuning
-	    //   onError: Optional callback function called on tuning error
-	    //   skipWaterfall: If true, skip DX Waterfall and go directly to API (prevents infinite loop when called from setFrequency)
+	    /**
+	     * Tune radio to a specific frequency and mode via CAT interface
+	     * @param {string} radioId - Radio ID (or 'ws' for WebSocket), optional - defaults to selectedRadioId
+	     * @param {number} freqHz - Frequency in Hz
+	     * @param {string} mode - Radio mode (e.g., 'usb', 'lsb', 'cw'), optional - auto-detects if not provided
+	     * @param {function} onSuccess - Optional callback called on successful tuning
+	     * @param {function} onError - Optional callback called on tuning error
+	     * @param {boolean} skipWaterfall - If true, skip DX Waterfall integration
+	     */
 	    window.tuneRadioToFrequency = function(radioId, freqHz, mode, onSuccess, onError, skipWaterfall) {
 		    // Default radioId to global selectedRadioId if not provided
 		    if (typeof radioId === 'undefined' || radioId === null || radioId === '') {
@@ -1548,54 +1604,66 @@ mymap.on('mousemove', onQsoMapMove);
 			    }
 		    }
 
-	    // Direct client-side radio control (replaces server-side set_radio_frequency)
-	    if (radioId && radioId != 0 && radioId != '') {
-		    // Get the CAT URL for the radio
-		    let catUrl;
+			// Direct client-side radio control via CAT interface
+			if (radioId && radioId != 0 && radioId != '') {
+				// Get the CAT URL for the radio
+				let catUrl;
 
-		    if (radioId === 'ws') {
-			    // WebSocket radio uses localhost gateway
-			    catUrl = 'http://127.0.0.1:54321';
-		    } else {
-			    // Check if CAT URL is cached
-			    if (radioCatUrlCache[radioId]) {
-				    // Use cached CAT URL
-				    catUrl = radioCatUrlCache[radioId];
-				    performRadioTuning(catUrl, freqHz, mode, onSuccess, onError);
-				    return;
-			    } else {
-				    // Fetch CAT URL from radio data and cache it
-				    $.ajax({
-					    url: base_url + 'index.php/radio/json/' + radioId,
-					    type: 'GET',
-					    dataType: 'json',
-					    timeout: CAT_CONFIG.AJAX_TIMEOUT_MS,
-					    success: function(radioData) {
-						    if (radioData.cat_url) {
-							    // Cache the CAT URL for future use
-							    radioCatUrlCache[radioId] = radioData.cat_url;
-							    performRadioTuning(radioData.cat_url, freqHz, mode, onSuccess, onError);
-						    } else {
-							    if (typeof onError === 'function') {
-								    onError(null, 'error', 'No CAT URL configured for this radio');
-							    }
-						    }
-					    },
-					    error: function(jqXHR, textStatus, errorThrown) {
-						    if (typeof onError === 'function') {
-							    onError(jqXHR, textStatus, errorThrown);
-						    }
-					    }
-				    });
-				    return; // Exit here for non-WebSocket radios
-			    }
-		    }
+				if (radioId === 'ws') {
+					// WebSocket radio uses localhost gateway
+					catUrl = 'http://127.0.0.1:54321';
+				} else {
+					// Check if CAT URL is cached
+					if (radioCatUrlCache[radioId]) {
+						// Use cached CAT URL
+						catUrl = radioCatUrlCache[radioId];
+						performRadioTuning(catUrl, freqHz, mode, onSuccess, onError);
+						return;
+					} else {
+						// Fetch CAT URL from radio data and cache it
+						$.ajax({
+							url: base_url + 'index.php/radio/json/' + radioId,
+							type: 'GET',
+							dataType: 'json',
+							timeout: CAT_CONFIG.AJAX_TIMEOUT_MS,
+							success: function(radioData) {
+								if (radioData.cat_url) {
+									// Cache the CAT URL and radio name for future use
+									radioCatUrlCache[radioId] = radioData.cat_url;
+									if (radioData.radio) {
+										radioNameCache[radioId] = radioData.radio;
+									}
+									performRadioTuning(radioData.cat_url, freqHz, mode, onSuccess, onError);
+								} else {
+									if (typeof onError === 'function') {
+										onError(null, 'error', 'No CAT URL configured for this radio');
+									}
+								}
+							},
+							error: function(jqXHR, textStatus, errorThrown) {
+								if (typeof onError === 'function') {
+									onError(jqXHR, textStatus, errorThrown);
+								}
+							}
+						});
+						return; // Exit here for non-WebSocket radios
+					}
+				}
 
-		    // For WebSocket radios, tune immediately
-		    performRadioTuning(catUrl, freqHz, mode, onSuccess, onError);
-	    }
+				// For WebSocket radios, tune immediately
+				performRadioTuning(catUrl, freqHz, mode, onSuccess, onError);
+			}
+	    };
 
-	    // Helper function to perform the actual radio tuning
+	    /**
+	     * Perform the actual radio tuning via CAT interface
+	     * Sends frequency and mode to radio via HTTP request
+	     * @param {string} catUrl - CAT interface URL for the radio
+	     * @param {number} freqHz - Frequency in Hz
+	     * @param {string} mode - Radio mode (validated against supported modes)
+	     * @param {function} onSuccess - Callback on successful tuning
+	     * @param {function} onError - Callback on tuning error
+	     */
 	    function performRadioTuning(catUrl, freqHz, mode, onSuccess, onError) {
 		    // Validate and normalize mode parameter
 		    const validModes = ['lsb', 'usb', 'cw', 'fm', 'am', 'rtty', 'pkt', 'dig', 'pktlsb', 'pktusb', 'pktfm'];
@@ -1604,33 +1672,175 @@ mymap.on('mousemove', onQsoMapMove);
 		    // Format: {cat_url}/{frequency}/{mode}
 		    const url = catUrl + '/' + freqHz + '/' + catMode;
 
-		    // Make request
-		    fetch(url, {
-			    method: 'GET',
-			    mode: 'cors',
-			    timeout: 5000
-		    })
-		    .then(response => {
-			    if (response.ok || response.status === 0) {
-				    if (typeof onSuccess === 'function') {
-					    onSuccess({
-						    success: true,
-						    frequency: freqHz,
-						    mode: catMode
-					    });
-				    }
-			    } else {
-				    throw new Error('Request failed with status: ' + response.status);
-			    }
-		    })
-		    .catch(error => {
-			    if (typeof onError === 'function') {
-				    onError(null, 'error', error.message);
-			    }
-		    });
-	    }
-    }
+			// Make request with proper error handling
+			fetch(url, {
+				method: 'GET'
+			})
+			.then(response => {
+				if (response.ok) {
+					// Success - HTTP 200-299, get response text
+					return response.text();
+				} else {
+					// HTTP error status (4xx, 5xx)
+					throw new Error('HTTP ' + response.status);
+				}
+			})
+			.then(data => {
+				// Call success callback with response data
+				if (typeof onSuccess === 'function') {
+					onSuccess(data);
+				}
+			})
+			.catch(error => {
+				// Only show error on actual failures (network error, HTTP error, etc.)
+				const freqMHz = (freqHz / 1000000).toFixed(3);
+				const errorTitle = 'Radio Tuning Failed';
+				const errorMsg = 'Failed to tune radio to ' + freqMHz + ' MHz (' + catMode.toUpperCase() + '). ' + 'CAT interface not responding. Please check your radio connection.';
 
+				// Use showToast if available (from qso.js), otherwise use Bootstrap alert
+				if (typeof showToast === 'function') {
+					showToast(errorTitle, errorMsg, 'bg-danger text-white', 5000);
+				}
+
+				// Call error callback if provided
+				if (typeof onError === 'function') {
+					onError(null, 'error', error.message);
+				}
+			});
+		}
+
+		/**
+	     * Display radio status panel with unified styling
+	     * Handles success (active connection), error (connection lost), timeout (stale data), and not_logged_in states
+	     * Includes visual feedback with color-coded icon and blink animation on updates
+	     * @param {string} state - Display state: 'success', 'error', 'timeout', or 'not_logged_in'
+	     * @param {object|string} data - Radio data object (success) or radio name string (error/timeout/not_logged_in)
+	     */
+	    function displayRadioStatus(state, data) {
+		    var iconColor, content;
+		    var baseStyle = '<div style="display: flex; align-items: center; font-size: calc(1rem - 2px);">';
+
+		    if (state === 'success') {
+			    // Success state - display radio info
+			    iconColor = '#28a745'; // Green for success
+
+		    // Determine connection type
+		    var connectionType = '';
+		    var connectionTooltip = '';
+		    if ($(".radios option:selected").val() == 'ws') {
+			    connectionType = ' (live)';
+		    } else {
+			    connectionType = ' (polling)';
+			    connectionTooltip = ' <i class="fas fa-question-circle" style="font-size: 0.9em; cursor: help;" data-bs-toggle="tooltip" title="Periodic polling is slow. When operating locally, WebSockets are a more convenient way to control your radio in real-time."></i>';
+		    }
+
+		    // Build radio info line
+		    var radioInfo = '';
+		    if (data.radio != null && data.radio != '') {
+			    radioInfo = '<b>' + data.radio + '</b>' + connectionType + connectionTooltip;
+		    }
+
+			// Build frequency/mode/power line
+			var freqLine = '';
+			var separator = '   ';
+
+			// Check if we have RX frequency (split operation)
+			if(data.frequency_rx != null && data.frequency_rx != 0) {
+				// Split operation: show TX and RX separately
+				freqLine = '<b>TX:</b> ' + data.frequency_formatted;
+				data.frequency_rx_formatted = format_frequency(data.frequency_rx);
+				if (data.frequency_rx_formatted) {
+					freqLine = freqLine + separator + '<b>RX:</b> ' + data.frequency_rx_formatted;
+				}
+			} else {
+				// Simplex operation: show TX/RX combined
+				freqLine = '<b>TX/RX:</b> ' + data.frequency_formatted;
+			}
+
+			// Add mode and power (only if we have valid frequency)
+			if(data.mode != null) {
+				freqLine = freqLine + separator + '<b>Mode:</b> ' + data.mode;
+			}
+			if(data.power != null && data.power != 0) {
+				freqLine = freqLine + separator + '<b>Power:</b> ' + data.power+'W';
+			}
+
+		    // Add complementary info to frequency line
+		    var complementary_info = [];
+		    if(data.prop_mode != null && data.prop_mode != '') {
+			    if (data.prop_mode == 'SAT') {
+				    complementary_info.push(data.prop_mode + ' ' + data.satname);
+			    } else {
+				    complementary_info.push(data.prop_mode);
+			    }
+		    }
+		    if(complementary_info.length > 0) {
+			    freqLine = freqLine + separator + '(' + complementary_info.join(separator) + ')';
+		    }
+
+		    // Combine radio info and frequency line into single line
+		    var infoLine = radioInfo;
+		    if (radioInfo && freqLine) {
+			    infoLine = infoLine + separator + freqLine;
+		    } else if (freqLine) {
+			    infoLine = freqLine;
+		    }
+
+		    content = '<div>' + infoLine + '</div>';
+
+			} else if (state === 'error') {
+				// Error state - WebSocket connection error
+				iconColor = '#dc3545'; // Red for error
+				var radioName = typeof data === 'string' ? data : $('select.radios option:selected').text();
+				content = '<div>Radio connection error: <b>' + radioName + '</b>. Connection lost, please select another radio.</div>';
+
+			} else if (state === 'timeout') {
+				// Timeout state - data too old
+				iconColor = '#ffc107'; // Yellow/amber for timeout
+				var radioName = typeof data === 'string' ? data : $('select.radios option:selected').text();
+				content = '<div>Radio connection timeout: <b>' + radioName + '</b>. Data is stale, please select another radio.</div>';
+
+			} else if (state === 'not_logged_in') {
+				// Not logged in state
+				iconColor = '#dc3545'; // Red for error
+				content = '<div>You\'re not logged in. Please log in.</div>';
+			}
+
+			// Build icon with dynamic color and ID for animation
+			var icon = '<i id="radio-status-icon" class="fas fa-radio" style="margin-right: 10px; font-size: 1.2em; color: ' + iconColor + ';"></i>';
+			var html = baseStyle + icon + content + '</div>';
+
+			// Update DOM
+			if (!$('#radio_cat_state').length) {
+				// Create panel if it doesn't exist
+				$('#radio_status').prepend('<div id="radio_cat_state" class="card"><div class="card-body">' + html + '</div></div>');
+			} else {
+				// Dispose of existing tooltips before updating content
+				$('#radio_cat_state [data-bs-toggle="tooltip"]').tooltip('dispose');
+				// Update existing panel content
+				$('#radio_cat_state .card-body').html(html);
+			}
+
+			// Initialize Bootstrap tooltips for any new tooltip elements in the radio panel
+			$('#radio_cat_state [data-bs-toggle="tooltip"]').each(function() {
+				new bootstrap.Tooltip(this);
+			});
+
+			// Trigger blink animation on successful updates
+			if (state === 'success') {
+				$('#radio-status-icon').addClass('radio-icon-blink');
+				setTimeout(function() {
+					$('#radio-status-icon').removeClass('radio-icon-blink');
+				}, 400);
+			}
+		}
+
+	    /**
+	     * Process CAT data and update UI elements
+	     * Performs timeout check, updates form fields, and displays radio status
+	     * Handles both WebSocket and polling data sources
+	     * @param {object} data - CAT data object from radio (includes frequency, mode, power, etc.)
+	     */
 	    function updateCATui(data) {
 		    // Check if data is too old FIRST - before any UI updates
 		    var minutes = Math.floor(<?php echo $this->optionslib->get_option('cat_timeout_interval'); ?> / 60);
@@ -1639,12 +1849,10 @@ mymap.on('mousemove', onQsoMapMove);
 			    <?php if ($this->session->userdata('user_dxwaterfall_enable') == 'Y') { ?>
 			    dxwaterfall_cat_state = "none";
 			    <?php } ?>
-			    $(".radio_cat_state" ).remove();
-			    if($('.radio_timeout_error').length == 0) {
-				    $('#radio_status').prepend('<div class="alert alert-danger radio_timeout_error" role="alert"><i class="fas fa-radio"></i> Radio connection timed-out: ' + $('select.radios option:selected').text() + ' data is ' + data.updated_minutes_ago + ' minutes old.</div>');
-			    } else {
-				    $('.radio_timeout_error').html('Radio connection timed-out: ' + $('select.radios option:selected').text() + ' data is ' + data.updated_minutes_ago + ' minutes old.');
-			    }
+
+			    // Display timeout error
+			    var radioName = $('select.radios option:selected').text();
+			    displayRadioStatus('timeout', radioName);
 			    return; // Exit early - do not update any fields with old data
 		    }
 
@@ -1655,55 +1863,49 @@ mymap.on('mousemove', onQsoMapMove);
 		    var $bandRx = $('#band_rx');
 		    var $mode = $('.mode');
 
-		    // If radio name is not in data, get it from the selected radio dropdown
+		    // If radio name is not in data, try to get it from cache first, then from dropdown
 		    if (!data.radio || data.radio == null || data.radio == '') {
-			    data.radio = $('select.radios option:selected').text();
-		    }
-
-		    <?php if ($this->session->userdata('user_dxwaterfall_enable') == 'Y') { ?>
-		    // DX Waterfall: Force update by clearing catValue (prevents cat2UI from blocking updates)
-		    $frequency.removeData('catValue');
-		    cat_updating_frequency = true; // Set flag before CAT update
-
-		    // DX Waterfall: Check debounce lock before updating frequency
-		    if (typeof handleCATFrequencyUpdate === 'function') {
-			    handleCATFrequencyUpdate(data.frequency, function() {
-				    cat2UI($frequency,data.frequency,false,true,function(d){
-					    $frequency.trigger('change'); // Trigger for other event handlers
-					    const newBand = frequencyToBand(d);
-					    // Don't auto-update band if user just manually changed it (prevents race condition)
-					    if ($band.val() != newBand && (typeof dxWaterfall === 'undefined' || !dxWaterfall.userChangedBand)) {
-						    $band.val(newBand).trigger('change'); // Trigger band change
-					    }
-					    cat_updating_frequency = false; // Clear flag after updates
-				    });
-			    });
-		    } else {
-			    // Fallback if dxwaterfall.js not loaded
-			    cat2UI($frequency,data.frequency,false,true,function(d){
-				    $frequency.trigger('change');
-				    // Don't auto-update band if user just manually changed it (prevents race condition)
-				    if ($band.val() != frequencyToBand(d) && (typeof dxWaterfall === 'undefined' || !dxWaterfall.userChangedBand)) {
-					    $band.val(frequencyToBand(d)).trigger('change');
-				    }
-				    cat_updating_frequency = false;
-			    });
-		    }
-		    <?php } else { ?>
-		    // Standard frequency update
-		    $frequency.removeData('catValue');
-		    cat_updating_frequency = true; // Set flag before CAT update
-		    cat2UI($frequency,data.frequency,false,true,function(d){
-			    $frequency.trigger('change');
-			    // Don't auto-update band if user just manually changed it (prevents race condition)
-			    if ($band.val() != frequencyToBand(d) && (typeof dxWaterfall === 'undefined' || !dxWaterfall.userChangedBand)) {
-				    $band.val(frequencyToBand(d)).trigger('change');
+			    var currentRadioId = $('select.radios option:selected').val();
+			    if (currentRadioId && radioNameCache[currentRadioId]) {
+				    // Use cached radio name
+				    data.radio = radioNameCache[currentRadioId];
+			    } else {
+				    // Fall back to dropdown text
+				    data.radio = $('select.radios option:selected').text();
 			    }
-			    cat_updating_frequency = false; // Clear flag after updates
-		    });
-		    <?php } ?>
+		    }
 
-		    cat2UI($frequencyRx,data.frequency_rx,false,true,function(d){$bandRx.val(frequencyToBand(d))});
+			// Force update by clearing catValue (prevents cat2UI from blocking updates)
+			$frequency.removeData('catValue');
+			cat_updating_frequency = true; // Set flag before CAT update
+
+			// Check if DX Waterfall's CAT frequency handler is available
+			if (typeof handleCATFrequencyUpdate === 'function') {
+				// DX Waterfall is active - use its debounce handler
+				handleCATFrequencyUpdate(data.frequency, function() {
+					cat2UI($frequency,data.frequency,false,true,function(d){
+						$frequency.trigger('change'); // Trigger for other event handlers
+						const newBand = frequencyToBand(d);
+						// Don't auto-update band if user just manually changed it (prevents race condition)
+						if ($band.val() != newBand && (typeof dxWaterfall === 'undefined' || !dxWaterfall.userChangedBand)) {
+							$band.val(newBand).trigger('change'); // Trigger band change
+						}
+						cat_updating_frequency = false; // Clear flag after updates
+					});
+				});
+			} else {
+				// Standard frequency update (no DX Waterfall debounce handling)
+				cat2UI($frequency,data.frequency,false,true,function(d){
+					$frequency.trigger('change');
+					// Don't auto-update band if user just manually changed it (prevents race condition)
+					if ($band.val() != frequencyToBand(d) && (typeof dxWaterfall === 'undefined' || !dxWaterfall.userChangedBand)) {
+						$band.val(frequencyToBand(d)).trigger('change');
+					}
+					cat_updating_frequency = false; // Clear flag after updates
+				});
+			}
+
+			cat2UI($frequencyRx,data.frequency_rx,false,true,function(d){$bandRx.val(frequencyToBand(d))});
 
 		    // If frequency_rx is not provided by radio, clear the field
 		    if (!data.frequency_rx || data.frequency_rx == 0 || data.frequency_rx == null) {
@@ -1718,87 +1920,50 @@ mymap.on('mousemove', onQsoMapMove);
 		    cat2UI($('#sat_name'),data.satname,false,false);
 		    cat2UI($('#sat_mode'),data.satmode,false,false);
 		    cat2UI($('#transmit_power'),data.power,false,false);
-		    cat2UI($('#selectPropagation'),data.prop_mode,false,false);
+	    	cat2UI($('#selectPropagation'),data.prop_mode,false,false);
 
-		    // Data is fresh (timeout check already passed at function start)
-		    <?php if ($this->session->userdata('user_dxwaterfall_enable') == 'Y') { ?>
-		    // Set CAT state for waterfall
-		    if ($(".radios option:selected").val() == 'ws') {
-			    dxwaterfall_cat_state = "websocket";
-		    } else {
-			    dxwaterfall_cat_state = "polling";
-		    }
-		    <?php } ?>
-		    $(".radio_timeout_error" ).remove();
-		    separator = '<span style="margin-left:10px"></span>';
+			// Data is fresh (timeout check already passed at function start)
+			// Set CAT state for waterfall if dxwaterfall_cat_state is available
+			if (typeof dxwaterfall_cat_state !== 'undefined') {
+				if ($(".radios option:selected").val() == 'ws') {
+					dxwaterfall_cat_state = "websocket";
+				} else {
+					dxwaterfall_cat_state = "polling";
+				}
+			}
 
-		    // Format frequency - always recalculate if it contains 'null' (from previous invalid formatting)
+			// Format frequency for display
+	    	separator = '<span style="margin-left:10px"></span>';
+
+			// Format frequency - always recalculate if it contains 'null' (from previous invalid formatting)
 		    if (!(data.frequency_formatted) || (typeof data.frequency_formatted === 'string' && data.frequency_formatted.includes('null'))) {
 			    data.frequency_formatted=format_frequency(data.frequency);
 		    }
 
 		    // Only display radio info if we have valid frequency (not null and doesn't contain 'null' string)
 		    if (data.frequency_formatted && (typeof data.frequency_formatted !== 'string' || !data.frequency_formatted.includes('null'))) {
-			    text = '<i class="fas fa-radio"></i>' + separator + '<b>';
-			    if (data.radio != null && data.radio != '') {
-				    text = text + data.radio;
-				    // Add asterisk if coming via WebSocket
-				    if ($(".radios option:selected").val() == 'ws') {
-					    text = text + '*';
-				    }
-				    text = text + ' ';
-			    }
-
-			    // Check if we have RX frequency (split operation)
-			    if(data.frequency_rx != null && data.frequency_rx != 0) {
-				    // Split operation: show TX and RX separately
-				    text = text + 'TX:</b> ' + data.frequency_formatted;
-				    data.frequency_rx_formatted = format_frequency(data.frequency_rx);
-				    if (data.frequency_rx_formatted) {
-					    text = text + separator + '<b>RX:</b> ' + data.frequency_rx_formatted;
-				    }
-			    } else {
-				    // Simplex operation: show TX/RX combined
-				    text = text + 'TX/RX:</b> ' + data.frequency_formatted;
-			    }
-
-			    // Add mode and power (only if we have valid frequency)
-			    if(data.mode != null) {
-				    text = text + separator + data.mode;
-			    }
-			    if(data.power != null && data.power != 0) {
-				    text = text + separator + data.power+'W';
-			    }
-
-			    // Add complementary info
-			    complementary_info = []
-			    if(data.prop_mode != null && data.prop_mode != '') {
-				    if (data.prop_mode == 'SAT') {
-					    complementary_info.push(data.prop_mode + ' ' + data.satname);
-				    } else {
-					    complementary_info.push(data.prop_mode);
-				    }
-			    }
-			    // Note: RX frequency is now displayed inline, not in complementary_info
-			    if( complementary_info.length > 0) {
-				    text = text + separator + '(' + complementary_info.join(separator) + ')';
-			    }
-
-			    // Update the DOM
-			    if (! $('#radio_cat_state').length) {
-				    $('#radio_status').prepend('<div aria-hidden="true"><div id="radio_cat_state" class="alert alert-success radio_cat_state" role="alert">'+text+'</div></div>');
-			    } else {
-				    $('#radio_cat_state').html(text);
-			    }
+			    // Display success status with radio data
+			    displayRadioStatus('success', data);
 		    } else {
 			    // No valid frequency - remove radio panel if it exists
 			    $('#radio_cat_state').remove();
 		    }
 	    }
 
+	    /**
+	     * Periodic AJAX polling function for radio status updates
+	     * Only runs for non-WebSocket radios (skips if radio is 'ws')
+	     * Fetches CAT data every 3 seconds and updates UI
+	     * Includes lock mechanism to prevent simultaneous requests
+	     */
 	    var updateFromCAT = function() {
 		    if ($('select.radios option:selected').val() != '0') {
 			    var radioID = $('select.radios option:selected').val();
+
+			    // Skip AJAX polling if radio is using WebSockets
+			    if (radioID == 'ws') {
+				    return;
+			    }
 
 			    if ((typeof radioID !== 'undefined') && (radioID !== null) && (radioID !== '') && (updateFromCAT_lock == 0)) {
 				    updateFromCAT_lock = 1;
@@ -1812,57 +1977,64 @@ mymap.on('mousemove', onQsoMapMove);
 					    updateFromCAT_lock = 0;
 				    }, CAT_CONFIG.LOCK_TIMEOUT_MS);
 
-				    $.getJSON('radio/json/' + radioID, function(data) {
-					    if (data.error) {
-						    if (data.error == 'not_logged_in') {
-							    $('.radio_cat_state').remove();
-							    if ($('.radio_login_error').length == 0) {
-								    $('.qso_panel').prepend('<div class="alert alert-danger radio_login_error" role="alert"><i class="fas fa-broadcast-tower"></i> ' + <?php echo json_encode(sprintf(__("You're not logged in. Please %slogin%s"), '<a href="' . base_url() . '">', '</a>')); ?> + '</div>');
-							    }
-						    }
-						    // Put future Errorhandling here
-					    } else {
-						    if ($('.radio_login_error').length != 0) {
-							    $('.radio_login_error').remove();
-						    }
+					$.getJSON(base_url + 'index.php/radio/json/' + radioID, function(data) {
+						if (data.error) {
+							if (data.error == 'not_logged_in') {
+								// Use dedicated not_logged_in state
+								displayRadioStatus('not_logged_in');
+							} else {
+								// Other errors - generic error state
+								var radioName = $('select.radios option:selected').text();
+								displayRadioStatus('error', radioName);
+							}
+						} else {
+							// Update CAT UI with received data
+							updateCATui(data);
+						}
 
-						    // Update CAT UI with received data
-						    updateCATui(data);
-					    }
+						// Clear lock timeout and release lock
+						if (updateFromCAT_lockTimeout) {
+							clearTimeout(updateFromCAT_lockTimeout);
+							updateFromCAT_lockTimeout = null;
+						}
+						updateFromCAT_lock = 0;
+						}).fail(function() {
+							// Release lock on AJAX failure (silently - don't show error)
+							if (updateFromCAT_lockTimeout) {
+								clearTimeout(updateFromCAT_lockTimeout);
+								updateFromCAT_lockTimeout = null;
+							}
+							updateFromCAT_lock = 0;
+						});
+		    	}
+	    	}
+    	};
 
-					    // Clear lock timeout and release lock
-					    if (updateFromCAT_lockTimeout) {
-						    clearTimeout(updateFromCAT_lockTimeout);
-						    updateFromCAT_lockTimeout = null;
-					    }
-					    updateFromCAT_lock = 0;
-				    }).fail(function() {
-					    // Release lock on AJAX failure
-					    if (updateFromCAT_lockTimeout) {
-						    clearTimeout(updateFromCAT_lockTimeout);
-						    updateFromCAT_lockTimeout = null;
-					    }
-					    updateFromCAT_lock = 0;
-					    console.error('CAT AJAX request failed');
-				    });
-			    }
-		    }
-	    };
+	    /******************************************************************************
+	     * RADIO CAT INITIALIZATION AND EVENT HANDLERS
+	     ******************************************************************************/
 
 	    // Initialize DX_WATERFALL_CONSTANTS CAT timings based on poll interval
-	    <?php if ($this->session->userdata('user_dxwaterfall_enable') == 'Y') { ?>
+	    // Only call if the function exists (DX Waterfall is loaded)
 	    if (typeof initCATTimings === 'function') {
 	        initCATTimings(CAT_CONFIG.POLL_INTERVAL);
 	    }
-	    <?php } ?>
 
-	    // If no radio is selected clear data
+	    /**
+	     * Radio selection change handler
+	     * Cleans up previous connection (WebSocket or polling) and initializes new one
+	     * Clears caches, stops timers, closes connections, and starts appropriate connection type
+	     */
 	    $('.radios').change(function() {
 		    // Update global selected radio variable
 		    selectedRadioId = $('.radios option:selected').val();
 
-		    // Clear the CAT URL cache when radio changes
+		    // Clear both caches when radio changes
 		    radioCatUrlCache = {};
+		    radioNameCache = {};
+
+		    // Hide radio status box (both success and error states)
+		    $('#radio_cat_state').remove();
 
 		    if (CATInterval) {	// We've a change - stop polling if active
 			    clearInterval(CATInterval);
@@ -1880,27 +2052,34 @@ mymap.on('mousemove', onQsoMapMove);
 			    $('#frequency_rx').val('');
 			    $('#band_rx').val('');
 			    $('#selectPropagation').val($('#selectPropagation option:first').val());
-			    $('.radio_timeout_error').remove();
-			    $('.radio_cat_state').remove();
-			    <?php if ($this->session->userdata('user_dxwaterfall_enable') == 'Y') { ?>
-			    dxwaterfall_cat_state = "none";
-			    <?php } ?>
+			    // Set DX Waterfall CAT state to none if variable exists
+			    if (typeof dxwaterfall_cat_state !== 'undefined') {
+				    dxwaterfall_cat_state = "none";
+			    }
 		    } else if (selectedRadioId == 'ws') {
 			    websocketIntentionallyClosed = false; // Reset flag when opening WebSocket
 			    reconnectAttempts = 0; // Reset reconnect attempts
-			    <?php if ($this->session->userdata('user_dxwaterfall_enable') == 'Y') { ?>
-			    dxwaterfall_cat_state = "websocket";
-			    <?php } ?>
+			    // Set DX Waterfall CAT state to websocket if variable exists
+			    if (typeof dxwaterfall_cat_state !== 'undefined') {
+				    dxwaterfall_cat_state = "websocket";
+			    }
 			    initializeWebSocketConnection();
 		    } else {
-			    <?php if ($this->session->userdata('user_dxwaterfall_enable') == 'Y') { ?>
-			    dxwaterfall_cat_state = "polling";
-			    <?php } ?>
+			    // Set DX Waterfall CAT state to polling if variable exists
+			    if (typeof dxwaterfall_cat_state !== 'undefined') {
+				    dxwaterfall_cat_state = "polling";
+			    }
 			    // Update frequency at configured interval
 			    CATInterval=setInterval(updateFromCAT, CAT_CONFIG.POLL_INTERVAL);
 		    }
 	    });
-	    $('.radios').change();	// Initial trigger for pre-chosen radio
+
+	    // Trigger initial radio change to start monitoring selected radio
+	    $('.radios').change();
+
+	    /******************************************************************************
+	     * END OF RADIO CAT CONTROL FUNCTIONS
+	     ******************************************************************************/
     });
   </script>
 

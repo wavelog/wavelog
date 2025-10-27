@@ -1875,7 +1875,6 @@ var dxWaterfall = {
 
         // If frequency or band is invalid, show waiting message but don't fetch spots
         if (isFrequencyInvalid || isBandInvalid) {
-            console.log('[DX Waterfall] PARAMS CHECK: Invalid parameters (freq=' + middleFreq + ', band=' + currentBand + ')');
             this.waitingForData = true;
             this.dataReceived = false;
             this.relevantSpots = [];
@@ -3343,7 +3342,6 @@ var dxWaterfall = {
                 // If it has, discard this data (it's stale)
                 var currentBand = self.getCurrentBand();
                 if (band !== currentBand) {
-                    console.log('[DX Waterfall] FETCH SPOTS: Ignoring stale data (fetched for ' + band + ', now on ' + currentBand + ')');
                     // Clear safety timeout even for stale data
                     if (self.safetyTimeoutId) {
                         clearTimeout(self.safetyTimeoutId);
