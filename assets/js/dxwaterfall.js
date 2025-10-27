@@ -370,10 +370,30 @@ function handleCATFrequencyUpdate(radioFrequency, updateCallback) {
 
     // Only invalidate cache and commit if frequency actually changed
     if (typeof dxWaterfall !== 'undefined' && (frequencyChanged || isInitialLoad)) {
-        // Skip frequency commit if user just manually changed the band (2-second cooldown)
+        // Skip frequency commit if:
+        // 1. User just manually changed the band (2-second cooldown)
+        // 2. Waiting for frequency update after band change - BUT clear the flag now since CAT confirmed!
         // This prevents race condition where CAT sends old frequency before radio catches up
         if (dxWaterfall.userChangedBand) {
             console.log('[DX Waterfall] CAT CHECK: Skipping commit - user changed band (cooldown active)');
+            // Also clear waitingForFrequencyUpdate if it's set - this CAT update is likely stale
+            if (dxWaterfall.waitingForFrequencyUpdate) {
+                console.log('[DX Waterfall] CAT CHECK: Clearing waitingForFrequencyUpdate (stale CAT data during cooldown)');
+                dxWaterfall.waitingForFrequencyUpdate = false;
+            }
+        } else if (dxWaterfall.waitingForFrequencyUpdate) {
+            // CAT has confirmed the new frequency - clear the waiting flag and commit it
+            console.log('[DX Waterfall] CAT CHECK: Frequency confirmed by CAT, clearing waitingForFrequencyUpdate');
+            dxWaterfall.waitingForFrequencyUpdate = false;
+            dxWaterfall.waitingForData = false;
+            
+            // IMPORTANT: Commit BEFORE invalidating cache
+            if (dxWaterfall.commitFrequency) {
+                dxWaterfall.commitFrequency();
+            }
+            if (dxWaterfall.invalidateFrequencyCache) {
+                dxWaterfall.invalidateFrequencyCache();
+            }
         } else {
             // IMPORTANT: Commit BEFORE invalidating cache
             if (dxWaterfall.commitFrequency) {
@@ -3423,14 +3443,10 @@ var dxWaterfall = {
                     self.dxSpots = data;
                     self.totalSpotsCount = data.length;
                     self.dataReceived = true; // Mark that we've received data
-                    // Only clear waitingForData if we're NOT waiting for a frequency update
-                    // This prevents drawing with wrong band edges when frequency hasn't been set yet
-                    if (!self.waitingForFrequencyUpdate) {
-                        console.log('[DX Waterfall] FETCH SPOTS: Clearing waitingForData (not waiting for frequency)');
-                        self.waitingForData = false; // No longer waiting
-                    } else {
-                        console.log('[DX Waterfall] FETCH SPOTS: Keeping waitingForData=true (waiting for frequency update)');
-                    }
+                    // Always clear waitingForData when DX cluster data arrives successfully
+                    // waitingForFrequencyUpdate controls frequency commit, not data reception
+                    console.log('[DX Waterfall] FETCH SPOTS: Clearing waitingForData - DX data received');
+                    self.waitingForData = false;
                     self.lastUpdateTime = new Date(); // Record update time
                     // Track fetch parameters to prevent duplicate fetches
                     self.lastFetchBand = band;
@@ -4807,6 +4823,27 @@ var dxWaterfall = {
                               )) ||
                               (this.userInitiatedFetch && this.dxSpots.length === 0 && this.fetchInProgress);
 
+        // Safety timeout for waitingForFrequencyUpdate flag
+        // If CAT is not responding, we need to clear this flag after a reasonable timeout
+        // to prevent infinite blocking when CAT is disabled or not working
+        if (this.waitingForFrequencyUpdate) {
+            if (!this.frequencyUpdateWaitStartTime) {
+                this.frequencyUpdateWaitStartTime = currentTime;
+            }
+            var frequencyUpdateWaitDuration = currentTime - this.frequencyUpdateWaitStartTime;
+            var FREQUENCY_UPDATE_TIMEOUT_MS = 5000; // 5 seconds timeout
+            
+            if (frequencyUpdateWaitDuration > FREQUENCY_UPDATE_TIMEOUT_MS) {
+                console.log('[DX Waterfall] TIMEOUT: Clearing waitingForFrequencyUpdate after ' + frequencyUpdateWaitDuration + 'ms (CAT not responding)');
+                this.waitingForFrequencyUpdate = false;
+                this.waitingForData = false; // Also clear waitingForData to unblock rendering
+                this.frequencyUpdateWaitStartTime = null;
+            }
+        } else {
+            // Reset timer when not waiting
+            this.frequencyUpdateWaitStartTime = null;
+        }
+
         // Debug logging for waiting state
         if (!shouldShowWaiting && (this.waitingForData || this.dxSpots.length === 0)) {
             console.log('[DX Waterfall] REFRESH: NOT blocking - waitingForFreqUpdate=' + this.waitingForFrequencyUpdate +
@@ -4818,7 +4855,8 @@ var dxWaterfall = {
 
         if (shouldShowWaiting) {
             if (this.waitingForFrequencyUpdate) {
-                console.log('[DX Waterfall] REFRESH: Blocking render - waiting for frequency update');
+                var waitDuration = this.frequencyUpdateWaitStartTime ? (currentTime - this.frequencyUpdateWaitStartTime) : 0;
+                console.log('[DX Waterfall] REFRESH: Blocking render - waiting for frequency update (' + waitDuration + 'ms)');
             } else if (this.waitingForData && this.userInitiatedFetch) {
                 console.log('[DX Waterfall] REFRESH: Blocking render - waiting for data (user-initiated fetch)');
             } else if (this.waitingForData && !this.dataReceived) {

@@ -2024,28 +2024,17 @@ $('#band').on('change', function () {
 			// Update the displayed frequency field with proper units
 			set_qrg();
 
-			// Commit the new frequency to waterfall and invalidate cache
-			// Then clear waiting flag so waterfall can render with correct band edges
-			if (typeof dxWaterfall !== 'undefined') {
-				// First commit the new frequency so waterfall knows about it
-				if (dxWaterfall.commitFrequency) {
-					dxWaterfall.commitFrequency();
-				}
-				// Then invalidate cache to trigger a refresh
-				if (dxWaterfall.invalidateFrequencyCache) {
-					dxWaterfall.invalidateFrequencyCache();
-				}
-				// Frequency is now set, allow waterfall to render
-				dxWaterfall.waitingForData = false;
-				dxWaterfall.waitingForFrequencyUpdate = false;
-				console.log('[QSO] Frequency set to ' + result + ', cleared waitingForFrequencyUpdate');
-			}
-
-			// Tune the radio to the new frequency (using global selectedRadioId)
+			// Tune the radio to the new frequency FIRST (using global selectedRadioId)
 			// Use skipWaterfall=true to force direct radio tuning when band is manually changed
 			if (typeof tuneRadioToFrequency === 'function') {
+				console.log('[QSO] Sending tune command to radio: ' + result + ' Hz');
 				tuneRadioToFrequency(null, result, null, null, null, true);  // skipWaterfall=true
 			}
+
+			// DO NOT clear waitingForFrequencyUpdate yet - wait for CAT to confirm the frequency
+			// The CAT update handler in footer.php will clear it when the radio responds
+			// This prevents the waterfall from rendering with stale frequency data
+			console.log('[QSO] Tune command sent, waiting for CAT confirmation...');
 	});
 } else {
 	// Frequency is already in the selected band, just update display
