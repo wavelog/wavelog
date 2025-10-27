@@ -1863,17 +1863,20 @@ mymap.on('mousemove', onQsoMapMove);
 		    var $bandRx = $('#band_rx');
 		    var $mode = $('.mode');
 
-		    // If radio name is not in data, try to get it from cache first, then from dropdown
-		    if (!data.radio || data.radio == null || data.radio == '') {
-			    var currentRadioId = $('select.radios option:selected').val();
-			    if (currentRadioId && radioNameCache[currentRadioId]) {
-				    // Use cached radio name
-				    data.radio = radioNameCache[currentRadioId];
-			    } else {
-				    // Fall back to dropdown text
-				    data.radio = $('select.radios option:selected').text();
-			    }
-		    }
+			// If radio name is not in data, try to get it from cache first, then from dropdown
+			if (!data.radio || data.radio == null || data.radio == '') {
+				var currentRadioId = $('select.radios option:selected').val();
+				if (currentRadioId && radioNameCache[currentRadioId]) {
+					// Use cached radio name
+					data.radio = radioNameCache[currentRadioId];
+				} else if (currentRadioId == 'ws') {
+					// WebSocket radio - use default name if not provided
+					data.radio = 'WebSocket Radio';
+				} else {
+					// Fall back to dropdown text
+					data.radio = $('select.radios option:selected').text();
+				}
+			}
 
 			// Force update by clearing catValue (prevents cat2UI from blocking updates)
 			$frequency.removeData('catValue');
