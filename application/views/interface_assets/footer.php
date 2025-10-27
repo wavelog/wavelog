@@ -1592,39 +1592,24 @@ mymap.on('mousemove', onQsoMapMove);
 			    // Format: {cat_url}/{frequency}/{mode}
 			    const url = catUrl + '/' + freqHz + '/' + catMode;
 
-			    // Make first request
+			    // Make request
 			    fetch(url, {
 				    method: 'GET',
 				    mode: 'cors',
 				    timeout: 5000
 			    })
 			    .then(response => {
-				    // Wait 100ms before second request (gateway workaround)
-				    setTimeout(() => {
-					    fetch(url, {
-						    method: 'GET',
-						    mode: 'cors',
-						    timeout: 5000
-					    })
-					    .then(secondResponse => {
-						    if (secondResponse.ok || secondResponse.status === 0) {
-							    if (typeof onSuccess === 'function') {
-								    onSuccess({
-									    success: true,
-									    frequency: freqHz,
-									    mode: catMode
-								    });
-							    }
-						    } else {
-							    throw new Error('Request failed with status: ' + secondResponse.status);
-						    }
-					    })
-					    .catch(error => {
-						    if (typeof onError === 'function') {
-							    onError(null, 'error', error.message);
-						    }
-					    });
-				    }, 100);
+				    if (response.ok || response.status === 0) {
+					    if (typeof onSuccess === 'function') {
+						    onSuccess({
+							    success: true,
+							    frequency: freqHz,
+							    mode: catMode
+						    });
+					    }
+				    } else {
+					    throw new Error('Request failed with status: ' + response.status);
+				    }
 			    })
 			    .catch(error => {
 				    if (typeof onError === 'function') {
