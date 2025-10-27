@@ -1280,7 +1280,3 @@ function shareModal(qso_data) {
         }
     });
 }
-
-console.log("Ready to unleash your coding prowess and join the fun?\n\n" +
-    "Check out our GitHub Repository and dive into the coding adventure:\n\n" +
-    "🚀 https://www.github.com/wavelog/wavelog");

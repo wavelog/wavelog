@@ -1977,8 +1977,6 @@ $('#band').on('change', function () {
 		return;
 	}
 
-	console.log('[QSO] Band manually changed to:', selectedBand);
-
 	// Clear the QSO form when band is manually changed
 	$('#btn_reset').click();
 
@@ -2007,8 +2005,6 @@ $('#band').on('change', function () {
 			dxWaterfall.lastValidCommittedFreq = null;
 			dxWaterfall.cache.middleFreq = null;
 		}
-
-		console.log('[QSO] Set waitingForFrequencyUpdate=true, waitingForData=true, invalidated freq cache');
 	}
 
 	// Check if current frequency is already in the selected band
@@ -2027,14 +2023,12 @@ $('#band').on('change', function () {
 			// Tune the radio to the new frequency FIRST (using global selectedRadioId)
 			// Use skipWaterfall=true to force direct radio tuning when band is manually changed
 			if (typeof tuneRadioToFrequency === 'function') {
-				console.log('[QSO] Sending tune command to radio: ' + result + ' Hz');
 				tuneRadioToFrequency(null, result, null, null, null, true);  // skipWaterfall=true
 			}
 
 			// DO NOT clear waitingForFrequencyUpdate yet - wait for CAT to confirm the frequency
 			// The CAT update handler in footer.php will clear it when the radio responds
 			// This prevents the waterfall from rendering with stale frequency data
-			console.log('[QSO] Tune command sent, waiting for CAT confirmation...');
 	});
 } else {
 	// Frequency is already in the selected band, just update display
