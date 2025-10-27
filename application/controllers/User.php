@@ -302,12 +302,12 @@ class User extends CI_Controller {
 				$this->input->post('qso_widget_display_qso_time'),
 				$this->input->post('user_dashboard_banner') ?? 'Y',
 				$this->input->post('user_dashboard_solar') ?? 'Y',
-				$this->input->post('clubstation') == '1' ? true : false,
 				$this->input->post('global_oqrs_text') ?? '',
 				$this->input->post('oqrs_grouped_search') ?? 'off',
 				$this->input->post('oqrs_grouped_search_show_station_name') ?? 'off',
 				$this->input->post('oqrs_auto_matching') ?? 'on',
-				$this->input->post('oqrs_direct_auto_matching') ?? 'on')
+				$this->input->post('oqrs_direct_auto_matching') ?? 'on',
+				$this->input->post('clubstation') == '1' ? true : false)
 			) {
 				// Check for errors
 				case EUSERNAMEEXISTS:
