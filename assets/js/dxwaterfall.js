@@ -5119,7 +5119,8 @@ var dxWaterfall = {
                 var flagPart = flag ? '<span class="flag-emoji">' + flag + '</span> ' : '';
 
                 // Add tune icon to set frequency (use detailed submode)
-                var tuneIcon = '<i class="fas fa-headset tune-icon" title="' + lang_dxwaterfall_tune_to_spot + '" data-frequency="' + spotInfo.frequency + '" data-mode="' + modeForField + '"></i> ';
+                // Store callsign to ensure correct spot is used when populating form
+                var tuneIcon = '<i class="fas fa-headset tune-icon" title="' + lang_dxwaterfall_tune_to_spot + '" data-frequency="' + spotInfo.frequency + '" data-mode="' + modeForField + '" data-callsign="' + spotInfo.callsign + '"></i> ';
 
                 // Add cycle icon if there are multiple spots
                 var cycleIcon = '';
@@ -6559,6 +6560,7 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
 
         var frequency = parseFloat($(this).data('frequency'));
         var mode = $(this).data('mode');
+        var callsign = $(this).data('callsign');
 
         if (frequency) {
             // Set the mode if available - use skipTrigger=true to prevent change events
@@ -6572,8 +6574,23 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
             setFrequency(frequency, true);
 
             // Populate the QSO form with spot data
-            // Get spot info at this frequency
-            var spotInfo = dxWaterfall.getSpotInfo();
+            // Find the specific spot by callsign to ensure we use the displayed spot
+            var spotInfo = null;
+            if (callsign && dxWaterfall.relevantSpots && dxWaterfall.relevantSpots.length > 0) {
+                // Find the spot with matching callsign from relevant spots
+                for (var i = 0; i < dxWaterfall.relevantSpots.length; i++) {
+                    if (dxWaterfall.relevantSpots[i].callsign === callsign) {
+                        spotInfo = dxWaterfall.relevantSpots[i];
+                        break;
+                    }
+                }
+            }
+
+            // Fallback to getSpotInfo if callsign lookup failed
+            if (!spotInfo) {
+                spotInfo = dxWaterfall.getSpotInfo();
+            }
+
             if (spotInfo) {
                 // Clear form first
                 DX_WATERFALL_UTILS.qsoForm.clearForm();
