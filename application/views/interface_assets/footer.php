@@ -1734,12 +1734,8 @@ mymap.on('mousemove', onQsoMapMove);
 
 		    // Format frequency - always recalculate if it contains 'null' (from previous invalid formatting)
 		    if (!(data.frequency_formatted) || (typeof data.frequency_formatted === 'string' && data.frequency_formatted.includes('null'))) {
-			    console.log('[CAT UI] Formatting frequency:', data.frequency, 'previous formatted:', data.frequency_formatted);
 			    data.frequency_formatted=format_frequency(data.frequency);
-			    console.log('[CAT UI] New formatted:', data.frequency_formatted);
 		    }
-
-		    console.log('[CAT UI] Checking frequency_formatted:', data.frequency_formatted, 'type:', typeof data.frequency_formatted);
 
 		    // Only display radio info if we have valid frequency (not null and doesn't contain 'null' string)
 		    if (data.frequency_formatted && (typeof data.frequency_formatted !== 'string' || !data.frequency_formatted.includes('null'))) {

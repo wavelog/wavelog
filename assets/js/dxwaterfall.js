@@ -302,13 +302,10 @@ function handleCATFrequencyUpdate(radioFrequency, updateCallback) {
         var tolerance = 0.001; // 1 Hz
         var diff = Math.abs(incomingKhz - lastKhz);
         frequencyChanged = diff > tolerance;
-
-        console.log('[DX Waterfall] CAT CHECK: incoming=' + incomingHz + ' Hz (' + incomingKhz + ' kHz), last=' + lastKhz + ' kHz, diff=' + diff + ' kHz, changed=' + frequencyChanged);
     } else if (typeof dxWaterfall !== 'undefined') {
         // First time - consider it changed
         isInitialLoad = dxWaterfall.waitingForCATFrequency;
         frequencyChanged = true;
-        console.log('[DX Waterfall] CAT CHECK: First time, isInitialLoad=' + isInitialLoad);
     }
 
     // Check if we're waiting for a specific frequency to be confirmed BEFORE updating UI
@@ -6327,9 +6324,7 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
                 // Check if we're already at the target frequency (within 1Hz tolerance)
                 var currentFreqHz = Math.round(dxWaterfall.committedFrequencyKHz * 1000);
                 var diff = Math.abs(currentFreqHz - formattedFreq);
-                console.log('[DX Waterfall] SPOT CLICK: Frequency check - currentFreqHz=' + currentFreqHz + 'Hz, targetFreqHz=' + formattedFreq + 'Hz, diff=' + diff + 'Hz');
                 if (diff <= 1) {
-                    console.log('[DX Waterfall] SPOT CLICK: Already at target frequency, skipping CAT confirmation');
                     // Just update the waterfall display, don't set any flags
                     dxWaterfall.invalidateFrequencyCache(formattedFreq / 1000, true);
                     return; // Skip the entire CAT process
@@ -6341,8 +6336,6 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
                 dxWaterfall.targetFrequencyConfirmAttempts = 0; // Reset confirmation counter
                 dxWaterfall.frequencyChanging = true;
 
-                console.log('[DX Waterfall] SPOT CLICK: Set flags - targetFrequencyHz=' + formattedFreq + 'Hz, frequencyChanging=true');
-
                 // Only set catTuning flag if this is a waterfall-initiated change (not external CAT updates)
                 if (fromWaterfall) {
                     dxWaterfall.catTuning = true; // Set CAT tuning flag
@@ -6351,20 +6344,14 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
                 dxWaterfall.operationStartTime = Date.now(); // Reset operation timer for display
                 dxWaterfall.lastWaterfallFrequencyCommandTime = Date.now(); // Track waterfall command time
 
-                console.log('[DX Waterfall] SPOT CLICK: About to call refresh() - flags should trigger overlay');
-
                 // Force immediate refresh to show overlay (refresh() will see the flags and display overlay)
                 // This ensures overlay is visible in the SAME execution context (no frame gap)
                 dxWaterfall.refresh();
-
-                console.log('[DX Waterfall] SPOT CLICK: Called refresh(), about to update frequency position');
 
                 // IMMEDIATELY update waterfall to show new frequency (don't wait for CAT)
                 // This prevents the visual "jump" when the old frequency comes back from CAT
                 // The overlay is already visible, so this just updates the position underneath
                 dxWaterfall.invalidateFrequencyCache(formattedFreq / 1000, true); // true = immediate update
-
-                console.log('[DX Waterfall] SPOT CLICK: Complete - overlay should be visible until CAT confirms');
             }
 
             // Set debounce lock to prevent CAT feedback
@@ -6388,7 +6375,6 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
                 if (typeof dxWaterfall !== 'undefined') {
                     setTimeout(function() {
                         if (!dxWaterfall.targetFrequencyHz) {
-                            console.log('[DX Waterfall] SETFREQ COMMIT: Clearing frequencyChanging after commitDelay');
                             dxWaterfall.frequencyChanging = false;
                         }
                     }, timings.commitDelay); // WebSocket: 20ms, Polling: 50ms
@@ -6402,7 +6388,6 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
                         // Also clear CAT tuning flag on timeout and force cache refresh
                         // BUT: Don't clear if we're waiting for CAT confirmation (targetFrequencyHz is set)
                         if (typeof dxWaterfall !== 'undefined' && !dxWaterfall.targetFrequencyHz) {
-                            console.log('[DX Waterfall] SETFREQ TIMEOUT: Clearing catTuning flags after debounce timeout');
                             dxWaterfall.catTuning = false;
                             dxWaterfall.frequencyChanging = false;
                             dxWaterfall.catTuningStartTime = null;
@@ -6424,7 +6409,6 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
                 // BUT: Don't clear if we're waiting for CAT confirmation (targetFrequencyHz is set)
                 if (typeof dxWaterfall !== 'undefined') {
                     if (!dxWaterfall.targetFrequencyHz) {
-                        console.log('[DX Waterfall] ERROR CALLBACK: Clearing flags due to error - textStatus=' + textStatus + ', error=' + errorThrown);
                         dxWaterfall.frequencyChanging = false;
                         dxWaterfall.catTuning = false; // Clear CAT tuning flag on error
                         dxWaterfall.spotNavigating = false; // Clear navigation flag on error
@@ -6432,8 +6416,6 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
                         if (dxWaterfall.canvas && dxWaterfall.ctx) {
                             dxWaterfall.ctx.clearRect(0, 0, dxWaterfall.canvas.width, dxWaterfall.canvas.height);
                         }
-                    } else {
-                        console.log('[DX Waterfall] ERROR CALLBACK: Skipping flag clear (waiting for CAT confirmation targetFrequencyHz=' + dxWaterfall.targetFrequencyHz + 'Hz) - textStatus=' + textStatus + ', error=' + errorThrown);
                     }
                 }
 
