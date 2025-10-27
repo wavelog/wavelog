@@ -4590,10 +4590,17 @@ var dxWaterfall = {
                 ctx.fillStyle = colors.bgColor;
                 ctx.fillRect(rectX, rectY, rectWidth, rectHeight);
 
-                // Draw border - use thicker border for selected spot
+                // Draw border using continent status color
                 ctx.strokeStyle = colors.borderColor;
-                ctx.lineWidth = isSelected ? 2 : 1;
+                ctx.lineWidth = 1;
                 ctx.strokeRect(rectX, rectY, rectWidth, rectHeight);
+
+                // Draw additional black border for selected spot
+                if (isSelected) {
+                    ctx.strokeStyle = '#000000';
+                    ctx.lineWidth = 1;
+                    ctx.strokeRect(rectX - 1, rectY - 1, rectWidth + 2, rectHeight + 2);
+                }
 
                 // Draw small tickbox at top-right corner using callsign status color
                 var tickboxSize = DX_WATERFALL_CONSTANTS.CANVAS.SPOT_TICKBOX_SIZE;
