@@ -92,6 +92,7 @@
 					<label for="selectPropagation"><?= __("Propagation Mode"); ?></label>
 					<select class="form-select" id="selectPropagation" name="prop_mode">
 						<option value="All"><?= __("All"); ?></option>
+						<option value="NoRPT" selected="selected"><?= _pgettext("Propagation Mode","All but Repeater"); ?></option>
 						<option value="AS"><?= _pgettext("Propagation Mode","Aircraft Scatter"); ?></option>
 						<option value="AUR"><?= _pgettext("Propagation Mode","Aurora"); ?></option>
 						<option value="AUE"><?= _pgettext("Propagation Mode","Aurora-E"); ?></option>
