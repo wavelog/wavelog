@@ -29,8 +29,8 @@ msgstr ""
 "POT-Creation-Date: 2025-10-26 12:27+0000\n"
 "PO-Revision-Date: 2025-10-27 19:34+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1548,6 +1548,7 @@ msgstr "RST (R)"
 #: application/views/view_log/qso.php:337
 #: application/views/view_log/qso.php:693
 #: application/views/visitor/index.php:15
+#: application/views/stationsetup/stationsetup.php:129
 msgid "Country"
 msgstr "Land"
 
@@ -1649,6 +1650,7 @@ msgstr "Staat"
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/view_log/qso.php:680
 #: application/views/visitor/index.php:27
+#: application/views/stationsetup/stationsetup.php:130
 msgid "Gridsquare"
 msgstr "Locator"
 
@@ -1840,6 +1842,8 @@ msgstr "Operator"
 #: application/views/view_log/partial/log_ajax.php:31
 #: application/views/view_log/qso.php:341
 #: application/views/view_log/qso.php:694
+#: application/views/stationsetup/locationlist.php:51
+#: application/views/stationsetup/stationsetup.php:156
 msgid "Deleted DXCC"
 msgstr "Gelöschtes DXCC"
 
@@ -2353,6 +2357,8 @@ msgstr "Standardgerät (klicken zum freigeben)"
 #: application/views/stationsetup/stationsetup.php:170
 #: application/views/themes/index.php:104 application/views/user/index.php:97
 #: application/views/user/index.php:203
+#: application/views/stationsetup/stationsetup.php:134
+#: application/views/stationsetup/stationsetup.php:172
 msgid "Edit"
 msgstr "Bearbeiten"
 
@@ -2382,6 +2388,8 @@ msgstr "Bearbeiten"
 #: application/views/stationsetup/stationsetup.php:197
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:778
+#: application/views/stationsetup/stationsetup.php:143
+#: application/views/stationsetup/stationsetup.php:199
 msgid "Delete"
 msgstr "Löschen"
 
@@ -2657,6 +2665,7 @@ msgstr "Bist Du Dir sicher die Kurz-URL zu löschen?"
 
 #: application/controllers/Stationsetup.php:391
 #: application/views/stationsetup/stationsetup.php:159
+#: application/views/stationsetup/stationsetup.php:161
 msgid ""
 "Are you sure you want to make the following station the active station: "
 msgstr ""
@@ -2665,11 +2674,13 @@ msgstr ""
 
 #: application/controllers/Stationsetup.php:391
 #: application/views/stationsetup/stationsetup.php:159
+#: application/views/stationsetup/stationsetup.php:161
 msgid "Set Active"
 msgstr "Aktivieren"
 
 #: application/controllers/Stationsetup.php:393
 #: application/views/stationsetup/stationsetup.php:161
+#: application/views/stationsetup/stationsetup.php:163
 msgid "Active Station"
 msgstr "Aktive Station"
 
@@ -2680,11 +2691,13 @@ msgstr "Aktive Station"
 #: application/views/stationsetup/stationsetup.php:166
 #: application/views/user/index.php:82 application/views/user/index.php:86
 #: application/views/user/index.php:193 application/views/user/index.php:195
+#: application/views/stationsetup/stationsetup.php:168
 msgid "QSO"
 msgstr "QSO"
 
 #: application/controllers/Stationsetup.php:405
 #: application/views/stationsetup/stationsetup.php:190
+#: application/views/stationsetup/stationsetup.php:192
 msgid "Are you sure you want to delete all QSOs within this station profile?"
 msgstr ""
 "Bist du sicher, dass du alle QSOs an diesem Stationsstandort löschen "
@@ -2693,17 +2706,22 @@ msgstr ""
 #: application/controllers/Stationsetup.php:405
 #: application/views/stationsetup/stationsetup.php:140
 #: application/views/stationsetup/stationsetup.php:192
+#: application/views/stationsetup/stationsetup.php:142
+#: application/views/stationsetup/stationsetup.php:194
 msgid "Empty Log"
 msgstr "Lösche Log"
 
 #: application/controllers/Stationsetup.php:409
 #: application/views/stationsetup/stationsetup.php:133
 #: application/views/stationsetup/stationsetup.php:173
+#: application/views/stationsetup/stationsetup.php:135
+#: application/views/stationsetup/stationsetup.php:175
 msgid "Copy"
 msgstr "Kopieren"
 
 #: application/controllers/Stationsetup.php:414
 #: application/views/stationsetup/stationsetup.php:196
+#: application/views/stationsetup/stationsetup.php:198
 #, php-format
 msgid ""
 "Are you sure you want delete station profile '%s'? This will delete all QSOs "
@@ -2718,6 +2736,7 @@ msgstr ""
 #: application/views/station_profile/edit.php:103
 #: application/views/stationsetup/stationsetup.php:154
 #: application/views/user/modals/first_login_wizard.php:46
+#: application/views/stationsetup/stationsetup.php:156
 msgid "Please select one"
 msgstr "Bitte wähle eines"
 
@@ -3030,6 +3049,7 @@ msgstr "Stationsname"
 #: application/views/stationsetup/linkedlocations.php:32
 #: application/views/stationsetup/stationsetup.php:126
 #: application/views/user/modals/first_login_wizard.php:34
+#: application/views/stationsetup/stationsetup.php:128
 msgid "Station Callsign"
 msgstr "Stationsrufzeichen"
 
@@ -4503,6 +4523,7 @@ msgstr "Die max. Dateigröße für Uploads beträgt "
 #: application/views/view_log/qso.php:787
 #: application/views/webadif/export.php:34
 #: application/views/webadif/export.php:94
+#: application/views/stationsetup/stationsetup.php:116
 msgid "Warning"
 msgstr "Warnung"
 
@@ -7557,6 +7578,7 @@ msgstr "Erstes QSO"
 
 #: application/views/callstats/index.php:150
 #: application/views/stationsetup/stationsetup.php:129
+#: application/views/stationsetup/stationsetup.php:131
 msgid "Last QSO"
 msgstr "Letztes QSO"
 
@@ -8380,6 +8402,7 @@ msgstr "Cron-Liste"
 
 #: application/views/cron/index.php:65
 #: application/views/stationsetup/stationsetup.php:124
+#: application/views/stationsetup/stationsetup.php:126
 msgid "ID"
 msgstr "ID"
 
@@ -9822,8 +9845,8 @@ msgstr ""
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
-"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an eQSL."
-"cc."
+"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an "
+"eQSL.cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -10455,6 +10478,7 @@ msgstr "Satellitenüberflug"
 
 #: application/views/interface_assets/header.php:303
 #: application/views/stationsetup/stationsetup.php:116
+#: application/views/stationsetup/stationsetup.php:118
 msgid "Admin"
 msgstr "Admin"
 
@@ -12116,8 +12140,8 @@ msgstr "E-Mail Adresse"
 msgid ""
 "The email address from which the emails are sent, e.g. 'wavelog@example.com'"
 msgstr ""
-"Die E-Mail Adresse von der die Mails versendet werden, z.B. 'wavelog@example."
-"com'"
+"Die E-Mail Adresse von der die Mails versendet werden, z.B. "
+"'wavelog@example.com'"
 
 #: application/views/options/email.php:80
 msgid "SMTP Host"
@@ -14312,9 +14336,9 @@ msgid ""
 msgstr ""
 "Um zu beginnen, stelle sicher, dass du die Felder auf der linken Seite "
 "bereits mit Datum, Stationsrufzeichen/-standort und Rufzeichen des Operators "
-"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, z."
-"B. '7.145'), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
-"wesentlichen das Rufzeichen ist."
+"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, "
+"z.B. '7.145'), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was "
+"im wesentlichen das Rufzeichen ist."
 
 #: application/views/simplefle/syntax_help.php:9
 msgid "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB."
@@ -14852,6 +14876,7 @@ msgstr "Verknüpfe Standort"
 
 #: application/views/stationsetup/linkedlocations.php:31
 #: application/views/stationsetup/stationsetup.php:125
+#: application/views/stationsetup/stationsetup.php:127
 msgid "Profile Name"
 msgstr "Station Name"
 
@@ -14919,6 +14944,7 @@ msgid "Create a Station Location"
 msgstr "Erstelle einen neuen Stationsstandort"
 
 #: application/views/stationsetup/stationsetup.php:104
+#: application/views/stationsetup/stationsetup.php:105
 msgid "Show all locations"
 msgstr "Zeige alle Standorte"
 
@@ -14927,6 +14953,7 @@ msgid "Show only locations from the active logbook"
 msgstr "Zeige nur Standorte vom aktiven Logbuch"
 
 #: application/views/stationsetup/stationsetup.php:108
+#: application/views/stationsetup/stationsetup.php:110
 msgid ""
 "Attention: You need to set an active station location. Go to Callsign-"
 ">Station Location to select one."
@@ -14935,6 +14962,7 @@ msgstr ""
 "Rufzeichen -> Stationsstandorte um einen zu aktivieren."
 
 #: application/views/stationsetup/stationsetup.php:114
+#: application/views/stationsetup/stationsetup.php:116
 msgid ""
 "Due to recent changes within Wavelog you need to reassign QSOs to your "
 "station profiles."
@@ -14943,22 +14971,27 @@ msgstr ""
 "Stationsstandort zuordnen."
 
 #: application/views/stationsetup/stationsetup.php:116
+#: application/views/stationsetup/stationsetup.php:118
 msgid "Maintenance"
 msgstr "Wartung"
 
 #: application/views/stationsetup/stationsetup.php:116
+#: application/views/stationsetup/stationsetup.php:118
 msgid "Please reassign them at "
 msgstr "Bitte mache die Zuordnung in "
 
 #: application/views/stationsetup/stationsetup.php:131
+#: application/views/stationsetup/stationsetup.php:133
 msgid "Linked"
 msgstr "Verlinkt"
 
 #: application/views/stationsetup/stationsetup.php:138
+#: application/views/stationsetup/stationsetup.php:140
 msgid "Favorite"
 msgstr "Favorit"
 
 #: application/views/stationsetup/stationsetup.php:185
+#: application/views/stationsetup/stationsetup.php:187
 msgid "mark/unmark as favorite"
 msgstr "markiere/demarkiere als Favorit"
 
@@ -15142,9 +15175,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Erstelle einen neuen Ordner in 'assets/css/' und lade eine 'bootstrap.min."
-"css' Datei hoch, welche die grundlegende Styling-Regeln enthält. Wir "
-"verwenden die Themes von %s"
+"Erstelle einen neuen Ordner in 'assets/css/' und lade eine "
+"'bootstrap.min.css' Datei hoch, welche die grundlegende Styling-Regeln "
+"enthält. Wir verwenden die Themes von %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -16658,6 +16691,14 @@ msgstr "Anfrage senden"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Rcvd"
+
+#: application/controllers/Stationsetup.php:526
+msgid "Station location list"
+msgstr ""
+
+#: application/views/stationsetup/stationsetup.php:106
+msgid "Show a location list"
+msgstr ""
 
 #~ msgid "VUCCGrids"
 #~ msgstr "VUCC-Planquadrate"

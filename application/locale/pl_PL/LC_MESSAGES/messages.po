@@ -18,14 +18,14 @@ msgstr ""
 "POT-Creation-Date: 2025-10-26 12:27+0000\n"
 "PO-Revision-Date: 2025-10-27 12:55+0000\n"
 "Last-Translator: Szymon <sp9spm@cqops.com>\n"
-"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/pl/>\n"
+"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/pl/>\n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && "
-"(n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 5.14\n"
 
 #: application/controllers/Accumulated.php:12
@@ -1537,6 +1537,7 @@ msgstr "RST (R)"
 #: application/views/view_log/qso.php:337
 #: application/views/view_log/qso.php:693
 #: application/views/visitor/index.php:15
+#: application/views/stationsetup/stationsetup.php:129
 msgid "Country"
 msgstr "Kraj"
 
@@ -1638,6 +1639,7 @@ msgstr "Stan"
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/view_log/qso.php:680
 #: application/views/visitor/index.php:27
+#: application/views/stationsetup/stationsetup.php:130
 msgid "Gridsquare"
 msgstr "Lokator"
 
@@ -1829,6 +1831,8 @@ msgstr "Operator"
 #: application/views/view_log/partial/log_ajax.php:31
 #: application/views/view_log/qso.php:341
 #: application/views/view_log/qso.php:694
+#: application/views/stationsetup/locationlist.php:51
+#: application/views/stationsetup/stationsetup.php:156
 msgid "Deleted DXCC"
 msgstr "Usunięte DXCC"
 
@@ -2348,6 +2352,8 @@ msgstr "Domyślnie (kliknij, aby zwolnić)"
 #: application/views/stationsetup/stationsetup.php:170
 #: application/views/themes/index.php:104 application/views/user/index.php:97
 #: application/views/user/index.php:203
+#: application/views/stationsetup/stationsetup.php:134
+#: application/views/stationsetup/stationsetup.php:172
 msgid "Edit"
 msgstr "Edytuj"
 
@@ -2377,6 +2383,8 @@ msgstr "Edytuj"
 #: application/views/stationsetup/stationsetup.php:197
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:778
+#: application/views/stationsetup/stationsetup.php:143
+#: application/views/stationsetup/stationsetup.php:199
 msgid "Delete"
 msgstr "Usuń"
 
@@ -2651,17 +2659,20 @@ msgstr "Czy na pewno usunąć publiczny identyfikator?"
 
 #: application/controllers/Stationsetup.php:391
 #: application/views/stationsetup/stationsetup.php:159
+#: application/views/stationsetup/stationsetup.php:161
 msgid ""
 "Are you sure you want to make the following station the active station: "
 msgstr "Czy na pewno ustawić następującą stację jako aktywną stację: "
 
 #: application/controllers/Stationsetup.php:391
 #: application/views/stationsetup/stationsetup.php:159
+#: application/views/stationsetup/stationsetup.php:161
 msgid "Set Active"
 msgstr "Aktywuj"
 
 #: application/controllers/Stationsetup.php:393
 #: application/views/stationsetup/stationsetup.php:161
+#: application/views/stationsetup/stationsetup.php:163
 msgid "Active Station"
 msgstr "Aktywna stacja"
 
@@ -2672,28 +2683,35 @@ msgstr "Aktywna stacja"
 #: application/views/stationsetup/stationsetup.php:166
 #: application/views/user/index.php:82 application/views/user/index.php:86
 #: application/views/user/index.php:193 application/views/user/index.php:195
+#: application/views/stationsetup/stationsetup.php:168
 msgid "QSO"
 msgstr "QSO"
 
 #: application/controllers/Stationsetup.php:405
 #: application/views/stationsetup/stationsetup.php:190
+#: application/views/stationsetup/stationsetup.php:192
 msgid "Are you sure you want to delete all QSOs within this station profile?"
 msgstr "Czy na pewno usunąć wszystkie QSO w tym profilu stacji?"
 
 #: application/controllers/Stationsetup.php:405
 #: application/views/stationsetup/stationsetup.php:140
 #: application/views/stationsetup/stationsetup.php:192
+#: application/views/stationsetup/stationsetup.php:142
+#: application/views/stationsetup/stationsetup.php:194
 msgid "Empty Log"
 msgstr "Wyczyść dziennik"
 
 #: application/controllers/Stationsetup.php:409
 #: application/views/stationsetup/stationsetup.php:133
 #: application/views/stationsetup/stationsetup.php:173
+#: application/views/stationsetup/stationsetup.php:135
+#: application/views/stationsetup/stationsetup.php:175
 msgid "Copy"
 msgstr "Kopiuj"
 
 #: application/controllers/Stationsetup.php:414
 #: application/views/stationsetup/stationsetup.php:196
+#: application/views/stationsetup/stationsetup.php:198
 #, php-format
 msgid ""
 "Are you sure you want delete station profile '%s'? This will delete all QSOs "
@@ -2708,6 +2726,7 @@ msgstr ""
 #: application/views/station_profile/edit.php:103
 #: application/views/stationsetup/stationsetup.php:154
 #: application/views/user/modals/first_login_wizard.php:46
+#: application/views/stationsetup/stationsetup.php:156
 msgid "Please select one"
 msgstr "Należy wybrać jeden"
 
@@ -3020,6 +3039,7 @@ msgstr "Nazwa Stacji"
 #: application/views/stationsetup/linkedlocations.php:32
 #: application/views/stationsetup/stationsetup.php:126
 #: application/views/user/modals/first_login_wizard.php:34
+#: application/views/stationsetup/stationsetup.php:128
 msgid "Station Callsign"
 msgstr "Znak Stacji"
 
@@ -4489,6 +4509,7 @@ msgstr "Maksymalny rozmiar przesyłanego pliku to "
 #: application/views/view_log/qso.php:787
 #: application/views/webadif/export.php:34
 #: application/views/webadif/export.php:94
+#: application/views/stationsetup/stationsetup.php:116
 msgid "Warning"
 msgstr "Ostrzeżenie"
 
@@ -6755,8 +6776,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Pola brane pod uwagę przy tej nagrodzie: DXCC (musi być jednym z: Chiny/318, "
-"Hongkong/321, Makau/152, Tajwan/386, Wyspa Pratas/505 lub Rafa "
-"Scarborough/506) oraz ważny stan (ADIF: DXCC i STATE)"
+"Hongkong/321, Makau/152, Tajwan/386, Wyspa Pratas/505 lub Rafa Scarborough/"
+"506) oraz ważny stan (ADIF: DXCC i STATE)"
 
 #: application/views/awards/wapc/index.php:119
 msgid "Code"
@@ -7538,6 +7559,7 @@ msgstr "Pierwsze QSO"
 
 #: application/views/callstats/index.php:150
 #: application/views/stationsetup/stationsetup.php:129
+#: application/views/stationsetup/stationsetup.php:131
 msgid "Last QSO"
 msgstr "Ostatnie QSO"
 
@@ -8357,6 +8379,7 @@ msgstr "Lista Cron"
 
 #: application/views/cron/index.php:65
 #: application/views/stationsetup/stationsetup.php:124
+#: application/views/stationsetup/stationsetup.php:126
 msgid "ID"
 msgstr "ID"
 
@@ -9108,8 +9131,8 @@ msgid ""
 "Go to your application/config Folder and compare config.sample.php with your "
 "config.php"
 msgstr ""
-"Należy przejść do folderu application/config i porównać plik config.sample."
-"php z plikiem config.php"
+"Należy przejść do folderu application/config i porównać plik "
+"config.sample.php z plikiem config.php"
 
 #: application/views/debug/index.php:197
 #, php-format
@@ -10426,6 +10449,7 @@ msgstr "Satelity - przeloty"
 
 #: application/views/interface_assets/header.php:303
 #: application/views/stationsetup/stationsetup.php:116
+#: application/views/stationsetup/stationsetup.php:118
 msgid "Admin"
 msgstr "Administracja"
 
@@ -14814,6 +14838,7 @@ msgstr "Połącz lokalizację"
 
 #: application/views/stationsetup/linkedlocations.php:31
 #: application/views/stationsetup/stationsetup.php:125
+#: application/views/stationsetup/stationsetup.php:127
 msgid "Profile Name"
 msgstr "Nazwa profilu"
 
@@ -14878,6 +14903,7 @@ msgid "Create a Station Location"
 msgstr "Utwórz lokalizację stacji"
 
 #: application/views/stationsetup/stationsetup.php:104
+#: application/views/stationsetup/stationsetup.php:105
 msgid "Show all locations"
 msgstr "Pokaż wszystkie lokalizacje stacji"
 
@@ -14886,6 +14912,7 @@ msgid "Show only locations from the active logbook"
 msgstr "Pokaż tylko lokalizacje z aktywnego dziennika"
 
 #: application/views/stationsetup/stationsetup.php:108
+#: application/views/stationsetup/stationsetup.php:110
 msgid ""
 "Attention: You need to set an active station location. Go to Callsign-"
 ">Station Location to select one."
@@ -14894,6 +14921,7 @@ msgstr ""
 "Wywoławczy → Lokalizacja Stacji, aby ją wybrać."
 
 #: application/views/stationsetup/stationsetup.php:114
+#: application/views/stationsetup/stationsetup.php:116
 msgid ""
 "Due to recent changes within Wavelog you need to reassign QSOs to your "
 "station profiles."
@@ -14902,22 +14930,27 @@ msgstr ""
 "(QSO) do profili stacji."
 
 #: application/views/stationsetup/stationsetup.php:116
+#: application/views/stationsetup/stationsetup.php:118
 msgid "Maintenance"
 msgstr "Konserwacja"
 
 #: application/views/stationsetup/stationsetup.php:116
+#: application/views/stationsetup/stationsetup.php:118
 msgid "Please reassign them at "
 msgstr "Przepisz je na "
 
 #: application/views/stationsetup/stationsetup.php:131
+#: application/views/stationsetup/stationsetup.php:133
 msgid "Linked"
 msgstr "Połączone"
 
 #: application/views/stationsetup/stationsetup.php:138
+#: application/views/stationsetup/stationsetup.php:140
 msgid "Favorite"
 msgstr "Ulubione"
 
 #: application/views/stationsetup/stationsetup.php:185
+#: application/views/stationsetup/stationsetup.php:187
 msgid "mark/unmark as favorite"
 msgstr "oznacz/odznacz jako ulubione"
 
@@ -16608,6 +16641,14 @@ msgstr "Prześlij prośbę"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Rcvd"
+
+#: application/controllers/Stationsetup.php:526
+msgid "Station location list"
+msgstr ""
+
+#: application/views/stationsetup/stationsetup.php:106
+msgid "Show a location list"
+msgstr ""
 
 #, php-format
 #~ msgctxt "LoTW Warning"
