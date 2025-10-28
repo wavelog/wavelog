@@ -46,7 +46,7 @@
                             <td><?php echo $loc->station_callsign; ?></td>
                             <td><?php echo $loc->station_gridsquare; ?></td>
                             <td><?php echo $loc->station_city; ?></td>
-                            <td><?php echo ucwords(strtolower($loc->dxccname), "- (/") . ' (' . $loc->dxccprefix . ') '; ?>
+                            <td><?php echo ucwords(strtolower($loc->dxccname), "- (/") . ($loc->dxccprefix ? ' (' . $loc->dxccprefix . ') ' : ''); ?>
                             <?php if (isset($loc->end)) {
 								echo '<span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>';
 							} ?>
