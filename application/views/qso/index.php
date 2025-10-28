@@ -828,10 +828,19 @@ switch ($date_format) {
 
     <?php if ($this->session->userdata('user_show_profile_image')) { ?>
     <div class="card callsign-image" id="callsign-image" style="display: none;">
-        <div class="card-header"><h4 style="font-size: 16px; font-weight: bold;" class="card-title"><?= __("Profile Picture"); ?></h4></div>
+        <div class="card-header">
+            <h4 style="font-size: 16px; font-weight: bold;" class="card-title mb-0">
+                <?= __("QSO Partner's Profile"); ?>
+                <span class="ms-1" data-bs-toggle="tooltip" title="<?= __("Profile picture and data fetched from third-party services. This information is not stored on your Wavelog instance.") ?>">
+                    <i class="fa fa-question-circle"></i>
+                </span>
+            </h4>
+        </div>
 
-        <div class="card-body callsign-image">
-            <div class="callsign-image-content" id="callsign-image-content">
+        <div class="card-body callsign-image d-flex gap-3">
+            <div class="callsign-image-content" id="callsign-image-content" style="flex-shrink: 0; max-width: 100%;">
+            </div>
+            <div class="callsign-image-info" id="callsign-image-info" style="flex-grow: 1; min-width: 0; display: none;">
             </div>
         </div>
     </div>

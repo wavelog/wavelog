@@ -5,6 +5,52 @@ var scps = [];
 let lookupCall = null;
 let preventLookup = false;
 
+// Calculate local time based on GMT offset
+function calculateLocalTime(gmtOffset) {
+	let now = new Date();
+	let utcTime = now.getTime() + (now.getTimezoneOffset() * 60000);
+	let localTime = new Date(utcTime + (3600000 * gmtOffset));
+
+	let hours = ("0" + localTime.getHours()).slice(-2);
+	let minutes = ("0" + localTime.getMinutes()).slice(-2);
+
+	return hours + ':' + minutes;
+}
+
+// Check and update profile info visibility based on available width
+function checkProfileInfoVisibility() {
+	if ($('#callsign-image').is(':visible') && $('#callsign-image-info').html().trim() !== '') {
+		// Additional validation: check if profile data matches current callsign
+		let currentCallsign = $('#callsign').val().toUpperCase().replaceAll('Ø', '0');
+		let profileCallsign = $('#callsign-image').attr('data-profile-callsign') || '';
+
+		if (currentCallsign !== profileCallsign) {
+			// Callsign mismatch, hide the profile panel
+			console.log('Profile callsign mismatch during visibility check - hiding panel');
+			$('#callsign-image').attr('style', 'display: none;');
+			$('#callsign-image-info').html("");
+			$('#callsign-image-info').hide();
+			return;
+		}
+
+		let cardBody = $('.card-body.callsign-image');
+		let imageWidth = $('#callsign-image-content').outerWidth() || 0;
+		let cardWidth = cardBody.width() || 0;
+		let availableWidth = cardWidth - imageWidth - 24; // Subtract gap (24px for gap-3)
+
+		if (availableWidth >= 200) {
+			$('#callsign-image-info').show();
+		} else {
+			$('#callsign-image-info').hide();
+		}
+	}
+}
+
+// Attach resize listener for profile info visibility
+$(window).on('resize', function() {
+	checkProfileInfoVisibility();
+});
+
 // if the dxcc id changes we need to update the state dropdown and clear the county value to avoid wrong data
 $("#dxcc_id").on('change', function () {
 	updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputQso');
@@ -957,6 +1003,8 @@ function reset_fields() {
 	$('#callsign_info').removeClass("text-bg-danger");
 	$('#callsign-image').attr('style', 'display: none;');
 	$('#callsign-image-content').text("");
+	$('#callsign-image-info').html("");
+	$('#callsign-image-info').hide();
 	$("#operator_callsign").val(activeStationOP);
 	$('#qsl_via').val("");
 	$('#callsign_info').text("");
@@ -1308,19 +1356,29 @@ $("#callsign").on("focusout", function () {
 					$('#name').val(result.callsign_name);
 				}
 
-				/* Find Operators E-mail */
-				if ($('#email').val() == "") {
+			/* Find Operators E-mail */
+			if ($('#email').val() == "") {
+				// Validate that we're setting email for the correct callsign
+				let currentCallsign = $('#callsign').val().toUpperCase().replaceAll('Ø', '0');
+				let resultCallsign = result.callsign.toUpperCase();
+
+				if (currentCallsign === resultCallsign) {
 					$('#email').val(result.callsign_email);
 				}
+			}
 
-				// Show email icon if email is available
-				if (result.callsign_email && result.callsign_email.trim() !== "") {
+			// Show email icon if email is available
+			if (result.callsign_email && result.callsign_email.trim() !== "") {
+				// Validate callsign match before showing email icon
+				let currentCallsign = $('#callsign').val().toUpperCase().replaceAll('Ø', '0');
+				let resultCallsign = result.callsign.toUpperCase();
+
+				if (currentCallsign === resultCallsign) {
 					$('#email_info').html('<a href="mailto:' + result.callsign_email + '" style="color: inherit; text-decoration: none;"><i class="fas fa-envelope" style="font-size: 20px;"></i></a>');
 					$('#email_info').attr('title', lang_qso_send_email_to.replace('%s', result.callsign_email)).removeClass('d-none');
 					$('#email_info').show();
 				}
-
-				if ($('#continent').val() == "") {
+			}				if ($('#continent').val() == "") {
 					$('#continent').val(result.dxcc.cont);
 				}
 
@@ -1328,13 +1386,169 @@ $("#callsign").on("focusout", function () {
 					$('#qth').val(result.callsign_qth);
 				}
 
-				/* Find link to qrz.com picture */
-				if (result.image != "n/a") {
-					$('#callsign-image-content').html('<img class="callsign-image-pic" href="' + result.image + '" data-fancybox="images" src="' + result.image + '" style="cursor: pointer;">');
-					$('#callsign-image').attr('style', 'display: true;');
+			/* Find link to qrz.com picture */
+			if (result.image != "n/a") {
+				// Verify that the result still matches the current callsign to prevent stale data
+				let currentCallsign = $('#callsign').val().toUpperCase().replaceAll('Ø', '0');
+				let resultCallsign = result.callsign.toUpperCase();
+
+				if (currentCallsign !== resultCallsign) {
+					// Callsign changed, don't display stale profile data
+					return;
 				}
 
-				/*
+				$('#callsign-image-content').html('<img class="callsign-image-pic" href="' + result.image + '" data-fancybox="images" src="' + result.image + '" style="cursor: pointer;">');
+
+				// Store which callsign this profile data belongs to
+				$('#callsign-image').attr('data-profile-callsign', resultCallsign);
+
+				// Build comprehensive profile information
+				let profileInfo = '';				// Name line: Name Nickname Lastname
+				let nameParts = [];
+				if (result.profile_fname) nameParts.push(result.profile_fname);
+				if (result.profile_nickname) nameParts.push('"' + result.profile_nickname + '"');
+				if (result.profile_name_last) nameParts.push(result.profile_name_last);
+				if (nameParts.length > 0) {
+					profileInfo += '<p class="mb-1"><strong>' + nameParts.join(' ') + '</strong></p>';
+				}
+
+				// Aliases
+				if (result.profile_aliases) {
+					profileInfo += '<p class="mb-1 text-muted" style="font-size: 0.85rem;">' + lang_qso_profile_aliases + ': ' + result.profile_aliases + '</p>';
+				}
+
+				// Previous call
+				if (result.profile_p_call) {
+					profileInfo += '<p class="mb-1 text-muted" style="font-size: 0.85rem;">' + lang_qso_profile_previously + ': ' + result.profile_p_call + '</p>';
+				}
+
+				// Address information
+				let addressParts = [];
+				if (result.profile_addr1) addressParts.push(result.profile_addr1);
+				// Zip code before city (addr2), no comma after zip
+				if (result.profile_zip && result.profile_addr2) {
+					addressParts.push(result.profile_zip + ' ' + result.profile_addr2);
+				} else {
+					if (result.profile_zip) addressParts.push(result.profile_zip);
+					if (result.profile_addr2) addressParts.push(result.profile_addr2);
+				}
+				if (result.profile_state) addressParts.push(result.profile_state);
+				if (result.profile_country) addressParts.push(result.profile_country);
+
+				if (addressParts.length > 0) {
+					let addressText = addressParts.join(', ');
+					profileInfo += '<p class="mb-1" style="font-size: 0.875rem;"><i class="fas fa-map-marker-alt me-1"></i>' + addressText;
+
+					// Google Maps link if coordinates available with pin marker
+					if (result.profile_lat && result.profile_lon) {
+						let mapsUrl = 'https://www.google.com/maps/place/' + result.profile_lat + ',' + result.profile_lon + '/@' + result.profile_lat + ',' + result.profile_lon + ',15z/data=!3m1!1e3';
+						profileInfo += ' <a href="' + mapsUrl + '" target="_blank" title="' + lang_qso_profile_view_location_maps + '"><i class="fas fa-map"></i></a>';
+					}
+					profileInfo += '</p>';
+				}
+				// Born (with age calculation)
+				if (result.profile_born) {
+					let currentYear = new Date().getFullYear();
+					let age = currentYear - parseInt(result.profile_born);
+					profileInfo += '<p class="mb-1" style="font-size: 0.875rem;"><i class="fas fa-birthday-cake me-1"></i>' + lang_qso_profile_born + ': ' + result.profile_born + ' (' + age + ' ' + lang_qso_profile_years_old + ')</p>';
+				}
+
+				// License information
+				if (result.profile_class || result.profile_efdate || result.profile_expdate) {
+					let licenseText = '<i class="fas fa-certificate me-1"></i>';
+					if (result.profile_class) {
+						// Map common license class codes to readable names
+						let licenseMap = {
+							'1': lang_qso_profile_license_novice,
+							'2': lang_qso_profile_license_technician,
+							'3': lang_qso_profile_license_general,
+							'4': lang_qso_profile_license_advanced,
+							'5': lang_qso_profile_license_extra,
+							'E': lang_qso_profile_license_extra,
+							'A': lang_qso_profile_license_advanced,
+							'G': lang_qso_profile_license_general,
+							'T': lang_qso_profile_license_technician,
+							'N': lang_qso_profile_license_novice
+						};
+						let licenseDisplay = licenseMap[result.profile_class] || result.profile_class;
+						licenseText += lang_qso_profile_license + ': ' + licenseDisplay;
+					}
+
+					if (result.profile_efdate) {
+						let efYear = result.profile_efdate.substring(0, 4);
+						let yearsLicensed = new Date().getFullYear() - parseInt(efYear);
+						licenseText += ' ' + lang_qso_profile_from + ' ' + efYear + ' (' + yearsLicensed + ' ' + lang_qso_profile_years + ')';
+					}
+
+					if (result.profile_expdate) {
+						let expYear = result.profile_expdate.substring(0, 4);
+						let currentYear = new Date().getFullYear();
+						if (parseInt(expYear) < currentYear) {
+							licenseText += ' <span class="text-danger">' + lang_qso_profile_expired_on + ' ' + expYear + '</span>';
+						}
+					}
+
+					profileInfo += '<p class="mb-1" style="font-size: 0.875rem;">' + licenseText + '</p>';
+				}
+
+					// Website link
+					if (result.profile_url) {
+						profileInfo += '<p class="mb-1" style="font-size: 0.875rem;"><i class="fas fa-globe me-1"></i><a href="' + result.profile_url + '" target="_blank">' + lang_qso_profile_website + '</a></p>';
+					}
+
+					// Local time (will be auto-updated)
+					if (result.profile_GMTOffset) {
+						let offsetHours = parseFloat(result.profile_GMTOffset);
+						let localTime = calculateLocalTime(offsetHours);
+						profileInfo += '<p class="mb-1" id="profile-local-time" style="font-size: 0.875rem;"><i class="fas fa-clock me-1"></i>' + lang_qso_profile_local_time + ': ' + localTime + '</p>';
+
+						// Set up auto-update every minute
+						setInterval(function() {
+							let updatedTime = calculateLocalTime(offsetHours);
+							$('#profile-local-time').html('<i class="fas fa-clock me-1"></i>' + lang_qso_profile_local_time + ': ' + updatedTime);
+						}, 60000);
+					}
+
+					// QSL information
+					let qslInfo = '<i class="fas fa-envelope me-1"></i>' + lang_qso_profile_qsl + ': ';
+					let qslMethodsIcons = [];
+
+					// Build QSL methods icons list
+					// Green checkmark for 1, red cross for 0, question mark for empty
+					let eqslIcon = result.profile_eqsl == '1' ? '<i class="fas fa-check-circle text-success"></i>' :
+								result.profile_eqsl == '0' ? '<i class="fas fa-times-circle text-danger"></i>' :
+								'<i class="fas fa-question-circle text-warning"></i>';
+					let lotwIcon = result.profile_lotw == '1' ? '<i class="fas fa-check-circle text-success"></i>' :
+								result.profile_lotw == '0' ? '<i class="fas fa-times-circle text-danger"></i>' :
+								'<i class="fas fa-question-circle text-warning"></i>';
+					let mqslIcon = result.profile_mqsl == '1' ? '<i class="fas fa-check-circle text-success"></i>' :
+								result.profile_mqsl == '0' ? '<i class="fas fa-times-circle text-danger"></i>' :
+								'<i class="fas fa-question-circle text-warning"></i>';
+
+					qslMethodsIcons.push('QSL: ' + mqslIcon);
+					qslMethodsIcons.push('LoTW: ' + lotwIcon);
+					qslMethodsIcons.push('eQSL: ' + eqslIcon);
+
+					// Display manager info as-is from QRZ (e.g., "QSL only via LOTW and QRZ.com")
+					if (result.profile_qslmgr) {
+						qslInfo += result.profile_qslmgr;
+						qslInfo += '<br><span style="font-size: 0.85rem;">(' + qslMethodsIcons.join(', ') + ')</span>';
+					} else {
+						qslInfo += qslMethodsIcons.join(', ');
+					}
+
+					profileInfo += '<p class="mb-0" style="font-size: 0.875rem;">' + qslInfo + '</p>';				$('#callsign-image-info').html(profileInfo);
+
+					// Show the panel first so we can measure it
+					$('#callsign-image').attr('style', 'display: true;');
+
+					// Wait for next frame to ensure rendering, then check available width
+					setTimeout(function() {
+						checkProfileInfoVisibility();
+					}, 10);
+				}
+
+					/*
 					* Update state with returned value
 					*/
 				if ($("#stateDropdown").val() == "") {

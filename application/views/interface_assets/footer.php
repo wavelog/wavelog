@@ -93,6 +93,23 @@
 	var lang_qso_lookup_summit_info = "<?= __("Lookup %s summit info on %s"); ?>";
 	var lang_qso_lookup_reference_info = "<?= __("Lookup %s reference info on %s"); ?>";
 	var lang_qso_error_loading_bearing = "<?= __("Error loading bearing!"); ?>";
+	var lang_qso_profile_aliases = "<?= __("Aliases"); ?>";
+	var lang_qso_profile_previously = "<?= __("Previously"); ?>";
+	var lang_qso_profile_born = "<?= __("Born"); ?>";
+	var lang_qso_profile_years_old = "<?= __("years old"); ?>";
+	var lang_qso_profile_license = "<?= __("License"); ?>";
+	var lang_qso_profile_from = "<?= __("from"); ?>";
+	var lang_qso_profile_years = "<?= __("years"); ?>";
+	var lang_qso_profile_expired_on = "<?= __("expired on"); ?>";
+	var lang_qso_profile_website = "<?= __("Website"); ?>";
+	var lang_qso_profile_local_time = "<?= __("Local time"); ?>";
+	var lang_qso_profile_qsl = "<?= __("QSL"); ?>";
+	var lang_qso_profile_view_location_maps = "<?= __("View location on Google Maps (Satellite)"); ?>";
+	var lang_qso_profile_license_novice = "<?= __("Novice"); ?>";
+	var lang_qso_profile_license_technician = "<?= __("Technician"); ?>";
+	var lang_qso_profile_license_general = "<?= __("General"); ?>";
+	var lang_qso_profile_license_advanced = "<?= __("Advanced"); ?>";
+	var lang_qso_profile_license_extra = "<?= __("Extra"); ?>";
 	var lang_qso_gridsquare_formatting = "<?= __("Gridsquare Formatting"); ?>";
 	var lang_qso_gridsquare_help = "<?= __("Enter multiple (4-digit) grids separated with commas. For example: IO77,IO78"); ?>";
 </script>
