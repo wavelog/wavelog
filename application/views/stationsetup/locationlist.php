@@ -25,14 +25,14 @@
                         <th>SIG</th>
                         <th>SIG Info</th>
                         <th>eQSL Nickname</th>
-                        <th>QRZ Live</th>
+                        <th>QRZ realtime upload</th>
                         <th>OQRS enabled</th>
                         <th>OQRS Text</th>
                         <th>OQRS Email alert</th>
-                        <th>Web ADIF Live</th>
-                        <th>ClubLog Live</th>
+                        <th>QO-100 DX Club realtime upload</th>
+                        <th>ClubLog realtime upload</th>
                         <th>ClubLog Ignore</th>
-                        <th>HRDLog Live</th>
+                        <th>HRDLog realtime upload</th>
                         <th>Created</th>
                         <th>Last Modified</th>
                     </tr>
