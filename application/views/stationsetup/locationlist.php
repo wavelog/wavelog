@@ -5,7 +5,8 @@
 			<table style="width:100%" class="table-sm table table-bordered table-hover table-striped table-condensed text-center">
                 <thead class="table-primary">
                     <tr>
-                        <th>Active</th>
+                        <th>ID</th>
+						<th>Active</th>
                         <th>Name</th>
                         <th>Callsign</th>
                         <th>Grid</th>
@@ -39,6 +40,7 @@
                 <tbody>
                     <?php foreach ($locations as $loc): ?>
                         <tr>
+							<td><?php echo $loc->station_id; ?></td>
                             <td><?php echo $loc->station_active ? 'Yes' : 'No' ?></td>
                             <td><a href="http://localhost/wavelog/station/edit/<?php echo $loc->station_id; ?>"><?php echo $loc->station_profile_name; ?></a></td>
                             <td><?php echo $loc->station_callsign; ?></td>
