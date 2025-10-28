@@ -24,6 +24,7 @@
                         <th>SIG</th>
                         <th>SIG Info</th>
                         <th>eQSL Nickname</th>
+						<th>eQSL default QSLmsg</th>
                         <th>QRZ realtime upload</th>
                         <th>OQRS enabled</th>
                         <th>OQRS Text</th>
@@ -62,6 +63,7 @@
                             <td><?php echo $loc->station_sig; ?></td>
                             <td><?php echo $loc->station_sig_info; ?></td>
                             <td><?php echo $loc->eqslqthnickname; ?></td>
+							<td><?php echo $loc->eqsl_default_qslmsg; ?></td>
                             <td><?php echo $loc->qrzrealtime ? 'Yes' : 'No'; ?></td>
                             <td><?php echo $loc->oqrs ? 'Yes' : 'No'; ?></td>
                             <td><?php echo $loc->oqrs_text; ?></td>
