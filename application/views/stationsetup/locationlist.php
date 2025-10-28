@@ -46,7 +46,7 @@
                             <td><?php echo $loc->station_sota; ?></td>
                             <td><?php echo $loc->station_callsign; ?></td>
                             <td><?php echo $loc->station_power; ?></td>
-                            <td><?php echo $loc->station_dxcc; ?></td>
+                            <td><?php echo $loc->dxccname . ' (' . $loc->dxccprefix . ') '; ?></td>
                             <td><?php echo $loc->station_cnty; ?></td>
                             <td><?php echo $loc->station_cq; ?></td>
                             <td><?php echo $loc->station_itu; ?></td>
