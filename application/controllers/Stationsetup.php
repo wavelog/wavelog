@@ -519,4 +519,13 @@ class Stationsetup extends CI_Controller {
 		$this->user_options_model->set_option('ExportMapOptions', 'qsocount',  array($slug => xss_clean($this->input->post('qsocount'))));
 		$this->user_options_model->set_option('ExportMapOptions', 'band',  array($slug => xss_clean($this->input->post('band'))));
 	}
+
+	public function list_locations() {
+		$this->load->model('stationsetup_model');
+		$data['locations'] = $this->stationsetup_model->list_all_locations()->result();
+		$data['page_title'] = __("Station location list");
+		$this->load->view('interface_assets/header');
+		$this->load->view('stationsetup/locationlist', $data);
+		$this->load->view('interface_assets/footer');
+	}
 }

@@ -232,6 +232,15 @@ class Stationsetup_model extends CI_Model {
 
 		return $this->db->get();
 	}
+
+	function list_all_locations() {
+		$sql = "select station_profile_name, station_gridsquare, station_city, station_iota, station_sota, station_callsign, station_power, station_dxcc, station_cnty, station_cq, station_itu, station_active, eqslqthnickname, state, county, station_sig, station_sig_info, qrzrealtime, station_wwff, station_pota, oqrs, oqrs_text, oqrs_email, webadifrealtime, clublogrealtime, clublogignore, hrdlogrealtime, creation_date, last_modified
+	 from station_profile
+	 where user_id = ?";
+
+		$query = $this->db->query($sql, array($this->session->userdata('user_id')));
+		return $query;
+	}
 }
 
 ?>
