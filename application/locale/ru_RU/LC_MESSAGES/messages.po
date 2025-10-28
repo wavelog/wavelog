@@ -13,17 +13,17 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-10-26 12:27+0000\n"
-"PO-Revision-Date: 2025-10-20 10:48+0000\n"
+"PO-Revision-Date: 2025-10-28 14:44+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.13.2\n"
+"X-Generator: Weblate 5.14\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -1960,42 +1960,44 @@ msgid ""
 "Duplicate note title for this category and user - not allowed for Contacts "
 "category."
 msgstr ""
+"Дублирование названия заметки для этой категории и пользователя недопустимо "
+"для категории Контакты."
 
 #: application/controllers/Notes.php:283
 msgid "Not found or not allowed"
-msgstr ""
+msgstr "Не найдено или не разрешено"
 
 #: application/controllers/Notes.php:298
 msgid "Not found"
-msgstr ""
+msgstr "Не найдено"
 
 #: application/controllers/Notes.php:314
 msgid "Category and title are required"
-msgstr ""
+msgstr "Категория и заголовок обязательны"
 
 #: application/controllers/Notes.php:328
 msgid "Note not found or not allowed"
-msgstr ""
+msgstr "Заметка не найдена или недоступна"
 
 #: application/controllers/Notes.php:335
 msgid "Note deleted"
-msgstr ""
+msgstr "Заметка удалена"
 
 #: application/controllers/Notes.php:339
 msgid "Note updated"
-msgstr ""
+msgstr "Заметка обновлена"
 
 #: application/controllers/Notes.php:344
 msgid "Cannot create empty note"
-msgstr ""
+msgstr "Не удается создать пустую заметку"
 
 #: application/controllers/Notes.php:352
 msgid "A note with this callsign already exists"
-msgstr ""
+msgstr "Заметка с этим позывным уже существует"
 
 #: application/controllers/Notes.php:362
 msgid "Note created"
-msgstr ""
+msgstr "Заметка создана"
 
 #: application/controllers/Notes.php:376 application/controllers/Notes.php:400
 #, php-format
@@ -2870,11 +2872,11 @@ msgstr "Обновить \"Заметки о корреспондентах\""
 
 #: application/controllers/Update.php:718
 msgid "VUCC Grid file update complete. Result: "
-msgstr ""
+msgstr "Обновление файла квадратов VUCC завершено. Результат: "
 
 #: application/controllers/Update.php:720
 msgid "VUCC Grid file update failed. Result: "
-msgstr ""
+msgstr "Обновление файла квадратов VUCC не удалось. Результат: "
 
 #: application/controllers/User.php:50
 #: application/views/interface_assets/header.php:306
@@ -6936,8 +6938,9 @@ msgstr "Нажмите, чтобы подготовить ведение жур�
 #: application/views/bandmap/list.php:70
 #: application/views/contesting/index.php:160
 #: application/views/qso/index.php:353
+#, fuzzy
 msgid "WebSocket (Requires WLGate>1.1.10)"
-msgstr ""
+msgstr "WebSocket (Требуется WLGate>1.1.10)"
 
 #: application/views/bandmap/list.php:77
 msgid "DXCC-Status"
@@ -8507,23 +8510,26 @@ msgid ""
 "LoTW Warning: There is an issue with at least one of your %sLoTW "
 "certificates%s!"
 msgstr ""
+"Предупреждение LoTW: Есть проблема по крайней мере с одним из ваших %sLoTW "
+"сертификатов%s!"
 
 #: application/views/dashboard/index.php:216
 msgid "At least one of your certificates is expired"
-msgstr ""
+msgstr "По крайней мере, один из ваших сертификатов просрочен"
 
 #: application/views/dashboard/index.php:217
 msgid "At least one of your certificates is expiring"
 msgstr ""
+"По крайней мере, срок действия одного из ваших сертификатов запканчивается"
 
 #: application/views/dashboard/index.php:218
 msgid "The QSO end date of at least one of your certificates was exceeded"
-msgstr ""
+msgstr "Срок действия, как минимум, одного из ваших сертификатов истек"
 
 #: application/views/dashboard/index.php:219
 msgid ""
 "The QSO end date of at least one of your certificates is about to be exceeded"
-msgstr ""
+msgstr "Срок действия, как минимум, одного из ваших сертификатов скоро истечёт"
 
 #: application/views/dashboard/index.php:297
 #: application/views/qso/index.php:851
@@ -9265,7 +9271,7 @@ msgstr "HAMqsl"
 
 #: application/views/debug/index.php:573
 msgid "VUCC Grids"
-msgstr ""
+msgstr "Квадраты VUCC"
 
 #: application/views/debug/index.php:582
 msgid "QSO-DB Maintenance"
@@ -10068,27 +10074,27 @@ msgstr "Заметки не найдены"
 
 #: application/views/interface_assets/footer.php:71
 msgid "No notes for this callsign"
-msgstr ""
+msgstr "Нет заметок для этого позывного"
 
 #: application/views/interface_assets/footer.php:72
 msgid "Callsign Note"
-msgstr ""
+msgstr "Заметка о позывном"
 
 #: application/views/interface_assets/footer.php:73
 msgid "Note deleted successfully"
-msgstr ""
+msgstr "Заметка успешно удалена"
 
 #: application/views/interface_assets/footer.php:74
 msgid "Note created successfully"
-msgstr ""
+msgstr "Заметка успешно создана"
 
 #: application/views/interface_assets/footer.php:75
 msgid "Note saved successfully"
-msgstr ""
+msgstr "Заметка успешно сохранена"
 
 #: application/views/interface_assets/footer.php:76
 msgid "Error saving note"
-msgstr ""
+msgstr "Ошибка при сохранении заметки"
 
 #: application/views/interface_assets/footer.php:157
 #: application/views/interface_assets/header.php:515
@@ -11742,19 +11748,19 @@ msgstr "Последняя загрузка"
 
 #: application/views/lotw_views/index.php:96
 msgid "Certificate expired"
-msgstr ""
+msgstr "Сертификат просрочен"
 
 #: application/views/lotw_views/index.php:98
 msgid "Certificate expiring"
-msgstr ""
+msgstr "Срок годности сертификата заканчивается"
 
 #: application/views/lotw_views/index.php:100
 msgid "Certificate valid"
-msgstr ""
+msgstr "Сертификат действителен"
 
 #: application/views/lotw_views/index.php:105
 msgid "QSO end date nearing"
-msgstr ""
+msgstr "Дата окончания периода QSO приближается"
 
 #: application/views/lotw_views/index.php:115
 #, php-format
@@ -11910,7 +11916,7 @@ msgstr "Поиск заметок (мин. 3 символа)"
 
 #: application/views/notes/main.php:54
 msgid "Add stroked zero (Ø)"
-msgstr ""
+msgstr "Добавить зачеркнутый ноль (Ø)"
 
 #: application/views/notes/main.php:57
 msgid "Reset search"
@@ -13293,7 +13299,7 @@ msgstr "Вид модуляции (для спутника)"
 
 #: application/views/qso/index.php:641
 msgid "QSO Comment"
-msgstr ""
+msgstr "Комментарий к QSO"
 
 #: application/views/qso/index.php:684
 msgid "QSL MSG"
@@ -13305,13 +13311,15 @@ msgstr "Сброс на настройки по умолчанию"
 
 #: application/views/qso/index.php:720
 msgid "Callsign Notes"
-msgstr ""
+msgstr "Заметки о позывных"
 
 #: application/views/qso/index.php:721
 msgid ""
 "Store private information about your QSO partner. These notes are never "
 "shared or exported to external services."
 msgstr ""
+"Храните частную информацию о вашем корреспонденте. Эти заметки никогда не "
+"передаются и не экспортируются во внешние сервисы."
 
 #: application/views/qso/index.php:768
 msgid "Winkey"
@@ -16331,7 +16339,7 @@ msgstr "QSL менеджемент"
 
 #: application/views/view_log/qso.php:86
 msgid "View note for this callsign"
-msgstr ""
+msgstr "Просмотреть заметку об этом позывном"
 
 #: application/views/view_log/qso.php:138
 msgid "Total Distance"
