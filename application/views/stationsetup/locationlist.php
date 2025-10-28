@@ -19,7 +19,6 @@
                         <th>CQ Zone</th>
                         <th>ITU Zone</th>
                         <th>State</th>
-                        <th>County</th>
                         <th>WWFF</th>
                         <th>POTA</th>
                         <th>SIG</th>
@@ -58,7 +57,6 @@
                             <td><?php echo $loc->station_cq; ?></td>
                             <td><?php echo $loc->station_itu; ?></td>
                             <td><?php echo $loc->state; ?></td>
-                            <td><?php echo $loc->county; ?></td>
                             <td><?php echo $loc->station_wwff; ?></td>
                             <td><?php echo $loc->station_pota; ?></td>
                             <td><?php echo $loc->station_sig; ?></td>
