@@ -551,7 +551,7 @@ $(document).on("click", "#fav_recall", function (event) {
 
 
 function del_fav(name) {
-	if (confirm("Are you sure to delete Fav?")) {
+	if (confirm(lang_qso_delete_fav_confirm)) {
 		$.ajax({
 			url: base_url + 'index.php/user_options/del_fav',
 			method: 'POST',
@@ -846,14 +846,14 @@ function changebadge(entityval) {
 
 			if (result.confirmed) {
 				$('#callsign_info').addClass("text-bg-success");
-				$('#callsign_info').attr('title', 'DXCC was already worked and confirmed in the past on this band and mode!');
+				$('#callsign_info').attr('title', lang_qso_dxcc_confirmed);
 			} else if (result.workedBefore) {
 				$('#callsign_info').addClass("text-bg-success");
 				$('#callsign_info').addClass("lotw_info_orange");
-				$('#callsign_info').attr('title', 'DXCC was already worked in the past on this band and mode!');
+				$('#callsign_info').attr('title', lang_qso_dxcc_worked);
 			} else {
 				$('#callsign_info').addClass("text-bg-danger");
-				$('#callsign_info').attr('title', 'New DXCC, not worked on this band and mode!');
+				$('#callsign_info').attr('title', lang_qso_dxcc_new);
 			}
 		})
 	} else {
@@ -867,14 +867,14 @@ function changebadge(entityval) {
 
 			if (result.confirmed) {
 				$('#callsign_info').addClass("text-bg-success");
-				$('#callsign_info').attr('title', 'DXCC was already worked and confirmed in the past on this band and mode!');
+				$('#callsign_info').attr('title', lang_qso_dxcc_confirmed);
 			} else if (result.workedBefore) {
 				$('#callsign_info').addClass("text-bg-success");
 				$('#callsign_info').addClass("lotw_info_orange");
-				$('#callsign_info').attr('title', 'DXCC was already worked in the past on this band and mode!');
+				$('#callsign_info').attr('title', lang_qso_dxcc_worked);
 			} else {
 				$('#callsign_info').addClass("text-bg-danger");
-				$('#callsign_info').attr('title', 'New DXCC, not worked on this band and mode!');
+				$('#callsign_info').attr('title', lang_qso_dxcc_new);
 			}
 		})
 	}
@@ -1118,14 +1118,14 @@ $("#callsign").on("focusout", function () {
 
 							if (result.confirmed) {
 								$('#callsign').addClass("confirmedGrid");
-								$('#callsign').attr('title', 'Callsign was already worked and confirmed in the past on this band and mode!');
+								$('#callsign').attr('title', lang_qso_callsign_confirmed);
 							} else if (result.workedBefore) {
 								$('#callsign').addClass("workedGrid");
-								$('#callsign').attr('title', 'Callsign was already worked in the past on this band and mode!');
+								$('#callsign').attr('title', lang_qso_callsign_worked);
 							}
 							else {
 								$('#callsign').addClass("newGrid");
-								$('#callsign').attr('title', 'New Callsign!');
+								$('#callsign').attr('title', lang_qso_callsign_new);
 							}
 						})
 					} else {
@@ -1140,17 +1140,16 @@ $("#callsign").on("focusout", function () {
 							$('#ham_of_note_link').removeAttr('href');
 							$('#ham_of_note_line').hide();
 
-							if (result.confirmed) {
-								$('#callsign').addClass("confirmedGrid");
-								$('#callsign').attr('title', 'Callsign was already worked and confirmed in the past on this band and mode!');
-							} else if (result.workedBefore) {
-								$('#callsign').addClass("workedGrid");
-								$('#callsign').attr('title', 'Callsign was already worked in the past on this band and mode!');
-							} else {
-								$('#callsign').addClass("newGrid");
-								$('#callsign').attr('title', 'New Callsign!');
-							}
-
+						if (result.confirmed) {
+							$('#callsign').addClass("confirmedGrid");
+							$('#callsign').attr('title', lang_qso_callsign_confirmed);
+						} else if (result.workedBefore) {
+							$('#callsign').addClass("workedGrid");
+							$('#callsign').attr('title', lang_qso_callsign_worked);
+						} else {
+							$('#callsign').addClass("newGrid");
+							$('#callsign').attr('title', lang_qso_callsign_new);
+						}
 						})
 					}
 
@@ -1179,10 +1178,10 @@ $("#callsign").on("focusout", function () {
 					$('[data-bs-toggle="tooltip"]').tooltip();
 				}
 				$('#qrz_info').html('<a target="_blank" href="https://www.qrz.com/db/' + callsign.replaceAll('Ø', '0') + '"><img width="30" height="30" src="' + base_url + 'images/icons/qrz.com.png"></a>');
-				$('#qrz_info').attr('title', 'Lookup ' + callsign + ' info on qrz.com').removeClass('d-none');
+				$('#qrz_info').attr('title', lang_qso_lookup_info.replace('%s', callsign).replace('%s', 'qrz.com')).removeClass('d-none');
 				$('#qrz_info').show();
 				$('#hamqth_info').html('<a target="_blank" href="https://www.hamqth.com/' + callsign.replaceAll('Ø', '0') + '"><img width="30" height="30" src="' + base_url + 'images/icons/hamqth.com.png"></a>');
-				$('#hamqth_info').attr('title', 'Lookup ' + callsign + ' info on hamqth.com').removeClass('d-none');
+				$('#hamqth_info').attr('title', lang_qso_lookup_info.replace('%s', callsign).replace('%s', 'hamqth.com')).removeClass('d-none');
 				$('#hamqth_info').show();
 
 				var $dok_select = $('#darc_dok').selectize();
@@ -1280,13 +1279,13 @@ $("#callsign").on("focusout", function () {
 					if (result.callsign_qra != "" && (result.callsign_geoloc != 'grid' || result.timesWorked > 0)) {
 						if (result.confirmed) {
 							$('#locator').addClass("confirmedGrid");
-							$('#locator').attr('title', 'Grid was already worked and confirmed in the past');
+							$('#locator').attr('title', lang_qso_grid_confirmed);
 						} else if (result.workedBefore) {
 							$('#locator').addClass("workedGrid");
-							$('#locator').attr('title', 'Grid was already worked in the past');
+							$('#locator').attr('title', lang_qso_grid_worked);
 						} else {
 							$('#locator').addClass("newGrid");
-							$('#locator').attr('title', 'New grid!');
+							$('#locator').attr('title', lang_qso_grid_new);
 						}
 					} else {
 						$('#locator').removeClass("workedGrid");
@@ -2025,13 +2024,13 @@ $("#locator").on("input focus", function () {
 
 					if (result.confirmed) {
 						$('#locator').addClass("confirmedGrid");
-						$('#locator').attr('title', 'Grid was already worked and confirmed in the past');
+						$('#locator').attr('title', lang_qso_grid_confirmed);
 					} else if (result.workedBefore) {
 						$('#locator').addClass("workedGrid");
-						$('#locator').attr('title', 'Grid was already worked in the past');
+						$('#locator').attr('title', lang_qso_grid_worked);
 					} else {
 						$('#locator').addClass("newGrid");
-						$('#locator').attr('title', 'New grid!');
+						$('#locator').attr('title', lang_qso_grid_new);
 					}
 				})
 			} else {
@@ -2044,13 +2043,13 @@ $("#locator").on("input focus", function () {
 
 					if (result.confirmed) {
 						$('#locator').addClass("confirmedGrid");
-						$('#locator').attr('title', 'Grid was already worked and confimred in the past');
+						$('#locator').attr('title', lang_qso_grid_confirmed);
 					} else if (result.workedBefore) {
 						$('#locator').addClass("workedGrid");
-						$('#locator').attr('title', 'Grid was already worked in the past');
+						$('#locator').attr('title', lang_qso_grid_worked);
 					} else {
 						$('#locator').addClass("newGrid");
-						$('#locator').attr('title', 'New grid!');
+						$('#locator').attr('title', lang_qso_grid_new);
 					}
 
 				})
@@ -2097,7 +2096,7 @@ $("#locator").on("input focus", function () {
 					$('#locator_info').html(data).fadeIn("slow");
 				},
 				error: function () {
-					$('#locator_info').text("Error loading bearing!").fadeIn("slow");
+					$('#locator_info').text(lang_qso_error_loading_bearing).fadeIn("slow");
 				},
 			});
 			$.ajax({
@@ -2153,7 +2152,7 @@ $("#ant_path").on("change", function () {
 				$('#locator_info').html(data).fadeIn("slow");
 			},
 			error: function () {
-				$('#locator_info').text("Error loading bearing!").fadeIn("slow");
+				$('#locator_info').text(lang_qso_error_loading_bearing).fadeIn("slow");
 			},
 		});
 		$.ajax({
@@ -2381,7 +2380,7 @@ $(document).ready(function () {
 	clearQrgUnits();
 	set_qrg();
 
-	$("#locator").popover({ placement: 'top', title: 'Gridsquare Formatting', content: "Enter multiple (4-digit) grids separated with commas. For example: IO77,IO78" })
+	$("#locator").popover({ placement: 'top', title: lang_qso_gridsquare_formatting, content: lang_qso_gridsquare_help })
 	.focus(function () {
 		$('#locator').popover('show');
 	})
@@ -2469,7 +2468,7 @@ $(document).ready(function () {
 			if (value !== '') {
 				$('#sota_info').show();
 				$('#sota_info').html('<a target="_blank" href="https://summits.sota.org.uk/summit/' + value + '"><img width="32" height="32" src="' + base_url + 'images/icons/sota.org.uk.png"></a>');
-				$('#sota_info').attr('title', 'Lookup ' + value + ' summit info on sota.org.uk');
+				$('#sota_info').attr('title', lang_qso_lookup_summit_info.replace('%s', value).replace('%s', 'sota.org.uk'));
 			} else {
 				$('#sota_info').hide();
 			}
@@ -2506,7 +2505,7 @@ $(document).ready(function () {
 			if (value !== '') {
 				$('#wwff_info').show();
 				$('#wwff_info').html('<a target="_blank" href="https://www.cqgma.org/zinfo.php?ref=' + value + '"><img width="32" height="32" src="' + base_url + 'images/icons/wwff.co.png"></a>');
-				$('#wwff_info').attr('title', 'Lookup ' + value + ' reference info on cqgma.org');
+				$('#wwff_info').attr('title', lang_qso_lookup_reference_info.replace('%s', value).replace('%s', 'cqgma.org'));
 			} else {
 				$('#wwff_info').hide();
 			}
@@ -2543,7 +2542,7 @@ $(document).ready(function () {
 			if (value !== '' && value.indexOf(',') === -1) {
 				$('#pota_info').show();
 				$('#pota_info').html('<a target="_blank" href="https://pota.app/#/park/' + value + '"><img width="32" height="32" src="' + base_url + 'images/icons/pota.app.png"></a>');
-				$('#pota_info').attr('title', 'Lookup ' + value + ' reference info on pota.co');
+				$('#pota_info').attr('title', lang_qso_lookup_reference_info.replace('%s', value).replace('%s', 'pota.co'));
 			} else {
 				$('#pota_info').hide();
 			}

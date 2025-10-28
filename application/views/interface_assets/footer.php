@@ -79,6 +79,22 @@
 	var lang_qso_added = "<?= __("QSO with %s by %s was added to logbook."); ?>";
 	var lang_qso_added_to_backlog = "<?= __("QSO Added to Backlog"); ?>";
 	var lang_qso_send_email_to = "<?= __("Send email to %s"); ?>";
+	var lang_qso_callsign_confirmed = "<?= __("Callsign was already worked and confirmed in the past on this band and mode!"); ?>";
+	var lang_qso_callsign_worked = "<?= __("Callsign was already worked in the past on this band and mode!"); ?>";
+	var lang_qso_callsign_new = "<?= __("New Callsign!"); ?>";
+	var lang_qso_grid_confirmed = "<?= __("Grid was already worked and confirmed in the past"); ?>";
+	var lang_qso_grid_worked = "<?= __("Grid was already worked in the past"); ?>";
+	var lang_qso_grid_new = "<?= __("New grid!"); ?>";
+	var lang_qso_delete_fav_confirm = "<?= __("Are you sure to delete Fav?"); ?>";
+	var lang_qso_dxcc_confirmed = "<?= __("DXCC was already worked and confirmed in the past on this band and mode!"); ?>";
+	var lang_qso_dxcc_worked = "<?= __("DXCC was already worked in the past on this band and mode!"); ?>";
+	var lang_qso_dxcc_new = "<?= __("New DXCC, not worked on this band and mode!"); ?>";
+	var lang_qso_lookup_info = "<?= __("Lookup %s info on %s"); ?>";
+	var lang_qso_lookup_summit_info = "<?= __("Lookup %s summit info on %s"); ?>";
+	var lang_qso_lookup_reference_info = "<?= __("Lookup %s reference info on %s"); ?>";
+	var lang_qso_error_loading_bearing = "<?= __("Error loading bearing!"); ?>";
+	var lang_qso_gridsquare_formatting = "<?= __("Gridsquare Formatting"); ?>";
+	var lang_qso_gridsquare_help = "<?= __("Enter multiple (4-digit) grids separated with commas. For example: IO77,IO78"); ?>";
 </script>
 
 <!-- General JS Files used across Wavelog -->
