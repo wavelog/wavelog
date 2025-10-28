@@ -524,8 +524,8 @@ class Stationsetup extends CI_Controller {
 		$this->load->model('stationsetup_model');
 		$data['locations'] = $this->stationsetup_model->list_all_locations()->result();
 		$data['page_title'] = __("Station location list");
-		$this->load->view('interface_assets/header');
-		$this->load->view('stationsetup/locationlist', $data);
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('stationsetup/locationlist');
 		$this->load->view('interface_assets/footer');
 	}
 }
