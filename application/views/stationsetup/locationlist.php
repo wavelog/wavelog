@@ -1,4 +1,4 @@
-<h1><?= $page_title ?></h1>
+<h2><?= $page_title ?></h2>
 
     <?php if (!empty($locations)): ?>
         <div class="table-responsive mt-3">
@@ -88,8 +88,8 @@
                 $('.table').DataTable({
                     "pageLength": 25,
                     responsive: false,
-                    ordering: false,
-                    "scrollY": "400px",
+                    ordering: true,
+                    "scrollY": window.innerHeight - 250,
                     "scrollCollapse": true,
                     "paging": false,
                     "scrollX": true,
