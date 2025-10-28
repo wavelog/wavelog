@@ -720,16 +720,16 @@ switch ($date_format) {
 	</script>
 
 	<div class="card callsign-notes" id="callsign-notes">
-        <div class="card-header d-flex justify-content-between align-items-center">
+        <div class="card-header d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#callsign-notes-body" aria-expanded="false" aria-controls="callsign-notes-body" style="cursor: pointer;">
           <h4 style="font-size: 16px; font-weight: bold;" class="card-title mb-0">
             <?= __("Callsign Notes"); ?>
             <span class="ms-1" data-bs-toggle="tooltip" title="<?= __("Store private information about your QSO partner. These notes are never shared or exported to external services.") ?>">
               <i class="fa fa-question-circle"></i>
             </span>
           </h4>
-          <button class="btn btn-sm btn-link p-0" type="button" data-bs-toggle="collapse" data-bs-target="#callsign-notes-body" aria-expanded="false" aria-controls="callsign-notes-body">
+          <span>
             <i class="fas fa-chevron-down"></i>
-          </button>
+          </span>
         </div>
 		<div class="card-body collapse" id="callsign-notes-body">
 				<textarea id="callsign_note_content" class="form-control" rows="6"></textarea>

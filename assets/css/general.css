@@ -512,6 +512,16 @@ TD.lotw {
 	color: #ffffff;
 }
 
+/* Round bottom corners of callsign notes header when collapsed */
+.callsign-notes .card-header {
+	border-radius: 0.25rem;
+}
+
+.callsign-notes .card-header[aria-expanded="true"] {
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
 #myTab .nav-link {
 	padding: 8px !important;
 }
