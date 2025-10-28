@@ -24,11 +24,11 @@
                         <th>POTA</th>
                         <th>SIG</th>
                         <th>SIG Info</th>
-                        <th>eQSL Nick</th>
+                        <th>eQSL Nickname</th>
                         <th>QRZ Live</th>
-                        <th>OQRS</th>
+                        <th>OQRS enabled</th>
                         <th>OQRS Text</th>
-                        <th>OQRS Email</th>
+                        <th>OQRS Email alert</th>
                         <th>Web ADIF Live</th>
                         <th>ClubLog Live</th>
                         <th>ClubLog Ignore</th>
@@ -42,7 +42,7 @@
                         <tr>
 							<td><?php echo $loc->station_id; ?></td>
                             <td><?php echo $loc->station_active ? 'Yes' : 'No' ?></td>
-                            <td><a href="http://localhost/wavelog/station/edit/<?php echo $loc->station_id; ?>"><?php echo $loc->station_profile_name; ?></a></td>
+                            <td><a href="<?php echo site_url('station/edit')."/".$loc->station_id; ?>"><?php echo $loc->station_profile_name; ?></a></td>
                             <td><?php echo $loc->station_callsign; ?></td>
                             <td><?php echo $loc->station_gridsquare; ?></td>
                             <td><?php echo $loc->station_city; ?></td>
@@ -67,7 +67,7 @@
                             <td><?php echo $loc->qrzrealtime ? 'Yes' : 'No'; ?></td>
                             <td><?php echo $loc->oqrs ? 'Yes' : 'No'; ?></td>
                             <td><?php echo $loc->oqrs_text; ?></td>
-                            <td><?php echo $loc->oqrs_email; ?></td>
+                            <td><?php echo $loc->oqrs_email ? 'Yes' : 'No' ?></td>
                             <td><?php echo $loc->webadifrealtime ? 'Yes' : 'No' ?></td>
                             <td><?php echo $loc->clublogrealtime ? 'Yes' : 'No' ?></td>
                             <td><?php echo $loc->clublogignore ? 'Yes' : 'No' ?></td>
