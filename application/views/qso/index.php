@@ -728,7 +728,7 @@ switch ($date_format) {
             </span>
           </h4>
           <span>
-            <i class="fas fa-chevron-down"></i>
+            <i class="fas fa-up-down"></i>
           </span>
         </div>
 		<div class="card-body collapse" id="callsign-notes-body">
