@@ -20,12 +20,12 @@
                         <th>ITU Zone</th>
                         <th>State</th>
                         <th>County</th>
+                        <th>WWFF</th>
+                        <th>POTA</th>
                         <th>SIG</th>
                         <th>SIG Info</th>
                         <th>eQSL Nick</th>
                         <th>QRZ Live</th>
-                        <th>WWFF</th>
-                        <th>POTA</th>
                         <th>OQRS</th>
                         <th>OQRS Text</th>
                         <th>OQRS Email</th>
@@ -46,7 +46,11 @@
                             <td><?php echo $loc->station_callsign; ?></td>
                             <td><?php echo $loc->station_gridsquare; ?></td>
                             <td><?php echo $loc->station_city; ?></td>
-                            <td><?php echo ucwords(strtolower($loc->dxccname), "- (/") . ' (' . $loc->dxccprefix . ') '; ?></td>
+                            <td><?php echo ucwords(strtolower($loc->dxccname), "- (/") . ' (' . $loc->dxccprefix . ') '; ?>
+                            <?php if (isset($loc->end)) {
+								echo '<span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>';
+							} ?>
+							</td>
                             <td><?php echo $loc->station_iota; ?></td>
                             <td><?php echo $loc->station_sota; ?></td>
                             <td><?php echo $loc->station_power; ?></td>
@@ -55,12 +59,12 @@
                             <td><?php echo $loc->station_itu; ?></td>
                             <td><?php echo $loc->state; ?></td>
                             <td><?php echo $loc->county; ?></td>
+                            <td><?php echo $loc->station_wwff; ?></td>
+                            <td><?php echo $loc->station_pota; ?></td>
                             <td><?php echo $loc->station_sig; ?></td>
                             <td><?php echo $loc->station_sig_info; ?></td>
                             <td><?php echo $loc->eqslqthnickname; ?></td>
                             <td><?php echo $loc->qrzrealtime ? 'Yes' : 'No'; ?></td>
-                            <td><?php echo ($loc->station_wwff); ?></td>
-                            <td><?php echo ($loc->station_pota); ?></td>
                             <td><?php echo $loc->oqrs ? 'Yes' : 'No'; ?></td>
                             <td><?php echo $loc->oqrs_text; ?></td>
                             <td><?php echo $loc->oqrs_email; ?></td>
