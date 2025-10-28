@@ -946,10 +946,12 @@ function reset_fields() {
 	$("#locator").removeClass("confirmedGrid");
 	$("#locator").removeClass("workedGrid");
 	$("#locator").removeClass("newGrid");
+	$('#locator').attr('title', '');
 	$("#callsign").val("");
 	$("#callsign").removeClass("confirmedGrid");
 	$("#callsign").removeClass("workedGrid");
 	$("#callsign").removeClass("newGrid");
+	$('#callsign').attr('title', '');
 	$('#callsign_info').removeClass("text-bg-secondary");
 	$('#callsign_info').removeClass("text-bg-success");
 	$('#callsign_info').removeClass("text-bg-danger");
