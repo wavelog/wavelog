@@ -68,7 +68,7 @@ switch ($date_format) {
 <?php } ?>
 
           <li class="nav-item">
-            <a class="nav-link" id="notes-tab" data-bs-toggle="tab" href="#nav-notes" role="tab" aria-controls="notes" aria-selected="false"><?= __("Comment"); ?></a>
+            <a class="nav-link" id="notes-tab" data-bs-toggle="tab" href="#nav-notes" role="tab" aria-controls="notes" aria-selected="false"><?= __("Notes"); ?></a>
           </li>
 
           <li class="nav-item">
@@ -160,7 +160,9 @@ switch ($date_format) {
                     <span id="qrz_info" class="input-group-text btn-included-on-field d-none py-0"></span>
                     <span id="hamqth_info" class="input-group-text btn-included-on-field d-none py-0"></span>
                   </div>
-                  <small id="callsign_info" class="badge text-bg-secondary"></small> <a id="lotw_link"><small id="lotw_info" class="badge text-bg-success"></small></a>
+                  <div style="min-height: 24px;">
+                    <small id="callsign_info" class="badge text-bg-secondary"></small> <a id="lotw_link"><small id="lotw_info" class="badge text-bg-success"></small></a>
+                  </div>
                   <p id="ham_of_note_line" style="margin-top: 5px; display: none"><small id="ham_of_note_info"></small><small><a id="ham_of_note_link" target="_blank"></a></small></p>
                 </div>
               </div>
@@ -317,7 +319,7 @@ switch ($date_format) {
                   <label for="locator" class="col-sm-3 col-form-label"><?= __("Gridsquare"); ?></label>
                   <div class="col-sm-9">
                     <input tabindex="19" type="text" class="form-control form-control-sm uppercase" name="locator" id="locator" value="">
-                    <small id="locator_info" class="form-text text-muted"></small>
+                    <small id="locator_info" class="form-text text-muted" style="min-height: 20px; display: block;">&nbsp;</small>
                 </div>
               </div>
 
@@ -635,10 +637,10 @@ switch ($date_format) {
             </div>
           </div>
 
-          <!-- Comment Panel Contents -->
+          <!-- QSO Note Panel Contents -->
           <div class="tab-pane fade" id="nav-notes" role="tabpanel" aria-labelledby="notes-tab">
            <div class="mb-3">
-              <label for="notes"><?= __("QSO Comment"); ?></label>
+              <label for="notes"><?= __("QSO Note"); ?></label>
               <textarea  type="text" class="form-control" id="notes" name="notes" rows="10"></textarea>
               <div class="small form-text text-muted"><?= __("Note: Gets exported to third-party services.") ?></div>
             </div>
