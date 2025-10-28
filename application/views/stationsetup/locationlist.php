@@ -2,8 +2,8 @@
 
     <?php if (!empty($locations)): ?>
         <div class="table-responsive mt-3">
-			<table style="width:100%" class="table-sm table table-bordered table-hover table-striped table-condensed text-center">
-                <thead class="table-primary">
+			<table style="width:100%" class="table-sm table table-hover table-striped table-bordered table-condensed" id="qsoList">
+                <thead>
                     <tr>
                         <th>ID</th>
 						<th>Active</th>
@@ -83,3 +83,29 @@
         <div class="alert alert-info mt-3">No station locations found.</div>
     <?php endif; ?>
 </div>
+<script>
+	document.addEventListener("DOMContentLoaded", function() {
+                $('.table').DataTable({
+                    "pageLength": 25,
+                    responsive: false,
+                    ordering: false,
+                    "scrollY": "400px",
+                    "scrollCollapse": true,
+                    "paging": false,
+                    "scrollX": true,
+                    "language": {
+                        url: getDataTablesLanguageUrl(),
+                    },
+                    dom: 'Bfrtip',
+                    buttons: [
+						{
+							extend: 'csv',
+							className: 'mb-1 btn btn-sm btn-primary', // Bootstrap classes
+								init: function(api, node, config) {
+									$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
+								},
+						}
+                    ]
+                });
+});
+</script>
