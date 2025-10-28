@@ -252,10 +252,7 @@ function set_timers() {
 
 function invalidAntEl() {
 	var saveQsoButtonText = $("#saveQso").html();
-	$("#noticer").removeClass("");
-	$("#noticer").addClass("alert alert-warning");
-	$("#noticer").html(lang_invalid_ant_el+" "+parseFloat($("#ant_el").val()).toFixed(1));
-	$("#noticer").show();
+	showToast(lang_general_word_warning, lang_invalid_ant_el+" "+parseFloat($("#ant_el").val()).toFixed(1), 'bg-warning text-dark', 5000);
 	$("#saveQso").html(saveQsoButtonText).prop("disabled", false);
 }
 
@@ -281,29 +278,26 @@ $("#qso_input").off('submit').on('submit', function (e) {
 					activeStationId = result.activeStationId;
 					activeStationOP = result.activeStationOP;
 					activeStationTXPower = result.activeStationTXPower;
-					$("#noticer").removeClass("");
-					$("#noticer").addClass("alert alert-info");
-					$("#noticer").html("QSO Added");
-					$("#noticer").show();
+
+					// Build dynamic success message
+					var contactCallsign = $("#callsign").val().toUpperCase();
+					var operatorCallsign = activeStationOP || station_callsign;
+					var successMessage = lang_qso_added
+						.replace('%s', contactCallsign)
+						.replace('%s', operatorCallsign);
+
+					showToast(lang_general_word_success, successMessage, 'bg-success text-white', 5000);
 					prepare_next_qso(saveQsoButtonText);
-					$("#noticer").fadeOut(2000);
 					processBacklog();	// If we have success with the live-QSO, we could also process the backlog
 				} else {
-					$("#noticer").removeClass("");
-					$("#noticer").addClass("alert alert-warning");
-					$("#noticer").html(result.errors);
-					$("#noticer").show();
+					showToast(lang_general_word_error, result.errors, 'bg-danger text-white', 5000);
 					$("#saveQso").html(saveQsoButtonText).prop("disabled", false);
 				}
 			},
 			error: function () {
 				saveToBacklog(JSON.stringify(this.data),manual_addon);
 				prepare_next_qso(saveQsoButtonText);
-				$("#noticer").removeClass("");
-				$("#noticer").addClass("alert alert-info");
-				$("#noticer").html("QSO Added to Backlog");
-				$("#noticer").show();
-				$("#noticer").fadeOut(5000);
+				showToast(lang_general_word_info, lang_qso_added_to_backlog, 'bg-info text-dark', 5000);
 			}
 		});
 	}
@@ -1047,8 +1041,6 @@ function get_note_status(callsign){
 // Lookup callsign on focusout - if the callsign is 3 chars or longer
 $("#callsign").on("focusout", function () {
 	if ($(this).val().length >= 3 && preventLookup == false) {
-
-		$("#noticer").fadeOut(1000);
 
 		/* Find and populate DXCC */
 		$('.callsign-suggest').hide();

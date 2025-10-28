@@ -737,7 +737,6 @@ switch ($date_format) {
   </div>
   <div class="col-sm-7">
 
-<div id="noticer" role="alert"></div>
 <?php if($notice) { ?>
 <div id="notice-alerts" class="alert alert-info" role="alert">
   <?php echo $notice; ?>

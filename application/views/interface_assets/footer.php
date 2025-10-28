@@ -35,6 +35,8 @@
     var lang_general_word_error = "<?= __("ERROR"); ?>";
     var lang_general_word_attention = "<?= __("Attention"); ?>";
     var lang_general_word_warning = "<?= __("Warning"); ?>";
+    var lang_general_word_success = "<?= __("Success"); ?>";
+    var lang_general_word_info = "<?= __("Info"); ?>";
     var lang_general_word_cancel = "<?= __("Cancel"); ?>";
     var lang_general_word_ok = "<?= __("OK"); ?>";
     var lang_general_word_search = "<?= __("Search"); ?>";
@@ -74,6 +76,8 @@
 	var lang_qso_note_created = "<?= __("Note created successfully"); ?>";
 	var lang_qso_note_saved = "<?= __("Note saved successfully"); ?>";
 	var lang_qso_note_error_saving = "<?= __("Error saving note"); ?>";
+	var lang_qso_added = "<?= __("QSO with %s by %s was added to logbook."); ?>";
+	var lang_qso_added_to_backlog = "<?= __("QSO Added to Backlog"); ?>";
 </script>
 
 <!-- General JS Files used across Wavelog -->
