@@ -257,6 +257,13 @@ function invalidAntEl() {
 }
 
 $("#qso_input").off('submit').on('submit', function (e) {
+	e.preventDefault();
+
+	// Prevent submission if Save button is disabled (fetch in progress)
+	if ($('#saveQso').prop('disabled')) {
+		return false;
+	}
+
 	var _submit = true;
 	if ((typeof qso_manual !== "undefined") && (qso_manual == "1")) {
 		if ($('#qso_input input[name="end_time"]').length == 1) { _submit = testTimeOffConsistency(); }
@@ -265,7 +272,6 @@ $("#qso_input").off('submit').on('submit', function (e) {
 		var saveQsoButtonText = $("#saveQso").html();
 		$("#saveQso").html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span> ' + saveQsoButtonText + '...').prop('disabled', true);
 		manual_addon = '?manual=' + qso_manual;
-		e.preventDefault();
 		$.ajax({
 			url: base_url + 'index.php/qso' + manual_addon,
 			method: 'POST',
@@ -1043,6 +1049,16 @@ function get_note_status(callsign){
 $("#callsign").on("focusout", function () {
 	if ($(this).val().length >= 3 && preventLookup == false) {
 
+		// Disable Save QSO button and show fetch status
+		$('#saveQso').prop('disabled', true);
+		$('#fetch_status').show();
+
+		// Set timeout to unlock form after 10 seconds
+		var fetchTimeout = setTimeout(function() {
+			$('#saveQso').prop('disabled', false);
+			$('#fetch_status').hide();
+		}, 10000);
+
 		/* Find and populate DXCC */
 		$('.callsign-suggest').hide();
 
@@ -1388,12 +1404,22 @@ $("#callsign").on("focusout", function () {
 				loadAwardTabs(function() {
 					getDxccResult(result.dxcc.adif, convert_case(result.dxcc.entity));
 				});
+
+				// Re-enable Save QSO button and hide fetch status
+				clearTimeout(fetchTimeout);
+				$('#saveQso').prop('disabled', false);
+				$('#fetch_status').hide();
 			}
 			// else {
 			// 	console.log("Callsigns do not match, skipping lookup");
 			// 	console.log("Typed Callsign: " + $('#callsign').val());
 			// 	console.log("Returned Callsign: " + result.callsign);
 			// }
+		}).always(function() {
+			// Always re-enable button even if there's an error
+			clearTimeout(fetchTimeout);
+			$('#saveQso').prop('disabled', false);
+			$('#fetch_status').hide();
 		});
 	} else {
 		// Reset QSO fields
