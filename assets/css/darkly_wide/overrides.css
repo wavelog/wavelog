@@ -235,6 +235,12 @@ div.alert-danger {
 	overflow-y: auto;
 }
 
+@media (min-width: 1300px) {
+	.container, .container-lg, .container-md, .container-sm, .container-xl {
+		max-width: 1240px
+	}
+}
+
 @media (min-width: 1500px) {
 	.container, .container-lg, .container-md, .container-sm, .container-xl {
 		max-width: 1400px
