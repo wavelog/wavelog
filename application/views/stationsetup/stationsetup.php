@@ -101,7 +101,9 @@
 					<?= __("The 'Linked' column shows if the station location is linked with the Active Logbook selected above."); ?>
 				</p>
 
-						<p><a href="<?php echo site_url('station/create'); ?>" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> <?= __("Create a Station Location"); ?></a> <button onclick="filterlocations();" class="btn btn-sm btn-success"><?= __("Show only locations from the active logbook"); ?></button> <button onclick="removefilterlocations();" class="btn btn-sm btn-success"><?= __("Show all locations"); ?></button></p>
+						<p><a href="<?php echo site_url('station/create'); ?>" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> <?= __("Create a Station Location"); ?></a> <button onclick="filterlocations();" class="btn btn-sm btn-success"><?= __("Show only locations from the active logbook"); ?></button>
+						<button onclick="removefilterlocations();" class="btn btn-sm btn-success"><?= __("Show all locations"); ?></button>
+					<a href="<?php echo site_url('stationsetup/list_locations'); ?>" class="btn btn-sm btn-success"><?= __("Show a location list"); ?></a></p>
 
 <?php if($current_active == 0) { ?>
 <div class="alert alert-danger" role="alert">
