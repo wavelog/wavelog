@@ -928,6 +928,7 @@ function reset_fields() {
 	$('#lotw_info').removeClass("lotw_info_orange");
 	$('#qrz_info').text("").hide();
 	$('#hamqth_info').text("").hide();
+	$('#email_info').html("").addClass('d-none').hide();
 	$('#dxcc_id').val("").multiselect('refresh');
 	$('#cqz').val("");
 	$('#ituz').val("");
@@ -1293,6 +1294,13 @@ $("#callsign").on("focusout", function () {
 				/* Find Operators E-mail */
 				if ($('#email').val() == "") {
 					$('#email').val(result.callsign_email);
+				}
+
+				// Show email icon if email is available
+				if (result.callsign_email && result.callsign_email.trim() !== "") {
+					$('#email_info').html('<a href="mailto:' + result.callsign_email + '" style="color: inherit; text-decoration: none;"><i class="fas fa-envelope" style="font-size: 20px;"></i></a>');
+					$('#email_info').attr('title', lang_qso_send_email_to.replace('%s', result.callsign_email)).removeClass('d-none');
+					$('#email_info').show();
 				}
 
 				if ($('#continent').val() == "") {
@@ -2092,6 +2100,19 @@ $("#locator").on("focusout", function () {
 	}
 });
 
+// Update email icon when email field changes
+$("#email").on("input focusout", function () {
+	var emailValue = $(this).val().trim();
+	if (emailValue !== "") {
+		$('#email_info').html('<a href="mailto:' + emailValue + '" style="color: inherit; text-decoration: none;"><i class="fas fa-envelope" style="font-size: 20px;"></i></a>');
+		$('#email_info').attr('title', lang_qso_send_email_to.replace('%s', emailValue)).removeClass('d-none');
+		$('#email_info').show();
+	} else {
+		$('#email_info').addClass('d-none').hide();
+		$('#email_info').html('');
+	}
+});
+
 $("#ant_path").on("change", function () {
 	if ($("#locator").val().length > 0) {
 		$.ajax({
@@ -2240,6 +2261,7 @@ function resetDefaultQSOFields() {
 	$('#continent').val("");
 	$("#distance").val("");
 	$('#email').val("");
+	$('#email_info').html("").addClass('d-none').hide();
 	$('#region').val("");
 	$('#dxcc_id').val("").multiselect('refresh');
 	$('#cqz').val("");

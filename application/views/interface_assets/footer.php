@@ -78,6 +78,7 @@
 	var lang_qso_note_error_saving = "<?= __("Error saving note"); ?>";
 	var lang_qso_added = "<?= __("QSO with %s by %s was added to logbook."); ?>";
 	var lang_qso_added_to_backlog = "<?= __("QSO Added to Backlog"); ?>";
+	var lang_qso_send_email_to = "<?= __("Send email to %s"); ?>";
 </script>
 
 <!-- General JS Files used across Wavelog -->

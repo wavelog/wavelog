@@ -601,7 +601,10 @@ switch ($date_format) {
 
             <div class="mb-3">
               <label for="email"><?= __("E-mail"); ?></label>
-              <input class="form-control" id="email" type="text" name="email" value="" />
+              <div class="input-group">
+                <input class="form-control" id="email" type="text" name="email" value="" />
+                <span id="email_info" class="input-group-text btn-included-on-field d-none py-0"></span>
+              </div>
               <small id="MailHelp" class="form-text text-muted"><?= __("E-mail address of QSO-partner"); ?></small>
             </div>
           </div>
