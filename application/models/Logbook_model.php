@@ -5356,7 +5356,7 @@ class Logbook_model extends CI_Model {
 	}
 
 	public function get_entity($dxcc) {
-		$sql = "select name, cqz, lat, 'long' from dxcc_entities where adif = ?";
+		$sql = "SELECT name, cqz, lat, `long` FROM dxcc_entities WHERE adif = ?";
 		$query = $this->db->query($sql, $dxcc);
 
 		if ($query->result() > 0) {
