@@ -17,10 +17,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-10-28 16:21+0000\n"
-"PO-Revision-Date: 2025-10-29 00:12+0000\n"
+"PO-Revision-Date: 2025-10-29 18:20+0000\n"
 "Last-Translator: F5MQU <f5mqu.p@gmail.com>\n"
-"Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/fr/>\n"
+"Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/fr/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15712,67 +15712,81 @@ msgstr "Afficher les champs de référence dans l'onglet QSO"
 msgid ""
 "The enabled items will be shown on the QSO tab rather than the General tab."
 msgstr ""
+"Les éléments activés seront affichés dans l'onglet QSO et non dans l'onglet "
+"Général."
 
 #: application/views/user/edit.php:697
 msgid "Online QSL request (OQRS) settings"
-msgstr ""
+msgstr "Paramètres de demande de QSL en ligne (OQRS)"
 
 #: application/views/user/edit.php:701
 msgid "Global text"
-msgstr ""
+msgstr "Texte global"
 
 #: application/views/user/edit.php:703
 msgid ""
 "This text is an optional text that can be displayed on top of the OQRS page."
 msgstr ""
+"Ce texte est un texte facultatif qui peut être affiché en haut de la page "
+"OQRS."
 
 #: application/views/user/edit.php:706
 msgid "Grouped search"
-msgstr ""
+msgstr "Recherche groupée"
 
 #: application/views/user/edit.php:708 application/views/user/edit.php:717
 #: application/views/user/edit.php:726 application/views/user/edit.php:735
 msgid "Off"
-msgstr ""
+msgstr "Désactivé"
 
 #: application/views/user/edit.php:709 application/views/user/edit.php:718
 #: application/views/user/edit.php:727 application/views/user/edit.php:736
 msgid "On"
-msgstr ""
+msgstr "Activé"
 
 #: application/views/user/edit.php:711
+#, fuzzy
 msgid ""
 "When this is on, all station locations with OQRS active, will be searched at "
 "once."
 msgstr ""
+"Lorsque cette option est activée, tous les emplacements de stations "
+"disposant d'un OQRS actif, seront analysés immédiatement."
 
 #: application/views/user/edit.php:715
 msgid "Show station location name in grouped search results"
-msgstr ""
+msgstr "Afficher le nom de la station dans les résultats de recherches groupées"
 
 #: application/views/user/edit.php:720
 msgid ""
 "If grouped search is ON, you can decide if the name of the station location "
 "shall be shown in the results table."
 msgstr ""
+"Si la recherche groupée est activée, vous pouvez décider si le nom de "
+"l'emplacement de la station doit être affiché dans le tableau des résultats."
 
 #: application/views/user/edit.php:724
 msgid "Automatic OQRS matching"
-msgstr ""
+msgstr "Correspondance automatique d'OQRS"
 
 #: application/views/user/edit.php:729
 msgid ""
 "If this is on, automatic OQRS matching will happen, and the system will try "
 "to match incoming requests with existing logs automatically."
 msgstr ""
+"Si cette option est activée, la correspondance automatique d'OQRS aura lieu "
+"et le système tentera de faire correspondre automatiquement les requêtes "
+"entrantes avec les logs existants."
 
 #: application/views/user/edit.php:733
 msgid "Automatic OQRS matching for direct requests"
-msgstr ""
+msgstr "Correspondance automatique d'OQRS pour les requêtes directes"
 
 #: application/views/user/edit.php:738
 msgid "If this is on, automatic OQRS matching for direct request will happen."
 msgstr ""
+"Si cette option est activée, la correspondance d'OQRS pour les requêtes "
+"directes sera automatique."
 
 #: application/views/user/edit.php:754
 msgid "Default Values"
@@ -15792,7 +15806,7 @@ msgstr "Méthode QSL"
 
 #: application/views/user/edit.php:840
 msgid "Third Party Services"
-msgstr ""
+msgstr "Services Tiers"
 
 #: application/views/user/edit.php:851
 msgid "Logbook of The World (LoTW) Username"
