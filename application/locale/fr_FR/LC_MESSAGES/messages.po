@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-10-28 16:21+0000\n"
-"PO-Revision-Date: 2025-10-29 19:33+0000\n"
+"PO-Revision-Date: 2025-10-29 20:15+0000\n"
 "Last-Translator: F5MQU <f5mqu.p@gmail.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/fr/>\n"
@@ -16078,16 +16078,16 @@ msgstr "Aucun QSO dans le Log"
 #: application/views/user/index.php:103 application/views/user/index.php:209
 #: application/views/user/modals/admin_impersonate_modal.php:43
 msgid "Impersonate"
-msgstr ""
+msgstr "Imiter"
 
 #: application/views/user/index.php:110 application/views/user/index.php:219
 #: application/views/user/modals/more_actions_modal.php:6
 msgid "Other Actions"
-msgstr ""
+msgstr "Autres Actions"
 
 #: application/views/user/index.php:138
 msgid "Clubstation List"
-msgstr ""
+msgstr "Liste des stations de Club"
 
 #: application/views/user/index.php:141
 msgid ""
@@ -16095,35 +16095,39 @@ msgid ""
 "events to handle multiple operators. A clubstation is basically a normal "
 "user account with some special features and some restrictions."
 msgstr ""
+"Clubstations dans Wavelog offrent aux clubs et aux événements spéciaux une "
+"solution unique pour gérer plusieurs opérateurs. Une Clubstation est un "
+"compte utilisateur classique doté de fonctionnalités spécifiques et de "
+"certaines restrictions."
 
 #: application/views/user/index.php:143
 msgid "Create Clubstation"
-msgstr ""
+msgstr "Créer un Clubstation"
 
 #: application/views/user/index.php:156
 msgid "Last Operator"
-msgstr ""
+msgstr "Dernier Opérateur"
 
 #: application/views/user/index.php:243
 msgid "No Clubstations configures yet."
-msgstr ""
+msgstr "Aucun Clubstation n'est encore configuré."
 
 #: application/views/user/login.php:36
 msgid "MAINTENANCE MODE"
-msgstr ""
+msgstr "MODE MAINTENANCE"
 
 #: application/views/user/login.php:56
 msgid "Welcome to the Demo of Wavelog"
-msgstr ""
+msgstr "Bienvenue dans la démo de Wavelog"
 
 #: application/views/user/login.php:57
 msgid "This demo will be reset every night at 0200z."
-msgstr ""
+msgstr "Cette démo sera réinitialisée chaque nuit à 02h00 UTC."
 
 #: application/views/user/login.php:60
 #, php-format
 msgid "More Information about Wavelog on %sGithub%s."
-msgstr ""
+msgstr "Plus d'informations sur Wavelog sur %sGithub%s."
 
 #: application/views/user/login.php:79
 msgid "Forgot your password?"
@@ -16131,30 +16135,36 @@ msgstr "Mot de passe oublié ?"
 
 #: application/views/user/login.php:85
 msgid "Keep me logged in"
-msgstr ""
+msgstr "Rester connecté"
 
 #: application/views/user/modals/admin_impersonate_modal.php:5
 msgid "(with Admin Rights)"
-msgstr ""
+msgstr "(avec droits d'administrateur)"
 
 #: application/views/user/modals/admin_impersonate_modal.php:5
+#, fuzzy
 msgid "Impersonate User"
-msgstr ""
+msgstr "Usurper l'identité d'un utilisateur"
 
 #: application/views/user/modals/admin_impersonate_modal.php:9
+#, fuzzy
 msgid ""
 "You are about to impersonate another user. To return to your admin account, "
 "you can use the switch back button in the header menu."
 msgstr ""
+"Vous êtes sur le point d'usurper l'identité d'un autre utilisateur. Pour "
+"revenir à votre compte administrateur, utilisez le bouton de retour dans le "
+"menu d'en-tête."
 
 #: application/views/user/modals/admin_impersonate_modal.php:10
+#, fuzzy
 msgid "Do you want to impersonate this user?"
-msgstr ""
+msgstr "Voulez-vous usurper l'identité de cet utilisateur ?"
 
 #: application/views/user/modals/admin_impersonate_modal.php:14
 #: application/views/user/modals/more_actions_modal.php:12
 msgid "Username:"
-msgstr ""
+msgstr "Nom d'utilisateur :"
 
 #: application/views/user/modals/admin_impersonate_modal.php:18
 #: application/views/user/modals/more_actions_modal.php:16
@@ -16162,7 +16172,7 @@ msgstr ""
 #: application/views/user/modals/more_actions_modal.php:103
 #: application/views/user/modals/more_actions_modal.php:152
 msgid "Name:"
-msgstr ""
+msgstr "Nom :"
 
 #: application/views/user/modals/admin_impersonate_modal.php:22
 #: application/views/user/modals/more_actions_modal.php:20
@@ -16170,7 +16180,7 @@ msgstr ""
 #: application/views/user/modals/more_actions_modal.php:104
 #: application/views/user/modals/more_actions_modal.php:153
 msgid "Callsign:"
-msgstr ""
+msgstr "Indicatif :"
 
 #: application/views/user/modals/admin_impersonate_modal.php:26
 #: application/views/user/modals/more_actions_modal.php:24
@@ -16178,19 +16188,19 @@ msgstr ""
 #: application/views/user/modals/more_actions_modal.php:106
 #: application/views/user/modals/more_actions_modal.php:155
 msgid "E-Mail:"
-msgstr ""
+msgstr "E-Mail :"
 
 #: application/views/user/modals/admin_impersonate_modal.php:30
 msgid "Last Seen:"
-msgstr ""
+msgstr "Vu pour la dernière fois :"
 
 #: application/views/user/modals/first_login_wizard.php:5
 msgid "First Login Wizard"
-msgstr ""
+msgstr "Assistant de première connexion"
 
 #: application/views/user/modals/first_login_wizard.php:20
 msgid "Hello and Welcome to Wavelog!"
-msgstr ""
+msgstr "Bonjour et bienvenue sur Wavelog !"
 
 #: application/views/user/modals/first_login_wizard.php:21
 #, php-format
@@ -16199,54 +16209,60 @@ msgid ""
 "Location. You can find more information about how Station Locations and "
 "Logbooks work in our %sWiki here%s!"
 msgstr ""
+"Avant de pouvoir enregistrer vos QSO, nous devons configurer votre premier "
+"emplacement de station. Vous trouverez plus d'informations sur le "
+"fonctionnement des emplacements de station et des carnets de trafic dans "
+"notre %sWiki ici%s !"
 
 #: application/views/user/modals/first_login_wizard.php:22
 msgid ""
 "Please provide some additional information so that Wavelog can create your "
 "first Station:"
 msgstr ""
+"Veuillez fournir des informations supplémentaires afin que Wavelog puisse "
+"créer votre première station :"
 
 #: application/views/user/modals/first_login_wizard.php:29
 msgid "Home QTH"
-msgstr ""
+msgstr "QTH"
 
 #: application/views/user/modals/first_login_wizard.php:62
 msgid "Station Zones"
-msgstr ""
+msgstr "Zones de la Station"
 
 #: application/views/user/modals/first_login_wizard.php:74
 #: application/views/user/modals/first_login_wizard.php:84
 #, php-format
 msgctxt "zone lookup"
 msgid "%sLookup%s"
-msgstr ""
+msgstr "%sRechercher%s"
 
 #: application/views/user/modals/first_login_wizard.php:102
 msgid "Save and Start Logging"
-msgstr ""
+msgstr "Enregistrer et commencer l'enregistrement"
 
 #: application/views/user/modals/more_actions_modal.php:9
 msgid "Select an action to perform for the user:"
-msgstr ""
+msgstr "Sélectionnez une action à effectuer pour l'utilisateur :"
 
 #: application/views/user/modals/more_actions_modal.php:33
 #: application/views/user/modals/more_actions_modal.php:62
 #: application/views/user/modals/more_actions_modal.php:75
 msgid "Unlock User"
-msgstr ""
+msgstr "Déverrouiller l'utilisateur"
 
 #: application/views/user/modals/more_actions_modal.php:39
 #: application/views/user/modals/more_actions_modal.php:96
 msgid "Send a Password Reset Link via Email"
-msgstr ""
+msgstr "Envoyer un lien de réinitialisation du mot de passe par Email"
 
 #: application/views/user/modals/more_actions_modal.php:45
 msgid "Convert to Clubstation"
-msgstr ""
+msgstr "Convertir en Clubstation"
 
 #: application/views/user/modals/more_actions_modal.php:45
 msgid "Convert to User"
-msgstr ""
+msgstr "Convertir en utilisateur"
 
 #: application/views/user/modals/more_actions_modal.php:65
 msgid ""
@@ -16254,60 +16270,76 @@ msgid ""
 "failed login attempts. After unlocking, the user will be able to log in "
 "again."
 msgstr ""
+"Vous êtes sur le point de déverrouiller le compte utilisateur ci-dessous. Ce "
+"compte a été bloqué suite à un trop grand nombre de tentatives de connexion "
+"infructueuses. Une fois déverrouillé, l'utilisateur pourra se connecter à "
+"nouveau."
 
 #: application/views/user/modals/more_actions_modal.php:67
 #: application/views/user/modals/more_actions_modal.php:102
 #: application/views/user/modals/more_actions_modal.php:151
 msgid "User:"
-msgstr ""
+msgstr "Utilisateur :"
 
 #: application/views/user/modals/more_actions_modal.php:70
 #: application/views/user/modals/more_actions_modal.php:105
 #: application/views/user/modals/more_actions_modal.php:154
 msgid "Language:"
-msgstr ""
+msgstr "Langue :"
 
 #: application/views/user/modals/more_actions_modal.php:89
 msgid ""
 "Password-reset email sent successfully to user. You can close this dialog "
 "now."
 msgstr ""
+"Un courriel de réinitialisation du mot de passe a été envoyé avec succès à "
+"l'utilisateur. Vous pouvez maintenant fermer cette fenêtre."
 
 #: application/views/user/modals/more_actions_modal.php:90
 msgid ""
 "Password-reset email could not be sent to user. Are the email settings in "
 "global options configured correctly?"
 msgstr ""
+"L'Email de réinitialisation du mot de passe n'a pas pu être envoyé à "
+"l'utilisateur. Les paramètres de messagerie dans les options globales sont-"
+"ils correctement configurés ?"
 
 #: application/views/user/modals/more_actions_modal.php:99
 msgid ""
 "You are about to send a password reset link to the user. The user will be "
 "able to reset their password by clicking on the link in the email."
 msgstr ""
+"Vous allez envoyer un lien de réinitialisation du mot de passe à "
+"l'utilisateur. Ce dernier pourra réinitialiser son mot de passe en cliquant "
+"sur le lien contenu dans l'email."
 
 #: application/views/user/modals/more_actions_modal.php:100
 msgid "Do you want to send the password reset email to this user?"
 msgstr ""
+"Souhaitez-vous envoyer l'email de réinitialisation du mot de passe à cet "
+"utilisateur ?"
 
 #: application/views/user/modals/more_actions_modal.php:110
 msgid "Send the email"
-msgstr ""
+msgstr "Envoyer l'e-mail"
 
 #: application/views/user/modals/more_actions_modal.php:126
 msgid "The account was successfully converted. You can now close this dialog."
 msgstr ""
+"Le compte a été converti avec succès. Vous pouvez maintenant fermer cette "
+"boîte de dialogue."
 
 #: application/views/user/modals/more_actions_modal.php:127
 msgid "The account could not be converted. An error has occurred."
-msgstr ""
+msgstr "La conversion du compte a échoué. Une erreur s'est produite."
 
 #: application/views/user/modals/more_actions_modal.php:135
 msgid "Convert this account into a normal user"
-msgstr ""
+msgstr "Convertissez ce compte en utilisateur normal"
 
 #: application/views/user/modals/more_actions_modal.php:137
 msgid "Convert this account into a clubstation"
-msgstr ""
+msgstr "Convertissez ce compte en Clubstation"
 
 #: application/views/user/modals/more_actions_modal.php:144
 msgid ""
@@ -16315,6 +16347,10 @@ msgid ""
 "user will be able to log in again and all assigned club permissions will be "
 "removed. Use with caution!"
 msgstr ""
+"Vous êtes sur le point de convertir ce compte de Clubstation en compte "
+"utilisateur standard. L'utilisateur pourra se reconnecter et toutes les "
+"autorisations associées au Club seront supprimées. À utiliser avec "
+"précaution !"
 
 #: application/views/user/modals/more_actions_modal.php:146
 msgid ""
@@ -16322,27 +16358,30 @@ msgid ""
 "no longer be able to log in and the account will be converted to a club "
 "station account. Use with caution!"
 msgstr ""
+"Vous êtes sur le point de convertir ce compte utilisateur en compte de "
+"Clubstation. L'utilisateur ne pourra plus se connecter et le compte sera "
+"converti en compte de Clubstation. À utiliser avec précaution !"
 
 #: application/views/user/modals/more_actions_modal.php:149
 msgid "Are you sure you want to convert this account?"
-msgstr ""
+msgstr "Êtes-vous sûr de vouloir convertir ce compte ?"
 
 #: application/views/user/modals/more_actions_modal.php:159
 msgid "Convert"
-msgstr ""
+msgstr "Convertir"
 
 #: application/views/user/modals/stop_impersonate_modal.php:5
 msgid "Switch back to main user"
-msgstr ""
+msgstr "Retour à l'utilisateur principal"
 
 #: application/views/user/modals/stop_impersonate_modal.php:9
 #, php-format
 msgid "Are you sure you want to switch back to %s?"
-msgstr ""
+msgstr "Êtes-vous sûr de vouloir revenir à %s ?"
 
 #: application/views/user/profile.php:19
 msgid "Level"
-msgstr ""
+msgstr "Niveau"
 
 #: application/views/user/profile.php:39
 msgid "First name"
