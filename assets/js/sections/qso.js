@@ -5,6 +5,21 @@ var scps = [];
 let lookupCall = null;
 let preventLookup = false;
 
+// Create and add banner control
+window.mapBanner = L.control({ position: "bottomleft" }); // You can change position: "topleft", "bottomleft", etc.
+
+window.mapBanner.onAdd = function () {
+	const div = L.DomUtil.create("div", "info legend");
+	div.style.background = "rgba(0, 0, 0, 0.7)";
+	div.style.color = "white";
+	div.style.padding = "8px 12px";
+	div.style.borderRadius = "8px";
+	div.style.fontSize = "13px";
+	div.style.boxShadow = "0 2px 6px rgba(0,0,0,0.3)";
+	div.innerHTML = bannerText;
+	return div;
+};
+
 // if the dxcc id changes we need to update the state dropdown and clear the county value to avoid wrong data
 $("#dxcc_id").on('change', function () {
 	updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputQso');
@@ -2204,6 +2219,8 @@ $('#dxcc_id').on('change', function () {
 				mymap.setZoom(8);
 				mymap.panTo([result.dxcc.lat, result.dxcc.long]);
 				markers.addLayer(marker).addTo(mymap);
+				bannerText = "🌍 Location is fetched from DXCC coordinates (no gridsquare provided): " + $('#dxcc_id option:selected').text();
+				window.mapBanner.addTo(mymap);
 			}
 		}
 	});
