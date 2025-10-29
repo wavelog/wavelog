@@ -1271,12 +1271,12 @@ $("#callsign").on("focusout", function () {
 					var marker = L.marker([result.latlng[0], result.latlng[1]], { icon: redIcon });
 					mymap.panTo([result.latlng[0], result.latlng[1]]);
 					mymap.setView([result.latlng[0], result.latlng[1]], 8);
-					bannerText = "📡 Location is fetched from provided gridsquare: " + result.callsign_qra.toUpperCase();
+					bannerText = "📡 "+lang_qso_location_is_fetched_from_provided_gridsquare+": " + result.callsign_qra.toUpperCase();
 					markers.addLayer(marker).addTo(mymap);
 				} else {
 					mymap.panTo([result.dxcc.lat, result.dxcc.long]);
 					mymap.setView([result.dxcc.lat, result.dxcc.long], 8);
-					bannerText = "🌍 Location is fetched from DXCC coordinates (no gridsquare provided): " + $('#dxcc_id option:selected').text();
+					bannerText = "🌍 "+lang_qso_location_is_fetched_from_dxcc_coordinates+": " + $('#dxcc_id option:selected').text();
 				}
 
 
