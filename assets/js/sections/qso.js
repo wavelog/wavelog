@@ -1257,14 +1257,13 @@ $("#callsign").on("focusout", function () {
 					mymap.panTo([result.latlng[0], result.latlng[1]]);
 					mymap.setView([result.latlng[0], result.latlng[1]], 8);
 					bannerText = "📡 Location is fetched from provided gridsquare: " + $('#locator').val();
+					markers.addLayer(marker).addTo(mymap);
 				} else {
-					var marker = L.marker([result.dxcc.lat, result.dxcc.long], { icon: redIcon });
 					mymap.panTo([result.dxcc.lat, result.dxcc.long]);
 					mymap.setView([result.dxcc.lat, result.dxcc.long], 8);
 					bannerText = "🌍 Location is fetched from DXCC coordinates (no gridsquare provided): " + $('#dxcc_id option:selected').text();
 				}
 
-				markers.addLayer(marker).addTo(mymap);
 
 				// Create and add banner control
 				window.mapBanner = L.control({ position: "bottomleft" }); // You can change position: "topleft", "bottomleft", etc.
