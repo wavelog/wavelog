@@ -1,13 +1,45 @@
-// ========================================
-// DX WATERFALL for WaveLog
-// Check at https://www.wavelog.org
-// ========================================
+/**
+ * @fileoverview DX WATERFALL for WaveLog
+ * @version 0.9.0
+ * @author Wavelog Team
+ *
+ * @description
+ * Real-time DX spot visualization with interactive frequency navigation,
+ * CAT control integration, and smart hunting features for amateur radio.
+ *
+ * @requires jQuery
+ * @requires base_url (global from Wavelog)
+ * @requires setFrequency (global function from Wavelog)
+ * @requires setMode (global function from Wavelog)
+ * @requires frequencyToBand (global function from Wavelog)
+ *
+ * @browserSupport
+ * - Chrome 90+
+ * - Firefox 88+
+ * - Safari 14+
+ * - Edge 90+
+ *
+ * @features
+ * - Canvas-based visualization
+ * - ES6+ syntax (const/let recommended, var used for compatibility)
+ * - Navigator.userAgentData (with fallback to userAgent)
+ * - Passive event listeners for scroll performance
+ */
+
+'use strict';
+
 
 // ========================================
 // CONSTANTS AND CONFIGURATION
 // ========================================
 
 var DX_WATERFALL_CONSTANTS = {
+    // Version
+    VERSION: '0.9.0', // DX Waterfall version (keep in sync with @version in file header)
+
+    // Debug and logging
+    DEBUG_MODE: false, // Set to true for verbose logging, false for production
+
     // Timing and debouncing
     DEBOUNCE: {
         SPOT_COLLECTION_MS: 1000,         	// Minimum time between spot collections
@@ -273,7 +305,7 @@ function handleCATFrequencyUpdate(radioFrequency, updateCallback) {
 
         // If we're within the commit delay window, skip this update
         if (timeSinceLastUpdate < timings.commitDelay) {
-            console.log('[DX Waterfall] CAT DEBOUNCE: Skipping update (within ' + timings.commitDelay + 'ms window, ' + timeSinceLastUpdate + 'ms since last)');
+            DX_WATERFALL_UTILS.log.debug('[DX Waterfall] CAT DEBOUNCE: Skipping update (within ' + timings.commitDelay + 'ms window, ' + timeSinceLastUpdate + 'ms since last)');
             return false;
         }
     }
@@ -406,12 +438,18 @@ function handleCATFrequencyUpdate(radioFrequency, updateCallback) {
  * @returns {boolean} - True if CAT is available (polling or websocket)
  */
 function isCATAvailable() {
-    var state = typeof dxwaterfall_cat_state !== 'undefined' ? dxwaterfall_cat_state : 'undefined';
-    var result = (typeof dxwaterfall_cat_state !== 'undefined' &&
-            dxwaterfall_cat_state !== null &&
-            (dxwaterfall_cat_state === "polling" || dxwaterfall_cat_state === "websocket") &&
-            typeof tuneRadioToFrequency === 'function');
-    return result;
+    // Check if global CAT state variable exists and is defined
+    if (typeof dxwaterfall_cat_state === 'undefined' || dxwaterfall_cat_state === null) {
+        return false;
+    }
+
+    // Check if tuneRadioToFrequency function exists
+    if (typeof tuneRadioToFrequency !== 'function') {
+        return false;
+    }
+
+    // Valid states are 'polling' or 'websocket'
+    return (dxwaterfall_cat_state === "polling" || dxwaterfall_cat_state === "websocket");
 }
 
 // ========================================
@@ -419,6 +457,44 @@ function isCATAvailable() {
 // ========================================
 
 var DX_WATERFALL_UTILS = {
+
+    // Logging utilities with debug control
+    log: {
+        /**
+         * Debug log - only shown when DEBUG_MODE is true
+         * @param {string} message - Log message
+         */
+        debug: function(message) {
+            if (DX_WATERFALL_CONSTANTS.DEBUG_MODE && console && console.log) {
+                console.log(message);
+            }
+        },
+
+        /**
+         * Warning log - always shown
+         * @param {string} message - Warning message
+         */
+        warn: function(message) {
+            if (console && console.warn) {
+                console.warn(message);
+            }
+        },
+
+        /**
+         * Error log - always shown
+         * @param {string} message - Error message
+         * @param {Error} [error] - Optional error object
+         */
+        error: function(message, error) {
+            if (console && console.error) {
+                if (error) {
+                    console.error(message, error);
+                } else {
+                    console.error(message);
+                }
+            }
+        }
+    },
 
     // Frequency conversion utilities
     frequency: {
@@ -457,6 +533,18 @@ var DX_WATERFALL_UTILS = {
         parseAndValidate: function(value) {
             var freq = parseFloat(value) || 0;
             return { value: freq, valid: freq > 0 };
+        },
+
+        /**
+         * Compare two frequencies with tolerance for floating point precision
+         * @param {number} freq1 - First frequency in kHz
+         * @param {number} freq2 - Second frequency in kHz
+         * @param {number} [tolerance=0.001] - Tolerance in kHz (default: 1 Hz)
+         * @returns {boolean} - True if frequencies are equal within tolerance
+         */
+        areEqual: function(freq1, freq2, tolerance) {
+            tolerance = tolerance !== undefined ? tolerance : 0.001; // Default 1 Hz
+            return Math.abs(freq1 - freq2) <= tolerance;
         }
     },
 
@@ -1345,8 +1433,8 @@ var DX_WATERFALL_UTILS = {
                 }, 50);
 
                 // Update zoom menu immediately to reflect navigation button states
-                // (no delay needed since we already updated the cache above)
-                waterfallContext.updateZoomMenu();
+                // Force update to bypass frequencyChanging check during navigation
+                waterfallContext.updateZoomMenu(true);
             }
 
             return true;
@@ -1419,87 +1507,81 @@ var dxWaterfall = {
     // ========================================
     // DATA MANAGEMENT PROPERTIES
     // ========================================
-    dxSpots: [], // Store DX cluster spots
-    lastBand: null, // Track last band
-    lastMode: null, // Track last mode
-    initialFetchDone: false, // Track if initial DX spot fetch has been done
-    totalSpotsCount: 0, // Track total number of spots pulled
+    dxSpots: [],
+    lastBand: null,
+    lastMode: null,
+    initialFetchDone: false,
+    totalSpotsCount: 0,
 
     // Data loading state management
-    pageLoadTime: null, // Track when page loaded
-    operationStartTime: null, // Track when current operation (fetch/tune) started
-    waitingForData: true, // Track if we're waiting for initial data
+    pageLoadTime: null,
+    operationStartTime: null,
+    waitingForData: true,
     minWaitTime: DX_WATERFALL_CONSTANTS.DEBOUNCE.SPOT_COLLECTION_MS,
-    dataReceived: false, // Track if we've received any data
-    waitingForCATFrequency: true, // Track if we're waiting for CAT frequency on initial load
-    catFrequencyWaitTimer: null, // Timer for CAT frequency wait
-    waitingForFrequencyUpdate: false, // Track if we're waiting for frequency to be set after band change
+    dataReceived: false,
+    waitingForCATFrequency: true,
+    catFrequencyWaitTimer: null,
+    waitingForFrequencyUpdate: false,
 
     // Refresh throttling
-    lastRefreshTime: 0, // Track last refresh timestamp for throttling
-    refreshPending: false, // Track if a refresh is already scheduled
+    lastRefreshTime: 0,
+    refreshPending: false,
 
     // ========================================
     // USER INTERFACE STATE
     // ========================================
-    userEditingFrequency: false, // Track if user is actively editing frequency
-    spotInfoDiv: null, // Reference to the dxWaterfallSpot div
-    spotTooltipDiv: null, // Reference to the spot tooltip div
-    lastSpotInfoKey: null, // Track last displayed spot to prevent unnecessary re-renders
-    currentContinent: 'NA', // Track current continent filter
-    currentMaxAge: 60, // Track current max age filter
+    userEditingFrequency: false,
+    spotInfoDiv: null,
+    spotTooltipDiv: null,
+    lastSpotInfoKey: null,
+    currentContinent: 'NA',
+    currentMaxAge: 60,
 
     // ========================================
     // SPOT NAVIGATION STATE
     // ========================================
-    lastUpdateTime: null, // Track when spots were last updated
-    lastFetchBand: null, // Track last fetched band
-    lastFetchContinent: null, // Track last fetched continent
-    lastFetchAge: null, // Track last fetched age
-    fetchInProgress: false, // Track if a fetch is currently in progress
-    relevantSpots: [], // Store all relevant spots in bandwidth
-    currentSpotIndex: 0, // Track which spot is currently displayed
-    allBandSpots: [], // Store all valid spots on the band (for navigation)
-    currentBandSpotIndex: 0, // Track which band spot is currently displayed
+    lastUpdateTime: null,
+    lastFetchBand: null,
+    lastFetchContinent: null,
+    lastFetchAge: null,
+    fetchInProgress: false,
+    relevantSpots: [],
+    currentSpotIndex: 0,
+    allBandSpots: [],
+    currentBandSpotIndex: 0,
 
     // ========================================
     // VISUAL CONFIGURATION
     // ========================================
-    fonts: DX_WATERFALL_CONSTANTS.FONTS, // Font configuration
-    labelSizeLevel: 2, // 0 = x-small (11px), 1 = small (12px), 2 = medium (13px - default), 3 = large (15px), 4 = x-large (17px)
+    fonts: DX_WATERFALL_CONSTANTS.FONTS,
+    labelSizeLevel: 2, // 0=x-small, 1=small, 2=medium (default), 3=large, 4=x-large
 
     // ========================================
     // PERFORMANCE CACHING
     // ========================================
     cache: {
-        // Static noise animation caching
         noise1: null,
         noise2: null,
-        currentNoiseFrame: 0, // 0 or 1 to alternate between noise patterns
+        currentNoiseFrame: 0,
         noiseWidth: 0,
         noiseHeight: 0,
-
-        // Frequency and rendering caching
         middleFreq: null,
-
-        // Input state caching
         lastQrgUnit: null,
-        lastValidCommittedFreq: null, // Last VALID committed frequency
-        lastValidCommittedUnit: null, // Last VALID committed unit
-
-        // Visible spots caching
-        visibleSpots: null, // Cached filtered and positioned spots
-        visibleSpotsParams: null // Parameters used to generate cached visible spots
+        lastValidCommittedFreq: null,
+        lastValidCommittedUnit: null,
+        visibleSpots: null,
+        visibleSpotsParams: null
     },
 
     // State flags
-    programmaticModeChange: false, // Flag to prevent fetching spots when mode is changed by waterfall
-    programmaticBandUpdate: false, // Flag to indicate band was changed programmatically by CAT (not user)
-    userChangedBand: false, // Flag to prevent auto band update when user manually changed band
-    initializationComplete: false, // Flag to track if initial setup is done
-    lastPopulatedSpot: null, // Track the last spot that was used to populate the form
+    programmaticModeChange: false,
+    programmaticBandUpdate: false,
+    userChangedBand: false,
+    initializationComplete: false,
+    lastPopulatedSpot: null,
+    pendingSpotSelection: null,
 
-    // Display configuration - centralized mapping for simplex/split operation
+    // Display configuration
     displayConfig: {
         isSplit: false,
         centerFrequency: null,
@@ -1512,54 +1594,50 @@ var dxWaterfall = {
     // ========================================
     currentZoomLevel: DX_WATERFALL_CONSTANTS.ZOOM.DEFAULT_LEVEL,
     maxZoomLevel: DX_WATERFALL_CONSTANTS.ZOOM.MAX_LEVEL,
-    zoomMenuDiv: null, // Reference to the dxWaterfallMenu div
-    zoomChanging: false, // Flag to prevent rapid zoom changes
-    spotNavigating: false, // Flag to prevent double navigation when clicking icons
+    zoomMenuDiv: null,
+    zoomChanging: false,
+    spotNavigating: false,
 
     // ========================================
     // SMART HUNTER FUNCTIONALITY
     // ========================================
-    smartHunterSpots: [], // Store spots with unworked continent or DXCC
-    currentSmartHunterIndex: 0, // Track current position in smart hunter cycle
-    smartHunterActive: false, // Track if smart hunter is active
+    smartHunterSpots: [],
+    currentSmartHunterIndex: 0,
+    smartHunterActive: false,
 
     // ========================================
     // CONTINENT FILTERING
     // ========================================
-    continents: DX_WATERFALL_CONSTANTS.CONTINENTS, // Available continents for cycling
-    continentChanging: false, // Flag to prevent rapid continent changes
-    continentChangeTimer: null, // Timer for debounced continent change
-    pendingContinent: null, // Store pending continent during debounce period
-    initialLoadDone: false, // Flag to track if initial continent load from PHP has been done
+    continents: DX_WATERFALL_CONSTANTS.CONTINENTS,
+    continentChanging: false,
+    continentChangeTimer: null,
+    pendingContinent: null,
+    initialLoadDone: false,
 
     // Frequency change state management
-    frequencyChanging: false, // Flag to block inputs during frequency changes
-    lastWaterfallFrequencyCommandTime: 0, // Track when waterfall sent a CAT command
-    lastFrequencyRefreshTime: 0, // Throttle frequency cache refresh
-    catTuning: false, // Flag to show "Tuning radio..." message during CAT operations
-    targetFrequencyHz: null, // Target frequency for confirmation (null = not waiting, prevents stale CAT updates)
-    targetFrequencyConfirmAttempts: 0, // Counter for CAT frequency confirmation attempts
+    frequencyChanging: false,
+    lastWaterfallFrequencyCommandTime: 0,
+    lastFrequencyRefreshTime: 0,
+    catTuning: false,
+    targetFrequencyHz: null,
+    targetFrequencyConfirmAttempts: 0,
 
     // Spot fetch state management
-    userInitiatedFetch: false, // Flag to distinguish user-initiated fetches from background refreshes
-    // Spot collection throttling
+    userInitiatedFetch: false,
     lastSpotCollectionTime: 0,
     spotCollectionThrottleMs: DX_WATERFALL_CONSTANTS.DEBOUNCE.SPOT_COLLECTION_MS,
-
-    // Fetch request debouncing (reduced timing)
     fetchDebounceTimer: null,
     fetchDebounceMs: DX_WATERFALL_CONSTANTS.DEBOUNCE.FETCH_REQUEST_MS,
 
     // Mode filter management
     modeFilters: {
-        phone: true,  // Active by default
-        cw: true,     // Active by default
-        digi: false   // Inactive by default
+        phone: true,
+        cw: true,
+        digi: false
     },
-    pendingModeFilters: null, // Store pending mode filters during debounce period
-    modeFilterChangeTimer: null, // Timer for debounced mode filter change
+    pendingModeFilters: null,
+    modeFilterChangeTimer: null,
 
-    // Static FT8
     ft8Frequencies: DX_WATERFALL_CONSTANTS.FT8_FREQUENCIES,
 
     // Band plan management
@@ -1569,13 +1647,19 @@ var dxWaterfall = {
     bandLimitsCache: null, // Cached band limits for current band+region
     cachedBandForEdges: null, // The band for which band edges are currently cached
 
-    // Refresh throttling to prevent excessive rendering
-    refreshPending: false, // Track if a refresh is already scheduled
-    lastRefreshTime: 0, // Track when last refresh actually executed
+    // Refresh throttling to prevent excessive rendering (lastRefreshTime declared above)
 
     // ========================================
     // INITIALIZATION AND SETUP FUNCTIONS
     // ========================================
+
+    /**
+     * Check if waterfall is properly initialized
+     * @returns {boolean} - True if canvas and context are initialized
+     */
+    isInitialized: function() {
+        return this.canvas !== null && this.ctx !== null;
+    },
 
     /**
      * Initialize the DX waterfall canvas and event handlers
@@ -1583,11 +1667,48 @@ var dxWaterfall = {
      * @returns {void}
      */
     init: function() {
+        // Always log initialization (user-facing message)
+        if (console && console.log) {
+            console.log('[DX Waterfall] Initializing...');
+        }
+
+        // Initialize canvas and context
+        if (!this._initializeCanvas()) {
+            return; // Canvas not found, abort initialization
+        }
+
+        // Set up event listeners
+        this._setupEventListeners();
+
+        // Load saved settings and initialize state
+        this._loadSettings();
+
+        // Set up initial frequency commit
+        this._setupInitialFrequencyCommit();
+
+        // Set up CAT frequency wait timeout
+        this._setupCATWaitTimeout();
+
+        // Trigger initial refresh
+        this.refresh();
+
+        // Always log successful initialization (user-facing message)
+        if (console && console.log) {
+            console.log('[DX Waterfall] v' + DX_WATERFALL_CONSTANTS.VERSION + ' loaded successfully');
+        }
+    },
+
+    /**
+     * Initialize canvas element and context
+     * @private
+     * @returns {boolean} - True if successful, false if canvas not found
+     */
+    _initializeCanvas: function() {
         this.canvas = document.getElementById('dxWaterfall');
 
         // Check if canvas element exists
         if (!this.canvas) {
-            return;
+            return false;
         }
 
         this.ctx = this.canvas.getContext('2d');
@@ -1605,72 +1726,61 @@ var dxWaterfall = {
         this.$bandSelect = $('#band');
         this.$modeSelect = $('#mode');
 
-        // Set up mouse wheel for zooming (must use passive: false to prevent page scroll)
-        this.canvas.addEventListener('wheel', function(e) {
-            // Block zooming when frequency is changing
+        // Set page load time for waiting state management
+        this.pageLoadTime = Date.now();
+        this.operationStartTime = Date.now();
+
+        // Set initial div content to maintain layout
+        if (this.spotInfoDiv) {
+            this.spotInfoDiv.innerHTML = '&nbsp;';
+        }
+        if (this.zoomMenuDiv) {
+            this.zoomMenuDiv.innerHTML = '&nbsp;';
+        }
+
+        return true;
+    },
+
+    /**
+     * Set up all event listeners for canvas and form inputs
+     * @private
+     */
+    _setupEventListeners: function() {
+        var self = this;
+
+        // Store event handler references for proper cleanup
+        this._wheelHandler = function(e) {
             if (self.frequencyChanging) {
                 return;
             }
-
-            // Prevent page scroll when zooming over the canvas
             e.preventDefault();
             e.stopPropagation();
-
-            // Get wheel direction (negative = scroll up = zoom in, positive = scroll down = zoom out)
             var delta = e.deltaY;
-
-            // Zoom in on scroll up, zoom out on scroll down
             if (delta < 0) {
                 self.zoomIn();
             } else if (delta > 0) {
                 self.zoomOut();
             }
-        }, { passive: false }); // passive: false is required for preventDefault to work
+        };
 
-        // Set up mousemove for spot label tooltips (efficient - only when mouse is over canvas)
-        this.canvas.addEventListener('mousemove', function(e) {
+        this._mousemoveHandler = function(e) {
             self.handleSpotLabelHover(e);
-        });
+        };
 
-        // Set page load time for waiting state management
-        this.pageLoadTime = Date.now();
-        this.operationStartTime = Date.now(); // Initialize operation timer
+        // Add canvas event listeners
+        this.canvas.addEventListener('wheel', this._wheelHandler, { passive: false });
+        this.canvas.addEventListener('mousemove', this._mousemoveHandler);
 
-        // Load saved settings from cookies
-        this.loadSettingsFromCookies();
-
-        // Set top div to &nbsp; to maintain layout height
-        if (this.spotInfoDiv) {
-            this.spotInfoDiv.innerHTML = '&nbsp;';
-        }
-
-        // Set bottom menu to &nbsp; initially - will be populated after data fetch
-        if (this.zoomMenuDiv) {
-            this.zoomMenuDiv.innerHTML = '&nbsp;';
-        }
-
-        // Don't call updateZoomMenu() here - it will be populated after first data fetch
-
-        // Set up frequency input event listeners to only commit on blur or Enter
-        var self = this;
-
+        // Set up frequency input event listeners
         this.$freqCalculated.on('focus', function() {
-            // Mark that user is actively editing
             self.userEditingFrequency = true;
-
-            // Clear any stuck CAT tuning or frequency changing flags when user manually interacts
-            // This ensures that even if CAT is in an error state, user can still change frequency
-            // BUT: Don't clear if we're waiting for CAT confirmation (targetFrequencyHz is set)
             if ((self.catTuning || self.frequencyChanging) && !self.targetFrequencyHz) {
-                console.log('[DX Waterfall] FOCUS: Clearing catTuning flags (user editing frequency)');
+                DX_WATERFALL_UTILS.log.debug('[DX Waterfall] FOCUS: Clearing catTuning flags (user editing frequency)');
                 self.catTuning = false;
                 self.frequencyChanging = false;
                 self.catTuningStartTime = null;
-                // Force refresh to update the display
                 self.updateZoomMenu();
             }
-
-            // When user starts editing, commit current value first (if valid and not already committed)
             if (self.lastValidCommittedFreq === null) {
                 var currentFreq = parseFloat($(this).val()) || 0;
                 if (currentFreq > 0) {
@@ -1680,71 +1790,80 @@ var dxWaterfall = {
         });
 
         this.$freqCalculated.on('blur', function() {
-            // User finished editing
             self.userEditingFrequency = false;
             self.commitFrequency();
         });
 
         this.$freqCalculated.on('input', function() {
-            // User is actively typing
             self.userEditingFrequency = true;
         });
 
-        // Use keydown to catch Enter key for frequency commits
         this.$freqCalculated.on('keydown', function(e) {
-            if (e.which === 13) { // Enter key
-                e.preventDefault(); // Prevent form submission
-                self.userEditingFrequency = false; // User finished editing
+            if (e.which === 13) {
+                e.preventDefault();
+                self.userEditingFrequency = false;
                 self.commitFrequency();
-                $(this).blur(); // Remove focus from the field
+                $(this).blur();
                 return false;
             }
         });
+    },
 
-        // Commit initial frequency with retry for slow page loads
-        // This ensures lastValidCommittedFreq is set before user starts typing
+    /**
+     * Load saved settings from cookies and initialize state
+     * @private
+     */
+    _loadSettings: function() {
+        this.loadSettingsFromCookies();
+
+        // Initialize lastBand and lastMode to prevent false change detection
+        this.lastBand = this.getCurrentBand();
+        this.lastMode = this.getCurrentMode();
+        this.cachedBandForEdges = this.getCurrentBand();
+    },
+
+    /**
+     * Set up initial frequency commit with retry logic
+     * @private
+     */
+    _setupInitialFrequencyCommit: function() {
+        var self = this;
         var attemptCommit = function(attemptsLeft) {
             var freq = parseFloat(self.$freqCalculated.val()) || 0;
             if (freq > 0) {
                 self.commitFrequency();
                 self.initializationComplete = true;
             } else if (attemptsLeft > 0) {
-                // Retry with exponential backoff for slow page loads
                 setTimeout(function() {
                     attemptCommit(attemptsLeft - 1);
                 }, DX_WATERFALL_CONSTANTS.DEBOUNCE.FREQUENCY_COMMIT_RETRY_MS * (6 - attemptsLeft));
             } else {
-                // Give up and mark complete to avoid blocking
                 self.initializationComplete = true;
             }
         };
-        attemptCommit(5); // Try up to 5 times
+        attemptCommit(5);
+    },
 
-        // Initialize lastBand and lastMode to current values before first refresh
-        // This prevents hasParametersChanged() from detecting initial state as a "change"
-        this.lastBand = this.getCurrentBand();
-        this.lastMode = this.getCurrentMode();
-
-        // Initialize cachedBandForEdges to current band so band edges can render immediately
-        this.cachedBandForEdges = this.getCurrentBand();
-
-        // Set up adaptive timeout for CAT frequency to arrive
-        // WebSocket connections are much faster, so use shorter timeout
+    /**
+     * Set up CAT frequency wait timeout
+     * @private
+     */
+    _setupCATWaitTimeout: function() {
+        var self = this;
         var timings = getCATTimings();
-        var catWaitTimeout = timings.confirmTimeout; // 500ms for WebSocket, 3000ms for polling
+        var catWaitTimeout = timings.confirmTimeout;
 
         this.catFrequencyWaitTimer = setTimeout(function() {
             self.waitingForCATFrequency = false;
-            // Trigger refresh which will now perform the initial fetch
             if (!self.initialFetchDone) {
                 self.refresh();
             }
         }, catWaitTimeout);
 
-        // Safety fallback: If we're still stuck after 10 seconds, force the initial fetch
+        // Safety fallback
         setTimeout(function() {
             if (!self.initialFetchDone && !self.dataReceived) {
-                console.log('[DX Waterfall] INIT: 10-second safety timeout, forcing fetch');
+                DX_WATERFALL_UTILS.log.debug('[DX Waterfall] INIT: 10-second safety timeout, forcing fetch');
                 self.waitingForCATFrequency = false;
                 if (self.catFrequencyWaitTimer) {
                     clearTimeout(self.catFrequencyWaitTimer);
@@ -1753,9 +1872,7 @@ var dxWaterfall = {
                 self.initialFetchDone = true;
                 self.fetchDxSpots(true, false);
             }
-        }, 10000); // 10 second safety timeout
-
-        this.refresh();
+        }, 10000);
     },
 
     // Check if current frequency input differs from last committed value
@@ -1864,32 +1981,29 @@ var dxWaterfall = {
             this.waitingForData = true;
         }
 
-        // Note: We DON'T block during userChangedBand cooldown anymore
-        // Instead, we allow the parameter check to proceed, but we handle the fetch differently
-        // Manual band changes should still fetch spots (user expects to see new band data)
-
         // Check for invalid states that should prevent spot fetching
         var middleFreq = this.getCachedMiddleFreq(); // Returns frequency in kHz
         var isFrequencyInvalid = middleFreq <= 0;
         var isBandInvalid = !currentBand || currentBand === '' || currentBand.toLowerCase() === 'select';
 
-        // If frequency or band is invalid, show waiting message but don't fetch spots
+        // Early return: If frequency or band is invalid, don't fetch spots
         if (isFrequencyInvalid || isBandInvalid) {
             this.waitingForData = true;
             this.dataReceived = false;
             this.relevantSpots = [];
             this.currentSpotIndex = 0;
-            this.lastSpotInfoKey = null; // Reset spot info key
+            this.lastSpotInfoKey = null;
             if (this.spotInfoDiv) {
                 this.spotInfoDiv.innerHTML = '&nbsp;';
             }
             // Update tracking but don't trigger fetch
             this.lastBand = currentBand;
             this.lastMode = currentMode;
-            return false; // Don't trigger spot fetch
+            return false;
         }
 
-        var bandChanged = this.lastBand !== currentBand;
+        // Check for changes
+        bandChanged = this.lastBand !== currentBand;
         var modeChanged = this.lastMode !== currentMode;
 
         // Update zoom menu when mode changes (but don't trigger spot fetch)
@@ -1897,60 +2011,55 @@ var dxWaterfall = {
             this.updateZoomMenu();
         }
 
-        // Only band changes should trigger spot fetching
+        // Early return: Only band changes should trigger spot fetching
         // Mode changes should NOT trigger fetching (mode is just a display filter)
-        if (bandChanged) {
-            // Invalidate band limits cache (band changed)
-            this.bandLimitsCache = null;
+        if (!bandChanged) {
+            this.lastBand = currentBand;
+            this.lastMode = currentMode;
+            return false;
+        }
 
-            // Set cached band for edges to current band (will be validated before first render)
-            // This prevents drawing any band edges until frequency is confirmed to match
-            this.cachedBandForEdges = currentBand;
+        // Band changed - invalidate caches
+        this.bandLimitsCache = null;
+        this.cachedBandForEdges = currentBand;
+        this.cache.visibleSpots = null;
+        this.cache.visibleSpotsParams = null;
 
-            // Invalidate visible spots cache (new band means new spots)
-            this.cache.visibleSpots = null;
-            this.cache.visibleSpotsParams = null;
+        // Early return: If this is initial load (lastBand is null), don't reset state
+        if (this.lastBand === null) {
+            this.lastBand = currentBand;
+            this.lastMode = currentMode;
+            return bandChanged;
+        }
 
-            // Only reset waiting state if we've already received initial data
-            // This prevents treating initial parameter setting as a "change"
-            if (this.lastBand !== null) {
-                // Band changed after initial load, reset waiting state
-                this.waitingForData = true;
-                this.dataReceived = false;
-                // Clear old spots immediately to prevent rendering spots from wrong band
-                this.dxSpots = [];
-                this.totalSpotsCount = 0;
-                // Reset relevant spots array and index
-                this.relevantSpots = [];
-                this.currentSpotIndex = 0;
-                this.lastSpotInfoKey = null; // Reset spot info key
-                if (this.spotInfoDiv) {
-                    this.spotInfoDiv.innerHTML = '&nbsp;';
-                }
-                // Reset timer for the new band fetch
-                this.operationStartTime = Date.now();
-                // Immediately update menu to show loading indicator
-                this.updateZoomMenu();
+        // Band changed after initial load - reset waiting state
+        this.waitingForData = true;
+        this.dataReceived = false;
+        this.dxSpots = [];
+        this.totalSpotsCount = 0;
+        this.relevantSpots = [];
+        this.currentSpotIndex = 0;
+        this.lastSpotInfoKey = null;
+        if (this.spotInfoDiv) {
+            this.spotInfoDiv.innerHTML = '&nbsp;';
+        }
+        this.operationStartTime = Date.now();
+        this.updateZoomMenu();
 
-                // Determine if this is a programmatic (CAT) change or manual user change
-                // Programmatic changes bypass cooldown, manual changes set cooldown (if not already active)
-                if (this.programmaticBandUpdate) {
-                    // Reset the flag immediately after use
-                    this.programmaticBandUpdate = false;
-                    // If there was a manual change cooldown active, cancel it (CAT takes priority)
-                    if (this.userChangedBand) {
-                        this.userChangedBand = false;
-                    }
-                } else if (!this.userChangedBand) {
-                    // Manual change AND no cooldown already active
-                    // This happens when waterfall detects band is outside frequency range
-                    this.userChangedBand = true;
-                    var self = this;
-                    setTimeout(function() {
-                        self.userChangedBand = false;
-                    }, 2000);
-                }
+        // Handle programmatic vs manual band changes
+        if (this.programmaticBandUpdate) {
+            // Programmatic (CAT) change - reset flag and cancel any manual cooldown
+            this.programmaticBandUpdate = false;
+            if (this.userChangedBand) {
+                this.userChangedBand = false;
             }
+        } else if (!this.userChangedBand) {
+            // Manual change with no cooldown active - set cooldown
+            this.userChangedBand = true;
+            var self = this;
+            setTimeout(function() {
+                self.userChangedBand = false;
+            }, 2000);
         }
 
         this.lastBand = currentBand;
@@ -2107,31 +2216,29 @@ var dxWaterfall = {
             this.showingCompletionOverlay = true;
         }
 
-        // Force immediate cache refresh and visual update to move marker
-        this.lastFrequencyRefreshTime = 0; // Reset throttle to allow immediate refresh
+        // Force immediate cache refresh and visual update
+        this.lastFrequencyRefreshTime = 0;
 
         // Only refresh from DOM if CAT is available - otherwise keep waterfall frequency independent
         if (isCATAvailable()) {
             this.refreshFrequencyCache();
         }
 
-        // Force immediate refresh to draw marker at new position (with overlay still visible)
         if (this.canvas && this.ctx) {
             this.refresh();
         }
 
-        // Clear the overlay after marker has had time to move (only if we set it)
+        // Clear overlay after marker movement animation completes
         if (isCATAvailable()) {
             var self = this;
             setTimeout(function() {
                 self.showingCompletionOverlay = false;
-                // Force final refresh to show normal waterfall without overlay
                 if (self.canvas && self.ctx) {
                     self.refresh();
                 }
-            }, 400); // Wait for marker to settle
+            }, 400);
 
-            // Additional safety clearing
+            // Fallback timeout for safety
             setTimeout(function() {
                 self.showingCompletionOverlay = false;
                 if (self.canvas && self.ctx) {
@@ -2140,11 +2247,8 @@ var dxWaterfall = {
             }, 600);
         }
 
-
-        // Verify the new frequency after cache clear
+        // Final refresh to ensure visual consistency
         var newFreq = this.getCachedMiddleFreq();
-
-        // Force an immediate refresh to ensure visual update
         if (this.canvas && this.ctx) {
             this.refresh();
         }
@@ -2746,23 +2850,19 @@ var dxWaterfall = {
     loadBandPlans: function() {
         var self = this;
 
-        // Check if already loaded (or attempted to load)
         if (this.bandPlans !== null) {
             return;
         }
 
-        // Mark as loading to prevent repeated attempts
         this.bandPlans = 'loading';
 
-        // Check if base_url is defined
         var baseUrl = (typeof base_url !== 'undefined') ? base_url : '';
         if (!baseUrl) {
-            this.bandPlans = {}; // Set to empty object
+            this.bandPlans = {};
             return;
         }
 
-        // Determine region from current continent using the same logic as JSON bandplans
-        // Region selection not yet fully implemented, but prepared for future use
+        // Determine region from current continent
         var region = this.continentToRegion(this.currentContinent);
 
         $.ajax({
@@ -3228,7 +3328,7 @@ var dxWaterfall = {
 
         // If not immediate, debounce the request
         if (!immediate) {
-            console.log('[DX Waterfall] FETCH SPOTS: Debouncing for ' + this.fetchDebounceMs + 'ms');
+            DX_WATERFALL_UTILS.log.debug('[DX Waterfall] FETCH SPOTS: Debouncing for ' + this.fetchDebounceMs + 'ms');
             this.fetchDebounceTimer = setTimeout(function() {
                 self.fetchDebounceTimer = null;
                 self.fetchDxSpots(true, userInitiated); // Pass userInitiated through
@@ -3316,9 +3416,9 @@ var dxWaterfall = {
         // Set a safety timeout to force-clear stuck state after AJAX timeout + buffer
         // This ensures UI doesn't stay locked if AJAX callbacks fail to trigger
         this.safetyTimeoutId = setTimeout(function() {
-            console.log('[DX Waterfall] FETCH SPOTS: *** SAFETY TIMEOUT TRIGGERED *** - AJAX hung for 32+ seconds');
+            DX_WATERFALL_UTILS.log.warn('[DX Waterfall] FETCH SPOTS: *** SAFETY TIMEOUT TRIGGERED *** - AJAX hung for 32+ seconds');
             if (self.fetchInProgress) {
-                console.log('[DX Waterfall] FETCH SPOTS: Safety timeout - forcing state clear');
+                DX_WATERFALL_UTILS.log.warn('[DX Waterfall] FETCH SPOTS: Safety timeout - forcing state clear');
                 self.fetchInProgress = false;
                 self.userInitiatedFetch = false;
                 self.waitingForData = false;
@@ -3438,7 +3538,7 @@ var dxWaterfall = {
             error: function(xhr, status, error) {
                 // Clear safety timeout
                 if (self.safetyTimeoutId) {
-                    console.log('[DX Waterfall] FETCH SPOTS: Error callback - clearing safety timeout');
+                    DX_WATERFALL_UTILS.log.debug('[DX Waterfall] FETCH SPOTS: Error callback - clearing safety timeout');
                     clearTimeout(self.safetyTimeoutId);
                     self.safetyTimeoutId = null;
                 }
@@ -3446,7 +3546,7 @@ var dxWaterfall = {
                 self.fetchInProgress = false;
                 self.userInitiatedFetch = false; // Clear user-initiated flag
 
-                console.log('[DX Waterfall] FETCH SPOTS: AJAX error - status=' + status + ', error=' + error + ', readyState=' + xhr.readyState);
+                DX_WATERFALL_UTILS.log.error('[DX Waterfall] FETCH SPOTS: AJAX error - status=' + status + ', error=' + error + ', readyState=' + xhr.readyState);
 
                 self.dxSpots = [];
                 self.totalSpotsCount = 0;
@@ -3564,15 +3664,22 @@ var dxWaterfall = {
 
     // Draw static noise background (cached and animated)
     drawStaticNoise: function() {
-        // Generate cached noise only if needed (dimensions changed or first time)
-        this.generateCachedNoise();
+        try {
+            // Generate cached noise only if needed (dimensions changed or first time)
+            this.generateCachedNoise();
 
-        // Alternate between noise patterns for animation effect
-        var noiseToUse = (this.cache.currentNoiseFrame === 0) ? this.cache.noise1 : this.cache.noise2;
-        this.ctx.putImageData(noiseToUse, 0, 0);
+            // Alternate between noise patterns for animation effect
+            var noiseToUse = (this.cache.currentNoiseFrame === 0) ? this.cache.noise1 : this.cache.noise2;
+            this.ctx.putImageData(noiseToUse, 0, 0);
 
-        // Switch to next frame for next refresh
-        this.cache.currentNoiseFrame = 1 - this.cache.currentNoiseFrame; // Toggle between 0 and 1
+            // Switch to next frame for next refresh
+            this.cache.currentNoiseFrame = 1 - this.cache.currentNoiseFrame; // Toggle between 0 and 1
+        } catch (e) {
+            DX_WATERFALL_UTILS.log.error('[DX Waterfall] Error drawing static noise:', e);
+            // Fall back to simple black background
+            this.ctx.fillStyle = DX_WATERFALL_CONSTANTS.COLORS.BLACK;
+            this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        }
     },
 
     // Draw Wavelog logo centered above message
@@ -3589,35 +3696,40 @@ var dxWaterfall = {
             return;
         }
 
-        // Create image object if it doesn't exist or reuse existing one
-        if (!this.wavelogLogoImage) {
-            this.wavelogLogoImage = new Image();
-            this.wavelogLogoImage.onload = function() {
-                self.wavelogLogoImage.loaded = true;
-            };
-            this.wavelogLogoImage.onerror = function() {
-                console.error('Failed to load Wavelog logo');
-            };
-            // Get base URL from global variable or construct it
-            var baseUrl = (typeof base_url !== 'undefined') ? base_url : '';
-            this.wavelogLogoImage.src = baseUrl + DX_WATERFALL_CONSTANTS.LOGO_FILENAME;
-        }
+        try {
+            // Create image object if it doesn't exist or reuse existing one
+            if (!this.wavelogLogoImage) {
+                this.wavelogLogoImage = new Image();
+                this.wavelogLogoImage.onload = function() {
+                    self.wavelogLogoImage.loaded = true;
+                };
+                this.wavelogLogoImage.onerror = function() {
+                    DX_WATERFALL_UTILS.log.error('Failed to load Wavelog logo');
+                };
+                // Get base URL from global variable or construct it
+                var baseUrl = (typeof base_url !== 'undefined') ? base_url : '';
+                this.wavelogLogoImage.src = baseUrl + DX_WATERFALL_CONSTANTS.LOGO_FILENAME;
+            }
 
-        // Draw logo if it's loaded, ensuring it stays within canvas bounds
-        if (this.wavelogLogoImage.loaded) {
-            var logoWidth = 140;
-            var logoHeight = this.wavelogLogoImage.height * (logoWidth / this.wavelogLogoImage.width);
-            var logoX = centerX - (logoWidth / 2);
+            // Draw logo if it's loaded, ensuring it stays within canvas bounds
+            if (this.wavelogLogoImage.loaded) {
+                var logoWidth = 140;
+                var logoHeight = this.wavelogLogoImage.height * (logoWidth / this.wavelogLogoImage.width);
+                var logoX = centerX - (logoWidth / 2);
 
-            // Clamp logo position to stay within canvas bounds
-            logoX = Math.max(0, Math.min(logoX, this.canvas.width - logoWidth));
-            logoY = Math.max(0, Math.min(logoY, this.canvas.height - logoHeight));
+                // Clamp logo position to stay within canvas bounds
+                logoX = Math.max(0, Math.min(logoX, this.canvas.width - logoWidth));
+                logoY = Math.max(0, Math.min(logoY, this.canvas.height - logoHeight));
 
-            // Save canvas state to ensure logo doesn't affect other drawings
-            this.ctx.save();
-            this.ctx.globalAlpha = opacity;
-            this.ctx.drawImage(this.wavelogLogoImage, logoX, logoY, logoWidth, logoHeight);
-            this.ctx.restore();
+                // Save canvas state to ensure logo doesn't affect other drawings
+                this.ctx.save();
+                this.ctx.globalAlpha = opacity;
+                this.ctx.drawImage(this.wavelogLogoImage, logoX, logoY, logoWidth, logoHeight);
+                this.ctx.restore();
+            }
+        } catch (e) {
+            DX_WATERFALL_UTILS.log.error('[DX Waterfall] Error drawing logo:', e);
+            // Silently fail - logo is non-critical
         }
     },    // Display waiting message with black overlay and spinner
     displayWaitingMessage: function() {
@@ -4486,16 +4598,32 @@ var dxWaterfall = {
         // Check if we have multiple spots near the CENTER/TUNED frequency
         var centerFreq = this.getCachedMiddleFreq(); // Use the actual tuned frequency
         var spotsAtSameFreq = [];
-        var frequencyTolerance = DX_WATERFALL_CONSTANTS.THRESHOLDS.CENTER_SPOT_TOLERANCE_KHZ;
+        var exactMatchTolerance = 0.01; // 10 Hz - very tight tolerance for exact match
 
+        // First pass: check if there are any spots at our EXACT frequency (within 10 Hz)
         for (var i = 0; i < this.relevantSpots.length; i++) {
             var spot = this.relevantSpots[i];
             var spotFreq = parseFloat(spot.frequency);
-            if (Math.abs(spotFreq - centerFreq) <= frequencyTolerance) {
+            if (Math.abs(spotFreq - centerFreq) <= exactMatchTolerance) {
                 spotsAtSameFreq.push({
                     spot: spot,
                     index: i
                 });
+            }
+        }
+
+        // If no exact matches, fall back to broader tolerance for nearby spots
+        if (spotsAtSameFreq.length === 0) {
+            var frequencyTolerance = DX_WATERFALL_CONSTANTS.THRESHOLDS.CENTER_SPOT_TOLERANCE_KHZ;
+            for (var i = 0; i < this.relevantSpots.length; i++) {
+                var spot = this.relevantSpots[i];
+                var spotFreq = parseFloat(spot.frequency);
+                if (Math.abs(spotFreq - centerFreq) <= frequencyTolerance) {
+                    spotsAtSameFreq.push({
+                        spot: spot,
+                        index: i
+                    });
+                }
             }
         }
 
@@ -4917,6 +5045,8 @@ var dxWaterfall = {
         var currentMode = this.getCurrentMode().toLowerCase();
 
         var relevantSpots = [];
+        var exactMatchSpots = []; // Spots at our exact frequency
+        var exactMatchTolerance = 0.01; // 10 Hz - very tight tolerance for exact match
 
         // Get current bandwidth parameters for signal width detection (with caching)
         var bandwidthParams = this.getCachedBandwidthParams(currentMode, middleFreq);
@@ -4924,19 +5054,15 @@ var dxWaterfall = {
 
         // Determine detection range based on mode
         var detectionRange = 0;
-        var isCentered = false; // For modes with symmetric detection (CW, SSB, etc.)
 
         if (currentMode === 'lsb' || currentMode === 'usb' || currentMode === 'phone') {
             // SSB modes: Use symmetric ±1 kHz detection range
             // This allows spots within ±1 kHz to be detected regardless of sideband
-            isCentered = true;
             detectionRange = 1.0; // ±1 kHz symmetric range for SSB
         } else if (currentMode === 'cw') {
-            isCentered = true;
             detectionRange = DX_WATERFALL_CONSTANTS.SIGNAL_BANDWIDTHS.CW_DETECTION_KHZ;
         } else {
             // Other modes (digital, etc.) - centered with half bandwidth
-            isCentered = true;
             detectionRange = signalBandwidth * 0.5; // 50% of bandwidth for other modes
         }        // Find spots within our signal bandwidth on the correct sideband
         for (var i = 0; i < this.dxSpots.length; i++) {
@@ -4957,14 +5083,21 @@ var dxWaterfall = {
                         continue;
                     }
 
-                    relevantSpots.push(DX_WATERFALL_UTILS.spots.createSpotObject(spot, {
+                    var spotObj = DX_WATERFALL_UTILS.spots.createSpotObject(spot, {
                         includeSpotter: true,
                         includeTimestamp: true,
                         includeMessage: true,
                         includeOffsets: true,
                         middleFreq: middleFreq,
                         includeWorkStatus: true
-                    }));
+                    });
+
+                    relevantSpots.push(spotObj);
+
+                    // Check if this is an exact match (within 10 Hz)
+                    if (absOffset <= exactMatchTolerance) {
+                        exactMatchSpots.push(spotObj);
+                    }
                 }
             }
         }
@@ -4977,15 +5110,40 @@ var dxWaterfall = {
 
         // Sort by absolute frequency offset (closest to our frequency first)
         relevantSpots.sort(DX_WATERFALL_UTILS.sorting.byAbsOffset);
+        exactMatchSpots.sort(DX_WATERFALL_UTILS.sorting.byAbsOffset);
 
-        // Store all relevant spots and ensure current index is valid
-        this.relevantSpots = relevantSpots;
-        if (this.currentSpotIndex >= relevantSpots.length) {
+        // IMPORTANT: If we have exact matches, use ONLY those for relevantSpots
+        // This ensures cycling only goes through spots at our exact frequency
+        if (exactMatchSpots.length > 0) {
+            this.relevantSpots = exactMatchSpots;
+        } else {
+            this.relevantSpots = relevantSpots;
+        }
+
+        // Ensure current index is valid
+        if (this.currentSpotIndex >= this.relevantSpots.length) {
             this.currentSpotIndex = 0;
         }
 
+        // If there's a pending spot selection (from clicking a stacked spot), restore the correct index
+        if (this.pendingSpotSelection) {
+            var foundIndex = -1;
+            for (var i = 0; i < this.relevantSpots.length; i++) {
+                if (this.relevantSpots[i].callsign === this.pendingSpotSelection.callsign &&
+                    Math.abs(this.relevantSpots[i].frequency - this.pendingSpotSelection.frequency) < 0.01) {
+                    foundIndex = i;
+                    break;
+                }
+            }
+            if (foundIndex >= 0) {
+                this.currentSpotIndex = foundIndex;
+            }
+            // Clear the pending selection after restoring
+            this.pendingSpotSelection = null;
+        }
+
         // Return the currently selected spot
-        var selectedSpot = relevantSpots[this.currentSpotIndex];
+        var selectedSpot = this.relevantSpots[this.currentSpotIndex];
         return selectedSpot;
     },
 
@@ -5629,7 +5787,6 @@ var dxWaterfall = {
 
     // Cycle to next smart hunter spot (nearest unworked spot to the right of current frequency)
     nextSmartHunterSpot: function() {
-
         if (this.spotNavigating) {
             return; // Already navigating, prevent double trigger
         }
@@ -5638,7 +5795,7 @@ var dxWaterfall = {
             return; // No smart spots available
         }
 
-        this.spotNavigating = true;
+        // Set smart hunter active flag
         this.smartHunterActive = true;
 
         // Get current frequency
@@ -5664,103 +5821,15 @@ var dxWaterfall = {
         }
 
         if (targetSpot) {
+            // Update smart hunter index
             this.currentSmartHunterIndex = targetIndex;
 
-            // Set frequency to the spot
-            if (targetSpot.frequency) {
-                // Clear the QSO form when navigating to a new spot
-                DX_WATERFALL_UTILS.qsoForm.clearForm();
+            // Get the complete spot data from the stored reference
+            var completeSpot = targetSpot._originalSpot || targetSpot;
 
-                // Check if frequency is far outside current band and update band if needed
-                if (this.isFrequencyFarOutsideBand(targetSpot.frequency)) {
-                    this.updateBandFromFrequency(targetSpot.frequency);
-                }
-
-                // CRITICAL: Set mode FIRST before calling setFrequency
-                var radioMode = DX_WATERFALL_UTILS.navigation.determineRadioMode(targetSpot);
-
-                // Set CAT debounce lock early to block incoming CAT updates during navigation
-                if (typeof setFrequency.catDebounceLock !== 'undefined') {
-                    setFrequency.catDebounceLock = 1;
-                }
-
-                setMode(radioMode, true); // skipTrigger = true to prevent change event
-
-                // Now set frequency - it will read the correct mode from the dropdown
-                setFrequency(targetSpot.frequency, true); // Pass true to indicate waterfall-initiated change
-
-                // Send frequency command again after short delay to correct any drift from mode change
-                // (radio control lib bug: mode change can cause slight frequency shift)
-                setTimeout(function() {
-                    setFrequency(targetSpot.frequency, true);
-                }, 200); // 200ms delay to let mode change settle
-
-                // Get the complete spot data from the stored reference
-                // targetSpot from smartHunterSpots has a reference to the original spot
-                var completeSpot = targetSpot._originalSpot || null;
-                var self = this;
-
-                // Populate callsign and trigger lookup after form is cleared
-                setTimeout(function() {
-                    // Use complete spot data if found, otherwise use targetSpot
-                    var spotData;
-                    if (completeSpot) {
-                        // Use all data from the complete spot to ensure consistency
-                        spotData = {
-                            callsign: completeSpot.spotted,
-                            mode: completeSpot.mode,
-                            sotaRef: completeSpot.sotaRef || '',
-                            potaRef: completeSpot.potaRef || '',
-                            iotaRef: completeSpot.iotaRef || '',
-                            wwffRef: completeSpot.wwffRef || ''
-                        };
-                    } else {
-                        // Fallback to targetSpot data
-                        spotData = {
-                            callsign: targetSpot.callsign,
-                            mode: targetSpot.mode,
-                            sotaRef: targetSpot.sotaRef || '',
-                            potaRef: targetSpot.potaRef || '',
-                            iotaRef: targetSpot.iotaRef || '',
-                            wwffRef: targetSpot.wwffRef || ''
-                        };
-                    }
-
-                    DX_WATERFALL_UTILS.qsoForm.populateFromSpot(spotData, true);
-                }, 100);
-
-                // Commit the new frequency so waterfall doesn't shift when user types later
-                setTimeout(function() {
-                    self.commitFrequency();
-                }, 50);
-
-                // After frequency change, sync the band spot index and relevant spot index
-                // Find this spot in the allBandSpots array
-                var foundBandIndex = false;
-                for (var i = 0; i < this.allBandSpots.length; i++) {
-                    if (this.allBandSpots[i].callsign === targetSpot.callsign &&
-                        Math.abs(this.allBandSpots[i].frequency - targetSpot.frequency) < 0.01) {
-                        this.currentBandSpotIndex = i;
-                        foundBandIndex = true;
-                        break;
-                    }
-                }
-
-                // Sync relevant spot index
-                this.syncRelevantSpotIndex(targetSpot);
-            }
-
-            // Update zoom menu to reflect new position
-            this.updateZoomMenu();
-        } else {
-            // No target spot found (should not happen)
+            // Use centralized navigation logic with prefill enabled
+            DX_WATERFALL_UTILS.navigation.navigateToSpot(this, completeSpot, targetIndex, true);
         }
-
-        // Reset flag after a delay
-        var self = this;
-        setTimeout(function() {
-            self.spotNavigating = false;
-        }, 100);
     },
 
     // Jump to first spot in band
@@ -5971,7 +6040,7 @@ var dxWaterfall = {
      * Call this method before removing the waterfall from the DOM to prevent memory leaks
      */
     destroy: function() {
-        // Clear all timers
+        // Clear all timers to prevent memory leaks
         if (this.fetchDebounceTimer) {
             clearTimeout(this.fetchDebounceTimer);
             this.fetchDebounceTimer = null;
@@ -5988,21 +6057,57 @@ var dxWaterfall = {
             clearTimeout(this.catFrequencyWaitTimer);
             this.catFrequencyWaitTimer = null;
         }
+        if (this.safetyTimeoutId) {
+            clearTimeout(this.safetyTimeoutId);
+            this.safetyTimeoutId = null;
+        }
 
-        // Unbind event handlers that were added in init()
+        // Clear QSO form utility timers
+        if (DX_WATERFALL_UTILS.qsoForm.pendingPopulationTimer) {
+            clearTimeout(DX_WATERFALL_UTILS.qsoForm.pendingPopulationTimer);
+            DX_WATERFALL_UTILS.qsoForm.pendingPopulationTimer = null;
+        }
+        if (DX_WATERFALL_UTILS.qsoForm.pendingLookupTimer) {
+            clearTimeout(DX_WATERFALL_UTILS.qsoForm.pendingLookupTimer);
+            DX_WATERFALL_UTILS.qsoForm.pendingLookupTimer = null;
+        }
+
+        // Clear navigation utility timers
+        if (DX_WATERFALL_UTILS.navigation.pendingNavigationTimer) {
+            clearTimeout(DX_WATERFALL_UTILS.navigation.pendingNavigationTimer);
+            DX_WATERFALL_UTILS.navigation.pendingNavigationTimer = null;
+        }
+
+        // Remove event listeners added in init() to prevent memory leaks
+        if (this.canvas) {
+            if (this._wheelHandler) {
+                this.canvas.removeEventListener('wheel', this._wheelHandler);
+                this._wheelHandler = null;
+            }
+            if (this._mousemoveHandler) {
+                this.canvas.removeEventListener('mousemove', this._mousemoveHandler);
+                this._mousemoveHandler = null;
+            }
+        }
+
+        // Unbind jQuery event handlers that were added in init()
         // Note: Event handlers registered outside dxWaterfall object (like menu clicks)
         // should NOT be unbound here as they are global and persistent
         if (this.$freqCalculated) {
             this.$freqCalculated.off('focus blur input keydown');
         }
         if (this.canvas) {
-            // Only unbind wheel event (added in init), not click events from global handlers
+            // Unbind jQuery events on canvas (click is handled globally, not here)
             $(this.canvas).off('wheel');
         }
 
         // Clear canvas
         if (this.ctx && this.canvas) {
-            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            try {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            } catch (e) {
+                DX_WATERFALL_UTILS.log.warn('[DX Waterfall] Error clearing canvas:', e);
+            }
         }
 
         // Clear cached data
@@ -6060,6 +6165,7 @@ var dxWaterfall = {
         // Clear pending states
         this.pendingContinent = null;
         this.pendingModeFilters = null;
+        this.pendingSpotSelection = null;
 
         // Reset spot info key
         this.lastSpotInfoKey = null;
@@ -6091,6 +6197,11 @@ var dxWaterfall = {
 
         // Mark as not initialized
         this.initializationComplete = false;
+
+        // Always log cleanup completion (user-facing message)
+        if (console && console.log) {
+            console.log('[DX Waterfall] Unloaded successfully');
+        }
     }
 };
 
@@ -6146,17 +6257,14 @@ function setMode(mode, skipTrigger) {
         }
     }
 
-    // Check if the mode exists in the select options
-    var modeExists = modeSelect.find('option[value="' + modeUpper + '"]').length > 0;
+        // Check if the mode exists in the select options
+        var modeExists = modeSelect.find('option[value="' + modeUpper + '"]').length > 0;
 
-    if (modeExists) {
-        // Temporarily mark that we're programmatically setting the mode
-        // to prevent waterfall from fetching new spots
-        dxWaterfall.programmaticModeChange = true;
+        if (modeExists) {
+            // Set flag to prevent waterfall from fetching spots during mode change
+            dxWaterfall.programmaticModeChange = true;
 
-        modeSelect.val(modeUpper);
-
-        // Only trigger change if skipTrigger is false
+            modeSelect.val(modeUpper);        // Only trigger change if skipTrigger is false
         if (!skipTrigger) {
             modeSelect.trigger('change');
         }
@@ -6193,7 +6301,15 @@ function setMode(mode, skipTrigger) {
 // @param fromWaterfall - True if this change was initiated by waterfall (clicking spot/tune icon), false for external calls
 function setFrequency(frequencyInKHz, fromWaterfall) {
 
-    if (!frequencyInKHz) {
+    // Input validation
+    if (!frequencyInKHz || typeof frequencyInKHz !== 'number') {
+        DX_WATERFALL_UTILS.log.warn('[setFrequency] Invalid frequency parameter:', frequencyInKHz);
+        return;
+    }
+
+    // Validate frequency range (30 kHz to 3 GHz - reasonable amateur radio range)
+    if (frequencyInKHz < 0.03 || frequencyInKHz > 3000000) {
+        DX_WATERFALL_UTILS.log.warn('[setFrequency] Frequency out of valid range:', frequencyInKHz, 'kHz');
         return;
     }
 
@@ -6384,7 +6500,7 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
                 // Only log if it's not a simple timeout or network issue
                 if (textStatus !== 'timeout' && jqXHR && jqXHR.status !== 0) {
                     if (jqXHR.responseText) {
-                        console.warn('DX Waterfall: CAT command failed: Response text:', jqXHR.responseText);
+                        DX_WATERFALL_UTILS.log.warn('DX Waterfall: CAT command failed: Response text:', jqXHR.responseText);
                     }
                 }
                 // Silently fall through to manual frequency setting
@@ -6678,14 +6794,12 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
 
     // Handle canvas click events for frequency detection
     DX_WATERFALL_UTILS.dom.getWaterfall().on('click', function(e) {
-        // Don't handle clicks when frequency is changing
         if (dxWaterfall.frequencyChanging) {
-            return; // Block clicks during frequency changes
+            return;
         }
 
-        // Don't handle clicks when waiting for data
         if (dxWaterfall.waitingForData && !dxWaterfall.dataReceived) {
-            return; // Do nothing while waiting for cluster data
+            return;
         }
 
         // Get click coordinates relative to canvas
@@ -6694,10 +6808,28 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
         var x = e.clientX - rect.left;
         var y = e.clientY - rect.top;
 
-        // First check if user clicked on a spot label - if so, tune to that exact spot frequency
+        // Check if user clicked on a spot label
         var clickedSpot = dxWaterfall.findSpotAtPosition(x, y);
         if (clickedSpot && clickedSpot.frequency) {
-            // User clicked on a spot label - tune to exact spot frequency and set mode
+
+            // Preserve spot selection across frequency changes
+            dxWaterfall.pendingSpotSelection = {
+                callsign: clickedSpot.callsign,
+                frequency: clickedSpot.frequency
+            };
+
+            // Update currentSpotIndex when clicking stacked center spots
+            if (dxWaterfall.relevantSpots && dxWaterfall.relevantSpots.length > 0) {
+                for (var i = 0; i < dxWaterfall.relevantSpots.length; i++) {
+                    if (dxWaterfall.relevantSpots[i].callsign === clickedSpot.callsign &&
+                        Math.abs(dxWaterfall.relevantSpots[i].frequency - clickedSpot.frequency) < 0.01) {
+                        dxWaterfall.currentSpotIndex = i;
+                        // Update spot info display to show the selected spot with visual border
+                        dxWaterfall.updateSpotInfoDiv();
+                        break;
+                    }
+                }
+            }
 
             // Set navigation flag to block refresh interference during spot click
             DX_WATERFALL_UTILS.navigation.navigating = true;
@@ -6724,6 +6856,13 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
             setTimeout(function() {
                 setFrequency(clickedSpot.frequency, true);
             }, 200); // 200ms delay to let mode change settle
+
+            // Update band spot collection and zoom menu after navigation
+            // This ensures the next/prev spot buttons reflect the new position
+            setTimeout(function() {
+                dxWaterfall.collectAllBandSpots(true); // Force update after spot click
+                dxWaterfall.updateZoomMenu(true); // Force update with forceUpdate=true
+            }, 300); // After frequency has settled
 
             // Populate QSO form - flag will be cleared when population completes
             DX_WATERFALL_UTILS.qsoForm.populateFromSpot(clickedSpot, true);
@@ -6764,6 +6903,12 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
         dxWaterfall.lastValidCommittedUnit = 'kHz';
         dxWaterfall.lastQrgUnit = 'kHz';
 
+        // Update band spot collection and zoom menu to reflect new position
+        // This ensures next/prev spot buttons and position counter are updated
+        setTimeout(function() {
+            dxWaterfall.collectAllBandSpots(true); // Force update after frequency click
+            dxWaterfall.updateZoomMenu(true); // Force update with forceUpdate=true
+        }, 100); // Brief delay to let frequency settle
 
         // Note: No need to call commitFrequency() here since we already set
         // lastValidCommittedFreq directly above
@@ -6899,23 +7044,15 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
 
         waterfallActive = false;
 
-        // Stop the refresh interval
+        // Stop the refresh interval (managed outside dxWaterfall object)
         if (waterfallRefreshInterval) {
             clearInterval(waterfallRefreshInterval);
             waterfallRefreshInterval = null;
         }
 
-        // Destroy the waterfall component (cleanup memory, timers, event handlers)
+        // Destroy the waterfall component (handles cleanup of memory, timers, event handlers, and DOM refs)
         if (typeof dxWaterfall !== 'undefined' && dxWaterfall.canvas) {
             dxWaterfall.destroy();
-        }
-
-        // Clear spot info and menu divs
-        if (dxWaterfall.spotInfoDiv) {
-            dxWaterfall.spotInfoDiv.innerHTML = '&nbsp;';
-        }
-        if (dxWaterfall.zoomMenuDiv) {
-            dxWaterfall.zoomMenuDiv.innerHTML = '&nbsp;';
         }
 
         // Update UI - show header, hide content area, hide power-off icon, update container styling

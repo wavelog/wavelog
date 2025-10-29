@@ -2045,6 +2045,11 @@ $('#band').on('change', function () {
 	if (typeof dxWaterfall !== 'undefined') {
 		dxWaterfall.waitingForData = false;
 		dxWaterfall.waitingForFrequencyUpdate = false;
+
+		// Update zoom menu after band change completes
+		if (dxWaterfall.updateZoomMenu) {
+			dxWaterfall.updateZoomMenu(true);
+		}
 	}
 }
 
