@@ -1256,7 +1256,7 @@ $("#callsign").on("focusout", function () {
 					var marker = L.marker([result.latlng[0], result.latlng[1]], { icon: redIcon });
 					mymap.panTo([result.latlng[0], result.latlng[1]]);
 					mymap.setView([result.latlng[0], result.latlng[1]], 8);
-					bannerText = "📡 Location is fetched from provided gridsquare: " + $('#locator').val();
+					bannerText = "📡 Location is fetched from provided gridsquare: " + result.callsign_qra.toUpperCase();
 					markers.addLayer(marker).addTo(mymap);
 				} else {
 					mymap.panTo([result.dxcc.lat, result.dxcc.long]);
