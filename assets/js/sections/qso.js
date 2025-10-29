@@ -2056,11 +2056,12 @@ $("#locator").on("input focus", function () {
 		}
 
 		if (qra_input.length >= 4 && $(this).val().length > 0) {
+			let qra = $(this).val().toUpperCase();
 			$.ajax({
 				url: base_url + 'index.php/logbook/qralatlngjson',
 				type: 'post',
 				data: {
-					qra: $(this).val(),
+					qra: qra,
 				},
 				success: function (data) {
 					// Set Map to Lat/Long
@@ -2077,6 +2078,8 @@ $("#locator").on("input focus", function () {
 						mymap.panTo([result[0], result[1]]);
 						mymap.setView([result[0], result[1]], 8);
 						markers.addLayer(marker).addTo(mymap);
+						bannerText = "📡 Location is fetched from provided gridsquare: " + qra;
+						window.mapBanner.addTo(mymap);
 					}
 				},
 				error: function () {
