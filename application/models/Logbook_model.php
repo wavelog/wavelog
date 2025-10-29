@@ -2140,7 +2140,7 @@ class Logbook_model extends CI_Model {
 		return $query;
 	}
 
-	function get_qsos($num, $offset, $StationLocationsArray = null, $band = '') {
+	function get_qsos($num, $offset, $StationLocationsArray = null, $band = '', $map = false) {
 		if ($StationLocationsArray == null) {
 			$this->load->model('logbooks_model');
 			$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -2172,6 +2172,14 @@ class Logbook_model extends CI_Model {
 				$this->db->where($this->config->item('table_name') . '.col_band', $band);
 			}
 		}
+
+		if ($map == true) {
+			$this->db->group_start();
+			$this->db->where($this->config->item('table_name') . '.col_gridsquare !=', '');
+			$this->db->or_where($this->config->item('table_name') . '.col_vucc_grids !=', '');
+			$this->db->group_end();
+		}
+
 
 		$this->db->where_in($this->config->item('table_name') . '.station_id', $logbooks_locations_array);
 		$this->db->order_by('' . $this->config->item('table_name') . '.COL_TIME_ON', "desc");
