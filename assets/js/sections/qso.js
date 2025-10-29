@@ -2215,10 +2215,8 @@ $('#dxcc_id').on('change', function () {
 				});
 
 				markers.clearLayers();
-				var marker = L.marker([result.dxcc.lat, result.dxcc.long], { icon: redIcon });
 				mymap.setZoom(8);
 				mymap.panTo([result.dxcc.lat, result.dxcc.long]);
-				markers.addLayer(marker).addTo(mymap);
 				bannerText = "🌍 Location is fetched from DXCC coordinates (no gridsquare provided): " + $('#dxcc_id option:selected').text();
 				window.mapBanner.addTo(mymap);
 			}
