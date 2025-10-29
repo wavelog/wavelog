@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-10-28 16:21+0000\n"
-"PO-Revision-Date: 2025-10-29 20:15+0000\n"
+"PO-Revision-Date: 2025-10-29 20:47+0000\n"
 "Last-Translator: F5MQU <f5mqu.p@gmail.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/fr/>\n"
@@ -16400,16 +16400,20 @@ msgid "Confirm Password"
 msgstr "Mot de passe confirmé"
 
 #: application/views/version_dialog/index.php:20
+#, fuzzy
 msgid "No Version Dialog text set. Go to the Admin Menu and set one."
 msgstr ""
+"Aucun texte défini dans la boîte de dialogue de traduction. Accédez au menu "
+"Admin et définissez-en un."
 
 #: application/views/version_dialog/index.php:60
 msgid "Error at parsing JSON-Data or got empty result from github."
 msgstr ""
+"Erreur lors de l'analyse des données JSON ou résultat vide venant de GitHub."
 
 #: application/views/version_dialog/index.php:63
 msgid "Error at getting the data from GitHub."
-msgstr ""
+msgstr "Erreur lors de la récupération des données depuis GitHub."
 
 #: application/views/version_dialog/index.php:75
 msgid "Don't show again"
@@ -16418,7 +16422,7 @@ msgstr "Ne plus afficher"
 #: application/views/view_log/index.php:4
 msgid ""
 "Displaying all QSOs of station locations which are linked to this logbook"
-msgstr ""
+msgstr "Affichage de tous les QSO des stations liées à ce journal de trafic"
 
 #: application/views/view_log/partial/log_ajax.php:429
 #: application/views/view_log/partial/log_ajax.php:443
@@ -16426,11 +16430,11 @@ msgstr ""
 #: src/QSLManager/QSO.php:567 src/QSLManager/QSO.php:622
 #: src/QSLManager/QSO.php:681
 msgid "last sent"
-msgstr ""
+msgstr "Dernier envoi"
 
 #: application/views/view_log/partial/log_ajax.php:570
 msgid "Result"
-msgstr ""
+msgstr "Résultat"
 
 #: application/views/view_log/qso.php:6
 msgid "QSO Details"
@@ -16442,7 +16446,7 @@ msgstr "Gestionnaire de QSL"
 
 #: application/views/view_log/qso.php:86
 msgid "View note for this callsign"
-msgstr ""
+msgstr "Voir la note relative à cet indicatif"
 
 #: application/views/view_log/qso.php:138
 msgid "Total Distance"
@@ -16450,15 +16454,15 @@ msgstr "Distance Totale"
 
 #: application/views/view_log/qso.php:165
 msgid "Other Path"
-msgstr ""
+msgstr "Autre chemin"
 
 #: application/views/view_log/qso.php:323
 msgid "Antenna Azimuth"
-msgstr ""
+msgstr "Azimuth de l'Antenne"
 
 #: application/views/view_log/qso.php:330
 msgid "Antenna Elevation"
-msgstr ""
+msgstr "Elévation de l'Antenne"
 
 #: application/views/view_log/qso.php:499
 msgid "QSL Card has been sent via the bureau"
@@ -16514,23 +16518,23 @@ msgstr "Ce QSO est confirmé depuis le"
 
 #: application/views/view_log/qso.php:543
 msgid "This QSO is confirmed on LoTW."
-msgstr ""
+msgstr "Ce QSO est confirmé sur LoTW."
 
 #: application/views/view_log/qso.php:557
 msgid "This QSO is confirmed on eQSL."
-msgstr ""
+msgstr "Ce QSO est confirmé sur eQSL."
 
 #: application/views/view_log/qso.php:567
 msgid "This QSO is confirmed on QRZ.com."
-msgstr ""
+msgstr "Ce QSO est confirmé sur QRZ.com."
 
 #: application/views/view_log/qso.php:577
 msgid "This QSO is confirmed on Clublog."
-msgstr ""
+msgstr "Ce QSO est confirmé sur Clublog."
 
 #: application/views/view_log/qso.php:587
 msgid "This QSO is confirmed on DCL."
-msgstr ""
+msgstr "Ce QSO est confirmé sur DCL."
 
 #: application/views/view_log/qso.php:600
 msgid "More QSOs"
@@ -16562,27 +16566,27 @@ msgstr "Marquer QSL Reçue (Electronic)"
 
 #: application/views/view_log/qso.php:844
 msgid "eQSL picture"
-msgstr ""
+msgstr "Image eQSL"
 
 #: application/views/visitor/layout/footer.php:238
 msgid "Filter Results"
-msgstr ""
+msgstr "Résultats du filtrage"
 
 #: application/views/visitor/layout/footer.php:244
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: application/views/visitor/layout/footer.php:252
 msgid "Clear Filter"
-msgstr ""
+msgstr "Effacer le filtre"
 
 #: application/views/visitor/layout/header.php:74
 msgid "OQRS"
-msgstr ""
+msgstr "OQRS"
 
 #: application/views/visitor/layout/header.php:82
 msgid "Visit Wavelog on Github"
-msgstr ""
+msgstr "Visitez Wavelog sur Github"
 
 #: application/views/visitor/layout/header.php:95
 msgid "Please enter a callsign!"
@@ -16593,22 +16597,28 @@ msgid ""
 "Here you can see and upload all QSOs which have not been previously uploaded "
 "to QO-100 Dx Club."
 msgstr ""
+"Ici, vous pouvez consulter et télécharger tous les QSO qui n'ont pas encore "
+"été téléchargés sur le QO-100 Dx Club."
 
 #: application/views/webadif/export.php:33
 msgid ""
 "You need to set a QO-100 Dx Club API key in your station profile. Only "
 "station profiles with an API Key are displayed."
 msgstr ""
+"Vous devez renseigner une clé API QO-100 Dx Club dans le profil de votre "
+"station. Seuls les profils de station disposant d'une clé API sont affichés."
 
 #: application/views/webadif/export.php:63
 msgid ""
 "There are currently no outstanding QSOs that need to be uploaded to the "
 "QO-100 Dx Club's API."
 msgstr ""
+"Il n'y a actuellement aucun QSO en attente de téléchargement sur l'API du QO-"
+"100 Dx Club."
 
 #: application/views/webadif/export.php:64
 msgid "Go ahead and turn on your QO-100 station!"
-msgstr ""
+msgstr "Poursuivre et allumez votre station QO-100 !"
 
 #: application/views/webadif/export.php:73
 #: application/views/webadif/export.php:113
@@ -16616,6 +16626,8 @@ msgid ""
 "None of your Logbooks are configured to export data to the QO-100 Dx Club's "
 "API."
 msgstr ""
+"Aucun de vos carnets de trafic n'est configuré pour exporter des données "
+"vers l'API du QO-100 Dx Club."
 
 #: application/views/webadif/export.php:74
 #: application/views/webadif/export.php:114
@@ -16629,6 +16641,8 @@ msgid ""
 "To configure this feature, go to your profile page at the %s and %s Create "
 "%s an API key."
 msgstr ""
+"Pour configurer cette fonctionnalité, rendez-vous sur votre page de profils "
+"à l'adresse %s et %s Créez %s une clé API."
 
 #: application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
@@ -16637,16 +16651,20 @@ msgid ""
 "Then, navigate to your %s and configure your station with the key you have "
 "created at the club."
 msgstr ""
+"Ensuite, accédez à votre %s et configurez votre station avec la clé que vous "
+"avez créée au club."
 
 #: application/views/webadif/export.php:83
 msgid ""
 "Here you can mark as uploaded your QSOs which have not been previously "
 "uploaded to QO-100 Dx Club."
 msgstr ""
+"Ici, vous pouvez marquer comme \"téléchargés\", vos QSO qui n'ont pas été "
+"précédemment téléchargés sur QO-100 Dx Club."
 
 #: application/views/webadif/export.php:107
 msgid "Mark QSOs as exported to QO-100 Dx Club"
-msgstr ""
+msgstr "Marquez les QSO comme exportés vers QO-100 Dx Club"
 
 #: application/views/webadif/mark_webadif.php:16
 msgid "The QSOs are marked as exported to QO-100 Dx Club."
@@ -16654,11 +16672,11 @@ msgstr "Les QSO sont marqués comme exportés vers QO-100 Dx Club."
 
 #: application/views/widgets/oqrs.php:21
 msgid "Wavelog OQRS"
-msgstr ""
+msgstr "Wavelog OQRS"
 
 #: application/views/widgets/oqrs.php:76
 msgid "Wavelog OQRS Request"
-msgstr ""
+msgstr "Requête Wavelog OQRS"
 
 #: application/views/widgets/oqrs.php:79
 #, php-format
