@@ -1,0 +1,124 @@
+name: Report a bug ❌
+description: Report a bug in Wavelog
+title: "Choose a descriptive title......"
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 
+        ### 👋 Hello and welcome
+        Thanks for reporting a bug! To fix issues efficiently, we need complete information. Incomplete reports often make it impossible to reproduce or solve the problem.
+        
+        ⏱️ Please fill out all required fields carefully. The few minutes you invest here save hours of back-and-forth questions later.
+        
+        ---
+  - type: checkboxes
+    id: prerequisites
+    attributes:
+      label: I have checked the following
+      options:
+        - label: I am running the latest version of Wavelog
+          required: true
+        - label: I have cleared my browser cache
+          required: true
+        - label: This is a bug, not a setup question or feature request
+          required: true
+
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Bug Description
+      description: Clear description of the bug
+      placeholder: What went wrong?
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Step-by-step instructions to reproduce the issue
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What should happen instead?
+      placeholder: Describe what you expected to happen
+    validations:
+      required: true
+
+  - type: input
+    id: wavelog-version
+    attributes:
+      label: Wavelog Version
+      description: Found in Admin > Debug Menu
+      placeholder: e.g., 1.7.5
+    validations:
+      required: true
+
+  - type: input
+    id: php-version
+    attributes:
+      label: PHP Version
+      description: Found in Admin > Debug Menu
+      placeholder: e.g., 8.2
+    validations:
+      required: true
+
+  - type: input
+    id: db-version
+    attributes:
+      label: MySQL/MariaDB Version
+      description: Found in Admin > Debug Menu
+      placeholder: e.g., 10.11
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: Server OS
+      placeholder: e.g., Debian 12, Ubuntu 22.04
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser
+      description: Tell us which browser you are using
+      placeholder: e.g., Firefox, Chrome, Safari, ...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: device-type
+    attributes:
+      label: Device Type
+      options:
+        - Desktop
+        - Mobile
+        - Tablet
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots / Browser Console
+      description: |
+        Add screenshots or browser console output (F12)
+        Tipp: You can paste images directly
+      placeholder: Drag & drop images here
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any other relevant information
