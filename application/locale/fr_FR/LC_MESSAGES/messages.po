@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-10-28 16:21+0000\n"
-"PO-Revision-Date: 2025-10-29 19:27+0000\n"
+"PO-Revision-Date: 2025-10-29 19:33+0000\n"
 "Last-Translator: F5MQU <f5mqu.p@gmail.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/fr/>\n"
@@ -15984,6 +15984,9 @@ msgid ""
 "If enabled shows only workable passes based on the gridsquare set in your "
 "hams.at account. Requires private feed key to be set."
 msgstr ""
+"Si cette option est activée, elle n'affiche que les passages fonctionnels en "
+"fonction du Locator défini dans votre compte hams.at. Une clé d'accès privé "
+"doit être définie."
 
 #: application/views/user/edit.php:1092
 msgid "Save Account"
@@ -16028,6 +16031,10 @@ msgid ""
 "link to reset their password. To achieve this, ensure that the email "
 "settings in the global options are configured correctly."
 msgstr ""
+"Le bouton de réinitialisation du mot de passe permet d'envoyer à "
+"l'utilisateur un e-mail contenant un lien pour réinitialiser son mot de "
+"passe. Pour ce faire, assurez-vous que les paramètres de messagerie dans les "
+"options globales sont correctement configurés."
 
 #: application/views/user/index.php:19
 msgid "Create user"
@@ -16035,36 +16042,38 @@ msgstr "Création d'un utilisateur"
 
 #: application/views/user/index.php:31 application/views/user/index.php:158
 msgid "Last seen"
-msgstr ""
+msgstr "Dernière observation"
 
 #: application/views/user/index.php:69 application/views/user/index.php:184
 #: application/views/user/modals/admin_impersonate_modal.php:31
 msgid "Never"
-msgstr ""
+msgstr "Jamais"
 
 #: application/views/user/index.php:74
 msgid "Account locked"
-msgstr ""
+msgstr "Compte verrouillé"
 
 #: application/views/user/index.php:74
 msgid "Account was locked due to too many login attempts."
 msgstr ""
+"Le compte a été bloqué en raison d'un trop grand nombre de tentatives de "
+"connexion."
 
 #: application/views/user/index.php:76 application/views/user/index.php:188
 msgid "Locations"
-msgstr ""
+msgstr "Emplacements"
 
 #: application/views/user/index.php:78 application/views/user/index.php:190
 msgid "Logbooks"
-msgstr ""
+msgstr "Carnets de trafic"
 
 #: application/views/user/index.php:81 application/views/user/index.php:193
 msgid "Last QSO:"
-msgstr ""
+msgstr "Dernier QSO :"
 
 #: application/views/user/index.php:85 application/views/user/index.php:195
 msgid "No QSOs in Log"
-msgstr ""
+msgstr "Aucun QSO dans le Log"
 
 #: application/views/user/index.php:103 application/views/user/index.php:209
 #: application/views/user/modals/admin_impersonate_modal.php:43
