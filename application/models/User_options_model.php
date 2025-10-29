@@ -52,8 +52,11 @@ class User_options_model extends CI_Model {
 		return $this->db->query($sql, $array_sql_value);
 	}
 
-	public function del_option($option_type, $option_name, $option_array=null) {
-		$uid=$this->session->userdata('user_id');
+	public function del_option($option_type, $option_name, $option_array = null, $uid = null) {
+		if (($uid ?? '') == '') {
+			$uid = $this->session->userdata('user_id');
+		}
+
 		$sql_more = "";
 		$array_sql_value = array($uid, $option_type, $option_name);
 		if (is_array($option_array)) {
@@ -62,7 +65,7 @@ class User_options_model extends CI_Model {
 				$array_sql_value[] = $value;
 			}
 		}
-		$sql='delete from user_options where user_id=? and option_type=? and option_name=?'.$sql_more;
+		$sql='delete from user_options where user_id = ? and option_type = ? and option_name = ?'.$sql_more;
 		return $this->db->query($sql, $array_sql_value);
 	}
 

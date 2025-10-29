@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-10-28 15:02+0000\n"
-"PO-Revision-Date: 2025-10-20 10:48+0000\n"
+"POT-Creation-Date: 2025-10-28 16:21+0000\n"
+"PO-Revision-Date: 2025-10-28 14:44+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.13.2\n"
+"X-Generator: Weblate 5.14\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -1961,42 +1961,44 @@ msgid ""
 "Duplicate note title for this category and user - not allowed for Contacts "
 "category."
 msgstr ""
+"Дублирование названия заметки для этой категории и пользователя недопустимо "
+"для категории Контакты."
 
 #: application/controllers/Notes.php:283
 msgid "Not found or not allowed"
-msgstr ""
+msgstr "Не найдено или не разрешено"
 
 #: application/controllers/Notes.php:298
 msgid "Not found"
-msgstr ""
+msgstr "Не найдено"
 
 #: application/controllers/Notes.php:314
 msgid "Category and title are required"
-msgstr ""
+msgstr "Категория и заголовок обязательны"
 
 #: application/controllers/Notes.php:328
 msgid "Note not found or not allowed"
-msgstr ""
+msgstr "Заметка не найдена или недоступна"
 
 #: application/controllers/Notes.php:335
 msgid "Note deleted"
-msgstr ""
+msgstr "Заметка удалена"
 
 #: application/controllers/Notes.php:339
 msgid "Note updated"
-msgstr ""
+msgstr "Заметка обновлена"
 
 #: application/controllers/Notes.php:344
 msgid "Cannot create empty note"
-msgstr ""
+msgstr "Не удается создать пустую заметку"
 
 #: application/controllers/Notes.php:352
 msgid "A note with this callsign already exists"
-msgstr ""
+msgstr "Заметка с этим позывным уже существует"
 
 #: application/controllers/Notes.php:362
 msgid "Note created"
-msgstr ""
+msgstr "Заметка создана"
 
 #: application/controllers/Notes.php:376 application/controllers/Notes.php:400
 #, php-format
@@ -2875,11 +2877,11 @@ msgstr "Обновить \"Заметки о корреспондентах\""
 
 #: application/controllers/Update.php:718
 msgid "VUCC Grid file update complete. Result: "
-msgstr ""
+msgstr "Обновление файла квадратов VUCC завершено. Результат: "
 
 #: application/controllers/Update.php:720
 msgid "VUCC Grid file update failed. Result: "
-msgstr ""
+msgstr "Обновление файла квадратов VUCC не удалось. Результат: "
 
 #: application/controllers/User.php:50
 #: application/views/interface_assets/header.php:306
@@ -3789,7 +3791,7 @@ msgid "None/Empty"
 msgstr "Нет/Пусто"
 
 #: application/views/accumulate/index.php:86
-#: application/views/callstats/index.php:71 application/views/csv/index.php:95
+#: application/views/callstats/index.php:71 application/views/csv/index.php:96
 #: application/views/distances/index.php:59
 #: application/views/dxatlas/index.php:95
 #: application/views/gridmap/index.php:47 application/views/kml/index.php:80
@@ -3803,7 +3805,7 @@ msgid "Aircraft Scatter"
 msgstr "Рассеяние на инверсионном следе самолётов"
 
 #: application/views/accumulate/index.php:87
-#: application/views/callstats/index.php:72 application/views/csv/index.php:96
+#: application/views/callstats/index.php:72 application/views/csv/index.php:97
 #: application/views/distances/index.php:60
 #: application/views/dxatlas/index.php:96
 #: application/views/gridmap/index.php:48 application/views/kml/index.php:81
@@ -3817,7 +3819,7 @@ msgid "Aurora"
 msgstr "Авроральное"
 
 #: application/views/accumulate/index.php:88
-#: application/views/callstats/index.php:73 application/views/csv/index.php:97
+#: application/views/callstats/index.php:73 application/views/csv/index.php:98
 #: application/views/distances/index.php:61
 #: application/views/dxatlas/index.php:97
 #: application/views/gridmap/index.php:49 application/views/kml/index.php:82
@@ -3831,7 +3833,7 @@ msgid "Aurora-E"
 msgstr "Авроральное (E)"
 
 #: application/views/accumulate/index.php:89
-#: application/views/callstats/index.php:74 application/views/csv/index.php:98
+#: application/views/callstats/index.php:74 application/views/csv/index.php:99
 #: application/views/distances/index.php:62
 #: application/views/dxatlas/index.php:98
 #: application/views/gridmap/index.php:50 application/views/kml/index.php:83
@@ -3845,7 +3847,7 @@ msgid "Back scatter"
 msgstr "Пассивные отражатели"
 
 #: application/views/accumulate/index.php:90
-#: application/views/callstats/index.php:75 application/views/csv/index.php:99
+#: application/views/callstats/index.php:75 application/views/csv/index.php:100
 #: application/views/distances/index.php:63
 #: application/views/dxatlas/index.php:99
 #: application/views/gridmap/index.php:51 application/views/kml/index.php:84
@@ -3859,7 +3861,7 @@ msgid "EchoLink"
 msgstr "Эхолинк"
 
 #: application/views/accumulate/index.php:91
-#: application/views/callstats/index.php:76 application/views/csv/index.php:100
+#: application/views/callstats/index.php:76 application/views/csv/index.php:101
 #: application/views/distances/index.php:64
 #: application/views/dxatlas/index.php:100
 #: application/views/gridmap/index.php:52 application/views/kml/index.php:85
@@ -3873,7 +3875,7 @@ msgid "Earth-Moon-Earth"
 msgstr "Отражение от Луны"
 
 #: application/views/accumulate/index.php:92
-#: application/views/callstats/index.php:77 application/views/csv/index.php:101
+#: application/views/callstats/index.php:77 application/views/csv/index.php:102
 #: application/views/distances/index.php:65
 #: application/views/dxatlas/index.php:101
 #: application/views/gridmap/index.php:53 application/views/kml/index.php:86
@@ -3887,7 +3889,7 @@ msgid "Sporadic E"
 msgstr "Спорадическое прохождение (Е)"
 
 #: application/views/accumulate/index.php:93
-#: application/views/callstats/index.php:78 application/views/csv/index.php:102
+#: application/views/callstats/index.php:78 application/views/csv/index.php:103
 #: application/views/distances/index.php:66
 #: application/views/dxatlas/index.php:102
 #: application/views/gridmap/index.php:54 application/views/kml/index.php:87
@@ -3901,7 +3903,7 @@ msgid "Field Aligned Irregularities"
 msgstr "Анизотропия ионосферы"
 
 #: application/views/accumulate/index.php:94
-#: application/views/callstats/index.php:79 application/views/csv/index.php:103
+#: application/views/callstats/index.php:79 application/views/csv/index.php:104
 #: application/views/distances/index.php:67
 #: application/views/dxatlas/index.php:103
 #: application/views/gridmap/index.php:55 application/views/kml/index.php:88
@@ -3915,7 +3917,7 @@ msgid "F2 Reflection"
 msgstr "Отражение от слоя F2"
 
 #: application/views/accumulate/index.php:95
-#: application/views/callstats/index.php:80 application/views/csv/index.php:104
+#: application/views/callstats/index.php:80 application/views/csv/index.php:105
 #: application/views/distances/index.php:68
 #: application/views/dxatlas/index.php:104
 #: application/views/gridmap/index.php:56 application/views/kml/index.php:89
@@ -3929,7 +3931,7 @@ msgid "Internet-assisted"
 msgstr "С помощью Интернет"
 
 #: application/views/accumulate/index.php:96
-#: application/views/callstats/index.php:81 application/views/csv/index.php:105
+#: application/views/callstats/index.php:81 application/views/csv/index.php:106
 #: application/views/distances/index.php:69
 #: application/views/dxatlas/index.php:105
 #: application/views/gridmap/index.php:57 application/views/kml/index.php:90
@@ -3943,7 +3945,7 @@ msgid "Ionoscatter"
 msgstr "Ионосферное рассеяние"
 
 #: application/views/accumulate/index.php:97
-#: application/views/callstats/index.php:82 application/views/csv/index.php:106
+#: application/views/callstats/index.php:82 application/views/csv/index.php:107
 #: application/views/distances/index.php:70
 #: application/views/dxatlas/index.php:106
 #: application/views/gridmap/index.php:58 application/views/kml/index.php:91
@@ -3957,7 +3959,7 @@ msgid "IRLP"
 msgstr "IRLP"
 
 #: application/views/accumulate/index.php:98
-#: application/views/callstats/index.php:83 application/views/csv/index.php:107
+#: application/views/callstats/index.php:83 application/views/csv/index.php:108
 #: application/views/distances/index.php:71
 #: application/views/dxatlas/index.php:107
 #: application/views/gridmap/index.php:59 application/views/kml/index.php:92
@@ -3971,7 +3973,7 @@ msgid "Meteor scatter"
 msgstr "Рассеяние на метеорных следах"
 
 #: application/views/accumulate/index.php:99
-#: application/views/callstats/index.php:84 application/views/csv/index.php:108
+#: application/views/callstats/index.php:84 application/views/csv/index.php:109
 #: application/views/distances/index.php:72
 #: application/views/dxatlas/index.php:108
 #: application/views/gridmap/index.php:60 application/views/kml/index.php:93
@@ -3985,7 +3987,7 @@ msgid "Terrestrial or atmospheric repeater or transponder"
 msgstr "Наземный или атмосферный репитер или транспондер"
 
 #: application/views/accumulate/index.php:100
-#: application/views/callstats/index.php:85 application/views/csv/index.php:109
+#: application/views/callstats/index.php:85 application/views/csv/index.php:110
 #: application/views/distances/index.php:73
 #: application/views/dxatlas/index.php:109
 #: application/views/gridmap/index.php:61 application/views/kml/index.php:94
@@ -3999,7 +4001,7 @@ msgid "Rain scatter"
 msgstr "Рассеяние на дожде"
 
 #: application/views/accumulate/index.php:101
-#: application/views/callstats/index.php:86 application/views/csv/index.php:110
+#: application/views/callstats/index.php:86 application/views/csv/index.php:111
 #: application/views/distances/index.php:74
 #: application/views/dxatlas/index.php:110
 #: application/views/gridmap/index.php:62 application/views/kml/index.php:95
@@ -4013,7 +4015,7 @@ msgid "Satellite"
 msgstr "Спутник"
 
 #: application/views/accumulate/index.php:102
-#: application/views/callstats/index.php:87 application/views/csv/index.php:111
+#: application/views/callstats/index.php:87 application/views/csv/index.php:112
 #: application/views/distances/index.php:75
 #: application/views/dxatlas/index.php:111
 #: application/views/gridmap/index.php:63 application/views/kml/index.php:96
@@ -4027,7 +4029,7 @@ msgid "Trans-equatorial"
 msgstr "Трансэкваториальное"
 
 #: application/views/accumulate/index.php:103
-#: application/views/callstats/index.php:88 application/views/csv/index.php:112
+#: application/views/callstats/index.php:88 application/views/csv/index.php:113
 #: application/views/distances/index.php:76
 #: application/views/dxatlas/index.php:112
 #: application/views/gridmap/index.php:64 application/views/kml/index.php:97
@@ -4640,7 +4642,7 @@ msgstr ""
 
 #: application/views/adif/import.php:254 application/views/adif/import.php:312
 #: application/views/cfd/index.php:15 application/views/clublog/export.php:73
-#: application/views/csv/index.php:118
+#: application/views/csv/index.php:119
 #: application/views/dcl_views/import.php:27
 #: application/views/dxatlas/index.php:118
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:103
@@ -4650,7 +4652,7 @@ msgid "From date"
 msgstr "Начиная с даты"
 
 #: application/views/adif/import.php:258 application/views/adif/import.php:315
-#: application/views/cfd/index.php:20 application/views/csv/index.php:123
+#: application/views/cfd/index.php:20 application/views/csv/index.php:124
 #: application/views/dxatlas/index.php:123
 #: application/views/hrdlog/export.php:82 application/views/kml/index.php:108
 #: application/views/qrz/export.php:104
@@ -6256,7 +6258,7 @@ msgstr "Показать карту JCC"
 
 #: application/views/awards/jcc/index.php:117
 #: application/views/cabrillo/index.php:209 application/views/cfd/index.php:25
-#: application/views/csv/index.php:128 application/views/dxatlas/index.php:128
+#: application/views/csv/index.php:129 application/views/dxatlas/index.php:128
 #: application/views/kml/index.php:113 application/views/reg1test/index.php:145
 msgid "Export"
 msgstr "Экспорт"
@@ -6942,7 +6944,7 @@ msgstr "Нажмите, чтобы подготовить ведение жур�
 #: application/views/contesting/index.php:160
 #: application/views/qso/index.php:353
 msgid "WebSocket (Requires WLGate>1.1.10)"
-msgstr ""
+msgstr "WebSocket (Требуется WLGate>1.1.10)"
 
 #: application/views/bandmap/list.php:77
 msgid "DXCC-Status"
@@ -8413,6 +8415,11 @@ msgstr "Будут экспортированы только QSO с информ
 msgid "Propagation Mode"
 msgstr "Тип распространения радиоволн"
 
+#: application/views/csv/index.php:95
+msgctxt "Propagation Mode"
+msgid "All but Repeater"
+msgstr ""
+
 #: application/views/dashboard/index.php:5
 msgid "RSTS"
 msgstr "RST (TX)"
@@ -8512,23 +8519,26 @@ msgid ""
 "LoTW Warning: There is an issue with at least one of your %sLoTW "
 "certificates%s!"
 msgstr ""
+"Предупреждение LoTW: Есть проблема по крайней мере с одним из ваших %sLoTW "
+"сертификатов%s!"
 
 #: application/views/dashboard/index.php:216
 msgid "At least one of your certificates is expired"
-msgstr ""
+msgstr "По крайней мере, один из ваших сертификатов просрочен"
 
 #: application/views/dashboard/index.php:217
 msgid "At least one of your certificates is expiring"
 msgstr ""
+"По крайней мере, срок действия одного из ваших сертификатов запканчивается"
 
 #: application/views/dashboard/index.php:218
 msgid "The QSO end date of at least one of your certificates was exceeded"
-msgstr ""
+msgstr "Срок действия, как минимум, одного из ваших сертификатов истек"
 
 #: application/views/dashboard/index.php:219
 msgid ""
 "The QSO end date of at least one of your certificates is about to be exceeded"
-msgstr ""
+msgstr "Срок действия, как минимум, одного из ваших сертификатов скоро истечёт"
 
 #: application/views/dashboard/index.php:297
 #: application/views/qso/index.php:851
@@ -9270,7 +9280,7 @@ msgstr "HAMqsl"
 
 #: application/views/debug/index.php:573
 msgid "VUCC Grids"
-msgstr ""
+msgstr "Квадраты VUCC"
 
 #: application/views/debug/index.php:582
 msgid "QSO-DB Maintenance"
@@ -10073,27 +10083,27 @@ msgstr "Заметки не найдены"
 
 #: application/views/interface_assets/footer.php:71
 msgid "No notes for this callsign"
-msgstr ""
+msgstr "Нет заметок для этого позывного"
 
 #: application/views/interface_assets/footer.php:72
 msgid "Callsign Note"
-msgstr ""
+msgstr "Заметка о позывном"
 
 #: application/views/interface_assets/footer.php:73
 msgid "Note deleted successfully"
-msgstr ""
+msgstr "Заметка успешно удалена"
 
 #: application/views/interface_assets/footer.php:74
 msgid "Note created successfully"
-msgstr ""
+msgstr "Заметка успешно создана"
 
 #: application/views/interface_assets/footer.php:75
 msgid "Note saved successfully"
-msgstr ""
+msgstr "Заметка успешно сохранена"
 
 #: application/views/interface_assets/footer.php:76
 msgid "Error saving note"
-msgstr ""
+msgstr "Ошибка при сохранении заметки"
 
 #: application/views/interface_assets/footer.php:157
 #: application/views/interface_assets/header.php:515
@@ -11747,19 +11757,19 @@ msgstr "Последняя загрузка"
 
 #: application/views/lotw_views/index.php:96
 msgid "Certificate expired"
-msgstr ""
+msgstr "Сертификат просрочен"
 
 #: application/views/lotw_views/index.php:98
 msgid "Certificate expiring"
-msgstr ""
+msgstr "Срок годности сертификата заканчивается"
 
 #: application/views/lotw_views/index.php:100
 msgid "Certificate valid"
-msgstr ""
+msgstr "Сертификат действителен"
 
 #: application/views/lotw_views/index.php:105
 msgid "QSO end date nearing"
-msgstr ""
+msgstr "Дата окончания периода QSO приближается"
 
 #: application/views/lotw_views/index.php:115
 #, php-format
@@ -11915,7 +11925,7 @@ msgstr "Поиск заметок (мин. 3 символа)"
 
 #: application/views/notes/main.php:54
 msgid "Add stroked zero (Ø)"
-msgstr ""
+msgstr "Добавить зачеркнутый ноль (Ø)"
 
 #: application/views/notes/main.php:57
 msgid "Reset search"
@@ -13298,7 +13308,7 @@ msgstr "Вид модуляции (для спутника)"
 
 #: application/views/qso/index.php:641
 msgid "QSO Comment"
-msgstr ""
+msgstr "Комментарий к QSO"
 
 #: application/views/qso/index.php:684
 msgid "QSL MSG"
@@ -13310,13 +13320,15 @@ msgstr "Сброс на настройки по умолчанию"
 
 #: application/views/qso/index.php:720
 msgid "Callsign Notes"
-msgstr ""
+msgstr "Заметки о позывных"
 
 #: application/views/qso/index.php:721
 msgid ""
 "Store private information about your QSO partner. These notes are never "
 "shared or exported to external services."
 msgstr ""
+"Храните частную информацию о вашем корреспонденте. Эти заметки никогда не "
+"передаются и не экспортируются во внешние сервисы."
 
 #: application/views/qso/index.php:768
 msgid "Winkey"
@@ -16340,7 +16352,7 @@ msgstr "QSL менеджемент"
 
 #: application/views/view_log/qso.php:86
 msgid "View note for this callsign"
-msgstr ""
+msgstr "Просмотреть заметку об этом позывном"
 
 #: application/views/view_log/qso.php:138
 msgid "Total Distance"
