@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-10-28 16:21+0000\n"
-"PO-Revision-Date: 2025-10-29 18:20+0000\n"
+"PO-Revision-Date: 2025-10-29 19:27+0000\n"
 "Last-Translator: F5MQU <f5mqu.p@gmail.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/fr/>\n"
@@ -15818,7 +15818,7 @@ msgstr "Mot de passe"
 
 #: application/views/user/edit.php:861
 msgid "Test Login"
-msgstr ""
+msgstr "Test de connexion"
 
 #: application/views/user/edit.php:879
 msgid "eQSL.cc Username"
@@ -15830,11 +15830,11 @@ msgstr "Mot de passe"
 
 #: application/views/user/edit.php:902
 msgid "Club Log"
-msgstr ""
+msgstr "Club Log"
 
 #: application/views/user/edit.php:905
 msgid "Club Log Email"
-msgstr ""
+msgstr "Club Log Email"
 
 #: application/views/user/edit.php:911
 msgid "Club Log Password"
@@ -15846,39 +15846,46 @@ msgid ""
 "If you have 2FA enabled at Clublog, you have to generate an App. Password to "
 "use Clublog in Wavelog. Visit %syour clublog settings page%s to do so."
 msgstr ""
+"Si l'authentification à deux facteurs est activée sur Clublog, vous devez "
+"générer un mot de passe de l'application pour utiliser Clublog dans Wavelog. "
+"Pour ce faire, rendez-vous sur %svotre page de paramètres Clublog%s."
 
 #: application/views/user/edit.php:933
 msgid "Widgets"
-msgstr ""
+msgstr "Widgets"
 
 #: application/views/user/edit.php:941
 msgid "On-Air widget"
-msgstr ""
+msgstr "Widget sur l'air"
 
 #: application/views/user/edit.php:951
 msgid ""
 "Note: In order to use this widget, you need to have at least one CAT radio "
 "configured and working."
 msgstr ""
+"Remarque : pour utiliser ce widget, vous devez disposer d'au moins une radio "
+"CAT configurée et fonctionnelle."
 
 #: application/views/user/edit.php:955
 #, php-format
 msgid "When enabled, widget will be available at %s."
-msgstr ""
+msgstr "Une fois activé, le widget sera disponible à l'adresse %s."
 
 #: application/views/user/edit.php:960
 msgid "Display \"Last seen\" time"
-msgstr ""
+msgstr "Afficher l'heure de « Dernière vue »"
 
 #: application/views/user/edit.php:966
 msgid ""
 "This setting control whether the 'Last seen' time is displayed in widget or "
 "not."
 msgstr ""
+"Ce paramètre détermine si l'heure de « Dernière vue » est affichée ou non "
+"dans le widget."
 
 #: application/views/user/edit.php:969
 msgid "Display only most recently updated radio"
-msgstr ""
+msgstr "Afficher uniquement la radio la plus récemment mise à jour"
 
 #: application/views/user/edit.php:973
 msgid "No, show all radios"
@@ -15898,17 +15905,19 @@ msgstr ""
 
 #: application/views/user/edit.php:985
 msgid "QSOs widget"
-msgstr ""
+msgstr "Widget des QSO"
 
 #: application/views/user/edit.php:988
 msgid "Display exact QSO time"
-msgstr ""
+msgstr "Afficher l'heure exacte du QSO"
 
 #: application/views/user/edit.php:994
 msgid ""
 "This setting control whether exact QSO time should displayed in the QSO "
 "widget or not."
 msgstr ""
+"Ce paramètre détermine si l'heure exacte du QSO doit être affichée ou non "
+"dans le widget QSO."
 
 #: application/views/user/edit.php:1007
 msgid "Miscellaneous"
@@ -15933,11 +15942,11 @@ msgstr "URL du serveur Mastodon"
 #: application/views/user/edit.php:1037
 #, php-format
 msgid "Main URL of your Mastodon server, e.g. %s"
-msgstr ""
+msgstr "URL principale de votre serveur Mastodon, par exemple %s"
 
 #: application/views/user/edit.php:1046
 msgid "Winkeyer"
-msgstr ""
+msgstr "Winkeyer"
 
 #: application/views/user/edit.php:1049
 msgid "Winkeyer Features Enabled"
@@ -15949,24 +15958,26 @@ msgid ""
 "Winkeyer support in Wavelog is very experimental. Read the wiki first at %s "
 "before enabling."
 msgstr ""
+"La prise en charge de Winkeyer dans Wavelog est encore expérimentale. "
+"Veuillez consulter le wiki à l'adresse %s avant de l'activer."
 
 #: application/views/user/edit.php:1066
 msgid "Hams.at"
-msgstr ""
+msgstr "Hams.at"
 
 #: application/views/user/edit.php:1069
 msgid "Private Feed Key"
-msgstr ""
+msgstr "Clé d'accès privé"
 
 #: application/views/user/edit.php:1071
 #, php-format
 msgctxt "Hint for Hamsat API Key; uses Link"
 msgid "See your profile at %s."
-msgstr ""
+msgstr "Consultez votre profil à %s."
 
 #: application/views/user/edit.php:1074
 msgid "Show Workable Passes Only"
-msgstr ""
+msgstr "Afficher uniquement les passages valides"
 
 #: application/views/user/edit.php:1080
 msgid ""
