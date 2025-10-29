@@ -994,6 +994,9 @@ function reset_fields() {
 
 	mymap.setView(pos, 12);
 	mymap.removeLayer(markers);
+	if (window.mapBanner) {
+		mymap.removeControl(window.mapBanner);
+	}
 	$('.callsign-suggest').hide();
 	$('.awardpane').remove();
 	$('#timesWorked').html(lang_qso_title_previous_contacts);
