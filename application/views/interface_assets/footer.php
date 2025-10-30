@@ -1401,24 +1401,25 @@ mymap.on('mousemove', onQsoMapMove);
 
 <?php } ?>
 <?php if ( $this->uri->segment(1) == "qso" || ($this->uri->segment(1) == "contesting" && $this->uri->segment(2) != "add")) { ?>
+	<!--- Frequency input functionality --->
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/sections/qrg_handler.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/moment.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datetime-moment.js"></script>
 
 	<!--- CAT Functionality --->
 	<?php
-	// Load CAT functionality only if not in manual mode (manual=0 or null)
+	// Load CAT functionality only if not in manual mode (manual=0 or null) - we don't want to load CAT JS when user is in manual mode (POST QSO logging form or POST contest logging form)
 	$manual = $this->input->get('manual');
 	if ($manual === null || $manual == '0') { ?>
-
-    <?php if ($this->session->userdata('user_dxwaterfall_enable') == 'Y') { ?>
-	<script>
-		// DX Waterfall global variables - must be in global scope for dxwaterfall.js
-		var dxwaterfall_cat_debounce_lock = 0;
-		window.dxwaterfall_cat_debounce_lock = dxwaterfall_cat_debounce_lock;
-		var dxwaterfall_cat_state = "none";
-	</script>
-    <?php } ?>
+		<!--- DX Waterfall Functionality --->
+		<?php if ($this->session->userdata('user_dxwaterfall_enable') == 'Y') { ?>
+		<script>
+			// Global variable definiton for dxwaterfall.js
+			var dxwaterfall_cat_debounce_lock = 0;
+			window.dxwaterfall_cat_debounce_lock = dxwaterfall_cat_debounce_lock;
+			var dxwaterfall_cat_state = "none";
+		</script>
+		<?php } ?>
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/cat.js"></script>
 	<?php } ?>
 
