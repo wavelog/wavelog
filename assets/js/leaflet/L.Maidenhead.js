@@ -4,7 +4,7 @@
 
 L.Maidenhead = L.LayerGroup.extend({
 
-	
+
 	options: {
 		// Line and label color
 		color: 'rgba(255, 0, 0, 0.4)',
@@ -21,16 +21,20 @@ L.Maidenhead = L.LayerGroup.extend({
 	onAdd: function (map) {
 		this._map = map;
 		var grid = this.redraw();
-		this._map.on('viewreset '+ this.options.redraw, function () {
+		// Store the event handler function so we can remove it later
+		this._onViewChange = function () {
 			grid.redraw();
-		});
+		};
+		this._map.on('viewreset '+ this.options.redraw, this._onViewChange);
 
 		this.eachLayer(map.addLayer, map);
 	},
-	
+
 	onRemove: function (map) {
 		// remove layer listeners and elements
-		map.off('viewreset '+ this.options.redraw, this.map);
+		if (this._onViewChange) {
+			map.off('viewreset '+ this.options.redraw, this._onViewChange);
+		}
 		this.eachLayer(this.removeLayer, this);
 	},
 
@@ -64,7 +68,7 @@ L.Maidenhead = L.LayerGroup.extend({
 		}
 		return this;
 	},
-    	
+
 	_getLabel: function(lon,lat) {
 	  var title_size = new Array(0 ,10,12,16,20,26,15,16,24,36,12  ,14  ,20  ,36  ,60  ,12   ,20   ,36   ,60   ,12      ,24       );
 	  var zoom = this._map.getZoom();
@@ -74,7 +78,7 @@ L.Maidenhead = L.LayerGroup.extend({
       var marker = L.marker([lat,lon], {icon: myIcon}, clickable=false);
       return marker;
 	},
-	
+
 	_getLocator: function(lon,lat) {
 	  var ydiv_arr=new Array(10, 1, 1/24, 1/240, 1/240/24);
 	  var d1 = "ABCDEFGHIJKLMNOPQR".split("");
@@ -96,15 +100,15 @@ L.Maidenhead = L.LayerGroup.extend({
 			if ((i%2)==0) {
 				locator += Math.floor(rlon/(ydiv_arr[i+1]*2)) +""+ Math.floor(rlat/(ydiv_arr[i+1]));
 			} else {
-				locator += d2[Math.floor(rlon/(ydiv_arr[i+1]*2))] +""+ d2[Math.floor(rlat/(ydiv_arr[i+1]))];	
+				locator += d2[Math.floor(rlon/(ydiv_arr[i+1]*2))] +""+ d2[Math.floor(rlat/(ydiv_arr[i+1]))];
 			}
 		}
-	  }  
+	  }
       return locator;
 	},
 
-  
-	
+
+
 
 });
 

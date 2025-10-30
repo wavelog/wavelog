@@ -22,16 +22,20 @@ L.MaidenheadQrb = L.LayerGroup.extend({
 	onAdd: function (map) {
 		this._map = map;
 		var grid = this.redraw(map);
-		this._map.on('viewreset '+ this.options.redraw, function () {
+		// Store the event handler function so we can remove it later
+		this._onViewChange = function () {
 			grid.redraw(map);
-		});
+		};
+		this._map.on('viewreset '+ this.options.redraw, this._onViewChange);
 
 		this.eachLayer(map.addLayer, map);
 	},
 
 	onRemove: function (map) {
 		// remove layer listeners and elements
-		map.off('viewreset '+ this.options.redraw, this.map);
+		if (this._onViewChange) {
+			map.off('viewreset '+ this.options.redraw, this._onViewChange);
+		}
 		this.eachLayer(this.removeLayer, this);
 	},
 
