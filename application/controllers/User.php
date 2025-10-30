@@ -208,6 +208,7 @@ class User extends CI_Controller {
 				$data['user_dashboard_map'] = $this->input->post('user_dashboard_map') ?? 'Y';
 				$data['user_dashboard_banner'] = $this->input->post('user_dashboard_banner') ?? 'Y';
 				$data['user_dashboard_solar'] = $this->input->post('user_dashboard_solar') ?? 'Y';
+				$data['user_dxwaterfall_enable'] = $this->input->post('user_dxwaterfall_enable') ?? 'N';
 				$data['user_stylesheet'] = $this->input->post('user_stylesheet');
 				$data['user_qth_lookup'] = $this->input->post('user_qth_lookup');
 				$data['user_sota_lookup'] = $this->input->post('user_sota_lookup');
@@ -309,6 +310,7 @@ class User extends CI_Controller {
 				$this->input->post('oqrs_grouped_search_show_station_name') ?? 'off',
 				$this->input->post('oqrs_auto_matching') ?? 'on',
 				$this->input->post('oqrs_direct_auto_matching') ?? 'on',
+        $this->input->post('user_dxwaterfall_enable') ?? 'N',
 				$this->input->post('clubstation') == '1' ? true : false)
 			) {
 				// Check for errors
@@ -369,6 +371,7 @@ class User extends CI_Controller {
 			$data['oqrs_grouped_search_show_station_name'] = $this->input->post('oqrs_grouped_search_show_station_name') ?? 'off';
 			$data['oqrs_auto_matching'] = $this->input->post('oqrs_auto_matching') ?? 'on';
 			$data['oqrs_direct_auto_matching'] = $this->input->post('oqrs_direct_auto_matching') ?? 'on';
+			$data['user_dxwaterfall_enable'] = $this->input->post('user_dxwaterfall_enable') ?? 'N';
 			$this->load->view('user/edit', $data);
 			$this->load->view('interface_assets/footer', $footerData);
 		}
@@ -733,6 +736,16 @@ class User extends CI_Controller {
 				$dkey_opt=$this->user_options_model->get_options('dashboard',array('option_name'=>'show_dashboard_solar','option_key'=>'boolean'), $this->uri->segment(3))->result();
 				if (count($dkey_opt)>0) {
 					$data['user_dashboard_solar'] = $dkey_opt[0]->option_value;
+				}
+			}
+
+			// DX Waterfall enable option
+			if($this->input->post('user_dxwaterfall_enable')) {
+				$data['user_dxwaterfall_enable'] = $this->input->post('user_dxwaterfall_enable', false);
+			} else {
+				$dkey_opt=$this->user_options_model->get_options('dxwaterfall',array('option_name'=>'enable','option_key'=>'boolean'), $this->uri->segment(3))->result();
+				if (count($dkey_opt)>0) {
+					$data['user_dxwaterfall_enable'] = $dkey_opt[0]->option_value;
 				}
 			}
 
