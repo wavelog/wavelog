@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-10-29 08:44+0000\n"
+"POT-Creation-Date: 2025-10-30 07:15+0000\n"
 "PO-Revision-Date: 2025-09-30 06:37+0000\n"
 "Last-Translator: YuanRetro <lijiaxuan1811@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -48,11 +48,9 @@ msgstr ""
 #: application/controllers/Cabrillo.php:139
 #: application/controllers/Callstats.php:13
 #: application/controllers/Calltester.php:11
-#: application/controllers/Cfdexport.php:18
-#: application/controllers/Cfdexport.php:29 application/controllers/Club.php:48
-#: application/controllers/Club.php:74 application/controllers/Club.php:122
-#: application/controllers/Club.php:151 application/controllers/Club.php:178
-#: application/controllers/Clublog.php:88
+#: application/controllers/Club.php:48 application/controllers/Club.php:74
+#: application/controllers/Club.php:122 application/controllers/Club.php:151
+#: application/controllers/Club.php:178 application/controllers/Clublog.php:88
 #: application/controllers/Clublog.php:147
 #: application/controllers/Components.php:13
 #: application/controllers/Contestcalendar.php:15
@@ -680,11 +678,6 @@ msgstr "呼号统计"
 #: application/controllers/Callstats.php:104
 msgid " and sat "
 msgstr " 并且卫星 "
-
-#: application/controllers/Cfdexport.php:20
-#: application/views/interface_assets/header.php:469
-msgid "CFD Export"
-msgstr "CFD 导出"
 
 #: application/controllers/Club.php:23
 msgid "Club Officer"
@@ -1838,7 +1831,7 @@ msgstr "快速查找"
 #: application/controllers/Lotw.php:53 application/controllers/Lotw.php:85
 #: application/controllers/Lotw.php:125 application/views/adif/import.php:27
 #: application/views/dcl_views/upload_cert.php:3
-#: application/views/interface_assets/header.php:496
+#: application/views/interface_assets/header.php:494
 #: application/views/lotw/import.php:3 application/views/lotw_views/index.php:9
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:848 application/views/visitor/index.php:328
@@ -2160,7 +2153,7 @@ msgid "Invalid Station ID"
 msgstr "无效站台 ID"
 
 #: application/controllers/Oqrs.php:163
-#: application/views/interface_assets/header.php:486
+#: application/views/interface_assets/header.php:484
 msgid "OQRS Requests"
 msgstr "OQRS"
 
@@ -2212,7 +2205,7 @@ msgid ""
 msgstr "负数纬度表示南纬，负数经度表示西经。"
 
 #: application/controllers/Qrz.php:204
-#: application/views/interface_assets/header.php:499
+#: application/views/interface_assets/header.php:497
 msgid "QRZ Logbook"
 msgstr "QRZ 日志簿"
 
@@ -2260,7 +2253,7 @@ msgid "No callsign provided."
 msgstr "未提供呼号。"
 
 #: application/controllers/Radio.php:17
-#: application/views/interface_assets/header.php:513
+#: application/views/interface_assets/header.php:511
 msgid "Hardware Interfaces"
 msgstr "硬件接口"
 
@@ -2531,7 +2524,7 @@ msgstr "请检查网格定位的值 ( %s )"
 
 #: application/controllers/Stationsetup.php:60
 #: application/views/interface_assets/header.php:423
-#: application/views/interface_assets/header.php:576
+#: application/views/interface_assets/header.php:574
 msgid "Station Setup"
 msgstr "设置台站"
 
@@ -2598,7 +2591,7 @@ msgid "Set as Active Logbook"
 msgstr "设置为正在使用的日志"
 
 #: application/controllers/Stationsetup.php:288
-#: application/views/interface_assets/header.php:574
+#: application/views/interface_assets/header.php:572
 #: application/views/stationsetup/stationsetup.php:49
 #: application/views/view_log/index.php:4
 msgid "Active Logbook"
@@ -3133,7 +3126,7 @@ msgstr "导出地图"
 
 #: application/controllers/Webadif.php:95
 #: application/controllers/Webadif.php:142
-#: application/views/interface_assets/header.php:500
+#: application/views/interface_assets/header.php:498
 msgid "QO-100 Dx Club Upload"
 msgstr "QO-100 Dx Club 上传"
 
@@ -3316,94 +3309,94 @@ msgstr "未提供呼号"
 msgid "DXCC has to be Numeric"
 msgstr "DXCC 应该是数字"
 
-#: application/models/Logbook_model.php:4061
+#: application/models/Logbook_model.php:4008
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "导入 QSO 时出现错误：本台呼号 %s 对方呼号 %s %s，已跳过"
 
-#: application/models/Logbook_model.php:4074
+#: application/models/Logbook_model.php:4021
 msgid "QSO on"
 msgstr "QSO 时间"
 
-#: application/models/Logbook_model.php:4074
+#: application/models/Logbook_model.php:4021
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
 msgstr "试图导入的 QSO 不存在对方呼号（CALL）。此 QSO 无效，未导入"
 
-#: application/models/Logbook_model.php:4123
+#: application/models/Logbook_model.php:4070
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
 "imported. It's invalid"
 msgstr ""
 
-#: application/models/Logbook_model.php:4388
+#: application/models/Logbook_model.php:4335
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4399
+#: application/models/Logbook_model.php:4346
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4460
+#: application/models/Logbook_model.php:4407
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date 字段错误（ YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4480
+#: application/models/Logbook_model.php:4427
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "the lotw_qslrdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4501
+#: application/models/Logbook_model.php:4448
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslsdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4794
+#: application/models/Logbook_model.php:4741
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "内容重复"
 
-#: application/models/Logbook_model.php:4859
-#: application/models/Logbook_model.php:4954
+#: application/models/Logbook_model.php:4806
+#: application/models/Logbook_model.php:4901
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
-#: application/models/Logbook_model.php:4867
+#: application/models/Logbook_model.php:4814
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
-#: application/models/Logbook_model.php:4873
+#: application/models/Logbook_model.php:4820
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
-#: application/models/Logbook_model.php:4877
+#: application/models/Logbook_model.php:4824
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
-#: application/models/Logbook_model.php:4881
+#: application/models/Logbook_model.php:4828
 msgid "confirmation pending"
 msgstr "等待确认"
 
-#: application/models/Logbook_model.php:4884
+#: application/models/Logbook_model.php:4831
 msgid "unconfirmed"
 msgstr "未确认"
 
-#: application/models/Logbook_model.php:4887
+#: application/models/Logbook_model.php:4834
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
 msgid "unknown"
 msgstr "未知"
 
-#: application/models/Logbook_model.php:4957
+#: application/models/Logbook_model.php:4904
 msgid "POTA reference already in log"
 msgstr "日志中已存在POTA数据"
 
-#: application/models/Logbook_model.php:4960
+#: application/models/Logbook_model.php:4907
 msgid "QSO updated"
 msgstr "QSO已上传"
 
-#: application/models/Logbook_model.php:5814
+#: application/models/Logbook_model.php:5761
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:39
 #: application/views/awards/gridmaster/index.php:54
@@ -4564,8 +4557,7 @@ msgid ""
 msgstr "%s详细日志%s 中可使用更多过滤器选项，也可导出日志！"
 
 #: application/views/adif/import.php:254 application/views/adif/import.php:312
-#: application/views/cfd/index.php:15 application/views/clublog/export.php:73
-#: application/views/csv/index.php:119
+#: application/views/clublog/export.php:73 application/views/csv/index.php:119
 #: application/views/dcl_views/import.php:27
 #: application/views/dxatlas/index.php:118
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:103
@@ -4575,8 +4567,7 @@ msgid "From date"
 msgstr "起始日期"
 
 #: application/views/adif/import.php:258 application/views/adif/import.php:315
-#: application/views/cfd/index.php:20 application/views/csv/index.php:124
-#: application/views/dxatlas/index.php:123
+#: application/views/csv/index.php:124 application/views/dxatlas/index.php:123
 #: application/views/hrdlog/export.php:82 application/views/kml/index.php:108
 #: application/views/qrz/export.php:104
 #: application/views/webadif/export.php:102
@@ -4881,7 +4872,7 @@ msgid "Save"
 msgstr "保存"
 
 #: application/views/api/index.php:8
-#: application/views/interface_assets/header.php:512
+#: application/views/interface_assets/header.php:510
 msgid "API Keys"
 msgstr "API 密钥"
 
@@ -6088,9 +6079,9 @@ msgid "Show JCC Map"
 msgstr "显示 JCC 地图"
 
 #: application/views/awards/jcc/index.php:117
-#: application/views/cabrillo/index.php:209 application/views/cfd/index.php:25
-#: application/views/csv/index.php:129 application/views/dxatlas/index.php:128
-#: application/views/kml/index.php:113 application/views/reg1test/index.php:145
+#: application/views/cabrillo/index.php:209 application/views/csv/index.php:129
+#: application/views/dxatlas/index.php:128 application/views/kml/index.php:113
+#: application/views/reg1test/index.php:145
 msgid "Export"
 msgstr "导出"
 
@@ -7294,11 +7285,6 @@ msgstr "第一个 QSO"
 msgid "Last QSO"
 msgstr "最近通联"
 
-#: application/views/cfd/index.php:7
-#, php-format
-msgid "Export of CFD-File for DARC-Toplist (See %s)"
-msgstr "导出 CFD 日志文件（用于 DARC-Toplist，请查看 %s）"
-
 #: application/views/club/clubswitch_modal.php:5
 msgid "Switch to a Clubstation"
 msgstr "切换到集体台站"
@@ -7722,7 +7708,7 @@ msgstr "ADIF 名称"
 #: application/views/contesting/add.php:44
 #: application/views/contesting/edit.php:43
 #: application/views/contesting/edit.php:46
-#: application/views/interface_assets/header.php:554
+#: application/views/interface_assets/header.php:552
 #: application/views/mode/create.php:46 application/views/mode/create.php:48
 #: application/views/mode/edit.php:57 application/views/mode/edit.php:60
 #: application/views/mode/index.php:8 application/views/mode/index.php:55
@@ -9755,7 +9741,7 @@ msgid "Error saving note"
 msgstr ""
 
 #: application/views/interface_assets/footer.php:157
-#: application/views/interface_assets/header.php:515
+#: application/views/interface_assets/header.php:513
 #: application/views/options/sidebar.php:10
 msgid "Version Info"
 msgstr "版本信息"
@@ -10160,66 +10146,66 @@ msgstr "Cabrillo 导出"
 msgid "EDI Export"
 msgstr "EDI 导出"
 
-#: application/views/interface_assets/header.php:491
+#: application/views/interface_assets/header.php:489
 msgid "QSL Queue"
 msgstr "QSL 队列"
 
-#: application/views/interface_assets/header.php:492
+#: application/views/interface_assets/header.php:490
 msgid "Labels"
 msgstr "标签"
 
-#: application/views/interface_assets/header.php:494
+#: application/views/interface_assets/header.php:492
 msgid "Third-Party Services"
 msgstr "第三方服务"
 
-#: application/views/interface_assets/header.php:497
+#: application/views/interface_assets/header.php:495
 msgid "eQSL Import / Export"
 msgstr "eQSL 导入/导出"
 
-#: application/views/interface_assets/header.php:498
+#: application/views/interface_assets/header.php:496
 msgid "HRDLog Logbook"
 msgstr "HRDLog 日志簿"
 
-#: application/views/interface_assets/header.php:501
+#: application/views/interface_assets/header.php:499
 msgid "Clublog Import / Export"
 msgstr "Clublog 导入/导出"
 
-#: application/views/interface_assets/header.php:504
+#: application/views/interface_assets/header.php:502
 msgid "DCL Export"
 msgstr "DCL 导出"
 
-#: application/views/interface_assets/header.php:516
+#: application/views/interface_assets/header.php:514
 #: application/views/logbookadvanced/index.php:741
 msgid "Help"
 msgstr "帮助"
 
-#: application/views/interface_assets/header.php:517
+#: application/views/interface_assets/header.php:515
 msgid "Forum"
 msgstr "论坛"
 
-#: application/views/interface_assets/header.php:521
+#: application/views/interface_assets/header.php:519
 #, php-format
 msgid "Stop impersonate and switch back to %s"
 msgstr "登出并返回到 %s"
 
-#: application/views/interface_assets/header.php:522
+#: application/views/interface_assets/header.php:520
 #, php-format
 msgid "Switch back to %s"
 msgstr "切换回 %s"
 
-#: application/views/interface_assets/header.php:526
+#: application/views/interface_assets/header.php:524
 msgid "Logout"
 msgstr "注销"
 
-#: application/views/interface_assets/header.php:534
+#: application/views/interface_assets/header.php:532
 msgid "Select a Location"
 msgstr "选择电台站位置"
 
-#: application/views/interface_assets/header.php:576
+#: application/views/interface_assets/header.php:574
 msgid "You miss station-locations here? Go to stationsetup and fav them"
 msgstr "没有看到您的台站位置？前往台站设置并收藏它们"
 
-#: application/views/interface_assets/header.php:613
+#: application/views/interface_assets/header.php:611
 msgid "Extras"
 msgstr "额外"
 
@@ -15986,6 +15972,13 @@ msgstr "提交请求"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "收"
+
+#~ msgid "CFD Export"
+#~ msgstr "CFD 导出"
+
+#, php-format
+#~ msgid "Export of CFD-File for DARC-Toplist (See %s)"
+#~ msgstr "导出 CFD 日志文件（用于 DARC-Toplist，请查看 %s）"
 
 #, php-format
 #~ msgctxt "LoTW Warning"
