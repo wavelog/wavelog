@@ -906,7 +906,7 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
 </div>
 
 <!-- Toast Notification : TBD move to footer -->
-<div id="toast-container" class="position-fixed bottom-0 end-0 p-3" style="z-index: 1100;"></div>
+<div id="toast-container" class="position-fixed top-0 end-0 p-3" style="z-index: 1100;"></div>
 
 <script>
 	var station_callsign = "<?php echo $station_callsign; ?>";
