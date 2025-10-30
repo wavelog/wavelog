@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-10-28 16:21+0000\n"
-"PO-Revision-Date: 2025-10-30 11:09+0000\n"
+"PO-Revision-Date: 2025-10-30 15:57+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/sv/>\n"
@@ -141,7 +141,7 @@ msgstr "Ackumulerad statistik"
 #: application/controllers/Activated_gridmap.php:10
 #: application/views/activated_gridmap/index.php:5
 msgid "Activated Gridsquare Map"
-msgstr "Karta Aktiverade Rutnätsrutor"
+msgstr "Karta Aktiverade Lokatorrutor"
 
 #: application/controllers/Activated_gridmap.php:31
 #: application/controllers/Awards.php:1003
@@ -153,23 +153,23 @@ msgstr "Karta Aktiverade Rutnätsrutor"
 #: application/views/visitor/layout/footer.php:12
 #: application/views/visitor/layout/header.php:68
 msgid "Gridsquares"
-msgstr "Rutnätsrutor"
+msgstr "Lokatorrutor"
 
 #: application/controllers/Activated_gridmap.php:32
 #: application/controllers/Gridmap.php:33
 #: application/controllers/Visitor.php:386
 msgid "Gridsquares confirmed"
-msgstr "Rutnätsrutor bekräftade"
+msgstr "Lokatorrutor bekräftade"
 
 #: application/controllers/Activated_gridmap.php:33
 #: application/controllers/Gridmap.php:34
 #: application/controllers/Visitor.php:387
 msgid "Gridsquares not confirmed"
-msgstr "Rutnätsrutor inte bekräftade"
+msgstr "Lokatorrutor inte bekräftade"
 
 #: application/controllers/Activated_gridmap.php:34
 msgid "Total gridsquares activated"
-msgstr "Totalt aktiverade Rutnätsrutor"
+msgstr "Totalt aktiverade Lokatorrutor"
 
 #: application/controllers/Activated_gridmap.php:36
 #: application/controllers/Gridmap.php:37
@@ -199,7 +199,7 @@ msgstr "Totalt antal fält kontaktade"
 #: application/views/activators/index.php:5
 #: application/views/interface_assets/header.php:152
 msgid "Gridsquare Activators"
-msgstr "Rutnätsaktiverare"
+msgstr "Lokatorruts aktiverare"
 
 #: application/controllers/Activatorsmap.php:17
 #: application/views/activators/index.php:2
@@ -542,17 +542,17 @@ msgstr "Diplom - "
 #: application/controllers/Awards.php:1004
 #: application/controllers/Awards.php:1036
 msgid "Gridsquares worked"
-msgstr "Rutnätsrutor kontaktade"
+msgstr "Lokatorrutor kontaktade"
 
 #: application/controllers/Awards.php:1005
 #: application/controllers/Awards.php:1037
 msgid "Gridsquares confirmed on LoTW"
-msgstr "Rutnätsrutor bekräftade på LoTW"
+msgstr "Lokatorrutor bekräftade på LoTW"
 
 #: application/controllers/Awards.php:1006
 #: application/controllers/Awards.php:1038
 msgid "Gridsquares confirmed by paper QSL"
-msgstr "Rutnätsrutor bekräftade av pappers-QSL"
+msgstr "Lokatorrutor bekräftade av pappers-QSL"
 
 #: application/controllers/Awards.php:1023
 msgid "Fred Fish Memorial Award (FFMA)"
@@ -1633,7 +1633,7 @@ msgstr "Delstat"
 #: application/views/view_log/qso.php:680
 #: application/views/visitor/index.php:27
 msgid "Gridsquare"
-msgstr "Rutnätsruta"
+msgstr "Lokatorruta"
 
 #: application/controllers/Logbook.php:1328
 #: application/views/activated_gridmap/index.php:108
@@ -2553,7 +2553,7 @@ msgstr "Duplicera stationsplats:"
 #: application/controllers/User.php:1284 application/controllers/User.php:1534
 #, php-format
 msgid "Please check value for grid locator (%s)"
-msgstr "Kontrollera värdet för rutnätslokatorn (%s)"
+msgstr "Kontrollera värdet för Lokatorrutan (%s)"
 
 #: application/controllers/Stationsetup.php:60
 #: application/views/interface_assets/header.php:423
@@ -2882,11 +2882,11 @@ msgstr "Uppdatering av Hams of Note"
 
 #: application/controllers/Update.php:718
 msgid "VUCC Grid file update complete. Result: "
-msgstr "VUCC-rutnätsfiluppdatering slutförd. Resultat: "
+msgstr "VUCC-locatorfiluppdatering slutförd. Resultat: "
 
 #: application/controllers/Update.php:720
 msgid "VUCC Grid file update failed. Result: "
-msgstr "VUCC-rutnätsfiluppdatering misslyckades. Resultat: "
+msgstr "VUCC-lokatorfiluppdatering misslyckades. Resultat: "
 
 #: application/controllers/User.php:50
 #: application/views/interface_assets/header.php:306
@@ -3053,7 +3053,7 @@ msgstr "Station ITU-zon"
 #: application/views/user/modals/first_login_wizard.php:91
 #: application/controllers/User.php:1269
 msgid "Station Locator"
-msgstr "Stationsrutnätslokator"
+msgstr "Stationens Lokatorsruta"
 
 #: application/controllers/User.php:1289 application/controllers/User.php:1292
 #, php-format
@@ -3188,7 +3188,7 @@ msgstr ""
 
 #: application/controllers/Visitor.php:216
 msgid "Satellite Gridsquare Map"
-msgstr "Satellit rutnäts-karta"
+msgstr "Satellit lokator-karta"
 
 #: application/controllers/Visitor.php:410
 #: application/views/stationsetup/stationsetup.php:38
@@ -3622,7 +3622,7 @@ msgstr "Ackumulerat antal CQ-zoner kontaktade"
 
 #: application/views/accumulate/index.php:6
 msgid "Accumulated number of VUCC Grids worked"
-msgstr "Ackumulerat antal VUCC-rutnät kontaktade"
+msgstr "Ackumulerat antal VUCC-lokators kontaktade"
 
 #: application/views/accumulate/index.php:7
 msgid "Accumulated number of WAJA worked"
@@ -5946,8 +5946,8 @@ msgid ""
 "grid squares in the 48 contiguous United States on 6 Meters."
 msgstr ""
 "Fred Fish Memorial Award skapades till ära för Fred Fish, W5FF (SK), som var "
-"den första radioamatören som kontaktade och bekräftade alla 488 Maidenhead-"
-"rutnät i de 48 sammanhängande delstaterna i USA på 6 meter."
+"den första radioamatören som kontaktade och bekräftade alla 488 Maidenhead "
+"lokatorer i de 48 sammanhängande delstaterna i USA på 6 meter."
 
 #: application/views/awards/ffma/index.php:10
 msgid ""
