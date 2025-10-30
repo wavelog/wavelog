@@ -5,6 +5,21 @@ var scps = [];
 let lookupCall = null;
 let preventLookup = false;
 
+// Create and add banner control
+window.mapBanner = L.control({ position: "bottomleft" }); // You can change position: "topleft", "bottomleft", etc.
+
+window.mapBanner.onAdd = function () {
+	const div = L.DomUtil.create("div", "info legend");
+	div.style.background = "rgba(0, 0, 0, 0.7)";
+	div.style.color = "white";
+	div.style.padding = "8px 12px";
+	div.style.borderRadius = "8px";
+	div.style.fontSize = "13px";
+	div.style.boxShadow = "0 2px 6px rgba(0,0,0,0.3)";
+	div.innerHTML = bannerText;
+	return div;
+};
+
 // if the dxcc id changes we need to update the state dropdown and clear the county value to avoid wrong data
 $("#dxcc_id").on('change', function () {
 	updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputQso');
@@ -994,6 +1009,9 @@ function reset_fields() {
 
 	mymap.setView(pos, 12);
 	mymap.removeLayer(markers);
+	if (window.mapBanner) {
+		mymap.removeControl(window.mapBanner);
+	}
 	$('.callsign-suggest').hide();
 	$('.awardpane').remove();
 	$('#timesWorked').html(lang_qso_title_previous_contacts);
@@ -1244,17 +1262,40 @@ $("#callsign").on("focusout", function () {
 				// Set Map to Lat/Long
 				markers.clearLayers();
 				mymap.setZoom(8);
+				// Remove previous banner (if any)
+				if (window.mapBanner) {
+					mymap.removeControl(window.mapBanner);
+				}
+
 				if (typeof result.latlng !== "undefined" && result.latlng !== false) {
 					var marker = L.marker([result.latlng[0], result.latlng[1]], { icon: redIcon });
 					mymap.panTo([result.latlng[0], result.latlng[1]]);
 					mymap.setView([result.latlng[0], result.latlng[1]], 8);
+					bannerText = "📡 "+lang_qso_location_is_fetched_from_provided_gridsquare+": " + result.callsign_qra.toUpperCase();
+					markers.addLayer(marker).addTo(mymap);
 				} else {
-					var marker = L.marker([result.dxcc.lat, result.dxcc.long], { icon: redIcon });
 					mymap.panTo([result.dxcc.lat, result.dxcc.long]);
 					mymap.setView([result.dxcc.lat, result.dxcc.long], 8);
+					bannerText = "🌍 "+lang_qso_location_is_fetched_from_dxcc_coordinates+": " + $('#dxcc_id option:selected').text();
 				}
 
-				markers.addLayer(marker).addTo(mymap);
+
+				// Create and add banner control
+				window.mapBanner = L.control({ position: "bottomleft" }); // You can change position: "topleft", "bottomleft", etc.
+
+				window.mapBanner.onAdd = function () {
+					const div = L.DomUtil.create("div", "info legend");
+					div.style.background = "rgba(0, 0, 0, 0.7)";
+					div.style.color = "white";
+					div.style.padding = "8px 12px";
+					div.style.borderRadius = "8px";
+					div.style.fontSize = "13px";
+					div.style.boxShadow = "0 2px 6px rgba(0,0,0,0.3)";
+					div.innerHTML = bannerText;
+					return div;
+				};
+
+				window.mapBanner.addTo(mymap);
 
 
 				/* Find Locator if the field is empty */
@@ -2032,11 +2073,12 @@ $("#locator").on("input focus", function () {
 		}
 
 		if (qra_input.length >= 4 && $(this).val().length > 0) {
+			let qra = $(this).val().toUpperCase();
 			$.ajax({
 				url: base_url + 'index.php/logbook/qralatlngjson',
 				type: 'post',
 				data: {
-					qra: $(this).val(),
+					qra: qra,
 				},
 				success: function (data) {
 					// Set Map to Lat/Long
@@ -2053,6 +2095,8 @@ $("#locator").on("input focus", function () {
 						mymap.panTo([result[0], result[1]]);
 						mymap.setView([result[0], result[1]], 8);
 						markers.addLayer(marker).addTo(mymap);
+						bannerText = "📡 Location is fetched from provided gridsquare: " + qra;
+						window.mapBanner.addTo(mymap);
 					}
 				},
 				error: function () {
@@ -2171,10 +2215,10 @@ $('#dxcc_id').on('change', function () {
 				});
 
 				markers.clearLayers();
-				var marker = L.marker([result.dxcc.lat, result.dxcc.long], { icon: redIcon });
 				mymap.setZoom(8);
 				mymap.panTo([result.dxcc.lat, result.dxcc.long]);
-				markers.addLayer(marker).addTo(mymap);
+				bannerText = "🌍 Location is fetched from DXCC coordinates (no gridsquare provided): " + $('#dxcc_id option:selected').text();
+				window.mapBanner.addTo(mymap);
 			}
 		}
 	});
