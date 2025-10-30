@@ -430,6 +430,7 @@
 											} ?>
 										</select>
 									</div>
+									<hr />
 									<!--- DX Waterfall -->
 									<div class="mb-3">
 											<label for="user_dxwaterfall_enable"><?= __("DX Waterfall"); ?></label>
