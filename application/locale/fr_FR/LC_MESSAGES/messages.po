@@ -19,8 +19,8 @@ msgstr ""
 "POT-Creation-Date: 2025-10-28 16:21+0000\n"
 "PO-Revision-Date: 2025-10-29 20:47+0000\n"
 "Last-Translator: F5MQU <f5mqu.p@gmail.com>\n"
-"Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/fr/>\n"
+"Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/fr/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1858,6 +1858,7 @@ msgstr "Recherche rapide"
 #: application/views/lotw/import.php:3 application/views/lotw_views/index.php:9
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:848 application/views/visitor/index.php:328
+#: application/views/interface_assets/header.php:494
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
@@ -2188,6 +2189,7 @@ msgstr "ID de station invalide"
 
 #: application/controllers/Oqrs.php:163
 #: application/views/interface_assets/header.php:486
+#: application/views/interface_assets/header.php:484
 msgid "OQRS Requests"
 msgstr "OQRS Demandes"
 
@@ -2245,6 +2247,7 @@ msgstr ""
 
 #: application/controllers/Qrz.php:204
 #: application/views/interface_assets/header.php:499
+#: application/views/interface_assets/header.php:497
 msgid "QRZ Logbook"
 msgstr "Journal QRZ"
 
@@ -2293,6 +2296,7 @@ msgstr "Aucun indicatif fourni."
 
 #: application/controllers/Radio.php:17
 #: application/views/interface_assets/header.php:513
+#: application/views/interface_assets/header.php:511
 msgid "Hardware Interfaces"
 msgstr "Interfaces matérielles"
 
@@ -2567,6 +2571,7 @@ msgstr "Merci de vérifier le grid locator (%s)"
 #: application/controllers/Stationsetup.php:60
 #: application/views/interface_assets/header.php:423
 #: application/views/interface_assets/header.php:576
+#: application/views/interface_assets/header.php:574
 msgid "Station Setup"
 msgstr "Configuration de la station"
 
@@ -2636,6 +2641,7 @@ msgstr "Activer ce journal"
 #: application/views/interface_assets/header.php:574
 #: application/views/stationsetup/stationsetup.php:49
 #: application/views/view_log/index.php:4
+#: application/views/interface_assets/header.php:572
 msgid "Active Logbook"
 msgstr "Journal actif"
 
@@ -3213,6 +3219,7 @@ msgstr "Exporter la carte"
 #: application/controllers/Webadif.php:95
 #: application/controllers/Webadif.php:142
 #: application/views/interface_assets/header.php:500
+#: application/views/interface_assets/header.php:498
 msgid "QO-100 Dx Club Upload"
 msgstr "Télécharger QO-100 Dx Club"
 
@@ -3410,6 +3417,7 @@ msgid "DXCC has to be Numeric"
 msgstr "Le DXCC doit être un nombre"
 
 #: application/models/Logbook_model.php:4061
+#: application/models/Logbook_model.php:4008
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
@@ -3417,10 +3425,12 @@ msgstr ""
 "%s pour %s : IGNORÉ"
 
 #: application/models/Logbook_model.php:4074
+#: application/models/Logbook_model.php:4021
 msgid "QSO on"
 msgstr "QSO en"
 
 #: application/models/Logbook_model.php:4074
+#: application/models/Logbook_model.php:4021
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3429,6 +3439,7 @@ msgstr ""
 "importé. Il est invalide"
 
 #: application/models/Logbook_model.php:4123
+#: application/models/Logbook_model.php:4070
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -3438,52 +3449,65 @@ msgstr ""
 "n'a pas été importé. Il est invalide."
 
 #: application/models/Logbook_model.php:4388
+#: application/models/Logbook_model.php:4335
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "la qslrdate est invalide (AAAAMMJJ)"
 
 #: application/models/Logbook_model.php:4399
+#: application/models/Logbook_model.php:4346
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "la qslsdate est invalide (AAAAMMJJ)"
 
 #: application/models/Logbook_model.php:4460
+#: application/models/Logbook_model.php:4407
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "la clublog_qso_upload_date est invalide (AAAAMMJJ)"
 
 #: application/models/Logbook_model.php:4480
+#: application/models/Logbook_model.php:4427
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "la lotw_qslrdate est invalide (AAAAMMJJ)"
 
 #: application/models/Logbook_model.php:4501
+#: application/models/Logbook_model.php:4448
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "la lotw_qslsdate est invalide (AAAAMMJJ)"
 
 #: application/models/Logbook_model.php:4794
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:4741
 msgid "Duplicate for"
 msgstr "Dupliquer pour"
 
 #: application/models/Logbook_model.php:4859
 #: application/models/Logbook_model.php:4954
+#: application/models/Logbook_model.php:4806
+#: application/models/Logbook_model.php:4901
 msgid "QSO could not be matched"
 msgstr "pas de correspondance pour le QSO"
 
 #: application/models/Logbook_model.php:4867
+#: application/models/Logbook_model.php:4814
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmé par LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:4873
+#: application/models/Logbook_model.php:4820
 msgid "confirmed by award manager"
 msgstr "confirmé par le manager de l'Award"
 
 #: application/models/Logbook_model.php:4877
+#: application/models/Logbook_model.php:4824
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmé par recoupement des données DCL"
 
 #: application/models/Logbook_model.php:4881
+#: application/models/Logbook_model.php:4828
 msgid "confirmation pending"
 msgstr "confirmation en attente"
 
 #: application/models/Logbook_model.php:4884
+#: application/models/Logbook_model.php:4831
 msgid "unconfirmed"
 msgstr "non confirmé"
 
@@ -3491,14 +3515,17 @@ msgstr "non confirmé"
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
+#: application/models/Logbook_model.php:4834
 msgid "unknown"
 msgstr "inconnu"
 
 #: application/models/Logbook_model.php:4957
+#: application/models/Logbook_model.php:4904
 msgid "POTA reference already in log"
 msgstr "Les références du POTA sont déjà dans le log"
 
 #: application/models/Logbook_model.php:4960
+#: application/models/Logbook_model.php:4907
 msgid "QSO updated"
 msgstr "QSO mis à jour"
 
@@ -3513,6 +3540,7 @@ msgstr "QSO mis à jour"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:5761
 msgid "Bearing"
 msgstr "Azimut"
 
@@ -5028,6 +5056,7 @@ msgstr "Enregistrer"
 
 #: application/views/api/index.php:8
 #: application/views/interface_assets/header.php:512
+#: application/views/interface_assets/header.php:510
 msgid "API Keys"
 msgstr "Clés API"
 
@@ -8058,6 +8087,7 @@ msgstr "Nom ADIF"
 #: application/views/mode/index.php:8 application/views/mode/index.php:55
 #: application/views/usermode/index.php:6
 #: application/views/usermode/index.php:51
+#: application/views/interface_assets/header.php:552
 msgid "Active"
 msgstr "Activé"
 
@@ -10171,6 +10201,7 @@ msgstr "Erreur lors de l'enregistrement de la note"
 #: application/views/interface_assets/footer.php:157
 #: application/views/interface_assets/header.php:515
 #: application/views/options/sidebar.php:10
+#: application/views/interface_assets/header.php:513
 msgid "Version Info"
 msgstr "Informations sur la version"
 
@@ -10576,67 +10607,82 @@ msgid "EDI Export"
 msgstr "EDI Exportation"
 
 #: application/views/interface_assets/header.php:491
+#: application/views/interface_assets/header.php:489
 msgid "QSL Queue"
 msgstr "File d'attente des QSL"
 
 #: application/views/interface_assets/header.php:492
+#: application/views/interface_assets/header.php:490
 msgid "Labels"
 msgstr "Libellés"
 
 #: application/views/interface_assets/header.php:494
+#: application/views/interface_assets/header.php:492
 msgid "Third-Party Services"
 msgstr "Services tiers"
 
 #: application/views/interface_assets/header.php:497
+#: application/views/interface_assets/header.php:495
 msgid "eQSL Import / Export"
 msgstr "eQSL Importation/Exportation"
 
 #: application/views/interface_assets/header.php:498
+#: application/views/interface_assets/header.php:496
 msgid "HRDLog Logbook"
 msgstr "Journal de trafic HRDLog"
 
 #: application/views/interface_assets/header.php:501
+#: application/views/interface_assets/header.php:499
 msgid "Clublog Import / Export"
 msgstr "Clublog Importation/Exportation"
 
 #: application/views/interface_assets/header.php:504
+#: application/views/interface_assets/header.php:502
 msgid "DCL Export"
 msgstr "DCL Exportation"
 
 #: application/views/interface_assets/header.php:516
 #: application/views/logbookadvanced/index.php:741
+#: application/views/interface_assets/header.php:514
 msgid "Help"
 msgstr "Aide"
 
 #: application/views/interface_assets/header.php:517
+#: application/views/interface_assets/header.php:515
 msgid "Forum"
 msgstr "Forum"
 
 #: application/views/interface_assets/header.php:521
+#: application/views/interface_assets/header.php:519
 #, php-format
 msgid "Stop impersonate and switch back to %s"
 msgstr "Arrêtez d'usurper l'identité et revenez à %s"
 
 #: application/views/interface_assets/header.php:522
+#: application/views/interface_assets/header.php:520
 #, php-format
 msgid "Switch back to %s"
 msgstr "Revenir à %s"
 
 #: application/views/interface_assets/header.php:526
+#: application/views/interface_assets/header.php:524
 msgid "Logout"
 msgstr "Déconnexion"
 
 #: application/views/interface_assets/header.php:534
+#: application/views/interface_assets/header.php:532
 msgid "Select a Location"
 msgstr "Choisir un emplacement"
 
 #: application/views/interface_assets/header.php:576
+#: application/views/interface_assets/header.php:574
 msgid "You miss station-locations here? Go to stationsetup and fav them"
 msgstr ""
 "L'emplacement des stations vous manque ? Rendez-vous dans la configuration "
 "des stations et ajoutez-les à vos favoris"
 
 #: application/views/interface_assets/header.php:613
+#: application/views/interface_assets/header.php:611
 msgid "Extras"
 msgstr "Suppléments"
 
@@ -15755,7 +15801,8 @@ msgstr ""
 
 #: application/views/user/edit.php:715
 msgid "Show station location name in grouped search results"
-msgstr "Afficher le nom de la station dans les résultats de recherches groupées"
+msgstr ""
+"Afficher le nom de la station dans les résultats de recherches groupées"
 
 #: application/views/user/edit.php:720
 msgid ""
@@ -16613,8 +16660,8 @@ msgid ""
 "There are currently no outstanding QSOs that need to be uploaded to the "
 "QO-100 Dx Club's API."
 msgstr ""
-"Il n'y a actuellement aucun QSO en attente de téléchargement sur l'API du QO-"
-"100 Dx Club."
+"Il n'y a actuellement aucun QSO en attente de téléchargement sur l'API du "
+"QO-100 Dx Club."
 
 #: application/views/webadif/export.php:64
 msgid "Go ahead and turn on your QO-100 station!"

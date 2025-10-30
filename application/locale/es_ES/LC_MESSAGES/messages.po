@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-10-29 08:44+0000\n"
+"POT-Creation-Date: 2025-10-30 07:15+0000\n"
 "PO-Revision-Date: 2025-10-22 00:19+0000\n"
 "Last-Translator: David Quental <ct1drb72@gmail.com>\n"
 "Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -41,11 +41,9 @@ msgstr ""
 #: application/controllers/Cabrillo.php:139
 #: application/controllers/Callstats.php:13
 #: application/controllers/Calltester.php:11
-#: application/controllers/Cfdexport.php:18
-#: application/controllers/Cfdexport.php:29 application/controllers/Club.php:48
-#: application/controllers/Club.php:74 application/controllers/Club.php:122
-#: application/controllers/Club.php:151 application/controllers/Club.php:178
-#: application/controllers/Clublog.php:88
+#: application/controllers/Club.php:48 application/controllers/Club.php:74
+#: application/controllers/Club.php:122 application/controllers/Club.php:151
+#: application/controllers/Club.php:178 application/controllers/Clublog.php:88
 #: application/controllers/Clublog.php:147
 #: application/controllers/Components.php:13
 #: application/controllers/Contestcalendar.php:15
@@ -674,11 +672,6 @@ msgstr "Estadísticas de indicativos"
 #: application/controllers/Callstats.php:104
 msgid " and sat "
 msgstr " y satélite "
-
-#: application/controllers/Cfdexport.php:20
-#: application/views/interface_assets/header.php:469
-msgid "CFD Export"
-msgstr "Exportar en CFD"
 
 #: application/controllers/Club.php:23
 msgid "Club Officer"
@@ -1847,7 +1840,7 @@ msgstr "Búsqueda rápida"
 #: application/controllers/Lotw.php:53 application/controllers/Lotw.php:85
 #: application/controllers/Lotw.php:125 application/views/adif/import.php:27
 #: application/views/dcl_views/upload_cert.php:3
-#: application/views/interface_assets/header.php:496
+#: application/views/interface_assets/header.php:494
 #: application/views/lotw/import.php:3 application/views/lotw_views/index.php:9
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:848 application/views/visitor/index.php:328
@@ -2178,7 +2171,7 @@ msgid "Invalid Station ID"
 msgstr "ID de estación no válida"
 
 #: application/controllers/Oqrs.php:163
-#: application/views/interface_assets/header.php:486
+#: application/views/interface_assets/header.php:484
 msgid "OQRS Requests"
 msgstr "Solicitudes OQRS"
 
@@ -2235,7 +2228,7 @@ msgstr ""
 "están al oeste de Greenwich."
 
 #: application/controllers/Qrz.php:204
-#: application/views/interface_assets/header.php:499
+#: application/views/interface_assets/header.php:497
 msgid "QRZ Logbook"
 msgstr "Libro de registro QRZ"
 
@@ -2283,7 +2276,7 @@ msgid "No callsign provided."
 msgstr "No se proporcionó indicativo."
 
 #: application/controllers/Radio.php:17
-#: application/views/interface_assets/header.php:513
+#: application/views/interface_assets/header.php:511
 msgid "Hardware Interfaces"
 msgstr "Interfaces de hardware"
 
@@ -2556,7 +2549,7 @@ msgstr "Por favor, verifica el valor del localizador de cuadrícula (%s)"
 
 #: application/controllers/Stationsetup.php:60
 #: application/views/interface_assets/header.php:423
-#: application/views/interface_assets/header.php:576
+#: application/views/interface_assets/header.php:574
 msgid "Station Setup"
 msgstr "Configuración de la estación"
 
@@ -2623,7 +2616,7 @@ msgid "Set as Active Logbook"
 msgstr "Establecer como Libro de Guardia Activo"
 
 #: application/controllers/Stationsetup.php:288
-#: application/views/interface_assets/header.php:574
+#: application/views/interface_assets/header.php:572
 #: application/views/stationsetup/stationsetup.php:49
 #: application/views/view_log/index.php:4
 msgid "Active Logbook"
@@ -3192,7 +3185,7 @@ msgstr "Exportar mapa"
 
 #: application/controllers/Webadif.php:95
 #: application/controllers/Webadif.php:142
-#: application/views/interface_assets/header.php:500
+#: application/views/interface_assets/header.php:498
 msgid "QO-100 Dx Club Upload"
 msgstr "Subida del Club Dx QO-100"
 
@@ -3388,17 +3381,17 @@ msgstr "Ningún indicativo dado"
 msgid "DXCC has to be Numeric"
 msgstr "DXCC tiene que ser numérico"
 
-#: application/models/Logbook_model.php:4061
+#: application/models/Logbook_model.php:4008
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 "Indicativo de estación incorrecto %s al importar QSO con %s para %s: OMITIDO"
 
-#: application/models/Logbook_model.php:4074
+#: application/models/Logbook_model.php:4021
 msgid "QSO on"
 msgstr "QSO en"
 
-#: application/models/Logbook_model.php:4074
+#: application/models/Logbook_model.php:4021
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3406,7 +3399,7 @@ msgstr ""
 "Intentaste importar un QSO sin ningún indicativo dado. Este QSO no fue "
 "importado. Es inválido"
 
-#: application/models/Logbook_model.php:4123
+#: application/models/Logbook_model.php:4070
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -3415,72 +3408,72 @@ msgstr ""
 "QSO en %s: Intentaste importar un QSO sin la banda. Este QSO no fue "
 "importado. Es inválido"
 
-#: application/models/Logbook_model.php:4388
+#: application/models/Logbook_model.php:4335
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "la qslrfecha es inválida (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:4399
+#: application/models/Logbook_model.php:4346
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "la qslfecha es inválida (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4460
+#: application/models/Logbook_model.php:4407
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "la fecha de carga de clublog_qso es inválida (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:4480
+#: application/models/Logbook_model.php:4427
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "la lotw_qslrdate no es válida (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4501
+#: application/models/Logbook_model.php:4448
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "el lotw_qslsdate es inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:4794
+#: application/models/Logbook_model.php:4741
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplicado para"
 
-#: application/models/Logbook_model.php:4859
-#: application/models/Logbook_model.php:4954
+#: application/models/Logbook_model.php:4806
+#: application/models/Logbook_model.php:4901
 msgid "QSO could not be matched"
 msgstr "QSOs que no concuerdan"
 
-#: application/models/Logbook_model.php:4867
+#: application/models/Logbook_model.php:4814
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmados por LoTW/Clublog/eQSL/Concurso"
 
-#: application/models/Logbook_model.php:4873
+#: application/models/Logbook_model.php:4820
 msgid "confirmed by award manager"
 msgstr "confirmados por el administrador del premio"
 
-#: application/models/Logbook_model.php:4877
+#: application/models/Logbook_model.php:4824
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmados al hacer chequeo cruzadoc on datos de DCL"
 
-#: application/models/Logbook_model.php:4881
+#: application/models/Logbook_model.php:4828
 msgid "confirmation pending"
 msgstr "pendiente de confirmación"
 
-#: application/models/Logbook_model.php:4884
+#: application/models/Logbook_model.php:4831
 msgid "unconfirmed"
 msgstr "sin confirmar"
 
-#: application/models/Logbook_model.php:4887
+#: application/models/Logbook_model.php:4834
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
 msgid "unknown"
 msgstr "desconocido"
 
-#: application/models/Logbook_model.php:4957
+#: application/models/Logbook_model.php:4904
 msgid "POTA reference already in log"
 msgstr "La referencia POTA ya se encuentra en el log"
 
-#: application/models/Logbook_model.php:4960
+#: application/models/Logbook_model.php:4907
 msgid "QSO updated"
 msgstr "QSO actualizado"
 
-#: application/models/Logbook_model.php:5814
+#: application/models/Logbook_model.php:5761
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:39
 #: application/views/awards/gridmaster/index.php:54
@@ -4656,8 +4649,7 @@ msgstr ""
 "para filtrar y exportar!"
 
 #: application/views/adif/import.php:254 application/views/adif/import.php:312
-#: application/views/cfd/index.php:15 application/views/clublog/export.php:73
-#: application/views/csv/index.php:119
+#: application/views/clublog/export.php:73 application/views/csv/index.php:119
 #: application/views/dcl_views/import.php:27
 #: application/views/dxatlas/index.php:118
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:103
@@ -4667,8 +4659,7 @@ msgid "From date"
 msgstr "Desde la fecha"
 
 #: application/views/adif/import.php:258 application/views/adif/import.php:315
-#: application/views/cfd/index.php:20 application/views/csv/index.php:124
-#: application/views/dxatlas/index.php:123
+#: application/views/csv/index.php:124 application/views/dxatlas/index.php:123
 #: application/views/hrdlog/export.php:82 application/views/kml/index.php:108
 #: application/views/qrz/export.php:104
 #: application/views/webadif/export.php:102
@@ -5000,7 +4991,7 @@ msgid "Save"
 msgstr "Guardar"
 
 #: application/views/api/index.php:8
-#: application/views/interface_assets/header.php:512
+#: application/views/interface_assets/header.php:510
 msgid "API Keys"
 msgstr "Claves API"
 
@@ -6280,9 +6271,9 @@ msgid "Show JCC Map"
 msgstr "Mostrar mapa de JCC"
 
 #: application/views/awards/jcc/index.php:117
-#: application/views/cabrillo/index.php:209 application/views/cfd/index.php:25
-#: application/views/csv/index.php:129 application/views/dxatlas/index.php:128
-#: application/views/kml/index.php:113 application/views/reg1test/index.php:145
+#: application/views/cabrillo/index.php:209 application/views/csv/index.php:129
+#: application/views/dxatlas/index.php:128 application/views/kml/index.php:113
+#: application/views/reg1test/index.php:145
 msgid "Export"
 msgstr "Exportar"
 
@@ -7569,11 +7560,6 @@ msgstr "Primer QSO"
 msgid "Last QSO"
 msgstr "Último QSO"
 
-#: application/views/cfd/index.php:7
-#, php-format
-msgid "Export of CFD-File for DARC-Toplist (See %s)"
-msgstr "Exportación de archivo CFD para la lista superior de DARC (Ver %s)"
-
 #: application/views/club/clubswitch_modal.php:5
 msgid "Switch to a Clubstation"
 msgstr "Cambiar a una estación del club"
@@ -8020,7 +8006,7 @@ msgstr "Nombre ADIF"
 #: application/views/contesting/add.php:44
 #: application/views/contesting/edit.php:43
 #: application/views/contesting/edit.php:46
-#: application/views/interface_assets/header.php:554
+#: application/views/interface_assets/header.php:552
 #: application/views/mode/create.php:46 application/views/mode/create.php:48
 #: application/views/mode/edit.php:57 application/views/mode/edit.php:60
 #: application/views/mode/index.php:8 application/views/mode/index.php:55
@@ -10145,7 +10131,7 @@ msgid "Error saving note"
 msgstr ""
 
 #: application/views/interface_assets/footer.php:157
-#: application/views/interface_assets/header.php:515
+#: application/views/interface_assets/header.php:513
 #: application/views/options/sidebar.php:10
 msgid "Version Info"
 msgstr "Información de Versión"
@@ -10553,68 +10539,68 @@ msgstr "Exportación Cabrillo"
 msgid "EDI Export"
 msgstr "Exportación EDI"
 
-#: application/views/interface_assets/header.php:491
+#: application/views/interface_assets/header.php:489
 msgid "QSL Queue"
 msgstr "Cola de QSL"
 
-#: application/views/interface_assets/header.php:492
+#: application/views/interface_assets/header.php:490
 msgid "Labels"
 msgstr "Etiquetas"
 
-#: application/views/interface_assets/header.php:494
+#: application/views/interface_assets/header.php:492
 msgid "Third-Party Services"
 msgstr "Servicios de terceros"
 
-#: application/views/interface_assets/header.php:497
+#: application/views/interface_assets/header.php:495
 msgid "eQSL Import / Export"
 msgstr "Importación / Exportación de eQSL"
 
-#: application/views/interface_assets/header.php:498
+#: application/views/interface_assets/header.php:496
 msgid "HRDLog Logbook"
 msgstr "Libro de registro de HRDLog"
 
-#: application/views/interface_assets/header.php:501
+#: application/views/interface_assets/header.php:499
 msgid "Clublog Import / Export"
 msgstr "Importación / Exportación de Clublog"
 
-#: application/views/interface_assets/header.php:504
+#: application/views/interface_assets/header.php:502
 msgid "DCL Export"
 msgstr "Exportación DCL"
 
-#: application/views/interface_assets/header.php:516
+#: application/views/interface_assets/header.php:514
 #: application/views/logbookadvanced/index.php:741
 msgid "Help"
 msgstr "Ayuda"
 
-#: application/views/interface_assets/header.php:517
+#: application/views/interface_assets/header.php:515
 msgid "Forum"
 msgstr "Foro"
 
-#: application/views/interface_assets/header.php:521
+#: application/views/interface_assets/header.php:519
 #, php-format
 msgid "Stop impersonate and switch back to %s"
 msgstr "Deja de suplantar y vuelve a %s"
 
-#: application/views/interface_assets/header.php:522
+#: application/views/interface_assets/header.php:520
 #, php-format
 msgid "Switch back to %s"
 msgstr "Cambia de nuevo a %s"
 
-#: application/views/interface_assets/header.php:526
+#: application/views/interface_assets/header.php:524
 msgid "Logout"
 msgstr "Cerrar sesión"
 
-#: application/views/interface_assets/header.php:534
+#: application/views/interface_assets/header.php:532
 msgid "Select a Location"
 msgstr "Selecciona una ubicación"
 
-#: application/views/interface_assets/header.php:576
+#: application/views/interface_assets/header.php:574
 msgid "You miss station-locations here? Go to stationsetup and fav them"
 msgstr ""
 "¿Te faltan ubicaciones de estaciones aquí? Ve a la configuración de "
 "estaciones y márcalas como favoritas"
 
-#: application/views/interface_assets/header.php:613
+#: application/views/interface_assets/header.php:611
 msgid "Extras"
 msgstr "Extras"
 
@@ -16695,6 +16681,13 @@ msgstr "Enviar solicitud"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Recibido"
+
+#~ msgid "CFD Export"
+#~ msgstr "Exportar en CFD"
+
+#, php-format
+#~ msgid "Export of CFD-File for DARC-Toplist (See %s)"
+#~ msgstr "Exportación de archivo CFD para la lista superior de DARC (Ver %s)"
 
 #, php-format
 #~ msgctxt "LoTW Warning"

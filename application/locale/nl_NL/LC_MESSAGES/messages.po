@@ -1847,6 +1847,7 @@ msgstr "Snel opzoeken"
 #: application/views/lotw/import.php:3 application/views/lotw_views/index.php:9
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:848 application/views/visitor/index.php:328
+#: application/views/interface_assets/header.php:494
 msgid "Logbook of the World"
 msgstr "Logbook of The World"
 
@@ -2177,6 +2178,7 @@ msgstr "Ongeldige station-ID"
 
 #: application/controllers/Oqrs.php:163
 #: application/views/interface_assets/header.php:486
+#: application/views/interface_assets/header.php:484
 msgid "OQRS Requests"
 msgstr "OQRS-verzoeken"
 
@@ -2234,6 +2236,7 @@ msgstr ""
 
 #: application/controllers/Qrz.php:204
 #: application/views/interface_assets/header.php:499
+#: application/views/interface_assets/header.php:497
 msgid "QRZ Logbook"
 msgstr "QRZ Logboek"
 
@@ -2282,6 +2285,7 @@ msgstr "Geen roepnaam opgegeven."
 
 #: application/controllers/Radio.php:17
 #: application/views/interface_assets/header.php:513
+#: application/views/interface_assets/header.php:511
 msgid "Hardware Interfaces"
 msgstr "Hardware-interfaces"
 
@@ -2556,6 +2560,7 @@ msgstr "Controleer de waarde voor locatorvak (%s)"
 #: application/controllers/Stationsetup.php:60
 #: application/views/interface_assets/header.php:423
 #: application/views/interface_assets/header.php:576
+#: application/views/interface_assets/header.php:574
 msgid "Station Setup"
 msgstr "Stations instellen"
 
@@ -2625,6 +2630,7 @@ msgstr "Instellen als actief logboek"
 #: application/views/interface_assets/header.php:574
 #: application/views/stationsetup/stationsetup.php:49
 #: application/views/view_log/index.php:4
+#: application/views/interface_assets/header.php:572
 msgid "Active Logbook"
 msgstr "Actief logboek"
 
@@ -3201,6 +3207,7 @@ msgstr "Kaart exporteren"
 #: application/controllers/Webadif.php:95
 #: application/controllers/Webadif.php:142
 #: application/views/interface_assets/header.php:500
+#: application/views/interface_assets/header.php:498
 msgid "QO-100 Dx Club Upload"
 msgstr "QO-100 Dx Club Upload"
 
@@ -3391,6 +3398,7 @@ msgid "DXCC has to be Numeric"
 msgstr "DXCC moet numeriek zijn"
 
 #: application/models/Logbook_model.php:4061
+#: application/models/Logbook_model.php:4008
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
@@ -3398,10 +3406,12 @@ msgstr ""
 "OVERGESLAGEN"
 
 #: application/models/Logbook_model.php:4074
+#: application/models/Logbook_model.php:4021
 msgid "QSO on"
 msgstr "QSO vanaf"
 
 #: application/models/Logbook_model.php:4074
+#: application/models/Logbook_model.php:4021
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3410,6 +3420,7 @@ msgstr ""
 "is niet geïmporteerd. Het is ongeldig"
 
 #: application/models/Logbook_model.php:4123
+#: application/models/Logbook_model.php:4070
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -3419,52 +3430,65 @@ msgstr ""
 "band. Dit QSO is niet geïmporteerd. Het is ongeldig"
 
 #: application/models/Logbook_model.php:4388
+#: application/models/Logbook_model.php:4335
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "de qslrdate is ongeldig (JJJJMMDD)"
 
 #: application/models/Logbook_model.php:4399
+#: application/models/Logbook_model.php:4346
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "de qslsdatum is ongeldig (JJJJMMDD)"
 
 #: application/models/Logbook_model.php:4460
+#: application/models/Logbook_model.php:4407
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "de clublog_qso_upload_date is ongeldig (JJJJMMDD)"
 
 #: application/models/Logbook_model.php:4480
+#: application/models/Logbook_model.php:4427
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "de lotw_qslrdate is ongeldig (JJJJMMDD)"
 
 #: application/models/Logbook_model.php:4501
+#: application/models/Logbook_model.php:4448
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "de lotw_qslsdate is ongeldig (JJJJMMDD)"
 
 #: application/models/Logbook_model.php:4794
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:4741
 msgid "Duplicate for"
 msgstr "Duplicaat voor"
 
 #: application/models/Logbook_model.php:4859
 #: application/models/Logbook_model.php:4954
+#: application/models/Logbook_model.php:4806
+#: application/models/Logbook_model.php:4901
 msgid "QSO could not be matched"
 msgstr "QSO kon niet worden gekoppeld"
 
 #: application/models/Logbook_model.php:4867
+#: application/models/Logbook_model.php:4814
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bevestigd door LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:4873
+#: application/models/Logbook_model.php:4820
 msgid "confirmed by award manager"
 msgstr "Bevestigd door award manager"
 
 #: application/models/Logbook_model.php:4877
+#: application/models/Logbook_model.php:4824
 msgid "confirmed by cross-check of DCL data"
 msgstr "bevestigd door kruiscontrole van DCL-gegevens"
 
 #: application/models/Logbook_model.php:4881
+#: application/models/Logbook_model.php:4828
 msgid "confirmation pending"
 msgstr "bevestiging in afwachting"
 
 #: application/models/Logbook_model.php:4884
+#: application/models/Logbook_model.php:4831
 msgid "unconfirmed"
 msgstr "onbevestigd"
 
@@ -3472,14 +3496,17 @@ msgstr "onbevestigd"
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
+#: application/models/Logbook_model.php:4834
 msgid "unknown"
 msgstr "onbekend"
 
 #: application/models/Logbook_model.php:4957
+#: application/models/Logbook_model.php:4904
 msgid "POTA reference already in log"
 msgstr "POTA-referentie al in logboek"
 
 #: application/models/Logbook_model.php:4960
+#: application/models/Logbook_model.php:4907
 msgid "QSO updated"
 msgstr "QSO bijgewerkt"
 
@@ -3494,6 +3521,7 @@ msgstr "QSO bijgewerkt"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:5761
 msgid "Bearing"
 msgstr "Koers"
 
@@ -5002,6 +5030,7 @@ msgstr "Opslaan"
 
 #: application/views/api/index.php:8
 #: application/views/interface_assets/header.php:512
+#: application/views/interface_assets/header.php:510
 msgid "API Keys"
 msgstr "API-sleutels"
 
@@ -8003,6 +8032,7 @@ msgstr "ADIF-naam"
 #: application/views/mode/index.php:8 application/views/mode/index.php:55
 #: application/views/usermode/index.php:6
 #: application/views/usermode/index.php:51
+#: application/views/interface_assets/header.php:552
 msgid "Active"
 msgstr "Actief"
 
@@ -10111,6 +10141,7 @@ msgstr "Fout bij opslaan van notitie"
 #: application/views/interface_assets/footer.php:157
 #: application/views/interface_assets/header.php:515
 #: application/views/options/sidebar.php:10
+#: application/views/interface_assets/header.php:513
 msgid "Version Info"
 msgstr "Versie-informatie"
 
@@ -10518,67 +10549,82 @@ msgid "EDI Export"
 msgstr "EDI-export"
 
 #: application/views/interface_assets/header.php:491
+#: application/views/interface_assets/header.php:489
 msgid "QSL Queue"
 msgstr "QSL Wachtrij"
 
 #: application/views/interface_assets/header.php:492
+#: application/views/interface_assets/header.php:490
 msgid "Labels"
 msgstr "Labels"
 
 #: application/views/interface_assets/header.php:494
+#: application/views/interface_assets/header.php:492
 msgid "Third-Party Services"
 msgstr "Diensten van derden"
 
 #: application/views/interface_assets/header.php:497
+#: application/views/interface_assets/header.php:495
 msgid "eQSL Import / Export"
 msgstr "eQSL importeren / exporteren"
 
 #: application/views/interface_assets/header.php:498
+#: application/views/interface_assets/header.php:496
 msgid "HRDLog Logbook"
 msgstr "HRDLog Logboek"
 
 #: application/views/interface_assets/header.php:501
+#: application/views/interface_assets/header.php:499
 msgid "Clublog Import / Export"
 msgstr "Clublog importeren / exporteren"
 
 #: application/views/interface_assets/header.php:504
+#: application/views/interface_assets/header.php:502
 msgid "DCL Export"
 msgstr "DCL exporteren"
 
 #: application/views/interface_assets/header.php:516
 #: application/views/logbookadvanced/index.php:741
+#: application/views/interface_assets/header.php:514
 msgid "Help"
 msgstr "Help"
 
 #: application/views/interface_assets/header.php:517
+#: application/views/interface_assets/header.php:515
 msgid "Forum"
 msgstr "Forum"
 
 #: application/views/interface_assets/header.php:521
+#: application/views/interface_assets/header.php:519
 #, php-format
 msgid "Stop impersonate and switch back to %s"
 msgstr "Stop met imiteren en schakel terug naar %s"
 
 #: application/views/interface_assets/header.php:522
+#: application/views/interface_assets/header.php:520
 #, php-format
 msgid "Switch back to %s"
 msgstr "Schakel terug naar %s"
 
 #: application/views/interface_assets/header.php:526
+#: application/views/interface_assets/header.php:524
 msgid "Logout"
 msgstr "Uitloggen"
 
 #: application/views/interface_assets/header.php:534
+#: application/views/interface_assets/header.php:532
 msgid "Select a Location"
 msgstr "Selecteer een locatie"
 
 #: application/views/interface_assets/header.php:576
+#: application/views/interface_assets/header.php:574
 msgid "You miss station-locations here? Go to stationsetup and fav them"
 msgstr ""
 "Mis je hier stationslocaties? Ga naar stationssetup en voeg ze toe aan je "
 "favorieten"
 
 #: application/views/interface_assets/header.php:613
+#: application/views/interface_assets/header.php:611
 msgid "Extras"
 msgstr "Extra's"
 

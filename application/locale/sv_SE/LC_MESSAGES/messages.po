@@ -1842,6 +1842,7 @@ msgstr "Snabb uppslagning"
 #: application/views/lotw/import.php:3 application/views/lotw_views/index.php:9
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:848 application/views/visitor/index.php:328
+#: application/views/interface_assets/header.php:494
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
@@ -2168,6 +2169,7 @@ msgstr "Ogiltigt stations-ID"
 
 #: application/controllers/Oqrs.php:163
 #: application/views/interface_assets/header.php:486
+#: application/views/interface_assets/header.php:484
 msgid "OQRS Requests"
 msgstr "OQRS Förfrågningar"
 
@@ -2225,6 +2227,7 @@ msgstr ""
 
 #: application/controllers/Qrz.php:204
 #: application/views/interface_assets/header.php:499
+#: application/views/interface_assets/header.php:497
 msgid "QRZ Logbook"
 msgstr "QRZ Loggbok"
 
@@ -2273,6 +2276,7 @@ msgstr "Ingen anropssignal angiven."
 
 #: application/controllers/Radio.php:17
 #: application/views/interface_assets/header.php:513
+#: application/views/interface_assets/header.php:511
 msgid "Hardware Interfaces"
 msgstr "Hårdvarugränssnitt"
 
@@ -2547,6 +2551,7 @@ msgstr "Kontrollera värdet för rutnätslokatorn (%s)"
 #: application/controllers/Stationsetup.php:60
 #: application/views/interface_assets/header.php:423
 #: application/views/interface_assets/header.php:576
+#: application/views/interface_assets/header.php:574
 msgid "Station Setup"
 msgstr "Stationsinställningar"
 
@@ -2616,6 +2621,7 @@ msgstr "Ange som aktiv loggbok"
 #: application/views/interface_assets/header.php:574
 #: application/views/stationsetup/stationsetup.php:49
 #: application/views/view_log/index.php:4
+#: application/views/interface_assets/header.php:572
 msgid "Active Logbook"
 msgstr "Aktiv loggbok"
 
@@ -3189,6 +3195,7 @@ msgstr "Exportera karta"
 #: application/controllers/Webadif.php:95
 #: application/controllers/Webadif.php:142
 #: application/views/interface_assets/header.php:500
+#: application/views/interface_assets/header.php:498
 msgid "QO-100 Dx Club Upload"
 msgstr "QO-100 Dx Club Ladda upp"
 
@@ -3378,15 +3385,18 @@ msgid "DXCC has to be Numeric"
 msgstr "DXCC måste vara numerisk"
 
 #: application/models/Logbook_model.php:4061
+#: application/models/Logbook_model.php:4008
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Fel anropssignal %s vid import av QSO med %s för %s: HOPPADES ÖVER"
 
 #: application/models/Logbook_model.php:4074
+#: application/models/Logbook_model.php:4021
 msgid "QSO on"
 msgstr "QSO kl"
 
 #: application/models/Logbook_model.php:4074
+#: application/models/Logbook_model.php:4021
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3395,6 +3405,7 @@ msgstr ""
 "inte. Det är ogiltigt"
 
 #: application/models/Logbook_model.php:4123
+#: application/models/Logbook_model.php:4070
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -3404,52 +3415,65 @@ msgstr ""
 "importerades inte. Det är ogiltigt"
 
 #: application/models/Logbook_model.php:4388
+#: application/models/Logbook_model.php:4335
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate är ogiltigt (ÅÅÅÅMMDD)"
 
 #: application/models/Logbook_model.php:4399
+#: application/models/Logbook_model.php:4346
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate är ogiltigt (ÅÅÅÅMMDD)"
 
 #: application/models/Logbook_model.php:4460
+#: application/models/Logbook_model.php:4407
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date är ogiltigt (ÅÅÅÅMMDD)"
 
 #: application/models/Logbook_model.php:4480
+#: application/models/Logbook_model.php:4427
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslrdate är ogiltigt (ÅÅÅÅMMDD)"
 
 #: application/models/Logbook_model.php:4501
+#: application/models/Logbook_model.php:4448
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslsdate är ogiltigt (ÅÅÅÅMMDD)"
 
 #: application/models/Logbook_model.php:4794
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:4741
 msgid "Duplicate for"
 msgstr "Dubblett för"
 
 #: application/models/Logbook_model.php:4859
 #: application/models/Logbook_model.php:4954
+#: application/models/Logbook_model.php:4806
+#: application/models/Logbook_model.php:4901
 msgid "QSO could not be matched"
 msgstr "QSO kunde inte matchas"
 
 #: application/models/Logbook_model.php:4867
+#: application/models/Logbook_model.php:4814
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bekräftad av LoTW/Clublog/eQSL/Tävling"
 
 #: application/models/Logbook_model.php:4873
+#: application/models/Logbook_model.php:4820
 msgid "confirmed by award manager"
 msgstr "bekräftad av diplomansvarig"
 
 #: application/models/Logbook_model.php:4877
+#: application/models/Logbook_model.php:4824
 msgid "confirmed by cross-check of DCL data"
 msgstr "bekräftat genom korskontroll av DCL-data"
 
 #: application/models/Logbook_model.php:4881
+#: application/models/Logbook_model.php:4828
 msgid "confirmation pending"
 msgstr "bekräftelse väntar"
 
 #: application/models/Logbook_model.php:4884
+#: application/models/Logbook_model.php:4831
 msgid "unconfirmed"
 msgstr "obekräftad"
 
@@ -3457,14 +3481,17 @@ msgstr "obekräftad"
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
+#: application/models/Logbook_model.php:4834
 msgid "unknown"
 msgstr "Okänd"
 
 #: application/models/Logbook_model.php:4957
+#: application/models/Logbook_model.php:4904
 msgid "POTA reference already in log"
 msgstr "POTA-referens redan i loggen"
 
 #: application/models/Logbook_model.php:4960
+#: application/models/Logbook_model.php:4907
 msgid "QSO updated"
 msgstr "QSO uppdaterad"
 
@@ -3479,6 +3506,7 @@ msgstr "QSO uppdaterad"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:5761
 msgid "Bearing"
 msgstr "Bäring"
 
@@ -4980,6 +5008,7 @@ msgstr "Spara"
 
 #: application/views/api/index.php:8
 #: application/views/interface_assets/header.php:512
+#: application/views/interface_assets/header.php:510
 msgid "API Keys"
 msgstr "API-nycklar"
 
@@ -7958,6 +7987,7 @@ msgstr "ADIF-namn"
 #: application/views/mode/index.php:8 application/views/mode/index.php:55
 #: application/views/usermode/index.php:6
 #: application/views/usermode/index.php:51
+#: application/views/interface_assets/header.php:552
 msgid "Active"
 msgstr "Aktiv"
 
@@ -10053,6 +10083,7 @@ msgstr "Fel vid sparande av anteckning"
 #: application/views/interface_assets/footer.php:157
 #: application/views/interface_assets/header.php:515
 #: application/views/options/sidebar.php:10
+#: application/views/interface_assets/header.php:513
 msgid "Version Info"
 msgstr "Versionsinformation"
 
@@ -10458,67 +10489,82 @@ msgid "EDI Export"
 msgstr "EDI-export"
 
 #: application/views/interface_assets/header.php:491
+#: application/views/interface_assets/header.php:489
 msgid "QSL Queue"
 msgstr "QSL-kö"
 
 #: application/views/interface_assets/header.php:492
+#: application/views/interface_assets/header.php:490
 msgid "Labels"
 msgstr "Etiketter"
 
 #: application/views/interface_assets/header.php:494
+#: application/views/interface_assets/header.php:492
 msgid "Third-Party Services"
 msgstr "Tredjepartstjänster"
 
 #: application/views/interface_assets/header.php:497
+#: application/views/interface_assets/header.php:495
 msgid "eQSL Import / Export"
 msgstr "eQSL Import / Export"
 
 #: application/views/interface_assets/header.php:498
+#: application/views/interface_assets/header.php:496
 msgid "HRDLog Logbook"
 msgstr "HRDLog Loggbok"
 
 #: application/views/interface_assets/header.php:501
+#: application/views/interface_assets/header.php:499
 msgid "Clublog Import / Export"
 msgstr "Clublog Import / Export"
 
 #: application/views/interface_assets/header.php:504
+#: application/views/interface_assets/header.php:502
 msgid "DCL Export"
 msgstr "DCL-export"
 
 #: application/views/interface_assets/header.php:516
 #: application/views/logbookadvanced/index.php:741
+#: application/views/interface_assets/header.php:514
 msgid "Help"
 msgstr "Hjälp"
 
 #: application/views/interface_assets/header.php:517
+#: application/views/interface_assets/header.php:515
 msgid "Forum"
 msgstr "Forum"
 
 #: application/views/interface_assets/header.php:521
+#: application/views/interface_assets/header.php:519
 #, php-format
 msgid "Stop impersonate and switch back to %s"
 msgstr "Sluta imitera och byt tillbaka till %s"
 
 #: application/views/interface_assets/header.php:522
+#: application/views/interface_assets/header.php:520
 #, php-format
 msgid "Switch back to %s"
 msgstr "Byt tillbaka till %s"
 
 #: application/views/interface_assets/header.php:526
+#: application/views/interface_assets/header.php:524
 msgid "Logout"
 msgstr "Logga ut"
 
 #: application/views/interface_assets/header.php:534
+#: application/views/interface_assets/header.php:532
 msgid "Select a Location"
 msgstr "Välj en plats"
 
 #: application/views/interface_assets/header.php:576
+#: application/views/interface_assets/header.php:574
 msgid "You miss station-locations here? Go to stationsetup and fav them"
 msgstr ""
 "Saknar du stationens platser här? Gå till stationens config och lägg till "
 "dem som favoriter"
 
 #: application/views/interface_assets/header.php:613
+#: application/views/interface_assets/header.php:611
 msgid "Extras"
 msgstr "Extra"
 
