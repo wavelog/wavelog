@@ -2231,9 +2231,12 @@ $('#start_date').on('change', function () {
 /* on mode change */
 $('.mode').on('change', function () {
 	if ($('#radio').val() == 0 && $('#sat_name').val() == '') {
-		$.get(base_url + 'index.php/qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val(), function (result) {
-			$('#frequency').val(result).trigger("change");
-		});
+		// Only fetch default frequency if frequency field is empty
+		if ($('#frequency').val() == '' || $('#frequency').val() == null) {
+			$.get(base_url + 'index.php/qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val(), function (result) {
+				$('#frequency').val(result).trigger("change");
+			});
+		}
 		$('#frequency_rx').val("");
 	}
 	$("#callsign").blur();
@@ -2242,17 +2245,100 @@ $('.mode').on('change', function () {
 /* Calculate Frequency */
 /* on band change */
 $('#band').on('change', function () {
-	if ($('#radio').val() == 0) {
-		$.get(base_url + 'index.php/qso/band_to_freq/' + $(this).val() + '/' + $('.mode').val(), function (result) {
-			$('#frequency').val(result).trigger("change");
-		});
+	const selectedBand = $(this).val();
+
+	// Skip if this is a programmatic change from CAT/waterfall
+	if (typeof window.programmaticBandChange !== 'undefined' && window.programmaticBandChange) {
+		return;
 	}
-	$('#frequency_rx').val("");
+
+	// Skip resetting frequency if CAT is currently updating
+	if (typeof cat_updating_frequency !== 'undefined' && cat_updating_frequency) {
+		return;
+	}
+
+	// Clear the QSO form when band is manually changed
+	$('#btn_reset').click();
+
+	// Set flag to prevent waterfall from auto-reverting the band change
+	if (typeof dxWaterfall !== 'undefined') {
+		dxWaterfall.userChangedBand = true;
+		if (dxWaterfall.userChangedBandTimer) {
+			clearTimeout(dxWaterfall.userChangedBandTimer);
+		}
+		dxWaterfall.userChangedBandTimer = setTimeout(function() {
+			dxWaterfall.userChangedBand = false;
+		}, 10000);
+
+		// Reset operation timer when band is manually changed
+		dxWaterfall.operationStartTime = Date.now();
+
+		// Set waiting flags to prevent waterfall from rendering with wrong band edges
+		// This will be cleared after the frequency is loaded
+		dxWaterfall.waitingForData = true;
+		dxWaterfall.dataReceived = false;
+		dxWaterfall.waitingForFrequencyUpdate = true; // Prevent spot fetch from clearing waitingForData
+
+		// Invalidate frequency cache to prevent using stale frequency during band change
+		// This forces getCachedMiddleFreq() to wait for new frequency
+		if (dxWaterfall.lastValidCommittedFreq) {
+			dxWaterfall.lastValidCommittedFreq = null;
+			dxWaterfall.cache.middleFreq = null;
+		}
+	}
+
+	// Check if current frequency is already in the selected band
+	const currentFreq = $('#frequency').val();
+	const currentBand = currentFreq ? frequencyToBand(currentFreq) : '';
+
+	// Only fetch default frequency if current frequency is not already in the selected band
+	if (!currentFreq || currentBand !== selectedBand) {
+		$.get(base_url + 'index.php/qso/band_to_freq/' + selectedBand + '/' + $('.mode').val(), function (result) {
+			// Set the frequency
+			$('#frequency').val(result);
+
+			// Update the displayed frequency field with proper units
+			set_qrg();
+
+			// Tune the radio to the new frequency FIRST (using global selectedRadioId)
+			// Use skipWaterfall=true to force direct radio tuning when band is manually changed
+			if (typeof tuneRadioToFrequency === 'function') {
+				tuneRadioToFrequency(null, result, null, null, null, true);  // skipWaterfall=true
+			}
+
+			// DO NOT clear waitingForFrequencyUpdate yet - wait for CAT to confirm the frequency
+			// The CAT update handler in footer.php will clear it when the radio responds
+			// This prevents the waterfall from rendering with stale frequency data
+	});
+} else {
+	// Frequency is already in the selected band, just update display
+	set_qrg();
+
+	// Still tune the radio to the current frequency (user may have changed band but frequency stayed the same)
+	if (typeof tuneRadioToFrequency === 'function') {
+		const currentFreqHz = $('#frequency').val();
+		if (currentFreqHz) {
+			tuneRadioToFrequency(null, currentFreqHz, null, null, null, true);  // skipWaterfall=true
+		}
+	}
+
+	// Clear waiting flags immediately since no frequency change needed
+	if (typeof dxWaterfall !== 'undefined') {
+		dxWaterfall.waitingForData = false;
+		dxWaterfall.waitingForFrequencyUpdate = false;
+
+		// Update zoom menu after band change completes
+		if (dxWaterfall.updateZoomMenu) {
+			dxWaterfall.updateZoomMenu(true);
+		}
+	}
+}
+
+$('#frequency_rx').val("");
 	$('#band_rx').val("");
 	$("#selectPropagation").val("");
 	$("#sat_name").val("");
 	$("#sat_mode").val("");
-	set_qrg();
 	$("#callsign").blur();
 	stop_az_ele_ticker();
 });
@@ -2862,6 +2948,28 @@ $(document).ready(function () {
 		});
 	}
 
+	// Handle manual frequency entry - tune radio when user changes frequency
+	$('#freq_calculated').on('change', function() {
+		// set_new_qrg() is defined in qrg_handler.js and will:
+		// 1. Parse the frequency value and convert to Hz
+		// 2. Update #frequency (hidden field)
+		// 3. Tune the radio via tuneRadioToFrequency()
+		if (typeof set_new_qrg === 'function') {
+			set_new_qrg();
+		}
+	});
+
+	$('#freq_calculated').on('keydown', function(event) {
+		// Check if Enter key was pressed
+		if (event.key === 'Enter' || event.keyCode === 13) {
+			event.preventDefault(); // Prevent form submission
+			// Trigger the change event to process the frequency
+			$(this).trigger('change');
+			// Move focus to next field (optional - mimics typical form behavior)
+			$(this).blur();
+		}
+	});
+
 	// Edit button click handler for inline editing
 	$(document).on('click', '#callsign-note-edit-btn', function() {
 		var $editorElem = $('#callsign_note_content');
@@ -2969,5 +3077,4 @@ $(document).ready(function () {
 
 	// everything loaded and ready 2 go
 	bc.postMessage('ready');
-
-	});
+});
