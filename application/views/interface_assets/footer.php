@@ -3989,6 +3989,7 @@ if (isset($scripts) && is_array($scripts)){
 	}
 }
 ?>
-
+	<!-- Toast Notification - used by showToast() from common.js -->
+	<div id="toast-container" class="position-fixed top-0 end-0 p-3" style="z-index: 1100;"></div>
   </body>
 </html>
