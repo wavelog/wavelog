@@ -15,7 +15,7 @@ class Map extends CI_Controller {
 		// set informations //
 		$nb_qso = (intval($this->input->post('nb_qso'))>0)?xss_clean($this->input->post('nb_qso')):18;
 		$offset = (intval($this->input->post('offset'))>0)?xss_clean($this->input->post('offset')):null;
-		$qsos = $this->logbook_model->get_qsos($nb_qso, $offset);
+		$qsos = $this->logbook_model->get_qsos($nb_qso, $offset, null, '', true);
 		// [PLOT] ADD plot //
 		$plot_array = $this->logbook_model->get_plot_array_for_map($qsos->result());
 		// [MAP Custom] ADD Station //
