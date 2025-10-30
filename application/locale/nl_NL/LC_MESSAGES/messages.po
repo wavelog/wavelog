@@ -1829,6 +1829,7 @@ msgstr "Operator"
 #: application/views/view_log/partial/log_ajax.php:31
 #: application/views/view_log/qso.php:341
 #: application/views/view_log/qso.php:694
+#: application/views/interface_assets/footer.php:772
 msgid "Deleted DXCC"
 msgstr "Verwijderde DXCC"
 
@@ -2348,6 +2349,8 @@ msgstr "Standaard (klik om vrij te geven)"
 #: application/views/stationsetup/stationsetup.php:172
 #: application/views/themes/index.php:104 application/views/user/index.php:97
 #: application/views/user/index.php:203
+#: application/views/interface_assets/footer.php:632
+#: application/views/interface_assets/footer.php:641
 msgid "Edit"
 msgstr "Bewerken"
 
@@ -2377,6 +2380,10 @@ msgstr "Bewerken"
 #: application/views/stationsetup/stationsetup.php:199
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:778
+#: application/views/interface_assets/footer.php:2912
+#: application/views/interface_assets/footer.php:2930
+#: application/views/interface_assets/footer.php:2951
+#: application/views/interface_assets/footer.php:2969
 msgid "Delete"
 msgstr "Verwijderen"
 
@@ -3399,6 +3406,7 @@ msgstr "DXCC moet numeriek zijn"
 
 #: application/models/Logbook_model.php:4061
 #: application/models/Logbook_model.php:4008
+#: application/models/Logbook_model.php:4016
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
@@ -3407,11 +3415,13 @@ msgstr ""
 
 #: application/models/Logbook_model.php:4074
 #: application/models/Logbook_model.php:4021
+#: application/models/Logbook_model.php:4029
 msgid "QSO on"
 msgstr "QSO vanaf"
 
 #: application/models/Logbook_model.php:4074
 #: application/models/Logbook_model.php:4021
+#: application/models/Logbook_model.php:4029
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3421,6 +3431,7 @@ msgstr ""
 
 #: application/models/Logbook_model.php:4123
 #: application/models/Logbook_model.php:4070
+#: application/models/Logbook_model.php:4078
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -3431,32 +3442,38 @@ msgstr ""
 
 #: application/models/Logbook_model.php:4388
 #: application/models/Logbook_model.php:4335
+#: application/models/Logbook_model.php:4343
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "de qslrdate is ongeldig (JJJJMMDD)"
 
 #: application/models/Logbook_model.php:4399
 #: application/models/Logbook_model.php:4346
+#: application/models/Logbook_model.php:4354
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "de qslsdatum is ongeldig (JJJJMMDD)"
 
 #: application/models/Logbook_model.php:4460
 #: application/models/Logbook_model.php:4407
+#: application/models/Logbook_model.php:4415
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "de clublog_qso_upload_date is ongeldig (JJJJMMDD)"
 
 #: application/models/Logbook_model.php:4480
 #: application/models/Logbook_model.php:4427
+#: application/models/Logbook_model.php:4435
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "de lotw_qslrdate is ongeldig (JJJJMMDD)"
 
 #: application/models/Logbook_model.php:4501
 #: application/models/Logbook_model.php:4448
+#: application/models/Logbook_model.php:4456
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "de lotw_qslsdate is ongeldig (JJJJMMDD)"
 
 #: application/models/Logbook_model.php:4794
 #: application/views/simplefle/index.php:41
 #: application/models/Logbook_model.php:4741
+#: application/models/Logbook_model.php:4749
 msgid "Duplicate for"
 msgstr "Duplicaat voor"
 
@@ -3464,31 +3481,38 @@ msgstr "Duplicaat voor"
 #: application/models/Logbook_model.php:4954
 #: application/models/Logbook_model.php:4806
 #: application/models/Logbook_model.php:4901
+#: application/models/Logbook_model.php:4814
+#: application/models/Logbook_model.php:4909
 msgid "QSO could not be matched"
 msgstr "QSO kon niet worden gekoppeld"
 
 #: application/models/Logbook_model.php:4867
 #: application/models/Logbook_model.php:4814
+#: application/models/Logbook_model.php:4822
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bevestigd door LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:4873
 #: application/models/Logbook_model.php:4820
+#: application/models/Logbook_model.php:4828
 msgid "confirmed by award manager"
 msgstr "Bevestigd door award manager"
 
 #: application/models/Logbook_model.php:4877
 #: application/models/Logbook_model.php:4824
+#: application/models/Logbook_model.php:4832
 msgid "confirmed by cross-check of DCL data"
 msgstr "bevestigd door kruiscontrole van DCL-gegevens"
 
 #: application/models/Logbook_model.php:4881
 #: application/models/Logbook_model.php:4828
+#: application/models/Logbook_model.php:4836
 msgid "confirmation pending"
 msgstr "bevestiging in afwachting"
 
 #: application/models/Logbook_model.php:4884
 #: application/models/Logbook_model.php:4831
+#: application/models/Logbook_model.php:4839
 msgid "unconfirmed"
 msgstr "onbevestigd"
 
@@ -3497,16 +3521,19 @@ msgstr "onbevestigd"
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
 #: application/models/Logbook_model.php:4834
+#: application/models/Logbook_model.php:4842
 msgid "unknown"
 msgstr "onbekend"
 
 #: application/models/Logbook_model.php:4957
 #: application/models/Logbook_model.php:4904
+#: application/models/Logbook_model.php:4912
 msgid "POTA reference already in log"
 msgstr "POTA-referentie al in logboek"
 
 #: application/models/Logbook_model.php:4960
 #: application/models/Logbook_model.php:4907
+#: application/models/Logbook_model.php:4915
 msgid "QSO updated"
 msgstr "QSO bijgewerkt"
 
@@ -3522,6 +3549,7 @@ msgstr "QSO bijgewerkt"
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
 #: application/models/Logbook_model.php:5761
+#: application/models/Logbook_model.php:5769
 msgid "Bearing"
 msgstr "Koers"
 
@@ -3764,6 +3792,8 @@ msgstr "Verschil"
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:768
 #: application/views/visitor/layout/footer.php:172
+#: application/views/interface_assets/footer.php:1802
+#: application/views/interface_assets/footer.php:1941
 msgid "All"
 msgstr "Alles"
 
@@ -4593,6 +4623,8 @@ msgstr ""
 #: application/views/interface_assets/footer.php:34
 #: application/views/interface_assets/footer.php:590
 #: application/views/interface_assets/footer.php:2672
+#: application/views/interface_assets/footer.php:592
+#: application/views/interface_assets/footer.php:2674
 msgid "DANGER"
 msgstr "GEVAAR"
 
@@ -5025,6 +5057,7 @@ msgstr "Eenvoudige naam om te beschrijven waarvoor je deze API gebruikt."
 #: application/views/satellite/create.php:82
 #: application/views/satellite/pass.php:115
 #: application/views/simplefle/index.php:22
+#: application/views/interface_assets/footer.php:627
 msgid "Save"
 msgstr "Opslaan"
 
@@ -5519,6 +5552,7 @@ msgstr "Toon QSO met QSL-type"
 #: application/views/interface_assets/footer.php:2651
 #: application/views/qso/edit_ajax.php:419
 #: application/views/view_log/qso.php:25
+#: application/views/interface_assets/footer.php:2653
 msgid "QSL Card"
 msgstr "QSL-kaart"
 
@@ -9926,6 +9960,10 @@ msgstr "QSL Datum"
 #: application/views/interface_assets/footer.php:2968
 #: application/views/qslcard/index.php:77
 #: application/views/view_log/qso.php:779
+#: application/views/interface_assets/footer.php:2913
+#: application/views/interface_assets/footer.php:2931
+#: application/views/interface_assets/footer.php:2952
+#: application/views/interface_assets/footer.php:2970
 msgid "View"
 msgstr "Bekijken"
 
@@ -10142,54 +10180,70 @@ msgstr "Fout bij opslaan van notitie"
 #: application/views/interface_assets/header.php:515
 #: application/views/options/sidebar.php:10
 #: application/views/interface_assets/header.php:513
+#: application/views/interface_assets/footer.php:159
 msgid "Version Info"
 msgstr "Versie-informatie"
 
 #: application/views/interface_assets/footer.php:211
 #: application/views/interface_assets/footer.php:226
+#: application/views/interface_assets/footer.php:213
+#: application/views/interface_assets/footer.php:228
 msgid "Failed to load the modal. Please try again."
 msgstr "Laden van het popup venster mislukt. Probeer het opnieuw."
 
 #: application/views/interface_assets/footer.php:480
+#: application/views/interface_assets/footer.php:482
 msgid "Description:"
 msgstr "Beschrijving:"
 
 #: application/views/interface_assets/footer.php:483
+#: application/views/interface_assets/footer.php:485
 msgid "Query description"
 msgstr "Beschrijving zoekopdracht"
 
 #: application/views/interface_assets/footer.php:499
+#: application/views/interface_assets/footer.php:501
 msgid "Your query has been saved!"
 msgstr "Je zoekopdracht is opgeslagen!"
 
 #: application/views/interface_assets/footer.php:501
 #: application/views/search/filter.php:49
+#: application/views/interface_assets/footer.php:503
 msgid "Edit queries"
 msgstr "Bewerk zoekopdrachten"
 
 #: application/views/interface_assets/footer.php:503
+#: application/views/interface_assets/footer.php:505
 msgid "Stored queries:"
 msgstr "Opgeslagen zoekopdrachten:"
 
 #: application/views/interface_assets/footer.php:508
 #: application/views/search/filter.php:63
+#: application/views/interface_assets/footer.php:510
 msgid "Run Query"
 msgstr "Zoekopdracht uitvoeren"
 
 #: application/views/interface_assets/footer.php:520
 #: application/views/interface_assets/footer.php:656
 #: application/views/interface_assets/footer.php:726
+#: application/views/interface_assets/footer.php:522
+#: application/views/interface_assets/footer.php:658
+#: application/views/interface_assets/footer.php:728
 msgid "Stored Queries"
 msgstr "Opgeslagen zoekopdrachten"
 
 #: application/views/interface_assets/footer.php:525
 #: application/views/interface_assets/footer.php:731
+#: application/views/interface_assets/footer.php:527
+#: application/views/interface_assets/footer.php:733
 msgid "You need to make a query before you search!"
 msgstr "Je moet een zoekopdracht maken voordat je zoekt!"
 
 #: application/views/interface_assets/footer.php:546
 #: application/views/interface_assets/footer.php:683
 #: application/views/search/filter.php:82
+#: application/views/interface_assets/footer.php:548
+#: application/views/interface_assets/footer.php:685
 msgid "Export to ADIF"
 msgstr "Exporteren naar ADIF"
 
@@ -10198,33 +10252,41 @@ msgstr "Exporteren naar ADIF"
 #: application/views/search/cqzones.php:40
 #: application/views/search/ituzones.php:40
 #: application/views/search/main.php:37
+#: application/views/interface_assets/footer.php:549
+#: application/views/interface_assets/footer.php:686
 msgid "Open in the Advanced Logbook"
 msgstr "Openen in het geavanceerde logboek"
 
 #: application/views/interface_assets/footer.php:591
+#: application/views/interface_assets/footer.php:593
 msgid "Warning! Are you sure you want delete this stored query?"
 msgstr ""
 "Waarschuwing! Weet je zeker dat je deze opgeslagen zoekopdracht wilt "
 "verwijderen?"
 
 #: application/views/interface_assets/footer.php:605
+#: application/views/interface_assets/footer.php:607
 msgid "The stored query has been deleted!"
 msgstr "De opgeslagen zoekopdracht is verwijderd!"
 
 #: application/views/interface_assets/footer.php:614
+#: application/views/interface_assets/footer.php:616
 msgid "The stored query could not be deleted. Please try again!"
 msgstr ""
 "De opgeslagen zoekopdracht kon niet worden verwijderd. Probeer het opnieuw!"
 
 #: application/views/interface_assets/footer.php:640
+#: application/views/interface_assets/footer.php:642
 msgid "The query description has been updated!"
 msgstr "De beschrijving van de zoekopdracht is bijgewerkt!"
 
 #: application/views/interface_assets/footer.php:644
+#: application/views/interface_assets/footer.php:646
 msgid "Something went wrong with the save. Please try again!"
 msgstr "Er is iets misgegaan met het opslaan. Probeer het opnieuw!"
 
 #: application/views/interface_assets/footer.php:773
+#: application/views/interface_assets/footer.php:775
 msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
 "Check which DXCC for this particular location is the correct one. If you are "
@@ -10235,14 +10297,17 @@ msgstr ""
 
 #: application/views/interface_assets/footer.php:826
 #: application/views/logbookadvanced/index.php:702
+#: application/views/interface_assets/footer.php:828
 msgid "Callsign: "
 msgstr "Roepnaam: "
 
 #: application/views/interface_assets/footer.php:827
+#: application/views/interface_assets/footer.php:829
 msgid "Count: "
 msgstr "Aantal: "
 
 #: application/views/interface_assets/footer.php:828
+#: application/views/interface_assets/footer.php:830
 msgid "Grids: "
 msgstr "Vakken: "
 
@@ -10250,11 +10315,13 @@ msgstr "Vakken: "
 #: application/views/logbookadvanced/index.php:13
 #: application/views/logbookadvanced/useroptions.php:210
 #: application/views/satellite/flightpath.php:11
+#: application/views/interface_assets/footer.php:1138
 msgctxt "Map Options"
 msgid "Gridsquares"
 msgstr "Locatorvakken"
 
 #: application/views/interface_assets/footer.php:1557
+#: application/views/interface_assets/footer.php:1559
 #, php-format
 msgid "You're not logged in. Please %slogin%s"
 msgstr "Je bent niet ingelogd. Gelieve %sinloggen%s"
@@ -10265,51 +10332,70 @@ msgstr "Je bent niet ingelogd. Gelieve %sinloggen%s"
 #: application/views/interface_assets/footer.php:1871
 #: application/views/interface_assets/footer.php:1875
 #: application/views/interface_assets/footer.php:1878
+#: application/views/interface_assets/footer.php:1729
+#: application/views/interface_assets/footer.php:1733
+#: application/views/interface_assets/footer.php:1736
+#: application/views/interface_assets/footer.php:1873
+#: application/views/interface_assets/footer.php:1877
+#: application/views/interface_assets/footer.php:1880
 msgid "grid square"
 msgstr "locatorvak"
 
 #: application/views/interface_assets/footer.php:1734
 #: application/views/interface_assets/footer.php:1878
+#: application/views/interface_assets/footer.php:1736
+#: application/views/interface_assets/footer.php:1880
 msgid "Total count"
 msgstr "Totaal aantal"
 
 #: application/views/interface_assets/footer.php:2653
+#: application/views/interface_assets/footer.php:2655
 msgid "QSL Card for "
 msgstr "QSL-kaart voor "
 
 #: application/views/interface_assets/footer.php:2673
+#: application/views/interface_assets/footer.php:2675
 msgid "Warning! Are you sure you want to delete this QSL card?"
 msgstr "Waarschuwing! Weet je zeker dat je deze QSL-kaart wilt verwijderen?"
 
 #: application/views/interface_assets/footer.php:2713
 #: application/views/view_log/qso.php:43
+#: application/views/interface_assets/footer.php:2715
 msgid "eQSL Card"
 msgstr "eQSL-kaart"
 
 #: application/views/interface_assets/footer.php:2715
+#: application/views/interface_assets/footer.php:2717
 msgid "eQSL Card for "
 msgstr "eQSL-kaart voor "
 
 #: application/views/interface_assets/footer.php:2922
 #: application/views/interface_assets/footer.php:2961
 #: application/views/view_log/qso.php:769
+#: application/views/interface_assets/footer.php:2924
+#: application/views/interface_assets/footer.php:2963
 msgid "QSL image file"
 msgstr "QSL-afbeeldingsbestand"
 
 #: application/views/interface_assets/footer.php:2941
+#: application/views/interface_assets/footer.php:2943
 msgid "Front QSL Card:"
 msgstr "Voorkant QSL-kaart:"
 
 #: application/views/interface_assets/footer.php:2979
+#: application/views/interface_assets/footer.php:2981
 msgid "Back QSL Card:"
 msgstr "Achterkant QSL-kaart:"
 
 #: application/views/interface_assets/footer.php:2990
 #: application/views/interface_assets/footer.php:3015
+#: application/views/interface_assets/footer.php:2992
+#: application/views/interface_assets/footer.php:3017
 msgid "Add additional QSOs to a QSL Card"
 msgstr "Voeg extra QSOs toe aan een QSL-kaart"
 
 #: application/views/interface_assets/footer.php:3026
+#: application/views/interface_assets/footer.php:3028
 msgid "Something went wrong. Please try again!"
 msgstr "Er is iets misgegaan. Probeer het opnieuw!"
 
@@ -16681,6 +16767,14 @@ msgstr "Verzoek indienen"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Ontvangen"
+
+#: application/views/interface_assets/footer.php:77
+msgid "Location is fetched from provided gridsquare"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:78
+msgid "Location is fetched from DXCC coordinates (no gridsquare provided)"
+msgstr ""
 
 #, php-format
 #~ msgctxt "LoTW Warning"

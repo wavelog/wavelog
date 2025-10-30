@@ -68,12 +68,14 @@
     var lang_notes_duplicate_confirmation = "<?= __("Duplicate this note?"); ?>";
     var lang_notes_duplication_disabled_short = "<?= __("Duplication Disabled"); ?>";
     var lang_notes_not_found = "<?= __("No notes were found"); ?>";
-	var lang_qso_note_missing = "<?= __("No notes for this callsign"); ?>";
-	var lang_qso_note_toast_title = "<?= __("Callsign Note"); ?>";
-	var lang_qso_note_deleted = "<?= __("Note deleted successfully"); ?>";
-	var lang_qso_note_created = "<?= __("Note created successfully"); ?>";
-	var lang_qso_note_saved = "<?= __("Note saved successfully"); ?>";
-	var lang_qso_note_error_saving = "<?= __("Error saving note"); ?>";
+    var lang_qso_note_missing = "<?= __("No notes for this callsign"); ?>";
+    var lang_qso_note_toast_title = "<?= __("Callsign Note"); ?>";
+    var lang_qso_note_deleted = "<?= __("Note deleted successfully"); ?>";
+    var lang_qso_note_created = "<?= __("Note created successfully"); ?>";
+    var lang_qso_note_saved = "<?= __("Note saved successfully"); ?>";
+    var lang_qso_note_error_saving = "<?= __("Error saving note"); ?>";
+    var lang_qso_location_is_fetched_from_provided_gridsquare = "<?= __("Location is fetched from provided gridsquare"); ?>";
+    var lang_qso_location_is_fetched_from_dxcc_coordinates = "<?= __("Location is fetched from DXCC coordinates (no gridsquare provided)"); ?>";
 </script>
 
 <!-- General JS Files used across Wavelog -->
