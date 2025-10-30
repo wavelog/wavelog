@@ -17,10 +17,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-10-28 16:21+0000\n"
-"PO-Revision-Date: 2025-10-29 20:47+0000\n"
+"PO-Revision-Date: 2025-10-31 06:22+0000\n"
 "Last-Translator: F5MQU <f5mqu.p@gmail.com>\n"
-"Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/fr/>\n"
+"Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/fr/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -169,23 +169,23 @@ msgstr "Carte des Locator activés"
 #: application/views/visitor/layout/footer.php:12
 #: application/views/visitor/layout/header.php:68
 msgid "Gridsquares"
-msgstr "Locator"
+msgstr "Locators"
 
 #: application/controllers/Activated_gridmap.php:32
 #: application/controllers/Gridmap.php:33
 #: application/controllers/Visitor.php:386
 msgid "Gridsquares confirmed"
-msgstr "Locator confirmés"
+msgstr "Locators confirmés"
 
 #: application/controllers/Activated_gridmap.php:33
 #: application/controllers/Gridmap.php:34
 #: application/controllers/Visitor.php:387
 msgid "Gridsquares not confirmed"
-msgstr "Locator non confirmés"
+msgstr "Locators non confirmés"
 
 #: application/controllers/Activated_gridmap.php:34
 msgid "Total gridsquares activated"
-msgstr "Total des Locator activés"
+msgstr "Total des Locators activés"
 
 #: application/controllers/Activated_gridmap.php:36
 #: application/controllers/Gridmap.php:37
@@ -215,7 +215,7 @@ msgstr "Nombre total de champs travaillés"
 #: application/views/activators/index.php:5
 #: application/views/interface_assets/header.php:152
 msgid "Gridsquare Activators"
-msgstr "Activateurs de Locator"
+msgstr "Activateurs de Locators"
 
 #: application/controllers/Activatorsmap.php:17
 #: application/views/activators/index.php:2
@@ -284,16 +284,16 @@ msgstr "Description de l'API"
 
 #: application/controllers/Api.php:38
 msgid "API Key is required. Do not change this field"
-msgstr "La clé API est requise, ne modifiez pas ce champ"
+msgstr "La clé API est requise. Ne modifiez pas ce champ"
 
 #: application/controllers/Api.php:44
 msgid "Edit API Description"
-msgstr "Modifier de l'API"
+msgstr "Modifier la description de l'API"
 
 #: application/controllers/Api.php:56
 #, php-format
 msgid "API Key %s description has been updated."
-msgstr "Les informations sur la clé API %s a été mise à jour."
+msgstr "Les informations sur la clé API %s ont été mises à jour."
 
 #: application/controllers/Api.php:68
 msgid "Invalid API rights"
@@ -560,17 +560,17 @@ msgstr "Trophées - "
 #: application/controllers/Awards.php:1004
 #: application/controllers/Awards.php:1036
 msgid "Gridsquares worked"
-msgstr "Locator réalisés"
+msgstr "Locators contactés"
 
 #: application/controllers/Awards.php:1005
 #: application/controllers/Awards.php:1037
 msgid "Gridsquares confirmed on LoTW"
-msgstr "Locator confirmés par LoTW"
+msgstr "Locators confirmés par LoTW"
 
 #: application/controllers/Awards.php:1006
 #: application/controllers/Awards.php:1038
 msgid "Gridsquares confirmed by paper QSL"
-msgstr "Locator confirmés par Carte QSL"
+msgstr "Locators confirmés par Carte QSL papier"
 
 #: application/controllers/Awards.php:1023
 msgid "Fred Fish Memorial Award (FFMA)"
@@ -670,8 +670,7 @@ msgstr "Importation Cabrillo"
 #: application/controllers/Cabrillo.php:197
 msgid "Broken CBR file - no QSO data or incomplete header found."
 msgstr ""
-"Fichier CBR corrompu - pas de données QSO / contact ou en-tête incomplet "
-"trouvé."
+"Fichier CBR corrompu - pas de données de QSO ou en-tête incomplet trouvée."
 
 #: application/controllers/Cabrillo.php:243
 #, php-format
@@ -689,7 +688,7 @@ msgstr "Données CBR importées"
 #: application/controllers/Callstats.php:19
 #: application/views/callstats/index.php:2
 msgid "Callsign statistics"
-msgstr "Statistiques des indicatifs d'appel"
+msgstr "Statistiques des indicatifs"
 
 #: application/controllers/Callstats.php:104
 msgid " and sat "
@@ -826,7 +825,7 @@ msgstr "Concours"
 
 #: application/controllers/Contesting.php:142
 msgid "Update Contest"
-msgstr "Mettre à jour"
+msgstr "Mettre à jour le concours"
 
 #: application/controllers/Continents.php:26
 #: application/views/awards/dxcc/index.php:93
@@ -6104,8 +6103,9 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be USA), Gridsquare (Must contain a "
 "grid from one of the 488 mainland gridsquares!), Band must be 6M."
 msgstr ""
-"Champs requis pour ce trophée : DXCC (Doit être USA), Locator (Doit contenir "
-"un carré  des 488 locators continentaux !), Bande doit être le 6 m."
+"Champs requis pour ce trophée : DXCC (Doit être USA), Locator "
+"(Doit contenir un carré des 488 locators continentaux !), Bande doit être le "
+"6 m."
 
 #: application/views/awards/gridmaster/index.php:8
 msgid "US Gridmaster Award"
@@ -15070,7 +15070,7 @@ msgstr "Clé API du carnet de trafic sur QRZ.com"
 
 #: application/views/station_profile/create.php:258
 msgid "Test API-Key"
-msgstr "Test  de la clé API"
+msgstr "Test de la clé API"
 
 #: application/views/station_profile/create.php:261
 #: application/views/station_profile/edit.php:338
@@ -17038,266 +17038,273 @@ msgstr "Reçu"
 #: application/views/interface_assets/footer.php:77
 #: application/views/interface_assets/footer.php:94
 msgid "Location is fetched from provided gridsquare"
-msgstr ""
+msgstr "La position est extraite de la grille Locator fournie"
 
 #: application/views/interface_assets/footer.php:78
 #: application/views/interface_assets/footer.php:95
 msgid "Location is fetched from DXCC coordinates (no gridsquare provided)"
 msgstr ""
+"La localisation est extraite des coordonnées DXCC "
+"(aucune grille Locator n'est fournie)"
 
 #: application/views/components/dxwaterfall.php:14
 msgid "Tune to spot frequency and start logging QSO"
-msgstr ""
+msgstr "Affichez la fréquence du spot et commencez à enregistrer le QSO"
 
 #: application/views/components/dxwaterfall.php:15
 msgid "Cycle through nearby spots"
-msgstr ""
+msgstr "Parcourez les spots environnants"
 
 #: application/views/components/dxwaterfall.php:16
 msgid "spots"
-msgstr ""
+msgstr "Spots"
 
 #: application/views/components/dxwaterfall.php:17
 msgid "New Continent"
-msgstr ""
+msgstr "Nouveau Continent"
 
 #: application/views/components/dxwaterfall.php:18
 msgid "New DXCC"
-msgstr ""
+msgstr "Nouveau DXCC"
 
 #: application/views/components/dxwaterfall.php:19
 msgid "New Callsign"
-msgstr ""
+msgstr "Nouvel Indicatif"
 
 #: application/views/components/dxwaterfall.php:20
 msgid "First spot"
-msgstr ""
+msgstr "Premier spot"
 
 #: application/views/components/dxwaterfall.php:20
 msgid "Previous spot"
-msgstr ""
+msgstr "Spot précédent"
 
 #: application/views/components/dxwaterfall.php:21
 msgid "No spots at lower frequency"
-msgstr ""
+msgstr "Pas de spot sur les fréquences les plus basses"
 
 #: application/views/components/dxwaterfall.php:22
 msgid "Last spot"
-msgstr ""
+msgstr "Dernier spot"
 
 #: application/views/components/dxwaterfall.php:22
 msgid "Next spot"
-msgstr ""
+msgstr "Prochain spot"
 
 #: application/views/components/dxwaterfall.php:23
 msgid "No spots at higher frequency"
-msgstr ""
+msgstr "Aucun spot sur les fréquences les plus hautes"
 
 #: application/views/components/dxwaterfall.php:24
 msgid "No spots available"
-msgstr ""
+msgstr "Aucun spot disponible"
 
 #: application/views/components/dxwaterfall.php:25
 msgid "Cycle through unworked continents/DXCC"
-msgstr ""
+msgstr "Parcourir les continents/DXCC non contactés"
 
 #: application/views/components/dxwaterfall.php:26
 msgid "DX Hunter"
-msgstr ""
+msgstr "Chasseur de DX"
 
 #: application/views/components/dxwaterfall.php:27
 msgid "No unworked continents/DXCC on this band"
-msgstr ""
+msgstr "Aucun continent/DXCC non contacté sur cette bande"
 
 #: application/views/components/dxwaterfall.php:28
 msgid "Click to cycle or wait 1.5s to apply"
-msgstr ""
+msgstr "Cliquez pour faire défiler ou attendez 1,5 s pour appliquer"
 
 #: application/views/components/dxwaterfall.php:29
 msgid "Change spotter continent"
-msgstr ""
+msgstr "Changer le continent du spotter"
 
 #: application/views/components/dxwaterfall.php:30
 msgid "Filter by mode"
-msgstr ""
+msgstr "Filtrer par mode"
 
 #: application/views/components/dxwaterfall.php:31
 msgid "Toggle Phone mode filter"
-msgstr ""
+msgstr "Activer/désactiver le filtre Phonie"
 
 #: application/views/components/dxwaterfall.php:33
 msgid "Toggle CW mode filter"
-msgstr ""
+msgstr "Activer/désactiver le filtre CW"
 
 #: application/views/components/dxwaterfall.php:35
 msgid "Toggle Digital mode filter"
-msgstr ""
+msgstr "Activer/désactiver le filtre du mode numérique"
 
 #: application/views/components/dxwaterfall.php:37
 msgid "Zoom out"
-msgstr ""
+msgstr "Dézoomer"
 
 #: application/views/components/dxwaterfall.php:38
 msgid "Reset zoom to default (3)"
-msgstr ""
+msgstr "Réinitialiser le zoom par défaut (3)"
 
 #: application/views/components/dxwaterfall.php:39
 msgid "Zoom in"
-msgstr ""
+msgstr "Zoomer"
 
 #: application/views/components/dxwaterfall.php:40
 msgid "Downloading DX Cluster data"
-msgstr ""
+msgstr "Téléchargement des données du DX cluster"
 
 #: application/views/components/dxwaterfall.php:41
 msgid "Comment: "
-msgstr ""
+msgstr "Remarque : "
 
 #: application/views/components/dxwaterfall.php:42
 msgid "modes:"
-msgstr ""
+msgstr "Modes :"
 
 #: application/views/components/dxwaterfall.php:43
 msgid "OUT OF BANDPLAN"
-msgstr ""
+msgstr "HORS DU PLAN DE BANDE"
 
 #: application/views/components/dxwaterfall.php:44
 msgid "Changing radio frequency..."
-msgstr ""
+msgstr "Changement de la fréquence radio..."
 
 #: application/views/components/dxwaterfall.php:45
 msgid "INVALID"
-msgstr ""
+msgstr "INVALIDE"
 
 #: application/views/components/dxwaterfall.php:46
 msgid "Click to turn on the DX Waterfall"
-msgstr ""
+msgstr "Cliquez pour activer le DX Waterfall"
 
 #: application/views/components/dxwaterfall.php:47
 msgid "Turn off DX Waterfall"
-msgstr ""
+msgstr "Désactivez le DX Waterfall"
 
 #: application/views/components/dxwaterfall.php:48
 msgid "Please wait"
-msgstr ""
+msgstr "Veuillez attendre"
 
 #: application/views/components/dxwaterfall.php:49
+#, fuzzy
 msgid "Cycle label size"
-msgstr ""
+msgstr "Taille du marquage du cercle"
 
 #: application/views/components/dxwaterfall.php:50
 msgid "X-Small"
-msgstr ""
+msgstr "Très petit"
 
 #: application/views/components/dxwaterfall.php:51
 msgid "Small"
-msgstr ""
+msgstr "Petit"
 
 #: application/views/components/dxwaterfall.php:52
 msgid "Medium"
-msgstr ""
+msgstr "Moyen"
 
 #: application/views/components/dxwaterfall.php:53
 msgid "Large"
-msgstr ""
+msgstr "Grand"
 
 #: application/views/components/dxwaterfall.php:54
 msgid "X-Large"
-msgstr ""
+msgstr "Très grand"
 
 #: application/views/components/dxwaterfall.php:55
 msgid "by:"
-msgstr ""
+msgstr "Par :"
 
 #: application/views/interface_assets/footer.php:76
 msgid "live"
-msgstr ""
+msgstr "En direct"
 
 #: application/views/interface_assets/footer.php:77
 msgid "polling"
-msgstr ""
+msgstr "Vérifie l'état"
 
 #: application/views/interface_assets/footer.php:78
 msgid ""
 "Periodic polling is slow. When operating locally, WebSockets are a more "
 "convenient way to control your radio in real-time."
 msgstr ""
+"La vérification périodique est lente. En local, les WebSockets constituent "
+"une solution plus pratique pour contrôler votre radio en temps réel."
 
 #: application/views/interface_assets/footer.php:79
 msgid "TX"
-msgstr ""
+msgstr "TX"
 
 #: application/views/interface_assets/footer.php:80
 msgid "RX"
-msgstr ""
+msgstr "RX"
 
 #: application/views/interface_assets/footer.php:81
 msgid "TX/RX"
-msgstr ""
+msgstr "TX/RX"
 
 #: application/views/interface_assets/footer.php:83
 msgid "Power"
-msgstr ""
+msgstr "Puissance"
 
 #: application/views/interface_assets/footer.php:84
 msgid "Radio connection error"
-msgstr ""
+msgstr "Erreur de connexion radio"
 
 #: application/views/interface_assets/footer.php:85
 msgid "Connection lost, please select another radio."
-msgstr ""
+msgstr "Connexion perdue, veuillez sélectionner une autre radio."
 
 #: application/views/interface_assets/footer.php:86
 msgid "Radio connection timeout"
-msgstr ""
+msgstr "Délai d'attente de connexion Radio"
 
 #: application/views/interface_assets/footer.php:87
 msgid "Data is stale, please select another radio."
-msgstr ""
+msgstr "Les données sont obsolètes, veuillez sélectionner une autre radio."
 
 #: application/views/interface_assets/footer.php:88
 msgid "You're not logged in. Please log in."
-msgstr ""
+msgstr "Vous n'êtes pas connecté. Veuillez vous connecter."
 
 #: application/views/interface_assets/footer.php:89
 msgid "Radio Tuning Failed"
-msgstr ""
+msgstr "Échec du Tuning Radio"
 
 #: application/views/interface_assets/footer.php:90
 msgid "Failed to tune radio to"
-msgstr ""
+msgstr "Impossible de régler la radio"
 
 #: application/views/interface_assets/footer.php:91
 msgid "CAT interface not responding. Please check your radio connection."
-msgstr ""
+msgstr "L'interface CAT ne répond pas. Veuillez vérifier votre connexion radio."
 
 #: application/views/interface_assets/footer.php:92
 msgid "No CAT URL configured for this radio"
-msgstr ""
+msgstr "Aucune URL du CAT n'est configurée pour cette radio"
 
 #: application/views/interface_assets/footer.php:93
 msgid "WebSocket Radio"
-msgstr ""
+msgstr "Radio WebSocket"
 
 #: application/views/qso/index.php:386
 msgid "Live - "
-msgstr ""
+msgstr "En direct - "
 
 #: application/views/qso/index.php:386
 msgid "WebSocket (Requires WLGate>=1.1.10)"
-msgstr ""
+msgstr "WebSocket (Nécessite WLGate>=1.1.10)"
 
 #: application/views/qso/index.php:388
 msgid "Polling - "
-msgstr ""
+msgstr "Vérification - "
 
 #: application/views/user/edit.php:436
 msgid "DX Waterfall"
-msgstr ""
+msgstr "DX Waterfall"
 
 #: application/views/user/edit.php:442
 msgid "Show an interactive DX Cluster 'Waterfall' on the QSO logging page."
 msgstr ""
+"Afficher un « effet cascade » interactif du DX cluster sur la page "
+"d'enregistrement des QSO."
 
 #~ msgid "Expired"
 #~ msgstr "Expiré"
