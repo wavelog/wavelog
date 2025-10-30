@@ -232,6 +232,28 @@ class Stationsetup_model extends CI_Model {
 
 		return $this->db->get();
 	}
+
+	function list_all_locations() {
+		$sql = "select dxcc_entities.end, station_profile.station_id, station_profile_name, station_gridsquare, station_city, station_iota, station_sota, station_callsign, station_power, station_dxcc, dxcc_entities.name as dxccname, dxcc_entities.prefix as dxccprefix, station_cnty, station_cq, station_itu, station_active, eqslqthnickname, state, county, station_sig, station_sig_info, qrzrealtime, station_wwff, station_pota, oqrs, oqrs_text, oqrs_email, webadifrealtime, clublogrealtime, clublogignore, hrdlogrealtime, creation_date, last_modified
+		from station_profile
+		join dxcc_entities on station_profile.station_dxcc = dxcc_entities.adif
+		where user_id = ?";
+
+		$query = $this->db->query($sql, array($this->session->userdata('user_id')));
+
+		$result = $query->result();
+
+		foreach($result as $location) {
+			$options_object = $this->user_options_model->get_options('eqsl_default_qslmsg', array('option_name' => 'key_station_id', 'option_key' => $location->station_id))->result();
+			if (isset($options_object[0])) {
+				$location->eqsl_default_qslmsg = $options_object[0]->option_value;
+			} else {
+				$location->eqsl_default_qslmsg = '';
+			}
+		}
+
+		return $result;
+	}
 }
 
 ?>

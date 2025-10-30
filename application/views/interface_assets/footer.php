@@ -112,6 +112,8 @@
 	var lang_qso_profile_license_extra = "<?= __("Extra"); ?>";
 	var lang_qso_gridsquare_formatting = "<?= __("Gridsquare Formatting"); ?>";
 	var lang_qso_gridsquare_help = "<?= __("Enter multiple (4-digit) grids separated with commas. For example: IO77,IO78"); ?>";
+    var lang_qso_location_is_fetched_from_provided_gridsquare = "<?= __("Location is fetched from provided gridsquare"); ?>";
+    var lang_qso_location_is_fetched_from_dxcc_coordinates = "<?= __("Location is fetched from DXCC coordinates (no gridsquare provided)"); ?>";
 </script>
 
 <!-- General JS Files used across Wavelog -->

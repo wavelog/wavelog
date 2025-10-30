@@ -2140,7 +2140,7 @@ class Logbook_model extends CI_Model {
 		return $query;
 	}
 
-	function get_qsos($num, $offset, $StationLocationsArray = null, $band = '') {
+	function get_qsos($num, $offset, $StationLocationsArray = null, $band = '', $map = false) {
 		if ($StationLocationsArray == null) {
 			$this->load->model('logbooks_model');
 			$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -2172,6 +2172,14 @@ class Logbook_model extends CI_Model {
 				$this->db->where($this->config->item('table_name') . '.col_band', $band);
 			}
 		}
+
+		if ($map == true) {
+			$this->db->group_start();
+			$this->db->where($this->config->item('table_name') . '.col_gridsquare !=', '');
+			$this->db->or_where($this->config->item('table_name') . '.col_vucc_grids !=', '');
+			$this->db->group_end();
+		}
+
 
 		$this->db->where_in($this->config->item('table_name') . '.station_id', $logbooks_locations_array);
 		$this->db->order_by('' . $this->config->item('table_name') . '.COL_TIME_ON', "desc");
@@ -2798,59 +2806,6 @@ class Logbook_model extends CI_Model {
 		}
 
 		$query = $this->db->get($this->config->item('table_name'));
-		return $query;
-	}
-
-	function cfd_get_all_qsos($fromdate, $todate) {
-		$binding = [];
-		$this->load->model('logbooks_model');
-		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-
-		// If date is set, we add it to the where-statement
-		if ($fromdate ?? '' != "") {
-			$from = " AND date(q.COL_TIME_ON) >= ?";
-			$binding[] = $fromdate;
-		} else {
-			$from = "";
-		}
-		if ($todate ?? '' != "") {
-			$till = " AND date(q.COL_TIME_ON) <= ?";
-			$binding[] = $todate;
-		} else {
-			$till = '';
-		}
-
-		$location_list = "'" . implode("','", $logbooks_locations_array) . "'";
-
-		$sql = "SELECT
-		  dx.prefix,dx.name,
-		  CASE
-		  WHEN q.col_mode = 'CW' THEN 'C'
-		  WHEN mo.qrgmode = 'DATA' THEN 'R'
-		  WHEN mo.qrgmode = 'SSB' THEN 'F'
-		  ELSE mo.qrgmode
-		  END AS mode,q.col_band as band,
-		  COUNT(1) as cnfmd
-		  FROM " . $this->config->item('table_name') . " q
-		  INNER JOIN
-		  dxcc_entities dx ON (dx.adif = q.COL_DXCC)
-		  INNER JOIN
-		  adif_modes mo ON (mo.mode = q.COL_MODE)
-		  inner join bands b on (b.band=q.COL_BAND)
-		  WHERE
-		  (q.COL_QSL_RCVD = 'Y'
-		  OR q.COL_LOTW_QSL_RCVD = 'Y'
-		  OR q.COL_EQSL_QSL_RCVD = 'Y')
-		  AND q.station_id in (" . $location_list . ")
-		  AND (b.bandgroup='hf' or b.band = '6m' or b.band = '160m') " . ($from ?? '') . " " . ($till ?? '') . "
-		  GROUP BY dx.prefix,dx.name , CASE
-		  WHEN q.col_mode = 'CW' THEN 'C'
-		  WHEN mo.qrgmode = 'DATA' THEN 'R'
-		  WHEN mo.qrgmode = 'SSB' THEN 'F'
-		  ELSE mo.qrgmode
-		  END,q.COL_BAND order by dx.prefix asc, q.col_band desc";
-
-		$query = $this->db->query($sql, $binding);
 		return $query;
 	}
 
@@ -5348,7 +5303,7 @@ class Logbook_model extends CI_Model {
 	}
 
 	public function get_entity($dxcc) {
-		$sql = "select name, cqz, lat, 'long' from dxcc_entities where adif = ?";
+		$sql = "SELECT name, cqz, lat, `long` FROM dxcc_entities WHERE adif = ?";
 		$query = $this->db->query($sql, $dxcc);
 
 		if ($query->result() > 0) {
