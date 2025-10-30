@@ -88,6 +88,14 @@ class QSO extends CI_Controller {
 			$data['user_dok_to_qso_tab'] = 0;
 		}
 
+		// Get status of DX Waterfall enable option
+		$qkey_opt=$this->user_options_model->get_options('dxwaterfall',array('option_name'=>'enable','option_key'=>'boolean'))->result();
+		if (count($qkey_opt)>0) {
+			$data['user_dxwaterfall_enable'] = $qkey_opt[0]->option_value;
+		} else {
+			$data['user_dxwaterfall_enable'] = 0;
+		}
+
 		$data['qso_count'] = $this->session->userdata('qso_page_last_qso_count');
 
 		$this->load->library('form_validation');
