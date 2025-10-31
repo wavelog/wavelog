@@ -460,75 +460,75 @@ class Dxcluster_model extends CI_Model {
 	/**
 	 * Enrich spot metadata with park references and contest detection
 	 * Extracts SOTA/POTA/IOTA/WWFF references and detects contest spots
+	 * Only performs regex extraction if references are not already provided by DX cluster
 	 * @param object $spot - Spot object with message and dxcc_spotted properties
-	 * @return object - Spot object with added sotaRef, potaRef, iotaRef, wwffRef, isContest properties
+	 * @return object - Spot object with enriched dxcc_spotted containing references and isContest flag
 	 */
 	function enrich_spot_metadata($spot) {
-		// Initialize references
-		$spot->sotaRef = '';
-		$spot->potaRef = '';
-		$spot->iotaRef = '';
-		$spot->wwffRef = '';
-		$spot->isContest = false;
-
-		// First check if references are provided directly in dxcc_spotted
-		if (property_exists($spot, 'dxcc_spotted') && is_object($spot->dxcc_spotted)) {
-			if (property_exists($spot->dxcc_spotted, 'sota_ref')) {
-				$spot->sotaRef = $spot->dxcc_spotted->sota_ref ?? '';
-			}
-			if (property_exists($spot->dxcc_spotted, 'pota_ref')) {
-				$spot->potaRef = $spot->dxcc_spotted->pota_ref ?? '';
-			}
-			if (property_exists($spot->dxcc_spotted, 'iota_ref')) {
-				$spot->iotaRef = $spot->dxcc_spotted->iota_ref ?? '';
-			}
-			if (property_exists($spot->dxcc_spotted, 'wwff_ref')) {
-				$spot->wwffRef = $spot->dxcc_spotted->wwff_ref ?? '';
-			}
+		// Ensure dxcc_spotted object exists
+		if (!property_exists($spot, 'dxcc_spotted') || !is_object($spot->dxcc_spotted)) {
+			$spot->dxcc_spotted = (object)[];
 		}
 
-		// Process message if available
+		// Initialize references and contest flag in dxcc_spotted if they don't exist
+		if (!property_exists($spot->dxcc_spotted, 'sota_ref')) {
+			$spot->dxcc_spotted->sota_ref = '';
+		}
+		if (!property_exists($spot->dxcc_spotted, 'pota_ref')) {
+			$spot->dxcc_spotted->pota_ref = '';
+		}
+		if (!property_exists($spot->dxcc_spotted, 'iota_ref')) {
+			$spot->dxcc_spotted->iota_ref = '';
+		}
+		if (!property_exists($spot->dxcc_spotted, 'wwff_ref')) {
+			$spot->dxcc_spotted->wwff_ref = '';
+		}
+		if (!property_exists($spot->dxcc_spotted, 'isContest')) {
+			$spot->dxcc_spotted->isContest = false;
+		}
+
+		// Process message only if we have missing references or need contest detection
 		$message = $spot->message ?? '';
 		if (!empty($message)) {
 			$upperMessage = strtoupper($message);
 
-			// Extract park references if any are missing
-			if (empty($spot->sotaRef) || empty($spot->potaRef) || empty($spot->iotaRef) || empty($spot->wwffRef)) {
+			// Only extract park references if they're missing (not provided by DX cluster)
+			// This avoids unnecessary regex processing when data is already available
 
-				// SOTA format: XX/YY-### or XX/YY-#### (e.g., "G/LD-001", "W4G/NG-001")
-				if (empty($spot->sotaRef)) {
-					if (preg_match('/\b([A-Z0-9]{1,3}\/[A-Z]{2}-\d{3})\b/', $upperMessage, $sotaMatch)) {
-						$spot->sotaRef = $sotaMatch[1];
-					}
+			// SOTA format: XX/YY-### or XX/YY-#### (e.g., "G/LD-001", "W4G/NG-001", "DL/KW-044")
+			if (empty($spot->dxcc_spotted->sota_ref)) {
+				if (preg_match('/\b([A-Z0-9]{1,3}\/[A-Z]{2}-\d{3,4})\b/', $upperMessage, $sotaMatch)) {
+					$spot->dxcc_spotted->sota_ref = $sotaMatch[1];
 				}
+			}
 
-				// POTA format: XX-#### (e.g., "US-4306", "K-1234")
-				// Must not match WWFF patterns (ending in FF)
-				if (empty($spot->potaRef)) {
-					if (preg_match('/\b([A-Z0-9]{1,5}-\d{4,5})\b/', $upperMessage, $potaMatch)) {
-						// Exclude WWFF patterns (contain FF-)
-						if (strpos($potaMatch[1], 'FF-') === false) {
-							$spot->potaRef = $potaMatch[1];
-						}
-					}
-				}
-
-				// IOTA format: XX-### (e.g., "EU-005", "NA-001", "OC-123")
-				if (empty($spot->iotaRef)) {
-					if (preg_match('/\b((?:AF|AN|AS|EU|NA|OC|SA)-\d{3})\b/', $upperMessage, $iotaMatch)) {
-						$spot->iotaRef = $iotaMatch[1];
-					}
-				}
-
-				// WWFF format: XXFF-#### (e.g., "GIFF-0001", "K1FF-0123", "ON4FF-0050")
-				if (empty($spot->wwffRef)) {
-					if (preg_match('/\b([A-Z0-9]{2,4}FF-\d{4})\b/', $upperMessage, $wwffMatch)) {
-						$spot->wwffRef = $wwffMatch[1];
+			// POTA format: XX-#### (e.g., "US-4306", "K-1234", "DE-0277")
+			// Must not match WWFF patterns (ending in FF)
+			if (empty($spot->dxcc_spotted->pota_ref)) {
+				if (preg_match('/\b([A-Z0-9]{1,5}-\d{4,5})\b/', $upperMessage, $potaMatch)) {
+					// Exclude WWFF patterns (contain FF-)
+					if (strpos($potaMatch[1], 'FF-') === false) {
+						$spot->dxcc_spotted->pota_ref = $potaMatch[1];
 					}
 				}
 			}
 
-			// Detect contest spots
+			// IOTA format: XX-### (e.g., "EU-005", "NA-001", "OC-123")
+			if (empty($spot->dxcc_spotted->iota_ref)) {
+				if (preg_match('/\b((?:AF|AN|AS|EU|NA|OC|SA)-\d{3})\b/', $upperMessage, $iotaMatch)) {
+					$spot->dxcc_spotted->iota_ref = $iotaMatch[1];
+				}
+			}
+
+			// WWFF format: XXFF-#### or KFF-#### (e.g., "GIFF-0001", "K1FF-0123", "ON4FF-0050", "KFF-6731")
+			if (empty($spot->dxcc_spotted->wwff_ref)) {
+				// Match both standard WWFF (XXFF-####) and USA format (KFF-####)
+				if (preg_match('/\b((?:[A-Z0-9]{2,4}FF|KFF)-\d{4})\b/', $upperMessage, $wwffMatch)) {
+					$spot->dxcc_spotted->wwff_ref = $wwffMatch[1];
+				}
+			}
+
+			// Detect contest spots - always perform this check
 			// Common contest indicators in spot comments
 			$contestIndicators = [
 				'CONTEST',      // Generic contest mention
@@ -565,21 +565,21 @@ class Dxcluster_model extends CI_Model {
 			// Check if message contains any contest indicators
 			foreach ($contestIndicators as $indicator) {
 				if (strpos($upperMessage, $indicator) !== false) {
-					$spot->isContest = true;
+					$spot->dxcc_spotted->isContest = true;
 					break;
 				}
 			}
 
 			// Additional heuristic: Check for typical contest exchange patterns
 			// Example: "599 025" or "59 123" or "5NN K" (common contest exchanges)
-			if (!$spot->isContest) {
+			if (!$spot->dxcc_spotted->isContest) {
 				// Match RST + serial number patterns
 				if (preg_match('/\b(599|59|5NN)\s+[0-9A-Z]{2,4}\b/', $upperMessage)) {
-					$spot->isContest = true;
+					$spot->dxcc_spotted->isContest = true;
 				}
 				// Match zone/state exchanges like "CQ 14" or "CQ K"
 				if (preg_match('/\bCQ\s+[0-9A-Z]{1,3}\b/', $upperMessage)) {
-					$spot->isContest = true;
+					$spot->dxcc_spotted->isContest = true;
 				}
 			}
 		}
