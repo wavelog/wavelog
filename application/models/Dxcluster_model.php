@@ -6,6 +6,15 @@ class Dxcluster_model extends CI_Model {
 
  	protected $bandedges = [];
 
+	// Contest indicators - moved to class property to avoid recreation on every call
+	protected $contestIndicators = [
+		'CONTEST', 'CQ WW', 'CQ WPX', 'ARRL', 'IARU', 'CQWW', 'CQWPX',
+		'SWEEPSTAKES', 'FIELD DAY', 'DX CONTEST', 'SSB CONTEST', 'CW CONTEST',
+		'RTTY CONTEST', 'VHF CONTEST', 'SPRINT', 'DXCC', 'WAE', 'IOTA CONTEST',
+		'NAQP', 'BARTG', 'RSGB', 'RUNDSPRUCH', 'JARTS', 'CW OPEN', 'SSB OPEN',
+		'EU CONTEST', 'NA CONTEST', 'KING OF SPAIN', 'ALL ASIAN'
+	];
+
 	public function __construct() {
 		$this->load->Model('Modes');
 		$this->db->where('bandedges.userid', $this->session->userdata('user_id'));
@@ -470,117 +479,83 @@ class Dxcluster_model extends CI_Model {
 			$spot->dxcc_spotted = (object)[];
 		}
 
-		// Initialize references and contest flag in dxcc_spotted if they don't exist
-		if (!property_exists($spot->dxcc_spotted, 'sota_ref')) {
-			$spot->dxcc_spotted->sota_ref = '';
-		}
-		if (!property_exists($spot->dxcc_spotted, 'pota_ref')) {
-			$spot->dxcc_spotted->pota_ref = '';
-		}
-		if (!property_exists($spot->dxcc_spotted, 'iota_ref')) {
-			$spot->dxcc_spotted->iota_ref = '';
-		}
-		if (!property_exists($spot->dxcc_spotted, 'wwff_ref')) {
-			$spot->dxcc_spotted->wwff_ref = '';
-		}
-		if (!property_exists($spot->dxcc_spotted, 'isContest')) {
-			$spot->dxcc_spotted->isContest = false;
-		}
+		// Initialize all properties at once using array merge
+		$defaults = [
+			'sota_ref' => '',
+			'pota_ref' => '',
+			'iota_ref' => '',
+			'wwff_ref' => '',
+			'isContest' => false
+		];
 
-		// Process message only if we have missing references or need contest detection
-		$message = $spot->message ?? '';
-		if (!empty($message)) {
-			$upperMessage = strtoupper($message);
-
-			// Only extract park references if they're missing (not provided by DX cluster)
-			// This avoids unnecessary regex processing when data is already available
-
-			// SOTA format: XX/YY-### or XX/YY-#### (e.g., "G/LD-001", "W4G/NG-001", "DL/KW-044")
-			if (empty($spot->dxcc_spotted->sota_ref)) {
-				if (preg_match('/\b([A-Z0-9]{1,3}\/[A-Z]{2}-\d{3,4})\b/', $upperMessage, $sotaMatch)) {
-					$spot->dxcc_spotted->sota_ref = $sotaMatch[1];
-				}
+		foreach ($defaults as $prop => $defaultValue) {
+			if (!property_exists($spot->dxcc_spotted, $prop)) {
+				$spot->dxcc_spotted->$prop = $defaultValue;
 			}
+		}
 
-			// POTA format: XX-#### (e.g., "US-4306", "K-1234", "DE-0277")
-			// Must not match WWFF patterns (ending in FF)
-			if (empty($spot->dxcc_spotted->pota_ref)) {
-				if (preg_match('/\b([A-Z0-9]{1,5}-\d{4,5})\b/', $upperMessage, $potaMatch)) {
-					// Exclude WWFF patterns (contain FF-)
-					if (strpos($potaMatch[1], 'FF-') === false) {
-						$spot->dxcc_spotted->pota_ref = $potaMatch[1];
-					}
-				}
+		// Early exit if message is empty
+		$message = $spot->message ?? '';
+		if (empty($message)) {
+			return $spot;
+		}
+
+		$upperMessage = strtoupper($message);
+
+		// Check which references are missing to minimize regex executions
+		$needsSota = empty($spot->dxcc_spotted->sota_ref);
+		$needsPota = empty($spot->dxcc_spotted->pota_ref);
+		$needsIota = empty($spot->dxcc_spotted->iota_ref);
+		$needsWwff = empty($spot->dxcc_spotted->wwff_ref);
+
+		// Early exit if all references already populated
+		if (!$needsSota && !$needsPota && !$needsIota && !$needsWwff && $spot->dxcc_spotted->isContest) {
+			return $spot;
+		}
+
+		// Combined regex approach - execute all patterns in one pass if any are needed
+		if ($needsSota || $needsPota || $needsIota || $needsWwff) {
+			// SOTA format: XX/YY-### or XX/YY-#### (e.g., "G/LD-001", "W4G/NG-001", "DL/KW-044")
+			if ($needsSota && preg_match('/\b([A-Z0-9]{1,3}\/[A-Z]{2}-\d{3,4})\b/', $upperMessage, $sotaMatch)) {
+				$spot->dxcc_spotted->sota_ref = $sotaMatch[1];
 			}
 
 			// IOTA format: XX-### (e.g., "EU-005", "NA-001", "OC-123")
-			if (empty($spot->dxcc_spotted->iota_ref)) {
-				if (preg_match('/\b((?:AF|AN|AS|EU|NA|OC|SA)-\d{3})\b/', $upperMessage, $iotaMatch)) {
-					$spot->dxcc_spotted->iota_ref = $iotaMatch[1];
-				}
+			// Check IOTA before POTA as it's more specific
+			if ($needsIota && preg_match('/\b((?:AF|AN|AS|EU|NA|OC|SA)-\d{3})\b/', $upperMessage, $iotaMatch)) {
+				$spot->dxcc_spotted->iota_ref = $iotaMatch[1];
 			}
 
 			// WWFF format: XXFF-#### or KFF-#### (e.g., "GIFF-0001", "K1FF-0123", "ON4FF-0050", "KFF-6731")
-			if (empty($spot->dxcc_spotted->wwff_ref)) {
-				// Match both standard WWFF (XXFF-####) and USA format (KFF-####)
-				if (preg_match('/\b((?:[A-Z0-9]{2,4}FF|KFF)-\d{4})\b/', $upperMessage, $wwffMatch)) {
-					$spot->dxcc_spotted->wwff_ref = $wwffMatch[1];
-				}
+			// Check WWFF before POTA to avoid conflicts
+			if ($needsWwff && preg_match('/\b((?:[A-Z0-9]{2,4}FF|KFF)-\d{4})\b/', $upperMessage, $wwffMatch)) {
+				$spot->dxcc_spotted->wwff_ref = $wwffMatch[1];
 			}
 
-			// Detect contest spots - always perform this check
-			// Common contest indicators in spot comments
-			$contestIndicators = [
-				'CONTEST',      // Generic contest mention
-				'CQ WW',        // CQ World Wide
-				'CQ WPX',       // CQ WPX
-				'ARRL',         // ARRL contests
-				'IARU',         // IARU HF Championship
-				'CQWW',         // CQ WW (no space)
-				'CQWPX',        // CQ WPX (no space)
-				'SWEEPSTAKES',  // ARRL Sweepstakes
-				'FIELD DAY',    // ARRL Field Day
-				'DX CONTEST',   // Generic DX contest
-				'SSB CONTEST',  // SSB contest
-				'CW CONTEST',   // CW contest
-				'RTTY CONTEST', // RTTY contest
-				'VHF CONTEST',  // VHF contest
-				'SPRINT',       // Various sprints
-				'DXCC',         // DXCC operations
-				'WAE',          // Worked All Europe
-				'IOTA CONTEST', // IOTA contest
-				'NAQP',         // North American QSO Party
-				'BARTG',        // BARTG contests
-				'RSGB',         // RSGB contests
-				'RUNDSPRUCH',   // German contests
-				'JARTS',        // JARTS contests
-				'CW OPEN',      // CW Open
-				'SSB OPEN',     // SSB Open
-				'EU CONTEST',   // European contests
-				'NA CONTEST',   // North American contests
-				'KING OF SPAIN', // King of Spain contest
-				'ALL ASIAN',    // All Asian contest
-			];
+			// POTA format: XX-#### (e.g., "US-4306", "K-1234", "DE-0277")
+			// Must not match WWFF patterns (ending in FF) - checked last to avoid conflicts
+			if ($needsPota && preg_match('/\b([A-Z0-9]{1,5}-\d{4,5})\b/', $upperMessage, $potaMatch)) {
+				// Exclude WWFF patterns (contain FF-)
+				if (strpos($potaMatch[1], 'FF-') === false) {
+					$spot->dxcc_spotted->pota_ref = $potaMatch[1];
+				}
+			}
+		}
 
-			// Check if message contains any contest indicators
-			foreach ($contestIndicators as $indicator) {
+		// Contest detection - use class property instead of creating array each time
+		if (!$spot->dxcc_spotted->isContest) {
+			// Check for contest keywords using optimized strpbrk-like approach
+			foreach ($this->contestIndicators as $indicator) {
 				if (strpos($upperMessage, $indicator) !== false) {
 					$spot->dxcc_spotted->isContest = true;
-					break;
+					return $spot; // Early exit once contest detected
 				}
 			}
 
 			// Additional heuristic: Check for typical contest exchange patterns
-			// Example: "599 025" or "59 123" or "5NN K" (common contest exchanges)
-			if (!$spot->dxcc_spotted->isContest) {
-				// Match RST + serial number patterns
-				if (preg_match('/\b(599|59|5NN)\s+[0-9A-Z]{2,4}\b/', $upperMessage)) {
-					$spot->dxcc_spotted->isContest = true;
-				}
-				// Match zone/state exchanges like "CQ 14" or "CQ K"
-				if (preg_match('/\bCQ\s+[0-9A-Z]{1,3}\b/', $upperMessage)) {
-					$spot->dxcc_spotted->isContest = true;
-				}
+			// Match RST + serial number patterns OR zone/state exchanges in single regex
+			if (preg_match('/\b(?:(?:599|59|5NN)\s+[0-9A-Z]{2,4}|CQ\s+[0-9A-Z]{1,3})\b/', $upperMessage)) {
+				$spot->dxcc_spotted->isContest = true;
 			}
 		}
 
