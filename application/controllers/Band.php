@@ -46,6 +46,23 @@ class Band extends CI_Controller {
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 
+	// API endpoint to get band edges for the logged-in user
+	public function get_user_bandedges()
+	{
+		$this->load->model('bands');
+
+		// Get region parameter from query string, default to 1 (IARU Region 1)
+		// Note: Region selection is not yet fully implemented in the code
+		$region = $this->input->get('region');
+		$region = is_numeric($region) ? (int)$region : 1;
+
+		$data = $this->bands->get_all_bandedges_for_user($region);
+
+		header('Content-Type: application/json');
+		echo json_encode($data);
+		return;
+	}
+
 	public function create()
 	{
 		$this->load->model('bands');

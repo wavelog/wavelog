@@ -61,8 +61,31 @@ async function set_qrg() {
 }
 
 async function set_new_qrg() {
-	let new_qrg = $('#freq_calculated').val().trim();
+	let new_qrg = $('#freq_calculated').val();
+
+	// Trim and validate input
+	if (new_qrg !== null && new_qrg !== undefined) {
+		new_qrg = new_qrg.trim();
+	}
+
 	let parsed_qrg = parseFloat(new_qrg);
+
+	// If field is empty or parsing failed, fetch default frequency for current band/mode
+	if (!new_qrg || new_qrg === '' || isNaN(parsed_qrg) || !isFinite(parsed_qrg) || parsed_qrg <= 0) {
+		if (typeof base_url !== 'undefined') {
+			try {
+				const result = await $.get(base_url + 'index.php/qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val());
+				$('#frequency').val(result);
+				await set_qrg();
+				return;
+			} catch (error) {
+				console.error('Failed to fetch default frequency:', error);
+				return;
+			}
+		}
+		return;
+	}
+
 	let unit = $('#qrg_unit').html();
 
 	// check if the input contains a unit and parse the qrg
@@ -111,6 +134,10 @@ async function set_new_qrg() {
 	$('#freq_calculated').val(parsed_qrg);
 	$('#band').val(frequencyToBand(qrg_hz));
 
+	// Tune the radio to the new frequency if CAT is available (using global selectedRadioId)
+	if (typeof tuneRadioToFrequency === 'function') {
+		tuneRadioToFrequency(null, qrg_hz);  // null = use global selectedRadioId
+	}
 }
 
 $('#frequency').on('change', function () {
@@ -120,24 +147,7 @@ $('#frequency').on('change', function () {
 
 $('#freq_calculated').on('input', function () {
 	if (window.innerWidth > 768) {
-    	$(this).val($(this).val().replace(',', '.'));
+		$(this).val($(this).val().replace(',', '.'));
 	}
 });
 
-$('#freq_calculated').on('change', function () {
-	// console.log('freq_calculated changed');
-	set_new_qrg();
-});
-
-$('#freq_calculated').on('keydown', function (e) {
-	if (e.which === 13) {
-		e.preventDefault();
-		if ($('#callsign').val() != '') {
-			set_new_qrg().then(() => {
-				$("#qso_input").trigger('submit');
-			});
-		} else {
-			set_new_qrg();
-		}
-    }
-});

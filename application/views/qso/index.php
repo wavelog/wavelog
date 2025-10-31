@@ -40,6 +40,39 @@ switch ($date_format) {
   var user_date_format = "<?php echo $date_format; ?>"; // Pass the user's date format to JavaScript
 </script>
 
+<!--- DX Waterfall --->
+<?php $this->load->view('components/dxwaterfall'); ?>
+
+<script>
+// DX Waterfall Field Mapping Configuration
+// This maps the dxwaterfall.js expected field IDs to the actual form fields on this page
+// Required for dxwaterfall.js to interact with the QSO form
+if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
+    window.DX_WATERFALL_FIELD_MAP = {
+        // REQUIRED FIELDS - These must exist for dxwaterfall.js to function
+        required: {
+            callsign: 'callsign',           // Callsign input field
+            freq_calculated: 'freq_calculated', // Displayed frequency field (kHz)
+            qrg_unit: 'qrg_unit',           // Frequency unit label (MHz/kHz display)
+            band: 'band',                    // Band selector dropdown
+            mode: 'mode',                    // Mode selector dropdown
+            frequency: 'frequency'           // Hidden frequency field (Hz) - used for internal frequency storage and radio control
+        },
+
+        // OPTIONAL FIELDS - These are used if present, but won't cause errors if missing
+        optional: {
+            frequency_rx: 'frequency_rx',   // RX frequency field (for split operation)
+            sota_ref: 'sota_ref',           // SOTA reference field (Summits on the Air)
+            pota_ref: 'pota_ref',           // POTA reference field (Parks on the Air)
+            iota_ref: 'iota_ref',           // IOTA reference field (Islands on the Air)
+            wwff_ref: 'wwff_ref',           // WWFF reference field (World Wide Flora Fauna)
+            btn_reset: 'btn_reset'          // QSO form reset/clear button
+        }
+    };
+}
+
+</script>
+
 <div class="row qsopane">
 
   <div class="col-sm-5">
@@ -350,9 +383,9 @@ switch ($date_format) {
               <label for="radio"><?= __("Radio"); ?></label>
               <select class="form-select radios" id="radio" name="radio">
                 <option value="0" selected="selected"><?= __("None"); ?></option>
-		<option value="ws"<?php if ($this->session->userdata('radio') == 'ws') { echo ' selected="selected"'; } ?>><?= __("WebSocket (Requires WLGate>1.1.10)"); ?></option>
+		            <option value="ws"<?php if ($this->session->userdata('radio') == 'ws') { echo ' selected="selected"'; } ?>><?= __("Live - ") . __("WebSocket (Requires WLGate>=1.1.10)"); ?></option>
                 <?php foreach ($radios->result() as $row) { ?>
-                  <option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id) { echo "selected=\"selected\""; } ?>><?php echo $row->radio; ?> <?php if ($radio_last_updated->id == $row->id) { echo "(".__("last updated").")"; } else { echo ''; } ?></option>
+                  <option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id) { echo "selected=\"selected\""; } ?>><?= __("Polling - ") . $row->radio; ?> <?php if ($radio_last_updated->id == $row->id) { echo "(".__("last updated").")"; } else { echo ''; } ?></option>
                 <?php } ?>
                 </select>
             </div>
@@ -750,12 +783,15 @@ switch ($date_format) {
 </div>
 <?php } ?>
 
+	<!-- Radio status -->
+	<div id="radio_status"></div>
+
     <!-- QSO Map -->
     <div class="card qso-map">
             <div id="qsomap" class="map-leaflet" style="width: 100%; height: 200px;"></div>
     </div>
 
-    <div id="radio_status"></div>
+
 
     <!-- Winkey Starts -->
 
@@ -841,7 +877,7 @@ switch ($date_format) {
 		<?php
 		$result = $this->optionslib->get_option('disable_refresh_past_contacts');
 		if($result === null) { ?>
-			<div id="qso-last-table" hx-get="<?php echo site_url('/qso/component_past_contacts'); ?>" hx-trigger="load, qso_event, every 5s">
+			<div id="qso-last-table" hx-get="<?php echo site_url('/qso/component_past_contacts'); ?>" hx-trigger="load, qso_event, every 15s">
 		<?php } else { ?>
 			<div id="qso-last-table" hx-get="<?php echo site_url('/qso/component_past_contacts'); ?>" hx-trigger="load, qso_event">
 		<?php } ?>

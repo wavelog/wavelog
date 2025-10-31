@@ -1,6 +1,6 @@
 function frequencyToBand(frequency) {
 	result = parseInt(frequency);
-				
+
 	if(result >= 14000000 && result <= 14400000) {
 		return '20m';
 	}
@@ -123,5 +123,5 @@ function LatLng2Loc(y, x, num) {
     if (num >= 8) qthloc+=' ' + String.fromCharCode(yn[6] + 0x30) + String.fromCharCode(yn[7] + 0x30);
     if (num >= 10) qthloc+=String.fromCharCode(yn[8] + 0x61) + String.fromCharCode(yn[9] + 0x61);
 	return qthloc;
-	
+
 }

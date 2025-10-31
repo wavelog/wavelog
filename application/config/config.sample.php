@@ -761,7 +761,7 @@ $config['disable_version_check'] = false;
 
 /*
 |--------------------------------------------------------------------------
-| eqsl.cc Massdownloa
+| eqsl.cc Massdownload
 |--------------------------------------------------------------------------
 |
 | The eqsl.cc mass download function is not threadsafe. So it is disabled by default.
@@ -782,7 +782,7 @@ $config['max_login_attempts'] = 3;
 |--------------------------------------------------------------------------
 | Disable User QSO Count in User List (Admin Menu)
 | Reason for this setting is to prevent performance issues on large installations
-| where the QSO count is not needed. Set to true to disable the QSO count. 
+| where the QSO count is not needed. Set to true to disable the QSO count.
 | This also hides the last Operator for CLubstations. Default is false.
 |--------------------------------------------------------------------------
  */

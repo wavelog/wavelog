@@ -171,9 +171,11 @@ class Radio extends CI_Controller {
 
 					$power = $row->power;
 
+					$radio = $row->radio;
+
 					$prop_mode = $row->prop_mode;
 
-					$cat_url = $row->cat_url;;
+					$cat_url = $row->cat_url;
 
 					// Check Mode
 					if (isset($row->mode) && ($row->mode != null)) {
@@ -247,6 +249,10 @@ class Radio extends CI_Controller {
 					if (isset($cat_url) && ($cat_url != null)) {
 						$a_ret['cat_url'] = $cat_url;
 					}
+					if (isset($radio) && ($radio != null)) {
+						$a_ret['radio'] = $radio;
+					}
+
 					$a_ret['updated_minutes_ago'] = $updated_at;
 					echo json_encode($a_ret, JSON_PRETTY_PRINT);
 				}

@@ -63,69 +63,87 @@ class Dxcluster_model extends CI_Model {
 		// Create JSON object
 		if (strlen($jsonraw)>20) {
 			$spotsout=[];
+
+			// Cache current time outside loop (avoid creating DateTime on every iteration)
+			$currentTimestamp = time();
+
+			// Normalize continent filter once
+			$de_lower = strtolower($de);
+			$filter_continent = ($de != '' && $de != 'Any');
+
 			foreach($json as $singlespot){
-				if (is_numeric($singlespot->frequency)) {
-					$spotband = $this->frequency->GetBand($singlespot->frequency*1000);
-				} else {
+				// Early filtering - skip invalid spots immediately
+				if (!is_numeric($singlespot->frequency)) {
 					continue;
 				}
-				$singlespot->band=$spotband;
-				$singlespot->mode=$this->get_mode($singlespot);
-				if (($band != 'All') && ($band != $spotband)) { continue; }
-				if (($mode != 'All') && ($mode != $this->modefilter($singlespot, $mode))) { continue; }
-				$datetimecurrent = new DateTime("now", new DateTimeZone('UTC')); // Today's Date/Time
-				$datetimespot = new DateTime($singlespot->when, new DateTimeZone('UTC'));
-				$spotage = $datetimecurrent->diff($datetimespot);
-				$minutes = $spotage->days * 24 * 60;
-				$minutes += $spotage->h * 60;
-				$minutes += $spotage->i;
-				$singlespot->age=$minutes;
-				$singlespot->when_pretty=date($custom_date_format . " H:i", strtotime($singlespot->when));
 
-				if ($minutes<=$maxage) {
-					if (!(property_exists($singlespot,'dxcc_spotted'))) {	// Check if we already have dxcc of spotted
-						$dxcc=$dxccObj->dxcc_lookup($singlespot->spotted,date('Ymd', time()));
-						$singlespot->dxcc_spotted->dxcc_id=$dxcc['adif'];
-						$singlespot->dxcc_spotted->cont=$dxcc['cont'];
-						$singlespot->dxcc_spotted->flag='';
-						$singlespot->dxcc_spotted->entity=$dxcc['entity'];
-					}
-					if (!(property_exists($singlespot,'dxcc_spotter'))) {	// Check if we already have dxcc of spotter
-						$dxcc=$dxccObj->dxcc_lookup($singlespot->spotter,date('Ymd', time()));
-						$singlespot->dxcc_spotter->dxcc_id=$dxcc['adif'];
-						$singlespot->dxcc_spotter->cont=$dxcc['cont'];
-						$singlespot->dxcc_spotter->flag='';
-						$singlespot->dxcc_spotter->entity=$dxcc['entity'];
-					}
-					if ( ($de != '') && ($de != 'Any') && (property_exists($singlespot->dxcc_spotter,'cont')) ){	// If we have a "de continent" and a filter-wish filter on that
-						if (strtolower($de) == strtolower($singlespot->dxcc_spotter->cont ?? '')) {
-							$singlespot->worked_dxcc = ($this->logbook_model->check_if_dxcc_worked_in_logbook($singlespot->dxcc_spotted->dxcc_id, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
-							$singlespot->cnfmd_dxcc = ($this->logbook_model->check_if_dxcc_cnfmd_in_logbook($singlespot->dxcc_spotted->dxcc_id, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
-							$singlespot->worked_call = ($this->logbook_model->check_if_callsign_worked_in_logbook($singlespot->spotted, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
-							$singlespot->cnfmd_call = ($this->logbook_model->check_if_callsign_cnfmd_in_logbook($singlespot->spotted, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
-							$singlespot->cnfmd_continent = ($this->check_if_continent_cnfmd_in_logbook($singlespot->dxcc_spotted->cont, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
-							$singlespot->worked_continent = ($this->check_if_continent_cnfmd_in_logbook($singlespot->dxcc_spotted->cont, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
-							if ($singlespot->worked_call) {
-								$singlespot->last_wked=$this->logbook_model->last_worked_callsign_in_logbook($singlespot->spotted, $logbooks_locations_array, $singlespot->band)[0];
-								if ($this->session->userdata('user_date_format')) {
-									$custom_date_format = $this->session->userdata('user_date_format');
-								} else {
-									$custom_date_format = $this->config->item('qso_date_format');
-								}
-								$singlespot->last_wked->LAST_QSO = date($custom_date_format, strtotime($singlespot->last_wked->LAST_QSO));
-							}
-							array_push($spotsout,$singlespot);
-						}
-					} else {	// No de continent? No Filter --> Just push
-						$singlespot->worked_dxcc = ($this->logbook_model->check_if_dxcc_worked_in_logbook($singlespot->dxcc_spotted->dxcc_id, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
-						$singlespot->worked_call = ($this->logbook_model->check_if_callsign_worked_in_logbook($singlespot->spotted, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
-						$singlespot->cnfmd_dxcc = ($this->logbook_model->check_if_dxcc_cnfmd_in_logbook($singlespot->dxcc_spotted->dxcc_id, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
-						$singlespot->cnfmd_call = ($this->logbook_model->check_if_callsign_cnfmd_in_logbook($singlespot->spotted, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
-						$singlespot->cnfmd_continent = ($this->check_if_continent_cnfmd_in_logbook($singlespot->dxcc_spotted->cont, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
-						$singlespot->worked_continent = ($this->check_if_continent_worked_in_logbook($singlespot->dxcc_spotted->cont, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
-						array_push($spotsout,$singlespot);
-					}
+				$spotband = $this->frequency->GetBand($singlespot->frequency*1000);
+
+				// Apply band filter early (before expensive operations)
+				if (($band != 'All') && ($band != $spotband)) {
+					continue;
 				}
+
+				$singlespot->band = $spotband;
+				$singlespot->mode = $this->get_mode($singlespot);
+
+				// Apply mode filter early
+				if (($mode != 'All') && ($mode != $this->modefilter($singlespot, $mode))) {
+					continue;
+				}
+
+				// Faster age calculation using timestamps instead of DateTime objects
+				$spotTimestamp = strtotime($singlespot->when);
+				$minutes = (int)(($currentTimestamp - $spotTimestamp) / 60);
+
+				// Apply age filter early (before DXCC lookups)
+				if ($minutes > $maxage) {
+					continue;
+				}
+
+				$singlespot->age = $minutes;
+				$singlespot->when_pretty = date($custom_date_format . " H:i", $spotTimestamp);
+
+				// DXCC lookups (only for spots that passed all filters)
+				if (!(property_exists($singlespot,'dxcc_spotted'))) {
+					$dxcc = $dxccObj->dxcc_lookup($singlespot->spotted, $date);
+					$singlespot->dxcc_spotted = (object)[
+						'dxcc_id' => $dxcc['adif'],
+						'cont' => $dxcc['cont'],
+						'flag' => '',
+						'entity' => $dxcc['entity']
+					];
+				}
+				if (!(property_exists($singlespot,'dxcc_spotter'))) {
+					$dxcc = $dxccObj->dxcc_lookup($singlespot->spotter, $date);
+					$singlespot->dxcc_spotter = (object)[
+						'dxcc_id' => $dxcc['adif'],
+						'cont' => $dxcc['cont'],
+						'flag' => '',
+						'entity' => $dxcc['entity']
+					];
+				}
+
+				// Apply continent filter early
+				if ($filter_continent && (!property_exists($singlespot->dxcc_spotter, 'cont') ||
+					$de_lower != strtolower($singlespot->dxcc_spotter->cont ?? ''))) {
+					continue;
+				}
+
+				// Database queries only for spots that passed all filters
+				$singlespot->worked_dxcc = ($this->logbook_model->check_if_dxcc_worked_in_logbook($singlespot->dxcc_spotted->dxcc_id, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
+				$singlespot->worked_call = ($this->logbook_model->check_if_callsign_worked_in_logbook($singlespot->spotted, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
+				$singlespot->cnfmd_dxcc = ($this->logbook_model->check_if_dxcc_cnfmd_in_logbook($singlespot->dxcc_spotted->dxcc_id, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
+				$singlespot->cnfmd_call = ($this->logbook_model->check_if_callsign_cnfmd_in_logbook($singlespot->spotted, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
+				$singlespot->cnfmd_continent = ($this->check_if_continent_cnfmd_in_logbook($singlespot->dxcc_spotted->cont, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
+				$singlespot->worked_continent = ($this->check_if_continent_worked_in_logbook($singlespot->dxcc_spotted->cont, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
+
+				if ($singlespot->worked_call) {
+					$singlespot->last_wked = $this->logbook_model->last_worked_callsign_in_logbook($singlespot->spotted, $logbooks_locations_array, $singlespot->band)[0];
+					$singlespot->last_wked->LAST_QSO = date($custom_date_format, strtotime($singlespot->last_wked->LAST_QSO));
+				}
+
+				$spotsout[] = $singlespot; // Direct array append is faster than array_push
 			}
 			return ($spotsout);
 		} else {
