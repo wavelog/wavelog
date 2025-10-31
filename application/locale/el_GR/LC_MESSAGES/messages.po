@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-10-30 15:57+0000\n"
+"POT-Creation-Date: 2025-10-31 06:39+0000\n"
 "PO-Revision-Date: 2025-08-19 17:14+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: Greek <https://translate.wavelog.org/projects/wavelog/main-"
@@ -339,7 +339,7 @@ msgid "DOK"
 msgstr ""
 
 #: application/controllers/Awards.php:176 application/views/awards/index.php:7
-#: application/views/bandmap/list.php:131 application/views/bands/index.php:50
+#: application/views/bandmap/list.php:120 application/views/bands/index.php:50
 #: application/views/csv/index.php:58 application/views/dxatlas/index.php:58
 #: application/views/dxcalendar/index.php:11
 #: application/views/interface_assets/header.php:180
@@ -1367,8 +1367,8 @@ msgstr ""
 #: application/views/awards/wpx/index.php:122
 #: application/views/awards/wpx/index.php:124
 #: application/views/awards/wpx/wpx_details.php:23
-#: application/views/bandmap/list.php:111
-#: application/views/bandmap/list.php:136
+#: application/views/bandmap/list.php:100
+#: application/views/bandmap/list.php:125
 #: application/views/bands/bandedges.php:31
 #: application/views/callstats/index.php:49
 #: application/views/components/hamsat/table.php:30
@@ -1668,9 +1668,9 @@ msgstr ""
 #: application/views/awards/wpx/index.php:79
 #: application/views/awards/wpx/wpx_details.php:22
 #: application/views/awards/wwff/index.php:36
-#: application/views/bandmap/index.php:45 application/views/bandmap/list.php:97
-#: application/views/bands/create.php:24 application/views/bands/edit.php:7
-#: application/views/bands/index.php:47 application/views/callstats/index.php:7
+#: application/views/bandmap/list.php:86 application/views/bands/create.php:24
+#: application/views/bands/edit.php:7 application/views/bands/index.php:47
+#: application/views/callstats/index.php:7
 #: application/views/contesting/index.php:131
 #: application/views/contesting/index.php:264
 #: application/views/continents/index.php:30 application/views/csv/index.php:31
@@ -1726,7 +1726,7 @@ msgid "Band"
 msgstr "Ζώνη"
 
 #: application/controllers/Logbook.php:1330
-#: application/controllers/Radio.php:45 application/views/bandmap/list.php:129
+#: application/controllers/Radio.php:45 application/views/bandmap/list.php:118
 #: application/views/contesting/index.php:148
 #: application/views/dashboard/index.php:16
 #: application/views/logbookadvanced/index.php:776
@@ -2242,8 +2242,7 @@ msgstr ""
 msgid "Hardware Interfaces"
 msgstr ""
 
-#: application/controllers/Radio.php:41 application/views/bandmap/index.php:25
-#: application/views/bandmap/list.php:67
+#: application/controllers/Radio.php:41 application/views/bandmap/list.php:56
 #: application/views/contesting/index.php:157
 #: application/views/qso/index.php:383
 msgid "Radio"
@@ -3552,8 +3551,8 @@ msgstr ""
 #: application/views/awards/wpx/index.php:93
 #: application/views/awards/wpx/index.php:107
 #: application/views/awards/wpx/index.php:126
-#: application/views/bandmap/list.php:79 application/views/bandmap/list.php:87
-#: application/views/bandmap/list.php:99 application/views/bandmap/list.php:113
+#: application/views/bandmap/list.php:68 application/views/bandmap/list.php:76
+#: application/views/bandmap/list.php:88 application/views/bandmap/list.php:102
 #: application/views/bands/index.php:123
 #: application/views/cabrillo/index.php:69
 #: application/views/callstats/index.php:10
@@ -4248,7 +4247,7 @@ msgstr ""
 #: application/views/awards/pota/index.php:33
 #: application/views/awards/sota/index.php:31
 #: application/views/awards/wwff/index.php:33
-#: application/views/bandmap/list.php:128
+#: application/views/bandmap/list.php:117
 #: application/views/components/hamsat/table.php:25
 #: application/views/contesting/index.php:103
 #: application/views/contesting/index.php:262
@@ -4294,7 +4293,7 @@ msgstr "Ημερομηνία"
 #: application/views/awards/pota/index.php:34
 #: application/views/awards/sota/index.php:32
 #: application/views/awards/wwff/index.php:34
-#: application/views/bandmap/list.php:128
+#: application/views/bandmap/list.php:117
 #: application/views/components/hamsat/table.php:26
 #: application/views/contesting/index.php:108
 #: application/views/contesting/index.php:262
@@ -4325,7 +4324,7 @@ msgstr "Ωρα"
 #: application/views/adif/dcl_success.php:31
 #: application/views/adif/pota_success.php:31
 #: application/views/awards/vucc/band.php:18
-#: application/views/bandmap/list.php:130
+#: application/views/bandmap/list.php:119
 #: application/views/contesting/index.php:263
 #: application/views/dcl_views/key_import.php:45
 #: application/views/debug/index.php:596 application/views/debug/index.php:631
@@ -5198,7 +5197,7 @@ msgstr ""
 #: application/views/awards/wab/list.php:6
 #: application/views/awards/wac/index.php:23
 #: application/views/awards/wpx/wpx_details.php:24
-#: application/views/bandmap/list.php:82
+#: application/views/bandmap/list.php:71
 #: application/views/dashboard/index.php:344
 #: application/views/dashboard/index.php:462
 #: application/views/interface_assets/footer.php:43
@@ -5210,7 +5209,7 @@ msgstr "Επιβεβαιωμένο"
 #: application/views/awards/cq/index.php:35
 #: application/views/awards/itu/index.php:35
 #: application/views/awards/wac/index.php:23
-#: application/views/bandmap/list.php:81
+#: application/views/bandmap/list.php:70
 #: application/views/dashboard/index.php:340
 #: application/views/dashboard/index.php:456
 #: application/views/search/result.php:35
@@ -5542,7 +5541,7 @@ msgstr ""
 #: application/views/awards/dxcc/index.php:97
 #: application/views/awards/iota/index.php:88
 #: application/views/awards/wpx/index.php:55
-#: application/views/bandmap/index.php:37 application/views/bandmap/list.php:89
+#: application/views/bandmap/list.php:78
 #: application/views/logbookadvanced/edit.php:217
 #: application/views/logbookadvanced/index.php:408
 #: application/views/lookup/index.php:60
@@ -5555,7 +5554,7 @@ msgstr ""
 #: application/views/awards/dxcc/index.php:101
 #: application/views/awards/iota/index.php:92
 #: application/views/awards/wpx/index.php:56
-#: application/views/bandmap/index.php:36 application/views/bandmap/list.php:88
+#: application/views/bandmap/list.php:77
 #: application/views/logbookadvanced/edit.php:216
 #: application/views/logbookadvanced/index.php:407
 #: application/views/lookup/index.php:59
@@ -5568,7 +5567,7 @@ msgstr ""
 #: application/views/awards/dxcc/index.php:105
 #: application/views/awards/iota/index.php:96
 #: application/views/awards/wpx/index.php:57
-#: application/views/bandmap/index.php:38 application/views/bandmap/list.php:90
+#: application/views/bandmap/list.php:79
 #: application/views/logbookadvanced/edit.php:219
 #: application/views/logbookadvanced/index.php:410
 #: application/views/lookup/index.php:62
@@ -5581,7 +5580,7 @@ msgstr ""
 #: application/views/awards/dxcc/index.php:109
 #: application/views/awards/iota/index.php:100
 #: application/views/awards/wpx/index.php:58
-#: application/views/bandmap/index.php:39 application/views/bandmap/list.php:91
+#: application/views/bandmap/list.php:80
 #: application/views/logbookadvanced/edit.php:220
 #: application/views/logbookadvanced/index.php:411
 #: application/views/lookup/index.php:63
@@ -5594,7 +5593,7 @@ msgstr ""
 #: application/views/awards/dxcc/index.php:113
 #: application/views/awards/iota/index.php:104
 #: application/views/awards/wpx/index.php:59
-#: application/views/bandmap/index.php:40 application/views/bandmap/list.php:92
+#: application/views/bandmap/list.php:81
 #: application/views/logbookadvanced/edit.php:218
 #: application/views/logbookadvanced/index.php:409
 #: application/views/lookup/index.php:61
@@ -5607,7 +5606,7 @@ msgstr ""
 #: application/views/awards/dxcc/index.php:117
 #: application/views/awards/iota/index.php:108
 #: application/views/awards/wpx/index.php:60
-#: application/views/bandmap/index.php:42 application/views/bandmap/list.php:94
+#: application/views/bandmap/list.php:83
 #: application/views/logbookadvanced/edit.php:221
 #: application/views/logbookadvanced/index.php:412
 #: application/views/lookup/index.php:64
@@ -5620,7 +5619,7 @@ msgstr ""
 #: application/views/awards/dxcc/index.php:121
 #: application/views/awards/iota/index.php:112
 #: application/views/awards/wpx/index.php:61
-#: application/views/bandmap/index.php:41 application/views/bandmap/list.php:93
+#: application/views/bandmap/list.php:82
 #: application/views/logbookadvanced/edit.php:222
 #: application/views/logbookadvanced/index.php:413
 #: application/views/lookup/index.php:65
@@ -6520,26 +6519,6 @@ msgid ""
 "The backup of your notes completed successfully. The output can be found at"
 msgstr ""
 
-#: application/views/bandmap/index.php:15 application/views/bandmap/list.php:56
-msgid "BandMap"
-msgstr ""
-
-#: application/views/bandmap/index.php:18 application/views/bandmap/list.php:59
-msgid "BandList"
-msgstr ""
-
-#: application/views/bandmap/index.php:27 application/views/bandmap/list.php:69
-#: application/views/contesting/index.php:24
-#: application/views/contesting/index.php:62
-#: application/views/contesting/index.php:159
-#: application/views/qso/index.php:385
-msgid "None"
-msgstr ""
-
-#: application/views/bandmap/index.php:33 application/views/bandmap/list.php:85
-msgid "Spots de"
-msgstr ""
-
 #: application/views/bandmap/list.php:6 application/views/qso/log_qso.php:55
 msgid "Pop-up was blocked! Please allow pop-ups for this site permanently."
 msgstr ""
@@ -6548,48 +6527,60 @@ msgstr ""
 msgid "Click to prepare logging."
 msgstr ""
 
-#: application/views/bandmap/list.php:70
+#: application/views/bandmap/list.php:58
+#: application/views/contesting/index.php:24
+#: application/views/contesting/index.php:62
+#: application/views/contesting/index.php:159
+#: application/views/qso/index.php:385
+msgid "None"
+msgstr ""
+
+#: application/views/bandmap/list.php:59
 #: application/views/contesting/index.php:160
 msgid "WebSocket (Requires WLGate>1.1.10)"
 msgstr ""
 
-#: application/views/bandmap/list.php:77
+#: application/views/bandmap/list.php:66
 msgid "DXCC-Status"
 msgstr ""
 
-#: application/views/bandmap/list.php:80
+#: application/views/bandmap/list.php:69
 #: application/views/interface_assets/footer.php:45
 msgid "Not worked"
 msgstr ""
 
-#: application/views/bandmap/list.php:83
+#: application/views/bandmap/list.php:72
 msgid "Worked, not Confirmed"
 msgstr ""
 
-#: application/views/bandmap/list.php:114
+#: application/views/bandmap/list.php:74
+msgid "Spots de"
+msgstr ""
+
+#: application/views/bandmap/list.php:103
 #: application/views/components/dxwaterfall.php:32
 msgid "Phone"
 msgstr ""
 
-#: application/views/bandmap/list.php:115
+#: application/views/bandmap/list.php:104
 #: application/views/components/dxwaterfall.php:34
 msgid "CW"
 msgstr ""
 
-#: application/views/bandmap/list.php:116
+#: application/views/bandmap/list.php:105
 #: application/views/components/dxwaterfall.php:36
 msgid "Digi"
 msgstr ""
 
-#: application/views/bandmap/list.php:132
+#: application/views/bandmap/list.php:121
 msgid "WAC"
 msgstr ""
 
-#: application/views/bandmap/list.php:133
+#: application/views/bandmap/list.php:122
 msgid "Spotter"
 msgstr ""
 
-#: application/views/bandmap/list.php:134
+#: application/views/bandmap/list.php:123
 #: application/views/oqrs/notinlogform.php:28
 #: application/views/oqrs/request.php:54
 #: application/views/oqrs/request_grouped.php:57
@@ -6597,7 +6588,7 @@ msgstr ""
 msgid "Message"
 msgstr ""
 
-#: application/views/bandmap/list.php:135
+#: application/views/bandmap/list.php:124
 msgid "Last Worked"
 msgstr ""
 
