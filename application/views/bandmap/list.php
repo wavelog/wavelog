@@ -50,17 +50,6 @@
 
 	<h2 id="dxtitle"><?php echo $page_title; ?></h2>
 
-	<div id="dxtabs" class="tabs">
-		<ul class="nav nav-tabs" id="myTab" role="tablist">
-			<li class="nav-item">
-				<a class="nav-link" href="index"><?= __("BandMap"); ?></a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link active" href="list"><?= __("BandList"); ?></a>
-			</li>
-		</ul>
-	</div>
-
 	<div class="tab-content" id="myTabContent">
 		<div class="messages my-1 me-2"></div>
 		<div class="d-flex align-items-center">
