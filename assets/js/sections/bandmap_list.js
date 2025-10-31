@@ -9,6 +9,8 @@ $(function() {
 	function get_dtable () {
 		var table = $('.spottable').DataTable({
 			"paging": false,
+			"searching": true,
+			"dom": 'rt', // Only show table (r) and processing (t), hide search box and other elements
 			"retrieve": true,
 			"language": {
 				url: getDataTablesLanguageUrl(),
@@ -45,8 +47,34 @@ $(function() {
 	function fill_list(band, de, maxAgeMinutes, cwn, mode) {
 		// var table = $('.spottable').DataTable();
 		var table = get_dtable();
-		if ((band != '') && (band !== undefined)) {
-			let dxurl = dxcluster_provider + "/spots/" + band + "/" +maxAgeMinutes + "/" + de + "/" + mode;
+
+		// Handle multi-select values
+		let bands = Array.isArray(band) ? band : [band];
+		let continents = Array.isArray(de) ? de : [de];
+		let cwnStatuses = Array.isArray(cwn) ? cwn : [cwn];
+		let modes = Array.isArray(mode) ? mode : [mode];
+
+		// If 'All' is selected or nothing selected, treat as all
+		if (bands.includes('All') || bands.length === 0) {
+			bands = ['All'];
+		}
+		if (continents.includes('Any') || continents.length === 0) {
+			continents = ['Any'];
+		}
+		if (cwnStatuses.includes('All') || cwnStatuses.length === 0) {
+			cwnStatuses = ['All'];
+		}
+		if (modes.includes('All') || modes.length === 0) {
+			modes = ['All'];
+		}
+
+		// For now, use first band for API call (we'll need to make multiple calls or update API for multi-band)
+		let bandForAPI = bands.includes('All') ? 'All' : bands[0];
+		let continentForAPI = continents.includes('Any') ? 'Any' : continents[0];
+		let modeForAPI = modes.includes('All') ? 'All' : modes[0];
+
+		if ((bandForAPI != '') && (bandForAPI !== undefined)) {
+			let dxurl = dxcluster_provider + "/spots/" + bandForAPI + "/" +maxAgeMinutes + "/" + continentForAPI + "/" + modeForAPI;
 			$.ajax({
 				url: dxurl,
 				cache: false,
@@ -59,10 +87,16 @@ $(function() {
 				if (dxspots.length>0) {
 					dxspots.sort(SortByQrg);
 					dxspots.forEach((single) => {
-						if ((cwn == 'notwkd') && ((single.worked_dxcc))) { return; }
-						if ((cwn == 'wkd') && (!(single.worked_dxcc))) { return; }
-						if ((cwn == 'cnf') && (!(single.cnfmd_dxcc))) { return; }
-						if ((cwn == 'ucnf') && (!(single.worked_dxcc) || single.cnfmd_dxcc)) { return; }
+						// Apply multi-select filtering
+						let passesCwnFilter = cwnStatuses.includes('All');
+						if (!passesCwnFilter) {
+							if (cwnStatuses.includes('notwkd') && !single.worked_dxcc) passesCwnFilter = true;
+							if (cwnStatuses.includes('wkd') && single.worked_dxcc) passesCwnFilter = true;
+							if (cwnStatuses.includes('cnf') && single.cnfmd_dxcc) passesCwnFilter = true;
+							if (cwnStatuses.includes('ucnf') && single.worked_dxcc && !single.cnfmd_dxcc) passesCwnFilter = true;
+						}
+						if (!passesCwnFilter) { return; }
+
 						spots2render++;
 						var data=[];
 						if (single.cnfmd_dxcc) {
@@ -180,27 +214,49 @@ $(function() {
 	var table=get_dtable();
 	table.order([1, 'asc']);
 	table.clear();
-	fill_list($('#band option:selected').val(), $('#decontSelect option:selected').val(), dxcluster_maxage, $('#cwnSelect option:selected').val(), $('#mode option:selected').val());
-	setInterval(function () { fill_list($('#band option:selected').val(), $('#decontSelect option:selected').val(), dxcluster_maxage, $('#cwnSelect option:selected').val(), $('#mode option:selected').val()); },60000);
 
-	$("#cwnSelect").on("change",function() {
+	// Function to get selected values from multi-select
+	function getSelectedValues(selectId) {
+		let values = $('#' + selectId).val();
+		if (!values || values.length === 0) {
+			return ['All'];
+		}
+		return values;
+	}
+
+	// Function to apply filters
+	function applyFilters() {
+		let band = getSelectedValues('band');
+		let de = getSelectedValues('decontSelect');
+		let cwn = getSelectedValues('cwnSelect');
+		let mode = getSelectedValues('mode');
+
 		table.clear();
-		fill_list($('#band option:selected').val(), $('#decontSelect option:selected').val(), dxcluster_maxage, $('#cwnSelect option:selected').val(), $('#mode option:selected').val());
+		fill_list(band, de, dxcluster_maxage, cwn, mode);
+	}
+
+	// Initial load
+	applyFilters();
+
+	// Auto-refresh every 60 seconds
+	setInterval(function () { applyFilters(); }, 60000);
+
+	// Apply filters button click
+	$("#applyFiltersButton").on("click", function() {
+		applyFilters();
+		// Disable button after applying filters
+		$(this).prop('disabled', true);
 	});
 
-	$("#decontSelect").on("change",function() {
-		table.clear();
-		fill_list($('#band option:selected').val(), $('#decontSelect option:selected').val(), dxcluster_maxage, $('#cwnSelect option:selected').val(), $('#mode option:selected').val());
+	// Connect search input to DataTable
+	$("#spotSearchInput").on("keyup", function() {
+		table.search(this.value).draw();
 	});
 
-	$("#band").on("change",function() {
-		table.clear();
-		fill_list($('#band option:selected').val(), $('#decontSelect option:selected').val(), dxcluster_maxage, $('#cwnSelect option:selected').val(), $('#mode option:selected').val());
-	});
-
-	$("#mode").on("change",function() {
-		table.clear();
-		fill_list($('#band option:selected').val(), $('#decontSelect option:selected').val(), dxcluster_maxage, $('#cwnSelect option:selected').val(), $('#mode option:selected').val());
+	// Remove old individual change handlers and keep only for specific use cases
+	// Note: Radio selector still triggers immediate update
+	$("#radio").on("change", function() {
+		// Radio change doesn't affect filters, handled separately
 	});
 
 	$("#spottertoggle").on("click", function() {
