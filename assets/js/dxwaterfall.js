@@ -1219,8 +1219,9 @@ var DX_WATERFALL_UTILS = {
             }
 
             // Populate SOTA reference if available (selectize field)
+            var $sotaSelect = $('#sota_ref');
+            $sotaSelect[0].selectize.clear();
             if (spotData.sotaRef && spotData.sotaRef !== '') {
-                var $sotaSelect = $('#sota_ref');
                 if ($sotaSelect.length > 0 && $sotaSelect[0].selectize) {
                     var sotaSelectize = $sotaSelect[0].selectize;
                     sotaSelectize.addOption({name: spotData.sotaRef});
@@ -1229,8 +1230,9 @@ var DX_WATERFALL_UTILS = {
             }
 
             // Populate POTA reference if available (selectize field)
+            var $potaSelect = $('#pota_ref');
+            $potaSelect[0].selectize.clear();
             if (spotData.potaRef && spotData.potaRef !== '') {
-                var $potaSelect = $('#pota_ref');
                 if ($potaSelect.length > 0 && $potaSelect[0].selectize) {
                     var potaSelectize = $potaSelect[0].selectize;
                     potaSelectize.addOption({name: spotData.potaRef});
@@ -1239,8 +1241,9 @@ var DX_WATERFALL_UTILS = {
             }
 
             // Populate IOTA reference if available (regular select dropdown)
+            var $iotaSelect = $('#iota_ref');
+            $iotaSelect.val("");
             if (spotData.iotaRef && spotData.iotaRef !== '') {
-                var $iotaSelect = $('#iota_ref');
                 if ($iotaSelect.length > 0) {
                     var optionExists = $iotaSelect.find('option[value="' + spotData.iotaRef + '"]').length > 0;
                     if (optionExists) {
@@ -1257,8 +1260,9 @@ var DX_WATERFALL_UTILS = {
             }
 
             // Populate WWFF reference if available (selectize field)
+            var $wwffSelect = $('#wwff_ref');
+            $wwffSelect[0].selectize.clear();
             if (spotData.wwffRef && spotData.wwffRef !== '') {
-                var $wwffSelect = $('#wwff_ref');
                 if ($wwffSelect.length > 0 && $wwffSelect[0].selectize) {
                     var wwffSelectize = $wwffSelect[0].selectize;
                     wwffSelectize.addOption({name: spotData.wwffRef});
