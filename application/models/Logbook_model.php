@@ -2693,6 +2693,252 @@ class Logbook_model extends CI_Model {
 		return $query->num_rows();
 	}
 
+	/**
+	 * Optimized function to check all spot statuses in a single database query
+	 * Returns an array with worked/confirmed status for callsign, dxcc, and continent
+	 *
+	 * @param string $callsign Spotted callsign
+	 * @param int $dxcc_id DXCC ID
+	 * @param string $continent Continent code
+	 * @param array $logbooks_locations_array Station IDs
+	 * @param string $band Band (e.g., '20m', 'All')
+	 * @param string $mode Mode (e.g., 'SSB', 'CW', 'All')
+	 * @return array ['worked_call', 'worked_dxcc', 'worked_continent', 'cnfmd_call', 'cnfmd_dxcc', 'cnfmd_continent']
+	 */
+	function get_spot_status($callsign, $dxcc_id, $continent, $logbooks_locations_array, $band = null, $mode = null) {
+		$user_default_confirmation = $this->session->userdata('user_default_confirmation');
+		$qsl_where = $this->qsl_default_where($user_default_confirmation);
+
+		// Build band filter
+		$band_sql = '';
+		$band = ($band == 'All') ? null : $band;
+		if ($band != null && $band != 'SAT') {
+			$band_sql = " AND COL_BAND = " . $this->db->escape($band);
+		} else if ($band == 'SAT') {
+			$band_sql = " AND COL_SAT_NAME != ''";
+		}
+
+		// Build mode filter
+		$mode_sql = '';
+		if (isset($mode) && $mode != 'All') {
+			$mode_sql = " AND COL_MODE IN " . $this->Modes->get_modes_from_qrgmode($mode, true);
+		}
+
+		// Escape parameters
+		$station_ids = implode(',', array_map('intval', $logbooks_locations_array));
+		$callsign_escaped = $this->db->escape($callsign);
+		$dxcc_escaped = $this->db->escape($dxcc_id);
+		$continent_escaped = $this->db->escape($continent);
+
+		// Single optimized query to get all statuses
+		$sql = "
+			SELECT
+				MAX(CASE WHEN COL_CALL = {$callsign_escaped} THEN 1 ELSE 0 END) as worked_call,
+				MAX(CASE WHEN COL_CALL = {$callsign_escaped} AND ({$qsl_where}) THEN 1 ELSE 0 END) as cnfmd_call,
+				MAX(CASE WHEN COL_DXCC = {$dxcc_escaped} THEN 1 ELSE 0 END) as worked_dxcc,
+				MAX(CASE WHEN COL_DXCC = {$dxcc_escaped} AND ({$qsl_where}) THEN 1 ELSE 0 END) as cnfmd_dxcc,
+				MAX(CASE WHEN COL_CONT = {$continent_escaped} THEN 1 ELSE 0 END) as worked_continent,
+				MAX(CASE WHEN COL_CONT = {$continent_escaped} AND ({$qsl_where}) THEN 1 ELSE 0 END) as cnfmd_continent
+			FROM {$this->config->item('table_name')}
+			WHERE station_id IN ({$station_ids})
+			{$band_sql}
+			{$mode_sql}
+		";
+
+		$query = $this->db->query($sql);
+		$result = $query->row_array();
+
+		// Convert to boolean
+		return [
+			'worked_call' => ($result['worked_call'] == 1),
+			'worked_dxcc' => ($result['worked_dxcc'] == 1),
+			'worked_continent' => ($result['worked_continent'] == 1),
+			'cnfmd_call' => ($result['cnfmd_call'] == 1),
+			'cnfmd_dxcc' => ($result['cnfmd_dxcc'] == 1),
+			'cnfmd_continent' => ($result['cnfmd_continent'] == 1)
+		];
+	}
+
+	/**
+	 * Batch version - Get statuses for multiple spots in a single query
+	 *
+	 * @param array $spots Array of spots with callsign, dxcc_id, continent
+	 * @param array $logbooks_locations_array Station IDs
+	 * @param string $band Band filter
+	 * @param string $mode Mode filter
+	 * @return array Keyed by callsign with status arrays
+	 */
+	function get_batch_spot_statuses($spots, $logbooks_locations_array, $band = null, $mode = null) {
+		if (empty($spots) || empty($logbooks_locations_array)) {
+			return [];
+		}
+
+		$user_default_confirmation = $this->session->userdata('user_default_confirmation');
+		$qsl_where = $this->qsl_default_where($user_default_confirmation);
+
+		// Build band filter
+		$band_sql = '';
+		$band = ($band == 'All') ? null : $band;
+		if ($band != null && $band != 'SAT') {
+			$band_sql = " AND COL_BAND = " . $this->db->escape($band);
+		} else if ($band == 'SAT') {
+			$band_sql = " AND COL_SAT_NAME != ''";
+		}
+
+		// Build mode filter
+		$mode_sql = '';
+		if (isset($mode) && $mode != 'All') {
+			$mode_sql = " AND COL_MODE IN " . $this->Modes->get_modes_from_qrgmode($mode, true);
+		}
+
+		// Collect unique callsigns, dxccs, and continents with validation
+		$callsigns = [];
+		$dxccs = [];
+		$continents = [];
+		foreach ($spots as $spot) {
+			// Validate spot has required properties
+			if (!isset($spot->spotted) || !isset($spot->dxcc_spotted->dxcc_id) || !isset($spot->dxcc_spotted->cont)) {
+				continue;
+			}
+			$callsigns[$spot->spotted] = $this->db->escape($spot->spotted);
+			$dxccs[$spot->dxcc_spotted->dxcc_id] = $this->db->escape($spot->dxcc_spotted->dxcc_id);
+			$continents[$spot->dxcc_spotted->cont] = $this->db->escape($spot->dxcc_spotted->cont);
+		}
+
+		// If no valid spots, return empty
+		if (empty($callsigns) && empty($dxccs) && empty($continents)) {
+			return [];
+		}
+
+		$station_ids = implode(',', array_map('intval', $logbooks_locations_array));
+		$callsigns_list = implode(',', $callsigns);
+		$dxccs_list = implode(',', $dxccs);
+		$continents_list = implode(',', $continents);
+
+		// Single mega-query to get all statuses
+		$sql = "
+			SELECT
+				COL_CALL as callsign,
+				COL_DXCC as dxcc,
+				COL_CONT as continent,
+				MAX(CASE WHEN ({$qsl_where}) THEN 1 ELSE 0 END) as is_confirmed
+			FROM {$this->config->item('table_name')}
+			WHERE station_id IN ({$station_ids})
+			AND (COL_CALL IN ({$callsigns_list})
+				OR COL_DXCC IN ({$dxccs_list})
+				OR COL_CONT IN ({$continents_list}))
+			{$band_sql}
+			{$mode_sql}
+			GROUP BY COL_CALL, COL_DXCC, COL_CONT
+		";
+
+		$query = $this->db->query($sql);
+		$results = $query->result_array();
+
+		// Build lookup maps
+		$worked_calls = [];
+		$cnfmd_calls = [];
+		$worked_dxccs = [];
+		$cnfmd_dxccs = [];
+		$worked_conts = [];
+		$cnfmd_conts = [];
+
+		foreach ($results as $row) {
+			$worked_calls[$row['callsign']] = true;
+			$worked_dxccs[$row['dxcc']] = true;
+			$worked_conts[$row['continent']] = true;
+
+			if ($row['is_confirmed'] == 1) {
+				$cnfmd_calls[$row['callsign']] = true;
+				$cnfmd_dxccs[$row['dxcc']] = true;
+				$cnfmd_conts[$row['continent']] = true;
+			}
+		}
+
+		// Map results back to spots
+		$statuses = [];
+		foreach ($spots as $spot) {
+			// Skip spots with missing data
+			if (!isset($spot->spotted) || !isset($spot->dxcc_spotted->dxcc_id) || !isset($spot->dxcc_spotted->cont)) {
+				continue;
+			}
+
+			$callsign = $spot->spotted;
+			$dxcc = $spot->dxcc_spotted->dxcc_id;
+			$cont = $spot->dxcc_spotted->cont;
+
+			$statuses[$callsign] = [
+				'worked_call' => isset($worked_calls[$callsign]),
+				'worked_dxcc' => isset($worked_dxccs[$dxcc]),
+				'worked_continent' => isset($worked_conts[$cont]),
+				'cnfmd_call' => isset($cnfmd_calls[$callsign]),
+				'cnfmd_dxcc' => isset($cnfmd_dxccs[$dxcc]),
+				'cnfmd_continent' => isset($cnfmd_conts[$cont])
+			];
+		}
+
+		return $statuses;
+	}
+
+	/**
+	 * Batch version - Get last worked info for multiple callsigns in a single query
+	 *
+	 * @param array $callsigns Array of callsigns to check
+	 * @param array $logbooks_locations_array Station IDs
+	 * @param string $band Band filter
+	 * @return array Keyed by callsign with last worked info
+	 */
+	function get_batch_last_worked($callsigns, $logbooks_locations_array, $band = null) {
+		if (empty($callsigns) || empty($logbooks_locations_array)) {
+			return [];
+		}
+
+		// Build band filter
+		$band_sql = '';
+		$band = ($band == 'All') ? null : $band;
+		if ($band != null && $band != 'SAT') {
+			$band_sql = " AND COL_BAND = " . $this->db->escape($band);
+		} else if ($band == 'SAT') {
+			$band_sql = " AND COL_SAT_NAME != ''";
+		}
+
+		$station_ids = implode(',', array_map('intval', $logbooks_locations_array));
+		$callsigns_list = implode(',', array_map([$this->db, 'escape'], $callsigns));
+
+		// Validate we have valid data
+		if (empty($station_ids) || empty($callsigns_list)) {
+			return [];
+		}
+
+		// Query to get the most recent QSO for each callsign
+		// Using a subquery to get max time per callsign, then join to get the full record
+		$sql = "
+			SELECT t1.COL_CALL, t1.COL_TIME_ON as LAST_QSO, t1.COL_MODE as LAST_MODE
+			FROM {$this->config->item('table_name')} t1
+			INNER JOIN (
+				SELECT COL_CALL, MAX(COL_TIME_ON) as max_time
+				FROM {$this->config->item('table_name')}
+				WHERE station_id IN ({$station_ids})
+				AND COL_CALL IN ({$callsigns_list})
+				{$band_sql}
+				GROUP BY COL_CALL
+			) t2 ON t1.COL_CALL = t2.COL_CALL AND t1.COL_TIME_ON = t2.max_time
+			WHERE t1.station_id IN ({$station_ids})
+			{$band_sql}
+		";
+
+		$query = $this->db->query($sql);
+		$results = $query->result();
+
+		// Build lookup map keyed by callsign
+		$last_worked = [];
+		foreach ($results as $row) {
+			$last_worked[$row->COL_CALL] = $row;
+		}
+
+		return $last_worked;
+	}
+
 	function check_sat_grid($grid) {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
