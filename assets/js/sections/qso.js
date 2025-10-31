@@ -232,8 +232,19 @@ $("#callsign").on("compositionend", function(e){
 
 $(document).on("keydown", function (e) {
 	if (e.key === "Escape" && $('#callsign').val() != '') { // escape key maps to keycode `27`
-		// console.log("Escape key pressed");
+		preventLookup = true;
+
+		if (lookupCall) {
+			lookupCall.abort();
+		}
+
 		reset_fields();
+
+		// make sure the focusout event is finished before we allow a new lookup
+		setTimeout(() => {
+			preventLookup = false;
+		}, 100);
+		// console.log("Escape key pressed");
 		$('#callsign').trigger("focus");
 	}
 });
