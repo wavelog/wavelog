@@ -1204,6 +1204,8 @@ var DX_WATERFALL_UTILS = {
                 wasPreventLookupSet = true;
             }
 
+            reset_fields();
+
             // Populate the callsign input field
             var callsignInput = $('#callsign');
             var formattedCallsign = spotData.callsign.toUpperCase().replace(/0/g, 'Ø');
