@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * @fileoverview DX WATERFALL for WaveLog
  * @version 0.9.1 // also change line 38
@@ -1166,45 +1167,42 @@ var DX_WATERFALL_UTILS = {
                 this.initCache();
             }
 
-            // Check if button exists and click it
+            // Explicitly clear park reference fields FIRST
+            // This ensures they're cleared even if reset button doesn't fully clear them
+            var parkRefFields = [
+                {selector: '#sota_ref', isSelectize: true},
+                {selector: '#pota_ref', isSelectize: true},
+                {selector: '#wwff_ref', isSelectize: true},
+                {selector: '#iota_ref', isSelectize: false},  // IOTA is not selectize
+                {selector: '#darc_dok', isSelectize: true}
+            ];
+
+            parkRefFields.forEach(function(field) {
+                var $element = $(field.selector);
+                if ($element.length > 0) {
+                    if (field.isSelectize) {
+                        // For selectize fields, must call .selectize() method first to get instance
+                        var $select = $element.selectize();
+                        var selectize = $select[0].selectize;
+                        if (selectize) {
+                            selectize.clear();
+                        }
+                    } else {
+                        // Use standard val("") for non-selectize fields (IOTA)
+                        $element.val("");
+                    }
+                }
+            });
+
+            // Then click the reset button to clear other fields
             if (this.$btnReset && this.$btnReset.length > 0) {
                 this.$btnReset.click();
             }
         },
 
         /**
-         * Clear only park reference fields (SOTA, POTA, IOTA, WWFF)
-         * This preserves callsign lookup results (gridsquare, name, QTH, etc.)
-         * while clearing previous park references
-         */
-        clearParkReferences: function() {
-            // Clear SOTA reference (selectize field)
-            var $sotaSelect = $('#sota_ref');
-            if ($sotaSelect.length > 0 && $sotaSelect[0].selectize) {
-                $sotaSelect[0].selectize.clear();
-            }
-
-            // Clear POTA reference (selectize field)
-            var $potaSelect = $('#pota_ref');
-            if ($potaSelect.length > 0 && $potaSelect[0].selectize) {
-                $potaSelect[0].selectize.clear();
-            }
-
-            // Clear IOTA reference (regular select dropdown)
-            var $iotaSelect = $('#iota_ref');
-            if ($iotaSelect.length > 0) {
-                $iotaSelect.val('');
-            }
-
-            // Clear WWFF reference (selectize field)
-            var $wwffSelect = $('#wwff_ref');
-            if ($wwffSelect.length > 0 && $wwffSelect[0].selectize) {
-                $wwffSelect[0].selectize.clear();
-            }
-        },
-
-        /**
          * Populate QSO form with spot data (callsign, mode, and park references)
+         * Assumes form has already been cleared if needed
          * @param {Object} spotData - Spot data object
          * @param {string} spotData.callsign - Callsign to populate
          * @param {string} [spotData.mode] - Mode to set
@@ -1235,10 +1233,6 @@ var DX_WATERFALL_UTILS = {
                 wasPreventLookupSet = true;
             }
 
-            // Clear only park references, not the entire form
-            // This preserves any existing callsign lookup data (gridsquare, name, QTH)
-            this.clearParkReferences();
-
             // Populate the callsign input field
             var callsignInput = $('#callsign');
             var formattedCallsign = spotData.callsign.toUpperCase().replace(/0/g, 'Ø');
@@ -1250,74 +1244,90 @@ var DX_WATERFALL_UTILS = {
                 var radioMode = DX_WATERFALL_UTILS.navigation.determineRadioMode(spotData);
                 // Use skipTrigger=true to prevent change event race condition
                 setMode(radioMode, true);
-            } else {
             }
 
-            // Populate SOTA reference if available (selectize field)
-            if (spotData.sotaRef && spotData.sotaRef !== '') {
-                var $sotaSelect = $('#sota_ref');
-                if ($sotaSelect.length > 0 && $sotaSelect[0].selectize) {
-                    var sotaSelectize = $sotaSelect[0].selectize;
-                    sotaSelectize.addOption({name: spotData.sotaRef});
-                    sotaSelectize.setValue(spotData.sotaRef, false);
-                }
-            }
+            // Store park ref data to re-apply after callsign lookup clears the form
+            // Don't populate them now - they'll just be cleared by resetDefaultQSOFields()
+            var parkRefs = {
+                sota: spotData.sotaRef || null,
+                pota: spotData.potaRef || null,
+                iota: spotData.iotaRef || null,
+                wwff: spotData.wwffRef || null
+            };
 
-            // Populate POTA reference if available (selectize field)
-            if (spotData.potaRef && spotData.potaRef !== '') {
-                var $potaSelect = $('#pota_ref');
-                if ($potaSelect.length > 0 && $potaSelect[0].selectize) {
-                    var potaSelectize = $potaSelect[0].selectize;
-                    potaSelectize.addOption({name: spotData.potaRef});
-                    potaSelectize.setValue(spotData.potaRef, false);
-                }
-            }
-
-            // Populate IOTA reference if available (regular select dropdown)
-            if (spotData.iotaRef && spotData.iotaRef !== '') {
-                var $iotaSelect = $('#iota_ref');
-                if ($iotaSelect.length > 0) {
-                    var optionExists = $iotaSelect.find('option[value="' + spotData.iotaRef + '"]').length > 0;
-                    if (optionExists) {
-                        $iotaSelect.val(spotData.iotaRef);
-                    } else {
-                        $iotaSelect.append($('<option>', {
-                            value: spotData.iotaRef,
-                            text: spotData.iotaRef
-                        }));
-                        $iotaSelect.val(spotData.iotaRef);
-                    }
-                    // Don't trigger change event - it's unnecessary and may cause side effects
-                }
-            }
-
-            // Populate WWFF reference if available (selectize field)
-            if (spotData.wwffRef && spotData.wwffRef !== '') {
-                var $wwffSelect = $('#wwff_ref');
-                if ($wwffSelect.length > 0 && $wwffSelect[0].selectize) {
-                    var wwffSelectize = $wwffSelect[0].selectize;
-                    wwffSelectize.addOption({name: spotData.wwffRef});
-                    wwffSelectize.setValue(spotData.wwffRef, false);
-                }
-            }
-
-            // Trigger callsign lookup if requested
+            // Trigger callsign lookup immediately, then trigger park ref lookups
             if (triggerLookup) {
                 var self = this;
+
+                // Set up one-time event listener for when callsign lookup completes
+                $(document).one('callsignLookupComplete', function() {
+                    // Re-populate park references after callsign lookup has cleared them
+                    if (parkRefs.sota) {
+                        var $sotaSelect = $('#sota_ref');
+                        if ($sotaSelect.length > 0 && $sotaSelect[0].selectize) {
+                            var sotaSelectize = $sotaSelect[0].selectize;
+                            sotaSelectize.addOption({name: parkRefs.sota});
+                            sotaSelectize.setValue(parkRefs.sota, false);
+                            $('#sota_ref').trigger('change');
+                        }
+                    }
+
+                    if (parkRefs.pota) {
+                        var $potaSelect = $('#pota_ref');
+                        if ($potaSelect.length > 0 && $potaSelect[0].selectize) {
+                            var potaSelectize = $potaSelect[0].selectize;
+                            potaSelectize.addOption({name: parkRefs.pota});
+                            potaSelectize.setValue(parkRefs.pota, false);
+                            $('#pota_ref').trigger('change');
+                        }
+                    }
+
+                    if (parkRefs.iota) {
+                        var $iotaSelect = $('#iota_ref');
+                        if ($iotaSelect.length > 0) {
+                            var optionExists = $iotaSelect.find('option[value="' + parkRefs.iota + '"]').length > 0;
+                            if (!optionExists) {
+                                $iotaSelect.append($('<option>', {
+                                    value: parkRefs.iota,
+                                    text: parkRefs.iota
+                                }));
+                            }
+                            $iotaSelect.val(parkRefs.iota);
+                            $('#iota_ref').trigger('change');
+                        }
+                    }
+
+                    if (parkRefs.wwff) {
+                        var $wwffSelect = $('#wwff_ref');
+                        if ($wwffSelect.length > 0 && $wwffSelect[0].selectize) {
+                            var wwffSelectize = $wwffSelect[0].selectize;
+                            wwffSelectize.addOption({name: parkRefs.wwff});
+                            wwffSelectize.setValue(parkRefs.wwff, false);
+                            $('#wwff_ref').trigger('change');
+                        }
+                    }
+
+                    DX_WATERFALL_UTILS.navigation.navigating = false;
+                });
+
                 this.pendingLookupTimer = setTimeout(function() {
                     // Clear preventLookup flag just before triggering the lookup
                     if (wasPreventLookupSet) {
                         preventLookup = false;
                     }
-                    callsignInput.trigger('focusout');
-                    self.pendingLookupTimer = null;
 
-                    // Clear navigation flag after form population completes
-                    DX_WATERFALL_UTILS.navigation.navigating = false;
+                    // Trigger callsign lookup
+                    callsignInput.trigger('focusout');
+
+                    self.pendingLookupTimer = null;
                 }, 50);
             } else {
                 // No lookup - clear navigation flag immediately
                 DX_WATERFALL_UTILS.navigation.navigating = false;
+                // Clear the preventLookup flag
+                if (wasPreventLookupSet) {
+                    preventLookup = false;
+                }
             }
         }
     },
