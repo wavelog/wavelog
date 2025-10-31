@@ -1,6 +1,6 @@
 /**
  * @fileoverview DX WATERFALL for WaveLog
- * @version 0.9.0
+ * @version 0.9.1 // also change line 38
  * @author Wavelog Team
  *
  * @description
@@ -35,7 +35,7 @@
 
 var DX_WATERFALL_CONSTANTS = {
     // Version
-    VERSION: '0.9.0', // DX Waterfall version (keep in sync with @version in file header)
+    VERSION: '0.9.1', // DX Waterfall version (keep in sync with @version in file header)
 
     // Debug and logging
     DEBUG_MODE: false, // Set to true for verbose logging, false for production
@@ -1173,6 +1173,37 @@ var DX_WATERFALL_UTILS = {
         },
 
         /**
+         * Clear only park reference fields (SOTA, POTA, IOTA, WWFF)
+         * This preserves callsign lookup results (gridsquare, name, QTH, etc.)
+         * while clearing previous park references
+         */
+        clearParkReferences: function() {
+            // Clear SOTA reference (selectize field)
+            var $sotaSelect = $('#sota_ref');
+            if ($sotaSelect.length > 0 && $sotaSelect[0].selectize) {
+                $sotaSelect[0].selectize.clear();
+            }
+
+            // Clear POTA reference (selectize field)
+            var $potaSelect = $('#pota_ref');
+            if ($potaSelect.length > 0 && $potaSelect[0].selectize) {
+                $potaSelect[0].selectize.clear();
+            }
+
+            // Clear IOTA reference (regular select dropdown)
+            var $iotaSelect = $('#iota_ref');
+            if ($iotaSelect.length > 0) {
+                $iotaSelect.val('');
+            }
+
+            // Clear WWFF reference (selectize field)
+            var $wwffSelect = $('#wwff_ref');
+            if ($wwffSelect.length > 0 && $wwffSelect[0].selectize) {
+                $wwffSelect[0].selectize.clear();
+            }
+        },
+
+        /**
          * Populate QSO form with spot data (callsign, mode, and park references)
          * @param {Object} spotData - Spot data object
          * @param {string} spotData.callsign - Callsign to populate
@@ -1204,7 +1235,9 @@ var DX_WATERFALL_UTILS = {
                 wasPreventLookupSet = true;
             }
 
-            reset_fields();
+            // Clear only park references, not the entire form
+            // This preserves any existing callsign lookup data (gridsquare, name, QTH)
+            this.clearParkReferences();
 
             // Populate the callsign input field
             var callsignInput = $('#callsign');
