@@ -1,72 +1,19 @@
 <script>
+	// Global variables that don't require jQuery
 	var dxcluster_provider = "<?php echo base_url(); ?>index.php/dxcluster";
 	var cat_timeout_interval = "<?php echo $this->optionslib->get_option('cat_timeout_interval'); ?>";
 	var dxcluster_maxage = <?php echo $this->optionslib->get_option('dxcluster_maxage') ?? 60; ?>;
 	var custom_date_format = "<?php echo $custom_date_format ?>";
 	var popup_warning = "<?= __("Pop-up was blocked! Please allow pop-ups for this site permanently."); ?>";
-	var lang_click_to_prepare_logging = "<?= __("Click to prepare logging."); ?>";
 
-	// Handle "All" option for multi-select dropdowns
-	$(document).ready(function() {
-		// Disable Apply Filters button initially
-		$('#applyFiltersButton').prop('disabled', true);
-
-		// Function to enable Apply Filters button when changes are made
-		function enableApplyButton() {
-			$('#applyFiltersButton').prop('disabled', false);
-		}
-
-		// Function to handle All option selection
-		function handleAllOption(selectId) {
-			$('#' + selectId).on('change', function() {
-				let selected = $(this).val() || [];
-
-				// If "All" was just selected, deselect all others
-				if (selected.includes('All') || selected.includes('Any')) {
-					let allValue = selected.includes('All') ? 'All' : 'Any';
-					if (selected.length > 1) {
-						// All was just selected, keep only All
-						$(this).val([allValue]);
-					}
-				} else if (selected.length === 0) {
-					// Nothing selected, select All
-					let allValue = selectId === 'decontSelect' ? 'Any' : 'All';
-					$(this).val([allValue]);
-				}
-
-				// Enable Apply Filters button
-				enableApplyButton();
-			});
-		}
-
-		// Apply to all filter selects
-		handleAllOption('cwnSelect');
-		handleAllOption('decontSelect');
-		handleAllOption('band');
-		handleAllOption('mode');
-	});
+	// Detect OS for proper keyboard shortcuts
+	var isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+	var modKey = isMac ? 'Cmd' : 'Ctrl';
+	var lang_click_to_prepare_logging = "<?= __("Click to prepare logging."); ?> (" + modKey + "+Click <?= __("for new window"); ?>)";
 </script>
 
 <style>
-	.spotted_call {
-		cursor: alias;
-	}
-
-	.kHz::after {
-		content: " kHz";
-	}
-
-	.bandlist {
-		-webkit-transition: all 15s ease;
-		-moz-transition: all 15s ease;
-		-o-transition: all 15s ease;
-		transition: 15s;
-	}
-
 	.fresh {
-		/* -webkit-transition: all 15s ease;
-    -moz-transition: all 15s ease;
-    -o-transition: all 15s ease; */
 		transition: all 500ms ease;
 		--bs-table-bg: #3981b2;
 		--bs-table-accent-bg: #3981b2;
@@ -76,69 +23,373 @@
 		color: inherit;
 		text-decoration: none;
 	}
-	.dataTables_wrapper {
-		margin: 10px;
+
+	/* Make table rows clickable for prepare logging */
+	.spottable tbody tr,
+	.spottable tbody tr td,
+	.spottable tbody tr td *,
+	.spottable tbody tr span,
+	.spottable tbody tr a,
+	.spottable tbody tr td i,
+	.spottable tbody tr td .flag-emoji {
+		cursor: pointer !important;
 	}
 
-	/* Ensure table respects container width */
-	.spottable {
-		width: 100% !important;
-		table-layout: auto;
+	.spottable tbody tr td:nth-child(4) a {
+		text-decoration: underline !important;
+		cursor: pointer !important;
 	}
 
-	.dataTables_wrapper {
-		overflow-x: auto;
+	.spottable tbody tr td:nth-child(7) i:hover {
+		opacity: 0.7;
+		transform: scale(1.1);
+		transition: all 0.2s ease;
 	}
 
-	/* Style for multi-select dropdowns */
-	select[multiple] {
-		height: auto !important;
-		min-height: 300px;
-		max-height: 600px;
+	/* Status bar styling */
+	.status-bar {
+		font-size: 0.875rem;
+		color: var(--bs-body-color);
+		font-family: 'Courier New', Courier, 'Lucida Console', Monaco, monospace;
+		background-color: var(--bs-body-bg);
+		border-radius: 8px;
+		margin: 0.25rem 0;
+		padding: 10px 15px;
 	}
 
-	/* Make multi-select options look more interactive */
-	select[multiple] option {
-		padding: 8px 12px;
-		border-radius: 3px;
-		margin: 2px;
-		cursor: pointer;
+	.status-bar-inner {
+		display: flex;
+		align-items: center;
+		gap: 15px;
 	}
 
-	select[multiple] option:hover {
-		background-color: #e9ecef !important;
-	}
-
-	select[multiple] option:checked {
-		background-color: #0d6efd !important;
-		color: white !important;
+	.status-bar-left {
+		flex: 1;
+		min-width: 0;
 		font-weight: 500;
 	}
 
-	/* Add visual checkmark indicator for selected options */
-	select[multiple] option:checked::before {
-		content: "✓ ";
-		font-weight: bold;
+	#statusMessage {
+		cursor: help;
 	}
 
-	/* Responsive adjustments for filter dropdown */
+	.status-bar-right {
+		flex: 0 0 20%;
+		min-width: 150px;
+		font-weight: 500;
+		color: var(--bs-secondary);
+		text-align: right;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+	}
+
+	.dataTables_wrapper {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+	}
+
+	.spottable {
+		width: 100%;
+		table-layout: fixed;
+		font-family: 'Courier New', Courier, 'Lucida Console', Monaco, monospace;
+		font-size: calc(1rem - 2px);
+	}
+
+	.spottable thead th {
+		font-weight: normal;
+	}
+
+	/* Column widths - consolidated selectors */
+	.spottable th:nth-child(1), .spottable td:nth-child(1) { min-width: 60px; width: auto; }
+	.spottable th:nth-child(2), .spottable td:nth-child(2) { min-width: 75px; width: auto; }
+	.spottable th:nth-child(3), .spottable td:nth-child(3) { min-width: 55px; width: auto; }
+	.spottable th:nth-child(4), .spottable td:nth-child(4) { min-width: 90px; width: auto; }
+	.spottable th:nth-child(5), .spottable td:nth-child(5) { min-width: 120px; max-width: 250px; width: auto; }
+	.spottable th:nth-child(6), .spottable td:nth-child(6) { min-width: 45px; width: auto; }
+	.spottable th:nth-child(7), .spottable td:nth-child(7) { min-width: 80px; width: auto; }
+	.spottable th:nth-child(8), .spottable td:nth-child(8) { min-width: 80px; width: auto; }
+	.spottable th:nth-child(9), .spottable td:nth-child(9) { min-width: 150px; width: auto; }
+
+	.spottable td {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.spottable td:nth-child(9) {
+		white-space: normal;
+		word-wrap: break-word;
+		overflow-wrap: break-word;
+		font-size: calc(1rem - 4px);
+	}
+
+	.spottable td:nth-child(5) {
+		font-family: 'Segoe UI Emoji', 'Noto Color Emoji', 'Apple Color Emoji', Arial, sans-serif;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.spottable .flag-emoji {
+		font-family: "Twemoji Country Flags", "Helvetica", "Comic Sans", sans-serif;
+		font-style: normal;
+		font-variant: normal;
+	}
+
+	.spottable img.emoji {
+		height: 1.3em;
+		width: 1.3em;
+		margin: 0 .05em 0 .1em;
+		vertical-align: -0.25em;
+		display: inline-block;
+	}
+
+	.spottable td:nth-child(7) {
+		overflow: visible;
+		white-space: nowrap;
+	}
+
+	.spottable thead th {
+		font-size: calc(1rem - 1px);
+		vertical-align: middle;
+	}
+
+	/* Fullscreen mode */
+	.bandmap-logo-fullscreen {
+		display: none;
+	}
+
+	.bandmap-fullscreen .bandmap-logo-fullscreen {
+		display: inline-block;
+	}
+
+	.bandmap-fullscreen {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		width: 100vw;
+		height: 100vh;
+		max-width: 100vw;
+		margin: 0;
+		padding: 0;
+		z-index: 9999;
+		overflow: hidden;
+		background: var(--bs-body-bg, #fff);
+	}
+
+	.bandmap-fullscreen .card {
+		height: 100vh;
+		margin: 0;
+		border-radius: 0;
+		display: flex;
+		flex-direction: column;
+		border: none;
+	}
+
+	.bandmap-fullscreen .card-header {
+		flex-shrink: 0;
+	}
+
+	.bandmap-fullscreen .card-body:first-of-type {
+		flex-shrink: 0;
+		flex-grow: 0;
+		padding: 0.5rem;
+	}
+
+	.bandmap-fullscreen .menu-bar {
+		flex-shrink: 0;
+		margin-bottom: 0;
+	}
+
+	.bandmap-fullscreen .card-body:last-child {
+		flex: 1 1 0;
+		min-height: 0;
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+		padding: 0.5rem;
+	}
+
+	.bandmap-fullscreen .table-responsive {
+		flex: 1 1 0;
+		min-height: 0;
+		overflow: auto;
+		height: auto;
+	}
+
+	.bandmap-fullscreen .dataTables_processing {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		z-index: 10001;
+	}
+
+	.bandmap-fullscreen .dropdown-menu {
+		z-index: 10002;
+		position: fixed;
+	}
+
+	body.fullscreen-active #page-wrapper,
+	body.fullscreen-active nav,
+	body.fullscreen-active .navbar,
+	body.fullscreen-active header,
+	body.fullscreen-active #bandmapContainer > .d-flex.align-items-center.mb-3,
+	body.fullscreen-active #bandmapContainer > #radio_status,
+	body.fullscreen-active #bandmapContainer > .messages {
+		display: none !important;
+	}
+
+	body.fullscreen-active .fullscreen-wavelog-text {
+		display: inline !important;
+	}
+
+	body.fullscreen-active {
+		overflow: hidden;
+	}
+
+	#fullscreenToggle {
+		cursor: pointer;
+		font-size: 1.2rem;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 36px;
+		height: 36px;
+	}
+
+	/* Menu bar and table styling */
+	.menu-bar {
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+
+	.card-body.pt-1 {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+
+	.table-responsive {
+		overflow: auto;
+		margin: 0;
+		padding: 0;
+		background-color: var(--bs-card-cap-bg, var(--bs-secondary-bg));
+		border: var(--bs-card-border-width, 1px) solid var(--bs-card-border-color, rgba(0,0,0,.125));
+		border-radius: 8px;
+	}
+
+	.spottable {
+		border-bottom: none;
+		margin-bottom: 0;
+		border-radius: 8px;
+		overflow: hidden;
+	}
+
+	.spottable thead tr {
+		border-top: 1px solid var(--bs-border-color);
+		border-bottom: 1px solid var(--bs-border-color);
+	}
+
+	.spottable tbody tr:last-child {
+		border-bottom: 1px solid var(--bs-border-color);
+	}
+
+	.spottable tbody tr,
+	.spottable tbody tr td {
+		border-top: none;
+		border-bottom: none;
+	}
+
+	/* Filter dropdowns */
+	select[multiple] {
+		height: auto;
+		min-height: 350px;
+		max-height: 700px;
+	}
+
+	select[multiple].filter-short {
+		min-height: 150px;
+		max-height: 220px;
+	}
+
+	select[multiple] option:checked {
+		background-color: var(--bs-primary);
+		color: white;
+		font-weight: normal;
+	}
+
+	.dropdown-menu .mb-3 {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		min-height: 100px;
+	}
+
+	.dropdown-menu .filter-label-bottom {
+		margin-top: auto;
+		margin-bottom: 0.25rem;
+		padding-bottom: 0;
+		text-align: left;
+	}
+
+	.dropdown-menu select.form-select {
+		margin-bottom: 0;
+	}
+
+	.dropdown-menu select {
+		flex-shrink: 0;
+	}
+
+	.filter-tip {
+		background-color: var(--bs-card-cap-bg, var(--bs-secondary-bg));
+		color: var(--bs-body-color);
+		border: 2px solid var(--bs-dark, #212529);
+		padding: 8px 12px;
+		border-radius: 6px;
+		margin-bottom: 15px;
+		font-size: 0.875rem;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.filter-label-small {
+		font-size: 0.8rem;
+		margin-bottom: 0.25rem;
+		font-weight: 500;
+	}
+
+	.search-icon-clickable {
+		cursor: pointer;
+	}
+
+	.search-icon-clickable:hover {
+		background-color: var(--bs-secondary-bg);
+	}
+
+	/* Responsive adjustments */
 	@media (max-width: 768px) {
 		.dropdown-menu {
-			min-width: 95vw !important;
-			max-width: 95vw !important;
+			min-width: 95vw;
+			max-width: 95vw;
 		}
 
 		select[multiple] {
 			min-height: 180px;
 			max-height: 375px;
 		}
+
+		select[multiple].filter-short {
+			min-height: 100px;
+			max-height: 150px;
+		}
 	}
 
 	@media (max-width: 576px) {
-		.filterbody .row > div {
-			margin-bottom: 0.5rem;
-		}
-
 		select[multiple] {
 			min-height: 150px;
 			max-height: 300px;
@@ -147,139 +398,288 @@
 </style>
 
 
-<div class="container">
-	<br>
-	<center><button type="button" class="btn" id="menutoggle"><i class="fa fa-arrow-up" id="menutoggle_i"></i></button></center>
-
+<div class="container" id="bandmapContainer">
 	<div id="errormessage" style="display: none;"></div>
 
-	<h2 id="dxtitle"><?php echo $page_title; ?></h2>
+	<!-- Radio Selector - Moved to top -->
+	<div class="d-flex align-items-center mb-3">
+		<label class="my-1 me-2" for="radio"><?= __("Radio"); ?></label>
+		<select class="form-select form-select-sm radios my-1 me-sm-2 w-auto" id="radio" name="radio">
+			<option value="0" selected="selected"><?= __("None"); ?></option>
+			<option value="ws"<?php if ($this->session->userdata('radio') == 'ws') { echo ' selected="selected"'; } ?>><?= __("WebSocket (Requires WLGate>1.1.10)"); ?></option>
+			<?php foreach ($radios->result() as $row) { ?>
+				<option value="<?php echo $row->id; ?>" <?php if ($this->session->userdata('radio') == $row->id) {
+															echo "selected=\"selected\"";
+														} ?>><?php echo $row->radio; ?></option>
+			<?php } ?>
+		</select>
+	</div>
 
-	<div class="tab-content" id="myTabContent">
-		<div class="messages my-1 me-2"></div>
+	<!-- Radio Status Panel (dynamically populated by JavaScript) -->
+	<div id="radio_status"></div>
+	<!-- Messages -->
+	<div class="messages my-1 mx-3"></div>
 
-		<!-- Radio Selector -->
-		<div class="d-flex align-items-center mb-2">
-			<label class="my-1 me-2" for="radio"><?= __("Radio"); ?></label>
-			<select class="form-select form-select-sm radios my-1 me-sm-2 w-auto" id="radio" name="radio">
-				<option value="0" selected="selected"><?= __("None"); ?></option>
-				<option value="ws"<?php if ($this->session->userdata('radio') == 'ws') { echo ' selected="selected"'; } ?>><?= __("WebSocket (Requires WLGate>1.1.10)"); ?></option>
-				<?php foreach ($radios->result() as $row) { ?>
-					<option value="<?php echo $row->id; ?>" <?php if ($this->session->userdata('radio') == $row->id) {
-																echo "selected=\"selected\"";
-															} ?>><?php echo $row->radio; ?></option>
-				<?php } ?>
-			</select>
+	<!-- DX Cluster Panel -->
+	<div class="card">
+		<div class="card-header d-flex justify-content-between align-items-center">
+			<div class="d-flex align-items-center">
+				<a href="<?php echo base_url(); ?>" title="<?= __("Return to Home"); ?>">
+					<img class="headerLogo me-2 bandmap-logo-fullscreen" src="<?php echo base_url(); ?>assets/logo/<?php echo $this->optionslib->get_logo('header_logo'); ?>.png" alt="Logo" style="height: 32px; width: auto; cursor: pointer;" />
+				</a>
+				<h5 class="mb-0">DX Cluster - spot list</h5>
+			</div>
+			<div class="d-flex align-items-center gap-3">
+				<span class="fullscreen-wavelog-text" style="display: none; font-weight: 500; color: var(--bs-body-color);">www.wavelog.org</span>
+				<button type="button" class="btn btn-sm" id="fullscreenToggle" title="<?= __("Toggle Fullscreen"); ?>" style="background: none; border: none; padding: 0;">
+					<i class="fas fa-expand" id="fullscreenIcon" style="font-size: 1.2rem;"></i>
+				</button>
+			</div>
 		</div>
-
-		<!-- Filters Section -->
-		<div class="row pt-2">
-			<div class="col-12">
-				<div class="btn-toolbar d-flex flex-wrap align-items-center gap-2" role="toolbar">
-					<!-- Filter Button Group -->
-					<div class="btn-group" role="group">
-						<!-- Main Filters Dropdown -->
-						<div class="dropdown" data-bs-auto-close="outside">
-							<button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-								<i class="fas fa-filter"></i> <?= __("Filters"); ?>
-							</button>
-							<div class="dropdown-menu dropdown-menu-start p-3 mt-2" aria-labelledby="filterDropdown" style="min-width: 800px; max-width: 95vw; max-height: 80vh; overflow-y: auto;">
-								<div class="alert alert-info mb-3 py-2" role="alert">
-									<i class="fas fa-info-circle"></i>
-									<small><strong><?= __("Tip:"); ?></strong> <?= __("Hold Ctrl (Windows) or Cmd (Mac) to select multiple options. Use 'All' to select everything."); ?></small>
-								</div>
-								<div class="card-body filterbody">
-									<div class="row">
-										<div class="mb-3 col-12 col-sm-6 col-md-4 col-lg-3">
-											<label class="form-label" for="cwnSelect"><?= __("DXCC-Status"); ?></label>
-											<select class="form-select form-select-sm border border-secondary" id="cwnSelect" name="dxcluster_cwn" multiple="multiple" aria-describedby="dxcluster_cwnHelp">
-												<option value="All" selected><?= __("All"); ?></option>
-												<option value="notwkd"><?= __("Not worked"); ?></option>
-												<option value="wkd"><?= __("Worked"); ?></option>
-												<option value="cnf"><?= __("Confirmed"); ?></option>
-												<option value="ucnf"><?= __("Worked, not Confirmed"); ?></option>
-											</select>
-										</div>
-										<div class="mb-3 col-12 col-sm-6 col-md-4 col-lg-3">
-											<label class="form-label" for="decontSelect"><?= __("Spots de"); ?></label>
-											<select class="form-select form-select-sm border border-secondary" id="decontSelect" name="dxcluster_decont" multiple="multiple" aria-describedby="dxcluster_decontHelp">
-												<option value="Any" selected><?= __("All"); ?></option>
-												<option value="AF" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'AF') {echo " selected";} ?>><?= __("Africa"); ?></option>
-												<option value="AN" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'AN') {echo " selected";} ?>><?= __("Antarctica"); ?></option>
-												<option value="AS" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'AS') {echo " selected";} ?>><?= __("Asia"); ?></option>
-												<option value="EU" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'EU') {echo " selected";} ?>><?= __("Europe"); ?></option>
-												<option value="NA" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'NA') {echo " selected";} ?>><?= __("North America"); ?></option>
-												<option value="OC" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'OC') {echo " selected";} ?>><?= __("Oceania"); ?></option>
-												<option value="SA" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'SA') {echo " selected";} ?>><?= __("South America"); ?></option>
-											</select>
-										</div>
-										<div class="mb-3 col-12 col-sm-6 col-md-4 col-lg-3">
-											<label class="form-label" for="band"><?= __("Band"); ?></label>
-											<select id="band" class="form-select form-select-sm border border-secondary" name="band" multiple="multiple">
-												<option value="All" selected><?= __("All"); ?></option>
-												<?php foreach ($bands as $key => $bandgroup) {
-													echo '<optgroup label="' . strtoupper($key) . '">';
-													foreach ($bandgroup as $band) {
-														echo '<option value="' . $band . '"';
-														echo '>' . $band . '</option>' . "\n";
-													}
-													echo '</optgroup>';
-												}
-												?>
-											</select>
-										</div>
-										<div class="mb-3 col-12 col-sm-6 col-md-4 col-lg-3">
-											<label class="form-label" for="mode"><?= __("Mode"); ?></label>
-											<select id="mode" class="form-select form-select-sm border border-secondary" name="mode" multiple="multiple">
-												<option value="All" selected><?= __("All"); ?></option>
-												<option value="phone"><?= __("Phone"); ?></option>
-												<option value="cw"><?= __("CW"); ?></option>
-												<option value="digi"><?= __("Digi"); ?></option>
-											</select>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- Apply Filters Button -->
-						<button type="button" class="btn btn-sm btn-success" id="applyFiltersButton" disabled>
-							<i class="fas fa-check"></i> <?= __("Apply Filters"); ?>
-						</button>
+		<div class="card-body pt-1">
+		<!-- Filters Section with darker background and rounded corners -->
+		<div class="menu-bar">
+			<!-- First Row: Band Filters, Mode Filters, and Continent Filters -->
+			<div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+				<!-- Band Filter Buttons -->
+				<div class="d-flex flex-wrap gap-2 align-items-center">
+					<small class="text-muted me-1 flex-shrink-0"><?= __("Bands:"); ?></small>
+					<!-- MF Band -->
+					<div class="btn-group flex-shrink-0" role="group">
+						<button class="btn btn-sm btn-primary" type="button" id="toggle160mFilter" title="<?= __("Toggle 160m band filter"); ?>">160m</button>
+					</div>
+					<!-- HF Bands -->
+					<div class="btn-group flex-shrink-0" role="group">
+						<button class="btn btn-sm btn-primary" type="button" id="toggle80mFilter" title="<?= __("Toggle 80m band filter"); ?>">80m</button>
+						<button class="btn btn-sm btn-primary" type="button" id="toggle60mFilter" title="<?= __("Toggle 60m band filter"); ?>">60m</button>
+						<button class="btn btn-sm btn-primary" type="button" id="toggle40mFilter" title="<?= __("Toggle 40m band filter"); ?>">40m</button>
+						<button class="btn btn-sm btn-primary" type="button" id="toggle30mFilter" title="<?= __("Toggle 30m band filter"); ?>">30m</button>
+						<button class="btn btn-sm btn-primary" type="button" id="toggle20mFilter" title="<?= __("Toggle 20m band filter"); ?>">20m</button>
+						<button class="btn btn-sm btn-primary" type="button" id="toggle17mFilter" title="<?= __("Toggle 17m band filter"); ?>">17m</button>
+						<button class="btn btn-sm btn-primary" type="button" id="toggle15mFilter" title="<?= __("Toggle 15m band filter"); ?>">15m</button>
+						<button class="btn btn-sm btn-primary" type="button" id="toggle12mFilter" title="<?= __("Toggle 12m band filter"); ?>">12m</button>
+						<button class="btn btn-sm btn-primary" type="button" id="toggle10mFilter" title="<?= __("Toggle 10m band filter"); ?>">10m</button>
 					</div>
 
-					<!-- Search Input -->
-					<div class="input-group input-group-sm" style="max-width: 250px;">
-						<span class="input-group-text"><i class="fas fa-search"></i></span>
-						<input type="text" class="form-control" id="spotSearchInput" placeholder="<?= __("Search spots..."); ?>" aria-label="<?= __("Search"); ?>">
+					<!-- VHF Bands -->
+					<div class="btn-group flex-shrink-0" role="group">
+						<button class="btn btn-sm btn-primary" type="button" id="toggle6mFilter" title="<?= __("Toggle 6m band filter"); ?>">6m</button>
+						<button class="btn btn-sm btn-primary" type="button" id="toggle4mFilter" title="<?= __("Toggle 4m band filter"); ?>">4m</button>
+						<button class="btn btn-sm btn-primary" type="button" id="toggle2mFilter" title="<?= __("Toggle 2m band filter"); ?>">2m</button>
+					</div>
+
+					<!-- UHF Bands -->
+					<div class="btn-group flex-shrink-0" role="group">
+						<button class="btn btn-sm btn-primary" type="button" id="toggle70cmFilter" title="<?= __("Toggle 70cm band filter"); ?>">70cm</button>
+						<button class="btn btn-sm btn-primary" type="button" id="toggle23cmFilter" title="<?= __("Toggle 23cm band filter"); ?>">23cm</button>
+					</div>
+				</div>
+
+			<!-- Spacer to push modes and continents to the right -->
+			<div class="flex-grow-1"></div>
+
+			<!-- Mode Filter Buttons -->
+			<div class="d-flex flex-wrap gap-2 align-items-center">
+				<small class="text-muted me-1 flex-shrink-0"><?= __("Modes:"); ?></small>
+				<div class="btn-group flex-shrink-0" role="group">
+					<button class="btn btn-sm btn-primary" type="button" id="toggleCwFilter" title="<?= __("Toggle CW mode filter"); ?>">CW</button>
+					<button class="btn btn-sm btn-primary" type="button" id="toggleDigiFilter" title="<?= __("Toggle Digital mode filter"); ?>">Digi</button>
+					<button class="btn btn-sm btn-primary" type="button" id="togglePhoneFilter" title="<?= __("Toggle Phone mode filter"); ?>">Phone</button>
+				</div>
+			</div>
+
+			<!-- Continent Filter Buttons -->
+			<div class="d-flex flex-wrap gap-2 align-items-center">
+					<small class="text-muted me-1 flex-shrink-0"><?= __("de:"); ?></small>
+					<div class="btn-group flex-shrink-0" role="group">
+						<button class="btn btn-sm btn-primary" type="button" id="toggleAfricaFilter" title="<?= __("Toggle Africa continent filter"); ?>">AF</button>
+						<button class="btn btn-sm btn-primary" type="button" id="toggleAsiaFilter" title="<?= __("Toggle Asia continent filter"); ?>">AS</button>
+						<button class="btn btn-sm btn-primary" type="button" id="toggleEuropeFilter" title="<?= __("Toggle Europe continent filter"); ?>">EU</button>
+						<button class="btn btn-sm btn-primary" type="button" id="toggleNorthAmericaFilter" title="<?= __("Toggle North America continent filter"); ?>">NA</button>
+						<button class="btn btn-sm btn-primary" type="button" id="toggleSouthAmericaFilter" title="<?= __("Toggle South America continent filter"); ?>">SA</button>
 					</div>
 				</div>
 			</div>
+
+		<!-- Second Row: Filter Dropdown and Other Quick Filters -->
+		<div class="d-flex flex-wrap align-items-center gap-2">
+			<!-- Filter Button and Quick Filter Toggles -->
+			<div class="d-flex flex-wrap gap-2 align-items-center flex-grow-1">
+				<div class="dropdown">
+					<!-- Filter Dropdown Button -->
+					<button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+						<i class="fas fa-filter" id="filterIcon"></i> <?= __("Advanced Filters"); ?>
+					</button>
+					<div class="dropdown-menu dropdown-menu-start p-3 mt-2" aria-labelledby="filterDropdown" style="min-width: 1264px; max-width: 95vw; max-height: 98vh; overflow-y: auto;">
+						<!-- Filter tip -->
+						<div class="filter-tip">
+							<i class="fas fa-info-circle"></i>
+							<span id="filterTipText"></span>
+						</div>
+						<script>
+									// Set filter tip text based on OS
+									document.addEventListener('DOMContentLoaded', function() {
+										var isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+										var modKey = isMac ? 'Cmd' : 'Ctrl';
+										document.getElementById('filterTipText').textContent = 'Hold ' + modKey + ' and click to select multiple options';
+									});
+								</script>
+							<div class="row">
+								<!-- Column 1: DXCC-Status and Mode -->
+								<div class="mb-3 col-12 col-sm-6 col-md-4 col-lg">
+									<label class="form-label d-block filter-label-small" for="cwnSelect"><?= __("DXCC-Status"); ?></label>
+									<select class="form-select form-select-sm filter-short" id="cwnSelect" name="dxcluster_cwn" multiple="multiple" aria-describedby="dxcluster_cwnHelp">
+										<option value="All" selected><?= __("All"); ?></option>
+										<option value="notwkd"><?= __("Not worked"); ?></option>
+										<option value="wkd"><?= __("Worked"); ?></option>
+										<option value="cnf"><?= __("Confirmed"); ?></option>
+										<option value="ucnf"><?= __("Worked, not Confirmed"); ?></option>
+									</select>
+									<label class="form-label d-block filter-label-small mt-3" for="mode"><?= __("Mode"); ?></label>
+									<select id="mode" class="form-select form-select-sm filter-short" name="mode" multiple="multiple">
+										<option value="All" selected><?= __("All"); ?></option>
+										<option value="phone"><?= __("Phone"); ?></option>
+										<option value="cw"><?= __("CW"); ?></option>
+										<option value="digi"><?= __("Digi"); ?></option>
+									</select>
+								</div>
+								<!-- Column 2: Required Flags and Additional Flags -->
+								<div class="mb-3 col-12 col-sm-6 col-md-4 col-lg">
+									<label class="form-label d-block filter-label-small" for="requiredFlags"><?= __("Required Flags"); ?></label>
+									<select id="requiredFlags" class="form-select form-select-sm filter-short" name="required_flags" multiple="multiple">
+										<option value="lotw"><?= __("LoTW User"); ?></option>
+										<option value="notworked"><?= __("Not worked before"); ?></option>
+									</select>
+									<label class="form-label d-block filter-label-small mt-3" for="additionalFlags"><?= __("Additional Flags"); ?></label>
+									<select id="additionalFlags" class="form-select form-select-sm filter-short" name="additional_flags" multiple="multiple">
+										<option value="All" selected><?= __("All"); ?></option>
+										<option value="SOTA"><?= __("SOTA"); ?></option>
+										<option value="POTA"><?= __("POTA"); ?></option>
+										<option value="WWFF"><?= __("WWFF"); ?></option>
+										<option value="IOTA"><?= __("IOTA"); ?></option>
+										<option value="Contest"><?= __("Contest"); ?></option>
+									</select>
+								</div>
+								<!-- Column 3: Spots de Continent -->
+								<div class="mb-3 col-12 col-sm-6 col-md-4 col-lg">
+									<label class="form-label d-block filter-label-small" for="decontSelect"><?= __("Spots de Continent"); ?></label>
+									<select class="form-select form-select-sm" id="decontSelect" name="dxcluster_decont" multiple="multiple" aria-describedby="dxcluster_decontHelp">
+										<option value="Any"<?php if ($this->optionslib->get_option('dxcluster_decont') == '' || $this->optionslib->get_option('dxcluster_decont') == 'Any') {echo " selected";} ?>><?= __("All"); ?></option>
+										<option value="AF" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'AF') {echo " selected";} ?>><?= __("Africa"); ?></option>
+										<option value="AN" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'AN') {echo " selected";} ?>><?= __("Antarctica"); ?></option>
+										<option value="AS" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'AS') {echo " selected";} ?>><?= __("Asia"); ?></option>
+										<option value="EU" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'EU') {echo " selected";} ?>><?= __("Europe"); ?></option>
+										<option value="NA" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'NA') {echo " selected";} ?>><?= __("North America"); ?></option>
+										<option value="OC" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'OC') {echo " selected";} ?>><?= __("Oceania"); ?></option>
+										<option value="SA" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'SA') {echo " selected";} ?>><?= __("South America"); ?></option>
+									</select>
+								</div>
+								<!-- Column 4: Spotted Station Continent -->
+								<div class="mb-3 col-12 col-sm-6 col-md-4 col-lg">
+									<label class="form-label d-block filter-label-small" for="continentSelect"><?= __("Spotted Station Continent"); ?></label>
+									<select id="continentSelect" class="form-select form-select-sm" name="continent" multiple="multiple">
+										<option value="Any" selected><?= __("All"); ?></option>
+										<option value="AF"><?= __("Africa"); ?></option>
+										<option value="AN"><?= __("Antarctica"); ?></option>
+										<option value="AS"><?= __("Asia"); ?></option>
+										<option value="EU"><?= __("Europe"); ?></option>
+										<option value="NA"><?= __("North America"); ?></option>
+										<option value="OC"><?= __("Oceania"); ?></option>
+										<option value="SA"><?= __("South America"); ?></option>
+									</select>
+								</div>
+								<!-- Column 5: Band -->
+								<div class="mb-3 col-12 col-sm-6 col-md-4 col-lg">
+									<label class="form-label d-block filter-label-small" for="band"><?= __("Band"); ?></label>
+									<select id="band" class="form-select form-select-sm" name="band" multiple="multiple">
+										<option value="All" selected><?= __("All"); ?></option>
+										<?php foreach ($bands as $key => $bandgroup) {
+											echo '<optgroup label="' . strtoupper($key) . '">';
+											foreach ($bandgroup as $band) {
+												echo '<option value="' . $band . '"';
+												echo '>' . $band . '</option>' . "\n";
+											}
+											echo '</optgroup>';
+										}
+										?>
+									</select>
+							</div>
+						</div>
+
+						<!-- Buttons in popup -->
+						<div class="text-center mt-3">
+							<button type="button" class="btn btn-sm btn-success me-2" id="applyFiltersButtonPopup">
+								<i class="fas fa-check"></i> <?= __("Apply Filters"); ?>
+							</button>
+						<button type="button" class="btn btn-sm btn-secondary" id="clearFiltersButton">
+							<i class="fas fa-times"></i> <?= __("Clear Filters"); ?>
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- Quick Filter Toggle Buttons -->
+			<small class="text-muted me-1 flex-shrink-0"><?= __("Quick Filters:"); ?></small>
+			<div class="btn-group flex-shrink-0" role="group">
+				<button class="btn btn-sm btn-primary" type="button" id="toggleLotwFilter" title="<?= __("Toggle LoTW User filter"); ?>">
+					<i class="fas fa-upload"></i> <span class="d-none d-sm-inline">LoTW</span>
+				</button>
+				<button class="btn btn-sm btn-primary" type="button" id="toggleNotWorkedFilter" title="<?= __("Toggle Not Worked Before filter"); ?>">
+					<i class="fas fa-star"></i> <span class="d-none d-sm-inline">New</span>
+				</button>
+				<button class="btn btn-sm btn-primary" type="button" id="toggleDxccNeededFilter" title="<?= __("Toggle DXCC Needed filter"); ?>">
+					<i class="fas fa-globe"></i> <span class="d-none d-sm-inline">DXCC</span>
+				</button>
+				<button class="btn btn-sm btn-primary" type="button" id="toggleContextFilter" title="<?= __("Toggle Contest filter"); ?>">
+					<i class="fas fa-trophy"></i> <span class="d-none d-sm-inline">Contest</span>
+				</button>
+				<button class="btn btn-sm btn-primary" type="button" id="toggleGeoHunterFilter" title="<?= __("Toggle Geo Hunter (POTA/SOTA/IOTA/WWFF)"); ?>">
+					<i class="fas fa-map-marked-alt"></i> <span class="d-none d-sm-inline">Geo</span>
+				</button>
+			</div>
+
+			<!-- Search Input -->
+			<div class="input-group input-group-sm ms-auto flex-shrink-0" style="max-width: 300px; min-width: 200px;">
+				<input type="text" class="form-control" id="spotSearchInput" placeholder="<?= __("Search spots..."); ?>" aria-label="<?= __("Search"); ?>">
+				<span class="input-group-text search-icon-clickable" id="searchIcon"><i class="fas fa-search"></i></span>
+			</div>
+		</div>
+</div>
+			<!-- Status Bar showing filter info and refresh timer -->
+			<div class="status-bar">
+				<div class="status-bar-inner">
+					<div class="status-bar-left">
+						<span id="statusMessage"></span>
+					</div>
+					<div class="status-bar-right">
+						<i class="fas fa-hourglass-half me-1" id="refreshIcon"></i>
+						<span id="refreshTimer"></span>
+					</div>
+				</div>
+			</div>
+
+			<div class="table-responsive">
+				<table class="table table-striped table-hover spottable">
+					<thead>
+						<tr class="log_title titles">
+							<th title="<?= __("Time"); ?> UTC"><?= __("Time"); ?> UTC</th>
+							<th title="<?= __("Frequency"); ?> [MHz]"><?= __("Freq"); ?></th>
+							<th title="<?= __("Mode"); ?>"><?= __("Mode"); ?></th>
+							<th title="<?= __("Callsign"); ?>"><?= __("Call"); ?></th>
+							<th title="<?= __("DXCC Entity"); ?>"><?= __("DXCC"); ?></th>
+							<th title="<?= __("Continent"); ?>"><?= __("Cont"); ?></th>
+							<th title="<?= __("Flags"); ?>"><?= __("Flags"); ?></th>
+							<th title="<?= __("Spotter"); ?>"><?= __("Spotter"); ?></th>
+							<th title="<?= __("Message"); ?>"><?= __("Message"); ?></th>
+						</tr>
+					</thead>
+
+					<tbody class="spots_table_contents">
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
-
 </div>
 
-<div class="container">
-	<table class="table-sm table spottable table-bordered table-hover table-striped table-condensed">
-		<thead>
-			<tr class="log_title titles">
-				<th style="width:200px;"><?= __("Date"); ?>/<?= __("Time"); ?></th>
-				<th style="width:150px;"><?= __("Frequency"); ?></th>
-				<th><?= __("Call"); ?></th>
-				<th><?= __("DXCC"); ?></th>
-				<th style="width:30px;"><?= __("WAC"); ?></th>
-				<th style="width:150px;"><?= __("Spotter"); ?></th>
-				<th><?= __("Message"); ?></th>
-				<th><?= __("Last Worked"); ?></th>
-				<th><?= __("Mode"); ?></th>
-			</tr>
-		</thead>
-
-		<tbody class="spots_table_contents">
-		</tbody>
-	</table>
 </div>
-	</div>
-
-
