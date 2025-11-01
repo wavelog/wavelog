@@ -35,7 +35,7 @@
 		cursor: pointer !important;
 	}
 
-	.spottable tbody tr td:nth-child(4) a {
+	.spottable tbody tr td:nth-child(5) a {
 		text-decoration: underline !important;
 		cursor: pointer !important;
 	}
@@ -102,15 +102,26 @@
 	}
 
 	/* Column widths - consolidated selectors */
-	.spottable th:nth-child(1), .spottable td:nth-child(1) { width: 60px; }  /* Time HH:MM */
-	.spottable th:nth-child(2), .spottable td:nth-child(2) { width: 130px; }  /* Frequency (65px × 2) */
-	.spottable th:nth-child(3), .spottable td:nth-child(3) { width: 60px; }  /* Mode */
-	.spottable th:nth-child(4), .spottable td:nth-child(4) { width: 120px; }  /* Callsign (80px × 1.5) */
-	.spottable th:nth-child(5), .spottable td:nth-child(5) { width: 40px; }  /* Continent */
-	.spottable th:nth-child(6), .spottable td:nth-child(6) { min-width: 100px; max-width: 216px; width: auto; }  /* DXCC Entity (10% smaller: 112×0.9, 240×0.9) */
-	.spottable th:nth-child(7), .spottable td:nth-child(7) { width: 120px; }  /* Spotter */
-	.spottable th:nth-child(8), .spottable td:nth-child(8) { width: 140px; }  /* Flags (70px × 2) */
-	.spottable th:nth-child(9), .spottable td:nth-child(9) { width: auto; }  /* Message - fills remaining space */
+	.spottable th:nth-child(1), .spottable td:nth-child(1) { width: 50px; }   /* Age (minutes) */
+	.spottable th:nth-child(2), .spottable td:nth-child(2) { width: 50px; }   /* Band */
+	.spottable th:nth-child(3), .spottable td:nth-child(3) { width: 90px; }   /* Frequency */
+	.spottable th:nth-child(4), .spottable td:nth-child(4) { width: 60px; }   /* Mode */
+	.spottable th:nth-child(5), .spottable td:nth-child(5) { width: 120px; }  /* Callsign */
+	.spottable th:nth-child(6), .spottable td:nth-child(6) { width: 40px; }   /* Continent */
+	.spottable th:nth-child(7), .spottable td:nth-child(7) { width: 45px; }   /* CQ Zone */
+	.spottable th:nth-child(8), .spottable td:nth-child(8) { width: 50px; }   /* Flag */
+	.spottable th:nth-child(9), .spottable td:nth-child(9) { width: 150px; }  /* Entity (DXCC name) */
+	.spottable th:nth-child(10), .spottable td:nth-child(10) { width: 60px; } /* DXCC Number */
+	.spottable th:nth-child(11), .spottable td:nth-child(11) { width: 120px; } /* de Callsign (Spotter) */
+	.spottable th:nth-child(12), .spottable td:nth-child(12) { width: 50px; } /* de Cont */
+	.spottable th:nth-child(13), .spottable td:nth-child(13) { width: 50px; } /* de CQZ */
+	.spottable th:nth-child(14), .spottable td:nth-child(14) { width: 110px; } /* Special (LoTW, POTA, etc) */
+	.spottable th:nth-child(15), .spottable td:nth-child(15) { min-width: 100px; width: 100%; }  /* Message - fills remaining space */
+
+	/* Hidden class for responsive columns (controlled by JavaScript) */
+	.spottable .column-hidden {
+		display: none !important;
+	}
 
 	.spottable td {
 		overflow: hidden;
@@ -118,14 +129,14 @@
 		white-space: nowrap;
 	}
 
-	.spottable td:nth-child(9) {
+	.spottable td:nth-child(15) {
 		white-space: normal;
 		word-wrap: break-word;
 		overflow-wrap: break-word;
 		font-size: calc(1rem - 4px);
 	}
 
-	.spottable td:nth-child(5) {
+	.spottable td:nth-child(6), .spottable td:nth-child(12) {
 		font-family: 'Segoe UI Emoji', 'Noto Color Emoji', 'Apple Color Emoji', Arial, sans-serif;
 		overflow: hidden;
 		text-overflow: ellipsis;
@@ -146,9 +157,23 @@
 		display: inline-block;
 	}
 
-	.spottable td:nth-child(8) {
+	.spottable td:nth-child(14) {
 		overflow: visible;
 		white-space: nowrap;
+	}
+
+	/* Responsive: On smallest screens, Entity column fills remaining space */
+	@media (max-width: 500px) {
+		.spottable {
+			table-layout: auto !important;
+		}
+		.spottable th:nth-child(9), .spottable td:nth-child(9) {
+			width: auto !important;
+			min-width: 150px !important;
+		}
+		.spottable th:nth-child(1), .spottable td:nth-child(1) { width: 50px !important; }   /* Age */
+		.spottable th:nth-child(3), .spottable td:nth-child(3) { width: 90px !important; }   /* Frequency */
+		.spottable th:nth-child(5), .spottable td:nth-child(5) { width: 100px !important; }  /* Callsign */
 	}
 
 	.spottable thead th {
@@ -210,15 +235,14 @@
 		min-height: 0;
 		display: flex;
 		flex-direction: column;
-		overflow: hidden;
+		overflow: auto;
 		padding: 0.5rem;
 	}
 
 	.bandmap-fullscreen .table-responsive {
-		flex: 1 1 0;
+		flex: 1 1 auto;
 		min-height: 0;
 		overflow: auto;
-		height: auto;
 	}
 
 	.bandmap-fullscreen .dataTables_processing {
@@ -232,6 +256,12 @@
 	.bandmap-fullscreen .dropdown-menu {
 		z-index: 10002;
 		position: fixed;
+	}
+
+	/* Ensure tooltips appear above fullscreen mode */
+	body.fullscreen-active .tooltip,
+	.bandmap-fullscreen .tooltip {
+		z-index: 10003 !important;
 	}
 
 	/* Ensure modals appear above fullscreen mode */
@@ -560,16 +590,17 @@
 										<option value="lotw"><?= __("LoTW User"); ?></option>
 										<option value="notworked"><?= __("Not worked before"); ?></option>
 									</select>
-									<label class="form-label d-block filter-label-small mt-3" for="additionalFlags"><?= __("Additional Flags"); ?></label>
-									<select id="additionalFlags" class="form-select form-select-sm filter-short" name="additional_flags" multiple="multiple">
-										<option value="All" selected><?= __("All"); ?></option>
-										<option value="SOTA"><?= __("SOTA"); ?></option>
-										<option value="POTA"><?= __("POTA"); ?></option>
-										<option value="WWFF"><?= __("WWFF"); ?></option>
-										<option value="IOTA"><?= __("IOTA"); ?></option>
-										<option value="Contest"><?= __("Contest"); ?></option>
-									</select>
-								</div>
+								<label class="form-label d-block filter-label-small mt-3" for="additionalFlags"><?= __("Additional Flags"); ?></label>
+								<select id="additionalFlags" class="form-select form-select-sm filter-short" name="additional_flags" multiple="multiple">
+									<option value="All" selected><?= __("All"); ?></option>
+									<option value="SOTA"><?= __("SOTA"); ?></option>
+									<option value="POTA"><?= __("POTA"); ?></option>
+									<option value="WWFF"><?= __("WWFF"); ?></option>
+									<option value="IOTA"><?= __("IOTA"); ?></option>
+									<option value="Contest"><?= __("Contest"); ?></option>
+									<option value="Fresh"><?= __("Fresh (< 5 min)"); ?></option>
+								</select>
+							</div>
 								<!-- Column 3: Spots de Continent -->
 								<div class="mb-3 col-12 col-sm-6 col-md-4 col-lg">
 									<label class="form-label d-block filter-label-small" for="decontSelect"><?= __("Spots de Continent"); ?></label>
@@ -618,37 +649,43 @@
 
 						<!-- Buttons in popup -->
 						<div class="text-center mt-3">
-							<button type="button" class="btn btn-sm btn-success me-2" id="applyFiltersButtonPopup">
-								<i class="fas fa-check"></i> <?= __("Apply Filters"); ?>
-							</button>
-						<button type="button" class="btn btn-sm btn-secondary" id="clearFiltersButton">
-							<i class="fas fa-times"></i> <?= __("Clear Filters"); ?>
+						<button type="button" class="btn btn-sm btn-success me-2" id="applyFiltersButtonPopup">
+							<i class="fas fa-check"></i> <?= __("Apply Filters"); ?>
 						</button>
+					<button type="button" class="btn btn-sm btn-secondary" id="clearFiltersButton">
+						<i class="fas fa-eraser"></i> <?= __("Clear Filters"); ?>
+					</button>
 					</div>
 				</div>
 			</div>
+
+			<!-- Clear Filters Button (outside dropdown) -->
+			<button class="btn btn-sm btn-secondary" type="button" id="clearFiltersButtonQuick" title="<?= __("Clear all filters except De Continent"); ?>">
+				<i class="fas fa-eraser"></i> <span class="d-none d-sm-inline"><?= __("Clear Filters"); ?></span>
+			</button>
 
 			<!-- Quick Filter Toggle Buttons -->
 			<small class="text-muted me-1 flex-shrink-0"><?= __("Quick Filters:"); ?></small>
 			<div class="btn-group flex-shrink-0" role="group">
 				<button class="btn btn-sm btn-primary" type="button" id="toggleLotwFilter" title="<?= __("Toggle LoTW User filter"); ?>">
-					<i class="fas fa-upload"></i> <span class="d-none d-sm-inline">LoTW</span>
+					<span>L</span> <span class="d-none d-sm-inline">LoTW users</span>
 				</button>
 				<button class="btn btn-sm btn-primary" type="button" id="toggleNotWorkedFilter" title="<?= __("Toggle Not Worked Before filter"); ?>">
-					<i class="fas fa-star"></i> <span class="d-none d-sm-inline">New</span>
+					<i class="fas fa-star"></i> <span class="d-none d-sm-inline">New callsign</span>
 				</button>
 				<button class="btn btn-sm btn-primary" type="button" id="toggleDxccNeededFilter" title="<?= __("Toggle DXCC Needed filter"); ?>">
-					<i class="fas fa-globe"></i> <span class="d-none d-sm-inline">DXCC</span>
+					<i class="fas fa-globe"></i> <span class="d-none d-sm-inline">New DXCC</span>
 				</button>
-				<button class="btn btn-sm btn-primary" type="button" id="toggleContextFilter" title="<?= __("Toggle Contest filter"); ?>">
-					<i class="fas fa-trophy"></i> <span class="d-none d-sm-inline">Contest</span>
-				</button>
-				<button class="btn btn-sm btn-primary" type="button" id="toggleGeoHunterFilter" title="<?= __("Toggle Geo Hunter (POTA/SOTA/IOTA/WWFF)"); ?>">
-					<i class="fas fa-map-marked-alt"></i> <span class="d-none d-sm-inline">Geo</span>
-				</button>
-			</div>
-
-			<!-- Search Input -->
+			<button class="btn btn-sm btn-primary" type="button" id="toggleContextFilter" title="<?= __("Toggle Contest filter"); ?>">
+				<i class="fas fa-trophy"></i> <span class="d-none d-sm-inline">Contest Only</span>
+			</button>
+			<button class="btn btn-sm btn-primary" type="button" id="toggleGeoHunterFilter" title="<?= __("Toggle Geo Hunter (POTA/SOTA/IOTA/WWFF)"); ?>">
+				<i class="fas fa-map-marked-alt"></i> <span class="d-none d-sm-inline">Ref. Hunter</span>
+			</button>
+			<button class="btn btn-sm btn-primary" type="button" id="toggleFreshFilter" title="<?= __("Toggle Fresh spots filter (< 5 minutes old)"); ?>">
+				<i class="fas fa-bolt"></i> <span class="d-none d-sm-inline">Fresh spots</span>
+			</button>
+		</div>			<!-- Search Input -->
 			<div class="input-group input-group-sm ms-auto flex-shrink-0" style="max-width: 300px; min-width: 200px;">
 				<input type="text" class="form-control" id="spotSearchInput" placeholder="<?= __("Search spots..."); ?>" aria-label="<?= __("Search"); ?>">
 				<span class="input-group-text search-icon-clickable" id="searchIcon"><i class="fas fa-search"></i></span>
@@ -672,14 +709,20 @@
 				<table class="table table-striped table-hover spottable">
 					<thead>
 						<tr class="log_title titles">
-							<th title="<?= __("Time"); ?> UTC"><?= __("Time"); ?> UTC</th>
+							<th title="<?= __("Age in minutes"); ?>"><i class="fas fa-clock"></i></th>
+							<th title="<?= __("Band"); ?>"><i class="fas fa-wave-square"></i></th>
 							<th title="<?= __("Frequency"); ?> [MHz]"><?= __("Freq"); ?></th>
-							<th title="<?= __("Mode"); ?>"><?= __("Mode"); ?></th>
-							<th title="<?= __("Callsign"); ?>"><?= __("Call"); ?></th>
-							<th title="<?= __("Continent"); ?>"><?= __("Cont"); ?></th>
-							<th title="<?= __("DXCC Entity"); ?>"><?= __("DXCC"); ?></th>
-							<th title="<?= __("Spotter"); ?>"><?= __("Spotter"); ?></th>
-							<th title="<?= __("Flags"); ?>"><?= __("Flags"); ?></th>
+							<th title="<?= __("Mode"); ?>"><i class="fas fa-broadcast-tower"></i></th>
+							<th title="<?= __("Spotted Callsign"); ?>"><?= __("Spotted"); ?></th>
+							<th title="<?= __("Continent"); ?>"><i class="fas fa-globe-americas"></i></th>
+							<th title="<?= __("CQ Zone"); ?>"><i class="fas fa-map-marked"></i></th>
+							<th title="<?= __("Flag"); ?>"><i class="fas fa-flag"></i></th>
+							<th title="<?= __("DXCC Entity"); ?>"><?= __("Entity"); ?></th>
+							<th title="<?= __("DXCC Number"); ?>"><i class="fas fa-hashtag"></i></th>
+							<th title="<?= __("Spotter Callsign"); ?>"><?= __("Spotter"); ?></th>
+							<th title="<?= __("Spotter Continent"); ?>"><i class="fas fa-globe-americas"></i></th>
+							<th title="<?= __("Spotter CQ Zone"); ?>"><i class="fas fa-map-marked"></i></th>
+							<th title="<?= __("Special Flags"); ?>"><?= __("Special"); ?></th>
 							<th title="<?= __("Message"); ?>"><?= __("Message"); ?></th>
 						</tr>
 					</thead>

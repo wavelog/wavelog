@@ -126,6 +126,15 @@ $(function() {
 			$('#toggleGeoHunterFilter i').removeClass('fa-check-circle').addClass('fa-map-marked-alt');
 		}
 
+		// Fresh filter button
+		if (additionalFlags.includes('Fresh')) {
+			$('#toggleFreshFilter').removeClass('btn-primary').addClass('btn-warning');
+			$('#toggleFreshFilter i').removeClass('fa-bolt').addClass('fa-check-circle');
+		} else {
+			$('#toggleFreshFilter').removeClass('btn-warning').addClass('btn-primary');
+			$('#toggleFreshFilter i').removeClass('fa-check-circle').addClass('fa-bolt');
+		}
+
 		// CW mode button
 		if (modeValues.includes('cw')) {
 			$('#toggleCwFilter').removeClass('btn-primary').addClass('btn-warning');
@@ -304,13 +313,14 @@ $(function() {
 			},
 			'columnDefs': [
 				{
-					'targets': 1, "type":"num",
+					'targets': 2,  // Frequency is now column 3 (0-indexed = 2)
+				"type":"num",
 					'createdCell':  function (td, cellData, rowData, row, col) {
 						$(td).addClass("MHz");
 					}
 				},
 				{
-					'targets': 2,
+					'targets': 3,  // Mode column is now column 4 (0-indexed = 3)
 					'createdCell':  function (td, cellData, rowData, row, col) {
 						$(td).addClass("mode");
 					}
@@ -331,35 +341,36 @@ $(function() {
 			return;
 		}
 
-		let cellIndex = $(e.target).closest('td').index();			// If clicking callsign column, open QRZ link directly
-			if (cellIndex === 3) {
-				let rowData = table.row(this).data();
-				if (!rowData) return;
-
-				let callsignHtml = rowData[3];
-				let tempDiv = $('<div>').html(callsignHtml);
-				let qrzLink = tempDiv.find('a');
-
-				if (qrzLink.length) {
-					qrzLink[0].click();
-					return;
-				}
-			}
-
-			// Default row click: prepare QSO logging with callsign, frequency, mode
+		let cellIndex = $(e.target).closest('td').index();
+		// If clicking callsign column (column 5, 0-indexed = 4), open QRZ link directly
+		if (cellIndex === 4) {
 			let rowData = table.row(this).data();
 			if (!rowData) return;
 
-			let callsignHtml = rowData[3];
+			let callsignHtml = rowData[4];
 			let tempDiv = $('<div>').html(callsignHtml);
-			let call = tempDiv.find('a').text().trim();
-			if (!call) return;
+			let qrzLink = tempDiv.find('a');
 
-			let qrg = parseFloat(rowData[1]) * 1000;
-			let mode = rowData[2];
+			if (qrzLink.length) {
+				qrzLink[0].click();
+				return;
+			}
+		}
 
-			prepareLogging(call, qrg, mode);
-		});
+		// Default row click: prepare QSO logging with callsign, frequency, mode
+		let rowData = table.row(this).data();
+		if (!rowData) return;
+
+		let callsignHtml = rowData[4];  // Callsign is column 5 (0-indexed = 4)
+		let tempDiv = $('<div>').html(callsignHtml);
+		let call = tempDiv.find('a').text().trim();
+		if (!call) return;
+
+		let qrg = parseFloat(rowData[2]) * 1000;  // Frequency is now column 3 (0-indexed = 2)
+		let mode = rowData[3];  // Mode is column 4 (0-indexed = 3)
+
+		prepareLogging(call, qrg, mode);
+	});
 
 		return table;
 	}
@@ -660,7 +671,7 @@ $(function() {
 			}
 			if (!passesModeFilter) return;
 
-			// Apply additional flags filter (POTA, SOTA, WWFF, IOTA, Contest)
+			// Apply additional flags filter (POTA, SOTA, WWFF, IOTA, Contest, Fresh)
 			let passesFlagsFilter = flags.includes('All');
 			if (!passesFlagsFilter) {
 				for (let flag of flags) {
@@ -681,6 +692,10 @@ $(function() {
 						break;
 					}
 					if (flag === 'Contest' && single.dxcc_spotted && single.dxcc_spotted.isContest) {
+						passesFlagsFilter = true;
+						break;
+					}
+					if (flag === 'Fresh' && (single.age || 0) < 5) {
 						passesFlagsFilter = true;
 						break;
 					}
@@ -711,25 +726,23 @@ $(function() {
 				wked_info = "";
 			}
 
-			// Build LoTW badge with color coding based on last upload age
-			var lotw_badge = '';
-			if (single.dxcc_spotted && single.dxcc_spotted.lotw_user) {
-				let lclass = '';
-				if (single.dxcc_spotted.lotw_user > 365) {
-					lclass = 'lotw_info_red';
-				} else if (single.dxcc_spotted.lotw_user > 30) {
-					lclass = 'lotw_info_orange';
-				} else if (single.dxcc_spotted.lotw_user > 7) {
-					lclass = 'lotw_info_yellow';
-				}
-				let lotw_title = 'LoTW User. Last upload was ' + single.dxcc_spotted.lotw_user + ' days ago';
-				lotw_badge = '<a id="lotw_badge" href="https://lotw.arrl.org/lotwuser/act?act=' + single.spotted + '" target="_blank">' + buildBadge('success ' + lclass, '', lotw_title, 'L') + '</a>';
-			}
+		// Build LoTW badge with color coding based on last upload age
+		var lotw_badge = '';
+		if (single.dxcc_spotted && single.dxcc_spotted.lotw_user) {
+			let lclass = '';
+			if (single.dxcc_spotted.lotw_user > 365) {
+				lclass = 'lotw_info_red';
+			} else if (single.dxcc_spotted.lotw_user > 30) {
+				lclass = 'lotw_info_orange';
+			} else if (single.dxcc_spotted.lotw_user > 7) {
+			lclass = 'lotw_info_yellow';
+		}
+		let lotw_title = 'LoTW User. Last upload was ' + single.dxcc_spotted.lotw_user + ' days ago';
+		lotw_badge = '<a id="lotw_badge" href="https://lotw.arrl.org/lotwuser/act?act=' + single.spotted + '" target="_blank" style="display: inline-flex; align-items: center; vertical-align: middle; text-decoration: none;">' + buildBadge('success ' + lclass, '', lotw_title, 'L') + '</a>';
+	}
 
-		// Build activity badges (POTA, SOTA, WWFF, IOTA, Contest, Worked)
-		let activity_flags = '';
-
-		if (single.dxcc_spotted && single.dxcc_spotted.pota_ref) {
+	// Build activity badges (POTA, SOTA, WWFF, IOTA, Contest, Worked)
+	let activity_flags = '';		if (single.dxcc_spotted && single.dxcc_spotted.pota_ref) {
 			let pota_title = 'POTA: ' + single.dxcc_spotted.pota_ref;
 			if (single.dxcc_spotted.pota_mode) {
 				pota_title += ' (' + single.dxcc_spotted.pota_mode + ')';
@@ -753,81 +766,99 @@ $(function() {
 				activity_flags += buildBadge('info', 'fa-island-tropical', 'IOTA: ' + single.dxcc_spotted.iota_ref);
 			}
 
-			if (single.dxcc_spotted && single.dxcc_spotted.isContest) {
-				activity_flags += buildBadge('warning', 'fa-trophy', 'Contest');
-			}
+		if (single.dxcc_spotted && single.dxcc_spotted.isContest) {
+			activity_flags += buildBadge('warning', 'fa-trophy', 'Contest');
+		}
 
-			if (single.worked_call) {
-				let worked_title = 'Worked Before';
-				if (single.last_wked && single.last_wked.LAST_QSO && single.last_wked.LAST_MODE) {
-					worked_title = 'Worked: ' + single.last_wked.LAST_QSO + ' in ' + single.last_wked.LAST_MODE;
-				}
+		// Add "Fresh" badge for spots less than 5 minutes old
+		let ageMinutesCheck = single.age || 0;
+		let isFresh = ageMinutesCheck < 5;
+
+		if (single.worked_call) {
+			let worked_title = 'Worked Before';
+			if (single.last_wked && single.last_wked.LAST_QSO && single.last_wked.LAST_MODE) {
+				worked_title = 'Worked: ' + single.last_wked.LAST_QSO + ' in ' + single.last_wked.LAST_MODE;
+			}
 			let worked_badge_type = single.cnfmd_call ? 'success' : 'warning';
-			activity_flags += buildBadge(worked_badge_type, 'fa-check-circle', worked_title, null, true);
+			// isLast is true only if fresh badge won't be added
+			activity_flags += buildBadge(worked_badge_type, 'fa-check-circle', worked_title, null, !isFresh);
 		}
 
-		// Build table row array
-		data[0] = [];
-		// Time column: extract time portion from ISO datetime and format as HH:MM
-		if (timeOnly) {
-			// ISO format: split by 'T' and take time part, then remove milliseconds and Z
-			if (timeOnly.includes('T')) {
-				timeOnly = timeOnly.split('T')[1].split('.')[0];
-			}
-			// Extract only HH:MM from HH:MM:SS
-			if (timeOnly.includes(':')) {
-				let timeParts = timeOnly.split(':');
-				timeOnly = timeParts[0] + ':' + timeParts[1];
-			}
-		}
-		data[0].push(timeOnly || '');
+		if (isFresh) {
+			activity_flags += buildBadge('danger', 'fa-bolt', 'Fresh spot (< 5 minutes old)', null, true);
+		}		// Build table row array
+		data[0] = [];		// Age column: show age in minutes with auto-update attribute
+		let ageMinutes = single.age || 0;
+		let spotTimestamp = single.when ? new Date(single.when).getTime() : Date.now();
+		data[0].push('<span class="spot-age" data-spot-time="' + spotTimestamp + '">' + ageMinutes + '</span>');
+
+		// Band column: show band designation
+		data[0].push(single.band || '');
+
 		// Frequency column: convert kHz to MHz with 3 decimal places
 		let freqMHz = (single.frequency / 1000).toFixed(3);
-		data[0].push(freqMHz);			// Mode column: capitalize properly
+		data[0].push(freqMHz);
 
-			let displayMode = single.mode || '';
-			if (displayMode.toLowerCase() === 'phone') displayMode = 'Phone';
-			else if (displayMode.toLowerCase() === 'cw') displayMode = 'CW';
-			else if (displayMode.toLowerCase() === 'digi') displayMode = 'Digi';
-			data[0].push(displayMode);
+		// Mode column: capitalize properly
+		let displayMode = single.mode || '';
+		if (displayMode.toLowerCase() === 'phone') displayMode = 'Phone';
+		else if (displayMode.toLowerCase() === 'cw') displayMode = 'CW';
+		else if (displayMode.toLowerCase() === 'digi') displayMode = 'Digi';
+		data[0].push(displayMode);
 
-			// Callsign column: wrap in QRZ link with color coding
-			let qrzLink = '<a href="https://www.qrz.com/db/' + single.spotted + '" target="_blank" onclick="event.stopPropagation();" data-bs-toggle="tooltip" title="Click to view ' + single.spotted + ' on QRZ.com">' + single.spotted + '</a>';
-			wked_info = ((wked_info != '' ? '<span class="' + wked_info + '">' : '') + qrzLink + (wked_info != '' ? '</span>' : ''));
-			var spotted = wked_info;
-			data[0].push(spotted);
+		// Callsign column: wrap in QRZ link with color coding
+		let qrzLink = '<a href="https://www.qrz.com/db/' + single.spotted + '" target="_blank" onclick="event.stopPropagation();" data-bs-toggle="tooltip" title="Click to view ' + single.spotted + ' on QRZ.com">' + single.spotted + '</a>';
+		wked_info = ((wked_info != '' ? '<span class="' + wked_info + '">' : '') + qrzLink + (wked_info != '' ? '</span>' : ''));
+		var spotted = wked_info;
+		data[0].push(spotted);
 
-			// Continent column: color code based on worked/confirmed status (moved before DXCC)
-			var continent_wked_info;
-			if (single.cnfmd_continent) {
-				continent_wked_info = "text-success";
-			} else if (single.worked_continent) {
-				continent_wked_info = "text-warning";
-			} else {
-				continent_wked_info = "text-danger";
-			}
-			continent_wked_info = ((continent_wked_info != '' ? '<span class="' + continent_wked_info + '">' : '') + single.dxcc_spotted.cont + (continent_wked_info != '' ? '</span>' : ''));
-			data[0].push(continent_wked_info);
+		// Continent column: color code based on worked/confirmed status
+		var continent_wked_info;
+		if (single.cnfmd_continent) {
+			continent_wked_info = "text-success";
+		} else if (single.worked_continent) {
+			continent_wked_info = "text-warning";
+		} else {
+			continent_wked_info = "text-danger";
+		}
+		continent_wked_info = ((continent_wked_info != '' ? '<span class="' + continent_wked_info + '">' : '') + single.dxcc_spotted.cont + (continent_wked_info != '' ? '</span>' : ''));
+		data[0].push(continent_wked_info);
 
-			// DXCC entity column: flag emoji + entity name with color coding
-			let dxcc_entity_full = single.dxcc_spotted.entity;
-			if (single.dxcc_spotted.flag) {
-				let flagSpan = '<span class="flag-emoji">' + single.dxcc_spotted.flag + '</span>';
-				dxcc_wked_info = ((dxcc_wked_info != '' ? '<span class="' + dxcc_wked_info + '">' : '') + flagSpan + ' <span style="font-family: monospace;">' + single.dxcc_spotted.entity + '</span>' + (dxcc_wked_info != '' ? '</span>' : ''));
-			} else {
-				dxcc_wked_info = ((dxcc_wked_info != '' ? '<span class="' + dxcc_wked_info + '">' : '') + '<span style="font-family: monospace;">' + single.dxcc_spotted.entity + '</span>' + (dxcc_wked_info != '' ? '</span>' : ''));
-			}
-			data[0].push('<a href="javascript:spawnLookupModal(\'' + single.dxcc_spotted.dxcc_id + '\',\'dxcc\')"; data-bs-toggle="tooltip" title="See details for ' + dxcc_entity_full + '">' + dxcc_wked_info + '</a>');
+		// CQ Zone column: show CQ Zone (moved here, right after Cont)
+		data[0].push(single.dxcc_spotted.cqz || '');
 
-			// Spotter column
-			data[0].push(single.spotter);
+		// Flag column: just the flag emoji without entity name
+		let flag_only = '';
+		if (single.dxcc_spotted.flag) {
+			flag_only = '<span class="flag-emoji">' + single.dxcc_spotted.flag + '</span>';
+		}
+		data[0].push(flag_only);
 
-			// Flags column: combine LoTW and activity badges
-			let flags_column = lotw_badge + activity_flags;
-			data[0].push(flags_column);
+		// Entity column: entity name with color coding (no flag)
+		let dxcc_entity_full = single.dxcc_spotted.entity;
+		let entity_colored = (dxcc_wked_info != '' ? '<span class="' + dxcc_wked_info + '">' : '') + single.dxcc_spotted.entity + (dxcc_wked_info != '' ? '</span>' : '');
+		data[0].push('<a href="javascript:spawnLookupModal(\'' + single.dxcc_spotted.dxcc_id + '\',\'dxcc\')"; data-bs-toggle="tooltip" title="See details for ' + dxcc_entity_full + '">' + entity_colored + '</a>');
 
-			// Message column
-			data[0].push(single.message || '');
+		// DXCC Number column: show ADIF DXCC entity number with color coding
+		let dxcc_number = ((dxcc_wked_info != '' ? '<span class="' + dxcc_wked_info + '">' : '') + single.dxcc_spotted.dxcc_id + (dxcc_wked_info != '' ? '</span>' : ''));
+		data[0].push(dxcc_number);
+
+		// de Callsign column (Spotter) - clickable QRZ link
+		let spotterQrzLink = '<a href="https://www.qrz.com/db/' + single.spotter + '" target="_blank" onclick="event.stopPropagation();" data-bs-toggle="tooltip" title="Click to view ' + single.spotter + ' on QRZ.com">' + single.spotter + '</a>';
+		data[0].push(spotterQrzLink);
+
+		// de Cont column: spotter's continent
+		data[0].push(single.dxcc_spotter.cont || '');
+
+		// de CQZ column: spotter's CQ Zone
+		data[0].push(single.dxcc_spotter.cqz || '');
+
+		// Special column: combine LoTW and activity badges
+		let flags_column = lotw_badge + activity_flags;
+		data[0].push(flags_column);
+
+		// Message column
+		data[0].push(single.message || '');
 
 			// Add row to table (with "fresh" class for new spots animation)
 			if (oldtable.length > 0) {
@@ -1157,6 +1188,31 @@ $(function() {
 		updateFilterIcon();
 		applyFilters(true);
 		$('#filterDropdown').dropdown('hide');
+	});
+
+	// Clear Filters Quick Button (preserves De Continent)
+	$("#clearFiltersButtonQuick").on("click", function() {
+		// Preserve current De Continent selection
+		let currentDecont = $('#decontSelect').val();
+
+		// Reset all other filters
+		$('#cwnSelect').val(['All']).trigger('change');
+		$('#continentSelect').val(['Any']).trigger('change');
+		$('#band').val(['All']).trigger('change');
+		$('#mode').val(['All']).trigger('change');
+		$('#additionalFlags').val(['All']).trigger('change');
+		$('#requiredFlags').val([]).trigger('change');
+
+		// Restore De Continent
+		$('#decontSelect').val(currentDecont).trigger('change');
+
+		// Clear text search
+		$('#spotSearchInput').val('');
+		table.search('').draw();
+
+		syncQuickFilterButtons();
+		updateFilterIcon();
+		applyFilters(false);  // Don't refetch from server since De Continent is preserved
 	});
 
 	// Sync button states when dropdown is shown
@@ -1985,5 +2041,158 @@ $(function() {
 		$('#additionalFlags').val(currentValues).trigger('change');
 		applyFilters(false);
 	});
+
+	// Toggle Fresh filter (< 5 minutes)
+	$('#toggleFreshFilter').on('click', function() {
+		let currentValues = $('#additionalFlags').val() || [];
+		let btn = $(this);
+
+		// Remove 'All' if present
+		if (currentValues.includes('All')) {
+			currentValues = currentValues.filter(v => v !== 'All');
+		}
+
+		if (currentValues.includes('Fresh')) {
+			// Remove Fresh filter
+			currentValues = currentValues.filter(v => v !== 'Fresh');
+			if (currentValues.length === 0) currentValues = ['All'];
+			btn.removeClass('btn-warning').addClass('btn-primary');
+			btn.find('i').removeClass('fa-check-circle').addClass('fa-bolt');
+		} else {
+			// Add Fresh filter
+			currentValues.push('Fresh');
+			btn.removeClass('btn-primary').addClass('btn-warning');
+			btn.find('i').removeClass('fa-bolt').addClass('fa-check-circle');
+		}
+
+		$('#additionalFlags').val(currentValues).trigger('change');
+		applyFilters(false);
+	});
+
+	// ========================================
+	// RESPONSIVE COLUMN VISIBILITY
+	// ========================================
+
+	/**
+	 * Handle responsive column visibility based on available table width
+	 * Dynamically shows/hides columns to optimize space usage
+	 *
+	 * Column indices (0-based):
+	 * 0: Age, 1: Band, 2: Frequency, 3: Mode, 4: Callsign, 5: Continent, 6: CQZ,
+	 * 7: Flag, 8: Entity, 9: DXCC, 10: de Callsign, 11: de Cont, 12: de CQZ,
+	 * 13: Special, 14: Message
+	 *
+	 * Breakpoints:
+	 * - Full screen or > 1374px: Show all columns
+	 * - <= 1374px: Hide DXCC (9), CQZ (6), de CQZ (12)
+	 * - <= 1294px: Additionally hide Band (1), Cont (5), de Cont (11)
+	 * - <= 1024px: Additionally hide Flag (7)
+	 * - <= 500px: Show only Age (0), Freq (2), Callsign (4), Entity (8)
+	 */
+	function handleResponsiveColumns() {
+		const tableContainer = $('.table-responsive');
+		if (!tableContainer.length) return;
+
+		const containerWidth = tableContainer.width();
+
+		// Check if in fullscreen mode
+		const isFullscreen = $('#bandmapContainer').hasClass('bandmap-fullscreen');
+
+		// Reset all columns to visible first
+		$('.spottable th, .spottable td').removeClass('column-hidden');
+
+		// If fullscreen, show all columns and exit
+		if (isFullscreen) {
+			if ($.fn.DataTable && $.fn.DataTable.isDataTable('.spottable')) {
+				$('.spottable').DataTable().columns.adjust();
+			}
+			return;
+		}
+
+		// Apply visibility rules based on container width
+		if (containerWidth <= 500) {
+			// Show only Age, Freq, Callsign, Entity
+			$('.spottable th:nth-child(2), .spottable td:nth-child(2)').addClass('column-hidden'); // Band
+			$('.spottable th:nth-child(4), .spottable td:nth-child(4)').addClass('column-hidden'); // Mode
+			$('.spottable th:nth-child(6), .spottable td:nth-child(6)').addClass('column-hidden'); // Continent
+			$('.spottable th:nth-child(7), .spottable td:nth-child(7)').addClass('column-hidden'); // CQZ
+			$('.spottable th:nth-child(8), .spottable td:nth-child(8)').addClass('column-hidden'); // Flag
+			$('.spottable th:nth-child(10), .spottable td:nth-child(10)').addClass('column-hidden'); // DXCC
+			$('.spottable th:nth-child(11), .spottable td:nth-child(11)').addClass('column-hidden'); // de Callsign
+			$('.spottable th:nth-child(12), .spottable td:nth-child(12)').addClass('column-hidden'); // de Cont
+			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de CQZ
+			$('.spottable th:nth-child(14), .spottable td:nth-child(14)').addClass('column-hidden'); // Special
+			$('.spottable th:nth-child(15), .spottable td:nth-child(15)').addClass('column-hidden'); // Message
+		} else if (containerWidth <= 1024) {
+			// Hide: DXCC, CQZ, de CQZ, Band, Cont, de Cont, Flag
+			$('.spottable th:nth-child(2), .spottable td:nth-child(2)').addClass('column-hidden'); // Band
+			$('.spottable th:nth-child(6), .spottable td:nth-child(6)').addClass('column-hidden'); // Continent
+			$('.spottable th:nth-child(7), .spottable td:nth-child(7)').addClass('column-hidden'); // CQZ
+			$('.spottable th:nth-child(8), .spottable td:nth-child(8)').addClass('column-hidden'); // Flag
+			$('.spottable th:nth-child(10), .spottable td:nth-child(10)').addClass('column-hidden'); // DXCC
+			$('.spottable th:nth-child(12), .spottable td:nth-child(12)').addClass('column-hidden'); // de Cont
+			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de CQZ
+		} else if (containerWidth <= 1294) {
+			// Hide: DXCC, CQZ, de CQZ, Band, Cont, de Cont
+			$('.spottable th:nth-child(2), .spottable td:nth-child(2)').addClass('column-hidden'); // Band
+			$('.spottable th:nth-child(6), .spottable td:nth-child(6)').addClass('column-hidden'); // Continent
+			$('.spottable th:nth-child(7), .spottable td:nth-child(7)').addClass('column-hidden'); // CQZ
+			$('.spottable th:nth-child(10), .spottable td:nth-child(10)').addClass('column-hidden'); // DXCC
+			$('.spottable th:nth-child(12), .spottable td:nth-child(12)').addClass('column-hidden'); // de Cont
+			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de CQZ
+		} else if (containerWidth <= 1374) {
+			// Hide: DXCC, CQZ, de CQZ
+			$('.spottable th:nth-child(7), .spottable td:nth-child(7)').addClass('column-hidden'); // CQZ
+			$('.spottable th:nth-child(10), .spottable td:nth-child(10)').addClass('column-hidden'); // DXCC
+			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de CQZ
+		}
+		// else: containerWidth > 1374 - show all columns (already reset above)
+
+		// Adjust DataTable columns if initialized
+		if ($.fn.DataTable && $.fn.DataTable.isDataTable('.spottable')) {
+			$('.spottable').DataTable().columns.adjust();
+		}
+	}
+
+	// Initialize ResizeObserver to watch for container size changes
+	if (typeof ResizeObserver !== 'undefined') {
+		const tableContainer = document.querySelector('.table-responsive');
+		if (tableContainer) {
+			const resizeObserver = new ResizeObserver(function(entries) {
+				handleResponsiveColumns();
+			});
+			resizeObserver.observe(tableContainer);
+		}
+	} else {
+		// Fallback for browsers without ResizeObserver support
+		$(window).on('resize', function() {
+			handleResponsiveColumns();
+		});
+	}
+
+	// Initial call to set up column visibility
+	handleResponsiveColumns();
+
+	// ========================================
+	// AGE AUTO-UPDATE
+	// ========================================
+
+	/**
+	 * Update spot ages every minute without full table refresh
+	 * Ages are calculated from the spot timestamp stored in data attribute
+	 */
+	function updateSpotAges() {
+		const now = Date.now();
+		$('.spot-age').each(function() {
+			const spotTime = parseInt($(this).attr('data-spot-time'));
+			if (spotTime) {
+				const ageMinutes = Math.floor((now - spotTime) / 60000);
+				$(this).text(ageMinutes);
+			}
+		});
+	}
+
+	// Update ages every 60 seconds
+	setInterval(updateSpotAges, 60000);
 
 });

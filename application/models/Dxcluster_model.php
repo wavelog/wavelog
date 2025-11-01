@@ -110,6 +110,7 @@ class Dxcluster_model extends CI_Model {
 					$singlespot->dxcc_spotted = (object)[
 						'dxcc_id' => $dxcc['adif'],
 						'cont' => $dxcc['cont'],
+						'cqz' => $dxcc['cqz'] ?? '',
 						'flag' => '',
 						'entity' => $dxcc['entity']
 					];
@@ -119,6 +120,7 @@ class Dxcluster_model extends CI_Model {
 					$singlespot->dxcc_spotter = (object)[
 						'dxcc_id' => $dxcc['adif'],
 						'cont' => $dxcc['cont'],
+						'cqz' => $dxcc['cqz'] ?? '',
 						'flag' => '',
 						'entity' => $dxcc['entity']
 					];
