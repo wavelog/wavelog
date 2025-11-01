@@ -34,16 +34,21 @@ class Dxcluster_model extends CI_Model {
 	public function dxc_spotlist($band = '20m', $maxage = 60, $de = '', $mode = 'All') {
 		$this->load->helper(array('psr4_autoloader'));
 
-		// Load cache driver once
-		$this->load->driver('cache', array('adapter' => 'file', 'backup' => 'file'));
+		// Check if file caching is enabled in config
+		$cache_enabled = $this->config->item('enable_dxcluster_file_cache') === true;
 
-		// Check cache first for processed spot list
+		// Only load cache driver if caching is enabled
+		if ($cache_enabled) {
+			$this->load->driver('cache', array('adapter' => 'file', 'backup' => 'file'));
+		}
+
+		// Check cache first for processed spot list (only if caching is enabled)
 		$user_id = $this->session->userdata('user_id');
 		$logbook_id = $this->session->userdata('active_station_logbook');
 		$cache_key = "spotlist_{$band}_{$maxage}_{$de}_{$mode}_{$user_id}_{$logbook_id}";
 
-		// Try to get cached processed results (59 second cache)
-		if ($cached_spots = $this->cache->get($cache_key)) {
+		// Try to get cached processed results (59 second cache) only if caching is enabled
+		if ($cache_enabled && ($cached_spots = $this->cache->get($cache_key))) {
 			return $cached_spots;
 		}
 
@@ -64,7 +69,13 @@ class Dxcluster_model extends CI_Model {
 		$this->load->model('logbook_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
-		if (!$jsonraw = $this->cache->get('dxcache'.$band)) {
+		// Check cache for raw DX cluster data (only if caching is enabled)
+		$jsonraw = null;
+		if ($cache_enabled) {
+			$jsonraw = $this->cache->get('dxcache'.$band);
+		}
+
+		if (!$jsonraw) {
 			// CURL Functions
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $dxcache_url);
@@ -82,7 +93,10 @@ class Dxcluster_model extends CI_Model {
 				return [];
 			}
 
-			$this->cache->save('dxcache'.$band, $jsonraw, 59);	// Cache DXClusterCache Instancewide for 59seconds
+			// Save to cache only if caching is enabled
+			if ($cache_enabled) {
+				$this->cache->save('dxcache'.$band, $jsonraw, 59);	// Cache DXClusterCache Instancewide for 59seconds
+			}
 		}
 
 		// Validate JSON before decoding
@@ -250,8 +264,8 @@ class Dxcluster_model extends CI_Model {
 			}
 		}
 
-		// Cache the processed results for 59 seconds (matches DXCache server TTL)
-		if (!empty($spotsout)) {
+		// Cache the processed results for 59 seconds (matches DXCache server TTL) only if caching is enabled
+		if ($cache_enabled && !empty($spotsout)) {
 			$this->cache->save($cache_key, $spotsout, 59);
 		}
 
