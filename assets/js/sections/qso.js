@@ -5,6 +5,51 @@ var scps = [];
 let lookupCall = null;
 let preventLookup = false;
 
+// Calculate local time based on GMT offset
+function calculateLocalTime(gmtOffset) {
+	let now = new Date();
+	let utcTime = now.getTime() + (now.getTimezoneOffset() * 60000);
+	let localTime = new Date(utcTime + (3600000 * gmtOffset));
+
+	let hours = ("0" + localTime.getHours()).slice(-2);
+	let minutes = ("0" + localTime.getMinutes()).slice(-2);
+
+	return hours + ':' + minutes;
+}
+
+// Check and update profile info visibility based on available width
+function checkProfileInfoVisibility() {
+	if ($('#callsign-image').is(':visible') && $('#callsign-image-info').html().trim() !== '') {
+		// Additional validation: check if profile data matches current callsign
+		let currentCallsign = $('#callsign').val().toUpperCase().replaceAll('Ø', '0');
+		let profileCallsign = $('#callsign-image').attr('data-profile-callsign') || '';
+
+		if (currentCallsign !== profileCallsign) {
+			// Callsign mismatch, hide the profile panel
+			console.log('Profile callsign mismatch during visibility check - hiding panel');
+			$('#callsign-image').attr('style', 'display: none;');
+			$('#callsign-image-info').html("");
+			$('#callsign-image-info').hide();
+			return;
+		}
+
+		let cardBody = $('.card-body.callsign-image');
+		let imageWidth = $('#callsign-image-content').outerWidth() || 0;
+		let cardWidth = cardBody.width() || 0;
+		let availableWidth = cardWidth - imageWidth - 24; // Subtract gap (24px for gap-3)
+
+		if (availableWidth >= 200) {
+			$('#callsign-image-info').show();
+		} else {
+			$('#callsign-image-info').hide();
+		}
+	}
+}
+
+// Attach resize listener for profile info visibility
+$(window).on('resize', function() {
+	checkProfileInfoVisibility();
+});
 // Create and add banner control
 window.mapBanner = L.control({ position: "bottomleft" }); // You can change position: "topleft", "bottomleft", etc.
 
@@ -287,14 +332,18 @@ function set_timers() {
 
 function invalidAntEl() {
 	var saveQsoButtonText = $("#saveQso").html();
-	$("#noticer").removeClass("");
-	$("#noticer").addClass("alert alert-warning");
-	$("#noticer").html(lang_invalid_ant_el+" "+parseFloat($("#ant_el").val()).toFixed(1));
-	$("#noticer").show();
+	showToast(lang_general_word_warning, lang_invalid_ant_el+" "+parseFloat($("#ant_el").val()).toFixed(1), 'bg-warning text-dark', 5000);
 	$("#saveQso").html(saveQsoButtonText).prop("disabled", false);
 }
 
 $("#qso_input").off('submit').on('submit', function (e) {
+	e.preventDefault();
+
+	// Prevent submission if Save button is disabled (fetch in progress)
+	if ($('#saveQso').prop('disabled')) {
+		return false;
+	}
+
 	var _submit = true;
 	if ((typeof qso_manual !== "undefined") && (qso_manual == "1")) {
 		if ($('#qso_input input[name="end_time"]').length == 1) { _submit = testTimeOffConsistency(); }
@@ -303,7 +352,6 @@ $("#qso_input").off('submit').on('submit', function (e) {
 		var saveQsoButtonText = $("#saveQso").html();
 		$("#saveQso").html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span> ' + saveQsoButtonText + '...').prop('disabled', true);
 		manual_addon = '?manual=' + qso_manual;
-		e.preventDefault();
 		$.ajax({
 			url: base_url + 'index.php/qso' + manual_addon,
 			method: 'POST',
@@ -316,29 +364,26 @@ $("#qso_input").off('submit').on('submit', function (e) {
 					activeStationId = result.activeStationId;
 					activeStationOP = result.activeStationOP;
 					activeStationTXPower = result.activeStationTXPower;
-					$("#noticer").removeClass("");
-					$("#noticer").addClass("alert alert-info");
-					$("#noticer").html("QSO Added");
-					$("#noticer").show();
+
+					// Build dynamic success message
+					var contactCallsign = $("#callsign").val().toUpperCase();
+					var operatorCallsign = activeStationOP || station_callsign;
+					var successMessage = lang_qso_added
+						.replace('%s', contactCallsign)
+						.replace('%s', operatorCallsign);
+
+					showToast(lang_general_word_success, successMessage, 'bg-success text-white', 5000);
 					prepare_next_qso(saveQsoButtonText);
-					$("#noticer").fadeOut(2000);
 					processBacklog();	// If we have success with the live-QSO, we could also process the backlog
 				} else {
-					$("#noticer").removeClass("");
-					$("#noticer").addClass("alert alert-warning");
-					$("#noticer").html(result.errors);
-					$("#noticer").show();
+					showToast(lang_general_word_error, result.errors, 'bg-danger text-white', 5000);
 					$("#saveQso").html(saveQsoButtonText).prop("disabled", false);
 				}
 			},
 			error: function () {
 				saveToBacklog(JSON.stringify(this.data),manual_addon);
 				prepare_next_qso(saveQsoButtonText);
-				$("#noticer").removeClass("");
-				$("#noticer").addClass("alert alert-info");
-				$("#noticer").html("QSO Added to Backlog");
-				$("#noticer").show();
-				$("#noticer").fadeOut(5000);
+				showToast(lang_general_word_info, lang_qso_added_to_backlog, 'bg-info text-dark', 5000);
 			}
 		});
 	}
@@ -586,7 +631,7 @@ $(document).on("click", "#fav_recall", function (event) {
 
 
 function del_fav(name) {
-	if (confirm("Are you sure to delete Fav?")) {
+	if (confirm(lang_qso_delete_fav_confirm)) {
 		$.ajax({
 			url: base_url + 'index.php/user_options/del_fav',
 			method: 'POST',
@@ -881,14 +926,14 @@ function changebadge(entityval) {
 
 			if (result.confirmed) {
 				$('#callsign_info').addClass("text-bg-success");
-				$('#callsign_info').attr('title', 'DXCC was already worked and confirmed in the past on this band and mode!');
+				$('#callsign_info').attr('title', lang_qso_dxcc_confirmed);
 			} else if (result.workedBefore) {
 				$('#callsign_info').addClass("text-bg-success");
 				$('#callsign_info').addClass("lotw_info_orange");
-				$('#callsign_info').attr('title', 'DXCC was already worked in the past on this band and mode!');
+				$('#callsign_info').attr('title', lang_qso_dxcc_worked);
 			} else {
 				$('#callsign_info').addClass("text-bg-danger");
-				$('#callsign_info').attr('title', 'New DXCC, not worked on this band and mode!');
+				$('#callsign_info').attr('title', lang_qso_dxcc_new);
 			}
 		})
 	} else {
@@ -902,14 +947,14 @@ function changebadge(entityval) {
 
 			if (result.confirmed) {
 				$('#callsign_info').addClass("text-bg-success");
-				$('#callsign_info').attr('title', 'DXCC was already worked and confirmed in the past on this band and mode!');
+				$('#callsign_info').attr('title', lang_qso_dxcc_confirmed);
 			} else if (result.workedBefore) {
 				$('#callsign_info').addClass("text-bg-success");
 				$('#callsign_info').addClass("lotw_info_orange");
-				$('#callsign_info').attr('title', 'DXCC was already worked in the past on this band and mode!');
+				$('#callsign_info').attr('title', lang_qso_dxcc_worked);
 			} else {
 				$('#callsign_info').addClass("text-bg-danger");
-				$('#callsign_info').attr('title', 'New DXCC, not worked on this band and mode!');
+				$('#callsign_info').attr('title', lang_qso_dxcc_new);
 			}
 		})
 	}
@@ -969,6 +1014,7 @@ function reset_fields() {
 	$('#lotw_info').removeClass("lotw_info_orange");
 	$('#qrz_info').text("").hide();
 	$('#hamqth_info').text("").hide();
+	$('#email_info').html("").addClass('d-none').hide();
 	$('#dxcc_id').val("").multiselect('refresh');
 	$('#cqz').val("");
 	$('#ituz').val("");
@@ -980,15 +1026,19 @@ function reset_fields() {
 	$("#locator").removeClass("confirmedGrid");
 	$("#locator").removeClass("workedGrid");
 	$("#locator").removeClass("newGrid");
+	$('#locator').attr('title', '');
 	$("#callsign").val("");
 	$("#callsign").removeClass("confirmedGrid");
 	$("#callsign").removeClass("workedGrid");
 	$("#callsign").removeClass("newGrid");
+	$('#callsign').attr('title', '');
 	$('#callsign_info').removeClass("text-bg-secondary");
 	$('#callsign_info').removeClass("text-bg-success");
 	$('#callsign_info').removeClass("text-bg-danger");
 	$('#callsign-image').attr('style', 'display: none;');
 	$('#callsign-image-content').text("");
+	$('#callsign-image-info').html("");
+	$('#callsign-image-info').hide();
 	$("#operator_callsign").val(activeStationOP);
 	$('#qsl_via').val("");
 	$('#callsign_info').text("");
@@ -1086,7 +1136,15 @@ function get_note_status(callsign){
 $("#callsign").on("focusout", function () {
 	if ($(this).val().length >= 3 && preventLookup == false) {
 
-		$("#noticer").fadeOut(1000);
+		// Disable Save QSO button and show fetch status
+		$('#saveQso').prop('disabled', true);
+		$('#fetch_status').show();
+
+		// Set timeout to unlock form after 10 seconds
+		var fetchTimeout = setTimeout(function() {
+			$('#saveQso').prop('disabled', false);
+			$('#fetch_status').hide();
+		}, 10000);
 
 		/* Find and populate DXCC */
 		$('.callsign-suggest').hide();
@@ -1147,14 +1205,14 @@ $("#callsign").on("focusout", function () {
 
 							if (result.confirmed) {
 								$('#callsign').addClass("confirmedGrid");
-								$('#callsign').attr('title', 'Callsign was already worked and confirmed in the past on this band and mode!');
+								$('#callsign').attr('title', lang_qso_callsign_confirmed);
 							} else if (result.workedBefore) {
 								$('#callsign').addClass("workedGrid");
-								$('#callsign').attr('title', 'Callsign was already worked in the past on this band and mode!');
+								$('#callsign').attr('title', lang_qso_callsign_worked);
 							}
 							else {
 								$('#callsign').addClass("newGrid");
-								$('#callsign').attr('title', 'New Callsign!');
+								$('#callsign').attr('title', lang_qso_callsign_new);
 							}
 						})
 					} else {
@@ -1169,17 +1227,16 @@ $("#callsign").on("focusout", function () {
 							$('#ham_of_note_link').removeAttr('href');
 							$('#ham_of_note_line').hide();
 
-							if (result.confirmed) {
-								$('#callsign').addClass("confirmedGrid");
-								$('#callsign').attr('title', 'Callsign was already worked and confirmed in the past on this band and mode!');
-							} else if (result.workedBefore) {
-								$('#callsign').addClass("workedGrid");
-								$('#callsign').attr('title', 'Callsign was already worked in the past on this band and mode!');
-							} else {
-								$('#callsign').addClass("newGrid");
-								$('#callsign').attr('title', 'New Callsign!');
-							}
-
+						if (result.confirmed) {
+							$('#callsign').addClass("confirmedGrid");
+							$('#callsign').attr('title', lang_qso_callsign_confirmed);
+						} else if (result.workedBefore) {
+							$('#callsign').addClass("workedGrid");
+							$('#callsign').attr('title', lang_qso_callsign_worked);
+						} else {
+							$('#callsign').addClass("newGrid");
+							$('#callsign').attr('title', lang_qso_callsign_new);
+						}
 						})
 					}
 
@@ -1208,10 +1265,10 @@ $("#callsign").on("focusout", function () {
 					$('[data-bs-toggle="tooltip"]').tooltip();
 				}
 				$('#qrz_info').html('<a target="_blank" href="https://www.qrz.com/db/' + callsign.replaceAll('Ø', '0') + '"><img width="30" height="30" src="' + base_url + 'images/icons/qrz.com.png"></a>');
-				$('#qrz_info').attr('title', 'Lookup ' + callsign + ' info on qrz.com').removeClass('d-none');
+				$('#qrz_info').attr('title', lang_qso_lookup_info.replace('%s', callsign).replace('%s', 'qrz.com')).removeClass('d-none');
 				$('#qrz_info').show();
 				$('#hamqth_info').html('<a target="_blank" href="https://www.hamqth.com/' + callsign.replaceAll('Ø', '0') + '"><img width="30" height="30" src="' + base_url + 'images/icons/hamqth.com.png"></a>');
-				$('#hamqth_info').attr('title', 'Lookup ' + callsign + ' info on hamqth.com').removeClass('d-none');
+				$('#hamqth_info').attr('title', lang_qso_lookup_info.replace('%s', callsign).replace('%s', 'hamqth.com')).removeClass('d-none');
 				$('#hamqth_info').show();
 
 				var $dok_select = $('#darc_dok').selectize();
@@ -1332,13 +1389,13 @@ $("#callsign").on("focusout", function () {
 					if (result.callsign_qra != "" && (result.callsign_geoloc != 'grid' || result.timesWorked > 0)) {
 						if (result.confirmed) {
 							$('#locator').addClass("confirmedGrid");
-							$('#locator').attr('title', 'Grid was already worked and confirmed in the past');
+							$('#locator').attr('title', lang_qso_grid_confirmed);
 						} else if (result.workedBefore) {
 							$('#locator').addClass("workedGrid");
-							$('#locator').attr('title', 'Grid was already worked in the past');
+							$('#locator').attr('title', lang_qso_grid_worked);
 						} else {
 							$('#locator').addClass("newGrid");
-							$('#locator').attr('title', 'New grid!');
+							$('#locator').attr('title', lang_qso_grid_new);
 						}
 					} else {
 						$('#locator').removeClass("workedGrid");
@@ -1359,12 +1416,29 @@ $("#callsign").on("focusout", function () {
 					$('#name').val(result.callsign_name);
 				}
 
-				/* Find Operators E-mail */
-				if ($('#email').val() == "") {
+			/* Find Operators E-mail */
+			if ($('#email').val() == "") {
+				// Validate that we're setting email for the correct callsign
+				let currentCallsign = $('#callsign').val().toUpperCase().replaceAll('Ø', '0');
+				let resultCallsign = result.callsign.toUpperCase();
+
+				if (currentCallsign === resultCallsign) {
 					$('#email').val(result.callsign_email);
 				}
+			}
 
-				if ($('#continent').val() == "") {
+			// Show email icon if email is available
+			if (result.callsign_email && result.callsign_email.trim() !== "") {
+				// Validate callsign match before showing email icon
+				let currentCallsign = $('#callsign').val().toUpperCase().replaceAll('Ø', '0');
+				let resultCallsign = result.callsign.toUpperCase();
+
+				if (currentCallsign === resultCallsign) {
+					$('#email_info').html('<a href="mailto:' + result.callsign_email + '" style="color: inherit; text-decoration: none;"><i class="fas fa-envelope" style="font-size: 20px;"></i></a>');
+					$('#email_info').attr('title', lang_qso_send_email_to.replace('%s', result.callsign_email)).removeClass('d-none');
+					$('#email_info').show();
+				}
+			}				if ($('#continent').val() == "") {
 					$('#continent').val(result.dxcc.cont);
 				}
 
@@ -1372,13 +1446,169 @@ $("#callsign").on("focusout", function () {
 					$('#qth').val(result.callsign_qth);
 				}
 
-				/* Find link to qrz.com picture */
-				if (result.image != "n/a") {
-					$('#callsign-image-content').html('<img class="callsign-image-pic" href="' + result.image + '" data-fancybox="images" src="' + result.image + '" style="cursor: pointer;">');
-					$('#callsign-image').attr('style', 'display: true;');
+			/* Find link to qrz.com picture */
+			if (result.image != "n/a") {
+				// Verify that the result still matches the current callsign to prevent stale data
+				let currentCallsign = $('#callsign').val().toUpperCase().replaceAll('Ø', '0');
+				let resultCallsign = result.callsign.toUpperCase();
+
+				if (currentCallsign !== resultCallsign) {
+					// Callsign changed, don't display stale profile data
+					return;
 				}
 
-				/*
+				$('#callsign-image-content').html('<img class="callsign-image-pic" href="' + result.image + '" data-fancybox="images" src="' + result.image + '" style="cursor: pointer;">');
+
+				// Store which callsign this profile data belongs to
+				$('#callsign-image').attr('data-profile-callsign', resultCallsign);
+
+				// Build comprehensive profile information
+				let profileInfo = '';				// Name line: Name Nickname Lastname
+				let nameParts = [];
+				if (result.profile_fname) nameParts.push(result.profile_fname);
+				if (result.profile_nickname) nameParts.push('"' + result.profile_nickname + '"');
+				if (result.profile_name_last) nameParts.push(result.profile_name_last);
+				if (nameParts.length > 0) {
+					profileInfo += '<p class="mb-1"><strong>' + nameParts.join(' ') + '</strong></p>';
+				}
+
+				// Aliases
+				if (result.profile_aliases) {
+					profileInfo += '<p class="mb-1 text-muted" style="font-size: 0.85rem;">' + lang_qso_profile_aliases + ': ' + result.profile_aliases + '</p>';
+				}
+
+				// Previous call
+				if (result.profile_p_call) {
+					profileInfo += '<p class="mb-1 text-muted" style="font-size: 0.85rem;">' + lang_qso_profile_previously + ': ' + result.profile_p_call + '</p>';
+				}
+
+				// Address information
+				let addressParts = [];
+				if (result.profile_addr1) addressParts.push(result.profile_addr1);
+				// Zip code before city (addr2), no comma after zip
+				if (result.profile_zip && result.profile_addr2) {
+					addressParts.push(result.profile_zip + ' ' + result.profile_addr2);
+				} else {
+					if (result.profile_zip) addressParts.push(result.profile_zip);
+					if (result.profile_addr2) addressParts.push(result.profile_addr2);
+				}
+				if (result.profile_state) addressParts.push(result.profile_state);
+				if (result.profile_country) addressParts.push(result.profile_country);
+
+				if (addressParts.length > 0) {
+					let addressText = addressParts.join(', ');
+					profileInfo += '<p class="mb-1" style="font-size: 0.875rem;"><i class="fas fa-map-marker-alt me-1"></i>' + addressText;
+
+					// Google Maps link if coordinates available with pin marker
+					if (result.profile_lat && result.profile_lon) {
+						let mapsUrl = 'https://www.google.com/maps/place/' + result.profile_lat + ',' + result.profile_lon + '/@' + result.profile_lat + ',' + result.profile_lon + ',15z/data=!3m1!1e3';
+						profileInfo += ' <a href="' + mapsUrl + '" target="_blank" title="' + lang_qso_profile_view_location_maps + '"><i class="fas fa-map"></i></a>';
+					}
+					profileInfo += '</p>';
+				}
+				// Born (with age calculation)
+				if (result.profile_born) {
+					let currentYear = new Date().getFullYear();
+					let age = currentYear - parseInt(result.profile_born);
+					profileInfo += '<p class="mb-1" style="font-size: 0.875rem;"><i class="fas fa-birthday-cake me-1"></i>' + lang_qso_profile_born + ': ' + result.profile_born + ' (' + age + ' ' + lang_qso_profile_years_old + ')</p>';
+				}
+
+				// License information
+				if (result.profile_class || result.profile_efdate || result.profile_expdate) {
+					let licenseText = '<i class="fas fa-certificate me-1"></i>';
+					if (result.profile_class) {
+						// Map common license class codes to readable names
+						let licenseMap = {
+							'1': lang_qso_profile_license_novice,
+							'2': lang_qso_profile_license_technician,
+							'3': lang_qso_profile_license_general,
+							'4': lang_qso_profile_license_advanced,
+							'5': lang_qso_profile_license_extra,
+							'E': lang_qso_profile_license_extra,
+							'A': lang_qso_profile_license_advanced,
+							'G': lang_qso_profile_license_general,
+							'T': lang_qso_profile_license_technician,
+							'N': lang_qso_profile_license_novice
+						};
+						let licenseDisplay = licenseMap[result.profile_class] || result.profile_class;
+						licenseText += lang_qso_profile_license + ': ' + licenseDisplay;
+					}
+
+					if (result.profile_efdate) {
+						let efYear = result.profile_efdate.substring(0, 4);
+						let yearsLicensed = new Date().getFullYear() - parseInt(efYear);
+						licenseText += ' ' + lang_qso_profile_from + ' ' + efYear + ' (' + yearsLicensed + ' ' + lang_qso_profile_years + ')';
+					}
+
+					if (result.profile_expdate) {
+						let expYear = result.profile_expdate.substring(0, 4);
+						let currentYear = new Date().getFullYear();
+						if (parseInt(expYear) < currentYear) {
+							licenseText += ' <span class="text-danger">' + lang_qso_profile_expired_on + ' ' + expYear + '</span>';
+						}
+					}
+
+					profileInfo += '<p class="mb-1" style="font-size: 0.875rem;">' + licenseText + '</p>';
+				}
+
+					// Website link
+					if (result.profile_url) {
+						profileInfo += '<p class="mb-1" style="font-size: 0.875rem;"><i class="fas fa-globe me-1"></i><a href="' + result.profile_url + '" target="_blank">' + lang_qso_profile_website + '</a></p>';
+					}
+
+					// Local time (will be auto-updated)
+					if (result.profile_GMTOffset) {
+						let offsetHours = parseFloat(result.profile_GMTOffset);
+						let localTime = calculateLocalTime(offsetHours);
+						profileInfo += '<p class="mb-1" id="profile-local-time" style="font-size: 0.875rem;"><i class="fas fa-clock me-1"></i>' + lang_qso_profile_local_time + ': ' + localTime + '</p>';
+
+						// Set up auto-update every minute
+						setInterval(function() {
+							let updatedTime = calculateLocalTime(offsetHours);
+							$('#profile-local-time').html('<i class="fas fa-clock me-1"></i>' + lang_qso_profile_local_time + ': ' + updatedTime);
+						}, 60000);
+					}
+
+					// QSL information
+					let qslInfo = '<i class="fas fa-envelope me-1"></i>' + lang_qso_profile_qsl + ': ';
+					let qslMethodsIcons = [];
+
+					// Build QSL methods icons list
+					// Green checkmark for 1, red cross for 0, question mark for empty
+					let eqslIcon = result.profile_eqsl == '1' ? '<i class="fas fa-check-circle text-success"></i>' :
+								result.profile_eqsl == '0' ? '<i class="fas fa-times-circle text-danger"></i>' :
+								'<i class="fas fa-question-circle text-warning"></i>';
+					let lotwIcon = result.profile_lotw == '1' ? '<i class="fas fa-check-circle text-success"></i>' :
+								result.profile_lotw == '0' ? '<i class="fas fa-times-circle text-danger"></i>' :
+								'<i class="fas fa-question-circle text-warning"></i>';
+					let mqslIcon = result.profile_mqsl == '1' ? '<i class="fas fa-check-circle text-success"></i>' :
+								result.profile_mqsl == '0' ? '<i class="fas fa-times-circle text-danger"></i>' :
+								'<i class="fas fa-question-circle text-warning"></i>';
+
+					qslMethodsIcons.push('QSL: ' + mqslIcon);
+					qslMethodsIcons.push('LoTW: ' + lotwIcon);
+					qslMethodsIcons.push('eQSL: ' + eqslIcon);
+
+					// Display manager info as-is from QRZ (e.g., "QSL only via LOTW and QRZ.com")
+					if (result.profile_qslmgr) {
+						qslInfo += result.profile_qslmgr;
+						qslInfo += '<br><span style="font-size: 0.85rem;">(' + qslMethodsIcons.join(', ') + ')</span>';
+					} else {
+						qslInfo += qslMethodsIcons.join(', ');
+					}
+
+					profileInfo += '<p class="mb-0" style="font-size: 0.875rem;">' + qslInfo + '</p>';				$('#callsign-image-info').html(profileInfo);
+
+					// Show the panel first so we can measure it
+					$('#callsign-image').attr('style', 'display: true;');
+
+					// Wait for next frame to ensure rendering, then check available width
+					setTimeout(function() {
+						checkProfileInfoVisibility();
+					}, 10);
+				}
+
+					/*
 					* Update state with returned value
 					*/
 				if ($("#stateDropdown").val() == "") {
@@ -1449,12 +1679,22 @@ $("#callsign").on("focusout", function () {
 				loadAwardTabs(function() {
 					getDxccResult(result.dxcc.adif, convert_case(result.dxcc.entity));
 				});
+
+				// Re-enable Save QSO button and hide fetch status
+				clearTimeout(fetchTimeout);
+				$('#saveQso').prop('disabled', false);
+				$('#fetch_status').hide();
 			}
 			// else {
 			// 	console.log("Callsigns do not match, skipping lookup");
 			// 	console.log("Typed Callsign: " + $('#callsign').val());
 			// 	console.log("Returned Callsign: " + result.callsign);
 			// }
+		}).always(function() {
+			// Always re-enable button even if there's an error
+			clearTimeout(fetchTimeout);
+			$('#saveQso').prop('disabled', false);
+			$('#fetch_status').hide();
 		});
 	} else {
 		// Reset QSO fields
@@ -2146,13 +2386,13 @@ $("#locator").on("input focus", function () {
 
 					if (result.confirmed) {
 						$('#locator').addClass("confirmedGrid");
-						$('#locator').attr('title', 'Grid was already worked and confirmed in the past');
+						$('#locator').attr('title', lang_qso_grid_confirmed);
 					} else if (result.workedBefore) {
 						$('#locator').addClass("workedGrid");
-						$('#locator').attr('title', 'Grid was already worked in the past');
+						$('#locator').attr('title', lang_qso_grid_worked);
 					} else {
 						$('#locator').addClass("newGrid");
-						$('#locator').attr('title', 'New grid!');
+						$('#locator').attr('title', lang_qso_grid_new);
 					}
 				})
 			} else {
@@ -2165,13 +2405,13 @@ $("#locator").on("input focus", function () {
 
 					if (result.confirmed) {
 						$('#locator').addClass("confirmedGrid");
-						$('#locator').attr('title', 'Grid was already worked and confimred in the past');
+						$('#locator').attr('title', lang_qso_grid_confirmed);
 					} else if (result.workedBefore) {
 						$('#locator').addClass("workedGrid");
-						$('#locator').attr('title', 'Grid was already worked in the past');
+						$('#locator').attr('title', lang_qso_grid_worked);
 					} else {
 						$('#locator').addClass("newGrid");
-						$('#locator').attr('title', 'New grid!');
+						$('#locator').attr('title', lang_qso_grid_new);
 					}
 
 				})
@@ -2221,7 +2461,7 @@ $("#locator").on("input focus", function () {
 					$('#locator_info').html(data).fadeIn("slow");
 				},
 				error: function () {
-					$('#locator_info').text("Error loading bearing!").fadeIn("slow");
+					$('#locator_info').text(lang_qso_error_loading_bearing).fadeIn("slow");
 				},
 			});
 			$.ajax({
@@ -2250,6 +2490,19 @@ $("#locator").on("focusout", function () {
 	}
 });
 
+// Update email icon when email field changes
+$("#email").on("input focusout", function () {
+	var emailValue = $(this).val().trim();
+	if (emailValue !== "") {
+		$('#email_info').html('<a href="mailto:' + emailValue + '" style="color: inherit; text-decoration: none;"><i class="fas fa-envelope" style="font-size: 20px;"></i></a>');
+		$('#email_info').attr('title', lang_qso_send_email_to.replace('%s', emailValue)).removeClass('d-none');
+		$('#email_info').show();
+	} else {
+		$('#email_info').addClass('d-none').hide();
+		$('#email_info').html('');
+	}
+});
+
 $("#ant_path").on("change", function () {
 	if ($("#locator").val().length > 0) {
 		$.ajax({
@@ -2264,7 +2517,7 @@ $("#ant_path").on("change", function () {
 				$('#locator_info').html(data).fadeIn("slow");
 			},
 			error: function () {
-				$('#locator_info').text("Error loading bearing!").fadeIn("slow");
+				$('#locator_info').text(lang_qso_error_loading_bearing).fadeIn("slow");
 			},
 		});
 		$.ajax({
@@ -2398,6 +2651,7 @@ function resetDefaultQSOFields() {
 	$('#continent').val("");
 	$("#distance").val("");
 	$('#email').val("");
+	$('#email_info').html("").addClass('d-none').hide();
 	$('#region').val("");
 	$('#dxcc_id').val("").multiselect('refresh');
 	$('#cqz').val("");
@@ -2491,7 +2745,7 @@ $(document).ready(function () {
 	clearQrgUnits();
 	set_qrg();
 
-	$("#locator").popover({ placement: 'top', title: 'Gridsquare Formatting', content: "Enter multiple (4-digit) grids separated with commas. For example: IO77,IO78" })
+	$("#locator").popover({ placement: 'top', title: lang_qso_gridsquare_formatting, content: lang_qso_gridsquare_help })
 	.focus(function () {
 		$('#locator').popover('show');
 	})
@@ -2579,7 +2833,7 @@ $(document).ready(function () {
 			if (value !== '') {
 				$('#sota_info').show();
 				$('#sota_info').html('<a target="_blank" href="https://summits.sota.org.uk/summit/' + value + '"><img width="32" height="32" src="' + base_url + 'images/icons/sota.org.uk.png"></a>');
-				$('#sota_info').attr('title', 'Lookup ' + value + ' summit info on sota.org.uk');
+				$('#sota_info').attr('title', lang_qso_lookup_summit_info.replace('%s', value).replace('%s', 'sota.org.uk'));
 			} else {
 				$('#sota_info').hide();
 			}
@@ -2616,7 +2870,7 @@ $(document).ready(function () {
 			if (value !== '') {
 				$('#wwff_info').show();
 				$('#wwff_info').html('<a target="_blank" href="https://www.cqgma.org/zinfo.php?ref=' + value + '"><img width="32" height="32" src="' + base_url + 'images/icons/wwff.co.png"></a>');
-				$('#wwff_info').attr('title', 'Lookup ' + value + ' reference info on cqgma.org');
+				$('#wwff_info').attr('title', lang_qso_lookup_reference_info.replace('%s', value).replace('%s', 'cqgma.org'));
 			} else {
 				$('#wwff_info').hide();
 			}
@@ -2653,7 +2907,7 @@ $(document).ready(function () {
 			if (value !== '' && value.indexOf(',') === -1) {
 				$('#pota_info').show();
 				$('#pota_info').html('<a target="_blank" href="https://pota.app/#/park/' + value + '"><img width="32" height="32" src="' + base_url + 'images/icons/pota.app.png"></a>');
-				$('#pota_info').attr('title', 'Lookup ' + value + ' reference info on pota.co');
+				$('#pota_info').attr('title', lang_qso_lookup_reference_info.replace('%s', value).replace('%s', 'pota.co'));
 			} else {
 				$('#pota_info').hide();
 			}

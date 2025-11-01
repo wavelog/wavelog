@@ -172,11 +172,11 @@ class Logbook extends CI_Controller {
 		$return['qsl_manager'] 			= $this->nval($callbook['qslmgr'] ?? '', $this->logbook_model->call_qslvia($callsign));
 		$return['callsign_state'] 		= $this->nval($callbook['state'] ?? '', $this->logbook_model->call_state($callsign));
 		$return['callsign_us_county'] 	= $this->nval($callbook['us_county'] ?? '', $this->logbook_model->call_us_county($callsign));
-		$return['callsign_ituz'] 	= $this->nval($callbook['ituz'] ?? '', $this->logbook_model->call_ituzone($callsign));
-		$return['callsign_cqz'] 	= $this->nval($callbook['cqz'] ?? '', $this->logbook_model->call_cqzone($callsign));
+		$return['callsign_ituz'] 		= $this->nval($callbook['ituz'] ?? '', $this->logbook_model->call_ituzone($callsign));
+		$return['callsign_cqz'] 		= $this->nval($callbook['cqz'] ?? '', $this->logbook_model->call_cqzone($callsign));
 		$return['workedBefore'] 		= $this->worked_grid_before($return['callsign_qra'], $band, $mode);
-		$return['confirmed'] 		= $this->confirmed_grid_before($return['callsign_qra'], $band, $mode);
-		$return['timesWorked'] 		= $this->logbook_model->times_worked($lookupcall);
+		$return['confirmed'] 			= $this->confirmed_grid_before($return['callsign_qra'], $band, $mode);
+		$return['timesWorked'] 			= $this->logbook_model->times_worked($lookupcall);
 
 		if ($this->session->userdata('user_show_profile_image')) {
 			if (isset($callbook) && isset($callbook['image'])) {
@@ -188,6 +188,31 @@ class Logbook extends CI_Controller {
 			} else {
 				$return['image'] = "n/a";
 			}
+
+			// Additional profile information from QRZ
+			$return['profile_url'] = $callbook['url'] ?? '';
+			$return['profile_class'] = $callbook['class'] ?? '';
+			$return['profile_born'] = $callbook['born'] ?? '';
+			$return['profile_eqsl'] = $callbook['eqsl'] ?? '';
+			$return['profile_lotw'] = $callbook['lotw'] ?? '';
+			$return['profile_mqsl'] = $callbook['mqsl'] ?? '';
+			$return['profile_fname'] = $callbook['fname'] ?? '';
+			$return['profile_name_last'] = $callbook['name_last'] ?? '';
+			$return['profile_nickname'] = $callbook['nickname'] ?? '';
+			$return['profile_aliases'] = $callbook['aliases'] ?? '';
+			$return['profile_p_call'] = $callbook['p_call'] ?? '';
+			$return['profile_addr1'] = $callbook['addr1'] ?? '';
+			$return['profile_addr2'] = $callbook['addr2'] ?? '';
+			$return['profile_state'] = $callbook['state'] ?? '';
+			$return['profile_zip'] = $callbook['zip'] ?? '';
+			$return['profile_country'] = $callbook['country'] ?? '';
+			$return['profile_dxcc'] = $callbook['dxcc'] ?? '';
+			$return['profile_lat'] = $callbook['lat'] ?? '';
+			$return['profile_lon'] = $callbook['lon'] ?? '';
+			$return['profile_efdate'] = $callbook['efdate'] ?? '';
+			$return['profile_expdate'] = $callbook['expdate'] ?? '';
+			$return['profile_GMTOffset'] = $callbook['GMTOffset'] ?? '';
+			$return['profile_qslmgr'] = $callbook['qslmgr'] ?? '';
 		}
 
 		if ($return['callsign_qra'] != "" || $return['callsign_qra'] != null) {
