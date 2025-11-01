@@ -102,15 +102,15 @@
 	}
 
 	/* Column widths - consolidated selectors */
-	.spottable th:nth-child(1), .spottable td:nth-child(1) { min-width: 60px; width: auto; }
-	.spottable th:nth-child(2), .spottable td:nth-child(2) { min-width: 75px; width: auto; }
-	.spottable th:nth-child(3), .spottable td:nth-child(3) { min-width: 55px; width: auto; }
-	.spottable th:nth-child(4), .spottable td:nth-child(4) { min-width: 90px; width: auto; }
-	.spottable th:nth-child(5), .spottable td:nth-child(5) { min-width: 120px; max-width: 250px; width: auto; }
-	.spottable th:nth-child(6), .spottable td:nth-child(6) { min-width: 45px; width: auto; }
-	.spottable th:nth-child(7), .spottable td:nth-child(7) { min-width: 80px; width: auto; }
-	.spottable th:nth-child(8), .spottable td:nth-child(8) { min-width: 80px; width: auto; }
-	.spottable th:nth-child(9), .spottable td:nth-child(9) { min-width: 150px; width: auto; }
+	.spottable th:nth-child(1), .spottable td:nth-child(1) { width: 60px; }  /* Time HH:MM */
+	.spottable th:nth-child(2), .spottable td:nth-child(2) { width: 130px; }  /* Frequency (65px × 2) */
+	.spottable th:nth-child(3), .spottable td:nth-child(3) { width: 60px; }  /* Mode */
+	.spottable th:nth-child(4), .spottable td:nth-child(4) { width: 120px; }  /* Callsign (80px × 1.5) */
+	.spottable th:nth-child(5), .spottable td:nth-child(5) { width: 40px; }  /* Continent */
+	.spottable th:nth-child(6), .spottable td:nth-child(6) { min-width: 100px; max-width: 216px; width: auto; }  /* DXCC Entity (10% smaller: 112×0.9, 240×0.9) */
+	.spottable th:nth-child(7), .spottable td:nth-child(7) { width: 120px; }  /* Spotter */
+	.spottable th:nth-child(8), .spottable td:nth-child(8) { width: 140px; }  /* Flags (70px × 2) */
+	.spottable th:nth-child(9), .spottable td:nth-child(9) { width: auto; }  /* Message - fills remaining space */
 
 	.spottable td {
 		overflow: hidden;
@@ -146,7 +146,7 @@
 		display: inline-block;
 	}
 
-	.spottable td:nth-child(7) {
+	.spottable td:nth-child(8) {
 		overflow: visible;
 		white-space: nowrap;
 	}
@@ -666,10 +666,10 @@
 							<th title="<?= __("Frequency"); ?> [MHz]"><?= __("Freq"); ?></th>
 							<th title="<?= __("Mode"); ?>"><?= __("Mode"); ?></th>
 							<th title="<?= __("Callsign"); ?>"><?= __("Call"); ?></th>
-							<th title="<?= __("DXCC Entity"); ?>"><?= __("DXCC"); ?></th>
 							<th title="<?= __("Continent"); ?>"><?= __("Cont"); ?></th>
-							<th title="<?= __("Flags"); ?>"><?= __("Flags"); ?></th>
+							<th title="<?= __("DXCC Entity"); ?>"><?= __("DXCC"); ?></th>
 							<th title="<?= __("Spotter"); ?>"><?= __("Spotter"); ?></th>
+							<th title="<?= __("Flags"); ?>"><?= __("Flags"); ?></th>
 							<th title="<?= __("Message"); ?>"><?= __("Message"); ?></th>
 						</tr>
 					</thead>

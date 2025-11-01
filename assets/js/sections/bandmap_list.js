@@ -325,30 +325,13 @@ $(function() {
 			}
 		});
 
-		$('.spottable tbody').off('click', 'tr').on('click', 'tr', function(e) {
-			// Don't trigger row click if clicking on a link
-			if ($(e.target).is('a') || $(e.target).closest('a').length) {
-				// Handle activity flag links (POTA/SOTA/WWFF)
-				if ($(e.target).closest('a').hasClass('activity-flag-link')) {
-					let activityLink = $(e.target).closest('a.activity-flag-link');
-					let activityType = activityLink.data('activity-type');
-					let ref = activityLink.data('ref');
+	$('.spottable tbody').off('click', 'tr').on('click', 'tr', function(e) {
+		// Don't trigger row click if clicking on a link (LoTW, POTA, SOTA, WWFF, QRZ, etc.)
+		if ($(e.target).is('a') || $(e.target).closest('a').length) {
+			return;
+		}
 
-					if (activityType === 'pota' && ref) {
-						window.open('https://pota.app/#/park/' + ref, '_blank');
-					} else if (activityType === 'sota' && ref) {
-						window.open('https://sotl.as/summits/' + ref, '_blank');
-					} else if (activityType === 'wwff' && ref) {
-						window.open('https://wwff.co/directory/?showRef=' + ref, '_blank');
-					}
-					return;
-				}
-				return;
-			}
-
-			let cellIndex = $(e.target).closest('td').index();
-
-			// If clicking callsign column, open QRZ link directly
+		let cellIndex = $(e.target).closest('td').index();			// If clicking callsign column, open QRZ link directly
 			if (cellIndex === 3) {
 				let rowData = table.row(this).data();
 				if (!rowData) return;
@@ -743,29 +726,30 @@ $(function() {
 				lotw_badge = '<a id="lotw_badge" href="https://lotw.arrl.org/lotwuser/act?act=' + single.spotted + '" target="_blank">' + buildBadge('success ' + lclass, '', lotw_title, 'L') + '</a>';
 			}
 
-			// Build activity badges (POTA, SOTA, WWFF, IOTA, Contest, Worked)
-			let activity_flags = '';
+		// Build activity badges (POTA, SOTA, WWFF, IOTA, Contest, Worked)
+		let activity_flags = '';
 
-			if (single.dxcc_spotted && single.dxcc_spotted.pota_ref) {
-				let pota_title = 'POTA: ' + single.dxcc_spotted.pota_ref;
-				if (single.dxcc_spotted.pota_mode) {
-					pota_title += ' (' + single.dxcc_spotted.pota_mode + ')';
-				}
-				pota_title += ' - Click to view on POTA.app';
-				activity_flags += '<a href="#" class="activity-flag-link" data-activity-type="pota" data-ref="' + single.dxcc_spotted.pota_ref + '" onclick="event.preventDefault(); event.stopPropagation();">' + buildBadge('success', 'fa-tree', pota_title) + '</a>';
+		if (single.dxcc_spotted && single.dxcc_spotted.pota_ref) {
+			let pota_title = 'POTA: ' + single.dxcc_spotted.pota_ref;
+			if (single.dxcc_spotted.pota_mode) {
+				pota_title += ' (' + single.dxcc_spotted.pota_mode + ')';
 			}
+			pota_title += ' - Click to view on POTA.app';
+			let pota_url = 'https://pota.app/#/park/' + single.dxcc_spotted.pota_ref;
+			activity_flags += '<a href="' + pota_url + '" target="_blank" onclick="event.stopPropagation();">' + buildBadge('success', 'fa-tree', pota_title) + '</a>';
+		}
 
-			if (single.dxcc_spotted && single.dxcc_spotted.sota_ref) {
-				let sota_title = 'SOTA: ' + single.dxcc_spotted.sota_ref + ' - Click to view on SOTL.as';
-				activity_flags += '<a href="#" class="activity-flag-link" data-activity-type="sota" data-ref="' + single.dxcc_spotted.sota_ref + '" onclick="event.preventDefault(); event.stopPropagation();">' + buildBadge('primary', 'fa-mountain', sota_title) + '</a>';
-			}
+		if (single.dxcc_spotted && single.dxcc_spotted.sota_ref) {
+			let sota_title = 'SOTA: ' + single.dxcc_spotted.sota_ref + ' - Click to view on SOTL.as';
+			let sota_url = 'https://sotl.as/summits/' + single.dxcc_spotted.sota_ref;
+			activity_flags += '<a href="' + sota_url + '" target="_blank" onclick="event.stopPropagation();">' + buildBadge('primary', 'fa-mountain', sota_title) + '</a>';
+		}
 
-			if (single.dxcc_spotted && single.dxcc_spotted.wwff_ref) {
-				let wwff_title = 'WWFF: ' + single.dxcc_spotted.wwff_ref + ' - Click to view on WWFF.co';
-				activity_flags += '<a href="#" class="activity-flag-link" data-activity-type="wwff" data-ref="' + single.dxcc_spotted.wwff_ref + '" onclick="event.preventDefault(); event.stopPropagation();">' + buildBadge('success', 'fa-leaf', wwff_title) + '</a>';
-			}
-
-			if (single.dxcc_spotted && single.dxcc_spotted.iota_ref) {
+		if (single.dxcc_spotted && single.dxcc_spotted.wwff_ref) {
+			let wwff_title = 'WWFF: ' + single.dxcc_spotted.wwff_ref + ' - Click to view on WWFF.co';
+			let wwff_url = 'https://wwff.co/directory/?showRef=' + single.dxcc_spotted.wwff_ref;
+			activity_flags += '<a href="' + wwff_url + '" target="_blank" onclick="event.stopPropagation();">' + buildBadge('success', 'fa-leaf', wwff_title) + '</a>';
+		}			if (single.dxcc_spotted && single.dxcc_spotted.iota_ref) {
 				activity_flags += buildBadge('info', 'fa-island-tropical', 'IOTA: ' + single.dxcc_spotted.iota_ref);
 			}
 
@@ -784,11 +768,16 @@ $(function() {
 
 		// Build table row array
 		data[0] = [];
-		// Time column: extract time portion from ISO datetime (e.g., "2025-10-31T23:13:06.347Z" -> "23:13:06")
+		// Time column: extract time portion from ISO datetime and format as HH:MM
 		if (timeOnly) {
 			// ISO format: split by 'T' and take time part, then remove milliseconds and Z
 			if (timeOnly.includes('T')) {
 				timeOnly = timeOnly.split('T')[1].split('.')[0];
+			}
+			// Extract only HH:MM from HH:MM:SS
+			if (timeOnly.includes(':')) {
+				let timeParts = timeOnly.split(':');
+				timeOnly = timeParts[0] + ':' + timeParts[1];
 			}
 		}
 		data[0].push(timeOnly || '');
@@ -807,6 +796,19 @@ $(function() {
 			wked_info = ((wked_info != '' ? '<span class="' + wked_info + '">' : '') + qrzLink + (wked_info != '' ? '</span>' : ''));
 			var spotted = wked_info;
 			data[0].push(spotted);
+
+			// Continent column: color code based on worked/confirmed status (moved before DXCC)
+			var continent_wked_info;
+			if (single.cnfmd_continent) {
+				continent_wked_info = "text-success";
+			} else if (single.worked_continent) {
+				continent_wked_info = "text-warning";
+			} else {
+				continent_wked_info = "text-danger";
+			}
+			continent_wked_info = ((continent_wked_info != '' ? '<span class="' + continent_wked_info + '">' : '') + single.dxcc_spotted.cont + (continent_wked_info != '' ? '</span>' : ''));
+			data[0].push(continent_wked_info);
+
 			// DXCC entity column: flag emoji + entity name with color coding
 			let dxcc_entity_full = single.dxcc_spotted.entity;
 			if (single.dxcc_spotted.flag) {
@@ -817,26 +819,14 @@ $(function() {
 			}
 			data[0].push('<a href="javascript:spawnLookupModal(\'' + single.dxcc_spotted.dxcc_id + '\',\'dxcc\')"; data-bs-toggle="tooltip" title="See details for ' + dxcc_entity_full + '">' + dxcc_wked_info + '</a>');
 
-			// Continent column: color code based on worked/confirmed status
-			var continent_wked_info;
-			if (single.cnfmd_continent) {
-				continent_wked_info = "text-success";
-			} else if (single.worked_continent) {
-				continent_wked_info = "text-warning";
-			} else {
-				continent_wked_info = "text-danger";
-			}
-			continent_wked_info = ((continent_wked_info != '' ? '<span class="' + continent_wked_info + '">' : '') + single.dxcc_spotted.cont + (continent_wked_info != '' ? '</span>' : ''));
-
-			data[0].push(continent_wked_info);
-			// Flags column: combine LoTW and activity badges
-			let flags_column = lotw_badge;
-			if (lotw_badge && activity_flags) {
-				flags_column += ' ';
-			}
-			flags_column += activity_flags;
-			data[0].push(flags_column);
+			// Spotter column
 			data[0].push(single.spotter);
+
+			// Flags column: combine LoTW and activity badges
+			let flags_column = lotw_badge + activity_flags;
+			data[0].push(flags_column);
+
+			// Message column
 			data[0].push(single.message || '');
 
 			// Add row to table (with "fresh" class for new spots animation)
@@ -1012,7 +1002,7 @@ $(function() {
 	// text: optional text content instead of icon
 	// isLast: if true, uses margin: 0 instead of negative margin
 	function buildBadge(type, icon, title, text = null, isLast = false) {
-		const margin = isLast ? '0' : '0 -0.5px 0 0';
+		const margin = isLast ? '0' : '0 2px 0 0';
 		const fontSize = text ? '0.7rem' : '0.65rem';
 		const content = text ? text : '<i class="fas ' + icon + '"></i>';
 		return '<small class="badge text-bg-' + type + '" style="display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; padding: 0; margin: ' + margin + '; font-size: ' + fontSize + '; line-height: 1;" data-bs-toggle="tooltip" title="' + title + '">' + content + '</small>';
@@ -1243,7 +1233,7 @@ $(function() {
 		let ready_listener = true;
 
 		try {
-			irrelevant=fetch(CatCallbackURL + '/'+qrg+'/'+mode).catch(() => {
+			let irrelevant = fetch(CatCallbackURL + '/'+qrg+'/'+mode).catch(() => {
 				openedWindow = window.open(CatCallbackURL + '/' + qrg + '/' + mode);
 				openedWindow.close();
 			});
@@ -1310,26 +1300,6 @@ $(function() {
 			$('#dxtitle').hide();
 			$('#menutoggle_i').removeClass('fa-arrow-up');
 			$('#menutoggle_i').addClass('fa-arrow-down');
-		}
-	});
-
-	$(document).on('click', '.activity-flag-link', function(e) {
-		e.stopPropagation();
-
-		let activityType = $(this).data('activity-type');
-		let ref = $(this).data('ref');
-		let url = '';
-
-		if (activityType === 'pota') {
-			url = 'https://pota.app/#/park/' + ref;
-		} else if (activityType === 'sota') {
-			url = 'https://sotl.as/summits/' + ref;
-		} else if (activityType === 'wwff') {
-			url = 'https://wwff.co/directory/?showRef=' + ref;
-		}
-
-		if (url) {
-			window.open(url, '_blank');
 		}
 	});
 
