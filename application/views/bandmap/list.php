@@ -234,6 +234,16 @@
 		position: fixed;
 	}
 
+	/* Ensure modals appear above fullscreen mode */
+	body.fullscreen-active .modal,
+	body.fullscreen-active .modal-backdrop {
+		z-index: 10050 !important;
+	}
+
+	body.fullscreen-active .modal-backdrop + .modal {
+		z-index: 10051 !important;
+	}
+
 	body.fullscreen-active #page-wrapper,
 	body.fullscreen-active nav,
 	body.fullscreen-active .navbar,
