@@ -103,12 +103,12 @@
 
 	/* Column widths - consolidated selectors */
 	.spottable th:nth-child(1), .spottable td:nth-child(1) { width: 50px; }   /* Age (minutes) */
-	.spottable th:nth-child(2), .spottable td:nth-child(2) { width: 50px; }   /* Band */
+	.spottable th:nth-child(2), .spottable td:nth-child(2) { width: 53px; }   /* Band */
 	.spottable th:nth-child(3), .spottable td:nth-child(3) { width: 90px; }   /* Frequency */
 	.spottable th:nth-child(4), .spottable td:nth-child(4) { width: 60px; }   /* Mode */
 	.spottable th:nth-child(5), .spottable td:nth-child(5) { width: 120px; }  /* Callsign */
 	.spottable th:nth-child(6), .spottable td:nth-child(6) { width: 40px; }   /* Continent */
-	.spottable th:nth-child(7), .spottable td:nth-child(7) { width: 45px; }   /* CQ Zone */
+	.spottable th:nth-child(7), .spottable td:nth-child(7) { width: 50px; }   /* CQ Zone */
 	.spottable th:nth-child(8), .spottable td:nth-child(8) { width: 50px; }   /* Flag */
 	.spottable th:nth-child(9), .spottable td:nth-child(9) { width: 150px; }  /* Entity (DXCC name) */
 	.spottable th:nth-child(10), .spottable td:nth-child(10) { width: 60px; } /* DXCC Number */
@@ -160,6 +160,17 @@
 	.spottable td:nth-child(14) {
 		overflow: visible;
 		white-space: nowrap;
+	}
+
+	/* Center alignment for specific columns */
+	.spottable th:nth-child(6), .spottable td:nth-child(6),   /* Continent (spotted) */
+	.spottable th:nth-child(7), .spottable td:nth-child(7),   /* CQ Zone (spotted) */
+	.spottable th:nth-child(8), .spottable td:nth-child(8),   /* Flag */
+	.spottable th:nth-child(10), .spottable td:nth-child(10), /* DXCC Number */
+	.spottable th:nth-child(12), .spottable td:nth-child(12), /* de Cont (spotter) */
+	.spottable th:nth-child(13), .spottable td:nth-child(13)  /* de CQZ (spotter) */
+	{
+		text-align: center;
 	}
 
 	/* Responsive: On smallest screens, Entity column fills remaining space */
@@ -306,6 +317,11 @@
 	.menu-bar {
 		margin-top: 5px;
 		margin-bottom: 5px;
+	}
+
+	/* Ensure CAT tracking and search box stay right-aligned when wrapping */
+	.menu-bar > div:last-child {
+		justify-content: flex-end;
 	}
 
 	.card-body.pt-1 {
@@ -480,15 +496,14 @@
 		<!-- Filters Section with darker background and rounded corners -->
 		<div class="menu-bar">
 			<!-- First Row: Band Filters, Mode Filters, and Continent Filters -->
-			<div class="d-flex flex-wrap align-items-center gap-2 mb-2">
-				<!-- Band Filter Buttons -->
-				<div class="d-flex flex-wrap gap-2 align-items-center">
-					<small class="text-muted me-1 flex-shrink-0"><?= __("Bands:"); ?></small>
-					<!-- MF Band -->
-					<div class="btn-group flex-shrink-0" role="group">
-						<button class="btn btn-sm btn-primary" type="button" id="toggle160mFilter" title="<?= __("Toggle 160m band filter"); ?>">160m</button>
-					</div>
-					<!-- HF Bands -->
+		<div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+			<!-- Band Filter Buttons -->
+			<div class="d-flex flex-wrap gap-2 align-items-center">
+				<!-- MF Band -->
+				<div class="btn-group flex-shrink-0" role="group">
+					<button class="btn btn-sm btn-primary" type="button" id="toggle160mFilter" title="<?= __("Toggle 160m band filter"); ?>">160m</button>
+				</div>
+				<!-- HF Bands -->
 					<div class="btn-group flex-shrink-0" role="group">
 						<button class="btn btn-sm btn-primary" type="button" id="toggle80mFilter" title="<?= __("Toggle 80m band filter"); ?>">80m</button>
 						<button class="btn btn-sm btn-primary" type="button" id="toggle60mFilter" title="<?= __("Toggle 60m band filter"); ?>">60m</button>
@@ -518,16 +533,15 @@
 			<!-- Spacer to push modes and continents to the right -->
 			<div class="flex-grow-1"></div>
 
-			<!-- Mode Filter Buttons -->
-			<div class="d-flex flex-wrap gap-2 align-items-center">
-				<small class="text-muted me-1 flex-shrink-0"><?= __("Modes:"); ?></small>
-				<div class="btn-group flex-shrink-0" role="group">
-					<button class="btn btn-sm btn-primary" type="button" id="toggleCwFilter" title="<?= __("Toggle CW mode filter"); ?>">CW</button>
-					<button class="btn btn-sm btn-primary" type="button" id="toggleDigiFilter" title="<?= __("Toggle Digital mode filter"); ?>">Digi</button>
-					<button class="btn btn-sm btn-primary" type="button" id="togglePhoneFilter" title="<?= __("Toggle Phone mode filter"); ?>">Phone</button>
-				</div>
-			</div>
 
+		<!-- Mode Filter Buttons -->
+		<div class="d-flex flex-wrap gap-2 align-items-center">
+			<div class="btn-group flex-shrink-0" role="group">
+				<button class="btn btn-sm btn-primary" type="button" id="toggleCwFilter" title="<?= __("Toggle CW mode filter"); ?>">CW</button>
+				<button class="btn btn-sm btn-primary" type="button" id="toggleDigiFilter" title="<?= __("Toggle Digital mode filter"); ?>">Digi</button>
+				<button class="btn btn-sm btn-primary" type="button" id="togglePhoneFilter" title="<?= __("Toggle Phone mode filter"); ?>">Phone</button>
+			</div>
+		</div>
 			<!-- Continent Filter Buttons -->
 			<div class="d-flex flex-wrap gap-2 align-items-center">
 					<small class="text-muted me-1 flex-shrink-0"><?= __("de:"); ?></small>
@@ -662,17 +676,16 @@
 			<!-- Clear Filters Button (outside dropdown) -->
 			<button class="btn btn-sm btn-secondary" type="button" id="clearFiltersButtonQuick" title="<?= __("Clear all filters except De Continent"); ?>">
 				<i class="fas fa-eraser"></i> <span class="d-none d-sm-inline"><?= __("Clear Filters"); ?></span>
-			</button>
+		</button>
 
-			<!-- Quick Filter Toggle Buttons -->
-			<small class="text-muted me-1 flex-shrink-0"><?= __("Quick Filters:"); ?></small>
-			<div class="btn-group flex-shrink-0" role="group">
-				<button class="btn btn-sm btn-primary" type="button" id="toggleLotwFilter" title="<?= __("Toggle LoTW User filter"); ?>">
-					<span>L</span> <span class="d-none d-sm-inline">LoTW users</span>
-				</button>
-				<button class="btn btn-sm btn-primary" type="button" id="toggleNotWorkedFilter" title="<?= __("Toggle Not Worked Before filter"); ?>">
-					<i class="fas fa-star"></i> <span class="d-none d-sm-inline">New callsign</span>
-				</button>
+		<!-- Quick Filter Toggle Buttons -->
+		<div class="btn-group flex-shrink-0" role="group">
+			<button class="btn btn-sm btn-primary" type="button" id="toggleLotwFilter" title="<?= __("Toggle LoTW User filter"); ?>">
+				<span>L</span> <span class="d-none d-sm-inline">LoTW users</span>
+			</button>
+			<button class="btn btn-sm btn-primary" type="button" id="toggleNotWorkedFilter" title="<?= __("Toggle Not Worked Before filter"); ?>">
+				<i class="fas fa-star"></i> <span class="d-none d-sm-inline">New callsign</span>
+			</button>
 				<button class="btn btn-sm btn-primary" type="button" id="toggleDxccNeededFilter" title="<?= __("Toggle DXCC Needed filter"); ?>">
 					<i class="fas fa-globe"></i> <span class="d-none d-sm-inline">New DXCC</span>
 				</button>
@@ -685,12 +698,23 @@
 			<button class="btn btn-sm btn-primary" type="button" id="toggleFreshFilter" title="<?= __("Toggle Fresh spots filter (< 5 minutes old)"); ?>">
 				<i class="fas fa-bolt"></i> <span class="d-none d-sm-inline">Fresh spots</span>
 			</button>
-		</div>			<!-- Search Input -->
-			<div class="input-group input-group-sm ms-auto flex-shrink-0" style="max-width: 300px; min-width: 200px;">
-				<input type="text" class="form-control" id="spotSearchInput" placeholder="<?= __("Search spots..."); ?>" aria-label="<?= __("Search"); ?>">
-				<span class="input-group-text search-icon-clickable" id="searchIcon"><i class="fas fa-search"></i></span>
-			</div>
 		</div>
+	</div>
+
+	<!-- CAT Tracking and Search wrapper - always right aligned -->
+	<div class="d-flex gap-2 align-items-center ms-auto">
+		<!-- CAT Tracking Button -->
+		<button class="btn btn-sm btn-primary flex-shrink-0" type="button" id="toggleCatTracking" title="<?= __("When selected the filters will be set basing on your current radio status"); ?>">
+			<i class="fas fa-radio"></i> <span class="d-none d-sm-inline">CAT tracking</span>
+		</button>
+
+		<!-- Search Input -->
+		<div class="input-group input-group-sm" style="max-width: 400px; width: 300px;">
+			<input type="text" class="form-control" id="spotSearchInput" placeholder="<?= __("Search spots..."); ?>" aria-label="<?= __("Search"); ?>">
+			<span class="input-group-text search-icon-clickable" id="searchIcon"><i class="fas fa-search"></i></span>
+		</div>
+	</div>
+	</div>
 </div>
 			<!-- Status Bar showing filter info and refresh timer -->
 			<div class="status-bar">
@@ -712,11 +736,11 @@
 							<th title="<?= __("Age in minutes"); ?>"><i class="fas fa-clock"></i></th>
 							<th title="<?= __("Band"); ?>"><i class="fas fa-wave-square"></i></th>
 							<th title="<?= __("Frequency"); ?> [MHz]"><?= __("Freq"); ?></th>
-							<th title="<?= __("Mode"); ?>"><i class="fas fa-broadcast-tower"></i></th>
-							<th title="<?= __("Spotted Callsign"); ?>"><?= __("Spotted"); ?></th>
-							<th title="<?= __("Continent"); ?>"><i class="fas fa-globe-americas"></i></th>
-							<th title="<?= __("CQ Zone"); ?>"><i class="fas fa-map-marked"></i></th>
-							<th title="<?= __("Flag"); ?>"><i class="fas fa-flag"></i></th>
+						<th title="<?= __("Mode"); ?>"><i class="fas fa-broadcast-tower"></i></th>
+						<th title="<?= __("Spotted Callsign"); ?>"><?= __("Spotted"); ?></th>
+						<th title="<?= __("Continent"); ?>"><i class="fas fa-globe-americas"></i></th>
+						<th title="<?= __("CQ Zone"); ?>"><i class="fas fa-map-marked"></i></th>
+						<th title="<?= __("Flag"); ?>"><i class="fas fa-flag"></i></th>
 							<th title="<?= __("DXCC Entity"); ?>"><?= __("Entity"); ?></th>
 							<th title="<?= __("DXCC Number"); ?>"><i class="fas fa-hashtag"></i></th>
 							<th title="<?= __("Spotter Callsign"); ?>"><?= __("Spotter"); ?></th>

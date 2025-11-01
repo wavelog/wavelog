@@ -324,6 +324,10 @@ $(function() {
 					'createdCell':  function (td, cellData, rowData, row, col) {
 						$(td).addClass("mode");
 					}
+				},
+				{
+					'targets': [5, 6, 7, 11, 12, 13, 14],  // Cont, CQZ, Flag, de Cont, de CQZ, Special, Message - disable sorting
+					'orderable': false
 				}
 			],
 			search: { smart: true },
@@ -481,10 +485,10 @@ $(function() {
 		}
 
 		let tooltipLines = ['Last fetched for:'];
-		tooltipLines.push('Band: ' + lastFetchParams.band);
-		tooltipLines.push('Continent: ' + lastFetchParams.continent);
-		tooltipLines.push('Mode: ' + lastFetchParams.mode);
-		tooltipLines.push('Max Age: ' + lastFetchParams.maxAge + ' min');
+		tooltipLines.push('Band: ' + (lastFetchParams.band || 'All'));
+		tooltipLines.push('Continent: ' + (lastFetchParams.continent || 'All'));
+		tooltipLines.push('Mode: ' + (lastFetchParams.mode || 'All'));
+		tooltipLines.push('Max Age: ' + (lastFetchParams.maxAge || '120') + ' min');
 		if (lastFetchParams.timestamp) {
 			let fetchTime = new Date(lastFetchParams.timestamp);
 			let fetchTimeStr = fetchTime.getHours().toString().padStart(2, '0') + ':' +
@@ -1281,6 +1285,7 @@ $(function() {
 
 	let bc2qso = new BroadcastChannel('qso_wish');
 	var CatCallbackURL = "http://127.0.0.1:54321";
+	var isCatTrackingEnabled = false; // Track CAT tracking button state
 
 	let wait4pong = 2000;
 	let check_intv = 100;
@@ -1422,7 +1427,7 @@ $(function() {
 			websocketEnabled = false;
 		}
 		if ($("#radio option:selected").val() == '0') {
-			$(".radio_cat_state" ).remove();
+			$('#radio_status').html('');
 		} else if ($("#radio option:selected").val() == 'ws') {
 			initializeWebSocketConnection();
 		} else {
@@ -1434,23 +1439,31 @@ $(function() {
 	function updateCATui(data) {
 		const band = frequencyToBand(data.frequency);
 		CatCallbackURL=data.cat_url;
-		if (band !== $("#band").val()) {
-			$("#band").val(band);
-			$("#band").trigger("change");
+
+		console.log('CAT Update - Frequency:', data.frequency, 'Band:', band, 'Tracking enabled:', isCatTrackingEnabled, 'Current band filter:', $("#band").val());
+
+		// Only update band filter if CAT tracking is enabled
+		if (isCatTrackingEnabled) {
+			const currentBands = $("#band").val() || [];
+			// Check if current selection is not just this band
+			if (currentBands.length !== 1 || currentBands[0] !== band) {
+				console.log('Updating band filter to:', band);
+				$("#band").val([band]);
+				updateSelectCheckboxes('band');
+				syncQuickFilterButtons();
+				applyFilters(false);
+			}
 		}
 
 		const minutes = Math.floor(cat_timeout_interval / 60);
 
 		if(data.updated_minutes_ago > minutes) {
-			$(".radio_cat_state" ).remove();
-			if($('.radio_timeout_error').length == 0) {
-				$('.messages').prepend('<div class="alert alert-danger radio_timeout_error" role="alert"><i class="fas fa-broadcast-tower"></i> Radio connection timed-out: ' + $('select.radios option:selected').text() + ' data is ' + data.updated_minutes_ago + ' minutes old.</div>');
-			} else {
-				$('.radio_timeout_error').html('Radio connection timed-out: ' + $('select.radios option:selected').text() + ' data is ' + data.updated_minutes_ago + ' minutes old.');
+			if ($('#radio_status').length) {
+				$('#radio_status').html('<div class="alert alert-danger mb-2" role="alert"><i class="fas fa-broadcast-tower"></i> Radio connection timed-out: ' + $('select.radios option:selected').text() + ' data is ' + data.updated_minutes_ago + ' minutes old.</div>');
 			}
 		} else {
 			$(".radio_timeout_error" ).remove();
-			text = '<i class="fas fa-broadcast-tower"></i><span style="margin-left:10px;"></span><b>TX:</b> '+(Math.round(parseInt(data.frequency)/100)/10000).toFixed(4)+' MHz';
+			var text = '<i class="fas fa-broadcast-tower"></i><span style="margin-left:10px;"></span><b>TX:</b> '+(Math.round(parseInt(data.frequency)/100)/10000).toFixed(4)+' MHz';
 			highlight_current_qrg((parseInt(data.frequency))/1000);
 			if(data.mode != null) {
 				text = text+'<span style="margin-left:10px"></span>'+data.mode;
@@ -1458,17 +1471,15 @@ $(function() {
 			if(data.power != null && data.power != 0) {
 				text = text+'<span style="margin-left:10px"></span>'+data.power+' W';
 			}
-			if (! $('#radio_cat_state').length) {
-				$('.messages').prepend('<div aria-hidden="true"><div id="radio_cat_state" class="alert alert-success radio_cat_state" role="alert">'+text+'</div></div>');
-			} else {
-				$('#radio_cat_state').html(text);
+			if ($('#radio_status').length) {
+				$('#radio_status').html('<div class="alert alert-success mb-2" role="alert">'+text+'</div>');
 			}
 		}
 	}
 
 	var updateFromCAT = function() {
 		if($('select.radios option:selected').val() != '0') {
-			radioID = $('select.radios option:selected').val();
+			var radioID = $('select.radios option:selected').val();
 			$.getJSON( base_url+"index.php/radio/json/" + radioID, function( data ) {
 
 				if (data.error) {
@@ -2067,6 +2078,25 @@ $(function() {
 
 		$('#additionalFlags').val(currentValues).trigger('change');
 		applyFilters(false);
+	});
+
+	// Toggle CAT tracking
+	$('#toggleCatTracking').on('click', function() {
+		let btn = $(this);
+
+		if (btn.hasClass('btn-warning')) {
+			// Disable CAT tracking
+			btn.removeClass('btn-warning').addClass('btn-primary');
+			btn.find('i').removeClass('fa-check-circle').addClass('fa-radio');
+			isCatTrackingEnabled = false;
+			console.log('CAT Tracking disabled');
+		} else {
+			// Enable CAT tracking
+			btn.removeClass('btn-primary').addClass('btn-warning');
+			btn.find('i').removeClass('fa-radio').addClass('fa-check-circle');
+			isCatTrackingEnabled = true;
+			console.log('CAT Tracking enabled');
+		}
 	});
 
 	// ========================================
