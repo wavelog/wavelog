@@ -73,13 +73,6 @@ class Clublog extends CI_Controller
 		echo $r;
 	}
 
-	function markqso($station_id)
-	{
-		$clean_station_id = $this->security->xss_clean($station_id);
-		$this->load->model('clublog_model');
-		$this->clublog_model->mark_qsos_sent($clean_station_id);
-	}
-
 	/*
 	 * Used for displaying the uid for manually selecting log for upload to Clublog
 	 */

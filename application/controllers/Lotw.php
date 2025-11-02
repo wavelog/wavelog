@@ -748,13 +748,18 @@ class Lotw extends CI_Controller {
 					continue;
 				} else if(str_contains($content,"Username/password incorrect</I>")) {
 					$result = "LoTW download failed for user ".$user->user_lotw_name.": Username/password incorrect";
-					log_message('error', 'LoTW download failed for user '.$user->user_lotw_name.': Username/password incorrect');
+					log_message('error', 'LoTW download failed for user '.$user->user_name.': Username/password incorrect');
+					if ($this->Lotw_model->remove_lotw_credentials($user->user_id)) {
+						log_message('error', 'LoTW credentials deleted for user '.$user->user_name);
+					} else {
+						log_message('error', 'Deleting LoTW credentials for user '.$user->user_name.' failed');
+					}
 					continue;
 				}
 				file_put_contents($file, $content);
 				if (file_get_contents($file, false, null, 0, 39) != "ARRL Logbook of the World Status Report") {
 					$result = "Downloaded LoTW report for user ".$user->user_lotw_name." is invalid. Check your credentials.";
-					log_message('error', 'Downloaded LoTW report is invalid for user '.$user->user_lotw_name);
+					log_message('error', 'Downloaded LoTW report is invalid for user '.$user->user_name);
 					continue;
 				}
 
