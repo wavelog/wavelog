@@ -1,0 +1,485 @@
+.fresh {
+	transition: all 500ms ease;
+	--bs-table-bg: #3981b2;
+	--bs-table-accent-bg: #3981b2;
+}
+
+tbody a {
+	color: inherit;
+	text-decoration: none;
+}
+
+/* Make table rows clickable for prepare logging - use native alias cursor */
+.spottable tbody tr {
+	cursor: alias !important;
+}
+
+.spottable tbody tr td {
+	cursor: alias !important;
+}
+
+/* Don't show alias cursor on loading/processing/empty rows */
+.spottable tbody tr.dataTables_empty,
+.spottable tbody tr.dataTables_empty td,
+.spottable tbody td.dt-empty {
+	cursor: default !important;
+}
+
+/* Show standard pointer for clickable links (QRZ, POTA, SOTA, etc.) */
+.spottable tbody tr a,
+.spottable tbody tr td a {
+	cursor: pointer !important;
+}
+
+.spottable tbody tr td:nth-child(5) a {
+	text-decoration: underline !important;
+	cursor: pointer !important;
+}
+
+.spottable tbody tr td:nth-child(7) i:hover {
+	opacity: 0.7;
+	transform: scale(1.1);
+	transition: all 0.2s ease;
+}
+
+/* Status bar styling */
+.status-bar {
+	font-size: 0.875rem;
+	color: var(--bs-body-color);
+	font-family: 'Courier New', Courier, 'Lucida Console', Monaco, monospace;
+	background-color: var(--bs-body-bg);
+	border-radius: 8px;
+	margin: 0.25rem 0;
+	padding: 10px 15px;
+}
+
+.status-bar-inner {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+}
+
+.status-bar-left {
+	flex: 1;
+	min-width: 0;
+	font-weight: 500;
+}
+
+#statusMessage {
+	cursor: help;
+}
+
+.status-bar-right {
+	flex: 0 0 20%;
+	min-width: 150px;
+	font-weight: 500;
+	color: var(--bs-secondary);
+	text-align: right;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.dataTables_wrapper {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+.spottable {
+	width: 100%;
+	table-layout: fixed;
+	font-family: 'Courier New', Courier, 'Lucida Console', Monaco, monospace;
+	font-size: calc(1rem - 2px);
+}
+
+.spottable thead th {
+	font-weight: normal;
+}
+
+/* Column widths - consolidated selectors */
+.spottable th:nth-child(1), .spottable td:nth-child(1) { width: 50px; }   /* Age (minutes) */
+.spottable th:nth-child(2), .spottable td:nth-child(2) { width: 53px; }   /* Band */
+.spottable th:nth-child(3), .spottable td:nth-child(3) { width: 90px; }   /* Frequency */
+.spottable th:nth-child(4), .spottable td:nth-child(4) { width: 60px; }   /* Mode */
+.spottable th:nth-child(5), .spottable td:nth-child(5) { width: 120px; }  /* Callsign */
+.spottable th:nth-child(6), .spottable td:nth-child(6) { width: 40px; }   /* Continent */
+.spottable th:nth-child(7), .spottable td:nth-child(7) { width: 50px; }   /* CQ Zone */
+.spottable th:nth-child(8), .spottable td:nth-child(8) { width: 50px; }   /* Flag */
+.spottable th:nth-child(9), .spottable td:nth-child(9) { width: 150px; }  /* Entity (DXCC name) */
+.spottable th:nth-child(10), .spottable td:nth-child(10) { width: 60px; } /* DXCC Number */
+.spottable th:nth-child(11), .spottable td:nth-child(11) { width: 120px; } /* de Callsign (Spotter) */
+.spottable th:nth-child(12), .spottable td:nth-child(12) { width: 50px; } /* de Cont */
+.spottable th:nth-child(13), .spottable td:nth-child(13) { width: 50px; } /* de CQZ */
+.spottable th:nth-child(14), .spottable td:nth-child(14) { width: 110px; } /* Special (LoTW, POTA, etc) */
+.spottable th:nth-child(15), .spottable td:nth-child(15) { min-width: 100px; width: 100%; }  /* Message - fills remaining space */
+
+/* Hidden class for responsive columns (controlled by JavaScript) */
+.spottable .column-hidden {
+	display: none !important;
+}
+
+.spottable td {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.spottable td:nth-child(15) {
+	white-space: normal;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	font-size: calc(1rem - 4px);
+}
+
+.spottable td:nth-child(6), .spottable td:nth-child(12) {
+	font-family: 'Segoe UI Emoji', 'Noto Color Emoji', 'Apple Color Emoji', Arial, sans-serif;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.spottable .flag-emoji {
+	font-family: "Twemoji Country Flags", "Helvetica", "Comic Sans", sans-serif;
+	font-style: normal;
+	font-variant: normal;
+}
+
+.spottable img.emoji {
+	height: 1.3em;
+	width: 1.3em;
+	margin: 0 .05em 0 .1em;
+	vertical-align: -0.25em;
+	display: inline-block;
+}
+
+.spottable td:nth-child(14) {
+	overflow: visible;
+	white-space: nowrap;
+}
+
+/* Center alignment for specific columns */
+.spottable th:nth-child(6), .spottable td:nth-child(6),   /* Continent (spotted) */
+.spottable th:nth-child(7), .spottable td:nth-child(7),   /* CQ Zone (spotted) */
+.spottable th:nth-child(8), .spottable td:nth-child(8),   /* Flag */
+.spottable th:nth-child(10), .spottable td:nth-child(10), /* DXCC Number */
+.spottable th:nth-child(12), .spottable td:nth-child(12), /* de Cont (spotter) */
+.spottable th:nth-child(13), .spottable td:nth-child(13)  /* de CQZ (spotter) */
+{
+	text-align: center;
+}
+
+/* Responsive: On smallest screens, Entity column fills remaining space */
+@media (max-width: 500px) {
+	.spottable {
+		table-layout: auto !important;
+	}
+	.spottable th:nth-child(9), .spottable td:nth-child(9) {
+		width: auto !important;
+		min-width: 150px !important;
+	}
+	.spottable th:nth-child(1), .spottable td:nth-child(1) { width: 50px !important; }   /* Age */
+	.spottable th:nth-child(3), .spottable td:nth-child(3) { width: 90px !important; }   /* Frequency */
+	.spottable th:nth-child(5), .spottable td:nth-child(5) { width: 100px !important; }  /* Callsign */
+}
+
+.spottable thead th {
+	font-size: calc(1rem - 1px);
+	vertical-align: middle;
+}
+
+/* Fullscreen mode - CLEAN REBUILD */
+.bandmap-logo-fullscreen {
+	display: none;
+}
+
+.bandmap-fullscreen .bandmap-logo-fullscreen {
+	display: inline-block;
+}
+
+.bandmap-fullscreen {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 9999;
+	overflow: hidden;
+	background: var(--bs-body-bg, #fff);
+	max-width: none !important;
+	padding: 0 !important;
+}
+
+.bandmap-fullscreen .card {
+	height: 100vh;
+	margin: 0;
+	border-radius: 0;
+	border: none;
+	display: flex;
+	flex-direction: column;
+}
+
+.bandmap-fullscreen .card-header {
+	flex: 0 0 auto;
+}
+
+.bandmap-fullscreen .card-body {
+	flex: 1;
+	min-height: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+	padding: 0.5rem;
+	overflow: auto;
+}
+
+/* Direct children of card-body in fullscreen */
+.bandmap-fullscreen #radio_status {
+	flex: 0 0 auto;
+	margin: 0 !important;
+	padding: 0 !important;
+	min-height: 2.5rem; /* Reserve space for radio status to prevent UI shift */
+}
+
+/* Only show margin when radio_status has content */
+.bandmap-fullscreen #radio_status:not(:empty) {
+	margin: 0 0 0.5rem 0 !important;
+}
+
+/* Reserve space for radio status even when empty */
+#radio_status {
+	min-height: 2.5rem; /* Reserve vertical space to prevent layout shift */
+}
+
+.bandmap-fullscreen .menu-bar {
+	flex: 0 0 auto;
+	margin: 0 0 0.5rem 0 !important;
+}
+
+.bandmap-fullscreen .status-bar {
+	flex: 0 0 auto;
+	margin: 0 0 0.5rem 0 !important;
+}
+
+.bandmap-fullscreen .table-responsive {
+	flex: 1 1 auto;
+	min-height: 0;
+	overflow: auto;
+	margin: 0 !important;
+}
+
+/* Radio status compact mode styling (no card wrapper) */
+#radio_status #radio_cat_state:not(.card) {
+	border: var(--bs-card-border-width, 1px) solid var(--bs-card-border-color, rgba(0,0,0,.125));
+	border-radius: 8px;
+	padding: 0.5rem;
+	margin: 0;
+	background-color: var(--bs-card-cap-bg, var(--bs-secondary-bg));
+}
+
+#radio_status #radio_cat_state:not(.card) > div {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+/* In fullscreen, ensure proper spacing */
+.bandmap-fullscreen #radio_status #radio_cat_state:not(.card) {
+	margin: 0 !important;
+}
+
+/* Z-index management */
+.bandmap-fullscreen .dataTables_processing {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 10001;
+}
+
+.bandmap-fullscreen .dropdown-menu {
+	z-index: 10002;
+	position: fixed;
+}
+
+body.fullscreen-active .tooltip,
+.bandmap-fullscreen .tooltip {
+	z-index: 10003 !important;
+}
+
+body.fullscreen-active .modal,
+body.fullscreen-active .modal-backdrop {
+	z-index: 10050 !important;
+}
+
+body.fullscreen-active .modal-backdrop + .modal {
+	z-index: 10051 !important;
+}
+
+/* Hide page elements in fullscreen */
+body.fullscreen-active #page-wrapper,
+body.fullscreen-active nav,
+body.fullscreen-active .navbar,
+body.fullscreen-active header,
+body.fullscreen-active #bandmapContainer > .d-flex.align-items-center.mb-3,
+body.fullscreen-active #bandmapContainer > .messages {
+	display: none !important;
+}
+
+body.fullscreen-active .fullscreen-wavelog-text {
+	display: inline !important;
+}
+
+body.fullscreen-active {
+	overflow: hidden;
+}
+
+#fullscreenToggle {
+	cursor: pointer;
+	font-size: 1.2rem;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 36px;
+	height: 36px;
+}
+
+/* Menu bar and table styling */
+.menu-bar {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+/* Ensure CAT Control and search box stay right-aligned when wrapping */
+.menu-bar > div:last-child {
+	justify-content: flex-end;
+}
+
+.card-body.pt-1 {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.table-responsive {
+	overflow: auto;
+	margin: 0;
+	padding: 0;
+	background-color: var(--bs-card-cap-bg, var(--bs-secondary-bg));
+	border: var(--bs-card-border-width, 1px) solid var(--bs-card-border-color, rgba(0,0,0,.125));
+	border-radius: 8px;
+}
+
+.spottable {
+	border-bottom: none;
+	margin-bottom: 0;
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.spottable thead tr {
+	border-top: 1px solid var(--bs-border-color);
+	border-bottom: 1px solid var(--bs-border-color);
+}
+
+.spottable tbody tr:last-child {
+	border-bottom: 1px solid var(--bs-border-color);
+}
+
+.spottable tbody tr,
+.spottable tbody tr td {
+	border-top: none;
+	border-bottom: none;
+}
+
+/* Filter dropdowns */
+select[multiple] {
+	height: auto;
+	min-height: 350px;
+	max-height: 700px;
+}
+
+select[multiple].filter-short {
+	min-height: 150px;
+	max-height: 220px;
+}
+
+select[multiple] option:checked {
+	background-color: var(--bs-primary);
+	color: white;
+	font-weight: normal;
+}
+
+.dropdown-menu .mb-3 {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	min-height: 100px;
+}
+
+.dropdown-menu .filter-label-bottom {
+	margin-top: auto;
+	margin-bottom: 0.25rem;
+	padding-bottom: 0;
+	text-align: left;
+}
+
+.dropdown-menu select.form-select {
+	margin-bottom: 0;
+}
+
+.dropdown-menu select {
+	flex-shrink: 0;
+}
+
+.filter-tip {
+	background-color: var(--bs-card-cap-bg, var(--bs-secondary-bg));
+	color: var(--bs-body-color);
+	border: 2px solid var(--bs-dark, #212529);
+	padding: 8px 12px;
+	border-radius: 6px;
+	margin-bottom: 15px;
+	font-size: 1rem; /* Match page default font size */
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.filter-label-small {
+	font-size: 1rem; /* Match page default font size */
+	margin-bottom: 0.25rem;
+	font-weight: 500;
+}
+
+.search-icon-clickable {
+	cursor: pointer;
+}
+
+.search-icon-clickable:hover {
+	background-color: var(--bs-secondary-bg);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+	.dropdown-menu {
+		min-width: 95vw;
+		max-width: 95vw;
+	}
+
+	select[multiple] {
+		min-height: 180px;
+		max-height: 375px;
+	}
+
+	select[multiple].filter-short {
+		min-height: 100px;
+		max-height: 150px;
+	}
+}
+
+@media (max-width: 576px) {
+	select[multiple] {
+		min-height: 150px;
+		max-height: 300px;
+	}
+}
