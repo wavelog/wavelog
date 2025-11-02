@@ -748,7 +748,7 @@ class Lotw extends CI_Controller {
 					continue;
 				} else if(str_contains($content,"Username/password incorrect</I>")) {
 					$result = "LoTW download failed for user ".$user->user_lotw_name.": Username/password incorrect";
-					log_message('error', 'LoTW download failed for user '.$user->user_lotw_name);
+					log_message('error', 'LoTW download failed for user '.$user->user_lotw_name.': Username/password incorrect');
 					continue;
 				}
 				file_put_contents($file, $content);
