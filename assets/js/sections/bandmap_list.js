@@ -180,9 +180,8 @@ $(function() {
 	// Band filter buttons - green if All, orange if specific band, blue if not selected
 	// Always update colors, even when CAT Control is enabled (so users can see which band is active)
 	let bandButtons = ['#toggle160mFilter', '#toggle80mFilter', '#toggle60mFilter', '#toggle40mFilter', '#toggle30mFilter',
-	                   '#toggle20mFilter', '#toggle17mFilter', '#toggle15mFilter', '#toggle12mFilter', '#toggle10mFilter',
-	                   '#toggle6mFilter', '#toggle4mFilter', '#toggle2mFilter', '#toggle70cmFilter', '#toggle23cmFilter'];
-	let bandIds = ['160m', '80m', '60m', '40m', '30m', '20m', '17m', '15m', '12m', '10m', '6m', '4m', '2m', '70cm', '23cm'];
+	                   '#toggle20mFilter', '#toggle17mFilter', '#toggle15mFilter', '#toggle12mFilter', '#toggle10mFilter'];
+	let bandIds = ['160m', '80m', '60m', '40m', '30m', '20m', '17m', '15m', '12m', '10m'];
 
 	bandButtons.forEach((btnId, index) => {
 		let $btn = $(btnId);
@@ -193,6 +192,39 @@ $(function() {
 			$btn.addClass('btn-warning');
 		} else {
 			$btn.addClass('btn-primary');
+		}
+	});
+
+	// Band group buttons (VHF, UHF, SHF, SAT)
+	let groupButtons = [
+		{ id: '#toggleVHFFilter', group: 'VHF' },
+		{ id: '#toggleUHFFilter', group: 'UHF' },
+		{ id: '#toggleSHFFilter', group: 'SHF' },
+		{ id: '#toggleSATFilter', band: 'SAT' }
+	];
+
+	groupButtons.forEach(btn => {
+		let $btn = $(btn.id);
+		$btn.removeClass('btn-primary btn-warning btn-success');
+
+		if (allBandsSelected) {
+			$btn.addClass('btn-success');
+		} else {
+			let isActive = false;
+			if (btn.group) {
+				// Check if any band in the group is selected
+				const groupBands = getBandsInGroup(btn.group);
+				isActive = groupBands.some(b => bandValues.includes(b));
+			} else if (btn.band) {
+				// For SAT, check directly
+				isActive = bandValues.includes(btn.band);
+			}
+
+			if (isActive) {
+				$btn.addClass('btn-warning');
+			} else {
+				$btn.addClass('btn-primary');
+			}
 		}
 	});		// Mode buttons - green if All, orange if selected, blue if not
 		let modeButtons = [
@@ -669,6 +701,9 @@ $(function() {
 				if (reqFlag === 'notworked') {
 					if (single.worked_call) return;  // Reject if already worked
 				}
+				if (reqFlag === 'Contest') {
+					if (!single.dxcc_spotted || !single.dxcc_spotted.isContest) return;
+				}
 			}
 		}			// Apply CWN (Confirmed/Worked/New) filter
 			let passesCwnFilter = cwnStatuses.includes('All');
@@ -683,8 +718,8 @@ $(function() {
 			// Apply band filter (client-side for multi-select)
 			let passesBandFilter = bands.includes('All');
 			if (!passesBandFilter) {
-				let freq_khz = single.frequency;
-				let spot_band = getBandFromFrequency(freq_khz);
+				// Check if spot has band field (for SAT), otherwise determine from frequency
+				let spot_band = single.band || getBandFromFrequency(single.frequency);
 				passesBandFilter = bands.includes(spot_band);
 			}
 			if (!passesBandFilter) return;
@@ -982,7 +1017,7 @@ $(function() {
 		cachedSpotData.forEach((spot) => {
 			// Count by band
 			let freq_khz = spot.frequency;
-			let band = getBandFromFrequency(freq_khz);
+			let band = spot.band || getBandFromFrequency(freq_khz);
 			if (band) {
 				bandCounts[band] = (bandCounts[band] || 0) + 1;
 				totalSpots++;
@@ -995,19 +1030,46 @@ $(function() {
 			}
 		});
 
-		// Update each band button badge
-		const bandButtons = [
+		// Count band groups (VHF, UHF, SHF, SAT)
+		let groupCounts = {
+			'VHF': 0,
+			'UHF': 0,
+			'SHF': 0,
+			'SAT': 0
+		};
+
+		Object.keys(bandCounts).forEach(band => {
+			let group = getBandGroup(band);
+			if (group) {
+				groupCounts[group] += bandCounts[band];
+			}
+		});
+
+		// Update individual MF/HF band button badges
+		const mfHfBands = [
 			'160m', '80m', '60m', '40m', '30m', '20m',
-			'17m', '15m', '12m', '10m', '6m', '4m', '2m',
-			'70cm', '23cm'
+			'17m', '15m', '12m', '10m'
 		];
 
-		bandButtons.forEach(band => {
+		mfHfBands.forEach(band => {
 			let count = bandCounts[band] || 0;
 			let $badge = $('#toggle' + band + 'Filter .band-count-badge');
 			if ($badge.length === 0) {
 				// Badge doesn't exist yet, create it
 				$('#toggle' + band + 'Filter').append(' <span class="badge bg-secondary band-count-badge">' + count + '</span>');
+			} else {
+				// Update existing badge
+				$badge.text(count);
+			}
+		});
+
+		// Update band group button badges (VHF, UHF, SHF, SAT)
+		['VHF', 'UHF', 'SHF', 'SAT'].forEach(group => {
+			let count = groupCounts[group] || 0;
+			let $badge = $('#toggle' + group + 'Filter .band-count-badge');
+			if ($badge.length === 0) {
+				// Badge doesn't exist yet, create it
+				$('#toggle' + group + 'Filter').append(' <span class="badge bg-secondary band-count-badge">' + count + '</span>');
 			} else {
 				// Update existing badge
 				$badge.text(count);
@@ -1082,11 +1144,6 @@ $(function() {
 			table.page.len(50);
 
 			if (dxspots.length > 0) {
-				// Filter out spots with no frequency or frequency = 0
-				dxspots = dxspots.filter(spot => {
-					return spot.frequency && parseFloat(spot.frequency) > 0;
-				});
-
 				dxspots.sort(SortByQrg);  // Sort by frequency
 				cachedSpotData = dxspots;
 			} else {
@@ -1178,6 +1235,30 @@ $(function() {
 		if (freq_khz >= 1240000 && freq_khz <= 1300000) return '23cm';
 		if (freq_khz >= 2300000 && freq_khz <= 2450000) return '13cm';
 		return 'All';
+	}
+
+	// Map individual bands to their band groups (VHF, UHF, SHF)
+	function getBandGroup(band) {
+		const VHF_BANDS = ['6m', '4m', '2m'];
+		const UHF_BANDS = ['1.25m', '70cm', '33cm', '23cm'];
+		const SHF_BANDS = ['13cm', '9cm', '6cm', '3cm', '1.25cm', '6mm', '4mm', '2.5mm', '2mm', '1mm'];
+
+		if (VHF_BANDS.includes(band)) return 'VHF';
+		if (UHF_BANDS.includes(band)) return 'UHF';
+		if (SHF_BANDS.includes(band)) return 'SHF';
+		if (band === 'SAT') return 'SAT';
+		return null; // MF/HF bands don't have groups
+	}
+
+	// Get all bands in a band group
+	function getBandsInGroup(group) {
+		const BAND_GROUPS = {
+			'VHF': ['6m', '4m', '2m'],
+			'UHF': ['1.25m', '70cm', '33cm', '23cm'],
+			'SHF': ['13cm', '9cm', '6cm', '3cm', '1.25cm', '6mm', '4mm', '2.5mm', '2mm', '1mm'],
+			'SAT': ['SAT']
+		};
+		return BAND_GROUPS[group] || [];
 	}
 
 	// Categorize mode as phone/cw/digi for filtering
@@ -2012,6 +2093,87 @@ $(function() {
 			if (currentValues.length === 0) currentValues = ['All'];
 		} else {
 			currentValues.push('23cm');
+		}
+		$('#band').val(currentValues).trigger('change');
+		syncQuickFilterButtons();
+		applyFilters(false);
+	});
+
+	// Band group filter buttons (VHF, UHF, SHF, SAT)
+	$('#toggleVHFFilter').on('click', function() {
+		let currentValues = $('#band').val() || [];
+		if (currentValues.includes('All')) currentValues = currentValues.filter(v => v !== 'All');
+
+		const vhfBands = getBandsInGroup('VHF');
+		const hasAllVHF = vhfBands.every(b => currentValues.includes(b));
+
+		if (hasAllVHF) {
+			// Remove all VHF bands
+			currentValues = currentValues.filter(v => !vhfBands.includes(v));
+			if (currentValues.length === 0) currentValues = ['All'];
+		} else {
+			// Add all VHF bands
+			vhfBands.forEach(b => {
+				if (!currentValues.includes(b)) currentValues.push(b);
+			});
+		}
+		$('#band').val(currentValues).trigger('change');
+		syncQuickFilterButtons();
+		applyFilters(false);
+	});
+
+	$('#toggleUHFFilter').on('click', function() {
+		let currentValues = $('#band').val() || [];
+		if (currentValues.includes('All')) currentValues = currentValues.filter(v => v !== 'All');
+
+		const uhfBands = getBandsInGroup('UHF');
+		const hasAllUHF = uhfBands.every(b => currentValues.includes(b));
+
+		if (hasAllUHF) {
+			// Remove all UHF bands
+			currentValues = currentValues.filter(v => !uhfBands.includes(v));
+			if (currentValues.length === 0) currentValues = ['All'];
+		} else {
+			// Add all UHF bands
+			uhfBands.forEach(b => {
+				if (!currentValues.includes(b)) currentValues.push(b);
+			});
+		}
+		$('#band').val(currentValues).trigger('change');
+		syncQuickFilterButtons();
+		applyFilters(false);
+	});
+
+	$('#toggleSHFFilter').on('click', function() {
+		let currentValues = $('#band').val() || [];
+		if (currentValues.includes('All')) currentValues = currentValues.filter(v => v !== 'All');
+
+		const shfBands = getBandsInGroup('SHF');
+		const hasAllSHF = shfBands.every(b => currentValues.includes(b));
+
+		if (hasAllSHF) {
+			// Remove all SHF bands
+			currentValues = currentValues.filter(v => !shfBands.includes(v));
+			if (currentValues.length === 0) currentValues = ['All'];
+		} else {
+			// Add all SHF bands
+			shfBands.forEach(b => {
+				if (!currentValues.includes(b)) currentValues.push(b);
+			});
+		}
+		$('#band').val(currentValues).trigger('change');
+		syncQuickFilterButtons();
+		applyFilters(false);
+	});
+
+	$('#toggleSATFilter').on('click', function() {
+		let currentValues = $('#band').val() || [];
+		if (currentValues.includes('All')) currentValues = currentValues.filter(v => v !== 'All');
+		if (currentValues.includes('SAT')) {
+			currentValues = currentValues.filter(v => v !== 'SAT');
+			if (currentValues.length === 0) currentValues = ['All'];
+		} else {
+			currentValues.push('SAT');
 		}
 		$('#band').val(currentValues).trigger('change');
 		syncQuickFilterButtons();

@@ -533,40 +533,45 @@
 		<div class="menu-bar">
 			<!-- First Row: Band Filters, Mode Filters, and Continent Filters -->
 		<div class="d-flex flex-wrap align-items-center gap-2 mb-2">
-			<!-- Band Filter Buttons -->
-			<div class="d-flex flex-wrap gap-2 align-items-center">
-				<!-- MF Band -->
-				<div class="btn-group flex-shrink-0" role="group">
-					<button class="btn btn-sm btn-primary" type="button" id="toggle160mFilter" title="<?= __("Toggle 160m band filter"); ?>">160m</button>
-				</div>
-				<!-- HF Bands -->
-					<div class="btn-group flex-shrink-0" role="group">
-						<button class="btn btn-sm btn-primary" type="button" id="toggle80mFilter" title="<?= __("Toggle 80m band filter"); ?>">80m</button>
-						<button class="btn btn-sm btn-primary" type="button" id="toggle60mFilter" title="<?= __("Toggle 60m band filter"); ?>">60m</button>
-						<button class="btn btn-sm btn-primary" type="button" id="toggle40mFilter" title="<?= __("Toggle 40m band filter"); ?>">40m</button>
-						<button class="btn btn-sm btn-primary" type="button" id="toggle30mFilter" title="<?= __("Toggle 30m band filter"); ?>">30m</button>
-						<button class="btn btn-sm btn-primary" type="button" id="toggle20mFilter" title="<?= __("Toggle 20m band filter"); ?>">20m</button>
-						<button class="btn btn-sm btn-primary" type="button" id="toggle17mFilter" title="<?= __("Toggle 17m band filter"); ?>">17m</button>
-						<button class="btn btn-sm btn-primary" type="button" id="toggle15mFilter" title="<?= __("Toggle 15m band filter"); ?>">15m</button>
-						<button class="btn btn-sm btn-primary" type="button" id="toggle12mFilter" title="<?= __("Toggle 12m band filter"); ?>">12m</button>
-						<button class="btn btn-sm btn-primary" type="button" id="toggle10mFilter" title="<?= __("Toggle 10m band filter"); ?>">10m</button>
-					</div>
+		<!-- Band Filter Buttons -->
+		<div class="d-flex flex-wrap gap-2 align-items-center">
+			<?php
+			// Generate band filter buttons grouped by band group
+			// Keep MF and HF as individual buttons, group VHF/UHF/SHF together
+			$vhfUhfShfButtons = [];
 
-					<!-- VHF Bands -->
-					<div class="btn-group flex-shrink-0" role="group">
-						<button class="btn btn-sm btn-primary" type="button" id="toggle6mFilter" title="<?= __("Toggle 6m band filter"); ?>">6m</button>
-						<button class="btn btn-sm btn-primary" type="button" id="toggle4mFilter" title="<?= __("Toggle 4m band filter"); ?>">4m</button>
-						<button class="btn btn-sm btn-primary" type="button" id="toggle2mFilter" title="<?= __("Toggle 2m band filter"); ?>">2m</button>
-					</div>
+			foreach ($bands as $key => $bandgroup) {
+				$groupKey = strtoupper($key);
 
-					<!-- UHF Bands -->
-					<div class="btn-group flex-shrink-0" role="group">
-						<button class="btn btn-sm btn-primary" type="button" id="toggle70cmFilter" title="<?= __("Toggle 70cm band filter"); ?>">70cm</button>
-						<button class="btn btn-sm btn-primary" type="button" id="toggle23cmFilter" title="<?= __("Toggle 23cm band filter"); ?>">23cm</button>
-					</div>
-				</div>
+				// Collect VHF, UHF, SHF for later grouping
+				if (in_array($groupKey, ['VHF', 'UHF', 'SHF'])) {
+					$vhfUhfShfButtons[$groupKey] = $groupKey;
+				} else {
+					// MF and HF bands get individual buttons in their own groups
+					echo '<div class="btn-group flex-shrink-0" role="group">';
+					foreach ($bandgroup as $band) {
+						$bandId = str_replace('.', '', $band); // Remove dots for ID (e.g., 2.5mm -> 25mm)
+						echo '<button class="btn btn-sm btn-primary" type="button" id="toggle' . $bandId . 'Filter" title="' . __("Toggle") . ' ' . $band . ' ' . __("band filter") . '">' . $band . '</button>';
+					}
+					echo '</div>' . "\n";
+				}
+			}
 
-			<!-- Spacer to push modes and continents to the right -->
+			// Output VHF/UHF/SHF as one button group
+			if (!empty($vhfUhfShfButtons)) {
+				echo '<div class="btn-group flex-shrink-0" role="group">';
+				foreach ($vhfUhfShfButtons as $groupKey) {
+					echo '<button class="btn btn-sm btn-primary" type="button" id="toggle' . $groupKey . 'Filter" title="' . __("Toggle") . ' ' . $groupKey . ' ' . __("bands filter") . '">' . $groupKey . '</button>';
+				}
+				echo '</div>' . "\n";
+			}
+
+			// Add SAT button
+			echo '<div class="btn-group flex-shrink-0" role="group">';
+			echo '<button class="btn btn-sm btn-primary" type="button" id="toggleSATFilter" title="' . __("Toggle SAT band filter") . '">SAT</button>';
+			echo '</div>' . "\n";
+			?>
+		</div>			<!-- Spacer to push modes and continents to the right -->
 			<div class="flex-grow-1"></div>
 
 
@@ -685,15 +690,16 @@
 									<select id="band" class="form-select form-select-sm" name="band" multiple="multiple">
 										<option value="All" selected><?= __("All"); ?></option>
 										<?php foreach ($bands as $key => $bandgroup) {
-											echo '<optgroup label="' . strtoupper($key) . '">';
-											foreach ($bandgroup as $band) {
-												echo '<option value="' . $band . '"';
-												echo '>' . $band . '</option>' . "\n";
-											}
-											echo '</optgroup>';
+										echo '<optgroup label="' . strtoupper($key) . '">';
+										foreach ($bandgroup as $band) {
+											echo '<option value="' . $band . '"';
+											echo '>' . $band . '</option>' . "\n";
 										}
-										?>
-									</select>
+										echo '</optgroup>';
+									}
+									?>
+									<option value="SAT">SAT</option>
+								</select>
 							</div>
 						</div>
 
