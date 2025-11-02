@@ -149,7 +149,7 @@ class Lotw_model extends CI_Model {
 	function remove_lotw_credentials($user_id = null) {
 		$sql = "UPDATE ".$this->config->item('auth_table')." SET user_lotw_password = '' WHERE user_id = ?;";
 		$query = $this->db->query($sql, array($user_id));
-		if ($this->db->affected_rows() > 0) {
+		if ($this->db->affected_rows() == 1) {
 			return true;
 		} else {
 			return false;
