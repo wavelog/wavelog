@@ -1990,8 +1990,15 @@ $(function() {
 		// Build message object with backward compatibility
 		let message = {
 			frequency: qrg,
+			frequency_rx: "", // Default empty for non-split operation
 			call: call
 		};
+
+		// If radio is in split mode, include the RX frequency
+		if (window.lastCATData && window.lastCATData.frequency_rx) {
+			message.frequency_rx = window.lastCATData.frequency_rx;
+			console.log('Split mode detected, RX frequency:', message.frequency_rx);
+		}
 
 		// Add reference fields if available (backward compatible - only if spotData exists)
 		if (spotData && spotData.dxcc_spotted) {

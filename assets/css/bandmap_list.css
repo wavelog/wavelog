@@ -584,11 +584,18 @@ body.fullscreen-active {
 .menu-bar {
 	margin-top: 5px;
 	margin-bottom: 5px;
+	overflow: visible;
 }
 
 /* Ensure CAT Control and search box stay right-aligned when wrapping */
 .menu-bar > div:last-child {
 	justify-content: flex-end;
+}
+
+/* Ensure all menu rows wrap properly and show all content */
+.menu-bar .d-flex {
+	overflow: visible;
+	min-height: fit-content;
 }
 
 .card-body.pt-1 {
@@ -710,11 +717,122 @@ select[multiple] option:checked {
 		min-height: 100px;
 		max-height: 150px;
 	}
+
+	/* Status bar and search on smaller screens */
+	.status-bar {
+		font-size: 0.8rem;
+		padding: 5px 10px;
+	}
+
+	.status-bar-inner {
+		gap: 10px;
+	}
+
+	.status-bar-right {
+		min-width: 80px;
+		font-size: 0.75rem;
+	}
+
+	/* Ensure menu rows wrap properly */
+	.menu-bar .d-flex {
+		overflow: visible !important;
+	}
+
+	/* Reduce card-body padding on tablets */
+	.card-body.pt-1 {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+
+	/* Make buttons smaller on tablets */
+	.btn-sm {
+		font-size: 0.75rem;
+		padding: 0.15rem 0.35rem;
+	}
+
+	/* Hide text labels in quick filter buttons on tablets - icons only */
+	#toggleLotwFilter .d-none.d-sm-inline,
+	#toggleNewContinentFilter .d-none.d-sm-inline,
+	#toggleDxccNeededFilter .d-none.d-sm-inline,
+	#toggleNewCallsignFilter .d-none.d-sm-inline,
+	#toggleContestFilter .d-none.d-sm-inline,
+	#toggleGeoHunterFilter .d-none.d-sm-inline,
+	#toggleFreshFilter .d-none.d-sm-inline {
+		display: none !important;
+	}
+
+	/* Reduce gap between button groups */
+	.menu-bar .d-flex {
+		gap: 0.3rem !important;
+	}
 }
 
 @media (max-width: 576px) {
 	select[multiple] {
 		min-height: 150px;
 		max-height: 300px;
+	}
+
+	/* Reduce card-body padding on mobile */
+	.card-body.pt-1 {
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+
+	/* Stack status bar and search vertically on mobile */
+	.menu-bar > div:last-child > div:first-child {
+		flex: 1 1 100% !important;
+		max-width: 100% !important;
+		margin-bottom: 0.5rem;
+	}
+
+	.menu-bar > div:last-child .input-group {
+		flex: 1 1 100% !important;
+		max-width: 100% !important;
+	}
+
+	/* Make buttons even smaller on mobile */
+	.btn-sm {
+		font-size: 0.7rem;
+		padding: 0.1rem 0.25rem;
+	}
+
+	/* Hide text labels on quick filter buttons - show icons only */
+	.d-none.d-sm-inline {
+		display: none !important;
+	}
+
+	/* Reduce gap between elements */
+	.menu-bar .d-flex {
+		gap: 0.2rem !important;
+	}
+
+	.menu-bar .d-flex.gap-2 {
+		gap: 0.2rem !important;
+	}
+
+	/* Reduce button group spacing */
+	.btn-group {
+		gap: 0px;
+	}
+
+	.btn-group .btn {
+		margin: 0;
+	}
+
+	/* Ensure all rows in menu wrap properly */
+	.menu-bar > div {
+		overflow: visible !important;
+		min-height: auto !important;
+	}
+
+	/* Reduce status bar font size further */
+	.status-bar {
+		font-size: 0.7rem;
+		padding: 3px 6px;
+	}
+
+	.status-bar-right {
+		margin-left: 5px;
 	}
 }
