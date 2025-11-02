@@ -162,18 +162,21 @@ class Logbook extends CI_Controller {
 			$measurement_base = $this->session->userdata('user_measurement_base');
 		}
 
-		$return['callsign_name'] 		= $this->nval($callbook['name'] ?? '', $this->logbook_model->call_name($callsign));
-		$return['callsign_qra'] 		= $this->nval($callbook['gridsquare'] ?? '',  $this->logbook_model->call_qra($callsign));
+		// Get user's lookup priority preference
+		$lookup_priority = $this->get_lookup_priority();
+
+		$return['callsign_name'] 		= $this->nval($this->logbook_model->call_name($callsign), $callbook['name'] ?? '', $lookup_priority);
+		$return['callsign_qra'] 		= $this->nval($this->logbook_model->call_qra($callsign), $callbook['gridsquare'] ?? '', $lookup_priority);
 		$return['callsign_geoloc'] 		= $callbook['geoloc'] ?? '';
 		$return['callsign_distance'] 	= $this->distance($return['callsign_qra'], $station_id);
-		$return['callsign_qth'] 		= $this->nval($callbook['city'] ?? '', $this->logbook_model->call_qth($callsign));
-		$return['callsign_iota'] 		= $this->nval($callbook['iota'] ?? '', $this->logbook_model->call_iota($callsign));
-		$return['callsign_email'] 		= $this->nval($callbook['email'] ?? '', $this->logbook_model->call_email($callsign));
-		$return['qsl_manager'] 			= $this->nval($callbook['qslmgr'] ?? '', $this->logbook_model->call_qslvia($callsign));
-		$return['callsign_state'] 		= $this->nval($callbook['state'] ?? '', $this->logbook_model->call_state($callsign));
-		$return['callsign_us_county'] 	= $this->nval($callbook['us_county'] ?? '', $this->logbook_model->call_us_county($callsign));
-		$return['callsign_ituz'] 		= $this->nval($callbook['ituz'] ?? '', $this->logbook_model->call_ituzone($callsign));
-		$return['callsign_cqz'] 		= $this->nval($callbook['cqz'] ?? '', $this->logbook_model->call_cqzone($callsign));
+		$return['callsign_qth'] 		= $this->nval($this->logbook_model->call_qth($callsign), $callbook['city'] ?? '', $lookup_priority);
+		$return['callsign_iota'] 		= $this->nval($this->logbook_model->call_iota($callsign), $callbook['iota'] ?? '', $lookup_priority);
+		$return['callsign_email'] 		= $this->nval($this->logbook_model->call_email($callsign), $callbook['email'] ?? '', $lookup_priority);
+		$return['qsl_manager'] 			= $this->nval($this->logbook_model->call_qslvia($callsign), $callbook['qslmgr'] ?? '', $lookup_priority);
+		$return['callsign_state'] 		= $this->nval($this->logbook_model->call_state($callsign), $callbook['state'] ?? '', $lookup_priority);
+		$return['callsign_us_county'] 	= $this->nval($this->logbook_model->call_us_county($callsign), $callbook['us_county'] ?? '', $lookup_priority);
+		$return['callsign_ituz'] 	= $this->nval($this->logbook_model->call_ituzone($callsign), $callbook['ituz'] ?? '', $lookup_priority);
+		$return['callsign_cqz'] 	= $this->nval($this->logbook_model->call_cqzone($callsign), $callbook['cqz'] ?? '', $lookup_priority);
 		$return['workedBefore'] 		= $this->worked_grid_before($return['callsign_qra'], $band, $mode);
 		$return['confirmed'] 			= $this->confirmed_grid_before($return['callsign_qra'], $band, $mode);
 		$return['timesWorked'] 			= $this->logbook_model->times_worked($lookupcall);
@@ -225,8 +228,21 @@ class Logbook extends CI_Controller {
 		return;
 	}
 
+	// Helper function to get user's lookup priority setting
+	// Returns 1 for database priority, 2 for external lookup priority (default)
+	function get_lookup_priority() {
+		$this->load->model('user_options_model');
+		$priority = $this->user_options_model->get_options('qso_db_search_priority', array('option_name'=>'enable', 'option_key'=>'boolean'))->row();
+		// If setting is 'Y' (Yes), prioritize database (return 1), otherwise prioritize external lookup (return 2)
+		return (isset($priority->option_value) && $priority->option_value == 'Y') ? 1 : 2;
+	}
+
 	// Returns $val2 first if it has value, even if it is null or empty string, if not return $val1.
-	function nval($val1, $val2) {
+	// When $priority is set to 1, returns $val1 first if it has value, if not return $val2.
+	function nval($val1, $val2, $priority = 2) {
+		if ($priority == 1) {
+			return (($val1 ?? "") === "" ? ($val2 ?? "") : ($val1 ?? ""));
+		}
 		return (($val2 ?? "") === "" ? ($val1 ?? "") : ($val2 ?? ""));
 	}
 

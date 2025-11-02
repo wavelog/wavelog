@@ -80,45 +80,6 @@ function resetTimers(qso_manual) {
 	}
 }
 
-// Show Bootstrap Toast - TBD move to general JS file
-function showToast(title, text, type = 'bg-success text-white', delay = 3000) {
-	/*
-	Examples:
-	showToast('Saved', 'Your data was saved!', 'bg-success text-white', 3000);
-	showToast('Error', 'Failed to connect to server.', 'bg-danger text-white', 5000);
-	showToast('Warning', 'Please check your input.', 'bg-warning text-dark', 4000);
-	showToast('Info', 'System will restart soon.', 'bg-info text-dark', 4000);
-	*/
-
-	const container = document.getElementById('toast-container');
-
-	// Create toast element
-	const toastEl = document.createElement('div');
-	toastEl.className = `toast align-items-center ${type}`;
-	toastEl.setAttribute('role', 'alert');
-	toastEl.setAttribute('aria-live', 'assertive');
-	toastEl.setAttribute('aria-atomic', 'true');
-	toastEl.setAttribute('data-bs-delay', delay);
-
-	// Toast inner HTML
-	toastEl.innerHTML = `
-		<div class="d-flex">
-		<div class="toast-body">
-			<strong>${title}</strong><br>${text}
-		</div>
-		<button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-		</div>
-	`;
-
-	// Append and show
-	container.appendChild(toastEl);
-	const bsToast = new bootstrap.Toast(toastEl);
-	bsToast.show();
-
-	// Remove from DOM when hidden
-	toastEl.addEventListener('hidden.bs.toast', () => toastEl.remove());
-}
-
 function getUTCTimeStamp(el) {
 	var now = new Date();
 	$(el).attr('value', ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2) + ':' + ("0" + now.getUTCSeconds()).slice(-2));

@@ -227,6 +227,7 @@ class User extends CI_Controller {
 				$data['user_default_band'] = $this->input->post('user_default_band');
 				$data['user_default_confirmation'] = ($this->input->post('user_default_confirmation_qsl') !== null ? 'Q' : '').($this->input->post('user_default_confirmation_lotw') !== null ? 'L' : '').($this->input->post('user_default_confirmation_eqsl') !== null ? 'E' : '').($this->input->post('user_default_confirmation_qrz') !== null ? 'Z' : '').($this->input->post('user_default_confirmation_clublog') !== null ? 'C' : '').($this->input->post('user_default_confirmation_dcl') !== null ? 'D' : '');
 				$data['user_qso_end_times'] = $this->input->post('user_qso_end_times');
+				$data['user_qso_db_search_priority'] = $this->input->post('user_qso_db_search_priority') ?? 'Y';
 				$data['user_quicklog'] = $this->input->post('user_quicklog');
 				$data['user_quicklog_enter'] = $this->input->post('user_quicklog_enter');
 				$data['user_hamsat_key'] = $this->input->post('user_hamsat_key');
@@ -279,6 +280,7 @@ class User extends CI_Controller {
 				$this->input->post('user_default_band'),
 				($this->input->post('user_default_confirmation_qsl') !== null ? 'Q' : '').($this->input->post('user_default_confirmation_lotw') !== null ? 'L' : '').($this->input->post('user_default_confirmation_eqsl') !== null ? 'E' : '').($this->input->post('user_default_confirmation_qrz') !== null ? 'Z' : '').($this->input->post('user_default_confirmation_clublog') !== null ? 'C' : '').($this->input->post('user_default_confirmation_dcl') !== null ? 'D' : ''),
 				$this->input->post('user_qso_end_times'),
+				$this->input->post('user_qso_db_search_priority') ?? 'Y',
 				$this->input->post('user_quicklog'),
 				$this->input->post('user_quicklog_enter'),
 				$this->input->post('user_language'),
@@ -360,6 +362,7 @@ class User extends CI_Controller {
 			$data['user_default_band'] = $this->input->post('user_default_band');
 			$data['user_default_confirmation'] = ($this->input->post('user_default_confirmation_qsl') !== null ? 'Q' : '').($this->input->post('user_default_confirmation_lotw') !== null ? 'L' : '').($this->input->post('user_default_confirmation_eqsl') !== null ? 'E' : '').($this->input->post('user_default_confirmation_qrz') !== null ? 'Z' : '').($this->input->post('user_default_confirmation_clublog') !== null ? 'C' : '').($this->input->post('user_default_confirmation_dcl') !== null ? 'D' : '');
 			$data['user_qso_end_times'] = $this->input->post('user_qso_end_times');
+			$data['user_qso_db_search_priority'] = $this->input->post('user_qso_db_search_priority') ?? 'Y';
 			$data['user_quicklog'] = $this->input->post('user_quicklog');
 			$data['user_quicklog_enter'] = $this->input->post('user_quicklog_enter');
 			$data['user_language'] = $this->input->post('user_language');
@@ -845,6 +848,15 @@ class User extends CI_Controller {
 				}
 			}
 
+			if($this->input->post('user_qso_db_search_priority')) {
+				$data['user_qso_db_search_priority'] = $this->input->post('user_qso_db_search_priority', false);
+			} else {
+				$qkey_opt=$this->user_options_model->get_options('qso_db_search_priority',array('option_name'=>'enable','option_key'=>'boolean'), $this->uri->segment(3))->result();
+				if (count($qkey_opt)>0) {
+					$data['user_qso_db_search_priority'] = $qkey_opt[0]->option_value;
+				}
+			}
+
 			if($this->input->post('oqrs_direct_auto_matching')) {
 				$data['oqrs_direct_auto_matching'] = $this->input->post('oqrs_direct_auto_matching', false);
 			} else {
@@ -1012,6 +1024,7 @@ class User extends CI_Controller {
 			$data['oqrs_grouped_search_show_station_name'] = $this->input->post('oqrs_grouped_search_show_station_name', true);
 			$data['oqrs_auto_matching'] = $this->input->post('oqrs_auto_matching', true);
 			$data['oqrs_direct_auto_matching'] = $this->input->post('oqrs_direct_auto_matching', true);
+			$data['user_qso_db_search_priority'] = $this->input->post('user_qso_db_search_priority', true);
 
 			$this->load->view('user/edit');
 			$this->load->view('interface_assets/footer');
