@@ -207,19 +207,19 @@
 					<!-- Buttons in popup -->
 					<div class="text-center mt-3">
 						<button type="button" class="btn btn-sm btn-success me-2" id="applyFiltersButtonPopup">
-							<i class="fas fa-check"></i> <?= __("Apply Filters"); ?>
-						</button>
-						<button type="button" class="btn btn-sm btn-secondary" id="clearFiltersButton">
-							<i class="fas fa-eraser"></i> <?= __("Clear Filters"); ?>
-						</button>
-					</div>
+						<i class="fas fa-check"></i> <?= __("Apply Filters"); ?>
+					</button>
+					<button type="button" class="btn btn-sm btn-secondary" id="clearFiltersButton">
+						<i class="fas fa-eraser text-danger"></i> <?= __("Clear Filters"); ?>
+					</button>
 				</div>
 			</div>
+		</div>
 
-			<!-- Clear Filters Button -->
-			<button class="btn btn-sm btn-secondary" type="button" id="clearFiltersButtonQuick" title="<?= __("Clear all filters except De Continent"); ?>">
-				<i class="fas fa-eraser"></i> <span class="d-none d-sm-inline"><?= __("Clear Filters"); ?></span>
-			</button>
+		<!-- Clear Filters Button -->
+		<button class="btn btn-sm btn-secondary" type="button" id="clearFiltersButtonQuick" title="<?= __("Clear all filters except De Continent"); ?>">
+			<i class="fas fa-eraser text-danger"></i> <span class="d-none d-sm-inline"><?= __("Clear Filters"); ?></span>
+		</button>
 		</div>
 
 		<!-- Spacer to push right content to end -->
