@@ -719,16 +719,12 @@ class Lotw extends CI_Controller {
 					continue;
 				}
 
-				// Get credentials for LoTW
-				$data['user_lotw_name'] = urlencode($user->user_lotw_name);
-				$data['user_lotw_password'] = urlencode($user->user_lotw_password);
-
 				$lotw_last_qsl_date = date('Y-m-d', strtotime($this->logbook_model->lotw_last_qsl_date($user->user_id)));
 
 				// Build URL for LoTW report file
 				$lotw_url = $lotw_base_url."?";
-				$lotw_url .= "login=" . $data['user_lotw_name'];
-				$lotw_url .= "&password=" . $data['user_lotw_password'];
+				$lotw_url .= "login=" . urlencode($user->user_lotw_name);
+				$lotw_url .= "&password=" . urlencode($user->user_lotw_password);
 				$lotw_url .= "&qso_query=1&qso_qsl='yes'&qso_qsldetail='yes'&qso_mydetail='yes'";
 
 				$lotw_url .= "&qso_qslsince=";
@@ -744,19 +740,21 @@ class Lotw extends CI_Controller {
 				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
 				$content = curl_exec($ch);
 				if(curl_errno($ch)) {
-					$result = "LoTW download failed for user ".$data['user_lotw_name'].": ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).").";
+					$result = "LoTW download failed for user ".$user->user_lotw_name.": ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).").";
 					if (curl_errno($ch) == 28) {  // break on timeout
 						$result .= "<br>Timeout reached. Stopping subsequent downloads.";
 						break;
 					}
 					continue;
 				} else if(str_contains($content,"Username/password incorrect</I>")) {
-					$result = "LoTW download failed for user ".$data['user_lotw_name'].": Username/password incorrect";
+					$result = "LoTW download failed for user ".$user->user_lotw_name.": Username/password incorrect";
+					log_message('error', 'LoTW download failed for user '.$user->user_lotw_name);
 					continue;
 				}
 				file_put_contents($file, $content);
 				if (file_get_contents($file, false, null, 0, 39) != "ARRL Logbook of the World Status Report") {
-					$result = "Downloaded LoTW report for user ".$data['user_lotw_name']." is invalid. Check your credentials.";
+					$result = "Downloaded LoTW report for user ".$user->user_lotw_name." is invalid. Check your credentials.";
+					log_message('error', 'Downloaded LoTW report is invalid for user '.$user->user_lotw_name);
 					continue;
 				}
 
