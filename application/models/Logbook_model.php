@@ -2694,79 +2694,6 @@ class Logbook_model extends CI_Model {
 	}
 
 	/**
-	 * Optimized function to check all spot statuses in a single database query
-	 * Returns an array with worked/confirmed status for callsign, dxcc, and continent
-	 *
-	 * @param string $callsign Spotted callsign
-	 * @param int $dxcc_id DXCC ID
-	 * @param string $continent Continent code
-	 * @param array $logbooks_locations_array Station IDs
-	 * @param string $band Band (e.g., '20m', 'All')
-	 * @param string $mode Mode (e.g., 'SSB', 'CW', 'All')
-	 * @return array ['worked_call', 'worked_dxcc', 'worked_continent', 'cnfmd_call', 'cnfmd_dxcc', 'cnfmd_continent']
-	 */
-	function get_spot_status($callsign, $dxcc_id, $continent, $logbooks_locations_array, $band = null, $mode = null) {
-		$user_default_confirmation = $this->session->userdata('user_default_confirmation');
-		$qsl_where = $this->qsl_default_where($user_default_confirmation);
-
-		// Build band filter with binding
-		$band_sql = '';
-		$bind_params = [];
-		$band = ($band == 'All') ? null : $band;
-		if ($band != null && $band != 'SAT') {
-			$band_sql = " AND COL_BAND = ?";
-			$bind_params[] = $band;
-		} else if ($band == 'SAT') {
-			$band_sql = " AND COL_SAT_NAME != ''";
-		}
-
-		// Build mode filter
-		$mode_sql = '';
-		if (isset($mode) && $mode != 'All') {
-			$mode_sql = " AND COL_MODE IN " . $this->Modes->get_modes_from_qrgmode($mode, true);
-		}
-
-		// Validate and prepare station IDs
-		$station_ids = implode(',', array_map('intval', $logbooks_locations_array));
-
-		// Add callsign, dxcc, and continent to bind params (each used twice in query)
-		$bind_params[] = $callsign;
-		$bind_params[] = $callsign;
-		$bind_params[] = $dxcc_id;
-		$bind_params[] = $dxcc_id;
-		$bind_params[] = $continent;
-		$bind_params[] = $continent;
-
-		// Single optimized query to get all statuses
-		$sql = "
-			SELECT
-				MAX(CASE WHEN COL_CALL = ? THEN 1 ELSE 0 END) as worked_call,
-				MAX(CASE WHEN COL_CALL = ? AND ({$qsl_where}) THEN 1 ELSE 0 END) as cnfmd_call,
-				MAX(CASE WHEN COL_DXCC = ? THEN 1 ELSE 0 END) as worked_dxcc,
-				MAX(CASE WHEN COL_DXCC = ? AND ({$qsl_where}) THEN 1 ELSE 0 END) as cnfmd_dxcc,
-				MAX(CASE WHEN COL_CONT = ? THEN 1 ELSE 0 END) as worked_continent,
-				MAX(CASE WHEN COL_CONT = ? AND ({$qsl_where}) THEN 1 ELSE 0 END) as cnfmd_continent
-			FROM {$this->config->item('table_name')}
-			WHERE station_id IN ({$station_ids})
-			{$band_sql}
-			{$mode_sql}
-		";
-
-		$query = $this->db->query($sql, $bind_params);
-		$result = $query->row_array();
-
-		// Convert to boolean
-		return [
-			'worked_call' => ($result['worked_call'] == 1),
-			'worked_dxcc' => ($result['worked_dxcc'] == 1),
-			'worked_continent' => ($result['worked_continent'] == 1),
-			'cnfmd_call' => ($result['cnfmd_call'] == 1),
-			'cnfmd_dxcc' => ($result['cnfmd_dxcc'] == 1),
-			'cnfmd_continent' => ($result['cnfmd_continent'] == 1)
-		];
-	}
-
-	/**
 	 * Batch version - Get statuses for multiple spots in a single query
 	 *
 	 * @param array $spots Array of spots with callsign, dxcc_id, continent
@@ -2785,11 +2712,11 @@ class Logbook_model extends CI_Model {
 
 		// Build band filter with binding
 		$band_sql = '';
-		$bind_params = [];
+		$band_param = null;
 		$band = ($band == 'All') ? null : $band;
 		if ($band != null && $band != 'SAT') {
 			$band_sql = " AND COL_BAND = ?";
-			$bind_params[] = $band;
+			$band_param = $band;
 		} else if ($band == 'SAT') {
 			$band_sql = " AND COL_SAT_NAME != ''";
 		}
@@ -2819,7 +2746,8 @@ class Logbook_model extends CI_Model {
 			return [];
 		}
 
-		$station_ids = implode(',', array_map('intval', $logbooks_locations_array));
+		// Build placeholders for station IDs (fix SQL injection)
+		$station_ids_placeholders = implode(',', array_fill(0, count($logbooks_locations_array), '?'));
 
 		// Build placeholders and bind parameters for IN clauses
 		$callsigns_array = array_keys($callsigns);
@@ -2830,28 +2758,68 @@ class Logbook_model extends CI_Model {
 		$dxccs_placeholders = implode(',', array_fill(0, count($dxccs_array), '?'));
 		$continents_placeholders = implode(',', array_fill(0, count($continents_array), '?'));
 
-		// Add values to bind params
-		$bind_params = array_merge($bind_params, $callsigns_array, $dxccs_array, $continents_array);
+		// Three separate queries for callsigns, DXCCs, and continents
+		// This is necessary because the OR logic doesn't work correctly with GROUP BY
 
-		// Single mega-query to get all statuses
-		$sql = "
+		// Query 1: Check callsigns
+		$sql_calls = "
 			SELECT
 				COL_CALL as callsign,
+				MAX(CASE WHEN ({$qsl_where}) THEN 1 ELSE 0 END) as is_confirmed
+			FROM {$this->config->item('table_name')}
+			WHERE station_id IN ({$station_ids_placeholders})
+			AND COL_CALL IN ({$callsigns_placeholders})
+			{$band_sql}
+			{$mode_sql}
+			GROUP BY COL_CALL
+		";
+
+		$bind_params_calls = array_merge($logbooks_locations_array, $callsigns_array);
+		if ($band_param !== null) {
+			$bind_params_calls[] = $band_param;
+		}
+		$query = $this->db->query($sql_calls, $bind_params_calls);
+		$results_calls = $query->result_array();
+
+		// Query 2: Check DXCCs
+		$sql_dxccs = "
+			SELECT
 				COL_DXCC as dxcc,
+				MAX(CASE WHEN ({$qsl_where}) THEN 1 ELSE 0 END) as is_confirmed
+			FROM {$this->config->item('table_name')}
+			WHERE station_id IN ({$station_ids_placeholders})
+			AND COL_DXCC IN ({$dxccs_placeholders})
+			{$band_sql}
+			{$mode_sql}
+			GROUP BY COL_DXCC
+		";
+
+		$bind_params_dxccs = array_merge($logbooks_locations_array, $dxccs_array);
+		if ($band_param !== null) {
+			$bind_params_dxccs[] = $band_param;
+		}
+		$query = $this->db->query($sql_dxccs, $bind_params_dxccs);
+		$results_dxccs = $query->result_array();
+
+		// Query 3: Check continents
+		$sql_conts = "
+			SELECT
 				COL_CONT as continent,
 				MAX(CASE WHEN ({$qsl_where}) THEN 1 ELSE 0 END) as is_confirmed
 			FROM {$this->config->item('table_name')}
-			WHERE station_id IN ({$station_ids})
-			AND (COL_CALL IN ({$callsigns_placeholders})
-				OR COL_DXCC IN ({$dxccs_placeholders})
-				OR COL_CONT IN ({$continents_placeholders}))
+			WHERE station_id IN ({$station_ids_placeholders})
+			AND COL_CONT IN ({$continents_placeholders})
 			{$band_sql}
 			{$mode_sql}
-			GROUP BY COL_CALL, COL_DXCC, COL_CONT
+			GROUP BY COL_CONT
 		";
 
-		$query = $this->db->query($sql, $bind_params);
-		$results = $query->result_array();
+		$bind_params_conts = array_merge($logbooks_locations_array, $continents_array);
+		if ($band_param !== null) {
+			$bind_params_conts[] = $band_param;
+		}
+		$query = $this->db->query($sql_conts, $bind_params_conts);
+		$results_conts = $query->result_array();
 
 		// Build lookup maps
 		$worked_calls = [];
@@ -2861,14 +2829,23 @@ class Logbook_model extends CI_Model {
 		$worked_conts = [];
 		$cnfmd_conts = [];
 
-		foreach ($results as $row) {
+		foreach ($results_calls as $row) {
 			$worked_calls[$row['callsign']] = true;
-			$worked_dxccs[$row['dxcc']] = true;
-			$worked_conts[$row['continent']] = true;
-
 			if ($row['is_confirmed'] == 1) {
 				$cnfmd_calls[$row['callsign']] = true;
+			}
+		}
+
+		foreach ($results_dxccs as $row) {
+			$worked_dxccs[$row['dxcc']] = true;
+			if ($row['is_confirmed'] == 1) {
 				$cnfmd_dxccs[$row['dxcc']] = true;
+			}
+		}
+
+		foreach ($results_conts as $row) {
+			$worked_conts[$row['continent']] = true;
+			if ($row['is_confirmed'] == 1) {
 				$cnfmd_conts[$row['continent']] = true;
 			}
 		}
@@ -2913,42 +2890,66 @@ class Logbook_model extends CI_Model {
 
 		// Build band filter with binding
 		$band_sql = '';
-		$bind_params = [];
+		$band_param = null;
 		$band = ($band == 'All') ? null : $band;
 		if ($band != null && $band != 'SAT') {
 			$band_sql = " AND COL_BAND = ?";
-			$bind_params[] = $band;
+			$band_param = $band;
 		} else if ($band == 'SAT') {
 			$band_sql = " AND COL_SAT_NAME != ''";
 		}
 
-		$station_ids = implode(',', array_map('intval', $logbooks_locations_array));
+		// Build placeholders for station IDs (fix SQL injection)
+		$station_ids_placeholders = implode(',', array_fill(0, count($logbooks_locations_array), '?'));
 
 		// Build placeholders for callsigns IN clause
 		$callsigns_placeholders = implode(',', array_fill(0, count($callsigns), '?'));
 
-		// Add callsigns to bind params (used twice in query - once in subquery, once in main query)
-		$bind_params = array_merge($bind_params, $callsigns, $callsigns);
-
 		// Validate we have valid data
-		if (empty($station_ids) || empty($callsigns_placeholders)) {
+		if (empty($station_ids_placeholders) || empty($callsigns_placeholders)) {
 			return [];
+		}
+
+		// Build bind params: station_ids, callsigns for subquery, band (if set), station_ids again, callsigns for main query, band again (if set)
+		$bind_params = [];
+
+		// First set: station_ids for subquery
+		$bind_params = array_merge($bind_params, $logbooks_locations_array);
+
+		// Second: callsigns for subquery
+		$bind_params = array_merge($bind_params, $callsigns);
+
+		// Third: band for subquery (if set)
+		if ($band_param !== null) {
+			$bind_params[] = $band_param;
+		}
+
+		// Fourth set: station_ids for main query
+		$bind_params = array_merge($bind_params, $logbooks_locations_array);
+
+		// Fifth: callsigns for main query
+		$bind_params = array_merge($bind_params, $callsigns);
+
+		// Sixth: band for main query (if set)
+		if ($band_param !== null) {
+			$bind_params[] = $band_param;
 		}
 
 		// Query to get the most recent QSO for each callsign
 		// Using a subquery to get max time per callsign, then join to get the full record
+		// Added LIMIT 1 in derived table to handle edge case of multiple QSOs at same timestamp
 		$sql = "
 			SELECT t1.COL_CALL, t1.COL_TIME_ON as LAST_QSO, t1.COL_MODE as LAST_MODE
 			FROM {$this->config->item('table_name')} t1
 			INNER JOIN (
 				SELECT COL_CALL, MAX(COL_TIME_ON) as max_time
 				FROM {$this->config->item('table_name')}
-				WHERE station_id IN ({$station_ids})
+				WHERE station_id IN ({$station_ids_placeholders})
 				AND COL_CALL IN ({$callsigns_placeholders})
 				{$band_sql}
 				GROUP BY COL_CALL
 			) t2 ON t1.COL_CALL = t2.COL_CALL AND t1.COL_TIME_ON = t2.max_time
-			WHERE t1.station_id IN ({$station_ids})
+			WHERE t1.station_id IN ({$station_ids_placeholders})
 			AND t1.COL_CALL IN ({$callsigns_placeholders})
 			{$band_sql}
 		";
@@ -2957,9 +2958,12 @@ class Logbook_model extends CI_Model {
 		$results = $query->result();
 
 		// Build lookup map keyed by callsign
+		// If multiple QSOs have same timestamp, keep first one returned
 		$last_worked = [];
 		foreach ($results as $row) {
-			$last_worked[$row->COL_CALL] = $row;
+			if (!isset($last_worked[$row->COL_CALL])) {
+				$last_worked[$row->COL_CALL] = $row;
+			}
 		}
 
 		return $last_worked;

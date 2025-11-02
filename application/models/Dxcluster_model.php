@@ -31,6 +31,7 @@ class Dxcluster_model extends CI_Model {
 		}
 	}
 
+	// Main function to get spot list from DXCache and process it
 	public function dxc_spotlist($band = '20m', $maxage = 60, $de = '', $mode = 'All') {
 		$this->load->helper(array('psr4_autoloader'));
 
@@ -65,7 +66,7 @@ class Dxcluster_model extends CI_Model {
 		} else {
 			$dxcache_url = $dxcache_url . '/spots/'.$band;
 		}
-		// $this->load->model('logbooks_model');  lives in the autoloader
+
 		$this->load->model('logbook_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -143,7 +144,7 @@ class Dxcluster_model extends CI_Model {
 			$singlespot->mode = $this->get_mode($singlespot);
 
 			// Apply mode filter early
-			if (($mode != 'All') && ($mode != $this->modefilter($singlespot, $mode))) {
+			if (($mode != 'All') && !$this->modefilter($singlespot, $mode)) {
 				continue;
 			}
 
@@ -159,7 +160,7 @@ class Dxcluster_model extends CI_Model {
 			$singlespot->age = $minutes;
 			$singlespot->when_pretty = date($custom_date_format . " H:i", $spotTimestamp);
 
-			// DXCC lookups with memoization to avoid duplicate lookups
+			// Perform DXCC lookups using cached results to prevent redundant database queries
 			if (!(property_exists($singlespot,'dxcc_spotted'))) {
 				$spotted_call = $singlespot->spotted ?? '';
 				if (empty($spotted_call)) {
@@ -172,6 +173,7 @@ class Dxcluster_model extends CI_Model {
 				$singlespot->dxcc_spotted = (object)[
 					'dxcc_id' => $dxcc['adif'] ?? 0,
 					'cont' => $dxcc['cont'] ?? '',
+					'cqz' => $dxcc['cqz'] ?? '',
 					'flag' => '',
 					'entity' => $dxcc['entity'] ?? 'Unknown'
 				];
@@ -188,10 +190,12 @@ class Dxcluster_model extends CI_Model {
 				$singlespot->dxcc_spotter = (object)[
 					'dxcc_id' => $dxcc['adif'] ?? 0,
 					'cont' => $dxcc['cont'] ?? '',
+					'cqz' => $dxcc['cqz'] ?? '',
 					'flag' => '',
 					'entity' => $dxcc['entity'] ?? 'Unknown'
 				];
-			}				// Apply continent filter early
+			}
+			// Apply continent filter early
 			if ($filter_continent && (!property_exists($singlespot->dxcc_spotter, 'cont') ||
 				$de_lower != strtolower($singlespot->dxcc_spotter->cont ?? ''))) {
 				continue;
@@ -210,55 +214,55 @@ class Dxcluster_model extends CI_Model {
 			$batch_statuses = $this->logbook_model->get_batch_spot_statuses(
 				$spotsout,
 				$logbooks_locations_array,
-					$band,
-					$mode
+				$band,
+				$mode
+			);
+
+			// Collect callsigns that need last_worked info (only those that are worked)
+			$worked_callsigns = [];
+			foreach ($spotsout as $spot) {
+				$callsign = $spot->spotted;
+				if (isset($batch_statuses[$callsign]) && $batch_statuses[$callsign]['worked_call']) {
+					$worked_callsigns[] = $callsign;
+				}
+			}
+
+			// Batch fetch last_worked info for all worked callsigns
+			$last_worked_batch = [];
+			if (!empty($worked_callsigns)) {
+				$last_worked_batch = $this->logbook_model->get_batch_last_worked(
+					$worked_callsigns,
+					$logbooks_locations_array,
+					$band
 				);
+			}
 
-				// Collect callsigns that need last_worked info (only those that are worked)
-				$worked_callsigns = [];
-				foreach ($spotsout as $spot) {
-					$callsign = $spot->spotted;
-					if (isset($batch_statuses[$callsign]) && $batch_statuses[$callsign]['worked_call']) {
-						$worked_callsigns[] = $callsign;
+			// Map batch results back to spots
+			foreach ($spotsout as $index => $spot) {
+				$callsign = $spot->spotted;
+				if (isset($batch_statuses[$callsign])) {
+					$status = $batch_statuses[$callsign];
+					$spot->worked_dxcc = $status['worked_dxcc'];
+					$spot->worked_call = $status['worked_call'];
+					$spot->cnfmd_dxcc = $status['cnfmd_dxcc'];
+					$spot->cnfmd_call = $status['cnfmd_call'];
+					$spot->cnfmd_continent = $status['cnfmd_continent'];
+					$spot->worked_continent = $status['worked_continent'];
+
+					// Use batch last_worked data
+					if ($spot->worked_call && isset($last_worked_batch[$callsign])) {
+						$spot->last_wked = $last_worked_batch[$callsign];
+						$spot->last_wked->LAST_QSO = date($custom_date_format, strtotime($spot->last_wked->LAST_QSO));
 					}
+				} else {
+					// Fallback for spots without status
+					$spot->worked_dxcc = false;
+					$spot->worked_call = false;
+					$spot->cnfmd_dxcc = false;
+					$spot->cnfmd_call = false;
+					$spot->cnfmd_continent = false;
+					$spot->worked_continent = false;
 				}
-
-				// Batch fetch last_worked info for all worked callsigns
-				$last_worked_batch = [];
-				if (!empty($worked_callsigns)) {
-					$last_worked_batch = $this->logbook_model->get_batch_last_worked(
-						$worked_callsigns,
-						$logbooks_locations_array,
-						$band
-					);
-				}
-
-				// Map batch results back to spots
-				foreach ($spotsout as $index => $spot) {
-					$callsign = $spot->spotted;
-					if (isset($batch_statuses[$callsign])) {
-						$status = $batch_statuses[$callsign];
-						$spot->worked_dxcc = $status['worked_dxcc'];
-						$spot->worked_call = $status['worked_call'];
-						$spot->cnfmd_dxcc = $status['cnfmd_dxcc'];
-						$spot->cnfmd_call = $status['cnfmd_call'];
-						$spot->cnfmd_continent = $status['cnfmd_continent'];
-						$spot->worked_continent = $status['worked_continent'];
-
-						// Use batch last_worked data
-						if ($spot->worked_call && isset($last_worked_batch[$callsign])) {
-							$spot->last_wked = $last_worked_batch[$callsign];
-							$spot->last_wked->LAST_QSO = date($custom_date_format, strtotime($spot->last_wked->LAST_QSO));
-						}
-					} else {
-						// Fallback for spots without status
-						$spot->worked_dxcc = false;
-						$spot->worked_call = false;
-						$spot->cnfmd_dxcc = false;
-						$spot->cnfmd_call = false;
-						$spot->cnfmd_continent = false;
-						$spot->worked_continent = false;
-					}
 
 				$spotsout[$index] = $spot;
 			}
@@ -269,7 +273,8 @@ class Dxcluster_model extends CI_Model {
 			$this->cache->save($cache_key, $spotsout, 59);
 		}
 
-		return $spotsout;	}
+		return $spotsout;
+	}
 
 	// We need to build functions that check the frequency limit
 	// Right now this is just a proof of concept to determine mode
