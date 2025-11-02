@@ -27,9 +27,15 @@
  * - Activity flags (POTA, SOTA, WWFF, IOTA, Contest)
  * - Auto-refresh with 60-second countdown timer
  * - DXCC status color coding (Confirmed/Worked/New)
+ * - TTL-based spot lifecycle (expiring spots shown in red)
  */
 
 'use strict';
+
+// ========================================
+// CONFIGURATION
+// ========================================
+const SPOT_REFRESH_INTERVAL = 60;  // Auto-refresh interval in seconds
 
 $(function() {
 
@@ -469,8 +475,17 @@ $(function() {
 		timestamp: null
 	};
 
+	// TTL (Time To Live) management for spots
+	// Key: "callsign_frequency_spotter", Value: TTL count
+	var spotTTLMap = new Map();
+
+	// Generate unique key for spot identification
+	function getSpotKey(spot) {
+		return spot.spotted + '_' + spot.frequency + '_' + spot.spotter;
+	}
+
 	// Auto-refresh timer state
-	var refreshCountdown = 60;
+	var refreshCountdown = SPOT_REFRESH_INTERVAL;
 	var refreshTimerInterval = null;
 
 	// ========================================
@@ -580,7 +595,7 @@ $(function() {
 			clearInterval(refreshTimerInterval);
 		}
 
-		refreshCountdown = 60;
+		refreshCountdown = SPOT_REFRESH_INTERVAL;
 
 		refreshTimerInterval = setInterval(function() {
 			refreshCountdown--;
@@ -589,7 +604,7 @@ $(function() {
 				let table = get_dtable();
 				table.clear();
 				fill_list(currentFilters.deContinent, dxcluster_maxage);
-				refreshCountdown = 60;
+				refreshCountdown = SPOT_REFRESH_INTERVAL;
 			} else {
 				if (!isFetchInProgress && lastFetchParams.timestamp !== null) {
 					$('#refreshIcon').removeClass('fa-spinner fa-spin').addClass('fa-hourglass-half');
@@ -709,6 +724,20 @@ $(function() {
 		let spots2render = 0;
 
 	cachedSpotData.forEach((single) => {
+		// Check TTL - skip spots with TTL < 0 (completely hidden)
+		let spotKey = getSpotKey(single);
+		let ttl = spotTTLMap.get(spotKey);
+
+		// Skip if TTL is undefined or < 0
+		if (ttl === undefined || ttl < 0) {
+			return;
+		}
+
+		// Debug: Log TTL for first few spots
+		if (spots2render < 3) {
+			console.log('Spot:', single.spotted, 'Freq:', single.frequency, 'TTL:', ttl);
+		}
+
 		// Extract time from spot data - use 'when' field
 		let timeOnly = single.when;
 
@@ -984,8 +1013,20 @@ $(function() {
 	data[0].push(flags_column);		// Message column
 		data[0].push(single.message || '');
 
-			// Add row to table (with "fresh" class for new spots animation)
-			if (oldtable.length > 0) {
+			// Add row to table with appropriate styling based on TTL and age
+			// Priority: TTL=0 (expiring) > age < 1 min (very new) > fresh
+			let rowClass = '';
+			let ageMinutesForStyling = single.age || 0;
+
+			if (ttl === 0) {
+				// Expiring spot (gone from cluster but visible for one more cycle)
+				rowClass = 'spot-expiring';
+				console.log('EXPIRING SPOT:', single.spotted, 'Freq:', single.frequency, 'TTL:', ttl);
+			} else if (ageMinutesForStyling < 1) {
+				// Very new spot (less than 1 minute old)
+				rowClass = 'spot-very-new';
+			} else if (oldtable.length > 0) {
+				// Check if this is a new spot (not in old table)
 				let update = false;
 				oldtable.each(function (srow) {
 					if (JSON.stringify(srow) === JSON.stringify(data[0])) {
@@ -993,9 +1034,16 @@ $(function() {
 					}
 				});
 				if (!update) {
-					table.rows.add(data).draw().nodes().to$().addClass("fresh");
-				} else {
-					table.rows.add(data).draw();
+					rowClass = 'fresh';  // Fresh spot animation
+				}
+			}
+
+			// Add row with appropriate class
+			if (rowClass) {
+				let addedRow = table.rows.add(data).draw().nodes().to$();
+				addedRow.addClass(rowClass);
+				if (ttl === 0) {
+					console.log('Added expiring class to row:', addedRow.hasClass('spot-expiring'));
 				}
 			} else {
 				table.rows.add(data).draw();
@@ -1395,7 +1443,67 @@ $(function() {
 
 			if (dxspots.length > 0) {
 				dxspots.sort(SortByQrg);  // Sort by frequency
-				cachedSpotData = dxspots;
+
+				// TTL Management: Process new spots and update TTL values
+				let newSpotKeys = new Set();
+
+				// First pass: identify all spots in the new data
+				dxspots.forEach(function(spot) {
+					let key = getSpotKey(spot);
+					newSpotKeys.add(key);
+				});
+
+				// Second pass: Update TTL for all existing spots
+				// - Decrement all TTL values by 1
+				// - If spot exists in new data, set TTL back to 1 (stays valid)
+				// - Remove spots with TTL < -1
+				let ttlStats = { stillValid: 0, expiring: 0, removed: 0, added: 0 };
+				let expiringSpots = [];  // Store spots with TTL=0 that need to be shown
+
+				for (let [key, ttl] of spotTTLMap.entries()) {
+					let newTTL = ttl - 1;  // Decrement all spots
+
+					if (newSpotKeys.has(key)) {
+						newTTL = 1;  // Reset to 1 if spot still exists (keeps it valid)
+						ttlStats.stillValid++;
+					} else {
+						if (newTTL === 0) {
+							ttlStats.expiring++;
+							// Find the spot in previous cachedSpotData to keep it for display
+							if (cachedSpotData) {
+								let expiringSpot = cachedSpotData.find(s => getSpotKey(s) === key);
+								if (expiringSpot) {
+									expiringSpots.push(expiringSpot);
+								}
+							}
+						}
+					}
+
+					if (newTTL < -1) {
+						spotTTLMap.delete(key);  // Remove completely hidden spots
+						ttlStats.removed++;
+					} else {
+						spotTTLMap.set(key, newTTL);
+					}
+				}
+
+				// Third pass: Add new spots that weren't in the map
+				dxspots.forEach(function(spot) {
+					let key = getSpotKey(spot);
+					if (!spotTTLMap.has(key)) {
+						spotTTLMap.set(key, 1);  // New spot starts with TTL = 1
+						ttlStats.added++;
+					}
+				});
+
+				console.log('TTL Update:', ttlStats, 'Total tracked spots:', spotTTLMap.size);
+				if (expiringSpots.length > 0) {
+					console.log('Adding', expiringSpots.length, 'expiring spots back to display');
+				}
+
+				// Merge new spots with expiring spots (TTL=0) for display
+				cachedSpotData = dxspots.concat(expiringSpots);
+				cachedSpotData.sort(SortByQrg);  // Re-sort after merging
 			} else {
 				cachedSpotData = [];
 			}
@@ -1404,7 +1512,7 @@ $(function() {
 			isFetchInProgress = false;
 
 			renderFilteredSpots();  // Apply client-side filters and render
-			startRefreshTimer();  // Start 60s countdown
+			startRefreshTimer();  // Start 10s countdown - TEMPORARY
 
 		}).fail(function(jqXHR, textStatus) {
 			currentAjaxRequest = null;
