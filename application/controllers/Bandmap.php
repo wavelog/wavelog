@@ -71,4 +71,44 @@ class Bandmap extends CI_Controller {
 		$this->load->view('bandmap/list',$pageData);
 		$this->load->view('interface_assets/footer', $footerData);
 	}
+
+	// Get user's favorite bands and modes (active ones)
+	function get_user_favorites() {
+		$this->load->model('bands');
+		$this->load->model('usermodes');
+
+		// Get active bands
+		$activeBands = $this->bands->get_user_bands_for_qso_entry(false); // false = only active
+		$bandList = [];
+		foreach ($activeBands as $group => $bands) {
+			foreach ($bands as $band) {
+				$bandList[] = $band;
+			}
+		}
+
+		// Get active modes (user-specific) and categorize them
+		$activeModes = $this->usermodes->active();
+		$modeCategories = [
+			'cw' => false,
+			'phone' => false,
+			'digi' => false
+		];
+
+		foreach ($activeModes as $mode) {
+			$qrgmode = strtoupper($mode->qrgmode ?? '');
+			if ($qrgmode === 'CW') {
+				$modeCategories['cw'] = true;
+			} elseif ($qrgmode === 'SSB') {
+				$modeCategories['phone'] = true;
+			} elseif ($qrgmode === 'DATA') {
+				$modeCategories['digi'] = true;
+			}
+		}
+
+		header('Content-Type: application/json');
+		echo json_encode([
+			'bands' => $bandList,
+			'modes' => $modeCategories
+		]);
+	}
 }

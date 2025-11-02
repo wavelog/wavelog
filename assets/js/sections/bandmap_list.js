@@ -179,9 +179,10 @@ $(function() {
 
 	// Band filter buttons - green if All, orange if specific band, blue if not selected
 	// Always update colors, even when CAT Control is enabled (so users can see which band is active)
-	let bandButtons = ['#toggle160mFilter', '#toggle80mFilter', '#toggle60mFilter', '#toggle40mFilter', '#toggle30mFilter',
-	                   '#toggle20mFilter', '#toggle17mFilter', '#toggle15mFilter', '#toggle12mFilter', '#toggle10mFilter'];
-	let bandIds = ['160m', '80m', '60m', '40m', '30m', '20m', '17m', '15m', '12m', '10m'];
+	// Only include visible individual band buttons (excluding WARC bands and 60m)
+	let bandButtons = ['#toggle160mFilter', '#toggle80mFilter', '#toggle40mFilter',
+	                   '#toggle20mFilter', '#toggle15mFilter', '#toggle10mFilter'];
+	let bandIds = ['160m', '80m', '40m', '20m', '15m', '10m'];
 
 	bandButtons.forEach((btnId, index) => {
 		let $btn = $(btnId);
@@ -195,12 +196,12 @@ $(function() {
 		}
 	});
 
-	// Band group buttons (VHF, UHF, SHF, SAT)
+	// Band group buttons (VHF, UHF, SHF, WARC)
 	let groupButtons = [
 		{ id: '#toggleVHFFilter', group: 'VHF' },
 		{ id: '#toggleUHFFilter', group: 'UHF' },
 		{ id: '#toggleSHFFilter', group: 'SHF' },
-		{ id: '#toggleSATFilter', band: 'SAT' }
+		{ id: '#toggleWARCFilter', group: 'WARC' }
 	];
 
 	groupButtons.forEach(btn => {
@@ -210,17 +211,11 @@ $(function() {
 		if (allBandsSelected) {
 			$btn.addClass('btn-success');
 		} else {
-			let isActive = false;
-			if (btn.group) {
-				// Check if any band in the group is selected
-				const groupBands = getBandsInGroup(btn.group);
-				isActive = groupBands.some(b => bandValues.includes(b));
-			} else if (btn.band) {
-				// For SAT, check directly
-				isActive = bandValues.includes(btn.band);
-			}
+			// Check if ALL bands in the group are selected (not just some)
+			const groupBands = getBandsInGroup(btn.group);
+			const allGroupBandsSelected = groupBands.every(b => bandValues.includes(b));
 
-			if (isActive) {
+			if (allGroupBandsSelected) {
 				$btn.addClass('btn-warning');
 			} else {
 				$btn.addClass('btn-primary');
@@ -320,6 +315,11 @@ $(function() {
 			}
 
 			updateFilterIcon();
+
+			// Sync button states when band, mode, or continent filters change
+			if (selectId === 'band' || selectId === 'mode' || selectId === 'decontSelect' || selectId === 'continentSelect') {
+				syncQuickFilterButtons();
+			}
 		});
 	}
 
@@ -715,16 +715,20 @@ $(function() {
 			}
 			if (!passesCwnFilter) return;
 
-			// Apply band filter (client-side for multi-select)
-			let passesBandFilter = bands.includes('All');
-			if (!passesBandFilter) {
-				// Check if spot has band field (for SAT), otherwise determine from frequency
-				let spot_band = single.band || getBandFromFrequency(single.frequency);
-				passesBandFilter = bands.includes(spot_band);
-			}
-			if (!passesBandFilter) return;
+		// Apply band filter (client-side for multi-select)
+		let passesBandFilter = bands.includes('All');
+		if (!passesBandFilter) {
+			// Check if spot has band field set, otherwise determine from frequency
+			let spot_band = single.band;
 
-			// Apply de continent filter (which continent the spotter is in)
+			// If no band field, try to determine from frequency
+			if (!spot_band) {
+				spot_band = getBandFromFrequency(single.frequency);
+			}
+
+			passesBandFilter = bands.includes(spot_band);
+		}
+		if (!passesBandFilter) return;			// Apply de continent filter (which continent the spotter is in)
 			// When multiple de continents are selected, fetch 'Any' from backend and filter client-side
 			let passesDeContFilter = deContinent.includes('Any');
 			if (!passesDeContFilter && single.dxcc_spotter && single.dxcc_spotter.cont) {
@@ -1014,29 +1018,35 @@ $(function() {
 		let modeCounts = { cw: 0, digi: 0, phone: 0 };
 		let totalSpots = 0;
 
-		cachedSpotData.forEach((spot) => {
-			// Count by band
-			let freq_khz = spot.frequency;
-			let band = spot.band || getBandFromFrequency(freq_khz);
-			if (band) {
-				bandCounts[band] = (bandCounts[band] || 0) + 1;
-				totalSpots++;
-			}
+	cachedSpotData.forEach((spot) => {
+		// Count by band
+		let freq_khz = spot.frequency;
+		let band = spot.band;
 
-			// Count by mode
-			let modeCategory = getModeCategory(spot.mode);
-			if (modeCategory && modeCounts.hasOwnProperty(modeCategory)) {
-				modeCounts[modeCategory]++;
-			}
-		});
+		// If no band field, try to determine from frequency
+		if (!band) {
+			band = getBandFromFrequency(freq_khz);
+		}
 
-		// Count band groups (VHF, UHF, SHF, SAT)
-		let groupCounts = {
-			'VHF': 0,
-			'UHF': 0,
-			'SHF': 0,
-			'SAT': 0
-		};
+		if (band) {
+			bandCounts[band] = (bandCounts[band] || 0) + 1;
+			totalSpots++;
+		}
+
+		// Count by mode
+		let modeCategory = getModeCategory(spot.mode);
+		if (modeCategory && modeCounts.hasOwnProperty(modeCategory)) {
+			modeCounts[modeCategory]++;
+		}
+	});
+
+	// Count band groups (VHF, UHF, SHF, WARC)
+	let groupCounts = {
+		'VHF': 0,
+		'UHF': 0,
+		'SHF': 0,
+		'WARC': 0
+	};
 
 		Object.keys(bandCounts).forEach(band => {
 			let group = getBandGroup(band);
@@ -1045,10 +1055,9 @@ $(function() {
 			}
 		});
 
-		// Update individual MF/HF band button badges
+		// Update individual MF/HF band button badges (excluding WARC and 60m which are grouped/hidden)
 		const mfHfBands = [
-			'160m', '80m', '60m', '40m', '30m', '20m',
-			'17m', '15m', '12m', '10m'
+			'160m', '80m', '40m', '20m', '15m', '10m'
 		];
 
 		mfHfBands.forEach(band => {
@@ -1063,8 +1072,8 @@ $(function() {
 			}
 		});
 
-		// Update band group button badges (VHF, UHF, SHF, SAT)
-		['VHF', 'UHF', 'SHF', 'SAT'].forEach(group => {
+		// Update band group button badges (VHF, UHF, SHF, WARC)
+		['VHF', 'UHF', 'SHF', 'WARC'].forEach(group => {
 			let count = groupCounts[group] || 0;
 			let $badge = $('#toggle' + group + 'Filter .band-count-badge');
 			if ($badge.length === 0) {
@@ -1237,26 +1246,27 @@ $(function() {
 		return 'All';
 	}
 
-	// Map individual bands to their band groups (VHF, UHF, SHF)
+	// Map individual bands to their band groups (VHF, UHF, SHF, WARC)
 	function getBandGroup(band) {
-		const VHF_BANDS = ['6m', '4m', '2m'];
-		const UHF_BANDS = ['1.25m', '70cm', '33cm', '23cm'];
+		const VHF_BANDS = ['6m', '4m', '2m', '1.25m'];
+		const UHF_BANDS = ['70cm', '33cm', '23cm'];
 		const SHF_BANDS = ['13cm', '9cm', '6cm', '3cm', '1.25cm', '6mm', '4mm', '2.5mm', '2mm', '1mm'];
+		const WARC_BANDS = ['30m', '17m', '12m'];
 
 		if (VHF_BANDS.includes(band)) return 'VHF';
 		if (UHF_BANDS.includes(band)) return 'UHF';
 		if (SHF_BANDS.includes(band)) return 'SHF';
-		if (band === 'SAT') return 'SAT';
+		if (WARC_BANDS.includes(band)) return 'WARC';
 		return null; // MF/HF bands don't have groups
 	}
 
 	// Get all bands in a band group
 	function getBandsInGroup(group) {
 		const BAND_GROUPS = {
-			'VHF': ['6m', '4m', '2m'],
-			'UHF': ['1.25m', '70cm', '33cm', '23cm'],
+			'VHF': ['6m', '4m', '2m', '1.25m'],
+			'UHF': ['70cm', '33cm', '23cm'],
 			'SHF': ['13cm', '9cm', '6cm', '3cm', '1.25cm', '6mm', '4mm', '2.5mm', '2mm', '1mm'],
-			'SAT': ['SAT']
+			'WARC': ['30m', '17m', '12m']
 		};
 		return BAND_GROUPS[group] || [];
 	}
@@ -2166,14 +2176,22 @@ $(function() {
 		applyFilters(false);
 	});
 
-	$('#toggleSATFilter').on('click', function() {
+	$('#toggleWARCFilter').on('click', function() {
 		let currentValues = $('#band').val() || [];
 		if (currentValues.includes('All')) currentValues = currentValues.filter(v => v !== 'All');
-		if (currentValues.includes('SAT')) {
-			currentValues = currentValues.filter(v => v !== 'SAT');
+
+		const warcBands = getBandsInGroup('WARC');
+		const hasAllWARC = warcBands.every(b => currentValues.includes(b));
+
+		if (hasAllWARC) {
+			// Remove all WARC bands
+			currentValues = currentValues.filter(v => !warcBands.includes(v));
 			if (currentValues.length === 0) currentValues = ['All'];
 		} else {
-			currentValues.push('SAT');
+			// Add all WARC bands
+			warcBands.forEach(b => {
+				if (!currentValues.includes(b)) currentValues.push(b);
+			});
 		}
 		$('#band').val(currentValues).trigger('change');
 		syncQuickFilterButtons();
@@ -2448,6 +2466,48 @@ $(function() {
 
 		$('#additionalFlags').val(currentValues).trigger('change');
 		applyFilters(false);
+	});
+
+	// Toggle Favorites filter - applies user's active bands and modes
+	$('#toggleFavoritesFilter').on('click', function() {
+		// Fetch user's active bands and modes
+		let base_url = dxcluster_provider.replace('/dxcluster', '');
+		$.ajax({
+			url: base_url + '/bandmap/get_user_favorites',
+			method: 'GET',
+			dataType: 'json',
+			success: function(favorites) {
+				// Apply bands
+				if (favorites.bands && favorites.bands.length > 0) {
+					$('#band').val(favorites.bands).trigger('change');
+				} else {
+					// No active bands, set to All
+					$('#band').val(['All']).trigger('change');
+				}
+
+				// Apply modes
+				let activeModes = [];
+				if (favorites.modes.cw) activeModes.push('cw');
+				if (favorites.modes.phone) activeModes.push('phone');
+				if (favorites.modes.digi) activeModes.push('digi');
+
+				if (activeModes.length > 0) {
+					$('#mode').val(activeModes).trigger('change');
+				} else {
+					// No active modes, filter out everything (or set to All if you prefer)
+					$('#mode').val(['All']).trigger('change');
+				}
+
+				// Sync button states and apply filters
+				syncQuickFilterButtons();
+				applyFilters(false);
+
+				showToast('My Favorites', 'Applied your favorite bands and modes', 'bg-success text-white', 3000);
+			},
+			error: function() {
+				showToast('My Favorites', 'Failed to load favorites', 'bg-danger text-white', 3000);
+			}
+		});
 	});
 
 	// ========================================

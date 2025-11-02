@@ -531,50 +531,42 @@
 
 		<!-- Filters Section with darker background and rounded corners -->
 		<div class="menu-bar">
-			<!-- First Row: Band Filters, Mode Filters, and Continent Filters -->
-		<div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+	<!-- First Row: Band Filters, Mode Filters, and Continent Filters -->
+	<div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+		<!-- Favorites Button (left of band buttons) -->
+		<div class="btn-group flex-shrink-0" role="group">
+			<button class="btn btn-sm btn-success" type="button" id="toggleFavoritesFilter" title="<?= __("Apply your favorite bands and modes (configured in Band and Mode settings)"); ?>">
+				<i class="fas fa-star"></i> <span class="d-none d-sm-inline"><?= __("My Favorites"); ?></span>
+			</button>
+		</div>
+
 		<!-- Band Filter Buttons -->
 		<div class="d-flex flex-wrap gap-2 align-items-center">
-			<?php
-			// Generate band filter buttons grouped by band group
-			// Keep MF and HF as individual buttons, group VHF/UHF/SHF together
-			$vhfUhfShfButtons = [];
-
-			foreach ($bands as $key => $bandgroup) {
-				$groupKey = strtoupper($key);
-
-				// Collect VHF, UHF, SHF for later grouping
-				if (in_array($groupKey, ['VHF', 'UHF', 'SHF'])) {
-					$vhfUhfShfButtons[$groupKey] = $groupKey;
-				} else {
-					// MF and HF bands get individual buttons in their own groups
-					echo '<div class="btn-group flex-shrink-0" role="group">';
-					foreach ($bandgroup as $band) {
-						$bandId = str_replace('.', '', $band); // Remove dots for ID (e.g., 2.5mm -> 25mm)
-						echo '<button class="btn btn-sm btn-primary" type="button" id="toggle' . $bandId . 'Filter" title="' . __("Toggle") . ' ' . $band . ' ' . __("band filter") . '">' . $band . '</button>';
-					}
-					echo '</div>' . "\n";
-				}
-			}
-
-			// Output VHF/UHF/SHF as one button group
-			if (!empty($vhfUhfShfButtons)) {
-				echo '<div class="btn-group flex-shrink-0" role="group">';
-				foreach ($vhfUhfShfButtons as $groupKey) {
-					echo '<button class="btn btn-sm btn-primary" type="button" id="toggle' . $groupKey . 'Filter" title="' . __("Toggle") . ' ' . $groupKey . ' ' . __("bands filter") . '">' . $groupKey . '</button>';
-				}
-				echo '</div>' . "\n";
-			}
-
-			// Add SAT button
-			echo '<div class="btn-group flex-shrink-0" role="group">';
-			echo '<button class="btn btn-sm btn-primary" type="button" id="toggleSATFilter" title="' . __("Toggle SAT band filter") . '">SAT</button>';
-			echo '</div>' . "\n";
-			?>
-		</div>			<!-- Spacer to push modes and continents to the right -->
-			<div class="flex-grow-1"></div>
-
-
+			<!-- MF Band -->
+			<div class="btn-group flex-shrink-0" role="group">
+				<button class="btn btn-sm btn-primary" type="button" id="toggle160mFilter" title="<?= __("Toggle 160m band filter"); ?>">160m</button>
+			</div>
+			<!-- HF Bands -->
+			<div class="btn-group flex-shrink-0" role="group">
+				<button class="btn btn-sm btn-primary" type="button" id="toggle80mFilter" title="<?= __("Toggle 80m band filter"); ?>">80m</button>
+				<button class="btn btn-sm btn-primary" type="button" id="toggle40mFilter" title="<?= __("Toggle 40m band filter"); ?>">40m</button>
+				<button class="btn btn-sm btn-primary" type="button" id="toggle20mFilter" title="<?= __("Toggle 20m band filter"); ?>">20m</button>
+				<button class="btn btn-sm btn-primary" type="button" id="toggle15mFilter" title="<?= __("Toggle 15m band filter"); ?>">15m</button>
+				<button class="btn btn-sm btn-primary" type="button" id="toggle10mFilter" title="<?= __("Toggle 10m band filter"); ?>">10m</button>
+			</div>
+			<!-- WARC Bands -->
+			<div class="btn-group flex-shrink-0" role="group">
+				<button class="btn btn-sm btn-primary" type="button" id="toggleWARCFilter" title="<?= __("Toggle WARC bands filter"); ?>">WARC</button>
+			</div>
+			<!-- VHF/UHF/SHF Bands -->
+			<div class="btn-group flex-shrink-0" role="group">
+				<button class="btn btn-sm btn-primary" type="button" id="toggleVHFFilter" title="<?= __("Toggle VHF bands filter"); ?>">VHF</button>
+				<button class="btn btn-sm btn-primary" type="button" id="toggleUHFFilter" title="<?= __("Toggle UHF bands filter"); ?>">UHF</button>
+				<button class="btn btn-sm btn-primary" type="button" id="toggleSHFFilter" title="<?= __("Toggle SHF bands filter"); ?>">SHF</button>
+			</div>
+		</div>
+	<!-- Spacer to push modes and continents to the right -->
+	<div class="flex-grow-1"></div>
 		<!-- Mode Filter Buttons -->
 		<div class="d-flex flex-wrap gap-2 align-items-center">
 			<div class="btn-group flex-shrink-0" role="group">
@@ -689,21 +681,46 @@
 									<label class="form-label d-block filter-label-small" for="band"><?= __("Band"); ?></label>
 									<select id="band" class="form-select form-select-sm" name="band" multiple="multiple">
 										<option value="All" selected><?= __("All"); ?></option>
-										<?php foreach ($bands as $key => $bandgroup) {
-										echo '<optgroup label="' . strtoupper($key) . '">';
-										foreach ($bandgroup as $band) {
-											echo '<option value="' . $band . '"';
-											echo '>' . $band . '</option>' . "\n";
-										}
-										echo '</optgroup>';
-									}
-									?>
-									<option value="SAT">SAT</option>
-								</select>
-							</div>
-						</div>
-
-						<!-- Buttons in popup -->
+										<optgroup label="MF">
+											<option value="160m">160m</option>
+										</optgroup>
+										<optgroup label="HF">
+											<option value="80m">80m</option>
+											<option value="60m">60m</option>
+											<option value="40m">40m</option>
+											<option value="30m">30m</option>
+											<option value="20m">20m</option>
+											<option value="17m">17m</option>
+											<option value="15m">15m</option>
+											<option value="12m">12m</option>
+											<option value="10m">10m</option>
+										</optgroup>
+										<optgroup label="VHF">
+											<option value="6m">6m</option>
+											<option value="4m">4m</option>
+											<option value="2m">2m</option>
+											<option value="1.25m">1.25m</option>
+										</optgroup>
+										<optgroup label="UHF">
+											<option value="70cm">70cm</option>
+											<option value="33cm">33cm</option>
+											<option value="23cm">23cm</option>
+										</optgroup>
+										<optgroup label="SHF">
+											<option value="13cm">13cm</option>
+											<option value="9cm">9cm</option>
+											<option value="6cm">6cm</option>
+											<option value="3cm">3cm</option>
+											<option value="1.25cm">1.25cm</option>
+											<option value="6mm">6mm</option>
+											<option value="4mm">4mm</option>
+											<option value="2.5mm">2.5mm</option>
+											<option value="2mm">2mm</option>
+											<option value="1mm">1mm</option>
+										</optgroup>
+									</select>
+								</div>
+					</div>						<!-- Buttons in popup -->
 						<div class="text-center mt-3">
 						<button type="button" class="btn btn-sm btn-success me-2" id="applyFiltersButtonPopup">
 							<i class="fas fa-check"></i> <?= __("Apply Filters"); ?>
