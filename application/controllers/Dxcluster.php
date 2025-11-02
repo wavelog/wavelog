@@ -12,19 +12,28 @@ class Dxcluster extends CI_Controller {
 
 
 	function spots($band, $age = '', $de = '', $mode = 'All') {
+		// Sanitize inputs
+		$band = $this->security->xss_clean($band);
+		$mode = $this->security->xss_clean($mode);
+
 		if ($age == '') {
 			$age = $this->optionslib->get_option('dxcluster_maxage') ?? 60;
+		} else {
+			$age = (int)$age;
 		}
+
 		if ($de == '') {
 			$de = $this->optionslib->get_option('dxcluster_decont') ?? 'EU';
+		} else {
+			$de = $this->security->xss_clean($de);
 		}
 		$calls_found = $this->dxcluster_model->dxc_spotlist($band, $age, $de, $mode);
 
 		header('Content-Type: application/json');
-		if ($calls_found) {
-			echo json_encode($calls_found, JSON_PRETTY_PRINT);
+		if ($calls_found && !empty($calls_found)) {
+			echo json_encode($calls_found);
 		} else {
-			echo '{ "error": "not found" }';
+			echo json_encode(['error' => 'not found']);
 		}
 	}
 
