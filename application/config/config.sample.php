@@ -797,3 +797,21 @@ $config['max_login_attempts'] = 3;
  */
 
  $config['enable_dcl_interface'] = true;
+
+  /*
+ |--------------------------------------------------------------------------
+ | DXCluster File Cache
+ |--------------------------------------------------------------------------
+ |
+ | Controls whether DXCluster data is cached to files on the server.
+ |
+ | Set to TRUE to enable file caching (may cause high disk usage on large installations)
+ | Set to FALSE to disable file caching (recommended for most installations)
+ |
+ | Default: false (file caching disabled)
+ |
+ | Warning: This is experimental and may not work as expected in all environments.
+ |--------------------------------------------------------------------------
+  */
+
+ $config['enable_dxcluster_file_cache'] = false;
