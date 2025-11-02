@@ -306,7 +306,7 @@ $(function() {
 	// Required flags filter - handle "None" option
 	$('#requiredFlags').on('change', function() {
 		let currentValues = $(this).val() || [];
-		
+
 		// If "None" is selected, deselect all others
 		if (currentValues.includes('None')) {
 			if (currentValues.length > 1) {
@@ -317,7 +317,7 @@ $(function() {
 			// If nothing is selected, select "None"
 			currentValues = ['None'];
 		}
-		
+
 		$(this).val(currentValues);
 		updateFilterIcon();
 	});
@@ -536,7 +536,7 @@ $(function() {
 		}
 
 		$('#statusMessage').text(statusMessage).attr('title', fetchTooltipLines.join('\n'));
-		
+
 		// Add info icon if filters are active (with separate tooltip for active filters)
 		$('#statusFilterInfo').remove();
 		if (allFilters.length > 0) {
@@ -1023,7 +1023,7 @@ $(function() {
 		let cwnStatuses = currentFilters.cwn || ['All'];
 		let flags = currentFilters.additionalFlags || ['All'];
 		let requiredFlags = (currentFilters.requiredFlags || []).filter(v => v !== 'None');  // Remove "None"
-		
+
 		// Get current mode and band selections to apply when counting
 		let selectedModes = $('#mode').val() || ['All'];
 		let selectedBands = $('#band').val() || ['All'];
