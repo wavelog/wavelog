@@ -179,10 +179,10 @@ $(function() {
 
 	// Band filter buttons - green if All, orange if specific band, blue if not selected
 	// Always update colors, even when CAT Control is enabled (so users can see which band is active)
-	// Only include visible individual band buttons (excluding WARC bands and 60m)
-	let bandButtons = ['#toggle160mFilter', '#toggle80mFilter', '#toggle40mFilter',
+	// Only include visible individual band buttons (excluding WARC bands)
+	let bandButtons = ['#toggle160mFilter', '#toggle80mFilter', '#toggle60mFilter', '#toggle40mFilter',
 	                   '#toggle20mFilter', '#toggle15mFilter', '#toggle10mFilter'];
-	let bandIds = ['160m', '80m', '40m', '20m', '15m', '10m'];
+	let bandIds = ['160m', '80m', '60m', '40m', '20m', '15m', '10m'];
 
 	bandButtons.forEach((btnId, index) => {
 		let $btn = $(btnId);
@@ -1055,9 +1055,9 @@ $(function() {
 			}
 		});
 
-		// Update individual MF/HF band button badges (excluding WARC and 60m which are grouped/hidden)
+		// Update individual MF/HF band button badges (excluding WARC bands which are grouped)
 		const mfHfBands = [
-			'160m', '80m', '40m', '20m', '15m', '10m'
+			'160m', '80m', '60m', '40m', '20m', '15m', '10m'
 		];
 
 		mfHfBands.forEach(band => {
@@ -2519,8 +2519,8 @@ $(function() {
 	 * Adds visual indicators and tooltips to explain why controls are disabled
 	 */
 	function disableBandFilterControls() {
-		// Disable all band quick filter buttons (keep their colors visible)
-		$('[id^="toggle"][id$="mFilter"]').prop('disabled', true);
+		// Disable all band quick filter buttons (both individual and grouped)
+		$('[id^="toggle"][id$="mFilter"], [id^="toggle"][id$="Filter"][id*="VHF"], [id^="toggle"][id$="Filter"][id*="UHF"], [id^="toggle"][id$="Filter"][id*="SHF"], [id^="toggle"][id$="Filter"][id*="WARC"]').prop('disabled', true);
 
 		// Disable band select in advanced filters popup
 		$('#band').prop('disabled', true);
@@ -2536,8 +2536,8 @@ $(function() {
 	 * Re-enable band filter controls when CAT Control is disabled
 	 */
 	function enableBandFilterControls() {
-		// Re-enable all band quick filter buttons
-		$('[id^="toggle"][id$="mFilter"]').prop('disabled', false);
+		// Re-enable all band quick filter buttons (both individual and grouped)
+		$('[id^="toggle"][id$="mFilter"], [id^="toggle"][id$="Filter"][id*="VHF"], [id^="toggle"][id$="Filter"][id*="UHF"], [id^="toggle"][id$="Filter"][id*="SHF"], [id^="toggle"][id$="Filter"][id*="WARC"]').prop('disabled', false);
 
 		// Re-enable band select in advanced filters popup
 		$('#band').prop('disabled', false);
