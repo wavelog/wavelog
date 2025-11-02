@@ -372,6 +372,16 @@
 
 									<hr />
 									<div class="mb-3">
+										<label for="logendtime"><?= __("Prioritize database search over external lookup"); ?></label>
+										<?php if(!isset($user_qso_db_search_priority)) { $user_qso_db_search_priority='Y'; }?>
+										<select class="form-select" id="logendtimes" name="user_qso_db_search_priority">
+											<option value="Y" <?php if ($user_qso_db_search_priority == 'Y') { echo " selected =\"selected\""; } ?>><?= __("Yes"); ?></option>
+											<option value="N" <?php if ($user_qso_db_search_priority == 'N') { echo " selected =\"selected\""; } ?>><?= __("No"); ?></option>
+										</select>
+										<small id="SelectDateFormatHelp" class="form-text text-muted"><?= __("When set to \"Yes\", callsign lookup will first use data from your previous QSOs before querying external services. Set to \"No\" to always use external lookup services instead."); ?></small>
+									</div>
+									<hr />
+									<div class="mb-3">
 										<label for="profileimages"><?= __("Show profile picture of QSO partner from qrz.com/hamqth.com profile in the log QSO section."); ?></label>
 										<?php if(!isset($user_show_profile_image)) { $user_show_profile_image='0'; }?>
 										<select class="form-select" id="profileimages" name="user_show_profile_image">

@@ -101,7 +101,7 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
 <?php } ?>
 
           <li class="nav-item">
-            <a class="nav-link" id="notes-tab" data-bs-toggle="tab" href="#nav-notes" role="tab" aria-controls="notes" aria-selected="false"><?= __("Comment"); ?></a>
+            <a class="nav-link" id="notes-tab" data-bs-toggle="tab" href="#nav-notes" role="tab" aria-controls="notes" aria-selected="false"><?= __("Notes"); ?></a>
           </li>
 
           <li class="nav-item">
@@ -187,13 +187,15 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
               <!-- Callsign Input -->
               <div class="row">
                 <div class="mb-3 col-md-12">
-                  <label for="callsign"><?= __("Callsign"); ?></label>&nbsp;<i id="check_cluster" data-bs-toggle="tooltip" title="<?= __("Search DXCluster for latest Spot"); ?>" class="fas fa-search"></i></label>
+                  <label for="callsign"><?= __("Callsign"); ?></label>&nbsp;<i id="check_cluster" data-bs-toggle="tooltip" title="<?= __("Search DXCluster for latest Spot"); ?>" class="fas fa-search"></i><i id="fetch_status" class="fas fa-spinner fa-spin ms-1" style="display: none;"></i></label>
                   <div class="input-group">
                     <input tabindex="7" type="text" class="form-control uppercase" id="callsign" name="callsign" autocomplete="off" required>
                     <span id="qrz_info" class="input-group-text btn-included-on-field d-none py-0"></span>
                     <span id="hamqth_info" class="input-group-text btn-included-on-field d-none py-0"></span>
                   </div>
-                  <small id="callsign_info" class="badge text-bg-secondary"></small> <a id="lotw_link"><small id="lotw_info" class="badge text-bg-success"></small></a>
+                  <div style="min-height: 24px;">
+                    <small id="callsign_info" class="badge text-bg-secondary"></small> <a id="lotw_link"><small id="lotw_info" class="badge text-bg-success"></small></a>
+                  </div>
                   <p id="ham_of_note_line" style="margin-top: 5px; display: none"><small id="ham_of_note_info"></small><small><a id="ham_of_note_link" target="_blank"></a></small></p>
                 </div>
               </div>
@@ -350,7 +352,7 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
                   <label for="locator" class="col-sm-3 col-form-label"><?= __("Gridsquare"); ?></label>
                   <div class="col-sm-9">
                     <input tabindex="19" type="text" class="form-control form-control-sm uppercase" name="locator" id="locator" value="">
-                    <small id="locator_info" class="form-text text-muted"></small>
+                    <small id="locator_info" class="form-text text-muted" style="min-height: 20px; display: block;">&nbsp;</small>
                 </div>
               </div>
 
@@ -632,7 +634,10 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
 
             <div class="mb-3">
               <label for="email"><?= __("E-mail"); ?></label>
-              <input class="form-control" id="email" type="text" name="email" value="" />
+              <div class="input-group">
+                <input class="form-control" id="email" type="text" name="email" value="" />
+                <span id="email_info" class="input-group-text btn-included-on-field d-none py-0"></span>
+              </div>
               <small id="MailHelp" class="form-text text-muted"><?= __("E-mail address of QSO-partner"); ?></small>
             </div>
           </div>
@@ -668,10 +673,10 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
             </div>
           </div>
 
-          <!-- Comment Panel Contents -->
+          <!-- QSO Note Panel Contents -->
           <div class="tab-pane fade" id="nav-notes" role="tabpanel" aria-labelledby="notes-tab">
            <div class="mb-3">
-              <label for="notes"><?= __("QSO Comment"); ?></label>
+              <label for="notes"><?= __("QSO Note"); ?></label>
               <textarea  type="text" class="form-control" id="notes" name="notes" rows="10"></textarea>
               <div class="small form-text text-muted"><?= __("Note: Gets exported to third-party services.") ?></div>
             </div>
@@ -748,16 +753,16 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
 	</script>
 
 	<div class="card callsign-notes" id="callsign-notes">
-        <div class="card-header d-flex justify-content-between align-items-center">
+        <div class="card-header d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#callsign-notes-body" aria-expanded="false" aria-controls="callsign-notes-body" style="cursor: pointer;">
           <h4 style="font-size: 16px; font-weight: bold;" class="card-title mb-0">
             <?= __("Callsign Notes"); ?>
             <span class="ms-1" data-bs-toggle="tooltip" title="<?= __("Store private information about your QSO partner. These notes are never shared or exported to external services.") ?>">
               <i class="fa fa-question-circle"></i>
             </span>
           </h4>
-          <button class="btn btn-sm btn-link p-0" type="button" data-bs-toggle="collapse" data-bs-target="#callsign-notes-body" aria-expanded="false" aria-controls="callsign-notes-body">
-            <i class="fas fa-chevron-down"></i>
-          </button>
+          <span>
+            <i class="fas fa-up-down"></i>
+          </span>
         </div>
 		<div class="card-body collapse" id="callsign-notes-body">
 				<textarea id="callsign_note_content" class="form-control" rows="6"></textarea>
@@ -770,7 +775,6 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
   </div>
   <div class="col-sm-7">
 
-<div id="noticer" role="alert"></div>
 <?php if($notice) { ?>
 <div id="notice-alerts" class="alert alert-info" role="alert">
   <?php echo $notice; ?>
@@ -860,10 +864,19 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
 
     <?php if ($this->session->userdata('user_show_profile_image')) { ?>
     <div class="card callsign-image" id="callsign-image" style="display: none;">
-        <div class="card-header"><h4 style="font-size: 16px; font-weight: bold;" class="card-title"><?= __("Profile Picture"); ?></h4></div>
+        <div class="card-header">
+            <h4 style="font-size: 16px; font-weight: bold;" class="card-title mb-0">
+                <?= __("QSO Partner's Profile"); ?>
+                <span class="ms-1" data-bs-toggle="tooltip" title="<?= __("Profile picture and data fetched from third-party services. This information is not stored on your Wavelog instance.") ?>">
+                    <i class="fa fa-question-circle"></i>
+                </span>
+            </h4>
+        </div>
 
-        <div class="card-body callsign-image">
-            <div class="callsign-image-content" id="callsign-image-content">
+        <div class="card-body callsign-image d-flex gap-3">
+            <div class="callsign-image-content" id="callsign-image-content" style="flex-shrink: 0; max-width: 100%;">
+            </div>
+            <div class="callsign-image-info" id="callsign-image-info" style="flex-grow: 1; min-width: 0; display: none;">
             </div>
         </div>
     </div>
@@ -891,9 +904,6 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
 </div>
 
 </div>
-
-<!-- Toast Notification : TBD move to footer -->
-<div id="toast-container" class="position-fixed bottom-0 end-0 p-3" style="z-index: 1100;"></div>
 
 <script>
 	var station_callsign = "<?php echo $station_callsign; ?>";
