@@ -1154,6 +1154,11 @@ $(function() {
 		// Update band count badges after rendering
 		updateBandCountBadges();
 
+		// Update CAT frequency gradient colors/borders after rendering if CAT is enabled
+		if (isCatTrackingEnabled && currentRadioFrequency) {
+			updateFrequencyGradientColors();
+		}
+
 		// Update status bar after render completes
 		setTimeout(function() {
 			if (!isFetchInProgress) {
@@ -2268,6 +2273,10 @@ $(function() {
 		lastGradientFrequency = currentRadioFrequency;
 		var table = get_dtable();
 		let coloredCount = 0;
+		let nearestAbove = null; // Spot above current frequency
+		let nearestBelow = null; // Spot below current frequency
+		let minDistanceAbove = Infinity;
+		let minDistanceBelow = Infinity;
 
 		// Iterate through all visible rows
 		table.rows({ search: 'applied' }).every(function() {
@@ -2286,6 +2295,16 @@ $(function() {
 			// Store gradient data for persistence
 			$(row).attr('data-spot-frequency', spotFreqKhz);
 
+			// Track nearest spots above and below current frequency
+			const distance = spotFreqKhz - currentRadioFrequency;
+			if (distance > 0 && distance < minDistanceAbove) {
+				minDistanceAbove = distance;
+				nearestAbove = row;
+			} else if (distance < 0 && Math.abs(distance) < minDistanceBelow) {
+				minDistanceBelow = Math.abs(distance);
+				nearestBelow = row;
+			}
+
 			if (gradientColor) {
 				coloredCount++;
 				// Store and apply gradient color directly to override Bootstrap striping
@@ -2295,16 +2314,42 @@ $(function() {
 				row.style.setProperty('--bs-table-accent-bg', gradientColor, 'important');
 				row.style.setProperty('background-color', gradientColor, 'important');
 				$(row).addClass('cat-frequency-gradient');
+				// Remove border markers if spot has gradient
+				$(row).removeClass('cat-nearest-above cat-nearest-below');
+			} else {
+				// Remove gradient styling if outside range
+				$(row).removeAttr('data-gradient-color');
+				$(row).removeClass('cat-frequency-gradient');
+				row.style.removeProperty('--bs-table-bg');
+				row.style.removeProperty('--bs-table-accent-bg');
+				row.style.removeProperty('background-color');
+				// Remove border markers (will be added back if needed)
+				$(row).removeClass('cat-nearest-above cat-nearest-below');
+			}
+		});
+
+		// If no spots are colored, add purple borders to nearest spots above/below
+		// NOTE: Table is sorted DESC, so higher frequencies appear at TOP, lower at BOTTOM
+		// Borders point TOWARD current frequency to create visual bracket
+		if (coloredCount === 0) {
+			console.log('No spots colored - adding border indicators. Current freq:', currentRadioFrequency);
+			console.log('Nearest below:', nearestBelow, 'Distance:', minDistanceBelow, 'kHz');
+			console.log('Nearest above:', nearestAbove, 'Distance:', minDistanceAbove, 'kHz');
+
+			// Spot BELOW current freq (lower number) appears at BOTTOM of DESC table → TOP border points UP toward you
+			if (nearestBelow) {
+				$(nearestBelow).addClass('cat-nearest-below');
+				console.log('Added cat-nearest-below class (lower frequency, top border points up)');
+			}
+			// Spot ABOVE current freq (higher number) appears at TOP of DESC table → BOTTOM border points DOWN toward you
+			if (nearestAbove) {
+				$(nearestAbove).addClass('cat-nearest-above');
+				console.log('Added cat-nearest-above class (higher frequency, bottom border points down)');
+			}
 		} else {
-			// Remove gradient styling if outside range
-			$(row).removeAttr('data-gradient-color');
-			$(row).removeClass('cat-frequency-gradient');
-			row.style.removeProperty('--bs-table-bg');
-			row.style.removeProperty('--bs-table-accent-bg');
-			row.style.removeProperty('background-color');
+			console.log('Spots colored:', coloredCount, '- no border indicators needed');
 		}
-	});
-}	// Save reference to cat.js's updateCATui if it exists
+	}	// Save reference to cat.js's updateCATui if it exists
 	var catJsUpdateCATui = window.updateCATui;
 
 	// Override updateCATui to add bandmap-specific behavior

@@ -225,6 +225,40 @@ table.table-striped tbody tr.cat-frequency-gradient:nth-of-type(even),
 	filter: brightness(0.95);
 }
 
+/* CAT Control - Nearest spot indicators when not in gradient range */
+/* Table is sorted DESC (high freq at top, low freq at bottom) */
+/* Borders point TOWARD current frequency to create visual bracket */
+
+/* Spot BELOW current frequency (lower number) appears at BOTTOM of table → TOP border points UP toward you */
+table.spottable tbody tr.cat-nearest-below,
+table.dataTable tbody tr.cat-nearest-below,
+table tbody tr.cat-nearest-below {
+	border-top: 4px solid #8b5cf6 !important;
+	box-shadow: 0 -4px 0 0 #8b5cf6 !important;
+}
+
+/* Apply to td cells as well for border-collapse tables */
+table.spottable tbody tr.cat-nearest-below td,
+table.dataTable tbody tr.cat-nearest-below td,
+table tbody tr.cat-nearest-below td {
+	border-top: 4px solid #8b5cf6 !important;
+}
+
+/* Spot ABOVE current frequency (higher number) appears at TOP of table → BOTTOM border points DOWN toward you */
+table.spottable tbody tr.cat-nearest-above,
+table.dataTable tbody tr.cat-nearest-above,
+table tbody tr.cat-nearest-above {
+	border-bottom: 4px solid #8b5cf6 !important;
+	box-shadow: 0 4px 0 0 #8b5cf6 !important;
+}
+
+/* Apply to td cells as well for border-collapse tables */
+table.spottable tbody tr.cat-nearest-above td,
+table.dataTable tbody tr.cat-nearest-above td,
+table tbody tr.cat-nearest-above td {
+	border-bottom: 4px solid #8b5cf6 !important;
+}
+
 /* Status bar styling */
 .status-bar {
 	font-size: 0.875rem;
