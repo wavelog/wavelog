@@ -1243,9 +1243,106 @@ $(function() {
 				$badge.text(count);
 			}
 		});
-	}
 
-	// ========================================
+	// Count spots for quick filter badges
+	let quickFilterCounts = {
+		lotw: 0,
+		newcontinent: 0,
+		newcountry: 0,
+		newcallsign: 0,
+		contest: 0,
+		geohunter: 0,
+		fresh: 0
+	};
+
+	cachedSpotData.forEach((spot) => {
+		// Apply all current filters EXCEPT quick filters themselves
+		let passesFilters = true;
+
+		// Apply de continent filter
+		if (!deContinent.includes('Any') && !deContinent.includes(spot.dxcc_spotter?.cont)) {
+			passesFilters = false;
+		}
+
+		// Apply spotted continent filter
+		if (passesFilters && !spottedContinents.includes('Any') && !spottedContinents.includes(spot.dxcc_spotted?.cont)) {
+			passesFilters = false;
+		}
+
+		// Apply CWN status filter (using same logic as applyFilters)
+		if (passesFilters && !cwnStatuses.includes('All')) {
+			let passesCwnFilter = false;
+			if (cwnStatuses.includes('notwkd') && !spot.worked_dxcc) passesCwnFilter = true;
+			if (cwnStatuses.includes('wkd') && spot.worked_dxcc) passesCwnFilter = true;
+			if (cwnStatuses.includes('cnf') && spot.cnfmd_dxcc) passesCwnFilter = true;
+			if (cwnStatuses.includes('ucnf') && spot.worked_dxcc && !spot.cnfmd_dxcc) passesCwnFilter = true;
+			if (!passesCwnFilter) {
+				passesFilters = false;
+			}
+		}
+
+		// Apply band filter
+		if (passesFilters && !selectedBands.includes('All') && !selectedBands.includes(spot.band)) {
+			passesFilters = false;
+		}
+
+		// Apply mode filter
+		if (passesFilters && !selectedModes.includes('All')) {
+			let spotMode = (spot.mode || '').toLowerCase();
+			if (!selectedModes.map(m => m.toLowerCase()).includes(spotMode)) {
+				passesFilters = false;
+			}
+		}
+
+		if (!passesFilters) return;
+
+		// Count quick filter matches (show available spots for each filter)
+		if (spot.dxcc_spotted && spot.dxcc_spotted.lotw_user) {
+			quickFilterCounts.lotw++;
+		}
+		if (spot.worked_continent === false) {
+			quickFilterCounts.newcontinent++;
+		}
+		if (spot.worked_dxcc === false) {
+			quickFilterCounts.newcountry++;
+		}
+		if (spot.worked_call === false) {
+			quickFilterCounts.newcallsign++;
+		}
+		if (spot.dxcc_spotted && spot.dxcc_spotted.isContest) {
+			quickFilterCounts.contest++;
+		}
+		if (spot.dxcc_spotted && (spot.dxcc_spotted.pota_ref || spot.dxcc_spotted.sota_ref ||
+		    spot.dxcc_spotted.wwff_ref || spot.dxcc_spotted.iota_ref)) {
+			quickFilterCounts.geohunter++;
+		}
+		if ((spot.age || 0) < 5) {
+			quickFilterCounts.fresh++;
+		}
+	});
+
+	// Update quick filter badges
+	const quickFilters = [
+		{ id: 'toggleLotwFilter', count: quickFilterCounts.lotw },
+		{ id: 'toggleNewContinentFilter', count: quickFilterCounts.newcontinent },
+		{ id: 'toggleDxccNeededFilter', count: quickFilterCounts.newcountry },
+		{ id: 'toggleNewCallsignFilter', count: quickFilterCounts.newcallsign },
+		{ id: 'toggleContestFilter', count: quickFilterCounts.contest },
+		{ id: 'toggleGeoHunterFilter', count: quickFilterCounts.geohunter },
+		{ id: 'toggleFreshFilter', count: quickFilterCounts.fresh }
+	];
+
+	quickFilters.forEach(filter => {
+		let $badge = $('#' + filter.id + ' .quick-filter-count-badge');
+		if ($badge.length === 0) {
+			// Badge doesn't exist yet, create it
+			$('#' + filter.id).append(' <span class="badge bg-dark quick-filter-count-badge">' + filter.count + '</span>');
+		} else {
+			// Update existing badge
+			$badge.text(filter.count);
+		}
+	});
+}	// ========================================
 	// BACKEND DATA FETCH
 	// ========================================
 
