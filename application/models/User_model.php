@@ -258,7 +258,6 @@ class User_Model extends CI_Model {
 				'user_default_band' => xss_clean($user_default_band),
 				'user_default_confirmation' => xss_clean($user_default_confirmation),
 				'user_qso_end_times' => xss_clean($user_qso_end_times),
-				'user_qso_db_search_priority' => xss_clean($user_qso_db_search_priority),
 				'user_quicklog' => xss_clean($user_quicklog),
 				'user_quicklog_enter' => xss_clean($user_quicklog_enter),
 				'user_language' => xss_clean($user_language),
