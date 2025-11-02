@@ -35,13 +35,13 @@ class Bandmap extends CI_Controller {
 		$this->load->model('cat');
 		$this->load->model('bands');
 		$data['radios'] = $this->cat->radios();
+		$data['radio_last_updated'] = $this->cat->last_updated()->row();
 		$data['bands'] = $this->bands->get_user_bands_for_qso_entry();
 
 		$footerData = [];
 		$footerData['scripts'] = [
 			'assets/js/moment.min.js',
 			'assets/js/datetime-moment.js',
-			'assets/js/sections/bandmap_list.js'
 		];
 
 		// Get Date format

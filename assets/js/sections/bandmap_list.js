@@ -973,6 +973,11 @@ $(function() {
 			table.page.len(50);
 
 			if (dxspots.length > 0) {
+				// Filter out spots with no frequency or frequency = 0
+				dxspots = dxspots.filter(spot => {
+					return spot.frequency && parseFloat(spot.frequency) > 0;
+				});
+
 				dxspots.sort(SortByQrg);  // Sort by frequency
 				cachedSpotData = dxspots;
 			} else {
@@ -1285,7 +1290,6 @@ $(function() {
 
 	let bc2qso = new BroadcastChannel('qso_wish');
 	var CatCallbackURL = "http://127.0.0.1:54321";
-	var isCatTrackingEnabled = false; // Track CAT tracking button state
 
 	let wait4pong = 2000;
 	let check_intv = 100;
@@ -1304,6 +1308,8 @@ $(function() {
 			if (pong_rcvd || ((Date.now() - qso_window_last_seen) < wait4pong)) {
 				clearInterval(check_pong);
 				bc2qso.postMessage({ frequency: qrg, call: call });
+				// Show toast notification when callsign is sent to existing QSO window
+				showToast('QSO Prepared', `Callsign ${call} sent to logging form`, 'bg-success text-white', 3000);
 			} else {
 				clearInterval(check_pong);
 				let cl={};
@@ -1319,6 +1325,8 @@ $(function() {
 					}, 3000);
                 } else {
                     newWindow.focus();
+					// Show toast notification when opening new QSO window
+					showToast('QSO Prepared', `Callsign ${call} sent to logging form`, 'bg-success text-white', 3000);
                 }
 
                 bc2qso.onmessage = function(ev) {
@@ -1364,162 +1372,89 @@ $(function() {
 		}
 	});
 
-	let websocket = null;
-	let reconnectAttempts = 0;
-	let websocketEnabled = false;
-	let CATInterval=null;
+	// ========================================
+	// CAT CONTROL INTEGRATION
+	// ========================================
+	// Note: WebSocket and AJAX polling infrastructure is handled by cat.js
+	// We extend cat.js functionality for bandmap-specific band filtering
 
-	function initializeWebSocketConnection() {
-		try {
-			websocket = new WebSocket('ws://localhost:54322');
-			websocket.onopen = function(event) {
-				reconnectAttempts = 0;
-				websocketEnabled = true;
-			};
-			websocket.onmessage = function(event) {
-				try {
-					const data = JSON.parse(event.data);
-					handleWebSocketData(data);
-				} catch (error) {
-				}
-			};
-			websocket.onerror = function(error) {
-				websocketEnabled=false;
-			};
-			websocket.onclose = function(event) {
-				websocketEnabled = false;
+	var isCatTrackingEnabled = false; // Track CAT Control button state
 
-				if (reconnectAttempts < 5) {
-					setTimeout(() => {
-						reconnectAttempts++;
-						initializeWebSocketConnection();
-					}, 2000 * reconnectAttempts);
-				} else {
-					$(".radio_cat_state" ).remove();
-					$('#radio_status').html('<div class="alert alert-danger radio_timeout_error" role="alert"><i class="fas fa-broadcast-tower"></i> Radio connection timed-out: ' + $('select.radios option:selected').text() + ' Websocket connection lost, chose another radio.</div>');
-					websocketEnabled = false;
-				}
-			};
-		} catch (error) {
-			websocketEnabled=false;
-		}
-	}
+	// Save reference to cat.js's updateCATui if it exists
+	var catJsUpdateCATui = window.updateCATui;
 
-	function handleWebSocketData(data) {
-		if (data.type === 'welcome') {
-			return;
-		}
-		if (data.type === 'radio_status' && data.radio && ($(".radios option:selected").val() == 'ws')) {
-			data.updated_minutes_ago = Math.floor((Date.now() - data.timestamp) / 60000);
-			data.cat_url = 'http://127.0.0.1:54321';
-			updateCATui(data);
-		}
-	}
+	// Override updateCATui to add bandmap-specific behavior
+	window.updateCATui = function(data) {
+		console.log('Bandmap: updateCATui called with data:', data);
 
-
-	$( "#radio" ).change(function() {
-		if (CATInterval) {
-			clearInterval(CATInterval);
-			CATInterval=null;
-		}
-		if (websocket) {
-			websocket.close();
-			websocketEnabled = false;
-		}
-		if ($("#radio option:selected").val() == '0') {
-			$('#radio_status').html('');
-		} else if ($("#radio option:selected").val() == 'ws') {
-			initializeWebSocketConnection();
-		} else {
-			// Update frequency every three second
-			CATInterval=setInterval(updateFromCAT, 3000);
-		}
-	});
-
-	function updateCATui(data) {
 		const band = frequencyToBand(data.frequency);
-		CatCallbackURL=data.cat_url;
+		CatCallbackURL = data.cat_url || 'http://127.0.0.1:54321';
 
-		console.log('CAT Update - Frequency:', data.frequency, 'Band:', band, 'Tracking enabled:', isCatTrackingEnabled, 'Current band filter:', $("#band").val());
+		console.log('Bandmap CAT Update - Frequency:', data.frequency, 'Band:', band, 'Control enabled:', isCatTrackingEnabled);
 
-		// Only update band filter if CAT tracking is enabled
+		// Bandmap-specific: Update band filter if CAT Control is enabled
 		if (isCatTrackingEnabled) {
 			const currentBands = $("#band").val() || [];
-			// Check if current selection is not just this band
-			if (currentBands.length !== 1 || currentBands[0] !== band) {
-				console.log('Updating band filter to:', band);
-				$("#band").val([band]);
-				updateSelectCheckboxes('band');
-				syncQuickFilterButtons();
-				applyFilters(false);
-			}
-		}
 
-		const minutes = Math.floor(cat_timeout_interval / 60);
-
-		if(data.updated_minutes_ago > minutes) {
-			if ($('#radio_status').length) {
-				$('#radio_status').html('<div class="alert alert-danger mb-2" role="alert"><i class="fas fa-broadcast-tower"></i> Radio connection timed-out: ' + $('select.radios option:selected').text() + ' data is ' + data.updated_minutes_ago + ' minutes old.</div>');
-			}
-		} else {
-			$(".radio_timeout_error" ).remove();
-			var text = '<i class="fas fa-broadcast-tower"></i><span style="margin-left:10px;"></span><b>TX:</b> '+(Math.round(parseInt(data.frequency)/100)/10000).toFixed(4)+' MHz';
-			highlight_current_qrg((parseInt(data.frequency))/1000);
-			if(data.mode != null) {
-				text = text+'<span style="margin-left:10px"></span>'+data.mode;
-			}
-			if(data.power != null && data.power != 0) {
-				text = text+'<span style="margin-left:10px"></span>'+data.power+' W';
-			}
-			if ($('#radio_status').length) {
-				$('#radio_status').html('<div class="alert alert-success mb-2" role="alert">'+text+'</div>');
-			}
-		}
-	}
-
-	var updateFromCAT = function() {
-		if($('select.radios option:selected').val() != '0') {
-			var radioID = $('select.radios option:selected').val();
-			$.getJSON( base_url+"index.php/radio/json/" + radioID, function( data ) {
-
-				if (data.error) {
-					if (data.error == 'not_logged_in') {
-						$(".radio_cat_state" ).remove();
-						if($('.radio_login_error').length == 0) {
-							$('.messages').prepend('<div class="alert alert-danger radio_login_error" role="alert"><i class="fas fa-broadcast-tower"></i> You\'re not logged it. Please <a href="'+base_url+'">login</a></div>');
-						}
+			if (band && band !== '') {
+				// Valid band found - set filter to this specific band
+				// Check if current selection is not just this band
+				if (currentBands.length !== 1 || currentBands[0] !== band) {
+					console.log('Updating band filter to:', band);
+					$("#band").val([band]);
+					updateSelectCheckboxes('band');
+					syncQuickFilterButtons();
+					applyFilters(false);
+					// Show toast notification when band filter is changed by CAT
+					if (typeof showToast === 'function') {
+						showToast('CAT Control', `Frequency filter changed to ${band} by transceiver`, 'bg-info text-white', 3000);
 					}
-					// Put future Errorhandling here
-				} else {
-					if($('.radio_login_error').length != 0) {
-						$(".radio_login_error" ).remove();
-					}
-					updateCATui(data);
 				}
-			});
+			} else {
+				// No band match - clear band filter to show all bands
+				if (currentBands.length > 0 || !currentBands.includes('All')) {
+					console.log('Frequency outside known bands - clearing band filter to show all');
+					$("#band").val(['All']);
+					updateSelectCheckboxes('band');
+					syncQuickFilterButtons();
+					applyFilters(false);
+					// Show toast notification
+					if (typeof showToast === 'function') {
+						showToast('CAT Control', 'Frequency outside known bands - showing all bands', 'bg-warning text-dark', 3000);
+					}
+				}
+			}
+		}
+
+		// Bandmap-specific: Highlight current QRG in the spot list
+		if (data.frequency) {
+			highlight_current_qrg((parseInt(data.frequency))/1000);
+		}
+
+		// Call cat.js's original updateCATui for standard CAT UI updates
+		if (typeof catJsUpdateCATui === 'function') {
+			console.log('Bandmap: Calling cat.js updateCATui');
+			catJsUpdateCATui(data);
+		} else {
+			console.warn('Bandmap: cat.js updateCATui not available');
 		}
 	};
 
-	$.fn.dataTable.moment(custom_date_format + ' HH:mm');
+	console.log('Bandmap: CAT integration complete, updateCATui override installed');
 
-	$('#radio').change();
+	$.fn.dataTable.moment(custom_date_format + ' HH:mm');
 
 	let isFullscreen = false;
 
 	$('#fullscreenToggle').on('click', function() {
 		const container = $('#bandmapContainer');
 		const icon = $('#fullscreenIcon');
-		const radioSelector = container.find('.d-flex.align-items-center.mb-3').first();
 
 		if (!isFullscreen) {
 			container.addClass('bandmap-fullscreen');
 			$('body').addClass('fullscreen-active');
 			icon.removeClass('fa-expand').addClass('fa-compress');
 			$(this).attr('title', 'Exit Fullscreen');
-
-			radioSelector.hide();
-			$('#radio_status').hide();
-			$('.messages').hide();
 
 			isFullscreen = true;
 
@@ -1545,10 +1480,6 @@ $(function() {
 			$('body').removeClass('fullscreen-active');
 			icon.removeClass('fa-compress').addClass('fa-expand');
 			$(this).attr('title', 'Toggle Fullscreen');
-
-			radioSelector.show();
-			$('#radio_status').show();
-			$('.messages').show();
 
 			isFullscreen = false;
 
@@ -2080,22 +2011,55 @@ $(function() {
 		applyFilters(false);
 	});
 
-	// Toggle CAT tracking
+	// Toggle CAT Control
 	$('#toggleCatTracking').on('click', function() {
 		let btn = $(this);
 
 		if (btn.hasClass('btn-warning')) {
-			// Disable CAT tracking
+			// Disable CAT Control
 			btn.removeClass('btn-warning').addClass('btn-primary');
 			btn.find('i').removeClass('fa-check-circle').addClass('fa-radio');
 			isCatTrackingEnabled = false;
-			console.log('CAT Tracking disabled');
+			console.log('CAT Control disabled');
 		} else {
-			// Enable CAT tracking
+			// Enable CAT Control
 			btn.removeClass('btn-primary').addClass('btn-warning');
 			btn.find('i').removeClass('fa-radio').addClass('fa-check-circle');
 			isCatTrackingEnabled = true;
-			console.log('CAT Tracking enabled');
+			console.log('CAT Control enabled');
+
+			// Immediately apply current radio frequency if available
+			if (window.lastCATData && window.lastCATData.frequency) {
+				console.log('Applying current radio frequency:', window.lastCATData.frequency);
+				const band = frequencyToBand(window.lastCATData.frequency);
+
+				if (band && band !== '') {
+					// Valid band found - set filter to this specific band
+					console.log('Setting band filter to:', band);
+					$("#band").val([band]);
+					updateSelectCheckboxes('band');
+					syncQuickFilterButtons();
+					applyFilters(false);
+					if (typeof showToast === 'function') {
+						showToast('CAT Control', `Frequency filter set to ${band} by transceiver`, 'bg-info text-white', 3000);
+					}
+				} else {
+					// No band match - clear band filter to show all bands
+					console.log('Frequency outside known bands - showing all');
+					$("#band").val(['All']);
+					updateSelectCheckboxes('band');
+					syncQuickFilterButtons();
+					applyFilters(false);
+					if (typeof showToast === 'function') {
+						showToast('CAT Control', 'Frequency outside known bands - showing all bands', 'bg-warning text-dark', 3000);
+					}
+				}
+			} else {
+				console.log('No radio data available yet - waiting for next CAT update');
+				if (typeof showToast === 'function') {
+					showToast('CAT Control', 'Waiting for radio data...', 'bg-info text-white', 2000);
+				}
+			}
 		}
 	});
 

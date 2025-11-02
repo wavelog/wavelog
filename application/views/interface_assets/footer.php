@@ -1463,6 +1463,12 @@ mymap.on('mousemove', onQsoMapMove);
 
 <?php } ?>
 
+<!--- Bandmap CAT Integration --->
+<?php if ($this->uri->segment(1) == "bandmap" && $this->uri->segment(2) == "list") { ?>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/cat.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/sections/bandmap_list.js"></script>
+<?php } ?>
+
 <?php if ($this->uri->segment(1) == "logbook" && $this->uri->segment(2) == "view") { ?>
 <script>
 
@@ -3342,6 +3348,6 @@ if (isset($scripts) && is_array($scripts)){
 }
 ?>
 	<!-- Toast Notification - used by showToast() from common.js -->
-	<div id="toast-container" class="position-fixed top-0 end-0 p-3" style="z-index: 1100;"></div>
+	<div id="toast-container" class="position-fixed top-0 end-0 p-3" style="z-index: 10100;"></div>
   </body>
 </html>

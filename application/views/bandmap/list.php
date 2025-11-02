@@ -10,6 +10,9 @@
 	var isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
 	var modKey = isMac ? 'Cmd' : 'Ctrl';
 	var lang_click_to_prepare_logging = "<?= __("Click to prepare logging."); ?> (" + modKey + "+Click <?= __("for new window"); ?>)";
+
+	// Enable compact radio status display for bandmap page
+	window.CAT_COMPACT_MODE = true;
 </script>
 
 <style>
@@ -24,14 +27,25 @@
 		text-decoration: none;
 	}
 
-	/* Make table rows clickable for prepare logging */
-	.spottable tbody tr,
-	.spottable tbody tr td,
-	.spottable tbody tr td *,
-	.spottable tbody tr span,
+	/* Make table rows clickable for prepare logging - use native alias cursor */
+	.spottable tbody tr {
+		cursor: alias !important;
+	}
+
+	.spottable tbody tr td {
+		cursor: alias !important;
+	}
+
+	/* Don't show alias cursor on loading/processing/empty rows */
+	.spottable tbody tr.dataTables_empty,
+	.spottable tbody tr.dataTables_empty td,
+	.spottable tbody td.dt-empty {
+		cursor: default !important;
+	}
+
+	/* Show standard pointer for clickable links (QRZ, POTA, SOTA, etc.) */
 	.spottable tbody tr a,
-	.spottable tbody tr td i,
-	.spottable tbody tr td .flag-emoji {
+	.spottable tbody tr td a {
 		cursor: pointer !important;
 	}
 
@@ -192,7 +206,7 @@
 		vertical-align: middle;
 	}
 
-	/* Fullscreen mode */
+	/* Fullscreen mode - CLEAN REBUILD */
 	.bandmap-logo-fullscreen {
 		display: none;
 	}
@@ -209,53 +223,86 @@
 		bottom: 0;
 		width: 100vw;
 		height: 100vh;
-		max-width: 100vw;
-		margin: 0;
-		padding: 0;
 		z-index: 9999;
 		overflow: hidden;
 		background: var(--bs-body-bg, #fff);
+		max-width: none !important;
+		padding: 0 !important;
 	}
 
 	.bandmap-fullscreen .card {
 		height: 100vh;
 		margin: 0;
 		border-radius: 0;
+		border: none;
 		display: flex;
 		flex-direction: column;
-		border: none;
 	}
 
 	.bandmap-fullscreen .card-header {
-		flex-shrink: 0;
+		flex: 0 0 auto;
 	}
 
-	.bandmap-fullscreen .card-body:first-of-type {
-		flex-shrink: 0;
-		flex-grow: 0;
-		padding: 0.5rem;
-	}
-
-	.bandmap-fullscreen .menu-bar {
-		flex-shrink: 0;
-		margin-bottom: 0;
-	}
-
-	.bandmap-fullscreen .card-body:last-child {
-		flex: 1 1 0;
+	.bandmap-fullscreen .card-body {
+		flex: 1;
 		min-height: 0;
 		display: flex;
 		flex-direction: column;
-		overflow: auto;
+		gap: 0;
 		padding: 0.5rem;
+		overflow: auto;
+	}
+
+	/* Direct children of card-body in fullscreen */
+	.bandmap-fullscreen #radio_status {
+		flex: 0 0 auto;
+		margin: 0 !important;
+		padding: 0 !important;
+		min-height: 0 !important;
+	}
+
+	/* Only show margin when radio_status has content */
+	.bandmap-fullscreen #radio_status:not(:empty) {
+		margin: 0 0 0.5rem 0 !important;
+	}
+
+	.bandmap-fullscreen .menu-bar {
+		flex: 0 0 auto;
+		margin: 0 0 0.5rem 0 !important;
+	}
+
+	.bandmap-fullscreen .status-bar {
+		flex: 0 0 auto;
+		margin: 0 0 0.5rem 0 !important;
 	}
 
 	.bandmap-fullscreen .table-responsive {
 		flex: 1 1 auto;
 		min-height: 0;
 		overflow: auto;
+		margin: 0 !important;
 	}
 
+	/* Radio status compact mode styling (no card wrapper) */
+	#radio_status #radio_cat_state:not(.card) {
+		border: var(--bs-card-border-width, 1px) solid var(--bs-card-border-color, rgba(0,0,0,.125));
+		border-radius: 8px;
+		padding: 0.5rem;
+		margin: 0;
+		background-color: var(--bs-card-cap-bg, var(--bs-secondary-bg));
+	}
+
+	#radio_status #radio_cat_state:not(.card) > div {
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+
+	/* In fullscreen, ensure proper spacing */
+	.bandmap-fullscreen #radio_status #radio_cat_state:not(.card) {
+		margin: 0 !important;
+	}
+
+	/* Z-index management */
 	.bandmap-fullscreen .dataTables_processing {
 		position: fixed;
 		top: 50%;
@@ -269,13 +316,11 @@
 		position: fixed;
 	}
 
-	/* Ensure tooltips appear above fullscreen mode */
 	body.fullscreen-active .tooltip,
 	.bandmap-fullscreen .tooltip {
 		z-index: 10003 !important;
 	}
 
-	/* Ensure modals appear above fullscreen mode */
 	body.fullscreen-active .modal,
 	body.fullscreen-active .modal-backdrop {
 		z-index: 10050 !important;
@@ -285,12 +330,12 @@
 		z-index: 10051 !important;
 	}
 
+	/* Hide page elements in fullscreen */
 	body.fullscreen-active #page-wrapper,
 	body.fullscreen-active nav,
 	body.fullscreen-active .navbar,
 	body.fullscreen-active header,
 	body.fullscreen-active #bandmapContainer > .d-flex.align-items-center.mb-3,
-	body.fullscreen-active #bandmapContainer > #radio_status,
 	body.fullscreen-active #bandmapContainer > .messages {
 		display: none !important;
 	}
@@ -319,7 +364,7 @@
 		margin-bottom: 5px;
 	}
 
-	/* Ensure CAT tracking and search box stay right-aligned when wrapping */
+	/* Ensure CAT Control and search box stay right-aligned when wrapping */
 	.menu-bar > div:last-child {
 		justify-content: flex-end;
 	}
@@ -453,26 +498,9 @@
 	}
 </style>
 
-
 <div class="container" id="bandmapContainer">
 	<div id="errormessage" style="display: none;"></div>
 
-	<!-- Radio Selector - Moved to top -->
-	<div class="d-flex align-items-center mb-3">
-		<label class="my-1 me-2" for="radio"><?= __("Radio"); ?></label>
-		<select class="form-select form-select-sm radios my-1 me-sm-2 w-auto" id="radio" name="radio">
-			<option value="0" selected="selected"><?= __("None"); ?></option>
-			<option value="ws"<?php if ($this->session->userdata('radio') == 'ws') { echo ' selected="selected"'; } ?>><?= __("WebSocket (Requires WLGate>1.1.10)"); ?></option>
-			<?php foreach ($radios->result() as $row) { ?>
-				<option value="<?php echo $row->id; ?>" <?php if ($this->session->userdata('radio') == $row->id) {
-															echo "selected=\"selected\"";
-														} ?>><?php echo $row->radio; ?></option>
-			<?php } ?>
-		</select>
-	</div>
-
-	<!-- Radio Status Panel (dynamically populated by JavaScript) -->
-	<div id="radio_status"></div>
 	<!-- Messages -->
 	<div class="messages my-1 mx-3"></div>
 
@@ -493,6 +521,9 @@
 			</div>
 		</div>
 		<div class="card-body pt-1">
+		<!-- Radio Status Panel (dynamically populated by JavaScript) -->
+		<div id="radio_status"></div>
+
 		<!-- Filters Section with darker background and rounded corners -->
 		<div class="menu-bar">
 			<!-- First Row: Band Filters, Mode Filters, and Continent Filters -->
@@ -701,11 +732,19 @@
 		</div>
 	</div>
 
-	<!-- CAT Tracking and Search wrapper - always right aligned -->
+	<!-- CAT Control and Search wrapper - always right aligned -->
 	<div class="d-flex gap-2 align-items-center ms-auto">
-		<!-- CAT Tracking Button -->
+	<!-- Radio Selector -->
+	<label class="my-0 me-2 flex-shrink-0 d-none d-md-inline" for="radio"><?= __("Radio"); ?></label>
+	<select class="form-select form-select-sm radios flex-shrink-0" id="radio" name="radio" style="width: auto; min-width: 150px;">
+		<option value="0" selected="selected"><?= __("None"); ?></option>
+		<option value="ws"<?php if ($this->session->userdata('radio') == 'ws') { echo ' selected="selected"'; } ?>><?= __("Live - ") . __("WebSocket (Requires WLGate>=1.1.10)"); ?></option>
+		<?php foreach ($radios->result() as $row) { ?>
+			<option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id) { echo "selected=\"selected\""; } ?>><?= __("Polling - ") . $row->radio; ?><?php if ($radio_last_updated->id == $row->id) { echo "(".__("last updated").")"; } else { echo ''; } ?></option>
+		<?php } ?>
+	</select>		<!-- CAT Control Button -->
 		<button class="btn btn-sm btn-primary flex-shrink-0" type="button" id="toggleCatTracking" title="<?= __("When selected the filters will be set basing on your current radio status"); ?>">
-			<i class="fas fa-radio"></i> <span class="d-none d-sm-inline">CAT tracking</span>
+			<i class="fas fa-radio"></i> <span class="d-none d-sm-inline">CAT Control</span>
 		</button>
 
 		<!-- Search Input -->
@@ -760,3 +799,4 @@
 </div>
 
 </div>
+

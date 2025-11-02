@@ -70,6 +70,10 @@ $(document).ready(function() {
         LOCK_TIMEOUT_MS: 10000
     };
 
+    // Global setting for radio status display mode (can be set by pages like bandmap)
+    // Default: false (use card wrapper), can be set to true for compact mode
+    window.CAT_COMPACT_MODE = window.CAT_COMPACT_MODE || false;
+
     function initializeWebSocketConnection() {
         try {
             // Note: Browser will log WebSocket connection errors to console if server is unreachable
@@ -340,17 +344,16 @@ $(document).ready(function() {
     }
 
     /**
-     * Display radio status panel with unified styling
-     * Handles success (active connection), error (connection lost), timeout (stale data), and not_logged_in states
+     * Display radio status panel with current CAT information
+     * Creates or updates a Bootstrap card panel showing radio connection status and frequency data
      * Includes visual feedback with color-coded icon and blink animation on updates
+     * Respects global CAT_COMPACT_MODE setting for rendering style
      * @param {string} state - Display state: 'success', 'error', 'timeout', or 'not_logged_in'
      * @param {object|string} data - Radio data object (success) or radio name string (error/timeout/not_logged_in)
      */
     function displayRadioStatus(state, data) {
         var iconClass, content;
-        var baseStyle = '<div style="display: flex; align-items: center; font-size: calc(1rem - 2px);">';
-
-        if (state === 'success') {
+        var baseStyle = '<div style="display: flex; align-items: center; font-size: calc(1rem - 2px);">';        if (state === 'success') {
             // Success state - display radio info
             iconClass = 'text-success'; // Bootstrap green for success
 
@@ -440,41 +443,64 @@ $(document).ready(function() {
         var icon = '<i id="radio-status-icon" class="fas fa-radio ' + iconClass + '" style="margin-right: 10px; font-size: 1.2em;"></i>';
         var html = baseStyle + icon + content + '</div>';
 
-    // Update DOM
-    if (!$('#radio_cat_state').length) {
-        // Create panel if it doesn't exist
-        $('#radio_status').prepend('<div id="radio_cat_state" class="card"><div class="card-body">' + html + '</div></div>');
-    } else {
-        // Dispose of existing tooltips before updating content
-        $('#radio_cat_state [data-bs-toggle="tooltip"]').each(function() {
-            var tooltipInstance = bootstrap.Tooltip.getInstance(this);
-            if (tooltipInstance) {
-                tooltipInstance.dispose();
-            }
-        });
-        // Update existing panel content
-        $('#radio_cat_state .card-body').html(html);
-    }			// Initialize Bootstrap tooltips for any new tooltip elements in the radio panel
-        $('#radio_cat_state [data-bs-toggle="tooltip"]').each(function() {
-            new bootstrap.Tooltip(this);
-        });
+		// Update DOM based on global CAT_COMPACT_MODE setting
+		if (window.CAT_COMPACT_MODE) {
+			// Compact mode: inject directly without card wrapper
+			if (!$('#radio_cat_state').length) {
+				$('#radio_status').prepend('<div id="radio_cat_state">' + html + '</div>');
+			} else {
+				// Dispose of existing tooltips before updating content
+				$('#radio_cat_state [data-bs-toggle="tooltip"]').each(function() {
+					var tooltipInstance = bootstrap.Tooltip.getInstance(this);
+					if (tooltipInstance) {
+						tooltipInstance.dispose();
+					}
+				});
+				$('#radio_cat_state').html(html);
+			}
+		} else {
+			// Standard mode: create card wrapper (default for backward compatibility)
+			if (!$('#radio_cat_state').length) {
+				// Create panel if it doesn't exist
+				$('#radio_status').prepend('<div id="radio_cat_state" class="card"><div class="card-body">' + html + '</div></div>');
+			} else {
+				// Dispose of existing tooltips before updating content
+				$('#radio_cat_state [data-bs-toggle="tooltip"]').each(function() {
+					var tooltipInstance = bootstrap.Tooltip.getInstance(this);
+					if (tooltipInstance) {
+						tooltipInstance.dispose();
+					}
+				});
+				// Update existing panel content
+				$('#radio_cat_state .card-body').html(html);
+			}
+		}
 
-        // Trigger blink animation on successful updates
-        if (state === 'success') {
-            $('#radio-status-icon').addClass('radio-icon-blink');
-            setTimeout(function() {
-                $('#radio-status-icon').removeClass('radio-icon-blink');
-            }, 400);
-        }
-    }
+		// Initialize Bootstrap tooltips for any new tooltip elements in the radio panel
+		$('#radio_cat_state [data-bs-toggle="tooltip"]').each(function() {
+			new bootstrap.Tooltip(this);
+		});
+
+		// Trigger blink animation on successful updates
+		if (state === 'success') {
+			$('#radio-status-icon').addClass('radio-icon-blink');
+			setTimeout(function() {
+				$('#radio-status-icon').removeClass('radio-icon-blink');
+			}, 400);
+		}
+	}
 
     /**
      * Process CAT data and update UI elements
      * Performs timeout check, updates form fields, and displays radio status
      * Handles both WebSocket and polling data sources
+     * Exposed globally for extension by other components (e.g., bandmap)
      * @param {object} data - CAT data object from radio (includes frequency, mode, power, etc.)
      */
-    function updateCATui(data) {
+    window.updateCATui = function updateCATui(data) {
+        // Store last CAT data globally for other components (e.g., bandmap)
+        window.lastCATData = data;
+
         // Check if data is too old FIRST - before any UI updates
         // cat_timeout_minutes is set in footer.php from PHP config
         var minutes = cat_timeout_minutes;
