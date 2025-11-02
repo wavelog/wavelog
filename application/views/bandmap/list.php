@@ -258,12 +258,17 @@
 		flex: 0 0 auto;
 		margin: 0 !important;
 		padding: 0 !important;
-		min-height: 0 !important;
+		min-height: 2.5rem; /* Reserve space for radio status to prevent UI shift */
 	}
 
 	/* Only show margin when radio_status has content */
 	.bandmap-fullscreen #radio_status:not(:empty) {
 		margin: 0 0 0.5rem 0 !important;
+	}
+
+	/* Reserve space for radio status even when empty */
+	#radio_status {
+		min-height: 2.5rem; /* Reserve vertical space to prevent layout shift */
 	}
 
 	.bandmap-fullscreen .menu-bar {
@@ -452,14 +457,14 @@
 		padding: 8px 12px;
 		border-radius: 6px;
 		margin-bottom: 15px;
-		font-size: 0.875rem;
+		font-size: 1rem; /* Match page default font size */
 		display: flex;
 		align-items: center;
 		gap: 8px;
 	}
 
 	.filter-label-small {
-		font-size: 0.8rem;
+		font-size: 1rem; /* Match page default font size */
 		margin-bottom: 0.25rem;
 		font-weight: 500;
 	}
@@ -634,6 +639,7 @@
 									<select id="requiredFlags" class="form-select form-select-sm filter-short" name="required_flags" multiple="multiple">
 										<option value="lotw"><?= __("LoTW User"); ?></option>
 										<option value="notworked"><?= __("Not worked before"); ?></option>
+										<option value="Contest"><?= __("Contest"); ?></option>
 									</select>
 								<label class="form-label d-block filter-label-small mt-3" for="additionalFlags"><?= __("Additional Flags"); ?></label>
 								<select id="additionalFlags" class="form-select form-select-sm filter-short" name="additional_flags" multiple="multiple">
@@ -642,7 +648,6 @@
 									<option value="POTA"><?= __("POTA"); ?></option>
 									<option value="WWFF"><?= __("WWFF"); ?></option>
 									<option value="IOTA"><?= __("IOTA"); ?></option>
-									<option value="Contest"><?= __("Contest"); ?></option>
 									<option value="Fresh"><?= __("Fresh (< 5 min)"); ?></option>
 								</select>
 							</div>
@@ -720,7 +725,7 @@
 				<button class="btn btn-sm btn-primary" type="button" id="toggleDxccNeededFilter" title="<?= __("Toggle DXCC Needed filter"); ?>">
 					<i class="fas fa-globe"></i> <span class="d-none d-sm-inline">New DXCC</span>
 				</button>
-			<button class="btn btn-sm btn-primary" type="button" id="toggleContextFilter" title="<?= __("Toggle Contest filter"); ?>">
+			<button class="btn btn-sm btn-primary" type="button" id="toggleContestFilter" title="<?= __("Toggle Contest filter"); ?>">
 				<i class="fas fa-trophy"></i> <span class="d-none d-sm-inline">Contest Only</span>
 			</button>
 			<button class="btn btn-sm btn-primary" type="button" id="toggleGeoHunterFilter" title="<?= __("Toggle Geo Hunter (POTA/SOTA/IOTA/WWFF)"); ?>">

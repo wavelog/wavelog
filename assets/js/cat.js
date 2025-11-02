@@ -128,6 +128,7 @@ $(document).ready(function() {
     /**
      * Handle incoming WebSocket data messages
      * Processes 'welcome' and 'radio_status' message types
+     * On bandmap, only processes radio status when CAT Control is enabled
      * @param {object} data - Message data from WebSocket server
      */
     function handleWebSocketData(data) {
@@ -138,6 +139,13 @@ $(document).ready(function() {
 
         // Handle radio status updates
         if (data.type === 'radio_status' && data.radio && ($(".radios option:selected").val() == 'ws')) {
+            // On bandmap page, only process when CAT Control is enabled
+            if (typeof window.isCatTrackingEnabled !== 'undefined') {
+                if (!window.isCatTrackingEnabled) {
+                    return; // Skip processing when CAT Control is OFF
+                }
+            }
+
             data.updated_minutes_ago = Math.floor((Date.now() - data.timestamp) / 60000);
             // Cache the radio data
             updateCATui(data);
@@ -352,6 +360,15 @@ $(document).ready(function() {
      * @param {object|string} data - Radio data object (success) or radio name string (error/timeout/not_logged_in)
      */
     function displayRadioStatus(state, data) {
+        // On bandmap page, only show radio status when CAT Control is enabled
+        if (typeof window.isCatTrackingEnabled !== 'undefined') {
+            if (!window.isCatTrackingEnabled) {
+                // CAT Control is OFF on bandmap - don't show radio status
+                $('#radio_cat_state').remove();
+                return;
+            }
+        }
+
         var iconClass, content;
         var baseStyle = '<div style="display: flex; align-items: center; font-size: calc(1rem - 2px);">';        if (state === 'success') {
             // Success state - display radio info
@@ -616,6 +633,7 @@ $(document).ready(function() {
     /**
      * Periodic AJAX polling function for radio status updates
      * Only runs for non-WebSocket radios (skips if radio is 'ws')
+     * On bandmap, only polls when CAT Control is enabled
      * Fetches CAT data every 3 seconds and updates UI
      * Includes lock mechanism to prevent simultaneous requests
      */
@@ -626,6 +644,13 @@ $(document).ready(function() {
             // Skip AJAX polling if radio is using WebSockets
             if (radioID == 'ws') {
                 return;
+            }
+
+            // On bandmap page, only poll when CAT Control is enabled
+            if (typeof window.isCatTrackingEnabled !== 'undefined') {
+                if (!window.isCatTrackingEnabled) {
+                    return; // Skip polling when CAT Control is OFF
+                }
             }
 
             if ((typeof radioID !== 'undefined') && (radioID !== null) && (radioID !== '') && (updateFromCAT_lock == 0)) {
