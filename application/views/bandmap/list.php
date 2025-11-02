@@ -291,44 +291,38 @@
 		</div>
 	</div>
 
-	<!-- Row 4: Quick Filters (left) and Search (right) -->
-	<div class="d-flex flex-wrap align-items-center gap-2">
-		<!-- Left: Quick Filter Toggle Buttons -->
-		<div class="d-flex flex-wrap gap-2 align-items-center flex-grow-1">
-			<!-- Quick Filter Toggle Buttons -->
-			<div class="btn-group flex-shrink-0" role="group">
-				<button class="btn btn-sm btn-secondary" type="button" id="toggleLotwFilter" title="<?= __("Toggle LoTW User filter"); ?>">
-					<i class="fas fa-upload"></i> <span class="d-none d-sm-inline">LoTW users</span>
-				</button>
-				<button class="btn btn-sm btn-secondary" type="button" id="toggleNewContinentFilter" title="<?= __("Toggle New Continent filter"); ?>">
-					<i class="fas fa-medal" style="color: #FFD700;"></i> <span class="d-none d-sm-inline">Continent</span>
-				</button>
-				<button class="btn btn-sm btn-secondary" type="button" id="toggleDxccNeededFilter" title="<?= __("Toggle New Country filter"); ?>">
-					<i class="fas fa-medal" style="color: #C0C0C0;"></i> <span class="d-none d-sm-inline">Country</span>
-				</button>
-				<button class="btn btn-sm btn-secondary" type="button" id="toggleNewCallsignFilter" title="<?= __("Toggle New Callsign filter"); ?>">
-					<i class="fas fa-medal" style="color: #CD7F32;"></i> <span class="d-none d-sm-inline">Callsign</span>
-				</button>
-				<button class="btn btn-sm btn-secondary" type="button" id="toggleContestFilter" title="<?= __("Toggle Contest filter"); ?>">
-					<i class="fas fa-trophy"></i> <span class="d-none d-sm-inline">Contest</span>
-				</button>
-				<button class="btn btn-sm btn-secondary" type="button" id="toggleGeoHunterFilter" title="<?= __("Toggle Geo Hunter (POTA/SOTA/IOTA/WWFF)"); ?>">
-					<i class="fas fa-hiking"></i> <span class="d-none d-sm-inline">Ref. Hunter</span>
-				</button>
-				<button class="btn btn-sm btn-secondary" type="button" id="toggleFreshFilter" title="<?= __("Toggle Fresh spots filter (< 5 minutes old)"); ?>">
-					<i class="fas fa-bolt"></i> <span class="d-none d-sm-inline">Fresh</span>
-				</button>
-			</div>
-		</div>
-
-		<!-- Right: Search Input -->
-		<div class="input-group input-group-sm" style="max-width: 400px; width: 300px;">
-			<input type="text" class="form-control" id="spotSearchInput" placeholder="<?= __("Search spots..."); ?>" aria-label="<?= __("Search"); ?>">
-			<span class="input-group-text search-icon-clickable" id="searchIcon"><i class="fas fa-search"></i></span>
+	<!-- Row 4: Quick Filters -->
+	<div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+		<!-- Quick Filter Toggle Buttons -->
+		<div class="btn-group flex-shrink-0" role="group">
+			<button class="btn btn-sm btn-secondary" type="button" id="toggleLotwFilter" title="<?= __("Toggle LoTW User filter"); ?>">
+				<i class="fas fa-upload"></i> <span class="d-none d-sm-inline">LoTW users</span>
+			</button>
+			<button class="btn btn-sm btn-secondary" type="button" id="toggleNewContinentFilter" title="<?= __("Toggle New Continent filter"); ?>">
+				<i class="fas fa-medal" style="color: #FFD700;"></i> <span class="d-none d-sm-inline">Continent</span>
+			</button>
+			<button class="btn btn-sm btn-secondary" type="button" id="toggleDxccNeededFilter" title="<?= __("Toggle New Country filter"); ?>">
+				<i class="fas fa-medal" style="color: #C0C0C0;"></i> <span class="d-none d-sm-inline">Country</span>
+			</button>
+			<button class="btn btn-sm btn-secondary" type="button" id="toggleNewCallsignFilter" title="<?= __("Toggle New Callsign filter"); ?>">
+				<i class="fas fa-medal" style="color: #CD7F32;"></i> <span class="d-none d-sm-inline">Callsign</span>
+			</button>
+			<button class="btn btn-sm btn-secondary" type="button" id="toggleContestFilter" title="<?= __("Toggle Contest filter"); ?>">
+				<i class="fas fa-trophy"></i> <span class="d-none d-sm-inline">Contest</span>
+			</button>
+			<button class="btn btn-sm btn-secondary" type="button" id="toggleGeoHunterFilter" title="<?= __("Toggle Geo Hunter (POTA/SOTA/IOTA/WWFF)"); ?>">
+				<i class="fas fa-hiking"></i> <span class="d-none d-sm-inline">Ref. Hunter</span>
+			</button>
+			<button class="btn btn-sm btn-secondary" type="button" id="toggleFreshFilter" title="<?= __("Toggle Fresh spots filter (< 5 minutes old)"); ?>">
+				<i class="fas fa-bolt"></i> <span class="d-none d-sm-inline">Fresh</span>
+			</button>
 		</div>
 	</div>
-</div>
-			<!-- Status Bar showing filter info and refresh timer -->
+
+	<!-- Row 5: Status Bar (70%) and Search (30%) -->
+	<div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+		<!-- Status Bar - 70% -->
+		<div style="flex: 1 1 auto; min-width: 300px; max-width: 70%;">
 			<div class="status-bar">
 				<div class="status-bar-inner">
 					<div class="status-bar-left">
@@ -340,6 +334,15 @@
 					</div>
 				</div>
 			</div>
+		</div>
+
+		<!-- Search Input - 30% -->
+		<div class="input-group input-group-sm" style="flex: 0 1 auto; min-width: 200px; max-width: 400px;">
+			<input type="text" class="form-control" id="spotSearchInput" placeholder="<?= __("Search spots..."); ?>" aria-label="<?= __("Search"); ?>">
+			<span class="input-group-text search-icon-clickable" id="searchIcon"><i class="fas fa-search"></i></span>
+		</div>
+	</div>
+</div>
 
 			<div class="table-responsive">
 				<table class="table table-striped table-hover spottable">

@@ -233,7 +233,7 @@ table.table-striped tbody tr.cat-frequency-gradient:nth-of-type(even),
 	background-color: var(--bs-body-bg);
 	border-radius: 8px;
 	margin: 0.25rem 0;
-	padding: 10px 15px;
+	padding: 6px 12px;
 }
 
 .status-bar-inner {
@@ -253,8 +253,9 @@ table.table-striped tbody tr.cat-frequency-gradient:nth-of-type(even),
 }
 
 .status-bar-right {
-	flex: 0 0 20%;
-	min-width: 150px;
+	flex: 0 0 auto;
+	min-width: 100px;
+	margin-left: 10px;
 	font-weight: 500;
 	color: var(--bs-secondary);
 	text-align: right;
