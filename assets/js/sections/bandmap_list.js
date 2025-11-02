@@ -416,22 +416,58 @@ $(function() {
 			}
 		}
 
-		// Default row click: prepare QSO logging with callsign, frequency, mode
-		let rowData = table.row(this).data();
-		if (!rowData) return;
 
-		let callsignHtml = rowData[4];  // Callsign is column 5 (0-indexed = 4)
-		let tempDiv = $('<div>').html(callsignHtml);
-		let call = tempDiv.find('a').text().trim();
-		if (!call) return;
+	// Default row click: prepare QSO logging with callsign, frequency, mode
+	let rowData = table.row(this).data();
+	if (!rowData) return;
 
-		let qrg = parseFloat(rowData[2]) * 1000000;  // Frequency in MHz, convert to Hz
-		let mode = rowData[3];  // Mode is column 4 (0-indexed = 3)
+	let callsignHtml = rowData[4];  // Callsign is column 5 (0-indexed = 4)
+	let tempDiv = $('<div>').html(callsignHtml);
+	let call = tempDiv.find('a').text().trim();
+	if (!call) return;
 
-		prepareLogging(call, qrg, mode);
-	});
+	let qrg = parseFloat(rowData[2]) * 1000000;  // Frequency in MHz, convert to Hz
+	let mode = rowData[3];  // Mode is column 4 (0-indexed = 3)
 
-		return table;
+	console.log('=== SEARCHING FOR SPOT DATA ===');
+	console.log('Looking for callsign:', call);
+	console.log('Row frequency (MHz):', rowData[2]);
+	console.log('Converted to Hz:', qrg);
+	console.log('Total cached spots:', cachedSpotData ? cachedSpotData.length : 0);
+
+	// Find the original spot data to get reference information
+	let spotData = null;
+	if (cachedSpotData) {
+		// First try exact callsign match to see what frequencies are available
+		let callsignMatches = cachedSpotData.filter(spot => spot.spotted === call);
+		console.log('Spots matching callsign', call, ':', callsignMatches.length);
+		if (callsignMatches.length > 0) {
+			console.log('Available frequencies for', call, ':', callsignMatches.map(s => ({
+				freq_khz: s.frequency,
+				freq_hz: s.frequency * 1000,  // frequency is in kHz, not MHz!
+				diff_hz: Math.abs(s.frequency * 1000 - qrg)
+			})));
+		}
+
+		// Note: spot.frequency is in kHz, so multiply by 1000 to get Hz
+		spotData = cachedSpotData.find(spot => 
+			spot.spotted === call && 
+			Math.abs(spot.frequency * 1000 - qrg) < 100  // Match within 100 Hz tolerance
+		);
+		console.log('Spot data found for', call, ':', spotData);
+		if (spotData && spotData.dxcc_spotted) {
+			console.log('References:', {
+				pota: spotData.dxcc_spotted.pota_ref,
+				sota: spotData.dxcc_spotted.sota_ref,
+				wwff: spotData.dxcc_spotted.wwff_ref,
+				iota: spotData.dxcc_spotted.iota_ref
+			});
+		}
+	}
+	console.log('================================');
+
+	prepareLogging(call, qrg, mode, spotData);
+});		return table;
 	}
 
 	// ========================================
@@ -1943,25 +1979,56 @@ $(function() {
 		}
 	}
 
-	function prepareLogging(call, qrg, mode) {
+	function prepareLogging(call, qrg, mode, spotData) {
 		let ready_listener = true;
 
 		// If CAT Control is enabled, tune the radio to the spot frequency
 		if (isCatTrackingEnabled) {
 			tuneRadio(qrg, mode);
-		}		let check_pong = setInterval(function() {
+		}
+
+		// Build message object with backward compatibility
+		let message = {
+			frequency: qrg,
+			call: call
+		};
+
+		// Add reference fields if available (backward compatible - only if spotData exists)
+		if (spotData && spotData.dxcc_spotted) {
+			console.log('Building message with spot data:', spotData.dxcc_spotted);
+			if (spotData.dxcc_spotted.pota_ref) {
+				message.pota_ref = spotData.dxcc_spotted.pota_ref;
+				console.log('Added POTA ref:', message.pota_ref);
+			}
+			if (spotData.dxcc_spotted.sota_ref) {
+				message.sota_ref = spotData.dxcc_spotted.sota_ref;
+				console.log('Added SOTA ref:', message.sota_ref);
+			}
+			if (spotData.dxcc_spotted.wwff_ref) {
+				message.wwff_ref = spotData.dxcc_spotted.wwff_ref;
+				console.log('Added WWFF ref:', message.wwff_ref);
+			}
+			if (spotData.dxcc_spotted.iota_ref) {
+				message.iota_ref = spotData.dxcc_spotted.iota_ref;
+				console.log('Added IOTA ref:', message.iota_ref);
+			}
+		} else {
+			console.log('No spot data or dxcc_spotted available');
+		}
+
+		console.log('Final message to send:', message);
+
+		let check_pong = setInterval(function() {
 			if (pong_rcvd || ((Date.now() - qso_window_last_seen) < wait4pong)) {
 				clearInterval(check_pong);
-				bc2qso.postMessage({ frequency: qrg, call: call });
+				bc2qso.postMessage(message);
 				// Show toast notification when callsign is sent to existing QSO window
 				showToast('QSO Prepared', `Callsign ${call} sent to logging form`, 'bg-success text-white', 3000);
 			} else {
 				clearInterval(check_pong);
-				let cl={};
-				cl.call=call;
-				cl.qrg=qrg;
+				let cl = message;  // Use the message object with all fields
 
-				let newWindow = window.open(base_url + 'index.php/qso?manual=0', '_blank');
+				let newWindow = window.open(base_url + 'index.php/qso?manual=1', '_blank');
 
                 if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
                     $('#errormessage').html(popup_warning).addClass('alert alert-danger').show();
@@ -1977,7 +2044,7 @@ $(function() {
                 bc2qso.onmessage = function(ev) {
 					if (ready_listener == true) {
 						if (ev.data === 'ready') {
-							bc2qso.postMessage({ frequency: cl.qrg, call: cl.call })
+							bc2qso.postMessage(cl);  // Send the full message object with references
 							ready_listener = false;
 						}
 					}
@@ -1998,7 +2065,17 @@ $(function() {
 			mode=this.parentNode.parentNode.cells[2].textContent;
 		}
 
-		prepareLogging(call, qrg, mode);
+		// Find the original spot data to get reference information
+		let spotData = null;
+		if (cachedSpotData) {
+			// Note: spot.frequency is in kHz, so multiply by 1000 to get Hz
+			spotData = cachedSpotData.find(spot => 
+				spot.spotted === call && 
+				Math.abs(spot.frequency * 1000 - qrg) < 100  // Match within 100 Hz tolerance
+			);
+		}
+
+		prepareLogging(call, qrg, mode, spotData);
 	});
 
 	$("#menutoggle").on("click", function() {
