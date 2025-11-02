@@ -1,3 +1,18 @@
+/* Always show vertical scrollbar to prevent layout shifts */
+html {
+	overflow-y: scroll;
+}
+
+/* Reserve space for badge counts to prevent layout shifts */
+.band-count-badge,
+.mode-count-badge {
+	display: inline-block;
+	min-width: 2em;
+	text-align: center;
+	padding-left: 0.4em;
+	padding-right: 0.4em;
+}
+
 .fresh {
 	transition: all 500ms ease;
 	--bs-table-bg: #3981b2;

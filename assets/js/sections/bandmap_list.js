@@ -47,14 +47,14 @@ $(function() {
 		let flagsVal = $('#additionalFlags').val() || [];
 		let requiredVal = $('#requiredFlags').val() || [];
 
-		// Check if anything is selected besides "All"/"Any"
+		// Check if anything is selected besides "All"/"Any"/"None"
 		let isDefaultCwn = cwnVal.length === 1 && cwnVal.includes('All');
 		let isDefaultDecont = decontVal.length === 1 && decontVal.includes('Any');
 		let isDefaultContinent = continentVal.length === 1 && continentVal.includes('Any');
 		let isDefaultBand = bandVal.length === 1 && bandVal.includes('All');
 		let isDefaultMode = modeVal.length === 1 && modeVal.includes('All');
 		let isDefaultFlags = flagsVal.length === 1 && flagsVal.includes('All');
-		let isDefaultRequired = requiredVal.length === 0;
+		let isDefaultRequired = requiredVal.length === 0 || (requiredVal.length === 1 && requiredVal.includes('None'));
 
 		return !(isDefaultCwn && isDefaultDecont && isDefaultContinent && isDefaultBand && isDefaultMode && isDefaultFlags && isDefaultRequired);
 	}
@@ -62,17 +62,15 @@ $(function() {
 	// Update filter icon based on whether filters are active
 	function updateFilterIcon() {
 		if (areFiltersApplied()) {
-			$('#filterIcon').removeClass('fa-filter').addClass('fa-filter-circle-xmark');
-			$('#filterDropdown').removeClass('btn-primary').addClass('btn-warning');
+			$('#filterIcon').removeClass('fa-filter').addClass('fa-filter-circle-xmark text-success');
 		} else {
-			$('#filterIcon').removeClass('fa-filter-circle-xmark').addClass('fa-filter');
-			$('#filterDropdown').removeClass('btn-warning').addClass('btn-primary');
+			$('#filterIcon').removeClass('fa-filter-circle-xmark text-success').addClass('fa-filter');
 		}
 	}
 
 	// Sync quick filter button states with their corresponding dropdown values
 	function syncQuickFilterButtons() {
-		let requiredFlags = $('#requiredFlags').val() || [];
+		let requiredFlags = ($('#requiredFlags').val() || []).filter(v => v !== 'None');  // Remove "None"
 		let additionalFlags = $('#additionalFlags').val() || [];
 		let cwnValues = $('#cwnSelect').val() || [];
 		let modeValues = $('#mode').val() || [];
@@ -81,85 +79,67 @@ $(function() {
 
 		// LoTW button
 		if (requiredFlags.includes('lotw')) {
-			$('#toggleLotwFilter').removeClass('btn-primary').addClass('btn-warning');
-			$('#toggleLotwFilter i').removeClass('fa-upload').addClass('fa-check-circle');
+			$('#toggleLotwFilter').removeClass('btn-secondary').addClass('btn-success');
 		} else {
-			$('#toggleLotwFilter').removeClass('btn-warning').addClass('btn-primary');
-			$('#toggleLotwFilter i').removeClass('fa-check-circle').addClass('fa-upload');
+			$('#toggleLotwFilter').removeClass('btn-success').addClass('btn-secondary');
 		}
 
 		// Not Worked button
 		if (requiredFlags.includes('notworked')) {
-			$('#toggleNotWorkedFilter').removeClass('btn-primary').addClass('btn-warning');
-			$('#toggleNotWorkedFilter i').removeClass('fa-star').addClass('fa-check-circle');
+			$('#toggleNotWorkedFilter').removeClass('btn-secondary').addClass('btn-success');
 		} else {
-			$('#toggleNotWorkedFilter').removeClass('btn-warning').addClass('btn-primary');
-			$('#toggleNotWorkedFilter i').removeClass('fa-check-circle').addClass('fa-star');
+			$('#toggleNotWorkedFilter').removeClass('btn-success').addClass('btn-secondary');
 		}
 
 		// DXCC Needed button
 		if (cwnValues.length === 1 && cwnValues[0] === 'notwkd') {
-			$('#toggleDxccNeededFilter').removeClass('btn-primary').addClass('btn-warning');
-			$('#toggleDxccNeededFilter i').removeClass('fa-globe').addClass('fa-check-circle');
+			$('#toggleDxccNeededFilter').removeClass('btn-secondary').addClass('btn-success');
 		} else {
-			$('#toggleDxccNeededFilter').removeClass('btn-warning').addClass('btn-primary');
-			$('#toggleDxccNeededFilter i').removeClass('fa-check-circle').addClass('fa-globe');
+			$('#toggleDxccNeededFilter').removeClass('btn-success').addClass('btn-secondary');
 		}
 
 		// Contest button (now in Required Flags)
 		if (requiredFlags.includes('Contest')) {
-			$('#toggleContestFilter').removeClass('btn-primary').addClass('btn-warning');
-			$('#toggleContestFilter i').removeClass('fa-trophy').addClass('fa-check-circle');
+			$('#toggleContestFilter').removeClass('btn-secondary').addClass('btn-success');
 		} else {
-			$('#toggleContestFilter').removeClass('btn-warning').addClass('btn-primary');
-			$('#toggleContestFilter i').removeClass('fa-check-circle').addClass('fa-trophy');
+			$('#toggleContestFilter').removeClass('btn-success').addClass('btn-secondary');
 		}
 
 		// Geo Hunter button (stays in Additional Flags)
 		let geoFlags = ['POTA', 'SOTA', 'IOTA', 'WWFF'];
 		let hasGeoFlag = geoFlags.some(flag => additionalFlags.includes(flag));
 		if (hasGeoFlag) {
-			$('#toggleGeoHunterFilter').removeClass('btn-primary').addClass('btn-warning');
-			$('#toggleGeoHunterFilter i').removeClass('fa-map-marked-alt').addClass('fa-check-circle');
+			$('#toggleGeoHunterFilter').removeClass('btn-secondary').addClass('btn-success');
 		} else {
-			$('#toggleGeoHunterFilter').removeClass('btn-warning').addClass('btn-primary');
-			$('#toggleGeoHunterFilter i').removeClass('fa-check-circle').addClass('fa-map-marked-alt');
+			$('#toggleGeoHunterFilter').removeClass('btn-success').addClass('btn-secondary');
 		}
 
 		// Fresh filter button
 		if (additionalFlags.includes('Fresh')) {
-			$('#toggleFreshFilter').removeClass('btn-primary').addClass('btn-warning');
-			$('#toggleFreshFilter i').removeClass('fa-bolt').addClass('fa-check-circle');
+			$('#toggleFreshFilter').removeClass('btn-secondary').addClass('btn-success');
 		} else {
-			$('#toggleFreshFilter').removeClass('btn-warning').addClass('btn-primary');
-			$('#toggleFreshFilter i').removeClass('fa-check-circle').addClass('fa-bolt');
+			$('#toggleFreshFilter').removeClass('btn-success').addClass('btn-secondary');
 		}
 
 		// CW mode button
 		if (modeValues.includes('cw')) {
-			$('#toggleCwFilter').removeClass('btn-primary').addClass('btn-warning');
-			$('#toggleCwFilter i').removeClass('fa-wave-square').addClass('fa-check-circle');
+			$('#toggleCwFilter').removeClass('btn-secondary').addClass('btn-success');
 		} else {
-			$('#toggleCwFilter').removeClass('btn-warning').addClass('btn-primary');
-			$('#toggleCwFilter i').removeClass('fa-check-circle').addClass('fa-wave-square');
+			$('#toggleCwFilter').removeClass('btn-success').addClass('btn-secondary');
 		}
 
 		// Digi mode button
 		if (modeValues.includes('digi')) {
-			$('#toggleDigiFilter').removeClass('btn-primary').addClass('btn-warning');
-			$('#toggleDigiFilter i').removeClass('fa-keyboard').addClass('fa-check-circle');
+			$('#toggleDigiFilter').removeClass('btn-secondary').addClass('btn-success');
 		} else {
-			$('#toggleDigiFilter').removeClass('btn-warning').addClass('btn-primary');
-			$('#toggleDigiFilter i').removeClass('fa-check-circle').addClass('fa-keyboard');
+			$('#toggleDigiFilter').removeClass('btn-success').addClass('btn-secondary');
 		}
 
 		// Phone mode button
 		if (modeValues.includes('phone')) {
-			$('#togglePhoneFilter').removeClass('btn-primary').addClass('btn-warning');
-			$('#togglePhoneFilter i').removeClass('fa-microphone').addClass('fa-check-circle');
+			$('#togglePhoneFilter').removeClass('btn-secondary').addClass('btn-success');
 		} else {
-			$('#togglePhoneFilter').removeClass('btn-warning').addClass('btn-primary');
-			$('#togglePhoneFilter i').removeClass('fa-check-circle').addClass('fa-microphone');
+			$('#togglePhoneFilter').removeClass('btn-success').addClass('btn-secondary');
 		}
 
 	// Check if "All" is selected for bands, modes, and continents
@@ -177,7 +157,7 @@ $(function() {
 	                             decontValues.includes('NA') && decontValues.includes('OC') &&
 	                             decontValues.includes('SA'));
 
-	// Band filter buttons - green if All, orange if specific band, blue if not selected
+	// Band filter buttons - green if All, orange if specific band, gray if not selected
 	// Always update colors, even when CAT Control is enabled (so users can see which band is active)
 	let bandButtons = ['#toggle160mFilter', '#toggle80mFilter', '#toggle60mFilter', '#toggle40mFilter',
 	                   '#toggle30mFilter', '#toggle20mFilter', '#toggle17mFilter', '#toggle15mFilter',
@@ -186,13 +166,13 @@ $(function() {
 
 	bandButtons.forEach((btnId, index) => {
 		let $btn = $(btnId);
-		$btn.removeClass('btn-primary btn-warning btn-success');
+		$btn.removeClass('btn-secondary btn-success');
 		if (allBandsSelected) {
 			$btn.addClass('btn-success');
 		} else if (bandValues.includes(bandIds[index])) {
-			$btn.addClass('btn-warning');
+			$btn.addClass('btn-success');
 		} else {
-			$btn.addClass('btn-primary');
+			$btn.addClass('btn-secondary');
 		}
 	});
 
@@ -205,7 +185,7 @@ $(function() {
 
 	groupButtons.forEach(btn => {
 		let $btn = $(btn.id);
-		$btn.removeClass('btn-primary btn-warning btn-success');
+		$btn.removeClass('btn-secondary btn-success');
 
 		if (allBandsSelected) {
 			$btn.addClass('btn-success');
@@ -215,9 +195,9 @@ $(function() {
 			const allGroupBandsSelected = groupBands.every(b => bandValues.includes(b));
 
 			if (allGroupBandsSelected) {
-				$btn.addClass('btn-warning');
+				$btn.addClass('btn-success');
 			} else {
-				$btn.addClass('btn-primary');
+				$btn.addClass('btn-secondary');
 			}
 		}
 	});		// Mode buttons - green if All, orange if selected, blue if not
@@ -229,39 +209,37 @@ $(function() {
 
 		modeButtons.forEach(btn => {
 			let $btn = $(btn.id);
-			$btn.removeClass('btn-primary btn-warning btn-success');
-			let $icon = $btn.find('i');
+			$btn.removeClass('btn-secondary btn-success');
 
 			if (allModesSelected) {
 				$btn.addClass('btn-success');
-				$icon.removeClass(btn.icon).addClass('fa-check-circle');
 			} else if (modeValues.includes(btn.mode)) {
-				$btn.addClass('btn-warning');
-				$icon.removeClass(btn.icon).addClass('fa-check-circle');
+				$btn.addClass('btn-success');
 			} else {
-				$btn.addClass('btn-primary');
-				$icon.removeClass('fa-check-circle').addClass(btn.icon);
+				$btn.addClass('btn-secondary');
 			}
 		});
 
-		// Continent filter buttons - green if Any, orange if selected, blue if not
+		// Continent filter buttons - green if Any or selected, gray if not
 		let continentButtons = [
 			{ id: '#toggleAfricaFilter', continent: 'AF' },
+			{ id: '#toggleAntarcticaFilter', continent: 'AN' },
 			{ id: '#toggleAsiaFilter', continent: 'AS' },
 			{ id: '#toggleEuropeFilter', continent: 'EU' },
 			{ id: '#toggleNorthAmericaFilter', continent: 'NA' },
+			{ id: '#toggleOceaniaFilter', continent: 'OC' },
 			{ id: '#toggleSouthAmericaFilter', continent: 'SA' }
 		];
 
 		continentButtons.forEach(btn => {
 			let $btn = $(btn.id);
-			$btn.removeClass('btn-primary btn-warning btn-success');
+			$btn.removeClass('btn-secondary btn-success');
 			if (allContinentsSelected) {
 				$btn.addClass('btn-success');
 			} else if (decontValues.includes(btn.continent)) {
-				$btn.addClass('btn-warning');
+				$btn.addClass('btn-success');
 			} else {
-				$btn.addClass('btn-primary');
+				$btn.addClass('btn-secondary');
 			}
 		});
 	}
@@ -325,8 +303,22 @@ $(function() {
 	// Apply "All" handler to all filter dropdowns
 	['cwnSelect', 'decontSelect', 'continentSelect', 'band', 'mode', 'additionalFlags'].forEach(handleAllOption);
 
-	// Required flags filter doesn't use "All" option - handle separately
+	// Required flags filter - handle "None" option
 	$('#requiredFlags').on('change', function() {
+		let currentValues = $(this).val() || [];
+		
+		// If "None" is selected, deselect all others
+		if (currentValues.includes('None')) {
+			if (currentValues.length > 1) {
+				// User selected something else, remove "None"
+				currentValues = currentValues.filter(v => v !== 'None');
+			}
+		} else if (currentValues.length === 0) {
+			// If nothing is selected, select "None"
+			currentValues = ['None'];
+		}
+		
+		$(this).val(currentValues);
 		updateFilterIcon();
 	});
 
@@ -452,6 +444,7 @@ $(function() {
 	// ========================================
 
 	var cachedSpotData = null;  // Raw spot data from last backend fetch
+	var cachedUserFavorites = null;  // Cached user favorites (bands and modes)
 	var isFetchInProgress = false;  // Prevent multiple simultaneous fetches
 	var currentAjaxRequest = null;  // Track active AJAX request for cancellation
 	var lastFetchParams = {  // Track last successful fetch parameters
@@ -481,11 +474,13 @@ $(function() {
 
 			let loadingMessage = 'Loading data from DX Cluster';
 			if (allFilters.length > 0) {
-				loadingMessage += ' (' + allFilters.join(', ') + ')';
+				loadingMessage += '...';
+			} else {
+				loadingMessage += '...';
 			}
-			loadingMessage += '...';
 
-			$('#statusMessage').text(loadingMessage);
+			$('#statusMessage').text(loadingMessage).attr('title', '');
+			$('#statusFilterInfo').remove();
 			$('#refreshIcon').removeClass('fa-hourglass-half').addClass('fa-spinner fa-spin');
 			$('#refreshTimer').text('');
 			return;
@@ -493,6 +488,7 @@ $(function() {
 
 		if (lastFetchParams.timestamp === null) {
 			$('#statusMessage').text('');
+			$('#statusFilterInfo').remove();
 			$('#refreshTimer').text('');
 			return;
 		}
@@ -516,28 +512,37 @@ $(function() {
 			allFilters.push('search: "' + searchValue + '"');
 		}
 
+		// Build status message
 		if (allFilters.length > 0) {
-			statusMessage += ', showing ' + displayedSpots + ' (' + allFilters.join(' and ') + ')';
+			statusMessage += ', showing ' + displayedSpots;
 		} else if (displayedSpots < totalSpots) {
 			statusMessage += ', showing ' + displayedSpots;
 		} else if (totalSpots > 0) {
 			statusMessage += ', showing all';
 		}
 
-		let tooltipLines = ['Last fetched for:'];
-		tooltipLines.push('Band: ' + (lastFetchParams.band || 'All'));
-		tooltipLines.push('Continent: ' + (lastFetchParams.continent || 'All'));
-		tooltipLines.push('Mode: ' + (lastFetchParams.mode || 'All'));
-		tooltipLines.push('Max Age: ' + (lastFetchParams.maxAge || '120') + ' min');
+		// Build tooltip for status message (fetch information)
+		let fetchTooltipLines = ['Last fetched for:'];
+		fetchTooltipLines.push('Band: ' + (lastFetchParams.band || 'All'));
+		fetchTooltipLines.push('Continent: ' + (lastFetchParams.continent || 'All'));
+		fetchTooltipLines.push('Mode: ' + (lastFetchParams.mode || 'All'));
+		fetchTooltipLines.push('Max Age: ' + (lastFetchParams.maxAge || '120') + ' min');
 		if (lastFetchParams.timestamp) {
 			let fetchTime = new Date(lastFetchParams.timestamp);
 			let fetchTimeStr = fetchTime.getHours().toString().padStart(2, '0') + ':' +
 			                   fetchTime.getMinutes().toString().padStart(2, '0') + ':' +
 			                   fetchTime.getSeconds().toString().padStart(2, '0');
-			tooltipLines.push('Fetched at: ' + fetchTimeStr);
+			fetchTooltipLines.push('Fetched at: ' + fetchTimeStr);
 		}
 
-		$('#statusMessage').text(statusMessage).attr('title', tooltipLines.join('\n'));
+		$('#statusMessage').text(statusMessage).attr('title', fetchTooltipLines.join('\n'));
+		
+		// Add info icon if filters are active (with separate tooltip for active filters)
+		$('#statusFilterInfo').remove();
+		if (allFilters.length > 0) {
+			let filterTooltip = 'Active filters:\n' + allFilters.join('\n');
+			$('#statusMessage').after(' <i class="fas fa-info-circle text-muted" id="statusFilterInfo" style="cursor: help;" title="' + filterTooltip.replace(/"/g, '&quot;') + '"></i>');
+		}
 
 		if (isFetching) {
 			$('#refreshIcon').removeClass('fa-hourglass-half').addClass('fa-spinner fa-spin');
@@ -1012,39 +1017,135 @@ $(function() {
 			return;
 		}
 
-		// Count spots per band and mode
+		// Get current filter values (excluding band and mode since we're counting those)
+		let deContinent = currentFilters.deContinent || ['Any'];
+		let spottedContinents = currentFilters.spottedContinent || ['Any'];
+		let cwnStatuses = currentFilters.cwn || ['All'];
+		let flags = currentFilters.additionalFlags || ['All'];
+		let requiredFlags = (currentFilters.requiredFlags || []).filter(v => v !== 'None');  // Remove "None"
+		
+		// Get current mode and band selections to apply when counting
+		let selectedModes = $('#mode').val() || ['All'];
+		let selectedBands = $('#band').val() || ['All'];
+
+		// Count spots per band and mode, applying all OTHER filters
 		let bandCounts = {};
 		let modeCounts = { cw: 0, digi: 0, phone: 0 };
 		let totalSpots = 0;
 
-	cachedSpotData.forEach((spot) => {
-		// Count by band
-		let freq_khz = spot.frequency;
-		let band = spot.band;
+		cachedSpotData.forEach((spot) => {
+			// Apply required flags FIRST (must have ALL selected required flags)
+			if (requiredFlags.length > 0) {
+				for (let reqFlag of requiredFlags) {
+					if (reqFlag === 'lotw') {
+						if (!spot.dxcc_spotted || !spot.dxcc_spotted.lotw_user) return;
+					}
+					if (reqFlag === 'notworked') {
+						if (spot.worked_call) return;
+					}
+					if (reqFlag === 'Contest') {
+						if (!spot.dxcc_spotted || !spot.dxcc_spotted.isContest) return;
+					}
+				}
+			}
 
-		// If no band field, try to determine from frequency
-		if (!band) {
-			band = getBandFromFrequency(freq_khz);
-		}
+			// Apply CWN (Confirmed/Worked/New) filter
+			let passesCwnFilter = cwnStatuses.includes('All');
+			if (!passesCwnFilter) {
+				if (cwnStatuses.includes('notwkd') && !spot.worked_dxcc) passesCwnFilter = true;
+				if (cwnStatuses.includes('wkd') && spot.worked_dxcc) passesCwnFilter = true;
+				if (cwnStatuses.includes('cnf') && spot.cnfmd_dxcc) passesCwnFilter = true;
+				if (cwnStatuses.includes('ucnf') && spot.worked_dxcc && !spot.cnfmd_dxcc) passesCwnFilter = true;
+			}
+			if (!passesCwnFilter) return;
 
-		if (band) {
-			bandCounts[band] = (bandCounts[band] || 0) + 1;
-			totalSpots++;
-		}
+			// Apply de continent filter (which continent the spotter is in)
+			let passesDeContFilter = deContinent.includes('Any');
+			if (!passesDeContFilter && spot.dxcc_spotter && spot.dxcc_spotter.cont) {
+				passesDeContFilter = deContinent.includes(spot.dxcc_spotter.cont);
+			}
+			if (!passesDeContFilter) return;
 
-		// Count by mode
-		let modeCategory = getModeCategory(spot.mode);
-		if (modeCategory && modeCounts.hasOwnProperty(modeCategory)) {
-			modeCounts[modeCategory]++;
-		}
-	});
+			// Apply spotted continent filter (which continent the DX station is in)
+			let passesContinentFilter = spottedContinents.includes('Any');
+			if (!passesContinentFilter) {
+				passesContinentFilter = spottedContinents.includes(spot.dxcc_spotted.cont);
+			}
+			if (!passesContinentFilter) return;
 
-	// Count band groups (VHF, UHF, SHF)
-	let groupCounts = {
-		'VHF': 0,
-		'UHF': 0,
-		'SHF': 0
-	};
+			// Apply additional flags filter (POTA, SOTA, WWFF, IOTA, Fresh)
+			let passesFlagsFilter = flags.includes('All');
+			if (!passesFlagsFilter) {
+				for (let flag of flags) {
+					if (flag === 'SOTA' && spot.dxcc_spotted && spot.dxcc_spotted.sota_ref) {
+						passesFlagsFilter = true;
+						break;
+					}
+					if (flag === 'POTA' && spot.dxcc_spotted && spot.dxcc_spotted.pota_ref) {
+						passesFlagsFilter = true;
+						break;
+					}
+					if (flag === 'WWFF' && spot.dxcc_spotted && spot.dxcc_spotted.wwff_ref) {
+						passesFlagsFilter = true;
+						break;
+					}
+					if (flag === 'IOTA' && spot.dxcc_spotted && spot.dxcc_spotted.iota_ref) {
+						passesFlagsFilter = true;
+						break;
+					}
+					if (flag === 'Fresh' && (spot.age || 0) < 5) {
+						passesFlagsFilter = true;
+						break;
+					}
+				}
+			}
+			if (!passesFlagsFilter) return;
+
+			// Get spot's band and mode for filtering
+			let band = spot.band;
+			if (!band) {
+				band = getBandFromFrequency(spot.frequency);
+			}
+			let modeCategory = getModeCategory(spot.mode);
+
+			// Count by band (applying MODE filter when counting bands)
+			if (band) {
+				let passesModeFilter = selectedModes.includes('All');
+				if (!passesModeFilter && modeCategory) {
+					passesModeFilter = selectedModes.includes(modeCategory);
+				}
+				if (passesModeFilter) {
+					bandCounts[band] = (bandCounts[band] || 0) + 1;
+					totalSpots++;
+				}
+			}
+
+			// Count by mode (applying BAND filter when counting modes)
+			if (modeCategory && modeCounts.hasOwnProperty(modeCategory)) {
+				let passesBandFilter = selectedBands.includes('All');
+				if (!passesBandFilter && band) {
+					if (selectedBands.includes(band)) {
+						passesBandFilter = true;
+					} else {
+						// Check if band is in a selected group (VHF, UHF, SHF)
+						let bandGroup = getBandGroup(band);
+						if (bandGroup && selectedBands.includes(bandGroup)) {
+							passesBandFilter = true;
+						}
+					}
+				}
+				if (passesBandFilter) {
+					modeCounts[modeCategory]++;
+				}
+			}
+		});
+
+		// Count band groups (VHF, UHF, SHF)
+		let groupCounts = {
+			'VHF': 0,
+			'UHF': 0,
+			'SHF': 0
+		};
 
 		Object.keys(bandCounts).forEach(band => {
 			let group = getBandGroup(band);
@@ -1063,7 +1164,7 @@ $(function() {
 			let $badge = $('#toggle' + band + 'Filter .band-count-badge');
 			if ($badge.length === 0) {
 				// Badge doesn't exist yet, create it
-				$('#toggle' + band + 'Filter').append(' <span class="badge bg-secondary band-count-badge">' + count + '</span>');
+				$('#toggle' + band + 'Filter').append(' <span class="badge bg-dark band-count-badge">' + count + '</span>');
 			} else {
 				// Update existing badge
 				$badge.text(count);
@@ -1076,7 +1177,7 @@ $(function() {
 			let $badge = $('#toggle' + group + 'Filter .band-count-badge');
 			if ($badge.length === 0) {
 				// Badge doesn't exist yet, create it
-				$('#toggle' + group + 'Filter').append(' <span class="badge bg-secondary band-count-badge">' + count + '</span>');
+				$('#toggle' + group + 'Filter').append(' <span class="badge bg-dark band-count-badge">' + count + '</span>');
 			} else {
 				// Update existing badge
 				$badge.text(count);
@@ -1091,7 +1192,7 @@ $(function() {
 			let $badge = $('#toggle' + mode + 'Filter .mode-count-badge');
 			if ($badge.length === 0) {
 				// Badge doesn't exist yet, create it
-				$('#toggle' + mode + 'Filter').append(' <span class="badge bg-secondary mode-count-badge">' + count + '</span>');
+				$('#toggle' + mode + 'Filter').append(' <span class="badge bg-dark mode-count-badge">' + count + '</span>');
 			} else {
 				// Update existing badge
 				$badge.text(count);
@@ -1320,7 +1421,7 @@ $(function() {
 		let cwn = getSelectedValues('cwnSelect');
 		let mode = getSelectedValues('mode');
 		let additionalFlags = getSelectedValues('additionalFlags');
-		let requiredFlags = $('#requiredFlags').val() || [];
+		let requiredFlags = ($('#requiredFlags').val() || []).filter(v => v !== 'None');  // Remove "None"
 
 		let continentForAPI = 'Any';
 		if (de.length === 1 && !de.includes('Any')) {
@@ -1357,6 +1458,7 @@ $(function() {
 		} else {
 			console.log('Client-side filtering changed - using cached data');
 			renderFilteredSpots();
+			updateBandCountBadges();
 		}
 
 		updateFilterIcon();
@@ -1836,6 +1938,7 @@ $(function() {
 
 		$('#mode').val(currentValues).trigger('change');
 		syncQuickFilterButtons();
+		updateBandCountBadges();
 		applyFilters(false);
 	});
 
@@ -1863,6 +1966,7 @@ $(function() {
 
 		$('#mode').val(currentValues).trigger('change');
 		syncQuickFilterButtons();
+		updateBandCountBadges();
 		applyFilters(false);
 	});
 
@@ -1890,6 +1994,7 @@ $(function() {
 
 		$('#mode').val(currentValues).trigger('change');
 		syncQuickFilterButtons();
+		updateBandCountBadges();
 		applyFilters(false);
 	});
 
@@ -2190,6 +2295,37 @@ $(function() {
 		$('#decontSelect').val(currentValues).trigger('change');
 		syncQuickFilterButtons();
 
+		// Update badge counts immediately (before debounced filter application)
+		updateBandCountBadges();
+
+		// Debounce the filter application (3 second cooldown)
+		clearTimeout(decontFilterTimeout);
+		decontFilterTimeout = setTimeout(function() {
+			applyFilters(false);
+		}, 3000);
+	});
+
+	$('#toggleAntarcticaFilter').on('click', function() {
+		let currentValues = $('#decontSelect').val() || [];
+		if (currentValues.includes('Any')) currentValues = currentValues.filter(v => v !== 'Any');
+		if (currentValues.includes('AN')) {
+			currentValues = currentValues.filter(v => v !== 'AN');
+			if (currentValues.length === 0) currentValues = ['Any'];
+		} else {
+			currentValues.push('AN');
+			// Check if all continents are now selected
+			if (currentValues.includes('AF') && currentValues.includes('AN') && currentValues.includes('AS') &&
+			    currentValues.includes('EU') && currentValues.includes('NA') && currentValues.includes('OC') &&
+			    currentValues.includes('SA')) {
+				currentValues = ['Any'];
+			}
+		}
+		$('#decontSelect').val(currentValues).trigger('change');
+		syncQuickFilterButtons();
+
+		// Update badge counts immediately (before debounced filter application)
+		updateBandCountBadges();
+
 		// Debounce the filter application (3 second cooldown)
 		clearTimeout(decontFilterTimeout);
 		decontFilterTimeout = setTimeout(function() {
@@ -2214,6 +2350,9 @@ $(function() {
 		}
 		$('#decontSelect').val(currentValues).trigger('change');
 		syncQuickFilterButtons();
+
+		// Update badge counts immediately (before debounced filter application)
+		updateBandCountBadges();
 
 		// Debounce the filter application (3 second cooldown)
 		clearTimeout(decontFilterTimeout);
@@ -2240,6 +2379,9 @@ $(function() {
 		$('#decontSelect').val(currentValues).trigger('change');
 		syncQuickFilterButtons();
 
+		// Update badge counts immediately (before debounced filter application)
+		updateBandCountBadges();
+
 		// Debounce the filter application (3 second cooldown)
 		clearTimeout(decontFilterTimeout);
 		decontFilterTimeout = setTimeout(function() {
@@ -2264,6 +2406,37 @@ $(function() {
 		}
 		$('#decontSelect').val(currentValues).trigger('change');
 		syncQuickFilterButtons();
+
+		// Update badge counts immediately (before debounced filter application)
+		updateBandCountBadges();
+
+		// Debounce the filter application (3 second cooldown)
+		clearTimeout(decontFilterTimeout);
+		decontFilterTimeout = setTimeout(function() {
+			applyFilters(false);
+		}, 3000);
+	});
+
+	$('#toggleOceaniaFilter').on('click', function() {
+		let currentValues = $('#decontSelect').val() || [];
+		if (currentValues.includes('Any')) currentValues = currentValues.filter(v => v !== 'Any');
+		if (currentValues.includes('OC')) {
+			currentValues = currentValues.filter(v => v !== 'OC');
+			if (currentValues.length === 0) currentValues = ['Any'];
+		} else {
+			currentValues.push('OC');
+			// Check if all continents are now selected
+			if (currentValues.includes('AF') && currentValues.includes('AN') && currentValues.includes('AS') &&
+			    currentValues.includes('EU') && currentValues.includes('NA') && currentValues.includes('OC') &&
+			    currentValues.includes('SA')) {
+				currentValues = ['Any'];
+			}
+		}
+		$('#decontSelect').val(currentValues).trigger('change');
+		syncQuickFilterButtons();
+
+		// Update badge counts immediately (before debounced filter application)
+		updateBandCountBadges();
 
 		// Debounce the filter application (3 second cooldown)
 		clearTimeout(decontFilterTimeout);
@@ -2302,16 +2475,18 @@ $(function() {
 		let currentValues = $('#requiredFlags').val() || [];
 		let btn = $(this);
 
+		// Remove "None" if present
+		currentValues = currentValues.filter(v => v !== 'None');
+
 		if (currentValues.includes('lotw')) {
 			// Remove LoTW filter
 			currentValues = currentValues.filter(v => v !== 'lotw');
-			btn.removeClass('btn-warning').addClass('btn-primary');
-			btn.find('i').removeClass('fa-check-circle').addClass('fa-upload');
+			if (currentValues.length === 0) currentValues = ['None'];
+			btn.removeClass('btn-success').addClass('btn-secondary');
 		} else {
 			// Add LoTW filter
 			currentValues.push('lotw');
-			btn.removeClass('btn-primary').addClass('btn-warning');
-			btn.find('i').removeClass('fa-upload').addClass('fa-check-circle');
+			btn.removeClass('btn-secondary').addClass('btn-success');
 		}
 
 		$('#requiredFlags').val(currentValues).trigger('change');
@@ -2323,16 +2498,18 @@ $(function() {
 		let currentValues = $('#requiredFlags').val() || [];
 		let btn = $(this);
 
+		// Remove "None" if present
+		currentValues = currentValues.filter(v => v !== 'None');
+
 		if (currentValues.includes('notworked')) {
 			// Remove Not Worked filter
 			currentValues = currentValues.filter(v => v !== 'notworked');
-			btn.removeClass('btn-warning').addClass('btn-primary');
-			btn.find('i').removeClass('fa-check-circle').addClass('fa-star');
+			if (currentValues.length === 0) currentValues = ['None'];
+			btn.removeClass('btn-success').addClass('btn-secondary');
 		} else {
 			// Add Not Worked filter
 			currentValues.push('notworked');
-			btn.removeClass('btn-primary').addClass('btn-warning');
-			btn.find('i').removeClass('fa-star').addClass('fa-check-circle');
+			btn.removeClass('btn-secondary').addClass('btn-success');
 		}
 
 		$('#requiredFlags').val(currentValues).trigger('change');
@@ -2347,13 +2524,11 @@ $(function() {
 		if (currentValues.length === 1 && currentValues[0] === 'notwkd') {
 			// Remove DXCC filter - reset to All
 			currentValues = ['All'];
-			btn.removeClass('btn-warning').addClass('btn-primary');
-			btn.find('i').removeClass('fa-check-circle').addClass('fa-globe');
+			btn.removeClass('btn-success').addClass('btn-secondary');
 		} else {
 			// Set DXCC filter to Not Worked only
 			currentValues = ['notwkd'];
-			btn.removeClass('btn-primary').addClass('btn-warning');
-			btn.find('i').removeClass('fa-globe').addClass('fa-check-circle');
+			btn.removeClass('btn-secondary').addClass('btn-success');
 		}
 
 		$('#cwnSelect').val(currentValues).trigger('change');
@@ -2366,16 +2541,18 @@ $(function() {
 		let currentValues = $('#requiredFlags').val() || [];
 		let btn = $(this);
 
+		// Remove "None" if present
+		currentValues = currentValues.filter(v => v !== 'None');
+
 		if (currentValues.includes('Contest')) {
 			// Remove Contest filter
 			currentValues = currentValues.filter(v => v !== 'Contest');
-			btn.removeClass('btn-warning').addClass('btn-primary');
-			btn.find('i').removeClass('fa-check-circle').addClass('fa-trophy');
+			if (currentValues.length === 0) currentValues = ['None'];
+			btn.removeClass('btn-success').addClass('btn-secondary');
 		} else {
 			// Add Contest filter
 			currentValues.push('Contest');
-			btn.removeClass('btn-primary').addClass('btn-warning');
-			btn.find('i').removeClass('fa-trophy').addClass('fa-check-circle');
+			btn.removeClass('btn-secondary').addClass('btn-success');
 		}
 
 		$('#requiredFlags').val(currentValues).trigger('change');
@@ -2401,13 +2578,11 @@ $(function() {
 			// Remove all geo flags
 			currentValues = currentValues.filter(v => !geoFlags.includes(v));
 			if (currentValues.length === 0) currentValues = ['All'];
-			btn.removeClass('btn-warning').addClass('btn-primary');
-			btn.find('i').removeClass('fa-check-circle').addClass('fa-map-marked-alt');
+			btn.removeClass('btn-success').addClass('btn-secondary');
 		} else {
 			// Add all geo flags
 			currentValues = currentValues.concat(geoFlags.filter(flag => !currentValues.includes(flag)));
-			btn.removeClass('btn-primary').addClass('btn-warning');
-			btn.find('i').removeClass('fa-map-marked-alt').addClass('fa-check-circle');
+			btn.removeClass('btn-secondary').addClass('btn-success');
 		}
 
 		$('#additionalFlags').val(currentValues).trigger('change');
@@ -2428,13 +2603,11 @@ $(function() {
 			// Remove Fresh filter
 			currentValues = currentValues.filter(v => v !== 'Fresh');
 			if (currentValues.length === 0) currentValues = ['All'];
-			btn.removeClass('btn-warning').addClass('btn-primary');
-			btn.find('i').removeClass('fa-check-circle').addClass('fa-bolt');
+			btn.removeClass('btn-success').addClass('btn-secondary');
 		} else {
 			// Add Fresh filter
 			currentValues.push('Fresh');
-			btn.removeClass('btn-primary').addClass('btn-warning');
-			btn.find('i').removeClass('fa-bolt').addClass('fa-check-circle');
+			btn.removeClass('btn-secondary').addClass('btn-success');
 		}
 
 		$('#additionalFlags').val(currentValues).trigger('change');
@@ -2443,45 +2616,59 @@ $(function() {
 
 	// Toggle Favorites filter - applies user's active bands and modes
 	$('#toggleFavoritesFilter').on('click', function() {
-		// Fetch user's active bands and modes
-		let base_url = dxcluster_provider.replace('/dxcluster', '');
-		$.ajax({
-			url: base_url + '/bandmap/get_user_favorites',
-			method: 'GET',
-			dataType: 'json',
-			success: function(favorites) {
-				// Apply bands
-				if (favorites.bands && favorites.bands.length > 0) {
-					$('#band').val(favorites.bands).trigger('change');
-				} else {
-					// No active bands, set to All
-					$('#band').val(['All']).trigger('change');
+		// Use cached favorites if available, otherwise fetch
+		if (cachedUserFavorites !== null) {
+			applyUserFavorites(cachedUserFavorites);
+		} else {
+			// Fallback: fetch if cache is not available
+			let base_url = dxcluster_provider.replace('/dxcluster', '');
+			$.ajax({
+				url: base_url + '/bandmap/get_user_favorites',
+				method: 'GET',
+				dataType: 'json',
+				success: function(favorites) {
+					cachedUserFavorites = favorites;
+					applyUserFavorites(favorites);
+				},
+				error: function() {
+					showToast('My Favorites', 'Failed to load favorites', 'bg-danger text-white', 3000);
 				}
-
-				// Apply modes
-				let activeModes = [];
-				if (favorites.modes.cw) activeModes.push('cw');
-				if (favorites.modes.phone) activeModes.push('phone');
-				if (favorites.modes.digi) activeModes.push('digi');
-
-				if (activeModes.length > 0) {
-					$('#mode').val(activeModes).trigger('change');
-				} else {
-					// No active modes, filter out everything (or set to All if you prefer)
-					$('#mode').val(['All']).trigger('change');
-				}
-
-				// Sync button states and apply filters
-				syncQuickFilterButtons();
-				applyFilters(false);
-
-				showToast('My Favorites', 'Applied your favorite bands and modes', 'bg-success text-white', 3000);
-			},
-			error: function() {
-				showToast('My Favorites', 'Failed to load favorites', 'bg-danger text-white', 3000);
-			}
-		});
+			});
+		}
 	});
+
+	/**
+	 * Apply user favorites to band and mode filters
+	 */
+	function applyUserFavorites(favorites) {
+		// Apply bands
+		if (favorites.bands && favorites.bands.length > 0) {
+			$('#band').val(favorites.bands).trigger('change');
+		} else {
+			// No active bands, set to All
+			$('#band').val(['All']).trigger('change');
+		}
+
+		// Apply modes
+		let activeModes = [];
+		if (favorites.modes.cw) activeModes.push('cw');
+		if (favorites.modes.phone) activeModes.push('phone');
+		if (favorites.modes.digi) activeModes.push('digi');
+
+		if (activeModes.length > 0) {
+			$('#mode').val(activeModes).trigger('change');
+		} else {
+			// No active modes, filter out everything (or set to All if you prefer)
+			$('#mode').val(['All']).trigger('change');
+		}
+
+		// Sync button states and apply filters
+		syncQuickFilterButtons();
+		updateBandCountBadges();
+		applyFilters(false);
+
+		showToast('My Favorites', 'Applied your favorite bands and modes', 'bg-success text-white', 3000);
+	}
 
 	// ========================================
 	// CAT CONTROL - BAND FILTER LOCK
@@ -2523,10 +2710,9 @@ $(function() {
 	$('#toggleCatTracking').on('click', function() {
 		let btn = $(this);
 
-		if (btn.hasClass('btn-warning')) {
+		if (btn.hasClass('btn-success')) {
 			// Disable CAT Control
-			btn.removeClass('btn-warning').addClass('btn-primary');
-			btn.find('i').removeClass('fa-check-circle').addClass('fa-radio');
+			btn.removeClass('btn-success').addClass('btn-secondary');
 			isCatTrackingEnabled = false;
 			window.isCatTrackingEnabled = false; // Update window variable for cat.js
 			console.log('CAT Control disabled');
@@ -2538,8 +2724,7 @@ $(function() {
 			enableBandFilterControls();
 		} else {
 			// Enable CAT Control
-			btn.removeClass('btn-primary').addClass('btn-warning');
-			btn.find('i').removeClass('fa-radio').addClass('fa-check-circle');
+			btn.removeClass('btn-secondary').addClass('btn-success');
 			isCatTrackingEnabled = true;
 			window.isCatTrackingEnabled = true; // Update window variable for cat.js
 			console.log('CAT Control enabled');
@@ -2702,6 +2887,34 @@ $(function() {
 	 * CAT Control is OFF by default, so ensure band filter controls are enabled
 	 */
 	enableBandFilterControls();
+
+	// ========================================
+	// CACHE USER FAVORITES ON PAGE LOAD
+	// ========================================
+
+	/**
+	 * Fetch and cache user favorites on page load for instant access
+	 * This prevents the delay when clicking the favorites button
+	 */
+	function fetchUserFavorites() {
+		let base_url = dxcluster_provider.replace('/dxcluster', '');
+		$.ajax({
+			url: base_url + '/bandmap/get_user_favorites',
+			method: 'GET',
+			dataType: 'json',
+			success: function(favorites) {
+				cachedUserFavorites = favorites;
+				console.log('User favorites cached:', favorites);
+			},
+			error: function() {
+				console.warn('Failed to cache user favorites');
+				cachedUserFavorites = null;
+			}
+		});
+	}
+
+	// Fetch favorites on page load
+	fetchUserFavorites();
 
 	// ========================================
 	// AGE AUTO-UPDATE

@@ -62,7 +62,7 @@
 				<?php } ?>
 			</select>
 			<!-- CAT Control Button -->
-			<button class="btn btn-sm btn-primary flex-shrink-0" type="button" id="toggleCatTracking" title="<?= __("When selected the filters will be set basing on your current radio status"); ?>">
+			<button class="btn btn-sm btn-secondary flex-shrink-0" type="button" id="toggleCatTracking" title="<?= __("When selected the filters will be set basing on your current radio status"); ?>">
 				<i class="fas fa-radio"></i> <span class="d-none d-sm-inline">CAT Control</span>
 			</button>
 		</div>
@@ -74,7 +74,7 @@
 		<div class="d-flex flex-wrap gap-2 align-items-center">
 			<div class="dropdown">
 				<!-- Filter Dropdown Button -->
-				<button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+				<button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
 					<i class="fas fa-filter" id="filterIcon"></i> <?= __("Advanced Filters"); ?>
 				</button>
 				<div class="dropdown-menu dropdown-menu-start p-3 mt-2" aria-labelledby="filterDropdown" style="min-width: 1264px; max-width: 95vw; max-height: 98vh; overflow-y: auto;">
@@ -114,6 +114,7 @@
 						<div class="mb-3 col-12 col-sm-6 col-md-4 col-lg">
 							<label class="form-label d-block filter-label-small" for="requiredFlags"><?= __("Required Flags"); ?></label>
 							<select id="requiredFlags" class="form-select form-select-sm filter-short" name="required_flags" multiple="multiple">
+								<option value="None" selected><?= __("None"); ?></option>
 								<option value="lotw"><?= __("LoTW User"); ?></option>
 								<option value="notworked"><?= __("Not worked before"); ?></option>
 								<option value="Contest"><?= __("Contest"); ?></option>
@@ -226,11 +227,13 @@
 		<div class="d-flex flex-wrap gap-2 align-items-center">
 			<small class="text-muted me-1 flex-shrink-0"><?= __("de:"); ?></small>
 			<div class="btn-group flex-shrink-0" role="group">
-				<button class="btn btn-sm btn-primary" type="button" id="toggleAfricaFilter" title="<?= __("Toggle Africa continent filter"); ?>">AF</button>
-				<button class="btn btn-sm btn-primary" type="button" id="toggleAsiaFilter" title="<?= __("Toggle Asia continent filter"); ?>">AS</button>
-				<button class="btn btn-sm btn-primary" type="button" id="toggleEuropeFilter" title="<?= __("Toggle Europe continent filter"); ?>">EU</button>
-				<button class="btn btn-sm btn-primary" type="button" id="toggleNorthAmericaFilter" title="<?= __("Toggle North America continent filter"); ?>">NA</button>
-				<button class="btn btn-sm btn-primary" type="button" id="toggleSouthAmericaFilter" title="<?= __("Toggle South America continent filter"); ?>">SA</button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleAfricaFilter" title="<?= __("Toggle Africa continent filter"); ?>">AF</button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleAntarcticaFilter" title="<?= __("Toggle Antarctica continent filter"); ?>">AN</button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleAsiaFilter" title="<?= __("Toggle Asia continent filter"); ?>">AS</button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleEuropeFilter" title="<?= __("Toggle Europe continent filter"); ?>">EU</button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleNorthAmericaFilter" title="<?= __("Toggle North America continent filter"); ?>">NA</button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleOceaniaFilter" title="<?= __("Toggle Oceania continent filter"); ?>">OC</button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleSouthAmericaFilter" title="<?= __("Toggle South America continent filter"); ?>">SA</button>
 			</div>
 		</div>
 	</div>
@@ -241,32 +244,32 @@
 		<div class="d-flex flex-wrap gap-2 align-items-center">
 			<!-- Favorites Button -->
 			<div class="btn-group flex-shrink-0" role="group">
-				<button class="btn btn-sm btn-success" type="button" id="toggleFavoritesFilter" title="<?= __("Apply your favorite bands and modes (configured in Band and Mode settings)"); ?>">
-					<i class="fas fa-star"></i>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleFavoritesFilter" title="<?= __("Apply your favorite bands and modes (configured in Band and Mode settings)"); ?>">
+					<i class="fas fa-star text-warning"></i>
 				</button>
 			</div>
 
 			<!-- MF Band -->
 			<div class="btn-group flex-shrink-0" role="group">
-				<button class="btn btn-sm btn-primary" type="button" id="toggle160mFilter" title="<?= __("Toggle 160m band filter"); ?>">160m</button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggle160mFilter" title="<?= __("Toggle 160m band filter"); ?>">160m</button>
 			</div>
 			<!-- HF Bands -->
 			<div class="btn-group flex-shrink-0" role="group">
-				<button class="btn btn-sm btn-primary" type="button" id="toggle80mFilter" title="<?= __("Toggle 80m band filter"); ?>">80m</button>
-				<button class="btn btn-sm btn-primary" type="button" id="toggle60mFilter" title="<?= __("Toggle 60m band filter"); ?>">60m</button>
-				<button class="btn btn-sm btn-primary" type="button" id="toggle40mFilter" title="<?= __("Toggle 40m band filter"); ?>">40m</button>
-				<button class="btn btn-sm btn-primary" type="button" id="toggle30mFilter" title="<?= __("Toggle 30m band filter"); ?>">30m</button>
-				<button class="btn btn-sm btn-primary" type="button" id="toggle20mFilter" title="<?= __("Toggle 20m band filter"); ?>">20m</button>
-				<button class="btn btn-sm btn-primary" type="button" id="toggle17mFilter" title="<?= __("Toggle 17m band filter"); ?>">17m</button>
-				<button class="btn btn-sm btn-primary" type="button" id="toggle15mFilter" title="<?= __("Toggle 15m band filter"); ?>">15m</button>
-				<button class="btn btn-sm btn-primary" type="button" id="toggle12mFilter" title="<?= __("Toggle 12m band filter"); ?>">12m</button>
-				<button class="btn btn-sm btn-primary" type="button" id="toggle10mFilter" title="<?= __("Toggle 10m band filter"); ?>">10m</button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggle80mFilter" title="<?= __("Toggle 80m band filter"); ?>">80m</button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggle60mFilter" title="<?= __("Toggle 60m band filter"); ?>">60m</button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggle40mFilter" title="<?= __("Toggle 40m band filter"); ?>">40m</button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggle30mFilter" title="<?= __("Toggle 30m band filter"); ?>">30m</button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggle20mFilter" title="<?= __("Toggle 20m band filter"); ?>">20m</button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggle17mFilter" title="<?= __("Toggle 17m band filter"); ?>">17m</button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggle15mFilter" title="<?= __("Toggle 15m band filter"); ?>">15m</button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggle12mFilter" title="<?= __("Toggle 12m band filter"); ?>">12m</button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggle10mFilter" title="<?= __("Toggle 10m band filter"); ?>">10m</button>
 			</div>
 			<!-- VHF/UHF/SHF Bands -->
 			<div class="btn-group flex-shrink-0" role="group">
-				<button class="btn btn-sm btn-primary" type="button" id="toggleVHFFilter" title="<?= __("Toggle VHF bands filter"); ?>">VHF</button>
-				<button class="btn btn-sm btn-primary" type="button" id="toggleUHFFilter" title="<?= __("Toggle UHF bands filter"); ?>">UHF</button>
-				<button class="btn btn-sm btn-primary" type="button" id="toggleSHFFilter" title="<?= __("Toggle SHF bands filter"); ?>">SHF</button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleVHFFilter" title="<?= __("Toggle VHF bands filter"); ?>">VHF</button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleUHFFilter" title="<?= __("Toggle UHF bands filter"); ?>">UHF</button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleSHFFilter" title="<?= __("Toggle SHF bands filter"); ?>">SHF</button>
 			</div>
 		</div>
 
@@ -276,9 +279,9 @@
 		<!-- Right: Mode Filter Buttons -->
 		<div class="d-flex flex-wrap gap-2 align-items-center">
 			<div class="btn-group flex-shrink-0" role="group">
-				<button class="btn btn-sm btn-primary" type="button" id="toggleCwFilter" title="<?= __("Toggle CW mode filter"); ?>">CW</button>
-				<button class="btn btn-sm btn-primary" type="button" id="toggleDigiFilter" title="<?= __("Toggle Digital mode filter"); ?>">Digi</button>
-				<button class="btn btn-sm btn-primary" type="button" id="togglePhoneFilter" title="<?= __("Toggle Phone mode filter"); ?>">Phone</button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleCwFilter" title="<?= __("Toggle CW mode filter"); ?>">CW</button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleDigiFilter" title="<?= __("Toggle Digital mode filter"); ?>">Digi</button>
+				<button class="btn btn-sm btn-secondary" type="button" id="togglePhoneFilter" title="<?= __("Toggle Phone mode filter"); ?>">Phone</button>
 			</div>
 		</div>
 	</div>
@@ -289,22 +292,22 @@
 		<div class="d-flex flex-wrap gap-2 align-items-center flex-grow-1">
 			<!-- Quick Filter Toggle Buttons -->
 			<div class="btn-group flex-shrink-0" role="group">
-				<button class="btn btn-sm btn-primary" type="button" id="toggleLotwFilter" title="<?= __("Toggle LoTW User filter"); ?>">
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleLotwFilter" title="<?= __("Toggle LoTW User filter"); ?>">
 					<span>L</span> <span class="d-none d-sm-inline">LoTW users</span>
 				</button>
-				<button class="btn btn-sm btn-primary" type="button" id="toggleNotWorkedFilter" title="<?= __("Toggle Not Worked Before filter"); ?>">
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleNotWorkedFilter" title="<?= __("Toggle Not Worked Before filter"); ?>">
 					<i class="fas fa-star"></i> <span class="d-none d-sm-inline">New callsign</span>
 				</button>
-				<button class="btn btn-sm btn-primary" type="button" id="toggleDxccNeededFilter" title="<?= __("Toggle DXCC Needed filter"); ?>">
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleDxccNeededFilter" title="<?= __("Toggle DXCC Needed filter"); ?>">
 					<i class="fas fa-globe"></i> <span class="d-none d-sm-inline">New DXCC</span>
 				</button>
-				<button class="btn btn-sm btn-primary" type="button" id="toggleContestFilter" title="<?= __("Toggle Contest filter"); ?>">
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleContestFilter" title="<?= __("Toggle Contest filter"); ?>">
 					<i class="fas fa-trophy"></i> <span class="d-none d-sm-inline">Contest Only</span>
 				</button>
-				<button class="btn btn-sm btn-primary" type="button" id="toggleGeoHunterFilter" title="<?= __("Toggle Geo Hunter (POTA/SOTA/IOTA/WWFF)"); ?>">
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleGeoHunterFilter" title="<?= __("Toggle Geo Hunter (POTA/SOTA/IOTA/WWFF)"); ?>">
 					<i class="fas fa-map-marked-alt"></i> <span class="d-none d-sm-inline">Ref. Hunter</span>
 				</button>
-				<button class="btn btn-sm btn-primary" type="button" id="toggleFreshFilter" title="<?= __("Toggle Fresh spots filter (< 5 minutes old)"); ?>">
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleFreshFilter" title="<?= __("Toggle Fresh spots filter (< 5 minutes old)"); ?>">
 					<i class="fas fa-bolt"></i> <span class="d-none d-sm-inline">Fresh spots</span>
 				</button>
 			</div>
