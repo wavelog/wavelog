@@ -477,8 +477,10 @@ $(function() {
 	// Track what backend parameters were used for last data fetch
 	// NOTE: Changed architecture - only de continent affects backend now
 	// Band and Mode are now client-side filters only
+	// UPDATE: Band becomes backend filter when CAT Control is active (single-band fetch mode)
 	var loadedBackendFilters = {
-		continent: 'Any'
+		continent: 'Any',
+		band: 'All'
 	};
 
 	// Initialize backend filter state from form values
@@ -519,6 +521,12 @@ $(function() {
 	// Generate unique key for spot identification
 	function getSpotKey(spot) {
 		return spot.spotted + '_' + spot.frequency + '_' + spot.spotter;
+	}
+
+	// Extract frequency from spot key for band determination
+	function getFrequencyFromKey(key) {
+		let parts = key.split('_');
+		return parseFloat(parts[1]); // frequency is the second part
 	}
 
 	// Auto-refresh timer state
@@ -640,7 +648,17 @@ $(function() {
 				console.log('Timer countdown: reloading spot data with current filters');
 				let table = get_dtable();
 				table.clear();
-				fill_list(currentFilters.deContinent, dxcluster_maxage);
+
+				// Determine band for API fetch based on CAT Control state and current filter
+				let bandForRefresh = 'All';
+				if (isCatTrackingEnabled) {
+					let currentBand = currentFilters.band || [];
+					if (currentBand.length === 1 && !currentBand.includes('All') && currentBand[0] !== '') {
+						bandForRefresh = currentBand[0];
+					}
+				}
+
+				fill_list(currentFilters.deContinent, dxcluster_maxage, bandForRefresh);
 				refreshCountdown = SPOT_REFRESH_INTERVAL;
 			} else {
 				if (!isFetchInProgress && lastFetchParams.timestamp !== null) {
@@ -1153,9 +1171,21 @@ $(function() {
 
 	// Update badge counts on band and mode filter buttons
 	function updateBandCountBadges() {
+		// Check if we fetched only a specific band (single band fetch mode)
+		// This happens when CAT Control is active and limited the API fetch to current band
+		let fetchedBand = null;
+		if (loadedBackendFilters && loadedBackendFilters.band && loadedBackendFilters.band !== 'All') {
+			fetchedBand = loadedBackendFilters.band;
+		}
+
 		if (!cachedSpotData || cachedSpotData.length === 0) {
 			// Clear all badges when no data
-			$('.band-count-badge, .mode-count-badge').text('0');
+			if (fetchedBand) {
+				// Set all to "-" when in single band fetch mode but no data
+				$('.band-count-badge, .mode-count-badge').text('-');
+			} else {
+				$('.band-count-badge, .mode-count-badge').text('0');
+			}
 			return;
 		}
 
@@ -1302,37 +1332,62 @@ $(function() {
 			}
 		});
 
-		// Update individual MF/HF band button badges
-		const mfHfBands = [
-			'160m', '80m', '60m', '40m', '30m', '20m', '17m', '15m', '12m', '10m'
-		];
+	// Update individual MF/HF band button badges
+	const mfHfBands = [
+		'160m', '80m', '60m', '40m', '30m', '20m', '17m', '15m', '12m', '10m'
+	];
 
-		mfHfBands.forEach(band => {
-			let count = bandCounts[band] || 0;
-			let $badge = $('#toggle' + band + 'Filter .band-count-badge');
-			if ($badge.length === 0) {
-				// Badge doesn't exist yet, create it
-				$('#toggle' + band + 'Filter').append(' <span class="badge bg-dark band-count-badge">' + count + '</span>');
-			} else {
-				// Update existing badge
-				$badge.text(count);
-			}
-		});
+	mfHfBands.forEach(band => {
+		let count;
+		let displayText;
 
-		// Update band group button badges (VHF, UHF, SHF)
-		['VHF', 'UHF', 'SHF'].forEach(group => {
-			let count = groupCounts[group] || 0;
-			let $badge = $('#toggle' + group + 'Filter .band-count-badge');
-			if ($badge.length === 0) {
-				// Badge doesn't exist yet, create it
-				$('#toggle' + group + 'Filter').append(' <span class="badge bg-dark band-count-badge">' + count + '</span>');
-			} else {
-				// Update existing badge
-				$badge.text(count);
-			}
-		});
+		// If in single band fetch mode and this is not the fetched band, show "-"
+		if (fetchedBand && band !== fetchedBand) {
+			displayText = '-';
+		} else {
+			count = bandCounts[band] || 0;
+			displayText = count.toString();
+		}
 
-		// Update mode button badges
+		let $badge = $('#toggle' + band + 'Filter .band-count-badge');
+		if ($badge.length === 0) {
+			// Badge doesn't exist yet, create it
+			$('#toggle' + band + 'Filter').append(' <span class="badge bg-dark band-count-badge">' + displayText + '</span>');
+		} else {
+			// Update existing badge
+			$badge.text(displayText);
+		}
+	});
+
+	// Update band group button badges (VHF, UHF, SHF)
+	['VHF', 'UHF', 'SHF'].forEach(group => {
+		let count;
+		let displayText;
+
+		// Check if fetched band is in this group
+		let isActiveGroup = false;
+		if (fetchedBand) {
+			let fetchedBandGroup = getBandGroup(fetchedBand);
+			isActiveGroup = (fetchedBandGroup === group);
+		}
+
+		// If in single band fetch mode and this is not the fetched band's group, show "-"
+		if (fetchedBand && !isActiveGroup) {
+			displayText = '-';
+		} else {
+			count = groupCounts[group] || 0;
+			displayText = count.toString();
+		}
+
+		let $badge = $('#toggle' + group + 'Filter .band-count-badge');
+		if ($badge.length === 0) {
+			// Badge doesn't exist yet, create it
+			$('#toggle' + group + 'Filter').append(' <span class="badge bg-dark band-count-badge">' + displayText + '</span>');
+		} else {
+			// Update existing badge
+			$badge.text(displayText);
+		}
+	});		// Update mode button badges
 		const modeButtons = ['Cw', 'Digi', 'Phone'];
 		modeButtons.forEach(mode => {
 			let modeKey = mode.toLowerCase();
@@ -1452,7 +1507,7 @@ $(function() {
 	// Fetch spot data from DX cluster API
 	// Backend filters: band, de continent (where spotter is), mode
 	// Client filters applied after fetch: cwn, spotted continent, additionalFlags
-	function fill_list(de, maxAgeMinutes) {
+	function fill_list(de, maxAgeMinutes, bandForAPI = 'All') {
 		var table = get_dtable();
 
 		// Normalize de continent parameter to array
@@ -1460,21 +1515,28 @@ $(function() {
 		if (deContinent.includes('Any') || deContinent.length === 0) deContinent = ['Any'];
 
 		// Backend API only accepts single values for continent
-		// Band and mode are always 'All' - filtering happens client-side
 		let continentForAPI = 'Any';
 		if (deContinent.length === 1 && !deContinent.includes('Any')) continentForAPI = deContinent[0];
 
-		// Update backend filter state (only continent now)
+		// bandForAPI is now passed as a parameter from applyFilters()
+		// Log if CAT Control influenced the band selection
+		if (bandForAPI !== 'All') {
+			console.log('Fetching specific band from server:', bandForAPI);
+		}
+
+		// Update backend filter state
 		loadedBackendFilters = {
-			continent: continentForAPI
+			continent: continentForAPI,
+			band: bandForAPI
 		};
 
 		lastFetchParams.continent = continentForAPI;
+		lastFetchParams.band = bandForAPI;
 		lastFetchParams.maxAge = maxAgeMinutes;
 
 		// Build API URL: /spots/{band}/{maxAge}/{continent}/{mode}
-		// Always use 'All' for band and mode - we filter client-side
-		let dxurl = dxcluster_provider + "/spots/All/" + maxAgeMinutes + "/" + continentForAPI + "/All";
+		// Mode is always 'All' - filtering happens client-side
+		let dxurl = dxcluster_provider + "/spots/" + bandForAPI + "/" + maxAgeMinutes + "/" + continentForAPI + "/All";
 		console.log('Loading from backend: ' + dxurl);
 
 		// Cancel any in-flight request before starting new one
@@ -1500,6 +1562,7 @@ $(function() {
 				dxspots.sort(SortByQrg);  // Sort by frequency
 
 				// TTL Management: Process new spots and update TTL values
+				// In single-band fetch mode, only update TTL for spots in the fetched band
 				let newSpotKeys = new Set();
 
 				// First pass: identify all spots in the new data
@@ -1508,20 +1571,36 @@ $(function() {
 					newSpotKeys.add(key);
 				});
 
-				// Second pass: Update TTL for all existing spots
-				// - Decrement all TTL values by 1
+				// Second pass: Update TTL for existing spots
+				// - In single-band mode (bandForAPI != 'All'), only decrement TTL for spots in the fetched band
+				// - In all-band mode, decrement all TTL values
 				// - If spot exists in new data, set TTL back to 1 (stays valid)
 				// - Remove spots with TTL < -1
 				let ttlStats = { stillValid: 0, expiring: 0, removed: 0, added: 0 };
 				let expiringSpots = [];  // Store spots with TTL=0 that need to be shown
 
 				for (let [key, ttl] of spotTTLMap.entries()) {
-					let newTTL = ttl - 1;  // Decrement all spots
+					let newTTL = ttl;
+
+					// Only decrement TTL if:
+					// - We fetched all bands (bandForAPI === 'All'), OR
+					// - This spot is in the band we just fetched
+					let shouldDecrementTTL = (bandForAPI === 'All');
+					if (!shouldDecrementTTL) {
+						// Extract frequency from the spot key and determine its band
+						let spotFrequency = getFrequencyFromKey(key);
+						let spotBand = getBandFromFrequency(spotFrequency);
+						shouldDecrementTTL = (spotBand === bandForAPI);
+					}
+
+					if (shouldDecrementTTL) {
+						newTTL = ttl - 1;  // Decrement only if in scope of this fetch
+					}
 
 					if (newSpotKeys.has(key)) {
 						newTTL = 1;  // Reset to 1 if spot still exists (keeps it valid)
 						ttlStats.stillValid++;
-					} else {
+					} else if (shouldDecrementTTL) {
 						if (newTTL === 0) {
 							ttlStats.expiring++;
 							// Find the spot in previous cachedSpotData to keep it for display
@@ -1719,13 +1798,27 @@ $(function() {
 		}
 		// If multiple continents selected, fetch 'Any' from backend and filter client-side
 
+		// Determine if we're in single-band fetch mode (CAT Control active)
+		// In this mode, band changes require a new server fetch
+		// Use the selected band filter value when CAT is active and a single band is selected
+		let bandForAPI = 'All';
+		let isSingleBandMode = false;
+		if (isCatTrackingEnabled) {
+			// Check if a single specific band is selected (not 'All')
+			if (band.length === 1 && !band.includes('All') && band[0] !== '') {
+				bandForAPI = band[0];
+				isSingleBandMode = true;
+			}
+		}
+
 		console.log('applyFilters - Current backend filters:', loadedBackendFilters);
-		console.log('applyFilters - Requested backend params:', {continent: continentForAPI});
+		console.log('applyFilters - Requested backend params:', {continent: continentForAPI, band: bandForAPI, singleBandMode: isSingleBandMode});
 
 		// Check if backend parameters changed (requires new data fetch)
-		// Only de continent affects backend now - band and mode are client-side only
+		// In single-band mode, band selection changes also require server fetch
 		let backendParamsChanged = forceReload ||
-			loadedBackendFilters.continent !== continentForAPI;
+			loadedBackendFilters.continent !== continentForAPI ||
+			(isSingleBandMode && loadedBackendFilters.band !== bandForAPI);
 
 		console.log('applyFilters - backendParamsChanged:', backendParamsChanged);
 
@@ -1741,9 +1834,9 @@ $(function() {
 		};
 
 		if (backendParamsChanged) {
-			console.log('Reloading from backend: continent=' + continentForAPI);
+			console.log('Reloading from backend: continent=' + continentForAPI + ' band=' + bandForAPI);
 			table.clear();
-			fill_list(de, dxcluster_maxage);
+			fill_list(de, dxcluster_maxage, bandForAPI);
 		} else {
 			console.log('Client-side filtering changed - using cached data');
 			renderFilteredSpots();
@@ -3296,6 +3389,16 @@ $(function() {
 
 			// Unlock table sorting
 			unlockTableSorting();
+
+			// Reset band filter to 'All' and fetch all bands
+			const currentBands = $("#band").val() || [];
+			if (currentBands.length !== 1 || currentBands[0] !== 'All') {
+				console.log('CAT Control disabled - resetting to all bands');
+				$("#band").val(['All']);
+				updateSelectCheckboxes('band');
+				syncQuickFilterButtons();
+				applyFilters(true); // Force reload to fetch all bands
+			}
 		} else {
 			// Enable CAT Control
 			btn.removeClass('btn-secondary').addClass('btn-success');
