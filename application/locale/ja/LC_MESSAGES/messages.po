@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2025-11-01 06:00+0000\n"
 "PO-Revision-Date: 2025-11-02 13:50+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3410,6 +3410,7 @@ msgid "DXCC has to be Numeric"
 msgstr "DXCCは数値でなければなりません"
 
 #: application/models/Logbook_model.php:4016
+#: application/models/Logbook_model.php:4292
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
@@ -3417,10 +3418,12 @@ msgstr ""
 "されました: スキップされました"
 
 #: application/models/Logbook_model.php:4029
+#: application/models/Logbook_model.php:4305
 msgid "QSO on"
 msgstr "QSOオン"
 
 #: application/models/Logbook_model.php:4029
+#: application/models/Logbook_model.php:4305
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3429,6 +3432,7 @@ msgstr ""
 "されませんでした。無効です"
 
 #: application/models/Logbook_model.php:4078
+#: application/models/Logbook_model.php:4354
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -3438,52 +3442,65 @@ msgstr ""
 "はインポートされませんでした。無効です"
 
 #: application/models/Logbook_model.php:4343
+#: application/models/Logbook_model.php:4619
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate が無効です (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:4354
+#: application/models/Logbook_model.php:4630
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate が無効です (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:4415
+#: application/models/Logbook_model.php:4691
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date が無効です (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:4435
+#: application/models/Logbook_model.php:4711
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslrdate が無効です (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:4456
+#: application/models/Logbook_model.php:4732
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslsdate が無効です (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:4749
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:5025
 msgid "Duplicate for"
 msgstr "複製用"
 
 #: application/models/Logbook_model.php:4814
 #: application/models/Logbook_model.php:4909
+#: application/models/Logbook_model.php:5090
+#: application/models/Logbook_model.php:5185
 msgid "QSO could not be matched"
 msgstr "QSOが一致しませんでした"
 
 #: application/models/Logbook_model.php:4822
+#: application/models/Logbook_model.php:5098
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "LoTW/Clublog/eQSL/コンテストで確認済み"
 
 #: application/models/Logbook_model.php:4828
+#: application/models/Logbook_model.php:5104
 msgid "confirmed by award manager"
 msgstr "賞の管理者によって確認された"
 
 #: application/models/Logbook_model.php:4832
+#: application/models/Logbook_model.php:5108
 msgid "confirmed by cross-check of DCL data"
 msgstr "DCLデータのクロスチェックによって確認された"
 
 #: application/models/Logbook_model.php:4836
+#: application/models/Logbook_model.php:5112
 msgid "confirmation pending"
 msgstr "確認中"
 
 #: application/models/Logbook_model.php:4839
+#: application/models/Logbook_model.php:5115
 msgid "unconfirmed"
 msgstr "未確認"
 
@@ -3491,14 +3508,17 @@ msgstr "未確認"
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
+#: application/models/Logbook_model.php:5118
 msgid "unknown"
 msgstr "不明"
 
 #: application/models/Logbook_model.php:4912
+#: application/models/Logbook_model.php:5188
 msgid "POTA reference already in log"
 msgstr "POTA 参照。既にログに存在します"
 
 #: application/models/Logbook_model.php:4915
+#: application/models/Logbook_model.php:5191
 msgid "QSO updated"
 msgstr "QSOが更新されました"
 
@@ -3513,6 +3533,7 @@ msgstr "QSOが更新されました"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:6045
 msgid "Bearing"
 msgstr "方位"
 

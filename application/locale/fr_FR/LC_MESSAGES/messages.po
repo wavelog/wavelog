@@ -3441,6 +3441,7 @@ msgid "DXCC has to be Numeric"
 msgstr "Le DXCC doit être un nombre"
 
 #: application/models/Logbook_model.php:4016
+#: application/models/Logbook_model.php:4292
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
@@ -3448,10 +3449,12 @@ msgstr ""
 "%s pour %s : IGNORÉ"
 
 #: application/models/Logbook_model.php:4029
+#: application/models/Logbook_model.php:4305
 msgid "QSO on"
 msgstr "QSO en"
 
 #: application/models/Logbook_model.php:4029
+#: application/models/Logbook_model.php:4305
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3460,6 +3463,7 @@ msgstr ""
 "importé. Il est invalide"
 
 #: application/models/Logbook_model.php:4078
+#: application/models/Logbook_model.php:4354
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -3469,52 +3473,65 @@ msgstr ""
 "n'a pas été importé. Il est invalide."
 
 #: application/models/Logbook_model.php:4343
+#: application/models/Logbook_model.php:4619
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "la qslrdate est invalide (AAAAMMJJ)"
 
 #: application/models/Logbook_model.php:4354
+#: application/models/Logbook_model.php:4630
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "la qslsdate est invalide (AAAAMMJJ)"
 
 #: application/models/Logbook_model.php:4415
+#: application/models/Logbook_model.php:4691
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "la clublog_qso_upload_date est invalide (AAAAMMJJ)"
 
 #: application/models/Logbook_model.php:4435
+#: application/models/Logbook_model.php:4711
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "la lotw_qslrdate est invalide (AAAAMMJJ)"
 
 #: application/models/Logbook_model.php:4456
+#: application/models/Logbook_model.php:4732
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "la lotw_qslsdate est invalide (AAAAMMJJ)"
 
 #: application/models/Logbook_model.php:4749
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:5025
 msgid "Duplicate for"
 msgstr "Dupliquer pour"
 
 #: application/models/Logbook_model.php:4814
 #: application/models/Logbook_model.php:4909
+#: application/models/Logbook_model.php:5090
+#: application/models/Logbook_model.php:5185
 msgid "QSO could not be matched"
 msgstr "pas de correspondance pour le QSO"
 
 #: application/models/Logbook_model.php:4822
+#: application/models/Logbook_model.php:5098
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmé par LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:4828
+#: application/models/Logbook_model.php:5104
 msgid "confirmed by award manager"
 msgstr "confirmé par le manager de l'Award"
 
 #: application/models/Logbook_model.php:4832
+#: application/models/Logbook_model.php:5108
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmé par recoupement des données DCL"
 
 #: application/models/Logbook_model.php:4836
+#: application/models/Logbook_model.php:5112
 msgid "confirmation pending"
 msgstr "confirmation en attente"
 
 #: application/models/Logbook_model.php:4839
+#: application/models/Logbook_model.php:5115
 msgid "unconfirmed"
 msgstr "non confirmé"
 
@@ -3522,14 +3539,17 @@ msgstr "non confirmé"
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
+#: application/models/Logbook_model.php:5118
 msgid "unknown"
 msgstr "inconnu"
 
 #: application/models/Logbook_model.php:4912
+#: application/models/Logbook_model.php:5188
 msgid "POTA reference already in log"
 msgstr "Les références du POTA sont déjà dans le log"
 
 #: application/models/Logbook_model.php:4915
+#: application/models/Logbook_model.php:5191
 msgid "QSO updated"
 msgstr "QSO mis à jour"
 
@@ -3544,6 +3564,7 @@ msgstr "QSO mis à jour"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:6045
 msgid "Bearing"
 msgstr "Azimut"
 
