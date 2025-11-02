@@ -663,10 +663,10 @@ function populatePendingReferences() {
 		console.log('No pending references to populate');
 		return;
 	}
-	
+
 	console.log('=== POPULATING PENDING REFERENCES (AFTER LOOKUP) ===');
 	console.log('pendingReferences:', pendingReferences);
-	
+
 	// POTA - uses selectize
 	if (pendingReferences.pota_ref && $('#pota_ref').length) {
 		console.log('Setting POTA ref:', pendingReferences.pota_ref);
@@ -735,9 +735,9 @@ function populatePendingReferences() {
 			console.warn('Could not set IOTA reference:', e);
 		}
 	}
-	
+
 	console.log('=== REFERENCE POPULATION COMPLETE ===');
-	
+
 	// Clear pending references after populating
 	pendingReferences = null;
 }
@@ -763,7 +763,7 @@ bc.onmessage = function (ev) {
 		console.log('WWFF ref:', ev.data.wwff_ref);
 		console.log('IOTA ref:', ev.data.iota_ref);
 		console.log('=============================');
-		
+
 		// Store references for later population (after callsign lookup completes)
 		pendingReferences = {
 			pota_ref: ev.data.pota_ref,
@@ -772,14 +772,14 @@ bc.onmessage = function (ev) {
 			iota_ref: ev.data.iota_ref
 		};
 		console.log('References stored in pendingReferences:', pendingReferences);
-		
+
 		let delay = 0;
 		// Only reset if callsign is different from what we're about to set
 		if ($("#callsign").val() != "" && $("#callsign").val() != ev.data.call) {
 			reset_fields();
 			delay = 600;
 		}
-		
+
 		setTimeout(() => {
 			if (ev.data.frequency != null) {
 				$('#frequency').val(ev.data.frequency).trigger("change");

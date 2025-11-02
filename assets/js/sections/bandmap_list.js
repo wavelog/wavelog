@@ -450,8 +450,8 @@ $(function() {
 		}
 
 		// Note: spot.frequency is in kHz, so multiply by 1000 to get Hz
-		spotData = cachedSpotData.find(spot => 
-			spot.spotted === call && 
+		spotData = cachedSpotData.find(spot =>
+			spot.spotted === call &&
 			Math.abs(spot.frequency * 1000 - qrg) < 100  // Match within 100 Hz tolerance
 		);
 		console.log('Spot data found for', call, ':', spotData);
@@ -2069,8 +2069,8 @@ $(function() {
 		let spotData = null;
 		if (cachedSpotData) {
 			// Note: spot.frequency is in kHz, so multiply by 1000 to get Hz
-			spotData = cachedSpotData.find(spot => 
-				spot.spotted === call && 
+			spotData = cachedSpotData.find(spot =>
+				spot.spotted === call &&
 				Math.abs(spot.frequency * 1000 - qrg) < 100  // Match within 100 Hz tolerance
 			);
 		}
