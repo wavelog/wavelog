@@ -384,16 +384,17 @@ $(function() {
 					'orderable': false
 				}
 			],
-			search: { smart: true },
-			drawCallback: function(settings) {
-				// Update status bar after table is drawn (including after search)
-				let totalRows = cachedSpotData ? cachedSpotData.length : 0;
-				let displayedRows = this.api().rows({ search: 'applied' }).count();
-				updateStatusBar(totalRows, displayedRows, getServerFilterText(), getClientFilterText(), false, false);
-			}
-		});
+		search: { smart: true },
+		drawCallback: function(settings) {
+			// Update status bar after table is drawn (including after search)
+			let totalRows = cachedSpotData ? cachedSpotData.length : 0;
+			let displayedRows = this.api().rows({ search: 'applied' }).count();
+			updateStatusBar(totalRows, displayedRows, getServerFilterText(), getClientFilterText(), false, false);
 
-	$('.spottable tbody').off('click', 'tr').on('click', 'tr', function(e) {
+			// Note: CAT frequency gradient is now updated only from updateCATui (every 3s)
+			// to prevent recursion issues with table redraws
+		}
+	});	$('.spottable tbody').off('click', 'tr').on('click', 'tr', function(e) {
 		// Don't trigger row click if clicking on a link (LoTW, POTA, SOTA, WWFF, QRZ, etc.)
 		if ($(e.target).is('a') || $(e.target).closest('a').length) {
 			return;
@@ -1039,18 +1040,36 @@ $(function() {
 			}
 
 			// Add row with appropriate class
+			let addedRow = table.rows.add(data).draw().nodes().to$();
+
 			if (rowClass) {
-				let addedRow = table.rows.add(data).draw().nodes().to$();
 				addedRow.addClass(rowClass);
 				if (ttl === 0) {
 					console.log('Added expiring class to row:', addedRow.hasClass('spot-expiring'));
 				}
-			} else {
-				table.rows.add(data).draw();
+			}
+
+			// Apply CAT frequency gradient AFTER adding lifecycle classes to ensure it overrides
+			if (isCatTrackingEnabled && currentRadioFrequency) {
+				const spotFreqKhz = single.frequency * 1000; // Convert MHz to kHz
+				const gradientColor = getFrequencyGradientColor(spotFreqKhz, currentRadioFrequency);
+				if (gradientColor) {
+					// Store gradient color and frequency for later reapplication
+					addedRow.attr('data-spot-frequency', spotFreqKhz);
+					addedRow.attr('data-gradient-color', gradientColor);
+					// Use setProperty with priority 'important' to force override
+					addedRow.each(function() {
+						this.style.setProperty('--bs-table-bg', gradientColor, 'important');
+						this.style.setProperty('--bs-table-accent-bg', gradientColor, 'important');
+						this.style.setProperty('background-color', gradientColor, 'important');
+					});
+					addedRow.addClass('cat-frequency-gradient');
+				}
 			}
 		});
 
 		// Remove "fresh" highlight after 10 seconds
+		// (CAT gradient is updated every 3s from updateCATui, no need to force here)
 		setTimeout(function () {
 			$(".fresh").removeClass("fresh");
 		}, 10000);
@@ -1532,23 +1551,7 @@ $(function() {
 			startRefreshTimer();
 		});
 	}	// Highlight rows within ±20 kHz of specified frequency (for CAT integration)
-	function highlight_current_qrg(qrg) {
-		var table = get_dtable();
-		table.rows().eq(0).each( function ( index ) {
-			let row = table.row( index );
-			var d=row.data();
-			var distance=Math.abs(parseInt(d[1])-qrg);
-			if (distance<=20) {
-				distance++;
-				alpha=(.5/distance);
-				$(row.node()).css('--bs-table-bg', 'rgba(0,0,255,' + alpha + ')');
-				$(row.node()).css('--bs-table-accent-bg', 'rgba(0,0,255,' + alpha + ')');
-			} else {
-				$(row.node()).css('--bs-table-bg', '');
-				$(row.node()).css('--bs-table-accent-bg', '');
-			}
-		});
-	}
+	// Old highlight_current_qrg function removed - now using updateFrequencyGradientColors
 
 	// Initialize DataTable
 	var table=get_dtable();
@@ -2022,8 +2025,109 @@ $(function() {
 
 	var isCatTrackingEnabled = false; // Track CAT Control button state
 	window.isCatTrackingEnabled = isCatTrackingEnabled; // Expose to window for cat.js
+	var currentRadioFrequency = null; // Store current radio frequency in kHz
+	var lastGradientFrequency = null; // Track last frequency used for gradient update
 
-	// Save reference to cat.js's updateCATui if it exists
+	/**
+	 * Calculate frequency gradient color based on distance from radio frequency
+	 * @param {number} spotFreqKhz - Spot frequency in kHz
+	 * @param {number} radioFreqKhz - Radio frequency in kHz
+	 * @returns {string|null} - CSS background color or null if outside gradient range
+	 */
+	function getFrequencyGradientColor(spotFreqKhz, radioFreqKhz) {
+		if (!radioFreqKhz || !isCatTrackingEnabled) {
+			return null;
+		}
+
+		// Determine if we're in LSB or USB mode (below/above 10 MHz)
+		const isLSB = radioFreqKhz < 10000;
+
+		// Calculate frequency difference in kHz
+		// For LSB: lower frequencies are "closer" to tune (radio freq - spot freq)
+		// For USB: higher frequencies are "closer" to tune (spot freq - radio freq)
+		let freqDiff;
+		if (isLSB) {
+			freqDiff = Math.abs(radioFreqKhz - spotFreqKhz);
+		} else {
+			freqDiff = Math.abs(spotFreqKhz - radioFreqKhz);
+		}
+
+		// Maximum gradient range: 2.5 kHz
+		const maxGradientKhz = 2.5;
+
+		if (freqDiff > maxGradientKhz) {
+			return null; // Outside gradient range, use default color
+		}
+
+		// Calculate gradient factor: 0 (perfectly tuned) to 1 (2.5 kHz away)
+		const gradientFactor = freqDiff / maxGradientKhz;
+
+		// Violet color for perfectly tuned: rgb(138, 43, 226) - BlueViolet
+		// Fade to transparent as we move away
+		const alpha = 1 - gradientFactor; // 1 at perfect tune, 0 at 2.5 kHz
+		const intensity = 0.3 + (alpha * 0.4); // Range from 0.3 to 0.7 alpha
+
+		return `rgba(138, 43, 226, ${intensity})`;
+	}
+
+	/**
+	 * Update frequency gradient colors for all visible table rows
+	 * Called when radio frequency changes
+	 */
+	function updateFrequencyGradientColors(forceUpdate = false) {
+		if (!isCatTrackingEnabled || !currentRadioFrequency) {
+			return;
+		}
+
+		// Skip update if frequency hasn't changed significantly (unless forced)
+		// Only update if frequency changed by more than 500 Hz to reduce flickering
+		if (!forceUpdate && lastGradientFrequency !== null) {
+			const freqDiff = Math.abs(currentRadioFrequency - lastGradientFrequency);
+			if (freqDiff < 0.5) { // 500 Hz threshold
+				return;
+			}
+		}
+
+		lastGradientFrequency = currentRadioFrequency;
+		var table = get_dtable();
+		let coloredCount = 0;
+
+		// Iterate through all visible rows
+		table.rows({ search: 'applied' }).every(function() {
+			const row = this.node();
+			const rowData = this.data();
+
+			if (!rowData || !rowData[2]) return;
+
+			// Get spot frequency (column 2, in MHz)
+			const spotFreqMhz = parseFloat(rowData[2]);
+			const spotFreqKhz = spotFreqMhz * 1000;
+
+			// Calculate gradient color
+			const gradientColor = getFrequencyGradientColor(spotFreqKhz, currentRadioFrequency);
+
+			// Store gradient data for persistence
+			$(row).attr('data-spot-frequency', spotFreqKhz);
+
+			if (gradientColor) {
+				coloredCount++;
+				// Store and apply gradient color directly to override Bootstrap striping
+				$(row).attr('data-gradient-color', gradientColor);
+				// Use setProperty with 'important' priority to force override .fresh, .spot-expiring, etc.
+				row.style.setProperty('--bs-table-bg', gradientColor, 'important');
+				row.style.setProperty('--bs-table-accent-bg', gradientColor, 'important');
+				row.style.setProperty('background-color', gradientColor, 'important');
+				$(row).addClass('cat-frequency-gradient');
+		} else {
+			// Remove gradient styling if outside range
+			$(row).removeAttr('data-gradient-color');
+			$(row).removeClass('cat-frequency-gradient');
+			row.style.removeProperty('--bs-table-bg');
+			row.style.removeProperty('--bs-table-accent-bg');
+			row.style.removeProperty('background-color');
+		}
+	});
+}	// Save reference to cat.js's updateCATui if it exists
 	var catJsUpdateCATui = window.updateCATui;
 
 	// Override updateCATui to add bandmap-specific behavior
@@ -2033,6 +2137,9 @@ $(function() {
 		const band = frequencyToBand(data.frequency);
 
 		console.log('Bandmap CAT Update - Frequency:', data.frequency, 'Band:', band, 'Control enabled:', isCatTrackingEnabled);
+
+		// Store current radio frequency (convert Hz to kHz)
+		currentRadioFrequency = data.frequency / 1000;
 
 		// Bandmap-specific: Update band filter if CAT Control is enabled
 		if (isCatTrackingEnabled) {
@@ -2067,12 +2174,10 @@ $(function() {
 					}
 				}
 			}
-		}
 
-	// Bandmap-specific: Highlight current QRG in the spot list
-	if (data.frequency) {
-		highlight_current_qrg((parseInt(data.frequency))/1000);
-	}
+			// Update frequency gradient colors for all visible rows
+			updateFrequencyGradientColors();
+		}
 
 	// Call cat.js's original updateCATui for standard CAT UI updates
 	if (typeof catJsUpdateCATui === 'function') {
@@ -2098,7 +2203,13 @@ $(function() {
 
 	let isFullscreen = false;
 
-	$('#fullscreenToggle').on('click', function() {
+	// Handle clicks on both the button and wrapper
+	$('#fullscreenToggle, #fullscreenToggleWrapper').on('click', function(e) {
+		// Prevent double firing if clicking directly on button
+		if (e.target.id === 'fullscreenToggle' && this.id === 'fullscreenToggleWrapper') {
+			return;
+		}
+
 		const container = $('#bandmapContainer');
 		const icon = $('#fullscreenIcon');
 
@@ -2106,7 +2217,7 @@ $(function() {
 			container.addClass('bandmap-fullscreen');
 			$('body').addClass('fullscreen-active');
 			icon.removeClass('fa-expand').addClass('fa-compress');
-			$(this).attr('title', 'Exit Fullscreen');
+			$('#fullscreenToggle').attr('title', 'Exit Fullscreen');
 
 			isFullscreen = true;
 
@@ -3001,6 +3112,87 @@ $(function() {
 		$('.cat-control-info').remove();
 	}
 
+	// ========================================
+	// CAT CONTROL - TABLE SORTING LOCK
+	// ========================================
+
+	/**
+	 * Lock table sorting to frequency column only (descending) when CAT Control is active
+	 */
+	function lockTableSortingToFrequency() {
+		var table = get_dtable();
+
+		// Add class to table for CSS styling
+		$('.spottable').addClass('cat-sorting-locked');
+
+		// Force sort by frequency (column 2) descending
+		table.order([2, 'desc']).draw();
+
+		// Disable sorting on all columns
+		table.settings()[0].aoColumns.forEach(function(col, index) {
+			col.bSortable = false;
+		});
+
+		// Disable click events on all column headers
+		$('.spottable thead th').off('click.DT');
+
+		// Redraw column headers to update sort icons
+		table.columns.adjust();
+
+		console.log('Table sorting locked to Frequency (DESC) only');
+	}
+
+	/**
+	 * Unlock table sorting when CAT Control is disabled
+	 */
+	function unlockTableSorting() {
+		var table = get_dtable();
+
+		// Remove class from table
+		$('.spottable').removeClass('cat-sorting-locked');
+
+		// Re-enable sorting on all columns that were originally sortable
+		// Based on columnDefs: columns 5, 6, 7, 11, 12, 13, 14 are not sortable
+		const nonSortableColumns = [5, 6, 7, 11, 12, 13, 14];
+
+		table.settings()[0].aoColumns.forEach(function(col, index) {
+			if (!nonSortableColumns.includes(index)) {
+				col.bSortable = true;
+			}
+		});
+
+		// Re-enable DataTables default click handlers
+		table.off('click.DT', 'thead th');
+
+		// Reset to default sort (frequency ascending)
+		table.order([2, 'asc']).draw();
+
+		// Redraw column headers to update sort icons
+		table.columns.adjust();
+
+		// Clear frequency gradient colors
+		clearFrequencyGradientColors();
+
+		console.log('Table sorting unlocked');
+	}
+
+	/**
+	 * Clear all frequency gradient colors from table rows
+	 */
+	function clearFrequencyGradientColors() {
+		var table = get_dtable();
+
+		table.rows().every(function() {
+			const row = this.node();
+			$(row).removeClass('cat-frequency-gradient');
+			$(row).css({
+				'--bs-table-bg': '',
+				'--bs-table-accent-bg': '',
+				'background-color': ''
+			});
+		});
+	}
+
 	// Toggle CAT Control
 	$('#toggleCatTracking').on('click', function() {
 		let btn = $(this);
@@ -3017,6 +3209,9 @@ $(function() {
 
 			// Re-enable band filter controls
 			enableBandFilterControls();
+
+			// Unlock table sorting
+			unlockTableSorting();
 		} else {
 			// Enable CAT Control
 			btn.removeClass('btn-secondary').addClass('btn-success');
@@ -3033,6 +3228,9 @@ $(function() {
 
 			// Disable band filter controls
 			disableBandFilterControls();
+
+			// Lock table sorting to frequency only
+			lockTableSortingToFrequency();
 
 			// Immediately apply current radio frequency if available
 			if (window.lastCATData && window.lastCATData.frequency) {

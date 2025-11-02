@@ -33,10 +33,12 @@
 				<h5 class="mb-0">DX Cluster - spot list</h5>
 			</div>
 			<div class="d-flex align-items-center gap-3">
-				<span class="fullscreen-wavelog-text" style="display: none; font-weight: 500; color: var(--bs-body-color);">www.wavelog.org</span>
-				<button type="button" class="btn btn-sm" id="fullscreenToggle" title="<?= __("Toggle Fullscreen"); ?>" style="background: none; border: none; padding: 0;">
-					<i class="fas fa-expand" id="fullscreenIcon" style="font-size: 1.2rem;"></i>
-				</button>
+				<a href="https://www.wavelog.org" target="_blank" class="fullscreen-wavelog-text" style="display: none; font-weight: 500; color: var(--bs-body-color); text-decoration: none;">www.wavelog.org</a>
+				<div id="fullscreenToggleWrapper" style="cursor: pointer; padding: 0.5rem; margin: -0.5rem;">
+					<button type="button" class="btn btn-sm" id="fullscreenToggle" title="<?= __("Toggle Fullscreen"); ?>" style="background: none; border: none; padding: 0.5rem;">
+						<i class="fas fa-expand" id="fullscreenIcon" style="font-size: 1.2rem;"></i>
+					</button>
+				</div>
 			</div>
 		</div>
 		<div class="card-body pt-1">

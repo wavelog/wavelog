@@ -153,6 +153,78 @@ tbody a {
 	transition: all 0.2s ease;
 }
 
+/* CAT Control - Locked Sorting */
+.spottable.cat-sorting-locked thead th {
+	cursor: not-allowed !important;
+	pointer-events: none;
+	opacity: 0.6;
+}
+
+.spottable.cat-sorting-locked thead th:hover {
+	background-color: transparent !important;
+}
+
+.spottable.cat-sorting-locked thead th.sorting_asc::after,
+.spottable.cat-sorting-locked thead th.sorting_desc::after {
+	opacity: 1 !important;
+}
+
+/* CAT Control - Frequency Gradient */
+.cat-frequency-gradient {
+	transition: background-color 0.3s ease, var(--bs-table-bg) 0.3s ease !important;
+}
+
+/* Force gradient background to override Bootstrap striping AND spot lifecycle colors - MAXIMUM SPECIFICITY */
+/* Override normal rows */
+table.table.table-sm.table-bordered.table-hover.table-striped.spottable tbody tr.cat-frequency-gradient,
+table.dataTable.table-striped tbody tr.cat-frequency-gradient,
+table.table-striped tbody tr.cat-frequency-gradient,
+.table-striped > tbody > tr.cat-frequency-gradient,
+table tbody tr.cat-frequency-gradient {
+	background-color: var(--bs-table-bg) !important;
+}
+
+/* Override expiring spots (red) */
+table.table.table-sm.table-bordered.table-hover.table-striped.spottable tbody tr.cat-frequency-gradient.spot-expiring,
+table.dataTable.table-striped tbody tr.cat-frequency-gradient.spot-expiring,
+table tbody tr.cat-frequency-gradient.spot-expiring {
+	background-color: var(--bs-table-bg) !important;
+}
+
+/* Override very new spots (green) */
+table.table.table-sm.table-bordered.table-hover.table-striped.spottable tbody tr.cat-frequency-gradient.spot-very-new,
+table.dataTable.table-striped tbody tr.cat-frequency-gradient.spot-very-new,
+table tbody tr.cat-frequency-gradient.spot-very-new {
+	background-color: var(--bs-table-bg) !important;
+}
+
+/* Override fresh spots - force gradient color over fresh blue */
+table.table.table-sm.table-bordered.table-hover.table-striped.spottable tbody tr.cat-frequency-gradient.fresh,
+table.dataTable.table-striped tbody tr.cat-frequency-gradient.fresh,
+table tbody tr.cat-frequency-gradient.fresh {
+	/* Override both the variable and background directly */
+	background-color: var(--bs-table-bg) !important;
+	/* Prevent .fresh class from setting its own --bs-table-bg */
+	transition: background-color 0.3s ease !important;
+}
+
+/* Override even and odd striping */
+table.table.table-sm.table-bordered.table-hover.table-striped.spottable tbody tr.cat-frequency-gradient:nth-of-type(odd),
+table.table.table-sm.table-bordered.table-hover.table-striped.spottable tbody tr.cat-frequency-gradient:nth-of-type(even),
+table.dataTable.table-striped tbody tr.cat-frequency-gradient:nth-of-type(odd),
+table.dataTable.table-striped tbody tr.cat-frequency-gradient:nth-of-type(even),
+table.table-striped tbody tr.cat-frequency-gradient:nth-of-type(odd),
+table.table-striped tbody tr.cat-frequency-gradient:nth-of-type(even),
+.table-striped > tbody > tr.cat-frequency-gradient:nth-of-type(odd),
+.table-striped > tbody > tr.cat-frequency-gradient:nth-of-type(even) {
+	--bs-table-accent-bg: transparent !important;
+	--bs-table-striped-bg: transparent !important;
+}
+
+.cat-frequency-gradient:hover {
+	filter: brightness(0.95);
+}
+
 /* Status bar styling */
 .status-bar {
 	font-size: 0.875rem;
@@ -299,6 +371,55 @@ tbody a {
 .spottable thead th {
 	font-size: calc(1rem - 1px);
 	vertical-align: middle;
+}
+
+/* Fullscreen toggle button wrapper - large clickable area */
+#fullscreenToggleWrapper {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	z-index: 10;
+	border-radius: 0.25rem;
+	transition: background-color 150ms ease;
+}
+
+#fullscreenToggleWrapper:hover {
+	background-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Fullscreen toggle button - ensure proper clickable area */
+#fullscreenToggle {
+	min-width: 48px;
+	min-height: 48px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer !important;
+	position: relative;
+	flex-shrink: 0;
+}
+
+#fullscreenToggle:hover {
+	background-color: transparent !important;
+}
+
+#fullscreenIcon {
+	pointer-events: none; /* Icon shouldn't intercept clicks */
+	font-size: 1.4rem !important; /* Make icon slightly bigger too */
+}
+
+/* Ensure wavelog text doesn't overlap button */
+.fullscreen-wavelog-text {
+	pointer-events: auto;
+	flex-shrink: 1;
+	white-space: nowrap;
+	cursor: pointer;
+}
+
+.fullscreen-wavelog-text:hover {
+	text-decoration: underline !important;
+	opacity: 0.8;
 }
 
 /* Fullscreen mode - CLEAN REBUILD */
