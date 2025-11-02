@@ -13,6 +13,69 @@ html {
 	padding-right: 0.4em;
 }
 
+/* Medal badge colors */
+.text-bg-gold {
+	background-color: #FFD700 !important;
+	color: #fff !important;
+	border: 1px solid #FFA500 !important;
+	text-shadow: 0 0 2px rgba(0,0,0,0.3);
+}
+
+.text-bg-silver {
+	background-color: #A8A8A8 !important;
+	color: #fff !important;
+	border: 1px solid #E0E0E0 !important;
+}
+
+.text-bg-bronze {
+	background-color: #CD7F32 !important;
+	color: #fff !important;
+	border: 1px solid #8B4513 !important;
+}
+
+/* Badge borders for all badge types */
+.badge.text-bg-success {
+	border: 1px solid #198754 !important;
+}
+
+.badge.text-bg-primary {
+	border: 1px solid #0a58ca !important;
+}
+
+.badge.text-bg-info {
+	border: 1px solid #087990 !important;
+}
+
+.badge.text-bg-warning {
+	border: 1px solid #cc9a06 !important;
+}
+
+.badge.text-bg-danger {
+	border: 1px solid #b02a37 !important;
+}
+
+.badge.text-bg-dark {
+	border: 1px solid #000 !important;
+}
+
+.badge.text-bg-secondary {
+	border: 1px solid #41464b !important;
+}
+
+/* Fix icon alignment in badges */
+.spottable .badge i {
+	vertical-align: middle;
+	line-height: 1;
+	display: inline-block;
+	text-align: center;
+	width: 100%;
+}
+
+/* Center medal icons specifically */
+.spottable .badge i.fa-medal {
+	margin-left: 1px;
+}
+
 .fresh {
 	transition: all 500ms ease;
 	--bs-table-bg: #3981b2;
@@ -117,16 +180,16 @@ tbody a {
 .spottable th:nth-child(2), .spottable td:nth-child(2) { width: 53px; }   /* Band */
 .spottable th:nth-child(3), .spottable td:nth-child(3) { width: 90px; }   /* Frequency */
 .spottable th:nth-child(4), .spottable td:nth-child(4) { width: 60px; }   /* Mode */
-.spottable th:nth-child(5), .spottable td:nth-child(5) { width: 120px; }  /* Callsign */
+.spottable th:nth-child(5), .spottable td:nth-child(5) { width: 115px; }  /* Callsign (reduced by 5px) */
 .spottable th:nth-child(6), .spottable td:nth-child(6) { width: 40px; }   /* Continent */
 .spottable th:nth-child(7), .spottable td:nth-child(7) { width: 50px; }   /* CQ Zone */
 .spottable th:nth-child(8), .spottable td:nth-child(8) { width: 50px; }   /* Flag */
 .spottable th:nth-child(9), .spottable td:nth-child(9) { width: 150px; }  /* Entity (DXCC name) */
 .spottable th:nth-child(10), .spottable td:nth-child(10) { width: 60px; } /* DXCC Number */
-.spottable th:nth-child(11), .spottable td:nth-child(11) { width: 120px; } /* de Callsign (Spotter) */
+.spottable th:nth-child(11), .spottable td:nth-child(11) { width: 115px; } /* de Callsign (Spotter) (reduced by 5px) */
 .spottable th:nth-child(12), .spottable td:nth-child(12) { width: 50px; } /* de Cont */
 .spottable th:nth-child(13), .spottable td:nth-child(13) { width: 50px; } /* de CQZ */
-.spottable th:nth-child(14), .spottable td:nth-child(14) { width: 110px; } /* Special (LoTW, POTA, etc) */
+.spottable th:nth-child(14), .spottable td:nth-child(14) { width: 120px; } /* Special (LoTW, POTA, etc) (increased by 10px) */
 .spottable th:nth-child(15), .spottable td:nth-child(15) { min-width: 100px; width: 100%; }  /* Message - fills remaining space */
 
 /* Hidden class for responsive columns (controlled by JavaScript) */
@@ -158,11 +221,13 @@ tbody a {
 	font-family: "Twemoji Country Flags", "Helvetica", "Comic Sans", sans-serif;
 	font-style: normal;
 	font-variant: normal;
+	font-size: 20px;
+	line-height: 1;
 }
 
 .spottable img.emoji {
-	height: 1.3em;
-	width: 1.3em;
+	height: 20px;
+	width: 20px;
 	margin: 0 .05em 0 .1em;
 	vertical-align: -0.25em;
 	display: inline-block;

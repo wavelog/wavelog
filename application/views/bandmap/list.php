@@ -116,7 +116,9 @@
 							<select id="requiredFlags" class="form-select form-select-sm filter-short" name="required_flags" multiple="multiple">
 								<option value="None" selected><?= __("None"); ?></option>
 								<option value="lotw"><?= __("LoTW User"); ?></option>
-								<option value="notworked"><?= __("Not worked before"); ?></option>
+								<option value="newcontinent"><?= __("New Continent"); ?></option>
+								<option value="newcountry"><?= __("New Country"); ?></option>
+								<option value="newcallsign"><?= __("New Callsign"); ?></option>
 								<option value="Contest"><?= __("Contest"); ?></option>
 							</select>
 							<label class="form-label d-block filter-label-small mt-3" for="additionalFlags"><?= __("Additional Flags"); ?></label>
@@ -227,6 +229,7 @@
 		<div class="d-flex flex-wrap gap-2 align-items-center">
 			<small class="text-muted me-1 flex-shrink-0"><?= __("de:"); ?></small>
 			<div class="btn-group flex-shrink-0" role="group">
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleAllContinentsFilter" title="<?= __("Select all continents"); ?>">All</button>
 				<button class="btn btn-sm btn-secondary" type="button" id="toggleAfricaFilter" title="<?= __("Toggle Africa continent filter"); ?>">AF</button>
 				<button class="btn btn-sm btn-secondary" type="button" id="toggleAntarcticaFilter" title="<?= __("Toggle Antarctica continent filter"); ?>">AN</button>
 				<button class="btn btn-sm btn-secondary" type="button" id="toggleAsiaFilter" title="<?= __("Toggle Asia continent filter"); ?>">AS</button>
@@ -293,22 +296,25 @@
 			<!-- Quick Filter Toggle Buttons -->
 			<div class="btn-group flex-shrink-0" role="group">
 				<button class="btn btn-sm btn-secondary" type="button" id="toggleLotwFilter" title="<?= __("Toggle LoTW User filter"); ?>">
-					<span>L</span> <span class="d-none d-sm-inline">LoTW users</span>
+					<i class="fas fa-upload"></i> <span class="d-none d-sm-inline">LoTW users</span>
 				</button>
-				<button class="btn btn-sm btn-secondary" type="button" id="toggleNotWorkedFilter" title="<?= __("Toggle Not Worked Before filter"); ?>">
-					<i class="fas fa-star"></i> <span class="d-none d-sm-inline">New callsign</span>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleNewContinentFilter" title="<?= __("Toggle New Continent filter"); ?>">
+					<i class="fas fa-medal" style="color: #FFD700;"></i> <span class="d-none d-sm-inline">Continent</span>
 				</button>
-				<button class="btn btn-sm btn-secondary" type="button" id="toggleDxccNeededFilter" title="<?= __("Toggle DXCC Needed filter"); ?>">
-					<i class="fas fa-globe"></i> <span class="d-none d-sm-inline">New DXCC</span>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleDxccNeededFilter" title="<?= __("Toggle New Country filter"); ?>">
+					<i class="fas fa-medal" style="color: #C0C0C0;"></i> <span class="d-none d-sm-inline">Country</span>
+				</button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleNewCallsignFilter" title="<?= __("Toggle New Callsign filter"); ?>">
+					<i class="fas fa-medal" style="color: #CD7F32;"></i> <span class="d-none d-sm-inline">Callsign</span>
 				</button>
 				<button class="btn btn-sm btn-secondary" type="button" id="toggleContestFilter" title="<?= __("Toggle Contest filter"); ?>">
-					<i class="fas fa-trophy"></i> <span class="d-none d-sm-inline">Contest Only</span>
+					<i class="fas fa-trophy"></i> <span class="d-none d-sm-inline">Contest</span>
 				</button>
 				<button class="btn btn-sm btn-secondary" type="button" id="toggleGeoHunterFilter" title="<?= __("Toggle Geo Hunter (POTA/SOTA/IOTA/WWFF)"); ?>">
-					<i class="fas fa-map-marked-alt"></i> <span class="d-none d-sm-inline">Ref. Hunter</span>
+					<i class="fas fa-hiking"></i> <span class="d-none d-sm-inline">Ref. Hunter</span>
 				</button>
 				<button class="btn btn-sm btn-secondary" type="button" id="toggleFreshFilter" title="<?= __("Toggle Fresh spots filter (< 5 minutes old)"); ?>">
-					<i class="fas fa-bolt"></i> <span class="d-none d-sm-inline">Fresh spots</span>
+					<i class="fas fa-bolt"></i> <span class="d-none d-sm-inline">Fresh</span>
 				</button>
 			</div>
 		</div>

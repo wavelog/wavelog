@@ -84,18 +84,25 @@ $(function() {
 			$('#toggleLotwFilter').removeClass('btn-success').addClass('btn-secondary');
 		}
 
-		// Not Worked button
-		if (requiredFlags.includes('notworked')) {
-			$('#toggleNotWorkedFilter').removeClass('btn-secondary').addClass('btn-success');
+		// New Continent button
+		if (requiredFlags.includes('newcontinent')) {
+			$('#toggleNewContinentFilter').removeClass('btn-secondary').addClass('btn-success');
 		} else {
-			$('#toggleNotWorkedFilter').removeClass('btn-success').addClass('btn-secondary');
+			$('#toggleNewContinentFilter').removeClass('btn-success').addClass('btn-secondary');
 		}
 
-		// DXCC Needed button
-		if (cwnValues.length === 1 && cwnValues[0] === 'notwkd') {
+		// New Country button (previously DXCC Needed)
+		if (requiredFlags.includes('newcountry')) {
 			$('#toggleDxccNeededFilter').removeClass('btn-secondary').addClass('btn-success');
 		} else {
 			$('#toggleDxccNeededFilter').removeClass('btn-success').addClass('btn-secondary');
+		}
+
+		// New Callsign button (previously Not Worked)
+		if (requiredFlags.includes('newcallsign')) {
+			$('#toggleNewCallsignFilter').removeClass('btn-secondary').addClass('btn-success');
+		} else {
+			$('#toggleNewCallsignFilter').removeClass('btn-success').addClass('btn-secondary');
 		}
 
 		// Contest button (now in Required Flags)
@@ -221,6 +228,15 @@ $(function() {
 		});
 
 		// Continent filter buttons - green if Any or selected, gray if not
+		// "All" button - green when all continents are selected
+		let $allContinentsBtn = $('#toggleAllContinentsFilter');
+		$allContinentsBtn.removeClass('btn-secondary btn-success');
+		if (allContinentsSelected) {
+			$allContinentsBtn.addClass('btn-success');
+		} else {
+			$allContinentsBtn.addClass('btn-secondary');
+		}
+
 		let continentButtons = [
 			{ id: '#toggleAfricaFilter', continent: 'AF' },
 			{ id: '#toggleAntarcticaFilter', continent: 'AN' },
@@ -702,8 +718,14 @@ $(function() {
 				if (reqFlag === 'lotw') {
 					if (!single.dxcc_spotted || !single.dxcc_spotted.lotw_user) return;
 				}
-				if (reqFlag === 'notworked') {
-					if (single.worked_call) return;  // Reject if already worked
+				if (reqFlag === 'newcontinent') {
+					if (single.worked_continent !== false) return;  // Only new continents
+				}
+				if (reqFlag === 'newcountry') {
+					if (single.worked_dxcc !== false) return;  // Only new countries
+				}
+				if (reqFlag === 'newcallsign') {
+					if (single.worked_call !== false) return;  // Only new callsigns
 				}
 				if (reqFlag === 'Contest') {
 					if (!single.dxcc_spotted || !single.dxcc_spotted.isContest) return;
@@ -811,67 +833,73 @@ $(function() {
 				wked_info = "";
 			}
 
-		// Build LoTW badge with color coding based on last upload age
-		var lotw_badge = '';
-		if (single.dxcc_spotted && single.dxcc_spotted.lotw_user) {
-			let lclass = '';
-			if (single.dxcc_spotted.lotw_user > 365) {
-				lclass = 'lotw_info_red';
-			} else if (single.dxcc_spotted.lotw_user > 30) {
-				lclass = 'lotw_info_orange';
-			} else if (single.dxcc_spotted.lotw_user > 7) {
-			lclass = 'lotw_info_yellow';
-		}
-		let lotw_title = 'LoTW User. Last upload was ' + single.dxcc_spotted.lotw_user + ' days ago';
-		lotw_badge = '<a id="lotw_badge" href="https://lotw.arrl.org/lotwuser/act?act=' + single.spotted + '" target="_blank" style="display: inline-flex; align-items: center; vertical-align: middle; text-decoration: none;">' + buildBadge('success ' + lclass, '', lotw_title, 'L') + '</a>';
+	// Build LoTW badge with color coding based on last upload age
+	var lotw_badge = '';
+	if (single.dxcc_spotted && single.dxcc_spotted.lotw_user) {
+		let lclass = '';
+		if (single.dxcc_spotted.lotw_user > 365) {
+			lclass = 'lotw_info_red';
+		} else if (single.dxcc_spotted.lotw_user > 30) {
+			lclass = 'lotw_info_orange';
+		} else if (single.dxcc_spotted.lotw_user > 7) {
+		lclass = 'lotw_info_yellow';
 	}
+	let lotw_title = 'LoTW User. Last upload was ' + single.dxcc_spotted.lotw_user + ' days ago';
+	lotw_badge = '<a href="https://lotw.arrl.org/lotwuser/act?act=' + single.spotted + '" target="_blank" onclick="event.stopPropagation();">' + buildBadge('success ' + lclass, 'fa-upload', lotw_title) + '</a>';
+}
 
 	// Build activity badges (POTA, SOTA, WWFF, IOTA, Contest, Worked)
-	let activity_flags = '';		if (single.dxcc_spotted && single.dxcc_spotted.pota_ref) {
-			let pota_title = 'POTA: ' + single.dxcc_spotted.pota_ref;
-			if (single.dxcc_spotted.pota_mode) {
-				pota_title += ' (' + single.dxcc_spotted.pota_mode + ')';
-			}
-			pota_title += ' - Click to view on POTA.app';
-			let pota_url = 'https://pota.app/#/park/' + single.dxcc_spotted.pota_ref;
-			activity_flags += '<a href="' + pota_url + '" target="_blank" onclick="event.stopPropagation();">' + buildBadge('success', 'fa-tree', pota_title) + '</a>';
+	let activity_flags = '';
+
+	if (single.dxcc_spotted && single.dxcc_spotted.pota_ref) {
+		let pota_title = 'POTA: ' + single.dxcc_spotted.pota_ref;
+		if (single.dxcc_spotted.pota_mode) {
+			pota_title += ' (' + single.dxcc_spotted.pota_mode + ')';
 		}
+		pota_title += ' - Click to view on POTA.app';
+		let pota_url = 'https://pota.app/#/park/' + single.dxcc_spotted.pota_ref;
+		activity_flags += '<a href="' + pota_url + '" target="_blank" onclick="event.stopPropagation();">' + buildBadge('success', 'fa-tree', pota_title) + '</a>';
+	}
 
-		if (single.dxcc_spotted && single.dxcc_spotted.sota_ref) {
-			let sota_title = 'SOTA: ' + single.dxcc_spotted.sota_ref + ' - Click to view on SOTL.as';
-			let sota_url = 'https://sotl.as/summits/' + single.dxcc_spotted.sota_ref;
-			activity_flags += '<a href="' + sota_url + '" target="_blank" onclick="event.stopPropagation();">' + buildBadge('primary', 'fa-mountain', sota_title) + '</a>';
+	if (single.dxcc_spotted && single.dxcc_spotted.sota_ref) {
+		let sota_title = 'SOTA: ' + single.dxcc_spotted.sota_ref + ' - Click to view on SOTL.as';
+		let sota_url = 'https://sotl.as/summits/' + single.dxcc_spotted.sota_ref;
+		activity_flags += '<a href="' + sota_url + '" target="_blank" onclick="event.stopPropagation();">' + buildBadge('primary', 'fa-mountain', sota_title) + '</a>';
+	}
+
+	if (single.dxcc_spotted && single.dxcc_spotted.wwff_ref) {
+		let wwff_title = 'WWFF: ' + single.dxcc_spotted.wwff_ref + ' - Click to view on WWFF.co';
+		let wwff_url = 'https://wwff.co/directory/?showRef=' + single.dxcc_spotted.wwff_ref;
+		activity_flags += '<a href="' + wwff_url + '" target="_blank" onclick="event.stopPropagation();">' + buildBadge('success', 'fa-leaf', wwff_title) + '</a>';
+	}
+
+	if (single.dxcc_spotted && single.dxcc_spotted.iota_ref) {
+		let iota_title = 'IOTA: ' + single.dxcc_spotted.iota_ref + ' - Click to view on IOTA-World.org';
+		let iota_url = 'https://www.iota-world.org/';
+		activity_flags += '<a href="' + iota_url + '" target="_blank" onclick="event.stopPropagation();">' + buildBadge('info', 'fa-water', iota_title) + '</a>';
+	}
+
+	if (single.dxcc_spotted && single.dxcc_spotted.isContest) {
+		activity_flags += buildBadge('warning', 'fa-trophy', 'Contest');
+	}
+
+	// Add "Fresh" badge for spots less than 5 minutes old
+	let ageMinutesCheck = single.age || 0;
+	let isFresh = ageMinutesCheck < 5;
+
+	if (single.worked_call) {
+		let worked_title = 'Worked Before';
+		if (single.last_wked && single.last_wked.LAST_QSO && single.last_wked.LAST_MODE) {
+			worked_title = 'Worked: ' + single.last_wked.LAST_QSO + ' in ' + single.last_wked.LAST_MODE;
 		}
+		let worked_badge_type = single.cnfmd_call ? 'success' : 'warning';
+		// isLast is true only if fresh badge won't be added
+		activity_flags += buildBadge(worked_badge_type, 'fa-check-circle', worked_title, null, !isFresh);
+	}
 
-		if (single.dxcc_spotted && single.dxcc_spotted.wwff_ref) {
-			let wwff_title = 'WWFF: ' + single.dxcc_spotted.wwff_ref + ' - Click to view on WWFF.co';
-			let wwff_url = 'https://wwff.co/directory/?showRef=' + single.dxcc_spotted.wwff_ref;
-			activity_flags += '<a href="' + wwff_url + '" target="_blank" onclick="event.stopPropagation();">' + buildBadge('success', 'fa-leaf', wwff_title) + '</a>';
-		}			if (single.dxcc_spotted && single.dxcc_spotted.iota_ref) {
-				activity_flags += buildBadge('info', 'fa-island-tropical', 'IOTA: ' + single.dxcc_spotted.iota_ref);
-			}
-
-		if (single.dxcc_spotted && single.dxcc_spotted.isContest) {
-			activity_flags += buildBadge('warning', 'fa-trophy', 'Contest');
-		}
-
-		// Add "Fresh" badge for spots less than 5 minutes old
-		let ageMinutesCheck = single.age || 0;
-		let isFresh = ageMinutesCheck < 5;
-
-		if (single.worked_call) {
-			let worked_title = 'Worked Before';
-			if (single.last_wked && single.last_wked.LAST_QSO && single.last_wked.LAST_MODE) {
-				worked_title = 'Worked: ' + single.last_wked.LAST_QSO + ' in ' + single.last_wked.LAST_MODE;
-			}
-			let worked_badge_type = single.cnfmd_call ? 'success' : 'warning';
-			// isLast is true only if fresh badge won't be added
-			activity_flags += buildBadge(worked_badge_type, 'fa-check-circle', worked_title, null, !isFresh);
-		}
-
-		if (isFresh) {
-			activity_flags += buildBadge('danger', 'fa-bolt', 'Fresh spot (< 5 minutes old)', null, true);
-		}		// Build table row array
+	if (isFresh) {
+		activity_flags += buildBadge('danger', 'fa-bolt', 'Fresh spot (< 5 minutes old)', null, true);
+	}		// Build table row array
 		data[0] = [];		// Age column: show age in minutes with auto-update attribute
 		let ageMinutes = single.age || 0;
 		let spotTimestamp = single.when ? new Date(single.when).getTime() : Date.now();
@@ -935,14 +963,25 @@ $(function() {
 		// de Cont column: spotter's continent
 		data[0].push(single.dxcc_spotter.cont || '');
 
-		// de CQZ column: spotter's CQ Zone
-		data[0].push(single.dxcc_spotter.cqz || '');
+	// de CQZ column: spotter's CQ Zone
+	data[0].push(single.dxcc_spotter.cqz || '');
 
-		// Special column: combine LoTW and activity badges
-		let flags_column = lotw_badge + activity_flags;
-		data[0].push(flags_column);
+	// Build medal badge - show only highest priority: continent > country > callsign
+	let medals = '';
+	if (single.worked_continent === false) {
+		// New Continent (not worked before) - Gold medal
+		medals += buildBadge('gold', 'fa-medal', 'New Continent');
+	} else if (single.worked_dxcc === false) {
+		// New DXCC (not worked before) - Silver medal
+		medals += buildBadge('silver', 'fa-medal', 'New Country');
+	} else if (single.worked_call === false) {
+		// New Callsign (not worked before) - Bronze medal
+		medals += buildBadge('bronze', 'fa-medal', 'New Callsign');
+	}
 
-		// Message column
+	// Special column: combine medals, LoTW and activity badges
+	let flags_column = medals + lotw_badge + activity_flags;
+	data[0].push(flags_column);		// Message column
 		data[0].push(single.message || '');
 
 			// Add row to table (with "fresh" class for new spots animation)
@@ -1040,8 +1079,14 @@ $(function() {
 					if (reqFlag === 'lotw') {
 						if (!spot.dxcc_spotted || !spot.dxcc_spotted.lotw_user) return;
 					}
-					if (reqFlag === 'notworked') {
-						if (spot.worked_call) return;
+					if (reqFlag === 'newcontinent') {
+						if (spot.worked_continent !== false) return;
+					}
+					if (reqFlag === 'newcountry') {
+						if (spot.worked_dxcc !== false) return;
+					}
+					if (reqFlag === 'newcallsign') {
+						if (spot.worked_call !== false) return;
 					}
 					if (reqFlag === 'Contest') {
 						if (!spot.dxcc_spotted || !spot.dxcc_spotted.isContest) return;
@@ -1317,9 +1362,9 @@ $(function() {
 	// isLast: if true, uses margin: 0 instead of negative margin
 	function buildBadge(type, icon, title, text = null, isLast = false) {
 		const margin = isLast ? '0' : '0 2px 0 0';
-		const fontSize = text ? '0.7rem' : '0.65rem';
-		const content = text ? text : '<i class="fas ' + icon + '"></i>';
-		return '<small class="badge text-bg-' + type + '" style="display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; padding: 0; margin: ' + margin + '; font-size: ' + fontSize + '; line-height: 1;" data-bs-toggle="tooltip" title="' + title + '">' + content + '</small>';
+		const fontSize = text ? '0.75rem' : '0.7rem';
+		const content = text ? text : '<i class="fas ' + icon + '" style="display: block;"></i>';
+		return '<small class="badge text-bg-' + type + '" style="display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; padding: 0; margin: ' + margin + '; font-size: ' + fontSize + '; line-height: 1;" data-bs-toggle="tooltip" title="' + title + '">' + content + '</small>';
 	}
 
 	// Map frequency (in kHz) to ham band name
@@ -2276,6 +2321,24 @@ $(function() {
 		applyFilters(false);
 	});
 
+	// "All" continents button - select all continents (de continent)
+	$('#toggleAllContinentsFilter').on('click', function() {
+		// Always set to "Any" to show "Any" selected in the filter popup
+		let currentValues = ['Any'];
+
+		$('#decontSelect').val(currentValues).trigger('change');
+		syncQuickFilterButtons();
+
+		// Update badge counts immediately (before debounced filter application)
+		updateBandCountBadges();
+
+		// Debounce the filter application (3 second cooldown)
+		clearTimeout(decontFilterTimeout);
+		decontFilterTimeout = setTimeout(function() {
+			applyFilters(false);
+		}, 3000);
+	});
+
 	// Continent filter buttons (spotter's continent - de continent)
 	$('#toggleAfricaFilter').on('click', function() {
 		let currentValues = $('#decontSelect').val() || [];
@@ -2493,22 +2556,22 @@ $(function() {
 		applyFilters(false);
 	});
 
-	// Toggle Not Worked Before filter
-	$('#toggleNotWorkedFilter').on('click', function() {
+	// Toggle New Continent filter
+	$('#toggleNewContinentFilter').on('click', function() {
 		let currentValues = $('#requiredFlags').val() || [];
 		let btn = $(this);
 
 		// Remove "None" if present
 		currentValues = currentValues.filter(v => v !== 'None');
 
-		if (currentValues.includes('notworked')) {
-			// Remove Not Worked filter
-			currentValues = currentValues.filter(v => v !== 'notworked');
+		if (currentValues.includes('newcontinent')) {
+			// Remove New Continent filter
+			currentValues = currentValues.filter(v => v !== 'newcontinent');
 			if (currentValues.length === 0) currentValues = ['None'];
 			btn.removeClass('btn-success').addClass('btn-secondary');
 		} else {
-			// Add Not Worked filter
-			currentValues.push('notworked');
+			// Add New Continent filter
+			currentValues.push('newcontinent');
 			btn.removeClass('btn-secondary').addClass('btn-success');
 		}
 
@@ -2516,22 +2579,49 @@ $(function() {
 		applyFilters(false);
 	});
 
-	// Toggle DXCC Needed filter (not worked DXCC)
+	// Toggle New Country filter (previously DXCC Needed)
 	$('#toggleDxccNeededFilter').on('click', function() {
-		let currentValues = $('#cwnSelect').val() || [];
+		let currentValues = $('#requiredFlags').val() || [];
 		let btn = $(this);
 
-		if (currentValues.length === 1 && currentValues[0] === 'notwkd') {
-			// Remove DXCC filter - reset to All
-			currentValues = ['All'];
+		// Remove "None" if present
+		currentValues = currentValues.filter(v => v !== 'None');
+
+		if (currentValues.includes('newcountry')) {
+			// Remove New Country filter
+			currentValues = currentValues.filter(v => v !== 'newcountry');
+			if (currentValues.length === 0) currentValues = ['None'];
 			btn.removeClass('btn-success').addClass('btn-secondary');
 		} else {
-			// Set DXCC filter to Not Worked only
-			currentValues = ['notwkd'];
+			// Add New Country filter
+			currentValues.push('newcountry');
 			btn.removeClass('btn-secondary').addClass('btn-success');
 		}
 
-		$('#cwnSelect').val(currentValues).trigger('change');
+		$('#requiredFlags').val(currentValues).trigger('change');
+		applyFilters(false);
+	});
+
+	// Toggle New Callsign filter (previously Not Worked Before)
+	$('#toggleNewCallsignFilter').on('click', function() {
+		let currentValues = $('#requiredFlags').val() || [];
+		let btn = $(this);
+
+		// Remove "None" if present
+		currentValues = currentValues.filter(v => v !== 'None');
+
+		if (currentValues.includes('newcallsign')) {
+			// Remove New Callsign filter
+			currentValues = currentValues.filter(v => v !== 'newcallsign');
+			if (currentValues.length === 0) currentValues = ['None'];
+			btn.removeClass('btn-success').addClass('btn-secondary');
+		} else {
+			// Add New Callsign filter
+			currentValues.push('newcallsign');
+			btn.removeClass('btn-secondary').addClass('btn-success');
+		}
+
+		$('#requiredFlags').val(currentValues).trigger('change');
 		applyFilters(false);
 	});
 
