@@ -429,6 +429,19 @@ $(function() {
 	let qrg = parseFloat(rowData[2]) * 1000000;  // Frequency in MHz, convert to Hz
 	let mode = rowData[3];  // Mode is column 4 (0-indexed = 3)
 
+	// Ctrl+click: Only tune radio, don't prepare logging form
+	if (e.ctrlKey || e.metaKey) {
+		if (isCatTrackingEnabled) {
+			tuneRadio(qrg, mode);
+		} else {
+			console.log('CAT Control is not enabled - cannot tune radio');
+			if (typeof showToast === 'function') {
+				showToast('CAT Control Required', 'Enable CAT Control to tune the radio', 'bg-warning text-dark', 3000);
+			}
+		}
+		return;
+	}
+
 	console.log('=== SEARCHING FOR SPOT DATA ===');
 	console.log('Looking for callsign:', call);
 	console.log('Row frequency (MHz):', rowData[2]);
@@ -1155,8 +1168,9 @@ $(function() {
 		updateBandCountBadges();
 
 		// Update CAT frequency gradient colors/borders after rendering if CAT is enabled
+		// Force update to ensure borders appear even if frequency hasn't changed
 		if (isCatTrackingEnabled && currentRadioFrequency) {
-			updateFrequencyGradientColors();
+			updateFrequencyGradientColors(true);
 		}
 
 		// Update status bar after render completes
@@ -2288,6 +2302,8 @@ $(function() {
 		let nearestBelow = null; // Spot below current frequency
 		let minDistanceAbove = Infinity;
 		let minDistanceBelow = Infinity;
+		let nearestAboveFreq = null; // Track frequency of nearest above
+		let nearestBelowFreq = null; // Track frequency of nearest below
 
 		// Iterate through all visible rows
 		table.rows({ search: 'applied' }).every(function() {
@@ -2307,13 +2323,24 @@ $(function() {
 			$(row).attr('data-spot-frequency', spotFreqKhz);
 
 			// Track nearest spots above and below current frequency
+			// For nearestAbove (gets BOTTOM border): use <= to select LAST occurrence (bottommost in group)
+			// For nearestBelow (gets TOP border): use < to select FIRST occurrence (topmost in group)
 			const distance = spotFreqKhz - currentRadioFrequency;
-			if (distance > 0 && distance < minDistanceAbove) {
-				minDistanceAbove = distance;
-				nearestAbove = row;
-			} else if (distance < 0 && Math.abs(distance) < minDistanceBelow) {
-				minDistanceBelow = Math.abs(distance);
-				nearestBelow = row;
+			if (distance > 0) {
+				// Spot is above current frequency
+				if (distance <= minDistanceAbove) {
+					minDistanceAbove = distance;
+					nearestAbove = row;
+					nearestAboveFreq = spotFreqKhz;
+				}
+			} else if (distance < 0) {
+				// Spot is below current frequency
+				const absDistance = Math.abs(distance);
+				if (absDistance < minDistanceBelow) {
+					minDistanceBelow = absDistance;
+					nearestBelow = row;
+					nearestBelowFreq = spotFreqKhz;
+				}
 			}
 
 			if (gradientColor) {
@@ -2334,8 +2361,6 @@ $(function() {
 				row.style.removeProperty('--bs-table-bg');
 				row.style.removeProperty('--bs-table-accent-bg');
 				row.style.removeProperty('background-color');
-				// Remove border markers (will be added back if needed)
-				$(row).removeClass('cat-nearest-above cat-nearest-below');
 			}
 		});
 
@@ -2343,21 +2368,46 @@ $(function() {
 		// NOTE: Table is sorted DESC, so higher frequencies appear at TOP, lower at BOTTOM
 		// Borders point TOWARD current frequency to create visual bracket
 		if (coloredCount === 0) {
+			// First, remove any existing border classes from all rows
+			table.rows().every(function() {
+				$(this.node()).removeClass('cat-nearest-above cat-nearest-below');
+			});
+
 			console.log('No spots colored - adding border indicators. Current freq:', currentRadioFrequency);
 			console.log('Nearest below:', nearestBelow, 'Distance:', minDistanceBelow, 'kHz');
 			console.log('Nearest above:', nearestAbove, 'Distance:', minDistanceAbove, 'kHz');
+
+			// DEBUG: Check how many rows match each frequency
+			if (nearestBelow) {
+				const belowFreq = $(nearestBelow).attr('data-spot-frequency');
+				const belowMatches = $('tr[data-spot-frequency="' + belowFreq + '"]');
+				console.log('DEBUG: Rows at nearest below freq (' + belowFreq + '):', belowMatches.length);
+			}
+			if (nearestAbove) {
+				const aboveFreq = $(nearestAbove).attr('data-spot-frequency');
+				const aboveMatches = $('tr[data-spot-frequency="' + aboveFreq + '"]');
+				console.log('DEBUG: Rows at nearest above freq (' + aboveFreq + '):', aboveMatches.length);
+			}
 
 			// Spot BELOW current freq (lower number) appears at BOTTOM of DESC table → TOP border points UP toward you
 			if (nearestBelow) {
 				$(nearestBelow).addClass('cat-nearest-below');
 				console.log('Added cat-nearest-below class (lower frequency, top border points up)');
+				// DEBUG: Verify only one row has the class
+				console.log('DEBUG: Total rows with cat-nearest-below:', $('.cat-nearest-below').length);
 			}
 			// Spot ABOVE current freq (higher number) appears at TOP of DESC table → BOTTOM border points DOWN toward you
 			if (nearestAbove) {
 				$(nearestAbove).addClass('cat-nearest-above');
 				console.log('Added cat-nearest-above class (higher frequency, bottom border points down)');
+				// DEBUG: Verify only one row has the class
+				console.log('DEBUG: Total rows with cat-nearest-above:', $('.cat-nearest-above').length);
 			}
 		} else {
+			// Remove border indicators when spots are in gradient range
+			table.rows().every(function() {
+				$(this.node()).removeClass('cat-nearest-above cat-nearest-below');
+			});
 			console.log('Spots colored:', coloredCount, '- no border indicators needed');
 		}
 	}	// Save reference to cat.js's updateCATui if it exists

@@ -233,30 +233,30 @@ table.table-striped tbody tr.cat-frequency-gradient:nth-of-type(even),
 table.spottable tbody tr.cat-nearest-below,
 table.dataTable tbody tr.cat-nearest-below,
 table tbody tr.cat-nearest-below {
-	border-top: 4px solid #8b5cf6 !important;
-	box-shadow: 0 -4px 0 0 #8b5cf6 !important;
+	border-top: 2px solid #8b5cf6 !important;
+	box-shadow: 0 -2px 0 0 #8b5cf6 !important;
 }
 
 /* Apply to td cells as well for border-collapse tables */
 table.spottable tbody tr.cat-nearest-below td,
 table.dataTable tbody tr.cat-nearest-below td,
 table tbody tr.cat-nearest-below td {
-	border-top: 4px solid #8b5cf6 !important;
+	border-top: 2px solid #8b5cf6 !important;
 }
 
 /* Spot ABOVE current frequency (higher number) appears at TOP of table → BOTTOM border points DOWN toward you */
 table.spottable tbody tr.cat-nearest-above,
 table.dataTable tbody tr.cat-nearest-above,
 table tbody tr.cat-nearest-above {
-	border-bottom: 4px solid #8b5cf6 !important;
-	box-shadow: 0 4px 0 0 #8b5cf6 !important;
+	border-bottom: 2px solid #8b5cf6 !important;
+	box-shadow: 0 2px 0 0 #8b5cf6 !important;
 }
 
 /* Apply to td cells as well for border-collapse tables */
 table.spottable tbody tr.cat-nearest-above td,
 table.dataTable tbody tr.cat-nearest-above td,
 table tbody tr.cat-nearest-above td {
-	border-bottom: 4px solid #8b5cf6 !important;
+	border-bottom: 2px solid #8b5cf6 !important;
 }
 
 /* Status bar styling */
@@ -274,12 +274,16 @@ table tbody tr.cat-nearest-above td {
 	display: flex;
 	align-items: center;
 	gap: 15px;
+	flex-wrap: nowrap;
 }
 
 .status-bar-left {
-	flex: 1;
+	flex: 1 1 auto;
 	min-width: 0;
 	font-weight: 500;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 #statusMessage {
@@ -296,6 +300,7 @@ table tbody tr.cat-nearest-above td {
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
+	white-space: nowrap;
 }
 
 .dataTables_wrapper {
