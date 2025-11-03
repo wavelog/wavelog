@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-11-02 15:03+0000\n"
+"POT-Creation-Date: 2025-11-02 17:30+0000\n"
 "PO-Revision-Date: 2025-11-01 05:39+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -37,8 +37,8 @@ msgstr ""
 #: application/controllers/Calltester.php:11
 #: application/controllers/Club.php:48 application/controllers/Club.php:74
 #: application/controllers/Club.php:122 application/controllers/Club.php:151
-#: application/controllers/Club.php:178 application/controllers/Clublog.php:88
-#: application/controllers/Clublog.php:147
+#: application/controllers/Club.php:178 application/controllers/Clublog.php:81
+#: application/controllers/Clublog.php:140
 #: application/controllers/Components.php:13
 #: application/controllers/Contestcalendar.php:15
 #: application/controllers/Contesting.php:14
@@ -71,8 +71,8 @@ msgstr ""
 #: application/controllers/Lookup.php:17 application/controllers/Lotw.php:44
 #: application/controllers/Lotw.php:79 application/controllers/Lotw.php:105
 #: application/controllers/Lotw.php:395 application/controllers/Lotw.php:418
-#: application/controllers/Lotw.php:773 application/controllers/Lotw.php:857
-#: application/controllers/Lotw.php:962 application/controllers/Mode.php:15
+#: application/controllers/Lotw.php:778 application/controllers/Lotw.php:862
+#: application/controllers/Lotw.php:967 application/controllers/Mode.php:15
 #: application/controllers/Notes.php:10 application/controllers/Options.php:14
 #: application/controllers/Oqrs.php:15 application/controllers/Oqrs.php:165
 #: application/controllers/Qrbcalc.php:13 application/controllers/Qrz.php:200
@@ -735,12 +735,12 @@ msgstr "Underhållsläge är aktivt. Försök igen senare."
 
 #: application/controllers/Clublog.php:44
 #: application/controllers/Clublog.php:70
-#: application/controllers/Clublog.php:130
-#: application/controllers/Clublog.php:167
+#: application/controllers/Clublog.php:123
+#: application/controllers/Clublog.php:160
 msgid "No user has configured Clublog."
 msgstr "Ingen användare har konfigurerat Clublog."
 
-#: application/controllers/Clublog.php:93
+#: application/controllers/Clublog.php:86
 #: application/controllers/Logbook.php:743
 #: application/views/awards/dok/index.php:72
 #: application/views/awards/dxcc/index.php:87
@@ -764,7 +764,7 @@ msgstr "Ingen användare har konfigurerat Clublog."
 msgid "Clublog"
 msgstr "Clublog"
 
-#: application/controllers/Clublog.php:149
+#: application/controllers/Clublog.php:142
 msgid "Clublog QSL Import"
 msgstr "Clublog QSL-import"
 
@@ -1862,48 +1862,48 @@ msgstr ""
 msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF-information"
 
-#: application/controllers/Lotw.php:830 application/controllers/Lotw.php:833
+#: application/controllers/Lotw.php:835 application/controllers/Lotw.php:838
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr "LoTW-inloggning misslyckades för användare %s: %s."
 
-#: application/controllers/Lotw.php:833
+#: application/controllers/Lotw.php:838
 msgid "Username/password incorrect"
 msgstr "Användarnamn/lösenord felaktigt"
 
-#: application/controllers/Lotw.php:836
+#: application/controllers/Lotw.php:841
 msgid "LoTW login OK!"
 msgstr "LoTW-inloggning OK!"
 
-#: application/controllers/Lotw.php:840
+#: application/controllers/Lotw.php:845
 msgid "LoTW currently not available. Try again later."
 msgstr "LoTW är för närvarande inte tillgänglig. Försök igen senare."
 
-#: application/controllers/Lotw.php:845
+#: application/controllers/Lotw.php:850
 msgid "No LoTW credentials provided."
 msgstr "Inga LoTW detaljer angivna."
 
-#: application/controllers/Lotw.php:863
+#: application/controllers/Lotw.php:868
 msgid "LoTW ADIF Import"
 msgstr "LoTW ADIF-import"
 
-#: application/controllers/Lotw.php:889 application/controllers/Lotw.php:997
+#: application/controllers/Lotw.php:894 application/controllers/Lotw.php:1002
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Du har inte angivit dina ARRL LoTW-uppgifter!"
 
-#: application/controllers/Lotw.php:964
+#: application/controllers/Lotw.php:969
 msgid "LoTW .TQ8 Upload"
 msgstr "LoTW .TQ8 uppladdning"
 
-#: application/controllers/Lotw.php:1042
+#: application/controllers/Lotw.php:1047
 msgid "Your ARRL username and/or password is incorrect."
 msgstr "Ditt ARRL-användarnamn och/eller lösenord är felaktigt."
 
-#: application/controllers/Lotw.php:1061 application/controllers/Lotw.php:1066
+#: application/controllers/Lotw.php:1066 application/controllers/Lotw.php:1071
 msgid "LoTW .TQ8 Sent"
 msgstr "LoTW .TQ8 skickad"
 
-#: application/controllers/Lotw.php:1073
+#: application/controllers/Lotw.php:1078
 msgid "LoTW .TQ8 Not Sent"
 msgstr "LoTW .TQ8 Ej skickad"
 
