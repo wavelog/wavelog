@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-11-01 06:00+0000\n"
-"PO-Revision-Date: 2025-11-02 13:50+0000\n"
+"PO-Revision-Date: 2025-11-03 03:27+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -10445,9 +10445,8 @@ msgstr "ポーリング"
 msgid ""
 "Periodic polling is slow. When operating locally, WebSockets are a more "
 "convenient way to control your radio in real-time."
-msgstr ""
-"定期的なポーリングは遅延が生じます。ローカル環境で動作させる場合、WebSockets"
-"はラジオをリアルタイムで制御するより便利な方法です。"
+msgstr "定期的なポーリングは遅延が生じます。ローカル環境で動作させる場合、WebSockets"
+"は無線機をリアルタイムで制御するより便利な方法です。"
 
 #: application/views/interface_assets/footer.php:117
 msgid "TX"
@@ -10487,11 +10486,11 @@ msgstr "ログインされていません。ログインしてください。"
 
 #: application/views/interface_assets/footer.php:127
 msgid "Radio Tuning Failed"
-msgstr "ラジオのチューニングに失敗しました"
+msgstr "無線機のチューニングに失敗しました"
 
 #: application/views/interface_assets/footer.php:128
 msgid "Failed to tune radio to"
-msgstr "ラジオをチューニングできませんでした"
+msgstr "無線機をチューニングできませんでした"
 
 #: application/views/interface_assets/footer.php:129
 msgid "CAT interface not responding. Please check your radio connection."
@@ -10503,7 +10502,7 @@ msgstr "この無線機にはCAT URLが設定されていません"
 
 #: application/views/interface_assets/footer.php:131
 msgid "WebSocket Radio"
-msgstr "WebSocketラジオ"
+msgstr "WebSocket Radio"
 
 #: application/views/interface_assets/footer.php:132
 msgid "Location is fetched from provided gridsquare"
@@ -12708,7 +12707,7 @@ msgstr "この数値は秒単位です。"
 
 #: application/views/options/sidebar.php:5
 msgid "Radios"
-msgstr "ラジオ"
+msgstr "無線機"
 
 #: application/views/options/version_dialog.php:47
 msgid "Version Info Header"
@@ -13839,7 +13838,7 @@ msgstr ""
 
 #: application/views/radio/index.php:20
 msgid "Active Radios"
-msgstr "アクティブラジオ"
+msgstr "アクティブな無線機"
 
 #: application/views/radio/index.php:23
 msgid "Below is a list of active radios that are connected to Wavelog."
@@ -13860,7 +13859,7 @@ msgstr "%s の使用方法については、ウィキでご確認いただけま
 
 #: application/views/radio/index.php:26
 msgid "radio functions"
-msgstr "ラジオ機能"
+msgstr "無線機の機能"
 
 #: application/views/radio/index.php:31
 msgid "Please wait..."
@@ -16246,11 +16245,11 @@ msgstr ""
 
 #: application/views/user/edit.php:980 application/views/user/edit.php:990
 msgid "Display only most recently updated radio"
-msgstr "最近更新されたラジオのみを表示する"
+msgstr "最近更新された無線機のみを表示する"
 
 #: application/views/user/edit.php:984 application/views/user/edit.php:994
 msgid "No, show all radios"
-msgstr "いいえ、すべてのラジオを表示"
+msgstr "いいえ、すべての無線機を表示"
 
 #: application/views/user/edit.php:986 application/views/user/edit.php:996
 msgid ""
@@ -16259,8 +16258,8 @@ msgid ""
 "recently updated one. In case you have only one radio, this setting has no "
 "effect."
 msgstr ""
-"複数のCATラジオを設定している場合、この設定でウィジェットにユーザーの運用中の"
-"ラジオをすべて表示するか、最新のラジオのみを表示するかを指定します。ラジオが1"
+"複数のCAT無線機を設定している場合、この設定でウィジェットにユーザーの運用中の"
+"無線機をすべて表示するか、最新の無線機のみを表示するかを指定します。無線機が1"
 "台しかない場合、この設定は無効です。"
 
 #: application/views/user/edit.php:996 application/views/user/edit.php:1006
