@@ -952,8 +952,8 @@ $(function() {
 	}
 
 	if (single.dxcc_spotted && single.dxcc_spotted.wwff_ref) {
-		let wwff_title = 'WWFF: ' + single.dxcc_spotted.wwff_ref + ' - Click to view on WWFF.co';
-		let wwff_url = 'https://wwff.co/directory/?showRef=' + single.dxcc_spotted.wwff_ref;
+		let wwff_title = 'WWFF: ' + single.dxcc_spotted.wwff_ref + ' - Click to view on cqgma.org';
+		let wwff_url = 'https://www.cqgma.org/zinfo.php?ref=' + single.dxcc_spotted.wwff_ref;
 		activity_flags += '<a href="' + wwff_url + '" target="_blank" onclick="event.stopPropagation();">' + buildBadge('success', 'fa-leaf', wwff_title) + '</a>';
 	}
 
