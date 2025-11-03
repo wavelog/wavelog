@@ -758,6 +758,7 @@ bc.onmessage = function (ev) {
 		console.log('Full ev.data:', ev.data);
 		console.log('Frequency:', ev.data.frequency);
 		console.log('Call:', ev.data.call);
+		console.log('Mode:', ev.data.mode);
 		console.log('POTA ref:', ev.data.pota_ref);
 		console.log('SOTA ref:', ev.data.sota_ref);
 		console.log('WWFF ref:', ev.data.wwff_ref);
@@ -788,6 +789,11 @@ bc.onmessage = function (ev) {
 			if (ev.data.frequency_rx != "") {
 				$('#frequency_rx').val(ev.data.frequency_rx);
 				$("#band_rx").val(frequencyToBand(ev.data.frequency_rx));
+			}
+			// Set mode if provided (backward compatible - optional field)
+			if (ev.data.mode) {
+				$("#mode").val(ev.data.mode);
+				console.log('Mode set to:', ev.data.mode);
 			}
 			$("#callsign").val(ev.data.call);
 			$("#callsign").focusout();

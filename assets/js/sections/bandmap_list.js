@@ -2092,6 +2092,17 @@ $(function() {
 			call: call
 		};
 
+		// Add mode with fallback to SSB (backward compatible - optional field)
+		if (mode) {
+			// Determine appropriate radio mode based on spot mode and frequency
+			message.mode = determineRadioMode(mode, qrg);
+			console.log('Added mode to message:', message.mode, '(from spot mode:', mode + ')');
+		} else {
+			// Fallback to SSB based on frequency
+			message.mode = qrg < 10000000 ? 'LSB' : 'USB';
+			console.log('No spot mode - using fallback:', message.mode);
+		}
+
 		// If radio is in split mode, include the RX frequency
 		if (window.lastCATData && window.lastCATData.frequency_rx) {
 			message.frequency_rx = window.lastCATData.frequency_rx;
