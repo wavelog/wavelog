@@ -490,6 +490,11 @@ table tbody tr.cat-nearest-above td {
 	flex-direction: column;
 }
 
+/* Reduce card header padding for more compact appearance */
+.card-header {
+	padding: 0.25rem 1rem !important;
+}
+
 .bandmap-fullscreen .card-header {
 	flex: 0 0 auto;
 }
