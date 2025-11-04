@@ -1646,6 +1646,10 @@ $("#callsign").on("focusout", function () {
 				$('#saveQso').prop('disabled', false);
 				$('#fetch_status').hide();
 			}
+
+			// Trigger custom event to notify that callsign lookup is complete
+			$(document).trigger('callsignLookupComplete');
+
 			// else {
 			// 	console.log("Callsigns do not match, skipping lookup");
 			// 	console.log("Typed Callsign: " + $('#callsign').val());
@@ -2621,7 +2625,18 @@ function resetDefaultQSOFields() {
 	$('#qth').val("");
 	$('#locator').val("");
 	$('#iota_ref').val("");
-	$('#sota_ref').val("");
+
+	// Clear Selectize fields properly
+	if ($('#sota_ref')[0] && $('#sota_ref')[0].selectize) {
+		$('#sota_ref')[0].selectize.clear();
+	}
+	if ($('#pota_ref')[0] && $('#pota_ref')[0].selectize) {
+		$('#pota_ref')[0].selectize.clear();
+	}
+	if ($('#wwff_ref')[0] && $('#wwff_ref')[0].selectize) {
+		$('#wwff_ref')[0].selectize.clear();
+	}
+
 	$("#locator").removeClass("workedGrid");
 	$("#locator").removeClass("confirmedGrid");
 	$("#locator").removeClass("newGrid");
