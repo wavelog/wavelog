@@ -528,4 +528,86 @@ class Stationsetup extends CI_Controller {
 		$this->load->view('stationsetup/locationlist');
 		$this->load->view('interface_assets/footer');
 	}
+
+	public function export_locations() {
+		$this->load->model('stationsetup_model');
+
+		$locations = $this->stationsetup_model->list_all_locations();
+
+		// Output as JSON
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode($locations));
+	}
+
+	public function import_locations(){
+		if (empty($_FILES['file']['tmp_name'])) {
+			$this->output
+				->set_content_type('application/json')
+				->set_output(json_encode(['status' => 'error', 'message' => 'No file uploaded']));
+			return;
+		}
+
+		$fileContent = file_get_contents($_FILES['file']['tmp_name']);
+		$locations = json_decode($fileContent, true);
+
+		if ($locations === null) {
+			$this->output
+				->set_content_type('application/json')
+				->set_output(json_encode(['status' => 'error', 'message' => 'Invalid JSON file']));
+			return;
+		}
+
+		// Load your model
+		$this->load->model('stationsetup_model');
+
+		$imported = 0;
+		foreach ($locations as $loc) {
+			// Data for station_profile
+			$dbdata = [
+				'station_active'        => 0,
+				'station_profile_name'  => $loc['station_profile_name'] ?? null,
+				'station_gridsquare'    => $loc['station_gridsquare'] ?? null,
+				'station_city'          => $loc['station_city'] ?? null,
+				'station_iota'          => $loc['station_iota'] ?? null,
+				'station_sota'          => $loc['station_sota'] ?? null,
+				'station_callsign'      => $loc['station_callsign'] ?? null,
+				'station_power'         => $loc['station_power'] ?? null,
+				'station_dxcc'          => $loc['station_dxcc'] ?? null,
+				'station_cq'            => $loc['station_cq'] ?? null,
+				'station_itu'           => $loc['station_itu'] ?? null,
+				'station_sig'           => $loc['station_sig'] ?? null,
+				'station_sig_info'      => $loc['station_sig_info'] ?? null,
+				'station_wwff'          => $loc['station_wwff'] ?? null,
+				'station_pota'          => $loc['station_pota'] ?? null,
+				'state'                 => $loc['state'] ?? null,
+				'station_cnty'          => $loc['station_cnty'] ?? null,
+				'qrzrealtime'           => $loc['qrzrealtime'] ?? 0,
+				'oqrs'                  => $loc['oqrs'] ?? 0,
+				'oqrs_text'             => $loc['oqrs_text'] ?? null,
+				'oqrs_email'            => $loc['oqrs_email'] ?? null,
+				'webadifrealtime'       => $loc['webadifrealtime'] ?? null,
+				'clublogignore'         => $loc['clublogignore'] ?? 1,
+				'clublogrealtime'       => $loc['clublogrealtime'] ?? 0,
+				'hrdlogrealtime'        => $loc['hrdlogrealtime'] ?? 0,
+				'hrdlog_username'       => $loc['hrdlog_username'] ?? null,
+				'eqslqthnickname'       => $loc['eqslqthnickname'] ?? null,
+				'webadifapiurl'         => 'https://qo100dx.club/api',
+				'user_id'               => $this->session->userdata('user_id'),
+			];
+
+			// Data for user_options
+			$optiondata = [
+				'eqsl_default_qslmsg' => $loc['eqsl_default_qslmsg'] ?? null,
+			];
+
+			// Insert or update location in DB
+			$imported += $this->stationsetup_model->save_location($dbdata, $optiondata);
+		}
+
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(['status' => 'success', 'message' => "$imported locations imported."]));
+	}
+
 }

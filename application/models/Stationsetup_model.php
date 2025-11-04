@@ -234,7 +234,7 @@ class Stationsetup_model extends CI_Model {
 	}
 
 	function list_all_locations() {
-		$sql = "select dxcc_entities.end, station_profile.station_id, station_profile_name, station_gridsquare, station_city, station_iota, station_sota, station_callsign, station_power, station_dxcc, dxcc_entities.name as dxccname, dxcc_entities.prefix as dxccprefix, station_cnty, station_cq, station_itu, station_active, eqslqthnickname, state, county, station_sig, station_sig_info, qrzrealtime, station_wwff, station_pota, oqrs, oqrs_text, oqrs_email, webadifrealtime, clublogrealtime, clublogignore, hrdlogrealtime, creation_date, last_modified
+		$sql = "select dxcc_entities.end, station_profile.station_id, station_profile_name, station_profile.hrdlog_username, station_gridsquare, station_city, station_iota, station_sota, station_callsign, station_power, station_dxcc, dxcc_entities.name as dxccname, dxcc_entities.prefix as dxccprefix, station_cnty, station_cq, station_itu, station_active, eqslqthnickname, state, county, station_sig, station_sig_info, qrzrealtime, station_wwff, station_pota, oqrs, oqrs_text, oqrs_email, webadifrealtime, clublogrealtime, clublogignore, hrdlogrealtime, creation_date, last_modified
 		from station_profile
 		join dxcc_entities on station_profile.station_dxcc = dxcc_entities.adif
 		where user_id = ?";
@@ -254,6 +254,66 @@ class Stationsetup_model extends CI_Model {
 
 		return $result;
 	}
+
+	public function save_location($dbdata, $optiondata) {
+		// Make sure we have the needed fields
+		if (empty($dbdata['station_profile_name']) || empty($dbdata['station_callsign'])) {
+			return false;
+		}
+
+		// Check if a location exists with same parameters
+		$sql = "
+			SELECT *
+			FROM station_profile
+			WHERE station_profile_name = ?
+			AND station_callsign = ?
+			AND station_gridsquare = ?
+			AND station_city = ?
+			AND station_iota = ?
+			AND station_sota = ?
+			AND state = ?
+			AND station_cnty = ?
+			AND station_dxcc = ?
+			AND station_wwff = ?
+			AND station_pota = ?
+			AND station_sig = ?
+			AND station_sig_info = ?
+			AND user_id = ?;
+		";
+
+		$query = $this->db->query($sql, [
+			$dbdata['station_profile_name'],
+			$dbdata['station_callsign'],
+			$dbdata['station_gridsquare'],
+			$dbdata['station_city'],
+			$dbdata['station_iota'],
+			$dbdata['station_sota'],
+			$dbdata['state'],
+			$dbdata['station_cnty'],
+			$dbdata['station_dxcc'],
+			$dbdata['station_wwff'],
+			$dbdata['station_pota'],
+			$dbdata['station_sig'],
+			$dbdata['station_sig_info'],
+			$this->session->userdata('user_id')
+		]);
+
+		if ($query->num_rows() > 0) {
+			// Location already exists
+			return 0;
+		} else {
+			// Insert new location
+			$this->db->insert('station_profile', $dbdata);
+			$location_id = $this->db->insert_id();
+
+			if (!empty(trim($optiondata['eqsl_default_qslmsg']))) {
+				$this->user_options_model->set_option('eqsl_default_qslmsg', 'key_station_id', array($location_id => $optiondata['eqsl_default_qslmsg']));
+			}
+		}
+
+		return 1;
+	}
+
 }
 
 ?>

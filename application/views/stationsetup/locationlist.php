@@ -1,3 +1,4 @@
+<div class="container-fluid pt-3 ps-4 pe-4">
 <h2><?= $page_title ?></h2>
 
     <?php if (!empty($locations)): ?>
@@ -33,6 +34,7 @@
                         <th>ClubLog realtime upload</th>
                         <th>ClubLog Ignore</th>
                         <th>HRDLog realtime upload</th>
+						<th>HRDLog username</th>
                         <th>Created</th>
                         <th>Last Modified</th>
                     </tr>
@@ -72,6 +74,7 @@
                             <td><?php echo $loc->clublogrealtime ? 'Yes' : 'No' ?></td>
                             <td><?php echo $loc->clublogignore ? 'Yes' : 'No' ?></td>
                             <td><?php echo $loc->hrdlogrealtime ? 'Yes' : 'No' ?></td>
+                            <td><?php echo $loc->hrdlog_username; ?></td>
                             <td><?php echo $loc->creation_date; ?></td>
                             <td><?php echo $loc->last_modified; ?></td>
                         </tr>
@@ -85,27 +88,114 @@
 </div>
 <script>
 	document.addEventListener("DOMContentLoaded", function() {
-                $('.table').DataTable({
-                    "pageLength": 25,
-                    responsive: false,
-                    ordering: true,
-                    "scrollY": window.innerHeight - 250,
-                    "scrollCollapse": true,
-                    "paging": false,
-                    "scrollX": true,
-                    "language": {
-                        url: getDataTablesLanguageUrl(),
-                    },
-                    dom: 'Bfrtip',
-                    buttons: [
-						{
-							extend: 'csv',
-							className: 'mb-1 btn btn-sm btn-primary', // Bootstrap classes
-								init: function(api, node, config) {
-									$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
-								},
-						}
-                    ]
-                });
-});
+		$('.table').DataTable({
+			"pageLength": 25,
+			responsive: false,
+			ordering: true,
+			"scrollY": window.innerHeight - 250,
+			"scrollCollapse": true,
+			"paging": false,
+			"scrollX": true,
+			"language": {
+				url: getDataTablesLanguageUrl(),
+			},
+			dom: 'Bfrtip',
+			buttons: [
+				{
+					extend: 'csv',
+					className: 'mb-1 btn btn-sm btn-primary',
+					init: function(api, node, config) {
+						$(node).removeClass('dt-button').addClass('btn btn-primary');
+					},
+				},
+				{
+					text: 'Export All Locations',
+					className: 'mb-1 btn btn-sm btn-primary', // same Bootstrap style
+					action: function(e, dt, node, config) {
+						exportAllLocations();
+					},
+					init: function(api, node, config) {
+						$(node).removeClass('dt-button').addClass('btn btn-primary');
+					}
+				},
+				{
+				text: 'Import Locations',
+				className: 'mb-1 btn btn-sm btn-primary',
+				action: function(e, dt, node, config) {
+					// Create a hidden file input (accept JSON)
+					const input = document.createElement('input');
+					input.type = 'file';
+					input.accept = 'application/json';
+					input.style.display = 'none';
+
+					input.addEventListener('change', function(event) {
+						const file = event.target.files[0];
+						if (!file) return;
+
+						const formData = new FormData();
+						formData.append('file', file);
+
+						const url = base_url + 'index.php/stationsetup/import_locations';
+
+						fetch(url, {
+							method: 'POST',
+							body: formData
+						})
+						.then(response => response.json())
+						.then(result => {
+							console.log("Import result:", result);
+							showToast('Info', result.message || "Import completed successfully!", 'bg-info text-dark', 4000);
+						})
+						.catch(error => {
+							console.error("Import failed:", error);
+							showToast('Error', 'Import failed. Check console for details.', 'bg-danger text-white', 5000);
+						});
+					});
+
+					document.body.appendChild(input);
+					input.click(); // Trigger file chooser
+					document.body.removeChild(input);
+				},
+				init: function(api, node, config) {
+					$(node).removeClass('dt-button').addClass('btn btn-primary');
+				}
+			}
+
+			]
+		});
+	});
+
+	function exportAllLocations() {
+		const url = base_url + 'index.php/stationsetup/export_locations';
+
+		fetch(url)
+			.then(response => {
+				if (!response.ok) {
+					showToast('Error', 'Network response was not ok (${response.status})', 'bg-danger text-white', 5000);
+				}
+				return response.json();
+			})
+			.then(data => {
+				// Convert JSON to string
+				const jsonStr = JSON.stringify(data, null, 2);
+
+				// Create a downloadable blob
+				const blob = new Blob([jsonStr], { type: "application/json" });
+				const link = document.createElement("a");
+				link.href = URL.createObjectURL(blob);
+				link.download = "locations.json";
+
+				// Trigger download
+				document.body.appendChild(link);
+				link.click();
+				document.body.removeChild(link);
+			})
+			.catch(error => {
+				showToast('Error', 'Failed to export locations. Check console for details.', 'bg-danger text-white', 5000);
+			});
+	}
+
+
+
 </script>
+</div>
