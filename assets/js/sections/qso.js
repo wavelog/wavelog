@@ -2238,9 +2238,6 @@ $('#band').on('change', function () {
 		return;
 	}
 
-	// Clear the QSO form when band is manually changed
-	$('#btn_reset').click();
-
 	// Set flag to prevent waterfall from auto-reverting the band change
 	if (typeof dxWaterfall !== 'undefined') {
 		dxWaterfall.userChangedBand = true;
