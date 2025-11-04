@@ -242,6 +242,7 @@ class Stationsetup_model extends CI_Model {
 		$query = $this->db->query($sql, array($this->session->userdata('user_id')));
 
 		$result = $query->result();
+		$this->load->model('user_options_model');
 
 		foreach($result as $location) {
 			$options_object = $this->user_options_model->get_options('eqsl_default_qslmsg', array('option_name' => 'key_station_id', 'option_key' => $location->station_id))->result();
@@ -307,6 +308,7 @@ class Stationsetup_model extends CI_Model {
 			$location_id = $this->db->insert_id();
 
 			if (!empty(trim($optiondata['eqsl_default_qslmsg']))) {
+				$this->load->model('user_options_model');
 				$this->user_options_model->set_option('eqsl_default_qslmsg', 'key_station_id', array($location_id => $optiondata['eqsl_default_qslmsg']));
 			}
 		}
