@@ -563,6 +563,12 @@ class Stationsetup extends CI_Controller {
 
 		$imported = 0;
 		foreach ($locations as $loc) {
+			if ($imported >= 1000){
+				$this->output
+				->set_content_type('application/json')
+				->set_output(json_encode(['status' => 'success', 'message' => "$imported locations imported. Maximum limit of 1000 locations reached."]));
+				return; // Prevent importing more than 1000 locations at once
+			}
 			// Data for station_profile
 			$dbdata = [
 				'station_active'        => 0,
