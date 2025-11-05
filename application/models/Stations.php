@@ -160,6 +160,7 @@ class Stations extends CI_Model {
 			'webadifapikey' => xss_clean($this->input->post('webadifapikey', true)),
 			'webadifapiurl' => 'https://qo100dx.club/api',
 			'webadifrealtime' => xss_clean($this->input->post('webadifrealtime', true)),
+			'station_uuid' => $this->db->query("SELECT UUID() as uuid")->row()->uuid,
 		);
 
 		// Insert Records & return insert id //
