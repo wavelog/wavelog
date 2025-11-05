@@ -151,7 +151,9 @@ class Logbookadvanced extends CI_Controller {
 			'continent' => xss_clean($this->input->post('continent')),
 			'comment' => xss_clean($this->input->post('comment')),
 			'qsoids' => xss_clean($this->input->post('qsoids')),
-			'dok' => xss_clean($this->input->post('dok'))
+			'dok' => xss_clean($this->input->post('dok')),
+			'qrzSent' => xss_clean($this->input->post('qrzSent')),
+			'qrzReceived' => xss_clean($this->input->post('qrzReceived'))
 		);
 	}
 
@@ -374,6 +376,8 @@ class Logbookadvanced extends CI_Controller {
 			'continent' => '',
 			'comment' => '*',
 			'dok' => '*',
+			'qrzSent' => '',
+			'qrzReceived' => '',
 			'ids' => json_decode(xss_clean($this->input->post('ids'))),
 			'qsoids' => xss_clean($this->input->post('qsoids'))
 		);

@@ -578,6 +578,24 @@ $options = json_decode($options);
                                             <option value="N"><?= __("No"); ?></option>
                                         </select>
                                     </div>
+									<div <?php if (($options->qrz->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
+                                        <label for="qrzSent"><?= __("QRZ sent"); ?></label>
+                                        <select id="qrzSent" name="qrzSent" class="form-select form-select-sm border border-secondary">
+                                            <option value=""><?= __("All"); ?></option>
+                                            <option value="Y"><?= __("Yes"); ?></option>
+                                            <option value="N"><?= __("No"); ?></option>
+                                            <option value="I"><?= __("Invalid (Ignore)"); ?></option>
+                                        </select>
+                                    </div>
+                                    <div <?php if (($options->qrz->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
+                                        <label for="qrzReceived"><?= __("QRZ received"); ?></label>
+                                        <select id="qrzReceived" name="qrzReceived" class="form-select form-select-sm border border-secondary">
+                                            <option value=""><?= __("All"); ?></option>
+                                            <option value="Y"><?= __("Yes"); ?></option>
+                                            <option value="N"><?= __("No"); ?></option>
+                                            <option value="I"><?= __("Invalid (Ignore)"); ?></option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>

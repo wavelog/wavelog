@@ -238,6 +238,25 @@ class Logbookadvanced_model extends CI_Model {
 			$binding[] = $searchCriteria['dclReceived'];
 		}
 
+		if ($searchCriteria['qrzSent'] !== '') {
+			$condition = "COL_QRZCOM_QSO_UPLOAD_STATUS = ?";
+			if ($searchCriteria['qrzSent'] == 'N') {
+				$condition = '('.$condition;
+				$condition .= " OR COL_QRZCOM_QSO_UPLOAD_STATUS IS NULL OR COL_QRZCOM_QSO_UPLOAD_STATUS = '')";
+			}
+			$conditions[] = $condition;
+			$binding[] = $searchCriteria['qrzSent'];
+		}
+		if ($searchCriteria['qrzReceived'] !== '') {
+			$condition = "COL_QRZCOM_QSO_DOWNLOAD_STATUS = ?";
+			if ($searchCriteria['qrzReceived'] == 'N') {
+				$condition = '('.$condition;
+				$condition .= " OR COL_QRZCOM_QSO_DOWNLOAD_STATUS IS NULL OR COL_QRZCOM_QSO_DOWNLOAD_STATUS = '')";
+			}
+			$conditions[] = $condition;
+			$binding[] = $searchCriteria['qrzReceived'];
+		}
+
         if ($searchCriteria['iota'] !== '') {
 			$conditions[] = "COL_IOTA = ?";
 			$binding[] = $searchCriteria['iota'];
@@ -439,11 +458,14 @@ class Logbookadvanced_model extends CI_Model {
 			$where = "AND $where";
 		}
 
-		$limit = '';
-
-		if ($searchCriteria['qsoresults'] != 'All') {
-			$limit = 'limit ' . $searchCriteria['qsoresults'];
+		$limit = $searchCriteria['qsoresults'];
+		// Ensure limit has a valid value, default to 250 if empty or invalid
+		if (empty($limit) || !is_numeric($limit) || $limit <= 0) {
+			$limit = 250;
 		}
+
+		// Create a version of $where for the inner subquery with proper table alias
+		$whereInner = str_replace('qsos.', 'qsos_inner.', $where);
 
 		$where2 = '';
 
@@ -458,18 +480,25 @@ class Logbookadvanced_model extends CI_Model {
 
 		$sql = "
 			SELECT qsos.*, dxcc_entities.*, lotw_users.*, station_profile.*, satellite.*, dxcc_entities.name as dxccname, mydxcc.name AS station_country, exists(select 1 from qsl_images where qsoid = qsos.COL_PRIMARY_KEY) as qslcount, coalesce(contest.name, qsos.col_contest_id) as contestname
-			FROM " . $this->config->item('table_name') . " qsos
+			FROM (
+				SELECT qsos_inner.COL_PRIMARY_KEY
+				FROM " . $this->config->item('table_name') . " qsos_inner
+				INNER JOIN station_profile sp_inner ON qsos_inner.station_id = sp_inner.station_id
+				WHERE sp_inner.user_id = ?
+				$whereInner
+				ORDER BY qsos_inner.COL_TIME_ON desc, qsos_inner.COL_PRIMARY_KEY desc
+				LIMIT $limit
+			) AS FilteredIDs
+			INNER JOIN " . $this->config->item('table_name') . " qsos ON qsos.COL_PRIMARY_KEY = FilteredIDs.COL_PRIMARY_KEY
 			INNER JOIN station_profile ON qsos.station_id=station_profile.station_id
 			LEFT OUTER JOIN satellite ON qsos.col_prop_mode='SAT' and qsos.COL_SAT_NAME = COALESCE(NULLIF(satellite.name, ''), NULLIF(satellite.displayname, ''))
 			LEFT OUTER JOIN dxcc_entities ON qsos.col_dxcc = dxcc_entities.adif
 			left outer join dxcc_entities mydxcc on qsos.col_my_dxcc = mydxcc.adif
 			LEFT OUTER JOIN lotw_users ON qsos.col_call = lotw_users.callsign
 			LEFT OUTER JOIN contest ON qsos.col_contest_id = contest.adifname
-			WHERE station_profile.user_id =  ?
-			$where
+			where 1 = 1
 			$where2
 			ORDER BY qsos.COL_TIME_ON desc, qsos.COL_PRIMARY_KEY desc
-			$limit
 		";
 		return $this->db->query($sql, $binding);
 
