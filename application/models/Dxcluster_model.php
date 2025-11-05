@@ -563,18 +563,35 @@ class Dxcluster_model extends CI_Model {
 
 		// Contest detection - use class property instead of creating array each time
 		if (!$spot->dxcc_spotted->isContest) {
-			// Check for contest keywords using optimized strpbrk-like approach
+			// More strict contest detection - require clear indicators
+
+			// Method 1: Explicit contest keywords with word boundaries
 			foreach ($this->contestIndicators as $indicator) {
-				if (strpos($upperMessage, $indicator) !== false) {
+				// Use word boundary to avoid matching "CQ DX" in "CQ DX Americas" (which is just a CQ call)
+				if (preg_match('/\b' . preg_quote($indicator, '/') . '\b/', $upperMessage)) {
+					// Additional check: avoid false positives from generic "CQ" messages
+					if ($indicator === 'DX CONTEST' && preg_match('/^CQ\s+DX\s+[A-Z]+$/i', trim($message))) {
+						continue; // Skip "CQ DX <region>" patterns
+					}
 					$spot->dxcc_spotted->isContest = true;
-					return $spot; // Early exit once contest detected
+					$spot->dxcc_spotted->contestName = $indicator;
+					return $spot;
 				}
 			}
 
-			// Additional heuristic: Check for typical contest exchange patterns
-			// Match RST + serial number patterns OR zone/state exchanges in single regex
-			if (preg_match('/\b(?:(?:599|59|5NN)\s+[0-9A-Z]{2,4}|CQ\s+[0-9A-Z]{1,3})\b/', $upperMessage)) {
-				$spot->dxcc_spotted->isContest = true;
+			// Method 2: Contest exchange pattern - must have RST AND serial AND no conversational words
+			// Exclude spots with conversational indicators (TU, TNX, 73, GL, etc.)
+			$conversational = '/\b(TU|TNX|THANKS|73|GL|HI|FB|CUL|HPE|PSE|DE)\b/';
+
+			if (!preg_match($conversational, $upperMessage)) {
+				// Look for typical contest exchange: RST + number (but not just any 599)
+				// Must be followed by more structured exchange (not just "ur 599")
+				if (preg_match('/\b(?:599|5NN)\s+(?:TU\s+)?[0-9]{2,4}\b/', $upperMessage) &&
+					!preg_match('/\bUR\s+599\b/', $upperMessage)) {
+					$spot->dxcc_spotted->isContest = true;
+					$spot->dxcc_spotted->contestName = 'CONTEST';
+					return $spot;
+				}
 			}
 		}
 

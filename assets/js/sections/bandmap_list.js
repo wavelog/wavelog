@@ -1976,10 +1976,13 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 	});
 
 	$("#clearFiltersButton").on("click", function() {
+		// Preserve current band selection if CAT Control is enabled
+		let currentBand = isCatTrackingEnabled ? $('#band').val() : null;
+
 		$('#cwnSelect').val(['All']);
 		$('#decontSelect').val(['Any']);
 		$('#continentSelect').val(['Any']);
-		$('#band').val(['All']);
+		$('#band').val(currentBand || ['All']); // Preserve band if CAT is enabled
 		$('#mode').val(['All']);
 		$('#additionalFlags').val(['All']);
 		$('#requiredFlags').val([]);
@@ -2001,17 +2004,23 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 		updateFilterIcon();
 		applyFilters(true);
 		$('#filterDropdown').dropdown('hide');
+
+		if (isCatTrackingEnabled && typeof showToast === 'function') {
+			showToast('Clear Filters', 'Band filter preserved (CAT Control is active)', 'bg-info text-white', 2000);
+		}
 	});
 
 	// Clear Filters Quick Button (preserves De Continent)
 	$("#clearFiltersButtonQuick").on("click", function() {
 		// Preserve current De Continent selection
 		let currentDecont = $('#decontSelect').val();
+		// Preserve current band selection if CAT Control is enabled
+		let currentBand = isCatTrackingEnabled ? $('#band').val() : null;
 
 		// Reset all other filters
 		$('#cwnSelect').val(['All']).trigger('change');
 		$('#continentSelect').val(['Any']).trigger('change');
-		$('#band').val(['All']).trigger('change');
+		$('#band').val(currentBand || ['All']).trigger('change'); // Preserve band if CAT is enabled
 		$('#mode').val(['All']).trigger('change');
 		$('#additionalFlags').val(['All']).trigger('change');
 		$('#requiredFlags').val([]).trigger('change');
@@ -2026,6 +2035,10 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 		syncQuickFilterButtons();
 		updateFilterIcon();
 		applyFilters(false);  // Don't refetch from server since De Continent is preserved
+
+		if (isCatTrackingEnabled && typeof showToast === 'function') {
+			showToast('Clear Filters', 'Band filter preserved (CAT Control is active)', 'bg-info text-white', 2000);
+		}
 	});
 
 	// Sync button states when dropdown is shown
@@ -2065,27 +2078,27 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 
 	$("#radio").on("change", function() {
 		let selectedRadio = $(this).val();
-		
+
 		// If "None" (value "0") is selected, automatically disable CAT Control
 		if (selectedRadio === "0") {
 			console.log('Radio set to None - automatically disabling CAT Control');
-			
+
 			// If CAT Control is currently enabled, turn it off
 			if (isCatTrackingEnabled) {
 				let btn = $('#toggleCatTracking');
 				btn.removeClass('btn-success').addClass('btn-secondary');
 				isCatTrackingEnabled = false;
 				window.isCatTrackingEnabled = false;
-				
+
 				// Hide radio status
 				$('#radio_cat_state').remove();
-				
+
 				// Re-enable band filter controls
 				enableBandFilterControls();
-				
+
 				// Unlock table sorting
 				unlockTableSorting();
-				
+
 				// Reset band filter to 'All' and fetch all bands
 				const currentBands = $("#band").val() || [];
 				if (currentBands.length !== 1 || currentBands[0] !== 'All') {
@@ -2095,7 +2108,7 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 					syncQuickFilterButtons();
 					applyFilters(true); // Force reload to fetch all bands
 				}
-				
+
 				if (typeof showToast === 'function') {
 					showToast('Radio', 'Radio set to None - CAT Control disabled', 'bg-info text-white', 3000);
 				}
@@ -3462,12 +3475,21 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 	 * Apply user favorites to band and mode filters
 	 */
 	function applyUserFavorites(favorites) {
-		// Apply bands
-		if (favorites.bands && favorites.bands.length > 0) {
-			$('#band').val(favorites.bands).trigger('change');
+		// Apply bands - but preserve current band if CAT Control is enabled
+		if (isCatTrackingEnabled) {
+			// CAT Control is active - don't change band filter
+			console.log('CAT Control is active - skipping band filter change from favorites');
+			if (typeof showToast === 'function') {
+				showToast('My Favorites', 'Modes applied. Band filter preserved (CAT Control is active)', 'bg-info text-white', 3000);
+			}
 		} else {
-			// No active bands, set to All
-			$('#band').val(['All']).trigger('change');
+			// CAT Control is off - apply favorite bands
+			if (favorites.bands && favorites.bands.length > 0) {
+				$('#band').val(favorites.bands).trigger('change');
+			} else {
+				// No active bands, set to All
+				$('#band').val(['All']).trigger('change');
+			}
 		}
 
 		// Apply modes

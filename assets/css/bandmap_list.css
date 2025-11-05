@@ -537,9 +537,51 @@ table tbody tr.cat-nearest-above td {
 	margin: 0 0 0.5rem 0 !important;
 }
 
+/* Override status bar wrapper constraints in fullscreen - keep it sharing row with search */
+.bandmap-fullscreen .menu-bar > div > div[style*="max-width: 70%"] {
+	max-width: none !important;
+	flex: 1 1 auto !important;
+	min-width: 400px !important;
+	display: flex !important;
+	align-items: center !important;
+}
+
 .bandmap-fullscreen .status-bar {
 	flex: 0 0 auto;
-	margin: 0 0 0.5rem 0 !important;
+	margin: 0 !important;
+	width: 100% !important;
+	padding: 0.25rem 0.5rem !important;
+	display: flex;
+	align-items: center;
+	min-height: calc(1.5em + 0.5rem + 2px);
+	line-height: 1.5;
+}
+
+/* Override parent container max-width in fullscreen */
+.bandmap-fullscreen .status-bar {
+	max-width: 100% !important;
+}
+
+.bandmap-fullscreen .status-bar-inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 15px;
+	flex-wrap: nowrap;
+}
+
+.bandmap-fullscreen .status-bar-left {
+	flex: 1 1 auto;
+	min-width: 0;
+	white-space: normal !important;
+	overflow: visible !important;
+	text-overflow: clip !important;
+}
+
+.bandmap-fullscreen .status-bar-right {
+	flex: 0 0 auto;
+	min-width: 150px;
+	white-space: nowrap;
 }
 
 .bandmap-fullscreen .table-responsive {
