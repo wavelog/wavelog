@@ -968,13 +968,12 @@ var DX_WATERFALL_UTILS = {
                 spotObj.cnfmd_call = spot.cnfmd_call || false;
             }
 
-            // Handle park references (pre-calculated or extract from message)
-            if (spot.sotaRef !== undefined || options.includeParkRefs !== false) {
-                var parkRefs = (spot.sotaRef !== undefined) ? spot : DX_WATERFALL_UTILS.parkRefs.extract(spot);
-                spotObj.sotaRef = parkRefs.sotaRef || '';
-                spotObj.potaRef = parkRefs.potaRef || '';
-                spotObj.iotaRef = parkRefs.iotaRef || '';
-                spotObj.wwffRef = parkRefs.wwffRef || '';
+            // Park references are provided by server in dxcc_spotted object
+            if (options.includeParkRefs !== false) {
+                spotObj.sotaRef = (spot.dxcc_spotted && spot.dxcc_spotted.sota_ref) || '';
+                spotObj.potaRef = (spot.dxcc_spotted && spot.dxcc_spotted.pota_ref) || '';
+                spotObj.iotaRef = (spot.dxcc_spotted && spot.dxcc_spotted.iota_ref) || '';
+                spotObj.wwffRef = (spot.dxcc_spotted && spot.dxcc_spotted.wwff_ref) || '';
             } else {
                 spotObj.sotaRef = spotObj.potaRef = spotObj.iotaRef = spotObj.wwffRef = '';
             }
@@ -1062,73 +1061,6 @@ var DX_WATERFALL_UTILS = {
                 spots: spots,
                 stats: stats
             };
-        }
-    },
-
-    // Park reference extraction utilities
-    parkRefs: {
-        /**
-         * Extract park references (SOTA/POTA/IOTA/WWFF) from spot data
-         * Uses direct fields if available, otherwise extracts from message
-         * @param {Object} spot - Raw spot object from DX cluster
-         * @returns {Object} Object with sotaRef, potaRef, iotaRef, wwffRef properties
-         */
-        extract: function(spot) {
-            var refs = {
-                sotaRef: '',
-                potaRef: '',
-                iotaRef: '',
-                wwffRef: ''
-            };
-
-            // First check if references are provided directly by the server
-            if (spot.dxcc_spotted) {
-                refs.sotaRef = spot.dxcc_spotted.sota_ref || '';
-                refs.potaRef = spot.dxcc_spotted.pota_ref || '';
-                refs.iotaRef = spot.dxcc_spotted.iota_ref || '';
-                refs.wwffRef = spot.dxcc_spotted.wwff_ref || '';
-            }
-
-            // If any references are missing, try to extract from message
-            var message = spot.message || '';
-            if (message && (!refs.sotaRef || !refs.potaRef || !refs.iotaRef || !refs.wwffRef)) {
-                var upperMessage = message.toUpperCase();
-
-                // SOTA format: XX/YY-### or XX/YY-#### (e.g., "G/LD-001", "W4G/NG-001")
-                if (!refs.sotaRef) {
-                    var sotaMatch = upperMessage.match(/\b([A-Z0-9]{1,3}\/[A-Z]{2}-\d{3})\b/);
-                    if (sotaMatch) {
-                        refs.sotaRef = sotaMatch[1];
-                    }
-                }
-
-                // POTA format: XX-#### (e.g., "US-4306", "K-1234")
-                // Must not match WWFF patterns (ending in FF)
-                if (!refs.potaRef) {
-                    var potaMatch = upperMessage.match(/\b([A-Z0-9]{1,5}-\d{4,5})\b/);
-                    if (potaMatch && !potaMatch[1].match(/FF-/)) {
-                        refs.potaRef = potaMatch[1];
-                    }
-                }
-
-                // IOTA format: XX-### (e.g., "EU-005", "NA-001", "OC-123")
-                if (!refs.iotaRef) {
-                    var iotaMatch = upperMessage.match(/\b((?:AF|AN|AS|EU|NA|OC|SA)-\d{3})\b/);
-                    if (iotaMatch) {
-                        refs.iotaRef = iotaMatch[1];
-                    }
-                }
-
-                // WWFF format: XXFF-#### (e.g., "GIFF-0001", "K1FF-0123", "ON4FF-0050")
-                if (!refs.wwffRef) {
-                    var wwffMatch = upperMessage.match(/\b([A-Z0-9]{2,4}FF-\d{4})\b/);
-                    if (wwffMatch) {
-                        refs.wwffRef = wwffMatch[1];
-                    }
-                }
-            }
-
-            return refs;
         }
     },
 
@@ -3342,16 +3274,9 @@ var dxWaterfall = {
                 self.operationStartTime = null; // Clear timer
 
                 if (data && !data.error) {
-                    // Enrich spots with park references once during fetch
-                    // This prevents recalculating them multiple times
+                    // Clean up spotter callsigns (remove -# suffix)
+                    // Park references are already provided by server in dxcc_spotted object
                     for (var i = 0; i < data.length; i++) {
-                        var parkRefs = DX_WATERFALL_UTILS.parkRefs.extract(data[i]);
-                        data[i].sotaRef = parkRefs.sotaRef;
-                        data[i].potaRef = parkRefs.potaRef;
-                        data[i].iotaRef = parkRefs.iotaRef;
-                        data[i].wwffRef = parkRefs.wwffRef;
-
-                        // Clean up spotter callsign (remove -# suffix)
                         if (data[i].spotter) {
                             data[i].spotter = data[i].spotter.replace(/-#$/, '');
                         }
