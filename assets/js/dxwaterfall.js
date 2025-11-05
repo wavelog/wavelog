@@ -1,7 +1,7 @@
 // @ts-nocheck
 /**
  * @fileoverview DX WATERFALL for WaveLog
- * @version 0.9.1 // also change line 38
+ * @version 0.9.2 // also change line 38
  * @author Wavelog Team
  *
  * @description
@@ -36,10 +36,10 @@
 
 var DX_WATERFALL_CONSTANTS = {
     // Version
-    VERSION: '0.9.1', // DX Waterfall version (keep in sync with @version in file header)
+    VERSION: '0.9.2', // DX Waterfall version (keep in sync with @version in file header)
 
     // Debug and logging
-    DEBUG_MODE: false, // Set to true for verbose logging, false for production
+    DEBUG_MODE: true, // Set to true for verbose logging, false for production
 
     // Timing and debouncing
     DEBOUNCE: {
@@ -114,7 +114,6 @@ var DX_WATERFALL_CONSTANTS = {
     THRESHOLDS: {
         FREQUENCY_COMPARISON: 0.1,         	// Frequency comparison tolerance in kHz
         FT8_FREQUENCY_TOLERANCE: 5,        	// FT8 frequency detection tolerance in kHz
-        BAND_CHANGE_THRESHOLD: 1000,       	// kHz outside band before recalculation
         MAJOR_TICK_TOLERANCE: 0.05,        	// Floating point precision for major tick detection
         SPOT_FREQUENCY_MATCH: 0.01,        	// Frequency match tolerance for spot navigation (kHz)
         CAT_FREQUENCY_HZ: 1,               	// CAT frequency confirmation tolerance (1 Hz for exact tuning)
@@ -392,16 +391,9 @@ function handleCATFrequencyUpdate(radioFrequency, updateCallback) {
 
     // Only invalidate cache and commit if frequency actually changed
     if (typeof dxWaterfall !== 'undefined' && (frequencyChanged || isInitialLoad)) {
-        // Skip frequency commit if:
-        // 1. User just manually changed the band (2-second cooldown)
-        // 2. Waiting for frequency update after band change - BUT clear the flag now since CAT confirmed!
-        // This prevents race condition where CAT sends old frequency before radio catches up
-        if (dxWaterfall.userChangedBand) {
-            // Also clear waitingForFrequencyUpdate if it's set - this CAT update is likely stale
-            if (dxWaterfall.waitingForFrequencyUpdate) {
-                dxWaterfall.waitingForFrequencyUpdate = false;
-            }
-        } else if (dxWaterfall.waitingForFrequencyUpdate) {
+        // Clear waitingForFrequencyUpdate if band just changed
+        // This CAT update confirms the new frequency after band change
+        if (dxWaterfall.waitingForFrequencyUpdate) {
             // CAT has confirmed the new frequency - clear the waiting flag and commit it
             dxWaterfall.waitingForFrequencyUpdate = false;
             dxWaterfall.waitingForData = false;
@@ -1417,11 +1409,6 @@ var DX_WATERFALL_UTILS = {
                     DX_WATERFALL_UTILS.qsoForm.clearForm();
                 }
 
-                // Check if frequency is far outside current band and update band if needed
-                if (waterfallContext.isFrequencyFarOutsideBand(targetSpot.frequency)) {
-                    waterfallContext.updateBandFromFrequency(targetSpot.frequency);
-                }
-
                 // CRITICAL: Set mode FIRST before calling setFrequency
                 // setFrequency reads the mode from $('#mode').val(), so the mode must be set first
                 var radioMode = this.determineRadioMode(targetSpot);
@@ -1553,8 +1540,6 @@ var dxWaterfall = {
     // DATA MANAGEMENT PROPERTIES
     // ========================================
     dxSpots: [],
-    lastBand: null,
-    lastMode: null,
     initialFetchDone: false,
     totalSpotsCount: 0,
 
@@ -1620,11 +1605,12 @@ var dxWaterfall = {
 
     // State flags
     programmaticModeChange: false,
-    programmaticBandUpdate: false,
-    userChangedBand: false,
     initializationComplete: false,
     lastPopulatedSpot: null,
     pendingSpotSelection: null,
+
+    // Band tracking - tracks which band we currently have spots for
+    currentSpotBand: null, // The band we last fetched spots for
 
     // Display configuration
     displayConfig: {
@@ -1861,9 +1847,7 @@ var dxWaterfall = {
     _loadSettings: function() {
         this.loadSettingsFromCookies();
 
-        // Initialize lastBand and lastMode to prevent false change detection
-        this.lastBand = this.getCurrentBand();
-        this.lastMode = this.getCurrentMode();
+        // Initialize band cache for edge calculations
         this.cachedBandForEdges = this.getCurrentBand();
     },
 
@@ -1948,6 +1932,9 @@ var dxWaterfall = {
     // Commit the current frequency value (called on blur or Enter key)
     // This prevents the waterfall from shifting while the user is typing
     commitFrequency: function() {
+        // This function is primarily for the fallback case when CAT is not available
+        // When CAT is active, the waterfall reads from window.catState.frequency
+
         // Safety check: return early if waterfall is not initialized (destroyed or not yet ready)
         if (!this.$freqCalculated || !this.$qrgUnit) {
             return;
@@ -1957,30 +1944,15 @@ var dxWaterfall = {
         var currentUnit = this.$qrgUnit.text() || 'kHz';
 
         // If this is a valid frequency, save it as the last valid committed frequency
+        // (used as fallback when CAT not available)
         var freqValue = parseFloat(currentInput) || 0;
         if (freqValue > 0) {
             this.lastValidCommittedFreq = currentInput;
             this.lastValidCommittedUnit = currentUnit;
 
-            // CRITICAL: Update band from frequency BEFORE refresh() is called
-            // This ensures programmaticBandUpdate flag is set before hasParametersChanged() runs
-            // BUT only do this if the band actually needs to change (frequency is outside current band)
-            var currentFreqKhz = DX_WATERFALL_UTILS.frequency.convertToKhz(freqValue, currentUnit);
-
             // Store the committed frequency in kHz for comparison checks
+            var currentFreqKhz = DX_WATERFALL_UTILS.frequency.convertToKhz(freqValue, currentUnit);
             this.committedFrequencyKHz = currentFreqKhz;
-            if (currentFreqKhz > 0) {
-                var expectedBand = this.getFrequencyBand(currentFreqKhz);
-                var currentBand = this.getCurrentBand();
-
-                // Only update band if frequency's band differs from current band
-                // This prevents overriding manual band changes when frequency is already in that band
-                // ALSO: Don't auto-update band if user just manually changed it (userChangedBand cooldown active)
-                // This prevents race condition where CAT sends old frequency before radio catches up to new band
-                if (expectedBand && currentBand && expectedBand !== currentBand && !this.userChangedBand) {
-                    this.updateBandFromFrequency(currentFreqKhz);
-                }
-            }
 
             // If we're still waiting for CAT frequency and user manually set a frequency, cancel the wait
             // Only cancel if initialization is complete (don't cancel during initial page load)
@@ -1997,10 +1969,7 @@ var dxWaterfall = {
             }
         }
 
-        // Invalidate the cached frequency to force recalculation
-        this.lastQrgUnit = null;
-
-        // Force an immediate refresh to update the display with the new frequency
+        // Force a refresh to update the display (mainly for non-CAT usage)
         if (this.canvas && this.ctx) {
             this.refresh();
         }
@@ -2011,112 +1980,26 @@ var dxWaterfall = {
         }
     },
 
-    // Check if band or mode has changed
-    hasParametersChanged: function() {
-        // Get current values from form elements FIRST to detect immediate changes
-        var currentBand = this.getCurrentBand();
-        var currentMode = this.getCurrentMode();
-
-        // Check if band changed (even during cooldown) and reset dataReceived flag immediately
-        // This prevents old band data from being displayed while waiting for new band to fetch
-        var bandChanged = (currentBand !== this.lastBand);
-        if (bandChanged && this.lastBand !== null) {
-            // Band changed - immediately mark as waiting for new data
-            this.dataReceived = false;
-            this.waitingForData = true;
-        }
-
-        // Check for invalid states that should prevent spot fetching
-        var middleFreq = this.getCachedMiddleFreq(); // Returns frequency in kHz
-        var isFrequencyInvalid = middleFreq <= 0;
-        var isBandInvalid = !currentBand || currentBand === '' || currentBand.toLowerCase() === 'select';
-
-        // Early return: If frequency or band is invalid, don't fetch spots
-        if (isFrequencyInvalid || isBandInvalid) {
-            this.waitingForData = true;
-            this.dataReceived = false;
-            this.relevantSpots = [];
-            this.currentSpotIndex = 0;
-            this.lastSpotInfoKey = null;
-            if (this.spotInfoDiv) {
-                this.spotInfoDiv.innerHTML = '&nbsp;';
-            }
-            // Update tracking but don't trigger fetch
-            this.lastBand = currentBand;
-            this.lastMode = currentMode;
-            return false;
-        }
-
-        // Check for changes
-        bandChanged = this.lastBand !== currentBand;
-        var modeChanged = this.lastMode !== currentMode;
-
-        // Update zoom menu when mode changes (but don't trigger spot fetch)
-        if (modeChanged) {
-            this.updateZoomMenu();
-        }
-
-        // Early return: Only band changes should trigger spot fetching
-        // Mode changes should NOT trigger fetching (mode is just a display filter)
-        if (!bandChanged) {
-            this.lastBand = currentBand;
-            this.lastMode = currentMode;
-            return false;
-        }
-
-        // Band changed - invalidate caches
-        this.bandLimitsCache = null;
-        this.cachedBandForEdges = currentBand;
-        this.cache.visibleSpots = null;
-        this.cache.visibleSpotsParams = null;
-
-        // Early return: If this is initial load (lastBand is null), don't reset state
-        if (this.lastBand === null) {
-            this.lastBand = currentBand;
-            this.lastMode = currentMode;
-            return bandChanged;
-        }
-
-        // Band changed after initial load - reset waiting state
-        this.waitingForData = true;
-        this.dataReceived = false;
-        this.dxSpots = [];
-        this.totalSpotsCount = 0;
-        this.relevantSpots = [];
-        this.currentSpotIndex = 0;
-        this.lastSpotInfoKey = null;
-        if (this.spotInfoDiv) {
-            this.spotInfoDiv.innerHTML = '&nbsp;';
-        }
-        this.operationStartTime = Date.now();
-        this.updateZoomMenu();
-
-        // Handle programmatic vs manual band changes
-        if (this.programmaticBandUpdate) {
-            // Programmatic (CAT) change - reset flag and cancel any manual cooldown
-            this.programmaticBandUpdate = false;
-            if (this.userChangedBand) {
-                this.userChangedBand = false;
-            }
-        } else if (!this.userChangedBand) {
-            // Manual change with no cooldown active - set cooldown
-            this.userChangedBand = true;
-            var self = this;
-            setTimeout(function() {
-                self.userChangedBand = false;
-            }, 2000);
-        }
-
-        this.lastBand = currentBand;
-        this.lastMode = currentMode;
-
-        return bandChanged;
-    },
-
     // Get cached middle frequency to avoid repeated DOM access and parsing
     // Always returns frequency in kHz for internal calculations
     getCachedMiddleFreq: function() {
-        // Use committed frequency values (only updated on blur/Enter) to prevent shifting while typing
+        // PRIORITY 1: Use CAT state if available (radio controls waterfall)
+        // The waterfall should display what the radio is tuned to, not what's in the form
+        if (window.catState && window.catState.frequency && window.catState.frequency > 0) {
+            var freqHz = window.catState.frequency;
+            var freqKhz = freqHz / 1000;
+
+            // Cache the CAT frequency
+            this.cache.middleFreq = freqKhz;
+
+            // Update split operation state and get display configuration
+            this.updateSplitOperationState();
+
+            return this.displayConfig.centerFrequency;
+        }
+
+        // FALLBACK: Use committed frequency values (only updated on blur/Enter) to prevent shifting while typing
+        // This is used when CAT is not available (no radio connected)
         // Strategy:
         // 1. If we have a valid committed frequency from this session, always use last VALID commit
         // 2. Otherwise use real-time values (initial load before any commits)
@@ -2153,9 +2036,13 @@ var dxWaterfall = {
 
     // Update split operation state and configure display parameters
     updateSplitOperationState: function() {
-        // Check if frequency_rx field exists and has a value
+        // Prefer CAT state for frequency_rx (radio controls split operation)
         var frequencyRxValue = null;
-        if (DX_WATERFALL_UTILS.fieldMapping.hasOptionalField('frequency_rx')) {
+
+        if (window.catState && window.catState.frequency_rx) {
+            frequencyRxValue = window.catState.frequency_rx;
+        } else if (DX_WATERFALL_UTILS.fieldMapping.hasOptionalField('frequency_rx')) {
+            // Fallback to form field if CAT not available
             var $frequencyRx = DX_WATERFALL_UTILS.fieldMapping.getField('frequency_rx', true);
             frequencyRxValue = $frequencyRx.val();
         }
@@ -2264,10 +2151,8 @@ var dxWaterfall = {
         // Force immediate cache refresh and visual update
         this.lastFrequencyRefreshTime = 0;
 
-        // Only refresh from DOM if CAT is available - otherwise keep waterfall frequency independent
-        if (isCATAvailable()) {
-            this.refreshFrequencyCache();
-        }
+        // Note: refreshFrequencyCache() no longer needed here
+        // Waterfall reads frequency from window.catState (CAT data), not form fields
 
         if (this.canvas && this.ctx) {
             this.refresh();
@@ -3019,7 +2904,9 @@ var dxWaterfall = {
 
     // Get band limits for current band and region
     getBandLimits: function() {
-        var currentBand = this.getCurrentBand();
+        // Use the band we have spots for, not the form selector
+        // This prevents drawing wrong band limits when form is changed manually
+        var currentBand = this.currentSpotBand || this.getCurrentBand();
         var currentRegion = this.continentToRegion(this.currentContinent);
         var regionKey = 'region' + currentRegion;
 
@@ -3063,29 +2950,6 @@ var dxWaterfall = {
         return limits;
     },
 
-    // Check if frequency is more than 1000 kHz outside current band limits
-    // Returns true if band should be recalculated
-    isFrequencyFarOutsideBand: function(frequencyKhz) {
-        var bandLimits = this.getBandLimits();
-
-        // If no band limits available, don't trigger recalculation
-        if (!bandLimits) {
-            return false;
-        }
-
-        var threshold = DX_WATERFALL_CONSTANTS.THRESHOLDS.BAND_CHANGE_THRESHOLD;
-        var lowerThreshold = bandLimits.start_khz - threshold;
-        var upperThreshold = bandLimits.end_khz + threshold;
-
-        // Check if frequency is more than threshold outside the band
-        if (frequencyKhz < lowerThreshold || frequencyKhz > upperThreshold) {
-            return true;
-        }
-
-        return false;
-    },
-
-    // Recalculate and update band based on frequency
     // Get band name for a given frequency in kHz
     getFrequencyBand: function(frequencyKhz) {
         // Check if frequencyToBand function exists
@@ -3100,55 +2964,15 @@ var dxWaterfall = {
         return band && band !== '' ? band : null;
     },
 
-    updateBandFromFrequency: function(frequencyKhz) {
-        var newBand = this.getFrequencyBand(frequencyKhz);
-
-        if (newBand) {
-            // Check if the band exists in the select options
-            var bandExists = this.$bandSelect.find('option[value="' + newBand + '"]').length > 0;
-
-            if (bandExists) {
-                // Set flag to prevent band change event handler from running
-                // This prevents form reset during CAT/WebSocket frequency updates
-                window.programmaticBandChange = true;
-
-                // CRITICAL: Set waterfall flag IMMEDIATELY before the band changes
-                // This ensures hasParametersChanged() can detect this was programmatic
-                this.programmaticBandUpdate = true;
-
-                // Update the band dropdown (in the QSO form)
-                this.$bandSelect.val(newBand);
-
-                // Reset flags after a short delay to allow event to process
-                var self = this;
-                setTimeout(function() {
-                    window.programmaticBandChange = false;
-                    // Keep waterfall flag longer to survive the parameter check
-                }, 50);
-            } else {
-                // Band doesn't exist in dropdown, select the first available option as fallback
-                var firstOption = this.$bandSelect.find('option:first').val();
-                if (firstOption) {
-                    window.programmaticBandChange = true;
-                    this.programmaticBandUpdate = true;
-                    this.$bandSelect.val(firstOption);
-                    var self = this;
-                    setTimeout(function() {
-                        window.programmaticBandChange = false;
-                    }, 50);
-                }
-            }
-        }
-    },
-
     // ========================================
     // CANVAS DRAWING AND RENDERING FUNCTIONS
     // ========================================
 
     // Draw band mode indicators (colored lines below ruler showing CW/DIGI/PHONE segments)
     drawBandModeIndicators: function() {
-        // Get current region and band
-        var currentBand = this.getCurrentBand();
+        // Use the band we have spots for, not the form selector
+        // This prevents drawing wrong band mode indicators when form is changed manually
+        var currentBand = this.currentSpotBand || this.getCurrentBand();
         var currentRegion = this.continentToRegion(this.currentContinent);
         var regionKey = 'region' + currentRegion;
 
@@ -3384,7 +3208,13 @@ var dxWaterfall = {
         // Set userInitiatedFetch flag
         this.userInitiatedFetch = userInitiated === true;
 
-        var band = this.getCurrentBand();
+        // Calculate band from current frequency (independent of form selector)
+        var currentFreqKhz = this.getCachedMiddleFreq();
+        var band = null;
+
+        if (currentFreqKhz > 0) {
+            band = this.getFrequencyBand(currentFreqKhz);
+        }
 
         // If band is invalid or empty, use a default band for initial fetch
         if (!band || band === '' || band.toLowerCase() === 'select') {
@@ -3483,9 +3313,9 @@ var dxWaterfall = {
 			cache: false,
             success: function(data) {
                 // Check if band has changed since this fetch was initiated
-                // If it has, discard this data (it's stale)
-                var currentBand = self.getCurrentBand();
-                if (band !== currentBand) {
+                // Compare against currentSpotBand (what we're displaying) not form selector
+                var currentDisplayBand = self.currentSpotBand || band;
+                if (band !== currentDisplayBand) {
                     // Clear safety timeout even for stale data
                     if (self.safetyTimeoutId) {
                         clearTimeout(self.safetyTimeoutId);
@@ -3538,6 +3368,9 @@ var dxWaterfall = {
                     self.lastFetchBand = band;
                     self.lastFetchContinent = de;
                     self.lastFetchAge = age;
+
+                    // Track which band we currently have spots for
+                    self.currentSpotBand = band;
 
                     // Invalidate caches when spots are updated
                     self.cache.visibleSpots = null;
@@ -3628,11 +3461,16 @@ var dxWaterfall = {
 
     // Get current mode from form or default to All
     getCurrentMode: function() {
+        // Prefer CAT state if available (radio controls mode)
+        if (window.catState && window.catState.mode) {
+            return window.catState.mode;
+        }
+
+        // Fallback to form field if CAT not available
         // Safety check: return default if not initialized
         if (!this.$modeSelect) {
             return 'All';
         }
-        // Try to get mode from form - adjust selector based on your HTML structure
         var mode = this.$modeSelect.val() || 'All';
         return mode;
     },
@@ -4865,7 +4703,7 @@ var dxWaterfall = {
             // NOTE: Removed targetFrequencyHz blocking - waterfall updates immediately on click
             // Stale CAT updates are ignored in handleCATFrequencyUpdate() instead
 
-            // Check if band or mode has changed and fetch new spots if needed
+            // Check if we need to do initial fetch or band has changed via CAT
             // Skip during CAT operations to prevent interference
             if (!this.catTuning && !this.frequencyChanging) {
                 // Force initial fetch if we haven't done one yet (even with invalid frequency/band)
@@ -4875,24 +4713,46 @@ var dxWaterfall = {
                         this.initialFetchDone = true; // Set flag BEFORE fetch to prevent duplicate calls
                         this.fetchDxSpots(true, false); // Initial fetch, but not user-initiated (background)
                     }
-                } else if (this.hasParametersChanged()) {
-                    this.fetchDxSpots(true, true); // User changed band/mode - mark as user-initiated
+                } else {
+                    // Check if radio has changed to a different band (via CAT frequency updates)
+                    // Calculate band from current frequency, not from form selector
+                    var currentFreqKhz = this.getCachedMiddleFreq();
+                    var calculatedBand = null;
+
+                    if (currentFreqKhz > 0) {
+                        calculatedBand = this.getFrequencyBand(currentFreqKhz);
+                    }
+
+                    // If we have a valid calculated band and it differs from what we have spots for, fetch new spots
+                    if (calculatedBand && calculatedBand !== '' && calculatedBand.toLowerCase() !== 'select' &&
+                        this.currentSpotBand && calculatedBand !== this.currentSpotBand) {
+                        // Radio frequency changed to different band - fetch spots for new band
+                        DX_WATERFALL_UTILS.log.debug('[DX Waterfall] Band changed via frequency: ' + this.currentSpotBand + ' → ' + calculatedBand);
+
+                        // IMMEDIATELY update currentSpotBand to prevent infinite loop
+                        // The refresh() runs 60fps, so we must update this before next cycle
+                        this.currentSpotBand = calculatedBand;
+
+                        // Mark that we're waiting for new band data
+                        this.waitingForData = true;
+                        this.dataReceived = false;
+                        this.operationStartTime = Date.now(); // Start timer for visual feedback
+
+                        // Fetch spots for new band (not user-initiated, but automatic via CAT)
+                        this.fetchDxSpots(true, false);
+
+                        // Invalidate band-related caches
+                        this.bandLimitsCache = null;
+                        this.cachedBandForEdges = calculatedBand;
+                    }
                 }
+                // NOTE: Removed hasParametersChanged() check - waterfall no longer monitors form band/mode changes
+                // Waterfall operates independently but will follow radio band changes via CAT
+                // Spots are fetched only on: initial load, radio band change (CAT), periodic refresh, or explicit user action
             }
 
-            // Periodically refresh frequency cache to catch changes
-            // Skip during CAT operations to prevent interference
-            if (!this.catTuning && !this.frequencyChanging) {
-                this.refreshFrequencyCache();
-            }
-
-            // Check if current frequency is far outside band limits and update band if needed
-            // This handles manual frequency entry in the input field
-            // Skip if user just manually changed the band to prevent reverting their choice
-            var currentFreq = this.getCachedMiddleFreq();
-            if (currentFreq > 0 && !this.userChangedBand && this.isFrequencyFarOutsideBand(currentFreq)) {
-                this.updateBandFromFrequency(currentFreq);
-            }
+            // Note: refreshFrequencyCache() no longer needed here
+            // Waterfall reads frequency from window.catState (CAT data), not form fields
 
             // Update canvas internal dimensions to match current CSS dimensions
             this.updateDimensions();
@@ -5526,7 +5386,8 @@ var dxWaterfall = {
             var hours = String(this.lastUpdateTime.getHours()).padStart(2, '0');
             var minutes = String(this.lastUpdateTime.getMinutes()).padStart(2, '0');
             var updateTimeStr = hours + ':' + minutes;
-            var currentBand = this.getCurrentBand();
+            // Display the band we have spots for, not the form selector
+            var currentBand = this.currentSpotBand || this.getCurrentBand();
 
             zoomHTML += '<span style="font-size: 11px; color: #888888;">';
             zoomHTML += displayedSpotsCount + '/' + this.totalSpotsCount + ' ' + currentBand + ' ' + this.currentContinent + ' ' + lang_dxwaterfall_spots + ' @' + updateTimeStr + 'LT';
@@ -5736,7 +5597,8 @@ var dxWaterfall = {
         this.lastSpotCollectionTime = currentTime;
 
         var currentFreq = this.getCachedMiddleFreq();
-        var currentBand = this.getCurrentBand();
+        // Use the band we have spots for, not the form selector
+        var currentBand = this.currentSpotBand || this.getCurrentBand();
         var currentMode = this.getCurrentMode();
 
         // Filter spots for current band
@@ -6186,7 +6048,6 @@ var dxWaterfall = {
         this.initialFetchDone = false;
         this.waitingForCATFrequency = true;
         this.userEditingFrequency = false;
-        this.userChangedBand = false;
         this.programmaticModeChange = false;
         this.zoomChanging = false;
         this.spotNavigating = false;
@@ -6215,12 +6076,11 @@ var dxWaterfall = {
         // Reset spot info key
         this.lastSpotInfoKey = null;
 
-        // Clear band/mode tracking
-        this.lastBand = null;
-        this.lastMode = null;
+        // Clear band tracking
         this.lastFetchBand = null;
         this.lastFetchContinent = null;
         this.lastFetchAge = null;
+        this.currentSpotBand = null; // Reset the band we have spots for
 
         // Reset timestamps
         this.lastUpdateTime = null;
@@ -6345,6 +6205,13 @@ function setMode(mode, skipTrigger) {
 // @param frequencyInKHz - Target frequency in kHz
 // @param fromWaterfall - True if this change was initiated by waterfall (clicking spot/tune icon), false for external calls
 function setFrequency(frequencyInKHz, fromWaterfall) {
+
+    // PROTECTION: If user is manually updating frequency from form, don't tune radio
+    // This prevents form changes from controlling the radio (radio should control form)
+    if (typeof window.user_updating_frequency !== 'undefined' && window.user_updating_frequency) {
+        DX_WATERFALL_UTILS.log.info('[setFrequency] Skipping radio tune - user manually updating form');
+        return;
+    }
 
     // Input validation
     if (!frequencyInKHz || typeof frequencyInKHz !== 'number') {
@@ -6509,8 +6376,8 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
                             dxWaterfall.frequencyChanging = false;
                             dxWaterfall.catTuningStartTime = null;
                             dxWaterfall.spotNavigating = false; // Clear navigation flag on timeout
-                            // Force immediate cache refresh and visual update when timeout occurs
-                            dxWaterfall.refreshFrequencyCache();
+                            // Force visual update when timeout occurs
+                            // Note: refreshFrequencyCache() not needed - waterfall reads from catState
                             if (dxWaterfall.canvas && dxWaterfall.ctx) {
                                 dxWaterfall.ctx.clearRect(0, 0, dxWaterfall.canvas.width, dxWaterfall.canvas.height);
                                 dxWaterfall.refresh();
@@ -6884,10 +6751,6 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
                 window.dxwaterfall_cat_debounce_lock = 1;
             }
 
-            if (dxWaterfall.isFrequencyFarOutsideBand(clickedSpot.frequency)) {
-                dxWaterfall.updateBandFromFrequency(clickedSpot.frequency);
-            }
-
             // CRITICAL: Set mode FIRST (without triggering change event), THEN set frequency
             // This ensures setFrequency() reads the correct mode from the dropdown
             var radioMode = DX_WATERFALL_UTILS.navigation.determineRadioMode(clickedSpot);
@@ -6931,11 +6794,6 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
         // Prevent setting frequency <= 0 (not physically valid)
         if (clickedFreq <= 0) {
             return; // Ignore clicks in invalid frequency range
-        }
-
-        // Check if frequency is far outside current band and update band if needed
-        if (dxWaterfall.isFrequencyFarOutsideBand(clickedFreq)) {
-            dxWaterfall.updateBandFromFrequency(clickedFreq);
         }
 
         // Set the frequency to where user clicked

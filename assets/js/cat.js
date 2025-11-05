@@ -48,6 +48,16 @@ $(document).ready(function() {
     // Cache for radio names to avoid repeated AJAX calls
     var radioNameCache = {};
 
+    // Global CAT state - stores last received data from radio
+    // This allows other components (like DX Waterfall) to read radio state
+    // without depending on form fields
+    window.catState = {
+        frequency: null,      // Hz
+        frequency_rx: null,   // Hz (for split operation)
+        mode: null,           // String (USB, LSB, CW, etc.)
+        lastUpdate: null      // Timestamp of last update
+    };
+
     /**
      * Initialize WebSocket connection for real-time radio updates
      * Handles connection, reconnection logic, and error states
@@ -490,6 +500,16 @@ $(document).ready(function() {
             return; // Exit early - do not update any fields with old data
         }
 
+        // Update global CAT state FIRST before any UI updates
+        // This allows DX Waterfall and other components to read radio state
+        // without depending on form fields
+        if (window.catState) {
+            window.catState.frequency = data.frequency || null;
+            window.catState.frequency_rx = data.frequency_rx || null;
+            window.catState.mode = data.mode ? catmode(data.mode) : null;
+            window.catState.lastUpdate = new Date();
+        }
+
         // Cache frequently used DOM selectors
         var $frequency = $('#frequency');
         var $band = $('#band');
@@ -514,6 +534,7 @@ $(document).ready(function() {
 
         // Force update by clearing catValue (prevents cat2UI from blocking updates)
         $frequency.removeData('catValue');
+        $mode.removeData('catValue'); // Also clear mode cache
         cat_updating_frequency = true; // Set flag before CAT update
 
         // Check if DX Waterfall's CAT frequency handler is available
@@ -523,22 +544,20 @@ $(document).ready(function() {
                 cat2UI($frequency,data.frequency,false,true,function(d){
                     $frequency.trigger('change'); // Trigger for other event handlers
                     const newBand = frequencyToBand(d);
-                    // Don't auto-update band if user just manually changed it (prevents race condition)
-                    if ($band.val() != newBand && (typeof dxWaterfall === 'undefined' || !dxWaterfall.userChangedBand)) {
+                    // Auto-update band based on frequency
+                    if ($band.val() != newBand) {
                         $band.val(newBand).trigger('change'); // Trigger band change
                     }
-                    cat_updating_frequency = false; // Clear flag after updates
                 });
             });
         } else {
             // Standard frequency update (no DX Waterfall debounce handling)
             cat2UI($frequency,data.frequency,false,true,function(d){
                 $frequency.trigger('change');
-                // Don't auto-update band if user just manually changed it (prevents race condition)
-                if ($band.val() != frequencyToBand(d) && (typeof dxWaterfall === 'undefined' || !dxWaterfall.userChangedBand)) {
+                // Auto-update band based on frequency
+                if ($band.val() != frequencyToBand(d)) {
                     $band.val(frequencyToBand(d)).trigger('change');
                 }
-                cat_updating_frequency = false; // Clear flag after updates
             });
         }
 
@@ -558,6 +577,9 @@ $(document).ready(function() {
         cat2UI($('#sat_mode'),data.satmode,false,false);
         cat2UI($('#transmit_power'),data.power,false,false);
         cat2UI($('#selectPropagation'),data.prop_mode,false,false);
+
+        // Clear the CAT updating flag AFTER all updates
+        cat_updating_frequency = false;
 
         // Data is fresh (timeout check already passed at function start)
         // Set CAT state for waterfall if dxwaterfall_cat_state is available
