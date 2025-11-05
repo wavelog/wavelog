@@ -117,15 +117,16 @@
 						</div>
 						<!-- Column 2: Required Flags and Additional Flags -->
 						<div class="mb-3 col-12 col-sm-6 col-md-4 col-lg">
-							<label class="form-label d-block filter-label-small" for="requiredFlags"><?= __("Required Flags"); ?></label>
-							<select id="requiredFlags" class="form-select form-select-sm filter-short" name="required_flags" multiple="multiple">
-								<option value="None" selected><?= __("None"); ?></option>
-								<option value="lotw"><?= __("LoTW User"); ?></option>
-								<option value="newcontinent"><?= __("New Continent"); ?></option>
-								<option value="newcountry"><?= __("New Country"); ?></option>
-								<option value="newcallsign"><?= __("New Callsign"); ?></option>
-								<option value="Contest"><?= __("Contest"); ?></option>
-							</select>
+						<label class="form-label d-block filter-label-small" for="requiredFlags"><?= __("Required Flags"); ?></label>
+						<select id="requiredFlags" class="form-select form-select-sm filter-short" name="required_flags" multiple="multiple">
+							<option value="None" selected><?= __("None"); ?></option>
+							<option value="lotw"><?= __("LoTW User"); ?></option>
+							<option value="newcontinent"><?= __("New Continent"); ?></option>
+							<option value="newcountry"><?= __("New Country"); ?></option>
+							<option value="newcallsign"><?= __("New Callsign"); ?></option>
+							<option value="workedcallsign"><?= __("Worked Callsign"); ?></option>
+							<option value="Contest"><?= __("Contest"); ?></option>
+						</select>
 							<label class="form-label d-block filter-label-small mt-3" for="additionalFlags"><?= __("Additional Flags"); ?></label>
 							<select id="additionalFlags" class="form-select form-select-sm filter-short" name="additional_flags" multiple="multiple">
 								<option value="All" selected><?= __("All"); ?></option>

@@ -249,11 +249,25 @@ class Dxcluster_model extends CI_Model {
 					$spot->cnfmd_continent = $status['cnfmd_continent'];
 					$spot->worked_continent = $status['worked_continent'];
 
-					// Use batch last_worked data
-					if ($spot->worked_call && isset($last_worked_batch[$callsign])) {
-						$spot->last_wked = $last_worked_batch[$callsign];
-						$spot->last_wked->LAST_QSO = date($custom_date_format, strtotime($spot->last_wked->LAST_QSO));
+				// Use batch last_worked data
+				if ($spot->worked_call && isset($last_worked_batch[$callsign])) {
+					$spot->last_wked = $last_worked_batch[$callsign];
+
+					// Validate and convert date safely to prevent epoch date (1970) issues
+					if (!empty($spot->last_wked->LAST_QSO)) {
+						$timestamp = strtotime($spot->last_wked->LAST_QSO);
+						// Check if strtotime succeeded and timestamp is valid (> 0)
+						if ($timestamp !== false && $timestamp > 0) {
+							$spot->last_wked->LAST_QSO = date($custom_date_format, $timestamp);
+						} else {
+							// Invalid date - remove last_wked to prevent displaying incorrect date
+							unset($spot->last_wked);
+						}
+					} else {
+						// Empty date - remove last_wked
+						unset($spot->last_wked);
 					}
+				}
 				} else {
 					// Fallback for spots without status
 					$spot->worked_dxcc = false;

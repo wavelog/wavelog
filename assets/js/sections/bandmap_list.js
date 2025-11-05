@@ -863,6 +863,9 @@ $(function() {
 				if (reqFlag === 'newcallsign') {
 					if (single.worked_call !== false) return;  // Only new callsigns
 				}
+				if (reqFlag === 'workedcallsign') {
+					if (single.worked_call === false) return;  // Only worked callsigns
+				}
 				if (reqFlag === 'Contest') {
 					if (!single.dxcc_spotted || !single.dxcc_spotted.isContest) return;
 				}
@@ -1318,6 +1321,9 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 					}
 					if (reqFlag === 'newcallsign') {
 						if (spot.worked_call !== false) return;
+					}
+					if (reqFlag === 'workedcallsign') {
+						if (spot.worked_call === false) return;
 					}
 					if (reqFlag === 'Contest') {
 						if (!spot.dxcc_spotted || !spot.dxcc_spotted.isContest) return;
