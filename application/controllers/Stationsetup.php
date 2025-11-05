@@ -599,6 +599,7 @@ class Stationsetup extends CI_Controller {
 				'hrdlog_username'       => xss_clean($loc['hrdlog_username'] ?? null),
 				'eqslqthnickname'       => xss_clean($loc['eqslqthnickname'] ?? null),
 				'webadifapiurl'         => 'https://qo100dx.club/api',
+				'station_uuid'          => xss_clean($loc['station_uuid'] ?? null),
 				'user_id'               => $this->session->userdata('user_id'),
 			];
 
