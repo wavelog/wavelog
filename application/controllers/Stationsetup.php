@@ -572,8 +572,8 @@ class Stationsetup extends CI_Controller {
 			// Data for station_profile
 			$dbdata = [
 				'station_active'        => 0,
-				'station_profile_name'  => ((isset($loc['station_profile_name']) && $loc['station_profile_name'] != "") ? xss_clean($loc['station_profile_name']) : null),
-				'station_gridsquare'    => ((isset($loc['station_gridsquare']) && $loc['station_gridsquare'] != "") ? xss_clean($loc['station_gridsquare']) : null),
+				'station_profile_name'  => ((isset($loc['station_profile_name']) && $loc['station_profile_name'] != "") ? xss_clean($loc['station_profile_name']) : ''),
+				'station_gridsquare'    => ((isset($loc['station_gridsquare']) && $loc['station_gridsquare'] != "") ? xss_clean($loc['station_gridsquare']) : ''),
 				'station_city'          => ((isset($loc['station_city']) && $loc['station_city'] != "") ? xss_clean($loc['station_city']) : ''),
 				'station_iota'          => ((isset($loc['station_iota']) && $loc['station_iota'] != "") ? xss_clean($loc['station_iota']) : ''),
 				'station_sota'          => ((isset($loc['station_sota']) && $loc['station_sota'] != "") ? xss_clean($loc['station_sota']) : ''),
