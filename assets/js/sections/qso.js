@@ -657,28 +657,28 @@ bc_bandmap.onmessage = function (ev) {
 // Store pending references from bandmap to populate AFTER callsign lookup completes
 var pendingReferences = null;
 
+// Track last lookup to prevent duplicate calls
+var lastLookupCallsign = null;
+var lookupInProgress = false;
+
 // Helper function to populate reference fields after callsign lookup completes
-function populatePendingReferences() {
-	if (!pendingReferences) {
-		console.log('No pending references to populate');
+function populatePendingReferences(refsToPopulate) {
+	// Use provided references or fall back to global pendingReferences
+	var refs = refsToPopulate || pendingReferences;
+
+	if (!refs) {
 		return;
 	}
 
-	console.log('=== POPULATING PENDING REFERENCES (AFTER LOOKUP) ===');
-	console.log('pendingReferences:', pendingReferences);
-
 	// POTA - uses selectize
-	if (pendingReferences.pota_ref && $('#pota_ref').length) {
-		console.log('Setting POTA ref:', pendingReferences.pota_ref);
+	if (refs.pota_ref && $('#pota_ref').length) {
 		try {
 			var $select = $('#pota_ref').selectize();
 			if ($select.length && $select[0].selectize) {
 				var selectize = $select[0].selectize;
-				selectize.addOption({name: pendingReferences.pota_ref});
-				selectize.setValue(pendingReferences.pota_ref);
-				console.log('POTA ref set successfully');
-			} else {
-				console.warn('POTA selectize not initialized');
+				selectize.addOption({name: refs.pota_ref});
+				selectize.setValue(refs.pota_ref, false);
+				$('#pota_ref').trigger('change');
 			}
 		} catch (e) {
 			console.warn('Could not set POTA reference:', e);
@@ -686,17 +686,14 @@ function populatePendingReferences() {
 	}
 
 	// SOTA - uses selectize
-	if (pendingReferences.sota_ref && $('#sota_ref').length) {
-		console.log('Setting SOTA ref:', pendingReferences.sota_ref);
+	if (refs.sota_ref && $('#sota_ref').length) {
 		try {
 			var $select = $('#sota_ref').selectize();
 			if ($select.length && $select[0].selectize) {
 				var selectize = $select[0].selectize;
-				selectize.addOption({name: pendingReferences.sota_ref});
-				selectize.setValue(pendingReferences.sota_ref);
-				console.log('SOTA ref set successfully');
-			} else {
-				console.warn('SOTA selectize not initialized');
+				selectize.addOption({name: refs.sota_ref});
+				selectize.setValue(refs.sota_ref, false);
+				$('#sota_ref').trigger('change');
 			}
 		} catch (e) {
 			console.warn('Could not set SOTA reference:', e);
@@ -704,17 +701,14 @@ function populatePendingReferences() {
 	}
 
 	// WWFF - uses selectize
-	if (pendingReferences.wwff_ref && $('#wwff_ref').length) {
-		console.log('Setting WWFF ref:', pendingReferences.wwff_ref);
+	if (refs.wwff_ref && $('#wwff_ref').length) {
 		try {
 			var $select = $('#wwff_ref').selectize();
 			if ($select.length && $select[0].selectize) {
 				var selectize = $select[0].selectize;
-				selectize.addOption({name: pendingReferences.wwff_ref});
-				selectize.setValue(pendingReferences.wwff_ref);
-				console.log('WWFF ref set successfully');
-			} else {
-				console.warn('WWFF selectize not initialized');
+				selectize.addOption({name: refs.wwff_ref});
+				selectize.setValue(refs.wwff_ref, false);
+				$('#wwff_ref').trigger('change');
 			}
 		} catch (e) {
 			console.warn('Could not set WWFF reference:', e);
@@ -722,24 +716,22 @@ function populatePendingReferences() {
 	}
 
 	// IOTA - regular select dropdown (not selectize)
-	if (pendingReferences.iota_ref && $('#iota_ref').length) {
-		console.log('Setting IOTA ref:', pendingReferences.iota_ref);
+	if (refs.iota_ref && $('#iota_ref').length) {
 		try {
 			let $iotaSelect = $('#iota_ref');
-			if ($iotaSelect.find('option[value="' + pendingReferences.iota_ref + '"]').length === 0) {
-				$iotaSelect.append(new Option(pendingReferences.iota_ref, pendingReferences.iota_ref));
+			if ($iotaSelect.find('option[value="' + refs.iota_ref + '"]').length === 0) {
+				$iotaSelect.append(new Option(refs.iota_ref, refs.iota_ref));
 			}
-			$iotaSelect.val(pendingReferences.iota_ref).trigger('change');
-			console.log('IOTA ref set successfully');
+			$iotaSelect.val(refs.iota_ref).trigger('change');
 		} catch (e) {
 			console.warn('Could not set IOTA reference:', e);
 		}
 	}
 
-	console.log('=== REFERENCE POPULATION COMPLETE ===');
-
-	// Clear pending references after populating
-	pendingReferences = null;
+	// Only clear global pendingReferences if we used it (not a captured copy)
+	if (!refsToPopulate && pendingReferences) {
+		pendingReferences = null;
+	}
 }
 
 var bc = new BroadcastChannel('qso_wish');
@@ -754,16 +746,6 @@ bc.onmessage = function (ev) {
 	} else {
 		// Always process frequency, callsign, and reference data from bandmap
 		// (regardless of manual mode - bandmap should control the form)
-		console.log('=== BANDMAP DATA RECEIVED ===');
-		console.log('Full ev.data:', ev.data);
-		console.log('Frequency:', ev.data.frequency);
-		console.log('Call:', ev.data.call);
-		console.log('Mode:', ev.data.mode);
-		console.log('POTA ref:', ev.data.pota_ref);
-		console.log('SOTA ref:', ev.data.sota_ref);
-		console.log('WWFF ref:', ev.data.wwff_ref);
-		console.log('IOTA ref:', ev.data.iota_ref);
-		console.log('=============================');
 
 		// Store references for later population (after callsign lookup completes)
 		pendingReferences = {
@@ -772,7 +754,6 @@ bc.onmessage = function (ev) {
 			wwff_ref: ev.data.wwff_ref,
 			iota_ref: ev.data.iota_ref
 		};
-		console.log('References stored in pendingReferences:', pendingReferences);
 
 		let delay = 0;
 		// Only reset if callsign is different from what we're about to set
@@ -793,7 +774,6 @@ bc.onmessage = function (ev) {
 			// Set mode if provided (backward compatible - optional field)
 			if (ev.data.mode) {
 				$("#mode").val(ev.data.mode);
-				console.log('Mode set to:', ev.data.mode);
 			}
 			$("#callsign").val(ev.data.call);
 			$("#callsign").focusout();
@@ -1215,6 +1195,20 @@ function get_note_status(callsign){
 // Lookup callsign on focusout - if the callsign is 3 chars or longer
 $("#callsign").on("focusout", function () {
 	if ($(this).val().length >= 3 && preventLookup == false) {
+
+		var currentCallsign = $(this).val().toUpperCase().replaceAll('Ø', '0');
+
+		// Prevent duplicate lookups for the same callsign if already in progress
+		if (lookupInProgress && lastLookupCallsign === currentCallsign) {
+			return;
+		}
+
+		// If callsign changed, allow new lookup even if one is in progress
+		lastLookupCallsign = currentCallsign;
+		lookupInProgress = true;
+
+		// Capture pendingReferences for THIS lookup (before it gets overwritten by another click)
+		var capturedReferences = pendingReferences ? Object.assign({}, pendingReferences) : null;
 
 		// Disable Save QSO button and show fetch status
 		$('#saveQso').prop('disabled', true);
@@ -1767,8 +1761,9 @@ $("#callsign").on("focusout", function () {
 
 				// Populate pending references from bandmap (after all lookup logic completes)
 				// Small delay to ensure DOM is fully updated
+				// Use the captured references from when THIS lookup started
 				setTimeout(function() {
-					populatePendingReferences();
+					populatePendingReferences(capturedReferences);
 				}, 100);
 			}
 
@@ -1785,6 +1780,9 @@ $("#callsign").on("focusout", function () {
 			clearTimeout(fetchTimeout);
 			$('#saveQso').prop('disabled', false);
 			$('#fetch_status').hide();
+
+			// Reset lookup in progress flag
+			lookupInProgress = false;
 		});
 	} else {
 		// Reset QSO fields
