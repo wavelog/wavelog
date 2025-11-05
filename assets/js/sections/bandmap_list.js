@@ -1,17 +1,24 @@
 /**
- * @fileoverview DX CLUSTER BANDMAP for WaveLog
- * @version 1.0.0
- * @author Wavelog Team
+ * @fileoverview DX Cluster Bandmap for Wavelog
+ * @version 2.0.0
+ * @author Wavelog Development Team
+ * @date 2024-2025
  *
  * @description
- * Real-time DX spot filtering and display with intelligent client/server-side
- * filter architecture, smart caching, and multi-criteria spot filtering.
+ * Advanced real-time DX spot filtering and display system with intelligent
+ * client/server architecture, smart caching, CAT control integration, and
+ * comprehensive multi-criteria filtering capabilities.
  *
- * @requires jQuery
- * @requires DataTables
+ * @requires jQuery 3.x+
+ * @requires DataTables 1.13+
+ * @requires Bootstrap 5.x
  * @requires base_url (global from Wavelog)
  * @requires dxcluster_provider (global from Wavelog)
  * @requires dxcluster_maxage (global from Wavelog)
+ * @requires custom_date_format (global from Wavelog)
+ * @requires popup_warning (global from Wavelog)
+ * @requires cat_timeout_interval (global from Wavelog)
+ * @requires lang_* translation variables (global from Wavelog)
  *
  * @browserSupport
  * - Chrome 90+
@@ -20,19 +27,21 @@
  * - Edge 90+
  *
  * @features
- * - Smart filter architecture (server-side: continent only; client-side: band, mode, flags)
- * - Real-time spot caching and client-side filtering
+ * - Hybrid filter architecture (server-side: continent, band; client-side: mode, flags, DXCC status)
+ * - Real-time spot caching with smart TTL management
  * - Multi-select filters with AND/OR logic
- * - Required flags (LoTW, Not Worked) with AND logic
- * - Activity flags (POTA, SOTA, WWFF, IOTA, Contest)
- * - Auto-refresh with 60-second countdown timer
+ * - Required flags (LoTW, New Country, New Continent, Worked Callsign) with AND logic
+ * - Activity reference filters (POTA, SOTA, WWFF, IOTA, Contest)
+ * - CAT Control integration with frequency gradient visualization
+ * - Auto-refresh with countdown timer
  * - DXCC status color coding (Confirmed/Worked/New)
- * - TTL-based spot lifecycle (expiring spots shown in red)
+ * - TTL-based spot lifecycle visualization
+ * - Fullscreen mode support
+ * - Responsive design with mobile optimization
+ * - BroadcastChannel API for QSO window integration
  */
 
 'use strict';
-
-console.log('=== BANDMAP_LIST.JS LOADING ===');
 
 // ========================================
 // CONFIGURATION
@@ -41,9 +50,7 @@ const SPOT_REFRESH_INTERVAL = 60;  // Auto-refresh interval in seconds
 
 // Configure DataTables error mode BEFORE document ready
 // This prevents alert dialogs from showing
-console.log('Configuring DataTables error mode...');
 if (typeof jQuery !== 'undefined' && jQuery.fn && jQuery.fn.dataTable) {
-	console.log('DataTables found, setting errMode to console logging');
 	jQuery.fn.dataTable.ext.errMode = function(settings, helpPage, message) {
 		console.error('=== DataTables Error (pre-init) ===');
 		console.error('Message:', message);
@@ -56,12 +63,9 @@ if (typeof jQuery !== 'undefined' && jQuery.fn && jQuery.fn.dataTable) {
 
 $(function() {
 
-	console.log('=== BANDMAP Document Ready ===');
-
 	// Configure DataTables to log errors to console instead of showing alert dialogs
 	// MUST be set before any DataTable is initialized
 	if ($.fn.dataTable) {
-		console.log('Setting DataTables errMode inside document ready');
 		$.fn.dataTable.ext.errMode = function(settings, helpPage, message) {
 			console.error('=== DataTables Error ===');
 			console.error('Message:', message);
@@ -73,7 +77,6 @@ $(function() {
 				console.error('Expected columns: 15 (Age, Band, Freq, Mode, Spotted, Cont, CQZ, Flag, Entity, DXCC#, Spotter, de Cont, de CQZ, Special, Message)');
 			}
 		};
-		console.log('DataTables errMode configured successfully');
 	} else {
 		console.error('$.fn.dataTable not available!');
 	}
@@ -402,7 +405,7 @@ $(function() {
 			language: {
 				url: getDataTablesLanguageUrl(),
 				"emptyTable": "<i class='fas fa-spinner fa-spin'></i> Loading spots...",
-				"zeroRecords": "No spots found"
+				"zeroRecords": lang_bandmap_no_spots_found
 			},
 			'columnDefs': [
 				{
@@ -473,50 +476,22 @@ $(function() {
 		if (isCatTrackingEnabled) {
 			tuneRadio(qrg, mode);
 		} else {
-			console.log('CAT Control is not enabled - cannot tune radio');
 			if (typeof showToast === 'function') {
-				showToast('CAT Control Required', 'Enable CAT Control to tune the radio', 'bg-warning text-dark', 3000);
+				showToast(lang_bandmap_cat_required, lang_bandmap_enable_cat, 'bg-warning text-dark', 3000);
 			}
 		}
 		return;
 	}
 
-	console.log('=== SEARCHING FOR SPOT DATA ===');
-	console.log('Looking for callsign:', call);
-	console.log('Row frequency (MHz):', rowData[2]);
-	console.log('Converted to Hz:', qrg);
-	console.log('Total cached spots:', cachedSpotData ? cachedSpotData.length : 0);
-
 	// Find the original spot data to get reference information
 	let spotData = null;
 	if (cachedSpotData) {
-		// First try exact callsign match to see what frequencies are available
-		let callsignMatches = cachedSpotData.filter(spot => spot.spotted === call);
-		console.log('Spots matching callsign', call, ':', callsignMatches.length);
-		if (callsignMatches.length > 0) {
-			console.log('Available frequencies for', call, ':', callsignMatches.map(s => ({
-				freq_khz: s.frequency,
-				freq_hz: s.frequency * 1000,  // frequency is in kHz, not MHz!
-				diff_hz: Math.abs(s.frequency * 1000 - qrg)
-			})));
-		}
-
 		// Note: spot.frequency is in kHz, so multiply by 1000 to get Hz
 		spotData = cachedSpotData.find(spot =>
 			spot.spotted === call &&
 			Math.abs(spot.frequency * 1000 - qrg) < 100  // Match within 100 Hz tolerance
 		);
-		console.log('Spot data found for', call, ':', spotData);
-		if (spotData && spotData.dxcc_spotted) {
-			console.log('References:', {
-				pota: spotData.dxcc_spotted.pota_ref,
-				sota: spotData.dxcc_spotted.sota_ref,
-				wwff: spotData.dxcc_spotted.wwff_ref,
-				iota: spotData.dxcc_spotted.iota_ref
-			});
-		}
 	}
-	console.log('================================');
 
 	prepareLogging(call, qrg, mode, spotData);
 });		return table;
@@ -697,7 +672,6 @@ $(function() {
 		refreshTimerInterval = setInterval(function() {
 			refreshCountdown--;
 			if (refreshCountdown <= 0) {
-				console.log('Timer countdown: reloading spot data with current filters');
 				let table = get_dtable();
 				table.clear();
 
@@ -813,7 +787,7 @@ $(function() {
 
 		if (!cachedSpotData || cachedSpotData.length === 0) {
 			table.clear();
-			table.settings()[0].oLanguage.sEmptyTable = "No data available";
+			table.settings()[0].oLanguage.sEmptyTable = lang_bandmap_no_data;
 			table.draw();
 			return;
 		}
@@ -838,11 +812,6 @@ $(function() {
 		// Skip if TTL is undefined or < 0
 		if (ttl === undefined || ttl < 0) {
 			return;
-		}
-
-		// Debug: Log TTL for first few spots
-		if (spots2render < 3) {
-			console.log('Spot:', single.spotted, 'Freq:', single.frequency, 'TTL:', ttl);
 		}
 
 		// Extract time from spot data - use 'when' field
@@ -1171,7 +1140,6 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 			if (ttl === 0) {
 				// Expiring spot (gone from cluster but visible for one more cycle)
 				rowClass = 'spot-expiring';
-				console.log('EXPIRING SPOT:', single.spotted, 'Freq:', single.frequency, 'TTL:', ttl);
 			} else if (ageMinutesForStyling < 1) {
 				// Very new spot (less than 1 minute old)
 				rowClass = 'spot-very-new';
@@ -1188,16 +1156,12 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 				}
 			}
 
-			// Add row with appropriate class
-			let addedRow = table.rows.add(data).draw().nodes().to$();
+		// Add row with appropriate class
+		let addedRow = table.rows.add(data).draw().nodes().to$();
 
-			if (rowClass) {
-				addedRow.addClass(rowClass);
-				if (ttl === 0) {
-					console.log('Added expiring class to row:', addedRow.hasClass('spot-expiring'));
-				}
-			}
-
+		if (rowClass) {
+			addedRow.addClass(rowClass);
+		}
 			// Apply CAT frequency gradient AFTER adding lifecycle classes to ensure it overrides
 			if (isCatTrackingEnabled && currentRadioFrequency) {
 				const spotFreqKhz = single.frequency * 1000; // Convert MHz to kHz
@@ -1225,7 +1189,7 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 
 		if (spots2render == 0) {
 			table.clear();
-			table.settings()[0].oLanguage.sEmptyTable = "No data available";
+			table.settings()[0].oLanguage.sEmptyTable = lang_bandmap_no_data;
 			table.draw();
 		}
 
@@ -1625,7 +1589,7 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 		// bandForAPI is now passed as a parameter from applyFilters()
 		// Log if CAT Control influenced the band selection
 		if (bandForAPI !== 'All') {
-			console.log('Fetching specific band from server:', bandForAPI);
+
 		}
 
 		// Update backend filter state
@@ -1641,11 +1605,11 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 		// Build API URL: /spots/{band}/{maxAge}/{continent}/{mode}
 		// Mode is always 'All' - filtering happens client-side
 		let dxurl = dxcluster_provider + "/spots/" + bandForAPI + "/" + maxAgeMinutes + "/" + continentForAPI + "/All";
-		console.log('Loading from backend: ' + dxurl);
+
 
 		// Cancel any in-flight request before starting new one
 		if (currentAjaxRequest) {
-			console.log('Aborting previous fetch request');
+
 			currentAjaxRequest.abort();
 			currentAjaxRequest = null;
 		}
@@ -1662,20 +1626,12 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 			currentAjaxRequest = null;
 			table.page.len(50);
 
-			// Debug: Log response details
-			console.log('Backend response received:', {
-				url: dxurl,
-				spotCount: Array.isArray(dxspots) ? dxspots.length : 0,
-				responseType: typeof dxspots,
-				hasError: dxspots && dxspots.error ? dxspots.error : 'none'
-			});
-
 			// Check if response is an error object
 			if (dxspots && dxspots.error) {
 				console.warn('Backend returned error:', dxspots.error);
 				cachedSpotData = [];
 				table.clear();
-				table.settings()[0].oLanguage.sEmptyTable = "No spots found for selected filters";
+				table.settings()[0].oLanguage.sEmptyTable = lang_bandmap_no_spots_filters;
 				table.draw();
 				updateStatusBar(0, 0, getServerFilterText(), getClientFilterText(), false, false);
 				isFetchInProgress = false;
@@ -1755,9 +1711,9 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 					}
 				});
 
-				console.log('TTL Update:', ttlStats, 'Total tracked spots:', spotTTLMap.size);
+
 				if (expiringSpots.length > 0) {
-					console.log('Adding', expiringSpots.length, 'expiring spots back to display');
+
 				}
 
 				// Merge new spots with expiring spots (TTL=0) for display
@@ -1778,14 +1734,14 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 
 			// Don't show error if user cancelled the request
 			if (textStatus === 'abort') {
-				console.log('Fetch request aborted');
+
 				return;
 			}
 
 			cachedSpotData = null;
 			isFetchInProgress = false;
 			table.clear();
-			table.settings()[0].oLanguage.sEmptyTable = "Error loading spots. Please try again.";
+			table.settings()[0].oLanguage.sEmptyTable = lang_bandmap_error_loading;
 			table.draw();
 			updateStatusBar(0, 0, getServerFilterText(), getClientFilterText(), false, false);
 			startRefreshTimer();
@@ -1936,8 +1892,8 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 			}
 		}
 
-		console.log('applyFilters - Current backend filters:', loadedBackendFilters);
-		console.log('applyFilters - Requested backend params:', {continent: continentForAPI, band: bandForAPI, singleBandMode: isSingleBandMode});
+
+
 
 		// Check if backend parameters changed (requires new data fetch)
 		// In single-band mode, band selection changes also require server fetch
@@ -1945,7 +1901,7 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 			loadedBackendFilters.continent !== continentForAPI ||
 			(isSingleBandMode && loadedBackendFilters.band !== bandForAPI);
 
-		console.log('applyFilters - backendParamsChanged:', backendParamsChanged);
+
 
 		// Always update current filters for client-side filtering
 		currentFilters = {
@@ -1959,11 +1915,11 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 		};
 
 		if (backendParamsChanged) {
-			console.log('Reloading from backend: continent=' + continentForAPI + ' band=' + bandForAPI);
+
 			table.clear();
 			fill_list(de, dxcluster_maxage, bandForAPI);
 		} else {
-			console.log('Client-side filtering changed - using cached data');
+
 			renderFilteredSpots();
 			updateBandCountBadges();
 		}
@@ -2017,7 +1973,7 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 		$('#filterDropdown').dropdown('hide');
 
 		if (isCatTrackingEnabled && typeof showToast === 'function') {
-			showToast('Clear Filters', 'Band filter preserved (CAT Control is active)', 'bg-info text-white', 2000);
+			showToast(lang_bandmap_clear_filters, lang_bandmap_band_preserved, 'bg-info text-white', 2000);
 		}
 	});
 
@@ -2048,7 +2004,7 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 		applyFilters(false);  // Don't refetch from server since De Continent is preserved
 
 		if (isCatTrackingEnabled && typeof showToast === 'function') {
-			showToast('Clear Filters', 'Band filter preserved (CAT Control is active)', 'bg-info text-white', 2000);
+			showToast(lang_bandmap_clear_filters, lang_bandmap_band_preserved, 'bg-info text-white', 2000);
 		}
 	});
 
@@ -2092,7 +2048,7 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 
 		// If "None" (value "0") is selected, automatically disable CAT Control
 		if (selectedRadio === "0") {
-			console.log('Radio set to None - automatically disabling CAT Control');
+
 
 			// If CAT Control is currently enabled, turn it off
 			if (isCatTrackingEnabled) {
@@ -2113,7 +2069,7 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 				// Reset band filter to 'All' and fetch all bands
 				const currentBands = $("#band").val() || [];
 				if (currentBands.length !== 1 || currentBands[0] !== 'All') {
-					console.log('Resetting to all bands after disabling CAT Control');
+
 					$("#band").val(['All']);
 					updateSelectCheckboxes('band');
 					syncQuickFilterButtons();
@@ -2121,7 +2077,7 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 				}
 
 				if (typeof showToast === 'function') {
-					showToast('Radio', 'Radio set to None - CAT Control disabled', 'bg-info text-white', 3000);
+					showToast(lang_bandmap_radio, lang_bandmap_radio_none, 'bg-info text-white', 3000);
 				}
 			}
 		}
@@ -2215,7 +2171,7 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 		const selectedRadio = $('.radios option:selected').val();
 
 		if (!selectedRadio || selectedRadio === '0') {
-			console.log('No radio selected - cannot tune');
+
 			return;
 		}
 
@@ -2229,16 +2185,16 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 				radioMode, // Use determined radio mode
 				function() {
 					// Success callback
-					console.log('Radio tuned to:', freqHz, 'Hz', 'Mode:', radioMode);
+
 					if (typeof showToast === 'function') {
-						showToast('Radio Tuned', `Tuned to ${(freqHz / 1000000).toFixed(3)} MHz (${radioMode})`, 'bg-success text-white', 2000);
+						showToast(lang_bandmap_radio_tuned, `${lang_bandmap_tuned_to} ${(freqHz / 1000000).toFixed(3)} MHz (${radioMode})`, 'bg-success text-white', 2000);
 					}
 				},
 				function(jqXHR, textStatus, errorThrown) {
 					// Error callback
 					console.error('Failed to tune radio:', errorThrown);
 					if (typeof showToast === 'function') {
-						showToast('Tuning Failed', 'Failed to tune radio to frequency', 'bg-danger text-white', 3000);
+						showToast(lang_bandmap_tuning_failed, lang_bandmap_tune_failed_msg, 'bg-danger text-white', 3000);
 					}
 				}
 			);
@@ -2266,50 +2222,48 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 		if (mode) {
 			// Determine appropriate radio mode based on spot mode and frequency
 			message.mode = determineRadioMode(mode, qrg);
-			console.log('Added mode to message:', message.mode, '(from spot mode:', mode + ')');
 		} else {
 			// Fallback to SSB based on frequency
 			message.mode = qrg < 10000000 ? 'LSB' : 'USB';
-			console.log('No spot mode - using fallback:', message.mode);
 		}
 
 		// If radio is in split mode, include the RX frequency
 		if (window.lastCATData && window.lastCATData.frequency_rx) {
 			message.frequency_rx = window.lastCATData.frequency_rx;
-			console.log('Split mode detected, RX frequency:', message.frequency_rx);
+
 		}
 
 		// Add reference fields if available (backward compatible - only if spotData exists)
 		if (spotData && spotData.dxcc_spotted) {
-			console.log('Building message with spot data:', spotData.dxcc_spotted);
+
 			if (spotData.dxcc_spotted.pota_ref) {
 				message.pota_ref = spotData.dxcc_spotted.pota_ref;
-				console.log('Added POTA ref:', message.pota_ref);
+
 			}
 			if (spotData.dxcc_spotted.sota_ref) {
 				message.sota_ref = spotData.dxcc_spotted.sota_ref;
-				console.log('Added SOTA ref:', message.sota_ref);
+
 			}
 			if (spotData.dxcc_spotted.wwff_ref) {
 				message.wwff_ref = spotData.dxcc_spotted.wwff_ref;
-				console.log('Added WWFF ref:', message.wwff_ref);
+
 			}
 			if (spotData.dxcc_spotted.iota_ref) {
 				message.iota_ref = spotData.dxcc_spotted.iota_ref;
-				console.log('Added IOTA ref:', message.iota_ref);
+
 			}
 		} else {
-			console.log('No spot data or dxcc_spotted available');
+
 		}
 
-		console.log('Final message to send:', message);
+
 
 		let check_pong = setInterval(function() {
 			if (pong_rcvd || ((Date.now() - qso_window_last_seen) < wait4pong)) {
 				clearInterval(check_pong);
 				bc2qso.postMessage(message);
 				// Show toast notification when callsign is sent to existing QSO window
-				showToast('QSO Prepared', `Callsign ${call} sent to logging form`, 'bg-success text-white', 3000);
+				showToast(lang_bandmap_qso_prepared, `${lang_bandmap_callsign_sent} ${call} ${lang_bandmap_sent_to_form}`, 'bg-success text-white', 3000);
 			} else {
 				clearInterval(check_pong);
 				let cl = message;  // Use the message object with all fields
@@ -2324,7 +2278,7 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
                 } else {
                     newWindow.focus();
 					// Show toast notification when opening new QSO window
-					showToast('QSO Prepared', `Callsign ${call} sent to logging form`, 'bg-success text-white', 3000);
+					showToast(lang_bandmap_qso_prepared, `${lang_bandmap_callsign_sent} ${call} ${lang_bandmap_sent_to_form}`, 'bg-success text-white', 3000);
                 }
 
                 bc2qso.onmessage = function(ev) {
@@ -2529,53 +2483,35 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 				$(this.node()).removeClass('cat-nearest-above cat-nearest-below');
 			});
 
-			console.log('No spots colored - adding border indicators. Current freq:', currentRadioFrequency);
-			console.log('Nearest below:', nearestBelow, 'Distance:', minDistanceBelow, 'kHz');
-			console.log('Nearest above:', nearestAbove, 'Distance:', minDistanceAbove, 'kHz');
 
-			// DEBUG: Check how many rows match each frequency
-			if (nearestBelow) {
-				const belowFreq = $(nearestBelow).attr('data-spot-frequency');
-				const belowMatches = $('tr[data-spot-frequency="' + belowFreq + '"]');
-				console.log('DEBUG: Rows at nearest below freq (' + belowFreq + '):', belowMatches.length);
-			}
-			if (nearestAbove) {
-				const aboveFreq = $(nearestAbove).attr('data-spot-frequency');
-				const aboveMatches = $('tr[data-spot-frequency="' + aboveFreq + '"]');
-				console.log('DEBUG: Rows at nearest above freq (' + aboveFreq + '):', aboveMatches.length);
-			}
+
+
 
 			// Spot BELOW current freq (lower number) appears at BOTTOM of DESC table → TOP border points UP toward you
 			if (nearestBelow) {
 				$(nearestBelow).addClass('cat-nearest-below');
-				console.log('Added cat-nearest-below class (lower frequency, top border points up)');
-				// DEBUG: Verify only one row has the class
-				console.log('DEBUG: Total rows with cat-nearest-below:', $('.cat-nearest-below').length);
 			}
 			// Spot ABOVE current freq (higher number) appears at TOP of DESC table → BOTTOM border points DOWN toward you
 			if (nearestAbove) {
 				$(nearestAbove).addClass('cat-nearest-above');
-				console.log('Added cat-nearest-above class (higher frequency, bottom border points down)');
-				// DEBUG: Verify only one row has the class
-				console.log('DEBUG: Total rows with cat-nearest-above:', $('.cat-nearest-above').length);
 			}
 		} else {
 			// Remove border indicators when spots are in gradient range
 			table.rows().every(function() {
 				$(this.node()).removeClass('cat-nearest-above cat-nearest-below');
 			});
-			console.log('Spots colored:', coloredCount, '- no border indicators needed');
+
 		}
 	}	// Save reference to cat.js's updateCATui if it exists
 	var catJsUpdateCATui = window.updateCATui;
 
 	// Override updateCATui to add bandmap-specific behavior
 	window.updateCATui = function(data) {
-		console.log('Bandmap: updateCATui called with data:', data);
+
 
 		const band = frequencyToBand(data.frequency);
 
-		console.log('Bandmap CAT Update - Frequency:', data.frequency, 'Band:', band, 'Control enabled:', isCatTrackingEnabled);
+
 
 		// Store current radio frequency (convert Hz to kHz)
 		currentRadioFrequency = data.frequency / 1000;
@@ -2588,28 +2524,28 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 				// Valid band found - set filter to this specific band
 				// Check if current selection is not just this band
 				if (currentBands.length !== 1 || currentBands[0] !== band) {
-					console.log('Updating band filter to:', band);
+
 					$("#band").val([band]);
 					updateSelectCheckboxes('band');
 					syncQuickFilterButtons();
 					applyFilters(false);
 					// Show toast notification when band filter is changed by CAT
 					if (typeof showToast === 'function') {
-						showToast('CAT Control', `Frequency filter changed to ${band} by transceiver`, 'bg-info text-white', 3000);
+						showToast(lang_bandmap_cat_control, `${lang_bandmap_freq_changed} ${band} ${lang_bandmap_by_transceiver}`, 'bg-info text-white', 3000);
 					}
 				}
 			} else {
 				// No band match - clear band filter to show all bands
 				// Only update if not already showing all bands
 				if (currentBands.length !== 1 || currentBands[0] !== 'All') {
-					console.log('Frequency outside known bands - clearing band filter to show all');
+
 					$("#band").val(['All']);
 					updateSelectCheckboxes('band');
 					syncQuickFilterButtons();
 					applyFilters(false);
 					// Show toast notification
 					if (typeof showToast === 'function') {
-						showToast('CAT Control', 'Frequency outside known bands - showing all bands', 'bg-warning text-dark', 3000);
+						showToast(lang_bandmap_cat_control, lang_bandmap_freq_outside, 'bg-warning text-dark', 3000);
 					}
 				}
 			}
@@ -2620,7 +2556,7 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 
 	// Call cat.js's original updateCATui for standard CAT UI updates
 	if (typeof catJsUpdateCATui === 'function') {
-		console.log('Bandmap: Calling cat.js updateCATui');
+
 
 		// Store current band selection before calling cat.js updateCATui
 		const bandBeforeUpdate = $("#band").val();
@@ -2636,7 +2572,7 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 	} else {
 		console.warn('Bandmap: cat.js updateCATui not available');
 	}
-};	console.log('Bandmap: CAT integration complete, updateCATui override installed');
+};
 
 	$.fn.dataTable.moment(custom_date_format + ' HH:mm');
 
@@ -2664,7 +2600,7 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 			const elem = document.documentElement;
 			if (elem.requestFullscreen) {
 				elem.requestFullscreen().catch(err => {
-					console.log('Fullscreen request failed:', err);
+
 				});
 			} else if (elem.webkitRequestFullscreen) { // Safari
 				elem.webkitRequestFullscreen();
@@ -2688,7 +2624,7 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 			// Exit browser fullscreen
 			if (document.exitFullscreen) {
 				document.exitFullscreen().catch(err => {
-					console.log('Exit fullscreen failed:', err);
+
 				});
 			} else if (document.webkitExitFullscreen) { // Safari
 				document.webkitExitFullscreen();
@@ -3476,7 +3412,7 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 					applyUserFavorites(favorites);
 				},
 				error: function() {
-					showToast('My Favorites', 'Failed to load favorites', 'bg-danger text-white', 3000);
+					showToast(lang_bandmap_my_favorites, lang_bandmap_favorites_failed, 'bg-danger text-white', 3000);
 				}
 			});
 		}
@@ -3489,9 +3425,9 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 		// Apply bands - but preserve current band if CAT Control is enabled
 		if (isCatTrackingEnabled) {
 			// CAT Control is active - don't change band filter
-			console.log('CAT Control is active - skipping band filter change from favorites');
+
 			if (typeof showToast === 'function') {
-				showToast('My Favorites', 'Modes applied. Band filter preserved (CAT Control is active)', 'bg-info text-white', 3000);
+				showToast(lang_bandmap_my_favorites, lang_bandmap_modes_applied, 'bg-info text-white', 3000);
 			}
 		} else {
 			// CAT Control is off - apply favorite bands
@@ -3521,7 +3457,7 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 		updateBandCountBadges();
 		applyFilters(false);
 
-		showToast('My Favorites', 'Applied your favorite bands and modes', 'bg-success text-white', 3000);
+		showToast(lang_bandmap_my_favorites, lang_bandmap_favorites_applied, 'bg-success text-white', 3000);
 	}
 
 	// ========================================
@@ -3581,15 +3517,12 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 			col.bSortable = false;
 		});
 
-		// Disable click events on all column headers
-		$('.spottable thead th').off('click.DT');
+	// Disable click events on all column headers
+	$('.spottable thead th').off('click.DT');
 
-		// Redraw column headers to update sort icons
-		table.columns.adjust();
-
-		console.log('Table sorting locked to Frequency (DESC) only');
-	}
-
+	// Redraw column headers to update sort icons
+	table.columns.adjust();
+}
 	/**
 	 * Unlock table sorting when CAT Control is disabled
 	 */
@@ -3621,7 +3554,7 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 		// Clear frequency gradient colors
 		clearFrequencyGradientColors();
 
-		console.log('Table sorting unlocked');
+
 	}
 
 	/**
@@ -3650,7 +3583,7 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 			btn.removeClass('btn-success').addClass('btn-secondary');
 			isCatTrackingEnabled = false;
 			window.isCatTrackingEnabled = false; // Update window variable for cat.js
-			console.log('CAT Control disabled');
+
 
 			// Hide radio status when CAT Control is disabled
 			$('#radio_cat_state').remove();
@@ -3664,7 +3597,7 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 			// Reset band filter to 'All' and fetch all bands
 			const currentBands = $("#band").val() || [];
 			if (currentBands.length !== 1 || currentBands[0] !== 'All') {
-				console.log('CAT Control disabled - resetting to all bands');
+
 				$("#band").val(['All']);
 				updateSelectCheckboxes('band');
 				syncQuickFilterButtons();
@@ -3675,7 +3608,7 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 			btn.removeClass('btn-secondary').addClass('btn-success');
 			isCatTrackingEnabled = true;
 			window.isCatTrackingEnabled = true; // Update window variable for cat.js
-			console.log('CAT Control enabled');
+
 
 			// Trigger radio status display if we have data
 			if (window.lastCATData) {
@@ -3692,34 +3625,34 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 
 			// Immediately apply current radio frequency if available
 			if (window.lastCATData && window.lastCATData.frequency) {
-				console.log('Applying current radio frequency:', window.lastCATData.frequency);
+
 				const band = frequencyToBand(window.lastCATData.frequency);
 
 				if (band && band !== '') {
 					// Valid band found - set filter to this specific band
-					console.log('Setting band filter to:', band);
+
 					$("#band").val([band]);
 					updateSelectCheckboxes('band');
 					syncQuickFilterButtons();
 					applyFilters(false);
 					if (typeof showToast === 'function') {
-						showToast('CAT Control', `Frequency filter set to ${band} by transceiver`, 'bg-info text-white', 3000);
+						showToast(lang_bandmap_cat_control, `${lang_bandmap_freq_filter_set} ${band} ${lang_bandmap_by_transceiver}`, 'bg-info text-white', 3000);
 					}
 				} else {
 					// No band match - clear band filter to show all bands
-					console.log('Frequency outside known bands - showing all');
+
 					$("#band").val(['All']);
 					updateSelectCheckboxes('band');
 					syncQuickFilterButtons();
 					applyFilters(false);
 					if (typeof showToast === 'function') {
-						showToast('CAT Control', 'Frequency outside known bands - showing all bands', 'bg-warning text-dark', 3000);
+						showToast(lang_bandmap_cat_control, lang_bandmap_freq_outside, 'bg-warning text-dark', 3000);
 					}
 				}
 			} else {
-				console.log('No radio data available yet - waiting for next CAT update');
+
 				if (typeof showToast === 'function') {
-					showToast('CAT Control', 'Waiting for radio data...', 'bg-info text-white', 2000);
+					showToast(lang_bandmap_cat_control, lang_bandmap_waiting_radio, 'bg-info text-white', 2000);
 				}
 			}
 		}
@@ -3855,7 +3788,7 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 			dataType: 'json',
 			success: function(favorites) {
 				cachedUserFavorites = favorites;
-				console.log('User favorites cached:', favorites);
+
 			},
 			error: function() {
 				console.warn('Failed to cache user favorites');
@@ -3890,3 +3823,5 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 	setInterval(updateSpotAges, 60000);
 
 });
+
+

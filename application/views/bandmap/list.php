@@ -9,7 +9,39 @@
 	// Detect OS for proper keyboard shortcuts
 	var isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
 	var modKey = isMac ? 'Cmd' : 'Ctrl';
-	var lang_click_to_prepare_logging = "<?= __("Click to prepare logging."); ?> (" + modKey + "+Click <?= __("for new window"); ?>)";
+	var lang_click_to_prepare_logging = "<?= __("Click to prepare logging."); ?> (" + modKey + "+Click <?= __("to tune frequency"); ?>)";
+
+	// Bandmap toast messages
+	var lang_bandmap_cat_required = "<?= __("CAT Control Required"); ?>";
+	var lang_bandmap_enable_cat = "<?= __("Enable CAT Control to tune the radio"); ?>";
+	var lang_bandmap_clear_filters = "<?= __("Clear Filters"); ?>";
+	var lang_bandmap_band_preserved = "<?= __("Band filter preserved (CAT Control is active)"); ?>";
+	var lang_bandmap_radio = "<?= __("Radio"); ?>";
+	var lang_bandmap_radio_none = "<?= __("Radio set to None - CAT Control disabled"); ?>";
+	var lang_bandmap_radio_tuned = "<?= __("Radio Tuned"); ?>";
+	var lang_bandmap_tuned_to = "<?= __("Tuned to"); ?>";
+	var lang_bandmap_tuning_failed = "<?= __("Tuning Failed"); ?>";
+	var lang_bandmap_tune_failed_msg = "<?= __("Failed to tune radio to frequency"); ?>";
+	var lang_bandmap_qso_prepared = "<?= __("QSO Prepared"); ?>";
+	var lang_bandmap_callsign_sent = "<?= __("Callsign"); ?>";
+	var lang_bandmap_sent_to_form = "<?= __("sent to logging form"); ?>";
+	var lang_bandmap_cat_control = "<?= __("CAT Control"); ?>";
+	var lang_bandmap_freq_changed = "<?= __("Frequency filter changed to"); ?>";
+	var lang_bandmap_by_transceiver = "<?= __("by transceiver"); ?>";
+	var lang_bandmap_freq_filter_set = "<?= __("Frequency filter set to"); ?>";
+	var lang_bandmap_freq_outside = "<?= __("Frequency outside known bands - showing all bands"); ?>";
+	var lang_bandmap_waiting_radio = "<?= __("Waiting for radio data..."); ?>";
+	var lang_bandmap_my_favorites = "<?= __("My Favorites"); ?>";
+	var lang_bandmap_favorites_failed = "<?= __("Failed to load favorites"); ?>";
+	var lang_bandmap_modes_applied = "<?= __("Modes applied. Band filter preserved (CAT Control is active)"); ?>";
+	var lang_bandmap_favorites_applied = "<?= __("Applied your favorite bands and modes"); ?>";
+
+	// DataTables messages
+	var lang_bandmap_loading_spots = "<?= __("Loading spots..."); ?>";
+	var lang_bandmap_no_spots_found = "<?= __("No spots found"); ?>";
+	var lang_bandmap_no_data = "<?= __("No data available"); ?>";
+	var lang_bandmap_no_spots_filters = "<?= __("No spots found for selected filters"); ?>";
+	var lang_bandmap_error_loading = "<?= __("Error loading spots. Please try again."); ?>";
 
 	// Enable compact radio status display for bandmap page
 	window.CAT_COMPACT_MODE = true;
@@ -30,7 +62,7 @@
 				<a href="<?php echo base_url(); ?>" title="<?= __("Return to Home"); ?>">
 					<img class="headerLogo me-2 bandmap-logo-fullscreen" src="<?php echo base_url(); ?>assets/logo/<?php echo $this->optionslib->get_logo('header_logo'); ?>.png" alt="Logo" style="height: 32px; width: auto; cursor: pointer;" />
 				</a>
-				<h5 class="mb-0">DX Cluster - spot list</h5>
+				<h5 class="mb-0"><?= __("DX Cluster - spot list"); ?></h5>
 			</div>
 		<div class="d-flex align-items-center gap-3">
 			<a href="https://www.wavelog.org" target="_blank" class="fullscreen-wavelog-text" style="display: none; font-weight: 500; color: var(--bs-body-color); text-decoration: none;">www.wavelog.org</a>
@@ -68,7 +100,7 @@
 			</select>
 			<!-- CAT Control Button -->
 			<button class="btn btn-sm btn-secondary flex-shrink-0" type="button" id="toggleCatTracking" title="<?= __("When selected the filters will be set basing on your current radio status"); ?>">
-				<i class="fas fa-radio"></i> <span class="d-none d-sm-inline">CAT Control</span>
+				<i class="fas fa-radio"></i> <span class="d-none d-sm-inline"><?= __("CAT Control"); ?></span>
 			</button>
 		</div>
 	</div>
@@ -93,7 +125,7 @@
 						document.addEventListener('DOMContentLoaded', function() {
 							var isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
 							var modKey = isMac ? 'Cmd' : 'Ctrl';
-							document.getElementById('filterTipText').textContent = 'Hold ' + modKey + ' and click to select multiple options';
+							document.getElementById('filterTipText').textContent = '<?= __("Hold"); ?> ' + modKey + ' <?= __("and click to select multiple options"); ?>';
 						});
 					</script>
 					<div class="row">
@@ -235,7 +267,7 @@
 		<div class="d-flex flex-wrap gap-2 align-items-center">
 			<small class="text-muted me-1 flex-shrink-0"><?= __("de:"); ?></small>
 			<div class="btn-group flex-shrink-0" role="group">
-				<button class="btn btn-sm btn-secondary" type="button" id="toggleAllContinentsFilter" title="<?= __("Select all continents"); ?>">All</button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleAllContinentsFilter" title="<?= __("Select all continents"); ?>"><?= __("All"); ?></button>
 				<button class="btn btn-sm btn-secondary" type="button" id="toggleAfricaFilter" title="<?= __("Toggle Africa continent filter"); ?>">AF</button>
 				<button class="btn btn-sm btn-secondary" type="button" id="toggleAntarcticaFilter" title="<?= __("Toggle Antarctica continent filter"); ?>">AN</button>
 				<button class="btn btn-sm btn-secondary" type="button" id="toggleAsiaFilter" title="<?= __("Toggle Asia continent filter"); ?>">AS</button>
@@ -300,25 +332,25 @@
 		<!-- Quick Filter Toggle Buttons -->
 		<div class="btn-group flex-shrink-0" role="group">
 			<button class="btn btn-sm btn-secondary" type="button" id="toggleLotwFilter" title="<?= __("Toggle LoTW User filter"); ?>">
-				<i class="fas fa-upload"></i> <span class="d-none d-sm-inline">LoTW users</span>
+				<i class="fas fa-upload"></i> <span class="d-none d-sm-inline"><?= __("LoTW users"); ?></span>
 			</button>
 			<button class="btn btn-sm btn-secondary" type="button" id="toggleNewContinentFilter" title="<?= __("Toggle New Continent filter"); ?>">
-				<i class="fas fa-medal" style="color: #FFD700;"></i> <span class="d-none d-sm-inline">Continent</span>
+				<i class="fas fa-medal" style="color: #FFD700;"></i> <span class="d-none d-sm-inline"><?= __("Continent"); ?></span>
 			</button>
 			<button class="btn btn-sm btn-secondary" type="button" id="toggleDxccNeededFilter" title="<?= __("Toggle New Country filter"); ?>">
-				<i class="fas fa-medal" style="color: #C0C0C0;"></i> <span class="d-none d-sm-inline">Country</span>
+				<i class="fas fa-medal" style="color: #C0C0C0;"></i> <span class="d-none d-sm-inline"><?= __("Country"); ?></span>
 			</button>
 			<button class="btn btn-sm btn-secondary" type="button" id="toggleNewCallsignFilter" title="<?= __("Toggle New Callsign filter"); ?>">
-				<i class="fas fa-medal" style="color: #CD7F32;"></i> <span class="d-none d-sm-inline">Callsign</span>
+				<i class="fas fa-medal" style="color: #CD7F32;"></i> <span class="d-none d-sm-inline"><?= __("Callsign"); ?></span>
 			</button>
 			<button class="btn btn-sm btn-secondary" type="button" id="toggleContestFilter" title="<?= __("Toggle Contest filter"); ?>">
-				<i class="fas fa-trophy"></i> <span class="d-none d-sm-inline">Contest</span>
+				<i class="fas fa-trophy"></i> <span class="d-none d-sm-inline"><?= __("Contest"); ?></span>
 			</button>
 			<button class="btn btn-sm btn-secondary" type="button" id="toggleGeoHunterFilter" title="<?= __("Toggle Geo Hunter (POTA/SOTA/IOTA/WWFF)"); ?>">
-				<i class="fas fa-hiking"></i> <span class="d-none d-sm-inline">Ref. Hunter</span>
+				<i class="fas fa-hiking"></i> <span class="d-none d-sm-inline"><?= __("Ref. Hunter"); ?></span>
 			</button>
 			<button class="btn btn-sm btn-secondary" type="button" id="toggleFreshFilter" title="<?= __("Toggle Fresh spots filter (< 5 minutes old)"); ?>">
-				<i class="fas fa-bolt"></i> <span class="d-none d-sm-inline">Fresh</span>
+				<i class="fas fa-bolt"></i> <span class="d-none d-sm-inline"><?= __("Fresh"); ?></span>
 			</button>
 		</div>
 	</div>
@@ -355,11 +387,11 @@
 							<th title="<?= __("Age in minutes"); ?>"><i class="fas fa-clock"></i></th>
 							<th title="<?= __("Band"); ?>"><i class="fas fa-wave-square"></i></th>
 							<th title="<?= __("Frequency"); ?> [MHz]"><?= __("Freq"); ?></th>
-						<th title="<?= __("Mode"); ?>"><i class="fas fa-broadcast-tower"></i></th>
-						<th title="<?= __("Spotted Callsign"); ?>"><?= __("Spotted"); ?></th>
-						<th title="<?= __("Continent"); ?>"><i class="fas fa-globe-americas"></i></th>
-						<th title="<?= __("CQ Zone"); ?>"><i class="fas fa-map-marked"></i></th>
-						<th title="<?= __("Flag"); ?>"><i class="fas fa-flag"></i></th>
+							<th title="<?= __("Mode"); ?>"><i class="fas fa-broadcast-tower"></i></th>
+							<th title="<?= __("Spotted Callsign"); ?>"><?= __("Spotted"); ?></th>
+							<th title="<?= __("Continent"); ?>"><i class="fas fa-globe-americas"></i></th>
+							<th title="<?= __("CQ Zone"); ?>"><i class="fas fa-map-marked"></i></th>
+							<th title="<?= __("Flag"); ?>"><i class="fas fa-flag"></i></th>
 							<th title="<?= __("DXCC Entity"); ?>"><?= __("Entity"); ?></th>
 							<th title="<?= __("DXCC Number"); ?>"><i class="fas fa-hashtag"></i></th>
 							<th title="<?= __("Spotter Callsign"); ?>"><?= __("Spotter"); ?></th>
