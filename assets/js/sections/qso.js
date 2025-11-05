@@ -2232,9 +2232,36 @@ $('.mode').on('change', function () {
 $('#band').on('change', function () {
 	const selectedBand = $(this).val();
 
-	// Band selector is display-only - it follows the radio frequency
-	// Band changes do NOT clear the form or update the frequency or tune the radio
-	// The radio controls the form, not the other way around
+	// In offline mode (CAT disabled), allow band changes to set default frequency
+	// In CAT mode, band selector is display-only - it follows the radio frequency
+	if (typeof isCATAvailable === 'function' && !isCATAvailable()) {
+		// Offline mode - get default frequency for band and mode
+		const currentMode = $('#mode').val() || 'SSB';
+
+		$.get('qso/band_to_freq/' + selectedBand + '/' + currentMode, function (result) {
+			if (result && result > 0) {
+				// Update frequency field
+				$('#frequency').val(result).trigger("change");
+				$('#frequency_rx').val("");
+
+				// Update virtual CAT state
+				if (typeof window.catState === 'undefined' || window.catState === null) {
+					window.catState = {};
+				}
+				window.catState.frequency = parseFloat(result); // Hz
+				window.catState.mode = currentMode;
+				window.catState.lastUpdate = Date.now();
+
+				console.log('[QSO] Offline mode - band change updated virtual CAT: band=' + selectedBand + ', freq=' + result + ' Hz');
+
+				// Update relevant spots for the new band/frequency
+				if (typeof dxWaterfall !== 'undefined' && dxWaterfall && typeof dxWaterfall.collectAllBandSpots === 'function') {
+					dxWaterfall.collectAllBandSpots(true);
+				}
+			}
+		});
+	}
+	// In CAT mode, do nothing - band changes do NOT clear the form or update the frequency
 });
 
 /* On Key up Calculate Bearing and Distance */

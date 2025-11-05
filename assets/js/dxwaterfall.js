@@ -1740,6 +1740,97 @@ var dxWaterfall = {
                 return false;
             }
         });
+
+        // Set up band dropdown change handler for offline mode
+        // When user changes band in offline mode, update frequency and fetch spots
+        this.$bandSelect.on('change', function() {
+            // Only handle in offline mode
+            if (typeof isCATAvailable === 'function' && !isCATAvailable()) {
+                var newBand = $(this).val();
+
+                // Get a typical frequency for the selected band
+                var bandFreq = self.getTypicalBandFrequency(newBand);
+
+                if (bandFreq > 0) {
+                    // Update frequency field
+                    self.$freqCalculated.val(bandFreq);
+                    self.$qrgUnit.text('kHz');
+
+                    // Update virtual CAT state
+                    var freqHz = bandFreq * 1000; // Convert kHz to Hz
+                    if (typeof window.catState === 'undefined' || window.catState === null) {
+                        window.catState = {};
+                    }
+                    window.catState.frequency = freqHz;
+                    window.catState.lastUpdate = Date.now();
+
+                    // Update mode from form if available
+                    if (self.$modeSelect && self.$modeSelect.val()) {
+                        window.catState.mode = self.$modeSelect.val();
+                    }
+
+                    console.log('[DX Waterfall] Offline mode - band change to ' + newBand + ': virtual CAT updated with freq=' + freqHz + ' Hz');
+
+                    // Commit the frequency change
+                    self.commitFrequency();
+
+                    // Mark that we're waiting for new band data
+                    self.waitingForData = true;
+                    self.dataReceived = false;
+                    self.operationStartTime = Date.now();
+
+                    // Fetch spots for the new band
+                    self.fetchDxSpots(true, true); // User-initiated fetch
+
+                    // Invalidate band-related caches
+                    self.bandLimitsCache = null;
+                    self.cachedBandForEdges = newBand;
+                    self.currentSpotBand = newBand;
+
+                    // Force refresh to show "Waiting for DX Cluster data" message
+                    if (self.canvas && self.ctx) {
+                        self.refresh();
+                    }
+                }
+            }
+        });
+
+        // Set up mode dropdown change handler for offline mode
+        // When user changes mode in offline mode, update virtual CAT state and refresh display
+        this.$modeSelect.on('change', function() {
+            // Only handle in offline mode
+            if (typeof isCATAvailable === 'function' && !isCATAvailable()) {
+                var newMode = $(this).val();
+
+                // Update virtual CAT state
+                if (typeof window.catState === 'undefined' || window.catState === null) {
+                    window.catState = {};
+                }
+
+                // Preserve existing frequency if available
+                if (!window.catState.frequency && self.$freqCalculated.val()) {
+                    var freqVal = parseFloat(self.$freqCalculated.val());
+                    var unit = self.$qrgUnit.text() || 'kHz';
+                    var freqKhz = DX_WATERFALL_UTILS.frequency.convertToKhz(freqVal, unit);
+                    window.catState.frequency = freqKhz * 1000; // Convert to Hz
+                }
+
+                window.catState.mode = newMode;
+                window.catState.lastUpdate = Date.now();
+
+                console.log('[DX Waterfall] Offline mode - mode change to ' + newMode + ': virtual CAT updated');
+
+                // Force refresh to update bandwidth indicator with new mode
+                if (self.canvas && self.ctx) {
+                    self.refresh();
+                }
+
+                // Update relevant spots collection (mode affects spot filtering)
+                if (self.collectAllBandSpots) {
+                    self.collectAllBandSpots(true);
+                }
+            }
+        });
     },
 
     /**
@@ -1855,6 +1946,32 @@ var dxWaterfall = {
             // Store the committed frequency in kHz for comparison checks
             var currentFreqKhz = DX_WATERFALL_UTILS.frequency.convertToKhz(freqValue, currentUnit);
             this.committedFrequencyKHz = currentFreqKhz;
+
+            // In offline mode, populate catState with form values to act as "virtual CAT"
+            if (typeof isCATAvailable === 'function' && !isCATAvailable()) {
+                var freqHz = currentFreqKhz * 1000; // Convert kHz to Hz
+
+                // Initialize catState if it doesn't exist
+                if (typeof window.catState === 'undefined' || window.catState === null) {
+                    window.catState = {};
+                }
+
+                // Update frequency in catState
+                window.catState.frequency = freqHz;
+                window.catState.lastUpdate = Date.now();
+
+                // Update mode from form
+                if (this.$modeSelect && this.$modeSelect.val()) {
+                    window.catState.mode = this.$modeSelect.val();
+                }
+
+                console.log('[DX Waterfall] Offline mode - virtual CAT updated: freq=' + freqHz + ' Hz, mode=' + window.catState.mode);
+
+                // Update relevant spots for the new frequency
+                if (this.collectAllBandSpots) {
+                    this.collectAllBandSpots(true);
+                }
+            }
 
             // If we're still waiting for CAT frequency and user manually set a frequency, cancel the wait
             // Only cancel if initialization is complete (don't cancel during initial page load)
@@ -3368,6 +3485,37 @@ var dxWaterfall = {
         }
         var mode = this.$modeSelect.val() || 'All';
         return mode;
+    },
+
+    // Get a typical frequency for a given band (in kHz)
+    // Used when changing bands in offline mode to set a reasonable frequency
+    getTypicalBandFrequency: function(band) {
+        var frequencies = {
+            '160m': 1850,
+            '80m': 3550,
+            '60m': 5357,
+            '40m': 7050,
+            '30m': 10120,
+            '20m': 14100,
+            '17m': 18100,
+            '15m': 21100,
+            '12m': 24920,
+            '10m': 28400,
+            '6m': 50100,
+            '4m': 70100,
+            '2m': 144300,
+            '1.25m': 222100,
+            '70cm': 432100,
+            '33cm': 902100,
+            '23cm': 1296100,
+            '13cm': 2304100,
+            '9cm': 3456100,
+            '6cm': 5760100,
+            '3cm': 10368100,
+            '1.25cm': 24048100
+        };
+
+        return frequencies[band] || 0;
     },
 
     // Quick dimension update to prevent stretching - no redraw
@@ -6441,6 +6589,23 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
             // fromWaterfall=true prevents frequency change event from being triggered
             setFrequency(frequency, true);
 
+            // In offline mode, update virtual CAT state
+            if (typeof isCATAvailable === 'function' && !isCATAvailable()) {
+                var freqHz = Math.round(frequency * 1000); // Convert kHz to Hz
+                if (typeof window.catState === 'undefined' || window.catState === null) {
+                    window.catState = {};
+                }
+                window.catState.frequency = freqHz;
+                window.catState.mode = mode;
+                window.catState.lastUpdate = Date.now();
+                console.log('[DX Waterfall] Offline mode - tune icon updated virtual CAT: freq=' + freqHz + ' Hz, mode=' + mode);
+
+                // Update relevant spots for the new frequency
+                if (typeof dxWaterfall !== 'undefined' && dxWaterfall && typeof dxWaterfall.collectAllBandSpots === 'function') {
+                    dxWaterfall.collectAllBandSpots(true);
+                }
+            }
+
             // Populate the QSO form with spot data
             // Find the specific spot by callsign to ensure we use the displayed spot
             var spotInfo = null;
@@ -6654,6 +6819,18 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
             // Now set frequency - it will read the correct mode from the dropdown
             setFrequency(clickedSpot.frequency, true);
 
+            // In offline mode, update virtual CAT state with spot frequency and mode
+            if (typeof isCATAvailable === 'function' && !isCATAvailable()) {
+                var spotFreqHz = Math.round(clickedSpot.frequency * 1000); // Convert kHz to Hz
+                if (typeof window.catState === 'undefined' || window.catState === null) {
+                    window.catState = {};
+                }
+                window.catState.frequency = spotFreqHz;
+                window.catState.mode = radioMode;
+                window.catState.lastUpdate = Date.now();
+                console.log('[DX Waterfall] Offline mode - spot click updated virtual CAT: freq=' + spotFreqHz + ' Hz, mode=' + radioMode);
+            }
+
             // Send frequency command again after short delay to correct any drift from mode change
             // (radio control lib bug: mode change can cause slight frequency shift)
             setTimeout(function() {
@@ -6700,6 +6877,16 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
         dxWaterfall.lastValidCommittedFreq = clickedFreq; // Store in kHz
         dxWaterfall.lastValidCommittedUnit = 'kHz';
         dxWaterfall.lastQrgUnit = 'kHz';
+
+        // In offline mode, update catState with clicked frequency (virtual CAT)
+        if (typeof isCATAvailable === 'function' && !isCATAvailable()) {
+            if (typeof window.catState === 'undefined' || window.catState === null) {
+                window.catState = {};
+            }
+            window.catState.frequency = formattedFreq; // Hz
+            window.catState.lastUpdate = Date.now();
+            console.log('[DX Waterfall] Offline mode - waterfall click updated virtual CAT: freq=' + formattedFreq + ' Hz');
+        }
 
         // Update band spot collection and zoom menu to reflect new position
         // This ensures next/prev spot buttons and position counter are updated
