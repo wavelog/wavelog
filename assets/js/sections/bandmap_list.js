@@ -2,21 +2,16 @@
  * @fileoverview DX Cluster Bandmap for Wavelog
  * @version 2.0.0
  * @author Wavelog Development Team
- * @date 2024-2025
  *
  * @description
  * Advanced real-time DX spot filtering and display system with intelligent
  * client/server architecture, smart caching, CAT control integration, and
  * comprehensive multi-criteria filtering capabilities.
- *
- * @requires jQuery 3.x+
- * @requires DataTables 1.13+
- * @requires Bootstrap 5.x
+
  * @requires base_url (global from Wavelog)
  * @requires dxcluster_provider (global from Wavelog)
  * @requires dxcluster_maxage (global from Wavelog)
  * @requires custom_date_format (global from Wavelog)
- * @requires popup_warning (global from Wavelog)
  * @requires cat_timeout_interval (global from Wavelog)
  * @requires lang_* translation variables (global from Wavelog)
  *
@@ -44,24 +39,58 @@
 'use strict';
 
 // ========================================
-// CONFIGURATION
+// CONFIGURATION & CONSTANTS
 // ========================================
+
 const SPOT_REFRESH_INTERVAL = 60;  // Auto-refresh interval in seconds
 
-// Configure DataTables error mode BEFORE document ready
-// This prevents alert dialogs from showing
-if (typeof jQuery !== 'undefined' && jQuery.fn && jQuery.fn.dataTable) {
-	jQuery.fn.dataTable.ext.errMode = function(settings, helpPage, message) {
-		console.error('=== DataTables Error (pre-init) ===');
-		console.error('Message:', message);
-		console.error('Help page:', helpPage);
-		console.error('Settings:', settings);
-	};
-} else {
-	console.warn('DataTables not found at pre-init stage');
-}
+// Filter button configurations
+const BAND_BUTTONS = [
+	{ id: '#toggle160mFilter', band: '160m' },
+	{ id: '#toggle80mFilter', band: '80m' },
+	{ id: '#toggle60mFilter', band: '60m' },
+	{ id: '#toggle40mFilter', band: '40m' },
+	{ id: '#toggle30mFilter', band: '30m' },
+	{ id: '#toggle20mFilter', band: '20m' },
+	{ id: '#toggle17mFilter', band: '17m' },
+	{ id: '#toggle15mFilter', band: '15m' },
+	{ id: '#toggle12mFilter', band: '12m' },
+	{ id: '#toggle10mFilter', band: '10m' }
+];
+
+const BAND_GROUP_BUTTONS = [
+	{ id: '#toggleVHFFilter', group: 'VHF' },
+	{ id: '#toggleUHFFilter', group: 'UHF' },
+	{ id: '#toggleSHFFilter', group: 'SHF' }
+];
+
+const MODE_BUTTONS = [
+	{ id: '#toggleCwFilter', mode: 'cw', icon: 'fa-wave-square' },
+	{ id: '#toggleDigiFilter', mode: 'digi', icon: 'fa-keyboard' },
+	{ id: '#togglePhoneFilter', mode: 'phone', icon: 'fa-microphone' }
+];
+
+const CONTINENT_BUTTONS = [
+	{ id: '#toggleAfricaFilter', continent: 'AF' },
+	{ id: '#toggleAntarcticaFilter', continent: 'AN' },
+	{ id: '#toggleAsiaFilter', continent: 'AS' },
+	{ id: '#toggleEuropeFilter', continent: 'EU' },
+	{ id: '#toggleNorthAmericaFilter', continent: 'NA' },
+	{ id: '#toggleOceaniaFilter', continent: 'OC' },
+	{ id: '#toggleSouthAmericaFilter', continent: 'SA' }
+];
+
+const GEO_FLAGS = ['POTA', 'SOTA', 'IOTA', 'WWFF'];
+
+// ========================================
+// MAIN APPLICATION
+// ========================================
 
 $(function() {
+
+	// ========================================
+	// DATATABLES ERROR HANDLING
+	// ========================================
 
 	// Configure DataTables to log errors to console instead of showing alert dialogs
 	// MUST be set before any DataTable is initialized
@@ -82,32 +111,71 @@ $(function() {
 	}
 
 	// ========================================
+	// UTILITY FUNCTIONS
+	// ========================================
+
+	/**
+	 * Get current values from all filter selects
+	 * @returns {Object} Object containing all filter values
+	 */
+	function getAllFilterValues() {
+		return {
+			cwn: $('#cwnSelect').val() || [],
+			deCont: $('#decontSelect').val() || [],
+			continent: $('#continentSelect').val() || [],
+			band: $('#band').val() || [],
+			mode: $('#mode').val() || [],
+			additionalFlags: $('#additionalFlags').val() || [],
+			requiredFlags: ($('#requiredFlags').val() || []).filter(v => v !== 'None')
+		};
+	}
+
+	/**
+	 * Check if a filter array contains default "All" or "Any" value
+	 * @param {Array} values - Filter values array
+	 * @param {string} defaultValue - Default value to check ('All' or 'Any')
+	 * @returns {boolean} True if array contains only the default value
+	 */
+	function isDefaultFilterValue(values, defaultValue = 'All') {
+		return values.length === 1 && values.includes(defaultValue);
+	}
+
+	/**
+	 * Update button visual state (active/inactive)
+	 * @param {string} buttonId - jQuery selector for button
+	 * @param {boolean} isActive - Whether button should appear active
+	 */
+	function updateButtonState(buttonId, isActive) {
+		const $btn = $(buttonId);
+		$btn.removeClass('btn-secondary btn-success');
+		$btn.addClass(isActive ? 'btn-success' : 'btn-secondary');
+	}
+
+	// ========================================
 	// FILTER UI MANAGEMENT
 	// ========================================
 
-	// Check if any filters are active (not default "All"/"Any" values)
+	/**
+	 * Check if any filters are active (not default "All"/"Any" values)
+	 * @returns {boolean} True if any non-default filters are applied
+	 */
 	function areFiltersApplied() {
-		let cwnVal = $('#cwnSelect').val() || [];
-		let decontVal = $('#decontSelect').val() || [];
-		let continentVal = $('#continentSelect').val() || [];
-		let bandVal = $('#band').val() || [];
-		let modeVal = $('#mode').val() || [];
-		let flagsVal = $('#additionalFlags').val() || [];
-		let requiredVal = $('#requiredFlags').val() || [];
+		const filters = getAllFilterValues();
 
-		// Check if anything is selected besides "All"/"Any"/"None"
-		let isDefaultCwn = cwnVal.length === 1 && cwnVal.includes('All');
-		let isDefaultDecont = decontVal.length === 1 && decontVal.includes('Any');
-		let isDefaultContinent = continentVal.length === 1 && continentVal.includes('Any');
-		let isDefaultBand = bandVal.length === 1 && bandVal.includes('All');
-		let isDefaultMode = modeVal.length === 1 && modeVal.includes('All');
-		let isDefaultFlags = flagsVal.length === 1 && flagsVal.includes('All');
-		let isDefaultRequired = requiredVal.length === 0 || (requiredVal.length === 1 && requiredVal.includes('None'));
+		const isDefaultCwn = isDefaultFilterValue(filters.cwn);
+		const isDefaultDecont = isDefaultFilterValue(filters.deCont, 'Any');
+		const isDefaultContinent = isDefaultFilterValue(filters.continent, 'Any');
+		const isDefaultBand = isDefaultFilterValue(filters.band);
+		const isDefaultMode = isDefaultFilterValue(filters.mode);
+		const isDefaultFlags = isDefaultFilterValue(filters.additionalFlags);
+		const isDefaultRequired = filters.requiredFlags.length === 0;
 
 		return !(isDefaultCwn && isDefaultDecont && isDefaultContinent && isDefaultBand && isDefaultMode && isDefaultFlags && isDefaultRequired);
 	}
 
-	// Update filter icon based on whether filters are active
+	/**
+	 * Update filter icon based on whether filters are active
+	 */
 	function updateFilterIcon() {
 		if (areFiltersApplied()) {
 			$('#filterIcon').removeClass('fa-filter').addClass('fa-filter-circle-xmark text-success');
@@ -116,275 +184,207 @@ $(function() {
 		}
 	}
 
-	// Sync quick filter button states with their corresponding dropdown values
-	function syncQuickFilterButtons() {
-		let requiredFlags = ($('#requiredFlags').val() || []).filter(v => v !== 'None');  // Remove "None"
-		let additionalFlags = $('#additionalFlags').val() || [];
-		let cwnValues = $('#cwnSelect').val() || [];
-		let modeValues = $('#mode').val() || [];
-		let bandValues = $('#band').val() || [];
-		let decontValues = $('#decontSelect').val() || [];
+	/**
+	 * Toggle a value in a multi-select filter
+	 * @param {string} selectId - jQuery selector for the select element
+	 * @param {string} value - Value to toggle in the selection
+	 * @param {string} defaultValue - Default value to restore if selection becomes empty (default: 'All')
+	 * @param {boolean} applyFiltersAfter - Whether to trigger filter application (default: true)
+	 * @param {number} debounceMs - Debounce delay in milliseconds (default: 0 for no debounce)
+	 * @param {boolean} updateBadges - Whether to call updateBandCountBadges() (default: false)
+	 */
+	function toggleFilterValue(selectId, value, defaultValue = 'All', applyFiltersAfter = true, debounceMs = 0, updateBadges = false) {
+		let currentValues = $(selectId).val() || [];
 
-		// LoTW button
-		if (requiredFlags.includes('lotw')) {
-			$('#toggleLotwFilter').removeClass('btn-secondary').addClass('btn-success');
-		} else {
-			$('#toggleLotwFilter').removeClass('btn-success').addClass('btn-secondary');
+		// Remove default value if present
+		if (currentValues.includes(defaultValue)) {
+			currentValues = currentValues.filter(v => v !== defaultValue);
 		}
 
-		// New Continent button
-		if (requiredFlags.includes('newcontinent')) {
-			$('#toggleNewContinentFilter').removeClass('btn-secondary').addClass('btn-success');
+		// Toggle the target value
+		if (currentValues.includes(value)) {
+			currentValues = currentValues.filter(v => v !== value);
+			// Restore default if empty
+			if (currentValues.length === 0) {
+				currentValues = [defaultValue];
+			}
 		} else {
-			$('#toggleNewContinentFilter').removeClass('btn-success').addClass('btn-secondary');
+			currentValues.push(value);
 		}
 
-		// New Country button (previously DXCC Needed)
-		if (requiredFlags.includes('newcountry')) {
-			$('#toggleDxccNeededFilter').removeClass('btn-secondary').addClass('btn-success');
-		} else {
-			$('#toggleDxccNeededFilter').removeClass('btn-success').addClass('btn-secondary');
+		// Update selectize
+		$(selectId).val(currentValues).trigger('change');
+		syncQuickFilterButtons();
+
+		// Update badge counts if requested
+		if (updateBadges && typeof updateBandCountBadges === 'function') {
+			updateBandCountBadges();
 		}
 
-		// New Callsign button (previously Not Worked)
-		if (requiredFlags.includes('newcallsign')) {
-			$('#toggleNewCallsignFilter').removeClass('btn-secondary').addClass('btn-success');
-		} else {
-			$('#toggleNewCallsignFilter').removeClass('btn-success').addClass('btn-secondary');
-		}
-
-		// Contest button (now in Required Flags)
-		if (requiredFlags.includes('Contest')) {
-			$('#toggleContestFilter').removeClass('btn-secondary').addClass('btn-success');
-		} else {
-			$('#toggleContestFilter').removeClass('btn-success').addClass('btn-secondary');
-		}
-
-		// Geo Hunter button (stays in Additional Flags)
-		let geoFlags = ['POTA', 'SOTA', 'IOTA', 'WWFF'];
-		let hasGeoFlag = geoFlags.some(flag => additionalFlags.includes(flag));
-		if (hasGeoFlag) {
-			$('#toggleGeoHunterFilter').removeClass('btn-secondary').addClass('btn-success');
-		} else {
-			$('#toggleGeoHunterFilter').removeClass('btn-success').addClass('btn-secondary');
-		}
-
-		// Fresh filter button
-		if (additionalFlags.includes('Fresh')) {
-			$('#toggleFreshFilter').removeClass('btn-secondary').addClass('btn-success');
-		} else {
-			$('#toggleFreshFilter').removeClass('btn-success').addClass('btn-secondary');
-		}
-
-		// CW mode button
-		if (modeValues.includes('cw')) {
-			$('#toggleCwFilter').removeClass('btn-secondary').addClass('btn-success');
-		} else {
-			$('#toggleCwFilter').removeClass('btn-success').addClass('btn-secondary');
-		}
-
-		// Digi mode button
-		if (modeValues.includes('digi')) {
-			$('#toggleDigiFilter').removeClass('btn-secondary').addClass('btn-success');
-		} else {
-			$('#toggleDigiFilter').removeClass('btn-success').addClass('btn-secondary');
-		}
-
-		// Phone mode button
-		if (modeValues.includes('phone')) {
-			$('#togglePhoneFilter').removeClass('btn-secondary').addClass('btn-success');
-		} else {
-			$('#togglePhoneFilter').removeClass('btn-success').addClass('btn-secondary');
-		}
-
-	// Check if "All" is selected for bands, modes, and continents
-	let allBandsSelected = bandValues.length === 1 && bandValues.includes('All');
-
-	// For modes: check if "All" is selected OR if all individual modes are selected
-	let allModesSelected = (modeValues.length === 1 && modeValues.includes('All')) ||
-	                       (modeValues.includes('cw') && modeValues.includes('digi') && modeValues.includes('phone'));
-
-	// For continents: check if "Any" is selected OR if all continents are selected
-	// All continents: AF, AN, AS, EU, NA, OC, SA (7 continents)
-	let allContinentsSelected = (decontValues.length === 1 && decontValues.includes('Any')) ||
-	                            (decontValues.includes('AF') && decontValues.includes('AN') &&
-	                             decontValues.includes('AS') && decontValues.includes('EU') &&
-	                             decontValues.includes('NA') && decontValues.includes('OC') &&
-	                             decontValues.includes('SA'));
-
-	// Band filter buttons - green if All, orange if specific band, gray if not selected
-	// Always update colors, even when CAT Control is enabled (so users can see which band is active)
-	let bandButtons = ['#toggle160mFilter', '#toggle80mFilter', '#toggle60mFilter', '#toggle40mFilter',
-	                   '#toggle30mFilter', '#toggle20mFilter', '#toggle17mFilter', '#toggle15mFilter',
-	                   '#toggle12mFilter', '#toggle10mFilter'];
-	let bandIds = ['160m', '80m', '60m', '40m', '30m', '20m', '17m', '15m', '12m', '10m'];
-
-	bandButtons.forEach((btnId, index) => {
-		let $btn = $(btnId);
-		$btn.removeClass('btn-secondary btn-success');
-		if (allBandsSelected) {
-			$btn.addClass('btn-success');
-		} else if (bandValues.includes(bandIds[index])) {
-			$btn.addClass('btn-success');
-		} else {
-			$btn.addClass('btn-secondary');
-		}
-	});
-
-	// Band group buttons (VHF, UHF, SHF)
-	let groupButtons = [
-		{ id: '#toggleVHFFilter', group: 'VHF' },
-		{ id: '#toggleUHFFilter', group: 'UHF' },
-		{ id: '#toggleSHFFilter', group: 'SHF' }
-	];
-
-	groupButtons.forEach(btn => {
-		let $btn = $(btn.id);
-		$btn.removeClass('btn-secondary btn-success');
-
-		if (allBandsSelected) {
-			$btn.addClass('btn-success');
-		} else {
-			// Check if ALL bands in the group are selected (not just some)
-			const groupBands = getBandsInGroup(btn.group);
-			const allGroupBandsSelected = groupBands.every(b => bandValues.includes(b));
-
-			if (allGroupBandsSelected) {
-				$btn.addClass('btn-success');
+		// Apply filters with optional debounce
+		if (applyFiltersAfter) {
+			if (debounceMs > 0) {
+				clearTimeout(window.filterDebounceTimer);
+				window.filterDebounceTimer = setTimeout(() => {
+					applyFilters(false);
+				}, debounceMs);
 			} else {
-				$btn.addClass('btn-secondary');
+				applyFilters(false);
 			}
 		}
-	});		// Mode buttons - green if All, orange if selected, blue if not
-		let modeButtons = [
-			{ id: '#toggleCwFilter', mode: 'cw', icon: 'fa-wave-square' },
-			{ id: '#toggleDigiFilter', mode: 'digi', icon: 'fa-keyboard' },
-			{ id: '#togglePhoneFilter', mode: 'phone', icon: 'fa-microphone' }
+	}
+
+	/**
+	 * Sync quick filter button states with their corresponding dropdown values
+	 */
+	function syncQuickFilterButtons() {
+		const filters = getAllFilterValues();
+
+		// Required flags buttons
+		const requiredFlagButtons = [
+			{ id: '#toggleLotwFilter', flag: 'lotw' },
+			{ id: '#toggleNewContinentFilter', flag: 'newcontinent' },
+			{ id: '#toggleDxccNeededFilter', flag: 'newcountry' },
+			{ id: '#toggleNewCallsignFilter', flag: 'newcallsign' },
+			{ id: '#toggleContestFilter', flag: 'Contest' }
 		];
 
-		modeButtons.forEach(btn => {
-			let $btn = $(btn.id);
-			$btn.removeClass('btn-secondary btn-success');
-
-			if (allModesSelected) {
-				$btn.addClass('btn-success');
-			} else if (modeValues.includes(btn.mode)) {
-				$btn.addClass('btn-success');
-			} else {
-				$btn.addClass('btn-secondary');
-			}
+		requiredFlagButtons.forEach(btn => {
+			updateButtonState(btn.id, filters.requiredFlags.includes(btn.flag));
 		});
 
-		// Continent filter buttons - green if Any or selected, gray if not
-		// "All" button - green when all continents are selected
-		let $allContinentsBtn = $('#toggleAllContinentsFilter');
-		$allContinentsBtn.removeClass('btn-secondary btn-success');
-		if (allContinentsSelected) {
-			$allContinentsBtn.addClass('btn-success');
-		} else {
-			$allContinentsBtn.addClass('btn-secondary');
-		}
+		// Geo Hunter button (stays in Additional Flags)
+		const hasGeoFlag = GEO_FLAGS.some(flag => filters.additionalFlags.includes(flag));
+		updateButtonState('#toggleGeoHunterFilter', hasGeoFlag);
 
-		let continentButtons = [
-			{ id: '#toggleAfricaFilter', continent: 'AF' },
-			{ id: '#toggleAntarcticaFilter', continent: 'AN' },
-			{ id: '#toggleAsiaFilter', continent: 'AS' },
-			{ id: '#toggleEuropeFilter', continent: 'EU' },
-			{ id: '#toggleNorthAmericaFilter', continent: 'NA' },
-			{ id: '#toggleOceaniaFilter', continent: 'OC' },
-			{ id: '#toggleSouthAmericaFilter', continent: 'SA' }
-		];
+		// Fresh filter button
+		updateButtonState('#toggleFreshFilter', filters.additionalFlags.includes('Fresh'));
 
-		continentButtons.forEach(btn => {
-			let $btn = $(btn.id);
-			$btn.removeClass('btn-secondary btn-success');
-			if (allContinentsSelected) {
-				$btn.addClass('btn-success');
-			} else if (decontValues.includes(btn.continent)) {
-				$btn.addClass('btn-success');
-			} else {
-				$btn.addClass('btn-secondary');
-			}
+		// Mode buttons
+		MODE_BUTTONS.forEach(btn => {
+			updateButtonState(btn.id, filters.mode.includes(btn.mode));
+		});
+
+		// Check if "All" is selected for bands, modes, and continents
+		const allBandsSelected = isDefaultFilterValue(filters.band);
+		const allModesSelected = isDefaultFilterValue(filters.mode) ||
+			(filters.mode.includes('cw') && filters.mode.includes('digi') && filters.mode.includes('phone'));
+		const allContinentsSelected = isDefaultFilterValue(filters.deCont, 'Any') ||
+			(filters.deCont.includes('AF') && filters.deCont.includes('AN') &&
+			filters.deCont.includes('AS') && filters.deCont.includes('EU') &&
+			filters.deCont.includes('NA') && filters.deCont.includes('OC') &&
+			filters.deCont.includes('SA'));
+
+		// Band filter buttons - always update colors (for CAT Control visibility)
+		BAND_BUTTONS.forEach(btn => {
+			const isActive = allBandsSelected || filters.band.includes(btn.band);
+			updateButtonState(btn.id, isActive);
+		});
+
+		// Band group buttons (VHF, UHF, SHF)
+		BAND_GROUP_BUTTONS.forEach(btn => {
+			const groupBands = getBandsInGroup(btn.group);
+			const allGroupBandsSelected = groupBands.every(b => filters.band.includes(b));
+			const isActive = allBandsSelected || allGroupBandsSelected;
+			updateButtonState(btn.id, isActive);
+		});
+
+		// Mode buttons
+		MODE_BUTTONS.forEach(btn => {
+			const isActive = allModesSelected || filters.mode.includes(btn.mode);
+			updateButtonState(btn.id, isActive);
+		});
+
+		// "All Continents" button
+		updateButtonState('#toggleAllContinentsFilter', allContinentsSelected);
+
+		// Individual continent buttons
+		CONTINENT_BUTTONS.forEach(btn => {
+			const isActive = allContinentsSelected || filters.deCont.includes(btn.continent);
+			updateButtonState(btn.id, isActive);
 		});
 	}
 
-	// Add checkbox-style indicators (☑/☐) to multi-select dropdowns
+	/**
+	 * Add checkbox-style indicators (☑/☐) to multi-select dropdowns
+	 * @param {string} selectId - ID of the select element
+	 */
 	function updateSelectCheckboxes(selectId) {
 		let $select = $('#' + selectId);
 		$select.find('option').each(function() {
 			let $option = $(this);
 			let originalText = $option.data('original-text');
 
-			if (!originalText) {
-				originalText = $option.text();
-				$option.data('original-text', originalText);
-			}
-
-			if ($option.is(':selected')) {
-				$option.text('☑ ' + originalText);
-			} else {
-				$option.text('☐ ' + originalText);
-			}
-		});
-	}
-
-	// Initialize checkbox indicators for all filter selects
-	function initFilterCheckboxes() {
-		['cwnSelect', 'decontSelect', 'continentSelect', 'band', 'mode', 'additionalFlags', 'requiredFlags'].forEach(function(selectId) {
-			updateSelectCheckboxes(selectId);
-			$('#' + selectId).on('change', function() {
-				updateSelectCheckboxes(selectId);
-			});
-		});
-	}
-
-	// Handle "All"/"Any" option behavior in multi-selects
-	// If "All" is selected with other options, keep only "All"
-	// If nothing selected, default back to "All"/"Any"
-	function handleAllOption(selectId) {
-		$('#' + selectId).on('change', function() {
-			let selected = $(this).val() || [];
-
-			if (selected.includes('All') || selected.includes('Any')) {
-				let allValue = selected.includes('All') ? 'All' : 'Any';
-				if (selected.length > 1) {
-					$(this).val([allValue]);
+				if (!originalText) {
+					originalText = $option.text();
+					$option.data('original-text', originalText);
 				}
-			} else if (selected.length === 0) {
-				let allValue = (selectId === 'decontSelect' || selectId === 'continentSelect') ? 'Any' : 'All';
-				$(this).val([allValue]);
-			}
 
-			updateFilterIcon();
-
-			// Sync button states when band, mode, or continent filters change
-			if (selectId === 'band' || selectId === 'mode' || selectId === 'decontSelect' || selectId === 'continentSelect') {
-				syncQuickFilterButtons();
-			}
-		});
-	}
-
-	// Apply "All" handler to all filter dropdowns
-	['cwnSelect', 'decontSelect', 'continentSelect', 'band', 'mode', 'additionalFlags'].forEach(handleAllOption);
-
-	// Required flags filter - handle "None" option
-	$('#requiredFlags').on('change', function() {
-		let currentValues = $(this).val() || [];
-
-		// If "None" is selected, deselect all others
-		if (currentValues.includes('None')) {
-			if (currentValues.length > 1) {
-				// User selected something else, remove "None"
-				currentValues = currentValues.filter(v => v !== 'None');
-			}
-		} else if (currentValues.length === 0) {
-			// If nothing is selected, select "None"
-			currentValues = ['None'];
+				if ($option.is(':selected')) {
+					$option.text('☑ ' + originalText);
+				} else {
+					$option.text('☐ ' + originalText);
+				}
+			});
 		}
 
-		$(this).val(currentValues);
-		updateFilterIcon();
-	});
+		// Initialize checkbox indicators for all filter selects
+		function initFilterCheckboxes() {
+			['cwnSelect', 'decontSelect', 'continentSelect', 'band', 'mode', 'additionalFlags', 'requiredFlags'].forEach(function(selectId) {
+				updateSelectCheckboxes(selectId);
+				$('#' + selectId).on('change', function() {
+					updateSelectCheckboxes(selectId);
+				});
+			});
+		}
+
+		// Handle "All"/"Any" option behavior in multi-selects
+		// If "All" is selected with other options, keep only "All"
+		// If nothing selected, default back to "All"/"Any"
+		function handleAllOption(selectId) {
+			$('#' + selectId).on('change', function() {
+				let selected = $(this).val() || [];
+
+				if (selected.includes('All') || selected.includes('Any')) {
+					let allValue = selected.includes('All') ? 'All' : 'Any';
+					if (selected.length > 1) {
+						$(this).val([allValue]);
+					}
+				} else if (selected.length === 0) {
+					let allValue = (selectId === 'decontSelect' || selectId === 'continentSelect') ? 'Any' : 'All';
+					$(this).val([allValue]);
+				}
+
+				updateFilterIcon();
+
+				// Sync button states when band, mode, or continent filters change
+				if (selectId === 'band' || selectId === 'mode' || selectId === 'decontSelect' || selectId === 'continentSelect') {
+					syncQuickFilterButtons();
+				}
+			});
+		}
+
+		// Apply "All" handler to all filter dropdowns
+		['cwnSelect', 'decontSelect', 'continentSelect', 'band', 'mode', 'additionalFlags'].forEach(handleAllOption);
+
+		// Required flags filter - handle "None" option
+		$('#requiredFlags').on('change', function() {
+			let currentValues = $(this).val() || [];
+
+			// If "None" is selected, deselect all others
+			if (currentValues.includes('None')) {
+				if (currentValues.length > 1) {
+					// User selected something else, remove "None"
+					currentValues = currentValues.filter(v => v !== 'None');
+				}
+			} else if (currentValues.length === 0) {
+				// If nothing is selected, select "None"
+				currentValues = ['None'];
+			}
+
+			$(this).val(currentValues);
+			updateFilterIcon();
+		});
 
 	// ========================================
 	// DATATABLE CONFIGURATION
@@ -458,7 +458,6 @@ $(function() {
 			}
 		}
 
-
 	// Default row click: prepare QSO logging with callsign, frequency, mode
 	let rowData = table.row(this).data();
 	if (!rowData) return;
@@ -494,7 +493,8 @@ $(function() {
 	}
 
 	prepareLogging(call, qrg, mode, spotData);
-});		return table;
+	});
+	return table;
 	}
 
 	// ========================================
@@ -575,7 +575,7 @@ $(function() {
 				allFilters = allFilters.concat(clientFilters);
 			}
 
-			let loadingMessage = 'Loading data from DX Cluster';
+			let loadingMessage = lang_bandmap_loading_data;
 			if (allFilters.length > 0) {
 				loadingMessage += '...';
 			} else {
@@ -625,17 +625,17 @@ $(function() {
 		}
 
 		// Build tooltip for status message (fetch information)
-		let fetchTooltipLines = ['Last fetched for:'];
+		let fetchTooltipLines = [lang_bandmap_last_fetched + ':'];
 		fetchTooltipLines.push('Band: ' + (lastFetchParams.band || 'All'));
 		fetchTooltipLines.push('Continent: ' + (lastFetchParams.continent || 'All'));
 		fetchTooltipLines.push('Mode: ' + (lastFetchParams.mode || 'All'));
-		fetchTooltipLines.push('Max Age: ' + (lastFetchParams.maxAge || '120') + ' min');
+		fetchTooltipLines.push(lang_bandmap_max_age + ': ' + (lastFetchParams.maxAge || '120') + ' min');
 		if (lastFetchParams.timestamp) {
 			let fetchTime = new Date(lastFetchParams.timestamp);
 			let fetchTimeStr = fetchTime.getHours().toString().padStart(2, '0') + ':' +
 			                   fetchTime.getMinutes().toString().padStart(2, '0') + ':' +
 			                   fetchTime.getSeconds().toString().padStart(2, '0');
-			fetchTooltipLines.push('Fetched at: ' + fetchTimeStr);
+			fetchTooltipLines.push(lang_bandmap_fetched_at + ': ' + fetchTimeStr);
 		}
 
 		$('#statusMessage').text(statusMessage).attr('title', fetchTooltipLines.join('\n'));
@@ -1101,8 +1101,8 @@ $(function() {
 	// de Cont column: spotter's continent
 	data[0].push((single.dxcc_spotter && single.dxcc_spotter.cont) ? single.dxcc_spotter.cont : '');
 
-// de CQZ column: spotter's CQ Zone
-data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spotter.cqz : '');	// Build medal badge - show only highest priority: continent > country > callsign
+	// de CQZ column: spotter's CQ Zone
+	data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spotter.cqz : '');	// Build medal badge - show only highest priority: continent > country > callsign
 	let medals = '';
 	if (single.worked_continent === false) {
 		// New Continent (not worked before) - Gold medal
@@ -1771,81 +1771,19 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 		return '<small class="badge text-bg-' + type + '" style="display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; padding: 0; margin: ' + margin + '; font-size: ' + fontSize + '; line-height: 1;" data-bs-toggle="tooltip" title="' + title + '">' + content + '</small>';
 	}
 
-	// Map frequency (in kHz) to ham band name
+	/**
+	 * Map frequency (in kHz) to ham band name
+	 * Uses frequencyToBand() from radiohelpers.js with 'kHz' parameter
+	 * @param {number} freq_khz - Frequency in kilohertz
+	 * @returns {string} Band name (e.g., '20m', '2m') or 'All' if not in a known band
+	 */
 	function getBandFromFrequency(freq_khz) {
-		if (freq_khz >= 1800 && freq_khz <= 2000) return '160m';
-		if (freq_khz >= 3500 && freq_khz <= 4000) return '80m';
-		if (freq_khz >= 5250 && freq_khz <= 5450) return '60m';
-		if (freq_khz >= 7000 && freq_khz <= 7300) return '40m';
-		if (freq_khz >= 10100 && freq_khz <= 10150) return '30m';
-		if (freq_khz >= 14000 && freq_khz <= 14350) return '20m';
-		if (freq_khz >= 18068 && freq_khz <= 18168) return '17m';
-		if (freq_khz >= 21000 && freq_khz <= 21450) return '15m';
-		if (freq_khz >= 24890 && freq_khz <= 24990) return '12m';
-		if (freq_khz >= 28000 && freq_khz <= 29700) return '10m';
-		if (freq_khz >= 50000 && freq_khz <= 54000) return '6m';
-		if (freq_khz >= 70000 && freq_khz <= 71000) return '4m';
-		if (freq_khz >= 144000 && freq_khz <= 148000) return '2m';
-		if (freq_khz >= 222000 && freq_khz <= 225000) return '1.25m';
-		if (freq_khz >= 420000 && freq_khz <= 450000) return '70cm';
-		if (freq_khz >= 902000 && freq_khz <= 928000) return '33cm';
-		if (freq_khz >= 1240000 && freq_khz <= 1300000) return '23cm';
-		if (freq_khz >= 2300000 && freq_khz <= 2450000) return '13cm';
-		return 'All';
+		return frequencyToBand(freq_khz, 'kHz');
 	}
 
-	// Map individual bands to their band groups (VHF, UHF, SHF)
-	function getBandGroup(band) {
-		const VHF_BANDS = ['6m', '4m', '2m', '1.25m'];
-		const UHF_BANDS = ['70cm', '33cm', '23cm'];
-		const SHF_BANDS = ['13cm', '9cm', '6cm', '3cm', '1.25cm', '6mm', '4mm', '2.5mm', '2mm', '1mm'];
-
-		if (VHF_BANDS.includes(band)) return 'VHF';
-		if (UHF_BANDS.includes(band)) return 'UHF';
-		if (SHF_BANDS.includes(band)) return 'SHF';
-		return null; // MF/HF bands don't have groups
-	}
-
-	// Get all bands in a band group
-	function getBandsInGroup(group) {
-		const BAND_GROUPS = {
-			'VHF': ['6m', '4m', '2m', '1.25m'],
-			'UHF': ['70cm', '33cm', '23cm'],
-			'SHF': ['13cm', '9cm', '6cm', '3cm', '1.25cm', '6mm', '4mm', '2.5mm', '2mm', '1mm']
-		};
-		return BAND_GROUPS[group] || [];
-	}
-
-	// Categorize mode as phone/cw/digi for filtering
-	function getModeCategory(mode) {
-		if (!mode) return null;
-
-		// Mode can come from server as lowercase category names (phone, cw, digi)
-		// or as actual mode names (SSB, LSB, FT8, etc.)
-		let modeLower = mode.toLowerCase();
-
-		// Check if already a category
-		if (['phone', 'cw', 'digi'].includes(modeLower)) {
-			return modeLower;
-		}
-
-		// Otherwise categorize by mode name
-		mode = mode.toUpperCase();
-
-		// Phone modes
-		if (['SSB', 'LSB', 'USB', 'FM', 'AM', 'DV'].includes(mode)) return 'phone';
-
-		// CW modes
-		if (['CW', 'CWR'].includes(mode)) return 'cw';
-
-		// Digital modes
-		if (['RTTY', 'PSK', 'PSK31', 'PSK63', 'FT8', 'FT4', 'JT65', 'JT9', 'MFSK',
-		     'OLIVIA', 'CONTESTIA', 'HELL', 'SSTV', 'FAX', 'PACKET', 'PACTOR',
-		     'THOR', 'DOMINO', 'MT63', 'ROS', 'WSPR'].includes(mode)) return 'digi';
-
-		// Return null for uncategorized modes instead of 'All'
-		return null;
-	}
+	// Use BAND_GROUPS from radiohelpers.js (loaded globally in footer)
+	// Note: These functions are now available globally, but we keep local references for consistency
+	// If radiohelpers not loaded, fallback to local definition (shouldn't happen in production)
 
 	// Get selected values from multi-select dropdown
 	function getSelectedValues(selectId) {
@@ -2095,9 +2033,6 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 	let bc_qsowin = new BroadcastChannel('qso_window');
 	let pong_rcvd = false;
 
-	// Debounce timer for de continent filter changes (3 second cooldown)
-	let decontFilterTimeout = null;
-
 	bc_qsowin.onmessage = function (ev) {
 		if (ev.data == 'pong') {
 			qso_window_last_seen=Date.now();
@@ -2118,52 +2053,8 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 	let check_intv = 100;
 
 	/**
-	 * Determine appropriate radio mode based on spot mode and frequency
-	 * Similar to dxwaterfall.js logic
-	 * @param {string} spotMode - Mode from the spot (e.g., 'CW', 'SSB', 'FT8')
-	 * @param {number} freqHz - Frequency in Hz
-	 * @returns {string} Radio mode ('CW', 'USB', 'LSB', 'RTTY', etc.)
-	 */
-	function determineRadioMode(spotMode, freqHz) {
-		if (!spotMode) {
-			// No mode specified - use frequency to determine USB/LSB
-			return freqHz < 10000000 ? 'LSB' : 'USB'; // Below 10 MHz = LSB, above = USB
-		}
-
-		const modeUpper = spotMode.toUpperCase();
-
-		// CW modes
-		if (modeUpper === 'CW' || modeUpper === 'A1A') {
-			return 'CW';
-		}
-
-		// Digital modes - use RTTY as standard digital mode
-		const digitalModes = ['FT8', 'FT4', 'PSK', 'RTTY', 'JT65', 'JT9', 'WSPR', 'FSK', 'MFSK', 'OLIVIA', 'CONTESTI', 'DOMINO'];
-		for (let i = 0; i < digitalModes.length; i++) {
-			if (modeUpper.indexOf(digitalModes[i]) !== -1) {
-				return 'RTTY';
-			}
-		}
-
-		// Phone modes or SSB - determine USB/LSB based on frequency
-		if (modeUpper.indexOf('SSB') !== -1 || modeUpper.indexOf('PHONE') !== -1 ||
-		    modeUpper === 'USB' || modeUpper === 'LSB' || modeUpper === 'AM' || modeUpper === 'FM') {
-			// If already USB or LSB, use as-is
-			if (modeUpper === 'USB') return 'USB';
-			if (modeUpper === 'LSB') return 'LSB';
-			if (modeUpper === 'AM') return 'AM';
-			if (modeUpper === 'FM') return 'FM';
-
-			// Otherwise determine based on frequency
-			return freqHz < 10000000 ? 'LSB' : 'USB';
-		}
-
-		// Default: use frequency to determine USB/LSB
-		return freqHz < 10000000 ? 'LSB' : 'USB';
-	}
-
-	/**
 	 * Tune radio to specified frequency when CAT Control is active
+	 * Uses determineRadioMode() from radiohelpers.js for mode selection
 	 * @param {number} freqHz - Frequency in Hz
 	 * @param {string} mode - Mode (optional, e.g., 'USB', 'LSB', 'CW')
 	 */
@@ -2268,19 +2159,18 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 				clearInterval(check_pong);
 				let cl = message;  // Use the message object with all fields
 
-				let newWindow = window.open(base_url + 'index.php/qso?manual=1', '_blank');
+			let newWindow = window.open(base_url + 'index.php/qso?manual=1', '_blank');
 
-                if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
-                    $('#errormessage').html(popup_warning).addClass('alert alert-danger').show();
-					setTimeout(function() {
-						$('#errormessage').fadeOut();
-					}, 3000);
-                } else {
-                    newWindow.focus();
-					// Show toast notification when opening new QSO window
-					showToast(lang_bandmap_qso_prepared, `${lang_bandmap_callsign_sent} ${call} ${lang_bandmap_sent_to_form}`, 'bg-success text-white', 3000);
-                }
-
+			if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+				// Pop-up was blocked - show toast notification
+				if (typeof showToast === 'function') {
+					showToast(lang_bandmap_popup_blocked, lang_bandmap_popup_warning, 'bg-danger text-white', 5000);
+				}
+			} else {
+				newWindow.focus();
+				// Show toast notification when opening new QSO window
+				showToast(lang_bandmap_qso_prepared, `${lang_bandmap_callsign_sent} ${call} ${lang_bandmap_sent_to_form}`, 'bg-success text-white', 3000);
+			}
                 bc2qso.onmessage = function(ev) {
 					if (ready_listener == true) {
 						if (ev.data === 'ready') {
@@ -2507,12 +2397,8 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 
 	// Override updateCATui to add bandmap-specific behavior
 	window.updateCATui = function(data) {
-
-
+		// Determine band from frequency
 		const band = frequencyToBand(data.frequency);
-
-
-
 		// Store current radio frequency (convert Hz to kHz)
 		currentRadioFrequency = data.frequency / 1000;
 
@@ -2554,25 +2440,24 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 			updateFrequencyGradientColors();
 		}
 
-	// Call cat.js's original updateCATui for standard CAT UI updates
-	if (typeof catJsUpdateCATui === 'function') {
+		// Call cat.js's original updateCATui for standard CAT UI updates
+		if (typeof catJsUpdateCATui === 'function') {
 
+			// Store current band selection before calling cat.js updateCATui
+			const bandBeforeUpdate = $("#band").val();
 
-		// Store current band selection before calling cat.js updateCATui
-		const bandBeforeUpdate = $("#band").val();
+			catJsUpdateCATui(data);
 
-		catJsUpdateCATui(data);
-
-		// If CAT Control is OFF, restore the band selection
-		// (cat.js updateCATui automatically sets band based on frequency, but we don't want that on bandmap unless CAT Control is ON)
-		if (!isCatTrackingEnabled && bandBeforeUpdate) {
-			$("#band").val(bandBeforeUpdate);
-			updateSelectCheckboxes('band');
+			// If CAT Control is OFF, restore the band selection
+			// (cat.js updateCATui automatically sets band based on frequency, but we don't want that on bandmap unless CAT Control is ON)
+			if (!isCatTrackingEnabled && bandBeforeUpdate) {
+				$("#band").val(bandBeforeUpdate);
+				updateSelectCheckboxes('band');
+			}
+		} else {
+			console.warn('Bandmap: cat.js updateCATui not available');
 		}
-	} else {
-		console.warn('Bandmap: cat.js updateCATui not available');
-	}
-};
+	};
 
 	$.fn.dataTable.moment(custom_date_format + ' HH:mm');
 
@@ -2592,7 +2477,7 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 			container.addClass('bandmap-fullscreen');
 			$('body').addClass('fullscreen-active');
 			icon.removeClass('fa-expand').addClass('fa-compress');
-			$('#fullscreenToggle').attr('title', 'Exit Fullscreen');
+			$('#fullscreenToggle').attr('title', lang_bandmap_exit_fullscreen);
 
 			isFullscreen = true;
 
@@ -2617,7 +2502,7 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 			container.removeClass('bandmap-fullscreen');
 			$('body').removeClass('fullscreen-active');
 			icon.removeClass('fa-compress').addClass('fa-expand');
-			$(this).attr('title', 'Toggle Fullscreen');
+			$(this).attr('title', lang_bandmap_toggle_fullscreen);
 
 			isFullscreen = false;
 
@@ -2734,216 +2619,22 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 		applyFilters(false);
 	});
 
-	// Band filter buttons
-	$('#toggle160mFilter').on('click', function() {
-		let currentValues = $('#band').val() || [];
-		if (currentValues.includes('All')) currentValues = currentValues.filter(v => v !== 'All');
-		if (currentValues.includes('160m')) {
-			currentValues = currentValues.filter(v => v !== '160m');
-			if (currentValues.length === 0) currentValues = ['All'];
-		} else {
-			currentValues.push('160m');
-		}
-		$('#band').val(currentValues).trigger('change');
-		syncQuickFilterButtons();
-		applyFilters(false);
-	});
-
-	$('#toggle80mFilter').on('click', function() {
-		let currentValues = $('#band').val() || [];
-		if (currentValues.includes('All')) currentValues = currentValues.filter(v => v !== 'All');
-		if (currentValues.includes('80m')) {
-			currentValues = currentValues.filter(v => v !== '80m');
-			if (currentValues.length === 0) currentValues = ['All'];
-		} else {
-			currentValues.push('80m');
-		}
-		$('#band').val(currentValues).trigger('change');
-		syncQuickFilterButtons();
-		applyFilters(false);
-	});
-
-	$('#toggle60mFilter').on('click', function() {
-		let currentValues = $('#band').val() || [];
-		if (currentValues.includes('All')) currentValues = currentValues.filter(v => v !== 'All');
-		if (currentValues.includes('60m')) {
-			currentValues = currentValues.filter(v => v !== '60m');
-			if (currentValues.length === 0) currentValues = ['All'];
-		} else {
-			currentValues.push('60m');
-		}
-		$('#band').val(currentValues).trigger('change');
-		syncQuickFilterButtons();
-		applyFilters(false);
-	});
-
-	$('#toggle40mFilter').on('click', function() {
-		let currentValues = $('#band').val() || [];
-		if (currentValues.includes('All')) currentValues = currentValues.filter(v => v !== 'All');
-		if (currentValues.includes('40m')) {
-			currentValues = currentValues.filter(v => v !== '40m');
-			if (currentValues.length === 0) currentValues = ['All'];
-		} else {
-			currentValues.push('40m');
-		}
-		$('#band').val(currentValues).trigger('change');
-		syncQuickFilterButtons();
-		applyFilters(false);
-	});
-
-	$('#toggle30mFilter').on('click', function() {
-		let currentValues = $('#band').val() || [];
-		if (currentValues.includes('All')) currentValues = currentValues.filter(v => v !== 'All');
-		if (currentValues.includes('30m')) {
-			currentValues = currentValues.filter(v => v !== '30m');
-			if (currentValues.length === 0) currentValues = ['All'];
-		} else {
-			currentValues.push('30m');
-		}
-		$('#band').val(currentValues).trigger('change');
-		syncQuickFilterButtons();
-		applyFilters(false);
-	});
-
-	$('#toggle20mFilter').on('click', function() {
-		let currentValues = $('#band').val() || [];
-		if (currentValues.includes('All')) currentValues = currentValues.filter(v => v !== 'All');
-		if (currentValues.includes('20m')) {
-			currentValues = currentValues.filter(v => v !== '20m');
-			if (currentValues.length === 0) currentValues = ['All'];
-		} else {
-			currentValues.push('20m');
-		}
-		$('#band').val(currentValues).trigger('change');
-		syncQuickFilterButtons();
-		applyFilters(false);
-	});
-
-	$('#toggle17mFilter').on('click', function() {
-		let currentValues = $('#band').val() || [];
-		if (currentValues.includes('All')) currentValues = currentValues.filter(v => v !== 'All');
-		if (currentValues.includes('17m')) {
-			currentValues = currentValues.filter(v => v !== '17m');
-			if (currentValues.length === 0) currentValues = ['All'];
-		} else {
-			currentValues.push('17m');
-		}
-		$('#band').val(currentValues).trigger('change');
-		syncQuickFilterButtons();
-		applyFilters(false);
-	});
-
-	$('#toggle15mFilter').on('click', function() {
-		let currentValues = $('#band').val() || [];
-		if (currentValues.includes('All')) currentValues = currentValues.filter(v => v !== 'All');
-		if (currentValues.includes('15m')) {
-			currentValues = currentValues.filter(v => v !== '15m');
-			if (currentValues.length === 0) currentValues = ['All'];
-		} else {
-			currentValues.push('15m');
-		}
-		$('#band').val(currentValues).trigger('change');
-		syncQuickFilterButtons();
-		applyFilters(false);
-	});
-
-	$('#toggle12mFilter').on('click', function() {
-		let currentValues = $('#band').val() || [];
-		if (currentValues.includes('All')) currentValues = currentValues.filter(v => v !== 'All');
-		if (currentValues.includes('12m')) {
-			currentValues = currentValues.filter(v => v !== '12m');
-			if (currentValues.length === 0) currentValues = ['All'];
-		} else {
-			currentValues.push('12m');
-		}
-		$('#band').val(currentValues).trigger('change');
-		syncQuickFilterButtons();
-		applyFilters(false);
-	});
-
-	$('#toggle10mFilter').on('click', function() {
-		let currentValues = $('#band').val() || [];
-		if (currentValues.includes('All')) currentValues = currentValues.filter(v => v !== 'All');
-		if (currentValues.includes('10m')) {
-			currentValues = currentValues.filter(v => v !== '10m');
-			if (currentValues.length === 0) currentValues = ['All'];
-		} else {
-			currentValues.push('10m');
-		}
-		$('#band').val(currentValues).trigger('change');
-		syncQuickFilterButtons();
-		applyFilters(false);
-	});
-
-	$('#toggle6mFilter').on('click', function() {
-		let currentValues = $('#band').val() || [];
-		if (currentValues.includes('All')) currentValues = currentValues.filter(v => v !== 'All');
-		if (currentValues.includes('6m')) {
-			currentValues = currentValues.filter(v => v !== '6m');
-			if (currentValues.length === 0) currentValues = ['All'];
-		} else {
-			currentValues.push('6m');
-		}
-		$('#band').val(currentValues).trigger('change');
-		syncQuickFilterButtons();
-		applyFilters(false);
-	});
-
-	$('#toggle4mFilter').on('click', function() {
-		let currentValues = $('#band').val() || [];
-		if (currentValues.includes('All')) currentValues = currentValues.filter(v => v !== 'All');
-		if (currentValues.includes('4m')) {
-			currentValues = currentValues.filter(v => v !== '4m');
-			if (currentValues.length === 0) currentValues = ['All'];
-		} else {
-			currentValues.push('4m');
-		}
-		$('#band').val(currentValues).trigger('change');
-		syncQuickFilterButtons();
-		applyFilters(false);
-	});
-
-	$('#toggle2mFilter').on('click', function() {
-		let currentValues = $('#band').val() || [];
-		if (currentValues.includes('All')) currentValues = currentValues.filter(v => v !== 'All');
-		if (currentValues.includes('2m')) {
-			currentValues = currentValues.filter(v => v !== '2m');
-			if (currentValues.length === 0) currentValues = ['All'];
-		} else {
-			currentValues.push('2m');
-		}
-		$('#band').val(currentValues).trigger('change');
-		syncQuickFilterButtons();
-		applyFilters(false);
-	});
-
-	$('#toggle70cmFilter').on('click', function() {
-		let currentValues = $('#band').val() || [];
-		if (currentValues.includes('All')) currentValues = currentValues.filter(v => v !== 'All');
-		if (currentValues.includes('70cm')) {
-			currentValues = currentValues.filter(v => v !== '70cm');
-			if (currentValues.length === 0) currentValues = ['All'];
-		} else {
-			currentValues.push('70cm');
-		}
-		$('#band').val(currentValues).trigger('change');
-		syncQuickFilterButtons();
-		applyFilters(false);
-	});
-
-	$('#toggle23cmFilter').on('click', function() {
-		let currentValues = $('#band').val() || [];
-		if (currentValues.includes('All')) currentValues = currentValues.filter(v => v !== 'All');
-		if (currentValues.includes('23cm')) {
-			currentValues = currentValues.filter(v => v !== '23cm');
-			if (currentValues.length === 0) currentValues = ['All'];
-		} else {
-			currentValues.push('23cm');
-		}
-		$('#band').val(currentValues).trigger('change');
-		syncQuickFilterButtons();
-		applyFilters(false);
-	});
+	// Band filter buttons - Individual bands
+	$('#toggle160mFilter').on('click', () => toggleFilterValue('#band', '160m'));
+	$('#toggle80mFilter').on('click', () => toggleFilterValue('#band', '80m'));
+	$('#toggle60mFilter').on('click', () => toggleFilterValue('#band', '60m'));
+	$('#toggle40mFilter').on('click', () => toggleFilterValue('#band', '40m'));
+	$('#toggle30mFilter').on('click', () => toggleFilterValue('#band', '30m'));
+	$('#toggle20mFilter').on('click', () => toggleFilterValue('#band', '20m'));
+	$('#toggle17mFilter').on('click', () => toggleFilterValue('#band', '17m'));
+	$('#toggle15mFilter').on('click', () => toggleFilterValue('#band', '15m'));
+	$('#toggle12mFilter').on('click', () => toggleFilterValue('#band', '12m'));
+	$('#toggle10mFilter').on('click', () => toggleFilterValue('#band', '10m'));
+	$('#toggle6mFilter').on('click', () => toggleFilterValue('#band', '6m'));
+	$('#toggle4mFilter').on('click', () => toggleFilterValue('#band', '4m'));
+	$('#toggle2mFilter').on('click', () => toggleFilterValue('#band', '2m'));
+	$('#toggle70cmFilter').on('click', () => toggleFilterValue('#band', '70cm'));
+	$('#toggle23cmFilter').on('click', () => toggleFilterValue('#band', '23cm'));
 
 	// Band group filter buttons (VHF, UHF, SHF, SAT)
 	$('#toggleVHFFilter').on('click', function() {
@@ -3024,205 +2715,20 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 		updateBandCountBadges();
 
 		// Debounce the filter application (3 second cooldown)
-		clearTimeout(decontFilterTimeout);
-		decontFilterTimeout = setTimeout(function() {
+		clearTimeout(window.filterDebounceTimer);
+		window.filterDebounceTimer = setTimeout(function() {
 			applyFilters(false);
 		}, 3000);
 	});
 
-	// Continent filter buttons (spotter's continent - de continent)
-	$('#toggleAfricaFilter').on('click', function() {
-		let currentValues = $('#decontSelect').val() || [];
-		if (currentValues.includes('Any')) currentValues = currentValues.filter(v => v !== 'Any');
-		if (currentValues.includes('AF')) {
-			currentValues = currentValues.filter(v => v !== 'AF');
-			if (currentValues.length === 0) currentValues = ['Any'];
-		} else {
-			currentValues.push('AF');
-			// Check if all continents are now selected
-			if (currentValues.includes('AF') && currentValues.includes('AN') && currentValues.includes('AS') &&
-			    currentValues.includes('EU') && currentValues.includes('NA') && currentValues.includes('OC') &&
-			    currentValues.includes('SA')) {
-				currentValues = ['Any'];
-			}
-		}
-		$('#decontSelect').val(currentValues).trigger('change');
-		syncQuickFilterButtons();
-
-		// Update badge counts immediately (before debounced filter application)
-		updateBandCountBadges();
-
-		// Debounce the filter application (3 second cooldown)
-		clearTimeout(decontFilterTimeout);
-		decontFilterTimeout = setTimeout(function() {
-			applyFilters(false);
-		}, 3000);
-	});
-
-	$('#toggleAntarcticaFilter').on('click', function() {
-		let currentValues = $('#decontSelect').val() || [];
-		if (currentValues.includes('Any')) currentValues = currentValues.filter(v => v !== 'Any');
-		if (currentValues.includes('AN')) {
-			currentValues = currentValues.filter(v => v !== 'AN');
-			if (currentValues.length === 0) currentValues = ['Any'];
-		} else {
-			currentValues.push('AN');
-			// Check if all continents are now selected
-			if (currentValues.includes('AF') && currentValues.includes('AN') && currentValues.includes('AS') &&
-			    currentValues.includes('EU') && currentValues.includes('NA') && currentValues.includes('OC') &&
-			    currentValues.includes('SA')) {
-				currentValues = ['Any'];
-			}
-		}
-		$('#decontSelect').val(currentValues).trigger('change');
-		syncQuickFilterButtons();
-
-		// Update badge counts immediately (before debounced filter application)
-		updateBandCountBadges();
-
-		// Debounce the filter application (3 second cooldown)
-		clearTimeout(decontFilterTimeout);
-		decontFilterTimeout = setTimeout(function() {
-			applyFilters(false);
-		}, 3000);
-	});
-
-	$('#toggleAsiaFilter').on('click', function() {
-		let currentValues = $('#decontSelect').val() || [];
-		if (currentValues.includes('Any')) currentValues = currentValues.filter(v => v !== 'Any');
-		if (currentValues.includes('AS')) {
-			currentValues = currentValues.filter(v => v !== 'AS');
-			if (currentValues.length === 0) currentValues = ['Any'];
-		} else {
-			currentValues.push('AS');
-			// Check if all continents are now selected
-			if (currentValues.includes('AF') && currentValues.includes('AN') && currentValues.includes('AS') &&
-			    currentValues.includes('EU') && currentValues.includes('NA') && currentValues.includes('OC') &&
-			    currentValues.includes('SA')) {
-				currentValues = ['Any'];
-			}
-		}
-		$('#decontSelect').val(currentValues).trigger('change');
-		syncQuickFilterButtons();
-
-		// Update badge counts immediately (before debounced filter application)
-		updateBandCountBadges();
-
-		// Debounce the filter application (3 second cooldown)
-		clearTimeout(decontFilterTimeout);
-		decontFilterTimeout = setTimeout(function() {
-			applyFilters(false);
-		}, 3000);
-	});
-
-	$('#toggleEuropeFilter').on('click', function() {
-		let currentValues = $('#decontSelect').val() || [];
-		if (currentValues.includes('Any')) currentValues = currentValues.filter(v => v !== 'Any');
-		if (currentValues.includes('EU')) {
-			currentValues = currentValues.filter(v => v !== 'EU');
-			if (currentValues.length === 0) currentValues = ['Any'];
-		} else {
-			currentValues.push('EU');
-			// Check if all continents are now selected
-			if (currentValues.includes('AF') && currentValues.includes('AN') && currentValues.includes('AS') &&
-			    currentValues.includes('EU') && currentValues.includes('NA') && currentValues.includes('OC') &&
-			    currentValues.includes('SA')) {
-				currentValues = ['Any'];
-			}
-		}
-		$('#decontSelect').val(currentValues).trigger('change');
-		syncQuickFilterButtons();
-
-		// Update badge counts immediately (before debounced filter application)
-		updateBandCountBadges();
-
-		// Debounce the filter application (3 second cooldown)
-		clearTimeout(decontFilterTimeout);
-		decontFilterTimeout = setTimeout(function() {
-			applyFilters(false);
-		}, 3000);
-	});
-
-	$('#toggleNorthAmericaFilter').on('click', function() {
-		let currentValues = $('#decontSelect').val() || [];
-		if (currentValues.includes('Any')) currentValues = currentValues.filter(v => v !== 'Any');
-		if (currentValues.includes('NA')) {
-			currentValues = currentValues.filter(v => v !== 'NA');
-			if (currentValues.length === 0) currentValues = ['Any'];
-		} else {
-			currentValues.push('NA');
-			// Check if all continents are now selected
-			if (currentValues.includes('AF') && currentValues.includes('AN') && currentValues.includes('AS') &&
-			    currentValues.includes('EU') && currentValues.includes('NA') && currentValues.includes('OC') &&
-			    currentValues.includes('SA')) {
-				currentValues = ['Any'];
-			}
-		}
-		$('#decontSelect').val(currentValues).trigger('change');
-		syncQuickFilterButtons();
-
-		// Update badge counts immediately (before debounced filter application)
-		updateBandCountBadges();
-
-		// Debounce the filter application (3 second cooldown)
-		clearTimeout(decontFilterTimeout);
-		decontFilterTimeout = setTimeout(function() {
-			applyFilters(false);
-		}, 3000);
-	});
-
-	$('#toggleOceaniaFilter').on('click', function() {
-		let currentValues = $('#decontSelect').val() || [];
-		if (currentValues.includes('Any')) currentValues = currentValues.filter(v => v !== 'Any');
-		if (currentValues.includes('OC')) {
-			currentValues = currentValues.filter(v => v !== 'OC');
-			if (currentValues.length === 0) currentValues = ['Any'];
-		} else {
-			currentValues.push('OC');
-			// Check if all continents are now selected
-			if (currentValues.includes('AF') && currentValues.includes('AN') && currentValues.includes('AS') &&
-			    currentValues.includes('EU') && currentValues.includes('NA') && currentValues.includes('OC') &&
-			    currentValues.includes('SA')) {
-				currentValues = ['Any'];
-			}
-		}
-		$('#decontSelect').val(currentValues).trigger('change');
-		syncQuickFilterButtons();
-
-		// Update badge counts immediately (before debounced filter application)
-		updateBandCountBadges();
-
-		// Debounce the filter application (3 second cooldown)
-		clearTimeout(decontFilterTimeout);
-		decontFilterTimeout = setTimeout(function() {
-			applyFilters(false);
-		}, 3000);
-	});
-
-	$('#toggleSouthAmericaFilter').on('click', function() {
-		let currentValues = $('#decontSelect').val() || [];
-		if (currentValues.includes('Any')) currentValues = currentValues.filter(v => v !== 'Any');
-		if (currentValues.includes('SA')) {
-			currentValues = currentValues.filter(v => v !== 'SA');
-			if (currentValues.length === 0) currentValues = ['Any'];
-		} else {
-			currentValues.push('SA');
-			// Check if all continents are now selected
-			if (currentValues.includes('AF') && currentValues.includes('AN') && currentValues.includes('AS') &&
-			    currentValues.includes('EU') && currentValues.includes('NA') && currentValues.includes('OC') &&
-			    currentValues.includes('SA')) {
-				currentValues = ['Any'];
-			}
-		}
-		$('#decontSelect').val(currentValues).trigger('change');
-		syncQuickFilterButtons();
-
-		// Debounce the filter application (3 second cooldown)
-		clearTimeout(decontFilterTimeout);
-		decontFilterTimeout = setTimeout(function() {
-			applyFilters(false);
-		}, 3000);
-	});
+	// Continent filter buttons (spotter's continent - de continent) - with 3s debounce
+	$('#toggleAfricaFilter').on('click', () => toggleFilterValue('#decontSelect', 'AF', 'Any', true, 3000, true));
+	$('#toggleAntarcticaFilter').on('click', () => toggleFilterValue('#decontSelect', 'AN', 'Any', true, 3000, true));
+	$('#toggleAsiaFilter').on('click', () => toggleFilterValue('#decontSelect', 'AS', 'Any', true, 3000, true));
+	$('#toggleEuropeFilter').on('click', () => toggleFilterValue('#decontSelect', 'EU', 'Any', true, 3000, true));
+	$('#toggleNorthAmericaFilter').on('click', () => toggleFilterValue('#decontSelect', 'NA', 'Any', true, 3000, true));
+	$('#toggleOceaniaFilter').on('click', () => toggleFilterValue('#decontSelect', 'OC', 'Any', true, 3000, true));
+	$('#toggleSouthAmericaFilter').on('click', () => toggleFilterValue('#decontSelect', 'SA', 'Any', true, 3000, true));
 
 	// Toggle LoTW User filter
 	$('#toggleLotwFilter').on('click', function() {
@@ -3478,7 +2984,7 @@ data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spot
 		// Add info icon and message to band filter label in popup
 		const bandLabel = $('#band').closest('.mb-3').find('label');
 		if (!bandLabel.find('.cat-control-info').length) {
-			bandLabel.append(' <i class="fas fa-info-circle cat-control-info" title="Band filtering is controlled by your radio when CAT Control is enabled"></i>');
+			bandLabel.append(' <i class="fas fa-info-circle cat-control-info" title="' + lang_bandmap_cat_band_control + '"></i>');
 		}
 	}
 

@@ -4,7 +4,6 @@
 	var cat_timeout_interval = "<?php echo $this->optionslib->get_option('cat_timeout_interval'); ?>";
 	var dxcluster_maxage = <?php echo $this->optionslib->get_option('dxcluster_maxage') ?? 60; ?>;
 	var custom_date_format = "<?php echo $custom_date_format ?>";
-	var popup_warning = "<?= __("Pop-up was blocked! Please allow pop-ups for this site permanently."); ?>";
 
 	// Detect OS for proper keyboard shortcuts
 	var isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
@@ -12,6 +11,8 @@
 	var lang_click_to_prepare_logging = "<?= __("Click to prepare logging."); ?> (" + modKey + "+Click <?= __("to tune frequency"); ?>)";
 
 	// Bandmap toast messages
+	var lang_bandmap_popup_blocked = "<?= __("Pop-up Blocked"); ?>";
+	var lang_bandmap_popup_warning = "<?= __("Pop-up was blocked! Please allow pop-ups for this site permanently."); ?>";
 	var lang_bandmap_cat_required = "<?= __("CAT Control Required"); ?>";
 	var lang_bandmap_enable_cat = "<?= __("Enable CAT Control to tune the radio"); ?>";
 	var lang_bandmap_clear_filters = "<?= __("Clear Filters"); ?>";
@@ -36,6 +37,45 @@
 	var lang_bandmap_modes_applied = "<?= __("Modes applied. Band filter preserved (CAT Control is active)"); ?>";
 	var lang_bandmap_favorites_applied = "<?= __("Applied your favorite bands and modes"); ?>";
 
+	// Bandmap filter status messages
+	var lang_bandmap_loading_data = "<?= __("Loading data from DX Cluster"); ?>";
+	var lang_bandmap_last_fetched = "<?= __("Last fetched for"); ?>";
+	var lang_bandmap_max_age = "<?= __("Max Age"); ?>";
+	var lang_bandmap_fetched_at = "<?= __("Fetched at"); ?>";
+	var lang_bandmap_next_update = "<?= __("Next update in"); ?>";
+	var lang_bandmap_minutes = "<?= __("minutes"); ?>";
+	var lang_bandmap_seconds = "<?= __("seconds"); ?>";
+
+	// Bandmap filter labels
+	var lang_bandmap_not_worked = "<?= __("Not worked"); ?>";
+	var lang_bandmap_lotw_user = "<?= __("LoTW User"); ?>";
+	var lang_bandmap_new_callsign = "<?= __("New Callsign"); ?>";
+	var lang_bandmap_new_continent = "<?= __("New Continent"); ?>";
+	var lang_bandmap_new_country = "<?= __("New Country"); ?>";
+	var lang_bandmap_worked_before = "<?= __("Worked Before"); ?>";
+	var lang_bandmap_confirmed = "<?= __("Confirmed"); ?>";
+
+	// Bandmap tooltip messages
+	var lang_bandmap_fresh_spot = "<?= __("Fresh spot (< 5 minutes old)"); ?>";
+	var lang_bandmap_click_view_qrz = "<?= __("Click to view"); ?>";
+	var lang_bandmap_on_qrz = "<?= __("on QRZ.com"); ?>";
+	var lang_bandmap_see_details = "<?= __("See details for"); ?>";
+	var lang_bandmap_worked_on = "<?= __("Worked on"); ?>";
+	var lang_bandmap_not_worked_band = "<?= __("Not worked on this band"); ?>";
+
+	// Bandmap UI messages
+	var lang_bandmap_exit_fullscreen = "<?= __("Exit Fullscreen"); ?>";
+	var lang_bandmap_toggle_fullscreen = "<?= __("Toggle Fullscreen"); ?>";
+	var lang_bandmap_cat_band_control = "<?= __("Band filtering is controlled by your radio when CAT Control is enabled"); ?>";
+	var lang_bandmap_click_to_qso = "<?= __("Click to prepare logging"); ?>";
+	var lang_bandmap_ctrl_click_tune = "<?= __("to tune frequency"); ?>";
+	var lang_bandmap_requires_cat = "<?= __("(requires CAT Control)"); ?>";
+	var lang_bandmap_spotter = "<?= __("Spotter"); ?>";
+	var lang_bandmap_comment = "<?= __("Comment"); ?>";
+	var lang_bandmap_age = "<?= __("Age"); ?>";
+	var lang_bandmap_time = "<?= __("Time"); ?>";
+
+
 	// DataTables messages
 	var lang_bandmap_loading_spots = "<?= __("Loading spots..."); ?>";
 	var lang_bandmap_no_spots_found = "<?= __("No spots found"); ?>";
@@ -50,8 +90,6 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bandmap_list.css" />
 
 <div class="container" id="bandmapContainer">
-	<div id="errormessage" style="display: none;"></div>
-
 	<!-- Messages -->
 	<div class="messages my-1 mx-3"></div>
 
