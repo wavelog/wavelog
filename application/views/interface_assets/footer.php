@@ -1465,8 +1465,8 @@ mymap.on('mousemove', onQsoMapMove);
 
 <!--- Bandmap CAT Integration --->
 <?php if ($this->uri->segment(1) == "bandmap" && $this->uri->segment(2) == "list") { ?>
-	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/cat.js"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/sections/bandmap_list.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/cat.js?v=<?php echo time(); ?>"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/sections/bandmap_list.js?v=<?php echo time(); ?>"></script>
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "logbook" && $this->uri->segment(2) == "view") { ?>

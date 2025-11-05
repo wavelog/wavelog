@@ -32,12 +32,51 @@
 
 'use strict';
 
+console.log('=== BANDMAP_LIST.JS LOADING ===');
+
 // ========================================
 // CONFIGURATION
 // ========================================
 const SPOT_REFRESH_INTERVAL = 60;  // Auto-refresh interval in seconds
 
+// Configure DataTables error mode BEFORE document ready
+// This prevents alert dialogs from showing
+console.log('Configuring DataTables error mode...');
+if (typeof jQuery !== 'undefined' && jQuery.fn && jQuery.fn.dataTable) {
+	console.log('DataTables found, setting errMode to console logging');
+	jQuery.fn.dataTable.ext.errMode = function(settings, helpPage, message) {
+		console.error('=== DataTables Error (pre-init) ===');
+		console.error('Message:', message);
+		console.error('Help page:', helpPage);
+		console.error('Settings:', settings);
+	};
+} else {
+	console.warn('DataTables not found at pre-init stage');
+}
+
 $(function() {
+
+	console.log('=== BANDMAP Document Ready ===');
+
+	// Configure DataTables to log errors to console instead of showing alert dialogs
+	// MUST be set before any DataTable is initialized
+	if ($.fn.dataTable) {
+		console.log('Setting DataTables errMode inside document ready');
+		$.fn.dataTable.ext.errMode = function(settings, helpPage, message) {
+			console.error('=== DataTables Error ===');
+			console.error('Message:', message);
+			console.error('Help page:', helpPage);
+			console.error('Settings:', settings);
+			// Also log which row/column caused the issue
+			if (message.indexOf('parameter') !== -1) {
+				console.error('This usually means the data array has wrong number of columns');
+				console.error('Expected columns: 15 (Age, Band, Freq, Mode, Spotted, Cont, CQZ, Flag, Entity, DXCC#, Spotter, de Cont, de CQZ, Special, Message)');
+			}
+		};
+		console.log('DataTables errMode configured successfully');
+	} else {
+		console.error('$.fn.dataTable not available!');
+	}
 
 	// ========================================
 	// FILTER UI MANAGEMENT
@@ -859,14 +898,12 @@ $(function() {
 			}
 			if (!passesDeContFilter) return;
 
-			// Apply spotted continent filter (which continent the DX station is in)
-			let passesContinentFilter = spottedContinents.includes('Any');
-			if (!passesContinentFilter) {
-				passesContinentFilter = spottedContinents.includes(single.dxcc_spotted.cont);
-			}
-			if (!passesContinentFilter) return;
-
-			// Apply mode filter (client-side for multi-select)
+		// Apply spotted continent filter (which continent the DX station is in)
+		let passesContinentFilter = spottedContinents.includes('Any');
+		if (!passesContinentFilter) {
+			passesContinentFilter = single.dxcc_spotted && spottedContinents.includes(single.dxcc_spotted.cont);
+		}
+		if (!passesContinentFilter) return;			// Apply mode filter (client-side for multi-select)
 			let passesModeFilter = modes.includes('All');
 			if (!passesModeFilter) {
 				let spot_mode_category = getModeCategory(single.mode);
@@ -904,15 +941,38 @@ $(function() {
 						break;
 					}
 				}
-			}
-			if (!passesFlagsFilter) return;
+		}
+		if (!passesFlagsFilter) return;
 
-			// All filters passed - build table row data
-			spots2render++;
-			var data = [];
-			var dxcc_wked_info, wked_info;
+		// All filters passed - validate essential data exists
+		// We need at least the spotted callsign and basic DXCC info
+		if (!single.dxcc_spotted) {
+			console.warn('Spot missing dxcc_spotted - creating placeholder:', single.spotted, single.frequency);
+			// Create minimal dxcc_spotted object to prevent errors
+			single.dxcc_spotted = {
+				dxcc_id: 0,
+				cont: '',
+				cqz: '',
+				flag: '',
+				entity: 'Unknown'
+			};
+		}
+		if (!single.dxcc_spotter) {
+			console.warn('Spot missing dxcc_spotter - creating placeholder:', single.spotted, single.frequency);
+			// Create minimal dxcc_spotter object to prevent errors
+			single.dxcc_spotter = {
+				dxcc_id: 0,
+				cont: '',
+				cqz: '',
+				flag: '',
+				entity: 'Unknown'
+			};
+		}
 
-			// Color code DXCC entity: green=confirmed, yellow=worked, red=new
+		// Build table row data
+		spots2render++;
+		var data = [];
+		var dxcc_wked_info, wked_info;			// Color code DXCC entity: green=confirmed, yellow=worked, red=new
 
 			if (single.cnfmd_dxcc) {
 				dxcc_wked_info = "text-success";
@@ -1022,48 +1082,50 @@ $(function() {
 		var spotted = wked_info;
 		data[0].push(spotted);
 
-		// Continent column: color code based on worked/confirmed status
-		var continent_wked_info;
-		if (single.cnfmd_continent) {
-			continent_wked_info = "text-success";
-		} else if (single.worked_continent) {
-			continent_wked_info = "text-warning";
-		} else {
-			continent_wked_info = "text-danger";
-		}
-		continent_wked_info = ((continent_wked_info != '' ? '<span class="' + continent_wked_info + '">' : '') + single.dxcc_spotted.cont + (continent_wked_info != '' ? '</span>' : ''));
-		data[0].push(continent_wked_info);
+	// Continent column: color code based on worked/confirmed status
+	var continent_wked_info;
+	if (single.cnfmd_continent) {
+		continent_wked_info = "text-success";
+	} else if (single.worked_continent) {
+		continent_wked_info = "text-warning";
+	} else {
+		continent_wked_info = "text-danger";
+	}
+	let continent_value = (single.dxcc_spotted && single.dxcc_spotted.cont) ? single.dxcc_spotted.cont : '';
+	continent_wked_info = continent_value ? ((continent_wked_info != '' ? '<span class="' + continent_wked_info + '">' : '') + continent_value + (continent_wked_info != '' ? '</span>' : '')) : '';
+	data[0].push(continent_wked_info);
 
-		// CQ Zone column: show CQ Zone (moved here, right after Cont)
-		data[0].push(single.dxcc_spotted.cqz || '');
+	// CQ Zone column: show CQ Zone (moved here, right after Cont)
+	data[0].push((single.dxcc_spotted && single.dxcc_spotted.cqz) ? single.dxcc_spotted.cqz : '');	// Flag column: just the flag emoji without entity name
+	let flag_only = '';
+	if (single.dxcc_spotted && single.dxcc_spotted.flag) {
+		flag_only = '<span class="flag-emoji">' + single.dxcc_spotted.flag + '</span>';
+	}
+	data[0].push(flag_only);
 
-		// Flag column: just the flag emoji without entity name
-		let flag_only = '';
-		if (single.dxcc_spotted.flag) {
-			flag_only = '<span class="flag-emoji">' + single.dxcc_spotted.flag + '</span>';
-		}
-		data[0].push(flag_only);
-
-		// Entity column: entity name with color coding (no flag)
-		let dxcc_entity_full = single.dxcc_spotted.entity;
-		let entity_colored = (dxcc_wked_info != '' ? '<span class="' + dxcc_wked_info + '">' : '') + single.dxcc_spotted.entity + (dxcc_wked_info != '' ? '</span>' : '');
+	// Entity column: entity name with color coding (no flag)
+	let dxcc_entity_full = single.dxcc_spotted ? (single.dxcc_spotted.entity || '') : '';
+	let entity_colored = dxcc_entity_full ? ((dxcc_wked_info != '' ? '<span class="' + dxcc_wked_info + '">' : '') + dxcc_entity_full + (dxcc_wked_info != '' ? '</span>' : '')) : '';
+	if (single.dxcc_spotted && single.dxcc_spotted.dxcc_id && dxcc_entity_full) {
 		data[0].push('<a href="javascript:spawnLookupModal(\'' + single.dxcc_spotted.dxcc_id + '\',\'dxcc\')"; data-bs-toggle="tooltip" title="See details for ' + dxcc_entity_full + '">' + entity_colored + '</a>');
+	} else {
+		data[0].push(entity_colored);
+	}
 
-		// DXCC Number column: show ADIF DXCC entity number with color coding
-		let dxcc_number = ((dxcc_wked_info != '' ? '<span class="' + dxcc_wked_info + '">' : '') + single.dxcc_spotted.dxcc_id + (dxcc_wked_info != '' ? '</span>' : ''));
-		data[0].push(dxcc_number);
+	// DXCC Number column: show ADIF DXCC entity number with color coding
+	let dxcc_id_value = (single.dxcc_spotted && single.dxcc_spotted.dxcc_id) ? single.dxcc_spotted.dxcc_id : '';
+	let dxcc_number = dxcc_id_value ? ((dxcc_wked_info != '' ? '<span class="' + dxcc_wked_info + '">' : '') + dxcc_id_value + (dxcc_wked_info != '' ? '</span>' : '')) : '';
+	data[0].push(dxcc_number);
 
-		// de Callsign column (Spotter) - clickable QRZ link
-		let spotterQrzLink = '<a href="https://www.qrz.com/db/' + single.spotter + '" target="_blank" onclick="event.stopPropagation();" data-bs-toggle="tooltip" title="Click to view ' + single.spotter + ' on QRZ.com">' + single.spotter + '</a>';
-		data[0].push(spotterQrzLink);
+	// de Callsign column (Spotter) - clickable QRZ link
+	let spotterQrzLink = '<a href="https://www.qrz.com/db/' + single.spotter + '" target="_blank" onclick="event.stopPropagation();" data-bs-toggle="tooltip" title="Click to view ' + single.spotter + ' on QRZ.com">' + single.spotter + '</a>';
+	data[0].push(spotterQrzLink);
 
-		// de Cont column: spotter's continent
-		data[0].push(single.dxcc_spotter.cont || '');
+	// de Cont column: spotter's continent
+	data[0].push((single.dxcc_spotter && single.dxcc_spotter.cont) ? single.dxcc_spotter.cont : '');
 
-	// de CQZ column: spotter's CQ Zone
-	data[0].push(single.dxcc_spotter.cqz || '');
-
-	// Build medal badge - show only highest priority: continent > country > callsign
+// de CQZ column: spotter's CQ Zone
+data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spotter.cqz : '');	// Build medal badge - show only highest priority: continent > country > callsign
 	let medals = '';
 	if (single.worked_continent === false) {
 		// New Continent (not worked before) - Gold medal
@@ -1080,6 +1142,18 @@ $(function() {
 	let flags_column = medals + lotw_badge + activity_flags;
 	data[0].push(flags_column);		// Message column
 		data[0].push(single.message || '');
+
+		// Debug: Validate data array has exactly 15 columns
+		if (data[0].length !== 15) {
+			console.error('INVALID DATA ARRAY LENGTH:', data[0].length, 'Expected: 15');
+			console.error('Spot:', single.spotted, 'Frequency:', single.frequency);
+			console.error('Data array:', data[0]);
+			console.error('Missing columns:', 15 - data[0].length);
+			// Pad array with empty strings to prevent DataTables error
+			while (data[0].length < 15) {
+				data[0].push('');
+			}
+		}
 
 			// Add row to table with appropriate styling based on TTL and age
 			// Priority: TTL=0 (expiring) > age < 1 min (very new) > fresh
@@ -1577,6 +1651,27 @@ $(function() {
 			currentAjaxRequest = null;
 			table.page.len(50);
 
+			// Debug: Log response details
+			console.log('Backend response received:', {
+				url: dxurl,
+				spotCount: Array.isArray(dxspots) ? dxspots.length : 0,
+				responseType: typeof dxspots,
+				hasError: dxspots && dxspots.error ? dxspots.error : 'none'
+			});
+
+			// Check if response is an error object
+			if (dxspots && dxspots.error) {
+				console.warn('Backend returned error:', dxspots.error);
+				cachedSpotData = [];
+				table.clear();
+				table.settings()[0].oLanguage.sEmptyTable = "No spots found for selected filters";
+				table.draw();
+				updateStatusBar(0, 0, getServerFilterText(), getClientFilterText(), false, false);
+				isFetchInProgress = false;
+				startRefreshTimer();
+				return;
+			}
+
 			if (dxspots.length > 0) {
 				dxspots.sort(SortByQrg);  // Sort by frequency
 
@@ -1969,6 +2064,43 @@ $(function() {
 	});
 
 	$("#radio").on("change", function() {
+		let selectedRadio = $(this).val();
+		
+		// If "None" (value "0") is selected, automatically disable CAT Control
+		if (selectedRadio === "0") {
+			console.log('Radio set to None - automatically disabling CAT Control');
+			
+			// If CAT Control is currently enabled, turn it off
+			if (isCatTrackingEnabled) {
+				let btn = $('#toggleCatTracking');
+				btn.removeClass('btn-success').addClass('btn-secondary');
+				isCatTrackingEnabled = false;
+				window.isCatTrackingEnabled = false;
+				
+				// Hide radio status
+				$('#radio_cat_state').remove();
+				
+				// Re-enable band filter controls
+				enableBandFilterControls();
+				
+				// Unlock table sorting
+				unlockTableSorting();
+				
+				// Reset band filter to 'All' and fetch all bands
+				const currentBands = $("#band").val() || [];
+				if (currentBands.length !== 1 || currentBands[0] !== 'All') {
+					console.log('Resetting to all bands after disabling CAT Control');
+					$("#band").val(['All']);
+					updateSelectCheckboxes('band');
+					syncQuickFilterButtons();
+					applyFilters(true); // Force reload to fetch all bands
+				}
+				
+				if (typeof showToast === 'function') {
+					showToast('Radio', 'Radio set to None - CAT Control disabled', 'bg-info text-white', 3000);
+				}
+			}
+		}
 	});
 
 	$("#spottertoggle").on("click", function() {
