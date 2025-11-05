@@ -1,7 +1,6 @@
 <div class="container-fluid pt-3 ps-4 pe-4">
 <h2><?= $page_title ?></h2>
 
-    <?php if (!empty($locations)): ?>
         <div class="table-responsive mt-3">
 			<table style="width:100%" class="table-sm table table-hover table-striped table-bordered table-condensed" id="qsoList">
                 <thead>
@@ -82,9 +81,6 @@
                 </tbody>
             </table>
         </div>
-    <?php else: ?>
-        <div class="alert alert-info mt-3">No station locations found.</div>
-    <?php endif; ?>
 </div>
 <script>
 	document.addEventListener("DOMContentLoaded", function() {
