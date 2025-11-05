@@ -286,37 +286,14 @@ function getCATTimings() {
 }
 
 /**
- * Handle CAT frequency update with adaptive debounce
- * Uses getCATTimings() to apply appropriate delays for WebSocket (fast) vs Polling (slow)
- * Returns true if frequency should be updated, false if blocked by debounce
- * Also handles frequency confirmation and cache invalidation
+ * Handle CAT frequency update
+ * Handles frequency confirmation and cache invalidation
  * @param {number} radioFrequency - Frequency from CAT in Hz
- * @param {Function} updateCallback - Function to call if update should proceed
- * @returns {boolean} - True if update was allowed, false if blocked
+ * @param {Function} updateCallback - Function to call to update UI
+ * @returns {boolean} - True if update was processed
  */
 function handleCATFrequencyUpdate(radioFrequency, updateCallback) {
-    // Get adaptive timing based on connection type (WebSocket vs Polling)
-    var timings = getCATTimings();
     var now = Date.now();
-
-    // Check if we're in a debounce period
-    if (typeof window.catFrequencyDebounce !== 'undefined' && window.catFrequencyDebounce) {
-        var timeSinceLastUpdate = now - (window.catFrequencyDebounce.lastUpdate || 0);
-
-        // If we're within the commit delay window, skip this update
-        if (timeSinceLastUpdate < timings.commitDelay) {
-            DX_WATERFALL_UTILS.log.debug('[DX Waterfall] CAT DEBOUNCE: Skipping update (within ' + timings.commitDelay + 'ms window, ' + timeSinceLastUpdate + 'ms since last)');
-            return false;
-        }
-    }
-
-    // Initialize debounce tracking if needed
-    if (typeof window.catFrequencyDebounce === 'undefined') {
-        window.catFrequencyDebounce = { lastUpdate: 0 };
-    }
-
-    // Update debounce timestamp
-    window.catFrequencyDebounce.lastUpdate = now;
 
     // Check if frequency actually changed BEFORE updating UI
     var frequencyChanged = false;
@@ -414,13 +391,6 @@ function handleCATFrequencyUpdate(radioFrequency, updateCallback) {
                 dxWaterfall.invalidateFrequencyCache();
             }
         }
-
-        // Clear any existing auto-populate timer (not used anymore, but clean up if exists)
-        if (window.catFrequencyDebounce.autoPopulateTimer) {
-            clearTimeout(window.catFrequencyDebounce.autoPopulateTimer);
-            window.catFrequencyDebounce.autoPopulateTimer = null;
-        }
-
     }
 
     return true;

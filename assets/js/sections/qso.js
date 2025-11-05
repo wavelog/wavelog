@@ -2232,21 +2232,8 @@ $('.mode').on('change', function () {
 $('#band').on('change', function () {
 	const selectedBand = $(this).val();
 
-	// Skip if this is a programmatic change from CAT/waterfall
-	if (typeof window.programmaticBandChange !== 'undefined' && window.programmaticBandChange) {
-		return;
-	}
-
-	// Skip resetting frequency if CAT is currently updating
-	if (typeof cat_updating_frequency !== 'undefined' && cat_updating_frequency) {
-		return;
-	}
-
-	// Clear the QSO form when band is manually changed
-	$('#btn_reset').click();
-
-	// Band selector is now display-only - it follows the radio frequency
-	// Manual band changes do NOT update the frequency or tune the radio
+	// Band selector is display-only - it follows the radio frequency
+	// Band changes do NOT clear the form or update the frequency or tune the radio
 	// The radio controls the form, not the other way around
 });
 
