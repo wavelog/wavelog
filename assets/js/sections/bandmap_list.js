@@ -1037,7 +1037,12 @@ $(function() {
 	}
 
 	if (single.dxcc_spotted && single.dxcc_spotted.isContest) {
-		activity_flags += buildBadge('warning', 'fa-trophy', 'Contest');
+		// Build contest badge with contest name in tooltip if available
+		let contestTitle = 'Contest';
+		if (single.dxcc_spotted.contest_name && single.dxcc_spotted.contest_name !== '') {
+			contestTitle = 'Contest: ' + single.dxcc_spotted.contest_name;
+		}
+		activity_flags += buildBadge('warning', 'fa-trophy', contestTitle);
 	}
 
 	// Add "Fresh" badge for spots less than 5 minutes old
