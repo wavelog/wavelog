@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-11-05 15:15+0000\n"
-"PO-Revision-Date: 2025-10-28 14:44+0000\n"
+"POT-Creation-Date: 2025-11-06 07:58+0000\n"
+"PO-Revision-Date: 2025-11-05 12:22+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -1818,7 +1818,7 @@ msgstr "Оператор"
 #: application/views/station_profile/edit.php:109
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/stationsetup/linkedlocations.php:45
-#: application/views/stationsetup/locationlist.php:52
+#: application/views/stationsetup/locationlist.php:54
 #: application/views/stationsetup/stationsetup.php:156
 #: application/views/timeline/index.php:216
 #: application/views/timeplotter/index.php:33
@@ -2710,7 +2710,7 @@ msgstr "Редактировать настройка экспорта карт�
 
 #: application/controllers/Stationsetup.php:526
 msgid "Station location list"
-msgstr ""
+msgstr "Список профилей QTH"
 
 #: application/controllers/Statistics.php:26
 #: application/views/interface_assets/header.php:142
@@ -7851,166 +7851,167 @@ msgstr "Скачать QSL с Clublog"
 #: application/views/components/dxwaterfall.php:14
 msgid "Tune to spot frequency and start logging QSO"
 msgstr ""
+"Настройтесь на частоту спота (DX) и запись QSO в логе будет подготовлена"
 
 #: application/views/components/dxwaterfall.php:15
 msgid "Cycle through nearby spots"
-msgstr ""
+msgstr "Циклическое переклбчение меж ближайшими спотами"
 
 #: application/views/components/dxwaterfall.php:16
 msgid "spots"
-msgstr ""
+msgstr "споты"
 
 #: application/views/components/dxwaterfall.php:17
 msgid "New Continent"
-msgstr ""
+msgstr "Новый континент"
 
 #: application/views/components/dxwaterfall.php:18
 msgid "New DXCC"
-msgstr ""
+msgstr "Новый DXCC"
 
 #: application/views/components/dxwaterfall.php:19
 msgid "New Callsign"
-msgstr ""
+msgstr "Новый позывной"
 
 #: application/views/components/dxwaterfall.php:20
 msgid "First spot"
-msgstr ""
+msgstr "Первый спот"
 
 #: application/views/components/dxwaterfall.php:20
 msgid "Previous spot"
-msgstr ""
+msgstr "Предыдущий спот"
 
 #: application/views/components/dxwaterfall.php:21
 msgid "No spots at lower frequency"
-msgstr ""
+msgstr "Нет спотов на частотах ниже"
 
 #: application/views/components/dxwaterfall.php:22
 msgid "Last spot"
-msgstr ""
+msgstr "Последний спот"
 
 #: application/views/components/dxwaterfall.php:22
 msgid "Next spot"
-msgstr ""
+msgstr "Следующий спот"
 
 #: application/views/components/dxwaterfall.php:23
 msgid "No spots at higher frequency"
-msgstr ""
+msgstr "Нет спотов на частотах выше"
 
 #: application/views/components/dxwaterfall.php:24
 msgid "No spots available"
-msgstr ""
+msgstr "Нет спотов"
 
 #: application/views/components/dxwaterfall.php:25
 msgid "Cycle through unworked continents/DXCC"
-msgstr ""
+msgstr "Циклическое переключение между несработанными континентамим/DXCC"
 
 #: application/views/components/dxwaterfall.php:26
 msgid "DX Hunter"
-msgstr ""
+msgstr "Охотник за DX"
 
 #: application/views/components/dxwaterfall.php:27
 msgid "No unworked continents/DXCC on this band"
-msgstr ""
+msgstr "На этом диапазоне нет несработанных континентов/DXCC"
 
 #: application/views/components/dxwaterfall.php:28
 msgid "Click to cycle or wait 1.5s to apply"
-msgstr ""
+msgstr "Нажмите для переключения или подождите 1.5 секунды для применения"
 
 #: application/views/components/dxwaterfall.php:29
 msgid "Change spotter continent"
-msgstr ""
+msgstr "Изменить континент споттера"
 
 #: application/views/components/dxwaterfall.php:30
 msgid "Filter by mode"
-msgstr ""
+msgstr "Фильтр по виду модуляции"
 
 #: application/views/components/dxwaterfall.php:31
 msgid "Toggle Phone mode filter"
-msgstr ""
+msgstr "Переключить фильтр по голосовым видам"
 
 #: application/views/components/dxwaterfall.php:33
 msgid "Toggle CW mode filter"
-msgstr ""
+msgstr "Переключить фильтр по CW"
 
 #: application/views/components/dxwaterfall.php:35
 msgid "Toggle Digital mode filter"
-msgstr ""
+msgstr "Переключить фильтр по цифровым видам"
 
 #: application/views/components/dxwaterfall.php:37
 msgid "Zoom out"
-msgstr ""
+msgstr "Уменьшить масштаб"
 
 #: application/views/components/dxwaterfall.php:38
 msgid "Reset zoom to default (3)"
-msgstr ""
+msgstr "Установить масштаб по умолчанию (3)"
 
 #: application/views/components/dxwaterfall.php:39
 msgid "Zoom in"
-msgstr ""
+msgstr "Увеличить масштаб"
 
 #: application/views/components/dxwaterfall.php:40
 msgid "Downloading DX Cluster data"
-msgstr ""
+msgstr "Скачивание данных DX-кластера"
 
 #: application/views/components/dxwaterfall.php:41
 msgid "Comment: "
-msgstr ""
+msgstr "Комментарий: "
 
 #: application/views/components/dxwaterfall.php:42
 msgid "modes:"
-msgstr ""
+msgstr "виды модуляции:"
 
 #: application/views/components/dxwaterfall.php:43
 msgid "OUT OF BANDPLAN"
-msgstr ""
+msgstr "ВНЕ ДОПУСТИМОГО ДИАПАЗОНА"
 
 #: application/views/components/dxwaterfall.php:44
 msgid "Changing radio frequency..."
-msgstr ""
+msgstr "Изменение частоты радиостанции..."
 
 #: application/views/components/dxwaterfall.php:45
 msgid "INVALID"
-msgstr ""
+msgstr "НЕДОПУСТИМО"
 
 #: application/views/components/dxwaterfall.php:46
 msgid "Click to turn on the DX Waterfall"
-msgstr ""
+msgstr "Нажмите, чтобы включить водопад DX"
 
 #: application/views/components/dxwaterfall.php:47
 msgid "Turn off DX Waterfall"
-msgstr ""
+msgstr "Выключить водопад DX"
 
 #: application/views/components/dxwaterfall.php:48
 msgid "Please wait"
-msgstr ""
+msgstr "Пожалуйста, подождите"
 
 #: application/views/components/dxwaterfall.php:49
 msgid "Cycle label size"
-msgstr ""
+msgstr "Циклическое переключение размеров наклеек"
 
 #: application/views/components/dxwaterfall.php:50
 msgid "X-Small"
-msgstr ""
+msgstr "Очень маленький"
 
 #: application/views/components/dxwaterfall.php:51
 msgid "Small"
-msgstr ""
+msgstr "Маленький"
 
 #: application/views/components/dxwaterfall.php:52
 msgid "Medium"
-msgstr ""
+msgstr "Средний"
 
 #: application/views/components/dxwaterfall.php:53
 msgid "Large"
-msgstr ""
+msgstr "Большой"
 
 #: application/views/components/dxwaterfall.php:54
 msgid "X-Large"
-msgstr ""
+msgstr "Очень большой"
 
 #: application/views/components/dxwaterfall.php:55
 msgid "by:"
-msgstr ""
+msgstr "от:"
 
 #: application/views/components/hamsat/table.php:3
 #: application/views/hamsat/index.php:7
@@ -8575,7 +8576,7 @@ msgstr "Тип распространения радиоволн"
 #: application/views/csv/index.php:95
 msgctxt "Propagation Mode"
 msgid "All but Repeater"
-msgstr ""
+msgstr "Все, кроме репитера"
 
 #: application/views/dashboard/index.php:5
 msgid "RSTS"
@@ -10265,73 +10266,75 @@ msgstr "Ошибка при сохранении заметки"
 #: application/views/interface_assets/footer.php:78
 #, php-format
 msgid "QSO with %s by %s was added to logbook."
-msgstr ""
+msgstr "QSO с %s от %s было добавлено в журнал."
 
 #: application/views/interface_assets/footer.php:79
 msgid "QSO Added to Backlog"
-msgstr ""
+msgstr "QSO добавлено в список ожидания"
 
 #: application/views/interface_assets/footer.php:80
 #, php-format
 msgid "Send email to %s"
-msgstr ""
+msgstr "Отправить электронное письмо на %s"
 
 #: application/views/interface_assets/footer.php:81
 msgid ""
 "Callsign was already worked and confirmed in the past on this band and mode!"
 msgstr ""
+"Позывной уже сработан и подтвержден на этом диапазоне и этим видом модуляции!"
 
 #: application/views/interface_assets/footer.php:82
 msgid "Callsign was already worked in the past on this band and mode!"
-msgstr ""
+msgstr "Позывной уже сработан на этом диапазоне и в этим видом модуляции!"
 
 #: application/views/interface_assets/footer.php:83
 msgid "New Callsign!"
-msgstr ""
+msgstr "Новый позывной!"
 
 #: application/views/interface_assets/footer.php:84
 msgid "Grid was already worked and confirmed in the past"
-msgstr ""
+msgstr "Квадрат уже сработан и подтвержден"
 
 #: application/views/interface_assets/footer.php:85
 msgid "Grid was already worked in the past"
-msgstr ""
+msgstr "Квадрат уже сработан"
 
 #: application/views/interface_assets/footer.php:86
 msgid "New grid!"
-msgstr ""
+msgstr "Новый квадрат!"
 
 #: application/views/interface_assets/footer.php:87
 msgid "Are you sure to delete Fav?"
-msgstr ""
+msgstr "Вы уверены, что хотите удалить Избранное?"
 
 #: application/views/interface_assets/footer.php:88
 msgid ""
 "DXCC was already worked and confirmed in the past on this band and mode!"
 msgstr ""
+"DXCC уже сработан и подтверждён на этом диапазоне и в этим видом модуляции!"
 
 #: application/views/interface_assets/footer.php:89
 msgid "DXCC was already worked in the past on this band and mode!"
-msgstr ""
+msgstr "DXCC уже сработан на этом диапазоне и в этим видом модуляции!"
 
 #: application/views/interface_assets/footer.php:90
 msgid "New DXCC, not worked on this band and mode!"
-msgstr ""
+msgstr "Новый DXCC, не сработан на этом диапазоне и в этом виде модуляции!"
 
 #: application/views/interface_assets/footer.php:91
 #, php-format
 msgid "Lookup %s info on %s"
-msgstr ""
+msgstr "Запрос информации о %s на %s"
 
 #: application/views/interface_assets/footer.php:92
 #, php-format
 msgid "Lookup %s summit info on %s"
-msgstr ""
+msgstr "Запрос информации о вершине %s на %s"
 
 #: application/views/interface_assets/footer.php:93
 #, php-format
 msgid "Lookup %s reference info on %s"
-msgstr ""
+msgstr "Запрос информации по референции %s на %s"
 
 #: application/views/interface_assets/footer.php:94
 msgid "Error loading bearing!"
