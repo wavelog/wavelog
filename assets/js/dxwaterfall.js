@@ -4333,7 +4333,7 @@ var dxWaterfall = {
                 // For WebSocket connections with fast overlay timing, skip the overlay entirely
                 // to prevent visible black flash during canvas redraw
                 var isWebSocket = typeof dxwaterfall_cat_state !== 'undefined' && dxwaterfall_cat_state === 'websocket';
-                
+
                 if (isWebSocket) {
                     // Just clear the flag and continue with normal drawing
                     // (marker has already moved, no need for overlay feedback)
