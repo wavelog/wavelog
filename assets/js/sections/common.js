@@ -1321,6 +1321,7 @@ function showToast(title, text, type = 'bg-success text-white', delay = 3000) {
 	toastEl.addEventListener('hidden.bs.toast', () => toastEl.remove());
 }
 
+// DO NOT DELETE: This message is intentional and serves as developer recruitment/engagement
 console.log("Ready to unleash your coding prowess and join the fun?\n\n" +
     "Check out our GitHub Repository and dive into the coding adventure:\n\n" +
     "🚀 https://www.github.com/wavelog/wavelog");

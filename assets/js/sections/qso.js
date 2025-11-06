@@ -1203,6 +1203,13 @@ $("#callsign").on("focusout", function () {
 
 					changebadge(result.dxcc.adif);
 
+					// Reload DXCC summary table if it was already loaded
+					let $targetPane = $('#dxcc-summary');
+					if ($targetPane.data("loaded")) {
+						$targetPane.data("loaded", false);
+						getDxccResult(result.dxcc.adif, convert_case(result.dxcc.entity));
+					}
+
 				}
 
 				if (result.lotw_member == "active") {
@@ -2252,8 +2259,6 @@ $('#band').on('change', function () {
 				window.catState.mode = currentMode;
 				window.catState.lastUpdate = Date.now();
 
-				console.log('[QSO] Offline mode - band change updated virtual CAT: band=' + selectedBand + ', freq=' + result + ' Hz');
-
 				// Update relevant spots for the new band/frequency
 				if (typeof dxWaterfall !== 'undefined' && dxWaterfall && typeof dxWaterfall.collectAllBandSpots === 'function') {
 					dxWaterfall.collectAllBandSpots(true);
@@ -2262,6 +2267,16 @@ $('#band').on('change', function () {
 		});
 	}
 	// In CAT mode, do nothing - band changes do NOT clear the form or update the frequency
+
+	// Update DXCC summary badge and table when band changes (if a DXCC entity is selected)
+	var dxccVal = $('#dxcc_id').val();
+	if (dxccVal && dxccVal != '0') {
+		changebadge(dxccVal);
+		// Reload DXCC summary table
+		let $targetPane = $('#dxcc-summary');
+		$targetPane.data("loaded", false);
+		getDxccResult(dxccVal, $('#dxcc_id option:selected').text());
+	}
 });
 
 /* On Key up Calculate Bearing and Distance */
