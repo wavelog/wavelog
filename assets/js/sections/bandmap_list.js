@@ -3277,24 +3277,36 @@ $(function() {
 		}
 	}
 
-	// Initialize ResizeObserver to watch for container size changes
-	if (typeof ResizeObserver !== 'undefined') {
+	// Wait for table container to be ready, then initialize ResizeObserver
+	function initResizeObserver() {
 		const tableContainer = document.querySelector('.table-responsive');
-		if (tableContainer) {
-			const resizeObserver = new ResizeObserver(function(entries) {
-				handleResponsiveColumns();
-			});
-			resizeObserver.observe(tableContainer);
-		}
-	} else {
-		// Fallback for browsers without ResizeObserver support
-		$(window).on('resize', function() {
+		const dataTable = document.querySelector('#DataTables_Table_0_wrapper');
+		
+		if (tableContainer && dataTable) {
+			// now we found the datatable and the table container is also available
 			handleResponsiveColumns();
-		});
+			
+			if (typeof ResizeObserver !== 'undefined') {
+				const resizeObserver = new ResizeObserver(function(entries) {
+					handleResponsiveColumns();
+				});
+				resizeObserver.observe(tableContainer);
+			} else {
+				// Fallback for browsers without ResizeObserver support
+				$(window).on('resize', function() {
+					handleResponsiveColumns();
+				});
+			}
+			
+		} else {
+			// elements not ready yet, try again
+			setTimeout(initResizeObserver, 50);
+			return;
+		}
 	}
 
-	// Initial call to set up column visibility
-	handleResponsiveColumns();
+	// Start init process of the ResizeObserver
+	initResizeObserver();
 
 	// ========================================
 	// INITIALIZE CAT CONTROL STATE
