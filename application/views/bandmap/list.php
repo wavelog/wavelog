@@ -442,8 +442,11 @@
 		</div>
 
 		<!-- Search Input - 30% -->
-		<div class="input-group input-group-sm" style="flex: 0 0 auto; min-width: 200px; max-width: 400px;">
+		<div class="input-group input-group-sm" style="flex: 0 0 auto; min-width: 200px; max-width: 400px; position: relative;">
 			<input type="text" class="form-control" id="spotSearchInput" placeholder="<?= __("Search spots..."); ?>" aria-label="<?= __("Search"); ?>">
+			<button class="btn btn-sm" id="clearSearchBtn" style="position: absolute; right: 40px; top: 50%; transform: translateY(-50%); z-index: 10; background: transparent; border: none; padding: 0 5px; display: none; cursor: pointer;">
+				<i class="fas fa-times" style="color: #6c757d;"></i>
+			</button>
 			<span class="input-group-text search-icon-clickable" id="searchIcon"><i class="fas fa-search"></i></span>
 		</div>
 	</div>

@@ -1909,6 +1909,7 @@ $(function() {
 		// Clear text search
 		$('#spotSearchInput').val('');
 		table.search('').draw();
+		$('#clearSearchBtn').hide();
 
 		syncQuickFilterButtons();
 		updateFilterIcon();
@@ -1941,6 +1942,7 @@ $(function() {
 		// Clear text search
 		$('#spotSearchInput').val('');
 		table.search('').draw();
+		$('#clearSearchBtn').hide();
 
 		syncQuickFilterButtons();
 		updateFilterIcon();
@@ -1963,6 +1965,12 @@ $(function() {
 
 	$("#spotSearchInput").on("keyup", function() {
 		table.search(this.value).draw();
+		// Show/hide clear button based on input value
+		if (this.value.length > 0) {
+			$('#clearSearchBtn').show();
+		} else {
+			$('#clearSearchBtn').hide();
+		}
 	});
 
 	$("#spotSearchInput").on("input", function() {
@@ -1977,6 +1985,21 @@ $(function() {
 			// Trigger search with new value
 			table.search(newValue).draw();
 		}
+
+		// Show/hide clear button based on input value
+		if (this.value.length > 0) {
+			$('#clearSearchBtn').show();
+		} else {
+			$('#clearSearchBtn').hide();
+		}
+	});
+
+	// Clear search button handler
+	$("#clearSearchBtn").on("click", function() {
+		$('#spotSearchInput').val('');
+		table.search('').draw();
+		$('#clearSearchBtn').hide();
+		$('#spotSearchInput').focus();
 	});
 
 	$("#searchIcon").on("click", function() {
