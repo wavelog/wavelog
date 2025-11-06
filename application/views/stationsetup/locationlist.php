@@ -6,7 +6,8 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-						<th>Active</th>
+                        <th>Active</th>
+                        <th>QSO Count</th>
                         <th>Name</th>
                         <th>Callsign</th>
                         <th>Grid</th>
@@ -24,7 +25,7 @@
                         <th>SIG</th>
                         <th>SIG Info</th>
                         <th>eQSL Nickname</th>
-						<th>eQSL default QSLmsg</th>
+                        <th>eQSL default QSLmsg</th>
                         <th>QRZ realtime upload</th>
                         <th>OQRS enabled</th>
                         <th>OQRS Text</th>
@@ -33,7 +34,7 @@
                         <th>ClubLog realtime upload</th>
                         <th>ClubLog Ignore</th>
                         <th>HRDLog realtime upload</th>
-						<th>HRDLog username</th>
+                        <th>HRDLog username</th>
                         <th>Created</th>
                         <th>Last Modified</th>
                     </tr>
@@ -41,17 +42,18 @@
                 <tbody>
                     <?php foreach ($locations as $loc): ?>
                         <tr>
-							<td><?php echo $loc->station_id; ?></td>
+                            <td><?php echo $loc->station_id; ?></td>
                             <td><?php echo $loc->station_active ? 'Yes' : 'No' ?></td>
+                            <td><?php echo $loc->qso_total; ?></td>
                             <td><a href="<?php echo site_url('station/edit')."/".$loc->station_id; ?>"><?php echo $loc->station_profile_name; ?></a></td>
                             <td><?php echo $loc->station_callsign; ?></td>
                             <td><?php echo $loc->station_gridsquare; ?></td>
                             <td><?php echo $loc->station_city; ?></td>
                             <td><?php echo ucwords(strtolower($loc->dxccname), "- (/") . ($loc->dxccprefix ? ' (' . $loc->dxccprefix . ') ' : ''); ?>
                             <?php if (isset($loc->end)) {
-								echo '<span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>';
-							} ?>
-							</td>
+                               echo '<span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>';
+                            } ?>
+                            </td>
                             <td><?php echo $loc->station_iota; ?></td>
                             <td><?php echo $loc->station_sota; ?></td>
                             <td><?php echo $loc->station_power; ?></td>
@@ -64,7 +66,7 @@
                             <td><?php echo $loc->station_sig; ?></td>
                             <td><?php echo $loc->station_sig_info; ?></td>
                             <td><?php echo $loc->eqslqthnickname; ?></td>
-							<td><?php echo $loc->eqsl_default_qslmsg; ?></td>
+                            <td><?php echo $loc->eqsl_default_qslmsg; ?></td>
                             <td><?php echo $loc->qrzrealtime ? 'Yes' : 'No'; ?></td>
                             <td><?php echo $loc->oqrs ? 'Yes' : 'No'; ?></td>
                             <td><?php echo $loc->oqrs_text; ?></td>
