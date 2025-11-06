@@ -1,7 +1,7 @@
 // @ts-nocheck
 /**
  * @fileoverview DX WATERFALL for WaveLog
- * @version 0.9.2 // also change line 38
+ * @version 0.9.3 // also change line 38
  * @author Wavelog Team
  *
  * @description
@@ -13,17 +13,10 @@
  * @requires setFrequency (global function from Wavelog)
  * @requires setMode (global function from Wavelog)
  * @requires frequencyToBand (global function from Wavelog)
- *
- * @browserSupport
- * - Chrome 90+
- * - Firefox 88+
- * - Safari 14+
- * - Edge 90+
- *
+
  * @features
  * - Canvas-based visualization
  * - ES6+ syntax (const/let recommended, var used for compatibility)
- * - Navigator.userAgentData (with fallback to userAgent)
  * - Passive event listeners for scroll performance
  */
 
@@ -36,7 +29,7 @@
 
 var DX_WATERFALL_CONSTANTS = {
     // Version
-    VERSION: '0.9.2', // DX Waterfall version (keep in sync with @version in file header)
+    VERSION: '0.9.3', // DX Waterfall version (keep in sync with @version in file header)
 
     // Debug and logging
     DEBUG_MODE: true, // Set to true for verbose logging, false for production
@@ -57,7 +50,6 @@ var DX_WATERFALL_CONSTANTS = {
         ZOOM_ICON_FEEDBACK_MS: 150,        	// Visual feedback duration for zoom icons
         MODE_CHANGE_SETTLE_MS: 200,        	// Delay for radio mode change to settle
         FORM_POPULATE_DELAY_MS: 50,        	// Delay before populating QSO form
-        SPOT_NAVIGATION_COMPLETE_MS: 100,  	// Delay for spot navigation completion
         ZOOM_MENU_UPDATE_DELAY_MS: 150     	// Delay for zoom menu update after navigation
     },
 
@@ -68,14 +60,18 @@ var DX_WATERFALL_CONSTANTS = {
         TUNING_FLAG_FALLBACK_MS: 4500,    	// Fallback timeout for tuning flags (1.5x poll interval)
         FREQUENCY_WAIT_TIMEOUT_MS: 6000,  	// Initial load wait time for CAT frequency (2x poll interval)
 
-        // WebSocket timing (low latency)
-        WEBSOCKET_CONFIRM_TIMEOUT_MS: 500,  // WebSocket: Fast confirmation timeout (vs 3000ms polling)
-        WEBSOCKET_FALLBACK_TIMEOUT_MS: 750, // WebSocket: Fast fallback timeout (vs 1.5x poll interval)
-        WEBSOCKET_COMMIT_DELAY_MS: 20,      // WebSocket: Fast commit delay (vs 50ms polling)
+        // WebSocket timing (low latency - no overlay blink)
+        WEBSOCKET_CONFIRM_TIMEOUT_MS: 300,  // WebSocket: Very fast confirmation timeout (vs 3000ms polling)
+        WEBSOCKET_FALLBACK_TIMEOUT_MS: 500, // WebSocket: Fast fallback timeout (vs 1.5x poll interval)
+        WEBSOCKET_COMMIT_DELAY_MS: 10,      // WebSocket: Minimal commit delay (vs 50ms polling)
+        WEBSOCKET_OVERLAY_DURATION_MS: 30,  // WebSocket: Not used (overlay skipped for WebSocket)
+        WEBSOCKET_OVERLAY_FALLBACK_MS: 100, // WebSocket: Not used (overlay skipped for WebSocket)
 
         // Polling timing (standard latency)
         POLLING_CONFIRM_TIMEOUT_MS: 3000,   // Polling: Standard confirmation timeout
         POLLING_COMMIT_DELAY_MS: 50,        // Polling: Standard commit delay (from DEBOUNCE.FREQUENCY_COMMIT_SHORT_MS)
+        POLLING_OVERLAY_DURATION_MS: 250,   // Polling: Standard overlay duration after frequency change
+        POLLING_OVERLAY_FALLBACK_MS: 450,   // Polling: Standard overlay fallback timeout
 
         // Auto-populate timing
         TUNING_STOPPED_DELAY_MS: 1000       // Delay after user stops tuning to auto-populate spot (1 second)
@@ -209,42 +205,9 @@ var DX_WATERFALL_CONSTANTS = {
         LABEL_HEIGHTS: [13, 14, 15, 17, 19]       // Heights for overlap detection
     },
 
-    // Available continents for cycling
-    CONTINENTS: ['AF', 'AN', 'AS', 'EU', 'NA', 'OC', 'SA'],
-
-    // Mode classification lists (consolidated from multiple locations)
-    MODE_LISTS: {
-        PHONE: ['SSB', 'LSB', 'USB', 'AM', 'FM', 'SAM', 'DSB', 'J3E', 'A3E', 'PHONE'],
-        WSJT: ['FT8', 'FT4', 'JT65', 'JT65B', 'JT6C', 'JT6M', 'JT9', 'JT9-1',
-               'Q65', 'QRA64', 'FST4', 'FST4W', 'WSPR', 'MSK144', 'ISCAT',
-               'ISCAT-A', 'ISCAT-B', 'JS8', 'JTMS', 'FSK441', 'JT4', 'OPERA'],
-        DIGITAL_OTHER: ['RTTY', 'NAVTEX', 'SITORB', 'DIGI', 'DYNAMIC', 'RTTYFSK', 'RTTYM'],
-        PSK: ['PSK', 'QPSK', '8PSK', 'PSK31', 'PSK63', 'PSK125', 'PSK250'],
-        DIGITAL_MODES: ['OLIVIA', 'CONTESTIA', 'THOR', 'THROB', 'MFSK', 'MFSK8', 'MFSK16',
-                        'HELL', 'MT63', 'DOMINO', 'PACKET', 'PACTOR', 'CLOVER', 'AMTOR',
-                        'SITOR', 'SSTV', 'FAX', 'CHIP', 'CHIP64', 'ROS'],
-        DIGITAL_VOICE: ['DIGITALVOICE', 'DSTAR', 'C4FM', 'DMR', 'FREEDV', 'M17'],
-        DIGITAL_HF: ['VARA', 'ARDOP'],
-        CW: ['CW', 'A1A']
-    },
-
     // Logo configuration
     LOGO_FILENAME: 'assets/logo/wavelog_logo_darkly_wide.png',
 
-    // Frequency thresholds (in kHz)
-    LSB_USB_THRESHOLD_KHZ: 10000, // Below 10 MHz = LSB, above = USB
-
-    // Signal bandwidth constants (in kHz)
-    SIGNAL_BANDWIDTHS: {
-        SSB_KHZ: 2.7,       // Standard SSB bandwidth
-        SSB_OFFSET_KHZ: 1.35, // Half bandwidth for offset
-        AM_KHZ: 6.0,        // AM bandwidth
-        FM_KHZ: 12.0,       // FM bandwidth (wide)
-        CW_DETECTION_KHZ: 0.25 // CW detection range
-    },
-
-    // Static FT8 frequencies (in kHz)
-    FT8_FREQUENCIES: [1840, 3573, 7074, 10136, 14074, 18100, 21074, 24915, 28074, 50313, 144174, 432065]
 };
 
 // ========================================
@@ -274,13 +237,17 @@ function getCATTimings() {
         return {
             confirmTimeout: DX_WATERFALL_CONSTANTS.CAT.WEBSOCKET_CONFIRM_TIMEOUT_MS,
             fallbackTimeout: DX_WATERFALL_CONSTANTS.CAT.WEBSOCKET_FALLBACK_TIMEOUT_MS,
-            commitDelay: DX_WATERFALL_CONSTANTS.CAT.WEBSOCKET_COMMIT_DELAY_MS
+            commitDelay: DX_WATERFALL_CONSTANTS.CAT.WEBSOCKET_COMMIT_DELAY_MS,
+            overlayDuration: DX_WATERFALL_CONSTANTS.CAT.WEBSOCKET_OVERLAY_DURATION_MS,
+            overlayFallback: DX_WATERFALL_CONSTANTS.CAT.WEBSOCKET_OVERLAY_FALLBACK_MS
         };
     } else {
         return {
             confirmTimeout: DX_WATERFALL_CONSTANTS.CAT.POLLING_CONFIRM_TIMEOUT_MS,
             fallbackTimeout: DX_WATERFALL_CONSTANTS.CAT.TUNING_FLAG_FALLBACK_MS,
-            commitDelay: DX_WATERFALL_CONSTANTS.CAT.POLLING_COMMIT_DELAY_MS
+            commitDelay: DX_WATERFALL_CONSTANTS.CAT.POLLING_COMMIT_DELAY_MS,
+            overlayDuration: DX_WATERFALL_CONSTANTS.CAT.POLLING_OVERLAY_DURATION_MS,
+            overlayFallback: DX_WATERFALL_CONSTANTS.CAT.POLLING_OVERLAY_FALLBACK_MS
         };
     }
 }
@@ -302,9 +269,10 @@ function handleCATFrequencyUpdate(radioFrequency, updateCallback) {
     if (typeof dxWaterfall !== 'undefined' && dxWaterfall.lastValidCommittedFreq !== null && dxWaterfall.lastValidCommittedUnit) {
         // Compare incoming CAT frequency with last committed value
         // CAT sends frequency in Hz, convert to kHz for comparison
-        var lastKhz = DX_WATERFALL_UTILS.frequency.convertToKhz(
+        var lastKhz = convertFrequency(
             dxWaterfall.lastValidCommittedFreq,
-            dxWaterfall.lastValidCommittedUnit
+            dxWaterfall.lastValidCommittedUnit,
+            'kHz'
         );
         var incomingHz = parseFloat(radioFrequency);
         var incomingKhz = incomingHz / 1000; // Convert Hz to kHz
@@ -331,9 +299,15 @@ function handleCATFrequencyUpdate(radioFrequency, updateCallback) {
 
         if (diff <= toleranceHz) {
             // Frequency matches! Radio has tuned to target
-            // Clear target AFTER a short delay to ensure waterfall updates first
-            // This prevents the overlay from disappearing before the marker moves
+            // For WebSocket connections, clear overlay immediately since confirmation is instant
+            // For polling, keep brief delay to ensure smooth visual update
             dxWaterfall.targetFrequencyConfirmAttempts = 0;
+
+            var timings = getCATTimings();
+            var isWebSocket = typeof dxwaterfall_cat_state !== 'undefined' && dxwaterfall_cat_state === 'websocket';
+
+            // WebSocket: Clear immediately, Polling: Brief delay for visual smoothness
+            var clearDelay = isWebSocket ? 0 : 100;
 
             // Use setTimeout to clear the target after the waterfall has updated
             setTimeout(function() {
@@ -342,8 +316,9 @@ function handleCATFrequencyUpdate(radioFrequency, updateCallback) {
                     dxWaterfall.frequencyChanging = false; // Also clear frequencyChanging flag
                     dxWaterfall.catTuning = false; // Clear CAT tuning flag - radio is now at target
                     dxWaterfall.catTuningStartTime = null;
+                    dxWaterfall.showingCompletionOverlay = false; // Clear overlay immediately on confirmation
                 }
-            }, 100); // 100ms delay ensures waterfall renders at new position before overlay clears
+            }, clearDelay);
 
             shouldSkipStaleUpdate = false; // Proceed normally - radio is at correct frequency
         } else {
@@ -459,33 +434,8 @@ var DX_WATERFALL_UTILS = {
         }
     },
 
-    // Frequency conversion utilities
+    // Frequency utilities
     frequency: {
-        hzToKhz: function(hz) {
-            return hz / 1000;
-        },
-
-        mhzToKhz: function(mhz) {
-            return mhz * 1000;
-        },
-
-        // Convert any frequency unit to kHz
-        convertToKhz: function(value, unit) {
-            var freqValue = parseFloat(value) || 0;
-            switch (unit.toLowerCase()) {
-                case 'hz':
-                    return freqValue / 1000;
-                case 'khz':
-                    return freqValue;
-                case 'mhz':
-                    return freqValue * 1000;
-                case 'ghz':
-                    return freqValue * 1000000;
-                default:
-                    return freqValue; // Default to kHz
-            }
-        },
-
         // Validate frequency value
         isValid: function(value) {
             var freq = parseFloat(value) || 0;
@@ -496,18 +446,6 @@ var DX_WATERFALL_UTILS = {
         parseAndValidate: function(value) {
             var freq = parseFloat(value) || 0;
             return { value: freq, valid: freq > 0 };
-        },
-
-        /**
-         * Compare two frequencies with tolerance for floating point precision
-         * @param {number} freq1 - First frequency in kHz
-         * @param {number} freq2 - Second frequency in kHz
-         * @param {number} [tolerance=0.001] - Tolerance in kHz (default: 1 Hz)
-         * @returns {boolean} - True if frequencies are equal within tolerance
-         */
-        areEqual: function(freq1, freq2, tolerance) {
-            tolerance = tolerance !== undefined ? tolerance : 0.001; // Default 1 Hz
-            return Math.abs(freq1 - freq2) <= tolerance;
         }
     },
 
@@ -547,41 +485,6 @@ var DX_WATERFALL_UTILS = {
         }
     },
 
-    // Cookie utilities
-    cookie: {
-        /**
-         * Set a cookie
-         * @param {string} name - Cookie name
-         * @param {string} value - Cookie value
-         * @param {number} days - Days until expiration
-         */
-        set: function(name, value, days) {
-            var expires = "";
-            if (days) {
-                var date = new Date();
-                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                expires = "; expires=" + date.toUTCString();
-            }
-            document.cookie = name + "=" + (value || "") + expires + "; path=/";
-        },
-
-        /**
-         * Get a cookie value
-         * @param {string} name - Cookie name
-         * @returns {string|null} Cookie value or null if not found
-         */
-        get: function(name) {
-            var nameEQ = name + "=";
-            var ca = document.cookie.split(';');
-            for (var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-            }
-            return null;
-        }
-    },
-
     // DOM selector utilities (cached for performance)
     dom: {
         waterfall: null,
@@ -592,36 +495,6 @@ var DX_WATERFALL_UTILS = {
 
         getWaterfall: function() {
             return this.waterfall || $('#dxWaterfall');
-        }
-    },
-
-    // Platform detection utilities
-    platform: {
-        isMac: function() {
-            // Use modern userAgentData API if available, fallback to userAgent
-            if (navigator.userAgentData && navigator.userAgentData.platform) {
-                return navigator.userAgentData.platform.toUpperCase().indexOf('MAC') >= 0;
-            }
-            return navigator.userAgent.toUpperCase().indexOf('MAC') >= 0;
-        },
-
-        isWindows: function() {
-            if (navigator.userAgentData && navigator.userAgentData.platform) {
-                return navigator.userAgentData.platform.toUpperCase().indexOf('WIN') >= 0;
-            }
-            return navigator.userAgent.toUpperCase().indexOf('WIN') >= 0;
-        },
-
-        isLinux: function() {
-            if (navigator.userAgentData && navigator.userAgentData.platform) {
-                return navigator.userAgentData.platform.toUpperCase().indexOf('LINUX') >= 0;
-            }
-            return navigator.userAgent.toUpperCase().indexOf('LINUX') >= 0;
-        },
-
-        // Check if the modifier key is pressed (Cmd on Mac, Ctrl on Windows/Linux)
-        isModifierKey: function(event) {
-            return this.isMac() ? event.metaKey : event.ctrlKey;
         }
     },
 
@@ -677,35 +550,8 @@ var DX_WATERFALL_UTILS = {
         }
     },
 
-    // Mode classification utilities
+    // Mode classification utilities (now use global functions from radiohelpers.js)
     modes: {
-        isCw: function(mode) {
-            return mode && mode.toLowerCase().includes('cw');
-        },
-
-        isPhone: function(mode) {
-            if (!mode) return false;
-            const m = mode.toLowerCase();
-            return m.includes('ssb') || m.includes('lsb') || m.includes('usb') ||
-                   m.includes('am') || m.includes('fm') || m === 'phone';
-        },
-
-        isDigi: function(mode) {
-            if (!mode) return false;
-            const m = mode.toLowerCase();
-            return m.includes('ft') || m.includes('rtty') || m.includes('psk') ||
-                   m.includes('jt') || m.includes('mfsk') || m.includes('olivia') ||
-                   m.includes('contestia') || m.includes('hell') || m.includes('throb') ||
-                   m.includes('sstv') || m.includes('fax') || m === 'digi' || m === 'data';
-        },
-
-        getModeCategory: function(mode) {
-            if (this.isCw(mode)) return 'cw';
-            if (this.isPhone(mode)) return 'phone';
-            if (this.isDigi(mode)) return 'digi';
-            return 'other';
-        },
-
         // Get color for a classified mode with customizable alpha
         getModeColor: function(classifiedMode, alpha) {
             alpha = alpha !== undefined ? alpha : 0.6; // Default 60% opacity
@@ -724,146 +570,6 @@ var DX_WATERFALL_UTILS = {
                 default:
                     return DX_WATERFALL_CONSTANTS.COLORS.OTHER_RGB;
             }
-        },
-
-        /**
-         * Comprehensive mode classification system
-         * Classifies a DX spot into phone, CW, digi, or other categories
-         *
-         * @param {Object} spot - DX spot object with mode and optional message fields
-         * @param {string} spot.mode - The transmission mode
-         * @param {string} [spot.message] - Optional spot comment/message for additional classification hints
-         * @returns {{category: string, submode: string, confidence: number}} Classification result
-         *          - category: 'phone', 'cw', 'digi', or 'other'
-         *          - submode: Specific mode name (e.g., 'FT8', 'USB', 'CW')
-         *          - confidence: 0-1, where 1 is high confidence, 0.3 is low
-         */
-        classifyMode: function(spot) {
-            if (!spot || !spot.mode || spot.mode === '') {
-                return { category: 'other', submode: 'Unknown', confidence: 0 };
-            }
-
-            var mode = spot.mode.toUpperCase();
-            var message = (spot.message || '').toUpperCase();
-            var confidence = 1; // 1 = high confidence, 0.5 = medium, 0.3 = low
-
-            // Check message first for higher accuracy
-            var messageResult = this.classifyFromMessage(message);
-            if (messageResult.category) {
-                return {
-                    category: messageResult.category,
-                    submode: messageResult.submode,
-                    confidence: messageResult.confidence
-                };
-            }
-
-            // Fall back to mode field classification
-            return this.classifyFromMode(mode);
-        },
-
-        classifyFromMessage: function(message) {
-            // CW detection in message
-            if (message.indexOf('CW') !== -1) {
-                return { category: 'cw', submode: 'CW', confidence: 1 };
-            }
-
-            // Digital modes from message
-            var digiModes = [
-                { patterns: ['FT8'], submode: 'FT8' },
-                { patterns: ['FT4'], submode: 'FT4' },
-                { patterns: ['RTTY'], submode: 'RTTY' },
-                { patterns: ['PSK31'], submode: 'PSK31' },
-                { patterns: ['PSK'], submode: 'PSK' },
-                { patterns: ['JT65'], submode: 'JT65' },
-                { patterns: ['JT9'], submode: 'JT9' },
-                { patterns: ['WSPR'], submode: 'WSPR' },
-                { patterns: ['JS8'], submode: 'JS8' }
-            ];
-
-            // Optimized loop - breaks early on first match
-            for (var i = 0; i < digiModes.length; i++) {
-                var mode = digiModes[i];
-                for (var j = 0; j < mode.patterns.length; j++) {
-                    if (message.indexOf(mode.patterns[j]) !== -1) {
-                        return { category: 'digi', submode: mode.submode, confidence: 1 };
-                    }
-                }
-            }
-
-            // Phone modes from message (use constants)
-            var phoneModes = DX_WATERFALL_CONSTANTS.MODE_LISTS.PHONE.slice(0, 5); // LSB, USB, SSB, AM, FM
-            var phonePatterns = [
-                { patterns: ['LSB'], submode: 'LSB' },
-                { patterns: ['USB'], submode: 'USB' },
-                { patterns: ['SSB'], submode: 'SSB' },
-                { patterns: ['AM'], submode: 'AM' },
-                { patterns: ['FM'], submode: 'FM' }
-            ];
-
-            // Optimized loop - breaks early on first match
-            for (var i = 0; i < phonePatterns.length; i++) {
-                var mode = phonePatterns[i];
-                for (var j = 0; j < mode.patterns.length; j++) {
-                    // Use word boundary to avoid false matches
-                    var pattern = '\\b' + mode.patterns[j] + '\\b';
-                    if (new RegExp(pattern).test(message)) {
-                        return { category: 'phone', submode: mode.submode, confidence: 1 };
-                    }
-                }
-            }
-
-            return { category: null, submode: null, confidence: 0 };
-        },
-
-        classifyFromMode: function(mode) {
-            // CW modes
-            if (DX_WATERFALL_CONSTANTS.MODE_LISTS.CW.indexOf(mode) !== -1) {
-                return { category: 'cw', submode: 'CW', confidence: 1 };
-            }
-
-            // Phone modes (use constants)
-            if (DX_WATERFALL_CONSTANTS.MODE_LISTS.PHONE.indexOf(mode) !== -1) {
-                return { category: 'phone', submode: mode, confidence: 1 };
-            }
-
-            // Digital modes - WSJT-X family (use constants)
-            if (DX_WATERFALL_CONSTANTS.MODE_LISTS.WSJT.indexOf(mode) !== -1) {
-                return { category: 'digi', submode: mode, confidence: 1 };
-            }
-
-            // PSK variants
-            if (mode.indexOf('PSK') !== -1 || mode.indexOf('QPSK') !== -1 || mode.indexOf('8PSK') !== -1) {
-                return { category: 'digi', submode: mode, confidence: 1 };
-            }
-
-            // Other digital modes (use constants)
-            if (DX_WATERFALL_CONSTANTS.MODE_LISTS.DIGITAL_OTHER.indexOf(mode) !== -1) {
-                return { category: 'digi', submode: mode, confidence: 1 };
-            }
-
-            // Pattern-based digital mode detection
-            if (mode.indexOf('HELL') !== -1 || mode.indexOf('FSK') === 0 ||
-                mode.indexOf('THOR') !== -1 || mode.indexOf('THROB') !== -1 ||
-                mode.indexOf('DOM') !== -1 || mode.indexOf('VARA') !== -1) {
-                return { category: 'digi', submode: mode, confidence: 1 };
-            }
-
-            // Unknown mode - ensure we return a valid submode string
-            return { category: 'other', submode: mode || 'Unknown', confidence: 0.3 };
-        },
-
-        // Determine LSB/USB for SSB based on frequency
-        determineSSBMode: function(frequency) {
-            var freq = parseFloat(frequency) || 0;
-            if (freq > 0) {
-                return freq < DX_WATERFALL_CONSTANTS.LSB_USB_THRESHOLD_KHZ ? 'LSB' : 'USB';
-            }
-            return 'SSB';
-        },
-
-        // Enhanced detailed submode information using unified classification
-        getDetailedSubmode: function(spot) {
-            return this.classifyMode(spot);
         }
     },
 
@@ -1040,57 +746,14 @@ var DX_WATERFALL_UTILS = {
         pendingPopulationTimer: null,
         pendingLookupTimer: null,
 
-        // Cached jQuery selectors for performance
-        $btnReset: null,
-
-        /**
-         * Initialize cached selectors
-         * Call this once when DOM is ready
-         */
-        initCache: function() {
-            this.$btnReset = $('#btn_reset');
-        },
-
         /**
          * Clear the QSO form by clicking the reset button
-         * Uses cached selector for performance
+         * Note: reset_fields() in qso.js handles all field clearing including park references
          */
         clearForm: function() {
-            // Initialize cache if not done yet
-            if (!this.$btnReset) {
-                this.initCache();
-            }
-
-            // Explicitly clear park reference fields FIRST
-            // This ensures they're cleared even if reset button doesn't fully clear them
-            var parkRefFields = [
-                {selector: '#sota_ref', isSelectize: true},
-                {selector: '#pota_ref', isSelectize: true},
-                {selector: '#wwff_ref', isSelectize: true},
-                {selector: '#iota_ref', isSelectize: false},  // IOTA is not selectize
-                {selector: '#darc_dok', isSelectize: true}
-            ];
-
-            parkRefFields.forEach(function(field) {
-                var $element = $(field.selector);
-                if ($element.length > 0) {
-                    if (field.isSelectize) {
-                        // For selectize fields, must call .selectize() method first to get instance
-                        var $select = $element.selectize();
-                        var selectize = $select[0].selectize;
-                        if (selectize) {
-                            selectize.clear();
-                        }
-                    } else {
-                        // Use standard val("") for non-selectize fields (IOTA)
-                        $element.val("");
-                    }
-                }
-            });
-
-            // Then click the reset button to clear other fields
-            if (this.$btnReset && this.$btnReset.length > 0) {
-                this.$btnReset.click();
+            var $btnReset = $('#btn_reset');
+            if ($btnReset.length > 0) {
+                $btnReset.click();
             }
         },
 
@@ -1134,8 +797,9 @@ var DX_WATERFALL_UTILS = {
 
             // Set the mode if available - determine the actual radio mode
             if (spotData.mode) {
-                // Use determineRadioMode to get the correct radio mode (same as clicking)
-                var radioMode = DX_WATERFALL_UTILS.navigation.determineRadioMode(spotData);
+                // Use global determineRadioMode from radiohelpers.js
+                var frequencyHz = parseFloat(spotData.frequency) * 1000; // Convert kHz to Hz
+                var radioMode = determineRadioMode(spotData.mode, frequencyHz);
                 // Use skipTrigger=true to prevent change event race condition
                 setMode(radioMode, true);
             }
@@ -1233,56 +897,6 @@ var DX_WATERFALL_UTILS = {
         // Flag to block interference during navigation
         navigating: false,
 
-        /**
-         * Determine the appropriate radio mode to set based on spot mode and frequency
-         * @param {Object} spot - Spot object with mode and frequency
-         * @returns {string} - The mode to set (CW, USB, LSB, RTTY, etc.)
-         */
-        determineRadioMode: function(spot) {
-
-            if (!spot) {
-                return 'USB'; // Default fallback
-            }
-
-            var spotMode = (spot.mode || '').toUpperCase();
-            var frequency = parseFloat(spot.frequency); // Frequency in kHz
-
-
-            // CW mode - always use CW
-            if (DX_WATERFALL_CONSTANTS.MODE_LISTS.CW.indexOf(spotMode) !== -1) {
-                return 'CW';
-            }
-
-            // Digital modes - use RTTY as the standard digital mode (use constants)
-            var digiModes = DX_WATERFALL_CONSTANTS.MODE_LISTS.WSJT.concat(
-                DX_WATERFALL_CONSTANTS.MODE_LISTS.PSK,
-                DX_WATERFALL_CONSTANTS.MODE_LISTS.DIGITAL_MODES,
-                DX_WATERFALL_CONSTANTS.MODE_LISTS.DIGITAL_VOICE,
-                DX_WATERFALL_CONSTANTS.MODE_LISTS.DIGITAL_HF,
-                DX_WATERFALL_CONSTANTS.MODE_LISTS.DIGITAL_OTHER
-            );
-
-            for (var i = 0; i < digiModes.length; i++) {
-                if (spotMode.indexOf(digiModes[i]) !== -1) {
-                    return 'RTTY';
-                }
-            }
-
-            // Phone modes - determine USB or LSB based on frequency (use constants)
-            var isPhoneMode = DX_WATERFALL_CONSTANTS.MODE_LISTS.PHONE.indexOf(spotMode) !== -1;
-
-            if (isPhoneMode || !spotMode) {
-                // Use frequency-based determination for phone modes or unknown modes
-                // Use the same logic as bandwidth drawing for consistency
-                var ssbMode = DX_WATERFALL_UTILS.modes.determineSSBMode(frequency);
-                return ssbMode;
-            }
-
-            // For any other unrecognized mode, default to USB/LSB based on frequency
-            var defaultMode = DX_WATERFALL_UTILS.modes.determineSSBMode(frequency);
-            return defaultMode;
-        },
-
         // Common navigation logic shared by all spot navigation functions
         navigateToSpot: function(waterfallContext, targetSpot, targetIndex, shouldPrefill) {
             // Default to false - only prefill if explicitly requested
@@ -1313,7 +927,8 @@ var DX_WATERFALL_UTILS = {
 
                 // CRITICAL: Set mode FIRST before calling setFrequency
                 // setFrequency reads the mode from $('#mode').val(), so the mode must be set first
-                var radioMode = this.determineRadioMode(targetSpot);
+                var frequencyHz = parseFloat(targetSpot.frequency) * 1000; // Convert kHz to Hz
+                var radioMode = determineRadioMode(targetSpot.mode, frequencyHz);
 
                 // Set CAT debounce lock early to block incoming CAT updates during navigation
                 if (typeof setFrequency.catDebounceLock !== 'undefined') {
@@ -1541,7 +1156,7 @@ var dxWaterfall = {
     // ========================================
     // CONTINENT FILTERING
     // ========================================
-    continents: DX_WATERFALL_CONSTANTS.CONTINENTS,
+    continents: CONTINENTS, // Use global CONTINENTS constant from radiohelpers.js
     continentChanging: false,
     continentChangeTimer: null,
     pendingContinent: null,
@@ -1571,7 +1186,7 @@ var dxWaterfall = {
     pendingModeFilters: null,
     modeFilterChangeTimer: null,
 
-    ft8Frequencies: DX_WATERFALL_CONSTANTS.FT8_FREQUENCIES,
+    ft8Frequencies: FT8_FREQUENCIES, // Use global FT8_FREQUENCIES constant from radiohelpers.js
 
     // Band plan management
     bandPlans: null, // Cached band plans from database
@@ -1749,7 +1364,7 @@ var dxWaterfall = {
                 var newBand = $(this).val();
 
                 // Get a typical frequency for the selected band
-                var bandFreq = self.getTypicalBandFrequency(newBand);
+                var bandFreq = getTypicalBandFrequency(newBand);
 
                 if (bandFreq > 0) {
                     // Update frequency field
@@ -1811,7 +1426,7 @@ var dxWaterfall = {
                 if (!window.catState.frequency && self.$freqCalculated.val()) {
                     var freqVal = parseFloat(self.$freqCalculated.val());
                     var unit = self.$qrgUnit.text() || 'kHz';
-                    var freqKhz = DX_WATERFALL_UTILS.frequency.convertToKhz(freqVal, unit);
+                    var freqKhz = convertFrequency(freqVal, unit, 'kHz');
                     window.catState.frequency = freqKhz * 1000; // Convert to Hz
                 }
 
@@ -1914,8 +1529,8 @@ var dxWaterfall = {
         }
 
         // Convert both frequencies to kHz for comparison (normalize units)
-        var currentKhz = DX_WATERFALL_UTILS.frequency.convertToKhz(currentInput, currentUnit);
-        var lastKhz = DX_WATERFALL_UTILS.frequency.convertToKhz(this.lastValidCommittedFreq, this.lastValidCommittedUnit);
+        var currentKhz = convertFrequency(currentInput, currentUnit, 'kHz');
+        var lastKhz = convertFrequency(this.lastValidCommittedFreq, this.lastValidCommittedUnit, 'kHz');
 
         // Compare frequencies with 1 Hz tolerance (0.001 kHz) to account for floating point errors
         var tolerance = 0.001; // 1 Hz
@@ -1944,7 +1559,7 @@ var dxWaterfall = {
             this.lastValidCommittedUnit = currentUnit;
 
             // Store the committed frequency in kHz for comparison checks
-            var currentFreqKhz = DX_WATERFALL_UTILS.frequency.convertToKhz(freqValue, currentUnit);
+            var currentFreqKhz = convertFrequency(freqValue, currentUnit, 'kHz');
             this.committedFrequencyKHz = currentFreqKhz;
 
             // In offline mode, populate catState with form values to act as "virtual CAT"
@@ -2044,7 +1659,7 @@ var dxWaterfall = {
             this.lastQrgUnit = currentUnit;
 
             // Convert to kHz using utility function
-            this.cache.middleFreq = DX_WATERFALL_UTILS.frequency.convertToKhz(currentInput, currentUnit);
+            this.cache.middleFreq = convertFrequency(currentInput, currentUnit, 'kHz');
         }
 
         // Update split operation state and get display configuration
@@ -2173,33 +1788,48 @@ var dxWaterfall = {
         // Note: refreshFrequencyCache() no longer needed here
         // Waterfall reads frequency from window.catState (CAT data), not form fields
 
-        if (this.canvas && this.ctx) {
-            this.refresh();
-        }
+        // Check connection type for optimized refresh strategy
+        var isWebSocket = typeof dxwaterfall_cat_state !== 'undefined' && dxwaterfall_cat_state === 'websocket';
 
-        // Clear overlay after marker movement animation completes
-        if (isCATAvailable()) {
-            var self = this;
-            setTimeout(function() {
-                self.showingCompletionOverlay = false;
-                if (self.canvas && self.ctx) {
-                    self.refresh();
-                }
-            }, 400);
+        if (isWebSocket) {
+            // WebSocket: Skip overlay entirely, single refresh is enough
+            // (overlay path is skipped in _performRefresh, so no blink)
+            this.showingCompletionOverlay = false;
+            if (this.canvas && this.ctx) {
+                this.refresh();
+            }
+        } else {
+            // Polling: Show overlay with multiple refreshes for smooth feedback
+            if (this.canvas && this.ctx) {
+                this.refresh();
+            }
 
-            // Fallback timeout for safety
-            setTimeout(function() {
-                self.showingCompletionOverlay = false;
-                if (self.canvas && self.ctx) {
-                    self.refresh();
-                }
-            }, 600);
-        }
+            // Clear overlay after marker movement animation completes
+            if (isCATAvailable()) {
+                var self = this;
+                var timings = getCATTimings();
 
-        // Final refresh to ensure visual consistency
-        var newFreq = this.getCachedMiddleFreq();
-        if (this.canvas && this.ctx) {
-            this.refresh();
+                setTimeout(function() {
+                    self.showingCompletionOverlay = false;
+                    if (self.canvas && self.ctx) {
+                        self.refresh();
+                    }
+                }, timings.overlayDuration);
+
+                // Fallback timeout for safety
+                setTimeout(function() {
+                    self.showingCompletionOverlay = false;
+                    if (self.canvas && self.ctx) {
+                        self.refresh();
+                    }
+                }, timings.overlayFallback);
+            }
+
+            // Final refresh to ensure visual consistency
+            var newFreq = this.getCachedMiddleFreq();
+            if (this.canvas && this.ctx) {
+                this.refresh();
+            }
         }
     },
 
@@ -2236,7 +1866,7 @@ var dxWaterfall = {
         var currentUnit = this.$qrgUnit.text() || 'kHz';
 
         // Convert to kHz using utility function
-        var currentFreqFromDOM = DX_WATERFALL_UTILS.frequency.convertToKhz(freqValue, currentUnit);
+        var currentFreqFromDOM = convertFrequency(freqValue, currentUnit, 'kHz');
 
         // If cache is outdated, refresh it (but only if not during waterfall operations)
         if (!this.cache.middleFreq || Math.abs(currentFreqFromDOM - this.cache.middleFreq) > 0.1) {
@@ -2312,7 +1942,7 @@ var dxWaterfall = {
      * Save font size to cookie
      */
     saveFontSizeToCookie: function() {
-        DX_WATERFALL_UTILS.cookie.set(
+        setCookie(
             DX_WATERFALL_CONSTANTS.COOKIE.NAME_FONT_SIZE,
             this.labelSizeLevel.toString(),
             DX_WATERFALL_CONSTANTS.COOKIE.EXPIRY_DAYS
@@ -2324,7 +1954,7 @@ var dxWaterfall = {
      * @returns {number|null} Font size level (0-4) or null if not found
      */
     loadFontSizeFromCookie: function() {
-        var cookieValue = DX_WATERFALL_UTILS.cookie.get(DX_WATERFALL_CONSTANTS.COOKIE.NAME_FONT_SIZE);
+        var cookieValue = getCookie(DX_WATERFALL_CONSTANTS.COOKIE.NAME_FONT_SIZE);
         if (cookieValue !== null) {
             var level = parseInt(cookieValue, 10);
             if (!isNaN(level) && level >= 0 && level <= 4) {
@@ -2338,7 +1968,7 @@ var dxWaterfall = {
      * Save mode filters to cookie
      */
     saveModeFiltersToCookie: function() {
-        DX_WATERFALL_UTILS.cookie.set(
+        setCookie(
             DX_WATERFALL_CONSTANTS.COOKIE.NAME_MODE_FILTERS,
             JSON.stringify(this.modeFilters),
             DX_WATERFALL_CONSTANTS.COOKIE.EXPIRY_DAYS
@@ -2350,7 +1980,7 @@ var dxWaterfall = {
      * @returns {Object|null} Mode filters object or null if not found
      */
     loadModeFiltersFromCookie: function() {
-        var cookieValue = DX_WATERFALL_UTILS.cookie.get(DX_WATERFALL_CONSTANTS.COOKIE.NAME_MODE_FILTERS);
+        var cookieValue = getCookie(DX_WATERFALL_CONSTANTS.COOKIE.NAME_MODE_FILTERS);
         if (cookieValue) {
             try {
                 var filters = JSON.parse(cookieValue);
@@ -2671,6 +2301,7 @@ var dxWaterfall = {
         }
 
         // Cache miss - rebuild visible spots
+
         var leftSpots = [];
         var rightSpots = [];
         var centerFrequency = middleFreq;
@@ -2769,32 +2400,6 @@ var dxWaterfall = {
         return this.cachedBandwidthParams.params;
     },
 
-    // Optimized FT8 frequency checking using cached array
-    isFT8Frequency: function(frequency) {
-        return this.ft8Frequencies.some(function(freq) {
-            return Math.abs(frequency - freq) < 1; // Within 1 kHz tolerance
-        });
-    },
-
-    // Map continent to IARU region
-    continentToRegion: function(continent) {
-        switch(continent) {
-            case 'EU': // Europe
-            case 'AF': // Africa
-                return 1; // IARU Region 1
-            case 'NA': // North America
-            case 'SA': // South America
-                return 2; // IARU Region 2
-            case 'AS': // Asia
-            case 'OC': // Oceania
-                return 3; // IARU Region 3
-            case 'AN': // Antarctica
-                return 1; // Default to Region 1 for Antarctica
-            default:
-                return 1; // Default to Region 1 if unknown
-        }
-    },
-
     // Load band plans from database
     loadBandPlans: function() {
         var self = this;
@@ -2812,7 +2417,7 @@ var dxWaterfall = {
         }
 
         // Determine region from current continent
-        var region = this.continentToRegion(this.currentContinent);
+        var region = continentToRegion(this.currentContinent);
 
         $.ajax({
             url: baseUrl + 'index.php/band/get_user_bandedges?region=' + region,
@@ -2859,7 +2464,7 @@ var dxWaterfall = {
 
             // Determine band from frequency (use center frequency)
             var centerFreq = (freqFrom + freqTo) / 2;
-            var band = this.getFrequencyBandFromHz(centerFreq);
+            var band = frequencyToBand(centerFreq); // Use global function from radiohelpers.js
 
             if (band) {
                 // Store band ranges for limits
@@ -2895,38 +2500,12 @@ var dxWaterfall = {
         return bandPlans;
     },
 
-    // Helper function to determine band from frequency in Hz
-    getFrequencyBandFromHz: function(frequencyHz) {
-        // Check if frequencyToBand function exists
-        if (typeof frequencyToBand === 'function') {
-            return frequencyToBand(frequencyHz);
-        }
-
-        // Fallback: simple band detection based on common amateur radio bands
-        var freqMhz = frequencyHz / 1000000;
-
-        if (freqMhz >= 1.8 && freqMhz < 2.0) return '160m';
-        if (freqMhz >= 3.5 && freqMhz < 4.0) return '80m';
-        if (freqMhz >= 7.0 && freqMhz < 7.3) return '40m';
-        if (freqMhz >= 10.1 && freqMhz < 10.15) return '30m';
-        if (freqMhz >= 14.0 && freqMhz < 14.35) return '20m';
-        if (freqMhz >= 18.068 && freqMhz < 18.168) return '17m';
-        if (freqMhz >= 21.0 && freqMhz < 21.45) return '15m';
-        if (freqMhz >= 24.89 && freqMhz < 24.99) return '12m';
-        if (freqMhz >= 28.0 && freqMhz < 29.7) return '10m';
-        if (freqMhz >= 50.0 && freqMhz < 54.0) return '6m';
-        if (freqMhz >= 144.0 && freqMhz < 148.0) return '2m';
-        if (freqMhz >= 420.0 && freqMhz < 450.0) return '70cm';
-
-        return null;
-    },
-
     // Get band limits for current band and region
     getBandLimits: function() {
         // Use the band we have spots for, not the form selector
         // This prevents drawing wrong band limits when form is changed manually
         var currentBand = this.currentSpotBand || this.getCurrentBand();
-        var currentRegion = this.continentToRegion(this.currentContinent);
+        var currentRegion = continentToRegion(this.currentContinent);
         var regionKey = 'region' + currentRegion;
 
         // Check if we need to update cache
@@ -2969,20 +2548,6 @@ var dxWaterfall = {
         return limits;
     },
 
-    // Get band name for a given frequency in kHz
-    getFrequencyBand: function(frequencyKhz) {
-        // Check if frequencyToBand function exists
-        if (typeof frequencyToBand !== 'function') {
-            return null;
-        }
-
-        // Convert kHz to Hz for frequencyToBand function
-        var frequencyHz = frequencyKhz * 1000;
-        var band = frequencyToBand(frequencyHz);
-
-        return band && band !== '' ? band : null;
-    },
-
     // ========================================
     // CANVAS DRAWING AND RENDERING FUNCTIONS
     // ========================================
@@ -2992,7 +2557,7 @@ var dxWaterfall = {
         // Use the band we have spots for, not the form selector
         // This prevents drawing wrong band mode indicators when form is changed manually
         var currentBand = this.currentSpotBand || this.getCurrentBand();
-        var currentRegion = this.continentToRegion(this.currentContinent);
+        var currentRegion = continentToRegion(this.currentContinent);
         var regionKey = 'region' + currentRegion;
 
         // Check if we have band plans loaded
@@ -3013,7 +2578,7 @@ var dxWaterfall = {
 
         // SAFETY CHECK: Verify frequency matches the band before drawing band edges
         // This prevents drawing band edges for the wrong band during band changes
-        var frequencyBand = this.getFrequencyBand(middleFreq);
+        var frequencyBand = frequencyToBandKhz(middleFreq);
         if (frequencyBand !== currentBand) {
             return; // Don't draw band edges if frequency doesn't match band
         }
@@ -3232,7 +2797,7 @@ var dxWaterfall = {
         var band = null;
 
         if (currentFreqKhz > 0) {
-            band = this.getFrequencyBand(currentFreqKhz);
+            band = frequencyToBandKhz(currentFreqKhz);
         }
 
         // If band is invalid or empty, use a default band for initial fetch
@@ -3485,37 +3050,6 @@ var dxWaterfall = {
         }
         var mode = this.$modeSelect.val() || 'All';
         return mode;
-    },
-
-    // Get a typical frequency for a given band (in kHz)
-    // Used when changing bands in offline mode to set a reasonable frequency
-    getTypicalBandFrequency: function(band) {
-        var frequencies = {
-            '160m': 1850,
-            '80m': 3550,
-            '60m': 5357,
-            '40m': 7050,
-            '30m': 10120,
-            '20m': 14100,
-            '17m': 18100,
-            '15m': 21100,
-            '12m': 24920,
-            '10m': 28400,
-            '6m': 50100,
-            '4m': 70100,
-            '2m': 144300,
-            '1.25m': 222100,
-            '70cm': 432100,
-            '33cm': 902100,
-            '23cm': 1296100,
-            '13cm': 2304100,
-            '9cm': 3456100,
-            '6cm': 5760100,
-            '3cm': 10368100,
-            '1.25cm': 24048100
-        };
-
-        return frequencies[band] || 0;
     },
 
     // Quick dimension update to prevent stretching - no redraw
@@ -3866,7 +3400,7 @@ var dxWaterfall = {
         var offsetKHz = bandwidthParams.offset;
 
         // Only draw bandwidth indicator for phone and CW modes (not for digital modes)
-        var modeCategory = DX_WATERFALL_UTILS.modes.getModeCategory(currentMode);
+        var modeCategory = getModeCategory(currentMode) || 'other';
         if (modeCategory !== 'phone' && modeCategory !== 'cw') {
             return; // No bandwidth indicator for digital modes
         }
@@ -3941,8 +3475,9 @@ var dxWaterfall = {
     },
 
     /**
-     * Get bandwidth parameters for a given mode and frequency
+     * Get bandwidth parameters for a given mode and frequency (WATERFALL VISUALIZATION SPECIFIC)
      * Returns the signal bandwidth and frequency offset for proper signal visualization
+     * Uses getSignalBandwidth() from radiohelpers.js for bandwidth, adds offset for sideband drawing
      *
      * @param {string} mode - The transmission mode (e.g., 'LSB', 'USB', 'FT8', 'CW')
      * @param {number} frequency - Frequency in kHz
@@ -3951,135 +3486,24 @@ var dxWaterfall = {
      *          - offset: Frequency offset from carrier (negative for LSB, positive for USB, 0 for centered)
      */
     getBandwidthParams: function(mode, frequency) {
-        var modeLC = mode.toLowerCase();
         var freq = parseFloat(frequency) || 0;
 
-        // CW mode
-        if (DX_WATERFALL_UTILS.modes.isCw(mode)) {
-            return { bandwidth: 0.5, offset: 0 }; // 0.5 kHz centered
-        }
+        // Get bandwidth from global function (handles all modes consistently)
+        var bandwidth = getSignalBandwidth(mode);
 
-        // WSJT-X modes
-        if (modeLC === 'ft8' || modeLC === 'ft4') {
-            return { bandwidth: 3.0, offset: 0 }; // 3.0 kHz centered
-        }
-        if (modeLC === 'jt65' || modeLC === 'jt65b' || modeLC === 'jt9' || modeLC === 'jt9-1' ||
-            modeLC === 'jt6c' || modeLC === 'jt6m') {
-            return { bandwidth: 2.0, offset: 0 }; // 2.0 kHz centered
-        }
-        if (modeLC === 'q65' || modeLC === 'qra64') {
-            return { bandwidth: 2.5, offset: 0 }; // 2.5 kHz centered
-        }
-        if (modeLC === 'fst4' || modeLC === 'fst4w') {
-            return { bandwidth: 2.5, offset: 0 }; // 2.5 kHz centered
-        }
-        if (modeLC === 'wspr') {
-            return { bandwidth: 0.2, offset: 0 }; // 0.2 kHz centered (very narrow)
-        }
-        if (modeLC === 'msk144') {
-            return { bandwidth: 2.5, offset: 0 }; // 2.5 kHz centered
-        }
-        if (modeLC === 'iscat' || modeLC === 'iscat-a' || modeLC === 'iscat-b') {
-            return { bandwidth: 2.0, offset: 0 }; // 2.0 kHz centered
-        }
-        if (modeLC === 'js8' || modeLC === 'jtms') {
-            return { bandwidth: 2.5, offset: 0 }; // 2.5 kHz centered
-        }
-
-        // PSK modes (all variants narrow)
-        if (modeLC.indexOf('psk') !== -1 || modeLC.indexOf('qpsk') !== -1) {
-            return { bandwidth: 0.5, offset: 0 }; // 0.5 kHz centered for all PSK
-        }
-
-        // RTTY and related
-        if (modeLC === 'rtty' || modeLC === 'navtex' || modeLC === 'sitorb') {
-            return { bandwidth: 0.5, offset: 0 }; // 0.5 kHz centered
-        }
-
-        // Hellschreiber modes
-        if (modeLC.indexOf('hell') !== -1 || modeLC.indexOf('fsk') === 0) {
-            return { bandwidth: 0.5, offset: 0 }; // 0.5 kHz centered
-        }
-
-        // THOR/THROB modes
-        if (modeLC.indexOf('thor') !== -1 || modeLC.indexOf('throb') !== -1 || modeLC.indexOf('thrb') !== -1) {
-            return { bandwidth: 1.0, offset: 0 }; // 1.0 kHz centered
-        }
-
-        // Domino modes
-        if (modeLC.indexOf('dom') !== -1) {
-            return { bandwidth: 1.0, offset: 0 }; // 1.0 kHz centered
-        }
-
-        // VARA modes (wider bandwidth)
-        if (modeLC.indexOf('vara') !== -1) {
-            return { bandwidth: 2.5, offset: 0 }; // 2.5 kHz centered
-        }
-
-        // SCAMP modes
-        if (modeLC.indexOf('scamp') !== -1) {
-            return { bandwidth: 1.0, offset: 0 }; // 1.0 kHz centered
-        }
-
-        // MFSK modes
-        if (modeLC.indexOf('mfsk') !== -1) {
-            return { bandwidth: 1.0, offset: 0 }; // 1.0 kHz centered
-        }
-
-        // FSK modes
-        if (modeLC === 'fsk441') {
-            return { bandwidth: 2.0, offset: 0 }; // 2.0 kHz centered
-        }
-
-        // Other digital modes
-        if (modeLC === 'ros') {
-            return { bandwidth: 2.5, offset: 0 }; // 2.5 kHz centered
-        }
-        if (modeLC === 'pkt' || modeLC === 'packet') {
-            return { bandwidth: 3.0, offset: 0 }; // 3.0 kHz centered
-        }
-        if (modeLC === 'sstv') {
-            return { bandwidth: 3.0, offset: 0 }; // 3.0 kHz for SSTV
-        }
-
-        // Digital voice modes (wider)
-        if (modeLC === 'dmr' || modeLC === 'dstar' || modeLC === 'c4fm' ||
-            modeLC === 'freedv' || modeLC === 'm17') {
-            return { bandwidth: 3.0, offset: 0 }; // 3.0 kHz centered
-        }
-
-        // Generic digital fallback
-        if (modeLC === 'digi' || modeLC === 'dynamic') {
-            return { bandwidth: 2.5, offset: 0 }; // 2.5 kHz centered for generic digital
-        }
-
-        // Phone modes with sideband behavior
-        if (modeLC === 'lsb') {
-            return { bandwidth: DX_WATERFALL_CONSTANTS.SIGNAL_BANDWIDTHS.SSB_KHZ, offset: -DX_WATERFALL_CONSTANTS.SIGNAL_BANDWIDTHS.SSB_OFFSET_KHZ };
-        }
-        if (modeLC === 'usb') {
-            return { bandwidth: DX_WATERFALL_CONSTANTS.SIGNAL_BANDWIDTHS.SSB_KHZ, offset: DX_WATERFALL_CONSTANTS.SIGNAL_BANDWIDTHS.SSB_OFFSET_KHZ };
-        }
-        if (modeLC === 'ssb' || modeLC === 'phone') {
-            // For SSB/phone spots, determine LSB/USB based on frequency using utility
-            var ssbMode = DX_WATERFALL_UTILS.modes.determineSSBMode(freq);
+        // Phone modes with sideband behavior need offset calculation
+        // Use isPhoneMode() to check if mode is phone/voice (more robust than string comparison)
+        if (isPhoneMode(mode)) {
+            var ssbMode = determineSSBMode(freq);
             if (ssbMode === 'LSB') {
-                return { bandwidth: DX_WATERFALL_CONSTANTS.SIGNAL_BANDWIDTHS.SSB_KHZ, offset: -DX_WATERFALL_CONSTANTS.SIGNAL_BANDWIDTHS.SSB_OFFSET_KHZ };
+                return { bandwidth: bandwidth, offset: -bandwidth / 2 };
             } else { // USB
-                return { bandwidth: DX_WATERFALL_CONSTANTS.SIGNAL_BANDWIDTHS.SSB_KHZ, offset: DX_WATERFALL_CONSTANTS.SIGNAL_BANDWIDTHS.SSB_OFFSET_KHZ };
+                return { bandwidth: bandwidth, offset: bandwidth / 2 };
             }
         }
 
-        // AM and FM (centered)
-        if (modeLC === 'am') {
-            return { bandwidth: DX_WATERFALL_CONSTANTS.SIGNAL_BANDWIDTHS.AM_KHZ, offset: 0 };
-        }
-        if (modeLC === 'fm') {
-            return { bandwidth: DX_WATERFALL_CONSTANTS.SIGNAL_BANDWIDTHS.FM_KHZ, offset: 0 };
-        }
-
-        // Default fallback (centered SSB-width)
-        return { bandwidth: DX_WATERFALL_CONSTANTS.SIGNAL_BANDWIDTHS.SSB_KHZ, offset: 0 };
+        // All other modes (CW, digital, etc.) are centered (offset = 0)
+        return { bandwidth: bandwidth, offset: 0 };
     },
 
     // Draw bandwidth indicators for DX spots
@@ -4109,7 +3533,7 @@ var dxWaterfall = {
                 }
 
                 // Get detailed submode information for consistent classification
-                var submodeInfo = DX_WATERFALL_UTILS.modes.getDetailedSubmode(spot);
+                var submodeInfo = classifyMode(spot);
                 var classifiedMode = submodeInfo.category;
 
                 // Determine mode for bandwidth calculation using utility functions
@@ -4119,7 +3543,7 @@ var dxWaterfall = {
                 if (submodeInfo.submode) {
                     modeForBandwidth = submodeInfo.submode.toLowerCase();
                 } else {
-                    var utilityCategory = DX_WATERFALL_UTILS.modes.getModeCategory(spot.mode);
+                    var utilityCategory = getModeCategory(spot.mode) || 'other';
                     if (utilityCategory === 'cw') {
                         modeForBandwidth = 'cw';
                     } else if (utilityCategory === 'phone' && modeForBandwidth !== 'lsb' && modeForBandwidth !== 'usb') {
@@ -4183,7 +3607,7 @@ var dxWaterfall = {
         // For phone/ssb modes, determine actual sideband based on frequency
         if (modeStr === 'phone' || modeStr === 'ssb') {
             var freq = parseFloat(spotFreq);
-            sidebandType = DX_WATERFALL_UTILS.modes.determineSSBMode(freq).toLowerCase();
+            sidebandType = determineSSBMode(freq).toLowerCase();
         } else if (modeStr === 'lsb' || modeStr === 'usb') {
             sidebandType = modeStr;
         }
@@ -4749,44 +4173,40 @@ var dxWaterfall = {
             // Check if we need to do initial fetch or band has changed via CAT
             // Skip during CAT operations to prevent interference
             if (!this.catTuning && !this.frequencyChanging) {
-                // Force initial fetch if we haven't done one yet (even with invalid frequency/band)
-                if (!this.initialFetchDone) {
-                    // If we're still waiting for CAT frequency, don't fetch yet
-                    if (!this.waitingForCATFrequency) {
-                        this.initialFetchDone = true; // Set flag BEFORE fetch to prevent duplicate calls
-                        this.fetchDxSpots(true, false); // Initial fetch, but not user-initiated (background)
-                    }
-                } else {
-                    // Check if radio has changed to a different band (via CAT frequency updates)
-                    // Calculate band from current frequency, not from form selector
-                    var currentFreqKhz = this.getCachedMiddleFreq();
-                    var calculatedBand = null;
+                // Check if radio has changed to a different band (via CAT frequency updates)
+                // Calculate band from current frequency, not from form selector
+                var currentFreqKhz = this.getCachedMiddleFreq();
+                var calculatedBand = null;
 
-                    if (currentFreqKhz > 0) {
-                        calculatedBand = this.getFrequencyBand(currentFreqKhz);
-                    }
+                if (currentFreqKhz > 0) {
+                    calculatedBand = frequencyToBandKhz(currentFreqKhz);
+                }
 
-                    // If we have a valid calculated band and it differs from what we have spots for, fetch new spots
-                    if (calculatedBand && calculatedBand !== '' && calculatedBand.toLowerCase() !== 'select' &&
-                        this.currentSpotBand && calculatedBand !== this.currentSpotBand) {
-                        // Radio frequency changed to different band - fetch spots for new band
-                        DX_WATERFALL_UTILS.log.debug('[DX Waterfall] Band changed via frequency: ' + this.currentSpotBand + ' → ' + calculatedBand);
+                // Check if we need to fetch spots for a different band
+                // This handles both: band changes AND initial load where currentSpotBand isn't set yet
+                if (calculatedBand && calculatedBand !== '' && calculatedBand.toLowerCase() !== 'select') {
+                    // Case 1: We have no spots yet (currentSpotBand is null) - fetch for current band
+                    // Case 2: Band has changed (calculatedBand !== currentSpotBand) - fetch for new band
+                    if (!this.currentSpotBand || calculatedBand !== this.currentSpotBand) {
+                            // Radio frequency is on a different band than what we have spots for
+                            DX_WATERFALL_UTILS.log.debug('[DX Waterfall] Band mismatch - have spots for: ' + this.currentSpotBand + ', need: ' + calculatedBand);
 
-                        // IMMEDIATELY update currentSpotBand to prevent infinite loop
-                        // The refresh() runs 60fps, so we must update this before next cycle
-                        this.currentSpotBand = calculatedBand;
+                            // IMMEDIATELY update currentSpotBand to prevent infinite loop
+                            // The refresh() runs 60fps, so we must update this before next cycle
+                            this.currentSpotBand = calculatedBand;
 
-                        // Mark that we're waiting for new band data
-                        this.waitingForData = true;
-                        this.dataReceived = false;
-                        this.operationStartTime = Date.now(); // Start timer for visual feedback
+                            // Mark that we're waiting for new band data
+                            this.waitingForData = true;
+                            this.dataReceived = false;
+                            this.operationStartTime = Date.now(); // Start timer for visual feedback
 
-                        // Fetch spots for new band (not user-initiated, but automatic via CAT)
-                        this.fetchDxSpots(true, false);
+                            // Fetch spots for new band (not user-initiated, but automatic via CAT)
+                            this.fetchDxSpots(true, false);
 
-                        // Invalidate band-related caches
-                        this.bandLimitsCache = null;
-                        this.cachedBandForEdges = calculatedBand;
+                            // Invalidate band-related caches
+                            this.bandLimitsCache = null;
+                            this.cachedBandForEdges = calculatedBand;
+                        }
                     }
                 }
                 // NOTE: Removed hasParametersChanged() check - waterfall no longer monitors form band/mode changes
@@ -4867,8 +4287,10 @@ var dxWaterfall = {
             this.displayWaitingMessage();
             this.updateZoomMenu(); // Update menu to show loading indicator
             return; // Don't draw the normal display
-        }            // Check if CAT is tuning the radio with safety timeout
-            if (this.catTuning) {
+        }
+
+        // Check if CAT is tuning the radio with safety timeout
+        if (this.catTuning) {
                 // Safety check: if CAT tuning has been true for more than fallback time, force clear it
                 // BUT: Don't clear if we're waiting for CAT confirmation (targetFrequencyHz is set)
                 if (!this.catTuningStartTime) {
@@ -4908,22 +4330,34 @@ var dxWaterfall = {
 
             // Check if we're showing completion overlay (marker moved but hiding the animation)
             if (this.showingCompletionOverlay) {
-                // Draw normal waterfall content first (including moved marker)
-                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-                this.drawStaticNoise();
-                this.drawWavelogLink();
-                this.drawBandLimits();
-                this.drawFrequencyRuler();
-                this.drawCenterMarker();
-                this.drawDxSpots();
-                this.drawCenterCallsignLabel();
+                // For WebSocket connections with fast overlay timing, skip the overlay entirely
+                // to prevent visible black flash during canvas redraw
+                var isWebSocket = typeof dxwaterfall_cat_state !== 'undefined' && dxwaterfall_cat_state === 'websocket';
+                
+                if (isWebSocket) {
+                    // Just clear the flag and continue with normal drawing
+                    // (marker has already moved, no need for overlay feedback)
+                    this.showingCompletionOverlay = false;
+                    // Fall through to normal drawing below
+                } else {
+                    // For polling mode, show the overlay message as before
+                    // Draw normal waterfall content first (including moved marker)
+                    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                    this.drawStaticNoise();
+                    this.drawWavelogLink();
+                    this.drawBandLimits();
+                    this.drawFrequencyRuler();
+                    this.drawCenterMarker();
+                    this.drawDxSpots();
+                    this.drawCenterCallsignLabel();
 
-                // Only show tuning message if CAT is actually available
-                if (isCATAvailable()) {
-                    // Then draw overlay message on top
-                    this.displayChangingFrequencyMessage(lang_dxwaterfall_changing_frequency, 'MESSAGE_TEXT_WHITE');
+                    // Only show tuning message if CAT is actually available
+                    if (isCATAvailable()) {
+                        // Then draw overlay message on top
+                        this.displayChangingFrequencyMessage(lang_dxwaterfall_changing_frequency, 'MESSAGE_TEXT_WHITE');
+                    }
+                    return; // Don't continue with normal refresh logic
                 }
-                return; // Don't continue with normal refresh logic
             }
 
             // Show zoom menu when data is available (only if empty or mode changed)
@@ -4980,7 +4414,6 @@ var dxWaterfall = {
             this.ctx.moveTo(this.canvas.width, 0);
             this.ctx.lineTo(this.canvas.width, this.canvas.height);
             this.ctx.stroke();
-        }
     },
 
     // Get the most relevant spot in our sideband
@@ -5008,7 +4441,7 @@ var dxWaterfall = {
             // This allows spots within ±1 kHz to be detected regardless of sideband
             detectionRange = 1.0; // ±1 kHz symmetric range for SSB
         } else if (currentMode === 'cw') {
-            detectionRange = DX_WATERFALL_CONSTANTS.SIGNAL_BANDWIDTHS.CW_DETECTION_KHZ;
+            detectionRange = SIGNAL_BANDWIDTHS.CW;
         } else {
             // Other modes (digital, etc.) - centered with half bandwidth
             detectionRange = signalBandwidth * 0.5; // 50% of bandwidth for other modes
@@ -5166,7 +4599,7 @@ var dxWaterfall = {
             // Active spot in bandwidth - show spot details
 
             // Get detailed submode information using centralized function
-            var submodeInfo = DX_WATERFALL_UTILS.modes.getDetailedSubmode(spotInfo);
+            var submodeInfo = classifyMode(spotInfo);
             var modeLabel = submodeInfo.submode || spotInfo.mode || 'Unknown';
             // Use detailed submode for mode field (e.g., "FT8" instead of "digi")
             var modeForField = submodeInfo.submode || spotInfo.mode || '';
@@ -5647,7 +5080,7 @@ var dxWaterfall = {
         // Filter spots for current band
         var result = DX_WATERFALL_UTILS.spots.filterSpots(this, function(spot, spotFreq, context) {
             // Validate that spot belongs to current band (prevent cross-band contamination)
-            var spotBand = context.getFrequencyBand(spotFreq);
+            var spotBand = frequencyToBandKhz(spotFreq);
             return spotBand === currentBand;
         }, {
             postProcess: function(spotObj, originalSpot) {
@@ -5895,14 +5328,15 @@ var dxWaterfall = {
     // Check if a spot should be shown based on active mode filters
     spotMatchesModeFilter: function(spot) {
         // Use comprehensive mode classification utility directly
-        var spotMode = DX_WATERFALL_UTILS.modes.classifyMode(spot).category;
+        var classification = classifyMode(spot);
+        var spotMode = classification.category;
 
         // Use pending filters if they exist, otherwise use current filters
         var filters = this.pendingModeFilters || this.modeFilters;
 
-        // If mode is unknown/unclassified, treat as "other"
+        // If mode is unknown/unclassified, default to phone (treat as SSB)
         if (!spotMode || (spotMode !== 'phone' && spotMode !== 'cw' && spotMode !== 'digi')) {
-            return filters.other === true;
+            spotMode = 'phone';
         }
 
         // For digi mode spots: if digi filter is OFF, also hide spots on FT8 frequencies
@@ -5910,7 +5344,7 @@ var dxWaterfall = {
         // But if digi filter is ON, show all digi spots including FT8 frequencies
         if (spotMode === 'digi') {
             var spotFreq = parseFloat(spot.frequency);
-            var isOnFT8Freq = this.isFT8Frequency(spotFreq);
+            var isOnFT8Freq = isFT8Frequency(spotFreq, 'kHz');
 
             // If digi filter is OFF and spot is on FT8 frequency, hide it
             if (!filters.digi && isOnFT8Freq) {
@@ -5930,13 +5364,20 @@ var dxWaterfall = {
     toggleModeFilter: function(modeType) {
         var self = this;
 
+        // Prevent rapid double-clicks from causing issues
+        var now = Date.now();
+        if (this.lastFilterToggleTime && (now - this.lastFilterToggleTime) < 50) {
+            DX_WATERFALL_UTILS.log.debug('[Filter Toggle] Ignoring rapid double-click');
+            return;
+        }
+        this.lastFilterToggleTime = now;
+
         // Create pending filters if they don't exist (clone current filters)
         if (!this.pendingModeFilters) {
             this.pendingModeFilters = {
                 phone: this.modeFilters.phone,
                 cw: this.modeFilters.cw,
-                digi: this.modeFilters.digi,
-                other: this.modeFilters.other
+                digi: this.modeFilters.digi
             };
         }
 
@@ -5947,14 +5388,19 @@ var dxWaterfall = {
         this.modeFilters.phone = this.pendingModeFilters.phone;
         this.modeFilters.cw = this.pendingModeFilters.cw;
         this.modeFilters.digi = this.pendingModeFilters.digi;
-        this.modeFilters.other = this.pendingModeFilters.other;
 
         // Invalidate visible spots cache immediately for instant update
         this.cache.visibleSpots = null;
         this.cache.visibleSpotsParams = null;
 
-        // Update menu immediately to show the new state
-        this.updateZoomMenu();
+        // Trigger immediate refresh to show filter changes
+        // This ensures the display updates instantly without waiting for the next interval
+        if (this.canvas && this.ctx) {
+            this.refresh();
+        }
+
+        // Don't update menu here - it will be updated by the timeout handler
+        // Updating here causes the button to be recreated which can trigger duplicate events
 
         // Clear existing timer if there is one
         if (this.modeFilterChangeTimer) {
@@ -6187,7 +5633,7 @@ function setMode(mode, skipTrigger) {
     // For generic PHONE/SSB, try to determine LSB/USB based on frequency
     else if (modeUpper === 'PHONE' || modeUpper === 'SSB') {
         var currentFreq = dxWaterfall.getCachedMiddleFreq(); // Get frequency in kHz
-        var ssbMode = DX_WATERFALL_UTILS.modes.determineSSBMode(currentFreq);
+        var ssbMode = determineSSBMode(currentFreq);
         if (ssbMode === 'LSB') {
             // Check if LSB exists in options
             if (modeSelect.find('option[value="LSB"]').length > 0) {
@@ -6339,7 +5785,7 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
             }
             // Any other mode - default to frequency-based USB/LSB
             else {
-                var ssbMode = DX_WATERFALL_UTILS.modes.determineSSBMode(frequencyInKHz);
+                var ssbMode = determineSSBMode(frequencyInKHz);
                 catMode = ssbMode.toLowerCase();
             }
         }
@@ -6813,7 +6259,8 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
 
             // CRITICAL: Set mode FIRST (without triggering change event), THEN set frequency
             // This ensures setFrequency() reads the correct mode from the dropdown
-            var radioMode = DX_WATERFALL_UTILS.navigation.determineRadioMode(clickedSpot);
+            var frequencyHz = parseFloat(clickedSpot.frequency) * 1000; // Convert kHz to Hz
+            var radioMode = determineRadioMode(clickedSpot.mode, frequencyHz);
             setMode(radioMode, true); // skipTrigger = true to prevent change event
 
             // Now set frequency - it will read the correct mode from the dropdown
@@ -6907,7 +6354,7 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
         }
 
         // Use Cmd on Mac, Ctrl on Windows/Linux
-        var modKey = DX_WATERFALL_UTILS.platform.isModifierKey(e);
+        var modKey = PlatformDetection.isModifierKey(e);
 
         // Ctrl/Cmd+Left: Previous spot
         if (modKey && !e.shiftKey && e.key === 'ArrowLeft') {

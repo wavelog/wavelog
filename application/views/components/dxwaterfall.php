@@ -1,7 +1,6 @@
 <!-- DX Waterfall Component - START -->
 <?php if ($this->session->userdata('user_dxwaterfall_enable') == 'Y' && isset($manual_mode) && $manual_mode == 0) { ?>
-	<!-- DX Waterfall Component - JS -->
-	<script src="<?php echo base_url() ;?>assets/js/dxwaterfall.js?v=<?php echo floor(time() / 3600); ?>"></script>
+	<!-- DX Waterfall Component - JS loaded in footer after radiohelpers.js -->
 	<script language="javascript">
 		/*
 		DX Waterfall Language
