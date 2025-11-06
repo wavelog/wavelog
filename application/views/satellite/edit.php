@@ -4,7 +4,7 @@
 	<input type="hidden" id="satelliteid" name="id" value="<?php echo $satellite->id; ?>">
 		<div class = "row">
 			<div class="mb-3 col-md-6">
-				<label for="displayNameInput"><?= __("Satellite Display Name "); ?></label>
+				<label for="displayNameInput"><?= __("Satellite Display Name"); ?></label>
 				<input type="text" class="form-control" name="displayNameInput" id="displayNameInput" aria-describedby="displayNameInputHelp" value="<?php if(set_value('band') != "") { echo set_value('band'); } else { echo $satellite->displayname; } ?>" required>
 				<small id="displayNameInputHelp" class="form-text text-muted"><?= __("Display / cleartext name of the satellite"); ?></small>
 			</div>

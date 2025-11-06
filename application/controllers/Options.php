@@ -141,7 +141,7 @@ class Options extends CI_Controller {
 		} else {
 			$hon_url_update = $this->optionslib->update('hon_url', $this->input->post('hon_url'), 'yes');
 			if($hon_url_update == TRUE) {
-				$this->session->set_flashdata('success', __("Hams-Of-Note URL changed to ").$this->input->post('hon_url',true));
+				$this->session->set_flashdata('success', __("Hams-Of-Note URL changed to").": ".$this->input->post('hon_url',true));
 			}
 			redirect('/options/hon');
 		}
@@ -177,17 +177,17 @@ class Options extends CI_Controller {
 		} else {
 			$dxcluster_decont_update = $this->optionslib->update('dxcluster_decont', $this->input->post('dxcluster_decont'), 'yes');
 			if($dxcluster_decont_update == TRUE) {
-				$this->session->set_flashdata('success', __("de continent changed to ").$this->input->post('dxcluster_decont'));
+				$this->session->set_flashdata('success', __("de continent changed to").": ".$this->input->post('dxcluster_decont'));
 			}
 
 			$dxcluster_maxage_update = $this->optionslib->update('dxcluster_maxage', $this->input->post('dxcluster_maxage'), 'yes');
 			if($dxcluster_maxage_update == TRUE) {
-				$this->session->set_flashdata('success', __("Maximum age of spots changed to ").$this->input->post('dxcluster_maxage'));
+				$this->session->set_flashdata('success', __("Maximum age of spots changed to").": ".$this->input->post('dxcluster_maxage'));
 			}
 
 			$dxcache_url_update = $this->optionslib->update('dxcache_url', $this->input->post('dxcache_url'), 'yes');
 			if($dxcache_url_update == TRUE) {
-				$this->session->set_flashdata('success', __("DXCluster Cache URL changed to ").$this->input->post('dxcache_url'));
+				$this->session->set_flashdata('success', __("DXCluster Cache URL changed to").": ".$this->input->post('dxcache_url'));
 			}
 			redirect('/options/dxcluster');
 		}
@@ -229,7 +229,7 @@ class Options extends CI_Controller {
 
 			// If theme update is complete set a flashsession with a success note
 			if($radioTimeout_update == TRUE) {
-				$this->session->set_flashdata('success', __("Radio Timeout Warning changed to ").$this->input->post('radioTimeout').' seconds');
+				$this->session->set_flashdata('success', __("Radio Timeout Warning changed to").": ".$this->input->post('radioTimeout').' seconds');
 			}
 
 			// Redirect back to /appearance

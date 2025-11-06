@@ -98,23 +98,23 @@ class Callstats extends CI_Controller
 
 		// Render Page
 		$data['page_title'] = __("Log View");
-		$data['filter'] = $searchphrase.__(" and band ").$band;
+		$data['filter'] = " ".$searchphrase.__("and band")." ".$band;
 		if ($band == 'SAT') {
 			if ($sat != 'All' && $sat != null) {
-				$data['filter'] .= __(" and sat ").$sat;
+				$data['filter'] .= " " . __("and sat")." ".$sat;
 			}
 			if ($orbit != 'All' && $orbit != null) {
-				$data['filter'] .= __(" and orbit type ").$orbit;
+				$data['filter'] .= " " . __("and orbit type")." ".$orbit;
 			}
 		}
 		if ($propagation != '' && $propagation != null) {
-			$data['filter'] .= __(" and propagation ").$propagation;
+			$data['filter'] .= " " . __("and propagation")." ".$propagation;
 		}
 		if ($mode != null && strtolower($mode) != 'all') {
-			$data['filter'] .= __(" and mode ").$mode;
+			$data['filter'] .= " " . __("and mode")." ".$mode;
 		}
 		if (!empty($qsltype)) {
-			$data['filter'] .= __(" and ").implode('/', $qsltype);
+			$data['filter'] .= " " . __("and")." ".implode('/', $qsltype);
 		}
 		$this->load->view('awards/details', $data);
 	}

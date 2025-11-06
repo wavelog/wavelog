@@ -52,7 +52,7 @@
 							<td>
 								<script>
 									var lang_admin_danger = '<?= __("DANGER!"); ?>';
-									var lang_admin_contest_deletion_warning = '<?= __("Warning! Are you sure you want to delete the following contest: "); ?>';
+									var lang_admin_contest_deletion_warning = '<?= __("Warning! Are you sure you want to delete the following contest:"); ?>';
 									var lang_admin_contest_active_all_warning = '<?= __("Warning! Are you sure you want to activate all contests?"); ?>';
 									var lang_admin_contest_deactive_all_warning = '<?= __("Warning! Are you sure you want to deactivate all contests?"); ?>';
 								</script>

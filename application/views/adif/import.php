@@ -71,7 +71,7 @@
                     <?php } ?>
 
                     <p><span class="badge text-bg-warning"><?= __("Important") ?></span> <?= __("Log Files must have the file type *.adi") ?></p>
-                    <p><span class="badge text-bg-warning"><?= __("Warning") ?></span> <?= __("Maximum file upload size is ") ?><?php echo $max_upload; ?>B.</p>
+                    <p><span class="badge text-bg-warning"><?= __("Warning") ?></span> <?= __("Maximum file upload size is")." " ?><?php echo $max_upload; ?>B.</p>
 
                     <form class="form" id="upform" action="<?php echo site_url('adif/import'); ?>" method="post" enctype="multipart/form-data">
 						<div class="row mb-4">

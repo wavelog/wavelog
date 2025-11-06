@@ -3,7 +3,7 @@
 $message['subject'] = sprintf(__("Wavelog OQRS from %s"), strtoupper($callsign));
 
 if ($usermessage != '') {
-    $um_formatted = __("The user entered the following message: ") . "\n\n";
+    $um_formatted = __("The user entered the following message:") . "\n\n";
     $um_formatted .= "------------" . "\n";
     $um_formatted .= $usermessage . "\n";
     $um_formatted .= "------------" . "\n\n";

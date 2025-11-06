@@ -609,7 +609,7 @@ $options = json_decode($options);
 						<div class="dropdown-menu dropdown-menu-start" aria-labelledby="quickfilterDropdown" style="min-width: 300px;">
 							<div class="card">
 								<div class="card-header p-2">
-									<span class="h6 w-100 mt-0 mb-0"><?= __("Quicksearch with selected: "); ?></span>
+									<span class="h6 w-100 mt-0 mb-0"><?= __("Quicksearch with selected:")." "; ?></span>
 								</div>
 								<div class="card-body p-2">
 									<div class="d-grid gap-2">
@@ -673,11 +673,11 @@ $options = json_decode($options);
                         <div class="dropdown-menu dropdown-menu-start" aria-labelledby="actionsDropdown" style="min-width: 300px;">
                             <script>
                                 var lang_filter_actions_delete_warning = '<?= __("Warning! Are you sure you want to delete the marked QSO(s)?"); ?>';
-                                var lang_filter_actions_delete_warning_details = '<?= __(" QSO(s) will be deleted"); ?>';
+                                var lang_filter_actions_delete_warning_details = '<?= __("QSO(s) will be deleted"); ?>';
                             </script>
                             <div class="card">
 								<div class="card-header p-2">
-									<span class="h6 w-100 mt-0 mb-0"><?= __("With selected: "); ?></span>
+									<span class="h6 w-100 mt-0 mb-0"><?= __("With selected:")." "; ?></span>
 								</div>
 								<div class="card-body p-2">
 									<div class="d-grid gap-2">
@@ -717,7 +717,7 @@ $options = json_decode($options);
 					<?php foreach ($station_profile->result() as $station) { ?>
 						<option value="<?php echo $station->station_id; ?>" <?php if ($station->station_id == $active_station_id) {
 							echo " selected =\"selected\""; } ?>>
-							<?= __("Callsign: ") . " " ?>
+							<?= __("Callsign:") . " " ?>
 							<?php echo str_replace("0", "&Oslash;", strtoupper($station->station_callsign)); ?> (<?php echo $station->station_profile_name; ?>)
 						</option>
 					<?php } ?>
