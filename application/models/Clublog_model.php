@@ -165,7 +165,7 @@ class Clublog_model extends CI_Model
 
 	function downloadUser($userid, $username, $password, $clublog_last_date = null) {
 		$clean_username = $this->security->xss_clean($username);
-		$clean_password = $this->security->xss_clean($password);
+		$clean_password = $password;	// Take pw as it comes from DB
 		$clean_userid = $this->security->xss_clean($userid);
 
 		$return = '';
