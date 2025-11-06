@@ -1227,6 +1227,11 @@ $(function() {
 				$('#refreshIcon').removeClass('fa-spinner fa-spin').addClass('fa-hourglass-half');
 				$('#refreshTimer').text('Next update in ' + refreshCountdown + 's');
 			}
+
+			// Update DX Map only if visible (don't waste resources)
+			if (dxMapVisible && dxMap) {
+				updateDxMap();
+			}
 		}, 100);
 	}
 
@@ -3327,6 +3332,884 @@ $(function() {
 
 	// Update ages every 60 seconds
 	setInterval(updateSpotAges, 60000);
+
+	// ========================================
+	// DX MAP
+	// ========================================
+
+	let dxMap = null;
+	let dxMapVisible = false;
+	let dxccMarkers = [];
+	let spotterMarkers = [];
+	let connectionLines = [];
+	let userHomeMarker = null;
+	let showSpotters = false;
+	let hoverSpottersData = new Map(); // Store spotter data for hover
+	let hoverSpotterMarkers = []; // Temporary markers shown on hover
+	let hoverConnectionLines = []; // Temporary lines shown on hover
+	let hoverEventsInitialized = false; // Flag to prevent duplicate event handlers
+
+	/**
+	 * Initialize the DX Map with Leaflet
+	 */
+	function initDxMap() {
+		if (dxMap) return;
+
+		dxMap = L.map('dxMap', {
+			center: [50.0647, 19.9450], // Krakow, Poland
+			zoom: 6,
+			zoomControl: true,
+			scrollWheelZoom: true,
+			fullscreenControl: true,
+			fullscreenControlOptions: {
+				position: 'topleft'
+			}
+		});
+
+		// Create custom panes for proper layering
+		dxMap.createPane('connectionLines');
+		dxMap.getPane('connectionLines').style.zIndex = 400;
+		dxMap.createPane('arrowsPane');
+		dxMap.getPane('arrowsPane').style.zIndex = 450;
+
+		L.tileLayer(map_tile_server || 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			attribution: map_tile_server_copyright || '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+			maxZoom: 18,
+			minZoom: 1,
+			id: 'mapbox.streets'
+		}).addTo(dxMap);
+
+		addUserHomeMarker();
+		addSpottersControl();
+	}
+
+	/**
+	 * Add user's home position marker
+	 */
+	function addUserHomeMarker() {
+		$.ajax({
+			url: base_url + 'index.php/logbook/qralatlngjson',
+			type: 'post',
+			data: { qra: user_gridsquare },
+			success: function(data) {
+				try {
+					const result = JSON.parse(data);
+					if (result && result[0] !== undefined && result[1] !== undefined) {
+						const homeIcon = L.icon({
+							iconUrl: icon_dot_url,
+							iconSize: [18, 18]
+						});
+						userHomeMarker = L.marker([result[0], result[1]], { icon: homeIcon })
+							.addTo(dxMap)
+							.bindPopup('<strong>' + lang_bandmap_your_qth + '</strong>');
+					}
+				} catch (e) {
+					console.warn('Could not parse user location:', e);
+				}
+			}
+		});
+	}
+
+	/**
+	 * Add spotters control legend
+	 */
+	function addSpottersControl() {
+		const legend = L.control({ position: "topright" });
+		legend.onAdd = function(map) {
+			const div = L.DomUtil.create("div", "legend");
+			div.innerHTML = '<input type="checkbox" id="toggleSpotters" style="outline: none;"><span> ' + lang_bandmap_draw_spotters + '</span><br>';
+			return div;
+		};
+		legend.addTo(dxMap);
+
+		setTimeout(() => {
+			$('#toggleSpotters').on('change', function() {
+				showSpotters = this.checked;
+				updateDxMap();
+			});
+		}, 100);
+	}
+
+	/**
+	 * Group spots by DXCC entity
+	 */
+	function groupSpotsByDXCC(spots) {
+		const dxccGroups = new Map();
+
+		spots.forEach(spot => {
+			const dxccId = spot.dxcc_spotted?.dxcc_id;
+			if (!dxccId) {
+				return;
+			}
+
+			if (!dxccGroups.has(dxccId)) {
+				dxccGroups.set(dxccId, {
+					dxccId: dxccId,
+					lat: spot.dxcc_spotted.lat,
+					lng: spot.dxcc_spotted.lng,
+					entity: spot.dxcc_spotted.entity,
+					flag: spot.dxcc_spotted.flag,
+					continent: spot.dxcc_spotted.cont,
+					spots: []
+				});
+			}
+
+			dxccGroups.get(dxccId).spots.push(spot);
+		});
+
+		return dxccGroups;
+	}
+
+	/**
+	 * Create HTML table for popup
+	 */
+	function createSpotTable(spots, dxccEntity, dxccFlag) {
+		// Add DXCC name header with flag (bigger flag size)
+		const flagEmoji = dxccFlag ? '<span class="flag-emoji" style="font-size: 20px;">' + dxccFlag + '</span> ' : '';
+		let html = '<div style="font-weight: bold; font-size: 14px; padding: 8px; background: rgba(0,0,0,0.1); margin-bottom: 8px; text-align: center;">' + flagEmoji + dxccEntity + '</div>';
+
+		// Create scrollable container if more than 5 spots
+		const needsScroll = spots.length > 5;
+		if (needsScroll) {
+			html += '<div style="max-height: 200px; overflow-y: auto; overflow-x: hidden;">';
+		}
+
+		html += '<table class="table table-sm table-striped" style="margin: 0; width: 100%; table-layout: fixed;">';
+		html += '<thead><tr>';
+		html += '<th style="width: 25%; overflow: hidden; text-overflow: ellipsis;">' + lang_bandmap_callsign + '</th>';
+		html += '<th style="width: 20%; overflow: hidden; text-overflow: ellipsis;">' + lang_bandmap_frequency + '</th>';
+		html += '<th style="width: 15%; overflow: hidden; text-overflow: ellipsis;">' + lang_bandmap_mode + '</th>';
+		html += '<th style="width: 15%; overflow: hidden; text-overflow: ellipsis;">' + lang_bandmap_band + '</th>';
+		html += '<th style="width: 25%; overflow: hidden; text-overflow: ellipsis;">Spotter</th>';
+		html += '</tr></thead><tbody>';
+
+		spots.forEach(spot => {
+			const freqMHz = (spot.frequency / 1000).toFixed(3);
+
+			// Color code callsign based on worked/confirmed status (matching bandmap table)
+			let callClass = '';
+			if (spot.cnfmd_call) {
+				callClass = 'text-success'; // Green = confirmed
+			} else if (spot.worked_call) {
+				callClass = 'text-warning'; // Yellow = worked
+			}
+
+			html += '<tr>';
+			html += '<td style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><strong><a href="#" class="spot-link ' + callClass + '" data-callsign="' + spot.spotted + '">' + spot.spotted + '</a></strong></td>';
+			html += '<td style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">' + freqMHz + '</td>';
+			html += '<td style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">' + (spot.mode || '') + '</td>';
+			html += '<td style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">' + (spot.band || '') + '</td>';
+			html += '<td style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">' + (spot.spotter || '') + '</td>';
+			html += '</tr>';
+		});
+
+		html += '</tbody></table>';
+
+		if (needsScroll) {
+			html += '</div>';
+		}
+
+		return html;
+	}
+
+	/**
+	 * Get color based on mode (using DX waterfall colors)
+	 */
+	function getSpotModeColor(mode) {
+		const modeUpper = (mode || '').toUpperCase();
+		if (modeUpper === 'CW') return '#FFA500'; // Orange
+		if (['SSB', 'LSB', 'USB', 'AM', 'FM', 'PHONE'].includes(modeUpper)) return '#00FF00'; // Green
+		if (['FT8', 'FT4', 'RTTY', 'PSK', 'DIGITAL', 'DIGI'].some(m => modeUpper.includes(m))) return '#0096FF'; // Blue
+		return '#A020F0'; // Purple for other
+	}
+
+	/**
+	 * Get border color based on continent status (matching bandmap table colors)
+	 */
+	function getContinentStatusColor(cnfmdContinent, workedContinent) {
+		// Green = confirmed, Yellow = worked (not confirmed), Red = new (not worked)
+		if (cnfmdContinent) {
+			return '#28a745'; // Bootstrap success green (confirmed)
+		} else if (workedContinent) {
+			return '#ffc107'; // Bootstrap warning yellow (worked but not confirmed)
+		}
+		return '#dc3545'; // Bootstrap danger red (new/not worked)
+	}
+
+	/**
+	 * Get fill color based on DXCC status (matching bandmap table colors)
+	 */
+	function getDxccStatusColor(cnfmdDxcc, workedDxcc) {
+		// Green = confirmed, Yellow = worked (not confirmed), Red = new (not worked)
+		if (cnfmdDxcc) {
+			return '#28a745'; // Bootstrap success green (confirmed)
+		} else if (workedDxcc) {
+			return '#ffc107'; // Bootstrap warning yellow (worked but not confirmed)
+		}
+		return '#dc3545'; // Bootstrap danger red (new/not worked)
+	}
+
+	/**
+	 * Scroll to spot in the main DataTable
+	 */
+	function scrollToSpotInTable(callsign) {
+		const table = get_dtable();
+		if (!table) return;
+
+		// Find row with matching callsign
+		const row = table.rows().nodes().toArray().find(node => {
+			const callsignCell = $(node).find('td:eq(4)').text();
+			return callsignCell.includes(callsign);
+		});
+
+		if (row) {
+			// Scroll to row
+			$('html, body').animate({
+				scrollTop: $(row).offset().top - 100
+			}, 500);
+
+			// Briefly highlight the row
+			$(row).addClass('table-active');
+			setTimeout(() => {
+				$(row).removeClass('table-active');
+			}, 2000);
+		}
+	}
+
+	/**
+	 * Update DX Map with DXCC grouping
+	 */
+	function updateDxMap() {
+		if (!dxMap) {
+			console.log('DX Map: map not initialized');
+			return;
+		}
+
+		// Clear existing markers
+		dxccMarkers.forEach(marker => dxMap.removeLayer(marker));
+		spotterMarkers.forEach(marker => dxMap.removeLayer(marker));
+		connectionLines.forEach(line => dxMap.removeLayer(line));
+		dxccMarkers = [];
+		spotterMarkers = [];
+		connectionLines = [];
+
+		// Get filtered spots from DataTable
+		const table = get_dtable();
+		if (!table) {
+			return;
+		}
+
+		const filteredData = table.rows({ search: 'applied' }).data();
+		if (filteredData.length === 0) {
+			return;
+		}
+
+		// Build list of spots from filtered data
+		const spots = [];
+		filteredData.each(function(row) {
+			const freqMHzStr = row[2];
+			const freqKHz = parseFloat(freqMHzStr) * 1000;
+			const callsignHtml = row[4];
+
+			let callsign = null;
+			let match = callsignHtml.match(/db\/([^"]+)"/);
+			if (match) {
+				callsign = match[1];
+			} else {
+				const tempDiv = document.createElement('div');
+				tempDiv.innerHTML = callsignHtml;
+				callsign = tempDiv.textContent.trim();
+			}
+
+			if (!callsign) return;
+
+			const spot = cachedSpotData.find(s =>
+				s.spotted === callsign &&
+				Math.abs(s.frequency - freqKHz) < 5
+			);
+
+			if (spot && spot.dxcc_spotted?.lat && spot.dxcc_spotted?.lng) {
+				spots.push(spot);
+			}
+		});
+
+		// Group by DXCC
+		const dxccGroups = groupSpotsByDXCC(spots);
+
+		// Clear hover data for new update
+		hoverSpottersData.clear();
+
+		// Create one marker per DXCC
+		const bounds = [];
+		let markersCreated = 0;
+
+		dxccGroups.forEach(dxccInfo => {
+			const lat = parseFloat(dxccInfo.lat);
+			const lng = parseFloat(dxccInfo.lng);
+			if (isNaN(lat) || isNaN(lng)) {
+				return;
+			}
+
+			const count = dxccInfo.spots.length;
+			const countText = count > 1 ? ` x${count}` : '';
+
+			// Derive a short prefix from the first callsign
+			const firstCall = dxccInfo.spots[0]?.spotted || '';
+			const prefix = firstCall.match(/^[A-Z0-9]{1,3}/)?.[0] || dxccInfo.entity.substring(0, 3).toUpperCase();
+
+			// Find the best (most optimistic) status in the group
+			// Priority: confirmed > worked > new
+			let bestContinentConfirmed = false;
+			let bestContinentWorked = false;
+			let bestDxccConfirmed = false;
+			let bestDxccWorked = false;
+
+			dxccInfo.spots.forEach(spot => {
+				// Check continent status
+				if (spot.cnfmd_continent) {
+					bestContinentConfirmed = true;
+				}
+				if (spot.worked_continent) {
+					bestContinentWorked = true;
+				}
+
+				// Check DXCC status
+				if (spot.cnfmd_dxcc) {
+					bestDxccConfirmed = true;
+				}
+				if (spot.worked_dxcc) {
+					bestDxccWorked = true;
+				}
+			});
+
+			const borderColor = getContinentStatusColor(bestContinentConfirmed, bestContinentWorked);
+			const fillColor = getDxccStatusColor(bestDxccConfirmed, bestDxccWorked);
+
+			const marker = L.marker([lat, lng], {
+				icon: L.divIcon({
+					className: 'dx-dxcc-marker',
+					html: `<div class="dx-marker-label" data-dxcc-id="${dxccInfo.dxccId}" style="text-align: center; font-size: 10px; font-weight: bold; color: #000; background: ${fillColor}; padding: 1px 4px; border-radius: 2px; border: 1px solid ${borderColor}; box-shadow: 0 1px 2px rgba(0,0,0,0.3); white-space: nowrap;">
+						${prefix}${countText}
+					</div>`,
+					iconSize: [45, 18],
+					iconAnchor: [22, 9]
+				})
+			});
+
+			// Store spotter data for this DXCC for hover functionality (incoming spots)
+			const spottersForThisDxcc = [];
+			dxccInfo.spots.forEach(spot => {
+				if (spot.dxcc_spotter?.dxcc_id && spot.dxcc_spotter.lat && spot.dxcc_spotter.lng) {
+					spottersForThisDxcc.push({
+						dxccId: spot.dxcc_spotter.dxcc_id,
+						lat: spot.dxcc_spotter.lat,
+						lng: spot.dxcc_spotter.lng,
+						entity: spot.dxcc_spotter.entity,
+						flag: spot.dxcc_spotter.flag,
+						continent: spot.dxcc_spotter.cont,
+						spotter: spot.spotter
+					});
+				}
+			});
+
+			// Store outgoing spots data (where this DXCC is the spotter)
+			const outgoingSpots = [];
+			spots.forEach(spot => {
+				if (spot.dxcc_spotter?.dxcc_id === dxccInfo.dxccId &&
+					spot.dxcc_spotted?.dxcc_id &&
+					spot.dxcc_spotted.lat &&
+					spot.dxcc_spotted.lng) {
+					outgoingSpots.push({
+						dxccId: spot.dxcc_spotted.dxcc_id,
+						lat: spot.dxcc_spotted.lat,
+						lng: spot.dxcc_spotted.lng,
+						entity: spot.dxcc_spotted.entity,
+						flag: spot.dxcc_spotted.flag,
+						continent: spot.dxcc_spotted.cont,
+						callsign: spot.callsign
+					});
+				}
+			});
+
+			hoverSpottersData.set(String(dxccInfo.dxccId), {
+				spotters: spottersForThisDxcc,  // incoming (red)
+				outgoing: outgoingSpots,         // outgoing (green)
+				targetLat: lat,
+				targetLng: lng,
+				targetContinent: dxccInfo.continent
+			});
+
+			marker.bindPopup(createSpotTable(dxccInfo.spots, dxccInfo.entity, dxccInfo.flag), {
+				maxWidth: 500,
+				minWidth: 350
+			});
+			marker.on('popupopen', function() {
+				// Add click handlers to callsign links after popup opens
+				setTimeout(() => {
+					document.querySelectorAll('.spot-link').forEach(link => {
+						link.addEventListener('click', function(e) {
+							e.preventDefault();
+							const callsign = this.getAttribute('data-callsign');
+							scrollToSpotInTable(callsign);
+						});
+					});
+				}, 10);
+			});
+			marker.addTo(dxMap);
+			dxccMarkers.push(marker);
+			bounds.push([lat, lng]);
+			markersCreated++;
+		});
+
+		// Draw spotters if enabled
+		if (showSpotters) {
+			const spotterGroups = new Map();
+			const drawnConnections = new Set(); // Track drawn connections
+
+			spots.forEach(spot => {
+				const spotterId = spot.dxcc_spotter?.dxcc_id;
+				if (!spotterId) return;
+
+				if (!spotterGroups.has(spotterId)) {
+					spotterGroups.set(spotterId, {
+						lat: spot.dxcc_spotter.lat,
+						lng: spot.dxcc_spotter.lng,
+						entity: spot.dxcc_spotter.entity,
+						flag: spot.dxcc_spotter.flag,
+						continent: spot.dxcc_spotter.cont,
+						spotIds: new Set(),
+						callsigns: []
+					});
+				}
+
+				spotterGroups.get(spotterId).spotIds.add(spot.dxcc_spotted?.dxcc_id);
+				spotterGroups.get(spotterId).callsigns.push(spot.spotter);
+			});
+
+			// Detect bi-directional connections
+			const biDirectionalPairs = new Set();
+			spotterGroups.forEach((spotterInfo, spotterId) => {
+				spotterInfo.spotIds.forEach(spotId => {
+					const spottedGroup = spotterGroups.get(spotId);
+					if (spottedGroup && spottedGroup.spotIds.has(spotterId)) {
+						// Create consistent pair key (sorted to avoid duplicates)
+						const pairKey = [spotterId, spotId].sort().join('-');
+						biDirectionalPairs.add(pairKey);
+					}
+				});
+			});
+
+			if (biDirectionalPairs.size > 0) {
+				console.log(`Found ${biDirectionalPairs.size} bi-directional connections:`, Array.from(biDirectionalPairs));
+			}
+
+			// Draw blue dots for spotters (permanent connections shown in orange)
+			spotterGroups.forEach((spotterInfo, spotterId) => {
+				const lat = parseFloat(spotterInfo.lat);
+				const lng = parseFloat(spotterInfo.lng);
+				if (isNaN(lat) || isNaN(lng)) return;
+
+				const marker = L.circleMarker([lat, lng], {
+					radius: 5,
+					fillColor: '#ff9900',
+					color: '#fff',
+					weight: 2,
+					opacity: 1,
+					fillOpacity: 0.8
+				});
+
+				// Add tooltip showing spotter entity and count
+				const uniqueCallsigns = [...new Set(spotterInfo.callsigns)];
+				const spotterCount = uniqueCallsigns.length;
+				const tooltipText = `${spotterInfo.flag || ''} ${spotterInfo.entity}<br>${spotterCount} spotter${spotterCount !== 1 ? 's' : ''}`;
+				marker.bindTooltip(tooltipText, { permanent: false, direction: 'top' });
+
+				marker.addTo(dxMap);
+				spotterMarkers.push(marker);
+
+				// Draw lines to spotted DXCC entities (skip if same continent)
+				spotterInfo.spotIds.forEach(spotId => {
+					const dxccInfo = dxccGroups.get(spotId);
+					if (dxccInfo) {
+						// Skip line if both are in same continent
+						if (spotterInfo.continent && dxccInfo.continent &&
+							spotterInfo.continent === dxccInfo.continent) {
+							return;
+						}
+
+						const spotLat = parseFloat(dxccInfo.lat);
+						const spotLng = parseFloat(dxccInfo.lng);
+						if (!isNaN(spotLat) && !isNaN(spotLng)) {
+							// Check if this is a bi-directional connection
+							const pairKey = [spotterId, spotId].sort().join('-');
+							const isBiDirectional = biDirectionalPairs.has(pairKey);
+
+							// Only draw once for bi-directional pairs (using sorted key)
+							if (isBiDirectional && drawnConnections.has(pairKey)) {
+								return;
+							}
+							drawnConnections.add(pairKey);
+
+							// Create line with proper pane (orange for permanent spotters)
+							const line = L.polyline([[lat, lng], [spotLat, spotLng]], {
+								color: '#ff9900',
+								weight: 1,
+								opacity: 0.5,
+								dashArray: '5, 5',
+								pane: 'connectionLines'
+							});
+
+							line.addTo(dxMap);
+							connectionLines.push(line);
+
+							// Add arrow decorator(s) to show direction (spotter → spotted)
+							if (typeof L.polylineDecorator !== 'undefined') {
+								if (isBiDirectional) {
+									// Bi-directional: add two filled arrows pointing in opposite directions
+									const decorator = L.polylineDecorator(line, {
+										patterns: [
+											{
+												offset: '30%',
+												repeat: 0,
+												symbol: L.Symbol.arrowHead({
+													pixelSize: 10,
+													polygon: true,
+													pathOptions: {
+														fillColor: '#ff9900',
+														fillOpacity: 0.9,
+														color: '#cc6600',
+														weight: 1,
+														opacity: 1
+													}
+												})
+											},
+											{
+												offset: '70%',
+												repeat: 0,
+												symbol: L.Symbol.arrowHead({
+													pixelSize: 10,
+													polygon: true,
+													pathOptions: {
+														fillColor: '#ff9900',
+														fillOpacity: 0.9,
+														color: '#cc6600',
+														weight: 1,
+														opacity: 1
+													}
+												})
+											}
+										]
+									});
+									decorator.addTo(dxMap);
+									connectionLines.push(decorator);
+								} else {
+									// Uni-directional: single filled arrow
+									const decorator = L.polylineDecorator(line, {
+										patterns: [{
+											offset: '50%',
+											repeat: 0,
+											symbol: L.Symbol.arrowHead({
+												pixelSize: 10,
+												polygon: true,
+												pathOptions: {
+													fillColor: '#ff9900',
+													fillOpacity: 0.9,
+													color: '#cc6600',
+													weight: 1,
+													opacity: 1
+												}
+											})
+										}]
+									});
+									decorator.addTo(dxMap);
+									connectionLines.push(decorator);
+								}
+							}
+						}
+					}
+				});
+			});
+		}
+
+		// Set up hover event handlers only once
+		if (!hoverEventsInitialized) {
+			hoverEventsInitialized = true;
+
+			$(document).on('mouseenter', '.dx-marker-label', function() {
+				if (!dxMap) {
+					console.log('Hover: Map not initialized');
+					return;
+				}
+
+				// Clear any existing hover elements
+				hoverSpotterMarkers.forEach(marker => {
+					try { dxMap.removeLayer(marker); } catch(e) {}
+				});
+				hoverConnectionLines.forEach(line => {
+					try { dxMap.removeLayer(line); } catch(e) {}
+				});
+				hoverSpotterMarkers = [];
+				hoverConnectionLines = [];
+
+				const dxccId = String($(this).data('dxcc-id'));
+				if (!dxccId || dxccId === 'undefined') {
+					console.log('Hover: No dxccId found');
+					return;
+				}
+
+				const hoverData = hoverSpottersData.get(dxccId);
+				if (!hoverData) {
+					console.log('Hover: No hover data for', dxccId);
+					return;
+				}
+
+				// Group incoming spotters by their DXCC to avoid duplicate lines
+				const spotterMap = new Map();
+				if (hoverData.spotters && hoverData.spotters.length > 0) {
+					hoverData.spotters.forEach(spotter => {
+						if (!spotterMap.has(spotter.dxccId)) {
+							spotterMap.set(spotter.dxccId, {
+								lat: spotter.lat,
+								lng: spotter.lng,
+								entity: spotter.entity,
+								flag: spotter.flag,
+								continent: spotter.continent,
+								callsigns: []
+							});
+						}
+						spotterMap.get(spotter.dxccId).callsigns.push(spotter.spotter);
+					});
+				}
+
+				// Group outgoing spots by their DXCC
+				const outgoingMap = new Map();
+				if (hoverData.outgoing && hoverData.outgoing.length > 0) {
+					hoverData.outgoing.forEach(spotted => {
+						if (!outgoingMap.has(spotted.dxccId)) {
+							outgoingMap.set(spotted.dxccId, {
+								lat: spotted.lat,
+								lng: spotted.lng,
+								entity: spotted.entity,
+								flag: spotted.flag,
+								continent: spotted.continent,
+								callsigns: []
+							});
+						}
+						outgoingMap.get(spotted.dxccId).callsigns.push(spotted.callsign);
+					});
+				}
+
+				// Use requestAnimationFrame for smooth rendering
+				requestAnimationFrame(() => {
+					// Draw incoming spotter markers and lines (RED)
+					spotterMap.forEach((spotterInfo) => {
+						const lat = parseFloat(spotterInfo.lat);
+						const lng = parseFloat(spotterInfo.lng);
+						if (isNaN(lat) || isNaN(lng)) return;
+
+						try {
+							const marker = L.circleMarker([lat, lng], {
+								radius: 5,
+								fillColor: '#ff0000',
+								color: '#fff',
+								weight: 2,
+								opacity: 1,
+								fillOpacity: 0.8
+							});
+
+							const uniqueCallsigns = [...new Set(spotterInfo.callsigns)];
+							const spotterCount = uniqueCallsigns.length;
+							const tooltipText = `${spotterInfo.flag || ''} ${spotterInfo.entity}<br>${spotterCount} spotter${spotterCount !== 1 ? 's' : ''}<br>→ Incoming`;
+							marker.bindTooltip(tooltipText, { permanent: false, direction: 'top' });
+
+							marker.addTo(dxMap);
+							hoverSpotterMarkers.push(marker);
+
+							// Draw RED line (incoming: spotter → target)
+							const line = L.polyline([[lat, lng], [hoverData.targetLat, hoverData.targetLng]], {
+								color: '#ff0000',
+								weight: 2,
+								opacity: 0.7,
+								dashArray: '5, 5',
+								pane: 'connectionLines'
+							});
+
+							line.addTo(dxMap);
+							hoverConnectionLines.push(line);
+
+							// Add arrow decorator to show direction (spotter → spotted)
+							if (L.polylineDecorator) {
+								const decorator = L.polylineDecorator(line, {
+									patterns: [{
+										offset: '50%',
+										repeat: 0,
+										symbol: L.Symbol.arrowHead({
+											pixelSize: 10,
+											polygon: true,
+											pathOptions: {
+												fillColor: '#ff0000',
+												fillOpacity: 0.9,
+												color: '#990000',
+												weight: 1,
+												opacity: 1
+											}
+										})
+									}]
+								});
+								decorator.addTo(dxMap);
+								hoverConnectionLines.push(decorator);
+							}
+						} catch(e) {
+							console.error('Error drawing incoming hover spotter:', e);
+						}
+					});
+
+					// Draw outgoing spot markers and lines (GREEN)
+					outgoingMap.forEach((spottedInfo) => {
+						const lat = parseFloat(spottedInfo.lat);
+						const lng = parseFloat(spottedInfo.lng);
+						if (isNaN(lat) || isNaN(lng)) return;
+
+						try {
+							const marker = L.circleMarker([lat, lng], {
+								radius: 5,
+								fillColor: '#00ff00',
+								color: '#fff',
+								weight: 2,
+								opacity: 1,
+								fillOpacity: 0.8
+							});
+
+							const uniqueCallsigns = [...new Set(spottedInfo.callsigns)];
+							const spotCount = uniqueCallsigns.length;
+							const tooltipText = `${spottedInfo.flag || ''} ${spottedInfo.entity}<br>${spotCount} spot${spotCount !== 1 ? 's' : ''}<br>← Outgoing`;
+							marker.bindTooltip(tooltipText, { permanent: false, direction: 'top' });
+
+							marker.addTo(dxMap);
+							hoverSpotterMarkers.push(marker);
+
+							// Draw GREEN line (outgoing: target → spotted)
+							const line = L.polyline([[hoverData.targetLat, hoverData.targetLng], [lat, lng]], {
+								color: '#00ff00',
+								weight: 2,
+								opacity: 0.7,
+								dashArray: '5, 5',
+								pane: 'connectionLines'
+							});
+
+							line.addTo(dxMap);
+							hoverConnectionLines.push(line);
+
+							// Add arrow decorator to show direction (target → spotted)
+							if (L.polylineDecorator) {
+								const decorator = L.polylineDecorator(line, {
+									patterns: [{
+										offset: '50%',
+										repeat: 0,
+										symbol: L.Symbol.arrowHead({
+											pixelSize: 10,
+											polygon: true,
+											pathOptions: {
+												fillColor: '#00ff00',
+												fillOpacity: 0.9,
+												color: '#009900',
+												weight: 1,
+												opacity: 1
+											}
+										})
+									}]
+								});
+								decorator.addTo(dxMap);
+								hoverConnectionLines.push(decorator);
+							}
+						} catch(e) {
+							console.error('Error drawing outgoing hover spot:', e);
+						}
+					});
+				});
+			});
+
+			$(document).on('mouseleave', '.dx-marker-label', function() {
+				if (!dxMap) return;
+
+				// Use requestAnimationFrame for smooth cleanup
+				requestAnimationFrame(() => {
+					// Remove hover spotters and lines
+					hoverSpotterMarkers.forEach(marker => {
+						try { dxMap.removeLayer(marker); } catch(e) {}
+					});
+					hoverConnectionLines.forEach(line => {
+						try { dxMap.removeLayer(line); } catch(e) {}
+					});
+					hoverSpotterMarkers = [];
+					hoverConnectionLines = [];
+				});
+			});
+		}
+
+		// Fit bounds
+		if (bounds.length > 0) {
+			dxMap.fitBounds(bounds, { padding: [50, 50], maxZoom: 8 });
+		}
+
+		setTimeout(() => {
+			if (dxMap) dxMap.invalidateSize();
+		}, 100);
+	}
+
+	/**
+	 * Toggle DX Map visibility
+	 */
+	$('#dxMapButton').on('click', function() {
+		const container = $('#dxMapContainer');
+
+		if (dxMapVisible) {
+			// Hide map
+			container.slideUp(300);
+			dxMapVisible = false;
+			$(this).removeClass('btn-success').addClass('btn-primary');
+		} else {
+			// Show map
+			if (!dxMap) {
+				initDxMap();
+			}
+			container.slideDown(300, function() {
+				updateDxMap();
+				// After first show, wait 1 second and reset zoom/viewport
+				setTimeout(() => {
+					if (dxMap) {
+						const table = get_dtable();
+						if (table) {
+							const filteredData = table.rows({ search: 'applied' }).data();
+							if (filteredData.length > 0) {
+								// Collect bounds from all visible markers
+								const mapBounds = [];
+								dxccMarkers.forEach(marker => {
+									const latLng = marker.getLatLng();
+									if (latLng) mapBounds.push([latLng.lat, latLng.lng]);
+								});
+								if (mapBounds.length > 0) {
+									dxMap.fitBounds(mapBounds, { padding: [50, 50], maxZoom: 8 });
+								}
+							}
+						}
+					}
+				}, 1000);
+			});
+			dxMapVisible = true;
+			$(this).removeClass('btn-primary').addClass('btn-success');
+		}
+	});
+
+	// Update map when filters change (if map is visible)
+	const originalApplyFilters = applyFilters;
+	applyFilters = function(forceReload = false) {
+		originalApplyFilters(forceReload);
+		// Only update map if it's visible - don't waste resources
+		if (dxMapVisible && dxMap) {
+			setTimeout(updateDxMap, 500);
+		}
+	};
 
 });
 

@@ -83,8 +83,32 @@
 	var lang_bandmap_no_spots_filters = "<?= __("No spots found for selected filters"); ?>";
 	var lang_bandmap_error_loading = "<?= __("Error loading spots. Please try again."); ?>";
 
+	// DX Map translation strings
+	var lang_bandmap_draw_spotters = "<?= __("Draw Spotters"); ?>";
+	var lang_bandmap_your_qth = "<?= __("Your QTH"); ?>";
+	var lang_bandmap_callsign = "<?= __("Callsign"); ?>";
+	var lang_bandmap_frequency = "<?= __("Frequency"); ?>";
+	var lang_bandmap_mode = "<?= __("Mode"); ?>";
+	var lang_bandmap_band = "<?= __("Band"); ?>";
+
 	// Enable compact radio status display for bandmap page
 	window.CAT_COMPACT_MODE = true;
+
+	// Map configuration (matches QSO map settings)
+	var map_tile_server = '<?php echo $this->optionslib->get_option('option_map_tile_server');?>';
+	var map_tile_server_copyright = '<?php echo $this->optionslib->get_option('option_map_tile_server_copyright');?>';
+	var icon_dot_url = "<?php echo base_url();?>assets/images/dot.png";
+
+	// User gridsquare for home position marker
+	var user_gridsquare = '<?php
+		if (($this->optionslib->get_option("station_gridsquare") ?? "") != "") {
+			echo $this->optionslib->get_option("station_gridsquare");
+		} else if (null !== $this->config->item("locator")) {
+			echo $this->config->item("locator");
+		} else {
+			echo "IO91WM";
+		}
+	?>';
 </script>
 
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bandmap_list.css" />
@@ -100,7 +124,7 @@
 				<a href="<?php echo base_url(); ?>" title="<?= __("Return to Home"); ?>">
 					<img class="headerLogo me-2 bandmap-logo-fullscreen" src="<?php echo base_url(); ?>assets/logo/<?php echo $this->optionslib->get_logo('header_logo'); ?>.png" alt="Logo" style="height: 32px; width: auto; cursor: pointer;" />
 				</a>
-				<h5 class="mb-0"><?= __("DX Cluster - spot list"); ?></h5>
+				<h5 class="mb-0"><?= __("DX Cluster"); ?></h5>
 			</div>
 		<div class="d-flex align-items-center gap-3">
 			<a href="https://www.wavelog.org" target="_blank" class="fullscreen-wavelog-text" style="display: none; font-weight: 500; color: var(--bs-body-color); text-decoration: none;">www.wavelog.org</a>
@@ -391,12 +415,19 @@
 				<i class="fas fa-bolt"></i> <span class="d-none d-sm-inline"><?= __("Fresh"); ?></span>
 			</button>
 		</div>
+
+		<!-- DX Map Button (right side) -->
+		<div class="ms-auto">
+			<button class="btn btn-sm btn-primary" type="button" id="dxMapButton" title="<?= __("Open DX Map view"); ?>">
+				<i class="fas fa-map-marked-alt"></i> <span class="d-none d-sm-inline"><?= __("DX Map"); ?></span>
+			</button>
+		</div>
 	</div>
 
 	<!-- Row 5: Status Bar (70%) and Search (30%) -->
 	<div class="d-flex flex-wrap align-items-center gap-2 mb-2">
 		<!-- Status Bar - 70% -->
-		<div style="flex: 1 1 auto; min-width: 300px; max-width: 70%;">
+		<div style="flex: 1 1 0; min-width: 300px;">
 			<div class="status-bar">
 				<div class="status-bar-inner">
 					<div class="status-bar-left">
@@ -411,12 +442,20 @@
 		</div>
 
 		<!-- Search Input - 30% -->
-		<div class="input-group input-group-sm" style="flex: 0 1 auto; min-width: 200px; max-width: 400px;">
+		<div class="input-group input-group-sm" style="flex: 0 0 auto; min-width: 200px; max-width: 400px;">
 			<input type="text" class="form-control" id="spotSearchInput" placeholder="<?= __("Search spots..."); ?>" aria-label="<?= __("Search"); ?>">
 			<span class="input-group-text search-icon-clickable" id="searchIcon"><i class="fas fa-search"></i></span>
 		</div>
 	</div>
 </div>
+
+	<!-- DX Map Container (initially hidden) -->
+	<div id="dxMapContainer" style="display: none; margin-bottom: 15px;">
+		<div id="dxMap" style="height: 345px; width: 100%; border: 1px solid #dee2e6; border-radius: 4px;"></div>
+		<div style="font-size: 11px; color: #6c757d; text-align: center; margin-top: 5px; font-style: italic;">
+			<i class="fas fa-info-circle"></i> <?= __("Note: Map shows DXCC entity locations, not actual spot locations"); ?>
+		</div>
+	</div>
 
 			<div class="table-responsive">
 				<table class="table table-striped table-hover spottable">
