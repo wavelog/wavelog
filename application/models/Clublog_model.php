@@ -18,7 +18,7 @@ class Clublog_model extends CI_Model
 
 	function uploadUser($userid, $username, $password, $station_id = null) {
 		$clean_username = $this->security->xss_clean($username);
-		$clean_password = $this->security->xss_clean($password);
+		$clean_password = $password;	// Take password as it is from Database
 		$clean_userid = $this->security->xss_clean($userid);
 
 		$return = "No QSOs to upload";
@@ -108,6 +108,12 @@ class Clublog_model extends CI_Model
 									$this->mark_qsos_sent($station_row->station_id);
 									$return .=  " Clublog upload for " . $station_row->station_callsign . ' successfully sent.';
 									log_message('info', 'Clublog upload for ' . $station_row->station_callsign . ' successfully sent and marked.');
+								} elseif (preg_match_all('/403 - Access denied/', $response)) { 	// New Message from clublog. No hardcheck on 403-response, because CL doesn't follow any best-practices here.
+									$log = "Clublog returned HTML error page for " . $station_row->station_callsign . " (access denied)";
+									log_message('Error', $log);
+									$return .= $log."<br>";
+									$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
+									$this->db->query($sql,$station_row->station_id);
 								} else if (preg_match('/too many uploads already queued/', $response)) {	// New Error, Clublog has Backlog, skip for NOW
 									$return = 'Clublog upload for ' . $station_row->station_callsign . ' failed, clublog tells backlog there. Skipping whole account for this cycle. Detailled reason ' . $response.' // HTTP:'.$httpcode.' / '.$return;
 									log_message('Error', 'Clublog upload for ' . $station_row->station_callsign . ' has become a victim of clublog-Backlog. Skipping full User for this cycle.');
@@ -215,6 +221,11 @@ class Clublog_model extends CI_Model
 					$log = "The callsign '" . $station_row->station_callsign . "' does not match the user account at Clublog. 'INVALID CALLSIGN'.";
 					log_message('debug', $log);
 					$return .= $log."<br>";
+				} elseif (preg_match_all('/403 - Access denied/', $response)) { 
+					$log = "Clublog returned HTML error page for " . $station_row->station_callsign . " (possibly access denied)";
+					log_message('debug', $log);
+					$return .= $log."<br>";
+					$this->disable_sync4call($station_row->station_callsign, $station_row->station_ids);
 				} else {
 					try {
 						$cl_qsls = json_decode($response);
@@ -430,6 +441,11 @@ class Clublog_model extends CI_Model
 			$returner['status'] = 'OK';
 		} elseif (preg_match('/\bUpdated QSO\b/', $response)) {
 			$returner['status'] = 'OK';
+		} elseif (preg_match_all('/403 - Access denied/', $response)) { 	// New Message from clublog. No hardcheck on 403-response, because CL doesn't follow any best-practices here.
+			log_message('Error',"Clublog returned HTML error page for " . $station_row->station_callsign . " (access denied)");
+			$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
+			$this->db->query($sql,array($station_id));
+			$returner['status'] = $response;
 		} elseif (substr($response,0,14) == 'Login rejected') {	// Deactivate Upload for Station if Clublog rejects it due to wrong credentials (prevent being blacklisted at Clublog)
 			log_message("Error","Clublog deactivated for ".$cl_username." because of wrong creds at Realtime-Pusher");
 			$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
