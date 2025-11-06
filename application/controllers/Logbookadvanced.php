@@ -713,6 +713,10 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->view('logbookadvanced/help');
 	}
 
+	public function continentDialog() {
+		$this->load->view('logbookadvanced/continentdialog');
+	}
+
 	public function fixCqZones() {
 		if(!clubaccess_check(9)) return;
 
