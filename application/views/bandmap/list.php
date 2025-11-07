@@ -90,6 +90,7 @@
 
 	// DX Map translation strings
 	var lang_bandmap_draw_spotters = "<?= __("Draw Spotters"); ?>";
+	var lang_bandmap_extend_map = "<?= __("Extend Map"); ?>";
 	var lang_bandmap_your_qth = "<?= __("Your QTH"); ?>";
 	var lang_bandmap_callsign = "<?= __("Callsign"); ?>";
 	var lang_bandmap_frequency = "<?= __("Frequency"); ?>";

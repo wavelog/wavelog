@@ -3508,6 +3508,7 @@ $(function() {
 		legend.onAdd = function(map) {
 			const div = L.DomUtil.create("div", "legend");
 			div.innerHTML = '<input type="checkbox" id="toggleSpotters" style="outline: none;"><span> ' + lang_bandmap_draw_spotters + '</span><br>';
+			div.innerHTML += '<input type="checkbox" id="extendMapCheckbox" style="outline: none;"><span> ' + lang_bandmap_extend_map + '</span><br>';
 			return div;
 		};
 		legend.addTo(dxMap);
@@ -3516,6 +3517,21 @@ $(function() {
 			$('#toggleSpotters').on('change', function() {
 				showSpotters = this.checked;
 				updateDxMap();
+			});
+
+			$('#extendMapCheckbox').on('change', function() {
+				const mapContainer = $('#dxMap');
+				if (this.checked) {
+					// Double the height (345px -> 690px)
+					mapContainer.css('height', '690px');
+				} else {
+					// Restore original height
+					mapContainer.css('height', '345px');
+				}
+				// Invalidate map size to ensure it redraws properly
+				if (dxMap) {
+					dxMap.invalidateSize();
+				}
 			});
 		}, 100);
 	}
