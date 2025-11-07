@@ -40,6 +40,8 @@
 		var lang_dxwaterfall_comment = "<?= __("Comment: "); ?>";
 		var lang_dxwaterfall_modes_label = "<?= __("modes:"); ?>";
 		var lang_dxwaterfall_out_of_bandplan = "<?= __("OUT OF BANDPLAN"); ?>";
+		var lang_dxwaterfall_out_of_band = "<?= __("Out of band"); ?>";
+		var lang_dxwaterfall_error_shutdown = "<?= __("DX Waterfall has experienced an unexpected error and will be shut down. Please contact the Wavelog team for assistance."); ?>";
 		var lang_dxwaterfall_changing_frequency = "<?= __("Changing radio frequency..."); ?>";
 		var lang_dxwaterfall_invalid = "<?= __("INVALID"); ?>";
 		var lang_dxwaterfall_turn_on = "<?= __("Click to turn on the DX Waterfall"); ?>";
@@ -69,24 +71,24 @@
 
 	<!-- DX Waterfall Component - HTML -->
 	<div class="row dxwaterfallpane">
-	<div class="col-sm-12">
-		<div id="dxWaterfallSpot">
-		<div id="dxWaterfallSpotHeader">
-			<div id="dxWaterfallSpotLeft">
-			<span id="dxWaterfallMessage"></span>
+		<div class="col-sm-12">
+			<div id="dxWaterfallSpot">
+				<div id="dxWaterfallSpotHeader">
+					<div id="dxWaterfallSpotLeft">
+						<span id="dxWaterfallMessage"></span>
+					</div>
+					<i id="dxWaterfallPowerOnIcon" class="fas fa-power-off"></i>
+				</div>
+				<div id="dxWaterfallSpotContent"></div>
+				<i id="dxWaterfallPowerOffIcon" class="fas fa-power-off"></i>
 			</div>
-			<i id="dxWaterfallPowerOnIcon" class="fas fa-power-off"></i>
 		</div>
-		<div id="dxWaterfallSpotContent"></div>
-		<i id="dxWaterfallPowerOffIcon" class="fas fa-power-off"></i>
+		<div class="col-sm-12" id="dxWaterfallCanvasContainer" style="display: none;">
+			<canvas id="dxWaterfall"></canvas>
 		</div>
-	</div>
-	<div class="col-sm-12" id="dxWaterfallCanvasContainer" style="display: none;">
-		<canvas id="dxWaterfall"></canvas>
-	</div>
-	<div class="col-sm-12" id="dxWaterfallMenuContainer" style="display: none;">
-		<div id="dxWaterfallMenu">&nbsp;</div>
-	</div>
+		<div class="col-sm-12" id="dxWaterfallMenuContainer" style="display: none;">
+			<div id="dxWaterfallMenu">&nbsp;</div>
+		</div>
 	</div>
 
 <?php } ?>

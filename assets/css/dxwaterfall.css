@@ -1,9 +1,13 @@
 	#dxWaterfall {
 		width: 100%;
 		height: 200px;
+		min-height: 200px;
 		display: block;
 		border-left: 1px solid #000000;
 		border-right: 1px solid #000000;
+	}
+	#dxWaterfallCanvasContainer {
+		min-height: 200px;
 	}
 	#dxWaterfallSpot {
 		width: 100%;
@@ -11,12 +15,13 @@
 		color: #FFFFFF;
 		padding: 5px 8px;
 		font-family: "Consolas", "Courier New", monospace;
-		font-size: 11px;
+		font-size: 12px;
 		border-left: 1px solid #000000;
 		border-right: 1px solid #000000;
 		border-top: 1px solid #000000;
-		min-height: 20px;
-		line-height: 1.4;
+		min-height: 32px;
+		display: flex;
+		align-items: center;
 		word-wrap: break-word;
 		overflow-wrap: break-word;
 		position: relative;
@@ -89,7 +94,7 @@
 		color: #FFFFFF;
 		padding: 5px 8px;
 		font-family: "Consolas", "Courier New", monospace;
-		font-size: 11px;
+		font-size: 13px;
 		border-left: 1px solid #000000;
 		border-right: 1px solid #000000;
 		border-bottom: 1px solid #000000;
@@ -133,7 +138,7 @@
 		cursor: pointer;
 		color: #FFFFFF;
 		margin-left: 5px;
-		font-size: 11px;
+		font-size: 13px;
 		transition: color 0.2s;
 		user-select: none;
 	}
@@ -150,6 +155,9 @@
 	@keyframes blink {
 		0%, 49% { opacity: 1; }
 		50%, 100% { opacity: 0.3; }
+	}
+	.radio-icon-blink {
+		animation: blink 0.4s ease-in-out 1;
 	}
 	#dxWaterfallSpot .flag-emoji {
 		font-family: "Twemoji Country Flags", "Helvetica", "Comic Sans", sans-serif !important;

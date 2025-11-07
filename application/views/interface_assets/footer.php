@@ -1454,9 +1454,7 @@ mymap.on('mousemove', onQsoMapMove);
 		<!--- DX Waterfall Functionality --->
 		<?php if ($this->session->userdata('user_dxwaterfall_enable') == 'Y') { ?>
 		<script>
-			// Global variable definiton for dxwaterfall.js
-			var dxwaterfall_cat_debounce_lock = 0;
-			window.dxwaterfall_cat_debounce_lock = dxwaterfall_cat_debounce_lock;
+			// Global variable definition for dxwaterfall.js
 			var dxwaterfall_cat_state = "none";
 		</script>
 		<?php } ?>

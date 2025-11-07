@@ -29,18 +29,18 @@ window.FT8_FREQUENCIES = FT8_FREQUENCIES; // Export globally
  * @constant {Object}
  */
 const MODE_LISTS = {
-    PHONE: ['SSB', 'LSB', 'USB', 'AM', 'FM', 'SAM', 'DSB', 'J3E', 'A3E', 'PHONE'],
-    WSJT: ['FT8', 'FT4', 'JT65', 'JT65B', 'JT6C', 'JT6M', 'JT9', 'JT9-1',
-           'Q65', 'QRA64', 'FST4', 'FST4W', 'WSPR', 'MSK144', 'ISCAT',
-           'ISCAT-A', 'ISCAT-B', 'JS8', 'JTMS', 'FSK441', 'JT4', 'OPERA'],
-    DIGITAL_OTHER: ['RTTY', 'NAVTEX', 'SITORB', 'DIGI', 'DYNAMIC', 'RTTYFSK', 'RTTYM'],
-    PSK: ['PSK', 'QPSK', '8PSK', 'PSK31', 'PSK63', 'PSK125', 'PSK250'],
-    DIGITAL_MODES: ['OLIVIA', 'CONTESTIA', 'THOR', 'THROB', 'MFSK', 'MFSK8', 'MFSK16',
-                    'HELL', 'MT63', 'DOMINO', 'PACKET', 'PACTOR', 'CLOVER', 'AMTOR',
-                    'SITOR', 'SSTV', 'FAX', 'CHIP', 'CHIP64', 'ROS'],
-    DIGITAL_VOICE: ['DIGITALVOICE', 'DSTAR', 'C4FM', 'DMR', 'FREEDV', 'M17'],
-    DIGITAL_HF: ['VARA', 'ARDOP'],
-    CW: ['CW', 'A1A']
+	PHONE: ['SSB', 'LSB', 'USB', 'AM', 'FM', 'SAM', 'DSB', 'J3E', 'A3E', 'PHONE'],
+	WSJT: ['FT8', 'FT4', 'JT65', 'JT65B', 'JT6C', 'JT6M', 'JT9', 'JT9-1',
+		   'Q65', 'QRA64', 'FST4', 'FST4W', 'WSPR', 'MSK144', 'ISCAT',
+		   'ISCAT-A', 'ISCAT-B', 'JS8', 'JTMS', 'FSK441', 'JT4', 'OPERA'],
+	DIGITAL_OTHER: ['RTTY', 'NAVTEX', 'SITORB', 'DIGI', 'DYNAMIC', 'RTTYFSK', 'RTTYM'],
+	PSK: ['PSK', 'QPSK', '8PSK', 'PSK31', 'PSK63', 'PSK125', 'PSK250'],
+	DIGITAL_MODES: ['OLIVIA', 'CONTESTIA', 'THOR', 'THROB', 'MFSK', 'MFSK8', 'MFSK16',
+					'HELL', 'MT63', 'DOMINO', 'PACKET', 'PACTOR', 'CLOVER', 'AMTOR',
+					'SITOR', 'SSTV', 'FAX', 'CHIP', 'CHIP64', 'ROS'],
+	DIGITAL_VOICE: ['DIGITALVOICE', 'DSTAR', 'C4FM', 'DMR', 'FREEDV', 'M17'],
+	DIGITAL_HF: ['VARA', 'ARDOP'],
+	CW: ['CW', 'A1A']
 };
 
 /**
@@ -208,56 +208,60 @@ function isModeInCategoryPartial(mode, category) {
  */
 function isDigitalCategory(mode) {
 	return isModeInCategory(mode, 'WSJT') ||
-	       isModeInCategory(mode, 'DIGITAL_OTHER') ||
-	       isModeInCategory(mode, 'PSK') ||
-	       isModeInCategory(mode, 'DIGITAL_MODES') ||
-	       isModeInCategory(mode, 'DIGITAL_HF');
+		   isModeInCategory(mode, 'DIGITAL_OTHER') ||
+		   isModeInCategory(mode, 'PSK') ||
+		   isModeInCategory(mode, 'DIGITAL_MODES') ||
+		   isModeInCategory(mode, 'DIGITAL_HF');
 }
 
 /**
  * Convert frequency to ham radio band name
  * @param {number} frequency - Frequency value
  * @param {string} unit - Unit of frequency: 'Hz' (default) or 'kHz'
+ * @param {number} marginKhz - Optional margin in kHz to extend band edges (default: 0)
  * @returns {string} Band name (e.g., '20m', '2m', '70cm') or 'All' if not in a known band
  */
-function frequencyToBand(frequency, unit = 'Hz') {
+function frequencyToBand(frequency, unit = 'Hz', marginKhz = 0) {
 	// Convert to Hz if input is in kHz
 	const freqHz = (unit.toLowerCase() === 'khz') ? frequency * 1000 : parseInt(frequency);
 
-	// MF/HF Bands
-	if (freqHz >= 1800000 && freqHz <= 2000000) return '160m';
-	if (freqHz >= 3500000 && freqHz <= 4000000) return '80m';
-	if (freqHz >= 5250000 && freqHz <= 5450000) return '60m';
-	if (freqHz >= 7000000 && freqHz <= 7300000) return '40m';
-	if (freqHz >= 10100000 && freqHz <= 10150000) return '30m';
-	if (freqHz >= 14000000 && freqHz <= 14350000) return '20m';
-	if (freqHz >= 18068000 && freqHz <= 18168000) return '17m';
-	if (freqHz >= 21000000 && freqHz <= 21450000) return '15m';
-	if (freqHz >= 24890000 && freqHz <= 24990000) return '12m';
-	if (freqHz >= 28000000 && freqHz <= 29700000) return '10m';
+	// Convert margin to Hz (ensure non-negative)
+	const marginHz = Math.max(0, marginKhz) * 1000;
 
-	// VHF Bands
-	if (freqHz >= 50000000 && freqHz <= 54000000) return '6m';
-	if (freqHz >= 70000000 && freqHz <= 71000000) return '4m';
-	if (freqHz >= 144000000 && freqHz <= 148000000) return '2m';
-	if (freqHz >= 222000000 && freqHz <= 225000000) return '1.25m';
+	// MF/HF Bands (with margin)
+	if (freqHz >= (1800000 - marginHz) && freqHz <= (2000000 + marginHz)) return '160m';
+	if (freqHz >= (3500000 - marginHz) && freqHz <= (4000000 + marginHz)) return '80m';
+	if (freqHz >= (5250000 - marginHz) && freqHz <= (5450000 + marginHz)) return '60m';
+	if (freqHz >= (7000000 - marginHz) && freqHz <= (7300000 + marginHz)) return '40m';
+	if (freqHz >= (10100000 - marginHz) && freqHz <= (10150000 + marginHz)) return '30m';
+	if (freqHz >= (14000000 - marginHz) && freqHz <= (14350000 + marginHz)) return '20m';
+	if (freqHz >= (18068000 - marginHz) && freqHz <= (18168000 + marginHz)) return '17m';
+	if (freqHz >= (21000000 - marginHz) && freqHz <= (21450000 + marginHz)) return '15m';
+	if (freqHz >= (24890000 - marginHz) && freqHz <= (24990000 + marginHz)) return '12m';
+	if (freqHz >= (28000000 - marginHz) && freqHz <= (29700000 + marginHz)) return '10m';
 
-	// UHF Bands
-	if (freqHz >= 420000000 && freqHz <= 450000000) return '70cm';
-	if (freqHz >= 902000000 && freqHz <= 928000000) return '33cm';
-	if (freqHz >= 1240000000 && freqHz <= 1300000000) return '23cm';
+	// VHF Bands (with margin)
+	if (freqHz >= (50000000 - marginHz) && freqHz <= (54000000 + marginHz)) return '6m';
+	if (freqHz >= (70000000 - marginHz) && freqHz <= (71000000 + marginHz)) return '4m';
+	if (freqHz >= (144000000 - marginHz) && freqHz <= (148000000 + marginHz)) return '2m';
+	if (freqHz >= (222000000 - marginHz) && freqHz <= (225000000 + marginHz)) return '1.25m';
 
-	// SHF Bands
-	if (freqHz >= 2300000000 && freqHz <= 2450000000) return '13cm';
-	if (freqHz >= 3300000000 && freqHz <= 3500000000) return '9cm';
-	if (freqHz >= 5650000000 && freqHz <= 5925000000) return '6cm';
-	if (freqHz >= 10000000000 && freqHz <= 10500000000) return '3cm';
-	if (freqHz >= 24000000000 && freqHz <= 24250000000) return '1.25cm';
-	if (freqHz >= 47000000000 && freqHz <= 47200000000) return '6mm';
-	if (freqHz >= 75500000000 && freqHz <= 81000000000) return '4mm';
-	if (freqHz >= 119980000000 && freqHz <= 120020000000) return '2.5mm';
-	if (freqHz >= 142000000000 && freqHz <= 149000000000) return '2mm';
-	if (freqHz >= 241000000000 && freqHz <= 250000000000) return '1mm';
+	// UHF Bands (with margin)
+	if (freqHz >= (420000000 - marginHz) && freqHz <= (450000000 + marginHz)) return '70cm';
+	if (freqHz >= (902000000 - marginHz) && freqHz <= (928000000 + marginHz)) return '33cm';
+	if (freqHz >= (1240000000 - marginHz) && freqHz <= (1300000000 + marginHz)) return '23cm';
+
+	// SHF Bands (with margin)
+	if (freqHz >= (2300000000 - marginHz) && freqHz <= (2450000000 + marginHz)) return '13cm';
+	if (freqHz >= (3300000000 - marginHz) && freqHz <= (3500000000 + marginHz)) return '9cm';
+	if (freqHz >= (5650000000 - marginHz) && freqHz <= (5925000000 + marginHz)) return '6cm';
+	if (freqHz >= (10000000000 - marginHz) && freqHz <= (10500000000 + marginHz)) return '3cm';
+	if (freqHz >= (24000000000 - marginHz) && freqHz <= (24250000000 + marginHz)) return '1.25cm';
+	if (freqHz >= (47000000000 - marginHz) && freqHz <= (47200000000 + marginHz)) return '6mm';
+	if (freqHz >= (75500000000 - marginHz) && freqHz <= (81000000000 + marginHz)) return '4mm';
+	if (freqHz >= (119980000000 - marginHz) && freqHz <= (120020000000 + marginHz)) return '2.5mm';
+	if (freqHz >= (142000000000 - marginHz) && freqHz <= (149000000000 + marginHz)) return '2mm';
+	if (freqHz >= (241000000000 - marginHz) && freqHz <= (250000000000 + marginHz)) return '1mm';
 
 	return 'All';
 }
@@ -266,10 +270,11 @@ function frequencyToBand(frequency, unit = 'Hz') {
  * Alias for backward compatibility - converts frequency in kHz to band name
  * @deprecated Use frequencyToBand(frequency, 'kHz') instead
  * @param {number} freq_khz - Frequency in kilohertz
+ * @param {number} marginKhz - Optional margin in kHz to extend band edges (default: 0)
  * @returns {string} Band name or 'All'
  */
-function frequencyToBandKhz(freq_khz) {
-	return frequencyToBand(freq_khz, 'kHz');
+function frequencyToBandKhz(freq_khz, marginKhz = 0) {
+	return frequencyToBand(freq_khz, 'kHz', marginKhz);
 }
 
 /**
@@ -627,9 +632,9 @@ function isDigiMode(mode) {
 	if (!mode) return false;
 	// Check all digital categories from MODE_LISTS
 	return isDigitalCategory(mode) ||
-	       isModeInCategory(mode, 'DIGITAL_VOICE') ||
-	       mode.toLowerCase() === 'digi' ||
-	       mode.toLowerCase() === 'data';
+		   isModeInCategory(mode, 'DIGITAL_VOICE') ||
+		   mode.toLowerCase() === 'digi' ||
+		   mode.toLowerCase() === 'data';
 }
 
 /**
@@ -651,7 +656,6 @@ function classifyMode(spot) {
 
 	var mode = spot.mode.toUpperCase();
 	var message = (spot.message || '').toUpperCase();
-	var confidence = 1; // 1 = high confidence, 0.5 = medium, 0.3 = low
 
 	// Check message first for higher accuracy
 	var messageResult = classifyFromMessage(message);
@@ -793,30 +797,30 @@ function continentToRegion(continent) {
 function LatLng2Loc(y, x, num) {
 	if (x<-180) {x=x+360;}
 	if (x>180) {x=x-360;}
-	var yqth, yi, yk, ydiv, yres, ylp, y;
-    var ycalc = new Array(0,0,0);
-    var yn    = new Array(0,0,0,0,0,0,0);
+	var yi, yk, ydiv, yres, ylp, y;
+	var ycalc = new Array(0,0,0);
+	var yn    = new Array(0,0,0,0,0,0,0);
 
-    var ydiv_arr=new Array(10, 1, 1/24, 1/240, 1/240/24);
-    ycalc[0] = (x + 180)/2;
-    ycalc[1] =  y +  90;
+	var ydiv_arr=new Array(10, 1, 1/24, 1/240, 1/240/24);
+	ycalc[0] = (x + 180)/2;
+	ycalc[1] =  y +  90;
 
-    for (yi = 0; yi < 2; yi++) {
-	for (yk = 0; yk < 5; yk++) {
-	    ydiv = ydiv_arr[yk];
-	    yres = ycalc[yi] / ydiv;
-	    ycalc[yi] = yres;
-	    if (ycalc[yi] > 0) ylp = Math.floor(yres); else ylp = Math.ceil(yres);
-	    ycalc[yi] = (ycalc[yi] - ylp) * ydiv;
-	    yn[2*yk + yi] = ylp;
+	for (yi = 0; yi < 2; yi++) {
+		for (yk = 0; yk < 5; yk++) {
+			ydiv = ydiv_arr[yk];
+			yres = ycalc[yi] / ydiv;
+			ycalc[yi] = yres;
+			if (ycalc[yi] > 0) ylp = Math.floor(yres); else ylp = Math.ceil(yres);
+			ycalc[yi] = (ycalc[yi] - ylp) * ydiv;
+			yn[2*yk + yi] = ylp;
+		}
 	}
-    }
 
-    var qthloc="";
-    if (num >= 2) qthloc+=String.fromCharCode(yn[0] + 0x41) + String.fromCharCode(yn[1] + 0x41);
-    if (num >= 4) qthloc+=String.fromCharCode(yn[2] + 0x30) + String.fromCharCode(yn[3] + 0x30);
-    if (num >= 6) qthloc+=String.fromCharCode(yn[4] + 0x41) + String.fromCharCode(yn[5] + 0x41);
-    if (num >= 8) qthloc+=' ' + String.fromCharCode(yn[6] + 0x30) + String.fromCharCode(yn[7] + 0x30);
-    if (num >= 10) qthloc+=String.fromCharCode(yn[8] + 0x61) + String.fromCharCode(yn[9] + 0x61);
+	var qthloc="";
+	if (num >= 2) qthloc+=String.fromCharCode(yn[0] + 0x41) + String.fromCharCode(yn[1] + 0x41);
+	if (num >= 4) qthloc+=String.fromCharCode(yn[2] + 0x30) + String.fromCharCode(yn[3] + 0x30);
+	if (num >= 6) qthloc+=String.fromCharCode(yn[4] + 0x41) + String.fromCharCode(yn[5] + 0x41);
+	if (num >= 8) qthloc+=' ' + String.fromCharCode(yn[6] + 0x30) + String.fromCharCode(yn[7] + 0x30);
+	if (num >= 10) qthloc+=String.fromCharCode(yn[8] + 0x61) + String.fromCharCode(yn[9] + 0x61);
 	return qthloc;
 }

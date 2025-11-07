@@ -572,7 +572,26 @@ $(document).ready(function() {
             }
         }
 
-        cat2UI($mode,catmode(data.mode),false,false,function(d){setRst($mode.val())});
+        // Track previous mode to detect changes
+        var previousMode = $mode.data('catValue');
+        var newMode = catmode(data.mode);
+
+        // Only refresh waterfall if mode actually changed (and both values are defined)
+        var modeChanged = previousMode && previousMode !== newMode;
+
+        cat2UI($mode,newMode,false,false,function(d){setRst($mode.val())});
+
+        // Notify DX Waterfall of mode change for sideband display update
+        // Only refresh if mode actually changed (not on initial undefined → value transition)
+        if (modeChanged && typeof dxWaterfall !== 'undefined' && dxWaterfall.refresh) {
+            // Update virtual CAT state
+            if (typeof window.catState !== 'undefined' && window.catState !== null) {
+                window.catState.mode = newMode;
+            }
+            // Refresh waterfall to update bandwidth indicator
+            dxWaterfall.refresh();
+        }
+
         cat2UI($('#sat_name'),data.satname,false,false);
         cat2UI($('#sat_mode'),data.satmode,false,false);
         cat2UI($('#transmit_power'),data.power,false,false);
@@ -632,7 +651,7 @@ $(document).ready(function() {
                     clearTimeout(updateFromCAT_lockTimeout);
                 }
                 updateFromCAT_lockTimeout = setTimeout(function() {
-                    console.warn('CAT lock timeout - forcing release');
+                    // Lock timeout - force release after 10 seconds
                     updateFromCAT_lock = 0;
                 }, CAT_CONFIG.LOCK_TIMEOUT_MS);
 
