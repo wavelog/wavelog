@@ -1240,4 +1240,20 @@ class Logbookadvanced_model extends CI_Model {
 
 		$query = $this->db->query($sql, array(json_decode($ids, true), $this->session->userdata('user_id')));
     }
+
+	public function check_missing_continent() {
+		// get all records with no COL_CONT
+		$this->db->trans_start();
+		$sql = "UPDATE " . $this->config->item('table_name') . "
+			JOIN dxcc_entities ON " . $this->config->item('table_name') . ".col_dxcc = dxcc_entities.adif
+			JOIN station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
+			SET col_cont = dxcc_entities.cont
+			WHERE COALESCE(" . $this->config->item('table_name') . ".col_cont, '') = '' and station_profile.user_id = ?";
+
+		$query = $this->db->query($sql, array($this->session->userdata('user_id')));
+		$result = $this->db->affected_rows();
+		$this->db->trans_complete();
+
+		return $result;
+	}
 }

@@ -801,4 +801,10 @@ class Logbookadvanced extends CI_Controller {
 		header("Content-Type: application/json");
 		print json_encode($q);
 	}
+
+	public function fixContinent() {
+		$this->load->model('logbookadvanced_model');
+		$result = $this->logbookadvanced_model->check_missing_continent();
+		return $result;
+	}
 }

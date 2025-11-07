@@ -31,6 +31,8 @@
 	let lang_gen_advanced_logbook_select_only_one_row_quickfilter = '<?= __("Only 1 row can be selected for Quickfilter!"); ?>';
 	let lang_gen_advanced_logbook_select_at_least_one_row_quickfilter = '<?= __("You need to select a row to use the Quickfilters!"); ?>';
 	let lang_gen_advanced_logbook_select_at_least_one_row_qslcard = '<?= __("You need to select a least 1 row to display a QSL card!"); ?>';
+	let lang_gen_advanced_logbook_continents_updated = '<?= __("Continents updated successfully!"); ?>';
+	let lang_gen_advanced_logbook_problem_fixing_continents = '<?= __("There was a problem fixing Continents."); ?>';
 	let lang_gen_advanced_logbook_error = '<?= __("ERROR"); ?>';
 	let lang_gen_advanced_logbook_success = '<?= __("SUCCESS"); ?>';
 	let lang_gen_advanced_logbook_info = '<?= __("INFO"); ?>';
@@ -38,6 +40,7 @@
 	let lang_gen_advanced_logbook_qsl_card = '<?= __("QSL Card"); ?>';
 	let lang_gen_advanced_logbook_close = '<?= __("Close"); ?>';
 	let lang_gen_advanced_logbook_save = '<?= __("Save"); ?>';
+	let lang_gen_advanced_logbook_update_now = '<?= __("Update now"); ?>';
 	let lang_gen_advanced_logbook_options = '<?= __("'Options for the Advanced Logbook'"); ?>';
 	let lang_gen_advanced_logbook_label_print_error = '<?= __("Something went wrong with label print. Go to labels and check if you have defined a label, and that it is set for print!"); ?>';
 	let lang_gen_advanced_logbook_select_at_least_one_row = '<?= __("You need to select a least 1 row!"); ?>';

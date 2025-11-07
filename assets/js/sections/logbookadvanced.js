@@ -1119,12 +1119,10 @@ $(document).ready(function () {
 					message: html,
 					buttons: [
 					{
-						label: 'Update now',
+						label: lang_gen_advanced_logbook_update_now,
 						cssClass: 'btn btn-sm btn-primary',
-						id: 'closeButton',
 						action: function (dialogItself) {
-							$('#optionButton').prop("disabled", false);
-							dialogItself.close();
+							runContinentFix();
 						}
 					},
 					{
@@ -1132,17 +1130,34 @@ $(document).ready(function () {
 						cssClass: 'btn btn-sm btn-secondary',
 						id: 'closeButton',
 						action: function (dialogItself) {
-							$('#optionButton').prop("disabled", false);
 							dialogItself.close();
 						}
 					}],
-					onhide: function(dialogRef){
-						$('#optionButton').prop("disabled", false);
-					},
 				});
 			}
 		});
 	});
+
+	function runContinentFix() {
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/fixContinent',
+			type: 'POST',
+			success: function (response) {
+				BootstrapDialog.alert({
+					title: lang_gen_advanced_logbook_success,
+					message: lang_gen_advanced_logbook_continents_updated,
+					type: BootstrapDialog.TYPE_SUCCESS
+				});
+			},
+			error: function () {
+				BootstrapDialog.alert({
+					title: lang_gen_advanced_logbook_error,
+					message: lang_gen_advanced_logbook_problem_fixing_continents,
+					type: BootstrapDialog.TYPE_DANGER
+				});
+			}
+		});
+	}
 
 	$('#fixItuZones').click(function (event) {
 		const id_list = getSelectedIds();
