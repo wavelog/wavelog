@@ -32,7 +32,7 @@ var DX_WATERFALL_CONSTANTS = {
     VERSION: '0.9.3', // DX Waterfall version (keep in sync with @version in file header)
 
     // Debug and logging
-    DEBUG_MODE: false, // Set to true for verbose logging, false for production
+    DEBUG_MODE: true, // Set to true for verbose logging, false for production
 
     // Timing and debouncing
     DEBOUNCE: {
@@ -330,8 +330,16 @@ var DXWaterfallStateMachine = {
         if (this.stateTimer) {
             clearTimeout(this.stateTimer);
         }
+
         this.stateTimer = setTimeout(function() {
-            DX_WATERFALL_UTILS.log.warn('[State Machine] State timeout: ' + self.currentState + ' → ' + timeoutState);
+            // TUNING → READY timeout is normal (fallback when radio doesn't respond quickly)
+            // Only log warnings for other timeout transitions that indicate problems
+            var isNormalTimeout = (self.currentState === 'tuning' && timeoutState === 'ready');
+
+            if (!isNormalTimeout) {
+                DX_WATERFALL_UTILS.log.warn('[State Machine] State timeout: ' + self.currentState + ' → ' + timeoutState);
+            }
+
             self.setState(timeoutState);
         }, ms);
     },
@@ -483,11 +491,21 @@ function handleCATFrequencyUpdate(radioFrequency, updateCallback) {
                 dxWaterfall.frequencyConfirmTimeoutId = null;
             }
 
+            // Clear state machine timeout (prevents fallback timeout warning)
+            if (DXWaterfallStateMachine.stateTimer) {
+                clearTimeout(DXWaterfallStateMachine.stateTimer);
+                DXWaterfallStateMachine.stateTimer = null;
+            }
+
             dxWaterfall.targetFrequencyConfirmAttempts = 0;
             dxWaterfall.targetFrequencyHz = null;
 
-            // Transition from TUNING to READY state
-            DXWaterfallStateMachine.setState(DX_WATERFALL_CONSTANTS.STATES.READY);
+            // Wait 2 render frames before transitioning to READY
+            // This allows marker animation to complete behind the TUNING overlay
+            dxWaterfall.readyTransitionTimer = setTimeout(function() {
+                dxWaterfall.readyTransitionTimer = null;
+                DXWaterfallStateMachine.setState(DX_WATERFALL_CONSTANTS.STATES.READY);
+            }, DX_WATERFALL_CONSTANTS.VISUAL.STATIC_NOISE_REFRESH_MS * 2);
 
             shouldSkipStaleUpdate = false; // Proceed normally - radio is at correct frequency
         } else {
@@ -1338,6 +1356,7 @@ var dxWaterfall = {
 
     // Error handling
     errorShutdownTimer: null, // Timer for auto-shutdown after error state
+    readyTransitionTimer: null, // Timer for delayed TUNING → READY transition
 
     // Band plan management
     bandPlans: null, // Cached band plans from database
@@ -2219,9 +2238,9 @@ var dxWaterfall = {
             this.cache.middleFreq = frequencyKHz;
 
             // ========================================
-            // TRANSITION TO TUNING STATE
+            // TRANSITION TO TUNING STATE (only if not already tuning)
             // ========================================
-            if (isCATAvailable()) {
+            if (isCATAvailable() && DXWaterfallStateMachine.getState() !== DX_WATERFALL_CONSTANTS.STATES.TUNING) {
                 DXWaterfallStateMachine.setState(DX_WATERFALL_CONSTANTS.STATES.TUNING, {
                     targetFrequency: frequencyKHz,
                     reason: 'spot_click'
@@ -5778,6 +5797,12 @@ var dxWaterfall = {
             this.errorShutdownTimer = null;
         }
 
+        // Clear ready transition timer if active
+        if (this.readyTransitionTimer) {
+            clearTimeout(this.readyTransitionTimer);
+            this.readyTransitionTimer = null;
+        }
+
         // Clear all state machine timers
         if (DXWaterfallStateMachine.stateTimer) {
             clearTimeout(DXWaterfallStateMachine.stateTimer);
@@ -6744,7 +6769,16 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
 
     // Function to turn on DX Waterfall (shared by icon and message click)
     var turnOnWaterfall = function(e) {
+        // DEBUG: Log what triggered power-on
+        DX_WATERFALL_UTILS.log.debug('[Power Control] Power-ON triggered', {
+            currentState: DXWaterfallStateMachine.getState(),
+            waterfallActive: waterfallActive,
+            eventType: e ? e.type : 'unknown',
+            eventTarget: e ? e.target : 'unknown'
+        });
+        
         if (waterfallActive) {
+            DX_WATERFALL_UTILS.log.debug('[Power Control] Already active, ignoring');
             return; // Already active, prevent double initialization
         }
 
@@ -6815,13 +6849,23 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
     };
 
     // Click anywhere on the header div to turn on DX Waterfall
-    $('#dxWaterfallSpotHeader').on('click', turnOnWaterfall);
+    // Use .off().on() to prevent double-binding if script loads multiple times
+    $('#dxWaterfallSpotHeader').off('click').on('click', turnOnWaterfall);
 
     // Click on power-off icon to turn off DX Waterfall
-    $('#dxWaterfallPowerOffIcon').on('click', function(e) {
+    $('#dxWaterfallPowerOffIcon').off('click').on('click', function(e) {
         e.stopPropagation(); // Prevent triggering parent click
+        
+        // DEBUG: Log what triggered power-off
+        DX_WATERFALL_UTILS.log.debug('[Power Control] Power-OFF triggered', {
+            currentState: DXWaterfallStateMachine.getState(),
+            waterfallActive: waterfallActive,
+            eventType: e ? e.type : 'unknown',
+            eventTarget: e ? e.target : 'unknown'
+        });
 
         if (!waterfallActive) {
+            DX_WATERFALL_UTILS.log.debug('[Power Control] Already inactive, ignoring');
             return; // Already inactive
         }
 
