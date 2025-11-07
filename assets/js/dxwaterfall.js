@@ -32,7 +32,7 @@ var DX_WATERFALL_CONSTANTS = {
     VERSION: '0.9.3', // DX Waterfall version (keep in sync with @version in file header)
 
     // Debug and logging
-    DEBUG_MODE: true, // Set to true for verbose logging, false for production
+    DEBUG_MODE: false, // Set to true for verbose logging, false for production
 
     // Timing and debouncing
     DEBOUNCE: {
@@ -6789,6 +6789,7 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
         $('#dxWaterfallSpotHeader').addClass('hidden');
         $('#dxWaterfallSpotContent').addClass('active');
         $('#dxWaterfallPowerOffIcon').addClass('active');
+        $('#dxWaterfallHelpIconOff').addClass('active');
 
         // Show waterfall and menu
         $('#dxWaterfallCanvasContainer').show();
@@ -6887,6 +6888,7 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
         $('#dxWaterfallSpotHeader').removeClass('hidden');
         $('#dxWaterfallSpotContent').removeClass('active');
         $('#dxWaterfallPowerOffIcon').removeClass('active');
+        $('#dxWaterfallHelpIconOff').removeClass('active');
 
         // Hide waterfall and menu
         $('#dxWaterfallCanvasContainer').hide();

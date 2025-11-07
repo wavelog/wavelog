@@ -77,9 +77,15 @@
 					<div id="dxWaterfallSpotLeft">
 						<span id="dxWaterfallMessage"></span>
 					</div>
+					<a id="dxWaterfallHelpIcon" href="https://github.com/wavelog/wavelog/wiki/DXWaterfall" target="_blank" rel="noopener noreferrer" title="<?= __("DX Waterfall Help"); ?>">
+						<i class="fas fa-question-circle"></i>
+					</a>
 					<i id="dxWaterfallPowerOnIcon" class="fas fa-power-off"></i>
 				</div>
 				<div id="dxWaterfallSpotContent"></div>
+				<a id="dxWaterfallHelpIconOff" href="https://github.com/wavelog/wavelog/wiki/DXWaterfall" target="_blank" rel="noopener noreferrer" title="<?= __("DX Waterfall Help"); ?>">
+					<i class="fas fa-question-circle"></i>
+				</a>
 				<i id="dxWaterfallPowerOffIcon" class="fas fa-power-off"></i>
 			</div>
 		</div>
