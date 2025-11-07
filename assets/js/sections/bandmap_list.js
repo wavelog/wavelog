@@ -2219,7 +2219,7 @@ $(function() {
 				clearInterval(check_pong);
 				let cl = message;  // Use the message object with all fields
 
-			let newWindow = window.open(base_url + 'index.php/qso?manual=1', '_blank');
+			let newWindow = window.open(base_url + 'index.php/qso?manual=0', '_blank');
 
 			if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
 				// Pop-up was blocked - show toast notification
