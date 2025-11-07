@@ -1256,4 +1256,34 @@ class Logbookadvanced_model extends CI_Model {
 
 		return $result;
 	}
+
+	public function update_distances_batch() {
+		ini_set('memory_limit', '-1');
+
+		$sql = "SELECT COL_PRIMARY_KEY, station_profile.station_gridsquare, COL_GRIDSQUARE, COL_VUCC_GRIDS FROM " . $this->config->item('table_name') . "
+			JOIN station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
+			WHERE COL_GRIDSQUARE is NOT NULL
+			AND (COL_GRIDSQUARE != '' OR COL_GRIDSQUARE is null)
+			AND station_profile.user_id = ?";
+
+		$query = $this->db->query($sql, array($this->session->userdata('user_id')));
+
+		if ($query->num_rows() > 0) {
+			if (!$this->load->is_loaded('Qra')) {
+				$this->load->library('Qra');
+			}
+			foreach ($query->result() as $row) {
+				$ant_path = $row->COL_ANT_PATH ?? null;
+				$distance = $this->qra->distance($row->station_gridsquare, $row->COL_GRIDSQUARE, 'K', $ant_path);
+				$data = array(
+					'COL_DISTANCE' => $distance,
+				);
+
+				$this->db->where(array('COL_PRIMARY_KEY' => $row->COL_PRIMARY_KEY));
+				$this->db->update($this->config->item('table_name'), $data);
+			}
+		}
+
+		return true;
+	}
 }

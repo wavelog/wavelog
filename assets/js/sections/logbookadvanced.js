@@ -1145,7 +1145,7 @@ $(document).ready(function () {
 			success: function (response) {
 				BootstrapDialog.alert({
 					title: lang_gen_advanced_logbook_success,
-					message: lang_gen_advanced_logbook_continents_updated,
+					message: lang_gen_advanced_logbook_continents_updated + ' ' + response.updated + ' ' + lang_gen_advanced_logbook_records_updated,
 					type: BootstrapDialog.TYPE_SUCCESS
 				});
 			},
@@ -1153,6 +1153,59 @@ $(document).ready(function () {
 				BootstrapDialog.alert({
 					title: lang_gen_advanced_logbook_error,
 					message: lang_gen_advanced_logbook_problem_fixing_continents,
+					type: BootstrapDialog.TYPE_DANGER
+				});
+			}
+		});
+	}
+
+	$('#updateDistances').click(function (event) {
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/distanceDialog',
+			type: 'post',
+			success: function (html) {
+				BootstrapDialog.show({
+					title: lang_gen_advanced_logbook_update_distances,
+					size: BootstrapDialog.SIZE_NORMAL,
+					cssClass: 'options',
+					nl2br: false,
+					message: html,
+					buttons: [
+					{
+						label: lang_gen_advanced_logbook_update_now,
+						cssClass: 'btn btn-sm btn-primary',
+						action: function (dialogItself) {
+							runUpdateDistancesFix();
+						}
+					},
+					{
+						label: lang_admin_close,
+						cssClass: 'btn btn-sm btn-secondary',
+						id: 'closeButton',
+						action: function (dialogItself) {
+							dialogItself.close();
+						}
+					}],
+				});
+			}
+		});
+	});
+
+	function runUpdateDistancesFix() {
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/updateDistances',
+			type: 'POST',
+			success: function (response) {
+				BootstrapDialog.alert({
+					title: lang_gen_advanced_logbook_success,
+					message: lang_gen_advanced_logbook_distances_updated,
+					type: BootstrapDialog.TYPE_SUCCESS
+				});
+			},
+			error: function () {
+				BootstrapDialog.alert({
+					title: lang_gen_advanced_logbook_error,
+					message: lang_gen_advanced_logbook_problem_updating_distances,
 					type: BootstrapDialog.TYPE_DANGER
 				});
 			}

@@ -51,6 +51,10 @@
 	let lang_gen_advanced_logbook_select_at_least_one_row_callbook = '<?= __("You need to select a least 1 row to update from callbook!"); ?>';
 	let lang_gen_advanced_logbook_an_error_ocurred_while_making_request = '<?= __("An error ocurred while making the request"); ?>';
 	let lang_gen_advanced_logbook_select_at_least_one_location = '<?= __("You need to select at least 1 location to do a search!"); ?>';
+	let lang_gen_advanced_logbook_update_distances = '<?= __("Update Distances"); ?>';
+	let lang_gen_advanced_logbook_records_updated = '<?= __("records updated."); ?>';
+	let lang_gen_advanced_logbook_problem_updating_distances = '<?= __("There was a problem updating distances."); ?>';
+	let lang_gen_advanced_logbook_distances_updated = '<?= __("Distances updated successfully!"); ?>';
 
     let homegrid ='<?php echo strtoupper($homegrid[0]); ?>';
     <?php
