@@ -236,7 +236,7 @@ async function fill_if_empty(field, data) {
 function qso_delete(id, call) {
     BootstrapDialog.confirm({
         title: lang_general_word_danger,
-        message: lang_qso_delete_warning + " " + call + '?' ,
+        message: lang_qso_delete_warning + call + '?' ,
         type: BootstrapDialog.TYPE_DANGER,
         closable: true,
         draggable: true,

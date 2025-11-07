@@ -65,7 +65,7 @@
                                         <a target="_blank"
                                             href="<?php echo site_url('visitor')."/".$row->public_slug; ?>"
                                             class="btn btn-outline-primary btn-sm"><i class="fas fa-globe"
-                                                title="<?= __("View Public Page for Logbook") . ": " . $row->logbook_name;?>"></i>
+                                                title="<?= __("View Public Page for Logbook: ") . $row->logbook_name;?>"></i>
                                         </a>
 										<button id="<?php echo $row->logbook_id; ?>" class="deletePublicSlug btn btn-outline-danger btn-sm" cnftext="Are you sure you want to delete the public slug?"><i class="fas fa-trash-alt"></i></button>
 										<button id="<?php echo $row->logbook_id; ?>" class="editExportmapOptions btn btn-outline-primary btn-sm"><i class="fas fa-globe-europe"></i></button>
@@ -115,7 +115,7 @@
 	<div class="alert alert-danger" role="alert">
 		  <span class="badge badge-pill badge-warning"><?= __("Warning"); ?></span> <?= __("Due to recent changes within Wavelog you need to reassign QSOs to your station profiles."); ?>
 		</br>
-		<?= __("Please reassign them at")." "; ?> <a href="<?php echo site_url('maintenance/'); ?>" class="btn btn-warning"><i class="fas fa-sync"></i><?= __("Admin") . "/" . __("Maintenance"); ?></a>
+		<?= __("Please reassign them at "); ?> <a href="<?php echo site_url('maintenance/'); ?>" class="btn btn-warning"><i class="fas fa-sync"></i><?= __("Admin") . "/" . __("Maintenance"); ?></a>
 	</div>
 <?php } ?>
 

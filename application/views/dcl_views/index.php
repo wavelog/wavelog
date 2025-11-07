@@ -77,7 +77,7 @@
 		</div>
 
 		<div class="card-body">
-            		<?php if (($next_run ?? '') != '') { echo "<p>".__("The next automatic sync with DCL will happen at").": ".$next_run."</p>"; } ?>
+            		<?php if (($next_run ?? '') != '') { echo "<p>".__("The next automatic sync with DCL will happen at: ").$next_run."</p>"; } ?>
 			<button class="btn btn-outline-success" hx-on:click="document.getElementById('dcl_manual_results').innerHTML = '';" hx-get="<?php echo site_url('dcl/dcl_upload'); ?>" hx-indicator="#lotw-sync-running" hx-target="#dcl_manual_results">
             <?= __("Manual Sync"); ?>
 			</button>

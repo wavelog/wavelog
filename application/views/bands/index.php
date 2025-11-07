@@ -158,7 +158,7 @@ $wwff = 0;
 						var lang_options_bands_edit = '<?= __("Edit Band"); ?>';
 						var lang_options_bands_create = '<?= __("Create a band"); ?>';
 						var lang_admin_close = '<?= __("Close"); ?>';
-						var lang_options_bands_delete_warning = '<?= __("Warning! Are you sure you want to delete the following band:")." "; ?>';
+						var lang_options_bands_delete_warning = '<?= __("Warning! Are you sure you want to delete the following band: "); ?>';
 						var lang_options_bands_activateall_warning = '<?= __("Warning! Are you sure you want to activate all bands?"); ?>';
 						var lang_options_bands_deactivateall_warning = '<?= __("Warning! Are you sure you want to deactivate all bands?"); ?>';
 					</script>

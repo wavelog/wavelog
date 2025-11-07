@@ -98,7 +98,7 @@ function activateContest(contestid) {
 function deleteContest(id, contest) {
 	BootstrapDialog.confirm({
 		title: lang_admin_danger,
-		message: lang_admin_contest_deletion_warning + " " + contest + '?',
+		message: lang_admin_contest_deletion_warning + contest + '?',
 		type: BootstrapDialog.TYPE_DANGER,
 		closable: true,
 		draggable: true,

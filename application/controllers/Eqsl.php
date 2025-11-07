@@ -482,7 +482,7 @@ class eqsl extends CI_Controller {
 				}
 			}
 			$data['eqsl_results'] = $eqsl_results;
-			$data['eqsl_stats'] = __("Successfully downloaded:") . " " . $i . " / "__("Errors") . ": " . count($eqsl_results);
+			$data['eqsl_stats'] = __("Successfully downloaded: ") . $i . __(" / Errors: ") . count($eqsl_results);
 			$data['page_title'] = "eQSL Download Information";
 
 			$this->load->view('interface_assets/header', $data);

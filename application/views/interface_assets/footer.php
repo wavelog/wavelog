@@ -8,17 +8,17 @@
 
     var base_url = "<?php echo base_url(); ?>"; // Base URL
     var site_url = "<?php echo site_url(); ?>"; // Site URL
-    let measurement_base = 'K';
+	let measurement_base = 'K';
 
-    <?php
-    if ($this->session->userdata('user_measurement_base') == NULL) {
-    	?>
-    	measurement_base = '<?php echo $this->config->item('measurement_base'); ?>';
-    <?php }
-    else { ?>
-    	measurement_base = '<?php echo $this->session->userdata('user_measurement_base'); ?>';
-    <?php }
-    ?>
+	<?php
+	if ($this->session->userdata('user_measurement_base') == NULL) {
+		?>
+		measurement_base = '<?php echo $this->config->item('measurement_base'); ?>';
+	<?php }
+	else { ?>
+		measurement_base = '<?php echo $this->session->userdata('user_measurement_base'); ?>';
+	<?php }
+	?>
 
     var icon_dot_url = "<?php echo base_url();?>assets/images/dot.png";
 
@@ -40,7 +40,7 @@
     var lang_general_word_cancel = "<?= __("Cancel"); ?>";
     var lang_general_word_ok = "<?= __("OK"); ?>";
     var lang_general_word_search = "<?= __("Search"); ?>";
-    var lang_qso_delete_warning = "<?= __("Warning! Are you sure you want delete QSO with"); ?>";
+    var lang_qso_delete_warning = "<?= __("Warning! Are you sure you want delete QSO with "); ?>";
     var lang_general_word_colors = "<?= __("Colors"); ?>";
     var lang_general_word_confirmed = "<?= __("Confirmed"); ?>";
     var lang_general_word_worked_not_confirmed = "<?= __("Worked not confirmed"); ?>";
@@ -69,66 +69,66 @@
     var lang_notes_duplicate_confirmation = "<?= __("Duplicate this note?"); ?>";
     var lang_notes_duplication_disabled_short = "<?= __("Duplication Disabled"); ?>";
     var lang_notes_not_found = "<?= __("No notes were found"); ?>";
-    var lang_qso_note_missing = "<?= __("No notes for this callsign"); ?>";
-    var lang_qso_note_toast_title = "<?= __("Callsign Note"); ?>";
-    var lang_qso_note_deleted = "<?= __("Note deleted successfully"); ?>";
-    var lang_qso_note_created = "<?= __("Note created successfully"); ?>";
-    var lang_qso_note_saved = "<?= __("Note saved successfully"); ?>";
-    var lang_qso_note_error_saving = "<?= __("Error saving note"); ?>";
-    var lang_qso_added = "<?= __("QSO with %s by %s was added to logbook."); ?>";
-    var lang_qso_added_to_backlog = "<?= __("QSO added to backlog"); ?>";
-    var lang_qso_send_email_to = "<?= __("Send email to %s"); ?>";
-    var lang_qso_callsign_confirmed = "<?= __("Callsign was already worked and confirmed in the past on this band and mode!"); ?>";
-    var lang_qso_callsign_worked = "<?= __("Callsign was already worked in the past on this band and mode!"); ?>";
-    var lang_qso_callsign_new = "<?= __("New Callsign!"); ?>";
-    var lang_qso_grid_confirmed = "<?= __("Grid was already worked and confirmed in the past!"); ?>";
-    var lang_qso_grid_worked = "<?= __("Grid was already worked in the past!"); ?>";
-    var lang_qso_grid_new = "<?= __("New grid!"); ?>";
-    var lang_qso_delete_fav_confirm = "<?= __("Are you sure to delete Fav?"); ?>";
-    var lang_qso_dxcc_confirmed = "<?= __("DXCC was already worked and confirmed in the past on this band and mode!"); ?>";
-    var lang_qso_dxcc_worked = "<?= __("DXCC was already worked in the past on this band and mode!"); ?>";
-    var lang_qso_dxcc_new = "<?= __("New DXCC, not worked on this band and mode!"); ?>";
-    var lang_qso_lookup_info = "<?= __("Lookup %s info on %s"); ?>";
-    var lang_qso_lookup_summit_info = "<?= __("Lookup %s summit info on %s"); ?>";
-    var lang_qso_lookup_reference_info = "<?= __("Lookup %s reference info on %s"); ?>";
-    var lang_qso_error_loading_bearing = "<?= __("Error loading bearing!"); ?>";
-    var lang_qso_profile_aliases = "<?= __("Aliases"); ?>";
-    var lang_qso_profile_previously = "<?= __("Previously"); ?>";
-    var lang_qso_profile_born = "<?= __("Born"); ?>";
-    var lang_qso_profile_years_old = "<?= __("years old"); ?>";
-    var lang_qso_profile_license = "<?= __("License"); ?>";
-    var lang_qso_profile_from = "<?= __("from"); ?>";
-    var lang_qso_profile_years = "<?= __("years"); ?>";
-    var lang_qso_profile_expired_on = "<?= __("expired on"); ?>";
-    var lang_qso_profile_website = "<?= __("Website"); ?>";
-    var lang_qso_profile_local_time = "<?= __("Local time"); ?>";
-    var lang_qso_profile_qsl = "<?= __("QSL"); ?>";
-    var lang_qso_profile_view_location_maps = "<?= __("View location on Google Maps (Satellite)"); ?>";
-    var lang_qso_profile_license_novice = "<?= __("Novice"); ?>";
-    var lang_qso_profile_license_technician = "<?= __("Technician"); ?>";
-    var lang_qso_profile_license_general = "<?= __("General"); ?>";
-    var lang_qso_profile_license_advanced = "<?= __("Advanced"); ?>";
-    var lang_qso_profile_license_extra = "<?= __("Extra"); ?>";
-    var lang_qso_gridsquare_formatting = "<?= __("Gridsquare Formatting"); ?>";
-    var lang_qso_gridsquare_help = "<?= __("Enter multiple (4-digit) grids separated with commas. For example: IO77,IO78"); ?>";
-    var lang_cat_live = "<?= __("live"); ?>";
-    var lang_cat_polling = "<?= __("polling"); ?>";
-    var lang_cat_polling_tooltip = "<?= __("Periodic polling is slow. When operating locally, WebSockets are a more convenient way to control your radio in real-time."); ?>";
-    var lang_cat_tx = "<?= __("TX"); ?>";
-    var lang_cat_rx = "<?= __("RX"); ?>";
-    var lang_cat_tx_rx = "<?= __("TX/RX"); ?>";
-    var lang_cat_mode = "<?= __("Mode"); ?>";
-    var lang_cat_power = "<?= __("Power"); ?>";
-    var lang_cat_connection_error = "<?= __("Radio connection error"); ?>";
-    var lang_cat_connection_lost = "<?= __("Connection lost, please select another radio."); ?>";
-    var lang_cat_connection_timeout = "<?= __("Radio connection timeout"); ?>";
-    var lang_cat_data_stale = "<?= __("Data is stale, please select another radio."); ?>";
-    var lang_cat_not_logged_in = "<?= __("You're not logged in. Please log in."); ?>";
-    var lang_cat_radio_tuning_failed = "<?= __("Radio Tuning Failed"); ?>";
-    var lang_cat_failed_to_tune = "<?= __("Failed to tune radio to"); ?>";
-    var lang_cat_not_responding = "<?= __("CAT interface not responding. Please check your radio connection."); ?>";
-    var lang_cat_no_url_configured = "<?= __("No CAT URL configured for this radio"); ?>";
-    var lang_cat_websocket_radio = "<?= __("WebSocket Radio"); ?>";
+	var lang_qso_note_missing = "<?= __("No notes for this callsign"); ?>";
+	var lang_qso_note_toast_title = "<?= __("Callsign Note"); ?>";
+	var lang_qso_note_deleted = "<?= __("Note deleted successfully"); ?>";
+	var lang_qso_note_created = "<?= __("Note created successfully"); ?>";
+	var lang_qso_note_saved = "<?= __("Note saved successfully"); ?>";
+	var lang_qso_note_error_saving = "<?= __("Error saving note"); ?>";
+	var lang_qso_added = "<?= __("QSO with %s by %s was added to logbook."); ?>";
+	var lang_qso_added_to_backlog = "<?= __("QSO Added to Backlog"); ?>";
+	var lang_qso_send_email_to = "<?= __("Send email to %s"); ?>";
+	var lang_qso_callsign_confirmed = "<?= __("Callsign was already worked and confirmed in the past on this band and mode!"); ?>";
+	var lang_qso_callsign_worked = "<?= __("Callsign was already worked in the past on this band and mode!"); ?>";
+	var lang_qso_callsign_new = "<?= __("New Callsign!"); ?>";
+	var lang_qso_grid_confirmed = "<?= __("Grid was already worked and confirmed in the past"); ?>";
+	var lang_qso_grid_worked = "<?= __("Grid was already worked in the past"); ?>";
+	var lang_qso_grid_new = "<?= __("New grid!"); ?>";
+	var lang_qso_delete_fav_confirm = "<?= __("Are you sure to delete Fav?"); ?>";
+	var lang_qso_dxcc_confirmed = "<?= __("DXCC was already worked and confirmed in the past on this band and mode!"); ?>";
+	var lang_qso_dxcc_worked = "<?= __("DXCC was already worked in the past on this band and mode!"); ?>";
+	var lang_qso_dxcc_new = "<?= __("New DXCC, not worked on this band and mode!"); ?>";
+	var lang_qso_lookup_info = "<?= __("Lookup %s info on %s"); ?>";
+	var lang_qso_lookup_summit_info = "<?= __("Lookup %s summit info on %s"); ?>";
+	var lang_qso_lookup_reference_info = "<?= __("Lookup %s reference info on %s"); ?>";
+	var lang_qso_error_loading_bearing = "<?= __("Error loading bearing!"); ?>";
+	var lang_qso_profile_aliases = "<?= __("Aliases"); ?>";
+	var lang_qso_profile_previously = "<?= __("Previously"); ?>";
+	var lang_qso_profile_born = "<?= __("Born"); ?>";
+	var lang_qso_profile_years_old = "<?= __("years old"); ?>";
+	var lang_qso_profile_license = "<?= __("License"); ?>";
+	var lang_qso_profile_from = "<?= __("from"); ?>";
+	var lang_qso_profile_years = "<?= __("years"); ?>";
+	var lang_qso_profile_expired_on = "<?= __("expired on"); ?>";
+	var lang_qso_profile_website = "<?= __("Website"); ?>";
+	var lang_qso_profile_local_time = "<?= __("Local time"); ?>";
+	var lang_qso_profile_qsl = "<?= __("QSL"); ?>";
+	var lang_qso_profile_view_location_maps = "<?= __("View location on Google Maps (Satellite)"); ?>";
+	var lang_qso_profile_license_novice = "<?= __("Novice"); ?>";
+	var lang_qso_profile_license_technician = "<?= __("Technician"); ?>";
+	var lang_qso_profile_license_general = "<?= __("General"); ?>";
+	var lang_qso_profile_license_advanced = "<?= __("Advanced"); ?>";
+	var lang_qso_profile_license_extra = "<?= __("Extra"); ?>";
+	var lang_qso_gridsquare_formatting = "<?= __("Gridsquare Formatting"); ?>";
+	var lang_qso_gridsquare_help = "<?= __("Enter multiple (4-digit) grids separated with commas. For example: IO77,IO78"); ?>";
+	var lang_cat_live = "<?= __("live"); ?>";
+	var lang_cat_polling = "<?= __("polling"); ?>";
+	var lang_cat_polling_tooltip = "<?= __("Periodic polling is slow. When operating locally, WebSockets are a more convenient way to control your radio in real-time."); ?>";
+	var lang_cat_tx = "<?= __("TX"); ?>";
+	var lang_cat_rx = "<?= __("RX"); ?>";
+	var lang_cat_tx_rx = "<?= __("TX/RX"); ?>";
+	var lang_cat_mode = "<?= __("Mode"); ?>";
+	var lang_cat_power = "<?= __("Power"); ?>";
+	var lang_cat_connection_error = "<?= __("Radio connection error"); ?>";
+	var lang_cat_connection_lost = "<?= __("Connection lost, please select another radio."); ?>";
+	var lang_cat_connection_timeout = "<?= __("Radio connection timeout"); ?>";
+	var lang_cat_data_stale = "<?= __("Data is stale, please select another radio."); ?>";
+	var lang_cat_not_logged_in = "<?= __("You're not logged in. Please log in."); ?>";
+	var lang_cat_radio_tuning_failed = "<?= __("Radio Tuning Failed"); ?>";
+	var lang_cat_failed_to_tune = "<?= __("Failed to tune radio to"); ?>";
+	var lang_cat_not_responding = "<?= __("CAT interface not responding. Please check your radio connection."); ?>";
+	var lang_cat_no_url_configured = "<?= __("No CAT URL configured for this radio"); ?>";
+	var lang_cat_websocket_radio = "<?= __("WebSocket Radio"); ?>";
     var lang_qso_location_is_fetched_from_provided_gridsquare = "<?= __("Location is fetched from provided gridsquare"); ?>";
     var lang_qso_location_is_fetched_from_dxcc_coordinates = "<?= __("Location is fetched from DXCC coordinates (no gridsquare provided)"); ?>";
 
@@ -883,9 +883,9 @@ function showActivatorsMap(call, count, grids) {
     let re = /,/g;
     grids = grids.replace(re, ', ');
 
-    var result = '<?= __("Callsign:")." "; ?>'+call.replace('0', '&Oslash;')+"<br />";
-    result +=    '<?= __("Count:")." "; ?>'+count+"<br/>";
-    result +=    '<?= __("Grids:")." "; ?>'+grids+"<br/><br />";
+    var result = '<?= __("Callsign: "); ?>'+call.replace('0', '&Oslash;')+"<br />";
+    result +=    '<?= __("Count: "); ?>'+count+"<br/>";
+    result +=    '<?= __("Grids: "); ?>'+grids+"<br/><br />";
 
     $(".activatorsmapResult").html(result);
 
@@ -2511,7 +2511,7 @@ function viewQsl(picture, callsign) {
             if (callsign == null) {
                 title = "<?= __("QSL Card"); ?>";
             } else {
-                title = "<?= __("QSL Card for"); ?>" + " " + callsign.replace('0', '&Oslash;');
+                title = "<?= __("QSL Card for "); ?>" + callsign.replace('0', '&Oslash;');
             }
 
             BootstrapDialog.show({
@@ -2573,7 +2573,7 @@ function viewEqsl(picture, callsign) {
             if (callsign == null) {
                 title = "<?= __("eQSL Card"); ?>";
             } else {
-                title = "<?= __("eQSL Card for"); ?>" + " " + callsign.replace('0', '&Oslash;');
+                title = "<?= __("eQSL Card for "); ?>" + callsign.replace('0', '&Oslash;');
             }
 
             BootstrapDialog.show({

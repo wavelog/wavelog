@@ -784,7 +784,7 @@
             }
             ?>
 
-            <p><div class="alert alert-warning" role="alert"><span class="badge text-bg-warning"><?= __("Warning"); ?></span> <?= __("Maximum file upload size is")." "; ?> <?php echo $max_upload; ?>B.</div></p>
+            <p><div class="alert alert-warning" role="alert"><span class="badge text-bg-warning"><?= __("Warning"); ?></span> <?= __("Maximum file upload size is "); ?> <?php echo $max_upload; ?>B.</div></p>
 
             <form class="form" id="fileinfo" name="fileinfo" enctype="multipart/form-data">
             <div class="row">

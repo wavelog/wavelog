@@ -2639,7 +2639,7 @@ var dxWaterfall = {
 
         // Spotter name (already cleaned during data load)
         if (spot.spotter) {
-            tooltipParts.push(lang_dxwaterfall_spotted_by + ': ' + spot.spotter);
+            tooltipParts.push(lang_dxwaterfall_spotted_by + ' ' + spot.spotter);
         }
 
         // Time from when_pretty field (format: "DD/MM/YY HH:MM")
@@ -5318,7 +5318,7 @@ var dxWaterfall = {
                 awards += ' <i class="fas fa-medal new-callsign-icon" title="' + lang_dxwaterfall_new_callsign + '"></i>';
             }
 
-            infoText += awards + ' ' + lang_dxwaterfall_comment + ": " + spotInfo.message;
+            infoText += awards + ' ' + lang_dxwaterfall_comment + spotInfo.message;
         }
 
         // Update the div only when content actually changed

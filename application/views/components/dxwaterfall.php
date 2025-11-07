@@ -38,7 +38,7 @@
 		var lang_dxwaterfall_reset_zoom = "<?= __("Reset zoom to default (3)"); ?>";
 		var lang_dxwaterfall_zoom_in = "<?= __("Zoom in"); ?>" + " [" + modKey + "++]";
 		var lang_dxwaterfall_downloading_data = "<?= __("Downloading DX Cluster data"); ?>";
-		var lang_dxwaterfall_comment = "<?= __("Comment:"); ?>";
+		var lang_dxwaterfall_comment = "<?= __("Comment: "); ?>";
 		var lang_dxwaterfall_modes_label = "<?= __("modes:"); ?>";
 		var lang_dxwaterfall_out_of_bandplan = "<?= __("OUT OF BANDPLAN"); ?>";
 		var lang_dxwaterfall_changing_frequency = "<?= __("Changing radio frequency..."); ?>";
@@ -52,7 +52,7 @@
 		var lang_dxwaterfall_label_size_medium = "<?= __("Medium"); ?>";
 		var lang_dxwaterfall_label_size_large = "<?= __("Large"); ?>";
 		var lang_dxwaterfall_label_size_xlarge = "<?= __("X-Large"); ?>";
-		var lang_dxwaterfall_spotted_by = "<?= __("by"); ?>";
+		var lang_dxwaterfall_spotted_by = "<?= __("by:"); ?>";
 
 		// DX Waterfall Configuration from User Options
 		let dxwaterfall_decont = '<?php echo $this->optionslib->get_option('dxcluster_decont'); ?>';

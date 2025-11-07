@@ -65,7 +65,7 @@ class Update extends CI_Controller {
 			if ($count % $batch_size === 0) {
 				$this->db->insert_batch('dxcc_entities', $a_data);
 				$a_data = []; // Clear batch data
-				$this->update_status(__("Preparing DXCC-Entries") . ": " . $count);
+				$this->update_status(__("Preparing DXCC-Entries: ") . $count);
 			}
 		}
 
@@ -130,7 +130,7 @@ class Update extends CI_Controller {
 			if ($count % $batch_size === 0) {
 				$this->db->insert_batch('dxcc_exceptions', $a_data);
 				$a_data = []; // Clear batch data
-				$this->update_status(__("Preparing DXCC Exceptions") . ": " . $count);
+				$this->update_status(__("Preparing DXCC Exceptions: ") . $count);
 			}
 		}
 
@@ -181,7 +181,7 @@ class Update extends CI_Controller {
 			if ($count % $batch_size === 0) {
 				$this->db->insert_batch('dxcc_prefixes', $a_data);
 				$a_data = []; // Clear the batch array
-				$this->update_status(__("Preparing DXCC Prefixes") . ": " . $count);
+				$this->update_status(__("Preparing DXCC Prefixes: ") . $count);
 			}
 		}
 
@@ -370,9 +370,9 @@ class Update extends CI_Controller {
 			unlink($lockfilename);
 			if($this->session->userdata('user_type') == '99') {
 				if (substr($result, 0, 4) == 'DONE') {
-					$this->session->set_flashdata('success', __("SCP Update complete. Result") . ": '" . $result . "'");
+					$this->session->set_flashdata('success', __("SCP Update complete. Result: ") . "'" . $result . "'");
 				} else {
-					$this->session->set_flashdata('error', __("SCP Update failed. Result") . ": '" . $result . "'");
+					$this->session->set_flashdata('error', __("SCP Update failed. Result: ") . "'" . $result . "'");
 				}
 				redirect('debug');
 			} else {
@@ -409,9 +409,9 @@ class Update extends CI_Controller {
 			unlink($lockfilename);
 			if($this->session->userdata('user_type') == '99') {
 				if (substr($result, 0, 7) == 'Records') {
-					$this->session->set_flashdata('success', __("LoTW Users Update complete. Result") . ": '" . $result . "'");
+					$this->session->set_flashdata('success', __("LoTW Users Update complete. Result: ") . "'" . $result . "'");
 				} else {
-					$this->session->set_flashdata('error', __("LoTW Users Update failed. Result") . ": '" . $result . "'");
+					$this->session->set_flashdata('error', __("LoTW Users Update failed. Result: ") . "'" . $result . "'");
 				}
 				redirect('debug');
 			} else {
@@ -446,9 +446,9 @@ class Update extends CI_Controller {
 			unlink($lockfilename);
 			if($this->session->userdata('user_type') == '99') {
 				if (substr($result, 0, 4) == 'DONE') {
-					$this->session->set_flashdata('success', __("DOK Update complete. Result") . ": '" . $result . "'");
+					$this->session->set_flashdata('success', __("DOK Update complete. Result: ") . "'" . $result . "'");
 				} else {
-					$this->session->set_flashdata('error', __("DOK Update failed. Result") . ": '" . $result . "'");
+					$this->session->set_flashdata('error', __("DOK Update failed. Result: ") . "'" . $result . "'");
 				}
 				redirect('debug');
 			} else {
@@ -481,9 +481,9 @@ class Update extends CI_Controller {
 			unlink($lockfilename);
 			if($this->session->userdata('user_type') == '99') {
 				if (substr($result, 0, 4) == 'DONE') {
-					$this->session->set_flashdata('success', __("SOTA Update complete. Result") . ": '" . $result . "'");
+					$this->session->set_flashdata('success', __("SOTA Update complete. Result: ") . "'" . $result . "'");
 				} else {
-					$this->session->set_flashdata('error', __("SOTA Update failed. Result") . ": '" . $result . "'");
+					$this->session->set_flashdata('error', __("SOTA Update failed. Result: ") . "'" . $result . "'");
 				}
 				redirect('debug');
 			} else {
@@ -516,9 +516,9 @@ class Update extends CI_Controller {
 			unlink($lockfilename);
 			if($this->session->userdata('user_type') == '99') {
 				if (substr($result, 0, 4) == 'DONE') {
-					$this->session->set_flashdata('success', __("WWFF Update complete. Result") . ": '" . $result . "'");
+					$this->session->set_flashdata('success', __("WWFF Update complete. Result: ") . "'" . $result . "'");
 				} else {
-					$this->session->set_flashdata('error', __("WWFF Update failed. Result") . ": '" . $result . "'");
+					$this->session->set_flashdata('error', __("WWFF Update failed. Result: ") . "'" . $result . "'");
 				}
 				redirect('debug');
 			} else {
@@ -552,9 +552,9 @@ class Update extends CI_Controller {
 			unlink($lockfilename);
 			if($this->session->userdata('user_type') == '99') {
 				if (substr($result, 0, 4) == 'DONE') {
-					$this->session->set_flashdata('success', __("HAMqsl Update complete. Result") . ": '" . $result . "'");
+					$this->session->set_flashdata('success', __("HAMqsl Update complete. Result: ") . "'" . $result . "'");
 				} else {
-					$this->session->set_flashdata('error', __("HAMqsl Update failed. Result") . ": '" . $result . "'");
+					$this->session->set_flashdata('error', __("HAMqsl Update failed. Result: ") . "'" . $result . "'");
 				}
 
 				$this->load->model('cron_model');
@@ -587,9 +587,9 @@ class Update extends CI_Controller {
 			unlink($lockfilename);
 			if($this->session->userdata('user_type') == '99') {
 				if (substr($result, 0, 4) == 'DONE') {
-					$this->session->set_flashdata('success', __("POTA Update complete. Result") . ": '" . $result . "'");
+					$this->session->set_flashdata('success', __("POTA Update complete. Result: ") . "'" . $result . "'");
 				} else {
-					$this->session->set_flashdata('error', __("POTA Update failed. Result") . ": '" . $result . "'");
+					$this->session->set_flashdata('error', __("POTA Update failed. Result: ") . "'" . $result . "'");
 				}
 				redirect('debug');
 			} else {
@@ -618,9 +618,9 @@ class Update extends CI_Controller {
 			unlink($lockfilename);
 			if($this->session->userdata('user_type') == '99') {
 				if (substr($result, 0, 4) == 'This') {
-					$this->session->set_flashdata('success', __("TLE Update complete. Result") . ": '" . $result . "'");
+					$this->session->set_flashdata('success', __("TLE Update complete. Result: ") . "'" . $result . "'");
 				} else {
-					$this->session->set_flashdata('error', __("TLE Update failed. Result") . ": '" . $result . "'");
+					$this->session->set_flashdata('error', __("TLE Update failed. Result: ") . "'" . $result . "'");
 				}
 				redirect($returnpath);
 			} else {
@@ -715,9 +715,9 @@ class Update extends CI_Controller {
 
 			if($this->session->userdata('user_type') == '99') {
 				if (substr($result, 0, 4) == 'DONE') {
-					$this->session->set_flashdata('success', __("VUCC Grid file update complete. Result") . ": '" . $result . "'");
+					$this->session->set_flashdata('success', __("VUCC Grid file update complete. Result: ") . "'" . $result . "'");
 				} else {
-					$this->session->set_flashdata('error', __("VUCC Grid file update failed. Result") . ": '" . $result . "'");
+					$this->session->set_flashdata('error', __("VUCC Grid file update failed. Result: ") . "'" . $result . "'");
 				}
 
 

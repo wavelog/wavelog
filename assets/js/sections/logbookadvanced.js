@@ -780,7 +780,7 @@ $(document).ready(function () {
 
 		BootstrapDialog.confirm({
 			title: lang_general_word_danger,
-			message: lang_filter_actions_delete_warning+'<br/>'+id_list.length+" "+lang_filter_actions_delete_warning_details,
+			message: lang_filter_actions_delete_warning+'<br/>'+id_list.length+lang_filter_actions_delete_warning_details,
 			type: BootstrapDialog.TYPE_DANGER,
 			closable: true,
 			draggable: true,
