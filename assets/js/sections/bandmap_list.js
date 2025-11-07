@@ -243,6 +243,7 @@ $(function() {
 		// Required flags buttons
 		const requiredFlagButtons = [
 			{ id: '#toggleLotwFilter', flag: 'lotw' },
+			{ id: '#toggleDxSpotFilter', flag: 'dxspot' },
 			{ id: '#toggleNewContinentFilter', flag: 'newcontinent' },
 			{ id: '#toggleDxccNeededFilter', flag: 'newcountry' },
 			{ id: '#toggleNewCallsignFilter', flag: 'newcallsign' },
@@ -823,6 +824,12 @@ $(function() {
 				if (reqFlag === 'lotw') {
 					if (!single.dxcc_spotted || !single.dxcc_spotted.lotw_user) return;
 				}
+				if (reqFlag === 'dxspot') {
+					// DX Spot: spotted continent must be different from spotter continent
+					let spottedCont = single.dxcc_spotted?.cont;
+					let spotterCont = single.dxcc_spotter?.cont;
+					if (!spottedCont || !spotterCont || spottedCont === spotterCont) return;
+				}
 				if (reqFlag === 'newcontinent') {
 					if (single.worked_continent !== false) return;  // Only new continents
 				}
@@ -1069,11 +1076,21 @@ $(function() {
 		continent_wked_info = "text-danger";
 	}
 	let continent_value = (single.dxcc_spotted && single.dxcc_spotted.cont) ? single.dxcc_spotted.cont : '';
-	continent_wked_info = continent_value ? ((continent_wked_info != '' ? '<span class="' + continent_wked_info + '">' : '') + continent_value + (continent_wked_info != '' ? '</span>' : '')) : '';
+	if (continent_value) {
+		let continent_display = (continent_wked_info != '' ? '<span class="' + continent_wked_info + '">' : '') + continent_value + (continent_wked_info != '' ? '</span>' : '');
+		continent_wked_info = '<a href="javascript:spawnLookupModal(\'' + continent_value.toLowerCase() + '\',\'continent\')"; data-bs-toggle="tooltip" title="See details for continent ' + continent_value + '">' + continent_display + '</a>';
+	} else {
+		continent_wked_info = '';
+	}
 	data[0].push(continent_wked_info);
 
 	// CQ Zone column: show CQ Zone (moved here, right after Cont)
-	data[0].push((single.dxcc_spotted && single.dxcc_spotted.cqz) ? single.dxcc_spotted.cqz : '');	// Flag column: just the flag emoji without entity name
+	let cqz_value = (single.dxcc_spotted && single.dxcc_spotted.cqz) ? single.dxcc_spotted.cqz : '';
+	if (cqz_value) {
+		data[0].push('<a href="javascript:spawnLookupModal(\'' + cqz_value + '\',\'cq\')"; data-bs-toggle="tooltip" title="See details for CQ Zone ' + cqz_value + '">' + cqz_value + '</a>');
+	} else {
+		data[0].push('');
+	}	// Flag column: just the flag emoji without entity name
 	let flag_only = '';
 	if (single.dxcc_spotted && single.dxcc_spotted.flag) {
 		flag_only = '<span class="flag-emoji">' + single.dxcc_spotted.flag + '</span>';
@@ -1478,6 +1495,7 @@ $(function() {
 	// Count spots for quick filter badges
 	let quickFilterCounts = {
 		lotw: 0,
+		dxspot: 0,
 		newcontinent: 0,
 		newcountry: 0,
 		newcallsign: 0,
@@ -1531,6 +1549,11 @@ $(function() {
 		if (spot.dxcc_spotted && spot.dxcc_spotted.lotw_user) {
 			quickFilterCounts.lotw++;
 		}
+		// DX Spot: spotted continent != spotter continent
+		if (spot.dxcc_spotted?.cont && spot.dxcc_spotter?.cont &&
+		    spot.dxcc_spotted.cont !== spot.dxcc_spotter.cont) {
+			quickFilterCounts.dxspot++;
+		}
 		if (spot.worked_continent === false) {
 			quickFilterCounts.newcontinent++;
 		}
@@ -1555,6 +1578,7 @@ $(function() {
 	// Update quick filter badges
 	const quickFilters = [
 		{ id: 'toggleLotwFilter', count: quickFilterCounts.lotw },
+		{ id: 'toggleDxSpotFilter', count: quickFilterCounts.dxspot },
 		{ id: 'toggleNewContinentFilter', count: quickFilterCounts.newcontinent },
 		{ id: 'toggleDxccNeededFilter', count: quickFilterCounts.newcountry },
 		{ id: 'toggleNewCallsignFilter', count: quickFilterCounts.newcallsign },
@@ -2781,6 +2805,29 @@ $(function() {
 		applyFilters(false);
 	});
 
+	// Toggle DX Spot filter (spotted continent ≠ spotter continent)
+	$('#toggleDxSpotFilter').on('click', function() {
+		let currentValues = $('#requiredFlags').val() || [];
+		let btn = $(this);
+
+		// Remove "None" if present
+		currentValues = currentValues.filter(v => v !== 'None');
+
+		if (currentValues.includes('dxspot')) {
+			// Remove DX Spot filter
+			currentValues = currentValues.filter(v => v !== 'dxspot');
+			if (currentValues.length === 0) currentValues = ['None'];
+			btn.removeClass('btn-success').addClass('btn-secondary');
+		} else {
+			// Add DX Spot filter
+			currentValues.push('dxspot');
+			btn.removeClass('btn-secondary').addClass('btn-success');
+		}
+
+		$('#requiredFlags').val(currentValues).trigger('change');
+		applyFilters(false);
+	});
+
 	// Toggle New Continent filter
 	$('#toggleNewContinentFilter').on('click', function() {
 		let currentValues = $('#requiredFlags').val() || [];
@@ -3281,11 +3328,11 @@ $(function() {
 	function initResizeObserver() {
 		const tableContainer = document.querySelector('.table-responsive');
 		const dataTable = document.querySelector('#DataTables_Table_0_wrapper');
-		
+
 		if (tableContainer && dataTable) {
 			// now we found the datatable and the table container is also available
 			handleResponsiveColumns();
-			
+
 			if (typeof ResizeObserver !== 'undefined') {
 				const resizeObserver = new ResizeObserver(function(entries) {
 					handleResponsiveColumns();
@@ -3297,7 +3344,7 @@ $(function() {
 					handleResponsiveColumns();
 				});
 			}
-			
+
 		} else {
 			// elements not ready yet, try again
 			setTimeout(initResizeObserver, 50);

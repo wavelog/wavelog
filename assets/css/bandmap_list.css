@@ -689,7 +689,8 @@ body.fullscreen-active {
 	padding-right: 15px;
 }
 
-.table-responsive {
+/* Only apply custom table-responsive styling to bandmap container */
+#bandmapContainer .table-responsive {
 	overflow: auto;
 	margin: 0;
 	padding: 0;

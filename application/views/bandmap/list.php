@@ -220,6 +220,7 @@
 							<option value="newcallsign"><?= __("New Callsign"); ?></option>
 							<option value="workedcallsign"><?= __("Worked Callsign"); ?></option>
 							<option value="Contest"><?= __("Contest"); ?></option>
+							<option value="dxspot"><?= __("DX Spot"); ?></option>
 						</select>
 							<label class="form-label d-block filter-label-small mt-3" for="additionalFlags"><?= __("Additional Flags"); ?></label>
 							<select id="additionalFlags" class="form-select form-select-sm filter-short" name="additional_flags" multiple="multiple">
@@ -395,6 +396,9 @@
 		<div class="btn-group flex-shrink-0" role="group">
 			<button class="btn btn-sm btn-secondary" type="button" id="toggleLotwFilter" title="<?= __("Toggle LoTW User filter"); ?>">
 				<i class="fas fa-upload"></i> <span class="d-none d-sm-inline"><?= __("LoTW users"); ?></span>
+			</button>
+			<button class="btn btn-sm btn-secondary" type="button" id="toggleDxSpotFilter" title="<?= __("Toggle DX Spot filter (spotted continent ≠ spotter continent)"); ?>">
+				<i class="fas fa-globe"></i> <span class="d-none d-sm-inline"><?= __("DX Spot"); ?></span>
 			</button>
 			<button class="btn btn-sm btn-secondary" type="button" id="toggleNewContinentFilter" title="<?= __("Toggle New Continent filter"); ?>">
 				<i class="fas fa-medal" style="color: #FFD700;"></i> <span class="d-none d-sm-inline"><?= __("Continent"); ?></span>
