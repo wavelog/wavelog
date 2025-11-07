@@ -292,7 +292,7 @@ class Stationsetup extends CI_Controller {
 
 	private function lbdel2html($id, $logbook_name) {
 		if($this->session->userdata('active_station_logbook') != $id) {
-			$htmret='<button id="'.$id.'" class="deleteLogbook btn btn-outline-danger btn-sm" cnftext="'.__("Are you sure you want to delete the following station logbook? You must re-link any locations linked here to another logbook.: ").$logbook_name.'"><i class="fas fa-trash-alt"></i></button>';
+			$htmret='<button id="'.$id.'" class="deleteLogbook btn btn-outline-danger btn-sm" cnftext="'.sprintf(__("Are you sure you want to delete the station logbook %s? You must re-link any locations linked here to another logbook."), $logbook_name).'"><i class="fas fa-trash-alt"></i></button>';
 		} else {
 			$htmret='';
 		}
@@ -388,7 +388,7 @@ class Stationsetup extends CI_Controller {
 	private function stationbadge2html($station_active, $qso_total, $current_active, $station_profile_name, $id) {
 		$returntext = '';
 		if($station_active != 1) {
-			$returntext .= '<button id="'.$id.'" class="setActiveStation btn btn-outline-secondary btn-sm" cnftext="'. __("Are you sure you want to make the following station the active station: ") . $station_profile_name .'">' . __("Set Active") . '</button><br/>';
+			$returntext .= '<button id="'.$id.'" class="setActiveStation btn btn-outline-secondary btn-sm" cnftext="'. sprintf(__("Are you sure you want to make the station profile %s the active station?"), $station_profile_name) .'">' . __("Set Active") . '</button><br/>';
 		} else {
 			$returntext .= '<span class="badge bg-success text-bg-success">' . __("Active Station") . '</span><br/>';
 		}
