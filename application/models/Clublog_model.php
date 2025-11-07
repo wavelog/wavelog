@@ -108,7 +108,7 @@ class Clublog_model extends CI_Model
 									$this->mark_qsos_sent($station_row->station_id);
 									$return .=  " Clublog upload for " . $station_row->station_callsign . ' successfully sent.';
 									log_message('info', 'Clublog upload for ' . $station_row->station_callsign . ' successfully sent and marked.');
-								} elseif (preg_match_all('/403 - Access denied/', $response)) { 	// New Message from clublog. No hardcheck on 403-response, because CL doesn't follow any best-practices here.
+								} elseif ($httpcode == 403) { 	// New Message from clublog. HTTP 403 response check.
 									$log = "Clublog returned HTML error page for " . $station_row->station_callsign . " (access denied)";
 									log_message('Error', $log);
 									$return .= $log."<br>";
@@ -201,6 +201,7 @@ class Clublog_model extends CI_Model
 				curl_setopt($request, CURLOPT_TIMEOUT, 10);
 				$response = curl_exec($request);
 				$info = curl_getinfo($request);
+				$httpcode = curl_getinfo($request, CURLINFO_HTTP_CODE);
                                 $c_err=curl_errno($request);
                                 $c_errstring=curl_error($request);
 				curl_close($request);
@@ -221,7 +222,7 @@ class Clublog_model extends CI_Model
 					$log = "The callsign '" . $station_row->station_callsign . "' does not match the user account at Clublog. 'INVALID CALLSIGN'.";
 					log_message('debug', $log);
 					$return .= $log."<br>";
-				} elseif (preg_match_all('/403 - Access denied/', $response)) { 
+				} elseif ($httpcode == 403) { 
 					$log = "Clublog returned HTML error page for " . $station_row->station_callsign . " (possibly access denied)";
 					log_message('debug', $log);
 					$return .= $log."<br>";
@@ -441,7 +442,7 @@ class Clublog_model extends CI_Model
 			$returner['status'] = 'OK';
 		} elseif (preg_match('/\bUpdated QSO\b/', $response)) {
 			$returner['status'] = 'OK';
-		} elseif (preg_match_all('/403 - Access denied/', $response)) { 	// New Message from clublog. No hardcheck on 403-response, because CL doesn't follow any best-practices here.
+		} elseif ($httpcode == 403) { 	// New Message from clublog. HTTP 403 response check.
 			log_message('Error',"Clublog returned HTML error page for " . $station_row->station_callsign . " (access denied)");
 			$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
 			$this->db->query($sql,array($station_id));
