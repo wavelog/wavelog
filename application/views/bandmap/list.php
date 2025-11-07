@@ -48,15 +48,28 @@
 
 	// Bandmap filter labels
 	var lang_bandmap_not_worked = "<?= __("Not worked"); ?>";
+	var lang_bandmap_worked = "<?= __("Worked"); ?>";
+	var lang_bandmap_confirmed = "<?= __("Confirmed"); ?>";
+	var lang_bandmap_worked_not_confirmed = "<?= __("Worked, not Confirmed"); ?>";
 	var lang_bandmap_lotw_user = "<?= __("LoTW User"); ?>";
 	var lang_bandmap_new_callsign = "<?= __("New Callsign"); ?>";
 	var lang_bandmap_new_continent = "<?= __("New Continent"); ?>";
 	var lang_bandmap_new_country = "<?= __("New Country"); ?>";
 	var lang_bandmap_worked_before = "<?= __("Worked Before"); ?>";
-	var lang_bandmap_confirmed = "<?= __("Confirmed"); ?>";
+
+	// Bandmap filter prefixes
+	var lang_bandmap_dxcc = "<?= __("DXCC"); ?>";
+	var lang_bandmap_band = "<?= __("Band"); ?>";
+	var lang_bandmap_mode = "<?= __("Mode"); ?>";
+	var lang_bandmap_continent = "<?= __("Continent"); ?>";
+	var lang_bandmap_all = "<?= __("All"); ?>";
+	var lang_bandmap_de = "<?= __("de"); ?>";
+	var lang_bandmap_spotted = "<?= __("spotted"); ?>";
 
 	// Bandmap tooltip messages
 	var lang_bandmap_fresh_spot = "<?= __("Fresh spot (< 5 minutes old)"); ?>";
+	var lang_bandmap_contest = "<?= __("Contest"); ?>";
+	var lang_bandmap_contest_name = "<?= __("Contest"); ?>"; // Same as above, for "Contest: NAME" format
 	var lang_bandmap_click_view_qrz = "<?= __("Click to view"); ?>";
 	var lang_bandmap_on_qrz = "<?= __("on QRZ.com"); ?>";
 	var lang_bandmap_see_details = "<?= __("See details for"); ?>";
@@ -191,7 +204,7 @@
 		</div>
 	</div>
 
-	<!-- Row 3: Advanced Filters, Favorites, Clear Filters | Band Filters (left) and Mode Filters (right) -->
+	<!-- Row 2: Advanced Filters, Favorites, Clear Filters | Band Filters (left) and Mode Filters (right) -->
 	<div class="d-flex flex-wrap align-items-center gap-2 mb-2">
 		<!-- Left: Advanced Filters, Favorites, Clear Filters, and Band Filter Buttons -->
 		<div class="d-flex flex-wrap gap-2 align-items-center">
@@ -389,7 +402,7 @@
 		</div>
 	</div>
 
-	<!-- Row 4: Quick Filters -->
+	<!-- Row 3: Quick Filters -->
 	<div class="d-flex flex-wrap align-items-center gap-2 mb-2">
 		<!-- LoTW Users Button (separate) -->
 		<div class="btn-group flex-shrink-0" role="group">

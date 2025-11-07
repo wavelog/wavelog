@@ -1,39 +1,12 @@
 /**
- * @fileoverview DX Cluster Bandmap for Wavelog
- * @version 2.0.0
- * @author Wavelog Development Team
+ * DX Cluster Bandmap - Real-time spot filtering with CAT control
  *
- * @description
- * Advanced real-time DX spot filtering and display system with intelligent
- * client/server architecture, smart caching, CAT control integration, and
- * comprehensive multi-criteria filtering capabilities.
-
- * @requires base_url (global from Wavelog)
- * @requires dxcluster_provider (global from Wavelog)
- * @requires dxcluster_maxage (global from Wavelog)
- * @requires custom_date_format (global from Wavelog)
- * @requires cat_timeout_interval (global from Wavelog)
- * @requires lang_* translation variables (global from Wavelog)
- *
- * @browserSupport
- * - Chrome 90+
- * - Firefox 88+
- * - Safari 14+
- * - Edge 90+
- *
- * @features
- * - Hybrid filter architecture (server-side: continent, band; client-side: mode, flags, DXCC status)
- * - Real-time spot caching with smart TTL management
- * - Multi-select filters with AND/OR logic
- * - Required flags (LoTW, New Country, New Continent, Worked Callsign) with AND logic
- * - Activity reference filters (POTA, SOTA, WWFF, IOTA, Contest)
- * - CAT Control integration with frequency gradient visualization
- * - Auto-refresh with countdown timer
- * - DXCC status color coding (Confirmed/Worked/New)
- * - TTL-based spot lifecycle visualization
- * - Fullscreen mode support
- * - Responsive design with mobile optimization
- * - BroadcastChannel API for QSO window integration
+ * Features:
+ * - Smart filtering (server for bands/continents, client for modes/flags)
+ * - CAT radio integration with frequency visualization
+ * - Multi-select filters with status color coding
+ * - Auto-refresh with activity references (POTA/SOTA/WWFF/IOTA/Contest)
+ * - Works with radiohelpers.js for mode/band/frequency utilities
  */
 
 'use strict';
@@ -640,9 +613,9 @@ $(function() {
 
 		// Build tooltip for status message (fetch information)
 		let fetchTooltipLines = [lang_bandmap_last_fetched + ':'];
-		fetchTooltipLines.push('Band: ' + (lastFetchParams.band || 'All'));
-		fetchTooltipLines.push('Continent: ' + (lastFetchParams.continent || 'All'));
-		fetchTooltipLines.push('Mode: ' + (lastFetchParams.mode || 'All'));
+		fetchTooltipLines.push(lang_bandmap_band + ': ' + (lastFetchParams.band || lang_bandmap_all));
+		fetchTooltipLines.push(lang_bandmap_continent + ': ' + (lastFetchParams.continent || lang_bandmap_all));
+		fetchTooltipLines.push(lang_bandmap_mode + ': ' + (lastFetchParams.mode || lang_bandmap_all));
 		fetchTooltipLines.push(lang_bandmap_max_age + ': ' + (lastFetchParams.maxAge || '120') + ' min');
 		if (lastFetchParams.timestamp) {
 			let fetchTime = new Date(lastFetchParams.timestamp);
@@ -727,14 +700,14 @@ $(function() {
 		if (!currentFilters.cwn.includes('All')) {
 			let cwnLabels = currentFilters.cwn.map(function(status) {
 				switch(status) {
-					case 'notwkd': return 'Not worked';
-					case 'wkd': return 'Worked';
-					case 'cnf': return 'Confirmed';
-					case 'ucnf': return 'Worked, not Confirmed';
+					case 'notwkd': return lang_bandmap_not_worked;
+					case 'wkd': return lang_bandmap_worked;
+					case 'cnf': return lang_bandmap_confirmed;
+					case 'ucnf': return lang_bandmap_worked_not_confirmed;
 					default: return status;
 				}
 			});
-			filters.push('"DXCC: ' + cwnLabels.join('/') + '"');
+			filters.push('"' + lang_bandmap_dxcc + ': ' + cwnLabels.join('/') + '"');
 		}
 
 		// Additional Flags - special handling for OR logic
@@ -753,17 +726,17 @@ $(function() {
 		// Only show in client filter when multiple continents are selected
 		// Single continent is already shown in server filter
 		if (!currentFilters.deContinent.includes('Any') && currentFilters.deContinent.length > 1) {
-			filters.push('"de: ' + currentFilters.deContinent.join('/') + '"');
+			filters.push('"' + lang_bandmap_de + ': ' + currentFilters.deContinent.join('/') + '"');
 		}
 
 		// Spotted continent
 		if (!currentFilters.spottedContinent.includes('Any')) {
-			filters.push('"spotted: ' + currentFilters.spottedContinent.join('/') + '"');
+			filters.push('"' + lang_bandmap_spotted + ': ' + currentFilters.spottedContinent.join('/') + '"');
 		}
 
 		// Band
 		if (!currentFilters.band.includes('All')) {
-			filters.push('"Band: ' + currentFilters.band.join('/') + '"');
+			filters.push('"' + lang_bandmap_band + ': ' + currentFilters.band.join('/') + '"');
 		}
 
 		// Mode
@@ -771,16 +744,16 @@ $(function() {
 			let modeLabels = currentFilters.mode.map(function(m) {
 				return m.charAt(0).toUpperCase() + m.slice(1);
 			});
-			filters.push('"Mode: ' + modeLabels.join('/') + '"');
+			filters.push('"' + lang_bandmap_mode + ': ' + modeLabels.join('/') + '"');
 		}
 
 		// Required flags - each one is shown individually with "and"
 		if (currentFilters.requiredFlags && currentFilters.requiredFlags.length > 0) {
 			currentFilters.requiredFlags.forEach(function(flag) {
 				if (flag === 'lotw') {
-					filters.push('"LoTW User"');
+					filters.push('"' + lang_bandmap_lotw_user + '"');
 				} else if (flag === 'notworked') {
-					filters.push('"New Callsign"');
+					filters.push('"' + lang_bandmap_new_callsign + '"');
 				} else {
 					filters.push('"' + flag + '"');
 				}
@@ -1030,9 +1003,9 @@ $(function() {
 
 	if (single.dxcc_spotted && single.dxcc_spotted.isContest) {
 		// Build contest badge with contest name in tooltip if available
-		let contestTitle = 'Contest';
+		let contestTitle = lang_bandmap_contest;
 		if (single.dxcc_spotted.contest_name && single.dxcc_spotted.contest_name !== '') {
-			contestTitle = 'Contest: ' + single.dxcc_spotted.contest_name;
+			contestTitle = lang_bandmap_contest_name + ': ' + single.dxcc_spotted.contest_name;
 		}
 		activity_flags += buildBadge('warning', 'fa-trophy', contestTitle);
 	}
@@ -1042,9 +1015,9 @@ $(function() {
 	let isFresh = ageMinutesCheck < 5;
 
 	if (single.worked_call) {
-		let worked_title = 'Worked Before';
+		let worked_title = lang_bandmap_worked_before;
 		if (single.last_wked && single.last_wked.LAST_QSO && single.last_wked.LAST_MODE) {
-			worked_title = 'Worked: ' + single.last_wked.LAST_QSO + ' in ' + single.last_wked.LAST_MODE;
+			worked_title = lang_bandmap_worked + ': ' + single.last_wked.LAST_QSO + ' in ' + single.last_wked.LAST_MODE;
 		}
 		let worked_badge_type = single.cnfmd_call ? 'success' : 'warning';
 		// isLast is true only if fresh badge won't be added
@@ -1052,7 +1025,7 @@ $(function() {
 	}
 
 	if (isFresh) {
-		activity_flags += buildBadge('danger', 'fa-bolt', 'Fresh spot (< 5 minutes old)', null, true);
+		activity_flags += buildBadge('danger', 'fa-bolt', lang_bandmap_fresh_spot, null, true);
 	}		// Build table row array
 		data[0] = [];		// Age column: show age in minutes with auto-update attribute
 		let ageMinutes = single.age || 0;
@@ -1136,13 +1109,13 @@ $(function() {
 	let medals = '';
 	if (single.worked_continent === false) {
 		// New Continent (not worked before) - Gold medal
-		medals += buildBadge('gold', 'fa-medal', 'New Continent');
+		medals += buildBadge('gold', 'fa-medal', lang_bandmap_new_continent);
 	} else if (single.worked_dxcc === false) {
 		// New DXCC (not worked before) - Silver medal
-		medals += buildBadge('silver', 'fa-medal', 'New Country');
+		medals += buildBadge('silver', 'fa-medal', lang_bandmap_new_country);
 	} else if (single.worked_call === false) {
 		// New Callsign (not worked before) - Bronze medal
-		medals += buildBadge('bronze', 'fa-medal', 'New Callsign');
+		medals += buildBadge('bronze', 'fa-medal', lang_bandmap_new_callsign);
 	}
 
 	// Special column: combine medals, LoTW and activity badges
@@ -3672,17 +3645,6 @@ $(function() {
 	}
 
 	/**
-	 * Get color based on mode (using DX waterfall colors)
-	 */
-	function getSpotModeColor(mode) {
-		const modeUpper = (mode || '').toUpperCase();
-		if (modeUpper === 'CW') return '#FFA500'; // Orange
-		if (['SSB', 'LSB', 'USB', 'AM', 'FM', 'PHONE'].includes(modeUpper)) return '#00FF00'; // Green
-		if (['FT8', 'FT4', 'RTTY', 'PSK', 'DIGITAL', 'DIGI'].some(m => modeUpper.includes(m))) return '#0096FF'; // Blue
-		return '#A020F0'; // Purple for other
-	}
-
-	/**
 	 * Get border color based on continent status (matching bandmap table colors)
 	 */
 	function getContinentStatusColor(cnfmdContinent, workedContinent) {
@@ -3762,7 +3724,6 @@ $(function() {
 	 */
 	function updateDxMap() {
 		if (!dxMap) {
-			console.log('DX Map: map not initialized');
 			return;
 		}
 
@@ -3976,23 +3937,17 @@ $(function() {
 					const spottedGroup = spotterGroups.get(spotId);
 					if (spottedGroup && spottedGroup.spotIds.has(spotterId)) {
 						// Create consistent pair key (sorted to avoid duplicates)
-						const pairKey = [spotterId, spotId].sort().join('-');
-						biDirectionalPairs.add(pairKey);
-					}
-				});
+					const pairKey = [spotterId, spotId].sort().join('-');
+					biDirectionalPairs.add(pairKey);
+				}
 			});
+		});
 
-			if (biDirectionalPairs.size > 0) {
-				console.log(`Found ${biDirectionalPairs.size} bi-directional connections:`, Array.from(biDirectionalPairs));
-			}
-
-			// Draw blue dots for spotters (permanent connections shown in orange)
-			spotterGroups.forEach((spotterInfo, spotterId) => {
-				const lat = parseFloat(spotterInfo.lat);
-				const lng = parseFloat(spotterInfo.lng);
-				if (isNaN(lat) || isNaN(lng)) return;
-
-				const marker = L.circleMarker([lat, lng], {
+		// Draw blue dots for spotters (permanent connections shown in orange)
+		spotterGroups.forEach((spotterInfo, spotterId) => {
+			const lat = parseFloat(spotterInfo.lat);
+			const lng = parseFloat(spotterInfo.lng);
+			if (isNaN(lat) || isNaN(lng)) return;				const marker = L.circleMarker([lat, lng], {
 					radius: 5,
 					fillColor: '#ff9900',
 					color: '#fff',
