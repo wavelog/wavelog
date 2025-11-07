@@ -3,6 +3,16 @@ html {
 	overflow-y: scroll;
 }
 
+/* Blink animation for radio icon updates */
+@keyframes blink-once {
+	0%, 100% { opacity: 1; }
+	50% { opacity: 0.3; }
+}
+
+.blink-once {
+	animation: blink-once 0.6s ease-in-out;
+}
+
 /* Reserve space for badge counts to prevent layout shifts */
 .band-count-badge,
 .mode-count-badge,
@@ -671,6 +681,45 @@ body.fullscreen-active {
 	margin-top: 5px;
 	margin-bottom: 5px;
 	overflow: visible;
+}
+
+/* Compact button padding in menu bar to save horizontal space */
+.menu-bar .btn-sm {
+	padding-left: 0.4rem;
+	padding-right: 0.4rem;
+}
+
+/* Ensure radio selector dropdown matches button height */
+.menu-bar .radios.form-select-sm {
+	height: calc(1.5em + 0.5rem + 2px); /* Match Bootstrap btn-sm height */
+	padding-top: 0.25rem;
+	padding-bottom: 0.25rem;
+}
+
+/* Ensure radio status container has no extra spacing */
+.menu-bar #radio_status {
+	margin: 0;
+	padding: 0;
+	line-height: 1;
+	min-height: 0 !important; /* Override the general min-height rule */
+	align-self: center; /* Force vertical centering */
+}
+
+/* Override fullscreen min-height and margin when in menu-bar */
+.bandmap-fullscreen .menu-bar #radio_status {
+	min-height: 0 !important;
+	margin: 0 !important;
+}
+
+/* Match radio status to button vertical rhythm */
+.menu-bar #radio_status #radio_cat_state {
+	line-height: 1.5;
+	padding-top: 0.25rem;
+	padding-bottom: 0.25rem;
+	margin: 0;
+	display: inline-flex !important;
+	align-items: center;
+	vertical-align: middle; /* Ensure inline alignment */
 }
 
 /* Ensure CAT Control and search box stay right-aligned when wrapping */

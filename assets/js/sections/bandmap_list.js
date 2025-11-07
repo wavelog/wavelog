@@ -174,14 +174,19 @@ $(function() {
 	}
 
 	/**
-	 * Update filter icon based on whether filters are active
+	 * Update filter icon and button colors based on whether filters are active
 	 */
 	function updateFilterIcon() {
 		if (areFiltersApplied()) {
-			$('#filterIcon').removeClass('fa-filter').addClass('fa-filter-circle-xmark text-success');
+			// When filters are active:
+			// - Advanced Filters button: colored (btn-success/greenish) with filter icon only
+			$('#filterDropdown').removeClass('btn-secondary').addClass('btn-success');
 		} else {
-			$('#filterIcon').removeClass('fa-filter-circle-xmark text-success').addClass('fa-filter');
+			// When no filters are active:
+			// - Advanced Filters button: secondary color with filter icon
+			$('#filterDropdown').removeClass('btn-success').addClass('btn-secondary');
 		}
+		// Note: Clear Filters buttons always keep their reddish eraser icon (set in HTML)
 	}
 
 	/**
@@ -3174,8 +3179,15 @@ $(function() {
 			window.isCatTrackingEnabled = false; // Update window variable for cat.js
 
 
-			// Hide radio status when CAT Control is disabled
-			$('#radio_cat_state').remove();
+			// Check if we need to show offline status (radio selected but CAT disabled)
+			const selectedRadio = $('.radios option:selected').val();
+			if (selectedRadio && selectedRadio !== '0' && typeof window.displayOfflineStatus === 'function') {
+				// Radio is selected but CAT Control disabled - show offline status
+				window.displayOfflineStatus('cat_disabled');
+			} else {
+				// No radio selected - just hide radio status
+				$('#radio_cat_state').remove();
+			}
 
 			// Re-enable band filter controls
 			enableBandFilterControls();
@@ -3473,7 +3485,7 @@ $(function() {
 
 		addUserHomeMarker();
 		addSpottersControl();
-		
+
 		// Initialize terminator (enabled by default)
 		updateTerminator();
 	}
@@ -3690,6 +3702,28 @@ $(function() {
 	}
 
 	/**
+	 * Get darker border color for map markers (30% darker than fill)
+	 */
+	function getDarkerBorderColor(fillColor) {
+		// Convert hex to RGB
+		const hex = fillColor.replace('#', '');
+		const r = parseInt(hex.substring(0, 2), 16);
+		const g = parseInt(hex.substring(2, 4), 16);
+		const b = parseInt(hex.substring(4, 6), 16);
+
+		// Make 30% darker
+		const darkerR = Math.floor(r * 0.7);
+		const darkerG = Math.floor(g * 0.7);
+		const darkerB = Math.floor(b * 0.7);
+
+		// Convert back to hex
+		return '#' + [darkerR, darkerG, darkerB].map(x => {
+			const hex = x.toString(16);
+			return hex.length === 1 ? '0' + hex : hex;
+		}).join('');
+	}
+
+	/**
 	 * Scroll to spot in the main DataTable
 	 */
 	function scrollToSpotInTable(callsign) {
@@ -3824,11 +3858,13 @@ $(function() {
 
 			const borderColor = getContinentStatusColor(bestContinentConfirmed, bestContinentWorked);
 			const fillColor = getDxccStatusColor(bestDxccConfirmed, bestDxccWorked);
+			// Use darker border to ensure visibility even when border and fill are the same
+			const darkerBorder = getDarkerBorderColor(fillColor);
 
 			const marker = L.marker([lat, lng], {
 				icon: L.divIcon({
 					className: 'dx-dxcc-marker',
-					html: `<div class="dx-marker-label" data-dxcc-id="${dxccInfo.dxccId}" style="text-align: center; font-size: 10px; font-weight: bold; color: #000; background: ${fillColor}; padding: 1px 4px; border-radius: 2px; border: 1px solid ${borderColor}; box-shadow: 0 1px 2px rgba(0,0,0,0.3); white-space: nowrap;">
+					html: `<div class="dx-marker-label" data-dxcc-id="${dxccInfo.dxccId}" style="text-align: center; font-size: 10px; font-weight: bold; color: #000; background: ${fillColor}; padding: 1px 4px; border-radius: 2px; border: 2px solid ${darkerBorder}; box-shadow: 0 1px 2px rgba(0,0,0,0.3); white-space: nowrap;">
 						${prefix}${countText}
 					</div>`,
 					iconSize: [45, 18],
@@ -4358,6 +4394,28 @@ $(function() {
 			setTimeout(updateDxMap, 500);
 		}
 	};
+
+	// Initial check: Display offline status if radio selected but CAT Control disabled
+	// This handles page load state
+	setTimeout(function() {
+		const selectedRadio = $('.radios option:selected').val();
+		if (selectedRadio === '0') {
+			// No radio selected - disable CAT Control button
+			$('#toggleCatTracking').prop('disabled', true).addClass('disabled');
+			if (typeof window.displayOfflineStatus === 'function') {
+				window.displayOfflineStatus('no_radio');
+			}
+		} else if (selectedRadio && selectedRadio !== '0' && !isCatTrackingEnabled) {
+			// Radio is selected but CAT Control is disabled on page load
+			$('#toggleCatTracking').prop('disabled', false).removeClass('disabled');
+			if (typeof window.displayOfflineStatus === 'function') {
+				window.displayOfflineStatus('cat_disabled');
+			}
+		} else if (selectedRadio && selectedRadio !== '0') {
+			// Radio is selected and CAT Control is enabled
+			$('#toggleCatTracking').prop('disabled', false).removeClass('disabled');
+		}
+	}, 100); // Small delay to ensure cat.js has loaded and exposed the function
 
 });
 

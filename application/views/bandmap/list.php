@@ -13,12 +13,12 @@
 	// Bandmap toast messages
 	var lang_bandmap_popup_blocked = "<?= __("Pop-up Blocked"); ?>";
 	var lang_bandmap_popup_warning = "<?= __("Pop-up was blocked! Please allow pop-ups for this site permanently."); ?>";
-	var lang_bandmap_cat_required = "<?= __("CAT Control Required"); ?>";
-	var lang_bandmap_enable_cat = "<?= __("Enable CAT Control to tune the radio"); ?>";
+	var lang_bandmap_cat_required = "<?= __("CAT Connection Required"); ?>";
+	var lang_bandmap_enable_cat = "<?= __("Enable CAT connection to tune the radio"); ?>";
 	var lang_bandmap_clear_filters = "<?= __("Clear Filters"); ?>";
-	var lang_bandmap_band_preserved = "<?= __("Band filter preserved (CAT Control is active)"); ?>";
+	var lang_bandmap_band_preserved = "<?= __("Band filter preserved (CAT connection is active)"); ?>";
 	var lang_bandmap_radio = "<?= __("Radio"); ?>";
-	var lang_bandmap_radio_none = "<?= __("Radio set to None - CAT Control disabled"); ?>";
+	var lang_bandmap_radio_none = "<?= __("Radio set to None - CAT connection disabled"); ?>";
 	var lang_bandmap_radio_tuned = "<?= __("Radio Tuned"); ?>";
 	var lang_bandmap_tuned_to = "<?= __("Tuned to"); ?>";
 	var lang_bandmap_tuning_failed = "<?= __("Tuning Failed"); ?>";
@@ -26,7 +26,7 @@
 	var lang_bandmap_qso_prepared = "<?= __("QSO Prepared"); ?>";
 	var lang_bandmap_callsign_sent = "<?= __("Callsign"); ?>";
 	var lang_bandmap_sent_to_form = "<?= __("sent to logging form"); ?>";
-	var lang_bandmap_cat_control = "<?= __("CAT Control"); ?>";
+	var lang_bandmap_cat_control = "<?= __("CAT Connection"); ?>";
 	var lang_bandmap_freq_changed = "<?= __("Frequency filter changed to"); ?>";
 	var lang_bandmap_by_transceiver = "<?= __("by transceiver"); ?>";
 	var lang_bandmap_freq_filter_set = "<?= __("Frequency filter set to"); ?>";
@@ -34,7 +34,7 @@
 	var lang_bandmap_waiting_radio = "<?= __("Waiting for radio data..."); ?>";
 	var lang_bandmap_my_favorites = "<?= __("My Favorites"); ?>";
 	var lang_bandmap_favorites_failed = "<?= __("Failed to load favorites"); ?>";
-	var lang_bandmap_modes_applied = "<?= __("Modes applied. Band filter preserved (CAT Control is active)"); ?>";
+	var lang_bandmap_modes_applied = "<?= __("Modes applied. Band filter preserved (CAT connection is active)"); ?>";
 	var lang_bandmap_favorites_applied = "<?= __("Applied your favorite bands and modes"); ?>";
 
 	// Bandmap filter status messages
@@ -66,10 +66,10 @@
 	// Bandmap UI messages
 	var lang_bandmap_exit_fullscreen = "<?= __("Exit Fullscreen"); ?>";
 	var lang_bandmap_toggle_fullscreen = "<?= __("Toggle Fullscreen"); ?>";
-	var lang_bandmap_cat_band_control = "<?= __("Band filtering is controlled by your radio when CAT Control is enabled"); ?>";
+	var lang_bandmap_cat_band_control = "<?= __("Band filtering is controlled by your radio when CAT connection is enabled"); ?>";
 	var lang_bandmap_click_to_qso = "<?= __("Click to prepare logging"); ?>";
 	var lang_bandmap_ctrl_click_tune = "<?= __("to tune frequency"); ?>";
-	var lang_bandmap_requires_cat = "<?= __("(requires CAT Control)"); ?>";
+	var lang_bandmap_requires_cat = "<?= __("(requires CAT connection)"); ?>";
 	var lang_bandmap_spotter = "<?= __("Spotter"); ?>";
 	var lang_bandmap_comment = "<?= __("Comment"); ?>";
 	var lang_bandmap_age = "<?= __("Age"); ?>";
@@ -88,6 +88,12 @@
 	var lang_bandmap_no_spots_filters = "<?= __("No spots found for selected filters"); ?>";
 	var lang_bandmap_error_loading = "<?= __("Error loading spots. Please try again."); ?>";
 
+	// Offline radio status messages
+	var lang_bandmap_show_all_modes = "<?= __("Show all modes"); ?>";
+	var lang_bandmap_show_all_spots = "<?= __("Show all spots"); ?>";
+
+	// DX Map Visualization
+
 	// DX Map translation strings
 	var lang_bandmap_draw_spotters = "<?= __("Draw Spotters"); ?>";
 	var lang_bandmap_extend_map = "<?= __("Extend Map"); ?>";
@@ -98,8 +104,8 @@
 	var lang_bandmap_mode = "<?= __("Mode"); ?>";
 	var lang_bandmap_band = "<?= __("Band"); ?>";
 
-	// Enable compact radio status display for bandmap page
-	window.CAT_COMPACT_MODE = true;
+	// Enable ultra-compact radio status display for bandmap page (tooltip only)
+	window.CAT_COMPACT_MODE = 'ultra-compact';
 
 	// Map configuration (matches QSO map settings)
 	var map_tile_server = '<?php echo $this->optionslib->get_option('option_map_tile_server');?>';
@@ -149,41 +155,54 @@
 
 		<!-- Filters Section with darker background and rounded corners -->
 		<div class="menu-bar">
-	<!-- Row 1: Radio Status (left) | Radio Selector & CAT Control (right) -->
+	<!-- Row 1: CAT Connection, Radio Selector, Radio Status (left) | de Continents (right) -->
 	<div class="d-flex flex-wrap align-items-center gap-2 mb-2">
-		<!-- Left: Radio Status Panel (dynamically populated by JavaScript) -->
-		<div id="radio_status" class="flex-shrink-0"></div>
+		<!-- Left: CAT Connection Button -->
+		<button class="btn btn-sm btn-secondary flex-shrink-0" type="button" id="toggleCatTracking" title="<?= __("When selected the filters will be set basing on your current radio status"); ?>">
+			<i class="fas fa-radio"></i> <span class="d-none d-sm-inline"><?= __("CAT Connection"); ?></span>
+		</button>
 
-		<!-- Spacer to push right content to end -->
-		<div class="flex-grow-1"></div>
+		<!-- Radio Selector Dropdown -->
+		<small class="text-muted me-1 flex-shrink-0 d-none d-md-inline"><?= __("Radio:"); ?></small>
+		<select class="form-select form-select-sm radios flex-shrink-0" id="radio" name="radio" style="width: auto; min-width: 150px;">
+			<option value="0" selected="selected"><?= __("None"); ?></option>
+			<option value="ws"<?php if ($this->session->userdata('radio') == 'ws') { echo ' selected="selected"'; } ?>><?= __("Live - ") . __("WebSocket (Requires WLGate>=1.1.10)"); ?></option>
+			<?php foreach ($radios->result() as $row) { ?>
+				<option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id) { echo "selected=\"selected\""; } ?>><?= __("Polling - ") . $row->radio; ?><?php if ($radio_last_updated->id == $row->id) { echo "(".__("last updated").")"; } else { echo ''; } ?></option>
+			<?php } ?>
+		</select>
 
-		<!-- Right: Radio Selector and CAT Control -->
-		<div class="d-flex gap-2 align-items-center">
-			<small class="text-muted me-1 flex-shrink-0 d-none d-md-inline"><?= __("Radio:"); ?></small>
-			<select class="form-select form-select-sm radios flex-shrink-0" id="radio" name="radio" style="width: auto; min-width: 150px;">
-				<option value="0" selected="selected"><?= __("None"); ?></option>
-				<option value="ws"<?php if ($this->session->userdata('radio') == 'ws') { echo ' selected="selected"'; } ?>><?= __("Live - ") . __("WebSocket (Requires WLGate>=1.1.10)"); ?></option>
-				<?php foreach ($radios->result() as $row) { ?>
-					<option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id) { echo "selected=\"selected\""; } ?>><?= __("Polling - ") . $row->radio; ?><?php if ($radio_last_updated->id == $row->id) { echo "(".__("last updated").")"; } else { echo ''; } ?></option>
-				<?php } ?>
-			</select>
-			<!-- CAT Control Button -->
-			<button class="btn btn-sm btn-secondary flex-shrink-0" type="button" id="toggleCatTracking" title="<?= __("When selected the filters will be set basing on your current radio status"); ?>">
-				<i class="fas fa-radio"></i> <span class="d-none d-sm-inline"><?= __("CAT Control"); ?></span>
-			</button>
+		<!-- Radio Status Panel (ultra-compact, dynamically populated by JavaScript) -->
+		<div id="radio_status" class="d-flex align-items-center" style="flex: 1 1 auto; min-width: 0;"></div>
+
+		<!-- Right: de Continent Filter Buttons -->
+		<div class="d-flex flex-wrap gap-2 align-items-center">
+			<small class="text-muted me-1 flex-shrink-0"><?= __("de:"); ?></small>
+			<div class="btn-group flex-shrink-0" role="group">
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleAllContinentsFilter" title="<?= __("Select all continents"); ?>"><?= __("All"); ?></button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleAfricaFilter" title="<?= __("Toggle Africa continent filter"); ?>">AF</button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleAntarcticaFilter" title="<?= __("Toggle Antarctica continent filter"); ?>">AN</button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleAsiaFilter" title="<?= __("Toggle Asia continent filter"); ?>">AS</button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleEuropeFilter" title="<?= __("Toggle Europe continent filter"); ?>">EU</button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleNorthAmericaFilter" title="<?= __("Toggle North America continent filter"); ?>">NA</button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleOceaniaFilter" title="<?= __("Toggle Oceania continent filter"); ?>">OC</button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleSouthAmericaFilter" title="<?= __("Toggle South America continent filter"); ?>">SA</button>
+			</div>
 		</div>
 	</div>
 
-	<!-- Row 2: Advanced Filters, Clear Filters (left) | de Continents (right) -->
+	<!-- Row 3: Advanced Filters, Favorites, Clear Filters | Band Filters (left) and Mode Filters (right) -->
 	<div class="d-flex flex-wrap align-items-center gap-2 mb-2">
-		<!-- Left: Advanced Filters and Clear Filters -->
+		<!-- Left: Advanced Filters, Favorites, Clear Filters, and Band Filter Buttons -->
 		<div class="d-flex flex-wrap gap-2 align-items-center">
-			<div class="dropdown">
-				<!-- Filter Dropdown Button -->
-				<button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-					<i class="fas fa-filter" id="filterIcon"></i> <?= __("Advanced Filters"); ?>
-				</button>
-				<div class="dropdown-menu dropdown-menu-start p-3 mt-2" aria-labelledby="filterDropdown" style="min-width: 1264px; max-width: 95vw; max-height: 98vh; overflow-y: auto;">
+			<!-- Button Group: Advanced Filters + Favorites + Clear Filters -->
+			<div class="btn-group flex-shrink-0" role="group">
+				<div class="dropdown">
+					<!-- Filter Dropdown Button -->
+					<button class="btn btn-sm btn-secondary" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" title="<?= __("Advanced Filters"); ?>">
+						<i class="fas fa-filter" id="filterIcon"></i>
+					</button>
+					<div class="dropdown-menu dropdown-menu-start p-3 mt-2" aria-labelledby="filterDropdown" style="min-width: 1264px; max-width: 95vw; max-height: 98vh; overflow-y: auto;">
 					<!-- Filter tip -->
 					<div class="filter-tip">
 						<i class="fas fa-info-circle"></i>
@@ -317,46 +336,19 @@
 						<button type="button" class="btn btn-sm btn-success me-2" id="applyFiltersButtonPopup">
 						<i class="fas fa-check"></i> <?= __("Apply Filters"); ?>
 					</button>
-					<button type="button" class="btn btn-sm btn-secondary" id="clearFiltersButton">
-						<i class="fas fa-eraser text-danger"></i> <?= __("Clear Filters"); ?>
+					<button type="button" class="btn btn-sm btn-secondary" id="clearFiltersButton" title="<?= __("Clear Filters"); ?>">
+						<i class="fas fa-filter-circle-xmark text-danger"></i>
 					</button>
 				</div>
 			</div>
 		</div>
-
-		<!-- Clear Filters Button -->
-		<button class="btn btn-sm btn-secondary" type="button" id="clearFiltersButtonQuick" title="<?= __("Clear all filters except De Continent"); ?>">
-			<i class="fas fa-eraser text-danger"></i> <span class="d-none d-sm-inline"><?= __("Clear Filters"); ?></span>
-		</button>
-		</div>
-
-		<!-- Spacer to push right content to end -->
-		<div class="flex-grow-1"></div>
-
-		<!-- Right: de Continent Filter Buttons -->
-		<div class="d-flex flex-wrap gap-2 align-items-center">
-			<small class="text-muted me-1 flex-shrink-0"><?= __("de:"); ?></small>
-			<div class="btn-group flex-shrink-0" role="group">
-				<button class="btn btn-sm btn-secondary" type="button" id="toggleAllContinentsFilter" title="<?= __("Select all continents"); ?>"><?= __("All"); ?></button>
-				<button class="btn btn-sm btn-secondary" type="button" id="toggleAfricaFilter" title="<?= __("Toggle Africa continent filter"); ?>">AF</button>
-				<button class="btn btn-sm btn-secondary" type="button" id="toggleAntarcticaFilter" title="<?= __("Toggle Antarctica continent filter"); ?>">AN</button>
-				<button class="btn btn-sm btn-secondary" type="button" id="toggleAsiaFilter" title="<?= __("Toggle Asia continent filter"); ?>">AS</button>
-				<button class="btn btn-sm btn-secondary" type="button" id="toggleEuropeFilter" title="<?= __("Toggle Europe continent filter"); ?>">EU</button>
-				<button class="btn btn-sm btn-secondary" type="button" id="toggleNorthAmericaFilter" title="<?= __("Toggle North America continent filter"); ?>">NA</button>
-				<button class="btn btn-sm btn-secondary" type="button" id="toggleOceaniaFilter" title="<?= __("Toggle Oceania continent filter"); ?>">OC</button>
-				<button class="btn btn-sm btn-secondary" type="button" id="toggleSouthAmericaFilter" title="<?= __("Toggle South America continent filter"); ?>">SA</button>
-			</div>
-		</div>
-	</div>
-
-	<!-- Row 3: My Favorites & Band Filters (left) and Mode Filters (right) -->
-	<div class="d-flex flex-wrap align-items-center gap-2 mb-2">
-		<!-- Left: My Favorites and Band Filter Buttons -->
-		<div class="d-flex flex-wrap gap-2 align-items-center">
-			<!-- Favorites Button -->
-			<div class="btn-group flex-shrink-0" role="group">
+				<!-- Favorites Button (part of button group) -->
 				<button class="btn btn-sm btn-secondary" type="button" id="toggleFavoritesFilter" title="<?= __("Apply your favorite bands and modes (configured in Band and Mode settings)"); ?>">
 					<i class="fas fa-star text-warning"></i>
+				</button>
+				<!-- Clear Filters Button (part of button group) -->
+				<button class="btn btn-sm btn-secondary" type="button" id="clearFiltersButtonQuick" title="<?= __("Clear all filters except De Continent"); ?>">
+					<i class="fas fa-filter-circle-xmark text-danger"></i>
 				</button>
 			</div>
 
@@ -399,31 +391,39 @@
 
 	<!-- Row 4: Quick Filters -->
 	<div class="d-flex flex-wrap align-items-center gap-2 mb-2">
-		<!-- Quick Filter Toggle Buttons -->
+		<!-- LoTW Users Button (separate) -->
 		<div class="btn-group flex-shrink-0" role="group">
 			<button class="btn btn-sm btn-secondary" type="button" id="toggleLotwFilter" title="<?= __("Toggle LoTW User filter"); ?>">
 				<i class="fas fa-upload"></i> <span class="d-none d-sm-inline"><?= __("LoTW users"); ?></span>
 			</button>
+		</div>
+
+		<!-- DX Spot, Continent, Country, Callsign Group -->
+		<div class="btn-group flex-shrink-0" role="group">
 			<button class="btn btn-sm btn-secondary" type="button" id="toggleDxSpotFilter" title="<?= __("Toggle DX Spot filter (spotted continent ≠ spotter continent)"); ?>">
-				<i class="fas fa-globe"></i> <span class="d-none d-sm-inline"><?= __("DX Spot"); ?></span>
+				<i class="fas fa-globe"></i> <span class="d-none d-sm-inline"><?= __("DX Spots"); ?></span>
 			</button>
 			<button class="btn btn-sm btn-secondary" type="button" id="toggleNewContinentFilter" title="<?= __("Toggle New Continent filter"); ?>">
-				<i class="fas fa-medal" style="color: #FFD700;"></i> <span class="d-none d-sm-inline"><?= __("Continent"); ?></span>
+				<i class="fas fa-medal" style="color: #FFD700;"></i> <span class="d-none d-sm-inline"><?= __("New Continents"); ?></span>
 			</button>
 			<button class="btn btn-sm btn-secondary" type="button" id="toggleDxccNeededFilter" title="<?= __("Toggle New Country filter"); ?>">
-				<i class="fas fa-medal" style="color: #C0C0C0;"></i> <span class="d-none d-sm-inline"><?= __("Country"); ?></span>
+				<i class="fas fa-medal" style="color: #C0C0C0;"></i> <span class="d-none d-sm-inline"><?= __("New DXCCs"); ?></span>
 			</button>
 			<button class="btn btn-sm btn-secondary" type="button" id="toggleNewCallsignFilter" title="<?= __("Toggle New Callsign filter"); ?>">
-				<i class="fas fa-medal" style="color: #CD7F32;"></i> <span class="d-none d-sm-inline"><?= __("Callsign"); ?></span>
+				<i class="fas fa-medal" style="color: #CD7F32;"></i> <span class="d-none d-sm-inline"><?= __("New Callsigns"); ?></span>
+			</button>
+		</div>
+
+		<!-- Fresh, Contest, Ref. Hunter Group -->
+		<div class="btn-group flex-shrink-0" role="group">
+			<button class="btn btn-sm btn-secondary" type="button" id="toggleFreshFilter" title="<?= __("Toggle Fresh spots filter (< 5 minutes old)"); ?>">
+				<i class="fas fa-bolt"></i> <span class="d-none d-sm-inline"><?= __("Fresh Spots"); ?></span>
 			</button>
 			<button class="btn btn-sm btn-secondary" type="button" id="toggleContestFilter" title="<?= __("Toggle Contest filter"); ?>">
-				<i class="fas fa-trophy"></i> <span class="d-none d-sm-inline"><?= __("Contest"); ?></span>
+				<i class="fas fa-trophy"></i> <span class="d-none d-sm-inline"><?= __("Contest Spots"); ?></span>
 			</button>
 			<button class="btn btn-sm btn-secondary" type="button" id="toggleGeoHunterFilter" title="<?= __("Toggle Geo Hunter (POTA/SOTA/IOTA/WWFF)"); ?>">
-				<i class="fas fa-hiking"></i> <span class="d-none d-sm-inline"><?= __("Ref. Hunter"); ?></span>
-			</button>
-			<button class="btn btn-sm btn-secondary" type="button" id="toggleFreshFilter" title="<?= __("Toggle Fresh spots filter (< 5 minutes old)"); ?>">
-				<i class="fas fa-bolt"></i> <span class="d-none d-sm-inline"><?= __("Fresh"); ?></span>
+				<i class="fas fa-hiking"></i> <span class="d-none d-sm-inline"><?= __("Referenced Spots"); ?></span>
 			</button>
 		</div>
 
