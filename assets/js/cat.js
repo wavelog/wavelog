@@ -380,10 +380,10 @@ $(document).ready(function() {
         // Use translation variable if available, fallback to English
         var offlineText = typeof lang_cat_working_offline !== 'undefined' ? lang_cat_working_offline : 'Working without CAT connection';
 
-        const offlineHtml = '<span id="radio_cat_state" style="display: inline-flex; align-items: center; font-size: 0.875rem;">' +
+        const offlineHtml = '<span id="radio_cat_state" class="text-body" style="display: inline-flex; align-items: center; font-size: 0.875rem;">' +
                            '<i class="fas fa-unlink text-warning" style="margin-right: 5px;"></i>' +
                            '<span style="margin-right: 5px;">' + offlineText + '</span>' +
-                           '<i id="radio-status-icon" class="fas fa-info-circle" style="cursor: help;" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom"></i>' +
+                           '<i id="radio-status-icon" class="fas fa-info-circle text-muted" style="cursor: help;" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom"></i>' +
                            '</span>';
 
         let tooltipContent;
@@ -888,6 +888,14 @@ $(document).ready(function() {
         radioCatUrlCache = {};
         radioNameCache = {};
 
+        // If switching to None, disable CAT tracking FIRST before stopping connections
+        // This prevents any pending updates from interfering with the offline status
+        if (selectedRadioId == '0') {
+            if (typeof window.isCatTrackingEnabled !== 'undefined') {
+                window.isCatTrackingEnabled = false;
+            }
+        }
+
         // Hide radio status box (both success and error states)
         $('#radio_cat_state').remove();
 
@@ -911,9 +919,11 @@ $(document).ready(function() {
             if (typeof dxwaterfall_cat_state !== 'undefined') {
                 dxwaterfall_cat_state = "none";
             }
-            // Disable CAT Control button when no radio is selected
+            // Disable CAT Connection button when no radio is selected
             $('#toggleCatTracking').prop('disabled', true).addClass('disabled');
-            // Display offline status when no radio selected (always show, not just in ultra-compact)
+            // Also turn OFF CAT Connection (remove green button state)
+            $('#toggleCatTracking').removeClass('btn-success').addClass('btn-secondary');
+            // Display offline status when no radio selected
             displayOfflineStatus('no_radio');
         } else if (selectedRadioId == 'ws') {
             websocketIntentionallyClosed = false; // Reset flag when opening WebSocket

@@ -2060,8 +2060,12 @@ $(function() {
 				isCatTrackingEnabled = false;
 				window.isCatTrackingEnabled = false;
 
-				// Hide radio status
-				$('#radio_cat_state').remove();
+				// Show offline status instead of just hiding
+				if (typeof window.displayOfflineStatus === 'function') {
+					window.displayOfflineStatus('no_radio');
+				} else {
+					$('#radio_cat_state').remove();
+				}
 
 				// Re-enable band filter controls
 				enableBandFilterControls();
@@ -3184,8 +3188,11 @@ $(function() {
 			if (selectedRadio && selectedRadio !== '0' && typeof window.displayOfflineStatus === 'function') {
 				// Radio is selected but CAT Control disabled - show offline status
 				window.displayOfflineStatus('cat_disabled');
+			} else if (selectedRadio === '0' && typeof window.displayOfflineStatus === 'function') {
+				// No radio selected - show offline status
+				window.displayOfflineStatus('no_radio');
 			} else {
-				// No radio selected - just hide radio status
+				// Fallback: just hide radio status
 				$('#radio_cat_state').remove();
 			}
 
