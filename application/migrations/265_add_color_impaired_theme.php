@@ -3,7 +3,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
-*   This migration adds the theme 'darkly' as standard/default theme to wavelog.
+*   This migration adds a theme for color impaired hams (based on default skin)
 */
 
 class Migration_add_color_impaired_theme extends CI_Migration {
