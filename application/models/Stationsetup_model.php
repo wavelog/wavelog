@@ -234,10 +234,12 @@ class Stationsetup_model extends CI_Model {
 	}
 
 	function list_all_locations() {
-		$sql = "select dxcc_entities.end, station_profile.station_id, station_profile_name, station_profile.hrdlog_username, station_gridsquare, station_city, station_iota, station_sota, station_callsign, station_power, station_dxcc, dxcc_entities.name as dxccname, dxcc_entities.prefix as dxccprefix, station_cnty, station_cq, station_itu, station_active, eqslqthnickname, state, county, station_sig, station_sig_info, qrzrealtime, station_wwff, station_pota, oqrs, oqrs_text, oqrs_email, webadifrealtime, clublogrealtime, clublogignore, hrdlogrealtime, creation_date, last_modified, station_uuid
+		$sql = "select dxcc_entities.end, station_profile.station_id, station_profile_name, count(".$this->config->item('table_name').".station_id) as qso_total, station_profile.hrdlog_username, station_gridsquare, station_city, station_iota, station_sota, station_callsign, station_power, station_dxcc, dxcc_entities.name as dxccname, dxcc_entities.prefix as dxccprefix, station_cnty, station_cq, station_itu, station_active, eqslqthnickname, state, county, station_sig, station_sig_info, qrzrealtime, station_wwff, station_pota, oqrs, oqrs_text, oqrs_email, webadifrealtime, clublogrealtime, clublogignore, hrdlogrealtime, station_profile.creation_date, station_profile.last_modified, station_uuid
 		from station_profile
-		join dxcc_entities on station_profile.station_dxcc = dxcc_entities.adif
-		where user_id = ?";
+		left join ".$this->config->item('table_name')." on station_profile.station_id = ".$this->config->item('table_name').".station_id
+		left outer join dxcc_entities on station_profile.station_dxcc = dxcc_entities.adif
+		where user_id = ?
+		group by station_profile.station_id;";
 
 		$query = $this->db->query($sql, array($this->session->userdata('user_id')));
 
