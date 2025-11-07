@@ -208,6 +208,11 @@ function loadQSOTable(rows) {
 			searching: false,
 			responsive: false,
 			ordering: true,
+// Enable feature ColReorder
+colReorder: true,
+stateSave: true,
+
+
 			scrollY: window.innerHeight - $('#searchForm').innerHeight() - 250,
 			scrollCollapse: true,
 			paging: false,
