@@ -6776,7 +6776,7 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
             eventType: e ? e.type : 'unknown',
             eventTarget: e ? e.target : 'unknown'
         });
-        
+
         if (waterfallActive) {
             DX_WATERFALL_UTILS.log.debug('[Power Control] Already active, ignoring');
             return; // Already active, prevent double initialization
@@ -6855,7 +6855,7 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
     // Click on power-off icon to turn off DX Waterfall
     $('#dxWaterfallPowerOffIcon').off('click').on('click', function(e) {
         e.stopPropagation(); // Prevent triggering parent click
-        
+
         // DEBUG: Log what triggered power-off
         DX_WATERFALL_UTILS.log.debug('[Power Control] Power-OFF triggered', {
             currentState: DXWaterfallStateMachine.getState(),
