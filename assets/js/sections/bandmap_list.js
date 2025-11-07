@@ -412,6 +412,14 @@ $(function() {
 				{
 					'targets': 2,  // Frequency is now column 3 (0-indexed = 2)
 				"type":"num",
+				'render': function (data, type, row) {
+					// For sorting and filtering, return numeric value
+					if (type === 'sort' || type === 'type') {
+						return parseFloat(data) || 0;
+					}
+					// For display, return the string as-is
+					return data;
+				},
 					'createdCell':  function (td, cellData, rowData, row, col) {
 						$(td).addClass("MHz");
 					}
