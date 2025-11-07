@@ -1,5 +1,37 @@
 var modalloading=false;
 
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll('.dropdown').forEach(dd => {
+		dd.addEventListener('hide.bs.dropdown', function (e) {
+			if (e.clickEvent && e.clickEvent.target.closest('.dropdown-menu')) {
+				e.preventDefault(); // stop Bootstrap from closing
+			}
+		});
+	});
+	$('#dxcc').multiselect({
+		// template is needed for bs5 support
+		templates: {
+			button: '<button type="button" class="multiselect dropdown-toggle btn btn-sm btn-secondary form-select form-select-sm" data-bs-toggle="dropdown" aria-expanded="false"><span class="multiselect-selected-text"></span></button>',
+			option: '<button type="button" class="multiselect-option dropdown-item-sm dropdown-item"></button>',
+			popupContainer: '<div class="multiselect-container dropdown-menu dropdown-menu-sm"></div>',
+		},
+		enableFiltering: true,
+		enableFullValueFiltering: false,
+		enableCaseInsensitiveFiltering: true,
+		filterPlaceholder: lang_general_word_search,
+		numberDisplayed: 1,
+		inheritClass: true,
+		buttonWidth: '100%',
+		maxHeight: 600,
+		buttonContainer: '<div class="btn-group-sm" />',
+	});
+
+		$('.multiselect-container .multiselect-filter', $('#dxcc').parent()).css({
+		'position': 'sticky', 'top': '0px', 'z-index': 1, 'background-color':'inherit', 'height':'37px'
+	})
+
+});
+
 $('#band').change(function(){
 	var band = $("#band option:selected").text();
 	if (band != "SAT") {
@@ -44,7 +76,7 @@ function gridPlot(form, visitor=true) {
         container._leaflet_id = null;
         container.remove();
         $("#gridmapcontainer").append('<div id="gridsquare_map" class="map-leaflet" style="width: 100%;"></div>');
-        set_map_height();
+        set_map_height(50);
     }
 
     if (typeof type == 'undefined') { type=''; }
@@ -69,11 +101,12 @@ function gridPlot(form, visitor=true) {
             qrz: $("#qrz").is(":checked"),
             sat: $("#sat").val(),
             orbit: $("#orbits").val(),
-            propagation: $('#propagation').val()
+            propagation: $('#propagation').val(),
+			dxcc: $('#dxcc').val(),
 		},
 		success: function (data) {
             $('.cohidden').show();
-            set_map_height();
+            set_map_height(25);
             $(".ld-ext-right-plot").removeClass('running');
             $(".ld-ext-right-plot").prop('disabled', false);
             $('#plot').prop("disabled", false);
@@ -83,7 +116,9 @@ function gridPlot(form, visitor=true) {
             grid_two_confirmed = data.grid_2char_confirmed;
             grid_four_confirmed = data.grid_4char_confirmed;
             grid_six_confirmed = data.grid_6char_confirmed;
-            plot(visitor, grid_two, grid_four, grid_six, grid_two_confirmed, grid_four_confirmed, grid_six_confirmed);
+			grids = data.grids;
+            grid_max = data.grid_count;
+            plot(visitor, grid_two, grid_four, grid_six, grid_two_confirmed, grid_four_confirmed, grid_six_confirmed, grids, grid_max);
 
 		},
 		error: function (data) {
@@ -94,7 +129,7 @@ function gridPlot(form, visitor=true) {
    };
 }
 
-function plot(visitor, grid_two, grid_four, grid_six, grid_two_confirmed, grid_four_confirmed, grid_six_confirmed) {
+function plot(visitor, grid_two, grid_four, grid_six, grid_two_confirmed, grid_four_confirmed, grid_six_confirmed, grids, grid_max) {
             var layer = L.tileLayer(jslayer, {
                 maxZoom: 12,
                 attribution: jsattribution,
@@ -125,18 +160,31 @@ function plot(visitor, grid_two, grid_four, grid_six, grid_two_confirmed, grid_f
             /*Legend specific*/
             var legend = L.control({ position: "topright" });
 
-            legend.onAdd = function(map) {
-                var div = L.DomUtil.create("div", "legend");
-                div.innerHTML += "<h4>" + gridsquares_gridsquares + "</h4>";
-                div.innerHTML += '<i style="background: green"></i><span>' + gridsquares_gridsquares_confirmed + ' ('+grid_four_confirmed.length+')</span><br>';
-                div.innerHTML += '<i style="background: red"></i><span>' + gridsquares_gridsquares_not_confirmed + ' ('+(grid_four.length - grid_four_confirmed.length)+')</span><br>';
-                div.innerHTML += '<i></i><span>' + gridsquares_gridsquares_total_worked + ' ('+grid_four.length+')</span><br>';
-				div.innerHTML += "<h4>" + gridsquares_fields + "</h4>";
-				div.innerHTML += '<i style="background: green"></i><span>' + gridsquares_fields_confirmed + ' ('+grid_two_confirmed.length+')</span><br>';
-				div.innerHTML += '<i style="background: red"></i><span>' + gridsquares_fields_not_confirmed + ' ('+(grid_two.length - grid_two_confirmed.length)+')</span><br>';
-				div.innerHTML += '<i></i><span>' + gridsquares_fields_total_worked + ' ('+grid_two.length+')</span><br>';
-                return div;
-            };
+			if (grids != '') {
+				legend.onAdd = function(map) {
+					let div = L.DomUtil.create("div", "legend");
+					html = "<table border=\"0\">";
+					html += '<i style="background: green"></i><span>' + gridsquares_gridsquares_confirmed + ' ('+grid_four_confirmed.length+')</span><br>';
+					html += '<i style="background: red"></i><span>' + gridsquares_gridsquares_not_confirmed + ' ('+(grid_four.length - grid_four_confirmed.length)+')</span><br>';
+					html += '<tr><td><i style="background: #ffd757"></i><span>' + gridsquares_gridsquares_total_worked + ' ('+(Math.round((grid_four.length / grid_max) * 10000) / 100)+'%):</span></td><td style=\"padding-left: 1em; text-align: right;\"><span>'+(grid_four.length)+' / '+grid_max+'</span></td></tr>';
+					html += "</table>";
+					div.innerHTML = html;
+					return div;
+				};
+			} else {
+				legend.onAdd = function(map) {
+					let div = L.DomUtil.create("div", "legend");
+					div.innerHTML += "<h4>" + gridsquares_gridsquares + "</h4>";
+					div.innerHTML += '<i style="background: green"></i><span>' + gridsquares_gridsquares_confirmed + ' ('+grid_four_confirmed.length+')</span><br>';
+					div.innerHTML += '<i style="background: red"></i><span>' + gridsquares_gridsquares_not_confirmed + ' ('+(grid_four.length - grid_four_confirmed.length)+')</span><br>';
+					div.innerHTML += '<i></i><span>' + gridsquares_gridsquares_total_worked + ' ('+grid_four.length+')</span><br>';
+					div.innerHTML += "<h4>Fields</h4>";
+					div.innerHTML += '<i style="background: green"></i><span>Fields confirmed ('+grid_two_confirmed.length+')</span><br>';
+					div.innerHTML += '<i style="background: red"></i><span>Fields not confirmed ('+(grid_two.length - grid_two_confirmed.length)+')</span><br>';
+					div.innerHTML += '<i></i><span>Total fields worked ('+grid_two.length+')</span><br>';
+					return div;
+				};
+			}
 
             legend.addTo(map);
 

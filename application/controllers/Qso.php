@@ -88,6 +88,14 @@ class QSO extends CI_Controller {
 			$data['user_dok_to_qso_tab'] = 0;
 		}
 
+		// Get status of DX Waterfall enable option
+		$qkey_opt=$this->user_options_model->get_options('dxwaterfall',array('option_name'=>'enable','option_key'=>'boolean'))->result();
+		if (count($qkey_opt)>0) {
+			$data['user_dxwaterfall_enable'] = $qkey_opt[0]->option_value;
+		} else {
+			$data['user_dxwaterfall_enable'] = 0;
+		}
+
 		$data['qso_count'] = $this->session->userdata('qso_page_last_qso_count');
 
 		$this->load->library('form_validation');
@@ -212,65 +220,96 @@ class QSO extends CI_Controller {
 	}
 
 	function winkeysettings() {
+		$this->load->model('user_options_model');
 
-		// Load model Winkey
-		$this->load->model('winkey');
+		$cwmacros = [];
+		for ($i = 1; $i <= 10; $i++) {
+			$row = $this->user_options_model
+				->get_options('cwmacros', ['option_name' => "macro{$i}"])
+				->row();
 
-		// call settings from model winkey
-		$data['result'] = $this->winkey->settings($this->session->userdata('user_id'), $this->stations->find_active());
+			$decoded = json_decode($row->option_value ?? '');
 
-		$this->load->view('qso/components/winkeysettings', $data);
+			$name  = isset($decoded->name) ? $decoded->name : '';
+			$macro = isset($decoded->macro) ? $decoded->macro : '';
+
+			$cwmacros["macro{$i}"] = [
+				'name'  => $name,
+				'macro' => $macro,
+			];
+		}
+
+		// Check if all are empty
+		$allEmpty = true;
+		foreach ($cwmacros as $macro) {
+			if (!empty($macro['name']) || !empty($macro['macro'])) {
+				$allEmpty = false;
+				break;
+			}
+		}
+
+		// Apply defaults to first 5 if all are empty
+		if ($allEmpty) {
+			$cwmacros['macro1'] = ['name' => 'CQ',   'macro' => 'CQ CQ CQ DE [MYCALL] [MYCALL] K'];
+			$cwmacros['macro2'] = ['name' => 'REPT', 'macro' => '[CALL] DE [MYCALL] [RSTS] [RSTS] K'];
+			$cwmacros['macro3'] = ['name' => 'TU',   'macro' => '[CALL] TU 73 DE [MYCALL] K'];
+			$cwmacros['macro4'] = ['name' => 'QRZ',  'macro' => 'QRZ DE [MYCALL] K'];
+			$cwmacros['macro5'] = ['name' => 'TEST', 'macro' => 'TEST DE [MYCALL] K'];
+		}
+
+		$this->load->view('qso/components/winkeysettings', $cwmacros);
 	}
 
+
 	function cwmacrosave(){
-		// Get the data from the form
-		$function1_name = $this->input->post('function1_name', TRUE);
-		$function1_macro = $this->input->post('function1_macro', TRUE);
+		$this->load->model('user_options_model');
+		for ($i = 1; $i <= 10; $i++) {
+			$data = [
+				'name'  => $this->input->post("function{$i}_name", TRUE),
+				'macro' => $this->input->post("function{$i}_macro", TRUE),
+			];
 
-		$function2_name = $this->input->post('function2_name', TRUE);
-		$function2_macro = $this->input->post('function2_macro', TRUE);
-
-		$function3_name = $this->input->post('function3_name', TRUE);
-		$function3_macro = $this->input->post('function3_macro', TRUE);
-
-		$function4_name = $this->input->post('function4_name', TRUE);
-		$function4_macro = $this->input->post('function4_macro', TRUE);
-
-		$function5_name = $this->input->post('function5_name', TRUE);
-		$function5_macro = $this->input->post('function5_macro', TRUE);
-
-		$data = [
-			'user_id' => $this->session->userdata('user_id'),
-			'station_location_id' => $this->stations->find_active(),
-			'function1_name'  => $function1_name,
-			'function1_macro' => $function1_macro,
-			'function2_name'  => $function2_name,
-			'function2_macro' => $function2_macro,
-			'function3_name'  => $function3_name,
-			'function3_macro' => $function3_macro,
-			'function4_name'  => $function4_name,
-			'function4_macro' => $function4_macro,
-			'function5_name'  => $function5_name,
-			'function5_macro' => $function5_macro,
-		];
-
-		// Load model Winkey
-		$this->load->model('winkey');
-
-		// save the data
-		$this->winkey->save($data);
+			$this->user_options_model->set_option('cwmacros', "macro{$i}", array("macro{$i}" => json_encode($data)));
+		}
 
 		echo "Macros Saved, Press Close and lets get sending!";
 	}
 
 	function cwmacros_json() {
-		// Load model Winkey
-		$this->load->model('winkey');
+		$this->load->model('user_options_model');
 
+		$cwmacros = [];
+		for ($i = 1; $i <= 10; $i++) {
+			$row = $this->user_options_model
+				->get_options('cwmacros', ['option_name' => "macro{$i}"])
+				->row();
+
+			// Decode JSON stored in option_value
+			$decoded = json_decode($row->option_value ?? '');
+
+			// Make sure it's an object (in case it's null)
+			$name  = isset($decoded->name) ? $decoded->name : '';
+			$macro = isset($decoded->macro) ? $decoded->macro : '';
+
+			$cwmacros["macro{$i}"] = [
+				'name'  => $name,
+				'macro' => $macro,
+			];
+		}
+
+		// Build the JSON result structure
+		$result = [];
+		$i = 1;
+		foreach ($cwmacros as $macro) {
+			$result["function{$i}_name"]  = $macro['name'];
+			$result["function{$i}_macro"] = $macro['macro'];
+			$i++;
+		}
+
+		// Output as JSON
 		header('Content-Type: application/json; charset=utf-8');
+		echo json_encode($result, JSON_PRETTY_PRINT);
 
-		// Call settings_json from model winkey
-		echo $this->winkey->settings_json($this->session->userdata('user_id'), $this->stations->find_active());
 	}
 
 	function edit_ajax() {
@@ -616,7 +655,9 @@ class QSO extends CI_Controller {
 		$this->load->model('stations');
 		$this->load->library('qra');
 		$stationProfile = $this->input->post('stationProfile', TRUE);
-		$data = array('station_power' => $this->stations->get_station_power($stationProfile));
+		$result = $this->stations->get_station_power($stationProfile);
+		$data['station_power'] = $result['station_power'];
+		$data['station_callsign'] = $result['station_callsign'];
 		[$data['lat'], $data['lng']] = $this->qra->qra2latlong($this->stations->gridsquare_from_station($stationProfile));
 
 		header('Content-Type: application/json');

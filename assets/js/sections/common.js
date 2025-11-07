@@ -1148,7 +1148,7 @@ $(document).ready(function() {
 });
 
 // auto setting of gridmap height
-function set_map_height() {
+function set_map_height(extra_height = 0) {
     //header menu
     var headerNavHeight = $('nav').outerHeight();
     // console.log('nav: ' + headerNavHeight);
@@ -1162,7 +1162,7 @@ function set_map_height() {
     // console.log('.gridsquare_map_form: ' + gridsquareFormHeight);
 
     // calculate correct map height
-    var gridsquareMapHeight = window.innerHeight - headerNavHeight - coordinatesHeight - gridsquareFormHeight;
+    var gridsquareMapHeight = window.innerHeight - headerNavHeight - coordinatesHeight - gridsquareFormHeight - extra_height;
 
     // and set it
     $('#gridsquare_map').css('height', gridsquareMapHeight + 'px');
@@ -1279,6 +1279,46 @@ function shareModal(qso_data) {
             });
         }
     });
+}
+
+
+// Show Bootstrap Toast
+function showToast(title, text, type = 'bg-success text-white', delay = 3000) {
+	/*
+	Examples:
+	showToast('Saved', 'Your data was saved!', 'bg-success text-white', 3000);
+	showToast('Error', 'Failed to connect to server.', 'bg-danger text-white', 5000);
+	showToast('Warning', 'Please check your input.', 'bg-warning text-dark', 4000);
+	showToast('Info', 'System will restart soon.', 'bg-info text-dark', 4000);
+	*/
+
+	const container = document.getElementById('toast-container');
+
+	// Create toast element
+	const toastEl = document.createElement('div');
+	toastEl.className = `toast align-items-center ${type}`;
+	toastEl.setAttribute('role', 'alert');
+	toastEl.setAttribute('aria-live', 'assertive');
+	toastEl.setAttribute('aria-atomic', 'true');
+	toastEl.setAttribute('data-bs-delay', delay);
+
+	// Toast inner HTML
+	toastEl.innerHTML = `
+		<div class="d-flex">
+		<div class="toast-body">
+			<strong>${title}</strong><br>${text}
+		</div>
+		<button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+		</div>
+	`;
+
+	// Append and show
+	container.appendChild(toastEl);
+	const bsToast = new bootstrap.Toast(toastEl);
+	bsToast.show();
+
+	// Remove from DOM when hidden
+	toastEl.addEventListener('hidden.bs.toast', () => toastEl.remove());
 }
 
 console.log("Ready to unleash your coding prowess and join the fun?\n\n" +

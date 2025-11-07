@@ -55,7 +55,7 @@
                                     <td>
                                         <?php if($this->session->userdata('active_station_logbook') != $row->logbook_id) { ?>
                                         <button id="<?php echo $row->logbook_id; ?>" class="deleteLogbook btn btn-outline-danger btn-sm"
-                                            cnftext="'<?= __("Are you sure you want to delete the following station logbook? You must re-link any locations linked here to another logbook.: ") . $row->logbook_name; ?>'"><i
+                                            cnftext="<?= sprintf(__("Are you sure you want to delete the station logbook %s? You must re-link any locations linked here to another logbook."), $row->logbook_name); ?>"><i
                                                 class="fas fa-trash-alt"></i></a>
                                         <?php } ?>
                                     </td>
@@ -101,7 +101,9 @@
 					<?= __("The 'Linked' column shows if the station location is linked with the Active Logbook selected above."); ?>
 				</p>
 
-						<p><a href="<?php echo site_url('station/create'); ?>" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> <?= __("Create a Station Location"); ?></a> <button onclick="filterlocations();" class="btn btn-sm btn-success"><?= __("Show only locations from the active logbook"); ?></button> <button onclick="removefilterlocations();" class="btn btn-sm btn-success"><?= __("Show all locations"); ?></button></p>
+						<p><a href="<?php echo site_url('station/create'); ?>" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> <?= __("Create a Station Location"); ?></a> <button onclick="filterlocations();" class="btn btn-sm btn-success"><?= __("Show only locations from the active logbook"); ?></button>
+						<button onclick="removefilterlocations();" class="btn btn-sm btn-success"><?= __("Show all locations"); ?></button>
+					<a href="<?php echo site_url('stationsetup/list_locations'); ?>" class="btn btn-sm btn-success"><?= __("Show a location list"); ?></a></p>
 
 <?php if($current_active == 0) { ?>
 <div class="alert alert-danger" role="alert">
@@ -156,7 +158,7 @@
 			<td></td>
 			<td>
 				<?php if($row->station_active != 1) { ?>
-					<a href="<?php echo site_url('station/set_active/').$current_active."/".$row->station_id; ?>" class="btn btn-outline-secondary btn-sm" onclick="return confirm('<?= __("Are you sure you want to make the following station the active station: "); ?> <?php echo $row->station_profile_name; ?>');"><?= __("Set Active"); ?></a>
+					<a href="<?php echo site_url('station/set_active/').$current_active."/".$row->station_id; ?>" class="btn btn-outline-secondary btn-sm" onclick="return confirm('<?= sprintf(__("Are you sure you want to make the station profile %s the active station?"), $row->station_profile_name); ?>');"><?= __("Set Active"); ?></a>
 				<?php } else { ?>
 					<span class="badge bg-success"><?= __("Active Station"); ?></span>
 				<?php } ?>

@@ -20,7 +20,7 @@
 
 Wavelog is a self-hosted PHP application that allows you to log your amateur radio contacts anywhere. All you need is a web browser and active internet connection.
 
-Wavelog itself is an enhanced fork of Cloudlog by 2M0SQL.
+Wavelog itself is an enhanced fork of Cloudlog by MM9SQL (ex 2M0SQL).
 If you would like to contribute to Wavelog please see the [Contributing](#contributing) section below.
 
 The Core-Dev-Team for Wavelog are (in Alphabetic order of the Call):
@@ -41,8 +41,8 @@ https://demo.wavelog.org
 ### Recommended: Classic-LAMP-Stack:
 * Linux based Operating System (Windows stack may also work)
 * Apache (Nginx should work)
-* PHP Version 8.0 up to PHP 8.2 (PHP 8.4. in friendly Usertest)
-* MySQL or MariaDB (MySQL 5.7 or higher // MariaDB 10.1 or higher)
+* PHP Version 8.0 up to PHP 8.3 (PHP 8.4. in friendly Usertest)
+* MySQL or MariaDB (MySQL 8 or higher // MariaDB 10.2 or higher)
 
 ### Alternative - Easy start with prebuilt Docker-image:
 * [Docker Support](https://github.com/wavelog/wavelog/wiki/Installation-via-Docker)
@@ -68,7 +68,7 @@ Wavelog-support can be reached by creating an issue here at github. If you've an
 
 Special thanks to our contributors, who are part of Wavelog by improving code!
 
-[F4ANS](https://github.com/abarrau), [DG0TM](https://github.com/dg0tm), [DG9VH](https://github.com/dg9vh), [DJ3CE](https://github.com/dj3ce), [R1BLH](https://github.com/r1blh), [BG2ELG](https://github.com/violarulan), [DF1ASH](https://github.com/derFogel), [DB4SCW](https://github.com/DB4SCW), [VE2HEW](https://github.com/anthonydiiorio), [OK1GOD](https://github.com/filipmelik), [DJ1PW](https://github.com/winnieXY), [toseppo](https://github.com/toseppo), [N7DSB](https://github.com/desertblade), [BA7LAC](https://github.com/imlonghao), [AE4CE](https://github.com/ethancedwards8), [K1AF](https://github.com/patrickrb), [OE4BAM](https://github.com/MatykoBr), [HB9HJQ](https://github.com/zone11), [R3DHX](https://github.com/AleksdemSA), [uiolee](https://github.com/uiolee), [VK3ARR](https://github.com/VK3ARR), [BI7BST](https://github.com/Cryolitia), [ludoux](https://github.com/ludoux), [BG5ATV](https://github.com/tallcode), [BH6SKD](https://github.com/xiaosuan2b), [VK7TO](https://github.com/RhinoLance), [IU2FRL](https://github.com/iu2frl), [szporwolik](https://github.com/szporwolik), [agrif](https://github.com/agrif)
+[F4ANS](https://github.com/abarrau), [DG0TM](https://github.com/dg0tm), [DG9VH](https://github.com/dg9vh), [DJ3CE](https://github.com/dj3ce), [R1BLH](https://github.com/r1blh), [BG2ELG](https://github.com/violarulan), [DF1ASH](https://github.com/derFogel), [DB4SCW](https://github.com/DB4SCW), [VE2HEW](https://github.com/anthonydiiorio), [OK1GOD](https://github.com/filipmelik), [DJ1PW](https://github.com/winnieXY), [toseppo](https://github.com/toseppo), [N7DSB](https://github.com/desertblade), [BA7LAC](https://github.com/imlonghao), [AE4CE](https://github.com/ethancedwards8), [K1AF](https://github.com/patrickrb), [OE4BAM](https://github.com/MatykoBr), [HB9HJQ](https://github.com/zone11), [R3DHX](https://github.com/AleksdemSA), [uiolee](https://github.com/uiolee), [VK3ARR](https://github.com/VK3ARR), [BI7BST](https://github.com/Cryolitia), [ludoux](https://github.com/ludoux), [BG5ATV](https://github.com/tallcode), [BH6SKD](https://github.com/xiaosuan2b), [VK7TO](https://github.com/RhinoLance), [IU2FRL](https://github.com/iu2frl), [szporwolik](https://github.com/szporwolik), [agrif](https://github.com/agrif), [goodspeed34](https://github.com/goodspeed34)
 
 Translators:
 

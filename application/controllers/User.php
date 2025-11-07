@@ -208,6 +208,7 @@ class User extends CI_Controller {
 				$data['user_dashboard_map'] = $this->input->post('user_dashboard_map') ?? 'Y';
 				$data['user_dashboard_banner'] = $this->input->post('user_dashboard_banner') ?? 'Y';
 				$data['user_dashboard_solar'] = $this->input->post('user_dashboard_solar') ?? 'Y';
+				$data['user_dxwaterfall_enable'] = $this->input->post('user_dxwaterfall_enable') ?? 'N';
 				$data['user_stylesheet'] = $this->input->post('user_stylesheet');
 				$data['user_qth_lookup'] = $this->input->post('user_qth_lookup');
 				$data['user_sota_lookup'] = $this->input->post('user_sota_lookup');
@@ -226,6 +227,7 @@ class User extends CI_Controller {
 				$data['user_default_band'] = $this->input->post('user_default_band');
 				$data['user_default_confirmation'] = ($this->input->post('user_default_confirmation_qsl') !== null ? 'Q' : '').($this->input->post('user_default_confirmation_lotw') !== null ? 'L' : '').($this->input->post('user_default_confirmation_eqsl') !== null ? 'E' : '').($this->input->post('user_default_confirmation_qrz') !== null ? 'Z' : '').($this->input->post('user_default_confirmation_clublog') !== null ? 'C' : '').($this->input->post('user_default_confirmation_dcl') !== null ? 'D' : '');
 				$data['user_qso_end_times'] = $this->input->post('user_qso_end_times');
+				$data['user_qso_db_search_priority'] = $this->input->post('user_qso_db_search_priority') ?? 'Y';
 				$data['user_quicklog'] = $this->input->post('user_quicklog');
 				$data['user_quicklog_enter'] = $this->input->post('user_quicklog_enter');
 				$data['user_hamsat_key'] = $this->input->post('user_hamsat_key');
@@ -278,6 +280,7 @@ class User extends CI_Controller {
 				$this->input->post('user_default_band'),
 				($this->input->post('user_default_confirmation_qsl') !== null ? 'Q' : '').($this->input->post('user_default_confirmation_lotw') !== null ? 'L' : '').($this->input->post('user_default_confirmation_eqsl') !== null ? 'E' : '').($this->input->post('user_default_confirmation_qrz') !== null ? 'Z' : '').($this->input->post('user_default_confirmation_clublog') !== null ? 'C' : '').($this->input->post('user_default_confirmation_dcl') !== null ? 'D' : ''),
 				$this->input->post('user_qso_end_times'),
+				$this->input->post('user_qso_db_search_priority') ?? 'Y',
 				$this->input->post('user_quicklog'),
 				$this->input->post('user_quicklog_enter'),
 				$this->input->post('user_language'),
@@ -302,12 +305,13 @@ class User extends CI_Controller {
 				$this->input->post('qso_widget_display_qso_time'),
 				$this->input->post('user_dashboard_banner') ?? 'Y',
 				$this->input->post('user_dashboard_solar') ?? 'Y',
-				$this->input->post('clubstation') == '1' ? true : false,
 				$this->input->post('global_oqrs_text') ?? '',
 				$this->input->post('oqrs_grouped_search') ?? 'off',
 				$this->input->post('oqrs_grouped_search_show_station_name') ?? 'off',
 				$this->input->post('oqrs_auto_matching') ?? 'on',
-				$this->input->post('oqrs_direct_auto_matching') ?? 'on')
+				$this->input->post('oqrs_direct_auto_matching') ?? 'on',
+        $this->input->post('user_dxwaterfall_enable') ?? 'N',
+				$this->input->post('clubstation') == '1' ? true : false)
 			) {
 				// Check for errors
 				case EUSERNAMEEXISTS:
@@ -358,6 +362,7 @@ class User extends CI_Controller {
 			$data['user_default_band'] = $this->input->post('user_default_band');
 			$data['user_default_confirmation'] = ($this->input->post('user_default_confirmation_qsl') !== null ? 'Q' : '').($this->input->post('user_default_confirmation_lotw') !== null ? 'L' : '').($this->input->post('user_default_confirmation_eqsl') !== null ? 'E' : '').($this->input->post('user_default_confirmation_qrz') !== null ? 'Z' : '').($this->input->post('user_default_confirmation_clublog') !== null ? 'C' : '').($this->input->post('user_default_confirmation_dcl') !== null ? 'D' : '');
 			$data['user_qso_end_times'] = $this->input->post('user_qso_end_times');
+			$data['user_qso_db_search_priority'] = $this->input->post('user_qso_db_search_priority') ?? 'Y';
 			$data['user_quicklog'] = $this->input->post('user_quicklog');
 			$data['user_quicklog_enter'] = $this->input->post('user_quicklog_enter');
 			$data['user_language'] = $this->input->post('user_language');
@@ -366,6 +371,7 @@ class User extends CI_Controller {
 			$data['oqrs_grouped_search_show_station_name'] = $this->input->post('oqrs_grouped_search_show_station_name') ?? 'off';
 			$data['oqrs_auto_matching'] = $this->input->post('oqrs_auto_matching') ?? 'on';
 			$data['oqrs_direct_auto_matching'] = $this->input->post('oqrs_direct_auto_matching') ?? 'on';
+			$data['user_dxwaterfall_enable'] = $this->input->post('user_dxwaterfall_enable') ?? 'N';
 			$this->load->view('user/edit', $data);
 			$this->load->view('interface_assets/footer', $footerData);
 		}
@@ -733,6 +739,16 @@ class User extends CI_Controller {
 				}
 			}
 
+			// DX Waterfall enable option
+			if($this->input->post('user_dxwaterfall_enable')) {
+				$data['user_dxwaterfall_enable'] = $this->input->post('user_dxwaterfall_enable', false);
+			} else {
+				$dkey_opt=$this->user_options_model->get_options('dxwaterfall',array('option_name'=>'enable','option_key'=>'boolean'), $this->uri->segment(3))->result();
+				if (count($dkey_opt)>0) {
+					$data['user_dxwaterfall_enable'] = $dkey_opt[0]->option_value;
+				}
+			}
+
 			if($this->input->post('user_hamsat_workable_only')) {
 				$data['user_hamsat_workable_only'] = $this->input->post('user_hamsat_workable_only', false);
 			} else {
@@ -832,6 +848,15 @@ class User extends CI_Controller {
 				}
 			}
 
+			if($this->input->post('user_qso_db_search_priority')) {
+				$data['user_qso_db_search_priority'] = $this->input->post('user_qso_db_search_priority', false);
+			} else {
+				$qkey_opt=$this->user_options_model->get_options('qso_db_search_priority',array('option_name'=>'enable','option_key'=>'boolean'), $this->uri->segment(3))->result();
+				if (count($qkey_opt)>0) {
+					$data['user_qso_db_search_priority'] = $qkey_opt[0]->option_value;
+				}
+			}
+
 			if($this->input->post('oqrs_direct_auto_matching')) {
 				$data['oqrs_direct_auto_matching'] = $this->input->post('oqrs_direct_auto_matching', false);
 			} else {
@@ -913,32 +938,35 @@ class User extends CI_Controller {
 						);
 						$this->input->set_cookie($cookie);
 					}
-					if($this->session->userdata('user_id') == $this->input->post('id', true)) {
-						// [MAP Custom] ADD to user options //
-						$array_icon = array('station','qso','qsoconfirm');
+
+					$user_id = $this->input->post('id', true);
+
+					// [MAP Custom] ADD to user options //
+					$array_icon = array('station','qso','qsoconfirm');
+					foreach ($array_icon as $icon) {
+						$data_options['user_map_'.$icon.'_icon'] = xss_clean($this->input->post('user_map_'.$icon.'_icon', true));
+						$data_options['user_map_'.$icon.'_color'] = xss_clean($this->input->post('user_map_'.$icon.'_color', true));
+					}
+					if (!empty($data_options['user_map_qso_icon'])) {
 						foreach ($array_icon as $icon) {
-							$data_options['user_map_'.$icon.'_icon'] = xss_clean($this->input->post('user_map_'.$icon.'_icon', true));
-							$data_options['user_map_'.$icon.'_color'] = xss_clean($this->input->post('user_map_'.$icon.'_color', true));
+							$json = json_encode(array('icon'=>$data_options['user_map_'.$icon.'_icon'], 'color'=>$data_options['user_map_'.$icon.'_color']));
+							$this->user_options_model->set_option('map_custom','icon',array($icon=>$json), $user_id);
 						}
-						if (!empty($data_options['user_map_qso_icon'])) {
-							foreach ($array_icon as $icon) {
-								$json = json_encode(array('icon'=>$data_options['user_map_'.$icon.'_icon'], 'color'=>$data_options['user_map_'.$icon.'_color']));
-								$this->user_options_model->set_option('map_custom','icon',array($icon=>$json));
-							}
-							$this->user_options_model->set_option('map_custom','gridsquare',array('show'=>xss_clean($this->input->post('user_map_gridsquare_show', true))));
-						} else {
-							$this->user_options_model->del_option('map_custom','icon');
-							$this->user_options_model->del_option('map_custom','gridsquare');
-						}
-						$this->user_options_model->set_option('header_menu', 'locations_quickswitch', array('boolean'=>xss_clean($this->input->post('user_locations_quickswitch', true))));
-						$this->user_options_model->set_option('header_menu', 'utc_headermenu', array('boolean'=>xss_clean($this->input->post('user_utc_headermenu', true))));
+						$this->user_options_model->set_option('map_custom','gridsquare',array('show'=>xss_clean($this->input->post('user_map_gridsquare_show', true))), $user_id);
+					} else {
+						$this->user_options_model->del_option('map_custom','icon', null, $user_id);
+						$this->user_options_model->del_option('map_custom','gridsquare', null, $user_id);
+					}
+					$this->user_options_model->set_option('header_menu', 'locations_quickswitch', array('boolean'=>xss_clean($this->input->post('user_locations_quickswitch', true))), $user_id);
+					$this->user_options_model->set_option('header_menu', 'utc_headermenu', array('boolean'=>xss_clean($this->input->post('user_utc_headermenu', true))), $user_id);
 
-						$this->user_options_model->set_option('oqrs', 'global_oqrs_text', array('text'=>$this->input->post('global_oqrs_text', true)));
-						$this->user_options_model->set_option('oqrs', 'oqrs_grouped_search', array('boolean'=>$this->input->post('oqrs_grouped_search', true)));
-						$this->user_options_model->set_option('oqrs', 'oqrs_grouped_search_show_station_name', array('boolean'=>$this->input->post('oqrs_grouped_search_show_station_name', true)));
-						$this->user_options_model->set_option('oqrs', 'oqrs_auto_matching', array('boolean'=>$this->input->post('oqrs_auto_matching', true)));
-						$this->user_options_model->set_option('oqrs', 'oqrs_direct_auto_matching', array('boolean'=>$this->input->post('oqrs_direct_auto_matching', true)));
+					$this->user_options_model->set_option('oqrs', 'global_oqrs_text', array('text'=>$this->input->post('global_oqrs_text', true)), $user_id);
+					$this->user_options_model->set_option('oqrs', 'oqrs_grouped_search', array('boolean'=>$this->input->post('oqrs_grouped_search', true)), $user_id);
+					$this->user_options_model->set_option('oqrs', 'oqrs_grouped_search_show_station_name', array('boolean'=>$this->input->post('oqrs_grouped_search_show_station_name', true)), $user_id);
+					$this->user_options_model->set_option('oqrs', 'oqrs_auto_matching', array('boolean'=>$this->input->post('oqrs_auto_matching', true)), $user_id);
+					$this->user_options_model->set_option('oqrs', 'oqrs_direct_auto_matching', array('boolean'=>$this->input->post('oqrs_direct_auto_matching', true)), $user_id);
 
+					if($this->session->userdata('user_id') == $user_id) {
 						$this->session->set_flashdata('success', sprintf(__("User %s edited"), $this->input->post('user_name', true)));
 						redirect('user/edit/'.$this->uri->segment(3));
 					} else {
@@ -996,6 +1024,7 @@ class User extends CI_Controller {
 			$data['oqrs_grouped_search_show_station_name'] = $this->input->post('oqrs_grouped_search_show_station_name', true);
 			$data['oqrs_auto_matching'] = $this->input->post('oqrs_auto_matching', true);
 			$data['oqrs_direct_auto_matching'] = $this->input->post('oqrs_direct_auto_matching', true);
+			$data['user_qso_db_search_priority'] = $this->input->post('user_qso_db_search_priority', true);
 
 			$this->load->view('user/edit');
 			$this->load->view('interface_assets/footer');

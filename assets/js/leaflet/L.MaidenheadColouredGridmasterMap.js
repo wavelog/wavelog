@@ -21,16 +21,20 @@ L.Maidenhead = L.LayerGroup.extend({
 	onAdd: function (map) {
 		this._map = map;
 		var grid = this.redraw();
-		this._map.on('viewreset '+ this.options.redraw, function () {
+		// Store the event handler function so we can remove it later
+		this._onViewChange = function () {
 			grid.redraw();
-		});
+		};
+		this._map.on('viewreset '+ this.options.redraw, this._onViewChange);
 
 		this.eachLayer(map.addLayer, map);
 	},
 
 	onRemove: function (map) {
 		// remove layer listeners and elements
-		map.off('viewreset '+ this.options.redraw, this.map);
+		if (this._onViewChange) {
+			map.off('viewreset '+ this.options.redraw, this._onViewChange);
+		}
 		this.eachLayer(this.removeLayer, this);
 	},
 
@@ -59,9 +63,9 @@ L.Maidenhead = L.LayerGroup.extend({
 				for (var lat = bottom; lat < top; lat += unit) {
 					var bounds = [[lat,lon],[lat+unit,lon+(unit*2)]];
 					var locator = this._getLocator(lon,lat);
-	
+
 					if(grid_four.includes(locator)) {
-	
+
 						if(grid_four_lotw.includes(locator)) {
 							var rectConfirmed = L.rectangle(bounds, {className: 'grid-rectangle grid-confirmed', color: 'rgba(144,238,144, 0.6)', weight: 1, fillOpacity: 1, fill:true, interactive: false});
 							this.addLayer(rectConfirmed);

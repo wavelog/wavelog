@@ -659,7 +659,9 @@ $(document).ready(function () {
 				continent: this.continent.value,
 				comment: this.comment.value,
 				qsoids: qsoids,
-				dok: this.dok.value
+				dok: this.dok.value,
+				qrzSent: this.qrzSent.value,
+				qrzReceived: this.qrzReceived.value,
 			},
 			dataType: 'json',
 			success: function (data) {

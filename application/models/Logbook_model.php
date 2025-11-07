@@ -354,7 +354,7 @@ class Logbook_model extends CI_Model {
 			'COL_QSL_RCVD_VIA' => $this->input->post('qsl_rcvd_method'),
 			'COL_QSL_VIA' => $this->input->post('qsl_via'),
 			'COL_QSLMSG' => $this->input->post('qslmsg'),
-			'COL_OPERATOR' => $this->input->post('operator_callsign') ?? $this->session->userdata('operator_callsign'),
+			'COL_OPERATOR' => strtoupper(trim($this->input->post('operator_callsign')) ?? $this->session->userdata('operator_callsign')),
 			'COL_QTH' => $qso_qth,
 			'COL_PROP_MODE' => $prop_mode,
 			'COL_IOTA' => $this->input->post('iota_ref')  == null ? '' : trim($this->input->post('iota_ref')),
@@ -1645,7 +1645,7 @@ class Logbook_model extends CI_Model {
 			'COL_ANT_EL' => $this->input->post('ant_el') != '' ? $this->input->post('ant_el') : null,
 			'station_id' => $stationId,
 			'COL_STATION_CALLSIGN' => $stationCallsign,
-			'COL_OPERATOR' => $this->input->post('operator_callsign') ?? $qso->COL_OPERATOR,
+			'COL_OPERATOR' => strtoupper(trim($this->input->post('operator_callsign') ?? $qso->COL_OPERATOR)),
 			'COL_STATE' => $this->input->post('input_state_edit'),
 			'COL_CNTY' => $uscounty,
 			'COL_MY_IOTA' => $iotaRef,
@@ -2140,7 +2140,7 @@ class Logbook_model extends CI_Model {
 		return $query;
 	}
 
-	function get_qsos($num, $offset, $StationLocationsArray = null, $band = '') {
+	function get_qsos($num, $offset, $StationLocationsArray = null, $band = '', $map = false) {
 		if ($StationLocationsArray == null) {
 			$this->load->model('logbooks_model');
 			$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -2172,6 +2172,14 @@ class Logbook_model extends CI_Model {
 				$this->db->where($this->config->item('table_name') . '.col_band', $band);
 			}
 		}
+
+		if ($map == true) {
+			$this->db->group_start();
+			$this->db->where($this->config->item('table_name') . '.col_gridsquare !=', '');
+			$this->db->or_where($this->config->item('table_name') . '.col_vucc_grids !=', '');
+			$this->db->group_end();
+		}
+
 
 		$this->db->where_in($this->config->item('table_name') . '.station_id', $logbooks_locations_array);
 		$this->db->order_by('' . $this->config->item('table_name') . '.COL_TIME_ON', "desc");
@@ -2685,6 +2693,282 @@ class Logbook_model extends CI_Model {
 		return $query->num_rows();
 	}
 
+	/**
+	 * Batch version - Get statuses for multiple spots in a single query
+	 *
+	 * @param array $spots Array of spots with callsign, dxcc_id, continent
+	 * @param array $logbooks_locations_array Station IDs
+	 * @param string $band Band filter
+	 * @param string $mode Mode filter
+	 * @return array Keyed by callsign with status arrays
+	 */
+	function get_batch_spot_statuses($spots, $logbooks_locations_array, $band = null, $mode = null) {
+		if (empty($spots) || empty($logbooks_locations_array)) {
+			return [];
+		}
+
+		$user_default_confirmation = $this->session->userdata('user_default_confirmation');
+		$qsl_where = $this->qsl_default_where($user_default_confirmation);
+
+		// Build band filter with binding
+		$band_sql = '';
+		$band_param = null;
+		$band = ($band == 'All') ? null : $band;
+		if ($band != null && $band != 'SAT') {
+			$band_sql = " AND COL_BAND = ?";
+			$band_param = $band;
+		} else if ($band == 'SAT') {
+			$band_sql = " AND COL_SAT_NAME != ''";
+		}
+
+		// Build mode filter
+		$mode_sql = '';
+		if (isset($mode) && $mode != 'All') {
+			$mode_sql = " AND COL_MODE IN " . $this->Modes->get_modes_from_qrgmode($mode, true);
+		}
+
+		// Collect unique callsigns, dxccs, and continents
+		$callsigns = [];
+		$dxccs = [];
+		$continents = [];
+		foreach ($spots as $spot) {
+			// Validate spot has required properties
+			if (!isset($spot->spotted) || !isset($spot->dxcc_spotted->dxcc_id) || !isset($spot->dxcc_spotted->cont)) {
+				continue;
+			}
+			$callsigns[$spot->spotted] = true;
+			$dxccs[$spot->dxcc_spotted->dxcc_id] = true;
+			$continents[$spot->dxcc_spotted->cont] = true;
+		}
+
+		// If no valid spots, return empty
+		if (empty($callsigns) && empty($dxccs) && empty($continents)) {
+			return [];
+		}
+
+		// Build placeholders for station IDs (fix SQL injection)
+		$station_ids_placeholders = implode(',', array_fill(0, count($logbooks_locations_array), '?'));
+
+		// Build placeholders and bind parameters for IN clauses
+		$callsigns_array = array_keys($callsigns);
+		$dxccs_array = array_keys($dxccs);
+		$continents_array = array_keys($continents);
+
+		$callsigns_placeholders = implode(',', array_fill(0, count($callsigns_array), '?'));
+		$dxccs_placeholders = implode(',', array_fill(0, count($dxccs_array), '?'));
+		$continents_placeholders = implode(',', array_fill(0, count($continents_array), '?'));
+
+		// Three separate queries for callsigns, DXCCs, and continents
+		// This is necessary because the OR logic doesn't work correctly with GROUP BY
+
+		// Query 1: Check callsigns
+		$sql_calls = "
+			SELECT
+				COL_CALL as callsign,
+				MAX(CASE WHEN ({$qsl_where}) THEN 1 ELSE 0 END) as is_confirmed
+			FROM {$this->config->item('table_name')}
+			WHERE station_id IN ({$station_ids_placeholders})
+			AND COL_CALL IN ({$callsigns_placeholders})
+			{$band_sql}
+			{$mode_sql}
+			GROUP BY COL_CALL
+		";
+
+		$bind_params_calls = array_merge($logbooks_locations_array, $callsigns_array);
+		if ($band_param !== null) {
+			$bind_params_calls[] = $band_param;
+		}
+		$query = $this->db->query($sql_calls, $bind_params_calls);
+		$results_calls = $query->result_array();
+
+		// Query 2: Check DXCCs
+		$sql_dxccs = "
+			SELECT
+				COL_DXCC as dxcc,
+				MAX(CASE WHEN ({$qsl_where}) THEN 1 ELSE 0 END) as is_confirmed
+			FROM {$this->config->item('table_name')}
+			WHERE station_id IN ({$station_ids_placeholders})
+			AND COL_DXCC IN ({$dxccs_placeholders})
+			{$band_sql}
+			{$mode_sql}
+			GROUP BY COL_DXCC
+		";
+
+		$bind_params_dxccs = array_merge($logbooks_locations_array, $dxccs_array);
+		if ($band_param !== null) {
+			$bind_params_dxccs[] = $band_param;
+		}
+		$query = $this->db->query($sql_dxccs, $bind_params_dxccs);
+		$results_dxccs = $query->result_array();
+
+		// Query 3: Check continents
+		$sql_conts = "
+			SELECT
+				COL_CONT as continent,
+				MAX(CASE WHEN ({$qsl_where}) THEN 1 ELSE 0 END) as is_confirmed
+			FROM {$this->config->item('table_name')}
+			WHERE station_id IN ({$station_ids_placeholders})
+			AND COL_CONT IN ({$continents_placeholders})
+			{$band_sql}
+			{$mode_sql}
+			GROUP BY COL_CONT
+		";
+
+		$bind_params_conts = array_merge($logbooks_locations_array, $continents_array);
+		if ($band_param !== null) {
+			$bind_params_conts[] = $band_param;
+		}
+		$query = $this->db->query($sql_conts, $bind_params_conts);
+		$results_conts = $query->result_array();
+
+		// Build lookup maps
+		$worked_calls = [];
+		$cnfmd_calls = [];
+		$worked_dxccs = [];
+		$cnfmd_dxccs = [];
+		$worked_conts = [];
+		$cnfmd_conts = [];
+
+		foreach ($results_calls as $row) {
+			$worked_calls[$row['callsign']] = true;
+			if ($row['is_confirmed'] == 1) {
+				$cnfmd_calls[$row['callsign']] = true;
+			}
+		}
+
+		foreach ($results_dxccs as $row) {
+			$worked_dxccs[$row['dxcc']] = true;
+			if ($row['is_confirmed'] == 1) {
+				$cnfmd_dxccs[$row['dxcc']] = true;
+			}
+		}
+
+		foreach ($results_conts as $row) {
+			$worked_conts[$row['continent']] = true;
+			if ($row['is_confirmed'] == 1) {
+				$cnfmd_conts[$row['continent']] = true;
+			}
+		}
+
+		// Map results back to spots
+		$statuses = [];
+		foreach ($spots as $spot) {
+			// Skip spots with missing data
+			if (!isset($spot->spotted) || !isset($spot->dxcc_spotted->dxcc_id) || !isset($spot->dxcc_spotted->cont)) {
+				continue;
+			}
+
+			$callsign = $spot->spotted;
+			$dxcc = $spot->dxcc_spotted->dxcc_id;
+			$cont = $spot->dxcc_spotted->cont;
+
+			$statuses[$callsign] = [
+				'worked_call' => isset($worked_calls[$callsign]),
+				'worked_dxcc' => isset($worked_dxccs[$dxcc]),
+				'worked_continent' => isset($worked_conts[$cont]),
+				'cnfmd_call' => isset($cnfmd_calls[$callsign]),
+				'cnfmd_dxcc' => isset($cnfmd_dxccs[$dxcc]),
+				'cnfmd_continent' => isset($cnfmd_conts[$cont])
+			];
+		}
+
+		return $statuses;
+	}
+
+	/**
+	 * Batch version - Get last worked info for multiple callsigns in a single query
+	 *
+	 * @param array $callsigns Array of callsigns to check
+	 * @param array $logbooks_locations_array Station IDs
+	 * @param string $band Band filter
+	 * @return array Keyed by callsign with last worked info
+	 */
+	function get_batch_last_worked($callsigns, $logbooks_locations_array, $band = null) {
+		if (empty($callsigns) || empty($logbooks_locations_array)) {
+			return [];
+		}
+
+		// Build band filter with binding
+		$band_sql = '';
+		$band_param = null;
+		$band = ($band == 'All') ? null : $band;
+		if ($band != null && $band != 'SAT') {
+			$band_sql = " AND COL_BAND = ?";
+			$band_param = $band;
+		} else if ($band == 'SAT') {
+			$band_sql = " AND COL_SAT_NAME != ''";
+		}
+
+		// Build placeholders for station IDs (fix SQL injection)
+		$station_ids_placeholders = implode(',', array_fill(0, count($logbooks_locations_array), '?'));
+
+		// Build placeholders for callsigns IN clause
+		$callsigns_placeholders = implode(',', array_fill(0, count($callsigns), '?'));
+
+		// Validate we have valid data
+		if (empty($station_ids_placeholders) || empty($callsigns_placeholders)) {
+			return [];
+		}
+
+		// Build bind params: station_ids, callsigns for subquery, band (if set), station_ids again, callsigns for main query, band again (if set)
+		$bind_params = [];
+
+		// First set: station_ids for subquery
+		$bind_params = array_merge($bind_params, $logbooks_locations_array);
+
+		// Second: callsigns for subquery
+		$bind_params = array_merge($bind_params, $callsigns);
+
+		// Third: band for subquery (if set)
+		if ($band_param !== null) {
+			$bind_params[] = $band_param;
+		}
+
+		// Fourth set: station_ids for main query
+		$bind_params = array_merge($bind_params, $logbooks_locations_array);
+
+		// Fifth: callsigns for main query
+		$bind_params = array_merge($bind_params, $callsigns);
+
+		// Sixth: band for main query (if set)
+		if ($band_param !== null) {
+			$bind_params[] = $band_param;
+		}
+
+		// Query to get the most recent QSO for each callsign
+		// Using a subquery to get max time per callsign, then join to get the full record
+		// Added LIMIT 1 in derived table to handle edge case of multiple QSOs at same timestamp
+		$sql = "
+			SELECT t1.COL_CALL, t1.COL_TIME_ON as LAST_QSO, t1.COL_MODE as LAST_MODE
+			FROM {$this->config->item('table_name')} t1
+			INNER JOIN (
+				SELECT COL_CALL, MAX(COL_TIME_ON) as max_time
+				FROM {$this->config->item('table_name')}
+				WHERE station_id IN ({$station_ids_placeholders})
+				AND COL_CALL IN ({$callsigns_placeholders})
+				{$band_sql}
+				GROUP BY COL_CALL
+			) t2 ON t1.COL_CALL = t2.COL_CALL AND t1.COL_TIME_ON = t2.max_time
+			WHERE t1.station_id IN ({$station_ids_placeholders})
+			AND t1.COL_CALL IN ({$callsigns_placeholders})
+			{$band_sql}
+		";
+
+		$query = $this->db->query($sql, $bind_params);
+		$results = $query->result();
+
+		// Build lookup map keyed by callsign
+		// If multiple QSOs have same timestamp, keep first one returned
+		$last_worked = [];
+		foreach ($results as $row) {
+			if (!isset($last_worked[$row->COL_CALL])) {
+				$last_worked[$row->COL_CALL] = $row;
+			}
+		}
+
+		return $last_worked;
+	}
+
 	function check_sat_grid($grid) {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -2798,59 +3082,6 @@ class Logbook_model extends CI_Model {
 		}
 
 		$query = $this->db->get($this->config->item('table_name'));
-		return $query;
-	}
-
-	function cfd_get_all_qsos($fromdate, $todate) {
-		$binding = [];
-		$this->load->model('logbooks_model');
-		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-
-		// If date is set, we add it to the where-statement
-		if ($fromdate ?? '' != "") {
-			$from = " AND date(q.COL_TIME_ON) >= ?";
-			$binding[] = $fromdate;
-		} else {
-			$from = "";
-		}
-		if ($todate ?? '' != "") {
-			$till = " AND date(q.COL_TIME_ON) <= ?";
-			$binding[] = $todate;
-		} else {
-			$till = '';
-		}
-
-		$location_list = "'" . implode("','", $logbooks_locations_array) . "'";
-
-		$sql = "SELECT
-		  dx.prefix,dx.name,
-		  CASE
-		  WHEN q.col_mode = 'CW' THEN 'C'
-		  WHEN mo.qrgmode = 'DATA' THEN 'R'
-		  WHEN mo.qrgmode = 'SSB' THEN 'F'
-		  ELSE mo.qrgmode
-		  END AS mode,q.col_band as band,
-		  COUNT(1) as cnfmd
-		  FROM " . $this->config->item('table_name') . " q
-		  INNER JOIN
-		  dxcc_entities dx ON (dx.adif = q.COL_DXCC)
-		  INNER JOIN
-		  adif_modes mo ON (mo.mode = q.COL_MODE)
-		  inner join bands b on (b.band=q.COL_BAND)
-		  WHERE
-		  (q.COL_QSL_RCVD = 'Y'
-		  OR q.COL_LOTW_QSL_RCVD = 'Y'
-		  OR q.COL_EQSL_QSL_RCVD = 'Y')
-		  AND q.station_id in (" . $location_list . ")
-		  AND (b.bandgroup='hf' or b.band = '6m' or b.band = '160m') " . ($from ?? '') . " " . ($till ?? '') . "
-		  GROUP BY dx.prefix,dx.name , CASE
-		  WHEN q.col_mode = 'CW' THEN 'C'
-		  WHEN mo.qrgmode = 'DATA' THEN 'R'
-		  WHEN mo.qrgmode = 'SSB' THEN 'F'
-		  ELSE mo.qrgmode
-		  END,q.COL_BAND order by dx.prefix asc, q.col_band desc";
-
-		$query = $this->db->query($sql, $binding);
 		return $query;
 	}
 
@@ -5348,7 +5579,7 @@ class Logbook_model extends CI_Model {
 	}
 
 	public function get_entity($dxcc) {
-		$sql = "select name, cqz, lat, 'long' from dxcc_entities where adif = ?";
+		$sql = "SELECT name, cqz, lat, `long` FROM dxcc_entities WHERE adif = ?";
 		$query = $this->db->query($sql, $dxcc);
 
 		if ($query->result() > 0) {

@@ -761,7 +761,7 @@ $config['disable_version_check'] = false;
 
 /*
 |--------------------------------------------------------------------------
-| eqsl.cc Massdownloa
+| eqsl.cc Massdownload
 |--------------------------------------------------------------------------
 |
 | The eqsl.cc mass download function is not threadsafe. So it is disabled by default.
@@ -782,7 +782,7 @@ $config['max_login_attempts'] = 3;
 |--------------------------------------------------------------------------
 | Disable User QSO Count in User List (Admin Menu)
 | Reason for this setting is to prevent performance issues on large installations
-| where the QSO count is not needed. Set to true to disable the QSO count. 
+| where the QSO count is not needed. Set to true to disable the QSO count.
 | This also hides the last Operator for CLubstations. Default is false.
 |--------------------------------------------------------------------------
  */
@@ -797,3 +797,21 @@ $config['max_login_attempts'] = 3;
  */
 
  $config['enable_dcl_interface'] = true;
+
+  /*
+ |--------------------------------------------------------------------------
+ | DXCluster File Cache
+ |--------------------------------------------------------------------------
+ |
+ | Controls whether DXCluster data is cached to files on the server.
+ |
+ | Set to TRUE to enable file caching (may cause high disk usage on large installations)
+ | Set to FALSE to disable file caching (recommended for most installations)
+ |
+ | Default: false (file caching disabled)
+ |
+ | Warning: This is experimental and may not work as expected in all environments.
+ |--------------------------------------------------------------------------
+  */
+
+ $config['enable_dxcluster_file_cache'] = false;

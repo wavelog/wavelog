@@ -211,22 +211,42 @@ class Lotw extends CI_Controller {
 				// Get Certificate Data
 				$this->load->model('Lotw_model');
 				$data['station_profile'] = $station_profile;
-				$data['lotw_cert_info'] = $this->Lotw_model->lotw_cert_details($station_profile->station_callsign, $station_profile->station_dxcc, $station_profile->user_id);
+
+				$cert_query = $this->Lotw_model->lotw_cert_details($station_profile->station_callsign, $station_profile->user_id);
+				if ($cert_query->num_rows() > 1) {
+					echo $station_profile->station_callsign.": Multiple matching LoTW certificates found. Skipping.<br>";
+					continue;
+				}
 
 				// If Station Profile has no LoTW Cert continue on.
-				if(!isset($data['lotw_cert_info']->cert_dxcc_id)) {
+				if ($cert_query->num_rows() == 0) {
 					echo $station_profile->station_callsign.": No LoTW certificate for station callsign found.<br>";
+					continue;
+				}
+
+				$data['lotw_cert_info'] = $cert_query->row();
+				// Check if station profile DXCC matches cert DXCC
+				if ($data['lotw_cert_info']->cert_dxcc_id != $station_profile->station_dxcc) {
+					echo $station_profile->station_callsign.": DXCC of station profile does not match DXCC of LoTW certificate.<br>";
 					continue;
 				}
 
 				// Check if LoTW certificate itself is valid
 				// Validty of QSO dates will be checked later
 				$current_date = date('Y-m-d H:i:s');
-				if ($current_date <= $data['lotw_cert_info']->date_created) {
+				if ($current_date < $data['lotw_cert_info']->qso_start_date) {
+					echo $data['lotw_cert_info']->callsign.": QSO start date of LoTW certificate not reached yet!<br>";
+					continue;
+				}
+				if ($current_date > $data['lotw_cert_info']->qso_end_date) {
+					echo $data['lotw_cert_info']->callsign.": QSO end date of LoTW certificate exceeded!<br>";
+					continue;
+				}
+				if ($current_date < $data['lotw_cert_info']->date_created) {
 					echo $data['lotw_cert_info']->callsign.": LoTW certificate not valid yet!<br>";
 					continue;
 				}
-				if ($current_date >= $data['lotw_cert_info']->date_expires) {
+				if ($current_date > $data['lotw_cert_info']->date_expires) {
 					echo $data['lotw_cert_info']->callsign.": LoTW certificate expired!<br>";
 					continue;
 				}
@@ -699,16 +719,12 @@ class Lotw extends CI_Controller {
 					continue;
 				}
 
-				// Get credentials for LoTW
-				$data['user_lotw_name'] = urlencode($user->user_lotw_name);
-				$data['user_lotw_password'] = urlencode($user->user_lotw_password);
-
 				$lotw_last_qsl_date = date('Y-m-d', strtotime($this->logbook_model->lotw_last_qsl_date($user->user_id)));
 
 				// Build URL for LoTW report file
 				$lotw_url = $lotw_base_url."?";
-				$lotw_url .= "login=" . $data['user_lotw_name'];
-				$lotw_url .= "&password=" . $data['user_lotw_password'];
+				$lotw_url .= "login=" . urlencode($user->user_lotw_name);
+				$lotw_url .= "&password=" . urlencode($user->user_lotw_password);
 				$lotw_url .= "&qso_query=1&qso_qsl='yes'&qso_qsldetail='yes'&qso_mydetail='yes'";
 
 				$lotw_url .= "&qso_qslsince=";
@@ -724,19 +740,26 @@ class Lotw extends CI_Controller {
 				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
 				$content = curl_exec($ch);
 				if(curl_errno($ch)) {
-					$result = "LoTW download failed for user ".$data['user_lotw_name'].": ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).").";
+					$result = "LoTW download failed for user ".$user->user_lotw_name.": ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).").";
 					if (curl_errno($ch) == 28) {  // break on timeout
 						$result .= "<br>Timeout reached. Stopping subsequent downloads.";
 						break;
 					}
 					continue;
 				} else if(str_contains($content,"Username/password incorrect</I>")) {
-					$result = "LoTW download failed for user ".$data['user_lotw_name'].": Username/password incorrect";
+					$result = "LoTW download failed for user ".$user->user_lotw_name.": Username/password incorrect";
+					log_message('error', 'LoTW download failed for user '.$user->user_name.': Username/password incorrect');
+					if ($this->Lotw_model->remove_lotw_credentials($user->user_id)) {
+						log_message('error', 'LoTW credentials deleted for user '.$user->user_name);
+					} else {
+						log_message('error', 'Deleting LoTW credentials for user '.$user->user_name.' failed');
+					}
 					continue;
 				}
 				file_put_contents($file, $content);
 				if (file_get_contents($file, false, null, 0, 39) != "ARRL Logbook of the World Status Report") {
-					$result = "Downloaded LoTW report for user ".$data['user_lotw_name']." is invalid. Check your credentials.";
+					$result = "Downloaded LoTW report for user ".$user->user_lotw_name." is invalid. Check your credentials.";
+					log_message('error', 'Downloaded LoTW report is invalid for user '.$user->user_name);
 					continue;
 				}
 

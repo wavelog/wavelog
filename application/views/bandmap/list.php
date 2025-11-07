@@ -50,23 +50,13 @@
 
 	<h2 id="dxtitle"><?php echo $page_title; ?></h2>
 
-	<div id="dxtabs" class="tabs">
-		<ul class="nav nav-tabs" id="myTab" role="tablist">
-			<li class="nav-item">
-				<a class="nav-link" href="index"><?= __("BandMap"); ?></a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link active" href="list"><?= __("BandList"); ?></a>
-			</li>
-		</ul>
-	</div>
-
 	<div class="tab-content" id="myTabContent">
 		<div class="messages my-1 me-2"></div>
 		<div class="d-flex align-items-center">
 			<label class="my-1 me-2" for="radio"><?= __("Radio"); ?></label>
 			<select class="form-select form-select-sm radios my-1 me-sm-2 w-auto" id="radio" name="radio">
 				<option value="0" selected="selected"><?= __("None"); ?></option>
+				<option value="ws"<?php if ($this->session->userdata('radio') == 'ws') { echo ' selected="selected"'; } ?>><?= __("WebSocket (Requires WLGate>1.1.10)"); ?></option>
 				<?php foreach ($radios->result() as $row) { ?>
 					<option value="<?php echo $row->id; ?>" <?php if ($this->session->userdata('radio') == $row->id) {
 																echo "selected=\"selected\"";

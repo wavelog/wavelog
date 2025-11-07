@@ -38,7 +38,7 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/query-builder.default.min.css" />
 	<?php } ?>
 
-	<?php if ($this->uri->segment(1) == "notes" && ($this->uri->segment(2) == "add" || $this->uri->segment(2) == "edit" || $this->uri->segment(2) == "view")) { ?>
+	<?php if (($this->uri->segment(1) == "notes" && ($this->uri->segment(2) == "add" || $this->uri->segment(2) == "edit" || $this->uri->segment(2) == "view")) || $this->uri->segment(1) == "qso") { ?>
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/plugins/easymde/easymde.css" />
 	<?php } ?>
 
@@ -465,8 +465,6 @@
 										<li><a class="dropdown-item" href="<?php echo site_url('cabrillo'); ?>" title="Cabrillo Export"><i class="fas fa-sync"></i> <?= __("Cabrillo Export"); ?></a></li>
 
 										<li><a class="dropdown-item" href="<?php echo site_url('reg1test'); ?>" title="EDI Export"><i class="fas fa-sync"></i> <?= __("EDI Export"); ?></a></li>
-
-										<li><a class="dropdown-item" href="<?php echo site_url('cfdexport'); ?>" title="CFD Export"><i class="fas fa-sync"></i> <?= __("CFD Export"); ?></a></li>
 									</ul>
 								</li>
 
