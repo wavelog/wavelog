@@ -74,15 +74,22 @@ class Bandmap extends CI_Controller {
 
 	// Get user's favorite bands and modes (active ones)
 	function get_user_favorites() {
+		session_write_close();
+
 		$this->load->model('bands');
 		$this->load->model('usermodes');
 
 		// Get active bands
 		$activeBands = $this->bands->get_user_bands_for_qso_entry(false); // false = only active
 		$bandList = [];
-		foreach ($activeBands as $group => $bands) {
-			foreach ($bands as $band) {
-				$bandList[] = $band;
+
+		if (is_array($activeBands)) {
+			foreach ($activeBands as $group => $bands) {
+				if (is_array($bands)) {
+					foreach ($bands as $band) {
+						$bandList[] = $band;
+					}
+				}
 			}
 		}
 
@@ -94,14 +101,16 @@ class Bandmap extends CI_Controller {
 			'digi' => false
 		];
 
-		foreach ($activeModes as $mode) {
-			$qrgmode = strtoupper($mode->qrgmode ?? '');
-			if ($qrgmode === 'CW') {
-				$modeCategories['cw'] = true;
-			} elseif ($qrgmode === 'SSB') {
-				$modeCategories['phone'] = true;
-			} elseif ($qrgmode === 'DATA') {
-				$modeCategories['digi'] = true;
+		if ($activeModes) {
+			foreach ($activeModes as $mode) {
+				$qrgmode = strtoupper($mode->qrgmode ?? '');
+				if ($qrgmode === 'CW') {
+					$modeCategories['cw'] = true;
+				} elseif ($qrgmode === 'SSB') {
+					$modeCategories['phone'] = true;
+				} elseif ($qrgmode === 'DATA') {
+					$modeCategories['digi'] = true;
+				}
 			}
 		}
 
