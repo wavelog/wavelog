@@ -3548,7 +3548,7 @@ $(function() {
 	function createSpotTable(spots, dxccEntity, dxccFlag) {
 		// Add DXCC name header with flag (bigger flag size)
 		const flagEmoji = dxccFlag ? '<span class="flag-emoji" style="font-size: 20px;">' + dxccFlag + '</span> ' : '';
-		let html = '<div style="font-weight: bold; font-size: 14px; padding: 8px; background: rgba(0,0,0,0.1); margin-bottom: 8px; text-align: center;">' + flagEmoji + dxccEntity + '</div>';
+		let html = '<div style="font-weight: bold; font-size: 14px; padding: 4px 8px; background: rgba(0,0,0,0.1); margin-bottom: 4px; text-align: center;">' + flagEmoji + dxccEntity + '</div>';
 
 		// Create scrollable container if more than 5 spots
 		const needsScroll = spots.length > 5;
@@ -3559,10 +3559,10 @@ $(function() {
 		html += '<table class="table table-sm table-striped" style="margin: 0; width: 100%; table-layout: fixed;">';
 		html += '<thead><tr>';
 		html += '<th style="width: 25%; overflow: hidden; text-overflow: ellipsis;">' + lang_bandmap_callsign + '</th>';
-		html += '<th style="width: 20%; overflow: hidden; text-overflow: ellipsis;">' + lang_bandmap_frequency + '</th>';
-		html += '<th style="width: 15%; overflow: hidden; text-overflow: ellipsis;">' + lang_bandmap_mode + '</th>';
-		html += '<th style="width: 15%; overflow: hidden; text-overflow: ellipsis;">' + lang_bandmap_band + '</th>';
-		html += '<th style="width: 25%; overflow: hidden; text-overflow: ellipsis;">Spotter</th>';
+		html += '<th style="width: 25%; overflow: hidden; text-overflow: ellipsis;">' + lang_bandmap_frequency + '</th>';
+		html += '<th style="width: 12%; overflow: hidden; text-overflow: ellipsis;">' + lang_bandmap_mode + '</th>';
+		html += '<th style="width: 13%; overflow: hidden; text-overflow: ellipsis;">' + lang_bandmap_band + '</th>';
+		html += '<th style="width: 25%; overflow: hidden; text-overflow: ellipsis;">' + lang_bandmap_spotter + '</th>';
 		html += '</tr></thead><tbody>';
 
 		spots.forEach(spot => {
@@ -3578,7 +3578,7 @@ $(function() {
 
 			html += '<tr>';
 			html += '<td style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><strong><a href="#" class="spot-link ' + callClass + '" data-callsign="' + spot.spotted + '">' + spot.spotted + '</a></strong></td>';
-			html += '<td style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">' + freqMHz + '</td>';
+			html += '<td style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">' + freqMHz + ' MHz</td>';
 			html += '<td style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">' + (spot.mode || '') + '</td>';
 			html += '<td style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">' + (spot.band || '') + '</td>';
 			html += '<td style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">' + (spot.spotter || '') + '</td>';
@@ -3822,8 +3822,8 @@ $(function() {
 			});
 
 			marker.bindPopup(createSpotTable(dxccInfo.spots, dxccInfo.entity, dxccInfo.flag), {
-				maxWidth: 500,
-				minWidth: 350
+				maxWidth: 650,
+				minWidth: 450
 			});
 			marker.on('popupopen', function() {
 				// Add click handlers to callsign links after popup opens
@@ -3932,13 +3932,14 @@ $(function() {
 							}
 							drawnConnections.add(pairKey);
 
-							// Create line with proper pane (orange for permanent spotters)
-							const line = L.polyline([[lat, lng], [spotLat, spotLng]], {
+							// Use L.Geodesic instead of L.polyline for great circle paths
+							const line = L.geodesic([[lat, lng], [spotLat, spotLng]], {
 								color: '#ff9900',
 								weight: 1,
 								opacity: 0.5,
 								dashArray: '5, 5',
-								pane: 'connectionLines'
+								pane: 'connectionLines',
+								wrap: false
 							});
 
 							line.addTo(dxMap);
@@ -4023,6 +4024,9 @@ $(function() {
 					return;
 				}
 
+				// Hide all other spot labels (fade them out)
+				$('.dx-marker-label').not(this).css('opacity', '0.15');
+
 				// Clear any existing hover elements
 				hoverSpotterMarkers.forEach(marker => {
 					try { dxMap.removeLayer(marker); } catch(e) {}
@@ -4099,21 +4103,20 @@ $(function() {
 								fillOpacity: 0.8
 							});
 
-							const uniqueCallsigns = [...new Set(spotterInfo.callsigns)];
-							const spotterCount = uniqueCallsigns.length;
-							const tooltipText = `${spotterInfo.flag || ''} ${spotterInfo.entity}<br>${spotterCount} spotter${spotterCount !== 1 ? 's' : ''}<br>→ Incoming`;
-							marker.bindTooltip(tooltipText, { permanent: false, direction: 'top' });
+						const uniqueCallsigns = [...new Set(spotterInfo.callsigns)];
+						const spotterCount = uniqueCallsigns.length;
+						const tooltipText = `${spotterInfo.flag || ''} ${spotterInfo.entity}<br>${spotterCount} ${spotterCount !== 1 ? lang_bandmap_spotters : lang_bandmap_spotter}<br>→ ${lang_bandmap_incoming}`;
+						marker.bindTooltip(tooltipText, { permanent: false, direction: 'top' });
 
-							marker.addTo(dxMap);
-							hoverSpotterMarkers.push(marker);
-
-							// Draw RED line (incoming: spotter → target)
-							const line = L.polyline([[lat, lng], [hoverData.targetLat, hoverData.targetLng]], {
+						marker.addTo(dxMap);
+						hoverSpotterMarkers.push(marker);							// Draw RED line (incoming: spotter → target) using geodesic
+							const line = L.geodesic([[lat, lng], [hoverData.targetLat, hoverData.targetLng]], {
 								color: '#ff0000',
 								weight: 2,
 								opacity: 0.7,
 								dashArray: '5, 5',
-								pane: 'connectionLines'
+								pane: 'connectionLines',
+								wrap: false
 							});
 
 							line.addTo(dxMap);
@@ -4162,21 +4165,20 @@ $(function() {
 								fillOpacity: 0.8
 							});
 
-							const uniqueCallsigns = [...new Set(spottedInfo.callsigns)];
-							const spotCount = uniqueCallsigns.length;
-							const tooltipText = `${spottedInfo.flag || ''} ${spottedInfo.entity}<br>${spotCount} spot${spotCount !== 1 ? 's' : ''}<br>← Outgoing`;
-							marker.bindTooltip(tooltipText, { permanent: false, direction: 'top' });
+						const uniqueCallsigns = [...new Set(spottedInfo.callsigns)];
+						const spotCount = uniqueCallsigns.length;
+						const tooltipText = `${spottedInfo.flag || ''} ${spottedInfo.entity}<br>${spotCount} ${spotCount !== 1 ? lang_bandmap_spots : lang_bandmap_spot}<br>← ${lang_bandmap_outgoing}`;
+						marker.bindTooltip(tooltipText, { permanent: false, direction: 'top' });
 
-							marker.addTo(dxMap);
-							hoverSpotterMarkers.push(marker);
-
-							// Draw GREEN line (outgoing: target → spotted)
-							const line = L.polyline([[hoverData.targetLat, hoverData.targetLng], [lat, lng]], {
+						marker.addTo(dxMap);
+						hoverSpotterMarkers.push(marker);							// Draw GREEN line (outgoing: target → spotted) using geodesic
+							const line = L.geodesic([[hoverData.targetLat, hoverData.targetLng], [lat, lng]], {
 								color: '#00ff00',
 								weight: 2,
 								opacity: 0.7,
 								dashArray: '5, 5',
-								pane: 'connectionLines'
+								pane: 'connectionLines',
+								wrap: false
 							});
 
 							line.addTo(dxMap);
@@ -4213,6 +4215,9 @@ $(function() {
 
 			$(document).on('mouseleave', '.dx-marker-label', function() {
 				if (!dxMap) return;
+
+				// Restore visibility of all spot labels
+				$('.dx-marker-label').css('opacity', '1');
 
 				// Use requestAnimationFrame for smooth cleanup
 				requestAnimationFrame(() => {

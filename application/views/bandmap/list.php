@@ -74,6 +74,11 @@
 	var lang_bandmap_comment = "<?= __("Comment"); ?>";
 	var lang_bandmap_age = "<?= __("Age"); ?>";
 	var lang_bandmap_time = "<?= __("Time"); ?>";
+	var lang_bandmap_incoming = "<?= __("Incoming"); ?>";
+	var lang_bandmap_outgoing = "<?= __("Outgoing"); ?>";
+	var lang_bandmap_spots = "<?= __("spots"); ?>";
+	var lang_bandmap_spot = "<?= __("spot"); ?>";
+	var lang_bandmap_spotters = "<?= __("spotters"); ?>";
 
 
 	// DataTables messages
