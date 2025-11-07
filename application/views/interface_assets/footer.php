@@ -1468,6 +1468,7 @@ mymap.on('mousemove', onQsoMapMove);
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/cat.js?v=<?php echo time(); ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/leaflet/leaflet.geodesic.js?v=<?php echo time(); ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/leaflet.polylineDecorator.js?v=<?php echo time(); ?>"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/leaflet/L.Terminator.js?v=<?php echo time(); ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/sections/bandmap_list.js?v=<?php echo time(); ?>"></script>
 <?php } ?>
 

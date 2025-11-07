@@ -3434,6 +3434,8 @@ $(function() {
 	let connectionLines = [];
 	let userHomeMarker = null;
 	let showSpotters = false;
+	let showDayNight = true; // Day/Night terminator enabled by default
+	let terminatorLayer = null; // Store terminator layer reference
 	let hoverSpottersData = new Map(); // Store spotter data for hover
 	let hoverSpotterMarkers = []; // Temporary markers shown on hover
 	let hoverConnectionLines = []; // Temporary lines shown on hover
@@ -3471,6 +3473,9 @@ $(function() {
 
 		addUserHomeMarker();
 		addSpottersControl();
+		
+		// Initialize terminator (enabled by default)
+		updateTerminator();
 	}
 
 	/**
@@ -3509,6 +3514,7 @@ $(function() {
 			const div = L.DomUtil.create("div", "legend");
 			div.innerHTML = '<input type="checkbox" id="toggleSpotters" style="outline: none;"><span> ' + lang_bandmap_draw_spotters + '</span><br>';
 			div.innerHTML += '<input type="checkbox" id="extendMapCheckbox" style="outline: none;"><span> ' + lang_bandmap_extend_map + '</span><br>';
+			div.innerHTML += '<input type="checkbox" id="showDayNightCheckbox" checked style="outline: none;"><span> ' + lang_bandmap_show_daynight + '</span><br>';
 			return div;
 		};
 		legend.addTo(dxMap);
@@ -3533,7 +3539,35 @@ $(function() {
 					dxMap.invalidateSize();
 				}
 			});
+
+			$('#showDayNightCheckbox').on('change', function() {
+				showDayNight = this.checked;
+				updateTerminator();
+			});
 		}, 100);
+	}
+
+	/**
+	 * Update day/night terminator layer
+	 */
+	function updateTerminator() {
+		if (!dxMap) return;
+
+		// Remove existing terminator layer if it exists
+		if (terminatorLayer) {
+			dxMap.removeLayer(terminatorLayer);
+			terminatorLayer = null;
+		}
+
+		// Add new terminator layer if enabled
+		if (showDayNight) {
+			terminatorLayer = L.terminator({
+				fillOpacity: 0.3,
+				color: '#000',
+				weight: 1
+			});
+			terminatorLayer.addTo(dxMap);
+		}
 	}
 
 	/**
@@ -4262,6 +4296,9 @@ $(function() {
 		if (bounds.length > 0) {
 			dxMap.fitBounds(bounds, { padding: [50, 50], maxZoom: 8 });
 		}
+
+		// Update day/night terminator
+		updateTerminator();
 
 		setTimeout(() => {
 			if (dxMap) dxMap.invalidateSize();
