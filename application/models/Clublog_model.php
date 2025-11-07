@@ -202,8 +202,8 @@ class Clublog_model extends CI_Model
 				$response = curl_exec($request);
 				$info = curl_getinfo($request);
 				$httpcode = curl_getinfo($request, CURLINFO_HTTP_CODE);
-                                $c_err=curl_errno($request);
-                                $c_errstring=curl_error($request);
+				$c_err=curl_errno($request);
+				$c_errstring=curl_error($request);
 				curl_close($request);
 
 				if ($c_err) {
