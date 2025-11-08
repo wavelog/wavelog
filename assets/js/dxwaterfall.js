@@ -480,7 +480,7 @@ function handleCATFrequencyUpdate(radioFrequency, updateCallback) {
             // Simplex mode - check TX frequency (main frequency)
             incomingHz = parseFloat(radioFrequency);
         }
-        
+
         var targetHz = dxWaterfall.targetFrequencyHz;
         var toleranceHz = DX_WATERFALL_CONSTANTS.THRESHOLDS.CAT_FREQUENCY_HZ; // 50 Hz tolerance
         var diff = Math.abs(incomingHz - targetHz);
