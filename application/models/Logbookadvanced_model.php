@@ -1260,30 +1260,40 @@ class Logbookadvanced_model extends CI_Model {
 	public function update_distances_batch() {
 		ini_set('memory_limit', '-1');
 
-		$sql = "SELECT COL_PRIMARY_KEY, station_profile.station_gridsquare, COL_GRIDSQUARE, COL_VUCC_GRIDS FROM " . $this->config->item('table_name') . "
+		$sql = "SELECT COL_DISTANCE, COL_PRIMARY_KEY, station_profile.station_gridsquare, COL_GRIDSQUARE, COL_VUCC_GRIDS FROM " . $this->config->item('table_name') . "
 			JOIN station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
 			WHERE COL_GRIDSQUARE is NOT NULL
-			AND (COL_GRIDSQUARE != '' OR COL_GRIDSQUARE is null)
-			AND station_profile.user_id = ?";
+			AND COL_GRIDSQUARE != ''
+			AND station_profile.user_id = ?
+			AND (COL_DISTANCE = '' or COL_DISTANCE is NULL)
+			and COL_GRIDSQUARE != station_gridsquare";
 
 		$query = $this->db->query($sql, array($this->session->userdata('user_id')));
 
-		if ($query->num_rows() > 0) {
-			if (!$this->load->is_loaded('Qra')) {
-				$this->load->library('Qra');
-			}
+		$recordcount = $query->num_rows();
+
+		if ($recordcount > 0) {
+			$this->load->library('Qra');
+
+			$updates = [];
 			foreach ($query->result() as $row) {
-				$ant_path = $row->COL_ANT_PATH ?? null;
-				$distance = $this->qra->distance($row->station_gridsquare, $row->COL_GRIDSQUARE, 'K', $ant_path);
-				$data = array(
-					'COL_DISTANCE' => $distance,
+				$distance = $this->qra->distance(
+					$row->station_gridsquare,
+					$row->COL_GRIDSQUARE,
+					'K'
 				);
 
-				$this->db->where(array('COL_PRIMARY_KEY' => $row->COL_PRIMARY_KEY));
-				$this->db->update($this->config->item('table_name'), $data);
+				$updates[] = [
+					'COL_PRIMARY_KEY' => $row->COL_PRIMARY_KEY,
+					'COL_DISTANCE' => $distance,
+				];
+			}
+
+			if (!empty($updates)) {
+				$this->db->update_batch($this->config->item('table_name'), $updates, 'COL_PRIMARY_KEY');
 			}
 		}
 
-		return true;
+		return $recordcount;
 	}
 }

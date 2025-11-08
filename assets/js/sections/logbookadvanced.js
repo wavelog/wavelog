@@ -1119,10 +1119,11 @@ $(document).ready(function () {
 					message: html,
 					buttons: [
 					{
-						label: lang_gen_advanced_logbook_update_now,
-						cssClass: 'btn btn-sm btn-primary',
+						label: lang_gen_advanced_logbook_update_now + ' <div class="ld ld-ring ld-spin"></div>',
+						cssClass: 'btn btn-sm btn-primary ld-ext-right',
+						id: 'updateContinentButton',
 						action: function (dialogItself) {
-							runContinentFix();
+							runContinentFix(dialogItself);
 						}
 					},
 					{
@@ -1138,18 +1139,24 @@ $(document).ready(function () {
 		});
 	});
 
-	function runContinentFix() {
+	function runContinentFix(dialogItself) {
+		$('#updateContinentButton').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
 		$.ajax({
 			url: base_url + 'index.php/logbookadvanced/fixContinent',
 			type: 'POST',
 			success: function (response) {
+				$('#updateContinentButton').prop("disabled", false).removeClass("running");
+				dialogItself.close();
 				BootstrapDialog.alert({
 					title: lang_gen_advanced_logbook_success,
-					message: lang_gen_advanced_logbook_continents_updated + ' ' + response.updated + ' ' + lang_gen_advanced_logbook_records_updated,
+					message: lang_gen_advanced_logbook_continents_updated + ' ' + response + ' ' + lang_gen_advanced_logbook_records_updated,
 					type: BootstrapDialog.TYPE_SUCCESS
 				});
 			},
 			error: function () {
+				$('#updateContinentButton').prop("disabled", false).removeClass("running");
+				dialogItself.close();
 				BootstrapDialog.alert({
 					title: lang_gen_advanced_logbook_error,
 					message: lang_gen_advanced_logbook_problem_fixing_continents,
@@ -1172,10 +1179,11 @@ $(document).ready(function () {
 					message: html,
 					buttons: [
 					{
-						label: lang_gen_advanced_logbook_update_now,
-						cssClass: 'btn btn-sm btn-primary',
+						label: lang_gen_advanced_logbook_update_now  + ' <div class="ld ld-ring ld-spin"></div>',
+						cssClass: 'btn btn-sm btn-primary ld-ext-right',
+						id: 'updateDistanceButton',
 						action: function (dialogItself) {
-							runUpdateDistancesFix();
+							runUpdateDistancesFix(dialogItself);
 						}
 					},
 					{
@@ -1191,18 +1199,24 @@ $(document).ready(function () {
 		});
 	});
 
-	function runUpdateDistancesFix() {
+	function runUpdateDistancesFix(dialogItself) {
+		$('#updateDistanceButton').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
 		$.ajax({
 			url: base_url + 'index.php/logbookadvanced/updateDistances',
 			type: 'POST',
 			success: function (response) {
+				$('#updateDistanceButton').prop("disabled", false).removeClass("running");
+				dialogItself.close();
 				BootstrapDialog.alert({
 					title: lang_gen_advanced_logbook_success,
-					message: lang_gen_advanced_logbook_distances_updated,
+					message: lang_gen_advanced_logbook_distances_updated + ' ' + response + ' ' + lang_gen_advanced_logbook_records_updated,
 					type: BootstrapDialog.TYPE_SUCCESS
 				});
 			},
 			error: function () {
+				$('#updateDistanceButton').prop("disabled", false).removeClass("running");
+				dialogItself.close();
 				BootstrapDialog.alert({
 					title: lang_gen_advanced_logbook_error,
 					message: lang_gen_advanced_logbook_problem_updating_distances,
