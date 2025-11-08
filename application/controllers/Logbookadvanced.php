@@ -717,6 +717,10 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->view('logbookadvanced/continentdialog');
 	}
 
+	public function distanceDialog() {
+		$this->load->view('logbookadvanced/distancedialog');
+	}
+
 	public function fixCqZones() {
 		if(!clubaccess_check(9)) return;
 
@@ -805,6 +809,15 @@ class Logbookadvanced extends CI_Controller {
 	public function fixContinent() {
 		$this->load->model('logbookadvanced_model');
 		$result = $this->logbookadvanced_model->check_missing_continent();
+
+		header("Content-Type: application/json");
+		print json_encode($result);
+	}
+
+	public function updateDistances() {
+		$this->load->model('logbookadvanced_model');
+		$result = $this->logbookadvanced_model->update_distances_batch();
+
 		return $result;
 	}
 }
