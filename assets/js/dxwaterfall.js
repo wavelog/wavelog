@@ -469,7 +469,18 @@ function handleCATFrequencyUpdate(radioFrequency, updateCallback) {
 
     // If we're waiting for radio to tune to a target frequency, check if this CAT update is stale
     if (typeof dxWaterfall !== 'undefined' && dxWaterfall.targetFrequencyHz) {
-        var incomingHz = parseFloat(radioFrequency);
+        // In split operation mode, use RX frequency for confirmation (waterfall is centered on RX)
+        // In simplex mode, use TX frequency (main frequency)
+        var incomingHz;
+        if (window.catState && window.catState.frequency_rx && window.catState.frequency_rx > 0) {
+            // Split mode - check RX frequency
+            incomingHz = parseFloat(window.catState.frequency_rx);
+            DX_WATERFALL_UTILS.log.debug('[CAT] Split mode - using RX frequency for confirmation');
+        } else {
+            // Simplex mode - check TX frequency (main frequency)
+            incomingHz = parseFloat(radioFrequency);
+        }
+        
         var targetHz = dxWaterfall.targetFrequencyHz;
         var toleranceHz = DX_WATERFALL_CONSTANTS.THRESHOLDS.CAT_FREQUENCY_HZ; // 50 Hz tolerance
         var diff = Math.abs(incomingHz - targetHz);
