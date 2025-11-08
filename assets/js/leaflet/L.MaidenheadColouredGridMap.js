@@ -2,16 +2,38 @@
  * L.Maidenhead displays a Maidenhead Locator of lines on the map.
  */
 
+function hexToRgba(hex, alpha = 1) {
+  if (!hex) return null;
+  // Remove the leading "#"
+  hex = hex.replace(/^#/, '');
+
+  // Expand short form (#f0a → #ff00aa)
+  if (hex.length === 3) {
+    hex = hex.split('').map(c => c + c).join('');
+  }
+
+  const num = parseInt(hex, 16);
+  const r = (num >> 16) & 255;
+  const g = (num >> 8) & 255;
+  const b = num & 255;
+
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
 L.Maidenhead = L.LayerGroup.extend({
 
 	options: {
-		// Line and label color
 		linecolor: isDarkModeTheme() ?  'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)',
 		color: isDarkModeTheme() ? 'rgba(255, 255, 255, 1)' : 'rgba(0, 0, 0, 1)',
-		workedColor: user_map_custom?.qso?.color ?? 'rgba(255, 0, 0, 0.4)',
-		confirmedColor: user_map_custom?.qsoconfirm?.color ?? 'rgba(144,238,144, 0.6)',
 
-		// Redraw on move or moveend
+		workedColor: user_map_custom?.qso?.color
+			? hexToRgba(user_map_custom.qso.color, 0.4)
+			: 'rgba(255, 0, 0, 0.4)',
+
+		confirmedColor: user_map_custom?.qsoconfirm?.color
+			? hexToRgba(user_map_custom.qsoconfirm.color, 0.6)
+			: 'rgba(144,238,144, 0.6)',
+
 		redraw: 'move'
 	},
 
