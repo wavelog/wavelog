@@ -106,12 +106,7 @@ class Qrz {
 			$data['ccode'] = (string)$xml->Callsign->ccode;
 			$data['lat'] = (string)$xml->Callsign->lat;
 			$data['lon'] = (string)$xml->Callsign->lon;
-			// qrz.com gives AA00aa if the user deleted his grid from the profile
-			if ((string)$xml->Callsign->grid == 'AA00aa') {
-				$data['grid'] = '';
-			} else {
-				$data['grid'] = (string)$xml->Callsign->grid;
-			}
+			$data['grid'] = (string)$xml->Callsign->grid;
 			$data['county'] = (string)$xml->Callsign->county;
 			$data['fips'] = (string)$xml->Callsign->fips;
 			$data['land'] = (string)$xml->Callsign->land;
