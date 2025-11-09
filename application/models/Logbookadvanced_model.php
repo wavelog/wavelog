@@ -1260,7 +1260,7 @@ class Logbookadvanced_model extends CI_Model {
 	public function update_distances_batch() {
 		ini_set('memory_limit', '-1');
 
-		$sql = "SELECT COL_DISTANCE, COL_PRIMARY_KEY, station_profile.station_gridsquare, COL_GRIDSQUARE, COL_VUCC_GRIDS FROM " . $this->config->item('table_name') . "
+		$sql = "SELECT COL_ANT_PATH, COL_DISTANCE, COL_PRIMARY_KEY, station_profile.station_gridsquare, COL_GRIDSQUARE, COL_VUCC_GRIDS FROM " . $this->config->item('table_name') . "
 			JOIN station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
 			WHERE COL_GRIDSQUARE is NOT NULL
 			AND COL_GRIDSQUARE != ''
@@ -1280,7 +1280,8 @@ class Logbookadvanced_model extends CI_Model {
 				$distance = $this->qra->distance(
 					$row->station_gridsquare,
 					$row->COL_GRIDSQUARE,
-					'K'
+					'K',
+					$row->COL_ANT_PATH ?? null
 				);
 
 				$updates[] = [
