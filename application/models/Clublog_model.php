@@ -112,8 +112,7 @@ class Clublog_model extends CI_Model
 									$log = "Clublog returned HTML error page for " . $station_row->station_callsign . " (access denied)";
 									log_message('Error', $log);
 									$return .= $log."<br>";
-									$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
-									$this->db->query($sql,$station_row->station_id);
+									$this->disable_sync4call($station_row->station_callsign, $station_row->station_id);
 								} else if (preg_match('/too many uploads already queued/', $response)) {	// New Error, Clublog has Backlog, skip for NOW
 									$return = 'Clublog upload for ' . $station_row->station_callsign . ' failed, clublog tells backlog there. Skipping whole account for this cycle. Detailled reason ' . $response.' // HTTP:'.$httpcode.' / '.$return;
 									log_message('Error', 'Clublog upload for ' . $station_row->station_callsign . ' has become a victim of clublog-Backlog. Skipping full User for this cycle.');
@@ -133,16 +132,13 @@ class Clublog_model extends CI_Model
 									log_message('error', $return);
 									if (substr($response,0,13) == 'Upload denied') {	// Deactivate Upload for Station if Clublog rejects it due to non-configured Call (prevent being blacklisted at Clublog)
 										log_message('Error', 'Deactivated upload for station ' . $station_row->station_callsign . ' due to non-configured Call (prevent being blacklisted at Clublog.');
-										$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
-										$this->db->query($sql,$station_row->station_id);
+										$this->disable_sync4call($station_row->station_callsign, $station_row->station_id);
 									} else if (substr($response,0,14) == 'Login rejected') {	// Deactivate Upload for Station if Clublog rejects it due to wrong credentials (prevent being blacklisted at Clublog)
 										log_message('Error', 'Deactivated upload for station ' . $station_row->station_callsign . ' due to wrong credentials (prevent being blacklisted at Clublog.');
-										$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
-										$this->db->query($sql,$station_row->station_id);
+										$this->disable_sync4call($station_row->station_callsign, $station_row->station_id);
 									} else if ($httpcode == 403) {
 										log_message('Error', 'Deactivated upload for station ' . $station_row->station_callsign . ' due to 403 (prevent being blacklisted at Clublog.');
-										$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
-										$this->db->query($sql,$station_row->station_id);
+										$this->disable_sync4call($station_row->station_callsign, $station_row->station_id);
 									} else {
 										log_message('error', 'Some uncaught exception for station ' . $station_row->station_callsign);
 									}
@@ -443,14 +439,12 @@ class Clublog_model extends CI_Model
 		} elseif (preg_match('/\bUpdated QSO\b/', $response)) {
 			$returner['status'] = 'OK';
 		} elseif ($httpcode == 403) { 	// New Message from clublog. HTTP 403 response check.
-			log_message('Error',"Clublog returned HTML error page for " . $station_row->station_callsign . " (access denied)");
-			$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
-			$this->db->query($sql,array($station_id));
+			log_message('Error',"Clublog returned HTML error page for " . $station_callsign . " (access denied)");
+			$this->disable_sync4call($station_callsign, $station_id);
 			$returner['status'] = $response;
 		} elseif (substr($response,0,14) == 'Login rejected') {	// Deactivate Upload for Station if Clublog rejects it due to wrong credentials (prevent being blacklisted at Clublog)
 			log_message("Error","Clublog deactivated for ".$cl_username." because of wrong creds at Realtime-Pusher");
-			$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
-			$this->db->query($sql,array($station_id));
+			$this->disable_sync4call($station_callsign, $station_id);
 			$returner['status'] = $response;
 		} else {
 			log_message("Error","Uncaught exception at ClubLog-RT for ".$cl_username." / Details: ".$httpcode." : ".$response);
