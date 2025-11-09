@@ -201,6 +201,10 @@ class Qra {
 	}
 
 	function validate_grid($grid) {
+		// (Try to) Detect placeholders like AA00aa (returned from qrz.com for example)
+		if (strlen($grid) == 6 && strtoupper($grid) == 'AA00AA') {
+			return false;
+		}
 		// Allow 6-digit locator
 		if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}$/', $grid)) return true;
 		// Allow 4-digit locator
@@ -215,6 +219,7 @@ class Qra {
 		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}[0-9]{2}$/', $grid)) return true;
 		// Allow 10-digit locator
 		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}[0-9]{2}[A-Za-z]{2}$/', $grid)) return true;
+
 		return false;
 	}
 }
