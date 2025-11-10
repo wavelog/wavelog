@@ -589,7 +589,7 @@
 										<div class="mb-3 col-md-3">
 										</div>
 										<div class="md-3 col-md-2">
-											<input type="color" class="form-control user_icon_color" name="user_map_unworked_color" id="user_map_unworked_color" value="<?php echo $user_map_unworked_color; ?>" style="padding:initial;" data-icon="unworked" />
+											<input type="color" class="form-control user_icon_color" name="user_map_unworked_color" id="user_map_unworked_color" value="<?php echo $user_map_unworked_color ?? 'red'; ?>" style="padding:initial;" data-icon="unworked" />
 										</div>
 									</div>
 									<div class="row">
