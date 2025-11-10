@@ -236,12 +236,52 @@ if (!file_exists('.lock') && !file_exists('../application/config/config.php') &&
 													</td>
 												</tr>
 											</table>
+										</div>
+										<div class="col-md-5 mb-4 mx-auto">
+											<p class="border-bottom mb-2"><b><?= __("Web Server"); ?></b></p>
+											<table width="100%" style="margin-bottom: 25px;">
+												<tr>
+													<td><?= __("Version:"); ?> </td>
+													<td><span class="badge text-bg-info"><?php echo detect_webserver(); ?></span></td>
+												</tr>
+											</table>
+											<?php if (strpos(strtolower(detect_webserver()), 'nginx') !== false) {
+												if (detect_nginx_php_setting($http_scheme) != 200) { ?>
+													<div class="alert alert-warning d-flex flex-column align-items-center" role="alert">
+														<p class="mb-2 border-bottom"><?= __("Important note for nginx users!"); ?></p>
+														<p class="mb-0"><?= __("Since you are using nginx as web server please make sure that you have made the changes described in the Wiki before continuing."); ?></p><br>
+														<p class="mb-0"><a target="_blank" href="https://github.com/wavelog/Wavelog/wiki/Installation#nginx-configuration">https://github.com/wavelog/Wavelog/wiki/Installation#nginx-configuration</a></p>
+													</div>
+												<?php } ?>
+											<?php } ?>
 											<p class="border-bottom mb-2" style="margin-top: 2rem;"><b><?= __("Folder Write Permissions"); ?></b></p>
 											<table width="100%">
 												<tr>
-													<td>/application</td>
+													<td>/application/cache</td>
 													<td>
-														<?php if (is_really_writable('../application/cache') == true && is_really_writable('../application/config') == true && is_really_writable('../application/logs') == true) { ?>
+														<?php if (is_really_writable('../application/cache') == true) { ?>
+															<span class="badge text-bg-success"><?= __("Success"); ?></span>
+														<?php } else {
+															$prechecks_passed = 'failed'; ?>
+															<span class="badge text-bg-danger"><?= __("Failed"); ?></span>
+														<?php } ?>
+													</td>
+												</tr>
+												<tr>
+													<td>/application/config</td>
+													<td>
+														<?php if (is_really_writable('../application/config') == true) { ?>
+															<span class="badge text-bg-success"><?= __("Success"); ?></span>
+														<?php } else {
+															$prechecks_passed = 'failed'; ?>
+															<span class="badge text-bg-danger"><?= __("Failed"); ?></span>
+														<?php } ?>
+													</td>
+												</tr>
+												<tr>
+													<td>/application/logs</td>
+													<td>
+														<?php if (is_really_writable('../application/logs') == true) { ?>
 															<span class="badge text-bg-success"><?= __("Success"); ?></span>
 														<?php } else {
 															$prechecks_passed = 'failed'; ?>
@@ -294,24 +334,7 @@ if (!file_exists('.lock') && !file_exists('../application/config/config.php') &&
 													</td>
 												</tr>
 											</table>
-										</div>
-										<div class="col-md-5 mb-4 mx-auto">
-											<p class="border-bottom mb-2"><b><?= __("Web Server"); ?></b></p>
-											<table width="100%" style="margin-bottom: 25px;">
-												<tr>
-													<td><?= __("Version:"); ?> </td>
-													<td><span class="badge text-bg-info"><?php echo detect_webserver(); ?></span></td>
-												</tr>
-											</table>
-											<?php if (strpos(strtolower(detect_webserver()), 'nginx') !== false) {
-												if (detect_nginx_php_setting($http_scheme) != 200) { ?>
-													<div class="alert alert-warning d-flex flex-column align-items-center" role="alert">
-														<p class="mb-2 border-bottom"><?= __("Important note for nginx users!"); ?></p>
-														<p class="mb-0"><?= __("Since you are using nginx as web server please make sure that you have made the changes described in the Wiki before continuing."); ?></p><br>
-														<p class="mb-0"><a target="_blank" href="https://github.com/wavelog/Wavelog/wiki/Installation#nginx-configuration">https://github.com/wavelog/Wavelog/wiki/Installation#nginx-configuration</a></p>
-													</div>
-												<?php } ?>
-											<?php } ?>
+											<hr style="border-width: 1px;border-color: #D8DCE0; opacity: 1;">
 											<?php if ($prechecks_passed == 'failed') {
 												$prechecks_icon = "fa-times-circle";
 												$prechecks_color = "red"; ?>
