@@ -8,9 +8,9 @@ let confirmedColor = user_map_custom.qsoconfirm.color;
 let workedColor = user_map_custom.qso.color;
 let unworkedColor = '';
 if (typeof(user_map_custom.unworked) !== 'undefined') {
-   unworkedColor = user_map_custom.unworked.color;
+	unworkedColor = user_map_custom.unworked.color;
 } else {
-   unworkedColor = 'red';
+	unworkedColor = 'red';
 }
 
 function load_cq_map() {

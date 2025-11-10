@@ -104,6 +104,7 @@ class Awards extends CI_Controller {
 		$data['orbits'] = $this->bands->get_worked_orbits();
 		$data['sats_available'] = $this->bands->get_worked_sats();
 		$data['user_default_band'] = $this->session->userdata('user_default_band');
+		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
 		$data['worked_bands'] = $this->bands->get_worked_bands('dxcc'); // Used in the view for band select
 		$data['modes'] = $this->modes->active(); // Used in the view for mode select

@@ -1321,6 +1321,24 @@ function showToast(title, text, type = 'bg-success text-white', delay = 3000) {
 	toastEl.addEventListener('hidden.bs.toast', () => toastEl.remove());
 }
 
+function hexToRgba(hex, alpha = 1) {
+	if (!hex) return null;
+	// Remove the leading "#"
+	hex = hex.replace(/^#/, '');
+
+	// Expand short form (#f0a → #ff00aa)
+	if (hex.length === 3) {
+		hex = hex.split('').map(c => c + c).join('');
+	}
+
+	const num = parseInt(hex, 16);
+	const r = (num >> 16) & 255;
+	const g = (num >> 8) & 255;
+	const b = num & 255;
+
+	return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
 console.log("Ready to unleash your coding prowess and join the fun?\n\n" +
     "Check out our GitHub Repository and dive into the coding adventure:\n\n" +
     "🚀 https://www.github.com/wavelog/wavelog");
