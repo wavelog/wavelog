@@ -395,7 +395,8 @@ function determineSSBMode(frequency) {
  * @param {string} band - Band identifier (e.g., '20m', '2m', '70cm', '13cm')
  * @returns {string|null} Band group name or null if band not found
  */
-function getBandGroup(band) {
+function 
+(band) {
 	for (const [group, bands] of Object.entries(BAND_GROUPS)) {
 		if (bands.includes(band)) return group;
 	}
