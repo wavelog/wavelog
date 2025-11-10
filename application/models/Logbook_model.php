@@ -4711,7 +4711,8 @@ class Logbook_model extends CI_Model {
 					$input_lotw_qslrdate = $record['lotw_qslrdate'];
 				} else {
 					$input_lotw_qslrdate = NULL;
-					$my_error .= "Error QSO: Date: " . $time_on . " Callsign: " . $record['call'] . " ".__("the lotw_qslrdate is invalid (YYYYMMDD)").": " . $record['lotw_qslrdate'] . "<br>";
+					$my_error .= "Error QSO: Date: " . $time_on . " Callsign: " . $record['call'] . " ".__("the lotw_qslrdate is invalid (YYYYMMDD)").": " . $record['lotw_qslrdate'] . "; " . _("LoTW Rcvd status will be reset.") . "<br>";
+					$input_lotw_qsl_rcvd = NULL;
 				}
 			} else {
 				$input_lotw_qslrdate = NULL;
@@ -4735,7 +4736,8 @@ class Logbook_model extends CI_Model {
 					$input_lotw_qslsdate = $record['lotw_qslsdate'];
 				} else {
 					$input_lotw_qslsdate = NULL;
-					$my_error .= "Error QSO: Date: " . $time_on . " Callsign: " . $record['call'] . " ".__("the lotw_qslsdate is invalid (YYYYMMDD)").": " . $record['lotw_qslsdate'] . "<br>";
+					$my_error .= "Error QSO: Date: " . $time_on . " Callsign: " . $record['call'] . " ".__("the lotw_qslsdate is invalid (YYYYMMDD)").": " . $record['lotw_qslsdate'] . "; " . _("LoTW Sent status will be reset.") . "<br>";
+					$input_lotw_qsl_sent = NULL;
 				}
 			} else {
 				$input_lotw_qslsdate = NULL;
