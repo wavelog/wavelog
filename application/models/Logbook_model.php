@@ -4694,16 +4694,19 @@ class Logbook_model extends CI_Model {
 				$input_clublog_qslsdate = NULL;
 			}
 
-			/*
-	  Validate LoTW Fields
-	 */
+			/**
+			 * Validate LoTW Fields
+			 */
 			if (isset($record['lotw_qsl_rcvd'])) {
 				$input_lotw_qsl_rcvd = mb_strimwidth($record['lotw_qsl_rcvd'], 0, 1);
 			} else {
 				$input_lotw_qsl_rcvd = NULL;
 			}
 
-			if (($record['lotw_qslrdate'] ?? '') != '' && $input_lotw_qsl_rcvd == 'Y') {
+			// lotw_qslrdate can obly be valid if lotw_qsl_rcvd is one of the following values
+			// ref: https://www.adif.org.uk/316/ADIF_316.htm#QSO_Field_LOTW_QSLRDATE
+			$valid_lotw_rcvd = ['Y', 'I', 'V'];
+			if (($record['lotw_qslrdate'] ?? '') != '' && in_array($input_lotw_qsl_rcvd, $valid_lotw_rcvd)) {
 				if (validateADIFDate($record['lotw_qslrdate']) == true) {
 					$input_lotw_qslrdate = $record['lotw_qslrdate'];
 				} else {
@@ -4722,9 +4725,12 @@ class Logbook_model extends CI_Model {
 				$input_lotw_qsl_sent = NULL;
 			}
 
+			// lotw_qslsdate can obly be valid if lotw_qsl_sent is one of the following values
+			// ref: https://www.adif.org.uk/316/ADIF_316.htm#QSO_Field_LOTW_QSLSDATE
+			$valid_lotw_sent = ['Y', 'Q', 'V'];
 			if ($markLotw != NULL) {
 				$input_lotw_qslsdate = $date = date("Y-m-d H:i:s", strtotime("now"));
-			} elseif (($record['lotw_qslsdate'] ?? '') != '' && $input_lotw_qsl_sent == 'Y') {
+			} elseif (($record['lotw_qslsdate'] ?? '') != '' && in_array($input_lotw_qsl_sent, $valid_lotw_sent)) {
 				if (validateADIFDate($record['lotw_qslsdate']) == true) {
 					$input_lotw_qslsdate = $record['lotw_qslsdate'];
 				} else {
