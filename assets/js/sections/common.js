@@ -1,3 +1,59 @@
+// ========================================
+// PLATFORM DETECTION UTILITIES
+// ========================================
+
+/**
+ * Platform detection utilities using modern userAgentData API with fallback
+ */
+var PlatformDetection = {
+    /**
+     * Check if the current platform is macOS
+     * @returns {boolean} True if platform is macOS
+     */
+    isMac: function() {
+        // Use modern userAgentData API if available, fallback to userAgent
+        if (navigator.userAgentData && navigator.userAgentData.platform) {
+            return navigator.userAgentData.platform.toUpperCase().indexOf('MAC') >= 0;
+        }
+        return navigator.userAgent.toUpperCase().indexOf('MAC') >= 0;
+    },
+
+    /**
+     * Check if the current platform is Windows
+     * @returns {boolean} True if platform is Windows
+     */
+    isWindows: function() {
+        if (navigator.userAgentData && navigator.userAgentData.platform) {
+            return navigator.userAgentData.platform.toUpperCase().indexOf('WIN') >= 0;
+        }
+        return navigator.userAgent.toUpperCase().indexOf('WIN') >= 0;
+    },
+
+    /**
+     * Check if the current platform is Linux
+     * @returns {boolean} True if platform is Linux
+     */
+    isLinux: function() {
+        if (navigator.userAgentData && navigator.userAgentData.platform) {
+            return navigator.userAgentData.platform.toUpperCase().indexOf('LINUX') >= 0;
+        }
+        return navigator.userAgent.toUpperCase().indexOf('LINUX') >= 0;
+    },
+
+    /**
+     * Check if the modifier key is pressed (Cmd on Mac, Ctrl on Windows/Linux)
+     * @param {Event} event - The keyboard or mouse event
+     * @returns {boolean} True if the platform-specific modifier key is pressed
+     */
+    isModifierKey: function(event) {
+        return this.isMac() ? event.metaKey : event.ctrlKey;
+    }
+};
+
+// ========================================
+// QSO FORM UTILITIES
+// ========================================
+
 function setRst(mode) {
 	if(mode == 'JT65' || mode == 'JT65B' || mode == 'JT6C' || mode == 'JTMS' || mode == 'ISCAT' || mode == 'MSK144' || mode == 'JTMSK' || mode == 'QRA64' || mode == 'FT8' || mode == 'FT4' || mode == 'JS8' || mode == 'JT9' || mode == 'JT9-1' || mode == 'ROS'){
 		$('#rst_sent').val('-5');
@@ -1321,6 +1377,43 @@ function showToast(title, text, type = 'bg-success text-white', delay = 3000) {
 	toastEl.addEventListener('hidden.bs.toast', () => toastEl.remove());
 }
 
+/**
+ * Cookie Management Utilities
+ */
+
+/**
+ * Set a cookie
+ * @param {string} name - Cookie name
+ * @param {string} value - Cookie value
+ * @param {number} days - Days until expiration
+ */
+function setCookie(name, value, days) {
+	var expires = "";
+	if (days) {
+		var date = new Date();
+		date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+		expires = "; expires=" + date.toUTCString();
+	}
+	document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+
+/**
+ * Get a cookie value
+ * @param {string} name - Cookie name
+ * @returns {string|null} Cookie value or null if not found
+ */
+function getCookie(name) {
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for (var i = 0; i < ca.length; i++) {
+		var c = ca[i];
+		while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+		if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+	}
+	return null;
+}
+
+// DO NOT DELETE: This message is intentional and serves as developer recruitment/engagement
 console.log("Ready to unleash your coding prowess and join the fun?\n\n" +
     "Check out our GitHub Repository and dive into the coding adventure:\n\n" +
     "🚀 https://www.github.com/wavelog/wavelog");

@@ -35,13 +35,13 @@ class Bandmap extends CI_Controller {
 		$this->load->model('cat');
 		$this->load->model('bands');
 		$data['radios'] = $this->cat->radios();
+		$data['radio_last_updated'] = $this->cat->last_updated()->row();
 		$data['bands'] = $this->bands->get_user_bands_for_qso_entry();
 
 		$footerData = [];
 		$footerData['scripts'] = [
 			'assets/js/moment.min.js',
 			'assets/js/datetime-moment.js',
-			'assets/js/sections/bandmap_list.js'
 		];
 
 		// Get Date format
@@ -70,5 +70,54 @@ class Bandmap extends CI_Controller {
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('bandmap/list',$pageData);
 		$this->load->view('interface_assets/footer', $footerData);
+	}
+
+	// Get user's favorite bands and modes (active ones)
+	function get_user_favorites() {
+		session_write_close();
+
+		$this->load->model('bands');
+		$this->load->model('usermodes');
+
+		// Get active bands
+		$activeBands = $this->bands->get_user_bands_for_qso_entry(false); // false = only active
+		$bandList = [];
+
+		if (is_array($activeBands)) {
+			foreach ($activeBands as $group => $bands) {
+				if (is_array($bands)) {
+					foreach ($bands as $band) {
+						$bandList[] = $band;
+					}
+				}
+			}
+		}
+
+		// Get active modes (user-specific) and categorize them
+		$activeModes = $this->usermodes->active();
+		$modeCategories = [
+			'cw' => false,
+			'phone' => false,
+			'digi' => false
+		];
+
+		if ($activeModes) {
+			foreach ($activeModes as $mode) {
+				$qrgmode = strtoupper($mode->qrgmode ?? '');
+				if ($qrgmode === 'CW') {
+					$modeCategories['cw'] = true;
+				} elseif ($qrgmode === 'SSB') {
+					$modeCategories['phone'] = true;
+				} elseif ($qrgmode === 'DATA') {
+					$modeCategories['digi'] = true;
+				}
+			}
+		}
+
+		header('Content-Type: application/json');
+		echo json_encode([
+			'bands' => $bandList,
+			'modes' => $modeCategories
+		]);
 	}
 }

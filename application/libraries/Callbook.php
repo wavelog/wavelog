@@ -50,6 +50,11 @@ class Callbook {
 		if (! array_key_exists('geoloc', $callbook)) {
 			$callbook['geoloc'] = '';
 		}
+		// qrz.com gives AA00aa if the user deleted his grid from the profile
+		$this->ci->load->library('qra');
+		if (!$this->ci->qra->validate_grid($callbook['gridsquare'])) {
+			$callbook['gridsquare'] = '';
+		}
 		return $callbook;
 	}
 

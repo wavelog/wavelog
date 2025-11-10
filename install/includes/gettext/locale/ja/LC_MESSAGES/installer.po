@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-07-31 16:28+0000\n"
+"POT-Creation-Date: 2025-11-10 13:19+0000\n"
 "PO-Revision-Date: 2025-08-26 13:25+0000\n"
 "Last-Translator: \"S.NAKAO\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
@@ -178,9 +178,9 @@ msgid ""
 "logging software. Follow the steps in each tab to configure and install "
 "Wavelog on your server."
 msgstr ""
-"このインストーラーは、Wavelogのインストールに必要な手順を案内します。<br>Wave"
-"logは、強力なWebベースのアマチュア無線ログソフトウェアです。各タブの手順に従"
-"って、Wavelogをサーバーに設定し、インストールしてください。"
+"このインストーラーは、Wavelogのインストールに必要な手順を案内します。"
+"<br>Wavelogは、強力なWebベースのアマチュア無線ログソフトウェアです。各タブの"
+"手順に従って、Wavelogをサーバーに設定し、インストールしてください。"
 
 #: install/index.php:69
 msgid "Discussions"
@@ -192,8 +192,8 @@ msgid ""
 "If you encounter any issues or have questions, refer to the documentation "
 "(%s) or community forum (%s) on Github for assistance."
 msgstr ""
-"問題が発生した場合や質問がある場合は、GitHub のドキュメント (%s) "
-"またはコミュニティフォーラム (%s) を参照してサポートを受けてください。"
+"問題が発生した場合や質問がある場合は、GitHub のドキュメント (%s) またはコミュ"
+"ニティフォーラム (%s) を参照してサポートを受けてください。"
 
 #: install/index.php:69
 msgid "Wiki"
@@ -203,7 +203,7 @@ msgstr "Wiki"
 msgid "Thank you for installing Wavelog!"
 msgstr "Wavelogをインストールしていただきありがとうございます！"
 
-#: install/index.php:71 install/index.php:74 install/index.php:1033
+#: install/index.php:71 install/index.php:74 install/index.php:1056
 msgid "Language"
 msgstr "言語"
 
@@ -211,7 +211,7 @@ msgstr "言語"
 msgid "Select a language"
 msgstr "言語を選択してください"
 
-#: install/index.php:96 install/index.php:418
+#: install/index.php:96 install/index.php:441
 msgid "Close"
 msgstr "閉じる"
 
@@ -241,54 +241,59 @@ msgstr "インストールされていません"
 msgid "PHP Settings"
 msgstr "PHP設定"
 
-#: install/index.php:239
-msgid "Folder Write Permissions"
-msgstr "フォルダの書き込み権限"
-
-#: install/index.php:245 install/index.php:256 install/index.php:267
-#: install/index.php:278 install/index.php:289
-msgid "Success"
-msgstr "成功"
-
-#: install/index.php:248 install/index.php:259 install/index.php:270
-#: install/index.php:281 install/index.php:292
-msgid "Failed"
-msgstr "失敗した"
-
-#: install/index.php:299
+#: install/index.php:241
 msgid "Web Server"
 msgstr "ウェブサーバー"
 
-#: install/index.php:302
+#: install/index.php:244
 msgid "Version:"
 msgstr "バージョン:"
 
-#: install/index.php:309
+#: install/index.php:251
 msgid "Important note for nginx users!"
 msgstr "nginx ユーザーへの重要な注意!"
 
-#: install/index.php:310
+#: install/index.php:252
 msgid ""
 "Since you are using nginx as web server please make sure that you have made "
 "the changes described in the Wiki before continuing."
-msgstr "Web サーバーとして nginx を使用しているため、続行する前に、Wiki "
-"に記載されている変更が行われたことを確認してください。"
+msgstr ""
+"Web サーバーとして nginx を使用しているため、続行する前に、Wiki に記載されて"
+"いる変更が行われたことを確認してください。"
 
-#: install/index.php:319
+#: install/index.php:257
+msgid "Folder Write Permissions"
+msgstr "フォルダの書き込み権限"
+
+#: install/index.php:263 install/index.php:274 install/index.php:285
+#: install/index.php:296 install/index.php:307 install/index.php:318
+#: install/index.php:329
+msgid "Success"
+msgstr "成功"
+
+#: install/index.php:266 install/index.php:277 install/index.php:288
+#: install/index.php:299 install/index.php:310 install/index.php:321
+#: install/index.php:332
+msgid "Failed"
+msgstr "失敗した"
+
+#: install/index.php:342
 msgid "Some Checks have failed!"
 msgstr "一部のチェックに失敗しました！"
 
-#: install/index.php:320
+#: install/index.php:343
 msgid "Check your PHP settings and install missing modules if necessary."
-msgstr "PHP "
-"設定を確認し、必要に応じて不足しているモジュールをインストールしてください。"
+msgstr ""
+"PHP 設定を確認し、必要に応じて不足しているモジュールをインストールしてくださ"
+"い。"
 
-#: install/index.php:321
+#: install/index.php:344
 msgid ""
 "After that, you have to restart your webserver and start the installer again."
-msgstr "その後、Web サーバーを再起動してインストーラーを再度起動する必要があります。"
+msgstr ""
+"その後、Web サーバーを再起動してインストーラーを再度起動する必要があります。"
 
-#: install/index.php:322
+#: install/index.php:345
 #, php-format
 msgid ""
 "In case of failed 'Folder Write Permissions' check out our Wiki <a href='%s' "
@@ -297,11 +302,11 @@ msgstr ""
 "「フォルダ書き込み権限」が失敗した場合は、Wikiをご覧ください。 <a href='%s' "
 "target='_blank'> ここ </a> です。"
 
-#: install/index.php:328
+#: install/index.php:351
 msgid "You have some warnings!"
 msgstr "いくつか警告があります！"
 
-#: install/index.php:329
+#: install/index.php:352
 msgid ""
 "Some of the settings are not optimal. You can proceed with the installer but "
 "be aware that you could run into problems while using Wavelog."
@@ -309,19 +314,19 @@ msgstr ""
 "一部の設定が最適ではありません。インストーラーを続行することはできますが、"
 "Wavelog の使用中に問題が発生する可能性があることにご注意ください。"
 
-#: install/index.php:336
+#: install/index.php:359
 msgid "All Checks are OK. You can continue."
 msgstr "すべてのチェックは正常です。続行できます。"
 
-#: install/index.php:350
+#: install/index.php:373
 msgid ""
 "Configure some basic parameters for your wavelog instance. You can change "
 "them later in 'application/config/config.php'"
 msgstr ""
-"Wavelogインスタンスの基本パラメータを設定します。これらのパラメータは後から「"
-"application/config/config.php」で変更できます"
+"Wavelogインスタンスの基本パラメータを設定します。これらのパラメータは後から"
+"「application/config/config.php」で変更できます"
 
-#: install/index.php:352
+#: install/index.php:375
 msgid ""
 "This is the URL where you can access this Wavelog instance after the "
 "installer has run. If this does not display what you expect, you may need to "
@@ -329,18 +334,18 @@ msgid ""
 "php, which can be edited after the installation."
 msgstr ""
 "これは、インストーラ実行後にWavelogインスタンスにアクセスできるURLです。期待"
-"どおりに表示されない場合は、Webサーバーの設定を確認してください。これはconfig"
-".phpのbase_urlで、インストール後に編集できます。"
+"どおりに表示されない場合は、Webサーバーの設定を確認してください。これは"
+"config.phpのbase_urlで、インストール後に編集できます。"
 
-#: install/index.php:352
+#: install/index.php:375
 msgid "Your final Wavelog URL"
 msgstr "最終的なWavelog URL"
 
-#: install/index.php:358
+#: install/index.php:381
 msgid "Optional: Global Callbook Lookup"
 msgstr "オプション: グローバルコールブック検索"
 
-#: install/index.php:358
+#: install/index.php:381
 msgid ""
 "This configuration is optional. The callsign lookup will be available for "
 "all users of this installation. You can choose between QRZ.com and HamQTH. "
@@ -351,318 +356,325 @@ msgstr ""
 "この設定はオプションです。コールサイン検索は、このインストールのすべてのユー"
 "ザーが利用できます。QRZ.comとHamQTHのいずれかを選択できます。HamQTHはユーザー"
 "名とパスワードなしで動作しますが、QRZ.comは認証情報が必要です。QRZ.comでコー"
-"ルロケーターを取得するには、XMLサブスクリプションが必要です。HamQTHは常にロケ"
-"ーター情報を提供するとは限りません。"
+"ルロケーターを取得するには、XMLサブスクリプションが必要です。HamQTHは常にロ"
+"ケーター情報を提供するとは限りません。"
 
-#: install/index.php:369 install/index.php:450 install/index.php:902
+#: install/index.php:392 install/index.php:473 install/index.php:925
 msgid "Username"
 msgstr "ユーザー名"
 
-#: install/index.php:372 install/index.php:454 install/index.php:912
+#: install/index.php:395 install/index.php:477 install/index.php:935
 msgid "Password"
 msgstr "パスワード"
 
-#: install/index.php:377
+#: install/index.php:400
 msgid "Callbook Username"
 msgstr "コールブックユーザー名"
 
-#: install/index.php:380
+#: install/index.php:403
 msgid "Callbook Password"
 msgstr "コールブックパスワード"
 
-#: install/index.php:382
+#: install/index.php:405
 #, php-format
 msgid "Password can't contain %s or be empty"
 msgstr "パスワードに次の文字を含めることはできません %s または空"
 
-#: install/index.php:387
+#: install/index.php:410
 msgid "Good to know:"
 msgstr "知っておくと良いこと:"
 
-#: install/index.php:388
+#: install/index.php:411
 msgid ""
 "Use your callsign as your username for QRZ.com. The XML API does not support "
 "email addresses."
-msgstr "QRZ.comのユーザー名にはコールサインを使用してください。XML "
-"APIはメールアドレスをサポートしていません。"
+msgstr ""
+"QRZ.comのユーザー名にはコールサインを使用してください。XML APIはメールアドレ"
+"スをサポートしていません。"
 
-#: install/index.php:391 install/index.php:396
+#: install/index.php:414 install/index.php:419
 msgid "Advanced Settings"
 msgstr "詳細設定"
 
-#: install/index.php:399
+#: install/index.php:422
 msgid "These settings should only be set if you know what you're doing."
-msgstr "これらの設定は、何をしているのかわかっている場合にのみ設定してください。"
+msgstr ""
+"これらの設定は、何をしているのかわかっている場合にのみ設定してください。"
 
-#: install/index.php:402
+#: install/index.php:425
 msgid "Error Logs"
 msgstr "エラーログ"
 
-#: install/index.php:403
+#: install/index.php:426
 msgid ""
 "Optional: Enable Error Logging by setting the log threshold bigger then 0. "
 "Only enable this if you really need it."
 msgstr ""
-"オプション: "
-"エラーログの記録を有効にするには、ログの閾値を0より大きい値に設定してください"
-"。この機能は、本当に必要である場合のみ有効にしてください。"
+"オプション: エラーログの記録を有効にするには、ログの閾値を0より大きい値に設定"
+"してください。この機能は、本当に必要である場合のみ有効にしてください。"
 
-#: install/index.php:408
+#: install/index.php:431
 msgid "0 - No logs"
 msgstr "0 - ログなし"
 
-#: install/index.php:409
+#: install/index.php:432
 msgid "1 - Error messages"
 msgstr "1 - エラーメッセージ"
 
-#: install/index.php:410
+#: install/index.php:433
 msgid "2 - Debug messages"
 msgstr "2 - デバッグメッセージ"
 
-#: install/index.php:411
+#: install/index.php:434
 msgid "3 - Info messages"
 msgstr "3 - 情報メッセージ"
 
-#: install/index.php:412
+#: install/index.php:435
 msgid "4 - All messages"
 msgstr "4 - すべてのメッセージ"
 
-#: install/index.php:434
+#: install/index.php:457
 msgid ""
 "To properly install Wavelog you already should have setup a mariadb/mysql "
 "database. Provide the parameters here."
 msgstr ""
-"Wavelogを正しくインストールするには、既にMariaDB/"
-"MySQLデータベースを設定済みである必要があります。ここでパラメーターを入力して"
-"ください。"
+"Wavelogを正しくインストールするには、既にMariaDB/MySQLデータベースを設定済み"
+"である必要があります。ここでパラメーターを入力してください。"
 
-#: install/index.php:438
+#: install/index.php:461
 msgid "Hostname or IP"
 msgstr "ホスト名またはIPアドレス"
 
-#: install/index.php:438
+#: install/index.php:461
 msgid ""
 "Usually 'localhost'.<br>Optional with '[host]:[port]'. Default port: 3306."
 "<br>In a docker compose install type 'wavelog-db'."
 msgstr ""
-"通常は「localhost」です。<br>オプションで「[ホスト]:[ポート]"
-"」を指定できます。デフォルトのポートは3306です。<br>Docker "
-"Composeでのインストール時は「wavelog-db」と入力してください。"
+"通常は「localhost」です。<br>オプションで「[ホスト]:[ポート]」を指定できま"
+"す。デフォルトのポートは3306です。<br>Docker Composeでのインストール時は"
+"「wavelog-db」と入力してください。"
 
-#: install/index.php:444
+#: install/index.php:467
 msgid "Database Name"
 msgstr "データベース名"
 
-#: install/index.php:444
+#: install/index.php:467
 msgid "Name of the Database"
 msgstr "データベース名"
 
-#: install/index.php:450
+#: install/index.php:473
 msgid "Username of the Database User which has full access to the database."
-msgstr "データベースへのフルアクセス権を持つデータベース ユーザーのユーザー名。"
+msgstr ""
+"データベースへのフルアクセス権を持つデータベース ユーザーのユーザー名。"
 
-#: install/index.php:454
+#: install/index.php:477
 msgid "Password of the Database User"
 msgstr "データベースユーザーのパスワード"
 
-#: install/index.php:458
+#: install/index.php:481
 msgid "Connection Test"
 msgstr "接続テスト"
 
-#: install/index.php:469
+#: install/index.php:492
 msgid ""
 "Now you can create your first user in Wavelog. Fill out all fields and click "
 "continue. Make sure you use a safe password."
-msgstr "これでWavelogで最初のユーザーを作成できます。すべての項目に入力して「続行」を"
+msgstr ""
+"これでWavelogで最初のユーザーを作成できます。すべての項目に入力して「続行」を"
 "クリックしてください。安全なパスワードを使用してください。"
 
-#: install/index.php:470
+#: install/index.php:493
 msgid "All fields are required!"
 msgstr "すべてのフィールドが必須です！"
 
-#: install/index.php:478
+#: install/index.php:501
 msgid "First Name"
 msgstr "ファーストネーム"
 
-#: install/index.php:482
+#: install/index.php:505
 msgid "DXCC"
 msgstr "DXCC"
 
-#: install/index.php:484
+#: install/index.php:507
 msgid "Please select one"
 msgstr "1つ選択してください"
 
-#: install/index.php:485 install/index.php:491 install/index.php:515
-#: install/index.php:527 install/index.php:530 install/index.php:535
-#: install/index.php:536 install/index.php:545 install/index.php:549
-#: install/index.php:564 install/index.php:577 install/index.php:578
-#: install/index.php:582 install/index.php:603 install/index.php:610
-#: install/index.php:612 install/index.php:613 install/index.php:615
-#: install/index.php:619 install/index.php:620 install/index.php:621
-#: install/index.php:625 install/index.php:626 install/index.php:645
-#: install/index.php:653 install/index.php:659 install/index.php:666
-#: install/index.php:667 install/index.php:673 install/index.php:675
-#: install/index.php:677 install/index.php:695 install/index.php:700
-#: install/index.php:701 install/index.php:715 install/index.php:730
-#: install/index.php:731 install/index.php:735 install/index.php:746
-#: install/index.php:747 install/index.php:752 install/index.php:756
-#: install/index.php:758 install/index.php:759 install/index.php:766
-#: install/index.php:781 install/index.php:783 install/index.php:800
-#: install/index.php:803 install/index.php:808 install/index.php:811
-#: install/index.php:814 install/index.php:824 install/index.php:830
-#: install/index.php:834 install/index.php:840 install/index.php:843
-#: install/index.php:846 install/index.php:851 install/index.php:877
-#: install/index.php:883 install/index.php:885 install/index.php:1691
+#: install/index.php:508 install/index.php:514 install/index.php:538
+#: install/index.php:550 install/index.php:553 install/index.php:558
+#: install/index.php:559 install/index.php:568 install/index.php:572
+#: install/index.php:587 install/index.php:600 install/index.php:601
+#: install/index.php:605 install/index.php:626 install/index.php:633
+#: install/index.php:635 install/index.php:636 install/index.php:638
+#: install/index.php:642 install/index.php:643 install/index.php:644
+#: install/index.php:648 install/index.php:649 install/index.php:668
+#: install/index.php:676 install/index.php:682 install/index.php:689
+#: install/index.php:690 install/index.php:696 install/index.php:698
+#: install/index.php:700 install/index.php:718 install/index.php:723
+#: install/index.php:724 install/index.php:738 install/index.php:753
+#: install/index.php:754 install/index.php:758 install/index.php:769
+#: install/index.php:770 install/index.php:775 install/index.php:779
+#: install/index.php:781 install/index.php:782 install/index.php:789
+#: install/index.php:804 install/index.php:806 install/index.php:823
+#: install/index.php:826 install/index.php:831 install/index.php:834
+#: install/index.php:837 install/index.php:847 install/index.php:853
+#: install/index.php:857 install/index.php:863 install/index.php:866
+#: install/index.php:869 install/index.php:874 install/index.php:900
+#: install/index.php:906 install/index.php:908 install/index.php:1714
 msgid "Deleted DXCC"
 msgstr "DXCCを削除しました"
 
-#: install/index.php:892
+#: install/index.php:915
 msgid "Last Name"
 msgstr "苗字"
 
-#: install/index.php:896
+#: install/index.php:919
 msgid "Callsign"
 msgstr "コールサイン"
 
-#: install/index.php:906
+#: install/index.php:929
 msgid "Gridsquare/Locator"
 msgstr "グリッドスクエア/ロケーター"
 
-#: install/index.php:916
+#: install/index.php:939
 msgid "City"
 msgstr "市"
 
-#: install/index.php:922
+#: install/index.php:945
 msgid "Confirm Password"
 msgstr "パスワードを認証する"
 
-#: install/index.php:926
+#: install/index.php:949
 msgid "Timezone"
 msgstr "タイムゾーン"
 
-#: install/index.php:1029
+#: install/index.php:1052
 msgid "E-Mail Address"
 msgstr "電子メールアドレス"
 
-#: install/index.php:1051
+#: install/index.php:1074
 msgid "Checklist"
 msgstr "チェックリスト"
 
-#: install/index.php:1056
+#: install/index.php:1079
 msgid "Pre-Checks"
 msgstr "事前チェック"
 
-#: install/index.php:1065
+#: install/index.php:1088
 msgid "Configuration"
 msgstr "構成"
 
-#: install/index.php:1074
+#: install/index.php:1097
 msgid "Database"
 msgstr "データベース"
 
-#: install/index.php:1083
+#: install/index.php:1106
 msgid "First User"
 msgstr "最初のユーザー"
 
-#: install/index.php:1093
+#: install/index.php:1116
 msgid "Nearly done!"
 msgstr "もうすぐ完了です！"
 
-#: install/index.php:1095
+#: install/index.php:1118
 msgid "You prepared all neccessary steps."
 msgstr "必要な手順をすべて準備しました。"
 
-#: install/index.php:1096
+#: install/index.php:1119
 msgid "We now can install Wavelog. This process can take a few minutes."
-msgstr "これでWavelogをインストールできます。このプロセスには数分かかる場合があります"
-"。"
+msgstr ""
+"これでWavelogをインストールできます。このプロセスには数分かかる場合がありま"
+"す。"
 
-#: install/index.php:1102
+#: install/index.php:1125
 msgid "Reset"
 msgstr "リセット"
 
-#: install/index.php:1107
+#: install/index.php:1130
 msgid "Installer Reset"
 msgstr "インストーラのリセット"
 
-#: install/index.php:1110
+#: install/index.php:1133
 msgid "Do you really want to reset all data and start from scratch?"
 msgstr "本当にすべてのデータをリセットして最初からやり直しますか?"
 
-#: install/index.php:1113
+#: install/index.php:1136
 msgid "Yes"
 msgstr "はい"
 
-#: install/index.php:1114
+#: install/index.php:1137
 msgid "No"
 msgstr "いいえ"
 
-#: install/index.php:1124
+#: install/index.php:1147
 msgid "Back"
 msgstr "戻る"
 
-#: install/index.php:1125
+#: install/index.php:1148
 msgid "Continue"
 msgstr "続く"
 
-#: install/index.php:1203
+#: install/index.php:1226
 msgid ""
 "You can't continue. Solve the red marked issues, restart the webserver and "
 "reload this page."
-msgstr "続行できません。赤でマークされた問題を解決し、ウェブサーバーを再起動してこの"
+msgstr ""
+"続行できません。赤でマークされた問題を解決し、ウェブサーバーを再起動してこの"
 "ページを再読み込みしてください。"
 
-#: install/index.php:1330
+#: install/index.php:1353
 msgid "Password can't contain ' / \\ < >"
 msgstr "パスワードに '/\\<> を含めることはできません"
 
-#: install/index.php:1334
+#: install/index.php:1357
 msgid ""
 "The callsign should not contain any pre- or suffixes as it is used as "
 "personal operator callsign."
-msgstr "コールサインはオペレーター個人のコールサインとして使用されるため、接頭辞や接"
+msgstr ""
+"コールサインはオペレーター個人のコールサインとして使用されるため、接頭辞や接"
 "尾辞を含めることはできません。"
 
-#: install/index.php:1346
+#: install/index.php:1369
 msgid ""
 "The callsign can not contain any special characters. It's your personal "
 "callsign without any pre- or suffixes."
-msgstr "コールサインには特殊文字を含めることはできません。接頭辞や接尾辞のない、あな"
+msgstr ""
+"コールサインには特殊文字を含めることはできません。接頭辞や接尾辞のない、あな"
 "た専用のコールサインです。"
 
-#: install/index.php:1479
+#: install/index.php:1502
 msgid "Error: At least Hostname/IP, Database Name and Username are required."
 msgstr "エラー: 少なくともホスト名/IP、データベース名、ユーザー名が必要です。"
 
-#: install/index.php:1489
+#: install/index.php:1512
 msgid "Connecting..."
 msgstr "接続中..."
 
-#: install/index.php:1513
+#: install/index.php:1536
 msgid "Connection was successful and your database should be compatible."
 msgstr "接続は成功し、データベースは互換性があるはずです。"
 
-#: install/index.php:1517
+#: install/index.php:1540
 msgid ""
 "Connection was successful but your database seems too old for Wavelog. You "
 "can try to continue but you could run into issues."
-msgstr "接続は成功しましたが、データベースがWavelogには古すぎるようです。続行すること"
+msgstr ""
+"接続は成功しましたが、データベースがWavelogには古すぎるようです。続行すること"
 "はできますが、問題が発生する可能性があります。"
 
-#: install/index.php:1517
+#: install/index.php:1540
 #, php-format
 msgid "The min. version for MySQL is %s, for MariaDB it's %s."
 msgstr "MySQLの最小バージョンは%s、MariaDBの最小バージョンは%sです。"
 
-#: install/index.php:1637
+#: install/index.php:1660
 msgid "Search"
 msgstr "検索"
 
-#: install/index.php:1674
+#: install/index.php:1697
 msgid "At least one field is empty."
 msgstr "少なくとも 1 つのフィールドが空です。"
 
-#: install/index.php:1693
+#: install/index.php:1716
 msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
 "Check which DXCC for this particular location is the correct one. If you are "
@@ -672,49 +684,51 @@ msgstr ""
 "場所のDXCCが正しいかご確認ください。間違いがなければ、この警告は無視してくだ"
 "さい。"
 
-#: install/index.php:1717
+#: install/index.php:1740
 msgid ""
 "The locator seems to be not in the correct format. Should look like AA11AA "
 "(6-char grid locator)."
-msgstr "ロケータの形式が正しくないようです。AA11AA（6文字のグリッドロケータ）のように"
+msgstr ""
+"ロケータの形式が正しくないようです。AA11AA（6文字のグリッドロケータ）のように"
 "表記されている必要があります。"
 
-#: install/index.php:1731
+#: install/index.php:1754
 msgid ""
 "The e-mail adress does not look correct. Make sure it's a valid e-mail "
 "address"
-msgstr "メールアドレスが正しくないようです。有効なメールアドレスであることを確認して"
+msgstr ""
+"メールアドレスが正しくないようです。有効なメールアドレスであることを確認して"
 "ください"
 
-#: install/index.php:1758
+#: install/index.php:1781
 msgid "Password should be at least 8 characters long"
 msgstr "パスワードは8文字以上である必要があります"
 
-#: install/index.php:1767
+#: install/index.php:1790
 msgid "Passwords do not match"
 msgstr "パスワードが一致しません"
 
-#: install/index.php:1823
+#: install/index.php:1846
 msgid "Install Now"
 msgstr "今すぐインストール"
 
-#: install/index.php:1827
+#: install/index.php:1850
 msgid "Install not possible. Checklist incomplete."
 msgstr "インストールできません。チェックリストが不完全です。"
 
-#: install/index.php:1939
+#: install/index.php:1962
 msgid "PHP Module missing"
 msgstr "PHPモジュールが見つかりません"
 
-#: install/index.php:1941
+#: install/index.php:1964
 msgid "The following PHP modules are missing:"
 msgstr "次の PHP モジュールが見つかりません:"
 
-#: install/index.php:1942
+#: install/index.php:1965
 msgid "Without this module the Wavelog Installer does not work!"
 msgstr "このモジュールがないと、Wavelog インストーラーは動作しません!"
 
-#: install/index.php:1943
+#: install/index.php:1966
 msgid "Please install the required modules and restart the webserver."
 msgstr "必要なモジュールをインストールし、Web サーバーを再起動してください。"
 
@@ -753,8 +767,9 @@ msgstr "インストーラーをロックする"
 #: install/run.php:39
 #, php-format
 msgid "All install steps went through. Redirect to user login in %s seconds..."
-msgstr "すべてのインストール手順が完了しました。ユーザーログインにリダイレクトします"
-"。 %s 秒..."
+msgstr ""
+"すべてのインストール手順が完了しました。ユーザーログインにリダイレクトしま"
+"す。 %s 秒..."
 
 #: install/run.php:42
 msgid "Done. Go to the user login ->"
