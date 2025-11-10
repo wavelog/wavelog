@@ -4706,7 +4706,7 @@ class Logbook_model extends CI_Model {
 			// lotw_qslrdate can obly be valid if lotw_qsl_rcvd is one of the following values
 			// ref: https://www.adif.org.uk/316/ADIF_316.htm#QSO_Field_LOTW_QSLRDATE
 			$valid_lotw_rcvd = ['Y', 'I', 'V'];
-			if (($record['lotw_qslrdate'] ?? '') != '' && in_array($input_lotw_qsl_rcvd, $valid_lotw_rcvd)) {
+			if (($record['lotw_qslrdate'] ?? '') != '' && in_array(strtoupper($input_lotw_qsl_rcvd), $valid_lotw_rcvd)) {
 				if (validateADIFDate($record['lotw_qslrdate']) == true) {
 					$input_lotw_qslrdate = $record['lotw_qslrdate'];
 				} else {
