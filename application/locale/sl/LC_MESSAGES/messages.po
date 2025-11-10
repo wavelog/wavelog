@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-11-10 09:50+0000\n"
+"POT-Creation-Date: 2025-11-10 11:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -336,7 +336,7 @@ msgid "DOK"
 msgstr ""
 
 #: application/controllers/Awards.php:176 application/views/awards/index.php:7
-#: application/views/bandmap/list.php:120 application/views/bands/index.php:50
+#: application/views/bandmap/list.php:61 application/views/bands/index.php:50
 #: application/views/csv/index.php:58 application/views/dxatlas/index.php:58
 #: application/views/dxcalendar/index.php:11
 #: application/views/interface_assets/header.php:180
@@ -425,8 +425,8 @@ msgstr ""
 
 #: application/controllers/Awards.php:567
 #: application/controllers/Logbook.php:1364
-#: application/views/awards/index.php:8 application/views/bands/index.php:57
-#: application/views/dashboard/index.php:9
+#: application/views/awards/index.php:8 application/views/bandmap/list.php:267
+#: application/views/bands/index.php:57 application/views/dashboard/index.php:9
 #: application/views/interface_assets/header.php:206
 #: application/views/logbookadvanced/edit.php:32
 #: application/views/logbookadvanced/index.php:404
@@ -452,7 +452,7 @@ msgstr ""
 
 #: application/controllers/Awards.php:584
 #: application/controllers/Logbook.php:1365
-#: application/views/bands/index.php:64
+#: application/views/bandmap/list.php:269 application/views/bands/index.php:64
 #: application/views/dashboard/index.php:10
 #: application/views/interface_assets/header.php:194
 #: application/views/logbookadvanced/edit.php:34
@@ -473,7 +473,8 @@ msgstr ""
 
 #: application/controllers/Awards.php:601
 #: application/controllers/Logbook.php:1366
-#: application/views/adif/import.php:45 application/views/bands/index.php:54
+#: application/views/adif/import.php:45 application/views/bandmap/list.php:268
+#: application/views/bands/index.php:54
 #: application/views/dashboard/index.php:11
 #: application/views/interface_assets/header.php:210
 #: application/views/logbookadvanced/edit.php:30
@@ -763,7 +764,7 @@ msgid "Clublog QSL Import"
 msgstr ""
 
 #: application/controllers/Contestcalendar.php:19
-#: application/views/interface_assets/header.php:287
+#: application/views/interface_assets/header.php:289
 msgid "Contest Calendar"
 msgstr ""
 
@@ -986,7 +987,7 @@ msgid "DX Atlas Gridsquare Export"
 msgstr ""
 
 #: application/controllers/Dxcalendar.php:10
-#: application/views/interface_assets/header.php:285
+#: application/views/interface_assets/header.php:287
 msgid "DX Calendar"
 msgstr ""
 
@@ -1251,7 +1252,7 @@ msgstr ""
 #: application/views/awards/was/index.php:56
 #: application/views/awards/wpx/index.php:28
 #: application/views/gridmap/index.php:141
-#: application/views/interface_assets/footer.php:105
+#: application/views/interface_assets/footer.php:106
 #: application/views/logbookadvanced/index.php:849
 #: application/views/logbookadvanced/useroptions.php:74
 #: application/views/oqrs/qsolist.php:12
@@ -1363,8 +1364,9 @@ msgstr ""
 #: application/views/awards/wpx/index.php:122
 #: application/views/awards/wpx/index.php:124
 #: application/views/awards/wpx/wpx_details.php:23
-#: application/views/bandmap/list.php:100
-#: application/views/bandmap/list.php:125
+#: application/views/bandmap/list.php:63 application/views/bandmap/list.php:117
+#: application/views/bandmap/list.php:243
+#: application/views/bandmap/list.php:494
 #: application/views/bands/bandedges.php:31
 #: application/views/callstats/index.php:49
 #: application/views/components/hamsat/table.php:30
@@ -1380,7 +1382,7 @@ msgstr ""
 #: application/views/eqslcard/index.php:29
 #: application/views/gridmap/index.php:104
 #: application/views/hamsat/index.php:33
-#: application/views/interface_assets/footer.php:120
+#: application/views/interface_assets/footer.php:121
 #: application/views/kml/index.php:31
 #: application/views/logbookadvanced/edit.php:12
 #: application/views/logbookadvanced/index.php:305
@@ -1509,7 +1511,8 @@ msgstr ""
 
 #: application/controllers/Logbook.php:1363
 #: application/views/awards/iota/index.php:196
-#: application/views/bands/index.php:52 application/views/dashboard/index.php:8
+#: application/views/bandmap/list.php:270 application/views/bands/index.php:52
+#: application/views/dashboard/index.php:8
 #: application/views/interface_assets/header.php:208
 #: application/views/logbookadvanced/edit.php:28
 #: application/views/logbookadvanced/index.php:414
@@ -1664,7 +1667,9 @@ msgstr ""
 #: application/views/awards/wpx/index.php:79
 #: application/views/awards/wpx/wpx_details.php:22
 #: application/views/awards/wwff/index.php:36
-#: application/views/bandmap/list.php:86 application/views/bands/create.php:24
+#: application/views/bandmap/list.php:62 application/views/bandmap/list.php:118
+#: application/views/bandmap/list.php:304
+#: application/views/bandmap/list.php:492 application/views/bands/create.php:24
 #: application/views/bands/edit.php:7 application/views/bands/index.php:47
 #: application/views/callstats/index.php:7
 #: application/views/contesting/index.php:131
@@ -1722,7 +1727,8 @@ msgid "Band"
 msgstr ""
 
 #: application/controllers/Logbook.php:1371
-#: application/controllers/Radio.php:45 application/views/bandmap/list.php:118
+#: application/controllers/Radio.php:45 application/views/bandmap/list.php:116
+#: application/views/bandmap/list.php:493
 #: application/views/contesting/index.php:148
 #: application/views/dashboard/index.php:16
 #: application/views/logbookadvanced/index.php:831
@@ -1778,7 +1784,7 @@ msgstr ""
 #: application/views/awards/wae/index.php:175
 #: application/views/csv/index.php:65 application/views/dashboard/index.php:29
 #: application/views/dxatlas/index.php:65
-#: application/views/interface_assets/footer.php:830
+#: application/views/interface_assets/footer.php:836
 #: application/views/kml/index.php:54
 #: application/views/logbookadvanced/index.php:287
 #: application/views/lookup/index.php:47
@@ -2238,7 +2244,7 @@ msgstr ""
 msgid "Hardware Interfaces"
 msgstr ""
 
-#: application/controllers/Radio.php:41 application/views/bandmap/list.php:56
+#: application/controllers/Radio.php:41 application/views/bandmap/list.php:20
 #: application/views/contesting/index.php:157
 #: application/views/qso/index.php:384
 msgid "Radio"
@@ -2266,7 +2272,7 @@ msgstr ""
 msgid "UNKNOWN"
 msgstr ""
 
-#: application/controllers/Radio.php:98
+#: application/controllers/Radio.php:98 application/views/bandmap/list.php:184
 #: application/views/contesting/index.php:162
 #: application/views/qso/index.php:389
 msgid "last updated"
@@ -2285,8 +2291,8 @@ msgstr ""
 #: application/views/api/index.php:74 application/views/bands/bandedges.php:32
 #: application/views/club/permissions.php:248
 #: application/views/contesting/add.php:59 application/views/cron/index.php:71
-#: application/views/interface_assets/footer.php:690
-#: application/views/interface_assets/footer.php:699
+#: application/views/interface_assets/footer.php:696
+#: application/views/interface_assets/footer.php:705
 #: application/views/labels/index.php:47 application/views/labels/index.php:83
 #: application/views/logbookadvanced/index.php:773
 #: application/views/mode/index.php:64 application/views/satellite/edit.php:56
@@ -2305,11 +2311,11 @@ msgstr ""
 #: application/views/club/permissions.php:304
 #: application/views/club/permissions.php:326
 #: application/views/contesting/add.php:62
-#: application/views/interface_assets/footer.php:64
-#: application/views/interface_assets/footer.php:2771
-#: application/views/interface_assets/footer.php:2789
-#: application/views/interface_assets/footer.php:2810
-#: application/views/interface_assets/footer.php:2828
+#: application/views/interface_assets/footer.php:65
+#: application/views/interface_assets/footer.php:2786
+#: application/views/interface_assets/footer.php:2804
+#: application/views/interface_assets/footer.php:2825
+#: application/views/interface_assets/footer.php:2843
 #: application/views/labels/index.php:48 application/views/labels/index.php:84
 #: application/views/logbookadvanced/index.php:789
 #: application/views/lotw_views/index.php:128
@@ -2414,7 +2420,7 @@ msgstr ""
 msgid "Satellite Timers"
 msgstr ""
 
-#: application/controllers/Search.php:17
+#: application/controllers/Search.php:17 application/views/bandmap/list.php:470
 #: application/views/continents/index.php:49
 #: application/views/interface_assets/footer.php:42
 #: application/views/interface_assets/header.php:374
@@ -3402,7 +3408,7 @@ msgid "Contacts"
 msgstr ""
 
 #: application/models/Note.php:8
-#: application/views/interface_assets/footer.php:109
+#: application/views/interface_assets/footer.php:110
 #: application/views/qso/index.php:93 application/views/statistics/index.php:46
 #: application/views/user/edit.php:168
 msgid "General"
@@ -3560,9 +3566,13 @@ msgstr ""
 #: application/views/awards/wpx/index.php:93
 #: application/views/awards/wpx/index.php:107
 #: application/views/awards/wpx/index.php:126
-#: application/views/bandmap/list.php:68 application/views/bandmap/list.php:76
-#: application/views/bandmap/list.php:88 application/views/bandmap/list.php:102
-#: application/views/bands/index.php:123
+#: application/views/bandmap/list.php:65 application/views/bandmap/list.php:195
+#: application/views/bandmap/list.php:237
+#: application/views/bandmap/list.php:245
+#: application/views/bandmap/list.php:266
+#: application/views/bandmap/list.php:278
+#: application/views/bandmap/list.php:292
+#: application/views/bandmap/list.php:306 application/views/bands/index.php:123
 #: application/views/cabrillo/index.php:69
 #: application/views/callstats/index.php:10
 #: application/views/callstats/index.php:24
@@ -3591,8 +3601,8 @@ msgstr ""
 #: application/views/gridmap/index.php:107
 #: application/views/gridmap/index.php:121
 #: application/views/interface_assets/footer.php:48
-#: application/views/interface_assets/footer.php:1661
-#: application/views/interface_assets/footer.php:1800
+#: application/views/interface_assets/footer.php:1676
+#: application/views/interface_assets/footer.php:1815
 #: application/views/kml/index.php:21 application/views/kml/index.php:33
 #: application/views/kml/index.php:49 application/views/kml/index.php:67
 #: application/views/kml/index.php:79
@@ -4148,6 +4158,7 @@ msgstr ""
 #: application/views/awards/sota/index.php:33
 #: application/views/awards/wpx/wpx_details.php:20
 #: application/views/awards/wwff/index.php:35
+#: application/views/bandmap/list.php:27 application/views/bandmap/list.php:115
 #: application/views/cabrillo/index.php:31
 #: application/views/callstats/index.php:147
 #: application/views/club/permissions.php:222
@@ -4258,7 +4269,6 @@ msgstr ""
 #: application/views/awards/pota/index.php:33
 #: application/views/awards/sota/index.php:31
 #: application/views/awards/wwff/index.php:33
-#: application/views/bandmap/list.php:117
 #: application/views/components/hamsat/table.php:25
 #: application/views/contesting/index.php:103
 #: application/views/contesting/index.php:262
@@ -4304,7 +4314,7 @@ msgstr ""
 #: application/views/awards/pota/index.php:34
 #: application/views/awards/sota/index.php:32
 #: application/views/awards/wwff/index.php:34
-#: application/views/bandmap/list.php:117
+#: application/views/bandmap/list.php:89
 #: application/views/components/hamsat/table.php:26
 #: application/views/contesting/index.php:108
 #: application/views/contesting/index.php:262
@@ -4335,7 +4345,6 @@ msgstr ""
 #: application/views/adif/dcl_success.php:31
 #: application/views/adif/pota_success.php:31
 #: application/views/awards/vucc/band.php:18
-#: application/views/bandmap/list.php:119
 #: application/views/contesting/index.php:263
 #: application/views/dcl_views/key_import.php:45
 #: application/views/debug/index.php:596 application/views/debug/index.php:631
@@ -4462,8 +4471,8 @@ msgstr ""
 
 #: application/views/adif/import.php:141
 #: application/views/interface_assets/footer.php:34
-#: application/views/interface_assets/footer.php:650
-#: application/views/interface_assets/footer.php:2533
+#: application/views/interface_assets/footer.php:656
+#: application/views/interface_assets/footer.php:2548
 msgid "DANGER"
 msgstr ""
 
@@ -4832,7 +4841,7 @@ msgstr ""
 #: application/views/club/permissions.php:297
 #: application/views/contesting/edit.php:55 application/views/cron/edit.php:73
 #: application/views/interface_assets/footer.php:51
-#: application/views/interface_assets/footer.php:685
+#: application/views/interface_assets/footer.php:691
 #: application/views/logbookadvanced/index.php:42
 #: application/views/operator/index.php:23
 #: application/views/options/appearance.php:97
@@ -5148,7 +5157,8 @@ msgid "Total"
 msgstr ""
 
 #: application/views/awards/cq/index.php:3
-#: application/views/awards/cq/index.php:151 application/views/csv/index.php:80
+#: application/views/awards/cq/index.php:151
+#: application/views/bandmap/list.php:497 application/views/csv/index.php:80
 #: application/views/dxatlas/index.php:80
 #: application/views/gridmap/index.php:199 application/views/kml/index.php:65
 #: application/views/logbookadvanced/edit.php:24
@@ -5211,7 +5221,7 @@ msgstr ""
 #: application/views/awards/wab/list.php:6
 #: application/views/awards/wac/index.php:23
 #: application/views/awards/wpx/wpx_details.php:24
-#: application/views/bandmap/list.php:71
+#: application/views/bandmap/list.php:52 application/views/bandmap/list.php:240
 #: application/views/dashboard/index.php:344
 #: application/views/dashboard/index.php:462
 #: application/views/interface_assets/footer.php:45
@@ -5223,7 +5233,7 @@ msgstr ""
 #: application/views/awards/cq/index.php:35
 #: application/views/awards/itu/index.php:35
 #: application/views/awards/wac/index.php:23
-#: application/views/bandmap/list.php:70
+#: application/views/bandmap/list.php:51 application/views/bandmap/list.php:239
 #: application/views/dashboard/index.php:340
 #: application/views/dashboard/index.php:456
 #: application/views/search/result.php:35
@@ -5303,7 +5313,7 @@ msgstr ""
 #: application/views/awards/iota/index.php:62
 #: application/views/awards/itu/index.php:57
 #: application/views/awards/wac/index.php:45
-#: application/views/interface_assets/footer.php:2512
+#: application/views/interface_assets/footer.php:2527
 #: application/views/logbookadvanced/index.php:40
 #: application/views/qso/edit_ajax.php:419
 #: application/views/view_log/qso.php:25
@@ -5556,7 +5566,8 @@ msgstr ""
 #: application/views/awards/dxcc/index.php:97
 #: application/views/awards/iota/index.php:88
 #: application/views/awards/wpx/index.php:55
-#: application/views/bandmap/list.php:78
+#: application/views/bandmap/list.php:280
+#: application/views/bandmap/list.php:294
 #: application/views/logbookadvanced/edit.php:217
 #: application/views/logbookadvanced/index.php:443
 #: application/views/lookup/index.php:60
@@ -5569,7 +5580,8 @@ msgstr ""
 #: application/views/awards/dxcc/index.php:101
 #: application/views/awards/iota/index.php:92
 #: application/views/awards/wpx/index.php:56
-#: application/views/bandmap/list.php:77
+#: application/views/bandmap/list.php:279
+#: application/views/bandmap/list.php:293
 #: application/views/logbookadvanced/edit.php:216
 #: application/views/logbookadvanced/index.php:442
 #: application/views/lookup/index.php:59
@@ -5582,7 +5594,8 @@ msgstr ""
 #: application/views/awards/dxcc/index.php:105
 #: application/views/awards/iota/index.php:96
 #: application/views/awards/wpx/index.php:57
-#: application/views/bandmap/list.php:79
+#: application/views/bandmap/list.php:281
+#: application/views/bandmap/list.php:295
 #: application/views/logbookadvanced/edit.php:219
 #: application/views/logbookadvanced/index.php:445
 #: application/views/lookup/index.php:62
@@ -5595,7 +5608,8 @@ msgstr ""
 #: application/views/awards/dxcc/index.php:109
 #: application/views/awards/iota/index.php:100
 #: application/views/awards/wpx/index.php:58
-#: application/views/bandmap/list.php:80
+#: application/views/bandmap/list.php:282
+#: application/views/bandmap/list.php:296
 #: application/views/logbookadvanced/edit.php:220
 #: application/views/logbookadvanced/index.php:446
 #: application/views/lookup/index.php:63
@@ -5608,7 +5622,8 @@ msgstr ""
 #: application/views/awards/dxcc/index.php:113
 #: application/views/awards/iota/index.php:104
 #: application/views/awards/wpx/index.php:59
-#: application/views/bandmap/list.php:81
+#: application/views/bandmap/list.php:283
+#: application/views/bandmap/list.php:297
 #: application/views/logbookadvanced/edit.php:218
 #: application/views/logbookadvanced/index.php:444
 #: application/views/lookup/index.php:61
@@ -5621,7 +5636,8 @@ msgstr ""
 #: application/views/awards/dxcc/index.php:117
 #: application/views/awards/iota/index.php:108
 #: application/views/awards/wpx/index.php:60
-#: application/views/bandmap/list.php:83
+#: application/views/bandmap/list.php:285
+#: application/views/bandmap/list.php:299
 #: application/views/logbookadvanced/edit.php:221
 #: application/views/logbookadvanced/index.php:447
 #: application/views/lookup/index.php:64
@@ -5634,7 +5650,8 @@ msgstr ""
 #: application/views/awards/dxcc/index.php:121
 #: application/views/awards/iota/index.php:112
 #: application/views/awards/wpx/index.php:61
-#: application/views/bandmap/list.php:82
+#: application/views/bandmap/list.php:284
+#: application/views/bandmap/list.php:298
 #: application/views/logbookadvanced/edit.php:222
 #: application/views/logbookadvanced/index.php:448
 #: application/views/lookup/index.php:65
@@ -6248,6 +6265,7 @@ msgid "Awards - Worked All Continents (WAC)"
 msgstr ""
 
 #: application/views/awards/wac/index.php:152
+#: application/views/bandmap/list.php:64 application/views/bandmap/list.php:496
 #: application/views/continents/index.php:62
 #: application/views/logbookadvanced/edit.php:23
 #: application/views/logbookadvanced/index.php:438
@@ -6534,15 +6552,345 @@ msgid ""
 "The backup of your notes completed successfully. The output can be found at"
 msgstr ""
 
-#: application/views/bandmap/list.php:6 application/views/qso/log_qso.php:55
-msgid "Pop-up was blocked! Please allow pop-ups for this site permanently."
-msgstr ""
-
-#: application/views/bandmap/list.php:7
+#: application/views/bandmap/list.php:11
 msgid "Click to prepare logging."
 msgstr ""
 
+#: application/views/bandmap/list.php:11 application/views/bandmap/list.php:84
+msgid "to tune frequency"
+msgstr ""
+
+#: application/views/bandmap/list.php:14
+msgid "Pop-up Blocked"
+msgstr ""
+
+#: application/views/bandmap/list.php:15 application/views/qso/log_qso.php:55
+msgid "Pop-up was blocked! Please allow pop-ups for this site permanently."
+msgstr ""
+
+#: application/views/bandmap/list.php:16
+msgid "CAT Connection Required"
+msgstr ""
+
+#: application/views/bandmap/list.php:17
+msgid "Enable CAT connection to tune the radio"
+msgstr ""
+
+#: application/views/bandmap/list.php:18 application/views/bandmap/list.php:352
+msgid "Clear Filters"
+msgstr ""
+
+#: application/views/bandmap/list.php:19
+msgid "Band filter preserved (CAT connection is active)"
+msgstr ""
+
+#: application/views/bandmap/list.php:21
+msgid "Radio set to None - CAT connection disabled"
+msgstr ""
+
+#: application/views/bandmap/list.php:22
+msgid "Radio Tuned"
+msgstr ""
+
+#: application/views/bandmap/list.php:23
+msgid "Tuned to"
+msgstr ""
+
+#: application/views/bandmap/list.php:24
+msgid "Tuning Failed"
+msgstr ""
+
+#: application/views/bandmap/list.php:25
+msgid "Failed to tune radio to frequency"
+msgstr ""
+
+#: application/views/bandmap/list.php:26
+msgid "QSO Prepared"
+msgstr ""
+
+#: application/views/bandmap/list.php:28
+msgid "sent to logging form"
+msgstr ""
+
+#: application/views/bandmap/list.php:29 application/views/bandmap/list.php:175
+msgid "CAT Connection"
+msgstr ""
+
+#: application/views/bandmap/list.php:30
+msgid "Frequency filter changed to"
+msgstr ""
+
+#: application/views/bandmap/list.php:31
+msgid "by transceiver"
+msgstr ""
+
+#: application/views/bandmap/list.php:32
+msgid "Frequency filter set to"
+msgstr ""
+
+#: application/views/bandmap/list.php:33
+msgid "Frequency outside known bands - showing all bands"
+msgstr ""
+
+#: application/views/bandmap/list.php:34
+msgid "Waiting for radio data..."
+msgstr ""
+
+#: application/views/bandmap/list.php:35
+msgid "My Favorites"
+msgstr ""
+
+#: application/views/bandmap/list.php:36
+msgid "Failed to load favorites"
+msgstr ""
+
+#: application/views/bandmap/list.php:37
+msgid "Modes applied. Band filter preserved (CAT connection is active)"
+msgstr ""
+
+#: application/views/bandmap/list.php:38
+msgid "Applied your favorite bands and modes"
+msgstr ""
+
+#: application/views/bandmap/list.php:41
+msgid "Loading data from DX Cluster"
+msgstr ""
+
+#: application/views/bandmap/list.php:42
+msgid "Last fetched for"
+msgstr ""
+
+#: application/views/bandmap/list.php:43
+msgid "Max Age"
+msgstr ""
+
+#: application/views/bandmap/list.php:44
+msgid "Fetched at"
+msgstr ""
+
+#: application/views/bandmap/list.php:45
+msgid "Next update in"
+msgstr ""
+
+#: application/views/bandmap/list.php:46
+msgid "minutes"
+msgstr ""
+
+#: application/views/bandmap/list.php:47
+msgid "seconds"
+msgstr ""
+
+#: application/views/bandmap/list.php:50 application/views/bandmap/list.php:238
+#: application/views/interface_assets/footer.php:47
+msgid "Not worked"
+msgstr ""
+
+#: application/views/bandmap/list.php:53 application/views/bandmap/list.php:241
+msgid "Worked, not Confirmed"
+msgstr ""
+
+#: application/views/bandmap/list.php:54 application/views/bandmap/list.php:256
+#: application/views/lookup/lotwuser.php:2
+#: application/views/lookup/lotwuser.php:12
+#: application/views/search/result.php:65
+#: application/views/search/result.php:77
+msgid "LoTW User"
+msgstr ""
+
+#: application/views/bandmap/list.php:55 application/views/bandmap/list.php:259
+#: application/views/components/dxwaterfall.php:19
+msgid "New Callsign"
+msgstr ""
+
+#: application/views/bandmap/list.php:56 application/views/bandmap/list.php:257
+#: application/views/components/dxwaterfall.php:17
+msgid "New Continent"
+msgstr ""
+
+#: application/views/bandmap/list.php:57 application/views/bandmap/list.php:258
+msgid "New Country"
+msgstr ""
+
 #: application/views/bandmap/list.php:58
+msgid "Worked Before"
+msgstr ""
+
+#: application/views/bandmap/list.php:66
+msgid "de"
+msgstr ""
+
+#: application/views/bandmap/list.php:67
+msgid "spotted"
+msgstr ""
+
+#: application/views/bandmap/list.php:70
+msgid "Fresh spot (< 5 minutes old)"
+msgstr ""
+
+#: application/views/bandmap/list.php:71 application/views/bandmap/list.php:72
+#: application/views/bandmap/list.php:261
+#: application/views/contestcalendar/index.php:21
+#: application/views/logbookadvanced/edit.php:8
+#: application/views/logbookadvanced/index.php:434
+#: application/views/logbookadvanced/index.php:915
+#: application/views/logbookadvanced/useroptions.php:162
+#: application/views/qso/edit_ajax.php:42
+#: application/views/simplefle/index.php:84
+msgid "Contest"
+msgstr ""
+
+#: application/views/bandmap/list.php:73
+msgid "Click to view"
+msgstr ""
+
+#: application/views/bandmap/list.php:74
+msgid "on QRZ.com"
+msgstr ""
+
+#: application/views/bandmap/list.php:75
+msgid "See details for"
+msgstr ""
+
+#: application/views/bandmap/list.php:76
+msgid "Worked on"
+msgstr ""
+
+#: application/views/bandmap/list.php:77
+msgid "Not worked on this band"
+msgstr ""
+
+#: application/views/bandmap/list.php:80
+msgid "Exit Fullscreen"
+msgstr ""
+
+#: application/views/bandmap/list.php:81 application/views/bandmap/list.php:161
+msgid "Toggle Fullscreen"
+msgstr ""
+
+#: application/views/bandmap/list.php:82
+msgid ""
+"Band filtering is controlled by your radio when CAT connection is enabled"
+msgstr ""
+
+#: application/views/bandmap/list.php:83
+msgid "Click to prepare logging"
+msgstr ""
+
+#: application/views/bandmap/list.php:85
+msgid "(requires CAT connection)"
+msgstr ""
+
+#: application/views/bandmap/list.php:86 application/views/bandmap/list.php:501
+msgid "Spotter"
+msgstr ""
+
+#: application/views/bandmap/list.php:87
+#: application/views/components/hamsat/table.php:28
+#: application/views/contesting/index.php:234
+#: application/views/hamsat/index.php:31
+#: application/views/logbookadvanced/edit.php:7
+#: application/views/logbookadvanced/index.php:455
+#: application/views/logbookadvanced/index.php:909
+#: application/views/logbookadvanced/useroptions.php:154
+#: application/views/qso/edit_ajax.php:183 application/views/qso/index.php:361
+#: application/views/view_log/qso.php:228
+msgid "Comment"
+msgstr ""
+
+#: application/views/bandmap/list.php:88
+#: application/views/contesting/index.php:65
+msgid "Age"
+msgstr ""
+
+#: application/views/bandmap/list.php:90
+msgid "Incoming"
+msgstr ""
+
+#: application/views/bandmap/list.php:91
+msgid "Outgoing"
+msgstr ""
+
+#: application/views/bandmap/list.php:92
+#: application/views/components/dxwaterfall.php:16
+msgid "spots"
+msgstr ""
+
+#: application/views/bandmap/list.php:93
+msgid "spot"
+msgstr ""
+
+#: application/views/bandmap/list.php:94
+msgid "spotters"
+msgstr ""
+
+#: application/views/bandmap/list.php:98
+msgid "Loading spots..."
+msgstr ""
+
+#: application/views/bandmap/list.php:99
+msgid "No spots found"
+msgstr ""
+
+#: application/views/bandmap/list.php:100
+msgid "No data available"
+msgstr ""
+
+#: application/views/bandmap/list.php:101
+msgid "No spots found for selected filters"
+msgstr ""
+
+#: application/views/bandmap/list.php:102
+msgid "Error loading spots. Please try again."
+msgstr ""
+
+#: application/views/bandmap/list.php:105
+msgid "Show all modes"
+msgstr ""
+
+#: application/views/bandmap/list.php:106
+msgid "Show all spots"
+msgstr ""
+
+#: application/views/bandmap/list.php:111
+msgid "Draw Spotters"
+msgstr ""
+
+#: application/views/bandmap/list.php:112
+msgid "Extend Map"
+msgstr ""
+
+#: application/views/bandmap/list.php:113
+msgid "Show Day/Night"
+msgstr ""
+
+#: application/views/bandmap/list.php:114
+msgid "Your QTH"
+msgstr ""
+
+#: application/views/bandmap/list.php:150
+msgid "Return to Home"
+msgstr ""
+
+#: application/views/bandmap/list.php:153
+#: application/views/interface_assets/header.php:285
+msgid "DX Cluster"
+msgstr ""
+
+#: application/views/bandmap/list.php:157
+msgid "DX Cluster Help"
+msgstr ""
+
+#: application/views/bandmap/list.php:174
+msgid ""
+"When selected the filters will be set basing on your current radio status"
+msgstr ""
+
+#: application/views/bandmap/list.php:179
+msgid "Radio:"
+msgstr ""
+
+#: application/views/bandmap/list.php:181
+#: application/views/bandmap/list.php:255
 #: application/views/contesting/index.php:24
 #: application/views/contesting/index.php:62
 #: application/views/contesting/index.php:159
@@ -6550,61 +6898,331 @@ msgstr ""
 msgid "None"
 msgstr ""
 
-#: application/views/bandmap/list.php:59
-#: application/views/contesting/index.php:160
-msgid "WebSocket (Requires WLGate>1.1.10)"
+#: application/views/bandmap/list.php:182 application/views/qso/index.php:387
+msgid "Live - "
 msgstr ""
 
-#: application/views/bandmap/list.php:66
+#: application/views/bandmap/list.php:182 application/views/qso/index.php:387
+msgid "WebSocket (Requires WLGate>=1.1.10)"
+msgstr ""
+
+#: application/views/bandmap/list.php:184 application/views/qso/index.php:389
+msgid "Polling - "
+msgstr ""
+
+#: application/views/bandmap/list.php:193
+msgid "de:"
+msgstr ""
+
+#: application/views/bandmap/list.php:195
+msgid "Select all continents"
+msgstr ""
+
+#: application/views/bandmap/list.php:196
+msgid "Toggle Africa continent filter"
+msgstr ""
+
+#: application/views/bandmap/list.php:197
+msgid "Toggle Antarctica continent filter"
+msgstr ""
+
+#: application/views/bandmap/list.php:198
+msgid "Toggle Asia continent filter"
+msgstr ""
+
+#: application/views/bandmap/list.php:199
+msgid "Toggle Europe continent filter"
+msgstr ""
+
+#: application/views/bandmap/list.php:200
+msgid "Toggle North America continent filter"
+msgstr ""
+
+#: application/views/bandmap/list.php:201
+msgid "Toggle Oceania continent filter"
+msgstr ""
+
+#: application/views/bandmap/list.php:202
+msgid "Toggle South America continent filter"
+msgstr ""
+
+#: application/views/bandmap/list.php:215
+msgid "Advanced Filters"
+msgstr ""
+
+#: application/views/bandmap/list.php:229
+msgid "Hold"
+msgstr ""
+
+#: application/views/bandmap/list.php:229
+msgid "and click to select multiple options"
+msgstr ""
+
+#: application/views/bandmap/list.php:235
 msgid "DXCC-Status"
 msgstr ""
 
-#: application/views/bandmap/list.php:69
-#: application/views/interface_assets/footer.php:47
-msgid "Not worked"
-msgstr ""
-
-#: application/views/bandmap/list.php:72
-msgid "Worked, not Confirmed"
-msgstr ""
-
-#: application/views/bandmap/list.php:74
-msgid "Spots de"
-msgstr ""
-
-#: application/views/bandmap/list.php:103
+#: application/views/bandmap/list.php:246
 #: application/views/components/dxwaterfall.php:32
 msgid "Phone"
 msgstr ""
 
-#: application/views/bandmap/list.php:104
+#: application/views/bandmap/list.php:247
 #: application/views/components/dxwaterfall.php:34
 msgid "CW"
 msgstr ""
 
-#: application/views/bandmap/list.php:105
+#: application/views/bandmap/list.php:248
 #: application/views/components/dxwaterfall.php:36
 msgid "Digi"
 msgstr ""
 
-#: application/views/bandmap/list.php:121
-msgid "WAC"
+#: application/views/bandmap/list.php:253
+msgid "Required Flags"
 msgstr ""
 
-#: application/views/bandmap/list.php:122
-msgid "Spotter"
+#: application/views/bandmap/list.php:260
+msgid "Worked Callsign"
 msgstr ""
 
-#: application/views/bandmap/list.php:123
+#: application/views/bandmap/list.php:262
+msgid "DX Spot"
+msgstr ""
+
+#: application/views/bandmap/list.php:264
+msgid "Additional Flags"
+msgstr ""
+
+#: application/views/bandmap/list.php:271
+msgid "Fresh (< 5 min)"
+msgstr ""
+
+#: application/views/bandmap/list.php:276
+msgid "Spots de Continent"
+msgstr ""
+
+#: application/views/bandmap/list.php:290
+msgid "Spotted Station Continent"
+msgstr ""
+
+#: application/views/bandmap/list.php:350
+msgid "Apply Filters"
+msgstr ""
+
+#: application/views/bandmap/list.php:359
+msgid ""
+"Apply your favorite bands and modes (configured in Band and Mode settings)"
+msgstr ""
+
+#: application/views/bandmap/list.php:363
+msgid "Clear all filters except De Continent"
+msgstr ""
+
+#: application/views/bandmap/list.php:370
+msgid "Toggle 160m band filter"
+msgstr ""
+
+#: application/views/bandmap/list.php:374
+msgid "Toggle 80m band filter"
+msgstr ""
+
+#: application/views/bandmap/list.php:375
+msgid "Toggle 60m band filter"
+msgstr ""
+
+#: application/views/bandmap/list.php:376
+msgid "Toggle 40m band filter"
+msgstr ""
+
+#: application/views/bandmap/list.php:377
+msgid "Toggle 30m band filter"
+msgstr ""
+
+#: application/views/bandmap/list.php:378
+msgid "Toggle 20m band filter"
+msgstr ""
+
+#: application/views/bandmap/list.php:379
+msgid "Toggle 17m band filter"
+msgstr ""
+
+#: application/views/bandmap/list.php:380
+msgid "Toggle 15m band filter"
+msgstr ""
+
+#: application/views/bandmap/list.php:381
+msgid "Toggle 12m band filter"
+msgstr ""
+
+#: application/views/bandmap/list.php:382
+msgid "Toggle 10m band filter"
+msgstr ""
+
+#: application/views/bandmap/list.php:386
+msgid "Toggle VHF bands filter"
+msgstr ""
+
+#: application/views/bandmap/list.php:387
+msgid "Toggle UHF bands filter"
+msgstr ""
+
+#: application/views/bandmap/list.php:388
+msgid "Toggle SHF bands filter"
+msgstr ""
+
+#: application/views/bandmap/list.php:398
+#: application/views/components/dxwaterfall.php:33
+msgid "Toggle CW mode filter"
+msgstr ""
+
+#: application/views/bandmap/list.php:399
+#: application/views/components/dxwaterfall.php:35
+msgid "Toggle Digital mode filter"
+msgstr ""
+
+#: application/views/bandmap/list.php:400
+#: application/views/components/dxwaterfall.php:31
+msgid "Toggle Phone mode filter"
+msgstr ""
+
+#: application/views/bandmap/list.php:409
+msgid "Toggle LoTW User filter"
+msgstr ""
+
+#: application/views/bandmap/list.php:410
+msgid "LoTW users"
+msgstr ""
+
+#: application/views/bandmap/list.php:416
+msgid "Toggle DX Spot filter (spotted continent ≠ spotter continent)"
+msgstr ""
+
+#: application/views/bandmap/list.php:417
+msgid "DX Spots"
+msgstr ""
+
+#: application/views/bandmap/list.php:419
+msgid "Toggle New Continent filter"
+msgstr ""
+
+#: application/views/bandmap/list.php:420
+msgid "New Continents"
+msgstr ""
+
+#: application/views/bandmap/list.php:422
+msgid "Toggle New Country filter"
+msgstr ""
+
+#: application/views/bandmap/list.php:423
+msgid "New DXCCs"
+msgstr ""
+
+#: application/views/bandmap/list.php:425
+msgid "Toggle New Callsign filter"
+msgstr ""
+
+#: application/views/bandmap/list.php:426
+msgid "New Callsigns"
+msgstr ""
+
+#: application/views/bandmap/list.php:432
+msgid "Toggle Fresh spots filter (< 5 minutes old)"
+msgstr ""
+
+#: application/views/bandmap/list.php:433
+msgid "Fresh Spots"
+msgstr ""
+
+#: application/views/bandmap/list.php:435
+msgid "Toggle Contest filter"
+msgstr ""
+
+#: application/views/bandmap/list.php:436
+msgid "Contest Spots"
+msgstr ""
+
+#: application/views/bandmap/list.php:438
+msgid "Toggle Geo Hunter (POTA/SOTA/IOTA/WWFF)"
+msgstr ""
+
+#: application/views/bandmap/list.php:439
+msgid "Referenced Spots"
+msgstr ""
+
+#: application/views/bandmap/list.php:445
+msgid "Open DX Map view"
+msgstr ""
+
+#: application/views/bandmap/list.php:446
+msgid "DX Map"
+msgstr ""
+
+#: application/views/bandmap/list.php:470
+msgid "Search spots..."
+msgstr ""
+
+#: application/views/bandmap/list.php:483
+msgid "Note: Map shows DXCC entity locations, not actual spot locations"
+msgstr ""
+
+#: application/views/bandmap/list.php:491
+msgid "Age in minutes"
+msgstr ""
+
+#: application/views/bandmap/list.php:493
+msgid "Freq"
+msgstr ""
+
+#: application/views/bandmap/list.php:495
+msgid "Spotted"
+msgstr ""
+
+#: application/views/bandmap/list.php:495
+msgid "Spotted Callsign"
+msgstr ""
+
+#: application/views/bandmap/list.php:498
+msgid "Flag"
+msgstr ""
+
+#: application/views/bandmap/list.php:499
+msgid "DXCC Entity"
+msgstr ""
+
+#: application/views/bandmap/list.php:499
+msgid "Entity"
+msgstr ""
+
+#: application/views/bandmap/list.php:500
+msgid "DXCC Number"
+msgstr ""
+
+#: application/views/bandmap/list.php:501
+msgid "Spotter Callsign"
+msgstr ""
+
+#: application/views/bandmap/list.php:502
+msgid "Spotter Continent"
+msgstr ""
+
+#: application/views/bandmap/list.php:503
+msgid "Spotter CQ Zone"
+msgstr ""
+
+#: application/views/bandmap/list.php:504
+msgid "Special"
+msgstr ""
+
+#: application/views/bandmap/list.php:504
+msgid "Special Flags"
+msgstr ""
+
+#: application/views/bandmap/list.php:505
 #: application/views/oqrs/notinlogform.php:28
 #: application/views/oqrs/request.php:54
 #: application/views/oqrs/request_grouped.php:57
 #: application/views/oqrs/status_info.php:5
 msgid "Message"
-msgstr ""
-
-#: application/views/bandmap/list.php:124
-msgid "Last Worked"
 msgstr ""
 
 #: application/views/bands/bandedges.php:2
@@ -7437,20 +8055,8 @@ msgstr ""
 msgid "Cycle through nearby spots"
 msgstr ""
 
-#: application/views/components/dxwaterfall.php:16
-msgid "spots"
-msgstr ""
-
-#: application/views/components/dxwaterfall.php:17
-msgid "New Continent"
-msgstr ""
-
 #: application/views/components/dxwaterfall.php:18
 msgid "New DXCC"
-msgstr ""
-
-#: application/views/components/dxwaterfall.php:19
-msgid "New Callsign"
 msgstr ""
 
 #: application/views/components/dxwaterfall.php:20
@@ -7503,18 +8109,6 @@ msgstr ""
 
 #: application/views/components/dxwaterfall.php:30
 msgid "Filter by mode"
-msgstr ""
-
-#: application/views/components/dxwaterfall.php:31
-msgid "Toggle Phone mode filter"
-msgstr ""
-
-#: application/views/components/dxwaterfall.php:33
-msgid "Toggle CW mode filter"
-msgstr ""
-
-#: application/views/components/dxwaterfall.php:35
-msgid "Toggle Digital mode filter"
 msgstr ""
 
 #: application/views/components/dxwaterfall.php:37
@@ -7617,18 +8211,6 @@ msgstr ""
 msgid "No upcoming activations found. Please check back later."
 msgstr ""
 
-#: application/views/components/hamsat/table.php:28
-#: application/views/contesting/index.php:234
-#: application/views/hamsat/index.php:31
-#: application/views/logbookadvanced/edit.php:7
-#: application/views/logbookadvanced/index.php:455
-#: application/views/logbookadvanced/index.php:909
-#: application/views/logbookadvanced/useroptions.php:154
-#: application/views/qso/edit_ajax.php:183 application/views/qso/index.php:361
-#: application/views/view_log/qso.php:228
-msgid "Comment"
-msgstr ""
-
 #: application/views/components/hamsat/table.php:31
 #: application/views/hamsat/index.php:34
 msgid "Gridsquare(s)"
@@ -7654,16 +8236,6 @@ msgstr ""
 
 #: application/views/contestcalendar/index.php:16
 msgid "No Contests"
-msgstr ""
-
-#: application/views/contestcalendar/index.php:21
-#: application/views/logbookadvanced/edit.php:8
-#: application/views/logbookadvanced/index.php:434
-#: application/views/logbookadvanced/index.php:915
-#: application/views/logbookadvanced/useroptions.php:162
-#: application/views/qso/edit_ajax.php:42
-#: application/views/simplefle/index.php:84
-msgid "Contest"
 msgstr ""
 
 #: application/views/contestcalendar/index.php:22
@@ -7856,10 +8428,6 @@ msgstr ""
 msgid "Exchange is only copied if it is matching rules for the selected field!"
 msgstr ""
 
-#: application/views/contesting/index.php:65
-msgid "Age"
-msgstr ""
-
 #: application/views/contesting/index.php:67
 msgid "RX Power (W)"
 msgstr ""
@@ -7913,6 +8481,10 @@ msgstr ""
 #: application/views/contesting/index.php:87
 msgctxt "Keep the translation short!"
 msgid "Serial"
+msgstr ""
+
+#: application/views/contesting/index.php:160
+msgid "WebSocket (Requires WLGate>1.1.10)"
 msgstr ""
 
 #: application/views/contesting/index.php:187
@@ -9488,10 +10060,10 @@ msgid "QSL Date"
 msgstr ""
 
 #: application/views/eqslcard/index.php:64
-#: application/views/interface_assets/footer.php:2772
-#: application/views/interface_assets/footer.php:2790
-#: application/views/interface_assets/footer.php:2811
-#: application/views/interface_assets/footer.php:2829
+#: application/views/interface_assets/footer.php:2787
+#: application/views/interface_assets/footer.php:2805
+#: application/views/interface_assets/footer.php:2826
+#: application/views/interface_assets/footer.php:2844
 #: application/views/qslcard/index.php:77
 #: application/views/view_log/qso.php:779
 msgid "View"
@@ -9631,397 +10203,413 @@ msgstr ""
 msgid "Satellite Information"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:61
+#: application/views/interface_assets/footer.php:62
 msgid "Error loading notes"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:62
+#: application/views/interface_assets/footer.php:63
 msgid "Sorting"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:63
+#: application/views/interface_assets/footer.php:64
 msgid "Duplication is disabled for Contacts notes"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:65
+#: application/views/interface_assets/footer.php:66
 msgid "Duplicate"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:66
+#: application/views/interface_assets/footer.php:67
 #: application/views/notes/view.php:48
 msgid "Delete Note"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:67
+#: application/views/interface_assets/footer.php:68
 msgid "Duplicate Note"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:68
+#: application/views/interface_assets/footer.php:69
 msgid "Delete this note?"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:69
+#: application/views/interface_assets/footer.php:70
 msgid "Duplicate this note?"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:70
+#: application/views/interface_assets/footer.php:71
 msgid "Duplication Disabled"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:71
+#: application/views/interface_assets/footer.php:72
 msgid "No notes were found"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:72
+#: application/views/interface_assets/footer.php:73
 msgid "No notes for this callsign"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:73
+#: application/views/interface_assets/footer.php:74
 msgid "Callsign Note"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:74
+#: application/views/interface_assets/footer.php:75
 msgid "Note deleted successfully"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:75
+#: application/views/interface_assets/footer.php:76
 msgid "Note created successfully"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:76
+#: application/views/interface_assets/footer.php:77
 msgid "Note saved successfully"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:77
+#: application/views/interface_assets/footer.php:78
 msgid "Error saving note"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:78
+#: application/views/interface_assets/footer.php:79
 #, php-format
 msgid "QSO with %s by %s was added to logbook."
 msgstr ""
 
-#: application/views/interface_assets/footer.php:79
+#: application/views/interface_assets/footer.php:80
 msgid "QSO Added to Backlog"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:80
+#: application/views/interface_assets/footer.php:81
 #, php-format
 msgid "Send email to %s"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:81
+#: application/views/interface_assets/footer.php:82
 msgid ""
 "Callsign was already worked and confirmed in the past on this band and mode!"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:82
+#: application/views/interface_assets/footer.php:83
 msgid "Callsign was already worked in the past on this band and mode!"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:83
+#: application/views/interface_assets/footer.php:84
 msgid "New Callsign!"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:84
+#: application/views/interface_assets/footer.php:85
 msgid "Grid was already worked and confirmed in the past"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:85
+#: application/views/interface_assets/footer.php:86
 msgid "Grid was already worked in the past"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:86
+#: application/views/interface_assets/footer.php:87
 msgid "New grid!"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:87
+#: application/views/interface_assets/footer.php:88
 msgid "Are you sure to delete Fav?"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:88
+#: application/views/interface_assets/footer.php:89
 msgid ""
 "DXCC was already worked and confirmed in the past on this band and mode!"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:89
+#: application/views/interface_assets/footer.php:90
 msgid "DXCC was already worked in the past on this band and mode!"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:90
-msgid "New DXCC, not worked on this band and mode!"
-msgstr ""
-
 #: application/views/interface_assets/footer.php:91
-#, php-format
-msgid "Lookup %s info on %s"
+msgid "New DXCC, not worked on this band and mode!"
 msgstr ""
 
 #: application/views/interface_assets/footer.php:92
 #, php-format
-msgid "Lookup %s summit info on %s"
+msgid "Lookup %s info on %s"
 msgstr ""
 
 #: application/views/interface_assets/footer.php:93
 #, php-format
-msgid "Lookup %s reference info on %s"
+msgid "Lookup %s summit info on %s"
 msgstr ""
 
 #: application/views/interface_assets/footer.php:94
-msgid "Error loading bearing!"
+#, php-format
+msgid "Lookup %s reference info on %s"
 msgstr ""
 
 #: application/views/interface_assets/footer.php:95
-msgid "Aliases"
+msgid "Error loading bearing!"
 msgstr ""
 
 #: application/views/interface_assets/footer.php:96
-msgid "Previously"
+msgid "Aliases"
 msgstr ""
 
 #: application/views/interface_assets/footer.php:97
-msgid "Born"
+msgid "Previously"
 msgstr ""
 
 #: application/views/interface_assets/footer.php:98
-msgid "years old"
+msgid "Born"
 msgstr ""
 
 #: application/views/interface_assets/footer.php:99
-msgid "License"
+msgid "years old"
 msgstr ""
 
 #: application/views/interface_assets/footer.php:100
-msgid "from"
+msgid "License"
 msgstr ""
 
 #: application/views/interface_assets/footer.php:101
-msgid "years"
+msgid "from"
 msgstr ""
 
 #: application/views/interface_assets/footer.php:102
-msgid "expired on"
+msgid "years"
 msgstr ""
 
 #: application/views/interface_assets/footer.php:103
-msgid "Website"
+msgid "expired on"
 msgstr ""
 
 #: application/views/interface_assets/footer.php:104
+msgid "Website"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:105
 msgid "Local time"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:106
+#: application/views/interface_assets/footer.php:107
 msgid "View location on Google Maps (Satellite)"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:107
+#: application/views/interface_assets/footer.php:108
 msgid "Novice"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:108
+#: application/views/interface_assets/footer.php:109
 msgid "Technician"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:110
+#: application/views/interface_assets/footer.php:111
 #: application/views/interface_assets/header.php:105
 msgid "Advanced"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:111
+#: application/views/interface_assets/footer.php:112
 msgid "Extra"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:112
+#: application/views/interface_assets/footer.php:113
 msgid "Gridsquare Formatting"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:113
+#: application/views/interface_assets/footer.php:114
 msgid ""
 "Enter multiple (4-digit) grids separated with commas. For example: IO77,IO78"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:114
+#: application/views/interface_assets/footer.php:115
 msgid "live"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:115
+#: application/views/interface_assets/footer.php:116
 msgid "polling"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:116
-msgid ""
-"Periodic polling is slow. When operating locally, WebSockets are a more "
-"convenient way to control your radio in real-time."
-msgstr ""
-
 #: application/views/interface_assets/footer.php:117
-msgid "TX"
+msgid ""
+"Note: Periodic polling is slow. When operating locally, WebSockets are a "
+"more convenient way to control your radio in real-time."
 msgstr ""
 
 #: application/views/interface_assets/footer.php:118
-msgid "RX"
+msgid "TX"
 msgstr ""
 
 #: application/views/interface_assets/footer.php:119
+msgid "RX"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:120
 msgid "TX/RX"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:121
+#: application/views/interface_assets/footer.php:122
 msgid "Power"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:122
+#: application/views/interface_assets/footer.php:123
 msgid "Radio connection error"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:123
+#: application/views/interface_assets/footer.php:124
 msgid "Connection lost, please select another radio."
 msgstr ""
 
-#: application/views/interface_assets/footer.php:124
+#: application/views/interface_assets/footer.php:125
 msgid "Radio connection timeout"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:125
+#: application/views/interface_assets/footer.php:126
 msgid "Data is stale, please select another radio."
 msgstr ""
 
-#: application/views/interface_assets/footer.php:126
+#: application/views/interface_assets/footer.php:127
 msgid "You're not logged in. Please log in."
 msgstr ""
 
-#: application/views/interface_assets/footer.php:127
+#: application/views/interface_assets/footer.php:128
 msgid "Radio Tuning Failed"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:128
+#: application/views/interface_assets/footer.php:129
 msgid "Failed to tune radio to"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:129
+#: application/views/interface_assets/footer.php:130
 msgid "CAT interface not responding. Please check your radio connection."
 msgstr ""
 
-#: application/views/interface_assets/footer.php:130
+#: application/views/interface_assets/footer.php:131
 msgid "No CAT URL configured for this radio"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:131
+#: application/views/interface_assets/footer.php:132
 msgid "WebSocket Radio"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:132
+#: application/views/interface_assets/footer.php:133
 msgid "Location is fetched from provided gridsquare"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:133
+#: application/views/interface_assets/footer.php:134
 msgid "Location is fetched from DXCC coordinates (no gridsquare provided)"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:217
+#: application/views/interface_assets/footer.php:137
+msgid "Working without CAT connection"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:138
+msgid ""
+"CAT connection is currently disabled. Enable CAT connection to work in "
+"online mode with your radio."
+msgstr ""
+
+#: application/views/interface_assets/footer.php:139
+msgid ""
+"To connect your radio to Wavelog, visit the Wavelog Wiki for setup "
+"instructions."
+msgstr ""
+
+#: application/views/interface_assets/footer.php:223
 #: application/views/interface_assets/header.php:513
 #: application/views/options/sidebar.php:10
 msgid "Version Info"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:271
-#: application/views/interface_assets/footer.php:286
+#: application/views/interface_assets/footer.php:277
+#: application/views/interface_assets/footer.php:292
 msgid "Failed to load the modal. Please try again."
 msgstr ""
 
-#: application/views/interface_assets/footer.php:540
+#: application/views/interface_assets/footer.php:546
 msgid "Description:"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:543
+#: application/views/interface_assets/footer.php:549
 msgid "Query description"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:559
+#: application/views/interface_assets/footer.php:565
 msgid "Your query has been saved!"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:561
+#: application/views/interface_assets/footer.php:567
 #: application/views/search/filter.php:49
 msgid "Edit queries"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:563
+#: application/views/interface_assets/footer.php:569
 msgid "Stored queries:"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:568
+#: application/views/interface_assets/footer.php:574
 #: application/views/search/filter.php:63
 msgid "Run Query"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:580
-#: application/views/interface_assets/footer.php:716
-#: application/views/interface_assets/footer.php:786
+#: application/views/interface_assets/footer.php:586
+#: application/views/interface_assets/footer.php:722
+#: application/views/interface_assets/footer.php:792
 msgid "Stored Queries"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:585
-#: application/views/interface_assets/footer.php:791
+#: application/views/interface_assets/footer.php:591
+#: application/views/interface_assets/footer.php:797
 msgid "You need to make a query before you search!"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:606
-#: application/views/interface_assets/footer.php:743
+#: application/views/interface_assets/footer.php:612
+#: application/views/interface_assets/footer.php:749
 #: application/views/search/filter.php:82
 msgid "Export to ADIF"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:607
-#: application/views/interface_assets/footer.php:744
+#: application/views/interface_assets/footer.php:613
+#: application/views/interface_assets/footer.php:750
 #: application/views/search/cqzones.php:40
 #: application/views/search/ituzones.php:40
 #: application/views/search/main.php:37
 msgid "Open in the Advanced Logbook"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:651
+#: application/views/interface_assets/footer.php:657
 msgid "Warning! Are you sure you want delete this stored query?"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:665
+#: application/views/interface_assets/footer.php:671
 msgid "The stored query has been deleted!"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:674
+#: application/views/interface_assets/footer.php:680
 msgid "The stored query could not be deleted. Please try again!"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:700
+#: application/views/interface_assets/footer.php:706
 msgid "The query description has been updated!"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:704
+#: application/views/interface_assets/footer.php:710
 msgid "Something went wrong with the save. Please try again!"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:833
+#: application/views/interface_assets/footer.php:839
 msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
 "Check which DXCC for this particular location is the correct one. If you are "
 "sure, ignore this warning."
 msgstr ""
 
-#: application/views/interface_assets/footer.php:886
+#: application/views/interface_assets/footer.php:892
 #: application/views/logbookadvanced/index.php:757
 msgid "Callsign: "
 msgstr ""
 
-#: application/views/interface_assets/footer.php:887
+#: application/views/interface_assets/footer.php:893
 msgid "Count: "
 msgstr ""
 
-#: application/views/interface_assets/footer.php:888
+#: application/views/interface_assets/footer.php:894
 msgid "Grids: "
 msgstr ""
 
-#: application/views/interface_assets/footer.php:1206
+#: application/views/interface_assets/footer.php:1212
 #: application/views/logbookadvanced/index.php:13
 #: application/views/logbookadvanced/useroptions.php:210
 #: application/views/satellite/flightpath.php:11
@@ -10029,57 +10617,57 @@ msgctxt "Map Options"
 msgid "Gridsquares"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:1588
-#: application/views/interface_assets/footer.php:1592
-#: application/views/interface_assets/footer.php:1595
-#: application/views/interface_assets/footer.php:1732
-#: application/views/interface_assets/footer.php:1736
-#: application/views/interface_assets/footer.php:1739
+#: application/views/interface_assets/footer.php:1603
+#: application/views/interface_assets/footer.php:1607
+#: application/views/interface_assets/footer.php:1610
+#: application/views/interface_assets/footer.php:1747
+#: application/views/interface_assets/footer.php:1751
+#: application/views/interface_assets/footer.php:1754
 msgid "grid square"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:1595
-#: application/views/interface_assets/footer.php:1739
+#: application/views/interface_assets/footer.php:1610
+#: application/views/interface_assets/footer.php:1754
 msgid "Total count"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2514
+#: application/views/interface_assets/footer.php:2529
 msgid "QSL Card for "
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2534
+#: application/views/interface_assets/footer.php:2549
 msgid "Warning! Are you sure you want to delete this QSL card?"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2574
+#: application/views/interface_assets/footer.php:2589
 #: application/views/view_log/qso.php:43
 msgid "eQSL Card"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2576
+#: application/views/interface_assets/footer.php:2591
 msgid "eQSL Card for "
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2783
-#: application/views/interface_assets/footer.php:2822
+#: application/views/interface_assets/footer.php:2798
+#: application/views/interface_assets/footer.php:2837
 #: application/views/view_log/qso.php:769
 msgid "QSL image file"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2802
+#: application/views/interface_assets/footer.php:2817
 msgid "Front QSL Card:"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2840
+#: application/views/interface_assets/footer.php:2855
 msgid "Back QSL Card:"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2851
-#: application/views/interface_assets/footer.php:2876
+#: application/views/interface_assets/footer.php:2866
+#: application/views/interface_assets/footer.php:2891
 msgid "Add additional QSOs to a QSL Card"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2887
+#: application/views/interface_assets/footer.php:2902
 msgid "Something went wrong. Please try again!"
 msgstr ""
 
@@ -10222,10 +10810,6 @@ msgstr ""
 
 #: application/views/interface_assets/header.php:274
 msgid "US Gridmaster"
-msgstr ""
-
-#: application/views/interface_assets/header.php:291
-msgid "Bandmap"
 msgstr ""
 
 #: application/views/interface_assets/header.php:293
@@ -11572,13 +12156,6 @@ msgstr ""
 
 #: application/views/lookup/index.php:77
 msgid "Choose a State"
-msgstr ""
-
-#: application/views/lookup/lotwuser.php:2
-#: application/views/lookup/lotwuser.php:12
-#: application/views/search/result.php:65
-#: application/views/search/result.php:77
-msgid "LoTW User"
 msgstr ""
 
 #: application/views/lookup/lotwuser.php:12
@@ -13099,18 +13676,6 @@ msgstr ""
 #: application/views/user/edit.php:687 application/views/view_log/qso.php:395
 #: application/views/view_log/qso.php:721
 msgid "SOTA Reference"
-msgstr ""
-
-#: application/views/qso/index.php:387
-msgid "Live - "
-msgstr ""
-
-#: application/views/qso/index.php:387
-msgid "WebSocket (Requires WLGate>=1.1.10)"
-msgstr ""
-
-#: application/views/qso/index.php:389
-msgid "Polling - "
 msgstr ""
 
 #: application/views/qso/index.php:395 application/views/view_log/qso.php:107
