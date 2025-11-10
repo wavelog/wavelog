@@ -58,6 +58,7 @@
     var lang_general_word_please_wait = "<?= __("Please Wait ..."); ?>";
     var lang_general_states_deprecated = "<?= _pgettext("Word for country states that are deprecated but kept for legacy reasons.", "deprecated"); ?>";
     var lang_gen_hamradio_sat_info = "<?= __("Satellite Information"); ?>";
+
     var lang_notes_error_loading = "<?= __("Error loading notes"); ?>";
     var lang_notes_sort = "<?= __("Sorting"); ?>";
     var lang_notes_duplication_disabled = "<?= __("Duplication is disabled for Contacts notes"); ?>";
@@ -113,7 +114,7 @@
     var lang_qso_gridsquare_help = "<?= __("Enter multiple (4-digit) grids separated with commas. For example: IO77,IO78"); ?>";
     var lang_cat_live = "<?= __("live"); ?>";
     var lang_cat_polling = "<?= __("polling"); ?>";
-    var lang_cat_polling_tooltip = "<?= __("Periodic polling is slow. When operating locally, WebSockets are a more convenient way to control your radio in real-time."); ?>";
+    var lang_cat_polling_tooltip = "<?= __("Note: Periodic polling is slow. When operating locally, WebSockets are a more convenient way to control your radio in real-time."); ?>";
     var lang_cat_tx = "<?= __("TX"); ?>";
     var lang_cat_rx = "<?= __("RX"); ?>";
     var lang_cat_tx_rx = "<?= __("TX/RX"); ?>";
@@ -131,6 +132,11 @@
     var lang_cat_websocket_radio = "<?= __("WebSocket Radio"); ?>";
     var lang_qso_location_is_fetched_from_provided_gridsquare = "<?= __("Location is fetched from provided gridsquare"); ?>";
     var lang_qso_location_is_fetched_from_dxcc_coordinates = "<?= __("Location is fetched from DXCC coordinates (no gridsquare provided)"); ?>";
+
+    // CAT Offline Status Messages
+    var lang_cat_working_offline = "<?= __("Working without CAT connection"); ?>";
+    var lang_cat_offline_cat_disabled = "<?= __("CAT connection is currently disabled. Enable CAT connection to work in online mode with your radio."); ?>";
+    var lang_cat_offline_no_radio = "<?= __("To connect your radio to Wavelog, visit the Wavelog Wiki for setup instructions."); ?>";
 
     // CAT Configuration
     var cat_timeout_minutes = Math.floor(<?php echo $this->optionslib->get_option('cat_timeout_interval'); ?> / 60);
@@ -1461,6 +1467,15 @@ mymap.on('mousemove', onQsoMapMove);
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/cat.js"></script>
 	<?php } ?>
 
+<?php } ?>
+
+<!--- Bandmap CAT Integration --->
+<?php if ($this->uri->segment(1) == "bandmap" && $this->uri->segment(2) == "list") { ?>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/cat.js?v=<?php echo time(); ?>"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/leaflet/leaflet.geodesic.js?v=<?php echo time(); ?>"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/leaflet.polylineDecorator.js?v=<?php echo time(); ?>"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/leaflet/L.Terminator.js?v=<?php echo time(); ?>"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/sections/bandmap_list.js?v=<?php echo time(); ?>"></script>
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "logbook" && $this->uri->segment(2) == "view") { ?>
@@ -3342,6 +3357,6 @@ if (isset($scripts) && is_array($scripts)){
 }
 ?>
 	<!-- Toast Notification - used by showToast() from common.js -->
-	<div id="toast-container" class="position-fixed top-0 end-0 p-3" style="z-index: 1100;"></div>
+	<div id="toast-container" class="position-fixed top-0 end-0 p-3" style="z-index: 10100;"></div>
   </body>
 </html>
