@@ -5619,16 +5619,6 @@ class Logbook_model extends CI_Model {
 		print("$count updated\n");
 	}
 
-	public function check_missing_continent() {
-		// get all records with no COL_CONT
-		$this->db->trans_start();
-		$sql = "UPDATE " . $this->config->item('table_name') . " JOIN dxcc_entities ON " . $this->config->item('table_name') . ".col_dxcc = dxcc_entities.adif SET col_cont = dxcc_entities.cont WHERE COALESCE(" . $this->config->item('table_name') . ".col_cont, '') = ''";
-
-		$query = $this->db->query($sql);
-		print($this->db->affected_rows() . " updated\n");
-		$this->db->trans_complete();
-	}
-
 	public function check_missing_grid_id($all) {
 		// get all records with no COL_GRIDSQUARE
 		$this->db->select("COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_TIME_OFF");
@@ -5671,43 +5661,6 @@ class Logbook_model extends CI_Model {
 		$this->db->trans_complete();
 
 		print("$count updated\n");
-	}
-
-	public function update_distances($all) {
-		ini_set('memory_limit', '-1');	// This consumes a much of Memory!
-		$this->db->trans_start();	// Transaction has to be started here, because otherwise we're trying to update rows which are locked by the select
-		$this->db->select("COL_PRIMARY_KEY, COL_GRIDSQUARE, COL_ANT_PATH, station_gridsquare");
-		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
-		if (!$all) {
-			$this->db->where("((COL_DISTANCE is NULL) or (COL_DISTANCE = 0))");
-		}
-		$this->db->where("COL_GRIDSQUARE is NOT NULL");
-		$this->db->where("COL_GRIDSQUARE != ''");
-		$this->db->where("COL_GRIDSQUARE != station_gridsquare");
-		$query = $this->db->get($this->config->item('table_name'));
-
-		$count = 0;
-		if ($query->num_rows() > 0) {
-			print("Affected QSOs: " . $this->db->affected_rows() . " <br />");
-			if (!$this->load->is_loaded('Qra')) {
-				$this->load->library('Qra');
-			}
-			foreach ($query->result() as $row) {
-				$ant_path = $row->COL_ANT_PATH ?? null;
-				$distance = $this->qra->distance($row->station_gridsquare, $row->COL_GRIDSQUARE, 'K', $ant_path);
-				$data = array(
-					'COL_DISTANCE' => $distance,
-				);
-
-				$this->db->where(array('COL_PRIMARY_KEY' => $row->COL_PRIMARY_KEY));
-				$this->db->update($this->config->item('table_name'), $data);
-				$count++;
-			}
-			print("QSOs updated: " . $count);
-		} else {
-			print "No QSOs affected.";
-		}
-		$this->db->trans_complete();
 	}
 
 	public function check_for_station_id() {
