@@ -584,7 +584,7 @@ $(function() {
 		}
 
 		let now = new Date();
-		let timeStr = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+		let timeStr = now.getUTCHours().toString().padStart(2, '0') + ':' + now.getUTCMinutes().toString().padStart(2, '0') + 'Z';
 		let statusMessage = totalSpots + ' spots fetched @ ' + timeStr;
 		let allFilters = [];
 
@@ -619,9 +619,9 @@ $(function() {
 		fetchTooltipLines.push(lang_bandmap_max_age + ': ' + (lastFetchParams.maxAge || '120') + ' min');
 		if (lastFetchParams.timestamp) {
 			let fetchTime = new Date(lastFetchParams.timestamp);
-			let fetchTimeStr = fetchTime.getHours().toString().padStart(2, '0') + ':' +
-			                   fetchTime.getMinutes().toString().padStart(2, '0') + ':' +
-			                   fetchTime.getSeconds().toString().padStart(2, '0');
+			let fetchTimeStr = fetchTime.getUTCHours().toString().padStart(2, '0') + ':' +
+			                   fetchTime.getUTCMinutes().toString().padStart(2, '0') + ':' +
+			                   fetchTime.getUTCSeconds().toString().padStart(2, '0') + 'Z';
 			fetchTooltipLines.push(lang_bandmap_fetched_at + ': ' + fetchTimeStr);
 		}
 
