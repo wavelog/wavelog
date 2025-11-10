@@ -180,12 +180,12 @@ function plot(visitor, grid_two, grid_four, grid_six, grid_two_confirmed, grid_f
 				legend.onAdd = function(map) {
 					let div = L.DomUtil.create("div", "legend");
 					div.innerHTML += "<h4>" + gridsquares_gridsquares + "</h4>";
-					div.innerHTML += '<i style="background: ' + confirmedColor + '"></i><span>' + gridsquares_gridsquares_confirmed + ' ('+grid_four_confirmed.length+')</span><br>';
-					div.innerHTML += '<i style="background: ' + workedColor + '"></i><span>' + gridsquares_gridsquares_not_confirmed + ' ('+(grid_four.length - grid_four_confirmed.length)+')</span><br>';
+					div.innerHTML += '<i class="grid-confirmed" style="background: ' + confirmedColor + '"></i><span>' + gridsquares_gridsquares_confirmed + ' ('+grid_four_confirmed.length+')</span><br>';
+					div.innerHTML += '<i class="grid-worked" style="background: ' + workedColor + '"></i><span>' + gridsquares_gridsquares_not_confirmed + ' ('+(grid_four.length - grid_four_confirmed.length)+')</span><br>';
 					div.innerHTML += '<i></i><span>' + gridsquares_gridsquares_total_worked + ' ('+grid_four.length+')</span><br>';
 					div.innerHTML += "<h4>Fields</h4>";
-					div.innerHTML += '<i style="background: ' + confirmedColor + '"></i><span>Fields confirmed ('+grid_two_confirmed.length+')</span><br>';
-					div.innerHTML += '<i style="background: ' + workedColor + '"></i><span>Fields not confirmed ('+(grid_two.length - grid_two_confirmed.length)+')</span><br>';
+					div.innerHTML += '<i class="grid-confirmed" style="background: ' + confirmedColor + '"></i><span>Fields confirmed ('+grid_two_confirmed.length+')</span><br>';
+					div.innerHTML += '<i class="grid-worked" style="background: ' + workedColor + '"></i><span>Fields not confirmed ('+(grid_two.length - grid_two_confirmed.length)+')</span><br>';
 					div.innerHTML += '<i></i><span>Total fields worked ('+grid_two.length+')</span><br>';
 					return div;
 				};
