@@ -2332,7 +2332,7 @@ $(function() {
 	 * Called when radio frequency changes
 	 */
 	function updateFrequencyGradientColors(forceUpdate = false) {
-		if (!isCatTrackingEnabled || !currentRadioFrequency) {
+		if (!isCatTrackingEnabled || !isFrequencyMarkerEnabled || !currentRadioFrequency) {
 			return;
 		}
 
@@ -3144,7 +3144,7 @@ $(function() {
 
 		table.rows().every(function() {
 			const row = this.node();
-			$(row).removeClass('cat-frequency-gradient');
+			$(row).removeClass('cat-frequency-gradient cat-nearest-above cat-nearest-below');
 			$(row).css({
 				'--bs-table-bg': '',
 				'--bs-table-accent-bg': '',
