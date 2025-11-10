@@ -2276,6 +2276,14 @@ $(function() {
 	window.isCatTrackingEnabled = isCatTrackingEnabled; // Expose to window for cat.js
 	var currentRadioFrequency = null; // Store current radio frequency in kHz
 	var lastGradientFrequency = null; // Track last frequency used for gradient update
+	
+	// Three-state CAT control: 'off', 'on', 'on+marker'
+	var catState = 'off';
+	var isFrequencyMarkerEnabled = false;
+	
+	// Click detection for single/double-click
+	var catClickTimer = null;
+	var catClickPreventSingle = false;
 
 	/**
 	 * Calculate frequency gradient color based on distance from radio frequency
@@ -2284,7 +2292,7 @@ $(function() {
 	 * @returns {string|null} - CSS background color or null if outside gradient range
 	 */
 	function getFrequencyGradientColor(spotFreqKhz, radioFreqKhz) {
-		if (!radioFreqKhz || !isCatTrackingEnabled) {
+		if (!radioFreqKhz || !isCatTrackingEnabled || !isFrequencyMarkerEnabled) {
 			return null;
 		}
 
@@ -3145,99 +3153,152 @@ $(function() {
 		});
 	}
 
-	// Toggle CAT Control
-	$('#toggleCatTracking').on('click', function() {
-		let btn = $(this);
-
-		if (btn.hasClass('btn-success')) {
-			// Disable CAT Control
-			btn.removeClass('btn-success').addClass('btn-secondary');
-			isCatTrackingEnabled = false;
-			window.isCatTrackingEnabled = false; // Update window variable for cat.js
-
-
-			// Check if we need to show offline status (radio selected but CAT disabled)
-			const selectedRadio = $('.radios option:selected').val();
-			if (selectedRadio && selectedRadio !== '0' && typeof window.displayOfflineStatus === 'function') {
-				// Radio is selected but CAT Control disabled - show offline status
-				window.displayOfflineStatus('cat_disabled');
-			} else if (selectedRadio === '0' && typeof window.displayOfflineStatus === 'function') {
-				// No radio selected - show offline status
-				window.displayOfflineStatus('no_radio');
-			} else {
-				// Fallback: just hide radio status
-				$('#radio_cat_state').remove();
-			}
-
-			// Re-enable band filter controls
-			enableBandFilterControls();
-
-			// Unlock table sorting
-			unlockTableSorting();
-
-			// Reset band filter to 'All' and fetch all bands
-			const currentBands = $("#band").val() || [];
-			if (currentBands.length !== 1 || currentBands[0] !== 'All') {
-
-				$("#band").val(['All']);
-				updateSelectCheckboxes('band');
-				syncQuickFilterButtons();
-				applyFilters(true); // Force reload to fetch all bands
-			}
-		} else {
-			// Enable CAT Control
-			btn.removeClass('btn-secondary').addClass('btn-success');
-			isCatTrackingEnabled = true;
-			window.isCatTrackingEnabled = true; // Update window variable for cat.js
-
-
-			// Trigger radio status display if we have data
-			if (window.lastCATData) {
-				if (typeof window.displayRadioStatus === 'function') {
-					window.displayRadioStatus('success', window.lastCATData);
-				}
-			}
-
-			// Disable band filter controls
-			disableBandFilterControls();
-
-			// Lock table sorting to frequency only
-			lockTableSortingToFrequency();
-
-			// Immediately apply current radio frequency if available
-			if (window.lastCATData && window.lastCATData.frequency) {
-
-				const band = frequencyToBand(window.lastCATData.frequency);
-
-				if (band && band !== '') {
-					// Valid band found - set filter to this specific band
-
-					$("#band").val([band]);
-					updateSelectCheckboxes('band');
-					syncQuickFilterButtons();
-					applyFilters(false);
-					if (typeof showToast === 'function') {
-						showToast(lang_bandmap_cat_control, `${lang_bandmap_freq_filter_set} ${band} ${lang_bandmap_by_transceiver}`, 'bg-info text-white', 3000);
-					}
-				} else {
-					// No band match - clear band filter to show all bands
-
-					$("#band").val(['All']);
-					updateSelectCheckboxes('band');
-					syncQuickFilterButtons();
-					applyFilters(false);
-					if (typeof showToast === 'function') {
-						showToast(lang_bandmap_cat_control, lang_bandmap_freq_outside, 'bg-warning text-dark', 3000);
-					}
-				}
-			} else {
-
-				if (typeof showToast === 'function') {
-					showToast(lang_bandmap_cat_control, lang_bandmap_waiting_radio, 'bg-info text-white', 2000);
-				}
+	/**
+	 * Update button visual appearance based on CAT state
+	 */
+	function updateButtonVisual(state) {
+		let btn = $('#toggleCatTracking');
+		let radioIcon = btn.find('i.fa-radio');
+		
+		btn.removeClass('btn-secondary btn-success');
+		radioIcon.removeClass('fa-podcast fa-crosshairs').css('color', '');
+		btn.css('box-shadow', '');
+		
+		if (state === 'off') {
+			btn.addClass('btn-secondary').attr('data-bs-original-title', lang_bandmap_cat_off);
+			radioIcon.addClass('fa-radio');
+		} else if (state === 'on') {
+			btn.addClass('btn-success').attr('data-bs-original-title', lang_bandmap_cat_on);
+			radioIcon.addClass('fa-radio');
+		} else if (state === 'on+marker') {
+			btn.addClass('btn-success').attr('data-bs-original-title', lang_bandmap_cat_marker);
+			radioIcon.addClass('fa-radio').css('color', '#8a2be2');
+			btn.css('box-shadow', '0 0 8px rgba(138, 43, 226, 0.6)');
+		}
+		
+		// Update tooltip if it exists
+		if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
+			let tooltip = bootstrap.Tooltip.getInstance(btn[0]);
+			if (tooltip) {
+				tooltip.hide();
 			}
 		}
+	}
+
+	// Toggle CAT Control with state machine
+	$('#toggleCatTracking').on('click', function() {
+		catClickTimer = setTimeout(function() {
+			if (!catClickPreventSingle) {
+				handleCatSingleClick();
+			}
+			catClickPreventSingle = false;
+		}, 300);
 	});
+
+	$('#toggleCatTracking').on('dblclick', function() {
+		clearTimeout(catClickTimer);
+		catClickPreventSingle = true;
+		handleCatDoubleClick();
+	});
+	
+	// Initialize tooltip on page load - set initial title only
+	$('#toggleCatTracking').attr('data-bs-original-title', lang_bandmap_cat_off);
+
+	function handleCatSingleClick() {
+		const selectedRadio = $('.radios option:selected').val();
+		
+		switch(catState) {
+			case 'off':
+				// OFF → ON
+				if (!selectedRadio || selectedRadio === '0') {
+					if (typeof showToast === 'function') {
+						showToast(lang_bandmap_cat_control, lang_bandmap_select_radio_first, 'bg-warning text-dark', 3000);
+					}
+					return;
+				}
+				
+				isCatTrackingEnabled = true;
+				window.isCatTrackingEnabled = true;
+				catState = 'on';
+				
+				if (window.lastCATData && typeof window.displayRadioStatus === 'function') {
+					window.displayRadioStatus('success', window.lastCATData);
+				}
+				
+				disableBandFilterControls();
+				
+				if (window.lastCATData && window.lastCATData.frequency) {
+					const band = frequencyToBand(window.lastCATData.frequency);
+					if (band && band !== '') {
+						$("#band").val([band]);
+						updateSelectCheckboxes('band');
+						syncQuickFilterButtons();
+						applyFilters(false);
+					}
+				}
+				
+				updateButtonVisual('on');
+				break;
+				
+			case 'on':
+				// ON → ON+MARKER
+				isFrequencyMarkerEnabled = true;
+				catState = 'on+marker';
+				
+				lockTableSortingToFrequency();
+				
+				if (window.lastCATData && window.lastCATData.frequency) {
+					updateFrequencyGradientColors(window.lastCATData.frequency);
+				}
+				
+				updateButtonVisual('on+marker');
+				break;
+				
+			case 'on+marker':
+				// ON+MARKER → ON
+				isFrequencyMarkerEnabled = false;
+				catState = 'on';
+				
+				unlockTableSorting();
+				clearFrequencyGradientColors();
+				
+				updateButtonVisual('on');
+				break;
+		}
+	}
+
+	function handleCatDoubleClick() {
+		// Double-click: Force disable from any state
+		if (catState === 'off') return;
+		
+		isCatTrackingEnabled = false;
+		window.isCatTrackingEnabled = false;
+		isFrequencyMarkerEnabled = false;
+		catState = 'off';
+		
+		const selectedRadio = $('.radios option:selected').val();
+		if (selectedRadio && selectedRadio !== '0' && typeof window.displayOfflineStatus === 'function') {
+			window.displayOfflineStatus('cat_disabled');
+		} else if (selectedRadio === '0' && typeof window.displayOfflineStatus === 'function') {
+			window.displayOfflineStatus('no_radio');
+		} else {
+			$('#radio_cat_state').remove();
+		}
+		
+		enableBandFilterControls();
+		unlockTableSorting();
+		clearFrequencyGradientColors();
+		
+		const currentBands = $("#band").val() || [];
+		if (currentBands.length !== 1 || currentBands[0] !== 'All') {
+			$("#band").val(['All']);
+			updateSelectCheckboxes('band');
+			syncQuickFilterButtons();
+			applyFilters(true);
+		}
+		
+		updateButtonVisual('off');
+	}
 
 	// ========================================
 	// RESPONSIVE COLUMN VISIBILITY
