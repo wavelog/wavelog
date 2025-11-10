@@ -373,6 +373,9 @@ function stopImpersonate_modal() {
 <?php if ($this->uri->segment(1) == "qso" ) { ?>
     <!-- Javascript used for QSO Notes Area -->
     <script src="<?php echo base_url() ;?>assets/plugins/easymde/easymde.min.js"></script>
+	<?php if($this->session->userdata('user_dxwaterfall_enable') == 'Y' && isset($manual_mode) && $manual_mode == 0) { ?>
+		<script type="text/javascript" src="<?php echo base_url() ;?>assets/js/dxwaterfall.js?v=<?php echo floor(time() / 3600); ?>"></script>
+	<?php } ?>
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "notes" && ($this->uri->segment(2) == "view") ) { ?>
@@ -1458,9 +1461,7 @@ mymap.on('mousemove', onQsoMapMove);
 		<!--- DX Waterfall Functionality --->
 		<?php if ($this->session->userdata('user_dxwaterfall_enable') == 'Y') { ?>
 		<script>
-			// Global variable definiton for dxwaterfall.js
-			var dxwaterfall_cat_debounce_lock = 0;
-			window.dxwaterfall_cat_debounce_lock = dxwaterfall_cat_debounce_lock;
+			// Global variable definition for dxwaterfall.js
 			var dxwaterfall_cat_state = "none";
 		</script>
 		<?php } ?>

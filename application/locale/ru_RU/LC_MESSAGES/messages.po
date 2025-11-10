@@ -1843,6 +1843,7 @@ msgstr "Оператор"
 #: application/views/view_log/qso.php:341
 #: application/views/view_log/qso.php:694
 #: application/views/interface_assets/footer.php:836
+#: application/views/interface_assets/footer.php:839
 msgid "Deleted DXCC"
 msgstr "Удалённые DXCC"
 
@@ -2359,6 +2360,7 @@ msgstr "По умолчанию (нажмите, чтобы освободить
 #: application/views/user/index.php:203
 #: application/views/interface_assets/footer.php:696
 #: application/views/interface_assets/footer.php:705
+#: application/views/interface_assets/footer.php:708
 msgid "Edit"
 msgstr "Редактировать"
 
@@ -2393,6 +2395,10 @@ msgstr "Редактировать"
 #: application/views/interface_assets/footer.php:2804
 #: application/views/interface_assets/footer.php:2825
 #: application/views/interface_assets/footer.php:2843
+#: application/views/interface_assets/footer.php:2787
+#: application/views/interface_assets/footer.php:2805
+#: application/views/interface_assets/footer.php:2826
+#: application/views/interface_assets/footer.php:2844
 msgid "Delete"
 msgstr "Удалить"
 
@@ -3772,6 +3778,8 @@ msgstr "Разница"
 #: application/views/bandmap/list.php:306
 #: application/views/interface_assets/footer.php:1676
 #: application/views/interface_assets/footer.php:1815
+#: application/views/interface_assets/footer.php:1677
+#: application/views/interface_assets/footer.php:1816
 msgid "All"
 msgstr "Все"
 
@@ -4603,6 +4611,8 @@ msgstr ""
 #: application/views/interface_assets/footer.php:2533
 #: application/views/interface_assets/footer.php:656
 #: application/views/interface_assets/footer.php:2548
+#: application/views/interface_assets/footer.php:659
+#: application/views/interface_assets/footer.php:2549
 msgid "DANGER"
 msgstr "ОПАСНО"
 
@@ -5035,6 +5045,7 @@ msgstr "Простое название, описывающее назначен
 #: application/views/satellite/pass.php:115
 #: application/views/simplefle/index.php:22
 #: application/views/interface_assets/footer.php:691
+#: application/views/interface_assets/footer.php:694
 msgid "Save"
 msgstr "Сохранить"
 
@@ -5534,6 +5545,7 @@ msgstr "Отобразить QSO с типом QSL"
 #: application/views/qso/edit_ajax.php:419
 #: application/views/view_log/qso.php:25
 #: application/views/interface_assets/footer.php:2527
+#: application/views/interface_assets/footer.php:2528
 msgid "QSL Card"
 msgstr "QSL карточка"
 
@@ -7033,18 +7045,21 @@ msgstr "Споты от"
 #: application/views/bandmap/list.php:103
 #: application/views/components/dxwaterfall.php:32
 #: application/views/bandmap/list.php:246
+#: application/views/components/dxwaterfall.php:31
 msgid "Phone"
 msgstr "Phone"
 
 #: application/views/bandmap/list.php:104
 #: application/views/components/dxwaterfall.php:34
 #: application/views/bandmap/list.php:247
+#: application/views/components/dxwaterfall.php:33
 msgid "CW"
 msgstr "CW"
 
 #: application/views/bandmap/list.php:105
 #: application/views/components/dxwaterfall.php:36
 #: application/views/bandmap/list.php:248
+#: application/views/components/dxwaterfall.php:35
 msgid "Digi"
 msgstr "Digi"
 
@@ -7937,173 +7952,214 @@ msgid "Download QSLs from Clublog"
 msgstr "Скачать QSL с Clublog"
 
 #: application/views/components/dxwaterfall.php:14
+#: application/views/components/dxwaterfall.php:13
 msgid "Tune to spot frequency and start logging QSO"
 msgstr ""
 "Настройтесь на частоту спота (DX) и запись QSO в логе будет подготовлена"
 
 #: application/views/components/dxwaterfall.php:15
+#: application/views/components/dxwaterfall.php:14
 msgid "Cycle through nearby spots"
 msgstr "Циклическое переклбчение меж ближайшими спотами"
 
 #: application/views/components/dxwaterfall.php:16
 #: application/views/bandmap/list.php:92
+#: application/views/components/dxwaterfall.php:15
 msgid "spots"
 msgstr "споты"
 
 #: application/views/components/dxwaterfall.php:17
 #: application/views/bandmap/list.php:56 application/views/bandmap/list.php:257
+#: application/views/components/dxwaterfall.php:16
 msgid "New Continent"
 msgstr "Новый континент"
 
 #: application/views/components/dxwaterfall.php:18
+#: application/views/components/dxwaterfall.php:17
 msgid "New DXCC"
 msgstr "Новый DXCC"
 
 #: application/views/components/dxwaterfall.php:19
 #: application/views/bandmap/list.php:55 application/views/bandmap/list.php:259
+#: application/views/components/dxwaterfall.php:18
 msgid "New Callsign"
 msgstr "Новый позывной"
 
 #: application/views/components/dxwaterfall.php:20
+#: application/views/components/dxwaterfall.php:19
 msgid "First spot"
 msgstr "Первый спот"
 
 #: application/views/components/dxwaterfall.php:20
+#: application/views/components/dxwaterfall.php:19
 msgid "Previous spot"
 msgstr "Предыдущий спот"
 
 #: application/views/components/dxwaterfall.php:21
+#: application/views/components/dxwaterfall.php:20
 msgid "No spots at lower frequency"
 msgstr "Нет спотов на частотах ниже"
 
 #: application/views/components/dxwaterfall.php:22
+#: application/views/components/dxwaterfall.php:21
 msgid "Last spot"
 msgstr "Последний спот"
 
 #: application/views/components/dxwaterfall.php:22
+#: application/views/components/dxwaterfall.php:21
 msgid "Next spot"
 msgstr "Следующий спот"
 
 #: application/views/components/dxwaterfall.php:23
+#: application/views/components/dxwaterfall.php:22
 msgid "No spots at higher frequency"
 msgstr "Нет спотов на частотах выше"
 
 #: application/views/components/dxwaterfall.php:24
+#: application/views/components/dxwaterfall.php:23
 msgid "No spots available"
 msgstr "Нет спотов"
 
 #: application/views/components/dxwaterfall.php:25
+#: application/views/components/dxwaterfall.php:24
 msgid "Cycle through unworked continents/DXCC"
 msgstr "Циклическое переключение между несработанными континентамим/DXCC"
 
 #: application/views/components/dxwaterfall.php:26
+#: application/views/components/dxwaterfall.php:25
 msgid "DX Hunter"
 msgstr "Охотник за DX"
 
 #: application/views/components/dxwaterfall.php:27
+#: application/views/components/dxwaterfall.php:26
 msgid "No unworked continents/DXCC on this band"
 msgstr "На этом диапазоне нет несработанных континентов/DXCC"
 
 #: application/views/components/dxwaterfall.php:28
+#: application/views/components/dxwaterfall.php:27
 msgid "Click to cycle or wait 1.5s to apply"
 msgstr "Нажмите для переключения или подождите 1.5 секунды для применения"
 
 #: application/views/components/dxwaterfall.php:29
+#: application/views/components/dxwaterfall.php:28
 msgid "Change spotter continent"
 msgstr "Изменить континент споттера"
 
 #: application/views/components/dxwaterfall.php:30
+#: application/views/components/dxwaterfall.php:29
 msgid "Filter by mode"
 msgstr "Фильтр по виду модуляции"
 
 #: application/views/components/dxwaterfall.php:31
 #: application/views/bandmap/list.php:400
+#: application/views/components/dxwaterfall.php:30
 msgid "Toggle Phone mode filter"
 msgstr "Переключить фильтр по голосовым видам"
 
 #: application/views/components/dxwaterfall.php:33
 #: application/views/bandmap/list.php:398
+#: application/views/components/dxwaterfall.php:32
 msgid "Toggle CW mode filter"
 msgstr "Переключить фильтр по CW"
 
 #: application/views/components/dxwaterfall.php:35
 #: application/views/bandmap/list.php:399
+#: application/views/components/dxwaterfall.php:34
 msgid "Toggle Digital mode filter"
 msgstr "Переключить фильтр по цифровым видам"
 
 #: application/views/components/dxwaterfall.php:37
+#: application/views/components/dxwaterfall.php:36
 msgid "Zoom out"
 msgstr "Уменьшить масштаб"
 
 #: application/views/components/dxwaterfall.php:38
+#: application/views/components/dxwaterfall.php:37
 msgid "Reset zoom to default (3)"
 msgstr "Установить масштаб по умолчанию (3)"
 
 #: application/views/components/dxwaterfall.php:39
+#: application/views/components/dxwaterfall.php:38
 msgid "Zoom in"
 msgstr "Увеличить масштаб"
 
 #: application/views/components/dxwaterfall.php:40
+#: application/views/components/dxwaterfall.php:39
 msgid "Downloading DX Cluster data"
 msgstr "Скачивание данных DX-кластера"
 
 #: application/views/components/dxwaterfall.php:41
+#: application/views/components/dxwaterfall.php:40
 msgid "Comment: "
 msgstr "Комментарий: "
 
 #: application/views/components/dxwaterfall.php:42
+#: application/views/components/dxwaterfall.php:41
 msgid "modes:"
 msgstr "виды модуляции:"
 
 #: application/views/components/dxwaterfall.php:43
+#: application/views/components/dxwaterfall.php:42
 msgid "OUT OF BANDPLAN"
 msgstr "ВНЕ ДОПУСТИМОГО ДИАПАЗОНА"
 
 #: application/views/components/dxwaterfall.php:44
+#: application/views/components/dxwaterfall.php:45
 msgid "Changing radio frequency..."
 msgstr "Изменение частоты радиостанции..."
 
 #: application/views/components/dxwaterfall.php:45
+#: application/views/components/dxwaterfall.php:46
 msgid "INVALID"
 msgstr "НЕДОПУСТИМО"
 
 #: application/views/components/dxwaterfall.php:46
+#: application/views/components/dxwaterfall.php:47
 msgid "Click to turn on the DX Waterfall"
 msgstr "Нажмите, чтобы включить водопад DX"
 
 #: application/views/components/dxwaterfall.php:47
+#: application/views/components/dxwaterfall.php:48
 msgid "Turn off DX Waterfall"
 msgstr "Выключить водопад DX"
 
 #: application/views/components/dxwaterfall.php:48
+#: application/views/components/dxwaterfall.php:49
 msgid "Please wait"
 msgstr "Пожалуйста, подождите"
 
 #: application/views/components/dxwaterfall.php:49
+#: application/views/components/dxwaterfall.php:50
 msgid "Cycle label size"
 msgstr "Циклическое переключение размеров наклеек"
 
 #: application/views/components/dxwaterfall.php:50
+#: application/views/components/dxwaterfall.php:51
 msgid "X-Small"
 msgstr "Очень маленький"
 
 #: application/views/components/dxwaterfall.php:51
+#: application/views/components/dxwaterfall.php:52
 msgid "Small"
 msgstr "Маленький"
 
 #: application/views/components/dxwaterfall.php:52
+#: application/views/components/dxwaterfall.php:53
 msgid "Medium"
 msgstr "Средний"
 
 #: application/views/components/dxwaterfall.php:53
+#: application/views/components/dxwaterfall.php:54
 msgid "Large"
 msgstr "Большой"
 
 #: application/views/components/dxwaterfall.php:54
+#: application/views/components/dxwaterfall.php:55
 msgid "X-Large"
 msgstr "Очень большой"
 
 #: application/views/components/dxwaterfall.php:55
+#: application/views/components/dxwaterfall.php:56
 msgid "by:"
 msgstr "от:"
 
@@ -10154,6 +10210,10 @@ msgstr "Дата QSL"
 #: application/views/interface_assets/footer.php:2805
 #: application/views/interface_assets/footer.php:2826
 #: application/views/interface_assets/footer.php:2844
+#: application/views/interface_assets/footer.php:2788
+#: application/views/interface_assets/footer.php:2806
+#: application/views/interface_assets/footer.php:2827
+#: application/views/interface_assets/footer.php:2845
 msgid "View"
 msgstr "Посмотреть"
 
@@ -10647,33 +10707,39 @@ msgstr "Не удалось загрузить модальное окно. По
 
 #: application/views/interface_assets/footer.php:540
 #: application/views/interface_assets/footer.php:546
+#: application/views/interface_assets/footer.php:549
 msgid "Description:"
 msgstr "Описание:"
 
 #: application/views/interface_assets/footer.php:543
 #: application/views/interface_assets/footer.php:549
+#: application/views/interface_assets/footer.php:552
 msgid "Query description"
 msgstr "Описание запроса"
 
 #: application/views/interface_assets/footer.php:559
 #: application/views/interface_assets/footer.php:565
+#: application/views/interface_assets/footer.php:568
 msgid "Your query has been saved!"
 msgstr "Ваш запрос сохранён!"
 
 #: application/views/interface_assets/footer.php:561
 #: application/views/search/filter.php:49
 #: application/views/interface_assets/footer.php:567
+#: application/views/interface_assets/footer.php:570
 msgid "Edit queries"
 msgstr "Редактировать запросы"
 
 #: application/views/interface_assets/footer.php:563
 #: application/views/interface_assets/footer.php:569
+#: application/views/interface_assets/footer.php:572
 msgid "Stored queries:"
 msgstr "Сохранённые запросы:"
 
 #: application/views/interface_assets/footer.php:568
 #: application/views/search/filter.php:63
 #: application/views/interface_assets/footer.php:574
+#: application/views/interface_assets/footer.php:577
 msgid "Run Query"
 msgstr "Выполнить запрос"
 
@@ -10683,6 +10749,9 @@ msgstr "Выполнить запрос"
 #: application/views/interface_assets/footer.php:586
 #: application/views/interface_assets/footer.php:722
 #: application/views/interface_assets/footer.php:792
+#: application/views/interface_assets/footer.php:589
+#: application/views/interface_assets/footer.php:725
+#: application/views/interface_assets/footer.php:795
 msgid "Stored Queries"
 msgstr "Сохранённые запросы"
 
@@ -10690,6 +10759,8 @@ msgstr "Сохранённые запросы"
 #: application/views/interface_assets/footer.php:791
 #: application/views/interface_assets/footer.php:591
 #: application/views/interface_assets/footer.php:797
+#: application/views/interface_assets/footer.php:594
+#: application/views/interface_assets/footer.php:800
 msgid "You need to make a query before you search!"
 msgstr "Сначала нужно сформировать запрос, прежде чем искать!"
 
@@ -10698,6 +10769,8 @@ msgstr "Сначала нужно сформировать запрос, пре�
 #: application/views/search/filter.php:82
 #: application/views/interface_assets/footer.php:612
 #: application/views/interface_assets/footer.php:749
+#: application/views/interface_assets/footer.php:615
+#: application/views/interface_assets/footer.php:752
 msgid "Export to ADIF"
 msgstr "Экспортировать в ADIF"
 
@@ -10708,36 +10781,44 @@ msgstr "Экспортировать в ADIF"
 #: application/views/search/main.php:37
 #: application/views/interface_assets/footer.php:613
 #: application/views/interface_assets/footer.php:750
+#: application/views/interface_assets/footer.php:616
+#: application/views/interface_assets/footer.php:753
 msgid "Open in the Advanced Logbook"
 msgstr "Открыть в расширенном журнале"
 
 #: application/views/interface_assets/footer.php:651
 #: application/views/interface_assets/footer.php:657
+#: application/views/interface_assets/footer.php:660
 msgid "Warning! Are you sure you want delete this stored query?"
 msgstr "Внимание! Вы уверены, что хотите удалить этот сохранённый запрос?"
 
 #: application/views/interface_assets/footer.php:665
 #: application/views/interface_assets/footer.php:671
+#: application/views/interface_assets/footer.php:674
 msgid "The stored query has been deleted!"
 msgstr "Сохранённый запрос был удален!"
 
 #: application/views/interface_assets/footer.php:674
 #: application/views/interface_assets/footer.php:680
+#: application/views/interface_assets/footer.php:683
 msgid "The stored query could not be deleted. Please try again!"
 msgstr "Не удалось удалить сохранённый запрос. Пожалуйста, попробуйте еще раз!"
 
 #: application/views/interface_assets/footer.php:700
 #: application/views/interface_assets/footer.php:706
+#: application/views/interface_assets/footer.php:709
 msgid "The query description has been updated!"
 msgstr "Описание запроса было обновлено!"
 
 #: application/views/interface_assets/footer.php:704
 #: application/views/interface_assets/footer.php:710
+#: application/views/interface_assets/footer.php:713
 msgid "Something went wrong with the save. Please try again!"
 msgstr "Что-то пошло не так с сохранением. Пожалуйста, попробуйте еще раз!"
 
 #: application/views/interface_assets/footer.php:833
 #: application/views/interface_assets/footer.php:839
+#: application/views/interface_assets/footer.php:842
 msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
 "Check which DXCC for this particular location is the correct one. If you are "
@@ -10750,16 +10831,19 @@ msgstr ""
 #: application/views/interface_assets/footer.php:886
 #: application/views/logbookadvanced/index.php:757
 #: application/views/interface_assets/footer.php:892
+#: application/views/interface_assets/footer.php:895
 msgid "Callsign: "
 msgstr "Позывной: "
 
 #: application/views/interface_assets/footer.php:887
 #: application/views/interface_assets/footer.php:893
+#: application/views/interface_assets/footer.php:896
 msgid "Count: "
 msgstr "Всего: "
 
 #: application/views/interface_assets/footer.php:888
 #: application/views/interface_assets/footer.php:894
+#: application/views/interface_assets/footer.php:897
 msgid "Grids: "
 msgstr "Квадратов: "
 
@@ -10768,6 +10852,7 @@ msgstr "Квадратов: "
 #: application/views/logbookadvanced/useroptions.php:210
 #: application/views/satellite/flightpath.php:11
 #: application/views/interface_assets/footer.php:1212
+#: application/views/interface_assets/footer.php:1215
 msgctxt "Map Options"
 msgid "Gridsquares"
 msgstr "Квадраты"
@@ -10784,6 +10869,12 @@ msgstr "Квадраты"
 #: application/views/interface_assets/footer.php:1747
 #: application/views/interface_assets/footer.php:1751
 #: application/views/interface_assets/footer.php:1754
+#: application/views/interface_assets/footer.php:1604
+#: application/views/interface_assets/footer.php:1608
+#: application/views/interface_assets/footer.php:1611
+#: application/views/interface_assets/footer.php:1748
+#: application/views/interface_assets/footer.php:1752
+#: application/views/interface_assets/footer.php:1755
 msgid "grid square"
 msgstr "квадрат(/-а/-ов)"
 
@@ -10791,27 +10882,33 @@ msgstr "квадрат(/-а/-ов)"
 #: application/views/interface_assets/footer.php:1739
 #: application/views/interface_assets/footer.php:1610
 #: application/views/interface_assets/footer.php:1754
+#: application/views/interface_assets/footer.php:1611
+#: application/views/interface_assets/footer.php:1755
 msgid "Total count"
 msgstr "Всего"
 
 #: application/views/interface_assets/footer.php:2514
 #: application/views/interface_assets/footer.php:2529
+#: application/views/interface_assets/footer.php:2530
 msgid "QSL Card for "
 msgstr "QSL-карточка для "
 
 #: application/views/interface_assets/footer.php:2534
 #: application/views/interface_assets/footer.php:2549
+#: application/views/interface_assets/footer.php:2550
 msgid "Warning! Are you sure you want to delete this QSL card?"
 msgstr "Внимание! Вы уверены, что хотите удалить эту QSL-карточку?"
 
 #: application/views/interface_assets/footer.php:2574
 #: application/views/view_log/qso.php:43
 #: application/views/interface_assets/footer.php:2589
+#: application/views/interface_assets/footer.php:2590
 msgid "eQSL Card"
 msgstr "eQSL-карточка"
 
 #: application/views/interface_assets/footer.php:2576
 #: application/views/interface_assets/footer.php:2591
+#: application/views/interface_assets/footer.php:2592
 msgid "eQSL Card for "
 msgstr "eQSL-карточка для "
 
@@ -10820,16 +10917,20 @@ msgstr "eQSL-карточка для "
 #: application/views/view_log/qso.php:769
 #: application/views/interface_assets/footer.php:2798
 #: application/views/interface_assets/footer.php:2837
+#: application/views/interface_assets/footer.php:2799
+#: application/views/interface_assets/footer.php:2838
 msgid "QSL image file"
 msgstr "Изображение QSL-карточки"
 
 #: application/views/interface_assets/footer.php:2802
 #: application/views/interface_assets/footer.php:2817
+#: application/views/interface_assets/footer.php:2818
 msgid "Front QSL Card:"
 msgstr "Лицевая сторона QSL-карточки:"
 
 #: application/views/interface_assets/footer.php:2840
 #: application/views/interface_assets/footer.php:2855
+#: application/views/interface_assets/footer.php:2856
 msgid "Back QSL Card:"
 msgstr "Обратная сторона QSL-карточки:"
 
@@ -10837,11 +10938,14 @@ msgstr "Обратная сторона QSL-карточки:"
 #: application/views/interface_assets/footer.php:2876
 #: application/views/interface_assets/footer.php:2866
 #: application/views/interface_assets/footer.php:2891
+#: application/views/interface_assets/footer.php:2867
+#: application/views/interface_assets/footer.php:2892
 msgid "Add additional QSOs to a QSL Card"
 msgstr "Добавить дополнительные QSO на QSL-карточку"
 
 #: application/views/interface_assets/footer.php:2887
 #: application/views/interface_assets/footer.php:2902
+#: application/views/interface_assets/footer.php:2903
 msgid "Something went wrong. Please try again!"
 msgstr "Что-то пошло не так. Пожалуйста, попробуйте еще раз!"
 
@@ -17918,6 +18022,21 @@ msgstr ""
 msgid ""
 "To connect your radio to Wavelog, visit the Wavelog Wiki for setup "
 "instructions."
+msgstr ""
+
+#: application/views/components/dxwaterfall.php:43
+msgid "Out of band"
+msgstr ""
+
+#: application/views/components/dxwaterfall.php:44
+msgid ""
+"DX Waterfall has experienced an unexpected error and will be shut down. "
+"Please contact the Wavelog team for assistance."
+msgstr ""
+
+#: application/views/components/dxwaterfall.php:80
+#: application/views/components/dxwaterfall.php:86
+msgid "DX Waterfall Help"
 msgstr ""
 
 #~ msgid "Apply Continent Data to Logbook"
