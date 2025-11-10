@@ -63,6 +63,10 @@ async function set_qrg() {
 async function set_new_qrg() {
 	let new_qrg = $('#freq_calculated').val();
 
+	// Set flag to indicate this is a manual form update (not from CAT/radio)
+	// This prevents the radio from being tuned when user manually enters frequency
+	window.user_updating_frequency = true;
+
 	// Trim and validate input
 	if (new_qrg !== null && new_qrg !== undefined) {
 		new_qrg = new_qrg.trim();
@@ -77,12 +81,15 @@ async function set_new_qrg() {
 				const result = await $.get(base_url + 'index.php/qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val());
 				$('#frequency').val(result);
 				await set_qrg();
+				window.user_updating_frequency = false; // Clear flag
 				return;
 			} catch (error) {
 				console.error('Failed to fetch default frequency:', error);
+				window.user_updating_frequency = false; // Clear flag
 				return;
 			}
 		}
+		window.user_updating_frequency = false; // Clear flag
 		return;
 	}
 
@@ -134,10 +141,11 @@ async function set_new_qrg() {
 	$('#freq_calculated').val(parsed_qrg);
 	$('#band').val(frequencyToBand(qrg_hz));
 
-	// Tune the radio to the new frequency if CAT is available (using global selectedRadioId)
-	if (typeof tuneRadioToFrequency === 'function') {
-		tuneRadioToFrequency(null, qrg_hz);  // null = use global selectedRadioId
-	}
+	// Clear the manual update flag
+	window.user_updating_frequency = false;
+
+	// DO NOT tune the radio - let the radio control the frequency
+	// The form follows the radio, not the other way around
 }
 
 $('#frequency').on('change', function () {

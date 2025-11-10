@@ -1316,6 +1316,13 @@ $("#callsign").on("focusout", function () {
 
 					changebadge(result.dxcc.adif);
 
+					// Reload DXCC summary table if it was already loaded
+					let $targetPane = $('#dxcc-summary');
+					if ($targetPane.data("loaded")) {
+						$targetPane.data("loaded", false);
+						getDxccResult(result.dxcc.adif, convert_case(result.dxcc.entity));
+					}
+
 				}
 
 				if (result.lotw_member == "active") {
@@ -2355,100 +2362,44 @@ $('.mode').on('change', function () {
 $('#band').on('change', function () {
 	const selectedBand = $(this).val();
 
-	// Skip if this is a programmatic change from CAT/waterfall
-	if (typeof window.programmaticBandChange !== 'undefined' && window.programmaticBandChange) {
-		return;
-	}
+	// In offline mode (CAT disabled), allow band changes to set default frequency
+	// In CAT mode, band selector is display-only - it follows the radio frequency
+	if (typeof isCATAvailable === 'function' && !isCATAvailable()) {
+		// Offline mode - get default frequency for band and mode
+		const currentMode = $('#mode').val() || 'SSB';
 
-	// Skip resetting frequency if CAT is currently updating
-	if (typeof cat_updating_frequency !== 'undefined' && cat_updating_frequency) {
-		return;
-	}
+		$.get('qso/band_to_freq/' + selectedBand + '/' + currentMode, function (result) {
+			if (result && result > 0) {
+				// Update frequency field
+				$('#frequency').val(result).trigger("change");
+				$('#frequency_rx').val("");
 
-	// Clear the QSO form when band is manually changed
-	$('#btn_reset').click();
+				// Update virtual CAT state
+				if (typeof window.catState === 'undefined' || window.catState === null) {
+					window.catState = {};
+				}
+				window.catState.frequency = parseFloat(result); // Hz
+				window.catState.mode = currentMode;
+				window.catState.lastUpdate = Date.now();
 
-	// Set flag to prevent waterfall from auto-reverting the band change
-	if (typeof dxWaterfall !== 'undefined') {
-		dxWaterfall.userChangedBand = true;
-		if (dxWaterfall.userChangedBandTimer) {
-			clearTimeout(dxWaterfall.userChangedBandTimer);
-		}
-		dxWaterfall.userChangedBandTimer = setTimeout(function() {
-			dxWaterfall.userChangedBand = false;
-		}, 10000);
-
-		// Reset operation timer when band is manually changed
-		dxWaterfall.operationStartTime = Date.now();
-
-		// Set waiting flags to prevent waterfall from rendering with wrong band edges
-		// This will be cleared after the frequency is loaded
-		dxWaterfall.waitingForData = true;
-		dxWaterfall.dataReceived = false;
-		dxWaterfall.waitingForFrequencyUpdate = true; // Prevent spot fetch from clearing waitingForData
-
-		// Invalidate frequency cache to prevent using stale frequency during band change
-		// This forces getCachedMiddleFreq() to wait for new frequency
-		if (dxWaterfall.lastValidCommittedFreq) {
-			dxWaterfall.lastValidCommittedFreq = null;
-			dxWaterfall.cache.middleFreq = null;
-		}
-	}
-
-	// Check if current frequency is already in the selected band
-	const currentFreq = $('#frequency').val();
-	const currentBand = currentFreq ? frequencyToBand(currentFreq) : '';
-
-	// Only fetch default frequency if current frequency is not already in the selected band
-	if (!currentFreq || currentBand !== selectedBand) {
-		$.get(base_url + 'index.php/qso/band_to_freq/' + selectedBand + '/' + $('.mode').val(), function (result) {
-			// Set the frequency
-			$('#frequency').val(result);
-
-			// Update the displayed frequency field with proper units
-			set_qrg();
-
-			// Tune the radio to the new frequency FIRST (using global selectedRadioId)
-			// Use skipWaterfall=true to force direct radio tuning when band is manually changed
-			if (typeof tuneRadioToFrequency === 'function') {
-				tuneRadioToFrequency(null, result, null, null, null, true);  // skipWaterfall=true
+				// Update relevant spots for the new band/frequency
+				if (typeof dxWaterfall !== 'undefined' && dxWaterfall && typeof dxWaterfall.collectAllBandSpots === 'function') {
+					dxWaterfall.collectAllBandSpots(true);
+				}
 			}
-
-			// DO NOT clear waitingForFrequencyUpdate yet - wait for CAT to confirm the frequency
-			// The CAT update handler in footer.php will clear it when the radio responds
-			// This prevents the waterfall from rendering with stale frequency data
-	});
-} else {
-	// Frequency is already in the selected band, just update display
-	set_qrg();
-
-	// Still tune the radio to the current frequency (user may have changed band but frequency stayed the same)
-	if (typeof tuneRadioToFrequency === 'function') {
-		const currentFreqHz = $('#frequency').val();
-		if (currentFreqHz) {
-			tuneRadioToFrequency(null, currentFreqHz, null, null, null, true);  // skipWaterfall=true
-		}
+		});
 	}
+	// In CAT mode, do nothing - band changes do NOT clear the form or update the frequency
 
-	// Clear waiting flags immediately since no frequency change needed
-	if (typeof dxWaterfall !== 'undefined') {
-		dxWaterfall.waitingForData = false;
-		dxWaterfall.waitingForFrequencyUpdate = false;
-
-		// Update zoom menu after band change completes
-		if (dxWaterfall.updateZoomMenu) {
-			dxWaterfall.updateZoomMenu(true);
-		}
+	// Update DXCC summary badge and table when band changes (if a DXCC entity is selected)
+	var dxccVal = $('#dxcc_id').val();
+	if (dxccVal && dxccVal != '0') {
+		changebadge(dxccVal);
+		// Reload DXCC summary table
+		let $targetPane = $('#dxcc-summary');
+		$targetPane.data("loaded", false);
+		getDxccResult(dxccVal, $('#dxcc_id option:selected').text());
 	}
-}
-
-$('#frequency_rx').val("");
-	$('#band_rx').val("");
-	$("#selectPropagation").val("");
-	$("#sat_name").val("");
-	$("#sat_mode").val("");
-	$("#callsign").blur();
-	stop_az_ele_ticker();
 });
 
 /* On Key up Calculate Bearing and Distance */
@@ -3067,12 +3018,18 @@ $(document).ready(function () {
 		});
 	}
 
-	// Handle manual frequency entry - tune radio when user changes frequency
+	// Handle manual frequency entry - DO NOT tune radio (form follows radio, not vice versa)
 	$('#freq_calculated').on('change', function() {
+		// Skip if CAT is currently updating - don't interfere with radio updates
+		if (typeof cat_updating_frequency !== 'undefined' && cat_updating_frequency) {
+			return;
+		}
+
 		// set_new_qrg() is defined in qrg_handler.js and will:
 		// 1. Parse the frequency value and convert to Hz
 		// 2. Update #frequency (hidden field)
-		// 3. Tune the radio via tuneRadioToFrequency()
+		// 3. Update #band selector to match the frequency
+		// NOTE: Does NOT tune the radio - manual form changes are display-only
 		if (typeof set_new_qrg === 'function') {
 			set_new_qrg();
 		}

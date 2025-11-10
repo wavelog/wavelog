@@ -1,9 +1,13 @@
 	#dxWaterfall {
 		width: 100%;
 		height: 200px;
+		min-height: 200px;
 		display: block;
 		border-left: 1px solid #000000;
 		border-right: 1px solid #000000;
+	}
+	#dxWaterfallCanvasContainer {
+		min-height: 200px;
 	}
 	#dxWaterfallSpot {
 		width: 100%;
@@ -11,12 +15,13 @@
 		color: #FFFFFF;
 		padding: 5px 8px;
 		font-family: "Consolas", "Courier New", monospace;
-		font-size: 11px;
+		font-size: 12px;
 		border-left: 1px solid #000000;
 		border-right: 1px solid #000000;
 		border-top: 1px solid #000000;
-		min-height: 20px;
-		line-height: 1.4;
+		min-height: 32px;
+		display: flex;
+		align-items: center;
 		word-wrap: break-word;
 		overflow-wrap: break-word;
 		position: relative;
@@ -40,7 +45,7 @@
 	#dxWaterfallSpotContent {
 		display: none;
 		width: 100%;
-		padding-right: 30px;
+		padding-right: 65px;
 	}
 	#dxWaterfallSpotContent.active {
 		display: block;
@@ -49,6 +54,7 @@
 		display: flex;
 		align-items: center;
 		flex: 1;
+		padding-right: 55px;
 	}
 	#dxWaterfallPowerOnIcon {
 		position: absolute;
@@ -62,6 +68,26 @@
 	}
 	#dxWaterfallPowerOnIcon:hover {
 		color: #DD0000;
+	}
+	#dxWaterfallHelpIcon {
+		position: absolute;
+		top: 50%;
+		right: 28px;
+		transform: translateY(-50%);
+		cursor: pointer;
+		color: #FFFFFF;
+		flex-shrink: 0;
+		transition: color 0.2s;
+		text-decoration: none;
+		display: flex;
+		align-items: center;
+	}
+	#dxWaterfallHelpIcon:hover {
+		color: #AAAAAA;
+		text-decoration: none;
+	}
+	#dxWaterfallHelpIcon i {
+		font-size: 14px;
 	}
 	#dxWaterfallMessage {
 		text-align: left;
@@ -83,13 +109,36 @@
 	#dxWaterfallPowerOffIcon:hover {
 		color: #00DD00;
 	}
+	#dxWaterfallHelpIconOff {
+		position: absolute;
+		top: 50%;
+		right: 36px;
+		transform: translateY(-50%);
+		cursor: pointer;
+		color: #FFFFFF;
+		flex-shrink: 0;
+		transition: color 0.2s;
+		text-decoration: none;
+		display: none;
+		align-items: center;
+	}
+	#dxWaterfallHelpIconOff.active {
+		display: flex;
+	}
+	#dxWaterfallHelpIconOff:hover {
+		color: #AAAAAA;
+		text-decoration: none;
+	}
+	#dxWaterfallHelpIconOff i {
+		font-size: 14px;
+	}
 	#dxWaterfallMenu {
 		width: 100%;
 		background-color: #000000;
 		color: #FFFFFF;
 		padding: 5px 8px;
 		font-family: "Consolas", "Courier New", monospace;
-		font-size: 11px;
+		font-size: 13px;
 		border-left: 1px solid #000000;
 		border-right: 1px solid #000000;
 		border-bottom: 1px solid #000000;
@@ -133,7 +182,7 @@
 		cursor: pointer;
 		color: #FFFFFF;
 		margin-left: 5px;
-		font-size: 11px;
+		font-size: 13px;
 		transition: color 0.2s;
 		user-select: none;
 	}
@@ -150,6 +199,9 @@
 	@keyframes blink {
 		0%, 49% { opacity: 1; }
 		50%, 100% { opacity: 0.3; }
+	}
+	.radio-icon-blink {
+		animation: blink 0.4s ease-in-out 1;
 	}
 	#dxWaterfallSpot .flag-emoji {
 		font-family: "Twemoji Country Flags", "Helvetica", "Comic Sans", sans-serif !important;
