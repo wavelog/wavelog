@@ -13,10 +13,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-11-10 07:12+0000\n"
-"PO-Revision-Date: 2025-11-05 12:22+0000\n"
+"PO-Revision-Date: 2025-11-10 09:51+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2630,6 +2630,8 @@ msgid ""
 "Are you sure you want to delete the station logbook %s? You must re-link any "
 "locations linked here to another logbook."
 msgstr ""
+"Вы уверены, что хотите удалить журнал %s? Нужно привязать все привязанные к "
+"нему профили QTH к другому журналу."
 
 #: application/controllers/Stationsetup.php:305
 #: application/views/stationsetup/stationsetup.php:68
@@ -2645,7 +2647,7 @@ msgstr "Вы уверены, что хотите удалить публичны
 #, php-format
 msgid ""
 "Are you sure you want to make the station profile %s the active station?"
-msgstr ""
+msgstr "Вы уверены, что хотите сделать профиль QTH %s активным?"
 
 #: application/controllers/Stationsetup.php:391
 #: application/views/stationsetup/stationsetup.php:161
@@ -6588,6 +6590,9 @@ msgid ""
 "Digital and Mixed Modes. It is issued in five classes: WAE III, WAE II, WAE "
 "I, WAE TOP and the WAE Trophy."
 msgstr ""
+"WAE выдаётся за проведение QSO в следующих видах модуляции: CW, SSB, Phone, "
+"RTTY, FT8, Digital и Mixed Modes. Он выдается в пяти классах: WAE III, WAE "
+"II, WAE I, WAE TOP и WAE Trophy."
 
 #: application/views/awards/wae/index.php:11
 msgid "Fields taken for this Award: Region, DXCC"
@@ -10340,59 +10345,59 @@ msgstr "Запрос информации по референции %s на %s"
 
 #: application/views/interface_assets/footer.php:94
 msgid "Error loading bearing!"
-msgstr ""
+msgstr "Ошибка загрузки пеленга!"
 
 #: application/views/interface_assets/footer.php:95
 msgid "Aliases"
-msgstr ""
+msgstr "Псевдонимы"
 
 #: application/views/interface_assets/footer.php:96
 msgid "Previously"
-msgstr ""
+msgstr "Ранее"
 
 #: application/views/interface_assets/footer.php:97
 msgid "Born"
-msgstr ""
+msgstr "Рождён"
 
 #: application/views/interface_assets/footer.php:98
 msgid "years old"
-msgstr ""
+msgstr "лет"
 
 #: application/views/interface_assets/footer.php:99
 msgid "License"
-msgstr ""
+msgstr "Лицензия"
 
 #: application/views/interface_assets/footer.php:100
 msgid "from"
-msgstr ""
+msgstr "из"
 
 #: application/views/interface_assets/footer.php:101
 msgid "years"
-msgstr ""
+msgstr "годы"
 
 #: application/views/interface_assets/footer.php:102
 msgid "expired on"
-msgstr ""
+msgstr "истекло на"
 
 #: application/views/interface_assets/footer.php:103
 msgid "Website"
-msgstr ""
+msgstr "веб-страница"
 
 #: application/views/interface_assets/footer.php:104
 msgid "Local time"
-msgstr ""
+msgstr "Местное время"
 
 #: application/views/interface_assets/footer.php:106
 msgid "View location on Google Maps (Satellite)"
-msgstr ""
+msgstr "Просмотреть местоположение на Google Maps (Спутник)"
 
 #: application/views/interface_assets/footer.php:107
 msgid "Novice"
-msgstr ""
+msgstr "Novice"
 
 #: application/views/interface_assets/footer.php:108
 msgid "Technician"
-msgstr ""
+msgstr "Technician"
 
 #: application/views/interface_assets/footer.php:110
 #: application/views/interface_assets/header.php:105
@@ -10401,54 +10406,59 @@ msgstr "Расширенный вид"
 
 #: application/views/interface_assets/footer.php:111
 msgid "Extra"
-msgstr ""
+msgstr "Extra"
 
 #: application/views/interface_assets/footer.php:112
 msgid "Gridsquare Formatting"
-msgstr ""
+msgstr "Форматирование квадратов"
 
 #: application/views/interface_assets/footer.php:113
 msgid ""
 "Enter multiple (4-digit) grids separated with commas. For example: IO77,IO78"
 msgstr ""
+"Введите несколько (4-значных) квадратов, разделённых запятыми. Например: "
+"IO77,IO78"
 
 #: application/views/interface_assets/footer.php:114
 msgid "live"
-msgstr ""
+msgstr "вживую"
 
 #: application/views/interface_assets/footer.php:115
 msgid "polling"
-msgstr ""
+msgstr "опрос"
 
 #: application/views/interface_assets/footer.php:116
 msgid ""
 "Periodic polling is slow. When operating locally, WebSockets are a more "
 "convenient way to control your radio in real-time."
 msgstr ""
+"Периодический опрос работает медленно. При локальной работе WebSocket-ы "
+"являются более удобным способом управления вашей радиостанцией в реальном "
+"времени."
 
 #: application/views/interface_assets/footer.php:117
 msgid "TX"
-msgstr ""
+msgstr "TX"
 
 #: application/views/interface_assets/footer.php:118
 msgid "RX"
-msgstr ""
+msgstr "RX"
 
 #: application/views/interface_assets/footer.php:119
 msgid "TX/RX"
-msgstr ""
+msgstr "TX/RX"
 
 #: application/views/interface_assets/footer.php:121
 msgid "Power"
-msgstr ""
+msgstr "Мощность"
 
 #: application/views/interface_assets/footer.php:122
 msgid "Radio connection error"
-msgstr ""
+msgstr "Ошибка подключения к радиостанции"
 
 #: application/views/interface_assets/footer.php:123
 msgid "Connection lost, please select another radio."
-msgstr ""
+msgstr "Соединение потеряно, выберите другую радиостанцию."
 
 #: application/views/interface_assets/footer.php:124
 msgid "Radio connection timeout"
