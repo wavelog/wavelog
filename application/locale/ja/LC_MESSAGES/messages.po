@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-11-10 07:12+0000\n"
-"PO-Revision-Date: 2025-11-07 09:35+0000\n"
+"PO-Revision-Date: 2025-11-10 09:51+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -11151,16 +11151,16 @@ msgstr "印刷開始時刻は？"
 #: application/views/logbookadvanced/continentdialog.php:2
 msgid ""
 "Update all QSOs with the continent based on the DXCC country of the QSO."
-msgstr ""
+msgstr "QSOのDXCC国に基づいて、すべての大陸情報を更新してください。"
 
 #: application/views/logbookadvanced/continentdialog.php:3
 msgid "This is useful if you have imported QSOs without continent information."
-msgstr ""
+msgstr "大陸情報が含まれていないQSOをインポートした場合に便利です。"
 
 #: application/views/logbookadvanced/continentdialog.php:4
 msgid ""
 "Update will only set the continent for QSOs where the continent is empty."
-msgstr ""
+msgstr "更新は、大陸が空欄のQSOに対してのみ大陸を設定します。"
 
 #: application/views/logbookadvanced/distancedialog.php:2
 msgid ""
@@ -11168,14 +11168,17 @@ msgid ""
 "station profile, and the gridsquare of the QSO partner. Distance will be "
 "calculated based on if short path or long path is set."
 msgstr ""
+"ステーションプロファイルで設定したグリッドスクエアとQSO相手のグリッドスクエア"
+"に基づき、全QSOの距離を更新します。距離はショートパスまたはロングパスの設定に"
+"応じて計算されます。"
 
 #: application/views/logbookadvanced/distancedialog.php:3
 msgid "This is useful if you have imported QSOs without distance information."
-msgstr ""
+msgstr "距離情報のないQSOをインポートした場合に便利です。"
 
 #: application/views/logbookadvanced/distancedialog.php:4
 msgid "Update will only set the distance for QSOs where the distance is empty."
-msgstr ""
+msgstr "更新は、距離が空欄のQSOに対してのみ距離を設定します。"
 
 #: application/views/logbookadvanced/edit.php:1
 msgid "Please choose the column to be edited:"
@@ -11530,93 +11533,94 @@ msgstr "ログブックヘルプの詳細"
 
 #: application/views/logbookadvanced/index.php:24
 msgid "Continent fix"
-msgstr ""
+msgstr "大陸の修正"
 
 #: application/views/logbookadvanced/index.php:25
 msgid "There was a problem fixing ITU Zones."
-msgstr ""
+msgstr "ITUゾーンの修正に問題が発生しました。"
 
 #: application/views/logbookadvanced/index.php:26
 msgid "There was a problem fixing CQ Zones."
-msgstr ""
+msgstr "CQゾーンの修正に問題が発生しました。"
 
 #: application/views/logbookadvanced/index.php:27
 msgid "ITU Zones updated successfully!"
-msgstr ""
+msgstr "ITU ゾーンが正常に更新されました！"
 
 #: application/views/logbookadvanced/index.php:28
 msgid "CQ Zones updated successfully!"
-msgstr ""
+msgstr "CQゾーンの更新に成功しました！"
 
 #: application/views/logbookadvanced/index.php:29
 msgid "You need to select at least 1 row to fix ITU Zones!"
-msgstr ""
+msgstr "ITUゾーンを修正するには、少なくとも1行を選択する必要があります！"
 
 #: application/views/logbookadvanced/index.php:30
 msgid "You need to select at least 1 row to fix CQ Zones!"
-msgstr ""
+msgstr "CQゾーンを修正するには、少なくとも1行を選択する必要があります！"
 
 #: application/views/logbookadvanced/index.php:31
 msgid "Only 1 row can be selected for Quickfilter!"
-msgstr ""
+msgstr "クイックフィルターでは1行のみ選択可能です！"
 
 #: application/views/logbookadvanced/index.php:32
 msgid "You need to select a row to use the Quickfilters!"
-msgstr ""
+msgstr "クイックフィルターを使用するには、行を選択する必要があります！"
 
 #: application/views/logbookadvanced/index.php:33
 msgid "You need to select a least 1 row to display a QSL card!"
-msgstr ""
+msgstr "QSLカードを表示するには、少なくとも1行を選択する必要があります！"
 
 #: application/views/logbookadvanced/index.php:34
 msgid "Continents updated successfully!"
-msgstr ""
+msgstr "大陸が正常に更新されました!"
 
 #: application/views/logbookadvanced/index.php:35
 msgid "There was a problem fixing Continents."
-msgstr ""
+msgstr "大陸の修正に問題が発生しました。"
 
 #: application/views/logbookadvanced/index.php:37
 msgid "SUCCESS"
-msgstr ""
+msgstr "成功"
 
 #: application/views/logbookadvanced/index.php:38
 msgid "INFO"
-msgstr ""
+msgstr "情報"
 
 #: application/views/logbookadvanced/index.php:44
 msgid "'Options for the Advanced Logbook'"
-msgstr ""
+msgstr "「高度なログブックのオプション」"
 
 #: application/views/logbookadvanced/index.php:45
 msgid ""
 "Something went wrong with label print. Go to labels and check if you have "
 "defined a label, and that it is set for print!"
-msgstr ""
+msgstr "ラベル印刷に問題が発生しました。ラベル設定を確認し、ラベルが定義されているか"
+"、印刷設定が有効になっているかを確認してください！"
 
 #: application/views/logbookadvanced/index.php:46
 msgid "You need to select a least 1 row!"
-msgstr ""
+msgstr "少なくとも1行を選択する必要があります！"
 
 #: application/views/logbookadvanced/index.php:47
 msgid "Start printing at which label?"
-msgstr ""
+msgstr "どのラベルから印刷を開始しますか？"
 
 #: application/views/logbookadvanced/index.php:48
 msgid "You need to select at least 1 row to print a label!"
-msgstr ""
+msgstr "ラベルを印刷するには、少なくとも1行を選択する必要があります！"
 
 #: application/views/logbookadvanced/index.php:49
 msgid "An error occurred while saving options: "
-msgstr ""
+msgstr "オプションの保存中にエラーが発生しました: "
 
 #: application/views/logbookadvanced/index.php:50
 msgid "You need to select a least 1 row to delete!"
-msgstr ""
+msgstr "削除するには少なくとも1行を選択する必要があります！"
 
 #: application/views/logbookadvanced/index.php:51
 msgid "You need to select a least 1 row to update from callbook!"
-msgstr ""
+msgstr "コールブックから更新する行を少なくとも1行選択する必要があります！"
 
 #: application/views/logbookadvanced/index.php:52
 #: application/views/oqrs/showrequests.php:10
@@ -11625,24 +11629,24 @@ msgstr "リクエスト中にエラーが発生しました"
 
 #: application/views/logbookadvanced/index.php:53
 msgid "You need to select at least 1 location to do a search!"
-msgstr ""
+msgstr "検索を行うには、少なくとも1つの場所を選択する必要があります！"
 
 #: application/views/logbookadvanced/index.php:54
 #: application/views/logbookadvanced/index.php:738
 msgid "Update Distances"
-msgstr ""
+msgstr "距離を更新する"
 
 #: application/views/logbookadvanced/index.php:55
 msgid "QSO records updated."
-msgstr ""
+msgstr "QSO記録を更新しました。"
 
 #: application/views/logbookadvanced/index.php:56
 msgid "There was a problem updating distances."
-msgstr ""
+msgstr "距離の更新に問題が発生しました。"
 
 #: application/views/logbookadvanced/index.php:57
 msgid "Distances updated successfully!"
-msgstr ""
+msgstr "距離の更新に成功しました！"
 
 #: application/views/logbookadvanced/index.php:262
 msgid "From"
@@ -11961,7 +11965,7 @@ msgstr "ITUゾーンを修正"
 
 #: application/views/logbookadvanced/index.php:737
 msgid "Fix Continent"
-msgstr ""
+msgstr "大陸を修正"
 
 #: application/views/logbookadvanced/index.php:745
 #: application/views/oqrs/showrequests.php:58
