@@ -544,7 +544,7 @@
 									</div>
 									<div class="row"> <!-- QSO (default) -->
 										<div class="mb-3 col-md-4">
-											<label><?= __("QSO (by default)"); ?></label>
+											<label><?= __("QSO (worked, not confirmed)"); ?></label>
 										</div>
 										<div class="mb-3 col-md-3">
 											<div class="icon_selectBox" data-boxcontent="qso">
