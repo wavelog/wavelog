@@ -239,9 +239,31 @@ if (!file_exists('.lock') && !file_exists('../application/config/config.php') &&
 											<p class="border-bottom mb-2" style="margin-top: 2rem;"><b><?= __("Folder Write Permissions"); ?></b></p>
 											<table width="100%">
 												<tr>
-													<td>/application</td>
+													<td>/application/cache</td>
 													<td>
-														<?php if (is_really_writable('../application/cache') == true && is_really_writable('../application/config') == true && is_really_writable('../application/logs') == true) { ?>
+														<?php if (is_really_writable('../application/cache') == true) { ?>
+															<span class="badge text-bg-success"><?= __("Success"); ?></span>
+														<?php } else {
+															$prechecks_passed = 'failed'; ?>
+															<span class="badge text-bg-danger"><?= __("Failed"); ?></span>
+														<?php } ?>
+													</td>
+												</tr>
+												<tr>
+													<td>/application/config</td>
+													<td>
+														<?php if (is_really_writable('../application/config') == true) { ?>
+															<span class="badge text-bg-success"><?= __("Success"); ?></span>
+														<?php } else {
+															$prechecks_passed = 'failed'; ?>
+															<span class="badge text-bg-danger"><?= __("Failed"); ?></span>
+														<?php } ?>
+													</td>
+												</tr>
+												<tr>
+													<td>/application/logs</td>
+													<td>
+														<?php if (is_really_writable('../application/logs') == true) { ?>
 															<span class="badge text-bg-success"><?= __("Success"); ?></span>
 														<?php } else {
 															$prechecks_passed = 'failed'; ?>
