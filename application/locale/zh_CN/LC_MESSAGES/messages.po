@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-11-10 07:12+0000\n"
+"POT-Creation-Date: 2025-11-10 09:50+0000\n"
 "PO-Revision-Date: 2025-09-30 06:37+0000\n"
 "Last-Translator: YuanRetro <lijiaxuan1811@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -3347,60 +3347,68 @@ msgstr "qslsdate 字段错误（YYYYMMDD）"
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date 字段错误（ YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4711
+#: application/models/Logbook_model.php:4714
+msgid "LoTW Rcvd status will be reset."
+msgstr ""
+
+#: application/models/Logbook_model.php:4714
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "the lotw_qslrdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4732
+#: application/models/Logbook_model.php:4739
+msgid "LoTW Sent status will be reset."
+msgstr ""
+
+#: application/models/Logbook_model.php:4739
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslsdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:5025
+#: application/models/Logbook_model.php:5033
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "内容重复"
 
-#: application/models/Logbook_model.php:5090
-#: application/models/Logbook_model.php:5185
+#: application/models/Logbook_model.php:5098
+#: application/models/Logbook_model.php:5193
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
-#: application/models/Logbook_model.php:5098
+#: application/models/Logbook_model.php:5106
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
-#: application/models/Logbook_model.php:5104
+#: application/models/Logbook_model.php:5112
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
-#: application/models/Logbook_model.php:5108
+#: application/models/Logbook_model.php:5116
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
-#: application/models/Logbook_model.php:5112
+#: application/models/Logbook_model.php:5120
 msgid "confirmation pending"
 msgstr "等待确认"
 
-#: application/models/Logbook_model.php:5115
+#: application/models/Logbook_model.php:5123
 msgid "unconfirmed"
 msgstr "未确认"
 
-#: application/models/Logbook_model.php:5118
+#: application/models/Logbook_model.php:5126
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
 msgid "unknown"
 msgstr "未知"
 
-#: application/models/Logbook_model.php:5188
+#: application/models/Logbook_model.php:5196
 msgid "POTA reference already in log"
 msgstr "日志中已存在POTA数据"
 
-#: application/models/Logbook_model.php:5191
+#: application/models/Logbook_model.php:5199
 msgid "QSO updated"
 msgstr "QSO已上传"
 
-#: application/models/Logbook_model.php:5998
+#: application/models/Logbook_model.php:6006
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:39
 #: application/views/awards/gridmaster/index.php:54
