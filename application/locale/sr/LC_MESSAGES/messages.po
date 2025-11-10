@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-11-10 07:12+0000\n"
+"POT-Creation-Date: 2025-11-10 09:50+0000\n"
 "PO-Revision-Date: 2024-12-10 11:09+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -3373,60 +3373,68 @@ msgstr "datum slanja QSL je neispravan (YYYYMMDD)"
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "Datum učitavanja veza na Clublog je neispravan (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4711
+#: application/models/Logbook_model.php:4714
+msgid "LoTW Rcvd status will be reset."
+msgstr ""
+
+#: application/models/Logbook_model.php:4714
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "datum prijama QSL sa LoTW je neispravan (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4732
+#: application/models/Logbook_model.php:4739
+msgid "LoTW Sent status will be reset."
+msgstr ""
+
+#: application/models/Logbook_model.php:4739
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "datum slanja QSL na LoTW je neispravan (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5025
+#: application/models/Logbook_model.php:5033
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplikat za"
 
-#: application/models/Logbook_model.php:5090
-#: application/models/Logbook_model.php:5185
+#: application/models/Logbook_model.php:5098
+#: application/models/Logbook_model.php:5193
 msgid "QSO could not be matched"
 msgstr "QSO se ne poklapa"
 
-#: application/models/Logbook_model.php:5098
+#: application/models/Logbook_model.php:5106
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "potvrđeno preko LoTW/Clublog/eQSL/Kontest"
 
-#: application/models/Logbook_model.php:5104
+#: application/models/Logbook_model.php:5112
 msgid "confirmed by award manager"
 msgstr "potvrđeno od strane menadžera za diplome"
 
-#: application/models/Logbook_model.php:5108
+#: application/models/Logbook_model.php:5116
 msgid "confirmed by cross-check of DCL data"
 msgstr "potvrđeno unakrsnom proverom DCL podataka"
 
-#: application/models/Logbook_model.php:5112
+#: application/models/Logbook_model.php:5120
 msgid "confirmation pending"
 msgstr "čeka potvrđivanje"
 
-#: application/models/Logbook_model.php:5115
+#: application/models/Logbook_model.php:5123
 msgid "unconfirmed"
 msgstr "nepotvrđeno"
 
-#: application/models/Logbook_model.php:5118
+#: application/models/Logbook_model.php:5126
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
 msgid "unknown"
 msgstr "nepoznato"
 
-#: application/models/Logbook_model.php:5188
+#: application/models/Logbook_model.php:5196
 msgid "POTA reference already in log"
 msgstr ""
 
-#: application/models/Logbook_model.php:5191
+#: application/models/Logbook_model.php:5199
 msgid "QSO updated"
 msgstr ""
 
-#: application/models/Logbook_model.php:5998
+#: application/models/Logbook_model.php:6006
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:39
 #: application/views/awards/gridmaster/index.php:54

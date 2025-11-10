@@ -15,8 +15,8 @@ msgstr ""
 "POT-Creation-Date: 2025-11-10 07:12+0000\n"
 "PO-Revision-Date: 2025-11-10 09:51+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3413,40 +3413,50 @@ msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "дата загрузки QSO в Clublog недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:4711
+#: application/models/Logbook_model.php:4714
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения LoTW QSL недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:4732
+#: application/models/Logbook_model.php:4739
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки LoTW QSL недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:5025
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:5033
 msgid "Duplicate for"
 msgstr "Дубликат для"
 
 #: application/models/Logbook_model.php:5090
 #: application/models/Logbook_model.php:5185
+#: application/models/Logbook_model.php:5098
+#: application/models/Logbook_model.php:5193
 msgid "QSO could not be matched"
 msgstr "QSO не может быть сопоставлено"
 
 #: application/models/Logbook_model.php:5098
+#: application/models/Logbook_model.php:5106
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "подтверждено LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:5104
+#: application/models/Logbook_model.php:5112
 msgid "confirmed by award manager"
 msgstr "подтверждено менеджером диплома"
 
 #: application/models/Logbook_model.php:5108
+#: application/models/Logbook_model.php:5116
 msgid "confirmed by cross-check of DCL data"
 msgstr "подтверждено кросс-проверкой с данными DCL"
 
 #: application/models/Logbook_model.php:5112
+#: application/models/Logbook_model.php:5120
 msgid "confirmation pending"
 msgstr "подтверждение ожидается"
 
 #: application/models/Logbook_model.php:5115
+#: application/models/Logbook_model.php:5123
 msgid "unconfirmed"
 msgstr "не подтверждено"
 
@@ -3454,14 +3464,17 @@ msgstr "не подтверждено"
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
+#: application/models/Logbook_model.php:5126
 msgid "unknown"
 msgstr "неизвестно"
 
 #: application/models/Logbook_model.php:5188
+#: application/models/Logbook_model.php:5196
 msgid "POTA reference already in log"
 msgstr "Ренференция POTA уже в журнале"
 
 #: application/models/Logbook_model.php:5191
+#: application/models/Logbook_model.php:5199
 msgid "QSO updated"
 msgstr "QSO обновлено"
 
@@ -3476,6 +3489,7 @@ msgstr "QSO обновлено"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:6006
 msgid "Bearing"
 msgstr "Направление"
 
@@ -14904,8 +14918,8 @@ msgid ""
 "give an initial sent exchange. To deactivate, use ',+0':"
 msgstr ""
 "Принятый контрольный номер должен быть с префиксом точка '.', отправленный "
-"контрольный номер -- с запятой ','. Последние две строки эквивалентны -- т."
-"е. пробелы не имеют значения, как и порядок. Контрольный номер, который вы "
+"контрольный номер -- с запятой ','. Последние две строки эквивалентны -- "
+"т.е. пробелы не имеют значения, как и порядок. Контрольный номер, который вы "
 "отправили, будет автоматически включен в следующее QSO, если он содержит "
 "принятый контрольный номер, или если вы используете одну запятую ','. Чтобы "
 "автоматически увеличить отправленный порядковый номер, используйте ',++' и "
@@ -15651,8 +15665,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Создайте новую папку в 'assets/css/' и загрузите в нее файл 'bootstrap.min."
-"css', который содержит основные правила стилизации. Мы используем темы из %s"
+"Создайте новую папку в 'assets/css/' и загрузите в нее файл "
+"'bootstrap.min.css', который содержит основные правила стилизации. Мы "
+"используем темы из %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -15989,8 +16004,8 @@ msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
-"Показать изображение корреспондента по QSO из его профиля на qrz.com/hamqth."
-"com в разделе QSO журнала."
+"Показать изображение корреспондента по QSO из его профиля на qrz.com/"
+"hamqth.com в разделе QSO журнала."
 
 #: application/views/user/edit.php:391
 msgid ""
@@ -17156,6 +17171,14 @@ msgstr "Отправить запрос"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Получено"
+
+#: application/models/Logbook_model.php:4714
+msgid "LoTW Rcvd status will be reset."
+msgstr ""
+
+#: application/models/Logbook_model.php:4739
+msgid "LoTW Sent status will be reset."
+msgstr ""
 
 #~ msgid "Apply Continent Data to Logbook"
 #~ msgstr "Применить данные по континентам к журналу"
