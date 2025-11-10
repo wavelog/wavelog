@@ -4731,7 +4731,7 @@ class Logbook_model extends CI_Model {
 			$valid_lotw_sent = ['Y', 'Q', 'V'];
 			if ($markLotw != NULL) {
 				$input_lotw_qslsdate = $date = date("Y-m-d H:i:s", strtotime("now"));
-			} elseif (($record['lotw_qslsdate'] ?? '') != '' && in_array($input_lotw_qsl_sent, $valid_lotw_sent)) {
+			} elseif (($record['lotw_qslsdate'] ?? '') != '' && in_array(strtoupper($input_lotw_qsl_sent), $valid_lotw_sent)) {
 				if (validateADIFDate($record['lotw_qslsdate']) == true) {
 					$input_lotw_qslsdate = $record['lotw_qslsdate'];
 				} else {
