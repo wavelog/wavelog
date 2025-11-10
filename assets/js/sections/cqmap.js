@@ -6,6 +6,7 @@ var info;
 
 let confirmedColor = user_map_custom.qsoconfirm.color;
 let workedColor = user_map_custom.qso.color;
+let unworkedColor = user_map_custom.unworked.color;
 
 function load_cq_map() {
     $('.nav-tabs a[href="#cqmaptab"]').tab('show');
@@ -64,7 +65,7 @@ function load_cq_map2(data) {
     var workednotconfirmed = 0;
 
 	for (var i = 0; i < cqzonenames.length; i++) {
-        var mapColor = 'red';
+        var mapColor = user_map_custom.unworked.color;
 
         if (data[i] == 'C') {
             mapColor = user_map_custom.qsoconfirm.color;
@@ -99,7 +100,7 @@ function load_cq_map2(data) {
         div.innerHTML += "<h4>" + lang_general_word_colors + "</h4>";
         div.innerHTML += "<i style='background: "+user_map_custom.qsoconfirm.color+"'></i><span>" + lang_general_word_confirmed + " (" + confirmed + ")</span><br>";
         div.innerHTML += "<i style='background: "+user_map_custom.qso.color+"'></i><span>" + lang_general_word_worked_not_confirmed + " (" + workednotconfirmed + ")</span><br>";
-        div.innerHTML += "<i style='background: red'></i><span>" + lang_general_word_not_worked + " (" + notworked + ")</span><br>";
+        div.innerHTML += "<i style='background: "+user_map_custom.unworked.color+"'></i><span>" + lang_general_word_not_worked + " (" + notworked + ")</span><br>";
         return div;
     };
 
@@ -128,7 +129,7 @@ function load_cq_map2(data) {
 function getColor(d) {
     return 	cqz[d-1] == 'C' ? user_map_custom.qsoconfirm.color  :
 			cqz[d-1] == 'W' ? user_map_custom.qso.color :
-							   'red';
+							   user_map_custom.unworked.color;
 }
 
 function highlightFeature(e) {
