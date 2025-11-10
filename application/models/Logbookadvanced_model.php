@@ -728,6 +728,10 @@ class Logbookadvanced_model extends CI_Model {
 			$updatedData['COL_CONT'] = $this->logbook_model->getContinent($callbook['dxcc']);
 			$updated = true;
 		}
+		if (!empty($callbook['email']) && empty($qso['COL_EMAIL'])) {
+			$updatedData['COL_EMAIL'] = $callbook['email'];
+			$updated = true;
+		}
 
 		//Also set QRZ.com status to modified
 		if($updated == true && $qso['COL_QRZCOM_QSO_UPLOAD_STATUS'] == 'Y') {
