@@ -292,25 +292,36 @@ class Dxcluster_model extends CI_Model {
 		return $spotsout;
 	}
 
-	// We need to build functions that check the frequency limit
-	// Right now this is just a proof of concept to determine mode
+	// Determine mode with priority: frequency-based > POTA/SOTA mode > message keywords
 	function get_mode($spot) {
-		if ($this->Frequency2Mode($spot->frequency) != '') {
-			return $this->Frequency2Mode($spot->frequency);
+		// Priority 1: POTA/SOTA mode fields (if present)
+		if (isset($spot->pota_mode) && !empty($spot->pota_mode)) {
+			return strtolower($spot->pota_mode);
+		}
+		if (isset($spot->sota_mode) && !empty($spot->sota_mode)) {
+			return strtolower($spot->sota_mode);
 		}
 
-		// Fallbacks using message keywords
+		// Priority 2: Frequency-based mode (most reliable)
+		// If frequency falls within a defined band edge, use that mode
+		$frequencyMode = $this->Frequency2Mode($spot->frequency);
+		if ($frequencyMode != '') {
+			return $frequencyMode;
+		}
+
+		// Priority 3: Fallback to message keywords
 		if (isset($spot->message)) {
 			$message = strtolower($spot->message);
 			if (strpos($message, 'cw') !== false) {
-				return 'cw';;
+				return 'cw';
 			}
 			if ((strpos($message, 'ft8') !== false || strpos($message, 'rtty') !== false || strpos($message, 'sstv') !== false)) {
-				return 'digi';;
+				return 'digi';
 			}
 		}
 
-		return '';
+		// Default fallback: phone
+		return 'phone';
 	}
 
 	function modefilter($spot, $mode) {
