@@ -6248,9 +6248,10 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
     }
 
     // Update frequency field with value in Hz
-    $('#frequency').val(frequencyInKHz * 1000).trigger('change');
+    $('#frequency').val(frequencyInKHz * 1000);
 
-    // Also trigger change event unless called from waterfall
+    // Trigger change event to update calculated fields and unit display
+    // Skip trigger when called from waterfall to prevent recursive updates
     if (!fromWaterfall) {
         $('#frequency').trigger('change');
     }
