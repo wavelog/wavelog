@@ -874,6 +874,8 @@ class Awards extends CI_Controller {
 			return null;
 		}
 
+		$data['user_map_custom'] = $this->optionslib->get_map_custom();
+
 		$location_list = "'".implode("','",$logbooks_locations_array)."'";
 
 	    $data['worked_bands'] = $this->bands->get_worked_bands('iota'); // Used in the view for band select
