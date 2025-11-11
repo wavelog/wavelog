@@ -41,7 +41,7 @@
 		var lang_dxwaterfall_modes_label = "<?= __("modes:"); ?>";
 		var lang_dxwaterfall_out_of_bandplan = "<?= __("OUT OF BANDPLAN"); ?>";
 		var lang_dxwaterfall_out_of_band = "<?= __("Out of band"); ?>";
-		var lang_dxwaterfall_error_shutdown = "<?= __("DX Waterfall has experienced an unexpected error and will be shut down. Please contact the Wavelog team for assistance."); ?>";
+		var lang_dxwaterfall_error_shutdown = "<?= __("DX Waterfall has experienced an unexpected error and will be shut down. Please visit Wavelog's GitHub and create a bug report if this issue persists."); ?>";
 		var lang_dxwaterfall_changing_frequency = "<?= __("Changing radio frequency..."); ?>";
 		var lang_dxwaterfall_invalid = "<?= __("INVALID"); ?>";
 		var lang_dxwaterfall_turn_on = "<?= __("Click to turn on the DX Waterfall"); ?>";
