@@ -133,9 +133,11 @@ class Dxcluster_model extends CI_Model {
 			if (!is_object($singlespot) || !isset($singlespot->frequency) || !is_numeric($singlespot->frequency)) {
 				continue;
 			}
-			$spotband = $this->frequency->GetBand($singlespot->frequency*1000);
 
-			// Apply band filter early (before expensive operations)
+			// Ensure frequency is always a number (not a string)
+			$singlespot->frequency = floatval($singlespot->frequency);
+
+			$spotband = $this->frequency->GetBand($singlespot->frequency*1000);			// Apply band filter early (before expensive operations)
 			if (($band != 'All') && ($band != $spotband)) {
 				continue;
 			}
