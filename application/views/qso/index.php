@@ -37,8 +37,6 @@ switch ($date_format) {
   var lang_invalid_ant_el = "<?= __("Invalid value for antenna elevation:"); ?>";
   var latlng=[<?php echo $lat.','.$lng;?>];
   var user_date_format = "<?php echo $date_format; ?>"; // Pass the user's date format to JavaScript
-  var dxcluster_default_decont = "<?php echo $dxcluster_default_decont; ?>"; // used in dxwaterfall.js
-  var dxcluster_default_maxage = "<?php echo $dxcluster_default_maxage; ?>"; // used in dxwaterfall.js
 </script>
 
 <!--- DX Waterfall --->
