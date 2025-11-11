@@ -1933,6 +1933,7 @@ class Awards extends CI_Controller {
         $this->load->model('itu');
 		$this->load->model('modes');
         $this->load->model('bands');
+		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
         $data['worked_bands'] = $this->bands->get_worked_bands('cq');
 		$data['modes'] = $this->modes->active(); // Used in the view for mode select
