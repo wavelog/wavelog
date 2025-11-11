@@ -89,7 +89,8 @@ function gridPlot(form, dxcc) {
                 html = "<table border=\"0\">";
                 html += '<tr><td><i style="background: '+ confirmedColor +'"></i><span>' + gridsquares_gridsquares_lotw + ':</span></td><td style=\"padding-left: 1em; text-align: right;\"><span>'+grid_four_lotw.length+' / '+grid_max+'</span></td></tr>';
                 html += '<tr><td><i style="background: '+ workedColor +'"></i><span>' + gridsquares_gridsquares_paper + ':</span></td><td style=\"padding-left: 1em; text-align: right;\"><span>'+paper_count+' / '+grid_max+'</span></td></tr>';
-                html += '<tr><td><i style="background: '+ unworkedColor+'"></i><span>' + gridsquares_gridsquares_worked + ' ('+(Math.round((grid_four.length / grid_max) * 10000) / 100)+'%):</span></td><td style=\"padding-left: 1em; text-align: right;\"><span>'+(grid_four.length)+' / '+grid_max+'</span></td></tr>';
+				html += '<tr><td><i style="background: '+ unworkedColor +'"></i><span>Worked, not confirmed</span></td><td style=\"padding-left: 1em; text-align: right;\"><span> / '+grid_max+'</span></td></tr>';
+                html += '<tr><td><i></i><span>' + gridsquares_gridsquares_worked + ' ('+(Math.round((grid_four.length / grid_max) * 10000) / 100)+'%):</span></td><td style=\"padding-left: 1em; text-align: right;\"><span>'+(grid_four.length)+' / '+grid_max+'</span></td></tr>';
                 html += "</table>";
                 div.innerHTML = html;
                 return div;
