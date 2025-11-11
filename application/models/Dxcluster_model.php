@@ -377,14 +377,15 @@ class Dxcluster_model extends CI_Model {
 		$potaMode = $spot->pota_mode ?? $spot->dxcc_spotted->pota_mode ?? null;
 		$sotaMode = $spot->sota_mode ?? $spot->dxcc_spotted->sota_mode ?? null;
 
-		if (!empty($potaMode)) {
+		// If POTA/SOTA provides generic "SSB", refine it to LSB/USB based on frequency
+		if (!empty($potaMode) && strtoupper($potaMode) !== 'SSB') {
 			return strtoupper($potaMode);
 		}
-		if (!empty($sotaMode)) {
+		if (!empty($sotaMode) && strtoupper($sotaMode) !== 'SSB') {
 			return strtoupper($sotaMode);
 		}
 
-		// For phone modes, determine LSB or USB based on frequency
+		// For phone modes (including generic SSB from POTA/SOTA), determine LSB or USB based on frequency
 		if ($mode === 'phone' || $mode === 'ssb') {
 			// Below 10 MHz use LSB, above use USB
 			return $frequency < 10000 ? 'LSB' : 'USB';
