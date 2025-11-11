@@ -32,7 +32,7 @@ var DX_WATERFALL_CONSTANTS = {
     VERSION: '0.9.3', // DX Waterfall version (keep in sync with @version in file header)
 
     // Debug and logging
-    DEBUG_MODE: false, // Set to true for verbose logging, false for production
+    DEBUG_MODE: true, // Set to true for verbose logging, false for production
 
     // Timing and debouncing
     DEBOUNCE: {
@@ -769,34 +769,10 @@ var DX_WATERFALL_UTILS = {
             options = options || {};
             var spotFreq = parseFloat(spot.frequency);
 
-            // Determine the correct mode to use
-            // Priority: program-specific mode from DXCC data > generic mode field
-            // Check for POTA, SOTA, WWFF, or IOTA specific modes
+            // Use spot.mode as single source of truth for transmission mode
+            // POTA/SOTA/WWFF/IOTA modes represent activator's preferred/current mode,
+            // not necessarily the mode of this specific spot
             var spotMode = spot.mode || '';
-
-            if (spot.dxcc_spotted) {
-                // Check for program-specific modes in priority order
-                if (spot.dxcc_spotted.pota_mode) {
-                    spotMode = spot.dxcc_spotted.pota_mode;
-                } else if (spot.dxcc_spotted.sota_mode) {
-                    spotMode = spot.dxcc_spotted.sota_mode;
-                } else if (spot.dxcc_spotted.wwff_mode) {
-                    spotMode = spot.dxcc_spotted.wwff_mode;
-                } else if (spot.dxcc_spotted.iota_mode) {
-                    spotMode = spot.dxcc_spotted.iota_mode;
-                }
-            } else if (spot.dxcc_spotter) {
-                // Fallback to spotter's DXCC data
-                if (spot.dxcc_spotter.pota_mode) {
-                    spotMode = spot.dxcc_spotter.pota_mode;
-                } else if (spot.dxcc_spotter.sota_mode) {
-                    spotMode = spot.dxcc_spotter.sota_mode;
-                } else if (spot.dxcc_spotter.wwff_mode) {
-                    spotMode = spot.dxcc_spotter.wwff_mode;
-                } else if (spot.dxcc_spotter.iota_mode) {
-                    spotMode = spot.dxcc_spotter.iota_mode;
-                }
-            }
 
             var spotObj = {
                 callsign: spot.spotted,
