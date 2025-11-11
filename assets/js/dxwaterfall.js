@@ -1267,8 +1267,8 @@ var dxWaterfall = {
     spotInfoDiv: null,
     spotTooltipDiv: null,
     lastSpotInfoKey: null,
-    currentContinent: 'NA',
-    currentMaxAge: 60,
+    currentContinent: dxcluster_default_decont,
+    currentMaxAge: dxcluster_default_maxage,
 
     // ========================================
     // SPOT NAVIGATION STATE
