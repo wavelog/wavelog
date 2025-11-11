@@ -564,7 +564,7 @@
 									<div class="row"> <!-- QSO (confirmed) -->
 										<div class="mb-3 col-md-4">
 											<label><?= __("QSO (confirmed)"); ?></label>
-											<small class="form-text text-muted"><?= __("(If 'No', displayed as 'QSO (by default))'"); ?></small>
+											<small class="form-text text-muted"><?= __("(If 'No', displayed as 'QSO (by default))"); ?></small>
 										</div>
 										<div class="mb-3 col-md-3">
 											<div class="icon_selectBox" data-boxcontent="qsoconfirm">
@@ -579,6 +579,17 @@
 										</div>
 										<div class="md-3 col-md-2">
 											<input type="color" class="form-control user_icon_color" name="user_map_qsoconfirm_color" id="user_map_qsoconfirm_color" value="<?php echo $user_map_qsoconfirm_color; ?>" style="padding:initial;<?php echo ($user_map_qsoconfirm_icon=="0")?'display:none;':''; ?>" data-icon="qsoconfirm" />
+										</div>
+									</div>
+									<div class="row"> <!-- Unworked (zones) color -->
+										<div class="mb-3 col-md-4">
+											<label><?= __("Unworked (e.g. Zones)"); ?></label>
+											<small class="form-text text-muted"><?= __("(Color for unworked zones)"); ?></small>
+										</div>
+										<div class="mb-3 col-md-3">
+										</div>
+										<div class="md-3 col-md-2">
+											<input type="color" class="form-control user_icon_color" name="user_map_unworked_color" id="user_map_unworked_color" value="<?php echo $user_map_unworked_color ?? 'red'; ?>" style="padding:initial;" data-icon="unworked" />
 										</div>
 									</div>
 									<div class="row">
