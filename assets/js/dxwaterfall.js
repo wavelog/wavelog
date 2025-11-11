@@ -3297,9 +3297,9 @@ var dxWaterfall = {
         var age = 60; // minutes
         var de = this.currentContinent; // Use current continent (may have been cycled)
 
-        // Check if dxwaterfall_maxage is defined
-        if (typeof dxwaterfall_maxage !== "undefined" && dxwaterfall_maxage != null) {
-            age = dxwaterfall_maxage;
+        // Check if dxcluster_default_maxage is defined
+        if (typeof dxcluster_default_maxage !== "undefined" && dxcluster_default_maxage != null) {
+            age = dxcluster_default_maxage;
         }
 
         // Store current settings
