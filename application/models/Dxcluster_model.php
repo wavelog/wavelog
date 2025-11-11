@@ -16,9 +16,12 @@ class Dxcluster_model extends CI_Model {
 	];
 
 	// Digital modes for submode detection
+	// Note: Order matters! More specific modes (PSK31, PSK63) must come before generic (PSK)
+	// to ensure accurate submode detection via strpos() matching
 	protected $digitalModes = [
-		'FT8', 'FT4', 'RTTY', 'PSK31', 'PSK63', 'SSTV', 'MFSK',
-		'OLIVIA', 'CONTESTIA', 'JT65', 'JT9', 'WSPR'
+		'FT8', 'FT4', 'RTTY', 'PSK31', 'PSK63', 'PSK', 'SSTV', 'MFSK',
+		'OLIVIA', 'CONTESTIA', 'JT65', 'JT9', 'WSPR', 'HELL', 'THOR',
+		'DOMINO', 'MT63', 'PACTOR'
 	];
 
 	public function __construct() {
