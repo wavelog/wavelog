@@ -299,14 +299,17 @@ class Dxcluster_model extends CI_Model {
 		return $spotsout;
 	}
 
-	// Determine mode with priority: frequency-based > POTA/SOTA mode > message keywords
+	// Determine mode with priority: POTA/SOTA mode > frequency-based > message keywords
 	function get_mode($spot) {
-		// Priority 1: POTA/SOTA mode fields (if present)
-		if (isset($spot->pota_mode) && !empty($spot->pota_mode)) {
-			return strtolower($spot->pota_mode);
+		// Priority 1: POTA/SOTA mode fields (if present) - check from both dxcc_spotted and direct properties
+		$potaMode = $spot->pota_mode ?? $spot->dxcc_spotted->pota_mode ?? null;
+		$sotaMode = $spot->sota_mode ?? $spot->dxcc_spotted->sota_mode ?? null;
+
+		if (!empty($potaMode)) {
+			return $this->mapToModeCategory($potaMode);
 		}
-		if (isset($spot->sota_mode) && !empty($spot->sota_mode)) {
-			return strtolower($spot->sota_mode);
+		if (!empty($sotaMode)) {
+			return $this->mapToModeCategory($sotaMode);
 		}
 
 		// Priority 2: Frequency-based mode (most reliable)
@@ -331,10 +334,46 @@ class Dxcluster_model extends CI_Model {
 		return 'phone';
 	}
 
+	// Map specific mode names to mode categories (phone/cw/digi)
+	function mapToModeCategory($mode) {
+		$modeUpper = strtoupper($mode);
+
+		// CW modes
+		if ($modeUpper === 'CW') {
+			return 'cw';
+		}
+
+		// Digital modes - check against class property
+		foreach ($this->digitalModes as $digiMode) {
+			if ($modeUpper === $digiMode) {
+				return 'digi';
+			}
+		}
+
+		// Phone modes
+		if (in_array($modeUpper, ['SSB', 'LSB', 'USB', 'AM', 'FM', 'PHONE'])) {
+			return 'phone';
+		}
+
+		// Default to phone if unknown
+		return 'phone';
+	}
+
 	// Determine submode for more specific mode classification
 	function get_submode($spot) {
 		$mode = strtolower($spot->mode ?? '');
 		$frequency = floatval($spot->frequency);
+
+		// Check if we have specific mode from POTA/SOTA - use that as submode
+		$potaMode = $spot->pota_mode ?? $spot->dxcc_spotted->pota_mode ?? null;
+		$sotaMode = $spot->sota_mode ?? $spot->dxcc_spotted->sota_mode ?? null;
+
+		if (!empty($potaMode)) {
+			return strtoupper($potaMode);
+		}
+		if (!empty($sotaMode)) {
+			return strtoupper($sotaMode);
+		}
 
 		// For phone modes, determine LSB or USB based on frequency
 		if ($mode === 'phone' || $mode === 'ssb') {
