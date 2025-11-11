@@ -1846,6 +1846,7 @@ class Awards extends CI_Controller {
 
 	    $data['user_default_band'] = $this->session->userdata('user_default_band');
 	    $data['user_default_confirmation'] = $this->session->userdata('user_default_confirmation');
+		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
 	    $footerData = [];
 	    $footerData['scripts'] = [
