@@ -5,7 +5,7 @@
 L.Maidenhead = L.LayerGroup.extend({
 
 	options: {
-		linecolor: isDarkModeTheme() ?  'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)',
+		linecolor: isDarkModeTheme() ?  'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.3)',
 		color: isDarkModeTheme() ? 'rgba(255, 255, 255, 1)' : 'rgba(0, 0, 0, 1)',
 
 		workedColor: user_map_custom?.qso?.color
@@ -78,10 +78,10 @@ L.Maidenhead = L.LayerGroup.extend({
 					if(grid_two.includes(locator) || grid_four.includes(locator) || grid_six.includes(locator)) {
 
 						if(grid_two_confirmed.includes(locator) || grid_four_confirmed.includes(locator) || grid_six_confirmed.includes(locator)) {
-							var rectConfirmed = L.rectangle(bounds, {className: 'grid-rectangle grid-confirmed', fillColor: this.options.confirmedColor, color: this.options.linecolor, weight: 1, fillOpacity: 1, fill:true, interactive: false});
+							var rectConfirmed = L.rectangle(bounds, {className: 'grid-rectangle grid-confirmed', color: this.options.confirmedColor,  weight: 1, fillOpacity: 1, fill:true, interactive: false});
 							this.addLayer(rectConfirmed);
 						} else {
-							var rectWorked = L.rectangle(bounds, {className: 'grid-rectangle grid-worked', fillColor: this.options.workedColor, color: this.options.linecolor, weight: 1, fillOpacity: 1, fill:true, interactive: false});
+							var rectWorked = L.rectangle(bounds, {className: 'grid-rectangle grid-worked', color: this.options.workedColor,  weight: 1, fillOpacity: 1, fill:true, interactive: false});
 							this.addLayer(rectWorked);
 						}
 						// Controls text on grid on various zoom levels
@@ -89,7 +89,7 @@ L.Maidenhead = L.LayerGroup.extend({
 							this.addLayer(this._getLabel(lon+unit-(unit/lcor),lat+(unit/2)+(unit/lcor*c)));
 						}
 						if (zoom < 3 ) {
-							this.addLayer(L.rectangle(bounds, {className: 'grid-rectangle', color: this.options.linecolor, weight: 1, fill:false, interactive: false}));
+							this.addLayer(L.rectangle(bounds, {className: 'grid-rectangle', color: this.options.color, weight: 1, fill:false, interactive: false}));
 						}
 					} else {
 						if (grids.includes(locator) && grids !== '') {
@@ -99,7 +99,7 @@ L.Maidenhead = L.LayerGroup.extend({
 						}
 						if (grids == '') {
 							if (zoom < 3 || zoom > 5) { // Controls if grid lines are shown according to zoom level
-								this.addLayer(L.rectangle(bounds, {className: 'grid-rectangle', color: this.options.linecolor, weight: 1, fill:false, interactive: false}));
+								this.addLayer(L.rectangle(bounds, {className: 'grid-rectangle', color: this.options.color, weight: 1, fill:false, interactive: false}));
 							}
 						}
 					}

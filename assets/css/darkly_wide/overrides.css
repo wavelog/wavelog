@@ -51,15 +51,22 @@
 	filter: invert() hue-rotate(180deg) grayscale(0.8) brightness(1.2) !important;
 }
 
+path.grid-rectangle {
+	stroke: rgba(200, 200, 200, 0.5);
+}
+
 span.grid-text > font {
+	color: rgba(255, 255, 255, 1) !important;
 	font-weight: 400 !important;
 }
 
 span.grid-text-unworked > font {
+	color: rgba(255, 255, 255, .4) !important;
 	font-weight: 400 !important;
 }
 
 span.grid-text-worked > font {
+	color: rgba(255, 255, 255, 1) !important;
 	font-weight: 400 !important;
 }
 
