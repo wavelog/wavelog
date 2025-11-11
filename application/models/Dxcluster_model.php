@@ -299,7 +299,7 @@ class Dxcluster_model extends CI_Model {
 		return $spotsout;
 	}
 
-	// Determine mode with priority: POTA/SOTA mode > frequency-based > message keywords
+	// Determine mode with priority: POTA/SOTA mode > message keywords > frequency-based
 	function get_mode($spot) {
 		// Priority 1: POTA/SOTA mode fields (if present) - check from both dxcc_spotted and direct properties
 		$potaMode = $spot->pota_mode ?? $spot->dxcc_spotted->pota_mode ?? null;
@@ -312,22 +312,28 @@ class Dxcluster_model extends CI_Model {
 			return $this->mapToModeCategory($sotaMode);
 		}
 
-		// Priority 2: Frequency-based mode (most reliable)
+		// Priority 2: Message keywords (explicit mode in message text)
+		if (isset($spot->message)) {
+			$message = strtolower($spot->message);
+
+			// Check for CW first (simplest check)
+			if (strpos($message, 'cw') !== false) {
+				return 'cw';
+			}
+
+			// Check for digital modes using class property
+			foreach ($this->digitalModes as $digiMode) {
+				if (strpos($message, strtolower($digiMode)) !== false) {
+					return 'digi';
+				}
+			}
+		}
+
+		// Priority 3: Frequency-based mode (from bandedges table)
 		// If frequency falls within a defined band edge, use that mode
 		$frequencyMode = $this->Frequency2Mode($spot->frequency);
 		if ($frequencyMode != '') {
 			return $frequencyMode;
-		}
-
-		// Priority 3: Fallback to message keywords
-		if (isset($spot->message)) {
-			$message = strtolower($spot->message);
-			if (strpos($message, 'cw') !== false) {
-				return 'cw';
-			}
-			if ((strpos($message, 'ft8') !== false || strpos($message, 'rtty') !== false || strpos($message, 'sstv') !== false)) {
-				return 'digi';
-			}
 		}
 
 		// Default fallback: phone
