@@ -856,6 +856,7 @@ class Awards extends CI_Controller {
 
         $data['helvetia_array'] = $this->helvetia_model->get_helvetia_array($bands, $postdata);
         $data['helvetia_summary'] = $this->helvetia_model->get_helvetia_summary($bands, $postdata);
+		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
         // Render Page
         $data['page_title'] =sprintf(__("Awards - %s"), __("H26"));
