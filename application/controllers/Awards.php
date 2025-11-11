@@ -731,6 +731,7 @@ class Awards extends CI_Controller {
 
         $data['was_array'] = $this->was->get_was_array($bands, $postdata);
         $data['was_summary'] = $this->was->get_was_summary($bands, $postdata);
+		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
         // Render Page
         $data['page_title'] = sprintf(__("Awards - %s"), __("Worked All States (WAS)"));;
