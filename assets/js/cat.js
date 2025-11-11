@@ -704,9 +704,15 @@ $(document).ready(function() {
                 dxwaterfall_cat_state = "none";
             }
 
-            // Display timeout error
-            var radioName = $('select.radios option:selected').text();
-            displayRadioStatus('timeout', radioName);
+            // Only display timeout error if a radio is actually selected (not "None")
+            var selectedRadioId = $('.radios option:selected').val();
+            if (selectedRadioId && selectedRadioId !== '0') {
+                var radioName = $('select.radios option:selected').text();
+                displayRadioStatus('timeout', radioName);
+            } else {
+                // Radio is set to "None" - don't show timeout error
+                $('#radio_cat_state').remove();
+            }
             return; // Exit early - do not update any fields with old data
         }
 
