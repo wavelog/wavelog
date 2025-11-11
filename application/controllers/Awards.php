@@ -752,6 +752,7 @@ class Awards extends CI_Controller {
 
         $data['worked_bands'] = $this->bands->get_worked_bands('rac');
 		$data['modes'] = $this->modes->active(); // Used in the view for mode select
+		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
         if ($this->input->post('band') != NULL) {   // Band is not set when page first loads.
             if ($this->input->post('band') == 'All') {         // Did the user specify a band? If not, use all bands
