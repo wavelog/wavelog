@@ -999,6 +999,8 @@ class Awards extends CI_Controller {
       $this->load->model('gridmap_model');
       $this->load->model('stations');
 
+	  $data['user_map_custom'] = $this->optionslib->get_map_custom();
+
       $data['homegrid']= explode(',', $this->stations->find_gridsquare());
 
       $data['modes'] = $this->gridmap_model->get_worked_modes();
@@ -1034,6 +1036,9 @@ class Awards extends CI_Controller {
 		$this->load->model('bands');
 		$this->load->model('ffma_model');
 		$this->load->model('stations');
+
+		$data['user_map_custom'] = $this->optionslib->get_map_custom();
+
 
 		$data['homegrid']= explode(',', $this->stations->find_gridsquare());
 
