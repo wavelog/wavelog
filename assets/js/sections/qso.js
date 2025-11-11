@@ -728,8 +728,9 @@ function populatePendingReferences(refsToPopulate) {
 		}
 	}
 
-	// Only clear global pendingReferences if we used it (not a captured copy)
-	if (!refsToPopulate && pendingReferences) {
+	// Always clear global pendingReferences after use to prevent stale data
+	// This ensures references are only used once and don't persist across form resets
+	if (typeof pendingReferences !== 'undefined') {
 		pendingReferences = null;
 	}
 }
@@ -1057,6 +1058,11 @@ function reset_to_default() {
 
 /* Function: reset_fields is used to reset the fields on the QSO page */
 function reset_fields() {
+	// Clear pending references from bandmap/waterfall to prevent stale data
+	if (typeof pendingReferences !== 'undefined') {
+		pendingReferences = null;
+	}
+
 	$('#locator_info').text("");
 	$('#comment').val("");
 	$('#country').val("");
