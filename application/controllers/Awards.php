@@ -327,6 +327,7 @@ class Awards extends CI_Controller {
 
 		$data['waja_array'] = $this->waja->get_waja_array($bands, $postdata);
 		$data['waja_summary'] = $this->waja->get_waja_summary($bands, $postdata);
+		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
 		// Render Page
 		$data['page_title'] =__( "Awards - WAJA");
