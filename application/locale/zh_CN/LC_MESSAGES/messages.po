@@ -3340,7 +3340,8 @@ msgstr "试图导入的 QSO 不存在对方呼号（CALL）。此 QSO 无效，�
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
 "imported. It's invalid"
-msgstr "在 %s 上的 QSO：您尝试导入一个未指定频段的 QSO。该 QSO 未被导入。此 QSO 无效"
+msgstr ""
+"在 %s 上的 QSO：您尝试导入一个未指定频段的 QSO。该 QSO 未被导入。此 QSO 无效"
 
 #: application/models/Logbook_model.php:4619
 msgid "the qslrdate is invalid (YYYYMMDD)"
@@ -5147,9 +5148,9 @@ msgid ""
 "contacts with specified numbers of U.S. counties under rules and conditions "
 "you can find %s."
 msgstr ""
-"由移动业余无线电奖项俱乐部（MARAC）颁发的\"美国县级行政区通联成就奖（USA-"
-"CA）\"，旨在表彰业余无线电爱好者通过双向通信与指定数量的美国县级行政区建立有"
-"效通联的行为，具体规则与条件可通过 %s 查阅。"
+"由移动业余无线电奖项俱乐部（MARAC）颁发的\"美国县级行政区通联成就奖（USA-CA）"
+"\"，旨在表彰业余无线电爱好者通过双向通信与指定数量的美国县级行政区建立有效通"
+"联的行为，具体规则与条件可通过 %s 查阅。"
 
 #: application/views/awards/counties/index.php:9
 msgid ""
@@ -6213,8 +6214,8 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
-"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意"
-"的“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
+"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意的"
+"“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
 
 #: application/views/awards/sig/index.php:9
 msgid ""
@@ -10288,7 +10289,8 @@ msgstr "标记所有 QSO 已上传至 eQSL"
 msgid ""
 "Use this if you have lots of QSOs to upload to eQSL it will save the server "
 "timing out."
-msgstr "如果您需要向 eQSL 上传大量 QSO 数据，请使用此设置，这样可以避免服务器因超时而"
+msgstr ""
+"如果您需要向 eQSL 上传大量 QSO 数据，请使用此设置，这样可以避免服务器因超时而"
 "关闭。"
 
 #: application/views/eqslcard/index.php:10
@@ -11922,7 +11924,8 @@ msgstr "日志簿的高级设置"
 msgid ""
 "Something went wrong with label print. Go to labels and check if you have "
 "defined a label, and that it is set for print!"
-msgstr "标签打印出现了问题。请前往“标签”选项卡，检查您是否已定义了标签，并且该标签已"
+msgstr ""
+"标签打印出现了问题。请前往“标签”选项卡，检查您是否已定义了标签，并且该标签已"
 "设置为可打印状态！"
 
 #: application/views/logbookadvanced/index.php:46
@@ -14053,7 +14056,8 @@ msgstr ""
 msgid ""
 "Profile picture and data fetched from third-party services. This information "
 "is not stored on your Wavelog instance."
-msgstr "个人资料图片及数据来自第三方服务。此信息不会存储在您的 Wavelog 实例中。"
+msgstr ""
+"个人资料图片及数据来自第三方服务。此信息不会存储在您的 Wavelog 实例中。"
 
 #: application/views/qso/log_qso.php:9
 msgid "Redirecting to QSO logging page..."
@@ -15751,8 +15755,8 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
-"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 '."
-"png'）"
+"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 "
+"'.png'）"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
@@ -16025,7 +16029,8 @@ msgid ""
 "When set to \"Yes\", callsign lookup will first use data from your previous "
 "QSOs before querying external services. Set to \"No\" to always use external "
 "lookup services instead."
-msgstr "当设置为“是”时，呼号查询功能将首先使用您之前通话记录中的数据，然后再查询外部"
+msgstr ""
+"当设置为“是”时，呼号查询功能将首先使用您之前通话记录中的数据，然后再查询外部"
 "服务。将设置改为“否”则会始终使用外部查询服务。"
 
 #: application/views/user/edit.php:385
@@ -17129,6 +17134,12 @@ msgstr "提交请求"
 msgid "Rcvd"
 msgstr "收"
 
+#: application/views/components/dxwaterfall.php:44
+msgid ""
+"DX Waterfall has experienced an unexpected error and will be shut down. "
+"Please visit Wavelog's GitHub and create a bug report if this issue persists."
+msgstr ""
+
 #~ msgid "Spots de"
 #~ msgstr "来自"
 
@@ -17708,8 +17719,8 @@ msgstr "收"
 #~ "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 #~ "filenames for the logos <b>without</b> the file extension '.png'"
 #~ msgstr ""
-#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带有 ."
-#~ "png 后缀名</b>）"
+#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带"
+#~ "有 .png 后缀名</b>）"
 
 #, php-format
 #~ msgid ""
