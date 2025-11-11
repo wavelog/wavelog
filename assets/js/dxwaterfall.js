@@ -1,7 +1,7 @@
 // @ts-nocheck
 /**
  * @fileoverview DX WATERFALL for WaveLog
- * @version 0.9.3 // also change line 38
+ * @version 0.9.4 // also change line 38
  * @author Wavelog Team
  *
  * @description
@@ -29,10 +29,10 @@
 
 var DX_WATERFALL_CONSTANTS = {
     // Version
-    VERSION: '0.9.3', // DX Waterfall version (keep in sync with @version in file header)
+    VERSION: '0.9.4', // DX Waterfall version (keep in sync with @version in file header)
 
     // Debug and logging
-    DEBUG_MODE: true, // Set to true for verbose logging, false for production
+    DEBUG_MODE: false, // Set to true for verbose logging, false for production
 
     // Timing and debouncing
     DEBOUNCE: {
@@ -769,15 +769,16 @@ var DX_WATERFALL_UTILS = {
             options = options || {};
             var spotFreq = parseFloat(spot.frequency);
 
-            // Use spot.mode as single source of truth for transmission mode
-            // POTA/SOTA/WWFF/IOTA modes represent activator's preferred/current mode,
-            // not necessarily the mode of this specific spot
+            // Use spot.mode and spot.submode from backend (already classified with priority logic)
+            // Backend provides: mode ('phone'/'cw'/'digi') and submode ('LSB'/'USB'/'CW'/'FT8'/etc.)
             var spotMode = spot.mode || '';
+            var spotSubmode = spot.submode || '';
 
             var spotObj = {
                 callsign: spot.spotted,
                 frequency: spotFreq,
-                mode: spotMode
+                mode: spotMode,
+                submode: spotSubmode
             };
 
             // Add optional fields based on options
@@ -3988,27 +3989,10 @@ var dxWaterfall = {
                     continue;
                 }
 
-                // Get detailed submode information for consistent classification
-                var submodeInfo = classifyMode(spot);
-                var classifiedMode = submodeInfo.category;
-
-                // Determine mode for bandwidth calculation using utility functions
-                var modeForBandwidth = spot.mode.toLowerCase();
-
-                // Use submode if available, otherwise use category
-                if (submodeInfo.submode) {
-                    modeForBandwidth = submodeInfo.submode.toLowerCase();
-                } else {
-                    var utilityCategory = getModeCategory(spot.mode) || 'other';
-                    if (utilityCategory === 'cw') {
-                        modeForBandwidth = 'cw';
-                    } else if (utilityCategory === 'phone' && modeForBandwidth !== 'lsb' && modeForBandwidth !== 'usb') {
-                        // If classified as phone but mode isn't specific, use 'phone' to trigger freq-based LSB/USB
-                        modeForBandwidth = 'phone';
-                    } else if (utilityCategory === 'digi') {
-                        modeForBandwidth = 'digi'; // Generic digital
-                    }
-                }
+                // Use backend-provided mode and submode (already classified with priority logic)
+                // Backend priority: POTA/SOTA > message keywords > frequency-based
+                var classifiedMode = spot.mode || 'phone'; // 'phone', 'cw', or 'digi'
+                var modeForBandwidth = (spot.submode || spot.mode || 'phone').toLowerCase();
 
                 var bandwidthParams = this.getCachedBandwidthParams(modeForBandwidth, spotFreq);
                 var bandwidthKHz = bandwidthParams.bandwidth;
@@ -4907,11 +4891,13 @@ var dxWaterfall = {
         } else {
             // Active spot in bandwidth - show spot details
 
-            // Get detailed submode information using centralized function
-            var submodeInfo = classifyMode(spotInfo);
-            var modeLabel = submodeInfo.submode || spotInfo.mode || 'Unknown';
+            // Use backend-provided mode and submode directly (backend already determined priority)
+            // Backend provides: mode ('phone'/'cw'/'digi') and submode ('LSB'/'USB'/'CW'/'FT8'/etc.)
+            var categoryStr = spotInfo.mode || 'phone';
+            var submodeStr = spotInfo.submode || '';
+            var modeLabel = submodeStr || categoryStr || 'Unknown';
             // Use detailed submode for mode field (e.g., "FT8" instead of "digi")
-            var modeForField = submodeInfo.submode || spotInfo.mode || '';
+            var modeForField = submodeStr || categoryStr || '';
 
             // Prepare text with flag, continent, entity, DXCC, and LoTW indicator
             var dxccInfo = spotInfo.dxcc_spotted || {};
@@ -4946,10 +4932,8 @@ var dxWaterfall = {
             var timeMatch = spotInfo.when_pretty.match(/(\d{2}:\d{2})/);
             var timeStr = timeMatch ? timeMatch[1] : '??:??';
 
-            // Build mode/submode string using category from classifyMode
-            // Category will be: 'digi', 'phone', or 'cw'
-            var categoryStr = submodeInfo.category || '';
-            var submodeStr = submodeInfo.submode || '';
+            // Build mode/submode string for display
+            // Backend provides: categoryStr = mode ('phone'/'cw'/'digi'), submodeStr = submode ('LSB'/'FT8'/etc.)
             var modeDisplay = '';
 
             // Format: [Category-Submode] if both exist and differ, else just [Submode] or [Category]
@@ -5662,9 +5646,9 @@ var dxWaterfall = {
 
     // Check if a spot should be shown based on active mode filters
     spotMatchesModeFilter: function(spot) {
-        // Use comprehensive mode classification utility directly
-        var classification = classifyMode(spot);
-        var spotMode = classification.category;
+        // Use backend-provided mode (already classified with priority logic)
+        // Backend provides: 'phone', 'cw', or 'digi'
+        var spotMode = spot.mode || 'phone';
 
         // Use pending filters if they exist, otherwise use current filters
         var filters = this.pendingModeFilters || this.modeFilters;
