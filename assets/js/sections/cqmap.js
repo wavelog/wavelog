@@ -6,12 +6,6 @@ var info;
 
 let confirmedColor = user_map_custom.qsoconfirm.color;
 let workedColor = user_map_custom.qso.color;
-let unworkedColor = '';
-if (typeof(user_map_custom.unworked) !== 'undefined') {
-	unworkedColor = user_map_custom.unworked.color;
-} else {
-	unworkedColor = 'red';
-}
 
 function load_cq_map() {
     $('.nav-tabs a[href="#cqmaptab"]').tab('show');
@@ -70,7 +64,7 @@ function load_cq_map2(data) {
     var workednotconfirmed = 0;
 
 	for (var i = 0; i < cqzonenames.length; i++) {
-        var mapColor = unworkedColor;
+        var mapColor = 'red';
 
         if (data[i] == 'C') {
             mapColor = confirmedColor;
@@ -132,9 +126,9 @@ function load_cq_map2(data) {
 }
 
 function getColor(d) {
-    return 	cqz[d-1] == 'C' ? confirmedColor :
-        cqz[d-1] == 'W' ? workedColor :
-        unworkedColor;
+    return 	cqz[d-1] == 'C' ? user_map_custom.qsoconfirm.color  :
+			cqz[d-1] == 'W' ? user_map_custom.qso.color :
+							   'red';
 }
 
 function highlightFeature(e) {

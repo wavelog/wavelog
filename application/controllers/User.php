@@ -890,7 +890,6 @@ class User extends CI_Controller {
 				$data['user_map_station_color'] = "#0000FF";
 				$data['user_map_qsoconfirm_icon'] = "0";
 				$data['user_map_qsoconfirm_color'] = "#00AA00";
-				$data['user_map_unworked_color'] = "#FF0000";
 				$data['user_map_gridsquare_show'] = "0";
 			}
 			$data['map_icon_select'] = array(
@@ -943,7 +942,7 @@ class User extends CI_Controller {
 					$user_id = $this->input->post('id', true);
 
 					// [MAP Custom] ADD to user options //
-					$array_icon = array('station','qso','qsoconfirm', 'unworked');
+					$array_icon = array('station','qso','qsoconfirm');
 					foreach ($array_icon as $icon) {
 						$data_options['user_map_'.$icon.'_icon'] = xss_clean($this->input->post('user_map_'.$icon.'_icon', true));
 						$data_options['user_map_'.$icon.'_color'] = xss_clean($this->input->post('user_map_'.$icon.'_color', true));
