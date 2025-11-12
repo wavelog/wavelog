@@ -67,6 +67,7 @@ class Lookup extends CI_Controller {
 			$data['dok'] = xss_clean($this->input->post('dok'));
 			$data['continent'] = xss_clean($this->input->post('continent'));
 			$data['location_list'] = $location_list;
+			$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
 			$data['result'] = $this->lookup_model->getSearchResult($data);
 			$this->load->view('lookup/result', $data);
