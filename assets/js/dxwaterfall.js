@@ -1,7 +1,7 @@
 // @ts-nocheck
 /**
  * @fileoverview DX WATERFALL for WaveLog
- * @version 0.9.5 // also change line 38
+ * @version 0.9.5 // also change line 32
  * @author Wavelog Team
  *
  * @description
@@ -32,7 +32,7 @@ var DX_WATERFALL_CONSTANTS = {
     VERSION: '0.9.5', // DX Waterfall version (keep in sync with @version in file header)
 
     // Debug and logging
-    DEBUG_MODE: true, // Set to true for verbose logging, false for production
+    DEBUG_MODE: false, // Set to true for verbose logging, false for production
 
     // Timing and debouncing
     DEBOUNCE: {
@@ -480,7 +480,6 @@ function handleCATFrequencyUpdate(radioFrequency, updateCallback) {
         var toleranceHz = DX_WATERFALL_CONSTANTS.THRESHOLDS.CAT_FREQUENCY_HZ; // 50 Hz tolerance
         var diff = Math.abs(incomingHz - targetHz);
 
-        // Debug logging to see what we're comparing
         DX_WATERFALL_UTILS.log.debug('[CAT] Frequency check - Target: ' + targetHz + ' Hz, Incoming: ' + incomingHz + ' Hz, Diff: ' + diff + ' Hz, Tolerance: ' + toleranceHz + ' Hz');
 
         dxWaterfall.targetFrequencyConfirmAttempts = (dxWaterfall.targetFrequencyConfirmAttempts || 0) + 1;
