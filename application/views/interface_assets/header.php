@@ -30,7 +30,7 @@
 		$colors = json_decode($user_map_custom);?>
 		<style>
 			.awardsBgSuccess {
-				background-color:<?php echo $colors->qsoconfirm->color; ?> !important;
+				background-color: <?php echo $colors->qsoconfirm->color; ?> !important;
 			}
 			.awardsBgWarning {
 				background-color: <?php echo $colors->qso->color; ?> !important;
