@@ -4,6 +4,10 @@ class CQ extends CI_Model{
 
 	function __construct() {
 		$this->load->library('Genfunctions');
+		$map_custom = json_decode($this->optionslib->get_map_custom());
+		$this->user_map_color_qso = $map_custom->qso->color;
+		$this->user_map_color_qsoconfirm = $map_custom->qsoconfirm->color;
+		$this->user_map_color_unworked = $map_custom->unworked->color;
 	}
 
 	function get_cq_array($bands, $postdata, $location_list) {
@@ -23,14 +27,14 @@ class CQ extends CI_Model{
 			if ($postdata['worked'] != NULL) {
 				$cqBand = $this->getCQWorked($location_list, $band, $postdata);
 				foreach ($cqBand as $line) {
-					$bandCq[$line->col_cqz][$band] = '<div class="bg-danger awardsBgDanger"><a href=\'javascript:displayContacts("' . str_replace("&", "%26", $line->col_cqz) . '","' . $band . '","All", "All","'. $postdata['mode'] . '","CQZone","")\'>W</a></div>';
+					$bandCq[$line->col_cqz][$band] = '<div style="background-color: '.$this->user_map_color_qso.'"><a href=\'javascript:displayContacts("' . str_replace("&", "%26", $line->col_cqz) . '","' . $band . '","All", "All","'. $postdata['mode'] . '","CQZone","")\'>W</a></div>';
 					$cqZ[$line->col_cqz]['count']++;
 				}
 			}
 			if ($postdata['confirmed'] != NULL) {
 				$cqBand = $this->getCQConfirmed($location_list, $band, $postdata);
 				foreach ($cqBand as $line) {
-					$bandCq[$line->col_cqz][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("' . str_replace("&", "%26", $line->col_cqz) . '","' . $band . '","All", "All","'. $postdata['mode'] . '","CQZone","'.$qsl.'")\'>C</a></div>';
+					$bandCq[$line->col_cqz][$band] = '<div style="background-color: '.$this->user_map_color_qsoconfirm.'"><a href=\'javascript:displayContacts("' . str_replace("&", "%26", $line->col_cqz) . '","' . $band . '","All", "All","'. $postdata['mode'] . '","CQZone","'.$qsl.'")\'>C</a></div>';
 					$cqZ[$line->col_cqz]['count']++;
 				}
 			}
