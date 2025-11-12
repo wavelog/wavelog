@@ -26,6 +26,18 @@
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/<?php echo $theme; ?>/overrides.css">
 	<?php } ?>
 
+	<?php if (($this->uri->segment(1) == "awards")) {
+		$colors = json_decode($user_map_custom);?>
+		<style>
+			.awardsBgSuccess {
+				background-color:<?php echo $colors->qsoconfirm->color; ?> !important;
+			}
+			.awardsBgWarning {
+				background-color: <?php echo $colors->qso->color; ?> !important;
+			}
+		</style>
+	<?php } ?>
+
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/fontawesome/css/all.min.css">
 
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.fancybox.min.css" />
