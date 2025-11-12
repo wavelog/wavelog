@@ -436,22 +436,61 @@ $(function () {
 <script type="text/javascript">
 function copyApiKey(apiKey) {
    var apiKeyField = $('#'+apiKey);
-   navigator.clipboard.writeText(apiKey).then(function() {
-   });
-   apiKeyField.addClass('flash-copy')
-      .delay('1000').queue(function() {
-         apiKeyField.removeClass('flash-copy').dequeue();
+
+   if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(apiKey).then(function() {
+         apiKeyField.addClass('flash-copy')
+            .delay('1000').queue(function() {
+               apiKeyField.removeClass('flash-copy').dequeue();
+            });
+      }).catch(function(err) {
+         console.error('Failed to copy: ', err);
+         alert('Failed to copy to clipboard');
       });
+   } else {
+      // Fallback for browsers that don't support clipboard API
+      var tempInput = document.createElement('input');
+      tempInput.value = apiKey;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+
+      apiKeyField.addClass('flash-copy')
+         .delay('1000').queue(function() {
+            apiKeyField.removeClass('flash-copy').dequeue();
+         });
+   }
 }
 
 function copyApiUrl() {
    var apiUrlField = $('#apiUrl');
-   navigator.clipboard.writeText("<?php echo site_url(); ?>").then(function() {
-   });
-   apiUrlField.addClass('flash-copy')
-      .delay('1000').queue(function() {
-         apiUrlField.removeClass('flash-copy').dequeue();
+   var urlText = "<?php echo site_url(); ?>";
+
+   if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(urlText).then(function() {
+         apiUrlField.addClass('flash-copy')
+            .delay('1000').queue(function() {
+               apiUrlField.removeClass('flash-copy').dequeue();
+            });
+      }).catch(function(err) {
+         console.error('Failed to copy: ', err);
+         alert('Failed to copy to clipboard');
       });
+   } else {
+      // Fallback for browsers that don't support clipboard API
+      var tempInput = document.createElement('input');
+      tempInput.value = urlText;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+
+      apiUrlField.addClass('flash-copy')
+         .delay('1000').queue(function() {
+            apiUrlField.removeClass('flash-copy').dequeue();
+         });
+   }
 }
 
 $(function () {

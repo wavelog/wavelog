@@ -16,7 +16,7 @@
 			<li><a href="https://github.com/wavelog/Wavelog/wiki/Third-Party-Tools" target="_thirdparty"><?=__("More Tools")?></a></li>
 			</ul>
 			</p>
-			<p class="card-text"><span class="badge text-bg-warning"><?= __("API URL"); ?></span> <?= __("The API URL for this Wavelog instance is"); ?>: <span class="api-url" id="apiUrl"><code class="ms-3 me-3"><?php echo site_url(); ?></code></span><span data-bs-toggle="tooltip" title="<?= __("Copy to clipboard"); ?>" onClick='copyApiUrl()'><i class="copy-icon fas fa-copy"></i></span></p>
+			<p class="card-text"><span class="badge text-bg-warning"><?= __("API URL"); ?></span> <?= __("The API URL for this Wavelog instance is"); ?>: <span class="api-url" id="apiUrl"><code class="ms-3 me-3"><?php echo site_url(); ?></code></span><span data-bs-toggle="tooltip" title="<?= __("Copy to clipboard"); ?>" onClick='copyApiUrl(apiSiteUrl)'><i class="copy-icon fas fa-copy"></i></span></p>
 			<p class="card-text"><span class="badge text-bg-info"><?= __("Info"); ?></span> <?= __("It's good practice to delete a key if you are no longer using the associated application."); ?></p>
 			<?php if ($clubmode) { ?>
 				<p class="card-text"><span class="badge text-bg-danger"><?= __("Important"); ?></span> <?= __("On Clubstations the API Keys are personal and not shared. Clubstation users can only see their own keys."); ?></p>
@@ -41,7 +41,7 @@
 					<tbody>
 						<?php foreach ($api_keys->result() as $row) { ?>
 							<tr>
-								<?php if ($clubmode && $row->user_callsign !== $this->session->userdata('cd_src_call')) { 
+								<?php if ($clubmode && $row->user_callsign !== $this->session->userdata('cd_src_call')) {
 									$api_key = substr($row->key, 0, 2) . str_repeat('*', strlen($row->key) - 6) . substr($row->key, -4);
 									$masked = true;
 								} else {
@@ -72,10 +72,10 @@
 								<td>
 									<?php if (!$masked) { ?>
 										<a href="<?php echo site_url('api/edit'); ?>/<?php echo $api_key; ?>" class="btn btn-outline-primary btn-sm"><?= __("Edit"); ?></a>
-										
+
 										<a href="<?php echo site_url('api/auth/' . $api_key); ?>" target="_blank" class="btn btn-primary btn-sm"><?= __("Test"); ?></a>
-										
-										<?php 
+
+										<?php
 											$cfnm_delete = sprintf(__("Are you sure you want delete the API Key %s?"), '&quot;'.($row->description ?? '<noname>').'&quot;');
 										?>
 										<a href="<?php echo site_url('api/delete/' . $api_key); ?>" class="btn btn-danger btn-sm" onclick="return confirm('<?php echo $cfnm_delete; ?>');"><?= __("Delete"); ?></a>
