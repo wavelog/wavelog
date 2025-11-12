@@ -1,28 +1,63 @@
 <script type="text/javascript">
-    var user_id = <?php echo $this->session->userdata('user_id'); ?>;
+    let user_id = <?php echo $this->session->userdata('user_id'); ?>;
 
     /*
      * Custom user settings
      */
-    var custom_date_format = "<?php echo $custom_date_format ?>";
+    let custom_date_format = "<?php echo $custom_date_format ?>";
     let user_map_custom = JSON.parse('<?php echo $user_map_custom; ?>');
 
-    var lang_gen_hamradio_latitude = '<?= __("Latitude"); ?>';
-    var lang_gen_hamradio_longitude = '<?= __("Longitude"); ?>';
-    var lang_gen_hamradio_gridsquare = '<?= __("Gridsquare"); ?>';
-    var lang_gen_hamradio_gridsquares = '<?= _pgettext("Map Options", "Gridsquares"); ?>';
-    var lang_gen_hamradio_distance = '<?= __("Distance"); ?>';
-    var lang_gen_hamradio_bearing = '<?= __("Bearing"); ?>';
-    var lang_gen_hamradio_pathlines = '<?= _pgettext("Map Options", "Path lines"); ?>';
-    var lang_gen_hamradio_callsigns = '<?= __("Show Callsigns"); ?>';
-    var lang_gen_hamradio_cq_zones = '<?= _pgettext("Map Options", "CQ Zones"); ?>';
-    var lang_gen_hamradio_itu_zones = '<?= _pgettext("Map Options", "ITU Zones"); ?>';
-    var lang_gen_hamradio_nightshadow = '<?= _pgettext("Map Options", "Night Shadow"); ?>';
-    var lang_gen_hamradio_ituzone = '<?= __("ITU Zone"); ?>';
-    var lang_gen_hamradio_cqzone = '<?= __("CQ Zone"); ?>';
-	var lang_gen_advanced_logbook_help = '<?= __("Advanced Logbook Help"); ?>';
+    let lang_gen_hamradio_latitude = '<?= __("Latitude"); ?>';
+    let lang_gen_hamradio_longitude = '<?= __("Longitude"); ?>';
+    let lang_gen_hamradio_gridsquare = '<?= __("Gridsquare"); ?>';
+    let lang_gen_hamradio_gridsquares = '<?= _pgettext("Map Options", "Gridsquares"); ?>';
+    let lang_gen_hamradio_distance = '<?= __("Distance"); ?>';
+    let lang_gen_hamradio_bearing = '<?= __("Bearing"); ?>';
+    let lang_gen_hamradio_pathlines = '<?= _pgettext("Map Options", "Path lines"); ?>';
+    let lang_gen_hamradio_callsigns = '<?= __("Show Callsigns"); ?>';
+    let lang_gen_hamradio_cq_zones = '<?= _pgettext("Map Options", "CQ Zones"); ?>';
+    let lang_gen_hamradio_itu_zones = '<?= _pgettext("Map Options", "ITU Zones"); ?>';
+    let lang_gen_hamradio_nightshadow = '<?= _pgettext("Map Options", "Night Shadow"); ?>';
+    let lang_gen_hamradio_ituzone = '<?= __("ITU Zone"); ?>';
+    let lang_gen_hamradio_cqzone = '<?= __("CQ Zone"); ?>';
+	let lang_gen_advanced_logbook_help = '<?= __("Advanced Logbook Help"); ?>';
+	let lang_gen_advanced_logbook_continent_fix = '<?= __("Continent fix"); ?>';
+	let lang_gen_advanced_logbook_problem_fixing_itu_zones = '<?= __("There was a problem fixing ITU Zones."); ?>';
+	let lang_gen_advanced_logbook_problem_fixing_cq_zones = '<?= __("There was a problem fixing CQ Zones."); ?>';
+	let lang_gen_advanced_logbook_itu_zones_updated = '<?= __("ITU Zones updated successfully!"); ?>';
+	let lang_gen_advanced_logbook_cq_zones_updated = '<?= __("CQ Zones updated successfully!"); ?>';
+	let lang_gen_advanced_logbook_select_row_itu_zones = '<?= __("You need to select at least 1 row to fix ITU Zones!"); ?>';
+	let lang_gen_advanced_logbook_select_row_cq_zones = '<?= __("You need to select at least 1 row to fix CQ Zones!"); ?>';
+	let lang_gen_advanced_logbook_select_only_one_row_quickfilter = '<?= __("Only 1 row can be selected for Quickfilter!"); ?>';
+	let lang_gen_advanced_logbook_select_at_least_one_row_quickfilter = '<?= __("You need to select a row to use the Quickfilters!"); ?>';
+	let lang_gen_advanced_logbook_select_at_least_one_row_qslcard = '<?= __("You need to select a least 1 row to display a QSL card!"); ?>';
+	let lang_gen_advanced_logbook_continents_updated = '<?= __("Continents updated successfully!"); ?>';
+	let lang_gen_advanced_logbook_problem_fixing_continents = '<?= __("There was a problem fixing Continents."); ?>';
+	let lang_gen_advanced_logbook_error = '<?= __("ERROR"); ?>';
+	let lang_gen_advanced_logbook_success = '<?= __("SUCCESS"); ?>';
+	let lang_gen_advanced_logbook_info = '<?= __("INFO"); ?>';
+	let lang_gen_advanced_logbook_warning = '<?= __("WARNING"); ?>';
+	let lang_gen_advanced_logbook_qsl_card = '<?= __("QSL Card"); ?>';
+	let lang_gen_advanced_logbook_close = '<?= __("Close"); ?>';
+	let lang_gen_advanced_logbook_save = '<?= __("Save"); ?>';
+	let lang_gen_advanced_logbook_update_now = '<?= __("Update now"); ?>';
+	let lang_gen_advanced_logbook_options = '<?= __("'Options for the Advanced Logbook'"); ?>';
+	let lang_gen_advanced_logbook_label_print_error = '<?= __("Something went wrong with label print. Go to labels and check if you have defined a label, and that it is set for print!"); ?>';
+	let lang_gen_advanced_logbook_select_at_least_one_row = '<?= __("You need to select a least 1 row!"); ?>';
+	let lang_gen_advanced_logbook_start_printing_at_which_label = '<?= __("Start printing at which label?"); ?>';
+	let lang_gen_advanced_logbook_select_at_least_one_row_label = '<?= __("You need to select at least 1 row to print a label!"); ?>';
+	let lang_gen_advanced_logbook_error_saving_options = '<?= __("An error occurred while saving options: "); ?>';
+	let lang_gen_advanced_logbook_select_at_least_one_row_delete = '<?= __("You need to select a least 1 row to delete!"); ?>';
+	let lang_gen_advanced_logbook_select_at_least_one_row_callbook = '<?= __("You need to select a least 1 row to update from callbook!"); ?>';
+	let lang_gen_advanced_logbook_an_error_ocurred_while_making_request = '<?= __("An error ocurred while making the request"); ?>';
+	let lang_gen_advanced_logbook_select_at_least_one_location = '<?= __("You need to select at least 1 location to do a search!"); ?>';
+	let lang_gen_advanced_logbook_update_distances = '<?= __("Update Distances"); ?>';
+	let lang_gen_advanced_logbook_records_updated = '<?= __("QSO records updated."); ?>';
+	let lang_gen_advanced_logbook_problem_updating_distances = '<?= __("There was a problem updating distances."); ?>';
+	let lang_gen_advanced_logbook_distances_updated = '<?= __("Distances updated successfully!"); ?>';
+
+    let homegrid ='<?php echo strtoupper($homegrid[0]); ?>';
     <?php
-    echo "var homegrid ='" . strtoupper($homegrid[0]) . "';";
     if (!isset($options)) {
         $options = "{
             \"datetime\":{\"show\":\"true\"},
@@ -699,6 +734,8 @@ $options = json_decode($options);
 									<button type="button" class="btn btn-sm btn-info dropdown-action" id="qslSlideshow"><?= __("QSL Slideshow"); ?></button>
 									<button type="button" class="btn btn-sm btn-success dropdown-action" id="fixCqZones"><?= __("Fix CQ Zones"); ?></button>
 									<button type="button" class="btn btn-sm btn-success dropdown-action" id="fixItuZones"><?= __("Fix ITU Zones"); ?></button>
+									<button type="button" class="btn btn-sm btn-success dropdown-action" id="fixContinent"><?= __("Fix Continent"); ?></button>
+									<button type="button" class="btn btn-sm btn-success dropdown-action" id="updateDistances"><?= __("Update Distances"); ?></button>
 									</div>
 								</div>
 							</div>

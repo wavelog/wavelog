@@ -1,7 +1,6 @@
 <!-- DX Waterfall Component - START -->
 <?php if ($this->session->userdata('user_dxwaterfall_enable') == 'Y' && isset($manual_mode) && $manual_mode == 0) { ?>
-	<!-- DX Waterfall Component - JS -->
-	<script src="<?php echo base_url() ;?>assets/js/dxwaterfall.js?v=<?php echo floor(time() / 3600); ?>"></script>
+	<!-- DX Waterfall Component - JS loaded in footer after radiohelpers.js -->
 	<script language="javascript">
 		/*
 		DX Waterfall Language
@@ -41,6 +40,8 @@
 		var lang_dxwaterfall_comment = "<?= __("Comment: "); ?>";
 		var lang_dxwaterfall_modes_label = "<?= __("modes:"); ?>";
 		var lang_dxwaterfall_out_of_bandplan = "<?= __("OUT OF BANDPLAN"); ?>";
+		var lang_dxwaterfall_out_of_band = "<?= __("Out of band"); ?>";
+		var lang_dxwaterfall_error_shutdown = "<?= __("DX Waterfall has experienced an unexpected error and will be shut down. Please visit Wavelog's GitHub and create a bug report if this issue persists."); ?>";
 		var lang_dxwaterfall_changing_frequency = "<?= __("Changing radio frequency..."); ?>";
 		var lang_dxwaterfall_invalid = "<?= __("INVALID"); ?>";
 		var lang_dxwaterfall_turn_on = "<?= __("Click to turn on the DX Waterfall"); ?>";
@@ -55,8 +56,8 @@
 		var lang_dxwaterfall_spotted_by = "<?= __("by:"); ?>";
 
 		// DX Waterfall Configuration from User Options
-		let dxwaterfall_decont = '<?php echo $this->optionslib->get_option('dxcluster_decont'); ?>';
-		let dxwaterfall_maxage = '<?php echo $this->optionslib->get_option('dxcluster_maxage'); ?>';
+		let dxcluster_default_decont = "<?php echo $dxcluster_default_decont; ?>";
+		let dxcluster_default_maxage = "<?php echo $dxcluster_default_maxage; ?>";
 
 		// Helper function to safely check if optional field exists
 		window.DX_WATERFALL_HAS_FIELD = function(fieldName) {
@@ -70,24 +71,30 @@
 
 	<!-- DX Waterfall Component - HTML -->
 	<div class="row dxwaterfallpane">
-	<div class="col-sm-12">
-		<div id="dxWaterfallSpot">
-		<div id="dxWaterfallSpotHeader">
-			<div id="dxWaterfallSpotLeft">
-			<span id="dxWaterfallMessage"></span>
+		<div class="col-sm-12">
+			<div id="dxWaterfallSpot">
+				<div id="dxWaterfallSpotHeader">
+					<div id="dxWaterfallSpotLeft">
+						<span id="dxWaterfallMessage"></span>
+					</div>
+					<a id="dxWaterfallHelpIcon" href="https://github.com/wavelog/wavelog/wiki/DXWaterfall" target="_blank" rel="noopener noreferrer" title="<?= __("DX Waterfall Help"); ?>">
+						<i class="fas fa-question-circle"></i>
+					</a>
+					<i id="dxWaterfallPowerOnIcon" class="fas fa-power-off"></i>
+				</div>
+				<div id="dxWaterfallSpotContent"></div>
+				<a id="dxWaterfallHelpIconOff" href="https://github.com/wavelog/wavelog/wiki/DXWaterfall" target="_blank" rel="noopener noreferrer" title="<?= __("DX Waterfall Help"); ?>">
+					<i class="fas fa-question-circle"></i>
+				</a>
+				<i id="dxWaterfallPowerOffIcon" class="fas fa-power-off"></i>
 			</div>
-			<i id="dxWaterfallPowerOnIcon" class="fas fa-power-off"></i>
 		</div>
-		<div id="dxWaterfallSpotContent"></div>
-		<i id="dxWaterfallPowerOffIcon" class="fas fa-power-off"></i>
+		<div class="col-sm-12" id="dxWaterfallCanvasContainer" style="display: none;">
+			<canvas id="dxWaterfall"></canvas>
 		</div>
-	</div>
-	<div class="col-sm-12" id="dxWaterfallCanvasContainer" style="display: none;">
-		<canvas id="dxWaterfall"></canvas>
-	</div>
-	<div class="col-sm-12" id="dxWaterfallMenuContainer" style="display: none;">
-		<div id="dxWaterfallMenu">&nbsp;</div>
-	</div>
+		<div class="col-sm-12" id="dxWaterfallMenuContainer" style="display: none;">
+			<div id="dxWaterfallMenu">&nbsp;</div>
+		</div>
 	</div>
 
 <?php } ?>
