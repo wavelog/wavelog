@@ -728,6 +728,10 @@ class Logbookadvanced_model extends CI_Model {
 			$updatedData['COL_CONT'] = $this->logbook_model->getContinent($callbook['dxcc']);
 			$updated = true;
 		}
+		if (!empty($callbook['email']) && empty($qso['COL_EMAIL'])) {
+			$updatedData['COL_EMAIL'] = $callbook['email'];
+			$updated = true;
+		}
 
 		//Also set QRZ.com status to modified
 		if($updated == true && $qso['COL_QRZCOM_QSO_UPLOAD_STATUS'] == 'Y') {
@@ -1240,4 +1244,61 @@ class Logbookadvanced_model extends CI_Model {
 
 		$query = $this->db->query($sql, array(json_decode($ids, true), $this->session->userdata('user_id')));
     }
+
+	public function check_missing_continent() {
+		// get all records with no COL_CONT
+		$this->db->trans_start();
+		$sql = "UPDATE " . $this->config->item('table_name') . "
+			JOIN dxcc_entities ON " . $this->config->item('table_name') . ".col_dxcc = dxcc_entities.adif
+			JOIN station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
+			SET col_cont = dxcc_entities.cont
+			WHERE COALESCE(" . $this->config->item('table_name') . ".col_cont, '') = '' and station_profile.user_id = ?";
+
+		$query = $this->db->query($sql, array($this->session->userdata('user_id')));
+		$result = $this->db->affected_rows();
+		$this->db->trans_complete();
+
+		return $result;
+	}
+
+	public function update_distances_batch() {
+		ini_set('memory_limit', '-1');
+
+		$sql = "SELECT COL_ANT_PATH, COL_DISTANCE, COL_PRIMARY_KEY, station_profile.station_gridsquare, COL_GRIDSQUARE, COL_VUCC_GRIDS FROM " . $this->config->item('table_name') . "
+			JOIN station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
+			WHERE COL_GRIDSQUARE is NOT NULL
+			AND COL_GRIDSQUARE != ''
+			AND station_profile.user_id = ?
+			AND (COL_DISTANCE = '' or COL_DISTANCE is NULL)
+			and COL_GRIDSQUARE != station_gridsquare";
+
+		$query = $this->db->query($sql, array($this->session->userdata('user_id')));
+
+		$recordcount = $query->num_rows();
+
+		if ($recordcount > 0) {
+			$this->load->library('Qra');
+
+			$updates = [];
+			foreach ($query->result() as $row) {
+				$distance = $this->qra->distance(
+					$row->station_gridsquare,
+					$row->COL_GRIDSQUARE,
+					'K',
+					$row->COL_ANT_PATH ?? null
+				);
+
+				$updates[] = [
+					'COL_PRIMARY_KEY' => $row->COL_PRIMARY_KEY,
+					'COL_DISTANCE' => $distance,
+				];
+			}
+
+			if (!empty($updates)) {
+				$this->db->update_batch($this->config->item('table_name'), $updates, 'COL_PRIMARY_KEY');
+			}
+		}
+
+		return $recordcount;
+	}
 }

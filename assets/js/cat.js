@@ -48,6 +48,16 @@ $(document).ready(function() {
     // Cache for radio names to avoid repeated AJAX calls
     var radioNameCache = {};
 
+    // Global CAT state - stores last received data from radio
+    // This allows other components (like DX Waterfall) to read radio state
+    // without depending on form fields
+    window.catState = {
+        frequency: null,      // Hz
+        frequency_rx: null,   // Hz (for split operation)
+        mode: null,           // String (USB, LSB, CW, etc.)
+        lastUpdate: null      // Timestamp of last update
+    };
+
     /**
      * Initialize WebSocket connection for real-time radio updates
      * Handles connection, reconnection logic, and error states
@@ -69,6 +79,10 @@ $(document).ready(function() {
         AJAX_TIMEOUT_MS: 5000,
         LOCK_TIMEOUT_MS: 10000
     };
+
+    // Global setting for radio status display mode (can be set by pages like bandmap)
+    // Options: false (card wrapper), 'compact' (no card), 'ultra-compact' (tooltip only)
+    window.CAT_COMPACT_MODE = window.CAT_COMPACT_MODE || false;
 
     function initializeWebSocketConnection() {
         try {
@@ -124,6 +138,7 @@ $(document).ready(function() {
     /**
      * Handle incoming WebSocket data messages
      * Processes 'welcome' and 'radio_status' message types
+     * On bandmap, only processes radio status when CAT Control is enabled
      * @param {object} data - Message data from WebSocket server
      */
     function handleWebSocketData(data) {
@@ -134,6 +149,17 @@ $(document).ready(function() {
 
         // Handle radio status updates
         if (data.type === 'radio_status' && data.radio && ($(".radios option:selected").val() == 'ws')) {
+            // On bandmap page, check CAT Control state
+            if (typeof window.isCatTrackingEnabled !== 'undefined') {
+                if (!window.isCatTrackingEnabled) {
+                    // CAT Control is OFF - show offline status and skip processing
+                    if (window.CAT_COMPACT_MODE === 'ultra-compact') {
+                        displayOfflineStatus('cat_disabled');
+                    }
+                    return;
+                }
+            }
+
             data.updated_minutes_ago = Math.floor((Date.now() - data.timestamp) / 60000);
             // Cache the radio data
             updateCATui(data);
@@ -340,17 +366,98 @@ $(document).ready(function() {
     }
 
     /**
-     * Display radio status panel with unified styling
-     * Handles success (active connection), error (connection lost), timeout (stale data), and not_logged_in states
+     * Display radio status panel with current CAT information
+     * Creates or updates a Bootstrap card panel showing radio connection status and frequency data
      * Includes visual feedback with color-coded icon and blink animation on updates
+     * Respects global CAT_COMPACT_MODE setting for rendering style
      * @param {string} state - Display state: 'success', 'error', 'timeout', or 'not_logged_in'
      * @param {object|string} data - Radio data object (success) or radio name string (error/timeout/not_logged_in)
+     * CAT_COMPACT_MODE options:
+     *   false - Standard mode with card wrapper
+     *   'compact' - Compact mode without card wrapper
+     *   'ultra-compact' - Ultra-compact mode showing only tooltip with info
+     * @param {string} reason - Optional reason: 'no_radio' (default) or 'cat_disabled'
+     */
+    function displayOfflineStatus(reason) {
+        // Display "Working offline" message with tooltip in ultra-compact mode
+        if (window.CAT_COMPACT_MODE !== 'ultra-compact') {
+            return;
+        }
+
+        // Default to 'no_radio' for backward compatibility
+        reason = reason || 'no_radio';
+
+        // Use translation variable if available, fallback to English
+        var offlineText = typeof lang_cat_working_offline !== 'undefined' ? lang_cat_working_offline : 'Working without CAT connection';
+
+        const offlineHtml = '<span id="radio_cat_state" class="text-body" style="display: inline-flex; align-items: center; font-size: 0.875rem;">' +
+                           '<i class="fas fa-unlink text-warning" style="margin-right: 5px;"></i>' +
+                           '<span style="margin-right: 5px;">' + offlineText + '</span>' +
+                           '<i id="radio-status-icon" class="fas fa-info-circle text-muted" style="cursor: help;" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom"></i>' +
+                           '</span>';
+
+        let tooltipContent;
+        if (reason === 'cat_disabled') {
+            // Use translation variable if available, fallback to English
+            tooltipContent = typeof lang_cat_offline_cat_disabled !== 'undefined'
+                ? lang_cat_offline_cat_disabled
+                : 'CAT connection is currently disabled. Enable CAT connection to work in online mode with your radio.';
+        } else {
+            // reason === 'no_radio' (default)
+            tooltipContent = typeof lang_cat_offline_no_radio !== 'undefined'
+                ? lang_cat_offline_no_radio
+                : 'To connect your radio to Wavelog, visit the Wavelog Wiki for setup instructions.';
+        }
+
+        // Remove existing radio status if present
+        $('#radio_cat_state').remove();
+
+        // Add offline status
+        $('#radio_status').append(offlineHtml);
+
+        // Initialize tooltip
+        var tooltipElement = document.querySelector('#radio_status [data-bs-toggle="tooltip"]');
+        if (tooltipElement) {
+            new bootstrap.Tooltip(tooltipElement, {
+                title: tooltipContent,
+                html: true,
+                placement: 'bottom'
+            });
+        }
+    }
+
+    /**
+     * Display radio status in the UI
+     * @param {string} state - One of 'success', 'error', 'timeout', 'not_logged_in'
+     * @param {object|string} data - Radio data object (success) or radio name string (error/timeout/not_logged_in)
+     * CAT_COMPACT_MODE options:
+     *   false - Standard mode with card wrapper
+     *   'compact' - Compact mode without card wrapper
+     *   'ultra-compact' - Ultra-compact mode showing only tooltip with info
      */
     function displayRadioStatus(state, data) {
-        var iconClass, content;
-        var baseStyle = '<div style="display: flex; align-items: center; font-size: calc(1rem - 2px);">';
+        // On bandmap page, only show radio status when CAT Control is enabled
+        if (typeof window.isCatTrackingEnabled !== 'undefined') {
+            if (!window.isCatTrackingEnabled) {
+                // CAT Control is OFF on bandmap
+                // In ultra-compact mode, show "Working offline" with CAT disabled message
+                if (window.CAT_COMPACT_MODE === 'ultra-compact') {
+                    // Check if a radio is selected
+                    var selectedRadio = $('.radios option:selected').val();
+                    if (selectedRadio && selectedRadio !== '0') {
+                        // Radio selected but CAT disabled
+                        displayOfflineStatus('cat_disabled');
+                        return;
+                    }
+                }
+                // Standard behavior: remove radio status
+                $('#radio_cat_state').remove();
+                return;
+            }
+        }
 
-        if (state === 'success') {
+        var iconClass, content;
+        var baseStyle = '<div style="display: flex; align-items: center; font-size: calc(1rem - 2px);">';        if (state === 'success') {
             // Success state - display radio info
             iconClass = 'text-success'; // Bootstrap green for success
 
@@ -361,7 +468,7 @@ $(document).ready(function() {
             connectionType = ' (' + lang_cat_live + ')';
         } else {
             connectionType = ' (' + lang_cat_polling + ')';
-            connectionTooltip = ' <i class="fas fa-question-circle" style="font-size: 0.9em; cursor: help;" data-bs-toggle="tooltip" title="' + lang_cat_polling_tooltip + '"></i>';
+            connectionTooltip = ' <span class="fas fa-question-circle" style="font-size: 0.9em; cursor: help;" data-bs-toggle="tooltip" title="' + lang_cat_polling_tooltip + '"></span>';
         }
 
         // Build radio info line
@@ -440,41 +547,154 @@ $(document).ready(function() {
         var icon = '<i id="radio-status-icon" class="fas fa-radio ' + iconClass + '" style="margin-right: 10px; font-size: 1.2em;"></i>';
         var html = baseStyle + icon + content + '</div>';
 
-    // Update DOM
-    if (!$('#radio_cat_state').length) {
-        // Create panel if it doesn't exist
-        $('#radio_status').prepend('<div id="radio_cat_state" class="card"><div class="card-body">' + html + '</div></div>');
-    } else {
-        // Dispose of existing tooltips before updating content
-        $('#radio_cat_state [data-bs-toggle="tooltip"]').each(function() {
-            var tooltipInstance = bootstrap.Tooltip.getInstance(this);
-            if (tooltipInstance) {
-                tooltipInstance.dispose();
-            }
-        });
-        // Update existing panel content
-        $('#radio_cat_state .card-body').html(html);
-    }			// Initialize Bootstrap tooltips for any new tooltip elements in the radio panel
-        $('#radio_cat_state [data-bs-toggle="tooltip"]').each(function() {
-            new bootstrap.Tooltip(this);
-        });
+		// Update DOM based on global CAT_COMPACT_MODE setting
+		if (window.CAT_COMPACT_MODE === 'ultra-compact') {
+			// Ultra-compact mode: show radio icon, radio name, and question mark with tooltip
+			var tooltipContent = '';
+			var radioName = '';
 
-        // Trigger blink animation on successful updates
-        if (state === 'success') {
-            $('#radio-status-icon').addClass('radio-icon-blink');
-            setTimeout(function() {
-                $('#radio-status-icon').removeClass('radio-icon-blink');
-            }, 400);
-        }
-    }
+		if (state === 'success') {
+			// Build tooltip content with all radio information
+			// Use the full dropdown text (includes "Polling - " and "(last updated)" etc.)
+			radioName = $('select.radios option:selected').text();
+			var connectionType = '';
+			if ($(".radios option:selected").val() == 'ws') {
+				connectionType = lang_cat_live;
+			} else {
+				connectionType = lang_cat_polling;
+			}				tooltipContent = '<b>' + radioName + '</b> (' + connectionType + ')';
+
+				// Add frequency info
+				if(data.frequency_rx != null && data.frequency_rx != 0) {
+					tooltipContent += '<br><b>' + lang_cat_tx + ':</b> ' + data.frequency_formatted;
+					data.frequency_rx_formatted = format_frequency(data.frequency_rx);
+					if (data.frequency_rx_formatted) {
+						tooltipContent += '<br><b>' + lang_cat_rx + ':</b> ' + data.frequency_rx_formatted;
+					}
+				} else {
+					tooltipContent += '<br><b>' + lang_cat_tx_rx + ':</b> ' + data.frequency_formatted;
+				}
+
+				// Add mode
+				if(data.mode != null) {
+					tooltipContent += '<br><b>' + lang_cat_mode + ':</b> ' + data.mode;
+				}
+
+				// Add power
+				if(data.power != null && data.power != 0) {
+					tooltipContent += '<br><b>' + lang_cat_power + ':</b> ' + data.power + 'W';
+				}
+
+				// Add polling tooltip if applicable
+				if ($(".radios option:selected").val() != 'ws') {
+					tooltipContent += '<br><br><i>' + lang_cat_polling_tooltip + '</i>';
+				}
+			} else if (state === 'error') {
+				radioName = typeof data === 'string' ? data : $('select.radios option:selected').text();
+				tooltipContent = lang_cat_connection_error + ': <b>' + radioName + '</b><br>' + lang_cat_connection_lost;
+			} else if (state === 'timeout') {
+				radioName = typeof data === 'string' ? data : $('select.radios option:selected').text();
+				tooltipContent = lang_cat_connection_timeout + ': <b>' + radioName + '</b><br>' + lang_cat_data_stale;
+			} else if (state === 'not_logged_in') {
+				radioName = '';
+				tooltipContent = lang_cat_not_logged_in;
+			}
+
+			var ultraCompactHtml = '<span id="radio_cat_state" style="display: inline-flex; align-items: center; font-size: 0.875rem;">' +
+								  '<i class="fas fa-radio ' + iconClass + '" style="margin-right: 5px;"></i>' +
+								  '<span style="margin-right: 5px;">' + radioName + '</span>' +
+								  '<i id="radio-status-icon" class="fas fa-info-circle" style="cursor: help;" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom"></i>' +
+								  '</span>';
+
+			if (!$('#radio_cat_state').length) {
+				$('#radio_status').append(ultraCompactHtml);
+			} else {
+				// Dispose of existing tooltips before updating content
+				$('#radio_cat_state [data-bs-toggle="tooltip"]').each(function() {
+					var tooltipInstance = bootstrap.Tooltip.getInstance(this);
+					if (tooltipInstance) {
+						tooltipInstance.dispose();
+					}
+				});
+				$('#radio_cat_state').replaceWith(ultraCompactHtml);
+			}
+
+			// Initialize tooltip with dynamic content
+			var tooltipElement = document.querySelector('#radio_status [data-bs-toggle="tooltip"]');
+			if (tooltipElement) {
+				new bootstrap.Tooltip(tooltipElement, {
+					title: tooltipContent,
+					html: true,
+					placement: 'bottom'
+				});
+			}
+
+			// Add blink animation to radio icon on update
+			$('#radio_status .fa-radio').addClass('blink-once');
+			setTimeout(function() {
+				$('#radio_status .fa-radio').removeClass('blink-once');
+			}, 600);
+
+
+		} else if (window.CAT_COMPACT_MODE === 'compact' || window.CAT_COMPACT_MODE === true) {
+			// Compact mode: inject directly without card wrapper
+			if (!$('#radio_cat_state').length) {
+				$('#radio_status').prepend('<div id="radio_cat_state">' + html + '</div>');
+			} else {
+				// Dispose of existing tooltips before updating content
+				$('#radio_cat_state [data-bs-toggle="tooltip"]').each(function() {
+					var tooltipInstance = bootstrap.Tooltip.getInstance(this);
+					if (tooltipInstance) {
+						tooltipInstance.dispose();
+					}
+				});
+				$('#radio_cat_state').html(html);
+			}
+		} else {
+			// Standard mode: create card wrapper (default for backward compatibility)
+			if (!$('#radio_cat_state').length) {
+				// Create panel if it doesn't exist
+				$('#radio_status').prepend('<div id="radio_cat_state" class="card"><div class="card-body">' + html + '</div></div>');
+			} else {
+				// Dispose of existing tooltips before updating content
+				$('#radio_cat_state [data-bs-toggle="tooltip"]').each(function() {
+					var tooltipInstance = bootstrap.Tooltip.getInstance(this);
+					if (tooltipInstance) {
+						tooltipInstance.dispose();
+					}
+				});
+				// Update existing panel content
+				$('#radio_cat_state .card-body').html(html);
+			}
+		}
+
+		// Initialize Bootstrap tooltips for any new tooltip elements in the radio panel (except ultra-compact which handles its own)
+		if (window.CAT_COMPACT_MODE !== 'ultra-compact') {
+			$('#radio_cat_state [data-bs-toggle="tooltip"]').each(function() {
+				new bootstrap.Tooltip(this);
+			});
+		}
+
+		// Trigger blink animation on successful updates
+		if (state === 'success') {
+			$('#radio-status-icon').addClass('radio-icon-blink');
+			setTimeout(function() {
+				$('#radio-status-icon').removeClass('radio-icon-blink');
+			}, 400);
+		}
+	}
 
     /**
      * Process CAT data and update UI elements
      * Performs timeout check, updates form fields, and displays radio status
      * Handles both WebSocket and polling data sources
+     * Exposed globally for extension by other components (e.g., bandmap)
      * @param {object} data - CAT data object from radio (includes frequency, mode, power, etc.)
      */
-    function updateCATui(data) {
+    window.updateCATui = function updateCATui(data) {
+        // Store last CAT data globally for other components (e.g., bandmap)
+        window.lastCATData = data;
+
         // Check if data is too old FIRST - before any UI updates
         // cat_timeout_minutes is set in footer.php from PHP config
         var minutes = cat_timeout_minutes;
@@ -488,6 +708,16 @@ $(document).ready(function() {
             var radioName = $('select.radios option:selected').text();
             displayRadioStatus('timeout', radioName);
             return; // Exit early - do not update any fields with old data
+        }
+
+        // Update global CAT state FIRST before any UI updates
+        // This allows DX Waterfall and other components to read radio state
+        // without depending on form fields
+        if (window.catState) {
+            window.catState.frequency = data.frequency || null;
+            window.catState.frequency_rx = data.frequency_rx || null;
+            window.catState.mode = data.mode ? catmode(data.mode) : null;
+            window.catState.lastUpdate = new Date();
         }
 
         // Cache frequently used DOM selectors
@@ -514,6 +744,7 @@ $(document).ready(function() {
 
         // Force update by clearing catValue (prevents cat2UI from blocking updates)
         $frequency.removeData('catValue');
+        $mode.removeData('catValue'); // Also clear mode cache
         cat_updating_frequency = true; // Set flag before CAT update
 
         // Check if DX Waterfall's CAT frequency handler is available
@@ -523,22 +754,20 @@ $(document).ready(function() {
                 cat2UI($frequency,data.frequency,false,true,function(d){
                     $frequency.trigger('change'); // Trigger for other event handlers
                     const newBand = frequencyToBand(d);
-                    // Don't auto-update band if user just manually changed it (prevents race condition)
-                    if ($band.val() != newBand && (typeof dxWaterfall === 'undefined' || !dxWaterfall.userChangedBand)) {
+                    // Auto-update band based on frequency
+                    if ($band.val() != newBand) {
                         $band.val(newBand).trigger('change'); // Trigger band change
                     }
-                    cat_updating_frequency = false; // Clear flag after updates
                 });
             });
         } else {
             // Standard frequency update (no DX Waterfall debounce handling)
             cat2UI($frequency,data.frequency,false,true,function(d){
                 $frequency.trigger('change');
-                // Don't auto-update band if user just manually changed it (prevents race condition)
-                if ($band.val() != frequencyToBand(d) && (typeof dxWaterfall === 'undefined' || !dxWaterfall.userChangedBand)) {
+                // Auto-update band based on frequency
+                if ($band.val() != frequencyToBand(d)) {
                     $band.val(frequencyToBand(d)).trigger('change');
                 }
-                cat_updating_frequency = false; // Clear flag after updates
             });
         }
 
@@ -553,11 +782,33 @@ $(document).ready(function() {
             }
         }
 
-        cat2UI($mode,catmode(data.mode),false,false,function(d){setRst($mode.val())});
+        // Track previous mode to detect changes
+        var previousMode = $mode.data('catValue');
+        var newMode = catmode(data.mode);
+
+        // Only refresh waterfall if mode actually changed (and both values are defined)
+        var modeChanged = previousMode && previousMode !== newMode;
+
+        cat2UI($mode,newMode,false,false);
+
+        // Notify DX Waterfall of mode change for sideband display update
+        // Only refresh if mode actually changed (not on initial undefined → value transition)
+        if (modeChanged && typeof dxWaterfall !== 'undefined' && dxWaterfall.refresh) {
+            // Update virtual CAT state
+            if (typeof window.catState !== 'undefined' && window.catState !== null) {
+                window.catState.mode = newMode;
+            }
+            // Refresh waterfall to update bandwidth indicator
+            dxWaterfall.refresh();
+        }
+
         cat2UI($('#sat_name'),data.satname,false,false);
         cat2UI($('#sat_mode'),data.satmode,false,false);
         cat2UI($('#transmit_power'),data.power,false,false);
         cat2UI($('#selectPropagation'),data.prop_mode,false,false);
+
+        // Clear the CAT updating flag AFTER all updates
+        cat_updating_frequency = false;
 
         // Data is fresh (timeout check already passed at function start)
         // Set CAT state for waterfall if dxwaterfall_cat_state is available
@@ -590,6 +841,7 @@ $(document).ready(function() {
     /**
      * Periodic AJAX polling function for radio status updates
      * Only runs for non-WebSocket radios (skips if radio is 'ws')
+     * On bandmap, only polls when CAT Control is enabled
      * Fetches CAT data every 3 seconds and updates UI
      * Includes lock mechanism to prevent simultaneous requests
      */
@@ -602,6 +854,13 @@ $(document).ready(function() {
                 return;
             }
 
+            // On bandmap page, only poll when CAT Control is enabled
+            if (typeof window.isCatTrackingEnabled !== 'undefined') {
+                if (!window.isCatTrackingEnabled) {
+                    return; // Skip polling when CAT Control is OFF
+                }
+            }
+
             if ((typeof radioID !== 'undefined') && (radioID !== null) && (radioID !== '') && (updateFromCAT_lock == 0)) {
                 updateFromCAT_lock = 1;
 
@@ -610,7 +869,7 @@ $(document).ready(function() {
                     clearTimeout(updateFromCAT_lockTimeout);
                 }
                 updateFromCAT_lockTimeout = setTimeout(function() {
-                    console.warn('CAT lock timeout - forcing release');
+                    // Lock timeout - force release after 10 seconds
                     updateFromCAT_lock = 0;
                 }, CAT_CONFIG.LOCK_TIMEOUT_MS);
 
@@ -670,6 +929,14 @@ $(document).ready(function() {
         radioCatUrlCache = {};
         radioNameCache = {};
 
+        // If switching to None, disable CAT tracking FIRST before stopping connections
+        // This prevents any pending updates from interfering with the offline status
+        if (selectedRadioId == '0') {
+            if (typeof window.isCatTrackingEnabled !== 'undefined') {
+                window.isCatTrackingEnabled = false;
+            }
+        }
+
         // Hide radio status box (both success and error states)
         $('#radio_cat_state').remove();
 
@@ -693,6 +960,12 @@ $(document).ready(function() {
             if (typeof dxwaterfall_cat_state !== 'undefined') {
                 dxwaterfall_cat_state = "none";
             }
+            // Disable CAT Connection button when no radio is selected
+            $('#toggleCatTracking').prop('disabled', true).addClass('disabled');
+            // Also turn OFF CAT Connection (remove green button state)
+            $('#toggleCatTracking').removeClass('btn-success').addClass('btn-secondary');
+            // Display offline status when no radio selected
+            displayOfflineStatus('no_radio');
         } else if (selectedRadioId == 'ws') {
             websocketIntentionallyClosed = false; // Reset flag when opening WebSocket
             reconnectAttempts = 0; // Reset reconnect attempts
@@ -700,17 +973,33 @@ $(document).ready(function() {
             if (typeof dxwaterfall_cat_state !== 'undefined') {
                 dxwaterfall_cat_state = "websocket";
             }
+            // Enable CAT Control button when radio is selected
+            $('#toggleCatTracking').prop('disabled', false).removeClass('disabled');
+            // Always initialize WebSocket connection
             initializeWebSocketConnection();
+            // In ultra-compact mode, show offline status if CAT Control is disabled
+            if (window.CAT_COMPACT_MODE === 'ultra-compact' && typeof window.isCatTrackingEnabled !== 'undefined' && !window.isCatTrackingEnabled) {
+                displayOfflineStatus('cat_disabled');
+            }
         } else {
             // Set DX Waterfall CAT state to polling if variable exists
             if (typeof dxwaterfall_cat_state !== 'undefined') {
                 dxwaterfall_cat_state = "polling";
             }
-            // Update frequency at configured interval
+            // Enable CAT Control button when radio is selected
+            $('#toggleCatTracking').prop('disabled', false).removeClass('disabled');
+            // Always start polling
             CATInterval=setInterval(updateFromCAT, CAT_CONFIG.POLL_INTERVAL);
+            // In ultra-compact mode, show offline status if CAT Control is disabled
+            if (window.CAT_COMPACT_MODE === 'ultra-compact' && typeof window.isCatTrackingEnabled !== 'undefined' && !window.isCatTrackingEnabled) {
+                displayOfflineStatus('cat_disabled');
+            }
         }
     });
 
     // Trigger initial radio change to start monitoring selected radio
     $('.radios').change();
+
+    // Expose displayOfflineStatus globally for other components (e.g., bandmap CAT Control toggle)
+    window.displayOfflineStatus = displayOfflineStatus;
 });

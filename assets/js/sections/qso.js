@@ -647,39 +647,138 @@ function save_fav() {
 
 var bc_bandmap = new BroadcastChannel('qso_window');
 bc_bandmap.onmessage = function (ev) {
-	if (ev.data == 'ping' && qso_manual == 0) {
+	// Always respond to ping, regardless of manual mode
+	// This allows bandmap to detect existing QSO windows
+	if (ev.data == 'ping') {
 		bc_bandmap.postMessage('pong');
+	}
+}
+
+// Store pending references from bandmap to populate AFTER callsign lookup completes
+var pendingReferences = null;
+
+// Track last lookup to prevent duplicate calls
+var lastLookupCallsign = null;
+var lookupInProgress = false;
+
+// Helper function to populate reference fields after callsign lookup completes
+function populatePendingReferences(refsToPopulate) {
+	// Use provided references or fall back to global pendingReferences
+	var refs = refsToPopulate || pendingReferences;
+
+	if (!refs) {
+		return;
+	}
+
+	// POTA - uses selectize
+	if (refs.pota_ref && $('#pota_ref').length) {
+		try {
+			var $select = $('#pota_ref').selectize();
+			if ($select.length && $select[0].selectize) {
+				var selectize = $select[0].selectize;
+				selectize.addOption({name: refs.pota_ref});
+				selectize.setValue(refs.pota_ref, false);
+				$('#pota_ref').trigger('change');
+			}
+		} catch (e) {
+			console.warn('Could not set POTA reference:', e);
+		}
+	}
+
+	// SOTA - uses selectize
+	if (refs.sota_ref && $('#sota_ref').length) {
+		try {
+			var $select = $('#sota_ref').selectize();
+			if ($select.length && $select[0].selectize) {
+				var selectize = $select[0].selectize;
+				selectize.addOption({name: refs.sota_ref});
+				selectize.setValue(refs.sota_ref, false);
+				$('#sota_ref').trigger('change');
+			}
+		} catch (e) {
+			console.warn('Could not set SOTA reference:', e);
+		}
+	}
+
+	// WWFF - uses selectize
+	if (refs.wwff_ref && $('#wwff_ref').length) {
+		try {
+			var $select = $('#wwff_ref').selectize();
+			if ($select.length && $select[0].selectize) {
+				var selectize = $select[0].selectize;
+				selectize.addOption({name: refs.wwff_ref});
+				selectize.setValue(refs.wwff_ref, false);
+				$('#wwff_ref').trigger('change');
+			}
+		} catch (e) {
+			console.warn('Could not set WWFF reference:', e);
+		}
+	}
+
+	// IOTA - regular select dropdown (not selectize)
+	if (refs.iota_ref && $('#iota_ref').length) {
+		try {
+			let $iotaSelect = $('#iota_ref');
+			if ($iotaSelect.find('option[value="' + refs.iota_ref + '"]').length === 0) {
+				$iotaSelect.append(new Option(refs.iota_ref, refs.iota_ref));
+			}
+			$iotaSelect.val(refs.iota_ref).trigger('change');
+		} catch (e) {
+			console.warn('Could not set IOTA reference:', e);
+		}
+	}
+
+	// Only clear global pendingReferences if we used it (not a captured copy)
+	if (!refsToPopulate && pendingReferences) {
+		pendingReferences = null;
 	}
 }
 
 var bc = new BroadcastChannel('qso_wish');
 bc.onmessage = function (ev) {
-	if (qso_manual == 0) {
-		if (ev.data.ping) {
+	// Handle ping/pong only when manual mode is disabled (qso_manual == 0)
+	if (ev.data.ping) {
+		if (qso_manual == 0) {
 			let message = {};
 			message.pong = true;
 			bc.postMessage(message);
-		} else {
-			// console.log(ev.data);
-			let delay = 0;
-			if ($("#callsign").val() != "") {
-				reset_fields();
-				delay = 600;
-			}
-			setTimeout(() => {
-				if (ev.data.frequency != null) {
-					$('#frequency').val(ev.data.frequency).trigger("change");
-					$("#band").val(frequencyToBand(ev.data.frequency));
-				}
-				if (ev.data.frequency_rx != "") {
-					$('#frequency_rx').val(ev.data.frequency_rx);
-					$("#band_rx").val(frequencyToBand(ev.data.frequency_rx));
-				}
-				$("#callsign").val(ev.data.call);
-				$("#callsign").focusout();
-				$("#callsign").blur();
-			}, delay);
 		}
+	} else {
+		// Always process frequency, callsign, and reference data from bandmap
+		// (regardless of manual mode - bandmap should control the form)
+
+		// Store references for later population (after callsign lookup completes)
+		pendingReferences = {
+			pota_ref: ev.data.pota_ref,
+			sota_ref: ev.data.sota_ref,
+			wwff_ref: ev.data.wwff_ref,
+			iota_ref: ev.data.iota_ref
+		};
+
+		let delay = 0;
+		// Only reset if callsign is different from what we're about to set
+		if ($("#callsign").val() != "" && $("#callsign").val() != ev.data.call) {
+			reset_fields();
+			delay = 600;
+		}
+
+		setTimeout(() => {
+			if (ev.data.frequency != null) {
+				$('#frequency').val(ev.data.frequency).trigger("change");
+				$("#band").val(frequencyToBand(ev.data.frequency));
+			}
+			if (ev.data.frequency_rx != "") {
+				$('#frequency_rx').val(ev.data.frequency_rx);
+				$("#band_rx").val(frequencyToBand(ev.data.frequency_rx));
+			}
+			// Set mode if provided (backward compatible - optional field)
+			if (ev.data.mode) {
+				$("#mode").val(ev.data.mode);
+			}
+			$("#callsign").val(ev.data.call);
+			$("#callsign").focusout();
+			$("#callsign").blur();
+		}, delay);
 	}
 } /* receive */
 
@@ -1097,6 +1196,20 @@ function get_note_status(callsign){
 $("#callsign").on("focusout", function () {
 	if ($(this).val().length >= 3 && preventLookup == false) {
 
+		var currentCallsign = $(this).val().toUpperCase().replaceAll('Ø', '0');
+
+		// Prevent duplicate lookups for the same callsign if already in progress
+		if (lookupInProgress && lastLookupCallsign === currentCallsign) {
+			return;
+		}
+
+		// If callsign changed, allow new lookup even if one is in progress
+		lastLookupCallsign = currentCallsign;
+		lookupInProgress = true;
+
+		// Capture pendingReferences for THIS lookup (before it gets overwritten by another click)
+		var capturedReferences = pendingReferences ? Object.assign({}, pendingReferences) : null;
+
 		// Disable Save QSO button and show fetch status
 		$('#saveQso').prop('disabled', true);
 		$('#fetch_status').show();
@@ -1202,6 +1315,13 @@ $("#callsign").on("focusout", function () {
 					}
 
 					changebadge(result.dxcc.adif);
+
+					// Reload DXCC summary table if it was already loaded
+					let $targetPane = $('#dxcc-summary');
+					if ($targetPane.data("loaded")) {
+						$targetPane.data("loaded", false);
+						getDxccResult(result.dxcc.adif, convert_case(result.dxcc.entity));
+					}
 
 				}
 
@@ -1645,6 +1765,13 @@ $("#callsign").on("focusout", function () {
 				clearTimeout(fetchTimeout);
 				$('#saveQso').prop('disabled', false);
 				$('#fetch_status').hide();
+
+				// Populate pending references from bandmap (after all lookup logic completes)
+				// Small delay to ensure DOM is fully updated
+				// Use the captured references from when THIS lookup started
+				setTimeout(function() {
+					populatePendingReferences(capturedReferences);
+				}, 100);
 			}
 
 			// Trigger custom event to notify that callsign lookup is complete
@@ -1660,6 +1787,9 @@ $("#callsign").on("focusout", function () {
 			clearTimeout(fetchTimeout);
 			$('#saveQso').prop('disabled', false);
 			$('#fetch_status').hide();
+
+			// Reset lookup in progress flag
+			lookupInProgress = false;
 		});
 	} else {
 		// Reset QSO fields
@@ -2232,100 +2362,44 @@ $('.mode').on('change', function () {
 $('#band').on('change', function () {
 	const selectedBand = $(this).val();
 
-	// Skip if this is a programmatic change from CAT/waterfall
-	if (typeof window.programmaticBandChange !== 'undefined' && window.programmaticBandChange) {
-		return;
-	}
+	// In offline mode (CAT disabled), allow band changes to set default frequency
+	// In CAT mode, band selector is display-only - it follows the radio frequency
+	if (typeof isCATAvailable === 'function' && !isCATAvailable()) {
+		// Offline mode - get default frequency for band and mode
+		const currentMode = $('#mode').val() || 'SSB';
 
-	// Skip resetting frequency if CAT is currently updating
-	if (typeof cat_updating_frequency !== 'undefined' && cat_updating_frequency) {
-		return;
-	}
+		$.get('qso/band_to_freq/' + selectedBand + '/' + currentMode, function (result) {
+			if (result && result > 0) {
+				// Update frequency field
+				$('#frequency').val(result).trigger("change");
+				$('#frequency_rx').val("");
 
-	// Clear the QSO form when band is manually changed
-	$('#btn_reset').click();
+				// Update virtual CAT state
+				if (typeof window.catState === 'undefined' || window.catState === null) {
+					window.catState = {};
+				}
+				window.catState.frequency = parseFloat(result); // Hz
+				window.catState.mode = currentMode;
+				window.catState.lastUpdate = Date.now();
 
-	// Set flag to prevent waterfall from auto-reverting the band change
-	if (typeof dxWaterfall !== 'undefined') {
-		dxWaterfall.userChangedBand = true;
-		if (dxWaterfall.userChangedBandTimer) {
-			clearTimeout(dxWaterfall.userChangedBandTimer);
-		}
-		dxWaterfall.userChangedBandTimer = setTimeout(function() {
-			dxWaterfall.userChangedBand = false;
-		}, 10000);
-
-		// Reset operation timer when band is manually changed
-		dxWaterfall.operationStartTime = Date.now();
-
-		// Set waiting flags to prevent waterfall from rendering with wrong band edges
-		// This will be cleared after the frequency is loaded
-		dxWaterfall.waitingForData = true;
-		dxWaterfall.dataReceived = false;
-		dxWaterfall.waitingForFrequencyUpdate = true; // Prevent spot fetch from clearing waitingForData
-
-		// Invalidate frequency cache to prevent using stale frequency during band change
-		// This forces getCachedMiddleFreq() to wait for new frequency
-		if (dxWaterfall.lastValidCommittedFreq) {
-			dxWaterfall.lastValidCommittedFreq = null;
-			dxWaterfall.cache.middleFreq = null;
-		}
-	}
-
-	// Check if current frequency is already in the selected band
-	const currentFreq = $('#frequency').val();
-	const currentBand = currentFreq ? frequencyToBand(currentFreq) : '';
-
-	// Only fetch default frequency if current frequency is not already in the selected band
-	if (!currentFreq || currentBand !== selectedBand) {
-		$.get(base_url + 'index.php/qso/band_to_freq/' + selectedBand + '/' + $('.mode').val(), function (result) {
-			// Set the frequency
-			$('#frequency').val(result);
-
-			// Update the displayed frequency field with proper units
-			set_qrg();
-
-			// Tune the radio to the new frequency FIRST (using global selectedRadioId)
-			// Use skipWaterfall=true to force direct radio tuning when band is manually changed
-			if (typeof tuneRadioToFrequency === 'function') {
-				tuneRadioToFrequency(null, result, null, null, null, true);  // skipWaterfall=true
+				// Update relevant spots for the new band/frequency
+				if (typeof dxWaterfall !== 'undefined' && dxWaterfall && typeof dxWaterfall.collectAllBandSpots === 'function') {
+					dxWaterfall.collectAllBandSpots(true);
+				}
 			}
-
-			// DO NOT clear waitingForFrequencyUpdate yet - wait for CAT to confirm the frequency
-			// The CAT update handler in footer.php will clear it when the radio responds
-			// This prevents the waterfall from rendering with stale frequency data
-	});
-} else {
-	// Frequency is already in the selected band, just update display
-	set_qrg();
-
-	// Still tune the radio to the current frequency (user may have changed band but frequency stayed the same)
-	if (typeof tuneRadioToFrequency === 'function') {
-		const currentFreqHz = $('#frequency').val();
-		if (currentFreqHz) {
-			tuneRadioToFrequency(null, currentFreqHz, null, null, null, true);  // skipWaterfall=true
-		}
+		});
 	}
+	// In CAT mode, do nothing - band changes do NOT clear the form or update the frequency
 
-	// Clear waiting flags immediately since no frequency change needed
-	if (typeof dxWaterfall !== 'undefined') {
-		dxWaterfall.waitingForData = false;
-		dxWaterfall.waitingForFrequencyUpdate = false;
-
-		// Update zoom menu after band change completes
-		if (dxWaterfall.updateZoomMenu) {
-			dxWaterfall.updateZoomMenu(true);
-		}
+	// Update DXCC summary badge and table when band changes (if a DXCC entity is selected)
+	var dxccVal = $('#dxcc_id').val();
+	if (dxccVal && dxccVal != '0') {
+		changebadge(dxccVal);
+		// Reload DXCC summary table
+		let $targetPane = $('#dxcc-summary');
+		$targetPane.data("loaded", false);
+		getDxccResult(dxccVal, $('#dxcc_id option:selected').text());
 	}
-}
-
-$('#frequency_rx').val("");
-	$('#band_rx').val("");
-	$("#selectPropagation").val("");
-	$("#sat_name").val("");
-	$("#sat_mode").val("");
-	$("#callsign").blur();
-	stop_az_ele_ticker();
 });
 
 /* On Key up Calculate Bearing and Distance */
@@ -2944,12 +3018,18 @@ $(document).ready(function () {
 		});
 	}
 
-	// Handle manual frequency entry - tune radio when user changes frequency
+	// Handle manual frequency entry - DO NOT tune radio (form follows radio, not vice versa)
 	$('#freq_calculated').on('change', function() {
+		// Skip if CAT is currently updating - don't interfere with radio updates
+		if (typeof cat_updating_frequency !== 'undefined' && cat_updating_frequency) {
+			return;
+		}
+
 		// set_new_qrg() is defined in qrg_handler.js and will:
 		// 1. Parse the frequency value and convert to Hz
 		// 2. Update #frequency (hidden field)
-		// 3. Tune the radio via tuneRadioToFrequency()
+		// 3. Update #band selector to match the frequency
+		// NOTE: Does NOT tune the radio - manual form changes are display-only
 		if (typeof set_new_qrg === 'function') {
 			set_new_qrg();
 		}
