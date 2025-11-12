@@ -8,12 +8,21 @@
 
 class Awards extends CI_Controller {
 
+	private $user_map_color_qso;
+	private $user_map_color_qsoconfirm;
+	private $user_map_color_unworked;
+
 	function __construct()
 	{
 		parent::__construct();
 
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
+		$map_custom = json_decode($this->optionslib->get_map_custom());
+		$this->user_map_color_qso = $map_custom->qso->color;
+		$this->user_map_color_qsoconfirm = $map_custom->qsoconfirm->color;
+		$this->user_map_color_unworked = $map_custom->unworked->color;
 	}
 
 	public function index()
@@ -664,7 +673,7 @@ class Awards extends CI_Controller {
 
         if ($logbooks_locations_array) {
 			$location_list = "'".implode("','",$logbooks_locations_array)."'";
-            $data['cq_array'] = $this->cq->get_cq_array($bands, $postdata, $location_list);
+            $data['cq_array'] = $this->cq->get_cq_array($bands, $postdata, $location_list, $this->user_map_color_qso, $this->user_map_color_qsoconfirm);
             $data['cq_summary'] = $this->cq->get_cq_summary($bands, $postdata, $location_list);
 		} else {
             $location_list = null;
