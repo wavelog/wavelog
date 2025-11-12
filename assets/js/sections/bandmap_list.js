@@ -949,20 +949,20 @@ $(function() {
 				wked_info = "";
 			}
 
-	// Build LoTW badge with color coding based on last upload age
-	var lotw_badge = '';
-	if (single.dxcc_spotted && single.dxcc_spotted.lotw_user) {
-		let lclass = '';
-		if (single.dxcc_spotted.lotw_user > 365) {
-			lclass = 'lotw_info_red';
-		} else if (single.dxcc_spotted.lotw_user > 30) {
-			lclass = 'lotw_info_orange';
-		} else if (single.dxcc_spotted.lotw_user > 7) {
-		lclass = 'lotw_info_yellow';
+		// Build LoTW badge with color coding based on last upload age
+		var lotw_badge = '';
+		if (single.dxcc_spotted && single.dxcc_spotted.lotw_user) {
+			let lclass = '';
+			if (single.dxcc_spotted.lotw_user > 365) {
+				lclass = 'lotw_info_red';
+			} else if (single.dxcc_spotted.lotw_user > 30) {
+				lclass = 'lotw_info_orange';
+			} else if (single.dxcc_spotted.lotw_user > 7) {
+			lclass = 'lotw_info_yellow';
+		}
+		let lotw_title = lang_bandmap_lotw_last_upload.replace('%d', single.dxcc_spotted.lotw_user);
+		lotw_badge = '<a href="https://lotw.arrl.org/lotwuser/act?act=' + single.spotted + '" target="_blank" onclick="event.stopPropagation();">' + buildBadge('success ' + lclass, 'fa-upload', lotw_title) + '</a>';
 	}
-	let lotw_title = lang_bandmap_lotw_last_upload + ' ' + single.dxcc_spotted.lotw_user + ' ' + lang_bandmap_days_ago;
-	lotw_badge = '<a href="https://lotw.arrl.org/lotwuser/act?act=' + single.spotted + '" target="_blank" onclick="event.stopPropagation();">' + buildBadge('success ' + lclass, 'fa-upload', lotw_title) + '</a>';
-}
 
 	// Build activity badges (POTA, SOTA, WWFF, IOTA, Contest, Worked)
 	let activity_flags = '';
@@ -1011,7 +1011,7 @@ $(function() {
 	if (single.worked_call) {
 		let worked_title = lang_bandmap_worked_before;
 		if (single.last_wked && single.last_wked.LAST_QSO && single.last_wked.LAST_MODE) {
-			worked_title = lang_bandmap_worked + ': ' + single.last_wked.LAST_QSO + ' ' + lang_bandmap_in + ' ' + single.last_wked.LAST_MODE;
+			worked_title = lang_bandmap_worked_details.replace('%s', single.last_wked.LAST_QSO).replace('%s', single.last_wked.LAST_MODE);
 		}
 		let worked_badge_type = single.cnfmd_call ? 'success' : 'warning';
 		// isLast is true only if fresh badge won't be added
@@ -1020,28 +1020,30 @@ $(function() {
 
 	if (isFresh) {
 		activity_flags += buildBadge('danger', 'fa-bolt', lang_bandmap_fresh_spot, null, true);
-	}		// Build table row array
-		data[0] = [];		// Age column: show age in minutes with auto-update attribute
-		let ageMinutes = single.age || 0;
-		let spotTimestamp = single.when ? new Date(single.when).getTime() : Date.now();
-		data[0].push('<span class="spot-age" data-spot-time="' + spotTimestamp + '">' + ageMinutes + '</span>');
+	}
 
-		// Band column: show band designation
-		data[0].push(single.band || '');
+	// Build table row array
+	data[0] = [];		// Age column: show age in minutes with auto-update attribute
+	let ageMinutes = single.age || 0;
+	let spotTimestamp = single.when ? new Date(single.when).getTime() : Date.now();
+	data[0].push('<span class="spot-age" data-spot-time="' + spotTimestamp + '">' + ageMinutes + '</span>');
 
-		// Frequency column: convert kHz to MHz with 3 decimal places
-		let freqMHz = (single.frequency / 1000).toFixed(3);
-		data[0].push(freqMHz);
+	// Band column: show band designation
+	data[0].push(single.band || '');
 
-		// Mode column: capitalize properly
-		let displayMode = single.mode || '';
-		if (displayMode.toLowerCase() === 'phone') displayMode = 'Phone';
-		else if (displayMode.toLowerCase() === 'cw') displayMode = 'CW';
-		else if (displayMode.toLowerCase() === 'digi') displayMode = 'Digi';
-		data[0].push(displayMode);
+	// Frequency column: convert kHz to MHz with 3 decimal places
+	let freqMHz = (single.frequency / 1000).toFixed(3);
+	data[0].push(freqMHz);
+
+	// Mode column: capitalize properly
+	let displayMode = single.mode || '';
+	if (displayMode.toLowerCase() === 'phone') displayMode = 'Phone';
+	else if (displayMode.toLowerCase() === 'cw') displayMode = 'CW';
+	else if (displayMode.toLowerCase() === 'digi') displayMode = 'Digi';
+	data[0].push(displayMode);
 
 	// Callsign column: wrap in QRZ link with color coding
-	let qrzLink = '<a href="https://www.qrz.com/db/' + single.spotted + '" target="_blank" onclick="event.stopPropagation();" data-bs-toggle="tooltip" title="' + lang_bandmap_click_view_qrz + ' ' + single.spotted + ' ' + lang_bandmap_on_qrz + '">' + single.spotted + '</a>';
+	let qrzLink = '<a href="https://www.qrz.com/db/' + single.spotted + '" target="_blank" onclick="event.stopPropagation();" data-bs-toggle="tooltip" title="' + lang_bandmap_click_view_qrz_callsign.replace('%s', single.spotted) + '">' + single.spotted + '</a>';
 	wked_info = ((wked_info != '' ? '<span class="' + wked_info + '">' : '') + qrzLink + (wked_info != '' ? '</span>' : ''));
 	var spotted = wked_info;
 	data[0].push(spotted);	// Continent column: color code based on worked/confirmed status
@@ -1065,7 +1067,7 @@ $(function() {
 	// CQ Zone column: show CQ Zone (moved here, right after Cont)
 	let cqz_value = (single.dxcc_spotted && single.dxcc_spotted.cqz) ? single.dxcc_spotted.cqz : '';
 	if (cqz_value) {
-		data[0].push('<a href="javascript:spawnLookupModal(\'' + cqz_value + '\',\'cq\')"; data-bs-toggle="tooltip" title="' + lang_bandmap_see_details_cqz + ' ' + cqz_value + '">' + cqz_value + '</a>');
+		data[0].push('<a href="javascript:spawnLookupModal(\'' + cqz_value + '\',\'cq\')"; data-bs-toggle="tooltip" title="' + lang_bandmap_see_details_cqz_value.replace('%s', cqz_value) + '">' + cqz_value + '</a>');
 	} else {
 		data[0].push('');
 	}	// Flag column: just the flag emoji without entity name
@@ -1090,7 +1092,7 @@ $(function() {
 	data[0].push(dxcc_number);
 
 	// de Callsign column (Spotter) - clickable QRZ link
-	let spotterQrzLink = '<a href="https://www.qrz.com/db/' + single.spotter + '" target="_blank" onclick="event.stopPropagation();" data-bs-toggle="tooltip" title="' + lang_bandmap_click_view_qrz + ' ' + single.spotter + ' ' + lang_bandmap_on_qrz + '">' + single.spotter + '</a>';
+	let spotterQrzLink = '<a href="https://www.qrz.com/db/' + single.spotter + '" target="_blank" onclick="event.stopPropagation();" data-bs-toggle="tooltip" title="' + lang_bandmap_click_view_qrz_callsign.replace('%s', single.spotter) + '">' + single.spotter + '</a>';
 	data[0].push(spotterQrzLink);
 
 	// de Cont column: spotter's continent

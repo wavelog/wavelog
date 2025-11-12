@@ -80,17 +80,19 @@
 	var lang_bandmap_contest_name = "<?= __("Contest"); ?>"; // Same as above, for "Contest: NAME" format
 	var lang_bandmap_click_view_qrz = "<?= __("Click to view"); ?>";
 	var lang_bandmap_on_qrz = "<?= __("on QRZ.com"); ?>";
+	var lang_bandmap_click_view_qrz_callsign = "<?= __("Click to view %s on QRZ.com"); ?>";
 	var lang_bandmap_see_details = "<?= __("See details for"); ?>";
 	var lang_bandmap_worked_on = "<?= __("Worked on"); ?>";
 	var lang_bandmap_not_worked_band = "<?= __("Not worked on this band"); ?>";
-	var lang_bandmap_lotw_last_upload = "<?= __("LoTW User. Last upload was"); ?>";
-	var lang_bandmap_days_ago = "<?= __("days ago"); ?>";
+	var lang_bandmap_lotw_last_upload = "<?= __("LoTW User. Last upload was %d days ago"); ?>";
 	var lang_bandmap_click_to_view_pota = "<?= __("Click to view on POTA.app"); ?>";
 	var lang_bandmap_click_to_view_sotl = "<?= __("Click to view on SOTL.as"); ?>";
 	var lang_bandmap_click_to_view_wwff = "<?= __("Click to view on cqgma.org"); ?>";
 	var lang_bandmap_click_to_view_iota = "<?= __("Click to view on IOTA-World.org"); ?>";
 	var lang_bandmap_see_details_continent = "<?= __("See details for continent"); ?>";
+	var lang_bandmap_see_details_continent_value = "<?= __("See details for continent %s"); ?>";
 	var lang_bandmap_see_details_cqz = "<?= __("See details for CQ Zone"); ?>";
+	var lang_bandmap_see_details_cqz_value = "<?= __("See details for CQ Zone %s"); ?>";
 	var lang_bandmap_in = "<?= __("in"); ?>";
 
 	// Bandmap UI messages
