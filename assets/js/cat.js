@@ -789,7 +789,7 @@ $(document).ready(function() {
         // Only refresh waterfall if mode actually changed (and both values are defined)
         var modeChanged = previousMode && previousMode !== newMode;
 
-        cat2UI($mode,newMode,false,false,function(d){setRst($mode.val())});
+        cat2UI($mode,newMode,false,false);
 
         // Notify DX Waterfall of mode change for sideband display update
         // Only refresh if mode actually changed (not on initial undefined → value transition)

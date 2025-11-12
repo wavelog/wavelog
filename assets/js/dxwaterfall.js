@@ -1267,8 +1267,8 @@ var dxWaterfall = {
     spotInfoDiv: null,
     spotTooltipDiv: null,
     lastSpotInfoKey: null,
-    currentContinent: 'NA',
-    currentMaxAge: 60,
+    currentContinent: dxcluster_default_decont,
+    currentMaxAge: dxcluster_default_maxage,
 
     // ========================================
     // SPOT NAVIGATION STATE
@@ -3297,9 +3297,9 @@ var dxWaterfall = {
         var age = 60; // minutes
         var de = this.currentContinent; // Use current continent (may have been cycled)
 
-        // Check if dxwaterfall_maxage is defined
-        if (typeof dxwaterfall_maxage !== "undefined" && dxwaterfall_maxage != null) {
-            age = dxwaterfall_maxage;
+        // Check if dxcluster_default_maxage is defined
+        if (typeof dxcluster_default_maxage !== "undefined" && dxcluster_default_maxage != null) {
+            age = dxcluster_default_maxage;
         }
 
         // Store current settings
@@ -6247,17 +6247,11 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
         return;
     }
 
-    // CAT not available - use manual frequency setting
-    // Set unit button to kHz for consistency (waterfall works in kHz)
-    $('#qrg_unit').text('kHz');
+    // Update frequency field with value in Hz
+    $('#frequency').val(frequencyInKHz * 1000);
 
-    // Update frequency field with value in kHz
-    $('#frequency').val(frequencyInKHz);
-
-    // Also update freq_calculated field that waterfall reads from (always in kHz)
-    $('#freq_calculated').val(frequencyInKHz);
-
-    // Only trigger change if this is NOT from waterfall (external frequency change)
+    // Trigger change event to update calculated fields and unit display
+    // Skip trigger when called from waterfall to prevent recursive updates
     if (!fromWaterfall) {
         $('#frequency').trigger('change');
     }

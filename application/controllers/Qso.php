@@ -92,8 +92,14 @@ class QSO extends CI_Controller {
 		$qkey_opt=$this->user_options_model->get_options('dxwaterfall',array('option_name'=>'enable','option_key'=>'boolean'))->result();
 		if (count($qkey_opt)>0) {
 			$data['user_dxwaterfall_enable'] = $qkey_opt[0]->option_value;
+			$data['dxcluster_default_decont'] = $this->optionslib->get_option('dxcluster_decont') ?? 'EU';
+			$data['dxcluster_default_maxage'] = $this->optionslib->get_option('dxcluster_maxage') ?? 60;
 		} else {
 			$data['user_dxwaterfall_enable'] = 0;
+			
+			// default but not used, prevent unset variable, without the need of a db call
+			$data['dxcluster_default_decont'] = 'EU';
+			$data['dxcluster_default_maxage'] = 60;
 		}
 
 		$data['qso_count'] = $this->session->userdata('qso_page_last_qso_count');
