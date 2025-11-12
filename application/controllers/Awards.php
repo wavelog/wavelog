@@ -1590,7 +1590,7 @@ class Awards extends CI_Controller {
 
         if ($logbooks_locations_array) {
 			$location_list = "'".implode("','",$logbooks_locations_array)."'";
-            $cq_array = $this->cq->get_cq_array($bands, $postdata, $location_list);
+            $cq_array = $this->cq->get_cq_array($bands, $postdata, $location_list, $this->user_map_color_qso, $this->user_map_color_qsoconfirm);
 		} else {
             $location_list = null;
             $cq_array = null;
