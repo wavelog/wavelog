@@ -32,7 +32,7 @@
 			.awardsBgSuccess {
 				background-color: <?php echo $colors->qsoconfirm->color; ?> !important;
 			}
-			.awardsBgWarning {
+			.awardsBgDanger {
 				background-color: <?php echo $colors->qso->color; ?> !important;
 			}
 		</style>
