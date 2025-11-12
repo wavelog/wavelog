@@ -56,8 +56,8 @@
 		var lang_dxwaterfall_spotted_by = "<?= __("by:"); ?>";
 
 		// DX Waterfall Configuration from User Options
-		let dxwaterfall_decont = '<?php echo $this->optionslib->get_option('dxcluster_decont'); ?>';
-		let dxwaterfall_maxage = '<?php echo $this->optionslib->get_option('dxcluster_maxage'); ?>';
+		let dxcluster_default_decont = "<?php echo $dxcluster_default_decont; ?>";
+		let dxcluster_default_maxage = "<?php echo $dxcluster_default_maxage; ?>";
 
 		// Helper function to safely check if optional field exists
 		window.DX_WATERFALL_HAS_FIELD = function(fieldName) {
