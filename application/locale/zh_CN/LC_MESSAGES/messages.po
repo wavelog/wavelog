@@ -23,10 +23,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-11-12 05:36+0000\n"
-"PO-Revision-Date: 2025-11-11 16:20+0000\n"
-"Last-Translator: ShenRQ <shen.ruiqin@foxmail.com>\n"
-"Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
-"org/projects/wavelog/main-translation/zh_Hans/>\n"
+"PO-Revision-Date: 2025-11-12 16:04+0000\n"
+"Last-Translator: Lu Chang <chinaluchang@live.com>\n"
+"Language-Team: Chinese (Simplified Han script) <https://"
+"translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -607,7 +607,7 @@ msgstr "73 on 73"
 #: application/controllers/Awards.php:2281
 #: application/views/awards/wpx/wpx_details.php:19
 msgid "WPX"
-msgstr ""
+msgstr "WPX"
 
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:318
@@ -1956,11 +1956,11 @@ msgstr "编辑笔记"
 msgid ""
 "Duplicate note title for this category and user - not allowed for Contacts "
 "category."
-msgstr ""
+msgstr "通讯录分类中不允许重复的笔记标题。"
 
 #: application/controllers/Notes.php:283
 msgid "Not found or not allowed"
-msgstr ""
+msgstr "未找到或不允许"
 
 #: application/controllers/Notes.php:298
 msgid "Not found"
@@ -1972,7 +1972,7 @@ msgstr "类别和标题是必填项"
 
 #: application/controllers/Notes.php:328
 msgid "Note not found or not allowed"
-msgstr ""
+msgstr "未找到笔记或不允许"
 
 #: application/controllers/Notes.php:335
 msgid "Note deleted"
@@ -1988,7 +1988,7 @@ msgstr "无法创建空的笔记"
 
 #: application/controllers/Notes.php:352
 msgid "A note with this callsign already exists"
-msgstr ""
+msgstr "已存在此呼号的笔记"
 
 #: application/controllers/Notes.php:362
 msgid "Note created"
@@ -1999,13 +1999,13 @@ msgstr "笔记已创建"
 msgid ""
 "Contacts note title must be a callsign only, without prefix/suffix. "
 "Suggested: %s"
-msgstr ""
+msgstr "通讯录笔记标题必须为不带前、后缀的呼号。建议：%s"
 
 #: application/controllers/Notes.php:382 application/controllers/Notes.php:408
 msgid ""
 "A note with this callsign already exists in your Contacts. Please enter a "
 "unique callsign."
-msgstr ""
+msgstr "通讯录中已存在带有此呼号的笔记。请输入一个唯一的呼号。"
 
 #: application/controllers/Options.php:23
 #: application/controllers/Options.php:33
@@ -2853,11 +2853,11 @@ msgstr "Hams of Note 更新"
 
 #: application/controllers/Update.php:707
 msgid "VUCC Grid file update complete. Result: "
-msgstr ""
+msgstr "VUCC 网格文件更新完成。结果： "
 
 #: application/controllers/Update.php:709
 msgid "VUCC Grid file update failed. Result: "
-msgstr ""
+msgstr "VUCC 网格文件更新失败。结果： "
 
 #: application/controllers/User.php:50
 #: application/views/interface_assets/header.php:306
@@ -3432,7 +3432,7 @@ msgstr "方位角"
 
 #: application/models/Note.php:7
 msgid "Contacts"
-msgstr ""
+msgstr "通讯录"
 
 #: application/models/Note.php:8
 #: application/views/interface_assets/footer.php:110
@@ -3447,7 +3447,7 @@ msgstr "天线"
 
 #: application/models/Note.php:61 application/models/Note.php:91
 msgid "In Contacts category, the titles of the notes need to be unique."
-msgstr ""
+msgstr "在通讯录类别中，笔记标题需要是唯一的。"
 
 #: application/models/Update_model.php:352
 msgid "Newer release available:"
@@ -6733,7 +6733,7 @@ msgstr "弹出窗口被禁止，请永久允许本站的弹出窗口。"
 
 #: application/views/bandmap/list.php:16
 msgid "CAT Connection Required"
-msgstr "需要连接CAT设备"
+msgstr "需要连接 CAT 设备"
 
 #: application/views/bandmap/list.php:17
 msgid "Enable CAT connection to tune the radio"
@@ -6817,7 +6817,7 @@ msgstr ""
 
 #: application/views/bandmap/list.php:41
 msgid "Loading data from DX Cluster"
-msgstr "正在从 DX Cluster加载数据"
+msgstr "正在从 DX Cluster 加载数据"
 
 #: application/views/bandmap/list.php:42
 msgid "Last fetched for"
@@ -6976,7 +6976,7 @@ msgstr ""
 #: application/views/bandmap/list.php:92
 #: application/views/components/dxwaterfall.php:15
 msgid "spots"
-msgstr ""
+msgstr "spots"
 
 #: application/views/bandmap/list.php:93
 msgid "spot"
@@ -7063,15 +7063,15 @@ msgstr "无"
 
 #: application/views/bandmap/list.php:182 application/views/qso/index.php:387
 msgid "Live - "
-msgstr ""
+msgstr "Live - "
 
 #: application/views/bandmap/list.php:182 application/views/qso/index.php:387
 msgid "WebSocket (Requires WLGate>=1.1.10)"
-msgstr ""
+msgstr "WebSocket（需要 WLGate>=1.1.10）"
 
 #: application/views/bandmap/list.php:184 application/views/qso/index.php:389
 msgid "Polling - "
-msgstr ""
+msgstr "轮询中 - "
 
 #: application/views/bandmap/list.php:193
 msgid "de:"
@@ -7236,17 +7236,17 @@ msgstr ""
 #: application/views/bandmap/list.php:398
 #: application/views/components/dxwaterfall.php:32
 msgid "Toggle CW mode filter"
-msgstr ""
+msgstr "切换 CW 模式过滤器"
 
 #: application/views/bandmap/list.php:399
 #: application/views/components/dxwaterfall.php:34
 msgid "Toggle Digital mode filter"
-msgstr ""
+msgstr "切换数字模式过滤器"
 
 #: application/views/bandmap/list.php:400
 #: application/views/components/dxwaterfall.php:30
 msgid "Toggle Phone mode filter"
-msgstr ""
+msgstr "切换语音模式过滤器"
 
 #: application/views/bandmap/list.php:409
 msgid "Toggle LoTW User filter"
@@ -8221,95 +8221,95 @@ msgstr "从 Clublog 下载 QSL"
 
 #: application/views/components/dxwaterfall.php:13
 msgid "Tune to spot frequency and start logging QSO"
-msgstr ""
+msgstr "调谐到 spot 并开始记录通联"
 
 #: application/views/components/dxwaterfall.php:14
 msgid "Cycle through nearby spots"
-msgstr ""
+msgstr "循环浏览 spot 附近"
 
 #: application/views/components/dxwaterfall.php:17
 msgid "New DXCC"
-msgstr ""
+msgstr "新 DXCC"
 
 #: application/views/components/dxwaterfall.php:19
 msgid "First spot"
-msgstr ""
+msgstr "首个 spot"
 
 #: application/views/components/dxwaterfall.php:19
 msgid "Previous spot"
-msgstr ""
+msgstr "上一个 spot"
 
 #: application/views/components/dxwaterfall.php:20
 msgid "No spots at lower frequency"
-msgstr ""
+msgstr "更低的频率上没有 spot"
 
 #: application/views/components/dxwaterfall.php:21
 msgid "Last spot"
-msgstr ""
+msgstr "末个 spot"
 
 #: application/views/components/dxwaterfall.php:21
 msgid "Next spot"
-msgstr ""
+msgstr "下一个 spot"
 
 #: application/views/components/dxwaterfall.php:22
 msgid "No spots at higher frequency"
-msgstr ""
+msgstr "更高的频率上没有 spot"
 
 #: application/views/components/dxwaterfall.php:23
 msgid "No spots available"
-msgstr ""
+msgstr "没有可用的 spot"
 
 #: application/views/components/dxwaterfall.php:24
 msgid "Cycle through unworked continents/DXCC"
-msgstr ""
+msgstr "轮流联系未通联过的大洲/DXCC"
 
 #: application/views/components/dxwaterfall.php:25
 msgid "DX Hunter"
-msgstr ""
+msgstr "DX 猎人"
 
 #: application/views/components/dxwaterfall.php:26
 msgid "No unworked continents/DXCC on this band"
-msgstr ""
+msgstr "在这个频段上没有未通联的大洲/DXCC"
 
 #: application/views/components/dxwaterfall.php:27
 msgid "Click to cycle or wait 1.5s to apply"
-msgstr ""
+msgstr "单击以循环或等待 1.5 秒以应用"
 
 #: application/views/components/dxwaterfall.php:28
 msgid "Change spotter continent"
-msgstr ""
+msgstr "更改 spotter 大洲"
 
 #: application/views/components/dxwaterfall.php:29
 msgid "Filter by mode"
-msgstr ""
+msgstr "按模式筛选"
 
 #: application/views/components/dxwaterfall.php:36
 msgid "Zoom out"
-msgstr ""
+msgstr "缩小"
 
 #: application/views/components/dxwaterfall.php:37
 msgid "Reset zoom to default (3)"
-msgstr ""
+msgstr "将缩放重置为默认值 (3)"
 
 #: application/views/components/dxwaterfall.php:38
 msgid "Zoom in"
-msgstr ""
+msgstr "放大"
 
 #: application/views/components/dxwaterfall.php:39
 msgid "Downloading DX Cluster data"
-msgstr ""
+msgstr "下载 DX 集群数据"
 
 #: application/views/components/dxwaterfall.php:40
 msgid "Comment: "
-msgstr ""
+msgstr "备注： "
 
 #: application/views/components/dxwaterfall.php:41
 msgid "modes:"
-msgstr ""
+msgstr "模式："
 
 #: application/views/components/dxwaterfall.php:42
 msgid "OUT OF BANDPLAN"
-msgstr ""
+msgstr "超出频率计划"
 
 #: application/views/components/dxwaterfall.php:43
 msgid "Out of band"
@@ -8323,51 +8323,51 @@ msgstr ""
 
 #: application/views/components/dxwaterfall.php:45
 msgid "Changing radio frequency..."
-msgstr ""
+msgstr "更改无线电频率中..."
 
 #: application/views/components/dxwaterfall.php:46
 msgid "INVALID"
-msgstr ""
+msgstr "无效"
 
 #: application/views/components/dxwaterfall.php:47
 msgid "Click to turn on the DX Waterfall"
-msgstr ""
+msgstr "点击开启 DX 瀑布图"
 
 #: application/views/components/dxwaterfall.php:48
 msgid "Turn off DX Waterfall"
-msgstr ""
+msgstr "关闭 DX 瀑布图"
 
 #: application/views/components/dxwaterfall.php:49
 msgid "Please wait"
-msgstr ""
+msgstr "请稍等"
 
 #: application/views/components/dxwaterfall.php:50
 msgid "Cycle label size"
-msgstr ""
+msgstr "循环标签大小"
 
 #: application/views/components/dxwaterfall.php:51
 msgid "X-Small"
-msgstr ""
+msgstr "极小"
 
 #: application/views/components/dxwaterfall.php:52
 msgid "Small"
-msgstr ""
+msgstr "小"
 
 #: application/views/components/dxwaterfall.php:53
 msgid "Medium"
-msgstr ""
+msgstr "中"
 
 #: application/views/components/dxwaterfall.php:54
 msgid "Large"
-msgstr ""
+msgstr "大"
 
 #: application/views/components/dxwaterfall.php:55
 msgid "X-Large"
-msgstr ""
+msgstr "极大"
 
 #: application/views/components/dxwaterfall.php:56
 msgid "by:"
-msgstr ""
+msgstr "由："
 
 #: application/views/components/dxwaterfall.php:80
 #: application/views/components/dxwaterfall.php:86
@@ -8673,7 +8673,7 @@ msgstr "序号"
 
 #: application/views/contesting/index.php:160
 msgid "WebSocket (Requires WLGate>1.1.10)"
-msgstr ""
+msgstr "WebSocket（需要 WLGate>1.1.10）"
 
 #: application/views/contesting/index.php:187
 #: application/views/contesting/index.php:270
@@ -8892,7 +8892,7 @@ msgstr "传播模式"
 #: application/views/csv/index.php:95
 msgctxt "Propagation Mode"
 msgid "All but Repeater"
-msgstr ""
+msgstr "除了中继器外"
 
 #: application/views/dashboard/index.php:5
 msgid "RSTS"
@@ -8907,7 +8907,7 @@ msgstr "对方收我"
 msgid ""
 "You need to upgrade your PHP version. Minimum version is %s. Your version "
 "is: %s."
-msgstr ""
+msgstr "你需要升级你的 PHP 版本。最低版本为 %s。您的版本是 %s。"
 
 #: application/views/dashboard/index.php:118
 #, php-format
@@ -8939,13 +8939,13 @@ msgctxt "Dashboard Warning"
 msgid ""
 "Your active station location is not linked to your active station logbook. "
 "Click %shere%s to do it."
-msgstr ""
+msgstr "您的活动电台位置未关联到您的活动电台日志簿。点击%s这里%s进行关联。"
 
 #: application/views/dashboard/index.php:163
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station linked to your logbook. Click %shere%s to do it."
-msgstr ""
+msgstr "您的日志簿没有绑定电台。单击 %s这里%s 进行设置。"
 
 #: application/views/dashboard/index.php:173
 #, php-format
@@ -8958,7 +8958,7 @@ msgstr[0] "您今天有 %d 个 QSO"
 msgid ""
 "Don't loose your streak - You have already had at least one QSO for the last "
 "%s consecutive days."
-msgstr ""
+msgstr "不要打破你的连续纪录 - 你已经连续 %s 天至少有一次通联。"
 
 #: application/views/dashboard/index.php:184
 msgid "You have made no QSOs today; time to turn on the radio!"
@@ -8980,24 +8980,24 @@ msgctxt "LoTW Warning"
 msgid ""
 "LoTW Warning: There is an issue with at least one of your %sLoTW "
 "certificates%s!"
-msgstr ""
+msgstr "LoTW警告：你至少有一个 %sLoTW 证书%s存在问题！"
 
 #: application/views/dashboard/index.php:216
 msgid "At least one of your certificates is expired"
-msgstr ""
+msgstr "您至少一张证书已过期"
 
 #: application/views/dashboard/index.php:217
 msgid "At least one of your certificates is expiring"
-msgstr ""
+msgstr "您至少一张证书即将过期"
 
 #: application/views/dashboard/index.php:218
 msgid "The QSO end date of at least one of your certificates was exceeded"
-msgstr ""
+msgstr "您至少一张证书的 QSO 结束日期已过期"
 
 #: application/views/dashboard/index.php:219
 msgid ""
 "The QSO end date of at least one of your certificates is about to be exceeded"
-msgstr ""
+msgstr "您至少一张证书的 QSO 结束日期即将过期"
 
 #: application/views/dashboard/index.php:297
 #: application/views/qso/index.php:899
@@ -9719,7 +9719,7 @@ msgstr "HAMqsl"
 
 #: application/views/debug/index.php:573
 msgid "VUCC Grids"
-msgstr ""
+msgstr "VUCC 网格"
 
 #: application/views/debug/index.php:582
 msgid "QSO-DB Maintenance"
@@ -10452,19 +10452,19 @@ msgstr "卫星信息"
 
 #: application/views/interface_assets/footer.php:62
 msgid "Error loading notes"
-msgstr ""
+msgstr "加载笔记时出错"
 
 #: application/views/interface_assets/footer.php:63
 msgid "Sorting"
-msgstr ""
+msgstr "排序"
 
 #: application/views/interface_assets/footer.php:64
 msgid "Duplication is disabled for Contacts notes"
-msgstr ""
+msgstr "通讯录笔记已禁用复制功能"
 
 #: application/views/interface_assets/footer.php:66
 msgid "Duplicate"
-msgstr ""
+msgstr "复制"
 
 #: application/views/interface_assets/footer.php:67
 #: application/views/notes/view.php:48
@@ -10473,108 +10473,108 @@ msgstr "删除笔记"
 
 #: application/views/interface_assets/footer.php:68
 msgid "Duplicate Note"
-msgstr ""
+msgstr "复制笔记"
 
 #: application/views/interface_assets/footer.php:69
 msgid "Delete this note?"
-msgstr ""
+msgstr "删除这条笔记？"
 
 #: application/views/interface_assets/footer.php:70
 msgid "Duplicate this note?"
-msgstr ""
+msgstr "复制这条笔记？"
 
 #: application/views/interface_assets/footer.php:71
 msgid "Duplication Disabled"
-msgstr ""
+msgstr "复制功能已禁用"
 
 #: application/views/interface_assets/footer.php:72
 msgid "No notes were found"
-msgstr ""
+msgstr "未找到笔记"
 
 #: application/views/interface_assets/footer.php:73
 msgid "No notes for this callsign"
-msgstr ""
+msgstr "不存在此呼号的笔记"
 
 #: application/views/interface_assets/footer.php:74
 msgid "Callsign Note"
-msgstr ""
+msgstr "呼号笔记"
 
 #: application/views/interface_assets/footer.php:75
 msgid "Note deleted successfully"
-msgstr ""
+msgstr "笔记删除成功"
 
 #: application/views/interface_assets/footer.php:76
 msgid "Note created successfully"
-msgstr ""
+msgstr "笔记创建成功"
 
 #: application/views/interface_assets/footer.php:77
 msgid "Note saved successfully"
-msgstr ""
+msgstr "笔记保存成功"
 
 #: application/views/interface_assets/footer.php:78
 msgid "Error saving note"
-msgstr ""
+msgstr "保存笔记时出错"
 
 #: application/views/interface_assets/footer.php:79
 #, php-format
 msgid "QSO with %s by %s was added to logbook."
-msgstr ""
+msgstr "已将的由%s进行与%s的 QSO 添加到日志簿。"
 
 #: application/views/interface_assets/footer.php:80
 msgid "QSO Added to Backlog"
-msgstr ""
+msgstr "QSO 已添加到待办列表"
 
 #: application/views/interface_assets/footer.php:81
 #, php-format
 msgid "Send email to %s"
-msgstr ""
+msgstr "发送电子邮件至%s"
 
 #: application/views/interface_assets/footer.php:82
 msgid ""
 "Callsign was already worked and confirmed in the past on this band and mode!"
-msgstr ""
+msgstr "曾与此呼号在相同的频段和模式进行过通联且得到确认！"
 
 #: application/views/interface_assets/footer.php:83
 msgid "Callsign was already worked in the past on this band and mode!"
-msgstr ""
+msgstr "曾与此呼号在相同的频段和模式进行过通联！"
 
 #: application/views/interface_assets/footer.php:84
 msgid "New Callsign!"
-msgstr ""
+msgstr "新呼号！"
 
 #: application/views/interface_assets/footer.php:85
 msgid "Grid was already worked and confirmed in the past"
-msgstr ""
+msgstr "曾与此网格有进行过通联且得到确认"
 
 #: application/views/interface_assets/footer.php:86
 msgid "Grid was already worked in the past"
-msgstr ""
+msgstr "曾与此网格有进行过通联"
 
 #: application/views/interface_assets/footer.php:87
 msgid "New grid!"
-msgstr ""
+msgstr "新网格！"
 
 #: application/views/interface_assets/footer.php:88
 msgid "Are you sure to delete Fav?"
-msgstr ""
+msgstr "你确定要删除收藏吗？"
 
 #: application/views/interface_assets/footer.php:89
 msgid ""
 "DXCC was already worked and confirmed in the past on this band and mode!"
-msgstr ""
+msgstr "曾与此 DXCC 在相同的频段和模式进行过通联且得到确认！"
 
 #: application/views/interface_assets/footer.php:90
 msgid "DXCC was already worked in the past on this band and mode!"
-msgstr ""
+msgstr "曾与此 DXCC 在相同的频段和模式进行过通联！"
 
 #: application/views/interface_assets/footer.php:91
 msgid "New DXCC, not worked on this band and mode!"
-msgstr ""
+msgstr "新 DXCC，未在此频段和模式进行过通联！"
 
 #: application/views/interface_assets/footer.php:92
 #, php-format
 msgid "Lookup %s info on %s"
-msgstr ""
+msgstr "查找%s在%s中的信息"
 
 #: application/views/interface_assets/footer.php:93
 #, php-format
@@ -10662,11 +10662,11 @@ msgstr ""
 
 #: application/views/interface_assets/footer.php:115
 msgid "live"
-msgstr ""
+msgstr "live"
 
 #: application/views/interface_assets/footer.php:116
 msgid "polling"
-msgstr ""
+msgstr "轮询"
 
 #: application/views/interface_assets/footer.php:117
 msgid ""
@@ -10676,67 +10676,67 @@ msgstr ""
 
 #: application/views/interface_assets/footer.php:118
 msgid "TX"
-msgstr ""
+msgstr "TX"
 
 #: application/views/interface_assets/footer.php:119
 msgid "RX"
-msgstr ""
+msgstr "RX"
 
 #: application/views/interface_assets/footer.php:120
 msgid "TX/RX"
-msgstr ""
+msgstr "TX/RX"
 
 #: application/views/interface_assets/footer.php:122
 msgid "Power"
-msgstr ""
+msgstr "功率"
 
 #: application/views/interface_assets/footer.php:123
 msgid "Radio connection error"
-msgstr ""
+msgstr "电台连接错误"
 
 #: application/views/interface_assets/footer.php:124
 msgid "Connection lost, please select another radio."
-msgstr ""
+msgstr "连接丢失，请选择另一电台。"
 
 #: application/views/interface_assets/footer.php:125
 msgid "Radio connection timeout"
-msgstr ""
+msgstr "无线电连接超时"
 
 #: application/views/interface_assets/footer.php:126
 msgid "Data is stale, please select another radio."
-msgstr ""
+msgstr "数据过期，请选择另一电台。"
 
 #: application/views/interface_assets/footer.php:127
 msgid "You're not logged in. Please log in."
-msgstr ""
+msgstr "您尚未登录。请登录。"
 
 #: application/views/interface_assets/footer.php:128
 msgid "Radio Tuning Failed"
-msgstr ""
+msgstr "电台调谐失败"
 
 #: application/views/interface_assets/footer.php:129
 msgid "Failed to tune radio to"
-msgstr ""
+msgstr "无法调谐电台至"
 
 #: application/views/interface_assets/footer.php:130
 msgid "CAT interface not responding. Please check your radio connection."
-msgstr ""
+msgstr "CAT接口无响应。请检查您的电台连接。"
 
 #: application/views/interface_assets/footer.php:131
 msgid "No CAT URL configured for this radio"
-msgstr ""
+msgstr "此电台未配置 CAT URL"
 
 #: application/views/interface_assets/footer.php:132
 msgid "WebSocket Radio"
-msgstr ""
+msgstr "WebSocket 电台"
 
 #: application/views/interface_assets/footer.php:133
 msgid "Location is fetched from provided gridsquare"
-msgstr ""
+msgstr "位置从提供的网格坐标中获取"
 
 #: application/views/interface_assets/footer.php:134
 msgid "Location is fetched from DXCC coordinates (no gridsquare provided)"
-msgstr ""
+msgstr "位置是从 DXCC 坐标获取的（未提供网格坐标）"
 
 #: application/views/interface_assets/footer.php:137
 msgid "Working without CAT connection"
@@ -10999,7 +10999,7 @@ msgstr "全欧通信竞赛（WAE）"
 
 #: application/views/interface_assets/header.php:192
 msgid "Worked All Prefixes (WPX)"
-msgstr ""
+msgstr "Worked All Prefixes (WPX)"
 
 #: application/views/interface_assets/header.php:214
 msgid "Canada"
@@ -12521,19 +12521,19 @@ msgstr "最后一次上传是"
 
 #: application/views/lotw_views/index.php:96
 msgid "Certificate expired"
-msgstr ""
+msgstr "证书已过期"
 
 #: application/views/lotw_views/index.php:98
 msgid "Certificate expiring"
-msgstr ""
+msgstr "证书即将过期"
 
 #: application/views/lotw_views/index.php:100
 msgid "Certificate valid"
-msgstr ""
+msgstr "证书有效"
 
 #: application/views/lotw_views/index.php:105
 msgid "QSO end date nearing"
-msgstr ""
+msgstr "QSO 结束日期临近"
 
 #: application/views/lotw_views/index.php:115
 #, php-format
@@ -12658,7 +12658,8 @@ msgid ""
 "Contacts is a special note category used in various places of Wavelog to "
 "store information about QSO partners. These notes are private and are not "
 "shared with other users nor exported to external services."
-msgstr ""
+msgstr "通讯录是在 Wavelog 的各个地方用于存储 QSO 友台信息的特殊笔记类别。 这些笔记是"
+"私有的，不会与其他用户共享，也不会导出到外部服务。"
 
 #: application/views/notes/add.php:61 application/views/notes/edit.php:56
 msgid "Note Contents"
@@ -12671,31 +12672,31 @@ msgstr "保存笔记"
 
 #: application/views/notes/main.php:25
 msgid "All Categories"
-msgstr ""
+msgstr "所有分类"
 
 #: application/views/notes/main.php:53
 msgid "Search notes (min. 3 chars)"
-msgstr ""
+msgstr "搜索笔记（至少 3 个字符）"
 
 #: application/views/notes/main.php:54
 msgid "Add stroked zero (Ø)"
-msgstr ""
+msgstr "添加带斜线的零 (Ø)"
 
 #: application/views/notes/main.php:57
 msgid "Reset search"
-msgstr ""
+msgstr "重置搜索"
 
 #: application/views/notes/main.php:75
 msgid "Creation"
-msgstr ""
+msgstr "创造"
 
 #: application/views/notes/main.php:76
 msgid "Last Modification"
-msgstr ""
+msgstr "最后的修改"
 
 #: application/views/notes/view.php:20
 msgid "View Note"
-msgstr ""
+msgstr "查看笔记"
 
 #: application/views/operator/index.php:9
 msgid ""
@@ -14004,13 +14005,13 @@ msgstr "重置为默认"
 
 #: application/views/qso/index.php:757
 msgid "Callsign Notes"
-msgstr ""
+msgstr "呼号笔记"
 
 #: application/views/qso/index.php:758
 msgid ""
 "Store private information about your QSO partner. These notes are never "
 "shared or exported to external services."
-msgstr ""
+msgstr "存储有关你 QSO 友台的私有信息。这些备注永远不会共享或导出到外部服务。"
 
 #: application/views/qso/index.php:807
 msgid "Winkey"
@@ -14399,7 +14400,7 @@ msgstr "加载预测"
 
 #: application/views/satellite/pass.php:92
 msgid "Add sked partner"
-msgstr "添加通联伙伴"
+msgstr "添加通联友台"
 
 #: application/views/satellite/pass.php:94
 msgid "Presets"
@@ -15508,7 +15509,7 @@ msgstr "显示全部位置"
 
 #: application/views/stationsetup/stationsetup.php:106
 msgid "Show a location list"
-msgstr ""
+msgstr "显示位置列表"
 
 #: application/views/stationsetup/stationsetup.php:110
 msgid ""
@@ -16082,7 +16083,7 @@ msgstr "DX瀑布"
 
 #: application/views/user/edit.php:452
 msgid "Show an interactive DX Cluster 'Waterfall' on the QSO logging page."
-msgstr ""
+msgstr "在 QSO 记录页面上显示互动 DX 集群“瀑布图”。"
 
 #: application/views/user/edit.php:463
 msgid "Menu Options"
@@ -16334,7 +16335,7 @@ msgstr "Clublog"
 
 #: application/views/user/edit.php:926
 msgid "Club Log Email"
-msgstr ""
+msgstr "Club Log 电子邮件"
 
 #: application/views/user/edit.php:932
 msgid "Club Log Password"
@@ -16897,7 +16898,7 @@ msgstr "QSL 管理"
 
 #: application/views/view_log/qso.php:86
 msgid "View note for this callsign"
-msgstr ""
+msgstr "查看此呼号的笔记"
 
 #: application/views/view_log/qso.php:138
 msgid "Total Distance"
