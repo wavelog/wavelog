@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-11-10 12:06+0000\n"
+"POT-Creation-Date: 2025-11-12 05:36+0000\n"
 "PO-Revision-Date: 2025-11-11 02:08+0000\n"
 "Last-Translator: Szymon <sp9spm@cqops.com>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -88,9 +88,9 @@ msgstr ""
 #: application/controllers/Qsl.php:13 application/controllers/Qsl.php:49
 #: application/controllers/Qsl.php:57 application/controllers/Qslprint.php:24
 #: application/controllers/Qslprint.php:147 application/controllers/Qso.php:8
-#: application/controllers/Qso.php:22 application/controllers/Qso.php:195
-#: application/controllers/Qso.php:326 application/controllers/Qso.php:347
-#: application/controllers/Qso.php:370 application/controllers/Qso.php:670
+#: application/controllers/Qso.php:22 application/controllers/Qso.php:201
+#: application/controllers/Qso.php:332 application/controllers/Qso.php:353
+#: application/controllers/Qso.php:376 application/controllers/Qso.php:676
 #: application/controllers/Radio.php:32 application/controllers/Radio.php:297
 #: application/controllers/Radio.php:323 application/controllers/Radio.php:339
 #: application/controllers/Reg1test.php:17
@@ -131,9 +131,6 @@ msgstr ""
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
-#: application/controllers/Qso.php:201 application/controllers/Qso.php:332
-#: application/controllers/Qso.php:353 application/controllers/Qso.php:376
-#: application/controllers/Qso.php:676
 msgid "You're not allowed to do that!"
 msgstr "Nie wolno tego robić!"
 
@@ -2273,19 +2270,19 @@ msgstr "Zarządzanie kartami QSL"
 msgid "Print Requested QSLs"
 msgstr "Wydruk żądanych QSL"
 
-#: application/controllers/Qso.php:120 application/controllers/Qso.php:126
+#: application/controllers/Qso.php:126
 msgid "Add QSO"
 msgstr "Dodaj QSO"
 
-#: application/controllers/Qso.php:731 application/controllers/Qso.php:737
+#: application/controllers/Qso.php:737
 msgid "You have to be logged in to access this URL."
 msgstr "Należy być zalogowanym, aby uzyskać dostęp do tej strony."
 
-#: application/controllers/Qso.php:737 application/controllers/Qso.php:743
+#: application/controllers/Qso.php:743
 msgid "Call Transfer"
 msgstr "Przekazywanie znaków wywoławczych"
 
-#: application/controllers/Qso.php:744 application/controllers/Qso.php:750
+#: application/controllers/Qso.php:750
 msgid "No callsign provided."
 msgstr "Nie podano znaku wywoławczego."
 
@@ -6791,8 +6788,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Pola brane pod uwagę przy tej nagrodzie: DXCC (musi być jednym z: Chiny/318, "
-"Hongkong/321, Makau/152, Tajwan/386, Wyspa Pratas/505 lub Rafa Scarborough/"
-"506) oraz ważny stan (ADIF: DXCC i STATE)"
+"Hongkong/321, Makau/152, Tajwan/386, Wyspa Pratas/505 lub Rafa "
+"Scarborough/506) oraz ważny stan (ADIF: DXCC i STATE)"
 
 #: application/views/awards/wapc/index.php:119
 msgid "Code"
@@ -8597,10 +8594,8 @@ msgstr "Poza pasmem"
 #: application/views/components/dxwaterfall.php:44
 msgid ""
 "DX Waterfall has experienced an unexpected error and will be shut down. "
-"Please contact the Wavelog team for assistance."
+"Please visit Wavelog's GitHub and create a bug report if this issue persists."
 msgstr ""
-"DX Waterfall napotkał nieoczekiwany błąd i zostanie zamknięty. Skontaktuj "
-"się z zespołem Wavelog w celu uzyskania pomocy."
 
 #: application/views/components/dxwaterfall.php:45
 msgid "Changing radio frequency..."
@@ -9890,8 +9885,8 @@ msgid ""
 "Go to your application/config Folder and compare config.sample.php with your "
 "config.php"
 msgstr ""
-"Należy przejść do folderu application/config i porównać plik "
-"config.sample.php z plikiem config.php"
+"Należy przejść do folderu application/config i porównać plik config.sample."
+"php z plikiem config.php"
 
 #: application/views/debug/index.php:197
 #, php-format
@@ -17806,11 +17801,12 @@ msgstr "Prześlij prośbę"
 msgid "Rcvd"
 msgstr "Rcvd"
 
-#: application/views/components/dxwaterfall.php:44
-msgid ""
-"DX Waterfall has experienced an unexpected error and will be shut down. "
-"Please visit Wavelog's GitHub and create a bug report if this issue persists."
-msgstr ""
+#~ msgid ""
+#~ "DX Waterfall has experienced an unexpected error and will be shut down. "
+#~ "Please contact the Wavelog team for assistance."
+#~ msgstr ""
+#~ "DX Waterfall napotkał nieoczekiwany błąd i zostanie zamknięty. Skontaktuj "
+#~ "się z zespołem Wavelog w celu uzyskania pomocy."
 
 #~ msgid "Spots de"
 #~ msgstr "Spoty z"
