@@ -979,6 +979,16 @@ var DX_WATERFALL_UTILS = {
 
                 // Set up one-time event listener for when callsign lookup completes
                 $(document).one('callsignLookupComplete', function() {
+                    // SAFETY CHECK: Validate callsign hasn't been manually changed
+                    var currentCallsign = $('#callsign').val().toUpperCase().replace(/0/g, 'Ø');
+                    var originalCallsign = spotData.callsign.toUpperCase().replace(/0/g, 'Ø');
+
+                    if (currentCallsign !== originalCallsign) {
+                        // User changed the callsign - don't apply park references from original spot
+                        DX_WATERFALL_UTILS.log.debug('[DX Waterfall] Callsign changed (' + originalCallsign + ' → ' + currentCallsign + ') - skipping park ref population');
+                        return;
+                    }
+
                     // Re-populate park references after callsign lookup has cleared them
                     if (parkRefs.sota) {
                         var $sotaSelect = $('#sota_ref');
