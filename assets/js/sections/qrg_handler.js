@@ -76,7 +76,8 @@ async function set_new_qrg() {
 
 	// If field is empty or parsing failed, fetch default frequency for current band/mode
 	if (!new_qrg || new_qrg === '' || isNaN(parsed_qrg) || !isFinite(parsed_qrg) || parsed_qrg <= 0) {
-		if (typeof base_url !== 'undefined') {
+		// Check if band is selected before attempting to fetch frequency
+		if ($('#band').val() && typeof base_url !== 'undefined') {
 			try {
 				const result = await $.get(base_url + 'index.php/qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val());
 				$('#frequency').val(result);
@@ -89,11 +90,21 @@ async function set_new_qrg() {
 				return;
 			}
 		}
+		// If band is empty or base_url is undefined, set frequency to 1 Hz
+		$('#frequency').val(1);
+		$('#qrg_unit').html('kHz');
+		$('#freq_calculated').val(0.001);
 		window.user_updating_frequency = false; // Clear flag
 		return;
 	}
 
 	let unit = $('#qrg_unit').html();
+
+	// If unit is not properly set (shows '...'), default to kHz for bare numbers
+	if (unit === '...' || unit === '') {
+		unit = 'kHz';
+		$('#qrg_unit').html('kHz');
+	}
 
 	// check if the input contains a unit and parse the qrg
 	if (/^\d+(\.\d+)?\s*(hz|h)$/i.test(new_qrg)) {
