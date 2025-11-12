@@ -1026,9 +1026,12 @@ var DX_WATERFALL_UTILS = {
                         }
                     }
 
-                    DX_WATERFALL_UTILS.navigation.navigating = false;
                 });
 
+				// If navigating, delay the lookup slightly to avoid interference
+				DX_WATERFALL_UTILS.navigation.navigating = false;
+
+				// Set a short timer to trigger the lookup after navigation completes
                 this.pendingLookupTimer = setTimeout(function() {
                     // Clear preventLookup flag just before triggering the lookup
                     if (wasPreventLookupSet) {
@@ -1039,6 +1042,7 @@ var DX_WATERFALL_UTILS = {
                     callsignInput.trigger('focusout');
 
                     self.pendingLookupTimer = null;
+
                 }, 50);
             } else {
                 // No lookup - clear navigation flag immediately
