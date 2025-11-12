@@ -35,7 +35,7 @@
 			.awardsBgDanger {
 				background-color: <?php echo $colors->qso->color; ?> !important;
 			}
-			.awardsBgDanger {
+			.awardsBgWarning {
 				background-color: <?php echo $colors->unworked->color; ?> !important;
 			}
 		</style>
