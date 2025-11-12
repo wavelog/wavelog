@@ -433,69 +433,10 @@ $(function () {
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "api") { ?>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/sections/api.js"></script>
 <script type="text/javascript">
-function copyApiKey(apiKey) {
-   var apiKeyField = $('#'+apiKey);
-
-   if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(apiKey).then(function() {
-         apiKeyField.addClass('flash-copy')
-            .delay('1000').queue(function() {
-               apiKeyField.removeClass('flash-copy').dequeue();
-            });
-      }).catch(function(err) {
-         console.error('Failed to copy: ', err);
-         alert('Failed to copy to clipboard');
-      });
-   } else {
-      // Fallback for browsers that don't support clipboard API
-      var tempInput = document.createElement('input');
-      tempInput.value = apiKey;
-      document.body.appendChild(tempInput);
-      tempInput.select();
-      document.execCommand('copy');
-      document.body.removeChild(tempInput);
-
-      apiKeyField.addClass('flash-copy')
-         .delay('1000').queue(function() {
-            apiKeyField.removeClass('flash-copy').dequeue();
-         });
-   }
-}
-
-function copyApiUrl() {
-   var apiUrlField = $('#apiUrl');
-   var urlText = "<?php echo site_url(); ?>";
-
-   if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(urlText).then(function() {
-         apiUrlField.addClass('flash-copy')
-            .delay('1000').queue(function() {
-               apiUrlField.removeClass('flash-copy').dequeue();
-            });
-      }).catch(function(err) {
-         console.error('Failed to copy: ', err);
-         alert('Failed to copy to clipboard');
-      });
-   } else {
-      // Fallback for browsers that don't support clipboard API
-      var tempInput = document.createElement('input');
-      tempInput.value = urlText;
-      document.body.appendChild(tempInput);
-      tempInput.select();
-      document.execCommand('copy');
-      document.body.removeChild(tempInput);
-
-      apiUrlField.addClass('flash-copy')
-         .delay('1000').queue(function() {
-            apiUrlField.removeClass('flash-copy').dequeue();
-         });
-   }
-}
-
-$(function () {
-   $('[data-bs-toggle="tooltip"]').tooltip({'delay': { show: 500, hide: 0 }, 'placement': 'right'});
-});
+   // Pass PHP variable to JavaScript
+   var apiSiteUrl = "<?php echo site_url(); ?>";
 </script>
 <?php } ?>
 
