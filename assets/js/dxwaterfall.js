@@ -3253,14 +3253,25 @@ var dxWaterfall = {
             band = frequencyToBandKhz(currentFreqKhz, 20); // 20kHz margin
         }
 
-        // If band is 'All' (out of band), don't fetch spots
+        // If band is 'All' (out of band), handle based on state
         if (!band || band === 'All' || band === '' || band.toLowerCase() === 'select') {
-            DX_WATERFALL_UTILS.log.debug('[DX Waterfall] FETCH SPOTS: Out of band, skipping spot fetch');
-            // Stay in current state or transition to ready if we were fetching
-            if (DXWaterfallStateMachine.getState() === DX_WATERFALL_CONSTANTS.STATES.FETCHING_SPOTS) {
-                this.stateMachine_setState(DX_WATERFALL_CONSTANTS.STATES.READY);
+            var currentState = DXWaterfallStateMachine.getState();
+
+            // SPECIAL CASE: During initialization, default to 20m to allow waterfall to load
+            // This prevents timeout errors on initial load when frequency is out of band
+            if (currentState === DX_WATERFALL_CONSTANTS.STATES.INITIALIZING) {
+                DX_WATERFALL_UTILS.log.debug('[DX Waterfall] FETCH SPOTS: Out of band during initialization, defaulting to 20m');
+                band = '20m';
+                // Continue with fetch below
+            } else {
+                // Normal operation: skip fetch when out of band
+                DX_WATERFALL_UTILS.log.debug('[DX Waterfall] FETCH SPOTS: Out of band, skipping spot fetch');
+                // Transition to ready if we were fetching
+                if (currentState === DX_WATERFALL_CONSTANTS.STATES.FETCHING_SPOTS) {
+                    this.stateMachine_setState(DX_WATERFALL_CONSTANTS.STATES.READY);
+                }
+                return;
             }
-            return;
         }
 
         var mode = "All"; // Fetch all modes
