@@ -1689,34 +1689,12 @@ var dxWaterfall = {
         if ((currentFreq === 0 || !DX_WATERFALL_UTILS.frequency.isValid(currentFreq)) &&
             typeof isCATAvailable === 'function' && !isCATAvailable()) {
             var currentBand = this.$bandSelect ? this.$bandSelect.val() : null;
-
-            // Default to 40m if no band selected or band is "Select"
-            if (!currentBand || currentBand.toLowerCase() === 'select' || currentBand === '') {
-                currentBand = '40m';
-                DX_WATERFALL_UTILS.log.debug('[DX Waterfall] No band selected - defaulting to 40m');
-
-                // Set the band selector to 40m if possible
-                if (this.$bandSelect && this.$bandSelect.find('option[value="40m"]').length > 0) {
-                    this.$bandSelect.val('40m');
-                }
-            }
-
-            if (currentBand) {
+            if (currentBand && currentBand.toLowerCase() !== 'select') {
                 var bandFreq = getTypicalBandFrequency(currentBand);
                 if (bandFreq > 0) {
-                    // CRITICAL: Write frequency to form field so it's available for fetch
-                    var freqHz = Math.round(bandFreq * 1000); // Convert kHz to Hz
-                    $freqInput.val(freqHz);
-
-                    // Update currentFreq to Hz (for validation check below)
-                    currentFreq = freqHz;
-
-                    // Update cache and tracking variables
-                    this.cache.middleFreq = bandFreq;
-                    this.lastValidCommittedFreqHz = freqHz;
-                    this.committedFrequencyKHz = bandFreq;
-
-                    DX_WATERFALL_UTILS.log.debug('[DX Waterfall] Offline mode - using typical frequency for ' + currentBand + ': ' + bandFreq + ' kHz (' + freqHz + ' Hz written to form)');
+                    // Use typical band frequency for initialization
+                    currentFreq = bandFreq;
+                    DX_WATERFALL_UTILS.log.debug('[DX Waterfall] Offline mode - using typical frequency for ' + currentBand + ': ' + currentFreq + ' kHz');
                 }
             }
         }
@@ -3500,14 +3478,14 @@ var dxWaterfall = {
         });
     },
 
-    // Get current band from form or default to 40m
+    // Get current band from form or default to 20m
     getCurrentBand: function() {
         // Safety check: return default if not initialized
         if (!this.$bandSelect) {
-            return '40m';
+            return '20m';
         }
         // Try to get band from form - adjust selector based on your HTML structure
-        var band = this.$bandSelect.val() || '40m';
+        var band = this.$bandSelect.val() || '20m';
         return band;
     },
 
