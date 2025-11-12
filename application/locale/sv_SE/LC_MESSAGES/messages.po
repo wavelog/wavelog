@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2025-11-10 12:06+0000\n"
 "PO-Revision-Date: 2025-11-12 05:29+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
-"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/sv/>\n"
+"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/sv/>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -123,6 +123,9 @@ msgstr ""
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/Qso.php:201 application/controllers/Qso.php:332
+#: application/controllers/Qso.php:353 application/controllers/Qso.php:376
+#: application/controllers/Qso.php:676
 msgid "You're not allowed to do that!"
 msgstr "Det är inte tillåtet!"
 
@@ -2252,19 +2255,19 @@ msgstr "Hantering av QSL-kort"
 msgid "Print Requested QSLs"
 msgstr "Skriv ut begärda QSL"
 
-#: application/controllers/Qso.php:120
+#: application/controllers/Qso.php:120 application/controllers/Qso.php:126
 msgid "Add QSO"
 msgstr "Lägg till QSO"
 
-#: application/controllers/Qso.php:731
+#: application/controllers/Qso.php:731 application/controllers/Qso.php:737
 msgid "You have to be logged in to access this URL."
 msgstr "Du måste vara inloggad för att komma åt den här URL:en."
 
-#: application/controllers/Qso.php:737
+#: application/controllers/Qso.php:737 application/controllers/Qso.php:743
 msgid "Call Transfer"
 msgstr "Överför Anropssignal"
 
-#: application/controllers/Qso.php:744
+#: application/controllers/Qso.php:744 application/controllers/Qso.php:750
 msgid "No callsign provided."
 msgstr "Ingen anropssignal angiven."
 
