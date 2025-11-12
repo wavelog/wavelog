@@ -18,12 +18,13 @@
 # FengziLeo <fengzileo@vip.qq.com>, 2025.
 # BG9JDI <lyx8851@qq.com>, 2025.
 # Yoshida Kanae <xiaoxi654@outlook.com>, 2025.
+# ShenRQ <shen.ruiqin@foxmail.com>, 2025.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-11-10 12:06+0000\n"
-"PO-Revision-Date: 2025-09-30 06:37+0000\n"
-"Last-Translator: YuanRetro <lijiaxuan1811@163.com>\n"
+"POT-Creation-Date: 2025-11-12 05:36+0000\n"
+"PO-Revision-Date: 2025-11-11 16:20+0000\n"
+"Last-Translator: ShenRQ <shen.ruiqin@foxmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -31,7 +32,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.13.2\n"
+"X-Generator: Weblate 5.14\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -93,9 +94,9 @@ msgstr ""
 #: application/controllers/Qsl.php:13 application/controllers/Qsl.php:49
 #: application/controllers/Qsl.php:57 application/controllers/Qslprint.php:24
 #: application/controllers/Qslprint.php:147 application/controllers/Qso.php:8
-#: application/controllers/Qso.php:22 application/controllers/Qso.php:195
-#: application/controllers/Qso.php:326 application/controllers/Qso.php:347
-#: application/controllers/Qso.php:370 application/controllers/Qso.php:670
+#: application/controllers/Qso.php:22 application/controllers/Qso.php:201
+#: application/controllers/Qso.php:332 application/controllers/Qso.php:353
+#: application/controllers/Qso.php:376 application/controllers/Qso.php:676
 #: application/controllers/Radio.php:32 application/controllers/Radio.php:297
 #: application/controllers/Radio.php:323 application/controllers/Radio.php:339
 #: application/controllers/Reg1test.php:17
@@ -210,7 +211,7 @@ msgstr "网格激活者"
 #: application/controllers/Activatorsmap.php:17
 #: application/views/activators/index.php:2
 msgid "Activators Map"
-msgstr "激活者地图"
+msgstr "激活的地图"
 
 #: application/controllers/Adif.php:18
 msgid "valid date"
@@ -1963,11 +1964,11 @@ msgstr ""
 
 #: application/controllers/Notes.php:298
 msgid "Not found"
-msgstr ""
+msgstr "未找到"
 
 #: application/controllers/Notes.php:314
 msgid "Category and title are required"
-msgstr ""
+msgstr "类别和标题是必填项"
 
 #: application/controllers/Notes.php:328
 msgid "Note not found or not allowed"
@@ -1975,15 +1976,15 @@ msgstr ""
 
 #: application/controllers/Notes.php:335
 msgid "Note deleted"
-msgstr ""
+msgstr "笔记已删除"
 
 #: application/controllers/Notes.php:339
 msgid "Note updated"
-msgstr ""
+msgstr "笔记已更新"
 
 #: application/controllers/Notes.php:344
 msgid "Cannot create empty note"
-msgstr ""
+msgstr "无法创建空的笔记"
 
 #: application/controllers/Notes.php:352
 msgid "A note with this callsign already exists"
@@ -1991,7 +1992,7 @@ msgstr ""
 
 #: application/controllers/Notes.php:362
 msgid "Note created"
-msgstr ""
+msgstr "笔记已创建"
 
 #: application/controllers/Notes.php:376 application/controllers/Notes.php:400
 #, php-format
@@ -2244,19 +2245,19 @@ msgstr "QSL 卡片管理"
 msgid "Print Requested QSLs"
 msgstr "打印被请求的 QSL 卡片"
 
-#: application/controllers/Qso.php:120
+#: application/controllers/Qso.php:126
 msgid "Add QSO"
 msgstr "添加 QSO"
 
-#: application/controllers/Qso.php:731
+#: application/controllers/Qso.php:737
 msgid "You have to be logged in to access this URL."
 msgstr "需要登录方可浏览此页面。"
 
-#: application/controllers/Qso.php:737
+#: application/controllers/Qso.php:743
 msgid "Call Transfer"
 msgstr "通联转接"
 
-#: application/controllers/Qso.php:744
+#: application/controllers/Qso.php:750
 msgid "No callsign provided."
 msgstr "未提供呼号。"
 
@@ -2627,7 +2628,7 @@ msgstr "确定要删除此公开个性标识符？"
 #, php-format
 msgid ""
 "Are you sure you want to make the station profile %s the active station?"
-msgstr ""
+msgstr "你确定要将台站配置文件%s 设定为激活状态吗?"
 
 #: application/controllers/Stationsetup.php:391
 #: application/views/stationsetup/stationsetup.php:161
@@ -2689,7 +2690,7 @@ msgstr "编辑导出地图选项"
 
 #: application/controllers/Stationsetup.php:526
 msgid "Station location list"
-msgstr ""
+msgstr "台站位置列表"
 
 #: application/controllers/Statistics.php:26
 #: application/views/interface_assets/header.php:142
@@ -3340,6 +3341,7 @@ msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
 "imported. It's invalid"
 msgstr ""
+"在 %s 上的 QSO：您尝试导入一个未指定频段的 QSO。该 QSO 未被导入。此 QSO 无效"
 
 #: application/models/Logbook_model.php:4619
 msgid "the qslrdate is invalid (YYYYMMDD)"
@@ -3355,7 +3357,7 @@ msgstr "clublog_qso_upload_date 字段错误（ YYYYMMDD）"
 
 #: application/models/Logbook_model.php:4714
 msgid "LoTW Rcvd status will be reset."
-msgstr ""
+msgstr "LOTW 接收状态将被重置。"
 
 #: application/models/Logbook_model.php:4714
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
@@ -3363,7 +3365,7 @@ msgstr "the lotw_qslrdate 字段错误（YYYYMMDD）"
 
 #: application/models/Logbook_model.php:4739
 msgid "LoTW Sent status will be reset."
-msgstr ""
+msgstr "LoTW发送状态将被重置。"
 
 #: application/models/Logbook_model.php:4739
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
@@ -4479,7 +4481,7 @@ msgstr "导入重复的 QSO"
 
 #: application/views/adif/import.php:126
 msgid "Select if QSOs shall be imported, even if they already exist."
-msgstr ""
+msgstr "选择是否应导入 QSO 数据，即便这些数据已经存在。"
 
 #: application/views/adif/import.php:131
 msgid "Use DXCC information from ADIF"
@@ -6627,7 +6629,7 @@ msgstr "显示WAS地图"
 
 #: application/views/awards/wpx/index.php:76
 msgid "Band / Satellite / Orbit"
-msgstr ""
+msgstr "波段 / 卫星 / 轨道"
 
 #: application/views/awards/wpx/wpx_details.php:21
 #: application/views/oqrs/showrequests.php:86
@@ -6731,15 +6733,15 @@ msgstr "弹出窗口被禁止，请永久允许本站的弹出窗口。"
 
 #: application/views/bandmap/list.php:16
 msgid "CAT Connection Required"
-msgstr ""
+msgstr "需要连接CAT设备"
 
 #: application/views/bandmap/list.php:17
 msgid "Enable CAT connection to tune the radio"
-msgstr ""
+msgstr "启用 CAT 连接以调节电台"
 
 #: application/views/bandmap/list.php:18 application/views/bandmap/list.php:352
 msgid "Clear Filters"
-msgstr ""
+msgstr "清除筛选条件"
 
 #: application/views/bandmap/list.php:19
 msgid "Band filter preserved (CAT connection is active)"
@@ -6747,7 +6749,7 @@ msgstr ""
 
 #: application/views/bandmap/list.php:21
 msgid "Radio set to None - CAT connection disabled"
-msgstr ""
+msgstr "无线电设置为“无” - CAT 连接已关闭"
 
 #: application/views/bandmap/list.php:22
 msgid "Radio Tuned"
@@ -6815,7 +6817,7 @@ msgstr ""
 
 #: application/views/bandmap/list.php:41
 msgid "Loading data from DX Cluster"
-msgstr ""
+msgstr "正在从 DX Cluster加载数据"
 
 #: application/views/bandmap/list.php:42
 msgid "Last fetched for"
@@ -6831,7 +6833,7 @@ msgstr ""
 
 #: application/views/bandmap/list.php:45
 msgid "Next update in"
-msgstr ""
+msgstr "下次更新于"
 
 #: application/views/bandmap/list.php:46
 msgid "minutes"
@@ -6861,16 +6863,16 @@ msgstr "LoTW 用户"
 #: application/views/bandmap/list.php:55 application/views/bandmap/list.php:259
 #: application/views/components/dxwaterfall.php:18
 msgid "New Callsign"
-msgstr ""
+msgstr "新呼号"
 
 #: application/views/bandmap/list.php:56 application/views/bandmap/list.php:257
 #: application/views/components/dxwaterfall.php:16
 msgid "New Continent"
-msgstr ""
+msgstr "新大洲"
 
 #: application/views/bandmap/list.php:57 application/views/bandmap/list.php:258
 msgid "New Country"
-msgstr ""
+msgstr "新国家"
 
 #: application/views/bandmap/list.php:58
 msgid "Worked Before"
@@ -6902,7 +6904,7 @@ msgstr "比赛"
 
 #: application/views/bandmap/list.php:73
 msgid "Click to view"
-msgstr ""
+msgstr "点击查看"
 
 #: application/views/bandmap/list.php:74
 msgid "on QRZ.com"
@@ -7026,16 +7028,16 @@ msgstr ""
 
 #: application/views/bandmap/list.php:114
 msgid "Your QTH"
-msgstr ""
+msgstr "你的QTH"
 
 #: application/views/bandmap/list.php:150
 msgid "Return to Home"
-msgstr ""
+msgstr "返回主页"
 
 #: application/views/bandmap/list.php:153
 #: application/views/interface_assets/header.php:285
 msgid "DX Cluster"
-msgstr ""
+msgstr "DX Cluster"
 
 #: application/views/bandmap/list.php:157
 msgid "DX Cluster Help"
@@ -7077,7 +7079,7 @@ msgstr ""
 
 #: application/views/bandmap/list.php:195
 msgid "Select all continents"
-msgstr ""
+msgstr "选择所有大洲"
 
 #: application/views/bandmap/list.php:196
 msgid "Toggle Africa continent filter"
@@ -8316,7 +8318,7 @@ msgstr ""
 #: application/views/components/dxwaterfall.php:44
 msgid ""
 "DX Waterfall has experienced an unexpected error and will be shut down. "
-"Please contact the Wavelog team for assistance."
+"Please visit Wavelog's GitHub and create a bug report if this issue persists."
 msgstr ""
 
 #: application/views/components/dxwaterfall.php:45
@@ -10287,7 +10289,9 @@ msgstr "标记所有 QSO 已上传至 eQSL"
 msgid ""
 "Use this if you have lots of QSOs to upload to eQSL it will save the server "
 "timing out."
-msgstr "如果你有很多 QSO 需要上传到 eQSL，请使用此功能以防服务器超时。"
+msgstr ""
+"如果您需要向 eQSL 上传大量 QSO 数据，请使用此设置，这样可以避免服务器因超时而"
+"关闭。"
 
 #: application/views/eqslcard/index.php:10
 #, php-format
@@ -10348,7 +10352,7 @@ msgstr "Code 可以在这里 %s 申请"
 #: application/views/hrdlog/export.php:25
 #: application/views/webadif/export.php:34
 msgid "This might take a while as QSO uploads are processed sequentially."
-msgstr "由于 QSO 正在按顺序处理，您需要等待一段时间。"
+msgstr "这可能需要一段时间，因为 QSO 的上传信息是按顺序进行处理的。"
 
 #: application/views/hrdlog/export.php:60
 msgid ""
@@ -11894,11 +11898,11 @@ msgstr ""
 
 #: application/views/logbookadvanced/index.php:33
 msgid "You need to select a least 1 row to display a QSL card!"
-msgstr ""
+msgstr "您需要至少选择一行才能显示 QSL 卡片！"
 
 #: application/views/logbookadvanced/index.php:34
 msgid "Continents updated successfully!"
-msgstr ""
+msgstr "大洲信息已更新成功！"
 
 #: application/views/logbookadvanced/index.php:35
 msgid "There was a problem fixing Continents."
@@ -11906,37 +11910,39 @@ msgstr ""
 
 #: application/views/logbookadvanced/index.php:37
 msgid "SUCCESS"
-msgstr ""
+msgstr "成功"
 
 #: application/views/logbookadvanced/index.php:38
 msgid "INFO"
-msgstr ""
+msgstr "信息"
 
 #: application/views/logbookadvanced/index.php:44
 msgid "'Options for the Advanced Logbook'"
-msgstr ""
+msgstr "日志簿的高级设置"
 
 #: application/views/logbookadvanced/index.php:45
 msgid ""
 "Something went wrong with label print. Go to labels and check if you have "
 "defined a label, and that it is set for print!"
 msgstr ""
+"标签打印出现了问题。请前往“标签”选项卡，检查您是否已定义了标签，并且该标签已"
+"设置为可打印状态！"
 
 #: application/views/logbookadvanced/index.php:46
 msgid "You need to select a least 1 row!"
-msgstr ""
+msgstr "您需要至少选择1行！"
 
 #: application/views/logbookadvanced/index.php:47
 msgid "Start printing at which label?"
-msgstr ""
+msgstr "从哪个标签开始打印？"
 
 #: application/views/logbookadvanced/index.php:48
 msgid "You need to select at least 1 row to print a label!"
-msgstr ""
+msgstr "您至少需要选择一行数据才能打印标签！"
 
 #: application/views/logbookadvanced/index.php:49
 msgid "An error occurred while saving options: "
-msgstr ""
+msgstr "在保存选项时发生错误： "
 
 #: application/views/logbookadvanced/index.php:50
 msgid "You need to select a least 1 row to delete!"
@@ -11953,7 +11959,7 @@ msgstr "发送请求时发生错误"
 
 #: application/views/logbookadvanced/index.php:53
 msgid "You need to select at least 1 location to do a search!"
-msgstr ""
+msgstr "您需要至少选择1个地点来进行搜索！"
 
 #: application/views/logbookadvanced/index.php:54
 #: application/views/logbookadvanced/index.php:738
@@ -11962,7 +11968,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/index.php:55
 msgid "QSO records updated."
-msgstr ""
+msgstr "QSO 记录已更新。"
 
 #: application/views/logbookadvanced/index.php:56
 msgid "There was a problem updating distances."
@@ -14032,7 +14038,7 @@ msgstr "停止调谐"
 
 #: application/views/qso/index.php:846
 msgid "Enter text..."
-msgstr ""
+msgstr "输入内容..."
 
 #: application/views/qso/index.php:847
 msgid "Send"
@@ -14051,6 +14057,7 @@ msgid ""
 "Profile picture and data fetched from third-party services. This information "
 "is not stored on your Wavelog instance."
 msgstr ""
+"个人资料图片及数据来自第三方服务。此信息不会存储在您的 Wavelog 实例中。"
 
 #: application/views/qso/log_qso.php:9
 msgid "Redirecting to QSO logging page..."
@@ -16015,7 +16022,7 @@ msgstr ""
 
 #: application/views/user/edit.php:375
 msgid "Prioritize database search over external lookup"
-msgstr ""
+msgstr "优先进行数据库搜索而非外部查询"
 
 #: application/views/user/edit.php:381
 msgid ""
@@ -16023,6 +16030,8 @@ msgid ""
 "QSOs before querying external services. Set to \"No\" to always use external "
 "lookup services instead."
 msgstr ""
+"当设置为“是”时，呼号查询功能将首先使用您之前通话记录中的数据，然后再查询外部"
+"服务。将设置改为“否”则会始终使用外部查询服务。"
 
 #: application/views/user/edit.php:385
 msgid ""
@@ -16069,7 +16078,7 @@ msgstr "QSO 页面中通联过的电台数量。"
 
 #: application/views/user/edit.php:446
 msgid "DX Waterfall"
-msgstr ""
+msgstr "DX瀑布"
 
 #: application/views/user/edit.php:452
 msgid "Show an interactive DX Cluster 'Waterfall' on the QSO logging page."
