@@ -41,7 +41,7 @@
 		var lang_dxwaterfall_modes_label = "<?= __("modes:"); ?>";
 		var lang_dxwaterfall_out_of_bandplan = "<?= __("OUT OF BANDPLAN"); ?>";
 		var lang_dxwaterfall_out_of_band = "<?= __("Out of band"); ?>";
-		var lang_dxwaterfall_error_shutdown = "<?= __("DX Waterfall has experienced an unexpected error and will be shut down. Please contact the Wavelog team for assistance."); ?>";
+		var lang_dxwaterfall_error_shutdown = "<?= __("DX Waterfall has experienced an unexpected error and will be shut down. Please visit Wavelog's GitHub and create a bug report if this issue persists."); ?>";
 		var lang_dxwaterfall_changing_frequency = "<?= __("Changing radio frequency..."); ?>";
 		var lang_dxwaterfall_invalid = "<?= __("INVALID"); ?>";
 		var lang_dxwaterfall_turn_on = "<?= __("Click to turn on the DX Waterfall"); ?>";
@@ -56,8 +56,8 @@
 		var lang_dxwaterfall_spotted_by = "<?= __("by:"); ?>";
 
 		// DX Waterfall Configuration from User Options
-		let dxwaterfall_decont = '<?php echo $this->optionslib->get_option('dxcluster_decont'); ?>';
-		let dxwaterfall_maxage = '<?php echo $this->optionslib->get_option('dxcluster_maxage'); ?>';
+		let dxcluster_default_decont = "<?php echo $dxcluster_default_decont; ?>";
+		let dxcluster_default_maxage = "<?php echo $dxcluster_default_maxage; ?>";
 
 		// Helper function to safely check if optional field exists
 		window.DX_WATERFALL_HAS_FIELD = function(fieldName) {
