@@ -2,6 +2,10 @@
 
 class CQ extends CI_Model{
 
+	private $user_map_color_qso;
+	private $user_map_color_qsoconfirm;
+	private $user_map_color_unworked;
+
 	function __construct() {
 		$this->load->library('Genfunctions');
 		$map_custom = json_decode($this->optionslib->get_map_custom());
