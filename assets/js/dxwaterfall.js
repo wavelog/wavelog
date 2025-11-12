@@ -1129,6 +1129,8 @@ var DX_WATERFALL_UTILS = {
                 // Only populate form if explicitly requested
                 if (shouldPrefill && spotInfo) {
                     var self = this;
+                    // Clear form before populating
+                    DX_WATERFALL_UTILS.qsoForm.clearForm();
                     this.pendingNavigationTimer = setTimeout(function() {
                         DX_WATERFALL_UTILS.qsoForm.populateFromSpot(spotInfo, true);
                         self.pendingNavigationTimer = null;
@@ -6597,6 +6599,9 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
                 dxWaterfall.collectAllBandSpots(true); // Force update after spot click
                 dxWaterfall.updateZoomMenu(true); // Force update with forceUpdate=true
             }, 300); // After frequency has settled
+
+            // Clear form before populating with clicked spot
+            DX_WATERFALL_UTILS.qsoForm.clearForm();
 
             // Populate QSO form - flag will be cleared when population completes
             DX_WATERFALL_UTILS.qsoForm.populateFromSpot(clickedSpot, true);
