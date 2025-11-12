@@ -288,6 +288,7 @@ function clearMarkers() {
 }
 
 function hideLegend() {
+	clearMarkers();
 	$("#gridmapLegend").hide();
 }
 
