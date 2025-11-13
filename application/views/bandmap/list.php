@@ -64,6 +64,7 @@
 	var lang_bandmap_new_continent = "<?= __("New Continent"); ?>";
 	var lang_bandmap_new_country = "<?= __("New Country"); ?>";
 	var lang_bandmap_worked_before = "<?= __("Worked Before"); ?>";
+	var lang_bandmap_worked_details = "<?= __("Worked on %s with %s"); ?>";
 
 	// Bandmap filter prefixes
 	var lang_bandmap_dxcc = "<?= __("DXCC"); ?>";
