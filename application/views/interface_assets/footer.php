@@ -433,30 +433,10 @@ $(function () {
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "api") { ?>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/sections/api.js"></script>
 <script type="text/javascript">
-function copyApiKey(apiKey) {
-   var apiKeyField = $('#'+apiKey);
-   navigator.clipboard.writeText(apiKey).then(function() {
-   });
-   apiKeyField.addClass('flash-copy')
-      .delay('1000').queue(function() {
-         apiKeyField.removeClass('flash-copy').dequeue();
-      });
-}
-
-function copyApiUrl() {
-   var apiUrlField = $('#apiUrl');
-   navigator.clipboard.writeText("<?php echo site_url(); ?>").then(function() {
-   });
-   apiUrlField.addClass('flash-copy')
-      .delay('1000').queue(function() {
-         apiUrlField.removeClass('flash-copy').dequeue();
-      });
-}
-
-$(function () {
-   $('[data-bs-toggle="tooltip"]').tooltip({'delay': { show: 500, hide: 0 }, 'placement': 'right'});
-});
+   // Pass PHP variable to JavaScript
+   var apiSiteUrl = "<?php echo site_url(); ?>";
 </script>
 <?php } ?>
 

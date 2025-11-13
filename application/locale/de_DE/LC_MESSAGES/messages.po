@@ -29,8 +29,8 @@ msgstr ""
 "POT-Creation-Date: 2025-11-12 19:16+0000\n"
 "PO-Revision-Date: 2025-11-13 08:19+0000\n"
 "Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1842,6 +1842,7 @@ msgstr "Operator"
 #: application/views/view_log/partial/log_ajax.php:31
 #: application/views/view_log/qso.php:341
 #: application/views/view_log/qso.php:694
+#: application/views/interface_assets/footer.php:819
 msgid "Deleted DXCC"
 msgstr "Gelöschtes DXCC"
 
@@ -2354,6 +2355,8 @@ msgstr "Standardgerät (klicken zum freigeben)"
 #: application/views/stationsetup/stationsetup.php:172
 #: application/views/themes/index.php:104 application/views/user/index.php:97
 #: application/views/user/index.php:203
+#: application/views/interface_assets/footer.php:679
+#: application/views/interface_assets/footer.php:688
 msgid "Edit"
 msgstr "Bearbeiten"
 
@@ -2383,6 +2386,10 @@ msgstr "Bearbeiten"
 #: application/views/stationsetup/stationsetup.php:199
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:778
+#: application/views/interface_assets/footer.php:2767
+#: application/views/interface_assets/footer.php:2785
+#: application/views/interface_assets/footer.php:2806
+#: application/views/interface_assets/footer.php:2824
 msgid "Delete"
 msgstr "Löschen"
 
@@ -3758,6 +3765,8 @@ msgstr "Differenz"
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:789
 #: application/views/visitor/layout/footer.php:172
+#: application/views/interface_assets/footer.php:1657
+#: application/views/interface_assets/footer.php:1796
 msgid "All"
 msgstr "Alle"
 
@@ -4585,6 +4594,8 @@ msgstr ""
 #: application/views/interface_assets/footer.php:34
 #: application/views/interface_assets/footer.php:659
 #: application/views/interface_assets/footer.php:2549
+#: application/views/interface_assets/footer.php:639
+#: application/views/interface_assets/footer.php:2529
 msgid "DANGER"
 msgstr "GEFAHR"
 
@@ -5020,6 +5031,7 @@ msgstr "Einfacher Name, um zu beschreiben, wofür du diese API verwendest."
 #: application/views/satellite/create.php:82
 #: application/views/satellite/pass.php:115
 #: application/views/simplefle/index.php:22
+#: application/views/interface_assets/footer.php:674
 msgid "Save"
 msgstr "Speichern"
 
@@ -5519,6 +5531,7 @@ msgstr "QSO mit QSL-Typ anzeigen"
 #: application/views/logbookadvanced/index.php:40
 #: application/views/qso/edit_ajax.php:419
 #: application/views/view_log/qso.php:25
+#: application/views/interface_assets/footer.php:2508
 msgid "QSL Card"
 msgstr "QSL-Karte"
 
@@ -7448,8 +7461,8 @@ msgstr "Wende Filter an"
 msgid ""
 "Apply your favorite bands and modes (configured in Band and Mode settings)"
 msgstr ""
-"Wende deine favorisierten Bänder und Modi an "
-"(zu konfigurieren in Band und Modi-Einstellungen)"
+"Wende deine favorisierten Bänder und Modi an (zu konfigurieren in Band und "
+"Modi-Einstellungen)"
 
 #: application/views/bandmap/list.php:366
 msgid "Clear all filters except De Continent"
@@ -10614,8 +10627,8 @@ msgstr ""
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
-"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an eQSL."
-"cc."
+"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an "
+"eQSL.cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -10701,6 +10714,10 @@ msgstr "QSL-Datum"
 #: application/views/interface_assets/footer.php:2845
 #: application/views/qslcard/index.php:77
 #: application/views/view_log/qso.php:779
+#: application/views/interface_assets/footer.php:2768
+#: application/views/interface_assets/footer.php:2786
+#: application/views/interface_assets/footer.php:2807
+#: application/views/interface_assets/footer.php:2825
 msgid "View"
 msgstr "Ansicht"
 
@@ -10943,7 +10960,8 @@ msgstr "Neues Rufzeichen!"
 
 #: application/views/interface_assets/footer.php:85
 msgid "Grid was already worked and confirmed in the past"
-msgstr "Planquadrat wurde in der Vergangenheit bereits gearbeitet und bestätigt"
+msgstr ""
+"Planquadrat wurde in der Vergangenheit bereits gearbeitet und bestätigt"
 
 #: application/views/interface_assets/footer.php:86
 msgid "Grid was already worked in the past"
@@ -11144,8 +11162,8 @@ msgstr "Standort wurde anhand des angegebenen Planquadrats ermittelt"
 #: application/views/interface_assets/footer.php:134
 msgid "Location is fetched from DXCC coordinates (no gridsquare provided)"
 msgstr ""
-"Standort wurde anhand der DXCC-Koordinaten ermittelt "
-"(kein Planquadrat angegeben)"
+"Standort wurde anhand der DXCC-Koordinaten ermittelt (kein Planquadrat "
+"angegeben)"
 
 #: application/views/interface_assets/footer.php:137
 msgid "Working without CAT connection"
@@ -11179,45 +11197,58 @@ msgid "Failed to load the modal. Please try again."
 msgstr "Fehler beim Laden des Modals. Bitte versuche es erneut."
 
 #: application/views/interface_assets/footer.php:549
+#: application/views/interface_assets/footer.php:529
 msgid "Description:"
 msgstr "Beschreibung:"
 
 #: application/views/interface_assets/footer.php:552
+#: application/views/interface_assets/footer.php:532
 msgid "Query description"
 msgstr "Suchmuster-Beschreibung"
 
 #: application/views/interface_assets/footer.php:568
+#: application/views/interface_assets/footer.php:548
 msgid "Your query has been saved!"
 msgstr "Dein Suchmuster wurde gespeichert!"
 
 #: application/views/interface_assets/footer.php:570
 #: application/views/search/filter.php:49
+#: application/views/interface_assets/footer.php:550
 msgid "Edit queries"
 msgstr "Suchmuster bearbeiten"
 
 #: application/views/interface_assets/footer.php:572
+#: application/views/interface_assets/footer.php:552
 msgid "Stored queries:"
 msgstr "Gespeicherte Suchmuster:"
 
 #: application/views/interface_assets/footer.php:577
 #: application/views/search/filter.php:63
+#: application/views/interface_assets/footer.php:557
 msgid "Run Query"
 msgstr "Suchmuster ausführen"
 
 #: application/views/interface_assets/footer.php:589
 #: application/views/interface_assets/footer.php:725
 #: application/views/interface_assets/footer.php:795
+#: application/views/interface_assets/footer.php:569
+#: application/views/interface_assets/footer.php:705
+#: application/views/interface_assets/footer.php:775
 msgid "Stored Queries"
 msgstr "Gespeicherte Suchmuster"
 
 #: application/views/interface_assets/footer.php:594
 #: application/views/interface_assets/footer.php:800
+#: application/views/interface_assets/footer.php:574
+#: application/views/interface_assets/footer.php:780
 msgid "You need to make a query before you search!"
 msgstr "Du musst ein Suchmuster erstellen, bevor du suchst!"
 
 #: application/views/interface_assets/footer.php:615
 #: application/views/interface_assets/footer.php:752
 #: application/views/search/filter.php:82
+#: application/views/interface_assets/footer.php:595
+#: application/views/interface_assets/footer.php:732
 msgid "Export to ADIF"
 msgstr "Nach ADIF exportieren"
 
@@ -11226,34 +11257,42 @@ msgstr "Nach ADIF exportieren"
 #: application/views/search/cqzones.php:40
 #: application/views/search/ituzones.php:40
 #: application/views/search/main.php:37
+#: application/views/interface_assets/footer.php:596
+#: application/views/interface_assets/footer.php:733
 msgid "Open in the Advanced Logbook"
 msgstr "Im erweiterten Logbuch öffnen"
 
 #: application/views/interface_assets/footer.php:660
+#: application/views/interface_assets/footer.php:640
 msgid "Warning! Are you sure you want delete this stored query?"
 msgstr ""
 "Warnung! Bist du sicher, dass du dieses gespeicherte Suchmuster löschen "
 "willst?"
 
 #: application/views/interface_assets/footer.php:674
+#: application/views/interface_assets/footer.php:654
 msgid "The stored query has been deleted!"
 msgstr "Das gespeicherte Suchmuster wurde gelöscht!"
 
 #: application/views/interface_assets/footer.php:683
+#: application/views/interface_assets/footer.php:663
 msgid "The stored query could not be deleted. Please try again!"
 msgstr ""
 "Das gespeicherte Suchmuster konnte nicht gelöscht werden. Bitte versuche es "
 "erneut!"
 
 #: application/views/interface_assets/footer.php:709
+#: application/views/interface_assets/footer.php:689
 msgid "The query description has been updated!"
 msgstr "Die Beschreibung des Suchmusters wurde aktualisiert!"
 
 #: application/views/interface_assets/footer.php:713
+#: application/views/interface_assets/footer.php:693
 msgid "Something went wrong with the save. Please try again!"
 msgstr "Etwas ist beim Speichern schiefgelaufen. Bitte versuche es erneut!"
 
 #: application/views/interface_assets/footer.php:842
+#: application/views/interface_assets/footer.php:822
 msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
 "Check which DXCC for this particular location is the correct one. If you are "
@@ -11267,14 +11306,17 @@ msgstr ""
 
 #: application/views/interface_assets/footer.php:895
 #: application/views/logbookadvanced/index.php:757
+#: application/views/interface_assets/footer.php:875
 msgid "Callsign: "
 msgstr "Rufzeichen: "
 
 #: application/views/interface_assets/footer.php:896
+#: application/views/interface_assets/footer.php:876
 msgid "Count: "
 msgstr "Anzahl: "
 
 #: application/views/interface_assets/footer.php:897
+#: application/views/interface_assets/footer.php:877
 msgid "Grids: "
 msgstr "Locator: "
 
@@ -11282,6 +11324,7 @@ msgstr "Locator: "
 #: application/views/logbookadvanced/index.php:13
 #: application/views/logbookadvanced/useroptions.php:210
 #: application/views/satellite/flightpath.php:11
+#: application/views/interface_assets/footer.php:1195
 msgctxt "Map Options"
 msgid "Gridsquares"
 msgstr "Locator"
@@ -11292,51 +11335,70 @@ msgstr "Locator"
 #: application/views/interface_assets/footer.php:1748
 #: application/views/interface_assets/footer.php:1752
 #: application/views/interface_assets/footer.php:1755
+#: application/views/interface_assets/footer.php:1584
+#: application/views/interface_assets/footer.php:1588
+#: application/views/interface_assets/footer.php:1591
+#: application/views/interface_assets/footer.php:1728
+#: application/views/interface_assets/footer.php:1732
+#: application/views/interface_assets/footer.php:1735
 msgid "grid square"
 msgstr "Locator"
 
 #: application/views/interface_assets/footer.php:1611
 #: application/views/interface_assets/footer.php:1755
+#: application/views/interface_assets/footer.php:1591
+#: application/views/interface_assets/footer.php:1735
 msgid "Total count"
 msgstr "Summe"
 
 #: application/views/interface_assets/footer.php:2530
+#: application/views/interface_assets/footer.php:2510
 msgid "QSL Card for "
 msgstr "QSL-Karte für "
 
 #: application/views/interface_assets/footer.php:2550
+#: application/views/interface_assets/footer.php:2530
 msgid "Warning! Are you sure you want to delete this QSL card?"
 msgstr "Warnung! Bist du sicher, dass du diese QSL-Karte löschen möchtest?"
 
 #: application/views/interface_assets/footer.php:2590
 #: application/views/view_log/qso.php:43
+#: application/views/interface_assets/footer.php:2570
 msgid "eQSL Card"
 msgstr "eQSL-Karte"
 
 #: application/views/interface_assets/footer.php:2592
+#: application/views/interface_assets/footer.php:2572
 msgid "eQSL Card for "
 msgstr "eQSL-Karte für "
 
 #: application/views/interface_assets/footer.php:2799
 #: application/views/interface_assets/footer.php:2838
 #: application/views/view_log/qso.php:769
+#: application/views/interface_assets/footer.php:2779
+#: application/views/interface_assets/footer.php:2818
 msgid "QSL image file"
 msgstr "QSL-Bilddatei"
 
 #: application/views/interface_assets/footer.php:2818
+#: application/views/interface_assets/footer.php:2798
 msgid "Front QSL Card:"
 msgstr "Vorderseite QSL-Karte:"
 
 #: application/views/interface_assets/footer.php:2856
+#: application/views/interface_assets/footer.php:2836
 msgid "Back QSL Card:"
 msgstr "Rückseite QSL-Karte:"
 
 #: application/views/interface_assets/footer.php:2867
 #: application/views/interface_assets/footer.php:2892
+#: application/views/interface_assets/footer.php:2847
+#: application/views/interface_assets/footer.php:2872
 msgid "Add additional QSOs to a QSL Card"
 msgstr "Weitere QSOs zu einer QSL-Karte hinzufügen"
 
 #: application/views/interface_assets/footer.php:2903
+#: application/views/interface_assets/footer.php:2883
 msgid "Something went wrong. Please try again!"
 msgstr "Etwas ist schiefgelaufen. Bitte versuche es erneut!"
 
@@ -13316,8 +13378,8 @@ msgstr "E-Mail Adresse"
 msgid ""
 "The email address from which the emails are sent, e.g. 'wavelog@example.com'"
 msgstr ""
-"Die E-Mail Adresse von der die Mails versendet werden, z.B. 'wavelog@example."
-"com'"
+"Die E-Mail Adresse von der die Mails versendet werden, z.B. "
+"'wavelog@example.com'"
 
 #: application/views/options/email.php:80
 msgid "SMTP Host"
@@ -15512,9 +15574,9 @@ msgid ""
 msgstr ""
 "Um zu beginnen, stelle sicher, dass du die Felder auf der linken Seite "
 "bereits mit Datum, Stationsrufzeichen/-standort und Rufzeichen des Operators "
-"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, z."
-"B. '7.145'), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
-"wesentlichen das Rufzeichen ist."
+"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, "
+"z.B. '7.145'), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was "
+"im wesentlichen das Rufzeichen ist."
 
 #: application/views/simplefle/syntax_help.php:9
 msgid "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB."
@@ -16346,9 +16408,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Erstelle einen neuen Ordner in 'assets/css/' und lade eine 'bootstrap.min."
-"css' Datei hoch, welche die grundlegende Styling-Regeln enthält. Wir "
-"verwenden die Themes von %s"
+"Erstelle einen neuen Ordner in 'assets/css/' und lade eine "
+"'bootstrap.min.css' Datei hoch, welche die grundlegende Styling-Regeln "
+"enthält. Wir verwenden die Themes von %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
