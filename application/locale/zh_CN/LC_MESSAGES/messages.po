@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-11-12 05:36+0000\n"
-"PO-Revision-Date: 2025-11-13 10:40+0000\n"
+"PO-Revision-Date: 2025-11-13 11:32+0000\n"
 "Last-Translator: Lu Chang <chinaluchang@live.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
 "translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
@@ -2485,7 +2485,7 @@ msgstr "搜索"
 
 #: application/controllers/Search.php:26
 msgid "Search & Filter Logbook"
-msgstr "搜索 & 过滤日志"
+msgstr "搜索 & 筛选日志"
 
 #: application/controllers/Search.php:54
 msgid "Incorrectly logged CQ zones"
@@ -3380,7 +3380,7 @@ msgstr "the lotw_qslrdate 字段错误（YYYYMMDD）"
 
 #: application/models/Logbook_model.php:4739
 msgid "LoTW Sent status will be reset."
-msgstr "LoTW发送状态将被重置。"
+msgstr "LoTW 发送状态将被重置。"
 
 #: application/models/Logbook_model.php:4739
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
@@ -4604,7 +4604,7 @@ msgctxt ""
 msgid ""
 "If you need more filtering, you can use %sthe Advanced Logbook%s to filter "
 "and export!"
-msgstr "%s详细日志%s 中可使用更多过滤器选项，也可导出日志！"
+msgstr "%s详细日志%s 中可使用更多筛选器选项，也可导出日志！"
 
 #: application/views/adif/import.php:254 application/views/adif/import.php:312
 #: application/views/clublog/export.php:73 application/views/csv/index.php:119
@@ -5656,7 +5656,7 @@ msgstr "本奖项所需要的字段：DXCC（必须是 DXCC-ADIF 规范里的合
 #: application/views/logbookadvanced/index.php:256
 #: application/views/mode/index.php:80 application/views/usermode/index.php:68
 msgid "Filters"
-msgstr "过滤器"
+msgstr "筛选器"
 
 #: application/views/awards/dxcc/index.php:31
 msgid "Show DXCC Map"
@@ -6764,11 +6764,11 @@ msgstr "点击以准备记录。"
 #: application/views/bandmap/list.php:11 application/views/bandmap/list.php:84
 #: application/views/bandmap/list.php:87
 msgid "to tune frequency"
-msgstr ""
+msgstr "调整频率"
 
 #: application/views/bandmap/list.php:14
 msgid "Pop-up Blocked"
-msgstr ""
+msgstr "弹出窗口已阻止"
 
 #: application/views/bandmap/list.php:15 application/views/qso/log_qso.php:55
 msgid "Pop-up was blocked! Please allow pop-ups for this site permanently."
@@ -6789,7 +6789,7 @@ msgstr "清除筛选条件"
 
 #: application/views/bandmap/list.php:19
 msgid "Band filter preserved (CAT connection is active)"
-msgstr ""
+msgstr "保留波段滤波器（CAT 连接已激活）"
 
 #: application/views/bandmap/list.php:21
 msgid "Radio set to None - CAT connection disabled"
@@ -6797,7 +6797,7 @@ msgstr "无线电设置为“无” - CAT 连接已关闭"
 
 #: application/views/bandmap/list.php:22
 msgid "Radio Tuned"
-msgstr ""
+msgstr "无线电已调谐"
 
 #: application/views/bandmap/list.php:23
 msgid "Tuned to"
@@ -7093,7 +7093,7 @@ msgstr ""
 #: application/views/bandmap/list.php:114
 #: application/views/bandmap/list.php:117
 msgid "Your QTH"
-msgstr "你的QTH"
+msgstr "你的 QTH"
 
 #: application/views/bandmap/list.php:150
 #: application/views/bandmap/list.php:153
@@ -7345,17 +7345,17 @@ msgstr ""
 #: application/views/bandmap/list.php:398
 #: application/views/components/dxwaterfall.php:32
 msgid "Toggle CW mode filter"
-msgstr "切换 CW 模式过滤器"
+msgstr "切换 CW 模式筛选器"
 
 #: application/views/bandmap/list.php:399
 #: application/views/components/dxwaterfall.php:34
 msgid "Toggle Digital mode filter"
-msgstr "切换数字模式过滤器"
+msgstr "切换数字模式筛选器"
 
 #: application/views/bandmap/list.php:400
 #: application/views/components/dxwaterfall.php:30
 msgid "Toggle Phone mode filter"
-msgstr "切换语音模式过滤器"
+msgstr "切换语音模式筛选器"
 
 #: application/views/bandmap/list.php:409
 #: application/views/bandmap/list.php:412
@@ -10462,7 +10462,7 @@ msgstr "查看"
 msgid ""
 "Cannot filter workable passes only without private feed key. Please set the "
 "feed key in %s."
-msgstr "过滤可通联的过境必须提供 Private Feed Key，请在 %s 设置它。"
+msgstr "筛选可通联的过境必须提供 Private Feed Key，请在 %s 设置它。"
 
 #: application/views/hamsat/index.php:22
 msgid "your profile"
@@ -11629,31 +11629,32 @@ msgstr "开始打印编号？"
 #: application/views/logbookadvanced/continentdialog.php:2
 msgid ""
 "Update all QSOs with the continent based on the DXCC country of the QSO."
-msgstr ""
+msgstr "根据通联的 DXCC 国家更新所有通联的洲。"
 
 #: application/views/logbookadvanced/continentdialog.php:3
 msgid "This is useful if you have imported QSOs without continent information."
-msgstr ""
+msgstr "如果您导入的 QSO 没有大洲信息，这将很有用。"
 
 #: application/views/logbookadvanced/continentdialog.php:4
 msgid ""
 "Update will only set the continent for QSOs where the continent is empty."
-msgstr ""
+msgstr "只会为空白大洲的 QSO 更新设置大洲。"
 
 #: application/views/logbookadvanced/distancedialog.php:2
 msgid ""
 "Update all QSOs with the distance based on your gridsquare set in the "
 "station profile, and the gridsquare of the QSO partner. Distance will be "
 "calculated based on if short path or long path is set."
-msgstr ""
+msgstr "根据你在电台配置文件及 QSO 友台所设的网格位置来更新所有 QSO 的距离。距离将根"
+"据设置的短路径或长路径进行计算。"
 
 #: application/views/logbookadvanced/distancedialog.php:3
 msgid "This is useful if you have imported QSOs without distance information."
-msgstr ""
+msgstr "如果您导入的 QSO 没有距离信息，这将很有用。"
 
 #: application/views/logbookadvanced/distancedialog.php:4
 msgid "Update will only set the distance for QSOs where the distance is empty."
-msgstr ""
+msgstr "更新只会设置距离为空的 QSO。"
 
 #: application/views/logbookadvanced/edit.php:1
 msgid "Please choose the column to be edited:"
@@ -12005,43 +12006,43 @@ msgstr "详细日志帮助"
 
 #: application/views/logbookadvanced/index.php:24
 msgid "Continent fix"
-msgstr ""
+msgstr "修正大洲"
 
 #: application/views/logbookadvanced/index.php:25
 msgid "There was a problem fixing ITU Zones."
-msgstr ""
+msgstr "修正 ITU 分区时出现问题。"
 
 #: application/views/logbookadvanced/index.php:26
 msgid "There was a problem fixing CQ Zones."
-msgstr ""
+msgstr "修正 CQ 分区时出现问题。"
 
 #: application/views/logbookadvanced/index.php:27
 msgid "ITU Zones updated successfully!"
-msgstr ""
+msgstr "ITU 分区更新成功！"
 
 #: application/views/logbookadvanced/index.php:28
 msgid "CQ Zones updated successfully!"
-msgstr ""
+msgstr "CQ 分区更新成功！"
 
 #: application/views/logbookadvanced/index.php:29
 msgid "You need to select at least 1 row to fix ITU Zones!"
-msgstr ""
+msgstr "您需要选择至少 1 行来修正 ITU 分区！"
 
 #: application/views/logbookadvanced/index.php:30
 msgid "You need to select at least 1 row to fix CQ Zones!"
-msgstr ""
+msgstr "您需要选择至少 1 行来修正 CQ 分区！"
 
 #: application/views/logbookadvanced/index.php:31
 msgid "Only 1 row can be selected for Quickfilter!"
-msgstr ""
+msgstr "快速筛选只可选择 1 行！"
 
 #: application/views/logbookadvanced/index.php:32
 msgid "You need to select a row to use the Quickfilters!"
-msgstr ""
+msgstr "您需要选择一行来使用快速筛选！"
 
 #: application/views/logbookadvanced/index.php:33
 msgid "You need to select a least 1 row to display a QSL card!"
-msgstr "您需要至少选择一行才能显示 QSL 卡片！"
+msgstr "您至少需要选择一行以显示 QSL 卡片！"
 
 #: application/views/logbookadvanced/index.php:34
 msgid "Continents updated successfully!"
@@ -12049,7 +12050,7 @@ msgstr "大洲信息已更新成功！"
 
 #: application/views/logbookadvanced/index.php:35
 msgid "There was a problem fixing Continents."
-msgstr ""
+msgstr "修正大洲时出现了问题。"
 
 #: application/views/logbookadvanced/index.php:37
 msgid "SUCCESS"
@@ -12073,7 +12074,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/index.php:46
 msgid "You need to select a least 1 row!"
-msgstr "您需要至少选择1行！"
+msgstr "您至少需要选择 1 行！"
 
 #: application/views/logbookadvanced/index.php:47
 msgid "Start printing at which label?"
@@ -12081,7 +12082,7 @@ msgstr "从哪个标签开始打印？"
 
 #: application/views/logbookadvanced/index.php:48
 msgid "You need to select at least 1 row to print a label!"
-msgstr "您至少需要选择一行数据才能打印标签！"
+msgstr "您至少需要选择一行以打印标签！"
 
 #: application/views/logbookadvanced/index.php:49
 msgid "An error occurred while saving options: "
@@ -12089,11 +12090,11 @@ msgstr "在保存选项时发生错误： "
 
 #: application/views/logbookadvanced/index.php:50
 msgid "You need to select a least 1 row to delete!"
-msgstr ""
+msgstr "您至少需要选择 1 行以删除！"
 
 #: application/views/logbookadvanced/index.php:51
 msgid "You need to select a least 1 row to update from callbook!"
-msgstr ""
+msgstr "您至少需要从呼号簿中选择 1 行以更新！"
 
 #: application/views/logbookadvanced/index.php:52
 #: application/views/oqrs/showrequests.php:10
@@ -12102,12 +12103,12 @@ msgstr "发送请求时发生错误"
 
 #: application/views/logbookadvanced/index.php:53
 msgid "You need to select at least 1 location to do a search!"
-msgstr "您需要至少选择1个地点来进行搜索！"
+msgstr "您至少需要选择一个地点以进行搜索！"
 
 #: application/views/logbookadvanced/index.php:54
 #: application/views/logbookadvanced/index.php:738
 msgid "Update Distances"
-msgstr ""
+msgstr "更新距离"
 
 #: application/views/logbookadvanced/index.php:55
 msgid "QSO records updated."
@@ -12115,11 +12116,11 @@ msgstr "QSO 记录已更新。"
 
 #: application/views/logbookadvanced/index.php:56
 msgid "There was a problem updating distances."
-msgstr ""
+msgstr "更新距离时出现问题。"
 
 #: application/views/logbookadvanced/index.php:57
 msgid "Distances updated successfully!"
-msgstr ""
+msgstr "更新距离成功！"
 
 #: application/views/logbookadvanced/index.php:262
 msgid "From"
@@ -12159,7 +12160,7 @@ msgstr "无/空"
 
 #: application/views/logbookadvanced/index.php:466
 msgid "QSL Filters"
-msgstr "过滤 QSL"
+msgstr "筛选 QSL"
 
 #: application/views/logbookadvanced/index.php:472
 msgid "QSL sent"
@@ -12293,7 +12294,7 @@ msgstr "QRZ 已接收"
 
 #: application/views/logbookadvanced/index.php:642
 msgid "Quickfilters"
-msgstr "快速过滤"
+msgstr "快速筛选"
 
 #: application/views/logbookadvanced/index.php:647
 msgid "Quicksearch with selected: "
@@ -12366,7 +12367,7 @@ msgstr "用选中行进行： "
 #: application/views/logbookadvanced/index.php:719
 #: application/views/qso/edit_ajax.php:725
 msgid "Update from Callbook"
-msgstr "从历史日志补全信息"
+msgstr "从呼号簿更新"
 
 #: application/views/logbookadvanced/index.php:720
 msgid "Queue Bureau"
@@ -12438,7 +12439,7 @@ msgstr "修复 ITU 分区"
 
 #: application/views/logbookadvanced/index.php:737
 msgid "Fix Continent"
-msgstr ""
+msgstr "修正大洲"
 
 #: application/views/logbookadvanced/index.php:745
 #: application/views/oqrs/showrequests.php:58
@@ -14750,7 +14751,7 @@ msgstr "存储的查询"
 
 #: application/views/search/filter.php:72
 msgid "search filter functions"
-msgstr "搜索过滤器功能"
+msgstr "搜索筛选器功能"
 
 #: application/views/search/filter.php:82
 msgid "Search Results"
@@ -14805,7 +14806,7 @@ msgstr "抱歉，未根据 %s 找到以前的 QSO"
 #: application/views/search/result.php:6
 #, php-format
 msgid "Callbook Search for %s"
-msgstr "日志搜索结果 %s"
+msgstr "呼号簿搜索结果 %s"
 
 #: application/views/search/result.php:39
 msgid "Not Worked"
@@ -16223,7 +16224,7 @@ msgstr "QSO 页面中通联过的电台数量。"
 
 #: application/views/user/edit.php:446
 msgid "DX Waterfall"
-msgstr "DX瀑布"
+msgstr "DX 瀑布"
 
 #: application/views/user/edit.php:452
 msgid "Show an interactive DX Cluster 'Waterfall' on the QSO logging page."
@@ -17174,7 +17175,7 @@ msgstr "CSV"
 
 #: application/views/visitor/layout/footer.php:252
 msgid "Clear Filter"
-msgstr "清空过滤器"
+msgstr "清空筛选器"
 
 #: application/views/visitor/layout/header.php:74
 msgid "OQRS"
