@@ -1178,7 +1178,7 @@ class User extends CI_Controller {
 					$this->input->set_cookie('keep_login', '', -3600, '');
 					$this->input->set_cookie('re_login', '', -3600, '');
 					$this->session->set_flashdata('error', __("Login failed. Try again."));
-					$this->set_header('X-Login-Status: failed');
+					$this->output->set_header('X-Login-Status: failed');
 					$this->output->_display();
 					redirect('user/login');
 				}
@@ -1189,7 +1189,7 @@ class User extends CI_Controller {
 				// Delete keep_login cookie
 				$this->input->set_cookie('keep_login', '', -3600, '');
 				$this->input->set_cookie('re_login', '', -3600, '');
-				$this->set_header('X-Login-Status: failed');
+				$this->output->set_header('X-Login-Status: failed');
 				$this->session->set_flashdata('error', __("Login failed. Try again."));
 				$this->output->_display();
 				redirect('user/login');
