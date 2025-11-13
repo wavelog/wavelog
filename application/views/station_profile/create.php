@@ -72,7 +72,7 @@ if ($dxcc_list->result() > 0) {
 		    <label for="stationDXCCInput"><?= __("Station DXCC"); ?></label>
 				<?php if ($dxcc_list->num_rows() > 0) { ?>
 				<select class="form-control" id="dxcc_id" name="dxcc" aria-describedby="stationCallsignInputHelp" required>
-				<option value="" <?php if (!isset($dxcc) || $dxcc == "") { echo "selected"; } ?>><?= _("Please select one"); ?></option>
+				<option value="" <?php if (!isset($dxcc) || $dxcc == "") { echo "selected"; } ?>><?= __("Please select one"); ?></option>
 				<?php foreach ($dxcc_list->result() as $dxcc_item) { ?>
 				<option value="<?php echo $dxcc_item->adif; ?>" <?php if(isset($dxcc) && $dxcc_item->adif == $dxcc) { echo "selected='selected'"; } ?>><?php echo ucwords(strtolower($dxcc_item->name)) . ' - ' . $dxcc_item->prefix; if ($dxcc_item->end != NULL) echo ' ('.__("Deleted DXCC").')';?>
 				</option>

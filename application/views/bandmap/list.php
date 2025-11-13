@@ -27,6 +27,9 @@
 	var lang_bandmap_callsign_sent = "<?= __("Callsign"); ?>";
 	var lang_bandmap_sent_to_form = "<?= __("sent to logging form"); ?>";
 	var lang_bandmap_cat_control = "<?= __("CAT Connection"); ?>";
+	var lang_bandmap_cat_off = "<?= __("Click to enable CAT connection"); ?>";
+	var lang_bandmap_cat_on = "<?= __("CAT following radio | Click for frequency marker | Double-click to disable"); ?>";
+	var lang_bandmap_cat_marker = "<?= __("Frequency marker active | Click to disable marker | Double-click to disable CAT"); ?>";
 	var lang_bandmap_freq_changed = "<?= __("Frequency filter changed to"); ?>";
 	var lang_bandmap_by_transceiver = "<?= __("by transceiver"); ?>";
 	var lang_bandmap_freq_filter_set = "<?= __("Frequency filter set to"); ?>";
@@ -171,8 +174,8 @@
 	<!-- Row 1: CAT Connection, Radio Selector, Radio Status (left) | de Continents (right) -->
 	<div class="d-flex flex-wrap align-items-center gap-2 mb-2">
 		<!-- Left: CAT Connection Button -->
-		<button class="btn btn-sm btn-secondary flex-shrink-0" type="button" id="toggleCatTracking" title="<?= __("When selected the filters will be set basing on your current radio status"); ?>">
-			<i class="fas fa-radio"></i> <span class="d-none d-sm-inline"><?= __("CAT Connection"); ?></span>
+		<button class="btn btn-sm btn-secondary flex-shrink-0" type="button" id="toggleCatTracking" data-bs-toggle="tooltip" data-bs-placement="bottom">
+			<i class="fas fa-radio"></i> <span class="d-none d-sm-inline"><?= __("CAT Connection"); ?></span> <i class="fas fa-info-circle text-muted" style="font-size: 0.75rem;"></i>
 		</button>
 
 		<!-- Radio Selector Dropdown -->
@@ -181,7 +184,7 @@
 			<option value="0" selected="selected"><?= __("None"); ?></option>
 			<option value="ws"<?php if ($this->session->userdata('radio') == 'ws') { echo ' selected="selected"'; } ?>><?= __("Live - ") . __("WebSocket (Requires WLGate>=1.1.10)"); ?></option>
 			<?php foreach ($radios->result() as $row) { ?>
-				<option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id) { echo "selected=\"selected\""; } ?>><?= __("Polling - ") . $row->radio; ?><?php if ($radio_last_updated->id == $row->id) { echo "(".__("last updated").")"; } else { echo ''; } ?></option>
+				<option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id) { echo "selected=\"selected\""; } ?>><?= __("Polling - ") . $row->radio; ?><?php if ($radio_last_updated->id == $row->id) { echo " (".__("last updated").")"; } else { echo ''; } ?></option>
 			<?php } ?>
 		</select>
 

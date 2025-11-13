@@ -27,10 +27,10 @@ foreach ($result as $mode => $value) {
 }
 echo '</tbody></table>';
 echo strtoupper($callsign) . ' ' . sprintf(
-    ngettext('has %d band slot', 'has %d band slots', intval($count)),
+    _ngettext('has %d band slot', 'has %d band slots', intval($count)),
     intval($count)
 ) . ' ' . sprintf(
-    ngettext('and has %d QSO in the log', 'and has %d QSOs in the log', intval($qsocount)),
+    _ngettext('and has %d QSO in the log', 'and has %d QSOs in the log', intval($qsocount)),
     intval($qsocount)
 ) . '.<br /><br />';
 ?>

@@ -52,7 +52,7 @@ class Callbook {
 		}
 		// qrz.com gives AA00aa if the user deleted his grid from the profile
 		$this->ci->load->library('qra');
-		if (!$this->ci->qra->validate_grid($callbook['gridsquare'])) {
+		if (!array_key_exists('gridsquare', $callbook) || !$this->ci->qra->validate_grid($callbook['gridsquare'])) {
 			$callbook['gridsquare'] = '';
 		}
 		return $callbook;
