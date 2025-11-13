@@ -15,6 +15,15 @@ class Dxcluster_model extends CI_Model {
 		'EU CONTEST', 'NA CONTEST', 'KING OF SPAIN', 'ALL ASIAN'
 	];
 
+	// Digital modes for submode detection
+	// Note: Order matters! More specific modes (PSK31, PSK63) must come before generic (PSK)
+	// to ensure accurate submode detection via strpos() matching
+	protected $digitalModes = [
+		'FT8', 'FT4', 'RTTY', 'PSK31', 'PSK63', 'PSK', 'SSTV', 'MFSK',
+		'OLIVIA', 'CONTESTIA', 'JT65', 'JT9', 'WSPR', 'HELL', 'THOR',
+		'DOMINO', 'MT63', 'PACTOR'
+	];
+
 	public function __construct() {
 		$this->load->Model('Modes');
 		$this->db->where('bandedges.userid', $this->session->userdata('user_id'));
@@ -133,15 +142,18 @@ class Dxcluster_model extends CI_Model {
 			if (!is_object($singlespot) || !isset($singlespot->frequency) || !is_numeric($singlespot->frequency)) {
 				continue;
 			}
-			$spotband = $this->frequency->GetBand($singlespot->frequency*1000);
 
-			// Apply band filter early (before expensive operations)
+			// Ensure frequency is always a number (not a string)
+			$singlespot->frequency = floatval($singlespot->frequency);
+
+			$spotband = $this->frequency->GetBand($singlespot->frequency*1000);			// Apply band filter early (before expensive operations)
 			if (($band != 'All') && ($band != $spotband)) {
 				continue;
 			}
 
 			$singlespot->band = $spotband;
 			$singlespot->mode = $this->get_mode($singlespot);
+			$singlespot->submode = $this->get_submode($singlespot);
 
 			// Apply mode filter early
 			if (($mode != 'All') && !$this->modefilter($singlespot, $mode)) {
@@ -290,46 +302,125 @@ class Dxcluster_model extends CI_Model {
 		return $spotsout;
 	}
 
-	// We need to build functions that check the frequency limit
-	// Right now this is just a proof of concept to determine mode
+	// Determine mode with priority: POTA/SOTA mode > message keywords > frequency-based
 	function get_mode($spot) {
-		if ($this->Frequency2Mode($spot->frequency) != '') {
-			return $this->Frequency2Mode($spot->frequency);
+		// Priority 1: POTA/SOTA mode fields (if present) - check from both dxcc_spotted and direct properties
+		$potaMode = $spot->pota_mode ?? $spot->dxcc_spotted->pota_mode ?? null;
+		$sotaMode = $spot->sota_mode ?? $spot->dxcc_spotted->sota_mode ?? null;
+
+		if (!empty($potaMode)) {
+			return $this->mapToModeCategory($potaMode);
+		}
+		if (!empty($sotaMode)) {
+			return $this->mapToModeCategory($sotaMode);
 		}
 
-		// Fallbacks using message keywords
+		// Priority 2: Message keywords (explicit mode in message text)
 		if (isset($spot->message)) {
 			$message = strtolower($spot->message);
+
+			// Check for CW first (simplest check)
 			if (strpos($message, 'cw') !== false) {
-				return 'cw';;
+				return 'cw';
 			}
-			if ((strpos($message, 'ft8') !== false || strpos($message, 'rtty') !== false || strpos($message, 'sstv') !== false)) {
-				return 'digi';;
+
+			// Check for digital modes using class property
+			foreach ($this->digitalModes as $digiMode) {
+				if (strpos($message, strtolower($digiMode)) !== false) {
+					return 'digi';
+				}
 			}
 		}
 
-		return '';
+		// Priority 3: Frequency-based mode (from bandedges table)
+		// If frequency falls within a defined band edge, use that mode
+		$frequencyMode = $this->Frequency2Mode($spot->frequency);
+		if ($frequencyMode != '') {
+			return $frequencyMode;
+		}
+
+		// Default fallback: phone
+		return 'phone';
+	}
+
+	// Map specific mode names to mode categories (phone/cw/digi)
+	function mapToModeCategory($mode) {
+		$modeUpper = strtoupper($mode);
+
+		// CW modes
+		if ($modeUpper === 'CW') {
+			return 'cw';
+		}
+
+		// Digital modes - check against class property
+		foreach ($this->digitalModes as $digiMode) {
+			if ($modeUpper === $digiMode) {
+				return 'digi';
+			}
+		}
+
+		// Phone modes
+		if (in_array($modeUpper, ['SSB', 'LSB', 'USB', 'AM', 'FM', 'PHONE'])) {
+			return 'phone';
+		}
+
+		// Default to phone if unknown
+		return 'phone';
+	}
+
+	// Determine submode for more specific mode classification
+	function get_submode($spot) {
+		$mode = strtolower($spot->mode ?? '');
+		$frequency = floatval($spot->frequency);
+
+		// Check if we have specific mode from POTA/SOTA - use that as submode
+		$potaMode = $spot->pota_mode ?? $spot->dxcc_spotted->pota_mode ?? null;
+		$sotaMode = $spot->sota_mode ?? $spot->dxcc_spotted->sota_mode ?? null;
+
+		// If POTA/SOTA provides generic "SSB", refine it to LSB/USB based on frequency
+		if (!empty($potaMode) && strtoupper($potaMode) !== 'SSB') {
+			return strtoupper($potaMode);
+		}
+		if (!empty($sotaMode) && strtoupper($sotaMode) !== 'SSB') {
+			return strtoupper($sotaMode);
+		}
+
+		// For phone modes (including generic SSB from POTA/SOTA), determine LSB or USB based on frequency
+		if ($mode === 'phone' || $mode === 'ssb') {
+			// Below 10 MHz use LSB, above use USB
+			return $frequency < 10000 ? 'LSB' : 'USB';
+		}
+
+		// For CW, return CW
+		if ($mode === 'cw') {
+			return 'CW';
+		}
+
+		// For digital modes, try to get specific mode from message
+		if ($mode === 'digi') {
+			if (isset($spot->message)) {
+				$message = strtoupper($spot->message);
+				// Check for specific digital modes using class property
+				foreach ($this->digitalModes as $digiMode) {
+					if (strpos($message, $digiMode) !== false) {
+						return $digiMode;
+					}
+				}
+			}
+			return 'DIGI'; // Generic digital fallback
+		}
+
+		// Return uppercase version of mode as submode
+		return strtoupper($mode);
 	}
 
 	function modefilter($spot, $mode) {
 		$mode = strtolower($mode); // Normalize case
+		$spotMode = strtolower($spot->mode ?? ''); // Get already-determined mode
 
-		if ($this->isFrequencyInMode($spot->frequency, $mode)) {
-			return true;
-		}
-
-		// Fallbacks using message keywords
-		if (isset($spot->message)) {
-			$message = strtolower($spot->message);
-			if ($mode === 'cw' && strpos($message, 'cw') !== false) {
-				return true;
-			}
-			if ($mode === 'digi' && (strpos($message, 'ft8') !== false || strpos($message, 'rtty') !== false || strpos($message, 'sstv') !== false)) {
-				return true;
-			}
-		}
-
-		return false;
+		// Since get_mode() already determined the mode using priority logic
+		// (frequency > POTA/SOTA > message), we can directly compare
+		return $spotMode === $mode;
 	}
 
 	public function Frequency2Mode($frequency) {
