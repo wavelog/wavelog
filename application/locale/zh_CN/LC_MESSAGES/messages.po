@@ -22,11 +22,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-11-12 05:36+0000\n"
+"POT-Creation-Date: 2025-11-14 01:12+0000\n"
 "PO-Revision-Date: 2025-11-13 14:37+0000\n"
 "Last-Translator: Lu Chang <chinaluchang@live.com>\n"
-"Language-Team: Chinese (Simplified Han script) <https://"
-"translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
+"org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -353,7 +353,7 @@ msgid "DOK"
 msgstr "DOK"
 
 #: application/controllers/Awards.php:176 application/views/awards/index.php:7
-#: application/views/bandmap/list.php:61 application/views/bands/index.php:50
+#: application/views/bandmap/list.php:64 application/views/bands/index.php:50
 #: application/views/csv/index.php:58 application/views/dxatlas/index.php:58
 #: application/views/dxcalendar/index.php:11
 #: application/views/interface_assets/header.php:180
@@ -373,7 +373,6 @@ msgstr "DOK"
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/stationsetup/linkedlocations.php:33
 #: application/views/timeplotter/index.php:24
-#: application/views/bandmap/list.php:64
 msgid "DXCC"
 msgstr "DXCC"
 
@@ -443,7 +442,7 @@ msgstr " 并且 "
 
 #: application/controllers/Awards.php:567
 #: application/controllers/Logbook.php:1364
-#: application/views/awards/index.php:8 application/views/bandmap/list.php:267
+#: application/views/awards/index.php:8 application/views/bandmap/list.php:270
 #: application/views/bands/index.php:57 application/views/dashboard/index.php:9
 #: application/views/interface_assets/header.php:206
 #: application/views/logbookadvanced/edit.php:32
@@ -465,13 +464,12 @@ msgstr " 并且 "
 #: application/views/user/edit.php:341
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:21
-#: application/views/bandmap/list.php:270
 msgid "SOTA"
 msgstr "SOTA"
 
 #: application/controllers/Awards.php:584
 #: application/controllers/Logbook.php:1365
-#: application/views/bandmap/list.php:269 application/views/bands/index.php:64
+#: application/views/bandmap/list.php:272 application/views/bands/index.php:64
 #: application/views/dashboard/index.php:10
 #: application/views/interface_assets/header.php:194
 #: application/views/logbookadvanced/edit.php:34
@@ -487,13 +485,12 @@ msgstr "SOTA"
 #: application/views/user/edit.php:295 application/views/user/edit.php:318
 #: application/views/user/edit.php:342
 #: application/views/view_log/partial/log_ajax.php:10
-#: application/views/bandmap/list.php:272
 msgid "WWFF"
 msgstr "WWFF"
 
 #: application/controllers/Awards.php:601
 #: application/controllers/Logbook.php:1366
-#: application/views/adif/import.php:45 application/views/bandmap/list.php:268
+#: application/views/adif/import.php:45 application/views/bandmap/list.php:271
 #: application/views/bands/index.php:54
 #: application/views/dashboard/index.php:11
 #: application/views/interface_assets/header.php:210
@@ -510,7 +507,6 @@ msgstr "WWFF"
 #: application/views/user/edit.php:296 application/views/user/edit.php:319
 #: application/views/user/edit.php:343
 #: application/views/view_log/partial/log_ajax.php:11
-#: application/views/bandmap/list.php:271
 msgid "POTA"
 msgstr "POTA"
 
@@ -1391,9 +1387,9 @@ msgstr "eQSL"
 #: application/views/awards/wpx/index.php:122
 #: application/views/awards/wpx/index.php:124
 #: application/views/awards/wpx/wpx_details.php:23
-#: application/views/bandmap/list.php:63 application/views/bandmap/list.php:117
-#: application/views/bandmap/list.php:243
-#: application/views/bandmap/list.php:494
+#: application/views/bandmap/list.php:66 application/views/bandmap/list.php:120
+#: application/views/bandmap/list.php:246
+#: application/views/bandmap/list.php:497
 #: application/views/bands/bandedges.php:31
 #: application/views/callstats/index.php:49
 #: application/views/components/hamsat/table.php:30
@@ -1452,10 +1448,7 @@ msgstr "eQSL"
 #: application/views/view_log/partial/log.php:9
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
-#: application/views/widgets/qsos.php:18 application/views/bandmap/list.php:66
-#: application/views/bandmap/list.php:120
-#: application/views/bandmap/list.php:246
-#: application/views/bandmap/list.php:497
+#: application/views/widgets/qsos.php:18
 msgid "Mode"
 msgstr "模式"
 
@@ -1541,7 +1534,7 @@ msgstr "DXCC 实体"
 
 #: application/controllers/Logbook.php:1363
 #: application/views/awards/iota/index.php:196
-#: application/views/bandmap/list.php:270 application/views/bands/index.php:52
+#: application/views/bandmap/list.php:273 application/views/bands/index.php:52
 #: application/views/dashboard/index.php:8
 #: application/views/interface_assets/header.php:208
 #: application/views/logbookadvanced/edit.php:28
@@ -1565,7 +1558,6 @@ msgstr "DXCC 实体"
 #: application/views/user/edit.php:316 application/views/user/edit.php:340
 #: application/views/view_log/partial/log_ajax.php:8
 #: application/views/visitor/index.php:18
-#: application/views/bandmap/list.php:273
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -1698,9 +1690,9 @@ msgstr "距离"
 #: application/views/awards/wpx/index.php:79
 #: application/views/awards/wpx/wpx_details.php:22
 #: application/views/awards/wwff/index.php:36
-#: application/views/bandmap/list.php:62 application/views/bandmap/list.php:118
-#: application/views/bandmap/list.php:304
-#: application/views/bandmap/list.php:492 application/views/bands/create.php:24
+#: application/views/bandmap/list.php:65 application/views/bandmap/list.php:121
+#: application/views/bandmap/list.php:307
+#: application/views/bandmap/list.php:495 application/views/bands/create.php:24
 #: application/views/bands/edit.php:7 application/views/bands/index.php:47
 #: application/views/callstats/index.php:7
 #: application/views/contesting/index.php:131
@@ -1753,16 +1745,13 @@ msgstr "距离"
 #: application/views/view_log/partial/log.php:12
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
-#: application/views/widgets/qsos.php:21 application/views/bandmap/list.php:65
-#: application/views/bandmap/list.php:121
-#: application/views/bandmap/list.php:307
-#: application/views/bandmap/list.php:495
+#: application/views/widgets/qsos.php:21
 msgid "Band"
 msgstr "频段"
 
 #: application/controllers/Logbook.php:1371
-#: application/controllers/Radio.php:45 application/views/bandmap/list.php:116
-#: application/views/bandmap/list.php:493
+#: application/controllers/Radio.php:45 application/views/bandmap/list.php:119
+#: application/views/bandmap/list.php:496
 #: application/views/contesting/index.php:148
 #: application/views/dashboard/index.php:16
 #: application/views/logbookadvanced/index.php:831
@@ -1784,8 +1773,6 @@ msgstr "频段"
 #: application/views/view_log/partial/log_ajax.php:16
 #: application/views/view_log/qso.php:101
 #: application/views/visitor/index.php:36
-#: application/views/bandmap/list.php:119
-#: application/views/bandmap/list.php:496
 msgid "Frequency"
 msgstr "频率"
 
@@ -1820,7 +1807,7 @@ msgstr "操作员"
 #: application/views/awards/wae/index.php:175
 #: application/views/csv/index.php:65 application/views/dashboard/index.php:29
 #: application/views/dxatlas/index.php:65
-#: application/views/interface_assets/footer.php:839
+#: application/views/interface_assets/footer.php:819
 #: application/views/kml/index.php:54
 #: application/views/logbookadvanced/index.php:287
 #: application/views/lookup/index.php:47
@@ -1839,7 +1826,6 @@ msgstr "操作员"
 #: application/views/view_log/partial/log_ajax.php:31
 #: application/views/view_log/qso.php:341
 #: application/views/view_log/qso.php:694
-#: application/views/interface_assets/footer.php:819
 msgid "Deleted DXCC"
 msgstr "删除 DXCC 实体"
 
@@ -2308,9 +2294,9 @@ msgstr "设置"
 msgid "UNKNOWN"
 msgstr "未知"
 
-#: application/controllers/Radio.php:98 application/views/bandmap/list.php:184
+#: application/controllers/Radio.php:98 application/views/bandmap/list.php:187
 #: application/views/contesting/index.php:162
-#: application/views/qso/index.php:389 application/views/bandmap/list.php:187
+#: application/views/qso/index.php:389
 msgid "last updated"
 msgstr "上次更新"
 
@@ -2327,8 +2313,8 @@ msgstr "默认（点击释放）"
 #: application/views/api/index.php:74 application/views/bands/bandedges.php:32
 #: application/views/club/permissions.php:248
 #: application/views/contesting/add.php:59 application/views/cron/index.php:71
-#: application/views/interface_assets/footer.php:699
-#: application/views/interface_assets/footer.php:708
+#: application/views/interface_assets/footer.php:679
+#: application/views/interface_assets/footer.php:688
 #: application/views/labels/index.php:47 application/views/labels/index.php:83
 #: application/views/logbookadvanced/index.php:773
 #: application/views/mode/index.php:64 application/views/satellite/edit.php:56
@@ -2338,8 +2324,6 @@ msgstr "默认（点击释放）"
 #: application/views/stationsetup/stationsetup.php:172
 #: application/views/themes/index.php:104 application/views/user/index.php:97
 #: application/views/user/index.php:203
-#: application/views/interface_assets/footer.php:679
-#: application/views/interface_assets/footer.php:688
 msgid "Edit"
 msgstr "编辑"
 
@@ -2350,10 +2334,10 @@ msgstr "编辑"
 #: application/views/club/permissions.php:326
 #: application/views/contesting/add.php:62
 #: application/views/interface_assets/footer.php:65
-#: application/views/interface_assets/footer.php:2787
-#: application/views/interface_assets/footer.php:2805
-#: application/views/interface_assets/footer.php:2826
-#: application/views/interface_assets/footer.php:2844
+#: application/views/interface_assets/footer.php:2767
+#: application/views/interface_assets/footer.php:2785
+#: application/views/interface_assets/footer.php:2806
+#: application/views/interface_assets/footer.php:2824
 #: application/views/labels/index.php:48 application/views/labels/index.php:84
 #: application/views/logbookadvanced/index.php:789
 #: application/views/lotw_views/index.php:128
@@ -2369,10 +2353,6 @@ msgstr "编辑"
 #: application/views/stationsetup/stationsetup.php:199
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:778
-#: application/views/interface_assets/footer.php:2767
-#: application/views/interface_assets/footer.php:2785
-#: application/views/interface_assets/footer.php:2806
-#: application/views/interface_assets/footer.php:2824
 msgid "Delete"
 msgstr "删除"
 
@@ -2462,7 +2442,7 @@ msgstr "这里"
 msgid "Satellite Timers"
 msgstr "卫星时钟"
 
-#: application/controllers/Search.php:17 application/views/bandmap/list.php:470
+#: application/controllers/Search.php:17 application/views/bandmap/list.php:473
 #: application/views/continents/index.php:49
 #: application/views/interface_assets/footer.php:42
 #: application/views/interface_assets/header.php:374
@@ -2486,7 +2466,6 @@ msgstr "卫星时钟"
 #: application/views/search/main.php:36
 #: application/views/visitor/layout/header.php:97
 #: application/views/visitor/layout/header.php:98
-#: application/views/bandmap/list.php:473
 msgid "Search"
 msgstr "搜索"
 
@@ -2948,6 +2927,23 @@ msgstr "用户 %s 已编辑"
 #: application/controllers/User.php:1039
 msgid "Profile"
 msgstr "个人资料"
+
+#: application/controllers/User.php:1063
+#: application/views/club/permissions.php:309
+msgid "Delete User"
+msgstr "删除用户"
+
+#: application/controllers/User.php:1076
+msgid "User deleted"
+msgstr ""
+
+#: application/controllers/User.php:1079
+msgid "Could not delete user!"
+msgstr ""
+
+#: application/controllers/User.php:1079
+msgid "Database error:"
+msgstr ""
 
 #: application/controllers/User.php:1104
 msgid ""
@@ -3613,13 +3609,13 @@ msgstr "差异"
 #: application/views/awards/wpx/index.php:93
 #: application/views/awards/wpx/index.php:107
 #: application/views/awards/wpx/index.php:126
-#: application/views/bandmap/list.php:65 application/views/bandmap/list.php:195
-#: application/views/bandmap/list.php:237
-#: application/views/bandmap/list.php:245
-#: application/views/bandmap/list.php:266
-#: application/views/bandmap/list.php:278
-#: application/views/bandmap/list.php:292
-#: application/views/bandmap/list.php:306 application/views/bands/index.php:123
+#: application/views/bandmap/list.php:68 application/views/bandmap/list.php:198
+#: application/views/bandmap/list.php:240
+#: application/views/bandmap/list.php:248
+#: application/views/bandmap/list.php:269
+#: application/views/bandmap/list.php:281
+#: application/views/bandmap/list.php:295
+#: application/views/bandmap/list.php:309 application/views/bands/index.php:123
 #: application/views/cabrillo/index.php:69
 #: application/views/callstats/index.php:10
 #: application/views/callstats/index.php:24
@@ -3648,8 +3644,8 @@ msgstr "差异"
 #: application/views/gridmap/index.php:107
 #: application/views/gridmap/index.php:121
 #: application/views/interface_assets/footer.php:48
-#: application/views/interface_assets/footer.php:1677
-#: application/views/interface_assets/footer.php:1816
+#: application/views/interface_assets/footer.php:1657
+#: application/views/interface_assets/footer.php:1796
 #: application/views/kml/index.php:21 application/views/kml/index.php:33
 #: application/views/kml/index.php:49 application/views/kml/index.php:67
 #: application/views/kml/index.php:79
@@ -3698,15 +3694,6 @@ msgstr "差异"
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:789
 #: application/views/visitor/layout/footer.php:172
-#: application/views/bandmap/list.php:68 application/views/bandmap/list.php:198
-#: application/views/bandmap/list.php:240
-#: application/views/bandmap/list.php:248
-#: application/views/bandmap/list.php:269
-#: application/views/bandmap/list.php:281
-#: application/views/bandmap/list.php:295
-#: application/views/bandmap/list.php:309
-#: application/views/interface_assets/footer.php:1657
-#: application/views/interface_assets/footer.php:1796
 msgid "All"
 msgstr "所有"
 
@@ -4214,7 +4201,7 @@ msgstr "未找到！"
 #: application/views/awards/sota/index.php:33
 #: application/views/awards/wpx/wpx_details.php:20
 #: application/views/awards/wwff/index.php:35
-#: application/views/bandmap/list.php:27 application/views/bandmap/list.php:115
+#: application/views/bandmap/list.php:27 application/views/bandmap/list.php:118
 #: application/views/cabrillo/index.php:31
 #: application/views/callstats/index.php:147
 #: application/views/club/permissions.php:222
@@ -4253,7 +4240,6 @@ msgstr "未找到！"
 #: application/views/user/edit.php:137 application/views/user/index.php:28
 #: application/views/user/index.php:153 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:672
-#: application/views/bandmap/list.php:118
 msgid "Callsign"
 msgstr "呼号"
 
@@ -4371,7 +4357,7 @@ msgstr "日期"
 #: application/views/awards/pota/index.php:34
 #: application/views/awards/sota/index.php:32
 #: application/views/awards/wwff/index.php:34
-#: application/views/bandmap/list.php:89
+#: application/views/bandmap/list.php:92
 #: application/views/components/hamsat/table.php:26
 #: application/views/contesting/index.php:108
 #: application/views/contesting/index.php:262
@@ -4396,7 +4382,6 @@ msgstr "日期"
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:198
 #: application/views/visitor/index.php:154
-#: application/views/bandmap/list.php:92
 msgid "Time"
 msgstr "时间"
 
@@ -4529,8 +4514,6 @@ msgstr "如果不选择，Wavelog 将会自动判断 QSO 的 DXCC。"
 
 #: application/views/adif/import.php:141
 #: application/views/interface_assets/footer.php:34
-#: application/views/interface_assets/footer.php:659
-#: application/views/interface_assets/footer.php:2549
 #: application/views/interface_assets/footer.php:639
 #: application/views/interface_assets/footer.php:2529
 msgid "DANGER"
@@ -4919,7 +4902,7 @@ msgstr "如用于描述用途的名字。"
 #: application/views/club/permissions.php:297
 #: application/views/contesting/edit.php:55 application/views/cron/edit.php:73
 #: application/views/interface_assets/footer.php:51
-#: application/views/interface_assets/footer.php:694
+#: application/views/interface_assets/footer.php:674
 #: application/views/logbookadvanced/index.php:42
 #: application/views/operator/index.php:23
 #: application/views/options/appearance.php:97
@@ -4931,7 +4914,6 @@ msgstr "如用于描述用途的名字。"
 #: application/views/satellite/create.php:82
 #: application/views/satellite/pass.php:115
 #: application/views/simplefle/index.php:22
-#: application/views/interface_assets/footer.php:674
 msgid "Save"
 msgstr "保存"
 
@@ -5254,7 +5236,7 @@ msgstr "总计"
 
 #: application/views/awards/cq/index.php:3
 #: application/views/awards/cq/index.php:151
-#: application/views/bandmap/list.php:497 application/views/csv/index.php:80
+#: application/views/bandmap/list.php:500 application/views/csv/index.php:80
 #: application/views/dxatlas/index.php:80
 #: application/views/gridmap/index.php:199 application/views/kml/index.php:65
 #: application/views/logbookadvanced/edit.php:24
@@ -5271,7 +5253,6 @@ msgstr "总计"
 #: application/views/timeline/index.php:327
 #: application/views/timeplotter/index.php:44
 #: application/views/user/modals/first_login_wizard.php:74
-#: application/views/bandmap/list.php:500
 msgid "CQ Zone"
 msgstr "CQ 分区"
 
@@ -5324,25 +5305,23 @@ msgstr "CQ WAZ 奖"
 #: application/views/awards/wab/list.php:6
 #: application/views/awards/wac/index.php:23
 #: application/views/awards/wpx/wpx_details.php:24
-#: application/views/bandmap/list.php:52 application/views/bandmap/list.php:240
+#: application/views/bandmap/list.php:55 application/views/bandmap/list.php:243
 #: application/views/dashboard/index.php:344
 #: application/views/dashboard/index.php:462
 #: application/views/interface_assets/footer.php:45
 #: application/views/search/result.php:32
 #: application/views/visitor/index.php:270
-#: application/views/bandmap/list.php:55 application/views/bandmap/list.php:243
 msgid "Confirmed"
 msgstr "已确认"
 
 #: application/views/awards/cq/index.php:35
 #: application/views/awards/itu/index.php:35
 #: application/views/awards/wac/index.php:23
-#: application/views/bandmap/list.php:51 application/views/bandmap/list.php:239
+#: application/views/bandmap/list.php:54 application/views/bandmap/list.php:242
 #: application/views/dashboard/index.php:340
 #: application/views/dashboard/index.php:456
 #: application/views/search/result.php:35
 #: application/views/visitor/index.php:266
-#: application/views/bandmap/list.php:54 application/views/bandmap/list.php:242
 msgid "Worked"
 msgstr "已通联"
 
@@ -5418,11 +5397,10 @@ msgstr "显示 QSL 分类下的 QSO"
 #: application/views/awards/iota/index.php:62
 #: application/views/awards/itu/index.php:57
 #: application/views/awards/wac/index.php:45
-#: application/views/interface_assets/footer.php:2528
+#: application/views/interface_assets/footer.php:2508
 #: application/views/logbookadvanced/index.php:40
 #: application/views/qso/edit_ajax.php:419
 #: application/views/view_log/qso.php:25
-#: application/views/interface_assets/footer.php:2508
 msgid "QSL Card"
 msgstr "QSL 卡片"
 
@@ -5684,112 +5662,98 @@ msgstr "包括已删除"
 #: application/views/awards/dxcc/index.php:97
 #: application/views/awards/iota/index.php:88
 #: application/views/awards/wpx/index.php:55
-#: application/views/bandmap/list.php:280
-#: application/views/bandmap/list.php:294
+#: application/views/bandmap/list.php:283
+#: application/views/bandmap/list.php:297
 #: application/views/logbookadvanced/edit.php:217
 #: application/views/logbookadvanced/index.php:443
 #: application/views/lookup/index.php:60
 #: application/views/options/dxcluster.php:56
 #: application/views/qso/edit_ajax.php:266 application/views/qso/index.php:460
 #: application/views/view_log/qso.php:356
-#: application/views/bandmap/list.php:283
-#: application/views/bandmap/list.php:297
 msgid "Antarctica"
 msgstr "南极洲"
 
 #: application/views/awards/dxcc/index.php:101
 #: application/views/awards/iota/index.php:92
 #: application/views/awards/wpx/index.php:56
-#: application/views/bandmap/list.php:279
-#: application/views/bandmap/list.php:293
+#: application/views/bandmap/list.php:282
+#: application/views/bandmap/list.php:296
 #: application/views/logbookadvanced/edit.php:216
 #: application/views/logbookadvanced/index.php:442
 #: application/views/lookup/index.php:59
 #: application/views/options/dxcluster.php:55
 #: application/views/qso/edit_ajax.php:265 application/views/qso/index.php:459
 #: application/views/view_log/qso.php:353
-#: application/views/bandmap/list.php:282
-#: application/views/bandmap/list.php:296
 msgid "Africa"
 msgstr "非洲"
 
 #: application/views/awards/dxcc/index.php:105
 #: application/views/awards/iota/index.php:96
 #: application/views/awards/wpx/index.php:57
-#: application/views/bandmap/list.php:281
-#: application/views/bandmap/list.php:295
+#: application/views/bandmap/list.php:284
+#: application/views/bandmap/list.php:298
 #: application/views/logbookadvanced/edit.php:219
 #: application/views/logbookadvanced/index.php:445
 #: application/views/lookup/index.php:62
 #: application/views/options/dxcluster.php:57
 #: application/views/qso/edit_ajax.php:267 application/views/qso/index.php:461
 #: application/views/view_log/qso.php:359
-#: application/views/bandmap/list.php:284
-#: application/views/bandmap/list.php:298
 msgid "Asia"
 msgstr "亚洲"
 
 #: application/views/awards/dxcc/index.php:109
 #: application/views/awards/iota/index.php:100
 #: application/views/awards/wpx/index.php:58
-#: application/views/bandmap/list.php:282
-#: application/views/bandmap/list.php:296
+#: application/views/bandmap/list.php:285
+#: application/views/bandmap/list.php:299
 #: application/views/logbookadvanced/edit.php:220
 #: application/views/logbookadvanced/index.php:446
 #: application/views/lookup/index.php:63
 #: application/views/options/dxcluster.php:58
 #: application/views/qso/edit_ajax.php:268 application/views/qso/index.php:462
 #: application/views/view_log/qso.php:362
-#: application/views/bandmap/list.php:285
-#: application/views/bandmap/list.php:299
 msgid "Europe"
 msgstr "欧洲"
 
 #: application/views/awards/dxcc/index.php:113
 #: application/views/awards/iota/index.php:104
 #: application/views/awards/wpx/index.php:59
-#: application/views/bandmap/list.php:283
-#: application/views/bandmap/list.php:297
+#: application/views/bandmap/list.php:286
+#: application/views/bandmap/list.php:300
 #: application/views/logbookadvanced/edit.php:218
 #: application/views/logbookadvanced/index.php:444
 #: application/views/lookup/index.php:61
 #: application/views/options/dxcluster.php:59
 #: application/views/qso/edit_ajax.php:269 application/views/qso/index.php:463
 #: application/views/view_log/qso.php:365
-#: application/views/bandmap/list.php:286
-#: application/views/bandmap/list.php:300
 msgid "North America"
 msgstr "北美洲"
 
 #: application/views/awards/dxcc/index.php:117
 #: application/views/awards/iota/index.php:108
 #: application/views/awards/wpx/index.php:60
-#: application/views/bandmap/list.php:285
-#: application/views/bandmap/list.php:299
+#: application/views/bandmap/list.php:288
+#: application/views/bandmap/list.php:302
 #: application/views/logbookadvanced/edit.php:221
 #: application/views/logbookadvanced/index.php:447
 #: application/views/lookup/index.php:64
 #: application/views/options/dxcluster.php:61
 #: application/views/qso/edit_ajax.php:271 application/views/qso/index.php:465
 #: application/views/view_log/qso.php:371
-#: application/views/bandmap/list.php:288
-#: application/views/bandmap/list.php:302
 msgid "South America"
 msgstr "南美洲"
 
 #: application/views/awards/dxcc/index.php:121
 #: application/views/awards/iota/index.php:112
 #: application/views/awards/wpx/index.php:61
-#: application/views/bandmap/list.php:284
-#: application/views/bandmap/list.php:298
+#: application/views/bandmap/list.php:287
+#: application/views/bandmap/list.php:301
 #: application/views/logbookadvanced/edit.php:222
 #: application/views/logbookadvanced/index.php:448
 #: application/views/lookup/index.php:65
 #: application/views/options/dxcluster.php:60
 #: application/views/qso/edit_ajax.php:270 application/views/qso/index.php:464
 #: application/views/view_log/qso.php:368
-#: application/views/bandmap/list.php:287
-#: application/views/bandmap/list.php:301
 msgid "Oceania"
 msgstr "大洋洲"
 
@@ -6269,8 +6233,8 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
-"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意的"
-"“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
+"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意"
+"的“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
 
 #: application/views/awards/sig/index.php:9
 msgid ""
@@ -6452,7 +6416,7 @@ msgid "Awards - Worked All Continents (WAC)"
 msgstr "奖项 - 通联世界大洲奖（WAC）"
 
 #: application/views/awards/wac/index.php:152
-#: application/views/bandmap/list.php:64 application/views/bandmap/list.php:496
+#: application/views/bandmap/list.php:67 application/views/bandmap/list.php:499
 #: application/views/continents/index.php:62
 #: application/views/logbookadvanced/edit.php:23
 #: application/views/logbookadvanced/index.php:438
@@ -6460,8 +6424,7 @@ msgstr "奖项 - 通联世界大洲奖（WAC）"
 #: application/views/logbookadvanced/useroptions.php:170
 #: application/views/lookup/index.php:4 application/views/qso/award_tabs.php:37
 #: application/views/qso/edit_ajax.php:262 application/views/qso/index.php:456
-#: application/views/view_log/qso.php:348 application/views/bandmap/list.php:67
-#: application/views/bandmap/list.php:499
+#: application/views/view_log/qso.php:348
 msgid "Continent"
 msgstr "大陆"
 
@@ -6777,8 +6740,7 @@ msgstr "你的笔记备份已成功完成。输出可在以下位置找到"
 msgid "Click to prepare logging."
 msgstr "点击以准备记录。"
 
-#: application/views/bandmap/list.php:11 application/views/bandmap/list.php:84
-#: application/views/bandmap/list.php:87
+#: application/views/bandmap/list.php:11 application/views/bandmap/list.php:87
 msgid "to tune frequency"
 msgstr "调整频率"
 
@@ -6798,8 +6760,7 @@ msgstr "需要连接 CAT 设备"
 msgid "Enable CAT connection to tune the radio"
 msgstr "启用 CAT 连接以调节电台"
 
-#: application/views/bandmap/list.php:18 application/views/bandmap/list.php:352
-#: application/views/bandmap/list.php:355
+#: application/views/bandmap/list.php:18 application/views/bandmap/list.php:355
 msgid "Clear Filters"
 msgstr "清除筛选条件"
 
@@ -6835,130 +6796,138 @@ msgstr "QSO 就绪"
 msgid "sent to logging form"
 msgstr "已提交到日志表单"
 
-#: application/views/bandmap/list.php:29 application/views/bandmap/list.php:175
-#: application/views/bandmap/list.php:178
+#: application/views/bandmap/list.php:29 application/views/bandmap/list.php:178
 msgid "CAT Connection"
 msgstr "CAT 连接"
 
-#: application/views/bandmap/list.php:30 application/views/bandmap/list.php:33
+#: application/views/bandmap/list.php:30
+msgid "Click to enable CAT connection"
+msgstr "点击以启用 CAT 连接"
+
+#: application/views/bandmap/list.php:31
+msgid ""
+"CAT following radio | Click for frequency marker | Double-click to disable"
+msgstr "CAT 跟随电台 | 点击显示频率标记 | 双击禁用"
+
+#: application/views/bandmap/list.php:32
+msgid ""
+"Frequency marker active | Click to disable marker | Double-click to disable "
+"CAT"
+msgstr "频率标记激活 | 点击禁用标记 | 双击禁用 CAT"
+
+#: application/views/bandmap/list.php:33
 msgid "Frequency filter changed to"
 msgstr "频率滤波器更改为"
 
-#: application/views/bandmap/list.php:31 application/views/bandmap/list.php:34
+#: application/views/bandmap/list.php:34
 msgid "by transceiver"
 msgstr "通过收发器"
 
-#: application/views/bandmap/list.php:32 application/views/bandmap/list.php:35
+#: application/views/bandmap/list.php:35
 msgid "Frequency filter set to"
 msgstr "频率滤波器设置为"
 
-#: application/views/bandmap/list.php:33 application/views/bandmap/list.php:36
+#: application/views/bandmap/list.php:36
 msgid "Frequency outside known bands - showing all bands"
 msgstr "频率超出已知频段 - 显示所有频段"
 
-#: application/views/bandmap/list.php:34 application/views/bandmap/list.php:37
+#: application/views/bandmap/list.php:37
 msgid "Waiting for radio data..."
 msgstr "等待电台数据中…"
 
-#: application/views/bandmap/list.php:35 application/views/bandmap/list.php:38
+#: application/views/bandmap/list.php:38
 msgid "My Favorites"
 msgstr "我的收藏"
 
-#: application/views/bandmap/list.php:36 application/views/bandmap/list.php:39
+#: application/views/bandmap/list.php:39
 msgid "Failed to load favorites"
 msgstr "加载收藏失败"
 
-#: application/views/bandmap/list.php:37 application/views/bandmap/list.php:40
+#: application/views/bandmap/list.php:40
 msgid "Modes applied. Band filter preserved (CAT connection is active)"
 msgstr "模式已应用。保留频段滤波器（CAT 连接已激活）"
 
-#: application/views/bandmap/list.php:38 application/views/bandmap/list.php:41
+#: application/views/bandmap/list.php:41
 msgid "Applied your favorite bands and modes"
 msgstr "应用你喜欢的频段和模式"
 
-#: application/views/bandmap/list.php:41 application/views/bandmap/list.php:44
+#: application/views/bandmap/list.php:44
 msgid "Loading data from DX Cluster"
 msgstr "正在从 DX Cluster 加载数据"
 
-#: application/views/bandmap/list.php:42 application/views/bandmap/list.php:45
+#: application/views/bandmap/list.php:45
 msgid "Last fetched for"
 msgstr "上次获取为"
 
-#: application/views/bandmap/list.php:43 application/views/bandmap/list.php:46
+#: application/views/bandmap/list.php:46
 msgid "Max Age"
 msgstr "最大时长"
 
-#: application/views/bandmap/list.php:44 application/views/bandmap/list.php:47
+#: application/views/bandmap/list.php:47
 msgid "Fetched at"
 msgstr "已获取于"
 
-#: application/views/bandmap/list.php:45 application/views/bandmap/list.php:48
+#: application/views/bandmap/list.php:48
 msgid "Next update in"
 msgstr "下次更新于"
 
-#: application/views/bandmap/list.php:46 application/views/bandmap/list.php:49
+#: application/views/bandmap/list.php:49
 msgid "minutes"
 msgstr "分"
 
-#: application/views/bandmap/list.php:47 application/views/bandmap/list.php:50
+#: application/views/bandmap/list.php:50
 msgid "seconds"
 msgstr "秒"
 
-#: application/views/bandmap/list.php:50 application/views/bandmap/list.php:238
-#: application/views/interface_assets/footer.php:47
 #: application/views/bandmap/list.php:53 application/views/bandmap/list.php:241
+#: application/views/interface_assets/footer.php:47
 msgid "Not worked"
 msgstr "未通联"
 
-#: application/views/bandmap/list.php:53 application/views/bandmap/list.php:241
 #: application/views/bandmap/list.php:56 application/views/bandmap/list.php:244
 msgid "Worked, not Confirmed"
 msgstr "通联过，但未获得确认"
 
-#: application/views/bandmap/list.php:54 application/views/bandmap/list.php:256
+#: application/views/bandmap/list.php:57 application/views/bandmap/list.php:259
 #: application/views/lookup/lotwuser.php:2
 #: application/views/lookup/lotwuser.php:12
 #: application/views/search/result.php:65
-#: application/views/search/result.php:77 application/views/bandmap/list.php:57
-#: application/views/bandmap/list.php:259
+#: application/views/search/result.php:77
 msgid "LoTW User"
 msgstr "LoTW 用户"
 
-#: application/views/bandmap/list.php:55 application/views/bandmap/list.php:259
-#: application/views/components/dxwaterfall.php:18
 #: application/views/bandmap/list.php:58 application/views/bandmap/list.php:262
+#: application/views/components/dxwaterfall.php:18
 msgid "New Callsign"
 msgstr "新呼号"
 
-#: application/views/bandmap/list.php:56 application/views/bandmap/list.php:257
-#: application/views/components/dxwaterfall.php:16
 #: application/views/bandmap/list.php:59 application/views/bandmap/list.php:260
+#: application/views/components/dxwaterfall.php:16
 msgid "New Continent"
 msgstr "新大洲"
 
-#: application/views/bandmap/list.php:57 application/views/bandmap/list.php:258
 #: application/views/bandmap/list.php:60 application/views/bandmap/list.php:261
 msgid "New Country"
 msgstr "新 DXCC 实体"
 
-#: application/views/bandmap/list.php:58 application/views/bandmap/list.php:61
+#: application/views/bandmap/list.php:61
 msgid "Worked Before"
 msgstr "以前通联过"
 
-#: application/views/bandmap/list.php:66 application/views/bandmap/list.php:69
+#: application/views/bandmap/list.php:69
 msgid "de"
 msgstr "的"
 
-#: application/views/bandmap/list.php:67 application/views/bandmap/list.php:70
+#: application/views/bandmap/list.php:70
 msgid "spotted"
 msgstr "已 spot"
 
-#: application/views/bandmap/list.php:70 application/views/bandmap/list.php:73
+#: application/views/bandmap/list.php:73
 msgid "Fresh spot (< 5 minutes old)"
 msgstr "新 spot（< 5分钟）"
 
-#: application/views/bandmap/list.php:71 application/views/bandmap/list.php:72
-#: application/views/bandmap/list.php:261
+#: application/views/bandmap/list.php:74 application/views/bandmap/list.php:75
+#: application/views/bandmap/list.php:264
 #: application/views/contestcalendar/index.php:21
 #: application/views/logbookadvanced/edit.php:8
 #: application/views/logbookadvanced/index.php:434
@@ -6966,59 +6935,55 @@ msgstr "新 spot（< 5分钟）"
 #: application/views/logbookadvanced/useroptions.php:162
 #: application/views/qso/edit_ajax.php:42
 #: application/views/simplefle/index.php:84
-#: application/views/bandmap/list.php:74 application/views/bandmap/list.php:75
-#: application/views/bandmap/list.php:264
 msgid "Contest"
 msgstr "比赛"
 
-#: application/views/bandmap/list.php:73 application/views/bandmap/list.php:76
+#: application/views/bandmap/list.php:76
 msgid "Click to view"
 msgstr "点击查看"
 
-#: application/views/bandmap/list.php:74 application/views/bandmap/list.php:77
+#: application/views/bandmap/list.php:77
 msgid "on QRZ.com"
 msgstr "在 QRZ.com"
 
-#: application/views/bandmap/list.php:75 application/views/bandmap/list.php:78
+#: application/views/bandmap/list.php:78
 msgid "See details for"
 msgstr "查看详细信息"
 
-#: application/views/bandmap/list.php:76 application/views/bandmap/list.php:79
+#: application/views/bandmap/list.php:79
 msgid "Worked on"
 msgstr "通联于"
 
-#: application/views/bandmap/list.php:77 application/views/bandmap/list.php:80
+#: application/views/bandmap/list.php:80
 msgid "Not worked on this band"
 msgstr "此频段上未通联"
 
-#: application/views/bandmap/list.php:80 application/views/bandmap/list.php:83
+#: application/views/bandmap/list.php:83
 msgid "Exit Fullscreen"
 msgstr "退出全屏"
 
-#: application/views/bandmap/list.php:81 application/views/bandmap/list.php:161
 #: application/views/bandmap/list.php:84 application/views/bandmap/list.php:164
 msgid "Toggle Fullscreen"
 msgstr "切换全屏"
 
-#: application/views/bandmap/list.php:82 application/views/bandmap/list.php:85
+#: application/views/bandmap/list.php:85
 msgid ""
 "Band filtering is controlled by your radio when CAT connection is enabled"
 msgstr "启用 CAT 连接时，将由你的电台控制频段滤波"
 
-#: application/views/bandmap/list.php:83 application/views/bandmap/list.php:86
+#: application/views/bandmap/list.php:86
 msgid "Click to prepare logging"
 msgstr "点击以准备记录"
 
-#: application/views/bandmap/list.php:85 application/views/bandmap/list.php:88
+#: application/views/bandmap/list.php:88
 msgid "(requires CAT connection)"
 msgstr "（需要 CAT 连接）"
 
-#: application/views/bandmap/list.php:86 application/views/bandmap/list.php:501
 #: application/views/bandmap/list.php:89 application/views/bandmap/list.php:504
 msgid "Spotter"
 msgstr "Spotter"
 
-#: application/views/bandmap/list.php:87
+#: application/views/bandmap/list.php:90
 #: application/views/components/hamsat/table.php:28
 #: application/views/contesting/index.php:234
 #: application/views/hamsat/index.php:31
@@ -7027,524 +6992,430 @@ msgstr "Spotter"
 #: application/views/logbookadvanced/index.php:909
 #: application/views/logbookadvanced/useroptions.php:154
 #: application/views/qso/edit_ajax.php:183 application/views/qso/index.php:361
-#: application/views/view_log/qso.php:228 application/views/bandmap/list.php:90
+#: application/views/view_log/qso.php:228
 msgid "Comment"
 msgstr "备注"
 
-#: application/views/bandmap/list.php:88
-#: application/views/contesting/index.php:65
 #: application/views/bandmap/list.php:91
+#: application/views/contesting/index.php:65
 msgid "Age"
 msgstr "年龄"
 
-#: application/views/bandmap/list.php:90 application/views/bandmap/list.php:93
+#: application/views/bandmap/list.php:93
 msgid "Incoming"
 msgstr "传入"
 
-#: application/views/bandmap/list.php:91 application/views/bandmap/list.php:94
+#: application/views/bandmap/list.php:94
 msgid "Outgoing"
 msgstr "传出"
 
-#: application/views/bandmap/list.php:92
+#: application/views/bandmap/list.php:95
 #: application/views/components/dxwaterfall.php:15
 msgid "spots"
 msgstr "spots"
 
-#: application/views/bandmap/list.php:93 application/views/bandmap/list.php:96
+#: application/views/bandmap/list.php:96
 msgid "spot"
 msgstr "spot"
 
-#: application/views/bandmap/list.php:94 application/views/bandmap/list.php:97
+#: application/views/bandmap/list.php:97
 msgid "spotters"
 msgstr "spotters"
 
-#: application/views/bandmap/list.php:98 application/views/bandmap/list.php:101
+#: application/views/bandmap/list.php:101
 msgid "Loading spots..."
 msgstr "加载 spot 中…"
 
-#: application/views/bandmap/list.php:99 application/views/bandmap/list.php:102
+#: application/views/bandmap/list.php:102
 msgid "No spots found"
 msgstr "未找到 spot"
 
-#: application/views/bandmap/list.php:100
 #: application/views/bandmap/list.php:103
 msgid "No data available"
 msgstr "暂无数据"
 
-#: application/views/bandmap/list.php:101
 #: application/views/bandmap/list.php:104
 msgid "No spots found for selected filters"
 msgstr "未找到符合筛选条件的 spot"
 
-#: application/views/bandmap/list.php:102
 #: application/views/bandmap/list.php:105
 msgid "Error loading spots. Please try again."
 msgstr "加载 spot 出错。请重试。"
 
-#: application/views/bandmap/list.php:105
 #: application/views/bandmap/list.php:108
 msgid "Show all modes"
 msgstr "显示所有模式"
 
-#: application/views/bandmap/list.php:106
 #: application/views/bandmap/list.php:109
 msgid "Show all spots"
 msgstr "显示所有 spot"
 
-#: application/views/bandmap/list.php:111
 #: application/views/bandmap/list.php:114
 msgid "Draw Spotters"
 msgstr "绘制 spotter"
 
-#: application/views/bandmap/list.php:112
 #: application/views/bandmap/list.php:115
 msgid "Extend Map"
 msgstr "扩展地图"
 
-#: application/views/bandmap/list.php:113
 #: application/views/bandmap/list.php:116
 msgid "Show Day/Night"
 msgstr "显示白天/夜晚"
 
-#: application/views/bandmap/list.php:114
 #: application/views/bandmap/list.php:117
 msgid "Your QTH"
 msgstr "你的 QTH"
 
-#: application/views/bandmap/list.php:150
 #: application/views/bandmap/list.php:153
 msgid "Return to Home"
 msgstr "返回主页"
 
-#: application/views/bandmap/list.php:153
-#: application/views/interface_assets/header.php:285
 #: application/views/bandmap/list.php:156
+#: application/views/interface_assets/header.php:285
 msgid "DX Cluster"
 msgstr "DX Cluster"
 
-#: application/views/bandmap/list.php:157
 #: application/views/bandmap/list.php:160
 msgid "DX Cluster Help"
 msgstr "DX Cluster 帮助"
 
-#: application/views/bandmap/list.php:174
-msgid ""
-"When selected the filters will be set basing on your current radio status"
-msgstr "选择后，滤波器将根据你当前的电台状态进行设置"
-
-#: application/views/bandmap/list.php:179
 #: application/views/bandmap/list.php:182
 msgid "Radio:"
 msgstr "电台："
 
-#: application/views/bandmap/list.php:181
-#: application/views/bandmap/list.php:255
+#: application/views/bandmap/list.php:184
+#: application/views/bandmap/list.php:258
 #: application/views/contesting/index.php:24
 #: application/views/contesting/index.php:62
 #: application/views/contesting/index.php:159
-#: application/views/qso/index.php:386 application/views/bandmap/list.php:184
-#: application/views/bandmap/list.php:258
+#: application/views/qso/index.php:386
 msgid "None"
 msgstr "无"
 
-#: application/views/bandmap/list.php:182 application/views/qso/index.php:387
+#: application/views/bandmap/list.php:185 application/views/qso/index.php:387
 msgid "Live - "
 msgstr "Live - "
 
-#: application/views/bandmap/list.php:182 application/views/qso/index.php:387
+#: application/views/bandmap/list.php:185 application/views/qso/index.php:387
 msgid "WebSocket (Requires WLGate>=1.1.10)"
 msgstr "WebSocket（需要 WLGate>=1.1.10）"
 
-#: application/views/bandmap/list.php:184 application/views/qso/index.php:389
+#: application/views/bandmap/list.php:187 application/views/qso/index.php:389
 msgid "Polling - "
 msgstr "轮询中 - "
 
-#: application/views/bandmap/list.php:193
 #: application/views/bandmap/list.php:196
 msgid "de:"
 msgstr "的："
 
-#: application/views/bandmap/list.php:195
 #: application/views/bandmap/list.php:198
 msgid "Select all continents"
 msgstr "选择所有大洲"
 
-#: application/views/bandmap/list.php:196
 #: application/views/bandmap/list.php:199
 msgid "Toggle Africa continent filter"
 msgstr "切换非洲大洲筛选器"
 
-#: application/views/bandmap/list.php:197
 #: application/views/bandmap/list.php:200
 msgid "Toggle Antarctica continent filter"
 msgstr "切换南极洲大洲筛选器"
 
-#: application/views/bandmap/list.php:198
 #: application/views/bandmap/list.php:201
 msgid "Toggle Asia continent filter"
 msgstr "切换亚洲大洲筛选器"
 
-#: application/views/bandmap/list.php:199
 #: application/views/bandmap/list.php:202
 msgid "Toggle Europe continent filter"
 msgstr "切换欧洲大洲筛选器"
 
-#: application/views/bandmap/list.php:200
 #: application/views/bandmap/list.php:203
 msgid "Toggle North America continent filter"
 msgstr "切换北美洲大洲筛选器"
 
-#: application/views/bandmap/list.php:201
 #: application/views/bandmap/list.php:204
 msgid "Toggle Oceania continent filter"
 msgstr "切换大洋洲大洲筛选器"
 
-#: application/views/bandmap/list.php:202
 #: application/views/bandmap/list.php:205
 msgid "Toggle South America continent filter"
 msgstr "切换南美洲大洲筛选器"
 
-#: application/views/bandmap/list.php:215
 #: application/views/bandmap/list.php:218
 msgid "Advanced Filters"
 msgstr "高级筛选器"
 
-#: application/views/bandmap/list.php:229
 #: application/views/bandmap/list.php:232
 msgid "Hold"
 msgstr "保持"
 
-#: application/views/bandmap/list.php:229
 #: application/views/bandmap/list.php:232
 msgid "and click to select multiple options"
 msgstr "然后点击以选择多个选项"
 
-#: application/views/bandmap/list.php:235
 #: application/views/bandmap/list.php:238
 msgid "DXCC-Status"
 msgstr "DXCC 状态"
 
-#: application/views/bandmap/list.php:246
-#: application/views/components/dxwaterfall.php:31
 #: application/views/bandmap/list.php:249
+#: application/views/components/dxwaterfall.php:31
 msgid "Phone"
 msgstr "Phone"
 
-#: application/views/bandmap/list.php:247
-#: application/views/components/dxwaterfall.php:33
 #: application/views/bandmap/list.php:250
+#: application/views/components/dxwaterfall.php:33
 msgid "CW"
 msgstr "CW"
 
-#: application/views/bandmap/list.php:248
-#: application/views/components/dxwaterfall.php:35
 #: application/views/bandmap/list.php:251
+#: application/views/components/dxwaterfall.php:35
 msgid "Digi"
 msgstr "Digi"
 
-#: application/views/bandmap/list.php:253
 #: application/views/bandmap/list.php:256
 msgid "Required Flags"
 msgstr "必需标记"
 
-#: application/views/bandmap/list.php:260
 #: application/views/bandmap/list.php:263
 msgid "Worked Callsign"
 msgstr "已通联的呼号"
 
-#: application/views/bandmap/list.php:262
 #: application/views/bandmap/list.php:265
 msgid "DX Spot"
 msgstr "DX Spot"
 
-#: application/views/bandmap/list.php:264
 #: application/views/bandmap/list.php:267
 msgid "Additional Flags"
 msgstr "额外标记"
 
-#: application/views/bandmap/list.php:271
 #: application/views/bandmap/list.php:274
 msgid "Fresh (< 5 min)"
 msgstr "新（< 5 分钟）"
 
-#: application/views/bandmap/list.php:276
 #: application/views/bandmap/list.php:279
 msgid "Spots de Continent"
 msgstr "大洲 spot"
 
-#: application/views/bandmap/list.php:290
 #: application/views/bandmap/list.php:293
 msgid "Spotted Station Continent"
 msgstr "发现的 spot 所属大洲"
 
-#: application/views/bandmap/list.php:350
 #: application/views/bandmap/list.php:353
 msgid "Apply Filters"
 msgstr "应用筛选器"
 
-#: application/views/bandmap/list.php:359
 #: application/views/bandmap/list.php:362
 msgid ""
 "Apply your favorite bands and modes (configured in Band and Mode settings)"
 msgstr "应用你最喜欢的频段和模式（在频段和模式设置中配置）"
 
-#: application/views/bandmap/list.php:363
 #: application/views/bandmap/list.php:366
 msgid "Clear all filters except De Continent"
 msgstr "清除所有非大洲的筛选器"
 
-#: application/views/bandmap/list.php:370
 #: application/views/bandmap/list.php:373
 msgid "Toggle 160m band filter"
 msgstr "切换 160 米频段筛选器"
 
-#: application/views/bandmap/list.php:374
 #: application/views/bandmap/list.php:377
 msgid "Toggle 80m band filter"
 msgstr "切换 80 米频段筛选器"
 
-#: application/views/bandmap/list.php:375
 #: application/views/bandmap/list.php:378
 msgid "Toggle 60m band filter"
 msgstr "切换 60 米频段筛选器"
 
-#: application/views/bandmap/list.php:376
 #: application/views/bandmap/list.php:379
 msgid "Toggle 40m band filter"
 msgstr "切换 40 米频段筛选器"
 
-#: application/views/bandmap/list.php:377
 #: application/views/bandmap/list.php:380
 msgid "Toggle 30m band filter"
 msgstr "切换 30 米频段筛选器"
 
-#: application/views/bandmap/list.php:378
 #: application/views/bandmap/list.php:381
 msgid "Toggle 20m band filter"
 msgstr "切换 20 米频段筛选器"
 
-#: application/views/bandmap/list.php:379
 #: application/views/bandmap/list.php:382
 msgid "Toggle 17m band filter"
 msgstr "切换 17 米频段筛选器"
 
-#: application/views/bandmap/list.php:380
 #: application/views/bandmap/list.php:383
 msgid "Toggle 15m band filter"
 msgstr "切换 15 米频段筛选器"
 
-#: application/views/bandmap/list.php:381
 #: application/views/bandmap/list.php:384
 msgid "Toggle 12m band filter"
 msgstr "切换 12 米频段筛选器"
 
-#: application/views/bandmap/list.php:382
 #: application/views/bandmap/list.php:385
 msgid "Toggle 10m band filter"
 msgstr "切换 10 米频段筛选器"
 
-#: application/views/bandmap/list.php:386
 #: application/views/bandmap/list.php:389
 msgid "Toggle VHF bands filter"
 msgstr "切换 15 米频段筛选器"
 
-#: application/views/bandmap/list.php:387
 #: application/views/bandmap/list.php:390
 msgid "Toggle UHF bands filter"
 msgstr "切换 UHF 频段筛选器"
 
-#: application/views/bandmap/list.php:388
 #: application/views/bandmap/list.php:391
 msgid "Toggle SHF bands filter"
 msgstr "切换 SHF 频段筛选器"
 
-#: application/views/bandmap/list.php:398
+#: application/views/bandmap/list.php:401
 #: application/views/components/dxwaterfall.php:32
 msgid "Toggle CW mode filter"
 msgstr "切换 CW 模式筛选器"
 
-#: application/views/bandmap/list.php:399
+#: application/views/bandmap/list.php:402
 #: application/views/components/dxwaterfall.php:34
 msgid "Toggle Digital mode filter"
 msgstr "切换数字模式筛选器"
 
-#: application/views/bandmap/list.php:400
+#: application/views/bandmap/list.php:403
 #: application/views/components/dxwaterfall.php:30
 msgid "Toggle Phone mode filter"
 msgstr "切换语音模式筛选器"
 
-#: application/views/bandmap/list.php:409
 #: application/views/bandmap/list.php:412
 msgid "Toggle LoTW User filter"
 msgstr "切换 LoTW 用户筛选器"
 
-#: application/views/bandmap/list.php:410
 #: application/views/bandmap/list.php:413
 msgid "LoTW users"
 msgstr "LoTW 用户"
 
-#: application/views/bandmap/list.php:416
 #: application/views/bandmap/list.php:419
-#, fuzzy
 msgid "Toggle DX Spot filter (spotted continent ≠ spotter continent)"
 msgstr "切换 DX Spot 筛选器（spotted continent ≠ spotter continent）"
 
-#: application/views/bandmap/list.php:417
 #: application/views/bandmap/list.php:420
 msgid "DX Spots"
 msgstr "DX Spots"
 
-#: application/views/bandmap/list.php:419
 #: application/views/bandmap/list.php:422
 msgid "Toggle New Continent filter"
 msgstr "切换新大洲筛选器"
 
-#: application/views/bandmap/list.php:420
 #: application/views/bandmap/list.php:423
 msgid "New Continents"
 msgstr "新大洲"
 
-#: application/views/bandmap/list.php:422
 #: application/views/bandmap/list.php:425
 msgid "Toggle New Country filter"
 msgstr "切换新 DXCC 实体筛选器"
 
-#: application/views/bandmap/list.php:423
 #: application/views/bandmap/list.php:426
 msgid "New DXCCs"
 msgstr "新 DXCC"
 
-#: application/views/bandmap/list.php:425
 #: application/views/bandmap/list.php:428
 msgid "Toggle New Callsign filter"
 msgstr "切换新呼号筛选器"
 
-#: application/views/bandmap/list.php:426
 #: application/views/bandmap/list.php:429
 msgid "New Callsigns"
 msgstr "新呼号"
 
-#: application/views/bandmap/list.php:432
 #: application/views/bandmap/list.php:435
 msgid "Toggle Fresh spots filter (< 5 minutes old)"
 msgstr "切换新 spot 筛选器（< 5 分钟）"
 
-#: application/views/bandmap/list.php:433
 #: application/views/bandmap/list.php:436
 msgid "Fresh Spots"
 msgstr "新 spot"
 
-#: application/views/bandmap/list.php:435
 #: application/views/bandmap/list.php:438
 msgid "Toggle Contest filter"
 msgstr "切换大洲筛选器"
 
-#: application/views/bandmap/list.php:436
 #: application/views/bandmap/list.php:439
 msgid "Contest Spots"
 msgstr "大洲 spot"
 
-#: application/views/bandmap/list.php:438
 #: application/views/bandmap/list.php:441
 msgid "Toggle Geo Hunter (POTA/SOTA/IOTA/WWFF)"
 msgstr "切换 Geo 猎人（POTA/SOTA/IOTA/WWFF）"
 
-#: application/views/bandmap/list.php:439
 #: application/views/bandmap/list.php:442
 msgid "Referenced Spots"
 msgstr "参考的 spot"
 
-#: application/views/bandmap/list.php:445
 #: application/views/bandmap/list.php:448
 msgid "Open DX Map view"
 msgstr "打开 DX 地图页面"
 
-#: application/views/bandmap/list.php:446
 #: application/views/bandmap/list.php:449
 msgid "DX Map"
 msgstr "DX 地图"
 
-#: application/views/bandmap/list.php:470
 #: application/views/bandmap/list.php:473
 msgid "Search spots..."
 msgstr "搜索 spot…"
 
-#: application/views/bandmap/list.php:483
 #: application/views/bandmap/list.php:486
 msgid "Note: Map shows DXCC entity locations, not actual spot locations"
 msgstr "注意：地图显示的是 DXCC 实体位置，而不是实际位置"
 
-#: application/views/bandmap/list.php:491
 #: application/views/bandmap/list.php:494
 msgid "Age in minutes"
 msgstr "时长（分钟）"
 
-#: application/views/bandmap/list.php:493
 #: application/views/bandmap/list.php:496
 msgid "Freq"
 msgstr "频率"
 
-#: application/views/bandmap/list.php:495
 #: application/views/bandmap/list.php:498
 msgid "Spotted"
 msgstr "已 spot"
 
-#: application/views/bandmap/list.php:495
 #: application/views/bandmap/list.php:498
 msgid "Spotted Callsign"
 msgstr "已 spot 的呼号"
 
-#: application/views/bandmap/list.php:498
 #: application/views/bandmap/list.php:501
 msgid "Flag"
 msgstr "标记"
 
-#: application/views/bandmap/list.php:499
 #: application/views/bandmap/list.php:502
 msgid "DXCC Entity"
 msgstr "EXCC 实体"
 
-#: application/views/bandmap/list.php:499
 #: application/views/bandmap/list.php:502
 msgid "Entity"
 msgstr "实体"
 
-#: application/views/bandmap/list.php:500
 #: application/views/bandmap/list.php:503
 msgid "DXCC Number"
 msgstr "DXCC 编号"
 
-#: application/views/bandmap/list.php:501
 #: application/views/bandmap/list.php:504
 msgid "Spotter Callsign"
 msgstr "spotter 呼号"
 
-#: application/views/bandmap/list.php:502
 #: application/views/bandmap/list.php:505
 msgid "Spotter Continent"
 msgstr "spotter 大洲"
 
-#: application/views/bandmap/list.php:503
 #: application/views/bandmap/list.php:506
 msgid "Spotter CQ Zone"
 msgstr "spotter CQ 区"
 
-#: application/views/bandmap/list.php:504
 #: application/views/bandmap/list.php:507
 msgid "Special"
 msgstr "特别"
 
-#: application/views/bandmap/list.php:504
 #: application/views/bandmap/list.php:507
 msgid "Special Flags"
 msgstr "特别标记"
 
-#: application/views/bandmap/list.php:505
+#: application/views/bandmap/list.php:508
 #: application/views/oqrs/notinlogform.php:28
 #: application/views/oqrs/request.php:54
 #: application/views/oqrs/request_grouped.php:57
 #: application/views/oqrs/status_info.php:5
-#: application/views/bandmap/list.php:508
 msgid "Message"
 msgstr "消息"
 
@@ -8281,11 +8152,6 @@ msgstr "用户呼号"
 #: application/views/club/permissions.php:286
 msgid "Notify the user via email about the change"
 msgstr "通过电子邮件通知用户关于角色的修改"
-
-#: application/views/club/permissions.php:309
-#: application/controllers/User.php:1063
-msgid "Delete User"
-msgstr "删除用户"
 
 #: application/views/club/permissions.php:316
 msgid "Are you sure you want to delete this user from the club?"
@@ -10468,16 +10334,12 @@ msgid "QSL Date"
 msgstr "QSL 日期"
 
 #: application/views/eqslcard/index.php:64
-#: application/views/interface_assets/footer.php:2788
-#: application/views/interface_assets/footer.php:2806
-#: application/views/interface_assets/footer.php:2827
-#: application/views/interface_assets/footer.php:2845
-#: application/views/qslcard/index.php:77
-#: application/views/view_log/qso.php:779
 #: application/views/interface_assets/footer.php:2768
 #: application/views/interface_assets/footer.php:2786
 #: application/views/interface_assets/footer.php:2807
 #: application/views/interface_assets/footer.php:2825
+#: application/views/qslcard/index.php:77
+#: application/views/view_log/qso.php:779
 msgid "View"
 msgstr "查看"
 
@@ -10934,98 +10796,77 @@ msgstr "版本信息"
 msgid "Failed to load the modal. Please try again."
 msgstr "加载模式失败。请重试。"
 
-#: application/views/interface_assets/footer.php:549
 #: application/views/interface_assets/footer.php:529
 msgid "Description:"
 msgstr "说明："
 
-#: application/views/interface_assets/footer.php:552
 #: application/views/interface_assets/footer.php:532
 msgid "Query description"
 msgstr "查询说明"
 
-#: application/views/interface_assets/footer.php:568
 #: application/views/interface_assets/footer.php:548
 msgid "Your query has been saved!"
 msgstr "查询已储存！"
 
-#: application/views/interface_assets/footer.php:570
-#: application/views/search/filter.php:49
 #: application/views/interface_assets/footer.php:550
+#: application/views/search/filter.php:49
 msgid "Edit queries"
 msgstr "编辑查询"
 
-#: application/views/interface_assets/footer.php:572
 #: application/views/interface_assets/footer.php:552
 msgid "Stored queries:"
 msgstr "存储的查询："
 
-#: application/views/interface_assets/footer.php:577
-#: application/views/search/filter.php:63
 #: application/views/interface_assets/footer.php:557
+#: application/views/search/filter.php:63
 msgid "Run Query"
 msgstr "执行查询"
 
-#: application/views/interface_assets/footer.php:589
-#: application/views/interface_assets/footer.php:725
-#: application/views/interface_assets/footer.php:795
 #: application/views/interface_assets/footer.php:569
 #: application/views/interface_assets/footer.php:705
 #: application/views/interface_assets/footer.php:775
 msgid "Stored Queries"
 msgstr "存储的查询"
 
-#: application/views/interface_assets/footer.php:594
-#: application/views/interface_assets/footer.php:800
 #: application/views/interface_assets/footer.php:574
 #: application/views/interface_assets/footer.php:780
 msgid "You need to make a query before you search!"
 msgstr "你需要创建查询来进行搜索！"
 
-#: application/views/interface_assets/footer.php:615
-#: application/views/interface_assets/footer.php:752
-#: application/views/search/filter.php:82
 #: application/views/interface_assets/footer.php:595
 #: application/views/interface_assets/footer.php:732
+#: application/views/search/filter.php:82
 msgid "Export to ADIF"
 msgstr "导出 ADIF"
 
-#: application/views/interface_assets/footer.php:616
-#: application/views/interface_assets/footer.php:753
+#: application/views/interface_assets/footer.php:596
+#: application/views/interface_assets/footer.php:733
 #: application/views/search/cqzones.php:40
 #: application/views/search/ituzones.php:40
 #: application/views/search/main.php:37
-#: application/views/interface_assets/footer.php:596
-#: application/views/interface_assets/footer.php:733
 msgid "Open in the Advanced Logbook"
 msgstr "在详细日志中打开"
 
-#: application/views/interface_assets/footer.php:660
 #: application/views/interface_assets/footer.php:640
 msgid "Warning! Are you sure you want delete this stored query?"
 msgstr "警告！确定要删除存储的查询？"
 
-#: application/views/interface_assets/footer.php:674
 #: application/views/interface_assets/footer.php:654
 msgid "The stored query has been deleted!"
 msgstr "存储的查询已删除！"
 
-#: application/views/interface_assets/footer.php:683
 #: application/views/interface_assets/footer.php:663
 msgid "The stored query could not be deleted. Please try again!"
 msgstr "无法删除存储的查询，请重试！"
 
-#: application/views/interface_assets/footer.php:709
 #: application/views/interface_assets/footer.php:689
 msgid "The query description has been updated!"
 msgstr "查询说明已更新！"
 
-#: application/views/interface_assets/footer.php:713
 #: application/views/interface_assets/footer.php:693
 msgid "Something went wrong with the save. Please try again!"
 msgstr "存储出错，请重试！"
 
-#: application/views/interface_assets/footer.php:842
 #: application/views/interface_assets/footer.php:822
 msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
@@ -11035,37 +10876,27 @@ msgstr ""
 "请稍等，你选择的 DXCC 已经失效，请确认最新的 DXCC 实体，如果你十分确认，请忽"
 "略该警告。"
 
-#: application/views/interface_assets/footer.php:895
-#: application/views/logbookadvanced/index.php:757
 #: application/views/interface_assets/footer.php:875
+#: application/views/logbookadvanced/index.php:757
 msgid "Callsign: "
 msgstr "呼号： "
 
-#: application/views/interface_assets/footer.php:896
 #: application/views/interface_assets/footer.php:876
 msgid "Count: "
 msgstr "总数： "
 
-#: application/views/interface_assets/footer.php:897
 #: application/views/interface_assets/footer.php:877
 msgid "Grids: "
 msgstr "网格： "
 
-#: application/views/interface_assets/footer.php:1215
+#: application/views/interface_assets/footer.php:1195
 #: application/views/logbookadvanced/index.php:13
 #: application/views/logbookadvanced/useroptions.php:210
 #: application/views/satellite/flightpath.php:11
-#: application/views/interface_assets/footer.php:1195
 msgctxt "Map Options"
 msgid "Gridsquares"
 msgstr "网格"
 
-#: application/views/interface_assets/footer.php:1604
-#: application/views/interface_assets/footer.php:1608
-#: application/views/interface_assets/footer.php:1611
-#: application/views/interface_assets/footer.php:1748
-#: application/views/interface_assets/footer.php:1752
-#: application/views/interface_assets/footer.php:1755
 #: application/views/interface_assets/footer.php:1584
 #: application/views/interface_assets/footer.php:1588
 #: application/views/interface_assets/footer.php:1591
@@ -11075,60 +10906,47 @@ msgstr "网格"
 msgid "grid square"
 msgstr "网格"
 
-#: application/views/interface_assets/footer.php:1611
-#: application/views/interface_assets/footer.php:1755
 #: application/views/interface_assets/footer.php:1591
 #: application/views/interface_assets/footer.php:1735
 msgid "Total count"
 msgstr "总数"
 
-#: application/views/interface_assets/footer.php:2530
 #: application/views/interface_assets/footer.php:2510
 msgid "QSL Card for "
 msgstr "QSL 卡片至 "
 
-#: application/views/interface_assets/footer.php:2550
 #: application/views/interface_assets/footer.php:2530
 msgid "Warning! Are you sure you want to delete this QSL card?"
 msgstr "警告！确定要删除这个 QSL 卡片吗？"
 
-#: application/views/interface_assets/footer.php:2590
-#: application/views/view_log/qso.php:43
 #: application/views/interface_assets/footer.php:2570
+#: application/views/view_log/qso.php:43
 msgid "eQSL Card"
 msgstr "电子 QSL 卡片"
 
-#: application/views/interface_assets/footer.php:2592
 #: application/views/interface_assets/footer.php:2572
 msgid "eQSL Card for "
 msgstr "eQSL 卡片至 "
 
-#: application/views/interface_assets/footer.php:2799
-#: application/views/interface_assets/footer.php:2838
-#: application/views/view_log/qso.php:769
 #: application/views/interface_assets/footer.php:2779
 #: application/views/interface_assets/footer.php:2818
+#: application/views/view_log/qso.php:769
 msgid "QSL image file"
 msgstr "QSL 图片文件"
 
-#: application/views/interface_assets/footer.php:2818
 #: application/views/interface_assets/footer.php:2798
 msgid "Front QSL Card:"
 msgstr "QSL 卡片正面："
 
-#: application/views/interface_assets/footer.php:2856
 #: application/views/interface_assets/footer.php:2836
 msgid "Back QSL Card:"
 msgstr "QSL 卡片背面："
 
-#: application/views/interface_assets/footer.php:2867
-#: application/views/interface_assets/footer.php:2892
 #: application/views/interface_assets/footer.php:2847
 #: application/views/interface_assets/footer.php:2872
 msgid "Add additional QSOs to a QSL Card"
 msgstr "向一张卡片添加额外的 QSO"
 
-#: application/views/interface_assets/footer.php:2903
 #: application/views/interface_assets/footer.php:2883
 msgid "Something went wrong. Please try again!"
 msgstr "出现了错误，请重试！"
@@ -15972,8 +15790,8 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
-"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 "
-"'.png'）"
+"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 '."
+"png'）"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
@@ -17351,32 +17169,9 @@ msgstr "提交请求"
 msgid "Rcvd"
 msgstr "收"
 
-#: application/views/bandmap/list.php:30
-msgid "Click to enable CAT connection"
-msgstr "点击以启用 CAT 连接"
-
-#: application/views/bandmap/list.php:31
-msgid ""
-"CAT following radio | Click for frequency marker | Double-click to disable"
-msgstr "CAT 跟随电台 | 点击显示频率标记 | 双击禁用"
-
-#: application/views/bandmap/list.php:32
-msgid ""
-"Frequency marker active | Click to disable marker | Double-click to disable "
-"CAT"
-msgstr "频率标记激活 | 点击禁用标记 | 双击禁用 CAT"
-
-#: application/controllers/User.php:1076
-msgid "User deleted"
-msgstr ""
-
-#: application/controllers/User.php:1079
-msgid "Could not delete user!"
-msgstr ""
-
-#: application/controllers/User.php:1079
-msgid "Database error:"
-msgstr ""
+#~ msgid ""
+#~ "When selected the filters will be set basing on your current radio status"
+#~ msgstr "选择后，滤波器将根据你当前的电台状态进行设置"
 
 #~ msgid "Spots de"
 #~ msgstr "来自"
@@ -17957,8 +17752,8 @@ msgstr ""
 #~ "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 #~ "filenames for the logos <b>without</b> the file extension '.png'"
 #~ msgstr ""
-#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带"
-#~ "有 .png 后缀名</b>）"
+#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带有 ."
+#~ "png 后缀名</b>）"
 
 #, php-format
 #~ msgid ""
