@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-11-13 11:32+0000\n"
-"PO-Revision-Date: 2025-11-11 02:08+0000\n"
+"POT-Creation-Date: 2025-11-14 01:12+0000\n"
+"PO-Revision-Date: 2025-11-13 20:20+0000\n"
 "Last-Translator: Szymon <sp9spm@cqops.com>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/pl/>\n"
@@ -2956,6 +2956,23 @@ msgstr "Użytkownik %s został zaaktualizowany"
 #: application/controllers/User.php:1039
 msgid "Profile"
 msgstr "Profil"
+
+#: application/controllers/User.php:1063
+#: application/views/club/permissions.php:309
+msgid "Delete User"
+msgstr "Usuń użytkownika"
+
+#: application/controllers/User.php:1076
+msgid "User deleted"
+msgstr ""
+
+#: application/controllers/User.php:1079
+msgid "Could not delete user!"
+msgstr ""
+
+#: application/controllers/User.php:1079
+msgid "Database error:"
+msgstr ""
 
 #: application/controllers/User.php:1104
 msgid ""
@@ -7021,18 +7038,22 @@ msgstr "Połączenie CAT"
 
 #: application/views/bandmap/list.php:30
 msgid "Click to enable CAT connection"
-msgstr ""
+msgstr "Kliknij, aby włączyć połączenie CAT"
 
 #: application/views/bandmap/list.php:31
 msgid ""
 "CAT following radio | Click for frequency marker | Double-click to disable"
 msgstr ""
+"CAT śledzi radiostacją | Kliknij, aby włączyć znacznik czestotliwości | "
+"Podwójnie kliknij, aby wyłączyć"
 
 #: application/views/bandmap/list.php:32
 msgid ""
 "Frequency marker active | Click to disable marker | Double-click to disable "
 "CAT"
 msgstr ""
+"Znacznik czestotliwości jest aktywny | Kliknij, aby wyłączyć znacznik | "
+"Kliknij podwójnie, aby wyłączyć CAT"
 
 #: application/views/bandmap/list.php:33
 msgid "Frequency filter changed to"
@@ -7367,7 +7388,7 @@ msgstr "Filtry zaawansowane"
 
 #: application/views/bandmap/list.php:232
 msgid "Hold"
-msgstr "Zatrzymaj"
+msgstr "Przytrzymaj"
 
 #: application/views/bandmap/list.php:232
 msgid "and click to select multiple options"
@@ -8400,10 +8421,6 @@ msgstr "Znak wywoławczy użytkownika"
 msgid "Notify the user via email about the change"
 msgstr "Powiadom użytkownika o zmianie przez email"
 
-#: application/views/club/permissions.php:309
-msgid "Delete User"
-msgstr "Usuń użytkownika"
-
 #: application/views/club/permissions.php:316
 msgid "Are you sure you want to delete this user from the club?"
 msgstr "Czy na pewno usunąć tego użytkownika z klubu?"
@@ -8604,6 +8621,8 @@ msgid ""
 "DX Waterfall has experienced an unexpected error and will be shut down. "
 "Please visit Wavelog's GitHub and create a bug report if this issue persists."
 msgstr ""
+"DX Waterfall napotkał nieoczekiwany błąd i zostanie wyłączony. Odwiedź "
+"GitHub Wavelog i zgłoś błąd, jeśli problem będzie się powtarzał."
 
 #: application/views/components/dxwaterfall.php:45
 msgid "Changing radio frequency..."
@@ -13888,7 +13907,7 @@ msgstr "Data potwierdzenia"
 #: application/views/qslcard/confirmationresult.php:21
 #: application/views/user/index.php:30
 msgid "Type"
-msgstr "Emisja"
+msgstr "Metoda"
 
 #: application/views/qslcard/confirmationresult.php:54
 msgid "No confirmations found."
@@ -16559,7 +16578,7 @@ msgstr ""
 
 #: application/views/user/edit.php:218
 msgid "Measurement preference"
-msgstr "Preferencje jednostek miar"
+msgstr "Preferowana jednostka miar"
 
 #: application/views/user/edit.php:222
 msgid "Kilometers"
