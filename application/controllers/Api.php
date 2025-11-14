@@ -263,6 +263,19 @@ class API extends CI_Controller {
 					if(count($record) == 0) {
 						break;
 					}
+
+					// Handle slashed zeros
+					$record['call'] = str_replace('Ø', "0", $record['call']);
+					if (($record['operator'] ?? '') != '') {
+						$record['operator'] = str_replace('Ø', "0", $record['operator']);
+					}
+					if (($record['station_callsign'] ?? '') != '') {
+						$record['station_callsign'] = str_replace('Ø', "0", $record['station_callsign']);
+					}
+					if (($record['owner_callsign'] ?? '') != '') {
+						$record['owner_callsign'] = str_replace('Ø', "0", $record['owner_callsign']);
+					}
+
 					// in case the provided op call is the same as the clubstation callsign, we need to use the creator of the API key as the operator
 					$recorded_operator = $record['operator'] ?? '';
 					if (key_exists('operator',$record) && $real_operator != null && ($record['operator'] == $record['station_callsign']) || ($recorded_operator == '')) {
