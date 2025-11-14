@@ -1,6 +1,6 @@
 <div class="container">
     <br>
-    <h2><?= sprintf(__("Club Permissions for %s"), $club->user_callsign); ?></h2>
+    <h2><?= sprintf(__("Club Permissions for %s"), str_replace('0', 'Ø', $club->user_callsign)); ?></h2>
     <!-- <a class="btn btn-primary" href="<?= site_url('user'); ?>"><i class="fas fa-arrow-left"></i> <?= __("Go back"); ?></a> -->
 
     <?php $this->load->view('layout/messages'); ?>
@@ -164,7 +164,7 @@
                             <div class="modal-body">
                                 <input type="hidden" name="club_id" value="<?php echo $club->user_id; ?>">
                                 <p>
-                                    <?= sprintf(__("You can only add users to the %s Clubstation if they already exist on this Wavelog Server."), $club->user_callsign); ?>
+                                    <?= sprintf(__("You can only add users to the %s Clubstation if they already exist on this Wavelog Server."), str_replace('0', 'Ø', $club->user_callsign)); ?>
                                     <?= __("If they don't exist, please ask your Wavelog Administrator to create an account for them."); ?><br><br>
                                     <?= __("Search for the user by their callsign or first/lastname and select the permission level."); ?>
                                 </p>
@@ -231,7 +231,7 @@
                                 <tr>
                                     <td style="text-align: center; vertical-align: middle;"><?php echo $member->user_firstname; ?></td>
                                     <td style="text-align: center; vertical-align: middle;"><?php echo $member->user_lastname; ?></td>
-                                    <td style="text-align: center; vertical-align: middle;"><?php echo $member->user_callsign; ?></td>
+                                    <td style="text-align: center; vertical-align: middle;"><?php echo str_replace('0', 'Ø' ,$member->user_callsign); ?></td>
                                     <td style="text-align: center; vertical-align: middle;"><?php echo $member->user_name; ?></td>
                                     <td style="text-align: center; vertical-align: middle;"><?php echo '<a href="mailto:' . $member->user_email . '">' . $member->user_email . '</a>'; ?></td>
                                     <td style="text-align: center; vertical-align: middle;">
@@ -272,7 +272,7 @@
                                                                     <tbody>
                                                                         <tr>
                                                                             <td class="text-center pt-3">
-                                                                                <p><b><?php echo $member->user_callsign; ?> - <?php echo $member->user_firstname . ' ' . $member->user_lastname; ?></b></p>
+                                                                                <p><b><?php echo str_replace('0', 'Ø', $member->user_callsign); ?> - <?php echo $member->user_firstname . ' ' . $member->user_lastname; ?></b></p>
                                                                             </td>
                                                                             <td>
                                                                                 <select class="form-select" id="permission" name="permission" required>
@@ -317,7 +317,7 @@
 
                                                             <div class="mb-3">
                                                                 <p>
-                                                                    <?= sprintf(__("Callsign: %s"), $member->user_callsign); ?><br>
+                                                                    <?= sprintf(__("Callsign: %s"), str_replace('0', 'Ø', $member->user_callsign)); ?><br>
                                                                     <?= sprintf(__("Role: %s"), $permissions[$member->p_level]); ?>
                                                                 </p>
                                                             </div>

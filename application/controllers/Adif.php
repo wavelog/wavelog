@@ -225,6 +225,18 @@ class adif extends CI_Controller {
 					$contest_qso_infos = [];
 					while($record = $this->adif_parser->get_record()) {
 
+						// Handle slashed zeros
+						$record['call'] = str_replace('Ø', "0", $record['call']);
+						if (($record['operator'] ?? '') != '') {
+							$record['operator'] = str_replace('Ø', "0", $record['operator']);
+						}
+						if (($record['station_callsign'] ?? '') != '') {
+							$record['station_callsign'] = str_replace('Ø', "0", $record['station_callsign']);
+						}
+						if (($record['owner_callsign'] ?? '') != '') {
+							$record['owner_callsign'] = str_replace('Ø', "0", $record['owner_callsign']);
+						}
+
 						//overwrite the contest id if user chose a contest in UI
 						if ($contest != '') {
 							$record['contest_id'] = $contest;

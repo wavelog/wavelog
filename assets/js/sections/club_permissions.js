@@ -52,11 +52,11 @@ $(document).ready(function(){
         },
         render: {
             option: function(item) {
-                let string = '<div style="text-align: left; margin-left: 10px; padding: 3px;"><span class="text-muted small">[' + item.user_name + ']</span> ' + item.user_callsign.toUpperCase() + ' - ' + item.user_firstname + ' ' + item.user_lastname + '</div>';
+                let string = '<div style="text-align: left; margin-left: 10px; padding: 3px;"><span class="text-muted small">[' + item.user_name + ']</span> ' + item.user_callsign.toUpperCase().replaceAll(/0/g, 'Ø') + ' - ' + item.user_firstname + ' ' + item.user_lastname + '</div>';
                 return string;
             },
             item: function(item) {
-                let string = '<div style="text-align: left; margin-left: 2px;"><span class="text-muted small">[' + item.user_name + ']</span> ' + item.user_callsign.toUpperCase() + ' - ' + item.user_firstname + ' ' + item.user_lastname + '</div>';
+                let string = '<div style="text-align: left; margin-left: 2px;"><span class="text-muted small">[' + item.user_name + ']</span> ' + item.user_callsign.toUpperCase().replaceAll(/0/g, 'Ø') + ' - ' + item.user_firstname + ' ' + item.user_lastname + '</div>';
                 return string;
             }
         },
