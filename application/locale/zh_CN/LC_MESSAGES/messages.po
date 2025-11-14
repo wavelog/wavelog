@@ -137,6 +137,8 @@ msgstr ""
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/User.php:1427 application/controllers/User.php:1645
+#: application/controllers/User.php:1661 application/controllers/User.php:1687
 msgid "You're not allowed to do that!"
 msgstr "请不要这样操作！"
 
@@ -2526,6 +2528,7 @@ msgstr "台站地址重复："
 
 #: application/controllers/Station.php:221
 #: application/controllers/User.php:1310 application/controllers/User.php:1560
+#: application/controllers/User.php:1308 application/controllers/User.php:1558
 #, php-format
 msgid "Please check value for grid locator (%s)"
 msgstr "请检查网格定位的值 ( %s )"
@@ -3031,7 +3034,7 @@ msgstr "电台站 ITU 分区"
 msgid "Station Locator"
 msgstr "电梯站位置"
 
-#: application/controllers/User.php:1318
+#: application/controllers/User.php:1318 application/controllers/User.php:1316
 #, php-format
 msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
@@ -3039,24 +3042,26 @@ msgid ""
 msgstr ""
 "电台站创建成功！欢迎来到 Wavelog ！为了完成电台站设置，请 %s点击这里%s 。"
 
-#: application/controllers/User.php:1321
+#: application/controllers/User.php:1321 application/controllers/User.php:1319
 msgid "Station setup failed! Please set up your station manually."
 msgstr "电台站设置失败！请手动设置你的电台站。"
 
-#: application/controllers/User.php:1338
+#: application/controllers/User.php:1338 application/controllers/User.php:1336
 msgid "Password Reset is disabled on the Demo!"
 msgstr "在测试实例上，密码重置已禁用！"
 
-#: application/controllers/User.php:1352
+#: application/controllers/User.php:1352 application/controllers/User.php:1350
 msgid "Forgot Password"
 msgstr "忘记密码"
 
 #: application/controllers/User.php:1403
 #: application/views/user/modals/more_actions_modal.php:88
+#: application/controllers/User.php:1401
 msgid "Email settings are incorrect."
 msgstr "邮件配置有误。"
 
 #: application/controllers/User.php:1407 application/controllers/User.php:1412
+#: application/controllers/User.php:1405 application/controllers/User.php:1410
 msgid "Password Reset Processed."
 msgstr "密码重置已处理。"
 
@@ -3064,22 +3069,23 @@ msgstr "密码重置已处理。"
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
+#: application/controllers/User.php:1511
 msgid "Reset Password"
 msgstr "重置密码"
 
-#: application/controllers/User.php:1534
+#: application/controllers/User.php:1534 application/controllers/User.php:1532
 #, php-format
 msgid ""
 "Couldn't set account to this username. Please try another one than \"%s\"."
 msgstr "无法为账户设置给定的用户名。请尝试使用除“%s”以外的用户名。"
 
-#: application/controllers/User.php:1543
+#: application/controllers/User.php:1543 application/controllers/User.php:1541
 #, php-format
 msgid ""
 "Couldn't set account to this email. Please try another address than \"%s\"."
 msgstr "无法为账户设置给定的电子邮件地址。请尝试使用除“%s”以外的地址。"
 
-#: application/controllers/User.php:1582
+#: application/controllers/User.php:1582 application/controllers/User.php:1580
 #, php-format
 msgid ""
 "You currently can't impersonate another user. You need to set %s to %s in "
@@ -3089,34 +3095,35 @@ msgstr ""
 
 #: application/controllers/User.php:1596
 #: application/views/user/modals/admin_impersonate_modal.php:36
+#: application/controllers/User.php:1594
 msgid ""
 "You currently can't impersonate another user. Please change the "
 "encryption_key in your config.php file first!"
 msgstr "无法进行此操作，请在 config.php 里设置 encryption_key！"
 
-#: application/controllers/User.php:1603
+#: application/controllers/User.php:1603 application/controllers/User.php:1601
 msgid "Invalid Hash"
 msgstr "Hash 无效"
 
-#: application/controllers/User.php:1616
+#: application/controllers/User.php:1616 application/controllers/User.php:1614
 msgid "The impersonation hash is too old. Please try again."
 msgstr "用户 Hash 已过期，请重试。"
 
-#: application/controllers/User.php:1623
+#: application/controllers/User.php:1623 application/controllers/User.php:1621
 msgid ""
 "You can't impersonate another user while you're not logged in as the source "
 "user"
 msgstr "由于你未登录为原用户，故无法切换至另一个用户角色"
 
-#: application/controllers/User.php:1629
+#: application/controllers/User.php:1629 application/controllers/User.php:1627
 msgid "There was a problem with your session. Please try again."
 msgstr "会话出现问题，请重试。"
 
-#: application/controllers/User.php:1636
+#: application/controllers/User.php:1636 application/controllers/User.php:1634
 msgid "The requested user to impersonate does not exist"
 msgstr "切换的用户不存在"
 
-#: application/controllers/User.php:1657
+#: application/controllers/User.php:1657 application/controllers/User.php:1655
 msgid ""
 "Could not determine the correct permission level for the clubstation. Try "
 "again after re-login."
@@ -3124,17 +3131,19 @@ msgstr "无法确认集体台站的正确角色。请重新登录后再试。"
 
 #: application/controllers/User.php:1702 application/controllers/User.php:1714
 #: application/controllers/User.php:1720 application/controllers/User.php:1729
-#: application/controllers/User.php:1737
+#: application/controllers/User.php:1737 application/controllers/User.php:1700
+#: application/controllers/User.php:1712 application/controllers/User.php:1718
+#: application/controllers/User.php:1727 application/controllers/User.php:1735
 msgid "Ups.. Something went wrong. Try to log back in."
 msgstr "呃… 发生了一些问题。请登录后重试。"
 
-#: application/controllers/User.php:1743
+#: application/controllers/User.php:1743 application/controllers/User.php:1741
 msgid ""
 "The ability to return quickly has been disabled after the security hash "
 "expired. Please log in again."
 msgstr "快速返回功能因安全哈希过期而被禁用，请重新登录以继续操作。"
 
-#: application/controllers/User.php:1759
+#: application/controllers/User.php:1759 application/controllers/User.php:1757
 #, php-format
 msgid ""
 "You have been logged out of the account %s. Welcome back, %s, to your "
@@ -6233,8 +6242,8 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
-"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意"
-"的“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
+"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意的"
+"“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
 
 #: application/views/awards/sig/index.php:9
 msgid ""
@@ -15790,8 +15799,8 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
-"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 '."
-"png'）"
+"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 "
+"'.png'）"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
@@ -17752,8 +17761,8 @@ msgstr "收"
 #~ "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 #~ "filenames for the logos <b>without</b> the file extension '.png'"
 #~ msgstr ""
-#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带有 ."
-#~ "png 后缀名</b>）"
+#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带"
+#~ "有 .png 后缀名</b>）"
 
 #, php-format
 #~ msgid ""
