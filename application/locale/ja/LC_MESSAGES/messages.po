@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2025-11-14 08:06+0000\n"
 "PO-Revision-Date: 2025-11-14 10:30+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -223,31 +223,33 @@ msgstr "サポートされていないファイルタイプ"
 
 #: application/controllers/Adif.php:265
 #: application/views/adif/import_failed.php:12
+#: application/controllers/Adif.php:277
 msgid "ADIF Import failed!"
 msgstr "ADIF インポートに失敗しました!"
 
-#: application/controllers/Adif.php:279
+#: application/controllers/Adif.php:279 application/controllers/Adif.php:291
 msgid "Station Profile not valid for User"
 msgstr "ユーザーに対して有効なステーションプロファイルではありません"
 
 #: application/controllers/Adif.php:288
 #: application/views/adif/import_success.php:12
+#: application/controllers/Adif.php:300
 msgid "ADIF Imported"
 msgstr "ADIFインポート"
 
-#: application/controllers/Adif.php:299
+#: application/controllers/Adif.php:299 application/controllers/Adif.php:311
 msgid "DCL Import"
 msgstr "DCLインポート"
 
-#: application/controllers/Adif.php:357
+#: application/controllers/Adif.php:357 application/controllers/Adif.php:369
 msgid "DCL Data Imported"
 msgstr "DCLデータのインポート"
 
-#: application/controllers/Adif.php:368
+#: application/controllers/Adif.php:368 application/controllers/Adif.php:380
 msgid "POTA Import"
 msgstr "POTAインポート"
 
-#: application/controllers/Adif.php:425
+#: application/controllers/Adif.php:425 application/controllers/Adif.php:437
 msgid "POTA Data Imported"
 msgstr "POTAデータがインポートされました"
 
@@ -17774,8 +17776,8 @@ msgstr "受信"
 #~ "Your active Station Location isn't linked to your Logbook. Click %shere%s "
 #~ "to do it."
 #~ msgstr ""
-#~ "現在のステーション位置がログブックとリンクされていません。リンクするに"
-#~ "は、%shere%s をクリックしてください。"
+#~ "現在のステーション位置がログブックとリンクされていません。リンクするには、"
+#~ "%shere%s をクリックしてください。"
 
 #, php-format
 #~ msgctxt "Dashboard Warning"
