@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-11-13 11:32+0000\n"
+"POT-Creation-Date: 2025-11-14 01:12+0000\n"
 "PO-Revision-Date: 2025-11-12 05:29+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -2940,6 +2940,23 @@ msgstr "Användare %s redigerad"
 #: application/controllers/User.php:1039
 msgid "Profile"
 msgstr "Profil"
+
+#: application/controllers/User.php:1063
+#: application/views/club/permissions.php:309
+msgid "Delete User"
+msgstr "Radera användare"
+
+#: application/controllers/User.php:1076
+msgid "User deleted"
+msgstr ""
+
+#: application/controllers/User.php:1079
+msgid "Could not delete user!"
+msgstr ""
+
+#: application/controllers/User.php:1079
+msgid "Database error:"
+msgstr ""
 
 #: application/controllers/User.php:1104
 msgid ""
@@ -8338,10 +8355,6 @@ msgstr "Användare anropssignal"
 #: application/views/club/permissions.php:286
 msgid "Notify the user via email about the change"
 msgstr "Meddela användaren via e-post om ändringen"
-
-#: application/views/club/permissions.php:309
-msgid "Delete User"
-msgstr "Radera användare"
 
 #: application/views/club/permissions.php:316
 msgid "Are you sure you want to delete this user from the club?"

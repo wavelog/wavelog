@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-11-13 11:32+0000\n"
+"POT-Creation-Date: 2025-11-14 01:12+0000\n"
 "PO-Revision-Date: 2025-11-11 16:20+0000\n"
 "Last-Translator: ShenRQ <shen.ruiqin@foxmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -2925,6 +2925,23 @@ msgstr "用户 %s 已编辑"
 #: application/controllers/User.php:1039
 msgid "Profile"
 msgstr "个人资料"
+
+#: application/controllers/User.php:1063
+#: application/views/club/permissions.php:309
+msgid "Delete User"
+msgstr "删除用户"
+
+#: application/controllers/User.php:1076
+msgid "User deleted"
+msgstr ""
+
+#: application/controllers/User.php:1079
+msgid "Could not delete user!"
+msgstr ""
+
+#: application/controllers/User.php:1079
+msgid "Database error:"
+msgstr ""
 
 #: application/controllers/User.php:1104
 msgid ""
@@ -8131,10 +8148,6 @@ msgstr "用户呼号"
 #: application/views/club/permissions.php:286
 msgid "Notify the user via email about the change"
 msgstr "通过电子邮件通知用户关于角色的修改"
-
-#: application/views/club/permissions.php:309
-msgid "Delete User"
-msgstr "删除用户"
 
 #: application/views/club/permissions.php:316
 msgid "Are you sure you want to delete this user from the club?"
