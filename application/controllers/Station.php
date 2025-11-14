@@ -37,7 +37,7 @@ class Station extends CI_Controller
 		if ($this->form_validation->run() == FALSE) {
 			$data['page_title'] = __("Create Station Location");
 			$data['station_profile_name'] = $this->input->post('station_profile_name');
-			$data['station_callsign'] = $this->input->post('station_callsign');
+			$data['station_callsign'] = str_replace('Ø', '0', ($this->input->post('station_callsign') ?? ''));
 			$data['station_power'] = $this->input->post('station_power');
 			$data['dxcc'] = $this->input->post('dxcc');
 			$data['city'] = $this->input->post('city');
