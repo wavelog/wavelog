@@ -235,7 +235,7 @@ class User_Model extends CI_Model {
 				'user_type' => xss_clean($type),
 				'user_firstname' => xss_clean($firstname) ?? '',
 				'user_lastname' => xss_clean($lastname) ?? '',
-				'user_callsign' => strtoupper(xss_clean($callsign)),
+				'user_callsign' => str_replace('Ø', "0",strtoupper(xss_clean($callsign))),
 				'user_locator' => strtoupper(xss_clean($locator)),
 				'user_timezone' => xss_clean($timezone),
 				'user_measurement_base' => xss_clean($measurement),
