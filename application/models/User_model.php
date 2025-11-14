@@ -332,7 +332,7 @@ class User_Model extends CI_Model {
 				$data = array(
 					'user_name' => xss_clean($fields['user_name']),
 					'user_email' => xss_clean($fields['user_email']),
-					'user_callsign' => strtoupper(xss_clean($fields['user_callsign'])),
+					'user_callsign' => str_replace('Ø', "0", strtoupper(xss_clean($fields['user_callsign']))),
 					'user_locator' => strtoupper(xss_clean($fields['user_locator'])),
 					'user_firstname' => xss_clean($fields['user_firstname']),
 					'user_lastname' => xss_clean($fields['user_lastname']),
