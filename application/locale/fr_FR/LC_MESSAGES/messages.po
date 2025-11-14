@@ -16,7 +16,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-11-13 11:32+0000\n"
+"POT-Creation-Date: 2025-11-14 01:12+0000\n"
 "PO-Revision-Date: 2025-11-03 14:42+0000\n"
 "Last-Translator: Stephane Tauziede <contact@f4izc.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
@@ -2955,6 +2955,23 @@ msgstr "L'utilisateur %s a modifié"
 #: application/controllers/User.php:1039
 msgid "Profile"
 msgstr "Profile"
+
+#: application/controllers/User.php:1063
+#: application/views/club/permissions.php:309
+msgid "Delete User"
+msgstr "Supprimer l'utilisateur"
+
+#: application/controllers/User.php:1076
+msgid "User deleted"
+msgstr ""
+
+#: application/controllers/User.php:1079
+msgid "Could not delete user!"
+msgstr ""
+
+#: application/controllers/User.php:1079
+msgid "Database error:"
+msgstr ""
 
 #: application/controllers/User.php:1104
 msgid ""
@@ -8424,10 +8441,6 @@ msgstr "Indicatif de l'utilisateur"
 #: application/views/club/permissions.php:286
 msgid "Notify the user via email about the change"
 msgstr "Informer l'utilisateur du changement par courriel"
-
-#: application/views/club/permissions.php:309
-msgid "Delete User"
-msgstr "Supprimer l'utilisateur"
 
 #: application/views/club/permissions.php:316
 msgid "Are you sure you want to delete this user from the club?"

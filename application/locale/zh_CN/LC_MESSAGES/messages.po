@@ -867,14 +867,16 @@ msgstr "OK"
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
 "It should run every minute (* * * * *)."
-msgstr "上次执行在 %s 秒前。%s请检查你的主计划任务！它应当每分钟运行一次(* * * * *)。"
+msgstr ""
+"上次执行在 %s 秒前。%s请检查你的主计划任务！它应当每分钟运行一次(* * * * *)。"
 
 #: application/controllers/Cron.php:295
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
 "isn't running!%sIt should run every minute (* * * * *)."
-msgstr "上次执行是 %s 分钟之前。 %s 你的 计划任务似乎没有配置好，%s 它应当设置为每分"
+msgstr ""
+"上次执行是 %s 分钟之前。 %s 你的 计划任务似乎没有配置好，%s 它应当设置为每分"
 "钟执行 (* * * * *)。"
 
 #: application/controllers/Cron.php:300 application/views/cron/index.php:42
@@ -973,8 +975,9 @@ msgid ""
 "File Migration was successfull, but please check also manually. If "
 "everything seems right you can delete the folders 'assets/qslcard' and "
 "'images/eqsl_card_images'."
-msgstr "文件迁移成功，请手动检查。若一切正常，你可以删除文件夹“assets/qslcard”和“"
-"images/eqsl_card_images”。"
+msgstr ""
+"文件迁移成功，请手动检查。若一切正常，你可以删除文件夹“assets/"
+"qslcard”和“images/eqsl_card_images”。"
 
 #: application/controllers/Debug.php:303
 msgid "File Migration failed. Please check the Error Log."
@@ -2630,7 +2633,8 @@ msgstr "启用"
 msgid ""
 "Are you sure you want to delete the station logbook %s? You must re-link any "
 "locations linked here to another logbook."
-msgstr "你确定要删除电台日志簿%s吗？你必须将任何链接到此处的位置重新链接到另一个日志"
+msgstr ""
+"你确定要删除电台日志簿%s吗？你必须将任何链接到此处的位置重新链接到另一个日志"
 "簿。"
 
 #: application/controllers/Stationsetup.php:305
@@ -3084,7 +3088,8 @@ msgstr "无法为账户设置给定的电子邮件地址。请尝试使用除“
 msgid ""
 "You currently can't impersonate another user. You need to set %s to %s in "
 "your config.php!"
-msgstr "你当前无权以其他用户身份操作。你需要在你的 config.php 中将 %s 设置为 %s ！"
+msgstr ""
+"你当前无权以其他用户身份操作。你需要在你的 config.php 中将 %s 设置为 %s ！"
 
 #: application/controllers/User.php:1596
 #: application/views/user/modals/admin_impersonate_modal.php:36
@@ -3358,7 +3363,8 @@ msgstr "试图导入的 QSO 不存在对方呼号（CALL）。此 QSO 无效，�
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
 "imported. It's invalid"
-msgstr "在 %s 上的 QSO：你尝试导入一个未指定频段的 QSO。该 QSO 未被导入。此 QSO 无效"
+msgstr ""
+"在 %s 上的 QSO：你尝试导入一个未指定频段的 QSO。该 QSO 未被导入。此 QSO 无效"
 
 #: application/models/Logbook_model.php:4619
 msgid "the qslrdate is invalid (YYYYMMDD)"
@@ -4726,8 +4732,8 @@ msgid ""
 "that data in Wavelog."
 msgstr ""
 "如果你导入了由另一个日志软件提供的竞赛的ADIF文件，有时，根据该软件的不同，你"
-"的通联将无法从该软件的ADIF正确导入。如果你想更正该问题，可以提供该软件提供的C"
-"abrillo文件来在Wavelog中重写该数据。"
+"的通联将无法从该软件的ADIF正确导入。如果你想更正该问题，可以提供该软件提供的"
+"Cabrillo文件来在Wavelog中重写该数据。"
 
 #: application/views/adif/import.php:399
 #: application/views/adif/import_success.php:40
@@ -4784,7 +4790,8 @@ msgid ""
 "At least one of the ADIF fields could not be parsed and/or inserted into the "
 "database. Please check the imported ADIF file. You can use an online ADIF "
 "file checker. For example:"
-msgstr "有至少一个 ADIF 字段无法解析或插入至数据库，请检查 ADIF 文件。你可以使用在线"
+msgstr ""
+"有至少一个 ADIF 字段无法解析或插入至数据库，请检查 ADIF 文件。你可以使用在线"
 "的 ADIF 检查工具，例如："
 
 #: application/views/adif/import_success.php:22
@@ -4816,7 +4823,8 @@ msgid ""
 "Sometimes, depending on your contest logging software, your exchanges will "
 "not be imported properly from that softwares ADIF. If you like to correct "
 "that, switch to the CBR Import Tab of the ADIF Import page."
-msgstr "有时，根据你的竞赛记录软件，你的通联记录无法从该软件ADIF正确导入。如果你想更"
+msgstr ""
+"有时，根据你的竞赛记录软件，你的通联记录无法从该软件ADIF正确导入。如果你想更"
 "正该问题，请切换到“ADIF导入”页面的“CBP导入”选项卡。"
 
 #: application/views/adif/import_success.php:42
@@ -4947,7 +4955,8 @@ msgid ""
 "WLgate). Generate a read-write key if the application needs to send data to "
 "Wavelog. Generate a read-only key if the application only needs to obtain "
 "data from Wavelog."
-msgstr "你需要为每一个应用单独生成一个 API Key，根据需要创建 读-写 或 只读 权限的 "
+msgstr ""
+"你需要为每一个应用单独生成一个 API Key，根据需要创建 读-写 或 只读 权限的 "
 "API Key。"
 
 #: application/views/api/index.php:13
@@ -5176,9 +5185,9 @@ msgid ""
 "contacts with specified numbers of U.S. counties under rules and conditions "
 "you can find %s."
 msgstr ""
-"由移动业余无线电奖项俱乐部（MARAC）颁发的“美国县级行政区通联成就奖（USA-CA）”"
-"，旨在表彰业余无线电爱好者通过双向通信与指定数量的美国县级行政区建立有效通联"
-"的行为，具体规则与条件可通过 %s 查阅。"
+"由移动业余无线电奖项俱乐部（MARAC）颁发的“美国县级行政区通联成就奖（USA-"
+"CA）”，旨在表彰业余无线电爱好者通过双向通信与指定数量的美国县级行政区建立有效"
+"通联的行为，具体规则与条件可通过 %s 查阅。"
 
 #: application/views/awards/counties/index.php:9
 msgid ""
@@ -5859,8 +5868,9 @@ msgstr "欲了解更多信息，你可以访问此链接：%s。"
 msgid ""
 "Fields taken for this Award: DXCC (Must be USA), Gridsquare (Must contain a "
 "grid from one of the 488 mainland gridsquares!), Band must be 6M."
-msgstr "本奖项所需要的字段：DXCC（必须是美国）、网格（必须包含488个大陆网格中的一个）"
-"，频段必须是6米。"
+msgstr ""
+"本奖项所需要的字段：DXCC（必须是美国）、网格（必须包含488个大陆网格中的一"
+"个），频段必须是6米。"
 
 #: application/views/awards/gridmaster/index.php:8
 msgid "US Gridmaster Award"
@@ -6278,9 +6288,9 @@ msgid ""
 "in the award evaluation, and 'SIG INFO,' which contains the actual "
 "reference(s). Both fields are freely customizable."
 msgstr ""
-"在 QSO 处理中，你会发现两个字段：“SIG”是特别兴趣小组（special interest groups"
-"）名称的缩写，该团体在奖项评估中也可见，而“SIG INFO”则包含实际参考。这两个字"
-"段都可以自由定制。"
+"在 QSO 处理中，你会发现两个字段：“SIG”是特别兴趣小组（special interest "
+"groups）名称的缩写，该团体在奖项评估中也可见，而“SIG INFO”则包含实际参考。这"
+"两个字段都可以自由定制。"
 
 #: application/views/awards/sig/index.php:21
 #: application/views/station_profile/edit.php:288
@@ -6735,7 +6745,8 @@ msgstr "你可以通过将其设置为计划任务来自动化此过程。"
 msgid ""
 "Something went wrong during the backup process. Check that the backup folder "
 "exists and is writeable by your web server user / group."
-msgstr "备份过程中出现错误。请检查备份文件夹是否存在并且你的 Web 服务器用户/组有写入"
+msgstr ""
+"备份过程中出现错误。请检查备份文件夹是否存在并且你的 Web 服务器用户/组有写入"
 "权限。"
 
 #: application/views/backup/main.php:17
@@ -7619,7 +7630,8 @@ msgstr "频段中 CW 的频率（以 Hz 为单位）"
 msgid ""
 "Changes made here are instance-wide and will affect EVERY User. You see "
 "this, because you're an instance-admin"
-msgstr "此处所做的更改是实例范围的，将影响每位用户。因为你是实例管理员，所以你能看到"
+msgstr ""
+"此处所做的更改是实例范围的，将影响每位用户。因为你是实例管理员，所以你能看到"
 "这条提示"
 
 #: application/views/bands/edit.php:2
@@ -7905,7 +7917,8 @@ msgid ""
 "Indicate if you wish to receive, if eligible, a paper certificate sent via "
 "postal mail by the contest sponsor. The contest sponsor may or may not honor "
 "this tag."
-msgstr "表明你是否想获得一份邮寄过来的纸质证书。通常由比赛赞助者颁发，但也可能不兑现"
+msgstr ""
+"表明你是否想获得一份邮寄过来的纸质证书。通常由比赛赞助者颁发，但也可能不兑现"
 "此标牌。"
 
 #: application/views/cabrillo/index.php:196
@@ -8270,6 +8283,7 @@ msgid "Notify the user via email about the change"
 msgstr "通过电子邮件通知用户关于角色的修改"
 
 #: application/views/club/permissions.php:309
+#: application/controllers/User.php:1063
 msgid "Delete User"
 msgstr "删除用户"
 
@@ -8466,7 +8480,8 @@ msgstr "超出频段"
 msgid ""
 "DX Waterfall has experienced an unexpected error and will be shut down. "
 "Please visit Wavelog's GitHub and create a bug report if this issue persists."
-msgstr "DX 瀑布发生意外错误，即将关闭。若问题持续存在，请访问 Wavelog 的 GitHub 并提"
+msgstr ""
+"DX 瀑布发生意外错误，即将关闭。若问题持续存在，请访问 Wavelog 的 GitHub 并提"
 "交错误报告。"
 
 #: application/views/components/dxwaterfall.php:45
@@ -8786,7 +8801,8 @@ msgstr "交换信息的顺序"
 msgid ""
 "Choose in which order you want to type in the different reports. However, "
 "only the elements contained in the selected exchange type are displayed."
-msgstr "选择你输入交换信息的顺序。注意，只有在信息交换类型中的交换信息才会被显示。"
+msgstr ""
+"选择你输入交换信息的顺序。注意，只有在信息交换类型中的交换信息才会被显示。"
 
 #: application/views/contesting/index.php:82
 #: application/views/contesting/index.php:83
@@ -10340,8 +10356,9 @@ msgstr "查看/下载"
 msgid ""
 "Wavelog will use the eQSL credentials from your Wavelog user profile to "
 "connect to eQSL and download confirmations."
-msgstr "Wavelog 将使用你的 Wavelog 用户配置文件中的 eQSL 凭据连接并下载 eQSL 确认信息"
-"。"
+msgstr ""
+"Wavelog 将使用你的 Wavelog 用户配置文件中的 eQSL 凭据连接并下载 eQSL 确认信"
+"息。"
 
 #: application/views/eqsl/download.php:85
 msgid ""
@@ -10368,7 +10385,8 @@ msgstr "以下是尚未上传 eQSL 的 QSO 列表。"
 msgid ""
 "Please make sure the 'eQSL QTH Nickname' field is set in your station "
 "profile and that the value matches the QTH Nickname you set within eQSL."
-msgstr "请确保“eQSL QTH 昵称”字段已在你的电台配置文件中设置，且该值与你在 eQSL  中设"
+msgstr ""
+"请确保“eQSL QTH 昵称”字段已在你的电台配置文件中设置，且该值与你在 eQSL  中设"
 "置的 QTH 昵称一致。"
 
 #: application/views/eqsl/export.php:37
@@ -10422,7 +10440,8 @@ msgstr "直接从eQSL导入"
 msgid ""
 "This does NOT upload any QSOs. It only marks QSOs as sent. If you use this "
 "button you need to upload them manually on the eQSL.cc website."
-msgstr "这实际不会上传任何 QSO，只会将 QSO 标记为已发送，如果你使用此按钮，则需要之后"
+msgstr ""
+"这实际不会上传任何 QSO，只会将 QSO 标记为已发送，如果你使用此按钮，则需要之后"
 "在 eQSL.cc 网站上手动上传。"
 
 #: application/views/eqsl/tools.php:29
@@ -10433,7 +10452,8 @@ msgstr "标记所有 QSO 已上传至 eQSL"
 msgid ""
 "Use this if you have lots of QSOs to upload to eQSL it will save the server "
 "timing out."
-msgstr "如果你需要向 eQSL 上传大量 QSO 数据，请使用此设置，这样可以避免服务器因超时而"
+msgstr ""
+"如果你需要向 eQSL 上传大量 QSO 数据，请使用此设置，这样可以避免服务器因超时而"
 "关闭。"
 
 #: application/views/eqslcard/index.php:10
@@ -10487,8 +10507,9 @@ msgstr "你可以在此看到所有尚未上传到 HRDLog 日志的 QSO。"
 msgid ""
 "You need to set a HRDLog Logbook API Code in your station profile. Only "
 "station profiles with an API Key set are displayed."
-msgstr "请你在台站设置中配置 HRDLog Logbook API Code，此处仅显示有 API Key 的台站资料"
-"。"
+msgstr ""
+"请你在台站设置中配置 HRDLog Logbook API Code，此处仅显示有 API Key 的台站资"
+"料。"
 
 #: application/views/hrdlog/export.php:24
 #, php-format
@@ -10818,7 +10839,8 @@ msgstr "轮询"
 msgid ""
 "Note: Periodic polling is slow. When operating locally, WebSockets are a "
 "more convenient way to control your radio in real-time."
-msgstr "注意：周期性轮询速度较慢。在本地操作时，WebSockets 是更便捷的实时控制电台的方"
+msgstr ""
+"注意：周期性轮询速度较慢。在本地操作时，WebSockets 是更便捷的实时控制电台的方"
 "式。"
 
 #: application/views/interface_assets/footer.php:118
@@ -11009,7 +11031,8 @@ msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
 "Check which DXCC for this particular location is the correct one. If you are "
 "sure, ignore this warning."
-msgstr "请稍等，你选择的 DXCC 已经失效，请确认最新的 DXCC 实体，如果你十分确认，请忽"
+msgstr ""
+"请稍等，你选择的 DXCC 已经失效，请确认最新的 DXCC 实体，如果你十分确认，请忽"
 "略该警告。"
 
 #: application/views/interface_assets/footer.php:895
@@ -12006,7 +12029,8 @@ msgstr "与 AF、 AN、AS、EU、NA、OC 或 SA 不同的大洲。"
 msgid ""
 "The map uses the same search criteria as the normal search. All QSOs in the "
 "search result will be mapped, unless you have checked one or more QSOs."
-msgstr "该地图使用与普通搜索相同的搜索条件。搜索结果中的所有 QSO 都将显示在地图上，除"
+msgstr ""
+"该地图使用与普通搜索相同的搜索条件。搜索结果中的所有 QSO 都将显示在地图上，除"
 "非你选中了一个或多个 QSO。"
 
 #: application/views/logbookadvanced/help.php:19
@@ -12014,8 +12038,9 @@ msgid ""
 "The ADIF export uses the same search criteria as the normal search. All QSOs "
 "will be exported (all for selected location), unless you have checked one or "
 "more QSOs."
-msgstr "ADIF 导出使用与普通搜索相同的搜索条件。所有的 QSO 将被导出（选中的台站地址）"
-"，除非你选中了一个或多个 QSO。"
+msgstr ""
+"ADIF 导出使用与普通搜索相同的搜索条件。所有的 QSO 将被导出（选中的台站地"
+"址），除非你选中了一个或多个 QSO。"
 
 #: application/views/logbookadvanced/index.php:16
 #: application/views/logbookadvanced/useroptions.php:206
@@ -12114,7 +12139,8 @@ msgstr "日志簿的高级设置"
 msgid ""
 "Something went wrong with label print. Go to labels and check if you have "
 "defined a label, and that it is set for print!"
-msgstr "标签打印出现了问题。请前往“标签”选项卡，检查你是否已定义了标签，并且该标签已"
+msgstr ""
+"标签打印出现了问题。请前往“标签”选项卡，检查你是否已定义了标签，并且该标签已"
 "设置为可打印状态！"
 
 #: application/views/logbookadvanced/index.php:46
@@ -13572,7 +13598,8 @@ msgstr "过去未上传到 QRZ Logbook 的 QSO 在此显示。"
 msgid ""
 "You need to set a QRZ Logbook API key in your station profile. Only station "
 "profiles with an API Key set are displayed."
-msgstr "你需要在台站设置页面中配置 QRZ Logbook 的 API Key，此处仅显示配置 API Key 的"
+msgstr ""
+"你需要在台站设置页面中配置 QRZ Logbook 的 API Key，此处仅显示配置 API Key 的"
 "台站。"
 
 #: application/views/qrz/export.php:74
@@ -13672,7 +13699,8 @@ msgstr "频段和频率"
 msgid ""
 "Here you can export requested QSLs as CSV or ADIF files for printing and, "
 "optionally, mark them as sent."
-msgstr "在这里，你可以把被请求的 QSL 导出为 CSV 或 ADIF 文件以供打印，或者直接标记为"
+msgstr ""
+"在这里，你可以把被请求的 QSL 导出为 CSV 或 ADIF 文件以供打印，或者直接标记为"
 "已发送。"
 
 #: application/views/qslprint/index.php:41
@@ -14245,7 +14273,8 @@ msgstr "QSO 友台资料"
 msgid ""
 "Profile picture and data fetched from third-party services. This information "
 "is not stored on your Wavelog instance."
-msgstr "个人资料图片及数据来自第三方服务。此信息不会存储在你的 Wavelog 实例中。"
+msgstr ""
+"个人资料图片及数据来自第三方服务。此信息不会存储在你的 Wavelog 实例中。"
 
 #: application/views/qso/log_qso.php:9
 msgid "Redirecting to QSO logging page..."
@@ -14530,7 +14559,8 @@ msgstr "添加卫星模式"
 msgid ""
 "No satellites with TLE found. Please update via CRON or satellite page. If "
 "you have no access to do this, ask your admin!"
-msgstr "未找到具有 TLE 的卫星。请通过 CRON 或卫星页面更新。如果你无权这样做，请询问你"
+msgstr ""
+"未找到具有 TLE 的卫星。请通过 CRON 或卫星页面更新。如果你无权这样做，请询问你"
 "的管理员！"
 
 #: application/views/satellite/index.php:44
@@ -15014,7 +15044,8 @@ msgstr "警告！你不能记录 QSO 列表，因为你正在使用示例数据�
 msgid ""
 "Attention! Either you have set a contest, but included no exchange, or you "
 "have logged contest-data but did not select a contest."
-msgstr "请注意！要么你设置了一个竞赛，但没有设置任何交换数字，要么你已经记录了竞赛数"
+msgstr ""
+"请注意！要么你设置了一个竞赛，但没有设置任何交换数字，要么你已经记录了竞赛数"
 "据，但没有选择竞赛。"
 
 #: application/views/simplefle/index.php:36
@@ -15185,17 +15216,18 @@ msgid ""
 "single comma ','. To automatically increment the sent serial, use ',++' and "
 "give an initial sent exchange. To deactivate, use ',+0':"
 msgstr ""
-"接收到的交换码必须以句号“.”开头，发送的交换码以逗号“,”开头。最后两行是等效的—"
-"—也就是说，空格无关紧要，顺序也无关紧要。如果你发送的交换码包含接收到的交换码"
-"，或者你使用单个逗号“,”，则你发送的交换码将自动包含在下一个QSO中。要自动递增"
-"发送的序列号，请使用“,++”并提供初始发送的交换码。要停用自动递增，请使用“,+0”"
-"："
+"接收到的交换码必须以句号“.”开头，发送的交换码以逗号“,”开头。最后两行是等效的"
+"——也就是说，空格无关紧要，顺序也无关紧要。如果你发送的交换码包含接收到的交换"
+"码，或者你使用单个逗号“,”，则你发送的交换码将自动包含在下一个QSO中。要自动递"
+"增发送的序列号，请使用“,++”并提供初始发送的交换码。要停用自动递增，请使用“,"
+"+0”："
 
 #: application/views/simplefle/syntax_help.php:54
 msgid ""
 "Here, the first qso uses the set serial 1, and the second will use 2 as the "
 "serial. If you want to wipe your sent exchange, use ',-':"
-msgstr "在这里，第一个 QSO 使用设置的 1 作为序列号，第二个 QSO 将使用 2 作为序列号。"
+msgstr ""
+"在这里，第一个 QSO 使用设置的 1 作为序列号，第二个 QSO 将使用 2 作为序列号。"
 "如果你想清除你发送的交换码，使用“,-”："
 
 #: application/views/simplefle/syntax_help.php:59
@@ -15377,7 +15409,8 @@ msgstr "POTA Map 网站"
 msgid ""
 "Station POTA reference(s). Multiple comma separated values allowed. You can "
 "look up POTA references at the %s."
-msgstr "台站的 POTA 标识符，可以使用多个值（逗号分隔）。你可在 %s 查看 POTA 标识符。"
+msgstr ""
+"台站的 POTA 标识符，可以使用多个值（逗号分隔）。你可在 %s 查看 POTA 标识符。"
 
 #: application/views/station_profile/create.php:189
 msgid "Signature Name"
@@ -15640,7 +15673,8 @@ msgid ""
 "see all the locations across one session from the logbook areas to the "
 "analytics. Great for when your operating in multiple locations but they are "
 "part of the same DXCC or VUCC Circle."
-msgstr "使用多个日志簿可以对日志进行分组管理，例如你的电台想在多个 DXCC 或 VUCC 下通"
+msgstr ""
+"使用多个日志簿可以对日志进行分组管理，例如你的电台想在多个 DXCC 或 VUCC 下通"
 "联。你可让一个日志簿关联到多个不同的台站地址。"
 
 #: application/views/stationsetup/stationsetup.php:35
@@ -15697,8 +15731,9 @@ msgstr "显示位置列表"
 msgid ""
 "Attention: You need to set an active station location. Go to Callsign-"
 ">Station Location to select one."
-msgstr "警告：应事先设置一个 “启用” 中的台站地址，请在右上角 “你的呼号” -> “台站地址”"
-" 中选择一个。"
+msgstr ""
+"警告：应事先设置一个 “启用” 中的台站地址，请在右上角 “你的呼号” -> “台站地"
+"址” 中选择一个。"
 
 #: application/views/stationsetup/stationsetup.php:116
 msgid ""
@@ -15871,7 +15906,8 @@ msgid ""
 "In this menu you can add and edit themes to Wavelog. The process of adding a "
 "theme is not really straightforward and should only be done by an admin who "
 "is aware of their actions."
-msgstr "在这个菜单，你可以向 Wavelog 添加和编辑主题，由于步骤复杂，仅系统管理员可以操"
+msgstr ""
+"在这个菜单，你可以向 Wavelog 添加和编辑主题，由于步骤复杂，仅系统管理员可以操"
 "作。"
 
 #: application/views/themes/index.php:29
@@ -15913,7 +15949,8 @@ msgstr "3. 第三步"
 msgid ""
 "For each new theme, you need two logo files. One for the login screen and "
 "one for the header."
-msgstr "对于任何新主题，你需要 2 个 Logo 文件，一个用于登录页，一个用于顶部标题。"
+msgstr ""
+"对于任何新主题，你需要 2 个 Logo 文件，一个用于登录页，一个用于顶部标题。"
 
 #: application/views/themes/index.php:63
 msgid ""
@@ -15970,7 +16007,8 @@ msgstr "通联的呼号（最大 5）"
 msgid ""
 "The Timeplotter is used to analyze your logbook and find out at what times "
 "you worked certain CQ zones or DXCC countries on a selected band."
-msgstr "时间图表能分析你在何时与某 CQ 分区 或 DXCC 实体，于指定频段进行过通联。"
+msgstr ""
+"时间图表能分析你在何时与某 CQ 分区 或 DXCC 实体，于指定频段进行过通联。"
 
 #: application/views/update/hamsofnote.php:7
 msgid "Name / Description"
@@ -16208,7 +16246,8 @@ msgid ""
 "When set to \"Yes\", callsign lookup will first use data from your previous "
 "QSOs before querying external services. Set to \"No\" to always use external "
 "lookup services instead."
-msgstr "当设置为“是”时，呼号查询功能将首先使用你之前通话记录中的数据，然后再查询外部"
+msgstr ""
+"当设置为“是”时，呼号查询功能将首先使用你之前通话记录中的数据，然后再查询外部"
 "服务。将设置改为“否”则会始终使用外部查询服务。"
 
 #: application/views/user/edit.php:385
@@ -16301,7 +16340,8 @@ msgstr "台址快速切换"
 msgid ""
 "Show the Station Locations Quickswitch in the main menu. You can add "
 "locations by adding them to favourites at the station setup page."
-msgstr "在主菜单中显示台址快速切换功能。你可以在设置台站页面将台址设置为“喜爱的”来增"
+msgstr ""
+"在主菜单中显示台址快速切换功能。你可以在设置台站页面将台址设置为“喜爱的”来增"
 "加可快速切换的台址。"
 
 #: application/views/user/edit.php:508
@@ -16569,7 +16609,8 @@ msgid ""
 "the widget should display all on-air radios of the user, or just the most "
 "recently updated one. In case you have only one radio, this setting has no "
 "effect."
-msgstr "如果你配置了多个 CAT 无线电，则此设置控制小部件是否应显示用户的所有电台，还是"
+msgstr ""
+"如果你配置了多个 CAT 无线电，则此设置控制小部件是否应显示用户的所有电台，还是"
 "仅显示最近更新的电台。如果你只有一个电台，则此设置无效。"
 
 #: application/views/user/edit.php:1006
@@ -16691,7 +16732,8 @@ msgid ""
 "With the password reset button, you can send a user an email containing a "
 "link to reset their password. To achieve this, ensure that the email "
 "settings in the global options are configured correctly."
-msgstr "通过'重置密码'按钮，你可以向用户发送一封带有重置密码链接的邮件。你需要确保全"
+msgstr ""
+"通过'重置密码'按钮，你可以向用户发送一封带有重置密码链接的邮件。你需要确保全"
 "局设定中的邮件设置配置正确。"
 
 #: application/views/user/index.php:19
@@ -16803,7 +16845,8 @@ msgstr "以该用户登录"
 msgid ""
 "You are about to impersonate another user. To return to your admin account, "
 "you can use the switch back button in the header menu."
-msgstr "你即将以另一个用户来登录。要返回你的管理员帐户，你可以使用标题菜单中的切换返"
+msgstr ""
+"你即将以另一个用户来登录。要返回你的管理员帐户，你可以使用标题菜单中的切换返"
 "回按钮。"
 
 #: application/views/user/modals/admin_impersonate_modal.php:10
@@ -16978,7 +17021,8 @@ msgid ""
 "You are about to convert this club station to a regular user account. The "
 "user will be able to log in again and all assigned club permissions will be "
 "removed. Use with caution!"
-msgstr "你即将把此集体台站用户转换为普通用户。集体台站用户可以再次登录但是所有的集体"
+msgstr ""
+"你即将把此集体台站用户转换为普通用户。集体台站用户可以再次登录但是所有的集体"
 "台站角色将被移除。请小心使用！"
 
 #: application/views/user/modals/more_actions_modal.php:146
@@ -16986,7 +17030,8 @@ msgid ""
 "You are about to convert this user account to a club station. The user will "
 "no longer be able to log in and the account will be converted to a club "
 "station account. Use with caution!"
-msgstr "你即将把此普通用户转换为集体台站用户。这个用户将不再能够登录并且账号将被转换"
+msgstr ""
+"你即将把此普通用户转换为集体台站用户。这个用户将不再能够登录并且账号将被转换"
 "为集体台站账号。请小心使用！"
 
 #: application/views/user/modals/more_actions_modal.php:149
@@ -17225,8 +17270,9 @@ msgstr "你可在这里查看并上传所有未导出至 QO-100 Dx Club 的 QSO�
 msgid ""
 "You need to set a QO-100 Dx Club API key in your station profile. Only "
 "station profiles with an API Key are displayed."
-msgstr "你需要在台站设置中配置 QO-100 Dx Club 的 API Key，这里仅显示有 API Key 的台站"
-"。"
+msgstr ""
+"你需要在台站设置中配置 QO-100 Dx Club 的 API Key，这里仅显示有 API Key 的台"
+"站。"
 
 #: application/views/webadif/export.php:63
 msgid ""
@@ -17319,6 +17365,18 @@ msgid ""
 "Frequency marker active | Click to disable marker | Double-click to disable "
 "CAT"
 msgstr "频率标记激活 | 点击禁用标记 | 双击禁用 CAT"
+
+#: application/controllers/User.php:1076
+msgid "User deleted"
+msgstr ""
+
+#: application/controllers/User.php:1079
+msgid "Could not delete user!"
+msgstr ""
+
+#: application/controllers/User.php:1079
+msgid "Database error:"
+msgstr ""
 
 #~ msgid "Spots de"
 #~ msgstr "来自"

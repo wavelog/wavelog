@@ -1060,7 +1060,7 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('id', 'user_id', 'required');
 
 		$data = $query->row();
-		$data->page_title = "Delete User";
+		$data->page_title = __("Delete User");
 
 		if ($this->form_validation->run() == FALSE)
 		{
@@ -1073,10 +1073,10 @@ class User extends CI_Controller {
 		{
 			if($this->user_model->delete($data->user_id))
 			{
-				$this->session->set_flashdata('notice', 'User deleted');
+				$this->session->set_flashdata('notice', __("User deleted"));
 				redirect('user');
 			} else {
-				$this->session->set_flashdata('notice', '<b>Database error:</b> Could not delete user!');
+				$this->session->set_flashdata('notice', '<b>' . __("Database error:") . '</b> ' . __("Could not delete user!"));
 				redirect('user');
 			}
 		}
