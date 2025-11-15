@@ -1060,7 +1060,7 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('id', 'user_id', 'required');
 
 		$data = $query->row();
-		$data->page_title = "Delete User";
+		$data->page_title = __("Delete User");
 
 		if ($this->form_validation->run() == FALSE)
 		{
@@ -1073,10 +1073,10 @@ class User extends CI_Controller {
 		{
 			if($this->user_model->delete($data->user_id))
 			{
-				$this->session->set_flashdata('notice', 'User deleted');
+				$this->session->set_flashdata('notice', __("User deleted"));
 				redirect('user');
 			} else {
-				$this->session->set_flashdata('notice', '<b>Database error:</b> Could not delete user!');
+				$this->session->set_flashdata('notice', '<b>' . __("Database error:") . '</b> ' . __("Could not delete user!"));
 				redirect('user');
 			}
 		}
@@ -1178,7 +1178,7 @@ class User extends CI_Controller {
 					$this->input->set_cookie('keep_login', '', -3600, '');
 					$this->input->set_cookie('re_login', '', -3600, '');
 					$this->session->set_flashdata('error', __("Login failed. Try again."));
-					$this->set_header('X-Login-Status: failed');
+					$this->output->set_header('X-Login-Status: failed');
 					$this->output->_display();
 					redirect('user/login');
 				}
@@ -1189,7 +1189,7 @@ class User extends CI_Controller {
 				// Delete keep_login cookie
 				$this->input->set_cookie('keep_login', '', -3600, '');
 				$this->input->set_cookie('re_login', '', -3600, '');
-				$this->set_header('X-Login-Status: failed');
+				$this->output->set_header('X-Login-Status: failed');
 				$this->session->set_flashdata('error', __("Login failed. Try again."));
 				$this->output->_display();
 				redirect('user/login');
@@ -1297,14 +1297,12 @@ class User extends CI_Controller {
 		$stationdata = [
 			'user_id' => $this->session->userdata('user_id'),
 			'station_name' => $this->input->post('station_name', true),
-			'station_callsign' => trim($this->input->post('station_callsign', true)),
+			'station_callsign' => str_replace('Ø', '0', trim($this->input->post('station_callsign', true))),
 			'station_dxcc' => $this->input->post('station_dxcc', true),
 			'station_cqz' => $this->input->post('station_cqz', true),
 			'station_ituz' => $this->input->post('station_ituz', true),
 			'station_locator' => $this->input->post('station_locator', true),
 		];
-
-		log_message('debug', 'First Login Wizard Form Data: '.print_r($stationdata, true));
 
 		if (!$this->check_locator($stationdata['station_locator'])) {
 			$this->session->set_flashdata('fl_wiz_error', sprintf(__("Please check value for grid locator (%s)"), strtoupper($stationdata['station_locator'])));

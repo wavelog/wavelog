@@ -27,6 +27,9 @@
 	var lang_bandmap_callsign_sent = "<?= __("Callsign"); ?>";
 	var lang_bandmap_sent_to_form = "<?= __("sent to logging form"); ?>";
 	var lang_bandmap_cat_control = "<?= __("CAT Connection"); ?>";
+	var lang_bandmap_cat_off = "<?= __("Click to enable CAT connection"); ?>";
+	var lang_bandmap_cat_on = "<?= __("CAT following radio | Click for frequency marker | Double-click to disable"); ?>";
+	var lang_bandmap_cat_marker = "<?= __("Frequency marker active | Click to disable marker | Double-click to disable CAT"); ?>";
 	var lang_bandmap_freq_changed = "<?= __("Frequency filter changed to"); ?>";
 	var lang_bandmap_by_transceiver = "<?= __("by transceiver"); ?>";
 	var lang_bandmap_freq_filter_set = "<?= __("Frequency filter set to"); ?>";
@@ -45,6 +48,11 @@
 	var lang_bandmap_next_update = "<?= __("Next update in"); ?>";
 	var lang_bandmap_minutes = "<?= __("minutes"); ?>";
 	var lang_bandmap_seconds = "<?= __("seconds"); ?>";
+	var lang_bandmap_spots_fetched = "<?= __("spots fetched"); ?>";
+	var lang_bandmap_showing = "<?= __("showing"); ?>";
+	var lang_bandmap_showing_all = "<?= __("showing all"); ?>";
+	var lang_bandmap_active_filters = "<?= __("Active filters"); ?>";
+	var lang_bandmap_fetching = "<?= __("Fetching..."); ?>";
 
 	// Bandmap filter labels
 	var lang_bandmap_not_worked = "<?= __("Not worked"); ?>";
@@ -56,6 +64,7 @@
 	var lang_bandmap_new_continent = "<?= __("New Continent"); ?>";
 	var lang_bandmap_new_country = "<?= __("New Country"); ?>";
 	var lang_bandmap_worked_before = "<?= __("Worked Before"); ?>";
+	var lang_bandmap_worked_details = "<?= __("Worked on %s with %s"); ?>";
 
 	// Bandmap filter prefixes
 	var lang_bandmap_dxcc = "<?= __("DXCC"); ?>";
@@ -72,9 +81,20 @@
 	var lang_bandmap_contest_name = "<?= __("Contest"); ?>"; // Same as above, for "Contest: NAME" format
 	var lang_bandmap_click_view_qrz = "<?= __("Click to view"); ?>";
 	var lang_bandmap_on_qrz = "<?= __("on QRZ.com"); ?>";
+	var lang_bandmap_click_view_qrz_callsign = "<?= __("Click to view %s on QRZ.com"); ?>";
 	var lang_bandmap_see_details = "<?= __("See details for"); ?>";
 	var lang_bandmap_worked_on = "<?= __("Worked on"); ?>";
 	var lang_bandmap_not_worked_band = "<?= __("Not worked on this band"); ?>";
+	var lang_bandmap_lotw_last_upload = "<?= __("LoTW User. Last upload was %d days ago"); ?>";
+	var lang_bandmap_click_to_view_pota = "<?= __("Click to view on POTA.app"); ?>";
+	var lang_bandmap_click_to_view_sotl = "<?= __("Click to view on SOTL.as"); ?>";
+	var lang_bandmap_click_to_view_wwff = "<?= __("Click to view on cqgma.org"); ?>";
+	var lang_bandmap_click_to_view_iota = "<?= __("Click to view on IOTA-World.org"); ?>";
+	var lang_bandmap_see_details_continent = "<?= __("See details for continent"); ?>";
+	var lang_bandmap_see_details_continent_value = "<?= __("See details for continent %s"); ?>";
+	var lang_bandmap_see_details_cqz = "<?= __("See details for CQ Zone"); ?>";
+	var lang_bandmap_see_details_cqz_value = "<?= __("See details for CQ Zone %s"); ?>";
+	var lang_bandmap_in = "<?= __("in"); ?>";
 
 	// Bandmap UI messages
 	var lang_bandmap_exit_fullscreen = "<?= __("Exit Fullscreen"); ?>";
@@ -171,17 +191,17 @@
 	<!-- Row 1: CAT Connection, Radio Selector, Radio Status (left) | de Continents (right) -->
 	<div class="d-flex flex-wrap align-items-center gap-2 mb-2">
 		<!-- Left: CAT Connection Button -->
-		<button class="btn btn-sm btn-secondary flex-shrink-0" type="button" id="toggleCatTracking" title="<?= __("When selected the filters will be set basing on your current radio status"); ?>">
-			<i class="fas fa-radio"></i> <span class="d-none d-sm-inline"><?= __("CAT Connection"); ?></span>
+		<button class="btn btn-sm btn-secondary flex-shrink-0" type="button" id="toggleCatTracking" data-bs-toggle="tooltip" data-bs-placement="bottom">
+			<i class="fas fa-radio"></i> <span class="d-none d-sm-inline"><?= __("CAT Connection"); ?></span> <i class="fas fa-info-circle text-muted" style="font-size: 0.75rem;"></i>
 		</button>
 
 		<!-- Radio Selector Dropdown -->
-		<small class="text-muted me-1 flex-shrink-0 d-none d-md-inline"><?= __("Radio:"); ?></small>
+		<small class="text-muted me-1 flex-shrink-0 d-none d-md-inline"><?= __("TRX:"); ?></small>
 		<select class="form-select form-select-sm radios flex-shrink-0" id="radio" name="radio" style="width: auto; min-width: 150px;">
 			<option value="0" selected="selected"><?= __("None"); ?></option>
 			<option value="ws"<?php if ($this->session->userdata('radio') == 'ws') { echo ' selected="selected"'; } ?>><?= __("Live - ") . __("WebSocket (Requires WLGate>=1.1.10)"); ?></option>
 			<?php foreach ($radios->result() as $row) { ?>
-				<option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id) { echo "selected=\"selected\""; } ?>><?= __("Polling - ") . $row->radio; ?><?php if ($radio_last_updated->id == $row->id) { echo "(".__("last updated").")"; } else { echo ''; } ?></option>
+				<option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id) { echo "selected=\"selected\""; } ?>><?= __("Polling - ") . $row->radio; ?><?php if ($radio_last_updated->id == $row->id) { echo " (".__("last updated").")"; } else { echo ''; } ?></option>
 			<?php } ?>
 		</select>
 
@@ -192,7 +212,7 @@
 		<div class="d-flex flex-wrap gap-2 align-items-center">
 			<small class="text-muted me-1 flex-shrink-0"><?= __("de:"); ?></small>
 			<div class="btn-group flex-shrink-0" role="group">
-				<button class="btn btn-sm btn-secondary" type="button" id="toggleAllContinentsFilter" title="<?= __("Select all continents"); ?>"><?= __("All"); ?></button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleAllContinentsFilter" title="<?= __("Select all continents"); ?>"><?= __("World"); ?></button>
 				<button class="btn btn-sm btn-secondary" type="button" id="toggleAfricaFilter" title="<?= __("Toggle Africa continent filter"); ?>">AF</button>
 				<button class="btn btn-sm btn-secondary" type="button" id="toggleAntarcticaFilter" title="<?= __("Toggle Antarctica continent filter"); ?>">AN</button>
 				<button class="btn btn-sm btn-secondary" type="button" id="toggleAsiaFilter" title="<?= __("Toggle Asia continent filter"); ?>">AS</button>
@@ -414,15 +434,15 @@
 		<!-- DX Spot, Continent, Country, Callsign Group -->
 		<div class="btn-group flex-shrink-0" role="group">
 			<button class="btn btn-sm btn-secondary" type="button" id="toggleDxSpotFilter" title="<?= __("Toggle DX Spot filter (spotted continent ≠ spotter continent)"); ?>">
-				<i class="fas fa-globe"></i> <span class="d-none d-sm-inline"><?= __("DX Spots"); ?></span>
+				<i class="fas fa-globe"></i> <span class="d-none d-sm-inline"><?= __("DX"); ?></span>
 			</button>
-			<button class="btn btn-sm btn-secondary" type="button" id="toggleNewContinentFilter" title="<?= __("Toggle New Continent filter"); ?>">
+			<button class="btn btn-sm btn-secondary" type="button" id="toggleNewContinentFilter" title="<?= __("Toggle New Continents filter"); ?>">
 				<i class="fas fa-medal" style="color: #FFD700;"></i> <span class="d-none d-sm-inline"><?= __("New Continents"); ?></span>
 			</button>
-			<button class="btn btn-sm btn-secondary" type="button" id="toggleDxccNeededFilter" title="<?= __("Toggle New Country filter"); ?>">
-				<i class="fas fa-medal" style="color: #C0C0C0;"></i> <span class="d-none d-sm-inline"><?= __("New DXCCs"); ?></span>
+			<button class="btn btn-sm btn-secondary" type="button" id="toggleDxccNeededFilter" title="<?= __("Toggle New Entities filter"); ?>">
+				<i class="fas fa-medal" style="color: #C0C0C0;"></i> <span class="d-none d-sm-inline"><?= __("New Entities"); ?></span>
 			</button>
-			<button class="btn btn-sm btn-secondary" type="button" id="toggleNewCallsignFilter" title="<?= __("Toggle New Callsign filter"); ?>">
+			<button class="btn btn-sm btn-secondary" type="button" id="toggleNewCallsignFilter" title="<?= __("Toggle New Callsigns filter"); ?>">
 				<i class="fas fa-medal" style="color: #CD7F32;"></i> <span class="d-none d-sm-inline"><?= __("New Callsigns"); ?></span>
 			</button>
 		</div>
@@ -430,13 +450,13 @@
 		<!-- Fresh, Contest, Ref. Hunter Group -->
 		<div class="btn-group flex-shrink-0" role="group">
 			<button class="btn btn-sm btn-secondary" type="button" id="toggleFreshFilter" title="<?= __("Toggle Fresh spots filter (< 5 minutes old)"); ?>">
-				<i class="fas fa-bolt"></i> <span class="d-none d-sm-inline"><?= __("Fresh Spots"); ?></span>
+				<i class="fas fa-bolt"></i> <span class="d-none d-sm-inline"><?= __("Fresh"); ?></span>
 			</button>
 			<button class="btn btn-sm btn-secondary" type="button" id="toggleContestFilter" title="<?= __("Toggle Contest filter"); ?>">
-				<i class="fas fa-trophy"></i> <span class="d-none d-sm-inline"><?= __("Contest Spots"); ?></span>
+				<i class="fas fa-trophy"></i> <span class="d-none d-sm-inline"><?= __("Contest"); ?></span>
 			</button>
 			<button class="btn btn-sm btn-secondary" type="button" id="toggleGeoHunterFilter" title="<?= __("Toggle Geo Hunter (POTA/SOTA/IOTA/WWFF)"); ?>">
-				<i class="fas fa-hiking"></i> <span class="d-none d-sm-inline"><?= __("Referenced Spots"); ?></span>
+				<i class="fas fa-hiking"></i> <span class="d-none d-sm-inline"><?= __("Referenced"); ?></span>
 			</button>
 		</div>
 
@@ -492,13 +512,13 @@
 							<th title="<?= __("Band"); ?>"><i class="fas fa-wave-square"></i></th>
 							<th title="<?= __("Frequency"); ?> [MHz]"><?= __("Freq"); ?></th>
 							<th title="<?= __("Mode"); ?>"><i class="fas fa-broadcast-tower"></i></th>
-							<th title="<?= __("Spotted Callsign"); ?>"><?= __("Spotted"); ?></th>
+							<th title="<?= __("Spotted Callsign"); ?>"><?= __("DX"); ?></th>
 							<th title="<?= __("Continent"); ?>"><i class="fas fa-globe-americas"></i></th>
 							<th title="<?= __("CQ Zone"); ?>"><i class="fas fa-map-marked"></i></th>
 							<th title="<?= __("Flag"); ?>"><i class="fas fa-flag"></i></th>
 							<th title="<?= __("DXCC Entity"); ?>"><?= __("Entity"); ?></th>
 							<th title="<?= __("DXCC Number"); ?>"><i class="fas fa-hashtag"></i></th>
-							<th title="<?= __("Spotter Callsign"); ?>"><?= __("Spotter"); ?></th>
+							<th title="<?= __("Spotter Callsign"); ?>"><?= __("de"); ?></th>
 							<th title="<?= __("Spotter Continent"); ?>"><i class="fas fa-globe-americas"></i></th>
 							<th title="<?= __("Spotter CQ Zone"); ?>"><i class="fas fa-map-marked"></i></th>
 							<th title="<?= __("Special Flags"); ?>"><?= __("Special"); ?></th>

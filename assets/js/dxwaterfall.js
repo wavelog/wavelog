@@ -1,7 +1,7 @@
 // @ts-nocheck
 /**
  * @fileoverview DX WATERFALL for WaveLog
- * @version 0.9.3 // also change line 38
+ * @version 0.9.5 // also change line 32
  * @author Wavelog Team
  *
  * @description
@@ -29,7 +29,7 @@
 
 var DX_WATERFALL_CONSTANTS = {
     // Version
-    VERSION: '0.9.3', // DX Waterfall version (keep in sync with @version in file header)
+    VERSION: '0.9.5', // DX Waterfall version (keep in sync with @version in file header)
 
     // Debug and logging
     DEBUG_MODE: false, // Set to true for verbose logging, false for production
@@ -445,18 +445,13 @@ function handleCATFrequencyUpdate(radioFrequency, updateCallback) {
     var frequencyChanged = false;
     var isInitialLoad = false;
 
-    if (typeof dxWaterfall !== 'undefined' && dxWaterfall.lastValidCommittedFreq !== null && dxWaterfall.lastValidCommittedUnit) {
+    if (typeof dxWaterfall !== 'undefined' && dxWaterfall.lastValidCommittedFreqHz !== null) {
         // Compare incoming CAT frequency with last committed value
-        // CAT sends frequency in Hz, convert to kHz for comparison
-        var lastKhz = convertFrequency(
-            dxWaterfall.lastValidCommittedFreq,
-            dxWaterfall.lastValidCommittedUnit,
-            'kHz'
-        );
+        // CAT sends frequency in Hz, convert for comparison
+        var lastHz = dxWaterfall.lastValidCommittedFreqHz;
         var incomingHz = parseFloat(radioFrequency);
-        var incomingKhz = incomingHz / 1000; // Convert Hz to kHz
-        var tolerance = 0.001; // 1 Hz
-        var diff = Math.abs(incomingKhz - lastKhz);
+        var tolerance = 1; // 1 Hz
+        var diff = Math.abs(incomingHz - lastHz);
         frequencyChanged = diff > tolerance;
     } else if (typeof dxWaterfall !== 'undefined') {
         // First time receiving CAT frequency - always consider it changed
@@ -485,7 +480,6 @@ function handleCATFrequencyUpdate(radioFrequency, updateCallback) {
         var toleranceHz = DX_WATERFALL_CONSTANTS.THRESHOLDS.CAT_FREQUENCY_HZ; // 50 Hz tolerance
         var diff = Math.abs(incomingHz - targetHz);
 
-        // Debug logging to see what we're comparing
         DX_WATERFALL_UTILS.log.debug('[CAT] Frequency check - Target: ' + targetHz + ' Hz, Incoming: ' + incomingHz + ' Hz, Diff: ' + diff + ' Hz, Tolerance: ' + toleranceHz + ' Hz');
 
         dxWaterfall.targetFrequencyConfirmAttempts = (dxWaterfall.targetFrequencyConfirmAttempts || 0) + 1;
@@ -769,39 +763,16 @@ var DX_WATERFALL_UTILS = {
             options = options || {};
             var spotFreq = parseFloat(spot.frequency);
 
-            // Determine the correct mode to use
-            // Priority: program-specific mode from DXCC data > generic mode field
-            // Check for POTA, SOTA, WWFF, or IOTA specific modes
+            // Use spot.mode and spot.submode from backend (already classified with priority logic)
+            // Backend provides: mode ('phone'/'cw'/'digi') and submode ('LSB'/'USB'/'CW'/'FT8'/etc.)
             var spotMode = spot.mode || '';
-
-            if (spot.dxcc_spotted) {
-                // Check for program-specific modes in priority order
-                if (spot.dxcc_spotted.pota_mode) {
-                    spotMode = spot.dxcc_spotted.pota_mode;
-                } else if (spot.dxcc_spotted.sota_mode) {
-                    spotMode = spot.dxcc_spotted.sota_mode;
-                } else if (spot.dxcc_spotted.wwff_mode) {
-                    spotMode = spot.dxcc_spotted.wwff_mode;
-                } else if (spot.dxcc_spotted.iota_mode) {
-                    spotMode = spot.dxcc_spotted.iota_mode;
-                }
-            } else if (spot.dxcc_spotter) {
-                // Fallback to spotter's DXCC data
-                if (spot.dxcc_spotter.pota_mode) {
-                    spotMode = spot.dxcc_spotter.pota_mode;
-                } else if (spot.dxcc_spotter.sota_mode) {
-                    spotMode = spot.dxcc_spotter.sota_mode;
-                } else if (spot.dxcc_spotter.wwff_mode) {
-                    spotMode = spot.dxcc_spotter.wwff_mode;
-                } else if (spot.dxcc_spotter.iota_mode) {
-                    spotMode = spot.dxcc_spotter.iota_mode;
-                }
-            }
+            var spotSubmode = spot.submode || '';
 
             var spotObj = {
                 callsign: spot.spotted,
                 frequency: spotFreq,
-                mode: spotMode
+                mode: spotMode,
+                submode: spotSubmode
             };
 
             // Add optional fields based on options
@@ -1008,6 +979,16 @@ var DX_WATERFALL_UTILS = {
 
                 // Set up one-time event listener for when callsign lookup completes
                 $(document).one('callsignLookupComplete', function() {
+                    // SAFETY CHECK: Validate callsign hasn't been manually changed
+                    var currentCallsign = $('#callsign').val().toUpperCase().replace(/0/g, 'Ø');
+                    var originalCallsign = spotData.callsign.toUpperCase().replace(/0/g, 'Ø');
+
+                    if (currentCallsign !== originalCallsign) {
+                        // User changed the callsign - don't apply park references from original spot
+                        DX_WATERFALL_UTILS.log.debug('[DX Waterfall] Callsign changed (' + originalCallsign + ' → ' + currentCallsign + ') - skipping park ref population');
+                        return;
+                    }
+
                     // Re-populate park references after callsign lookup has cleared them
                     if (parkRefs.sota) {
                         var $sotaSelect = $('#sota_ref');
@@ -1054,9 +1035,12 @@ var DX_WATERFALL_UTILS = {
                         }
                     }
 
-                    DX_WATERFALL_UTILS.navigation.navigating = false;
                 });
 
+				// If navigating, delay the lookup slightly to avoid interference
+				DX_WATERFALL_UTILS.navigation.navigating = false;
+
+				// Set a short timer to trigger the lookup after navigation completes
                 this.pendingLookupTimer = setTimeout(function() {
                     // Clear preventLookup flag just before triggering the lookup
                     if (wasPreventLookupSet) {
@@ -1067,6 +1051,7 @@ var DX_WATERFALL_UTILS = {
                     callsignInput.trigger('focusout');
 
                     self.pendingLookupTimer = null;
+
                 }, 50);
             } else {
                 // No lookup - clear navigation flag immediately
@@ -1136,15 +1121,14 @@ var DX_WATERFALL_UTILS = {
                 }, DX_WATERFALL_CONSTANTS.DEBOUNCE.MODE_CHANGE_SETTLE_MS);
 
                 // Manually set the frequency in the input field immediately
-                var formattedFreq = Math.round(targetSpot.frequency * 1000); // Convert to Hz
-                $('#frequency').val(formattedFreq);
+                var formattedFreqHz = Math.round(targetSpot.frequency * 1000); // Convert kHz to Hz
+                $('#frequency').val(formattedFreqHz);
 
                 // CRITICAL: Directly update the cache to the target frequency
-                // getCachedMiddleFreq() uses lastValidCommittedFreq which isn't updated by just setting the input value
+                // getCachedMiddleFreq() uses lastValidCommittedFreqHz which isn't updated by just setting the input value
                 // So we bypass the cache and set it directly to ensure getSpotInfo() uses the correct frequency
                 waterfallContext.cache.middleFreq = targetSpot.frequency; // Already in kHz
-                waterfallContext.lastValidCommittedFreq = formattedFreq;
-                waterfallContext.lastValidCommittedUnit = 'kHz';
+                waterfallContext.lastValidCommittedFreqHz = formattedFreqHz; // Store in Hz
 
                 var cachedFreq = waterfallContext.getCachedMiddleFreq();
 
@@ -1154,6 +1138,8 @@ var DX_WATERFALL_UTILS = {
                 // Only populate form if explicitly requested
                 if (shouldPrefill && spotInfo) {
                     var self = this;
+                    // Clear form before populating
+                    DX_WATERFALL_UTILS.qsoForm.clearForm();
                     this.pendingNavigationTimer = setTimeout(function() {
                         DX_WATERFALL_UTILS.qsoForm.populateFromSpot(spotInfo, true);
                         self.pendingNavigationTimer = null;
@@ -1299,9 +1285,6 @@ var dxWaterfall = {
         noiseWidth: 0,
         noiseHeight: 0,
         middleFreq: null,
-        lastQrgUnit: null,
-        lastValidCommittedFreq: null,
-        lastValidCommittedUnit: null,
         visibleSpots: null,
         visibleSpotsParams: null
     },
@@ -1346,6 +1329,12 @@ var dxWaterfall = {
     targetFrequencyConfirmAttempts: 0,
     lastWaterfallFrequencyCommandTime: 0,
     lastFrequencyRefreshTime: 0,
+
+    // Frequency commit tracking (single source of truth in Hz)
+    lastValidCommittedFreqHz: null,
+    committedFrequencyKHz: null,
+    lastModeForCache: null,
+    lastMarkerFreq: undefined,
 
     // Spot fetch debouncing
     userInitiatedFetch: false,
@@ -1573,7 +1562,17 @@ var dxWaterfall = {
         var currentFreq = parseFloat($freqInput.val()) || 0;
 
         if (currentFreq === 0 || !DX_WATERFALL_UTILS.frequency.isValid(currentFreq)) {
-            // No valid frequency yet - wait for frequency data
+            // No valid frequency - try to populate from freq_calculated if available
+            var freqCalc = parseFloat($('#freq_calculated').val()) || 0;
+            var unit = $('#qrg_unit').text() || 'kHz';
+            if (freqCalc > 0) {
+                var freqHz = convertFrequency(freqCalc, unit, 'Hz');
+                $('#frequency').val(freqHz);
+                $('#frequency').trigger('change');
+                DX_WATERFALL_UTILS.log.debug('[DX Waterfall] Populated frequency from display field: ' + freqHz + ' Hz');
+            }
+
+            // Wait for frequency data
             DX_WATERFALL_UTILS.log.debug('[DX Waterfall] Waiting for valid frequency data...');
 
             // Transition to INITIALIZING state to show waiting message
@@ -1800,7 +1799,8 @@ var dxWaterfall = {
         this.zoomMenuDiv = document.getElementById('dxWaterfallMenu');
 
         // Cache frequently accessed DOM elements for performance
-        this.$freqCalculated = $('#freq_calculated');
+        this.$frequency = $('#frequency');           // Single source of truth (Hz)
+        this.$freqCalculated = $('#freq_calculated'); // Display field (computed from frequency)
         this.$qrgUnit = $('#qrg_unit');
         this.$bandSelect = $('#band');
         this.$modeSelect = $('#mode');
@@ -1878,9 +1878,10 @@ var dxWaterfall = {
                 DXWaterfallStateMachine.setState(DX_WATERFALL_CONSTANTS.STATES.READY);
                 self.updateZoomMenu();
             }
-            if (self.lastValidCommittedFreq === null) {
-                var currentFreq = parseFloat($(this).val()) || 0;
-                if (currentFreq > 0) {
+            // On first focus before any commit, commit the initial frequency
+            if (self.lastValidCommittedFreqHz === null) {
+                var currentFreqHz = parseFloat(self.$frequency.val()) || 0;
+                if (currentFreqHz > 0) {
                     self.commitFrequency();
                 }
             }
@@ -1902,6 +1903,16 @@ var dxWaterfall = {
                 self.commitFrequency();
                 $(this).blur();
                 return false;
+            }
+        });
+
+        // Listen to frequency field changes (single source of truth)
+        // This catches updates from qrg_handler.js when user edits freq_calculated
+        // or from CAT updates, ensuring waterfall stays in sync
+        this.$frequency.on('change', function() {
+            // Don't commit during user typing - wait for blur/Enter
+            if (!self.userEditingFrequency) {
+                self.commitFrequency();
             }
         });
 
@@ -1966,12 +1977,10 @@ var dxWaterfall = {
 
             // In offline mode, also preserve frequency
             if (typeof isCATAvailable === 'function' && !isCATAvailable()) {
-                // Preserve existing frequency if available
-                if (!window.catState.frequency && self.$freqCalculated.val()) {
-                    var freqVal = parseFloat(self.$freqCalculated.val());
-                    var unit = self.$qrgUnit.text() || 'kHz';
-                    var freqKhz = convertFrequency(freqVal, unit, 'kHz');
-                    window.catState.frequency = freqKhz * 1000; // Convert to Hz
+                // Preserve existing frequency if available - read from single source of truth
+                if (!window.catState.frequency && self.$frequency.val()) {
+                    var freqHz = parseFloat(self.$frequency.val());
+                    window.catState.frequency = freqHz; // Already in Hz
                 }
                 DX_WATERFALL_UTILS.log.debug('[DX Waterfall] Offline mode - mode change to ' + newMode + ': virtual CAT updated');
             } else {
@@ -2011,8 +2020,9 @@ var dxWaterfall = {
     _setupInitialFrequencyCommit: function() {
         var self = this;
         var attemptCommit = function(attemptsLeft) {
-            var freq = parseFloat(self.$freqCalculated.val()) || 0;
-            if (freq > 0) {
+            // Read from single source of truth (Hz), convert to kHz for waterfall
+            var freqHz = parseFloat(self.$frequency.val()) || 0;
+            if (freqHz > 0) {
                 self.commitFrequency();
             } else if (attemptsLeft > 0) {
                 setTimeout(function() {
@@ -2031,25 +2041,20 @@ var dxWaterfall = {
     // Returns true if frequency has changed, false if same
     hasFrequencyChanged: function() {
         // Safety check: return false if waterfall is not initialized
-        if (!this.$freqCalculated || !this.$qrgUnit) {
+        if (!this.$frequency) {
             return false;
         }
 
-        var currentInput = this.$freqCalculated.val();
-        var currentUnit = this.$qrgUnit.text() || 'kHz';
+        var currentHz = parseFloat(this.$frequency.val()) || 0;
 
         // If we don't have a last committed value, consider it changed
-        if (this.lastValidCommittedFreq === null) {
+        if (this.lastValidCommittedFreqHz === null) {
             return true;
         }
 
-        // Convert both frequencies to kHz for comparison (normalize units)
-        var currentKhz = convertFrequency(currentInput, currentUnit, 'kHz');
-        var lastKhz = convertFrequency(this.lastValidCommittedFreq, this.lastValidCommittedUnit, 'kHz');
-
-        // Compare frequencies with 1 Hz tolerance (0.001 kHz) to account for floating point errors
-        var tolerance = 0.001; // 1 Hz
-        return Math.abs(currentKhz - lastKhz) > tolerance;
+        // Compare frequencies with 1 Hz tolerance to account for floating point errors
+        var tolerance = 1; // 1 Hz
+        return Math.abs(currentHz - this.lastValidCommittedFreqHz) > tolerance;
     },
 
     // Commit the current frequency value (called on blur or Enter key)
@@ -2059,34 +2064,27 @@ var dxWaterfall = {
         // When CAT is active, the waterfall reads from window.catState.frequency
 
         // Safety check: return early if waterfall is not initialized (destroyed or not yet ready)
-        if (!this.$freqCalculated || !this.$qrgUnit) {
+        if (!this.$frequency) {
             return;
         }
 
-        var currentInput = this.$freqCalculated.val();
-        var currentUnit = this.$qrgUnit.text() || 'kHz';
+        // Read from single source of truth (Hz)
+        var freqHz = parseFloat(this.$frequency.val()) || 0;
 
         // If this is a valid frequency, save it as the last valid committed frequency
         // (used as fallback when CAT not available)
-        var freqValue = parseFloat(currentInput) || 0;
-        if (freqValue > 0) {
-            this.lastValidCommittedFreq = currentInput;
-            this.lastValidCommittedUnit = currentUnit;
-
-            // Store the committed frequency in kHz for comparison checks
-            var currentFreqKhz = convertFrequency(freqValue, currentUnit, 'kHz');
-            this.committedFrequencyKHz = currentFreqKhz;
+        if (freqHz > 0) {
+            this.lastValidCommittedFreqHz = freqHz;
+            this.committedFrequencyKHz = freqHz / 1000; // Convert to kHz for waterfall display
 
             // In offline mode, populate catState with form values to act as "virtual CAT"
             if (typeof isCATAvailable === 'function' && !isCATAvailable()) {
-                var freqHz = currentFreqKhz * 1000; // Convert kHz to Hz
-
                 // Initialize catState if it doesn't exist
                 if (typeof window.catState === 'undefined' || window.catState === null) {
                     window.catState = {};
                 }
 
-                // Update frequency in catState
+                // Update frequency in catState (already in Hz)
                 window.catState.frequency = freqHz;
                 window.catState.lastUpdate = Date.now();
 
@@ -2141,31 +2139,28 @@ var dxWaterfall = {
         // FALLBACK: Use committed frequency values (only updated on blur/Enter) to prevent shifting while typing
         // This is used when CAT is not available (no radio connected)
         // Strategy:
-        // 1. If we have a valid committed frequency from this session, always use last VALID commit
+        // 1. If we have a valid committed frequency from this session, use last VALID commit
         // 2. Otherwise use real-time values (initial load before any commits)
 
-        var hasValidCommit = this.lastValidCommittedFreq !== null;
+        var hasValidCommit = this.lastValidCommittedFreqHz !== null;
 
-        var currentInput, currentUnit;
+        var currentFreqHz;
 
         if (hasValidCommit) {
             // After first valid commit, always use the LAST VALID committed values
             // This keeps the waterfall stable even when user deletes and starts typing
-            currentInput = this.lastValidCommittedFreq;
-            currentUnit = this.lastValidCommittedUnit || 'kHz';
+            currentFreqHz = this.lastValidCommittedFreqHz;
         } else {
-            // Before first valid commit (initial load), use real-time values
-            currentInput = this.$freqCalculated.val();
-            currentUnit = this.$qrgUnit.text() || 'kHz';
+            // Before first valid commit (initial load), use real-time values from single source
+            currentFreqHz = parseFloat(this.$frequency.val()) || 0;
         }
 
-        // Invalidate cache if input OR unit changes
-        if (this.lastValidCommittedFreq !== currentInput || this.lastQrgUnit !== currentUnit) {
-            this.lastValidCommittedFreq = currentInput;
-            this.lastQrgUnit = currentUnit;
+        // Invalidate cache if frequency changes
+        if (this.lastValidCommittedFreqHz !== currentFreqHz) {
+            this.lastValidCommittedFreqHz = currentFreqHz;
 
-            // Convert to kHz using utility function
-            this.cache.middleFreq = convertFrequency(currentInput, currentUnit, 'kHz');
+            // Convert to kHz for waterfall display
+            this.cache.middleFreq = currentFreqHz / 1000;
         }
 
         // Update split operation state and get display configuration
@@ -2288,7 +2283,7 @@ var dxWaterfall = {
     // Periodically refresh frequency cache to ensure display stays current
     refreshFrequencyCache: function() {
         // Safety check: Don't run if waterfall is not initialized
-        if (!this.$freqCalculated || !this.$qrgUnit) {
+        if (!this.$frequency) {
             return;
         }
 
@@ -2305,36 +2300,32 @@ var dxWaterfall = {
         }
         this.lastFrequencyRefreshTime = currentTime;
 
-        // Get current DOM frequency
-        var currentInput = this.$freqCalculated.val();
+        // Get current DOM frequency (single source of truth in Hz)
+        var currentInput = this.$frequency.val();
         if (!currentInput || currentInput === '') {
             return;
         }
 
-        var freqValue = parseFloat(currentInput) || 0;
-        if (freqValue <= 0) {
+        var freqHz = parseFloat(currentInput) || 0;
+        if (freqHz <= 0) {
             return;
         }
 
-        var currentUnit = this.$qrgUnit.text() || 'kHz';
-
-        // Convert to kHz using utility function
-        var currentFreqFromDOM = convertFrequency(freqValue, currentUnit, 'kHz');
+        // Convert to kHz for waterfall display
+        var currentFreqKhz = freqHz / 1000;
 
         // If cache is outdated, refresh it (but only if not during waterfall operations)
-        if (!this.cache.middleFreq || Math.abs(currentFreqFromDOM - this.cache.middleFreq) > 0.1) {
+        if (!this.cache.middleFreq || Math.abs(currentFreqKhz - this.cache.middleFreq) > 0.1) {
             // Clear all frequency-related cache to ensure fresh read
             this.cache.middleFreq = null;
-            this.lastQrgUnit = null;
             this.lastMarkerFreq = undefined;
 
             // Directly set the new frequency from DOM calculation
-            this.cache.middleFreq = currentFreqFromDOM;
+            this.cache.middleFreq = currentFreqKhz;
 
             // Also update committed frequency values to prevent getCachedMiddleFreq() conflicts
             // This ensures that getCachedMiddleFreq() will use the updated frequency instead of old committed values
-            this.lastValidCommittedFreq = currentInput;
-            this.lastValidCommittedUnit = currentUnit;
+            this.lastValidCommittedFreqHz = freqHz;
 
         }
     },
@@ -3283,14 +3274,25 @@ var dxWaterfall = {
             band = frequencyToBandKhz(currentFreqKhz, 20); // 20kHz margin
         }
 
-        // If band is 'All' (out of band), don't fetch spots
+        // If band is 'All' (out of band), handle based on state
         if (!band || band === 'All' || band === '' || band.toLowerCase() === 'select') {
-            DX_WATERFALL_UTILS.log.debug('[DX Waterfall] FETCH SPOTS: Out of band, skipping spot fetch');
-            // Stay in current state or transition to ready if we were fetching
-            if (DXWaterfallStateMachine.getState() === DX_WATERFALL_CONSTANTS.STATES.FETCHING_SPOTS) {
-                this.stateMachine_setState(DX_WATERFALL_CONSTANTS.STATES.READY);
+            var currentState = DXWaterfallStateMachine.getState();
+
+            // SPECIAL CASE: During initialization, default to 20m to allow waterfall to load
+            // This prevents timeout errors on initial load when frequency is out of band
+            if (currentState === DX_WATERFALL_CONSTANTS.STATES.INITIALIZING) {
+                DX_WATERFALL_UTILS.log.debug('[DX Waterfall] FETCH SPOTS: Out of band during initialization, defaulting to 20m');
+                band = '20m';
+                // Continue with fetch below
+            } else {
+                // Normal operation: skip fetch when out of band
+                DX_WATERFALL_UTILS.log.debug('[DX Waterfall] FETCH SPOTS: Out of band, skipping spot fetch');
+                // Transition to ready if we were fetching
+                if (currentState === DX_WATERFALL_CONSTANTS.STATES.FETCHING_SPOTS) {
+                    this.stateMachine_setState(DX_WATERFALL_CONSTANTS.STATES.READY);
+                }
+                return;
             }
-            return;
         }
 
         var mode = "All"; // Fetch all modes
@@ -4012,27 +4014,10 @@ var dxWaterfall = {
                     continue;
                 }
 
-                // Get detailed submode information for consistent classification
-                var submodeInfo = classifyMode(spot);
-                var classifiedMode = submodeInfo.category;
-
-                // Determine mode for bandwidth calculation using utility functions
-                var modeForBandwidth = spot.mode.toLowerCase();
-
-                // Use submode if available, otherwise use category
-                if (submodeInfo.submode) {
-                    modeForBandwidth = submodeInfo.submode.toLowerCase();
-                } else {
-                    var utilityCategory = getModeCategory(spot.mode) || 'other';
-                    if (utilityCategory === 'cw') {
-                        modeForBandwidth = 'cw';
-                    } else if (utilityCategory === 'phone' && modeForBandwidth !== 'lsb' && modeForBandwidth !== 'usb') {
-                        // If classified as phone but mode isn't specific, use 'phone' to trigger freq-based LSB/USB
-                        modeForBandwidth = 'phone';
-                    } else if (utilityCategory === 'digi') {
-                        modeForBandwidth = 'digi'; // Generic digital
-                    }
-                }
+                // Use backend-provided mode and submode (already classified with priority logic)
+                // Backend priority: POTA/SOTA > message keywords > frequency-based
+                var classifiedMode = spot.mode || 'phone'; // 'phone', 'cw', or 'digi'
+                var modeForBandwidth = (spot.submode || spot.mode || 'phone').toLowerCase();
 
                 var bandwidthParams = this.getCachedBandwidthParams(modeForBandwidth, spotFreq);
                 var bandwidthKHz = bandwidthParams.bandwidth;
@@ -4931,11 +4916,13 @@ var dxWaterfall = {
         } else {
             // Active spot in bandwidth - show spot details
 
-            // Get detailed submode information using centralized function
-            var submodeInfo = classifyMode(spotInfo);
-            var modeLabel = submodeInfo.submode || spotInfo.mode || 'Unknown';
+            // Use backend-provided mode and submode directly (backend already determined priority)
+            // Backend provides: mode ('phone'/'cw'/'digi') and submode ('LSB'/'USB'/'CW'/'FT8'/etc.)
+            var categoryStr = spotInfo.mode || 'phone';
+            var submodeStr = spotInfo.submode || '';
+            var modeLabel = submodeStr || categoryStr || 'Unknown';
             // Use detailed submode for mode field (e.g., "FT8" instead of "digi")
-            var modeForField = submodeInfo.submode || spotInfo.mode || '';
+            var modeForField = submodeStr || categoryStr || '';
 
             // Prepare text with flag, continent, entity, DXCC, and LoTW indicator
             var dxccInfo = spotInfo.dxcc_spotted || {};
@@ -4970,10 +4957,8 @@ var dxWaterfall = {
             var timeMatch = spotInfo.when_pretty.match(/(\d{2}:\d{2})/);
             var timeStr = timeMatch ? timeMatch[1] : '??:??';
 
-            // Build mode/submode string using category from classifyMode
-            // Category will be: 'digi', 'phone', or 'cw'
-            var categoryStr = submodeInfo.category || '';
-            var submodeStr = submodeInfo.submode || '';
+            // Build mode/submode string for display
+            // Backend provides: categoryStr = mode ('phone'/'cw'/'digi'), submodeStr = submode ('LSB'/'FT8'/etc.)
             var modeDisplay = '';
 
             // Format: [Category-Submode] if both exist and differ, else just [Submode] or [Category]
@@ -5686,9 +5671,9 @@ var dxWaterfall = {
 
     // Check if a spot should be shown based on active mode filters
     spotMatchesModeFilter: function(spot) {
-        // Use comprehensive mode classification utility directly
-        var classification = classifyMode(spot);
-        var spotMode = classification.category;
+        // Use backend-provided mode (already classified with priority logic)
+        // Backend provides: 'phone', 'cw', or 'digi'
+        var spotMode = spot.mode || 'phone';
 
         // Use pending filters if they exist, otherwise use current filters
         var filters = this.pendingModeFilters || this.modeFilters;
@@ -5895,17 +5880,12 @@ var dxWaterfall = {
         this.cache.noise1 = null;
         this.cache.noise2 = null;
         this.cache.middleFreq = null;
-        this.cache.lastQrgUnit = null;
-        this.cache.lastValidCommittedFreq = null;
-        this.cache.lastValidCommittedUnit = null;
         this.cache.visibleSpots = null;
         this.cache.visibleSpotsParams = null;
 
         // Clear frequency tracking properties (used in getCachedMiddleFreq)
-        this.lastQrgUnit = null;
         this.lastModeForCache = null;
-        this.lastValidCommittedFreq = null;
-        this.lastValidCommittedUnit = null;
+        this.lastValidCommittedFreqHz = null;
 
         // Clear cached pixels per kHz
         this.cachedPixelsPerKHz = null;
@@ -6247,14 +6227,13 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
         return;
     }
 
-    // Update frequency field with value in Hz
+    // Write to frequency field in Hz (single source of truth)
+    // The change event will trigger set_qrg() which updates freq_calculated display
     $('#frequency').val(frequencyInKHz * 1000);
 
-    // Trigger change event to update calculated fields and unit display
-    // Skip trigger when called from waterfall to prevent recursive updates
-    if (!fromWaterfall) {
-        $('#frequency').trigger('change');
-    }
+    // Always trigger change to update display field via set_qrg()
+    // This ensures freq_calculated is kept in sync with frequency field
+    $('#frequency').trigger('change');
 
     // Clear navigation flags immediately since no CAT operation is happening
     if (typeof dxWaterfall !== 'undefined') {
@@ -6636,6 +6615,9 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
                 dxWaterfall.updateZoomMenu(true); // Force update with forceUpdate=true
             }, 300); // After frequency has settled
 
+            // Clear form before populating with clicked spot
+            DX_WATERFALL_UTILS.qsoForm.clearForm();
+
             // Populate QSO form - flag will be cleared when population completes
             DX_WATERFALL_UTILS.qsoForm.populateFromSpot(clickedSpot, true);
 
@@ -6675,20 +6657,18 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
         setFrequency(clickedFreq, true);
 
         // Update cache directly AND sync tracking variables to prevent recalculation
-        var formattedFreq = Math.round(clickedFreq * 1000); // Convert to Hz
+        var formattedFreqHz = Math.round(clickedFreq * 1000); // Convert kHz to Hz
         dxWaterfall.cache.middleFreq = clickedFreq;
-        dxWaterfall.lastValidCommittedFreq = clickedFreq; // Store in kHz
-        dxWaterfall.lastValidCommittedUnit = 'kHz';
-        dxWaterfall.lastQrgUnit = 'kHz';
+        dxWaterfall.lastValidCommittedFreqHz = formattedFreqHz; // Store in Hz
 
         // In offline mode, update catState with clicked frequency (virtual CAT)
         if (typeof isCATAvailable === 'function' && !isCATAvailable()) {
             if (typeof window.catState === 'undefined' || window.catState === null) {
                 window.catState = {};
             }
-            window.catState.frequency = formattedFreq; // Hz
+            window.catState.frequency = formattedFreqHz; // Hz
             window.catState.lastUpdate = Date.now();
-            DX_WATERFALL_UTILS.log.debug('[DX Waterfall] Offline mode - waterfall click updated virtual CAT: freq=' + formattedFreq + ' Hz');
+            DX_WATERFALL_UTILS.log.debug('[DX Waterfall] Offline mode - waterfall click updated virtual CAT: freq=' + formattedFreqHz + ' Hz');
         }
 
         // Update band spot collection and zoom menu to reflect new position
@@ -6699,7 +6679,7 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
         }, 100); // Brief delay to let frequency settle
 
         // Note: No need to call commitFrequency() here since we already set
-        // lastValidCommittedFreq directly above
+        // lastValidCommittedFreqHz directly above
     });
 
     // Handle keyboard shortcuts

@@ -583,12 +583,10 @@ $(function() {
 			return;
 		}
 
-		let now = new Date();
-		let timeStr = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
-		let statusMessage = totalSpots + ' spots fetched @ ' + timeStr;
-		let allFilters = [];
-
-		if (serverFilters && serverFilters.length > 0) {
+	let now = new Date();
+	let timeStr = now.getUTCHours().toString().padStart(2, '0') + ':' + now.getUTCMinutes().toString().padStart(2, '0') + 'Z';
+	let statusMessage = totalSpots + ' ' + lang_bandmap_spots_fetched + ' @ ' + timeStr;
+	let allFilters = [];		if (serverFilters && serverFilters.length > 0) {
 			allFilters = allFilters.concat(serverFilters.map(f => 'de "' + f + '"'));
 		}
 
@@ -602,16 +600,14 @@ $(function() {
 			allFilters.push('search: "' + searchValue + '"');
 		}
 
-		// Build status message
-		if (allFilters.length > 0) {
-			statusMessage += ', showing ' + displayedSpots;
-		} else if (displayedSpots < totalSpots) {
-			statusMessage += ', showing ' + displayedSpots;
-		} else if (totalSpots > 0) {
-			statusMessage += ', showing all';
-		}
-
-		// Build tooltip for status message (fetch information)
+	// Build status message
+	if (allFilters.length > 0) {
+		statusMessage += ', ' + lang_bandmap_showing + ' ' + displayedSpots;
+	} else if (displayedSpots < totalSpots) {
+		statusMessage += ', ' + lang_bandmap_showing + ' ' + displayedSpots;
+	} else if (totalSpots > 0) {
+		statusMessage += ', ' + lang_bandmap_showing_all;
+	}		// Build tooltip for status message (fetch information)
 		let fetchTooltipLines = [lang_bandmap_last_fetched + ':'];
 		fetchTooltipLines.push(lang_bandmap_band + ': ' + (lastFetchParams.band || lang_bandmap_all));
 		fetchTooltipLines.push(lang_bandmap_continent + ': ' + (lastFetchParams.continent || lang_bandmap_all));
@@ -619,31 +615,29 @@ $(function() {
 		fetchTooltipLines.push(lang_bandmap_max_age + ': ' + (lastFetchParams.maxAge || '120') + ' min');
 		if (lastFetchParams.timestamp) {
 			let fetchTime = new Date(lastFetchParams.timestamp);
-			let fetchTimeStr = fetchTime.getHours().toString().padStart(2, '0') + ':' +
-			                   fetchTime.getMinutes().toString().padStart(2, '0') + ':' +
-			                   fetchTime.getSeconds().toString().padStart(2, '0');
+			let fetchTimeStr = fetchTime.getUTCHours().toString().padStart(2, '0') + ':' +
+			                   fetchTime.getUTCMinutes().toString().padStart(2, '0') + ':' +
+			                   fetchTime.getUTCSeconds().toString().padStart(2, '0') + 'Z';
 			fetchTooltipLines.push(lang_bandmap_fetched_at + ': ' + fetchTimeStr);
 		}
 
-		$('#statusMessage').text(statusMessage).attr('title', fetchTooltipLines.join('\n'));
+	$('#statusMessage').text(statusMessage).attr('title', fetchTooltipLines.join('\n'));
 
-		// Add info icon if filters are active (with separate tooltip for active filters)
-		$('#statusFilterInfo').remove();
-		if (allFilters.length > 0) {
-			let filterTooltip = 'Active filters:\n' + allFilters.join('\n');
-			$('#statusMessage').after(' <i class="fas fa-info-circle text-muted" id="statusFilterInfo" style="cursor: help;" title="' + filterTooltip.replace(/"/g, '&quot;') + '"></i>');
-		}
-
-		if (isFetching) {
-			$('#refreshIcon').removeClass('fa-hourglass-half').addClass('fa-spinner fa-spin');
-			$('#refreshTimer').text('Fetching...');
-		} else {
-			$('#refreshIcon').removeClass('fa-spinner fa-spin').addClass('fa-hourglass-half');
-			$('#refreshTimer').text('Next update in ' + refreshCountdown + 's');
-		}
+	// Add info icon if filters are active (with separate tooltip for active filters)
+	$('#statusFilterInfo').remove();
+	if (allFilters.length > 0) {
+		let filterTooltip = lang_bandmap_active_filters + ':\n' + allFilters.join('\n');
+		$('#statusMessage').after(' <i class="fas fa-info-circle text-muted" id="statusFilterInfo" style="cursor: help;" title="' + filterTooltip.replace(/"/g, '&quot;') + '"></i>');
 	}
 
-	function getDisplayedSpotCount() {
+	if (isFetching) {
+		$('#refreshIcon').removeClass('fa-hourglass-half').addClass('fa-spinner fa-spin');
+		$('#refreshTimer').text(lang_bandmap_fetching);
+	} else {
+		$('#refreshIcon').removeClass('fa-spinner fa-spin').addClass('fa-hourglass-half');
+		$('#refreshTimer').text(lang_bandmap_next_update + ' ' + refreshCountdown + 's');
+	}
+}	function getDisplayedSpotCount() {
 		var table = get_dtable();
 		return table.rows({search: 'applied'}).count();
 	}
@@ -676,7 +670,7 @@ $(function() {
 			} else {
 				if (!isFetchInProgress && lastFetchParams.timestamp !== null) {
 					$('#refreshIcon').removeClass('fa-spinner fa-spin').addClass('fa-hourglass-half');
-					$('#refreshTimer').text('Next update in ' + refreshCountdown + 's');
+					$('#refreshTimer').text(lang_bandmap_next_update + ' ' + refreshCountdown + 's');
 				}
 			}
 		}, 1000);
@@ -955,20 +949,20 @@ $(function() {
 				wked_info = "";
 			}
 
-	// Build LoTW badge with color coding based on last upload age
-	var lotw_badge = '';
-	if (single.dxcc_spotted && single.dxcc_spotted.lotw_user) {
-		let lclass = '';
-		if (single.dxcc_spotted.lotw_user > 365) {
-			lclass = 'lotw_info_red';
-		} else if (single.dxcc_spotted.lotw_user > 30) {
-			lclass = 'lotw_info_orange';
-		} else if (single.dxcc_spotted.lotw_user > 7) {
-		lclass = 'lotw_info_yellow';
+		// Build LoTW badge with color coding based on last upload age
+		var lotw_badge = '';
+		if (single.dxcc_spotted && single.dxcc_spotted.lotw_user) {
+			let lclass = '';
+			if (single.dxcc_spotted.lotw_user > 365) {
+				lclass = 'lotw_info_red';
+			} else if (single.dxcc_spotted.lotw_user > 30) {
+				lclass = 'lotw_info_orange';
+			} else if (single.dxcc_spotted.lotw_user > 7) {
+			lclass = 'lotw_info_yellow';
+		}
+		let lotw_title = lang_bandmap_lotw_last_upload.replace('%d', single.dxcc_spotted.lotw_user);
+		lotw_badge = '<a href="https://lotw.arrl.org/lotwuser/act?act=' + single.spotted + '" target="_blank" onclick="event.stopPropagation();">' + buildBadge('success ' + lclass, 'fa-upload', lotw_title) + '</a>';
 	}
-	let lotw_title = 'LoTW User. Last upload was ' + single.dxcc_spotted.lotw_user + ' days ago';
-	lotw_badge = '<a href="https://lotw.arrl.org/lotwuser/act?act=' + single.spotted + '" target="_blank" onclick="event.stopPropagation();">' + buildBadge('success ' + lclass, 'fa-upload', lotw_title) + '</a>';
-}
 
 	// Build activity badges (POTA, SOTA, WWFF, IOTA, Contest, Worked)
 	let activity_flags = '';
@@ -978,25 +972,25 @@ $(function() {
 		if (single.dxcc_spotted.pota_mode) {
 			pota_title += ' (' + single.dxcc_spotted.pota_mode + ')';
 		}
-		pota_title += ' - Click to view on POTA.app';
+		pota_title += ' - ' + lang_bandmap_click_to_view_pota;
 		let pota_url = 'https://pota.app/#/park/' + single.dxcc_spotted.pota_ref;
 		activity_flags += '<a href="' + pota_url + '" target="_blank" onclick="event.stopPropagation();">' + buildBadge('success', 'fa-tree', pota_title) + '</a>';
 	}
 
 	if (single.dxcc_spotted && single.dxcc_spotted.sota_ref) {
-		let sota_title = 'SOTA: ' + single.dxcc_spotted.sota_ref + ' - Click to view on SOTL.as';
+		let sota_title = 'SOTA: ' + single.dxcc_spotted.sota_ref + ' - ' + lang_bandmap_click_to_view_sotl;
 		let sota_url = 'https://sotl.as/summits/' + single.dxcc_spotted.sota_ref;
 		activity_flags += '<a href="' + sota_url + '" target="_blank" onclick="event.stopPropagation();">' + buildBadge('primary', 'fa-mountain', sota_title) + '</a>';
 	}
 
 	if (single.dxcc_spotted && single.dxcc_spotted.wwff_ref) {
-		let wwff_title = 'WWFF: ' + single.dxcc_spotted.wwff_ref + ' - Click to view on cqgma.org';
+		let wwff_title = 'WWFF: ' + single.dxcc_spotted.wwff_ref + ' - ' + lang_bandmap_click_to_view_wwff;
 		let wwff_url = 'https://www.cqgma.org/zinfo.php?ref=' + single.dxcc_spotted.wwff_ref;
 		activity_flags += '<a href="' + wwff_url + '" target="_blank" onclick="event.stopPropagation();">' + buildBadge('success', 'fa-leaf', wwff_title) + '</a>';
 	}
 
 	if (single.dxcc_spotted && single.dxcc_spotted.iota_ref) {
-		let iota_title = 'IOTA: ' + single.dxcc_spotted.iota_ref + ' - Click to view on IOTA-World.org';
+		let iota_title = 'IOTA: ' + single.dxcc_spotted.iota_ref + ' - ' + lang_bandmap_click_to_view_iota;
 		let iota_url = 'https://www.iota-world.org/';
 		activity_flags += '<a href="' + iota_url + '" target="_blank" onclick="event.stopPropagation();">' + buildBadge('info', 'fa-water', iota_title) + '</a>';
 	}
@@ -1017,7 +1011,7 @@ $(function() {
 	if (single.worked_call) {
 		let worked_title = lang_bandmap_worked_before;
 		if (single.last_wked && single.last_wked.LAST_QSO && single.last_wked.LAST_MODE) {
-			worked_title = lang_bandmap_worked + ': ' + single.last_wked.LAST_QSO + ' in ' + single.last_wked.LAST_MODE;
+			worked_title = lang_bandmap_worked_details.replace('%s', single.last_wked.LAST_QSO).replace('%s', single.last_wked.LAST_MODE);
 		}
 		let worked_badge_type = single.cnfmd_call ? 'success' : 'warning';
 		// isLast is true only if fresh badge won't be added
@@ -1026,33 +1020,33 @@ $(function() {
 
 	if (isFresh) {
 		activity_flags += buildBadge('danger', 'fa-bolt', lang_bandmap_fresh_spot, null, true);
-	}		// Build table row array
-		data[0] = [];		// Age column: show age in minutes with auto-update attribute
-		let ageMinutes = single.age || 0;
-		let spotTimestamp = single.when ? new Date(single.when).getTime() : Date.now();
-		data[0].push('<span class="spot-age" data-spot-time="' + spotTimestamp + '">' + ageMinutes + '</span>');
+	}
 
-		// Band column: show band designation
-		data[0].push(single.band || '');
+	// Build table row array
+	data[0] = [];		// Age column: show age in minutes with auto-update attribute
+	let ageMinutes = single.age || 0;
+	let spotTimestamp = single.when ? new Date(single.when).getTime() : Date.now();
+	data[0].push('<span class="spot-age" data-spot-time="' + spotTimestamp + '">' + ageMinutes + '</span>');
 
-		// Frequency column: convert kHz to MHz with 3 decimal places
-		let freqMHz = (single.frequency / 1000).toFixed(3);
-		data[0].push(freqMHz);
+	// Band column: show band designation
+	data[0].push(single.band || '');
 
-		// Mode column: capitalize properly
-		let displayMode = single.mode || '';
-		if (displayMode.toLowerCase() === 'phone') displayMode = 'Phone';
-		else if (displayMode.toLowerCase() === 'cw') displayMode = 'CW';
-		else if (displayMode.toLowerCase() === 'digi') displayMode = 'Digi';
-		data[0].push(displayMode);
+	// Frequency column: convert kHz to MHz with 3 decimal places
+	let freqMHz = (single.frequency / 1000).toFixed(3);
+	data[0].push(freqMHz);
 
-		// Callsign column: wrap in QRZ link with color coding
-		let qrzLink = '<a href="https://www.qrz.com/db/' + single.spotted + '" target="_blank" onclick="event.stopPropagation();" data-bs-toggle="tooltip" title="Click to view ' + single.spotted + ' on QRZ.com">' + single.spotted + '</a>';
-		wked_info = ((wked_info != '' ? '<span class="' + wked_info + '">' : '') + qrzLink + (wked_info != '' ? '</span>' : ''));
-		var spotted = wked_info;
-		data[0].push(spotted);
+	// Mode column: capitalize properly
+	let displayMode = single.mode || '';
+	if (displayMode.toLowerCase() === 'phone') displayMode = 'Phone';
+	else if (displayMode.toLowerCase() === 'cw') displayMode = 'CW';
+	else if (displayMode.toLowerCase() === 'digi') displayMode = 'Digi';
+	data[0].push(displayMode);
 
-	// Continent column: color code based on worked/confirmed status
+	// Callsign column: wrap in QRZ link with color coding
+	let qrzLink = '<a href="https://www.qrz.com/db/' + single.spotted + '" target="_blank" onclick="event.stopPropagation();" data-bs-toggle="tooltip" title="' + lang_bandmap_click_view_qrz_callsign.replace('%s', single.spotted) + '">' + single.spotted + '</a>';
+	wked_info = ((wked_info != '' ? '<span class="' + wked_info + '">' : '') + qrzLink + (wked_info != '' ? '</span>' : ''));
+	var spotted = wked_info;
+	data[0].push(spotted);	// Continent column: color code based on worked/confirmed status
 	var continent_wked_info;
 	if (single.cnfmd_continent) {
 		continent_wked_info = "text-success";
@@ -1064,7 +1058,7 @@ $(function() {
 	let continent_value = (single.dxcc_spotted && single.dxcc_spotted.cont) ? single.dxcc_spotted.cont : '';
 	if (continent_value) {
 		let continent_display = (continent_wked_info != '' ? '<span class="' + continent_wked_info + '">' : '') + continent_value + (continent_wked_info != '' ? '</span>' : '');
-		continent_wked_info = '<a href="javascript:spawnLookupModal(\'' + continent_value.toLowerCase() + '\',\'continent\')"; data-bs-toggle="tooltip" title="See details for continent ' + continent_value + '">' + continent_display + '</a>';
+		continent_wked_info = '<a href="javascript:spawnLookupModal(\'' + continent_value.toLowerCase() + '\',\'continent\')"; data-bs-toggle="tooltip" title="' + lang_bandmap_see_details_continent + ' ' + continent_value + '">' + continent_display + '</a>';
 	} else {
 		continent_wked_info = '';
 	}
@@ -1073,7 +1067,7 @@ $(function() {
 	// CQ Zone column: show CQ Zone (moved here, right after Cont)
 	let cqz_value = (single.dxcc_spotted && single.dxcc_spotted.cqz) ? single.dxcc_spotted.cqz : '';
 	if (cqz_value) {
-		data[0].push('<a href="javascript:spawnLookupModal(\'' + cqz_value + '\',\'cq\')"; data-bs-toggle="tooltip" title="See details for CQ Zone ' + cqz_value + '">' + cqz_value + '</a>');
+		data[0].push('<a href="javascript:spawnLookupModal(\'' + cqz_value + '\',\'cq\')"; data-bs-toggle="tooltip" title="' + lang_bandmap_see_details_cqz_value.replace('%s', cqz_value) + '">' + cqz_value + '</a>');
 	} else {
 		data[0].push('');
 	}	// Flag column: just the flag emoji without entity name
@@ -1087,7 +1081,7 @@ $(function() {
 	let dxcc_entity_full = single.dxcc_spotted ? (single.dxcc_spotted.entity || '') : '';
 	let entity_colored = dxcc_entity_full ? ((dxcc_wked_info != '' ? '<span class="' + dxcc_wked_info + '">' : '') + dxcc_entity_full + (dxcc_wked_info != '' ? '</span>' : '')) : '';
 	if (single.dxcc_spotted && single.dxcc_spotted.dxcc_id && dxcc_entity_full) {
-		data[0].push('<a href="javascript:spawnLookupModal(\'' + single.dxcc_spotted.dxcc_id + '\',\'dxcc\')"; data-bs-toggle="tooltip" title="See details for ' + dxcc_entity_full + '">' + entity_colored + '</a>');
+		data[0].push('<a href="javascript:spawnLookupModal(\'' + single.dxcc_spotted.dxcc_id + '\',\'dxcc\')"; data-bs-toggle="tooltip" title="' + lang_bandmap_see_details + ' ' + dxcc_entity_full + '">' + entity_colored + '</a>');
 	} else {
 		data[0].push(entity_colored);
 	}
@@ -1098,7 +1092,7 @@ $(function() {
 	data[0].push(dxcc_number);
 
 	// de Callsign column (Spotter) - clickable QRZ link
-	let spotterQrzLink = '<a href="https://www.qrz.com/db/' + single.spotter + '" target="_blank" onclick="event.stopPropagation();" data-bs-toggle="tooltip" title="Click to view ' + single.spotter + ' on QRZ.com">' + single.spotter + '</a>';
+	let spotterQrzLink = '<a href="https://www.qrz.com/db/' + single.spotter + '" target="_blank" onclick="event.stopPropagation();" data-bs-toggle="tooltip" title="' + lang_bandmap_click_view_qrz_callsign.replace('%s', single.spotter) + '">' + single.spotter + '</a>';
 	data[0].push(spotterQrzLink);
 
 	// de Cont column: spotter's continent
@@ -1228,7 +1222,7 @@ $(function() {
 				let actualDisplayedCount = table.rows({search: 'applied'}).count();
 				updateStatusBar(cachedSpotData.length, actualDisplayedCount, getServerFilterText(), getClientFilterText(), false, false);
 				$('#refreshIcon').removeClass('fa-spinner fa-spin').addClass('fa-hourglass-half');
-				$('#refreshTimer').text('Next update in ' + refreshCountdown + 's');
+				$('#refreshTimer').text(lang_bandmap_next_update + ' ' + refreshCountdown + 's');
 			}
 
 			// Update DX Map only if visible (don't waste resources)
@@ -2277,6 +2271,14 @@ $(function() {
 	var currentRadioFrequency = null; // Store current radio frequency in kHz
 	var lastGradientFrequency = null; // Track last frequency used for gradient update
 
+	// Three-state CAT control: 'off', 'on', 'on+marker'
+	var catState = 'off';
+	var isFrequencyMarkerEnabled = false;
+
+	// Click detection for single/double-click
+	var catClickTimer = null;
+	var catClickPreventSingle = false;
+
 	/**
 	 * Calculate frequency gradient color based on distance from radio frequency
 	 * @param {number} spotFreqKhz - Spot frequency in kHz
@@ -2284,7 +2286,7 @@ $(function() {
 	 * @returns {string|null} - CSS background color or null if outside gradient range
 	 */
 	function getFrequencyGradientColor(spotFreqKhz, radioFreqKhz) {
-		if (!radioFreqKhz || !isCatTrackingEnabled) {
+		if (!radioFreqKhz || !isCatTrackingEnabled || !isFrequencyMarkerEnabled) {
 			return null;
 		}
 
@@ -2324,7 +2326,7 @@ $(function() {
 	 * Called when radio frequency changes
 	 */
 	function updateFrequencyGradientColors(forceUpdate = false) {
-		if (!isCatTrackingEnabled || !currentRadioFrequency) {
+		if (!isCatTrackingEnabled || !isFrequencyMarkerEnabled || !currentRadioFrequency) {
 			return;
 		}
 
@@ -3136,7 +3138,7 @@ $(function() {
 
 		table.rows().every(function() {
 			const row = this.node();
-			$(row).removeClass('cat-frequency-gradient');
+			$(row).removeClass('cat-frequency-gradient cat-nearest-above cat-nearest-below');
 			$(row).css({
 				'--bs-table-bg': '',
 				'--bs-table-accent-bg': '',
@@ -3145,99 +3147,152 @@ $(function() {
 		});
 	}
 
-	// Toggle CAT Control
-	$('#toggleCatTracking').on('click', function() {
-		let btn = $(this);
+	/**
+	 * Update button visual appearance based on CAT state
+	 */
+	function updateButtonVisual(state) {
+		let btn = $('#toggleCatTracking');
+		let radioIcon = btn.find('i.fa-radio');
 
-		if (btn.hasClass('btn-success')) {
-			// Disable CAT Control
-			btn.removeClass('btn-success').addClass('btn-secondary');
-			isCatTrackingEnabled = false;
-			window.isCatTrackingEnabled = false; // Update window variable for cat.js
+		btn.removeClass('btn-secondary btn-success');
+		radioIcon.removeClass('fa-podcast fa-crosshairs').css('color', '');
+		btn.css('box-shadow', '');
 
+		if (state === 'off') {
+			btn.addClass('btn-secondary').attr('data-bs-original-title', lang_bandmap_cat_off);
+			radioIcon.addClass('fa-radio');
+		} else if (state === 'on') {
+			btn.addClass('btn-success').attr('data-bs-original-title', lang_bandmap_cat_on);
+			radioIcon.addClass('fa-radio');
+		} else if (state === 'on+marker') {
+			btn.addClass('btn-success').attr('data-bs-original-title', lang_bandmap_cat_marker);
+			radioIcon.addClass('fa-radio').css('color', '#8a2be2');
+			btn.css('box-shadow', '0 0 8px rgba(138, 43, 226, 0.6)');
+		}
 
-			// Check if we need to show offline status (radio selected but CAT disabled)
-			const selectedRadio = $('.radios option:selected').val();
-			if (selectedRadio && selectedRadio !== '0' && typeof window.displayOfflineStatus === 'function') {
-				// Radio is selected but CAT Control disabled - show offline status
-				window.displayOfflineStatus('cat_disabled');
-			} else if (selectedRadio === '0' && typeof window.displayOfflineStatus === 'function') {
-				// No radio selected - show offline status
-				window.displayOfflineStatus('no_radio');
-			} else {
-				// Fallback: just hide radio status
-				$('#radio_cat_state').remove();
-			}
-
-			// Re-enable band filter controls
-			enableBandFilterControls();
-
-			// Unlock table sorting
-			unlockTableSorting();
-
-			// Reset band filter to 'All' and fetch all bands
-			const currentBands = $("#band").val() || [];
-			if (currentBands.length !== 1 || currentBands[0] !== 'All') {
-
-				$("#band").val(['All']);
-				updateSelectCheckboxes('band');
-				syncQuickFilterButtons();
-				applyFilters(true); // Force reload to fetch all bands
-			}
-		} else {
-			// Enable CAT Control
-			btn.removeClass('btn-secondary').addClass('btn-success');
-			isCatTrackingEnabled = true;
-			window.isCatTrackingEnabled = true; // Update window variable for cat.js
-
-
-			// Trigger radio status display if we have data
-			if (window.lastCATData) {
-				if (typeof window.displayRadioStatus === 'function') {
-					window.displayRadioStatus('success', window.lastCATData);
-				}
-			}
-
-			// Disable band filter controls
-			disableBandFilterControls();
-
-			// Lock table sorting to frequency only
-			lockTableSortingToFrequency();
-
-			// Immediately apply current radio frequency if available
-			if (window.lastCATData && window.lastCATData.frequency) {
-
-				const band = frequencyToBand(window.lastCATData.frequency);
-
-				if (band && band !== '') {
-					// Valid band found - set filter to this specific band
-
-					$("#band").val([band]);
-					updateSelectCheckboxes('band');
-					syncQuickFilterButtons();
-					applyFilters(false);
-					if (typeof showToast === 'function') {
-						showToast(lang_bandmap_cat_control, `${lang_bandmap_freq_filter_set} ${band} ${lang_bandmap_by_transceiver}`, 'bg-info text-white', 3000);
-					}
-				} else {
-					// No band match - clear band filter to show all bands
-
-					$("#band").val(['All']);
-					updateSelectCheckboxes('band');
-					syncQuickFilterButtons();
-					applyFilters(false);
-					if (typeof showToast === 'function') {
-						showToast(lang_bandmap_cat_control, lang_bandmap_freq_outside, 'bg-warning text-dark', 3000);
-					}
-				}
-			} else {
-
-				if (typeof showToast === 'function') {
-					showToast(lang_bandmap_cat_control, lang_bandmap_waiting_radio, 'bg-info text-white', 2000);
-				}
+		// Update tooltip if it exists
+		if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
+			let tooltip = bootstrap.Tooltip.getInstance(btn[0]);
+			if (tooltip) {
+				tooltip.hide();
 			}
 		}
+	}
+
+	// Toggle CAT Control with state machine
+	$('#toggleCatTracking').on('click', function() {
+		catClickTimer = setTimeout(function() {
+			if (!catClickPreventSingle) {
+				handleCatSingleClick();
+			}
+			catClickPreventSingle = false;
+		}, 300);
 	});
+
+	$('#toggleCatTracking').on('dblclick', function() {
+		clearTimeout(catClickTimer);
+		catClickPreventSingle = true;
+		handleCatDoubleClick();
+	});
+
+	// Initialize tooltip on page load - set initial title only
+	$('#toggleCatTracking').attr('data-bs-original-title', lang_bandmap_cat_off);
+
+	function handleCatSingleClick() {
+		const selectedRadio = $('.radios option:selected').val();
+
+		switch(catState) {
+			case 'off':
+				// OFF → ON
+				if (!selectedRadio || selectedRadio === '0') {
+					if (typeof showToast === 'function') {
+						showToast(lang_bandmap_cat_control, lang_bandmap_select_radio_first, 'bg-warning text-dark', 3000);
+					}
+					return;
+				}
+
+				isCatTrackingEnabled = true;
+				window.isCatTrackingEnabled = true;
+				catState = 'on';
+
+				if (window.lastCATData && typeof window.displayRadioStatus === 'function') {
+					window.displayRadioStatus('success', window.lastCATData);
+				}
+
+				disableBandFilterControls();
+
+				if (window.lastCATData && window.lastCATData.frequency) {
+					const band = frequencyToBand(window.lastCATData.frequency);
+					if (band && band !== '') {
+						$("#band").val([band]);
+						updateSelectCheckboxes('band');
+						syncQuickFilterButtons();
+						applyFilters(false);
+					}
+				}
+
+				updateButtonVisual('on');
+				break;
+
+			case 'on':
+				// ON → ON+MARKER
+				isFrequencyMarkerEnabled = true;
+				catState = 'on+marker';
+
+				lockTableSortingToFrequency();
+
+				if (window.lastCATData && window.lastCATData.frequency) {
+					updateFrequencyGradientColors(window.lastCATData.frequency);
+				}
+
+				updateButtonVisual('on+marker');
+				break;
+
+			case 'on+marker':
+				// ON+MARKER → ON
+				isFrequencyMarkerEnabled = false;
+				catState = 'on';
+
+				unlockTableSorting();
+				clearFrequencyGradientColors();
+
+				updateButtonVisual('on');
+				break;
+		}
+	}
+
+	function handleCatDoubleClick() {
+		// Double-click: Force disable from any state
+		if (catState === 'off') return;
+
+		isCatTrackingEnabled = false;
+		window.isCatTrackingEnabled = false;
+		isFrequencyMarkerEnabled = false;
+		catState = 'off';
+
+		const selectedRadio = $('.radios option:selected').val();
+		if (selectedRadio && selectedRadio !== '0' && typeof window.displayOfflineStatus === 'function') {
+			window.displayOfflineStatus('cat_disabled');
+		} else if (selectedRadio === '0' && typeof window.displayOfflineStatus === 'function') {
+			window.displayOfflineStatus('no_radio');
+		} else {
+			$('#radio_cat_state').remove();
+		}
+
+		enableBandFilterControls();
+		unlockTableSorting();
+		clearFrequencyGradientColors();
+
+		const currentBands = $("#band").val() || [];
+		if (currentBands.length !== 1 || currentBands[0] !== 'All') {
+			$("#band").val(['All']);
+			updateSelectCheckboxes('band');
+			syncQuickFilterButtons();
+			applyFilters(true);
+		}
+
+		updateButtonVisual('off');
+	}
 
 	// ========================================
 	// RESPONSIVE COLUMN VISIBILITY
