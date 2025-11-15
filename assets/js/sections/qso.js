@@ -3039,8 +3039,6 @@ $(document).ready(function () {
 		// Check if Enter key was pressed
 		if (event.key === 'Enter' || event.keyCode === 13) {
 			event.preventDefault(); // Prevent form submission
-			// Trigger the change event to process the frequency
-			$(this).trigger('change');
 			// Move focus to next field (optional - mimics typical form behavior)
 			$(this).blur();
 		}
