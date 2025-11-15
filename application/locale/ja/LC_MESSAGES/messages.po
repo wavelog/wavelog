@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-11-12 05:36+0000\n"
-"PO-Revision-Date: 2025-11-11 10:08+0000\n"
+"POT-Creation-Date: 2025-11-15 16:34+0000\n"
+"PO-Revision-Date: 2025-11-13 03:46+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
@@ -117,9 +117,9 @@ msgstr ""
 #: application/controllers/User.php:121 application/controllers/User.php:145
 #: application/controllers/User.php:382 application/controllers/User.php:383
 #: application/controllers/User.php:1036 application/controllers/User.php:1055
-#: application/controllers/User.php:1287 application/controllers/User.php:1429
-#: application/controllers/User.php:1647 application/controllers/User.php:1663
-#: application/controllers/User.php:1689
+#: application/controllers/User.php:1287 application/controllers/User.php:1427
+#: application/controllers/User.php:1645 application/controllers/User.php:1661
+#: application/controllers/User.php:1687
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
@@ -221,33 +221,33 @@ msgstr "ADIF インポート"
 msgid "Unsupported Filetype"
 msgstr "サポートされていないファイルタイプ"
 
-#: application/controllers/Adif.php:265
+#: application/controllers/Adif.php:277
 #: application/views/adif/import_failed.php:12
 msgid "ADIF Import failed!"
 msgstr "ADIF インポートに失敗しました!"
 
-#: application/controllers/Adif.php:279
+#: application/controllers/Adif.php:291
 msgid "Station Profile not valid for User"
 msgstr "ユーザーに対して有効なステーションプロファイルではありません"
 
-#: application/controllers/Adif.php:288
+#: application/controllers/Adif.php:300
 #: application/views/adif/import_success.php:12
 msgid "ADIF Imported"
 msgstr "ADIFインポート"
 
-#: application/controllers/Adif.php:299
+#: application/controllers/Adif.php:311
 msgid "DCL Import"
 msgstr "DCLインポート"
 
-#: application/controllers/Adif.php:357
+#: application/controllers/Adif.php:369
 msgid "DCL Data Imported"
 msgstr "DCLデータのインポート"
 
-#: application/controllers/Adif.php:368
+#: application/controllers/Adif.php:380
 msgid "POTA Import"
 msgstr "POTAインポート"
 
-#: application/controllers/Adif.php:425
+#: application/controllers/Adif.php:437
 msgid "POTA Data Imported"
 msgstr "POTAデータがインポートされました"
 
@@ -339,7 +339,7 @@ msgid "DOK"
 msgstr "DOK"
 
 #: application/controllers/Awards.php:176 application/views/awards/index.php:7
-#: application/views/bandmap/list.php:61 application/views/bands/index.php:50
+#: application/views/bandmap/list.php:70 application/views/bands/index.php:50
 #: application/views/csv/index.php:58 application/views/dxatlas/index.php:58
 #: application/views/dxcalendar/index.php:11
 #: application/views/interface_assets/header.php:180
@@ -428,7 +428,7 @@ msgstr " そして "
 
 #: application/controllers/Awards.php:567
 #: application/controllers/Logbook.php:1364
-#: application/views/awards/index.php:8 application/views/bandmap/list.php:267
+#: application/views/awards/index.php:8 application/views/bandmap/list.php:287
 #: application/views/bands/index.php:57 application/views/dashboard/index.php:9
 #: application/views/interface_assets/header.php:206
 #: application/views/logbookadvanced/edit.php:32
@@ -455,7 +455,7 @@ msgstr "SOTA"
 
 #: application/controllers/Awards.php:584
 #: application/controllers/Logbook.php:1365
-#: application/views/bandmap/list.php:269 application/views/bands/index.php:64
+#: application/views/bandmap/list.php:289 application/views/bands/index.php:64
 #: application/views/dashboard/index.php:10
 #: application/views/interface_assets/header.php:194
 #: application/views/logbookadvanced/edit.php:34
@@ -476,7 +476,7 @@ msgstr "WWFF"
 
 #: application/controllers/Awards.php:601
 #: application/controllers/Logbook.php:1366
-#: application/views/adif/import.php:45 application/views/bandmap/list.php:268
+#: application/views/adif/import.php:45 application/views/bandmap/list.php:288
 #: application/views/bands/index.php:54
 #: application/views/dashboard/index.php:11
 #: application/views/interface_assets/header.php:210
@@ -1383,9 +1383,9 @@ msgstr "eQSL"
 #: application/views/awards/wpx/index.php:122
 #: application/views/awards/wpx/index.php:124
 #: application/views/awards/wpx/wpx_details.php:23
-#: application/views/bandmap/list.php:63 application/views/bandmap/list.php:117
-#: application/views/bandmap/list.php:243
-#: application/views/bandmap/list.php:494
+#: application/views/bandmap/list.php:72 application/views/bandmap/list.php:137
+#: application/views/bandmap/list.php:263
+#: application/views/bandmap/list.php:514
 #: application/views/bands/bandedges.php:31
 #: application/views/callstats/index.php:49
 #: application/views/components/hamsat/table.php:30
@@ -1530,7 +1530,7 @@ msgstr "国"
 
 #: application/controllers/Logbook.php:1363
 #: application/views/awards/iota/index.php:196
-#: application/views/bandmap/list.php:270 application/views/bands/index.php:52
+#: application/views/bandmap/list.php:290 application/views/bands/index.php:52
 #: application/views/dashboard/index.php:8
 #: application/views/interface_assets/header.php:208
 #: application/views/logbookadvanced/edit.php:28
@@ -1577,6 +1577,7 @@ msgstr "IOTA"
 #: application/views/qslcard/searchresult.php:82
 #: application/views/qso/components/previous_contacts.php:85
 #: application/views/search/search_result_ajax.php:12
+#: application/views/statistics/initialresult.php:21
 #: application/views/timeline/index.php:265 application/views/user/edit.php:251
 #: application/views/user/edit.php:274 application/views/user/edit.php:297
 #: application/views/user/edit.php:320 application/views/user/edit.php:344
@@ -1649,7 +1650,7 @@ msgstr "グリッドスクエア"
 #: application/views/qslcard/searchresult.php:84
 #: application/views/qso/components/previous_contacts.php:87
 #: application/views/search/search_result_ajax.php:14
-#: application/views/statistics/initialresult.php:21
+#: application/views/statistics/initialresult.php:22
 #: application/views/user/edit.php:253 application/views/user/edit.php:276
 #: application/views/user/edit.php:299 application/views/user/edit.php:322
 #: application/views/user/edit.php:346
@@ -1686,9 +1687,9 @@ msgstr "距離"
 #: application/views/awards/wpx/index.php:79
 #: application/views/awards/wpx/wpx_details.php:22
 #: application/views/awards/wwff/index.php:36
-#: application/views/bandmap/list.php:62 application/views/bandmap/list.php:118
-#: application/views/bandmap/list.php:304
-#: application/views/bandmap/list.php:492 application/views/bands/create.php:24
+#: application/views/bandmap/list.php:71 application/views/bandmap/list.php:138
+#: application/views/bandmap/list.php:324
+#: application/views/bandmap/list.php:512 application/views/bands/create.php:24
 #: application/views/bands/edit.php:7 application/views/bands/index.php:47
 #: application/views/callstats/index.php:7
 #: application/views/contesting/index.php:131
@@ -1746,8 +1747,8 @@ msgid "Band"
 msgstr "バンド"
 
 #: application/controllers/Logbook.php:1371
-#: application/controllers/Radio.php:45 application/views/bandmap/list.php:116
-#: application/views/bandmap/list.php:493
+#: application/controllers/Radio.php:45 application/views/bandmap/list.php:136
+#: application/views/bandmap/list.php:513
 #: application/views/contesting/index.php:148
 #: application/views/dashboard/index.php:16
 #: application/views/logbookadvanced/index.php:831
@@ -1803,7 +1804,7 @@ msgstr "オペレーター"
 #: application/views/awards/wae/index.php:175
 #: application/views/csv/index.php:65 application/views/dashboard/index.php:29
 #: application/views/dxatlas/index.php:65
-#: application/views/interface_assets/footer.php:839
+#: application/views/interface_assets/footer.php:819
 #: application/views/kml/index.php:54
 #: application/views/logbookadvanced/index.php:287
 #: application/views/lookup/index.php:47
@@ -2299,7 +2300,7 @@ msgstr "設定"
 msgid "UNKNOWN"
 msgstr "不明"
 
-#: application/controllers/Radio.php:98 application/views/bandmap/list.php:184
+#: application/controllers/Radio.php:98 application/views/bandmap/list.php:204
 #: application/views/contesting/index.php:162
 #: application/views/qso/index.php:389
 msgid "last updated"
@@ -2318,8 +2319,8 @@ msgstr "デフォルト（クリックして解除）"
 #: application/views/api/index.php:74 application/views/bands/bandedges.php:32
 #: application/views/club/permissions.php:248
 #: application/views/contesting/add.php:59 application/views/cron/index.php:71
-#: application/views/interface_assets/footer.php:699
-#: application/views/interface_assets/footer.php:708
+#: application/views/interface_assets/footer.php:679
+#: application/views/interface_assets/footer.php:688
 #: application/views/labels/index.php:47 application/views/labels/index.php:83
 #: application/views/logbookadvanced/index.php:773
 #: application/views/mode/index.php:64 application/views/satellite/edit.php:56
@@ -2339,10 +2340,10 @@ msgstr "編集"
 #: application/views/club/permissions.php:326
 #: application/views/contesting/add.php:62
 #: application/views/interface_assets/footer.php:65
-#: application/views/interface_assets/footer.php:2787
-#: application/views/interface_assets/footer.php:2805
-#: application/views/interface_assets/footer.php:2826
-#: application/views/interface_assets/footer.php:2844
+#: application/views/interface_assets/footer.php:2767
+#: application/views/interface_assets/footer.php:2785
+#: application/views/interface_assets/footer.php:2806
+#: application/views/interface_assets/footer.php:2824
 #: application/views/labels/index.php:48 application/views/labels/index.php:84
 #: application/views/logbookadvanced/index.php:789
 #: application/views/lotw_views/index.php:128
@@ -2447,7 +2448,7 @@ msgstr "ここ"
 msgid "Satellite Timers"
 msgstr "衛星タイマー"
 
-#: application/controllers/Search.php:17 application/views/bandmap/list.php:470
+#: application/controllers/Search.php:17 application/views/bandmap/list.php:490
 #: application/views/continents/index.php:49
 #: application/views/interface_assets/footer.php:42
 #: application/views/interface_assets/header.php:374
@@ -2469,6 +2470,7 @@ msgstr "衛星タイマー"
 #: application/views/search/lotw_unconfirmed.php:40
 #: application/views/search/main.php:4 application/views/search/main.php:12
 #: application/views/search/main.php:36
+#: application/views/visitor/layout/footer.php:13
 #: application/views/visitor/layout/header.php:97
 #: application/views/visitor/layout/header.php:98
 msgid "Search"
@@ -2531,7 +2533,7 @@ msgid "Duplicate Station Location:"
 msgstr "重複ステーションの場所:"
 
 #: application/controllers/Station.php:221
-#: application/controllers/User.php:1310 application/controllers/User.php:1560
+#: application/controllers/User.php:1308 application/controllers/User.php:1558
 #, php-format
 msgid "Please check value for grid locator (%s)"
 msgstr "グリッドロケータの値を確認してください（ %s )"
@@ -2938,6 +2940,23 @@ msgstr "ユーザー %s が編集されました"
 msgid "Profile"
 msgstr "プロフィール"
 
+#: application/controllers/User.php:1063
+#: application/views/club/permissions.php:309
+msgid "Delete User"
+msgstr "ユーザーを削除"
+
+#: application/controllers/User.php:1076
+msgid "User deleted"
+msgstr ""
+
+#: application/controllers/User.php:1079
+msgid "Could not delete user!"
+msgstr ""
+
+#: application/controllers/User.php:1079
+msgid "Database error:"
+msgstr ""
+
 #: application/controllers/User.php:1104
 msgid ""
 "Congrats! Wavelog was successfully installed. You can now login for the "
@@ -3031,7 +3050,7 @@ msgstr "ITUゾーンステーション"
 msgid "Station Locator"
 msgstr "グリッドロケータ"
 
-#: application/controllers/User.php:1318
+#: application/controllers/User.php:1316
 #, php-format
 msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
@@ -3040,37 +3059,37 @@ msgstr ""
 "ステーションが正常に作成されました！Wavelogへようこそ！ステーションの設定を完"
 "了するには、%shere%sをクリックしてください。"
 
-#: application/controllers/User.php:1321
+#: application/controllers/User.php:1319
 msgid "Station setup failed! Please set up your station manually."
 msgstr ""
 "ステーションのセットアップに失敗しました！手動でステーションを設定してくださ"
 "い。"
 
-#: application/controllers/User.php:1338
+#: application/controllers/User.php:1336
 msgid "Password Reset is disabled on the Demo!"
 msgstr "デモではパスワードのリセットが利用できません！"
 
-#: application/controllers/User.php:1352
+#: application/controllers/User.php:1350
 msgid "Forgot Password"
 msgstr "パスワードを忘れた"
 
-#: application/controllers/User.php:1403
+#: application/controllers/User.php:1401
 #: application/views/user/modals/more_actions_modal.php:88
 msgid "Email settings are incorrect."
 msgstr "メール設定が正しくありません。"
 
-#: application/controllers/User.php:1407 application/controllers/User.php:1412
+#: application/controllers/User.php:1405 application/controllers/User.php:1410
 msgid "Password Reset Processed."
 msgstr "パスワードのリセットが完了しました。"
 
-#: application/controllers/User.php:1513
+#: application/controllers/User.php:1511
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
 msgid "Reset Password"
 msgstr "パスワードをリセットする"
 
-#: application/controllers/User.php:1534
+#: application/controllers/User.php:1532
 #, php-format
 msgid ""
 "Couldn't set account to this username. Please try another one than \"%s\"."
@@ -3078,7 +3097,7 @@ msgstr ""
 "このユーザー名でアカウントを設定できませんでした。別のユーザー名（%s 以外）を"
 "お試しください。"
 
-#: application/controllers/User.php:1543
+#: application/controllers/User.php:1541
 #, php-format
 msgid ""
 "Couldn't set account to this email. Please try another address than \"%s\"."
@@ -3086,7 +3105,7 @@ msgstr ""
 "このメールアドレスでアカウントを設定できませんでした。別のアドレス（%s以外）"
 "をお試しください。"
 
-#: application/controllers/User.php:1582
+#: application/controllers/User.php:1580
 #, php-format
 msgid ""
 "You currently can't impersonate another user. You need to set %s to %s in "
@@ -3095,7 +3114,7 @@ msgstr ""
 "現在、他のユーザーを装うことはできません。config.php ファイルで %s を %s に設"
 "定する必要があります！"
 
-#: application/controllers/User.php:1596
+#: application/controllers/User.php:1594
 #: application/views/user/modals/admin_impersonate_modal.php:36
 msgid ""
 "You currently can't impersonate another user. Please change the "
@@ -3104,15 +3123,15 @@ msgstr ""
 "現在、他のユーザーを装うことはできません。まず、config.php ファイルの "
 "encryption_key を変更してください！"
 
-#: application/controllers/User.php:1603
+#: application/controllers/User.php:1601
 msgid "Invalid Hash"
 msgstr "無効なハッシュ"
 
-#: application/controllers/User.php:1616
+#: application/controllers/User.php:1614
 msgid "The impersonation hash is too old. Please try again."
 msgstr "偽装ハッシュが古すぎます。もう一度お試しください。"
 
-#: application/controllers/User.php:1623
+#: application/controllers/User.php:1621
 msgid ""
 "You can't impersonate another user while you're not logged in as the source "
 "user"
@@ -3120,15 +3139,15 @@ msgstr ""
 "ソースユーザーとしてログインしていない状態で、他のユーザーを装うことはできま"
 "せん"
 
-#: application/controllers/User.php:1629
+#: application/controllers/User.php:1627
 msgid "There was a problem with your session. Please try again."
 msgstr "セッションに問題が発生しました。もう一度お試しください。"
 
-#: application/controllers/User.php:1636
+#: application/controllers/User.php:1634
 msgid "The requested user to impersonate does not exist"
 msgstr "偽装を要求されたユーザーは存在しません"
 
-#: application/controllers/User.php:1657
+#: application/controllers/User.php:1655
 msgid ""
 "Could not determine the correct permission level for the clubstation. Try "
 "again after re-login."
@@ -3136,13 +3155,13 @@ msgstr ""
 "クラブステーションの適切な権限レベルを判別できませんでした。再ログインしてか"
 "らもう一度お試しください。"
 
-#: application/controllers/User.php:1702 application/controllers/User.php:1714
-#: application/controllers/User.php:1720 application/controllers/User.php:1729
-#: application/controllers/User.php:1737
+#: application/controllers/User.php:1700 application/controllers/User.php:1712
+#: application/controllers/User.php:1718 application/controllers/User.php:1727
+#: application/controllers/User.php:1735
 msgid "Ups.. Something went wrong. Try to log back in."
 msgstr "おっと… 何か問題が発生しました。もう一度ログインしてみてください。"
 
-#: application/controllers/User.php:1743
+#: application/controllers/User.php:1741
 msgid ""
 "The ability to return quickly has been disabled after the security hash "
 "expired. Please log in again."
@@ -3150,7 +3169,7 @@ msgstr ""
 "セキュリティハッシュの有効期限が切れたため、すぐに復帰する機能は無効になって"
 "います。再度ログインしてください。"
 
-#: application/controllers/User.php:1759
+#: application/controllers/User.php:1757
 #, php-format
 msgid ""
 "You have been logged out of the account %s. Welcome back, %s, to your "
@@ -3639,13 +3658,12 @@ msgstr "違い"
 #: application/views/awards/wpx/index.php:93
 #: application/views/awards/wpx/index.php:107
 #: application/views/awards/wpx/index.php:126
-#: application/views/bandmap/list.php:65 application/views/bandmap/list.php:195
-#: application/views/bandmap/list.php:237
-#: application/views/bandmap/list.php:245
-#: application/views/bandmap/list.php:266
-#: application/views/bandmap/list.php:278
-#: application/views/bandmap/list.php:292
-#: application/views/bandmap/list.php:306 application/views/bands/index.php:123
+#: application/views/bandmap/list.php:74 application/views/bandmap/list.php:257
+#: application/views/bandmap/list.php:265
+#: application/views/bandmap/list.php:286
+#: application/views/bandmap/list.php:298
+#: application/views/bandmap/list.php:312
+#: application/views/bandmap/list.php:326 application/views/bands/index.php:123
 #: application/views/cabrillo/index.php:69
 #: application/views/callstats/index.php:10
 #: application/views/callstats/index.php:24
@@ -3674,8 +3692,8 @@ msgstr "違い"
 #: application/views/gridmap/index.php:107
 #: application/views/gridmap/index.php:121
 #: application/views/interface_assets/footer.php:48
-#: application/views/interface_assets/footer.php:1677
-#: application/views/interface_assets/footer.php:1816
+#: application/views/interface_assets/footer.php:1657
+#: application/views/interface_assets/footer.php:1796
 #: application/views/kml/index.php:21 application/views/kml/index.php:33
 #: application/views/kml/index.php:49 application/views/kml/index.php:67
 #: application/views/kml/index.php:79
@@ -3723,7 +3741,7 @@ msgstr "違い"
 #: application/views/timeplotter/index.php:27
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:789
-#: application/views/visitor/layout/footer.php:172
+#: application/views/visitor/layout/footer.php:173
 msgid "All"
 msgstr "全て"
 
@@ -4231,7 +4249,7 @@ msgstr "何も見つかりません!"
 #: application/views/awards/sota/index.php:33
 #: application/views/awards/wpx/wpx_details.php:20
 #: application/views/awards/wwff/index.php:35
-#: application/views/bandmap/list.php:27 application/views/bandmap/list.php:115
+#: application/views/bandmap/list.php:27 application/views/bandmap/list.php:135
 #: application/views/cabrillo/index.php:31
 #: application/views/callstats/index.php:147
 #: application/views/club/permissions.php:222
@@ -4387,7 +4405,7 @@ msgstr "日付"
 #: application/views/awards/pota/index.php:34
 #: application/views/awards/sota/index.php:32
 #: application/views/awards/wwff/index.php:34
-#: application/views/bandmap/list.php:89
+#: application/views/bandmap/list.php:109
 #: application/views/components/hamsat/table.php:26
 #: application/views/contesting/index.php:108
 #: application/views/contesting/index.php:262
@@ -4547,8 +4565,8 @@ msgstr ""
 
 #: application/views/adif/import.php:141
 #: application/views/interface_assets/footer.php:34
-#: application/views/interface_assets/footer.php:659
-#: application/views/interface_assets/footer.php:2549
+#: application/views/interface_assets/footer.php:639
+#: application/views/interface_assets/footer.php:2529
 msgid "DANGER"
 msgstr "危険"
 
@@ -4962,7 +4980,7 @@ msgstr "この API の用途を説明する簡単な名前。"
 #: application/views/club/permissions.php:297
 #: application/views/contesting/edit.php:55 application/views/cron/edit.php:73
 #: application/views/interface_assets/footer.php:51
-#: application/views/interface_assets/footer.php:694
+#: application/views/interface_assets/footer.php:674
 #: application/views/logbookadvanced/index.php:42
 #: application/views/operator/index.php:23
 #: application/views/options/appearance.php:97
@@ -5302,7 +5320,7 @@ msgstr "合計"
 
 #: application/views/awards/cq/index.php:3
 #: application/views/awards/cq/index.php:151
-#: application/views/bandmap/list.php:497 application/views/csv/index.php:80
+#: application/views/bandmap/list.php:517 application/views/csv/index.php:80
 #: application/views/dxatlas/index.php:80
 #: application/views/gridmap/index.php:199 application/views/kml/index.php:65
 #: application/views/logbookadvanced/edit.php:24
@@ -5371,7 +5389,7 @@ msgstr "アワード歴 - CQ WAZ"
 #: application/views/awards/wab/list.php:6
 #: application/views/awards/wac/index.php:23
 #: application/views/awards/wpx/wpx_details.php:24
-#: application/views/bandmap/list.php:52 application/views/bandmap/list.php:240
+#: application/views/bandmap/list.php:60 application/views/bandmap/list.php:260
 #: application/views/dashboard/index.php:344
 #: application/views/dashboard/index.php:462
 #: application/views/interface_assets/footer.php:45
@@ -5383,7 +5401,7 @@ msgstr "確認済み"
 #: application/views/awards/cq/index.php:35
 #: application/views/awards/itu/index.php:35
 #: application/views/awards/wac/index.php:23
-#: application/views/bandmap/list.php:51 application/views/bandmap/list.php:239
+#: application/views/bandmap/list.php:59 application/views/bandmap/list.php:259
 #: application/views/dashboard/index.php:340
 #: application/views/dashboard/index.php:456
 #: application/views/search/result.php:35
@@ -5463,7 +5481,7 @@ msgstr "QSLタイプでQSOを表示"
 #: application/views/awards/iota/index.php:62
 #: application/views/awards/itu/index.php:57
 #: application/views/awards/wac/index.php:45
-#: application/views/interface_assets/footer.php:2528
+#: application/views/interface_assets/footer.php:2508
 #: application/views/logbookadvanced/index.php:40
 #: application/views/qso/edit_ajax.php:419
 #: application/views/view_log/qso.php:25
@@ -5736,8 +5754,8 @@ msgstr "削除済みを含める"
 #: application/views/awards/dxcc/index.php:97
 #: application/views/awards/iota/index.php:88
 #: application/views/awards/wpx/index.php:55
-#: application/views/bandmap/list.php:280
-#: application/views/bandmap/list.php:294
+#: application/views/bandmap/list.php:300
+#: application/views/bandmap/list.php:314
 #: application/views/logbookadvanced/edit.php:217
 #: application/views/logbookadvanced/index.php:443
 #: application/views/lookup/index.php:60
@@ -5750,8 +5768,8 @@ msgstr "南極大陸"
 #: application/views/awards/dxcc/index.php:101
 #: application/views/awards/iota/index.php:92
 #: application/views/awards/wpx/index.php:56
-#: application/views/bandmap/list.php:279
-#: application/views/bandmap/list.php:293
+#: application/views/bandmap/list.php:299
+#: application/views/bandmap/list.php:313
 #: application/views/logbookadvanced/edit.php:216
 #: application/views/logbookadvanced/index.php:442
 #: application/views/lookup/index.php:59
@@ -5764,8 +5782,8 @@ msgstr "アフリカ"
 #: application/views/awards/dxcc/index.php:105
 #: application/views/awards/iota/index.php:96
 #: application/views/awards/wpx/index.php:57
-#: application/views/bandmap/list.php:281
-#: application/views/bandmap/list.php:295
+#: application/views/bandmap/list.php:301
+#: application/views/bandmap/list.php:315
 #: application/views/logbookadvanced/edit.php:219
 #: application/views/logbookadvanced/index.php:445
 #: application/views/lookup/index.php:62
@@ -5778,8 +5796,8 @@ msgstr "アジア"
 #: application/views/awards/dxcc/index.php:109
 #: application/views/awards/iota/index.php:100
 #: application/views/awards/wpx/index.php:58
-#: application/views/bandmap/list.php:282
-#: application/views/bandmap/list.php:296
+#: application/views/bandmap/list.php:302
+#: application/views/bandmap/list.php:316
 #: application/views/logbookadvanced/edit.php:220
 #: application/views/logbookadvanced/index.php:446
 #: application/views/lookup/index.php:63
@@ -5792,8 +5810,8 @@ msgstr "ヨーロッパ"
 #: application/views/awards/dxcc/index.php:113
 #: application/views/awards/iota/index.php:104
 #: application/views/awards/wpx/index.php:59
-#: application/views/bandmap/list.php:283
-#: application/views/bandmap/list.php:297
+#: application/views/bandmap/list.php:303
+#: application/views/bandmap/list.php:317
 #: application/views/logbookadvanced/edit.php:218
 #: application/views/logbookadvanced/index.php:444
 #: application/views/lookup/index.php:61
@@ -5806,8 +5824,8 @@ msgstr "北米"
 #: application/views/awards/dxcc/index.php:117
 #: application/views/awards/iota/index.php:108
 #: application/views/awards/wpx/index.php:60
-#: application/views/bandmap/list.php:285
-#: application/views/bandmap/list.php:299
+#: application/views/bandmap/list.php:305
+#: application/views/bandmap/list.php:319
 #: application/views/logbookadvanced/edit.php:221
 #: application/views/logbookadvanced/index.php:447
 #: application/views/lookup/index.php:64
@@ -5820,8 +5838,8 @@ msgstr "南アメリカ"
 #: application/views/awards/dxcc/index.php:121
 #: application/views/awards/iota/index.php:112
 #: application/views/awards/wpx/index.php:61
-#: application/views/bandmap/list.php:284
-#: application/views/bandmap/list.php:298
+#: application/views/bandmap/list.php:304
+#: application/views/bandmap/list.php:318
 #: application/views/logbookadvanced/edit.php:222
 #: application/views/logbookadvanced/index.php:448
 #: application/views/lookup/index.php:65
@@ -6539,7 +6557,7 @@ msgid "Awards - Worked All Continents (WAC)"
 msgstr "アワード - すべての大陸で活動（WAC）"
 
 #: application/views/awards/wac/index.php:152
-#: application/views/bandmap/list.php:64 application/views/bandmap/list.php:496
+#: application/views/bandmap/list.php:73 application/views/bandmap/list.php:516
 #: application/views/continents/index.php:62
 #: application/views/logbookadvanced/edit.php:23
 #: application/views/logbookadvanced/index.php:438
@@ -6881,7 +6899,7 @@ msgstr "ノートのバックアップが正常に完了しました。出力は
 msgid "Click to prepare logging."
 msgstr "クリックしてログ記録を準備します。"
 
-#: application/views/bandmap/list.php:11 application/views/bandmap/list.php:84
+#: application/views/bandmap/list.php:11 application/views/bandmap/list.php:104
 msgid "to tune frequency"
 msgstr "周波数を調整する"
 
@@ -6903,7 +6921,7 @@ msgstr "CAT接続が必要です"
 msgid "Enable CAT connection to tune the radio"
 msgstr "CAT接続を有効にして無線機をチューニングする"
 
-#: application/views/bandmap/list.php:18 application/views/bandmap/list.php:352
+#: application/views/bandmap/list.php:18 application/views/bandmap/list.php:372
 msgid "Clear Filters"
 msgstr "フィルターをクリア"
 
@@ -6939,86 +6957,123 @@ msgstr "QSO準備完了"
 msgid "sent to logging form"
 msgstr "ログフォームに送信されました"
 
-#: application/views/bandmap/list.php:29 application/views/bandmap/list.php:175
+#: application/views/bandmap/list.php:29 application/views/bandmap/list.php:195
 msgid "CAT Connection"
 msgstr "CAT接続"
 
 #: application/views/bandmap/list.php:30
+msgid "Click to enable CAT connection"
+msgstr "クリックしてCAT接続を有効にします"
+
+#: application/views/bandmap/list.php:31
+msgid ""
+"CAT following radio | Click for frequency marker | Double-click to disable"
+msgstr "無線追跡CAT機能｜周波数マーカーを表示｜ダブルクリックで無効化"
+
+#: application/views/bandmap/list.php:32
+msgid ""
+"Frequency marker active | Click to disable marker | Double-click to disable "
+"CAT"
+msgstr ""
+"周波数マーカーが有効 | クリックしてマーカーを無効にする | ダブルクリックして"
+"CATを無効にする"
+
+#: application/views/bandmap/list.php:33
 msgid "Frequency filter changed to"
 msgstr "周波数フィルタが変更されました"
 
-#: application/views/bandmap/list.php:31
+#: application/views/bandmap/list.php:34
 msgid "by transceiver"
 msgstr "無線機による"
 
-#: application/views/bandmap/list.php:32
+#: application/views/bandmap/list.php:35
 msgid "Frequency filter set to"
 msgstr "周波数フィルターを設定"
 
-#: application/views/bandmap/list.php:33
+#: application/views/bandmap/list.php:36
 msgid "Frequency outside known bands - showing all bands"
 msgstr "既知のバンド外の周波数 - すべてのバンドを表示"
 
-#: application/views/bandmap/list.php:34
+#: application/views/bandmap/list.php:37
 msgid "Waiting for radio data..."
 msgstr "無線機からデータを受信中..."
 
-#: application/views/bandmap/list.php:35
+#: application/views/bandmap/list.php:38
 msgid "My Favorites"
 msgstr "お気に入り"
 
-#: application/views/bandmap/list.php:36
+#: application/views/bandmap/list.php:39
 msgid "Failed to load favorites"
 msgstr "お気に入りを読み込めませんでした"
 
-#: application/views/bandmap/list.php:37
+#: application/views/bandmap/list.php:40
 msgid "Modes applied. Band filter preserved (CAT connection is active)"
 msgstr ""
 "モードが適用されます。バンドフィルターは保持されます（CAT接続はアクティブで"
 "す）"
 
-#: application/views/bandmap/list.php:38
+#: application/views/bandmap/list.php:41
 msgid "Applied your favorite bands and modes"
 msgstr "お気に入りのバンドとモードを適用"
 
-#: application/views/bandmap/list.php:41
+#: application/views/bandmap/list.php:44
 msgid "Loading data from DX Cluster"
 msgstr "DXクラスターからデータをロードしています"
 
-#: application/views/bandmap/list.php:42
+#: application/views/bandmap/list.php:45
 msgid "Last fetched for"
 msgstr "最後に取得されたのは"
 
-#: application/views/bandmap/list.php:43
+#: application/views/bandmap/list.php:46
 msgid "Max Age"
 msgstr "最大年齢"
 
-#: application/views/bandmap/list.php:44
+#: application/views/bandmap/list.php:47
 msgid "Fetched at"
 msgstr "取得場所"
 
-#: application/views/bandmap/list.php:45
+#: application/views/bandmap/list.php:48
 msgid "Next update in"
 msgstr "次回の更新は"
 
-#: application/views/bandmap/list.php:46
+#: application/views/bandmap/list.php:49
 msgid "minutes"
 msgstr "分"
 
-#: application/views/bandmap/list.php:47
+#: application/views/bandmap/list.php:50
 msgid "seconds"
 msgstr "秒"
 
-#: application/views/bandmap/list.php:50 application/views/bandmap/list.php:238
+#: application/views/bandmap/list.php:51
+msgid "spots fetched"
+msgstr ""
+
+#: application/views/bandmap/list.php:52
+msgid "showing"
+msgstr ""
+
+#: application/views/bandmap/list.php:53
+msgid "showing all"
+msgstr ""
+
+#: application/views/bandmap/list.php:54
+msgid "Active filters"
+msgstr ""
+
+#: application/views/bandmap/list.php:55
+msgid "Fetching..."
+msgstr ""
+
+#: application/views/bandmap/list.php:58 application/views/bandmap/list.php:258
 #: application/views/interface_assets/footer.php:47
 msgid "Not worked"
 msgstr "機能していません"
 
-#: application/views/bandmap/list.php:53 application/views/bandmap/list.php:241
+#: application/views/bandmap/list.php:61 application/views/bandmap/list.php:261
 msgid "Worked, not Confirmed"
 msgstr "動作したが、確認されていない"
 
-#: application/views/bandmap/list.php:54 application/views/bandmap/list.php:256
+#: application/views/bandmap/list.php:62 application/views/bandmap/list.php:276
 #: application/views/lookup/lotwuser.php:2
 #: application/views/lookup/lotwuser.php:12
 #: application/views/search/result.php:65
@@ -7026,38 +7081,44 @@ msgstr "動作したが、確認されていない"
 msgid "LoTW User"
 msgstr "LoTWユーザー"
 
-#: application/views/bandmap/list.php:55 application/views/bandmap/list.php:259
+#: application/views/bandmap/list.php:63 application/views/bandmap/list.php:279
 #: application/views/components/dxwaterfall.php:18
 msgid "New Callsign"
 msgstr "新しいコールサイン"
 
-#: application/views/bandmap/list.php:56 application/views/bandmap/list.php:257
+#: application/views/bandmap/list.php:64 application/views/bandmap/list.php:277
 #: application/views/components/dxwaterfall.php:16
 msgid "New Continent"
 msgstr "新大陸"
 
-#: application/views/bandmap/list.php:57 application/views/bandmap/list.php:258
+#: application/views/bandmap/list.php:65 application/views/bandmap/list.php:278
 msgid "New Country"
 msgstr "ニューカントリー"
 
-#: application/views/bandmap/list.php:58
+#: application/views/bandmap/list.php:66
 msgid "Worked Before"
 msgstr "以前に働いた"
 
-#: application/views/bandmap/list.php:66
+#: application/views/bandmap/list.php:67
+#, php-format
+msgid "Worked on %s with %s"
+msgstr ""
+
+#: application/views/bandmap/list.php:75 application/views/bandmap/list.php:521
 msgid "de"
 msgstr "の"
 
-#: application/views/bandmap/list.php:67
+#: application/views/bandmap/list.php:76
 msgid "spotted"
 msgstr "発見された"
 
-#: application/views/bandmap/list.php:70
+#: application/views/bandmap/list.php:79
 msgid "Fresh spot (< 5 minutes old)"
 msgstr "新しいスポット（5分未満）"
 
-#: application/views/bandmap/list.php:71 application/views/bandmap/list.php:72
-#: application/views/bandmap/list.php:261
+#: application/views/bandmap/list.php:80 application/views/bandmap/list.php:81
+#: application/views/bandmap/list.php:281
+#: application/views/bandmap/list.php:456
 #: application/views/contestcalendar/index.php:21
 #: application/views/logbookadvanced/edit.php:8
 #: application/views/logbookadvanced/index.php:434
@@ -7068,53 +7129,102 @@ msgstr "新しいスポット（5分未満）"
 msgid "Contest"
 msgstr "コンテスト"
 
-#: application/views/bandmap/list.php:73
+#: application/views/bandmap/list.php:82
 msgid "Click to view"
 msgstr "クリックして表示"
 
-#: application/views/bandmap/list.php:74
+#: application/views/bandmap/list.php:83
 msgid "on QRZ.com"
 msgstr "QRZ.comで"
 
-#: application/views/bandmap/list.php:75
+#: application/views/bandmap/list.php:84
+#, php-format
+msgid "Click to view %s on QRZ.com"
+msgstr ""
+
+#: application/views/bandmap/list.php:85
 msgid "See details for"
 msgstr "詳細はこちら"
 
-#: application/views/bandmap/list.php:76
+#: application/views/bandmap/list.php:86
 msgid "Worked on"
 msgstr "作業した"
 
-#: application/views/bandmap/list.php:77
+#: application/views/bandmap/list.php:87
 msgid "Not worked on this band"
 msgstr "このバンドでは働いていない"
 
-#: application/views/bandmap/list.php:80
+#: application/views/bandmap/list.php:88
+#, php-format
+msgid "LoTW User. Last upload was %d days ago"
+msgstr ""
+
+#: application/views/bandmap/list.php:89
+msgid "Click to view on POTA.app"
+msgstr ""
+
+#: application/views/bandmap/list.php:90
+msgid "Click to view on SOTL.as"
+msgstr ""
+
+#: application/views/bandmap/list.php:91
+msgid "Click to view on cqgma.org"
+msgstr ""
+
+#: application/views/bandmap/list.php:92
+msgid "Click to view on IOTA-World.org"
+msgstr ""
+
+#: application/views/bandmap/list.php:93
+msgid "See details for continent"
+msgstr ""
+
+#: application/views/bandmap/list.php:94
+#, php-format
+msgid "See details for continent %s"
+msgstr ""
+
+#: application/views/bandmap/list.php:95
+msgid "See details for CQ Zone"
+msgstr ""
+
+#: application/views/bandmap/list.php:96
+#, php-format
+msgid "See details for CQ Zone %s"
+msgstr ""
+
+#: application/views/bandmap/list.php:97
+msgid "in"
+msgstr ""
+
+#: application/views/bandmap/list.php:100
 msgid "Exit Fullscreen"
 msgstr "全画面表示を終了"
 
-#: application/views/bandmap/list.php:81 application/views/bandmap/list.php:161
+#: application/views/bandmap/list.php:101
+#: application/views/bandmap/list.php:181
 msgid "Toggle Fullscreen"
 msgstr "全画面表示を切り替える"
 
-#: application/views/bandmap/list.php:82
+#: application/views/bandmap/list.php:102
 msgid ""
 "Band filtering is controlled by your radio when CAT connection is enabled"
 msgstr ""
 "CAT接続が有効になっている場合、バンドフィルタリングは無線によって制御されます"
 
-#: application/views/bandmap/list.php:83
+#: application/views/bandmap/list.php:103
 msgid "Click to prepare logging"
 msgstr "クリックしてログ記録を準備する"
 
-#: application/views/bandmap/list.php:85
+#: application/views/bandmap/list.php:105
 msgid "(requires CAT connection)"
 msgstr "（CAT接続が必要です）"
 
-#: application/views/bandmap/list.php:86 application/views/bandmap/list.php:501
+#: application/views/bandmap/list.php:106
 msgid "Spotter"
 msgstr "スポッター"
 
-#: application/views/bandmap/list.php:87
+#: application/views/bandmap/list.php:107
 #: application/views/components/hamsat/table.php:28
 #: application/views/contesting/index.php:234
 #: application/views/hamsat/index.php:31
@@ -7127,100 +7237,95 @@ msgstr "スポッター"
 msgid "Comment"
 msgstr "コメント"
 
-#: application/views/bandmap/list.php:88
+#: application/views/bandmap/list.php:108
 #: application/views/contesting/index.php:65
 msgid "Age"
 msgstr "年"
 
-#: application/views/bandmap/list.php:90
+#: application/views/bandmap/list.php:110
 msgid "Incoming"
 msgstr "受信中"
 
-#: application/views/bandmap/list.php:91
+#: application/views/bandmap/list.php:111
 msgid "Outgoing"
 msgstr "発信"
 
-#: application/views/bandmap/list.php:92
+#: application/views/bandmap/list.php:112
 #: application/views/components/dxwaterfall.php:15
 msgid "spots"
 msgstr "スポット"
 
-#: application/views/bandmap/list.php:93
+#: application/views/bandmap/list.php:113
 msgid "spot"
 msgstr "スポット"
 
-#: application/views/bandmap/list.php:94
+#: application/views/bandmap/list.php:114
 msgid "spotters"
 msgstr "スポッター"
 
-#: application/views/bandmap/list.php:98
+#: application/views/bandmap/list.php:118
 msgid "Loading spots..."
 msgstr "スポットを読み込んでいます..."
 
-#: application/views/bandmap/list.php:99
+#: application/views/bandmap/list.php:119
 msgid "No spots found"
 msgstr "スポットは見つかりませんでした"
 
-#: application/views/bandmap/list.php:100
+#: application/views/bandmap/list.php:120
 msgid "No data available"
 msgstr "データなし"
 
-#: application/views/bandmap/list.php:101
+#: application/views/bandmap/list.php:121
 msgid "No spots found for selected filters"
 msgstr "選択したフィルターに該当するスポットが見つかりません"
 
-#: application/views/bandmap/list.php:102
+#: application/views/bandmap/list.php:122
 msgid "Error loading spots. Please try again."
 msgstr "スポットの読み込み中にエラーが発生しました。もう一度お試しください。"
 
-#: application/views/bandmap/list.php:105
+#: application/views/bandmap/list.php:125
 msgid "Show all modes"
 msgstr "すべてのモードを表示"
 
-#: application/views/bandmap/list.php:106
+#: application/views/bandmap/list.php:126
 msgid "Show all spots"
 msgstr "すべてのスポットを表示"
 
-#: application/views/bandmap/list.php:111
+#: application/views/bandmap/list.php:131
 msgid "Draw Spotters"
 msgstr "ドロースポッター"
 
-#: application/views/bandmap/list.php:112
+#: application/views/bandmap/list.php:132
 msgid "Extend Map"
 msgstr "マップを拡張"
 
-#: application/views/bandmap/list.php:113
+#: application/views/bandmap/list.php:133
 msgid "Show Day/Night"
 msgstr "昼/夜を表示"
 
-#: application/views/bandmap/list.php:114
+#: application/views/bandmap/list.php:134
 msgid "Your QTH"
 msgstr "あなたのQTH"
 
-#: application/views/bandmap/list.php:150
+#: application/views/bandmap/list.php:170
 msgid "Return to Home"
 msgstr "ホームに戻る"
 
-#: application/views/bandmap/list.php:153
+#: application/views/bandmap/list.php:173
 #: application/views/interface_assets/header.php:285
 msgid "DX Cluster"
 msgstr "DXクラスター"
 
-#: application/views/bandmap/list.php:157
+#: application/views/bandmap/list.php:177
 msgid "DX Cluster Help"
 msgstr "DXクラスターヘルプ"
 
-#: application/views/bandmap/list.php:174
-msgid ""
-"When selected the filters will be set basing on your current radio status"
-msgstr "選択すると、現在の無線機の状態に基づいてフィルターが設定されます"
+#: application/views/bandmap/list.php:199
+msgid "TRX:"
+msgstr ""
 
-#: application/views/bandmap/list.php:179
-msgid "Radio:"
-msgstr "無線機："
-
-#: application/views/bandmap/list.php:181
-#: application/views/bandmap/list.php:255
+#: application/views/bandmap/list.php:201
+#: application/views/bandmap/list.php:275
 #: application/views/contesting/index.php:24
 #: application/views/contesting/index.php:62
 #: application/views/contesting/index.php:159
@@ -7228,328 +7333,325 @@ msgstr "無線機："
 msgid "None"
 msgstr "なし"
 
-#: application/views/bandmap/list.php:182 application/views/qso/index.php:387
+#: application/views/bandmap/list.php:202 application/views/qso/index.php:387
 msgid "Live - "
 msgstr "ライブ - "
 
-#: application/views/bandmap/list.php:182 application/views/qso/index.php:387
+#: application/views/bandmap/list.php:202 application/views/qso/index.php:387
 msgid "WebSocket (Requires WLGate>=1.1.10)"
 msgstr "WebSocket (WLGate>=1.1.10 が必要)"
 
-#: application/views/bandmap/list.php:184 application/views/qso/index.php:389
+#: application/views/bandmap/list.php:204 application/views/qso/index.php:389
 msgid "Polling - "
 msgstr "ポーリング - "
 
-#: application/views/bandmap/list.php:193
+#: application/views/bandmap/list.php:213
 msgid "de:"
 msgstr "の："
 
-#: application/views/bandmap/list.php:195
+#: application/views/bandmap/list.php:215
 msgid "Select all continents"
 msgstr "すべての大陸を選択"
 
-#: application/views/bandmap/list.php:196
+#: application/views/bandmap/list.php:215
+msgid "World"
+msgstr ""
+
+#: application/views/bandmap/list.php:216
 msgid "Toggle Africa continent filter"
 msgstr "アフリカ大陸フィルターを切り替える"
 
-#: application/views/bandmap/list.php:197
+#: application/views/bandmap/list.php:217
 msgid "Toggle Antarctica continent filter"
 msgstr "南極大陸フィルターを切り替える"
 
-#: application/views/bandmap/list.php:198
+#: application/views/bandmap/list.php:218
 msgid "Toggle Asia continent filter"
 msgstr "アジア大陸フィルターを切り替える"
 
-#: application/views/bandmap/list.php:199
+#: application/views/bandmap/list.php:219
 msgid "Toggle Europe continent filter"
 msgstr "ヨーロッパ大陸フィルターを切り替える"
 
-#: application/views/bandmap/list.php:200
+#: application/views/bandmap/list.php:220
 msgid "Toggle North America continent filter"
 msgstr "北米大陸フィルターを切り替える"
 
-#: application/views/bandmap/list.php:201
+#: application/views/bandmap/list.php:221
 msgid "Toggle Oceania continent filter"
 msgstr "オセアニア大陸フィルターを切り替える"
 
-#: application/views/bandmap/list.php:202
+#: application/views/bandmap/list.php:222
 msgid "Toggle South America continent filter"
 msgstr "南アメリカ大陸フィルターを切り替える"
 
-#: application/views/bandmap/list.php:215
+#: application/views/bandmap/list.php:235
 msgid "Advanced Filters"
 msgstr "高度なフィルター"
 
-#: application/views/bandmap/list.php:229
+#: application/views/bandmap/list.php:249
 msgid "Hold"
 msgstr "保持"
 
-#: application/views/bandmap/list.php:229
+#: application/views/bandmap/list.php:249
 msgid "and click to select multiple options"
 msgstr "複数のオプションを選択するにはクリックします"
 
-#: application/views/bandmap/list.php:235
+#: application/views/bandmap/list.php:255
 msgid "DXCC-Status"
 msgstr "DXCCステータス"
 
-#: application/views/bandmap/list.php:246
+#: application/views/bandmap/list.php:266
 #: application/views/components/dxwaterfall.php:31
 msgid "Phone"
 msgstr "電話"
 
-#: application/views/bandmap/list.php:247
+#: application/views/bandmap/list.php:267
 #: application/views/components/dxwaterfall.php:33
 msgid "CW"
 msgstr "CW"
 
-#: application/views/bandmap/list.php:248
+#: application/views/bandmap/list.php:268
 #: application/views/components/dxwaterfall.php:35
 msgid "Digi"
 msgstr "デジ"
 
-#: application/views/bandmap/list.php:253
+#: application/views/bandmap/list.php:273
 msgid "Required Flags"
 msgstr "必須フラグ"
 
-#: application/views/bandmap/list.php:260
+#: application/views/bandmap/list.php:280
 msgid "Worked Callsign"
 msgstr "運用コールサイン"
 
-#: application/views/bandmap/list.php:262
+#: application/views/bandmap/list.php:282
 msgid "DX Spot"
 msgstr "DXスポット"
 
-#: application/views/bandmap/list.php:264
+#: application/views/bandmap/list.php:284
 msgid "Additional Flags"
 msgstr "追加フラグ"
 
-#: application/views/bandmap/list.php:271
+#: application/views/bandmap/list.php:291
 msgid "Fresh (< 5 min)"
 msgstr "新鮮（5分未満）"
 
-#: application/views/bandmap/list.php:276
+#: application/views/bandmap/list.php:296
 msgid "Spots de Continent"
 msgstr "大陸スポット"
 
-#: application/views/bandmap/list.php:290
+#: application/views/bandmap/list.php:310
 msgid "Spotted Station Continent"
 msgstr "Spotted Station Continent"
 
-#: application/views/bandmap/list.php:350
+#: application/views/bandmap/list.php:370
 msgid "Apply Filters"
 msgstr "フィルターを適用する"
 
-#: application/views/bandmap/list.php:359
+#: application/views/bandmap/list.php:379
 msgid ""
 "Apply your favorite bands and modes (configured in Band and Mode settings)"
 msgstr "お気に入りのバンドとモードを適用します（バンドとモードの設定で設定）"
 
-#: application/views/bandmap/list.php:363
+#: application/views/bandmap/list.php:383
 msgid "Clear all filters except De Continent"
 msgstr "大陸以外のフィルターをすべて消去する"
 
-#: application/views/bandmap/list.php:370
+#: application/views/bandmap/list.php:390
 msgid "Toggle 160m band filter"
 msgstr "160mバンドフィルターの切り替え"
 
-#: application/views/bandmap/list.php:374
+#: application/views/bandmap/list.php:394
 msgid "Toggle 80m band filter"
 msgstr "80mバンドフィルターの切り替え"
 
-#: application/views/bandmap/list.php:375
+#: application/views/bandmap/list.php:395
 msgid "Toggle 60m band filter"
 msgstr "60mバンドフィルターの切り替え"
 
-#: application/views/bandmap/list.php:376
+#: application/views/bandmap/list.php:396
 msgid "Toggle 40m band filter"
 msgstr "40mバンドフィルターの切り替え"
 
-#: application/views/bandmap/list.php:377
+#: application/views/bandmap/list.php:397
 msgid "Toggle 30m band filter"
 msgstr "30mバンドフィルターの切り替え"
 
-#: application/views/bandmap/list.php:378
+#: application/views/bandmap/list.php:398
 msgid "Toggle 20m band filter"
 msgstr "20mバンドフィルターの切り替え"
 
-#: application/views/bandmap/list.php:379
+#: application/views/bandmap/list.php:399
 msgid "Toggle 17m band filter"
 msgstr "17mバンドフィルターの切り替え"
 
-#: application/views/bandmap/list.php:380
+#: application/views/bandmap/list.php:400
 msgid "Toggle 15m band filter"
 msgstr "15mバンドフィルターの切り替え"
 
-#: application/views/bandmap/list.php:381
+#: application/views/bandmap/list.php:401
 msgid "Toggle 12m band filter"
 msgstr "12mバンドフィルターの切り替え"
 
-#: application/views/bandmap/list.php:382
+#: application/views/bandmap/list.php:402
 msgid "Toggle 10m band filter"
 msgstr "10mバンドフィルターの切り替え"
 
-#: application/views/bandmap/list.php:386
+#: application/views/bandmap/list.php:406
 msgid "Toggle VHF bands filter"
 msgstr "VHFバンドフィルターを切り替える"
 
-#: application/views/bandmap/list.php:387
+#: application/views/bandmap/list.php:407
 msgid "Toggle UHF bands filter"
 msgstr "UHFバンドフィルターを切り替える"
 
-#: application/views/bandmap/list.php:388
+#: application/views/bandmap/list.php:408
 msgid "Toggle SHF bands filter"
 msgstr "SHFバンドフィルターを切り替える"
 
-#: application/views/bandmap/list.php:398
+#: application/views/bandmap/list.php:418
 #: application/views/components/dxwaterfall.php:32
 msgid "Toggle CW mode filter"
 msgstr "CWモードフィルターの切り替え"
 
-#: application/views/bandmap/list.php:399
+#: application/views/bandmap/list.php:419
 #: application/views/components/dxwaterfall.php:34
 msgid "Toggle Digital mode filter"
 msgstr "デジタルモードフィルターを切り替える"
 
-#: application/views/bandmap/list.php:400
+#: application/views/bandmap/list.php:420
 #: application/views/components/dxwaterfall.php:30
 msgid "Toggle Phone mode filter"
 msgstr "電話モードフィルターを切り替える"
 
-#: application/views/bandmap/list.php:409
+#: application/views/bandmap/list.php:429
 msgid "Toggle LoTW User filter"
 msgstr "LoTWユーザーフィルターを切り替える"
 
-#: application/views/bandmap/list.php:410
+#: application/views/bandmap/list.php:430
 msgid "LoTW users"
 msgstr "LoTWユーザー"
 
-#: application/views/bandmap/list.php:416
+#: application/views/bandmap/list.php:436
 msgid "Toggle DX Spot filter (spotted continent ≠ spotter continent)"
 msgstr "DXスポットフィルターの切り替え（観測大陸≠観測大陸）"
 
-#: application/views/bandmap/list.php:417
-msgid "DX Spots"
-msgstr "DXスポット"
+#: application/views/bandmap/list.php:437
+#: application/views/bandmap/list.php:515
+msgid "DX"
+msgstr ""
 
-#: application/views/bandmap/list.php:419
-msgid "Toggle New Continent filter"
-msgstr "新大陸フィルターを切り替える"
+#: application/views/bandmap/list.php:439
+msgid "Toggle New Continents filter"
+msgstr ""
 
-#: application/views/bandmap/list.php:420
+#: application/views/bandmap/list.php:440
 msgid "New Continents"
 msgstr "新大陸"
 
-#: application/views/bandmap/list.php:422
-msgid "Toggle New Country filter"
-msgstr "新しい国フィルターを切り替える"
+#: application/views/bandmap/list.php:442
+msgid "Toggle New Entities filter"
+msgstr ""
 
-#: application/views/bandmap/list.php:423
-msgid "New DXCCs"
-msgstr "新しいDXCC"
+#: application/views/bandmap/list.php:443
+msgid "New Entities"
+msgstr ""
 
-#: application/views/bandmap/list.php:425
-msgid "Toggle New Callsign filter"
-msgstr "新しいコールサインフィルターを切り替える"
+#: application/views/bandmap/list.php:445
+msgid "Toggle New Callsigns filter"
+msgstr ""
 
-#: application/views/bandmap/list.php:426
+#: application/views/bandmap/list.php:446
 msgid "New Callsigns"
 msgstr "新しいコールサイン"
 
-#: application/views/bandmap/list.php:432
+#: application/views/bandmap/list.php:452
 msgid "Toggle Fresh spots filter (< 5 minutes old)"
 msgstr "新鮮なスポットフィルターを切り替える（5分未満）"
 
-#: application/views/bandmap/list.php:433
-msgid "Fresh Spots"
-msgstr "フレッシュスポット"
+#: application/views/bandmap/list.php:453
+msgid "Fresh"
+msgstr ""
 
-#: application/views/bandmap/list.php:435
+#: application/views/bandmap/list.php:455
 msgid "Toggle Contest filter"
 msgstr "コンテストフィルターを切り替える"
 
-#: application/views/bandmap/list.php:436
-msgid "Contest Spots"
-msgstr "コンテストスポット"
-
-#: application/views/bandmap/list.php:438
+#: application/views/bandmap/list.php:458
 msgid "Toggle Geo Hunter (POTA/SOTA/IOTA/WWFF)"
 msgstr "Geo Hunterの切り替え（POTA/SOTA/IOTA/WWFF）"
 
-#: application/views/bandmap/list.php:439
-msgid "Referenced Spots"
-msgstr "参照スポット"
+#: application/views/bandmap/list.php:459
+msgid "Referenced"
+msgstr ""
 
-#: application/views/bandmap/list.php:445
+#: application/views/bandmap/list.php:465
 msgid "Open DX Map view"
 msgstr "DXマップビューを開く"
 
-#: application/views/bandmap/list.php:446
+#: application/views/bandmap/list.php:466
 msgid "DX Map"
 msgstr "DXマップ"
 
-#: application/views/bandmap/list.php:470
+#: application/views/bandmap/list.php:490
 msgid "Search spots..."
 msgstr "スポットを検索..."
 
-#: application/views/bandmap/list.php:483
+#: application/views/bandmap/list.php:503
 msgid "Note: Map shows DXCC entity locations, not actual spot locations"
 msgstr ""
 "注: 地図はDXCCエンティティの位置を示しており、実際のスポットの位置ではありま"
 "せん"
 
-#: application/views/bandmap/list.php:491
+#: application/views/bandmap/list.php:511
 msgid "Age in minutes"
 msgstr "年齢（分）"
 
-#: application/views/bandmap/list.php:493
+#: application/views/bandmap/list.php:513
 msgid "Freq"
 msgstr "頻度"
 
-#: application/views/bandmap/list.php:495
-msgid "Spotted"
-msgstr "発見"
-
-#: application/views/bandmap/list.php:495
+#: application/views/bandmap/list.php:515
 msgid "Spotted Callsign"
 msgstr "スポッテッドコールサイン"
 
-#: application/views/bandmap/list.php:498
+#: application/views/bandmap/list.php:518
 msgid "Flag"
 msgstr "フラグ"
 
-#: application/views/bandmap/list.php:499
+#: application/views/bandmap/list.php:519
 msgid "DXCC Entity"
 msgstr "DXCCエンティティ"
 
-#: application/views/bandmap/list.php:499
+#: application/views/bandmap/list.php:519
 msgid "Entity"
 msgstr "実体"
 
-#: application/views/bandmap/list.php:500
+#: application/views/bandmap/list.php:520
 msgid "DXCC Number"
 msgstr "DXCC番号"
 
-#: application/views/bandmap/list.php:501
+#: application/views/bandmap/list.php:521
 msgid "Spotter Callsign"
 msgstr "スポッターコールサイン"
 
-#: application/views/bandmap/list.php:502
+#: application/views/bandmap/list.php:522
 msgid "Spotter Continent"
 msgstr "スポッター大陸"
 
-#: application/views/bandmap/list.php:503
+#: application/views/bandmap/list.php:523
 msgid "Spotter CQ Zone"
 msgstr "スポッターCQゾーン"
 
-#: application/views/bandmap/list.php:504
+#: application/views/bandmap/list.php:524
 msgid "Special"
 msgstr "スペシャル"
 
-#: application/views/bandmap/list.php:504
+#: application/views/bandmap/list.php:524
 msgid "Special Flags"
 msgstr "スペシャルフラグ"
 
-#: application/views/bandmap/list.php:505
+#: application/views/bandmap/list.php:525
 #: application/views/oqrs/notinlogform.php:28
 #: application/views/oqrs/request.php:54
 #: application/views/oqrs/request_grouped.php:57
@@ -8303,10 +8405,6 @@ msgstr "ユーザーのコールサイン"
 msgid "Notify the user via email about the change"
 msgstr "変更についてユーザーにメールで通知する"
 
-#: application/views/club/permissions.php:309
-msgid "Delete User"
-msgstr "ユーザーを削除"
-
 #: application/views/club/permissions.php:316
 msgid "Are you sure you want to delete this user from the club?"
 msgstr "このユーザーをクラブから削除してもよろしいですか?"
@@ -8507,6 +8605,9 @@ msgid ""
 "DX Waterfall has experienced an unexpected error and will be shut down. "
 "Please visit Wavelog's GitHub and create a bug report if this issue persists."
 msgstr ""
+"DX Waterfall で予期せぬエラーが発生したため、シャットダウンされます。問題が解"
+"決しない場合は、Wavelog の GitHub にアクセスしてバグレポートを作成してくださ"
+"い。"
 
 #: application/views/components/dxwaterfall.php:45
 msgid "Changing radio frequency..."
@@ -10560,10 +10661,10 @@ msgid "QSL Date"
 msgstr "QSL日付"
 
 #: application/views/eqslcard/index.php:64
-#: application/views/interface_assets/footer.php:2788
-#: application/views/interface_assets/footer.php:2806
-#: application/views/interface_assets/footer.php:2827
-#: application/views/interface_assets/footer.php:2845
+#: application/views/interface_assets/footer.php:2768
+#: application/views/interface_assets/footer.php:2786
+#: application/views/interface_assets/footer.php:2807
+#: application/views/interface_assets/footer.php:2825
 #: application/views/qslcard/index.php:77
 #: application/views/view_log/qso.php:779
 msgid "View"
@@ -11035,78 +11136,78 @@ msgstr "バージョン情報"
 msgid "Failed to load the modal. Please try again."
 msgstr "モーダルの読み込みに失敗しました。もう一度お試しください。"
 
-#: application/views/interface_assets/footer.php:549
+#: application/views/interface_assets/footer.php:529
 msgid "Description:"
 msgstr "説明："
 
-#: application/views/interface_assets/footer.php:552
+#: application/views/interface_assets/footer.php:532
 msgid "Query description"
 msgstr "クエリの説明"
 
-#: application/views/interface_assets/footer.php:568
+#: application/views/interface_assets/footer.php:548
 msgid "Your query has been saved!"
 msgstr "クエリが保存されました!"
 
-#: application/views/interface_assets/footer.php:570
+#: application/views/interface_assets/footer.php:550
 #: application/views/search/filter.php:49
 msgid "Edit queries"
 msgstr "クエリを編集する"
 
-#: application/views/interface_assets/footer.php:572
+#: application/views/interface_assets/footer.php:552
 msgid "Stored queries:"
 msgstr "保存されたクエリ:"
 
-#: application/views/interface_assets/footer.php:577
+#: application/views/interface_assets/footer.php:557
 #: application/views/search/filter.php:63
 msgid "Run Query"
 msgstr "クエリを実行"
 
-#: application/views/interface_assets/footer.php:589
-#: application/views/interface_assets/footer.php:725
-#: application/views/interface_assets/footer.php:795
+#: application/views/interface_assets/footer.php:569
+#: application/views/interface_assets/footer.php:705
+#: application/views/interface_assets/footer.php:775
 msgid "Stored Queries"
 msgstr "保存されたクエリ"
 
-#: application/views/interface_assets/footer.php:594
-#: application/views/interface_assets/footer.php:800
+#: application/views/interface_assets/footer.php:574
+#: application/views/interface_assets/footer.php:780
 msgid "You need to make a query before you search!"
 msgstr "検索する前にクエリを作成する必要があります!"
 
-#: application/views/interface_assets/footer.php:615
-#: application/views/interface_assets/footer.php:752
+#: application/views/interface_assets/footer.php:595
+#: application/views/interface_assets/footer.php:732
 #: application/views/search/filter.php:82
 msgid "Export to ADIF"
 msgstr "ADIFへのエクスポート"
 
-#: application/views/interface_assets/footer.php:616
-#: application/views/interface_assets/footer.php:753
+#: application/views/interface_assets/footer.php:596
+#: application/views/interface_assets/footer.php:733
 #: application/views/search/cqzones.php:40
 #: application/views/search/ituzones.php:40
 #: application/views/search/main.php:37
 msgid "Open in the Advanced Logbook"
 msgstr "詳細ログブックで開く"
 
-#: application/views/interface_assets/footer.php:660
+#: application/views/interface_assets/footer.php:640
 msgid "Warning! Are you sure you want delete this stored query?"
 msgstr "警告! この保存されたクエリを削除してもよろしいですか?"
 
-#: application/views/interface_assets/footer.php:674
+#: application/views/interface_assets/footer.php:654
 msgid "The stored query has been deleted!"
 msgstr "保存されたクエリが削除されました!"
 
-#: application/views/interface_assets/footer.php:683
+#: application/views/interface_assets/footer.php:663
 msgid "The stored query could not be deleted. Please try again!"
 msgstr "保存されたクエリを削除できませんでした。もう一度お試しください!"
 
-#: application/views/interface_assets/footer.php:709
+#: application/views/interface_assets/footer.php:689
 msgid "The query description has been updated!"
 msgstr "クエリの説明が更新されました!"
 
-#: application/views/interface_assets/footer.php:713
+#: application/views/interface_assets/footer.php:693
 msgid "Something went wrong with the save. Please try again!"
 msgstr "保存中にエラーが発生しました。もう一度お試しください!"
 
-#: application/views/interface_assets/footer.php:842
+#: application/views/interface_assets/footer.php:822
 msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
 "Check which DXCC for this particular location is the correct one. If you are "
@@ -11116,20 +11217,20 @@ msgstr ""
 "場所のDXCCが正しいかご確認ください。間違いがなければ、この警告は無視してくだ"
 "さい。"
 
-#: application/views/interface_assets/footer.php:895
+#: application/views/interface_assets/footer.php:875
 #: application/views/logbookadvanced/index.php:757
 msgid "Callsign: "
 msgstr "コールサイン: "
 
-#: application/views/interface_assets/footer.php:896
+#: application/views/interface_assets/footer.php:876
 msgid "Count: "
 msgstr "カウント： "
 
-#: application/views/interface_assets/footer.php:897
+#: application/views/interface_assets/footer.php:877
 msgid "Grids: "
 msgstr "グリッド: "
 
-#: application/views/interface_assets/footer.php:1215
+#: application/views/interface_assets/footer.php:1195
 #: application/views/logbookadvanced/index.php:13
 #: application/views/logbookadvanced/useroptions.php:210
 #: application/views/satellite/flightpath.php:11
@@ -11137,57 +11238,57 @@ msgctxt "Map Options"
 msgid "Gridsquares"
 msgstr "グリッドスクエア"
 
-#: application/views/interface_assets/footer.php:1604
-#: application/views/interface_assets/footer.php:1608
-#: application/views/interface_assets/footer.php:1611
-#: application/views/interface_assets/footer.php:1748
-#: application/views/interface_assets/footer.php:1752
-#: application/views/interface_assets/footer.php:1755
+#: application/views/interface_assets/footer.php:1584
+#: application/views/interface_assets/footer.php:1588
+#: application/views/interface_assets/footer.php:1591
+#: application/views/interface_assets/footer.php:1728
+#: application/views/interface_assets/footer.php:1732
+#: application/views/interface_assets/footer.php:1735
 msgid "grid square"
 msgstr "グリッドスクエア"
 
-#: application/views/interface_assets/footer.php:1611
-#: application/views/interface_assets/footer.php:1755
+#: application/views/interface_assets/footer.php:1591
+#: application/views/interface_assets/footer.php:1735
 msgid "Total count"
 msgstr "合計数"
 
-#: application/views/interface_assets/footer.php:2530
+#: application/views/interface_assets/footer.php:2510
 msgid "QSL Card for "
 msgstr "QSLカード "
 
-#: application/views/interface_assets/footer.php:2550
+#: application/views/interface_assets/footer.php:2530
 msgid "Warning! Are you sure you want to delete this QSL card?"
 msgstr "警告! このQSLカードを削除してもよろしいですか?"
 
-#: application/views/interface_assets/footer.php:2590
+#: application/views/interface_assets/footer.php:2570
 #: application/views/view_log/qso.php:43
 msgid "eQSL Card"
 msgstr "eQSLカード"
 
-#: application/views/interface_assets/footer.php:2592
+#: application/views/interface_assets/footer.php:2572
 msgid "eQSL Card for "
 msgstr "eQSLカード "
 
-#: application/views/interface_assets/footer.php:2799
-#: application/views/interface_assets/footer.php:2838
+#: application/views/interface_assets/footer.php:2779
+#: application/views/interface_assets/footer.php:2818
 #: application/views/view_log/qso.php:769
 msgid "QSL image file"
 msgstr "QSL画像ファイル"
 
-#: application/views/interface_assets/footer.php:2818
+#: application/views/interface_assets/footer.php:2798
 msgid "Front QSL Card:"
 msgstr "表面QSLカード:"
 
-#: application/views/interface_assets/footer.php:2856
+#: application/views/interface_assets/footer.php:2836
 msgid "Back QSL Card:"
 msgstr "裏面QSLカード:"
 
-#: application/views/interface_assets/footer.php:2867
-#: application/views/interface_assets/footer.php:2892
+#: application/views/interface_assets/footer.php:2847
+#: application/views/interface_assets/footer.php:2872
 msgid "Add additional QSOs to a QSL Card"
 msgstr "QSLカードにQSOを追加する"
 
-#: application/views/interface_assets/footer.php:2903
+#: application/views/interface_assets/footer.php:2883
 msgid "Something went wrong. Please try again!"
 msgstr "問題が発生しました。もう一度お試しください!"
 
@@ -16007,7 +16108,7 @@ msgstr "ユニークなコールサイン"
 msgid "Unique Grids"
 msgstr "ユニークなグリッド"
 
-#: application/views/statistics/initialresult.php:42
+#: application/views/statistics/initialresult.php:44
 #: application/views/statistics/initials.php:36
 msgid "No EME QSOs were found."
 msgstr "EME QSOは見つかりませんでした。"
@@ -17495,15 +17596,15 @@ msgstr "QSL受信をマーク（電子）"
 msgid "eQSL picture"
 msgstr "eQSL画像"
 
-#: application/views/visitor/layout/footer.php:238
+#: application/views/visitor/layout/footer.php:239
 msgid "Filter Results"
 msgstr "結果をフィルタリング"
 
-#: application/views/visitor/layout/footer.php:244
+#: application/views/visitor/layout/footer.php:245
 msgid "CSV"
 msgstr "CSV"
 
-#: application/views/visitor/layout/footer.php:252
+#: application/views/visitor/layout/footer.php:253
 msgid "Clear Filter"
 msgstr "フィルターをクリア"
 
@@ -17621,6 +17722,40 @@ msgstr "リクエストを送信"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "受信"
+
+#~ msgid "Radio:"
+#~ msgstr "無線機："
+
+#~ msgid "DX Spots"
+#~ msgstr "DXスポット"
+
+#~ msgid "Toggle New Continent filter"
+#~ msgstr "新大陸フィルターを切り替える"
+
+#~ msgid "Toggle New Country filter"
+#~ msgstr "新しい国フィルターを切り替える"
+
+#~ msgid "New DXCCs"
+#~ msgstr "新しいDXCC"
+
+#~ msgid "Toggle New Callsign filter"
+#~ msgstr "新しいコールサインフィルターを切り替える"
+
+#~ msgid "Fresh Spots"
+#~ msgstr "フレッシュスポット"
+
+#~ msgid "Contest Spots"
+#~ msgstr "コンテストスポット"
+
+#~ msgid "Referenced Spots"
+#~ msgstr "参照スポット"
+
+#~ msgid "Spotted"
+#~ msgstr "発見"
+
+#~ msgid ""
+#~ "When selected the filters will be set basing on your current radio status"
+#~ msgstr "選択すると、現在の無線機の状態に基づいてフィルターが設定されます"
 
 #~ msgid "Spots de"
 #~ msgstr "スポット"
