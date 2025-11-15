@@ -603,22 +603,21 @@ class Dxcluster_model extends CI_Model {
 			$spot->dxcc_spotted = (object)[];
 		}
 
-		// Initialize all properties at once using array merge
-		$defaults = [
-			'sota_ref' => '',
-			'pota_ref' => '',
-			'iota_ref' => '',
-			'wwff_ref' => '',
-			'isContest' => false
-		];
+	// Initialize all properties at once using array merge
+	$defaults = [
+		'sota_ref' => '',
+		'pota_ref' => '',
+		'iota_ref' => '',
+		'wwff_ref' => '',
+		'isContest' => false,
+		'contestName' => null
+	];
 
-		foreach ($defaults as $prop => $defaultValue) {
-			if (!property_exists($spot->dxcc_spotted, $prop)) {
-				$spot->dxcc_spotted->$prop = $defaultValue;
-			}
+	foreach ($defaults as $prop => $defaultValue) {
+		if (!property_exists($spot->dxcc_spotted, $prop)) {
+			$spot->dxcc_spotted->$prop = $defaultValue;
 		}
-
-		// Early exit if message is empty
+	}		// Early exit if message is empty
 		$message = $spot->message ?? '';
 		if (empty($message)) {
 			return $spot;
@@ -672,15 +671,15 @@ class Dxcluster_model extends CI_Model {
 
 			// Method 1: Explicit contest keywords with word boundaries
 			foreach ($this->contestIndicators as $indicator) {
-				// Use word boundary to avoid matching "CQ DX" in "CQ DX Americas" (which is just a CQ call)
-				if (preg_match('/\b' . preg_quote($indicator, '/') . '\b/', $upperMessage)) {
-					// Additional check: avoid false positives from generic "CQ" messages
-					if ($indicator === 'DX CONTEST' && preg_match('/^CQ\s+DX\s+[A-Z]+$/i', trim($message))) {
-					continue; // Skip "CQ DX <region>" patterns
-				}
-				$spot->dxcc_spotted->isContest = true;
-				$spot->dxcc_spotted->contest_name = $indicator;
-				return $spot;
+			// Use word boundary to avoid matching "CQ DX" in "CQ DX Americas" (which is just a CQ call)
+			if (preg_match('/\b' . preg_quote($indicator, '/') . '\b/', $upperMessage)) {
+				// Additional check: avoid false positives from generic "CQ" messages
+				if ($indicator === 'DX CONTEST' && preg_match('/^CQ\s+DX\s+[A-Z]+$/i', trim($message))) {
+				continue; // Skip "CQ DX <region>" patterns
+			}
+			$spot->dxcc_spotted->isContest = true;
+			$spot->dxcc_spotted->contestName = $indicator;
+			return $spot;
 			}
 		}			// Method 2: Contest exchange pattern - must have RST AND serial AND no conversational words
 			// Exclude spots with conversational indicators (TU, TNX, 73, GL, etc.)
@@ -692,7 +691,7 @@ class Dxcluster_model extends CI_Model {
 			if (preg_match('/\b(?:599|5NN)\s+(?:TU\s+)?[0-9]{2,4}\b/', $upperMessage) &&
 				!preg_match('/\bUR\s+599\b/', $upperMessage)) {
 				$spot->dxcc_spotted->isContest = true;
-				$spot->dxcc_spotted->contest_name = 'CONTEST';
+				$spot->dxcc_spotted->contestName = 'CONTEST';
 				return $spot;
 			}
 			}

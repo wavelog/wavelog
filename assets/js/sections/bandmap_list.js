@@ -959,8 +959,8 @@ $(function() {
 	if (single.dxcc_spotted && single.dxcc_spotted.isContest) {
 		// Build contest badge with contest name in tooltip if available
 		let contestTitle = lang_bandmap_contest;
-		if (single.dxcc_spotted.contest_name && single.dxcc_spotted.contest_name !== '') {
-			contestTitle = lang_bandmap_contest_name + ': ' + single.dxcc_spotted.contest_name;
+		if (single.dxcc_spotted.contestName && single.dxcc_spotted.contestName !== '') {
+			contestTitle = lang_bandmap_contest_name + ': ' + single.dxcc_spotted.contestName;
 		}
 		activity_flags += buildBadge('warning', 'fa-trophy', contestTitle);
 	}
@@ -994,12 +994,14 @@ $(function() {
 		let freqMHz = (single.frequency / 1000).toFixed(3);
 		data[0].push(freqMHz);
 
-		// Mode column: capitalize properly (API returns lowercase categories)
-		let displayMode = single.mode || '';
-		displayMode = MODE_CAPITALIZATION[displayMode] || displayMode;
-		data[0].push(displayMode);
-
-		// Callsign column: wrap in QRZ link with color coding
+	// Mode column: capitalize properly (API returns lowercase categories)
+	// Show submode in tooltip if available
+	let displayMode = single.mode || '';
+	displayMode = MODE_CAPITALIZATION[displayMode] || displayMode;
+	if (single.submode && single.submode !== '') {
+		displayMode = '<span data-bs-toggle="tooltip" title="' + single.submode + '">' + displayMode + '</span>';
+	}
+	data[0].push(displayMode);		// Callsign column: wrap in QRZ link with color coding
 		let qrzLink = '<a href="https://www.qrz.com/db/' + single.spotted + '" target="_blank" onclick="event.stopPropagation();" data-bs-toggle="tooltip" title="Click to view ' + single.spotted + ' on QRZ.com">' + single.spotted + '</a>';
 		wked_info = ((wked_info != '' ? '<span class="' + wked_info + '">' : '') + qrzLink + (wked_info != '' ? '</span>' : ''));
 		var spotted = wked_info;
