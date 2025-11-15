@@ -163,7 +163,6 @@ function plot(visitor, grid_two, grid_four, grid_six, grid_two_confirmed, grid_f
             /*Legend specific*/
             var legend = L.control({ position: "topright" });
 
-			console.log(grids);
 
 			if (grids != '') {
 				legend.onAdd = function(map) {
