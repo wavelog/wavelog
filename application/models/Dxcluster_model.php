@@ -12,7 +12,7 @@ class Dxcluster_model extends CI_Model {
 		'SWEEPSTAKES', 'FIELD DAY', 'DX CONTEST', 'SSB CONTEST', 'CW CONTEST',
 		'RTTY CONTEST', 'VHF CONTEST', 'SPRINT', 'DXCC', 'WAE', 'IOTA CONTEST',
 		'NAQP', 'BARTG', 'RSGB', 'RUNDSPRUCH', 'JARTS', 'CW OPEN', 'SSB OPEN',
-		'EU CONTEST', 'NA CONTEST', 'KING OF SPAIN', 'ALL ASIAN'
+		'EU CONTEST', 'NA CONTEST', 'KING OF SPAIN', 'ALL ASIAN', 'HAM SPIRIT', 'HAMSPIRIT'
 	];
 
 	public function __construct() {
@@ -585,27 +585,25 @@ class Dxcluster_model extends CI_Model {
 				if (preg_match('/\b' . preg_quote($indicator, '/') . '\b/', $upperMessage)) {
 					// Additional check: avoid false positives from generic "CQ" messages
 					if ($indicator === 'DX CONTEST' && preg_match('/^CQ\s+DX\s+[A-Z]+$/i', trim($message))) {
-						continue; // Skip "CQ DX <region>" patterns
-					}
-					$spot->dxcc_spotted->isContest = true;
-					$spot->dxcc_spotted->contestName = $indicator;
-					return $spot;
+					continue; // Skip "CQ DX <region>" patterns
 				}
+				$spot->dxcc_spotted->isContest = true;
+				$spot->dxcc_spotted->contest_name = $indicator;
+				return $spot;
 			}
-
-			// Method 2: Contest exchange pattern - must have RST AND serial AND no conversational words
+		}			// Method 2: Contest exchange pattern - must have RST AND serial AND no conversational words
 			// Exclude spots with conversational indicators (TU, TNX, 73, GL, etc.)
 			$conversational = '/\b(TU|TNX|THANKS|73|GL|HI|FB|CUL|HPE|PSE|DE)\b/';
 
 			if (!preg_match($conversational, $upperMessage)) {
-				// Look for typical contest exchange: RST + number (but not just any 599)
-				// Must be followed by more structured exchange (not just "ur 599")
-				if (preg_match('/\b(?:599|5NN)\s+(?:TU\s+)?[0-9]{2,4}\b/', $upperMessage) &&
-					!preg_match('/\bUR\s+599\b/', $upperMessage)) {
-					$spot->dxcc_spotted->isContest = true;
-					$spot->dxcc_spotted->contestName = 'CONTEST';
-					return $spot;
-				}
+			// Look for typical contest exchange: RST + number (but not just any 599)
+			// Must be followed by more structured exchange (not just "ur 599")
+			if (preg_match('/\b(?:599|5NN)\s+(?:TU\s+)?[0-9]{2,4}\b/', $upperMessage) &&
+				!preg_match('/\bUR\s+599\b/', $upperMessage)) {
+				$spot->dxcc_spotted->isContest = true;
+				$spot->dxcc_spotted->contest_name = 'CONTEST';
+				return $spot;
+			}
 			}
 		}
 
