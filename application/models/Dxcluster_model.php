@@ -7,12 +7,14 @@ class Dxcluster_model extends CI_Model {
  	protected $bandedges = [];
 
 	// Contest indicators - moved to class property to avoid recreation on every call
+	// Contest indicators - ORDER MATTERS! More specific names must come before generic terms
+	// to ensure accurate matching (e.g., "HAM SPIRIT" before "CONTEST")
 	protected $contestIndicators = [
-		'CONTEST', 'CQ WW', 'CQ WPX', 'ARRL', 'IARU', 'CQWW', 'CQWPX',
+		'HAM SPIRIT', 'HAMSPIRIT', 'CQ WW', 'CQ WPX', 'ARRL', 'IARU', 'CQWW', 'CQWPX',
 		'SWEEPSTAKES', 'FIELD DAY', 'DX CONTEST', 'SSB CONTEST', 'CW CONTEST',
 		'RTTY CONTEST', 'VHF CONTEST', 'SPRINT', 'DXCC', 'WAE', 'IOTA CONTEST',
 		'NAQP', 'BARTG', 'RSGB', 'RUNDSPRUCH', 'JARTS', 'CW OPEN', 'SSB OPEN',
-		'EU CONTEST', 'NA CONTEST', 'KING OF SPAIN', 'ALL ASIAN', 'HAM SPIRIT', 'HAMSPIRIT'
+		'EU CONTEST', 'NA CONTEST', 'KING OF SPAIN', 'ALL ASIAN', 'CONTEST'
 	];
 
 	// Digital modes for submode detection
@@ -692,7 +694,7 @@ class Dxcluster_model extends CI_Model {
 			if (preg_match('/\b(?:599|5NN)\s+(?:TU\s+)?[0-9]{2,4}\b/', $upperMessage) &&
 				!preg_match('/\bUR\s+599\b/', $upperMessage)) {
 				$spot->dxcc_spotted->isContest = true;
-				$spot->dxcc_spotted->contestName = 'CONTEST';
+				$spot->dxcc_spotted->contestName = '';
 				return $spot;
 			}
 			}
