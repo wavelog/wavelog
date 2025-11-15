@@ -21,7 +21,8 @@ class Dxcluster_model extends CI_Model {
 	protected $digitalModes = [
 		'FT8', 'FT4', 'RTTY', 'PSK31', 'PSK63', 'PSK', 'SSTV', 'MFSK',
 		'OLIVIA', 'CONTESTIA', 'JT65', 'JT9', 'WSPR', 'HELL', 'THOR',
-		'DOMINO', 'MT63', 'PACTOR'
+		'DOMINO', 'MT63', 'PACTOR', 'MSK144', 'Q65', 'JS8', 'FSK441',
+		'ISCAT', 'JT6M', 'FST4', 'FST4W', 'FREEDV', 'VARA'
 	];
 
 	public function __construct() {
