@@ -1,5 +1,5 @@
 <div class="container">
-    <h1><?php echo $page_title; ?></h1>
+    <h2><?php echo $page_title; ?></h2>
 
 	<?php if ($worked_bands) { ?>
 		<form>
