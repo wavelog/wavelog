@@ -1571,7 +1571,7 @@ var dxWaterfall = {
                 $('#frequency').trigger('change');
                 DX_WATERFALL_UTILS.log.debug('[DX Waterfall] Populated frequency from display field: ' + freqHz + ' Hz');
             }
-            
+
             // Wait for frequency data
             DX_WATERFALL_UTILS.log.debug('[DX Waterfall] Waiting for valid frequency data...');
 
