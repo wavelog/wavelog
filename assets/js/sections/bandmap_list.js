@@ -537,12 +537,6 @@ $(function() {
 		return spot.spotted + '_' + spot.frequency + '_' + spot.spotter;
 	}
 
-	// Extract frequency from spot key for band determination
-	function getFrequencyFromKey(key) {
-		let parts = key.split('_');
-		return parseFloat(parts[1]); // frequency is the second part
-	}
-
 	// Auto-refresh timer state
 	var refreshCountdown = SPOT_REFRESH_INTERVAL;
 	var refreshTimerInterval = null;
@@ -845,14 +839,8 @@ $(function() {
 		// Apply band filter (client-side for multi-select)
 		let passesBandFilter = bands.includes('All');
 		if (!passesBandFilter) {
-			// Check if spot has band field set, otherwise determine from frequency
+			// Band is always provided by API
 			let spot_band = single.band;
-
-			// If no band field, try to determine from frequency
-			if (!spot_band) {
-				spot_band = getBandFromFrequency(single.frequency);
-			}
-
 			passesBandFilter = bands.includes(spot_band);
 		}
 		if (!passesBandFilter) return;			// Apply de continent filter (which continent the spotter is in)
@@ -871,9 +859,8 @@ $(function() {
 		if (!passesContinentFilter) return;			// Apply mode filter (client-side for multi-select)
 			let passesModeFilter = modes.includes('All');
 			if (!passesModeFilter) {
-				let spot_mode_category = getModeCategory(single.mode);
-				// Only pass if mode has a category and it matches one of the selected filters
-				passesModeFilter = spot_mode_category && modes.includes(spot_mode_category);
+				// API already returns mode categories ('cw', 'digi', 'phone')
+				passesModeFilter = single.mode && modes.includes(single.mode);
 			}
 			if (!passesModeFilter) return;
 
@@ -1039,11 +1026,10 @@ $(function() {
 		let freqMHz = (single.frequency / 1000).toFixed(3);
 		data[0].push(freqMHz);
 
-		// Mode column: capitalize properly
+		// Mode column: capitalize properly (API returns lowercase categories)
 		let displayMode = single.mode || '';
-		if (displayMode.toLowerCase() === 'phone') displayMode = 'Phone';
-		else if (displayMode.toLowerCase() === 'cw') displayMode = 'CW';
-		else if (displayMode.toLowerCase() === 'digi') displayMode = 'Digi';
+		const modeCapitalization = { 'phone': 'Phone', 'cw': 'CW', 'digi': 'Digi' };
+		displayMode = modeCapitalization[displayMode] || displayMode;
 		data[0].push(displayMode);
 
 		// Callsign column: wrap in QRZ link with color coding
@@ -1355,12 +1341,9 @@ $(function() {
 			}
 			if (!passesFlagsFilter) return;
 
-			// Get spot's band and mode for filtering
+			// Get spot's band and mode for filtering (both always provided by API)
 			let band = spot.band;
-			if (!band) {
-				band = getBandFromFrequency(spot.frequency);
-			}
-			let modeCategory = getModeCategory(spot.mode);
+			let modeCategory = spot.mode;
 
 			// Count by band (applying MODE filter when counting bands)
 			if (band) {
@@ -1678,18 +1661,17 @@ $(function() {
 				for (let [key, ttl] of spotTTLMap.entries()) {
 					let newTTL = ttl;
 
-					// Only decrement TTL if:
-					// - We fetched all bands (bandForAPI === 'All'), OR
-					// - This spot is in the band we just fetched
-					let shouldDecrementTTL = (bandForAPI === 'All');
-					if (!shouldDecrementTTL) {
-						// Extract frequency from the spot key and determine its band
-						let spotFrequency = getFrequencyFromKey(key);
-						let spotBand = getBandFromFrequency(spotFrequency);
-						shouldDecrementTTL = (spotBand === bandForAPI);
+				// Only decrement TTL if:
+				// - We fetched all bands (bandForAPI === 'All'), OR
+				// - This spot is in the band we just fetched
+				let shouldDecrementTTL = (bandForAPI === 'All');
+				if (!shouldDecrementTTL && cachedSpotData) {
+					// Look up band from cached spot data (band always provided by API)
+					let cachedSpot = cachedSpotData.find(s => getSpotKey(s) === key);
+					if (cachedSpot && cachedSpot.band) {
+						shouldDecrementTTL = (cachedSpot.band === bandForAPI);
 					}
-
-					if (shouldDecrementTTL) {
+				}					if (shouldDecrementTTL) {
 						newTTL = ttl - 1;  // Decrement only if in scope of this fetch
 					}
 
@@ -1784,16 +1766,6 @@ $(function() {
 		const fontSize = text ? '0.75rem' : '0.7rem';
 		const content = text ? text : '<i class="fas ' + icon + '" style="display: block;"></i>';
 		return '<small class="badge text-bg-' + type + '" style="display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; padding: 0; margin: ' + margin + '; font-size: ' + fontSize + '; line-height: 1;" data-bs-toggle="tooltip" title="' + title + '">' + content + '</small>';
-	}
-
-	/**
-	 * Map frequency (in kHz) to ham band name
-	 * Uses frequencyToBand() from radiohelpers.js with 'kHz' parameter
-	 * @param {number} freq_khz - Frequency in kilohertz
-	 * @returns {string} Band name (e.g., '20m', '2m') or 'All' if not in a known band
-	 */
-	function getBandFromFrequency(freq_khz) {
-		return frequencyToBand(freq_khz, 'kHz');
 	}
 
 	// Use BAND_GROUPS from radiohelpers.js (loaded globally in footer)
