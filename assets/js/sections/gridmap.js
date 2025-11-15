@@ -293,7 +293,10 @@ function clearMarkers() {
 }
 
 function hideLegend() {
-	clearMarkers();
+	// Not defined in visitors view
+	if (typeof clicklines !== 'undefined') {
+		clearMarkers();
+	}
 	$("#gridmapLegend").hide();
 }
 
