@@ -1562,7 +1562,17 @@ var dxWaterfall = {
         var currentFreq = parseFloat($freqInput.val()) || 0;
 
         if (currentFreq === 0 || !DX_WATERFALL_UTILS.frequency.isValid(currentFreq)) {
-            // No valid frequency yet - wait for frequency data
+            // No valid frequency - try to populate from freq_calculated if available
+            var freqCalc = parseFloat($('#freq_calculated').val()) || 0;
+            var unit = $('#qrg_unit').text() || 'kHz';
+            if (freqCalc > 0) {
+                var freqHz = convertFrequency(freqCalc, unit, 'Hz');
+                $('#frequency').val(freqHz);
+                $('#frequency').trigger('change');
+                DX_WATERFALL_UTILS.log.debug('[DX Waterfall] Populated frequency from display field: ' + freqHz + ' Hz');
+            }
+            
+            // Wait for frequency data
             DX_WATERFALL_UTILS.log.debug('[DX Waterfall] Waiting for valid frequency data...');
 
             // Transition to INITIALIZING state to show waiting message
