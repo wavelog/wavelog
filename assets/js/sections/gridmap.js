@@ -125,7 +125,7 @@ function gridPlot(form, visitor=true) {
 		},
 	});
    } else {
-      plot(visitor, grid_two, grid_four, grid_six, grid_two_confirmed, grid_four_confirmed, grid_six_confirmed);
+      plot(visitor, grid_two, grid_four, grid_six, grid_two_confirmed, grid_four_confirmed, grid_six_confirmed, '', 0);
    };
 }
 
@@ -159,6 +159,8 @@ function plot(visitor, grid_two, grid_four, grid_six, grid_two_confirmed, grid_f
 
             /*Legend specific*/
             var legend = L.control({ position: "topright" });
+
+			console.log(grids);
 
 			if (grids != '') {
 				legend.onAdd = function(map) {
