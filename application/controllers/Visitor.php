@@ -235,7 +235,7 @@ class Visitor extends CI_Controller {
 
 
 		// Get Confirmed LoTW & Paper Squares (non VUCC)
-		$query = $this->gridmap_model->get_band_confirmed('SAT', 'All', 'false', 'true', 'false', 'false', 'All', 'All', 'All', $logbooks_locations_array);
+		$query = $this->gridmap_model->get_band_confirmed('SAT', 'All', 'false', 'true', 'false', 'false', 'All', 'All', 'All', 'All', '', $logbooks_locations_array);
 
 
 		if ($query && $query->num_rows() > 0)
@@ -271,7 +271,7 @@ class Visitor extends CI_Controller {
 		}
 
 		// Get worked squares
-		$query = $this->gridmap_model->get_band('SAT', 'All', 'false', 'true', 'false', 'false', 'All', 'All', 'All', $logbooks_locations_array);
+		$query = $this->gridmap_model->get_band('SAT', 'All', 'false', 'true', 'false', 'false', 'All', 'All', 'All', 'All', '', $logbooks_locations_array);
 
 		if ($query && $query->num_rows() > 0)
 		{

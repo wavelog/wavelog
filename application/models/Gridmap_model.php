@@ -2,13 +2,17 @@
 
 class Gridmap_model extends CI_Model {
 
-	function get_band_confirmed($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $dxcc, $grids) {
-		$this->load->model('logbooks_model');
-		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	// $query = $this->gridmap_model->get_band_confirmed('SAT', 'All', 'false', 'true', 'false', 'false', 'All', 'All', 'All', $logbooks_locations_array);
+
+	function get_band_confirmed($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $dxcc, $grids, $logbooks_locations_array = NULL) {
+		if ($logbooks_locations_array == NULL) {
+			$this->load->model('logbooks_model');
+			$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		}
 
 		if (!$logbooks_locations_array) {
 			return null;
-		}
+        }
 
 		$location_list = "'".implode("','",$logbooks_locations_array)."'";
 
@@ -72,13 +76,17 @@ class Gridmap_model extends CI_Model {
 		return $this->db->query($sql, $binding);
 	}
 
-	function get_band($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $dxcc, $grids) {
-		$this->load->model('logbooks_model');
-		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	// $query = $this->gridmap_model->get_band('SAT', 'All', 'false', 'true', 'false', 'false', 'All', 'All', 'All', $logbooks_locations_array);
+
+	function get_band($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $dxcc, $grids, $logbooks_locations_array = NULL) {
+		if ($logbooks_locations_array == NULL) {
+			$this->load->model('logbooks_model');
+			$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		}
 
 		if (!$logbooks_locations_array) {
 			return null;
-		}
+        }
 
 		$location_list = "'".implode("','",$logbooks_locations_array)."'";
 
