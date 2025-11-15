@@ -6231,9 +6231,12 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
     // The change event will trigger set_qrg() which updates freq_calculated display
     $('#frequency').val(frequencyInKHz * 1000);
 
-    // Always trigger change to update display field via set_qrg()
-    // This ensures freq_calculated is kept in sync with frequency field
-    $('#frequency').trigger('change');
+    // Trigger change event to update calculated fields and unit display
+    // Skip trigger when called from waterfall to prevent recursive updates
+    // Exception: If no radio is selected, update display even when called from waterfall
+    if (!fromWaterfall || $('#radio').val() == 0) {
+        set_qrg();
+    }
 
     // Clear navigation flags immediately since no CAT operation is happening
     if (typeof dxWaterfall !== 'undefined') {
