@@ -6227,9 +6227,6 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
         return;
     }
 
-    // Update frequency field with value in Hz
-    $('#frequency').val(frequencyInKHz * 1000);
-
     // Write to frequency field in Hz (single source of truth)
     // The change event will trigger set_qrg() which updates freq_calculated display
     $('#frequency').val(frequencyInKHz * 1000);
