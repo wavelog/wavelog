@@ -1881,9 +1881,16 @@ var dxWaterfall = {
             // On first focus before any commit, commit the initial frequency
             if (self.lastValidCommittedFreqHz === null) {
                 var currentFreqHz = parseFloat(self.$frequency.val()) || 0;
-                if (currentFreqHz > 0) {
-                    self.commitFrequency();
+                // If frequency is empty or 0, use set_new_qrg logic to get default for current band/mode
+                if (currentFreqHz <= 0) {
+                    if (typeof set_new_qrg === 'function') {
+                        set_new_qrg().then(function() {
+                            self.commitFrequency();
+                        });
+                        return; // Exit and let async completion handle commit
+                    }
                 }
+                self.commitFrequency();
             }
         });
 
@@ -2153,6 +2160,13 @@ var dxWaterfall = {
         } else {
             // Before first valid commit (initial load), use real-time values from single source
             currentFreqHz = parseFloat(this.$frequency.val()) || 0;
+            // If frequency is still 0, trigger set_new_qrg to populate from band/mode defaults
+            if (currentFreqHz <= 0 && typeof set_new_qrg === 'function') {
+                // Trigger async frequency population but return 0 for now
+                // Next render cycle will have the correct frequency
+                set_new_qrg();
+                currentFreqHz = 0; // Will be updated on next call
+            }
         }
 
         // Invalidate cache if frequency changes
