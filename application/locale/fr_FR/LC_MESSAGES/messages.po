@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-11-14 20:09+0000\n"
+"POT-Creation-Date: 2025-11-15 16:34+0000\n"
 "PO-Revision-Date: 2025-11-15 12:02+0000\n"
 "Last-Translator: JONCOUX Philippe <joncoux@free.fr>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
@@ -2492,9 +2492,9 @@ msgstr "Minuteries de satellite"
 #: application/views/search/lotw_unconfirmed.php:40
 #: application/views/search/main.php:4 application/views/search/main.php:12
 #: application/views/search/main.php:36
+#: application/views/visitor/layout/footer.php:13
 #: application/views/visitor/layout/header.php:97
 #: application/views/visitor/layout/header.php:98
-#: application/views/visitor/layout/footer.php:13
 msgid "Search"
 msgstr "Rechercher"
 
@@ -3145,8 +3145,8 @@ msgid ""
 "encryption_key in your config.php file first!"
 msgstr ""
 "Vous ne pouvez actuellement pas usurper l'identité d'un autre utilisateur. "
-"Veuillez d'abord changer la clé de chiffrement dans votre fichier "
-"config.php !"
+"Veuillez d'abord changer la clé de chiffrement dans votre fichier config."
+"php !"
 
 #: application/controllers/User.php:1601
 msgid "Invalid Hash"
@@ -3774,7 +3774,6 @@ msgstr "Différence"
 #: application/views/timeplotter/index.php:27
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:789
-#: application/views/visitor/layout/footer.php:172
 #: application/views/visitor/layout/footer.php:173
 msgid "All"
 msgstr "Tout"
@@ -6668,7 +6667,6 @@ msgstr ""
 "bandes."
 
 #: application/views/awards/wae/index.php:9
-#, fuzzy
 msgid ""
 "The WAE will be issued in the following modes: CW, SSB, Phone, RTTY, FT8, "
 "Digital and Mixed Modes. It is issued in five classes: WAE III, WAE II, WAE "
@@ -10717,8 +10715,8 @@ msgstr ""
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
-"Cliquer sur 'Téléverser les QSOs' enverra les informations de QSO vers "
-"eQSL.cc."
+"Cliquer sur 'Téléverser les QSOs' enverra les informations de QSO vers eQSL."
+"cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -13415,8 +13413,8 @@ msgid ""
 "The hostname of the mail server, e.g. 'mail.example.com' (without 'ssl://' "
 "or 'tls://')"
 msgstr ""
-"Le nom d'hôte du serveur de messagerie, par exemple « mail.example.com » "
-"(sans « ssl:// » ou « tls:// »)"
+"Le nom d'hôte du serveur de messagerie, par exemple « mail.example."
+"com » (sans « ssl:// » ou « tls:// »)"
 
 #: application/views/options/email.php:88
 msgid "SMTP Port"
@@ -15573,8 +15571,8 @@ msgid ""
 msgstr ""
 "Pour commencer, assurez-vous d'avoir rempli le formulaire sur la gauche avec "
 "la date, l'indicatif de la station et l'indicatif de l'opérateur. Les "
-"données principales incluent la bande (ou QRG en MHz, par exemple "
-"« 7.145 »), le mode et l'heure. Après l'heure, indiquez le premier QSO, qui "
+"données principales incluent la bande (ou QRG en MHz, par exemple « 7.145 "
+"»), le mode et l'heure. Après l'heure, indiquez le premier QSO, qui "
 "correspond essentiellement à l'indicatif."
 
 #: application/views/simplefle/syntax_help.php:9
@@ -17814,17 +17812,14 @@ msgstr "Marquer QSL Reçue (Electronic)"
 msgid "eQSL picture"
 msgstr "Image eQSL"
 
-#: application/views/visitor/layout/footer.php:238
 #: application/views/visitor/layout/footer.php:239
 msgid "Filter Results"
 msgstr "Résultats du filtrage"
 
-#: application/views/visitor/layout/footer.php:244
 #: application/views/visitor/layout/footer.php:245
 msgid "CSV"
 msgstr "CSV"
 
-#: application/views/visitor/layout/footer.php:252
 #: application/views/visitor/layout/footer.php:253
 msgid "Clear Filter"
 msgstr "Effacer le filtre"
