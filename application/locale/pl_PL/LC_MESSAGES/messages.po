@@ -16,16 +16,16 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-11-15 16:34+0000\n"
-"PO-Revision-Date: 2025-11-16 08:59+0000\n"
+"PO-Revision-Date: 2025-11-16 21:39+0000\n"
 "Last-Translator: Szymon <sp9spm@cqops.com>\n"
-"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/pl/>\n"
+"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/pl/>\n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && "
+"(n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 5.14\n"
 
 #: application/controllers/Accumulated.php:12
@@ -7377,7 +7377,7 @@ msgstr "Prowincja"
 
 #: application/views/awards/wapc/index.php:7
 msgid "WAPC - Worked All Provinces of China"
-msgstr "WAPC – Pracowano ze wszystkimi prowincjami Chin"
+msgstr "WAPC – Zaliczono wszystkie prowincje Chin"
 
 #: application/views/awards/wapc/index.php:8
 msgid ""
@@ -7780,12 +7780,12 @@ msgstr "Nowy kraj"
 
 #: application/views/bandmap/list.php:66
 msgid "Worked Before"
-msgstr "Pracowano wcześniej"
+msgstr "Zaliczono wcześniej"
 
 #: application/views/bandmap/list.php:67
 #, php-format
 msgid "Worked on %s with %s"
-msgstr "Pracowano dnia %s emisją %s"
+msgstr "Zaliczono dnia %s emisją %s"
 
 #: application/views/bandmap/list.php:75 application/views/bandmap/list.php:521
 msgid "de"
@@ -7831,11 +7831,11 @@ msgstr "Zobacz szczegóły dla"
 
 #: application/views/bandmap/list.php:86
 msgid "Worked on"
-msgstr "Pracowano dnia"
+msgstr "Zaliczono dnia"
 
 #: application/views/bandmap/list.php:87
 msgid "Not worked on this band"
-msgstr "Nie pracowano na tym paśmie"
+msgstr "Nie zaliczono na tym paśmie"
 
 #: application/views/bandmap/list.php:88
 #, php-format
@@ -8107,7 +8107,7 @@ msgstr "Potrzebne flagi"
 
 #: application/views/bandmap/list.php:280
 msgid "Worked Callsign"
-msgstr "Pracowany znak"
+msgstr "Zaliczony znak"
 
 #: application/views/bandmap/list.php:282
 msgid "DX Spot"
@@ -11620,12 +11620,11 @@ msgstr "Wyślij email do %s"
 msgid ""
 "Callsign was already worked and confirmed in the past on this band and mode!"
 msgstr ""
-"Znak był już wcześniej przeprowadzony i potwierdzony na tym paśmie i w tym "
-"trybie!"
+"Znak był już wcześniej zaliczony i potwierdzony na tym paśmie i w tym trybie!"
 
 #: application/views/interface_assets/footer.php:83
 msgid "Callsign was already worked in the past on this band and mode!"
-msgstr "Znak był już wcześniej przeprowadzony na tym paśmie i w tym trybie!"
+msgstr "Znak był już wcześniej zaliczony na tym paśmie i w tym trybie!"
 
 #: application/views/interface_assets/footer.php:84
 msgid "New Callsign!"
@@ -11633,11 +11632,11 @@ msgstr "Nowy znak!"
 
 #: application/views/interface_assets/footer.php:85
 msgid "Grid was already worked and confirmed in the past"
-msgstr "Lokator był już wcześniej przeprowadzony i potwierdzony"
+msgstr "Lokator był już wcześniej zaliczony i potwierdzony"
 
 #: application/views/interface_assets/footer.php:86
 msgid "Grid was already worked in the past"
-msgstr "Lokator był już wcześniej przeprowadzony"
+msgstr "Lokator był już wcześniej zaliczony"
 
 #: application/views/interface_assets/footer.php:87
 msgid "New grid!"
@@ -11651,16 +11650,15 @@ msgstr "Czy na pewno chcesz usunąć ulubiony?"
 msgid ""
 "DXCC was already worked and confirmed in the past on this band and mode!"
 msgstr ""
-"DXCC był już wcześniej przeprowadzony i potwierdzony na tym paśmie i w tym "
-"trybie!"
+"DXCC był już wcześniej zaliczony i potwierdzony na tym paśmie i w tym trybie!"
 
 #: application/views/interface_assets/footer.php:90
 msgid "DXCC was already worked in the past on this band and mode!"
-msgstr "DXCC był już wcześniej przeprowadzony na tym paśmie i w tym trybie!"
+msgstr "DXCC był już wcześniej zaliczony na tym paśmie i w tym trybie!"
 
 #: application/views/interface_assets/footer.php:91
 msgid "New DXCC, not worked on this band and mode!"
-msgstr "Nowy DXCC, nieprzeprowadzony na tym paśmie i w tym trybie!"
+msgstr "Nowy DXCC, niezaliczony na tym paśmie i w tym trybie!"
 
 #: application/views/interface_assets/footer.php:92
 #, php-format
@@ -13513,7 +13511,7 @@ msgstr "Napraw strefy ITU"
 
 #: application/views/logbookadvanced/index.php:737
 msgid "Fix Continent"
-msgstr "Popraw kontynent"
+msgstr "Napraw kontynent"
 
 #: application/views/logbookadvanced/index.php:745
 #: application/views/oqrs/showrequests.php:58
@@ -18627,19 +18625,19 @@ msgstr "Rcvd"
 
 #: application/views/user/edit.php:547
 msgid "QSO (worked, not confirmed)"
-msgstr ""
+msgstr "QSO (zaliczone, niepotwierdzone)"
 
 #: application/views/user/edit.php:567
 msgid "(If 'No', displayed as 'QSO (by default))"
-msgstr ""
+msgstr "(Jeśli 'Nie', wyświetlane jako QSO (domyślnie))"
 
 #: application/views/user/edit.php:586
 msgid "Unworked (e.g. Zones)"
-msgstr ""
+msgstr "Niezaliczone (np. strefy)"
 
 #: application/views/user/edit.php:587
 msgid "(Color for unworked zones)"
-msgstr ""
+msgstr "(Kolor niezaliczonych stref)"
 
 #~ msgid "Radio:"
 #~ msgstr "Radiostacja:"
