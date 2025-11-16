@@ -1434,19 +1434,14 @@ mymap.on('mousemove', onQsoMapMove);
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datetime-moment.js"></script>
 
 	<!--- CAT Functionality --->
-	<?php
-	// Load CAT functionality only if not in manual mode (manual=0 or null) - we don't want to load CAT JS when user is in manual mode (POST QSO logging form or POST contest logging form)
-	$manual = $this->input->get('manual');
-	if ($manual === null || $manual == '0') { ?>
-		<!--- DX Waterfall Functionality --->
-		<?php if ($this->session->userdata('user_dxwaterfall_enable') == 'Y') { ?>
-		<script>
-			// Global variable definition for dxwaterfall.js
-			var dxwaterfall_cat_state = "none";
-		</script>
-		<?php } ?>
-	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/cat.js"></script>
+	<!--- DX Waterfall Functionality --->
+	<?php if ($this->session->userdata('user_dxwaterfall_enable') == 'Y') { ?>
+	<script>
+		// Global variable definition for dxwaterfall.js
+		var dxwaterfall_cat_state = "none";
+	</script>
 	<?php } ?>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/cat.js"></script>
 
 <?php } ?>
 
