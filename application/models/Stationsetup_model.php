@@ -258,6 +258,57 @@ class Stationsetup_model extends CI_Model {
 		return $result;
 	}
 
+	public function import_locations_parse($locations) {
+		$imported=0;
+		foreach ($locations as $loc) {
+			if ($imported >= 1000){
+				return (array('limit',$imported."locations imported. Maximum limit of 1000 locations reached.")); // Prevent importing more than 1000 locations at once
+			}
+			// Data for station_profile
+			$dbdata = [
+				'station_active'        => 0,
+				'station_profile_name'  => ((isset($loc['station_profile_name']) && $loc['station_profile_name'] != "") ? xss_clean($loc['station_profile_name']) : ''),
+				'station_gridsquare'    => ((isset($loc['station_gridsquare']) && $loc['station_gridsquare'] != "") ? xss_clean($loc['station_gridsquare']) : ''),
+				'station_city'          => ((isset($loc['station_city']) && $loc['station_city'] != "") ? xss_clean($loc['station_city']) : ''),
+				'station_iota'          => ((isset($loc['station_iota']) && $loc['station_iota'] != "") ? xss_clean($loc['station_iota']) : ''),
+				'station_sota'          => ((isset($loc['station_sota']) && $loc['station_sota'] != "") ? xss_clean($loc['station_sota']) : ''),
+				'station_callsign'      => ((isset($loc['station_callsign']) && $loc['station_callsign'] != "") ? xss_clean($loc['station_callsign']) : ''),
+				'station_power'         => ((isset($loc['station_power']) && $loc['station_power'] != "") ? xss_clean($loc['station_power']) : null),
+				'station_dxcc'          => ((isset($loc['station_dxcc']) && $loc['station_dxcc'] != "") ? xss_clean($loc['station_dxcc']) : null),
+				'station_cq'            => ((isset($loc['station_cq']) && $loc['station_cq'] != "") ? xss_clean($loc['station_cq']) : null),
+				'station_itu'           => ((isset($loc['station_itu']) && $loc['station_itu'] != "") ? xss_clean($loc['station_itu']) : null),
+				'station_sig'           => ((isset($loc['station_sig']) && $loc['station_sig'] != "") ? xss_clean($loc['station_sig']) : null),
+				'station_sig_info'      => ((isset($loc['station_sig_info']) && $loc['station_sig_info'] != "") ? xss_clean($loc['station_sig_info']) : null),
+				'station_wwff'          => ((isset($loc['station_wwff']) && $loc['station_wwff'] != "") ? xss_clean($loc['station_wwff']) : null),
+				'station_pota'          => ((isset($loc['station_pota']) && $loc['station_pota'] != "") ? xss_clean($loc['station_pota']) : null),
+				'state'                 => ((isset($loc['state']) && $loc['state'] != "") ? xss_clean($loc['state']) : null),
+				'station_cnty'          => ((isset($loc['station_cnty']) && $loc['station_cnty'] != "") ? xss_clean($loc['station_cnty']) : null),
+				'qrzrealtime'           => ((isset($loc['qrzrealtime']) && $loc['qrzrealtime'] != "") ? xss_clean($loc['qrzrealtime']) : 0),
+				'oqrs'                  => ((isset($loc['oqrs']) && $loc['oqrs'] != "") ? xss_clean($loc['oqrs']) : 0),
+				'oqrs_text'             => ((isset($loc['oqrs_text']) && $loc['oqrs_text'] != "") ? xss_clean($loc['oqrs_text']) : null),
+				'oqrs_email'            => ((isset($loc['oqrs_email']) && $loc['oqrs_email'] != "") ? xss_clean($loc['oqrs_email']) : null),
+				'webadifrealtime'       => ((isset($loc['webadifrealtime']) && $loc['webadifrealtime'] != "") ? xss_clean($loc['webadifrealtime']) : null),
+				'clublogignore'         => ((isset($loc['clublogignore']) && $loc['clublogignore'] != "") ? xss_clean($loc['clublogignore']) : 1),
+				'clublogrealtime'       => ((isset($loc['clublogrealtime']) && $loc['clublogrealtime'] != "") ? xss_clean($loc['clublogrealtime']) : 0),
+				'hrdlogrealtime'        => ((isset($loc['hrdlogrealtime']) && $loc['hrdlogrealtime'] != "") ? xss_clean($loc['hrdlogrealtime']) : 0),
+				'hrdlog_username'       => ((isset($loc['hrdlog_username']) && $loc['hrdlog_username'] != "") ? xss_clean($loc['hrdlog_username']) : null),
+				'eqslqthnickname'       => ((isset($loc['eqslqthnickname']) && $loc['eqslqthnickname'] != "") ? xss_clean($loc['eqslqthnickname']) : null),
+				'webadifapiurl'         => 'https://qo100dx.club/api',
+				'station_uuid'          => xss_clean($loc['station_uuid'] ?? ($this->db->query("SELECT UUID() as uuid")->row()->uuid)),	// Generate one, if not present
+				'user_id'               => $this->session->userdata('user_id'),
+			];
+
+			// Data for user_options
+			$optiondata = [
+				'eqsl_default_qslmsg' => xss_clean($loc['eqsl_default_qslmsg'] ?? null),
+			];
+
+			// Insert or update location in DB
+			$imported += $this->save_location($dbdata, $optiondata);
+		}
+		return (array('OK',$imported));
+	}
+
 	public function save_location($dbdata, $optiondata) {
 		// Make sure we have the needed fields
 		if (empty($dbdata['station_profile_name']) || empty($dbdata['station_callsign'])) {
@@ -268,19 +319,20 @@ class Stationsetup_model extends CI_Model {
 		$sql = "
 			SELECT *
 			FROM station_profile
-			WHERE station_profile_name = ?
+			WHERE (station_profile_name = ?
 			AND station_callsign = ?
-			AND station_gridsquare = ?
-			AND station_city = ?
-			AND station_iota = ?
-			AND station_sota = ?
-			AND state = ?
-			AND station_cnty = ?
-			AND station_dxcc = ?
-			AND station_wwff = ?
-			AND station_pota = ?
-			AND station_sig = ?
-			AND station_sig_info = ?
+			AND station_gridsquare <=> ?
+			AND station_city <=> ?
+			AND station_iota <=> ?
+			AND station_sota <=> ?
+			AND state <=> ?
+			AND station_cnty <=> ?
+			AND station_dxcc <=> ?
+			AND station_wwff <=> ?
+			AND station_pota <=> ?
+			AND station_sig <=> ?
+			AND station_sig_info <=> ?
+			OR station_uuid <=> ?)
 			AND user_id = ?;
 		";
 
@@ -298,6 +350,7 @@ class Stationsetup_model extends CI_Model {
 			$dbdata['station_pota'],
 			$dbdata['station_sig'],
 			$dbdata['station_sig_info'],
+			$dbdata['station_uuid'],
 			$this->session->userdata('user_id')
 		]);
 
@@ -306,11 +359,6 @@ class Stationsetup_model extends CI_Model {
 			return 0;
 		} else {
 			// Insert new location
-			// Generate UUID if not provided
-			if (empty($dbdata['station_uuid'])) {
-				$dbdata['station_uuid'] = $this->db->query("SELECT UUID() as uuid")->row()->uuid;
-			}
-
 			$this->db->insert('station_profile', $dbdata);
 			$location_id = $this->db->insert_id();
 
