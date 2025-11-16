@@ -263,7 +263,7 @@ function frequencyToBand(frequency, unit = 'Hz', marginKhz = 0) {
 	if (freqHz >= (142000000000 - marginHz) && freqHz <= (149000000000 + marginHz)) return '2mm';
 	if (freqHz >= (241000000000 - marginHz) && freqHz <= (250000000000 + marginHz)) return '1mm';
 
-	return 'All';
+	return null;
 }
 
 /**
