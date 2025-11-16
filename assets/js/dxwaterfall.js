@@ -1881,9 +1881,16 @@ var dxWaterfall = {
             // On first focus before any commit, commit the initial frequency
             if (self.lastValidCommittedFreqHz === null) {
                 var currentFreqHz = parseFloat(self.$frequency.val()) || 0;
-                if (currentFreqHz > 0) {
-                    self.commitFrequency();
+                // If frequency is empty or 0, use set_new_qrg logic to get default for current band/mode
+                if (currentFreqHz <= 0) {
+                    if (typeof set_new_qrg === 'function') {
+                        set_new_qrg().then(function() {
+                            self.commitFrequency();
+                        });
+                        return; // Exit and let async completion handle commit
+                    }
                 }
+                self.commitFrequency();
             }
         });
 
@@ -2153,6 +2160,13 @@ var dxWaterfall = {
         } else {
             // Before first valid commit (initial load), use real-time values from single source
             currentFreqHz = parseFloat(this.$frequency.val()) || 0;
+            // If frequency is still 0, trigger set_new_qrg to populate from band/mode defaults
+            if (currentFreqHz <= 0 && typeof set_new_qrg === 'function') {
+                // Trigger async frequency population but return 0 for now
+                // Next render cycle will have the correct frequency
+                set_new_qrg();
+                currentFreqHz = 0; // Will be updated on next call
+            }
         }
 
         // Invalidate cache if frequency changes
@@ -2970,7 +2984,7 @@ var dxWaterfall = {
             var middleFreq = this.getCachedMiddleFreq();
             // Use 20kHz margin for band detection (extends band edges)
             bandToUse = frequencyToBandKhz(middleFreq, 20);
-            if (bandToUse === 'All') {
+            if (!bandToUse) {
                 return null; // Out of band and no spots loaded
             }
         }
@@ -3055,7 +3069,7 @@ var dxWaterfall = {
         } else {
             // Use 20kHz margin for band detection (extends band edges)
             bandToDraw = frequencyToBandKhz(middleFreq, 20);
-            if (bandToDraw === 'All') {
+            if (!bandToDraw) {
                 return; // Out of band and no spots loaded, don't draw
             }
         }
@@ -5184,7 +5198,7 @@ var dxWaterfall = {
         // Check if we're out of band (using 20kHz margin)
         var currentFreqKhz = this.getCachedMiddleFreq();
         var detectedBand = frequencyToBandKhz(currentFreqKhz, 20);
-        var isOutOfBand = (detectedBand === 'All');
+        var isOutOfBand = (!detectedBand);
 
         if (isOutOfBand && (!this.currentSpotBand || this.currentSpotBand === 'All')) {
             // Out of band with no spots loaded - show "Out of band" message
@@ -6231,9 +6245,12 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
     // The change event will trigger set_qrg() which updates freq_calculated display
     $('#frequency').val(frequencyInKHz * 1000);
 
-    // Always trigger change to update display field via set_qrg()
-    // This ensures freq_calculated is kept in sync with frequency field
-    $('#frequency').trigger('change');
+    // Trigger change event to update calculated fields and unit display
+    // Skip trigger when called from waterfall to prevent recursive updates
+    // Exception: If no radio is selected, update display even when called from waterfall
+    if (!fromWaterfall || $('#radio').val() == 0) {
+        set_qrg();
+    }
 
     // Clear navigation flags immediately since no CAT operation is happening
     if (typeof dxWaterfall !== 'undefined') {
