@@ -258,7 +258,7 @@ class Stationsetup_model extends CI_Model {
 		return $result;
 	}
 
-	public function import_locations_parse($locations) {
+	public function import_locations_parse($locations, $user_id = null) {
 		$imported=0;
 		foreach ($locations as $loc) {
 			if ($imported >= 1000){
@@ -295,7 +295,7 @@ class Stationsetup_model extends CI_Model {
 				'eqslqthnickname'       => ((isset($loc['eqslqthnickname']) && $loc['eqslqthnickname'] != "") ? xss_clean($loc['eqslqthnickname']) : null),
 				'webadifapiurl'         => 'https://qo100dx.club/api',
 				'station_uuid'          => xss_clean($loc['station_uuid'] ?? ($this->db->query("SELECT UUID() as uuid")->row()->uuid)),	// Generate one, if not present
-				'user_id'               => $this->session->userdata('user_id'),
+				'user_id'               => $user_id ?? $this->session->userdata('user_id')
 			];
 
 			// Data for user_options
@@ -304,12 +304,12 @@ class Stationsetup_model extends CI_Model {
 			];
 
 			// Insert or update location in DB
-			$imported += $this->save_location($dbdata, $optiondata);
+			$imported += $this->save_location($dbdata, $optiondata, $user_id);
 		}
 		return (array('OK',$imported));
 	}
 
-	public function save_location($dbdata, $optiondata) {
+	public function save_location($dbdata, $optiondata, $user_id = null) {
 		// Make sure we have the needed fields
 		if (empty($dbdata['station_profile_name']) || empty($dbdata['station_callsign'])) {
 			return false;
@@ -351,7 +351,7 @@ class Stationsetup_model extends CI_Model {
 			$dbdata['station_sig'],
 			$dbdata['station_sig_info'],
 			$dbdata['station_uuid'],
-			$this->session->userdata('user_id')
+			$user_id ?? $this->session->userdata('user_id')
 		]);
 
 		if ($query->num_rows() > 0) {
@@ -364,7 +364,7 @@ class Stationsetup_model extends CI_Model {
 
 			if (!empty(trim($optiondata['eqsl_default_qslmsg']))) {
 				$this->load->model('user_options_model');
-				$this->user_options_model->set_option('eqsl_default_qslmsg', 'key_station_id', array($location_id => $optiondata['eqsl_default_qslmsg']));
+				$this->user_options_model->set_option('eqsl_default_qslmsg', 'key_station_id', array($location_id => $optiondata['eqsl_default_qslmsg']),($user_id ?? $this->session->userdata('user_id')));
 			}
 		}
 
