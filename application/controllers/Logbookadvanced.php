@@ -717,6 +717,10 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->view('logbookadvanced/continentdialog');
 	}
 
+	public function stateDialog() {
+		$this->load->view('logbookadvanced/statedialog');
+	}
+
 	public function distanceDialog() {
 		$this->load->view('logbookadvanced/distancedialog');
 	}
@@ -812,6 +816,41 @@ class Logbookadvanced extends CI_Controller {
 
 		header("Content-Type: application/json");
 		print json_encode($result);
+	}
+
+	public function fixStateProgress() {
+		if(!clubaccess_check(9)) return;
+
+		$this->load->model('logbook_model');
+		$this->load->model('logbookadvanced_model');
+
+		$qsoID = xss_clean($this->input->post('qsoID'));
+
+		// Process single QSO state fix
+		$result = $this->logbookadvanced_model->fixStateSingle($qsoID);
+
+		// Get updated QSO data if successful
+		if ($result['success']) {
+			$qsoID_array = [$qsoID];
+			$qso = $this->logbookadvanced_model->getQsosForAdif(json_encode($qsoID_array), $this->session->userdata('user_id'))->row_array();
+
+			if ($qso !== null) {
+				$qsoObj = new QSO($qso);
+				$cleaned_qso = $qsoObj->toArray();
+
+				$flag = $this->dxccflag->get($qsoObj->getDXCCId());
+				if ($flag != null) {
+					$cleaned_qso['flag'] = ' ' . $flag;
+				} else {
+					$cleaned_qso['flag'] = '';
+				}
+
+				$result['qso'] = $cleaned_qso;
+			}
+		}
+
+		header("Content-Type: application/json");
+		echo json_encode($result);
 	}
 
 	public function updateDistances() {

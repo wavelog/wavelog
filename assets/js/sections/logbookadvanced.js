@@ -1,6 +1,9 @@
 let callBookProcessingDialog = null;
 let inCallbookProcessing = false;
 let inCallbookItemProcessing = false;
+let stateFixingDialog = null;
+let inStateFixing = false;
+let stateFixStats = {fixed: 0, skipped: 0, fixedDxcc: new Set(), skippedDxcc: new Set(), skipReasons: new Set(), skippedDetails: []};
 let lastChecked = null;
 let silentReset = false;
 
@@ -501,6 +504,94 @@ function processNextCallbookItem() {
 		error: function (data) {
 			unselectQsoID(id);
 			setTimeout("processNextCallbookItem()", 50);
+		},
+	});
+}
+
+function processNextStateFixItem() {
+	if (!inStateFixing) return;
+
+	var elements = $('#qsoList tbody input:checked');
+	var nElements = elements.length;
+
+	if (nElements == 0) {
+		inStateFixing = false;
+		stateFixingDialog.close();
+
+		// Show summary
+		let message = '';
+		message += lang_gen_advanced_logbook_fixed_with_count.replace('%s', stateFixStats.fixed);
+		message += '<br>';
+		message += lang_gen_advanced_logbook_skipped_with_count.replace('%s', stateFixStats.skipped);
+		if (stateFixStats.skippedDetails.length > 0) {
+			message += '<div class="border rounded p-2 mt-2" style="max-height: 150px; overflow-y: auto; background-color: var(--bs-body-bg); color: var(--bs-body-color);">';
+			message += '<small>';
+			stateFixStats.skippedDetails.forEach(function(detail, index) {
+				if (index > 0) message += '<br>';
+				message += detail;
+			});
+			message += '</small>';
+			message += '</div>';
+		}
+
+		if (stateFixStats.skipped > 0) {
+			message += '<div class="alert alert-info mt-3">';
+			message += '<small>' + lang_gen_advanced_logbook_state_not_supported.replace('%s', lang_gen_advanced_logbook_github_link);
+			message += '</small>';
+			message += '</div>';
+		}
+
+		BootstrapDialog.alert({
+			title: lang_gen_advanced_logbook_state_fix_complete,
+			message: function(dialog) {
+				return message;
+			},
+			type: stateFixStats.fixed > 0 ? BootstrapDialog.TYPE_SUCCESS : BootstrapDialog.TYPE_INFO,
+			nl2br: false
+		});
+
+		let table = $('#qsoList').DataTable();
+		table.draw(false);
+		return;
+	}
+
+	let id = elements.first().closest('tr').attr('id')?.replace(/\D/g, '');
+
+	stateFixingDialog.setMessage(lang_gen_advanced_logbook_fixing_state_remaining.replace('%s', nElements));
+
+	$.ajax({
+		url: site_url + '/logbookadvanced/fixStateProgress',
+		type: 'post',
+		data: {
+			qsoID: id
+		},
+		dataType: 'json',
+		success: function (data) {
+			if (data.success && data.qso) {
+				updateRow(data.qso);
+				stateFixStats.fixed++;
+				if (data.dxcc_name) {
+					stateFixStats.fixedDxcc.add(data.dxcc_name);
+				}
+			} else if (data.skipped) {
+				stateFixStats.skipped++;
+				if (data.dxcc_name) {
+					stateFixStats.skippedDxcc.add(data.dxcc_name);
+				}
+				if (data.reason) {
+					stateFixStats.skipReasons.add(data.reason);
+					// Build detailed skip entry: CALLSIGN - DXCC - reason
+					let skipDetail = (data.callsign || 'Unknown') + ' - ' + (data.dxcc_name || 'Unknown DXCC') + ' - ' + data.reason;
+					stateFixStats.skippedDetails.push(skipDetail);
+				}
+			}
+			unselectQsoID(id);
+			setTimeout("processNextStateFixItem()", 50);
+		},
+		error: function (data) {
+			stateFixStats.skipped++;
+			unselectQsoID(id);
+			setTimeout("processNextStateFixItem()", 50);
 		},
 	});
 }
@@ -1266,6 +1357,80 @@ $(document).ready(function () {
 					title: lang_gen_advanced_logbook_error,
 					message: lang_gen_advanced_logbook_problem_fixing_itu_zones,
 					type: BootstrapDialog.TYPE_DANGER
+				});
+			}
+		});
+	});
+
+	// Fix State button handler
+	$('#fixState').click(function (event) {
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/stateDialog',
+			type: 'post',
+			success: function (html) {
+				BootstrapDialog.show({
+					title: lang_gen_advanced_logbook_fixing_state,
+					size: BootstrapDialog.SIZE_NORMAL,
+					cssClass: 'options',
+					nl2br: false,
+					message: html,
+					buttons: [
+					{
+						label: lang_gen_advanced_logbook_update_now + ' <div class="ld ld-ring ld-spin"></div>',
+						cssClass: 'btn btn-sm btn-primary ld-ext-right',
+						id: 'updateStateButton',
+						action: function (dialogItself) {
+							const id_list = getSelectedIds();
+
+							// Check if any rows are selected
+							if (id_list.length === 0) {
+								BootstrapDialog.alert({
+									title: lang_gen_advanced_logbook_info,
+									message: lang_gen_advanced_logbook_select_row_state,
+									type: BootstrapDialog.TYPE_INFO,
+									closable: false,
+									draggable: false
+								});
+								return;
+							}
+
+							if (inStateFixing) {
+								return;
+							}
+							inStateFixing = true;
+
+							// Close the info dialog
+							dialogItself.close();
+
+							// Reset statistics
+							stateFixStats = {fixed: 0, skipped: 0, fixedDxcc: new Set(), skippedDxcc: new Set(), skipReasons: new Set(), skippedDetails: []};
+
+							const nElements = id_list.length;
+							stateFixingDialog = BootstrapDialog.show({
+								title: lang_gen_advanced_logbook_fixing_state_qsos.replace('%s', nElements),
+								message: lang_gen_advanced_logbook_fixing_state_remaining.replace('%s', nElements),
+								type: BootstrapDialog.TYPE_INFO,
+								closable: false,
+								draggable: false,
+								buttons: [{
+									label: lang_admin_close,
+									action: function(dialog) {
+										inStateFixing = false;
+										dialog.close();
+									}
+								}]
+							});
+							processNextStateFixItem();
+						}
+					},
+					{
+						label: lang_admin_close,
+						cssClass: 'btn btn-sm btn-secondary',
+						id: 'closeStateDialogButton',
+						action: function (dialogItself) {
+							dialogItself.close();
+						}
+					}],
 				});
 			}
 		});
