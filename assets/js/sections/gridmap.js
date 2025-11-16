@@ -1,5 +1,10 @@
 var modalloading=false;
 
+let confirmedColor = user_map_custom.qsoconfirm.color;
+let workedColor = user_map_custom.qso.color;
+console.log("Confirmed color: " + confirmedColor);
+console.log("Worked color: " + workedColor);
+
 document.addEventListener("DOMContentLoaded", function() {
   document.querySelectorAll('.dropdown').forEach(dd => {
 		dd.addEventListener('hide.bs.dropdown', function (e) {
@@ -183,12 +188,12 @@ function plot(visitor, grid_two, grid_four, grid_six, grid_two_confirmed, grid_f
 					div.setAttribute('id', 'gridmapLegend');
 					div.innerHTML += '<div align="right" class="legendClose"><small><a href="javascript: hideLegend();">X</a></small></div>';
 					div.innerHTML += "<h4>" + gridsquares_gridsquares + "</h4>";
-					div.innerHTML += '<i style="background: green"></i><span>' + gridsquares_gridsquares_confirmed + ' ('+grid_four_confirmed.length+')</span><br>';
-					div.innerHTML += '<i style="background: red"></i><span>' + gridsquares_gridsquares_not_confirmed + ' ('+(grid_four.length - grid_four_confirmed.length)+')</span><br>';
+					div.innerHTML += '<i class="grid-confirmed" style="background: ' + confirmedColor + '"></i><span>' + gridsquares_gridsquares_confirmed + ' ('+grid_four_confirmed.length+')</span><br>';
+					div.innerHTML += '<i class="grid-worked" style="background: ' + workedColor + '"></i><span>' + gridsquares_gridsquares_not_confirmed + ' ('+(grid_four.length - grid_four_confirmed.length)+')</span><br>';
 					div.innerHTML += '<i></i><span>' + gridsquares_gridsquares_total_worked + ' ('+grid_four.length+')</span><br>';
 					div.innerHTML += "<h4>Fields</h4>";
-					div.innerHTML += '<i style="background: green"></i><span>Fields confirmed ('+grid_two_confirmed.length+')</span><br>';
-					div.innerHTML += '<i style="background: red"></i><span>Fields not confirmed ('+(grid_two.length - grid_two_confirmed.length)+')</span><br>';
+					div.innerHTML += '<i class="grid-confirmed" style="background: ' + confirmedColor + '"></i><span>Fields confirmed ('+grid_two_confirmed.length+')</span><br>';
+					div.innerHTML += '<i class="grid-worked" style="background: ' + workedColor + '"></i><span>Fields not confirmed ('+(grid_two.length - grid_two_confirmed.length)+')</span><br>';
 					div.innerHTML += '<i></i><span>Total fields worked ('+grid_two.length+')</span><br>';
 					return div;
 				};

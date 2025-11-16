@@ -52,7 +52,7 @@ function cf_type($qsl, $lotw, $eqsl, $qrz, $clublog) {
 	if ((($eqsl ?? 'N') == 'Y')) { $string.= 'E'; }
 	if ((($qrz ?? 'N') == 'Y')) { $string.= 'Z'; }
 	if ((($clublog ?? 'N') == 'Y')) { $string.= 'C'; }
-	if ($string == '') { return '<div class="bg-danger awardsBgDanger">-</div>'; }
+	if ($string == '') { return '<div class="bg-danger awardsBgWarning">-</div>'; }
 
 	return '<div class="bg-success awardsBgSuccess">' . $string . '</div>';
 }

@@ -3,6 +3,9 @@
     var lang_canada_province = "<?= _pgettext("Canada Province", "Province"); ?>";
     var lang_hover_over_a_province = "<?= __("Hover over a province"); ?>";
 </script>
+<script>
+   let user_map_custom = JSON.parse('<?php echo $user_map_custom; ?>');
+</script>
 
 <style>
     #racmap {

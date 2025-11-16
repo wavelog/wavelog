@@ -4,6 +4,15 @@ var geojson;
 var map;
 var info;
 
+let confirmedColor = user_map_custom.qsoconfirm.color;
+let workedColor = user_map_custom.qso.color;
+let unworkedColor = '';
+if (typeof(user_map_custom.unworked) !== 'undefined') {
+	unworkedColor = user_map_custom.unworked.color;
+} else {
+	unworkedColor = 'red';
+}
+
 function load_cq_map() {
     $('.nav-tabs a[href="#cqmaptab"]').tab('show');
     $.ajax({
@@ -61,15 +70,15 @@ function load_cq_map2(data) {
     var workednotconfirmed = 0;
 
 	for (var i = 0; i < cqzonenames.length; i++) {
-        var mapColor = 'red';
+        var mapColor = unworkedColor;
 
         if (data[i] == 'C') {
-            mapColor = 'green';
+            mapColor = confirmedColor;
             confirmed++;
             notworked--;
         }
         if (data[i] == 'W') {
-			mapColor = 'orange';
+			mapColor = workedColor;
 			workednotconfirmed++;
 			notworked--;
         }
@@ -94,9 +103,9 @@ function load_cq_map2(data) {
     legend.onAdd = function(map) {
         var div = L.DomUtil.create("div", "legend");
         div.innerHTML += "<h4>" + lang_general_word_colors + "</h4>";
-        div.innerHTML += "<i style='background: green'></i><span>" + lang_general_word_confirmed + " (" + confirmed + ")</span><br>";
-        div.innerHTML += "<i style='background: orange'></i><span>" + lang_general_word_worked_not_confirmed + " (" + workednotconfirmed + ")</span><br>";
-        div.innerHTML += "<i style='background: red'></i><span>" + lang_general_word_not_worked + " (" + notworked + ")</span><br>";
+        div.innerHTML += "<i style='background: "+confirmedColor+"'></i><span>" + lang_general_word_confirmed + " (" + confirmed + ")</span><br>";
+        div.innerHTML += "<i style='background: "+workedColor+"'></i><span>" + lang_general_word_worked_not_confirmed + " (" + workednotconfirmed + ")</span><br>";
+        div.innerHTML += "<i style='background: "+unworkedColor+"'></i><span>" + lang_general_word_not_worked + " (" + notworked + ")</span><br>";
         return div;
     };
 
@@ -123,9 +132,9 @@ function load_cq_map2(data) {
 }
 
 function getColor(d) {
-    return 	cqz[d-1] == 'C' ? 'green'  :
-			cqz[d-1] == 'W' ? 'orange' :
-							   'red';
+    return 	cqz[d-1] == 'C' ? confirmedColor :
+        cqz[d-1] == 'W' ? workedColor :
+        unworkedColor;
 }
 
 function highlightFeature(e) {

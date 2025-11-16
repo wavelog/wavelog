@@ -22,7 +22,7 @@ class IOTA extends CI_Model {
 			if ($postdata['worked'] != NULL) {
 				$workedIota = $this->getIotaBandWorked($location_list, $band, $postdata);
 				foreach ($workedIota as $wiota) {
-					$iotaMatrix[$wiota->tag][$band] = '<div class="bg-danger awardsBgDanger"><a href=\'javascript:displayContacts("'.$wiota->tag.'","'. $band . '","All","All","'. $postdata['mode'] . '","IOTA")\'>W</a></div>';
+					$iotaMatrix[$wiota->tag][$band] = '<div class="bg-danger awardsBgWarning"><a href=\'javascript:displayContacts("'.$wiota->tag.'","'. $band . '","All","All","'. $postdata['mode'] . '","IOTA")\'>W</a></div>';
 				}
 			}
 

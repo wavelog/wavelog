@@ -1,4 +1,12 @@
-var osmUrl = tileUrl;
+let osmUrl = tileUrl;
+let confirmedColor = user_map_custom.qsoconfirm.color;
+let workedColor = user_map_custom.qso.color;
+let unworkedColor = '';
+if (typeof(user_map_custom.unworked) !== 'undefined') {
+	unworkedColor = user_map_custom.unworked.color;
+} else {
+	unworkedColor = 'red';
+}
 
 function load_jcc_map() {
     $('.nav-tabs a[href="#jccmaptab"]').tab('show');
@@ -73,7 +81,7 @@ function load_jcc_map2(data, worked, confirmed, notworked) {
        if (key in data) {
           if (confirmed.checked == true) {
              if (data[key][1] == 1) {
-                mapColor = 'green';
+                mapColor = confirmedColor;
                 D['prefix'] = key;
                 D['name'] = value[0];
                 D['lat'] = value[1];
@@ -84,7 +92,7 @@ function load_jcc_map2(data, worked, confirmed, notworked) {
              }
           }
           if (worked.checked == true) {
-             mapColor = 'orange';
+             mapColor = workedColor;
              D['prefix'] = key;
              D['name'] = value[0];
              D['lat'] = value[1];
@@ -94,7 +102,7 @@ function load_jcc_map2(data, worked, confirmed, notworked) {
           }
        } else {
           if (notworked.checked == true) {
-             mapColor = 'red';
+             mapColor = unworkedColor;
              D['prefix'] = key;
              D['name'] = value[0];
              D['lat'] = value[1];
@@ -111,9 +119,9 @@ function load_jcc_map2(data, worked, confirmed, notworked) {
     legend.onAdd = function(map) {
         var div = L.DomUtil.create("div", "legend");
         div.innerHTML += "<h4>" + lang_general_word_colors + "</h4>";
-        div.innerHTML += "<i style='background: green'></i><span>" + lang_general_word_confirmed + " (" + confirmedcount + ")</span><br>";
-        div.innerHTML += "<i style='background: orange'></i><span>" + lang_general_word_worked_not_confirmed + " (" + workednotconfirmedcount + ")</span><br>";
-        div.innerHTML += "<i style='background: red'></i><span>" + lang_general_word_not_worked + " (" + notworkedcount + ")</span><br>";
+        div.innerHTML += "<i style='background: " + confirmedColor + "'></i><span>" + lang_general_word_confirmed + " (" + confirmedcount + ")</span><br>";
+        div.innerHTML += "<i style='background: " + workedColor + "'></i><span>" + lang_general_word_worked_not_confirmed + " (" + workednotconfirmedcount + ")</span><br>";
+        div.innerHTML += "<i style='background: " + unworkedColor + "'></i><span>" + lang_general_word_not_worked + " (" + notworkedcount + ")</span><br>";
         return div;
     };
 
