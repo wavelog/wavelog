@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-11-14 20:09+0000\n"
-"PO-Revision-Date: 2025-11-13 14:37+0000\n"
+"POT-Creation-Date: 2025-11-15 16:34+0000\n"
+"PO-Revision-Date: 2025-11-14 10:30+0000\n"
 "Last-Translator: Lu Chang <chinaluchang@live.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
@@ -2465,6 +2465,7 @@ msgstr "卫星时钟"
 #: application/views/search/lotw_unconfirmed.php:40
 #: application/views/search/main.php:4 application/views/search/main.php:12
 #: application/views/search/main.php:36
+#: application/views/visitor/layout/footer.php:13
 #: application/views/visitor/layout/header.php:97
 #: application/views/visitor/layout/header.php:98
 msgid "Search"
@@ -2936,15 +2937,15 @@ msgstr "删除用户"
 
 #: application/controllers/User.php:1076
 msgid "User deleted"
-msgstr ""
+msgstr "用户已删除"
 
 #: application/controllers/User.php:1079
 msgid "Could not delete user!"
-msgstr ""
+msgstr "无法删除用户！"
 
 #: application/controllers/User.php:1079
 msgid "Database error:"
-msgstr ""
+msgstr "数据库错误："
 
 #: application/controllers/User.php:1104
 msgid ""
@@ -3693,7 +3694,7 @@ msgstr "差异"
 #: application/views/timeplotter/index.php:27
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:789
-#: application/views/visitor/layout/footer.php:172
+#: application/views/visitor/layout/footer.php:173
 msgid "All"
 msgstr "所有"
 
@@ -10324,8 +10325,8 @@ msgid ""
 "Please make sure the 'eQSL QTH Nickname' field is set in your station "
 "profile and that the value matches the QTH Nickname you set within eQSL."
 msgstr ""
-"请确保“eQSL QTH 昵称”字段已在你的电台配置文件中设置，且该值与你在 eQSL  中设"
-"置的 QTH 昵称一致。"
+"请确保“eQSL QTH 昵称”字段已在你的电台配置文件中设置，且该值与你在 eQSL 中设置"
+"的 QTH 昵称一致。"
 
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
@@ -17126,15 +17127,15 @@ msgstr "标记 已收到卡片(电子)"
 msgid "eQSL picture"
 msgstr "eQSL 图片"
 
-#: application/views/visitor/layout/footer.php:238
+#: application/views/visitor/layout/footer.php:239
 msgid "Filter Results"
 msgstr "筛选结果"
 
-#: application/views/visitor/layout/footer.php:244
+#: application/views/visitor/layout/footer.php:245
 msgid "CSV"
 msgstr "CSV"
 
-#: application/views/visitor/layout/footer.php:252
+#: application/views/visitor/layout/footer.php:253
 msgid "Clear Filter"
 msgstr "清空筛选器"
 
