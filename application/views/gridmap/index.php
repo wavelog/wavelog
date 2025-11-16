@@ -4,6 +4,9 @@
 		text-align: left !important;
 	}
 </style>
+<script>
+	let user_map_custom = JSON.parse('<?php echo $user_map_custom; ?>');
+</script>
 <div class="container gridsquare_map_form">
     <br>
 

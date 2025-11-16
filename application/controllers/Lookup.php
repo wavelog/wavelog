@@ -67,6 +67,7 @@ class Lookup extends CI_Controller {
 			$data['dok'] = xss_clean($this->input->post('dok'));
 			$data['continent'] = xss_clean($this->input->post('continent'));
 			$data['location_list'] = $location_list;
+			$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
 			$data['result'] = $this->lookup_model->getSearchResult($data);
 			$this->load->view('lookup/result', $data);
@@ -78,6 +79,7 @@ class Lookup extends CI_Controller {
 		$this->load->model('lookup_model');
 		$this->load->model('bands');
 		$this->load->model('logbooks_model');
+		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 		$data['location_list'] = "'".implode("','",$logbooks_locations_array)."'";
 		$data['callsign'] = xss_clean($this->input->post('callsign'));

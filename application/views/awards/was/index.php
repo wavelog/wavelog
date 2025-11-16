@@ -4,6 +4,10 @@
     var lang_hover_over_a_state = "<?= __("Hover over a state"); ?>";
 </script>
 
+<script>
+	let user_map_custom = JSON.parse('<?php echo $user_map_custom; ?>');
+</script>
+
 <style>
     #wasmap {
 	height: calc(100vh - 500px) !important;

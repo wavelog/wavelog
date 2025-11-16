@@ -3,6 +3,9 @@
     var lang_general_hamradio_ituzone = "<?= __("ITU Zone"); ?>";
     var lang_hover_over_a_zone = "<?= __("Hover over a zone"); ?>";
 </script>
+<script>
+	let user_map_custom = JSON.parse('<?php echo $user_map_custom; ?>');
+</script>
 <style>
     #itumap {
 	height: calc(100vh - 480px) !important;

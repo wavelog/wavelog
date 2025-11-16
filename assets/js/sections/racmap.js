@@ -1,9 +1,18 @@
-var osmUrl = tileUrl;
-var province;
-var geojson;
-var map;
-var info;
-var clickmarkers = [];
+let osmUrl = tileUrl;
+let province;
+let geojson;
+let map;
+let info;
+let clickmarkers = [];
+
+let confirmedColor = user_map_custom.qsoconfirm.color;
+let workedColor = user_map_custom.qso.color;
+let unworkedColor = '';
+if (typeof(user_map_custom.unworked) !== 'undefined') {
+	unworkedColor = user_map_custom.unworked.color;
+} else {
+	unworkedColor = 'red';
+}
 
 const states = 'AB,BC,MB,NB,NL,NT,NS,NU,ON,PE,QC,SK,YT';
 
@@ -83,15 +92,15 @@ function load_rac_map2(data) {
   var workednotconfirmed = 0;
 
 	for(var k in data) {
-		var mapColor = 'red';
+		var mapColor = unworkedColor;
 
 		if (data[k] == 'C') {
-			mapColor = 'green';
+			mapColor = confirmedColor;
 			confirmed++;
 			notworked--;
 		}
 		if (data[k] == 'W') {
-		mapColor = 'orange';
+		mapColor = workedColor;
 		workednotconfirmed++;
 		notworked--;
 		}
@@ -104,9 +113,9 @@ function load_rac_map2(data) {
   legend.onAdd = function(map) {
 	  var div = L.DomUtil.create("div", "legend");
 	  div.innerHTML += "<h4>" + lang_general_word_colors + "</h4>";
-	  div.innerHTML += "<i style='background: green'></i><span>" + lang_general_word_confirmed + " (" + confirmed + ")</span><br>";
-	  div.innerHTML += "<i style='background: orange'></i><span>" + lang_general_word_worked_not_confirmed + " (" + workednotconfirmed + ")</span><br>";
-	  div.innerHTML += "<i style='background: red'></i><span>" + lang_general_word_not_worked + " (" + notworked + ")</span><br>";
+	  div.innerHTML += "<i style='background: " + confirmedColor + "'></i><span>" + lang_general_word_confirmed + " (" + confirmed + ")</span><br>";
+	  div.innerHTML += "<i style='background: " + workedColor + "'></i><span>" + lang_general_word_worked_not_confirmed + " (" + workednotconfirmed + ")</span><br>";
+	  div.innerHTML += "<i style='background: " + unworkedColor + "'></i><span>" + lang_general_word_not_worked + " (" + notworked + ")</span><br>";
 	  return div;
   };
 
@@ -171,9 +180,9 @@ function createMarker(i) {
   }
 
 function getColor(d) {
-    return 	province[d] == 'C' ? 'green'  :
-			province[d] == 'W' ? 'orange' :
-									  'red';
+    return 	province[d] == 'C' ? confirmedColor  :
+			province[d] == 'W' ? workedColor :
+									  unworkedColor;
 }
 
 function highlightFeature(e) {

@@ -36,7 +36,7 @@ class was extends CI_Model {
 			if ($postdata['worked'] != NULL) {
 				$wasBand = $this->getWasWorked($location_list, $band, $postdata);
 				foreach ($wasBand as $line) {
-					$bandWas[$line->col_state][$band] = '<div class="bg-danger awardsBgDanger"><a href=\'javascript:displayContacts("' . $line->col_state . '","' . $band . '","All","All","'. $postdata['mode'] . '","WAS", "")\'>W</a></div>';
+					$bandWas[$line->col_state][$band] = '<div class="bg-danger awardsBgWarning"><a href=\'javascript:displayContacts("' . $line->col_state . '","' . $band . '","All","All","'. $postdata['mode'] . '","WAS", "")\'>W</a></div>';
 					$states[$line->col_state]['count']++;
 				}
 			}

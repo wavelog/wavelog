@@ -25,7 +25,7 @@ class Wac extends CI_Model{
 			if ($postdata['worked'] != NULL) {
 				$wacBand = $this->getWACWorked($location_list, $band, $postdata);
 				foreach ($wacBand as $line) {
-					$bandWac[$line->col_cont][$band] = '<div class="bg-danger awardsBgDanger"><a href=\'javascript:displayContacts("' . str_replace("&", "%26", $line->col_cont) . '","' . $band . '","All", "All","'. $postdata['mode'] . '","WAC","")\'>W</a></div>';
+					$bandWac[$line->col_cont][$band] = '<div class="bg-danger awardsBgWarning"><a href=\'javascript:displayContacts("' . str_replace("&", "%26", $line->col_cont) . '","' . $band . '","All", "All","'. $postdata['mode'] . '","WAC","")\'>W</a></div>';
 					$wac[$line->col_cont]['count']++;
 				}
 			}

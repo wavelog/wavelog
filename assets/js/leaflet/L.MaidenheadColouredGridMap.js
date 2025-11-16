@@ -5,10 +5,17 @@
 L.Maidenhead = L.LayerGroup.extend({
 
 	options: {
-		// Line and label color
-		color: 'rgba(255, 0, 0, 0.4)',
+		linecolor: isDarkModeTheme() ?  'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.3)',
+		color: isDarkModeTheme() ? 'rgba(255, 255, 255, 1)' : 'rgba(0, 0, 0, 1)',
 
-		// Redraw on move or moveend
+		workedColor: user_map_custom?.qso?.color
+			? hexToRgba(user_map_custom.qso.color, 0.5)
+			: 'rgba(255, 0, 0, 0.5)',
+
+		confirmedColor: user_map_custom?.qsoconfirm?.color
+			? hexToRgba(user_map_custom.qsoconfirm.color, 0.5)
+			: 'rgba(144,238,144, 0.5)',
+
 		redraw: 'move'
 	},
 
@@ -71,10 +78,10 @@ L.Maidenhead = L.LayerGroup.extend({
 					if(grid_two.includes(locator) || grid_four.includes(locator) || grid_six.includes(locator)) {
 
 						if(grid_two_confirmed.includes(locator) || grid_four_confirmed.includes(locator) || grid_six_confirmed.includes(locator)) {
-							var rectConfirmed = L.rectangle(bounds, {className: 'grid-rectangle grid-confirmed', color: 'rgba(144,238,144, 0.6)', weight: 1, fillOpacity: 1, fill:true, interactive: false});
+							var rectConfirmed = L.rectangle(bounds, {className: 'grid-rectangle grid-confirmed', color: this.options.confirmedColor,  weight: 1, fillOpacity: 1, fill:true, interactive: false});
 							this.addLayer(rectConfirmed);
 						} else {
-							var rectWorked = L.rectangle(bounds, {className: 'grid-rectangle grid-worked', color: this.options.color, weight: 1, fillOpacity: 1, fill:true, interactive: false})
+							var rectWorked = L.rectangle(bounds, {className: 'grid-rectangle grid-worked', color: this.options.workedColor,  weight: 1, fillOpacity: 1, fill:true, interactive: false});
 							this.addLayer(rectWorked);
 						}
 						// Controls text on grid on various zoom levels
@@ -86,7 +93,7 @@ L.Maidenhead = L.LayerGroup.extend({
 						}
 					} else {
 						if (grids.includes(locator) && grids !== '') {
-							var rect = L.rectangle(bounds, {className: 'grid-rectangle grid-unworked', color: 'rgba(0,0,0, 0.3)', weight: 1, fillOpacity: 0.15, fill:true, interactive: false});
+							var rect = L.rectangle(bounds, {className: 'grid-rectangle grid-unworked', color: this.options.linecolor, weight: 1, fillOpacity: 0.15, fill:true, interactive: false});
 							this.addLayer(rect);
 							this.addLayer(this._getLabel(lon+unit-(unit/lcor),lat+(unit/2)+(unit/lcor*c)));
 						}

@@ -1,3 +1,12 @@
+let confirmedColor = user_map_custom.qsoconfirm.color;
+let workedColor = user_map_custom.qso.color;
+let unworkedColor = '';
+if (typeof(user_map_custom.unworked) !== 'undefined') {
+	unworkedColor = user_map_custom.unworked.color;
+} else {
+	unworkedColor = 'red';
+}
+
 $('#band').change(function(){
 	var band = $("#band option:selected").text();
 	if (band != "SAT") {
@@ -139,7 +148,7 @@ function wabmap(data) {
 				if (data[feature.properties.name] == 'C') {
 					confirmedcount++;
 					return {
-						fillColor: 'green',
+						fillColor: confirmedColor,
 						fill: true,
 						fillOpacity: 0.8,
 						className: 'confirmed-square'
@@ -148,7 +157,7 @@ function wabmap(data) {
 				if (data[feature.properties.name] == 'W') {
 					workedcount++;
 					return {
-						fillColor: 'orange',
+						fillColor: workedColor,
 						fill: true,
 						fillOpacity: 0.8,
 						className: 'worked-square'
@@ -233,8 +242,8 @@ function wabmap(data) {
     legend.onAdd = function(map) {
         var div = L.DomUtil.create("div", "legend");
         div.innerHTML += "<h4>" + lang_general_word_colors + "</h4>";
-        div.innerHTML += "<i style='background: green'></i><span>" + lang_general_word_confirmed + " (" + confirmedcount + ")</span><br>";
-        div.innerHTML += "<i style='background: orange'></i><span>" + lang_general_word_worked_not_confirmed + " (" + workedcount + ")</span><br>";
+        div.innerHTML += "<i style='background: " + confirmedColor + "'></i><span>" + lang_general_word_confirmed + " (" + confirmedcount + ")</span><br>";
+        div.innerHTML += "<i style='background: " + workedColor + "'></i><span>" + lang_general_word_worked_not_confirmed + " (" + workedcount + ")</span><br>";
         return div;
     };
 

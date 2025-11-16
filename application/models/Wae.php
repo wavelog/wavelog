@@ -98,12 +98,12 @@ class WAE extends CI_Model {
 			if ($postdata['worked'] != NULL) {
 				$workedDXCC = $this->getDxccBandWorked($this->location_list, $band, $postdata);
 				foreach ($workedDXCC as $wdxcc) {
-					$dxccMatrix[$wdxcc->dxcc][$band] = '<div class="bg-danger awardsBgDanger" ><a href=\'javascript:displayContacts("'.$wdxcc->dxcc.'","'. $band . '","'. $postdata['sat'] . '","' . $postdata['orbit'] . '","'. $postdata['mode'] . '","WAE", "")\'>W</a></div>';
+					$dxccMatrix[$wdxcc->dxcc][$band] = '<div class="bg-danger awardsBgWarning" ><a href=\'javascript:displayContacts("'.$wdxcc->dxcc.'","'. $band . '","'. $postdata['sat'] . '","' . $postdata['orbit'] . '","'. $postdata['mode'] . '","WAE", "")\'>W</a></div>';
 				}
 
 				$workedDXCC = $this->getDxccBandWorked($this->location_list, $band, $postdata, true);
 				foreach ($workedDXCC as $wdxcc) {
-					$dxccMatrix[$wdxcc->col_region][$band] = '<div class="bg-danger awardsBgDanger" ><a href=\'javascript:displayContacts("'.$wdxcc->col_region.'","'. $band . '","'. $postdata['sat'] . '","' . $postdata['orbit'] . '","'. $postdata['mode'] . '","WAE", "")\'>W</a></div>';
+					$dxccMatrix[$wdxcc->col_region][$band] = '<div class="bg-danger awardsBgWarning" ><a href=\'javascript:displayContacts("'.$wdxcc->col_region.'","'. $band . '","'. $postdata['sat'] . '","' . $postdata['orbit'] . '","'. $postdata['mode'] . '","WAE", "")\'>W</a></div>';
 					$waeCount[$wdxcc->col_region]['count']++;
 				}
 			}

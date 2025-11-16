@@ -1,4 +1,6 @@
-
+<script>
+	let user_map_custom = JSON.parse('<?php echo $user_map_custom; ?>');
+</script>
 <style>
     #dxccmap {
 	height: calc(100vh - 300px) !important;

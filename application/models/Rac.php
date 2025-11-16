@@ -38,7 +38,7 @@ class rac extends CI_Model {
 			if ($postdata['worked'] != NULL) {
 				$racBand = $this->getracWorked($location_list, $band, $postdata);
 				foreach ($racBand as $line) {
-					$bandrac[$line->col_state][$band] = '<div class="bg-danger awardsBgDanger"><a href=\'javascript:displayContacts("' . $line->col_state . '","' . $band . '","All","All","'. $postdata['mode'] . '","RAC", "")\'>W</a></div>';
+					$bandrac[$line->col_state][$band] = '<div class="bg-danger awardsBgWarning"><a href=\'javascript:displayContacts("' . $line->col_state . '","' . $band . '","All","All","'. $postdata['mode'] . '","RAC", "")\'>W</a></div>';
 					$states[$line->col_state]['count']++;
 				}
 			}

@@ -23,7 +23,7 @@ class Itu extends CI_Model{
 			if ($postdata['worked'] != NULL) {
 				$ituBand = $this->getituWorked($location_list, $band, $postdata);
 				foreach ($ituBand as $line) {
-					$banditu[$line->col_ituz][$band] = '<div class="bg-danger awardsBgDanger"><a href=\'javascript:displayContacts("' . str_replace("&", "%26", $line->col_ituz) . '","' . $band . '","All", "All","'. $postdata['mode'] . '","ITU","")\'>W</a></div>';
+					$banditu[$line->col_ituz][$band] = '<div class="bg-danger awardsBgWarning"><a href=\'javascript:displayContacts("' . str_replace("&", "%26", $line->col_ituz) . '","' . $band . '","All", "All","'. $postdata['mode'] . '","ITU","")\'>W</a></div>';
 					$ituZ[$line->col_ituz]['count']++;
 				}
 			}

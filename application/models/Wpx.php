@@ -20,7 +20,7 @@ class WPX extends CI_Model {
 		$location_list = "'".implode("','",$logbooks_locations_array)."'";
 
 		foreach ($bands as $band) {             	// Looping through bands and entities to generate the array needed for display
-			//'<div class="bg-danger awardsBgDanger" ><a href=\'javascript:displayContacts("'.$wdxcc->dxcc.'","'. $band . '","'. $postdata['sat'] . '","' . $postdata['orbit'] . '","'. $postdata['mode'] . '","DXCC2", "")\'>W</a></div>';
+			//'<div class="bg-danger awardsBgWarning" ><a href=\'javascript:displayContacts("'.$wdxcc->dxcc.'","'. $band . '","'. $postdata['sat'] . '","' . $postdata['orbit'] . '","'. $postdata['mode'] . '","DXCC2", "")\'>W</a></div>';
 			$worked = $this->getWpxForBand($band, $location_list, $postdata);
 			$confirmed = $this->getWpxForBandConfirmed($band, $location_list, $postdata);
 			$wpxSummary['worked'][$band] = $worked[0]->wpxcount;

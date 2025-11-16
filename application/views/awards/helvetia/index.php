@@ -3,6 +3,9 @@
     var lang_switzerland_canton = "<?= _pgettext("Switzerland Canton", "Canton"); ?>";
     var lang_hover_over_a_canton = "<?= __("Hover over a canton"); ?>";
 </script>
+<script>
+	let user_map_custom = JSON.parse('<?php echo $user_map_custom; ?>');
+</script>
 
 <style>
     #helvetiamap {

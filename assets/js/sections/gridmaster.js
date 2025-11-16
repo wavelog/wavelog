@@ -1,7 +1,16 @@
-var map;
-var grid_four = '';
-var grid_four_lotw = '';
-var grid_four_paper = '';
+let map;
+let grid_four = '';
+let grid_four_lotw = '';
+let grid_four_paper = '';
+
+let confirmedColor = user_map_custom.qsoconfirm.color;
+let workedColor = user_map_custom.qso.color;
+let unworkedColor = '';
+if (typeof(user_map_custom.unworked) !== 'undefined') {
+	unworkedColor = user_map_custom.unworked.color;
+} else {
+	unworkedColor = 'red';
+}
 
 function gridPlot(form, dxcc) {
     $(".ld-ext-right-plot").addClass('running');
@@ -41,9 +50,15 @@ function gridPlot(form, dxcc) {
             lon = data.lon;
             zoom = data.zoom;
             paper_count = 0;
+            worked_count = 0;
             grid_four_paper.forEach((element) => {
                if (!grid_four_lotw.includes(element)) {
                   paper_count++;
+               }
+            });
+            grid_four.forEach((element) => {
+               if (!grid_four_lotw.includes(element) && !grid_four_paper.includes(element)) {
+                  worked_count++;
                }
             });
             var layer = L.tileLayer(jslayer, {
@@ -78,9 +93,10 @@ function gridPlot(form, dxcc) {
             legend.onAdd = function(map) {
                 var div = L.DomUtil.create("div", "legend");
                 html = "<table border=\"0\">";
-                html += '<tr><td><i style="background: #90ee90"></i><span>' + gridsquares_gridsquares_lotw + ':</span></td><td style=\"padding-left: 1em; text-align: right;\"><span>'+grid_four_lotw.length+' / '+grid_max+'</span></td></tr>';
-                html += '<tr><td><i style="background: #00b0f0"></i><span>' + gridsquares_gridsquares_paper + ':</span></td><td style=\"padding-left: 1em; text-align: right;\"><span>'+paper_count+' / '+grid_max+'</span></td></tr>';
-                html += '<tr><td><i style="background: #ffd757"></i><span>' + gridsquares_gridsquares_worked + ' ('+(Math.round((grid_four.length / grid_max) * 10000) / 100)+'%):</span></td><td style=\"padding-left: 1em; text-align: right;\"><span>'+(grid_four.length)+' / '+grid_max+'</span></td></tr>';
+                html += '<tr><td><i style="background: '+ confirmedColor +'"></i><span>' + gridsquares_gridsquares_lotw + ':</span></td><td style=\"padding-left: 1em; text-align: right;\"><span>'+grid_four_lotw.length+' / '+grid_max+'</span></td></tr>';
+                html += '<tr><td><i style="background: '+ workedColor +'"></i><span>' + gridsquares_gridsquares_paper + ':</span></td><td style=\"padding-left: 1em; text-align: right;\"><span>'+paper_count+' / '+grid_max+'</span></td></tr>';
+				html += '<tr><td><i style="background: '+ unworkedColor +'"></i><span>' + gridsquares_gridsquares_worked +'</span></td><td style=\"padding-left: 1em; text-align: right;\"><span> '+worked_count+' / '+grid_max+'</span></td></tr>';
+                html += '<tr><td><i></i><span>' + gridsquares_gridsquares_worked + ' ('+(Math.round((grid_four.length / grid_max) * 10000) / 100)+'%):</span></td><td style=\"padding-left: 1em; text-align: right;\"><span>'+(grid_four.length)+' / '+grid_max+'</span></td></tr>';
                 html += "</table>";
                 div.innerHTML = html;
                 return div;

@@ -23,7 +23,7 @@ class CQ extends CI_Model{
 			if ($postdata['worked'] != NULL) {
 				$cqBand = $this->getCQWorked($location_list, $band, $postdata);
 				foreach ($cqBand as $line) {
-					$bandCq[$line->col_cqz][$band] = '<div class="bg-danger awardsBgDanger"><a href=\'javascript:displayContacts("' . str_replace("&", "%26", $line->col_cqz) . '","' . $band . '","All", "All","'. $postdata['mode'] . '","CQZone","")\'>W</a></div>';
+					$bandCq[$line->col_cqz][$band] = '<div class="bg-danger awardsBgWarning"><a href=\'javascript:displayContacts("' . str_replace("&", "%26", $line->col_cqz) . '","' . $band . '","All", "All","'. $postdata['mode'] . '","CQZone","")\'>W</a></div>';
 					$cqZ[$line->col_cqz]['count']++;
 				}
 			}

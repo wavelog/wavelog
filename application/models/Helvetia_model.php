@@ -37,7 +37,7 @@ class helvetia_model extends CI_Model {
 			if ($postdata['worked'] != NULL) {
 				$helvetiaBand = $this->gethelvetiaWorked($location_list, $band, $postdata);
 				foreach ($helvetiaBand as $line) {
-					$bandhelvetia[$line->col_state][$band] = '<div class="bg-danger awardsBgDanger"><a href=\'javascript:displayContacts("' . $line->col_state . '","' . $band . '","All","All","'. $postdata['mode'] . '","helvetia", "")\'>W</a></div>';
+					$bandhelvetia[$line->col_state][$band] = '<div class="bg-danger awardsBgWarning"><a href=\'javascript:displayContacts("' . $line->col_state . '","' . $band . '","All","All","'. $postdata['mode'] . '","helvetia", "")\'>W</a></div>';
 					$states[$line->col_state]['count']++;
 				}
 			}

@@ -3,6 +3,9 @@
     var lang_japan_province = "<?= _pgettext("Japan Prefecture", "Prefecture"); ?>";
     var lang_hover_over_a_prefecture = "<?= __("Hover over a prefecture"); ?>";
 </script>
+<script>
+	let user_map_custom = JSON.parse('<?php echo $user_map_custom; ?>');
+</script>
 
 <style>
     #wajamap {

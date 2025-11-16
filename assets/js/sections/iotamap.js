@@ -1,3 +1,12 @@
+let confirmedColor = user_map_custom.qsoconfirm.color;
+let workedColor = user_map_custom.qso.color;
+let unworkedColor = '';
+if (typeof(user_map_custom.unworked) !== 'undefined') {
+	unworkedColor = user_map_custom.unworked.color;
+} else {
+	unworkedColor = 'red';
+}
+
 var osmUrl = $('#iotamapjs').attr("tileUrl");
 
 function load_iota_map() {
@@ -29,7 +38,7 @@ function load_iota_map() {
             load_iota_map2(data, +$('#worked').prop('checked'), +$('#confirmed').prop('checked'), +$('#notworked').prop('checked'));
         },
         error: function() {
-            
+
         },
     });
 }
@@ -67,10 +76,10 @@ function load_iota_map2(data, worked, confirmed, notworked) {
     for (var i = 0; i < data.length; i++) {
         var D = data[i];
         if (D['status'] != 'x') {
-            var mapColor = 'red';
-    
+            var mapColor = unworkedColor;
+
             if (D['status'] == 'C') {
-                mapColor = 'green';
+                mapColor = confirmedColor;
                 if (confirmed != '0') {
                     addPolygon(L, D, mapColor, map);
                     addMarker(L, D, mapColor, map);
@@ -79,7 +88,7 @@ function load_iota_map2(data, worked, confirmed, notworked) {
                 }
             }
             if (D['status'] == 'W') {
-                mapColor = 'orange';
+                mapColor = workedColor;
                 if (worked != '0') {
                     addPolygon(L, D, mapColor, map);
                     addMarker(L, D, mapColor, map);
@@ -87,11 +96,11 @@ function load_iota_map2(data, worked, confirmed, notworked) {
                     notworkedcount--;
                 }
             }
-    
-            
+
+
         // Make a check here and hide what I don't want to show
             if (notworked != '0') {
-                if (mapColor == 'red') {
+                if (mapColor == unworkedColor) {
                     addPolygon(L, D, mapColor, map);
                     addMarker(L, D, mapColor, map);
                 }
@@ -109,9 +118,9 @@ function load_iota_map2(data, worked, confirmed, notworked) {
     legend.onAdd = function(map) {
         var div = L.DomUtil.create("div", "legend");
         div.innerHTML += "<h4>Colors</h4>";
-        div.innerHTML += '<i style="background: green"></i><span>' + lang_general_word_confirmed + ' ('+confirmedcount+')</span><br>';
-        div.innerHTML += '<i style="background: orange"></i><span>' + lang_general_word_worked_not_confirmed + ' ('+workednotconfirmedcount+')</span><br>';
-        div.innerHTML += '<i style="background: red"></i><span>' + lang_general_word_not_worked + ' ('+notworkedcount+')</span><br>';
+        div.innerHTML += '<i style="background: ' + confirmedColor + '"></i><span>' + lang_general_word_confirmed + ' ('+confirmedcount+')</span><br>';
+        div.innerHTML += '<i style="background: ' + workedColor + '"></i><span>' + lang_general_word_worked_not_confirmed + ' ('+workednotconfirmedcount+')</span><br>';
+        div.innerHTML += '<i style="background: ' + unworkedColor + '"></i><span>' + lang_general_word_not_worked + ' ('+notworkedcount+')</span><br>';
         return div;
     };
 
@@ -131,14 +140,14 @@ function addPolygon(L, D, mapColor, map) {
     if (D['tag'] != 'AN-016') {
         if (D['lon1'] > 0 && D['lon2'] < 0 && D['lon1'] - D['lon2'] > 180) {
             D['lon2'] =  parseFloat(D['lon2'])+360;
-        
+
         }
-        
+
         if (D['lon1'] < 0 && D['lon2'] > 0 && D['lon2'] - D['lon1'] > 180) {
             D['lon1'] =  parseFloat(D['lon1'])+360;
         }
     }
-    
+
     // It seems to me that latitudes have the wrong sign to be drawn correctly in leaflet. That's why they are mulitipled with -1 to be drawn in the correct hemisphere.
     var latlngs = [
         [D['lat1']*-1, D['lon1']],
@@ -153,8 +162,8 @@ function addPolygon(L, D, mapColor, map) {
 function addMarker(L, D, mapColor, map) {
     var title = '<span><font style="color: ' +mapColor+ '; text-shadow: 1px 0 #fff, -1px 0 #fff, 0 1px #fff, 0 -1px #fff, 1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;font-size: 14px; font-weight: 900;">' + D['tag'] + '</font></span>';
     var myIcon = L.divIcon({
-        className: 'my-div-icon', 
-        html: title, 
+        className: 'my-div-icon',
+        html: title,
         iconSize: [60, 10]
     });
 

@@ -1,9 +1,18 @@
-var osmUrl = tileUrl;
-var was;
-var geojson;
-var map;
-var info;
-var clickmarkers = [];
+let osmUrl = tileUrl;
+let was;
+let geojson;
+let map;
+let info;
+let clickmarkers = [];
+
+let confirmedColor = user_map_custom.qsoconfirm.color;
+let workedColor = user_map_custom.qso.color;
+let unworkedColor = '';
+if (typeof(user_map_custom.unworked) !== 'undefined') {
+	unworkedColor = user_map_custom.unworked.color;
+} else {
+	unworkedColor = 'red';
+}
 
 const states =  'AK,AL,AR,AZ,CA,CO,CT,DE,FL,GA,HI,IA,ID,IL,IN,KS,KY,LA,MA,MD,ME,MI,MN,MO,MS,MT,NC,ND,NE,NH,NJ,NM,NV,NY,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VA,VT,WA,WI,WV,WY';
 
@@ -174,15 +183,15 @@ const mapcoordinates = { "type": "FeatureCollection", "features": [
   var workednotconfirmed = 0;
 
 	for(var k in data) {
-		var mapColor = 'red';
+		var mapColor = unworkedColor;
 
 		if (data[k] == 'C') {
-			mapColor = 'green';
+			mapColor = confirmedColor;
 			confirmed++;
 			notworked--;
 		}
 		if (data[k] == 'W') {
-		mapColor = 'orange';
+		mapColor = unworkedColor;
 		workednotconfirmed++;
 		notworked--;
 		}
@@ -208,9 +217,9 @@ const mapcoordinates = { "type": "FeatureCollection", "features": [
   legend.onAdd = function(map) {
 	  var div = L.DomUtil.create("div", "legend");
 	  div.innerHTML += "<h4>" + lang_general_word_colors + "</h4>";
-	  div.innerHTML += "<i style='background: green'></i><span>" + lang_general_word_confirmed + " (" + confirmed + ")</span><br>";
-	  div.innerHTML += "<i style='background: orange'></i><span>" + lang_general_word_worked_not_confirmed + " (" + workednotconfirmed + ")</span><br>";
-	  div.innerHTML += "<i style='background: red'></i><span>" + lang_general_word_not_worked + " (" + notworked + ")</span><br>";
+	  div.innerHTML += "<i style='background: " + confirmedColor + "'></i><span>" + lang_general_word_confirmed + " (" + confirmed + ")</span><br>";
+	  div.innerHTML += "<i style='background: " + workedColor + "'></i><span>" + lang_general_word_worked_not_confirmed + " (" + workednotconfirmed + ")</span><br>";
+	  div.innerHTML += "<i style='background: " + unworkedColor + "'></i><span>" + lang_general_word_not_worked + " (" + notworked + ")</span><br>";
 	  return div;
   };
 
@@ -284,9 +293,9 @@ function createMarker(i) {
 
 function getColor(d) {
 	var res = d.substring(3, 5);
-    return 	was[res] == 'C' ? 'green'  :
-			was[res] == 'W' ? 'orange' :
-								'red';
+    return 	was[res] == 'C' ? confirmedColor :
+			was[res] == 'W' ? workedColor :
+								unworkedColor;
 }
 
 function highlightFeature(e) {

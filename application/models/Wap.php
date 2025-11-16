@@ -39,7 +39,7 @@ class wap extends CI_Model {
 			if ($postdata['worked'] != NULL) {
 				$wapBand = $this->getwapWorked($location_list, $band, $postdata);
 				foreach ($wapBand as $line) {
-					$bandwap[$line->col_state][$band] = '<div class="bg-danger awardsBgDanger"><a href=\'javascript:displayContacts("' . $line->col_state . '","' . $band . '","All","All","'. $postdata['mode'] . '","WAP", "")\'>W</a></div>';
+					$bandwap[$line->col_state][$band] = '<div class="bg-danger awardsBgWarning"><a href=\'javascript:displayContacts("' . $line->col_state . '","' . $band . '","All","All","'. $postdata['mode'] . '","WAP", "")\'>W</a></div>';
 					$states[$line->col_state]['count']++;
 				}
 			}

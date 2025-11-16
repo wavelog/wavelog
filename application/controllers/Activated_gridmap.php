@@ -38,6 +38,8 @@ class Activated_gridmap extends CI_Controller {
 		$data['gridsquares_fields_not_confirmed'] 	= __("Fields not confirmed");
 		$data['gridsquares_fields_total_worked'] 	= __("Total fields worked");
 
+		$data['user_map_custom'] = $this->optionslib->get_map_custom();
+
 		$footerData = [];
 		$footerData['scripts'] = [
 			'assets/js/leaflet/geocoding.js',

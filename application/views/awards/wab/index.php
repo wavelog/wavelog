@@ -1,7 +1,8 @@
 <div class="container">
 <script>
-	var tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>";
-	var attributionInfo='<?php echo $this->optionslib->get_option('option_map_tile_server_copyright'); ?>';
+	let tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>";
+	let attributionInfo='<?php echo $this->optionslib->get_option('option_map_tile_server_copyright'); ?>';
+	let user_map_custom = JSON.parse('<?php echo $user_map_custom; ?>');
 </script>
 
     <!-- Award Info Box -->

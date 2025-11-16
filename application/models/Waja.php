@@ -81,7 +81,7 @@ class WAJA extends CI_Model {
 			if ($postdata['worked'] != NULL) {
 				$wajaBand = $this->getWajaWorked($this->location_list, $band, $postdata);
 				foreach ($wajaBand as $line) {
-					$bandWaja[$line->col_state][$band] = '<div class="bg-danger awardsBgDanger"><a href=\'javascript:displayContacts("' . $line->col_state . '","' . $band . '","All","All","'. $postdata['mode'] . '","WAJA", "")\'>W</a></div>';
+					$bandWaja[$line->col_state][$band] = '<div class="bg-danger awardsBgWarning"><a href=\'javascript:displayContacts("' . $line->col_state . '","' . $band . '","All","All","'. $postdata['mode'] . '","WAJA", "")\'>W</a></div>';
 					$prefectures[$line->col_state]['count']++;
 				}
 			}
