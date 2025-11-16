@@ -152,9 +152,13 @@ class API extends CI_Controller {
 		$user_id = $this->api_model->key_userid($key);
 		$imported = $this->stationsetup_model->import_locations_parse($locations,$user_id);
 		if (($imported[0] ?? '0') == 'limit') {
-			$this->output->set_status_header(200)->set_content_type('application/json')->set_output(json_encode(['status' => 'success', 'message' => ($imported[1] ?? '0')." locations imported. Maximum limit of 1000 locations reached."]));
+			$this->output->set_status_header(201)->set_content_type('application/json')->set_output(json_encode(['status' => 'success', 'message' => ($imported[1] ?? '0')." locations imported. Maximum limit of 1000 locations reached."]));
 		} else {
-			$this->output->set_status_header(201)->set_content_type('application/json')->set_output(json_encode(['status' => 'success', 'message' => ($imported[1] ?? '0')." locations imported."]));
+			if (($imported[1] ?? 0) == 0) {
+				$this->output->set_status_header(200)->set_content_type('application/json')->set_output(json_encode(['status' => 'dupe', 'message' => ($imported[1] ?? '0')." locations imported."]));
+			} else {
+				$this->output->set_status_header(201)->set_content_type('application/json')->set_output(json_encode(['status' => 'success', 'message' => ($imported[1] ?? '0')." locations imported."]));
+			}
 		}
 	}
 
