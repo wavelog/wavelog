@@ -41,7 +41,7 @@
 	let lang_gen_advanced_logbook_close = '<?= __("Close"); ?>';
 	let lang_gen_advanced_logbook_save = '<?= __("Save"); ?>';
 	let lang_gen_advanced_logbook_update_now = '<?= __("Update now"); ?>';
-	let lang_gen_advanced_logbook_options = '<?= __("'Options for the Advanced Logbook'"); ?>';
+	let lang_gen_advanced_logbook_options = '<?= __("Options for the Advanced Logbook"); ?>';
 	let lang_gen_advanced_logbook_label_print_error = '<?= __("Something went wrong with label print. Go to labels and check if you have defined a label, and that it is set for print!"); ?>';
 	let lang_gen_advanced_logbook_select_at_least_one_row = '<?= __("You need to select a least 1 row!"); ?>';
 	let lang_gen_advanced_logbook_start_printing_at_which_label = '<?= __("Start printing at which label?"); ?>';
