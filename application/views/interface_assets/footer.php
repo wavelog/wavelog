@@ -2602,7 +2602,7 @@ function viewEqsl(picture, callsign) {
   /*
    * Used to fetch QSOs from the logbook in the awards
    */
-    function displayContacts(searchphrase, band, sat, orbit, mode, type, qsl) {
+    function displayContacts(searchphrase, band, sat, orbit, mode, type, qsl, datefrom, dateto) {
         $.ajax({
             url: base_url + 'index.php/awards/qso_details_ajax',
             type: 'post',
@@ -2613,7 +2613,9 @@ function viewEqsl(picture, callsign) {
                 'Orbit': orbit,
                 'Mode': mode,
                 'Type': type,
-                'QSL' : qsl
+                'QSL' : qsl,
+				'dateFrom': datefrom,
+				'dateTo': dateto
             },
             success: function (html) {
                 BootstrapDialog.show({
