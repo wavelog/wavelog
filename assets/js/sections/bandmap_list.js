@@ -668,6 +668,7 @@ $(function() {
 			refreshCountdown--;
 			if (refreshCountdown <= 0) {
 				let table = get_dtable();
+				disposeTooltips();
 				table.clear();
 
 				// Determine band for API fetch based on CAT Control state and current filter
@@ -781,6 +782,7 @@ $(function() {
 		var table = get_dtable();
 
 		if (!cachedSpotData || cachedSpotData.length === 0) {
+			disposeTooltips();
 			table.clear();
 			table.settings()[0].oLanguage.sEmptyTable = lang_bandmap_no_data;
 			table.draw();
@@ -799,6 +801,7 @@ $(function() {
 		const hasCwnFilter = cwnSet !== null;
 		const hasFlagFilter = flagSet !== null;
 
+		disposeTooltips();
 		table.clear();
 		let oldtable = table.data();
 		let spots2render = 0;
@@ -1155,6 +1158,7 @@ $(function() {
 		}, 10000);
 
 		if (spots2render == 0) {
+			disposeTooltips();
 			table.clear();
 			table.settings()[0].oLanguage.sEmptyTable = lang_bandmap_no_data;
 			table.draw();
@@ -1571,6 +1575,7 @@ $(function() {
 			dataType: "json"
 		}).done(function(dxspots) {
 			currentAjaxRequest = null;
+			disposeTooltips();
 			table.page.len(50);
 
 			// Check if response is an error object
@@ -1686,6 +1691,7 @@ $(function() {
 
 			cachedSpotData = null;
 			isFetchInProgress = false;
+			disposeTooltips();
 			table.clear();
 			table.settings()[0].oLanguage.sEmptyTable = lang_bandmap_error_loading;
 			table.draw();
@@ -1698,6 +1704,7 @@ $(function() {
 	// Initialize DataTable
 	var table=get_dtable();
 	table.order([1, 'asc']);  // Sort by frequency column
+	disposeTooltips();
 	table.clear();
 
 	// ========================================
@@ -1790,6 +1797,7 @@ $(function() {
 
 		if (backendParamsChanged) {
 
+			disposeTooltips();
 			table.clear();
 			fill_list(de, dxcluster_maxage, bandForAPI);
 		} else {
