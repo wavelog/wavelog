@@ -2676,7 +2676,7 @@ function viewEqsl(picture, callsign) {
         });
     }
 
-    function displayContactsOnMap(target, searchphrase, band, sat, orbit, mode, type, qsl) {
+    function displayContactsOnMap(target, searchphrase, band, sat, orbit, mode, type, qsl, datefrom, dateto) {
 	    $.ajax({
 	    url: base_url + 'index.php/awards/qso_details_ajax',
 		    type: 'post',
@@ -2687,7 +2687,9 @@ function viewEqsl(picture, callsign) {
 			    'Orbit': orbit,
 			    'Mode': mode,
 			    'Type': type,
-			    'QSL' : qsl
+			    'QSL' : qsl,
+				'dateFrom': datefrom,
+				'dateTo': dateto
         },
 	    success: function (html) {
 		    var dialog = new BootstrapDialog({
