@@ -657,7 +657,7 @@ $(document).ready(function () {
 				dok: this.dok.value,
 				qrzSent: this.qrzSent.value,
 				qrzReceived: this.qrzReceived.value,
-				distance: this.distance.value,
+				distance: this.distanceinput.value,
 			},
 			dataType: 'json',
 			success: function (data) {

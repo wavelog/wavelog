@@ -379,7 +379,9 @@ class Logbookadvanced extends CI_Controller {
 			'dok' => '*',
 			'qrzSent' => '',
 			'qrzReceived' => '',
-			'distance' => '',
+			'distance' => '*',
+			'qrzSent' => '',
+			'qrzReceived' => '',
 			'ids' => json_decode(xss_clean($this->input->post('ids'))),
 			'qsoids' => xss_clean($this->input->post('qsoids'))
 		);
