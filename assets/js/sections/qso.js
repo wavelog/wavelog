@@ -1056,7 +1056,7 @@ function reset_to_default() {
 }
 
 /* Function: reset_fields is used to reset the fields on the QSO page */
-function reset_fields() {	
+function reset_fields() {
 	// we set the pendingReferences to null to avoid they get prefilled in the next QSO after clear
 	// we do this first to avoid race conditions for slow javascript
 	pendingReferences = null;
@@ -1212,7 +1212,12 @@ $("#callsign").on("focusout", function () {
 		lookupInProgress = true;
 
 		// Capture pendingReferences for THIS lookup (before it gets overwritten by another click)
+		// If pendingReferences exists, use it; otherwise set to null to prevent old references
+		// from being populated when user manually types a different callsign
 		var capturedReferences = pendingReferences ? Object.assign({}, pendingReferences) : null;
+
+		// Clear pendingReferences immediately after capturing to prevent reuse on next manual lookup
+		pendingReferences = null;
 
 		// Disable Save QSO button and show fetch status
 		$('#saveQso').prop('disabled', true);
