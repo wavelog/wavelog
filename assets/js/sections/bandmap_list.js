@@ -671,16 +671,8 @@ $(function() {
 				disposeTooltips();
 				table.clear();
 
-				// Determine band for API fetch based on CAT Control state and current filter
-				let bandForRefresh = 'All';
-				if (isCatTrackingEnabled) {
-					let currentBand = currentFilters.band || [];
-					if (currentBand.length === 1 && !currentBand.includes('All') && currentBand[0] !== '') {
-						bandForRefresh = currentBand[0];
-					}
-				}
-
-				fill_list(currentFilters.deContinent, dxcluster_maxage, bandForRefresh);
+				// Always fetch all bands - filtering happens client-side
+				fill_list(currentFilters.deContinent, dxcluster_maxage, 'All');
 				refreshCountdown = SPOT_REFRESH_INTERVAL;
 			} else {
 				if (!isFetchInProgress && lastFetchParams.timestamp !== null) {
@@ -1760,27 +1752,13 @@ $(function() {
 		}
 		// If multiple continents selected, fetch 'Any' from backend and filter client-side
 
-		// Determine if we're in single-band fetch mode (CAT Control active)
-		// In this mode, band changes require a new server fetch
-		// Use the selected band filter value when CAT is active and a single band is selected
+		// Always fetch all bands from backend - filtering happens client-side
 		let bandForAPI = 'All';
-		let isSingleBandMode = false;
-		if (isCatTrackingEnabled) {
-			// Check if a single specific band is selected (not 'All')
-			if (band.length === 1 && !band.includes('All') && band[0] !== '') {
-				bandForAPI = band[0];
-				isSingleBandMode = true;
-			}
-		}
-
-
-
 
 		// Check if backend parameters changed (requires new data fetch)
-		// In single-band mode, band selection changes also require server fetch
+		// Only continent filter affects server fetch
 		let backendParamsChanged = forceReload ||
-			loadedBackendFilters.continent !== continentForAPI ||
-			(isSingleBandMode && loadedBackendFilters.band !== bandForAPI);
+			loadedBackendFilters.continent !== continentForAPI;
 
 
 
@@ -2083,7 +2061,7 @@ $(function() {
 		// Add mode with fallback to SSB (backward compatible - optional field)
 		if (mode) {
 			// For digital modes (except digital voice), don't set mode - let user choose
-			if (isDigitalCategory && typeof isDigitalCategory === 'function' && isDigitalCategory(mode) && 
+			if (isDigitalCategory && typeof isDigitalCategory === 'function' && isDigitalCategory(mode) &&
 				!(isModeInCategory && typeof isModeInCategory === 'function' && isModeInCategory(mode, 'DIGITAL_VOICE'))) {
 				// Don't set mode for digital modes, let user choose the specific digital mode
 			} else {
@@ -2214,7 +2192,7 @@ $(function() {
 
 	// Three-state CAT control: 'off', 'on', 'on+marker'
 	var catState = 'off';
-	var isFrequencyMarkerEnabled = false;
+	window.isFrequencyMarkerEnabled = false; // Purple mode indicator
 
 	// Click detection for single/double-click
 	var catClickTimer = null;
@@ -2380,8 +2358,8 @@ $(function() {
 		// Store current radio frequency (convert Hz to kHz)
 		currentRadioFrequency = data.frequency / 1000;
 
-		// Bandmap-specific: Update band filter if CAT Control is enabled
-		if (isCatTrackingEnabled) {
+		// Bandmap-specific: Update band filter only in purple mode
+		if (isFrequencyMarkerEnabled) {
 			const currentBands = $("#band").val() || [];
 
 			if (band && band !== '') {
@@ -2413,8 +2391,10 @@ $(function() {
 					}
 				}
 			}
+		}
 
-			// Update frequency gradient colors for all visible rows
+		// Update frequency gradient colors for all visible rows (works in both normal and purple CAT modes)
+		if (isCatTrackingEnabled) {
 			updateFrequencyGradientColors();
 		}
 
@@ -2426,11 +2406,12 @@ $(function() {
 
 			catJsUpdateCATui(data);
 
-			// If CAT Control is OFF, restore the band selection
-			// (cat.js updateCATui automatically sets band based on frequency, but we don't want that on bandmap unless CAT Control is ON)
-			if (!isCatTrackingEnabled && bandBeforeUpdate) {
+			// Restore the band selection unless we're in purple mode
+			// (cat.js updateCATui automatically sets band based on frequency, but we only want that in purple mode)
+			if (!window.isFrequencyMarkerEnabled && bandBeforeUpdate) {
 				$("#band").val(bandBeforeUpdate);
 				updateSelectCheckboxes('band');
+				syncQuickFilterButtons();
 			}
 		} else {
 			console.warn('Bandmap: cat.js updateCATui not available');
@@ -3153,6 +3134,18 @@ $(function() {
 					window.displayRadioStatus('success', window.lastCATData);
 				}
 
+				// In normal mode: only show gradient, don't change filters or disable controls
+				if (window.lastCATData && window.lastCATData.frequency) {
+					updateFrequencyGradientColors();
+				}
+
+				updateButtonVisual('on');
+				break;
+
+		case 'on':
+			// ON → ON+MARKER (Purple Mode)
+			window.isFrequencyMarkerEnabled = true;
+			catState = 'on+marker';				// Purple mode: disable controls and set filter to current band
 				disableBandFilterControls();
 
 				if (window.lastCATData && window.lastCATData.frequency) {
@@ -3163,29 +3156,19 @@ $(function() {
 						syncQuickFilterButtons();
 						applyFilters(false);
 					}
+					updateFrequencyGradientColors();
 				}
-
-				updateButtonVisual('on');
-				break;
-
-			case 'on':
-				// ON → ON+MARKER
-				isFrequencyMarkerEnabled = true;
-				catState = 'on+marker';
 
 				lockTableSortingToFrequency();
-
-				if (window.lastCATData && window.lastCATData.frequency) {
-					updateFrequencyGradientColors(window.lastCATData.frequency);
-				}
 
 				updateButtonVisual('on+marker');
 				break;
 
-			case 'on+marker':
-				// ON+MARKER → ON
-				isFrequencyMarkerEnabled = false;
-				catState = 'on';
+		case 'on+marker':
+			// ON+MARKER → ON (Exit Purple Mode)
+			window.isFrequencyMarkerEnabled = false;
+			catState = 'on';				// Re-enable band filter controls
+				enableBandFilterControls();
 
 				unlockTableSorting();
 				clearFrequencyGradientColors();
@@ -3199,12 +3182,10 @@ $(function() {
 		// Double-click: Force disable from any state
 		if (catState === 'off') return;
 
-		isCatTrackingEnabled = false;
-		window.isCatTrackingEnabled = false;
-		isFrequencyMarkerEnabled = false;
-		catState = 'off';
-
-		const selectedRadio = $('.radios option:selected').val();
+	isCatTrackingEnabled = false;
+	window.isCatTrackingEnabled = false;
+	window.isFrequencyMarkerEnabled = false;
+	catState = 'off';		const selectedRadio = $('.radios option:selected').val();
 		if (selectedRadio && selectedRadio !== '0' && typeof window.displayOfflineStatus === 'function') {
 			window.displayOfflineStatus('cat_disabled');
 		} else if (selectedRadio === '0' && typeof window.displayOfflineStatus === 'function') {
@@ -4065,7 +4046,6 @@ $(function() {
 
 			$(document).on('mouseenter', '.dx-marker-label', function() {
 				if (!dxMap) {
-					console.log('Hover: Map not initialized');
 					return;
 				}
 
@@ -4090,7 +4070,6 @@ $(function() {
 
 				const hoverData = hoverSpottersData.get(dxccId);
 				if (!hoverData) {
-					console.log('Hover: No hover data for', dxccId);
 					return;
 				}
 
