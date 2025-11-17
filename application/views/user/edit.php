@@ -564,7 +564,7 @@
 									<div class="row"> <!-- QSO (confirmed) -->
 										<div class="mb-3 col-md-4">
 											<label><?= __("QSO (confirmed)"); ?></label>
-											<small class="form-text text-muted"><?= __("(If 'No', displayed as 'QSO (by default))"); ?></small>
+											<small class="form-text text-muted"><?= __("(If 'No', displayed as 'QSO (worked, not confirmed)')"); ?></small>
 										</div>
 										<div class="mb-3 col-md-3">
 											<div class="icon_selectBox" data-boxcontent="qsoconfirm">
