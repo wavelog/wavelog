@@ -11017,7 +11017,8 @@ msgstr "标记所有 QSO 已上传至 eQSL"
 msgid ""
 "Use this if you have lots of QSOs to upload to eQSL it will save the server "
 "timing out."
-msgstr "如果你有大量/全量 QSO 需要上传到 eQSL，建议使用此功能，以避免服务器超时。"
+msgstr ""
+"如果你有大量/全量 QSO 需要上传到 eQSL，建议使用此功能，以避免服务器超时。"
 
 #: application/views/eqslcard/index.php:10
 #, php-format
@@ -15844,7 +15845,8 @@ msgstr ""
 msgid ""
 "First, all previous exchange is wiped, then only a serial is set. Otherwise "
 "the previous exchange 'D23' would have been set also."
-msgstr "系统会先重置（清空）前一次的交换字段，然后仅写入序列号；否则原有的 ‘D23’ 也会"
+msgstr ""
+"系统会先重置（清空）前一次的交换字段，然后仅写入序列号；否则原有的 ‘D23’ 也会"
 "被保留并一同写入。"
 
 #: application/views/simplefle/syntax_help.php:60
@@ -17983,6 +17985,10 @@ msgstr "（未通联区域的颜色）"
 #: application/views/logbookadvanced/index.php:44
 msgid "Options for the Advanced Logbook"
 msgstr "日志簿的高级选项"
+
+#: application/views/user/edit.php:567
+msgid "(If 'No', displayed as 'QSO (worked, not confirmed)')"
+msgstr ""
 
 #~ msgid "Radio:"
 #~ msgstr "电台："
