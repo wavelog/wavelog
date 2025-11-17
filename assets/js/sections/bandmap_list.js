@@ -2227,7 +2227,7 @@ $(function() {
 	 * @returns {string|null} - CSS background color or null if outside gradient range
 	 */
 	function getFrequencyGradientColor(spotFreqKhz, radioFreqKhz) {
-		if (!radioFreqKhz || !isCatTrackingEnabled || !isFrequencyMarkerEnabled) {
+		if (!radioFreqKhz || !isCatTrackingEnabled) {
 			return null;
 		}
 
@@ -2267,7 +2267,7 @@ $(function() {
 	 * Called when radio frequency changes
 	 */
 	function updateFrequencyGradientColors(forceUpdate = false) {
-		if (!isCatTrackingEnabled || !isFrequencyMarkerEnabled || !currentRadioFrequency) {
+		if (!isCatTrackingEnabled || !currentRadioFrequency) {
 			return;
 		}
 
