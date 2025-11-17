@@ -2349,18 +2349,12 @@ $(function() {
 			}
 		});
 
-		// If no spots are colored, add purple borders to nearest spots above/below
-		// NOTE: Table is sorted DESC, so higher frequencies appear at TOP, lower at BOTTOM
-		// Borders point TOWARD current frequency to create visual bracket
-		if (coloredCount === 0) {
+		// Only show purple border markers in purple mode (when isFrequencyMarkerEnabled is true)
+		if (isFrequencyMarkerEnabled && coloredCount === 0) {
 			// First, remove any existing border classes from all rows
 			table.rows().every(function() {
 				$(this.node()).removeClass('cat-nearest-above cat-nearest-below');
 			});
-
-
-
-
 
 			// Spot BELOW current freq (lower number) appears at BOTTOM of DESC table → TOP border points UP toward you
 			if (nearestBelow) {
@@ -2371,11 +2365,10 @@ $(function() {
 				$(nearestAbove).addClass('cat-nearest-above');
 			}
 		} else {
-			// Remove border indicators when spots are in gradient range
+			// Remove border indicators when not in purple mode or when spots are in gradient range
 			table.rows().every(function() {
 				$(this.node()).removeClass('cat-nearest-above cat-nearest-below');
 			});
-
 		}
 	}	// Save reference to cat.js's updateCATui if it exists
 	var catJsUpdateCATui = window.updateCATui;
