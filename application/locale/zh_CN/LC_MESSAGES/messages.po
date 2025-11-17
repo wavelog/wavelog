@@ -19,12 +19,13 @@
 # BG9JDI <lyx8851@qq.com>, 2025.
 # Yoshida Kanae <xiaoxi654@outlook.com>, 2025.
 # ShenRQ <shen.ruiqin@foxmail.com>, 2025.
+# "ShenRQ(BH4FJN)" <shen.ruiqin@foxmail.com>, 2025.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-11-15 16:34+0000\n"
-"PO-Revision-Date: 2025-11-16 08:59+0000\n"
-"Last-Translator: ShenRQ <shen.ruiqin@foxmail.com>\n"
+"PO-Revision-Date: 2025-11-17 06:49+0000\n"
+"Last-Translator: \"ShenRQ(BH4FJN)\" <shen.ruiqin@foxmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
 "translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -7501,7 +7502,7 @@ msgstr "展示所有"
 
 #: application/views/bandmap/list.php:54
 msgid "Active filters"
-msgstr ""
+msgstr "启用的筛选器"
 
 #: application/views/bandmap/list.php:55
 msgid "Fetching..."
@@ -7545,7 +7546,7 @@ msgstr "以前通联过"
 #: application/views/bandmap/list.php:67
 #, php-format
 msgid "Worked on %s with %s"
-msgstr ""
+msgstr "通联于%s使用%s"
 
 #: application/views/bandmap/list.php:75 application/views/bandmap/list.php:521
 msgid "de"
@@ -7600,7 +7601,7 @@ msgstr "此频段上未通联"
 #: application/views/bandmap/list.php:88
 #, php-format
 msgid "LoTW User. Last upload was %d days ago"
-msgstr "LOTW 用户。上次上传是在 %d 天前"
+msgstr "LOTW 用户.上次上传是在 %d 天前"
 
 #: application/views/bandmap/list.php:89
 msgid "Click to view on POTA.app"
@@ -7625,7 +7626,7 @@ msgstr "查看各大洲详情"
 #: application/views/bandmap/list.php:94
 #, php-format
 msgid "See details for continent %s"
-msgstr ""
+msgstr "查看 %s 大洲的详情"
 
 #: application/views/bandmap/list.php:95
 msgid "See details for CQ Zone"
@@ -7982,7 +7983,7 @@ msgstr "切换 DX Spot 筛选器（spotted continent ≠ spotter continent）"
 #: application/views/bandmap/list.php:437
 #: application/views/bandmap/list.php:515
 msgid "DX"
-msgstr ""
+msgstr "DX"
 
 #: application/views/bandmap/list.php:439
 msgid "Toggle New Continents filter"
@@ -11016,9 +11017,7 @@ msgstr "标记所有 QSO 已上传至 eQSL"
 msgid ""
 "Use this if you have lots of QSOs to upload to eQSL it will save the server "
 "timing out."
-msgstr ""
-"如果你需要向 eQSL 上传大量 QSO 数据，请使用此设置，这样可以避免服务器因超时而"
-"关闭。"
+msgstr "如果你有大量/全量 QSO 需要上传到 eQSL，建议使用此功能，以避免服务器超时。"
 
 #: application/views/eqslcard/index.php:10
 #, php-format
@@ -15845,9 +15844,8 @@ msgstr ""
 msgid ""
 "First, all previous exchange is wiped, then only a serial is set. Otherwise "
 "the previous exchange 'D23' would have been set also."
-msgstr ""
-"首先，所有之前的交换码都被清除，然后只设置一个序列号。否则，之前的交换"
-"码“D23”也会被设置。"
+msgstr "系统会先重置（清空）前一次的交换字段，然后仅写入序列号；否则原有的 ‘D23’ 也会"
+"被保留并一同写入。"
 
 #: application/views/simplefle/syntax_help.php:60
 msgid ""
@@ -17968,23 +17966,23 @@ msgstr "收"
 
 #: application/views/user/edit.php:547
 msgid "QSO (worked, not confirmed)"
-msgstr ""
+msgstr "QSO（已记录,未确认）"
 
 #: application/views/user/edit.php:567
 msgid "(If 'No', displayed as 'QSO (by default))"
-msgstr ""
+msgstr "(若“否”，则显示为'QSO（默认设置）)"
 
 #: application/views/user/edit.php:586
 msgid "Unworked (e.g. Zones)"
-msgstr ""
+msgstr "未通联区域（例如：分区）"
 
 #: application/views/user/edit.php:587
 msgid "(Color for unworked zones)"
-msgstr ""
+msgstr "（未通联区域的颜色）"
 
 #: application/views/logbookadvanced/index.php:44
 msgid "Options for the Advanced Logbook"
-msgstr ""
+msgstr "日志簿的高级选项"
 
 #~ msgid "Radio:"
 #~ msgstr "电台："
