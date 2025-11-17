@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-11-17 07:04+0000\n"
-"PO-Revision-Date: 2025-11-15 12:02+0000\n"
+"POT-Creation-Date: 2025-11-16 12:59+0000\n"
+"PO-Revision-Date: 2025-11-16 21:39+0000\n"
 "Last-Translator: JONCOUX Philippe <joncoux@free.fr>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/fr/>\n"
@@ -3146,8 +3146,8 @@ msgid ""
 "encryption_key in your config.php file first!"
 msgstr ""
 "Vous ne pouvez actuellement pas usurper l'identité d'un autre utilisateur. "
-"Veuillez d'abord changer la clé de chiffrement dans votre fichier config."
-"php !"
+"Veuillez d'abord changer la clé de chiffrement dans votre fichier "
+"config.php !"
 
 #: application/controllers/User.php:1602
 msgid "Invalid Hash"
@@ -7432,7 +7432,7 @@ msgstr "Aide du cluster DX"
 
 #: application/views/bandmap/list.php:199
 msgid "TRX:"
-msgstr ""
+msgstr "Emetteur :"
 
 #: application/views/bandmap/list.php:201
 #: application/views/bandmap/list.php:275
@@ -7661,107 +7661,107 @@ msgstr "Activer/désactiver le filtre Nouveaux continents"
 
 #: application/views/bandmap/list.php:440
 msgid "New Continents"
-msgstr ""
+msgstr "Nouveaux continents"
 
 #: application/views/bandmap/list.php:442
 msgid "Toggle New Entities filter"
-msgstr ""
+msgstr "Activer/désactiver le filtre Nouvelles entités"
 
 #: application/views/bandmap/list.php:443
 msgid "New Entities"
-msgstr ""
+msgstr "Nouvelles entités"
 
 #: application/views/bandmap/list.php:445
 msgid "Toggle New Callsigns filter"
-msgstr ""
+msgstr "Activer/désactiver le filtre des nouveaux indicatifs d'appel"
 
 #: application/views/bandmap/list.php:446
 msgid "New Callsigns"
-msgstr ""
+msgstr "Nouveaux indicatifs d'appel"
 
 #: application/views/bandmap/list.php:452
 msgid "Toggle Fresh spots filter (< 5 minutes old)"
-msgstr ""
+msgstr "Activer/désactiver le filtre des taches récentes (moins de 5 minutes)"
 
 #: application/views/bandmap/list.php:453
 msgid "Fresh"
-msgstr ""
+msgstr "Frais"
 
 #: application/views/bandmap/list.php:455
 msgid "Toggle Contest filter"
-msgstr ""
+msgstr "Activer/désactiver le filtre de concours"
 
 #: application/views/bandmap/list.php:458
 msgid "Toggle Geo Hunter (POTA/SOTA/IOTA/WWFF)"
-msgstr ""
+msgstr "Activer/désactiver Geo Hunter (POTA/SOTA/IOTA/WWFF)"
 
 #: application/views/bandmap/list.php:459
 msgid "Referenced"
-msgstr ""
+msgstr "Référence"
 
 #: application/views/bandmap/list.php:465
 msgid "Open DX Map view"
-msgstr ""
+msgstr "Ouvrir la vue de la carte DX"
 
 #: application/views/bandmap/list.php:466
 msgid "DX Map"
-msgstr ""
+msgstr "Carte DX"
 
 #: application/views/bandmap/list.php:490
 msgid "Search spots..."
-msgstr ""
+msgstr "Recherchez des endroits..."
 
 #: application/views/bandmap/list.php:503
 msgid "Note: Map shows DXCC entity locations, not actual spot locations"
-msgstr ""
+msgstr "Note: Map shows DXCC entity locations, not actual spot locations"
 
 #: application/views/bandmap/list.php:511
 msgid "Age in minutes"
-msgstr ""
+msgstr "Age in minutes"
 
 #: application/views/bandmap/list.php:513
 msgid "Freq"
-msgstr ""
+msgstr "Freq"
 
 #: application/views/bandmap/list.php:515
 msgid "Spotted Callsign"
-msgstr ""
+msgstr "Spotted Callsign"
 
 #: application/views/bandmap/list.php:518
 msgid "Flag"
-msgstr ""
+msgstr "Flag"
 
 #: application/views/bandmap/list.php:519
 msgid "DXCC Entity"
-msgstr ""
+msgstr "DXCC Entity"
 
 #: application/views/bandmap/list.php:519
 msgid "Entity"
-msgstr ""
+msgstr "Entity"
 
 #: application/views/bandmap/list.php:520
 msgid "DXCC Number"
-msgstr ""
+msgstr "DXCC Number"
 
 #: application/views/bandmap/list.php:521
 msgid "Spotter Callsign"
-msgstr ""
+msgstr "Spotter Callsign"
 
 #: application/views/bandmap/list.php:522
 msgid "Spotter Continent"
-msgstr ""
+msgstr "Spotter Continent"
 
 #: application/views/bandmap/list.php:523
 msgid "Spotter CQ Zone"
-msgstr ""
+msgstr "Spotter CQ Zone"
 
 #: application/views/bandmap/list.php:524
 msgid "Special"
-msgstr ""
+msgstr "Special"
 
 #: application/views/bandmap/list.php:524
 msgid "Special Flags"
-msgstr ""
+msgstr "Special Flags"
 
 #: application/views/bandmap/list.php:525
 #: application/views/oqrs/notinlogform.php:28
@@ -8729,13 +8729,15 @@ msgstr "HORS DU PLAN DE BANDE"
 
 #: application/views/components/dxwaterfall.php:43
 msgid "Out of band"
-msgstr ""
+msgstr "Out of band"
 
 #: application/views/components/dxwaterfall.php:44
 msgid ""
 "DX Waterfall has experienced an unexpected error and will be shut down. "
 "Please visit Wavelog's GitHub and create a bug report if this issue persists."
 msgstr ""
+"DX Waterfall has experienced an unexpected error and will be shut down. "
+"Please visit Wavelog's GitHub and create a bug report if this issue persists."
 
 #: application/views/components/dxwaterfall.php:45
 msgid "Changing radio frequency..."
@@ -8788,12 +8790,12 @@ msgstr "Par :"
 #: application/views/components/dxwaterfall.php:80
 #: application/views/components/dxwaterfall.php:86
 msgid "DX Waterfall Help"
-msgstr ""
+msgstr "DX Waterfall Help"
 
 #: application/views/components/hamsat/table.php:3
 #: application/views/hamsat/index.php:7
 msgid "Hamsat - Satellite Rovers"
-msgstr ""
+msgstr "Hamsat - Satellite Rovers"
 
 #: application/views/components/hamsat/table.php:4
 #: application/views/contestcalendar/index.php:11
@@ -9102,7 +9104,7 @@ msgstr "Série"
 
 #: application/views/contesting/index.php:160
 msgid "WebSocket (Requires WLGate>1.1.10)"
-msgstr ""
+msgstr "WebSocket (Requires WLGate>1.1.10)"
 
 #: application/views/contesting/index.php:187
 #: application/views/contesting/index.php:270
@@ -9330,7 +9332,7 @@ msgstr "Mode Propagation"
 #: application/views/csv/index.php:95
 msgctxt "Propagation Mode"
 msgid "All but Repeater"
-msgstr ""
+msgstr "All but Repeater"
 
 #: application/views/dashboard/index.php:5
 msgid "RSTS"
@@ -9595,11 +9597,11 @@ msgstr "Demandées"
 #: application/views/dashboard/index.php:388
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
-msgstr "Logbook of the World"
+msgstr "Journal de bord du monde"
 
 #: application/views/dashboard/index.php:451
 msgid "VUCC-Grids"
-msgstr "Locator VUCC"
+msgstr "VUCC-Grids"
 
 #: application/views/dashboard/index.php:476
 msgid "Solar Data & Propagation"
@@ -9925,7 +9927,7 @@ msgstr ""
 "pour forcer la migration à se relancer."
 
 #: application/views/debug/index.php:57
-#, fuzzy, php-format
+#, php-format
 msgid "Check this wiki article %shere%s for more information."
 msgstr "Consultez cet article wiki %ici%s pour plus d'informations."
 
@@ -10186,7 +10188,7 @@ msgstr "Mise à jour TLE"
 
 #: application/views/debug/index.php:563
 msgid "Hams Of Note update"
-msgstr ""
+msgstr "Mise à jour Hams Of Note"
 
 #: application/views/debug/index.php:568
 msgid "HAMqsl"
@@ -10576,6 +10578,9 @@ msgid ""
 "\n"
 "You got an OQRS request from %s."
 msgstr ""
+"Bonjour,\n"
+"\n"
+"Vous avez reçu une requête OQRS de %s."
 
 #: application/views/email/oqrs_request.php:20
 msgid ""
@@ -10585,10 +10590,15 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Veuillez vous connecter à votre compte Wavelog et traiter la demande.\n"
+"\n"
+"Cordialement,\n"
+"\n"
+"Wavelog"
 
 #: application/views/email/testmail.php:3
 msgid "Wavelog Test-Mail"
-msgstr ""
+msgstr "Courriel de test Wavelog"
 
 #: application/views/email/testmail.php:5
 msgid ""
@@ -10602,13 +10612,22 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Bonjour,\n"
+"\n"
+"Ceci est un e-mail de test provenant de votre instance Wavelog.\n"
+"\n"
+"Si vous avez reçu cet e-mail, vos paramètres de messagerie sont corrects.\n"
+"\n"
+"Cordialement,\n"
+"\n"
+"Wavelog"
 
 #: application/views/eqsl/analysis.php:14
 #: application/views/eqsl/download.php:13 application/views/eqsl/export.php:12
 #: application/views/eqsl/import.php:11 application/views/eqsl/result.php:14
 #: application/views/eqsl/tools.php:11
 msgid "Upload QSOs"
-msgstr ""
+msgstr "Téléverser les QSO"
 
 #: application/views/eqsl/analysis.php:17
 #: application/views/eqsl/download.php:17 application/views/eqsl/export.php:16
@@ -10716,8 +10735,8 @@ msgstr ""
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
-"Cliquer sur 'Téléverser les QSOs' enverra les informations de QSO vers eQSL."
-"cc."
+"Cliquer sur 'Téléverser les QSOs' enverra les informations de QSO vers "
+"eQSL.cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -12451,7 +12470,7 @@ msgid "INFO"
 msgstr ""
 
 #: application/views/logbookadvanced/index.php:44
-msgid "Options for the Advanced Logbook"
+msgid "'Options for the Advanced Logbook'"
 msgstr ""
 
 #: application/views/logbookadvanced/index.php:45
@@ -13414,8 +13433,8 @@ msgid ""
 "The hostname of the mail server, e.g. 'mail.example.com' (without 'ssl://' "
 "or 'tls://')"
 msgstr ""
-"Le nom d'hôte du serveur de messagerie, par exemple « mail.example."
-"com » (sans « ssl:// » ou « tls:// »)"
+"Le nom d'hôte du serveur de messagerie, par exemple « mail.example.com » "
+"(sans « ssl:// » ou « tls:// »)"
 
 #: application/views/options/email.php:88
 msgid "SMTP Port"
@@ -15572,8 +15591,8 @@ msgid ""
 msgstr ""
 "Pour commencer, assurez-vous d'avoir rempli le formulaire sur la gauche avec "
 "la date, l'indicatif de la station et l'indicatif de l'opérateur. Les "
-"données principales incluent la bande (ou QRG en MHz, par exemple « 7.145 "
-"»), le mode et l'heure. Après l'heure, indiquez le premier QSO, qui "
+"données principales incluent la bande (ou QRG en MHz, par exemple "
+"« 7.145 »), le mode et l'heure. Après l'heure, indiquez le premier QSO, qui "
 "correspond essentiellement à l'indicatif."
 
 #: application/views/simplefle/syntax_help.php:9
@@ -16889,7 +16908,7 @@ msgid "QSO (confirmed)"
 msgstr "QSO (confirmé)"
 
 #: application/views/user/edit.php:567
-msgid "(If 'No', displayed as 'QSO (worked, not confirmed)')"
+msgid "(If 'No', displayed as 'QSO (by default))"
 msgstr ""
 
 #: application/views/user/edit.php:586
@@ -17947,6 +17966,14 @@ msgstr "Soumettre la demande"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Reçu"
+
+#: application/views/logbookadvanced/index.php:44
+msgid "Options for the Advanced Logbook"
+msgstr ""
+
+#: application/views/user/edit.php:567
+msgid "(If 'No', displayed as 'QSO (worked, not confirmed)')"
+msgstr ""
 
 #~ msgid "QSO (by default)"
 #~ msgstr "QSO (par défaut)"

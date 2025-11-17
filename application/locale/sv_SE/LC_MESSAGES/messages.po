@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-11-17 07:04+0000\n"
-"PO-Revision-Date: 2025-11-14 21:34+0000\n"
+"POT-Creation-Date: 2025-11-16 12:59+0000\n"
+"PO-Revision-Date: 2025-11-16 21:39+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sv/>\n"
@@ -6760,8 +6760,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
-"Reef/506) och giltig stat (ADIF: DXCC och STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
+"506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/wapc/index.php:119
 msgid "Code"
@@ -12338,8 +12338,8 @@ msgid "INFO"
 msgstr "INFO"
 
 #: application/views/logbookadvanced/index.php:44
-msgid "Options for the Advanced Logbook"
-msgstr ""
+msgid "'Options for the Advanced Logbook'"
+msgstr "'Alternativ för den avancerade loggboken'"
 
 #: application/views/logbookadvanced/index.php:45
 msgid ""
@@ -16311,8 +16311,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 (t."
-"ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
+"(t.ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
@@ -16741,23 +16741,23 @@ msgstr "Inte visad"
 
 #: application/views/user/edit.php:547
 msgid "QSO (worked, not confirmed)"
-msgstr ""
+msgstr "QSO (kontaktad, inte bekräftad)"
 
 #: application/views/user/edit.php:566
 msgid "QSO (confirmed)"
 msgstr "QSO (bekräftad)"
 
 #: application/views/user/edit.php:567
-msgid "(If 'No', displayed as 'QSO (worked, not confirmed)')"
-msgstr ""
+msgid "(If 'No', displayed as 'QSO (by default))"
+msgstr "(Om 'Nej', visas som 'QSO (som standard))"
 
 #: application/views/user/edit.php:586
 msgid "Unworked (e.g. Zones)"
-msgstr ""
+msgstr "Ej Kontaktad (för zoner)"
 
 #: application/views/user/edit.php:587
 msgid "(Color for unworked zones)"
-msgstr ""
+msgstr "(Färg för ej kontaktade zoner)"
 
 #: application/views/user/edit.php:597
 msgid "Show Locator"
@@ -17784,8 +17784,13 @@ msgstr "Skicka förfrågan"
 msgid "Rcvd"
 msgstr "Mottagen"
 
-#~ msgid "'Options for the Advanced Logbook'"
-#~ msgstr "'Alternativ för den avancerade loggboken'"
+#: application/views/logbookadvanced/index.php:44
+msgid "Options for the Advanced Logbook"
+msgstr ""
+
+#: application/views/user/edit.php:567
+msgid "(If 'No', displayed as 'QSO (worked, not confirmed)')"
+msgstr ""
 
 #~ msgid "QSO (by default)"
 #~ msgstr "QSO (som standard)"

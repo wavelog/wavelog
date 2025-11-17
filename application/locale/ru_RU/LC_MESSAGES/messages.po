@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-11-17 07:04+0000\n"
-"PO-Revision-Date: 2025-11-10 10:44+0000\n"
+"POT-Creation-Date: 2025-11-16 12:59+0000\n"
+"PO-Revision-Date: 2025-11-16 21:39+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -2964,15 +2964,15 @@ msgstr "Удалить оператора"
 
 #: application/controllers/User.php:1077
 msgid "User deleted"
-msgstr ""
+msgstr "Пользователь удалён"
 
 #: application/controllers/User.php:1080
 msgid "Could not delete user!"
-msgstr ""
+msgstr "Не удалось удалить пользователя!"
 
 #: application/controllers/User.php:1080
 msgid "Database error:"
-msgstr ""
+msgstr "Ошибка базы данных:"
 
 #: application/controllers/User.php:1105
 msgid ""
@@ -4329,7 +4329,7 @@ msgstr "Показать карту"
 
 #: application/views/adif/dcl_success.php:12
 msgid "Results of DCL DOK Update"
-msgstr "Результаты обновления DCL DOK"
+msgstr "Результат обновления DCL DOK"
 
 #: application/views/adif/dcl_success.php:16
 #: application/views/adif/pota_success.php:16
@@ -4950,7 +4950,7 @@ msgstr "QSO были отмечены, как экспортированные �
 
 #: application/views/adif/pota_success.php:12
 msgid "Results of POTA Update"
-msgstr "Результаты обновления POTA"
+msgstr "Результат обновления POTA"
 
 #: application/views/adif/pota_success.php:17
 msgid "POTA references for existing QSOs has been updated."
@@ -6314,7 +6314,7 @@ msgstr "Экспорт"
 #: application/views/public_search/result.php:2
 #: application/views/view_log/partial/log_ajax.php:568
 msgid "Results"
-msgstr "Результаты"
+msgstr "Результат"
 
 #: application/views/awards/jcc/index.php:154
 #: application/views/search/result.php:21
@@ -6963,11 +6963,11 @@ msgstr "Нажмите, чтобы подготовить ведение жур�
 
 #: application/views/bandmap/list.php:11 application/views/bandmap/list.php:104
 msgid "to tune frequency"
-msgstr ""
+msgstr "перестроить частоту"
 
 #: application/views/bandmap/list.php:14
 msgid "Pop-up Blocked"
-msgstr ""
+msgstr "Всплывающее окно заблокировано"
 
 #: application/views/bandmap/list.php:15 application/views/qso/log_qso.php:55
 msgid "Pop-up was blocked! Please allow pop-ups for this site permanently."
@@ -6977,150 +6977,156 @@ msgstr ""
 
 #: application/views/bandmap/list.php:16
 msgid "CAT Connection Required"
-msgstr ""
+msgstr "Требуется соединение по CAT"
 
 #: application/views/bandmap/list.php:17
 msgid "Enable CAT connection to tune the radio"
-msgstr ""
+msgstr "Подключите радиостанцию по CAT для настройки"
 
 #: application/views/bandmap/list.php:18 application/views/bandmap/list.php:372
 msgid "Clear Filters"
-msgstr ""
+msgstr "Очистить фильтры"
 
 #: application/views/bandmap/list.php:19
 msgid "Band filter preserved (CAT connection is active)"
-msgstr ""
+msgstr "Фильтр по диапазону применён (соединение по CAT активно)"
 
 #: application/views/bandmap/list.php:21
 msgid "Radio set to None - CAT connection disabled"
-msgstr ""
+msgstr "Выбрана радиостанция: Отсутствует - соединение по CAT отключено"
 
 #: application/views/bandmap/list.php:22
 msgid "Radio Tuned"
-msgstr ""
+msgstr "Радиостанция настроена"
 
 #: application/views/bandmap/list.php:23
 msgid "Tuned to"
-msgstr ""
+msgstr "Настроена на"
 
 #: application/views/bandmap/list.php:24
 msgid "Tuning Failed"
-msgstr ""
+msgstr "Настройка не удалась"
 
 #: application/views/bandmap/list.php:25
 msgid "Failed to tune radio to frequency"
-msgstr ""
+msgstr "Не удалось настроить радиостанцию на частоту"
 
 #: application/views/bandmap/list.php:26
 msgid "QSO Prepared"
-msgstr ""
+msgstr "Запись о QSO подготовлена"
 
 #: application/views/bandmap/list.php:28
 msgid "sent to logging form"
-msgstr ""
+msgstr "отправлено в форму ввода QSO"
 
 #: application/views/bandmap/list.php:29 application/views/bandmap/list.php:195
 msgid "CAT Connection"
-msgstr ""
+msgstr "Соединение по CAT"
 
 #: application/views/bandmap/list.php:30
 msgid "Click to enable CAT connection"
-msgstr ""
+msgstr "Нажмите, чтобы включить соединение по CAT"
 
 #: application/views/bandmap/list.php:31
 msgid ""
 "CAT following radio | Click for frequency marker | Double-click to disable"
 msgstr ""
+"Управление радиостанцией по CAT | Нажмите, чтобы установить метку на частоту "
+"| Дважды щелкните, чтобы отключить"
 
 #: application/views/bandmap/list.php:32
 msgid ""
 "Frequency marker active | Click to disable marker | Double-click to disable "
 "CAT"
 msgstr ""
+"Метка частоты активна | Щелкните, чтобы отключить метку | Дважды щелкните, "
+"чтобы отключить CAT"
 
 #: application/views/bandmap/list.php:33
 msgid "Frequency filter changed to"
-msgstr ""
+msgstr "Фильтр по частоте изменён на"
 
 #: application/views/bandmap/list.php:34
 msgid "by transceiver"
-msgstr ""
+msgstr "трансивером"
 
 #: application/views/bandmap/list.php:35
 msgid "Frequency filter set to"
-msgstr ""
+msgstr "Фильтр по частоте установлен на"
 
 #: application/views/bandmap/list.php:36
 msgid "Frequency outside known bands - showing all bands"
-msgstr ""
+msgstr "Частота вне известных диапазонов - отображаются все диапазоны"
 
 #: application/views/bandmap/list.php:37
 msgid "Waiting for radio data..."
-msgstr ""
+msgstr "Ожидание данных от радиостанции..."
 
 #: application/views/bandmap/list.php:38
 msgid "My Favorites"
-msgstr ""
+msgstr "Избранное"
 
 #: application/views/bandmap/list.php:39
 msgid "Failed to load favorites"
-msgstr ""
+msgstr "Не удалось загрузить избранное"
 
 #: application/views/bandmap/list.php:40
 msgid "Modes applied. Band filter preserved (CAT connection is active)"
 msgstr ""
+"Фильтр по видам модуляции применён. Фильтр по диапазону сохранён (соединение "
+"по CAT активно)"
 
 #: application/views/bandmap/list.php:41
 msgid "Applied your favorite bands and modes"
-msgstr ""
+msgstr "Установлены избранные вид модуляции и диапазон"
 
 #: application/views/bandmap/list.php:44
 msgid "Loading data from DX Cluster"
-msgstr ""
+msgstr "Загрузка данных из DX-кластера"
 
 #: application/views/bandmap/list.php:45
 msgid "Last fetched for"
-msgstr ""
+msgstr "Последний запрос"
 
 #: application/views/bandmap/list.php:46
 msgid "Max Age"
-msgstr ""
+msgstr "Максимальный возраст"
 
 #: application/views/bandmap/list.php:47
 msgid "Fetched at"
-msgstr ""
+msgstr "Получено в"
 
 #: application/views/bandmap/list.php:48
 msgid "Next update in"
-msgstr ""
+msgstr "Следующее обновление через"
 
 #: application/views/bandmap/list.php:49
 msgid "minutes"
-msgstr ""
+msgstr "минут(ы)"
 
 #: application/views/bandmap/list.php:50
 msgid "seconds"
-msgstr ""
+msgstr "секунд(ы)"
 
 #: application/views/bandmap/list.php:51
 msgid "spots fetched"
-msgstr ""
+msgstr "споты получены"
 
 #: application/views/bandmap/list.php:52
 msgid "showing"
-msgstr ""
+msgstr "отображаются"
 
 #: application/views/bandmap/list.php:53
 msgid "showing all"
-msgstr ""
+msgstr "отображаются все"
 
 #: application/views/bandmap/list.php:54
 msgid "Active filters"
-msgstr ""
+msgstr "Активные фильтры"
 
 #: application/views/bandmap/list.php:55
 msgid "Fetching..."
-msgstr ""
+msgstr "Запрос..."
 
 #: application/views/bandmap/list.php:58 application/views/bandmap/list.php:258
 #: application/views/interface_assets/footer.php:47
@@ -7151,28 +7157,28 @@ msgstr "Новый континент"
 
 #: application/views/bandmap/list.php:65 application/views/bandmap/list.php:278
 msgid "New Country"
-msgstr ""
+msgstr "Новая страна"
 
 #: application/views/bandmap/list.php:66
 msgid "Worked Before"
-msgstr ""
+msgstr "Сработано"
 
 #: application/views/bandmap/list.php:67
 #, php-format
 msgid "Worked on %s with %s"
-msgstr ""
+msgstr "Работал на %s с %s"
 
 #: application/views/bandmap/list.php:75 application/views/bandmap/list.php:521
 msgid "de"
-msgstr ""
+msgstr "от"
 
 #: application/views/bandmap/list.php:76
 msgid "spotted"
-msgstr ""
+msgstr "спот отправлен"
 
 #: application/views/bandmap/list.php:79
 msgid "Fresh spot (< 5 minutes old)"
-msgstr ""
+msgstr "Свежий спот (< 5 минут назад)"
 
 #: application/views/bandmap/list.php:80 application/views/bandmap/list.php:81
 #: application/views/bandmap/list.php:281
@@ -7189,93 +7195,95 @@ msgstr "Контест"
 
 #: application/views/bandmap/list.php:82
 msgid "Click to view"
-msgstr ""
+msgstr "Нажмите, чтобы посмотреть"
 
 #: application/views/bandmap/list.php:83
 msgid "on QRZ.com"
-msgstr ""
+msgstr "на QRZ.com"
 
 #: application/views/bandmap/list.php:84
 #, php-format
 msgid "Click to view %s on QRZ.com"
-msgstr ""
+msgstr "Нажмите, чтобы просмотреть %s на QRZ.com"
 
 #: application/views/bandmap/list.php:85
 msgid "See details for"
-msgstr ""
+msgstr "Подробнее"
 
 #: application/views/bandmap/list.php:86
 msgid "Worked on"
-msgstr ""
+msgstr "Сработан на"
 
 #: application/views/bandmap/list.php:87
 msgid "Not worked on this band"
-msgstr ""
+msgstr "Не сработан на этом диапазоне"
 
 #: application/views/bandmap/list.php:88
 #, php-format
 msgid "LoTW User. Last upload was %d days ago"
-msgstr ""
+msgstr "Пользователь LoTW. Последняя загрузка была %d дней назад"
 
 #: application/views/bandmap/list.php:89
 msgid "Click to view on POTA.app"
-msgstr ""
+msgstr "Нажмите, чтобы посмотреть на POTA.app"
 
 #: application/views/bandmap/list.php:90
 msgid "Click to view on SOTL.as"
-msgstr ""
+msgstr "Нажмите, чтобы посмотреть на SOTL.as"
 
 #: application/views/bandmap/list.php:91
 msgid "Click to view on cqgma.org"
-msgstr ""
+msgstr "Нажмите, чтобы посмотреть на cqgma.org"
 
 #: application/views/bandmap/list.php:92
 msgid "Click to view on IOTA-World.org"
-msgstr ""
+msgstr "Нажмите, чтобы посмотреть на IOTA-World.org"
 
 #: application/views/bandmap/list.php:93
 msgid "See details for continent"
-msgstr ""
+msgstr "Подробнее о континенте"
 
 #: application/views/bandmap/list.php:94
 #, php-format
 msgid "See details for continent %s"
-msgstr ""
+msgstr "Подробнее о континенте %s"
 
 #: application/views/bandmap/list.php:95
 msgid "See details for CQ Zone"
-msgstr ""
+msgstr "Подробнее о зоне CQ"
 
 #: application/views/bandmap/list.php:96
 #, php-format
 msgid "See details for CQ Zone %s"
-msgstr ""
+msgstr "Подробнее о зоне CQ %s"
 
 #: application/views/bandmap/list.php:97
 msgid "in"
-msgstr ""
+msgstr "в"
 
 #: application/views/bandmap/list.php:100
 msgid "Exit Fullscreen"
-msgstr ""
+msgstr "Выйти из полноэкранного режима"
 
 #: application/views/bandmap/list.php:101
 #: application/views/bandmap/list.php:181
 msgid "Toggle Fullscreen"
-msgstr ""
+msgstr "Переключить полноэкранный режим"
 
 #: application/views/bandmap/list.php:102
 msgid ""
 "Band filtering is controlled by your radio when CAT connection is enabled"
 msgstr ""
+"Фильтрация по диапазону контролируется вашей радиостанцией, когда включено "
+"соединение по CAT"
 
 #: application/views/bandmap/list.php:103
 msgid "Click to prepare logging"
-msgstr ""
+msgstr "Нажмите, чтобы подготовить к записи в лог"
 
 #: application/views/bandmap/list.php:105
 msgid "(requires CAT connection)"
-msgstr ""
+msgstr "(требуется соединение по CAT)"
 
 #: application/views/bandmap/list.php:106
 msgid "Spotter"
@@ -7301,11 +7309,11 @@ msgstr "Возраст"
 
 #: application/views/bandmap/list.php:110
 msgid "Incoming"
-msgstr ""
+msgstr "Входящий"
 
 #: application/views/bandmap/list.php:111
 msgid "Outgoing"
-msgstr ""
+msgstr "Исходяший"
 
 #: application/views/bandmap/list.php:112
 #: application/views/components/dxwaterfall.php:15
@@ -7314,72 +7322,72 @@ msgstr "споты"
 
 #: application/views/bandmap/list.php:113
 msgid "spot"
-msgstr ""
+msgstr "спот"
 
 #: application/views/bandmap/list.php:114
 msgid "spotters"
-msgstr ""
+msgstr "споттеры"
 
 #: application/views/bandmap/list.php:118
 msgid "Loading spots..."
-msgstr ""
+msgstr "Загрузка спотов..."
 
 #: application/views/bandmap/list.php:119
 msgid "No spots found"
-msgstr ""
+msgstr "Споты не найдены"
 
 #: application/views/bandmap/list.php:120
 msgid "No data available"
-msgstr ""
+msgstr "Нет данных"
 
 #: application/views/bandmap/list.php:121
 msgid "No spots found for selected filters"
-msgstr ""
+msgstr "По выбранным фильтрам ничего не найдено"
 
 #: application/views/bandmap/list.php:122
 msgid "Error loading spots. Please try again."
-msgstr ""
+msgstr "Ошибка загрузки спотов. Пожалуйста, попробуйте еще раз."
 
 #: application/views/bandmap/list.php:125
 msgid "Show all modes"
-msgstr ""
+msgstr "Показать все виды модуляции"
 
 #: application/views/bandmap/list.php:126
 msgid "Show all spots"
-msgstr ""
+msgstr "Показать все споты"
 
 #: application/views/bandmap/list.php:131
 msgid "Draw Spotters"
-msgstr ""
+msgstr "Отобразить споттеров"
 
 #: application/views/bandmap/list.php:132
 msgid "Extend Map"
-msgstr ""
+msgstr "Расширенная карта"
 
 #: application/views/bandmap/list.php:133
 msgid "Show Day/Night"
-msgstr ""
+msgstr "Показать День/Ночь"
 
 #: application/views/bandmap/list.php:134
 msgid "Your QTH"
-msgstr ""
+msgstr "Ваш QTH"
 
 #: application/views/bandmap/list.php:170
 msgid "Return to Home"
-msgstr ""
+msgstr "Вернуться домой"
 
 #: application/views/bandmap/list.php:173
 #: application/views/interface_assets/header.php:297
 msgid "DX Cluster"
-msgstr ""
+msgstr "DX кластер"
 
 #: application/views/bandmap/list.php:177
 msgid "DX Cluster Help"
-msgstr ""
+msgstr "Помощь с DX-кластером"
 
 #: application/views/bandmap/list.php:199
 msgid "TRX:"
-msgstr ""
+msgstr "TRX:"
 
 #: application/views/bandmap/list.php:201
 #: application/views/bandmap/list.php:275
@@ -7404,55 +7412,55 @@ msgstr "Опрос - "
 
 #: application/views/bandmap/list.php:213
 msgid "de:"
-msgstr ""
+msgstr "от:"
 
 #: application/views/bandmap/list.php:215
 msgid "Select all continents"
-msgstr ""
+msgstr "Выберать все континенты"
 
 #: application/views/bandmap/list.php:215
 msgid "World"
-msgstr ""
+msgstr "Мир"
 
 #: application/views/bandmap/list.php:216
 msgid "Toggle Africa continent filter"
-msgstr ""
+msgstr "Переключить фильтр континента Африка"
 
 #: application/views/bandmap/list.php:217
 msgid "Toggle Antarctica continent filter"
-msgstr ""
+msgstr "Переключить фильтр континента Антарктида"
 
 #: application/views/bandmap/list.php:218
 msgid "Toggle Asia continent filter"
-msgstr ""
+msgstr "Переключить фильтр континента Азия"
 
 #: application/views/bandmap/list.php:219
 msgid "Toggle Europe continent filter"
-msgstr ""
+msgstr "Переключить фильтр континента Европа"
 
 #: application/views/bandmap/list.php:220
 msgid "Toggle North America continent filter"
-msgstr ""
+msgstr "Переключить фильтр континента Северная Америка"
 
 #: application/views/bandmap/list.php:221
 msgid "Toggle Oceania continent filter"
-msgstr ""
+msgstr "Переключить фильтр континента Океания"
 
 #: application/views/bandmap/list.php:222
 msgid "Toggle South America continent filter"
-msgstr ""
+msgstr "Переключить фильтр континента Южная Америка"
 
 #: application/views/bandmap/list.php:235
 msgid "Advanced Filters"
-msgstr ""
+msgstr "Расширенные фильтры"
 
 #: application/views/bandmap/list.php:249
 msgid "Hold"
-msgstr ""
+msgstr "Удерживать"
 
 #: application/views/bandmap/list.php:249
 msgid "and click to select multiple options"
-msgstr ""
+msgstr "и нажать, чтобы выбрать несколько вариантов"
 
 #: application/views/bandmap/list.php:255
 msgid "DXCC-Status"
@@ -7475,96 +7483,98 @@ msgstr "Digi"
 
 #: application/views/bandmap/list.php:273
 msgid "Required Flags"
-msgstr ""
+msgstr "Требуемые флаги"
 
 #: application/views/bandmap/list.php:280
 msgid "Worked Callsign"
-msgstr ""
+msgstr "Стработанный позывной"
 
 #: application/views/bandmap/list.php:282
 msgid "DX Spot"
-msgstr ""
+msgstr "DX спот"
 
 #: application/views/bandmap/list.php:284
 msgid "Additional Flags"
-msgstr ""
+msgstr "Дополнительные флаги"
 
 #: application/views/bandmap/list.php:291
 msgid "Fresh (< 5 min)"
-msgstr ""
+msgstr "Свежий (< 5 мин)"
 
 #: application/views/bandmap/list.php:296
 msgid "Spots de Continent"
-msgstr ""
+msgstr "Споты с континента"
 
 #: application/views/bandmap/list.php:310
 msgid "Spotted Station Continent"
-msgstr ""
+msgstr "Континент спота"
 
 #: application/views/bandmap/list.php:370
 msgid "Apply Filters"
-msgstr ""
+msgstr "Применить фильтры"
 
 #: application/views/bandmap/list.php:379
 msgid ""
 "Apply your favorite bands and modes (configured in Band and Mode settings)"
 msgstr ""
+"Применить фильтр по избранным диапазонам и видам модуляции (указанных в "
+"настройках Диапазона и Вида модуляции)"
 
 #: application/views/bandmap/list.php:383
 msgid "Clear all filters except De Continent"
-msgstr ""
+msgstr "Очистить все фильтры, кроме Континента споттера"
 
 #: application/views/bandmap/list.php:390
 msgid "Toggle 160m band filter"
-msgstr ""
+msgstr "Переключить фильтр диапазона 160м"
 
 #: application/views/bandmap/list.php:394
 msgid "Toggle 80m band filter"
-msgstr ""
+msgstr "Переключить фильтр диапазона 80м"
 
 #: application/views/bandmap/list.php:395
 msgid "Toggle 60m band filter"
-msgstr ""
+msgstr "Переключить фильтр диапазона 60м"
 
 #: application/views/bandmap/list.php:396
 msgid "Toggle 40m band filter"
-msgstr ""
+msgstr "Переключить фильтр диапазона 40м"
 
 #: application/views/bandmap/list.php:397
 msgid "Toggle 30m band filter"
-msgstr ""
+msgstr "Переключить фильтр диапазона 30м"
 
 #: application/views/bandmap/list.php:398
 msgid "Toggle 20m band filter"
-msgstr ""
+msgstr "Переключить фильтр диапазона 20м"
 
 #: application/views/bandmap/list.php:399
 msgid "Toggle 17m band filter"
-msgstr ""
+msgstr "Переключить фильтр диапазона 17м"
 
 #: application/views/bandmap/list.php:400
 msgid "Toggle 15m band filter"
-msgstr ""
+msgstr "Переключить фильтр диапазона 15м"
 
 #: application/views/bandmap/list.php:401
 msgid "Toggle 12m band filter"
-msgstr ""
+msgstr "Переключить фильтр диапазона 12м"
 
 #: application/views/bandmap/list.php:402
 msgid "Toggle 10m band filter"
-msgstr ""
+msgstr "Переключить фильтр диапазона 10м"
 
 #: application/views/bandmap/list.php:406
 msgid "Toggle VHF bands filter"
-msgstr ""
+msgstr "Переключить фильтр УКВ диапазонов (6м .. 2м)"
 
 #: application/views/bandmap/list.php:407
 msgid "Toggle UHF bands filter"
-msgstr ""
+msgstr "Переключить фильтр УКВ диапазонов (70см .. 12см)"
 
 #: application/views/bandmap/list.php:408
 msgid "Toggle SHF bands filter"
-msgstr ""
+msgstr "Переключить фильтр диапазонов СВЧ"
 
 #: application/views/bandmap/list.php:418
 #: application/views/components/dxwaterfall.php:32
@@ -7583,128 +7593,130 @@ msgstr "Переключить фильтр по голосовым видам"
 
 #: application/views/bandmap/list.php:429
 msgid "Toggle LoTW User filter"
-msgstr ""
+msgstr "Переключить фильтр по пользователям LoTW"
 
 #: application/views/bandmap/list.php:430
 msgid "LoTW users"
-msgstr ""
+msgstr "Пользователи LoTW"
 
 #: application/views/bandmap/list.php:436
 msgid "Toggle DX Spot filter (spotted continent ≠ spotter continent)"
-msgstr ""
+msgstr "Переключить фильтр DX (континент споттера ≠ континент спота)"
 
 #: application/views/bandmap/list.php:437
 #: application/views/bandmap/list.php:515
 msgid "DX"
-msgstr ""
+msgstr "DX"
 
 #: application/views/bandmap/list.php:439
 msgid "Toggle New Continents filter"
-msgstr ""
+msgstr "Переключить фильтр новых континентов"
 
 #: application/views/bandmap/list.php:440
 msgid "New Continents"
-msgstr ""
+msgstr "Новые континенты"
 
 #: application/views/bandmap/list.php:442
 msgid "Toggle New Entities filter"
-msgstr ""
+msgstr "Переключить фильтр новых DXCC"
 
 #: application/views/bandmap/list.php:443
 msgid "New Entities"
-msgstr ""
+msgstr "Новые сущности"
 
 #: application/views/bandmap/list.php:445
 msgid "Toggle New Callsigns filter"
-msgstr ""
+msgstr "Переключить фильтр новых позывных"
 
 #: application/views/bandmap/list.php:446
 msgid "New Callsigns"
-msgstr ""
+msgstr "Новые позывные"
 
 #: application/views/bandmap/list.php:452
 msgid "Toggle Fresh spots filter (< 5 minutes old)"
-msgstr ""
+msgstr "Переключить фильтр свежих спотов (< 5 минут)"
 
 #: application/views/bandmap/list.php:453
 msgid "Fresh"
-msgstr ""
+msgstr "Свежие"
 
 #: application/views/bandmap/list.php:455
 msgid "Toggle Contest filter"
-msgstr ""
+msgstr "Переключить фильтр контестов"
 
 #: application/views/bandmap/list.php:458
 msgid "Toggle Geo Hunter (POTA/SOTA/IOTA/WWFF)"
-msgstr ""
+msgstr "Переключить фильтр охотника за территориями (POTA/SOTA/IOTA/WWFF)"
 
 #: application/views/bandmap/list.php:459
 msgid "Referenced"
-msgstr ""
+msgstr "Референции"
 
 #: application/views/bandmap/list.php:465
 msgid "Open DX Map view"
-msgstr ""
+msgstr "Открыть карту DX"
 
 #: application/views/bandmap/list.php:466
 msgid "DX Map"
-msgstr ""
+msgstr "Карта DX"
 
 #: application/views/bandmap/list.php:490
 msgid "Search spots..."
-msgstr ""
+msgstr "Поиск спотов..."
 
 #: application/views/bandmap/list.php:503
 msgid "Note: Map shows DXCC entity locations, not actual spot locations"
 msgstr ""
+"Примечание: Карта показывает расположения DXCC, а не актуальные расположения "
+"спотов"
 
 #: application/views/bandmap/list.php:511
 msgid "Age in minutes"
-msgstr ""
+msgstr "Возраст в минутах"
 
 #: application/views/bandmap/list.php:513
 msgid "Freq"
-msgstr ""
+msgstr "Частота"
 
 #: application/views/bandmap/list.php:515
 msgid "Spotted Callsign"
-msgstr ""
+msgstr "Позывной спота"
 
 #: application/views/bandmap/list.php:518
 msgid "Flag"
-msgstr ""
+msgstr "Флаг"
 
 #: application/views/bandmap/list.php:519
 msgid "DXCC Entity"
-msgstr ""
+msgstr "DXCC"
 
 #: application/views/bandmap/list.php:519
 msgid "Entity"
-msgstr ""
+msgstr "DXCC"
 
 #: application/views/bandmap/list.php:520
 msgid "DXCC Number"
-msgstr ""
+msgstr "Номер DXCC"
 
 #: application/views/bandmap/list.php:521
 msgid "Spotter Callsign"
-msgstr ""
+msgstr "Позывной споттера"
 
 #: application/views/bandmap/list.php:522
 msgid "Spotter Continent"
-msgstr ""
+msgstr "Континент споттера"
 
 #: application/views/bandmap/list.php:523
 msgid "Spotter CQ Zone"
-msgstr ""
+msgstr "Зона CQ споттера"
 
 #: application/views/bandmap/list.php:524
 msgid "Special"
-msgstr ""
+msgstr "Специальный"
 
 #: application/views/bandmap/list.php:524
 msgid "Special Flags"
-msgstr ""
+msgstr "Специальные флаги"
 
 #: application/views/bandmap/list.php:525
 #: application/views/oqrs/notinlogform.php:28
@@ -7915,7 +7927,7 @@ msgstr "Деактивировать все"
 
 #: application/views/cabrillo/cbr_success.php:12
 msgid "Results of CBR Contest Data Update"
-msgstr "Результаты обновления данных контестов по CBR"
+msgstr "Результат обновления данных контестов по CBR"
 
 #: application/views/cabrillo/cbr_success.php:17
 msgid ""
@@ -8671,13 +8683,16 @@ msgstr "ВНЕ ДОПУСТИМОГО ДИАПАЗОНА"
 
 #: application/views/components/dxwaterfall.php:43
 msgid "Out of band"
-msgstr ""
+msgstr "Вне диапазона"
 
 #: application/views/components/dxwaterfall.php:44
 msgid ""
 "DX Waterfall has experienced an unexpected error and will be shut down. "
 "Please visit Wavelog's GitHub and create a bug report if this issue persists."
 msgstr ""
+"Водопад DX столкнулся с непредвиденной ошибкой и будет завершён. Пожалуйста, "
+"посетите GitHub Wavelog и создайте отчёт об ошибке, если эта проблема не "
+"исчезнет."
 
 #: application/views/components/dxwaterfall.php:45
 msgid "Changing radio frequency..."
@@ -8730,7 +8745,7 @@ msgstr "от:"
 #: application/views/components/dxwaterfall.php:80
 #: application/views/components/dxwaterfall.php:86
 msgid "DX Waterfall Help"
-msgstr ""
+msgstr "Помощь с DX водопадом"
 
 #: application/views/components/hamsat/table.php:3
 #: application/views/hamsat/index.php:7
@@ -11124,6 +11139,9 @@ msgid ""
 "Note: Periodic polling is slow. When operating locally, WebSockets are a "
 "more convenient way to control your radio in real-time."
 msgstr ""
+"Учтите: периодический опрос медленный. При локальной работе, WebSockets "
+"являются более удобным способом управления вашей радиостанцией в реальном "
+"времени."
 
 #: application/views/interface_assets/footer.php:118
 msgid "TX"
@@ -11193,19 +11211,23 @@ msgstr "Местоположение извлечено из координат 
 
 #: application/views/interface_assets/footer.php:137
 msgid "Working without CAT connection"
-msgstr ""
+msgstr "Работа без соединения по CAT"
 
 #: application/views/interface_assets/footer.php:138
 msgid ""
 "CAT connection is currently disabled. Enable CAT connection to work in "
 "online mode with your radio."
 msgstr ""
+"Соединение по CAT в данный момент отключено. Включите соединение по CAT, "
+"чтобы работать с радиостанцией в онлайн-режиме."
 
 #: application/views/interface_assets/footer.php:139
 msgid ""
 "To connect your radio to Wavelog, visit the Wavelog Wiki for setup "
 "instructions."
 msgstr ""
+"Чтобы подключить вашу радиостанцию к Wavelog, посетите Wavelog Wiki для "
+"получения инструкций по настройке."
 
 #: application/views/interface_assets/footer.php:223
 #: application/views/interface_assets/header.php:525
@@ -12397,8 +12419,8 @@ msgid "INFO"
 msgstr "ИНФОРМАЦИЯ"
 
 #: application/views/logbookadvanced/index.php:44
-msgid "Options for the Advanced Logbook"
-msgstr ""
+msgid "'Options for the Advanced Logbook'"
+msgstr "'Настройки Расширенного вида журнала'"
 
 #: application/views/logbookadvanced/index.php:45
 msgid ""
@@ -12780,7 +12802,7 @@ msgstr "Исправить информацию о континенте"
 #: application/views/logbookadvanced/index.php:745
 #: application/views/oqrs/showrequests.php:58
 msgid "# Results"
-msgstr "# Результаты"
+msgstr "# QSO"
 
 #: application/views/logbookadvanced/index.php:766
 msgid "Dupes"
@@ -15602,8 +15624,8 @@ msgid ""
 "give an initial sent exchange. To deactivate, use ',+0':"
 msgstr ""
 "Принятый контрольный номер должен быть с префиксом точка '.', отправленный "
-"контрольный номер -- с запятой ','. Последние две строки эквивалентны -- т."
-"е. пробелы не имеют значения, как и порядок. Контрольный номер, который вы "
+"контрольный номер -- с запятой ','. Последние две строки эквивалентны -- "
+"т.е. пробелы не имеют значения, как и порядок. Контрольный номер, который вы "
 "отправили, будет автоматически включен в следующее QSO, если он содержит "
 "принятый контрольный номер, или если вы используете одну запятую ','. Чтобы "
 "автоматически увеличить отправленный порядковый номер, используйте ',++' и "
@@ -16349,8 +16371,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Создайте новую папку в 'assets/css/' и загрузите в нее файл 'bootstrap.min."
-"css', который содержит основные правила стилизации. Мы используем темы из %s"
+"Создайте новую папку в 'assets/css/' и загрузите в нее файл "
+"'bootstrap.min.css', который содержит основные правила стилизации. Мы "
+"используем темы из %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -16690,8 +16713,8 @@ msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
-"Показать изображение корреспондента по QSO из его профиля на qrz.com/hamqth."
-"com в разделе QSO журнала."
+"Показать изображение корреспондента по QSO из его профиля на qrz.com/"
+"hamqth.com в разделе QSO журнала."
 
 #: application/views/user/edit.php:391
 msgid ""
@@ -16813,23 +16836,23 @@ msgstr "Не отображается"
 
 #: application/views/user/edit.php:547
 msgid "QSO (worked, not confirmed)"
-msgstr ""
+msgstr "QSO (сработано, не подтверждено)"
 
 #: application/views/user/edit.php:566
 msgid "QSO (confirmed)"
 msgstr "QSO (подтверждено)"
 
 #: application/views/user/edit.php:567
-msgid "(If 'No', displayed as 'QSO (worked, not confirmed)')"
-msgstr ""
+msgid "(If 'No', displayed as 'QSO (by default))"
+msgstr "(Если 'Нет', то отображается как 'QSO (по умолчанию)')"
 
 #: application/views/user/edit.php:586
 msgid "Unworked (e.g. Zones)"
-msgstr ""
+msgstr "Несбработанные (например, зоны)"
 
 #: application/views/user/edit.php:587
 msgid "(Color for unworked zones)"
-msgstr ""
+msgstr "(Цвет для несбработанных зон)"
 
 #: application/views/user/edit.php:597
 msgid "Show Locator"
@@ -17866,8 +17889,13 @@ msgstr "Отправить запрос"
 msgid "Rcvd"
 msgstr "Получено"
 
-#~ msgid "'Options for the Advanced Logbook'"
-#~ msgstr "'Настройки Расширенного вида журнала'"
+#: application/views/logbookadvanced/index.php:44
+msgid "Options for the Advanced Logbook"
+msgstr ""
+
+#: application/views/user/edit.php:567
+msgid "(If 'No', displayed as 'QSO (worked, not confirmed)')"
+msgstr ""
 
 #~ msgid "QSO (by default)"
 #~ msgstr "QSO (по умолчанию)"
