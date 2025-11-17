@@ -746,6 +746,13 @@ bc.onmessage = function (ev) {
 	} else {
 		// Always process frequency, callsign, and reference data from bandmap
 		// (regardless of manual mode - bandmap should control the form)
+		let delay = 0;
+
+		// Only reset if callsign is different from what we're about to set
+		if ($("#callsign").val() != "" && $("#callsign").val() != ev.data.call) {
+			reset_fields();
+			delay = 600;
+		}
 
 		// Store references for later population (after callsign lookup completes)
 		pendingReferences = {
@@ -754,13 +761,6 @@ bc.onmessage = function (ev) {
 			wwff_ref: ev.data.wwff_ref,
 			iota_ref: ev.data.iota_ref
 		};
-
-		let delay = 0;
-		// Only reset if callsign is different from what we're about to set
-		if ($("#callsign").val() != "" && $("#callsign").val() != ev.data.call) {
-			reset_fields();
-			delay = 600;
-		}
 
 		setTimeout(() => {
 			if (ev.data.frequency != null) {
@@ -1057,6 +1057,10 @@ function reset_to_default() {
 
 /* Function: reset_fields is used to reset the fields on the QSO page */
 function reset_fields() {
+	// we set the pendingReferences to null to avoid they get prefilled in the next QSO after clear
+	// we do this first to avoid race conditions for slow javascript
+	pendingReferences = null;
+
 	$('#locator_info').text("");
 	$('#comment').val("");
 	$('#country').val("");
@@ -1128,9 +1132,6 @@ function reset_fields() {
 	var $select = $('#sota_ref').selectize();
 	var selectize = $select[0].selectize;
 	selectize.clear();
-
-	// also set the pendingReferences to null to avoid they get prefilled in the next QSO after clear
-	pendingReferences = null;
 
 	$('#notes').val("");
 
@@ -1211,7 +1212,12 @@ $("#callsign").on("focusout", function () {
 		lookupInProgress = true;
 
 		// Capture pendingReferences for THIS lookup (before it gets overwritten by another click)
+		// If pendingReferences exists, use it; otherwise set to null to prevent old references
+		// from being populated when user manually types a different callsign
 		var capturedReferences = pendingReferences ? Object.assign({}, pendingReferences) : null;
+
+		// Clear pendingReferences immediately after capturing to prevent reuse on next manual lookup
+		pendingReferences = null;
 
 		// Disable Save QSO button and show fetch status
 		$('#saveQso').prop('disabled', true);
@@ -2363,46 +2369,33 @@ $('.mode').on('change', function () {
 /* Calculate Frequency */
 /* on band change */
 $('#band').on('change', function () {
-	const selectedBand = $(this).val();
-
-	// In offline mode (CAT disabled), allow band changes to set default frequency
-	// In CAT mode, band selector is display-only - it follows the radio frequency
-	if (typeof isCATAvailable === 'function' && !isCATAvailable()) {
-		// Offline mode - get default frequency for band and mode
-		const currentMode = $('#mode').val() || 'SSB';
-
-		$.get('qso/band_to_freq/' + selectedBand + '/' + currentMode, function (result) {
-			if (result && result > 0) {
-				// Update frequency field
-				$('#frequency').val(result).trigger("change");
-				$('#frequency_rx').val("");
-
-				// Update virtual CAT state
-				if (typeof window.catState === 'undefined' || window.catState === null) {
-					window.catState = {};
-				}
-				window.catState.frequency = parseFloat(result); // Hz
-				window.catState.mode = currentMode;
-				window.catState.lastUpdate = Date.now();
-
-				// Update relevant spots for the new band/frequency
-				if (typeof dxWaterfall !== 'undefined' && dxWaterfall && typeof dxWaterfall.collectAllBandSpots === 'function') {
-					dxWaterfall.collectAllBandSpots(true);
-				}
-			}
+	if ($('#radio').val() == 0) {
+		$.get(base_url + 'index.php/qso/band_to_freq/' + $(this).val() + '/' + $('.mode').val(), function (result) {
+			$('#frequency').val(result).trigger("change");
 		});
 	}
-	// In CAT mode, do nothing - band changes do NOT clear the form or update the frequency
+	$('#frequency_rx').val("");
+	$('#band_rx').val("");
+	$("#selectPropagation").val("");
+	$("#sat_name").val("");
+	$("#sat_mode").val("");
+	set_qrg();
+	$("#callsign").blur();
+	stop_az_ele_ticker();
+    if (typeof isCATAvailable === 'function' && !isCATAvailable()) {
+        // Update virtual CAT state
+        if (typeof window.catState === 'undefined' || window.catState === null) {
+            window.catState = {};
+        }
+        window.catState.frequency = parseFloat(result); // Hz
+        window.catState.mode = currentMode;
+        window.catState.lastUpdate = Date.now();
 
-	// Update DXCC summary badge and table when band changes (if a DXCC entity is selected)
-	var dxccVal = $('#dxcc_id').val();
-	if (dxccVal && dxccVal != '0') {
-		changebadge(dxccVal);
-		// Reload DXCC summary table
-		let $targetPane = $('#dxcc-summary');
-		$targetPane.data("loaded", false);
-		getDxccResult(dxccVal, $('#dxcc_id option:selected').text());
-	}
+        // Update relevant spots for the new band/frequency
+        if (typeof dxWaterfall !== 'undefined' && dxWaterfall && typeof dxWaterfall.collectAllBandSpots === 'function') {
+            dxWaterfall.collectAllBandSpots(true);
+        }
+    }
 });
 
 /* On Key up Calculate Bearing and Distance */
@@ -3042,8 +3035,6 @@ $(document).ready(function () {
 		// Check if Enter key was pressed
 		if (event.key === 'Enter' || event.keyCode === 13) {
 			event.preventDefault(); // Prevent form submission
-			// Trigger the change event to process the frequency
-			$(this).trigger('change');
 			// Move focus to next field (optional - mimics typical form behavior)
 			$(this).blur();
 		}

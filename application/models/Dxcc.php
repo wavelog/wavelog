@@ -90,7 +90,7 @@ class DXCC extends CI_Model {
 			if ($postdata['worked'] != NULL) {
 				$workedDXCC = $this->getDxccBandWorked($location_list, $band, $postdata);
 				foreach ($workedDXCC as $wdxcc) {
-					$dxccMatrix[$wdxcc->dxcc][$band] = '<div class="bg-danger awardsBgDanger" ><a href=\'javascript:displayContacts("'.$wdxcc->dxcc.'","'. $band . '","'. $postdata['sat'] . '","' . $postdata['orbit'] . '","'. $postdata['mode'] . '","DXCC2", "")\'>W</a></div>';
+					$dxccMatrix[$wdxcc->dxcc][$band] = '<div class="bg-danger awardsBgWarning" ><a href=\'javascript:displayContacts("'.$wdxcc->dxcc.'","'. $band . '","'. $postdata['sat'] . '","' . $postdata['orbit'] . '","'. $postdata['mode'] . '","DXCC2", "")\'>W</a></div>';
 				}
 			}
 

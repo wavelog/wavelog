@@ -1,5 +1,17 @@
 <?php
-echo '
+		$colors = json_decode($user_map_custom);?>
+		<style>
+			.awardsBgSuccess {
+				background-color: <?php echo $colors->qsoconfirm->color; ?> !important;
+			}
+			.awardsBgDanger {
+				background-color: <?php echo $colors->qso->color; ?> !important;
+			}
+		</style>
+
+
+
+<?php echo '
     <table style="width:100%" class="table-sm table table-bordered table-hover table-striped table-condensed text-center">
 	    <thead>
 			<tr>

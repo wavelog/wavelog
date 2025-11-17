@@ -46,7 +46,7 @@ async function set_qrg() {
 	if (qrgunit != null) {
 		$('#qrg_unit').html(localStorage.getItem('qrgunit_' + band));
 	} else {
-		$('#qrg_unit').html('...');
+		$('#qrg_unit').html('kHz'); // default to kHz
 	}
 
 	if (qrgunit == 'Hz') {
@@ -76,6 +76,10 @@ async function set_new_qrg() {
 
 	// If field is empty or parsing failed, fetch default frequency for current band/mode
 	if (!new_qrg || new_qrg === '' || isNaN(parsed_qrg) || !isFinite(parsed_qrg) || parsed_qrg <= 0) {
+		// Check if band is selected before attempting to fetch frequency
+		if (!$('#band').val()) {
+			$('#band').val('160m'); // no band so set default
+		}
 		if (typeof base_url !== 'undefined') {
 			try {
 				const result = await $.get(base_url + 'index.php/qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val());
@@ -115,22 +119,27 @@ async function set_new_qrg() {
 
 	// calculate the other stuff
 	let qrg_hz;
+	let new_band;
 	switch (unit) {
 		case 'Hz':
 			qrg_hz = parsed_qrg;
-			localStorage.setItem('qrgunit_' + $('#band').val(), 'Hz');
+			new_band = frequencyToBand(qrg_hz);
+			localStorage.setItem('qrgunit_' + new_band, 'Hz');
 			break;
 		case 'kHz':
 			qrg_hz = parsed_qrg * 1000;
-			localStorage.setItem('qrgunit_' + $('#band').val(), 'kHz');
+			new_band = frequencyToBand(qrg_hz);
+			localStorage.setItem('qrgunit_' + new_band, 'kHz');
 			break;
 		case 'MHz':
 			qrg_hz = parsed_qrg * 1000000;
-			localStorage.setItem('qrgunit_' + $('#band').val(), 'MHz');
+			new_band = frequencyToBand(qrg_hz);
+			localStorage.setItem('qrgunit_' + new_band, 'MHz');
 			break;
 		case 'GHz':
 			qrg_hz = parsed_qrg * 1000000000;
-			localStorage.setItem('qrgunit_' + $('#band').val(), 'GHz');
+			new_band = frequencyToBand(qrg_hz);
+			localStorage.setItem('qrgunit_' + new_band, 'GHz');
 			break;
 		default:
 			qrg_hz = 0;
@@ -139,7 +148,7 @@ async function set_new_qrg() {
 
 	$('#frequency').val(qrg_hz);
 	$('#freq_calculated').val(parsed_qrg);
-	$('#band').val(frequencyToBand(qrg_hz));
+	$('#band').val(new_band);
 
 	// Clear the manual update flag
 	window.user_updating_frequency = false;
