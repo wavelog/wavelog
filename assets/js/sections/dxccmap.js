@@ -73,6 +73,8 @@ function load_dxcc_map() {
             Antarctica: +$('#Antarctica').prop('checked'),
             sat: $("#sats").val(),
             orbit: $("#orbits").val(),
+			dateFrom: $('#dateFrom').val(),
+			dateTo: $('#dateTo').val(),
         },
         success: function(data) {
             load_dxcc_map2(data, worked, confirmed, notworked);

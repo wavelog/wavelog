@@ -153,6 +153,10 @@ class Awards extends CI_Controller {
 			$postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
 			$postdata['sat'] = $this->security->xss_clean($this->input->post('sats'));
 			$postdata['orbit'] = $this->security->xss_clean($this->input->post('orbits'));
+
+			$postdata['dateFrom'] = $this->security->xss_clean($this->input->post('dateFrom'));
+			$postdata['dateTo'] = $this->security->xss_clean($this->input->post('dateTo'));
+
 		} else { // Setting default values at first load of page
 			$postdata['qsl'] = 1;
 			$postdata['lotw'] = 1;
@@ -174,6 +178,9 @@ class Awards extends CI_Controller {
 			$postdata['mode'] = 'All';
 			$postdata['sat'] = 'All';
 			$postdata['orbit'] = 'All';
+
+			$postdata['dateFrom'] = null;
+			$postdata['dateTo'] = null;
 		}
 
 		$dxcclist = $this->dxcc->fetchdxcc($postdata);
@@ -1723,6 +1730,8 @@ class Awards extends CI_Controller {
 	    $postdata['sat'] = $this->security->xss_clean($this->input->post('sat'));
 	    $postdata['orbit'] = $this->security->xss_clean($this->input->post('orbit'));
 
+		$postdata['dateFrom'] = $this->security->xss_clean($this->input->post('dateFrom'));
+		$postdata['dateTo'] = $this->security->xss_clean($this->input->post('dateTo'));
 
 	    $dxcclist = $this->dxcc->fetchdxcc($postdata);
 	    if ($dxcclist[0]->adif == "0") {
