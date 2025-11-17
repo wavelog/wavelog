@@ -2082,8 +2082,14 @@ $(function() {
 
 		// Add mode with fallback to SSB (backward compatible - optional field)
 		if (mode) {
-			// Determine appropriate radio mode based on spot mode and frequency
-			message.mode = determineRadioMode(mode, qrg);
+			// For digital modes (except digital voice), don't set mode - let user choose
+			if (isDigitalCategory && typeof isDigitalCategory === 'function' && isDigitalCategory(mode) && 
+				!(isModeInCategory && typeof isModeInCategory === 'function' && isModeInCategory(mode, 'DIGITAL_VOICE'))) {
+				// Don't set mode for digital modes, let user choose the specific digital mode
+			} else {
+				// Determine appropriate radio mode based on spot mode and frequency
+				message.mode = determineRadioMode(mode, qrg);
+			}
 		} else {
 			// Fallback to SSB based on frequency
 			message.mode = qrg < 10000000 ? 'LSB' : 'USB';
