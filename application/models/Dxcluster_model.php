@@ -155,8 +155,22 @@ class Dxcluster_model extends CI_Model {
 			}
 
 			$singlespot->band = $spotband;
-			$singlespot->mode = $this->get_mode($singlespot);
-			$singlespot->submode = $this->get_submode($singlespot);
+
+			// Only determine mode if not provided by cluster
+			if (!isset($singlespot->mode) || empty($singlespot->mode)) {
+				$singlespot->mode = $this->get_mode($singlespot);
+			} else {
+				// Normalize cluster-provided mode to lowercase
+				$singlespot->mode = strtolower($singlespot->mode);
+			}
+
+			// Only determine submode if not provided by cluster
+			if (!isset($singlespot->submode) || empty($singlespot->submode)) {
+				$singlespot->submode = $this->get_submode($singlespot);
+			} else {
+				// Normalize cluster-provided submode to uppercase
+				$singlespot->submode = strtoupper($singlespot->submode);
+			}
 
 			// Apply mode filter early
 			if (($mode != 'All') && !$this->modefilter($singlespot, $mode)) {
@@ -307,6 +321,15 @@ class Dxcluster_model extends CI_Model {
 
 	// Determine mode with priority: POTA/SOTA mode > message keywords > frequency-based
 	function get_mode($spot) {
+		// Priority 0: If spot already has a valid mode from cluster, use it
+		if (isset($spot->mode) && !empty($spot->mode)) {
+			$existingMode = strtolower($spot->mode);
+			// Validate it's a known mode category
+			if (in_array($existingMode, ['cw', 'phone', 'digi', 'ssb'])) {
+				return $this->mapToModeCategory($existingMode);
+			}
+		}
+
 		// Priority 1: POTA/SOTA mode fields (if present) - check from both dxcc_spotted and direct properties
 		$potaMode = $spot->pota_mode ?? $spot->dxcc_spotted->pota_mode ?? null;
 		$sotaMode = $spot->sota_mode ?? $spot->dxcc_spotted->sota_mode ?? null;
@@ -373,6 +396,11 @@ class Dxcluster_model extends CI_Model {
 
 	// Determine submode for more specific mode classification
 	function get_submode($spot) {
+		// Priority 0: If spot already has a valid submode from cluster, use it
+		if (isset($spot->submode) && !empty($spot->submode)) {
+			return strtoupper($spot->submode);
+		}
+
 		$mode = strtolower($spot->mode ?? '');
 		$frequency = floatval($spot->frequency);
 
