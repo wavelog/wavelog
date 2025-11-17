@@ -17,6 +17,9 @@
 
 const SPOT_REFRESH_INTERVAL = 60;  // Auto-refresh interval in seconds
 
+// Mode display capitalization lookup (API returns lowercase)
+const MODE_CAPITALIZATION = { 'phone': 'Phone', 'cw': 'CW', 'digi': 'Digi' };
+
 // Filter button configurations
 const BAND_BUTTONS = [
 	{ id: '#toggle160mFilter', band: '160m' },
@@ -86,6 +89,13 @@ $(function() {
 	// ========================================
 	// UTILITY FUNCTIONS
 	// ========================================
+
+	/**
+	 * Dispose of all Bootstrap tooltips in the table before clearing
+	 */
+	function disposeTooltips() {
+		$('.spottable [data-bs-toggle="tooltip"]').tooltip('dispose');
+	}
 
 	/**
 	 * Get current values from all filter selects
@@ -455,7 +465,9 @@ $(function() {
 	if (!call) return;
 
 	let qrg = parseFloat(rowData[2]) * 1000000;  // Frequency in MHz, convert to Hz
-	let mode = rowData[3];  // Mode is column 4 (0-indexed = 3)
+	let modeHtml = rowData[3];  // Mode is column 4 (0-indexed = 3)
+	let modeDiv = $('<div>').html(modeHtml);
+	let mode = modeDiv.text().trim();  // Extract clean mode text from HTML
 
 	// Ctrl+click: Only tune radio, don't prepare logging form
 	if (e.ctrlKey || e.metaKey) {
@@ -537,10 +549,12 @@ $(function() {
 		return spot.spotted + '_' + spot.frequency + '_' + spot.spotter;
 	}
 
-	// Extract frequency from spot key for band determination
-	function getFrequencyFromKey(key) {
-		let parts = key.split('_');
-		return parseFloat(parts[1]); // frequency is the second part
+	// Convert array to Set for O(1) lookups, handle 'All'/'Any' values
+	function arrayToFilterSet(arr, defaultValue = 'All') {
+		if (!arr || arr.length === 0 || arr.includes(defaultValue)) {
+			return null; // null means "accept all"
+		}
+		return new Set(arr);
 	}
 
 	// Auto-refresh timer state
@@ -654,6 +668,7 @@ $(function() {
 			refreshCountdown--;
 			if (refreshCountdown <= 0) {
 				let table = get_dtable();
+				disposeTooltips();
 				table.clear();
 
 				// Determine band for API fetch based on CAT Control state and current filter
@@ -767,20 +782,26 @@ $(function() {
 		var table = get_dtable();
 
 		if (!cachedSpotData || cachedSpotData.length === 0) {
+			disposeTooltips();
 			table.clear();
 			table.settings()[0].oLanguage.sEmptyTable = lang_bandmap_no_data;
 			table.draw();
 			return;
 		}
 
-		let bands = currentFilters.band;
-		let deContinent = currentFilters.deContinent;
-		let spottedContinents = currentFilters.spottedContinent;
-		let cwnStatuses = currentFilters.cwn;
-		let modes = currentFilters.mode;
-		let flags = currentFilters.additionalFlags;
+		// Convert filter arrays to Sets for O(1) lookup performance
+		let bandSet = arrayToFilterSet(currentFilters.band);
+		let deContinentSet = arrayToFilterSet(currentFilters.deContinent, 'Any');
+		let spottedContinentSet = arrayToFilterSet(currentFilters.spottedContinent, 'Any');
+		let cwnSet = arrayToFilterSet(currentFilters.cwn);
+		let modeSet = arrayToFilterSet(currentFilters.mode);
+		let flagSet = arrayToFilterSet(currentFilters.additionalFlags);
 		let requiredFlags = currentFilters.requiredFlags || [];
+		const hasRequiredFlags = requiredFlags.length > 0;
+		const hasCwnFilter = cwnSet !== null;
+		const hasFlagFilter = flagSet !== null;
 
+		disposeTooltips();
 		table.clear();
 		let oldtable = table.data();
 		let spots2render = 0;
@@ -798,134 +819,86 @@ $(function() {
 		// Extract time from spot data - use 'when' field
 		let timeOnly = single.when;
 
+		// Cache DXCC references to avoid repeated property access
+		const dxccSpotted = single.dxcc_spotted;
+		const dxccSpotter = single.dxcc_spotter;
+
 		// Apply required flags FIRST (must have ALL selected required flags)
-		if (requiredFlags.length > 0) {
-			for (let reqFlag of requiredFlags) {
-				if (reqFlag === 'lotw') {
-					if (!single.dxcc_spotted || !single.dxcc_spotted.lotw_user) return;
-				}
-				if (reqFlag === 'dxspot') {
-					// DX Spot: spotted continent must be different from spotter continent
-					let spottedCont = single.dxcc_spotted?.cont;
-					let spotterCont = single.dxcc_spotter?.cont;
-					if (!spottedCont || !spotterCont || spottedCont === spotterCont) return;
-				}
-				if (reqFlag === 'newcontinent') {
-					if (single.worked_continent !== false) return;  // Only new continents
-				}
-				if (reqFlag === 'newcountry') {
-					if (single.worked_dxcc !== false) return;  // Only new countries
-				}
-				if (reqFlag === 'newcallsign') {
-					if (single.worked_call !== false) return;  // Only new callsigns
-				}
-				if (reqFlag === 'workedcallsign') {
-					if (single.worked_call === false) return;  // Only worked callsigns
-				}
-				if (reqFlag === 'Contest') {
-					if (!single.dxcc_spotted || !single.dxcc_spotted.isContest) return;
+		if (hasRequiredFlags) {
+			for (let i = 0; i < requiredFlags.length; i++) {
+				const reqFlag = requiredFlags[i];
+				switch (reqFlag) {
+					case 'lotw':
+						if (!dxccSpotted || !dxccSpotted.lotw_user) return;
+						break;
+					case 'dxspot':
+						// DX Spot: spotted continent must be different from spotter continent
+						if (!dxccSpotted?.cont || !dxccSpotter?.cont || dxccSpotted.cont === dxccSpotter.cont) return;
+						break;
+					case 'newcontinent':
+						if (single.worked_continent !== false) return;
+						break;
+					case 'newcountry':
+						if (single.worked_dxcc !== false) return;
+						break;
+					case 'newcallsign':
+						if (single.worked_call !== false) return;
+						break;
+					case 'workedcallsign':
+						if (single.worked_call === false) return;
+						break;
+					case 'Contest':
+						if (!dxccSpotted || !dxccSpotted.isContest) return;
+						break;
 				}
 			}
-		}			// Apply CWN (Confirmed/Worked/New) filter
-			let passesCwnFilter = cwnStatuses.includes('All');
-			if (!passesCwnFilter) {
-				if (cwnStatuses.includes('notwkd') && !single.worked_dxcc) passesCwnFilter = true;
-				if (cwnStatuses.includes('wkd') && single.worked_dxcc) passesCwnFilter = true;
-				if (cwnStatuses.includes('cnf') && single.cnfmd_dxcc) passesCwnFilter = true;
-				if (cwnStatuses.includes('ucnf') && single.worked_dxcc && !single.cnfmd_dxcc) passesCwnFilter = true;
+		}		// Apply CWN (Confirmed/Worked/New) filter
+		if (hasCwnFilter) {
+			const workedDxcc = single.worked_dxcc;
+			const cnfmdDxcc = single.cnfmd_dxcc;
+			let passesCwnFilter = false;
+			if ((cwnSet.has('notwkd') && !workedDxcc) ||
+				(cwnSet.has('wkd') && workedDxcc) ||
+				(cwnSet.has('cnf') && cnfmdDxcc) ||
+				(cwnSet.has('ucnf') && workedDxcc && !cnfmdDxcc)) {
+				passesCwnFilter = true;
 			}
 			if (!passesCwnFilter) return;
-
-		// Apply band filter (client-side for multi-select)
-		let passesBandFilter = bands.includes('All');
-		if (!passesBandFilter) {
-			// Check if spot has band field set, otherwise determine from frequency
-			let spot_band = single.band;
-
-			// If no band field, try to determine from frequency
-			if (!spot_band) {
-				spot_band = getBandFromFrequency(single.frequency);
-			}
-
-			passesBandFilter = bands.includes(spot_band);
 		}
-		if (!passesBandFilter) return;			// Apply de continent filter (which continent the spotter is in)
-			// When multiple de continents are selected, fetch 'Any' from backend and filter client-side
-			let passesDeContFilter = deContinent.includes('Any');
-			if (!passesDeContFilter && single.dxcc_spotter && single.dxcc_spotter.cont) {
-				passesDeContFilter = deContinent.includes(single.dxcc_spotter.cont);
-			}
-			if (!passesDeContFilter) return;
+
+		// Apply band filter (band always provided by API)
+		if (bandSet && !bandSet.has(single.band)) return;
+
+		// Apply de continent filter (which continent the spotter is in)
+		if (deContinentSet && (!dxccSpotter || !dxccSpotter.cont || !deContinentSet.has(dxccSpotter.cont))) return;
 
 		// Apply spotted continent filter (which continent the DX station is in)
-		let passesContinentFilter = spottedContinents.includes('Any');
-		if (!passesContinentFilter) {
-			passesContinentFilter = single.dxcc_spotted && spottedContinents.includes(single.dxcc_spotted.cont);
-		}
-		if (!passesContinentFilter) return;			// Apply mode filter (client-side for multi-select)
-			let passesModeFilter = modes.includes('All');
-			if (!passesModeFilter) {
-				let spot_mode_category = getModeCategory(single.mode);
-				// Only pass if mode has a category and it matches one of the selected filters
-				passesModeFilter = spot_mode_category && modes.includes(spot_mode_category);
+		if (spottedContinentSet && (!dxccSpotted || !dxccSpotted.cont || !spottedContinentSet.has(dxccSpotted.cont))) return;		// Apply mode filter (API already returns mode categories)
+		if (modeSet && (!single.mode || !modeSet.has(single.mode))) return;
+
+		// Apply additional flags filter (POTA, SOTA, WWFF, IOTA, Contest, Fresh)
+		if (hasFlagFilter) {
+			let passesFlagsFilter = false;
+			const age = single.age || 0;
+			if ((flagSet.has('SOTA') && dxccSpotted && dxccSpotted.sota_ref) ||
+				(flagSet.has('POTA') && dxccSpotted && dxccSpotted.pota_ref) ||
+				(flagSet.has('WWFF') && dxccSpotted && dxccSpotted.wwff_ref) ||
+				(flagSet.has('IOTA') && dxccSpotted && dxccSpotted.iota_ref) ||
+				(flagSet.has('Contest') && dxccSpotted && dxccSpotted.isContest) ||
+				(flagSet.has('Fresh') && age < 5)) {
+				passesFlagsFilter = true;
 			}
-			if (!passesModeFilter) return;
-
-			// Apply additional flags filter (POTA, SOTA, WWFF, IOTA, Contest, Fresh)
-			let passesFlagsFilter = flags.includes('All');
-			if (!passesFlagsFilter) {
-				for (let flag of flags) {
-					if (flag === 'SOTA' && single.dxcc_spotted && single.dxcc_spotted.sota_ref) {
-						passesFlagsFilter = true;
-						break;
-					}
-					if (flag === 'POTA' && single.dxcc_spotted && single.dxcc_spotted.pota_ref) {
-						passesFlagsFilter = true;
-						break;
-					}
-					if (flag === 'WWFF' && single.dxcc_spotted && single.dxcc_spotted.wwff_ref) {
-						passesFlagsFilter = true;
-						break;
-					}
-					if (flag === 'IOTA' && single.dxcc_spotted && single.dxcc_spotted.iota_ref) {
-						passesFlagsFilter = true;
-						break;
-					}
-					if (flag === 'Contest' && single.dxcc_spotted && single.dxcc_spotted.isContest) {
-						passesFlagsFilter = true;
-						break;
-					}
-					if (flag === 'Fresh' && (single.age || 0) < 5) {
-						passesFlagsFilter = true;
-						break;
-					}
-				}
+			if (!passesFlagsFilter) return;
 		}
-		if (!passesFlagsFilter) return;
 
-		// All filters passed - validate essential data exists
-		// We need at least the spotted callsign and basic DXCC info
-		if (!single.dxcc_spotted) {
+		// All filters passed - validate essential data exists (reuse cached references)
+		if (!dxccSpotted) {
 			console.warn('Spot missing dxcc_spotted - creating placeholder:', single.spotted, single.frequency);
-			// Create minimal dxcc_spotted object to prevent errors
-			single.dxcc_spotted = {
-				dxcc_id: 0,
-				cont: '',
-				cqz: '',
-				flag: '',
-				entity: 'Unknown'
-			};
+			single.dxcc_spotted = { dxcc_id: 0, cont: '', cqz: '', flag: '', entity: 'Unknown' };
 		}
-		if (!single.dxcc_spotter) {
+		if (!dxccSpotter) {
 			console.warn('Spot missing dxcc_spotter - creating placeholder:', single.spotted, single.frequency);
-			// Create minimal dxcc_spotter object to prevent errors
-			single.dxcc_spotter = {
-				dxcc_id: 0,
-				cont: '',
-				cqz: '',
-				flag: '',
-				entity: 'Unknown'
-			};
+			single.dxcc_spotter = { dxcc_id: 0, cont: '', cqz: '', flag: '', entity: 'Unknown' };
 		}
 
 		// Build table row data
@@ -998,8 +971,8 @@ $(function() {
 	if (single.dxcc_spotted && single.dxcc_spotted.isContest) {
 		// Build contest badge with contest name in tooltip if available
 		let contestTitle = lang_bandmap_contest;
-		if (single.dxcc_spotted.contest_name && single.dxcc_spotted.contest_name !== '') {
-			contestTitle = lang_bandmap_contest_name + ': ' + single.dxcc_spotted.contest_name;
+		if (single.dxcc_spotted.contestName && single.dxcc_spotted.contestName !== '') {
+			contestTitle = lang_bandmap_contest_name + ': ' + single.dxcc_spotted.contestName;
 		}
 		activity_flags += buildBadge('warning', 'fa-trophy', contestTitle);
 	}
@@ -1020,33 +993,33 @@ $(function() {
 
 	if (isFresh) {
 		activity_flags += buildBadge('danger', 'fa-bolt', lang_bandmap_fresh_spot, null, true);
-	}
+	}		// Build table row array
+		data[0] = [];		// Age column: show age in minutes with auto-update attribute
+		let ageMinutes = single.age || 0;
+		let spotTimestamp = single.when ? new Date(single.when).getTime() : Date.now();
+		data[0].push('<span class="spot-age" data-spot-time="' + spotTimestamp + '">' + ageMinutes + '</span>');
 
-	// Build table row array
-	data[0] = [];		// Age column: show age in minutes with auto-update attribute
-	let ageMinutes = single.age || 0;
-	let spotTimestamp = single.when ? new Date(single.when).getTime() : Date.now();
-	data[0].push('<span class="spot-age" data-spot-time="' + spotTimestamp + '">' + ageMinutes + '</span>');
+		// Band column: show band designation
+		data[0].push(single.band || '');
 
-	// Band column: show band designation
-	data[0].push(single.band || '');
+		// Frequency column: convert kHz to MHz with 3 decimal places
+		let freqMHz = (single.frequency / 1000).toFixed(3);
+		data[0].push(freqMHz);
 
-	// Frequency column: convert kHz to MHz with 3 decimal places
-	let freqMHz = (single.frequency / 1000).toFixed(3);
-	data[0].push(freqMHz);
-
-	// Mode column: capitalize properly
+	// Mode column: capitalize properly (API returns lowercase categories)
+	// Show submode in tooltip if available
 	let displayMode = single.mode || '';
-	if (displayMode.toLowerCase() === 'phone') displayMode = 'Phone';
-	else if (displayMode.toLowerCase() === 'cw') displayMode = 'CW';
-	else if (displayMode.toLowerCase() === 'digi') displayMode = 'Digi';
-	data[0].push(displayMode);
+	displayMode = MODE_CAPITALIZATION[displayMode] || displayMode;
+	if (single.submode && single.submode !== '') {
+		displayMode = '<span data-bs-toggle="tooltip" title="' + single.submode + '">' + displayMode + '</span>';
+	}
+	data[0].push(displayMode);		// Callsign column: wrap in QRZ link with color coding
+		let qrzLink = '<a href="https://www.qrz.com/db/' + single.spotted + '" target="_blank" onclick="event.stopPropagation();" data-bs-toggle="tooltip" title="Click to view ' + single.spotted + ' on QRZ.com">' + single.spotted + '</a>';
+		wked_info = ((wked_info != '' ? '<span class="' + wked_info + '">' : '') + qrzLink + (wked_info != '' ? '</span>' : ''));
+		var spotted = wked_info;
+		data[0].push(spotted);
 
-	// Callsign column: wrap in QRZ link with color coding
-	let qrzLink = '<a href="https://www.qrz.com/db/' + single.spotted + '" target="_blank" onclick="event.stopPropagation();" data-bs-toggle="tooltip" title="' + lang_bandmap_click_view_qrz_callsign.replace('%s', single.spotted) + '">' + single.spotted + '</a>';
-	wked_info = ((wked_info != '' ? '<span class="' + wked_info + '">' : '') + qrzLink + (wked_info != '' ? '</span>' : ''));
-	var spotted = wked_info;
-	data[0].push(spotted);	// Continent column: color code based on worked/confirmed status
+	// Continent column: color code based on worked/confirmed status
 	var continent_wked_info;
 	if (single.cnfmd_continent) {
 		continent_wked_info = "text-success";
@@ -1185,6 +1158,7 @@ $(function() {
 		}, 10000);
 
 		if (spots2render == 0) {
+			disposeTooltips();
 			table.clear();
 			table.settings()[0].oLanguage.sEmptyTable = lang_bandmap_no_data;
 			table.draw();
@@ -1263,9 +1237,17 @@ $(function() {
 		let flags = currentFilters.additionalFlags || ['All'];
 		let requiredFlags = (currentFilters.requiredFlags || []).filter(v => v !== 'None');  // Remove "None"
 
+		// Convert to Sets for O(1) lookups
+		const deContinentSet = arrayToFilterSet(deContinent, 'Any');
+		const spottedContinentSet = arrayToFilterSet(spottedContinents, 'Any');
+		const cwnSet = arrayToFilterSet(cwnStatuses);
+		const flagSet = arrayToFilterSet(flags);
+
 		// Get current mode and band selections to apply when counting
 		let selectedModes = $('#mode').val() || ['All'];
 		let selectedBands = $('#band').val() || ['All'];
+		const selectedModeSet = arrayToFilterSet(selectedModes);
+		const selectedBandSet = arrayToFilterSet(selectedBands);
 
 		// Count spots per band and mode, applying all OTHER filters
 		let bandCounts = {};
@@ -1349,35 +1331,26 @@ $(function() {
 			}
 			if (!passesFlagsFilter) return;
 
-			// Get spot's band and mode for filtering
-			let band = spot.band;
-			if (!band) {
-				band = getBandFromFrequency(spot.frequency);
-			}
-			let modeCategory = getModeCategory(spot.mode);
+			// Get spot's band and mode for filtering (both always provided by API)
+			const band = spot.band;
+			const modeCategory = spot.mode;
 
 			// Count by band (applying MODE filter when counting bands)
-			if (band) {
-				let passesModeFilter = selectedModes.includes('All');
-				if (!passesModeFilter && modeCategory) {
-					passesModeFilter = selectedModes.includes(modeCategory);
-				}
-				if (passesModeFilter) {
-					bandCounts[band] = (bandCounts[band] || 0) + 1;
-					totalSpots++;
-				}
+			if (band && (!selectedModeSet || (modeCategory && selectedModeSet.has(modeCategory)))) {
+				bandCounts[band] = (bandCounts[band] || 0) + 1;
+				totalSpots++;
 			}
 
 			// Count by mode (applying BAND filter when counting modes)
 			if (modeCategory && modeCounts.hasOwnProperty(modeCategory)) {
-				let passesBandFilter = selectedBands.includes('All');
+				let passesBandFilter = !selectedBandSet;
 				if (!passesBandFilter && band) {
-					if (selectedBands.includes(band)) {
+					if (selectedBandSet.has(band)) {
 						passesBandFilter = true;
 					} else {
 						// Check if band is in a selected group (VHF, UHF, SHF)
-						let bandGroup = getBandGroup(band);
-						if (bandGroup && selectedBands.includes(bandGroup)) {
+						const bandGroup = getBandGroup(band);
+						if (bandGroup && selectedBandSet.has(bandGroup)) {
 							passesBandFilter = true;
 						}
 					}
@@ -1485,74 +1458,43 @@ $(function() {
 	};
 
 	cachedSpotData.forEach((spot) => {
-		// Apply all current filters EXCEPT quick filters themselves
-		let passesFilters = true;
+		// Cache DXCC references
+		const dxccSpotted = spot.dxcc_spotted;
+		const dxccSpotter = spot.dxcc_spotter;
 
 		// Apply de continent filter
-		if (!deContinent.includes('Any') && !deContinent.includes(spot.dxcc_spotter?.cont)) {
-			passesFilters = false;
-		}
+		if (deContinentSet && (!dxccSpotter || !dxccSpotter.cont || !deContinentSet.has(dxccSpotter.cont))) return;
 
 		// Apply spotted continent filter
-		if (passesFilters && !spottedContinents.includes('Any') && !spottedContinents.includes(spot.dxcc_spotted?.cont)) {
-			passesFilters = false;
-		}
+		if (spottedContinentSet && (!dxccSpotted || !dxccSpotted.cont || !spottedContinentSet.has(dxccSpotted.cont))) return;
 
-		// Apply CWN status filter (using same logic as applyFilters)
-		if (passesFilters && !cwnStatuses.includes('All')) {
-			let passesCwnFilter = false;
-			if (cwnStatuses.includes('notwkd') && !spot.worked_dxcc) passesCwnFilter = true;
-			if (cwnStatuses.includes('wkd') && spot.worked_dxcc) passesCwnFilter = true;
-			if (cwnStatuses.includes('cnf') && spot.cnfmd_dxcc) passesCwnFilter = true;
-			if (cwnStatuses.includes('ucnf') && spot.worked_dxcc && !spot.cnfmd_dxcc) passesCwnFilter = true;
-			if (!passesCwnFilter) {
-				passesFilters = false;
+		// Apply CWN status filter
+		if (cwnSet) {
+			const workedDxcc = spot.worked_dxcc;
+			const cnfmdDxcc = spot.cnfmd_dxcc;
+			if (!((cwnSet.has('notwkd') && !workedDxcc) ||
+				  (cwnSet.has('wkd') && workedDxcc) ||
+				  (cwnSet.has('cnf') && cnfmdDxcc) ||
+				  (cwnSet.has('ucnf') && workedDxcc && !cnfmdDxcc))) {
+				return;
 			}
 		}
 
 		// Apply band filter
-		if (passesFilters && !selectedBands.includes('All') && !selectedBands.includes(spot.band)) {
-			passesFilters = false;
-		}
+		if (selectedBandSet && !selectedBandSet.has(spot.band)) return;
 
 		// Apply mode filter
-		if (passesFilters && !selectedModes.includes('All')) {
-			let spotMode = (spot.mode || '').toLowerCase();
-			if (!selectedModes.map(m => m.toLowerCase()).includes(spotMode)) {
-				passesFilters = false;
-			}
-		}
+		if (selectedModeSet && (!spot.mode || !selectedModeSet.has(spot.mode))) return;
 
-		if (!passesFilters) return;
-
-		// Count quick filter matches (show available spots for each filter)
-		if (spot.dxcc_spotted && spot.dxcc_spotted.lotw_user) {
-			quickFilterCounts.lotw++;
-		}
-		// DX Spot: spotted continent != spotter continent
-		if (spot.dxcc_spotted?.cont && spot.dxcc_spotter?.cont &&
-		    spot.dxcc_spotted.cont !== spot.dxcc_spotter.cont) {
-			quickFilterCounts.dxspot++;
-		}
-		if (spot.worked_continent === false) {
-			quickFilterCounts.newcontinent++;
-		}
-		if (spot.worked_dxcc === false) {
-			quickFilterCounts.newcountry++;
-		}
-		if (spot.worked_call === false) {
-			quickFilterCounts.newcallsign++;
-		}
-		if (spot.dxcc_spotted && spot.dxcc_spotted.isContest) {
-			quickFilterCounts.contest++;
-		}
-		if (spot.dxcc_spotted && (spot.dxcc_spotted.pota_ref || spot.dxcc_spotted.sota_ref ||
-		    spot.dxcc_spotted.wwff_ref || spot.dxcc_spotted.iota_ref)) {
-			quickFilterCounts.geohunter++;
-		}
-		if ((spot.age || 0) < 5) {
-			quickFilterCounts.fresh++;
-		}
+		// Count quick filter matches (use cached references)
+		if (dxccSpotted && dxccSpotted.lotw_user) quickFilterCounts.lotw++;
+		if (dxccSpotted?.cont && dxccSpotter?.cont && dxccSpotted.cont !== dxccSpotter.cont) quickFilterCounts.dxspot++;
+		if (spot.worked_continent === false) quickFilterCounts.newcontinent++;
+		if (spot.worked_dxcc === false) quickFilterCounts.newcountry++;
+		if (spot.worked_call === false) quickFilterCounts.newcallsign++;
+		if (dxccSpotted && dxccSpotted.isContest) quickFilterCounts.contest++;
+		if (dxccSpotted && (dxccSpotted.pota_ref || dxccSpotted.sota_ref || dxccSpotted.wwff_ref || dxccSpotted.iota_ref)) quickFilterCounts.geohunter++;
+		if ((spot.age || 0) < 5) quickFilterCounts.fresh++;
 	});
 
 	// Update quick filter badges
@@ -1633,6 +1575,7 @@ $(function() {
 			dataType: "json"
 		}).done(function(dxspots) {
 			currentAjaxRequest = null;
+			disposeTooltips();
 			table.page.len(50);
 
 			// Check if response is an error object
@@ -1672,18 +1615,17 @@ $(function() {
 				for (let [key, ttl] of spotTTLMap.entries()) {
 					let newTTL = ttl;
 
-					// Only decrement TTL if:
-					// - We fetched all bands (bandForAPI === 'All'), OR
-					// - This spot is in the band we just fetched
-					let shouldDecrementTTL = (bandForAPI === 'All');
-					if (!shouldDecrementTTL) {
-						// Extract frequency from the spot key and determine its band
-						let spotFrequency = getFrequencyFromKey(key);
-						let spotBand = getBandFromFrequency(spotFrequency);
-						shouldDecrementTTL = (spotBand === bandForAPI);
+				// Only decrement TTL if:
+				// - We fetched all bands (bandForAPI === 'All'), OR
+				// - This spot is in the band we just fetched
+				let shouldDecrementTTL = (bandForAPI === 'All');
+				if (!shouldDecrementTTL && cachedSpotData) {
+					// Look up band from cached spot data (band always provided by API)
+					let cachedSpot = cachedSpotData.find(s => getSpotKey(s) === key);
+					if (cachedSpot && cachedSpot.band) {
+						shouldDecrementTTL = (cachedSpot.band === bandForAPI);
 					}
-
-					if (shouldDecrementTTL) {
+				}					if (shouldDecrementTTL) {
 						newTTL = ttl - 1;  // Decrement only if in scope of this fetch
 					}
 
@@ -1749,6 +1691,7 @@ $(function() {
 
 			cachedSpotData = null;
 			isFetchInProgress = false;
+			disposeTooltips();
 			table.clear();
 			table.settings()[0].oLanguage.sEmptyTable = lang_bandmap_error_loading;
 			table.draw();
@@ -1761,6 +1704,7 @@ $(function() {
 	// Initialize DataTable
 	var table=get_dtable();
 	table.order([1, 'asc']);  // Sort by frequency column
+	disposeTooltips();
 	table.clear();
 
 	// ========================================
@@ -1778,16 +1722,6 @@ $(function() {
 		const fontSize = text ? '0.75rem' : '0.7rem';
 		const content = text ? text : '<i class="fas ' + icon + '" style="display: block;"></i>';
 		return '<small class="badge text-bg-' + type + '" style="display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; padding: 0; margin: ' + margin + '; font-size: ' + fontSize + '; line-height: 1;" data-bs-toggle="tooltip" title="' + title + '">' + content + '</small>';
-	}
-
-	/**
-	 * Map frequency (in kHz) to ham band name
-	 * Uses frequencyToBand() from radiohelpers.js with 'kHz' parameter
-	 * @param {number} freq_khz - Frequency in kilohertz
-	 * @returns {string} Band name (e.g., '20m', '2m') or 'All' if not in a known band
-	 */
-	function getBandFromFrequency(freq_khz) {
-		return frequencyToBand(freq_khz, 'kHz');
 	}
 
 	// Use BAND_GROUPS from radiohelpers.js (loaded globally in footer)
@@ -1863,6 +1797,7 @@ $(function() {
 
 		if (backendParamsChanged) {
 
+			disposeTooltips();
 			table.clear();
 			fill_list(de, dxcluster_maxage, bandForAPI);
 		} else {
@@ -2147,8 +2082,14 @@ $(function() {
 
 		// Add mode with fallback to SSB (backward compatible - optional field)
 		if (mode) {
-			// Determine appropriate radio mode based on spot mode and frequency
-			message.mode = determineRadioMode(mode, qrg);
+			// For digital modes (except digital voice), don't set mode - let user choose
+			if (isDigitalCategory && typeof isDigitalCategory === 'function' && isDigitalCategory(mode) && 
+				!(isModeInCategory && typeof isModeInCategory === 'function' && isModeInCategory(mode, 'DIGITAL_VOICE'))) {
+				// Don't set mode for digital modes, let user choose the specific digital mode
+			} else {
+				// Determine appropriate radio mode based on spot mode and frequency
+				message.mode = determineRadioMode(mode, qrg);
+			}
 		} else {
 			// Fallback to SSB based on frequency
 			message.mode = qrg < 10000000 ? 'LSB' : 'USB';
@@ -2286,7 +2227,7 @@ $(function() {
 	 * @returns {string|null} - CSS background color or null if outside gradient range
 	 */
 	function getFrequencyGradientColor(spotFreqKhz, radioFreqKhz) {
-		if (!radioFreqKhz || !isCatTrackingEnabled || !isFrequencyMarkerEnabled) {
+		if (!radioFreqKhz || !isCatTrackingEnabled) {
 			return null;
 		}
 
@@ -2326,7 +2267,7 @@ $(function() {
 	 * Called when radio frequency changes
 	 */
 	function updateFrequencyGradientColors(forceUpdate = false) {
-		if (!isCatTrackingEnabled || !isFrequencyMarkerEnabled || !currentRadioFrequency) {
+		if (!isCatTrackingEnabled || !currentRadioFrequency) {
 			return;
 		}
 
@@ -2408,18 +2349,12 @@ $(function() {
 			}
 		});
 
-		// If no spots are colored, add purple borders to nearest spots above/below
-		// NOTE: Table is sorted DESC, so higher frequencies appear at TOP, lower at BOTTOM
-		// Borders point TOWARD current frequency to create visual bracket
-		if (coloredCount === 0) {
+		// Only show purple border markers in purple mode (when isFrequencyMarkerEnabled is true)
+		if (isFrequencyMarkerEnabled && coloredCount === 0) {
 			// First, remove any existing border classes from all rows
 			table.rows().every(function() {
 				$(this.node()).removeClass('cat-nearest-above cat-nearest-below');
 			});
-
-
-
-
 
 			// Spot BELOW current freq (lower number) appears at BOTTOM of DESC table → TOP border points UP toward you
 			if (nearestBelow) {
@@ -2430,11 +2365,10 @@ $(function() {
 				$(nearestAbove).addClass('cat-nearest-above');
 			}
 		} else {
-			// Remove border indicators when spots are in gradient range
+			// Remove border indicators when not in purple mode or when spots are in gradient range
 			table.rows().every(function() {
 				$(this.node()).removeClass('cat-nearest-above cat-nearest-below');
 			});
-
 		}
 	}	// Save reference to cat.js's updateCATui if it exists
 	var catJsUpdateCATui = window.updateCATui;
