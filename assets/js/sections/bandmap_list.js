@@ -91,6 +91,13 @@ $(function() {
 	// ========================================
 
 	/**
+	 * Dispose of all Bootstrap tooltips in the table before clearing
+	 */
+	function disposeTooltips() {
+		$('.spottable [data-bs-toggle="tooltip"]').tooltip('dispose');
+	}
+
+	/**
 	 * Get current values from all filter selects
 	 * @returns {Object} Object containing all filter values
 	 */
@@ -458,7 +465,9 @@ $(function() {
 	if (!call) return;
 
 	let qrg = parseFloat(rowData[2]) * 1000000;  // Frequency in MHz, convert to Hz
-	let mode = rowData[3];  // Mode is column 4 (0-indexed = 3)
+	let modeHtml = rowData[3];  // Mode is column 4 (0-indexed = 3)
+	let modeDiv = $('<div>').html(modeHtml);
+	let mode = modeDiv.text().trim();  // Extract clean mode text from HTML
 
 	// Ctrl+click: Only tune radio, don't prepare logging form
 	if (e.ctrlKey || e.metaKey) {
