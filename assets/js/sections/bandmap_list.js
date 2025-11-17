@@ -79,7 +79,7 @@ $(function() {
 			// Also log which row/column caused the issue
 			if (message.indexOf('parameter') !== -1) {
 				console.error('This usually means the data array has wrong number of columns');
-				console.error('Expected columns: 15 (Age, Band, Freq, Mode, Spotted, Cont, CQZ, Flag, Entity, DXCC#, Spotter, de Cont, de CQZ, Special, Message)');
+				console.error('Expected columns: 16 (Age, Band, Freq, Mode, Spotted, Cont, CQZ, Flag, Entity, DXCC#, Spotter, de Cont, de CQZ, Last QSO, Special, Message)');
 			}
 		};
 	} else {
@@ -419,7 +419,7 @@ $(function() {
 					}
 				},
 				{
-					'targets': [5, 6, 7, 11, 12, 13, 14],  // Cont, CQZ, Flag, de Cont, de CQZ, Special, Message - disable sorting
+					'targets': [5, 6, 9, 16],  // Submode, Cont, Flag, Message - disable sorting
 					'orderable': false
 				}
 			],
@@ -459,7 +459,7 @@ $(function() {
 	let rowData = table.row(this).data();
 	if (!rowData) return;
 
-	let callsignHtml = rowData[4];  // Callsign is column 5 (0-indexed = 4)
+	let callsignHtml = rowData[5];  // Callsign is column 6 (0-indexed = 5)
 	let tempDiv = $('<div>').html(callsignHtml);
 	let call = tempDiv.find('a').text().trim();
 	if (!call) return;
@@ -999,13 +999,13 @@ $(function() {
 		data[0].push(freqMHz);
 
 	// Mode column: capitalize properly (API returns lowercase categories)
-	// Show submode in tooltip if available
 	let displayMode = single.mode || '';
 	displayMode = MODE_CAPITALIZATION[displayMode] || displayMode;
-	if (single.submode && single.submode !== '') {
-		displayMode = '<span data-bs-toggle="tooltip" title="' + single.submode + '">' + displayMode + '</span>';
-	}
-	data[0].push(displayMode);		// Callsign column: wrap in QRZ link with color coding
+	data[0].push(displayMode);
+
+	// Submode column: show submode if available
+	let submode = (single.submode && single.submode !== '') ? single.submode : '';
+	data[0].push(submode);		// Callsign column: wrap in QRZ link with color coding
 		let qrzLink = '<a href="https://www.qrz.com/db/' + single.spotted + '" target="_blank" onclick="event.stopPropagation();" data-bs-toggle="tooltip" title="Click to view ' + single.spotted + ' on QRZ.com">' + single.spotted + '</a>';
 		wked_info = ((wked_info != '' ? '<span class="' + wked_info + '">' : '') + qrzLink + (wked_info != '' ? '</span>' : ''));
 		var spotted = wked_info;
@@ -1064,7 +1064,11 @@ $(function() {
 	data[0].push((single.dxcc_spotter && single.dxcc_spotter.cont) ? single.dxcc_spotter.cont : '');
 
 	// de CQZ column: spotter's CQ Zone
-	data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spotter.cqz : '');	// Build medal badge - show only highest priority: continent > country > callsign
+	data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spotter.cqz : '');
+
+	// Last QSO column: show last QSO date if available
+	let lastQsoDate = (single.last_wked && single.last_wked.LAST_QSO) ? single.last_wked.LAST_QSO : '';
+	data[0].push(lastQsoDate);	// Build medal badge - show only highest priority: continent > country > callsign
 	let medals = '';
 	if (single.worked_continent === false) {
 		// New Continent (not worked before) - Gold medal
@@ -1082,14 +1086,14 @@ $(function() {
 	data[0].push(flags_column);		// Message column
 		data[0].push(single.message || '');
 
-		// Debug: Validate data array has exactly 15 columns
-		if (data[0].length !== 15) {
-			console.error('INVALID DATA ARRAY LENGTH:', data[0].length, 'Expected: 15');
+		// Debug: Validate data array has exactly 17 columns
+		if (data[0].length !== 17) {
+			console.error('INVALID DATA ARRAY LENGTH:', data[0].length, 'Expected: 17');
 			console.error('Spot:', single.spotted, 'Frequency:', single.frequency);
 			console.error('Data array:', data[0]);
-			console.error('Missing columns:', 15 - data[0].length);
+			console.error('Missing columns:', 17 - data[0].length);
 			// Pad array with empty strings to prevent DataTables error
-			while (data[0].length < 15) {
+			while (data[0].length < 17) {
 				data[0].push('');
 			}
 		}
@@ -3021,8 +3025,8 @@ $(function() {
 		$('.spottable').removeClass('cat-sorting-locked');
 
 		// Re-enable sorting on all columns that were originally sortable
-		// Based on columnDefs: columns 5, 6, 7, 11, 12, 13, 14 are not sortable
-		const nonSortableColumns = [5, 6, 7, 11, 12, 13, 14];
+		// Based on columnDefs: columns 5, 6, 9, 16 are not sortable (Submode, Cont, Flag, Message)
+		const nonSortableColumns = [5, 6, 9, 16];
 
 		table.settings()[0].aoColumns.forEach(function(col, index) {
 			if (!nonSortableColumns.includes(index)) {
@@ -3218,16 +3222,16 @@ $(function() {
 	 * Dynamically shows/hides columns to optimize space usage
 	 *
 	 * Column indices (0-based):
-	 * 0: Age, 1: Band, 2: Frequency, 3: Mode, 4: Callsign, 5: Continent, 6: CQZ,
-	 * 7: Flag, 8: Entity, 9: DXCC, 10: de Callsign, 11: de Cont, 12: de CQZ,
-	 * 13: Special, 14: Message
+	 * 0: Age, 1: Band, 2: Frequency, 3: Mode, 4: Submode, 5: Callsign, 6: Continent, 7: CQZ,
+	 * 8: Flag, 9: Entity, 10: DXCC, 11: de Callsign, 12: de Cont, 13: de CQZ,
+	 * 14: Last QSO, 15: Special, 16: Message
 	 *
 	 * Breakpoints:
 	 * - Full screen or > 1374px: Show all columns
-	 * - <= 1374px: Hide DXCC (9), CQZ (6), de CQZ (12)
-	 * - <= 1294px: Additionally hide Band (1), Cont (5), de Cont (11)
-	 * - <= 1024px: Additionally hide Flag (7)
-	 * - <= 500px: Show only Age (0), Freq (2), Callsign (4), Entity (8)
+	 * - <= 1374px: Hide DXCC (10), CQZ (7), de CQZ (13), Last QSO (14), Submode (4)
+	 * - <= 1294px: Additionally hide Band (1), Cont (6), de Cont (12)
+	 * - <= 1024px: Additionally hide Flag (8)
+	 * - <= 500px: Show only Age (0), Freq (2), Callsign (5), Entity (9)
 	 */
 	function handleResponsiveColumns() {
 		const tableContainer = $('.table-responsive');
@@ -3254,37 +3258,45 @@ $(function() {
 			// Show only Age, Freq, Callsign, Entity
 			$('.spottable th:nth-child(2), .spottable td:nth-child(2)').addClass('column-hidden'); // Band
 			$('.spottable th:nth-child(4), .spottable td:nth-child(4)').addClass('column-hidden'); // Mode
-			$('.spottable th:nth-child(6), .spottable td:nth-child(6)').addClass('column-hidden'); // Continent
-			$('.spottable th:nth-child(7), .spottable td:nth-child(7)').addClass('column-hidden'); // CQZ
-			$('.spottable th:nth-child(8), .spottable td:nth-child(8)').addClass('column-hidden'); // Flag
-			$('.spottable th:nth-child(10), .spottable td:nth-child(10)').addClass('column-hidden'); // DXCC
-			$('.spottable th:nth-child(11), .spottable td:nth-child(11)').addClass('column-hidden'); // de Callsign
-			$('.spottable th:nth-child(12), .spottable td:nth-child(12)').addClass('column-hidden'); // de Cont
-			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de CQZ
-			$('.spottable th:nth-child(14), .spottable td:nth-child(14)').addClass('column-hidden'); // Special
-			$('.spottable th:nth-child(15), .spottable td:nth-child(15)').addClass('column-hidden'); // Message
+			$('.spottable th:nth-child(5), .spottable td:nth-child(5)').addClass('column-hidden'); // Submode
+			$('.spottable th:nth-child(7), .spottable td:nth-child(7)').addClass('column-hidden'); // Continent
+			$('.spottable th:nth-child(8), .spottable td:nth-child(8)').addClass('column-hidden'); // CQZ
+			$('.spottable th:nth-child(9), .spottable td:nth-child(9)').addClass('column-hidden'); // Flag
+			$('.spottable th:nth-child(11), .spottable td:nth-child(11)').addClass('column-hidden'); // DXCC
+			$('.spottable th:nth-child(12), .spottable td:nth-child(12)').addClass('column-hidden'); // de Callsign
+			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de Cont
+			$('.spottable th:nth-child(14), .spottable td:nth-child(14)').addClass('column-hidden'); // de CQZ
+			$('.spottable th:nth-child(15), .spottable td:nth-child(15)').addClass('column-hidden'); // Last QSO
+			$('.spottable th:nth-child(16), .spottable td:nth-child(16)').addClass('column-hidden'); // Special
+			$('.spottable th:nth-child(17), .spottable td:nth-child(17)').addClass('column-hidden'); // Message
 		} else if (containerWidth <= 1024) {
-			// Hide: DXCC, CQZ, de CQZ, Band, Cont, de Cont, Flag
+			// Hide: DXCC, CQZ, de CQZ, Last QSO, Submode, Band, Cont, de Cont, Flag
 			$('.spottable th:nth-child(2), .spottable td:nth-child(2)').addClass('column-hidden'); // Band
-			$('.spottable th:nth-child(6), .spottable td:nth-child(6)').addClass('column-hidden'); // Continent
-			$('.spottable th:nth-child(7), .spottable td:nth-child(7)').addClass('column-hidden'); // CQZ
-			$('.spottable th:nth-child(8), .spottable td:nth-child(8)').addClass('column-hidden'); // Flag
-			$('.spottable th:nth-child(10), .spottable td:nth-child(10)').addClass('column-hidden'); // DXCC
-			$('.spottable th:nth-child(12), .spottable td:nth-child(12)').addClass('column-hidden'); // de Cont
-			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de CQZ
+			$('.spottable th:nth-child(5), .spottable td:nth-child(5)').addClass('column-hidden'); // Submode
+			$('.spottable th:nth-child(7), .spottable td:nth-child(7)').addClass('column-hidden'); // Continent
+			$('.spottable th:nth-child(8), .spottable td:nth-child(8)').addClass('column-hidden'); // CQZ
+			$('.spottable th:nth-child(9), .spottable td:nth-child(9)').addClass('column-hidden'); // Flag
+			$('.spottable th:nth-child(11), .spottable td:nth-child(11)').addClass('column-hidden'); // DXCC
+			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de Cont
+			$('.spottable th:nth-child(14), .spottable td:nth-child(14)').addClass('column-hidden'); // de CQZ
+			$('.spottable th:nth-child(15), .spottable td:nth-child(15)').addClass('column-hidden'); // Last QSO
 		} else if (containerWidth <= 1294) {
-			// Hide: DXCC, CQZ, de CQZ, Band, Cont, de Cont
+			// Hide: DXCC, CQZ, de CQZ, Last QSO, Submode, Band, Cont, de Cont
 			$('.spottable th:nth-child(2), .spottable td:nth-child(2)').addClass('column-hidden'); // Band
-			$('.spottable th:nth-child(6), .spottable td:nth-child(6)').addClass('column-hidden'); // Continent
-			$('.spottable th:nth-child(7), .spottable td:nth-child(7)').addClass('column-hidden'); // CQZ
-			$('.spottable th:nth-child(10), .spottable td:nth-child(10)').addClass('column-hidden'); // DXCC
-			$('.spottable th:nth-child(12), .spottable td:nth-child(12)').addClass('column-hidden'); // de Cont
-			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de CQZ
+			$('.spottable th:nth-child(5), .spottable td:nth-child(5)').addClass('column-hidden'); // Submode
+			$('.spottable th:nth-child(7), .spottable td:nth-child(7)').addClass('column-hidden'); // Continent
+			$('.spottable th:nth-child(8), .spottable td:nth-child(8)').addClass('column-hidden'); // CQZ
+			$('.spottable th:nth-child(11), .spottable td:nth-child(11)').addClass('column-hidden'); // DXCC
+			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de Cont
+			$('.spottable th:nth-child(14), .spottable td:nth-child(14)').addClass('column-hidden'); // de CQZ
+			$('.spottable th:nth-child(15), .spottable td:nth-child(15)').addClass('column-hidden'); // Last QSO
 		} else if (containerWidth <= 1374) {
-			// Hide: DXCC, CQZ, de CQZ
-			$('.spottable th:nth-child(7), .spottable td:nth-child(7)').addClass('column-hidden'); // CQZ
-			$('.spottable th:nth-child(10), .spottable td:nth-child(10)').addClass('column-hidden'); // DXCC
-			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de CQZ
+			// Hide: DXCC, CQZ, de CQZ, Last QSO, Submode
+			$('.spottable th:nth-child(5), .spottable td:nth-child(5)').addClass('column-hidden'); // Submode
+			$('.spottable th:nth-child(8), .spottable td:nth-child(8)').addClass('column-hidden'); // CQZ
+			$('.spottable th:nth-child(11), .spottable td:nth-child(11)').addClass('column-hidden'); // DXCC
+			$('.spottable th:nth-child(14), .spottable td:nth-child(14)').addClass('column-hidden'); // de CQZ
+			$('.spottable th:nth-child(15), .spottable td:nth-child(15)').addClass('column-hidden'); // Last QSO
 		}
 		// else: containerWidth > 1374 - show all columns (already reset above)
 
