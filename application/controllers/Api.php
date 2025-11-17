@@ -117,6 +117,51 @@ class API extends CI_Controller {
 		}
 	}
 
+	function create_station($key = '') {
+		$this->load->model('api_model');
+		if ($this->api_model->access($key) == "No Key Found" || $this->api_model->access($key) == "Key Disabled") {
+			$this->output->set_status_header(401)->set_content_type('application/json')->set_output(json_encode(['status' => 'error', 'message' => 'Auth Error, invalid key']));
+			return;
+		}
+		try {
+			$raw = file_get_contents("php://input");
+			if ($raw === false) {
+				throw new Exception("Failed to read input data");
+			}
+
+			if (empty($raw)) {
+				$this->output->set_status_header(400)->set_content_type('application/json')->set_output(json_encode(['status' => 'error', 'message' => 'No file uploaded']));
+				return;
+			}
+
+			$raw = preg_replace('#<([eE][oO][rR])>[\r\n\t]+#', '<$1>', $raw);
+			if ($raw === null) {
+				throw new Exception("Regex processing failed");
+			}
+
+			$locations = json_decode($raw, true);
+
+			if ($locations === null) {
+				$this->output->set_status_header(400)->set_content_type('application/json')->set_output(json_encode(['status' => 'error', 'message' => 'Invalid JSON file']));
+				return;
+			}
+		} catch (Exception $e) {
+			$this->output->set_status_header(500)->set_content_type('application/json')->set_output(json_encode(['status' => 'error', 'message' => 'Processing error: ' . $e->getMessage()]));
+		}
+		$this->load->model('stationsetup_model');
+		$user_id = $this->api_model->key_userid($key);
+		$imported = $this->stationsetup_model->import_locations_parse($locations,$user_id);
+		if (($imported[0] ?? '0') == 'limit') {
+			$this->output->set_status_header(201)->set_content_type('application/json')->set_output(json_encode(['status' => 'success', 'message' => ($imported[1] ?? '0')." locations imported. Maximum limit of 1000 locations reached."]));
+		} else {
+			if (($imported[1] ?? 0) == 0) {
+				$this->output->set_status_header(200)->set_content_type('application/json')->set_output(json_encode(['status' => 'dupe', 'message' => ($imported[1] ?? '0')." locations imported."]));
+			} else {
+				$this->output->set_status_header(201)->set_content_type('application/json')->set_output(json_encode(['status' => 'success', 'message' => ($imported[1] ?? '0')." locations imported."]));
+			}
+		}
+	}
+
 	function station_info($key = '') {
 		$this->load->model('api_model');
 		$this->load->model('stations');
