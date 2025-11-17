@@ -1129,6 +1129,9 @@ function reset_fields() {
 	var selectize = $select[0].selectize;
 	selectize.clear();
 
+	// also set the pendingReferences to null to avoid they get prefilled in the next QSO after clear
+	pendingReferences = null;
+
 	$('#notes').val("");
 
 	$('#sig').val("");

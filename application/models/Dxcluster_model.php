@@ -7,12 +7,14 @@ class Dxcluster_model extends CI_Model {
  	protected $bandedges = [];
 
 	// Contest indicators - moved to class property to avoid recreation on every call
+	// Contest indicators - ORDER MATTERS! More specific names must come before generic terms
+	// to ensure accurate matching (e.g., "HAM SPIRIT" before "CONTEST")
 	protected $contestIndicators = [
-		'CONTEST', 'CQ WW', 'CQ WPX', 'ARRL', 'IARU', 'CQWW', 'CQWPX',
+		'HAM SPIRIT', 'HAMSPIRIT', 'CQ WW', 'CQ WPX', 'ARRL', 'IARU', 'CQWW', 'CQWPX',
 		'SWEEPSTAKES', 'FIELD DAY', 'DX CONTEST', 'SSB CONTEST', 'CW CONTEST',
 		'RTTY CONTEST', 'VHF CONTEST', 'SPRINT', 'DXCC', 'WAE', 'IOTA CONTEST',
 		'NAQP', 'BARTG', 'RSGB', 'RUNDSPRUCH', 'JARTS', 'CW OPEN', 'SSB OPEN',
-		'EU CONTEST', 'NA CONTEST', 'KING OF SPAIN', 'ALL ASIAN'
+		'EU CONTEST', 'NA CONTEST', 'KING OF SPAIN', 'ALL ASIAN', 'CONTEST'
 	];
 
 	// Digital modes for submode detection
@@ -21,7 +23,8 @@ class Dxcluster_model extends CI_Model {
 	protected $digitalModes = [
 		'FT8', 'FT4', 'RTTY', 'PSK31', 'PSK63', 'PSK', 'SSTV', 'MFSK',
 		'OLIVIA', 'CONTESTIA', 'JT65', 'JT9', 'WSPR', 'HELL', 'THOR',
-		'DOMINO', 'MT63', 'PACTOR'
+		'DOMINO', 'MT63', 'PACTOR', 'MSK144', 'Q65', 'JS8', 'FSK441',
+		'ISCAT', 'JT6M', 'FST4', 'FST4W', 'FREEDV', 'VARA'
 	];
 
 	public function __construct() {
@@ -603,22 +606,21 @@ class Dxcluster_model extends CI_Model {
 			$spot->dxcc_spotted = (object)[];
 		}
 
-		// Initialize all properties at once using array merge
-		$defaults = [
-			'sota_ref' => '',
-			'pota_ref' => '',
-			'iota_ref' => '',
-			'wwff_ref' => '',
-			'isContest' => false
-		];
+	// Initialize all properties at once using array merge
+	$defaults = [
+		'sota_ref' => '',
+		'pota_ref' => '',
+		'iota_ref' => '',
+		'wwff_ref' => '',
+		'isContest' => false,
+		'contestName' => null
+	];
 
-		foreach ($defaults as $prop => $defaultValue) {
-			if (!property_exists($spot->dxcc_spotted, $prop)) {
-				$spot->dxcc_spotted->$prop = $defaultValue;
-			}
+	foreach ($defaults as $prop => $defaultValue) {
+		if (!property_exists($spot->dxcc_spotted, $prop)) {
+			$spot->dxcc_spotted->$prop = $defaultValue;
 		}
-
-		// Early exit if message is empty
+	}		// Early exit if message is empty
 		$message = $spot->message ?? '';
 		if (empty($message)) {
 			return $spot;
@@ -672,31 +674,29 @@ class Dxcluster_model extends CI_Model {
 
 			// Method 1: Explicit contest keywords with word boundaries
 			foreach ($this->contestIndicators as $indicator) {
-				// Use word boundary to avoid matching "CQ DX" in "CQ DX Americas" (which is just a CQ call)
-				if (preg_match('/\b' . preg_quote($indicator, '/') . '\b/', $upperMessage)) {
-					// Additional check: avoid false positives from generic "CQ" messages
-					if ($indicator === 'DX CONTEST' && preg_match('/^CQ\s+DX\s+[A-Z]+$/i', trim($message))) {
-						continue; // Skip "CQ DX <region>" patterns
-					}
-					$spot->dxcc_spotted->isContest = true;
-					$spot->dxcc_spotted->contestName = $indicator;
-					return $spot;
-				}
+			// Use word boundary to avoid matching "CQ DX" in "CQ DX Americas" (which is just a CQ call)
+			if (preg_match('/\b' . preg_quote($indicator, '/') . '\b/', $upperMessage)) {
+				// Additional check: avoid false positives from generic "CQ" messages
+				if ($indicator === 'DX CONTEST' && preg_match('/^CQ\s+DX\s+[A-Z]+$/i', trim($message))) {
+				continue; // Skip "CQ DX <region>" patterns
 			}
-
-			// Method 2: Contest exchange pattern - must have RST AND serial AND no conversational words
+			$spot->dxcc_spotted->isContest = true;
+			$spot->dxcc_spotted->contestName = $indicator;
+			return $spot;
+			}
+		}			// Method 2: Contest exchange pattern - must have RST AND serial AND no conversational words
 			// Exclude spots with conversational indicators (TU, TNX, 73, GL, etc.)
 			$conversational = '/\b(TU|TNX|THANKS|73|GL|HI|FB|CUL|HPE|PSE|DE)\b/';
 
 			if (!preg_match($conversational, $upperMessage)) {
-				// Look for typical contest exchange: RST + number (but not just any 599)
-				// Must be followed by more structured exchange (not just "ur 599")
-				if (preg_match('/\b(?:599|5NN)\s+(?:TU\s+)?[0-9]{2,4}\b/', $upperMessage) &&
-					!preg_match('/\bUR\s+599\b/', $upperMessage)) {
-					$spot->dxcc_spotted->isContest = true;
-					$spot->dxcc_spotted->contestName = 'CONTEST';
-					return $spot;
-				}
+			// Look for typical contest exchange: RST + number (but not just any 599)
+			// Must be followed by more structured exchange (not just "ur 599")
+			if (preg_match('/\b(?:599|5NN)\s+(?:TU\s+)?[0-9]{2,4}\b/', $upperMessage) &&
+				!preg_match('/\bUR\s+599\b/', $upperMessage)) {
+				$spot->dxcc_spotted->isContest = true;
+				$spot->dxcc_spotted->contestName = '';
+				return $spot;
+			}
 			}
 		}
 
