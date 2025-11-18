@@ -41,7 +41,12 @@ class Bandmap extends CI_Controller {
 		$footerData = [];
 		$footerData['scripts'] = [
 			'assets/js/moment.min.js',
-			'assets/js/datetime-moment.js',
+			'assets/js/datetime-moment.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/datetime-moment.js")),
+			'assets/js/cat.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/cat.js")),
+			'assets/js/leaflet/leaflet.geodesic.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/leaflet/leaflet.geodesic.js")),
+			'assets/js/leaflet.polylineDecorator.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/leaflet.polylineDecorator.js")),
+			'assets/js/leaflet/L.Terminator.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/leaflet/L.Terminator.js")),
+			'assets/js/sections/bandmap_list.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/bandmap_list.js")),
 		];
 
 		// Get Date format
