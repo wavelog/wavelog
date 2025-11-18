@@ -2707,262 +2707,465 @@ class Logbook_model extends CI_Model {
 			return [];
 		}
 
+		// Load cache driver for file caching
+		$cache_enabled = $this->config->item('enable_dxcluster_file_cache') === true;
+		if ($cache_enabled && !isset($this->cache)) {
+			$this->load->driver('cache', array('adapter' => 'file', 'backup' => 'file'));
+		}
+		
+		// Cache TTL in seconds (15 minutes = 900 seconds)
+		$cache_ttl = 900;
+
+		// Initialize in-memory cache if not already done
+		if (!isset($this->spot_status_cache)) {
+			$this->spot_status_cache = [];
+		}
+
 		$user_default_confirmation = $this->session->userdata('user_default_confirmation');
 		$qsl_where = $this->qsl_default_where($user_default_confirmation);
 
-		// Build band filter with binding
-		$band_sql = '';
-		$band_param = null;
-		$band = ($band == 'All') ? null : $band;
-		if ($band != null && $band != 'SAT') {
-			$band_sql = " AND COL_BAND = ?";
-			$band_param = $band;
-		} else if ($band == 'SAT') {
-			$band_sql = " AND COL_SAT_NAME != ''";
-		}
-
-		// Build mode filter
-		$mode_sql = '';
-		if (isset($mode) && $mode != 'All') {
-			$mode_sql = " AND COL_MODE IN " . $this->Modes->get_modes_from_qrgmode($mode, true);
-		}
-
-		// Collect unique callsigns, dxccs, and continents
+		// Collect unique callsigns, dxccs, continents (no need for band/mode maps)
+		// Check cache for entire callsign (not per band/mode) for maximum reuse
 		$callsigns = [];
 		$dxccs = [];
 		$continents = [];
+		$statuses = [];
+		
+		// Build cache key with user_id, logbook_ids, and confirmation preference
+		$user_id = $this->session->userdata('user_id');
+		$logbook_ids_str = implode('_', $logbooks_locations_array);
+		$confirmation_hash = md5($user_default_confirmation); // Hash to keep key shorter
+		$logbook_ids_key = "{$user_id}_{$logbook_ids_str}_{$confirmation_hash}";
+		$spots_by_callsign = []; // Group spots by callsign for processing
+		
 		foreach ($spots as $spot) {
 			// Validate spot has required properties
-			if (!isset($spot->spotted) || !isset($spot->dxcc_spotted->dxcc_id) || !isset($spot->dxcc_spotted->cont)) {
+			if (!isset($spot->spotted) || !isset($spot->dxcc_spotted->dxcc_id) || !isset($spot->dxcc_spotted->cont) || !isset($spot->band) || !isset($spot->mode)) {
 				continue;
 			}
-			$callsigns[$spot->spotted] = true;
-			$dxccs[$spot->dxcc_spotted->dxcc_id] = true;
-			$continents[$spot->dxcc_spotted->cont] = true;
-		}
-
-		// If no valid spots, return empty
-		if (empty($callsigns) && empty($dxccs) && empty($continents)) {
-			return [];
-		}
-
-		// Build placeholders for station IDs (fix SQL injection)
-		$station_ids_placeholders = implode(',', array_fill(0, count($logbooks_locations_array), '?'));
-
-		// Build placeholders and bind parameters for IN clauses
-		$callsigns_array = array_keys($callsigns);
-		$dxccs_array = array_keys($dxccs);
-		$continents_array = array_keys($continents);
-
-		$callsigns_placeholders = implode(',', array_fill(0, count($callsigns_array), '?'));
-		$dxccs_placeholders = implode(',', array_fill(0, count($dxccs_array), '?'));
-		$continents_placeholders = implode(',', array_fill(0, count($continents_array), '?'));
-
-		// Three separate queries for callsigns, DXCCs, and continents
-		// This is necessary because the OR logic doesn't work correctly with GROUP BY
-
-		// Query 1: Check callsigns
-		$sql_calls = "
-			SELECT
-				COL_CALL as callsign,
-				MAX(CASE WHEN ({$qsl_where}) THEN 1 ELSE 0 END) as is_confirmed
-			FROM {$this->config->item('table_name')}
-			WHERE station_id IN ({$station_ids_placeholders})
-			AND COL_CALL IN ({$callsigns_placeholders})
-			{$band_sql}
-			{$mode_sql}
-			GROUP BY COL_CALL
-		";
-
-		$bind_params_calls = array_merge($logbooks_locations_array, $callsigns_array);
-		if ($band_param !== null) {
-			$bind_params_calls[] = $band_param;
-		}
-		$query = $this->db->query($sql_calls, $bind_params_calls);
-		$results_calls = $query->result_array();
-
-		// Query 2: Check DXCCs
-		$sql_dxccs = "
-			SELECT
-				COL_DXCC as dxcc,
-				MAX(CASE WHEN ({$qsl_where}) THEN 1 ELSE 0 END) as is_confirmed
-			FROM {$this->config->item('table_name')}
-			WHERE station_id IN ({$station_ids_placeholders})
-			AND COL_DXCC IN ({$dxccs_placeholders})
-			{$band_sql}
-			{$mode_sql}
-			GROUP BY COL_DXCC
-		";
-
-		$bind_params_dxccs = array_merge($logbooks_locations_array, $dxccs_array);
-		if ($band_param !== null) {
-			$bind_params_dxccs[] = $band_param;
-		}
-		$query = $this->db->query($sql_dxccs, $bind_params_dxccs);
-		$results_dxccs = $query->result_array();
-
-		// Query 3: Check continents
-		$sql_conts = "
-			SELECT
-				COL_CONT as continent,
-				MAX(CASE WHEN ({$qsl_where}) THEN 1 ELSE 0 END) as is_confirmed
-			FROM {$this->config->item('table_name')}
-			WHERE station_id IN ({$station_ids_placeholders})
-			AND COL_CONT IN ({$continents_placeholders})
-			{$band_sql}
-			{$mode_sql}
-			GROUP BY COL_CONT
-		";
-
-		$bind_params_conts = array_merge($logbooks_locations_array, $continents_array);
-		if ($band_param !== null) {
-			$bind_params_conts[] = $band_param;
-		}
-		$query = $this->db->query($sql_conts, $bind_params_conts);
-		$results_conts = $query->result_array();
-
-		// Build lookup maps
-		$worked_calls = [];
-		$cnfmd_calls = [];
-		$worked_dxccs = [];
-		$cnfmd_dxccs = [];
-		$worked_conts = [];
-		$cnfmd_conts = [];
-
-		foreach ($results_calls as $row) {
-			$worked_calls[$row['callsign']] = true;
-			if ($row['is_confirmed'] == 1) {
-				$cnfmd_calls[$row['callsign']] = true;
-			}
-		}
-
-		foreach ($results_dxccs as $row) {
-			$worked_dxccs[$row['dxcc']] = true;
-			if ($row['is_confirmed'] == 1) {
-				$cnfmd_dxccs[$row['dxcc']] = true;
-			}
-		}
-
-		foreach ($results_conts as $row) {
-			$worked_conts[$row['continent']] = true;
-			if ($row['is_confirmed'] == 1) {
-				$cnfmd_conts[$row['continent']] = true;
-			}
-		}
-
-		// Map results back to spots
-		$statuses = [];
-		foreach ($spots as $spot) {
-			// Skip spots with missing data
-			if (!isset($spot->spotted) || !isset($spot->dxcc_spotted->dxcc_id) || !isset($spot->dxcc_spotted->cont)) {
-				continue;
-			}
-
+			
 			$callsign = $spot->spotted;
 			$dxcc = $spot->dxcc_spotted->dxcc_id;
 			$cont = $spot->dxcc_spotted->cont;
-
-			$statuses[$callsign] = [
-				'worked_call' => isset($worked_calls[$callsign]),
-				'worked_dxcc' => isset($worked_dxccs[$dxcc]),
-				'worked_continent' => isset($worked_conts[$cont]),
-				'cnfmd_call' => isset($cnfmd_calls[$callsign]),
-				'cnfmd_dxcc' => isset($cnfmd_dxccs[$dxcc]),
-				'cnfmd_continent' => isset($cnfmd_conts[$cont])
-			];
+			
+			// Collect unique callsigns/dxccs/continents - query once per unique value
+			$callsigns[$callsign] = true;
+			$dxccs[$dxcc] = true;
+			$continents[$cont] = true;
+			
+			// Group spots by callsign for later processing
+			if (!isset($spots_by_callsign[$callsign])) {
+				$spots_by_callsign[$callsign] = [];
+			}
+			$spots_by_callsign[$callsign][] = $spot;
 		}
 
-		return $statuses;
-	}
-
-	/**
-	 * Batch version - Get last worked info for multiple callsigns in a single query
-	 *
-	 * @param array $callsigns Array of callsigns to check
-	 * @param array $logbooks_locations_array Station IDs
-	 * @param string $band Band filter
-	 * @return array Keyed by callsign with last worked info
-	 */
-	function get_batch_last_worked($callsigns, $logbooks_locations_array, $band = null) {
-		if (empty($callsigns) || empty($logbooks_locations_array)) {
-			return [];
+		// Check cache for callsigns we've already queried (get ALL band/mode data once per callsign)
+		// Priority: 1) In-memory cache, 2) File cache, 3) Database query
+		$callsigns_to_query = [];
+		$dxccs_to_query = [];
+		$continents_to_query = [];
+		
+		foreach (array_keys($callsigns) as $callsign) {
+			$cache_key = "{$logbook_ids_key}|call|{$callsign}";
+			
+			// Check in-memory cache first
+			if (!isset($this->spot_status_cache[$cache_key])) {
+				// Check file cache
+				if ($cache_enabled) {
+					$file_cache_key = "spot_status_call_{$logbook_ids_key}_{$callsign}";
+					$cached_data = $this->cache->get($file_cache_key);
+					if ($cached_data !== false) {
+						// Load from file cache into in-memory cache
+						$this->spot_status_cache[$cache_key] = $cached_data;
+						continue;
+					}
+				}
+				// Not in either cache, need to query
+				$callsigns_to_query[$callsign] = true;
+			}
+		}
+		
+		foreach (array_keys($dxccs) as $dxcc) {
+			$cache_key = "{$logbook_ids_key}|dxcc|{$dxcc}";
+			
+			if (!isset($this->spot_status_cache[$cache_key])) {
+				if ($cache_enabled) {
+					$file_cache_key = "spot_status_dxcc_{$logbook_ids_key}_{$dxcc}";
+					$cached_data = $this->cache->get($file_cache_key);
+					if ($cached_data !== false) {
+						$this->spot_status_cache[$cache_key] = $cached_data;
+						continue;
+					}
+				}
+				$dxccs_to_query[$dxcc] = true;
+			}
+		}
+		
+		foreach (array_keys($continents) as $cont) {
+			$cache_key = "{$logbook_ids_key}|cont|{$cont}";
+			
+			if (!isset($this->spot_status_cache[$cache_key])) {
+				if ($cache_enabled) {
+					$file_cache_key = "spot_status_cont_{$logbook_ids_key}_{$cont}";
+					$cached_data = $this->cache->get($file_cache_key);
+					if ($cached_data !== false) {
+						$this->spot_status_cache[$cache_key] = $cached_data;
+						continue;
+					}
+				}
+				$continents_to_query[$cont] = true;
+			}
+		}
+		
+		// If everything is cached, skip queries and just map results
+		if (empty($callsigns_to_query) && empty($dxccs_to_query) && empty($continents_to_query)) {
+			// All data cached, map to spots
+			foreach ($spots_by_callsign as $callsign => $callsign_spots) {
+				foreach ($callsign_spots as $spot) {
+					$statuses[$callsign] = $this->map_spot_status_from_cache($spot, $logbook_ids_key);
+				}
+			}
+			return $statuses;
 		}
 
-		// Build band filter with binding
-		$band_sql = '';
-		$band_param = null;
-		$band = ($band == 'All') ? null : $band;
-		if ($band != null && $band != 'SAT') {
-			$band_sql = " AND COL_BAND = ?";
-			$band_param = $band;
-		} else if ($band == 'SAT') {
-			$band_sql = " AND COL_SAT_NAME != ''";
-		}
-
-		// Build placeholders for station IDs (fix SQL injection)
+		// Build placeholders for station IDs
 		$station_ids_placeholders = implode(',', array_fill(0, count($logbooks_locations_array), '?'));
-
-		// Build placeholders for callsigns IN clause
-		$callsigns_placeholders = implode(',', array_fill(0, count($callsigns), '?'));
-
-		// Validate we have valid data
-		if (empty($station_ids_placeholders) || empty($callsigns_placeholders)) {
-			return [];
-		}
-
-		// Build bind params: station_ids, callsigns for subquery, band (if set), station_ids again, callsigns for main query, band again (if set)
+		
+		// Query only uncached items - get ALL band/mode combinations
+		$callsigns_array = array_keys($callsigns_to_query);
+		$dxccs_array = array_keys($dxccs_to_query);
+		$continents_array = array_keys($continents_to_query);
+		
+		$queries = [];
 		$bind_params = [];
-
-		// First set: station_ids for subquery
-		$bind_params = array_merge($bind_params, $logbooks_locations_array);
-
-		// Second: callsigns for subquery
-		$bind_params = array_merge($bind_params, $callsigns);
-
-		// Third: band for subquery (if set)
-		if ($band_param !== null) {
-			$bind_params[] = $band_param;
-		}
-
-		// Fourth set: station_ids for main query
-		$bind_params = array_merge($bind_params, $logbooks_locations_array);
-
-		// Fifth: callsigns for main query
-		$bind_params = array_merge($bind_params, $callsigns);
-
-		// Sixth: band for main query (if set)
-		if ($band_param !== null) {
-			$bind_params[] = $band_param;
-		}
-
-		// Query to get the most recent QSO for each callsign
-		// Using a subquery to get max time per callsign, then join to get the full record
-		// Added LIMIT 1 in derived table to handle edge case of multiple QSOs at same timestamp
-		$sql = "
-			SELECT t1.COL_CALL, t1.COL_TIME_ON as LAST_QSO, t1.COL_MODE as LAST_MODE
-			FROM {$this->config->item('table_name')} t1
-			INNER JOIN (
-				SELECT COL_CALL, MAX(COL_TIME_ON) as max_time
+		
+		if (!empty($callsigns_array)) {
+			$callsigns_placeholders = implode(',', array_fill(0, count($callsigns_array), '?'));
+			$queries[] = "
+				SELECT STRAIGHT_JOIN 'call' as type, COL_CALL as identifier, COL_BAND as band, COL_MODE as mode,
+					MAX(CASE WHEN ({$qsl_where}) THEN 1 ELSE 0 END) as is_confirmed
 				FROM {$this->config->item('table_name')}
 				WHERE station_id IN ({$station_ids_placeholders})
 				AND COL_CALL IN ({$callsigns_placeholders})
-				{$band_sql}
-				GROUP BY COL_CALL
-			) t2 ON t1.COL_CALL = t2.COL_CALL AND t1.COL_TIME_ON = t2.max_time
-			WHERE t1.station_id IN ({$station_ids_placeholders})
-			AND t1.COL_CALL IN ({$callsigns_placeholders})
-			{$band_sql}
+				GROUP BY COL_CALL, COL_BAND, COL_MODE
+			";
+			$bind_params = array_merge($bind_params, $logbooks_locations_array, $callsigns_array);
+		}
+		
+		if (!empty($dxccs_array)) {
+			$dxccs_placeholders = implode(',', array_fill(0, count($dxccs_array), '?'));
+			$queries[] = "
+				SELECT STRAIGHT_JOIN 'dxcc' as type, COL_DXCC as identifier, COL_BAND as band, COL_MODE as mode,
+					MAX(CASE WHEN ({$qsl_where}) THEN 1 ELSE 0 END) as is_confirmed
+				FROM {$this->config->item('table_name')}
+				WHERE station_id IN ({$station_ids_placeholders})
+				AND COL_DXCC IN ({$dxccs_placeholders})
+				GROUP BY COL_DXCC, COL_BAND, COL_MODE
+			";
+			$bind_params = array_merge($bind_params, $logbooks_locations_array, $dxccs_array);
+		}
+		
+		if (!empty($continents_array)) {
+			$continents_placeholders = implode(',', array_fill(0, count($continents_array), '?'));
+			$queries[] = "
+				SELECT STRAIGHT_JOIN 'cont' as type, COL_CONT as identifier, COL_BAND as band, COL_MODE as mode,
+					MAX(CASE WHEN ({$qsl_where}) THEN 1 ELSE 0 END) as is_confirmed
+				FROM {$this->config->item('table_name')}
+				WHERE station_id IN ({$station_ids_placeholders})
+				AND COL_CONT IN ({$continents_placeholders})
+				GROUP BY COL_CONT, COL_BAND, COL_MODE
+			";
+			$bind_params = array_merge($bind_params, $logbooks_locations_array, $continents_array);
+		}
+		
+		if (empty($queries)) {
+			// Nothing to query, use cached data
+			foreach ($spots_by_callsign as $callsign => $callsign_spots) {
+				foreach ($callsign_spots as $spot) {
+					$statuses[$callsign] = $this->map_spot_status_from_cache($spot, $logbook_ids_key);
+				}
+			}
+			return $statuses;
+		}
+		
+		$sql = implode(' UNION ALL ', $queries);
+		
+		$query = $this->db->query($sql, $bind_params);
+		$results = $query->result_array();
+
+		// Build comprehensive cache structure: identifier => [band|mode => status]
+		// This allows reusing data for ALL spots with same callsign/dxcc/continent
+		$call_data = []; // callsign => [band|mode => ['worked' => bool, 'confirmed' => bool]]
+		$dxcc_data = []; // dxcc => [band|mode => ['worked' => bool, 'confirmed' => bool]]
+		$cont_data = []; // continent => [band|mode => ['worked' => bool, 'confirmed' => bool]]
+		
+		foreach ($results as $row) {
+			$identifier = $row['identifier'];
+			$band = $row['band'];
+			$logbook_mode = $row['mode'];
+			$is_confirmed = $row['is_confirmed'];
+			
+			// Convert logbook mode to spot mode category (phone/cw/digi)
+			$qrgmode = $this->Modes->get_qrgmode_from_mode($logbook_mode);
+			if (empty($qrgmode)) {
+				$logbook_mode_upper = strtoupper($logbook_mode);
+				if (in_array($logbook_mode_upper, ['SSB', 'FM', 'AM', 'PHONE'])) {
+					$mode_category = 'phone';
+				} elseif (in_array($logbook_mode_upper, ['CW'])) {
+					$mode_category = 'cw';
+				} else {
+					$mode_category = 'digi';
+				}
+			} else {
+				$mode_category = strtolower($qrgmode);
+				if ($mode_category === 'data') {
+					$mode_category = 'digi';
+				}
+			}
+			
+			$band_mode_key = $band . '|' . $mode_category;
+			
+			if ($row['type'] === 'call') {
+				if (!isset($call_data[$identifier])) {
+					$call_data[$identifier] = [];
+				}
+				$call_data[$identifier][$band_mode_key] = [
+					'worked' => true,
+					'confirmed' => ($is_confirmed == 1)
+				];
+			} elseif ($row['type'] === 'dxcc') {
+				if (!isset($dxcc_data[$identifier])) {
+					$dxcc_data[$identifier] = [];
+				}
+				$dxcc_data[$identifier][$band_mode_key] = [
+					'worked' => true,
+					'confirmed' => ($is_confirmed == 1)
+				];
+			} elseif ($row['type'] === 'cont') {
+				if (!isset($cont_data[$identifier])) {
+					$cont_data[$identifier] = [];
+				}
+				$cont_data[$identifier][$band_mode_key] = [
+					'worked' => true,
+					'confirmed' => ($is_confirmed == 1)
+				];
+			}
+		}
+		
+		// Cache the complete data for each callsign/dxcc/continent (both in-memory and file)
+		// Store worked items with their band/mode data
+		foreach ($call_data as $callsign => $data) {
+			$cache_key = "{$logbook_ids_key}|call|{$callsign}";
+			$this->spot_status_cache[$cache_key] = $data;
+			
+			// Save to file cache for 15 minutes
+			if ($cache_enabled) {
+				$file_cache_key = "spot_status_call_{$logbook_ids_key}_{$callsign}";
+				$this->cache->save($file_cache_key, $data, $cache_ttl);
+			}
+		}
+		foreach ($dxcc_data as $dxcc => $data) {
+			$cache_key = "{$logbook_ids_key}|dxcc|{$dxcc}";
+			$this->spot_status_cache[$cache_key] = $data;
+			
+			if ($cache_enabled) {
+				$file_cache_key = "spot_status_dxcc_{$logbook_ids_key}_{$dxcc}";
+				$this->cache->save($file_cache_key, $data, $cache_ttl);
+			}
+		}
+		foreach ($cont_data as $cont => $data) {
+			$cache_key = "{$logbook_ids_key}|cont|{$cont}";
+			$this->spot_status_cache[$cache_key] = $data;
+			
+			if ($cache_enabled) {
+				$file_cache_key = "spot_status_cont_{$logbook_ids_key}_{$cont}";
+				$this->cache->save($file_cache_key, $data, $cache_ttl);
+			}
+		}
+		
+		// Cache NOT WORKED items (negative results) - store empty arrays
+		// This prevents redundant database queries for callsigns/dxccs/continents not in logbook
+		foreach ($callsigns_array as $callsign) {
+			if (!isset($call_data[$callsign])) {
+				$cache_key = "{$logbook_ids_key}|call|{$callsign}";
+				$this->spot_status_cache[$cache_key] = []; // Empty = not worked
+				
+				if ($cache_enabled) {
+					$file_cache_key = "spot_status_call_{$logbook_ids_key}_{$callsign}";
+					$this->cache->save($file_cache_key, [], $cache_ttl);
+				}
+			}
+		}
+		foreach ($dxccs_array as $dxcc) {
+			if (!isset($dxcc_data[$dxcc])) {
+				$cache_key = "{$logbook_ids_key}|dxcc|{$dxcc}";
+				$this->spot_status_cache[$cache_key] = [];
+				
+				if ($cache_enabled) {
+					$file_cache_key = "spot_status_dxcc_{$logbook_ids_key}_{$dxcc}";
+					$this->cache->save($file_cache_key, [], $cache_ttl);
+				}
+			}
+		}
+		foreach ($continents_array as $cont) {
+			if (!isset($cont_data[$cont])) {
+				$cache_key = "{$logbook_ids_key}|cont|{$cont}";
+				$this->spot_status_cache[$cache_key] = [];
+				
+				if ($cache_enabled) {
+					$file_cache_key = "spot_status_cont_{$logbook_ids_key}_{$cont}";
+					$this->cache->save($file_cache_key, [], $cache_ttl);
+				}
+			}
+		}
+		
+		// Now map all spots to their status using cached data (query results + previously cached)
+		foreach ($spots_by_callsign as $callsign => $callsign_spots) {
+			foreach ($callsign_spots as $spot) {
+				$statuses[$callsign] = $this->map_spot_status_from_cache($spot, $logbook_ids_key);
+			}
+		}
+		
+		return $statuses;
+	}
+	
+	/**
+	 * Helper function to map spot status from cached data
+	 */
+	private function map_spot_status_from_cache($spot, $logbook_ids_key) {
+		$callsign = $spot->spotted;
+		$dxcc = $spot->dxcc_spotted->dxcc_id;
+		$cont = $spot->dxcc_spotted->cont;
+		$spot_band = ($spot->band == 'SAT') ? 'SAT' : $spot->band;
+		$spot_mode = $spot->mode;
+		
+		$band_mode_key = $spot_band . '|' . $spot_mode;
+		
+		// Get cached data for this callsign/dxcc/continent
+		$call_cache_key = "{$logbook_ids_key}|call|{$callsign}";
+		$dxcc_cache_key = "{$logbook_ids_key}|dxcc|{$dxcc}";
+		$cont_cache_key = "{$logbook_ids_key}|cont|{$cont}";
+		
+		$call_data = $this->spot_status_cache[$call_cache_key] ?? [];
+		$dxcc_data = $this->spot_status_cache[$dxcc_cache_key] ?? [];
+		$cont_data = $this->spot_status_cache[$cont_cache_key] ?? [];
+		
+		// Check if worked/confirmed on this specific band+mode
+		$worked_call = isset($call_data[$band_mode_key]) && $call_data[$band_mode_key]['worked'];
+		$cnfmd_call = isset($call_data[$band_mode_key]) && $call_data[$band_mode_key]['confirmed'];
+		$worked_dxcc = isset($dxcc_data[$band_mode_key]) && $dxcc_data[$band_mode_key]['worked'];
+		$cnfmd_dxcc = isset($dxcc_data[$band_mode_key]) && $dxcc_data[$band_mode_key]['confirmed'];
+		$worked_cont = isset($cont_data[$band_mode_key]) && $cont_data[$band_mode_key]['worked'];
+		$cnfmd_cont = isset($cont_data[$band_mode_key]) && $cont_data[$band_mode_key]['confirmed'];
+		
+		return [
+			'worked_call' => $worked_call,
+			'worked_dxcc' => $worked_dxcc,
+			'worked_continent' => $worked_cont,
+			'cnfmd_call' => $cnfmd_call,
+			'cnfmd_dxcc' => $cnfmd_dxcc,
+			'cnfmd_continent' => $cnfmd_cont
+		];
+	}
+
+	/**
+	 * Batch version - Get last worked info for multiple callsigns with their specific bands and modes
+	 *
+	 * @param array $spots Array of spot objects (must have 'spotted', 'band', and 'mode' properties)
+	 * @param array $logbooks_locations_array Station IDs
+	 * @return array Keyed by callsign with last worked info
+	 */
+	function get_batch_last_worked($spots, $logbooks_locations_array) {
+		if (empty($spots) || empty($logbooks_locations_array)) {
+			return [];
+		}
+
+		// Build placeholders for station IDs
+		$station_ids_placeholders = implode(',', array_fill(0, count($logbooks_locations_array), '?'));
+
+		// Collect unique callsigns and build callsign->band->mode mapping
+		$callsigns = [];
+		$callsign_band_mode_map = []; // callsign => [band|mode => true]
+		
+		foreach ($spots as $spot) {
+			if (!isset($spot->spotted) || !isset($spot->band) || !isset($spot->mode)) {
+				continue;
+			}
+			
+			$callsign = $spot->spotted;
+			$spot_band = ($spot->band == 'SAT') ? 'SAT' : $spot->band;
+			$spot_mode = $spot->mode;
+			
+			$callsigns[$callsign] = true;
+			if (!isset($callsign_band_mode_map[$callsign])) {
+				$callsign_band_mode_map[$callsign] = [];
+			}
+			$band_mode_key = $spot_band . '|' . $spot_mode;
+			$callsign_band_mode_map[$callsign][$band_mode_key] = true;
+		}
+
+		if (empty($callsigns)) {
+			return [];
+		}
+
+		// Build IN clause for callsigns
+		$callsigns_array = array_keys($callsigns);
+		$callsigns_placeholders = implode(',', array_fill(0, count($callsigns_array), '?'));
+
+		// Optimized query using window function (MySQL 8.0+)
+		// Get the most recent QSO for each callsign/band/mode combination
+		// Will use idx_station_call_time index if available, otherwise falls back to existing indexes
+		$sql = "
+			SELECT COL_CALL, COL_TIME_ON as LAST_QSO, COL_MODE as LAST_MODE, COL_BAND
+			FROM (
+				SELECT COL_CALL, COL_TIME_ON, COL_MODE, COL_BAND,
+					ROW_NUMBER() OVER (PARTITION BY COL_CALL, COL_BAND, COL_MODE ORDER BY COL_TIME_ON DESC) as rn
+				FROM {$this->config->item('table_name')}
+				WHERE station_id IN ({$station_ids_placeholders})
+				AND COL_CALL IN ({$callsigns_placeholders})
+			) t
+			WHERE rn = 1
 		";
 
+		$bind_params = array_merge($logbooks_locations_array, $callsigns_array);
+		
 		$query = $this->db->query($sql, $bind_params);
 		$results = $query->result();
 
 		// Build lookup map keyed by callsign
-		// If multiple QSOs have same timestamp, keep first one returned
+		// Only include results where the band+mode matches what we're looking for
 		$last_worked = [];
 		foreach ($results as $row) {
-			if (!isset($last_worked[$row->COL_CALL])) {
-				$last_worked[$row->COL_CALL] = $row;
+			$callsign = $row->COL_CALL;
+			$band = $row->COL_BAND;
+			$logbook_mode = $row->LAST_MODE;
+			
+			// Convert logbook mode to spot mode category
+			$qrgmode = $this->Modes->get_qrgmode_from_mode($logbook_mode);
+			if (empty($qrgmode)) {
+				$logbook_mode_upper = strtoupper($logbook_mode);
+				if (in_array($logbook_mode_upper, ['SSB', 'FM', 'AM', 'PHONE'])) {
+					$mode_category = 'phone';
+				} elseif (in_array($logbook_mode_upper, ['CW'])) {
+					$mode_category = 'cw';
+				} else {
+					$mode_category = 'digi';
+				}
+			} else {
+				$mode_category = strtolower($qrgmode);
+				if ($mode_category === 'data') {
+					$mode_category = 'digi';
+				}
+			}
+			$band_mode_key = $band . '|' . $mode_category;
+			
+			// Check if we have a spot for this callsign on this band+mode
+			if (isset($callsign_band_mode_map[$callsign]) && isset($callsign_band_mode_map[$callsign][$band_mode_key])) {
+				// Only store the first (most recent) match for each callsign
+				if (!isset($last_worked[$callsign])) {
+					$last_worked[$callsign] = $row;
+				}
 			}
 		}
 

@@ -248,21 +248,20 @@ class Dxcluster_model extends CI_Model {
 			);
 
 			// Collect callsigns that need last_worked info (only those that are worked)
-			$worked_callsigns = [];
+			$worked_spots = [];
 			foreach ($spotsout as $spot) {
 				$callsign = $spot->spotted;
 				if (isset($batch_statuses[$callsign]) && $batch_statuses[$callsign]['worked_call']) {
-					$worked_callsigns[] = $callsign;
+					$worked_spots[] = $spot;
 				}
 			}
 
-			// Batch fetch last_worked info for all worked callsigns
+			// Batch fetch last_worked info for all worked spots (with their specific bands)
 			$last_worked_batch = [];
-			if (!empty($worked_callsigns)) {
+			if (!empty($worked_spots)) {
 				$last_worked_batch = $this->logbook_model->get_batch_last_worked(
-					$worked_callsigns,
-					$logbooks_locations_array,
-					$band
+					$worked_spots,
+					$logbooks_locations_array
 				);
 			}
 
