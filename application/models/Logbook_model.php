@@ -2906,9 +2906,18 @@ class Logbook_model extends CI_Model {
 			$logbook_mode = $row['mode'];
 			$is_confirmed = $row['is_confirmed'];
 			
-			// Convert logbook mode to spot mode category (phone/cw/digi)
-			$qrgmode = $this->Modes->get_qrgmode_from_mode($logbook_mode);
-			if (empty($qrgmode)) {
+		// Convert logbook mode to spot mode category (phone/cw/digi)
+			$qrgmode = @$this->Modes->get_qrgmode_from_mode($logbook_mode);
+			$qrgmode_lower = strtolower($qrgmode);
+			
+			// Check if qrgmode is valid (phone/cw/data/digi), otherwise use fallback
+			if (!empty($qrgmode) && in_array($qrgmode_lower, ['phone', 'cw', 'data', 'digi'])) {
+				$mode_category = $qrgmode_lower;
+				if ($mode_category === 'data') {
+					$mode_category = 'digi';
+				}
+			} else {
+				// Fallback to hardcoded mapping
 				$logbook_mode_upper = strtoupper($logbook_mode);
 				if (in_array($logbook_mode_upper, ['SSB', 'FM', 'AM', 'PHONE'])) {
 					$mode_category = 'phone';
@@ -2917,15 +2926,8 @@ class Logbook_model extends CI_Model {
 				} else {
 					$mode_category = 'digi';
 				}
-			} else {
-				$mode_category = strtolower($qrgmode);
-				if ($mode_category === 'data') {
-					$mode_category = 'digi';
-				}
-			}
-			
-			$band_mode_key = $band . '|' . $mode_category;
-			
+			}			$band_mode_key = $band . '|' . $mode_category;
+				
 			if ($row['type'] === 'call') {
 				if (!isset($call_data[$identifier])) {
 					$call_data[$identifier] = [];
@@ -3142,19 +3144,23 @@ class Logbook_model extends CI_Model {
 			$logbook_mode = $row->LAST_MODE;
 			
 			// Convert logbook mode to spot mode category
-			$qrgmode = $this->Modes->get_qrgmode_from_mode($logbook_mode);
-			if (empty($qrgmode)) {
+			$qrgmode = @$this->Modes->get_qrgmode_from_mode($logbook_mode);
+			$qrgmode_lower = strtolower($qrgmode);
+			
+			// Check if qrgmode is valid (phone/cw/data/digi), otherwise use fallback
+			if (!empty($qrgmode) && in_array($qrgmode_lower, ['phone', 'cw', 'data', 'digi'])) {
+				$mode_category = $qrgmode_lower;
+				if ($mode_category === 'data') {
+					$mode_category = 'digi';
+				}
+			} else {
+				// Fallback to hardcoded mapping
 				$logbook_mode_upper = strtoupper($logbook_mode);
 				if (in_array($logbook_mode_upper, ['SSB', 'FM', 'AM', 'PHONE'])) {
 					$mode_category = 'phone';
 				} elseif (in_array($logbook_mode_upper, ['CW'])) {
 					$mode_category = 'cw';
 				} else {
-					$mode_category = 'digi';
-				}
-			} else {
-				$mode_category = strtolower($qrgmode);
-				if ($mode_category === 'data') {
 					$mode_category = 'digi';
 				}
 			}
