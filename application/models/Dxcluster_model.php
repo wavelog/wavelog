@@ -48,21 +48,12 @@ class Dxcluster_model extends CI_Model {
 		$this->load->helper(array('psr4_autoloader'));
 
 		// Check if file caching is enabled in config
-		$cache_enabled = $this->config->item('enable_dxcluster_file_cache_band') === true;
+		$cache_band_enabled = $this->config->item('enable_dxcluster_file_cache_band') === true;
+		$cache_worked_enabled = $this->config->item('enable_dxcluster_file_cache_worked') === true;
 
 		// Only load cache driver if caching is enabled
-		if ($cache_enabled) {
+		if ($cache_band_enabled || $cache_worked_enabled) {
 			$this->load->driver('cache', array('adapter' => 'file', 'backup' => 'file'));
-		}
-
-		// Check cache first for processed spot list (only if caching is enabled)
-		$user_id = $this->session->userdata('user_id');
-		$logbook_id = $this->session->userdata('active_station_logbook');
-		$cache_key = "spotlist_{$band}_{$maxage}_{$de}_{$mode}_{$user_id}_{$logbook_id}";
-
-		// Try to get cached processed results (59 second cache) only if caching is enabled
-		if ($cache_enabled && ($cached_spots = $this->cache->get($cache_key))) {
-			return $cached_spots;
 		}
 
 		if($this->session->userdata('user_date_format')) {
@@ -82,14 +73,17 @@ class Dxcluster_model extends CI_Model {
 		$this->load->model('logbook_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
-		// Check cache for raw DX cluster data (only if caching is enabled)
-		$jsonraw = null;
-		if ($cache_enabled) {
-			$jsonraw = $this->cache->get('dxcache'.$band);
+		// Cache key for RAW cluster response (instance-wide, no worked status)
+		$raw_cache_key = "dxcluster_raw_{$maxage}_{$de}_{$mode}_{$band}";
+
+		// Check cache for raw processed spots (without worked status)
+		$spotsout = null;
+		if ($cache_band_enabled) {
+			$spotsout = $this->cache->get($raw_cache_key);
 		}
 
-		if (!$jsonraw) {
-			// CURL Functions
+		if (!$spotsout) {
+			// Fetch raw DX cluster data from API
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $dxcache_url);
 			curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog '.$this->optionslib->get_option('version').' DXLookup');
@@ -106,50 +100,44 @@ class Dxcluster_model extends CI_Model {
 				return [];
 			}
 
-			// Save to cache only if caching is enabled
-			if ($cache_enabled) {
-				$this->cache->save('dxcache'.$band, $jsonraw, 59);	// Cache DXClusterCache Instancewide for 59seconds
-			}
-		}
-
-		// Validate JSON before decoding
-		if (empty($jsonraw) || strlen($jsonraw) <= 20) {
-			return [];
-		}
-
-		$json = json_decode($jsonraw);
-
-		// Check for JSON decode errors
-		if (json_last_error() !== JSON_ERROR_NONE || !is_array($json)) {
-			log_message('error', 'DXCluster: Invalid JSON received: ' . json_last_error_msg());
-			return [];
-		}
-		$date = date('Ymd', time());
-
-		$dxccObj = new DXCC($date);
-
-		// DXCC lookup cache to avoid duplicate lookups
-		$dxcc_cache = [];
-
-		$spotsout=[];
-
-		// Cache current time outside loop (avoid creating DateTime on every iteration)
-		$currentTimestamp = time();
-
-		// Normalize continent filter once
-		$de_lower = strtolower($de);
-		$filter_continent = ($de != '' && $de != 'Any');
-
-		foreach($json as $singlespot){
-			// Early filtering - skip invalid spots immediately
-			if (!is_object($singlespot) || !isset($singlespot->frequency) || !is_numeric($singlespot->frequency)) {
-				continue;
+			// Validate JSON before decoding
+			if (empty($jsonraw) || strlen($jsonraw) <= 20) {
+				return [];
 			}
 
-			// Ensure frequency is always a number (not a string)
-			$singlespot->frequency = floatval($singlespot->frequency);
+			$json = json_decode($jsonraw);
 
-			$spotband = $this->frequency->GetBand($singlespot->frequency*1000);			// Apply band filter early (before expensive operations)
+			// Check for JSON decode errors
+			if (json_last_error() !== JSON_ERROR_NONE || !is_array($json)) {
+				log_message('error', 'DXCluster: Invalid JSON received: ' . json_last_error_msg());
+				return [];
+			}
+			$date = date('Ymd', time());
+
+			$dxccObj = new DXCC($date);
+
+			// DXCC lookup cache to avoid duplicate lookups
+			$dxcc_cache = [];
+
+			$spotsout=[];
+
+			// Cache current time outside loop (avoid creating DateTime on every iteration)
+			$currentTimestamp = time();
+
+			// Normalize continent filter once
+			$de_lower = strtolower($de);
+			$filter_continent = ($de != '' && $de != 'Any');
+
+			foreach($json as $singlespot){
+				// Early filtering - skip invalid spots immediately
+				if (!is_object($singlespot) || !isset($singlespot->frequency) || !is_numeric($singlespot->frequency)) {
+					continue;
+				}
+
+				// Ensure frequency is always a number (not a string)
+				$singlespot->frequency = floatval($singlespot->frequency);
+
+				$spotband = $this->frequency->GetBand($singlespot->frequency*1000);			// Apply band filter early (before expensive operations)
 			if (($band != 'All') && ($band != $spotband)) {
 				continue;
 			}
@@ -233,12 +221,17 @@ class Dxcluster_model extends CI_Model {
 			// Extract park references from message
 			$singlespot = $this->enrich_spot_metadata($singlespot);
 
-			// Collect spots for batch processing
-			$spotsout[] = $singlespot;
+				// Collect spots for batch processing
+				$spotsout[] = $singlespot;
+			}
+
+			// Cache the RAW processed spots (WITHOUT worked status) - instance-wide
+			if ($cache_band_enabled && !empty($spotsout)) {
+				$this->cache->save($raw_cache_key, $spotsout, 59);
+			}
 		}
 
-
-		// Batch process all spot statuses in a single optimized database query
+		// NOW add worked status if enabled (user-specific)
 		if (!empty($spotsout)) {
 			$batch_statuses = $this->logbook_model->get_batch_spot_statuses(
 				$spotsout,
@@ -308,17 +301,21 @@ class Dxcluster_model extends CI_Model {
 
 				$spotsout[$index] = $spot;
 			}
-		}
-
-		// Cache the processed results for 59 seconds (matches DXCache server TTL) only if caching is enabled
-		if ($cache_enabled && !empty($spotsout)) {
-			$this->cache->save($cache_key, $spotsout, 59);
+		} else {
+			// No worked status check - set all to false
+			foreach ($spotsout as $index => $spot) {
+				$spot->worked_dxcc = false;
+				$spot->worked_call = false;
+				$spot->cnfmd_dxcc = false;
+				$spot->cnfmd_call = false;
+				$spot->cnfmd_continent = false;
+				$spot->worked_continent = false;
+				$spotsout[$index] = $spot;
+			}
 		}
 
 		return $spotsout;
-	}
-
-	// Determine mode with priority: POTA/SOTA mode > message keywords > frequency-based
+	}	// Determine mode with priority: POTA/SOTA mode > message keywords > frequency-based
 	function get_mode($spot) {
 		// Priority 0: If spot already has a valid mode from cluster, use it
 		if (isset($spot->mode) && !empty($spot->mode)) {

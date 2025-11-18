@@ -806,14 +806,19 @@ $config['max_login_attempts'] = 3;
 | Controls file-based caching for DXCluster features. Two independent settings:
 |
 | 1. enable_dxcluster_file_cache_band
-|    - Caches spot lists (per band/mode/continent) from DXCache API
+|    - Caches processed spot lists (WITHOUT worked status) from DXCache API
+|    - Cache is INSTANCE-WIDE (shared by all users)
 |    - Cache duration: 59 seconds
-|    - Cache key includes: band, max age, continent, mode, user_id, logbook_id
+|    - Cache key format: dxcluster_raw_{maxage}_{continent}_{mode}_{band}
+|    - Example: dxcluster_raw_60_Any_All_20m
+|    - Contains: callsign, frequency, DXCC, mode, age, metadata
+|    - Does NOT contain: worked/confirmed status (always false in cache)
 |    - Set to TRUE to reduce API calls and speed up spot list loading
 |    - Set to FALSE to always fetch fresh data from API
 |
 | 2. enable_dxcluster_file_cache_worked
 |    - Caches worked/confirmed status lookups from database
+|    - Cache is USER-SPECIFIC (separate for each user/logbook)
 |    - Cache duration: 15 minutes (900 seconds)
 |    - Cache includes: All bands/modes combinations per callsign/DXCC/continent
 |    - Set to TRUE to significantly reduce database load
@@ -821,8 +826,10 @@ $config['max_login_attempts'] = 3;
 |
 | Default: false (both caching disabled)
 |
-| Recommendation: Enable both on high-traffic installations for best performance.
-| Warning: May cause high disk usage on large multi-user installations.
+| Recommendation:
+|   - Enable BAND cache on all installations to reduce API load (instance-wide)
+|   - Enable WORKED cache on high-traffic multi-user installations to reduce DB queries
+| Warning: WORKED cache may cause high disk usage on large multi-user installations.
 |--------------------------------------------------------------------------
  */
 

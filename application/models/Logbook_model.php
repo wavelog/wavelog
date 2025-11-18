@@ -2775,7 +2775,7 @@ class Logbook_model extends CI_Model {
 			if (!isset($this->spot_status_cache[$cache_key])) {
 				// Check file cache
 				if ($cache_enabled) {
-					$file_cache_key = "spot_status_call_{$logbook_ids_key}_{$callsign}";
+					$file_cache_key = "dxcluster_worked_call_{$logbook_ids_key}_{$callsign}";
 					$cached_data = $this->cache->get($file_cache_key);
 					if ($cached_data !== false) {
 						// Load from file cache into in-memory cache
@@ -2793,7 +2793,7 @@ class Logbook_model extends CI_Model {
 
 			if (!isset($this->spot_status_cache[$cache_key])) {
 				if ($cache_enabled) {
-					$file_cache_key = "spot_status_dxcc_{$logbook_ids_key}_{$dxcc}";
+					$file_cache_key = "dxcluster_worked_dxcc_{$logbook_ids_key}_{$dxcc}";
 					$cached_data = $this->cache->get($file_cache_key);
 					if ($cached_data !== false) {
 						$this->spot_status_cache[$cache_key] = $cached_data;
@@ -2809,7 +2809,7 @@ class Logbook_model extends CI_Model {
 
 			if (!isset($this->spot_status_cache[$cache_key])) {
 				if ($cache_enabled) {
-					$file_cache_key = "spot_status_cont_{$logbook_ids_key}_{$cont}";
+					$file_cache_key = "dxcluster_worked_cont_{$logbook_ids_key}_{$cont}";
 					$cached_data = $this->cache->get($file_cache_key);
 					if ($cached_data !== false) {
 						$this->spot_status_cache[$cache_key] = $cached_data;
@@ -3052,7 +3052,7 @@ class Logbook_model extends CI_Model {
 
 			// Save to file cache for 15 minutes
 			if ($cache_enabled) {
-				$file_cache_key = "spot_status_call_{$logbook_ids_key}_{$callsign}";
+				$file_cache_key = "dxcluster_worked_call_{$logbook_ids_key}_{$callsign}";
 				$this->cache->save($file_cache_key, $data, $cache_ttl);
 			}
 		}
@@ -3070,12 +3070,10 @@ class Logbook_model extends CI_Model {
 			$this->spot_status_cache[$cache_key] = $data;
 
 			if ($cache_enabled) {
-				$file_cache_key = "spot_status_cont_{$logbook_ids_key}_{$cont}";
+				$file_cache_key = "dxcluster_worked_cont_{$logbook_ids_key}_{$cont}";
 				$this->cache->save($file_cache_key, $data, $cache_ttl);
 			}
-		}
-
-		// Cache NOT WORKED items (negative results) - store empty arrays
+		}		// Cache NOT WORKED items (negative results) - store empty arrays
 		// This prevents redundant database queries for callsigns/dxccs/continents not in logbook
 		foreach ($callsigns_array as $callsign) {
 			if (!isset($call_data[$callsign])) {
@@ -3105,13 +3103,11 @@ class Logbook_model extends CI_Model {
 				$this->spot_status_cache[$cache_key] = [];
 
 				if ($cache_enabled) {
-					$file_cache_key = "spot_status_cont_{$logbook_ids_key}_{$cont}";
+					$file_cache_key = "dxcluster_worked_cont_{$logbook_ids_key}_{$cont}";
 					$this->cache->save($file_cache_key, [], $cache_ttl);
 				}
 			}
-		}
-
-		// Now map all spots to their status using cached data (query results + previously cached)
+		}		// Now map all spots to their status using cached data (query results + previously cached)
 		foreach ($spots_by_callsign as $callsign => $callsign_spots) {
 			foreach ($callsign_spots as $spot) {
 				$statuses[$callsign] = $this->map_spot_status_from_cache($spot, $logbook_ids_key);
