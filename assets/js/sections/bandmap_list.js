@@ -359,6 +359,9 @@ $(function() {
 				if (selectId === 'band' || selectId === 'mode' || selectId === 'decontSelect' || selectId === 'continentSelect') {
 					syncQuickFilterButtons();
 				}
+
+				// Apply filters when select changes
+				applyFilters(false);
 			});
 		}
 
@@ -382,6 +385,9 @@ $(function() {
 
 			$(this).val(currentValues);
 			updateFilterIcon();
+
+			// Apply filters when requiredFlags changes
+			applyFilters(false);
 		});
 
 	// ========================================
