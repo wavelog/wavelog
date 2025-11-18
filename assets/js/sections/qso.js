@@ -746,6 +746,13 @@ bc.onmessage = function (ev) {
 	} else {
 		// Always process frequency, callsign, and reference data from bandmap
 		// (regardless of manual mode - bandmap should control the form)
+		let delay = 0;
+
+		// Only reset if callsign is different from what we're about to set
+		if ($("#callsign").val() != "" && $("#callsign").val() != ev.data.call) {
+			reset_fields();
+			delay = 600;
+		}
 
 		// Store references for later population (after callsign lookup completes)
 		pendingReferences = {
@@ -754,13 +761,6 @@ bc.onmessage = function (ev) {
 			wwff_ref: ev.data.wwff_ref,
 			iota_ref: ev.data.iota_ref
 		};
-
-		let delay = 0;
-		// Only reset if callsign is different from what we're about to set
-		if ($("#callsign").val() != "" && $("#callsign").val() != ev.data.call) {
-			reset_fields();
-			delay = 600;
-		}
 
 		setTimeout(() => {
 			if (ev.data.frequency != null) {
@@ -1057,6 +1057,10 @@ function reset_to_default() {
 
 /* Function: reset_fields is used to reset the fields on the QSO page */
 function reset_fields() {
+	// we set the pendingReferences to null to avoid they get prefilled in the next QSO after clear
+	// we do this first to avoid race conditions for slow javascript
+	pendingReferences = null;
+
 	$('#locator_info').text("");
 	$('#comment').val("");
 	$('#country').val("");
@@ -1128,9 +1132,6 @@ function reset_fields() {
 	var $select = $('#sota_ref').selectize();
 	var selectize = $select[0].selectize;
 	selectize.clear();
-
-	// also set the pendingReferences to null to avoid they get prefilled in the next QSO after clear
-	pendingReferences = null;
 
 	$('#notes').val("");
 
@@ -1211,7 +1212,12 @@ $("#callsign").on("focusout", function () {
 		lookupInProgress = true;
 
 		// Capture pendingReferences for THIS lookup (before it gets overwritten by another click)
+		// If pendingReferences exists, use it; otherwise set to null to prevent old references
+		// from being populated when user manually types a different callsign
 		var capturedReferences = pendingReferences ? Object.assign({}, pendingReferences) : null;
+
+		// Clear pendingReferences immediately after capturing to prevent reuse on next manual lookup
+		pendingReferences = null;
 
 		// Disable Save QSO button and show fetch status
 		$('#saveQso').prop('disabled', true);
