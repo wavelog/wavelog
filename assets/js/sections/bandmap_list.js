@@ -1534,10 +1534,6 @@ $(function() {
 		if (deContinent.length === 1 && !deContinent.includes('Any')) continentForAPI = deContinent[0];
 
 		// bandForAPI is now passed as a parameter from applyFilters()
-		// Log if CAT Control influenced the band selection
-		if (bandForAPI !== 'All') {
-
-		}
 
 		// Update backend filter state
 		loadedBackendFilters = {
@@ -1756,13 +1752,18 @@ $(function() {
 		}
 		// If multiple continents selected, fetch 'Any' from backend and filter client-side
 
-		// Always fetch all bands from backend - filtering happens client-side
+		// Band filtering: In purple mode (on+marker), fetch only the active band from backend
 		let bandForAPI = 'All';
+		if (catState === 'on+marker' && band.length === 1 && !band.includes('All')) {
+			// Purple mode with single band selected - fetch only that band from backend
+			bandForAPI = band[0];
+		}
 
 		// Check if backend parameters changed (requires new data fetch)
-		// Only continent filter affects server fetch
+		// Continent and band filters affect server fetch
 		let backendParamsChanged = forceReload ||
-			loadedBackendFilters.continent !== continentForAPI;
+			loadedBackendFilters.continent !== continentForAPI ||
+			loadedBackendFilters.band !== bandForAPI;
 
 
 
@@ -3158,11 +3159,11 @@ $(function() {
 						$("#band").val([band]);
 						updateSelectCheckboxes('band');
 						syncQuickFilterButtons();
-						applyFilters(false);
+						// Force reload to fetch only the active band from backend
+						applyFilters(true);
 					}
 					updateFrequencyGradientColors();
-				}
-
+				}				
 				lockTableSortingToFrequency();
 
 				updateButtonVisual('on+marker');
@@ -3171,14 +3172,22 @@ $(function() {
 		case 'on+marker':
 			// ON+MARKER → ON (Exit Purple Mode)
 			window.isFrequencyMarkerEnabled = false;
-			catState = 'on';				// Re-enable band filter controls
-				enableBandFilterControls();
-
-				unlockTableSorting();
-				clearFrequencyGradientColors();
-
-				updateButtonVisual('on');
-				break;
+			catState = 'on';
+			
+			// Re-enable band filter controls
+			enableBandFilterControls();
+			
+			// Reset band filter to 'All' and force reload to fetch all bands
+			$("#band").val(['All']);
+			updateSelectCheckboxes('band');
+			syncQuickFilterButtons();
+			applyFilters(true); // Force reload to fetch all bands
+			
+			unlockTableSorting();
+			clearFrequencyGradientColors();
+			
+			updateButtonVisual('on');
+			break;
 		}
 	}
 
@@ -3186,10 +3195,18 @@ $(function() {
 		// Double-click: Force disable from any state
 		if (catState === 'off') return;
 
-	isCatTrackingEnabled = false;
-	window.isCatTrackingEnabled = false;
-	window.isFrequencyMarkerEnabled = false;
-	catState = 'off';		const selectedRadio = $('.radios option:selected').val();
+		isCatTrackingEnabled = false;
+		window.isCatTrackingEnabled = false;
+		window.isFrequencyMarkerEnabled = false;
+		catState = 'off';
+		
+		// Reset band filter to 'All' when disabling CAT
+		$("#band").val(['All']);
+		updateSelectCheckboxes('band');
+		syncQuickFilterButtons();
+		applyFilters(true); // Force reload to fetch all bands
+		
+		const selectedRadio = $('.radios option:selected').val();
 		if (selectedRadio && selectedRadio !== '0' && typeof window.displayOfflineStatus === 'function') {
 			window.displayOfflineStatus('cat_disabled');
 		} else if (selectedRadio === '0' && typeof window.displayOfflineStatus === 'function') {
