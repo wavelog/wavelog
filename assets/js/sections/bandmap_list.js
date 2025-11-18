@@ -90,8 +90,30 @@ $(function() {
 	let applyFiltersTimer = null;
 	function debouncedApplyFilters(delay = 150) {
 		if (applyFiltersTimer) clearTimeout(applyFiltersTimer);
-		applyFiltersTimer = setTimeout(() => applyFilters(false), delay);
+		applyFiltersTimer = setTimeout(() => {
+			// Safety check: only call if applyFilters is defined
+			if (typeof applyFilters === 'function') {
+				applyFilters(false);
+			}
+		}, delay);
 	}
+
+	// ========================================
+	// MAP VARIABLES (declared early for drawCallback access)
+	// ========================================
+
+	let dxMap = null;
+	let dxMapVisible = false;
+	let dxccMarkers = [];
+	let spotterMarkers = [];
+	let connectionLines = [];
+	let userHomeMarker = null;
+	let showSpotters = false;
+	let showDayNight = true;
+	let terminatorLayer = null;
+	let hoverSpottersData = new Map();
+	let hoverSpotterMarkers = [];
+	let hoverConnectionLines = [];
 
 	// ========================================
 	// DATATABLES ERROR HANDLING
@@ -476,6 +498,11 @@ $(function() {
 			let totalRows = cachedSpotData ? cachedSpotData.length : 0;
 			let displayedRows = this.api().rows({ search: 'applied' }).count();
 			updateStatusBar(totalRows, displayedRows, getServerFilterText(), getClientFilterText(), false, false);
+
+			// Update map markers when table is redrawn (including after search)
+			if (dxMapVisible && dxMap) {
+				updateDxMap();
+			}
 
 			// Note: CAT frequency gradient is now updated only from updateCATui (every 3s)
 			// to prevent recursion issues with table redraws
@@ -1237,15 +1264,23 @@ $(function() {
 		// Initialize tooltips with error handling
 		try {
 			$('[data-bs-toggle="tooltip"]').each(function() {
-				if (this && $(this).attr('title')) {
-					try {
-						new bootstrap.Tooltip(this, {
-							boundary: 'window',
-							trigger: 'hover'
-						});
-					} catch (err) {
-						// Skip if tooltip fails to initialize
+				if (!this || !$(this).attr('title')) return;
+
+				try {
+					// Dispose existing tooltip instance if it exists
+					const existingTooltip = bootstrap.Tooltip.getInstance(this);
+					if (existingTooltip) {
+						existingTooltip.dispose();
 					}
+
+					// Create new tooltip instance
+					new bootstrap.Tooltip(this, {
+						boundary: 'window',
+						trigger: 'hover',
+						sanitize: false
+					});
+				} catch (err) {
+					// Skip if tooltip fails to initialize
 				}
 			});
 		} catch (e) {
@@ -1953,18 +1988,6 @@ $(function() {
 	});
 
 	$("#spotSearchInput").on("input", function() {
-		const cursorPos = this.selectionStart;
-		const oldValue = this.value;
-		const newValue = oldValue.replace(/0/g, "Ø");
-
-		if (newValue !== oldValue) {
-			this.value = newValue;
-			// Restore cursor position
-			this.setSelectionRange(cursorPos, cursorPos);
-			// Trigger search with new value
-			table.search(newValue).draw();
-		}
-
 		// Show/hide clear button based on input value
 		if (this.value.length > 0) {
 			$('#clearSearchBtn').show();
@@ -3474,18 +3497,7 @@ $(function() {
 	// DX MAP
 	// ========================================
 
-	let dxMap = null;
-	let dxMapVisible = false;
-	let dxccMarkers = [];
-	let spotterMarkers = [];
-	let connectionLines = [];
-	let userHomeMarker = null;
-	let showSpotters = false;
-	let showDayNight = true; // Day/Night terminator enabled by default
-	let terminatorLayer = null; // Store terminator layer reference
-	let hoverSpottersData = new Map(); // Store spotter data for hover
-	let hoverSpotterMarkers = []; // Temporary markers shown on hover
-	let hoverConnectionLines = []; // Temporary lines shown on hover
+	// Map variables declared at top of function scope
 	let hoverEventsInitialized = false; // Flag to prevent duplicate event handlers
 
 	/**
