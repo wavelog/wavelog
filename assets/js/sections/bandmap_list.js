@@ -3730,10 +3730,11 @@ $(function() {
 
 		// Build list of spots from filtered data
 		const spots = [];
+		
 		filteredData.each(function(row) {
 			const freqMHzStr = row[2];
 			const freqKHz = parseFloat(freqMHzStr) * 1000;
-			const callsignHtml = row[4];
+			const callsignHtml = row[5]; // DX column (0=Age, 1=Band, 2=Freq, 3=Mode, 4=Submode, 5=DX)
 
 			let callsign = null;
 			let match = callsignHtml.match(/db\/([^"]+)"/);
@@ -3745,7 +3746,9 @@ $(function() {
 				callsign = tempDiv.textContent.trim();
 			}
 
-			if (!callsign) return;
+			if (!callsign || !cachedSpotData) {
+				return;
+			}
 
 			const spot = cachedSpotData.find(s =>
 				s.spotted === callsign &&
