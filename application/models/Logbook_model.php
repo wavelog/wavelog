@@ -2948,7 +2948,7 @@ class Logbook_model extends CI_Model {
 			
 			// Convert logbook mode to spot mode category (phone/cw/digi)
 			$qrgmode = @$this->Modes->get_qrgmode_from_mode($logbook_mode);
-			$qrgmode_lower = strtolower($qrgmode);
+			$qrgmode_lower = strtolower($qrgmode ?? '');
 			
 			// Check if qrgmode is valid (phone/cw/data/digi), otherwise use fallback
 			if (!empty($qrgmode) && in_array($qrgmode_lower, ['phone', 'cw', 'data', 'digi'])) {
@@ -3005,7 +3005,7 @@ class Logbook_model extends CI_Model {
 			
 			// Convert logbook mode to spot mode category (phone/cw/digi)
 			$qrgmode = @$this->Modes->get_qrgmode_from_mode($logbook_mode);
-			$qrgmode_lower = strtolower($qrgmode);
+			$qrgmode_lower = strtolower($qrgmode ?? '');
 			
 			// Check if qrgmode is valid (phone/cw/data/digi), otherwise use fallback
 			if (!empty($qrgmode) && in_array($qrgmode_lower, ['phone', 'cw', 'data', 'digi'])) {
@@ -3232,7 +3232,7 @@ class Logbook_model extends CI_Model {
 			
 			// Convert logbook mode to spot mode category
 			$qrgmode = @$this->Modes->get_qrgmode_from_mode($logbook_mode);
-			$qrgmode_lower = strtolower($qrgmode);
+			$qrgmode_lower = strtolower($qrgmode ?? '');
 			
 			// Check if qrgmode is valid (phone/cw/data/digi), otherwise use fallback
 			if (!empty($qrgmode) && in_array($qrgmode_lower, ['phone', 'cw', 'data', 'digi'])) {
