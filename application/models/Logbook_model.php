@@ -3,6 +3,8 @@
 class Logbook_model extends CI_Model {
 
 	private $station_result = [];
+	private $spot_status_cache = []; // In-memory cache for DX cluster spot statuses
+	
 	public function __construct() {
 		$this->oop_populate_modes();
 		$this->load->Model('Modes');
@@ -2958,7 +2960,7 @@ class Logbook_model extends CI_Model {
 				}
 			} else {
 				// Fallback to hardcoded mapping
-				$logbook_mode_upper = strtoupper($logbook_mode);
+				$logbook_mode_upper = strtoupper($logbook_mode ?? '');
 				if (in_array($logbook_mode_upper, ['SSB', 'FM', 'AM', 'PHONE'])) {
 					$mode_category = 'phone';
 				} elseif (in_array($logbook_mode_upper, ['CW'])) {
@@ -3015,7 +3017,7 @@ class Logbook_model extends CI_Model {
 				}
 			} else {
 				// Fallback to hardcoded mapping
-				$logbook_mode_upper = strtoupper($logbook_mode);
+				$logbook_mode_upper = strtoupper($logbook_mode ?? '');
 				if (in_array($logbook_mode_upper, ['SSB', 'FM', 'AM', 'PHONE'])) {
 					$mode_category = 'phone';
 				} elseif (in_array($logbook_mode_upper, ['CW'])) {
@@ -3242,7 +3244,7 @@ class Logbook_model extends CI_Model {
 				}
 			} else {
 				// Fallback to hardcoded mapping
-				$logbook_mode_upper = strtoupper($logbook_mode);
+				$logbook_mode_upper = strtoupper($logbook_mode ?? '');
 				if (in_array($logbook_mode_upper, ['SSB', 'FM', 'AM', 'PHONE'])) {
 					$mode_category = 'phone';
 				} elseif (in_array($logbook_mode_upper, ['CW'])) {
