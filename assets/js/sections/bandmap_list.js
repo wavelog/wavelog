@@ -3163,7 +3163,7 @@ $(function() {
 						applyFilters(true);
 					}
 					updateFrequencyGradientColors();
-				}				
+				}
 				lockTableSortingToFrequency();
 
 				updateButtonVisual('on+marker');
@@ -3173,19 +3173,19 @@ $(function() {
 			// ON+MARKER → ON (Exit Purple Mode)
 			window.isFrequencyMarkerEnabled = false;
 			catState = 'on';
-			
+
 			// Re-enable band filter controls
 			enableBandFilterControls();
-			
+
 			// Reset band filter to 'All' and force reload to fetch all bands
 			$("#band").val(['All']);
 			updateSelectCheckboxes('band');
 			syncQuickFilterButtons();
 			applyFilters(true); // Force reload to fetch all bands
-			
+
 			unlockTableSorting();
 			clearFrequencyGradientColors();
-			
+
 			updateButtonVisual('on');
 			break;
 		}
@@ -3199,13 +3199,13 @@ $(function() {
 		window.isCatTrackingEnabled = false;
 		window.isFrequencyMarkerEnabled = false;
 		catState = 'off';
-		
+
 		// Reset band filter to 'All' when disabling CAT
 		$("#band").val(['All']);
 		updateSelectCheckboxes('band');
 		syncQuickFilterButtons();
 		applyFilters(true); // Force reload to fetch all bands
-		
+
 		const selectedRadio = $('.radios option:selected').val();
 		if (selectedRadio && selectedRadio !== '0' && typeof window.displayOfflineStatus === 'function') {
 			window.displayOfflineStatus('cat_disabled');
@@ -3747,7 +3747,7 @@ $(function() {
 
 		// Build list of spots from filtered data
 		const spots = [];
-		
+
 		filteredData.each(function(row) {
 			const freqMHzStr = row[2];
 			const freqKHz = parseFloat(freqMHzStr) * 1000;

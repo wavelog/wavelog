@@ -798,20 +798,33 @@ $config['max_login_attempts'] = 3;
 
  $config['enable_dcl_interface'] = true;
 
-  /*
- |--------------------------------------------------------------------------
- | DXCluster File Cache
- |--------------------------------------------------------------------------
- |
- | Controls whether DXCluster data is cached to files on the server.
- |
- | Set to TRUE to enable file caching (may cause high disk usage on large installations)
- | Set to FALSE to disable file caching (recommended for most installations)
- |
- | Default: false (file caching disabled)
- |
- | Warning: This is experimental and may not work as expected in all environments.
- |--------------------------------------------------------------------------
-  */
+/*
+|--------------------------------------------------------------------------
+| DXCluster File Cache
+|--------------------------------------------------------------------------
+|
+| Controls file-based caching for DXCluster features. Two independent settings:
+|
+| 1. enable_dxcluster_file_cache_band
+|    - Caches spot lists (per band/mode/continent) from DXCache API
+|    - Cache duration: 59 seconds
+|    - Cache key includes: band, max age, continent, mode, user_id, logbook_id
+|    - Set to TRUE to reduce API calls and speed up spot list loading
+|    - Set to FALSE to always fetch fresh data from API
+|
+| 2. enable_dxcluster_file_cache_worked
+|    - Caches worked/confirmed status lookups from database
+|    - Cache duration: 15 minutes (900 seconds)
+|    - Cache includes: All bands/modes combinations per callsign/DXCC/continent
+|    - Set to TRUE to significantly reduce database load
+|    - Set to FALSE to always query database for fresh status
+|
+| Default: false (both caching disabled)
+|
+| Recommendation: Enable both on high-traffic installations for best performance.
+| Warning: May cause high disk usage on large multi-user installations.
+|--------------------------------------------------------------------------
+ */
 
- $config['enable_dxcluster_file_cache'] = false;
+$config['enable_dxcluster_file_cache_band'] = false;
+$config['enable_dxcluster_file_cache_worked'] = false;

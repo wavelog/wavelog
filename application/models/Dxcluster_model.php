@@ -48,7 +48,7 @@ class Dxcluster_model extends CI_Model {
 		$this->load->helper(array('psr4_autoloader'));
 
 		// Check if file caching is enabled in config
-		$cache_enabled = $this->config->item('enable_dxcluster_file_cache') === true;
+		$cache_enabled = $this->config->item('enable_dxcluster_file_cache_band') === true;
 
 		// Only load cache driver if caching is enabled
 		if ($cache_enabled) {
