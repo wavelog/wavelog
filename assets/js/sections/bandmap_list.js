@@ -1048,6 +1048,9 @@ $(function() {
 	let flag_only = '';
 	if (single.dxcc_spotted && single.dxcc_spotted.flag) {
 		flag_only = '<span class="flag-emoji">' + single.dxcc_spotted.flag + '</span>';
+	} else if (single.dxcc_spotted && !single.dxcc_spotted.flag && single.dxcc_spotted.entity) {
+		// Display pirate flag when there's an entity but no flag
+		flag_only = '<span class="flag-emoji">🏴‍☠️</span>';
 	}
 	data[0].push(flag_only);
 
@@ -3605,7 +3608,8 @@ $(function() {
 	 */
 	function createSpotTable(spots, dxccEntity, dxccFlag) {
 		// Add DXCC name header with flag (bigger flag size)
-		const flagEmoji = dxccFlag ? '<span class="flag-emoji" style="font-size: 20px;">' + dxccFlag + '</span> ' : '';
+		// Use pirate flag if no flag is available
+		const flagEmoji = dxccFlag ? '<span class="flag-emoji" style="font-size: 20px;">' + dxccFlag + '</span> ' : (dxccEntity ? '<span class="flag-emoji" style="font-size: 20px;">🏴‍☠️</span> ' : '');
 		let html = '<div style="font-weight: bold; font-size: 14px; padding: 4px 8px; background: rgba(0,0,0,0.1); margin-bottom: 4px; text-align: center;">' + flagEmoji + dxccEntity + '</div>';
 
 		// Create scrollable container if more than 5 spots
