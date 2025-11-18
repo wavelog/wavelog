@@ -125,9 +125,13 @@ $(function() {
 	function disposeTooltips() {
 		try {
 			$('.spottable [data-bs-toggle="tooltip"]').each(function() {
-				const tooltipInstance = bootstrap.Tooltip.getInstance(this);
-				if (tooltipInstance) {
-					tooltipInstance.dispose();
+				try {
+					const tooltipInstance = bootstrap.Tooltip.getInstance(this);
+					if (tooltipInstance) {
+						tooltipInstance.dispose();
+					}
+				} catch (err) {
+					// Skip individual tooltip errors
 				}
 			});
 		} catch (e) {
@@ -1230,7 +1234,23 @@ $(function() {
 			$(this).attr('title', lang_click_to_prepare_logging);
 		});
 
-		$('[data-bs-toggle="tooltip"]').tooltip();
+		// Initialize tooltips with error handling
+		try {
+			$('[data-bs-toggle="tooltip"]').each(function() {
+				if (this && $(this).attr('title')) {
+					try {
+						new bootstrap.Tooltip(this, {
+							boundary: 'window',
+							trigger: 'hover'
+						});
+					} catch (err) {
+						// Skip if tooltip fails to initialize
+					}
+				}
+			});
+		} catch (e) {
+			// Fallback if tooltip initialization fails
+		}
 
 		let displayedCount = spots2render || 0;
 
