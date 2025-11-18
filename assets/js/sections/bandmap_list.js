@@ -714,8 +714,15 @@ $(function() {
 				disposeTooltips();
 				table.clear();
 
-				// Always fetch all bands - filtering happens client-side
-				fill_list(currentFilters.deContinent, dxcluster_maxage, 'All');
+				// In purple mode, fetch only the active band; otherwise fetch all bands
+				let bandForRefresh = 'All';
+				if (catState === 'on+marker') {
+					let currentBand = $('#band').val() || [];
+					if (currentBand.length === 1 && !currentBand.includes('All')) {
+						bandForRefresh = currentBand[0];
+					}
+				}
+				fill_list(currentFilters.deContinent, dxcluster_maxage, bandForRefresh);
 				refreshCountdown = SPOT_REFRESH_INTERVAL;
 			} else {
 				if (!isFetchInProgress && lastFetchParams.timestamp !== null) {
