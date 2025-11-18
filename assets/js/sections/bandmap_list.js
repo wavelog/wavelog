@@ -1081,9 +1081,13 @@ $(function() {
 	}	// Flag column: just the flag emoji without entity name
 	let flag_only = '';
 	if (single.dxcc_spotted && single.dxcc_spotted.flag) {
+		// Has flag emoji - show it
 		flag_only = '<span class="flag-emoji">' + single.dxcc_spotted.flag + '</span>';
-	} else if (single.dxcc_spotted && !single.dxcc_spotted.flag && single.dxcc_spotted.entity) {
-		// Display pirate flag when there's an entity but no flag
+	} else if (single.dxcc_spotted && single.dxcc_spotted.entity) {
+		// Valid entity but flag missing from library - show white flag
+		flag_only = '<span class="flag-emoji">🏳️</span>';
+	} else if (!single.dxcc_spotted || !single.dxcc_spotted.entity) {
+		// No DXCC entity (invalid/unrecognized) - show pirate flag
 		flag_only = '<span class="flag-emoji">🏴‍☠️</span>';
 	}
 	data[0].push(flag_only);
@@ -3621,8 +3625,15 @@ $(function() {
 	 */
 	function createSpotTable(spots, dxccEntity, dxccFlag) {
 		// Add DXCC name header with flag (bigger flag size)
-		// Use pirate flag if no flag is available
-		const flagEmoji = dxccFlag ? '<span class="flag-emoji" style="font-size: 20px;">' + dxccFlag + '</span> ' : (dxccEntity ? '<span class="flag-emoji" style="font-size: 20px;">🏴‍☠️</span> ' : '');
+		// White flag: entity exists but flag missing | Pirate flag: no entity
+		let flagEmoji = '';
+		if (dxccFlag) {
+			flagEmoji = '<span class="flag-emoji" style="font-size: 20px;">' + dxccFlag + '</span> ';
+		} else if (dxccEntity) {
+			flagEmoji = '<span class="flag-emoji" style="font-size: 20px;">🏳️</span> ';
+		} else {
+			flagEmoji = '<span class="flag-emoji" style="font-size: 20px;">🏴‍☠️</span> ';
+		}
 		let html = '<div style="font-weight: bold; font-size: 14px; padding: 4px 8px; background: rgba(0,0,0,0.1); margin-bottom: 4px; text-align: center;">' + flagEmoji + dxccEntity + '</div>';
 
 		// Create scrollable container if more than 5 spots
