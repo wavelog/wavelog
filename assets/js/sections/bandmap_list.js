@@ -94,7 +94,16 @@ $(function() {
 	 * Dispose of all Bootstrap tooltips in the table before clearing
 	 */
 	function disposeTooltips() {
-		$('.spottable [data-bs-toggle="tooltip"]').tooltip('dispose');
+		try {
+			$('.spottable [data-bs-toggle="tooltip"]').each(function() {
+				const tooltipInstance = bootstrap.Tooltip.getInstance(this);
+				if (tooltipInstance) {
+					tooltipInstance.dispose();
+				}
+			});
+		} catch (e) {
+			// Silently catch tooltip disposal errors
+		}
 	}
 
 	/**
