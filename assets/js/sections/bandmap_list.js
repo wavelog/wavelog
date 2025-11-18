@@ -58,11 +58,40 @@ const CONTINENT_BUTTONS = [
 
 const GEO_FLAGS = ['POTA', 'SOTA', 'IOTA', 'WWFF'];
 
+// Performance optimization: Pre-computed band to group lookup map
+const BAND_TO_GROUP_MAP = {
+	'6m': 'VHF', '4m': 'VHF', '2m': 'VHF', '1.25m': 'VHF',
+	'70cm': 'UHF', '33cm': 'UHF', '23cm': 'UHF',
+	'13cm': 'SHF', '9cm': 'SHF', '6cm': 'SHF', '3cm': 'SHF'
+};
+
 // ========================================
 // MAIN APPLICATION
 // ========================================
 
 $(function() {
+
+	// ========================================
+	// PERFORMANCE: DOM CACHE & DEBOUNCING
+	// ========================================
+
+	// Cache frequently accessed DOM elements
+	const domCache = { badges: {} };
+
+	// Get or cache badge element
+	function getCachedBadge(selector) {
+		if (!domCache.badges[selector]) {
+			domCache.badges[selector] = $(selector);
+		}
+		return domCache.badges[selector];
+	}
+
+	// Debounced applyFilters
+	let applyFiltersTimer = null;
+	function debouncedApplyFilters(delay = 150) {
+		if (applyFiltersTimer) clearTimeout(applyFiltersTimer);
+		applyFiltersTimer = setTimeout(() => applyFilters(false), delay);
+	}
 
 	// ========================================
 	// DATATABLES ERROR HANDLING
@@ -328,11 +357,9 @@ $(function() {
 
 		// Initialize checkbox indicators for all filter selects
 		function initFilterCheckboxes() {
-			['cwnSelect', 'decontSelect', 'continentSelect', 'band', 'mode', 'additionalFlags', 'requiredFlags'].forEach(function(selectId) {
+			['cwnSelect', 'decontSelect', 'continentSelect', 'band', 'mode', 'additionalFlags', 'requiredFlags'].forEach(selectId => {
 				updateSelectCheckboxes(selectId);
-				$('#' + selectId).on('change', function() {
-					updateSelectCheckboxes(selectId);
-				});
+				$(`#${selectId}`).on('change', () => updateSelectCheckboxes(selectId));
 			});
 		}
 
@@ -360,8 +387,8 @@ $(function() {
 					syncQuickFilterButtons();
 				}
 
-				// Apply filters when select changes
-				applyFilters(false);
+				// Apply filters with debouncing
+				debouncedApplyFilters(150);
 			});
 		}
 
@@ -383,12 +410,12 @@ $(function() {
 				currentValues = ['None'];
 			}
 
-			$(this).val(currentValues);
-			updateFilterIcon();
+		$(this).val(currentValues);
+		updateFilterIcon();
 
-			// Apply filters when requiredFlags changes
-			applyFilters(false);
-		});
+		// Apply filters with debouncing
+		debouncedApplyFilters(150);
+	});
 
 	// ========================================
 	// DATATABLE CONFIGURATION
@@ -413,9 +440,10 @@ $(function() {
 			},
 			'columnDefs': [
 				{
-					'targets': 2,  // Frequency is now column 3 (0-indexed = 2)
-				"type":"num",
-				'render': function (data, type, row) {
+					'targets': 2,
+					// Frequency is now column 3 (0-indexed = 2)
+					"type":"num",
+					'render': function (data, type, row) {
 					// For sorting and filtering, return numeric value
 					if (type === 'sort' || type === 'type') {
 						return parseFloat(data) || 0;
@@ -561,7 +589,7 @@ $(function() {
 
 	// Generate unique key for spot identification
 	function getSpotKey(spot) {
-		return spot.spotted + '_' + spot.frequency + '_' + spot.spotter;
+		return `${spot.spotted}_${spot.frequency}_${spot.spotter}`;
 	}
 
 	// Convert array to Set for O(1) lookups, handle 'All'/'Any' values
@@ -613,10 +641,10 @@ $(function() {
 		}
 
 	let now = new Date();
-	let timeStr = now.getUTCHours().toString().padStart(2, '0') + ':' + now.getUTCMinutes().toString().padStart(2, '0') + 'Z';
-	let statusMessage = totalSpots + ' ' + lang_bandmap_spots_fetched + ' @ ' + timeStr;
+	let timeStr = `${now.getUTCHours().toString().padStart(2, '0')}:${now.getUTCMinutes().toString().padStart(2, '0')}Z`;
+	let statusMessage = `${totalSpots} ${lang_bandmap_spots_fetched} @ ${timeStr}`;
 	let allFilters = [];		if (serverFilters && serverFilters.length > 0) {
-			allFilters = allFilters.concat(serverFilters.map(f => 'de "' + f + '"'));
+			allFilters = allFilters.concat(serverFilters.map(f => `de "${f}"`));
 		}
 
 		if (clientFilters && clientFilters.length > 0) {
@@ -626,28 +654,28 @@ $(function() {
 		var table = get_dtable();
 		var searchValue = table.search();
 		if (searchValue) {
-			allFilters.push('search: "' + searchValue + '"');
+			allFilters.push(`search: "${searchValue}"`);
 		}
 
 	// Build status message
 	if (allFilters.length > 0) {
-		statusMessage += ', ' + lang_bandmap_showing + ' ' + displayedSpots;
+		statusMessage += `, ${lang_bandmap_showing} ${displayedSpots}`;
 	} else if (displayedSpots < totalSpots) {
-		statusMessage += ', ' + lang_bandmap_showing + ' ' + displayedSpots;
+		statusMessage += `, ${lang_bandmap_showing} ${displayedSpots}`;
 	} else if (totalSpots > 0) {
-		statusMessage += ', ' + lang_bandmap_showing_all;
+		statusMessage += `, ${lang_bandmap_showing_all}`;
 	}		// Build tooltip for status message (fetch information)
-		let fetchTooltipLines = [lang_bandmap_last_fetched + ':'];
-		fetchTooltipLines.push(lang_bandmap_band + ': ' + (lastFetchParams.band || lang_bandmap_all));
-		fetchTooltipLines.push(lang_bandmap_continent + ': ' + (lastFetchParams.continent || lang_bandmap_all));
-		fetchTooltipLines.push(lang_bandmap_mode + ': ' + (lastFetchParams.mode || lang_bandmap_all));
-		fetchTooltipLines.push(lang_bandmap_max_age + ': ' + (lastFetchParams.maxAge || '120') + ' min');
+		let fetchTooltipLines = [`${lang_bandmap_last_fetched}:`];
+		fetchTooltipLines.push(`${lang_bandmap_band}: ${lastFetchParams.band || lang_bandmap_all}`);
+		fetchTooltipLines.push(`${lang_bandmap_continent}: ${lastFetchParams.continent || lang_bandmap_all}`);
+		fetchTooltipLines.push(`${lang_bandmap_mode}: ${lastFetchParams.mode || lang_bandmap_all}`);
+		fetchTooltipLines.push(`${lang_bandmap_max_age}: ${lastFetchParams.maxAge || '120'} min`);
 		if (lastFetchParams.timestamp) {
 			let fetchTime = new Date(lastFetchParams.timestamp);
-			let fetchTimeStr = fetchTime.getUTCHours().toString().padStart(2, '0') + ':' +
-			                   fetchTime.getUTCMinutes().toString().padStart(2, '0') + ':' +
-			                   fetchTime.getUTCSeconds().toString().padStart(2, '0') + 'Z';
-			fetchTooltipLines.push(lang_bandmap_fetched_at + ': ' + fetchTimeStr);
+			let h = fetchTime.getUTCHours().toString().padStart(2, '0');
+			let m = fetchTime.getUTCMinutes().toString().padStart(2, '0');
+			let s = fetchTime.getUTCSeconds().toString().padStart(2, '0');
+			fetchTooltipLines.push(`${lang_bandmap_fetched_at}: ${h}:${m}:${s}Z`);
 		}
 
 	$('#statusMessage').text(statusMessage).attr('title', fetchTooltipLines.join('\n'));
@@ -1373,167 +1401,141 @@ $(function() {
 					modeCounts[modeCategory]++;
 				}
 			}
+			});
+
+			// Count band groups (VHF, UHF, SHF)
+			let groupCounts = {
+				'VHF': 0,
+				'UHF': 0,
+				'SHF': 0
+			};
+
+			Object.keys(bandCounts).forEach(band => {
+				let group = getBandGroup(band);
+				if (group) {
+					groupCounts[group] += bandCounts[band];
+				}
+			});
+
+		// Update individual MF/HF band button badges
+		const mfHfBands = [
+			'160m', '80m', '60m', '40m', '30m', '20m', '17m', '15m', '12m', '10m'
+		];
+
+		mfHfBands.forEach(band => {
+			let displayText = (fetchedBand && band !== fetchedBand) ? '-' : (bandCounts[band] || 0).toString();
+			let selector = '#toggle' + band + 'Filter .band-count-badge';
+			let $badge = getCachedBadge(selector);
+			if ($badge.length === 0) {
+				$('#toggle' + band + 'Filter').append(' <span class="badge bg-dark band-count-badge">' + displayText + '</span>');
+				domCache.badges[selector] = $('#toggle' + band + 'Filter .band-count-badge');
+			} else {
+				$badge.text(displayText);
+			}
 		});
 
-		// Count band groups (VHF, UHF, SHF)
-		let groupCounts = {
-			'VHF': 0,
-			'UHF': 0,
-			'SHF': 0
+		// Update band group button badges (VHF, UHF, SHF)
+		['VHF', 'UHF', 'SHF'].forEach(group => {
+			let isActiveGroup = fetchedBand && (getBandGroup(fetchedBand) === group);
+			let displayText = (fetchedBand && !isActiveGroup) ? '-' : (groupCounts[group] || 0).toString();
+			let selector = '#toggle' + group + 'Filter .band-count-badge';
+			let $badge = getCachedBadge(selector);
+			if ($badge.length === 0) {
+				$('#toggle' + group + 'Filter').append(' <span class="badge bg-dark band-count-badge">' + displayText + '</span>');
+				domCache.badges[selector] = $('#toggle' + group + 'Filter .band-count-badge');
+			} else {
+				$badge.text(displayText);
+			}
+		});		// Update mode button badges
+			['Cw', 'Digi', 'Phone'].forEach(mode => {
+				let count = modeCounts[mode.toLowerCase()] || 0;
+				let selector = '#toggle' + mode + 'Filter .mode-count-badge';
+				let $badge = getCachedBadge(selector);
+				if ($badge.length === 0) {
+					$('#toggle' + mode + 'Filter').append(' <span class="badge bg-dark mode-count-badge">' + count + '</span>');
+					domCache.badges[selector] = $('#toggle' + mode + 'Filter .mode-count-badge');
+				} else {
+					$badge.text(count);
+				}
+			});
+
+		// Count spots for quick filter badges
+		let quickFilterCounts = {
+			lotw: 0,
+			dxspot: 0,
+			newcontinent: 0,
+			newcountry: 0,
+			newcallsign: 0,
+			contest: 0,
+			geohunter: 0,
+			fresh: 0
 		};
 
-		Object.keys(bandCounts).forEach(band => {
-			let group = getBandGroup(band);
-			if (group) {
-				groupCounts[group] += bandCounts[band];
+		cachedSpotData.forEach((spot) => {
+			// Cache DXCC references
+			const dxccSpotted = spot.dxcc_spotted;
+			const dxccSpotter = spot.dxcc_spotter;
+
+			// Apply de continent filter
+			if (deContinentSet && (!dxccSpotter || !dxccSpotter.cont || !deContinentSet.has(dxccSpotter.cont))) return;
+
+			// Apply spotted continent filter
+			if (spottedContinentSet && (!dxccSpotted || !dxccSpotted.cont || !spottedContinentSet.has(dxccSpotted.cont))) return;
+
+			// Apply CWN status filter
+			if (cwnSet) {
+				const workedDxcc = spot.worked_dxcc;
+				const cnfmdDxcc = spot.cnfmd_dxcc;
+				if (!((cwnSet.has('notwkd') && !workedDxcc) ||
+					(cwnSet.has('wkd') && workedDxcc) ||
+					(cwnSet.has('cnf') && cnfmdDxcc) ||
+					(cwnSet.has('ucnf') && workedDxcc && !cnfmdDxcc))) {
+					return;
+				}
 			}
+
+			// Apply band filter
+			if (selectedBandSet && !selectedBandSet.has(spot.band)) return;
+
+			// Apply mode filter
+			if (selectedModeSet && (!spot.mode || !selectedModeSet.has(spot.mode))) return;
+
+			// Count quick filter matches (use cached references)
+			if (dxccSpotted && dxccSpotted.lotw_user) quickFilterCounts.lotw++;
+			if (dxccSpotted?.cont && dxccSpotter?.cont && dxccSpotted.cont !== dxccSpotter.cont) quickFilterCounts.dxspot++;
+			if (spot.worked_continent === false) quickFilterCounts.newcontinent++;
+			if (spot.worked_dxcc === false) quickFilterCounts.newcountry++;
+			if (spot.worked_call === false) quickFilterCounts.newcallsign++;
+			if (dxccSpotted && dxccSpotted.isContest) quickFilterCounts.contest++;
+			if (dxccSpotted && (dxccSpotted.pota_ref || dxccSpotted.sota_ref || dxccSpotted.wwff_ref || dxccSpotted.iota_ref)) quickFilterCounts.geohunter++;
+			if ((spot.age || 0) < 5) quickFilterCounts.fresh++;
 		});
 
-	// Update individual MF/HF band button badges
-	const mfHfBands = [
-		'160m', '80m', '60m', '40m', '30m', '20m', '17m', '15m', '12m', '10m'
-	];
+		// Update quick filter badges
+		const quickFilters = [
+			{ id: 'toggleLotwFilter', count: quickFilterCounts.lotw },
+			{ id: 'toggleDxSpotFilter', count: quickFilterCounts.dxspot },
+			{ id: 'toggleNewContinentFilter', count: quickFilterCounts.newcontinent },
+			{ id: 'toggleDxccNeededFilter', count: quickFilterCounts.newcountry },
+			{ id: 'toggleNewCallsignFilter', count: quickFilterCounts.newcallsign },
+			{ id: 'toggleContestFilter', count: quickFilterCounts.contest },
+			{ id: 'toggleGeoHunterFilter', count: quickFilterCounts.geohunter },
+			{ id: 'toggleFreshFilter', count: quickFilterCounts.fresh }
+		];
 
-	mfHfBands.forEach(band => {
-		let count;
-		let displayText;
-
-		// If in single band fetch mode and this is not the fetched band, show "-"
-		if (fetchedBand && band !== fetchedBand) {
-			displayText = '-';
-		} else {
-			count = bandCounts[band] || 0;
-			displayText = count.toString();
-		}
-
-		let $badge = $('#toggle' + band + 'Filter .band-count-badge');
-		if ($badge.length === 0) {
-			// Badge doesn't exist yet, create it
-			$('#toggle' + band + 'Filter').append(' <span class="badge bg-dark band-count-badge">' + displayText + '</span>');
-		} else {
-			// Update existing badge
-			$badge.text(displayText);
-		}
-	});
-
-	// Update band group button badges (VHF, UHF, SHF)
-	['VHF', 'UHF', 'SHF'].forEach(group => {
-		let count;
-		let displayText;
-
-		// Check if fetched band is in this group
-		let isActiveGroup = false;
-		if (fetchedBand) {
-			let fetchedBandGroup = getBandGroup(fetchedBand);
-			isActiveGroup = (fetchedBandGroup === group);
-		}
-
-		// If in single band fetch mode and this is not the fetched band's group, show "-"
-		if (fetchedBand && !isActiveGroup) {
-			displayText = '-';
-		} else {
-			count = groupCounts[group] || 0;
-			displayText = count.toString();
-		}
-
-		let $badge = $('#toggle' + group + 'Filter .band-count-badge');
-		if ($badge.length === 0) {
-			// Badge doesn't exist yet, create it
-			$('#toggle' + group + 'Filter').append(' <span class="badge bg-dark band-count-badge">' + displayText + '</span>');
-		} else {
-			// Update existing badge
-			$badge.text(displayText);
-		}
-	});		// Update mode button badges
-		const modeButtons = ['Cw', 'Digi', 'Phone'];
-		modeButtons.forEach(mode => {
-			let modeKey = mode.toLowerCase();
-			let count = modeCounts[modeKey] || 0;
-			let $badge = $('#toggle' + mode + 'Filter .mode-count-badge');
+		quickFilters.forEach(filter => {
+			let $badge = $('#' + filter.id + ' .quick-filter-count-badge');
 			if ($badge.length === 0) {
 				// Badge doesn't exist yet, create it
-				$('#toggle' + mode + 'Filter').append(' <span class="badge bg-dark mode-count-badge">' + count + '</span>');
+				$('#' + filter.id).append(' <span class="badge bg-dark quick-filter-count-badge">' + filter.count + '</span>');
 			} else {
 				// Update existing badge
-				$badge.text(count);
+				$badge.text(filter.count);
 			}
 		});
+	}
 
-	// Count spots for quick filter badges
-	let quickFilterCounts = {
-		lotw: 0,
-		dxspot: 0,
-		newcontinent: 0,
-		newcountry: 0,
-		newcallsign: 0,
-		contest: 0,
-		geohunter: 0,
-		fresh: 0
-	};
-
-	cachedSpotData.forEach((spot) => {
-		// Cache DXCC references
-		const dxccSpotted = spot.dxcc_spotted;
-		const dxccSpotter = spot.dxcc_spotter;
-
-		// Apply de continent filter
-		if (deContinentSet && (!dxccSpotter || !dxccSpotter.cont || !deContinentSet.has(dxccSpotter.cont))) return;
-
-		// Apply spotted continent filter
-		if (spottedContinentSet && (!dxccSpotted || !dxccSpotted.cont || !spottedContinentSet.has(dxccSpotted.cont))) return;
-
-		// Apply CWN status filter
-		if (cwnSet) {
-			const workedDxcc = spot.worked_dxcc;
-			const cnfmdDxcc = spot.cnfmd_dxcc;
-			if (!((cwnSet.has('notwkd') && !workedDxcc) ||
-				  (cwnSet.has('wkd') && workedDxcc) ||
-				  (cwnSet.has('cnf') && cnfmdDxcc) ||
-				  (cwnSet.has('ucnf') && workedDxcc && !cnfmdDxcc))) {
-				return;
-			}
-		}
-
-		// Apply band filter
-		if (selectedBandSet && !selectedBandSet.has(spot.band)) return;
-
-		// Apply mode filter
-		if (selectedModeSet && (!spot.mode || !selectedModeSet.has(spot.mode))) return;
-
-		// Count quick filter matches (use cached references)
-		if (dxccSpotted && dxccSpotted.lotw_user) quickFilterCounts.lotw++;
-		if (dxccSpotted?.cont && dxccSpotter?.cont && dxccSpotted.cont !== dxccSpotter.cont) quickFilterCounts.dxspot++;
-		if (spot.worked_continent === false) quickFilterCounts.newcontinent++;
-		if (spot.worked_dxcc === false) quickFilterCounts.newcountry++;
-		if (spot.worked_call === false) quickFilterCounts.newcallsign++;
-		if (dxccSpotted && dxccSpotted.isContest) quickFilterCounts.contest++;
-		if (dxccSpotted && (dxccSpotted.pota_ref || dxccSpotted.sota_ref || dxccSpotted.wwff_ref || dxccSpotted.iota_ref)) quickFilterCounts.geohunter++;
-		if ((spot.age || 0) < 5) quickFilterCounts.fresh++;
-	});
-
-	// Update quick filter badges
-	const quickFilters = [
-		{ id: 'toggleLotwFilter', count: quickFilterCounts.lotw },
-		{ id: 'toggleDxSpotFilter', count: quickFilterCounts.dxspot },
-		{ id: 'toggleNewContinentFilter', count: quickFilterCounts.newcontinent },
-		{ id: 'toggleDxccNeededFilter', count: quickFilterCounts.newcountry },
-		{ id: 'toggleNewCallsignFilter', count: quickFilterCounts.newcallsign },
-		{ id: 'toggleContestFilter', count: quickFilterCounts.contest },
-		{ id: 'toggleGeoHunterFilter', count: quickFilterCounts.geohunter },
-		{ id: 'toggleFreshFilter', count: quickFilterCounts.fresh }
-	];
-
-	quickFilters.forEach(filter => {
-		let $badge = $('#' + filter.id + ' .quick-filter-count-badge');
-		if ($badge.length === 0) {
-			// Badge doesn't exist yet, create it
-			$('#' + filter.id).append(' <span class="badge bg-dark quick-filter-count-badge">' + filter.count + '</span>');
-		} else {
-			// Update existing badge
-			$badge.text(filter.count);
-		}
-	});
-}	// ========================================
+	// ========================================
 	// BACKEND DATA FETCH
 	// ========================================
 
@@ -1708,7 +1710,8 @@ $(function() {
 			updateStatusBar(0, 0, getServerFilterText(), getClientFilterText(), false, false);
 			startRefreshTimer();
 		});
-	}	// Highlight rows within ±20 kHz of specified frequency (for CAT integration)
+	}
+	// Highlight rows within ±20 kHz of specified frequency (for CAT integration)
 	// Old highlight_current_qrg function removed - now using updateFrequencyGradientColors
 
 	// Initialize DataTable
@@ -1750,6 +1753,11 @@ $(function() {
 	// ========================================
 	// SMART FILTER APPLICATION
 	// ========================================
+
+	// Get band group (VHF/UHF/SHF) for a given band - memoized with O(1) lookup
+	function getBandGroup(band) {
+		return BAND_TO_GROUP_MAP[band] || null;
+	}
 
 	// Intelligently decide whether to reload from backend or filter client-side
 	// Backend filter (requires new API call): de continent only
@@ -3028,12 +3036,13 @@ $(function() {
 			col.bSortable = false;
 		});
 
-	// Disable click events on all column headers
-	$('.spottable thead th').off('click.DT');
+		// Disable click events on all column headers
+		$('.spottable thead th').off('click.DT');
 
-	// Redraw column headers to update sort icons
-	table.columns.adjust();
-}
+		// Redraw column headers to update sort icons
+		table.columns.adjust();
+	}
+
 	/**
 	 * Unlock table sorting when CAT Control is disabled
 	 */
@@ -3064,8 +3073,6 @@ $(function() {
 
 		// Clear frequency gradient colors
 		clearFrequencyGradientColors();
-
-
 	}
 
 	/**
@@ -4113,13 +4120,10 @@ $(function() {
 				hoverSpotterMarkers = [];
 				hoverConnectionLines = [];
 
-				const dxccId = String($(this).data('dxcc-id'));
-				if (!dxccId || dxccId === 'undefined') {
-					console.log('Hover: No dxccId found');
-					return;
-				}
-
-				const hoverData = hoverSpottersData.get(dxccId);
+			const dxccId = String($(this).data('dxcc-id'));
+			if (!dxccId || dxccId === 'undefined') {
+				return;
+			}				const hoverData = hoverSpottersData.get(dxccId);
 				if (!hoverData) {
 					return;
 				}
@@ -4397,7 +4401,4 @@ $(function() {
 			$('#toggleCatTracking').prop('disabled', false).removeClass('disabled');
 		}
 	}, 100); // Small delay to ensure cat.js has loaded and exposed the function
-
 });
-
-
