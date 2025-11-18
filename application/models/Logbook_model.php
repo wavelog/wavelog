@@ -4706,7 +4706,7 @@ class Logbook_model extends CI_Model {
 			// lotw_qslrdate can obly be valid if lotw_qsl_rcvd is one of the following values
 			// ref: https://www.adif.org.uk/316/ADIF_316.htm#QSO_Field_LOTW_QSLRDATE
 			$valid_lotw_rcvd = ['Y', 'I', 'V'];
-			if (($record['lotw_qslrdate'] ?? '') != '' && in_array(strtoupper($input_lotw_qsl_rcvd), $valid_lotw_rcvd)) {
+			if (($record['lotw_qslrdate'] ?? '') != '' && in_array(strtoupper($input_lotw_qsl_rcvd ?? ''), $valid_lotw_rcvd)) {
 				if (validateADIFDate($record['lotw_qslrdate']) == true) {
 					$input_lotw_qslrdate = $record['lotw_qslrdate'];
 				} else {
@@ -4777,9 +4777,23 @@ class Logbook_model extends CI_Model {
 				$input_eqsl_qso_upload_status = 'Y';
 				$input_eqsl_qso_upload_date = $date = date("Y-m-d H:i:s", strtotime("now"));
 			} else {
-				$input_eqsl_qso_upload_date = (!empty($record['eqsl_qslsdate'])) ? $record['eqsl_qslsdate'] : null;
+				if (validateADIFDate($record['eqsl_qslsdate'] ?? '') == false) {
+					$input_eqsl_qso_upload_date = null;
+					$my_error .= "Error QSO: Date: " . $time_on . " Callsign: " . $record['call'] . " ".__("the eqsl_qslsdate is invalid (YYYYMMDD)").": " . ($record['eqsl_qslsdate'] ?? '') . "<br>";
+				} else {
+					$input_eqsl_qso_upload_date = (!empty($record['eqsl_qslsdate'])) ? $record['eqsl_qslsdate'] : null;
+				}
 				$input_eqsl_qso_upload_status = (!empty($record['eqsl_qsl_sent'])) ? $record['eqsl_qsl_sent'] : '';
 			}
+
+			if (validateADIFDate($record['eqsl_qslrdate'] ?? '') == false) {
+				$input_eqsl_qslrdate = null;
+				$my_error .= "Error QSO: Date: " . $time_on . " Callsign: " . $record['call'] . " ".__("the eqsl_qslrdate is invalid (YYYYMMDD)").": " . ($record['eqsl_qslrdate'] ?? '') . "<br>";
+			} else {
+				$input_eqsl_qslrdate = (!empty($record['eqsl_qslrdate'])) ? $record['eqsl_qslrdate'] : null;
+			}
+
+
 
 			if ($markDcl != null) {
 				$input_dcl_qso_upload_status = 'Y';
@@ -4835,7 +4849,7 @@ class Logbook_model extends CI_Model {
 				'COL_EQ_CALL' => (!empty($record['eq_call'])) ? $record['eq_call'] : '',
 				'COL_EQSL_QSL_RCVD' => (!empty($record['eqsl_qsl_rcvd'])) ? $record['eqsl_qsl_rcvd'] : null,
 				'COL_EQSL_QSL_SENT' => $input_eqsl_qso_upload_status,
-				'COL_EQSL_QSLRDATE' => (!empty($record['eqsl_qslrdate'])) ? $record['eqsl_qslrdate'] : null,
+				'COL_EQSL_QSLRDATE' => $input_eqsl_qslrdate,
 				'COL_EQSL_QSLSDATE' => $input_eqsl_qso_upload_date,
 				'COL_EQSL_STATUS' => (!empty($record['eqsl_status'])) ? $record['eqsl_status'] : '',
 				'COL_EQSL_AG' => (!empty($record['eqsl_ag'])) ? $record['eqsl_ag'] : '',
@@ -6177,6 +6191,16 @@ class Logbook_model extends CI_Model {
 }
 
 function validateADIFDate($date, $format = 'Ymd') {
-	$d = DateTime::createFromFormat($format, $date);
-	return $d && $d->format($format) == $date;
+    try {
+        $d = DateTime::createFromFormat($format, $date);
+
+        // Check if parsing failed or if the formatted date doesn't match input
+        if (!$d || $d->format($format) !== $date) {
+            return false;
+        }
+
+        return true; // Valid date
+    } catch (Exception $e) {
+        return false; // Catch unexpected errors
+    }
 }
