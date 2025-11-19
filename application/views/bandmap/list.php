@@ -246,7 +246,7 @@
 						document.addEventListener('DOMContentLoaded', function() {
 							var isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
 							var modKey = isMac ? 'Cmd' : 'Ctrl';
-							document.getElementById('filterTipText').textContent = '<?= __("Hold"); ?> ' + modKey + ' <?= __("and click to select multiple options"); ?>';
+							document.getElementById('filterTipText').innerHTML = '<?= __("Hold"); ?> ' + modKey + ' <?= __("and click to select multiple options"); ?>';
 						});
 					</script>
 					<div class="row">

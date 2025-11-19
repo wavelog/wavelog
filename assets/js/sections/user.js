@@ -83,17 +83,17 @@ function convert_user(user_id, convert_to) {
         },
         success: function(result) {
             if (result) {
-                $('#user_converted_message').show().text(lang_account_conversion_processed).addClass('alert-success');
+                $('#user_converted_message').show().html(lang_account_conversion_processed).addClass('alert-success');
                 $('#convert_user_btn').removeClass('running btn-danger').addClass('btn-secondary');
                 $('#user_converted').show().addClass('fa-check text-success');
             } else {
-                $('#user_converted_message').show().text(lang_account_conversion_failed).addClass('alert-danger');
+                $('#user_converted_message').show().html(lang_account_conversion_failed).addClass('alert-danger');
                 $('#convert_user_btn').prop('disabled', false).removeClass('running');
                 $('#user_converted').show().addClass('fa-times text-danger');
             }
         },
         error: function() {
-            $('#user_converted_message').show().text(lang_account_conversion_failed).addClass('alert-danger');
+            $('#user_converted_message').show().html(lang_account_conversion_failed).addClass('alert-danger');
             $('#convert_user_btn').prop('disabled', false).removeClass('running');
             $('#user_converted').show().addClass('fa-times text-danger');
         }
