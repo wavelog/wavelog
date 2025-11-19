@@ -144,14 +144,14 @@ class Lotw extends CI_Controller {
         		// New Certificate Store in Database
 
         		// Store Certificate Data into MySQL
-        		$this->Lotw_model->store_certificate($this->session->userdata('user_id'), $info['issued_callsign'], $info['dxcc-id'], $info['validFrom'], $info['validTo_Date'], $info['qso-first-date'], $info['qso-end-date'], $info['pem_key'], $info['general_cert']);
+            $this->Lotw_model->store_certificate($this->session->userdata('user_id'), $info['issued_callsign'], $info['dxcc-id'], $info['validFrom'], $info['validTo_Date'], $info['qso-first-date'], $info['qso-end-date'], $info['pem_key'], $info['general_cert'], $info['serialNumber']);
 
         		// Cert success flash message
         		$this->session->set_flashdata('success', $info['issued_callsign'] . ' ' . __("Certificate Imported."));
         	} else {
         		// Certificate is in the system time to update
 
-				$this->Lotw_model->update_certificate($this->session->userdata('user_id'), $info['issued_callsign'], $info['dxcc-id'], $info['validFrom'], $info['validTo_Date'], $info['qso-first-date'], $info['qso-end-date'], $info['pem_key'], $info['general_cert']);
+				$this->Lotw_model->update_certificate($this->session->userdata('user_id'), $info['issued_callsign'], $info['dxcc-id'], $info['validFrom'], $info['validTo_Date'], $info['qso-first-date'], $info['qso-end-date'], $info['pem_key'], $info['general_cert'], $info['serialNumber']);
 
         		// Cert success flash message
         		$this->session->set_flashdata('success', $info['issued_callsign'] . ' ' . __("Certificate Updated."));
@@ -462,6 +462,7 @@ class Lotw extends CI_Controller {
 		$certdata= openssl_x509_parse($results['cert'],0);
 
 		// Store Variables
+		$data['serialNumber'] = $certdata['serialNumber'];
 		$data['issued_callsign'] = $certdata['subject']['undefined'];
 		$data['issued_name'] = $certdata['subject']['commonName'];
 		$data['validFrom'] = date('Y-m-d H:i:s', $certdata['validFrom_time_t']);

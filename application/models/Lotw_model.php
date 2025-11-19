@@ -39,8 +39,9 @@ class Lotw_model extends CI_Model {
 		return $query->num_rows();
 	}
 
-	function store_certificate($user_id, $callsign, $dxcc, $date_created, $date_expires, $qso_start_date, $qso_end_date, $cert_key, $general_cert) {
+	function store_certificate($user_id, $callsign, $dxcc, $date_created, $date_expires, $qso_start_date, $qso_end_date, $cert_key, $general_cert, $serial) {
 		$data = array(
+			'serial' => $serial,
 			'user_id' => $user_id,
 			'callsign' => $callsign,
 			'cert_dxcc_id' => $dxcc,
@@ -55,8 +56,9 @@ class Lotw_model extends CI_Model {
 		$this->db->insert('lotw_certs', $data);
 	}
 
-	function update_certificate($user_id, $callsign, $dxcc, $date_created, $date_expires, $qso_start_date, $qso_end_date, $cert_key, $general_cert) {
+	function update_certificate($user_id, $callsign, $dxcc, $date_created, $date_expires, $qso_start_date, $qso_end_date, $cert_key, $general_cert, $serial) {
 		$data = array(
+			'serial' => $serial,
 			'cert_dxcc_id' => $dxcc,
 			'date_created' => $date_created,
 			'date_expires' => $date_expires,
