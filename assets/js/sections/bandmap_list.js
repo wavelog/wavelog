@@ -1087,7 +1087,7 @@ $(function() {
 	// Submode column: show submode if available
 	let submode = (single.submode && single.submode !== '') ? single.submode : '';
 	data[0].push(submode);		// Callsign column: wrap in QRZ link with color coding
-		let qrzLink = '<a href="https://www.qrz.com/db/' + single.spotted + '" target="_blank" onclick="event.stopPropagation();" data-bs-toggle="tooltip" title="Click to view ' + single.spotted + ' on QRZ.com">' + single.spotted + '</a>';
+		let qrzLink = '<a href="https://www.qrz.com/db/' + single.spotted + '" target="_blank" onclick="event.stopPropagation();" data-bs-toggle="tooltip" title="' + lang_bandmap_click_view_qrz_callsign.replace('%s', single.spotted) + '">' + single.spotted + '</a>';
 		wked_info = ((wked_info != '' ? '<span class="' + wked_info + '">' : '') + qrzLink + (wked_info != '' ? '</span>' : ''));
 		var spotted = wked_info;
 		data[0].push(spotted);
