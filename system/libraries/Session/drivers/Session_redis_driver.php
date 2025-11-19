@@ -181,7 +181,7 @@ class CI_Session_redis_driver extends CI_Session_driver implements SessionHandle
 	 * @param	string	$name		Session cookie name, unused
 	 * @return	bool
 	 */
-	public function open($save_path, $name)
+	public function open($save_path, $name): bool
 	{
 		if (empty($this->_config['save_path']))
 		{
@@ -234,7 +234,7 @@ class CI_Session_redis_driver extends CI_Session_driver implements SessionHandle
 	 * @param	string	$session_id	Session ID
 	 * @return	string	Serialized session data
 	 */
-	public function read($session_id)
+	public function read($session_id): string
 	{
 		if (isset($this->_redis) && $this->_get_lock($session_id))
 		{
@@ -265,7 +265,7 @@ class CI_Session_redis_driver extends CI_Session_driver implements SessionHandle
 	 * @param	string	$session_data	Serialized session data
 	 * @return	bool
 	 */
-	public function write($session_id, $session_data)
+	public function write($session_id, $session_data): bool
 	{
 		if ( ! isset($this->_redis, $this->_lock_key))
 		{
@@ -310,7 +310,7 @@ class CI_Session_redis_driver extends CI_Session_driver implements SessionHandle
 	 *
 	 * @return	bool
 	 */
-	public function close()
+	public function close(): bool
 	{
 		if (isset($this->_redis))
 		{
@@ -346,7 +346,7 @@ class CI_Session_redis_driver extends CI_Session_driver implements SessionHandle
 	 * @param	string	$session_id	Session ID
 	 * @return	bool
 	 */
-	public function destroy($session_id)
+	public function destroy($session_id): bool
 	{
 		if (isset($this->_redis, $this->_lock_key))
 		{
@@ -370,9 +370,9 @@ class CI_Session_redis_driver extends CI_Session_driver implements SessionHandle
 	 * Deletes expired sessions
 	 *
 	 * @param	int 	$maxlifetime	Maximum lifetime of sessions
-	 * @return	bool
+	 * @return	int|false
 	 */
-	public function gc($maxlifetime)
+	public function gc($maxlifetime): int|false
 	{
 		// Not necessary, Redis takes care of that.
 		return $this->_success;

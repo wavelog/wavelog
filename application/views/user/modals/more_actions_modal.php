@@ -85,8 +85,8 @@
 
 <!-- Second Layer - Password Reset Modal -->
 <script>
-	var lang_admin_email_settings_incorrect = "<?= __("Email settings are incorrect."); ?>";
-	var lang_admin_password_reset_processed = "<?= __("Password-reset email sent successfully to user. You can close this dialog now."); ?>";
+    var lang_admin_email_settings_incorrect = "<?= __("Email settings are incorrect."); ?>";
+    var lang_admin_password_reset_processed = "<?= __("Password-reset email sent successfully to user. You can close this dialog now."); ?>";
     var lang_admin_password_reset_failed = "<?= __("Password-reset email could not be sent to user. Are the email settings in global options configured correctly?"); ?>";
 </script>
 <div class="modal fade bg-black bg-opacity-50" id="passwordResetModal" tabindex="-1" aria-labelledby="passwordResetLabel" data-bs-backdrop="static">
@@ -123,7 +123,7 @@
 <!-- Second Layer - Convert to Clubstation Modal -->
 <?php if ($this->config->item('special_callsign')) { ?>
 <script>
-	var lang_account_conversion_processed = "<?= __("The account was successfully converted. You can now close this dialog."); ?>";
+    var lang_account_conversion_processed = "<?= __("The account was successfully converted. You can now close this dialog."); ?>";
     var lang_account_conversion_failed = "<?= __("The account could not be converted. An error has occurred."); ?>";
 </script>
 <div class="modal fade bg-black bg-opacity-50" id="userConvertModal" tabindex="-1" aria-labelledby="userConvertLabel" data-bs-backdrop="static" data-bs-keyboard="false">
