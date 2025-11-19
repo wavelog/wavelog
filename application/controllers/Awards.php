@@ -184,7 +184,7 @@ class Awards extends CI_Controller {
 		}
 
 		$dxcclist = $this->dxcc->fetchdxcc($postdata);
-		if ($dxcclist[0]->adif == "0") {
+		if ($dxcclist && $dxcclist[0]->adif == "0") {
 			unset($dxcclist[0]);
 		}
 		$data['dxcc_array'] = $this->dxcc->get_dxcc_array($dxcclist, $bands, $postdata);

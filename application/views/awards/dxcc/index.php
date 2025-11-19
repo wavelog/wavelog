@@ -210,9 +210,6 @@
 					</select>
 				</div>
 			</div>
-			<div class="mb-4 text-center">
-				<button id="button2id" type="reset" name="button2id" class="btn btn-sm btn-warning"><?= __("Reset"); ?></button>
-			</div>
 		</div>
     </form>
 
@@ -353,7 +350,7 @@
 	</div>';
 
     } else {
-	    echo '<div class="alert alert-danger" role="alert">' . __("Nothing found!") . '</div>';
+	    echo '<div class="alert alert-danger" role="alert">' . __("No results found for your search criteria. Please try again.") . '</div>';
     }
     ?>
                 </div>
