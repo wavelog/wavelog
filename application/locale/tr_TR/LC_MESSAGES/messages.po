@@ -13,10 +13,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-11-17 07:04+0000\n"
-"PO-Revision-Date: 2025-11-12 20:16+0000\n"
+"PO-Revision-Date: 2025-11-19 09:26+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
-"Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/tr/>\n"
+"Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/tr/>\n"
 "Language: tr_TR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2957,15 +2957,15 @@ msgstr "Kullanıcıyı Sil"
 
 #: application/controllers/User.php:1077
 msgid "User deleted"
-msgstr ""
+msgstr "Kullanıcı silindi"
 
 #: application/controllers/User.php:1080
 msgid "Could not delete user!"
-msgstr ""
+msgstr "Kullanıcı silinemedi!"
 
 #: application/controllers/User.php:1080
 msgid "Database error:"
-msgstr ""
+msgstr "Veritabanı hatası:"
 
 #: application/controllers/User.php:1105
 msgid ""
@@ -6948,7 +6948,7 @@ msgstr "Tıklayın ve kaydı hazırlayın."
 
 #: application/views/bandmap/list.php:11 application/views/bandmap/list.php:104
 msgid "to tune frequency"
-msgstr ""
+msgstr "frekansı ayarlamak için"
 
 #: application/views/bandmap/list.php:14
 msgid "Pop-up Blocked"
@@ -6966,7 +6966,7 @@ msgstr "CAT Bağlantısı Gerekli"
 
 #: application/views/bandmap/list.php:17
 msgid "Enable CAT connection to tune the radio"
-msgstr ""
+msgstr "Telsizi ayarlamak için CAT bağlantısını etkinleştirin"
 
 #: application/views/bandmap/list.php:18 application/views/bandmap/list.php:372
 msgid "Clear Filters"
@@ -6974,19 +6974,19 @@ msgstr "Filtreleri Temizle"
 
 #: application/views/bandmap/list.php:19
 msgid "Band filter preserved (CAT connection is active)"
-msgstr ""
+msgstr "Bant filtresi korundu (CAT bağlantısı aktif)"
 
 #: application/views/bandmap/list.php:21
 msgid "Radio set to None - CAT connection disabled"
-msgstr ""
+msgstr "Telsiz Yok olarak ayarlandı - CAT bağlantısı devre dışı bırakıldı"
 
 #: application/views/bandmap/list.php:22
 msgid "Radio Tuned"
-msgstr ""
+msgstr "Telsiz Ayarlı"
 
 #: application/views/bandmap/list.php:23
 msgid "Tuned to"
-msgstr ""
+msgstr "Şuna ayarla"
 
 #: application/views/bandmap/list.php:24
 msgid "Tuning Failed"
@@ -6994,15 +6994,15 @@ msgstr "Tune Başarısız"
 
 #: application/views/bandmap/list.php:25
 msgid "Failed to tune radio to frequency"
-msgstr ""
+msgstr "Telsiz frekansa ayarlanamadı"
 
 #: application/views/bandmap/list.php:26
 msgid "QSO Prepared"
-msgstr ""
+msgstr "QSO Hazır"
 
 #: application/views/bandmap/list.php:28
 msgid "sent to logging form"
-msgstr ""
+msgstr "log formuna gönderildi"
 
 #: application/views/bandmap/list.php:29 application/views/bandmap/list.php:195
 msgid "CAT Connection"
@@ -7010,34 +7010,38 @@ msgstr "CAT Bağlantısı"
 
 #: application/views/bandmap/list.php:30
 msgid "Click to enable CAT connection"
-msgstr ""
+msgstr "Tıkla ve CAT bağlantısını etkinleştir"
 
 #: application/views/bandmap/list.php:31
 msgid ""
 "CAT following radio | Click for frequency marker | Double-click to disable"
 msgstr ""
+"CAT kontrollü izleme | Frekans imlecini göstermek için tıkla | Kapatmak için "
+"çift tıkla"
 
 #: application/views/bandmap/list.php:32
 msgid ""
 "Frequency marker active | Click to disable marker | Double-click to disable "
 "CAT"
 msgstr ""
+"Frekans işaretçisi etkin | İşaretçiyi devre dışı bırakmak için tıkla | CAT’i "
+"devre dışı bırakmak için çift tıkla"
 
 #: application/views/bandmap/list.php:33
 msgid "Frequency filter changed to"
-msgstr ""
+msgstr "Frekans filtresi şu değere değiştirildi:"
 
 #: application/views/bandmap/list.php:34
 msgid "by transceiver"
-msgstr ""
+msgstr "verici/alıcıya göre"
 
 #: application/views/bandmap/list.php:35
 msgid "Frequency filter set to"
-msgstr ""
+msgstr "Frekans filtresi şu değere ayarlandı:"
 
 #: application/views/bandmap/list.php:36
 msgid "Frequency outside known bands - showing all bands"
-msgstr ""
+msgstr "Bilinen bantların dışında frekans – tüm bantlar gösteriliyor"
 
 #: application/views/bandmap/list.php:37
 msgid "Waiting for radio data..."
@@ -7049,31 +7053,31 @@ msgstr "Favorilerim"
 
 #: application/views/bandmap/list.php:39
 msgid "Failed to load favorites"
-msgstr ""
+msgstr "Favoriler yüklenirken hata oluştu"
 
 #: application/views/bandmap/list.php:40
 msgid "Modes applied. Band filter preserved (CAT connection is active)"
-msgstr ""
+msgstr "Modlar uygulandı. Bant filtresi korundu (CAT bağlantısı aktif)"
 
 #: application/views/bandmap/list.php:41
 msgid "Applied your favorite bands and modes"
-msgstr ""
+msgstr "Favori bantlarınız ve modlarınız uygulandı"
 
 #: application/views/bandmap/list.php:44
 msgid "Loading data from DX Cluster"
-msgstr ""
+msgstr "DX Cluster’dan veri yükleniyor"
 
 #: application/views/bandmap/list.php:45
 msgid "Last fetched for"
-msgstr ""
+msgstr "Son alınan veriler için"
 
 #: application/views/bandmap/list.php:46
 msgid "Max Age"
-msgstr ""
+msgstr "Max Yaş"
 
 #: application/views/bandmap/list.php:47
 msgid "Fetched at"
-msgstr ""
+msgstr "Alındığı zaman"
 
 #: application/views/bandmap/list.php:48
 msgid "Next update in"
@@ -7089,23 +7093,23 @@ msgstr "saniye"
 
 #: application/views/bandmap/list.php:51
 msgid "spots fetched"
-msgstr ""
+msgstr "Alınan spotlar"
 
 #: application/views/bandmap/list.php:52
 msgid "showing"
-msgstr ""
+msgstr "gösteriliyor"
 
 #: application/views/bandmap/list.php:53
 msgid "showing all"
-msgstr ""
+msgstr "hepsini göster"
 
 #: application/views/bandmap/list.php:54
 msgid "Active filters"
-msgstr ""
+msgstr "Aktif Filtreler"
 
 #: application/views/bandmap/list.php:55
 msgid "Fetching..."
-msgstr ""
+msgstr "Getiriliyor..."
 
 #: application/views/bandmap/list.php:58 application/views/bandmap/list.php:258
 #: application/views/interface_assets/footer.php:47
@@ -7145,19 +7149,19 @@ msgstr "Daha Önce Çalışıldı"
 #: application/views/bandmap/list.php:67
 #, php-format
 msgid "Worked on %s with %s"
-msgstr ""
+msgstr "%s ile %s üzerinde çalışıldı"
 
 #: application/views/bandmap/list.php:75 application/views/bandmap/list.php:521
 msgid "de"
-msgstr ""
+msgstr "de"
 
 #: application/views/bandmap/list.php:76
 msgid "spotted"
-msgstr ""
+msgstr "spotlandı"
 
 #: application/views/bandmap/list.php:79
 msgid "Fresh spot (< 5 minutes old)"
-msgstr ""
+msgstr "Yeni spot (< 5 dakika önce)"
 
 #: application/views/bandmap/list.php:80 application/views/bandmap/list.php:81
 #: application/views/bandmap/list.php:281
@@ -7174,71 +7178,71 @@ msgstr "Yarışma"
 
 #: application/views/bandmap/list.php:82
 msgid "Click to view"
-msgstr ""
+msgstr "Görüntülemek için tıkalyın"
 
 #: application/views/bandmap/list.php:83
 msgid "on QRZ.com"
-msgstr ""
+msgstr "QRZ.com'da"
 
 #: application/views/bandmap/list.php:84
 #, php-format
 msgid "Click to view %s on QRZ.com"
-msgstr ""
+msgstr "%s QRZ.com sayfası için tıklayın"
 
 #: application/views/bandmap/list.php:85
 msgid "See details for"
-msgstr ""
+msgstr "Detayları göster"
 
 #: application/views/bandmap/list.php:86
 msgid "Worked on"
-msgstr ""
+msgstr "Üzerinde çalışıldı"
 
 #: application/views/bandmap/list.php:87
 msgid "Not worked on this band"
-msgstr ""
+msgstr "Bu bantta çalışılmadı"
 
 #: application/views/bandmap/list.php:88
 #, php-format
 msgid "LoTW User. Last upload was %d days ago"
-msgstr ""
+msgstr "LoTW Kullanıcısı. Son yükleme %d gün önce"
 
 #: application/views/bandmap/list.php:89
 msgid "Click to view on POTA.app"
-msgstr ""
+msgstr "POTA.app'te görüntülemek için tıklayın"
 
 #: application/views/bandmap/list.php:90
 msgid "Click to view on SOTL.as"
-msgstr ""
+msgstr "SOTL.as'te görüntülemek için tıklayın"
 
 #: application/views/bandmap/list.php:91
 msgid "Click to view on cqgma.org"
-msgstr ""
+msgstr "cqgma.org'da görüntülemek için tıklayın"
 
 #: application/views/bandmap/list.php:92
 msgid "Click to view on IOTA-World.org"
-msgstr ""
+msgstr "IOTA-World.org'da görüntülemek için tıklayın"
 
 #: application/views/bandmap/list.php:93
 msgid "See details for continent"
-msgstr ""
+msgstr "Kıta detaylarını göster"
 
 #: application/views/bandmap/list.php:94
 #, php-format
 msgid "See details for continent %s"
-msgstr ""
+msgstr "%s kıta detaylarını göster"
 
 #: application/views/bandmap/list.php:95
 msgid "See details for CQ Zone"
-msgstr ""
+msgstr "CQ Zone Detayları"
 
 #: application/views/bandmap/list.php:96
 #, php-format
 msgid "See details for CQ Zone %s"
-msgstr ""
+msgstr "%s için CQ Zone Detayı"
 
 #: application/views/bandmap/list.php:97
 msgid "in"
-msgstr ""
+msgstr "içinde"
 
 #: application/views/bandmap/list.php:100
 msgid "Exit Fullscreen"
@@ -7253,14 +7257,16 @@ msgstr "Tam Ekranı Aç/Kapat"
 msgid ""
 "Band filtering is controlled by your radio when CAT connection is enabled"
 msgstr ""
+"Bant filtresi, CAT bağlantısı etkin olduğunda telsiziniz tarafından kontrol "
+"edilir"
 
 #: application/views/bandmap/list.php:103
 msgid "Click to prepare logging"
-msgstr ""
+msgstr "Günlük kaydı hazırlamak için tıklayın"
 
 #: application/views/bandmap/list.php:105
 msgid "(requires CAT connection)"
-msgstr ""
+msgstr "(CAT bağlantısı gerektirir)"
 
 #: application/views/bandmap/list.php:106
 msgid "Spotter"
@@ -7299,19 +7305,19 @@ msgstr "Duyulan İstasyonlar"
 
 #: application/views/bandmap/list.php:113
 msgid "spot"
-msgstr ""
+msgstr "spot"
 
 #: application/views/bandmap/list.php:114
 msgid "spotters"
-msgstr ""
+msgstr "spotters"
 
 #: application/views/bandmap/list.php:118
 msgid "Loading spots..."
-msgstr ""
+msgstr "Spotlar yükleniyor..."
 
 #: application/views/bandmap/list.php:119
 msgid "No spots found"
-msgstr ""
+msgstr "Spot bulunamadı"
 
 #: application/views/bandmap/list.php:120
 msgid "No data available"
@@ -7319,11 +7325,11 @@ msgstr "Veri yok"
 
 #: application/views/bandmap/list.php:121
 msgid "No spots found for selected filters"
-msgstr ""
+msgstr "Seçili filtreye uygun spot bulunamadı"
 
 #: application/views/bandmap/list.php:122
 msgid "Error loading spots. Please try again."
-msgstr ""
+msgstr "Spotlar yüklenirken hata oluştu. Lütfen tekrar deneyin."
 
 #: application/views/bandmap/list.php:125
 msgid "Show all modes"
@@ -7331,11 +7337,11 @@ msgstr "Tüm modları göster"
 
 #: application/views/bandmap/list.php:126
 msgid "Show all spots"
-msgstr ""
+msgstr "Tüm spotları göster"
 
 #: application/views/bandmap/list.php:131
 msgid "Draw Spotters"
-msgstr ""
+msgstr "Spotları Çiz"
 
 #: application/views/bandmap/list.php:132
 msgid "Extend Map"
@@ -7343,7 +7349,7 @@ msgstr "Haritayı Genişlet"
 
 #: application/views/bandmap/list.php:133
 msgid "Show Day/Night"
-msgstr ""
+msgstr "Gün/Gece göster"
 
 #: application/views/bandmap/list.php:134
 msgid "Your QTH"
@@ -7360,11 +7366,11 @@ msgstr "DX Cluster"
 
 #: application/views/bandmap/list.php:177
 msgid "DX Cluster Help"
-msgstr ""
+msgstr "DX Cluster Yardım"
 
 #: application/views/bandmap/list.php:199
 msgid "TRX:"
-msgstr ""
+msgstr "TRX:"
 
 #: application/views/bandmap/list.php:201
 #: application/views/bandmap/list.php:275
@@ -7389,55 +7395,55 @@ msgstr "Periyodik Tarama - "
 
 #: application/views/bandmap/list.php:213
 msgid "de:"
-msgstr ""
+msgstr "de:"
 
 #: application/views/bandmap/list.php:215
 msgid "Select all continents"
-msgstr ""
+msgstr "Tüm kıtaları seç"
 
 #: application/views/bandmap/list.php:215
 msgid "World"
-msgstr ""
+msgstr "Dünya"
 
 #: application/views/bandmap/list.php:216
 msgid "Toggle Africa continent filter"
-msgstr ""
+msgstr "Afrika kıta filtresini aç/kapa"
 
 #: application/views/bandmap/list.php:217
 msgid "Toggle Antarctica continent filter"
-msgstr ""
+msgstr "Antarktika kıta filtresini aç/kapa"
 
 #: application/views/bandmap/list.php:218
 msgid "Toggle Asia continent filter"
-msgstr ""
+msgstr "Asya kıta filtresini aç/kapa"
 
 #: application/views/bandmap/list.php:219
 msgid "Toggle Europe continent filter"
-msgstr ""
+msgstr "Avrupa kıta filtresini aç/kapa"
 
 #: application/views/bandmap/list.php:220
 msgid "Toggle North America continent filter"
-msgstr ""
+msgstr "Kuzey Amerika kıta filtresini aç/kapa"
 
 #: application/views/bandmap/list.php:221
 msgid "Toggle Oceania continent filter"
-msgstr ""
+msgstr "Okyanusya kıta filtresini aç/kapa"
 
 #: application/views/bandmap/list.php:222
 msgid "Toggle South America continent filter"
-msgstr ""
+msgstr "Güney Amerika kıta filtresini aç/kapa"
 
 #: application/views/bandmap/list.php:235
 msgid "Advanced Filters"
-msgstr ""
+msgstr "Gelişmiş Filtreler"
 
 #: application/views/bandmap/list.php:249
 msgid "Hold"
-msgstr ""
+msgstr "Bekle"
 
 #: application/views/bandmap/list.php:249
 msgid "and click to select multiple options"
-msgstr ""
+msgstr "ve birden fazla seçenek seçmek için tıkla"
 
 #: application/views/bandmap/list.php:255
 msgid "DXCC-Status"
@@ -7460,7 +7466,7 @@ msgstr "Dijital"
 
 #: application/views/bandmap/list.php:273
 msgid "Required Flags"
-msgstr ""
+msgstr "Gerekli Bayraklar"
 
 #: application/views/bandmap/list.php:280
 msgid "Worked Callsign"
@@ -7468,88 +7474,90 @@ msgstr "Çalışılan Çağrı İşareti"
 
 #: application/views/bandmap/list.php:282
 msgid "DX Spot"
-msgstr ""
+msgstr "DX Spot"
 
 #: application/views/bandmap/list.php:284
 msgid "Additional Flags"
-msgstr ""
+msgstr "Ek Bayraklar"
 
 #: application/views/bandmap/list.php:291
 msgid "Fresh (< 5 min)"
-msgstr ""
+msgstr "Yeni (< 5 dk)"
 
 #: application/views/bandmap/list.php:296
 msgid "Spots de Continent"
-msgstr ""
+msgstr "Kıta Spotları"
 
 #: application/views/bandmap/list.php:310
 msgid "Spotted Station Continent"
-msgstr ""
+msgstr "Spotlanan İstasyon Kıtası"
 
 #: application/views/bandmap/list.php:370
 msgid "Apply Filters"
-msgstr ""
+msgstr "Fitreleri Uygula"
 
 #: application/views/bandmap/list.php:379
 msgid ""
 "Apply your favorite bands and modes (configured in Band and Mode settings)"
 msgstr ""
+"Favori bantlarınızı ve modlarınızı uygula "
+"(Bant ve Mod ayarlarında yapılandırılmış)"
 
 #: application/views/bandmap/list.php:383
 msgid "Clear all filters except De Continent"
-msgstr ""
+msgstr "Tüm filtreleri temizle, sadece Kıta filtresini bırak"
 
 #: application/views/bandmap/list.php:390
 msgid "Toggle 160m band filter"
-msgstr ""
+msgstr "160m bant filtresini aç/kapat"
 
 #: application/views/bandmap/list.php:394
 msgid "Toggle 80m band filter"
-msgstr ""
+msgstr "80m bant filtresini aç/kapat"
 
 #: application/views/bandmap/list.php:395
 msgid "Toggle 60m band filter"
-msgstr ""
+msgstr "60m bant filtresini aç/kapat"
 
 #: application/views/bandmap/list.php:396
 msgid "Toggle 40m band filter"
-msgstr ""
+msgstr "40m bant filtresini aç/kapat"
 
 #: application/views/bandmap/list.php:397
 msgid "Toggle 30m band filter"
-msgstr ""
+msgstr "30m bant filtresini aç/kapat"
 
 #: application/views/bandmap/list.php:398
 msgid "Toggle 20m band filter"
-msgstr ""
+msgstr "20m bant filtresini aç/kapat"
 
 #: application/views/bandmap/list.php:399
 msgid "Toggle 17m band filter"
-msgstr ""
+msgstr "17m bant filtresini aç/kapat"
 
 #: application/views/bandmap/list.php:400
 msgid "Toggle 15m band filter"
-msgstr ""
+msgstr "15m bant filtresini aç/kapat"
 
 #: application/views/bandmap/list.php:401
 msgid "Toggle 12m band filter"
-msgstr ""
+msgstr "12m bant filtresini aç/kapat"
 
 #: application/views/bandmap/list.php:402
 msgid "Toggle 10m band filter"
-msgstr ""
+msgstr "10m bant filtresini aç/kapat"
 
 #: application/views/bandmap/list.php:406
 msgid "Toggle VHF bands filter"
-msgstr ""
+msgstr "VHF bantları filtresini aç/kapat"
 
 #: application/views/bandmap/list.php:407
 msgid "Toggle UHF bands filter"
-msgstr ""
+msgstr "UHF bantları filtresini aç/kapat"
 
 #: application/views/bandmap/list.php:408
 msgid "Toggle SHF bands filter"
-msgstr ""
+msgstr "SHF bantları filtresini aç/kapat"
 
 #: application/views/bandmap/list.php:418
 #: application/views/components/dxwaterfall.php:32
@@ -7568,64 +7576,64 @@ msgstr "Telefon (ssb,lsb,usb..) modu filtresini aç/kapat"
 
 #: application/views/bandmap/list.php:429
 msgid "Toggle LoTW User filter"
-msgstr ""
+msgstr "LoTW Kullanıcı filtresini aç/kapat"
 
 #: application/views/bandmap/list.php:430
 msgid "LoTW users"
-msgstr ""
+msgstr "LoTW Kullanıcıları"
 
 #: application/views/bandmap/list.php:436
 msgid "Toggle DX Spot filter (spotted continent ≠ spotter continent)"
-msgstr ""
+msgstr "DX Spot filtresini aç/kapa (spotlanan kıta ≠ spotu bildiren kıta)"
 
 #: application/views/bandmap/list.php:437
 #: application/views/bandmap/list.php:515
 msgid "DX"
-msgstr ""
+msgstr "DX"
 
 #: application/views/bandmap/list.php:439
 msgid "Toggle New Continents filter"
-msgstr ""
+msgstr "Yeni Kıtalar filtresini aç/kapa"
 
 #: application/views/bandmap/list.php:440
 msgid "New Continents"
-msgstr ""
+msgstr "Yeni Kıtalar"
 
 #: application/views/bandmap/list.php:442
 msgid "Toggle New Entities filter"
-msgstr ""
+msgstr "Yeni Varlıklar filtresini aç/kapa"
 
 #: application/views/bandmap/list.php:443
 msgid "New Entities"
-msgstr ""
+msgstr "Yeni Varlıklar"
 
 #: application/views/bandmap/list.php:445
 msgid "Toggle New Callsigns filter"
-msgstr ""
+msgstr "Yeni Çağrı İşaretleri filtresini aç/kapa"
 
 #: application/views/bandmap/list.php:446
 msgid "New Callsigns"
-msgstr ""
+msgstr "Yeni Çağrı İşareti"
 
 #: application/views/bandmap/list.php:452
 msgid "Toggle Fresh spots filter (< 5 minutes old)"
-msgstr ""
+msgstr "Yeni spotlar filtresini aç/kapa (< 5 dakika önce)"
 
 #: application/views/bandmap/list.php:453
 msgid "Fresh"
-msgstr ""
+msgstr "Yeni"
 
 #: application/views/bandmap/list.php:455
 msgid "Toggle Contest filter"
-msgstr ""
+msgstr "Yarışma filtresini aç/kapa"
 
 #: application/views/bandmap/list.php:458
 msgid "Toggle Geo Hunter (POTA/SOTA/IOTA/WWFF)"
-msgstr ""
+msgstr "Geo Hunter filtresini aç/kapa (POTA/SOTA/IOTA/WWFF)"
 
 #: application/views/bandmap/list.php:459
 msgid "Referenced"
-msgstr ""
+msgstr "Referanslı"
 
 #: application/views/bandmap/list.php:465
 msgid "Open DX Map view"
@@ -7642,30 +7650,31 @@ msgstr "Spotları Ara..."
 #: application/views/bandmap/list.php:503
 msgid "Note: Map shows DXCC entity locations, not actual spot locations"
 msgstr ""
+"Not: Harita DXCC varlık konumlarını gösterir, gerçek spot konumlarını değil"
 
 #: application/views/bandmap/list.php:511
 msgid "Age in minutes"
-msgstr ""
+msgstr "Dakika cinsinden yaş"
 
 #: application/views/bandmap/list.php:513
 msgid "Freq"
-msgstr ""
+msgstr "Frekans"
 
 #: application/views/bandmap/list.php:515
 msgid "Spotted Callsign"
-msgstr ""
+msgstr "Spotlanan Çağrı İşareti"
 
 #: application/views/bandmap/list.php:518
 msgid "Flag"
-msgstr ""
+msgstr "Bayrak"
 
 #: application/views/bandmap/list.php:519
 msgid "DXCC Entity"
-msgstr ""
+msgstr "DXCC Varlığı"
 
 #: application/views/bandmap/list.php:519
 msgid "Entity"
-msgstr ""
+msgstr "Varlık"
 
 #: application/views/bandmap/list.php:520
 msgid "DXCC Number"
@@ -7681,15 +7690,15 @@ msgstr "Spotter Kıtası"
 
 #: application/views/bandmap/list.php:523
 msgid "Spotter CQ Zone"
-msgstr ""
+msgstr "Spotu Bildiren CQ Bölgesi"
 
 #: application/views/bandmap/list.php:524
 msgid "Special"
-msgstr ""
+msgstr "Özel"
 
 #: application/views/bandmap/list.php:524
 msgid "Special Flags"
-msgstr ""
+msgstr "Özel Bayraklar"
 
 #: application/views/bandmap/list.php:525
 #: application/views/oqrs/notinlogform.php:28
@@ -8645,13 +8654,16 @@ msgstr "BANT PLANININ DIŞINDA"
 
 #: application/views/components/dxwaterfall.php:43
 msgid "Out of band"
-msgstr ""
+msgstr "Bant dışı"
 
 #: application/views/components/dxwaterfall.php:44
 msgid ""
 "DX Waterfall has experienced an unexpected error and will be shut down. "
 "Please visit Wavelog's GitHub and create a bug report if this issue persists."
 msgstr ""
+"DX Waterfall beklenmeyen bir hata ile karşılaştı ve kapatılacaktır. Bu sorun "
+"devam ederse, lütfen Wavelog’un GitHub sayfasını ziyaret edin ve bir hata "
+"raporu oluşturun."
 
 #: application/views/components/dxwaterfall.php:45
 msgid "Changing radio frequency..."
@@ -8704,7 +8716,7 @@ msgstr "by:"
 #: application/views/components/dxwaterfall.php:80
 #: application/views/components/dxwaterfall.php:86
 msgid "DX Waterfall Help"
-msgstr ""
+msgstr "DX Waterfall Yardımı"
 
 #: application/views/components/hamsat/table.php:3
 #: application/views/hamsat/index.php:7
@@ -11085,6 +11097,8 @@ msgid ""
 "Note: Periodic polling is slow. When operating locally, WebSockets are a "
 "more convenient way to control your radio in real-time."
 msgstr ""
+"Not: Periyodik sorgulama yavaştır. Yerel olarak çalışırken, WebSocket’ler "
+"telsizinizi gerçek zamanlı kontrol etmek için daha kullanışlı bir yoldur."
 
 #: application/views/interface_assets/footer.php:118
 msgid "TX"
@@ -11152,19 +11166,23 @@ msgstr "Konum DXCC koordinatlarından alındı (gridsquare sağlanmadı)"
 
 #: application/views/interface_assets/footer.php:137
 msgid "Working without CAT connection"
-msgstr ""
+msgstr "CAT bağlantısı olmadan çalışıyor"
 
 #: application/views/interface_assets/footer.php:138
 msgid ""
 "CAT connection is currently disabled. Enable CAT connection to work in "
 "online mode with your radio."
 msgstr ""
+"CAT bağlantısı şu anda devre dışı. Telsizinizle çevrimiçi modda çalışmak "
+"için CAT bağlantısını etkinleştirin."
 
 #: application/views/interface_assets/footer.php:139
 msgid ""
 "To connect your radio to Wavelog, visit the Wavelog Wiki for setup "
 "instructions."
 msgstr ""
+"Telsizinizi Wavelog’a bağlamak için kurulum talimatları için Wavelog Wiki "
+"sayfasını ziyaret edin."
 
 #: application/views/interface_assets/footer.php:223
 #: application/views/interface_assets/header.php:525
@@ -11907,16 +11925,18 @@ msgstr "Etiketin kağıttaki konumu"
 #: application/views/logbookadvanced/continentdialog.php:2
 msgid ""
 "Update all QSOs with the continent based on the DXCC country of the QSO."
-msgstr ""
+msgstr "Tüm QSO’ları, QSO’nun DXCC ülkesine göre kıta bilgisi ile güncelle."
 
 #: application/views/logbookadvanced/continentdialog.php:3
 msgid "This is useful if you have imported QSOs without continent information."
-msgstr ""
+msgstr "Bu, kıta bilgisi olmadan QSO’ları içe aktardıysanız faydalıdır."
 
 #: application/views/logbookadvanced/continentdialog.php:4
 msgid ""
 "Update will only set the continent for QSOs where the continent is empty."
 msgstr ""
+"Güncelleme, yalnızca kıta bilgisi boş olan QSO’lar için kıtayı "
+"ayarlayacaktır."
 
 #: application/views/logbookadvanced/distancedialog.php:2
 msgid ""
@@ -11924,10 +11944,13 @@ msgid ""
 "station profile, and the gridsquare of the QSO partner. Distance will be "
 "calculated based on if short path or long path is set."
 msgstr ""
+"Tüm QSO’ları, istasyon profilinizdeki gridsquare ve QSO ortağının gridsquare "
+"bilgisine göre mesafeyi ayarlayarak güncelle. Mesafe, kısa yol veya uzun yol "
+"seçimine göre hesaplanacaktır."
 
 #: application/views/logbookadvanced/distancedialog.php:3
 msgid "This is useful if you have imported QSOs without distance information."
-msgstr ""
+msgstr "Bu, mesafe bilgisi olmadan QSO’ları içe aktardıysanız faydalıdır."
 
 #: application/views/logbookadvanced/distancedialog.php:4
 msgid "Update will only set the distance for QSOs where the distance is empty."
@@ -12298,15 +12321,15 @@ msgstr "ITU Bölgelerinin düzeltilmesinde sorun oluştu."
 
 #: application/views/logbookadvanced/index.php:26
 msgid "There was a problem fixing CQ Zones."
-msgstr ""
+msgstr "CQ Bölgeleri düzeltilirken bir sorun oluştu."
 
 #: application/views/logbookadvanced/index.php:27
 msgid "ITU Zones updated successfully!"
-msgstr ""
+msgstr "ITU Bölgeleri başarıyla güncellendi!"
 
 #: application/views/logbookadvanced/index.php:28
 msgid "CQ Zones updated successfully!"
-msgstr ""
+msgstr "CQ Bölgeleri başarıyla güncellendi!"
 
 #: application/views/logbookadvanced/index.php:29
 msgid "You need to select at least 1 row to fix ITU Zones!"
@@ -12330,53 +12353,55 @@ msgstr "QSL kartını görüntülemek için en az 1 satır seçmeniz gerekiyor!"
 
 #: application/views/logbookadvanced/index.php:34
 msgid "Continents updated successfully!"
-msgstr ""
+msgstr "Kıtalar başarıyla güncellendi!"
 
 #: application/views/logbookadvanced/index.php:35
 msgid "There was a problem fixing Continents."
-msgstr ""
+msgstr "Kıtalar düzeltilirken bir sorun oluştu."
 
 #: application/views/logbookadvanced/index.php:37
 msgid "SUCCESS"
-msgstr ""
+msgstr "BAŞARI"
 
 #: application/views/logbookadvanced/index.php:38
 msgid "INFO"
-msgstr ""
+msgstr "BİLGİ"
 
 #: application/views/logbookadvanced/index.php:44
 msgid "Options for the Advanced Logbook"
-msgstr ""
+msgstr "Gelişmiş Logbook için Seçenekler"
 
 #: application/views/logbookadvanced/index.php:45
 msgid ""
 "Something went wrong with label print. Go to labels and check if you have "
 "defined a label, and that it is set for print!"
 msgstr ""
+"Etiket baskısında bir hata oluştu. Etiketler bölümüne gidin ve bir etiket "
+"tanımladığınızdan ve baskıya hazır olarak ayarlandığından emin olun!"
 
 #: application/views/logbookadvanced/index.php:46
 msgid "You need to select a least 1 row!"
-msgstr ""
+msgstr "En az 1 satır seçmeniz gerekiyor!"
 
 #: application/views/logbookadvanced/index.php:47
 msgid "Start printing at which label?"
-msgstr ""
+msgstr "Hangi etiketten baskıya başlansın?"
 
 #: application/views/logbookadvanced/index.php:48
 msgid "You need to select at least 1 row to print a label!"
-msgstr ""
+msgstr "Bir etiket yazdırmak için en az 1 satır seçmeniz gerekiyor!"
 
 #: application/views/logbookadvanced/index.php:49
 msgid "An error occurred while saving options: "
-msgstr ""
+msgstr "Seçenekler kaydedilirken bir hata oluştu: "
 
 #: application/views/logbookadvanced/index.php:50
 msgid "You need to select a least 1 row to delete!"
-msgstr ""
+msgstr "Silmek için en az 1 satır seçmeniz gerekiyor!"
 
 #: application/views/logbookadvanced/index.php:51
 msgid "You need to select a least 1 row to update from callbook!"
-msgstr ""
+msgstr "Callbook’tan güncellemek için en az 1 satır seçmeniz gerekiyor!"
 
 #: application/views/logbookadvanced/index.php:52
 #: application/views/oqrs/showrequests.php:10
@@ -12385,24 +12410,24 @@ msgstr "Talep yapılırken bir hata oluştu"
 
 #: application/views/logbookadvanced/index.php:53
 msgid "You need to select at least 1 location to do a search!"
-msgstr ""
+msgstr "Arama yapmak için en az 1 konum seçmeniz gerekiyor!"
 
 #: application/views/logbookadvanced/index.php:54
 #: application/views/logbookadvanced/index.php:738
 msgid "Update Distances"
-msgstr ""
+msgstr "Mesafeleri Güncelle"
 
 #: application/views/logbookadvanced/index.php:55
 msgid "QSO records updated."
-msgstr ""
+msgstr "QSO kayıtları güncellendi."
 
 #: application/views/logbookadvanced/index.php:56
 msgid "There was a problem updating distances."
-msgstr ""
+msgstr "Mesafeler güncellenirken bir sorun oluştu."
 
 #: application/views/logbookadvanced/index.php:57
 msgid "Distances updated successfully!"
-msgstr ""
+msgstr "Mesafeler başarıyla güncellendi!"
 
 #: application/views/logbookadvanced/index.php:262
 msgid "From"
@@ -12721,7 +12746,7 @@ msgstr "ITU Bölgelerini Düzelt"
 
 #: application/views/logbookadvanced/index.php:737
 msgid "Fix Continent"
-msgstr ""
+msgstr "Kıtayı Düzelt"
 
 #: application/views/logbookadvanced/index.php:745
 #: application/views/oqrs/showrequests.php:58
@@ -16757,7 +16782,7 @@ msgstr "Görüntülenmiyor"
 
 #: application/views/user/edit.php:547
 msgid "QSO (worked, not confirmed)"
-msgstr ""
+msgstr "QSO (çalışıldı, onaylanmadı)"
 
 #: application/views/user/edit.php:566
 msgid "QSO (confirmed)"
@@ -16765,15 +16790,15 @@ msgstr "QSO (onaylandı)"
 
 #: application/views/user/edit.php:567
 msgid "(If 'No', displayed as 'QSO (worked, not confirmed)')"
-msgstr ""
+msgstr "(Eğer 'Hayır' ise, 'QSO (çalışıldı, onaylanmadı)' olarak gösterilir)"
 
 #: application/views/user/edit.php:586
 msgid "Unworked (e.g. Zones)"
-msgstr ""
+msgstr "Çalışılmamış (ör. Bölgeler)"
 
 #: application/views/user/edit.php:587
 msgid "(Color for unworked zones)"
-msgstr ""
+msgstr "(Çalışılmamış bölgeler için renk)"
 
 #: application/views/user/edit.php:597
 msgid "Show Locator"
