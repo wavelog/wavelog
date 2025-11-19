@@ -376,7 +376,7 @@
 			</div>
 		</div>
 				<!-- Favorites Button (part of button group) -->
-				<button class="btn btn-sm btn-secondary" type="button" id="toggleFavoritesFilter" title="<?= __("Apply your favorite bands and modes (configured in Band and Mode settings)"); ?>">
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleFavoritesFilter" title="<?= __("Apply your favorite bands and modes (configured in Band and Mode settings)"); ?>" style="display: none;">
 					<i class="fas fa-star text-warning"></i>
 				</button>
 				<!-- Clear Filters Button (part of button group) -->
