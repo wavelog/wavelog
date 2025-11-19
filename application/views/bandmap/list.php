@@ -159,7 +159,7 @@
 
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bandmap_list.css" />
 
-<div class="container" id="bandmapContainer">
+<div class="container-fluid" id="bandmapContainer">
 	<!-- Messages -->
 	<div class="messages my-1 mx-3"></div>
 
@@ -512,6 +512,7 @@
 							<th title="<?= __("Band"); ?>"><i class="fas fa-wave-square"></i></th>
 							<th title="<?= __("Frequency"); ?> [MHz]"><?= __("Freq"); ?></th>
 							<th title="<?= __("Mode"); ?>"><i class="fas fa-broadcast-tower"></i></th>
+							<th title="<?= __("Submode"); ?>"><i class="fas fa-broadcast-tower"></i></th>
 							<th title="<?= __("Spotted Callsign"); ?>"><?= __("DX"); ?></th>
 							<th title="<?= __("Continent"); ?>"><i class="fas fa-globe-americas"></i></th>
 							<th title="<?= __("CQ Zone"); ?>"><i class="fas fa-map-marked"></i></th>
@@ -521,9 +522,10 @@
 							<th title="<?= __("Spotter Callsign"); ?>"><?= __("de"); ?></th>
 							<th title="<?= __("Spotter Continent"); ?>"><i class="fas fa-globe-americas"></i></th>
 							<th title="<?= __("Spotter CQ Zone"); ?>"><i class="fas fa-map-marked"></i></th>
+							<th title="<?= __("Last QSO Date"); ?>"><i class="fas fa-history"></i></th>
 							<th title="<?= __("Special Flags"); ?>"><?= __("Special"); ?></th>
 							<th title="<?= __("Message"); ?>"><?= __("Message"); ?></th>
-						</tr>
+					</tr>
 					</thead>
 
 					<tbody class="spots_table_contents">

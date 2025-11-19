@@ -58,11 +58,62 @@ const CONTINENT_BUTTONS = [
 
 const GEO_FLAGS = ['POTA', 'SOTA', 'IOTA', 'WWFF'];
 
+// Performance optimization: Pre-computed band to group lookup map
+const BAND_TO_GROUP_MAP = {
+	'6m': 'VHF', '4m': 'VHF', '2m': 'VHF', '1.25m': 'VHF',
+	'70cm': 'UHF', '33cm': 'UHF', '23cm': 'UHF',
+	'13cm': 'SHF', '9cm': 'SHF', '6cm': 'SHF', '3cm': 'SHF'
+};
+
 // ========================================
 // MAIN APPLICATION
 // ========================================
 
 $(function() {
+
+	// ========================================
+	// PERFORMANCE: DOM CACHE & DEBOUNCING
+	// ========================================
+
+	// Cache frequently accessed DOM elements
+	const domCache = { badges: {} };
+
+	// Get or cache badge element
+	function getCachedBadge(selector) {
+		if (!domCache.badges[selector]) {
+			domCache.badges[selector] = $(selector);
+		}
+		return domCache.badges[selector];
+	}
+
+	// Debounced applyFilters
+	let applyFiltersTimer = null;
+	function debouncedApplyFilters(delay = 150) {
+		if (applyFiltersTimer) clearTimeout(applyFiltersTimer);
+		applyFiltersTimer = setTimeout(() => {
+			// Safety check: only call if applyFilters is defined
+			if (typeof applyFilters === 'function') {
+				applyFilters(false);
+			}
+		}, delay);
+	}
+
+	// ========================================
+	// MAP VARIABLES (declared early for drawCallback access)
+	// ========================================
+
+	let dxMap = null;
+	let dxMapVisible = false;
+	let dxccMarkers = [];
+	let spotterMarkers = [];
+	let connectionLines = [];
+	let userHomeMarker = null;
+	let showSpotters = false;
+	let showDayNight = true;
+	let terminatorLayer = null;
+	let hoverSpottersData = new Map();
+	let hoverSpotterMarkers = [];
+	let hoverConnectionLines = [];
 
 	// ========================================
 	// DATATABLES ERROR HANDLING
@@ -79,7 +130,7 @@ $(function() {
 			// Also log which row/column caused the issue
 			if (message.indexOf('parameter') !== -1) {
 				console.error('This usually means the data array has wrong number of columns');
-				console.error('Expected columns: 15 (Age, Band, Freq, Mode, Spotted, Cont, CQZ, Flag, Entity, DXCC#, Spotter, de Cont, de CQZ, Special, Message)');
+				console.error('Expected columns: 16 (Age, Band, Freq, Mode, Spotted, Cont, CQZ, Flag, Entity, DXCC#, Spotter, de Cont, de CQZ, Last QSO, Special, Message)');
 			}
 		};
 	} else {
@@ -94,7 +145,20 @@ $(function() {
 	 * Dispose of all Bootstrap tooltips in the table before clearing
 	 */
 	function disposeTooltips() {
-		$('.spottable [data-bs-toggle="tooltip"]').tooltip('dispose');
+		try {
+			$('.spottable [data-bs-toggle="tooltip"]').each(function() {
+				try {
+					const tooltipInstance = bootstrap.Tooltip.getInstance(this);
+					if (tooltipInstance) {
+						tooltipInstance.dispose();
+					}
+				} catch (err) {
+					// Skip individual tooltip errors
+				}
+			});
+		} catch (e) {
+			// Silently catch tooltip disposal errors
+		}
 	}
 
 	/**
@@ -319,11 +383,9 @@ $(function() {
 
 		// Initialize checkbox indicators for all filter selects
 		function initFilterCheckboxes() {
-			['cwnSelect', 'decontSelect', 'continentSelect', 'band', 'mode', 'additionalFlags', 'requiredFlags'].forEach(function(selectId) {
+			['cwnSelect', 'decontSelect', 'continentSelect', 'band', 'mode', 'additionalFlags', 'requiredFlags'].forEach(selectId => {
 				updateSelectCheckboxes(selectId);
-				$('#' + selectId).on('change', function() {
-					updateSelectCheckboxes(selectId);
-				});
+				$(`#${selectId}`).on('change', () => updateSelectCheckboxes(selectId));
 			});
 		}
 
@@ -350,6 +412,9 @@ $(function() {
 				if (selectId === 'band' || selectId === 'mode' || selectId === 'decontSelect' || selectId === 'continentSelect') {
 					syncQuickFilterButtons();
 				}
+
+				// Apply filters with debouncing
+				debouncedApplyFilters(150);
 			});
 		}
 
@@ -371,9 +436,12 @@ $(function() {
 				currentValues = ['None'];
 			}
 
-			$(this).val(currentValues);
-			updateFilterIcon();
-		});
+		$(this).val(currentValues);
+		updateFilterIcon();
+
+		// Apply filters with debouncing
+		debouncedApplyFilters(150);
+	});
 
 	// ========================================
 	// DATATABLE CONFIGURATION
@@ -398,9 +466,10 @@ $(function() {
 			},
 			'columnDefs': [
 				{
-					'targets': 2,  // Frequency is now column 3 (0-indexed = 2)
-				"type":"num",
-				'render': function (data, type, row) {
+					'targets': 2,
+					// Frequency is now column 3 (0-indexed = 2)
+					"type":"num",
+					'render': function (data, type, row) {
 					// For sorting and filtering, return numeric value
 					if (type === 'sort' || type === 'type') {
 						return parseFloat(data) || 0;
@@ -419,7 +488,7 @@ $(function() {
 					}
 				},
 				{
-					'targets': [5, 6, 7, 11, 12, 13, 14],  // Cont, CQZ, Flag, de Cont, de CQZ, Special, Message - disable sorting
+					'targets': [5, 6, 9, 16],  // Submode, Cont, Flag, Message - disable sorting
 					'orderable': false
 				}
 			],
@@ -429,6 +498,11 @@ $(function() {
 			let totalRows = cachedSpotData ? cachedSpotData.length : 0;
 			let displayedRows = this.api().rows({ search: 'applied' }).count();
 			updateStatusBar(totalRows, displayedRows, getServerFilterText(), getClientFilterText(), false, false);
+
+			// Update map markers when table is redrawn (including after search)
+			if (dxMapVisible && dxMap) {
+				updateDxMap();
+			}
 
 			// Note: CAT frequency gradient is now updated only from updateCATui (every 3s)
 			// to prevent recursion issues with table redraws
@@ -459,7 +533,7 @@ $(function() {
 	let rowData = table.row(this).data();
 	if (!rowData) return;
 
-	let callsignHtml = rowData[4];  // Callsign is column 5 (0-indexed = 4)
+	let callsignHtml = rowData[5];  // Callsign is column 6 (0-indexed = 5)
 	let tempDiv = $('<div>').html(callsignHtml);
 	let call = tempDiv.find('a').text().trim();
 	if (!call) return;
@@ -546,7 +620,7 @@ $(function() {
 
 	// Generate unique key for spot identification
 	function getSpotKey(spot) {
-		return spot.spotted + '_' + spot.frequency + '_' + spot.spotter;
+		return `${spot.spotted}_${spot.frequency}_${spot.spotter}`;
 	}
 
 	// Convert array to Set for O(1) lookups, handle 'All'/'Any' values
@@ -598,10 +672,10 @@ $(function() {
 		}
 
 	let now = new Date();
-	let timeStr = now.getUTCHours().toString().padStart(2, '0') + ':' + now.getUTCMinutes().toString().padStart(2, '0') + 'Z';
-	let statusMessage = totalSpots + ' ' + lang_bandmap_spots_fetched + ' @ ' + timeStr;
+	let timeStr = `${now.getUTCHours().toString().padStart(2, '0')}:${now.getUTCMinutes().toString().padStart(2, '0')}Z`;
+	let statusMessage = `${totalSpots} ${lang_bandmap_spots_fetched} @ ${timeStr}`;
 	let allFilters = [];		if (serverFilters && serverFilters.length > 0) {
-			allFilters = allFilters.concat(serverFilters.map(f => 'de "' + f + '"'));
+			allFilters = allFilters.concat(serverFilters.map(f => `de "${f}"`));
 		}
 
 		if (clientFilters && clientFilters.length > 0) {
@@ -611,28 +685,28 @@ $(function() {
 		var table = get_dtable();
 		var searchValue = table.search();
 		if (searchValue) {
-			allFilters.push('search: "' + searchValue + '"');
+			allFilters.push(`search: "${searchValue}"`);
 		}
 
 	// Build status message
 	if (allFilters.length > 0) {
-		statusMessage += ', ' + lang_bandmap_showing + ' ' + displayedSpots;
+		statusMessage += `, ${lang_bandmap_showing} ${displayedSpots}`;
 	} else if (displayedSpots < totalSpots) {
-		statusMessage += ', ' + lang_bandmap_showing + ' ' + displayedSpots;
+		statusMessage += `, ${lang_bandmap_showing} ${displayedSpots}`;
 	} else if (totalSpots > 0) {
-		statusMessage += ', ' + lang_bandmap_showing_all;
+		statusMessage += `, ${lang_bandmap_showing_all}`;
 	}		// Build tooltip for status message (fetch information)
-		let fetchTooltipLines = [lang_bandmap_last_fetched + ':'];
-		fetchTooltipLines.push(lang_bandmap_band + ': ' + (lastFetchParams.band || lang_bandmap_all));
-		fetchTooltipLines.push(lang_bandmap_continent + ': ' + (lastFetchParams.continent || lang_bandmap_all));
-		fetchTooltipLines.push(lang_bandmap_mode + ': ' + (lastFetchParams.mode || lang_bandmap_all));
-		fetchTooltipLines.push(lang_bandmap_max_age + ': ' + (lastFetchParams.maxAge || '120') + ' min');
+		let fetchTooltipLines = [`${lang_bandmap_last_fetched}:`];
+		fetchTooltipLines.push(`${lang_bandmap_band}: ${lastFetchParams.band || lang_bandmap_all}`);
+		fetchTooltipLines.push(`${lang_bandmap_continent}: ${lastFetchParams.continent || lang_bandmap_all}`);
+		fetchTooltipLines.push(`${lang_bandmap_mode}: ${lastFetchParams.mode || lang_bandmap_all}`);
+		fetchTooltipLines.push(`${lang_bandmap_max_age}: ${lastFetchParams.maxAge || '120'} min`);
 		if (lastFetchParams.timestamp) {
 			let fetchTime = new Date(lastFetchParams.timestamp);
-			let fetchTimeStr = fetchTime.getUTCHours().toString().padStart(2, '0') + ':' +
-			                   fetchTime.getUTCMinutes().toString().padStart(2, '0') + ':' +
-			                   fetchTime.getUTCSeconds().toString().padStart(2, '0') + 'Z';
-			fetchTooltipLines.push(lang_bandmap_fetched_at + ': ' + fetchTimeStr);
+			let h = fetchTime.getUTCHours().toString().padStart(2, '0');
+			let m = fetchTime.getUTCMinutes().toString().padStart(2, '0');
+			let s = fetchTime.getUTCSeconds().toString().padStart(2, '0');
+			fetchTooltipLines.push(`${lang_bandmap_fetched_at}: ${h}:${m}:${s}Z`);
 		}
 
 	$('#statusMessage').text(statusMessage).attr('title', fetchTooltipLines.join('\n'));
@@ -671,15 +745,14 @@ $(function() {
 				disposeTooltips();
 				table.clear();
 
-				// Determine band for API fetch based on CAT Control state and current filter
+				// In purple mode, fetch only the active band; otherwise fetch all bands
 				let bandForRefresh = 'All';
-				if (isCatTrackingEnabled) {
-					let currentBand = currentFilters.band || [];
-					if (currentBand.length === 1 && !currentBand.includes('All') && currentBand[0] !== '') {
+				if (catState === 'on+marker') {
+					let currentBand = $('#band').val() || [];
+					if (currentBand.length === 1 && !currentBand.includes('All')) {
 						bandForRefresh = currentBand[0];
 					}
 				}
-
 				fill_list(currentFilters.deContinent, dxcluster_maxage, bandForRefresh);
 				refreshCountdown = SPOT_REFRESH_INTERVAL;
 			} else {
@@ -1007,13 +1080,13 @@ $(function() {
 		data[0].push(freqMHz);
 
 	// Mode column: capitalize properly (API returns lowercase categories)
-	// Show submode in tooltip if available
 	let displayMode = single.mode || '';
 	displayMode = MODE_CAPITALIZATION[displayMode] || displayMode;
-	if (single.submode && single.submode !== '') {
-		displayMode = '<span data-bs-toggle="tooltip" title="' + single.submode + '">' + displayMode + '</span>';
-	}
-	data[0].push(displayMode);		// Callsign column: wrap in QRZ link with color coding
+	data[0].push(displayMode);
+
+	// Submode column: show submode if available
+	let submode = (single.submode && single.submode !== '') ? single.submode : '';
+	data[0].push(submode);		// Callsign column: wrap in QRZ link with color coding
 		let qrzLink = '<a href="https://www.qrz.com/db/' + single.spotted + '" target="_blank" onclick="event.stopPropagation();" data-bs-toggle="tooltip" title="Click to view ' + single.spotted + ' on QRZ.com">' + single.spotted + '</a>';
 		wked_info = ((wked_info != '' ? '<span class="' + wked_info + '">' : '') + qrzLink + (wked_info != '' ? '</span>' : ''));
 		var spotted = wked_info;
@@ -1046,7 +1119,14 @@ $(function() {
 	}	// Flag column: just the flag emoji without entity name
 	let flag_only = '';
 	if (single.dxcc_spotted && single.dxcc_spotted.flag) {
+		// Has flag emoji - show it
 		flag_only = '<span class="flag-emoji">' + single.dxcc_spotted.flag + '</span>';
+	} else if (single.dxcc_spotted && single.dxcc_spotted.entity) {
+		// Valid entity but flag missing from library - show white flag
+		flag_only = '<span class="flag-emoji">🏳️</span>';
+	} else if (!single.dxcc_spotted || !single.dxcc_spotted.entity) {
+		// No DXCC entity (invalid/unrecognized) - show pirate flag
+		flag_only = '<span class="flag-emoji">🏴‍☠️</span>';
 	}
 	data[0].push(flag_only);
 
@@ -1072,7 +1152,11 @@ $(function() {
 	data[0].push((single.dxcc_spotter && single.dxcc_spotter.cont) ? single.dxcc_spotter.cont : '');
 
 	// de CQZ column: spotter's CQ Zone
-	data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spotter.cqz : '');	// Build medal badge - show only highest priority: continent > country > callsign
+	data[0].push((single.dxcc_spotter && single.dxcc_spotter.cqz) ? single.dxcc_spotter.cqz : '');
+
+	// Last QSO column: show last QSO date if available
+	let lastQsoDate = (single.last_wked && single.last_wked.LAST_QSO) ? single.last_wked.LAST_QSO : '';
+	data[0].push(lastQsoDate);	// Build medal badge - show only highest priority: continent > country > callsign
 	let medals = '';
 	if (single.worked_continent === false) {
 		// New Continent (not worked before) - Gold medal
@@ -1090,14 +1174,14 @@ $(function() {
 	data[0].push(flags_column);		// Message column
 		data[0].push(single.message || '');
 
-		// Debug: Validate data array has exactly 15 columns
-		if (data[0].length !== 15) {
-			console.error('INVALID DATA ARRAY LENGTH:', data[0].length, 'Expected: 15');
+		// Debug: Validate data array has exactly 17 columns
+		if (data[0].length !== 17) {
+			console.error('INVALID DATA ARRAY LENGTH:', data[0].length, 'Expected: 17');
 			console.error('Spot:', single.spotted, 'Frequency:', single.frequency);
 			console.error('Data array:', data[0]);
-			console.error('Missing columns:', 15 - data[0].length);
+			console.error('Missing columns:', 17 - data[0].length);
 			// Pad array with empty strings to prevent DataTables error
-			while (data[0].length < 15) {
+			while (data[0].length < 17) {
 				data[0].push('');
 			}
 		}
@@ -1177,7 +1261,31 @@ $(function() {
 			$(this).attr('title', lang_click_to_prepare_logging);
 		});
 
-		$('[data-bs-toggle="tooltip"]').tooltip();
+		// Initialize tooltips with error handling
+		try {
+			$('[data-bs-toggle="tooltip"]').each(function() {
+				if (!this || !$(this).attr('title')) return;
+
+				try {
+					// Dispose existing tooltip instance if it exists
+					const existingTooltip = bootstrap.Tooltip.getInstance(this);
+					if (existingTooltip) {
+						existingTooltip.dispose();
+					}
+
+					// Create new tooltip instance
+					new bootstrap.Tooltip(this, {
+						boundary: 'window',
+						trigger: 'hover',
+						sanitize: false
+					});
+				} catch (err) {
+					// Skip if tooltip fails to initialize
+				}
+			});
+		} catch (e) {
+			// Fallback if tooltip initialization fails
+		}
 
 		let displayedCount = spots2render || 0;
 
@@ -1359,167 +1467,141 @@ $(function() {
 					modeCounts[modeCategory]++;
 				}
 			}
+			});
+
+			// Count band groups (VHF, UHF, SHF)
+			let groupCounts = {
+				'VHF': 0,
+				'UHF': 0,
+				'SHF': 0
+			};
+
+			Object.keys(bandCounts).forEach(band => {
+				let group = getBandGroup(band);
+				if (group) {
+					groupCounts[group] += bandCounts[band];
+				}
+			});
+
+		// Update individual MF/HF band button badges
+		const mfHfBands = [
+			'160m', '80m', '60m', '40m', '30m', '20m', '17m', '15m', '12m', '10m'
+		];
+
+		mfHfBands.forEach(band => {
+			let displayText = (fetchedBand && band !== fetchedBand) ? '-' : (bandCounts[band] || 0).toString();
+			let selector = '#toggle' + band + 'Filter .band-count-badge';
+			let $badge = getCachedBadge(selector);
+			if ($badge.length === 0) {
+				$('#toggle' + band + 'Filter').append(' <span class="badge bg-dark band-count-badge">' + displayText + '</span>');
+				domCache.badges[selector] = $('#toggle' + band + 'Filter .band-count-badge');
+			} else {
+				$badge.text(displayText);
+			}
 		});
 
-		// Count band groups (VHF, UHF, SHF)
-		let groupCounts = {
-			'VHF': 0,
-			'UHF': 0,
-			'SHF': 0
+		// Update band group button badges (VHF, UHF, SHF)
+		['VHF', 'UHF', 'SHF'].forEach(group => {
+			let isActiveGroup = fetchedBand && (getBandGroup(fetchedBand) === group);
+			let displayText = (fetchedBand && !isActiveGroup) ? '-' : (groupCounts[group] || 0).toString();
+			let selector = '#toggle' + group + 'Filter .band-count-badge';
+			let $badge = getCachedBadge(selector);
+			if ($badge.length === 0) {
+				$('#toggle' + group + 'Filter').append(' <span class="badge bg-dark band-count-badge">' + displayText + '</span>');
+				domCache.badges[selector] = $('#toggle' + group + 'Filter .band-count-badge');
+			} else {
+				$badge.text(displayText);
+			}
+		});		// Update mode button badges
+			['Cw', 'Digi', 'Phone'].forEach(mode => {
+				let count = modeCounts[mode.toLowerCase()] || 0;
+				let selector = '#toggle' + mode + 'Filter .mode-count-badge';
+				let $badge = getCachedBadge(selector);
+				if ($badge.length === 0) {
+					$('#toggle' + mode + 'Filter').append(' <span class="badge bg-dark mode-count-badge">' + count + '</span>');
+					domCache.badges[selector] = $('#toggle' + mode + 'Filter .mode-count-badge');
+				} else {
+					$badge.text(count);
+				}
+			});
+
+		// Count spots for quick filter badges
+		let quickFilterCounts = {
+			lotw: 0,
+			dxspot: 0,
+			newcontinent: 0,
+			newcountry: 0,
+			newcallsign: 0,
+			contest: 0,
+			geohunter: 0,
+			fresh: 0
 		};
 
-		Object.keys(bandCounts).forEach(band => {
-			let group = getBandGroup(band);
-			if (group) {
-				groupCounts[group] += bandCounts[band];
+		cachedSpotData.forEach((spot) => {
+			// Cache DXCC references
+			const dxccSpotted = spot.dxcc_spotted;
+			const dxccSpotter = spot.dxcc_spotter;
+
+			// Apply de continent filter
+			if (deContinentSet && (!dxccSpotter || !dxccSpotter.cont || !deContinentSet.has(dxccSpotter.cont))) return;
+
+			// Apply spotted continent filter
+			if (spottedContinentSet && (!dxccSpotted || !dxccSpotted.cont || !spottedContinentSet.has(dxccSpotted.cont))) return;
+
+			// Apply CWN status filter
+			if (cwnSet) {
+				const workedDxcc = spot.worked_dxcc;
+				const cnfmdDxcc = spot.cnfmd_dxcc;
+				if (!((cwnSet.has('notwkd') && !workedDxcc) ||
+					(cwnSet.has('wkd') && workedDxcc) ||
+					(cwnSet.has('cnf') && cnfmdDxcc) ||
+					(cwnSet.has('ucnf') && workedDxcc && !cnfmdDxcc))) {
+					return;
+				}
 			}
+
+			// Apply band filter
+			if (selectedBandSet && !selectedBandSet.has(spot.band)) return;
+
+			// Apply mode filter
+			if (selectedModeSet && (!spot.mode || !selectedModeSet.has(spot.mode))) return;
+
+			// Count quick filter matches (use cached references)
+			if (dxccSpotted && dxccSpotted.lotw_user) quickFilterCounts.lotw++;
+			if (dxccSpotted?.cont && dxccSpotter?.cont && dxccSpotted.cont !== dxccSpotter.cont) quickFilterCounts.dxspot++;
+			if (spot.worked_continent === false) quickFilterCounts.newcontinent++;
+			if (spot.worked_dxcc === false) quickFilterCounts.newcountry++;
+			if (spot.worked_call === false) quickFilterCounts.newcallsign++;
+			if (dxccSpotted && dxccSpotted.isContest) quickFilterCounts.contest++;
+			if (dxccSpotted && (dxccSpotted.pota_ref || dxccSpotted.sota_ref || dxccSpotted.wwff_ref || dxccSpotted.iota_ref)) quickFilterCounts.geohunter++;
+			if ((spot.age || 0) < 5) quickFilterCounts.fresh++;
 		});
 
-	// Update individual MF/HF band button badges
-	const mfHfBands = [
-		'160m', '80m', '60m', '40m', '30m', '20m', '17m', '15m', '12m', '10m'
-	];
+		// Update quick filter badges
+		const quickFilters = [
+			{ id: 'toggleLotwFilter', count: quickFilterCounts.lotw },
+			{ id: 'toggleDxSpotFilter', count: quickFilterCounts.dxspot },
+			{ id: 'toggleNewContinentFilter', count: quickFilterCounts.newcontinent },
+			{ id: 'toggleDxccNeededFilter', count: quickFilterCounts.newcountry },
+			{ id: 'toggleNewCallsignFilter', count: quickFilterCounts.newcallsign },
+			{ id: 'toggleContestFilter', count: quickFilterCounts.contest },
+			{ id: 'toggleGeoHunterFilter', count: quickFilterCounts.geohunter },
+			{ id: 'toggleFreshFilter', count: quickFilterCounts.fresh }
+		];
 
-	mfHfBands.forEach(band => {
-		let count;
-		let displayText;
-
-		// If in single band fetch mode and this is not the fetched band, show "-"
-		if (fetchedBand && band !== fetchedBand) {
-			displayText = '-';
-		} else {
-			count = bandCounts[band] || 0;
-			displayText = count.toString();
-		}
-
-		let $badge = $('#toggle' + band + 'Filter .band-count-badge');
-		if ($badge.length === 0) {
-			// Badge doesn't exist yet, create it
-			$('#toggle' + band + 'Filter').append(' <span class="badge bg-dark band-count-badge">' + displayText + '</span>');
-		} else {
-			// Update existing badge
-			$badge.text(displayText);
-		}
-	});
-
-	// Update band group button badges (VHF, UHF, SHF)
-	['VHF', 'UHF', 'SHF'].forEach(group => {
-		let count;
-		let displayText;
-
-		// Check if fetched band is in this group
-		let isActiveGroup = false;
-		if (fetchedBand) {
-			let fetchedBandGroup = getBandGroup(fetchedBand);
-			isActiveGroup = (fetchedBandGroup === group);
-		}
-
-		// If in single band fetch mode and this is not the fetched band's group, show "-"
-		if (fetchedBand && !isActiveGroup) {
-			displayText = '-';
-		} else {
-			count = groupCounts[group] || 0;
-			displayText = count.toString();
-		}
-
-		let $badge = $('#toggle' + group + 'Filter .band-count-badge');
-		if ($badge.length === 0) {
-			// Badge doesn't exist yet, create it
-			$('#toggle' + group + 'Filter').append(' <span class="badge bg-dark band-count-badge">' + displayText + '</span>');
-		} else {
-			// Update existing badge
-			$badge.text(displayText);
-		}
-	});		// Update mode button badges
-		const modeButtons = ['Cw', 'Digi', 'Phone'];
-		modeButtons.forEach(mode => {
-			let modeKey = mode.toLowerCase();
-			let count = modeCounts[modeKey] || 0;
-			let $badge = $('#toggle' + mode + 'Filter .mode-count-badge');
+		quickFilters.forEach(filter => {
+			let $badge = $('#' + filter.id + ' .quick-filter-count-badge');
 			if ($badge.length === 0) {
 				// Badge doesn't exist yet, create it
-				$('#toggle' + mode + 'Filter').append(' <span class="badge bg-dark mode-count-badge">' + count + '</span>');
+				$('#' + filter.id).append(' <span class="badge bg-dark quick-filter-count-badge">' + filter.count + '</span>');
 			} else {
 				// Update existing badge
-				$badge.text(count);
+				$badge.text(filter.count);
 			}
 		});
+	}
 
-	// Count spots for quick filter badges
-	let quickFilterCounts = {
-		lotw: 0,
-		dxspot: 0,
-		newcontinent: 0,
-		newcountry: 0,
-		newcallsign: 0,
-		contest: 0,
-		geohunter: 0,
-		fresh: 0
-	};
-
-	cachedSpotData.forEach((spot) => {
-		// Cache DXCC references
-		const dxccSpotted = spot.dxcc_spotted;
-		const dxccSpotter = spot.dxcc_spotter;
-
-		// Apply de continent filter
-		if (deContinentSet && (!dxccSpotter || !dxccSpotter.cont || !deContinentSet.has(dxccSpotter.cont))) return;
-
-		// Apply spotted continent filter
-		if (spottedContinentSet && (!dxccSpotted || !dxccSpotted.cont || !spottedContinentSet.has(dxccSpotted.cont))) return;
-
-		// Apply CWN status filter
-		if (cwnSet) {
-			const workedDxcc = spot.worked_dxcc;
-			const cnfmdDxcc = spot.cnfmd_dxcc;
-			if (!((cwnSet.has('notwkd') && !workedDxcc) ||
-				  (cwnSet.has('wkd') && workedDxcc) ||
-				  (cwnSet.has('cnf') && cnfmdDxcc) ||
-				  (cwnSet.has('ucnf') && workedDxcc && !cnfmdDxcc))) {
-				return;
-			}
-		}
-
-		// Apply band filter
-		if (selectedBandSet && !selectedBandSet.has(spot.band)) return;
-
-		// Apply mode filter
-		if (selectedModeSet && (!spot.mode || !selectedModeSet.has(spot.mode))) return;
-
-		// Count quick filter matches (use cached references)
-		if (dxccSpotted && dxccSpotted.lotw_user) quickFilterCounts.lotw++;
-		if (dxccSpotted?.cont && dxccSpotter?.cont && dxccSpotted.cont !== dxccSpotter.cont) quickFilterCounts.dxspot++;
-		if (spot.worked_continent === false) quickFilterCounts.newcontinent++;
-		if (spot.worked_dxcc === false) quickFilterCounts.newcountry++;
-		if (spot.worked_call === false) quickFilterCounts.newcallsign++;
-		if (dxccSpotted && dxccSpotted.isContest) quickFilterCounts.contest++;
-		if (dxccSpotted && (dxccSpotted.pota_ref || dxccSpotted.sota_ref || dxccSpotted.wwff_ref || dxccSpotted.iota_ref)) quickFilterCounts.geohunter++;
-		if ((spot.age || 0) < 5) quickFilterCounts.fresh++;
-	});
-
-	// Update quick filter badges
-	const quickFilters = [
-		{ id: 'toggleLotwFilter', count: quickFilterCounts.lotw },
-		{ id: 'toggleDxSpotFilter', count: quickFilterCounts.dxspot },
-		{ id: 'toggleNewContinentFilter', count: quickFilterCounts.newcontinent },
-		{ id: 'toggleDxccNeededFilter', count: quickFilterCounts.newcountry },
-		{ id: 'toggleNewCallsignFilter', count: quickFilterCounts.newcallsign },
-		{ id: 'toggleContestFilter', count: quickFilterCounts.contest },
-		{ id: 'toggleGeoHunterFilter', count: quickFilterCounts.geohunter },
-		{ id: 'toggleFreshFilter', count: quickFilterCounts.fresh }
-	];
-
-	quickFilters.forEach(filter => {
-		let $badge = $('#' + filter.id + ' .quick-filter-count-badge');
-		if ($badge.length === 0) {
-			// Badge doesn't exist yet, create it
-			$('#' + filter.id).append(' <span class="badge bg-dark quick-filter-count-badge">' + filter.count + '</span>');
-		} else {
-			// Update existing badge
-			$badge.text(filter.count);
-		}
-	});
-}	// ========================================
+	// ========================================
 	// BACKEND DATA FETCH
 	// ========================================
 
@@ -1538,10 +1620,6 @@ $(function() {
 		if (deContinent.length === 1 && !deContinent.includes('Any')) continentForAPI = deContinent[0];
 
 		// bandForAPI is now passed as a parameter from applyFilters()
-		// Log if CAT Control influenced the band selection
-		if (bandForAPI !== 'All') {
-
-		}
 
 		// Update backend filter state
 		loadedBackendFilters = {
@@ -1698,7 +1776,8 @@ $(function() {
 			updateStatusBar(0, 0, getServerFilterText(), getClientFilterText(), false, false);
 			startRefreshTimer();
 		});
-	}	// Highlight rows within ±20 kHz of specified frequency (for CAT integration)
+	}
+	// Highlight rows within ±20 kHz of specified frequency (for CAT integration)
 	// Old highlight_current_qrg function removed - now using updateFrequencyGradientColors
 
 	// Initialize DataTable
@@ -1741,6 +1820,11 @@ $(function() {
 	// SMART FILTER APPLICATION
 	// ========================================
 
+	// Get band group (VHF/UHF/SHF) for a given band - memoized with O(1) lookup
+	function getBandGroup(band) {
+		return BAND_TO_GROUP_MAP[band] || null;
+	}
+
 	// Intelligently decide whether to reload from backend or filter client-side
 	// Backend filter (requires new API call): de continent only
 	// Client filters (use cached data): band, mode, cwn, spotted continent, requiredFlags, additionalFlags
@@ -1760,27 +1844,18 @@ $(function() {
 		}
 		// If multiple continents selected, fetch 'Any' from backend and filter client-side
 
-		// Determine if we're in single-band fetch mode (CAT Control active)
-		// In this mode, band changes require a new server fetch
-		// Use the selected band filter value when CAT is active and a single band is selected
+		// Band filtering: In purple mode (on+marker), fetch only the active band from backend
 		let bandForAPI = 'All';
-		let isSingleBandMode = false;
-		if (isCatTrackingEnabled) {
-			// Check if a single specific band is selected (not 'All')
-			if (band.length === 1 && !band.includes('All') && band[0] !== '') {
-				bandForAPI = band[0];
-				isSingleBandMode = true;
-			}
+		if (catState === 'on+marker' && band.length === 1 && !band.includes('All')) {
+			// Purple mode with single band selected - fetch only that band from backend
+			bandForAPI = band[0];
 		}
 
-
-
-
 		// Check if backend parameters changed (requires new data fetch)
-		// In single-band mode, band selection changes also require server fetch
+		// Continent and band filters affect server fetch
 		let backendParamsChanged = forceReload ||
 			loadedBackendFilters.continent !== continentForAPI ||
-			(isSingleBandMode && loadedBackendFilters.band !== bandForAPI);
+			loadedBackendFilters.band !== bandForAPI;
 
 
 
@@ -1913,18 +1988,6 @@ $(function() {
 	});
 
 	$("#spotSearchInput").on("input", function() {
-		const cursorPos = this.selectionStart;
-		const oldValue = this.value;
-		const newValue = oldValue.replace(/0/g, "Ø");
-
-		if (newValue !== oldValue) {
-			this.value = newValue;
-			// Restore cursor position
-			this.setSelectionRange(cursorPos, cursorPos);
-			// Trigger search with new value
-			table.search(newValue).draw();
-		}
-
 		// Show/hide clear button based on input value
 		if (this.value.length > 0) {
 			$('#clearSearchBtn').show();
@@ -2083,7 +2146,7 @@ $(function() {
 		// Add mode with fallback to SSB (backward compatible - optional field)
 		if (mode) {
 			// For digital modes (except digital voice), don't set mode - let user choose
-			if (isDigitalCategory && typeof isDigitalCategory === 'function' && isDigitalCategory(mode) && 
+			if (isDigitalCategory && typeof isDigitalCategory === 'function' && isDigitalCategory(mode) &&
 				!(isModeInCategory && typeof isModeInCategory === 'function' && isModeInCategory(mode, 'DIGITAL_VOICE'))) {
 				// Don't set mode for digital modes, let user choose the specific digital mode
 			} else {
@@ -2214,7 +2277,7 @@ $(function() {
 
 	// Three-state CAT control: 'off', 'on', 'on+marker'
 	var catState = 'off';
-	var isFrequencyMarkerEnabled = false;
+	window.isFrequencyMarkerEnabled = false; // Purple mode indicator
 
 	// Click detection for single/double-click
 	var catClickTimer = null;
@@ -2380,8 +2443,8 @@ $(function() {
 		// Store current radio frequency (convert Hz to kHz)
 		currentRadioFrequency = data.frequency / 1000;
 
-		// Bandmap-specific: Update band filter if CAT Control is enabled
-		if (isCatTrackingEnabled) {
+		// Bandmap-specific: Update band filter only in purple mode
+		if (isFrequencyMarkerEnabled) {
 			const currentBands = $("#band").val() || [];
 
 			if (band && band !== '') {
@@ -2413,8 +2476,10 @@ $(function() {
 					}
 				}
 			}
+		}
 
-			// Update frequency gradient colors for all visible rows
+		// Update frequency gradient colors for all visible rows (works in both normal and purple CAT modes)
+		if (isCatTrackingEnabled) {
 			updateFrequencyGradientColors();
 		}
 
@@ -2426,11 +2491,12 @@ $(function() {
 
 			catJsUpdateCATui(data);
 
-			// If CAT Control is OFF, restore the band selection
-			// (cat.js updateCATui automatically sets band based on frequency, but we don't want that on bandmap unless CAT Control is ON)
-			if (!isCatTrackingEnabled && bandBeforeUpdate) {
+			// Restore the band selection unless we're in purple mode
+			// (cat.js updateCATui automatically sets band based on frequency, but we only want that in purple mode)
+			if (!window.isFrequencyMarkerEnabled && bandBeforeUpdate) {
 				$("#band").val(bandBeforeUpdate);
 				updateSelectCheckboxes('band');
+				syncQuickFilterButtons();
 			}
 		} else {
 			console.warn('Bandmap: cat.js updateCATui not available');
@@ -3024,12 +3090,13 @@ $(function() {
 			col.bSortable = false;
 		});
 
-	// Disable click events on all column headers
-	$('.spottable thead th').off('click.DT');
+		// Disable click events on all column headers
+		$('.spottable thead th').off('click.DT');
 
-	// Redraw column headers to update sort icons
-	table.columns.adjust();
-}
+		// Redraw column headers to update sort icons
+		table.columns.adjust();
+	}
+
 	/**
 	 * Unlock table sorting when CAT Control is disabled
 	 */
@@ -3040,8 +3107,8 @@ $(function() {
 		$('.spottable').removeClass('cat-sorting-locked');
 
 		// Re-enable sorting on all columns that were originally sortable
-		// Based on columnDefs: columns 5, 6, 7, 11, 12, 13, 14 are not sortable
-		const nonSortableColumns = [5, 6, 7, 11, 12, 13, 14];
+		// Based on columnDefs: columns 5, 6, 9, 16 are not sortable (Submode, Cont, Flag, Message)
+		const nonSortableColumns = [5, 6, 9, 16];
 
 		table.settings()[0].aoColumns.forEach(function(col, index) {
 			if (!nonSortableColumns.includes(index)) {
@@ -3060,8 +3127,6 @@ $(function() {
 
 		// Clear frequency gradient colors
 		clearFrequencyGradientColors();
-
-
 	}
 
 	/**
@@ -3153,6 +3218,18 @@ $(function() {
 					window.displayRadioStatus('success', window.lastCATData);
 				}
 
+				// In normal mode: only show gradient, don't change filters or disable controls
+				if (window.lastCATData && window.lastCATData.frequency) {
+					updateFrequencyGradientColors();
+				}
+
+				updateButtonVisual('on');
+				break;
+
+		case 'on':
+			// ON → ON+MARKER (Purple Mode)
+			window.isFrequencyMarkerEnabled = true;
+			catState = 'on+marker';				// Purple mode: disable controls and set filter to current band
 				disableBandFilterControls();
 
 				if (window.lastCATData && window.lastCATData.frequency) {
@@ -3161,37 +3238,35 @@ $(function() {
 						$("#band").val([band]);
 						updateSelectCheckboxes('band');
 						syncQuickFilterButtons();
-						applyFilters(false);
+						// Force reload to fetch only the active band from backend
+						applyFilters(true);
 					}
+					updateFrequencyGradientColors();
 				}
-
-				updateButtonVisual('on');
-				break;
-
-			case 'on':
-				// ON → ON+MARKER
-				isFrequencyMarkerEnabled = true;
-				catState = 'on+marker';
-
 				lockTableSortingToFrequency();
-
-				if (window.lastCATData && window.lastCATData.frequency) {
-					updateFrequencyGradientColors(window.lastCATData.frequency);
-				}
 
 				updateButtonVisual('on+marker');
 				break;
 
-			case 'on+marker':
-				// ON+MARKER → ON
-				isFrequencyMarkerEnabled = false;
-				catState = 'on';
+		case 'on+marker':
+			// ON+MARKER → ON (Exit Purple Mode)
+			window.isFrequencyMarkerEnabled = false;
+			catState = 'on';
 
-				unlockTableSorting();
-				clearFrequencyGradientColors();
+			// Re-enable band filter controls
+			enableBandFilterControls();
 
-				updateButtonVisual('on');
-				break;
+			// Reset band filter to 'All' and force reload to fetch all bands
+			$("#band").val(['All']);
+			updateSelectCheckboxes('band');
+			syncQuickFilterButtons();
+			applyFilters(true); // Force reload to fetch all bands
+
+			unlockTableSorting();
+			clearFrequencyGradientColors();
+
+			updateButtonVisual('on');
+			break;
 		}
 	}
 
@@ -3201,8 +3276,14 @@ $(function() {
 
 		isCatTrackingEnabled = false;
 		window.isCatTrackingEnabled = false;
-		isFrequencyMarkerEnabled = false;
+		window.isFrequencyMarkerEnabled = false;
 		catState = 'off';
+
+		// Reset band filter to 'All' when disabling CAT
+		$("#band").val(['All']);
+		updateSelectCheckboxes('band');
+		syncQuickFilterButtons();
+		applyFilters(true); // Force reload to fetch all bands
 
 		const selectedRadio = $('.radios option:selected').val();
 		if (selectedRadio && selectedRadio !== '0' && typeof window.displayOfflineStatus === 'function') {
@@ -3237,16 +3318,16 @@ $(function() {
 	 * Dynamically shows/hides columns to optimize space usage
 	 *
 	 * Column indices (0-based):
-	 * 0: Age, 1: Band, 2: Frequency, 3: Mode, 4: Callsign, 5: Continent, 6: CQZ,
-	 * 7: Flag, 8: Entity, 9: DXCC, 10: de Callsign, 11: de Cont, 12: de CQZ,
-	 * 13: Special, 14: Message
+	 * 0: Age, 1: Band, 2: Frequency, 3: Mode, 4: Submode, 5: Callsign, 6: Continent, 7: CQZ,
+	 * 8: Flag, 9: Entity, 10: DXCC, 11: de Callsign, 12: de Cont, 13: de CQZ,
+	 * 14: Last QSO, 15: Special, 16: Message
 	 *
 	 * Breakpoints:
 	 * - Full screen or > 1374px: Show all columns
-	 * - <= 1374px: Hide DXCC (9), CQZ (6), de CQZ (12)
-	 * - <= 1294px: Additionally hide Band (1), Cont (5), de Cont (11)
-	 * - <= 1024px: Additionally hide Flag (7)
-	 * - <= 500px: Show only Age (0), Freq (2), Callsign (4), Entity (8)
+	 * - <= 1374px: Hide DXCC (10), CQZ (7), de CQZ (13), Last QSO (14), Submode (4)
+	 * - <= 1294px: Additionally hide Band (1), Cont (6), de Cont (12)
+	 * - <= 1024px: Additionally hide Flag (8)
+	 * - <= 500px: Show only Age (0), Freq (2), Callsign (5), Entity (9)
 	 */
 	function handleResponsiveColumns() {
 		const tableContainer = $('.table-responsive');
@@ -3273,37 +3354,45 @@ $(function() {
 			// Show only Age, Freq, Callsign, Entity
 			$('.spottable th:nth-child(2), .spottable td:nth-child(2)').addClass('column-hidden'); // Band
 			$('.spottable th:nth-child(4), .spottable td:nth-child(4)').addClass('column-hidden'); // Mode
-			$('.spottable th:nth-child(6), .spottable td:nth-child(6)').addClass('column-hidden'); // Continent
-			$('.spottable th:nth-child(7), .spottable td:nth-child(7)').addClass('column-hidden'); // CQZ
-			$('.spottable th:nth-child(8), .spottable td:nth-child(8)').addClass('column-hidden'); // Flag
-			$('.spottable th:nth-child(10), .spottable td:nth-child(10)').addClass('column-hidden'); // DXCC
-			$('.spottable th:nth-child(11), .spottable td:nth-child(11)').addClass('column-hidden'); // de Callsign
-			$('.spottable th:nth-child(12), .spottable td:nth-child(12)').addClass('column-hidden'); // de Cont
-			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de CQZ
-			$('.spottable th:nth-child(14), .spottable td:nth-child(14)').addClass('column-hidden'); // Special
-			$('.spottable th:nth-child(15), .spottable td:nth-child(15)').addClass('column-hidden'); // Message
+			$('.spottable th:nth-child(5), .spottable td:nth-child(5)').addClass('column-hidden'); // Submode
+			$('.spottable th:nth-child(7), .spottable td:nth-child(7)').addClass('column-hidden'); // Continent
+			$('.spottable th:nth-child(8), .spottable td:nth-child(8)').addClass('column-hidden'); // CQZ
+			$('.spottable th:nth-child(9), .spottable td:nth-child(9)').addClass('column-hidden'); // Flag
+			$('.spottable th:nth-child(11), .spottable td:nth-child(11)').addClass('column-hidden'); // DXCC
+			$('.spottable th:nth-child(12), .spottable td:nth-child(12)').addClass('column-hidden'); // de Callsign
+			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de Cont
+			$('.spottable th:nth-child(14), .spottable td:nth-child(14)').addClass('column-hidden'); // de CQZ
+			$('.spottable th:nth-child(15), .spottable td:nth-child(15)').addClass('column-hidden'); // Last QSO
+			$('.spottable th:nth-child(16), .spottable td:nth-child(16)').addClass('column-hidden'); // Special
+			$('.spottable th:nth-child(17), .spottable td:nth-child(17)').addClass('column-hidden'); // Message
 		} else if (containerWidth <= 1024) {
-			// Hide: DXCC, CQZ, de CQZ, Band, Cont, de Cont, Flag
+			// Hide: DXCC, CQZ, de CQZ, Last QSO, Submode, Band, Cont, de Cont, Flag
 			$('.spottable th:nth-child(2), .spottable td:nth-child(2)').addClass('column-hidden'); // Band
-			$('.spottable th:nth-child(6), .spottable td:nth-child(6)').addClass('column-hidden'); // Continent
-			$('.spottable th:nth-child(7), .spottable td:nth-child(7)').addClass('column-hidden'); // CQZ
-			$('.spottable th:nth-child(8), .spottable td:nth-child(8)').addClass('column-hidden'); // Flag
-			$('.spottable th:nth-child(10), .spottable td:nth-child(10)').addClass('column-hidden'); // DXCC
-			$('.spottable th:nth-child(12), .spottable td:nth-child(12)').addClass('column-hidden'); // de Cont
-			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de CQZ
+			$('.spottable th:nth-child(5), .spottable td:nth-child(5)').addClass('column-hidden'); // Submode
+			$('.spottable th:nth-child(7), .spottable td:nth-child(7)').addClass('column-hidden'); // Continent
+			$('.spottable th:nth-child(8), .spottable td:nth-child(8)').addClass('column-hidden'); // CQZ
+			$('.spottable th:nth-child(9), .spottable td:nth-child(9)').addClass('column-hidden'); // Flag
+			$('.spottable th:nth-child(11), .spottable td:nth-child(11)').addClass('column-hidden'); // DXCC
+			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de Cont
+			$('.spottable th:nth-child(14), .spottable td:nth-child(14)').addClass('column-hidden'); // de CQZ
+			$('.spottable th:nth-child(15), .spottable td:nth-child(15)').addClass('column-hidden'); // Last QSO
 		} else if (containerWidth <= 1294) {
-			// Hide: DXCC, CQZ, de CQZ, Band, Cont, de Cont
+			// Hide: DXCC, CQZ, de CQZ, Last QSO, Submode, Band, Cont, de Cont
 			$('.spottable th:nth-child(2), .spottable td:nth-child(2)').addClass('column-hidden'); // Band
-			$('.spottable th:nth-child(6), .spottable td:nth-child(6)').addClass('column-hidden'); // Continent
-			$('.spottable th:nth-child(7), .spottable td:nth-child(7)').addClass('column-hidden'); // CQZ
-			$('.spottable th:nth-child(10), .spottable td:nth-child(10)').addClass('column-hidden'); // DXCC
-			$('.spottable th:nth-child(12), .spottable td:nth-child(12)').addClass('column-hidden'); // de Cont
-			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de CQZ
+			$('.spottable th:nth-child(5), .spottable td:nth-child(5)').addClass('column-hidden'); // Submode
+			$('.spottable th:nth-child(7), .spottable td:nth-child(7)').addClass('column-hidden'); // Continent
+			$('.spottable th:nth-child(8), .spottable td:nth-child(8)').addClass('column-hidden'); // CQZ
+			$('.spottable th:nth-child(11), .spottable td:nth-child(11)').addClass('column-hidden'); // DXCC
+			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de Cont
+			$('.spottable th:nth-child(14), .spottable td:nth-child(14)').addClass('column-hidden'); // de CQZ
+			$('.spottable th:nth-child(15), .spottable td:nth-child(15)').addClass('column-hidden'); // Last QSO
 		} else if (containerWidth <= 1374) {
-			// Hide: DXCC, CQZ, de CQZ
-			$('.spottable th:nth-child(7), .spottable td:nth-child(7)').addClass('column-hidden'); // CQZ
-			$('.spottable th:nth-child(10), .spottable td:nth-child(10)').addClass('column-hidden'); // DXCC
-			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de CQZ
+			// Hide: DXCC, CQZ, de CQZ, Last QSO, Submode
+			$('.spottable th:nth-child(5), .spottable td:nth-child(5)').addClass('column-hidden'); // Submode
+			$('.spottable th:nth-child(8), .spottable td:nth-child(8)').addClass('column-hidden'); // CQZ
+			$('.spottable th:nth-child(11), .spottable td:nth-child(11)').addClass('column-hidden'); // DXCC
+			$('.spottable th:nth-child(14), .spottable td:nth-child(14)').addClass('column-hidden'); // de CQZ
+			$('.spottable th:nth-child(15), .spottable td:nth-child(15)').addClass('column-hidden'); // Last QSO
 		}
 		// else: containerWidth > 1374 - show all columns (already reset above)
 
@@ -3408,18 +3497,7 @@ $(function() {
 	// DX MAP
 	// ========================================
 
-	let dxMap = null;
-	let dxMapVisible = false;
-	let dxccMarkers = [];
-	let spotterMarkers = [];
-	let connectionLines = [];
-	let userHomeMarker = null;
-	let showSpotters = false;
-	let showDayNight = true; // Day/Night terminator enabled by default
-	let terminatorLayer = null; // Store terminator layer reference
-	let hoverSpottersData = new Map(); // Store spotter data for hover
-	let hoverSpotterMarkers = []; // Temporary markers shown on hover
-	let hoverConnectionLines = []; // Temporary lines shown on hover
+	// Map variables declared at top of function scope
 	let hoverEventsInitialized = false; // Flag to prevent duplicate event handlers
 
 	/**
@@ -3586,7 +3664,15 @@ $(function() {
 	 */
 	function createSpotTable(spots, dxccEntity, dxccFlag) {
 		// Add DXCC name header with flag (bigger flag size)
-		const flagEmoji = dxccFlag ? '<span class="flag-emoji" style="font-size: 20px;">' + dxccFlag + '</span> ' : '';
+		// White flag: entity exists but flag missing | Pirate flag: no entity
+		let flagEmoji = '';
+		if (dxccFlag) {
+			flagEmoji = '<span class="flag-emoji" style="font-size: 20px;">' + dxccFlag + '</span> ';
+		} else if (dxccEntity) {
+			flagEmoji = '<span class="flag-emoji" style="font-size: 20px;">🏳️</span> ';
+		} else {
+			flagEmoji = '<span class="flag-emoji" style="font-size: 20px;">🏴‍☠️</span> ';
+		}
 		let html = '<div style="font-weight: bold; font-size: 14px; padding: 4px 8px; background: rgba(0,0,0,0.1); margin-bottom: 4px; text-align: center;">' + flagEmoji + dxccEntity + '</div>';
 
 		// Create scrollable container if more than 5 spots
@@ -3737,10 +3823,11 @@ $(function() {
 
 		// Build list of spots from filtered data
 		const spots = [];
+
 		filteredData.each(function(row) {
 			const freqMHzStr = row[2];
 			const freqKHz = parseFloat(freqMHzStr) * 1000;
-			const callsignHtml = row[4];
+			const callsignHtml = row[5]; // DX column (0=Age, 1=Band, 2=Freq, 3=Mode, 4=Submode, 5=DX)
 
 			let callsign = null;
 			let match = callsignHtml.match(/db\/([^"]+)"/);
@@ -3752,7 +3839,9 @@ $(function() {
 				callsign = tempDiv.textContent.trim();
 			}
 
-			if (!callsign) return;
+			if (!callsign || !cachedSpotData) {
+				return;
+			}
 
 			const spot = cachedSpotData.find(s =>
 				s.spotted === callsign &&
@@ -4065,7 +4154,6 @@ $(function() {
 
 			$(document).on('mouseenter', '.dx-marker-label', function() {
 				if (!dxMap) {
-					console.log('Hover: Map not initialized');
 					return;
 				}
 
@@ -4082,15 +4170,11 @@ $(function() {
 				hoverSpotterMarkers = [];
 				hoverConnectionLines = [];
 
-				const dxccId = String($(this).data('dxcc-id'));
-				if (!dxccId || dxccId === 'undefined') {
-					console.log('Hover: No dxccId found');
-					return;
-				}
-
-				const hoverData = hoverSpottersData.get(dxccId);
+			const dxccId = String($(this).data('dxcc-id'));
+			if (!dxccId || dxccId === 'undefined') {
+				return;
+			}				const hoverData = hoverSpottersData.get(dxccId);
 				if (!hoverData) {
-					console.log('Hover: No hover data for', dxccId);
 					return;
 				}
 
@@ -4367,7 +4451,4 @@ $(function() {
 			$('#toggleCatTracking').prop('disabled', false).removeClass('disabled');
 		}
 	}, 100); // Small delay to ensure cat.js has loaded and exposed the function
-
 });
-
-
