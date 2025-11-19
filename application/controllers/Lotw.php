@@ -422,7 +422,7 @@ class Lotw extends CI_Controller {
 		$filename = file_get_contents('file://'.$file);
 		$worked = openssl_pkcs12_read($filename, $results, $password);
 
-		if ($results['cert']) {
+		if (array_key_exists('cert', $results)) {
 			$data['general_cert'] = $results['cert'];
 		} else {
 			log_message('error', 'Found no certificate in file '.$file);
