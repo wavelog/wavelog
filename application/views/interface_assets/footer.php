@@ -389,31 +389,6 @@ function stopImpersonate_modal() {
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/buttons.html5.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/selectize.js"></script>
 
-<?php if ($this->uri->segment(1) == "station") { ?>
-    <script language="javascript" src="<?php echo base_url() ;?>assets/js/HamGridSquare.js"></script>
-    <script src="<?php echo base_url() ;?>assets/js/sections/station_locations.js"></script>
-    <script src="<?php echo base_url() ;?>assets/js/bootstrap-multiselect.js"></script>
-    <script>
-        var position;
-        function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition);
-            } else {
-                console.log('Geolocation is not supported by this browser.');
-            }
-        }
-
-        function showPosition(position) {
-            gridsquare = latLonToGridSquare(position.coords.latitude,position.coords.longitude);
-            document.getElementById("stationGridsquareInput").value = gridsquare;
-  }
-    </script>
-<?php } ?>
-
-<?php if ($this->uri->segment(1) == "logbooks") { ?>
-    <script src="<?php echo base_url() ;?>assets/js/sections/station_logbooks.js"></script>
-<?php } ?>
-
 <?php if ($this->uri->segment(1) == "debug") { ?>
 <script type="text/javascript">
 function copyURL(url) {
