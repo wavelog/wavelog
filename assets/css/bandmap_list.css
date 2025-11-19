@@ -152,12 +152,12 @@ tbody a {
 	cursor: pointer !important;
 }
 
-.spottable tbody tr td:nth-child(5) a {
+.spottable tbody tr td:nth-child(6) a {
 	text-decoration: underline !important;
 	cursor: pointer !important;
 }
 
-.spottable tbody tr td:nth-child(7) i:hover {
+.spottable tbody tr td:nth-child(8) i:hover {
 	opacity: 0.7;
 	transform: scale(1.1);
 	transition: all 0.2s ease;
@@ -328,6 +328,20 @@ table tbody tr.cat-nearest-above td {
 
 .spottable thead th {
 	font-weight: normal;
+	text-align: center;
+}
+
+/* Limit container max-width for optimal viewing on 1920px monitors */
+#bandmapContainer {
+	max-width: 1910px !important;
+	margin: 0 auto;
+}
+
+/* Reduce horizontal padding in table cells to fit more content */
+.spottable th,
+.spottable td {
+	padding-left: 4px !important;
+	padding-right: 4px !important;
 }
 
 /* Column widths - consolidated selectors */
@@ -335,17 +349,19 @@ table tbody tr.cat-nearest-above td {
 .spottable th:nth-child(2), .spottable td:nth-child(2) { width: 53px; }   /* Band */
 .spottable th:nth-child(3), .spottable td:nth-child(3) { width: 90px; }   /* Frequency */
 .spottable th:nth-child(4), .spottable td:nth-child(4) { width: 60px; }   /* Mode */
-.spottable th:nth-child(5), .spottable td:nth-child(5) { width: 115px; }  /* Callsign (reduced by 5px) */
-.spottable th:nth-child(6), .spottable td:nth-child(6) { width: 40px; }   /* Continent */
-.spottable th:nth-child(7), .spottable td:nth-child(7) { width: 50px; }   /* CQ Zone */
-.spottable th:nth-child(8), .spottable td:nth-child(8) { width: 50px; }   /* Flag */
-.spottable th:nth-child(9), .spottable td:nth-child(9) { width: 150px; }  /* Entity (DXCC name) */
-.spottable th:nth-child(10), .spottable td:nth-child(10) { width: 60px; } /* DXCC Number */
-.spottable th:nth-child(11), .spottable td:nth-child(11) { width: 115px; } /* de Callsign (Spotter) (reduced by 5px) */
-.spottable th:nth-child(12), .spottable td:nth-child(12) { width: 50px; } /* de Cont */
-.spottable th:nth-child(13), .spottable td:nth-child(13) { width: 50px; } /* de CQZ */
-.spottable th:nth-child(14), .spottable td:nth-child(14) { width: 120px; } /* Special (LoTW, POTA, etc) (increased by 10px) */
-.spottable th:nth-child(15), .spottable td:nth-child(15) { min-width: 100px; width: 100%; }  /* Message - fills remaining space */
+.spottable th:nth-child(5), .spottable td:nth-child(5) { width: 70px; }   /* Submode */
+.spottable th:nth-child(6), .spottable td:nth-child(6) { width: 115px; }  /* Callsign (reduced by 5px) */
+.spottable th:nth-child(7), .spottable td:nth-child(7) { width: 40px; }   /* Continent */
+.spottable th:nth-child(8), .spottable td:nth-child(8) { width: 50px; }   /* CQ Zone */
+.spottable th:nth-child(9), .spottable td:nth-child(9) { width: 50px; }   /* Flag */
+.spottable th:nth-child(10), .spottable td:nth-child(10) { width: 150px; }  /* Entity (DXCC name) */
+.spottable th:nth-child(11), .spottable td:nth-child(11) { width: 60px; } /* DXCC Number */
+.spottable th:nth-child(12), .spottable td:nth-child(12) { width: 115px; } /* de Callsign (Spotter) (reduced by 5px) */
+.spottable th:nth-child(13), .spottable td:nth-child(13) { width: 50px; } /* de Cont */
+.spottable th:nth-child(14), .spottable td:nth-child(14) { width: 50px; } /* de CQZ */
+.spottable th:nth-child(15), .spottable td:nth-child(15) { width: 95px; } /* Last QSO */
+.spottable th:nth-child(16), .spottable td:nth-child(16) { width: 120px; } /* Special (LoTW, POTA, etc) (increased by 10px) */
+.spottable th:nth-child(17), .spottable td:nth-child(17) { min-width: 70px; width: 100%; }  /* Message - fills remaining space */
 
 /* Hidden class for responsive columns (controlled by JavaScript) */
 .spottable .column-hidden {
@@ -358,14 +374,14 @@ table tbody tr.cat-nearest-above td {
 	white-space: nowrap;
 }
 
-.spottable td:nth-child(15) {
+.spottable td:nth-child(17) {
 	white-space: normal;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
 	font-size: calc(1rem - 4px);
 }
 
-.spottable td:nth-child(6), .spottable td:nth-child(12) {
+.spottable td:nth-child(7), .spottable td:nth-child(13) {
 	font-family: 'Segoe UI Emoji', 'Noto Color Emoji', 'Apple Color Emoji', Arial, sans-serif;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -388,18 +404,18 @@ table tbody tr.cat-nearest-above td {
 	display: inline-block;
 }
 
-.spottable td:nth-child(14) {
+.spottable td:nth-child(16) {
 	overflow: visible;
 	white-space: nowrap;
 }
 
 /* Center alignment for specific columns */
-.spottable th:nth-child(6), .spottable td:nth-child(6),   /* Continent (spotted) */
-.spottable th:nth-child(7), .spottable td:nth-child(7),   /* CQ Zone (spotted) */
-.spottable th:nth-child(8), .spottable td:nth-child(8),   /* Flag */
-.spottable th:nth-child(10), .spottable td:nth-child(10), /* DXCC Number */
-.spottable th:nth-child(12), .spottable td:nth-child(12), /* de Cont (spotter) */
-.spottable th:nth-child(13), .spottable td:nth-child(13)  /* de CQZ (spotter) */
+.spottable th:nth-child(7), .spottable td:nth-child(7),   /* Continent (spotted) */
+.spottable th:nth-child(8), .spottable td:nth-child(8),   /* CQ Zone (spotted) */
+.spottable th:nth-child(9), .spottable td:nth-child(9),   /* Flag */
+.spottable th:nth-child(11), .spottable td:nth-child(11), /* DXCC Number */
+.spottable th:nth-child(13), .spottable td:nth-child(13), /* de Cont (spotter) */
+.spottable th:nth-child(14), .spottable td:nth-child(14)  /* de CQZ (spotter) */
 {
 	text-align: center;
 }
@@ -409,13 +425,13 @@ table tbody tr.cat-nearest-above td {
 	.spottable {
 		table-layout: auto !important;
 	}
-	.spottable th:nth-child(9), .spottable td:nth-child(9) {
+	.spottable th:nth-child(10), .spottable td:nth-child(10) {
 		width: auto !important;
 		min-width: 150px !important;
 	}
 	.spottable th:nth-child(1), .spottable td:nth-child(1) { width: 50px !important; }   /* Age */
 	.spottable th:nth-child(3), .spottable td:nth-child(3) { width: 90px !important; }   /* Frequency */
-	.spottable th:nth-child(5), .spottable td:nth-child(5) { width: 100px !important; }  /* Callsign */
+	.spottable th:nth-child(6), .spottable td:nth-child(6) { width: 100px !important; }  /* Callsign */
 }
 
 .spottable thead th {
