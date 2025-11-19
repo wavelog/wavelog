@@ -1257,4 +1257,26 @@ class Lotw extends CI_Controller {
 		endswitch;
 	}
 
+	function lotw_cert_status ($serial = null) {
+		if (($serial ?? '') != '' && is_numeric($serial)) {
+			$url = 'https://lotw.arrl.org/lotw/crl?serial='.$serial;
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $url);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+			$result = curl_exec($ch);
+			$xml = new SimpleXMLElement($result);
+			switch ((string)$xml->Status) {
+			case 'Superceded':
+				return 1;
+			case 'Unrevoked':
+				return 0;
+			default:
+				log_message('error', 'Unknown LotW CRL status: '.(string)$xml->Status);
+				return 99;
+			}
+		}
+		return 99;
+	}
+
 } // end class
