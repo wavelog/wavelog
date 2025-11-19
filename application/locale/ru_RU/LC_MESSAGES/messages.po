@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-11-17 07:04+0000\n"
+"POT-Creation-Date: 2025-11-19 10:40+0000\n"
 "PO-Revision-Date: 2025-11-16 21:39+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -631,7 +631,7 @@ msgid "Edit Band"
 msgstr "Редактировать диапазон"
 
 #: application/controllers/Bandmap.php:28
-#: application/controllers/Bandmap.php:69
+#: application/controllers/Bandmap.php:74
 #: application/controllers/Options.php:152
 #: application/controllers/Options.php:163
 #: application/views/options/sidebar.php:7
@@ -2357,10 +2357,10 @@ msgstr "Редактировать"
 #: application/views/club/permissions.php:326
 #: application/views/contesting/add.php:62
 #: application/views/interface_assets/footer.php:65
-#: application/views/interface_assets/footer.php:2762
-#: application/views/interface_assets/footer.php:2780
-#: application/views/interface_assets/footer.php:2801
-#: application/views/interface_assets/footer.php:2819
+#: application/views/interface_assets/footer.php:2753
+#: application/views/interface_assets/footer.php:2771
+#: application/views/interface_assets/footer.php:2792
+#: application/views/interface_assets/footer.php:2810
 #: application/views/labels/index.php:48 application/views/labels/index.php:84
 #: application/views/logbookadvanced/index.php:789
 #: application/views/lotw_views/index.php:128
@@ -3387,29 +3387,29 @@ msgstr "HRDlog: на найдены QSO для загруки для позыв�
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: не найдены профили QTH с данными входя на HRDlog."
 
-#: application/models/Logbook_model.php:1294
+#: application/models/Logbook_model.php:1296
 msgid "Station ID not allowed"
 msgstr "Недопустимый ID станции"
 
-#: application/models/Logbook_model.php:1299
+#: application/models/Logbook_model.php:1301
 msgid "No Call given"
 msgstr "Не указан позывной"
 
-#: application/models/Logbook_model.php:1369
-#: application/models/Logbook_model.php:1571
+#: application/models/Logbook_model.php:1371
+#: application/models/Logbook_model.php:1573
 msgid "DXCC has to be Numeric"
 msgstr "DXCC должен быть цифровым"
 
-#: application/models/Logbook_model.php:4292
+#: application/models/Logbook_model.php:4586
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Неправильный позывной %s при импорте QSO с %s для %s: ПРОПУЩЕНО"
 
-#: application/models/Logbook_model.php:4305
+#: application/models/Logbook_model.php:4599
 msgid "QSO on"
 msgstr "начало QSO"
 
-#: application/models/Logbook_model.php:4305
+#: application/models/Logbook_model.php:4599
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3417,7 +3417,7 @@ msgstr ""
 "Вы пытались импортировать QSO без указанного позывного. Это QSO не было "
 "импортировано. Оно недействительно"
 
-#: application/models/Logbook_model.php:4354
+#: application/models/Logbook_model.php:4648
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -3426,80 +3426,80 @@ msgstr ""
 "QSO в %s: Вы пыталсь импортировать QSO без информации о диапазоне. Это QSO "
 "некорректно, импорт отклонён.imported. It's invalid"
 
-#: application/models/Logbook_model.php:4619
+#: application/models/Logbook_model.php:4913
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4630
+#: application/models/Logbook_model.php:4924
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4691
+#: application/models/Logbook_model.php:4985
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "дата загрузки QSO в Clublog недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4714
+#: application/models/Logbook_model.php:5008
 msgid "LoTW Rcvd status will be reset."
 msgstr "Статус подтверждения LoTW будет сброшен."
 
-#: application/models/Logbook_model.php:4714
+#: application/models/Logbook_model.php:5008
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения LoTW QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4739
+#: application/models/Logbook_model.php:5033
 msgid "LoTW Sent status will be reset."
 msgstr "Статус отправки LoTW будет сброшен."
 
-#: application/models/Logbook_model.php:4739
+#: application/models/Logbook_model.php:5033
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки LoTW QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:5033
+#: application/models/Logbook_model.php:5327
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Дубликат для"
 
-#: application/models/Logbook_model.php:5098
-#: application/models/Logbook_model.php:5193
+#: application/models/Logbook_model.php:5392
+#: application/models/Logbook_model.php:5487
 msgid "QSO could not be matched"
 msgstr "QSO не может быть сопоставлено"
 
-#: application/models/Logbook_model.php:5106
+#: application/models/Logbook_model.php:5400
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "подтверждено LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:5112
+#: application/models/Logbook_model.php:5406
 msgid "confirmed by award manager"
 msgstr "подтверждено менеджером диплома"
 
-#: application/models/Logbook_model.php:5116
+#: application/models/Logbook_model.php:5410
 msgid "confirmed by cross-check of DCL data"
 msgstr "подтверждено кросс-проверкой с данными DCL"
 
-#: application/models/Logbook_model.php:5120
+#: application/models/Logbook_model.php:5414
 msgid "confirmation pending"
 msgstr "подтверждение ожидается"
 
-#: application/models/Logbook_model.php:5123
+#: application/models/Logbook_model.php:5417
 msgid "unconfirmed"
 msgstr "не подтверждено"
 
-#: application/models/Logbook_model.php:5126
+#: application/models/Logbook_model.php:5420
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
 msgid "unknown"
 msgstr "неизвестно"
 
-#: application/models/Logbook_model.php:5196
+#: application/models/Logbook_model.php:5490
 msgid "POTA reference already in log"
 msgstr "Ренференция POTA уже в журнале"
 
-#: application/models/Logbook_model.php:5199
+#: application/models/Logbook_model.php:5493
 msgid "QSO updated"
 msgstr "QSO обновлено"
 
-#: application/models/Logbook_model.php:6006
+#: application/models/Logbook_model.php:6300
 #: application/views/activated_gridmap/index.php:114
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:58
@@ -3709,8 +3709,8 @@ msgstr "Разница"
 #: application/views/gridmap/index.php:110
 #: application/views/gridmap/index.php:124
 #: application/views/interface_assets/footer.php:48
-#: application/views/interface_assets/footer.php:1652
-#: application/views/interface_assets/footer.php:1791
+#: application/views/interface_assets/footer.php:1643
+#: application/views/interface_assets/footer.php:1782
 #: application/views/kml/index.php:21 application/views/kml/index.php:33
 #: application/views/kml/index.php:49 application/views/kml/index.php:67
 #: application/views/kml/index.php:79
@@ -4584,7 +4584,7 @@ msgstr ""
 #: application/views/adif/import.php:141
 #: application/views/interface_assets/footer.php:34
 #: application/views/interface_assets/footer.php:639
-#: application/views/interface_assets/footer.php:2524
+#: application/views/interface_assets/footer.php:2515
 msgid "DANGER"
 msgstr "ОПАСНО"
 
@@ -5346,7 +5346,7 @@ msgstr "Всего"
 
 #: application/views/awards/cq/index.php:3
 #: application/views/awards/cq/index.php:154
-#: application/views/bandmap/list.php:517 application/views/csv/index.php:80
+#: application/views/bandmap/list.php:518 application/views/csv/index.php:80
 #: application/views/dxatlas/index.php:80
 #: application/views/gridmap/index.php:202 application/views/kml/index.php:65
 #: application/views/logbookadvanced/edit.php:24
@@ -5508,7 +5508,7 @@ msgstr "Отобразить QSO с типом QSL"
 #: application/views/awards/iota/index.php:64
 #: application/views/awards/itu/index.php:60
 #: application/views/awards/wac/index.php:45
-#: application/views/interface_assets/footer.php:2503
+#: application/views/interface_assets/footer.php:2494
 #: application/views/logbookadvanced/index.php:40
 #: application/views/qso/edit_ajax.php:419
 #: application/views/view_log/qso.php:25
@@ -6603,7 +6603,7 @@ msgid "Awards - Worked All Continents (WAC)"
 msgstr "Дипломы - Worked All Continents (WAC)"
 
 #: application/views/awards/wac/index.php:152
-#: application/views/bandmap/list.php:73 application/views/bandmap/list.php:516
+#: application/views/bandmap/list.php:73 application/views/bandmap/list.php:517
 #: application/views/continents/index.php:62
 #: application/views/logbookadvanced/edit.php:23
 #: application/views/logbookadvanced/index.php:438
@@ -7168,7 +7168,7 @@ msgstr "Сработано"
 msgid "Worked on %s with %s"
 msgstr "Работал на %s с %s"
 
-#: application/views/bandmap/list.php:75 application/views/bandmap/list.php:521
+#: application/views/bandmap/list.php:75 application/views/bandmap/list.php:522
 msgid "de"
 msgstr "от"
 
@@ -7604,7 +7604,7 @@ msgid "Toggle DX Spot filter (spotted continent ≠ spotter continent)"
 msgstr "Переключить фильтр DX (континент споттера ≠ континент спота)"
 
 #: application/views/bandmap/list.php:437
-#: application/views/bandmap/list.php:515
+#: application/views/bandmap/list.php:516
 msgid "DX"
 msgstr "DX"
 
@@ -7679,46 +7679,56 @@ msgid "Freq"
 msgstr "Частота"
 
 #: application/views/bandmap/list.php:515
+#: application/views/eqsl/analysis.php:40
+#: application/views/eqsl/download.php:40 application/views/eqsl/result.php:37
+msgid "Submode"
+msgstr "Подвид"
+
+#: application/views/bandmap/list.php:516
 msgid "Spotted Callsign"
 msgstr "Позывной спота"
 
-#: application/views/bandmap/list.php:518
+#: application/views/bandmap/list.php:519
 msgid "Flag"
 msgstr "Флаг"
 
-#: application/views/bandmap/list.php:519
+#: application/views/bandmap/list.php:520
 msgid "DXCC Entity"
 msgstr "DXCC"
 
-#: application/views/bandmap/list.php:519
+#: application/views/bandmap/list.php:520
 msgid "Entity"
 msgstr "DXCC"
 
-#: application/views/bandmap/list.php:520
+#: application/views/bandmap/list.php:521
 msgid "DXCC Number"
 msgstr "Номер DXCC"
 
-#: application/views/bandmap/list.php:521
+#: application/views/bandmap/list.php:522
 msgid "Spotter Callsign"
 msgstr "Позывной споттера"
 
-#: application/views/bandmap/list.php:522
+#: application/views/bandmap/list.php:523
 msgid "Spotter Continent"
 msgstr "Континент споттера"
 
-#: application/views/bandmap/list.php:523
+#: application/views/bandmap/list.php:524
 msgid "Spotter CQ Zone"
 msgstr "Зона CQ споттера"
 
-#: application/views/bandmap/list.php:524
+#: application/views/bandmap/list.php:525
+msgid "Last QSO Date"
+msgstr ""
+
+#: application/views/bandmap/list.php:526
 msgid "Special"
 msgstr "Специальный"
 
-#: application/views/bandmap/list.php:524
+#: application/views/bandmap/list.php:526
 msgid "Special Flags"
 msgstr "Специальные флаги"
 
-#: application/views/bandmap/list.php:525
+#: application/views/bandmap/list.php:527
 #: application/views/oqrs/notinlogform.php:28
 #: application/views/oqrs/request.php:54
 #: application/views/oqrs/request_grouped.php:57
@@ -10591,11 +10601,6 @@ msgstr "Инструменты"
 msgid "Download eQSL cards"
 msgstr "Скачать eQSL карточки"
 
-#: application/views/eqsl/analysis.php:40
-#: application/views/eqsl/download.php:40 application/views/eqsl/result.php:37
-msgid "Submode"
-msgstr "Подвид"
-
 #: application/views/eqsl/analysis.php:41
 msgid "eQSL Received Date"
 msgstr "Дата получения eQSL"
@@ -10759,10 +10764,10 @@ msgid "QSL Date"
 msgstr "Дата QSL"
 
 #: application/views/eqslcard/index.php:64
-#: application/views/interface_assets/footer.php:2763
-#: application/views/interface_assets/footer.php:2781
-#: application/views/interface_assets/footer.php:2802
-#: application/views/interface_assets/footer.php:2820
+#: application/views/interface_assets/footer.php:2754
+#: application/views/interface_assets/footer.php:2772
+#: application/views/interface_assets/footer.php:2793
+#: application/views/interface_assets/footer.php:2811
 #: application/views/qslcard/index.php:77
 #: application/views/view_log/qso.php:779
 msgid "View"
@@ -11342,57 +11347,57 @@ msgctxt "Map Options"
 msgid "Gridsquares"
 msgstr "Квадраты"
 
-#: application/views/interface_assets/footer.php:1579
-#: application/views/interface_assets/footer.php:1583
-#: application/views/interface_assets/footer.php:1586
-#: application/views/interface_assets/footer.php:1723
-#: application/views/interface_assets/footer.php:1727
-#: application/views/interface_assets/footer.php:1730
+#: application/views/interface_assets/footer.php:1570
+#: application/views/interface_assets/footer.php:1574
+#: application/views/interface_assets/footer.php:1577
+#: application/views/interface_assets/footer.php:1714
+#: application/views/interface_assets/footer.php:1718
+#: application/views/interface_assets/footer.php:1721
 msgid "grid square"
 msgstr "квадрат(/-а/-ов)"
 
-#: application/views/interface_assets/footer.php:1586
-#: application/views/interface_assets/footer.php:1730
+#: application/views/interface_assets/footer.php:1577
+#: application/views/interface_assets/footer.php:1721
 msgid "Total count"
 msgstr "Всего"
 
-#: application/views/interface_assets/footer.php:2505
+#: application/views/interface_assets/footer.php:2496
 msgid "QSL Card for "
 msgstr "QSL-карточка для "
 
-#: application/views/interface_assets/footer.php:2525
+#: application/views/interface_assets/footer.php:2516
 msgid "Warning! Are you sure you want to delete this QSL card?"
 msgstr "Внимание! Вы уверены, что хотите удалить эту QSL-карточку?"
 
-#: application/views/interface_assets/footer.php:2565
+#: application/views/interface_assets/footer.php:2556
 #: application/views/view_log/qso.php:43
 msgid "eQSL Card"
 msgstr "eQSL-карточка"
 
-#: application/views/interface_assets/footer.php:2567
+#: application/views/interface_assets/footer.php:2558
 msgid "eQSL Card for "
 msgstr "eQSL-карточка для "
 
-#: application/views/interface_assets/footer.php:2774
-#: application/views/interface_assets/footer.php:2813
+#: application/views/interface_assets/footer.php:2765
+#: application/views/interface_assets/footer.php:2804
 #: application/views/view_log/qso.php:769
 msgid "QSL image file"
 msgstr "Изображение QSL-карточки"
 
-#: application/views/interface_assets/footer.php:2793
+#: application/views/interface_assets/footer.php:2784
 msgid "Front QSL Card:"
 msgstr "Лицевая сторона QSL-карточки:"
 
-#: application/views/interface_assets/footer.php:2831
+#: application/views/interface_assets/footer.php:2822
 msgid "Back QSL Card:"
 msgstr "Обратная сторона QSL-карточки:"
 
-#: application/views/interface_assets/footer.php:2842
-#: application/views/interface_assets/footer.php:2867
+#: application/views/interface_assets/footer.php:2833
+#: application/views/interface_assets/footer.php:2858
 msgid "Add additional QSOs to a QSL Card"
 msgstr "Добавить дополнительные QSO на QSL-карточку"
 
-#: application/views/interface_assets/footer.php:2878
+#: application/views/interface_assets/footer.php:2869
 msgid "Something went wrong. Please try again!"
 msgstr "Что-то пошло не так. Пожалуйста, попробуйте еще раз!"
 
