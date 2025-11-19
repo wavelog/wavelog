@@ -369,14 +369,14 @@ $(function() {
 			let originalText = $option.data('original-text');
 
 				if (!originalText) {
-					originalText = $option.text();
+					originalText = $option.html();
 					$option.data('original-text', originalText);
 				}
 
 				if ($option.is(':selected')) {
-					$option.text('☑ ' + originalText);
+					$option.html('☑ ' + originalText);
 				} else {
-					$option.text('☐ ' + originalText);
+					$option.html('☐ ' + originalText);
 				}
 			});
 		}
@@ -461,7 +461,7 @@ $(function() {
 			retrieve: true,
 			language: {
 				url: getDataTablesLanguageUrl(),
-				"emptyTable": "<i class='fas fa-spinner fa-spin'></i> Loading spots...",
+				"emptyTable": "<i class='fas fa-spinner fa-spin'></i> " + lang_bandmap_loading_spots,
 				"zeroRecords": lang_bandmap_no_spots_found
 			},
 			'columnDefs': [
@@ -535,13 +535,13 @@ $(function() {
 
 	let callsignHtml = rowData[5];  // Callsign is column 6 (0-indexed = 5)
 	let tempDiv = $('<div>').html(callsignHtml);
-	let call = tempDiv.find('a').text().trim();
+	let call = tempDiv.find('a').html().trim();
 	if (!call) return;
 
 	let qrg = parseFloat(rowData[2]) * 1000000;  // Frequency in MHz, convert to Hz
 	let modeHtml = rowData[3];  // Mode is column 4 (0-indexed = 3)
 	let modeDiv = $('<div>').html(modeHtml);
-	let mode = modeDiv.text().trim();  // Extract clean mode text from HTML
+	let mode = modeDiv.html().trim();  // Extract clean mode text from HTML
 
 	// Ctrl+click: Only tune radio, don't prepare logging form
 	if (e.ctrlKey || e.metaKey) {
@@ -657,17 +657,17 @@ $(function() {
 				loadingMessage += '...';
 			}
 
-			$('#statusMessage').text(loadingMessage).attr('title', '');
+			$('#statusMessage').html(loadingMessage).attr('title', '');
 			$('#statusFilterInfo').remove();
 			$('#refreshIcon').removeClass('fa-hourglass-half').addClass('fa-spinner fa-spin');
-			$('#refreshTimer').text('');
+			$('#refreshTimer').html('');
 			return;
 		}
 
 		if (lastFetchParams.timestamp === null) {
-			$('#statusMessage').text('');
+			$('#statusMessage').html('');
 			$('#statusFilterInfo').remove();
-			$('#refreshTimer').text('');
+			$('#refreshTimer').html('');
 			return;
 		}
 
@@ -709,7 +709,7 @@ $(function() {
 			fetchTooltipLines.push(`${lang_bandmap_fetched_at}: ${h}:${m}:${s}Z`);
 		}
 
-	$('#statusMessage').text(statusMessage).attr('title', fetchTooltipLines.join('\n'));
+	$('#statusMessage').html(statusMessage).attr('title', fetchTooltipLines.join('\n'));
 
 	// Add info icon if filters are active (with separate tooltip for active filters)
 	$('#statusFilterInfo').remove();
@@ -720,10 +720,10 @@ $(function() {
 
 	if (isFetching) {
 		$('#refreshIcon').removeClass('fa-hourglass-half').addClass('fa-spinner fa-spin');
-		$('#refreshTimer').text(lang_bandmap_fetching);
+		$('#refreshTimer').html(lang_bandmap_fetching);
 	} else {
 		$('#refreshIcon').removeClass('fa-spinner fa-spin').addClass('fa-hourglass-half');
-		$('#refreshTimer').text(lang_bandmap_next_update + ' ' + refreshCountdown + 's');
+		$('#refreshTimer').html(lang_bandmap_next_update + ' ' + refreshCountdown + 's');
 	}
 }	function getDisplayedSpotCount() {
 		var table = get_dtable();
@@ -758,7 +758,7 @@ $(function() {
 			} else {
 				if (!isFetchInProgress && lastFetchParams.timestamp !== null) {
 					$('#refreshIcon').removeClass('fa-spinner fa-spin').addClass('fa-hourglass-half');
-					$('#refreshTimer').text(lang_bandmap_next_update + ' ' + refreshCountdown + 's');
+					$('#refreshTimer').html(lang_bandmap_next_update + ' ' + refreshCountdown + 's');
 				}
 			}
 		}, 1000);
@@ -1304,7 +1304,7 @@ $(function() {
 				let actualDisplayedCount = table.rows({search: 'applied'}).count();
 				updateStatusBar(cachedSpotData.length, actualDisplayedCount, getServerFilterText(), getClientFilterText(), false, false);
 				$('#refreshIcon').removeClass('fa-spinner fa-spin').addClass('fa-hourglass-half');
-				$('#refreshTimer').text(lang_bandmap_next_update + ' ' + refreshCountdown + 's');
+				$('#refreshTimer').html(lang_bandmap_next_update + ' ' + refreshCountdown + 's');
 			}
 
 			// Update DX Map only if visible (don't waste resources)
@@ -1331,9 +1331,9 @@ $(function() {
 			// Clear all badges when no data
 			if (fetchedBand) {
 				// Set all to "-" when in single band fetch mode but no data
-				$('.band-count-badge, .mode-count-badge').text('-');
+				$('.band-count-badge, .mode-count-badge').html('-');
 			} else {
-				$('.band-count-badge, .mode-count-badge').text('0');
+				$('.band-count-badge, .mode-count-badge').html('0');
 			}
 			return;
 		}
@@ -1496,7 +1496,7 @@ $(function() {
 				$('#toggle' + band + 'Filter').append(' <span class="badge bg-dark band-count-badge">' + displayText + '</span>');
 				domCache.badges[selector] = $('#toggle' + band + 'Filter .band-count-badge');
 			} else {
-				$badge.text(displayText);
+				$badge.html(displayText);
 			}
 		});
 
@@ -1510,7 +1510,7 @@ $(function() {
 				$('#toggle' + group + 'Filter').append(' <span class="badge bg-dark band-count-badge">' + displayText + '</span>');
 				domCache.badges[selector] = $('#toggle' + group + 'Filter .band-count-badge');
 			} else {
-				$badge.text(displayText);
+				$badge.html(displayText);
 			}
 		});		// Update mode button badges
 			['Cw', 'Digi', 'Phone'].forEach(mode => {
@@ -1521,7 +1521,7 @@ $(function() {
 					$('#toggle' + mode + 'Filter').append(' <span class="badge bg-dark mode-count-badge">' + count + '</span>');
 					domCache.badges[selector] = $('#toggle' + mode + 'Filter .mode-count-badge');
 				} else {
-					$badge.text(count);
+					$badge.html(count);
 				}
 			});
 
@@ -1596,7 +1596,7 @@ $(function() {
 				$('#' + filter.id).append(' <span class="badge bg-dark quick-filter-count-badge">' + filter.count + '</span>');
 			} else {
 				// Update existing badge
-				$badge.text(filter.count);
+				$badge.html(filter.count);
 			}
 		});
 	}
@@ -3485,7 +3485,7 @@ $(function() {
 			const spotTime = parseInt($(this).attr('data-spot-time'));
 			if (spotTime) {
 				const ageMinutes = Math.floor((now - spotTime) / 60000);
-				$(this).text(ageMinutes);
+				$(this).html(ageMinutes);
 			}
 		});
 	}
@@ -3776,7 +3776,7 @@ $(function() {
 
 		// Find row with matching callsign
 		const row = table.rows().nodes().toArray().find(node => {
-			const callsignCell = $(node).find('td:eq(4)').text();
+			const callsignCell = $(node).find('td:eq(4)').html();
 			return callsignCell.includes(callsign);
 		});
 
