@@ -725,7 +725,7 @@ $(document).ready(function() {
         var $band = $('#band');
         var $frequencyRx = $('#frequency_rx');
         var $bandRx = $('#band_rx');
-        var $mode = $('.mode');
+        var $mode = $('#mode');
 
         // If radio name is not in data, try to get it from cache first, then from dropdown
         if (!data.radio || data.radio == null || data.radio == '') {
