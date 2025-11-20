@@ -791,6 +791,11 @@ $(document).ready(function() {
 
         cat2UI($mode,newMode,false,false);
 
+        // Update RST fields when mode is set via CAT (including first time)
+        if (newMode && typeof setRst === 'function' && (modeChanged || !previousMode)) {
+            setRst(newMode);
+        }
+
         // Notify DX Waterfall of mode change for sideband display update
         // Only refresh if mode actually changed (not on initial undefined → value transition)
         if (modeChanged && typeof dxWaterfall !== 'undefined' && dxWaterfall.refresh) {
