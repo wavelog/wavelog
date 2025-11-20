@@ -198,6 +198,9 @@ $(document).ready(function() {
             ui.data('catValue',cat);
             if (typeof callback_on_update === 'function') { callback_on_update(cat); }
         }
+        if (ui.attr('id') === 'mode') {
+            setRst($("#mode").val());
+        }
     }
 
     /**
@@ -246,6 +249,7 @@ $(document).ready(function() {
         } else {
             mode = mode.toLowerCase();
         }
+	setRst($("#mode").val());
 
         // Check if DX Waterfall is ACTIVE and should handle this (only if not called from within DX Waterfall)
         // DX Waterfall is active if dxWaterfall object exists AND has a canvas (meaning it's initialized)

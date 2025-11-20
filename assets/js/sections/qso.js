@@ -587,7 +587,7 @@ $(document).on("click", "#fav_recall", function (event) {
 	$('#frequency').val(favs[this.innerText].frequency).trigger("change");
 	$('#selectPropagation').val(favs[this.innerText].prop_mode);
 	$('#mode').val(favs[this.innerText].mode).on("change");
-	setRst($('.mode').val());
+	setRst($('#mode').val());
 });
 
 
@@ -774,6 +774,7 @@ bc.onmessage = function (ev) {
 			// Set mode if provided (backward compatible - optional field)
 			if (ev.data.mode) {
 				$("#mode").val(ev.data.mode);
+				setRst($('#mode').val());
 			}
 			$("#callsign").val(ev.data.call);
 			$("#callsign").focusout();
@@ -1111,7 +1112,7 @@ function reset_fields() {
 	$('#partial_view').hide();
 	$('.callsign-suggest').hide();
 	$("#distance").val("");
-	setRst($(".mode").val());
+	setRst($("#mode").val());
 	var $select = $('#sota_ref').selectize();
 	var selectize = $select[0].selectize;
 	selectize.clear();
@@ -2574,8 +2575,8 @@ $("#ant_path").on("change", function () {
 });
 
 // Change report based on mode
-$('.mode').on('change', function () {
-	setRst($('.mode').val());
+$('#mode').on('change', function () {
+	setRst($('#mode').val());
 });
 
 function convert_case(str) {
@@ -2823,7 +2824,7 @@ $(document).ready(function () {
 
 	$('.callsign-suggest').hide();
 
-	setRst($(".mode").val());
+	setRst($("#mode").val());
 
 	/* On Page Load */
 	var catcher = function () {
