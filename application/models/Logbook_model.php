@@ -4297,6 +4297,12 @@ class Logbook_model extends CI_Model {
 
 		$my_error = "";
 
+		if (validateADIFDate($record['qso_date']) != true) {
+			log_message("Error", "Trying to import QSO with invalid date: " . $record['qso_date'].".");
+			$returner['error']=__("QSO on")." ".$record['qso_date'].": ".__("You tried to import a QSO without valid date. This QSO wasn't imported. It's invalid") . "<br>";
+			return($returner);
+		}
+
 		// Join date+time
 		$time_on = date('Y-m-d', strtotime($record['qso_date'] ?? '1970-01-01')) . " " . date('H:i:s', strtotime($record['time_on'] ?? '00:00:00'));
 
