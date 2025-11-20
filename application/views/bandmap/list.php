@@ -427,7 +427,7 @@
 		<!-- LoTW Users Button (separate) -->
 		<div class="btn-group flex-shrink-0" role="group">
 			<button class="btn btn-sm btn-secondary" type="button" id="toggleLotwFilter" title="<?= __("Toggle LoTW User filter"); ?>">
-				<i class="fas fa-upload"></i> <span class="d-none d-sm-inline"><?= __("LoTW users"); ?></span>
+				<span style="font-family: Helvetica; display: inline-block; width: 16px; height: 16px; line-height: 16px; text-align: center; background-color: #6c757d; color: white; border-radius: 2px; font-size: 12px; font-weight: bold; margin-right: 4px;">L</span> <span class="d-none d-sm-inline"><?= __("LoTW users"); ?></span>
 			</button>
 		</div>
 
