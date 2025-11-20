@@ -664,23 +664,23 @@ var lastLookupCallsign = null;
 var lookupInProgress = false;
 
 // Helper function to populate reference fields after callsign lookup completes
-// Uses Map-based storage with sequence validation to prevent race conditions
+// Uses Map-based storage to prevent race conditions
 function populatePendingReferences(callsign, expectedSeq) {
 	// Handle legacy call without parameters
 	if (!callsign) {
 		callsign = $('#callsign').val();
-		expectedSeq = $('#callsign').data('expected-refs-seq');
 	}
 
 	const entry = pendingReferencesMap.get(callsign);
-	
+
 	if (!entry) {
-		console.log('No pending references for callsign:', callsign);
+		// No references for this callsign - this is normal for non-POTA/SOTA/WWFF spots
 		return;
 	}
-	
-	// Validate sequence to prevent stale data
-	if (expectedSeq && entry.seq !== expectedSeq) {
+
+	// Validate sequence only if expectedSeq was provided
+	// This prevents stale data from being populated
+	if (expectedSeq !== null && expectedSeq !== undefined && entry.seq !== expectedSeq) {
 		console.warn('Sequence mismatch - ignoring stale references', {
 			callsign: callsign,
 			expected: expectedSeq,
@@ -688,14 +688,13 @@ function populatePendingReferences(callsign, expectedSeq) {
 		});
 		return;
 	}
-	
-	// Mark as populated to prevent double-population
+
+	// Check if already populated - prevent double-population for same instance
 	if (entry.populated) {
-		console.warn('References already populated for', callsign);
 		return;
 	}
 	entry.populated = true;
-	
+
 	const refs = entry.refs;
 
 	// POTA - set without triggering change initially (silent = true)
@@ -764,12 +763,10 @@ function populatePendingReferences(callsign, expectedSeq) {
 		} else if (refs.wwff_ref && $('#wwff_ref').length) {
 			$('#wwff_ref').trigger('change');
 		}
-	}, 100); // Small delay to let form settle
-	
-	// Cleanup after successful population
-	setTimeout(function() {
+
+		// Cleanup immediately after triggering - we're done with these references
 		pendingReferencesMap.delete(callsign);
-	}, 5000); // Keep for 5 seconds in case of retry
+	}, 100); // Small delay to let form settle
 }
 
 var bc = new BroadcastChannel('qso_wish');
@@ -827,10 +824,10 @@ bc.onmessage = function (ev) {
 			if (ev.data.mode) {
 				$("#mode").val(ev.data.mode);
 			}
-			
+
 			// Store sequence for validation in populatePendingReferences
 			$("#callsign").data('expected-refs-seq', seq);
-			
+
 			$("#callsign").val(callsign);
 			$("#callsign").focusout();
 			$("#callsign").blur();
@@ -1267,13 +1264,10 @@ $("#callsign").on("focusout", function () {
 		lastLookupCallsign = currentCallsign;
 		lookupInProgress = true;
 
-		// Capture pendingReferences for THIS lookup (before it gets overwritten by another click)
-		// If pendingReferences exists, use it; otherwise set to null to prevent old references
-		// from being populated when user manually types a different callsign
-		var capturedReferences = pendingReferences ? Object.assign({}, pendingReferences) : null;
-
-		// Clear pendingReferences immediately after capturing to prevent reuse on next manual lookup
-		pendingReferences = null;
+		// Check if we have pending references from bandmap for this callsign
+		// If yes, get the sequence; if no, we'll populate without sequence validation
+		var hasPendingRefs = pendingReferencesMap.has(currentCallsign);
+		var expectedSeq = hasPendingRefs ? pendingReferencesMap.get(currentCallsign).seq : null;
 
 		// Disable Save QSO button and show fetch status
 		$('#saveQso').prop('disabled', true);
@@ -1833,9 +1827,9 @@ $("#callsign").on("focusout", function () {
 
 				// Populate pending references from bandmap (after all lookup logic completes)
 				// Small delay to ensure DOM is fully updated
-				// Use the captured references from when THIS lookup started
+				// Use the Map-based approach with the current callsign and expected sequence
 				setTimeout(function() {
-					populatePendingReferences(capturedReferences);
+					populatePendingReferences(currentCallsign, expectedSeq);
 				}, 100);
 			}
 

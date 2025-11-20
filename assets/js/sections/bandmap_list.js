@@ -16,6 +16,7 @@
 // ========================================
 
 const SPOT_REFRESH_INTERVAL = 60;  // Auto-refresh interval in seconds
+const QSO_SEND_DEBOUNCE_MS = 3000;  // Debounce for sending callsign to QSO form (milliseconds)
 
 // Mode display capitalization lookup (API returns lowercase)
 const MODE_CAPITALIZATION = { 'phone': 'Phone', 'cw': 'CW', 'digi': 'Digi' };
@@ -1261,33 +1262,34 @@ $(function() {
 			$(this).attr('title', lang_click_to_prepare_logging);
 		});
 
-		// Initialize tooltips with error handling
-		try {
-			$('[data-bs-toggle="tooltip"]').each(function() {
-				if (!this || !$(this).attr('title')) return;
+	// Initialize tooltips with error handling
+	try {
+		$('[data-bs-toggle="tooltip"]').each(function() {
+			if (!this || !$(this).attr('title')) return;
 
-				try {
-					// Dispose existing tooltip instance if it exists
-					const existingTooltip = bootstrap.Tooltip.getInstance(this);
-					if (existingTooltip) {
-						existingTooltip.dispose();
-					}
-
-					// Create new tooltip instance
-					new bootstrap.Tooltip(this, {
-						boundary: 'window',
-						trigger: 'hover',
-						sanitize: false
-					});
-				} catch (err) {
-					// Skip if tooltip fails to initialize
+			try {
+				// Dispose existing tooltip instance if it exists
+				const existingTooltip = bootstrap.Tooltip.getInstance(this);
+				if (existingTooltip) {
+					existingTooltip.dispose();
 				}
-			});
-		} catch (e) {
-			// Fallback if tooltip initialization fails
-		}
 
-		let displayedCount = spots2render || 0;
+				// Create new tooltip instance with proper configuration
+				new bootstrap.Tooltip(this, {
+					boundary: 'window',
+					trigger: 'hover',
+					sanitize: false,
+					html: false,
+					animation: true,
+					delay: { show: 100, hide: 100 }
+				});
+			} catch (err) {
+				// Skip if tooltip fails to initialize
+			}
+		});
+	} catch (e) {
+		// Fallback if tooltip initialization fails
+	}		let displayedCount = spots2render || 0;
 
 		// Update band count badges after rendering
 		updateBandCountBadges();
@@ -2129,7 +2131,27 @@ $(function() {
 		}
 	}
 
+	// Track last QSO send time for debouncing
+	let lastQsoSendTime = 0;
+
 	function prepareLogging(call, qrg, mode, spotData) {
+		// Debounce check - prevent sending too quickly
+		const now = Date.now();
+		const timeSinceLastSend = now - lastQsoSendTime;
+
+		if (timeSinceLastSend < QSO_SEND_DEBOUNCE_MS) {
+			const remainingSeconds = Math.ceil((QSO_SEND_DEBOUNCE_MS - timeSinceLastSend) / 1000);
+			// Use translation with placeholder replacement
+			const message = lang_bandmap_wait_before_send.replace('%s', remainingSeconds);
+			if (typeof showToast === 'function') {
+				showToast(lang_bandmap_please_wait, message, 'bg-warning text-dark', 3000);
+			}
+			return; // Don't proceed with sending
+		}
+
+		// Update last send time
+		lastQsoSendTime = now;
+
 		let ready_listener = true;
 
 		// If CAT Control is enabled, tune the radio to the spot frequency

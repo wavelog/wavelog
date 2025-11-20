@@ -113,6 +113,9 @@
 	var lang_bandmap_spot = "<?= __("spot"); ?>";
 	var lang_bandmap_spotters = "<?= __("spotters"); ?>";
 
+	// QSO preparation debounce messages
+	var lang_bandmap_please_wait = "<?= __("Please Wait"); ?>";
+	var lang_bandmap_wait_before_send = "<?= __("Please wait %s seconds before sending another callsign to the QSO form"); ?>";
 
 	// DataTables messages
 	var lang_bandmap_loading_spots = "<?= __("Loading spots..."); ?>";
