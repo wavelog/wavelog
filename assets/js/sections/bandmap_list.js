@@ -1007,7 +1007,7 @@ $(function() {
 			lclass = 'lotw_info_yellow';
 		}
 		let lotw_title = lang_bandmap_lotw_last_upload.replace('%d', single.dxcc_spotted.lotw_user);
-		lotw_badge = '<a href="https://lotw.arrl.org/lotwuser/act?act=' + single.spotted + '" target="_blank" onclick="event.stopPropagation();">' + buildBadge('success ' + lclass, 'fa-upload', lotw_title) + '</a>';
+		lotw_badge = '<a href="https://lotw.arrl.org/lotwuser/act?act=' + single.spotted + '" target="_blank" onclick="event.stopPropagation();">' + buildBadge('success ' + lclass, null, lotw_title, 'L', false, "Helvetica") + '</a>';
 	}
 
 	// Build activity badges (POTA, SOTA, WWFF, IOTA, Contest, Worked)
@@ -1796,10 +1796,11 @@ $(function() {
 	// title: tooltip text
 	// text: optional text content instead of icon
 	// isLast: if true, uses margin: 0 instead of negative margin
-	function buildBadge(type, icon, title, text = null, isLast = false) {
+	function buildBadge(type, icon, title, text = null, isLast = false, fontFamily = null) {
 		const margin = isLast ? '0' : '0 2px 0 0';
 		const fontSize = text ? '0.75rem' : '0.7rem';
-		const content = text ? text : '<i class="fas ' + icon + '" style="display: block;"></i>';
+		const fontFamilyStyle = fontFamily ? 'font-family: ' + fontFamily + ';' : '';
+		const content = text ? '<span style="display: block; ' + fontFamilyStyle + '">' + text + '</span>' : '<i class="fas ' + icon + '" style="display: block;"></i>';
 		return '<small class="badge text-bg-' + type + '" style="display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; padding: 0; margin: ' + margin + '; font-size: ' + fontSize + '; line-height: 1;" data-bs-toggle="tooltip" title="' + title + '">' + content + '</small>';
 	}
 
