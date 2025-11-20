@@ -1276,7 +1276,15 @@ class Lotw extends CI_Controller {
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
 			$result = curl_exec($ch);
+			if(curl_errno($ch)){
+				log_message('error', 'Error fetch LoTW CRL results: '.curl_strerror(curl_errno($ch)));
+				return 99;
+			}
 			$xml = new SimpleXMLElement($result);
+			if (!isset($xml->Status)) {
+				log_message('error', 'Error parsing LoTW CRL result: '.$result);
+				return 98;
+			}
 			switch ((string)$xml->Status) {
 			case 'Superceded':
 				return 1;
@@ -1284,7 +1292,7 @@ class Lotw extends CI_Controller {
 				return 0;
 			default:
 				log_message('error', 'Unknown LotW CRL status: '.(string)$xml->Status);
-				return 99;
+				return 97;
 			}
 		}
 		return 99;
