@@ -49,9 +49,11 @@ class Lotw extends CI_Controller {
 		// Check for superseded certificates
 		$certcheck = $this->Lotw_model->lotw_certs($this->session->userdata('user_id'));
 		foreach ($certcheck->result() as $row) {
-			$status = $this->lotw_cert_status($row->serial);
-			if ($status != 99 && $status != $row->status) {
-				$this->Lotw_model->update_cert_status($row->lotw_cert_id, $status);
+			if ($row->serial != null) {
+				$status = $this->lotw_cert_status($row->serial);
+				if ($status != 99 && $status != $row->status) {
+					$this->Lotw_model->update_cert_status($row->lotw_cert_id, $status);
+				}
 			}
 		}
 
@@ -1266,7 +1268,7 @@ class Lotw extends CI_Controller {
 		endswitch;
 	}
 
-	function lotw_cert_status ($serial = null) {
+	function lotw_cert_status ($serial) {
 		if (($serial ?? '') != '' && is_numeric($serial)) {
 			$url = 'https://lotw.arrl.org/lotw/crl?serial='.$serial;
 			$ch = curl_init();
