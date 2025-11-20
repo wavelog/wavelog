@@ -785,8 +785,6 @@ $(document).ready(function() {
         var previousMode = $mode.data('catValue');
         var newMode = catmode(data.mode);
 
-        console.log('[CAT RST Debug] previousMode:', previousMode, 'newMode:', newMode);
-
         // Only refresh waterfall if mode actually changed (and both values are defined)
         var modeChanged = previousMode && previousMode !== newMode;
 
@@ -795,10 +793,7 @@ $(document).ready(function() {
         // Update RST fields when mode changes
         // Check if mode was actually updated (catValue changed after cat2UI call)
         var currentMode = $mode.data('catValue');
-        console.log('[CAT RST Debug] After cat2UI - currentMode:', currentMode, 'previousMode:', previousMode, 'changed:', (currentMode !== previousMode));
-
         if (currentMode !== previousMode && typeof setRst === 'function') {
-            console.log('[CAT RST Debug] Calling setRst with mode:', newMode);
             setRst(newMode);
         }
 
