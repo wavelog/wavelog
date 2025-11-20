@@ -183,7 +183,7 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
             </div>
             <div class="bottom-right mt-2">
                 <div class="<?= $text_size_class ?> text-danger">
-                    <?= htmlspecialchars($error) ?>
+                    <?= $error ?>
                 </div>
                 <div class="last-updated mt-2">
                     <small>Updated: <?= date('H:i:s'); ?> (auto-refreshed by QRZ.com every 60s)</small>
