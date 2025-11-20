@@ -46,6 +46,15 @@ class Lotw extends CI_Controller {
 		// Load required models for page generation
 		$this->load->model('Lotw_model');
 
+		// Check for superseded certificates
+		$certcheck = $this->Lotw_model->lotw_certs($this->session->userdata('user_id'));
+		foreach ($certcheck->result() as $row) {
+			$status = $this->lotw_cert_status($row->serial);
+			if ($status != 99 && $status != $row->status) {
+				$this->Lotw_model->update_cert_status($row->lotw_cert_id, $status);
+			}
+		}
+
 		// Get Array of the logged in users LoTW certs.
 		$data['lotw_cert_results'] = $this->Lotw_model->lotw_certs($this->session->userdata('user_id'));
 

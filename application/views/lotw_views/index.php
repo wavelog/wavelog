@@ -92,17 +92,21 @@
 									} ?>
 								</td>
 								<td>
-									<?php if ($current_date > $row->date_expires) { ?>
-										<span class="badge text-bg-danger"><?= __("Certificate expired"); ?></span>
-									<?php } else if ($current_date <= $row->date_expires && $current_date > $cert_warning_date) { ?>
-										<span class="badge text-bg-warning"><?= __("Certificate expiring"); ?></span>
+									<?php if ($row->status == 1) { ?>
+										<span class="badge text-bg-danger"><?= __("Certificate superseded"); ?></span>
 									<?php } else { ?>
-										<span class="badge text-bg-success"><?= __("Certificate valid"); ?></span>
-									<?php } ?>
-									<?php if ($current_date > $row->qso_end_date) { ?>
-										<span class="badge text-bg-danger">QSO end date exceeded</span>
-									<?php } else if ($current_date <= $row->qso_end_date && $current_date > $qso_warning_date) { ?>
-										<span class="badge text-bg-warning"><?= __("QSO end date nearing"); ?></span>
+										<?php if ($current_date > $row->date_expires) { ?>
+											<span class="badge text-bg-danger"><?= __("Certificate expired"); ?></span>
+										<?php } else if ($current_date <= $row->date_expires && $current_date > $cert_warning_date) { ?>
+											<span class="badge text-bg-warning"><?= __("Certificate expiring"); ?></span>
+										<?php } else { ?>
+											<span class="badge text-bg-success"><?= __("Certificate valid"); ?></span>
+										<?php } ?>
+										<?php if ($current_date > $row->qso_end_date) { ?>
+											<span class="badge text-bg-danger">QSO end date exceeded</span>
+										<?php } else if ($current_date <= $row->qso_end_date && $current_date > $qso_warning_date) { ?>
+											<span class="badge text-bg-warning"><?= __("QSO end date nearing"); ?></span>
+										<?php } ?>
 									<?php } ?>
 								</td>
 								<td>
