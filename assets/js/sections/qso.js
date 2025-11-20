@@ -705,6 +705,12 @@ function populatePendingReferences(callsign, expectedSeq) {
 				var selectize = $select[0].selectize;
 				selectize.addOption({name: refs.pota_ref});
 				selectize.setValue(refs.pota_ref, true); // Silent = true
+				// Manually show icon since onChange doesn't fire in silent mode
+				if (refs.pota_ref.indexOf(',') === -1) {
+					$('#pota_info').show();
+					$('#pota_info').html('<a target="_blank" href="https://pota.app/#/park/' + refs.pota_ref + '"><img width="32" height="32" src="' + base_url + 'images/icons/pota.app.png"></a>');
+					$('#pota_info').attr('title', lang_qso_lookup_reference_info.replace('%s', refs.pota_ref).replace('%s', 'pota.co'));
+				}
 			}
 		} catch (e) {
 			console.warn('Could not set POTA reference:', e);
@@ -719,6 +725,10 @@ function populatePendingReferences(callsign, expectedSeq) {
 				var selectize = $select[0].selectize;
 				selectize.addOption({name: refs.sota_ref});
 				selectize.setValue(refs.sota_ref, true); // Silent = true
+				// Manually show icon since onChange doesn't fire in silent mode
+				$('#sota_info').show();
+				$('#sota_info').html('<a target="_blank" href="https://summits.sota.org.uk/summit/' + refs.sota_ref + '"><img width="32" height="32" src="' + base_url + 'images/icons/sota.org.uk.png"></a>');
+				$('#sota_info').attr('title', lang_qso_lookup_summit_info.replace('%s', refs.sota_ref).replace('%s', 'sota.org.uk'));
 			}
 		} catch (e) {
 			console.warn('Could not set SOTA reference:', e);
@@ -733,6 +743,10 @@ function populatePendingReferences(callsign, expectedSeq) {
 				var selectize = $select[0].selectize;
 				selectize.addOption({name: refs.wwff_ref});
 				selectize.setValue(refs.wwff_ref, true); // Silent = true
+				// Manually show icon since onChange doesn't fire in silent mode
+				$('#wwff_info').show();
+				$('#wwff_info').html('<a target="_blank" href="https://www.cqgma.org/zinfo.php?ref=' + refs.wwff_ref + '"><img width="32" height="32" src="' + base_url + 'images/icons/wwff.co.png"></a>');
+				$('#wwff_info').attr('title', lang_qso_lookup_reference_info.replace('%s', refs.wwff_ref).replace('%s', 'cqgma.org'));
 			}
 		} catch (e) {
 			console.warn('Could not set WWFF reference:', e);
