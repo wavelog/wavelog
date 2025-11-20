@@ -744,7 +744,6 @@ $(document).ready(function() {
 
         // Force update by clearing catValue (prevents cat2UI from blocking updates)
         $frequency.removeData('catValue');
-        $mode.removeData('catValue'); // Also clear mode cache
         cat_updating_frequency = true; // Set flag before CAT update
 
         // Check if DX Waterfall's CAT frequency handler is available
@@ -786,13 +785,20 @@ $(document).ready(function() {
         var previousMode = $mode.data('catValue');
         var newMode = catmode(data.mode);
 
+        console.log('[CAT RST Debug] previousMode:', previousMode, 'newMode:', newMode);
+
         // Only refresh waterfall if mode actually changed (and both values are defined)
         var modeChanged = previousMode && previousMode !== newMode;
 
         cat2UI($mode,newMode,false,false);
 
-        // Update RST fields when mode is set via CAT (including first time)
-        if (newMode && typeof setRst === 'function' && (modeChanged || !previousMode)) {
+        // Update RST fields when mode changes
+        // Check if mode was actually updated (catValue changed after cat2UI call)
+        var currentMode = $mode.data('catValue');
+        console.log('[CAT RST Debug] After cat2UI - currentMode:', currentMode, 'previousMode:', previousMode, 'changed:', (currentMode !== previousMode));
+
+        if (currentMode !== previousMode && typeof setRst === 'function') {
+            console.log('[CAT RST Debug] Calling setRst with mode:', newMode);
             setRst(newMode);
         }
 
