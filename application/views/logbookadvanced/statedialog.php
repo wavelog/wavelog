@@ -7,5 +7,5 @@
 		<li><?= __("A gridsquare is present (at least 6 characters)"); ?></li>
 		<li><?= __("The DXCC country supports state lookup"); ?></li>
 	</ul>
-	<?= __("Currently supported countries: Canada, France, Germany, Italy, Netherlands, Poland, Switzerland, USA, Japan"); ?>
+	<?= __("Currently supported countries"); ?>: <?= $supported_countries; ?>
 </div>

@@ -23,14 +23,26 @@ class Geojson {
      */
     const SUPPORTED_STATES = [
         1 => ['name' => 'Canada', 'enabled' => true],            // 13 provinces/territories
+        27 => ['name' => 'Belarus', 'enabled' => true],          // 7 subdivisions
+        100 => ['name' => 'Argentina', 'enabled' => true],       // 24 subdivisions
+        108 => ['name' => 'Brazil', 'enabled' => true],          // 27 subdivisions
+        144 => ['name' => 'Uruguay', 'enabled' => true],         // 19 subdivisions
+        150 => ['name' => 'Australia', 'enabled' => true],       // 8 subdivisions
+        209 => ['name' => 'Belgium', 'enabled' => true],         // 11 subdivisions
+        212 => ['name' => 'Bulgaria', 'enabled' => true],        // 28 subdivisions
         227 => ['name' => 'France', 'enabled' => true],          // 96 departments
         230 => ['name' => 'Germany', 'enabled' => true],         // 16 federal states
+        239 => ['name' => 'Hungary', 'enabled' => true],         // 20 subdivisions
+        245 => ['name' => 'Ireland', 'enabled' => true],         // 27 subdivisions
         248 => ['name' => 'Italy', 'enabled' => true],           // 107 provinces
         263 => ['name' => 'Netherlands', 'enabled' => true],     // 12 provinces
         269 => ['name' => 'Poland', 'enabled' => true],          // 16 voivodeships
+        284 => ['name' => 'Sweden', 'enabled' => true],          // 21 subdivisions
         287 => ['name' => 'Switzerland', 'enabled' => true],     // 26 cantons
         291 => ['name' => 'USA', 'enabled' => true],             // 52 states/territories
         339 => ['name' => 'Japan', 'enabled' => true],           // 47 prefectures
+        386 => ['name' => 'Taiwan', 'enabled' => true],          // 22 subdivisions
+        497 => ['name' => 'Croatia', 'enabled' => true],         // 21 subdivisions
     ];
 
     private $qra;

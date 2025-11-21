@@ -718,7 +718,22 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	public function stateDialog() {
-		$this->load->view('logbookadvanced/statedialog');
+		$this->load->library('Geojson');
+
+		// Get supported countries from Geojson library
+		$supported_states = $this->geojson::SUPPORTED_STATES;
+		$country_names = array();
+
+		foreach ($supported_states as $dxcc => $info) {
+			if ($info['enabled']) {
+				$country_names[] = $info['name'];
+			}
+		}
+
+		sort($country_names);
+		$data['supported_countries'] = implode(', ', $country_names);
+
+		$this->load->view('logbookadvanced/statedialog', $data);
 	}
 
 	public function distanceDialog() {
