@@ -46,8 +46,8 @@
 						<?php $current_date = date('Y-m-d H:i:s'); ?>
 						<?php foreach ($lotw_cert_results->result() as $row) { ?>
 							<tr>
-					      		<td><?php echo $row->callsign; ?></td>
-                           <td><?php echo $row->cert_dxcc == '' ? '- NONE -' : ucfirst($row->cert_dxcc); if ($row->cert_dxcc_end != NULL) { echo ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>'; } ?></td>
+								<td><?php echo $row->callsign; ?></td>
+								<td><?php echo $row->cert_dxcc == '' ? '- NONE -' : ucfirst($row->cert_dxcc); if ($row->cert_dxcc_end != NULL) { echo ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>'; } ?></td>
 								<td><?php
 									if (isset($row->qso_start_date)) {
 										$valid_qso_start = strtotime( $row->qso_start_date );
@@ -92,6 +92,7 @@
 									} ?>
 								</td>
 								<td>
+									<span data-bs-toggle="tooltip" data-bs-html="true" data-bs-original-title="<?= __("Serial number:")." ".((($row->serial ?? '')  != '' )? $row->serial : __("n/a")); ?><br><?= __("Last change:")." ".(date($this->config->item('qso_date_format').' H:i', strtotime($row->last_modified))); ?>">
 									<?php if ($row->status == 1) { ?>
 										<span class="badge text-bg-danger"><?= __("Certificate superseded"); ?></span>
 									<?php } else { ?>
@@ -108,6 +109,7 @@
 											<span class="badge text-bg-warning"><?= __("QSO end date nearing"); ?></span>
 										<?php } ?>
 									<?php } ?>
+									</span>
 								</td>
 								<td>
 									<?php if ($row->last_upload) {
