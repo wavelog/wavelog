@@ -756,6 +756,10 @@ $(document).ready(function() {
                     // Auto-update band based on frequency
                     if ($band.val() != newBand) {
                         $band.val(newBand).trigger('change'); // Trigger band change
+                        // Update callsign status when band changes via CAT
+                        if ($('#callsign').val().length >= 3) {
+                            $('#callsign').blur();
+                        }
                     }
                 });
             });
@@ -766,6 +770,10 @@ $(document).ready(function() {
                 // Auto-update band based on frequency
                 if ($band.val() != frequencyToBand(d)) {
                     $band.val(frequencyToBand(d)).trigger('change');
+                    // Update callsign status when band changes via CAT
+                    if ($('#callsign').val().length >= 3) {
+                        $('#callsign').blur();
+                    }
                 }
             });
         }
@@ -795,6 +803,10 @@ $(document).ready(function() {
         var currentMode = $mode.data('catValue');
         if (currentMode !== previousMode && typeof setRst === 'function') {
             setRst(newMode);
+            // Update callsign status when mode changes via CAT
+            if ($('#callsign').val().length >= 3) {
+                $('#callsign').blur();
+            }
         }
 
         // Notify DX Waterfall of mode change for sideband display update
