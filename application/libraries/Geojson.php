@@ -157,8 +157,11 @@ class Geojson {
             return null;
         }
 
-		// Remove BOM if present
-		$geojsonData = preg_replace('/^\xEF\xBB\xBF/', '', $geojsonData);
+        // Remove BOM if present (UTF-8, UTF-16, UTF-32)
+        $geojsonData = preg_replace('/^\xEF\xBB\xBF|\xFF\xFE|\xFE\xFF|\x00\x00\xFE\xFF|\xFF\xFE\x00\x00/', '', $geojsonData);
+
+        // Additional cleanup: trim whitespace
+        $geojsonData = trim($geojsonData);
 
         $data = json_decode($geojsonData, true);
 
