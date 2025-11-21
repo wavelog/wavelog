@@ -1364,6 +1364,21 @@ $(document).ready(function () {
 
 	// Fix State button handler
 	$('#fixState').click(function (event) {
+		const id_list = getSelectedIds();
+
+		if (id_list.length === 0) {
+			BootstrapDialog.alert({
+				title: lang_gen_advanced_logbook_info,
+				message: lang_gen_advanced_logbook_select_row_state,
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
+			return;
+		}
+
 		$.ajax({
 			url: base_url + 'index.php/logbookadvanced/stateDialog',
 			type: 'post',
@@ -1381,18 +1396,6 @@ $(document).ready(function () {
 						id: 'updateStateButton',
 						action: function (dialogItself) {
 							const id_list = getSelectedIds();
-
-							// Check if any rows are selected
-							if (id_list.length === 0) {
-								BootstrapDialog.alert({
-									title: lang_gen_advanced_logbook_info,
-									message: lang_gen_advanced_logbook_select_row_state,
-									type: BootstrapDialog.TYPE_INFO,
-									closable: false,
-									draggable: false
-								});
-								return;
-							}
 
 							if (inStateFixing) {
 								return;
