@@ -1384,6 +1384,8 @@ $(document).ready(function () {
 
 							// Check if any rows are selected
 							if (id_list.length === 0) {
+								// Close the initial dialog before showing error
+								dialogItself.close();
 								BootstrapDialog.alert({
 									title: lang_gen_advanced_logbook_info,
 									message: lang_gen_advanced_logbook_select_row_state,
