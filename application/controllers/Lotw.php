@@ -242,6 +242,14 @@ class Lotw extends CI_Controller {
 					continue;
 				}
 
+				// Check LoTW cert against CRL
+				if ($data['lotw_cert_info']->status != 0) {
+					if ($data['lotw_cert_info']->status == 1) {
+						echo $station_profile->station_callsign.": LoTW certificate superseded.<br>";
+						continue;
+					}
+				}
+
 				// Check if LoTW certificate itself is valid
 				// Validty of QSO dates will be checked later
 				$current_date = date('Y-m-d H:i:s');
