@@ -170,10 +170,12 @@ function setNotesVisibility(state, noteText = "",show_notes = user_show_notes) {
 	if (state === 0) {
 		// No callsign - Hide note card
 		$noteCard.hide();
+		$('#callsign-notes-body').removeClass('show');
 
 	} else if (state === 1) {
 		// Callsign, no note yet - show note card with message
 		$noteCard.show();
+		$('#callsign-notes-body').removeClass('show');
 
 		// Hide editor toolbar, set value and show preview
 		document.querySelector('.EasyMDEContainer .editor-toolbar').style.display = 'none';
@@ -184,6 +186,9 @@ function setNotesVisibility(state, noteText = "",show_notes = user_show_notes) {
 	} else if (state === 2) {
 		// Callsign with existing notes - show note card with notes
 		$noteCard.show();
+
+		// Automatically expand the panel when note exists
+		$('#callsign-notes-body').addClass('show');
 
 		// Hide editor toolbar, set value and show preview
 		document.querySelector('.EasyMDEContainer .editor-toolbar').style.display = 'none';
