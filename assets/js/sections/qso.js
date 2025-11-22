@@ -170,10 +170,12 @@ function setNotesVisibility(state, noteText = "",show_notes = user_show_notes) {
 	if (state === 0) {
 		// No callsign - Hide note card
 		$noteCard.hide();
+		$('#callsign-notes-body').removeClass('show');
 
 	} else if (state === 1) {
 		// Callsign, no note yet - show note card with message
 		$noteCard.show();
+		$('#callsign-notes-body').removeClass('show');
 
 		// Hide editor toolbar, set value and show preview
 		document.querySelector('.EasyMDEContainer .editor-toolbar').style.display = 'none';
@@ -184,6 +186,9 @@ function setNotesVisibility(state, noteText = "",show_notes = user_show_notes) {
 	} else if (state === 2) {
 		// Callsign with existing notes - show note card with notes
 		$noteCard.show();
+
+		// Automatically expand the panel when note exists
+		$('#callsign-notes-body').addClass('show');
 
 		// Hide editor toolbar, set value and show preview
 		document.querySelector('.EasyMDEContainer .editor-toolbar').style.display = 'none';
@@ -2436,6 +2441,21 @@ $('#band').on('change', function () {
 	if ($('#radio').val() == 0) {
 		$.get(base_url + 'index.php/qso/band_to_freq/' + $(this).val() + '/' + $('.mode').val(), function (result) {
 			$('#frequency').val(result).trigger("change");
+
+			// Update virtual CAT state when not using CAT
+			if (typeof isCATAvailable === 'function' && !isCATAvailable()) {
+				if (typeof window.catState === 'undefined' || window.catState === null) {
+					window.catState = {};
+				}
+				window.catState.frequency = parseFloat(result); // Hz
+				window.catState.mode = $('.mode').val();
+				window.catState.lastUpdate = Date.now();
+
+				// Update relevant spots for the new band/frequency
+				if (typeof dxWaterfall !== 'undefined' && dxWaterfall && typeof dxWaterfall.collectAllBandSpots === 'function') {
+					dxWaterfall.collectAllBandSpots(true);
+				}
+			}
 		});
 	}
 	$('#frequency_rx').val("");
@@ -2446,20 +2466,6 @@ $('#band').on('change', function () {
 	set_qrg();
 	$("#callsign").blur();
 	stop_az_ele_ticker();
-    if (typeof isCATAvailable === 'function' && !isCATAvailable()) {
-        // Update virtual CAT state
-        if (typeof window.catState === 'undefined' || window.catState === null) {
-            window.catState = {};
-        }
-        window.catState.frequency = parseFloat(result); // Hz
-        window.catState.mode = currentMode;
-        window.catState.lastUpdate = Date.now();
-
-        // Update relevant spots for the new band/frequency
-        if (typeof dxWaterfall !== 'undefined' && dxWaterfall && typeof dxWaterfall.collectAllBandSpots === 'function') {
-            dxWaterfall.collectAllBandSpots(true);
-        }
-    }
 });
 
 /* On Key up Calculate Bearing and Distance */

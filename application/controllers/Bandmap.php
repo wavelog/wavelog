@@ -46,6 +46,7 @@ class Bandmap extends CI_Controller {
 			'assets/js/leaflet/leaflet.geodesic.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/leaflet/leaflet.geodesic.js")),
 			'assets/js/leaflet.polylineDecorator.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/leaflet.polylineDecorator.js")),
 			'assets/js/leaflet/L.Terminator.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/leaflet/L.Terminator.js")),
+			'assets/js/sections/callstats.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/callstats.js")),
 			'assets/js/sections/bandmap_list.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/bandmap_list.js")),
 		];
 

@@ -152,11 +152,6 @@ tbody a {
 	cursor: pointer !important;
 }
 
-.spottable tbody tr td:nth-child(6) a {
-	text-decoration: underline !important;
-	cursor: pointer !important;
-}
-
 .spottable tbody tr td:nth-child(8) i:hover {
 	opacity: 0.7;
 	transform: scale(1.1);
@@ -322,7 +317,8 @@ table tbody tr.cat-nearest-above td {
 .spottable {
 	width: 100%;
 	table-layout: fixed;
-	font-family: 'Courier New', Courier, 'Lucida Console', Monaco, monospace;
+	font-family: 'Consolas', 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Droid Sans Mono', 'Source Code Pro', monospace;
+	font-variant-numeric: slashed-zero;
 	font-size: calc(1rem - 2px);
 }
 
@@ -380,6 +376,12 @@ table tbody tr.cat-nearest-above td {
 	font-size: calc(1rem - 4px);
 }
 
+/* Callsign columns (DX and Spotter) - larger font */
+.spottable td:nth-child(6), .spottable td:nth-child(12) {
+	font-size: calc(1rem - 2px);
+}
+
+/* Continent columns (emoji font) */
 .spottable td:nth-child(7), .spottable td:nth-child(13) {
 	font-family: 'Segoe UI Emoji', 'Noto Color Emoji', 'Apple Color Emoji', Arial, sans-serif;
 	overflow: hidden;
