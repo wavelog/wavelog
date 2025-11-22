@@ -1070,10 +1070,9 @@ $(function() {
 
 	// Submode column: show submode if available
 	let submode = (single.submode && single.submode !== '') ? single.submode : '';
-	data[0].push(submode);		// Callsign column: wrap in callstats link with color coding, add QRZ icon before callsign
-		let qrzIcon = '<a href="https://www.qrz.com/db/' + single.spotted + '" target="_blank" onclick="event.stopPropagation();" data-bs-toggle="tooltip" title="' + lang_bandmap_click_view_qrz_callsign.replace('%s', single.spotted) + '"><img src="' + base_url + 'images/icons/qrz.png" style="height: 12px; margin-right: 3px; vertical-align: middle;" alt="QRZ"></a>';
+	data[0].push(submode);		// Callsign column: wrap in callstats link with color coding
 		let callstatsLink = '<a href="javascript:displayCallstatsContacts(\'' + single.spotted + '\',\'All\',\'All\',\'All\',\'All\',\'\');" onclick="event.stopPropagation();">' + single.spotted + '</a>';
-		wked_info = ((wked_info != '' ? '<span class="' + wked_info + '">' : '') + qrzIcon + callstatsLink + (wked_info != '' ? '</span>' : ''));
+		wked_info = ((wked_info != '' ? '<span class="' + wked_info + '">' : '') + callstatsLink + (wked_info != '' ? '</span>' : ''));
 		var spotted = wked_info;
 		data[0].push(spotted);
 
@@ -1129,10 +1128,9 @@ $(function() {
 	let dxcc_number = dxcc_id_value ? ((dxcc_wked_info != '' ? '<span class="' + dxcc_wked_info + '">' : '') + dxcc_id_value + (dxcc_wked_info != '' ? '</span>' : '')) : '';
 	data[0].push(dxcc_number);
 
-	// de Callsign column (Spotter) - clickable callstats link with QRZ icon before callsign
-	let spotterQrzIcon = '<a href="https://www.qrz.com/db/' + single.spotter + '" target="_blank" onclick="event.stopPropagation();" data-bs-toggle="tooltip" title="' + lang_bandmap_click_view_qrz_callsign.replace('%s', single.spotter) + '"><img src="' + base_url + 'images/icons/qrz.png" style="height: 12px; margin-right: 3px; vertical-align: middle;" alt="QRZ"></a>';
+	// de Callsign column (Spotter) - clickable callstats link
 	let spotterCallstatsLink = '<a href="javascript:displayCallstatsContacts(\'' + single.spotter + '\',\'All\',\'All\',\'All\',\'All\',\'\');" onclick="event.stopPropagation();">' + single.spotter + '</a>';
-	data[0].push(spotterQrzIcon + spotterCallstatsLink);
+	data[0].push(spotterCallstatsLink);
 
 	// de Cont column: spotter's continent
 	data[0].push((single.dxcc_spotter && single.dxcc_spotter.cont) ? single.dxcc_spotter.cont : '');
