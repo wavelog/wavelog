@@ -508,25 +508,9 @@ $(function() {
 			// to prevent recursion issues with table redraws
 		}
 	});	$('.spottable tbody').off('click', 'tr').on('click', 'tr', function(e) {
-		// Don't trigger row click if clicking on a link (LoTW, POTA, SOTA, WWFF, QRZ, etc.)
-		if ($(e.target).is('a') || $(e.target).closest('a').length) {
+		// Don't trigger row click if clicking on a link or image (LoTW, POTA, SOTA, WWFF, callstats, QRZ icon, etc.)
+		if ($(e.target).is('a') || $(e.target).is('img') || $(e.target).closest('a').length) {
 			return;
-		}
-
-		let cellIndex = $(e.target).closest('td').index();
-		// If clicking callsign column (column 5, 0-indexed = 4), open QRZ link directly
-		if (cellIndex === 4) {
-			let rowData = table.row(this).data();
-			if (!rowData) return;
-
-			let callsignHtml = rowData[4];
-			let tempDiv = $('<div>').html(callsignHtml);
-			let qrzLink = tempDiv.find('a');
-
-			if (qrzLink.length) {
-				qrzLink[0].click();
-				return;
-			}
 		}
 
 	// Default row click: prepare QSO logging with callsign, frequency, mode
@@ -1086,9 +1070,9 @@ $(function() {
 
 	// Submode column: show submode if available
 	let submode = (single.submode && single.submode !== '') ? single.submode : '';
-	data[0].push(submode);		// Callsign column: wrap in QRZ link with color coding
-		let qrzLink = '<a href="https://www.qrz.com/db/' + single.spotted + '" target="_blank" onclick="event.stopPropagation();" data-bs-toggle="tooltip" title="' + lang_bandmap_click_view_qrz_callsign.replace('%s', single.spotted) + '">' + single.spotted + '</a>';
-		wked_info = ((wked_info != '' ? '<span class="' + wked_info + '">' : '') + qrzLink + (wked_info != '' ? '</span>' : ''));
+	data[0].push(submode);		// Callsign column: wrap in callstats link with color coding
+		let callstatsLink = '<a href="javascript:displayCallstatsContacts(\'' + single.spotted + '\',\'All\',\'All\',\'All\',\'All\',\'\');" onclick="event.stopPropagation();">' + single.spotted + '</a>';
+		wked_info = ((wked_info != '' ? '<span class="' + wked_info + '">' : '') + callstatsLink + (wked_info != '' ? '</span>' : ''));
 		var spotted = wked_info;
 		data[0].push(spotted);
 
@@ -1144,9 +1128,9 @@ $(function() {
 	let dxcc_number = dxcc_id_value ? ((dxcc_wked_info != '' ? '<span class="' + dxcc_wked_info + '">' : '') + dxcc_id_value + (dxcc_wked_info != '' ? '</span>' : '')) : '';
 	data[0].push(dxcc_number);
 
-	// de Callsign column (Spotter) - clickable QRZ link
-	let spotterQrzLink = '<a href="https://www.qrz.com/db/' + single.spotter + '" target="_blank" onclick="event.stopPropagation();" data-bs-toggle="tooltip" title="' + lang_bandmap_click_view_qrz_callsign.replace('%s', single.spotter) + '">' + single.spotter + '</a>';
-	data[0].push(spotterQrzLink);
+	// de Callsign column (Spotter) - clickable callstats link
+	let spotterCallstatsLink = '<a href="javascript:displayCallstatsContacts(\'' + single.spotter + '\',\'All\',\'All\',\'All\',\'All\',\'\');" onclick="event.stopPropagation();">' + single.spotter + '</a>';
+	data[0].push(spotterCallstatsLink);
 
 	// de Cont column: spotter's continent
 	data[0].push((single.dxcc_spotter && single.dxcc_spotter.cont) ? single.dxcc_spotter.cont : '');
