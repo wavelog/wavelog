@@ -521,7 +521,6 @@
 							<th title="<?= __("CQ Zone"); ?>"><i class="fas fa-map-marked"></i></th>
 							<th title="<?= __("Flag"); ?>"><i class="fas fa-flag"></i></th>
 							<th title="<?= __("DXCC Entity"); ?>"><?= __("Entity"); ?></th>
-							<th title="<?= __("DXCC Number"); ?>"><i class="fas fa-hashtag"></i></th>
 							<th title="<?= __("Spotter Callsign"); ?>"><?= __("de"); ?></th>
 							<th title="<?= __("Spotter Continent"); ?>"><i class="fas fa-globe-americas"></i></th>
 							<th title="<?= __("Spotter CQ Zone"); ?>"><i class="fas fa-map-marked"></i></th>

@@ -131,7 +131,7 @@ $(function() {
 			// Also log which row/column caused the issue
 			if (message.indexOf('parameter') !== -1) {
 				console.error('This usually means the data array has wrong number of columns');
-				console.error('Expected columns: 16 (Age, Band, Freq, Mode, Spotted, Cont, CQZ, Flag, Entity, DXCC#, Spotter, de Cont, de CQZ, Last QSO, Special, Message)');
+				console.error('Expected columns: 16 (Age, Band, Freq, Mode, Submode, Spotted, Cont, CQZ, Flag, Entity, Spotter, de Cont, de CQZ, Last QSO, Special, Message)');
 			}
 		};
 	} else {
@@ -489,7 +489,7 @@ $(function() {
 					}
 				},
 				{
-					'targets': [5, 6, 9, 16],  // Submode, Cont, Flag, Message - disable sorting
+					'targets': [4, 6, 8, 15],  // Submode, Cont, Flag, Message - disable sorting
 					'orderable': false
 				}
 			],
@@ -1140,11 +1140,6 @@ $(function() {
 		data[0].push(entity_colored);
 	}
 
-	// DXCC Number column: show ADIF DXCC entity number with color coding
-	let dxcc_id_value = (single.dxcc_spotted && single.dxcc_spotted.dxcc_id) ? single.dxcc_spotted.dxcc_id : '';
-	let dxcc_number = dxcc_id_value ? ((dxcc_wked_info != '' ? '<span class="' + dxcc_wked_info + '">' : '') + dxcc_id_value + (dxcc_wked_info != '' ? '</span>' : '')) : '';
-	data[0].push(dxcc_number);
-
 	// de Callsign column (Spotter) - clickable QRZ link
 	let spotterQrzLink = '<a href="https://www.qrz.com/db/' + single.spotter + '" target="_blank" onclick="event.stopPropagation();" data-bs-toggle="tooltip" title="' + lang_bandmap_click_view_qrz_callsign.replace('%s', single.spotter) + '">' + single.spotter + '</a>';
 	data[0].push(spotterQrzLink);
@@ -1175,14 +1170,14 @@ $(function() {
 	data[0].push(flags_column);		// Message column
 		data[0].push(single.message || '');
 
-		// Debug: Validate data array has exactly 17 columns
-		if (data[0].length !== 17) {
-			console.error('INVALID DATA ARRAY LENGTH:', data[0].length, 'Expected: 17');
+		// Debug: Validate data array has exactly 16 columns
+		if (data[0].length !== 16) {
+			console.error('INVALID DATA ARRAY LENGTH:', data[0].length, 'Expected: 16');
 			console.error('Spot:', single.spotted, 'Frequency:', single.frequency);
 			console.error('Data array:', data[0]);
-			console.error('Missing columns:', 17 - data[0].length);
+			console.error('Missing columns:', 16 - data[0].length);
 			// Pad array with empty strings to prevent DataTables error
-			while (data[0].length < 17) {
+			while (data[0].length < 16) {
 				data[0].push('');
 			}
 		}
@@ -3130,8 +3125,8 @@ $(function() {
 		$('.spottable').removeClass('cat-sorting-locked');
 
 		// Re-enable sorting on all columns that were originally sortable
-		// Based on columnDefs: columns 5, 6, 9, 16 are not sortable (Submode, Cont, Flag, Message)
-		const nonSortableColumns = [5, 6, 9, 16];
+		// Based on columnDefs: columns 4, 6, 8, 15 are not sortable (Submode, Cont, Flag, Message)
+		const nonSortableColumns = [4, 6, 8, 15];
 
 		table.settings()[0].aoColumns.forEach(function(col, index) {
 			if (!nonSortableColumns.includes(index)) {
@@ -3381,41 +3376,37 @@ $(function() {
 			$('.spottable th:nth-child(7), .spottable td:nth-child(7)').addClass('column-hidden'); // Continent
 			$('.spottable th:nth-child(8), .spottable td:nth-child(8)').addClass('column-hidden'); // CQZ
 			$('.spottable th:nth-child(9), .spottable td:nth-child(9)').addClass('column-hidden'); // Flag
-			$('.spottable th:nth-child(11), .spottable td:nth-child(11)').addClass('column-hidden'); // DXCC
-			$('.spottable th:nth-child(12), .spottable td:nth-child(12)').addClass('column-hidden'); // de Callsign
-			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de Cont
-			$('.spottable th:nth-child(14), .spottable td:nth-child(14)').addClass('column-hidden'); // de CQZ
-			$('.spottable th:nth-child(15), .spottable td:nth-child(15)').addClass('column-hidden'); // Last QSO
-			$('.spottable th:nth-child(16), .spottable td:nth-child(16)').addClass('column-hidden'); // Special
-			$('.spottable th:nth-child(17), .spottable td:nth-child(17)').addClass('column-hidden'); // Message
+			$('.spottable th:nth-child(11), .spottable td:nth-child(11)').addClass('column-hidden'); // de Callsign
+			$('.spottable th:nth-child(12), .spottable td:nth-child(12)').addClass('column-hidden'); // de Cont
+			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de CQZ
+			$('.spottable th:nth-child(14), .spottable td:nth-child(14)').addClass('column-hidden'); // Last QSO
+			$('.spottable th:nth-child(15), .spottable td:nth-child(15)').addClass('column-hidden'); // Special
+			$('.spottable th:nth-child(16), .spottable td:nth-child(16)').addClass('column-hidden'); // Message
 		} else if (containerWidth <= 1024) {
-			// Hide: DXCC, CQZ, de CQZ, Last QSO, Submode, Band, Cont, de Cont, Flag
+			// Hide: CQZ, de CQZ, Last QSO, Submode, Band, Cont, de Cont, Flag
 			$('.spottable th:nth-child(2), .spottable td:nth-child(2)').addClass('column-hidden'); // Band
 			$('.spottable th:nth-child(5), .spottable td:nth-child(5)').addClass('column-hidden'); // Submode
 			$('.spottable th:nth-child(7), .spottable td:nth-child(7)').addClass('column-hidden'); // Continent
 			$('.spottable th:nth-child(8), .spottable td:nth-child(8)').addClass('column-hidden'); // CQZ
 			$('.spottable th:nth-child(9), .spottable td:nth-child(9)').addClass('column-hidden'); // Flag
-			$('.spottable th:nth-child(11), .spottable td:nth-child(11)').addClass('column-hidden'); // DXCC
-			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de Cont
-			$('.spottable th:nth-child(14), .spottable td:nth-child(14)').addClass('column-hidden'); // de CQZ
-			$('.spottable th:nth-child(15), .spottable td:nth-child(15)').addClass('column-hidden'); // Last QSO
+			$('.spottable th:nth-child(12), .spottable td:nth-child(12)').addClass('column-hidden'); // de Cont
+			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de CQZ
+			$('.spottable th:nth-child(14), .spottable td:nth-child(14)').addClass('column-hidden'); // Last QSO
 		} else if (containerWidth <= 1294) {
-			// Hide: DXCC, CQZ, de CQZ, Last QSO, Submode, Band, Cont, de Cont
+			// Hide: CQZ, de CQZ, Last QSO, Submode, Band, Cont, de Cont
 			$('.spottable th:nth-child(2), .spottable td:nth-child(2)').addClass('column-hidden'); // Band
 			$('.spottable th:nth-child(5), .spottable td:nth-child(5)').addClass('column-hidden'); // Submode
 			$('.spottable th:nth-child(7), .spottable td:nth-child(7)').addClass('column-hidden'); // Continent
 			$('.spottable th:nth-child(8), .spottable td:nth-child(8)').addClass('column-hidden'); // CQZ
-			$('.spottable th:nth-child(11), .spottable td:nth-child(11)').addClass('column-hidden'); // DXCC
-			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de Cont
-			$('.spottable th:nth-child(14), .spottable td:nth-child(14)').addClass('column-hidden'); // de CQZ
-			$('.spottable th:nth-child(15), .spottable td:nth-child(15)').addClass('column-hidden'); // Last QSO
+			$('.spottable th:nth-child(12), .spottable td:nth-child(12)').addClass('column-hidden'); // de Cont
+			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de CQZ
+			$('.spottable th:nth-child(14), .spottable td:nth-child(14)').addClass('column-hidden'); // Last QSO
 		} else if (containerWidth <= 1374) {
-			// Hide: DXCC, CQZ, de CQZ, Last QSO, Submode
+			// Hide: CQZ, de CQZ, Last QSO, Submode
 			$('.spottable th:nth-child(5), .spottable td:nth-child(5)').addClass('column-hidden'); // Submode
 			$('.spottable th:nth-child(8), .spottable td:nth-child(8)').addClass('column-hidden'); // CQZ
-			$('.spottable th:nth-child(11), .spottable td:nth-child(11)').addClass('column-hidden'); // DXCC
-			$('.spottable th:nth-child(14), .spottable td:nth-child(14)').addClass('column-hidden'); // de CQZ
-			$('.spottable th:nth-child(15), .spottable td:nth-child(15)').addClass('column-hidden'); // Last QSO
+			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de CQZ
+			$('.spottable th:nth-child(14), .spottable td:nth-child(14)').addClass('column-hidden'); // Last QSO
 		}
 		// else: containerWidth > 1374 - show all columns (already reset above)
 
