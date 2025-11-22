@@ -4298,7 +4298,7 @@ class Logbook_model extends CI_Model {
 		$my_error = "";
 
 		if (validateADIFDate($record['qso_date']) != true) {
-			log_message("Error", "Trying to import QSO with invalid date: " . $record['qso_date'].".");
+			log_message("Error", "Trying to import QSO with invalid date: " . $record['qso_date']. " for station_id " . $station_id . ". Call: " . ($record['call'] ?? '') . " Mode: " . ($record['mode'] ?? '') . " Band: " . ($record['band'] ?? ''));
 			$returner['error']=__("QSO on")." ".$record['qso_date'].": ".__("You tried to import a QSO without valid date. This QSO wasn't imported. It's invalid") . "<br>";
 			return($returner);
 		}
@@ -4357,7 +4357,7 @@ class Logbook_model extends CI_Model {
 
 		if (($band ?? '') == '') {
 			log_message("Error", "Trying to import QSO without Band for station_id " . $station_id . ". QSO Date/Time: " . $time_on . " at ".($record['freq'] ?? 'N/A')." Mode: " . ($record['mode'] ?? '') . " Call: " . ($record['call'] ?? ''));
-			$returner['error']=sprintf(__("QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't imported. It's invalid"),$time_on);
+			$returner['error']=sprintf(__("QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't imported. It's invalid"), $time_on);
 
 			return($returner);
 		}
