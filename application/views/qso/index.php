@@ -751,7 +751,7 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
 		var user_show_notes = <?php echo ($this->session->userdata('user_show_notes')) ? 'true' : 'false'; ?>;
 	</script>
 
-	<div class="card callsign-notes" id="callsign-notes">
+	<div class="card callsign-notes" id="callsign-notes" style="display: none;">
         <div class="card-header d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#callsign-notes-body" aria-expanded="false" aria-controls="callsign-notes-body" style="cursor: pointer;">
           <h4 style="font-size: 16px; font-weight: bold;" class="card-title mb-0">
             <?= __("Callsign Notes"); ?>
