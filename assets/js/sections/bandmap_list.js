@@ -1167,10 +1167,19 @@ $(function() {
 
 	// Special column: combine medals, LoTW and activity badges
 	let flags_column = medals + lotw_badge + activity_flags;
-	data[0].push(flags_column);		// Message column
-		data[0].push(single.message || '');
+	data[0].push(flags_column);
 
-		// Debug: Validate data array has exactly 16 columns
+	// Message column: add tooltip with full message text
+	let message = single.message || '';
+	let messageDisplay = message;
+	if (message) {
+		// Escape HTML for tooltip to prevent XSS
+		let messageTooltip = message.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+		messageDisplay = '<span data-bs-toggle="tooltip" title="' + messageTooltip + '">' + message + '</span>';
+	}
+	data[0].push(messageDisplay);
+
+	// Debug: Validate data array has exactly 16 columns
 		if (data[0].length !== 16) {
 			console.error('INVALID DATA ARRAY LENGTH:', data[0].length, 'Expected: 16');
 			console.error('Spot:', single.spotted, 'Frequency:', single.frequency);
