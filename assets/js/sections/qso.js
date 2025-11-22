@@ -1863,8 +1863,11 @@ $("#callsign").on("focusout", function () {
 		}).always(function() {
 			// Always re-enable button even if there's an error
 			clearTimeout(fetchTimeout);
-			$('#saveQso').prop('disabled', false);
-			$('#fetch_status').hide();
+			// Add short delay to ensure multiselect and all fields are properly populated
+			setTimeout(function() {
+				$('#saveQso').prop('disabled', false);
+				$('#fetch_status').hide();
+			}, 300);
 
 			// Reset lookup in progress flag
 			lookupInProgress = false;

@@ -434,7 +434,7 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
           <div class="tab-pane fade" id="general" role="tabpanel" aria-labelledby="general-tab">
               <div class="mb-3">
                   <label for="dxcc_id"><?= __("DXCC"); ?></label>
-                  <select class="form-control" id="dxcc_id" name="dxcc_id" required>
+                  <select class="form-control" id="dxcc_id" name="dxcc_id">
                       <?php
                       foreach($dxcc as $d) {
                           if ($d->adif == '0') {
