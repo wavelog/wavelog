@@ -119,7 +119,7 @@
                                     <div class="row">
                                         <div class="mb-3 col-sm-6">
                                             <label for="freq"><?= __("Mode"); ?></label>
-                                            <select id="edit_mode" class="form-select mode" name="mode">
+                                            <select id="edit_mode" class="form-select" name="mode">
                                                 <?php
                                                 foreach ($modes->result() as $mode) {
                                                     var_dump($mode);
