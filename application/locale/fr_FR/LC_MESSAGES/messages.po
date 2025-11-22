@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-11-22 16:39+0000\n"
-"PO-Revision-Date: 2025-11-19 09:26+0000\n"
+"POT-Creation-Date: 2025-11-19 17:58+0000\n"
+"PO-Revision-Date: 2025-11-21 09:14+0000\n"
 "Last-Translator: JONCOUX Philippe <joncoux@free.fr>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/fr/>\n"
@@ -635,10 +635,11 @@ msgid "Edit Band"
 msgstr "Modifier la bande"
 
 #: application/controllers/Bandmap.php:28
-#: application/controllers/Bandmap.php:75
+#: application/controllers/Bandmap.php:74
 #: application/controllers/Options.php:152
 #: application/controllers/Options.php:163
 #: application/views/options/sidebar.php:7
+#: application/controllers/Bandmap.php:75
 msgid "DXCluster"
 msgstr "DXCluster"
 
@@ -3146,8 +3147,8 @@ msgid ""
 "encryption_key in your config.php file first!"
 msgstr ""
 "Vous ne pouvez actuellement pas usurper l'identité d'un autre utilisateur. "
-"Veuillez d'abord changer la clé de chiffrement dans votre fichier config."
-"php !"
+"Veuillez d'abord changer la clé de chiffrement dans votre fichier "
+"config.php !"
 
 #: application/controllers/User.php:1602
 msgid "Invalid Hash"
@@ -7763,7 +7764,7 @@ msgstr "Spotter CQ Zone"
 
 #: application/views/bandmap/list.php:525
 msgid "Last QSO Date"
-msgstr ""
+msgstr "Date du dernier QSO"
 
 #: application/views/bandmap/list.php:526
 msgid "Special"
@@ -10740,8 +10741,8 @@ msgstr ""
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
-"Cliquer sur 'Téléverser les QSOs' enverra les informations de QSO vers eQSL."
-"cc."
+"Cliquer sur 'Téléverser les QSOs' enverra les informations de QSO vers "
+"eQSL.cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -13465,8 +13466,8 @@ msgid ""
 "The hostname of the mail server, e.g. 'mail.example.com' (without 'ssl://' "
 "or 'tls://')"
 msgstr ""
-"Le nom d'hôte du serveur de messagerie, par exemple « mail.example."
-"com » (sans « ssl:// » ou « tls:// »)"
+"Le nom d'hôte du serveur de messagerie, par exemple « mail.example.com » "
+"(sans « ssl:// » ou « tls:// »)"
 
 #: application/views/options/email.php:88
 msgid "SMTP Port"
@@ -13519,6 +13520,8 @@ msgid ""
 "The URL which provides the Hams Of Note List. See example and how it works "
 "here %s"
 msgstr ""
+"L'URL qui donne accès à la liste des radioamateurs Of Note. Voir un exemple "
+"et le fonctionnement ici %s"
 
 #: application/views/options/hon.php:39
 msgid "Wiki"
@@ -13527,7 +13530,7 @@ msgstr "Wiki"
 #: application/views/options/hon.php:41
 #, php-format
 msgid "URL of the Hams Of Note List. e.g. %s"
-msgstr ""
+msgstr "URL de la liste des radioamateurs de renom. Par exemple : %s"
 
 #: application/views/options/index.php:13
 msgid ""
@@ -13686,60 +13689,68 @@ msgstr ""
 
 #: application/views/options/version_dialog.php:97
 msgid "Show for all Users"
-msgstr ""
+msgstr "Afficher pour tous les utilisateurs"
 
 #: application/views/options/version_dialog.php:99
 msgid ""
 "This will show the version dialog automatically to all users on their next "
 "page reload."
 msgstr ""
+"Cela affichera automatiquement la boîte de dialogue de version à tous les "
+"utilisateurs lors de leur prochain rechargement de page."
 
 #: application/views/options/version_dialog.php:104
 msgid "Hide for all Users"
-msgstr ""
+msgstr "Masquer pour tous les utilisateurs"
 
 #: application/views/options/version_dialog.php:106
 msgid ""
 "This will deactivate the automatic popup of the version dialog for all users."
 msgstr ""
+"Cela désactivera l'affichage automatique de la boîte de dialogue de version "
+"pour tous les utilisateurs."
 
 #: application/views/oqrs/index.php:9
 msgid "Request a QSL card"
-msgstr ""
+msgstr "Demander une carte QSL"
 
 #: application/views/oqrs/index.php:27
 msgid "Enter your callsign"
-msgstr ""
+msgstr "Saisissez votre indicatif d'appel"
 
 #: application/views/oqrs/index.php:27
 msgid "This search will search in all station locations where OQRS is active."
 msgstr ""
+"Cette recherche s'effectuera dans toutes les stations où le système OQRS est "
+"actif."
 
 #: application/views/oqrs/index.php:54
 msgid "Select station"
-msgstr ""
+msgstr "Sélectionner la station"
 
 #: application/views/oqrs/notinlogform.php:2
 msgid ""
 "If you can't find your QSO in the log, please fill out the form below. You "
 "will be contacted after the log has been checked."
 msgstr ""
+"Si vous ne trouvez pas votre QSO dans le journal, veuillez remplir le "
+"formulaire ci-dessous. Nous vous contacterons après vérification du journal."
 
 #: application/views/oqrs/notinlogform.php:9
 #: application/views/oqrs/request.php:16
 #: application/views/oqrs/request_grouped.php:9
 msgid "Time (UTC)"
-msgstr ""
+msgstr "Heure (UTC)"
 
 #: application/views/oqrs/notinlogform.php:24
 msgid "Add line"
-msgstr ""
+msgstr "Ajouter une ligne"
 
 #: application/views/oqrs/notinlogform.php:30
 #: application/views/oqrs/request.php:56
 #: application/views/oqrs/request_grouped.php:59
 msgid "Any extra information we need to know about?"
-msgstr ""
+msgstr "Y a-t-il d'autres informations que nous devrions connaître ?"
 
 #: application/views/oqrs/notinlogform.php:34
 #: application/views/oqrs/request.php:60
@@ -13749,17 +13760,17 @@ msgstr ""
 #: application/views/user/index.php:29 application/views/user/index.php:154
 #: application/views/user/profile.php:24 application/views/view_log/qso.php:488
 msgid "E-mail"
-msgstr ""
+msgstr "E-mail"
 
 #: application/views/oqrs/notinlogform.php:36
 #: application/views/oqrs/request.php:62
 #: application/views/oqrs/request_grouped.php:65
 msgid "Your e-mail address where we can contact you"
-msgstr ""
+msgstr "Votre adresse e-mail où nous pouvons vous contacter"
 
 #: application/views/oqrs/notinlogform.php:40
 msgid "Send not in log request"
-msgstr ""
+msgstr "Envoyer une requête non enregistrée"
 
 #: application/views/oqrs/qsolist.php:11
 #: application/views/qslprint/qslprint.php:31
@@ -13787,7 +13798,7 @@ msgstr ""
 #: application/views/view_log/qso.php:742
 #: application/views/view_log/qso.php:747
 msgid "Station"
-msgstr ""
+msgstr "Station"
 
 #: application/views/oqrs/qsolist.php:76
 #: application/views/qslprint/qslprint.php:30
@@ -13798,21 +13809,23 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:310
 #: src/QSLManager/QSO.php:435
 msgid "Via"
-msgstr ""
+msgstr "Via"
 
 #: application/views/oqrs/qsolist.php:199
 msgid "No QSOs were found. It seems you were not active at this time."
 msgstr ""
+"Aucun QSO n'a été détecté. Il semble que vous n'étiez pas actif à ce moment-"
+"là."
 
 #: application/views/oqrs/qsolist.php:203
 #: application/views/oqrs/showrequests.php:72
 #: application/views/qslprint/qsolist.php:200
 msgid "Add to print queue"
-msgstr ""
+msgstr "Ajouter à la file d'impression"
 
 #: application/views/oqrs/qsolist.php:209
 msgid "Match QSO"
-msgstr ""
+msgstr "Match QSO"
 
 #: application/views/oqrs/request.php:9
 #: application/views/oqrs/request_grouped.php:3
@@ -13820,38 +13833,40 @@ msgid ""
 "The following QSO(s) were found. Please fill out the date and time and "
 "submit your request."
 msgstr ""
+"Les QSO suivants ont été trouvés. Veuillez indiquer la date et l'heure et "
+"soumettre votre requête."
 
 #: application/views/oqrs/request.php:40
 #: application/views/oqrs/request_grouped.php:43
 msgid "QSL Route"
-msgstr ""
+msgstr "Route QSL"
 
 #: application/views/oqrs/request.php:50
 #: application/views/oqrs/request_grouped.php:53
 msgid "Direct (write address in message below)"
-msgstr ""
+msgstr "Adresse directe (indiquez votre adresse dans le message ci-dessous)"
 
 #: application/views/oqrs/request.php:66
 #: application/views/oqrs/request_grouped.php:69
 msgid "Submit request"
-msgstr ""
+msgstr "Soumettre une demande"
 
 #: application/views/oqrs/request_grouped.php:72
 #: application/views/oqrs/result.php:40
 msgid "No QSOs found in the log."
-msgstr ""
+msgstr "Aucun QSO trouvé dans le journal."
 
 #: application/views/oqrs/result.php:5
 #, php-format
 msgid "Log search result for %s"
-msgstr ""
+msgstr "Résultat de la recherche de journal pour %s"
 
 #: application/views/oqrs/result.php:30
 #, php-format
 msgid "has %d band slot"
 msgid_plural "has %d band slots"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "possède un emplacement de bande %d"
+msgstr[1] "possède %d emplacements de bande"
 
 #: application/views/oqrs/result.php:33
 #, php-format
@@ -15623,8 +15638,8 @@ msgid ""
 msgstr ""
 "Pour commencer, assurez-vous d'avoir rempli le formulaire sur la gauche avec "
 "la date, l'indicatif de la station et l'indicatif de l'opérateur. Les "
-"données principales incluent la bande (ou QRG en MHz, par exemple « 7.145 "
-"»), le mode et l'heure. Après l'heure, indiquez le premier QSO, qui "
+"données principales incluent la bande (ou QRG en MHz, par exemple "
+"« 7.145 »), le mode et l'heure. Après l'heure, indiquez le premier QSO, qui "
 "correspond essentiellement à l'indicatif."
 
 #: application/views/simplefle/syntax_help.php:9
