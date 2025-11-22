@@ -744,7 +744,6 @@ $(document).ready(function() {
 
         // Force update by clearing catValue (prevents cat2UI from blocking updates)
         $frequency.removeData('catValue');
-        $mode.removeData('catValue'); // Also clear mode cache
         cat_updating_frequency = true; // Set flag before CAT update
 
         // Check if DX Waterfall's CAT frequency handler is available
@@ -757,6 +756,10 @@ $(document).ready(function() {
                     // Auto-update band based on frequency
                     if ($band.val() != newBand) {
                         $band.val(newBand).trigger('change'); // Trigger band change
+                        // Update callsign status when band changes via CAT
+                        if ($('#callsign').val().length >= 3) {
+                            $('#callsign').blur();
+                        }
                     }
                 });
             });
@@ -767,6 +770,10 @@ $(document).ready(function() {
                 // Auto-update band based on frequency
                 if ($band.val() != frequencyToBand(d)) {
                     $band.val(frequencyToBand(d)).trigger('change');
+                    // Update callsign status when band changes via CAT
+                    if ($('#callsign').val().length >= 3) {
+                        $('#callsign').blur();
+                    }
                 }
             });
         }
@@ -790,6 +797,17 @@ $(document).ready(function() {
         var modeChanged = previousMode && previousMode !== newMode;
 
         cat2UI($mode,newMode,false,false);
+
+        // Update RST fields when mode changes
+        // Check if mode was actually updated (catValue changed after cat2UI call)
+        var currentMode = $mode.data('catValue');
+        if (currentMode !== previousMode && typeof setRst === 'function') {
+            setRst(newMode);
+            // Update callsign status when mode changes via CAT
+            if ($('#callsign').val().length >= 3) {
+                $('#callsign').blur();
+            }
+        }
 
         // Notify DX Waterfall of mode change for sideband display update
         // Only refresh if mode actually changed (not on initial undefined → value transition)

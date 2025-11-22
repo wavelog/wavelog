@@ -2377,6 +2377,21 @@ $('#band').on('change', function () {
 	if ($('#radio').val() == 0) {
 		$.get(base_url + 'index.php/qso/band_to_freq/' + $(this).val() + '/' + $('.mode').val(), function (result) {
 			$('#frequency').val(result).trigger("change");
+
+			// Update virtual CAT state when not using CAT
+			if (typeof isCATAvailable === 'function' && !isCATAvailable()) {
+				if (typeof window.catState === 'undefined' || window.catState === null) {
+					window.catState = {};
+				}
+				window.catState.frequency = parseFloat(result); // Hz
+				window.catState.mode = $('.mode').val();
+				window.catState.lastUpdate = Date.now();
+
+				// Update relevant spots for the new band/frequency
+				if (typeof dxWaterfall !== 'undefined' && dxWaterfall && typeof dxWaterfall.collectAllBandSpots === 'function') {
+					dxWaterfall.collectAllBandSpots(true);
+				}
+			}
 		});
 	}
 	$('#frequency_rx').val("");
@@ -2387,20 +2402,6 @@ $('#band').on('change', function () {
 	set_qrg();
 	$("#callsign").blur();
 	stop_az_ele_ticker();
-    if (typeof isCATAvailable === 'function' && !isCATAvailable()) {
-        // Update virtual CAT state
-        if (typeof window.catState === 'undefined' || window.catState === null) {
-            window.catState = {};
-        }
-        window.catState.frequency = parseFloat(result); // Hz
-        window.catState.mode = currentMode;
-        window.catState.lastUpdate = Date.now();
-
-        // Update relevant spots for the new band/frequency
-        if (typeof dxWaterfall !== 'undefined' && dxWaterfall && typeof dxWaterfall.collectAllBandSpots === 'function') {
-            dxWaterfall.collectAllBandSpots(true);
-        }
-    }
 });
 
 /* On Key up Calculate Bearing and Distance */
