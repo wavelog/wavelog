@@ -4780,7 +4780,7 @@ class Logbook_model extends CI_Model {
 			$valid_eqsl_sent = ['Y', 'Q', 'I'];
 			if ($markEqsl != NULL) {
 				$input_eqsl_qslsdate = $date = date("Y-m-d H:i:s", strtotime("now"));
-			} elseif (($record['eqsl_qslsdate'] ?? '') != '' && in_array(strtoupper($input_eqsl_qsl_sent), $valid_eqsl_sent)) {
+			} elseif (($record['eqsl_qslsdate'] ?? '') != '' && in_array(strtoupper($input_eqsl_qsl_sent ?? ''), $valid_eqsl_sent)) {
 				if (validateADIFDate($record['eqsl_qslsdate']) == true) {
 					$input_eqsl_qslsdate = $record['eqsl_qslsdate'];
 				} else {
