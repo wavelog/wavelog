@@ -483,7 +483,7 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
 			  <div class="row">
 				  <div class="mb-3 col">
 					  <label for="cqz"><?= __("CQ Zone"); ?></label>
-					  <select class="form-select" id="cqz" name="cqz" required>
+					  <select class="form-select" id="cqz" name="cqz">
 						  <?php
 						  for ($i = 0; $i<=40; $i++) {
 							  echo '<option value="'. $i . '">'. $i .'</option>';
