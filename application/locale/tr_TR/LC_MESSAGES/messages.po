@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-11-22 23:13+0000\n"
+"POT-Creation-Date: 2025-11-23 14:29+0000\n"
 "PO-Revision-Date: 2025-11-20 13:38+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -3396,11 +3396,18 @@ msgstr "DXCC sayısal olmalıdır"
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Yanlış çağrı işareti %s, %s ile %s için QSO içe aktarılırken: ATLANDI"
 
-#: application/models/Logbook_model.php:4599
+#: application/models/Logbook_model.php:4596
+#: application/models/Logbook_model.php:4605
 msgid "QSO on"
 msgstr "Zaman"
 
-#: application/models/Logbook_model.php:4599
+#: application/models/Logbook_model.php:4596
+msgid ""
+"You tried to import a QSO without valid date. This QSO wasn't imported. It's "
+"invalid"
+msgstr ""
+
+#: application/models/Logbook_model.php:4605
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3408,7 +3415,7 @@ msgstr ""
 "Bir çağrı işareti olmadan bir QSO'yu içe aktarmaya çalıştın. Bu QSO içe "
 "aktarılmadı. Geçersiz"
 
-#: application/models/Logbook_model.php:4648
+#: application/models/Logbook_model.php:4654
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -3417,80 +3424,64 @@ msgstr ""
 "%s üzerindeki QSO: Bant bilgisi olmadan bir QSO içe aktarmayı denediniz. Bu "
 "QSO içe aktarılmadı, geçersiz."
 
-#: application/models/Logbook_model.php:4913
+#: application/models/Logbook_model.php:4919
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate geçersiz (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4924
+#: application/models/Logbook_model.php:4930
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate geçersiz (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4985
+#: application/models/Logbook_model.php:4991
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date geçersiz (YYYYAAGG)"
 
-#: application/models/Logbook_model.php:5008
-msgid "LoTW Rcvd status will be reset."
-msgstr "LoTW Alındı durumunu sıfırla."
-
-#: application/models/Logbook_model.php:5008
-msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
-msgstr "lotw_qslrdate geçersiz (YYYYAAGG)"
-
-#: application/models/Logbook_model.php:5033
-msgid "LoTW Sent status will be reset."
-msgstr "LoTW Gönderildi durumunu sıfırla."
-
-#: application/models/Logbook_model.php:5033
-msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
-msgstr "lotw_qslsdate geçersiz (YYYYAAGG)"
-
-#: application/models/Logbook_model.php:5327
+#: application/models/Logbook_model.php:5366
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "İçin yinelenen"
 
-#: application/models/Logbook_model.php:5392
-#: application/models/Logbook_model.php:5487
+#: application/models/Logbook_model.php:5431
+#: application/models/Logbook_model.php:5526
 msgid "QSO could not be matched"
 msgstr "QSO eşleştirilemedi"
 
-#: application/models/Logbook_model.php:5400
+#: application/models/Logbook_model.php:5439
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "LoTW/Clublog/eQSL/Yarışma tarafından onaylandı"
 
-#: application/models/Logbook_model.php:5406
+#: application/models/Logbook_model.php:5445
 msgid "confirmed by award manager"
 msgstr "Ödül yöneticisi tarafından onaylandı"
 
-#: application/models/Logbook_model.php:5410
+#: application/models/Logbook_model.php:5449
 msgid "confirmed by cross-check of DCL data"
 msgstr "DCL verileri karşılaştırılarak onaylandı"
 
-#: application/models/Logbook_model.php:5414
+#: application/models/Logbook_model.php:5453
 msgid "confirmation pending"
 msgstr "onay bekleniyor"
 
-#: application/models/Logbook_model.php:5417
+#: application/models/Logbook_model.php:5456
 msgid "unconfirmed"
 msgstr "onaylanmamış"
 
-#: application/models/Logbook_model.php:5420
+#: application/models/Logbook_model.php:5459
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
 msgid "unknown"
 msgstr "bilinmeyen"
 
-#: application/models/Logbook_model.php:5490
+#: application/models/Logbook_model.php:5529
 msgid "POTA reference already in log"
 msgstr "POTA referansı zaten logda mevcut"
 
-#: application/models/Logbook_model.php:5493
+#: application/models/Logbook_model.php:5532
 msgid "QSO updated"
 msgstr "QSO güncellendi"
 
-#: application/models/Logbook_model.php:6300
+#: application/models/Logbook_model.php:6339
 #: application/views/activated_gridmap/index.php:114
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:58
@@ -17834,6 +17825,18 @@ msgstr "Talep Gönder"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Alındı"
+
+#~ msgid "LoTW Rcvd status will be reset."
+#~ msgstr "LoTW Alındı durumunu sıfırla."
+
+#~ msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
+#~ msgstr "lotw_qslrdate geçersiz (YYYYAAGG)"
+
+#~ msgid "LoTW Sent status will be reset."
+#~ msgstr "LoTW Gönderildi durumunu sıfırla."
+
+#~ msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
+#~ msgstr "lotw_qslsdate geçersiz (YYYYAAGG)"
 
 #~ msgid "DXCC Number"
 #~ msgstr "DXCC Numarası"
