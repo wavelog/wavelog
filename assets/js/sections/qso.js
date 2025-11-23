@@ -660,83 +660,132 @@ bc_bandmap.onmessage = function (ev) {
 }
 
 // Store pending references from bandmap to populate AFTER callsign lookup completes
-var pendingReferences = null;
+// Map structure: callsign -> {seq, refs, timestamp, populated}
+var pendingReferencesMap = new Map();
+var referenceSequence = 0;
 
 // Track last lookup to prevent duplicate calls
 var lastLookupCallsign = null;
 var lookupInProgress = false;
 
 // Helper function to populate reference fields after callsign lookup completes
-function populatePendingReferences(refsToPopulate) {
-	// Use provided references or fall back to global pendingReferences
-	var refs = refsToPopulate || pendingReferences;
+// Uses Map-based storage to prevent race conditions
+function populatePendingReferences(callsign, expectedSeq) {
+	// Handle legacy call without parameters
+	if (!callsign) {
+		callsign = $('#callsign').val();
+	}
 
-	if (!refs) {
+	const entry = pendingReferencesMap.get(callsign);
+
+	if (!entry) {
+		// No references for this callsign - this is normal for non-POTA/SOTA/WWFF spots
 		return;
 	}
 
-	// POTA - uses selectize
+	// Validate sequence only if expectedSeq was provided
+	// This prevents stale data from being populated
+	if (expectedSeq !== null && expectedSeq !== undefined && entry.seq !== expectedSeq) {
+		console.warn('Sequence mismatch - ignoring stale references', {
+			callsign: callsign,
+			expected: expectedSeq,
+			actual: entry.seq
+		});
+		return;
+	}
+
+	// Check if already populated - prevent double-population for same instance
+	if (entry.populated) {
+		return;
+	}
+	entry.populated = true;
+
+	const refs = entry.refs;
+
+	// POTA - set without triggering change initially (silent = true)
 	if (refs.pota_ref && $('#pota_ref').length) {
 		try {
 			var $select = $('#pota_ref').selectize();
 			if ($select.length && $select[0].selectize) {
 				var selectize = $select[0].selectize;
 				selectize.addOption({name: refs.pota_ref});
-				selectize.setValue(refs.pota_ref, false);
-				$('#pota_ref').trigger('change');
+				selectize.setValue(refs.pota_ref, true); // Silent = true
+				// Manually show icon since onChange doesn't fire in silent mode
+				if (refs.pota_ref.indexOf(',') === -1) {
+					$('#pota_info').show();
+					$('#pota_info').html('<a target="_blank" href="https://pota.app/#/park/' + refs.pota_ref + '"><img width="32" height="32" src="' + base_url + 'images/icons/pota.app.png"></a>');
+					$('#pota_info').attr('title', lang_qso_lookup_reference_info.replace('%s', refs.pota_ref).replace('%s', 'pota.co'));
+				}
 			}
 		} catch (e) {
 			console.warn('Could not set POTA reference:', e);
 		}
 	}
 
-	// SOTA - uses selectize
+	// SOTA - set without triggering change initially (silent = true)
 	if (refs.sota_ref && $('#sota_ref').length) {
 		try {
 			var $select = $('#sota_ref').selectize();
 			if ($select.length && $select[0].selectize) {
 				var selectize = $select[0].selectize;
 				selectize.addOption({name: refs.sota_ref});
-				selectize.setValue(refs.sota_ref, false);
-				$('#sota_ref').trigger('change');
+				selectize.setValue(refs.sota_ref, true); // Silent = true
+				// Manually show icon since onChange doesn't fire in silent mode
+				$('#sota_info').show();
+				$('#sota_info').html('<a target="_blank" href="https://summits.sota.org.uk/summit/' + refs.sota_ref + '"><img width="32" height="32" src="' + base_url + 'images/icons/sota.org.uk.png"></a>');
+				$('#sota_info').attr('title', lang_qso_lookup_summit_info.replace('%s', refs.sota_ref).replace('%s', 'sota.org.uk'));
 			}
 		} catch (e) {
 			console.warn('Could not set SOTA reference:', e);
 		}
 	}
 
-	// WWFF - uses selectize
+	// WWFF - set without triggering change initially (silent = true)
 	if (refs.wwff_ref && $('#wwff_ref').length) {
 		try {
 			var $select = $('#wwff_ref').selectize();
 			if ($select.length && $select[0].selectize) {
 				var selectize = $select[0].selectize;
 				selectize.addOption({name: refs.wwff_ref});
-				selectize.setValue(refs.wwff_ref, false);
-				$('#wwff_ref').trigger('change');
+				selectize.setValue(refs.wwff_ref, true); // Silent = true
+				// Manually show icon since onChange doesn't fire in silent mode
+				$('#wwff_info').show();
+				$('#wwff_info').html('<a target="_blank" href="https://www.cqgma.org/zinfo.php?ref=' + refs.wwff_ref + '"><img width="32" height="32" src="' + base_url + 'images/icons/wwff.co.png"></a>');
+				$('#wwff_info').attr('title', lang_qso_lookup_reference_info.replace('%s', refs.wwff_ref).replace('%s', 'cqgma.org'));
 			}
 		} catch (e) {
 			console.warn('Could not set WWFF reference:', e);
 		}
 	}
 
-	// IOTA - regular select dropdown (not selectize)
+	// IOTA - set silently (no change trigger yet)
 	if (refs.iota_ref && $('#iota_ref').length) {
 		try {
 			let $iotaSelect = $('#iota_ref');
 			if ($iotaSelect.find('option[value="' + refs.iota_ref + '"]').length === 0) {
 				$iotaSelect.append(new Option(refs.iota_ref, refs.iota_ref));
 			}
-			$iotaSelect.val(refs.iota_ref).trigger('change');
+			$iotaSelect.val(refs.iota_ref); // Don't trigger change yet
 		} catch (e) {
 			console.warn('Could not set IOTA reference:', e);
 		}
 	}
 
-	// Only clear global pendingReferences if we used it (not a captured copy)
-	if (!refsToPopulate && pendingReferences) {
-		pendingReferences = null;
-	}
+	// NOW trigger gridsquare lookup ONLY ONCE for the highest priority reference
+	// Priority: POTA > SOTA > WWFF (most commonly used)
+	// This prevents multiple simultaneous AJAX gridsquare lookups that can race
+	setTimeout(function() {
+		if (refs.pota_ref && $('#pota_ref').length) {
+			$('#pota_ref').trigger('change');
+		} else if (refs.sota_ref && $('#sota_ref').length) {
+			$('#sota_ref').trigger('change');
+		} else if (refs.wwff_ref && $('#wwff_ref').length) {
+			$('#wwff_ref').trigger('change');
+		}
+
+		// Cleanup immediately after triggering - we're done with these references
+		pendingReferencesMap.delete(callsign);
+	}, 100); // Small delay to let form settle
 }
 
 var bc = new BroadcastChannel('qso_wish');
@@ -751,21 +800,35 @@ bc.onmessage = function (ev) {
 	} else {
 		// Always process frequency, callsign, and reference data from bandmap
 		// (regardless of manual mode - bandmap should control the form)
+		const callsign = ev.data.call;
+		const seq = ++referenceSequence;
 		let delay = 0;
 
 		// Only reset if callsign is different from what we're about to set
-		if ($("#callsign").val() != "" && $("#callsign").val() != ev.data.call) {
+		if ($("#callsign").val() != "" && $("#callsign").val() != callsign) {
 			reset_fields();
 			delay = 600;
 		}
 
-		// Store references for later population (after callsign lookup completes)
-		pendingReferences = {
-			pota_ref: ev.data.pota_ref,
-			sota_ref: ev.data.sota_ref,
-			wwff_ref: ev.data.wwff_ref,
-			iota_ref: ev.data.iota_ref
-		};
+		// Store references with metadata in Map (prevents race conditions)
+		pendingReferencesMap.set(callsign, {
+			seq: seq,
+			refs: {
+				pota_ref: ev.data.pota_ref,
+				sota_ref: ev.data.sota_ref,
+				wwff_ref: ev.data.wwff_ref,
+				iota_ref: ev.data.iota_ref
+			},
+			timestamp: Date.now(),
+			populated: false
+		});
+
+		// Cleanup old entries (> 30 seconds)
+		for (let [key, value] of pendingReferencesMap) {
+			if (Date.now() - value.timestamp > 30000) {
+				pendingReferencesMap.delete(key);
+			}
+		}
 
 		setTimeout(() => {
 			if (ev.data.frequency != null) {
@@ -780,7 +843,11 @@ bc.onmessage = function (ev) {
 			if (ev.data.mode) {
 				$("#mode").val(ev.data.mode);
 			}
-			$("#callsign").val(ev.data.call);
+
+			// Store sequence for validation in populatePendingReferences
+			$("#callsign").data('expected-refs-seq', seq);
+
+			$("#callsign").val(callsign);
 			$("#callsign").focusout();
 			$("#callsign").blur();
 		}, delay);
@@ -1062,9 +1129,9 @@ function reset_to_default() {
 
 /* Function: reset_fields is used to reset the fields on the QSO page */
 function reset_fields() {
-	// we set the pendingReferences to null to avoid they get prefilled in the next QSO after clear
+	// Clear all pending references to avoid they get prefilled in the next QSO after clear
 	// we do this first to avoid race conditions for slow javascript
-	pendingReferences = null;
+	pendingReferencesMap.clear();
 
 	$('#locator_info').text("");
 	$('#comment').val("");
@@ -1216,13 +1283,10 @@ $("#callsign").on("focusout", function () {
 		lastLookupCallsign = currentCallsign;
 		lookupInProgress = true;
 
-		// Capture pendingReferences for THIS lookup (before it gets overwritten by another click)
-		// If pendingReferences exists, use it; otherwise set to null to prevent old references
-		// from being populated when user manually types a different callsign
-		var capturedReferences = pendingReferences ? Object.assign({}, pendingReferences) : null;
-
-		// Clear pendingReferences immediately after capturing to prevent reuse on next manual lookup
-		pendingReferences = null;
+		// Check if we have pending references from bandmap for this callsign
+		// If yes, get the sequence; if no, we'll populate without sequence validation
+		var hasPendingRefs = pendingReferencesMap.has(currentCallsign);
+		var expectedSeq = hasPendingRefs ? pendingReferencesMap.get(currentCallsign).seq : null;
 
 		// Disable Save QSO button and show fetch status
 		$('#saveQso').prop('disabled', true);
@@ -1782,9 +1846,9 @@ $("#callsign").on("focusout", function () {
 
 				// Populate pending references from bandmap (after all lookup logic completes)
 				// Small delay to ensure DOM is fully updated
-				// Use the captured references from when THIS lookup started
+				// Use the Map-based approach with the current callsign and expected sequence
 				setTimeout(function() {
-					populatePendingReferences(capturedReferences);
+					populatePendingReferences(currentCallsign, expectedSeq);
 				}, 100);
 			}
 
