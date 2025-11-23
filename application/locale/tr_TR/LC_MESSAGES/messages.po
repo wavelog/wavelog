@@ -13,10 +13,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-11-23 14:29+0000\n"
-"PO-Revision-Date: 2025-11-23 17:43+0000\n"
+"PO-Revision-Date: 2025-11-23 22:25+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
-"Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/tr/>\n"
+"Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/tr/>\n"
 "Language: tr_TR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3426,6 +3426,8 @@ msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
 msgstr ""
+"Geçerli tarih bilgisi içermeyen bir QSO'lar bulundu. Bu QSO'lar içe "
+"aktarılmadı."
 
 #: application/models/Logbook_model.php:4605
 msgid ""
@@ -7351,12 +7353,14 @@ msgstr "spotters"
 
 #: application/views/bandmap/list.php:117
 msgid "Please Wait"
-msgstr ""
+msgstr "Lütfen Bekleyin"
 
 #: application/views/bandmap/list.php:118
 #, php-format
 msgid "Please wait %s seconds before sending another callsign to the QSO form"
 msgstr ""
+"QSO formuna başka bir çağrı işareti göndermeden önce lütfen %s saniye "
+"bekleyin"
 
 #: application/views/bandmap/list.php:121
 msgid "Loading spots..."
@@ -7648,11 +7652,11 @@ msgstr "Yeni Kıtalar"
 
 #: application/views/bandmap/list.php:445
 msgid "Toggle New Entities filter"
-msgstr "Yeni Varlıklar filtresini aç/kapa"
+msgstr "Yeni Ülke filtresini aç/kapa"
 
 #: application/views/bandmap/list.php:446
 msgid "New Entities"
-msgstr "Yeni Varlıklar"
+msgstr "Yeni Ülkeler"
 
 #: application/views/bandmap/list.php:448
 msgid "Toggle New Callsigns filter"
@@ -7697,7 +7701,7 @@ msgstr "Spotları Ara..."
 #: application/views/bandmap/list.php:506
 msgid "Note: Map shows DXCC entity locations, not actual spot locations"
 msgstr ""
-"Not: Harita DXCC varlık konumlarını gösterir, gerçek spot konumlarını değil"
+"Not: Harita DXCC ülke konumlarını gösterir, gerçek spot konumlarını değil"
 
 #: application/views/bandmap/list.php:514
 msgid "Age in minutes"
@@ -7727,7 +7731,7 @@ msgstr "DXCC Varlığı"
 
 #: application/views/bandmap/list.php:523
 msgid "Entity"
-msgstr "Varlık"
+msgstr "Ülke"
 
 #: application/views/bandmap/list.php:524
 msgid "Spotter Callsign"
@@ -18019,6 +18023,8 @@ msgid ""
 "Distance in kilometers. Search will look for distances greater than or equal "
 "to this value."
 msgstr ""
+"Mesafe kilometre cinsinden. Arama, bu değerden büyük veya eşit mesafeleri "
+"arayacaktır."
 
 #~ msgid "LoTW Rcvd status will be reset."
 #~ msgstr "LoTW Alındı durumunu sıfırla."
