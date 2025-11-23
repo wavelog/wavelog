@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-11-23 14:29+0000\n"
-"PO-Revision-Date: 2025-11-21 09:14+0000\n"
+"POT-Creation-Date: 2025-11-22 23:13+0000\n"
+"PO-Revision-Date: 2025-11-23 14:29+0000\n"
 "Last-Translator: JONCOUX Philippe <joncoux@free.fr>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/fr/>\n"
@@ -3146,8 +3146,8 @@ msgid ""
 "encryption_key in your config.php file first!"
 msgstr ""
 "Vous ne pouvez actuellement pas usurper l'identité d'un autre utilisateur. "
-"Veuillez d'abord changer la clé de chiffrement dans votre fichier config."
-"php !"
+"Veuillez d'abord changer la clé de chiffrement dans votre fichier "
+"config.php !"
 
 #: application/controllers/User.php:1602
 msgid "Invalid Hash"
@@ -3423,17 +3423,13 @@ msgstr ""
 "Indicatif d'appel de station incorrect %s lors de l'importation du QSO avec "
 "%s pour %s : IGNORÉ"
 
+#: application/models/Logbook_model.php:4599
 #: application/models/Logbook_model.php:4596
 #: application/models/Logbook_model.php:4605
 msgid "QSO on"
 msgstr "QSO en"
 
-#: application/models/Logbook_model.php:4596
-msgid ""
-"You tried to import a QSO without valid date. This QSO wasn't imported. It's "
-"invalid"
-msgstr ""
-
+#: application/models/Logbook_model.php:4599
 #: application/models/Logbook_model.php:4605
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
@@ -3442,6 +3438,7 @@ msgstr ""
 "Vous avez essayé d'importer un QSO sans indicatif donné. Ce QSO n'a pas été "
 "importé. Il est invalide"
 
+#: application/models/Logbook_model.php:4648
 #: application/models/Logbook_model.php:4654
 #, php-format
 msgid ""
@@ -3451,64 +3448,94 @@ msgstr ""
 "QSO sur %s : Vous avez essayé d'importer un QSO sans bande spécifiée. Ce QSO "
 "n'a pas été importé. Il est invalide."
 
+#: application/models/Logbook_model.php:4913
 #: application/models/Logbook_model.php:4919
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "la qslrdate est invalide (AAAAMMJJ)"
 
+#: application/models/Logbook_model.php:4924
 #: application/models/Logbook_model.php:4930
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "la qslsdate est invalide (AAAAMMJJ)"
 
+#: application/models/Logbook_model.php:4985
 #: application/models/Logbook_model.php:4991
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "la clublog_qso_upload_date est invalide (AAAAMMJJ)"
 
-#: application/models/Logbook_model.php:5366
+#: application/models/Logbook_model.php:5008
+msgid "LoTW Rcvd status will be reset."
+msgstr "Le statut LoTW reçu sera réinitialisé."
+
+#: application/models/Logbook_model.php:5008
+msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
+msgstr "la lotw_qslrdate est invalide (AAAAMMJJ)"
+
+#: application/models/Logbook_model.php:5033
+msgid "LoTW Sent status will be reset."
+msgstr "Le statut d'envoi de LoTW sera réinitialisé."
+
+#: application/models/Logbook_model.php:5033
+msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
+msgstr "la lotw_qslsdate est invalide (AAAAMMJJ)"
+
+#: application/models/Logbook_model.php:5327
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:5366
 msgid "Duplicate for"
 msgstr "Dupliquer pour"
 
+#: application/models/Logbook_model.php:5392
+#: application/models/Logbook_model.php:5487
 #: application/models/Logbook_model.php:5431
 #: application/models/Logbook_model.php:5526
 msgid "QSO could not be matched"
 msgstr "pas de correspondance pour le QSO"
 
+#: application/models/Logbook_model.php:5400
 #: application/models/Logbook_model.php:5439
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmé par LoTW/Clublog/eQSL/Contest"
 
+#: application/models/Logbook_model.php:5406
 #: application/models/Logbook_model.php:5445
 msgid "confirmed by award manager"
 msgstr "confirmé par le manager de l'Award"
 
+#: application/models/Logbook_model.php:5410
 #: application/models/Logbook_model.php:5449
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmé par recoupement des données DCL"
 
+#: application/models/Logbook_model.php:5414
 #: application/models/Logbook_model.php:5453
 msgid "confirmation pending"
 msgstr "confirmation en attente"
 
+#: application/models/Logbook_model.php:5417
 #: application/models/Logbook_model.php:5456
 msgid "unconfirmed"
 msgstr "non confirmé"
 
-#: application/models/Logbook_model.php:5459
+#: application/models/Logbook_model.php:5420
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
+#: application/models/Logbook_model.php:5459
 msgid "unknown"
 msgstr "inconnu"
 
+#: application/models/Logbook_model.php:5490
 #: application/models/Logbook_model.php:5529
 msgid "POTA reference already in log"
 msgstr "Les références du POTA sont déjà dans le log"
 
+#: application/models/Logbook_model.php:5493
 #: application/models/Logbook_model.php:5532
 msgid "QSO updated"
 msgstr "QSO mis à jour"
 
-#: application/models/Logbook_model.php:6339
+#: application/models/Logbook_model.php:6300
 #: application/views/activated_gridmap/index.php:114
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:58
@@ -3519,6 +3546,7 @@ msgstr "QSO mis à jour"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:6339
 msgid "Bearing"
 msgstr "Azimut"
 
@@ -7366,12 +7394,14 @@ msgstr "observateurs"
 
 #: application/views/bandmap/list.php:117
 msgid "Please Wait"
-msgstr ""
+msgstr "S'il vous plaît, attendez"
 
 #: application/views/bandmap/list.php:118
 #, php-format
 msgid "Please wait %s seconds before sending another callsign to the QSO form"
 msgstr ""
+"Veuillez patienter %s secondes avant d'envoyer un autre indicatif d'appel au "
+"formulaire QSO"
 
 #: application/views/bandmap/list.php:121
 msgid "Loading spots..."
@@ -10736,8 +10766,8 @@ msgstr ""
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
-"Cliquer sur 'Téléverser les QSOs' enverra les informations de QSO vers eQSL."
-"cc."
+"Cliquer sur 'Téléverser les QSOs' enverra les informations de QSO vers "
+"eQSL.cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -13461,8 +13491,8 @@ msgid ""
 "The hostname of the mail server, e.g. 'mail.example.com' (without 'ssl://' "
 "or 'tls://')"
 msgstr ""
-"Le nom d'hôte du serveur de messagerie, par exemple « mail.example."
-"com » (sans « ssl:// » ou « tls:// »)"
+"Le nom d'hôte du serveur de messagerie, par exemple « mail.example.com » "
+"(sans « ssl:// » ou « tls:// »)"
 
 #: application/views/options/email.php:88
 msgid "SMTP Port"
@@ -13507,7 +13537,7 @@ msgstr ""
 
 #: application/views/options/hon.php:38
 msgid "Provider for Hams Of Note"
-msgstr ""
+msgstr "Fournisseur pour Hams Of Note"
 
 #: application/views/options/hon.php:39
 #, php-format
@@ -13872,97 +13902,105 @@ msgstr[1] ""
 
 #: application/views/oqrs/result.php:37
 msgid "Request QSL"
-msgstr ""
+msgstr "Demande de QSL"
 
 #: application/views/oqrs/result.php:44
 msgid "Not in log?"
-msgstr ""
+msgstr "Pas dans le journal ?"
 
 #: application/views/oqrs/showrequests.php:2
 #: application/views/oqrs/showrequests.php:50
 #: application/views/oqrs/status_info.php:10
 msgid "Open request"
-msgstr ""
+msgstr "Demande ouverte"
 
 #: application/views/oqrs/showrequests.php:3
 #: application/views/oqrs/showrequests.php:51
 #: application/views/oqrs/status_info.php:14
 msgid "Not in log request"
-msgstr ""
+msgstr "Requête non enregistrée"
 
 #: application/views/oqrs/showrequests.php:4
 msgid "Request done"
-msgstr ""
+msgstr "Demande effectuée"
 
 #: application/views/oqrs/showrequests.php:5
 msgid "Pending request"
-msgstr ""
+msgstr "Demande en attente"
 
 #: application/views/oqrs/showrequests.php:6
 msgid "Request rejected"
-msgstr ""
+msgstr "Requête rejetée"
 
 #: application/views/oqrs/showrequests.php:11
 msgid "Warning! Are you sure you want to delete the marked OQRS request(s)?"
 msgstr ""
+"Attention ! Êtes-vous sûr de vouloir supprimer la ou les requêtes OQRS "
+"marquées ?"
 
 #: application/views/oqrs/showrequests.php:12
 msgid "Warning! Are you sure you want to reject the marked OQRS request(s)?"
 msgstr ""
+"Attention ! Êtes-vous sûr de vouloir rejeter la ou les demandes OQRS "
+"marquées ?"
 
 #: application/views/oqrs/showrequests.php:13
 msgid "Warning! Are you sure you want to mark the marked OQRS request(s)?"
 msgstr ""
+"Attention ! Êtes-vous sûr de vouloir marquer la ou les demandes OQRS "
+"marquées ?"
 
 #: application/views/oqrs/showrequests.php:14
 msgid ""
 "Warning! Are you sure you want to add the marked OQRS request(s) to the "
 "queue?"
 msgstr ""
+"Attention ! Êtes-vous sûr de vouloir ajouter la ou les requêtes OQRS "
+"marquées à la file d'attente ?"
 
 #: application/views/oqrs/showrequests.php:15
 msgid "OQRS Status Information"
-msgstr ""
+msgstr "Informations sur le statut OQRS"
 
 #: application/views/oqrs/showrequests.php:16
 msgid "Warning! Are you sure you want to delete the QSO match?"
-msgstr ""
+msgstr "Attention ! Êtes-vous sûr de vouloir supprimer la correspondance QSO ?"
 
 #: application/views/oqrs/showrequests.php:42
 #: application/views/oqrs/showrequests.php:90
 msgid "Request callsign"
-msgstr ""
+msgstr "Indicatif d'appel demandé"
 
 #: application/views/oqrs/showrequests.php:47
 msgid "OQRS Status"
-msgstr ""
+msgstr "Statut OQRS"
 
 #: application/views/oqrs/showrequests.php:52
 #: application/views/oqrs/status_info.php:18
 msgid "Done / sent"
-msgstr ""
+msgstr "Terminé / envoyé"
 
 #: application/views/oqrs/showrequests.php:53
 #: application/views/oqrs/status_info.php:22
 msgid "Pending"
-msgstr ""
+msgstr "En attente"
 
 #: application/views/oqrs/showrequests.php:54
 #: application/views/oqrs/status_info.php:26
 msgid "Rejected"
-msgstr ""
+msgstr "Rejeté"
 
 #: application/views/oqrs/showrequests.php:71
 msgid "With selected"
-msgstr ""
+msgstr "Avec sélection"
 
 #: application/views/oqrs/showrequests.php:73
 msgid "Mark as done"
-msgstr ""
+msgstr "Marquer comme terminé"
 
 #: application/views/oqrs/showrequests.php:74
 msgid "Reject"
-msgstr ""
+msgstr "Rejeter"
 
 #: application/views/oqrs/showrequests.php:85
 msgid "Time of request"
@@ -15633,8 +15671,8 @@ msgid ""
 msgstr ""
 "Pour commencer, assurez-vous d'avoir rempli le formulaire sur la gauche avec "
 "la date, l'indicatif de la station et l'indicatif de l'opérateur. Les "
-"données principales incluent la bande (ou QRG en MHz, par exemple « 7.145 "
-"»), le mode et l'heure. Après l'heure, indiquez le premier QSO, qui "
+"données principales incluent la bande (ou QRG en MHz, par exemple "
+"« 7.145 »), le mode et l'heure. Après l'heure, indiquez le premier QSO, qui "
 "correspond essentiellement à l'indicatif."
 
 #: application/views/simplefle/syntax_help.php:9
@@ -18009,17 +18047,11 @@ msgstr "Soumettre la demande"
 msgid "Rcvd"
 msgstr "Reçu"
 
-#~ msgid "LoTW Rcvd status will be reset."
-#~ msgstr "Le statut LoTW reçu sera réinitialisé."
-
-#~ msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
-#~ msgstr "la lotw_qslrdate est invalide (AAAAMMJJ)"
-
-#~ msgid "LoTW Sent status will be reset."
-#~ msgstr "Le statut d'envoi de LoTW sera réinitialisé."
-
-#~ msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
-#~ msgstr "la lotw_qslsdate est invalide (AAAAMMJJ)"
+#: application/models/Logbook_model.php:4596
+msgid ""
+"You tried to import a QSO without valid date. This QSO wasn't imported. It's "
+"invalid"
+msgstr ""
 
 #~ msgid "DXCC Number"
 #~ msgstr "DXCC Number"
