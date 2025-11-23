@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-11-23 14:29+0000\n"
-"PO-Revision-Date: 2025-11-23 17:21+0000\n"
+"PO-Revision-Date: 2025-11-23 17:43+0000\n"
 "Last-Translator: JONCOUX Philippe <joncoux@free.fr>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/fr/>\n"
@@ -14181,15 +14181,17 @@ msgid ""
 "The column %s shows how many QSLs have been sent to the same station before "
 "on the same band and mode."
 msgstr ""
+"La colonne %s indique combien de QSL ont déjà été envoyées à la même station "
+"sur la même bande et dans le même mode."
 
 #: application/views/qslprint/qslprint.php:33
 #: application/views/qslprint/qsolist.php:17
 msgid "Send Method"
-msgstr ""
+msgstr "Méthode d'envoi"
 
 #: application/views/qslprint/qslprint.php:35
 msgid "Mark as sent"
-msgstr ""
+msgstr "Marquer comme envoyé"
 
 #: application/views/qslprint/qslprint.php:36
 msgid "Remove"
@@ -14198,19 +14200,19 @@ msgstr "Enlever"
 #: application/views/qslprint/qslprint.php:37
 #: application/views/simplefle/index.php:147
 msgid "QSO List"
-msgstr ""
+msgstr "Liste QSO"
 
 #: application/views/qslprint/qslprint.php:78
 msgid "Mark QSOs for a certain QSL Method:"
-msgstr ""
+msgstr "Marquer les QSO pour une méthode QSL spécifique :"
 
 #: application/views/qslprint/qslprint.php:86
 msgid "Mark all QSOs for the chosen QSL method"
-msgstr ""
+msgstr "Marquez tous les QSO pour la méthode QSL choisie"
 
 #: application/views/qslprint/qslprint.php:87
 msgid "Unmark every QSO"
-msgstr ""
+msgstr "Décochez chaque QSO"
 
 #: application/views/qslprint/qslprint.php:92
 msgid "Update QSOs"
@@ -14754,14 +14756,14 @@ msgid "CAT URL"
 msgstr "URL du CAT"
 
 #: application/views/radio/edit.php:20
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Called URL when a spot at DXCluster is clicked. Notice: The trailing slash "
 "(/) and QRG is added automatically. Default is %s"
 msgstr ""
 "URL appelée lorsqu'un spot sur le DXCluster est cliqué. Remarque : La barre "
 "oblique finale (/) et la QRG sont ajoutés automatiquement. La valeur par "
-"défaut est %s."
+"défaut est %s"
 
 #: application/views/radio/index.php:20
 msgid "Active Radios"
@@ -16322,6 +16324,9 @@ msgid ""
 "Setting a public slug allows you to share your logbook with anyone via a "
 "custom website address, this slug can contain letters & numbers only."
 msgstr ""
+"Définir un identifiant public vous permet de partager votre journal de bord "
+"avec n'importe qui via une adresse web personnalisée ; cet identifiant ne "
+"peut contenir que des lettres et des chiffres."
 
 #: application/views/stationsetup/visitor.php:3
 msgid "Later it looks like this:"
@@ -16329,11 +16334,11 @@ msgstr "Plus tard, cela ressemble à ceci :"
 
 #: application/views/stationsetup/visitor.php:4
 msgid "[your slug]"
-msgstr ""
+msgstr "[votre slug]"
 
 #: application/views/stationsetup/visitor.php:10
 msgid "Type in Public Slug choice"
-msgstr ""
+msgstr "Saisissez le choix du slug public"
 
 #: application/views/stationsetup/visitor.php:17
 msgid "Visit Public Page"
@@ -16969,7 +16974,7 @@ msgstr "Pas affiché"
 
 #: application/views/user/edit.php:547
 msgid "QSO (worked, not confirmed)"
-msgstr ""
+msgstr "QSO (établi, non confirmé)"
 
 #: application/views/user/edit.php:566
 msgid "QSO (confirmed)"
@@ -16978,14 +16983,15 @@ msgstr "QSO (confirmé)"
 #: application/views/user/edit.php:567
 msgid "(If 'No', displayed as 'QSO (worked, not confirmed)')"
 msgstr ""
+"(Si la réponse est « Non », affiché comme « QSO (réussi, non confirmé) »)"
 
 #: application/views/user/edit.php:586
 msgid "Unworked (e.g. Zones)"
-msgstr ""
+msgstr "Zones non traitées (ex. : Zones)"
 
 #: application/views/user/edit.php:587
 msgid "(Color for unworked zones)"
-msgstr ""
+msgstr "(Couleur pour les zones non travaillées)"
 
 #: application/views/user/edit.php:597
 msgid "Show Locator"
