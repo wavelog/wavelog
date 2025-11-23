@@ -548,7 +548,8 @@ function getFormData(form) {
 		comment: form.comment.value,
 		dok: form.dok.value,
 		qrzSent: form.qrzSent.value,
-		qrzReceived: form.qrzReceived.value
+		qrzReceived: form.qrzReceived.value,
+		distance: form.distanceinput.value,
 	};
 }
 
