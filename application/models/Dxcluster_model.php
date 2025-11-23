@@ -62,7 +62,7 @@ class Dxcluster_model extends CI_Model {
 			$custom_date_format = $this->config->item('qso_date_format');
 		}
 
-		$dxcache_url = ($this->optionslib->get_option('dxcache_url') == '' ? 'https://dxc.jo30.de/dxcache' : $this->optionslib->get_option('dxcache_url'));
+		$dxcache_url = ($this->optionslib->get_option('dxcache_url') == '' ? 'https://dxc.wavelog.org/dxcache' : $this->optionslib->get_option('dxcache_url'));
 
 		if ($band == "All") {
 			$dxcache_url = $dxcache_url . '/spots/';
@@ -485,7 +485,7 @@ class Dxcluster_model extends CI_Model {
 		$this->load->helper(array('psr4_autoloader'));
 	    if (is_numeric($qrg)) {
 
-			$dxcache_url = ($this->optionslib->get_option('dxcache_url') == '' ? 'https://dxc.jo30.de/dxcache' : $this->optionslib->get_option('dxcache_url'));
+			$dxcache_url = ($this->optionslib->get_option('dxcache_url') == '' ? 'https://dxc.wavelog.org/dxcache' : $this->optionslib->get_option('dxcache_url'));
 
 		    $dxcache_url = $dxcache_url .'/spot/'.$qrg;
 

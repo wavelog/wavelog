@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-11-22 23:13+0000\n"
+"POT-Creation-Date: 2025-11-23 14:29+0000\n"
 "PO-Revision-Date: 2025-10-22 00:19+0000\n"
 "Last-Translator: David Quental <ct1drb72@gmail.com>\n"
 "Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -3414,11 +3414,18 @@ msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 "Indicativo de estación incorrecto %s al importar QSO con %s para %s: OMITIDO"
 
-#: application/models/Logbook_model.php:4599
+#: application/models/Logbook_model.php:4596
+#: application/models/Logbook_model.php:4605
 msgid "QSO on"
 msgstr "QSO en"
 
-#: application/models/Logbook_model.php:4599
+#: application/models/Logbook_model.php:4596
+msgid ""
+"You tried to import a QSO without valid date. This QSO wasn't imported. It's "
+"invalid"
+msgstr ""
+
+#: application/models/Logbook_model.php:4605
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3426,7 +3433,7 @@ msgstr ""
 "Intentaste importar un QSO sin ningún indicativo dado. Este QSO no fue "
 "importado. Es inválido"
 
-#: application/models/Logbook_model.php:4648
+#: application/models/Logbook_model.php:4654
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -3435,80 +3442,64 @@ msgstr ""
 "QSO en %s: Intentaste importar un QSO sin la banda. Este QSO no fue "
 "importado. Es inválido"
 
-#: application/models/Logbook_model.php:4913
+#: application/models/Logbook_model.php:4919
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "la qslrfecha es inválida (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:4924
+#: application/models/Logbook_model.php:4930
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "la qslfecha es inválida (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4985
+#: application/models/Logbook_model.php:4991
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "la fecha de carga de clublog_qso es inválida (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:5008
-msgid "LoTW Rcvd status will be reset."
-msgstr ""
-
-#: application/models/Logbook_model.php:5008
-msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
-msgstr "la lotw_qslrdate no es válida (YYYYMMDD)"
-
-#: application/models/Logbook_model.php:5033
-msgid "LoTW Sent status will be reset."
-msgstr ""
-
-#: application/models/Logbook_model.php:5033
-msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
-msgstr "el lotw_qslsdate es inválido (AAAAMMDD)"
-
-#: application/models/Logbook_model.php:5327
+#: application/models/Logbook_model.php:5366
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplicado para"
 
-#: application/models/Logbook_model.php:5392
-#: application/models/Logbook_model.php:5487
+#: application/models/Logbook_model.php:5431
+#: application/models/Logbook_model.php:5526
 msgid "QSO could not be matched"
 msgstr "QSOs que no concuerdan"
 
-#: application/models/Logbook_model.php:5400
+#: application/models/Logbook_model.php:5439
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmados por LoTW/Clublog/eQSL/Concurso"
 
-#: application/models/Logbook_model.php:5406
+#: application/models/Logbook_model.php:5445
 msgid "confirmed by award manager"
 msgstr "confirmados por el administrador del premio"
 
-#: application/models/Logbook_model.php:5410
+#: application/models/Logbook_model.php:5449
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmados al hacer chequeo cruzadoc on datos de DCL"
 
-#: application/models/Logbook_model.php:5414
+#: application/models/Logbook_model.php:5453
 msgid "confirmation pending"
 msgstr "pendiente de confirmación"
 
-#: application/models/Logbook_model.php:5417
+#: application/models/Logbook_model.php:5456
 msgid "unconfirmed"
 msgstr "sin confirmar"
 
-#: application/models/Logbook_model.php:5420
+#: application/models/Logbook_model.php:5459
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
 msgid "unknown"
 msgstr "desconocido"
 
-#: application/models/Logbook_model.php:5490
+#: application/models/Logbook_model.php:5529
 msgid "POTA reference already in log"
 msgstr "La referencia POTA ya se encuentra en el log"
 
-#: application/models/Logbook_model.php:5493
+#: application/models/Logbook_model.php:5532
 msgid "QSO updated"
 msgstr "QSO actualizado"
 
-#: application/models/Logbook_model.php:6300
+#: application/models/Logbook_model.php:6339
 #: application/views/activated_gridmap/index.php:114
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:58
@@ -17942,6 +17933,12 @@ msgstr "Enviar solicitud"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Recibido"
+
+#~ msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
+#~ msgstr "la lotw_qslrdate no es válida (YYYYMMDD)"
+
+#~ msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
+#~ msgstr "el lotw_qslsdate es inválido (AAAAMMDD)"
 
 #~ msgid "QSO (by default)"
 #~ msgstr "QSO (por defecto)"

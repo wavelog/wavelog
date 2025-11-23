@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-11-22 23:13+0000\n"
+"POT-Creation-Date: 2025-11-23 14:29+0000\n"
 "PO-Revision-Date: 2025-11-20 06:57+0000\n"
 "Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
@@ -3423,11 +3423,18 @@ msgstr ""
 "Falscher Stationscall %s im QSO mit %s für das Stationsprofil %s: Nicht "
 "importiert"
 
-#: application/models/Logbook_model.php:4599
+#: application/models/Logbook_model.php:4596
+#: application/models/Logbook_model.php:4605
 msgid "QSO on"
 msgstr "QSO am"
 
-#: application/models/Logbook_model.php:4599
+#: application/models/Logbook_model.php:4596
+msgid ""
+"You tried to import a QSO without valid date. This QSO wasn't imported. It's "
+"invalid"
+msgstr ""
+
+#: application/models/Logbook_model.php:4605
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3435,7 +3442,7 @@ msgstr ""
 "Du hast versucht, ein QSO ohne angegebenes Rufzeichen zu importieren. Dieses "
 "QSO wurde nicht importiert. Es ist ungültig"
 
-#: application/models/Logbook_model.php:4648
+#: application/models/Logbook_model.php:4654
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -3444,80 +3451,64 @@ msgstr ""
 "QSO um %s: Du hast versucht, ein QSO ohne Bandinformationen zu importieren. "
 "Dieses QSO wurde nicht importiert. Es ist ungültig"
 
-#: application/models/Logbook_model.php:4913
+#: application/models/Logbook_model.php:4919
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "Das (Papier-)QSL-Empfangsdatum hat das falsche Format (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:4924
+#: application/models/Logbook_model.php:4930
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "Das (Papier-)QSL Sendedatum hat das falsche Format (JJJJMMTT)"
 
-#: application/models/Logbook_model.php:4985
+#: application/models/Logbook_model.php:4991
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "Das Format des Clublog-Upload-Datums ist falsch (JJJJMMTT)"
 
-#: application/models/Logbook_model.php:5008
-msgid "LoTW Rcvd status will be reset."
-msgstr "LoTW-Empfangsstatus wird zurückgesetzt."
-
-#: application/models/Logbook_model.php:5008
-msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
-msgstr "Das Format des LoTW-Empfangs-Datums ist falsch (JJJJMMTT)"
-
-#: application/models/Logbook_model.php:5033
-msgid "LoTW Sent status will be reset."
-msgstr "LoTW-Sendestatus wird zurückgesetzt."
-
-#: application/models/Logbook_model.php:5033
-msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
-msgstr "Das Format des LoTW-Sende-Datums ist falsch (JJJJMMTT)"
-
-#: application/models/Logbook_model.php:5327
+#: application/models/Logbook_model.php:5366
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Doublette zu"
 
-#: application/models/Logbook_model.php:5392
-#: application/models/Logbook_model.php:5487
+#: application/models/Logbook_model.php:5431
+#: application/models/Logbook_model.php:5526
 msgid "QSO could not be matched"
 msgstr "QSO konnte nicht gefunden werden"
 
-#: application/models/Logbook_model.php:5400
+#: application/models/Logbook_model.php:5439
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bestätigt durch LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:5406
+#: application/models/Logbook_model.php:5445
 msgid "confirmed by award manager"
 msgstr "bestätigt durch Diplommananger"
 
-#: application/models/Logbook_model.php:5410
+#: application/models/Logbook_model.php:5449
 msgid "confirmed by cross-check of DCL data"
 msgstr "bestätigt durch Cross-Check von DCL-Daten"
 
-#: application/models/Logbook_model.php:5414
+#: application/models/Logbook_model.php:5453
 msgid "confirmation pending"
 msgstr "Bestätigung ausstehend"
 
-#: application/models/Logbook_model.php:5417
+#: application/models/Logbook_model.php:5456
 msgid "unconfirmed"
 msgstr "nicht bestätigt"
 
-#: application/models/Logbook_model.php:5420
+#: application/models/Logbook_model.php:5459
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
 msgid "unknown"
 msgstr "unbekannt"
 
-#: application/models/Logbook_model.php:5490
+#: application/models/Logbook_model.php:5529
 msgid "POTA reference already in log"
 msgstr "POTA Referenz bereits im Log"
 
-#: application/models/Logbook_model.php:5493
+#: application/models/Logbook_model.php:5532
 msgid "QSO updated"
 msgstr "QSO aktualisiert"
 
-#: application/models/Logbook_model.php:6300
+#: application/models/Logbook_model.php:6339
 #: application/views/activated_gridmap/index.php:114
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:58
@@ -17975,6 +17966,18 @@ msgstr "Anfrage senden"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Rcvd"
+
+#~ msgid "LoTW Rcvd status will be reset."
+#~ msgstr "LoTW-Empfangsstatus wird zurückgesetzt."
+
+#~ msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
+#~ msgstr "Das Format des LoTW-Empfangs-Datums ist falsch (JJJJMMTT)"
+
+#~ msgid "LoTW Sent status will be reset."
+#~ msgstr "LoTW-Sendestatus wird zurückgesetzt."
+
+#~ msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
+#~ msgstr "Das Format des LoTW-Sende-Datums ist falsch (JJJJMMTT)"
 
 #~ msgid "DXCC Number"
 #~ msgstr "DXCC Nummer"
