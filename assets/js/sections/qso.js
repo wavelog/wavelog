@@ -353,15 +353,30 @@ $("#qso_input").off('submit').on('submit', function (e) {
 					showToast(lang_general_word_success, successMessage, 'bg-success text-white', 5000);
 					prepare_next_qso(saveQsoButtonText);
 					processBacklog();	// If we have success with the live-QSO, we could also process the backlog
+					// Clear debounce timer on success to allow immediate next submission
+					if (submitTimeout) {
+						clearTimeout(submitTimeout);
+						submitTimeout = null;
+					}
 				} else {
 					showToast(lang_general_word_error, result.errors, 'bg-danger text-white', 5000);
 					$("#saveQso").html(saveQsoButtonText).prop("disabled", false);
+					// Clear debounce timer on error to allow retry
+					if (submitTimeout) {
+						clearTimeout(submitTimeout);
+						submitTimeout = null;
+					}
 				}
 			},
 			error: function () {
 				saveToBacklog(JSON.stringify(this.data),manual_addon);
 				prepare_next_qso(saveQsoButtonText);
 				showToast(lang_general_word_info, lang_qso_added_to_backlog, 'bg-info text-dark', 5000);
+				// Clear debounce timer on error to allow retry
+				if (submitTimeout) {
+					clearTimeout(submitTimeout);
+					submitTimeout = null;
+				}
 			}
 		});
 	}
