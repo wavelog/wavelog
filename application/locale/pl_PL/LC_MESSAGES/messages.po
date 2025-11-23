@@ -16,16 +16,16 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-11-23 14:29+0000\n"
-"PO-Revision-Date: 2025-11-22 16:36+0000\n"
+"PO-Revision-Date: 2025-11-23 14:54+0000\n"
 "Last-Translator: Szymon <sp9spm@cqops.com>\n"
-"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/pl/>\n"
+"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/pl/>\n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && "
+"(n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 5.14\n"
 
 #: application/controllers/Accumulated.php:12
@@ -3420,6 +3420,8 @@ msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
 msgstr ""
+"Próbowano zaimportować QSO bez prawidłowej daty. To QSO nie zostało "
+"zaimportowane, ponieważ jest nieprawidłowe"
 
 #: application/models/Logbook_model.php:4605
 msgid ""
@@ -7334,12 +7336,13 @@ msgstr "obserwatorzy"
 
 #: application/views/bandmap/list.php:117
 msgid "Please Wait"
-msgstr ""
+msgstr "Proszę czekać"
 
 #: application/views/bandmap/list.php:118
 #, php-format
 msgid "Please wait %s seconds before sending another callsign to the QSO form"
 msgstr ""
+"Należy poczekać %s sekund przed wysłaniem kolejnego znaku do formularza QSO"
 
 #: application/views/bandmap/list.php:121
 msgid "Loading spots..."
