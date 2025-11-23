@@ -18,10 +18,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-11-23 14:29+0000\n"
-"PO-Revision-Date: 2025-11-23 14:29+0000\n"
+"PO-Revision-Date: 2025-11-23 17:21+0000\n"
 "Last-Translator: JONCOUX Philippe <joncoux@free.fr>\n"
-"Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/fr/>\n"
+"Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/fr/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3433,6 +3433,8 @@ msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
 msgstr ""
+"Vous avez tenté d'importer un QSO sans date valide. Ce QSO n'a pas pu être "
+"importé. Il est invalide"
 
 #: application/models/Logbook_model.php:4605
 msgid ""
@@ -13869,8 +13871,8 @@ msgstr[1] "possède %d emplacements de bande"
 #, php-format
 msgid "and has %d QSO in the log"
 msgid_plural "and has %d QSOs in the log"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "et comporte %d QSO dans le journal"
+msgstr[1] "et comporte %d QSO dans le journal"
 
 #: application/views/oqrs/result.php:37
 msgid "Request QSL"
@@ -13976,188 +13978,202 @@ msgstr "Rejeter"
 
 #: application/views/oqrs/showrequests.php:85
 msgid "Time of request"
-msgstr ""
+msgstr "Heure de la demande"
 
 #: application/views/oqrs/showrequests.php:87
 msgid "QSO Time"
-msgstr ""
+msgstr "Heure QSO"
 
 #: application/views/oqrs/showrequests.php:94
 msgid "QSL route"
-msgstr ""
+msgstr "Route QSL"
 
 #: application/views/oqrs/showrequests.php:95
 msgid "Check log"
-msgstr ""
+msgstr "Consulter le journal"
 
 #: application/views/oqrs/showrequests.php:96
 msgid "QSO Match"
-msgstr ""
+msgstr "Match QSO"
 
 #: application/views/oqrs/status_info.php:11
 msgid "The request is currently open, and needs to be reviewed by you."
 msgstr ""
+"La demande est actuellement ouverte et doit être examinée par vos soins."
 
 #: application/views/oqrs/status_info.php:15
 msgid ""
 "The request is not in the log, so you need to check your log and process the "
 "request."
 msgstr ""
+"La requête ne figure pas dans le journal, vous devez donc consulter votre "
+"journal et traiter la requête."
 
 #: application/views/oqrs/status_info.php:19
 msgid "The request has been processed and the QSL has been sent."
-msgstr ""
+msgstr "La demande a été traitée et la carte QSL a été envoyée."
 
 #: application/views/oqrs/status_info.php:23
 msgid "The request is still being processed."
-msgstr ""
+msgstr "La demande est toujours en cours de traitement."
 
 #: application/views/oqrs/status_info.php:27
 msgid "The request has been rejected and will not be processed."
-msgstr ""
+msgstr "La demande a été rejetée et ne sera pas traitée."
 
 #: application/views/public_search/empty.php:2
 #: application/views/public_search/result.php:2
 msgid "Searching for"
-msgstr ""
+msgstr "Recherche"
 
 #: application/views/qrbcalc/index.php:3
 msgid "Locator 1"
-msgstr ""
+msgstr "Localisateur 1"
 
 #: application/views/qrbcalc/index.php:10
 msgid "Locator 2"
-msgstr ""
+msgstr "Localisateur 2"
 
 #: application/views/qrbcalc/index.php:20
 msgid "Calculate"
-msgstr ""
+msgstr "Calculer"
 
 #: application/views/qrz/export.php:27
 msgid "The next automatic Upload to QRZ will happen at: "
-msgstr ""
+msgstr "Le prochain téléchargement automatique vers QRZ aura lieu à : "
 
 #: application/views/qrz/export.php:28
 msgid ""
 "Here you can see all QSOs which have not been previously uploaded to a QRZ "
 "logbook."
 msgstr ""
+"Vous pouvez voir ici tous les QSO qui n'ont pas été préalablement "
+"téléchargés dans un carnet de trafic QRZ."
 
 #: application/views/qrz/export.php:29
 msgid ""
 "You need to set a QRZ Logbook API key in your station profile. Only station "
 "profiles with an API Key set are displayed."
 msgstr ""
+"Vous devez renseigner une clé API QRZ Logbook dans le profil de votre "
+"station. Seuls les profils de station disposant d'une clé API sont affichés."
 
 #: application/views/qrz/export.php:74
 msgid "The next automatic Download from QRZ-QSLs will happen at: "
-msgstr ""
+msgstr "Le prochain téléchargement automatique depuis QRZ-QSL aura lieu à : "
 
 #: application/views/qrz/export.php:83
 msgid "Download QSLs from QRZ Logbook"
-msgstr ""
+msgstr "Téléchargez les QSL depuis le carnet de vol QRZ"
 
 #: application/views/qrz/export.php:109
 msgid "Mark QSOs as exported to QRZ Logbook"
-msgstr ""
+msgstr "Marquer les QSO tels qu'exportés dans le journal de bord QRZ"
 
 #: application/views/qrz/mark_qrz.php:16
 msgid "The QSOs are marked as exported to QRZ Logbook."
-msgstr ""
+msgstr "Les QSO sont marqués comme exportés vers le journal de bord QRZ."
 
 #: application/views/qslcard/confirmationresult.php:16
 msgid "QSO date"
-msgstr ""
+msgstr "Date QSO"
 
 #: application/views/qslcard/confirmationresult.php:20
 msgid "Confirmation date"
-msgstr ""
+msgstr "Date de confirmation"
 
 #: application/views/qslcard/confirmationresult.php:21
 #: application/views/user/index.php:30
 msgid "Type"
-msgstr ""
+msgstr "Taper"
 
 #: application/views/qslcard/confirmationresult.php:54
 msgid "No confirmations found."
-msgstr ""
+msgstr "Aucune confirmation trouvée."
 
 #: application/views/qslcard/confirmations.php:6
 msgid ""
 "A maximum of 1000 rows are shown in the table. This is for performance "
 "reasons."
 msgstr ""
+"Le tableau n'affiche que 1000 lignes au maximum, pour des raisons de "
+"performance."
 
 #: application/views/qslcard/confirmations.php:11
 msgid "Confirmation type"
-msgstr ""
+msgstr "Type de confirmation"
 
 #: application/views/qslcard/index.php:10
 #, php-format
 msgid "You are using %s of disk space to store QSL Card assets"
 msgstr ""
+"Vous utilisez %s d'espace disque pour stocker les ressources des cartes QSL"
 
 #: application/views/qslcard/index.php:17
 msgid "List View"
-msgstr ""
+msgstr "Vue Liste"
 
 #: application/views/qslcard/index.php:18
 msgid "Gallery View"
-msgstr ""
+msgstr "Vue Galerie"
 
 #: application/views/qslcard/index.php:78
 #: application/views/qslcard/index.php:126
 msgid "Add Qsos"
-msgstr ""
+msgstr "Ajouter des QSO"
 
 #: application/views/qslcard/searchresult.php:193
 msgid "Add to QSL"
-msgstr ""
+msgstr "Ajouter des QSL"
 
 #: application/views/qslmanagement/index.php:13
 msgid "Incoming QSL Cards"
-msgstr ""
+msgstr "Cartes QSL entrantes"
 
 #: application/views/qslmanagement/index.php:25
 msgid "Report"
-msgstr ""
+msgstr "Rapport"
 
 #: application/views/qslmanagement/index.php:26
 msgid "Option"
-msgstr ""
+msgstr "Option"
 
 #: application/views/qslmanagement/index.php:46
 msgid "Outgoing QSL Cards"
-msgstr ""
+msgstr "Cartes QSL sortantes"
 
 #: application/views/qslprint/index.php:16
 msgid "Export Requested QSLs for Printing"
-msgstr ""
+msgstr "Demande d'exportation de QSL pour impression"
 
 #: application/views/qslprint/index.php:31
 msgid "Show Band or Frequency:"
-msgstr ""
+msgstr "Afficher la bande ou la fréquence :"
 
 #: application/views/qslprint/index.php:35
 msgid "Band & Frequency"
-msgstr ""
+msgstr "Bande et fréquence"
 
 #: application/views/qslprint/index.php:39
 msgid ""
 "Here you can export requested QSLs as CSV or ADIF files for printing and, "
 "optionally, mark them as sent."
 msgstr ""
+"Ici, vous pouvez exporter les QSL demandées au format CSV ou ADIF pour "
+"l'impression et, éventuellement, les marquer comme envoyées."
 
 #: application/views/qslprint/index.php:41
 msgid ""
 "Requested QSLs are any QSOs with a value of 'Requested' or 'Queued' in their "
 "'QSL Sent' field."
 msgstr ""
+"Les QSL demandées sont toutes les QSO dont le champ « QSL envoyée » a la "
+"valeur « Demandée » ou « En attente »."
 
 #: application/views/qslprint/index.php:42
 #: application/views/qslprint/qslprint.php:34
 msgid "Previous QSL"
-msgstr ""
+msgstr "QSL précédente"
 
 #: application/views/qslprint/index.php:42
 #, php-format
