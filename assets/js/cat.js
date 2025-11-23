@@ -973,7 +973,9 @@ $(document).ready(function() {
             $('#frequency').val('');
             $('#frequency_rx').val('');
             $('#band_rx').val('');
-            set_new_qrg();
+            if (typeof set_new_qrg === 'function') {
+                set_new_qrg();
+            }
             $('#selectPropagation').val($('#selectPropagation option:first').val());
             // Set DX Waterfall CAT state to none if variable exists
             if (typeof dxwaterfall_cat_state !== 'undefined') {
