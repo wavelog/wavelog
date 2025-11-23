@@ -950,7 +950,7 @@ class Jcc_model extends CI_Model {
 			if ($postdata['worked'] != NULL) {
 				$jccBand = $this->getJccWorked($this->location_list, $band, $postdata);
 				foreach ($jccBand as $line) {
-					$bandJcc[$line->col_cnty][$band] = '<div class="bg-danger awardsBgDanger"><a href=\'javascript:displayContacts("' . $line->col_cnty . '","' . $band . '","All","All","'. $postdata['mode'] . '","JCC", "")\'>W</a></div>';
+					$bandJcc[$line->col_cnty][$band] = '<div class="bg-danger awardsBgWarning"><a href=\'javascript:displayContacts("' . $line->col_cnty . '","' . $band . '","All","All","'. $postdata['mode'] . '","JCC", "")\'>W</a></div>';
 					$cities[$line->col_cnty]['count']++;
 				}
 			}

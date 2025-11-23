@@ -18,7 +18,7 @@ class Clublog_model extends CI_Model
 
 	function uploadUser($userid, $username, $password, $station_id = null) {
 		$clean_username = $this->security->xss_clean($username);
-		$clean_password = $this->security->xss_clean($password);
+		$clean_password = $password;	// Take password as it is from Database
 		$clean_userid = $this->security->xss_clean($userid);
 
 		$return = "No QSOs to upload";
@@ -108,6 +108,11 @@ class Clublog_model extends CI_Model
 									$this->mark_qsos_sent($station_row->station_id);
 									$return .=  " Clublog upload for " . $station_row->station_callsign . ' successfully sent.';
 									log_message('info', 'Clublog upload for ' . $station_row->station_callsign . ' successfully sent and marked.');
+								} elseif ($httpcode == 403) { 	// New Message from clublog. HTTP 403 response check.
+									$log = "Clublog returned HTML error page for " . $station_row->station_callsign . " (access denied)";
+									log_message('Error', $log);
+									$return .= $log."<br>";
+									$this->disable_sync4call($station_row->station_callsign, $station_row->station_id);
 								} else if (preg_match('/too many uploads already queued/', $response)) {	// New Error, Clublog has Backlog, skip for NOW
 									$return = 'Clublog upload for ' . $station_row->station_callsign . ' failed, clublog tells backlog there. Skipping whole account for this cycle. Detailled reason ' . $response.' // HTTP:'.$httpcode.' / '.$return;
 									log_message('Error', 'Clublog upload for ' . $station_row->station_callsign . ' has become a victim of clublog-Backlog. Skipping full User for this cycle.');
@@ -127,16 +132,13 @@ class Clublog_model extends CI_Model
 									log_message('error', $return);
 									if (substr($response,0,13) == 'Upload denied') {	// Deactivate Upload for Station if Clublog rejects it due to non-configured Call (prevent being blacklisted at Clublog)
 										log_message('Error', 'Deactivated upload for station ' . $station_row->station_callsign . ' due to non-configured Call (prevent being blacklisted at Clublog.');
-										$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
-										$this->db->query($sql,$station_row->station_id);
+										$this->disable_sync4call($station_row->station_callsign, $station_row->station_id);
 									} else if (substr($response,0,14) == 'Login rejected') {	// Deactivate Upload for Station if Clublog rejects it due to wrong credentials (prevent being blacklisted at Clublog)
 										log_message('Error', 'Deactivated upload for station ' . $station_row->station_callsign . ' due to wrong credentials (prevent being blacklisted at Clublog.');
-										$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
-										$this->db->query($sql,$station_row->station_id);
+										$this->disable_sync4call($station_row->station_callsign, $station_row->station_id);
 									} else if ($httpcode == 403) {
 										log_message('Error', 'Deactivated upload for station ' . $station_row->station_callsign . ' due to 403 (prevent being blacklisted at Clublog.');
-										$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
-										$this->db->query($sql,$station_row->station_id);
+										$this->disable_sync4call($station_row->station_callsign, $station_row->station_id);
 									} else {
 										log_message('error', 'Some uncaught exception for station ' . $station_row->station_callsign);
 									}
@@ -159,7 +161,7 @@ class Clublog_model extends CI_Model
 
 	function downloadUser($userid, $username, $password, $clublog_last_date = null) {
 		$clean_username = $this->security->xss_clean($username);
-		$clean_password = $this->security->xss_clean($password);
+		$clean_password = $password;	// Take pw as it comes from DB
 		$clean_userid = $this->security->xss_clean($userid);
 
 		$return = '';
@@ -195,8 +197,9 @@ class Clublog_model extends CI_Model
 				curl_setopt($request, CURLOPT_TIMEOUT, 10);
 				$response = curl_exec($request);
 				$info = curl_getinfo($request);
-                                $c_err=curl_errno($request);
-                                $c_errstring=curl_error($request);
+				$httpcode = curl_getinfo($request, CURLINFO_HTTP_CODE);
+				$c_err=curl_errno($request);
+				$c_errstring=curl_error($request);
 				curl_close($request);
 
 				if ($c_err) {
@@ -215,6 +218,11 @@ class Clublog_model extends CI_Model
 					$log = "The callsign '" . $station_row->station_callsign . "' does not match the user account at Clublog. 'INVALID CALLSIGN'.";
 					log_message('debug', $log);
 					$return .= $log."<br>";
+				} elseif ($httpcode == 403) { 
+					$log = "Clublog returned HTML error page for " . $station_row->station_callsign . " (possibly access denied)";
+					log_message('debug', $log);
+					$return .= $log."<br>";
+					$this->disable_sync4call($station_row->station_callsign, $station_row->station_ids);
 				} else {
 					try {
 						$cl_qsls = json_decode($response);
@@ -430,10 +438,13 @@ class Clublog_model extends CI_Model
 			$returner['status'] = 'OK';
 		} elseif (preg_match('/\bUpdated QSO\b/', $response)) {
 			$returner['status'] = 'OK';
+		} elseif ($httpcode == 403) { 	// New Message from clublog. HTTP 403 response check.
+			log_message('Error',"Clublog returned HTML error page for " . $station_callsign . " (access denied)");
+			$this->disable_sync4call($station_callsign, $station_id);
+			$returner['status'] = $response;
 		} elseif (substr($response,0,14) == 'Login rejected') {	// Deactivate Upload for Station if Clublog rejects it due to wrong credentials (prevent being blacklisted at Clublog)
 			log_message("Error","Clublog deactivated for ".$cl_username." because of wrong creds at Realtime-Pusher");
-			$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
-			$this->db->query($sql,array($station_id));
+			$this->disable_sync4call($station_callsign, $station_id);
 			$returner['status'] = $response;
 		} else {
 			log_message("Error","Uncaught exception at ClubLog-RT for ".$cl_username." / Details: ".$httpcode." : ".$response);

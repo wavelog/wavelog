@@ -50,6 +50,11 @@ class Callbook {
 		if (! array_key_exists('geoloc', $callbook)) {
 			$callbook['geoloc'] = '';
 		}
+		// qrz.com gives AA00aa if the user deleted his grid from the profile
+		$this->ci->load->library('qra');
+		if (!array_key_exists('gridsquare', $callbook) || !$this->ci->qra->validate_grid($callbook['gridsquare'])) {
+			$callbook['gridsquare'] = '';
+		}
 		return $callbook;
 	}
 
@@ -170,19 +175,20 @@ class Callbook {
 
 	function get_plaincall($callsign) {
 		$split_callsign = explode('/', $callsign);
-		if (count($split_callsign) == 1) {				// case F0ABC --> return cel 0 //
-			$lookupcall = $split_callsign[0];
-		} else if (count($split_callsign) == 3) {			// case EA/F0ABC/P --> return cel 1 //
-			$lookupcall = $split_callsign[1];
-		} else {										// case F0ABC/P --> return cel 0 OR  case EA/FOABC --> retunr 1  (normaly not exist) //
-			if (in_array(strtoupper($split_callsign[1]), array('P', 'M', 'MM', 'QRP', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'))) {
-				$lookupcall = $split_callsign[0];
-			} else if (strlen($split_callsign[1]) > 3) {	// Last Element longer than 3 chars? Take that as call
-				$lookupcall = $split_callsign[1];
-			} else {									// Last Element up to 3 Chars? Take first element as Call
-				$lookupcall = $split_callsign[0];
-			}
+		if (count($split_callsign) == 1) {				// case of plain callsign --> return callsign
+			return $callsign;
 		}
-		return $lookupcall;
+
+		// Case of known suffixes that are not part of the callsign
+		if (in_array(strtoupper($split_callsign[1]), array('LGT', 'AM', 'LH', 'A', 'B', 'R', 'T', 'X', 'D', 'P', 'M', 'MM', 'QRP', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'))) {
+			return $split_callsign[0];
+		}
+		// case EA/FOABC --> return 1
+		if (strlen($split_callsign[1]) > 3) {	// Last Element longer than 3 chars? Take that as call
+			return $split_callsign[1];
+		}
+		// case F0ABC/KH6 --> return cell 0
+		return $split_callsign[0];
 	}
+
 }

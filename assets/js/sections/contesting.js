@@ -385,8 +385,17 @@ $("#callsign").on( "blur", function() {
 
 var scps=[];
 
+$("#callsign").on("compositionstart", function(){ this.isComposing = true; });
+$("#callsign").on("compositionend", function(e){
+	this.isComposing = false;
+	$(this).trigger("keyup");
+});
+
 // On Key up check and suggest callsigns
 $("#callsign").keyup(async function (e) {
+	// Prevent checking when the user's composing in IME
+	if (this.isComposing || e.isComposing) return;
+
 	var call = $(this).val();
 	if ((!((e.keyCode == 10 || e.keyCode == 13) && (e.ctrlKey || e.metaKey))) && (call.length >= 3)) {	// prevent checking again when pressing CTRL-Enter
 
@@ -650,6 +659,10 @@ function logQso() {
 		// Only "Start a new contest session" will enable it again
 		disabledContestnameSelect(true);
 
+		// Avoid resubmission by disabling the button
+		var saveQsoButtonText = $("#saveQso").html();
+		$("#saveQso").html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span> ' + saveQsoButtonText + '...').prop('disabled', true);
+
 		$('.callsign-suggestions').text("");
 		$('#callsign_info').text("");
 
@@ -747,6 +760,8 @@ function logQso() {
 				var qTable = $('.qsotable').DataTable();
 				qTable.search('').order([0, 'desc']).draw();
 
+				// Re-enable the previously disabled button for resubmission avoidance
+				$("#saveQso").html(saveQsoButtonText).prop("disabled", false);
 			}
 		});
 	}

@@ -338,17 +338,6 @@ class Update extends CI_Controller {
         $this->logbook_model->check_missing_dxcc_id($all);
 	}
 
-	public function check_missing_continent() {
-		$this->load->model('user_model');
-		if (!$this->user_model->authorize(99)) {
-			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
-			redirect('dashboard');
-		}
-
-		$this->load->model('logbook_model');
-		$this->logbook_model->check_missing_continent();
-	}
-
 	public function check_missing_grid($all = false){
 		$this->load->model('user_model');
 		if (!$this->user_model->authorize(99)) {
@@ -703,6 +692,41 @@ class Update extends CI_Controller {
 
 		$this->load->model('Update_model');
 		$this->Update_model->update_check();
+	}
+
+	public function update_vucc_grids() {
+		$lockfilename='/tmp/.update_vucc_grids_running';
+		if (!file_exists($lockfilename)) {
+			touch($lockfilename);
+			$this->load->model('Update_model');
+			$result = $this->Update_model->update_vucc_grids();
+			unlink($lockfilename);
+
+			if($this->session->userdata('user_type') == '99') {
+				if (substr($result, 0, 4) == 'DONE') {
+					$this->session->set_flashdata('success', __("VUCC Grid file update complete. Result: ") . "'" . $result . "'");
+				} else {
+					$this->session->set_flashdata('error', __("VUCC Grid file update failed. Result: ") . "'" . $result . "'");
+				}
+
+
+				redirect('debug');
+				} else {
+					echo $result;
+				}
+		} else {
+			log_message('debug', 'There is a lockfile for this job. Checking the age...');
+			$lockfile_time = filemtime($lockfilename);
+			$tdiff = time() - $lockfile_time;
+			if ($tdiff > 120) {
+				unlink($lockfilename);
+				log_message('debug', 'Deleted lockfile because it was older then 120seconds.');
+			} else {
+				log_message('debug', 'Process is currently locked. Further calls are ignored.');
+				echo 'locked - running';
+			}
+		}
+
 	}
 }
 ?>

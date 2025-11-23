@@ -574,8 +574,8 @@ $(document).ready(function () {
 		let qsoids = '';
 		if (Array.isArray(selectedlocations) && selectedlocations.length === 0) {
 			BootstrapDialog.alert({
-					title: 'INFO',
-					message: 'You need to select at least 1 location to do a search!',
+					title: lang_gen_advanced_logbook_info,
+					message: lang_gen_advanced_logbook_select_at_least_one_location,
 					type: BootstrapDialog.TYPE_INFO,
 					closable: false,
 					draggable: false,
@@ -654,7 +654,9 @@ $(document).ready(function () {
 				continent: this.continent.value,
 				comment: this.comment.value,
 				qsoids: qsoids,
-				dok: this.dok.value
+				dok: this.dok.value,
+				qrzSent: this.qrzSent.value,
+				qrzReceived: this.qrzReceived.value,
 			},
 			dataType: 'json',
 			success: function (data) {
@@ -669,8 +671,8 @@ $(document).ready(function () {
 			error: function (data) {
 				$('#searchButton').prop("disabled", false).removeClass("running");
 				BootstrapDialog.alert({
-					title: 'ERROR',
-					message: 'An error ocurred while making the request',
+					title: lang_gen_advanced_logbook_error,
+					message: lang_gen_advanced_logbook_an_error_ocurred_while_making_request,
 					type: BootstrapDialog.TYPE_DANGER,
 					closable: false,
 					draggable: false,
@@ -697,8 +699,8 @@ $(document).ready(function () {
 		var nElements = elements.length;
 		if (nElements == 0) {
 			BootstrapDialog.alert({
-				title: 'INFO',
-				message: 'You need to select a least 1 row to update from callbook!',
+				title: lang_gen_advanced_logbook_info,
+				message: lang_gen_advanced_logbook_select_at_least_one_row_callbook,
 				type: BootstrapDialog.TYPE_INFO,
 				closable: false,
 				draggable: false,
@@ -740,7 +742,7 @@ $(document).ready(function () {
 					buttons: [
 					{
 						label: lang_admin_close,
-						cssClass: 'btn-sm',
+						cssClass: 'btn-sm btn-secondary',
 						id: 'closeButton',
 						action: function (dialogItself) {
 							$('#optionButton').prop("disabled", false);
@@ -761,8 +763,8 @@ $(document).ready(function () {
 
 		if (id_list.length === 0) {
 			BootstrapDialog.alert({
-				title: 'INFO',
-				message: 'You need to select a least 1 row to delete!',
+				title: lang_gen_advanced_logbook_info,
+				message: lang_gen_advanced_logbook_select_at_least_one_row_delete,
 				type: BootstrapDialog.TYPE_INFO,
 				closable: false,
 				draggable: false,
@@ -968,7 +970,7 @@ $(document).ready(function () {
 			type: 'post',
 			success: function (html) {
 				BootstrapDialog.show({
-					title: 'Options for the Advanced Logbook',
+					title: lang_gen_advanced_logbook_options,
 					size: BootstrapDialog.SIZE_NORMAL,
 					cssClass: 'options',
 					nl2br: false,
@@ -976,7 +978,7 @@ $(document).ready(function () {
 					onshown: function(dialog) {
 					},
 					buttons: [{
-						label: 'Save',
+						label: lang_gen_advanced_logbook_save,
 						cssClass: 'btn-primary btn-sm',
 						id: 'saveButton',
 						action: function (dialogItself) {
@@ -987,11 +989,11 @@ $(document).ready(function () {
 								location.reload();
 							}).catch(error => {
 								BootstrapDialog.alert({
-									title: 'Error',
-									message: 'An error occurred while saving options: ' + error,
+									title: lang_gen_advanced_logbook_error,
+									message: lang_gen_advanced_logbook_error_saving_options + error,
 									type: BootstrapDialog.TYPE_DANGER, // Sets the dialog style to "danger"
 									closable: true,
-									buttonLabel: 'Close'
+									buttonLabel: lang_gen_advanced_logbook_close
 								});
 							});
 						}
@@ -1018,8 +1020,8 @@ $(document).ready(function () {
 
 		if (id_list.length === 0) {
 			BootstrapDialog.alert({
-				title: 'INFO',
-				message: 'You need to select a least 1 row to display a QSL card!',
+				title: lang_gen_advanced_logbook_info,
+				message: lang_gen_advanced_logbook_select_at_least_one_row_qslcard,
 				type: BootstrapDialog.TYPE_INFO,
 				closable: false,
 				draggable: false,
@@ -1038,7 +1040,7 @@ $(document).ready(function () {
 			},
 			success: function (html) {
 				BootstrapDialog.show({
-					title: 'QSL Card',
+					title: lang_gen_advanced_logbook_qsl_card,
 					size: BootstrapDialog.SIZE_WIDE,
 					cssClass: 'lookup-dialog',
 					nl2br: false,
@@ -1066,8 +1068,8 @@ $(document).ready(function () {
 
 		if (id_list.length === 0) {
 			BootstrapDialog.alert({
-				title: 'INFO',
-				message: 'You need to select at least 1 row to fix CQ Zones!',
+				title: lang_gen_advanced_logbook_info,
+				message: lang_gen_advanced_logbook_select_row_cq_zones,
 				type: BootstrapDialog.TYPE_INFO,
 				closable: false,
 				draggable: false,
@@ -1089,28 +1091,148 @@ $(document).ready(function () {
 					});
 				}
 				BootstrapDialog.alert({
-					title: 'SUCCESS',
-					message: 'CQ Zones updated successfully!',
+					title: lang_gen_advanced_logbook_success,
+					message: lang_gen_advanced_logbook_cq_zones_updated,
 					type: BootstrapDialog.TYPE_SUCCESS
 				});
 			},
 			error: function () {
 				BootstrapDialog.alert({
-					title: 'ERROR',
-					message: 'There was a problem fixing CQ Zones.',
+					title: lang_gen_advanced_logbook_error,
+					message: lang_gen_advanced_logbook_problem_fixing_cq_zones,
 					type: BootstrapDialog.TYPE_DANGER
 				});
 			}
 		});
 	});
 
+	$('#fixContinent').click(function (event) {
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/continentDialog',
+			type: 'post',
+			success: function (html) {
+				BootstrapDialog.show({
+					title: lang_gen_advanced_logbook_continent_fix,
+					size: BootstrapDialog.SIZE_NORMAL,
+					cssClass: 'options',
+					nl2br: false,
+					message: html,
+					buttons: [
+					{
+						label: lang_gen_advanced_logbook_update_now + ' <div class="ld ld-ring ld-spin"></div>',
+						cssClass: 'btn btn-sm btn-primary ld-ext-right',
+						id: 'updateContinentButton',
+						action: function (dialogItself) {
+							runContinentFix(dialogItself);
+						}
+					},
+					{
+						label: lang_admin_close,
+						cssClass: 'btn btn-sm btn-secondary',
+						id: 'closeButton',
+						action: function (dialogItself) {
+							dialogItself.close();
+						}
+					}],
+				});
+			}
+		});
+	});
+
+	function runContinentFix(dialogItself) {
+		$('#updateContinentButton').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/fixContinent',
+			type: 'POST',
+			success: function (response) {
+				$('#updateContinentButton').prop("disabled", false).removeClass("running");
+				dialogItself.close();
+				BootstrapDialog.alert({
+					title: lang_gen_advanced_logbook_success,
+					message: lang_gen_advanced_logbook_continents_updated + ' ' + response + ' ' + lang_gen_advanced_logbook_records_updated,
+					type: BootstrapDialog.TYPE_SUCCESS
+				});
+			},
+			error: function () {
+				$('#updateContinentButton').prop("disabled", false).removeClass("running");
+				dialogItself.close();
+				BootstrapDialog.alert({
+					title: lang_gen_advanced_logbook_error,
+					message: lang_gen_advanced_logbook_problem_fixing_continents,
+					type: BootstrapDialog.TYPE_DANGER
+				});
+			}
+		});
+	}
+
+	$('#updateDistances').click(function (event) {
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/distanceDialog',
+			type: 'post',
+			success: function (html) {
+				BootstrapDialog.show({
+					title: lang_gen_advanced_logbook_update_distances,
+					size: BootstrapDialog.SIZE_NORMAL,
+					cssClass: 'options',
+					nl2br: false,
+					message: html,
+					buttons: [
+					{
+						label: lang_gen_advanced_logbook_update_now  + ' <div class="ld ld-ring ld-spin"></div>',
+						cssClass: 'btn btn-sm btn-primary ld-ext-right',
+						id: 'updateDistanceButton',
+						action: function (dialogItself) {
+							runUpdateDistancesFix(dialogItself);
+						}
+					},
+					{
+						label: lang_admin_close,
+						cssClass: 'btn btn-sm btn-secondary',
+						id: 'closeButton',
+						action: function (dialogItself) {
+							dialogItself.close();
+						}
+					}],
+				});
+			}
+		});
+	});
+
+	function runUpdateDistancesFix(dialogItself) {
+		$('#updateDistanceButton').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/updateDistances',
+			type: 'POST',
+			success: function (response) {
+				$('#updateDistanceButton').prop("disabled", false).removeClass("running");
+				dialogItself.close();
+				BootstrapDialog.alert({
+					title: lang_gen_advanced_logbook_success,
+					message: lang_gen_advanced_logbook_distances_updated + ' ' + response + ' ' + lang_gen_advanced_logbook_records_updated,
+					type: BootstrapDialog.TYPE_SUCCESS
+				});
+			},
+			error: function () {
+				$('#updateDistanceButton').prop("disabled", false).removeClass("running");
+				dialogItself.close();
+				BootstrapDialog.alert({
+					title: lang_gen_advanced_logbook_error,
+					message: lang_gen_advanced_logbook_problem_updating_distances,
+					type: BootstrapDialog.TYPE_DANGER
+				});
+			}
+		});
+	}
+
 	$('#fixItuZones').click(function (event) {
 		const id_list = getSelectedIds();
 
 		if (id_list.length === 0) {
 			BootstrapDialog.alert({
-				title: 'INFO',
-				message: 'You need to select at least 1 row to fix ITU Zones!',
+				title: lang_gen_advanced_logbook_info,
+				message: lang_gen_advanced_logbook_select_row_itu_zones,
 				type: BootstrapDialog.TYPE_INFO,
 				closable: false,
 				draggable: false,
@@ -1134,15 +1256,15 @@ $(document).ready(function () {
 					});
 				}
 				BootstrapDialog.alert({
-					title: 'SUCCESS',
-					message: 'ITU Zones updated successfully!',
+					title: lang_gen_advanced_logbook_success,
+					message: lang_gen_advanced_logbook_itu_zones_updated,
 					type: BootstrapDialog.TYPE_SUCCESS
 				});
 			},
 			error: function () {
 				BootstrapDialog.alert({
-					title: 'ERROR',
-					message: 'There was a problem fixing ITU Zones.',
+					title: lang_gen_advanced_logbook_error,
+					message: lang_gen_advanced_logbook_problem_fixing_itu_zones,
 					type: BootstrapDialog.TYPE_DANGER
 				});
 			}
@@ -1172,8 +1294,8 @@ $(document).ready(function () {
 		var nElements = elements.length;
 		if (nElements == 0) {
 			BootstrapDialog.alert({
-				title: 'INFO',
-				message: 'You need to select a row to use the Quickfilters!',
+				title: lang_gen_advanced_logbook_info,
+				message: lang_gen_advanced_logbook_select_at_least_one_row_quickfilter,
 				type: BootstrapDialog.TYPE_INFO,
 				closable: false,
 				draggable: false,
@@ -1184,8 +1306,8 @@ $(document).ready(function () {
 		}
 		if (nElements > 1) {
 			BootstrapDialog.alert({
-				title: 'WARNING',
-				message: 'Only 1 row can be selected for Quickfilter!',
+				title: lang_gen_advanced_logbook_warning,
+				message: lang_gen_advanced_logbook_select_only_one_row_quickfilter,
 				type: BootstrapDialog.TYPE_WARNING,
 				closable: false,
 				draggable: false,
@@ -1312,8 +1434,8 @@ $(document).ready(function () {
 
 		if (id_list.length === 0) {
 			BootstrapDialog.alert({
-				title: 'INFO',
-				message: 'You need to select at least 1 row to print a label!',
+				title: lang_gen_advanced_logbook_info,
+				message: lang_gen_advanced_logbook_select_at_least_one_row_label,
 				type: BootstrapDialog.TYPE_INFO,
 				closable: false,
 				draggable: false,
@@ -1329,7 +1451,7 @@ $(document).ready(function () {
 			type: 'post',
 			success: function (html) {
 				BootstrapDialog.show({
-					title: 'Start printing at which label?',
+					title: lang_gen_advanced_logbook_start_printing_at_which_label,
 					size: BootstrapDialog.SIZE_NORMAL,
 					cssClass: 'qso-dialog',
 					nl2br: false,
@@ -1394,8 +1516,8 @@ function handleQsl(sent, method, tag) {
 
 	if (id_list.length === 0) {
 		BootstrapDialog.alert({
-			title: 'INFO',
-			message: 'You need to select a least 1 row!',
+			title: lang_gen_advanced_logbook_info,
+			message: lang_gen_advanced_logbook_select_at_least_one_row,
 			type: BootstrapDialog.TYPE_INFO,
 			closable: false,
 			draggable: false,
@@ -1431,8 +1553,8 @@ function handleQslReceived(sent, method, tag) {
 
 	if (id_list.length === 0) {
 		BootstrapDialog.alert({
-			title: 'INFO',
-			message: 'You need to select a least 1 row!',
+			title: lang_gen_advanced_logbook_info,
+			message: lang_gen_advanced_logbook_select_at_least_one_row,
 			type: BootstrapDialog.TYPE_INFO,
 			closable: false,
 			draggable: false,
@@ -1500,8 +1622,8 @@ function printlabel(id_list) {
 		},
 		error: function (data) {
 			BootstrapDialog.alert({
-				title: 'ERROR',
-				message: 'Something went wrong with label print. Go to labels and check if you have defined a label, and that it is set for print!',
+				title: lang_gen_advanced_logbook_error,
+				message: lang_gen_advanced_logbook_label_print_error,
 				type: BootstrapDialog.TYPE_DANGER,
 				closable: false,
 				draggable: false,

@@ -11,7 +11,7 @@
 	<!-- Card Starts -->
 	<div class="card">
 		<div class="card-header">
-			<a class="btn btn-outline-success btn-sm float-end" href="<?php echo site_url('/lotw/cert_upload'); ?>" role="button"><i class="fas fa-cloud-upload-alt"></i> <?= __("Upload Certificate"); ?></a><i class="fab fa-expeditedssl"></i> <?= __("Available Certificates"); ?>
+			<a class="btn btn-outline-success btn-sm float-end" href="<?php echo site_url('/lotw/cert_upload'); ?>" role="button"><i class="fas fa-cloud-upload-alt"></i> <?= __("Upload Certificate"); ?></a><i class="fab fa-expeditedssl"></i> <?= __("Available Certificates"); ?> <span class="badge bg-primary ms-1"><?php echo $lotw_cert_results->num_rows(); ?></span>
 		</div>
 
 		<div class="lotw-cert-list">
@@ -43,6 +43,7 @@
 				 
 					<tbody>
 
+						<?php $current_date = date('Y-m-d H:i:s'); ?>
 						<?php foreach ($lotw_cert_results->result() as $row) { ?>
 							<tr>
 					      		<td><?php echo $row->callsign; ?></td>
@@ -60,7 +61,14 @@
 									if (isset($row->qso_end_date)) {
 										$valid_qso_end = strtotime( $row->qso_end_date );
 										$new_valid_qso_end = date($this->config->item('qso_date_format'), $valid_qso_end );
-										echo $new_valid_qso_end;
+										$qso_warning_date = date('Y-m-d H:i:s', strtotime($row->qso_end_date.'-30 days'));
+										if ($current_date > $row->qso_end_date) {
+											echo "<span class='fw-bolder text-danger'>".$new_valid_qso_end."</span>";
+										} else if ($current_date <= $row->qso_end_date && $current_date > $qso_warning_date) {
+											echo "<span class='fw-bolder text-warning'>".$new_valid_qso_end."</span>";
+										} else {
+											echo $new_valid_qso_end;
+										}
 									} else {
 										echo "n/a";
 									} ?>
@@ -72,20 +80,29 @@
 								</td>
 								<td>
 									<?php
+									$cert_warning_date = date('Y-m-d H:i:s', strtotime($row->date_expires.'-30 days'));
 									$valid_to = strtotime( $row->date_expires );
 									$new_valid_to = date($this->config->item('qso_date_format'), $valid_to );
-									echo $new_valid_to; ?>
+									if ($current_date > $row->date_expires) {
+										echo "<span class='fw-bolder text-danger'>".$new_valid_to."</span>";
+									} else if ($current_date <= $row->date_expires && $current_date > $cert_warning_date) {
+										echo "<span class='fw-bolder text-warning'>".$new_valid_to."</span>";
+									} else {
+										echo $new_valid_to;
+									} ?>
 								</td>
 								<td>
-									<?php $current_date = date('Y-m-d H:i:s'); ?>
-									<?php $warning_date = date('Y-m-d H:i:s', strtotime($row->date_expires.'-30 days')); ?>
-
 									<?php if ($current_date > $row->date_expires) { ?>
-										<span class="badge text-bg-danger"><?= __("Expired"); ?></span>
-									<?php } else if ($current_date <= $row->date_expires && $current_date > $warning_date) { ?>
-										<span class="badge text-bg-warning"><?= __("Expiring"); ?></span>
+										<span class="badge text-bg-danger"><?= __("Certificate expired"); ?></span>
+									<?php } else if ($current_date <= $row->date_expires && $current_date > $cert_warning_date) { ?>
+										<span class="badge text-bg-warning"><?= __("Certificate expiring"); ?></span>
 									<?php } else { ?>
-										<span class="badge text-bg-success"><?= __("Valid"); ?></span>
+										<span class="badge text-bg-success"><?= __("Certificate valid"); ?></span>
+									<?php } ?>
+									<?php if ($current_date > $row->qso_end_date) { ?>
+										<span class="badge text-bg-danger">QSO end date exceeded</span>
+									<?php } else if ($current_date <= $row->qso_end_date && $current_date > $qso_warning_date) { ?>
+										<span class="badge text-bg-warning"><?= __("QSO end date nearing"); ?></span>
 									<?php } ?>
 								</td>
 								<td>

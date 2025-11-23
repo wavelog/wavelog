@@ -372,6 +372,16 @@
 
 									<hr />
 									<div class="mb-3">
+										<label for="logendtime"><?= __("Prioritize database search over external lookup"); ?></label>
+										<?php if(!isset($user_qso_db_search_priority)) { $user_qso_db_search_priority='Y'; }?>
+										<select class="form-select" id="logendtimes" name="user_qso_db_search_priority">
+											<option value="Y" <?php if ($user_qso_db_search_priority == 'Y') { echo " selected =\"selected\""; } ?>><?= __("Yes"); ?></option>
+											<option value="N" <?php if ($user_qso_db_search_priority == 'N') { echo " selected =\"selected\""; } ?>><?= __("No"); ?></option>
+										</select>
+										<small id="SelectDateFormatHelp" class="form-text text-muted"><?= __("When set to \"Yes\", callsign lookup will first use data from your previous QSOs before querying external services. Set to \"No\" to always use external lookup services instead."); ?></small>
+									</div>
+									<hr />
+									<div class="mb-3">
 										<label for="profileimages"><?= __("Show profile picture of QSO partner from qrz.com/hamqth.com profile in the log QSO section."); ?></label>
 										<?php if(!isset($user_show_profile_image)) { $user_show_profile_image='0'; }?>
 										<select class="form-select" id="profileimages" name="user_show_profile_image">
@@ -429,6 +439,17 @@
 												printf("<option value=\"{$i}\"{$selected_attribute_value}>{$i}</option>");
 											} ?>
 										</select>
+									</div>
+									<hr />
+									<!--- DX Waterfall -->
+									<div class="mb-3">
+											<label for="user_dxwaterfall_enable"><?= __("DX Waterfall"); ?></label>
+											<?php if(!isset($user_dxwaterfall_enable)) { $user_dxwaterfall_enable='N'; }?>
+											<select class="form-select" id="user_dxwaterfall_enable" name="user_dxwaterfall_enable" aria-describedby="user_dxwaterfall_enable_Help" required>
+												<option value='Y' <?php if($user_dxwaterfall_enable == "Y") { echo "selected=\"selected\""; } ?>><?= __("Enabled"); ?></option>
+												<option value='N' <?php if($user_dxwaterfall_enable == "N") { echo "selected=\"selected\""; } ?>><?= __("Disabled"); ?></option>
+											</select>
+											<small id="user_dxwaterfall_enable_Help" class="form-text text-muted"><?= __("Show an interactive DX Cluster 'Waterfall' on the QSO logging page."); ?></small>
 									</div>
 								</div>
 							</div>
@@ -523,7 +544,7 @@
 									</div>
 									<div class="row"> <!-- QSO (default) -->
 										<div class="mb-3 col-md-4">
-											<label><?= __("QSO (by default)"); ?></label>
+											<label><?= __("QSO (worked, not confirmed)"); ?></label>
 										</div>
 										<div class="mb-3 col-md-3">
 											<div class="icon_selectBox" data-boxcontent="qso">
@@ -543,7 +564,7 @@
 									<div class="row"> <!-- QSO (confirmed) -->
 										<div class="mb-3 col-md-4">
 											<label><?= __("QSO (confirmed)"); ?></label>
-											<small class="form-text text-muted"><?= __("(If 'No', displayed as 'QSO (by default))'"); ?></small>
+											<small class="form-text text-muted"><?= __("(If 'No', displayed as 'QSO (worked, not confirmed)')"); ?></small>
 										</div>
 										<div class="mb-3 col-md-3">
 											<div class="icon_selectBox" data-boxcontent="qsoconfirm">
@@ -558,6 +579,17 @@
 										</div>
 										<div class="md-3 col-md-2">
 											<input type="color" class="form-control user_icon_color" name="user_map_qsoconfirm_color" id="user_map_qsoconfirm_color" value="<?php echo $user_map_qsoconfirm_color; ?>" style="padding:initial;<?php echo ($user_map_qsoconfirm_icon=="0")?'display:none;':''; ?>" data-icon="qsoconfirm" />
+										</div>
+									</div>
+									<div class="row"> <!-- Unworked (zones) color -->
+										<div class="mb-3 col-md-4">
+											<label><?= __("Unworked (e.g. Zones)"); ?></label>
+											<small class="form-text text-muted"><?= __("(Color for unworked zones)"); ?></small>
+										</div>
+										<div class="mb-3 col-md-3">
+										</div>
+										<div class="md-3 col-md-2">
+											<input type="color" class="form-control user_icon_color" name="user_map_unworked_color" id="user_map_unworked_color" value="<?php echo $user_map_unworked_color ?? 'red'; ?>" style="padding:initial;" data-icon="unworked" />
 										</div>
 									</div>
 									<div class="row">
@@ -873,7 +905,7 @@
 						<!-- eQSL -->
 						<div class="col-md">
 							<div class="card">
-								<div class="card-header"><?= __("eQSL"); ?></div>
+								<div class="card-header"><?= __("eQSL"); ?> <span class="badge text-bg-warning"><?= sprintf(__("Trouble? Check the %swiki%s."), '<a href="https://github.com/wavelog/wavelog/wiki/eQSL#read-common-pitfalls-with-eqsl" target="_blank">', '</a>'); ?></span></div>
 								<div class="card-body">
 									<div class="mb-3">
 										<label><?= __("eQSL.cc Username"); ?></label>
@@ -1043,7 +1075,7 @@
 						<!-- Winkeyer -->
 						<div class="col-md">
 							<div class="card">
-								<div class="card-header"><?= __("Winkeyer"); ?> <span class="badge text-bg-danger float-end"><?= __("Experimental"); ?></span></div>
+								<div class="card-header"><?= __("Winkeyer"); ?></div>
 								<div class="card-body">
 									<div class="mb-3">
 										<label><?= __("Winkeyer Features Enabled"); ?></label>

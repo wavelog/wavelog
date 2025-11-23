@@ -292,7 +292,7 @@ class Stationsetup extends CI_Controller {
 
 	private function lbdel2html($id, $logbook_name) {
 		if($this->session->userdata('active_station_logbook') != $id) {
-			$htmret='<button id="'.$id.'" class="deleteLogbook btn btn-outline-danger btn-sm" cnftext="'.__("Are you sure you want to delete the following station logbook? You must re-link any locations linked here to another logbook.: ").$logbook_name.'"><i class="fas fa-trash-alt"></i></button>';
+			$htmret='<button id="'.$id.'" class="deleteLogbook btn btn-outline-danger btn-sm" cnftext="'.sprintf(__("Are you sure you want to delete the station logbook %s? You must re-link any locations linked here to another logbook."), $logbook_name).'"><i class="fas fa-trash-alt"></i></button>';
 		} else {
 			$htmret='';
 		}
@@ -388,7 +388,7 @@ class Stationsetup extends CI_Controller {
 	private function stationbadge2html($station_active, $qso_total, $current_active, $station_profile_name, $id) {
 		$returntext = '';
 		if($station_active != 1) {
-			$returntext .= '<button id="'.$id.'" class="setActiveStation btn btn-outline-secondary btn-sm" cnftext="'. __("Are you sure you want to make the following station the active station: ") . $station_profile_name .'">' . __("Set Active") . '</button><br/>';
+			$returntext .= '<button id="'.$id.'" class="setActiveStation btn btn-outline-secondary btn-sm" cnftext="'. sprintf(__("Are you sure you want to make the station profile %s the active station?"), $station_profile_name) .'">' . __("Set Active") . '</button><br/>';
 		} else {
 			$returntext .= '<span class="badge bg-success text-bg-success">' . __("Active Station") . '</span><br/>';
 		}
@@ -519,4 +519,56 @@ class Stationsetup extends CI_Controller {
 		$this->user_options_model->set_option('ExportMapOptions', 'qsocount',  array($slug => xss_clean($this->input->post('qsocount'))));
 		$this->user_options_model->set_option('ExportMapOptions', 'band',  array($slug => xss_clean($this->input->post('band'))));
 	}
+
+	public function list_locations() {
+		$this->load->model('stationsetup_model');
+		$data['locations'] = $this->stationsetup_model->list_all_locations();
+		$data['page_title'] = __("Station location list");
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('stationsetup/locationlist');
+		$this->load->view('interface_assets/footer');
+	}
+
+	public function export_locations() {
+		$this->load->model('stationsetup_model');
+
+		$locations = $this->stationsetup_model->list_all_locations();
+
+		// Output as JSON
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode($locations));
+	}
+
+	public function import_locations(){
+		if (empty($_FILES['file']['tmp_name'])) {
+			$this->output
+	->set_content_type('application/json')
+	->set_output(json_encode(['status' => 'error', 'message' => 'No file uploaded']));
+			return;
+		}
+
+		$fileContent = file_get_contents($_FILES['file']['tmp_name']);
+		$locations = json_decode($fileContent, true);
+
+		if ($locations === null) {
+			$this->output
+	->set_content_type('application/json')
+	->set_output(json_encode(['status' => 'error', 'message' => 'Invalid JSON file']));
+			return;
+		}
+
+		// Load your model
+		$this->load->model('stationsetup_model');
+
+		$imported = $this->stationsetup_model->import_locations_parse($locations);
+		if (($imported[0] ?? '0') == 'limit') {
+			$this->output->set_content_type('application/json')->set_output(json_encode(['status' => 'success', 'message' => ($imported[1] ?? '0')." locations imported. Maximum limit of 1000 locations reached."]));
+		} else {
+			$this->output
+	->set_content_type('application/json')
+	->set_output(json_encode(['status' => 'success', 'message' => ($imported[1] ?? '0')." locations imported."]));
+		}
+	}
+
 }

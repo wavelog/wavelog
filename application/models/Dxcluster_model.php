@@ -6,6 +6,27 @@ class Dxcluster_model extends CI_Model {
 
  	protected $bandedges = [];
 
+	// Contest indicators - moved to class property to avoid recreation on every call
+	// Contest indicators - ORDER MATTERS! More specific names must come before generic terms
+	// to ensure accurate matching (e.g., "HAM SPIRIT" before "CONTEST")
+	protected $contestIndicators = [
+		'HAM SPIRIT', 'HAMSPIRIT', 'CQ WW', 'CQ WPX', 'ARRL', 'IARU', 'CQWW', 'CQWPX',
+		'SWEEPSTAKES', 'FIELD DAY', 'DX CONTEST', 'SSB CONTEST', 'CW CONTEST',
+		'RTTY CONTEST', 'VHF CONTEST', 'SPRINT', 'DXCC', 'WAE', 'IOTA CONTEST',
+		'NAQP', 'BARTG', 'RSGB', 'RUNDSPRUCH', 'JARTS', 'CW OPEN', 'SSB OPEN',
+		'EU CONTEST', 'NA CONTEST', 'KING OF SPAIN', 'ALL ASIAN', 'CONTEST'
+	];
+
+	// Digital modes for submode detection
+	// Note: Order matters! More specific modes (PSK31, PSK63) must come before generic (PSK)
+	// to ensure accurate submode detection via strpos() matching
+	protected $digitalModes = [
+		'FT8', 'FT4', 'RTTY', 'PSK31', 'PSK63', 'PSK', 'SSTV', 'MFSK',
+		'OLIVIA', 'CONTESTIA', 'JT65', 'JT9', 'WSPR', 'HELL', 'THOR',
+		'DOMINO', 'MT63', 'PACTOR', 'MSK144', 'Q65', 'JS8', 'FSK441',
+		'ISCAT', 'JT6M', 'FST4', 'FST4W', 'FREEDV', 'VARA'
+	];
+
 	public function __construct() {
 		$this->load->Model('Modes');
 		$this->db->where('bandedges.userid', $this->session->userdata('user_id'));
@@ -22,8 +43,18 @@ class Dxcluster_model extends CI_Model {
 		}
 	}
 
+	// Main function to get spot list from DXCache and process it
 	public function dxc_spotlist($band = '20m', $maxage = 60, $de = '', $mode = 'All') {
 		$this->load->helper(array('psr4_autoloader'));
+
+		// Check if file caching is enabled in config
+		$cache_band_enabled = $this->config->item('enable_dxcluster_file_cache_band') === true;
+		$cache_worked_enabled = $this->config->item('enable_dxcluster_file_cache_worked') === true;
+
+		// Only load cache driver if caching is enabled
+		if ($cache_band_enabled || $cache_worked_enabled) {
+			$this->load->driver('cache', array('adapter' => 'file', 'backup' => 'file'));
+		}
 
 		if($this->session->userdata('user_date_format')) {
 			$custom_date_format = $this->session->userdata('user_date_format');
@@ -31,20 +62,28 @@ class Dxcluster_model extends CI_Model {
 			$custom_date_format = $this->config->item('qso_date_format');
 		}
 
-		$dxcache_url = ($this->optionslib->get_option('dxcache_url') == '' ? 'https://dxc.jo30.de/dxcache' : $this->optionslib->get_option('dxcache_url'));
+		$dxcache_url = ($this->optionslib->get_option('dxcache_url') == '' ? 'https://dxc.wavelog.org/dxcache' : $this->optionslib->get_option('dxcache_url'));
 
 		if ($band == "All") {
 			$dxcache_url = $dxcache_url . '/spots/';
 		} else {
 			$dxcache_url = $dxcache_url . '/spots/'.$band;
 		}
-		// $this->load->model('logbooks_model');  lives in the autoloader
+
 		$this->load->model('logbook_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
-		$this->load->driver('cache', array('adapter' => 'file', 'backup' => 'file'));
-		if (!$jsonraw = $this->cache->get('dxcache'.$band)) {
-			// CURL Functions
+		// Cache key for RAW cluster response (instance-wide, no worked status)
+		$raw_cache_key = "dxcluster_raw_{$maxage}_{$de}_{$mode}_{$band}";
+
+		// Check cache for raw processed spots (without worked status)
+		$spotsout = null;
+		if ($cache_band_enabled) {
+			$spotsout = $this->cache->get($raw_cache_key);
+		}
+
+		if (!$spotsout) {
+			// Fetch raw DX cluster data from API
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $dxcache_url);
 			curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog '.$this->optionslib->get_option('version').' DXLookup');
@@ -52,128 +91,363 @@ class Dxcluster_model extends CI_Model {
 			curl_setopt($ch, CURLOPT_HEADER, false);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			$jsonraw = curl_exec($ch);
+			$curl_error = curl_error($ch);
 			curl_close($ch);
-			$this->cache->save('dxcache'.$band, $jsonraw, 59);	// Cache DXClusterCache Instancewide for 59seconds
-		}
-		$json = json_decode($jsonraw);
-		$date = date('Ymd', time());
 
-		$dxccObj = new DXCC($date);
+			// Check for curl errors
+			if ($curl_error || $jsonraw === false) {
+				log_message('error', 'DXCluster: Failed to fetch spots from ' . $dxcache_url . ': ' . $curl_error);
+				return [];
+			}
 
-		// Create JSON object
-		if (strlen($jsonraw)>20) {
+			// Validate JSON before decoding
+			if (empty($jsonraw) || strlen($jsonraw) <= 20) {
+				return [];
+			}
+
+			$json = json_decode($jsonraw);
+
+			// Check for JSON decode errors
+			if (json_last_error() !== JSON_ERROR_NONE || !is_array($json)) {
+				log_message('error', 'DXCluster: Invalid JSON received: ' . json_last_error_msg());
+				return [];
+			}
+			$date = date('Ymd', time());
+
+			$dxccObj = new DXCC($date);
+
+			// DXCC lookup cache to avoid duplicate lookups
+			$dxcc_cache = [];
+
 			$spotsout=[];
+
+			// Cache current time outside loop (avoid creating DateTime on every iteration)
+			$currentTimestamp = time();
+
+			// Normalize continent filter once
+			$de_lower = strtolower($de);
+			$filter_continent = ($de != '' && $de != 'Any');
+
 			foreach($json as $singlespot){
-				if (is_numeric($singlespot->frequency)) {
-					$spotband = $this->frequency->GetBand($singlespot->frequency*1000);
-				} else {
+				// Early filtering - skip invalid spots immediately
+				if (!is_object($singlespot) || !isset($singlespot->frequency) || !is_numeric($singlespot->frequency)) {
 					continue;
 				}
-				$singlespot->band=$spotband;
-				$singlespot->mode=$this->get_mode($singlespot);
-				if (($band != 'All') && ($band != $spotband)) { continue; }
-				if (($mode != 'All') && ($mode != $this->modefilter($singlespot, $mode))) { continue; }
-				$datetimecurrent = new DateTime("now", new DateTimeZone('UTC')); // Today's Date/Time
-				$datetimespot = new DateTime($singlespot->when, new DateTimeZone('UTC'));
-				$spotage = $datetimecurrent->diff($datetimespot);
-				$minutes = $spotage->days * 24 * 60;
-				$minutes += $spotage->h * 60;
-				$minutes += $spotage->i;
-				$singlespot->age=$minutes;
-				$singlespot->when_pretty=date($custom_date_format . " H:i", strtotime($singlespot->when));
 
-				if ($minutes<=$maxage) {
-					if (!(property_exists($singlespot,'dxcc_spotted'))) {	// Check if we already have dxcc of spotted
-						$dxcc=$dxccObj->dxcc_lookup($singlespot->spotted,date('Ymd', time()));
-						$singlespot->dxcc_spotted->dxcc_id=$dxcc['adif'];
-						$singlespot->dxcc_spotted->cont=$dxcc['cont'];
-						$singlespot->dxcc_spotted->flag='';
-						$singlespot->dxcc_spotted->entity=$dxcc['entity'];
-					}
-					if (!(property_exists($singlespot,'dxcc_spotter'))) {	// Check if we already have dxcc of spotter
-						$dxcc=$dxccObj->dxcc_lookup($singlespot->spotter,date('Ymd', time()));
-						$singlespot->dxcc_spotter->dxcc_id=$dxcc['adif'];
-						$singlespot->dxcc_spotter->cont=$dxcc['cont'];
-						$singlespot->dxcc_spotter->flag='';
-						$singlespot->dxcc_spotter->entity=$dxcc['entity'];
-					}
-					if ( ($de != '') && ($de != 'Any') && (property_exists($singlespot->dxcc_spotter,'cont')) ){	// If we have a "de continent" and a filter-wish filter on that
-						if (strtolower($de) == strtolower($singlespot->dxcc_spotter->cont ?? '')) {
-							$singlespot->worked_dxcc = ($this->logbook_model->check_if_dxcc_worked_in_logbook($singlespot->dxcc_spotted->dxcc_id, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
-							$singlespot->cnfmd_dxcc = ($this->logbook_model->check_if_dxcc_cnfmd_in_logbook($singlespot->dxcc_spotted->dxcc_id, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
-							$singlespot->worked_call = ($this->logbook_model->check_if_callsign_worked_in_logbook($singlespot->spotted, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
-							$singlespot->cnfmd_call = ($this->logbook_model->check_if_callsign_cnfmd_in_logbook($singlespot->spotted, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
-							$singlespot->cnfmd_continent = ($this->check_if_continent_cnfmd_in_logbook($singlespot->dxcc_spotted->cont, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
-							$singlespot->worked_continent = ($this->check_if_continent_cnfmd_in_logbook($singlespot->dxcc_spotted->cont, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
-							if ($singlespot->worked_call) {
-								$singlespot->last_wked=$this->logbook_model->last_worked_callsign_in_logbook($singlespot->spotted, $logbooks_locations_array, $singlespot->band)[0];
-								if ($this->session->userdata('user_date_format')) {
-									$custom_date_format = $this->session->userdata('user_date_format');
-								} else {
-									$custom_date_format = $this->config->item('qso_date_format');
-								}
-								$singlespot->last_wked->LAST_QSO = date($custom_date_format, strtotime($singlespot->last_wked->LAST_QSO));
-							}
-							array_push($spotsout,$singlespot);
+				// Ensure frequency is always a number (not a string)
+				$singlespot->frequency = floatval($singlespot->frequency);
+
+				$spotband = $this->frequency->GetBand($singlespot->frequency*1000);			// Apply band filter early (before expensive operations)
+			if (($band != 'All') && ($band != $spotband)) {
+				continue;
+			}
+
+			$singlespot->band = $spotband;
+
+			// Only determine mode if not provided by cluster
+			if (!isset($singlespot->mode) || empty($singlespot->mode)) {
+				$singlespot->mode = $this->get_mode($singlespot);
+			} else {
+				// Normalize cluster-provided mode to lowercase
+				$singlespot->mode = strtolower($singlespot->mode);
+			}
+
+			// Only determine submode if not provided by cluster
+			if (!isset($singlespot->submode) || empty($singlespot->submode)) {
+				$singlespot->submode = $this->get_submode($singlespot);
+			} else {
+				// Normalize cluster-provided submode to uppercase
+				$singlespot->submode = strtoupper($singlespot->submode);
+			}
+
+			// Apply mode filter early
+			if (($mode != 'All') && !$this->modefilter($singlespot, $mode)) {
+				continue;
+			}
+
+			// Faster age calculation using timestamps instead of DateTime objects
+			$spotTimestamp = strtotime($singlespot->when);
+			$minutes = (int)(($currentTimestamp - $spotTimestamp) / 60);
+
+			// Apply age filter early (before DXCC lookups)
+			if ($minutes > $maxage) {
+				continue;
+			}
+
+			$singlespot->age = $minutes;
+			$singlespot->when_pretty = date($custom_date_format . " H:i", $spotTimestamp);
+
+			// Perform DXCC lookups using cached results to prevent redundant database queries
+			if (!(property_exists($singlespot,'dxcc_spotted'))) {
+				$spotted_call = $singlespot->spotted ?? '';
+				if (empty($spotted_call)) {
+					continue;
+				}
+				if (!isset($dxcc_cache[$spotted_call])) {
+					$dxcc_cache[$spotted_call] = $dxccObj->dxcc_lookup($spotted_call, $date);
+				}
+				$dxcc = $dxcc_cache[$spotted_call];
+				$singlespot->dxcc_spotted = (object)[
+					'dxcc_id' => $dxcc['adif'] ?? 0,
+					'cont' => $dxcc['cont'] ?? '',
+					'cqz' => $dxcc['cqz'] ?? '',
+					'flag' => '',
+					'entity' => $dxcc['entity'] ?? 'Unknown'
+				];
+			}
+			if (!(property_exists($singlespot,'dxcc_spotter'))) {
+				$spotter_call = $singlespot->spotter ?? '';
+				if (empty($spotter_call)) {
+					continue;
+				}
+				if (!isset($dxcc_cache[$spotter_call])) {
+					$dxcc_cache[$spotter_call] = $dxccObj->dxcc_lookup($spotter_call, $date);
+				}
+				$dxcc = $dxcc_cache[$spotter_call];
+				$singlespot->dxcc_spotter = (object)[
+					'dxcc_id' => $dxcc['adif'] ?? 0,
+					'cont' => $dxcc['cont'] ?? '',
+					'cqz' => $dxcc['cqz'] ?? '',
+					'flag' => '',
+					'entity' => $dxcc['entity'] ?? 'Unknown'
+				];
+			}
+			// Apply continent filter early
+			if ($filter_continent && (!property_exists($singlespot->dxcc_spotter, 'cont') ||
+				$de_lower != strtolower($singlespot->dxcc_spotter->cont ?? ''))) {
+				continue;
+			}
+
+			// Extract park references from message
+			$singlespot = $this->enrich_spot_metadata($singlespot);
+
+				// Collect spots for batch processing
+				$spotsout[] = $singlespot;
+			}
+
+			// Cache the RAW processed spots (WITHOUT worked status) - instance-wide
+			if ($cache_band_enabled && !empty($spotsout)) {
+				$this->cache->save($raw_cache_key, $spotsout, 59);
+			}
+		}
+
+		// NOW add worked status if enabled (user-specific)
+		if (!empty($spotsout)) {
+			$batch_statuses = $this->logbook_model->get_batch_spot_statuses(
+				$spotsout,
+				$logbooks_locations_array,
+				$band,
+				$mode
+			);
+
+			// Collect callsigns that need last_worked info (only those that are worked)
+			$worked_spots = [];
+			foreach ($spotsout as $spot) {
+				$callsign = $spot->spotted;
+				if (isset($batch_statuses[$callsign]) && $batch_statuses[$callsign]['worked_call']) {
+					$worked_spots[] = $spot;
+				}
+			}
+
+			// Batch fetch last_worked info for all worked spots (with their specific bands)
+			$last_worked_batch = [];
+			if (!empty($worked_spots)) {
+				$last_worked_batch = $this->logbook_model->get_batch_last_worked(
+					$worked_spots,
+					$logbooks_locations_array
+				);
+			}
+
+			// Map batch results back to spots
+			foreach ($spotsout as $index => $spot) {
+				$callsign = $spot->spotted;
+				if (isset($batch_statuses[$callsign])) {
+					$status = $batch_statuses[$callsign];
+					$spot->worked_dxcc = $status['worked_dxcc'];
+					$spot->worked_call = $status['worked_call'];
+					$spot->cnfmd_dxcc = $status['cnfmd_dxcc'];
+					$spot->cnfmd_call = $status['cnfmd_call'];
+					$spot->cnfmd_continent = $status['cnfmd_continent'];
+					$spot->worked_continent = $status['worked_continent'];
+
+				// Use batch last_worked data
+				if ($spot->worked_call && isset($last_worked_batch[$callsign])) {
+					$spot->last_wked = $last_worked_batch[$callsign];
+
+					// Validate and convert date safely to prevent epoch date (1970) issues
+					if (!empty($spot->last_wked->LAST_QSO)) {
+						$timestamp = strtotime($spot->last_wked->LAST_QSO);
+						// Check if strtotime succeeded and timestamp is valid (> 0)
+						if ($timestamp !== false && $timestamp > 0) {
+							$spot->last_wked->LAST_QSO = date($custom_date_format, $timestamp);
+						} else {
+							// Invalid date - remove last_wked to prevent displaying incorrect date
+							unset($spot->last_wked);
 						}
-					} else {	// No de continent? No Filter --> Just push
-						$singlespot->worked_dxcc = ($this->logbook_model->check_if_dxcc_worked_in_logbook($singlespot->dxcc_spotted->dxcc_id, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
-						$singlespot->worked_call = ($this->logbook_model->check_if_callsign_worked_in_logbook($singlespot->spotted, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
-						$singlespot->cnfmd_dxcc = ($this->logbook_model->check_if_dxcc_cnfmd_in_logbook($singlespot->dxcc_spotted->dxcc_id, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
-						$singlespot->cnfmd_call = ($this->logbook_model->check_if_callsign_cnfmd_in_logbook($singlespot->spotted, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
-						$singlespot->cnfmd_continent = ($this->check_if_continent_cnfmd_in_logbook($singlespot->dxcc_spotted->cont, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
-						$singlespot->worked_continent = ($this->check_if_continent_worked_in_logbook($singlespot->dxcc_spotted->cont, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
-						array_push($spotsout,$singlespot);
+					} else {
+						// Empty date - remove last_wked
+						unset($spot->last_wked);
+					}
+				}
+				} else {
+					// Fallback for spots without status
+					$spot->worked_dxcc = false;
+					$spot->worked_call = false;
+					$spot->cnfmd_dxcc = false;
+					$spot->cnfmd_call = false;
+					$spot->cnfmd_continent = false;
+					$spot->worked_continent = false;
+				}
+
+				$spotsout[$index] = $spot;
+			}
+		} else {
+			// No worked status check - set all to false
+			foreach ($spotsout as $index => $spot) {
+				$spot->worked_dxcc = false;
+				$spot->worked_call = false;
+				$spot->cnfmd_dxcc = false;
+				$spot->cnfmd_call = false;
+				$spot->cnfmd_continent = false;
+				$spot->worked_continent = false;
+				$spotsout[$index] = $spot;
+			}
+		}
+
+		return $spotsout;
+	}	// Determine mode with priority: POTA/SOTA mode > message keywords > frequency-based
+	function get_mode($spot) {
+		// Priority 0: If spot already has a valid mode from cluster, use it
+		if (isset($spot->mode) && !empty($spot->mode)) {
+			$existingMode = strtolower($spot->mode);
+			// Validate it's a known mode category
+			if (in_array($existingMode, ['cw', 'phone', 'digi', 'ssb'])) {
+				return $this->mapToModeCategory($existingMode);
+			}
+		}
+
+		// Priority 1: POTA/SOTA mode fields (if present) - check from both dxcc_spotted and direct properties
+		$potaMode = $spot->pota_mode ?? $spot->dxcc_spotted->pota_mode ?? null;
+		$sotaMode = $spot->sota_mode ?? $spot->dxcc_spotted->sota_mode ?? null;
+
+		if (!empty($potaMode)) {
+			return $this->mapToModeCategory($potaMode);
+		}
+		if (!empty($sotaMode)) {
+			return $this->mapToModeCategory($sotaMode);
+		}
+
+		// Priority 2: Message keywords (explicit mode in message text)
+		if (isset($spot->message)) {
+			$message = strtolower($spot->message);
+
+			// Check for CW first (simplest check)
+			if (strpos($message, 'cw') !== false) {
+				return 'cw';
+			}
+
+			// Check for digital modes using class property
+			foreach ($this->digitalModes as $digiMode) {
+				if (strpos($message, strtolower($digiMode)) !== false) {
+					return 'digi';
+				}
+			}
+		}
+
+		// Priority 3: Frequency-based mode (from bandedges table)
+		// If frequency falls within a defined band edge, use that mode
+		$frequencyMode = $this->Frequency2Mode($spot->frequency);
+		if ($frequencyMode != '') {
+			return $frequencyMode;
+		}
+
+		// Default fallback: phone
+		return 'phone';
+	}
+
+	// Map specific mode names to mode categories (phone/cw/digi)
+	function mapToModeCategory($mode) {
+		$modeUpper = strtoupper($mode);
+
+		// CW modes
+		if ($modeUpper === 'CW') {
+			return 'cw';
+		}
+
+		// Digital modes - check against class property
+		foreach ($this->digitalModes as $digiMode) {
+			if ($modeUpper === $digiMode) {
+				return 'digi';
+			}
+		}
+
+		// Phone modes
+		if (in_array($modeUpper, ['SSB', 'LSB', 'USB', 'AM', 'FM', 'PHONE'])) {
+			return 'phone';
+		}
+
+		// Default to phone if unknown
+		return 'phone';
+	}
+
+	// Determine submode for more specific mode classification
+	function get_submode($spot) {
+		// Priority 0: If spot already has a valid submode from cluster, use it
+		if (isset($spot->submode) && !empty($spot->submode)) {
+			return strtoupper($spot->submode);
+		}
+
+		$mode = strtolower($spot->mode ?? '');
+		$frequency = floatval($spot->frequency);
+
+		// Check if we have specific mode from POTA/SOTA - use that as submode
+		$potaMode = $spot->pota_mode ?? $spot->dxcc_spotted->pota_mode ?? null;
+		$sotaMode = $spot->sota_mode ?? $spot->dxcc_spotted->sota_mode ?? null;
+
+		// If POTA/SOTA provides generic "SSB", refine it to LSB/USB based on frequency
+		if (!empty($potaMode) && strtoupper($potaMode) !== 'SSB') {
+			return strtoupper($potaMode);
+		}
+		if (!empty($sotaMode) && strtoupper($sotaMode) !== 'SSB') {
+			return strtoupper($sotaMode);
+		}
+
+		// For phone modes (including generic SSB from POTA/SOTA), determine LSB or USB based on frequency
+		if ($mode === 'phone' || $mode === 'ssb') {
+			// Below 10 MHz use LSB, above use USB
+			return $frequency < 10000 ? 'LSB' : 'USB';
+		}
+
+		// For CW, return CW
+		if ($mode === 'cw') {
+			return 'CW';
+		}
+
+		// For digital modes, try to get specific mode from message
+		if ($mode === 'digi') {
+			if (isset($spot->message)) {
+				$message = strtoupper($spot->message);
+				// Check for specific digital modes using class property
+				foreach ($this->digitalModes as $digiMode) {
+					if (strpos($message, $digiMode) !== false) {
+						return $digiMode;
 					}
 				}
 			}
-			return ($spotsout);
-		} else {
-			return '';
+			return 'DIGI'; // Generic digital fallback
 		}
 
-	}
-
-	// We need to build functions that check the frequency limit
-	// Right now this is just a proof of concept to determine mode
-	function get_mode($spot) {
-		if ($this->Frequency2Mode($spot->frequency) != '') {
-			return $this->Frequency2Mode($spot->frequency);
-		}
-
-		// Fallbacks using message keywords
-		if (isset($spot->message)) {
-			$message = strtolower($spot->message);
-			if (strpos($message, 'cw') !== false) {
-				return 'cw';;
-			}
-			if ((strpos($message, 'ft8') !== false || strpos($message, 'rtty') !== false || strpos($message, 'sstv') !== false)) {
-				return 'digi';;
-			}
-		}
-
-		return '';
+		// Return uppercase version of mode as submode
+		return strtoupper($mode);
 	}
 
 	function modefilter($spot, $mode) {
 		$mode = strtolower($mode); // Normalize case
+		$spotMode = strtolower($spot->mode ?? ''); // Get already-determined mode
 
-		if ($this->isFrequencyInMode($spot->frequency, $mode)) {
-			return true;
-		}
-
-		// Fallbacks using message keywords
-		if (isset($spot->message)) {
-			$message = strtolower($spot->message);
-			if ($mode === 'cw' && strpos($message, 'cw') !== false) {
-				return true;
-			}
-			if ($mode === 'digi' && (strpos($message, 'ft8') !== false || strpos($message, 'rtty') !== false || strpos($message, 'sstv') !== false)) {
-				return true;
-			}
-		}
-
-		return false;
+		// Since get_mode() already determined the mode using priority logic
+		// (frequency > POTA/SOTA > message), we can directly compare
+		return $spotMode === $mode;
 	}
 
 	public function Frequency2Mode($frequency) {
@@ -211,7 +485,7 @@ class Dxcluster_model extends CI_Model {
 		$this->load->helper(array('psr4_autoloader'));
 	    if (is_numeric($qrg)) {
 
-			$dxcache_url = ($this->optionslib->get_option('dxcache_url') == '' ? 'https://dxc.jo30.de/dxcache' : $this->optionslib->get_option('dxcache_url'));
+			$dxcache_url = ($this->optionslib->get_option('dxcache_url') == '' ? 'https://dxc.wavelog.org/dxcache' : $this->optionslib->get_option('dxcache_url'));
 
 		    $dxcache_url = $dxcache_url .'/spot/'.$qrg;
 
@@ -341,5 +615,115 @@ class Dxcluster_model extends CI_Model {
 		$query = $this->db->get($this->config->item('table_name'));
 
 		return $query->num_rows();
+	}
+
+	/**
+	 * Enrich spot metadata with park references and contest detection
+	 * Extracts SOTA/POTA/IOTA/WWFF references and detects contest spots
+	 * Only performs regex extraction if references are not already provided by DX cluster
+	 * @param object $spot - Spot object with message and dxcc_spotted properties
+	 * @return object - Spot object with enriched dxcc_spotted containing references and isContest flag
+	 */
+	function enrich_spot_metadata($spot) {
+		// Ensure dxcc_spotted object exists
+		if (!property_exists($spot, 'dxcc_spotted') || !is_object($spot->dxcc_spotted)) {
+			$spot->dxcc_spotted = (object)[];
+		}
+
+	// Initialize all properties at once using array merge
+	$defaults = [
+		'sota_ref' => '',
+		'pota_ref' => '',
+		'iota_ref' => '',
+		'wwff_ref' => '',
+		'isContest' => false,
+		'contestName' => null
+	];
+
+	foreach ($defaults as $prop => $defaultValue) {
+		if (!property_exists($spot->dxcc_spotted, $prop)) {
+			$spot->dxcc_spotted->$prop = $defaultValue;
+		}
+	}		// Early exit if message is empty
+		$message = $spot->message ?? '';
+		if (empty($message)) {
+			return $spot;
+		}
+
+		$upperMessage = strtoupper($message);
+
+		// Check which references are missing to minimize regex executions
+		$needsSota = empty($spot->dxcc_spotted->sota_ref);
+		$needsPota = empty($spot->dxcc_spotted->pota_ref);
+		$needsIota = empty($spot->dxcc_spotted->iota_ref);
+		$needsWwff = empty($spot->dxcc_spotted->wwff_ref);
+
+		// Early exit if all references already populated
+		if (!$needsSota && !$needsPota && !$needsIota && !$needsWwff && $spot->dxcc_spotted->isContest) {
+			return $spot;
+		}
+
+		// Combined regex approach - execute all patterns in one pass if any are needed
+		if ($needsSota || $needsPota || $needsIota || $needsWwff) {
+			// SOTA format: XX/YY-### or XX/YY-#### (e.g., "G/LD-001", "W4G/NG-001", "DL/KW-044")
+			if ($needsSota && preg_match('/\b([A-Z0-9]{1,3}\/[A-Z]{2}-\d{3,4})\b/', $upperMessage, $sotaMatch)) {
+				$spot->dxcc_spotted->sota_ref = $sotaMatch[1];
+			}
+
+			// IOTA format: XX-### (e.g., "EU-005", "NA-001", "OC-123")
+			// Check IOTA before POTA as it's more specific
+			if ($needsIota && preg_match('/\b((?:AF|AN|AS|EU|NA|OC|SA)-\d{3})\b/', $upperMessage, $iotaMatch)) {
+				$spot->dxcc_spotted->iota_ref = $iotaMatch[1];
+			}
+
+			// WWFF format: XXFF-#### or KFF-#### (e.g., "GIFF-0001", "K1FF-0123", "ON4FF-0050", "KFF-6731")
+			// Check WWFF before POTA to avoid conflicts
+			if ($needsWwff && preg_match('/\b((?:[A-Z0-9]{2,4}FF|KFF)-\d{4})\b/', $upperMessage, $wwffMatch)) {
+				$spot->dxcc_spotted->wwff_ref = $wwffMatch[1];
+			}
+
+			// POTA format: XX-#### (e.g., "US-4306", "K-1234", "DE-0277")
+			// Must not match WWFF patterns (ending in FF) - checked last to avoid conflicts
+			if ($needsPota && preg_match('/\b([A-Z0-9]{1,5}-\d{4,5})\b/', $upperMessage, $potaMatch)) {
+				// Exclude WWFF patterns (contain FF-)
+				if (strpos($potaMatch[1], 'FF-') === false) {
+					$spot->dxcc_spotted->pota_ref = $potaMatch[1];
+				}
+			}
+		}
+
+		// Contest detection - use class property instead of creating array each time
+		if (!$spot->dxcc_spotted->isContest) {
+			// More strict contest detection - require clear indicators
+
+			// Method 1: Explicit contest keywords with word boundaries
+			foreach ($this->contestIndicators as $indicator) {
+			// Use word boundary to avoid matching "CQ DX" in "CQ DX Americas" (which is just a CQ call)
+			if (preg_match('/\b' . preg_quote($indicator, '/') . '\b/', $upperMessage)) {
+				// Additional check: avoid false positives from generic "CQ" messages
+				if ($indicator === 'DX CONTEST' && preg_match('/^CQ\s+DX\s+[A-Z]+$/i', trim($message))) {
+				continue; // Skip "CQ DX <region>" patterns
+			}
+			$spot->dxcc_spotted->isContest = true;
+			$spot->dxcc_spotted->contestName = $indicator;
+			return $spot;
+			}
+		}			// Method 2: Contest exchange pattern - must have RST AND serial AND no conversational words
+			// Exclude spots with conversational indicators (TU, TNX, 73, GL, etc.)
+			$conversational = '/\b(TU|TNX|THANKS|73|GL|HI|FB|CUL|HPE|PSE|DE)\b/';
+
+			if (!preg_match($conversational, $upperMessage)) {
+			// Look for typical contest exchange: RST + number (but not just any 599)
+			// Must be followed by more structured exchange (not just "ur 599")
+			if (preg_match('/\b(?:599|5NN)\s+(?:TU\s+)?[0-9]{2,4}\b/', $upperMessage) &&
+				!preg_match('/\bUR\s+599\b/', $upperMessage)) {
+				$spot->dxcc_spotted->isContest = true;
+				$spot->dxcc_spotted->contestName = '';
+				return $spot;
+			}
+			}
+		}
+
+		return $spot;
 	}
 }

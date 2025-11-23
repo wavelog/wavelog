@@ -139,7 +139,7 @@ class Stations extends CI_Model {
 			'station_pota' =>  xss_clean(strtoupper($this->input->post('pota', true))),
 			'station_sig' =>  xss_clean(strtoupper($this->input->post('sig', true))),
 			'station_sig_info' =>  xss_clean(strtoupper($this->input->post('sig_info', true))),
-			'station_callsign' =>  trim(xss_clean(strtoupper($this->input->post('station_callsign', true)))),
+			'station_callsign' =>  str_replace('Ø', '0', trim(xss_clean(strtoupper($this->input->post('station_callsign', true))))),
 			'station_power' => is_numeric(xss_clean($this->input->post('station_power', true))) ? xss_clean($this->input->post('station_power', true)) : NULL,
 			'station_dxcc' =>  xss_clean($this->input->post('dxcc', true)),
 			'station_cnty' =>  $county,
@@ -160,6 +160,7 @@ class Stations extends CI_Model {
 			'webadifapikey' => xss_clean($this->input->post('webadifapikey', true)),
 			'webadifapiurl' => 'https://qo100dx.club/api',
 			'webadifrealtime' => xss_clean($this->input->post('webadifrealtime', true)),
+			'station_uuid' => $this->db->query("SELECT UUID() as uuid")->row()->uuid,
 		);
 
 		// Insert Records & return insert id //
@@ -218,7 +219,7 @@ class Stations extends CI_Model {
 			'station_pota' => xss_clean(strtoupper($this->input->post('pota', true))),
 			'station_sig' => xss_clean(strtoupper($this->input->post('sig', true))),
 			'station_sig_info' => xss_clean(strtoupper($this->input->post('sig_info', true))),
-			'station_callsign' => trim(xss_clean(strtoupper($this->input->post('station_callsign', true)))),
+			'station_callsign' => str_replace('Ø', '0', trim(xss_clean(strtoupper($this->input->post('station_callsign', true))))),
 			'station_power' => is_numeric(xss_clean($this->input->post('station_power', true))) ? xss_clean($this->input->post('station_power', true)) : NULL,
 			'station_dxcc' => xss_clean($this->input->post('dxcc', true)),
 			'station_cnty' =>  $county,
@@ -578,15 +579,16 @@ class Stations extends CI_Model {
 	}
 
 	public function get_station_power($id) {
-		$this->db->select('station_power');
+		$this->db->select('station_power, station_callsign');
 		$this->db->where('user_id', $this->session->userdata('user_id'));
 		$this->db->where('station_id', $id);
 		$query = $this->db->get('station_profile');
 		if($query->num_rows() >= 1) {
-			foreach ($query->result() as $row)
-			{
-				return $row->station_power;
-			}
+			$row = $query->row(); // only one result expected
+			return [
+				'station_power' => $row->station_power,
+				'station_callsign' => $row->station_callsign
+			];
 		} else {
 			return null;
 		}

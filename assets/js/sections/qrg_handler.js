@@ -46,7 +46,7 @@ async function set_qrg() {
 	if (qrgunit != null) {
 		$('#qrg_unit').html(localStorage.getItem('qrgunit_' + band));
 	} else {
-		$('#qrg_unit').html('...');
+		$('#qrg_unit').html('kHz'); // default to kHz
 	}
 
 	if (qrgunit == 'Hz') {
@@ -61,8 +61,42 @@ async function set_qrg() {
 }
 
 async function set_new_qrg() {
-	let new_qrg = $('#freq_calculated').val().trim();
+	let new_qrg = $('#freq_calculated').val();
+
+	// Set flag to indicate this is a manual form update (not from CAT/radio)
+	// This prevents the radio from being tuned when user manually enters frequency
+	window.user_updating_frequency = true;
+
+	// Trim and validate input
+	if (new_qrg !== null && new_qrg !== undefined) {
+		new_qrg = new_qrg.trim();
+	}
+
 	let parsed_qrg = parseFloat(new_qrg);
+
+	// If field is empty or parsing failed, fetch default frequency for current band/mode
+	if (!new_qrg || new_qrg === '' || isNaN(parsed_qrg) || !isFinite(parsed_qrg) || parsed_qrg <= 0) {
+		// Check if band is selected before attempting to fetch frequency
+		if (!$('#band').val()) {
+			$('#band').val('160m'); // no band so set default
+		}
+		if (typeof base_url !== 'undefined') {
+			try {
+				const result = await $.get(base_url + 'index.php/qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val());
+				$('#frequency').val(result);
+				await set_qrg();
+				window.user_updating_frequency = false; // Clear flag
+				return;
+			} catch (error) {
+				console.error('Failed to fetch default frequency:', error);
+				window.user_updating_frequency = false; // Clear flag
+				return;
+			}
+		}
+		window.user_updating_frequency = false; // Clear flag
+		return;
+	}
+
 	let unit = $('#qrg_unit').html();
 
 	// check if the input contains a unit and parse the qrg
@@ -85,22 +119,27 @@ async function set_new_qrg() {
 
 	// calculate the other stuff
 	let qrg_hz;
+	let new_band;
 	switch (unit) {
 		case 'Hz':
 			qrg_hz = parsed_qrg;
-			localStorage.setItem('qrgunit_' + $('#band').val(), 'Hz');
+			new_band = frequencyToBand(qrg_hz);
+			localStorage.setItem('qrgunit_' + new_band, 'Hz');
 			break;
 		case 'kHz':
 			qrg_hz = parsed_qrg * 1000;
-			localStorage.setItem('qrgunit_' + $('#band').val(), 'kHz');
+			new_band = frequencyToBand(qrg_hz);
+			localStorage.setItem('qrgunit_' + new_band, 'kHz');
 			break;
 		case 'MHz':
 			qrg_hz = parsed_qrg * 1000000;
-			localStorage.setItem('qrgunit_' + $('#band').val(), 'MHz');
+			new_band = frequencyToBand(qrg_hz);
+			localStorage.setItem('qrgunit_' + new_band, 'MHz');
 			break;
 		case 'GHz':
 			qrg_hz = parsed_qrg * 1000000000;
-			localStorage.setItem('qrgunit_' + $('#band').val(), 'GHz');
+			new_band = frequencyToBand(qrg_hz);
+			localStorage.setItem('qrgunit_' + new_band, 'GHz');
 			break;
 		default:
 			qrg_hz = 0;
@@ -109,8 +148,13 @@ async function set_new_qrg() {
 
 	$('#frequency').val(qrg_hz);
 	$('#freq_calculated').val(parsed_qrg);
-	$('#band').val(frequencyToBand(qrg_hz));
+	$('#band').val(new_band);
 
+	// Clear the manual update flag
+	window.user_updating_frequency = false;
+
+	// DO NOT tune the radio - let the radio control the frequency
+	// The form follows the radio, not the other way around
 }
 
 $('#frequency').on('change', function () {
@@ -120,24 +164,7 @@ $('#frequency').on('change', function () {
 
 $('#freq_calculated').on('input', function () {
 	if (window.innerWidth > 768) {
-    	$(this).val($(this).val().replace(',', '.'));
+		$(this).val($(this).val().replace(',', '.'));
 	}
 });
 
-$('#freq_calculated').on('change', function () {
-	// console.log('freq_calculated changed');
-	set_new_qrg();
-});
-
-$('#freq_calculated').on('keydown', function (e) {
-	if (e.which === 13) {
-		e.preventDefault();
-		if ($('#callsign').val() != '') {
-			set_new_qrg().then(() => {
-				$("#qso_input").trigger('submit');
-			});
-		} else {
-			set_new_qrg();
-		}
-    }
-});

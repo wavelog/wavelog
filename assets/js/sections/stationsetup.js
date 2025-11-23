@@ -578,7 +578,7 @@ function loadLocationTable(rows) {
 
 		data.push(locations.station_id);
 		data.push(locations.station_name);
-		data.push(locations.station_callsign);
+		data.push(locations.station_callsign.replaceAll(/0/g, 'Ø'));
 		data.push(locations.station_country);
 		data.push(locations.station_gridsquare);
 		data.push(locations.station_lastqso);

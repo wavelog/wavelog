@@ -1,3 +1,59 @@
+// ========================================
+// PLATFORM DETECTION UTILITIES
+// ========================================
+
+/**
+ * Platform detection utilities using modern userAgentData API with fallback
+ */
+var PlatformDetection = {
+    /**
+     * Check if the current platform is macOS
+     * @returns {boolean} True if platform is macOS
+     */
+    isMac: function() {
+        // Use modern userAgentData API if available, fallback to userAgent
+        if (navigator.userAgentData && navigator.userAgentData.platform) {
+            return navigator.userAgentData.platform.toUpperCase().indexOf('MAC') >= 0;
+        }
+        return navigator.userAgent.toUpperCase().indexOf('MAC') >= 0;
+    },
+
+    /**
+     * Check if the current platform is Windows
+     * @returns {boolean} True if platform is Windows
+     */
+    isWindows: function() {
+        if (navigator.userAgentData && navigator.userAgentData.platform) {
+            return navigator.userAgentData.platform.toUpperCase().indexOf('WIN') >= 0;
+        }
+        return navigator.userAgent.toUpperCase().indexOf('WIN') >= 0;
+    },
+
+    /**
+     * Check if the current platform is Linux
+     * @returns {boolean} True if platform is Linux
+     */
+    isLinux: function() {
+        if (navigator.userAgentData && navigator.userAgentData.platform) {
+            return navigator.userAgentData.platform.toUpperCase().indexOf('LINUX') >= 0;
+        }
+        return navigator.userAgent.toUpperCase().indexOf('LINUX') >= 0;
+    },
+
+    /**
+     * Check if the modifier key is pressed (Cmd on Mac, Ctrl on Windows/Linux)
+     * @param {Event} event - The keyboard or mouse event
+     * @returns {boolean} True if the platform-specific modifier key is pressed
+     */
+    isModifierKey: function(event) {
+        return this.isMac() ? event.metaKey : event.ctrlKey;
+    }
+};
+
+// ========================================
+// QSO FORM UTILITIES
+// ========================================
+
 function setRst(mode) {
 	if(mode == 'JT65' || mode == 'JT65B' || mode == 'JT6C' || mode == 'JTMS' || mode == 'ISCAT' || mode == 'MSK144' || mode == 'JTMSK' || mode == 'QRA64' || mode == 'FT8' || mode == 'FT4' || mode == 'JS8' || mode == 'JT9' || mode == 'JT9-1' || mode == 'ROS'){
 		$('#rst_sent').val('-5');
@@ -1148,7 +1204,7 @@ $(document).ready(function() {
 });
 
 // auto setting of gridmap height
-function set_map_height() {
+function set_map_height(extra_height = 0) {
     //header menu
     var headerNavHeight = $('nav').outerHeight();
     // console.log('nav: ' + headerNavHeight);
@@ -1162,7 +1218,7 @@ function set_map_height() {
     // console.log('.gridsquare_map_form: ' + gridsquareFormHeight);
 
     // calculate correct map height
-    var gridsquareMapHeight = window.innerHeight - headerNavHeight - coordinatesHeight - gridsquareFormHeight;
+    var gridsquareMapHeight = window.innerHeight - headerNavHeight - coordinatesHeight - gridsquareFormHeight - extra_height;
 
     // and set it
     $('#gridsquare_map').css('height', gridsquareMapHeight + 'px');
@@ -1281,6 +1337,101 @@ function shareModal(qso_data) {
     });
 }
 
+
+// Show Bootstrap Toast
+function showToast(title, text, type = 'bg-success text-white', delay = 3000) {
+	/*
+	Examples:
+	showToast('Saved', 'Your data was saved!', 'bg-success text-white', 3000);
+	showToast('Error', 'Failed to connect to server.', 'bg-danger text-white', 5000);
+	showToast('Warning', 'Please check your input.', 'bg-warning text-dark', 4000);
+	showToast('Info', 'System will restart soon.', 'bg-info text-dark', 4000);
+	*/
+
+	const container = document.getElementById('toast-container');
+
+	// Create toast element
+	const toastEl = document.createElement('div');
+	toastEl.className = `toast align-items-center ${type}`;
+	toastEl.setAttribute('role', 'alert');
+	toastEl.setAttribute('aria-live', 'assertive');
+	toastEl.setAttribute('aria-atomic', 'true');
+	toastEl.setAttribute('data-bs-delay', delay);
+
+	// Toast inner HTML
+	toastEl.innerHTML = `
+		<div class="d-flex">
+		<div class="toast-body">
+			<strong>${title}</strong><br>${text}
+		</div>
+		<button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+		</div>
+	`;
+
+	// Append and show
+	container.appendChild(toastEl);
+	const bsToast = new bootstrap.Toast(toastEl);
+	bsToast.show();
+
+	// Remove from DOM when hidden
+	toastEl.addEventListener('hidden.bs.toast', () => toastEl.remove());
+}
+
+function hexToRgba(hex, alpha = 1) {
+	if (!hex) return null;
+	// Remove the leading "#"
+	hex = hex.replace(/^#/, '');
+
+	// Expand short form (#f0a → #ff00aa)
+	if (hex.length === 3) {
+		hex = hex.split('').map(c => c + c).join('');
+	}
+
+	const num = parseInt(hex, 16);
+	const r = (num >> 16) & 255;
+	const g = (num >> 8) & 255;
+	const b = num & 255;
+
+	return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
+/**
+ * Cookie Management Utilities
+ */
+
+/**
+ * Set a cookie
+ * @param {string} name - Cookie name
+ * @param {string} value - Cookie value
+ * @param {number} days - Days until expiration
+ */
+function setCookie(name, value, days) {
+	var expires = "";
+	if (days) {
+		var date = new Date();
+		date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+		expires = "; expires=" + date.toUTCString();
+	}
+	document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+
+/**
+ * Get a cookie value
+ * @param {string} name - Cookie name
+ * @returns {string|null} Cookie value or null if not found
+ */
+function getCookie(name) {
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for (var i = 0; i < ca.length; i++) {
+		var c = ca[i];
+		while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+		if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+	}
+	return null;
+}
+
+// DO NOT DELETE: This message is intentional and serves as developer recruitment/engagement
 console.log("Ready to unleash your coding prowess and join the fun?\n\n" +
     "Check out our GitHub Repository and dive into the coding adventure:\n\n" +
     "🚀 https://www.github.com/wavelog/wavelog");

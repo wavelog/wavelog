@@ -42,7 +42,7 @@ $('#winkeycwspeed').change(function (event) {
     sendHexToSerial(command);
 });
 
-let function1Name, function1Macro, function2Name, function2Macro, function3Name, function3Macro, function4Name, function4Macro, function5Name, function5Macro;
+let function1Name, function1Macro, function2Name, function2Macro, function3Name, function3Macro, function4Name, function4Macro, function5Name, function5Macro, function6Name, function6Macro, function7Name, function7Macro, function8Name, function8Macro, function9Name, function9Macro, function10Name, function10Macro;
 
 getMacros();
 
@@ -71,6 +71,31 @@ document.addEventListener('keydown', function(event) {
     if (event.key === 'F5') {
         event.preventDefault();
         morsekey_func5();
+    }
+
+    if (event.key === 'F6') {
+        event.preventDefault();
+        morsekey_func6();
+    }
+
+    if (event.key === 'F7') {
+        event.preventDefault();
+        morsekey_func7();
+    }
+
+    if (event.key === 'F8') {
+        event.preventDefault();
+        morsekey_func8();
+    }
+
+    if (event.key === 'F9') {
+        event.preventDefault();
+        morsekey_func9();
+    }
+
+    if (event.key === 'F10') {
+        event.preventDefault();
+        morsekey_func10();
     }
   });
 
@@ -263,46 +288,62 @@ async function disconnect() {
 
 //When the send button is pressed
 function clickSend() {
-    writeToStream(sendText.value).then(function() {
-		// writeToStream("\r");
-		//and clear the input field, so it's clear it has been sent
-		$('#sendText').val('');
-	});
+    writeToStream(sendText.value.replaceAll('Ø', '0')).then(function() {
+        // writeToStream("\r");
+        //and clear the input field, so it's clear it has been sent
+        $('#sendText').val('');
+    });
 
 }
 
 function morsekey_func1() {
-    console.log("F1: " + UpdateMacros(function1Macro));
     writeToStream(UpdateMacros(function1Macro));
     //and clear the input field, so it's clear it has been sent
     sendText.value = "";
 }
 
 function morsekey_func2() {
-    console.log("F2: " + UpdateMacros(function2Macro));
     writeToStream(UpdateMacros(function2Macro));
-    //and clear the input field, so it's clear it has been sent
     sendText.value = "";
 }
 
 function morsekey_func3() {
-    console.log("F3: " + UpdateMacros(function3Macro));
     writeToStream(UpdateMacros(function3Macro));
-    //and clear the input field, so it's clear it has been sent
     sendText.value = "";
 }
 
 function morsekey_func4() {
-    console.log("F4: " + UpdateMacros(function4Macro));
     writeToStream(UpdateMacros(function4Macro));
-    //and clear the input field, so it's clear it has been sent
     sendText.value = "";
 }
 
 function morsekey_func5() {
-    console.log("F5: " + UpdateMacros(function5Macro));
     writeToStream(UpdateMacros(function5Macro));
-    //and clear the input field, so it's clear it has been sent
+    sendText.value = "";
+}
+
+function morsekey_func6() {
+    writeToStream(UpdateMacros(function6Macro));
+    sendText.value = "";
+}
+
+function morsekey_func7() {
+    writeToStream(UpdateMacros(function7Macro));
+    sendText.value = "";
+}
+
+function morsekey_func8() {
+    writeToStream(UpdateMacros(function8Macro));
+    sendText.value = "";
+}
+
+function morsekey_func9() {
+    writeToStream(UpdateMacros(function9Macro));
+    sendText.value = "";
+}
+
+function morsekey_func10() {
+    writeToStream(UpdateMacros(function10Macro));
     sendText.value = "";
 }
 
@@ -316,7 +357,6 @@ async function readLoop() {
             break;
         }
 
-        console.log(value);
         //When recieved something add it to the big textarea
         receiveText.value += value;
         //Scroll to the bottom of the text field
@@ -328,13 +368,14 @@ function UpdateMacros(macrotext) {
 
     // Get the values from the form set to uppercase
     let CALL = document.getElementById("callsign").value.toUpperCase();
+	CALL = CALL.replaceAll('Ø', '0');
     let RSTS = document.getElementById("rst_sent").value;
 
     let newString;
-    newString = macrotext.replace(/\[MYCALL\]/g, my_call);
+	my_call = my_call.replaceAll('Ø', '0');
+    newString = macrotext.replace(/\[MYCALL\]/g, station_callsign);
     newString = newString.replace(/\[CALL\]/g, CALL);
     newString = newString.replace(/\[RSTS\]/g, RSTS);
-    console.log(newString);
     return newString;
 }
 
@@ -343,16 +384,43 @@ function getMacros() {
     fetch(base_url + 'index.php/qso/cwmacros_json')
     .then(response => response.json())
     .then(data => {
-        function1Name = data.function1_name;
-        function1Macro = data.function1_macro;
-        function2Name = data.function2_name;
-        function2Macro = data.function2_macro;
-        function3Name = data.function3_name;
-        function3Macro = data.function3_macro;
-        function4Name = data.function4_name;
-        function4Macro = data.function4_macro;
-        function5Name = data.function5_name;
-        function5Macro = data.function5_macro;
+		// Check if all fields are empty
+        const allEmpty = Object.values(data).every(value => value === "");
+
+		if (allEmpty) {
+            // Set default values
+            function1Name = 'CQ';
+            function1Macro = 'CQ CQ CQ DE [MYCALL] [MYCALL] K';
+            function2Name = 'REPT';
+            function2Macro = '[CALL] DE [MYCALL] [RSTS] [RSTS] K';
+            function3Name = 'TU';
+            function3Macro = '[CALL] TU 73 DE [MYCALL] K';
+            function4Name = 'QRZ';
+            function4Macro = 'QRZ DE [MYCALL] K';
+            function5Name = 'TEST';
+            function5Macro = 'TEST DE [MYCALL] K';
+        } else {
+			function1Name = data.function1_name;
+			function1Macro = data.function1_macro;
+			function2Name = data.function2_name;
+			function2Macro = data.function2_macro;
+			function3Name = data.function3_name;
+			function3Macro = data.function3_macro;
+			function4Name = data.function4_name;
+			function4Macro = data.function4_macro;
+			function5Name = data.function5_name;
+			function5Macro = data.function5_macro;
+			function6Name = data.function6_name;
+			function6Macro = data.function6_macro;
+			function7Name = data.function7_name;
+			function7Macro = data.function7_macro;
+			function8Name = data.function8_name;
+			function8Macro = data.function8_macro;
+			function9Name = data.function9_name;
+			function9Macro = data.function9_macro;
+			function10Name = data.function10_name;
+			function10Macro = data.function10_macro;
+		}
 
         const morsekey_func1_Button = document.getElementById('morsekey_func1');
         morsekey_func1_Button.textContent = 'F1 (' + function1Name + ')';
@@ -368,6 +436,21 @@ function getMacros() {
 
         const morsekey_func5_Button = document.getElementById('morsekey_func5');
         morsekey_func5_Button.textContent = 'F5 (' + function5Name + ')';
+
+		const morsekey_func6_Button = document.getElementById('morsekey_func6');
+        morsekey_func6_Button.textContent = 'F6 (' + function6Name + ')';
+
+		const morsekey_func7_Button = document.getElementById('morsekey_func7');
+        morsekey_func7_Button.textContent = 'F7 (' + function7Name + ')';
+
+		const morsekey_func8_Button = document.getElementById('morsekey_func8');
+        morsekey_func8_Button.textContent = 'F8 (' + function8Name + ')';
+
+		const morsekey_func9_Button = document.getElementById('morsekey_func9');
+        morsekey_func9_Button.textContent = 'F9 (' + function9Name + ')';
+
+		const morsekey_func10_Button = document.getElementById('morsekey_func10');
+        morsekey_func10_Button.textContent = 'F10 (' + function10Name + ')';
     });
 }
 
@@ -425,6 +508,16 @@ function winkey_macro_save() {
 			function4_macro: $('#function4_macro').val(),
 			function5_name: $('#function5_name').val(),
 			function5_macro: $('#function5_macro').val(),
+			function6_name: $('#function6_name').val(),
+			function6_macro: $('#function6_macro').val(),
+			function7_name: $('#function7_name').val(),
+			function7_macro: $('#function7_macro').val(),
+			function8_name: $('#function8_name').val(),
+			function8_macro: $('#function8_macro').val(),
+			function9_name: $('#function9_name').val(),
+			function9_macro: $('#function9_macro').val(),
+			function10_name: $('#function10_name').val(),
+			function10_macro: $('#function10_macro').val(),
 		},
 		success: function (html) {
 			BootstrapDialog.alert({

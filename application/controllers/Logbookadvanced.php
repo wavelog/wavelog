@@ -151,7 +151,9 @@ class Logbookadvanced extends CI_Controller {
 			'continent' => xss_clean($this->input->post('continent')),
 			'comment' => xss_clean($this->input->post('comment')),
 			'qsoids' => xss_clean($this->input->post('qsoids')),
-			'dok' => xss_clean($this->input->post('dok'))
+			'dok' => xss_clean($this->input->post('dok')),
+			'qrzSent' => xss_clean($this->input->post('qrzSent')),
+			'qrzReceived' => xss_clean($this->input->post('qrzReceived'))
 		);
 	}
 
@@ -374,6 +376,8 @@ class Logbookadvanced extends CI_Controller {
 			'continent' => '',
 			'comment' => '*',
 			'dok' => '*',
+			'qrzSent' => '',
+			'qrzReceived' => '',
 			'ids' => json_decode(xss_clean($this->input->post('ids'))),
 			'qsoids' => xss_clean($this->input->post('qsoids'))
 		);
@@ -709,6 +713,14 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->view('logbookadvanced/help');
 	}
 
+	public function continentDialog() {
+		$this->load->view('logbookadvanced/continentdialog');
+	}
+
+	public function distanceDialog() {
+		$this->load->view('logbookadvanced/distancedialog');
+	}
+
 	public function fixCqZones() {
 		if(!clubaccess_check(9)) return;
 
@@ -792,5 +804,21 @@ class Logbookadvanced extends CI_Controller {
 
 		header("Content-Type: application/json");
 		print json_encode($q);
+	}
+
+	public function fixContinent() {
+		$this->load->model('logbookadvanced_model');
+		$result = $this->logbookadvanced_model->check_missing_continent();
+
+		header("Content-Type: application/json");
+		print json_encode($result);
+	}
+
+	public function updateDistances() {
+		$this->load->model('logbookadvanced_model');
+		$result = $this->logbookadvanced_model->update_distances_batch();
+
+		header("Content-Type: application/json");
+		print json_encode($result);
 	}
 }

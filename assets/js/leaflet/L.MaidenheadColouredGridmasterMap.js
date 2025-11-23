@@ -6,8 +6,19 @@ L.Maidenhead = L.LayerGroup.extend({
 
 
 	options: {
-		// Line and label color
-		color: 'rgba(255, 0, 0, 0.4)',
+		linecolor: isDarkModeTheme() ?  'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)',
+		color: isDarkModeTheme() ? 'rgba(255, 255, 255, 1)' : 'rgba(0, 0, 0, 1)',
+
+		workedColor: user_map_custom?.qso?.color
+			? hexToRgba(user_map_custom.qso.color, 0.5)
+			: 'rgba(255, 251, 0, 0.5)',
+
+		confirmedColor: user_map_custom?.qsoconfirm?.color
+			? hexToRgba(user_map_custom.qsoconfirm.color, 0.5)
+			: 'rgba(144,238,144, 0.5)',
+		unworkedColor : user_map_custom?.unworked?.color
+			? hexToRgba(user_map_custom.unworked.color, 0.5)
+			: 'rgba(255, 0, 0, 0.5)',
 
 		// Redraw on move or moveend
 		redraw: 'move'
@@ -21,16 +32,20 @@ L.Maidenhead = L.LayerGroup.extend({
 	onAdd: function (map) {
 		this._map = map;
 		var grid = this.redraw();
-		this._map.on('viewreset '+ this.options.redraw, function () {
+		// Store the event handler function so we can remove it later
+		this._onViewChange = function () {
 			grid.redraw();
-		});
+		};
+		this._map.on('viewreset '+ this.options.redraw, this._onViewChange);
 
 		this.eachLayer(map.addLayer, map);
 	},
 
 	onRemove: function (map) {
 		// remove layer listeners and elements
-		map.off('viewreset '+ this.options.redraw, this.map);
+		if (this._onViewChange) {
+			map.off('viewreset '+ this.options.redraw, this._onViewChange);
+		}
 		this.eachLayer(this.removeLayer, this);
 	},
 
@@ -59,17 +74,17 @@ L.Maidenhead = L.LayerGroup.extend({
 				for (var lat = bottom; lat < top; lat += unit) {
 					var bounds = [[lat,lon],[lat+unit,lon+(unit*2)]];
 					var locator = this._getLocator(lon,lat);
-	
+
 					if(grid_four.includes(locator)) {
-	
+
 						if(grid_four_lotw.includes(locator)) {
-							var rectConfirmed = L.rectangle(bounds, {className: 'grid-rectangle grid-confirmed', color: 'rgba(144,238,144, 0.6)', weight: 1, fillOpacity: 1, fill:true, interactive: false});
+							var rectConfirmed = L.rectangle(bounds, {className: 'grid-rectangle grid-confirmed', color: this.options.confirmedColor, weight: 1, fillOpacity: 1, fill:true, interactive: false});
 							this.addLayer(rectConfirmed);
 						} else if (grid_four_paper.includes(locator)) {
-							var rectPaper = L.rectangle(bounds, {className: 'grid-rectangle grid-confirmed', color: 'rgba(0,176,240, 0.6)', weight: 1, fillOpacity: 1, fill:true, interactive: false});
+							var rectPaper = L.rectangle(bounds, {className: 'grid-rectangle grid-confirmed-paper', color: this.options.workedColor, weight: 1, fillOpacity: 1, fill:true, interactive: false});
 							this.addLayer(rectPaper);
 						} else {
-							var rectWorked = L.rectangle(bounds, {className: 'grid-rectangle grid-worked', color: 'rgba(255,215,87, 0.6)', weight: 1, fillOpacity: 1, fill:true, interactive: false})
+							var rectWorked = L.rectangle(bounds, {className: 'grid-rectangle grid-unworked', color: this.options.unworkedColor, weight: 1, fillOpacity: 1, fill:true, interactive: false})
 							this.addLayer(rectWorked);
 						}
 						// Controls text on grid on various zoom levels

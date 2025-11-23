@@ -5,10 +5,17 @@
 L.Maidenhead = L.LayerGroup.extend({
 
 	options: {
-		// Line and label color
-		color: 'rgba(255, 0, 0, 0.4)',
+		linecolor: isDarkModeTheme() ?  'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.3)',
+		color: isDarkModeTheme() ? 'rgba(255, 255, 255, 1)' : 'rgba(0, 0, 0, 1)',
 
-		// Redraw on move or moveend
+		workedColor: user_map_custom?.qso?.color
+			? hexToRgba(user_map_custom.qso.color, 0.5)
+			: 'rgba(255, 0, 0, 0.5)',
+
+		confirmedColor: user_map_custom?.qsoconfirm?.color
+			? hexToRgba(user_map_custom.qsoconfirm.color, 0.5)
+			: 'rgba(144,238,144, 0.5)',
+
 		redraw: 'move'
 	},
 
@@ -20,16 +27,20 @@ L.Maidenhead = L.LayerGroup.extend({
 	onAdd: function (map) {
 		this._map = map;
 		var grid = this.redraw();
-		this._map.on('viewreset '+ this.options.redraw, function () {
+		// Store the event handler function so we can remove it later
+		this._onViewChange = function () {
 			grid.redraw();
-		});
+		};
+		this._map.on('viewreset '+ this.options.redraw, this._onViewChange);
 
 		this.eachLayer(map.addLayer, map);
 	},
 
 	onRemove: function (map) {
 		// remove layer listeners and elements
-		map.off('viewreset '+ this.options.redraw, this.map);
+		if (this._onViewChange) {
+			map.off('viewreset '+ this.options.redraw, this._onViewChange);
+		}
 		this.eachLayer(this.removeLayer, this);
 	},
 
@@ -58,24 +69,19 @@ L.Maidenhead = L.LayerGroup.extend({
 		for (var lon = left; lon < right; lon += (unit*2)) {
 			if (lon > -180 || lon < 180) {
 				for (var lat = bottom; lat < top; lat += unit) {
-					if (zoom == 10) {
-						var bounds = [[lat,lon],[lat-unit,lon+(unit*2)]];
-					} else if (zoom == 11) { // TODO: needs fixing, 6 char grid is placed wrong
-						var bounds = [[lat,lon],[lat+unit,lon+(unit*2)]];
-					} else if (zoom == 12) { // TODO: needs fixing, 6 char grid is placed wrong
-						var bounds = [[lat,lon],[lat+unit,lon+(unit*2)]];
-					} else {
-						var bounds = [[lat,lon],[lat+unit,lon+(unit*2)]];
-					}
-					var locator = this._getLocator(lon,lat);
+					// southwest is (lat,lon), northeast is (lat+unit, lon+2*unit)
+					var bounds = [[lat, lon], [lat + unit, lon + (unit * 2)]];
+
+					// use the center of the rectangle to avoid edge/boundary rounding errors
+					var locator = this._getLocator(lon + unit, lat + (unit / 2));
 
 					if(grid_two.includes(locator) || grid_four.includes(locator) || grid_six.includes(locator)) {
 
 						if(grid_two_confirmed.includes(locator) || grid_four_confirmed.includes(locator) || grid_six_confirmed.includes(locator)) {
-							var rectConfirmed = L.rectangle(bounds, {className: 'grid-rectangle grid-confirmed', color: 'rgba(144,238,144, 0.6)', weight: 1, fillOpacity: 1, fill:true, interactive: false});
+							var rectConfirmed = L.rectangle(bounds, {className: 'grid-rectangle grid-confirmed', color: this.options.confirmedColor,  weight: 1, fillOpacity: 1, fill:true, interactive: false});
 							this.addLayer(rectConfirmed);
 						} else {
-							var rectWorked = L.rectangle(bounds, {className: 'grid-rectangle grid-worked', color: this.options.color, weight: 1, fillOpacity: 1, fill:true, interactive: false})
+							var rectWorked = L.rectangle(bounds, {className: 'grid-rectangle grid-worked', color: this.options.workedColor,  weight: 1, fillOpacity: 1, fill:true, interactive: false});
 							this.addLayer(rectWorked);
 						}
 						// Controls text on grid on various zoom levels
@@ -86,13 +92,22 @@ L.Maidenhead = L.LayerGroup.extend({
 							this.addLayer(L.rectangle(bounds, {className: 'grid-rectangle', color: this.options.color, weight: 1, fill:false, interactive: false}));
 						}
 					} else {
-						if (zoom < 3 || zoom > 5) {
-							this.addLayer(L.rectangle(bounds, {className: 'grid-rectangle', color: this.options.color, weight: 1, fill:false, interactive: false}));
+						if (grids.includes(locator) && grids !== '') {
+							var rect = L.rectangle(bounds, {className: 'grid-rectangle grid-unworked', color: this.options.linecolor, weight: 1, fillOpacity: 0.15, fill:true, interactive: false});
+							this.addLayer(rect);
+							this.addLayer(this._getLabel(lon+unit-(unit/lcor),lat+(unit/2)+(unit/lcor*c)));
+						}
+						if (grids == '') {
+							if (zoom < 3 || zoom > 5) { // Controls if grid lines are shown according to zoom level
+								this.addLayer(L.rectangle(bounds, {className: 'grid-rectangle', color: this.options.color, weight: 1, fill:false, interactive: false}));
+							}
 						}
 					}
 					// This one shows all grids, not just the worked/confirmed
-					if (zoom < 3 || zoom > 5) {
-						this.addLayer(this._getLabel(lon+unit-(unit/lcor),lat+(unit/2)+(unit/lcor*c)));
+					if (grids == '') {
+						if (zoom < 3 || zoom > 5) {
+							this.addLayer(this._getLabel(lon+unit-(unit/lcor),lat+(unit/2)+(unit/lcor*c)));
+						}
 					}
 				}
 			}
@@ -134,6 +149,7 @@ L.Maidenhead = L.LayerGroup.extend({
 			} else {
 				title = '<span class="grid-text-unworked" style="cursor: default;"><font style="color:'+this.options.color+'; font-size:'+size+'; font-weight: 900; ">' + locator + '</font></span>';
 			}
+
 		}
 		var myIcon = L.divIcon({className: 'my-div-icon', html: title});
 		var marker = L.marker([lat,lon], {icon: myIcon}, clickable=false);
@@ -183,12 +199,7 @@ L.Maidenhead = L.LayerGroup.extend({
 		var title_size = new Array(0, 10, 12, 16, 20, 26, 26, 16, 24, 36, 12, 14, 20, 36, 60, 12, 20, 36, 60, 12, 24);
 		var zoom = map.getZoom();
 		var size = title_size[zoom]+'px';
-		if(grid_four.includes(locator) || grid_four_confirmed.includes(locator) || grid_two.includes(locator) || grid_two_confirmed.includes(locator)) {
-			var title = '<span class="grid-text-worked" style="cursor: default;"><font style="color:'+this.options.color+'; font-size:'+size+'; font-weight: 900; ">' + this._getLocator2(lon,lat) + '</font></span>';
-		} else {
-			var title = '<span class="grid-text-unworked" style="cursor: default;"><font style="color:'+this.options.color+'; font-size:'+size+'; font-weight: 900; ">' + this._getLocator2(lon,lat) + '</font></span>';
-		}
-
+		var title = '<span class="grid-text" style="cursor: default;"><font style="color:'+this.options.color+'; font-size:'+size+'; font-weight: 900; ">' + this._getLocator2(lon,lat) + '</font></span>';
 		var myIcon = L.divIcon({className: 'my-div-icon', html: title});
 		var marker = L.marker([lat,lon], {icon: myIcon}, clickable=false);
 		return marker;
