@@ -4,6 +4,7 @@ var selected_sat_mode;
 var scps = [];
 let lookupCall = null;
 let preventLookup = false;
+var submitTimeout = null; // Debounce timer for QSO submission
 
 // Calculate local time based on GMT offset
 function calculateLocalTime(gmtOffset) {
@@ -305,6 +306,12 @@ function invalidAntEl() {
 $("#qso_input").off('submit').on('submit', function (e) {
 	e.preventDefault();
 
+	// Check for rapid submission attempts (debounce)
+	if (submitTimeout) {
+		showToast(lang_general_word_warning, lang_qso_wait_before_saving, 'bg-info text-dark', 3000);
+		return false;
+	}
+
 	// Prevent submission if Save button is disabled (fetch in progress)
 	if ($('#saveQso').prop('disabled')) {
 		return false;
@@ -315,6 +322,11 @@ $("#qso_input").off('submit').on('submit', function (e) {
 		if ($('#qso_input input[name="end_time"]').length == 1) { _submit = testTimeOffConsistency(); }
 	}
 	if (_submit) {
+		// Set debounce timer (1 second)
+		submitTimeout = setTimeout(function() {
+			submitTimeout = null;
+		}, 3000);
+
 		var saveQsoButtonText = $("#saveQso").html();
 		$("#saveQso").html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span> ' + saveQsoButtonText + '...').prop('disabled', true);
 		manual_addon = '?manual=' + qso_manual;
