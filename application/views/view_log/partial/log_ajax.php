@@ -555,42 +555,57 @@ function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
 				} ?> class="clublog-<?php
 					echo ($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS=='Y')?'green':'red'?>">&#9660;</span>
                     </td>
-                <?php } 
-		 if ( strpos($this->session->userdata('user_default_confirmation'),'D') !== false ) { ?>
-                    <td class="dcl">
-                        <span <?php
-				if ($row->COL_DCL_QSL_SENT == "Y") {
-					echo 'title="'.__("Sent").($row->COL_DCL_QSLSDATE != null ? " ".date($custom_date_format, strtotime($row->COL_DCL_QSLSDATE)) : '').'" data-bs-toggle="tooltip"';
-				} elseif ($row->COL_DCL_QSL_SENT == 'M') {
-					echo 'title="'.__("Modified");
-					if ($row->COL_DCL_QSLSDATE != null) {
-						echo "<br />(".__("last sent")." ".date($custom_date_format, strtotime($row->COL_DCL_QSLSDATE)).")";
-					}
-					echo '" data-bs-toggle="tooltip" data-bs-html="true"';
-				} elseif ($row->COL_DCL_QSL_SENT == 'I') {
-					echo 'title="'.__("Invalid (Ignore)").'" data-bs-toggle="tooltip"';
-				}?> class="dcl-<?php
+                <?php } ?>
 
-				if ($row->COL_DCL_QSL_SENT == 'Y') {
-					echo 'green';
-				} elseif ($row->COL_DCL_QSL_SENT == 'M') {
-					echo 'yellow';
-				} elseif ($row->COL_DCL_QSL_SENT == 'I') {
-					echo 'grey';
-				} else {
-					echo 'red';
-				} ?>">&#9650;</span>
-                        <span <?php
-				if ($row->COL_DCL_QSL_RCVD == "Y") {
-					echo "title=\"".__("Received");
-					if ($row->COL_DCL_QSLRDATE != null) {
-						$timestamp = strtotime($row->COL_DCL_QSLRDATE);
-						echo " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
-					}
-					echo "\" data-bs-toggle=\"tooltip\"";
-				} ?> class="dcl-<?php
-					echo ($row->COL_DCL_QSL_RCVD=='Y')?'green':'red'?>">&#9660;</span>
-                    </td>
+                <?php if ( strpos($this->session->userdata('user_default_confirmation'),'D') !== false ) { ?>
+                <td class="dcl">
+                <span <?php if ($row->COL_DCL_QSL_SENT != "N") {
+                       switch ($row->COL_DCL_QSL_SENT) {
+                       case "Y":
+                          echo "class=\"qsl-green\" data-bs-toggle=\"tooltip\" title=\"".__("Sent");
+                          break;
+                       case "Q":
+                          echo "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".__("Queued");
+                          break;
+                       case "R":
+                          echo "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".__("Requested");
+                          break;
+                       case "I":
+                          echo "class=\"qsl-grey\" data-bs-toggle=\"tooltip\" title=\"".__("Invalid (Ignore)");
+                          break;
+                       default:
+                          echo "class=\"qsl-red";
+                          break;
+                       }
+                        if ($row->COL_DCL_QSLSDATE != null) {
+                            $timestamp = strtotime($row->COL_DCL_QSLSDATE); echo " "  .($timestamp != '' ? date($custom_date_format, $timestamp) : '');
+                        }
+                     } else { echo "class=\"qsl-red"; }
+                        echo "\">&#9650;</span>"; ?>
+                <span <?php if ($row->COL_DCL_QSL_RCVD != "N") {
+                       switch ($row->COL_DCL_QSL_RCVD) {
+                       case "Y":
+                          echo "class=\"qsl-green\" data-bs-toggle=\"tooltip\" title=\"".__("Received");
+                          break;
+                       case "Q":
+                          echo "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".__("Queued");
+                          break;
+                       case "R":
+                          echo "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".__("Requested");
+                          break;
+                       case "I":
+                          echo "class=\"qsl-grey\" data-bs-toggle=\"tooltip\" title=\"".__("Invalid (Ignore)");
+                          break;
+                       default:
+                          echo "class=\"qsl-red";
+                          break;
+                       }
+                       if ($row->COL_DCL_QSLRDATE != null) {
+                            $timestamp = strtotime($row->COL_DCL_QSLRDATE); echo " "  .($timestamp != '' ? date($custom_date_format, $timestamp) : '');
+                       }
+                     } else { echo "class=\"qsl-red"; }
+                        echo "\">&#9660;</span>"; ?>
+                </td>
                 <?php } ?>
 
             <?php } ?>
