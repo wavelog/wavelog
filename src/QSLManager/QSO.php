@@ -671,9 +671,7 @@ class QSO
 			}
 
 			$qrzstring .= "\" data-bs-toggle=\"tooltip\"";
-		}
-
-		if ($data['COL_QRZCOM_QSO_UPLOAD_STATUS'] == "M") {
+		} elseif ($data['COL_QRZCOM_QSO_UPLOAD_STATUS'] == "M") {
 			$qrzstring .= "title=\"".__("Modified");
 
 			if ($data['COL_QRZCOM_QSO_UPLOAD_DATE'] != null) {
@@ -684,18 +682,11 @@ class QSO
 			$qrzstring .= "\" data-bs-toggle=\"tooltip\" data-bs-html=\"true\"";
 		}
 
-		if ($data['COL_QRZCOM_QSO_UPLOAD_STATUS'] == "I") {
-			$qrzstring .= "title=\"".__("Invalid (Ignore)");
-			$qrzstring .= "\" data-bs-toggle=\"tooltip\"";
-		}
-
 		$qrzstring .= ' class="qrz-';
 		if ($data['COL_QRZCOM_QSO_UPLOAD_STATUS'] =='Y') {
 			$qrzstring .= 'green';
 		} elseif ($data['COL_QRZCOM_QSO_UPLOAD_STATUS'] == 'M') {
 			$qrzstring .= 'yellow';
-		} elseif ($data['COL_QRZCOM_QSO_UPLOAD_STATUS'] == 'I') {
-			$qrzstring .= 'grey';
 		} else {
 			$qrzstring .= 'red';
 		}
@@ -709,11 +700,25 @@ class QSO
 				$qrzstring .= " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
 			}
 			$qrzstring .= "\" data-bs-toggle=\"tooltip\"";
+		} elseif ($data['COL_QRZCOM_QSO_DOWNLOAD_STATUS'] == "I") {
+			$qrzstring .= "title=\"".__("Invalid (Ignore)");
+
+			if ($data['COL_QRZCOM_QSO_DOWNLOAD_DATE'] != null) {
+				$timestamp = strtotime($data['COL_QRZCOM_QSO_DOWNLOAD_DATE']);
+				$qrzstring .= " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
+			}
+			$qrzstring .= "\" data-bs-toggle=\"tooltip\"";
 		}
 
-		$qrzstring .= ' class="qrz-' . (($data['COL_QRZCOM_QSO_DOWNLOAD_STATUS']=='Y') ? 'green':'red') . '">&#9660;</span>';
-
-		$qrzstring .= '</span>';
+		$qrzstring .= ' class="qrz-';
+		if ($data['COL_QRZCOM_QSO_DOWNLOAD_STATUS'] =='Y') {
+			$qrzstring .= 'green';
+		} elseif ($data['COL_QRZCOM_QSO_DOWNLOAD_STATUS'] == 'I') {
+			$qrzstring .= 'grey';
+		} else {
+			$qrzstring .= 'red';
+		}
+		$qrzstring .= '">&#9660;</span>';
 
 		return $qrzstring;
 	}

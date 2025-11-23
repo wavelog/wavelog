@@ -473,13 +473,52 @@ function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
                     </td>
                 <?php } ?>
 
-		<?php if ( strpos($this->session->userdata('user_default_confirmation'),'Z') !== false && ($this->session->userdata('hasQrzKey') != "") ) { ?>
+                <?php if ( strpos($this->session->userdata('user_default_confirmation'),'Z') !== false && ($this->session->userdata('hasQrzKey') != "") ) { ?>
                     <td id="qrz_<?php echo $row->COL_PRIMARY_KEY; ?>" class="qrz">
-                        <span <?php if ($row->COL_QRZCOM_QSO_UPLOAD_STATUS == "Y") { echo 'title="'.__("Sent").($row->COL_QRZCOM_QSO_UPLOAD_DATE != null ? " ".date($custom_date_format, strtotime($row->COL_QRZCOM_QSO_UPLOAD_DATE)) : '').'" data-bs-toggle="tooltip"'; } elseif ($row->COL_QRZCOM_QSO_UPLOAD_STATUS == 'M' && $row->COL_QRZCOM_QSO_UPLOAD_DATE != NULL) { echo 'title="'.__("Modified")."<br />(".__("last sent")." ".date($custom_date_format, strtotime($row->COL_QRZCOM_QSO_UPLOAD_DATE)).")".'" data-bs-toggle="tooltip" data-bs-html="true"'; } elseif ($row->COL_QRZCOM_QSO_UPLOAD_STATUS == 'I') { echo 'title="'.__("Invalid (Ignore)").'" data-bs-toggle="tooltip"'; }?> class="qrz-<?php if ($row->COL_QRZCOM_QSO_UPLOAD_STATUS == 'Y') { echo 'green'; } elseif ($row->COL_QRZCOM_QSO_UPLOAD_STATUS == 'M' && $row->COL_QRZCOM_QSO_UPLOAD_DATE != NULL) { echo 'yellow'; } elseif ($row->COL_QRZCOM_QSO_UPLOAD_STATUS == 'I') { echo 'grey'; } else { echo 'red'; } ?>">&#9650;</span>
-                        <span <?php if ($row->COL_QRZCOM_QSO_DOWNLOAD_STATUS == "Y") { echo "title=\"".__("Received"); if ($row->COL_QRZCOM_QSO_DOWNLOAD_DATE != null) { $timestamp = strtotime($row->COL_QRZCOM_QSO_DOWNLOAD_DATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="qrz-<?php echo ($row->COL_QRZCOM_QSO_DOWNLOAD_STATUS=='Y')?'green':'red'?>">&#9660;</span>
+                    <span <?php
+                        $timestamp = '';
+                        if ($row->COL_QRZCOM_QSO_UPLOAD_DATE != null) {
+                           $timestamp = date($custom_date_format, strtotime($row->COL_QRZCOM_QSO_UPLOAD_DATE));
+                        }
+                        switch ($row->COL_QRZCOM_QSO_UPLOAD_STATUS) {
+                           case "Y":
+                              echo "title=\"".__("Sent");
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"qrz-green\"";
+                              break;
+                           case "M":
+                              echo 'title="'.__("Modified")."<br />(".__("last sent")." ".date($custom_date_format, strtotime($row->COL_QRZCOM_QSO_UPLOAD_DATE)).")";
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" data-bs-html=\"true\" class=\"qrz-yellow\"";
+                              break;
+                           default:
+                              echo " class=\"qrz-red\"";
+                              break;
+                        }
+                        ?>>&#9650;</span>
+                    <span <?php
+                        $timestamp = '';
+                        if ($row->COL_QRZCOM_QSO_DOWNLOAD_STATUS != null) {
+                           $timestamp = date($custom_date_format, strtotime($row->COL_QRZCOM_QSO_DOWNLOAD_DATE));
+                        }
+                        switch ($row->COL_QRZCOM_QSO_DOWNLOAD_STATUS) {
+                           case "Y":
+                              echo "title=\"".__("Received");
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"qrz-green\"";
+                              break;
+                           case "I":
+                              echo "title=\"".__("Invalid (Ignore)");
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"qrz-grey\"";
+                              break;
+                           default:
+                              echo " class=\"qrz-red\"";
+                              break;
+                        }
+                        ?>>&#9660;</span>
                     </td>
                 <?php } ?>
-
 
 		<?php if ( strpos($this->session->userdata('user_default_confirmation'),'C') !== false ) { ?>
                     <td class="clublog">
