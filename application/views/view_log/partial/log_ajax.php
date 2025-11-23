@@ -356,14 +356,63 @@ function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
 
                 <?php } if (strpos($this->session->userdata('user_default_confirmation'),'E') !== false && ($this->session->userdata('user_eqsl_name') != "")){ ?>
                     <td class="eqsl">
-                        <span <?php if ($row->COL_EQSL_QSL_SENT == "Y") { echo "title=\"".__("Sent"); if ($row->COL_EQSL_QSLSDATE != null) { $timestamp = strtotime($row->COL_EQSL_QSLSDATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="eqsl-<?php echo ($row->COL_EQSL_QSL_SENT=='Y')?'green':'red'?>">&#9650;</span>
-                        <span <?php if ($row->COL_EQSL_QSL_RCVD == "Y") { echo "title=\"".__("Received"); if ($row->COL_EQSL_QSLRDATE != null) { $timestamp = strtotime($row->COL_EQSL_QSLRDATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="eqsl-<?php echo ($row->COL_EQSL_QSL_RCVD=='Y')?'green':'red'?>">
-			    	<?php if($row->COL_EQSL_QSL_RCVD =='Y') { ?>
-                        <a class="eqsl-green" href="<?php echo site_url("eqsl/image/".$row->COL_PRIMARY_KEY); ?>" data-fancybox="images" data-width="528" data-height="336">&#9660;</a>
-                    <?php } else { ?>
-                        &#9660;
-                    <?php } ?>
-			    </span>
+                    <span <?php
+                        $timestamp = '';
+                        if ($row->COL_EQSL_QSLSDATE != null) {
+                           $timestamp = date($custom_date_format, strtotime($row->COL_EQSL_QSLSDATE));
+                        }
+                        switch ($row->COL_EQSL_QSL_SENT) {
+                           case "Y":
+                              echo "title=\"".__("Sent");
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"eqsl-green\"";
+                              break;
+                           case "I":
+                              echo "title=\"".__("Invalid (Ignore)");
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"eqsl-grey\"";
+                              break;
+                           case "R":
+                              echo "title=\"".__("Requested");
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"eqsl-yellow\"";
+                              break;
+                           default:
+                              echo " class=\"eqsl-red\"";
+                              break;
+                        }
+                        ?>>&#9650;</span>
+                    <span <?php
+                        $timestamp = '';
+                        if ($row->COL_EQSL_QSLRDATE != null) {
+                           $timestamp = date($custom_date_format, strtotime($row->COL_EQSL_QSLRDATE));
+                        }
+                        switch ($row->COL_EQSL_QSL_RCVD) {
+                           case "Y":
+                              echo "title=\"".__("Received");
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"eqsl-green\"";
+                              break;
+                           case "I":
+                              echo "title=\"".__("Invalid (Ignore)");
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"eqsl-grey\"";
+                              break;
+                           case "R":
+                              echo "title=\"".__("Requested");
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"eqsl-yellow\"";
+                              break;
+                           default:
+                              echo " class=\"eqsl-red\"";
+                              break;
+                        }?>>
+                        <?php if($row->COL_EQSL_QSL_RCVD =='Y') { ?>
+                           <a class="eqsl-green" href="<?php echo site_url("eqsl/image/".$row->COL_PRIMARY_KEY); ?>" data-fancybox="images" data-width="528" data-height="336">&#9660;</a>
+                        <?php } else { ?>
+                           &#9660;
+                        <?php } ?>
+                    </span>
                     </td>
                 <?php } ?>
 
