@@ -6769,8 +6769,32 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
     $('#dxWaterfallPowerOnIcon').attr('title', lang_dxwaterfall_turn_on);
     $('#dxWaterfallPowerOffIcon').attr('title', lang_dxwaterfall_turn_off);
 
+    // Debounce variables for power toggle
+    var lastToggleTime = 0;
+    var TOGGLE_DEBOUNCE_MS = 5000; // 5 second cooldown
+
+    // Shared debounce check function
+    var checkToggleDebounce = function() {
+        var now = Date.now();
+        if (now - lastToggleTime < TOGGLE_DEBOUNCE_MS) {
+            var remainingSeconds = Math.ceil((TOGGLE_DEBOUNCE_MS - (now - lastToggleTime)) / 1000);
+            if (typeof showToast === 'function') {
+                var message = lang_dxwaterfall_wait_before_toggle.replace('%s', remainingSeconds);
+                showToast(lang_general_word_warning, message, 'bg-warning text-dark', 3000);
+            }
+            return false;
+        }
+        lastToggleTime = now;
+        return true;
+    };
+
     // Function to turn on DX Waterfall (shared by icon and message click)
     var turnOnWaterfall = function(e) {
+        // Check debounce - prevent rapid toggling
+        if (!checkToggleDebounce()) {
+            return;
+        }
+
         // DEBUG: Log what triggered power-on
         DX_WATERFALL_UTILS.log.debug('[Power Control] Power-ON triggered', {
             currentState: DXWaterfallStateMachine.getState(),
