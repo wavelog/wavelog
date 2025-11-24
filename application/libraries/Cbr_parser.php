@@ -64,18 +64,52 @@ class CBR_Parser
                 //split the line into the elements
                 $qso_elements = preg_split('/\s+/', trim($line));
 
+                //check occurances of signal rapport values
+                $counts = array_count_values($qso_elements);
+                $count59s = ($counts["59"] ?? 0) + ($counts["599"] ?? 0);
+
+                //for those few contests who do not have signal exchange, synthesize one based on best efforts
+                if($count59s < 2 and isset($header['CALLSIGN'])){
+                    
+                    //get own callsign from header
+                    $own_callsign = $header['CALLSIGN'];
+
+                    //get position of own callsign
+                    $index = array_search($own_callsign, $qso_elements);
+                    
+                    //add synthesized sent signal rapport after own callsign
+                    if ($index !== false) {
+                       array_splice($qso_elements, $index + 1, 0, "59");
+                    }
+
+                    //search for the next amateur radio callsign after my own and add another 59. Abort after first find
+                    for ($i = $index + 1; $i < count($qso_elements); $i++) {
+                        $value = $qso_elements[$i];
+                        if(preg_match('/(?=[A-Z0-9]*[A-Z])[A-Z0-9]{1,3}[0-9][A-Z0-9]{0,7}/', $value) === 1){
+                            array_splice($qso_elements, $i + 1, 0, "59");
+                            break;
+                        }
+                    }
+                }
+
                 //determine maximum qso field size
                 $max_qso_fields = max($max_qso_fields, count($qso_elements));
 
-                //add qso elements to qso line array
-                array_push($qso_lines_raw, $qso_elements);
-
-                //find all occurrences of "59"
+                //find all occurrences of "59" or "599"
                 $indices_of_59 = [];
                 foreach ($qso_elements as $index => $value) {
                     if ($value === "59" or $value === "599") {
                         $indices_of_59[] = $index;
                     }
+                }
+
+                //abort further processing if we find a line without a valid signal report (59 or 599)
+                if(count($indices_of_59) < 1) {
+
+                    //return error result
+                    $result = [];
+                    $result['error'] = __("Broken CBR file - no valid exchange or callsigns found");
+                    return $result;
                 }
 
                 //find common indices position
@@ -87,6 +121,9 @@ class CBR_Parser
                     $common_59_indices = array_intersect($common_59_indices, $indices_of_59);
                 }
 
+                //add qso elements to qso line array
+                array_push($qso_lines_raw, $qso_elements);
+
                 //skip to next line
                 continue;
             }
@@ -94,36 +131,35 @@ class CBR_Parser
 
         //abort further processing if no qso lines were found, return header only
         if(count($qso_lines_raw) < 1) {
-            $result = [];
-            $result["HEADER"] = $header;
-            $result["QSOS"] = [];
-            $result["SENT_59_POS"] = 0;
-            $result["RCVD_59_POS"] = 0;
-            $result["SENT_EXCHANGE_COUNT"] = 0;
-            $result["RCVD_EXCHANGE_COUNT"] = 0;
 
-            //return result
+            //return error result
+            $result = [];
+            $result['error'] = __("Broken CBR file - no QSO data found.");
             return $result;
         }
 
         //abort if basic things (Callsign and Contest ID) are not included in the header
         $header_fields = array_keys($header);
         if(!in_array('CALLSIGN', $header_fields) or !in_array('CONTEST', $header_fields)){
+            
+            //return error result
             $result = [];
-            $result["HEADER"] = $header;
-            $result["QSOS"] = [];
-            $result["SENT_59_POS"] = 0;
-            $result["RCVD_59_POS"] = 0;
-            $result["SENT_EXCHANGE_COUNT"] = 0;
-            $result["RCVD_EXCHANGE_COUNT"] = 0;
-
-            //return blank result
+            $result['error'] = __("Broken CBR file - incomplete header found.");
             return $result;
         }
 
         //get positions of 59s inside QSO lines
         $sent_59_pos = min($common_59_indices);
         $rcvd_59_pos = max($common_59_indices);
+
+        //abort if position of sent and received signal exchange is identical
+        if($sent_59_pos == $rcvd_59_pos){
+            
+            //return error result
+            $result = [];
+            $result['error'] = __("Broken CBR file - no valid exchange or callsigns found");
+            return $result;
+        }
 
         //get codeigniter instance
         $CI = &get_instance();

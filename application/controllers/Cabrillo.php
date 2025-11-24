@@ -194,16 +194,19 @@ class Cabrillo extends CI_Controller {
 		//parse the uploaded file
 		$parsed_cbr = $this->cbr_parser->parse_from_file('./uploads/'.$data['upload_data']['file_name'], $serial_number_present, $trx_number_present);
 
-		//return with error, reset upload filesize
-		if(count($parsed_cbr["QSOS"]) < 1)
+		//if parsing fails, return with error, reset upload filesize
+		if(isset($parsed_cbr['error']))
 		{
-			$data['error'] = __("Broken CBR file - no QSO data or incomplete header found.");
+			//get error message from parser
+			$data['error'] = $parsed_cbr['error'];
 
+			//reset upload filesize
 			$data['max_upload'] = ini_get('upload_max_filesize');
 
 			//delete uploaded file
 			unlink('./uploads/' . $data['upload_data']['file_name']);
 
+			//return view
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('adif/import', $data);
 			$this->load->view('interface_assets/footer');
