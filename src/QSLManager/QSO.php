@@ -603,59 +603,59 @@ class QSO
 	function getDclString($data, $custom_date_format): string {
 		$dclstring = '<span ';
 
-		if ($data['COL_DCL_QSL_SENT'] == "Y") {
-			$dclstring .= "title=\"".__("Sent");
-
+		if ($data['COL_DCL_QSL_SENT'] != "N") {
+			switch ($data['COL_DCL_QSL_SENT']) {
+			case "Y":
+				$dclstring .= "class=\"qrz-green\" data-bs-toggle=\"tooltip\" title=\"".__("Sent");
+				break;
+			case "Q":
+				$dclstring .= "class=\"qrz-yellow\" data-bs-toggle=\"tooltip\" title=\"".__("Queued");
+				break;
+			case "R":
+				$dclstring .= "class=\"qrz-yellow\" data-bs-toggle=\"tooltip\" title=\"".__("Requested");
+				break;
+			case "I":
+				$dclstring .= "class=\"qrz-grey\" data-bs-toggle=\"tooltip\" title=\"".__("Invalid (Ignore)");
+				break;
+			default:
+			$dclstring .= "class=\"qrz-red";
+				break;
+			}
 			if ($data['COL_DCL_QSLSDATE'] != null) {
 				$timestamp = strtotime($data['COL_DCL_QSLSDATE']);
-				$dclstring .=  " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
+				$dclstring .= " "  .($timestamp != '' ? date($custom_date_format, $timestamp) : '');
 			}
-
-			$dclstring .= "\" data-bs-toggle=\"tooltip\"";
-		}
-
-		if ($data['COL_DCL_QSL_SENT'] == "M") {
-			$dclstring .= "title=\"".__("Modified");
-
-			if ($data['COL_DCL_QSLSDATE'] != null) {
-				$timestamp = strtotime($data['COL_DCL_QSLSDATE']);
-				$dclstring .=  "<br />(".__("last sent")." ".($timestamp!=''?date($custom_date_format, $timestamp):'').")";
-			}
-
-			$dclstring .= "\" data-bs-toggle=\"tooltip\" data-bs-html=\"true\"";
-		}
-
-		if ($data['COL_DCL_QSL_SENT'] == "I") {
-			$dclstring .= "title=\"".__("Invalid (Ignore)");
-			$dclstring .= "\" data-bs-toggle=\"tooltip\"";
-		}
-
-		$dclstring .= ' class="qrz-';
-		if ($data['COL_DCL_QSL_SENT'] =='Y') {
-			$dclstring .= 'green';
-		} elseif ($data['COL_DCL_QSL_SENT'] == 'M') {
-			$dclstring .= 'yellow';
-		} elseif ($data['COL_DCL_QSL_SENT'] == 'I') {
-			$dclstring .= 'grey';
 		} else {
-			$dclstring .= 'red';
+			$dclstring .= "class=\"qrz-red";
 		}
-		$dclstring .= '">&#9650;</span><span ';
+			$dclstring .= '">&#9650;</span><span ';
 
-		if ($data['COL_DCL_QSL_RCVD'] == "Y") {
-			$dclstring .= "title=\"".__("Received");
-
-			if ($data['COL_DCL_QSLRDATE'] != null) {
-				$timestamp = strtotime($data['COL_DCL_QSLRDATE']);
-				$dclstring .= " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
+			if ($data['COL_DCL_QSL_RCVD'] != "N") {
+				switch ($data['COL_DCL_QSL_RCVD']) {
+					case "Y":
+						$dclstring .= "class=\"qrz-green\" data-bs-toggle=\"tooltip\" title=\"".__("Received");
+					break;
+					case "Q":
+						$dclstring .= "class=\"qrz-yellow\" data-bs-toggle=\"tooltip\" title=\"".__("Queued");
+					break;
+					case "R":
+						$dclstring .= "class=\"qrz-yellow\" data-bs-toggle=\"tooltip\" title=\"".__("Requested");
+					break;
+					case "I":
+						$dclstring .= "class=\"qrz-grey\" data-bs-toggle=\"tooltip\" title=\"".__("Invalid (Ignore)");
+					break;
+					default:
+					$dclstring .= "class=\"qrz-red";
+					break;
+				}
+				if ($data['COL_DCL_QSLRDATE'] != null) {
+					$timestamp = strtotime($data['COL_DCL_QSLRDATE']);
+					$dclstring .= " "  .($timestamp != '' ? date($custom_date_format, $timestamp) : '');
+				}
+			} else {
+				$dclstring .= "class=\"qrz-red";
 			}
-			$dclstring .= "\" data-bs-toggle=\"tooltip\"";
-		}
-
-		$dclstring .= ' class="qrz-' . (($data['COL_DCL_QSL_RCVD']=='Y') ? 'green':'red') . '">&#9660;</span>';
-
-		$dclstring .= '</span>';
-
+			$dclstring .= '">&#9660;</span>';
 		return $dclstring;
 	}
 
