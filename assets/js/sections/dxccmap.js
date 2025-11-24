@@ -73,6 +73,8 @@ function load_dxcc_map() {
             Antarctica: +$('#Antarctica').prop('checked'),
             sat: $("#sats").val(),
             orbit: $("#orbits").val(),
+			dateFrom: $('#dateFrom').val(),
+			dateTo: $('#dateTo').val(),
         },
         success: function(data) {
             load_dxcc_map2(data, worked, confirmed, notworked);
@@ -204,5 +206,5 @@ function addMarker(L, D, mapColor, map) {
 
 function onClick(e) {
     var marker = e.target;
-    displayContactsOnMap($("#dxccmap"),marker.options.adif, $('#band2').val(), $('#sats').val(), $('#orbits').val(), $('#mode').val(), 'DXCC2');
+    displayContactsOnMap($("#dxccmap"),marker.options.adif, $('#band2').val(), $('#sats').val(), $('#orbits').val(), $('#mode').val(), 'DXCC2', '', $('#dateFrom').val(), $('#dateTo').val());
 }
