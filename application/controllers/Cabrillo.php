@@ -188,8 +188,11 @@ class Cabrillo extends CI_Controller {
 		//get flag about the presence of the serial number
 		$serial_number_present = ($this->input->post('serial_number_present', true) == 1);
 
+		//get flag about the presence of the trx number
+		$trx_number_present = ($this->input->post('trx_number_present', true) == 1);
+
 		//parse the uploaded file
-		$parsed_cbr = $this->cbr_parser->parse_from_file('./uploads/'.$data['upload_data']['file_name'], $serial_number_present);
+		$parsed_cbr = $this->cbr_parser->parse_from_file('./uploads/'.$data['upload_data']['file_name'], $serial_number_present, $trx_number_present);
 
 		//return with error, reset upload filesize
 		if(count($parsed_cbr["QSOS"]) < 1)

@@ -1,13 +1,13 @@
 <?php
 class CBR_Parser
 {
-    public function parse_from_file($filename, $serial_number_present = false) : array
+    public function parse_from_file($filename, $serial_number_present = false, $trx_number_present = false) : array
 	{
 		//load file, call parser
-        return $this->parse(mb_convert_encoding(file_get_contents($filename), "UTF-8"), $serial_number_present);
+        return $this->parse(mb_convert_encoding(file_get_contents($filename), "UTF-8"), $serial_number_present, $trx_number_present);
 	}
 
-    public function parse(string $input, $serial_number_present = false) : array
+    public function parse(string $input, $serial_number_present = false, $trx_number_present = false) : array
     {
         //split the input into lines
         $lines = explode("\n", trim($input));
@@ -33,6 +33,11 @@ class CBR_Parser
                 $qso_mode = true;
             }else {
                 $qso_mode = false;
+            }
+
+            //if we encounter a QTC, skip that line
+            if(strpos($line, 'QTC:') === 0){
+                continue;
             }
 
             //if we encounter "END-OF-LOG", stop processing lines
@@ -171,7 +176,7 @@ class CBR_Parser
             //get all remaining received exchanges
             $exchange_nr = 1;
             $startindex = ($rcvd_59_pos + ($serial_number_present ? 2 : 1));
-            $endindex = (count($line));
+            $endindex = $trx_number_present ? (count($line)) -1 : (count($line));
             for ($i = $startindex; $i < $endindex; $i++) {
                 $qso_line["RCVD_EXCH_" . $exchange_nr] = $line[$i];
                 $exchange_nr++;
@@ -292,7 +297,7 @@ class CBR_Parser
         $result["SENT_59_POS"] = $sent_59_pos;
         $result["RCVD_59_POS"] = $rcvd_59_pos;
         $result["SENT_EXCHANGE_COUNT"] = $rcvd_59_pos - $sent_59_pos - ($serial_number_present ? 3 : 2);
-        $result["RCVD_EXCHANGE_COUNT"] = $max_qso_fields - 1 - $rcvd_59_pos - ($serial_number_present ? 1 : 0);
+        $result["RCVD_EXCHANGE_COUNT"] = $max_qso_fields - 1 - $rcvd_59_pos - ($serial_number_present ? 1 : 0) - ($trx_number_present ? 1 : 0);
 
         //return result
         return $result;
