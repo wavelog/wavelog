@@ -412,7 +412,7 @@
                                 </select>
                                 <div class="form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="trx_number_present" value="1" id="serial_number_present" unchecked>
-                                    <label class="form-check-label" for="trx_number_present"><?= __("The CBR file contains a TRX number at the end of each line (for multi-op stations)") ?></label>
+                                    <label class="form-check-label" for="trx_number_present"><?= __("The CBR file contains a TRX number at the end of each QSO line (for multi-op stations)") ?></label>
                                 </div>
                                 <div class="form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="serial_number_present" value="1" id="serial_number_present" unchecked>
