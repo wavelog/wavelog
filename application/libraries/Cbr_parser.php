@@ -93,7 +93,7 @@ class CBR_Parser
                 }
 
                 //determine maximum qso field size
-                $max_qso_fields = max($max_qso_fields, count($qso_elements));
+                $max_qso_fields = max($max_qso_fields ?? 0, count($qso_elements));
 
                 //find all occurrences of "59" or "599"
                 $indices_of_59 = [];
@@ -212,7 +212,7 @@ class CBR_Parser
             //get all remaining received exchanges
             $exchange_nr = 1;
             $startindex = ($rcvd_59_pos + ($serial_number_present ? 2 : 1));
-            $endindex = $trx_number_present ? (count($line)) -1 : (count($line));
+            $endindex = $trx_number_present ? (count($line) - 1)  : (count($line));
             for ($i = $startindex; $i < $endindex; $i++) {
                 $qso_line["RCVD_EXCH_" . $exchange_nr] = $line[$i];
                 $exchange_nr++;
