@@ -2285,6 +2285,7 @@ $(function() {
 	window.isCatTrackingEnabled = isCatTrackingEnabled; // Expose to window for cat.js
 	var currentRadioFrequency = null; // Store current radio frequency in kHz
 	var lastGradientFrequency = null; // Track last frequency used for gradient update
+	var lastRadioBand = null; // Store last valid band from radio frequency updates
 
 	// Three-state CAT control: 'off', 'on', 'on+marker'
 	var catState = 'off';
@@ -2453,6 +2454,10 @@ $(function() {
 		const band = frequencyToBand(data.frequency);
 		// Store current radio frequency (convert Hz to kHz)
 		currentRadioFrequency = data.frequency / 1000;
+		// Store last valid band from radio (used when entering purple mode)
+		if (band && band !== '') {
+			lastRadioBand = band;
+		}
 
 		// Bandmap-specific: Update band filter only in purple mode
 		if (isFrequencyMarkerEnabled) {
@@ -2487,30 +2492,18 @@ $(function() {
 					}
 				}
 			}
+
+			// Call cat.js's original updateCATui for standard CAT UI updates (purple mode only)
+			if (typeof catJsUpdateCATui === 'function') {
+				catJsUpdateCATui(data);
+			} else {
+				console.warn('Bandmap: cat.js updateCATui not available');
+			}
 		}
 
 		// Update frequency gradient colors for all visible rows (works in both normal and purple CAT modes)
 		if (isCatTrackingEnabled) {
 			updateFrequencyGradientColors();
-		}
-
-		// Call cat.js's original updateCATui for standard CAT UI updates
-		if (typeof catJsUpdateCATui === 'function') {
-
-			// Store current band selection before calling cat.js updateCATui
-			const bandBeforeUpdate = $("#band").val();
-
-			catJsUpdateCATui(data);
-
-			// Restore the band selection unless we're in purple mode
-			// (cat.js updateCATui automatically sets band based on frequency, but we only want that in purple mode)
-			if (!window.isFrequencyMarkerEnabled && bandBeforeUpdate) {
-				$("#band").val(bandBeforeUpdate);
-				updateSelectCheckboxes('band');
-				syncQuickFilterButtons();
-			}
-		} else {
-			console.warn('Bandmap: cat.js updateCATui not available');
 		}
 	};
 
@@ -3240,24 +3233,41 @@ $(function() {
 		case 'on':
 			// ON → ON+MARKER (Purple Mode)
 			window.isFrequencyMarkerEnabled = true;
-			catState = 'on+marker';				// Purple mode: disable controls and set filter to current band
-				disableBandFilterControls();
+			catState = 'on+marker';
+			disableBandFilterControls();
 
-				if (window.lastCATData && window.lastCATData.frequency) {
-					const band = frequencyToBand(window.lastCATData.frequency);
-					if (band && band !== '') {
-						$("#band").val([band]);
-						updateSelectCheckboxes('band');
-						syncQuickFilterButtons();
-						// Force reload to fetch only the active band from backend
-						applyFilters(true);
-					}
-					updateFrequencyGradientColors();
-				}
-				lockTableSortingToFrequency();
+			// Always ensure single band filter in purple mode
+			const currentBands = $("#band").val() || [];
+			let targetBand = null;
 
-				updateButtonVisual('on+marker');
-				break;
+			// Priority 1: Use current radio band (already calculated and stored from radio updates)
+			if (lastRadioBand && lastRadioBand !== '') {
+				targetBand = lastRadioBand;
+			} else if (currentRadioFrequency) {
+				// Priority 2: Calculate from current radio frequency
+				targetBand = frequencyToBand(currentRadioFrequency * 1000); // Convert kHz back to Hz
+			} else if (currentBands.length === 1 && !currentBands.includes('All')) {
+				// Priority 3: Keep current selection if single
+				targetBand = currentBands[0];
+			} else {
+				// Priority 4: Default to 20m as last resort fallback
+				targetBand = '20m';
+			}
+
+			// Set to single band
+			$("#band").val([targetBand]);
+			updateSelectCheckboxes('band');
+			syncQuickFilterButtons();
+			// Force reload to fetch only the active band from backend
+			applyFilters(true);
+
+			if (window.lastCATData && window.lastCATData.frequency) {
+				updateFrequencyGradientColors();
+			}
+			lockTableSortingToFrequency();
+
+			updateButtonVisual('on+marker');
+			break;
 
 		case 'on+marker':
 			// ON+MARKER → ON (Exit Purple Mode)
