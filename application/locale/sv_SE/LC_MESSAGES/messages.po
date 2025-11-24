@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-11-24 13:09+0000\n"
-"PO-Revision-Date: 2025-11-24 12:04+0000\n"
+"PO-Revision-Date: 2025-11-25 03:53+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
-"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/sv/>\n"
+"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/sv/>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -5904,7 +5904,7 @@ msgstr "Prefix"
 
 #: application/views/awards/dxcc/index.php:353
 msgid "No results found for your search criteria. Please try again."
-msgstr ""
+msgstr "Inga resultat hittades för dina sökkriterier. Försök igen."
 
 #: application/views/awards/ffma/index.php:11
 #: application/views/interface_assets/header.php:288
@@ -12321,51 +12321,51 @@ msgstr "Du måste välja minst 1 rad för att fixa CQ-zoner!"
 
 #: application/views/logbookadvanced/index.php:31
 msgid "You need to select at least 1 row to fix State!"
-msgstr ""
+msgstr "Du måste välja minst 1 rad för att åtgärda Delstat!"
 
 #: application/views/logbookadvanced/index.php:32
 msgid "State updated successfully!"
-msgstr ""
+msgstr "Delstats uppdateringen lyckades!"
 
 #: application/views/logbookadvanced/index.php:33
 msgid "There was a problem fixing State."
-msgstr ""
+msgstr "Det uppstod ett problem med att åtgärda Delstat."
 
 #: application/views/logbookadvanced/index.php:34
 msgid "Fixing State"
-msgstr ""
+msgstr "Åtgärda Delstat"
 
 #: application/views/logbookadvanced/index.php:35
 #, php-format
 msgid "Fixing State (%s QSOs)"
-msgstr ""
+msgstr "Fixar Delstat (%s QSOs)"
 
 #: application/views/logbookadvanced/index.php:36
 #, php-format
 msgid "Fixing State: %s remaining"
-msgstr ""
+msgstr "Fixar Delstat: %s kvar"
 
 #: application/views/logbookadvanced/index.php:37
 msgid "Fixed"
-msgstr ""
+msgstr "Fixad"
 
 #: application/views/logbookadvanced/index.php:38
 #, php-format
 msgid "Fixed: %s"
-msgstr ""
+msgstr "Fixad: %s"
 
 #: application/views/logbookadvanced/index.php:39
 msgid "Skipped"
-msgstr ""
+msgstr "Skippad"
 
 #: application/views/logbookadvanced/index.php:40
 #, php-format
 msgid "Skipped: %s, see details for skipped rows below"
-msgstr ""
+msgstr "Skippad: %s, se detaljer för skippade rader nedan"
 
 #: application/views/logbookadvanced/index.php:41
 msgid "State Fix Complete"
-msgstr ""
+msgstr "Delstat fix klar"
 
 #: application/views/logbookadvanced/index.php:42
 #, php-format
@@ -12374,6 +12374,9 @@ msgid ""
 "countries, please create a ticket at %s with the GeoJSON file and desired "
 "letter coding for your country."
 msgstr ""
+"Inte alla DXCC-entiteter har Delstat stöd. Om du behöver stöd för "
+"ytterligare länder, vänligen skapa ett ärende på %s med GeoJSON-filen och "
+"önskad bokstavskod för ditt land."
 
 #: application/views/logbookadvanced/index.php:45
 msgid "Only 1 row can be selected for Quickfilter!"
@@ -12795,7 +12798,7 @@ msgstr "Fixa kontinent"
 
 #: application/views/logbookadvanced/index.php:756
 msgid "Fix State"
-msgstr ""
+msgstr "Fixa Delstat"
 
 #: application/views/logbookadvanced/index.php:764
 #: application/views/oqrs/showrequests.php:58
@@ -12894,32 +12897,36 @@ msgid ""
 "Update QSOs with state/province information based on gridsquare and DXCC "
 "country."
 msgstr ""
+"Uppdatera QSOs med delstats- och provinsinformation baserat på lokatorruta "
+"och DXCC-land."
 
 #: application/views/logbookadvanced/statedialog.php:3
 msgid ""
 "This feature uses GeoJSON boundary data to determine the state/province from "
 "the gridsquare locator."
 msgstr ""
+"Den här funktionen använder GeoJSON gränsdata för att bestämma delstaten/"
+"provinsen från lokatorrutan."
 
 #: application/views/logbookadvanced/statedialog.php:4
 msgid "Update will only set the state for QSOs where:"
-msgstr ""
+msgstr "Uppdateringen kommer endast att sätta delstat för QSOs där:"
 
 #: application/views/logbookadvanced/statedialog.php:6
 msgid "The state field is empty"
-msgstr ""
+msgstr "Fältet för delstat är tomt"
 
 #: application/views/logbookadvanced/statedialog.php:7
 msgid "A gridsquare is present (at least 6 characters)"
-msgstr ""
+msgstr "En lokatorruta är närvarande (åtminstone 6 tecken)"
 
 #: application/views/logbookadvanced/statedialog.php:8
 msgid "The DXCC country supports state lookup"
-msgstr ""
+msgstr "DXCC-landet stöder delstats sökning"
 
 #: application/views/logbookadvanced/statedialog.php:10
 msgid "Currently supported countries"
-msgstr ""
+msgstr "För närvarande stödjade länder"
 
 #: application/views/logbookadvanced/useroptions.php:16
 msgid "Column"
@@ -14506,7 +14513,7 @@ msgstr "Ogiltigt värde för antenn elevation:"
 
 #: application/views/qso/index.php:38
 msgid "Please wait before saving another QSO"
-msgstr ""
+msgstr "Vänligen vänta innan du sparar ett annat QSO"
 
 #: application/views/qso/index.php:86
 msgid "LIVE"
