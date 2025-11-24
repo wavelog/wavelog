@@ -626,9 +626,7 @@
                                                     <select class="form-select" id="clublog_sent" name="clublog_sent">
                                                         <option value="N" <?php if ($qso->COL_CLUBLOG_QSO_UPLOAD_STATUS == "N") echo "selected=\"selected\""; ?>><?= __("No"); ?></option>
                                                         <option value="Y" <?php if ($qso->COL_CLUBLOG_QSO_UPLOAD_STATUS == "Y") echo "selected=\"selected\""; ?>><?= __("Yes"); ?></option>
-                                                        <option value="R" <?php if ($qso->COL_CLUBLOG_QSO_UPLOAD_STATUS == "R") echo "selected=\"selected\""; ?>><?= __("Requested"); ?></option>
-                                                        <option value="Q" <?php if ($qso->COL_CLUBLOG_QSO_UPLOAD_STATUS == "Q") echo "selected=\"selected\""; ?>><?= __("Queued"); ?></option>
-                                                        <option value="I" <?php if ($qso->COL_CLUBLOG_QSO_UPLOAD_STATUS == "I") echo "selected=\"selected\""; ?>><?= __("Invalid (Ignore)"); ?></option>
+                                                        <option value="M" <?php if ($qso->COL_CLUBLOG_QSO_UPLOAD_STATUS == "M") echo "selected=\"selected\""; ?>><?= __("Modified"); ?></option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -638,9 +636,7 @@
                                                     <select class="form-select" id="clublog_rcvd" name="clublog_rcvd">
                                                         <option value="N" <?php if ($qso->COL_CLUBLOG_QSO_DOWNLOAD_STATUS == "N") echo "selected=\"selected\""; ?>><?= __("No"); ?></option>
                                                         <option value="Y" <?php if ($qso->COL_CLUBLOG_QSO_DOWNLOAD_STATUS == "Y") echo "selected=\"selected\""; ?>><?= __("Yes"); ?></option>
-                                                        <option value="R" <?php if ($qso->COL_CLUBLOG_QSO_DOWNLOAD_STATUS == "R") echo "selected=\"selected\""; ?>><?= __("Requested"); ?></option>
                                                         <option value="I" <?php if ($qso->COL_CLUBLOG_QSO_DOWNLOAD_STATUS == "I") echo "selected=\"selected\""; ?>><?= __("Invalid (Ignore)"); ?></option>
-                                                        <option value="V" <?php if ($qso->COL_CLUBLOG_QSO_DOWNLOAD_STATUS == "V") echo "selected=\"selected\""; ?>><?= __("Verified (Match)"); ?></option>
                                                     </select>
                                                 </div>
                                             </div>

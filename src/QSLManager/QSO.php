@@ -557,8 +557,8 @@ class QSO
 				$timestamp = strtotime($data['COL_CLUBLOG_QSO_UPLOAD_DATE']);
 				$clublogstring .=  " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
 			}
+
 			$clublogstring .= "\" data-bs-toggle=\"tooltip\"";
-			$clublogstring .= ' class="clublog-green';
 		} elseif ($data['COL_CLUBLOG_QSO_UPLOAD_STATUS'] == "M") {
 			$clublogstring .= "title=\"".__("Modified");
 
@@ -566,12 +566,19 @@ class QSO
 				$timestamp = strtotime($data['COL_CLUBLOG_QSO_UPLOAD_DATE']);
 				$clublogstring .=  "<br />(".__("last sent")." ".($timestamp!=''?date($custom_date_format, $timestamp):'').")";
 			}
+
 			$clublogstring .= "\" data-bs-toggle=\"tooltip\" data-bs-html=\"true\"";
-			$clublogstring .= ' class="clublog-yellow';
-		} else {
-			$clublogstring .= ' class="clublog-red';
 		}
-		$clublogstring.= '">&#9650;</span><span ';
+
+		$clublogstring .= ' class="clublog-';
+		if ($data['COL_CLUBLOG_QSO_UPLOAD_STATUS'] =='Y') {
+			$clublogstring .= 'green';
+		} elseif ($data['COL_CLUBLOG_QSO_UPLOAD_STATUS'] == 'M') {
+			$clublogstring .= 'yellow';
+		} else {
+			$clublogstring .= 'red';
+		}
+		$clublogstring .= '">&#9650;</span><span ';
 
 		if ($data['COL_CLUBLOG_QSO_DOWNLOAD_STATUS'] == "Y") {
 			$clublogstring .= "title=\"".__("Received");
@@ -581,18 +588,25 @@ class QSO
 				$clublogstring .= " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
 			}
 			$clublogstring .= "\" data-bs-toggle=\"tooltip\"";
+		} elseif ($data['COL_CLUBLOG_QSO_DOWNLOAD_STATUS'] == "I") {
+			$clublogstring .= "title=\"".__("Invalid (Ignore)");
+
+			if ($data['COL_CLUBLOG_QSO_DOWNLOAD_DATE'] != null) {
+				$timestamp = strtotime($data['COL_CLUBLOG_QSO_DOWNLOAD_DATE']);
+				$clublogstring .= " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
+			}
+			$clublogstring .= "\" data-bs-toggle=\"tooltip\"";
 		}
 
 		$clublogstring .= ' class="clublog-';
-		if ($data['COL_CLUBLOG_QSO_DOWNLOAD_STATUS']=='Y') {
-			$clublogstring.='green';
-		} elseif ($data['COL_CLUBLOG_QSO_DOWNLOAD_STATUS']=='M') {
-			$clublogstring.='yellow';
+		if ($data['COL_CLUBLOG_QSO_DOWNLOAD_STATUS'] =='Y') {
+			$clublogstring .= 'green';
+		} elseif ($data['COL_CLUBLOG_QSO_DOWNLOAD_STATUS'] == 'I') {
+			$clublogstring .= 'grey';
 		} else {
-			$clublogstring.='red';
+			$clublogstring .= 'red';
 		}
-		$clublogstring.='">&#9660;</span>';
-
+		$clublogstring .= '">&#9660;</span>';
 
 		return $clublogstring;
 	}
@@ -722,7 +736,6 @@ class QSO
 
 		return $qrzstring;
 	}
-
 
 	function getEqslString($data, $custom_date_format): string
 	{
