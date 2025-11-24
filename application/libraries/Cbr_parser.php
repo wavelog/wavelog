@@ -212,7 +212,7 @@ class CBR_Parser
             //get all remaining received exchanges
             $exchange_nr = 1;
             $startindex = ($rcvd_59_pos + ($serial_number_present ? 2 : 1));
-            $endindex = $trx_number_present ? (count($line) - 1)  : (count($line));
+            $endindex = count($line) - ($trx_number_present ? 1 : 0);
             for ($i = $startindex; $i < $endindex; $i++) {
                 $qso_line["RCVD_EXCH_" . $exchange_nr] = $line[$i];
                 $exchange_nr++;
