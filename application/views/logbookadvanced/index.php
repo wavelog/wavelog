@@ -256,7 +256,7 @@ $options = json_decode($options);
                             <i class="fas fa-filter"></i> <?= __("Filters"); ?>
                         </button>
                         <div class="dropdown-menu dropdown-menu-start p-3 mt-2" aria-labelledby="filterDropdown" style="min-width: 900px; max-height: 600px; overflow-y: auto;">
-                            <div class="card-body filterbody">
+                            <div class="card-body filterbody container-fluid">
                                 <div class="row">
                                     <div <?php if (($options->datetime->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label class="form-label" for="dateFrom"><?= __("From") . ": " ?></label>
@@ -449,11 +449,15 @@ $options = json_decode($options);
                                             <option value="invalid"><?= __("Invalid"); ?></option>
                                         </select>
                                     </div>
-									</div>
+								</div>
 								<div class="row">
                                     <div <?php if (($options->comment->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label class="form-label" for="comment"><?= __("Comment"); ?></label>
                                         <input onclick="this.select()" type="text" name="comment" id="comment" class="form-control form-control-sm border border-secondary" value="*" placeholder="<?= __("Empty"); ?>">
+                                    </div>
+									<div <?php if (($options->distance->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
+                                        <label class="form-label" for="distanceinput"><?= __("Distance"); ?> <i class="fa fa-question-circle" aria-hidden="true" data-bs-toggle="tooltip" title="<?= __("Distance in kilometers. Search will look for distances greater than or equal to this value."); ?>"></i></label>
+                                        <input onclick="this.select()" type="text" name="distanceinput" id="distanceinput" class="form-control form-control-sm border border-secondary" value="*" placeholder="<?= __("Empty"); ?>">
                                     </div>
                                 </div>
                             </div>

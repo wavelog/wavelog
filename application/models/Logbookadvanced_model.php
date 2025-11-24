@@ -409,6 +409,20 @@ class Logbookadvanced_model extends CI_Model {
 			$conditions[] = "(coalesce(COL_GRIDSQUARE, '') = '' and coalesce(COL_VUCC_GRIDS, '') = '')";
 		}
 
+
+		if ($searchCriteria['distance'] !== '*' && $searchCriteria['distance'] !== '') {
+			if (strtolower($searchCriteria['distance']) == '!empty') {
+				$conditions[] = "COL_DISTANCE <> ''";
+			} else {
+				$conditions[] = "COL_DISTANCE >= ?";
+				$binding[] = $searchCriteria['distance'];
+			}
+        }
+
+		if ($searchCriteria['distance'] == '') {
+			$conditions[] = "coalesce(COL_DISTANCE, '') = ''";
+		}
+
 		if (($searchCriteria['propmode'] ?? '') == 'None') {
 			$conditions[] = "(trim(COL_PROP_MODE) = '' OR COL_PROP_MODE is null)";
 		} elseif ($searchCriteria['propmode'] !== '') {

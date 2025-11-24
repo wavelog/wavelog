@@ -152,11 +152,6 @@ tbody a {
 	cursor: pointer !important;
 }
 
-.spottable tbody tr td:nth-child(6) a {
-	text-decoration: underline !important;
-	cursor: pointer !important;
-}
-
 .spottable tbody tr td:nth-child(8) i:hover {
 	opacity: 0.7;
 	transform: scale(1.1);
@@ -322,7 +317,8 @@ table tbody tr.cat-nearest-above td {
 .spottable {
 	width: 100%;
 	table-layout: fixed;
-	font-family: 'Courier New', Courier, 'Lucida Console', Monaco, monospace;
+	font-family: 'Consolas', 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Droid Sans Mono', 'Source Code Pro', monospace;
+	font-variant-numeric: slashed-zero;
 	font-size: calc(1rem - 2px);
 }
 
@@ -346,22 +342,21 @@ table tbody tr.cat-nearest-above td {
 
 /* Column widths - consolidated selectors */
 .spottable th:nth-child(1), .spottable td:nth-child(1) { width: 50px; }   /* Age (minutes) */
-.spottable th:nth-child(2), .spottable td:nth-child(2) { width: 53px; }   /* Band */
+.spottable th:nth-child(2), .spottable td:nth-child(2) { width: 75px; }   /* Band */
 .spottable th:nth-child(3), .spottable td:nth-child(3) { width: 90px; }   /* Frequency */
-.spottable th:nth-child(4), .spottable td:nth-child(4) { width: 60px; }   /* Mode */
-.spottable th:nth-child(5), .spottable td:nth-child(5) { width: 70px; }   /* Submode */
-.spottable th:nth-child(6), .spottable td:nth-child(6) { width: 115px; }  /* Callsign (reduced by 5px) */
+.spottable th:nth-child(4), .spottable td:nth-child(4) { width: 70px; }   /* Mode */
+.spottable th:nth-child(5), .spottable td:nth-child(5) { width: 60px; }   /* Submode */
+.spottable th:nth-child(6), .spottable td:nth-child(6) { width: 115px; }  /* Callsign  */
 .spottable th:nth-child(7), .spottable td:nth-child(7) { width: 40px; }   /* Continent */
 .spottable th:nth-child(8), .spottable td:nth-child(8) { width: 50px; }   /* CQ Zone */
 .spottable th:nth-child(9), .spottable td:nth-child(9) { width: 50px; }   /* Flag */
 .spottable th:nth-child(10), .spottable td:nth-child(10) { width: 150px; }  /* Entity (DXCC name) */
-.spottable th:nth-child(11), .spottable td:nth-child(11) { width: 60px; } /* DXCC Number */
-.spottable th:nth-child(12), .spottable td:nth-child(12) { width: 115px; } /* de Callsign (Spotter) (reduced by 5px) */
-.spottable th:nth-child(13), .spottable td:nth-child(13) { width: 50px; } /* de Cont */
-.spottable th:nth-child(14), .spottable td:nth-child(14) { width: 50px; } /* de CQZ */
-.spottable th:nth-child(15), .spottable td:nth-child(15) { width: 95px; } /* Last QSO */
-.spottable th:nth-child(16), .spottable td:nth-child(16) { width: 120px; } /* Special (LoTW, POTA, etc) (increased by 10px) */
-.spottable th:nth-child(17), .spottable td:nth-child(17) { min-width: 70px; width: 100%; }  /* Message - fills remaining space */
+.spottable th:nth-child(11), .spottable td:nth-child(11) { width: 115px; } /* de Callsign (Spotter)  */
+.spottable th:nth-child(12), .spottable td:nth-child(12) { width: 50px; } /* de Cont */
+.spottable th:nth-child(13), .spottable td:nth-child(13) { width: 50px; } /* de CQZ */
+.spottable th:nth-child(14), .spottable td:nth-child(14) { width: 100px; } /* Last QSO */
+.spottable th:nth-child(15), .spottable td:nth-child(15) { width: 135px; } /* Special (LoTW, POTA, etc)  */
+.spottable th:nth-child(16), .spottable td:nth-child(16) { min-width: 70px; width: 100%; }  /* Message - fills remaining space */
 
 /* Hidden class for responsive columns (controlled by JavaScript) */
 .spottable .column-hidden {
@@ -381,6 +376,12 @@ table tbody tr.cat-nearest-above td {
 	font-size: calc(1rem - 4px);
 }
 
+/* Callsign columns (DX and Spotter) - larger font */
+.spottable td:nth-child(6), .spottable td:nth-child(12) {
+	font-size: calc(1rem - 2px);
+}
+
+/* Continent columns (emoji font) */
 .spottable td:nth-child(7), .spottable td:nth-child(13) {
 	font-family: 'Segoe UI Emoji', 'Noto Color Emoji', 'Apple Color Emoji', Arial, sans-serif;
 	overflow: hidden;

@@ -113,6 +113,9 @@
 	var lang_bandmap_spot = "<?= __("spot"); ?>";
 	var lang_bandmap_spotters = "<?= __("spotters"); ?>";
 
+	// QSO preparation debounce messages
+	var lang_bandmap_please_wait = "<?= __("Please Wait"); ?>";
+	var lang_bandmap_wait_before_send = "<?= __("Please wait %s seconds before sending another callsign to the QSO form"); ?>";
 
 	// DataTables messages
 	var lang_bandmap_loading_spots = "<?= __("Loading spots..."); ?>";
@@ -427,7 +430,7 @@
 		<!-- LoTW Users Button (separate) -->
 		<div class="btn-group flex-shrink-0" role="group">
 			<button class="btn btn-sm btn-secondary" type="button" id="toggleLotwFilter" title="<?= __("Toggle LoTW User filter"); ?>">
-				<i class="fas fa-upload"></i> <span class="d-none d-sm-inline"><?= __("LoTW users"); ?></span>
+				<span style="font-family: Helvetica; display: inline-block; width: 16px; height: 16px; line-height: 16px; text-align: center; background-color: #6c757d; color: white; border-radius: 2px; font-size: 12px; font-weight: bold; margin-right: 4px;">L</span> <span class="d-none d-sm-inline"><?= __("LoTW users"); ?></span>
 			</button>
 		</div>
 
@@ -518,7 +521,6 @@
 							<th title="<?= __("CQ Zone"); ?>"><i class="fas fa-map-marked"></i></th>
 							<th title="<?= __("Flag"); ?>"><i class="fas fa-flag"></i></th>
 							<th title="<?= __("DXCC Entity"); ?>"><?= __("Entity"); ?></th>
-							<th title="<?= __("DXCC Number"); ?>"><i class="fas fa-hashtag"></i></th>
 							<th title="<?= __("Spotter Callsign"); ?>"><?= __("de"); ?></th>
 							<th title="<?= __("Spotter Continent"); ?>"><i class="fas fa-globe-americas"></i></th>
 							<th title="<?= __("Spotter CQ Zone"); ?>"><i class="fas fa-map-marked"></i></th>
