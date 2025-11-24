@@ -18,10 +18,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-11-24 13:09+0000\n"
-"PO-Revision-Date: 2025-11-23 17:43+0000\n"
+"PO-Revision-Date: 2025-11-24 22:45+0000\n"
 "Last-Translator: JONCOUX Philippe <joncoux@free.fr>\n"
-"Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/fr/>\n"
+"Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/fr/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -5961,6 +5961,7 @@ msgstr "Préfix"
 #: application/views/awards/dxcc/index.php:353
 msgid "No results found for your search criteria. Please try again."
 msgstr ""
+"Aucun résultat ne correspond à vos critères de recherche. Veuillez réessayer."
 
 #: application/views/awards/ffma/index.php:11
 #: application/views/interface_assets/header.php:288
@@ -12472,51 +12473,51 @@ msgstr "Vous devez sélectionner au moins 1 ligne pour corriger les zones CQ !"
 
 #: application/views/logbookadvanced/index.php:31
 msgid "You need to select at least 1 row to fix State!"
-msgstr ""
+msgstr "Vous devez sélectionner au moins une ligne pour corriger l'état !"
 
 #: application/views/logbookadvanced/index.php:32
 msgid "State updated successfully!"
-msgstr ""
+msgstr "État mis à jour avec succès !"
 
 #: application/views/logbookadvanced/index.php:33
 msgid "There was a problem fixing State."
-msgstr ""
+msgstr "Il y avait un problème pour réparer l'état."
 
 #: application/views/logbookadvanced/index.php:34
 msgid "Fixing State"
-msgstr ""
+msgstr "État de correction"
 
 #: application/views/logbookadvanced/index.php:35
 #, php-format
 msgid "Fixing State (%s QSOs)"
-msgstr ""
+msgstr "État de fixation (%s QSO)"
 
 #: application/views/logbookadvanced/index.php:36
 #, php-format
 msgid "Fixing State: %s remaining"
-msgstr ""
+msgstr "État de la correction : %s restants"
 
 #: application/views/logbookadvanced/index.php:37
 msgid "Fixed"
-msgstr ""
+msgstr "Corrigé"
 
 #: application/views/logbookadvanced/index.php:38
 #, php-format
 msgid "Fixed: %s"
-msgstr ""
+msgstr "Corrigé : %s"
 
 #: application/views/logbookadvanced/index.php:39
 msgid "Skipped"
-msgstr ""
+msgstr "Omission"
 
 #: application/views/logbookadvanced/index.php:40
 #, php-format
 msgid "Skipped: %s, see details for skipped rows below"
-msgstr ""
+msgstr "Lignes ignorées : %s, voir les détails des lignes ignorées ci-dessous"
 
 #: application/views/logbookadvanced/index.php:41
 msgid "State Fix Complete"
-msgstr ""
+msgstr "Réparation de l'état terminée"
 
 #: application/views/logbookadvanced/index.php:42
 #, php-format
@@ -12525,6 +12526,10 @@ msgid ""
 "countries, please create a ticket at %s with the GeoJSON file and desired "
 "letter coding for your country."
 msgstr ""
+"Toutes les entités DXCC ne prennent pas en charge les États. Si vous avez "
+"besoin de la prise en charge d'autres pays, veuillez créer un ticket sur %s "
+"en joignant le fichier GeoJSON et le codage alphabétique souhaité pour votre "
+"pays."
 
 #: application/views/logbookadvanced/index.php:45
 msgid "Only 1 row can be selected for Quickfilter!"
@@ -12553,7 +12558,7 @@ msgstr "SUCCÈS"
 
 #: application/views/logbookadvanced/index.php:52
 msgid "INFO"
-msgstr "info"
+msgstr "INFO"
 
 #: application/views/logbookadvanced/index.php:58
 msgid "Options for the Advanced Logbook"
