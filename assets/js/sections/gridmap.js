@@ -2,8 +2,6 @@ var modalloading=false;
 
 let confirmedColor = user_map_custom.qsoconfirm.color;
 let workedColor = user_map_custom.qso.color;
-console.log("Confirmed color: " + confirmedColor);
-console.log("Worked color: " + workedColor);
 
 document.addEventListener("DOMContentLoaded", function() {
   document.querySelectorAll('.dropdown').forEach(dd => {
@@ -97,41 +95,43 @@ function gridPlot(form, visitor=true) {
     }
 
     if (visitor != true) {
-    $.ajax({
-		url: ajax_url,
-		type: 'post',
-		data: {
-			band: $("#band").val(),
-            mode: $("#mode").val(),
-            qsl:  $("#qsl").is(":checked"),
-            lotw: $("#lotw").is(":checked"),
-            eqsl: $("#eqsl").is(":checked"),
-            qrz: $("#qrz").is(":checked"),
-            sat: $("#sat").val(),
-            orbit: $("#orbits").val(),
-            propagation: $('#propagation').val(),
-			dxcc: $('#dxcc').val(),
-		},
-		success: function (data) {
-            $('.cohidden').show();
-            set_map_height(25);
-            $(".ld-ext-right-plot").removeClass('running');
-            $(".ld-ext-right-plot").prop('disabled', false);
-            $('#plot').prop("disabled", false);
-            grid_two = data.grid_2char;
-            grid_four = data.grid_4char;
-            grid_six = data.grid_6char;
-            grid_two_confirmed = data.grid_2char_confirmed;
-            grid_four_confirmed = data.grid_4char_confirmed;
-            grid_six_confirmed = data.grid_6char_confirmed;
-			grids = data.grids;
-            grid_max = data.grid_count;
-            plot(visitor, grid_two, grid_four, grid_six, grid_two_confirmed, grid_four_confirmed, grid_six_confirmed, grids, grid_max);
+		$.ajax({
+			url: ajax_url,
+			type: 'post',
+			data: {
+				band: $("#band").val(),
+				mode: $("#mode").val(),
+				qsl:  $("#qsl").is(":checked"),
+				lotw: $("#lotw").is(":checked"),
+				eqsl: $("#eqsl").is(":checked"),
+				qrz: $("#qrz").is(":checked"),
+				sat: $("#sat").val(),
+				orbit: $("#orbits").val(),
+				propagation: $('#propagation').val(),
+				dxcc: $('#dxcc').val(),
+				datefrom: $('#dateFrom').val(),
+				dateto: $('#dateTo').val(),
+			},
+			success: function (data) {
+				$('.cohidden').show();
+				set_map_height(25);
+				$(".ld-ext-right-plot").removeClass('running');
+				$(".ld-ext-right-plot").prop('disabled', false);
+				$('#plot').prop("disabled", false);
+				grid_two = data.grid_2char;
+				grid_four = data.grid_4char;
+				grid_six = data.grid_6char;
+				grid_two_confirmed = data.grid_2char_confirmed;
+				grid_four_confirmed = data.grid_4char_confirmed;
+				grid_six_confirmed = data.grid_6char_confirmed;
+				grids = data.grids;
+				grid_max = data.grid_count;
+				plot(visitor, grid_two, grid_four, grid_six, grid_two_confirmed, grid_four_confirmed, grid_six_confirmed, grids, grid_max);
 
-		},
-		error: function (data) {
-		},
-	});
+			},
+			error: function (data) {
+			},
+		});
    } else {
       plot(visitor, grid_two, grid_four, grid_six, grid_two_confirmed, grid_four_confirmed, grid_six_confirmed, '', 0);
    };

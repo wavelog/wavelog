@@ -24,6 +24,21 @@
                     <div class="dropdown-menu start-50 translate-middle-x p-3 mt-5" aria-labelledby="filterDropdown" style="min-width: 700px;">
 						<div class="card-body filterbody">
 
+						<div class="mb-3 row">
+							<div class="col-md-2 control-label" for="checkboxes"><?= __("Date from"); ?></div>
+							<div class="col-sm-3">
+								<div class="form-check-inline">
+									<input name="dateFrom" id="dateFrom" type="date" class="form-control form-control-sm w-auto border border-secondary" <?php if ($this->input->post('dateFrom')) echo 'value="' . $this->input->post('dateFrom') . '"'; ?>>
+								</div>
+							</div>
+							<div class="col-md-2 control-label" for="checkboxes"><?= __("Date to"); ?></div>
+							<div class="col-sm-3">
+								<div class="form-check-inline">
+									<input name="dateTo" id="dateTo" type="date" class="form-control form-control-sm w-auto border border-secondary" <?php if ($this->input->post('dateTo')) echo 'value="' . $this->input->post('dateTo') . '"'; ?>>
+								</div>
+							</div>
+						</div>
+
                             <!-- Row 1 -->
                             <div class="row mb-2">
                                 <label class="col-md-2" for="band"><?= __("Band"); ?></label>
