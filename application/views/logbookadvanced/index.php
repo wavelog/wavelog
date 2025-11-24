@@ -28,7 +28,21 @@
 	let lang_gen_advanced_logbook_cq_zones_updated = '<?= __("CQ Zones updated successfully!"); ?>';
 	let lang_gen_advanced_logbook_select_row_itu_zones = '<?= __("You need to select at least 1 row to fix ITU Zones!"); ?>';
 	let lang_gen_advanced_logbook_select_row_cq_zones = '<?= __("You need to select at least 1 row to fix CQ Zones!"); ?>';
-	let lang_gen_advanced_logbook_select_only_one_row_quickfilter = '<?= __("Only 1 row can be selected for Quickfilter!"); ?>';
+	let lang_gen_advanced_logbook_select_row_state = '<?= __("You need to select at least 1 row to fix State!"); ?>';
+	let lang_gen_advanced_logbook_state_updated = '<?= __("State updated successfully!"); ?>';
+	let lang_gen_advanced_logbook_problem_fixing_state = '<?= __("There was a problem fixing State."); ?>';
+	let lang_gen_advanced_logbook_fixing_state = '<?= __("Fixing State"); ?>';
+	let lang_gen_advanced_logbook_fixing_state_qsos = '<?= __("Fixing State (%s QSOs)"); ?>';
+	let lang_gen_advanced_logbook_fixing_state_remaining = '<?= __("Fixing State: %s remaining"); ?>';
+	let lang_gen_advanced_logbook_fixed = '<?= __("Fixed"); ?>';
+	let lang_gen_advanced_logbook_fixed_with_count = '<?= __("Fixed: %s"); ?>';
+	let lang_gen_advanced_logbook_skipped = '<?= __("Skipped"); ?>';
+	let lang_gen_advanced_logbook_skipped_with_count = '<?= __("Skipped: %s, see details for skipped rows below"); ?>';
+	let lang_gen_advanced_logbook_state_fix_complete = '<?= __("State Fix Complete"); ?>';
+	let lang_gen_advanced_logbook_state_not_supported = '<?= __("Not all DXCC entities have state support. If you need support for additional countries, please create a ticket at %s with the GeoJSON file and desired letter coding for your country."); ?>';
+	let lang_gen_advanced_logbook_github_url = 'https://github.com/wavelog/wavelog/issues';
+	let lang_gen_advanced_logbook_github_link = '<a href="https://github.com/wavelog/wavelog/issues" target="_blank">Wavelog GitHub</a>';
+	let lang_gen_advanced_logbook_select_only_one_row_quickfilter = '<?= __("Only 1 row can be selected for Quickfilter!"); ?>'
 	let lang_gen_advanced_logbook_select_at_least_one_row_quickfilter = '<?= __("You need to select a row to use the Quickfilters!"); ?>';
 	let lang_gen_advanced_logbook_select_at_least_one_row_qslcard = '<?= __("You need to select a least 1 row to display a QSL card!"); ?>';
 	let lang_gen_advanced_logbook_continents_updated = '<?= __("Continents updated successfully!"); ?>';
@@ -739,6 +753,7 @@ $options = json_decode($options);
 									<button type="button" class="btn btn-sm btn-success dropdown-action" id="fixCqZones"><?= __("Fix CQ Zones"); ?></button>
 									<button type="button" class="btn btn-sm btn-success dropdown-action" id="fixItuZones"><?= __("Fix ITU Zones"); ?></button>
 									<button type="button" class="btn btn-sm btn-success dropdown-action" id="fixContinent"><?= __("Fix Continent"); ?></button>
+									<button type="button" class="btn btn-sm btn-success dropdown-action" id="fixState"><?= __("Fix State"); ?></button>
 									<button type="button" class="btn btn-sm btn-success dropdown-action" id="updateDistances"><?= __("Update Distances"); ?></button>
 									</div>
 								</div>

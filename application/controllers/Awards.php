@@ -153,6 +153,10 @@ class Awards extends CI_Controller {
 			$postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
 			$postdata['sat'] = $this->security->xss_clean($this->input->post('sats'));
 			$postdata['orbit'] = $this->security->xss_clean($this->input->post('orbits'));
+
+			$postdata['dateFrom'] = $this->security->xss_clean($this->input->post('dateFrom'));
+			$postdata['dateTo'] = $this->security->xss_clean($this->input->post('dateTo'));
+
 		} else { // Setting default values at first load of page
 			$postdata['qsl'] = 1;
 			$postdata['lotw'] = 1;
@@ -174,10 +178,13 @@ class Awards extends CI_Controller {
 			$postdata['mode'] = 'All';
 			$postdata['sat'] = 'All';
 			$postdata['orbit'] = 'All';
+
+			$postdata['dateFrom'] = null;
+			$postdata['dateTo'] = null;
 		}
 
 		$dxcclist = $this->dxcc->fetchdxcc($postdata);
-		if ($dxcclist[0]->adif == "0") {
+		if ($dxcclist && $dxcclist[0]->adif == "0") {
 			unset($dxcclist[0]);
 		}
 		$data['dxcc_array'] = $this->dxcc->get_dxcc_array($dxcclist, $bands, $postdata);
@@ -520,7 +527,9 @@ class Awards extends CI_Controller {
 		$type = $this->security->xss_clean($this->input->post('Type'));
 		$qsl = $this->input->post('QSL') == null ? '' : $this->security->xss_clean($this->input->post('QSL'));
 		$searchmode = $this->input->post('searchmode') == null ? '' : $this->security->xss_clean($this->input->post('searchmode'));
-		$data['results'] = $this->logbook_model->qso_details($searchphrase, $band, $mode, $type, $qsl, $sat, $orbit, $searchmode, $propagation);
+		$dateFrom = $this->security->xss_clean($this->input->post('dateFrom'));
+		$dateTo = $this->security->xss_clean($this->input->post('dateTo'));
+		$data['results'] = $this->logbook_model->qso_details($searchphrase, $band, $mode, $type, $qsl, $sat, $orbit, $searchmode, $propagation, $dateFrom, $dateTo);
 
 		// This is done because we have two different ways to get dxcc info in Wavelog. Once is using the name (in awards), and the other one is using the ADIF DXCC.
 		// We replace the values to make it look a bit nicer
@@ -1723,6 +1732,8 @@ class Awards extends CI_Controller {
 	    $postdata['sat'] = $this->security->xss_clean($this->input->post('sat'));
 	    $postdata['orbit'] = $this->security->xss_clean($this->input->post('orbit'));
 
+		$postdata['dateFrom'] = $this->security->xss_clean($this->input->post('dateFrom'));
+		$postdata['dateTo'] = $this->security->xss_clean($this->input->post('dateTo'));
 
 	    $dxcclist = $this->dxcc->fetchdxcc($postdata);
 	    if ($dxcclist[0]->adif == "0") {

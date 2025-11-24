@@ -356,7 +356,7 @@ class Logbook_model extends CI_Model {
 			'COL_QSL_RCVD_VIA' => $this->input->post('qsl_rcvd_method'),
 			'COL_QSL_VIA' => $this->input->post('qsl_via'),
 			'COL_QSLMSG' => $this->input->post('qslmsg'),
-			'COL_OPERATOR' => strtoupper(trim($this->input->post('operator_callsign')) ?? $this->session->userdata('operator_callsign')),
+			'COL_OPERATOR' => strtoupper(trim($this->input->post('operator_callsign', true) ?? $this->session->userdata('operator_callsign'))),
 			'COL_QTH' => $qso_qth,
 			'COL_PROP_MODE' => $prop_mode,
 			'COL_IOTA' => $this->input->post('iota_ref')  == null ? '' : trim($this->input->post('iota_ref')),
@@ -533,7 +533,7 @@ class Logbook_model extends CI_Model {
 	/*
 	 * Used to fetch QSOs from the logbook in the awards
 	 */
-	public function qso_details($searchphrase, $band, $mode, $type, $qsl, $sat = null, $orbit = null, $searchmode = null, $propagation = null) {
+	public function qso_details($searchphrase, $band, $mode, $type, $qsl, $sat = null, $orbit = null, $searchmode = null, $propagation = null, $datefrom = null, $dateto = null) {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -743,6 +743,13 @@ class Logbook_model extends CI_Model {
 			$this->db->where("COL_MODE", $mode);
 			$this->db->or_where("COL_SUBMODE", $mode);
 			$this->db->group_end();
+		}
+
+		if ($datefrom != null) {
+			$this->db->where('date(COL_TIME_ON) >=', $datefrom);
+		}
+		if ($dateto != null) {
+			$this->db->where('date(COL_TIME_ON) <=', $dateto);
 		}
 		$this->db->order_by("COL_TIME_ON", "desc");
 		$this->db->order_by("COL_PRIMARY_KEY", "desc");
