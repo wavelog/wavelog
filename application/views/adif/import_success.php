@@ -37,7 +37,7 @@
 	<!-- Display imported information for contest data fixing if contest data was imported -->
     <?php if(count($imported_contests) > 0) {?>
        <div class="alert alert-dark" role="alert">
-       <span class="badge text-bg-warning"><?= __("Information"); ?></span> <i class="fas fa-list"></i> <b><?= __("Contest logs imported")?></b>
+       <span class="badge text-bg-info"><?= __("Information"); ?></span> <i class="fas fa-list"></i> <b><?= __("Contest logs imported")?></b>
           <p>
           <p><?= __("You imported at least 1 QSO containing a contest ID.")?> <?= __("Sometimes, depending on your contest logging software, your exchanges will not be imported properly from that softwares ADIF. If you like to correct that, switch to the CBR Import Tab of the ADIF Import page.")?></p>
           <p><?= __("We found the following numbers of QSOs for the following contest IDs:")?></p>
