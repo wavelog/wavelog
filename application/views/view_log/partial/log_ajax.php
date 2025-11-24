@@ -498,7 +498,7 @@ function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
                         ?>>&#9650;</span>
                     <span <?php
                         $timestamp = '';
-                        if ($row->COL_QRZCOM_QSO_DOWNLOAD_STATUS != null) {
+                        if ($row->COL_QRZCOM_QSO_DOWNLOAD_STATUS != null && $row->COL_QRZCOM_QSO_DOWNLOAD_DATE != null) {
                            $timestamp = date($custom_date_format, strtotime($row->COL_QRZCOM_QSO_DOWNLOAD_DATE));
                         }
                         switch ($row->COL_QRZCOM_QSO_DOWNLOAD_STATUS) {
