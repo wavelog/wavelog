@@ -35,6 +35,7 @@ switch ($date_format) {
   var lang_lotw_upload_day_ago = "<?= __("LoTW User. Last upload was 1 day ago."); ?>";
   var lang_lotw_upload_days_ago = "<?= __("LoTW User. Last upload was %x days ago."); ?>"; // due to the way the string is built (PHP to JS), %x is replaced with the number of days
   var lang_invalid_ant_el = "<?= __("Invalid value for antenna elevation:"); ?>";
+  var lang_qso_wait_before_saving = "<?= __("Please wait before saving another QSO"); ?>";
   var latlng=[<?php echo $lat.','.$lng;?>];
   var user_date_format = "<?php echo $date_format; ?>"; // Pass the user's date format to JavaScript
 </script>
@@ -434,7 +435,7 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
           <div class="tab-pane fade" id="general" role="tabpanel" aria-labelledby="general-tab">
               <div class="mb-3">
                   <label for="dxcc_id"><?= __("DXCC"); ?></label>
-                  <select class="form-control" id="dxcc_id" name="dxcc_id" required>
+                  <select class="form-control" id="dxcc_id" name="dxcc_id">
                       <?php
                       foreach($dxcc as $d) {
                           if ($d->adif == '0') {
@@ -483,7 +484,7 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
 			  <div class="row">
 				  <div class="mb-3 col">
 					  <label for="cqz"><?= __("CQ Zone"); ?></label>
-					  <select class="form-select" id="cqz" name="cqz" required>
+					  <select class="form-select" id="cqz" name="cqz">
 						  <?php
 						  for ($i = 0; $i<=40; $i++) {
 							  echo '<option value="'. $i . '">'. $i .'</option>';
