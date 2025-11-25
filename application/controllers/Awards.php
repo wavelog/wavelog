@@ -1044,6 +1044,7 @@ class Awards extends CI_Controller {
       $data['gridsquares_gridsquares_worked']= __("Gridsquares worked");
       $data['gridsquares_gridsquares_lotw']= __("Gridsquares confirmed on LoTW");
       $data['gridsquares_gridsquares_paper']= __("Gridsquares confirmed by paper QSL");
+      $data['gridsquares_total_gridsquares_worked']= __("Total Gridsquares worked");
 
       $indexData['dxcc'] = $dxcc;
 
@@ -1079,6 +1080,7 @@ class Awards extends CI_Controller {
 		$data['gridsquares_gridsquares_worked']= __("Gridsquares worked");
 		$data['gridsquares_gridsquares_lotw']= __("Gridsquares confirmed on LoTW");
 		$data['gridsquares_gridsquares_paper']= __("Gridsquares confirmed by paper QSL");
+      $data['gridsquares_total_gridsquares_worked']= __("Total Gridsquares worked");
 		$data['grid_count'] = $this->ffma_model->get_grid_count();
 		$data['grids'] = $this->ffma_model->get_grids();
 

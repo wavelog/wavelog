@@ -53,5 +53,6 @@ var type = "worked";
     echo 'var gridsquares_gridsquares_worked = "' . $gridsquares_gridsquares_worked . '";';
     echo 'var gridsquares_gridsquares_lotw = "' . $gridsquares_gridsquares_lotw . '";';
     echo 'var gridsquares_gridsquares_paper = "' . $gridsquares_gridsquares_paper . '";';
+    echo 'var gridsquares_total_gridsquares_worked = "' . $gridsquares_total_gridsquares_worked . '";';
 ?>
 </script>
