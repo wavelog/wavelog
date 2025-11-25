@@ -4,6 +4,8 @@ let grid_four_lotw = '';
 let grid_four_paper = '';
 
 let confirmedColor = user_map_custom.qsoconfirm.color;
+// Take station color for paper QSLs here
+let paperColor = user_map_custom.station.color
 let workedColor = user_map_custom.qso.color;
 let unworkedColor = '';
 if (typeof(user_map_custom.unworked) !== 'undefined') {
@@ -88,8 +90,8 @@ function gridPlot(form) {
                 //div.innerHTML += "<h4>" + gridsquares_gridsquares + "</h4>";
                 html = "<table border=\"0\">";
                 html += '<tr><td><i style="background: ' + confirmedColor + '"></i><span>' + gridsquares_gridsquares_lotw + ':</span></td><td style=\"padding-left: 1em; text-align: right;\"><span>'+grid_four_lotw.length+' / '+grid_max+'</span></td></tr>';
-                html += '<tr><td><i style="background: ' + workedColor + '"></i><span>' + gridsquares_gridsquares_paper + ':</span></td><td style=\"padding-left: 1em; text-align: right;\"><span>'+paper_count+' / '+grid_max+'</span></td></tr>';
-				html += '<tr><td><i style="background: ' + unworkedColor +'"></i><span>' + gridsquares_gridsquares_worked +'</span></td><td style=\"padding-left: 1em; text-align: right;\"><span> '+worked_count+' / '+grid_max+'</span></td></tr>';
+                html += '<tr><td><i style="background: ' + paperColor + '"></i><span>' + gridsquares_gridsquares_paper + ':</span></td><td style=\"padding-left: 1em; text-align: right;\"><span>'+paper_count+' / '+grid_max+'</span></td></tr>';
+				html += '<tr><td><i style="background: ' + workedColor +'"></i><span>' + gridsquares_gridsquares_worked +'</span></td><td style=\"padding-left: 1em; text-align: right;\"><span> '+worked_count+' / '+grid_max+'</span></td></tr>';
                 html += '<tr><td><i></i><span>' + gridsquares_gridsquares_worked + ' ('+(Math.round((grid_four.length / grid_max) * 10000) / 100)+'%):</span></td><td style=\"padding-left: 1em; text-align: right;\"><span>'+(grid_four.length)+' / '+grid_max+'</span></td></tr>';
                 html += "</table>";
                 div.innerHTML = html;

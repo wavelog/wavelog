@@ -1085,8 +1085,8 @@ class Awards extends CI_Controller {
 		$footerData = [];
 		$footerData['scripts']= [
 			'assets/js/leaflet/geocoding.js',
-			'assets/js/leaflet/L.MaidenheadColouredGridmasterMap.js',
-			'assets/js/sections/ffma.js'
+			'assets/js/sections/ffma.js',
+			'assets/js/leaflet/L.MaidenheadColouredGridmasterMap.js'
 		];
 
 		$this->load->view('interface_assets/header',$data);
