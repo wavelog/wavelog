@@ -684,6 +684,9 @@ $(document).ready(function() {
 		}
 	}
 
+	// Expose displayRadioStatus globally for bandmap and other components
+	window.displayRadioStatus = displayRadioStatus;
+
     /**
      * Process CAT data and update UI elements
      * Performs timeout check, updates form fields, and displays radio status

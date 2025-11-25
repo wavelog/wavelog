@@ -2450,6 +2450,9 @@ $(function() {
 
 	// Override updateCATui to add bandmap-specific behavior
 	window.updateCATui = function(data) {
+		// Store last CAT data globally for other components (same as cat.js does)
+		window.lastCATData = data;
+
 		// Determine band from frequency
 		const band = frequencyToBand(data.frequency);
 		// Store current radio frequency (convert Hz to kHz)
@@ -2492,13 +2495,11 @@ $(function() {
 					}
 				}
 			}
+		}
 
-			// Call cat.js's original updateCATui for standard CAT UI updates (purple mode only)
-			if (typeof catJsUpdateCATui === 'function') {
-				catJsUpdateCATui(data);
-			} else {
-				console.warn('Bandmap: cat.js updateCATui not available');
-			}
+		// Display radio status when CAT is enabled (don't call full catJsUpdateCATui as it updates QSO form fields)
+		if (isCatTrackingEnabled && typeof window.displayRadioStatus === 'function') {
+			window.displayRadioStatus('success', data);
 		}
 
 		// Update frequency gradient colors for all visible rows (works in both normal and purple CAT modes)
