@@ -4,9 +4,16 @@
 
 L.Maidenhead = L.LayerGroup.extend({
 
-
 	options: {
 		// Line and label color
+		workedColor: user_map_custom?.qso?.color
+			? hexToRgba(user_map_custom.qso.color, 0.5)
+			: 'rgba(255, 0, 0, 0.4)',
+
+		confirmedColor: user_map_custom?.qsoconfirm?.color
+			? hexToRgba(user_map_custom.qsoconfirm.color, 0.5)
+			: 'rgba(144,238,144, 0.5)',
+
 		color: 'rgba(255, 0, 0, 0.4)',
 
 		// Redraw on move or moveend
@@ -69,10 +76,10 @@ L.Maidenhead = L.LayerGroup.extend({
 					if(grid_two.includes(locator) || grid_four.includes(locator) || grid_six.includes(locator)) {
 
 						if(grid_two_confirmed.includes(locator) || grid_four_confirmed.includes(locator) || grid_six_confirmed.includes(locator)) {
-							var rectConfirmed = L.rectangle(bounds, {className: 'grid-rectangle grid-confirmed', color: 'rgba(144,238,144, 0.6)', weight: 1, fillOpacity: 1, fill:true, interactive: false});
+							var rectConfirmed = L.rectangle(bounds, {className: 'grid-rectangle grid-confirmed', color: this.options.confirmedColor, weight: 1, fillOpacity: 1, fill:true, interactive: false});
 							this.addLayer(rectConfirmed);
 						} else {
-							var rectWorked = L.rectangle(bounds, {className: 'grid-rectangle grid-worked', color: this.options.color, weight: 1, fillOpacity: 1, fill:true, interactive: false})
+							var rectWorked = L.rectangle(bounds, {className: 'grid-rectangle grid-worked', color: this.options.workedColor, weight: 1, fillOpacity: 1, fill:true, interactive: false})
 							this.addLayer(rectWorked);
 						}
 						// Controls text on grid on various zoom levels
@@ -80,11 +87,11 @@ L.Maidenhead = L.LayerGroup.extend({
 							this.addLayer(this._getLabel(lon+unit-(unit/lcor),lat+(unit/2)+(unit/lcor*c)));
 						}
 						if (zoom < 3 ) {
-							this.addLayer(L.rectangle(bounds, {className: 'grid-rectangle', color: this.options.color, weight: 1, fill:false, interactive: false}));
+							this.addLayer(L.rectangle(bounds, {className: 'grid-rectangle', color: this.options.workedColor, weight: 1, fill:false, interactive: false}));
 						}
 					} else {
 						if (zoom < 3 || zoom > 5) {
-							this.addLayer(L.rectangle(bounds, {className: 'grid-rectangle', color: this.options.color, weight: 1, fill:false, interactive: false}));
+							this.addLayer(L.rectangle(bounds, {className: 'grid-rectangle', color: this.options.workedColor, weight: 1, fill:false, interactive: false}));
 						}
 					}
 					if (zoom < 3 || zoom > 5) {
@@ -106,7 +113,7 @@ L.Maidenhead = L.LayerGroup.extend({
 
 						this.addLayer(L.rectangle(bounds, {
 							className: 'grid-rectangle',
-							color: this.options.color,
+							color: this.options.workedColor,
 							weight: 1,
 							fill: false,
 							interactive: false
@@ -125,7 +132,7 @@ L.Maidenhead = L.LayerGroup.extend({
 	  var title = '';
 	  var locator = this._getLocator(lon,lat);
 	  if (zoom != 4 && zoom != 3) {
-		  title = '<span class="grid-text" style="cursor: default;"><font style="color:'+this.options.color+'; font-size:'+size+'; font-weight: 900; ">' + locator + '</font></span>';
+		  title = '<span class="grid-text" style="cursor: default;"><font style="color:'+this.options.workedColor+'; font-size:'+size+'; font-weight: 900; ">' + locator + '</font></span>';
 	  }
 	  var myIcon = L.divIcon({className: 'my-div-icon', html: title});
       var marker = L.marker([lat,lon], {icon: myIcon}, clickable=false);
@@ -175,7 +182,7 @@ L.Maidenhead = L.LayerGroup.extend({
 		var title_size = new Array(0, 10, 12, 16, 20, 26, 26, 16, 24, 36, 12, 14, 20, 36, 60, 12, 20, 36, 60, 12, 24);
 		var zoom = map.getZoom();
 		var size = title_size[zoom]+'px';
-		var title = '<span class="grid-text" style="cursor: default;"><font style="color:'+this.options.color+'; font-size:'+size+'; font-weight: 900; ">' + this._getLocator2(lon,lat) + '</font></span>';
+		var title = '<span class="grid-text" style="cursor: default;"><font style="color:'+this.options.workedColor+'; font-size:'+size+'; font-weight: 900; ">' + this._getLocator2(lon,lat) + '</font></span>';
 		var myIcon = L.divIcon({className: 'my-div-icon', html: title});
 		var marker = L.marker([lat,lon], {icon: myIcon}, clickable=false);
 		return marker;

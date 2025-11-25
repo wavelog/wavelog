@@ -93,8 +93,8 @@ if ($lang_code != 'en' && !file_exists(FCPATH . "assets/json/datatables_language
 
 <?php if ($this->uri->segment(2) == "satellites") { ?>
 
-<script type="text/javascript" src="<?php echo base_url();?>assets/js/leaflet/L.MaidenheadColoured.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/sections/gridmap.js?"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets/js/leaflet/L.MaidenheadColoured.js"></script>
 
 <script>
 

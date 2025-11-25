@@ -21,8 +21,35 @@
                     <button id="clear" type="button" name="clear" class="btn btn-sm btn-primary me-1 mb-1 ld-ext-right ld-ext-right-clear" onclick="clearMarkers()"><?= __("Clear Markers"); ?><div class="ld ld-ring ld-spin"></div></button>
 
                     <!-- Dropdown Menu with Filter Content -->
-                    <div class="dropdown-menu start-50 translate-middle-x p-3 mt-5" aria-labelledby="filterDropdown" style="min-width: 700px;">
+                    <div class="dropdown-menu start-50 translate-middle-x p-3 mt-5" aria-labelledby="filterDropdown" style="min-width: 900px;">
 						<div class="card-body filterbody">
+
+						<div class="mb-3 row">
+							<div class="col-md-2 control-label" for="checkboxes"><?= __("Date Presets"); ?></div>
+							<div class="col-sm-10">
+								<div class="d-flex flex-wrap gap-1">
+									<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('today')"><?= __("Today") ?></button>
+									<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('yesterday')"><?= __("Yesterday") ?></button>
+									<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('last7days')"><?= __("Last 7 Days") ?></button>
+									<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('last30days')"><?= __("Last 30 Days") ?></button>
+									<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('thismonth')"><?= __("This Month") ?></button>
+									<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('lastmonth')"><?= __("Last Month") ?></button>
+									<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('thisyear')"><?= __("This Year") ?></button>
+									<button type="button" class="btn btn-danger btn-sm flex-shrink-0" onclick="resetDates()"><i class="fas fa-times"></i> <?= __("Clear") ?></button>
+								</div>
+							</div>
+						</div>
+
+						<div class="mb-3 row align-items-center">
+							<div class="col-md-2 control-label" for="checkboxes"><?= __("Date from"); ?></div>
+							<div class="col-sm-3">
+								<input name="dateFrom" id="dateFrom" type="date" class="form-select form-select-sm" <?php if ($this->input->post('dateFrom')) echo 'value="' . $this->input->post('dateFrom') . '"'; ?>>
+							</div>
+							<div class="col-md-2 control-label" for="checkboxes"><?= __("Date to"); ?></div>
+							<div class="col-sm-3">
+								<input name="dateTo" id="dateTo" type="date" class="form-select form-select-sm" <?php if ($this->input->post('dateTo')) echo 'value="' . $this->input->post('dateTo') . '"'; ?>>
+							</div>
+							</div>
 
                             <!-- Row 1 -->
                             <div class="row mb-2">

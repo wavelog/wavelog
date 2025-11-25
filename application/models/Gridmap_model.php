@@ -2,7 +2,7 @@
 
 class Gridmap_model extends CI_Model {
 
-	function get_band_confirmed($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $dxcc, $grids, $logbooks_locations_array = NULL) {
+	function get_band_confirmed($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $dxcc, $grids, $datefrom, $dateto, $logbooks_locations_array = NULL) {
 		if ($logbooks_locations_array == NULL) {
 			$this->load->model('logbooks_model');
 			$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -63,6 +63,16 @@ class Gridmap_model extends CI_Model {
 			$binding[] = $orbit;
 		}
 
+		if ($datefrom != NULL) {
+			$sql .= " and date(col_time_on) >= ?";
+			$binding[] = $datefrom;
+		}
+
+		if ($dateto != NULL) {
+			$sql .= " and date(col_time_on) <= ?";
+			$binding[] = $dateto;
+		}
+
 		if ($dxcc != 'All') {
 			if (!empty($grids)) {
 				$sql .= ' AND substring(COL_GRIDSQUARE,1,4) IN (\'' . implode("','", $grids) . '\')';
@@ -74,7 +84,7 @@ class Gridmap_model extends CI_Model {
 		return $this->db->query($sql, $binding);
 	}
 
-	function get_band($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $dxcc, $grids, $logbooks_locations_array = NULL) {
+	function get_band($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $dxcc, $grids, $datefrom, $dateto, $logbooks_locations_array = NULL) {
 		if ($logbooks_locations_array == NULL) {
 			$this->load->model('logbooks_model');
 			$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -130,6 +140,16 @@ class Gridmap_model extends CI_Model {
 			$binding[] = $mode;
 		}
 
+		if ($datefrom != NULL) {
+			$sql .= " and date(col_time_on) >= ?";
+			$binding[] = $datefrom;
+		}
+
+		if ($dateto != NULL) {
+			$sql .= " and date(col_time_on) <= ?";
+			$binding[] = $dateto;
+		}
+
 		if ($orbit != 'All') {
 			$sql .= " AND satellite.orbit = ?";
 			$binding[] = $orbit;
@@ -144,7 +164,7 @@ class Gridmap_model extends CI_Model {
 		return $this->db->query($sql, $binding);
 	}
 
-	function get_band_worked_vucc_squares($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation) {
+	function get_band_worked_vucc_squares($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $datefrom, $dateto, $logbooks_locations_array = NULL) {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -198,6 +218,16 @@ class Gridmap_model extends CI_Model {
 			$binding[] = $mode;
 		}
 
+		if ($datefrom != NULL) {
+			$sql .= " and date(col_time_on) >= ?";
+			$binding[] = $datefrom;
+		}
+
+		if ($dateto != NULL) {
+			$sql .= " and date(col_time_on) <= ?";
+			$binding[] = $dateto;
+		}
+
 		if ($orbit != 'All') {
 			$sql .= " AND satellite.orbit = ?";
 			$binding[] = $orbit;
@@ -206,7 +236,7 @@ class Gridmap_model extends CI_Model {
 		return $this->db->query($sql, $binding);
 	}
 
-	function get_band_confirmed_vucc_squares($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation) {
+	function get_band_confirmed_vucc_squares($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $datefrom, $dateto, $logbooks_locations_array = NULL) {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -252,6 +282,16 @@ class Gridmap_model extends CI_Model {
 				$sql .= " and col_prop_mode = ?";
 				$binding[] = $propagation;
 			}
+		}
+
+		if ($datefrom != NULL) {
+			$sql .= " and date(col_time_on) >= ?";
+			$binding[] = $datefrom;
+		}
+
+		if ($dateto != NULL) {
+			$sql .= " and date(col_time_on) <= ?";
+			$binding[] = $dateto;
 		}
 
 		if ($mode != 'All') {
