@@ -29,8 +29,8 @@ msgstr ""
 "POT-Creation-Date: 2025-11-24 13:09+0000\n"
 "PO-Revision-Date: 2025-11-24 18:50+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -141,6 +141,10 @@ msgstr ""
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/Lotw.php:90 application/controllers/Lotw.php:116
+#: application/controllers/Lotw.php:414 application/controllers/Lotw.php:437
+#: application/controllers/Lotw.php:798 application/controllers/Lotw.php:882
+#: application/controllers/Lotw.php:987
 msgid "You're not allowed to do that!"
 msgstr "Das ist Dir nicht gestattet!"
 
@@ -1863,22 +1867,24 @@ msgstr "Schnellsuche"
 #: application/views/lotw/import.php:3 application/views/lotw_views/index.php:9
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:880 application/views/visitor/index.php:328
+#: application/controllers/Lotw.php:64 application/controllers/Lotw.php:96
+#: application/controllers/Lotw.php:136
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
-#: application/controllers/Lotw.php:150
+#: application/controllers/Lotw.php:150 application/controllers/Lotw.php:161
 msgid "Certificate Imported."
 msgstr "Zertifikat importiert."
 
-#: application/controllers/Lotw.php:157
+#: application/controllers/Lotw.php:157 application/controllers/Lotw.php:168
 msgid "Certificate Updated."
 msgstr "Zertifikat aktualisiert."
 
-#: application/controllers/Lotw.php:401
+#: application/controllers/Lotw.php:401 application/controllers/Lotw.php:420
 msgid "Certificate Deleted."
 msgstr "Zertifikat gelöscht."
 
-#: application/controllers/Lotw.php:430
+#: application/controllers/Lotw.php:430 application/controllers/Lotw.php:449
 #, php-format
 msgid ""
 "Found no certificate in file %s. If the filename contains 'key-only' this is "
@@ -1888,52 +1894,55 @@ msgstr ""
 "enthält, handelt es sich normalerweise um eine Zertifikatsanforderung, die "
 "von LoTW noch nicht bearbeitet wurde."
 
-#: application/controllers/Lotw.php:666
+#: application/controllers/Lotw.php:666 application/controllers/Lotw.php:686
 msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF Information"
 
 #: application/controllers/Lotw.php:835 application/controllers/Lotw.php:838
+#: application/controllers/Lotw.php:855 application/controllers/Lotw.php:858
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr "LoTW-Login für Benutzer %s fehlgeschlagen: %s."
 
-#: application/controllers/Lotw.php:838
+#: application/controllers/Lotw.php:838 application/controllers/Lotw.php:858
 msgid "Username/password incorrect"
 msgstr "Benutzername/Passwort falsch"
 
-#: application/controllers/Lotw.php:841
+#: application/controllers/Lotw.php:841 application/controllers/Lotw.php:861
 msgid "LoTW login OK!"
 msgstr "LoTW-Login OK!"
 
-#: application/controllers/Lotw.php:845
+#: application/controllers/Lotw.php:845 application/controllers/Lotw.php:865
 msgid "LoTW currently not available. Try again later."
 msgstr "LoTW derzeit nicht verfügbar. Versuche es später noch einmal."
 
-#: application/controllers/Lotw.php:850
+#: application/controllers/Lotw.php:850 application/controllers/Lotw.php:870
 msgid "No LoTW credentials provided."
 msgstr "Keine LoTW-Logindaten angegeben."
 
-#: application/controllers/Lotw.php:868
+#: application/controllers/Lotw.php:868 application/controllers/Lotw.php:888
 msgid "LoTW ADIF Import"
 msgstr "LoTW ADIF-Import"
 
 #: application/controllers/Lotw.php:894 application/controllers/Lotw.php:1002
+#: application/controllers/Lotw.php:914 application/controllers/Lotw.php:1022
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Du hast deine ARRL LoTW Zugangsdaten nicht definiert!"
 
-#: application/controllers/Lotw.php:969
+#: application/controllers/Lotw.php:969 application/controllers/Lotw.php:989
 msgid "LoTW .TQ8 Upload"
 msgstr "LoTW .TQ8-Upload"
 
-#: application/controllers/Lotw.php:1047
+#: application/controllers/Lotw.php:1047 application/controllers/Lotw.php:1067
 msgid "Your ARRL username and/or password is incorrect."
 msgstr "Dein ARRL-Benutzername und/oder Passwort ist falsch."
 
 #: application/controllers/Lotw.php:1066 application/controllers/Lotw.php:1071
+#: application/controllers/Lotw.php:1086 application/controllers/Lotw.php:1091
 msgid "LoTW .TQ8 Sent"
 msgstr "LoTW .TQ8 gesendet"
 
-#: application/controllers/Lotw.php:1078
+#: application/controllers/Lotw.php:1078 application/controllers/Lotw.php:1098
 msgid "LoTW .TQ8 Not Sent"
 msgstr "LoTW .TQ8 nicht gesendet"
 
@@ -2386,6 +2395,7 @@ msgstr "Bearbeiten"
 #: application/views/stationsetup/stationsetup.php:199
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:778
+#: application/views/lotw_views/index.php:134
 msgid "Delete"
 msgstr "Löschen"
 
@@ -4827,6 +4837,7 @@ msgstr ""
 #: application/views/adif/import_success.php:40
 #: application/views/dcl_views/index.php:76
 #: application/views/lotw_views/index.php:154
+#: application/views/lotw_views/index.php:160
 msgid "Information"
 msgstr "Information"
 
@@ -9784,11 +9795,13 @@ msgstr "Der nächste automatische Sync mit dem DCL findet statt: "
 
 #: application/views/dcl_views/index.php:82
 #: application/views/lotw_views/index.php:160
+#: application/views/lotw_views/index.php:166
 msgid "Manual Sync"
 msgstr "Manuelle Synchronisation"
 
 #: application/views/dcl_views/index.php:84
 #: application/views/lotw_views/index.php:162
+#: application/views/lotw_views/index.php:168
 msgid "running..."
 msgstr "läuft..."
 
@@ -10108,6 +10121,7 @@ msgstr "Branch"
 
 #: application/views/debug/index.php:456 application/views/debug/index.php:467
 #: application/views/debug/index.php:477
+#: application/views/lotw_views/index.php:95
 msgid "n/a"
 msgstr "n/a"
 
@@ -10713,8 +10727,8 @@ msgstr ""
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
-"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an eQSL."
-"cc."
+"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an "
+"eQSL.cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -13177,42 +13191,51 @@ msgid "Last Upload"
 msgstr "Letzter Upload"
 
 #: application/views/lotw_views/index.php:96
+#: application/views/lotw_views/index.php:100
 msgid "Certificate expired"
 msgstr "Zertifikat abgelaufen"
 
 #: application/views/lotw_views/index.php:98
+#: application/views/lotw_views/index.php:102
 msgid "Certificate expiring"
 msgstr "Zertifikat ablaufend"
 
 #: application/views/lotw_views/index.php:100
+#: application/views/lotw_views/index.php:104
 msgid "Certificate valid"
 msgstr "Zertifikat gültig"
 
 #: application/views/lotw_views/index.php:105
+#: application/views/lotw_views/index.php:109
 msgid "QSO end date nearing"
 msgstr "QSO-Enddatum nähert sich"
 
 #: application/views/lotw_views/index.php:115
+#: application/views/lotw_views/index.php:121
 #, php-format
 msgid "Last success: %s"
 msgstr "Letzter Erfolg: %s"
 
 #: application/views/lotw_views/index.php:118
+#: application/views/lotw_views/index.php:124
 #, php-format
 msgid "Last fail: %s"
 msgstr "Letzer Fehlversuch: %s"
 
 #: application/views/lotw_views/index.php:124
+#: application/views/lotw_views/index.php:130
 msgid "Not Synced"
 msgstr "Nicht synchronisiert"
 
 #: application/views/lotw_views/index.php:139
+#: application/views/lotw_views/index.php:145
 msgid "You need to upload some LoTW p12 certificates to use this area."
 msgstr ""
 "Du musst mindestens ein LoTW-p12-Zertifikat hochladen, um diesen Bereich "
 "nutzen zu können."
 
 #: application/views/lotw_views/index.php:158
+#: application/views/lotw_views/index.php:164
 msgid "The next automatic sync with LoTW will happen at: "
 msgstr "Die nächste Synchronisierung mit LoTW ist geplant für: "
 
@@ -13517,8 +13540,8 @@ msgstr "E-Mail Adresse"
 msgid ""
 "The email address from which the emails are sent, e.g. 'wavelog@example.com'"
 msgstr ""
-"Die E-Mail Adresse von der die Mails versendet werden, z.B. 'wavelog@example."
-"com'"
+"Die E-Mail Adresse von der die Mails versendet werden, z.B. "
+"'wavelog@example.com'"
 
 #: application/views/options/email.php:80
 msgid "SMTP Host"
@@ -15717,9 +15740,9 @@ msgid ""
 msgstr ""
 "Um zu beginnen, stelle sicher, dass du die Felder auf der linken Seite "
 "bereits mit Datum, Stationsrufzeichen/-standort und Rufzeichen des Operators "
-"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, z."
-"B. '7.145'), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
-"wesentlichen das Rufzeichen ist."
+"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, "
+"z.B. '7.145'), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was "
+"im wesentlichen das Rufzeichen ist."
 
 #: application/views/simplefle/syntax_help.php:9
 msgid "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB."
@@ -16551,9 +16574,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Erstelle einen neuen Ordner in 'assets/css/' und lade eine 'bootstrap.min."
-"css' Datei hoch, welche die grundlegende Styling-Regeln enthält. Wir "
-"verwenden die Themes von %s"
+"Erstelle einen neuen Ordner in 'assets/css/' und lade eine "
+"'bootstrap.min.css' Datei hoch, welche die grundlegende Styling-Regeln "
+"enthält. Wir verwenden die Themes von %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -18082,6 +18105,18 @@ msgstr "Anfrage senden"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Rcvd"
+
+#: application/views/lotw_views/index.php:95
+msgid "Last change:"
+msgstr ""
+
+#: application/views/lotw_views/index.php:95
+msgid "Serial number:"
+msgstr ""
+
+#: application/views/lotw_views/index.php:97
+msgid "Certificate superseded"
+msgstr ""
 
 #~ msgid "LoTW Rcvd status will be reset."
 #~ msgstr "LoTW-Empfangsstatus wird zurückgesetzt."
