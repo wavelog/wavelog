@@ -21,7 +21,7 @@
                     <button id="clear" type="button" name="clear" class="btn btn-sm btn-primary me-1 mb-1 ld-ext-right ld-ext-right-clear" onclick="clearMarkers()"><?= __("Clear Markers"); ?><div class="ld ld-ring ld-spin"></div></button>
 
                     <!-- Dropdown Menu with Filter Content -->
-                    <div class="dropdown-menu start-50 translate-middle-x p-3 mt-5" aria-labelledby="filterDropdown" style="min-width: 1000px;">
+                    <div class="dropdown-menu start-50 translate-middle-x p-3 mt-5" aria-labelledby="filterDropdown" style="min-width: 900px;">
 						<div class="card-body filterbody">
 
 						<div class="mb-3 row">
