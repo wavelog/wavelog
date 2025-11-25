@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-11-25 07:14+0000\n"
-"PO-Revision-Date: 2025-11-24 12:04+0000\n"
+"PO-Revision-Date: 2025-11-25 09:56+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3234,15 +3234,15 @@ msgstr "QRZCQ エラー"
 #: application/libraries/Cbr_parser.php:111
 #: application/libraries/Cbr_parser.php:160
 msgid "Broken CBR file - no valid exchange or callsigns found"
-msgstr ""
+msgstr "CBRファイルが壊れています - 有効な交換またはコールサインが見つかりません"
 
 #: application/libraries/Cbr_parser.php:137
 msgid "Broken CBR file - no QSO data found."
-msgstr ""
+msgstr "CBR ファイルが壊れています - QSO データが見つかりません。"
 
 #: application/libraries/Cbr_parser.php:147
 msgid "Broken CBR file - incomplete header found."
-msgstr ""
+msgstr "壊れた CBR ファイル - 不完全なヘッダーが見つかりました。"
 
 #: application/libraries/Subdivisions.php:31
 msgctxt "Division Name (States in various countries)."
@@ -4819,7 +4819,8 @@ msgstr "オプション"
 msgid ""
 "The CBR file contains a TRX number at the end of each QSO line (for multi-op "
 "stations)"
-msgstr ""
+msgstr "CBRファイルには、各QSO行の末尾にTRX番号が含まれています（マルチオペレーター局"
+"の場合）"
 
 #: application/views/adif/import.php:419
 msgid ""
@@ -5914,7 +5915,7 @@ msgstr "Prefix"
 
 #: application/views/awards/dxcc/index.php:353
 msgid "No results found for your search criteria. Please try again."
-msgstr ""
+msgstr "検索条件に一致する結果は見つかりませんでした。もう一度お試しください。"
 
 #: application/views/awards/ffma/index.php:11
 #: application/views/interface_assets/header.php:288
@@ -12302,51 +12303,51 @@ msgstr "CQゾーンを修正するには、少なくとも1行を選択する必
 
 #: application/views/logbookadvanced/index.php:31
 msgid "You need to select at least 1 row to fix State!"
-msgstr ""
+msgstr "状態を修正するには、少なくとも1行を選択する必要があります！"
 
 #: application/views/logbookadvanced/index.php:32
 msgid "State updated successfully!"
-msgstr ""
+msgstr "状態の更新に成功しました！"
 
 #: application/views/logbookadvanced/index.php:33
 msgid "There was a problem fixing State."
-msgstr ""
+msgstr "状態の修正中に問題が発生しました。"
 
 #: application/views/logbookadvanced/index.php:34
 msgid "Fixing State"
-msgstr ""
+msgstr "状態の修正"
 
 #: application/views/logbookadvanced/index.php:35
 #, php-format
 msgid "Fixing State (%s QSOs)"
-msgstr ""
+msgstr "状態の固定（ %s QSO)"
 
 #: application/views/logbookadvanced/index.php:36
 #, php-format
 msgid "Fixing State: %s remaining"
-msgstr ""
+msgstr "修正状態: %s 残り"
 
 #: application/views/logbookadvanced/index.php:37
 msgid "Fixed"
-msgstr ""
+msgstr "修理済み"
 
 #: application/views/logbookadvanced/index.php:38
 #, php-format
 msgid "Fixed: %s"
-msgstr ""
+msgstr "修理済み： %s"
 
 #: application/views/logbookadvanced/index.php:39
 msgid "Skipped"
-msgstr ""
+msgstr "スキップ"
 
 #: application/views/logbookadvanced/index.php:40
 #, php-format
 msgid "Skipped: %s, see details for skipped rows below"
-msgstr ""
+msgstr "スキップ: %s 、スキップされた行の詳細は以下を参照してください"
 
 #: application/views/logbookadvanced/index.php:41
 msgid "State Fix Complete"
-msgstr ""
+msgstr "状態の修正が完了しました"
 
 #: application/views/logbookadvanced/index.php:42
 #, php-format
@@ -12355,6 +12356,9 @@ msgid ""
 "countries, please create a ticket at %s with the GeoJSON file and desired "
 "letter coding for your country."
 msgstr ""
+"すべてのDXCCエンティティが国家のサポートを受けているわけではありません。追加"
+"の国に対するサポートが必要な場合は、GeoJSONファイルと希望する国のレターコーデ"
+"ィングを添えて、%s でチケットを作成してください。"
 
 #: application/views/logbookadvanced/index.php:45
 msgid "Only 1 row can be selected for Quickfilter!"
@@ -12774,7 +12778,7 @@ msgstr "大陸を修正"
 
 #: application/views/logbookadvanced/index.php:756
 msgid "Fix State"
-msgstr ""
+msgstr "状態を修正"
 
 #: application/views/logbookadvanced/index.php:764
 #: application/views/oqrs/showrequests.php:58
@@ -12872,33 +12876,34 @@ msgstr "TNXメッセージを含める"
 msgid ""
 "Update QSOs with state/province information based on gridsquare and DXCC "
 "country."
-msgstr ""
+msgstr "グリッドスクエアと DXCC 国に基づいて、州/省の情報で QSO を更新します。"
 
 #: application/views/logbookadvanced/statedialog.php:3
 msgid ""
 "This feature uses GeoJSON boundary data to determine the state/province from "
 "the gridsquare locator."
-msgstr ""
+msgstr "この機能は、GeoJSON 境界データを使用して、グリッドスクエア ロケーターから州/"
+"省を決定します。"
 
 #: application/views/logbookadvanced/statedialog.php:4
 msgid "Update will only set the state for QSOs where:"
-msgstr ""
+msgstr "更新では、次の QSO の状態のみが設定されます。"
 
 #: application/views/logbookadvanced/statedialog.php:6
 msgid "The state field is empty"
-msgstr ""
+msgstr "状態フィールドは空です"
 
 #: application/views/logbookadvanced/statedialog.php:7
 msgid "A gridsquare is present (at least 6 characters)"
-msgstr ""
+msgstr "グリッドスクエアが存在する（少なくとも6文字）"
 
 #: application/views/logbookadvanced/statedialog.php:8
 msgid "The DXCC country supports state lookup"
-msgstr ""
+msgstr "DXCCの国は州検索をサポートしています"
 
 #: application/views/logbookadvanced/statedialog.php:10
 msgid "Currently supported countries"
-msgstr ""
+msgstr "現在サポートされている国"
 
 #: application/views/logbookadvanced/useroptions.php:16
 msgid "Column"
@@ -13037,15 +13042,15 @@ msgstr "最終アップロード"
 
 #: application/views/lotw_views/index.php:95
 msgid "Last change:"
-msgstr ""
+msgstr "最終変更:"
 
 #: application/views/lotw_views/index.php:95
 msgid "Serial number:"
-msgstr ""
+msgstr "シリアルナンバー："
 
 #: application/views/lotw_views/index.php:97
 msgid "Certificate superseded"
-msgstr ""
+msgstr "証明書が置き換えられました"
 
 #: application/views/lotw_views/index.php:100
 msgid "Certificate expired"
@@ -14487,7 +14492,7 @@ msgstr "アンテナの仰角の値が無効です:"
 
 #: application/views/qso/index.php:38
 msgid "Please wait before saving another QSO"
-msgstr ""
+msgstr "次のQSOを保存する前にお待ちください"
 
 #: application/views/qso/index.php:86
 msgid "LIVE"
