@@ -217,7 +217,9 @@ function spawnGridsquareModal(loc_4char) {
 			'Sat': $("#sat").val(),
 			'Orbit': $("#orbits").val(),
             'Propagation': $('#propagation').val(),
-			'Type': 'VUCC'
+			'Type': 'VUCC',
+			'dateFrom': $('#dateFrom').val(),
+			'dateTo': $('#dateTo').val()
 		})
 		if (type == 'activated') {
 			ajax_data.searchmode = 'activated';
