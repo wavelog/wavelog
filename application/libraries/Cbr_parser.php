@@ -241,12 +241,15 @@ class CBR_Parser
                 case '144':
                     $band = '2m';
                     break;
+                case '220':
                 case '222':
                     $band = '1.25m';
                     break;
+                case '430':
                 case '432':
                     $band = '70cm';
                     break;
+                case '900':
                 case '902':
                     $band = '33cm';
                     break;
