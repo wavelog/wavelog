@@ -269,23 +269,25 @@ class Cabrillo extends CI_Controller {
 			$stxstring = null;
 			$srxstring = null;
 
-			//process all sent exchanges
+			//process all sent exchanges, handle those that are shorter than maximum gracefully
 			for ($i=1; $i <= $sent_exchange_count; $i++) { 
-				if($stxstring == null)
-				{
-					$stxstring = $qso["SENT_EXCH_" . $i];
-				}else{
-					$stxstring = $stxstring . ' ' . $qso["SENT_EXCH_" . $i];
+				if(isset($qso["SENT_EXCH_" . $i])){
+					if($stxstring == null){
+						$stxstring = $qso["SENT_EXCH_" . $i];
+					}else{
+						$stxstring = $stxstring . ' ' . $qso["SENT_EXCH_" . $i];
+					}
 				}
 			}
 
-			//process all sent exchanges
+			//process all sent exchanges, handle those that are shorter than maximum gracefully
 			for ($i=1; $i <= $rcvd_exchange_count; $i++) { 
-				if($srxstring == null)
-				{
-					$srxstring = $qso["RCVD_EXCH_" . $i];
-				}else{
-					$srxstring = $srxstring . ' ' . $qso["RCVD_EXCH_" . $i];
+				if(isset($qso["RCVD_EXCH_" . $i])){
+					if($srxstring == null){
+						$srxstring = $qso["RCVD_EXCH_" . $i];
+					}else{
+						$srxstring = $srxstring . ' ' . $qso["RCVD_EXCH_" . $i];
+					}
 				}
 			}
 
