@@ -1250,6 +1250,11 @@ $(function() {
 			$(this).attr('title', lang_click_to_prepare_logging);
 		});
 
+		// Apply responsive column visibility after rendering
+		if (typeof handleResponsiveColumns === 'function') {
+			handleResponsiveColumns();
+		}
+
 	// Initialize tooltips with error handling
 	try {
 		$('[data-bs-toggle="tooltip"]').each(function() {
@@ -3355,13 +3360,13 @@ $(function() {
 	 *
 	 * Column indices (0-based):
 	 * 0: Age, 1: Band, 2: Frequency, 3: Mode, 4: Submode, 5: Callsign, 6: Continent, 7: CQZ,
-	 * 8: Flag, 9: Entity, 10: DXCC, 11: de Callsign, 12: de Cont, 13: de CQZ,
-	 * 14: Last QSO, 15: Special, 16: Message
+	 * 8: Flag, 9: Entity, 10: de Callsign, 11: de Cont, 12: de CQZ, 13: Last QSO,
+	 * 14: Special, 15: Message
 	 *
 	 * Breakpoints:
 	 * - Full screen or > 1374px: Show all columns
-	 * - <= 1374px: Hide DXCC (10), CQZ (7), de CQZ (13), Last QSO (14), Submode (4)
-	 * - <= 1294px: Additionally hide Band (1), Cont (6), de Cont (12)
+	 * - <= 1374px: Hide CQZ (7), de CQZ (12), Last QSO (13), Submode (4)
+	 * - <= 1294px: Additionally hide Band (1), Cont (6), de Cont (11)
 	 * - <= 1024px: Additionally hide Flag (8)
 	 * - <= 500px: Show only Age (0), Freq (2), Callsign (5), Entity (9)
 	 */
