@@ -188,19 +188,25 @@ class Cabrillo extends CI_Controller {
 		//get flag about the presence of the serial number
 		$serial_number_present = ($this->input->post('serial_number_present', true) == 1);
 
+		//get flag about the presence of the trx number
+		$trx_number_present = ($this->input->post('trx_number_present', true) == 1);
+
 		//parse the uploaded file
-		$parsed_cbr = $this->cbr_parser->parse_from_file('./uploads/'.$data['upload_data']['file_name'], $serial_number_present);
+		$parsed_cbr = $this->cbr_parser->parse_from_file('./uploads/'.$data['upload_data']['file_name'], $serial_number_present, $trx_number_present);
 
-		//return with error, reset upload filesize
-		if(count($parsed_cbr["QSOS"]) < 1)
+		//if parsing fails, return with error, reset upload filesize
+		if(isset($parsed_cbr['error']))
 		{
-			$data['error'] = __("Broken CBR file - no QSO data or incomplete header found.");
+			//get error message from parser
+			$data['error'] = $parsed_cbr['error'];
 
+			//reset upload filesize
 			$data['max_upload'] = ini_get('upload_max_filesize');
 
 			//delete uploaded file
 			unlink('./uploads/' . $data['upload_data']['file_name']);
 
+			//return view
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('adif/import', $data);
 			$this->load->view('interface_assets/footer');
@@ -263,23 +269,25 @@ class Cabrillo extends CI_Controller {
 			$stxstring = null;
 			$srxstring = null;
 
-			//process all sent exchanges
+			//process all sent exchanges, handle those that are shorter than maximum gracefully
 			for ($i=1; $i <= $sent_exchange_count; $i++) { 
-				if($stxstring == null)
-				{
-					$stxstring = $qso["SENT_EXCH_" . $i];
-				}else{
-					$stxstring = $stxstring . ' ' . $qso["SENT_EXCH_" . $i];
+				if(isset($qso["SENT_EXCH_" . $i])){
+					if($stxstring == null){
+						$stxstring = $qso["SENT_EXCH_" . $i];
+					}else{
+						$stxstring = $stxstring . ' ' . $qso["SENT_EXCH_" . $i];
+					}
 				}
 			}
 
-			//process all sent exchanges
+			//process all sent exchanges, handle those that are shorter than maximum gracefully
 			for ($i=1; $i <= $rcvd_exchange_count; $i++) { 
-				if($srxstring == null)
-				{
-					$srxstring = $qso["RCVD_EXCH_" . $i];
-				}else{
-					$srxstring = $srxstring . ' ' . $qso["RCVD_EXCH_" . $i];
+				if(isset($qso["RCVD_EXCH_" . $i])){
+					if($srxstring == null){
+						$srxstring = $qso["RCVD_EXCH_" . $i];
+					}else{
+						$srxstring = $srxstring . ' ' . $qso["RCVD_EXCH_" . $i];
+					}
 				}
 			}
 
