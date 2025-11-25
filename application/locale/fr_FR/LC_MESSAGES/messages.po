@@ -158,6 +158,7 @@ msgstr "Carte des Locator activés"
 #: application/views/interface_assets/footer.php:49
 #: application/views/visitor/layout/footer.php:12
 #: application/views/visitor/layout/header.php:68
+#: application/controllers/Awards.php:1079
 msgid "Gridsquares"
 msgstr "Locators"
 
@@ -331,6 +332,15 @@ msgstr "Trophées"
 #: application/controllers/Awards.php:2247
 #: application/controllers/Awards.php:2260
 #: application/controllers/Awards.php:2335
+#: application/controllers/Awards.php:1064
+#: application/controllers/Awards.php:1270
+#: application/controllers/Awards.php:1422
+#: application/controllers/Awards.php:1899
+#: application/controllers/Awards.php:2040
+#: application/controllers/Awards.php:2170
+#: application/controllers/Awards.php:2249
+#: application/controllers/Awards.php:2262
+#: application/controllers/Awards.php:2337
 #, php-format
 msgid "Awards - %s"
 msgstr "Trophées - %s"
@@ -549,20 +559,24 @@ msgstr "Trophées - "
 
 #: application/controllers/Awards.php:1044
 #: application/controllers/Awards.php:1079
+#: application/controllers/Awards.php:1080
 msgid "Gridsquares worked"
 msgstr "Locators contactés"
 
 #: application/controllers/Awards.php:1045
 #: application/controllers/Awards.php:1080
+#: application/controllers/Awards.php:1081
 msgid "Gridsquares confirmed on LoTW"
 msgstr "Locators confirmés par LoTW"
 
 #: application/controllers/Awards.php:1046
 #: application/controllers/Awards.php:1081
+#: application/controllers/Awards.php:1082
 msgid "Gridsquares confirmed by paper QSL"
 msgstr "Locators confirmés par Carte QSL papier"
 
 #: application/controllers/Awards.php:1063
+#: application/controllers/Awards.php:1064
 msgid "Fred Fish Memorial Award (FFMA)"
 msgstr "Fred Fish Memorial Award (FFMA)"
 
@@ -573,39 +587,47 @@ msgstr "Fred Fish Memorial Award (FFMA)"
 #: application/views/qso/index.php:615 application/views/user/edit.php:710
 #: application/views/view_log/qso.php:431
 #: application/views/view_log/qso.php:742
+#: application/controllers/Awards.php:1270
 msgid "SIG"
 msgstr "SIG"
 
 #: application/controllers/Awards.php:1287
+#: application/controllers/Awards.php:1289
 msgid "Awards - SIG - "
 msgstr "Trophées - SIG - "
 
 #: application/controllers/Awards.php:1420 application/views/bands/index.php:60
+#: application/controllers/Awards.php:1422
 msgid "WAP"
 msgstr "WAP"
 
 #: application/controllers/Awards.php:2038
 #: application/views/awards/itu/index.php:23
+#: application/controllers/Awards.php:2040
 msgid "ITU Zones"
 msgstr "Zones ITU"
 
 #: application/controllers/Awards.php:2168
 #: application/views/awards/wac/index.php:8
 #: application/views/interface_assets/header.php:202
+#: application/controllers/Awards.php:2170
 msgid "Worked All Continents (WAC)"
 msgstr "Worked All Continents (WAC)"
 
 #: application/controllers/Awards.php:2247
+#: application/controllers/Awards.php:2249
 msgid "WAE"
 msgstr "WAE"
 
 #: application/controllers/Awards.php:2260
 #: application/views/interface_assets/header.php:212
+#: application/controllers/Awards.php:2262
 msgid "73 on 73"
 msgstr "73 sur 73"
 
 #: application/controllers/Awards.php:2335
 #: application/views/awards/wpx/wpx_details.php:19
+#: application/controllers/Awards.php:2337
 msgid "WPX"
 msgstr "WPX"
 
@@ -18287,6 +18309,11 @@ msgstr ""
 
 #: application/views/gridmap/index.php:37
 msgid "This Year"
+msgstr ""
+
+#: application/controllers/Awards.php:1047
+#: application/controllers/Awards.php:1083
+msgid "Total Gridsquares worked"
 msgstr ""
 
 #~ msgid "LoTW Rcvd status will be reset."
