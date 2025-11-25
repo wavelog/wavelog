@@ -304,6 +304,24 @@ function hideLegend() {
 	$("#gridmapLegend").hide();
 }
 
+function hexToRgba(hex, alpha = 1) {
+	if (!hex) return null;
+	// Remove the leading "#"
+	hex = hex.replace(/^#/, '');
+
+	// Expand short form (#f0a → #ff00aa)
+	if (hex.length === 3) {
+		hex = hex.split('').map(c => c + c).join('');
+	}
+
+	const num = parseInt(hex, 16);
+	const r = (num >> 16) & 255;
+	const g = (num >> 8) & 255;
+	const b = num & 255;
+
+	return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
 $(document).ready(function(){
 	gridPlot(this.form, visitor);
 	$(window).resize(function () {
