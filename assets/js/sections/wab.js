@@ -1,11 +1,5 @@
 let confirmedColor = user_map_custom.qsoconfirm.color;
 let workedColor = user_map_custom.qso.color;
-let unworkedColor = '';
-if (typeof(user_map_custom.unworked) !== 'undefined') {
-	unworkedColor = user_map_custom.unworked.color;
-} else {
-	unworkedColor = 'red';
-}
 
 $('#band').change(function(){
 	var band = $("#band option:selected").text();

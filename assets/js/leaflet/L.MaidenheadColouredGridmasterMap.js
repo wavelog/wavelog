@@ -81,10 +81,10 @@ L.Maidenhead = L.LayerGroup.extend({
 							var rectConfirmed = L.rectangle(bounds, {className: 'grid-rectangle grid-confirmed', color: this.options.confirmedColor, weight: 1, fillOpacity: 1, fill:true, interactive: false});
 							this.addLayer(rectConfirmed);
 						} else if (grid_four_paper.includes(locator)) {
-							var rectPaper = L.rectangle(bounds, {className: 'grid-rectangle grid-confirmed-paper', color: this.options.workedColor, weight: 1, fillOpacity: 1, fill:true, interactive: false});
+							var rectPaper = L.rectangle(bounds, {className: 'grid-rectangle grid-confirmed-paper', color: paperColor, weight: 1, fillOpacity: 1, fill:true, interactive: false});
 							this.addLayer(rectPaper);
 						} else {
-							var rectWorked = L.rectangle(bounds, {className: 'grid-rectangle grid-unworked', color: this.options.unworkedColor, weight: 1, fillOpacity: 1, fill:true, interactive: false})
+							var rectWorked = L.rectangle(bounds, {className: 'grid-rectangle grid-unworked', color: this.options.workedColor, weight: 1, fillOpacity: 1, fill:true, interactive: false})
 							this.addLayer(rectWorked);
 						}
 						// Controls text on grid on various zoom levels
