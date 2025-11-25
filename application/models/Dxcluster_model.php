@@ -630,21 +630,23 @@ class Dxcluster_model extends CI_Model {
 			$spot->dxcc_spotted = (object)[];
 		}
 
-	// Initialize all properties at once using array merge
-	$defaults = [
-		'sota_ref' => '',
-		'pota_ref' => '',
-		'iota_ref' => '',
-		'wwff_ref' => '',
-		'isContest' => false,
-		'contestName' => null
-	];
+		// Initialize all properties at once using array merge
+		$defaults = [
+			'sota_ref' => '',
+			'pota_ref' => '',
+			'iota_ref' => '',
+			'wwff_ref' => '',
+			'isContest' => false,
+			'contestName' => null
+		];
 
-	foreach ($defaults as $prop => $defaultValue) {
-		if (!property_exists($spot->dxcc_spotted, $prop)) {
-			$spot->dxcc_spotted->$prop = $defaultValue;
+		foreach ($defaults as $prop => $defaultValue) {
+			if (!property_exists($spot->dxcc_spotted, $prop)) {
+				$spot->dxcc_spotted->$prop = $defaultValue;
+			}
 		}
-	}		// Early exit if message is empty
+
+		// Early exit if message is empty
 		$message = $spot->message ?? '';
 		if (empty($message)) {
 			return $spot;
@@ -657,9 +659,10 @@ class Dxcluster_model extends CI_Model {
 		$needsPota = empty($spot->dxcc_spotted->pota_ref);
 		$needsIota = empty($spot->dxcc_spotted->iota_ref);
 		$needsWwff = empty($spot->dxcc_spotted->wwff_ref);
+		$hasContestData = property_exists($spot->dxcc_spotted, 'isContest');
 
-		// Early exit if all references already populated
-		if (!$needsSota && !$needsPota && !$needsIota && !$needsWwff && $spot->dxcc_spotted->isContest) {
+		// Early exit if all references already populated and contest data exists
+		if (!$needsSota && !$needsPota && !$needsIota && !$needsWwff && $hasContestData) {
 			return $spot;
 		}
 
