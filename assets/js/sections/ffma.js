@@ -7,12 +7,6 @@ let confirmedColor = user_map_custom.qsoconfirm.color;
 // Take station color for paper QSLs here
 let paperColor = user_map_custom.station.color
 let workedColor = user_map_custom.qso.color;
-let unworkedColor = '';
-if (typeof(user_map_custom.unworked) !== 'undefined') {
-	unworkedColor = user_map_custom.unworked.color;
-} else {
-	unworkedColor = 'red';
-}
 
 function gridPlot(form) {
     $(".ld-ext-right-plot").addClass('running');
