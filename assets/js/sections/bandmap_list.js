@@ -2015,6 +2015,8 @@ $(function() {
 				btn.removeClass('btn-success').addClass('btn-secondary');
 				isCatTrackingEnabled = false;
 				window.isCatTrackingEnabled = false;
+				window.isFrequencyMarkerEnabled = false;
+				catState = 'off';
 
 				// Show offline status instead of just hiding
 				if (typeof window.displayOfflineStatus === 'function') {
@@ -2028,6 +2030,12 @@ $(function() {
 
 				// Unlock table sorting
 				unlockTableSorting();
+
+				// Clear frequency gradient colors and purple mode indicators
+				clearFrequencyGradientColors();
+
+				// Reset button visual to OFF state
+				updateButtonVisual('off');
 
 				// Reset band filter to 'All' and fetch all bands
 				const currentBands = $("#band").val() || [];
