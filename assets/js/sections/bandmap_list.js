@@ -971,16 +971,14 @@ $(function() {
 			} else {
 				dxcc_wked_info = "text-danger";
 			}
-			// Color code callsign: green=confirmed, yellow=worked
-			if (single.cnfmd_call) {
-				wked_info = "text-success";
-			} else if (single.worked_call) {
-				wked_info = "text-warning";
-			} else {
-				wked_info = "";
-			}
-
-		// Build LoTW badge with color coding based on last upload age
+		// Color code callsign: green=confirmed, yellow=worked, red=new
+		if (single.cnfmd_call) {
+			wked_info = "text-success";
+		} else if (single.worked_call) {
+			wked_info = "text-warning";
+		} else {
+			wked_info = "text-danger";
+		}		// Build LoTW badge with color coding based on last upload age
 		var lotw_badge = '';
 		if (single.dxcc_spotted && single.dxcc_spotted.lotw_user) {
 			let lclass = '';
