@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-11-25 06:28+0000\n"
+"POT-Creation-Date: 2025-11-25 07:14+0000\n"
 "PO-Revision-Date: 2025-08-05 07:10+0000\n"
 "Last-Translator: Mathias Regner <mabregner@gmail.com>\n"
 "Language-Team: Hungarian <https://translate.wavelog.org/projects/wavelog/"
@@ -640,11 +640,7 @@ msgstr "Cabrillo exportálás"
 msgid "Cabrillo Import"
 msgstr "Cabrillo importálás"
 
-#: application/controllers/Cabrillo.php:197
-msgid "Broken CBR file - no QSO data or incomplete header found."
-msgstr "Sérült CBR fájl – nincs QSO adat vagy hiányos a header."
-
-#: application/controllers/Cabrillo.php:243
+#: application/controllers/Cabrillo.php:249
 #, php-format
 msgid ""
 "QSO %d not found or more than 1 QSO found that match the criteria of the CBR "
@@ -653,7 +649,7 @@ msgstr ""
 "QSO %d nem található, vagy több mint 1 QSO-t találtak, amelyek megfelelnek a "
 "CBR fájl kritériumainak. Biztonsági okokból kihagyás."
 
-#: application/controllers/Cabrillo.php:301
+#: application/controllers/Cabrillo.php:309
 msgid "CBR Data Imported"
 msgstr "CBR adatok importálva"
 
@@ -3181,6 +3177,19 @@ msgstr ""
 msgid "QRZCQ Error"
 msgstr ""
 
+#: application/libraries/Cbr_parser.php:111
+#: application/libraries/Cbr_parser.php:160
+msgid "Broken CBR file - no valid exchange or callsigns found"
+msgstr ""
+
+#: application/libraries/Cbr_parser.php:137
+msgid "Broken CBR file - no QSO data found."
+msgstr ""
+
+#: application/libraries/Cbr_parser.php:147
+msgid "Broken CBR file - incomplete header found."
+msgstr ""
+
 #: application/libraries/Subdivisions.php:31
 msgctxt "Division Name (States in various countries)."
 msgid "Province"
@@ -4549,7 +4558,7 @@ msgid "Toggle all checkboxes"
 msgstr ""
 
 #: application/views/adif/import.php:221 application/views/adif/import.php:364
-#: application/views/adif/import.php:384 application/views/adif/import.php:422
+#: application/views/adif/import.php:384 application/views/adif/import.php:426
 #: application/views/clublog/export.php:50
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:55
 #: application/views/webadif/export.php:55
@@ -4709,17 +4718,23 @@ msgstr ""
 
 #: application/views/adif/import.php:415
 msgid ""
+"The CBR file contains a TRX number at the end of each QSO line (for multi-op "
+"stations)"
+msgstr ""
+
+#: application/views/adif/import.php:419
+msgid ""
 "A serial number is ALWAYS part of the exchange for both parties in this "
 "contest."
 msgstr ""
 
-#: application/views/adif/import.php:417
+#: application/views/adif/import.php:421
 msgid ""
 "If you or your partner only sometimes exchange serial numbers, please leave "
 "this unchecked."
 msgstr ""
 
-#: application/views/adif/import.php:418
+#: application/views/adif/import.php:422
 msgid ""
 "If unchecked, this will erase the default serial number that (for example) "
 "N1MM+ produces. If checked, it will correct the serial number if necessary."
@@ -17018,6 +17033,9 @@ msgstr ""
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr ""
+
+#~ msgid "Broken CBR file - no QSO data or incomplete header found."
+#~ msgstr "Sérült CBR fájl – nincs QSO adat vagy hiányos a header."
 
 #~ msgid "CFD Export"
 #~ msgstr "CFD exportálás"

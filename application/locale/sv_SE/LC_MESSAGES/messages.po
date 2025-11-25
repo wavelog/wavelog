@@ -650,6 +650,7 @@ msgid "Broken CBR file - no QSO data or incomplete header found."
 msgstr "Trasig CBR-fil - ingen QSO-data eller ofullständig header hittades."
 
 #: application/controllers/Cabrillo.php:243
+#: application/controllers/Cabrillo.php:249
 #, php-format
 msgid ""
 "QSO %d not found or more than 1 QSO found that match the criteria of the CBR "
@@ -659,6 +660,7 @@ msgstr ""
 "CBR-filen. Hoppar över som en säkerhetsåtgärd."
 
 #: application/controllers/Cabrillo.php:301
+#: application/controllers/Cabrillo.php:309
 msgid "CBR Data Imported"
 msgstr "CBR-data importerad"
 
@@ -4636,6 +4638,7 @@ msgstr "Växla alla kryssrutor"
 #: application/views/clublog/export.php:50
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:55
 #: application/views/webadif/export.php:55
+#: application/views/adif/import.php:426
 msgid "Upload"
 msgstr "Ladda upp"
 
@@ -4817,14 +4820,14 @@ msgstr "Tävlingens namn, endast om tävlings-ID i CBR är annorlunda"
 msgid "Optional"
 msgstr "Valfritt"
 
-#: application/views/adif/import.php:415
+#: application/views/adif/import.php:415 application/views/adif/import.php:419
 msgid ""
 "A serial number is ALWAYS part of the exchange for both parties in this "
 "contest."
 msgstr ""
 "Ett serienummer är ALLTID en del av utbytet för båda parter i denna tävling."
 
-#: application/views/adif/import.php:417
+#: application/views/adif/import.php:417 application/views/adif/import.php:421
 msgid ""
 "If you or your partner only sometimes exchange serial numbers, please leave "
 "this unchecked."
@@ -4832,7 +4835,7 @@ msgstr ""
 "Om du eller din partner bara ibland utbyter serienummer, lämna detta "
 "omarkerat."
 
-#: application/views/adif/import.php:418
+#: application/views/adif/import.php:418 application/views/adif/import.php:422
 msgid ""
 "If unchecked, this will erase the default serial number that (for example) "
 "N1MM+ produces. If checked, it will correct the serial number if necessary."
@@ -17939,6 +17942,25 @@ msgstr ""
 
 #: application/views/lotw_views/index.php:97
 msgid "Certificate superseded"
+msgstr ""
+
+#: application/libraries/Cbr_parser.php:111
+#: application/libraries/Cbr_parser.php:160
+msgid "Broken CBR file - no valid exchange or callsigns found"
+msgstr ""
+
+#: application/libraries/Cbr_parser.php:137
+msgid "Broken CBR file - no QSO data found."
+msgstr ""
+
+#: application/libraries/Cbr_parser.php:147
+msgid "Broken CBR file - incomplete header found."
+msgstr ""
+
+#: application/views/adif/import.php:415
+msgid ""
+"The CBR file contains a TRX number at the end of each QSO line (for multi-op "
+"stations)"
 msgstr ""
 
 #~ msgid "LoTW Rcvd status will be reset."

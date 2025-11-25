@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-11-25 06:28+0000\n"
+"POT-Creation-Date: 2025-11-25 07:14+0000\n"
 "PO-Revision-Date: 2025-10-22 00:19+0000\n"
 "Last-Translator: David Quental <ct1drb72@gmail.com>\n"
 "Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -647,12 +647,7 @@ msgstr "Exportar Cabrillo"
 msgid "Cabrillo Import"
 msgstr "Importación de Cabrillo"
 
-#: application/controllers/Cabrillo.php:197
-msgid "Broken CBR file - no QSO data or incomplete header found."
-msgstr ""
-"Archivo CBR roto: no se encontraron datos de QSO o encabezado incompleto."
-
-#: application/controllers/Cabrillo.php:243
+#: application/controllers/Cabrillo.php:249
 #, php-format
 msgid ""
 "QSO %d not found or more than 1 QSO found that match the criteria of the CBR "
@@ -661,7 +656,7 @@ msgstr ""
 "QSO %d no encontrado o se encontraron más de 1 QSO que coinciden con los "
 "criterios del archivo CBR. Saltando como medida de seguridad."
 
-#: application/controllers/Cabrillo.php:301
+#: application/controllers/Cabrillo.php:309
 msgid "CBR Data Imported"
 msgstr "Datos CBR importados"
 
@@ -3256,6 +3251,19 @@ msgstr "Varios usuarios encontrados por slug"
 msgid "QRZCQ Error"
 msgstr "Error de QRZCQ"
 
+#: application/libraries/Cbr_parser.php:111
+#: application/libraries/Cbr_parser.php:160
+msgid "Broken CBR file - no valid exchange or callsigns found"
+msgstr ""
+
+#: application/libraries/Cbr_parser.php:137
+msgid "Broken CBR file - no QSO data found."
+msgstr ""
+
+#: application/libraries/Cbr_parser.php:147
+msgid "Broken CBR file - incomplete header found."
+msgstr ""
+
 #: application/libraries/Subdivisions.php:31
 msgctxt "Division Name (States in various countries)."
 msgid "Province"
@@ -4650,7 +4658,7 @@ msgid "Toggle all checkboxes"
 msgstr "Activar todas las casillas de verificación"
 
 #: application/views/adif/import.php:221 application/views/adif/import.php:364
-#: application/views/adif/import.php:384 application/views/adif/import.php:422
+#: application/views/adif/import.php:384 application/views/adif/import.php:426
 #: application/views/clublog/export.php:50
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:55
 #: application/views/webadif/export.php:55
@@ -4837,13 +4845,19 @@ msgstr "Opcional"
 
 #: application/views/adif/import.php:415
 msgid ""
+"The CBR file contains a TRX number at the end of each QSO line (for multi-op "
+"stations)"
+msgstr ""
+
+#: application/views/adif/import.php:419
+msgid ""
 "A serial number is ALWAYS part of the exchange for both parties in this "
 "contest."
 msgstr ""
 "Un número de serie es SIEMPRE parte del intercambio para ambas partes en "
 "este concurso."
 
-#: application/views/adif/import.php:417
+#: application/views/adif/import.php:421
 msgid ""
 "If you or your partner only sometimes exchange serial numbers, please leave "
 "this unchecked."
@@ -4851,7 +4865,7 @@ msgstr ""
 "Si tú o tu pareja solo intercambian números de serie a veces, por favor deja "
 "esto sin marcar."
 
-#: application/views/adif/import.php:418
+#: application/views/adif/import.php:422
 msgid ""
 "If unchecked, this will erase the default serial number that (for example) "
 "N1MM+ produces. If checked, it will correct the serial number if necessary."
@@ -18054,6 +18068,10 @@ msgstr "Enviar solicitud"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Recibido"
+
+#~ msgid "Broken CBR file - no QSO data or incomplete header found."
+#~ msgstr ""
+#~ "Archivo CBR roto: no se encontraron datos de QSO o encabezado incompleto."
 
 #~ msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 #~ msgstr "la lotw_qslrdate no es válida (YYYYMMDD)"
