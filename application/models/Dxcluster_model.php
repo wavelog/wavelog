@@ -92,11 +92,19 @@ class Dxcluster_model extends CI_Model {
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			$jsonraw = curl_exec($ch);
 			$curl_error = curl_error($ch);
+			$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 			curl_close($ch);
 
 			// Check for curl errors
 			if ($curl_error || $jsonraw === false) {
 				log_message('error', 'DXCluster: Failed to fetch spots from ' . $dxcache_url . ': ' . $curl_error);
+				return [];
+			}
+
+			// Check HTTP status code
+			if ($http_code !== 200) {
+				$sample = substr($jsonraw, 0, 500);
+				log_message('error', 'DXCluster: HTTP error ' . $http_code . ' from ' . $dxcache_url . '. Response: ' . $sample);
 				return [];
 			}
 
@@ -106,10 +114,27 @@ class Dxcluster_model extends CI_Model {
 			}
 
 			$json = json_decode($jsonraw);
+			$json_error = json_last_error();
 
-			// Check for JSON decode errors
-			if (json_last_error() !== JSON_ERROR_NONE || !is_array($json)) {
-				log_message('error', 'DXCluster: Invalid JSON received: ' . json_last_error_msg());
+			// Check for JSON decode errors or unexpected data type
+			if ($json_error !== JSON_ERROR_NONE) {
+				// Malformed JSON - log error with sample of received data
+				$sample = substr($jsonraw, 0, 500);
+				log_message('error', 'DXCluster: Malformed JSON received from ' . $dxcache_url . ' - ' . json_last_error_msg() . '. Data sample: ' . $sample);
+				return [];
+			}
+
+			if (!is_array($json)) {
+				// Valid JSON but not an array - log what we received
+				$sample = substr($jsonraw, 0, 500);
+				$received_type = is_object($json) ? 'object' : gettype($json);
+				log_message('error', 'DXCluster: Expected array but received ' . $received_type . ' from ' . $dxcache_url . '. Data: ' . $sample);
+				return [];
+			}
+
+			// Check if array is empty
+			if (empty($json)) {
+				log_message('debug', 'DXCluster: Empty array received from ' . $dxcache_url . ' (no spots available)');
 				return [];
 			}
 			$date = date('Ymd', time());
