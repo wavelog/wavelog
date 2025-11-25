@@ -235,7 +235,7 @@ class Visitor extends CI_Controller {
 
 
 		// Get Confirmed LoTW & Paper Squares (non VUCC)
-		$query = $this->gridmap_model->get_band_confirmed('SAT', 'All', 'false', 'true', 'false', 'false', 'All', 'All', 'All', 'All', '', $logbooks_locations_array);
+		$query = $this->gridmap_model->get_band_confirmed('SAT', 'All', 'false', 'true', 'false', 'false', 'All', 'All', 'All', 'All', '', null, null, $logbooks_locations_array);
 
 
 		if ($query && $query->num_rows() > 0)
@@ -271,7 +271,7 @@ class Visitor extends CI_Controller {
 		}
 
 		// Get worked squares
-		$query = $this->gridmap_model->get_band('SAT', 'All', 'false', 'true', 'false', 'false', 'All', 'All', 'All', 'All', '', $logbooks_locations_array);
+		$query = $this->gridmap_model->get_band('SAT', 'All', 'false', 'true', 'false', 'false', 'All', 'All', 'All', 'All', '', null, null,$logbooks_locations_array);
 
 		if ($query && $query->num_rows() > 0)
 		{
@@ -305,7 +305,7 @@ class Visitor extends CI_Controller {
 			}
 		}
 
-		$query_vucc = $this->gridmap_model->get_band_worked_vucc_squares('SAT', 'All', 'false', 'true', 'false', 'false', 'All', 'All', 'All', $logbooks_locations_array);
+		$query_vucc = $this->gridmap_model->get_band_worked_vucc_squares('SAT', 'All', 'false', 'true', 'false', 'false', 'All', 'All', 'All', null, null, $logbooks_locations_array);
 
 		if ($query && $query_vucc->num_rows() > 0)
 		{
@@ -332,7 +332,7 @@ class Visitor extends CI_Controller {
 		}
 
 		// Confirmed Squares
-		$query_vucc = $this->gridmap_model->get_band_confirmed_vucc_squares('SAT', 'All', 'false', 'true', 'false', 'false', 'All', 'All', 'All', $logbooks_locations_array);
+		$query_vucc = $this->gridmap_model->get_band_confirmed_vucc_squares('SAT', 'All', 'false', 'true', 'false', 'false', 'All', 'All', 'All', null, null, $logbooks_locations_array);
 
 		if ($query && $query_vucc->num_rows() > 0)
 		{
@@ -391,6 +391,8 @@ class Visitor extends CI_Controller {
 		$data['gridsquares_fields_confirmed'] = __("Fields confirmed");
 		$data['gridsquares_fields_not_confirmed'] = __("Fields not confirmed");
 		$data['gridsquares_fields_total_worked'] = __("Total fields worked");
+
+		$data['user_map_custom'] = $this->optionslib->get_map_custom(true, $slug);
 
 		$data['visitor'] = true;
 
