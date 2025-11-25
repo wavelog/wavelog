@@ -1698,9 +1698,11 @@ $(function() {
 					if (cachedSpot && cachedSpot.band) {
 						shouldDecrementTTL = (cachedSpot.band === bandForAPI);
 					}
-				}					if (shouldDecrementTTL) {
-						newTTL = ttl - 1;  // Decrement only if in scope of this fetch
-					}
+				}
+
+				if (shouldDecrementTTL) {
+					newTTL = ttl - 1;  // Decrement only if in scope of this fetch
+				}
 
 					if (newSpotKeys.has(key)) {
 						newTTL = 1;  // Reset to 1 if spot still exists (keeps it valid)

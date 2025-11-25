@@ -745,6 +745,12 @@ $(document).ready(function() {
             }
         }
 
+        // Validate that we have frequency data before proceeding
+        if (!data.frequency || data.frequency == 0 || data.frequency == null) {
+            console.warn('CAT: No valid frequency data received');
+            return;
+        }
+
         // Force update by clearing catValue (prevents cat2UI from blocking updates)
         $frequency.removeData('catValue');
         cat_updating_frequency = true; // Set flag before CAT update
