@@ -3227,8 +3227,14 @@ $(function() {
 				window.isCatTrackingEnabled = true;
 				catState = 'on';
 
+				// Display last known data if available
 				if (window.lastCATData && typeof window.displayRadioStatus === 'function') {
 					window.displayRadioStatus('success', window.lastCATData);
+				}
+
+				// Trigger immediate polling update if using polling radio
+				if (selectedRadio !== 'ws' && typeof updateFromCAT === 'function') {
+					updateFromCAT();
 				}
 
 				// In normal mode: only show gradient, don't change filters or disable controls
