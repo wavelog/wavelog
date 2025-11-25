@@ -3415,6 +3415,7 @@ $(function() {
 			$('.spottable th:nth-child(12), .spottable td:nth-child(12)').addClass('column-hidden'); // de Cont
 			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de CQZ
 			$('.spottable th:nth-child(14), .spottable td:nth-child(14)').addClass('column-hidden'); // Last QSO
+			$('.spottable th:nth-child(16), .spottable td:nth-child(16)').addClass('column-hidden'); // Message
 		} else if (containerWidth <= 1294) {
 			// Hide: CQZ, de CQZ, Last QSO, Submode, Band, Cont, de Cont
 			$('.spottable th:nth-child(2), .spottable td:nth-child(2)').addClass('column-hidden'); // Band
