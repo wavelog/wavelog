@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-11-25 06:28+0000\n"
+"POT-Creation-Date: 2025-11-25 07:14+0000\n"
 "PO-Revision-Date: 2025-11-24 07:14+0000\n"
 "Last-Translator: BG9JDI <lyx8851@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -656,11 +656,7 @@ msgstr "导出 Cabrillo"
 msgid "Cabrillo Import"
 msgstr "Cabrillo 导入"
 
-#: application/controllers/Cabrillo.php:197
-msgid "Broken CBR file - no QSO data or incomplete header found."
-msgstr "CBR 文件损坏 - 未找到 QSO 数据或文件头不完整。"
-
-#: application/controllers/Cabrillo.php:243
+#: application/controllers/Cabrillo.php:249
 #, php-format
 msgid ""
 "QSO %d not found or more than 1 QSO found that match the criteria of the CBR "
@@ -669,7 +665,7 @@ msgstr ""
 "未找到匹配 CBR 文件条件的 %d 条 QSO 记录，或找到超过 1 条符合条件的 QSO 记"
 "录。出于安全考虑，已跳过。"
 
-#: application/controllers/Cabrillo.php:301
+#: application/controllers/Cabrillo.php:309
 msgid "CBR Data Imported"
 msgstr "CBR 数据导入完成"
 
@@ -3200,6 +3196,19 @@ msgstr "通过标识找到多个用户"
 msgid "QRZCQ Error"
 msgstr "QRZCQ 错误"
 
+#: application/libraries/Cbr_parser.php:111
+#: application/libraries/Cbr_parser.php:160
+msgid "Broken CBR file - no valid exchange or callsigns found"
+msgstr ""
+
+#: application/libraries/Cbr_parser.php:137
+msgid "Broken CBR file - no QSO data found."
+msgstr ""
+
+#: application/libraries/Cbr_parser.php:147
+msgid "Broken CBR file - incomplete header found."
+msgstr ""
+
 #: application/libraries/Subdivisions.php:31
 msgctxt "Division Name (States in various countries)."
 msgid "Province"
@@ -4570,7 +4579,7 @@ msgid "Toggle all checkboxes"
 msgstr "全选/全不选"
 
 #: application/views/adif/import.php:221 application/views/adif/import.php:364
-#: application/views/adif/import.php:384 application/views/adif/import.php:422
+#: application/views/adif/import.php:384 application/views/adif/import.php:426
 #: application/views/clublog/export.php:50
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:55
 #: application/views/webadif/export.php:55
@@ -4740,17 +4749,23 @@ msgstr "可选"
 
 #: application/views/adif/import.php:415
 msgid ""
+"The CBR file contains a TRX number at the end of each QSO line (for multi-op "
+"stations)"
+msgstr ""
+
+#: application/views/adif/import.php:419
+msgid ""
 "A serial number is ALWAYS part of the exchange for both parties in this "
 "contest."
 msgstr "序列号始终是本次比赛双方交换的一部分。"
 
-#: application/views/adif/import.php:417
+#: application/views/adif/import.php:421
 msgid ""
 "If you or your partner only sometimes exchange serial numbers, please leave "
 "this unchecked."
 msgstr "如果你和你的伙伴只是有时交换序列号，请不要勾选。"
 
-#: application/views/adif/import.php:418
+#: application/views/adif/import.php:422
 msgid ""
 "If unchecked, this will erase the default serial number that (for example) "
 "N1MM+ produces. If checked, it will correct the serial number if necessary."
@@ -17372,6 +17387,9 @@ msgstr "提交请求"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "收"
+
+#~ msgid "Broken CBR file - no QSO data or incomplete header found."
+#~ msgstr "CBR 文件损坏 - 未找到 QSO 数据或文件头不完整。"
 
 #~ msgid "LoTW Rcvd status will be reset."
 #~ msgstr "LOTW 接收状态将被重置。"
