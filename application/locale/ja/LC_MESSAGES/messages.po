@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2025-11-25 07:14+0000\n"
 "PO-Revision-Date: 2025-11-25 09:56+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1276,7 +1276,7 @@ msgstr "ログブック"
 #: application/views/qslprint/qsolist.php:18
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:108
 #: application/views/timeline/index.php:56 application/views/user/edit.php:623
-#: application/views/user/edit.php:816
+#: application/views/user/edit.php:816 application/views/gridmap/index.php:171
 msgid "QSL"
 msgstr "QSL"
 
@@ -1315,6 +1315,7 @@ msgstr "QSL"
 #: application/views/timeline/index.php:60 application/views/user/edit.php:624
 #: application/views/user/edit.php:826 application/views/view_log/qso.php:537
 #: application/views/view_log/qso.php:542
+#: application/views/gridmap/index.php:179
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1350,6 +1351,7 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:309
 #: application/views/timeline/index.php:64 application/views/user/edit.php:625
 #: application/views/user/edit.php:834 application/views/user/edit.php:908
+#: application/views/gridmap/index.php:187
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1441,6 +1443,7 @@ msgstr "eQSL"
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/widgets/qsos.php:18
+#: application/views/gridmap/index.php:134
 msgid "Mode"
 msgstr "モード"
 
@@ -1624,6 +1627,7 @@ msgstr "州"
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/view_log/qso.php:680
 #: application/views/visitor/index.php:27
+#: application/views/gridmap/index.php:223
 msgid "Gridsquare"
 msgstr "グリッドスクエア"
 
@@ -1653,6 +1657,7 @@ msgstr "グリッドスクエア"
 #: application/views/user/edit.php:346
 #: application/views/view_log/partial/log_ajax.php:14
 #: application/views/visitor/index.php:30
+#: application/views/gridmap/index.php:225
 msgid "Distance"
 msgstr "距離"
 
@@ -1739,7 +1744,7 @@ msgstr "距離"
 #: application/views/view_log/partial/log.php:12
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
-#: application/views/widgets/qsos.php:21
+#: application/views/widgets/qsos.php:21 application/views/gridmap/index.php:56
 msgid "Band"
 msgstr "バンド"
 
@@ -2152,6 +2157,7 @@ msgstr "バージョン情報はどのユーザーにも表示されません"
 #: application/controllers/Visitor.php:210
 #: application/controllers/Visitor.php:476
 #: application/controllers/Widgets.php:68
+#: application/controllers/Visitor.php:478
 msgid "Unknown Public Page."
 msgstr "不明な公開ページ。"
 
@@ -2498,6 +2504,7 @@ msgstr ""
 #: application/controllers/Visitor.php:206
 #: application/controllers/Visitor.php:472
 #: application/controllers/Widgets.php:64
+#: application/controllers/Visitor.php:474
 msgid "Empty Logbook"
 msgstr "空のログブック"
 
@@ -3181,10 +3188,12 @@ msgstr "衛星グリッドスクエアマップ"
 
 #: application/controllers/Visitor.php:410
 #: application/views/stationsetup/stationsetup.php:38
+#: application/controllers/Visitor.php:412
 msgid "Public Search"
 msgstr "パブリックサーチ"
 
 #: application/controllers/Visitor.php:443
+#: application/controllers/Visitor.php:445
 msgid "Export Map"
 msgstr "マップをエクスポート"
 
@@ -3234,7 +3243,8 @@ msgstr "QRZCQ エラー"
 #: application/libraries/Cbr_parser.php:111
 #: application/libraries/Cbr_parser.php:160
 msgid "Broken CBR file - no valid exchange or callsigns found"
-msgstr "CBRファイルが壊れています - 有効な交換またはコールサインが見つかりません"
+msgstr ""
+"CBRファイルが壊れています - 有効な交換またはコールサインが見つかりません"
 
 #: application/libraries/Cbr_parser.php:137
 msgid "Broken CBR file - no QSO data found."
@@ -3498,6 +3508,7 @@ msgstr "QSOが更新されました"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/views/gridmap/index.php:227
 msgid "Bearing"
 msgstr "方位"
 
@@ -3745,6 +3756,12 @@ msgstr "違い"
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:800
 #: application/views/visitor/layout/footer.php:173
+#: application/views/gridmap/index.php:59
+#: application/views/gridmap/index.php:74
+#: application/views/gridmap/index.php:108
+#: application/views/gridmap/index.php:123
+#: application/views/gridmap/index.php:137
+#: application/views/gridmap/index.php:151
 msgid "All"
 msgstr "全て"
 
@@ -3793,6 +3810,7 @@ msgstr "期間"
 #: application/views/timeline/index.php:79 application/views/user/edit.php:351
 #: application/views/view_log/partial/log_ajax.php:21
 #: application/views/view_log/qso.php:236
+#: application/views/gridmap/index.php:71
 msgid "Propagation"
 msgstr "伝搬"
 
@@ -3810,6 +3828,7 @@ msgstr "SAT以外すべて"
 #: application/views/logbookadvanced/edit.php:215
 #: application/views/logbookadvanced/index.php:455
 #: application/views/timeline/index.php:84
+#: application/views/gridmap/index.php:75
 msgid "None/Empty"
 msgstr "なし/空"
 
@@ -3823,6 +3842,7 @@ msgstr "なし/空"
 #: application/views/timeline/index.php:85
 #: application/views/view_log/partial/log_ajax.php:55
 #: application/views/view_log/qso.php:239
+#: application/views/gridmap/index.php:77
 msgctxt "Propagation Mode"
 msgid "Aircraft Scatter"
 msgstr "航空機の散乱"
@@ -3837,6 +3857,7 @@ msgstr "航空機の散乱"
 #: application/views/timeline/index.php:86
 #: application/views/view_log/partial/log_ajax.php:58
 #: application/views/view_log/qso.php:242
+#: application/views/gridmap/index.php:78
 msgctxt "Propagation Mode"
 msgid "Aurora"
 msgstr "オーロラ"
@@ -3851,6 +3872,7 @@ msgstr "オーロラ"
 #: application/views/timeline/index.php:87
 #: application/views/view_log/partial/log_ajax.php:61
 #: application/views/view_log/qso.php:245
+#: application/views/gridmap/index.php:79
 msgctxt "Propagation Mode"
 msgid "Aurora-E"
 msgstr "オーロラE伝搬"
@@ -3865,6 +3887,7 @@ msgstr "オーロラE伝搬"
 #: application/views/timeline/index.php:88
 #: application/views/view_log/partial/log_ajax.php:64
 #: application/views/view_log/qso.php:248
+#: application/views/gridmap/index.php:80
 msgctxt "Propagation Mode"
 msgid "Back scatter"
 msgstr "後方散乱"
@@ -3879,6 +3902,7 @@ msgstr "後方散乱"
 #: application/views/timeline/index.php:89
 #: application/views/view_log/partial/log_ajax.php:67
 #: application/views/view_log/qso.php:251
+#: application/views/gridmap/index.php:81
 msgctxt "Propagation Mode"
 msgid "EchoLink"
 msgstr "エコーリンク"
@@ -3893,6 +3917,7 @@ msgstr "エコーリンク"
 #: application/views/timeline/index.php:90
 #: application/views/view_log/partial/log_ajax.php:70
 #: application/views/view_log/qso.php:254
+#: application/views/gridmap/index.php:82
 msgctxt "Propagation Mode"
 msgid "Earth-Moon-Earth"
 msgstr "地球-月-地球"
@@ -3907,6 +3932,7 @@ msgstr "地球-月-地球"
 #: application/views/timeline/index.php:91
 #: application/views/view_log/partial/log_ajax.php:73
 #: application/views/view_log/qso.php:257
+#: application/views/gridmap/index.php:83
 msgctxt "Propagation Mode"
 msgid "Sporadic E"
 msgstr "Eスポ"
@@ -3921,6 +3947,7 @@ msgstr "Eスポ"
 #: application/views/timeline/index.php:92
 #: application/views/view_log/partial/log_ajax.php:76
 #: application/views/view_log/qso.php:260
+#: application/views/gridmap/index.php:84
 msgctxt "Propagation Mode"
 msgid "Field Aligned Irregularities"
 msgstr "磁場に沿った不規則性"
@@ -3935,6 +3962,7 @@ msgstr "磁場に沿った不規則性"
 #: application/views/timeline/index.php:93
 #: application/views/view_log/partial/log_ajax.php:79
 #: application/views/view_log/qso.php:263
+#: application/views/gridmap/index.php:85
 msgctxt "Propagation Mode"
 msgid "F2 Reflection"
 msgstr "F2反射"
@@ -3949,6 +3977,7 @@ msgstr "F2反射"
 #: application/views/timeline/index.php:94
 #: application/views/view_log/partial/log_ajax.php:82
 #: application/views/view_log/qso.php:266
+#: application/views/gridmap/index.php:86
 msgctxt "Propagation Mode"
 msgid "Internet-assisted"
 msgstr "インターネット支援"
@@ -3963,6 +3992,7 @@ msgstr "インターネット支援"
 #: application/views/timeline/index.php:95
 #: application/views/view_log/partial/log_ajax.php:85
 #: application/views/view_log/qso.php:269
+#: application/views/gridmap/index.php:87
 msgctxt "Propagation Mode"
 msgid "Ionoscatter"
 msgstr "イオノスキャッター"
@@ -3977,6 +4007,7 @@ msgstr "イオノスキャッター"
 #: application/views/timeline/index.php:96
 #: application/views/view_log/partial/log_ajax.php:88
 #: application/views/view_log/qso.php:272
+#: application/views/gridmap/index.php:88
 msgctxt "Propagation Mode"
 msgid "IRLP"
 msgstr "IRLP"
@@ -3991,6 +4022,7 @@ msgstr "IRLP"
 #: application/views/timeline/index.php:97
 #: application/views/view_log/partial/log_ajax.php:91
 #: application/views/view_log/qso.php:275
+#: application/views/gridmap/index.php:89
 msgctxt "Propagation Mode"
 msgid "Meteor scatter"
 msgstr "流星散乱"
@@ -4005,6 +4037,7 @@ msgstr "流星散乱"
 #: application/views/timeline/index.php:98
 #: application/views/view_log/partial/log_ajax.php:94
 #: application/views/view_log/qso.php:278
+#: application/views/gridmap/index.php:90
 msgctxt "Propagation Mode"
 msgid "Terrestrial or atmospheric repeater or transponder"
 msgstr "地上または大気圏の中継器またはトランスポンダー"
@@ -4019,6 +4052,7 @@ msgstr "地上または大気圏の中継器またはトランスポンダー"
 #: application/views/timeline/index.php:99
 #: application/views/view_log/partial/log_ajax.php:97
 #: application/views/view_log/qso.php:281
+#: application/views/gridmap/index.php:91
 msgctxt "Propagation Mode"
 msgid "Rain scatter"
 msgstr "雨散乱"
@@ -4033,6 +4067,7 @@ msgstr "雨散乱"
 #: application/views/timeline/index.php:100
 #: application/views/view_log/partial/log_ajax.php:100
 #: application/views/view_log/qso.php:284
+#: application/views/gridmap/index.php:92
 msgctxt "Propagation Mode"
 msgid "Satellite"
 msgstr "衛星"
@@ -4047,6 +4082,7 @@ msgstr "衛星"
 #: application/views/timeline/index.php:101
 #: application/views/view_log/partial/log_ajax.php:103
 #: application/views/view_log/qso.php:287
+#: application/views/gridmap/index.php:93
 msgctxt "Propagation Mode"
 msgid "Trans-equatorial"
 msgstr "赤道横断"
@@ -4061,6 +4097,7 @@ msgstr "赤道横断"
 #: application/views/timeline/index.php:102
 #: application/views/view_log/partial/log_ajax.php:106
 #: application/views/view_log/qso.php:290
+#: application/views/gridmap/index.php:94
 msgctxt "Propagation Mode"
 msgid "Tropospheric ducting"
 msgstr "対流圏ダクト"
@@ -4124,6 +4161,7 @@ msgstr "表示"
 #: application/views/satellite/skedtable.php:35
 #: application/views/sattimers/index.php:38
 #: application/views/statistics/index.php:24
+#: application/views/gridmap/index.php:103
 msgid "Satellite"
 msgstr "衛星"
 
@@ -4143,6 +4181,7 @@ msgstr "衛星"
 #: application/views/satellite/satinfo.php:12
 #: application/views/statistics/antennaanalytics.php:60
 #: application/views/statistics/antennaanalytics.php:98
+#: application/views/gridmap/index.php:118
 msgid "Orbit"
 msgstr "軌道"
 
@@ -4150,6 +4189,7 @@ msgstr "軌道"
 #: application/views/awards/wab/index.php:66
 #: application/views/gridmap/index.php:135
 #: application/views/timeline/index.php:52
+#: application/views/gridmap/index.php:162
 msgid "Confirmation"
 msgstr "確認"
 
@@ -4171,6 +4211,7 @@ msgstr "確認"
 #: application/views/awards/was/index.php:72
 #: application/views/awards/wpx/index.php:40
 #: application/views/gridmap/index.php:168 application/views/user/edit.php:842
+#: application/views/gridmap/index.php:195
 msgid "QRZ.com"
 msgstr "QRZ.com"
 
@@ -4189,6 +4230,7 @@ msgstr "クリアマーカー"
 #: application/views/awards/gridmaster/index.php:50
 #: application/views/gridmap/index.php:192
 #: application/views/logbookadvanced/index.php:10
+#: application/views/gridmap/index.php:219
 msgid "Latitude"
 msgstr "緯度"
 
@@ -4197,6 +4239,7 @@ msgstr "緯度"
 #: application/views/awards/gridmaster/index.php:52
 #: application/views/gridmap/index.php:194
 #: application/views/logbookadvanced/index.php:11
+#: application/views/gridmap/index.php:221
 msgid "Longitude"
 msgstr "経度"
 
@@ -4819,7 +4862,8 @@ msgstr "オプション"
 msgid ""
 "The CBR file contains a TRX number at the end of each QSO line (for multi-op "
 "stations)"
-msgstr "CBRファイルには、各QSO行の末尾にTRX番号が含まれています（マルチオペレーター局"
+msgstr ""
+"CBRファイルには、各QSO行の末尾にTRX番号が含まれています（マルチオペレーター局"
 "の場合）"
 
 #: application/views/adif/import.php:419
@@ -5346,6 +5390,7 @@ msgstr "合計"
 #: application/views/timeline/index.php:327
 #: application/views/timeplotter/index.php:44
 #: application/views/user/modals/first_login_wizard.php:74
+#: application/views/gridmap/index.php:229
 msgid "CQ Zone"
 msgstr "CQゾーン"
 
@@ -5756,11 +5801,13 @@ msgstr "DXCCマップを表示"
 
 #: application/views/awards/dxcc/index.php:41
 #: application/views/dxcalendar/index.php:9
+#: application/views/gridmap/index.php:44
 msgid "Date from"
 msgstr "日付から"
 
 #: application/views/awards/dxcc/index.php:49
 #: application/views/dxcalendar/index.php:10
+#: application/views/gridmap/index.php:48
 msgid "Date to"
 msgstr "日付"
 
@@ -6213,6 +6260,7 @@ msgstr "削除済み"
 #: application/views/station_profile/create.php:124
 #: application/views/station_profile/edit.php:174
 #: application/views/user/modals/first_login_wizard.php:84
+#: application/views/gridmap/index.php:231
 msgid "ITU Zone"
 msgstr "ITU ゾーン"
 
@@ -8225,6 +8273,7 @@ msgstr "ログにコンテストが見つかりませんでした。"
 
 #: application/views/callstats/index.php:70
 #: application/views/gridmap/index.php:49
+#: application/views/gridmap/index.php:76
 msgid "All except SAT"
 msgstr "SATを除くすべて"
 
@@ -8775,6 +8824,7 @@ msgstr "詳細を表示"
 #: application/views/dashboard/index.php:389
 #: application/views/dashboard/index.php:410
 #: application/views/dashboard/index.php:431
+#: application/views/gridmap/index.php:31
 msgid "Today"
 msgstr "本日"
 
@@ -10797,7 +10847,7 @@ msgid "Worked not confirmed"
 msgstr "動作確認はされていません"
 
 #: application/views/interface_assets/footer.php:52
-#: application/views/qso/index.php:738
+#: application/views/qso/index.php:738 application/views/gridmap/index.php:38
 msgid "Clear"
 msgstr "クリア"
 
@@ -12357,8 +12407,8 @@ msgid ""
 "letter coding for your country."
 msgstr ""
 "すべてのDXCCエンティティが国家のサポートを受けているわけではありません。追加"
-"の国に対するサポートが必要な場合は、GeoJSONファイルと希望する国のレターコーデ"
-"ィングを添えて、%s でチケットを作成してください。"
+"の国に対するサポートが必要な場合は、GeoJSONファイルと希望する国のレターコー"
+"ディングを添えて、%s でチケットを作成してください。"
 
 #: application/views/logbookadvanced/index.php:45
 msgid "Only 1 row can be selected for Quickfilter!"
@@ -12882,7 +12932,8 @@ msgstr "グリッドスクエアと DXCC 国に基づいて、州/省の情報�
 msgid ""
 "This feature uses GeoJSON boundary data to determine the state/province from "
 "the gridsquare locator."
-msgstr "この機能は、GeoJSON 境界データを使用して、グリッドスクエア ロケーターから州/"
+msgstr ""
+"この機能は、GeoJSON 境界データを使用して、グリッドスクエア ロケーターから州/"
 "省を決定します。"
 
 #: application/views/logbookadvanced/statedialog.php:4
@@ -17875,6 +17926,34 @@ msgstr "リクエストを送信"
 msgid "Rcvd"
 msgstr "受信"
 
+#: application/views/gridmap/index.php:28
+msgid "Date Presets"
+msgstr ""
+
+#: application/views/gridmap/index.php:32
+msgid "Yesterday"
+msgstr ""
+
+#: application/views/gridmap/index.php:33
+msgid "Last 7 Days"
+msgstr ""
+
+#: application/views/gridmap/index.php:34
+msgid "Last 30 Days"
+msgstr ""
+
+#: application/views/gridmap/index.php:35
+msgid "This Month"
+msgstr ""
+
+#: application/views/gridmap/index.php:36
+msgid "Last Month"
+msgstr ""
+
+#: application/views/gridmap/index.php:37
+msgid "This Year"
+msgstr ""
+
 #~ msgid "Broken CBR file - no QSO data or incomplete header found."
 #~ msgstr ""
 #~ "壊れた CBR ファイル - QSO データがないか、不完全なヘッダーが見つかりませ"
@@ -18061,8 +18140,8 @@ msgstr "受信"
 #~ "Your active Station Location isn't linked to your Logbook. Click %shere%s "
 #~ "to do it."
 #~ msgstr ""
-#~ "現在のステーション位置がログブックとリンクされていません。リンクするに"
-#~ "は、%shere%s をクリックしてください。"
+#~ "現在のステーション位置がログブックとリンクされていません。リンクするには、"
+#~ "%shere%s をクリックしてください。"
 
 #, php-format
 #~ msgctxt "Dashboard Warning"

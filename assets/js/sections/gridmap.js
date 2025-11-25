@@ -2,8 +2,6 @@ var modalloading=false;
 
 let confirmedColor = user_map_custom.qsoconfirm.color;
 let workedColor = user_map_custom.qso.color;
-console.log("Confirmed color: " + confirmedColor);
-console.log("Worked color: " + workedColor);
 
 document.addEventListener("DOMContentLoaded", function() {
   document.querySelectorAll('.dropdown').forEach(dd => {
@@ -97,41 +95,43 @@ function gridPlot(form, visitor=true) {
     }
 
     if (visitor != true) {
-    $.ajax({
-		url: ajax_url,
-		type: 'post',
-		data: {
-			band: $("#band").val(),
-            mode: $("#mode").val(),
-            qsl:  $("#qsl").is(":checked"),
-            lotw: $("#lotw").is(":checked"),
-            eqsl: $("#eqsl").is(":checked"),
-            qrz: $("#qrz").is(":checked"),
-            sat: $("#sat").val(),
-            orbit: $("#orbits").val(),
-            propagation: $('#propagation').val(),
-			dxcc: $('#dxcc').val(),
-		},
-		success: function (data) {
-            $('.cohidden').show();
-            set_map_height(25);
-            $(".ld-ext-right-plot").removeClass('running');
-            $(".ld-ext-right-plot").prop('disabled', false);
-            $('#plot').prop("disabled", false);
-            grid_two = data.grid_2char;
-            grid_four = data.grid_4char;
-            grid_six = data.grid_6char;
-            grid_two_confirmed = data.grid_2char_confirmed;
-            grid_four_confirmed = data.grid_4char_confirmed;
-            grid_six_confirmed = data.grid_6char_confirmed;
-			grids = data.grids;
-            grid_max = data.grid_count;
-            plot(visitor, grid_two, grid_four, grid_six, grid_two_confirmed, grid_four_confirmed, grid_six_confirmed, grids, grid_max);
+		$.ajax({
+			url: ajax_url,
+			type: 'post',
+			data: {
+				band: $("#band").val(),
+				mode: $("#mode").val(),
+				qsl:  $("#qsl").is(":checked"),
+				lotw: $("#lotw").is(":checked"),
+				eqsl: $("#eqsl").is(":checked"),
+				qrz: $("#qrz").is(":checked"),
+				sat: $("#sat").val(),
+				orbit: $("#orbits").val(),
+				propagation: $('#propagation').val(),
+				dxcc: $('#dxcc').val(),
+				datefrom: $('#dateFrom').val(),
+				dateto: $('#dateTo').val(),
+			},
+			success: function (data) {
+				$('.cohidden').show();
+				set_map_height(25);
+				$(".ld-ext-right-plot").removeClass('running');
+				$(".ld-ext-right-plot").prop('disabled', false);
+				$('#plot').prop("disabled", false);
+				grid_two = data.grid_2char;
+				grid_four = data.grid_4char;
+				grid_six = data.grid_6char;
+				grid_two_confirmed = data.grid_2char_confirmed;
+				grid_four_confirmed = data.grid_4char_confirmed;
+				grid_six_confirmed = data.grid_6char_confirmed;
+				grids = data.grids;
+				grid_max = data.grid_count;
+				plot(visitor, grid_two, grid_four, grid_six, grid_two_confirmed, grid_four_confirmed, grid_six_confirmed, grids, grid_max);
 
-		},
-		error: function (data) {
-		},
-	});
+			},
+			error: function (data) {
+			},
+		});
    } else {
       plot(visitor, grid_two, grid_four, grid_six, grid_two_confirmed, grid_four_confirmed, grid_six_confirmed, '', 0);
    };
@@ -217,7 +217,9 @@ function spawnGridsquareModal(loc_4char) {
 			'Sat': $("#sat").val(),
 			'Orbit': $("#orbits").val(),
             'Propagation': $('#propagation').val(),
-			'Type': 'VUCC'
+			'Type': 'VUCC',
+			'dateFrom': $('#dateFrom').val(),
+			'dateTo': $('#dateTo').val()
 		})
 		if (type == 'activated') {
 			ajax_data.searchmode = 'activated';
@@ -304,6 +306,24 @@ function hideLegend() {
 	$("#gridmapLegend").hide();
 }
 
+function hexToRgba(hex, alpha = 1) {
+	if (!hex) return null;
+	// Remove the leading "#"
+	hex = hex.replace(/^#/, '');
+
+	// Expand short form (#f0a → #ff00aa)
+	if (hex.length === 3) {
+		hex = hex.split('').map(c => c + c).join('');
+	}
+
+	const num = parseInt(hex, 16);
+	const r = (num >> 16) & 255;
+	const g = (num >> 8) & 255;
+	const b = num & 255;
+
+	return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
 $(document).ready(function(){
 	gridPlot(this.form, visitor);
 	$(window).resize(function () {
@@ -322,3 +342,95 @@ $(document).ready(function(){
 	// pass in the target node, as well as the observer options
 	observer.observe(target, config);
 });
+
+
+// Preset functionality
+    function applyPreset(preset) {
+        const dateFrom = document.getElementById('dateFrom');
+        const dateTo = document.getElementById('dateTo');
+        const today = new Date();
+
+        // Format date as YYYY-MM-DD
+        function formatDate(date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        switch(preset) {
+            case 'today':
+                dateFrom.value = formatDate(today);
+                dateTo.value = formatDate(today);
+                break;
+
+            case 'yesterday':
+                const yesterday = new Date(today);
+                yesterday.setDate(yesterday.getDate() - 1);
+                dateFrom.value = formatDate(yesterday);
+                dateTo.value = formatDate(yesterday);
+                break;
+
+            case 'last7days':
+                const sevenDaysAgo = new Date(today);
+                sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+                dateFrom.value = formatDate(sevenDaysAgo);
+                dateTo.value = formatDate(today);
+                break;
+
+            case 'last30days':
+                const thirtyDaysAgo = new Date(today);
+                thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+                dateFrom.value = formatDate(thirtyDaysAgo);
+                dateTo.value = formatDate(today);
+                break;
+
+            case 'thismonth':
+                const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+                dateFrom.value = formatDate(firstDayOfMonth);
+                dateTo.value = formatDate(today);
+                break;
+
+            case 'lastmonth':
+                const firstDayOfLastMonth = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+                const lastDayOfLastMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+                dateFrom.value = formatDate(firstDayOfLastMonth);
+                dateTo.value = formatDate(lastDayOfLastMonth);
+                break;
+
+            case 'thisyear':
+                const firstDayOfYear = new Date(today.getFullYear(), 0, 1);
+                dateFrom.value = formatDate(firstDayOfYear);
+                dateTo.value = formatDate(today);
+                break;
+
+            case 'alltime':
+                dateFrom.value = '';
+                dateTo.value = '';
+                break;
+        }
+
+        // Trigger plot after applying preset
+        setTimeout(() => {
+            const plotButton = document.getElementById('plot');
+            if (plotButton) {
+                plotButton.click();
+            }
+        }, 100);
+    }
+
+    // Reset dates function
+    function resetDates() {
+        const dateFrom = document.getElementById('dateFrom');
+        const dateTo = document.getElementById('dateTo');
+        dateFrom.value = '';
+        dateTo.value = '';
+
+        // Trigger plot after resetting
+        setTimeout(() => {
+            const plotButton = document.getElementById('plot');
+            if (plotButton) {
+                plotButton.click();
+            }
+        }, 100);
+    }
