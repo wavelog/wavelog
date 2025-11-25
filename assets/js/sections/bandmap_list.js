@@ -1245,15 +1245,17 @@ $(function() {
 			});
 		}
 
-		// Add hover tooltips to all rows
-		$('.spottable tbody tr').each(function() {
-			$(this).attr('title', lang_click_to_prepare_logging);
-		});
-
 		// Apply responsive column visibility after rendering
 		if (typeof handleResponsiveColumns === 'function') {
 			handleResponsiveColumns();
 		}
+
+		// Add hover tooltips to all rows
+		$('.spottable tbody tr').each(function() {
+			$(this).attr('title', lang_click_to_prepare_logging);
+			$(this).attr('data-bs-toggle', 'tooltip');
+			$(this).attr('data-bs-placement', 'top');
+		});
 
 	// Initialize tooltips with error handling
 	try {
