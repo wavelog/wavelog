@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-11-24 13:09+0000\n"
+"POT-Creation-Date: 2025-11-25 06:28+0000\n"
 "PO-Revision-Date: 2025-11-24 07:14+0000\n"
 "Last-Translator: Szymon <sp9spm@cqops.com>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -77,10 +77,10 @@ msgstr ""
 #: application/controllers/Labels.php:26
 #: application/controllers/Logbookadvanced.php:16
 #: application/controllers/Lookup.php:17 application/controllers/Lotw.php:44
-#: application/controllers/Lotw.php:79 application/controllers/Lotw.php:105
-#: application/controllers/Lotw.php:395 application/controllers/Lotw.php:418
-#: application/controllers/Lotw.php:778 application/controllers/Lotw.php:862
-#: application/controllers/Lotw.php:967 application/controllers/Mode.php:15
+#: application/controllers/Lotw.php:90 application/controllers/Lotw.php:116
+#: application/controllers/Lotw.php:414 application/controllers/Lotw.php:437
+#: application/controllers/Lotw.php:798 application/controllers/Lotw.php:882
+#: application/controllers/Lotw.php:987 application/controllers/Mode.php:15
 #: application/controllers/Notes.php:10 application/controllers/Options.php:14
 #: application/controllers/Oqrs.php:15 application/controllers/Oqrs.php:165
 #: application/controllers/Qrbcalc.php:13 application/controllers/Qrz.php:200
@@ -1845,8 +1845,8 @@ msgstr "Zaawansowany dziennik łączności"
 msgid "Quick Lookup"
 msgstr "Szybkie wyszukiwanie"
 
-#: application/controllers/Lotw.php:53 application/controllers/Lotw.php:85
-#: application/controllers/Lotw.php:125 application/views/adif/import.php:27
+#: application/controllers/Lotw.php:64 application/controllers/Lotw.php:96
+#: application/controllers/Lotw.php:136 application/views/adif/import.php:27
 #: application/views/dcl_views/upload_cert.php:3
 #: application/views/interface_assets/header.php:506
 #: application/views/lotw/import.php:3 application/views/lotw_views/index.php:9
@@ -1855,19 +1855,19 @@ msgstr "Szybkie wyszukiwanie"
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
-#: application/controllers/Lotw.php:150
+#: application/controllers/Lotw.php:161
 msgid "Certificate Imported."
 msgstr "Zaimportowano certyfikat."
 
-#: application/controllers/Lotw.php:157
+#: application/controllers/Lotw.php:168
 msgid "Certificate Updated."
 msgstr "Zaktualizowano certyfikat."
 
-#: application/controllers/Lotw.php:401
+#: application/controllers/Lotw.php:420
 msgid "Certificate Deleted."
 msgstr "Usunięto certyfikat."
 
-#: application/controllers/Lotw.php:430
+#: application/controllers/Lotw.php:449
 #, php-format
 msgid ""
 "Found no certificate in file %s. If the filename contains 'key-only' this is "
@@ -1877,52 +1877,52 @@ msgstr ""
 "jest to zazwyczaj żądanie certyfikatu, które nie zostało jeszcze "
 "przetworzone przez LoTW."
 
-#: application/controllers/Lotw.php:666
+#: application/controllers/Lotw.php:686
 msgid "LoTW ADIF Information"
 msgstr "Informacje ADIF LoTW"
 
-#: application/controllers/Lotw.php:835 application/controllers/Lotw.php:838
+#: application/controllers/Lotw.php:855 application/controllers/Lotw.php:858
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr "Dla użytkownika %s: %s logowanie do LoTW nie powiodło się."
 
-#: application/controllers/Lotw.php:838
+#: application/controllers/Lotw.php:858
 msgid "Username/password incorrect"
 msgstr "Nieprawidłowa nazwa użytkownika/hasło"
 
-#: application/controllers/Lotw.php:841
+#: application/controllers/Lotw.php:861
 msgid "LoTW login OK!"
 msgstr "Logowanie do LoTW OK!"
 
-#: application/controllers/Lotw.php:845
+#: application/controllers/Lotw.php:865
 msgid "LoTW currently not available. Try again later."
 msgstr "LoTW jest obecnie niedostępne. Spróbuj ponownie później."
 
-#: application/controllers/Lotw.php:850
+#: application/controllers/Lotw.php:870
 msgid "No LoTW credentials provided."
 msgstr "Nie podano danych uwierzytelniających LoTW."
 
-#: application/controllers/Lotw.php:868
+#: application/controllers/Lotw.php:888
 msgid "LoTW ADIF Import"
 msgstr "Import ADIF LoTW"
 
-#: application/controllers/Lotw.php:894 application/controllers/Lotw.php:1002
+#: application/controllers/Lotw.php:914 application/controllers/Lotw.php:1022
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Nie zdefiniowano danych logowania ARRL LoTW!"
 
-#: application/controllers/Lotw.php:969
+#: application/controllers/Lotw.php:989
 msgid "LoTW .TQ8 Upload"
 msgstr "Przesyłanie .TQ8 LoTW"
 
-#: application/controllers/Lotw.php:1047
+#: application/controllers/Lotw.php:1067
 msgid "Your ARRL username and/or password is incorrect."
 msgstr "Nazwa użytkownika i/lub hasło ARRL jest niepoprawna."
 
-#: application/controllers/Lotw.php:1066 application/controllers/Lotw.php:1071
+#: application/controllers/Lotw.php:1086 application/controllers/Lotw.php:1091
 msgid "LoTW .TQ8 Sent"
 msgstr "Przesłano LoTW .TQ8"
 
-#: application/controllers/Lotw.php:1078
+#: application/controllers/Lotw.php:1098
 msgid "LoTW .TQ8 Not Sent"
 msgstr "Nie przesłano LoTW .TQ8"
 
@@ -2368,7 +2368,7 @@ msgstr "Edytuj"
 #: application/views/interface_assets/footer.php:2789
 #: application/views/labels/index.php:48 application/views/labels/index.php:84
 #: application/views/logbookadvanced/index.php:808
-#: application/views/lotw_views/index.php:128
+#: application/views/lotw_views/index.php:134
 #: application/views/mode/index.php:67
 #: application/views/oqrs/showrequests.php:75
 #: application/views/qslcard/index.php:76
@@ -4808,7 +4808,7 @@ msgstr ""
 #: application/views/adif/import.php:399
 #: application/views/adif/import_success.php:40
 #: application/views/dcl_views/index.php:76
-#: application/views/lotw_views/index.php:154
+#: application/views/lotw_views/index.php:160
 msgid "Information"
 msgstr "Informacje"
 
@@ -9757,12 +9757,12 @@ msgid "The next automatic sync with DCL will happen at: "
 msgstr "Następna automatyczna synchronizacja DCL odbędzie się o: "
 
 #: application/views/dcl_views/index.php:82
-#: application/views/lotw_views/index.php:160
+#: application/views/lotw_views/index.php:166
 msgid "Manual Sync"
 msgstr "Ręczna synchronizacja"
 
 #: application/views/dcl_views/index.php:84
-#: application/views/lotw_views/index.php:162
+#: application/views/lotw_views/index.php:168
 msgid "running..."
 msgstr "pracuje..."
 
@@ -10083,6 +10083,7 @@ msgstr "Branch"
 
 #: application/views/debug/index.php:456 application/views/debug/index.php:467
 #: application/views/debug/index.php:477
+#: application/views/lotw_views/index.php:95
 msgid "n/a"
 msgstr "n/d"
 
@@ -13134,41 +13135,53 @@ msgstr "Data wygaśnięcia"
 msgid "Last Upload"
 msgstr "Last upload"
 
-#: application/views/lotw_views/index.php:96
+#: application/views/lotw_views/index.php:95
+msgid "Last change:"
+msgstr ""
+
+#: application/views/lotw_views/index.php:95
+msgid "Serial number:"
+msgstr ""
+
+#: application/views/lotw_views/index.php:97
+msgid "Certificate superseded"
+msgstr ""
+
+#: application/views/lotw_views/index.php:100
 msgid "Certificate expired"
 msgstr "Certyfikat wygasł"
 
-#: application/views/lotw_views/index.php:98
+#: application/views/lotw_views/index.php:102
 msgid "Certificate expiring"
 msgstr "Certyfikat wygasa"
 
-#: application/views/lotw_views/index.php:100
+#: application/views/lotw_views/index.php:104
 msgid "Certificate valid"
 msgstr "Ważny certyfikat"
 
-#: application/views/lotw_views/index.php:105
+#: application/views/lotw_views/index.php:109
 msgid "QSO end date nearing"
 msgstr "Nadchodzi data końca QSO"
 
-#: application/views/lotw_views/index.php:115
+#: application/views/lotw_views/index.php:121
 #, php-format
 msgid "Last success: %s"
 msgstr "Ostatnie powodzenie: %s"
 
-#: application/views/lotw_views/index.php:118
+#: application/views/lotw_views/index.php:124
 #, php-format
 msgid "Last fail: %s"
 msgstr "Ostatnie niepowodzenie: %s"
 
-#: application/views/lotw_views/index.php:124
+#: application/views/lotw_views/index.php:130
 msgid "Not Synced"
 msgstr "Nie zsynchronizowany"
 
-#: application/views/lotw_views/index.php:139
+#: application/views/lotw_views/index.php:145
 msgid "You need to upload some LoTW p12 certificates to use this area."
 msgstr "Należy przesłać certyfikat .p12 aby używać tej funkcji."
 
-#: application/views/lotw_views/index.php:158
+#: application/views/lotw_views/index.php:164
 msgid "The next automatic sync with LoTW will happen at: "
 msgstr "Następna automatyczna synchronizacja z LoTW nastąpi: "
 
