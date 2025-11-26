@@ -40,6 +40,17 @@
 	var lang_bandmap_modes_applied = "<?= __("Modes applied. Band filter preserved (CAT connection is active)"); ?>";
 	var lang_bandmap_favorites_applied = "<?= __("Applied your favorite bands and modes"); ?>";
 
+	// DX Cluster Filter Favorites translations
+	var lang_bandmap_filter_favorites = "<?= __("Favorites"); ?>";
+	var lang_bandmap_save_filters = "<?= __("Save Current Filters..."); ?>";
+	var lang_bandmap_filter_preset_name = "<?= __("Enter a name for this filter preset:"); ?>";
+	var lang_bandmap_filter_preset_saved = "<?= __("Filter preset saved"); ?>";
+	var lang_bandmap_filter_preset_loaded = "<?= __("Filter preset loaded"); ?>";
+	var lang_bandmap_filter_preset_deleted = "<?= __("Filter preset deleted"); ?>";
+	var lang_bandmap_delete_filter_confirm = "<?= __("Are you sure to delete this filter preset?"); ?>";
+	var lang_bandmap_no_filter_presets = "<?= __("No saved filter presets"); ?>";
+	var lang_bandmap_preset_limit_reached = "<?= __("Maximum of 20 filter presets reached. Please delete some before adding new ones."); ?>";
+
 	// Bandmap filter status messages
 	var lang_bandmap_loading_data = "<?= __("Loading data from DX Cluster"); ?>";
 	var lang_bandmap_last_fetched = "<?= __("Last fetched for"); ?>";
@@ -378,15 +389,26 @@
 				</div>
 			</div>
 		</div>
-				<!-- Favorites Button (part of button group) -->
-				<button class="btn btn-sm btn-secondary" type="button" id="toggleFavoritesFilter" title="<?= __("Apply your favorite bands and modes (configured in Band and Mode settings)"); ?>" style="display: none;">
-					<i class="fas fa-star text-warning"></i>
-				</button>
-				<!-- Clear Filters Button (part of button group) -->
-				<button class="btn btn-sm btn-secondary" type="button" id="clearFiltersButtonQuick" title="<?= __("Clear all filters except De Continent"); ?>">
-					<i class="fas fa-filter-circle-xmark text-danger"></i>
-				</button>
 			</div>
+			<!-- DX Cluster Filter Favorites Dropdown -->
+			<div class="dropdown flex-shrink-0">
+				<button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dxclusterFavDropdown" data-bs-toggle="dropdown" aria-expanded="false" title="<?= __("Filter Favorites"); ?>">
+					<i class="fas fa-star text-warning"></i> <span class="d-none d-md-inline"><?= __("Favorites"); ?></span>
+				</button>
+				<div class="dropdown-menu" aria-labelledby="dxclusterFavDropdown" style="min-width: 200px;">
+					<a class="dropdown-item" href="#" id="dxcluster_fav_add"><i class="fas fa-plus-circle text-success me-2"></i><?= __("Save Current Filters..."); ?></a>
+					<div class="dropdown-divider"></div>
+					<div id="dxcluster_fav_menu"></div>
+				</div>
+			</div>
+			<!-- Favorites Button -->
+			<button class="btn btn-sm btn-secondary flex-shrink-0" type="button" id="toggleFavoritesFilter" title="<?= __("Apply your favorite bands and modes (configured in Band and Mode settings)"); ?>" style="display: none;">
+				<i class="fas fa-star text-warning"></i>
+			</button>
+			<!-- Clear Filters Button -->
+			<button class="btn btn-sm btn-secondary flex-shrink-0" type="button" id="clearFiltersButtonQuick" title="<?= __("Clear all filters except De Continent"); ?>">
+				<i class="fas fa-filter-circle-xmark text-danger"></i>
+			</button>
 
 			<!-- MF Band -->
 			<div class="btn-group flex-shrink-0" role="group">

@@ -382,9 +382,67 @@ $(function() {
 			});
 		}
 
+		// List of all filter select IDs
+		const FILTER_SELECT_IDS = ['cwnSelect', 'decontSelect', 'continentSelect', 'band', 'mode', 'additionalFlags', 'requiredFlags'];
+
+		// Map of storage keys to select IDs
+		const FILTER_KEY_TO_SELECT = {
+			cwn: 'cwnSelect',
+			deCont: 'decontSelect',
+			continent: 'continentSelect',
+			band: 'band',
+			mode: 'mode',
+			additionalFlags: 'additionalFlags',
+			requiredFlags: 'requiredFlags'
+		};
+
+		// Map currentFilters keys to storage keys
+		const CURRENT_TO_STORAGE_KEY = {
+			cwn: 'cwn',
+			deContinent: 'deCont',
+			spottedContinent: 'continent',
+			band: 'band',
+			mode: 'mode',
+			additionalFlags: 'additionalFlags',
+			requiredFlags: 'requiredFlags'
+		};
+
+		/**
+		 * Build filter data object from currentFilters for storage
+		 * @param {string} [favName] - Optional favorite name to include
+		 * @returns {Object} Filter data with storage keys
+		 */
+		function buildFilterDataFromCurrent(favName) {
+			let filterData = {};
+			if (favName) filterData.fav_name = favName;
+			Object.entries(CURRENT_TO_STORAGE_KEY).forEach(([currentKey, storageKey]) => {
+				filterData[storageKey] = currentFilters[currentKey];
+			});
+			return filterData;
+		}
+
+		/**
+		 * Set all filter values from an object
+		 * @param {Object} filterData - Object with filter keys (cwn, deCont, continent, band, mode, additionalFlags, requiredFlags)
+		 */
+		function setAllFilterValues(filterData) {
+			Object.entries(FILTER_KEY_TO_SELECT).forEach(([key, selectId]) => {
+				if (filterData[key] !== undefined) {
+					$('#' + selectId).val(filterData[key]);
+				}
+			});
+		}
+
+		/**
+		 * Update checkbox indicators for all filter selects
+		 */
+		function updateAllSelectCheckboxes() {
+			FILTER_SELECT_IDS.forEach(selectId => updateSelectCheckboxes(selectId));
+		}
+
 		// Initialize checkbox indicators for all filter selects
 		function initFilterCheckboxes() {
-			['cwnSelect', 'decontSelect', 'continentSelect', 'band', 'mode', 'additionalFlags', 'requiredFlags'].forEach(selectId => {
+			FILTER_SELECT_IDS.forEach(selectId => {
 				updateSelectCheckboxes(selectId);
 				$(`#${selectId}`).on('change', () => updateSelectCheckboxes(selectId));
 			});
@@ -1901,22 +1959,18 @@ $(function() {
 		// Preserve current band selection if CAT Control is enabled
 		let currentBand = isCatTrackingEnabled ? $('#band').val() : null;
 
-		$('#cwnSelect').val(['All']);
-		$('#decontSelect').val(['Any']);
-		$('#continentSelect').val(['Any']);
-		$('#band').val(currentBand || ['All']); // Preserve band if CAT is enabled
-		$('#mode').val(['All']);
-		$('#additionalFlags').val(['All']);
-		$('#requiredFlags').val([]);
+		setAllFilterValues({
+			cwn: ['All'],
+			deCont: ['Any'],
+			continent: ['Any'],
+			band: currentBand || ['All'],
+			mode: ['All'],
+			additionalFlags: ['All'],
+			requiredFlags: []
+		});
 
 		// Update checkbox indicators for all selects
-		updateSelectCheckboxes('cwnSelect');
-		updateSelectCheckboxes('decontSelect');
-		updateSelectCheckboxes('continentSelect');
-		updateSelectCheckboxes('band');
-		updateSelectCheckboxes('mode');
-		updateSelectCheckboxes('additionalFlags');
-		updateSelectCheckboxes('requiredFlags');
+		updateAllSelectCheckboxes();
 
 		// Clear text search
 		$('#spotSearchInput').val('');
@@ -1964,6 +2018,136 @@ $(function() {
 			showToast(lang_bandmap_clear_filters, lang_bandmap_band_preserved, 'bg-info text-white', 2000);
 		}
 	});
+
+	// ========================================
+	// DX CLUSTER FILTER FAVORITES
+	// ========================================
+
+	let dxclusterFavs = {};
+
+	/**
+	 * Apply saved filter values to UI and trigger filter application
+	 */
+	function applyDxClusterFilterValues(filterData) {
+		setAllFilterValues(filterData);
+		updateAllSelectCheckboxes();
+		syncQuickFilterButtons();
+		updateFilterIcon();
+		applyFilters(true);
+	}
+
+	function saveDxClusterFav() {
+		// Check preset limit (max 20)
+		if (Object.keys(dxclusterFavs).length >= 20) {
+			showToast && showToast(lang_bandmap_filter_favorites, lang_bandmap_preset_limit_reached, 'bg-warning text-dark', 4000);
+			return;
+		}
+
+		let favName = prompt(lang_bandmap_filter_preset_name);
+		if (!favName || favName.trim() === '') return;
+
+		// Build filter data from currentFilters using helper
+		let filterData = buildFilterDataFromCurrent(favName.trim());
+
+		$.ajax({
+			url: base_url + 'index.php/user_options/add_edit_dxcluster_fav',
+			method: 'POST',
+			dataType: 'json',
+			contentType: 'application/json; charset=utf-8',
+			data: JSON.stringify(filterData),
+			success: function(result) {
+				if (result.success) {
+					getDxClusterFavs();
+					showToast && showToast(lang_bandmap_filter_favorites, lang_bandmap_filter_preset_saved, 'bg-success text-white', 2000);
+				}
+			},
+			error: function() {
+				showToast && showToast(lang_bandmap_filter_favorites, lang_bandmap_favorites_failed, 'bg-danger text-white', 3000);
+			}
+		});
+	}
+
+	function getDxClusterFavs() {
+		$.ajax({
+			url: base_url + 'index.php/user_options/get_dxcluster_fav',
+			method: 'GET',
+			dataType: 'json',
+			success: function(result) {
+				dxclusterFavs = result;
+				renderDxClusterFavMenu();
+			}
+		});
+	}
+
+	function renderDxClusterFavMenu() {
+		let $menu = $('#dxcluster_fav_menu').empty();
+
+		let keys = Object.keys(dxclusterFavs);
+		if (keys.length === 0) {
+			$menu.append('<span class="dropdown-item-text text-muted"><em>' + lang_bandmap_no_filter_presets + '</em></span>');
+			return;
+		}
+
+		keys.forEach(function(key) {
+			// Build the menu item with data attribute on the parent div for easier click handling
+			let $item = $('<div class="dropdown-item d-flex justify-content-between align-items-center dxcluster_fav_item" style="cursor: pointer;"></div>').attr('data-fav-name', key);
+			let $nameSpan = $('<span></span>').text(key);
+			let $deleteBtn = $('<span class="badge bg-danger dxcluster_fav_del ms-2" title="Delete"><i class="fas fa-trash-alt"></i></span>').attr('data-fav-name', key);
+			$menu.append($item.append($nameSpan).append($deleteBtn));
+		});
+	}
+
+	function delDxClusterFav(name) {
+		if (!confirm(lang_bandmap_delete_filter_confirm)) return;
+
+		$.ajax({
+			url: base_url + 'index.php/user_options/del_dxcluster_fav',
+			method: 'POST',
+			dataType: 'json',
+			contentType: 'application/json; charset=utf-8',
+			data: JSON.stringify({ option_name: name }),
+			success: function(result) {
+				if (result.success) {
+					getDxClusterFavs();
+					showToast && showToast(lang_bandmap_filter_favorites, lang_bandmap_filter_preset_deleted, 'bg-info text-white', 2000);
+				}
+			}
+		});
+	}
+
+	// Event handlers
+	$('#dxcluster_fav_add').on('click', function(e) {
+		e.preventDefault();
+		saveDxClusterFav();
+	});
+
+	$(document).on('click', '.dxcluster_fav_del', function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+		delDxClusterFav($(this).data('fav-name'));
+	});
+
+	// Click on the entire favorite item row (but not the delete button)
+	$(document).on('click', '.dxcluster_fav_item', function(e) {
+		// Don't trigger if clicking the delete button
+		if ($(e.target).closest('.dxcluster_fav_del').length) return;
+
+		e.preventDefault();
+		let name = $(this).data('fav-name');
+		if (dxclusterFavs[name]) {
+			applyDxClusterFilterValues(dxclusterFavs[name]);
+			// Escape name for toast display (showToast uses innerHTML)
+			let safeName = $('<div>').text(name).html();
+			showToast && showToast(lang_bandmap_filter_favorites, lang_bandmap_filter_preset_loaded + ': ' + safeName, 'bg-success text-white', 2000);
+		}
+	});
+
+	// Load favorites on page load
+	getDxClusterFavs();
+
+	// ========================================
+	// END DX CLUSTER FILTER FAVORITES
+	// ========================================
 
 	// Sync button states when dropdown is shown
 	$('#filterDropdown').on('show.bs.dropdown', function() {

@@ -40,7 +40,7 @@ class User_Options extends CI_Controller {
 		$obj = json_decode(file_get_contents("php://input"), true);
 		if ($obj['option_name'] ?? '' != '') {
 			$option_name=$this->security->xss_clean($obj['option_name']);
-			$this->user_options_model->del_option('Favourite',$option_name);	
+			$this->user_options_model->del_option('Favourite',$option_name);
 		}
 		$jsonout['success']=1;
 		header('Content-Type: application/json');
@@ -49,6 +49,71 @@ class User_Options extends CI_Controller {
 
 	public function dismissVersionDialog() {
 		$this->user_options_model->set_option('version_dialog', 'confirmed', array('boolean' => 'true'));
+	}
+
+	/**
+	 * DX Cluster Filter Favorites
+	 */
+	public function add_edit_dxcluster_fav() {
+		$obj = json_decode(file_get_contents("php://input"), true);
+		if (!$obj || !isset($obj['fav_name']) || trim($obj['fav_name']) === '') {
+			header('Content-Type: application/json');
+			echo json_encode(['success' => 0, 'error' => 'Invalid data']);
+			return;
+		}
+
+		// Sanitize all input
+		foreach($obj as $option_key => $option_value) {
+			if (is_array($option_value)) {
+				$obj[$option_key] = array_map([$this->security, 'xss_clean'], $option_value);
+			} else {
+				$obj[$option_key] = $this->security->xss_clean($option_value);
+			}
+		}
+
+		$option_name = $obj['fav_name'];
+		unset($obj['fav_name']); // Don't store the name as a value
+
+		// Convert arrays to JSON for storage
+		foreach($obj as $key => $value) {
+			if (is_array($value)) {
+				$obj[$key] = json_encode($value);
+			}
+		}
+
+		$this->user_options_model->set_option('DXClusterFavourite', $option_name, $obj);
+		$jsonout['success'] = 1;
+		header('Content-Type: application/json');
+		echo json_encode($jsonout);
+	}
+
+	public function get_dxcluster_fav() {
+		$result = $this->user_options_model->get_options('DXClusterFavourite');
+		$jsonout = [];
+		foreach($result->result() as $options) {
+			$value = $options->option_value;
+			// Try to decode JSON arrays - check if it looks like JSON first
+			if (is_string($value) && (strpos($value, '[') === 0 || strpos($value, '{') === 0)) {
+				$decoded = json_decode($value, true);
+				if (json_last_error() === JSON_ERROR_NONE) {
+					$value = $decoded;
+				}
+			}
+			$jsonout[$options->option_name][$options->option_key] = $value;
+		}
+		header('Content-Type: application/json');
+		echo json_encode($jsonout);
+	}
+
+	public function del_dxcluster_fav() {
+		$obj = json_decode(file_get_contents("php://input"), true);
+		if ($obj['option_name'] ?? '' != '') {
+			$option_name = $this->security->xss_clean($obj['option_name']);
+			$this->user_options_model->del_option('DXClusterFavourite', $option_name);
+		}
+		$jsonout['success'] = 1;
+		header('Content-Type: application/json');
+		echo json_encode($jsonout);
 	}
 
 	public function get_qrg_units() {
