@@ -421,13 +421,24 @@ table tbody tr.cat-nearest-above td {
 	text-align: center;
 }
 
+/* Responsive: At medium screens where Message is hidden, Entity fills remaining space */
+@media (max-width: 1094px) and (min-width: 501px) {
+	.spottable {
+		table-layout: auto !important;
+	}
+	.spottable th:nth-child(10), .spottable td:nth-child(10) {
+		width: 100% !important;
+		min-width: 150px !important;
+	}
+}
+
 /* Responsive: On smallest screens, Entity column fills remaining space */
 @media (max-width: 500px) {
 	.spottable {
 		table-layout: auto !important;
 	}
 	.spottable th:nth-child(10), .spottable td:nth-child(10) {
-		width: auto !important;
+		width: 100% !important;
 		min-width: 150px !important;
 	}
 	.spottable th:nth-child(1), .spottable td:nth-child(1) { width: 50px !important; }   /* Age */

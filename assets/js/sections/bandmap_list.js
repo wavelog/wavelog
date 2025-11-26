@@ -971,16 +971,14 @@ $(function() {
 			} else {
 				dxcc_wked_info = "text-danger";
 			}
-			// Color code callsign: green=confirmed, yellow=worked
-			if (single.cnfmd_call) {
-				wked_info = "text-success";
-			} else if (single.worked_call) {
-				wked_info = "text-warning";
-			} else {
-				wked_info = "";
-			}
-
-		// Build LoTW badge with color coding based on last upload age
+		// Color code callsign: green=confirmed, yellow=worked, red=new
+		if (single.cnfmd_call) {
+			wked_info = "text-success";
+		} else if (single.worked_call) {
+			wked_info = "text-warning";
+		} else {
+			wked_info = "text-danger";
+		}		// Build LoTW badge with color coding based on last upload age
 		var lotw_badge = '';
 		if (single.dxcc_spotted && single.dxcc_spotted.lotw_user) {
 			let lclass = '';
@@ -1245,9 +1243,16 @@ $(function() {
 			});
 		}
 
+		// Apply responsive column visibility after rendering
+		if (typeof handleResponsiveColumns === 'function') {
+			handleResponsiveColumns();
+		}
+
 		// Add hover tooltips to all rows
 		$('.spottable tbody tr').each(function() {
 			$(this).attr('title', lang_click_to_prepare_logging);
+			$(this).attr('data-bs-toggle', 'tooltip');
+			$(this).attr('data-bs-placement', 'top');
 		});
 
 	// Initialize tooltips with error handling
@@ -1693,9 +1698,11 @@ $(function() {
 					if (cachedSpot && cachedSpot.band) {
 						shouldDecrementTTL = (cachedSpot.band === bandForAPI);
 					}
-				}					if (shouldDecrementTTL) {
-						newTTL = ttl - 1;  // Decrement only if in scope of this fetch
-					}
+				}
+
+				if (shouldDecrementTTL) {
+					newTTL = ttl - 1;  // Decrement only if in scope of this fetch
+				}
 
 					if (newSpotKeys.has(key)) {
 						newTTL = 1;  // Reset to 1 if spot still exists (keeps it valid)
@@ -2015,6 +2022,8 @@ $(function() {
 				btn.removeClass('btn-success').addClass('btn-secondary');
 				isCatTrackingEnabled = false;
 				window.isCatTrackingEnabled = false;
+				window.isFrequencyMarkerEnabled = false;
+				catState = 'off';
 
 				// Show offline status instead of just hiding
 				if (typeof window.displayOfflineStatus === 'function') {
@@ -2028,6 +2037,12 @@ $(function() {
 
 				// Unlock table sorting
 				unlockTableSorting();
+
+				// Clear frequency gradient colors and purple mode indicators
+				clearFrequencyGradientColors();
+
+				// Reset button visual to OFF state
+				updateButtonVisual('off');
 
 				// Reset band filter to 'All' and fetch all bands
 				const currentBands = $("#band").val() || [];
@@ -2285,6 +2300,7 @@ $(function() {
 	window.isCatTrackingEnabled = isCatTrackingEnabled; // Expose to window for cat.js
 	var currentRadioFrequency = null; // Store current radio frequency in kHz
 	var lastGradientFrequency = null; // Track last frequency used for gradient update
+	var lastRadioBand = null; // Store last valid band from radio frequency updates
 
 	// Three-state CAT control: 'off', 'on', 'on+marker'
 	var catState = 'off';
@@ -2449,10 +2465,17 @@ $(function() {
 
 	// Override updateCATui to add bandmap-specific behavior
 	window.updateCATui = function(data) {
+		// Store last CAT data globally for other components (same as cat.js does)
+		window.lastCATData = data;
+
 		// Determine band from frequency
 		const band = frequencyToBand(data.frequency);
 		// Store current radio frequency (convert Hz to kHz)
 		currentRadioFrequency = data.frequency / 1000;
+		// Store last valid band from radio (used when entering purple mode)
+		if (band && band !== '') {
+			lastRadioBand = band;
+		}
 
 		// Bandmap-specific: Update band filter only in purple mode
 		if (isFrequencyMarkerEnabled) {
@@ -2489,28 +2512,14 @@ $(function() {
 			}
 		}
 
+		// Display radio status when CAT is enabled (don't call full catJsUpdateCATui as it updates QSO form fields)
+		if (isCatTrackingEnabled && typeof window.displayRadioStatus === 'function') {
+			window.displayRadioStatus('success', data);
+		}
+
 		// Update frequency gradient colors for all visible rows (works in both normal and purple CAT modes)
 		if (isCatTrackingEnabled) {
 			updateFrequencyGradientColors();
-		}
-
-		// Call cat.js's original updateCATui for standard CAT UI updates
-		if (typeof catJsUpdateCATui === 'function') {
-
-			// Store current band selection before calling cat.js updateCATui
-			const bandBeforeUpdate = $("#band").val();
-
-			catJsUpdateCATui(data);
-
-			// Restore the band selection unless we're in purple mode
-			// (cat.js updateCATui automatically sets band based on frequency, but we only want that in purple mode)
-			if (!window.isFrequencyMarkerEnabled && bandBeforeUpdate) {
-				$("#band").val(bandBeforeUpdate);
-				updateSelectCheckboxes('band');
-				syncQuickFilterButtons();
-			}
-		} else {
-			console.warn('Bandmap: cat.js updateCATui not available');
 		}
 	};
 
@@ -3225,8 +3234,14 @@ $(function() {
 				window.isCatTrackingEnabled = true;
 				catState = 'on';
 
+				// Display last known data if available
 				if (window.lastCATData && typeof window.displayRadioStatus === 'function') {
 					window.displayRadioStatus('success', window.lastCATData);
+				}
+
+				// Trigger immediate polling update if using polling radio
+				if (selectedRadio !== 'ws' && typeof updateFromCAT === 'function') {
+					updateFromCAT();
 				}
 
 				// In normal mode: only show gradient, don't change filters or disable controls
@@ -3240,24 +3255,41 @@ $(function() {
 		case 'on':
 			// ON → ON+MARKER (Purple Mode)
 			window.isFrequencyMarkerEnabled = true;
-			catState = 'on+marker';				// Purple mode: disable controls and set filter to current band
-				disableBandFilterControls();
+			catState = 'on+marker';
+			disableBandFilterControls();
 
-				if (window.lastCATData && window.lastCATData.frequency) {
-					const band = frequencyToBand(window.lastCATData.frequency);
-					if (band && band !== '') {
-						$("#band").val([band]);
-						updateSelectCheckboxes('band');
-						syncQuickFilterButtons();
-						// Force reload to fetch only the active band from backend
-						applyFilters(true);
-					}
-					updateFrequencyGradientColors();
-				}
-				lockTableSortingToFrequency();
+			// Always ensure single band filter in purple mode
+			const currentBands = $("#band").val() || [];
+			let targetBand = null;
 
-				updateButtonVisual('on+marker');
-				break;
+			// Priority 1: Use current radio band (already calculated and stored from radio updates)
+			if (lastRadioBand && lastRadioBand !== '') {
+				targetBand = lastRadioBand;
+			} else if (currentRadioFrequency) {
+				// Priority 2: Calculate from current radio frequency
+				targetBand = frequencyToBand(currentRadioFrequency * 1000); // Convert kHz back to Hz
+			} else if (currentBands.length === 1 && !currentBands.includes('All')) {
+				// Priority 3: Keep current selection if single
+				targetBand = currentBands[0];
+			} else {
+				// Priority 4: Default to 20m as last resort fallback
+				targetBand = '20m';
+			}
+
+			// Set to single band
+			$("#band").val([targetBand]);
+			updateSelectCheckboxes('band');
+			syncQuickFilterButtons();
+			// Force reload to fetch only the active band from backend
+			applyFilters(true);
+
+			if (window.lastCATData && window.lastCATData.frequency) {
+				updateFrequencyGradientColors();
+			}
+			lockTableSortingToFrequency();
+
+			updateButtonVisual('on+marker');
+			break;
 
 		case 'on+marker':
 			// ON+MARKER → ON (Exit Purple Mode)
@@ -3330,13 +3362,13 @@ $(function() {
 	 *
 	 * Column indices (0-based):
 	 * 0: Age, 1: Band, 2: Frequency, 3: Mode, 4: Submode, 5: Callsign, 6: Continent, 7: CQZ,
-	 * 8: Flag, 9: Entity, 10: DXCC, 11: de Callsign, 12: de Cont, 13: de CQZ,
-	 * 14: Last QSO, 15: Special, 16: Message
+	 * 8: Flag, 9: Entity, 10: de Callsign, 11: de Cont, 12: de CQZ, 13: Last QSO,
+	 * 14: Special, 15: Message
 	 *
 	 * Breakpoints:
 	 * - Full screen or > 1374px: Show all columns
-	 * - <= 1374px: Hide DXCC (10), CQZ (7), de CQZ (13), Last QSO (14), Submode (4)
-	 * - <= 1294px: Additionally hide Band (1), Cont (6), de Cont (12)
+	 * - <= 1374px: Hide CQZ (7), de CQZ (12), Last QSO (13), Submode (4)
+	 * - <= 1294px: Additionally hide Band (1), Cont (6), de Cont (11)
 	 * - <= 1024px: Additionally hide Flag (8)
 	 * - <= 500px: Show only Age (0), Freq (2), Callsign (5), Entity (9)
 	 */
@@ -3385,6 +3417,7 @@ $(function() {
 			$('.spottable th:nth-child(12), .spottable td:nth-child(12)').addClass('column-hidden'); // de Cont
 			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de CQZ
 			$('.spottable th:nth-child(14), .spottable td:nth-child(14)').addClass('column-hidden'); // Last QSO
+			$('.spottable th:nth-child(16), .spottable td:nth-child(16)').addClass('column-hidden'); // Message
 		} else if (containerWidth <= 1294) {
 			// Hide: CQZ, de CQZ, Last QSO, Submode, Band, Cont, de Cont
 			$('.spottable th:nth-child(2), .spottable td:nth-child(2)').addClass('column-hidden'); // Band
