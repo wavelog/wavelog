@@ -77,13 +77,13 @@
     },
     "autoFill": {
         "cancel": "Zrušit",
-        "fill": "Vyplň všechny buňky textem <i>%d<i><\/i><\/i>",
+        "fill": "Vyplň všechny buňky textem <i>%d<i></i></i>",
         "fillHorizontal": "Vyplň všechny buňky horizontálně",
         "fillVertical": "Vyplň všechny buňky vertikálně",
         "info": "Příklad automatického vyplňování"
     },
     "buttons": {
-        "collection": "Kolekce <span class=\"ui-button-icon-primary ui-icon ui-icon-triangle-1-s\"><\/span>",
+        "collection": "Kolekce <span class=\"ui-button-icon-primary ui-icon ui-icon-triangle-1-s\"></span>",
         "copy": "Kopírovat",
         "copyTitle": "Kopírovat do schránky",
         "csv": "CSV",
@@ -156,20 +156,32 @@
             "Dopoledne",
             "Odpoledne"
         ],
-        "months": [
-            "Leden",
-            "Únor",
-            "Březen",
-            "Duben",
-            "Květen",
-            "Červen",
-            "Červenec",
-            "Srpen",
-            "Září",
-            "Říjen",
-            "Listopad",
-            "Prosinec"
-        ],
+        "months": {
+            "0": "Leden",
+            "1": "Únor",
+            "2": "Březen",
+            "3": "Duben",
+            "4": "Květen",
+            "5": "Červen",
+            "6": "Červenec",
+            "7": "Srpen",
+            "8": "Září",
+            "9": "Říjen",
+            "10": "Listopad",
+            "11": "Prosinec",
+            "0": "January",
+            "1": "February",
+            "10": "November",
+            "11": "December",
+            "2": "March",
+            "3": "April",
+            "4": "May",
+            "5": "June",
+            "6": "July",
+            "7": "August",
+            "8": "September",
+            "9": "October"
+        },
         "weekdays": [
             "Ne",
             "Po",
@@ -208,7 +220,7 @@
             "info": "Vybrané položky obsahují různé hodnoty pro tento vstup. Chcete-li upravit a nastavit všechny položky tohoto vstupu na stejnou hodnotu, klikněte nebo klepněte sem, jinak si zachovají své individuální hodnoty."
         },
         "error": {
-            "system": "Došlo k systémové chybě (&lt;a target=\"\\\" rel=\"nofollow\" href=\"\\\"&gt;Více informací&lt;\/a&gt;)."
+            "system": "Došlo k systémové chybě (&lt;a target=\"\\\" rel=\"nofollow\" href=\"\\\"&gt;Více informací&lt;/a&gt;)."
         }
     },
     "infoThousands": " ",
