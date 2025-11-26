@@ -684,6 +684,9 @@ $(document).ready(function() {
 		}
 	}
 
+	// Expose displayRadioStatus globally for bandmap and other components
+	window.displayRadioStatus = displayRadioStatus;
+
     /**
      * Process CAT data and update UI elements
      * Performs timeout check, updates form fields, and displays radio status
@@ -740,6 +743,12 @@ $(document).ready(function() {
                 // Fall back to dropdown text
                 data.radio = $('select.radios option:selected').text();
             }
+        }
+
+        // Validate that we have frequency data before proceeding
+        if (!data.frequency || data.frequency == 0 || data.frequency == null) {
+            console.warn('CAT: No valid frequency data received');
+            return;
         }
 
         // Force update by clearing catValue (prevents cat2UI from blocking updates)
