@@ -3169,13 +3169,13 @@ $(function() {
 		btn.css('box-shadow', '');
 
 		if (state === 'off') {
-			btn.addClass('btn-secondary').attr('data-bs-original-title', lang_bandmap_cat_off);
+			btn.addClass('btn-secondary').attr('data-bs-original-title', decodeHtml(lang_bandmap_cat_off));
 			radioIcon.addClass('fa-radio');
 		} else if (state === 'on') {
-			btn.addClass('btn-success').attr('data-bs-original-title', lang_bandmap_cat_on);
+			btn.addClass('btn-success').attr('data-bs-original-title', decodeHtml(lang_bandmap_cat_on));
 			radioIcon.addClass('fa-radio');
 		} else if (state === 'on+marker') {
-			btn.addClass('btn-success').attr('data-bs-original-title', lang_bandmap_cat_marker);
+			btn.addClass('btn-success').attr('data-bs-original-title', decodeHtml(lang_bandmap_cat_marker));
 			radioIcon.addClass('fa-radio').css('color', '#8a2be2');
 			btn.css('box-shadow', '0 0 8px rgba(138, 43, 226, 0.6)');
 		}
