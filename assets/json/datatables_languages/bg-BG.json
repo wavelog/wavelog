@@ -18,9 +18,10 @@
     },
     "autoFill": {
         "cancel": "Oткажи",
-        "fill": "Попълни всички клетки с <i>%d<i><\/i><\/i>",
+        "fill": "Попълни всички клетки с <i>%d<i></i></i>",
         "fillHorizontal": "Попълни хоризонтални клетки",
-        "fillVertical": "Попълни вертикални клетки"
+        "fillVertical": "Попълни вертикални клетки",
+        "info": "AutoFill info example"
     },
     "searchBuilder": {
         "add": "Добави",
@@ -65,26 +66,47 @@
                 "equals": "Еднакво с",
                 "not": "Различно от",
                 "notEmpty": "Не е празно",
-                "startsWith": "Започва с"
+                "startsWith": "Започва с",
+                "notContains": "Does not contain",
+                "notStartsWith": "Does not start with",
+                "notEndsWith": "Does not end with"
             }
         },
         "data": "Поле",
         "logicAnd": "И",
         "logicOr": "Или",
-        "value": "Стойност"
+        "value": "Стойност",
+        "button": {
+            "0": "Search builder",
+            "_": "Search builder (%d)"
+        },
+        "title": {
+            "0": "Search builder",
+            "_": "Search builder (%d)"
+        },
+        "leftTitle": "Outdent criteria",
+        "rightTitle": "Indent criteria"
     },
     "searchPanes": {
         "clearMessage": "Изтрий всички",
         "emptyPanes": "Няма SearchPanes",
         "loadMessage": "Зареждане...",
-        "title": "Активни филтри - %d"
+        "title": "Активни филтри - %d",
+        "collapse": {
+            "0": "Search panes",
+            "_": "Search panes (%d)"
+        },
+        "count": "{total}",
+        "countFiltered": "{shown} ({total})",
+        "showMessage": "Show all",
+        "collapseMessage": "Collapse all"
     },
     "buttons": {
         "collection": "Колекция",
-        "colvis": "Показване\/Скриване на колони",
+        "colvis": "Показване/Скриване на колони",
         "colvisRestore": "Показване на всички колони",
         "copy": "Копиране",
-        "copyKeys": "Натисни <i>ctrl или u2318 + C за да копираш данните от таблицата.<br \/> За да отмените, щракнете върху това съобщение или натиснете <i>escape<\/i>.<\/i>",
+        "copyKeys": "Натисни <i>ctrl или u2318 + C за да копираш данните от таблицата.<br /> За да отмените, щракнете върху това съобщение или натиснете <i>escape</i>.</i>",
         "copySuccess": {
             "_": "Копирани %ds реда",
             "1": "Копиран един ред"
@@ -92,9 +114,20 @@
         "copyTitle": "Копиране в буфера",
         "pageLength": {
             "_": "Покажи %d реда",
-            "-1": "Покажи всички редове"
+            "-1": "Покажи всички редове",
+            "1": "Show 1 row"
         },
-        "print": "Принтиране"
+        "print": "Принтиране",
+        "csv": "CSV",
+        "excel": "Excel",
+        "pdf": "PDF",
+        "createState": "Create state",
+        "removeAllStates": "Remove all states",
+        "removeState": "Remove",
+        "renameState": "Rename",
+        "stateRestore": "State %d",
+        "updateState": "Update",
+        "savedStates": "Saved states"
     },
     "datetime": {
         "hours": "Часове",
@@ -124,7 +157,12 @@
             "Четв",
             "Пет",
             "Съб"
-        ]
+        ],
+        "amPm": [
+            "AM",
+            "PM"
+        ],
+        "unknown": "-"
     },
     "editor": {
         "close": "Затвори",
@@ -172,5 +210,37 @@
             "_": "%d избрани реда",
             "1": "%d избран ред"
         }
+    },
+    "infoThousands": ",",
+    "thousands": ",",
+    "decimal": ".",
+    "stateRestore": {
+        "creationModal": {
+            "button": "Create",
+            "columns": {
+                "search": "Column search",
+                "visible": "Column visibility"
+            },
+            "name": "Name:",
+            "order": "Sorting",
+            "paging": "Paging",
+            "search": "Search",
+            "searchBuilder": "Search builder",
+            "select": "Select",
+            "title": "Create new state",
+            "toggleLabel": "Include:",
+            "scroller": "Scroll position"
+        },
+        "duplicateError": "A state with this name already exists.",
+        "emptyError": "Name cannot be empty.",
+        "emptyStates": "No saved states",
+        "removeConfirm": "Are you sure you want to remove %s?",
+        "removeError": "Failed to remove state.",
+        "removeJoiner": "and",
+        "removeSubmit": "Remove",
+        "removeTitle": "Remove state",
+        "renameButton": "Rename",
+        "renameLabel": "New name for %s:",
+        "renameTitle": "Rename state"
     }
 }

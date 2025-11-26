@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-11-26 05:25+0000\n"
-"PO-Revision-Date: 2025-11-23 22:25+0000\n"
+"PO-Revision-Date: 2025-11-26 08:03+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
@@ -3270,14 +3270,15 @@ msgstr "QRZCQ Fehler"
 #: application/libraries/Cbr_parser.php:160
 msgid "Broken CBR file - no valid exchange or callsigns found"
 msgstr ""
+"Defekte CBR-Datei - kein gültiger Austausch oder keine Rufzeichen gefunden"
 
 #: application/libraries/Cbr_parser.php:137
 msgid "Broken CBR file - no QSO data found."
-msgstr ""
+msgstr "Defekte CBR-Datei - keine QSO-Daten gefunden."
 
 #: application/libraries/Cbr_parser.php:147
 msgid "Broken CBR file - incomplete header found."
-msgstr ""
+msgstr "Defekte CBR-Datei - unvollständiger Header gefunden."
 
 #: application/libraries/Subdivisions.php:31
 msgctxt "Division Name (States in various countries)."
@@ -4871,6 +4872,8 @@ msgid ""
 "The CBR file contains a TRX number at the end of each QSO line (for multi-op "
 "stations)"
 msgstr ""
+"Die CBR-Datei enthält am Ende jeder QSO-Zeile eine TRX-Nummer (für Multi-OP "
+"Stationen)"
 
 #: application/views/adif/import.php:419
 msgid ""
@@ -5977,6 +5980,8 @@ msgstr "Präfix"
 #: application/views/awards/dxcc/index.php:353
 msgid "No results found for your search criteria. Please try again."
 msgstr ""
+"Für deine Suchkriterien wurden keine Ergebnisse gefunden. Bitte versuche es "
+"erneut."
 
 #: application/views/awards/ffma/index.php:11
 #: application/views/interface_assets/header.php:288
@@ -12488,51 +12493,51 @@ msgstr "Du musst mindestens eine Zeile wählen, um CQ-Zonen zu aktualisieren!"
 
 #: application/views/logbookadvanced/index.php:31
 msgid "You need to select at least 1 row to fix State!"
-msgstr ""
+msgstr "Du musst mindestens 1 Zeile auswählen, um den Staat zu befüllen!"
 
 #: application/views/logbookadvanced/index.php:32
 msgid "State updated successfully!"
-msgstr ""
+msgstr "Staat erfolgreich aktualisiert!"
 
 #: application/views/logbookadvanced/index.php:33
 msgid "There was a problem fixing State."
-msgstr ""
+msgstr "Es gab ein Problem beim Befüllen des Staats."
 
 #: application/views/logbookadvanced/index.php:34
 msgid "Fixing State"
-msgstr ""
+msgstr "Befülle Staat"
 
 #: application/views/logbookadvanced/index.php:35
 #, php-format
 msgid "Fixing State (%s QSOs)"
-msgstr ""
+msgstr "Befülle Staat (%s QSOs)"
 
 #: application/views/logbookadvanced/index.php:36
 #, php-format
 msgid "Fixing State: %s remaining"
-msgstr ""
+msgstr "Befülle Staat: %s verbleibend"
 
 #: application/views/logbookadvanced/index.php:37
 msgid "Fixed"
-msgstr ""
+msgstr "Repariert"
 
 #: application/views/logbookadvanced/index.php:38
 #, php-format
 msgid "Fixed: %s"
-msgstr ""
+msgstr "Repariert: %s"
 
 #: application/views/logbookadvanced/index.php:39
 msgid "Skipped"
-msgstr ""
+msgstr "Übersprungen"
 
 #: application/views/logbookadvanced/index.php:40
 #, php-format
 msgid "Skipped: %s, see details for skipped rows below"
-msgstr ""
+msgstr "Übersprungen: %s, sieh die Details zu den übersprungenen Zeilen unten"
 
 #: application/views/logbookadvanced/index.php:41
 msgid "State Fix Complete"
-msgstr ""
+msgstr "Staat Befüllung abgeschlossen"
 
 #: application/views/logbookadvanced/index.php:42
 #, php-format

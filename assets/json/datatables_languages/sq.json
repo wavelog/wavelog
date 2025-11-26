@@ -24,7 +24,8 @@
         "copyTitle": "Kopjo në Clipboard",
         "pageLength": {
             "_": "Shfaq %d rreshta",
-            "-1": "Shfaq të gjithë rreshtat"
+            "-1": "Shfaq të gjithë rreshtat",
+            "1": "Show 1 row"
         },
         "createState": "Krijo Gjendje",
         "removeAllStates": "Shlyej Të Gjitha Gjendjet",
@@ -79,7 +80,8 @@
         "fill": "Plotëso",
         "fillHorizontal": "Plotëso rreshtat",
         "fillVertical": "Plotëso kolonat",
-        "cancel": "Anulo"
+        "cancel": "Anulo",
+        "info": "AutoFill info example"
     },
     "decimal": ",",
     "editor": {
@@ -95,7 +97,7 @@
             "title": "Modifiko një të dhënë ekzistuese"
         },
         "error": {
-            "system": "Ka ndodhur një gabim në sistem. (<a target=\"\\\" rel=\"\\ nofollow\" href=\"\\\">Më shumë informacion&lt;\\\/a&gt;).<\/a>"
+            "system": "Ka ndodhur një gabim në sistem. (<a target=\"\\\" rel=\"\\ nofollow\" href=\"\\\">Më shumë informacion&lt;\\/a&gt;).</a>"
         },
         "multi": {
             "restore": "Zhbëj ndryshimet",
@@ -131,7 +133,7 @@
             "array": {
                 "contains": "përmban",
                 "empty": "bosh",
-                "equals": "i\/e barabartë",
+                "equals": "i/e barabartë",
                 "not": "jo",
                 "notEmpty": "jo bosh",
                 "without": "pa"
@@ -141,7 +143,7 @@
                 "before": "para",
                 "between": "ndërmjet",
                 "empty": "bosh",
-                "equals": "i\/e barabartë",
+                "equals": "i/e barabartë",
                 "not": "jo",
                 "notBetween": "jo ndërmjet",
                 "notEmpty": "jo bosh"
@@ -149,11 +151,11 @@
             "number": {
                 "between": "ndërmjet",
                 "empty": "bosh",
-                "equals": "i\/e barabartë\"",
-                "gt": "më i\/e madh\/e se",
-                "gte": "më i\/e madh\/e ose i\/e barabartë me",
-                "lt": "më i\/e vogël se",
-                "lte": "më i\/e madh\/e ose i\/e barabartë me",
+                "equals": "i/e barabartë\"",
+                "gt": "më i/e madh/e se",
+                "gte": "më i/e madh/e ose i/e barabartë me",
+                "lt": "më i/e vogël se",
+                "lte": "më i/e madh/e ose i/e barabartë me",
                 "not": "jo",
                 "notBetween": "jo ndërmjet",
                 "notEmpty": "jo bosh"
@@ -162,7 +164,7 @@
                 "contains": "përmban",
                 "empty": "bosh",
                 "endsWith": "mbaron me",
-                "equals": "i\/e barabartë",
+                "equals": "i/e barabartë",
                 "not": "jo",
                 "notEmpty": "jo bosh",
                 "startsWith": "fillon me",
@@ -179,7 +181,9 @@
             "_": "Logjikë kërkimi (%d)",
             "0": "Logjikë kërkimi"
         },
-        "value": "Vlera"
+        "value": "Vlera",
+        "leftTitle": "Outdent criteria",
+        "rightTitle": "Indent criteria"
     },
     "searchPanes": {
         "clearMessage": "Pastro të gjitha",
@@ -203,6 +207,10 @@
         "columns": {
             "_": "%d kolona të zgjedhura",
             "1": "1 kolonë e zgjedhur"
+        },
+        "rows": {
+            "1": "1 row selected",
+            "_": "%d rows selected"
         }
     },
     "zeroRecords": "Nuk u gjet asnjë e dhënë",
