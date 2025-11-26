@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2025-11-25 07:14+0000\n"
 "PO-Revision-Date: 2025-11-26 05:25+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2586,6 +2586,8 @@ msgstr "許可されていません"
 #: application/controllers/Stationsetup.php:478
 #: application/views/qso/index.php:745 application/views/simplefle/index.php:39
 #: application/views/widgets/on_air.php:102
+#: application/views/widgets/on_air.php:181
+#: application/views/widgets/on_air.php:243
 msgid "Error"
 msgstr "エラー"
 
@@ -3235,14 +3237,18 @@ msgstr "Wavelog OQRS を使用しているステーションが見つかりま�
 
 #: application/controllers/Widgets.php:140
 #: application/controllers/Widgets.php:149
+#: application/controllers/Widgets.php:147
+#: application/controllers/Widgets.php:158
 msgid "User slug not specified"
 msgstr "ユーザースラッグが指定されていません"
 
 #: application/controllers/Widgets.php:160
+#: application/controllers/Widgets.php:171
 msgid "User has on-air widget disabled"
 msgstr "ユーザーはオンエアウィジェットを無効にしています"
 
 #: application/controllers/Widgets.php:219
+#: application/controllers/Widgets.php:229
 msgid ""
 "No CAT interfaced radios found. You need to have at least one radio "
 "interface configured."
@@ -3251,10 +3257,12 @@ msgstr ""
 "スを設定する必要があります。"
 
 #: application/controllers/Widgets.php:330
+#: application/controllers/Widgets.php:423
 msgid "User not found by slug"
 msgstr "スラッグでユーザーが見つかりません"
 
 #: application/controllers/Widgets.php:333
+#: application/controllers/Widgets.php:426
 msgid "Multiple users found by slug"
 msgstr "スラッグで複数のユーザーが見つかりました"
 
