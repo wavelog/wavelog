@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-11-26 05:25+0000\n"
-"PO-Revision-Date: 2025-11-26 17:06+0000\n"
+"PO-Revision-Date: 2025-11-26 23:33+0000\n"
 "Last-Translator: Viliam Petrik <tatralom@gmail.com>\n"
 "Language-Team: Slovak <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/sk/>\n"
@@ -128,12 +128,12 @@ msgstr "To nesmieš robiť!"
 #: application/controllers/Accumulated.php:19
 #: application/views/interface_assets/header.php:174
 msgid "Accumulated Statistics"
-msgstr ""
+msgstr "Kumulatívne štatistiky"
 
 #: application/controllers/Activated_gridmap.php:10
 #: application/views/activated_gridmap/index.php:9
 msgid "Activated Gridsquare Map"
-msgstr ""
+msgstr "Mapa aktivovaných lokátorov"
 
 #: application/controllers/Activated_gridmap.php:31
 #: application/controllers/Awards.php:1043
@@ -248,52 +248,52 @@ msgstr "POTA import"
 
 #: application/controllers/Adif.php:437
 msgid "POTA Data Imported"
-msgstr ""
+msgstr "POTA dáta naimportované"
 
 #: application/controllers/Api.php:14
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: application/controllers/Api.php:37 application/views/api/description.php:26
 msgid "API Description"
-msgstr ""
+msgstr "Popis API"
 
 #: application/controllers/Api.php:38
 msgid "API Key is required. Do not change this field"
-msgstr ""
+msgstr "Je požadovaný API kľúč. Toto pole nemeňte"
 
 #: application/controllers/Api.php:44
 msgid "Edit API Description"
-msgstr ""
+msgstr "Uprav API popis"
 
 #: application/controllers/Api.php:56
 #, php-format
 msgid "API Key %s description has been updated."
-msgstr ""
+msgstr "Popis API kľúča %s bol aktualizovaný."
 
 #: application/controllers/Api.php:68
 msgid "Invalid API rights"
-msgstr ""
+msgstr "Neplatné API práva"
 
 #: application/controllers/Api.php:82
 msgid "API Key generated"
-msgstr ""
+msgstr "Vytvorený API kľúč"
 
 #: application/controllers/Api.php:84
 msgid "API Key could not be generated"
-msgstr ""
+msgstr "API kľúč nebolo možné vygenerovať"
 
 #: application/controllers/Api.php:98
 #, php-format
 msgid "API Key %s has been deleted"
-msgstr ""
+msgstr "API kľúč %s bol vymazaný"
 
 #: application/controllers/Awards.php:31
 #: application/views/interface_assets/header.php:186
 #: application/views/logbookadvanced/edit.php:22
 #: application/views/qso/edit_ajax.php:36
 msgid "Awards"
-msgstr ""
+msgstr "Diplomy"
 
 #: application/controllers/Awards.php:102
 #: application/controllers/Awards.php:194
@@ -319,7 +319,7 @@ msgstr ""
 #: application/controllers/Awards.php:2337
 #, php-format
 msgid "Awards - %s"
-msgstr ""
+msgstr "Diplomy - %s"
 
 #: application/controllers/Awards.php:102
 #: application/views/awards/dok/index.php:150
@@ -338,7 +338,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:430
 #: application/views/logbookadvanced/index.php:929
 msgid "DOK"
-msgstr ""
+msgstr "DOK"
 
 #: application/controllers/Awards.php:194 application/views/awards/index.php:7
 #: application/views/bandmap/list.php:70 application/views/bands/index.php:50
@@ -364,29 +364,29 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:304
 #: application/views/logbookadvanced/index.php:905
 msgid "DXCC"
-msgstr ""
+msgstr "DXCC"
 
 #: application/controllers/Awards.php:271
 msgid "Awards - WAPC"
-msgstr ""
+msgstr "Diplomy - WAPC"
 
 #: application/controllers/Awards.php:351
 msgid "Awards - WAJA"
-msgstr ""
+msgstr "Diplomy - WAJA"
 
 #: application/controllers/Awards.php:428 application/views/bands/index.php:53
 #: application/views/interface_assets/header.php:256
 msgid "JCC"
-msgstr ""
+msgstr "JCC"
 
 #: application/controllers/Awards.php:478 application/views/bands/index.php:59
 #: application/views/interface_assets/header.php:198
 msgid "VUCC"
-msgstr ""
+msgstr "VUCC"
 
 #: application/controllers/Awards.php:510
 msgid "Log View - VUCC"
-msgstr ""
+msgstr "Zobrazenie denníka - VUCC"
 
 #: application/controllers/Awards.php:560
 #: application/controllers/Callstats.php:100
@@ -399,36 +399,36 @@ msgstr ""
 #: application/controllers/Timeline.php:138
 #: application/controllers/Timeline.php:141
 msgid "Log View"
-msgstr ""
+msgstr "Zobrazenie denníka"
 
 #: application/controllers/Awards.php:561
 #: application/controllers/Callstats.php:101
 msgid " and band "
-msgstr ""
+msgstr " a pásmo "
 
 #: application/controllers/Awards.php:564
 msgid " and satellite "
-msgstr ""
+msgstr " a satelit "
 
 #: application/controllers/Awards.php:567
 #: application/controllers/Callstats.php:107
 msgid " and orbit type "
-msgstr ""
+msgstr " a druh orbity "
 
 #: application/controllers/Awards.php:571
 #: application/controllers/Callstats.php:111
 msgid " and propagation "
-msgstr ""
+msgstr " a šírenie "
 
 #: application/controllers/Awards.php:574
 #: application/controllers/Callstats.php:114
 msgid " and mode "
-msgstr ""
+msgstr " a mód "
 
 #: application/controllers/Awards.php:577
 #: application/controllers/Callstats.php:117
 msgid " and "
-msgstr ""
+msgstr " a "
 
 #: application/controllers/Awards.php:595
 #: application/controllers/Logbook.php:1364
@@ -456,7 +456,7 @@ msgstr ""
 #: application/views/visitor/index.php:21
 #: application/views/logbookadvanced/index.php:434
 msgid "SOTA"
-msgstr ""
+msgstr "SOTA"
 
 #: application/controllers/Awards.php:613
 #: application/controllers/Logbook.php:1365
@@ -478,7 +478,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:10
 #: application/views/logbookadvanced/index.php:456
 msgid "WWFF"
-msgstr ""
+msgstr "WWFF"
 
 #: application/controllers/Awards.php:631
 #: application/controllers/Logbook.php:1366
@@ -502,68 +502,68 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:438
 #: application/views/logbookadvanced/index.php:923
 msgid "POTA"
-msgstr ""
+msgstr "POTA"
 
 #: application/controllers/Awards.php:703
 msgid "CQ WAZ (Worked All Zones)"
-msgstr ""
+msgstr "CQ WAZ (Worked All Zones)"
 
 #: application/controllers/Awards.php:765
 #: application/views/accumulate/index.php:54
 #: application/views/timeline/index.php:45
 msgid "Worked All States (WAS)"
-msgstr ""
+msgstr "Worked All States (WAS)"
 
 #: application/controllers/Awards.php:828 application/views/bands/index.php:55
 #: application/views/interface_assets/header.php:228
 msgid "RAC"
-msgstr ""
+msgstr "RAC"
 
 #: application/controllers/Awards.php:891 application/views/bands/index.php:51
 msgid "H26"
-msgstr ""
+msgstr "H26"
 
 #: application/controllers/Awards.php:976
 msgid "IOTA (Island On The Air)"
-msgstr ""
+msgstr "IOTA (Island On The Air)"
 
 #: application/controllers/Awards.php:988
 #: application/controllers/Awards.php:1003
 #: application/views/interface_assets/header.php:282
 msgid "US Counties"
-msgstr ""
+msgstr "Okresy USA"
 
 #: application/controllers/Awards.php:1018
 msgid "Log View - Counties"
-msgstr ""
+msgstr "Zobrazenie denníka - okresy"
 
 #: application/controllers/Awards.php:1025
 msgid "Awards - "
-msgstr ""
+msgstr "Diplomy "
 
 #: application/controllers/Awards.php:1044
 #: application/controllers/Awards.php:1080
 msgid "Gridsquares worked"
-msgstr ""
+msgstr "Lokátory urobené"
 
 #: application/controllers/Awards.php:1045
 #: application/controllers/Awards.php:1081
 msgid "Gridsquares confirmed on LoTW"
-msgstr ""
+msgstr "Lokátory potvrdené cez LoTW"
 
 #: application/controllers/Awards.php:1046
 #: application/controllers/Awards.php:1082
 msgid "Gridsquares confirmed by paper QSL"
-msgstr ""
+msgstr "Lokátory potvrdené papierovými QSL"
 
 #: application/controllers/Awards.php:1047
 #: application/controllers/Awards.php:1083
 msgid "Total Gridsquares worked"
-msgstr ""
+msgstr "Celkový počet urobených lokátorov"
 
 #: application/controllers/Awards.php:1064
 msgid "Fred Fish Memorial Award (FFMA)"
-msgstr ""
+msgstr "Fred Fish Memorial Award (FFMA)"
 
 #: application/controllers/Awards.php:1270
 #: application/views/interface_assets/header.php:196
@@ -573,53 +573,53 @@ msgstr ""
 #: application/views/view_log/qso.php:431
 #: application/views/view_log/qso.php:742
 msgid "SIG"
-msgstr ""
+msgstr "SIG"
 
 #: application/controllers/Awards.php:1289
 msgid "Awards - SIG - "
-msgstr ""
+msgstr "Diplomy - SIG - "
 
 #: application/controllers/Awards.php:1422 application/views/bands/index.php:60
 msgid "WAP"
-msgstr ""
+msgstr "WAP"
 
 #: application/controllers/Awards.php:2040
 #: application/views/awards/itu/index.php:23
 msgid "ITU Zones"
-msgstr ""
+msgstr "ITU zóny"
 
 #: application/controllers/Awards.php:2170
 #: application/views/awards/wac/index.php:8
 #: application/views/interface_assets/header.php:202
 msgid "Worked All Continents (WAC)"
-msgstr ""
+msgstr "Worked All Continents (WAC)"
 
 #: application/controllers/Awards.php:2249
 msgid "WAE"
-msgstr ""
+msgstr "WAE"
 
 #: application/controllers/Awards.php:2262
 #: application/views/interface_assets/header.php:212
 msgid "73 on 73"
-msgstr ""
+msgstr "73 on 73"
 
 #: application/controllers/Awards.php:2337
 #: application/views/awards/wpx/wpx_details.php:19
 msgid "WPX"
-msgstr ""
+msgstr "WPX"
 
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:330
 msgid "Backup"
-msgstr ""
+msgstr "Záloha"
 
 #: application/controllers/Backup.php:50
 msgid "ADIF - Backup"
-msgstr ""
+msgstr "ADIF - záloha"
 
 #: application/controllers/Backup.php:84
 msgid "Notes - Backup"
-msgstr ""
+msgstr "Poznámky - záloha"
 
 #: application/controllers/Band.php:25 application/controllers/Band.php:43
 #: application/views/bands/index.php:30 application/views/bands/index.php:34
@@ -627,15 +627,15 @@ msgstr ""
 #: application/views/statistics/index.php:16
 #: application/views/statistics/index.php:67
 msgid "Bands"
-msgstr ""
+msgstr "Pásma"
 
 #: application/controllers/Band.php:74 application/controllers/Mode.php:41
 msgid "Create Mode"
-msgstr ""
+msgstr "Vytvoriť mód"
 
 #: application/controllers/Band.php:99 application/views/bands/index.php:158
 msgid "Edit Band"
-msgstr ""
+msgstr "Úprava pásma"
 
 #: application/controllers/Bandmap.php:28
 #: application/controllers/Bandmap.php:75
@@ -643,15 +643,15 @@ msgstr ""
 #: application/controllers/Options.php:163
 #: application/views/options/sidebar.php:7
 msgid "DXCluster"
-msgstr ""
+msgstr "DXCluster"
 
 #: application/controllers/Cabrillo.php:20
 msgid "Export Cabrillo"
-msgstr ""
+msgstr "Exportovať Cabrillo"
 
 #: application/controllers/Cabrillo.php:150
 msgid "Cabrillo Import"
-msgstr ""
+msgstr "Import Cabrillo"
 
 #: application/controllers/Cabrillo.php:249
 #, php-format
@@ -659,19 +659,21 @@ msgid ""
 "QSO %d not found or more than 1 QSO found that match the criteria of the CBR "
 "file. Skipping as a safety measure."
 msgstr ""
+"QSO %d sa nenašlo alebo sa našlo viac ako 1 QSO, ktoré zodpovedajú kritériám "
+"CBR súboru. Preskakujem z bezpečnostných dôvodov."
 
 #: application/controllers/Cabrillo.php:309
 msgid "CBR Data Imported"
-msgstr ""
+msgstr "CBR dáta naimportované"
 
 #: application/controllers/Callstats.php:19
 #: application/views/callstats/index.php:2
 msgid "Callsign statistics"
-msgstr ""
+msgstr "Štatistiky volacích znakov"
 
 #: application/controllers/Callstats.php:104
 msgid " and sat "
-msgstr ""
+msgstr " a sat "
 
 #: application/controllers/Club.php:23
 msgid "Club Officer"
@@ -679,73 +681,73 @@ msgstr ""
 
 #: application/controllers/Club.php:24
 msgid "Club Member"
-msgstr ""
+msgstr "Člen klubu"
 
 #: application/controllers/Club.php:44 application/models/Club_model.php:75
 #: application/models/Club_model.php:149 application/models/Club_model.php:191
 msgid "Invalid User ID!"
-msgstr ""
+msgstr "Neplatné ID používateľa!"
 
 #: application/controllers/Club.php:52
 msgid "This user is not a club station."
-msgstr ""
+msgstr "Tento používateľ nie je klubová stanica."
 
 #: application/controllers/Club.php:56
 #: application/views/club/permissions.php:10
 #: application/views/user/index.php:215
 msgid "Club Permissions"
-msgstr ""
+msgstr "Povolenia klubu"
 
 #: application/controllers/Club.php:118 application/controllers/Club.php:147
 #: application/controllers/Club.php:174 application/models/Club_model.php:22
 #: application/models/Club_model.php:70 application/models/Club_model.php:144
 #: application/models/Club_model.php:186
 msgid "Invalid Club ID!"
-msgstr ""
+msgstr "Neplatné ID klubu!"
 
 #: application/controllers/Club.php:130
 msgid "User could not be notified. Please check your email settings."
-msgstr ""
+msgstr "Používateľa nebolo možné upozorniť. Skontrolujte nastavenia e-mailu."
 
 #: application/controllers/Club.php:134
 msgid "Club member permissions have been updated."
-msgstr ""
+msgstr "Oprávnenia členov klubu boli aktualizované."
 
 #: application/controllers/Club.php:156
 msgid "User removed from club."
-msgstr ""
+msgstr "Používateľ bol odstránený z klubu."
 
 #: application/controllers/Club.php:158
 msgid "User could not be removed from club."
-msgstr ""
+msgstr "Používateľa sa nepodarilo odstrániť z klubu."
 
 #: application/controllers/Club.php:201
 msgid "Invalid message type."
-msgstr ""
+msgstr "Neplatný typ správy."
 
 #: application/controllers/Club.php:220
 msgid "Email settings not configured."
-msgstr ""
+msgstr "Nastavenia e-mailu nie sú nakonfigurované."
 
 #: application/controllers/Club.php:227 application/views/api/index.php:68
 #: application/views/satellite/index.php:94
 #: application/views/satellite/satinfo.php:51
 msgid "Unknown"
-msgstr ""
+msgstr "Neznáme"
 
 #: application/controllers/Clublog.php:15 application/controllers/Cron.php:12
 #: application/controllers/Dcl.php:13 application/controllers/Eqsl.php:13
 #: application/controllers/Hrdlog.php:19 application/controllers/Lotw.php:27
 #: application/controllers/Qrz.php:14 application/controllers/Update.php:15
 msgid "Maintenance Mode is active. Try again later."
-msgstr ""
+msgstr "Režim údržby je aktívny. Skúste to znova neskôr."
 
 #: application/controllers/Clublog.php:44
 #: application/controllers/Clublog.php:70
 #: application/controllers/Clublog.php:123
 #: application/controllers/Clublog.php:160
 msgid "No user has configured Clublog."
-msgstr ""
+msgstr "Žiadny používateľ nekonfiguroval Clublog."
 
 #: application/controllers/Clublog.php:86
 #: application/controllers/Logbook.php:743
@@ -769,34 +771,34 @@ msgstr ""
 #: application/views/view_log/qso.php:571
 #: application/views/view_log/qso.php:576
 msgid "Clublog"
-msgstr ""
+msgstr "Clublog"
 
 #: application/controllers/Clublog.php:142
 msgid "Clublog QSL Import"
-msgstr ""
+msgstr "Import Clublog QSL"
 
 #: application/controllers/Contestcalendar.php:19
 #: application/views/interface_assets/header.php:301
 msgid "Contest Calendar"
-msgstr ""
+msgstr "Kalendár contestov"
 
 #: application/controllers/Contestcalendar.php:47
 msgid "Contestcalendar not reachable. Try again later"
-msgstr ""
+msgstr "Kalendár contestov nie je dostupný. Skúste to znova neskôr"
 
 #: application/controllers/Contesting.php:57
 #: application/views/contesting/index.php:12
 msgid "Contest Logging"
-msgstr ""
+msgstr "Contestový log"
 
 #: application/controllers/Contesting.php:128
 #: application/views/interface_assets/header.php:324
 msgid "Contests"
-msgstr ""
+msgstr "Contesty"
 
 #: application/controllers/Contesting.php:142
 msgid "Update Contest"
-msgstr ""
+msgstr "Aktualizovať contest"
 
 #: application/controllers/Continents.php:26
 #: application/views/awards/dxcc/index.php:113
@@ -804,16 +806,16 @@ msgstr ""
 #: application/views/awards/wpx/index.php:51
 #: application/views/interface_assets/header.php:178
 msgid "Continents"
-msgstr ""
+msgstr "Kontinenty"
 
 #: application/controllers/Cron.php:38
 #: application/views/interface_assets/header.php:334
 msgid "Cron Manager"
-msgstr ""
+msgstr "Cron Manager"
 
 #: application/controllers/Cron.php:164 application/views/cron/edit.php:5
 msgid "Edit Cronjob"
-msgstr ""
+msgstr "Upraviť Cronjob"
 
 #: application/controllers/Cron.php:228 application/controllers/Cron.php:229
 #: application/views/cron/index.php:96 application/views/cron/index.php:98
@@ -824,32 +826,32 @@ msgstr ""
 #: application/views/debug/index.php:559 application/views/debug/index.php:564
 #: application/views/debug/index.php:569 application/views/debug/index.php:574
 msgid "never"
-msgstr ""
+msgstr "nikdy"
 
 #: application/controllers/Cron.php:229
 msgid "calculating..."
-msgstr ""
+msgstr "vypočítavam..."
 
 #: application/controllers/Cron.php:240 application/views/cron/index.php:83
 msgid "healthy"
-msgstr ""
+msgstr "zdravý"
 
 #: application/controllers/Cron.php:242 application/views/cron/index.php:85
 msgid "failed"
-msgstr ""
+msgstr "zlyhali"
 
 #: application/controllers/Cron.php:244 application/views/cron/index.php:87
 msgid "pending"
-msgstr ""
+msgstr "čakajúce"
 
 #: application/controllers/Cron.php:249 application/views/cron/index.php:92
 msgid "disabled"
-msgstr ""
+msgstr "vypnutý"
 
 #: application/controllers/Cron.php:288
 #: application/views/interface_assets/footer.php:41
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: application/controllers/Cron.php:292
 #, php-format
@@ -857,6 +859,8 @@ msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
 "It should run every minute (* * * * *)."
 msgstr ""
+"Posledný spustenie sa uskutočnilo pred viac ako %s sekundami.%sSkontroluj "
+"svoj hlavný cron! Mal by bežať každú minútu (* * * * *)."
 
 #: application/controllers/Cron.php:295
 #, php-format
@@ -864,32 +868,34 @@ msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
 "isn't running!%sIt should run every minute (* * * * *)."
 msgstr ""
+"Posledné spustenie sa uskutočnilo pred viac ako %s minútami.%sZdá sa, že váš "
+"Mastercron nebeží!%sMal by bežať každú minútu (* * * * *)."
 
 #: application/controllers/Cron.php:300 application/views/cron/index.php:42
 msgctxt "Master Cron"
 msgid "Not running"
-msgstr ""
+msgstr "Nespustené"
 
 #: application/controllers/Csv.php:20 application/views/csv/index.php:3
 #: application/views/interface_assets/header.php:475
 msgid "SOTA CSV Export"
-msgstr ""
+msgstr "SOTA CSV export"
 
 #: application/controllers/Dashboard.php:154
 #: application/controllers/Visitor.php:134
 msgid "Dashboard"
-msgstr ""
+msgstr "Dashboard"
 
 #: application/controllers/Dayswithqso.php:17
 #: application/views/dayswithqso/index.php:2
 #: application/views/interface_assets/header.php:170
 msgid "Days with QSOs"
-msgstr ""
+msgstr "Dni s QSO"
 
 #: application/controllers/Dcl.php:33
 #: application/views/dcl_views/key_import.php:3
 msgid "DCL Key Import"
-msgstr ""
+msgstr "Import DCL kľúča"
 
 #: application/controllers/Dcl.php:68 application/views/dcl_views/import.php:3
 #: application/views/dcl_views/index.php:3
@@ -903,59 +909,59 @@ msgstr ""
 #: application/views/view_log/qso.php:586
 #: application/views/logbookadvanced/index.php:896
 msgid "DCL"
-msgstr ""
+msgstr "DCL"
 
 #: application/controllers/Dcl.php:139
 msgid "No QSOs to upload."
-msgstr ""
+msgstr "Žiadne QSOs na nahratie."
 
 #: application/controllers/Dcl.php:186 application/controllers/Dcl.php:198
 msgid "Upload Failed"
-msgstr ""
+msgstr "Nahrávanie zlyhalo"
 
 #: application/controllers/Dcl.php:188
 msgid "Timeout reached. Stopping subsequent uploads."
-msgstr ""
+msgstr "Časový limit dosiahnutý. Zastavenie ďalších nahrávaní."
 
 #: application/controllers/Dcl.php:201
 msgid "Upload Successful"
-msgstr ""
+msgstr "Nahrávanie úspešné."
 
 #: application/controllers/Dcl.php:211
 msgid "No Station Profiles found to upload to DCL"
-msgstr ""
+msgstr "Žiadne profily staníc na nahratie do DCL sa nenašli"
 
 #: application/controllers/Dcl.php:229
 msgid "Key(s) Deleted."
-msgstr ""
+msgstr "Kľúč(e) vymazaný(é)."
 
 #: application/controllers/Debug.php:118
 msgid "Debug"
-msgstr ""
+msgstr "Debug"
 
 #: application/controllers/Debug.php:157
 msgid "Migrate data now"
-msgstr ""
+msgstr "Migruj údaje teraz"
 
 #: application/controllers/Debug.php:160
 msgid "Migration already done. Run again?"
-msgstr ""
+msgstr "Migrácia už prebehla. Spustiť znovu?"
 
 #: application/controllers/Debug.php:164
 msgid "No data to migrate"
-msgstr ""
+msgstr "Žiadne údaje na migráciu"
 
 #: application/controllers/Debug.php:168 application/controllers/Debug.php:173
 msgid "No migration possible"
-msgstr ""
+msgstr "Migrácia nie je možná"
 
 #: application/controllers/Debug.php:238
 msgid "Wavelog was updated successfully!"
-msgstr ""
+msgstr "Wavelog bol úspešne aktualizovaný!"
 
 #: application/controllers/Debug.php:256
 msgid "Selfupdate() not available. Check the Error Log."
-msgstr ""
+msgstr "Automatická aktualizácia() nie je dostupná. Skontroluj error log."
 
 #: application/controllers/Debug.php:300
 msgid ""
@@ -963,220 +969,224 @@ msgid ""
 "everything seems right you can delete the folders 'assets/qslcard' and "
 "'images/eqsl_card_images'."
 msgstr ""
+"Sťahovanie súborov bolo úspešné, ale skontroluj to aj manuálne. Ak sa zdá, "
+"že všetko je v poriadku, môžeš vymazať priečinky 'assets/qslcard' a 'images/"
+"eqsl_card_images'."
 
 #: application/controllers/Debug.php:303
 msgid "File Migration failed. Please check the Error Log."
-msgstr ""
+msgstr "Migrácia súborov zlyhala. Skontroluj error log."
 
 #: application/controllers/Distancerecords.php:67
 #: application/controllers/Distancerecords.php:86
 #: application/views/interface_assets/header.php:168
 msgid "Satellite Distance Records"
-msgstr ""
+msgstr "Rekordy vzdialeností cez satelity"
 
 #: application/controllers/Distances.php:17
 #: application/views/distances/index.php:5
 #: application/views/distances/index.php:8
 #: application/views/interface_assets/header.php:166
 msgid "Distances Worked"
-msgstr ""
+msgstr "Vzdialenosti"
 
 #: application/controllers/Distances.php:83
 #: application/views/distances/index.php:15
 msgid "QSOs with"
-msgstr ""
+msgstr "QSOs s"
 
 #: application/controllers/Distances.php:83
 msgid "and band"
-msgstr ""
+msgstr "a pásmo"
 
 #: application/controllers/Distances.php:83
 msgid "and propagation"
-msgstr ""
+msgstr "a šírenie"
 
 #: application/controllers/Dxatlas.php:19
 #: application/views/interface_assets/header.php:473
 msgid "DX Atlas Gridsquare Export"
-msgstr ""
+msgstr "DX Atlas export lokátorov"
 
 #: application/controllers/Dxcalendar.php:10
 #: application/views/interface_assets/header.php:299
 msgid "DX Calendar"
-msgstr ""
+msgstr "DX kalendár"
 
 #: application/controllers/Eqsl.php:34
 #: application/views/dashboard/index.php:409
 #: application/views/eqslcard/index.php:5
 #: application/views/visitor/index.php:310
 msgid "eQSL Cards"
-msgstr ""
+msgstr "eQSL karty"
 
 #: application/controllers/Eqsl.php:127
 msgid "eQSL Import"
-msgstr ""
+msgstr "eQSL import"
 
 #: application/controllers/Eqsl.php:137
 msgid "eQSL Import Information"
-msgstr ""
+msgstr "Informácie o importe eQSL"
 
 #: application/controllers/Eqsl.php:154
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
-msgstr ""
+msgstr "Prezývky eQSL v profiloch staníc nie sú definované!"
 
 #: application/controllers/Eqsl.php:161
 msgid "eQSL QSO Upload"
-msgstr ""
+msgstr "eQSL QSO nahranie"
 
 #: application/controllers/Eqsl.php:173
 msgid "You have not defined your eQSL.cc credentials!"
-msgstr ""
+msgstr "Nemáš definované svoje eQSL.cc prihlasovacie údaje!"
 
 #: application/controllers/Eqsl.php:195
 msgid "User/Pass wrong for eQSL"
-msgstr ""
+msgstr "Užívateľské meno alebo heslo pre eQSL je nesprávne"
 
 #: application/controllers/Eqsl.php:199
 #, php-format
 msgid "No such eQSL QTH Nickname: %s"
-msgstr ""
+msgstr "Žiadna taká eQSL QTH prezývka: %s"
 
 #: application/controllers/Eqsl.php:437
 msgid "eQSL Tools"
-msgstr ""
+msgstr "eQSL nástroje"
 
 #: application/controllers/Eqsl.php:485
 msgid " / Errors: "
-msgstr ""
+msgstr " / Chyby: "
 
 #: application/controllers/Eqsl.php:485
 msgid "Successfully downloaded: "
-msgstr ""
+msgstr "Úspešne stiahnuté: "
 
 #: application/controllers/Eqsl.php:494
 msgid "eQSL Card Image Download"
-msgstr ""
+msgstr "Stiahnuť obrázok eQSL karty"
 
 #: application/controllers/Generic_qsl.php:18
 msgid "Confirmations"
-msgstr ""
+msgstr "Potvrdenia"
 
 #: application/controllers/Gridmap.php:10
 #: application/views/interface_assets/header.php:160
 msgid "Gridsquare Map"
-msgstr ""
+msgstr "Mapa lokátorov"
 
 #: application/controllers/Gridmap.php:35
 #: application/controllers/Visitor.php:388
 msgid "Total gridsquares worked"
-msgstr ""
+msgstr "Celkový počet urobených lokátorov"
 
 #: application/controllers/Hamsat.php:59
 msgid "Hamsat - Satellite Roving"
-msgstr ""
+msgstr "Hamsat - satelitný roving"
 
 #: application/controllers/Hrdlog.php:70 application/controllers/Hrdlog.php:71
 msgid "HRD Log upload for this station is disabled."
-msgstr ""
+msgstr "Nahrávanie denníka HRD pre túto stanicu je zakázané."
 
 #: application/controllers/Hrdlog.php:93
 #, php-format
 msgid "%d QSO is now uploaded to HRDlog"
 msgid_plural "%d QSOs are now uploaded to HRDlog"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d QSO je teraz nahraté do HRDlogu"
+msgstr[1] "%d QSO sú teraz nahraté do HRDlogu"
+msgstr[2] "%d QSOs sú teraz nahraté do HRDlogu"
 
 #: application/controllers/Hrdlog.php:98
 msgid "No QSOs found to upload."
-msgstr ""
+msgstr "Žiadne QSOs na nahratie."
 
 #: application/controllers/Kmlexport.php:24
 #: application/views/interface_assets/header.php:471
 #: application/views/kml/index.php:3
 msgid "KML Export"
-msgstr ""
+msgstr "KML export"
 
 #: application/controllers/Labels.php:40 application/views/labels/index.php:30
 msgid "QSL Card Labels"
-msgstr ""
+msgstr "Štítky QSL kariet"
 
 #: application/controllers/Labels.php:71
 msgid "Create Label Type"
-msgstr ""
+msgstr "Vytvoriť typ štítku"
 
 #: application/controllers/Labels.php:78 application/controllers/Labels.php:419
 #: application/views/labels/create.php:22 application/views/labels/edit.php:22
 msgid "Label Name"
-msgstr ""
+msgstr "Názov štítku"
 
 #: application/controllers/Labels.php:79 application/controllers/Labels.php:420
 #: application/views/labels/create.php:28 application/views/labels/edit.php:28
 #: application/views/labels/index.php:76
 msgid "Paper Type"
-msgstr ""
+msgstr "Typ papiera"
 
 #: application/controllers/Labels.php:80 application/controllers/Labels.php:421
 #: application/views/labels/index.php:42 application/views/labels/index.php:77
 msgid "Measurement"
-msgstr ""
+msgstr "Meranie"
 
 #: application/controllers/Labels.php:81 application/controllers/Labels.php:422
 msgid "Top Margin"
-msgstr ""
+msgstr "Horný okraj"
 
 #: application/controllers/Labels.php:82 application/controllers/Labels.php:423
 msgid "Left Margin"
-msgstr ""
+msgstr "Ľavý okraj"
 
 #: application/controllers/Labels.php:83 application/controllers/Labels.php:424
 msgid "QSLs Horizontally"
-msgstr ""
+msgstr "QSL horizontálne"
 
 #: application/controllers/Labels.php:84 application/controllers/Labels.php:425
 msgid "QSLs Vertically"
-msgstr ""
+msgstr "QSL vertikálne"
 
 #: application/controllers/Labels.php:85 application/controllers/Labels.php:426
 msgid "Horizontal Space"
-msgstr ""
+msgstr "Horizontálna medzera"
 
 #: application/controllers/Labels.php:86 application/controllers/Labels.php:427
 msgid "Vertical Space"
-msgstr ""
+msgstr "Vertikálna medzera"
 
 #: application/controllers/Labels.php:87 application/controllers/Labels.php:428
 msgid "Label width"
-msgstr ""
+msgstr "Šírka štítka"
 
 #: application/controllers/Labels.php:88 application/controllers/Labels.php:429
 msgid "Label height"
-msgstr ""
+msgstr "Výška štítka"
 
 #: application/controllers/Labels.php:89 application/controllers/Labels.php:430
 msgid "Size of Font"
-msgstr ""
+msgstr "Veľkosť písma"
 
 #: application/controllers/Labels.php:90 application/controllers/Labels.php:431
 msgid "Number of QSOs on label"
-msgstr ""
+msgstr "Počet spojení na štítku"
 
 #: application/controllers/Labels.php:115
 msgid "Create Paper Type"
-msgstr ""
+msgstr "Vytvoriť typ papiera"
 
 #: application/controllers/Labels.php:119
 #: application/controllers/Labels.php:478
 msgid "Paper Name"
-msgstr ""
+msgstr "Názov papiera"
 
 #: application/controllers/Labels.php:120
 #: application/controllers/Labels.php:479
 msgid "Paper Width"
-msgstr ""
+msgstr "Šírka papiera"
 
 #: application/controllers/Labels.php:121
 #: application/controllers/Labels.php:480
 msgid "Paper Height"
-msgstr ""
+msgstr "Výška papiera"
 
 #: application/controllers/Labels.php:132
 #: application/controllers/Labels.php:488
@@ -1184,16 +1194,18 @@ msgid ""
 "Your paper could not be saved. Remember that it can't have the same name as "
 "existing paper types."
 msgstr ""
+"Vaša práca sa nedala uložiť. Pamätajte, že nemôže mať rovnaký názov ako "
+"existujúce typy prác."
 
 #: application/controllers/Labels.php:209
 #: application/controllers/Labels.php:212
 msgid "You need to assign a paperType to the label before printing"
-msgstr ""
+msgstr "Pred tlačou musíš k štítku priradiť typ papiera"
 
 #: application/controllers/Labels.php:219
 #: application/controllers/Labels.php:222
 msgid "You need to create a label and set it to be used for print."
-msgstr ""
+msgstr "Musíš vytvoriť štítok a nastaviť ho na tlač."
 
 #: application/controllers/Labels.php:229
 #: application/controllers/Labels.php:232
@@ -1201,30 +1213,32 @@ msgid ""
 "Something went wrong! The label could not be generated. Check label size and "
 "font size."
 msgstr ""
+"Niečo sa pokazilo! Štítok nebolo možné vygenerovať. Skontroluj veľkosť "
+"štítka a veľkosť písma."
 
 #: application/controllers/Labels.php:255
 msgid "0 QSOs found for print!"
-msgstr ""
+msgstr "Neboli nájdené žiadne QSO na tlač!"
 
 #: application/controllers/Labels.php:408
 msgid "Edit Label"
-msgstr ""
+msgstr "Upraviť štítok"
 
 #: application/controllers/Labels.php:437
 msgid "Label was saved."
-msgstr ""
+msgstr "Štítok bol uložený."
 
 #: application/controllers/Labels.php:445
 msgid "Label was deleted."
-msgstr ""
+msgstr "Štítok bol odstránený."
 
 #: application/controllers/Labels.php:467
 msgid "Edit Paper"
-msgstr ""
+msgstr "Upraviť papier"
 
 #: application/controllers/Labels.php:492
 msgid "Paper was saved."
-msgstr ""
+msgstr "Papier bol uložený."
 
 #: application/controllers/Labels.php:505
 msgid "Paper was deleted."
@@ -1838,7 +1852,7 @@ msgstr ""
 #: application/views/view_log/qso.php:694
 #: application/views/logbookadvanced/index.php:317
 msgid "Deleted DXCC"
-msgstr ""
+msgstr "Zrušené DXCC"
 
 #: application/controllers/Logbookadvanced.php:34
 msgid "Advanced logbook"
@@ -2484,7 +2498,7 @@ msgstr ""
 #: application/views/visitor/layout/header.php:98
 #: application/views/logbookadvanced/index.php:797
 msgid "Search"
-msgstr ""
+msgstr "Hľadať"
 
 #: application/controllers/Search.php:26
 msgid "Search & Filter Logbook"
@@ -2700,7 +2714,7 @@ msgstr ""
 #: application/views/stationsetup/stationsetup.php:156
 #: application/views/user/modals/first_login_wizard.php:46
 msgid "Please select one"
-msgstr ""
+msgstr "Prosím vyberte jeden"
 
 #: application/controllers/Stationsetup.php:504
 msgid "Edit Export Map options"
@@ -4301,7 +4315,7 @@ msgstr ""
 #: application/views/user/index.php:153 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:672
 msgid "Callsign"
-msgstr ""
+msgstr "Volacia značka"
 
 #: application/views/activators/index.php:99
 msgid "Count"
@@ -5457,7 +5471,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:828
 #: application/views/logbookadvanced/index.php:829
 msgid "Reset"
-msgstr ""
+msgstr "Resetovať"
 
 #: application/views/awards/cq/index.php:119
 msgid "Show CQ Zone Map"
@@ -6167,7 +6181,7 @@ msgstr ""
 #: application/views/search/result.php:21
 #: application/views/view_log/qso.php:686
 msgid "City"
-msgstr ""
+msgstr "Mesto"
 
 #: application/views/awards/jcc/index.php:189
 #: application/views/dashboard/index.php:452
@@ -7633,7 +7647,7 @@ msgstr ""
 #: application/views/user/modals/more_actions_modal.php:166
 #: application/views/version_dialog/index.php:79
 msgid "Close"
-msgstr ""
+msgstr "Zatvoriť"
 
 #: application/views/bands/index.php:161
 msgid "Warning! Are you sure you want to delete the following band: "
@@ -7914,7 +7928,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:654
 #: application/views/logbookadvanced/index.php:663
 msgid "Yes"
-msgstr ""
+msgstr "Áno"
 
 #: application/views/cabrillo/index.php:197
 #: application/views/cabrillo/index.php:203
@@ -7993,7 +8007,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:655
 #: application/views/logbookadvanced/index.php:664
 msgid "No"
-msgstr ""
+msgstr "Nie"
 
 #: application/views/cabrillo/index.php:201
 msgid "If the gridsquare was part of the exchange, you should select YES."
@@ -8201,7 +8215,7 @@ msgstr ""
 #: application/views/user/login.php:58 application/views/user/login.php:69
 #: application/views/user/login.php:70 application/views/user/profile.php:14
 msgid "Username"
-msgstr ""
+msgstr "Používateľské meno"
 
 #: application/views/club/permissions.php:224
 msgid "E-Mail"
@@ -9522,7 +9536,7 @@ msgstr ""
 
 #: application/views/debug/index.php:27
 msgid "Version"
-msgstr ""
+msgstr "Verzia"
 
 #: application/views/debug/index.php:30
 msgid "Latest Version"
@@ -9534,7 +9548,7 @@ msgstr ""
 
 #: application/views/debug/index.php:41
 msgid "Language"
-msgstr ""
+msgstr "Jazyk"
 
 #: application/views/debug/index.php:45
 msgid "Base URL"
@@ -9637,13 +9651,13 @@ msgstr ""
 #: application/views/debug/index.php:175
 #: application/views/interface_assets/footer.php:38
 msgid "Success"
-msgstr ""
+msgstr "Úspech"
 
 #: application/views/debug/index.php:132 application/views/debug/index.php:143
 #: application/views/debug/index.php:154 application/views/debug/index.php:165
 #: application/views/debug/index.php:177
 msgid "Failed"
-msgstr ""
+msgstr "Zlyhanie"
 
 #: application/views/debug/index.php:187
 msgid "Config Maintenance"
@@ -9714,13 +9728,13 @@ msgstr ""
 #: application/views/debug/index.php:270 application/views/debug/index.php:281
 #: application/views/debug/index.php:292 application/views/debug/index.php:303
 msgid "Installed"
-msgstr ""
+msgstr "Nainštalované"
 
 #: application/views/debug/index.php:250 application/views/debug/index.php:261
 #: application/views/debug/index.php:272 application/views/debug/index.php:283
 #: application/views/debug/index.php:294 application/views/debug/index.php:305
 msgid "Not Installed"
-msgstr ""
+msgstr "Nenainštalované"
 
 #: application/views/debug/index.php:441
 msgid "Git Information"
@@ -9950,27 +9964,27 @@ msgstr "Ruština"
 
 #: application/views/debug/index.php:701
 msgid "Serbian"
-msgstr ""
+msgstr "Srbčina"
 
 #: application/views/debug/index.php:702
 msgid "Slovak"
-msgstr ""
+msgstr "Slovenčina"
 
 #: application/views/debug/index.php:703
 msgid "Slovenian"
-msgstr ""
+msgstr "Slovinčina"
 
 #: application/views/debug/index.php:704
 msgid "Spanish"
-msgstr ""
+msgstr "Španielčina"
 
 #: application/views/debug/index.php:705
 msgid "Swedish"
-msgstr ""
+msgstr "Švédčina"
 
 #: application/views/debug/index.php:706
 msgid "Turkish"
-msgstr ""
+msgstr "Turečtina"
 
 #: application/views/distancerecords/index.php:4
 msgid "This page lists distance records per satellite based on gridsquares."
@@ -10913,6 +10927,9 @@ msgid ""
 "Check which DXCC for this particular location is the correct one. If you are "
 "sure, ignore this warning."
 msgstr ""
+"Zastav sa tu na chvíľu. Tvoj vybraný DXCC je zastaraný a už nie je platný. "
+"Skontroluj, ktorý DXCC je pre toto konkrétne miesto správny. Ak si si istý, "
+"ignoruj toto varovanie."
 
 #: application/views/interface_assets/footer.php:850
 #: application/views/logbookadvanced/index.php:776
@@ -13193,7 +13210,7 @@ msgstr ""
 
 #: application/views/options/hon.php:39
 msgid "Wiki"
-msgstr ""
+msgstr "Wiki"
 
 #: application/views/options/hon.php:41
 #, php-format
@@ -14392,7 +14409,7 @@ msgstr ""
 
 #: application/views/radio/index.php:31
 msgid "Please wait..."
-msgstr ""
+msgstr "Prosím, počkajte..."
 
 #: application/views/reg1test/index.php:6
 msgid "Select Band"
@@ -16124,7 +16141,7 @@ msgstr ""
 #: application/views/user/reset_password.php:23
 #: application/views/user/reset_password.php:30
 msgid "Password"
-msgstr ""
+msgstr "Heslo"
 
 #: application/views/user/edit.php:74
 msgid "Don't share this password with operators!"
@@ -16144,11 +16161,11 @@ msgstr ""
 
 #: application/views/user/edit.php:116
 msgid "First Name"
-msgstr ""
+msgstr "Krstné meno"
 
 #: application/views/user/edit.php:123
 msgid "Last Name"
-msgstr ""
+msgstr "Priezvisko"
 
 #: application/views/user/edit.php:134
 msgid "Ham Radio"
@@ -16176,7 +16193,7 @@ msgstr ""
 
 #: application/views/user/edit.php:193
 msgid "Timezone"
-msgstr ""
+msgstr "Časové pásmo"
 
 #: application/views/user/edit.php:201
 msgid "Date Format"
@@ -17054,7 +17071,7 @@ msgstr ""
 
 #: application/views/user/reset_password.php:28
 msgid "Confirm Password"
-msgstr ""
+msgstr "Potvrďte heslo"
 
 #: application/views/version_dialog/index.php:20
 msgid "No Version Dialog text set. Go to the Admin Menu and set one."
