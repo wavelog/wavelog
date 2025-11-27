@@ -26,9 +26,9 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-11-27 06:39+0000\n"
-"PO-Revision-Date: 2025-11-26 08:03+0000\n"
-"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
+"POT-Creation-Date: 2025-11-27 07:21+0000\n"
+"PO-Revision-Date: 2025-11-26 09:39+0000\n"
+"Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
 "Language: de_DE\n"
@@ -570,7 +570,7 @@ msgstr "Per Papier QSL bestätigte Locator"
 #: application/controllers/Awards.php:1047
 #: application/controllers/Awards.php:1083
 msgid "Total Gridsquares worked"
-msgstr ""
+msgstr "Summe gearbeiteter Locator"
 
 #: application/controllers/Awards.php:1064
 msgid "Fred Fish Memorial Award (FFMA)"
@@ -5820,7 +5820,7 @@ msgstr "Zeige DXCC Karte"
 #: application/views/gridmap/index.php:28
 #: application/views/logbookadvanced/index.php:276
 msgid "Date Presets"
-msgstr ""
+msgstr "Standarddaten"
 
 #: application/views/awards/dxcc/index.php:53
 #: application/views/contestcalendar/index.php:45
@@ -5837,37 +5837,37 @@ msgstr "Heute"
 #: application/views/gridmap/index.php:32
 #: application/views/logbookadvanced/index.php:279
 msgid "Yesterday"
-msgstr ""
+msgstr "Gestern"
 
 #: application/views/awards/dxcc/index.php:55
 #: application/views/gridmap/index.php:33
 #: application/views/logbookadvanced/index.php:280
 msgid "Last 7 Days"
-msgstr ""
+msgstr "Letzte 7 Tage"
 
 #: application/views/awards/dxcc/index.php:56
 #: application/views/gridmap/index.php:34
 #: application/views/logbookadvanced/index.php:281
 msgid "Last 30 Days"
-msgstr ""
+msgstr "Letzte 30 Tage"
 
 #: application/views/awards/dxcc/index.php:57
 #: application/views/gridmap/index.php:35
 #: application/views/logbookadvanced/index.php:282
 msgid "This Month"
-msgstr ""
+msgstr "Dieser Monat"
 
 #: application/views/awards/dxcc/index.php:58
 #: application/views/gridmap/index.php:36
 #: application/views/logbookadvanced/index.php:283
 msgid "Last Month"
-msgstr ""
+msgstr "Letzter Monat"
 
 #: application/views/awards/dxcc/index.php:59
 #: application/views/gridmap/index.php:37
 #: application/views/logbookadvanced/index.php:284
 msgid "This Year"
-msgstr ""
+msgstr "Dieses Jahr"
 
 #: application/views/awards/dxcc/index.php:60
 #: application/views/logbookadvanced/index.php:285
@@ -8881,8 +8881,13 @@ msgstr "Extragroß"
 msgid "by:"
 msgstr "von:"
 
-#: application/views/components/dxwaterfall.php:80
-#: application/views/components/dxwaterfall.php:86
+#: application/views/components/dxwaterfall.php:57
+#, php-format
+msgid "Please wait %s second(s) before toggling DX Waterfall again."
+msgstr ""
+
+#: application/views/components/dxwaterfall.php:81
+#: application/views/components/dxwaterfall.php:87
 msgid "DX Waterfall Help"
 msgstr "DX-Wasserfall Hilfe"
 
@@ -12569,6 +12574,9 @@ msgid ""
 "countries, please create a ticket at %s with the GeoJSON file and desired "
 "letter coding for your country."
 msgstr ""
+"Nicht alle DXCC-Entitäten sind mit Staaten versorgt. Wenn du Unterstützung "
+"für weitere Länder brauchst, erstelle bitte unter %s ein Ticket mit der "
+"GeoJSON-Datei und der gewünschten Kodierung für dieses Land."
 
 #: application/views/logbookadvanced/index.php:45
 msgid "Only 1 row can be selected for Quickfilter!"
@@ -12992,7 +13000,7 @@ msgstr "Aktualisiere Kontinent"
 
 #: application/views/logbookadvanced/index.php:772
 msgid "Fix State"
-msgstr ""
+msgstr "Repariere Staaten"
 
 #: application/views/logbookadvanced/index.php:780
 #: application/views/oqrs/showrequests.php:58
@@ -13091,32 +13099,36 @@ msgid ""
 "Update QSOs with state/province information based on gridsquare and DXCC "
 "country."
 msgstr ""
+"Aktualisiere QSOs mit Informationen zu Staat/Provinz basierend auf Locator "
+"und DXCC Land."
 
 #: application/views/logbookadvanced/statedialog.php:3
 msgid ""
 "This feature uses GeoJSON boundary data to determine the state/province from "
 "the gridsquare locator."
 msgstr ""
+"Diese Erweiterung nutzt GeoJSON Grenzinformationen, um Staat/Provinz aus dem "
+"Locator zu bestimmen."
 
 #: application/views/logbookadvanced/statedialog.php:4
 msgid "Update will only set the state for QSOs where:"
-msgstr ""
+msgstr "Das Update wird nur den Staat aktualisieren für:"
 
 #: application/views/logbookadvanced/statedialog.php:6
 msgid "The state field is empty"
-msgstr ""
+msgstr "Das Staat-Feld ist leer"
 
 #: application/views/logbookadvanced/statedialog.php:7
 msgid "A gridsquare is present (at least 6 characters)"
-msgstr ""
+msgstr "Ein Locator ist vorhanden (min. 6 Zeichen)"
 
 #: application/views/logbookadvanced/statedialog.php:8
 msgid "The DXCC country supports state lookup"
-msgstr ""
+msgstr "Das DXCC Land ist für Staaterkennung verfügbar"
 
 #: application/views/logbookadvanced/statedialog.php:10
 msgid "Currently supported countries"
-msgstr ""
+msgstr "Derzeit unterstützte Länder"
 
 #: application/views/logbookadvanced/useroptions.php:16
 msgid "Column"
@@ -13258,15 +13270,15 @@ msgstr "Letzter Upload"
 
 #: application/views/lotw_views/index.php:95
 msgid "Last change:"
-msgstr ""
+msgstr "Letzte Änderung:"
 
 #: application/views/lotw_views/index.php:95
 msgid "Serial number:"
-msgstr ""
+msgstr "Seriennummer:"
 
 #: application/views/lotw_views/index.php:97
 msgid "Certificate superseded"
-msgstr ""
+msgstr "Zertifikat ersetzt"
 
 #: application/views/lotw_views/index.php:100
 msgid "Certificate expired"
@@ -14731,7 +14743,7 @@ msgstr "Ungültiger Elevationswert für Antenne:"
 
 #: application/views/qso/index.php:38
 msgid "Please wait before saving another QSO"
-msgstr ""
+msgstr "Bitte warte bevor du ein weiteres QSO speichern kannst"
 
 #: application/views/qso/index.php:86
 msgid "LIVE"

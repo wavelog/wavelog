@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-11-27 06:39+0000\n"
-"PO-Revision-Date: 2025-11-24 07:14+0000\n"
+"POT-Creation-Date: 2025-11-27 07:21+0000\n"
+"PO-Revision-Date: 2025-11-26 23:33+0000\n"
 "Last-Translator: Szymon <sp9spm@cqops.com>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/pl/>\n"
@@ -560,7 +560,7 @@ msgstr "Lokatory potwierdzone papierową kartą QSL"
 #: application/controllers/Awards.php:1047
 #: application/controllers/Awards.php:1083
 msgid "Total Gridsquares worked"
-msgstr ""
+msgstr "Wszystkich zaliczonych lokatorów"
 
 #: application/controllers/Awards.php:1064
 msgid "Fred Fish Memorial Award (FFMA)"
@@ -3261,15 +3261,15 @@ msgstr "Błąd QRZCQ"
 #: application/libraries/Cbr_parser.php:111
 #: application/libraries/Cbr_parser.php:160
 msgid "Broken CBR file - no valid exchange or callsigns found"
-msgstr ""
+msgstr "Uszkodzony plik CBR - nie znalezionych poprawnych wymian lub znaków"
 
 #: application/libraries/Cbr_parser.php:137
 msgid "Broken CBR file - no QSO data found."
-msgstr ""
+msgstr "Uszkodzony plik CBR - nie znaleziono danych QSO."
 
 #: application/libraries/Cbr_parser.php:147
 msgid "Broken CBR file - incomplete header found."
-msgstr ""
+msgstr "Uszkodzony plik CBR - znaleziono niekompletny nagłówek."
 
 #: application/libraries/Subdivisions.php:31
 msgctxt "Division Name (States in various countries)."
@@ -4854,6 +4854,8 @@ msgid ""
 "The CBR file contains a TRX number at the end of each QSO line (for multi-op "
 "stations)"
 msgstr ""
+"Plik CBR zawiera indeks TRX na końcu każdej z linii QSO (dla stacji wielu "
+"operatorów)"
 
 #: application/views/adif/import.php:419
 msgid ""
@@ -5803,7 +5805,7 @@ msgstr "Wyświetl mapę DXCC"
 #: application/views/gridmap/index.php:28
 #: application/views/logbookadvanced/index.php:276
 msgid "Date Presets"
-msgstr ""
+msgstr "Preset danych"
 
 #: application/views/awards/dxcc/index.php:53
 #: application/views/contestcalendar/index.php:45
@@ -5820,42 +5822,42 @@ msgstr "Dzisiaj"
 #: application/views/gridmap/index.php:32
 #: application/views/logbookadvanced/index.php:279
 msgid "Yesterday"
-msgstr ""
+msgstr "Wczoraj"
 
 #: application/views/awards/dxcc/index.php:55
 #: application/views/gridmap/index.php:33
 #: application/views/logbookadvanced/index.php:280
 msgid "Last 7 Days"
-msgstr ""
+msgstr "Ostatnie 7 dni"
 
 #: application/views/awards/dxcc/index.php:56
 #: application/views/gridmap/index.php:34
 #: application/views/logbookadvanced/index.php:281
 msgid "Last 30 Days"
-msgstr ""
+msgstr "Ostatnie 30 dni"
 
 #: application/views/awards/dxcc/index.php:57
 #: application/views/gridmap/index.php:35
 #: application/views/logbookadvanced/index.php:282
 msgid "This Month"
-msgstr ""
+msgstr "Ten miesiąc"
 
 #: application/views/awards/dxcc/index.php:58
 #: application/views/gridmap/index.php:36
 #: application/views/logbookadvanced/index.php:283
 msgid "Last Month"
-msgstr ""
+msgstr "Ostatni miesiąc"
 
 #: application/views/awards/dxcc/index.php:59
 #: application/views/gridmap/index.php:37
 #: application/views/logbookadvanced/index.php:284
 msgid "This Year"
-msgstr ""
+msgstr "Ten rok"
 
 #: application/views/awards/dxcc/index.php:60
 #: application/views/logbookadvanced/index.php:285
 msgid "Last Year"
-msgstr ""
+msgstr "Poprzedni rok"
 
 #: application/views/awards/dxcc/index.php:61
 #: application/views/gridmap/index.php:38
@@ -6029,6 +6031,7 @@ msgstr "Prefiks"
 #: application/views/awards/dxcc/index.php:378
 msgid "No results found for your search criteria. Please try again."
 msgstr ""
+"Nie znaleziono wyników dla podanych kryteriów. Należy spróbować ponownie."
 
 #: application/views/awards/ffma/index.php:11
 #: application/views/interface_assets/header.php:288
@@ -8858,8 +8861,13 @@ msgstr "Bardzo duże"
 msgid "by:"
 msgstr "przez:"
 
-#: application/views/components/dxwaterfall.php:80
-#: application/views/components/dxwaterfall.php:86
+#: application/views/components/dxwaterfall.php:57
+#, php-format
+msgid "Please wait %s second(s) before toggling DX Waterfall again."
+msgstr ""
+
+#: application/views/components/dxwaterfall.php:81
+#: application/views/components/dxwaterfall.php:87
 msgid "DX Waterfall Help"
 msgstr "Pomoc DX Waterfall"
 
@@ -12474,51 +12482,51 @@ msgstr "Musisz wybrać co najmniej jeden wiersz, aby poprawić strefy CQ!"
 
 #: application/views/logbookadvanced/index.php:31
 msgid "You need to select at least 1 row to fix State!"
-msgstr ""
+msgstr "Aby naprawić stan, należy wybrać co najmniej jeden wiersz!"
 
 #: application/views/logbookadvanced/index.php:32
 msgid "State updated successfully!"
-msgstr ""
+msgstr "Pomyślnie zaktualizowano stan!"
 
 #: application/views/logbookadvanced/index.php:33
 msgid "There was a problem fixing State."
-msgstr ""
+msgstr "Podczas naprawy pola Stan wystąpił problem."
 
 #: application/views/logbookadvanced/index.php:34
 msgid "Fixing State"
-msgstr ""
+msgstr "Naprawianie pola stan"
 
 #: application/views/logbookadvanced/index.php:35
 #, php-format
 msgid "Fixing State (%s QSOs)"
-msgstr ""
+msgstr "Naprawianie pola stan (%s QSOs)"
 
 #: application/views/logbookadvanced/index.php:36
 #, php-format
 msgid "Fixing State: %s remaining"
-msgstr ""
+msgstr "Naprawianie pola stan: pozostało %s"
 
 #: application/views/logbookadvanced/index.php:37
 msgid "Fixed"
-msgstr ""
+msgstr "Naprawiono"
 
 #: application/views/logbookadvanced/index.php:38
 #, php-format
 msgid "Fixed: %s"
-msgstr ""
+msgstr "Naprawiono: %s"
 
 #: application/views/logbookadvanced/index.php:39
 msgid "Skipped"
-msgstr ""
+msgstr "Pominięto"
 
 #: application/views/logbookadvanced/index.php:40
 #, php-format
 msgid "Skipped: %s, see details for skipped rows below"
-msgstr ""
+msgstr "Pominięto: %s, zobacz szczegóły dla pominiętych wierszy poniżej"
 
 #: application/views/logbookadvanced/index.php:41
 msgid "State Fix Complete"
-msgstr ""
+msgstr "Zakończono naprawianie pola stan"
 
 #: application/views/logbookadvanced/index.php:42
 #, php-format
@@ -12527,6 +12535,9 @@ msgid ""
 "countries, please create a ticket at %s with the GeoJSON file and desired "
 "letter coding for your country."
 msgstr ""
+"Nie wszystkie podmioty DXCC posiadają wsparcie tej funkcji. Jeśli występuje "
+"potrzeba dodania nowych krajów, należy utworzyć zgłoszenie na %s oraz "
+"przesłać plik GeoJSON oraz docelowo kodowanie stanów dla tego kraju."
 
 #: application/views/logbookadvanced/index.php:45
 msgid "Only 1 row can be selected for Quickfilter!"
@@ -12949,7 +12960,7 @@ msgstr "Napraw kontynent"
 
 #: application/views/logbookadvanced/index.php:772
 msgid "Fix State"
-msgstr ""
+msgstr "Napraw Stan"
 
 #: application/views/logbookadvanced/index.php:780
 #: application/views/oqrs/showrequests.php:58
@@ -13048,32 +13059,36 @@ msgid ""
 "Update QSOs with state/province information based on gridsquare and DXCC "
 "country."
 msgstr ""
+"Zaktualizuj QSO informacjami o stanach/województwach bazując na lokatorze "
+"oraz podmiocie DXCC."
 
 #: application/views/logbookadvanced/statedialog.php:3
 msgid ""
 "This feature uses GeoJSON boundary data to determine the state/province from "
 "the gridsquare locator."
 msgstr ""
+"Ta funkcja wykorzystuje dane granic GeoJSON do wykrycia stanu/województwa na "
+"podstawie lokatora."
 
 #: application/views/logbookadvanced/statedialog.php:4
 msgid "Update will only set the state for QSOs where:"
-msgstr ""
+msgstr "Aktualizacja zmieni pole stan tylko dla QSO, gdzie:"
 
 #: application/views/logbookadvanced/statedialog.php:6
 msgid "The state field is empty"
-msgstr ""
+msgstr "Pole stan jest puste"
 
 #: application/views/logbookadvanced/statedialog.php:7
 msgid "A gridsquare is present (at least 6 characters)"
-msgstr ""
+msgstr "Ustawiono lokator (przynajmniej 6 znaków)"
 
 #: application/views/logbookadvanced/statedialog.php:8
 msgid "The DXCC country supports state lookup"
-msgstr ""
+msgstr "Podmiot DXCC wspiera wyszukiwanie stanu"
 
 #: application/views/logbookadvanced/statedialog.php:10
 msgid "Currently supported countries"
-msgstr ""
+msgstr "Kraje wspierane obecnie"
 
 #: application/views/logbookadvanced/useroptions.php:16
 msgid "Column"
@@ -13214,15 +13229,15 @@ msgstr "Last upload"
 
 #: application/views/lotw_views/index.php:95
 msgid "Last change:"
-msgstr ""
+msgstr "Ostatnia zmiana:"
 
 #: application/views/lotw_views/index.php:95
 msgid "Serial number:"
-msgstr ""
+msgstr "Numer seryjny:"
 
 #: application/views/lotw_views/index.php:97
 msgid "Certificate superseded"
-msgstr ""
+msgstr "Zastąpiony certyfikat"
 
 #: application/views/lotw_views/index.php:100
 msgid "Certificate expired"
@@ -14677,7 +14692,7 @@ msgstr "Niewłaściwa wartość elewacji anteny:"
 
 #: application/views/qso/index.php:38
 msgid "Please wait before saving another QSO"
-msgstr ""
+msgstr "Należy poczekać przed zapisaniem kolejnego QSO"
 
 #: application/views/qso/index.php:86
 msgid "LIVE"
