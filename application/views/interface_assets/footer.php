@@ -2704,6 +2704,7 @@ function viewEqsl(picture, callsign) {
 			    label: lang_admin_close,
 				    action: function (dialogItself) {
 					    dialogItself.close();
+					    return false; // Prevent any form submission
 				    }
 				    }]
 	    });
