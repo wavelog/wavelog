@@ -188,7 +188,6 @@ class API extends CI_Controller {
 
 	function check_auth($key) {
 		$this->load->model('api_model');
-			header("Content-type: text/xml");
 		if($this->api_model->access($key) == "No Key Found" || $this->api_model->access($key) == "Key Disabled") {
 			// set the content type as json
 			header("Content-type: application/json");
