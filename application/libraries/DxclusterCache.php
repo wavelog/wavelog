@@ -63,6 +63,9 @@ class DxclusterCache {
 	 * @param string $callsign - The worked callsign
 	 */
 	public function invalidateForCallsign($callsign) {
+		// Skip if worked cache is disabled
+		if ($this->CI->config->item('enable_dxcluster_file_cache_worked') !== true) return;
+
 		if (empty($callsign)) return;
 
 		// Get current user's logbook key
@@ -88,6 +91,9 @@ class DxclusterCache {
 	 * Invalidate all worked cache for current user (bulk operations)
 	 */
 	public function invalidateAllWorkedForCurrentUser() {
+		// Skip if worked cache is disabled
+		if ($this->CI->config->item('enable_dxcluster_file_cache_worked') !== true) return;
+
 		$logbook_key = $this->getCurrentUserLogbookKey();
 		if (empty($logbook_key)) return;
 
