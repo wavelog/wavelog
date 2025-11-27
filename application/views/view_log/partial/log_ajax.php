@@ -377,6 +377,11 @@ function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
                               echo $timestamp != '' ? " ".$timestamp : '';
                               echo "\" data-bs-toggle=\"tooltip\" class=\"eqsl-yellow\"";
                               break;
+                           case "Q":
+                              echo "title=\"".__("Queued");
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"eqsl-yellow\"";
+                              break;
                            default:
                               echo " class=\"eqsl-red\"";
                               break;
@@ -439,6 +444,11 @@ function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
                               echo $timestamp != '' ? " ".$timestamp : '';
                               echo "\" data-bs-toggle=\"tooltip\" class=\"lotw-yellow\"";
                               break;
+                           case "Q":
+                              echo "title=\"".__("Queued");
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"lotw-yellow\"";
+                              break;
                            default:
                               echo " class=\"lotw-red\"";
                               break;
@@ -491,6 +501,11 @@ function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
                               echo $timestamp != '' ? " ".$timestamp : '';
                               echo "\" data-bs-toggle=\"tooltip\" class=\"qrz-grey\"";
                               break;
+                           case "Q":
+                              echo "title=\"".__("Queued");
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"qrz-yellow\"";
+                              break;
                            case "M":
                               echo 'title="'.__("Modified")."<br />(".__("last sent")." ".date($custom_date_format, strtotime($row->COL_QRZCOM_QSO_UPLOAD_DATE)).")";
                               echo $timestamp != '' ? " ".$timestamp : '';
@@ -542,6 +557,11 @@ function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
                               echo "title=\"".__("Invalid (Ignore)");
                               echo $timestamp != '' ? " ".$timestamp : '';
                               echo "\" data-bs-toggle=\"tooltip\" class=\"clublog-grey\"";
+                              break;
+                           case "Q":
+                              echo "title=\"".__("Queued");
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"clublog-yellow\"";
                               break;
                            case "M":
                               echo 'title="'.__("Modified")."<br />(".__("last sent")." ".date($custom_date_format, strtotime($row->COL_CLUBLOG_QSO_UPLOAD_DATE)).")";

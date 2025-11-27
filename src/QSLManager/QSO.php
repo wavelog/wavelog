@@ -508,6 +508,10 @@ class QSO
 			$lotwstring .= "title=\"" . __("Invalid (Ignore)");
 			$lotwstring .= $timestamp != '' ? " ".$timestamp : '';
 			$lotwstring .= "\" data-bs-toggle=\"tooltip\" class=\"lotw-grey\"";
+		} elseif ($data['COL_LOTW_QSL_SENT'] == "Q") {
+			$lotwstring .= "title=\"" . __("Queued");
+			$lotwstring .= $timestamp != '' ? " ".$timestamp : '';
+			$lotwstring .= "\" data-bs-toggle=\"tooltip\" class=\"lotw-yellow\"";
 		} elseif ($data['COL_LOTW_QSL_SENT'] == "R") {
 			$lotwstring .= "title=\"" . __("Requested");
 			$lotwstring .= $timestamp != '' ? " ".$timestamp : '';
@@ -567,6 +571,14 @@ class QSO
 				$clublogstring .= " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
 			}
 			$clublogstring .= "\" data-bs-toggle=\"tooltip\"";
+		} elseif ($data['COL_CLUBLOG_QSO_UPLOAD_STATUS'] == "Q") {
+			$clublogstring .= "title=\"".__("Queued");
+
+			if ($data['COL_CLUBLOG_QSO_UPLOAD_DATE'] != null) {
+				$timestamp = strtotime($data['COL_CLUBLOG_QSO_UPLOAD_DATE']);
+				$clublogstring .= " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
+			}
+			$clublogstring .= "\" data-bs-toggle=\"tooltip\"";
 		} elseif ($data['COL_CLUBLOG_QSO_UPLOAD_STATUS'] == "M") {
 			$clublogstring .= "title=\"".__("Modified");
 
@@ -583,6 +595,8 @@ class QSO
 			$clublogstring .= 'green';
 		} elseif ($data['COL_CLUBLOG_QSO_UPLOAD_STATUS'] == 'I') {
 			$clublogstring .= 'grey';
+		} elseif ($data['COL_CLUBLOG_QSO_UPLOAD_STATUS'] == 'Q') {
+			$clublogstring .= 'yellow';
 		} elseif ($data['COL_CLUBLOG_QSO_UPLOAD_STATUS'] == 'M') {
 			$clublogstring .= 'yellow';
 		} else {
@@ -703,6 +717,14 @@ class QSO
 				$qrzstring .= " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
 			}
 			$qrzstring .= "\" data-bs-toggle=\"tooltip\"";
+		} elseif ($data['COL_QRZCOM_QSO_UPLOAD_STATUS'] == "Q") {
+			$qrzstring .= "title=\"".__("Queued");
+
+			if ($data['COL_QRZCOM_QSO_UPLOAD_DATE'] != null) {
+				$timestamp = strtotime($data['COL_QRZCOM_QSO_UPLOAD_DATE']);
+				$qrzstring .= " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
+			}
+			$qrzstring .= "\" data-bs-toggle=\"tooltip\"";
 		} elseif ($data['COL_QRZCOM_QSO_UPLOAD_STATUS'] == "M") {
 			$qrzstring .= "title=\"".__("Modified");
 
@@ -719,6 +741,8 @@ class QSO
 			$qrzstring .= 'green';
 		} elseif ($data['COL_QRZCOM_QSO_UPLOAD_STATUS'] == 'I') {
 			$qrzstring .= 'grey';
+		} elseif ($data['COL_QRZCOM_QSO_UPLOAD_STATUS'] == 'Q') {
+			$qrzstring .= 'yellow';
 		} elseif ($data['COL_QRZCOM_QSO_UPLOAD_STATUS'] == 'M') {
 			$qrzstring .= 'yellow';
 		} else {
@@ -773,6 +797,10 @@ class QSO
 			$eqslstring .= "title=\"" . __("Invalid (Ignore)");
 			$eqslstring .= $timestamp != '' ? " ".$timestamp : '';
 			$eqslstring .= "\" data-bs-toggle=\"tooltip\" class=\"eqsl-grey\"";
+		} elseif ($data['COL_EQSL_QSL_SENT'] == "Q") {
+			$eqslstring .= "title=\"" . __("Queued");
+			$eqslstring .= $timestamp != '' ? " ".$timestamp : '';
+			$eqslstring .= "\" data-bs-toggle=\"tooltip\" class=\"eqsl-yellow\"";
 		} elseif ($data['COL_EQSL_QSL_SENT'] == "R") {
 			$eqslstring .= "title=\"" . __("Requested");
 			$eqslstring .= $timestamp != '' ? " ".$timestamp : '';
