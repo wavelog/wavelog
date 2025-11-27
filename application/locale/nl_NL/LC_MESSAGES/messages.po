@@ -11,10 +11,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-11-27 07:21+0000\n"
-"PO-Revision-Date: 2025-11-26 23:33+0000\n"
+"PO-Revision-Date: 2025-11-27 12:58+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
-"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/nl/>\n"
+"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/nl/>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -5846,7 +5846,7 @@ msgstr "Dit jaar"
 #: application/views/awards/dxcc/index.php:60
 #: application/views/logbookadvanced/index.php:285
 msgid "Last Year"
-msgstr ""
+msgstr "Vorig jaar"
 
 #: application/views/awards/dxcc/index.php:61
 #: application/views/gridmap/index.php:38
@@ -8846,7 +8846,7 @@ msgstr "door:"
 #: application/views/components/dxwaterfall.php:57
 #, php-format
 msgid "Please wait %s second(s) before toggling DX Waterfall again."
-msgstr ""
+msgstr "Wacht alsjeblieft %s seconde(n) voordat je de DX Waterfall weer aanzet."
 
 #: application/views/components/dxwaterfall.php:81
 #: application/views/components/dxwaterfall.php:87
@@ -12460,51 +12460,51 @@ msgstr "Je moet minstens 1 rij selecteren om CQ Zones te repareren!"
 
 #: application/views/logbookadvanced/index.php:31
 msgid "You need to select at least 1 row to fix State!"
-msgstr ""
+msgstr "Je moet minstens 1 rij selecteren om de Staat te herstellen!"
 
 #: application/views/logbookadvanced/index.php:32
 msgid "State updated successfully!"
-msgstr ""
+msgstr "Staat succesvol bijgewerkt!"
 
 #: application/views/logbookadvanced/index.php:33
 msgid "There was a problem fixing State."
-msgstr ""
+msgstr "Er was een probleem met het oplossen van de Staat."
 
 #: application/views/logbookadvanced/index.php:34
 msgid "Fixing State"
-msgstr ""
+msgstr "Staat herstellen"
 
 #: application/views/logbookadvanced/index.php:35
 #, php-format
 msgid "Fixing State (%s QSOs)"
-msgstr ""
+msgstr "Staat herstellen (%s QSOs)"
 
 #: application/views/logbookadvanced/index.php:36
 #, php-format
 msgid "Fixing State: %s remaining"
-msgstr ""
+msgstr "Staat herstellen: %s resterend"
 
 #: application/views/logbookadvanced/index.php:37
 msgid "Fixed"
-msgstr ""
+msgstr "Hersteld"
 
 #: application/views/logbookadvanced/index.php:38
 #, php-format
 msgid "Fixed: %s"
-msgstr ""
+msgstr "Hersteld: %s"
 
 #: application/views/logbookadvanced/index.php:39
 msgid "Skipped"
-msgstr ""
+msgstr "Overgeslagen"
 
 #: application/views/logbookadvanced/index.php:40
 #, php-format
 msgid "Skipped: %s, see details for skipped rows below"
-msgstr ""
+msgstr "Overgeslagen: %s, zie details voor overgeslagen rijen hieronder"
 
 #: application/views/logbookadvanced/index.php:41
 msgid "State Fix Complete"
-msgstr ""
+msgstr "Staat herstellen afgerond"
 
 #: application/views/logbookadvanced/index.php:42
 #, php-format
@@ -12513,6 +12513,9 @@ msgid ""
 "countries, please create a ticket at %s with the GeoJSON file and desired "
 "letter coding for your country."
 msgstr ""
+"Niet alle DXCC-entiteiten maken gebruik van een 'Staat' onderverdeling. Als "
+"je ondersteuning nodig hebt voor extra landen, maak dan een ticket aan bij "
+"%s met het GeoJSON-bestand en de gewenste lettercodering voor jouw land."
 
 #: application/views/logbookadvanced/index.php:45
 msgid "Only 1 row can be selected for Quickfilter!"
@@ -12646,6 +12649,8 @@ msgid ""
 "Distance in kilometers. Search will look for distances greater than or equal "
 "to this value."
 msgstr ""
+"Afstand in kilometers. Zoeken zal naar afstanden groter dan of gelijk aan "
+"deze waarde kijken."
 
 #: application/views/logbookadvanced/index.php:500
 msgid "QSL Filters"
@@ -12933,7 +12938,7 @@ msgstr "Repareer Continent"
 
 #: application/views/logbookadvanced/index.php:772
 msgid "Fix State"
-msgstr ""
+msgstr "Herstel Staat"
 
 #: application/views/logbookadvanced/index.php:780
 #: application/views/oqrs/showrequests.php:58
@@ -13032,32 +13037,36 @@ msgid ""
 "Update QSOs with state/province information based on gridsquare and DXCC "
 "country."
 msgstr ""
+"Werk QSOs bij met staats-/provincie-informatie op basis van locatorvak en "
+"DXCC-land."
 
 #: application/views/logbookadvanced/statedialog.php:3
 msgid ""
 "This feature uses GeoJSON boundary data to determine the state/province from "
 "the gridsquare locator."
 msgstr ""
+"Deze functie gebruikt GeoJSON-grensgegevens om de staat/provincie te bepalen "
+"van het locatorvak."
 
 #: application/views/logbookadvanced/statedialog.php:4
 msgid "Update will only set the state for QSOs where:"
-msgstr ""
+msgstr "De update zal alleen de Staat instellen voor QSOs waar:"
 
 #: application/views/logbookadvanced/statedialog.php:6
 msgid "The state field is empty"
-msgstr ""
+msgstr "Het Staat veld is leeg"
 
 #: application/views/logbookadvanced/statedialog.php:7
 msgid "A gridsquare is present (at least 6 characters)"
-msgstr ""
+msgstr "Een locatorvak aanwezig is (minstens 6 tekens)"
 
 #: application/views/logbookadvanced/statedialog.php:8
 msgid "The DXCC country supports state lookup"
-msgstr ""
+msgstr "Het DXCC-land ondersteunt het opzoeken van de Staat"
 
 #: application/views/logbookadvanced/statedialog.php:10
 msgid "Currently supported countries"
-msgstr ""
+msgstr "Momenteel ondersteunde landen"
 
 #: application/views/logbookadvanced/useroptions.php:16
 msgid "Column"
@@ -13199,15 +13208,15 @@ msgstr "Last upload"
 
 #: application/views/lotw_views/index.php:95
 msgid "Last change:"
-msgstr ""
+msgstr "Laatste wijziging:"
 
 #: application/views/lotw_views/index.php:95
 msgid "Serial number:"
-msgstr ""
+msgstr "Seriennummer:"
 
 #: application/views/lotw_views/index.php:97
 msgid "Certificate superseded"
-msgstr ""
+msgstr "Certificaat vervangen"
 
 #: application/views/lotw_views/index.php:100
 msgid "Certificate expired"
@@ -14676,7 +14685,7 @@ msgstr "Ongeldige waarde voor antenne elevatie:"
 
 #: application/views/qso/index.php:38
 msgid "Please wait before saving another QSO"
-msgstr ""
+msgstr "Wacht even voordat je een ander QSO opslaat"
 
 #: application/views/qso/index.php:86
 msgid "LIVE"
