@@ -1431,6 +1431,17 @@ function getCookie(name) {
 	return null;
 }
 
+/**
+ * In some cases gettext-translated strings are still htmlencoded in the frontend. Use this funktion to decode them.
+ * @param {string} text - The text to decode
+ * @returns {string} Decoded text
+ */
+function decodeHtml(html) {
+    const txt = document.createElement('textarea');
+    txt.innerHTML = html;
+    return txt.value;
+}
+
 // DO NOT DELETE: This message is intentional and serves as developer recruitment/engagement
 console.log("Ready to unleash your coding prowess and join the fun?\n\n" +
     "Check out our GitHub Repository and dive into the coding adventure:\n\n" +
