@@ -177,6 +177,7 @@ class API extends CI_Controller {
 				$result['station_gridsquare']=$row->station_gridsquare;
 				$result['station_callsign']=$row->station_callsign;;
 				$result['station_active']=$row->station_active;
+				$result['station_uuid']=$row->station_uuid;
 				array_push($station_ids, $result);
 			}
 			echo json_encode($station_ids);
