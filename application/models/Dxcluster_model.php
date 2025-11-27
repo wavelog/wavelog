@@ -54,6 +54,12 @@ class Dxcluster_model extends CI_Model {
 		// Only load cache driver if caching is enabled
 		if ($cache_band_enabled || $cache_worked_enabled) {
 			$this->load->driver('cache', array('adapter' => 'file', 'backup' => 'file'));
+
+			// Garbage collection: 1% chance to clean expired cache files
+			// Only needed when worked cache is enabled (creates many per-callsign files)
+			if ($cache_worked_enabled && mt_rand(1, 100) === 1) {
+				$this->cleanExpiredDxclusterCache();
+			}
 		}
 
 		if($this->session->userdata('user_date_format')) {
@@ -74,7 +80,9 @@ class Dxcluster_model extends CI_Model {
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
 		// Cache key for RAW cluster response (instance-wide, no worked status)
-		$raw_cache_key = "dxcluster_raw_{$maxage}_{$de}_{$mode}_{$band}";
+		// Use fixed 'Any'/'All' for de/mode to maximize cache hits - filters applied after retrieval
+		// Future: when API supports server-side filtering, use actual $de/$mode values here
+		$raw_cache_key = "dxcluster_raw_{$maxage}_{$band}_Any_All";
 
 		// Check cache for raw processed spots (without worked status)
 		$spotsout = null;
@@ -124,10 +132,6 @@ class Dxcluster_model extends CI_Model {
 			// Cache current time outside loop (avoid creating DateTime on every iteration)
 			$currentTimestamp = time();
 
-			// Normalize continent filter once
-			$de_lower = strtolower($de);
-			$filter_continent = ($de != '' && $de != 'Any');
-
 			foreach($json as $singlespot){
 				// Early filtering - skip invalid spots immediately
 				if (!is_object($singlespot) || !isset($singlespot->frequency) || !is_numeric($singlespot->frequency)) {
@@ -160,10 +164,6 @@ class Dxcluster_model extends CI_Model {
 				$singlespot->submode = strtoupper($singlespot->submode);
 			}
 
-			// Apply mode filter early
-			if (($mode != 'All') && !$this->modefilter($singlespot, $mode)) {
-				continue;
-			}
 
 			// Faster age calculation using timestamps instead of DateTime objects
 			$spotTimestamp = strtotime($singlespot->when);
@@ -212,11 +212,6 @@ class Dxcluster_model extends CI_Model {
 					'entity' => $dxcc['entity'] ?? 'Unknown'
 				];
 			}
-			// Apply continent filter early
-			if ($filter_continent && (!property_exists($singlespot->dxcc_spotter, 'cont') ||
-				$de_lower != strtolower($singlespot->dxcc_spotter->cont ?? ''))) {
-				continue;
-			}
 
 			// Extract park references from message
 			$singlespot = $this->enrich_spot_metadata($singlespot);
@@ -229,6 +224,18 @@ class Dxcluster_model extends CI_Model {
 			if ($cache_band_enabled && !empty($spotsout)) {
 				$this->cache->save($raw_cache_key, $spotsout, 59);
 			}
+		}
+
+		// Apply user-specific filters AFTER cache retrieval (mode & continent)
+		if (!empty($spotsout) && ($mode != 'All' || ($de != '' && $de != 'Any'))) {
+			$de_lower = strtolower($de);
+			$filter_continent = ($de != '' && $de != 'Any');
+			$spotsout = array_filter($spotsout, function($spot) use ($mode, $de_lower, $filter_continent) {
+				if ($mode != 'All' && !$this->modefilter($spot, $mode)) return false;
+				if ($filter_continent && ($de_lower != strtolower($spot->dxcc_spotter->cont ?? ''))) return false;
+				return true;
+			});
+			$spotsout = array_values($spotsout); // Re-index array
 		}
 
 		// NOW add worked status if enabled (user-specific)
@@ -725,5 +732,70 @@ class Dxcluster_model extends CI_Model {
 		}
 
 		return $spot;
+	}
+
+	/**
+	 * Clean expired DX cluster cache files
+	 * Called with low probability on each cache access to prevent buildup
+	 * Uses file mtime for fast pre-filtering before reading file contents
+	 */
+	protected function cleanExpiredDxclusterCache() {
+		// Use configured cache path (same as CI cache driver)
+		$cache_path = $this->config->item('cache_path');
+		$cache_path = ($cache_path === '' || $cache_path === false) ? APPPATH . 'cache/' : $cache_path;
+
+		// Ensure trailing slash
+		$cache_path = rtrim($cache_path, '/\\') . DIRECTORY_SEPARATOR;
+
+		// Check directory exists and is readable
+		if (!is_dir($cache_path) || !is_readable($cache_path)) {
+			return;
+		}
+
+		// Use opendir/readdir instead of glob (more compatible with UNC paths)
+		$handle = @opendir($cache_path);
+		if (!$handle) return;
+
+		$now = time();
+		$deleted = 0;
+
+		// Max TTL for dxcluster files: raw=59s, worked=900s - use 900s + buffer
+		$max_ttl = 1000;
+
+		while (($filename = readdir($handle)) !== false) {
+			// Only process dxcluster cache files
+			if (strpos($filename, 'dxcluster_') !== 0) continue;
+
+			$file = $cache_path . $filename;
+			if (!is_file($file)) continue;
+
+			// Fast pre-filter: skip files modified recently (can't be expired yet)
+			// filemtime() is much faster than reading+deserializing the file
+			$mtime = @filemtime($file);
+			if ($mtime !== false && ($now - $mtime) < $max_ttl) {
+				continue; // File too new to be expired
+			}
+
+			// File is old enough to potentially be expired - read and verify
+			$data = @unserialize(@file_get_contents($file));
+			if (!is_array($data) || !isset($data['time'], $data['ttl'])) {
+				// Invalid cache file - delete it
+				@unlink($file);
+				$deleted++;
+				continue;
+			}
+
+			// Check if expired
+			if ($data['ttl'] > 0 && $now > $data['time'] + $data['ttl']) {
+				@unlink($file);
+				$deleted++;
+			}
+		}
+
+		closedir($handle);
+
+		if ($deleted > 0) {
+			log_message('debug', "DXCluster cache GC: deleted {$deleted} expired files");
+		}
 	}
 }
