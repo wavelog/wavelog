@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-11-27 06:39+0000\n"
+"POT-Creation-Date: 2025-11-27 07:21+0000\n"
 "PO-Revision-Date: 2025-11-21 15:26+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
@@ -8837,8 +8837,13 @@ msgstr "Extra groot"
 msgid "by:"
 msgstr "door:"
 
-#: application/views/components/dxwaterfall.php:80
-#: application/views/components/dxwaterfall.php:86
+#: application/views/components/dxwaterfall.php:57
+#, php-format
+msgid "Please wait %s second(s) before toggling DX Waterfall again."
+msgstr ""
+
+#: application/views/components/dxwaterfall.php:81
+#: application/views/components/dxwaterfall.php:87
 msgid "DX Waterfall Help"
 msgstr "DX Waterval Hulp"
 
