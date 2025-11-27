@@ -69,6 +69,13 @@ class CI_Cache_redis extends CI_Driver
 	 */
 	protected $_redis;
 
+	/**
+	 * Connection status flag
+	 *
+	 * @var	bool
+	 */
+	protected $_connected = FALSE;
+
 
 	/**
 	 * del()/delete() method name depending on phpRedis version
@@ -123,7 +130,22 @@ class CI_Cache_redis extends CI_Driver
 
 		if ($CI->config->load('redis', TRUE, TRUE))
 		{
-			$config = array_merge(self::$_default_config, $CI->config->item('redis'));
+			$redis_config = $CI->config->item('redis');
+
+			// Handle nested array structure from config file
+			if (is_array($redis_config) && isset($redis_config['redis']))
+			{
+				$redis_config = $redis_config['redis'];
+			}
+
+			if (is_array($redis_config))
+			{
+				$config = array_merge(self::$_default_config, $redis_config);
+			}
+			else
+			{
+				$config = self::$_default_config;
+			}
 		}
 		else
 		{
@@ -134,24 +156,44 @@ class CI_Cache_redis extends CI_Driver
 
 		try
 		{
-			if ( ! $this->_redis->connect($config['host'], ($config['host'][0] === '/' ? 0 : $config['port']), $config['timeout']))
+			$connected = $this->_redis->connect($config['host'], ($config['host'][0] === '/' ? 0 : $config['port']), $config['timeout']);
+
+			if ($connected)
+			{
+				$this->_connected = TRUE;
+
+				if (isset($config['password']) && $config['password'] !== NULL && $config['password'] !== '' && ! $this->_redis->auth($config['password']))
+				{
+					log_message('error', 'Cache: Redis authentication failed.');
+					$this->_connected = FALSE;
+				}
+
+				if ($this->_connected && isset($config['database']) && $config['database'] > 0 && ! $this->_redis->select($config['database']))
+				{
+					log_message('error', 'Cache: Redis select database failed.');
+					$this->_connected = FALSE;
+				}
+
+				if ($this->_connected)
+				{
+					log_message('info', 'Cache: Redis server is being used ('.$config['host'].':'.$config['port'].')');
+				}
+			}
+			else
 			{
 				log_message('error', 'Cache: Redis connection failed. Check your configuration.');
-			}
-
-			if (isset($config['password']) && ! $this->_redis->auth($config['password']))
-			{
-				log_message('error', 'Cache: Redis authentication failed.');
-			}
-
-			if (isset($config['database']) && $config['database'] > 0 && ! $this->_redis->select($config['database']))
-			{
-				log_message('error', 'Cache: Redis select database failed.');
+				$this->_connected = FALSE;
 			}
 		}
 		catch (RedisException $e)
 		{
-			log_message('error', 'Cache: Redis connection refused ('.$e->getMessage().')');
+			log_message('error', 'Cache: Redis connection failed - '.$e->getMessage());
+			$this->_connected = FALSE;
+		}
+		catch (Exception $e)
+		{
+			log_message('error', 'Cache: Redis connection error - '.$e->getMessage());
+			$this->_connected = FALSE;
 		}
 	}
 
@@ -165,29 +207,44 @@ class CI_Cache_redis extends CI_Driver
 	 */
 	public function get($key)
 	{
-		$data = $this->_redis->hMGet($key, array('__ci_type', '__ci_value'));
-
-		if ($value !== FALSE && $this->_redis->sIsMember('_ci_redis_serialized', $key))
+		if ( ! $this->_connected)
 		{
 			return FALSE;
 		}
 
-		switch ($data['__ci_type'])
+		try
 		{
-			case 'array':
-			case 'object':
-				return unserialize($data['__ci_value']);
-			case 'boolean':
-			case 'integer':
-			case 'double': // Yes, 'double' is returned and NOT 'float'
-			case 'string':
-			case 'NULL':
-				return settype($data['__ci_value'], $data['__ci_type'])
-					? $data['__ci_value']
-					: FALSE;
-			case 'resource':
-			default:
+			$data = $this->_redis->hMGet($key, array('__ci_type', '__ci_value'));
+
+			if ( ! isset($data['__ci_type'], $data['__ci_value']) OR $data['__ci_type'] === FALSE)
+			{
 				return FALSE;
+			}
+
+			switch ($data['__ci_type'])
+			{
+				case 'array':
+				case 'object':
+					return unserialize($data['__ci_value']);
+				case 'boolean':
+					return (bool) $data['__ci_value'];
+				case 'integer':
+					return (int) $data['__ci_value'];
+				case 'double':
+					return (float) $data['__ci_value'];
+				case 'string':
+					return (string) $data['__ci_value'];
+				case 'NULL':
+					return NULL;
+				case 'resource':
+				default:
+					return FALSE;
+			}
+		}
+		catch (RedisException $e)
+		{
+			log_message('error', 'Cache: Redis get operation failed - ' . $e->getMessage());
+			return FALSE;
 		}
 	}
 
@@ -204,33 +261,51 @@ class CI_Cache_redis extends CI_Driver
 	 */
 	public function save($id, $data, $ttl = 60, $raw = FALSE)
 	{
-		switch ($data_type = gettype($data))
-		{
-			case 'array':
-			case 'object':
-				$data = serialize($data);
-				break;
-			case 'boolean':
-			case 'integer':
-			case 'double': // Yes, 'double' is returned and NOT 'float'
-			case 'string':
-			case 'NULL':
-				break;
-			case 'resource':
-			default:
-				return FALSE;
-		}
-
-		if ( ! $this->_redis->hMSet($id, array('__ci_type' => $data_type, '__ci_value' => $data)))
+		if ( ! $this->_connected)
 		{
 			return FALSE;
 		}
-		else
-		{
-			$this->_redis->{static::$_sRemove_name}('_ci_redis_serialized', $id);
-		}
 
-		return TRUE;
+		try
+		{
+			switch ($data_type = gettype($data))
+			{
+				case 'array':
+				case 'object':
+					$data = serialize($data);
+					break;
+				case 'boolean':
+				case 'integer':
+				case 'double': // Yes, 'double' is returned and NOT 'float'
+				case 'string':
+				case 'NULL':
+					break;
+				case 'resource':
+				default:
+					return FALSE;
+			}
+
+			if ( ! $this->_redis->hMSet($id, array('__ci_type' => $data_type, '__ci_value' => $data)))
+			{
+				return FALSE;
+			}
+			else
+			{
+				$this->_redis->{static::$_sRemove_name}('_ci_redis_serialized', $id);
+			}
+
+			if ($ttl > 0)
+			{
+				$this->_redis->expire($id, $ttl);
+			}
+
+			return TRUE;
+		}
+		catch (RedisException $e)
+		{
+			log_message('error', 'Cache: Redis save operation failed - ' . $e->getMessage());
+			return FALSE;
+		}
 	}
 
 	// ------------------------------------------------------------------------
@@ -243,14 +318,27 @@ class CI_Cache_redis extends CI_Driver
 	 */
 	public function delete($key)
 	{
-		if ($this->_redis->{static::$_delete_name}($key) !== 1)
+		if ( ! $this->_connected)
 		{
 			return FALSE;
 		}
 
-		$this->_redis->{static::$_sRemove_name}('_ci_redis_serialized', $key);
+		try
+		{
+			if ($this->_redis->{static::$_delete_name}($key) !== 1)
+			{
+				return FALSE;
+			}
 
-		return TRUE;
+			$this->_redis->{static::$_sRemove_name}('_ci_redis_serialized', $key);
+
+			return TRUE;
+		}
+		catch (RedisException $e)
+		{
+			log_message('error', 'Cache: Redis delete operation failed - ' . $e->getMessage());
+			return FALSE;
+		}
 	}
 
 	// ------------------------------------------------------------------------
@@ -264,7 +352,20 @@ class CI_Cache_redis extends CI_Driver
 	 */
 	public function increment($id, $offset = 1)
 	{
-		return $this->_redis->incrBy($id, $offset);
+		if ( ! $this->_connected)
+		{
+			return FALSE;
+		}
+
+		try
+		{
+			return $this->_redis->incrBy($id, $offset);
+		}
+		catch (RedisException $e)
+		{
+			log_message('error', 'Cache: Redis increment failed - ' . $e->getMessage());
+			return FALSE;
+		}
 	}
 
 	// ------------------------------------------------------------------------
@@ -278,7 +379,20 @@ class CI_Cache_redis extends CI_Driver
 	 */
 	public function decrement($id, $offset = 1)
 	{
-		return $this->_redis->decrBy($id, $offset);
+		if ( ! $this->_connected)
+		{
+			return FALSE;
+		}
+
+		try
+		{
+			return $this->_redis->decrBy($id, $offset);
+		}
+		catch (RedisException $e)
+		{
+			log_message('error', 'Cache: Redis decrement failed - ' . $e->getMessage());
+			return FALSE;
+		}
 	}
 
 	// ------------------------------------------------------------------------
@@ -291,7 +405,20 @@ class CI_Cache_redis extends CI_Driver
 	 */
 	public function clean()
 	{
-		return $this->_redis->flushDB();
+		if ( ! $this->_connected)
+		{
+			return FALSE;
+		}
+
+		try
+		{
+			return $this->_redis->flushDB();
+		}
+		catch (RedisException $e)
+		{
+			log_message('error', 'Cache: Redis clean failed - ' . $e->getMessage());
+			return FALSE;
+		}
 	}
 
 	// ------------------------------------------------------------------------
@@ -307,7 +434,20 @@ class CI_Cache_redis extends CI_Driver
 	 */
 	public function cache_info($type = NULL)
 	{
-		return $this->_redis->info();
+		if ( ! $this->_connected)
+		{
+			return FALSE;
+		}
+
+		try
+		{
+			return $this->_redis->info();
+		}
+		catch (RedisException $e)
+		{
+			log_message('error', 'Cache: Redis info failed - ' . $e->getMessage());
+			return FALSE;
+		}
 	}
 
 	// ------------------------------------------------------------------------
@@ -320,6 +460,11 @@ class CI_Cache_redis extends CI_Driver
 	 */
 	public function get_metadata($key)
 	{
+		if ( ! $this->_connected)
+		{
+			return FALSE;
+		}
+
 		$value = $this->get($key);
 
 		if ($value !== FALSE)

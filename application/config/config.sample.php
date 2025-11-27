@@ -800,10 +800,10 @@ $config['max_login_attempts'] = 3;
 
 /*
 |--------------------------------------------------------------------------
-| DXCluster File Cache
+| DXCluster Cache
 |--------------------------------------------------------------------------
 |
-| Controls file-based caching for DXCluster features. Two independent settings:
+| Controls caching for DXCluster features. Two independent settings:
 |
 | 1. enable_dxcluster_file_cache_band
 |    - Caches processed spot lists (WITHOUT worked status) from DXCache API
@@ -826,12 +826,46 @@ $config['max_login_attempts'] = 3;
 |
 | Default: false (both caching disabled)
 |
-| Recommendation:
+| Recommendations:
 |   - Enable BAND cache on all installations to reduce API load (instance-wide)
-|   - Enable WORKED cache on high-traffic multi-user installations to reduce DB queries
-| Warning: WORKED cache may cause high disk usage on large multi-user installations.
+|   - Enable WORKED cache on small/single-user installations
+|   - For best performance: Use WORKED cache with Redis (cache_adapter = 'redis')
+|   - Redis provides 100x faster cache operations than file-based caching
+|
+| Note: Cache adapter (file/redis) is configured separately via 'cache_adapter'
 |--------------------------------------------------------------------------
  */
 
 $config['enable_dxcluster_file_cache_band'] = false;
 $config['enable_dxcluster_file_cache_worked'] = false;
+
+/*
+ |--------------------------------------------------------------------------
+ | Cache Adapter Selection
+ |--------------------------------------------------------------------------
+ |
+ | Choose the caching backend for DXCluster and other cached data.
+ |
+ | Options:
+ |   'file'  - File-based caching
+ |             - Works out-of-the-box, no additional setup required
+ |             - Cache stored in application/cache/ directory
+ |             - Slower on network shares or high-traffic installations
+ |             - Recommended for: Single-user, low-traffic, or local installations
+ |
+ |   'redis' - Redis in-memory caching (recommended)
+ |             - Requires Redis server and PHP Redis extension
+ |             - 100x faster than file-based caching
+ |             - Ideal for high-traffic installations or network shares
+ |             - Recommended for: Multi-user, high-traffic installations
+ |             - Configuration: Copy application/config/redis.sample.php to redis.php
+ |             - Documentation: https://github.com/wavelog/wavelog/wiki/Redis
+ |
+ | IMPORTANT: If 'redis' is selected but Redis is unavailable, the system
+ |            will automatically fall back to 'file' caching.
+ |
+ | Default: 'redis'
+ |--------------------------------------------------------------------------
+  */
+
+$config['cache_adapter'] = 'file';

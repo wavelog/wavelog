@@ -53,7 +53,8 @@ class Dxcluster_model extends CI_Model {
 
 		// Only load cache driver if caching is enabled
 		if ($cache_band_enabled || $cache_worked_enabled) {
-			$this->load->driver('cache', array('adapter' => 'file', 'backup' => 'file'));
+			$cache_adapter = $this->config->item('cache_adapter') ?: 'file';
+			$this->load->driver('cache', array('adapter' => $cache_adapter, 'backup' => 'file'));
 		}
 
 		if($this->session->userdata('user_date_format')) {
@@ -79,7 +80,12 @@ class Dxcluster_model extends CI_Model {
 		// Check cache for raw processed spots (without worked status)
 		$spotsout = null;
 		if ($cache_band_enabled) {
-			$spotsout = $this->cache->get($raw_cache_key);
+			try {
+				$spotsout = $this->cache->get($raw_cache_key);
+			} catch (Exception $e) {
+				log_message('error', 'DXCluster: Cache get failed: ' . $e->getMessage());
+				$spotsout = null;
+			}
 		}
 
 		if (!$spotsout) {
@@ -221,17 +227,19 @@ class Dxcluster_model extends CI_Model {
 			// Extract park references from message
 			$singlespot = $this->enrich_spot_metadata($singlespot);
 
-				// Collect spots for batch processing
-				$spotsout[] = $singlespot;
-			}
+			// Collect spots for batch processing
+			$spotsout[] = $singlespot;
+		}
 
 			// Cache the RAW processed spots (WITHOUT worked status) - instance-wide
 			if ($cache_band_enabled && !empty($spotsout)) {
-				$this->cache->save($raw_cache_key, $spotsout, 59);
+				try {
+					$this->cache->save($raw_cache_key, $spotsout, 59);
+				} catch (Exception $e) {
+					log_message('error', 'DXCluster: Cache save failed: ' . $e->getMessage());
+				}
 			}
-		}
-
-		// NOW add worked status if enabled (user-specific)
+		}		// NOW add worked status if enabled (user-specific)
 		if (!empty($spotsout)) {
 			$batch_statuses = $this->logbook_model->get_batch_spot_statuses(
 				$spotsout,
