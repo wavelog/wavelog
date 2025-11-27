@@ -43,6 +43,19 @@
 	var lang_bandmap_modes_applied = "<?= __("Modes applied. Band filter preserved (CAT connection is active)"); ?>";
 	var lang_bandmap_favorites_applied = "<?= __("Applied your favorite bands and modes"); ?>";
 
+	// My Submodes filter translations
+	var lang_bandmap_my_submodes = "<?= __("My Submodes"); ?>";
+	var lang_bandmap_submodes_filter_enabled = "<?= __("Submode filter enabled"); ?>";
+	var lang_bandmap_submodes_filter_disabled = "<?= __("Submode filter disabled - showing all"); ?>";
+	var lang_bandmap_required_submodes = "<?= __("Required submodes"); ?>";
+	var lang_bandmap_submodes_settings_hint = "<?= __("Configure in User Settings - Modes"); ?>";
+	var lang_bandmap_no_submodes_configured = "<?= __("No submodes configured - configure in User Settings - Modes"); ?>";
+	var lang_bandmap_no_submodes_warning = "<?= __("No submodes enabled in settings - showing all spots"); ?>";
+	var lang_bandmap_mode_disabled_no_submode = "<?= __("Disabled - no submodes enabled for this mode in User Settings"); ?>";
+	var lang_bandmap_toggle_cw = "<?= __("Toggle CW mode filter"); ?>";
+	var lang_bandmap_toggle_digi = "<?= __("Toggle Digital mode filter"); ?>";
+	var lang_bandmap_toggle_phone = "<?= __("Toggle Phone mode filter"); ?>";
+
 	// DX Cluster Filter Favorites translations
 	var lang_bandmap_filter_favorites = "<?= __("Favorites"); ?>";
 	var lang_bandmap_save_filters = "<?= __("Save Current Filters..."); ?>";
@@ -209,10 +222,10 @@
 	<div class="d-flex flex-wrap align-items-center gap-2 mb-2">
 		<!-- Left: CAT Connection + Lock Buttons -->
 		<div class="btn-group flex-shrink-0" role="group">
-			<button class="btn btn-sm btn-secondary" type="button" id="toggleCatTracking" data-bs-toggle="tooltip" data-bs-placement="bottom">
+			<button class="btn btn-sm btn-secondary" type="button" id="toggleCatTracking" data-bs-toggle="tooltip" data-bs-placement="bottom" title="<?= __("Click to enable CAT connection"); ?>">
 				<i class="fas fa-radio"></i> <span class="d-none d-sm-inline"><?= __("CAT Connection"); ?></span>
 			</button>
-			<button class="btn btn-sm btn-secondary" type="button" id="toggleCatLock" data-bs-toggle="tooltip" data-bs-placement="bottom" disabled>
+			<button class="btn btn-sm btn-secondary" type="button" id="toggleCatLock" data-bs-toggle="tooltip" data-bs-placement="bottom" title="<?= __("Click to enable band lock (requires CAT connection)"); ?>" disabled>
 				<i class="fas fa-lock-open"></i>
 			</button>
 		</div>
@@ -295,6 +308,7 @@
 						<label class="form-label d-block filter-label-small" for="requiredFlags"><?= __("Required Flags"); ?></label>
 						<select id="requiredFlags" class="form-select form-select-sm filter-short" name="required_flags" multiple="multiple">
 							<option value="None" selected><?= __("None"); ?></option>
+							<option value="mysubmodes"><?= __("My Submodes"); ?></option>
 							<option value="lotw"><?= __("LoTW User"); ?></option>
 							<option value="newcontinent"><?= __("New Continent"); ?></option>
 							<option value="newcountry"><?= __("New Country"); ?></option>
@@ -409,10 +423,6 @@
 					<div id="dxcluster_fav_menu"></div>
 				</div>
 			</div>
-			<!-- Favorites Button -->
-			<button class="btn btn-sm btn-secondary flex-shrink-0" type="button" id="toggleFavoritesFilter" title="<?= __("Apply your favorite bands and modes (configured in Band and Mode settings)"); ?>" style="display: none;">
-				<i class="fas fa-star text-warning"></i>
-			</button>
 			<!-- Clear Filters Button -->
 			<button class="btn btn-sm btn-secondary flex-shrink-0" type="button" id="clearFiltersButtonQuick" title="<?= __("Clear all filters except De Continent"); ?>">
 				<i class="fas fa-filter-circle-xmark text-danger"></i>
@@ -457,6 +467,10 @@
 
 	<!-- Row 3: Quick Filters -->
 	<div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+		<!-- My Submodes Filter Toggle -->
+		<button class="btn btn-sm btn-secondary flex-shrink-0" type="button" id="toggleMySubmodesFilter" title="<?= __("Loading submodes..."); ?>">
+			<i class="fas fa-bookmark"></i> <span class="d-none d-lg-inline"><?= __("My Submodes"); ?></span>
+		</button>
 		<!-- LoTW Users Button (separate) -->
 		<div class="btn-group flex-shrink-0" role="group">
 			<button class="btn btn-sm btn-secondary" type="button" id="toggleLotwFilter" title="<?= __("Toggle LoTW User filter"); ?>">

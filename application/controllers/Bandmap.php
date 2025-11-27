@@ -78,8 +78,8 @@ class Bandmap extends CI_Controller {
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 
-	// Get user's favorite bands and modes (active ones)
-	function get_user_favorites() {
+	// Get user's active bands and modes/submodes
+	function get_user_bands_and_modes() {
 		session_write_close();
 
 		$this->load->model('bands');
@@ -106,6 +106,7 @@ class Bandmap extends CI_Controller {
 			'phone' => false,
 			'digi' => false
 		];
+		$submodes = []; // List of all enabled submodes
 
 		if ($activeModes) {
 			foreach ($activeModes as $mode) {
@@ -117,13 +118,20 @@ class Bandmap extends CI_Controller {
 				} elseif ($qrgmode === 'DATA') {
 					$modeCategories['digi'] = true;
 				}
+
+				// Build submode identifier - use submode if available, otherwise just mode
+				$submode = !empty($mode->submode) ? $mode->submode : $mode->mode;
+				if (!empty($submode) && !in_array($submode, $submodes)) {
+					$submodes[] = $submode;
+				}
 			}
 		}
 
 		header('Content-Type: application/json');
 		echo json_encode([
 			'bands' => $bandList,
-			'modes' => $modeCategories
+			'modes' => $modeCategories,
+			'submodes' => $submodes
 		]);
 	}
 }

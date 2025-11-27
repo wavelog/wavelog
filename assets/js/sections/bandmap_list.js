@@ -295,6 +295,7 @@ $(function() {
 
 		// Required flags buttons
 		const requiredFlagButtons = [
+			{ id: '#toggleMySubmodesFilter', flag: 'mysubmodes' },
 			{ id: '#toggleLotwFilter', flag: 'lotw' },
 			{ id: '#toggleDxSpotFilter', flag: 'dxspot' },
 			{ id: '#toggleNewContinentFilter', flag: 'newcontinent' },
@@ -418,6 +419,8 @@ $(function() {
 			Object.entries(CURRENT_TO_STORAGE_KEY).forEach(([currentKey, storageKey]) => {
 				filterData[storageKey] = currentFilters[currentKey];
 			});
+			// Include My Submodes filter state
+			filterData.mySubmodesActive = isMySubmodesFilterActive;
 			return filterData;
 		}
 
@@ -497,6 +500,9 @@ $(function() {
 
 		$(this).val(currentValues);
 		updateFilterIcon();
+
+		// Sync My Submodes button state from requiredFlags
+		syncMySubmodesFromRequiredFlags();
 
 		// Apply filters with debouncing
 		debouncedApplyFilters(150);
@@ -944,6 +950,10 @@ $(function() {
 			for (let i = 0; i < requiredFlags.length; i++) {
 				const reqFlag = requiredFlags[i];
 				switch (reqFlag) {
+					case 'mysubmodes':
+						// My Submodes: spot's submode must match user's enabled submodes
+						if (!matchesUserSubmodes(single.submode)) return;
+						break;
 					case 'lotw':
 						if (!dxccSpotted || !dxccSpotted.lotw_user) return;
 						break;
@@ -989,7 +999,9 @@ $(function() {
 		if (deContinentSet && (!dxccSpotter || !dxccSpotter.cont || !deContinentSet.has(dxccSpotter.cont))) return;
 
 		// Apply spotted continent filter (which continent the DX station is in)
-		if (spottedContinentSet && (!dxccSpotted || !dxccSpotted.cont || !spottedContinentSet.has(dxccSpotted.cont))) return;		// Apply mode filter (API already returns mode categories)
+		if (spottedContinentSet && (!dxccSpotted || !dxccSpotted.cont || !spottedContinentSet.has(dxccSpotted.cont))) return;
+
+		// Apply mode filter (API already returns mode categories)
 		if (modeSet && (!single.mode || !modeSet.has(single.mode))) return;
 
 		// Apply additional flags filter (POTA, SOTA, WWFF, IOTA, Contest, Fresh)
@@ -2044,6 +2056,14 @@ $(function() {
 		} else {
 			setAllFilterValues(filterData);
 		}
+
+		// Restore My Submodes filter state if stored (and user has submodes enabled)
+		if (filterData.mySubmodesActive !== undefined && userEnabledSubmodes.length > 0) {
+			isMySubmodesFilterActive = filterData.mySubmodesActive;
+			updateMySubmodesButtonVisual();
+			updateModeButtonsForSubmodes();
+		}
+
 		updateAllSelectCheckboxes();
 		syncQuickFilterButtons();
 		updateFilterIcon();
@@ -2789,6 +2809,8 @@ $(function() {
 
 	// Toggle CW mode filter
 	$('#toggleCwFilter').on('click', function() {
+		if ($(this).data('mode-disabled')) return; // Disabled by My Submodes filter
+
 		let currentValues = $('#mode').val() || [];
 
 		// Remove 'All' if present
@@ -2817,6 +2839,8 @@ $(function() {
 
 	// Toggle Digital mode filter
 	$('#toggleDigiFilter').on('click', function() {
+		if ($(this).data('mode-disabled')) return; // Disabled by My Submodes filter
+
 		let currentValues = $('#mode').val() || [];
 
 		// Remove 'All' if present
@@ -2845,6 +2869,8 @@ $(function() {
 
 	// Toggle Phone mode filter
 	$('#togglePhoneFilter').on('click', function() {
+		if ($(this).data('mode-disabled')) return; // Disabled by My Submodes filter
+
 		let currentValues = $('#mode').val() || [];
 
 		// Remove 'All' if present
@@ -3176,69 +3202,142 @@ $(function() {
 		applyFilters(false);
 	});
 
-	// Toggle Favorites filter - applies user's active bands and modes
-	$('#toggleFavoritesFilter').on('click', function() {
-		// Use cached favorites if available, otherwise fetch
-		if (cachedUserFavorites !== null) {
-			applyUserFavorites(cachedUserFavorites);
-		} else {
-			// Fallback: fetch if cache is not available
-			let base_url = dxcluster_provider.replace('/dxcluster', '');
-			$.ajax({
-				url: base_url + '/bandmap/get_user_favorites',
-				method: 'GET',
-				dataType: 'json',
-				success: function(favorites) {
-					cachedUserFavorites = favorites;
-					applyUserFavorites(favorites);
-				},
-				error: function() {
-					showToast(lang_bandmap_my_favorites, lang_bandmap_favorites_failed, 'bg-danger text-white', 3000);
-				}
-			});
-		}
+	// ========================================
+	// MY SUBMODES FILTER TOGGLE
+	// ========================================
+
+	// Track My Submodes filter state
+	let isMySubmodesFilterActive = false;
+	let userEnabledSubmodes = []; // List of user's enabled submodes from settings
+	let userModeCategories = { cw: true, phone: true, digi: true }; // Which mode categories user has enabled
+
+	/**
+	 * Update mode buttons based on My Submodes filter state
+	 * When My Submodes is active, disable mode buttons for categories user doesn't have
+	 */
+	function updateModeButtonsForSubmodes() {
+		// Map mode to original tooltip translation
+		const modeTooltips = {
+			'cw': lang_bandmap_toggle_cw,
+			'digi': lang_bandmap_toggle_digi,
+			'phone': lang_bandmap_toggle_phone
+		};
+
+		MODE_BUTTONS.forEach(btn => {
+			const $btn = $(btn.id);
+			const hasCategory = userModeCategories[btn.mode];
+
+			if (isMySubmodesFilterActive && !hasCategory) {
+				// My Submodes active and user doesn't have this category - visually disable button
+				// Use visual styling instead of disabled property to allow tooltip to show
+				$btn.addClass('disabled').css('opacity', '0.5').css('pointer-events', 'auto');
+				$btn.attr('aria-disabled', 'true');
+				$btn.data('mode-disabled', true);
+				$btn.attr('title', lang_bandmap_mode_disabled_no_submode);
+			} else {
+				// Re-enable button and restore original tooltip
+				$btn.removeClass('disabled').css('opacity', '').css('pointer-events', '');
+				$btn.attr('aria-disabled', 'false');
+				$btn.data('mode-disabled', false);
+				$btn.attr('title', modeTooltips[btn.mode]);
+			}
+		});
+	}
+
+	/**
+	 * Toggle My Submodes filter on/off via button click
+	 * Syncs with requiredFlags select
+	 */
+	$('#toggleMySubmodesFilter').on('click', function() {
+		if ($(this).prop('disabled')) return;
+
+		isMySubmodesFilterActive = !isMySubmodesFilterActive;
+
+		// Sync with requiredFlags select
+		syncMySubmodesToRequiredFlags();
+		updateMySubmodesButtonVisual();
+		updateModeButtonsForSubmodes();
+		applyFilters(false);
 	});
 
 	/**
-	 * Apply user favorites to band and mode filters
+	 * Sync isMySubmodesFilterActive state to requiredFlags select
 	 */
-	function applyUserFavorites(favorites) {
-		// Apply bands - but preserve current band if CAT Control is enabled
-		if (isCatTrackingEnabled) {
-			// CAT Control is active - don't change band filter
+	function syncMySubmodesToRequiredFlags() {
+		let currentFlags = $('#requiredFlags').val() || [];
+		currentFlags = currentFlags.filter(v => v !== 'None');
 
-			if (typeof showToast === 'function') {
-				showToast(lang_bandmap_my_favorites, lang_bandmap_modes_applied, 'bg-info text-white', 3000);
+		if (isMySubmodesFilterActive) {
+			if (!currentFlags.includes('mysubmodes')) {
+				currentFlags.push('mysubmodes');
 			}
 		} else {
-			// CAT Control is off - apply favorite bands
-			if (favorites.bands && favorites.bands.length > 0) {
-				$('#band').val(favorites.bands).trigger('change');
-			} else {
-				// No active bands, set to All
-				$('#band').val(['All']).trigger('change');
-			}
+			currentFlags = currentFlags.filter(v => v !== 'mysubmodes');
 		}
 
-		// Apply modes
-		let activeModes = [];
-		if (favorites.modes.cw) activeModes.push('cw');
-		if (favorites.modes.phone) activeModes.push('phone');
-		if (favorites.modes.digi) activeModes.push('digi');
+		if (currentFlags.length === 0) {
+			currentFlags = ['None'];
+		}
 
-		if (activeModes.length > 0) {
-			$('#mode').val(activeModes).trigger('change');
+		$('#requiredFlags').val(currentFlags).trigger('change');
+	}
+
+	/**
+	 * Sync button state from requiredFlags select (called when select changes)
+	 */
+	function syncMySubmodesFromRequiredFlags() {
+		let currentFlags = ($('#requiredFlags').val() || []).filter(v => v !== 'None');
+		let shouldBeActive = currentFlags.includes('mysubmodes');
+
+		// Only update if state changed and user has submodes configured
+		if (shouldBeActive !== isMySubmodesFilterActive && userEnabledSubmodes.length > 0) {
+			isMySubmodesFilterActive = shouldBeActive;
+			updateMySubmodesButtonVisual();
+			updateModeButtonsForSubmodes();
+		}
+	}
+
+	/**
+	 * Update My Submodes button visual state
+	 */
+	function updateMySubmodesButtonVisual() {
+		const $btn = $('#toggleMySubmodesFilter');
+		$btn.removeClass('btn-secondary btn-success');
+		if (isMySubmodesFilterActive) {
+			$btn.addClass('btn-success');
 		} else {
-			// No active modes, filter out everything (or set to All if you prefer)
-			$('#mode').val(['All']).trigger('change');
+			$btn.addClass('btn-secondary');
 		}
+	}
 
-		// Sync button states and apply filters
-		syncQuickFilterButtons();
-		updateBandCountBadges();
-		applyFilters(false);
+	/**
+	 * Update My Submodes button tooltip with list of enabled submodes
+	 */
+	function updateMySubmodesTooltip() {
+		const $btn = $('#toggleMySubmodesFilter');
+		if (userEnabledSubmodes.length > 0) {
+			const modesList = userEnabledSubmodes.join(', ');
+			$btn.attr('title', lang_bandmap_required_submodes + ': ' + modesList + ' (' + lang_bandmap_submodes_settings_hint + ')');
+		} else {
+			$btn.attr('title', lang_bandmap_no_submodes_configured);
+		}
+	}
 
-		showToast(lang_bandmap_my_favorites, lang_bandmap_favorites_applied, 'bg-success text-white', 3000);
+	/**
+	 * Check if a spot's submode matches user's enabled submodes
+	 * @param {string} spotSubmode - The submode from the spot
+	 * @returns {boolean} - True if matches or filter is off
+	 */
+	function matchesUserSubmodes(spotSubmode) {
+		if (!isMySubmodesFilterActive || userEnabledSubmodes.length === 0) {
+			return true; // Filter off or no submodes = show all
+		}
+		if (!spotSubmode || spotSubmode === '') {
+			return false; // No submode on spot = don't match
+		}
+		return userEnabledSubmodes.some(mode =>
+			mode.toUpperCase() === spotSubmode.toUpperCase()
+		);
 	}
 
 	// ========================================
@@ -3714,28 +3813,68 @@ $(function() {
 	// ========================================
 
 	/**
-	 * Fetch and cache user favorites on page load for instant access
-	 * This prevents the delay when clicking the favorites button
+	 * Fetch and cache user bands/modes on page load
+	 * Initializes My Submodes filter with user's enabled submodes
 	 */
-	function fetchUserFavorites() {
+	function fetchUserBandsAndModes() {
 		let base_url = dxcluster_provider.replace('/dxcluster', '');
 		$.ajax({
-			url: base_url + '/bandmap/get_user_favorites',
+			url: base_url + '/bandmap/get_user_bands_and_modes',
 			method: 'GET',
 			dataType: 'json',
-			success: function(favorites) {
-				cachedUserFavorites = favorites;
+			success: function(data) {
+				cachedUserFavorites = data;
 
+				// Store mode categories for button enabling/disabling
+				if (data.modes) {
+					userModeCategories = {
+						cw: data.modes.cw || false,
+						phone: data.modes.phone || false,
+						digi: data.modes.digi || false
+					};
+				}
+
+				// Store submodes for filtering
+				if (data.submodes && data.submodes.length > 0) {
+					userEnabledSubmodes = data.submodes;
+					isMySubmodesFilterActive = true; // Enable filter by default
+					updateMySubmodesButtonVisual();
+					updateMySubmodesTooltip();
+					updateModeButtonsForSubmodes();
+					// Sync to requiredFlags select
+					syncMySubmodesToRequiredFlags();
+					// Reapply filters to activate submode filtering
+					applyFilters(false);
+				} else {
+					// No submodes configured - disable button and show warning
+					userEnabledSubmodes = [];
+					isMySubmodesFilterActive = false;
+					$('#toggleMySubmodesFilter').prop('disabled', true).addClass('disabled');
+					updateMySubmodesButtonVisual();
+					updateMySubmodesTooltip();
+					// Also disable the option in requiredFlags select
+					$('#requiredFlags option[value="mysubmodes"]').prop('disabled', true);
+					showToast(
+						lang_bandmap_my_submodes,
+						lang_bandmap_no_submodes_warning,
+						'bg-warning text-dark',
+						5000
+					);
+				}
 			},
 			error: function() {
-				console.warn('Failed to cache user favorites');
+				console.warn('Failed to fetch user bands and modes');
 				cachedUserFavorites = null;
+				userEnabledSubmodes = [];
+				$('#toggleMySubmodesFilter').prop('disabled', true).addClass('disabled');
+				$('#requiredFlags option[value="mysubmodes"]').prop('disabled', true);
+				updateMySubmodesTooltip();
 			}
 		});
 	}
 
-	// Fetch favorites on page load
-	fetchUserFavorites();
+	// Fetch user bands/modes on page load
+	fetchUserBandsAndModes();
 
 	// ========================================
 	// AGE AUTO-UPDATE
