@@ -16,7 +16,7 @@
 	var lang_bandmap_cat_required = "<?= __("CAT Connection Required"); ?>";
 	var lang_bandmap_enable_cat = "<?= __("Enable CAT connection to tune the radio"); ?>";
 	var lang_bandmap_clear_filters = "<?= __("Clear Filters"); ?>";
-	var lang_bandmap_band_preserved = "<?= __("Band filter preserved (CAT connection is active)"); ?>";
+	var lang_bandmap_band_preserved = "<?= __("Band filter preserved (band lock is active)"); ?>";
 	var lang_bandmap_radio = "<?= __("Radio"); ?>";
 	var lang_bandmap_radio_none = "<?= __("Radio set to None - CAT connection disabled"); ?>";
 	var lang_bandmap_radio_tuned = "<?= __("Radio Tuned"); ?>";
@@ -28,9 +28,12 @@
 	var lang_bandmap_sent_to_form = "<?= __("sent to logging form"); ?>";
 	var lang_bandmap_cat_control = "<?= __("CAT Connection"); ?>";
 	var lang_bandmap_cat_off = "<?= __("Click to enable CAT connection"); ?>";
-	var lang_bandmap_cat_on = "<?= __("CAT following radio | Click for frequency marker | Double-click to disable"); ?>";
-	var lang_bandmap_cat_marker = "<?= __("Frequency marker active | Click to disable marker | Double-click to disable CAT"); ?>";
-	var lang_bandmap_freq_changed = "<?= __("Frequency filter changed to"); ?>";
+	var lang_bandmap_cat_on = "<?= __("CAT following radio - Click to disable"); ?>";
+	var lang_bandmap_cat_lock_off = "<?= __("Click to enable band lock (requires CAT connection)"); ?>";
+	var lang_bandmap_cat_lock_on = "<?= __("Band lock active - Click to disable"); ?>";
+	var lang_bandmap_band_lock = "<?= __("Band Lock"); ?>";
+	var lang_bandmap_band_lock_enabled = "<?= __("Band lock enabled - band filter will track radio band"); ?>";
+	var lang_bandmap_freq_changed = "<?= __("Band filter changed to"); ?>";
 	var lang_bandmap_by_transceiver = "<?= __("by transceiver"); ?>";
 	var lang_bandmap_freq_filter_set = "<?= __("Frequency filter set to"); ?>";
 	var lang_bandmap_freq_outside = "<?= __("Frequency outside known bands - showing all bands"); ?>";
@@ -204,10 +207,15 @@
 		<div class="menu-bar">
 	<!-- Row 1: CAT Connection, Radio Selector, Radio Status (left) | de Continents (right) -->
 	<div class="d-flex flex-wrap align-items-center gap-2 mb-2">
-		<!-- Left: CAT Connection Button -->
-		<button class="btn btn-sm btn-secondary flex-shrink-0" type="button" id="toggleCatTracking" data-bs-toggle="tooltip" data-bs-placement="bottom">
-			<i class="fas fa-radio"></i> <span class="d-none d-sm-inline"><?= __("CAT Connection"); ?></span> <i class="fas fa-info-circle text-muted" style="font-size: 0.75rem;"></i>
-		</button>
+		<!-- Left: CAT Connection + Lock Buttons -->
+		<div class="btn-group flex-shrink-0" role="group">
+			<button class="btn btn-sm btn-secondary" type="button" id="toggleCatTracking" data-bs-toggle="tooltip" data-bs-placement="bottom">
+				<i class="fas fa-radio"></i> <span class="d-none d-sm-inline"><?= __("CAT Connection"); ?></span>
+			</button>
+			<button class="btn btn-sm btn-secondary" type="button" id="toggleCatLock" data-bs-toggle="tooltip" data-bs-placement="bottom" disabled>
+				<i class="fas fa-lock-open"></i>
+			</button>
+		</div>
 
 		<!-- Radio Selector Dropdown -->
 		<small class="text-muted me-1 flex-shrink-0 d-none d-md-inline"><?= __("TRX:"); ?></small>
