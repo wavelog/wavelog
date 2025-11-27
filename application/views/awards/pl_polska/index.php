@@ -3,6 +3,9 @@
     var lang_polish_voivodeship = "<?= __("Polish Voivodeships"); ?>";
     var lang_hover_over_voivodeship = "<?= __("Hover over a voivodeship"); ?>";
 </script>
+<script>
+   let user_map_custom = JSON.parse('<?php echo $user_map_custom; ?>');
+</script>
 
 <style>
     #polska-map {
@@ -224,9 +227,15 @@ if ($polska_array) {
             <td style="text-align: left">' . $voivodeship_name . '</td>
             <td>' . $voivodeship_code . '</td>';
         foreach ($mode_categories as $category) {
-            $count = isset($value[$category]) ? $value[$category] : 0;
-            if ($count > 0) {
-                echo '<td><div class="bg-success text-white">' . $count . '</div></td>';
+            $confirmed_count = isset($value[$category]) ? $value[$category] : 0;
+            $worked_count = isset($polska_worked[$voivodeship_code][$category]) ? $polska_worked[$voivodeship_code][$category] : 0;
+
+            if ($confirmed_count > 0) {
+                // Confirmed - show confirmed count (green)
+                echo '<td><div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("' . $voivodeship_code . '","All","All","All","' . $category . '","POLSKA", "' . $qsl_string . '")\'>' . $confirmed_count . '</a></div></td>';
+            } elseif ($worked_count > 0) {
+                // Only worked (not confirmed) - show worked count (orange)
+                echo '<td><div class="bg-danger awardsBgWarning"><a href=\'javascript:displayContacts("' . $voivodeship_code . '","All","All","All","' . $category . '","POLSKA", "")\'>' . $worked_count . '</a></div></td>';
             } else {
                 echo '<td>-</td>';
             }
@@ -290,9 +299,15 @@ if ($polska_array) {
                 <td style="text-align: left">' . $voivodeship_name . '</td>
                 <td>' . $voivodeship_code . '</td>';
             foreach ($worked_bands as $band) {
-                $count = isset($value[$band]) ? $value[$band] : 0;
-                if ($count > 0) {
-                    echo '<td><div class="bg-success text-white">' . $count . '</div></td>';
+                $confirmed_count = isset($value[$band]) ? $value[$band] : 0;
+                $worked_count = isset($polska_worked_bands[$voivodeship_code][$band]) ? $polska_worked_bands[$voivodeship_code][$band] : 0;
+
+                if ($confirmed_count > 0) {
+                    // Confirmed - show confirmed count (green)
+                    echo '<td><div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("' . $voivodeship_code . '","' . $band . '","All","All","All","POLSKA", "' . $qsl_string . '")\'>' . $confirmed_count . '</a></div></td>';
+                } elseif ($worked_count > 0) {
+                    // Only worked (not confirmed) - show worked count (orange)
+                    echo '<td><div class="bg-danger awardsBgWarning"><a href=\'javascript:displayContacts("' . $voivodeship_code . '","' . $band . '","All","All","All","POLSKA", "")\'>' . $worked_count . '</a></div></td>';
                 } else {
                     echo '<td>-</td>';
                 }

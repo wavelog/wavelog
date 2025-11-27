@@ -152,6 +152,33 @@ class Award_pl_polska extends CI_Model {
 	}
 
 	/**
+	 * Get worked (not confirmed) QSO counts by mode categories
+	 */
+	function get_polska_worked_by_modes($location_list) {
+		$result = array();
+
+		foreach ($this->voivodeship_names as $code => $name) {
+			$result[$code] = array_fill_keys($this->MODE_CATEGORIES, 0);
+		}
+
+		foreach ($this->MODE_CATEGORIES as $category) {
+			$voivData = $this->queryVoivodeships($location_list, array(
+				'mode_category' => $category,
+				'confirmed' => false,
+				'withCount' => true
+			));
+
+			foreach ($voivData as $line) {
+				if (isset($result[$line->COL_STATE])) {
+					$result[$line->COL_STATE][$category] = (int)$line->qso_count;
+				}
+			}
+		}
+
+		return $result;
+	}
+
+	/**
 	 * Get confirmed QSO counts by mode categories
 	 */
 	function get_polska_simple_by_modes($postdata, $location_list) {
@@ -172,6 +199,33 @@ class Award_pl_polska extends CI_Model {
 			foreach ($voivData as $line) {
 				if (isset($result[$line->COL_STATE])) {
 					$result[$line->COL_STATE][$category] = (int)$line->qso_count;
+				}
+			}
+		}
+
+		return $result;
+	}
+
+	/**
+	 * Get worked (not confirmed) QSO counts by bands
+	 */
+	function get_polska_worked_by_bands($bands, $location_list) {
+		$result = array();
+
+		foreach ($this->voivodeship_names as $code => $name) {
+			$result[$code] = array_fill_keys($bands, 0);
+		}
+
+		foreach ($bands as $band) {
+			$voivData = $this->queryVoivodeships($location_list, array(
+				'band' => $band,
+				'confirmed' => false,
+				'withCount' => true
+			));
+
+			foreach ($voivData as $line) {
+				if (isset($result[$line->COL_STATE])) {
+					$result[$line->COL_STATE][$band] = (int)$line->qso_count;
 				}
 			}
 		}

@@ -2395,6 +2395,7 @@ class Awards extends CI_Controller {
 
 		$this->load->model('award_pl_polska');
 		$this->load->model('bands');
+		$this->load->library('Genfunctions');
 
 		// Define valid bands for Polska award (per PZK rules)
 		// https://awards.pzk.org.pl/polish-awards/polska.html
@@ -2424,14 +2425,21 @@ class Awards extends CI_Controller {
 		// Add confirmed key for gen_qsl_from_postdata function compatibility
 		$postdata['confirmed'] = 1;
 
+		// Generate QSL string for displayContacts links
+		$data['qsl_string'] = $this->genfunctions->gen_qsl_from_postdata($postdata);
+
 		if ($logbooks_locations_array) {
 			$location_list = "'".implode("','",$logbooks_locations_array)."'";
 
-			// Simplified data - just confirmed counts
+			// Worked data (all QSOs, not just confirmed)
+			$data['polska_worked'] = $this->award_pl_polska->get_polska_worked_by_modes($location_list);
+			$data['polska_worked_bands'] = $this->award_pl_polska->get_polska_worked_by_bands($data['worked_bands'], $location_list);
+
+			// Confirmed data
 			$data['polska_array'] = $this->award_pl_polska->get_polska_simple_by_modes($postdata, $location_list);
 			$data['polska_totals'] = $this->award_pl_polska->get_polska_totals_by_modes($postdata, $location_list);
 
-			// Band-based data (simplified)
+			// Band-based confirmed data
 			$data['polska_array_bands'] = $this->award_pl_polska->get_polska_simple_by_bands($data['worked_bands'], $postdata, $location_list);
 			$data['polska_totals_bands'] = $this->award_pl_polska->get_polska_totals_by_bands($data['worked_bands'], $postdata, $location_list);
 
@@ -2456,6 +2464,8 @@ class Awards extends CI_Controller {
 			}
 		} else {
 			$location_list = null;
+			$data['polska_worked'] = null;
+			$data['polska_worked_bands'] = null;
 			$data['polska_array'] = null;
 			$data['polska_totals'] = null;
 			$data['polska_array_bands'] = null;
@@ -2463,6 +2473,9 @@ class Awards extends CI_Controller {
 			$data['polska_classes'] = null;
 			$data['polska_classes_bands'] = null;
 		}
+
+		// Pass postdata for use in view
+		$data['postdata'] = $postdata;
 
 		// Render page
 		$data['page_title'] = sprintf(__("Awards - %s"), __('"Polska" Award'));
