@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2025-11-27 07:21+0000\n"
 "PO-Revision-Date: 2025-11-27 12:58+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
-"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/sv/>\n"
+"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/sv/>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -6377,6 +6377,7 @@ msgstr "Exportera"
 #: application/views/public_search/empty.php:2
 #: application/views/public_search/result.php:2
 #: application/views/view_log/partial/log_ajax.php:568
+#: application/views/view_log/partial/log_ajax.php:711
 msgid "Results"
 msgstr "Resultat"
 
@@ -6858,8 +6859,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
-"Reef/506) och giltig stat (ADIF: DXCC och STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
+"506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/wapc/index.php:119
 msgid "Code"
@@ -9510,6 +9511,13 @@ msgstr "Behövs"
 #: src/QSLManager/QSO.php:504 src/QSLManager/QSO.php:554
 #: src/QSLManager/QSO.php:607 src/QSLManager/QSO.php:666
 #: src/QSLManager/QSO.php:731
+#: application/views/view_log/partial/log_ajax.php:366
+#: application/views/view_log/partial/log_ajax.php:433
+#: application/views/view_log/partial/log_ajax.php:495
+#: application/views/view_log/partial/log_ajax.php:552
+#: application/views/view_log/partial/log_ajax.php:605
+#: src/QSLManager/QSO.php:558 src/QSLManager/QSO.php:647
+#: src/QSLManager/QSO.php:704 src/QSLManager/QSO.php:793
 msgid "Sent"
 msgstr "Skickad"
 
@@ -9546,6 +9554,14 @@ msgstr "Skickad"
 #: src/QSLManager/QSO.php:527 src/QSLManager/QSO.php:577
 #: src/QSLManager/QSO.php:646 src/QSLManager/QSO.php:705
 #: src/QSLManager/QSO.php:755
+#: application/views/view_log/partial/log_ajax.php:397
+#: application/views/view_log/partial/log_ajax.php:464
+#: application/views/view_log/partial/log_ajax.php:526
+#: application/views/view_log/partial/log_ajax.php:583
+#: application/views/view_log/partial/log_ajax.php:628
+#: src/QSLManager/QSO.php:531 src/QSLManager/QSO.php:608
+#: src/QSLManager/QSO.php:674 src/QSLManager/QSO.php:754
+#: src/QSLManager/QSO.php:821
 msgid "Received"
 msgstr "Mottagen"
 
@@ -9586,6 +9602,15 @@ msgstr "Mottagen"
 #: src/QSLManager/QSO.php:454 src/QSLManager/QSO.php:512
 #: src/QSLManager/QSO.php:535 src/QSLManager/QSO.php:739
 #: src/QSLManager/QSO.php:764
+#: application/views/view_log/partial/log_ajax.php:376
+#: application/views/view_log/partial/log_ajax.php:407
+#: application/views/view_log/partial/log_ajax.php:443
+#: application/views/view_log/partial/log_ajax.php:474
+#: application/views/view_log/partial/log_ajax.php:611
+#: application/views/view_log/partial/log_ajax.php:634
+#: src/QSLManager/QSO.php:516 src/QSLManager/QSO.php:539
+#: src/QSLManager/QSO.php:653 src/QSLManager/QSO.php:680
+#: src/QSLManager/QSO.php:805 src/QSLManager/QSO.php:830
 msgid "Requested"
 msgstr "Begärt"
 
@@ -10864,6 +10889,7 @@ msgstr "QSOs är markerade som exporterade till HRDLog Logbook."
 #: application/views/view_log/partial/log.php:136
 #: application/views/view_log/partial/log_ajax.php:527
 #: application/views/view_log/qso.php:598
+#: application/views/view_log/partial/log_ajax.php:670
 msgid "Edit QSO"
 msgstr "Redigera QSO"
 
@@ -12624,6 +12650,15 @@ msgstr "QSL skickat"
 #: application/views/view_log/partial/log_ajax.php:285
 #: application/views/view_log/partial/log_ajax.php:323
 #: src/QSLManager/QSO.php:406 src/QSLManager/QSO.php:451
+#: application/views/view_log/partial/log_ajax.php:381
+#: application/views/view_log/partial/log_ajax.php:448
+#: application/views/view_log/partial/log_ajax.php:505
+#: application/views/view_log/partial/log_ajax.php:562
+#: application/views/view_log/partial/log_ajax.php:608
+#: application/views/view_log/partial/log_ajax.php:631
+#: src/QSLManager/QSO.php:512 src/QSLManager/QSO.php:575
+#: src/QSLManager/QSO.php:650 src/QSLManager/QSO.php:677
+#: src/QSLManager/QSO.php:721 src/QSLManager/QSO.php:801
 msgid "Queued"
 msgstr "Köad"
 
@@ -12673,6 +12708,21 @@ msgstr "Köad"
 #: src/QSLManager/QSO.php:508 src/QSLManager/QSO.php:531
 #: src/QSLManager/QSO.php:629 src/QSLManager/QSO.php:688
 #: src/QSLManager/QSO.php:735 src/QSLManager/QSO.php:760
+#: application/views/view_log/partial/log_ajax.php:371
+#: application/views/view_log/partial/log_ajax.php:402
+#: application/views/view_log/partial/log_ajax.php:438
+#: application/views/view_log/partial/log_ajax.php:469
+#: application/views/view_log/partial/log_ajax.php:500
+#: application/views/view_log/partial/log_ajax.php:531
+#: application/views/view_log/partial/log_ajax.php:557
+#: application/views/view_log/partial/log_ajax.php:588
+#: application/views/view_log/partial/log_ajax.php:614
+#: application/views/view_log/partial/log_ajax.php:637
+#: src/QSLManager/QSO.php:535 src/QSLManager/QSO.php:567
+#: src/QSLManager/QSO.php:616 src/QSLManager/QSO.php:656
+#: src/QSLManager/QSO.php:683 src/QSLManager/QSO.php:713
+#: src/QSLManager/QSO.php:762 src/QSLManager/QSO.php:797
+#: src/QSLManager/QSO.php:826
 msgid "Invalid (Ignore)"
 msgstr "Ogiltig (Ignorera)"
 
@@ -14545,6 +14595,9 @@ msgstr "Obs: Ej redigerbar. Endast visad här."
 #: application/views/view_log/partial/log_ajax.php:477
 #: src/QSLManager/QSO.php:563 src/QSLManager/QSO.php:618
 #: src/QSLManager/QSO.php:677
+#: application/views/view_log/partial/log_ajax.php:510
+#: application/views/view_log/partial/log_ajax.php:567
+#: src/QSLManager/QSO.php:583 src/QSLManager/QSO.php:729
 msgid "Modified"
 msgstr "Modifierad"
 
@@ -14564,6 +14617,7 @@ msgstr "Utbyte (S)"
 #: application/views/search/search_result_ajax.php:488
 #: application/views/view_log/partial/log.php:159
 #: application/views/view_log/partial/log_ajax.php:559
+#: application/views/view_log/partial/log_ajax.php:702
 msgid "Delete QSO"
 msgstr "Radera QSO"
 
@@ -15402,12 +15456,14 @@ msgstr "Loaktorrutan beräknas automatiskt av callbook och är förmodligen fel"
 #: application/views/search/search_result_ajax.php:463
 #: application/views/view_log/partial/log.php:142
 #: application/views/view_log/partial/log_ajax.php:534
+#: application/views/view_log/partial/log_ajax.php:677
 msgid "Mark QSL Sent (Bureau)"
 msgstr "Markera QSL skickat (Byrå)"
 
 #: application/views/search/search_result_ajax.php:464
 #: application/views/view_log/partial/log.php:143
 #: application/views/view_log/partial/log_ajax.php:535
+#: application/views/view_log/partial/log_ajax.php:678
 msgid "Mark QSL Sent (Direct)"
 msgstr "Markera QSL skickat (Direkt)"
 
@@ -15415,6 +15471,7 @@ msgstr "Markera QSL skickat (Direkt)"
 #: application/views/view_log/partial/log.php:150
 #: application/views/view_log/partial/log_ajax.php:545
 #: application/views/view_log/qso.php:817
+#: application/views/view_log/partial/log_ajax.php:688
 msgid "Mark QSL Received (Bureau)"
 msgstr "Markera QSL mottaget (Byrå)"
 
@@ -15422,6 +15479,7 @@ msgstr "Markera QSL mottaget (Byrå)"
 #: application/views/view_log/partial/log.php:151
 #: application/views/view_log/partial/log_ajax.php:546
 #: application/views/view_log/qso.php:819
+#: application/views/view_log/partial/log_ajax.php:689
 msgid "Mark QSL Received (Direct)"
 msgstr "Markera QSL mottaget (Direkt)"
 
@@ -15429,6 +15487,7 @@ msgstr "Markera QSL mottaget (Direkt)"
 #: application/views/view_log/partial/log.php:152
 #: application/views/view_log/partial/log_ajax.php:536
 #: application/views/view_log/qso.php:827
+#: application/views/view_log/partial/log_ajax.php:679
 msgid "Mark QSL Card Requested (Bureau)"
 msgstr "Markera QSL kort Begärt (Byrå)"
 
@@ -15436,6 +15495,7 @@ msgstr "Markera QSL kort Begärt (Byrå)"
 #: application/views/view_log/partial/log.php:153
 #: application/views/view_log/partial/log_ajax.php:537
 #: application/views/view_log/qso.php:829
+#: application/views/view_log/partial/log_ajax.php:680
 msgid "Mark QSL Card Requested (Direct)"
 msgstr "Markera QSL kort Begärt (Direkt)"
 
@@ -15443,16 +15503,19 @@ msgstr "Markera QSL kort Begärt (Direkt)"
 #: application/views/view_log/partial/log.php:154
 #: application/views/view_log/partial/log_ajax.php:538
 #: application/views/view_log/qso.php:831
+#: application/views/view_log/partial/log_ajax.php:681
 msgid "Mark QSL Card Not Required"
 msgstr "Markera QSL kort Ej Nödvändigt"
 
 #: application/views/search/search_result_ajax.php:482
 #: application/views/view_log/partial/log_ajax.php:553
+#: application/views/view_log/partial/log_ajax.php:696
 msgid "Lookup on QRZ.com"
 msgstr "Sök på QRZ.com"
 
 #: application/views/search/search_result_ajax.php:484
 #: application/views/view_log/partial/log_ajax.php:555
+#: application/views/view_log/partial/log_ajax.php:698
 msgid "Lookup on HamQTH"
 msgstr "Sök på HamQTH"
 
@@ -16530,8 +16593,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 (t."
-"ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
+"(t.ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
@@ -17737,10 +17800,14 @@ msgstr "Visar alla QSOs för stationsplatser som är länkade till denna loggbok
 #: application/views/view_log/partial/log_ajax.php:479
 #: src/QSLManager/QSO.php:567 src/QSLManager/QSO.php:622
 #: src/QSLManager/QSO.php:681
+#: application/views/view_log/partial/log_ajax.php:510
+#: application/views/view_log/partial/log_ajax.php:567
+#: src/QSLManager/QSO.php:587 src/QSLManager/QSO.php:733
 msgid "last sent"
 msgstr "senast skickat"
 
 #: application/views/view_log/partial/log_ajax.php:570
+#: application/views/view_log/partial/log_ajax.php:713
 msgid "Result"
 msgstr "Resultat"
 

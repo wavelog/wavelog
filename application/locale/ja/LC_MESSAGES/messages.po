@@ -6362,6 +6362,7 @@ msgstr "エクスポート"
 #: application/views/public_search/empty.php:2
 #: application/views/public_search/result.php:2
 #: application/views/view_log/partial/log_ajax.php:568
+#: application/views/view_log/partial/log_ajax.php:711
 msgid "Results"
 msgstr "結果"
 
@@ -9489,6 +9490,13 @@ msgstr "必要"
 #: src/QSLManager/QSO.php:504 src/QSLManager/QSO.php:554
 #: src/QSLManager/QSO.php:607 src/QSLManager/QSO.php:666
 #: src/QSLManager/QSO.php:731
+#: application/views/view_log/partial/log_ajax.php:366
+#: application/views/view_log/partial/log_ajax.php:433
+#: application/views/view_log/partial/log_ajax.php:495
+#: application/views/view_log/partial/log_ajax.php:552
+#: application/views/view_log/partial/log_ajax.php:605
+#: src/QSLManager/QSO.php:558 src/QSLManager/QSO.php:647
+#: src/QSLManager/QSO.php:704 src/QSLManager/QSO.php:793
 msgid "Sent"
 msgstr "送信済み"
 
@@ -9525,6 +9533,14 @@ msgstr "送信済み"
 #: src/QSLManager/QSO.php:527 src/QSLManager/QSO.php:577
 #: src/QSLManager/QSO.php:646 src/QSLManager/QSO.php:705
 #: src/QSLManager/QSO.php:755
+#: application/views/view_log/partial/log_ajax.php:397
+#: application/views/view_log/partial/log_ajax.php:464
+#: application/views/view_log/partial/log_ajax.php:526
+#: application/views/view_log/partial/log_ajax.php:583
+#: application/views/view_log/partial/log_ajax.php:628
+#: src/QSLManager/QSO.php:531 src/QSLManager/QSO.php:608
+#: src/QSLManager/QSO.php:674 src/QSLManager/QSO.php:754
+#: src/QSLManager/QSO.php:821
 msgid "Received"
 msgstr "受領"
 
@@ -9565,6 +9581,15 @@ msgstr "受領"
 #: src/QSLManager/QSO.php:454 src/QSLManager/QSO.php:512
 #: src/QSLManager/QSO.php:535 src/QSLManager/QSO.php:739
 #: src/QSLManager/QSO.php:764
+#: application/views/view_log/partial/log_ajax.php:376
+#: application/views/view_log/partial/log_ajax.php:407
+#: application/views/view_log/partial/log_ajax.php:443
+#: application/views/view_log/partial/log_ajax.php:474
+#: application/views/view_log/partial/log_ajax.php:611
+#: application/views/view_log/partial/log_ajax.php:634
+#: src/QSLManager/QSO.php:516 src/QSLManager/QSO.php:539
+#: src/QSLManager/QSO.php:653 src/QSLManager/QSO.php:680
+#: src/QSLManager/QSO.php:805 src/QSLManager/QSO.php:830
 msgid "Requested"
 msgstr "リクエスト"
 
@@ -10892,6 +10917,7 @@ msgstr ""
 #: application/views/view_log/partial/log.php:136
 #: application/views/view_log/partial/log_ajax.php:527
 #: application/views/view_log/qso.php:598
+#: application/views/view_log/partial/log_ajax.php:670
 msgid "Edit QSO"
 msgstr "QSOを編集"
 
@@ -12644,6 +12670,15 @@ msgstr "QSLを送信しました"
 #: application/views/view_log/partial/log_ajax.php:285
 #: application/views/view_log/partial/log_ajax.php:323
 #: src/QSLManager/QSO.php:406 src/QSLManager/QSO.php:451
+#: application/views/view_log/partial/log_ajax.php:381
+#: application/views/view_log/partial/log_ajax.php:448
+#: application/views/view_log/partial/log_ajax.php:505
+#: application/views/view_log/partial/log_ajax.php:562
+#: application/views/view_log/partial/log_ajax.php:608
+#: application/views/view_log/partial/log_ajax.php:631
+#: src/QSLManager/QSO.php:512 src/QSLManager/QSO.php:575
+#: src/QSLManager/QSO.php:650 src/QSLManager/QSO.php:677
+#: src/QSLManager/QSO.php:721 src/QSLManager/QSO.php:801
 msgid "Queued"
 msgstr "キュー"
 
@@ -12693,6 +12728,21 @@ msgstr "キュー"
 #: src/QSLManager/QSO.php:508 src/QSLManager/QSO.php:531
 #: src/QSLManager/QSO.php:629 src/QSLManager/QSO.php:688
 #: src/QSLManager/QSO.php:735 src/QSLManager/QSO.php:760
+#: application/views/view_log/partial/log_ajax.php:371
+#: application/views/view_log/partial/log_ajax.php:402
+#: application/views/view_log/partial/log_ajax.php:438
+#: application/views/view_log/partial/log_ajax.php:469
+#: application/views/view_log/partial/log_ajax.php:500
+#: application/views/view_log/partial/log_ajax.php:531
+#: application/views/view_log/partial/log_ajax.php:557
+#: application/views/view_log/partial/log_ajax.php:588
+#: application/views/view_log/partial/log_ajax.php:614
+#: application/views/view_log/partial/log_ajax.php:637
+#: src/QSLManager/QSO.php:535 src/QSLManager/QSO.php:567
+#: src/QSLManager/QSO.php:616 src/QSLManager/QSO.php:656
+#: src/QSLManager/QSO.php:683 src/QSLManager/QSO.php:713
+#: src/QSLManager/QSO.php:762 src/QSLManager/QSO.php:797
+#: src/QSLManager/QSO.php:826
 msgid "Invalid (Ignore)"
 msgstr "無効（無視）"
 
@@ -14553,6 +14603,9 @@ msgstr "注: 編集できません。ここにのみ表示されます。"
 #: application/views/view_log/partial/log_ajax.php:477
 #: src/QSLManager/QSO.php:563 src/QSLManager/QSO.php:618
 #: src/QSLManager/QSO.php:677
+#: application/views/view_log/partial/log_ajax.php:510
+#: application/views/view_log/partial/log_ajax.php:567
+#: src/QSLManager/QSO.php:583 src/QSLManager/QSO.php:729
 msgid "Modified"
 msgstr "修正済み"
 
@@ -14572,6 +14625,7 @@ msgstr "交換（S）"
 #: application/views/search/search_result_ajax.php:488
 #: application/views/view_log/partial/log.php:159
 #: application/views/view_log/partial/log_ajax.php:559
+#: application/views/view_log/partial/log_ajax.php:702
 msgid "Delete QSO"
 msgstr "QSOを削除"
 
@@ -15409,12 +15463,14 @@ msgstr "グリッドはコールブックで自動検出されるが、おそら
 #: application/views/search/search_result_ajax.php:463
 #: application/views/view_log/partial/log.php:142
 #: application/views/view_log/partial/log_ajax.php:534
+#: application/views/view_log/partial/log_ajax.php:677
 msgid "Mark QSL Sent (Bureau)"
 msgstr "QSL送信をマーク（ビューロー）"
 
 #: application/views/search/search_result_ajax.php:464
 #: application/views/view_log/partial/log.php:143
 #: application/views/view_log/partial/log_ajax.php:535
+#: application/views/view_log/partial/log_ajax.php:678
 msgid "Mark QSL Sent (Direct)"
 msgstr "QSL 送信済み（直接）をマーク"
 
@@ -15422,6 +15478,7 @@ msgstr "QSL 送信済み（直接）をマーク"
 #: application/views/view_log/partial/log.php:150
 #: application/views/view_log/partial/log_ajax.php:545
 #: application/views/view_log/qso.php:817
+#: application/views/view_log/partial/log_ajax.php:688
 msgid "Mark QSL Received (Bureau)"
 msgstr "QSL受信をマーク（ビューロー）"
 
@@ -15429,6 +15486,7 @@ msgstr "QSL受信をマーク（ビューロー）"
 #: application/views/view_log/partial/log.php:151
 #: application/views/view_log/partial/log_ajax.php:546
 #: application/views/view_log/qso.php:819
+#: application/views/view_log/partial/log_ajax.php:689
 msgid "Mark QSL Received (Direct)"
 msgstr "QSL 受信をマーク（直接）"
 
@@ -15436,6 +15494,7 @@ msgstr "QSL 受信をマーク（直接）"
 #: application/views/view_log/partial/log.php:152
 #: application/views/view_log/partial/log_ajax.php:536
 #: application/views/view_log/qso.php:827
+#: application/views/view_log/partial/log_ajax.php:679
 msgid "Mark QSL Card Requested (Bureau)"
 msgstr "QSLカードの申請をマーク（ビューロー）"
 
@@ -15443,6 +15502,7 @@ msgstr "QSLカードの申請をマーク（ビューロー）"
 #: application/views/view_log/partial/log.php:153
 #: application/views/view_log/partial/log_ajax.php:537
 #: application/views/view_log/qso.php:829
+#: application/views/view_log/partial/log_ajax.php:680
 msgid "Mark QSL Card Requested (Direct)"
 msgstr "QSLカードのリクエストをマーク（直接）"
 
@@ -15450,16 +15510,19 @@ msgstr "QSLカードのリクエストをマーク（直接）"
 #: application/views/view_log/partial/log.php:154
 #: application/views/view_log/partial/log_ajax.php:538
 #: application/views/view_log/qso.php:831
+#: application/views/view_log/partial/log_ajax.php:681
 msgid "Mark QSL Card Not Required"
 msgstr "QSLカードは不要とマークする"
 
 #: application/views/search/search_result_ajax.php:482
 #: application/views/view_log/partial/log_ajax.php:553
+#: application/views/view_log/partial/log_ajax.php:696
 msgid "Lookup on QRZ.com"
 msgstr "QRZ.comで検索"
 
 #: application/views/search/search_result_ajax.php:484
 #: application/views/view_log/partial/log_ajax.php:555
+#: application/views/view_log/partial/log_ajax.php:698
 msgid "Lookup on HamQTH"
 msgstr "HamQTHで検索"
 
@@ -17735,10 +17798,14 @@ msgstr "このログブックにリンクされている局所在地のすべて
 #: application/views/view_log/partial/log_ajax.php:479
 #: src/QSLManager/QSO.php:567 src/QSLManager/QSO.php:622
 #: src/QSLManager/QSO.php:681
+#: application/views/view_log/partial/log_ajax.php:510
+#: application/views/view_log/partial/log_ajax.php:567
+#: src/QSLManager/QSO.php:587 src/QSLManager/QSO.php:733
 msgid "last sent"
 msgstr "最終送信"
 
 #: application/views/view_log/partial/log_ajax.php:570
+#: application/views/view_log/partial/log_ajax.php:713
 msgid "Result"
 msgstr "結果"
 

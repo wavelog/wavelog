@@ -598,7 +598,7 @@
                                                 </div>
                                             </div>
                                         </div>
-					<div class="tab-pane fade" id="dcl-edit" role="tabpanel" aria-labelledby="dcl-tab">
+                                        <div class="tab-pane fade" id="dcl-edit" role="tabpanel" aria-labelledby="dcl-tab">
                                             <div class="mt-3 mb-3 row">
                                                 <label for="sent" class="col-sm-3 col-form-label"><?= __("Sent"); ?></label>
                                                 <div class="col-sm-9">
@@ -624,7 +624,7 @@
                                                 </div>
                                             </div>
                                         </div>
-					<div class="tab-pane fade" id="clublog-edit" role="tabpanel" aria-labelledby="clublog-tab">
+                                        <div class="tab-pane fade" id="clublog-edit" role="tabpanel" aria-labelledby="clublog-tab">
                                             <div class="mt-3 mb-3 row">
                                                 <label for="sent" class="col-sm-3 col-form-label"><?= __("Sent"); ?></label>
                                                 <div class="col-sm-9">
