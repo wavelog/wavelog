@@ -57,8 +57,9 @@ class Dxcluster_model extends CI_Model {
 
 			// Garbage collection: 1% chance to clean expired cache files
 			// Only needed when worked cache is enabled (creates many per-callsign files)
-			if ($cache_worked_enabled && mt_rand(1, 100) === 1) {
-				$this->cleanExpiredDxclusterCache();
+			if ($cache_worked_enabled) {
+				$this->load->library('DxclusterCache');
+				$this->dxclustercache->maybeRunGc();
 			}
 		}
 
@@ -80,9 +81,9 @@ class Dxcluster_model extends CI_Model {
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
 		// Cache key for RAW cluster response (instance-wide, no worked status)
-		// Use fixed 'Any'/'All' for de/mode to maximize cache hits - filters applied after retrieval
-		// Future: when API supports server-side filtering, use actual $de/$mode values here
-		$raw_cache_key = "dxcluster_raw_{$maxage}_{$band}_Any_All";
+		// Use DxclusterCache library for centralized key generation
+		$this->load->library('DxclusterCache');
+		$raw_cache_key = $this->dxclustercache->getRawCacheKey($maxage, $band);
 
 		// Check cache for raw processed spots (without worked status)
 		$spotsout = null;
@@ -732,70 +733,5 @@ class Dxcluster_model extends CI_Model {
 		}
 
 		return $spot;
-	}
-
-	/**
-	 * Clean expired DX cluster cache files
-	 * Called with low probability on each cache access to prevent buildup
-	 * Uses file mtime for fast pre-filtering before reading file contents
-	 */
-	protected function cleanExpiredDxclusterCache() {
-		// Use configured cache path (same as CI cache driver)
-		$cache_path = $this->config->item('cache_path');
-		$cache_path = ($cache_path === '' || $cache_path === false) ? APPPATH . 'cache/' : $cache_path;
-
-		// Ensure trailing slash
-		$cache_path = rtrim($cache_path, '/\\') . DIRECTORY_SEPARATOR;
-
-		// Check directory exists and is readable
-		if (!is_dir($cache_path) || !is_readable($cache_path)) {
-			return;
-		}
-
-		// Use opendir/readdir instead of glob (more compatible with UNC paths)
-		$handle = @opendir($cache_path);
-		if (!$handle) return;
-
-		$now = time();
-		$deleted = 0;
-
-		// Max TTL for dxcluster files: raw=59s, worked=900s - use 900s + buffer
-		$max_ttl = 1000;
-
-		while (($filename = readdir($handle)) !== false) {
-			// Only process dxcluster cache files
-			if (strpos($filename, 'dxcluster_') !== 0) continue;
-
-			$file = $cache_path . $filename;
-			if (!is_file($file)) continue;
-
-			// Fast pre-filter: skip files modified recently (can't be expired yet)
-			// filemtime() is much faster than reading+deserializing the file
-			$mtime = @filemtime($file);
-			if ($mtime !== false && ($now - $mtime) < $max_ttl) {
-				continue; // File too new to be expired
-			}
-
-			// File is old enough to potentially be expired - read and verify
-			$data = @unserialize(@file_get_contents($file));
-			if (!is_array($data) || !isset($data['time'], $data['ttl'])) {
-				// Invalid cache file - delete it
-				@unlink($file);
-				$deleted++;
-				continue;
-			}
-
-			// Check if expired
-			if ($data['ttl'] > 0 && $now > $data['time'] + $data['ttl']) {
-				@unlink($file);
-				$deleted++;
-			}
-		}
-
-		closedir($handle);
-
-		if ($deleted > 0) {
-			log_message('debug', "DXCluster cache GC: deleted {$deleted} expired files");
-		}
 	}
 }
