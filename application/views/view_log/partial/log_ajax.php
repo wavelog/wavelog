@@ -486,6 +486,11 @@ function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
                               echo $timestamp != '' ? " ".$timestamp : '';
                               echo "\" data-bs-toggle=\"tooltip\" class=\"qrz-green\"";
                               break;
+                           case "I":
+                              echo "title=\"".__("Invalid (Ignore)");
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"qrz-grey\"";
+                              break;
                            case "M":
                               echo 'title="'.__("Modified")."<br />(".__("last sent")." ".date($custom_date_format, strtotime($row->COL_QRZCOM_QSO_UPLOAD_DATE)).")";
                               echo $timestamp != '' ? " ".$timestamp : '';
@@ -532,6 +537,11 @@ function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
                               echo "title=\"".__("Sent");
                               echo $timestamp != '' ? " ".$timestamp : '';
                               echo "\" data-bs-toggle=\"tooltip\" class=\"clublog-green\"";
+                              break;
+                           case "I":
+                              echo "title=\"".__("Invalid (Ignore)");
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"clublog-grey\"";
                               break;
                            case "M":
                               echo 'title="'.__("Modified")."<br />(".__("last sent")." ".date($custom_date_format, strtotime($row->COL_CLUBLOG_QSO_UPLOAD_DATE)).")";
