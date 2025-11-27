@@ -1,7 +1,7 @@
 // @ts-nocheck
 /**
  * @fileoverview DX WATERFALL for WaveLog
- * @version 0.9.5 // also change line 32
+ * @version 0.9.6 // also change line 32
  * @author Wavelog Team
  *
  * @description
@@ -29,7 +29,7 @@
 
 var DX_WATERFALL_CONSTANTS = {
     // Version
-    VERSION: '0.9.5', // DX Waterfall version (keep in sync with @version in file header)
+    VERSION: '0.9.6', // DX Waterfall version (keep in sync with @version in file header)
 
     // Debug and logging
     DEBUG_MODE: false, // Set to true for verbose logging, false for production
@@ -1595,8 +1595,10 @@ var dxWaterfall = {
             var checkFrequency = function(attemptsLeft) {
                 // Check if already completed (state changed from INITIALIZING)
                 var state = DXWaterfallStateMachine.getState();
-                if (state === DX_WATERFALL_CONSTANTS.STATES.READY || state === DX_WATERFALL_CONSTANTS.STATES.ERROR) {
-                    // Already initialized or error occurred - stop checking
+                if (state === DX_WATERFALL_CONSTANTS.STATES.READY ||
+                    state === DX_WATERFALL_CONSTANTS.STATES.ERROR ||
+                    state === DX_WATERFALL_CONSTANTS.STATES.DISABLED) {
+                    // Already initialized, error occurred, or waterfall was disabled - stop checking
                     if (frequencyCheckTimer) {
                         clearTimeout(frequencyCheckTimer);
                         frequencyCheckTimer = null;
@@ -5870,6 +5872,15 @@ var dxWaterfall = {
         if (this.$freqCalculated) {
             this.$freqCalculated.off('focus blur input keydown');
         }
+        if (this.$frequency) {
+            this.$frequency.off('change');
+        }
+        if (this.$bandSelect) {
+            this.$bandSelect.off('change');
+        }
+        if (this.$modeSelect) {
+            this.$modeSelect.off('change');
+        }
         if (this.canvas) {
             // Unbind jQuery events on canvas (click is handled globally, not here)
             $(this.canvas).off('wheel');
@@ -6769,8 +6780,33 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
     $('#dxWaterfallPowerOnIcon').attr('title', lang_dxwaterfall_turn_on);
     $('#dxWaterfallPowerOffIcon').attr('title', lang_dxwaterfall_turn_off);
 
+    // Debounce variables for power toggle
+    var lastToggleTime = 0;
+    var TOGGLE_DEBOUNCE_MS = 5000; // 5 second cooldown
+    var initializationDelayTimer = null; // Track the 3-second initialization delay timer
+
+    // Shared debounce check function
+    var checkToggleDebounce = function() {
+        var now = Date.now();
+        if (now - lastToggleTime < TOGGLE_DEBOUNCE_MS) {
+            var remainingSeconds = Math.ceil((TOGGLE_DEBOUNCE_MS - (now - lastToggleTime)) / 1000);
+            if (typeof showToast === 'function') {
+                var message = lang_dxwaterfall_wait_before_toggle.replace('%s', remainingSeconds);
+                showToast(lang_general_word_warning, message, 'bg-warning text-dark', 3000);
+            }
+            return false;
+        }
+        lastToggleTime = now;
+        return true;
+    };
+
     // Function to turn on DX Waterfall (shared by icon and message click)
     var turnOnWaterfall = function(e) {
+        // Check debounce - prevent rapid toggling
+        if (!checkToggleDebounce()) {
+            return;
+        }
+
         // DEBUG: Log what triggered power-on
         DX_WATERFALL_UTILS.log.debug('[Power Control] Power-ON triggered', {
             currentState: DXWaterfallStateMachine.getState(),
@@ -6786,6 +6822,9 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
 
         waterfallActive = true;
 
+        // Log user action
+        DX_WATERFALL_UTILS.log.debug('[Power Control] User turned ON waterfall');
+
         // Update UI - hide header, show content area, show power-off icon, update container styling
         $('#dxWaterfallSpot').addClass('active');
         $('#dxWaterfallSpotHeader').addClass('hidden');
@@ -6797,57 +6836,39 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
         $('#dxWaterfallCanvasContainer').show();
         $('#dxWaterfallMenuContainer').show();
 
-        // Initialize waterfall - destroy first if already exists to ensure clean state
+        // Completely destroy and reinitialize waterfall for clean state
         if (typeof dxWaterfall !== 'undefined') {
-            // Check current state - only destroy if in a state that needs cleanup
             var currentState = DXWaterfallStateMachine.getState();
 
-            // Don't destroy if:
-            // - Already disabled (nothing to destroy)
-            // - In INITIALIZING state (let it finish initializing)
-            var shouldDestroy = currentState !== DX_WATERFALL_CONSTANTS.STATES.DISABLED &&
-                               currentState !== DX_WATERFALL_CONSTANTS.STATES.INITIALIZING &&
-                               dxWaterfall.canvas;
-
-            if (shouldDestroy) {
+            // Destroy if not already disabled (clears event handlers and state)
+            if (currentState !== DX_WATERFALL_CONSTANTS.STATES.DISABLED && dxWaterfall.canvas) {
                 dxWaterfall.destroy();
             }
 
-            // Only proceed if currently disabled
-            if (currentState === DX_WATERFALL_CONSTANTS.STATES.DISABLED) {
-                // Transition to INITIALIZING state immediately
-                DXWaterfallStateMachine.setState(DX_WATERFALL_CONSTANTS.STATES.INITIALIZING);
+            // Transition to INITIALIZING state
+            DXWaterfallStateMachine.setState(DX_WATERFALL_CONSTANTS.STATES.INITIALIZING);
 
-                // Initialize canvas immediately so we can show waiting message
-                dxWaterfall._initializeCanvas();
+            // Initialize canvas immediately so we can show waiting message
+            dxWaterfall._initializeCanvas();
 
-                // Show waiting message using the helper function (cleaner and consistent)
-                dxWaterfall.displayWaitingMessage(lang_dxwaterfall_please_wait);
+            // Show waiting message
+            dxWaterfall.displayWaitingMessage(lang_dxwaterfall_please_wait);
 
-                // Set up periodic refresh interval
-                waterfallRefreshInterval = setInterval(function() {
-                    if (dxWaterfall.canvas) {
-                        var currentState = DXWaterfallStateMachine.getState();
-                        if (currentState === DX_WATERFALL_CONSTANTS.STATES.TUNING) {
-                            // Fast refresh during CAT operations for spinner animation
-                            dxWaterfall.refresh();
-                        } else {
-                            // Normal refresh when idle
-                            dxWaterfall.refresh();
-                        }
-                    }
-                }, DX_WATERFALL_CONSTANTS.VISUAL.STATIC_NOISE_REFRESH_MS);
+            // Set up periodic refresh interval
+            waterfallRefreshInterval = setInterval(function() {
+                if (dxWaterfall.canvas) {
+                    dxWaterfall.refresh();
+                }
+            }, DX_WATERFALL_CONSTANTS.VISUAL.STATIC_NOISE_REFRESH_MS);
 
-                // Add 3 second delay before actually initializing and fetching data
-                // This allows page to fully load and stabilize
-                setTimeout(function() {
-                    // Only proceed if still in INITIALIZING state (not manually changed)
-                    if (DXWaterfallStateMachine.getState() === DX_WATERFALL_CONSTANTS.STATES.INITIALIZING) {
-                        // Continue initialization - check for valid frequency and start data fetch
-                        dxWaterfall._continueInitialization();
-                    }
-                }, 3000); // 3 second delay before data fetch
-            }
+            // Add 3 second delay before initializing (allows page to stabilize)
+            initializationDelayTimer = setTimeout(function() {
+                if (DXWaterfallStateMachine.getState() === DX_WATERFALL_CONSTANTS.STATES.INITIALIZING) {
+                    // Complete initialization - this re-attaches event handlers and starts fetching
+                    dxWaterfall._completeInitialization();
+                }
+                initializationDelayTimer = null;
+            }, 3000);
         }
     };
 
@@ -6873,6 +6894,16 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
         }
 
         waterfallActive = false;
+
+        // Log user action
+        DX_WATERFALL_UTILS.log.debug('[Power Control] User turned OFF waterfall');
+
+        // Clear the initialization delay timer if still pending
+        if (initializationDelayTimer) {
+            clearTimeout(initializationDelayTimer);
+            initializationDelayTimer = null;
+            DX_WATERFALL_UTILS.log.debug('[Power Control] Cleared pending initialization timer');
+        }
 
         // Stop the refresh interval (managed outside dxWaterfall object)
         if (waterfallRefreshInterval) {
