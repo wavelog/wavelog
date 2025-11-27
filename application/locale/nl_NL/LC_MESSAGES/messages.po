@@ -11,10 +11,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-11-27 13:19+0000\n"
-"PO-Revision-Date: 2025-11-27 12:58+0000\n"
+"PO-Revision-Date: 2025-11-28 09:48+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
-"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/nl/>\n"
+"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/nl/>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1589,7 +1589,7 @@ msgstr "IOTA"
 #: application/views/view_log/partial/log_ajax.php:12
 #: application/views/visitor/index.php:24
 msgid "State"
-msgstr "Staat"
+msgstr "Staat/Provincie"
 
 #: application/controllers/Logbook.php:1368
 #: application/views/activated_gridmap/index.php:110
@@ -3321,7 +3321,7 @@ msgstr "Prefectuur"
 #: application/libraries/Subdivisions.php:69
 msgctxt "Division Name (States in various countries)."
 msgid "State"
-msgstr "Staat"
+msgstr "Staat/Provincie"
 
 #: application/libraries/Subdivisions.php:78
 msgctxt "Division Name (States in various countries)."
@@ -5312,8 +5312,8 @@ msgid ""
 "Fields taken for this Award: State (ADIF: STATE), Stations County (ADIF: "
 "CNTY), DXCC (Must be one of 291 (U.S.A.) ,6 (ALASKA) or 110 (HAWAII))"
 msgstr ""
-"Velden genomen voor deze Award: Staat (ADIF: STATE), Stations County (ADIF: "
-"CNTY), DXCC (Moet een van 291 (V.S.), 6 (ALASKA) of 110 (HAWAII) zijn)"
+"Velden genomen voor deze Award: Staat (ADIF: STATE), Stations County "
+"(ADIF: CNTY), DXCC (Moet een van 291 (V.S.), 6 (ALASKA) of 110 (HAWAII) zijn)"
 
 #: application/views/awards/counties/index.php:22
 msgid "Counties Worked"
@@ -6894,7 +6894,7 @@ msgid ""
 msgstr ""
 "Velden genomen voor deze Award: DXCC (Moet een van China/318, HongKong/321, "
 "Macao/152, Taiwan/386, Pratas Eil./505 of Scarborough Rif/506 zijn) en "
-"geldige Staat (ADIF: DXCC en STATE)"
+"geldige Staat/Provincie (ADIF: DXCC en STATE)"
 
 #: application/views/awards/wapc/index.php:119
 msgid "Code"
@@ -8195,7 +8195,7 @@ msgstr "Stad"
 
 #: application/views/cabrillo/index.php:181
 msgid "Address State/Province"
-msgstr "Staat/Provincie"
+msgstr "Adres Staat/Provincie"
 
 #: application/views/cabrillo/index.php:185
 msgid "Address Postalcode"
@@ -12466,29 +12466,29 @@ msgstr "Je moet minstens 1 rij selecteren om CQ Zones te repareren!"
 
 #: application/views/logbookadvanced/index.php:31
 msgid "You need to select at least 1 row to fix State!"
-msgstr "Je moet minstens 1 rij selecteren om de Staat te herstellen!"
+msgstr "Je moet minstens 1 rij selecteren om de Staat/Provincie te herstellen!"
 
 #: application/views/logbookadvanced/index.php:32
 msgid "State updated successfully!"
-msgstr "Staat succesvol bijgewerkt!"
+msgstr "Staat/Provincie succesvol bijgewerkt!"
 
 #: application/views/logbookadvanced/index.php:33
 msgid "There was a problem fixing State."
-msgstr "Er was een probleem met het oplossen van de Staat."
+msgstr "Er was een probleem met het herstellen van de Staat/Provincie."
 
 #: application/views/logbookadvanced/index.php:34
 msgid "Fixing State"
-msgstr "Staat herstellen"
+msgstr "Staat/Provincie herstellen"
 
 #: application/views/logbookadvanced/index.php:35
 #, php-format
 msgid "Fixing State (%s QSOs)"
-msgstr "Staat herstellen (%s QSOs)"
+msgstr "Staat/Provincie herstellen (%s QSOs)"
 
 #: application/views/logbookadvanced/index.php:36
 #, php-format
 msgid "Fixing State: %s remaining"
-msgstr "Staat herstellen: %s resterend"
+msgstr "Staat/Provincie herstellen: %s resterend"
 
 #: application/views/logbookadvanced/index.php:37
 msgid "Fixed"
@@ -12510,7 +12510,7 @@ msgstr "Overgeslagen: %s, zie details voor overgeslagen rijen hieronder"
 
 #: application/views/logbookadvanced/index.php:41
 msgid "State Fix Complete"
-msgstr "Staat herstellen afgerond"
+msgstr "Staat/Provincie herstellen afgerond"
 
 #: application/views/logbookadvanced/index.php:42
 #, php-format
@@ -12519,9 +12519,10 @@ msgid ""
 "countries, please create a ticket at %s with the GeoJSON file and desired "
 "letter coding for your country."
 msgstr ""
-"Niet alle DXCC-entiteiten maken gebruik van een 'Staat' onderverdeling. Als "
-"je ondersteuning nodig hebt voor extra landen, maak dan een ticket aan bij "
-"%s met het GeoJSON-bestand en de gewenste lettercodering voor jouw land."
+"Niet alle DXCC-entiteiten maken gebruik van een Staat of Provincie "
+"onderverdeling. Als je ondersteuning nodig hebt voor extra landen, maak dan "
+"een ticket aan bij %s met het GeoJSON-bestand en de gewenste lettercodering "
+"voor jouw land."
 
 #: application/views/logbookadvanced/index.php:45
 msgid "Only 1 row can be selected for Quickfilter!"
@@ -12826,7 +12827,7 @@ msgstr "Zoek DXCC"
 
 #: application/views/logbookadvanced/index.php:695
 msgid "Search State"
-msgstr "Zoek op staat"
+msgstr "Zoek op Staat/Provincie"
 
 #: application/views/logbookadvanced/index.php:698
 msgid "Search Gridsquare"
@@ -12960,7 +12961,7 @@ msgstr "Repareer Continent"
 
 #: application/views/logbookadvanced/index.php:772
 msgid "Fix State"
-msgstr "Herstel Staat"
+msgstr "Herstel Staat/Provincie"
 
 #: application/views/logbookadvanced/index.php:780
 #: application/views/oqrs/showrequests.php:58
@@ -13072,11 +13073,11 @@ msgstr ""
 
 #: application/views/logbookadvanced/statedialog.php:4
 msgid "Update will only set the state for QSOs where:"
-msgstr "De update zal alleen de Staat instellen voor QSOs waar:"
+msgstr "De update zal alleen de Staat/Provincie instellen voor QSOs waar:"
 
 #: application/views/logbookadvanced/statedialog.php:6
 msgid "The state field is empty"
-msgstr "Het Staat veld is leeg"
+msgstr "Het Staat/Provincie veld is leeg"
 
 #: application/views/logbookadvanced/statedialog.php:7
 msgid "A gridsquare is present (at least 6 characters)"
@@ -13084,7 +13085,7 @@ msgstr "Een locatorvak aanwezig is (minstens 6 tekens)"
 
 #: application/views/logbookadvanced/statedialog.php:8
 msgid "The DXCC country supports state lookup"
-msgstr "Het DXCC-land ondersteunt het opzoeken van de Staat"
+msgstr "Het DXCC-land ondersteunt het opzoeken van de Staat/Provincie"
 
 #: application/views/logbookadvanced/statedialog.php:10
 msgid "Currently supported countries"
@@ -13114,7 +13115,7 @@ msgstr "LoTW-gebruiker"
 
 #: application/views/lookup/index.php:77
 msgid "Choose a State"
-msgstr "Kies een staat"
+msgstr "Kies een Staat/Provincie"
 
 #: application/views/lookup/lotwuser.php:12
 #: application/views/search/result.php:77
