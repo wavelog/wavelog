@@ -234,7 +234,7 @@
 		<div class="d-flex flex-wrap gap-2 align-items-center">
 			<small class="text-muted me-1 flex-shrink-0"><?= __("de:"); ?></small>
 			<div class="btn-group flex-shrink-0" role="group">
-				<button class="btn btn-sm btn-secondary" type="button" id="toggleAllContinentsFilter" title="<?= __("Select all continents"); ?>"><?= __("World"); ?></button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleAllContinentsFilter" title="<?= __("Select all continents"); ?>"><i class="fas fa-globe"></i> <span class="d-none d-sm-inline"><?= __("World"); ?></span></button>
 				<button class="btn btn-sm btn-secondary" type="button" id="toggleAfricaFilter" title="<?= __("Toggle Africa continent filter"); ?>">AF</button>
 				<button class="btn btn-sm btn-secondary" type="button" id="toggleAntarcticaFilter" title="<?= __("Toggle Antarctica continent filter"); ?>">AN</button>
 				<button class="btn btn-sm btn-secondary" type="button" id="toggleAsiaFilter" title="<?= __("Toggle Asia continent filter"); ?>">AS</button>
@@ -448,9 +448,9 @@
 		<!-- Right: Mode Filter Buttons -->
 		<div class="d-flex flex-wrap gap-2 align-items-center">
 			<div class="btn-group flex-shrink-0" role="group">
-				<button class="btn btn-sm btn-secondary" type="button" id="toggleCwFilter" title="<?= __("Toggle CW mode filter"); ?>">CW</button>
-				<button class="btn btn-sm btn-secondary" type="button" id="toggleDigiFilter" title="<?= __("Toggle Digital mode filter"); ?>">Digi</button>
-				<button class="btn btn-sm btn-secondary" type="button" id="togglePhoneFilter" title="<?= __("Toggle Phone mode filter"); ?>">Phone</button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleCwFilter" title="<?= __("Toggle CW mode filter"); ?>"><i class="fas fa-wave-square"></i> <span class="d-none d-sm-inline">CW</span></button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleDigiFilter" title="<?= __("Toggle Digital mode filter"); ?>"><i class="fas fa-keyboard"></i> <span class="d-none d-sm-inline">Digi</span></button>
+				<button class="btn btn-sm btn-secondary" type="button" id="togglePhoneFilter" title="<?= __("Toggle Phone mode filter"); ?>"><i class="fas fa-microphone"></i> <span class="d-none d-sm-inline">Phone</span></button>
 			</div>
 		</div>
 	</div>
