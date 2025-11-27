@@ -54,6 +54,7 @@
 		var lang_dxwaterfall_label_size_large = "<?= __("Large"); ?>";
 		var lang_dxwaterfall_label_size_xlarge = "<?= __("X-Large"); ?>";
 		var lang_dxwaterfall_spotted_by = "<?= __("by:"); ?>";
+		var lang_dxwaterfall_wait_before_toggle = "<?= __("Please wait %s second(s) before toggling DX Waterfall again."); ?>";
 
 		// DX Waterfall Configuration from User Options
 		let dxcluster_default_decont = "<?php echo $dxcluster_default_decont; ?>";
