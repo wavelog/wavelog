@@ -22,6 +22,11 @@ var maidenhead;
 var cachedGeoJSON = null;  // Cache for GeoJSON data
 var isLoading = false;     // Prevent duplicate API calls
 
+// Use user-customizable map colors (same as RAC and other awards)
+var confirmedColor = user_map_custom.qsoconfirm.color;
+var workedColor = user_map_custom.qso.color;
+var unworkedColor = (typeof(user_map_custom.unworked) !== 'undefined') ? user_map_custom.unworked.color : 'red';
+
 function showMapSpinner() {
     var mapContainer = $('#polska-map');
     if (!mapContainer.find('.map-spinner-overlay').length) {
@@ -173,9 +178,9 @@ function addLegend(data) {
     legend.onAdd = function(map) {
         var div = L.DomUtil.create("div", "legend");
         div.innerHTML += "<h4>" + lang_general_word_colors + "</h4>";
-        div.innerHTML += "<i style='background: green'></i><span>" + lang_general_word_confirmed + " (" + confirmed + ")</span><br>";
-        div.innerHTML += "<i style='background: orange'></i><span>" + lang_general_word_worked_not_confirmed + " (" + workednotconfirmed + ")</span><br>";
-        div.innerHTML += "<i style='background: red'></i><span>" + lang_general_word_not_worked + " (" + notworked + ")</span><br>";
+        div.innerHTML += "<i style='background: " + confirmedColor + "'></i><span>" + lang_general_word_confirmed + " (" + confirmed + ")</span><br>";
+        div.innerHTML += "<i style='background: " + workedColor + "'></i><span>" + lang_general_word_worked_not_confirmed + " (" + workednotconfirmed + ")</span><br>";
+        div.innerHTML += "<i style='background: " + unworkedColor + "'></i><span>" + lang_general_word_not_worked + " (" + notworked + ")</span><br>";
         return div;
     };
 
@@ -185,9 +190,9 @@ function addLegend(data) {
 function getColor(voivCode) {
     // Get status from voivodeships data by voivodeship code
     var status = voivodeships[voivCode];
-    return status == 'C' ? 'green' :   // Confirmed
-           status == 'W' ? 'orange' :   // Worked
-           'red';                        // Not worked
+    return status == 'C' ? confirmedColor :   // Confirmed
+           status == 'W' ? workedColor :       // Worked
+           unworkedColor;                       // Not worked
 }
 
 function highlightFeature(e) {
