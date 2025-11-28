@@ -106,7 +106,7 @@
 					<div class="col-md-2"><?= __("Show QSO with QSL Type"); ?></div>
 					<div class="col-md-10">
 						<div class="form-check-inline">
-							<input class="form-check-input" type="checkbox" name="qsl" value="1" id="qsl" <?php if ($this->input->post('qsl') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
+							<input class="form-check-input" type="checkbox" name="qsl" value="1" id="qsl" <?php if ($this->input->post('qsl', TRUE) || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
 							<label class="form-check-label" for="qsl"><?= __("QSL Card"); ?></label>
 						</div>
 						<div class="form-check-inline">
