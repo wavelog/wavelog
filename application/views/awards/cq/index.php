@@ -128,7 +128,7 @@
 					<label class="col-md-2 control-label" for="band2"><?= __("Band"); ?></label>
 					<div class="col-md-3">
 						<select id="band2" name="band" class="form-select form-select-sm">
-							<option value="All" <?php if ($this->input->post('band') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?= __("All"); ?></option>
+							<option value="All" <?php if ($this->input->post('band', TRUE) == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?= __("All"); ?></option>
 							<?php foreach($worked_bands as $band) {
 								echo '<option value="' . $band . '"';
 								if ($this->input->post('band') == $band) echo ' selected';
