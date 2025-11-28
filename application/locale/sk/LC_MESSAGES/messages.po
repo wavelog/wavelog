@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-11-27 13:19+0000\n"
+"POT-Creation-Date: 2025-11-28 10:08+0000\n"
 "PO-Revision-Date: 2025-11-28 09:48+0000\n"
 "Last-Translator: Viliam Petrik <tatralom@gmail.com>\n"
 "Language-Team: Slovak <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1005,10 +1005,9 @@ msgid "DX Calendar"
 msgstr "DX kalendár"
 
 #: application/controllers/Eqsl.php:34
-#: application/views/dashboard/index.php:409
+#: application/views/dashboard/index.php:407
 #: application/views/eqslcard/index.php:5
 #: application/views/visitor/index.php:310
-#: application/views/dashboard/index.php:407
 msgid "eQSL Cards"
 msgstr "eQSL karty"
 
@@ -1305,7 +1304,7 @@ msgstr "QSL"
 #: application/views/awards/wapc/index.php:48
 #: application/views/awards/was/index.php:64
 #: application/views/awards/wpx/index.php:32
-#: application/views/dashboard/index.php:344
+#: application/views/dashboard/index.php:342
 #: application/views/gridmap/index.php:179
 #: application/views/logbookadvanced/useroptions.php:82
 #: application/views/oqrs/qsolist.php:17 application/views/oqrs/qsolist.php:160
@@ -1342,7 +1341,7 @@ msgstr "LoTW"
 #: application/views/awards/wapc/index.php:52
 #: application/views/awards/was/index.php:68
 #: application/views/awards/wpx/index.php:36
-#: application/views/dashboard/index.php:344
+#: application/views/dashboard/index.php:342
 #: application/views/gridmap/index.php:187
 #: application/views/logbookadvanced/useroptions.php:78
 #: application/views/oqrs/qsolist.php:14 application/views/oqrs/qsolist.php:131
@@ -2241,8 +2240,8 @@ msgstr "QRZ QSL import"
 msgid "QRZ ADIF Information"
 msgstr "QRZ ADIF informácie"
 
-#: application/controllers/Qsl.php:25 application/views/dashboard/index.php:344
-#: application/views/dashboard/index.php:361
+#: application/controllers/Qsl.php:25 application/views/dashboard/index.php:342
+#: application/views/dashboard/index.php:359
 #: application/views/qslcard/index.php:5
 #: application/views/visitor/index.php:287
 msgid "QSL Cards"
@@ -2985,7 +2984,6 @@ msgstr "Prihlásenie zlyhalo. Skúste to znova."
 #: application/views/interface_assets/header.php:406
 #: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:87
-#, fuzzy
 msgid "Login"
 msgstr "Prihlásiť sa"
 
@@ -3383,33 +3381,31 @@ msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr ""
 "HRDlog: Nenašli sa žiadne profily staníc s prihlasovacími údajmi HRDlog."
 
-#: application/models/Logbook_model.php:1303
 #: application/models/Logbook_model.php:1307
 msgid "Station ID not allowed"
 msgstr ""
 
-#: application/models/Logbook_model.php:1308
 #: application/models/Logbook_model.php:1312
 msgid "No Call given"
 msgstr ""
 
-#: application/models/Logbook_model.php:1378
-#: application/models/Logbook_model.php:1580
+#: application/models/Logbook_model.php:1382
+#: application/models/Logbook_model.php:1584
 msgid "DXCC has to be Numeric"
 msgstr "DXCC musí byť číselné"
 
-#: application/models/Logbook_model.php:4593
+#: application/models/Logbook_model.php:4605
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 "Nesprávna volacia značka stanice %s pri importe QSO s %s pre %s: PRESKOČENÉ"
 
-#: application/models/Logbook_model.php:4603
-#: application/models/Logbook_model.php:4612
+#: application/models/Logbook_model.php:4615
+#: application/models/Logbook_model.php:4624
 msgid "QSO on"
 msgstr "QSO o"
 
-#: application/models/Logbook_model.php:4603
+#: application/models/Logbook_model.php:4615
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -3417,7 +3413,7 @@ msgstr ""
 "Pokúsil si sa importovať QSO bez platného dátumu. Toto QSO nebolo "
 "importované. Je neplatné"
 
-#: application/models/Logbook_model.php:4612
+#: application/models/Logbook_model.php:4624
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3425,7 +3421,7 @@ msgstr ""
 "Pokúsil si sa importovať QSO bez uvedenej značky. Toto QSO nebolo "
 "importované. Je neplatné."
 
-#: application/models/Logbook_model.php:4661
+#: application/models/Logbook_model.php:4673
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -3434,67 +3430,64 @@ msgstr ""
 "QSO na %s: Pokúsil si sa importovať QSO bez uvedeného pásma. Toto QSO nebolo "
 "importované. Je neplatné."
 
-#: application/models/Logbook_model.php:4926
 #: application/models/Logbook_model.php:4938
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4937
 #: application/models/Logbook_model.php:4949
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4998
 #: application/models/Logbook_model.php:5010
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:5373
+#: application/models/Logbook_model.php:5385
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplicita pre"
 
-#: application/models/Logbook_model.php:5438
-#: application/models/Logbook_model.php:5533
+#: application/models/Logbook_model.php:5450
+#: application/models/Logbook_model.php:5545
 msgid "QSO could not be matched"
 msgstr "QSO nebolo možné spárovať"
 
-#: application/models/Logbook_model.php:5446
+#: application/models/Logbook_model.php:5458
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "potvrdené cez LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:5452
+#: application/models/Logbook_model.php:5464
 msgid "confirmed by award manager"
 msgstr "potvrdené diplomovým manažérom"
 
-#: application/models/Logbook_model.php:5456
+#: application/models/Logbook_model.php:5468
 msgid "confirmed by cross-check of DCL data"
 msgstr "potvrdené krížovou kontrolou údajov DCL"
 
-#: application/models/Logbook_model.php:5460
+#: application/models/Logbook_model.php:5472
 msgid "confirmation pending"
 msgstr "potvrdenie čaká"
 
-#: application/models/Logbook_model.php:5463
+#: application/models/Logbook_model.php:5475
 msgid "unconfirmed"
 msgstr "nepotvrdené"
 
-#: application/models/Logbook_model.php:5466
+#: application/models/Logbook_model.php:5478
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
 msgid "unknown"
 msgstr "neznáme"
 
-#: application/models/Logbook_model.php:5536
+#: application/models/Logbook_model.php:5548
 msgid "POTA reference already in log"
 msgstr "POTA referencia už v logu"
 
-#: application/models/Logbook_model.php:5539
+#: application/models/Logbook_model.php:5551
 msgid "QSO updated"
 msgstr "QSO aktualizované"
 
-#: application/models/Logbook_model.php:6346
+#: application/models/Logbook_model.php:6358
 #: application/views/activated_gridmap/index.php:114
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:58
@@ -3601,7 +3594,7 @@ msgid "Accumulated number of WAJA worked"
 msgstr "Naakumulovaný počet urobených WAJA"
 
 #: application/views/accumulate/index.php:8
-#: application/views/dashboard/index.php:322
+#: application/views/dashboard/index.php:320
 #: application/views/dayswithqso/index.php:42
 #: application/views/dayswithqso/index.php:82
 #: application/views/statistics/index.php:19
@@ -3618,7 +3611,7 @@ msgid "Yearly"
 msgstr "Ročne"
 
 #: application/views/accumulate/index.php:10
-#: application/views/dashboard/index.php:327
+#: application/views/dashboard/index.php:325
 #: application/views/visitor/index.php:255
 msgid "Month"
 msgstr "Mesiac"
@@ -4267,7 +4260,7 @@ msgstr "Nič sa nenašlo!"
 #: application/views/club/permissions.php:222
 #: application/views/components/hamsat/table.php:27
 #: application/views/contesting/index.php:171
-#: application/views/csv/index.php:23 application/views/dashboard/index.php:249
+#: application/views/csv/index.php:23 application/views/dashboard/index.php:247
 #: application/views/dcl_views/index.php:27
 #: application/views/distancerecords/index.php:18
 #: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:42
@@ -4300,7 +4293,6 @@ msgstr "Nič sa nenašlo!"
 #: application/views/user/edit.php:137 application/views/user/index.php:28
 #: application/views/user/index.php:153 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:672
-#: application/views/dashboard/index.php:247
 msgid "Callsign"
 msgstr "Volacia značka"
 
@@ -4376,7 +4368,7 @@ msgstr "Vo vašom denníku sú odlišné údaje pre DOK oproti DCL"
 #: application/views/components/hamsat/table.php:25
 #: application/views/contesting/index.php:103
 #: application/views/contesting/index.php:262
-#: application/views/dashboard/index.php:244
+#: application/views/dashboard/index.php:242
 #: application/views/debug/index.php:594
 #: application/views/distancerecords/index.php:16
 #: application/views/eqsl/analysis.php:36
@@ -4422,7 +4414,7 @@ msgstr "Dátum"
 #: application/views/components/hamsat/table.php:26
 #: application/views/contesting/index.php:108
 #: application/views/contesting/index.php:262
-#: application/views/dashboard/index.php:247
+#: application/views/dashboard/index.php:245
 #: application/views/debug/index.php:595
 #: application/views/distancerecords/index.php:17
 #: application/views/eqsl/analysis.php:37
@@ -4570,7 +4562,6 @@ msgid "Use DXCC information from ADIF"
 msgstr "Použi informácie o DXCC z ADIF"
 
 #: application/views/adif/import.php:133
-#, fuzzy
 msgid ""
 "If not selected, Wavelog will attempt to determine DXCC information "
 "automatically."
@@ -4615,7 +4606,6 @@ msgstr "Označ importované spojenie ako nahrané na LoTW"
 #: application/views/adif/import.php:169 application/views/adif/import.php:177
 #: application/views/adif/import.php:187 application/views/adif/import.php:195
 #: application/views/adif/import.php:205 application/views/adif/import.php:213
-#, fuzzy
 msgid "Select if ADIF being imported does not contain this information."
 msgstr "Vyber, ak ADIF, ktorý sa importuje, neobsahuje tieto informácie."
 
@@ -4742,7 +4732,6 @@ msgstr ""
 "spojenia s informáciami o DOK."
 
 #: application/views/adif/import.php:340
-#, fuzzy
 msgid "Only import DOK data from QSOs confirmed on DCL."
 msgstr "Importujte len DOK dáta zo spojení potvrdených na DCL."
 
@@ -4755,7 +4744,6 @@ msgstr ""
 "v DCL."
 
 #: application/views/adif/import.php:349
-#, fuzzy
 msgid "Overwrites exisiting DOK in log by DCL (if different)."
 msgstr "Prepíše existujúci DOK v zázname pomocou DCL (ak je rozdielny)."
 
@@ -4829,7 +4817,6 @@ msgid "Optional"
 msgstr "Voliteľné"
 
 #: application/views/adif/import.php:415
-#, fuzzy
 msgid ""
 "The CBR file contains a TRX number at the end of each QSO line (for multi-op "
 "stations)"
@@ -5025,7 +5012,6 @@ msgid "API Keys"
 msgstr "API kľúče"
 
 #: application/views/api/index.php:11
-#, fuzzy
 msgid ""
 "The Wavelog API (Application Programming Interface) lets third party systems "
 "access Wavelog in a controlled way. Access to the API is managed via API "
@@ -5208,7 +5194,6 @@ msgid "Award Info"
 msgstr "Diplomové informácie"
 
 #: application/views/awards/73on73/index.php:7
-#, fuzzy
 msgid "73 on 73 Award"
 msgstr "73 on 73 Award"
 
@@ -5252,7 +5237,6 @@ msgstr "Číslo"
 #: application/views/distancerecords/details.php:1
 #: application/views/statistics/details.php:1
 #: application/views/timeline/details.php:2
-#, fuzzy
 msgid "Filtering on"
 msgstr "Filtrovanie zapnuté"
 
@@ -5264,7 +5248,6 @@ msgid "County"
 msgstr "Okres"
 
 #: application/views/awards/counties/index.php:7
-#, fuzzy
 msgid "US County Award"
 msgstr "US County Award"
 
@@ -5329,7 +5312,7 @@ msgstr "Potvrdené okresy"
 #: application/views/awards/wapc/index.php:145
 #: application/views/awards/was/index.php:184
 #: application/views/awards/wpx/index.php:172
-#: application/views/dashboard/index.php:317
+#: application/views/dashboard/index.php:315
 #: application/views/simplefle/index.php:27
 #: application/views/statistics/qsltable.php:54
 #: application/views/statistics/qsltable.php:109
@@ -5375,7 +5358,6 @@ msgid "Hover over a zone"
 msgstr "Umiestni kurzor nad CQ alebo ITU zónu"
 
 #: application/views/awards/cq/index.php:23
-#, fuzzy
 msgid "CQ WAZ (Worked All Zones) Award"
 msgstr "CQ WAZ (Worked All Zones) Award"
 
@@ -5421,8 +5403,8 @@ msgstr "Diplomy - CQ WAZ"
 #: application/views/awards/wac/index.php:23
 #: application/views/awards/wpx/wpx_details.php:24
 #: application/views/bandmap/list.php:60 application/views/bandmap/list.php:263
-#: application/views/dashboard/index.php:344
-#: application/views/dashboard/index.php:462
+#: application/views/dashboard/index.php:342
+#: application/views/dashboard/index.php:460
 #: application/views/interface_assets/footer.php:45
 #: application/views/search/result.php:32
 #: application/views/visitor/index.php:270
@@ -5433,8 +5415,8 @@ msgstr "Potvrdené"
 #: application/views/awards/itu/index.php:38
 #: application/views/awards/wac/index.php:23
 #: application/views/bandmap/list.php:59 application/views/bandmap/list.php:262
-#: application/views/dashboard/index.php:340
-#: application/views/dashboard/index.php:456
+#: application/views/dashboard/index.php:338
+#: application/views/dashboard/index.php:454
 #: application/views/search/result.php:35
 #: application/views/visitor/index.php:266
 msgid "Worked"
@@ -5630,7 +5612,6 @@ msgid "Total confirmed"
 msgstr "Spolu potvrdené"
 
 #: application/views/awards/dok/index.php:7
-#, fuzzy
 msgid "DOK Award"
 msgstr "DOK Award"
 
@@ -5716,7 +5697,6 @@ msgid "Every band"
 msgstr "Každé pásmo"
 
 #: application/views/awards/dxcc/index.php:27
-#, fuzzy
 msgid "DXCC Award"
 msgstr "DXCC Award"
 
@@ -5789,10 +5769,10 @@ msgstr "Predvolené dátumy"
 
 #: application/views/awards/dxcc/index.php:53
 #: application/views/contestcalendar/index.php:45
-#: application/views/dashboard/index.php:362
-#: application/views/dashboard/index.php:389
-#: application/views/dashboard/index.php:410
-#: application/views/dashboard/index.php:431
+#: application/views/dashboard/index.php:360
+#: application/views/dashboard/index.php:387
+#: application/views/dashboard/index.php:408
+#: application/views/dashboard/index.php:429
 #: application/views/gridmap/index.php:31
 #: application/views/logbookadvanced/index.php:278
 msgid "Today"
@@ -5977,12 +5957,10 @@ msgid "(Q)SL-Paper-Card"
 msgstr "(Q)SL-papierová-karta"
 
 #: application/views/awards/dxcc/index.php:265
-#, fuzzy
 msgid "(L)oTW"
 msgstr "(L)oTW"
 
 #: application/views/awards/dxcc/index.php:266
-#, fuzzy
 msgid "(e)QSL"
 msgstr "(e)QSL"
 
@@ -5991,7 +5969,6 @@ msgid "QR(Z)-\"confirmation\""
 msgstr "QR(Z)-\"potvrdené\""
 
 #: application/views/awards/dxcc/index.php:268
-#, fuzzy
 msgid "(C)lublog"
 msgstr "(C)lublog"
 
@@ -6008,7 +5985,6 @@ msgstr "DXCC názov"
 #: application/views/awards/wae/index.php:163
 #: application/views/timeline/index.php:199
 #: application/views/timeline/index.php:297
-#, fuzzy
 msgid "Prefix"
 msgstr "Prefix"
 
@@ -6020,7 +5996,6 @@ msgstr ""
 
 #: application/views/awards/ffma/index.php:11
 #: application/views/interface_assets/header.php:288
-#, fuzzy
 msgid "Fred Fish Memorial Award"
 msgstr "Fred Fish Memorial Award"
 
@@ -6056,7 +6031,6 @@ msgstr ""
 "obsahovať štvorec z jedného z 488 pevninských štvorcov!), pásmo musí byť 6M."
 
 #: application/views/awards/gridmaster/index.php:12
-#, fuzzy
 msgid "US Gridmaster Award"
 msgstr "US Gridmaster Award"
 
@@ -6113,7 +6087,6 @@ msgstr ""
 "šírenia a názov SAT"
 
 #: application/views/awards/gridmaster/index.php:18
-#, fuzzy
 msgid "Gridmaster Award"
 msgstr "Gridmaster Award"
 
@@ -6169,7 +6142,6 @@ msgid "Hover over a canton"
 msgstr "Umiestni kurzor nad kanton"
 
 #: application/views/awards/helvetia/index.php:23
-#, fuzzy
 msgid "HELVETIA 26 | SWITZERLAND AWARD"
 msgstr "HELVETIA 26 | SWITZERLAND AWARD"
 
@@ -6217,7 +6189,6 @@ msgid "CQ"
 msgstr "CQ"
 
 #: application/views/awards/iota/index.php:18
-#, fuzzy
 msgid "IOTA Awards"
 msgstr "IOTA Awards"
 
@@ -6351,7 +6322,6 @@ msgid "Fields taken for this Award: ITU-Zone (ADIF: ITUZ)"
 msgstr "Pre tento diplom sa používajú oblasti: ITU-Zóna (ADIF: ITUZ)"
 
 #: application/views/awards/itu/index.php:29
-#, fuzzy
 msgid "Awards - ITU Zones"
 msgstr "Awards - ITU Zones"
 
@@ -6360,7 +6330,6 @@ msgid "Show ITU Zone Map"
 msgstr "Zobraziť mapu zón ITU"
 
 #: application/views/awards/jcc/index.php:17
-#, fuzzy
 msgid "JCC - Japan Century Cities Award"
 msgstr "JCC - Japan Century Cities Award"
 
@@ -6417,19 +6386,16 @@ msgid "City"
 msgstr "Mesto"
 
 #: application/views/awards/jcc/index.php:189
-#: application/views/dashboard/index.php:452
+#: application/views/dashboard/index.php:450
 #: application/views/distances/index.php:23
 #: application/views/qslprint/qslprint.php:57
 #: application/views/qslprint/qslprint.php:58
 #: application/views/qslprint/qsolist.php:44
 #: application/views/qslprint/qsolist.php:45
-#: application/views/dashboard/index.php:450
-#, fuzzy
 msgid "SAT"
 msgstr "SAT"
 
 #: application/views/awards/pota/index.php:7
-#, fuzzy
 msgid "POTA Awards"
 msgstr "POTA Awards"
 
@@ -6576,7 +6542,6 @@ msgid "Export QSOs to ADIF"
 msgstr "Exportovať spojenia do ADIF"
 
 #: application/views/awards/sota/index.php:7
-#, fuzzy
 msgid "SOTA Awards"
 msgstr "SOTA Awards"
 
@@ -6606,7 +6571,6 @@ msgstr ""
 "zoznam cti pre Aktivátorov a Lovcov."
 
 #: application/views/awards/vucc/index.php:7
-#, fuzzy
 msgid "VUCC - VHF/UHF Century Club Award"
 msgstr "VUCC - VHF/UHF Century Club Award"
 
@@ -6645,7 +6609,6 @@ msgid "Grids Confirmed"
 msgstr "Potvrdené lokátorové štvorce"
 
 #: application/views/awards/wab/index.php:13
-#, fuzzy
 msgid "WAB - Worked All Britain Award"
 msgstr "WAB - Worked All Britain Award"
 
@@ -9341,46 +9304,33 @@ msgstr ""
 msgid "At least one of your certificates is expiring"
 msgstr ""
 
-#: application/views/dashboard/index.php:218
-msgid "The QSO end date of at least one of your certificates was exceeded"
-msgstr ""
-
-#: application/views/dashboard/index.php:219
-msgid ""
-"The QSO end date of at least one of your certificates is about to be exceeded"
-msgstr ""
-
-#: application/views/dashboard/index.php:297
-#: application/views/qso/index.php:900
 #: application/views/dashboard/index.php:295
+#: application/views/qso/index.php:900
 #, php-format
 msgid "Max. %d previous contact is shown"
 msgid_plural "Max. %d previous contacts are shown"
 msgstr[0] ""
 msgstr[1] ""
 
-#: application/views/dashboard/index.php:313
-#: application/views/visitor/index.php:241
 #: application/views/dashboard/index.php:311
+#: application/views/visitor/index.php:241
 msgid "QSOs Breakdown"
 msgstr ""
 
-#: application/views/dashboard/index.php:336
-#: application/views/visitor/index.php:262
 #: application/views/dashboard/index.php:334
+#: application/views/visitor/index.php:262
 msgid "DXCCs Breakdown"
 msgstr ""
 
-#: application/views/dashboard/index.php:353
-#: application/views/visitor/index.php:279
 #: application/views/dashboard/index.php:351
+#: application/views/visitor/index.php:279
 msgid "Needed"
 msgstr ""
 
-#: application/views/dashboard/index.php:366
-#: application/views/dashboard/index.php:393
-#: application/views/dashboard/index.php:414
-#: application/views/dashboard/index.php:435
+#: application/views/dashboard/index.php:364
+#: application/views/dashboard/index.php:391
+#: application/views/dashboard/index.php:412
+#: application/views/dashboard/index.php:433
 #: application/views/oqrs/qsolist.php:51 application/views/oqrs/qsolist.php:131
 #: application/views/oqrs/qsolist.php:160
 #: application/views/qslprint/qsolist.php:62
@@ -9410,17 +9360,14 @@ msgstr ""
 #: application/views/widgets/qsos.php:19 src/QSLManager/QSO.php:403
 #: src/QSLManager/QSO.php:504 src/QSLManager/QSO.php:558
 #: src/QSLManager/QSO.php:647 src/QSLManager/QSO.php:704
-#: src/QSLManager/QSO.php:793 application/views/dashboard/index.php:364
-#: application/views/dashboard/index.php:391
-#: application/views/dashboard/index.php:412
-#: application/views/dashboard/index.php:433
+#: src/QSLManager/QSO.php:793
 msgid "Sent"
 msgstr ""
 
-#: application/views/dashboard/index.php:372
-#: application/views/dashboard/index.php:399
-#: application/views/dashboard/index.php:420
-#: application/views/dashboard/index.php:441
+#: application/views/dashboard/index.php:370
+#: application/views/dashboard/index.php:397
+#: application/views/dashboard/index.php:418
+#: application/views/dashboard/index.php:439
 #: application/views/oqrs/qsolist.php:93 application/views/oqrs/qsolist.php:144
 #: application/views/oqrs/qsolist.php:175
 #: application/views/qslprint/qsolist.php:104
@@ -9449,14 +9396,11 @@ msgstr ""
 #: application/views/visitor/index.php:337 src/QSLManager/QSO.php:448
 #: src/QSLManager/QSO.php:531 src/QSLManager/QSO.php:608
 #: src/QSLManager/QSO.php:674 src/QSLManager/QSO.php:754
-#: src/QSLManager/QSO.php:821 application/views/dashboard/index.php:370
-#: application/views/dashboard/index.php:397
-#: application/views/dashboard/index.php:418
-#: application/views/dashboard/index.php:439
+#: src/QSLManager/QSO.php:821
 msgid "Received"
 msgstr ""
 
-#: application/views/dashboard/index.php:378
+#: application/views/dashboard/index.php:376
 #: application/views/logbookadvanced/edit.php:168
 #: application/views/logbookadvanced/edit.php:175
 #: application/views/logbookadvanced/edit.php:201
@@ -9497,33 +9441,28 @@ msgstr ""
 #: src/QSLManager/QSO.php:454 src/QSLManager/QSO.php:516
 #: src/QSLManager/QSO.php:539 src/QSLManager/QSO.php:653
 #: src/QSLManager/QSO.php:680 src/QSLManager/QSO.php:805
-#: src/QSLManager/QSO.php:830 application/views/dashboard/index.php:376
+#: src/QSLManager/QSO.php:830
 msgid "Requested"
 msgstr ""
 
-#: application/views/dashboard/index.php:388
 #: application/views/dashboard/index.php:386
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
 msgstr ""
 
-#: application/views/dashboard/index.php:451
 #: application/views/dashboard/index.php:449
 msgid "VUCC-Grids"
 msgstr ""
 
-#: application/views/dashboard/index.php:476
 #: application/views/dashboard/index.php:474
 msgid "Solar Data & Propagation"
 msgstr ""
 
-#: application/views/dashboard/index.php:478
 #: application/views/dashboard/index.php:476
 #, php-format
 msgid "Last update at %s."
 msgstr ""
 
-#: application/views/dashboard/index.php:487
 #: application/views/dashboard/index.php:485
 msgid "Data provided by HAMqsl."
 msgstr ""
