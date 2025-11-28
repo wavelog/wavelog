@@ -2106,12 +2106,18 @@ $(function() {
 
 	function getDxClusterFavs() {
 		$.ajax({
-			url: base_url + 'index.php/user_options/get_dxcluster_fav',
+			url: base_url + 'index.php/user_options/get_dxcluster_user_favs_and_settings',
 			method: 'GET',
 			dataType: 'json',
 			success: function(result) {
-				dxclusterFavs = result;
+				// Handle combined response with favorites and userConfig
+				dxclusterFavs = result.favorites || {};
 				renderDxClusterFavMenu();
+				
+				// Process user config (bands/modes/submodes)
+				if (result.userConfig) {
+					processUserConfig(result.userConfig);
+				}
 			}
 		});
 	}
@@ -3812,72 +3818,58 @@ $(function() {
 	enableBandFilterControls();
 
 	// ========================================
-	// CACHE USER FAVORITES ON PAGE LOAD
+	// PROCESS USER CONFIG (called from getDxClusterFavs)
 	// ========================================
 
 	/**
-	 * Fetch and cache user bands/modes on page load
-	 * Initializes My Submodes filter with user's enabled submodes
+	 * Process user bands/modes configuration
+	 * Called from getDxClusterFavs() when userConfig is included in response
+	 * @param {Object} data - User configuration object with bands, modes, submodes
 	 */
-	function fetchUserBandsAndModes() {
-		let base_url = dxcluster_provider.replace('/dxcluster', '');
-		$.ajax({
-			url: base_url + '/bandmap/get_user_bands_and_modes',
-			method: 'GET',
-			dataType: 'json',
-			success: function(data) {
-				cachedUserFavorites = data;
+	function processUserConfig(data) {
+		if (!data) return;
+		
+		cachedUserFavorites = data;
 
-				// Store mode categories for button enabling/disabling
-				if (data.modes) {
-					userModeCategories = {
-						cw: data.modes.cw || false,
-						phone: data.modes.phone || false,
-						digi: data.modes.digi || false
-					};
-				}
+		// Store mode categories for button enabling/disabling
+		if (data.modes) {
+			userModeCategories = {
+				cw: data.modes.cw || false,
+				phone: data.modes.phone || false,
+				digi: data.modes.digi || false
+			};
+		}
 
-				// Store submodes for filtering
-				if (data.submodes && data.submodes.length > 0) {
-					userEnabledSubmodes = data.submodes;
-					isMySubmodesFilterActive = true; // Enable filter by default
-					updateMySubmodesButtonVisual();
-					updateMySubmodesTooltip();
-					updateModeButtonsForSubmodes();
-					// Sync to requiredFlags select
-					syncMySubmodesToRequiredFlags();
-					// Reapply filters to activate submode filtering
-					applyFilters(false);
-				} else {
-					// No submodes configured - disable button and show warning
-					userEnabledSubmodes = [];
-					isMySubmodesFilterActive = false;
-					$('#toggleMySubmodesFilter').prop('disabled', true).addClass('disabled');
-					updateMySubmodesButtonVisual();
-					updateMySubmodesTooltip();
-					// Also disable the option in requiredFlags select
-					$('#requiredFlags option[value="mysubmodes"]').prop('disabled', true);
-					showToast(
-						lang_bandmap_my_submodes,
-						lang_bandmap_no_submodes_warning,
-						'bg-warning text-dark',
-						5000
-					);
-				}
-			},
-			error: function() {
-				console.warn('Failed to fetch user bands and modes');
-				cachedUserFavorites = null;
-				userEnabledSubmodes = [];
-				$('#toggleMySubmodesFilter').prop('disabled', true).addClass('disabled');
-				$('#requiredFlags option[value="mysubmodes"]').prop('disabled', true);
-				updateMySubmodesTooltip();
-			}
-		});
+		// Store submodes for filtering
+		if (data.submodes && data.submodes.length > 0) {
+			userEnabledSubmodes = data.submodes;
+			isMySubmodesFilterActive = true; // Enable filter by default
+			updateMySubmodesButtonVisual();
+			updateMySubmodesTooltip();
+			updateModeButtonsForSubmodes();
+			// Sync to requiredFlags select
+			syncMySubmodesToRequiredFlags();
+			// Reapply filters to activate submode filtering
+			applyFilters(false);
+		} else {
+			// No submodes configured - disable button and show warning
+			userEnabledSubmodes = [];
+			isMySubmodesFilterActive = false;
+			$('#toggleMySubmodesFilter').prop('disabled', true).addClass('disabled');
+			updateMySubmodesButtonVisual();
+			updateMySubmodesTooltip();
+			// Also disable the option in requiredFlags select
+			$('#requiredFlags option[value="mysubmodes"]').prop('disabled', true);
+			showToast(
+				lang_bandmap_my_submodes,
+				lang_bandmap_no_submodes_warning,
+				'bg-warning text-dark',
+				5000
+			);
+		}
 	}
 
-	// Fetch user bands/modes on page load
-	fetchUserBandsAndModes();
+	// Note: User config is now loaded via combined getDxClusterFavs() API response
 
 	// ========================================
 	// AGE AUTO-UPDATE

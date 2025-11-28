@@ -87,24 +87,6 @@ class User_Options extends CI_Controller {
 		echo json_encode($jsonout);
 	}
 
-	public function get_dxcluster_fav() {
-		$result = $this->user_options_model->get_options('DXClusterFavourite');
-		$jsonout = [];
-		foreach($result->result() as $options) {
-			$value = $options->option_value;
-			// Try to decode JSON arrays - check if it looks like JSON first
-			if (is_string($value) && (strpos($value, '[') === 0 || strpos($value, '{') === 0)) {
-				$decoded = json_decode($value, true);
-				if (json_last_error() === JSON_ERROR_NONE) {
-					$value = $decoded;
-				}
-			}
-			$jsonout[$options->option_name][$options->option_key] = $value;
-		}
-		header('Content-Type: application/json');
-		echo json_encode($jsonout);
-	}
-
 	public function del_dxcluster_fav() {
 		$obj = json_decode(file_get_contents("php://input"), true);
 		if ($obj['option_name'] ?? '' != '') {
@@ -130,7 +112,75 @@ class User_Options extends CI_Controller {
 		header('Content-Type: application/json');
 		echo json_encode($qrg_units);
 	}
-}
 
+        /**
+         * Combined endpoint: DX Cluster favorites + user bands/modes settings
+         * Returns both favorites and user configuration in a single request
+         */
+        public function get_dxcluster_user_favs_and_settings() {
+                session_write_close();
+                
+                // Get DX Cluster favorites
+                $result = $this->user_options_model->get_options('DXClusterFavourite');
+                $favorites = [];
+                foreach($result->result() as $options) {
+                        $value = $options->option_value;
+                        if (is_string($value) && (strpos($value, '[') === 0 || strpos($value, '{') === 0)) {
+                                $decoded = json_decode($value, true);
+                                if (json_last_error() === JSON_ERROR_NONE) {
+                                        $value = $decoded;
+                                }
+                        }
+                        $favorites[$options->option_name][$options->option_key] = $value;
+                }
+
+                // Get user bands and modes
+                $this->load->model('bands');
+                $this->load->model('usermodes');
+
+                $activeBands = $this->bands->get_user_bands_for_qso_entry(false);
+                $bandList = [];
+                if (is_array($activeBands)) {
+                        foreach ($activeBands as $group => $bands) {
+                                if (is_array($bands)) {
+                                        foreach ($bands as $band) {
+                                                $bandList[] = $band;
+                                        }
+                                }
+                        }
+                }
+
+                $activeModes = $this->usermodes->active();
+                $modeCategories = ['cw' => false, 'phone' => false, 'digi' => false];
+                $submodes = [];
+
+                if ($activeModes) {
+                        foreach ($activeModes as $mode) {
+                                $qrgmode = strtoupper($mode->qrgmode ?? '');
+                                if ($qrgmode === 'CW') {
+                                        $modeCategories['cw'] = true;
+                                } elseif ($qrgmode === 'SSB') {
+                                        $modeCategories['phone'] = true;
+                                } elseif ($qrgmode === 'DATA') {
+                                        $modeCategories['digi'] = true;
+                                }
+                                $submode = !empty($mode->submode) ? $mode->submode : $mode->mode;
+                                if (!empty($submode) && !in_array($submode, $submodes)) {
+                                        $submodes[] = $submode;
+                                }
+                        }
+                }
+
+                header('Content-Type: application/json');
+                echo json_encode([
+                        'favorites' => $favorites,
+                        'userConfig' => [
+                                'bands' => $bandList,
+                                'modes' => $modeCategories,
+                                'submodes' => $submodes
+                        ]
+                ]);
+        }
+}
 
 ?>
