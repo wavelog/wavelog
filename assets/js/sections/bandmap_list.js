@@ -2139,7 +2139,7 @@ $(function() {
 			// Build the menu item with data attribute on the parent div for easier click handling
 			let $item = $('<div class="dropdown-item d-flex justify-content-between align-items-center dxcluster_fav_item" style="cursor: pointer;"></div>').attr('data-fav-name', key);
 			let $nameSpan = $('<span></span>').text(key);
-			let $deleteBtn = $('<span class="badge bg-danger dxcluster_fav_del ms-2" title="Delete"><i class="fas fa-trash-alt"></i></span>').attr('data-fav-name', key);
+			let $deleteBtn = $('<span class="badge bg-danger dxcluster_fav_del ms-2"></span>').attr('data-fav-name', key).attr('title', lang_general_word_delete).html('<i class="fas fa-trash-alt"></i>');
 			$menu.append($item.append($nameSpan).append($deleteBtn));
 		});
 	}
