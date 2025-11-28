@@ -814,11 +814,30 @@ $(function() {
 	}
 
 	// Handle page visibility changes (tab switching, minimize, etc.)
-	// Ensures filters are properly applied when returning from background
+	// Remove expiring spots when hidden, fetch fresh data when returning
 	document.addEventListener('visibilitychange', function() {
-		if (!document.hidden && cachedSpotData && cachedSpotData.length > 0) {
-			// Tab becoming visible - re-apply filters to ensure table is correctly filtered
-			renderFilteredSpots();
+		if (document.hidden) {
+			// Dispose tooltips to prevent Bootstrap errors
+			disposeTooltips();
+			// Remove TTL<=0 (red/expiring) spots - they'll be stale when we return
+			let keysToDelete = [];
+			spotTTLMap.forEach(function(ttl, key) {
+				if (ttl <= 0) keysToDelete.push(key);
+			});
+			keysToDelete.forEach(function(key) {
+				spotTTLMap.delete(key);
+			});
+			// Also remove from cachedSpotData and redraw table
+			if (cachedSpotData && keysToDelete.length > 0) {
+				let keySet = new Set(keysToDelete);
+				cachedSpotData = cachedSpotData.filter(function(spot) {
+					return !keySet.has(getSpotKey(spot));
+				});
+				renderFilteredSpots();
+			}
+		} else if (lastFetchParams.timestamp) {
+			fill_list(lastFetchParams.continent, lastFetchParams.maxAge, lastFetchParams.band || 'All');
+			refreshCountdown = SPOT_REFRESH_INTERVAL;
 		}
 	});
 
