@@ -150,7 +150,7 @@
 									echo '>'. $mode->mode . '</option>'."\n";
 								} else {
 									echo '<option value="' . $mode->submode . '"';
-									if ($this->input->post('mode') == $mode->submode) echo ' selected';
+									if ($this->input->post('mode', TRUE) == $mode->submode) echo ' selected';
 									echo '>' . $mode->submode . '</option>'."\n";
 								}
 							}
