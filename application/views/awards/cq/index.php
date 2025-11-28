@@ -146,7 +146,7 @@
 							foreach($modes->result() as $mode){
 								if ($mode->submode == null) {
 									echo '<option value="' . $mode->mode . '"';
-									if ($this->input->post('mode') == $mode->mode) echo ' selected';
+									if ($this->input->post('mode', TRUE) == $mode->mode) echo ' selected';
 									echo '>'. $mode->mode . '</option>'."\n";
 								} else {
 									echo '<option value="' . $mode->submode . '"';
