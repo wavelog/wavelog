@@ -1592,6 +1592,7 @@ $(function() {
 
 		// Count spots for quick filter badges
 		let quickFilterCounts = {
+			mysubmodes: 0,
 			lotw: 0,
 			dxspot: 0,
 			newcontinent: 0,
@@ -1632,6 +1633,7 @@ $(function() {
 			if (selectedModeSet && (!spot.mode || !selectedModeSet.has(spot.mode))) return;
 
 			// Count quick filter matches (use cached references)
+			if (spot.submode && userEnabledSubmodes.length > 0 && userEnabledSubmodes.some(m => m.toUpperCase() === spot.submode.toUpperCase())) quickFilterCounts.mysubmodes++;
 			if (dxccSpotted && dxccSpotted.lotw_user) quickFilterCounts.lotw++;
 			if (dxccSpotted?.cont && dxccSpotter?.cont && dxccSpotted.cont !== dxccSpotter.cont) quickFilterCounts.dxspot++;
 			if (spot.worked_continent === false) quickFilterCounts.newcontinent++;
@@ -1644,6 +1646,7 @@ $(function() {
 
 		// Update quick filter badges
 		const quickFilters = [
+			{ id: 'toggleMySubmodesFilter', count: quickFilterCounts.mysubmodes },
 			{ id: 'toggleLotwFilter', count: quickFilterCounts.lotw },
 			{ id: 'toggleDxSpotFilter', count: quickFilterCounts.dxspot },
 			{ id: 'toggleNewContinentFilter', count: quickFilterCounts.newcontinent },
