@@ -675,32 +675,50 @@ class Logbookadvanced_model extends CI_Model {
 		}
 	}
 
-	public function updateQsoWithCallbookInfo($qsoID, $qso, $callbook, $station_gridsquare = null) {
+	public function updateQsoWithCallbookInfo($qsoID, $qso, $callbook, $gridsquareAccuracyCheck, $station_gridsquare = null) {
 		$updatedData = array();
 		$updated = false;
 		if (!empty($callbook['name']) && empty($qso['COL_NAME'])) {
 			$updatedData['COL_NAME'] = $callbook['name'];
 			$updated = true;
 		}
-		if (!empty($callbook['gridsquare']) && empty($qso['COL_GRIDSQUARE']) && empty($qso['COL_VUCC_GRIDS'] )) {
-			if (strpos(trim($callbook['gridsquare']), ',') === false) {
-				$updatedData['COL_GRIDSQUARE'] = strtoupper(trim($callbook['gridsquare']));
-				if ($station_gridsquare != null && $station_gridsquare != '') {
-					if (!$this->load->is_loaded('Qra')) {
-						$this->load->library('Qra');
+		if (!empty($callbook['gridsquare']) && $callbook['geoloc'] != 'grid') {
+			if (empty($qso['COL_GRIDSQUARE']) && empty($qso['COL_VUCC_GRIDS'] )) {
+				if (strpos(trim($callbook['gridsquare']), ',') === false) {
+					$updatedData['COL_GRIDSQUARE'] = strtoupper(trim($callbook['gridsquare']));
+					if ($station_gridsquare != null && $station_gridsquare != '') {
+						if (!$this->load->is_loaded('Qra')) {
+							$this->load->library('Qra');
+						}
+						$updatedData['COL_DISTANCE'] = $this->qra->distance($station_gridsquare, strtoupper(trim($callbook['gridsquare'])), 'K');
 					}
-					$updatedData['COL_DISTANCE'] = $this->qra->distance($station_gridsquare, strtoupper(trim($callbook['gridsquare'])), 'K');
+				} else {
+					$updatedData['COL_VUCC_GRIDS'] = strtoupper(trim($callbook['gridsquare']));
+					if ($station_gridsquare != null && $station_gridsquare != '') {
+						if (!$this->load->is_loaded('Qra')) {
+							$this->load->library('Qra');
+						}
+						$updatedData['COL_DISTANCE'] = $this->qra->distance($station_gridsquare, strtoupper(trim($callbook['gridsquare'])), 'K');
+					}
 				}
-			} else {
-				$updatedData['COL_VUCC_GRIDS'] = strtoupper(trim($callbook['gridsquare']));
-				if ($station_gridsquare != null && $station_gridsquare != '') {
-					if (!$this->load->is_loaded('Qra')) {
-						$this->load->library('Qra');
+				$updated = true;
+			} else if (!empty($qso['COL_GRIDSQUARE']) && $gridsquareAccuracyCheck == true) {
+				$existingGridsquare = $qso['COL_GRIDSQUARE'];
+				//Check if existing gridsquare is less accurate than callbook gridsquare
+				if (strlen(trim($callbook['gridsquare'])) > strlen(trim($existingGridsquare))) {
+					if ($existingGridsquare == substr($callbook['gridsquare'], 0, strlen($existingGridsquare))) {
+						//Callbook gridsquare is more accurate, update it
+						$updatedData['COL_GRIDSQUARE'] = strtoupper(trim($callbook['gridsquare']));
+						if ($station_gridsquare != null && $station_gridsquare != '') {
+							if (!$this->load->is_loaded('Qra')) {
+								$this->load->library('Qra');
+							}
+							$updatedData['COL_DISTANCE'] = $this->qra->distance($station_gridsquare, strtoupper(trim($callbook['gridsquare'])), 'K');
+						}
+						$updated = true;
 					}
-					$updatedData['COL_DISTANCE'] = $this->qra->distance($station_gridsquare, strtoupper(trim($callbook['gridsquare'])), 'K');
 				}
 			}
-			$updated = true;
 		}
 		if (!empty($callbook['city']) && empty($qso['COL_QTH'])) {
 			$updatedData['COL_QTH'] = $callbook['city'];
