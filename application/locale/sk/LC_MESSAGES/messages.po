@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-11-27 13:19+0000\n"
-"PO-Revision-Date: 2025-11-27 18:56+0000\n"
+"PO-Revision-Date: 2025-11-28 09:48+0000\n"
 "Last-Translator: Viliam Petrik <tatralom@gmail.com>\n"
 "Language-Team: Slovak <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/sk/>\n"
@@ -2057,7 +2057,6 @@ msgid "Hams-Of-Note URL changed to "
 msgstr ""
 
 #: application/controllers/Options.php:180
-#, fuzzy
 msgid "de continent changed to "
 msgstr "kontinent sa zmenil na "
 
@@ -4929,19 +4928,19 @@ msgstr ""
 #: application/views/qrz/mark_qrz.php:12
 #: application/views/webadif/mark_webadif.php:12
 msgid "QSOs marked"
-msgstr ""
+msgstr "Spojenia označené"
 
 #: application/views/adif/mark_lotw.php:15
 msgid "Yay, its done!"
-msgstr ""
+msgstr "Hurá, je to hotové!"
 
 #: application/views/adif/mark_lotw.php:16
 msgid "The QSOs are marked as exported to LoTW."
-msgstr ""
+msgstr "Spojenia sú označené ako exportované do LoTW."
 
 #: application/views/adif/pota_success.php:12
 msgid "Results of POTA Update"
-msgstr ""
+msgstr "Výsledky aktualizácie POTA"
 
 #: application/views/adif/pota_success.php:17
 msgid "POTA references for existing QSOs has been updated."
@@ -4949,21 +4948,23 @@ msgstr ""
 
 #: application/views/adif/pota_success.php:25
 msgid "POTA Update Errors"
-msgstr ""
+msgstr "Chyby aktualizácie POTA"
 
 #: application/views/adif/pota_success.php:26
 msgid ""
 "There is different data for POTA references in your log compared to imported "
 "data or QSO data could not be matched"
 msgstr ""
+"Vo vašom logu sú údaje pre POTA referencie odlišné v porovnaní s "
+"importovanými údajmi alebo sa údaje spojení nezhodovali"
 
 #: application/views/adif/pota_success.php:34
 msgid "POTA REF in Log"
-msgstr ""
+msgstr "POTA REF v logu"
 
 #: application/views/adif/pota_success.php:35
 msgid "POTA REF in ADIF"
-msgstr ""
+msgstr "POTA REF v ADIF"
 
 #: application/views/adif/pota_success.php:36
 #: application/views/api/index.php:37 application/views/cron/index.php:67
@@ -4977,15 +4978,15 @@ msgstr ""
 #: application/views/timeline/index.php:201
 #: application/views/usermode/index.php:41
 msgid "Status"
-msgstr ""
+msgstr "Stav"
 
 #: application/views/api/description.php:15
 msgid "Editing Description for API Key"
-msgstr ""
+msgstr "Úprava popisu pre API kľúč"
 
 #: application/views/api/description.php:28
 msgid "Simple name to describe what you use this API for."
-msgstr ""
+msgstr "Jednoduché pomenovanie významu tohto API."
 
 #: application/views/api/description.php:33
 #: application/views/bands/create.php:49 application/views/bands/edit.php:32
@@ -5006,19 +5007,23 @@ msgstr ""
 #: application/views/satellite/pass.php:115
 #: application/views/simplefle/index.php:22
 msgid "Save"
-msgstr ""
+msgstr "Uložiť"
 
 #: application/views/api/index.php:8
 #: application/views/interface_assets/header.php:522
 msgid "API Keys"
-msgstr ""
+msgstr "API kľúče"
 
 #: application/views/api/index.php:11
+#, fuzzy
 msgid ""
 "The Wavelog API (Application Programming Interface) lets third party systems "
 "access Wavelog in a controlled way. Access to the API is managed via API "
 "keys."
 msgstr ""
+"Rozhranie Wavelog API (Application Programming Interface) umožňuje tretím "
+"stranám pristupovať k Wavelogu kontrolovaným spôsobom. Prístup k API je "
+"spravovaný prostredníctvom API kľúčov."
 
 #: application/views/api/index.php:12
 msgid ""
@@ -5027,27 +5032,31 @@ msgid ""
 "Wavelog. Generate a read-only key if the application only needs to obtain "
 "data from Wavelog."
 msgstr ""
+"Budeš musieť vygenerovať API kľúč pre každý nástroj, ktorý chceš používať "
+"(napr. WLgate). Generuj kľúč na čítanie a zápis, ak aplikácia potrebuje "
+"posielať dáta do Wavelog. Generuj kľúč len na čítanie, ak aplikácia "
+"potrebuje len získať dáta z Wavelog-u."
 
 #: application/views/api/index.php:13
 msgid "Links to 3rd-Party-Software which works with Wavelog:"
-msgstr ""
+msgstr "Odkazy na softvér tretích strán, ktorý funguje s Wavelog:"
 
 #: application/views/api/index.php:16
 msgid "More Tools"
-msgstr ""
+msgstr "Viac nástrojov"
 
 #: application/views/api/index.php:19
 msgid "API URL"
-msgstr ""
+msgstr "API URL"
 
 #: application/views/api/index.php:19 application/views/api/index.php:54
 #: application/views/cron/index.php:35 application/views/debug/index.php:46
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Kopírovať do schránky"
 
 #: application/views/api/index.php:19
 msgid "The API URL for this Wavelog instance is"
-msgstr ""
+msgstr "URL API pre túto instanciu Wavelogu je"
 
 #: application/views/api/index.php:20 application/views/dxcalendar/index.php:15
 #: application/views/eqsl/export.php:33
@@ -5061,41 +5070,43 @@ msgstr ""
 #: application/views/sattimers/index.php:77
 #: application/views/search/filter.php:72
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: application/views/api/index.php:20
 msgid ""
 "It's good practice to delete a key if you are no longer using the associated "
 "application."
-msgstr ""
+msgstr "Je dobré vymazať kľúč, ak už nepoužívate súvisiacu aplikáciu."
 
 #: application/views/api/index.php:22
 msgid ""
 "On Clubstations the API Keys are personal and not shared. Clubstation users "
 "can only see their own keys."
 msgstr ""
+"Na klubových staniciach sú kľúče API osobné a nezdieľajú sa. Používatelia "
+"klubových staníc môžu vidieť len svoje vlastné kľúče."
 
 #: application/views/api/index.php:30
 msgid "API Key"
-msgstr ""
+msgstr "API kľúč"
 
 #: application/views/api/index.php:31 application/views/cron/edit.php:30
 #: application/views/cron/index.php:66
 #: application/views/search/stored_queries.php:8
 msgid "Description"
-msgstr ""
+msgstr "Popis"
 
 #: application/views/api/index.php:32
 msgid "Last Used"
-msgstr ""
+msgstr "Naposledy použité"
 
 #: application/views/api/index.php:34
 msgid "Created By"
-msgstr ""
+msgstr "Vytvorené autorom"
 
 #: application/views/api/index.php:36
 msgid "Permissions"
-msgstr ""
+msgstr "Povolenia"
 
 #: application/views/api/index.php:38
 #: application/views/club/permissions.php:226
@@ -5106,36 +5117,36 @@ msgstr ""
 #: application/views/user/index.php:33 application/views/user/index.php:160
 #: application/views/webadif/export.php:45
 msgid "Actions"
-msgstr ""
+msgstr "Akcie"
 
 #: application/views/api/index.php:64
 msgid "Read & Write"
-msgstr ""
+msgstr "Čítať & Písať"
 
 #: application/views/api/index.php:66
 msgid "Read-Only"
-msgstr ""
+msgstr "Iba na čítanie"
 
 #: application/views/api/index.php:76
 msgid "Test"
-msgstr ""
+msgstr "Test."
 
 #: application/views/api/index.php:79
-#, php-format
+#, fuzzy, php-format
 msgid "Are you sure you want delete the API Key %s?"
-msgstr ""
+msgstr "Ste si istý, že chcete odstrániť API kľúč %s?"
 
 #: application/views/api/index.php:92
 msgid "You have no API Keys."
-msgstr ""
+msgstr "Nemáš žiadne API kľúče."
 
 #: application/views/api/index.php:96
 msgid "Create a read & write key"
-msgstr ""
+msgstr "Vytvoriť kľúč pre čítanie a zápis"
 
 #: application/views/api/index.php:97
 msgid "Create a read-only key"
-msgstr ""
+msgstr "Vytvoriť kľúč iba na čítanie"
 
 #: application/views/awards/73on73/index.php:6
 #: application/views/awards/73on73/index.php:14
@@ -5184,17 +5195,20 @@ msgstr ""
 #: application/views/awards/wwff/index.php:6
 #: application/views/awards/wwff/index.php:14
 msgid "Award Info"
-msgstr ""
+msgstr "Diplomové informácie"
 
 #: application/views/awards/73on73/index.php:7
+#, fuzzy
 msgid "73 on 73 Award"
-msgstr ""
+msgstr "73 on 73 Award"
 
 #: application/views/awards/73on73/index.php:8
 msgid ""
 "Paul Stoetzer N8HM is sponsoring an award for contacts made via the AO-73 "
 "(FUNcube-1) amateur radio satellite."
 msgstr ""
+"Paul Stoetzer N8HM sponzoruje cenu za spojenia uskutočnené cez amatérsky "
+"rádiový satelit AO-73 (FUNcube-1)."
 
 #: application/views/awards/73on73/index.php:9
 #: application/views/awards/helvetia/index.php:26
@@ -5205,20 +5219,22 @@ msgstr ""
 #: application/views/awards/wwff/index.php:10
 #, php-format
 msgid "For more information, please visit: %s."
-msgstr ""
+msgstr "Pre viac informácií navštív: %s."
 
 #: application/views/awards/73on73/index.php:11
 msgid ""
 "Fields taken for this Award: Propagation-Mode and SAT-Name (ADIF: "
 "PROP_MODE=SAT, SAT_NAME='AO-73')"
 msgstr ""
+"Pre tento diplom sa používajú oblasti: propagačný režim a Názov SAT "
+"(ADIF: PROP_MODE=SAT, SAT_NAME='AO-73')"
 
 #: application/views/awards/73on73/index.php:32
 #: application/views/awards/jcc/index.php:153
 #: application/views/awards/waja/index.php:157
 #: application/views/distancerecords/index.php:13
 msgid "Number"
-msgstr ""
+msgstr "Číslo"
 
 #: application/views/awards/counties/details.php:4
 #: application/views/awards/details.php:1
@@ -5226,19 +5242,21 @@ msgstr ""
 #: application/views/distancerecords/details.php:1
 #: application/views/statistics/details.php:1
 #: application/views/timeline/details.php:2
+#, fuzzy
 msgid "Filtering on"
-msgstr ""
+msgstr "Filtrovanie zapnuté"
 
 #: application/views/awards/counties/details.php:13
 #: application/views/logbookadvanced/index.php:426
 #: application/views/logbookadvanced/index.php:911
 #: application/views/logbookadvanced/useroptions.php:110
 msgid "County"
-msgstr ""
+msgstr "Okres"
 
 #: application/views/awards/counties/index.php:7
+#, fuzzy
 msgid "US County Award"
-msgstr ""
+msgstr "US County Award"
 
 #: application/views/awards/counties/index.php:8
 #, php-format
@@ -5248,6 +5266,10 @@ msgid ""
 "contacts with specified numbers of U.S. counties under rules and conditions "
 "you can find %s."
 msgstr ""
+"Diplom United States of America Counties Award (USA-CA) sponzorovaný klubom "
+"MARAC (Mobile Amateur Radio Awards Club), sa udeľuje za potvrdené obojsmerné "
+"rádiové spojenia s určeným počtom okresov USA podľa pravidiel a podmienok, "
+"ktoré nájdete %s."
 
 #: application/views/awards/counties/index.php:9
 msgid ""
@@ -5255,24 +5277,31 @@ msgid ""
 "individuals for all county contacts made, regardless of callsigns used, "
 "operating locations, or dates."
 msgstr ""
+"USA-CA je k dispozícii všetkým licencovaným amatérom na celom svete a "
+"udeľuje sa jednotlivcom za všetky spojenia v rámci okresu, bez ohľadu na "
+"použité volacie znaky, miesta prevádzky alebo dátumy."
 
 #: application/views/awards/counties/index.php:10
 msgid "Special USA-CA awards are also available to SWLs on a heard basis."
 msgstr ""
+"Aj špeciálne diplomy USA-CA sú k dispozícii pre SWL na základe posluchu."
 
 #: application/views/awards/counties/index.php:11
 msgid ""
 "Fields taken for this Award: State (ADIF: STATE), Stations County (ADIF: "
 "CNTY), DXCC (Must be one of 291 (U.S.A.) ,6 (ALASKA) or 110 (HAWAII))"
 msgstr ""
+"Pre tento diplom sa používajú oblasti: štát (ADIF: STATE), okres stanice "
+"(ADIF: CNTY), DXCC (Musí byť jedno z 291 (U.S.A.), 6 (ALASKA) alebo 110 "
+"(HAWAII))"
 
 #: application/views/awards/counties/index.php:22
 msgid "Counties Worked"
-msgstr ""
+msgstr "Urobené okresy"
 
 #: application/views/awards/counties/index.php:23
 msgid "Counties Confirmed"
-msgstr ""
+msgstr "Potvrdené okresy"
 
 #: application/views/awards/counties/index.php:40
 #: application/views/awards/cq/index.php:180
@@ -5306,7 +5335,7 @@ msgstr ""
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
 msgid "Total"
-msgstr ""
+msgstr "Celkovo"
 
 #: application/views/awards/cq/index.php:3
 #: application/views/awards/cq/index.php:154
@@ -5328,16 +5357,17 @@ msgstr ""
 #: application/views/timeplotter/index.php:44
 #: application/views/user/modals/first_login_wizard.php:74
 msgid "CQ Zone"
-msgstr ""
+msgstr "CQ zóna"
 
 #: application/views/awards/cq/index.php:4
 #: application/views/awards/itu/index.php:4
 msgid "Hover over a zone"
-msgstr ""
+msgstr "Umiestni kurzor nad CQ alebo ITU zónu"
 
 #: application/views/awards/cq/index.php:23
+#, fuzzy
 msgid "CQ WAZ (Worked All Zones) Award"
-msgstr ""
+msgstr "CQ WAZ (Worked All Zones) Award"
 
 #: application/views/awards/cq/index.php:24
 msgid ""
@@ -5346,6 +5376,10 @@ msgid ""
 "magazine first appeared in January 1945 and focuses on awards and the "
 "practical aspects of amateur radio."
 msgstr ""
+"Časopis CQ bol založený v USA a patril medzi najpopulárnejšie rádioamatérske "
+"časopisy na svete. Služby ukončili na konci roka 2023. Časopis sa prvýkrát "
+"objavil v januári 1945 a zameriava sa na ocenenia a praktické aspekty "
+"rádioamatérstva."
 
 #: application/views/awards/cq/index.php:25
 msgid ""
@@ -5354,19 +5388,22 @@ msgid ""
 "Magazine does no longer exists the CQ WAZ Awards is now managed directly by "
 "N4BAA."
 msgstr ""
+"Diplom WAZ znamená 'Worked All Zones' a vyžaduje rádiové spojenia so "
+"všetkými 40 CQ zónami spolu s príslušným potvrdením. Keďže časopis CQ už "
+"neexistuje, cenu CQ WAZ teraz priamo spravuje N4BAA."
 
 #: application/views/awards/cq/index.php:26
 #, php-format
 msgid "You can find all the information and rules on the Website of N4BAA: %s"
-msgstr ""
+msgstr "Všetky informácie a pravidlá nájdete na webovej stránke N4BAA: %s"
 
 #: application/views/awards/cq/index.php:27
 msgid "Fields taken for this Award: CQ-Zone (ADIF: CQZ)"
-msgstr ""
+msgstr "Pre tento diplom sa používajú oblasti: CQ zóna (ADIF: CQZ)"
 
 #: application/views/awards/cq/index.php:29
 msgid "Awards - CQ WAZ"
-msgstr ""
+msgstr "Diplomy - CQ WAZ"
 
 #: application/views/awards/cq/index.php:38
 #: application/views/awards/itu/index.php:38
@@ -5380,7 +5417,7 @@ msgstr ""
 #: application/views/search/result.php:32
 #: application/views/visitor/index.php:270
 msgid "Confirmed"
-msgstr ""
+msgstr "Potvrdené"
 
 #: application/views/awards/cq/index.php:38
 #: application/views/awards/itu/index.php:38
@@ -5391,7 +5428,7 @@ msgstr ""
 #: application/views/search/result.php:35
 #: application/views/visitor/index.php:266
 msgid "Worked"
-msgstr ""
+msgstr "Urobené"
 
 #: application/views/awards/cq/index.php:42
 #: application/views/awards/dok/index.php:42
@@ -5408,7 +5445,7 @@ msgstr ""
 #: application/views/awards/wapc/index.php:26
 #: application/views/awards/was/index.php:42
 msgid "Show worked"
-msgstr ""
+msgstr "Ukáž urobené"
 
 #: application/views/awards/cq/index.php:46
 #: application/views/awards/dok/index.php:46
@@ -5425,7 +5462,7 @@ msgstr ""
 #: application/views/awards/wapc/index.php:30
 #: application/views/awards/was/index.php:46
 msgid "Show confirmed"
-msgstr ""
+msgstr "Zobraziť potvrdené"
 
 #: application/views/awards/cq/index.php:50
 #: application/views/awards/dxcc/index.php:106
@@ -5441,7 +5478,7 @@ msgstr ""
 #: application/views/awards/wapc/index.php:34
 #: application/views/awards/was/index.php:50
 msgid "Show not worked"
-msgstr ""
+msgstr "Zobraziť neurobené"
 
 #: application/views/awards/cq/index.php:56
 #: application/views/awards/dok/index.php:52
@@ -5459,7 +5496,7 @@ msgstr ""
 #: application/views/awards/was/index.php:56
 #: application/views/awards/wpx/index.php:24
 msgid "Show QSO with QSL Type"
-msgstr ""
+msgstr "Zobraziť spojenie s typom QSL"
 
 #: application/views/awards/cq/index.php:60
 #: application/views/awards/iota/index.php:64
@@ -5470,7 +5507,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:419
 #: application/views/view_log/qso.php:25
 msgid "QSL Card"
-msgstr ""
+msgstr "QSL karta"
 
 #: application/views/awards/cq/index.php:116
 #: application/views/awards/dok/index.php:127
@@ -5497,7 +5534,7 @@ msgstr "Resetovať"
 
 #: application/views/awards/cq/index.php:119
 msgid "Show CQ Zone Map"
-msgstr ""
+msgstr "Zobraziť mapu CQ zón"
 
 #: application/views/awards/cq/index.php:128
 #: application/views/awards/dxcc/index.php:243
@@ -5509,7 +5546,7 @@ msgstr ""
 #: application/views/awards/wap/index.php:125
 #: application/views/awards/was/index.php:129
 msgid "Table"
-msgstr ""
+msgstr "Tabuľka"
 
 #: application/views/awards/cq/index.php:131
 #: application/views/awards/dok/index.php:129
@@ -5526,7 +5563,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:813
 #: application/views/logbookadvanced/useroptions.php:7
 msgid "Map"
-msgstr ""
+msgstr "Mapa"
 
 #: application/views/awards/cq/index.php:171
 #: application/views/awards/dok/index.php:166
@@ -5544,7 +5581,7 @@ msgstr ""
 #: application/views/awards/was/index.php:175
 #: application/views/awards/wpx/index.php:158
 msgid "Summary"
-msgstr ""
+msgstr "Zhrnutie"
 
 #: application/views/awards/cq/index.php:184
 #: application/views/awards/dok/index.php:179
@@ -5562,7 +5599,7 @@ msgstr ""
 #: application/views/awards/was/index.php:188
 #: application/views/awards/wpx/index.php:183
 msgid "Total worked"
-msgstr ""
+msgstr "Spolu urobené"
 
 #: application/views/awards/cq/index.php:191
 #: application/views/awards/dok/index.php:186
@@ -5580,11 +5617,12 @@ msgstr ""
 #: application/views/awards/was/index.php:195
 #: application/views/awards/wpx/index.php:204
 msgid "Total confirmed"
-msgstr ""
+msgstr "Spolu potvrdené"
 
 #: application/views/awards/dok/index.php:7
+#, fuzzy
 msgid "DOK Award"
-msgstr ""
+msgstr "DOK Award"
 
 #: application/views/awards/dok/index.php:8
 msgid ""
@@ -5595,6 +5633,12 @@ msgid ""
 "'Deutscher Ortsverband Kenner' (English: 'German Local Association "
 "Identifier')."
 msgstr ""
+"Nemecko sa rozprestiera na viac ako 630 km od východu na západ a takmer 900 "
+"km od severu na juh. Asi 70 000 z 82 miliónov obyvateľov Nemecka sú "
+"licencovaní rádioamatéri, z ktorých viac ako 40 000 je členmi DARC. DOK je "
+"systém, ktorý poskytuje jednotlivým miestnym pobočkám identifikátor a "
+"znamená \"Deutscher Ortsverband Kenner\" "
+"(po slovensky: \"Identifikátor nemeckého miestneho združenia\")."
 
 #: application/views/awards/dok/index.php:9
 msgid ""
@@ -5603,10 +5647,14 @@ msgid ""
 "or F41 Baunatal (location of the DARC headquarters). Note: A zero in a DOK "
 "is a common mistake, often being logged as the letter O."
 msgstr ""
+"DOK sa skladá z písmena pre okres a dvojciferného čísla pre miestnu časť, "
+"ako napríklad P03 Friedrichshafen (mesto výstavy 'Hamradio') alebo F41 "
+"Baunatal (sídlo ústredia DARC). Poznámka: Nula v DOK je bežná chyba, často "
+"je zaznamenávaná ako písmeno O."
 
 #: application/views/awards/dok/index.php:10
 msgid "DARC website"
-msgstr ""
+msgstr "DARC webová stránka"
 
 #: application/views/awards/dok/index.php:10
 #, php-format
@@ -5615,18 +5663,20 @@ msgid ""
 "This information is provided by the %s. Information about the DOK Awards and "
 "its rules can be found %s."
 msgstr ""
+"Tieto informácie poskytuje %s. Informácie o DOK diplome a jeho pravidlách "
+"nájdete %s."
 
 #: application/views/awards/dok/index.php:11
 msgid "Fields taken for this Award: DOK (ADIF: DARC_DOK)"
-msgstr ""
+msgstr "Pre tento diplom sa používajú oblasti: DOK (ADIF: DARC_DOK)"
 
 #: application/views/awards/dok/index.php:21
 msgid "DOK / SDOK"
-msgstr ""
+msgstr "DOK / SDOK"
 
 #: application/views/awards/dok/index.php:24
 msgid "DOK + SDOK"
-msgstr ""
+msgstr "DOK + SDOK"
 
 #: application/views/awards/dok/index.php:38
 #: application/views/awards/dxcc/index.php:94
@@ -5640,7 +5690,7 @@ msgstr ""
 #: application/views/awards/wapc/index.php:22
 #: application/views/awards/was/index.php:38
 msgid "Worked / Confirmed"
-msgstr ""
+msgstr "Urobené / Potvrdené"
 
 #: application/views/awards/dok/index.php:81
 #: application/views/awards/helvetia/index.php:80
@@ -5653,15 +5703,17 @@ msgstr ""
 #: application/views/awards/wapc/index.php:69
 #: application/views/awards/was/index.php:81
 msgid "Every band"
-msgstr ""
+msgstr "Každé pásmo"
 
 #: application/views/awards/dxcc/index.php:27
+#, fuzzy
 msgid "DXCC Award"
-msgstr ""
+msgstr "DXCC Award"
 
 #: application/views/awards/dxcc/index.php:28
 msgid "'How to Count Countries Worked, A New DX Scoring System'"
 msgstr ""
+"'Ako počítať krajiny, s ktorými sa pracovalo, nový systém hodnotenia DX'"
 
 #: application/views/awards/dxcc/index.php:28
 #, php-format
@@ -5670,17 +5722,20 @@ msgid ""
 "DXCC List is based on an article created in 1935 by Clinton B. DeSoto, "
 "W1CBD, titled %s."
 msgstr ""
+"DXCC znamená 'DX Century Club,' ocenenie založené na urobených krajinách. "
+"Zoznam DXCC vychádza z článku, ktorý v roku 1935 vytvoril Clinton B. DeSoto, "
+"W1CBD, s názvom %s."
 
 #: application/views/awards/dxcc/index.php:29
 #: application/views/awards/wac/index.php:11
 msgid "ARRL website"
-msgstr ""
+msgstr "Webová stránka ARRL"
 
 #: application/views/awards/dxcc/index.php:29
 #: application/views/awards/wac/index.php:11
 #, php-format
 msgid "You can find all information about the DXCC Award on the %s."
-msgstr ""
+msgstr "Všetky informácie o DXCC diplome nájdete na %s."
 
 #: application/views/awards/dxcc/index.php:30
 msgid ""
@@ -5690,12 +5745,19 @@ msgid ""
 "will find Deleted DXCC entities also in the lists on Wavelog. Be aware that "
 "these DXCC entities are outdated and no longer valid."
 msgstr ""
+"Dôležitá poznámka: Kritériá pre DXCC zoznam sa časom menili. Zoznam zostáva "
+"nezmenený, kým entita už nespĺňa kritériá, na základe ktorých bola pridaná, "
+"a potom je presunutá do zoznamu zmazaných. Zmazané DXCC entity nájdete aj v "
+"zoznamoch na Wavelog. Uvedomte si, že tieto DXCC entity sú zastarané a už "
+"nie sú platné."
 
 #: application/views/awards/dxcc/index.php:31
 msgid ""
 "Fields taken for this Award: DXCC (Needs to be a valid one out of the DXCC-"
 "ADIF-Spec-List"
 msgstr ""
+"Pre tento diplom sa používajú oblasti: DXCC (musí byť platné z DXCC-ADIF-"
+"Spec-Listu"
 
 #: application/views/awards/dxcc/index.php:41
 #: application/views/awards/wpx/index.php:13
@@ -5703,17 +5765,17 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:270
 #: application/views/mode/index.php:80 application/views/usermode/index.php:68
 msgid "Filters"
-msgstr ""
+msgstr "Filtre"
 
 #: application/views/awards/dxcc/index.php:44
 msgid "Show DXCC Map"
-msgstr ""
+msgstr "Zobraziť mapu DXCC"
 
 #: application/views/awards/dxcc/index.php:51
 #: application/views/gridmap/index.php:28
 #: application/views/logbookadvanced/index.php:276
 msgid "Date Presets"
-msgstr ""
+msgstr "Predvolené dátumy"
 
 #: application/views/awards/dxcc/index.php:53
 #: application/views/contestcalendar/index.php:45
@@ -5724,48 +5786,48 @@ msgstr ""
 #: application/views/gridmap/index.php:31
 #: application/views/logbookadvanced/index.php:278
 msgid "Today"
-msgstr ""
+msgstr "Dnes"
 
 #: application/views/awards/dxcc/index.php:54
 #: application/views/gridmap/index.php:32
 #: application/views/logbookadvanced/index.php:279
 msgid "Yesterday"
-msgstr ""
+msgstr "Včera"
 
 #: application/views/awards/dxcc/index.php:55
 #: application/views/gridmap/index.php:33
 #: application/views/logbookadvanced/index.php:280
 msgid "Last 7 Days"
-msgstr ""
+msgstr "Posledných 7 dní"
 
 #: application/views/awards/dxcc/index.php:56
 #: application/views/gridmap/index.php:34
 #: application/views/logbookadvanced/index.php:281
 msgid "Last 30 Days"
-msgstr ""
+msgstr "Posledných 30 dní"
 
 #: application/views/awards/dxcc/index.php:57
 #: application/views/gridmap/index.php:35
 #: application/views/logbookadvanced/index.php:282
 msgid "This Month"
-msgstr ""
+msgstr "Tento mesiac"
 
 #: application/views/awards/dxcc/index.php:58
 #: application/views/gridmap/index.php:36
 #: application/views/logbookadvanced/index.php:283
 msgid "Last Month"
-msgstr ""
+msgstr "Minulý mesiac"
 
 #: application/views/awards/dxcc/index.php:59
 #: application/views/gridmap/index.php:37
 #: application/views/logbookadvanced/index.php:284
 msgid "This Year"
-msgstr ""
+msgstr "Tento rok"
 
 #: application/views/awards/dxcc/index.php:60
 #: application/views/logbookadvanced/index.php:285
 msgid "Last Year"
-msgstr ""
+msgstr "Minulý rok"
 
 #: application/views/awards/dxcc/index.php:61
 #: application/views/gridmap/index.php:38
@@ -5773,24 +5835,24 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:286
 #: application/views/qso/index.php:738
 msgid "Clear"
-msgstr ""
+msgstr "Vyčistiť"
 
 #: application/views/awards/dxcc/index.php:66
 #: application/views/dxcalendar/index.php:9
 #: application/views/gridmap/index.php:44
 msgid "Date from"
-msgstr ""
+msgstr "Dátum od"
 
 #: application/views/awards/dxcc/index.php:74
 #: application/views/dxcalendar/index.php:10
 #: application/views/gridmap/index.php:48
 msgid "Date to"
-msgstr ""
+msgstr "Dátum do"
 
 #: application/views/awards/dxcc/index.php:87
 #: application/views/awards/iota/index.php:36
 msgid "Include deleted"
-msgstr ""
+msgstr "Zahrnúť zmazané"
 
 #: application/views/awards/dxcc/index.php:142
 #: application/views/awards/iota/index.php:90
@@ -5804,7 +5866,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:266 application/views/qso/index.php:461
 #: application/views/view_log/qso.php:356
 msgid "Antarctica"
-msgstr ""
+msgstr "Antarktída"
 
 #: application/views/awards/dxcc/index.php:146
 #: application/views/awards/iota/index.php:94
@@ -5818,7 +5880,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:265 application/views/qso/index.php:460
 #: application/views/view_log/qso.php:353
 msgid "Africa"
-msgstr ""
+msgstr "Afrika"
 
 #: application/views/awards/dxcc/index.php:150
 #: application/views/awards/iota/index.php:98
@@ -5832,7 +5894,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:267 application/views/qso/index.php:462
 #: application/views/view_log/qso.php:359
 msgid "Asia"
-msgstr ""
+msgstr "Ázia"
 
 #: application/views/awards/dxcc/index.php:154
 #: application/views/awards/iota/index.php:102
@@ -5846,7 +5908,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:268 application/views/qso/index.php:463
 #: application/views/view_log/qso.php:362
 msgid "Europe"
-msgstr ""
+msgstr "Európa"
 
 #: application/views/awards/dxcc/index.php:158
 #: application/views/awards/iota/index.php:106
@@ -5860,7 +5922,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:269 application/views/qso/index.php:464
 #: application/views/view_log/qso.php:365
 msgid "North America"
-msgstr ""
+msgstr "Severná Amerika"
 
 #: application/views/awards/dxcc/index.php:162
 #: application/views/awards/iota/index.php:110
@@ -5874,7 +5936,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:271 application/views/qso/index.php:466
 #: application/views/view_log/qso.php:371
 msgid "South America"
-msgstr ""
+msgstr "Južná Amerika"
 
 #: application/views/awards/dxcc/index.php:166
 #: application/views/awards/iota/index.php:114
@@ -5888,62 +5950,69 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:270 application/views/qso/index.php:465
 #: application/views/view_log/qso.php:368
 msgid "Oceania"
-msgstr ""
+msgstr "Oceánia"
 
 #: application/views/awards/dxcc/index.php:175
 #: application/views/awards/iota/index.php:123
 #: application/views/awards/wpx/index.php:81
 msgid "Every band (w/o SAT)"
-msgstr ""
+msgstr "Každé pásmo (bez SAT)"
 
 #: application/views/awards/dxcc/index.php:263
 msgid "Legend:"
-msgstr ""
+msgstr "Legenda:"
 
 #: application/views/awards/dxcc/index.php:264
 msgid "(Q)SL-Paper-Card"
-msgstr ""
+msgstr "(Q)SL-papierová-karta"
 
 #: application/views/awards/dxcc/index.php:265
+#, fuzzy
 msgid "(L)oTW"
-msgstr ""
+msgstr "(L)oTW"
 
 #: application/views/awards/dxcc/index.php:266
+#, fuzzy
 msgid "(e)QSL"
-msgstr ""
+msgstr "(e)QSL"
 
 #: application/views/awards/dxcc/index.php:267
 msgid "QR(Z)-\"confirmation\""
-msgstr ""
+msgstr "QR(Z)-\"potvrdené\""
 
 #: application/views/awards/dxcc/index.php:268
+#, fuzzy
 msgid "(C)lublog"
-msgstr ""
+msgstr "(C)lublog"
 
 #: application/views/awards/dxcc/index.php:269
 msgid "(W)orked"
-msgstr ""
+msgstr "(W) urobené"
 
 #: application/views/awards/dxcc/index.php:275
 msgid "DXCC Name"
-msgstr ""
+msgstr "DXCC názov"
 
 #: application/views/awards/dxcc/index.php:276
 #: application/views/awards/iota/index.php:199
 #: application/views/awards/wae/index.php:163
 #: application/views/timeline/index.php:199
 #: application/views/timeline/index.php:297
+#, fuzzy
 msgid "Prefix"
-msgstr ""
+msgstr "Prefix"
 
 #: application/views/awards/dxcc/index.php:378
 msgid "No results found for your search criteria. Please try again."
 msgstr ""
+"Podľa vašich vyhľadávacích kritérií neboli nájdené žiadne výsledky. Skúste "
+"to prosím znovu."
 
 #: application/views/awards/ffma/index.php:11
 #: application/views/interface_assets/header.php:288
+#, fuzzy
 msgid "Fred Fish Memorial Award"
-msgstr ""
+msgstr "Fred Fish Memorial Award"
 
 #: application/views/awards/ffma/index.php:12
 msgid ""
@@ -5951,27 +6020,36 @@ msgid ""
 "who was the first amateur to have worked and confirmed all 488 Maidenhead "
 "grid squares in the 48 contiguous United States on 6 Meters."
 msgstr ""
+"Diplom Freda Fisha bola vytvorená na počesť Freda Fisha, W5FF (SK), ktorý "
+"bol prvým amatérom, ktorý odpracoval a potvrdil všetky 488 Maidenhead "
+"lokátorových štvorcov v 48 susediacich štátoch USA na 6 metroch."
 
 #: application/views/awards/ffma/index.php:13
 msgid ""
 "The award will be given to any amateur who can duplicate W5FF's "
 "accomplishment."
 msgstr ""
+"Diplom bude udelená ktorémukoľvek rádioamatérovi, ktorý dokáže zopakovať "
+"úspech W5FF."
 
 #: application/views/awards/ffma/index.php:14
 #, php-format
 msgid "For more information, you can visit this link: %s."
-msgstr ""
+msgstr "Pre viac informácií navštív tento odkaz: %s."
 
 #: application/views/awards/ffma/index.php:15
 msgid ""
 "Fields taken for this Award: DXCC (Must be USA), Gridsquare (Must contain a "
 "grid from one of the 488 mainland gridsquares!), Band must be 6M."
 msgstr ""
+"Pre tento diplom sa používajú oblasti: DXCC (musí byť USA), lokátor "
+"(musí obsahovať štvorec z jedného z 488 pevninských štvorcov!), pásmo musí "
+"byť 6M."
 
 #: application/views/awards/gridmaster/index.php:12
+#, fuzzy
 msgid "US Gridmaster Award"
-msgstr ""
+msgstr "US Gridmaster Award"
 
 #: application/views/awards/gridmaster/index.php:13
 msgid ""
@@ -5980,6 +6058,10 @@ msgid ""
 "operators worldwide who manage to work all 488 grid squares in the USA via "
 "satellite and can provide QSL confirmations for each contact."
 msgstr ""
+"GridMaster Award je najprestížnejšie ocenenie AMSAT, prvýkrát predstavené v "
+"roku 2014 skupinou Star Comm Group. Je dostupné všetkým rádioamatérom po "
+"celom svete, ktorí sa dokážu spojiť so všetkými 488 lokátorovými štvorcami v "
+"USA cez satelit a môžu poskytnúť QSL potvrdenia pre každé spojenie."
 
 #: application/views/awards/gridmaster/index.php:14
 #, php-format
@@ -5993,15 +6075,23 @@ msgid ""
 "when achieved from another location, which is in a different 200-kilometer "
 "circle."
 msgstr ""
+"Oficiálne informácie od %s: Obojsmerná komunikácia musí byť nadviazaná "
+"prostredníctvom amatérskeho satelitu s každým lokátorovým štvorcom. Nie je "
+"potrebné žiadne minimálne hlásenie signálu. Spojenia musia byť nadviazané z "
+"rovnakého miesta alebo z miest, ktoré nie sú od seba vzdialené viac ako 200 "
+"kilometrov. Potvrdenie žiadateľa v žiadosti o cenu slúži ako uistenie o "
+"dodržiavaní pravidla vzdialenosti. Jednotlivci môžu požiadať o udelenie "
+"viacerých ocenení GridMaster, ak boli dosiahnuté z inej lokality, ktorá je v "
+"inom 200-kilometrovom kruhu."
 
 #: application/views/awards/gridmaster/index.php:14
 msgid "website"
-msgstr ""
+msgstr "webstránka"
 
 #: application/views/awards/gridmaster/index.php:15
 #: application/views/awards/gridmaster/index.php:21
 msgid "This map shows only QSOs worked on SAT."
-msgstr ""
+msgstr "Táto mapa zobrazuje iba QSOs uskutočnené cez SAT."
 
 #: application/views/awards/gridmaster/index.php:16
 msgid ""
@@ -6009,16 +6099,22 @@ msgid ""
 "grid from one of the 488 mainland gridsquares!), Propagation-Mode and SAT-"
 "Name"
 msgstr ""
+"Pre tento diplom sa používajú oblasti: DXCC (musí byť USA), Gridsquare "
+"(musí obsahovať štvorec z jedného z 488 pevninských štvorcov na pevnine!), "
+"režim šírenia a názov SAT"
 
 #: application/views/awards/gridmaster/index.php:18
+#, fuzzy
 msgid "Gridmaster Award"
-msgstr ""
+msgstr "Gridmaster Award"
 
 #: application/views/awards/gridmaster/index.php:19
 msgid ""
 "The Gridmaster Award was originally designed for the 488 gridsquares to be "
 "worked in the USA."
 msgstr ""
+"Diplom Gridmaster bol pôvodne navrhnutý pre 488 urobených lokátorových "
+"štvorcov v USA."
 
 #: application/views/awards/gridmaster/index.php:20
 msgid ""
@@ -6026,37 +6122,47 @@ msgid ""
 "award but just showing the grids which were worked according to the US "
 "Gridmaster Award rules for this DXCC."
 msgstr ""
+"Na tej mape sú zobrazené lokátory pre konkrétne DXCC. Toto nie je oficiálny "
+"diplom, ale len zobrazenie lokátorov, ktoré boli urobené podľa pravidiel US "
+"Gridmaster Award pre tento DXCC."
 
 #: application/views/awards/gridmaster/index.php:24
 msgid ""
 "Fields taken for this Award: DXCC (Must be Germany), Gridsquare, Propagation-"
 "Mode and SAT-Name"
 msgstr ""
+"Pre tento diplom sa používajú oblasti: DXCC (musí byť Nemecko), Gridsquare, "
+"Propagačný režim a názov SAT"
 
 #: application/views/awards/gridmaster/index.php:27
 msgid ""
 "Fields taken for this Award: DXCC (Must be Luxembourg), Gridsquare, "
 "Propagation-Mode and SAT-Name"
 msgstr ""
+"Pre tento diplom sa používajú oblasti: DXCC (musí byť Luxembursko), "
+"lokátorový štvorec, režim šírenia a názov SAT"
 
 #: application/views/awards/gridmaster/index.php:30
 msgid ""
 "Fields taken for this Award: DXCC (Must be Japan), Gridsquare, Propagation-"
 "Mode and SAT-Name"
 msgstr ""
+"Pre tento diplom sa používajú oblasti: DXCC (musí byť Japonsko), lokátorový "
+"štvorec, režim šírenia a meno satelitu"
 
 #: application/views/awards/helvetia/index.php:3
 msgctxt "Switzerland Canton"
 msgid "Canton"
-msgstr ""
+msgstr "Kanton"
 
 #: application/views/awards/helvetia/index.php:4
 msgid "Hover over a canton"
-msgstr ""
+msgstr "Umiestni kurzor nad kanton"
 
 #: application/views/awards/helvetia/index.php:23
+#, fuzzy
 msgid "HELVETIA 26 | SWITZERLAND AWARD"
-msgstr ""
+msgstr "HELVETIA 26 | SWITZERLAND AWARD"
 
 #: application/views/awards/helvetia/index.php:24
 msgid ""
@@ -6065,6 +6171,10 @@ msgid ""
 "activities on the bands by encouraging contacts across as many Swiss cantons "
 "as possible on multiple bands."
 msgstr ""
+"USKA (Únia švajčiarskych krátkovlnných amatérov) sponzoruje dva diplomy, "
+"HELVETIA 26 (H26) Award a SWITZERLAND Award, ktorých cieľom je podporiť "
+"aktivity na pásmach tým, že povzbudzujú spojenia s čo najviac švajčiarskymi "
+"kantónmi na viacerých pásmach."
 
 #: application/views/awards/helvetia/index.php:25
 msgid ""
@@ -6072,29 +6182,35 @@ msgid ""
 "(including SHF and UHF) bands. Valid connections for these awards date back "
 "to January 1, 1980"
 msgstr ""
+"Tieto diplomy sú dostupné v dvoch verziách: jedna pre HF pásma a druhá pre "
+"VHF (vrátane SHF a UHF) pásma. Platné spojenia pre tieto ocenenia siahajú až "
+"do 1. januára 1980"
 
 #: application/views/awards/helvetia/index.php:27
 msgid ""
 "Fields taken for this Award: DXCC (Must be Switzerland) and STATE (Must "
 "contain a valid state abbreviation!)"
 msgstr ""
+"Pre tento diplom sa používajú oblasti: DXCC (musí byť Švajčiarsko) a ŠTÁT "
+"(musí obsahovať platnú skratku štátu!)"
 
 #: application/views/awards/helvetia/index.php:118
 msgid "Show Helvetia Map"
-msgstr ""
+msgstr "Zobraziť mapu Švajčiarska"
 
 #: application/views/awards/helvetia/index.php:155
 msgid "Canton"
-msgstr ""
+msgstr "Kanton"
 
 #: application/views/awards/index.php:9 application/views/bands/index.php:48
 #: application/views/qso/award_tabs.php:33
 msgid "CQ"
-msgstr ""
+msgstr "CQ"
 
 #: application/views/awards/iota/index.php:18
+#, fuzzy
 msgid "IOTA Awards"
-msgstr ""
+msgstr "IOTA Awards"
 
 #: application/views/awards/iota/index.php:19
 msgid ""
@@ -6104,6 +6220,11 @@ msgid ""
 "enhance the experience of all those active on the amateur bands. To achieve "
 "this, it draws on the widespread mystique surrounding islands."
 msgstr ""
+"Program IOTA je vzrušujúci a inovatívny program aktivít, ktorý zaujal tisíce "
+"rádioamatérov po celom svete. Založený v roku 1964, podporuje spojenia so "
+"stanicami nachádzajúcimi sa na ostrovoch po celom svete, aby zvýšili zážitok "
+"všetkých, ktorí sú aktívni na amatérskych pásmach. Na dosiahnutie tohto "
+"cieľa čerpá z rozšírenej mystiky okolo ostrovov."
 
 #: application/views/awards/iota/index.php:20
 msgid ""
@@ -6119,25 +6240,37 @@ msgid ""
 "an Honor Roll and annual listings, as well as recognizing it with "
 "certificates and prestigious awards."
 msgstr ""
+"Spravuje ho Islands On The Air (IOTA) Ltd (označované ako IOTA Management) v "
+"partnerstve s Radio Society of Great Britain (RSGB). IOTA Management "
+"rozdelila ostrovy sveta do približne 1200 \"IOTA skupín,\" pričom každá má "
+"rozličný počet \"skupín,\" ktoré sú kvalifikovanými ostrovmi. Tieto zoznamy "
+"sú zverejnené v IOTA Directory a na webovej stránke IOTA. Cieľom pre IOTA "
+"Island Chasera je nadviazať rádiové spojenie s aspoň jednou skupinou v čo "
+"najväčšom počte týchto skupín. Program má jasne definovaný súbor pravidiel a "
+"podporuje priateľskú súťaž medzi účastníkmi zverejňovaním výkonov účastníkov "
+"v Honor Roll a ročných zoznamoch, ako aj oceňovaním certifikátmi a "
+"prestížnymi oceneniami."
 
 #: application/views/awards/iota/index.php:21
 #, php-format
 msgid "You can also find this information on %s."
-msgstr ""
+msgstr "Tieto informácie nájdeš aj na %s."
 
 #: application/views/awards/iota/index.php:22
 msgid ""
 "Fields taken for this Award: IOTA (ADIF: IOTA) must contain valid IOTA-"
 "Reference"
 msgstr ""
+"Pre tento diplom sa používajú oblasti: IOTA (ADIF: IOTA) musia obsahovať "
+"platnú IOTA-referenciu"
 
 #: application/views/awards/iota/index.php:32
 msgid "Deleted IOTA"
-msgstr ""
+msgstr "Zrušené IOTA"
 
 #: application/views/awards/iota/index.php:161
 msgid "Show IOTA Map"
-msgstr ""
+msgstr "Zobraziť IOTA mapu"
 
 #: application/views/awards/iota/index.php:200
 #: application/views/contesting/add.php:25
@@ -6163,11 +6296,11 @@ msgstr ""
 #: application/views/view_log/qso.php:220
 #: application/views/view_log/qso.php:676
 msgid "Name"
-msgstr ""
+msgstr "Meno"
 
 #: application/views/awards/iota/index.php:202
 msgid "Deleted"
-msgstr ""
+msgstr "Zrušené"
 
 #: application/views/awards/itu/index.php:3
 #: application/views/awards/itu/index.php:154
@@ -6184,7 +6317,7 @@ msgstr ""
 #: application/views/station_profile/edit.php:174
 #: application/views/user/modals/first_login_wizard.php:84
 msgid "ITU Zone"
-msgstr ""
+msgstr "ITU zóna"
 
 #: application/views/awards/itu/index.php:24
 msgid ""
@@ -6193,34 +6326,42 @@ msgid ""
 "broadcasting zones as defined by the International Telecommunications Union "
 "(ITU)."
 msgstr ""
+"Diplom Classic Worked ITU Zones môže byť nárokovaný predložením dôkazu o "
+"tom, že ste nadviazali spojenie s pozemnými radioamatérskymi stanicami v "
+"minimálne 70 z 75 vysielacích zón definovaných Medzinárodnou "
+"telekomunikačnou úniou (ITU)."
 
 #: application/views/awards/itu/index.php:25
 #, php-format
 msgctxt "uses 'RSGB'"
 msgid "You can find more information on the website of %s."
-msgstr ""
+msgstr "Viac informácií nájdete na webovej stránke %s."
 
 #: application/views/awards/itu/index.php:27
 msgid "Fields taken for this Award: ITU-Zone (ADIF: ITUZ)"
-msgstr ""
+msgstr "Pre tento diplom sa používajú oblasti: ITU-Zóna (ADIF: ITUZ)"
 
 #: application/views/awards/itu/index.php:29
+#, fuzzy
 msgid "Awards - ITU Zones"
-msgstr ""
+msgstr "Awards - ITU Zones"
 
 #: application/views/awards/itu/index.php:119
 msgid "Show ITU Zone Map"
-msgstr ""
+msgstr "Zobraziť mapu zón ITU"
 
 #: application/views/awards/jcc/index.php:17
+#, fuzzy
 msgid "JCC - Japan Century Cities Award"
-msgstr ""
+msgstr "JCC - Japan Century Cities Award"
 
 #: application/views/awards/jcc/index.php:18
 msgid ""
 "May be claimed for having contacted (heard) and received a QSL card from an "
 "amateur station located in each of at least 100 different cities of Japan."
 msgstr ""
+"Môže byť nárokovaný za spojenia (odposluch) a prijatie QSL karty od "
+"amatérskej stanice nachádzajúcej sa v najmenej 100 rôznych mestách Japonska."
 
 #: application/views/awards/jcc/index.php:19
 msgid ""
@@ -6229,30 +6370,36 @@ msgid ""
 "however names of city may be omitted. An additional sticker will be issued "
 "at every 50 contacts like 150, 250, 350, 450, 550, 650, 750 cities."
 msgstr ""
+"JCC-200, 300, 400, 500, 600, 700 a 800 budú vydávané ako samostatné diplomy. "
+"Zoznam QSL kariet by mal byť usporiadaný podľa referenčného čísla JCC, avšak "
+"názvy miest môžu byť vynechané. Ďalšia nálepka bude vydaná pri každých 50 "
+"spojeniach, ako napríklad 150, 250, 350, 450, 550, 650, 750 miest."
 
 #: application/views/awards/jcc/index.php:21
 msgid ""
 "Fields taken for this Award: DXCC (Japan) and County (Must contain a valid "
 "reference!)"
 msgstr ""
+"Pre tento diplom sa používajú oblasti: DXCC (Japonsko) a kraj "
+"(musí obsahovať platný referenčný údaj!)"
 
 #: application/views/awards/jcc/index.php:117
 msgid "Show JCC Map"
-msgstr ""
+msgstr "Ukáž JCC mapu"
 
 #: application/views/awards/jcc/index.php:118
 #: application/views/cabrillo/index.php:209 application/views/csv/index.php:129
 #: application/views/dxatlas/index.php:128 application/views/kml/index.php:113
 #: application/views/reg1test/index.php:145
 msgid "Export"
-msgstr ""
+msgstr "Exportovať"
 
 #: application/views/awards/jcc/index.php:128
 #: application/views/public_search/empty.php:2
 #: application/views/public_search/result.php:2
 #: application/views/view_log/partial/log_ajax.php:711
 msgid "Results"
-msgstr ""
+msgstr "Výsledky"
 
 #: application/views/awards/jcc/index.php:154
 #: application/views/search/result.php:21
@@ -6267,12 +6414,14 @@ msgstr "Mesto"
 #: application/views/qslprint/qslprint.php:58
 #: application/views/qslprint/qsolist.php:44
 #: application/views/qslprint/qsolist.php:45
+#, fuzzy
 msgid "SAT"
-msgstr ""
+msgstr "SAT"
 
 #: application/views/awards/pota/index.php:7
+#, fuzzy
 msgid "POTA Awards"
-msgstr ""
+msgstr "POTA Awards"
 
 #: application/views/awards/pota/index.php:8
 msgid ""
@@ -6280,6 +6429,10 @@ msgid ""
 "Parks on the Air special event ended. A group of volunteers wanted to "
 "continue the fun beyond the one-year event, and thus, POTA was born."
 msgstr ""
+"Parks on the Air® (POTA) sa odštartoval začiatkom roka 2017, keď sa skončila "
+"špeciálna akcia Národných parkov v éteri organizovaná ARRL. Skupina "
+"dobrovoľníkov chcela pokračovať v zábave aj po skončení jednoročnej akcie, a "
+"tak sa zrodil POTA."
 
 #: application/views/awards/pota/index.php:9
 msgid ""
@@ -6287,6 +6440,9 @@ msgid ""
 "there are several categories based on the number of parks, geographic areas, "
 "and more."
 msgstr ""
+"POTA funguje podobne ako SOTA, s Aktivátormi a Lovcami. Na ocenenia existuje "
+"niekoľko kategórií založených na počte parkov, geografických oblastiach a "
+"ďalších faktoroch."
 
 #: application/views/awards/pota/index.php:10
 #, php-format
@@ -6295,10 +6451,14 @@ msgid ""
 "For more information about the available awards and categories, please visit "
 "the %s."
 msgstr ""
+"Pre viac informácií o dostupných oceneniach a kategóriách navštívte prosím "
+"%s."
 
 #: application/views/awards/pota/index.php:11
 msgid "Fields taken for this Award: POTA_REF (must contain Park-Reference)"
 msgstr ""
+"Pre tento diplom sa používajú oblasti: POTA_REF "
+"(musí obsahovať referenciu parku)"
 
 #: application/views/awards/pota/index.php:32
 #: application/views/qso/index.php:309 application/views/qso/index.php:603
@@ -6307,25 +6467,25 @@ msgstr ""
 #: application/views/user/edit.php:706 application/views/view_log/qso.php:409
 #: application/views/view_log/qso.php:735
 msgid "POTA Reference(s)"
-msgstr ""
+msgstr "POTA referencia(e)"
 
 #: application/views/awards/rac/index.php:3
 msgctxt "Canada Province"
 msgid "Province"
-msgstr ""
+msgstr "Provincia"
 
 #: application/views/awards/rac/index.php:4
 #: application/views/awards/wap/index.php:4
 msgid "Hover over a province"
-msgstr ""
+msgstr "Umiestni kurzor na provinciu"
 
 #: application/views/awards/rac/index.php:109
 msgid "Show RAC Map"
-msgstr ""
+msgstr "Zobraziť mapu RAC"
 
 #: application/views/awards/sig/index.php:7
 msgid "SIG Information"
-msgstr ""
+msgstr "SIG Informácie"
 
 #: application/views/awards/sig/index.php:8
 msgid ""
@@ -6333,6 +6493,9 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
+"Kategória SIG alebo Špeciálna záujmová skupina poskytuje možnosť použiť "
+"akýkoľvek typ 'Ocenenia špeciálnej záujmovej skupiny' pre ocenenia, ktoré "
+"nie sú implementované vo Wavelogu."
 
 #: application/views/awards/sig/index.php:9
 msgid ""
@@ -6340,6 +6503,9 @@ msgid ""
 "dedicated fields for certain awards. SIG still makes it possible to use and "
 "evaluate all other types of markers for special interest groups."
 msgstr ""
+"Dôvodom je, že bežný formát ADIF poskytuje iba niekoľko vyhradených polí pre "
+"určité ocenenia. SIG však stále umožňuje používať a hodnotiť všetky ostatné "
+"typy značiek pre skupiny so špeciálnym záujmom."
 
 #: application/views/awards/sig/index.php:10
 msgid ""
@@ -6348,27 +6514,31 @@ msgid ""
 "in the award evaluation, and 'SIG INFO,' which contains the actual "
 "reference(s). Both fields are freely customizable."
 msgstr ""
+"Pri spracovaní QSO nájdete dve polia: 'SIG' obsahuje skratku názvu skupiny "
+"so špeciálnym záujmom, ktorá je viditeľná aj pri hodnotení ocenení, a 'SIG "
+"INFO', ktoré obsahuje skutočnú referenciu alebo referencie. Obe polia sú "
+"voľne prispôsobiteľné."
 
 #: application/views/awards/sig/index.php:21
 #: application/views/station_profile/edit.php:288
 msgid "Special Interest Group"
-msgstr ""
+msgstr "Special Interest Group"
 
 #: application/views/awards/sig/index.php:22
 #: application/views/continents/index.php:17
 #: application/views/distances/index.php:12
 #: application/views/timeplotter/index.php:4
 msgid "Number of QSOs"
-msgstr ""
+msgstr "Počet spojení"
 
 #: application/views/awards/sig/index.php:23
 msgid "Number of Refs"
-msgstr ""
+msgstr "Počet referencií"
 
 #: application/views/awards/sig/qso_list.php:9
 #: application/views/awards/sota/index.php:30
 msgid "Reference"
-msgstr ""
+msgstr "Referencie"
 
 #: application/views/awards/sig/qso_list.php:10
 #: application/views/logbookadvanced/index.php:845
@@ -6379,31 +6549,34 @@ msgstr ""
 #: application/views/search/lotw_unconfirmed_result.php:7
 #: application/views/view_log/qso.php:72
 msgid "Date/Time"
-msgstr ""
+msgstr "Dátum/Čas"
 
 #: application/views/awards/sig/qso_list.php:14
 #: application/views/awards/sota/index.php:35
 msgid "RST Sent"
-msgstr ""
+msgstr "RST vyslané"
 
 #: application/views/awards/sig/qso_list.php:15
 #: application/views/awards/sota/index.php:36
 msgid "RST Received"
-msgstr ""
+msgstr "RST prijaté"
 
 #: application/views/awards/sig/qso_list.php:34
 msgid "Export QSOs to ADIF"
-msgstr ""
+msgstr "Exportovať spojenia do ADIF"
 
 #: application/views/awards/sota/index.php:7
+#, fuzzy
 msgid "SOTA Awards"
-msgstr ""
+msgstr "SOTA Awards"
 
 #: application/views/awards/sota/index.php:8
 msgid ""
 "SOTA (Summits On The Air) is an award scheme for radio amateurs that "
 "encourages portable operation in mountainous areas."
 msgstr ""
+"SOTA (Summits On The Air) je program ocenení pre rádioamatérov, ktorý "
+"podporuje portablovú prevádzku v horských oblastiach."
 
 #: application/views/awards/sota/index.php:9
 msgid ""
@@ -6415,70 +6588,88 @@ msgid ""
 "trophies. An Honor Roll for Activators and Chasers is maintained in the SOTA "
 "online database."
 msgstr ""
+"Je plne funkčná v takmer stovke krajín po celom svete. Každá krajina má "
+"svoju vlastnú Asociáciu, ktorá určuje uznané vrcholy SOTA v rámci tej "
+"Asociácie. Každý vrchol dáva Aktivátorom a Lovcom skóre súvisiace s výškou "
+"vrcholu. Certifikáty sú dostupné pre rôzne skóre, ktoré vedú k prestížnym "
+"trofejam 'Kozorožec' a 'Chatka lenivec'. V SOTA online databáze sa vedie "
+"zoznam cti pre Aktivátorov a Lovcov."
 
 #: application/views/awards/vucc/index.php:7
+#, fuzzy
 msgid "VUCC - VHF/UHF Century Club Award"
-msgstr ""
+msgstr "VUCC - VHF/UHF Century Club Award"
 
 #: application/views/awards/vucc/index.php:8
 msgid ""
 "The VHF/UHF Century Club Award is given for a minimum number of worked and "
 "confirmed gridsquares on a desired band."
 msgstr ""
+"Diplom VHF/UHF Century Club je udelený za minimálny počet odpracovaných a "
+"potvrdených lokátorových štvorcov na požadovanej pásme."
 
 #: application/views/awards/vucc/index.php:9
 #: application/views/awards/wae/index.php:10
 #, php-format
 msgid "Official information and the rules can be found in this document: %s."
-msgstr ""
+msgstr "Oficiálne informácie a pravidlá nájdete v tomto dokumente: %s."
 
 #: application/views/awards/vucc/index.php:10
 msgid "Only VHF/UHF bands are relevant."
-msgstr ""
+msgstr "Iba pásma VHF/UHF sú relevantné."
 
 #: application/views/awards/vucc/index.php:11
 msgid ""
 "Fields taken for this Award: Gridsquare and vucc_grids (ADIF: GRIDSQUARE, "
 "VUCC_GRIDS)"
 msgstr ""
+"Pre tento diplom sa používajú oblasti: Gridsquare a vucc_grids "
+"(ADIF: GRIDSQUARE, VUCC_GRIDS)"
 
 #: application/views/awards/vucc/index.php:23
 msgid "Grids Worked"
-msgstr ""
+msgstr "Urobené lokátorové štvorce"
 
 #: application/views/awards/vucc/index.php:24
 msgid "Grids Confirmed"
-msgstr ""
+msgstr "Potvrdené lokátorové štvorce"
 
 #: application/views/awards/wab/index.php:13
+#, fuzzy
 msgid "WAB - Worked All Britain Award"
-msgstr ""
+msgstr "WAB - Worked All Britain Award"
 
 #: application/views/awards/wab/index.php:14
 msgid ""
 "WAB, Worked All Britain squares in Amateur Radio, encourages licensed ham "
 "radio operators to work all the squares in Great Britain."
 msgstr ""
+"WAB, Worked All Britain povzbudzuje licencovaných rádioamatérov, aby "
+"pôsobili na všetkých lokátorových štvorcoch vo Veľkej Británii."
 
 #: application/views/awards/wab/index.php:15
 msgid ""
 "May be claimed for having contacted an amateur station located in the "
 "required amount of squares, described on the page linked below."
 msgstr ""
+"Môže byť nárokovaný za spojenie amatérskej stanice nachádzajúcej sa v "
+"požadovanom množstve štvorcov, ako je popísané na stránke uvedenej nižšie."
 
 #: application/views/awards/wab/index.php:17
 msgid ""
 "Fields taken for this Award: SIG (Has to be 'WAB') and SIG_INFO (should "
 "contain valid WAB-Grid)"
 msgstr ""
+"Pre tento diplom sa používajú oblasti: SIG (musí byť 'WAB') a SIG_INFO "
+"(by malo obsahovať platný WAB-Grid)"
 
 #: application/views/awards/wab/index.php:111
 msgid "List"
-msgstr ""
+msgstr "Zoznam"
 
 #: application/views/awards/wab/list.php:5
 msgid "WAB Square"
-msgstr ""
+msgstr "WAB štvorec"
 
 #: application/views/awards/wac/index.php:9
 msgid ""
@@ -8235,23 +8426,23 @@ msgstr ""
 
 #: application/views/club/permissions.php:183
 msgid "Type at least 2 characters."
-msgstr ""
+msgstr "Zadaj aspoň 2 znaky."
 
 #: application/views/club/permissions.php:194
 msgid "Notify the user via email"
-msgstr ""
+msgstr "Informujte používateľa e-mailom"
 
 #: application/views/club/permissions.php:213
 msgid "No users currently have access to this club station."
-msgstr ""
+msgstr "V súčasnosti nemá k tejto klubovej stanici prístup žiadny používateľ."
 
 #: application/views/club/permissions.php:220
 msgid "Firstname"
-msgstr ""
+msgstr "Krstné meno"
 
 #: application/views/club/permissions.php:221
 msgid "Lastname"
-msgstr ""
+msgstr "Priezvisko"
 
 #: application/views/club/permissions.php:223
 #: application/views/user/edit.php:56 application/views/user/index.php:152
@@ -8262,32 +8453,32 @@ msgstr "Používateľské meno"
 
 #: application/views/club/permissions.php:224
 msgid "E-Mail"
-msgstr ""
+msgstr "E-mail"
 
 #: application/views/club/permissions.php:244
 msgid "Wavelog Administrator"
-msgstr ""
+msgstr "Wavelog administrátor"
 
 #: application/views/club/permissions.php:261
 msgid "You can modify the users permission level for this Clubstation."
-msgstr ""
+msgstr "Môžeš zmeniť úroveň oprávnenia používateľa pre túto klubovú stanicu."
 
 #: application/views/club/permissions.php:268
 msgid "User Callsign"
-msgstr ""
+msgstr "Volacia značka"
 
 #: application/views/club/permissions.php:286
 msgid "Notify the user via email about the change"
-msgstr ""
+msgstr "Informujte používateľa o zmene e-mailom"
 
 #: application/views/club/permissions.php:316
 msgid "Are you sure you want to delete this user from the club?"
-msgstr ""
+msgstr "Si si istý, že chceš tohto používateľa odstrániť z klubu?"
 
 #: application/views/club/permissions.php:320
 #, php-format
 msgid "Callsign: %s"
-msgstr ""
+msgstr "Volacia značka: %s"
 
 #: application/views/club/permissions.php:321
 #, php-format
