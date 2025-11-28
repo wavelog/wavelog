@@ -110,7 +110,7 @@
 							<label class="form-check-label" for="qsl"><?= __("QSL Card"); ?></label>
 						</div>
 						<div class="form-check-inline">
-							<input class="form-check-input" type="checkbox" name="lotw" value="1" id="lotw" <?php if ($this->input->post('lotw') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
+							<input class="form-check-input" type="checkbox" name="lotw" value="1" id="lotw" <?php if ($this->input->post('lotw', TRUE) || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
 							<label class="form-check-label" for="lotw"><?= __("LoTW"); ?></label>
 						</div>
 					   <div class="form-check-inline">
