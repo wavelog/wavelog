@@ -819,8 +819,8 @@ $(document).ready(function() {
         }
 
         // Notify DX Waterfall of mode change for sideband display update
-        // Only refresh if mode actually changed (not on initial undefined → value transition)
-        if (modeChanged && typeof dxWaterfall !== 'undefined' && dxWaterfall.refresh) {
+        // Only refresh if mode actually changed AND waterfall is active (has canvas)
+        if (modeChanged && typeof dxWaterfall !== 'undefined' && dxWaterfall.canvas && dxWaterfall.refresh) {
             // Update virtual CAT state
             if (typeof window.catState !== 'undefined' && window.catState !== null) {
                 window.catState.mode = newMode;
