@@ -3526,15 +3526,27 @@ var dxWaterfall = {
         });
     },
 
-    // Get current band from form or default to 20m
+    // Get current band calculated from frequency (single source of truth)
     getCurrentBand: function() {
-        // Safety check: return default if not initialized
-        if (!this.$bandSelect) {
-            return '20m';
+        var freqHz = 0;
+
+        // When CAT is operational, use CAT frequency
+        if (window.catState && window.catState.frequency && window.catState.frequency > 0) {
+            freqHz = window.catState.frequency;
+        } else if (this.$frequency) {
+            // When offline, read directly from hidden frequency field (single source of truth)
+            freqHz = parseFloat(this.$frequency.val()) || 0;
         }
-        // Try to get band from form - adjust selector based on your HTML structure
-        var band = this.$bandSelect.val() || '20m';
-        return band;
+
+        if (freqHz > 0) {
+            var freqKhz = freqHz / 1000;
+            var band = frequencyToBandKhz(freqKhz);
+            if (band && band !== '' && band.toLowerCase() !== 'select') {
+                return band;
+            }
+        }
+        // Fallback to 20m if frequency not available or out of band
+        return '20m';
     },
 
     // Get current mode from form or default to All
@@ -4647,12 +4659,9 @@ var dxWaterfall = {
         // Update last refresh time
         this.lastRefreshTime = Date.now();
 
-        // Ensure canvas is initialized
+        // Ensure canvas is initialized - don't auto-init, just return
         if (!this.canvas) {
-            this.init();
-            if (!this.canvas) {
-                return; // Canvas not available, abort
-            }
+            return; // Canvas not available, user must click power button
         }
 
         // Check if canvas is visible in DOM
@@ -6273,6 +6282,10 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
 
 // Wait for jQuery to be available before initializing
 (function waitForJQuery() {
+    // Global timer variable to prevent multiple auto-refresh timers
+    var autoRefreshTimer = null;
+    var isInitialized = false;
+
     if (typeof jQuery !== 'undefined') {
         // jQuery is loaded, proceed with initialization
         $(document).ready(function() {
@@ -6282,15 +6295,16 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
             // Function to try initializing the canvas with retries
             function tryInitCanvas() {
         if (document.getElementById('dxWaterfall')) {
+            // Prevent multiple initializations
+            if (isInitialized) {
+                DX_WATERFALL_UTILS.log.debug('[DX Waterfall] Already initialized, skipping duplicate initialization');
+                return;
+            }
+            isInitialized = true;
+
             // Canvas found, but DON'T auto-initialize
             // Wait for user to click the power button
-
-            // Set up DX spots fetching at regular intervals (only when initialized)
-            setInterval(function() {
-                if (dxWaterfall.canvas) { // Only fetch if waterfall has been initialized
-                    dxWaterfall.fetchDxSpots(true, false); // Background fetch - NOT user-initiated
-                }
-            }, DX_WATERFALL_CONSTANTS.DEBOUNCE.DX_SPOTS_FETCH_INTERVAL_MS);
+            // Auto-refresh timer will be created when waterfall is turned on
 
         } else {
             // Canvas not found, try again in 100ms
@@ -6305,6 +6319,15 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
     $(window).on('resize', function() {
         // Immediately update canvas dimensions to prevent stretching
         dxWaterfall.updateDimensions();
+    });
+
+    // Cleanup function to prevent memory leaks and multiple timers
+    $(window).on('beforeunload pagehide', function() {
+        if (autoRefreshTimer) {
+            clearInterval(autoRefreshTimer);
+            autoRefreshTimer = null;
+            DX_WATERFALL_UTILS.log.debug('[DX Waterfall] Auto-refresh timer cleaned up on page unload');
+        }
     });
 
     // Handle click on the cycle icon in dxWaterfallSpotContent div to cycle through spots
@@ -6854,12 +6877,22 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
             // Show waiting message
             dxWaterfall.displayWaitingMessage(lang_dxwaterfall_please_wait);
 
-            // Set up periodic refresh interval
+            // Set up periodic refresh interval for visual updates
             waterfallRefreshInterval = setInterval(function() {
                 if (dxWaterfall.canvas) {
                     dxWaterfall.refresh();
                 }
             }, DX_WATERFALL_CONSTANTS.VISUAL.STATIC_NOISE_REFRESH_MS);
+
+            // Set up DX spots fetching at regular intervals
+            if (autoRefreshTimer) {
+                clearInterval(autoRefreshTimer);
+            }
+            autoRefreshTimer = setInterval(function() {
+                if (dxWaterfall.canvas) {
+                    dxWaterfall.fetchDxSpots(true, false); // Background fetch
+                }
+            }, DX_WATERFALL_CONSTANTS.DEBOUNCE.DX_SPOTS_FETCH_INTERVAL_MS);
 
             // Add 3 second delay before initializing (allows page to stabilize)
             initializationDelayTimer = setTimeout(function() {
@@ -6894,6 +6927,7 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
         }
 
         waterfallActive = false;
+        isInitialized = false;  // Reset so waterfall can be turned on again
 
         // Log user action
         DX_WATERFALL_UTILS.log.debug('[Power Control] User turned OFF waterfall');
@@ -6909,6 +6943,12 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
         if (waterfallRefreshInterval) {
             clearInterval(waterfallRefreshInterval);
             waterfallRefreshInterval = null;
+        }
+
+        // Stop the auto-refresh timer for DX spots
+        if (autoRefreshTimer) {
+            clearInterval(autoRefreshTimer);
+            autoRefreshTimer = null;
         }
 
         // Destroy the waterfall component (handles cleanup of memory, timers, event handlers, and DOM refs)
