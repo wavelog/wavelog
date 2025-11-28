@@ -3526,15 +3526,27 @@ var dxWaterfall = {
         });
     },
 
-    // Get current band from form or default to 20m
+    // Get current band calculated from frequency (single source of truth)
     getCurrentBand: function() {
-        // Safety check: return default if not initialized
-        if (!this.$bandSelect) {
-            return '20m';
+        var freqHz = 0;
+
+        // When CAT is operational, use CAT frequency
+        if (window.catState && window.catState.frequency && window.catState.frequency > 0) {
+            freqHz = window.catState.frequency;
+        } else if (this.$frequency) {
+            // When offline, read directly from hidden frequency field (single source of truth)
+            freqHz = parseFloat(this.$frequency.val()) || 0;
         }
-        // Try to get band from form - adjust selector based on your HTML structure
-        var band = this.$bandSelect.val() || '20m';
-        return band;
+
+        if (freqHz > 0) {
+            var freqKhz = freqHz / 1000;
+            var band = frequencyToBandKhz(freqKhz);
+            if (band && band !== '' && band.toLowerCase() !== 'select') {
+                return band;
+            }
+        }
+        // Fallback to 20m if frequency not available or out of band
+        return '20m';
     },
 
     // Get current mode from form or default to All
