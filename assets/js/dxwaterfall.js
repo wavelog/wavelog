@@ -6923,6 +6923,7 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
         }
 
         waterfallActive = false;
+        isInitialized = false;  // Reset so waterfall can be turned on again
 
         // Log user action
         DX_WATERFALL_UTILS.log.debug('[Power Control] User turned OFF waterfall');
