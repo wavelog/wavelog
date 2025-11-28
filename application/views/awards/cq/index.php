@@ -96,7 +96,7 @@
 							<label class="form-check-label" for="confirmed"><?= __("Show confirmed"); ?></label>
 						</div>
 						<div class="form-check-inline">
-							<input class="form-check-input" type="checkbox" name="notworked" id="notworked" value="1" <?php if ($this->input->post('notworked') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
+							<input class="form-check-input" type="checkbox" name="notworked" id="notworked" value="1" <?php if ($this->input->post('notworked', TRUE) || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
 							<label class="form-check-label" for="notworked"><?= __("Show not worked"); ?></label>
 						</div>
 					</div>
