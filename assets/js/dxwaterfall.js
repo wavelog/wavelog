@@ -32,7 +32,7 @@ var DX_WATERFALL_CONSTANTS = {
     VERSION: '0.9.6', // DX Waterfall version (keep in sync with @version in file header)
 
     // Debug and logging
-    DEBUG_MODE: true, // Set to true for verbose logging, false for production
+    DEBUG_MODE: false, // Set to true for verbose logging, false for production
 
     // Timing and debouncing
     DEBOUNCE: {
