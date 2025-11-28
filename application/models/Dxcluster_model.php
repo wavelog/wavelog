@@ -54,6 +54,13 @@ class Dxcluster_model extends CI_Model {
 		// Only load cache driver if caching is enabled
 		if ($cache_band_enabled || $cache_worked_enabled) {
 			$this->load->driver('cache', array('adapter' => 'file', 'backup' => 'file'));
+
+			// Garbage collection: 1% chance to clean expired cache files
+			// Only needed when worked cache is enabled (creates many per-callsign files)
+			if ($cache_worked_enabled) {
+				$this->load->library('DxclusterCache');
+				$this->dxclustercache->maybeRunGc();
+			}
 		}
 
 		if($this->session->userdata('user_date_format')) {
@@ -74,7 +81,9 @@ class Dxcluster_model extends CI_Model {
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
 		// Cache key for RAW cluster response (instance-wide, no worked status)
-		$raw_cache_key = "dxcluster_raw_{$maxage}_{$de}_{$mode}_{$band}";
+		// Use DxclusterCache library for centralized key generation
+		$this->load->library('DxclusterCache');
+		$raw_cache_key = $this->dxclustercache->getRawCacheKey($maxage, $band);
 
 		// Check cache for raw processed spots (without worked status)
 		$spotsout = null;
@@ -149,10 +158,6 @@ class Dxcluster_model extends CI_Model {
 			// Cache current time outside loop (avoid creating DateTime on every iteration)
 			$currentTimestamp = time();
 
-			// Normalize continent filter once
-			$de_lower = strtolower($de);
-			$filter_continent = ($de != '' && $de != 'Any');
-
 			foreach($json as $singlespot){
 				// Early filtering - skip invalid spots immediately
 				if (!is_object($singlespot) || !isset($singlespot->frequency) || !is_numeric($singlespot->frequency)) {
@@ -185,10 +190,6 @@ class Dxcluster_model extends CI_Model {
 				$singlespot->submode = strtoupper($singlespot->submode);
 			}
 
-			// Apply mode filter early
-			if (($mode != 'All') && !$this->modefilter($singlespot, $mode)) {
-				continue;
-			}
 
 			// Faster age calculation using timestamps instead of DateTime objects
 			$spotTimestamp = strtotime($singlespot->when);
@@ -237,11 +238,6 @@ class Dxcluster_model extends CI_Model {
 					'entity' => $dxcc['entity'] ?? 'Unknown'
 				];
 			}
-			// Apply continent filter early
-			if ($filter_continent && (!property_exists($singlespot->dxcc_spotter, 'cont') ||
-				$de_lower != strtolower($singlespot->dxcc_spotter->cont ?? ''))) {
-				continue;
-			}
 
 			// Extract park references from message
 			$singlespot = $this->enrich_spot_metadata($singlespot);
@@ -254,6 +250,18 @@ class Dxcluster_model extends CI_Model {
 			if ($cache_band_enabled && !empty($spotsout)) {
 				$this->cache->save($raw_cache_key, $spotsout, 59);
 			}
+		}
+
+		// Apply user-specific filters AFTER cache retrieval (mode & continent)
+		if (!empty($spotsout) && ($mode != 'All' || ($de != '' && $de != 'Any'))) {
+			$de_lower = strtolower($de);
+			$filter_continent = ($de != '' && $de != 'Any');
+			$spotsout = array_filter($spotsout, function($spot) use ($mode, $de_lower, $filter_continent) {
+				if ($mode != 'All' && !$this->modefilter($spot, $mode)) return false;
+				if ($filter_continent && ($de_lower != strtolower($spot->dxcc_spotter->cont ?? ''))) return false;
+				return true;
+			});
+			$spotsout = array_values($spotsout); // Re-index array
 		}
 
 		// NOW add worked status if enabled (user-specific)
