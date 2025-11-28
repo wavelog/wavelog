@@ -813,6 +813,15 @@ $(function() {
 		}, 1000);
 	}
 
+	// Handle page visibility changes (tab switching, minimize, etc.)
+	// Ensures filters are properly applied when returning from background
+	document.addEventListener('visibilitychange', function() {
+		if (!document.hidden && cachedSpotData && cachedSpotData.length > 0) {
+			// Tab becoming visible - re-apply filters to ensure table is correctly filtered
+			renderFilteredSpots();
+		}
+	});
+
 	// Build array of server-side filter labels for display
 	function getServerFilterText() {
 		let filters = [];
