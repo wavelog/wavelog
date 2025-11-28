@@ -118,7 +118,7 @@
 							<label class="form-check-label" for="eqsl"><?= __("eQSL"); ?></label>
 						</div>
 					   <div class="form-check-inline">
-							<input class="form-check-input" type="checkbox" name="qrz" value="1" id="qrz" <?php if ($this->input->post('qrz')) echo ' checked="checked"'; ?> >
+							<input class="form-check-input" type="checkbox" name="qrz" value="1" id="qrz" <?php if ($this->input->post('qrz', TRUE)) echo ' checked="checked"'; ?> >
 							<label class="form-check-label" for="qrz"><?= __("QRZ.com"); ?></label>
 						</div>
 					</div>
