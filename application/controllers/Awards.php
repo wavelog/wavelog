@@ -676,6 +676,8 @@ class Awards extends CI_Controller {
             $postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
             $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
 			$postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+			$postdata['datefrom'] = $this->security->xss_clean($this->input->post('dateFrom'));
+			$postdata['dateto'] = $this->security->xss_clean($this->input->post('dateTo'));
         }
         else { // Setting default values at first load of page
             $postdata['qsl'] = 1;
@@ -687,6 +689,8 @@ class Awards extends CI_Controller {
             $postdata['notworked'] = 1;
             $postdata['band'] = 'All';
 			$postdata['mode'] = 'All';
+			$postdata['datefrom'] = null;
+			$postdata['dateto'] = null;
         }
 
         if ($logbooks_locations_array) {
@@ -1612,6 +1616,8 @@ class Awards extends CI_Controller {
         $postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;
         $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
 		$postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+		$postdata['datefrom'] = $this->security->xss_clean($this->input->post('datefrom'));
+		$postdata['dateto'] = $this->security->xss_clean($this->input->post('dateto'));
 
         if ($logbooks_locations_array) {
 			$location_list = "'".implode("','",$logbooks_locations_array)."'";

@@ -13,6 +13,16 @@ if (typeof(user_map_custom.unworked) !== 'undefined') {
 	unworkedColor = 'red';
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll('.dropdown').forEach(dd => {
+		dd.addEventListener('hide.bs.dropdown', function (e) {
+			if (e.clickEvent && e.clickEvent.target.closest('.dropdown-menu')) {
+				e.preventDefault(); // stop Bootstrap from closing
+			}
+		});
+	});
+});
+
 function load_cq_map() {
     $('.nav-tabs a[href="#cqmaptab"]').tab('show');
     $.ajax({
@@ -28,6 +38,8 @@ function load_cq_map() {
             eqsl: +$('#eqsl').prop('checked'),
             lotw: +$('#lotw').prop('checked'),
             qrz: +$('#qrz').prop('checked'),
+			datefrom: $('#dateFrom').val(),
+			dateto: $('#dateTo').val(),
         },
         success: function(data) {
 			cqz = data;
@@ -180,13 +192,95 @@ function style(feature) {
 }
 
 function onClick(e) {
-    var marker = e.target;
-    displayContactsOnMap($("#cqmap"),marker.options.title, $('#band2').val(), 'All', 'All', $('#mode').val(), 'CQZone');
+    let marker = e.target;
+    displayContactsOnMap($("#cqmap"),marker.options.title, $('#band2').val(), 'All', 'All', $('#mode').val(), 'CQZone', '', $('#dateFrom').val(), $('#dateTo').val());
 }
 
 function onClick2(e) {
 	zoomToFeature(e);
-	console.log(e);
-    var marker = e.target;
-    displayContactsOnMap($("#cqmap"),marker.feature.properties.cq_zone_number, $('#band2').val(), 'All', 'All', $('#mode').val(), 'CQZone');
+    let marker = e.target;
+    displayContactsOnMap($("#cqmap"),marker.feature.properties.cq_zone_number, $('#band2').val(), 'All', 'All', $('#mode').val(), 'CQZone', '', $('#dateFrom').val(), $('#dateTo').val());
 }
+
+// Preset functionality
+    function applyPreset(preset) {
+        const dateFrom = document.getElementById('dateFrom');
+        const dateTo = document.getElementById('dateTo');
+        const today = new Date();
+
+        // Format date as YYYY-MM-DD
+        function formatDate(date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        switch(preset) {
+            case 'today':
+                dateFrom.value = formatDate(today);
+                dateTo.value = formatDate(today);
+                break;
+
+            case 'yesterday':
+                const yesterday = new Date(today);
+                yesterday.setDate(yesterday.getDate() - 1);
+                dateFrom.value = formatDate(yesterday);
+                dateTo.value = formatDate(yesterday);
+                break;
+
+            case 'last7days':
+                const sevenDaysAgo = new Date(today);
+                sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+                dateFrom.value = formatDate(sevenDaysAgo);
+                dateTo.value = formatDate(today);
+                break;
+
+            case 'last30days':
+                const thirtyDaysAgo = new Date(today);
+                thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+                dateFrom.value = formatDate(thirtyDaysAgo);
+                dateTo.value = formatDate(today);
+                break;
+
+            case 'thismonth':
+                const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+                dateFrom.value = formatDate(firstDayOfMonth);
+                dateTo.value = formatDate(today);
+                break;
+
+            case 'lastmonth':
+                const firstDayOfLastMonth = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+                const lastDayOfLastMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+                dateFrom.value = formatDate(firstDayOfLastMonth);
+                dateTo.value = formatDate(lastDayOfLastMonth);
+                break;
+
+            case 'thisyear':
+                const firstDayOfYear = new Date(today.getFullYear(), 0, 1);
+                dateFrom.value = formatDate(firstDayOfYear);
+                dateTo.value = formatDate(today);
+                break;
+
+            case 'lastyear':
+                const lastYear = today.getFullYear() - 1;
+                const firstDayOfLastYear = new Date(lastYear, 0, 1);
+                const lastDayOfLastYear = new Date(lastYear, 11, 31);
+                dateFrom.value = formatDate(firstDayOfLastYear);
+                dateTo.value = formatDate(lastDayOfLastYear);
+                break;
+
+            case 'alltime':
+                dateFrom.value = '';
+                dateTo.value = '';
+                break;
+        }
+    }
+
+    // Reset dates function
+    function resetDates() {
+        const dateFrom = document.getElementById('dateFrom');
+        const dateTo = document.getElementById('dateTo');
+        dateFrom.value = '';
+        dateTo.value = '';
+    }
