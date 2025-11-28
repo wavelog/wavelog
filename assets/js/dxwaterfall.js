@@ -6273,6 +6273,10 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
 
 // Wait for jQuery to be available before initializing
 (function waitForJQuery() {
+    // Global timer variable to prevent multiple auto-refresh timers
+    var autoRefreshTimer = null;
+    var isInitialized = false;
+
     if (typeof jQuery !== 'undefined') {
         // jQuery is loaded, proceed with initialization
         $(document).ready(function() {
@@ -6282,15 +6286,31 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
             // Function to try initializing the canvas with retries
             function tryInitCanvas() {
         if (document.getElementById('dxWaterfall')) {
+            // Prevent multiple initializations
+            if (isInitialized) {
+                DX_WATERFALL_UTILS.log.debug('[DX Waterfall] Already initialized, skipping duplicate initialization');
+                return;
+            }
+            isInitialized = true;
+
             // Canvas found, but DON'T auto-initialize
             // Wait for user to click the power button
 
+            // Clear any existing timer before creating new one
+            if (autoRefreshTimer) {
+                clearInterval(autoRefreshTimer);
+                autoRefreshTimer = null;
+                DX_WATERFALL_UTILS.log.debug('[DX Waterfall] Cleared existing auto-refresh timer');
+            }
+
             // Set up DX spots fetching at regular intervals (only when initialized)
-            setInterval(function() {
+            autoRefreshTimer = setInterval(function() {
                 if (dxWaterfall.canvas) { // Only fetch if waterfall has been initialized
                     dxWaterfall.fetchDxSpots(true, false); // Background fetch - NOT user-initiated
                 }
             }, DX_WATERFALL_CONSTANTS.DEBOUNCE.DX_SPOTS_FETCH_INTERVAL_MS);
+
+            DX_WATERFALL_UTILS.log.debug('[DX Waterfall] Auto-refresh timer created with interval: ' + DX_WATERFALL_CONSTANTS.DEBOUNCE.DX_SPOTS_FETCH_INTERVAL_MS + 'ms');
 
         } else {
             // Canvas not found, try again in 100ms
@@ -6305,6 +6325,15 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
     $(window).on('resize', function() {
         // Immediately update canvas dimensions to prevent stretching
         dxWaterfall.updateDimensions();
+    });
+
+    // Cleanup function to prevent memory leaks and multiple timers
+    $(window).on('beforeunload pagehide', function() {
+        if (autoRefreshTimer) {
+            clearInterval(autoRefreshTimer);
+            autoRefreshTimer = null;
+            DX_WATERFALL_UTILS.log.debug('[DX Waterfall] Auto-refresh timer cleaned up on page unload');
+        }
     });
 
     // Handle click on the cycle icon in dxWaterfallSpotContent div to cycle through spots
