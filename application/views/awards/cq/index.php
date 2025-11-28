@@ -131,7 +131,7 @@
 							<option value="All" <?php if ($this->input->post('band', TRUE) == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?= __("All"); ?></option>
 							<?php foreach($worked_bands as $band) {
 								echo '<option value="' . $band . '"';
-								if ($this->input->post('band') == $band) echo ' selected';
+								if ($this->input->post('band', TRUE) == $band) echo ' selected';
 								echo '>' . $band . '</option>'."\n";
 							} ?>
 						</select>
