@@ -63,7 +63,7 @@
 										$new_valid_qso_end = date($this->config->item('qso_date_format'), $valid_qso_end );
 										$qso_warning_date = date('Y-m-d H:i:s', strtotime($row->qso_end_date.'-30 days'));
 										if ($current_date > $row->qso_end_date) {
-											echo "<span class='fw-bolder text-danger'>".$new_valid_qso_end."</span>";
+											echo "<span class='fw-bolder text-warning'>".$new_valid_qso_end."</span>";
 										} else if ($current_date <= $row->qso_end_date && $current_date > $qso_warning_date) {
 											echo "<span class='fw-bolder text-warning'>".$new_valid_qso_end."</span>";
 										} else {
@@ -104,7 +104,7 @@
 											<span class="badge text-bg-success"><?= __("Certificate valid"); ?></span>
 										<?php } ?>
 										<?php if ($current_date > $row->qso_end_date) { ?>
-											<span class="badge text-bg-danger">QSO end date exceeded</span>
+											<span class="badge text-bg-warning">QSO end date exceeded</span>
 										<?php } else if ($current_date <= $row->qso_end_date && $current_date > $qso_warning_date) { ?>
 											<span class="badge text-bg-warning"><?= __("QSO end date nearing"); ?></span>
 										<?php } ?>

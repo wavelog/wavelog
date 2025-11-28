@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-11-27 13:19+0000\n"
+"POT-Creation-Date: 2025-11-28 10:08+0000\n"
 "PO-Revision-Date: 2025-11-22 16:36+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1015,7 +1015,7 @@ msgid "DX Calendar"
 msgstr "Календарь DX экспедиций"
 
 #: application/controllers/Eqsl.php:34
-#: application/views/dashboard/index.php:409
+#: application/views/dashboard/index.php:407
 #: application/views/eqslcard/index.php:5
 #: application/views/visitor/index.php:310
 msgid "eQSL Cards"
@@ -1314,7 +1314,7 @@ msgstr "QSL"
 #: application/views/awards/wapc/index.php:48
 #: application/views/awards/was/index.php:64
 #: application/views/awards/wpx/index.php:32
-#: application/views/dashboard/index.php:344
+#: application/views/dashboard/index.php:342
 #: application/views/gridmap/index.php:179
 #: application/views/logbookadvanced/useroptions.php:82
 #: application/views/oqrs/qsolist.php:17 application/views/oqrs/qsolist.php:160
@@ -1351,7 +1351,7 @@ msgstr "LoTW"
 #: application/views/awards/wapc/index.php:52
 #: application/views/awards/was/index.php:68
 #: application/views/awards/wpx/index.php:36
-#: application/views/dashboard/index.php:344
+#: application/views/dashboard/index.php:342
 #: application/views/gridmap/index.php:187
 #: application/views/logbookadvanced/useroptions.php:78
 #: application/views/oqrs/qsolist.php:14 application/views/oqrs/qsolist.php:131
@@ -2251,8 +2251,8 @@ msgstr "QRZ. Импорт QSL"
 msgid "QRZ ADIF Information"
 msgstr "QRZ. Информация ADIF"
 
-#: application/controllers/Qsl.php:25 application/views/dashboard/index.php:344
-#: application/views/dashboard/index.php:361
+#: application/controllers/Qsl.php:25 application/views/dashboard/index.php:342
+#: application/views/dashboard/index.php:359
 #: application/views/qslcard/index.php:5
 #: application/views/visitor/index.php:287
 msgid "QSL Cards"
@@ -3403,36 +3403,36 @@ msgstr "HRDlog: на найдены QSO для загруки для позыв�
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: не найдены профили QTH с данными входя на HRDlog."
 
-#: application/models/Logbook_model.php:1303
+#: application/models/Logbook_model.php:1307
 msgid "Station ID not allowed"
 msgstr "Недопустимый ID станции"
 
-#: application/models/Logbook_model.php:1308
+#: application/models/Logbook_model.php:1312
 msgid "No Call given"
 msgstr "Не указан позывной"
 
-#: application/models/Logbook_model.php:1378
-#: application/models/Logbook_model.php:1580
+#: application/models/Logbook_model.php:1382
+#: application/models/Logbook_model.php:1584
 msgid "DXCC has to be Numeric"
 msgstr "DXCC должен быть цифровым"
 
-#: application/models/Logbook_model.php:4593
+#: application/models/Logbook_model.php:4605
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Неправильный позывной %s при импорте QSO с %s для %s: ПРОПУЩЕНО"
 
-#: application/models/Logbook_model.php:4603
-#: application/models/Logbook_model.php:4612
+#: application/models/Logbook_model.php:4615
+#: application/models/Logbook_model.php:4624
 msgid "QSO on"
 msgstr "начало QSO"
 
-#: application/models/Logbook_model.php:4603
+#: application/models/Logbook_model.php:4615
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
 msgstr ""
 
-#: application/models/Logbook_model.php:4612
+#: application/models/Logbook_model.php:4624
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3440,7 +3440,7 @@ msgstr ""
 "Вы пытались импортировать QSO без указанного позывного. Это QSO не было "
 "импортировано. Оно недействительно"
 
-#: application/models/Logbook_model.php:4661
+#: application/models/Logbook_model.php:4673
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -3449,64 +3449,64 @@ msgstr ""
 "QSO в %s: Вы пыталсь импортировать QSO без информации о диапазоне. Это QSO "
 "некорректно, импорт отклонён.imported. It's invalid"
 
-#: application/models/Logbook_model.php:4926
+#: application/models/Logbook_model.php:4938
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4937
+#: application/models/Logbook_model.php:4949
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4998
+#: application/models/Logbook_model.php:5010
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "дата загрузки QSO в Clublog недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:5373
+#: application/models/Logbook_model.php:5385
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Дубликат для"
 
-#: application/models/Logbook_model.php:5438
-#: application/models/Logbook_model.php:5533
+#: application/models/Logbook_model.php:5450
+#: application/models/Logbook_model.php:5545
 msgid "QSO could not be matched"
 msgstr "QSO не может быть сопоставлено"
 
-#: application/models/Logbook_model.php:5446
+#: application/models/Logbook_model.php:5458
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "подтверждено LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:5452
+#: application/models/Logbook_model.php:5464
 msgid "confirmed by award manager"
 msgstr "подтверждено менеджером диплома"
 
-#: application/models/Logbook_model.php:5456
+#: application/models/Logbook_model.php:5468
 msgid "confirmed by cross-check of DCL data"
 msgstr "подтверждено кросс-проверкой с данными DCL"
 
-#: application/models/Logbook_model.php:5460
+#: application/models/Logbook_model.php:5472
 msgid "confirmation pending"
 msgstr "подтверждение ожидается"
 
-#: application/models/Logbook_model.php:5463
+#: application/models/Logbook_model.php:5475
 msgid "unconfirmed"
 msgstr "не подтверждено"
 
-#: application/models/Logbook_model.php:5466
+#: application/models/Logbook_model.php:5478
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
 msgid "unknown"
 msgstr "неизвестно"
 
-#: application/models/Logbook_model.php:5536
+#: application/models/Logbook_model.php:5548
 msgid "POTA reference already in log"
 msgstr "Ренференция POTA уже в журнале"
 
-#: application/models/Logbook_model.php:5539
+#: application/models/Logbook_model.php:5551
 msgid "QSO updated"
 msgstr "QSO обновлено"
 
-#: application/models/Logbook_model.php:6346
+#: application/models/Logbook_model.php:6358
 #: application/views/activated_gridmap/index.php:114
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:58
@@ -3613,7 +3613,7 @@ msgid "Accumulated number of WAJA worked"
 msgstr "Накопленное количество отработанных WAJA"
 
 #: application/views/accumulate/index.php:8
-#: application/views/dashboard/index.php:322
+#: application/views/dashboard/index.php:320
 #: application/views/dayswithqso/index.php:42
 #: application/views/dayswithqso/index.php:82
 #: application/views/statistics/index.php:19
@@ -3630,7 +3630,7 @@ msgid "Yearly"
 msgstr "Ежегодно"
 
 #: application/views/accumulate/index.php:10
-#: application/views/dashboard/index.php:327
+#: application/views/dashboard/index.php:325
 #: application/views/visitor/index.php:255
 msgid "Month"
 msgstr "Месяц"
@@ -4279,7 +4279,7 @@ msgstr "Не найдено!"
 #: application/views/club/permissions.php:222
 #: application/views/components/hamsat/table.php:27
 #: application/views/contesting/index.php:171
-#: application/views/csv/index.php:23 application/views/dashboard/index.php:249
+#: application/views/csv/index.php:23 application/views/dashboard/index.php:247
 #: application/views/dcl_views/index.php:27
 #: application/views/distancerecords/index.php:18
 #: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:42
@@ -4387,7 +4387,7 @@ msgstr "Данные DOK в вашем логе отличаются от DCL"
 #: application/views/components/hamsat/table.php:25
 #: application/views/contesting/index.php:103
 #: application/views/contesting/index.php:262
-#: application/views/dashboard/index.php:244
+#: application/views/dashboard/index.php:242
 #: application/views/debug/index.php:594
 #: application/views/distancerecords/index.php:16
 #: application/views/eqsl/analysis.php:36
@@ -4433,7 +4433,7 @@ msgstr "Дата"
 #: application/views/components/hamsat/table.php:26
 #: application/views/contesting/index.php:108
 #: application/views/contesting/index.php:262
-#: application/views/dashboard/index.php:247
+#: application/views/dashboard/index.php:245
 #: application/views/debug/index.php:595
 #: application/views/distancerecords/index.php:17
 #: application/views/eqsl/analysis.php:37
@@ -5339,7 +5339,7 @@ msgstr "Подтверждённые графства"
 #: application/views/awards/wapc/index.php:145
 #: application/views/awards/was/index.php:184
 #: application/views/awards/wpx/index.php:172
-#: application/views/dashboard/index.php:317
+#: application/views/dashboard/index.php:315
 #: application/views/simplefle/index.php:27
 #: application/views/statistics/qsltable.php:54
 #: application/views/statistics/qsltable.php:109
@@ -5430,8 +5430,8 @@ msgstr "Дипломы - CQ WAZ"
 #: application/views/awards/wac/index.php:23
 #: application/views/awards/wpx/wpx_details.php:24
 #: application/views/bandmap/list.php:60 application/views/bandmap/list.php:263
-#: application/views/dashboard/index.php:344
-#: application/views/dashboard/index.php:462
+#: application/views/dashboard/index.php:342
+#: application/views/dashboard/index.php:460
 #: application/views/interface_assets/footer.php:45
 #: application/views/search/result.php:32
 #: application/views/visitor/index.php:270
@@ -5442,8 +5442,8 @@ msgstr "Подтверждено"
 #: application/views/awards/itu/index.php:38
 #: application/views/awards/wac/index.php:23
 #: application/views/bandmap/list.php:59 application/views/bandmap/list.php:262
-#: application/views/dashboard/index.php:340
-#: application/views/dashboard/index.php:456
+#: application/views/dashboard/index.php:338
+#: application/views/dashboard/index.php:454
 #: application/views/search/result.php:35
 #: application/views/visitor/index.php:266
 msgid "Worked"
@@ -5795,10 +5795,10 @@ msgstr ""
 
 #: application/views/awards/dxcc/index.php:53
 #: application/views/contestcalendar/index.php:45
-#: application/views/dashboard/index.php:362
-#: application/views/dashboard/index.php:389
-#: application/views/dashboard/index.php:410
-#: application/views/dashboard/index.php:431
+#: application/views/dashboard/index.php:360
+#: application/views/dashboard/index.php:387
+#: application/views/dashboard/index.php:408
+#: application/views/dashboard/index.php:429
 #: application/views/gridmap/index.php:31
 #: application/views/logbookadvanced/index.php:278
 msgid "Today"
@@ -6417,7 +6417,7 @@ msgid "City"
 msgstr "Город"
 
 #: application/views/awards/jcc/index.php:189
-#: application/views/dashboard/index.php:452
+#: application/views/dashboard/index.php:450
 #: application/views/distances/index.php:23
 #: application/views/qslprint/qslprint.php:57
 #: application/views/qslprint/qslprint.php:58
@@ -9507,16 +9507,7 @@ msgid "At least one of your certificates is expiring"
 msgstr ""
 "По крайней мере, срок действия одного из ваших сертификатов запканчивается"
 
-#: application/views/dashboard/index.php:218
-msgid "The QSO end date of at least one of your certificates was exceeded"
-msgstr "Срок действия, как минимум, одного из ваших сертификатов истек"
-
-#: application/views/dashboard/index.php:219
-msgid ""
-"The QSO end date of at least one of your certificates is about to be exceeded"
-msgstr "Срок действия, как минимум, одного из ваших сертификатов скоро истечёт"
-
-#: application/views/dashboard/index.php:297
+#: application/views/dashboard/index.php:295
 #: application/views/qso/index.php:900
 #, php-format
 msgid "Max. %d previous contact is shown"
@@ -9525,25 +9516,25 @@ msgstr[0] "Отображается до %d предыдущего контак�
 msgstr[1] "Отображается до %d предыдущих контактов"
 msgstr[2] "Отображается до %d предыдущих контактов"
 
-#: application/views/dashboard/index.php:313
+#: application/views/dashboard/index.php:311
 #: application/views/visitor/index.php:241
 msgid "QSOs Breakdown"
 msgstr "Статистика QSO"
 
-#: application/views/dashboard/index.php:336
+#: application/views/dashboard/index.php:334
 #: application/views/visitor/index.php:262
 msgid "DXCCs Breakdown"
 msgstr "Статистика по DXCC"
 
-#: application/views/dashboard/index.php:353
+#: application/views/dashboard/index.php:351
 #: application/views/visitor/index.php:279
 msgid "Needed"
 msgstr "Необходимо"
 
-#: application/views/dashboard/index.php:366
-#: application/views/dashboard/index.php:393
-#: application/views/dashboard/index.php:414
-#: application/views/dashboard/index.php:435
+#: application/views/dashboard/index.php:364
+#: application/views/dashboard/index.php:391
+#: application/views/dashboard/index.php:412
+#: application/views/dashboard/index.php:433
 #: application/views/oqrs/qsolist.php:51 application/views/oqrs/qsolist.php:131
 #: application/views/oqrs/qsolist.php:160
 #: application/views/qslprint/qsolist.php:62
@@ -9577,10 +9568,10 @@ msgstr "Необходимо"
 msgid "Sent"
 msgstr "Отправлено"
 
-#: application/views/dashboard/index.php:372
-#: application/views/dashboard/index.php:399
-#: application/views/dashboard/index.php:420
-#: application/views/dashboard/index.php:441
+#: application/views/dashboard/index.php:370
+#: application/views/dashboard/index.php:397
+#: application/views/dashboard/index.php:418
+#: application/views/dashboard/index.php:439
 #: application/views/oqrs/qsolist.php:93 application/views/oqrs/qsolist.php:144
 #: application/views/oqrs/qsolist.php:175
 #: application/views/qslprint/qsolist.php:104
@@ -9613,7 +9604,7 @@ msgstr "Отправлено"
 msgid "Received"
 msgstr "Принято"
 
-#: application/views/dashboard/index.php:378
+#: application/views/dashboard/index.php:376
 #: application/views/logbookadvanced/edit.php:168
 #: application/views/logbookadvanced/edit.php:175
 #: application/views/logbookadvanced/edit.php:201
@@ -9658,25 +9649,25 @@ msgstr "Принято"
 msgid "Requested"
 msgstr "Запрошено"
 
-#: application/views/dashboard/index.php:388
+#: application/views/dashboard/index.php:386
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
-#: application/views/dashboard/index.php:451
+#: application/views/dashboard/index.php:449
 msgid "VUCC-Grids"
 msgstr "Квадраты VUCC"
 
-#: application/views/dashboard/index.php:476
+#: application/views/dashboard/index.php:474
 msgid "Solar Data & Propagation"
 msgstr "Солнечная активность и похождение"
 
-#: application/views/dashboard/index.php:478
+#: application/views/dashboard/index.php:476
 #, php-format
 msgid "Last update at %s."
 msgstr "Последнее обновление в %s."
 
-#: application/views/dashboard/index.php:487
+#: application/views/dashboard/index.php:485
 msgid "Data provided by HAMqsl."
 msgstr "Данные предоставлены HAMqsl."
 
@@ -18108,6 +18099,15 @@ msgstr "Отправить запрос"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Получено"
+
+#~ msgid "The QSO end date of at least one of your certificates was exceeded"
+#~ msgstr "Срок действия, как минимум, одного из ваших сертификатов истек"
+
+#~ msgid ""
+#~ "The QSO end date of at least one of your certificates is about to be "
+#~ "exceeded"
+#~ msgstr ""
+#~ "Срок действия, как минимум, одного из ваших сертификатов скоро истечёт"
 
 #~ msgid "Broken CBR file - no QSO data or incomplete header found."
 #~ msgstr ""

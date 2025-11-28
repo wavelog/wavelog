@@ -8,6 +8,7 @@ class Logbook_model extends CI_Model {
 	public function __construct() {
 		$this->oop_populate_modes();
 		$this->load->Model('Modes');
+		$this->load->library('DxclusterCache');
 	}
 
 	private $oop_modes = [];
@@ -940,6 +941,9 @@ class Logbook_model extends CI_Model {
 					}
 				}
 			}
+
+			// Invalidate DXCluster cache for this callsign
+			$this->dxclustercache->invalidateForCallsign($data['COL_CALL']);
 		}
 	}
 
@@ -1680,6 +1684,9 @@ class Logbook_model extends CI_Model {
 		try {
 			$this->db->update($this->config->item('table_name'), $data);
 			$retvals['success']=true;
+
+			// Invalidate DXCluster cache for this callsign
+			$this->dxclustercache->invalidateForCallsign($data['COL_CALL']);
 		} catch (Exception $e) {
 			$retvals['success']=false;
 			$retvals['detail']=$e;
@@ -2742,14 +2749,12 @@ class Logbook_model extends CI_Model {
 
 		// Build cache key with user_id, logbook_ids, and confirmation preference
 		$user_id = $this->session->userdata('user_id');
-		$logbook_ids_str = implode('_', $logbooks_locations_array);
-		$confirmation_hash = md5($user_default_confirmation); // Hash to keep key shorter
-		$logbook_ids_key = "{$user_id}_{$logbook_ids_str}_{$confirmation_hash}";
+		$logbook_ids_key = $this->dxclustercache->getLogbookKey($user_id, $logbooks_locations_array, $user_default_confirmation);
 		$spots_by_callsign = []; // Group spots by callsign for processing
 
 		foreach ($spots as $spot) {
-			// Validate spot has required properties
-			if (!isset($spot->spotted) || !isset($spot->dxcc_spotted->dxcc_id) || !isset($spot->dxcc_spotted->cont) || !isset($spot->band) || !isset($spot->mode)) {
+			// Validate spot has required properties (must be non-empty)
+			if (empty($spot->spotted) || empty($spot->dxcc_spotted->dxcc_id) || empty($spot->dxcc_spotted->cont) || empty($spot->band) || empty($spot->mode)) {
 				continue;
 			}
 
@@ -2782,7 +2787,7 @@ class Logbook_model extends CI_Model {
 			if (!isset($this->spot_status_cache[$cache_key])) {
 				// Check file cache
 				if ($cache_enabled) {
-					$file_cache_key = "dxcluster_worked_call_{$logbook_ids_key}_{$callsign}";
+					$file_cache_key = $this->dxclustercache->getWorkedCallKey($logbook_ids_key, $callsign);
 					$cached_data = $this->cache->get($file_cache_key);
 					if ($cached_data !== false) {
 						// Load from file cache into in-memory cache
@@ -2800,7 +2805,7 @@ class Logbook_model extends CI_Model {
 
 			if (!isset($this->spot_status_cache[$cache_key])) {
 				if ($cache_enabled) {
-					$file_cache_key = "dxcluster_worked_dxcc_{$logbook_ids_key}_{$dxcc}";
+					$file_cache_key = $this->dxclustercache->getWorkedDxccKey($logbook_ids_key, $dxcc);
 					$cached_data = $this->cache->get($file_cache_key);
 					if ($cached_data !== false) {
 						$this->spot_status_cache[$cache_key] = $cached_data;
@@ -2816,7 +2821,7 @@ class Logbook_model extends CI_Model {
 
 			if (!isset($this->spot_status_cache[$cache_key])) {
 				if ($cache_enabled) {
-					$file_cache_key = "dxcluster_worked_cont_{$logbook_ids_key}_{$cont}";
+					$file_cache_key = $this->dxclustercache->getWorkedContKey($logbook_ids_key, $cont);
 					$cached_data = $this->cache->get($file_cache_key);
 					if ($cached_data !== false) {
 						$this->spot_status_cache[$cache_key] = $cached_data;
@@ -3059,7 +3064,7 @@ class Logbook_model extends CI_Model {
 
 			// Save to file cache for 15 minutes
 			if ($cache_enabled) {
-				$file_cache_key = "dxcluster_worked_call_{$logbook_ids_key}_{$callsign}";
+				$file_cache_key = $this->dxclustercache->getWorkedCallKey($logbook_ids_key, $callsign);
 				$this->cache->save($file_cache_key, $data, $cache_ttl);
 			}
 		}
@@ -3068,7 +3073,7 @@ class Logbook_model extends CI_Model {
 			$this->spot_status_cache[$cache_key] = $data;
 
 			if ($cache_enabled) {
-				$file_cache_key = "dxcluster_worked_dxcc_{$logbook_ids_key}_{$dxcc}";
+				$file_cache_key = $this->dxclustercache->getWorkedDxccKey($logbook_ids_key, $dxcc);
 				$this->cache->save($file_cache_key, $data, $cache_ttl);
 			}
 		}
@@ -3077,7 +3082,7 @@ class Logbook_model extends CI_Model {
 			$this->spot_status_cache[$cache_key] = $data;
 
 			if ($cache_enabled) {
-				$file_cache_key = "dxcluster_worked_cont_{$logbook_ids_key}_{$cont}";
+				$file_cache_key = $this->dxclustercache->getWorkedContKey($logbook_ids_key, $cont);
 				$this->cache->save($file_cache_key, $data, $cache_ttl);
 			}
 		}		// Cache NOT WORKED items (negative results) - store empty arrays
@@ -3088,7 +3093,7 @@ class Logbook_model extends CI_Model {
 				$this->spot_status_cache[$cache_key] = []; // Empty = not worked
 
 				if ($cache_enabled) {
-					$file_cache_key = "dxcluster_worked_call_{$logbook_ids_key}_{$callsign}";
+					$file_cache_key = $this->dxclustercache->getWorkedCallKey($logbook_ids_key, $callsign);
 					$this->cache->save($file_cache_key, [], $cache_ttl);
 				}
 			}
@@ -3099,7 +3104,7 @@ class Logbook_model extends CI_Model {
 				$this->spot_status_cache[$cache_key] = [];
 
 				if ($cache_enabled) {
-					$file_cache_key = "dxcluster_worked_dxcc_{$logbook_ids_key}_{$dxcc}";
+					$file_cache_key = $this->dxclustercache->getWorkedDxccKey($logbook_ids_key, $dxcc);
 					$this->cache->save($file_cache_key, [], $cache_ttl);
 				}
 			}
@@ -3110,7 +3115,7 @@ class Logbook_model extends CI_Model {
 				$this->spot_status_cache[$cache_key] = [];
 
 				if ($cache_enabled) {
-					$file_cache_key = "dxcluster_worked_cont_{$logbook_ids_key}_{$cont}";
+					$file_cache_key = $this->dxclustercache->getWorkedContKey($logbook_ids_key, $cont);
 					$this->cache->save($file_cache_key, [], $cache_ttl);
 				}
 			}
@@ -4294,6 +4299,10 @@ class Logbook_model extends CI_Model {
 	/* Delete QSO based on the QSO ID */
 	function delete($id) {
 		if ($this->check_qso_is_accessible($id)) {
+			// Get callsign before deleting for cache invalidation
+			$qso = $this->get_qso($id);
+			$callsign = ($qso->num_rows() > 0) ? $qso->row()->COL_CALL : null;
+
 			$this->load->model('qsl_model');
 			$this->load->model('eqsl_images');
 
@@ -4305,6 +4314,9 @@ class Logbook_model extends CI_Model {
 
 			$this->db->where('qsoid', $id);
 			$this->db->delete("oqrs");
+
+			// Invalidate DXCluster cache for this callsign
+			$this->dxclustercache->invalidateForCallsign($callsign);
 		} else {
 			return;
 		}
