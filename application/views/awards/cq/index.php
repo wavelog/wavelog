@@ -70,7 +70,7 @@
 					<div class="col-md-2 control-label" for="checkboxes"><?= __("Date from"); ?></div>
 					<div class="col-md-10">
 						<div class="form-check-inline">
-							<input name="dateFrom" id="dateFrom" type="date" class="form-control form-control-sm w-auto border border-secondary" <?php if ($this->input->post('dateFrom')) echo 'value="' . $this->input->post('dateFrom') . '"'; ?>>
+							<input name="dateFrom" id="dateFrom" type="date" class="form-control form-control-sm w-auto border border-secondary" <?php if ($this->input->post('dateFrom', TRUE)) echo 'value="' . $this->input->post('dateFrom', TRUE) . '"'; ?>>
 						</div>
 					</div>
 				</div>
