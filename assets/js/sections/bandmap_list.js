@@ -2117,7 +2117,7 @@ $(function() {
 				// Handle combined response with favorites and userConfig
 				dxclusterFavs = result.favorites || {};
 				renderDxClusterFavMenu();
-				
+
 				// Process user config (bands/modes/submodes)
 				if (result.userConfig) {
 					processUserConfig(result.userConfig);
@@ -3832,7 +3832,7 @@ $(function() {
 	 */
 	function processUserConfig(data) {
 		if (!data) return;
-		
+
 		cachedUserFavorites = data;
 
 		// Store mode categories for button enabling/disabling
