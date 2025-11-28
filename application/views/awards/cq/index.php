@@ -78,7 +78,7 @@
 					<div class="col-md-2 control-label" for="checkboxes"><?= __("Date to"); ?></div>
 					<div class="col-md-10">
 						<div class="form-check-inline">
-							<input name="dateTo" id="dateTo" type="date" class="form-control form-control-sm w-auto border border-secondary" <?php if ($this->input->post('dateTo')) echo 'value="' . $this->input->post('dateTo') . '"'; ?>>
+							<input name="dateTo" id="dateTo" type="date" class="form-control form-control-sm w-auto border border-secondary" <?php if ($this->input->post('dateTo', TRUE)) echo 'value="' . $this->input->post('dateTo', TRUE) . '"'; ?>>
 						</div>
 					</div>
 				</div>
