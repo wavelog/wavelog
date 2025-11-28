@@ -904,10 +904,14 @@ $(function() {
 		var table = get_dtable();
 
 		if (!cachedSpotData || cachedSpotData.length === 0) {
-			disposeTooltips();
-			table.clear();
-			table.settings()[0].oLanguage.sEmptyTable = lang_bandmap_no_data;
-			table.draw();
+			// Only show "no data" if not currently fetching
+			// During fetch, keep showing current table contents
+			if (!isFetchInProgress) {
+				disposeTooltips();
+				table.clear();
+				table.settings()[0].oLanguage.sEmptyTable = lang_bandmap_no_data;
+				table.draw();
+			}
 			return;
 		}
 
