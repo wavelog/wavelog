@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2025-11-27 13:19+0000\n"
 "PO-Revision-Date: 2025-11-28 09:48+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
-"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/sv/>\n"
+"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/sv/>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1009,6 +1009,7 @@ msgstr "DX Kalender"
 #: application/views/dashboard/index.php:409
 #: application/views/eqslcard/index.php:5
 #: application/views/visitor/index.php:310
+#: application/views/dashboard/index.php:407
 msgid "eQSL Cards"
 msgstr "eQSL-kort"
 
@@ -1320,6 +1321,7 @@ msgstr "QSL"
 #: application/views/timeline/index.php:60 application/views/user/edit.php:624
 #: application/views/user/edit.php:826 application/views/view_log/qso.php:537
 #: application/views/view_log/qso.php:542
+#: application/views/dashboard/index.php:342
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1355,6 +1357,7 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:309
 #: application/views/timeline/index.php:64 application/views/user/edit.php:625
 #: application/views/user/edit.php:834 application/views/user/edit.php:908
+#: application/views/dashboard/index.php:342
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -2241,6 +2244,8 @@ msgstr "QRZ ADIF-information"
 #: application/views/dashboard/index.php:361
 #: application/views/qslcard/index.php:5
 #: application/views/visitor/index.php:287
+#: application/views/dashboard/index.php:342
+#: application/views/dashboard/index.php:359
 msgid "QSL Cards"
 msgstr "QSL-kort"
 
@@ -3604,6 +3609,7 @@ msgstr "Ackumulerat antal WAJA kontaktade"
 #: application/views/statistics/index.php:38
 #: application/views/timeline/index.php:107
 #: application/views/visitor/index.php:250
+#: application/views/dashboard/index.php:320
 msgid "Year"
 msgstr "I år"
 
@@ -3616,6 +3622,7 @@ msgstr "Årligen"
 #: application/views/accumulate/index.php:10
 #: application/views/dashboard/index.php:327
 #: application/views/visitor/index.php:255
+#: application/views/dashboard/index.php:325
 msgid "Month"
 msgstr "Denna månad"
 
@@ -4296,6 +4303,7 @@ msgstr "Inget hittades!"
 #: application/views/user/edit.php:137 application/views/user/index.php:28
 #: application/views/user/index.php:153 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:672
+#: application/views/dashboard/index.php:247
 msgid "Callsign"
 msgstr "Anropssignal"
 
@@ -4404,6 +4412,7 @@ msgstr "Det finns olika data för DOK i din logg jämfört med DCL"
 #: application/views/view_log/partial/log_ajax.php:196
 #: application/views/visitor/index.php:151
 #: application/views/widgets/qsos.php:16
+#: application/views/dashboard/index.php:242
 msgid "Date"
 msgstr "Datum"
 
@@ -4438,6 +4447,7 @@ msgstr "Datum"
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:198
 #: application/views/visitor/index.php:154
+#: application/views/dashboard/index.php:245
 msgid "Time"
 msgstr "Tid"
 
@@ -5334,6 +5344,7 @@ msgstr "Län bekräftade"
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
+#: application/views/dashboard/index.php:315
 msgid "Total"
 msgstr "Totalt"
 
@@ -5415,6 +5426,8 @@ msgstr "Diplom - CQ WAZ"
 #: application/views/interface_assets/footer.php:45
 #: application/views/search/result.php:32
 #: application/views/visitor/index.php:270
+#: application/views/dashboard/index.php:342
+#: application/views/dashboard/index.php:460
 msgid "Confirmed"
 msgstr "Bekräftade"
 
@@ -5426,6 +5439,8 @@ msgstr "Bekräftade"
 #: application/views/dashboard/index.php:456
 #: application/views/search/result.php:35
 #: application/views/visitor/index.php:266
+#: application/views/dashboard/index.php:338
+#: application/views/dashboard/index.php:454
 msgid "Worked"
 msgstr "Kontaktade"
 
@@ -5781,6 +5796,10 @@ msgstr "Datum presets"
 #: application/views/dashboard/index.php:431
 #: application/views/gridmap/index.php:31
 #: application/views/logbookadvanced/index.php:278
+#: application/views/dashboard/index.php:360
+#: application/views/dashboard/index.php:387
+#: application/views/dashboard/index.php:408
+#: application/views/dashboard/index.php:429
 msgid "Today"
 msgstr "Idag"
 
@@ -6393,6 +6412,7 @@ msgstr "Stad"
 #: application/views/qslprint/qslprint.php:58
 #: application/views/qslprint/qsolist.php:44
 #: application/views/qslprint/qsolist.php:45
+#: application/views/dashboard/index.php:450
 msgid "SAT"
 msgstr "SAT"
 
@@ -6858,8 +6878,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
-"Reef/506) och giltig stat (ADIF: DXCC och STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
+"506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/wapc/index.php:119
 msgid "Code"
@@ -9455,6 +9475,7 @@ msgstr ""
 
 #: application/views/dashboard/index.php:297
 #: application/views/qso/index.php:900
+#: application/views/dashboard/index.php:295
 #, php-format
 msgid "Max. %d previous contact is shown"
 msgid_plural "Max. %d previous contacts are shown"
@@ -9463,16 +9484,19 @@ msgstr[1] "Max. %d tidigare kontakter visas"
 
 #: application/views/dashboard/index.php:313
 #: application/views/visitor/index.php:241
+#: application/views/dashboard/index.php:311
 msgid "QSOs Breakdown"
 msgstr "QSOs-fördelning"
 
 #: application/views/dashboard/index.php:336
 #: application/views/visitor/index.php:262
+#: application/views/dashboard/index.php:334
 msgid "DXCCs Breakdown"
 msgstr "DXCC-fördelning"
 
 #: application/views/dashboard/index.php:353
 #: application/views/visitor/index.php:279
+#: application/views/dashboard/index.php:351
 msgid "Needed"
 msgstr "Behövs"
 
@@ -9509,7 +9533,10 @@ msgstr "Behövs"
 #: application/views/widgets/qsos.php:19 src/QSLManager/QSO.php:403
 #: src/QSLManager/QSO.php:504 src/QSLManager/QSO.php:558
 #: src/QSLManager/QSO.php:647 src/QSLManager/QSO.php:704
-#: src/QSLManager/QSO.php:793
+#: src/QSLManager/QSO.php:793 application/views/dashboard/index.php:364
+#: application/views/dashboard/index.php:391
+#: application/views/dashboard/index.php:412
+#: application/views/dashboard/index.php:433
 msgid "Sent"
 msgstr "Skickad"
 
@@ -9545,7 +9572,10 @@ msgstr "Skickad"
 #: application/views/visitor/index.php:337 src/QSLManager/QSO.php:448
 #: src/QSLManager/QSO.php:531 src/QSLManager/QSO.php:608
 #: src/QSLManager/QSO.php:674 src/QSLManager/QSO.php:754
-#: src/QSLManager/QSO.php:821
+#: src/QSLManager/QSO.php:821 application/views/dashboard/index.php:370
+#: application/views/dashboard/index.php:397
+#: application/views/dashboard/index.php:418
+#: application/views/dashboard/index.php:439
 msgid "Received"
 msgstr "Mottagen"
 
@@ -9590,29 +9620,34 @@ msgstr "Mottagen"
 #: src/QSLManager/QSO.php:454 src/QSLManager/QSO.php:516
 #: src/QSLManager/QSO.php:539 src/QSLManager/QSO.php:653
 #: src/QSLManager/QSO.php:680 src/QSLManager/QSO.php:805
-#: src/QSLManager/QSO.php:830
+#: src/QSLManager/QSO.php:830 application/views/dashboard/index.php:376
 msgid "Requested"
 msgstr "Begärt"
 
 #: application/views/dashboard/index.php:388
+#: application/views/dashboard/index.php:386
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
 #: application/views/dashboard/index.php:451
+#: application/views/dashboard/index.php:449
 msgid "VUCC-Grids"
 msgstr "VUCC-Lokatorrutor"
 
 #: application/views/dashboard/index.php:476
+#: application/views/dashboard/index.php:474
 msgid "Solar Data & Propagation"
 msgstr "Soldata och vågutbredning"
 
 #: application/views/dashboard/index.php:478
+#: application/views/dashboard/index.php:476
 #, php-format
 msgid "Last update at %s."
 msgstr "Senaste uppdateringen kl. %s."
 
 #: application/views/dashboard/index.php:487
+#: application/views/dashboard/index.php:485
 msgid "Data provided by HAMqsl."
 msgstr "Data tillhandahålls av HAMqsl."
 
@@ -16549,8 +16584,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 (t."
-"ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
+"(t.ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"

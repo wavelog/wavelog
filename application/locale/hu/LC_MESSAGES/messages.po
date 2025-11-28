@@ -1007,6 +1007,7 @@ msgstr ""
 #: application/views/dashboard/index.php:409
 #: application/views/eqslcard/index.php:5
 #: application/views/visitor/index.php:310
+#: application/views/dashboard/index.php:407
 msgid "eQSL Cards"
 msgstr ""
 
@@ -1312,6 +1313,7 @@ msgstr ""
 #: application/views/timeline/index.php:60 application/views/user/edit.php:624
 #: application/views/user/edit.php:826 application/views/view_log/qso.php:537
 #: application/views/view_log/qso.php:542
+#: application/views/dashboard/index.php:342
 msgid "LoTW"
 msgstr ""
 
@@ -1347,6 +1349,7 @@ msgstr ""
 #: application/views/station_profile/edit.php:309
 #: application/views/timeline/index.php:64 application/views/user/edit.php:625
 #: application/views/user/edit.php:834 application/views/user/edit.php:908
+#: application/views/dashboard/index.php:342
 msgid "eQSL"
 msgstr ""
 
@@ -2222,6 +2225,8 @@ msgstr ""
 #: application/views/dashboard/index.php:361
 #: application/views/qslcard/index.php:5
 #: application/views/visitor/index.php:287
+#: application/views/dashboard/index.php:342
+#: application/views/dashboard/index.php:359
 msgid "QSL Cards"
 msgstr ""
 
@@ -3539,6 +3544,7 @@ msgstr ""
 #: application/views/statistics/index.php:38
 #: application/views/timeline/index.php:107
 #: application/views/visitor/index.php:250
+#: application/views/dashboard/index.php:320
 msgid "Year"
 msgstr ""
 
@@ -3551,6 +3557,7 @@ msgstr ""
 #: application/views/accumulate/index.php:10
 #: application/views/dashboard/index.php:327
 #: application/views/visitor/index.php:255
+#: application/views/dashboard/index.php:325
 msgid "Month"
 msgstr ""
 
@@ -4231,6 +4238,7 @@ msgstr ""
 #: application/views/user/edit.php:137 application/views/user/index.php:28
 #: application/views/user/index.php:153 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:672
+#: application/views/dashboard/index.php:247
 msgid "Callsign"
 msgstr "Hívójel"
 
@@ -4339,6 +4347,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:196
 #: application/views/visitor/index.php:151
 #: application/views/widgets/qsos.php:16
+#: application/views/dashboard/index.php:242
 msgid "Date"
 msgstr ""
 
@@ -4373,6 +4382,7 @@ msgstr ""
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:198
 #: application/views/visitor/index.php:154
+#: application/views/dashboard/index.php:245
 msgid "Time"
 msgstr ""
 
@@ -5193,6 +5203,7 @@ msgstr ""
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
+#: application/views/dashboard/index.php:315
 msgid "Total"
 msgstr ""
 
@@ -5267,6 +5278,8 @@ msgstr ""
 #: application/views/interface_assets/footer.php:45
 #: application/views/search/result.php:32
 #: application/views/visitor/index.php:270
+#: application/views/dashboard/index.php:342
+#: application/views/dashboard/index.php:460
 msgid "Confirmed"
 msgstr ""
 
@@ -5278,6 +5291,8 @@ msgstr ""
 #: application/views/dashboard/index.php:456
 #: application/views/search/result.php:35
 #: application/views/visitor/index.php:266
+#: application/views/dashboard/index.php:338
+#: application/views/dashboard/index.php:454
 msgid "Worked"
 msgstr ""
 
@@ -5611,6 +5626,10 @@ msgstr ""
 #: application/views/dashboard/index.php:431
 #: application/views/gridmap/index.php:31
 #: application/views/logbookadvanced/index.php:278
+#: application/views/dashboard/index.php:360
+#: application/views/dashboard/index.php:387
+#: application/views/dashboard/index.php:408
+#: application/views/dashboard/index.php:429
 msgid "Today"
 msgstr ""
 
@@ -6155,6 +6174,7 @@ msgstr "Város"
 #: application/views/qslprint/qslprint.php:58
 #: application/views/qslprint/qsolist.php:44
 #: application/views/qslprint/qsolist.php:45
+#: application/views/dashboard/index.php:450
 msgid "SAT"
 msgstr ""
 
@@ -9039,6 +9059,7 @@ msgstr ""
 
 #: application/views/dashboard/index.php:297
 #: application/views/qso/index.php:900
+#: application/views/dashboard/index.php:295
 #, php-format
 msgid "Max. %d previous contact is shown"
 msgid_plural "Max. %d previous contacts are shown"
@@ -9047,16 +9068,19 @@ msgstr[1] ""
 
 #: application/views/dashboard/index.php:313
 #: application/views/visitor/index.php:241
+#: application/views/dashboard/index.php:311
 msgid "QSOs Breakdown"
 msgstr ""
 
 #: application/views/dashboard/index.php:336
 #: application/views/visitor/index.php:262
+#: application/views/dashboard/index.php:334
 msgid "DXCCs Breakdown"
 msgstr ""
 
 #: application/views/dashboard/index.php:353
 #: application/views/visitor/index.php:279
+#: application/views/dashboard/index.php:351
 msgid "Needed"
 msgstr ""
 
@@ -9093,7 +9117,10 @@ msgstr ""
 #: application/views/widgets/qsos.php:19 src/QSLManager/QSO.php:403
 #: src/QSLManager/QSO.php:504 src/QSLManager/QSO.php:558
 #: src/QSLManager/QSO.php:647 src/QSLManager/QSO.php:704
-#: src/QSLManager/QSO.php:793
+#: src/QSLManager/QSO.php:793 application/views/dashboard/index.php:364
+#: application/views/dashboard/index.php:391
+#: application/views/dashboard/index.php:412
+#: application/views/dashboard/index.php:433
 msgid "Sent"
 msgstr ""
 
@@ -9129,7 +9156,10 @@ msgstr ""
 #: application/views/visitor/index.php:337 src/QSLManager/QSO.php:448
 #: src/QSLManager/QSO.php:531 src/QSLManager/QSO.php:608
 #: src/QSLManager/QSO.php:674 src/QSLManager/QSO.php:754
-#: src/QSLManager/QSO.php:821
+#: src/QSLManager/QSO.php:821 application/views/dashboard/index.php:370
+#: application/views/dashboard/index.php:397
+#: application/views/dashboard/index.php:418
+#: application/views/dashboard/index.php:439
 msgid "Received"
 msgstr ""
 
@@ -9174,29 +9204,34 @@ msgstr ""
 #: src/QSLManager/QSO.php:454 src/QSLManager/QSO.php:516
 #: src/QSLManager/QSO.php:539 src/QSLManager/QSO.php:653
 #: src/QSLManager/QSO.php:680 src/QSLManager/QSO.php:805
-#: src/QSLManager/QSO.php:830
+#: src/QSLManager/QSO.php:830 application/views/dashboard/index.php:376
 msgid "Requested"
 msgstr ""
 
 #: application/views/dashboard/index.php:388
+#: application/views/dashboard/index.php:386
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
 msgstr ""
 
 #: application/views/dashboard/index.php:451
+#: application/views/dashboard/index.php:449
 msgid "VUCC-Grids"
 msgstr ""
 
 #: application/views/dashboard/index.php:476
+#: application/views/dashboard/index.php:474
 msgid "Solar Data & Propagation"
 msgstr ""
 
 #: application/views/dashboard/index.php:478
+#: application/views/dashboard/index.php:476
 #, php-format
 msgid "Last update at %s."
 msgstr ""
 
 #: application/views/dashboard/index.php:487
+#: application/views/dashboard/index.php:485
 msgid "Data provided by HAMqsl."
 msgstr ""
 
