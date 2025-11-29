@@ -3879,14 +3879,13 @@ $(function() {
 		// Store submodes for filtering
 		if (data.submodes && data.submodes.length > 0) {
 			userEnabledSubmodes = data.submodes;
-			isMySubmodesFilterActive = true; // Enable filter by default
+			// Don't activate filter on initial load - let user enable it manually
+			isMySubmodesFilterActive = false;
 			updateMySubmodesButtonVisual();
 			updateMySubmodesTooltip();
 			updateModeButtonsForSubmodes();
-			// Sync to requiredFlags select
-			syncMySubmodesToRequiredFlags();
-			// Reapply filters to activate submode filtering
-			applyFilters(false);
+			// Update badge counts now that we have submodes loaded
+			updateBandCountBadges();
 		} else {
 			// No submodes configured - disable button and show warning
 			userEnabledSubmodes = [];
