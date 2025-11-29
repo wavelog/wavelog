@@ -149,9 +149,11 @@ $(function() {
 		try {
 			$('.spottable [data-bs-toggle="tooltip"]').each(function() {
 				try {
-					const tooltipInstance = bootstrap.Tooltip.getInstance(this);
-					if (tooltipInstance) {
-						tooltipInstance.dispose();
+					if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
+						const tooltipInstance = bootstrap.Tooltip.getInstance(this);
+						if (tooltipInstance && typeof tooltipInstance.dispose === 'function') {
+							tooltipInstance.dispose();
+						}
 					}
 				} catch (err) {
 					// Skip individual tooltip errors
@@ -1363,29 +1365,31 @@ $(function() {
 
 	// Initialize tooltips with error handling
 	try {
-		$('[data-bs-toggle="tooltip"]').each(function() {
-			if (!this || !$(this).attr('title')) return;
+		if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
+			$('[data-bs-toggle="tooltip"]').each(function() {
+				if (!this || !$(this).attr('title')) return;
 
-			try {
-				// Dispose existing tooltip instance if it exists
-				const existingTooltip = bootstrap.Tooltip.getInstance(this);
-				if (existingTooltip) {
-					existingTooltip.dispose();
+				try {
+					// Dispose existing tooltip instance if it exists
+					const existingTooltip = bootstrap.Tooltip.getInstance(this);
+					if (existingTooltip && typeof existingTooltip.dispose === 'function') {
+						existingTooltip.dispose();
+					}
+
+					// Create new tooltip instance with proper configuration
+					new bootstrap.Tooltip(this, {
+						boundary: 'window',
+						trigger: 'hover',
+						sanitize: false,
+						html: false,
+						animation: true,
+						delay: { show: 100, hide: 100 }
+					});
+				} catch (err) {
+					// Skip if tooltip fails to initialize
 				}
-
-				// Create new tooltip instance with proper configuration
-				new bootstrap.Tooltip(this, {
-					boundary: 'window',
-					trigger: 'hover',
-					sanitize: false,
-					html: false,
-					animation: true,
-					delay: { show: 100, hide: 100 }
-				});
-			} catch (err) {
-				// Skip if tooltip fails to initialize
-			}
-		});
+			});
+		}
 	} catch (e) {
 		// Fallback if tooltip initialization fails
 	}		let displayedCount = spots2render || 0;
@@ -3513,8 +3517,12 @@ $(function() {
 
 		// Update tooltip if it exists
 		if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
-			let tooltip = bootstrap.Tooltip.getInstance(btn[0]);
-			if (tooltip) tooltip.hide();
+			try {
+				let tooltip = bootstrap.Tooltip.getInstance(btn[0]);
+				if (tooltip) tooltip.hide();
+			} catch (e) {
+				// Ignore tooltip errors
+			}
 		}
 	}
 
@@ -3551,8 +3559,12 @@ $(function() {
 
 		// Update tooltip if it exists
 		if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
-			let tooltip = bootstrap.Tooltip.getInstance(btn[0]);
-			if (tooltip) tooltip.hide();
+			try {
+				let tooltip = bootstrap.Tooltip.getInstance(btn[0]);
+				if (tooltip) tooltip.hide();
+			} catch (e) {
+				// Ignore tooltip errors
+			}
 		}
 	}
 
