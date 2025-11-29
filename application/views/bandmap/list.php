@@ -167,8 +167,8 @@
 	var lang_bandmap_mode = "<?= __("Mode"); ?>";
 	var lang_bandmap_band = "<?= __("Band"); ?>";
 
-	// Enable ultra-compact radio status display for bandmap page (tooltip only)
-	window.CAT_COMPACT_MODE = 'ultra-compact';
+	// Enable icon-only radio status display for bandmap page (just icon with tooltip)
+	window.CAT_COMPACT_MODE = 'icon-only';
 
 	// Map configuration (matches QSO map settings)
 	var map_tile_server = '<?php echo $this->optionslib->get_option('option_map_tile_server');?>';

@@ -162,11 +162,18 @@ $(function() {
 			$('.spottable [data-bs-toggle="tooltip"]').each(function() {
 				try {
 					if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
-						const tooltipInstance = bootstrap.Tooltip.getInstance(this);
-						if (tooltipInstance) {
-							// Hide first, then dispose - prevents _isWithActiveTrigger errors
-							try { tooltipInstance.hide(); } catch(e) {}
-							try { tooltipInstance.dispose(); } catch(e) {}
+						// Use safeDisposeTooltip if available (from cat.js), otherwise dispose directly
+						if (typeof window.safeDisposeTooltip === 'function') {
+							window.safeDisposeTooltip(this);
+						} else {
+							const tooltipInstance = bootstrap.Tooltip.getInstance(this);
+							if (tooltipInstance) {
+								// Set _activeTrigger to empty object to prevent _isWithActiveTrigger error
+								if (tooltipInstance._activeTrigger) {
+									tooltipInstance._activeTrigger = {};
+								}
+								try { tooltipInstance.dispose(); } catch(e) {}
+							}
 						}
 					}
 				} catch (err) {
@@ -1385,10 +1392,16 @@ $(function() {
 
 				try {
 					// Dispose existing tooltip instance if it exists
-					const existingTooltip = bootstrap.Tooltip.getInstance(this);
-					if (existingTooltip) {
-						try { existingTooltip.hide(); } catch(e) {}
-						try { existingTooltip.dispose(); } catch(e) {}
+					if (typeof window.safeDisposeTooltip === 'function') {
+						window.safeDisposeTooltip(this);
+					} else {
+						const existingTooltip = bootstrap.Tooltip.getInstance(this);
+						if (existingTooltip) {
+							if (existingTooltip._activeTrigger) {
+								existingTooltip._activeTrigger = {};
+							}
+							try { existingTooltip.dispose(); } catch(e) {}
+						}
 					}
 
 					// Create new tooltip instance with proper configuration
@@ -2785,8 +2798,17 @@ $(function() {
 		}
 
 		// Display radio status when CAT is enabled (don't call full catJsUpdateCATui as it updates QSO form fields)
+		// But we need to check for stale data like cat.js does
 		if (isCatTrackingEnabled && typeof window.displayRadioStatus === 'function') {
-			window.displayRadioStatus('success', data);
+			// Check if data is too old (same logic as cat.js updateCATui)
+			var minutes = typeof cat_timeout_minutes !== 'undefined' ? cat_timeout_minutes : 5;
+			if (data.updated_minutes_ago > minutes) {
+				// Data is stale - show timeout
+				var radioName = $('select.radios option:selected').text();
+				window.displayRadioStatus('timeout', radioName);
+			} else {
+				window.displayRadioStatus('success', data);
+			}
 		}
 
 		// Update frequency gradient colors for all visible rows (works in both normal and purple CAT modes)
@@ -3685,9 +3707,17 @@ $(function() {
 			window.isCatTrackingEnabled = true;
 			catState = 'on';
 
-			// Display last known data if available
+			// Display last known data if available and not stale
 			if (window.lastCATData && typeof window.displayRadioStatus === 'function') {
-				window.displayRadioStatus('success', window.lastCATData);
+				// Check if data is still fresh (use same timeout as cat.js)
+				var minutes = typeof cat_timeout_minutes !== 'undefined' ? cat_timeout_minutes : 5;
+				if (window.lastCATData.updated_minutes_ago <= minutes) {
+					window.displayRadioStatus('success', window.lastCATData);
+				} else {
+					// Data is stale - show timeout
+					var radioName = $('select.radios option:selected').text();
+					window.displayRadioStatus('timeout', radioName);
+				}
 			}
 
 			// Trigger immediate polling update if using polling radio
