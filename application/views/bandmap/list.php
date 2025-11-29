@@ -235,7 +235,7 @@
 
 		<!-- Radio Selector Dropdown -->
 		<small class="text-muted me-1 flex-shrink-0 d-none d-md-inline"><?= __("TRX:"); ?></small>
-		<select class="form-select form-select-sm radios flex-shrink-0" id="radio" name="radio" style="width: auto; min-width: 150px;">
+		<select class="form-select form-select-sm radios flex-shrink-0" id="radio" name="radio" style="width: auto;">
 			<option value="0" selected="selected"><?= __("None"); ?></option>
 			<option value="ws"<?php if ($this->session->userdata('radio') == 'ws') { echo ' selected="selected"'; } ?>><?= __("Live - ") . __("WebSocket (Requires WLGate>=1.1.10)"); ?></option>
 			<?php foreach ($radios->result() as $row) { ?>

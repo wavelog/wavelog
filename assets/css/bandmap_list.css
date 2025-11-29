@@ -119,6 +119,16 @@ html { overflow-y: scroll; }
 	vertical-align: middle;
 }
 
+/* Ensure sort markers are consistent across all sortable columns */
+.spottable thead th.dt-orderable-asc,
+.spottable thead th.dt-orderable-desc {
+	padding-right: 22px !important;
+}
+
+.spottable thead th span.dt-column-order {
+	right: 6px !important;
+}
+
 .spottable thead tr {
 	border-top: 1px solid var(--bs-border-color);
 	border-bottom: 1px solid var(--bs-border-color);
@@ -158,6 +168,7 @@ html { overflow-y: scroll; }
 }
 
 .spottable .column-hidden { display: none !important; }
+.spottable .column-fill { width: 100% !important; min-width: 150px !important; }
 
 /* ===========================================
    5. SPOT TABLE - COLUMNS
@@ -322,7 +333,7 @@ html { overflow-y: scroll; }
 
 .menu-bar .d-flex { overflow: visible; min-height: fit-content; gap: 0.4rem !important; }
 .menu-bar .btn-sm { padding: 0.25rem 0.5rem; font-size: 0.875rem; }
-.menu-bar .radios.form-select-sm { height: calc(1.5em + 0.5rem + 2px); padding: 0.25rem; font-size: 0.875rem; }
+.menu-bar .radios.form-select-sm { height: calc(1.5em + 0.5rem + 2px); padding: 0.25rem; font-size: 0.875rem; min-width: 330px; }
 .menu-bar > div:last-child { justify-content: flex-end; }
 .menu-bar > div.mb-2 { margin-bottom: 0.4rem !important; }
 
@@ -483,7 +494,7 @@ select[multiple] option:checked { background-color: var(--bs-primary); color: wh
 /* Restore larger sizing in fullscreen mode */
 .bandmap-fullscreen .menu-bar .d-flex { gap: 0.5rem !important; }
 .bandmap-fullscreen .menu-bar .btn-sm { padding: 0.25rem 0.5rem; font-size: 0.875rem; }
-.bandmap-fullscreen .menu-bar .radios.form-select-sm { height: calc(1.5em + 0.5rem + 2px); padding: 0.25rem; font-size: 0.875rem; }
+.bandmap-fullscreen .menu-bar .radios.form-select-sm { height: calc(1.5em + 0.5rem + 2px); padding: 0.25rem; font-size: 0.875rem; min-width: 330px; }
 .bandmap-fullscreen .menu-bar > div.mb-2 { margin-bottom: 0.5rem !important; }
 .bandmap-fullscreen .menu-bar #radio_status #radio_cat_state { font-size: 0.875rem; padding: 0.25rem; }
 .bandmap-fullscreen .card-header { padding: 0.35rem 1rem !important; }

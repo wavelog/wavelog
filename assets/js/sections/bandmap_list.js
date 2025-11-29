@@ -576,7 +576,7 @@ $(function() {
 					}
 				},
 				{
-					'targets': [4, 6, 8, 15],  // Submode, Cont, Flag, Message - disable sorting
+					'targets': [6, 8, 15],  // Cont, Flag, Message - disable sorting
 					'orderable': false
 				}
 			],
@@ -2875,6 +2875,9 @@ $(function() {
 			}
 
 			setTimeout(function() {
+				if (typeof handleResponsiveColumns === 'function') {
+					handleResponsiveColumns();
+				}
 				if ($.fn.DataTable.isDataTable('.spottable')) {
 					$('.spottable').DataTable().columns.adjust();
 				}
@@ -2899,6 +2902,9 @@ $(function() {
 			}
 
 			setTimeout(function() {
+				if (typeof handleResponsiveColumns === 'function') {
+					handleResponsiveColumns();
+				}
 				if ($.fn.DataTable.isDataTable('.spottable')) {
 					$('.spottable').DataTable().columns.adjust();
 				}
@@ -2934,6 +2940,9 @@ $(function() {
 
 		// Adjust DataTable columns after toggle
 		setTimeout(function() {
+			if (typeof handleResponsiveColumns === 'function') {
+				handleResponsiveColumns();
+			}
 			if ($.fn.DataTable.isDataTable('.spottable')) {
 				$('.spottable').DataTable().columns.adjust();
 			}
@@ -3569,8 +3578,8 @@ $(function() {
 		$('.spottable').removeClass('cat-sorting-locked');
 
 		// Re-enable sorting on all columns that were originally sortable
-		// Based on columnDefs: columns 4, 6, 8, 15 are not sortable (Submode, Cont, Flag, Message)
-		const nonSortableColumns = [4, 6, 8, 15];
+		// Based on columnDefs: columns 6, 8, 15 are not sortable (Cont, Flag, Message)
+		const nonSortableColumns = [6, 8, 15];
 
 		table.settings()[0].aoColumns.forEach(function(col, index) {
 			if (!nonSortableColumns.includes(index)) {
@@ -3862,10 +3871,12 @@ $(function() {
 	 * 14: Special, 15: Message
 	 *
 	 * Breakpoints:
-	 * - Full screen or > 1374px: Show all columns
-	 * - <= 1374px: Hide CQZ (7), de CQZ (12), Last QSO (13), Submode (4)
+	 * Responsive column visibility based on container width.
+	 * Works in both normal and fullscreen mode.
+	 * - > 1374px: Show all columns
+	 * - <= 1374px: Hide CQZ (7), de CQZ (12), Last QSO (13), Mode (3)
 	 * - <= 1294px: Additionally hide Band (1), Cont (6), de Cont (11)
-	 * - <= 1024px: Additionally hide Flag (8)
+	 * - <= 1024px: Additionally hide Flag (8), Message (15)
 	 * - <= 500px: Show only Age (0), Freq (2), Callsign (5), Entity (9)
 	 */
 	function handleResponsiveColumns() {
@@ -3874,19 +3885,8 @@ $(function() {
 
 		const containerWidth = tableContainer.width();
 
-		// Check if in fullscreen mode
-		const isFullscreen = $('#bandmapContainer').hasClass('bandmap-fullscreen');
-
 		// Reset all columns to visible first
-		$('.spottable th, .spottable td').removeClass('column-hidden');
-
-		// If fullscreen, show all columns and exit
-		if (isFullscreen) {
-			if ($.fn.DataTable && $.fn.DataTable.isDataTable('.spottable')) {
-				$('.spottable').DataTable().columns.adjust();
-			}
-			return;
-		}
+		$('.spottable th, .spottable td').removeClass('column-hidden column-fill');
 
 		// Apply visibility rules based on container width
 		if (containerWidth <= 500) {
@@ -3903,10 +3903,12 @@ $(function() {
 			$('.spottable th:nth-child(14), .spottable td:nth-child(14)').addClass('column-hidden'); // Last QSO
 			$('.spottable th:nth-child(15), .spottable td:nth-child(15)').addClass('column-hidden'); // Special
 			$('.spottable th:nth-child(16), .spottable td:nth-child(16)').addClass('column-hidden'); // Message
+			// Entity fills remaining space
+			$('.spottable th:nth-child(10), .spottable td:nth-child(10)').addClass('column-fill');
 		} else if (containerWidth <= 1024) {
-			// Hide: CQZ, de CQZ, Last QSO, Submode, Band, Cont, de Cont, Flag
+			// Hide: CQZ, de CQZ, Last QSO, Mode, Band, Cont, de Cont, Flag, Message
 			$('.spottable th:nth-child(2), .spottable td:nth-child(2)').addClass('column-hidden'); // Band
-			$('.spottable th:nth-child(5), .spottable td:nth-child(5)').addClass('column-hidden'); // Submode
+			$('.spottable th:nth-child(4), .spottable td:nth-child(4)').addClass('column-hidden'); // Mode
 			$('.spottable th:nth-child(7), .spottable td:nth-child(7)').addClass('column-hidden'); // Continent
 			$('.spottable th:nth-child(8), .spottable td:nth-child(8)').addClass('column-hidden'); // CQZ
 			$('.spottable th:nth-child(9), .spottable td:nth-child(9)').addClass('column-hidden'); // Flag
@@ -3914,18 +3916,20 @@ $(function() {
 			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de CQZ
 			$('.spottable th:nth-child(14), .spottable td:nth-child(14)').addClass('column-hidden'); // Last QSO
 			$('.spottable th:nth-child(16), .spottable td:nth-child(16)').addClass('column-hidden'); // Message
+			// Entity fills remaining space
+			$('.spottable th:nth-child(10), .spottable td:nth-child(10)').addClass('column-fill');
 		} else if (containerWidth <= 1294) {
-			// Hide: CQZ, de CQZ, Last QSO, Submode, Band, Cont, de Cont
+			// Hide: CQZ, de CQZ, Last QSO, Mode, Band, Cont, de Cont
 			$('.spottable th:nth-child(2), .spottable td:nth-child(2)').addClass('column-hidden'); // Band
-			$('.spottable th:nth-child(5), .spottable td:nth-child(5)').addClass('column-hidden'); // Submode
+			$('.spottable th:nth-child(4), .spottable td:nth-child(4)').addClass('column-hidden'); // Mode
 			$('.spottable th:nth-child(7), .spottable td:nth-child(7)').addClass('column-hidden'); // Continent
 			$('.spottable th:nth-child(8), .spottable td:nth-child(8)').addClass('column-hidden'); // CQZ
 			$('.spottable th:nth-child(12), .spottable td:nth-child(12)').addClass('column-hidden'); // de Cont
 			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de CQZ
 			$('.spottable th:nth-child(14), .spottable td:nth-child(14)').addClass('column-hidden'); // Last QSO
 		} else if (containerWidth <= 1374) {
-			// Hide: CQZ, de CQZ, Last QSO, Submode
-			$('.spottable th:nth-child(5), .spottable td:nth-child(5)').addClass('column-hidden'); // Submode
+			// Hide: CQZ, de CQZ, Last QSO, Mode
+			$('.spottable th:nth-child(4), .spottable td:nth-child(4)').addClass('column-hidden'); // Mode
 			$('.spottable th:nth-child(8), .spottable td:nth-child(8)').addClass('column-hidden'); // CQZ
 			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de CQZ
 			$('.spottable th:nth-child(14), .spottable td:nth-child(14)').addClass('column-hidden'); // Last QSO
