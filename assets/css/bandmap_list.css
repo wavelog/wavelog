@@ -301,7 +301,6 @@ html { overflow-y: scroll; }
 	flex: 0 0 auto;
 	min-width: 100px;
 	margin-left: 10px;
-	color: var(--bs-secondary);
 	text-align: right;
 	display: flex;
 	align-items: center;
@@ -317,6 +316,9 @@ html { overflow-y: scroll; }
 	margin: 3px 0;
 	overflow: visible;
 }
+
+/* Compact mode - hide rows */
+.menu-bar .compact-hidden { display: none !important; }
 
 .menu-bar .d-flex { overflow: visible; min-height: fit-content; gap: 0.4rem !important; }
 .menu-bar .btn-sm { padding: 0.25rem 0.5rem; font-size: 0.875rem; }
@@ -365,10 +367,12 @@ html { overflow-y: scroll; }
 .card-header h5 { font-size: 1rem !important; margin: 0 !important; line-height: 1.2 !important; }
 .card-header .headerLogo { height: 22px !important; }
 .card-header .d-flex { gap: 0.5rem !important; }
-.card-header .fa-question-circle, .card-header #fullscreenIcon { font-size: 0.9rem !important; }
+.card-header .fa-question-circle, .card-header #fullscreenIcon, .card-header #compactModeIcon { font-size: 0.9rem !important; }
 .card-header a[style*="padding: 0.5rem"] { padding: 0.2rem !important; margin: -0.2rem !important; }
 #fullscreenToggleWrapper { padding: 0.2rem !important; margin: -0.2rem !important; }
 #fullscreenToggle { padding: 0.2rem !important; min-width: 28px !important; min-height: 28px !important; }
+#compactModeToggle { padding: 0.2rem !important; min-width: 28px !important; min-height: 28px !important; display: inline-flex; align-items: center; justify-content: center; }
+#compactModeToggle:hover { background-color: rgba(0,0,0,0.08) !important; border-radius: 0.25rem; }
 .card-body.pt-1 { padding: 0.4rem 8px !important; }
 
 #fullscreenToggle, #fullscreenToggleWrapper {
@@ -486,10 +490,11 @@ select[multiple] option:checked { background-color: var(--bs-primary); color: wh
 .bandmap-fullscreen .card-header h5 { font-size: 1.15rem !important; line-height: 1.4 !important; }
 .bandmap-fullscreen .card-header .headerLogo { height: 32px !important; }
 .bandmap-fullscreen .card-header .d-flex { gap: 1rem !important; }
-.bandmap-fullscreen .card-header .fa-question-circle, .bandmap-fullscreen .card-header #fullscreenIcon { font-size: 1.2rem !important; }
+.bandmap-fullscreen .card-header .fa-question-circle, .bandmap-fullscreen .card-header #fullscreenIcon, .bandmap-fullscreen .card-header #compactModeIcon { font-size: 1.2rem !important; }
 .bandmap-fullscreen .card-header a[style*="padding: 0.5rem"] { padding: 0.5rem !important; margin: -0.5rem !important; }
 .bandmap-fullscreen #fullscreenToggleWrapper { padding: 0.5rem !important; margin: -0.5rem !important; }
 .bandmap-fullscreen #fullscreenToggle { padding: 0.5rem !important; min-width: 48px !important; min-height: 48px !important; }
+.bandmap-fullscreen #compactModeToggle { padding: 0.5rem !important; min-width: 48px !important; min-height: 48px !important; }
 .bandmap-fullscreen .card-body.pt-1 { padding: 0.75rem 15px !important; }
 
 .bandmap-fullscreen .menu-bar > div > div[style*="max-width: 70%"] {
@@ -561,9 +566,17 @@ body.fullscreen-active .fullscreen-wavelog-text { display: inline !important; }
 	.menu-bar .btn-sm { padding: 0.15rem 0.35rem; font-size: 0.8rem; }
 	.menu-bar .radios.form-select-sm { height: calc(1.4em + 0.4rem + 2px); padding: 0.15rem 0.25rem; font-size: 0.8rem; }
 	
-	/* Remove row structure - make each row's items flow directly */
-	.menu-bar > div.d-flex {
+	/* Remove row structure - make each row's items flow directly (except status-search-row and hidden rows) */
+	.menu-bar > div.d-flex:not(.compact-hidden):not(.status-search-row) {
 		display: contents !important;
+	}
+	
+	/* Status bar and search always stay together as their own row */
+	.menu-bar .status-search-row {
+		display: flex !important;
+		flex-basis: 100% !important;
+		width: 100% !important;
+		order: 999; /* Always at the bottom */
 	}
 	
 	/* Remove spacers and auto-margins */
@@ -573,8 +586,8 @@ body.fullscreen-active .fullscreen-wavelog-text { display: inline !important; }
 	/* Remove bottom margins from former rows */
 	.menu-bar > div.mb-2 { margin-bottom: 0 !important; }
 	
-	/* Nested flex containers should also flow */
-	.menu-bar .d-flex.flex-wrap { display: contents !important; }
+	/* Nested flex containers should also flow (except when parent is hidden or status-search-row) */
+	.menu-bar > div:not(.compact-hidden):not(.status-search-row) .d-flex.flex-wrap { display: contents !important; }
 	
 	/* Compact status bar and search at this breakpoint */
 	.status-bar { 

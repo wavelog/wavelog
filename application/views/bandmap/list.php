@@ -207,6 +207,9 @@
 			<a href="https://github.com/wavelog/wavelog/wiki/DXCluster" target="_blank" title="<?= __("DX Cluster Help"); ?>" style="cursor: pointer; padding: 0.5rem; margin: -0.5rem; color: var(--bs-body-color); text-decoration: none; display: inline-flex; align-items: center;">
 				<i class="fas fa-question-circle" style="font-size: 1.2rem;"></i>
 			</a>
+			<button type="button" class="btn btn-sm" id="compactModeToggle" title="<?= __("Compact Mode - Hide/Show Menu"); ?>" style="background: none; border: none; padding: 0.5rem; margin: -0.5rem; color: var(--bs-body-color);">
+				<i class="fas fa-compress-alt" id="compactModeIcon" style="font-size: 1.2rem;"></i>
+			</button>
 			<div id="fullscreenToggleWrapper" style="cursor: pointer; padding: 0.5rem; margin: -0.5rem;">
 				<button type="button" class="btn btn-sm" id="fullscreenToggle" title="<?= __("Toggle Fullscreen"); ?>" style="background: none; border: none; padding: 0.5rem;">
 					<i class="fas fa-expand" id="fullscreenIcon" style="font-size: 1.2rem;"></i>
@@ -219,7 +222,7 @@
 		<!-- Filters Section with darker background and rounded corners -->
 		<div class="menu-bar">
 	<!-- Row 1: CAT Connection, Radio Selector, Radio Status (left) | de Continents (right) -->
-	<div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+	<div class="d-flex flex-wrap align-items-center gap-2 mb-2 compactable-row">
 		<!-- Left: CAT Connection + Lock Buttons -->
 		<div class="btn-group flex-shrink-0" role="group">
 			<button class="btn btn-sm btn-secondary" type="button" id="toggleCatTracking" data-bs-toggle="tooltip" data-bs-placement="bottom" title="<?= __("Click to enable CAT connection"); ?>">
@@ -260,7 +263,7 @@
 	</div>
 
 	<!-- Row 2: Advanced Filters, Favorites, Clear Filters | Band Filters (left) and Mode Filters (right) -->
-	<div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+	<div class="d-flex flex-wrap align-items-center gap-2 mb-2 compactable-row">
 		<!-- Left: Advanced Filters, Favorites, Clear Filters, and Band Filter Buttons -->
 		<div class="d-flex flex-wrap gap-2 align-items-center">
 			<!-- Button Group: Advanced Filters + Favorites + Clear Filters -->
@@ -466,7 +469,7 @@
 	</div>
 
 	<!-- Row 3: Quick Filters -->
-	<div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+	<div class="d-flex flex-wrap align-items-center gap-2 mb-2 compactable-row">
 		<!-- My Submodes Filter Toggle -->
 		<button class="btn btn-sm btn-secondary flex-shrink-0" type="button" id="toggleMySubmodesFilter" title="<?= __("Loading submodes..."); ?>">
 			<i class="fas fa-bookmark"></i> <span class="d-none d-lg-inline"><?= __("My Submodes"); ?></span>
@@ -515,8 +518,8 @@
 		</div>
 	</div>
 
-	<!-- Row 5: Status Bar (70%) and Search (30%) -->
-	<div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+	<!-- Row 5: Status Bar and Search - always stay together -->
+	<div class="d-flex flex-wrap align-items-center gap-2 mb-2 status-search-row">
 		<!-- Status Bar - 70% -->
 		<div style="flex: 1 1 0; min-width: 300px;">
 			<div class="status-bar">

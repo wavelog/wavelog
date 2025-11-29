@@ -707,6 +707,13 @@ $(function() {
 	var refreshCountdown = SPOT_REFRESH_INTERVAL;
 	var refreshTimerInterval = null;
 
+	// Helper function to update refresh timer display (respects compact width)
+	function updateRefreshTimerDisplay() {
+		let isCompactWidth = window.matchMedia('(max-width: 1200px)').matches;
+		$('#refreshIcon').removeClass('fa-spinner fa-spin').addClass('fa-hourglass-half');
+		$('#refreshTimer').html(isCompactWidth ? `${refreshCountdown}s` : (lang_bandmap_next_update + ' ' + refreshCountdown + 's'));
+	}
+
 	// ========================================
 	// STATUS BAR & UI UPDATES
 	// ========================================
@@ -745,7 +752,18 @@ $(function() {
 
 	let now = new Date();
 	let timeStr = `${now.getUTCHours().toString().padStart(2, '0')}:${now.getUTCMinutes().toString().padStart(2, '0')}Z`;
-	let statusMessage = `${totalSpots} ${lang_bandmap_spots_fetched} @ ${timeStr}`;
+
+	// Check if we're at compact breakpoint (≤1200px)
+	let isCompactWidth = window.matchMedia('(max-width: 1200px)').matches;
+
+	let statusMessage;
+	if (isCompactWidth) {
+		// Compact format: (i) xxx/yyy @ HH:MMZ
+		statusMessage = `${displayedSpots}/${totalSpots} @ ${timeStr}`;
+	} else {
+		// Full format
+		statusMessage = `${totalSpots} ${lang_bandmap_spots_fetched} @ ${timeStr}`;
+	}
 	let allFilters = [];		if (serverFilters && serverFilters.length > 0) {
 			allFilters = allFilters.concat(serverFilters.map(f => `de "${f}"`));
 		}
@@ -760,13 +778,15 @@ $(function() {
 			allFilters.push(`search: "${searchValue}"`);
 		}
 
-	// Build status message
-	if (allFilters.length > 0) {
-		statusMessage += `, ${lang_bandmap_showing} ${displayedSpots}`;
-	} else if (displayedSpots < totalSpots) {
-		statusMessage += `, ${lang_bandmap_showing} ${displayedSpots}`;
-	} else if (totalSpots > 0) {
-		statusMessage += `, ${lang_bandmap_showing_all}`;
+	// Build status message - only add "showing" text in full mode (compact already has displayed/total)
+	if (!isCompactWidth) {
+		if (allFilters.length > 0) {
+			statusMessage += `, ${lang_bandmap_showing} ${displayedSpots}`;
+		} else if (displayedSpots < totalSpots) {
+			statusMessage += `, ${lang_bandmap_showing} ${displayedSpots}`;
+		} else if (totalSpots > 0) {
+			statusMessage += `, ${lang_bandmap_showing_all}`;
+		}
 	}		// Build tooltip for status message (fetch information)
 		let fetchTooltipLines = [`${lang_bandmap_last_fetched}:`];
 		fetchTooltipLines.push(`${lang_bandmap_band}: ${lastFetchParams.band || lang_bandmap_all}`);
@@ -787,15 +807,20 @@ $(function() {
 	$('#statusFilterInfo').remove();
 	if (allFilters.length > 0) {
 		let filterTooltip = lang_bandmap_active_filters + ':\n' + allFilters.join('\n');
-		$('#statusMessage').after(' <i class="fas fa-info-circle text-muted" id="statusFilterInfo" style="cursor: help;" title="' + filterTooltip.replace(/"/g, '&quot;') + '"></i>');
+		if (isCompactWidth) {
+			// In compact mode, prepend (i) icon before the status message
+			$('#statusMessage').prepend('<i class="fas fa-info-circle text-muted me-1" id="statusFilterInfo" style="cursor: help;" title="' + filterTooltip.replace(/"/g, '&quot;') + '"></i>');
+		} else {
+			$('#statusMessage').after(' <i class="fas fa-info-circle text-muted" id="statusFilterInfo" style="cursor: help;" title="' + filterTooltip.replace(/"/g, '&quot;') + '"></i>');
+		}
 	}
 
 	if (isFetching) {
 		$('#refreshIcon').removeClass('fa-hourglass-half').addClass('fa-spinner fa-spin');
-		$('#refreshTimer').html(lang_bandmap_fetching);
+		$('#refreshTimer').html(isCompactWidth ? '...' : lang_bandmap_fetching);
 	} else {
 		$('#refreshIcon').removeClass('fa-spinner fa-spin').addClass('fa-hourglass-half');
-		$('#refreshTimer').html(lang_bandmap_next_update + ' ' + refreshCountdown + 's');
+		$('#refreshTimer').html(isCompactWidth ? `${refreshCountdown}s` : (lang_bandmap_next_update + ' ' + refreshCountdown + 's'));
 	}
 }	function getDisplayedSpotCount() {
 		var table = get_dtable();
@@ -829,8 +854,7 @@ $(function() {
 				refreshCountdown = SPOT_REFRESH_INTERVAL;
 			} else {
 				if (!isFetchInProgress && lastFetchParams.timestamp !== null) {
-					$('#refreshIcon').removeClass('fa-spinner fa-spin').addClass('fa-hourglass-half');
-					$('#refreshTimer').html(lang_bandmap_next_update + ' ' + refreshCountdown + 's');
+					updateRefreshTimerDisplay();
 				}
 			}
 		}, 1000);
@@ -1436,8 +1460,7 @@ $(function() {
 			if (!isFetchInProgress) {
 				let actualDisplayedCount = table.rows({search: 'applied'}).count();
 				updateStatusBar(cachedSpotData.length, actualDisplayedCount, getServerFilterText(), getClientFilterText(), false, false);
-				$('#refreshIcon').removeClass('fa-spinner fa-spin').addClass('fa-hourglass-half');
-				$('#refreshTimer').html(lang_bandmap_next_update + ' ' + refreshCountdown + 's');
+				updateRefreshTimerDisplay();
 			}
 
 			// Update DX Map only if visible (don't waste resources)
@@ -2887,6 +2910,52 @@ $(function() {
 		if (e.key === 'Escape' && isFullscreen) {
 			$('#fullscreenToggle').click();
 		}
+	});
+
+	// ========================================
+	// COMPACT MODE TOGGLE
+	// ========================================
+
+	let isCompactMode = false;
+
+	$('#compactModeToggle').on('click', function() {
+		const compactableRows = $('.menu-bar .compactable-row');
+		const icon = $('#compactModeIcon');
+
+		if (!isCompactMode) {
+			compactableRows.addClass('compact-hidden').hide();
+			icon.removeClass('fa-compress-alt').addClass('fa-expand-alt');
+			isCompactMode = true;
+		} else {
+			compactableRows.removeClass('compact-hidden').show();
+			icon.removeClass('fa-expand-alt').addClass('fa-compress-alt');
+			isCompactMode = false;
+		}
+
+		// Adjust DataTable columns after toggle
+		setTimeout(function() {
+			if ($.fn.DataTable.isDataTable('.spottable')) {
+				$('.spottable').DataTable().columns.adjust();
+			}
+		}, 100);
+	});
+
+	// ========================================
+	// WINDOW RESIZE - UPDATE STATUS BAR FORMAT
+	// ========================================
+
+	let statusResizeTimeout;
+	$(window).on('resize', function() {
+		clearTimeout(statusResizeTimeout);
+		statusResizeTimeout = setTimeout(function() {
+			// Update status bar to reflect compact/full format based on new width
+			if (lastFetchParams.timestamp !== null) {
+				var table = get_dtable();
+				var displayedSpots = table.rows({search: 'applied'}).count();
+				var totalSpots = table.rows().count();
+				updateStatusBar(totalSpots, displayedSpots, getServerFilterText(), getClientFilterText(), false, false);
+			}
+		}, 150);
 	});
 
 	// ========================================
