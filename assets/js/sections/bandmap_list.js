@@ -117,6 +117,18 @@ $(function() {
 	let hoverConnectionLines = [];
 
 	// ========================================
+	// GLOBAL ERROR HANDLING FOR BOOTSTRAP TOOLTIPS
+	// ========================================
+
+	// Suppress Bootstrap tooltip _isWithActiveTrigger errors (known bug with dynamic content)
+	window.addEventListener('error', function(e) {
+		if (e.message && e.message.includes('_isWithActiveTrigger')) {
+			e.preventDefault();
+			return true;
+		}
+	});
+
+	// ========================================
 	// DATATABLES ERROR HANDLING
 	// ========================================
 
@@ -151,8 +163,10 @@ $(function() {
 				try {
 					if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
 						const tooltipInstance = bootstrap.Tooltip.getInstance(this);
-						if (tooltipInstance && typeof tooltipInstance.dispose === 'function') {
-							tooltipInstance.dispose();
+						if (tooltipInstance) {
+							// Hide first, then dispose - prevents _isWithActiveTrigger errors
+							try { tooltipInstance.hide(); } catch(e) {}
+							try { tooltipInstance.dispose(); } catch(e) {}
 						}
 					}
 				} catch (err) {
@@ -1372,8 +1386,9 @@ $(function() {
 				try {
 					// Dispose existing tooltip instance if it exists
 					const existingTooltip = bootstrap.Tooltip.getInstance(this);
-					if (existingTooltip && typeof existingTooltip.dispose === 'function') {
-						existingTooltip.dispose();
+					if (existingTooltip) {
+						try { existingTooltip.hide(); } catch(e) {}
+						try { existingTooltip.dispose(); } catch(e) {}
 					}
 
 					// Create new tooltip instance with proper configuration
