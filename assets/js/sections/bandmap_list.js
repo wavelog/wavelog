@@ -814,7 +814,7 @@ $(function() {
 	}
 
 	// Handle page visibility changes (tab switching, minimize, etc.)
-	// Remove expiring spots when hidden, fetch fresh data when returning
+	// Remove expiring spots when hidden, fetch fresh data when returning (if away > 1 minute)
 	document.addEventListener('visibilitychange', function() {
 		if (document.hidden) {
 			// Dispose tooltips to prevent Bootstrap errors
@@ -836,8 +836,12 @@ $(function() {
 				renderFilteredSpots();
 			}
 		} else if (lastFetchParams.timestamp) {
-			fill_list(lastFetchParams.continent, lastFetchParams.maxAge, lastFetchParams.band || 'All');
-			refreshCountdown = SPOT_REFRESH_INTERVAL;
+			// Only refresh if last fetch was more than 60 seconds ago
+			const timeSinceLastFetch = Date.now() - lastFetchParams.timestamp.getTime();
+			if (timeSinceLastFetch > 60000) {
+				fill_list(lastFetchParams.continent, lastFetchParams.maxAge, lastFetchParams.band || 'All');
+				refreshCountdown = SPOT_REFRESH_INTERVAL;
+			}
 		}
 	});
 
