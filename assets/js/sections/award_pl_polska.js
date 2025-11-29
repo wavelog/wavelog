@@ -10,6 +10,16 @@ $(document).ready(function() {
     $('#polska-category-select').on('change', function() {
         load_polska_map();
     });
+
+    // Hide overlay when modal is shown (loading complete)
+    $(document).on('shown.bs.modal', '.modal', function() {
+        hideModalLoadingOverlay();
+    });
+
+    // Reset modal loading flag and hide overlay when modal is closed
+    $(document).on('hidden.bs.modal', '.modal', function() {
+        hideModalLoadingOverlay();
+    });
 });
 
 // Polska Award Map Implementation
@@ -21,6 +31,7 @@ var legend;
 var maidenhead;
 var cachedGeoJSON = null;  // Cache for GeoJSON data
 var isLoading = false;     // Prevent duplicate API calls
+var isModalLoading = false; // Prevent duplicate modal opens
 
 // Use user-customizable map colors (same as RAC and other awards)
 var confirmedColor = user_map_custom.qsoconfirm.color;
@@ -37,6 +48,19 @@ function showMapSpinner() {
 
 function hideMapSpinner() {
     $('#polska-map .map-spinner-overlay').hide();
+}
+
+function showModalLoadingOverlay() {
+    var mapContainer = $('#polska-map');
+    if (!mapContainer.find('.modal-loading-overlay').length) {
+        mapContainer.append('<div class="modal-loading-overlay" style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:flex;justify-content:center;align-items:center;z-index:1000;cursor:wait;"><div class="spinner-border text-light" role="status"><span class="visually-hidden">Loading...</span></div></div>');
+    }
+    mapContainer.find('.modal-loading-overlay').show();
+}
+
+function hideModalLoadingOverlay() {
+    $('#polska-map .modal-loading-overlay').hide();
+    isModalLoading = false;
 }
 
 function load_polska_map() {
@@ -94,7 +118,10 @@ function initPolskaMap(data) {
         attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
-    // Info control for displaying voivodeship name on hover
+    // Add legend first (colors info box - appears at top right)
+    addLegend(data);
+
+    // Info control for displaying voivodeship name on hover (below legend)
     info = L.control();
 
     info.onAdd = function (map) {
@@ -109,9 +136,6 @@ function initPolskaMap(data) {
     };
 
     info.addTo(map);
-
-    // Add legend
-    addLegend(data);
 
     // Add GeoJSON layer
     geojson = L.geoJson(cachedGeoJSON, {
@@ -212,8 +236,42 @@ function highlightFeature(e) {
 function onEachFeature(feature, layer) {
     layer.on({
         mouseover: highlightFeature,
-        mouseout: resetHighlight
+        mouseout: resetHighlight,
+        click: onClickRegion
     });
+}
+
+function onClickRegion(e) {
+    // Prevent double-clicks while modal is loading
+    if (isModalLoading) {
+        return;
+    }
+    isModalLoading = true;
+
+    // Show loading overlay to block further clicks
+    showModalLoadingOverlay();
+
+    zoomToFeature(e);
+    var layer = e.target;
+    var voivCode = layer.feature.properties.code;
+    var category = $('#polska-category-select').val() || 'MIXED';
+
+    // Determine band and mode based on category selection
+    var band = 'All';
+    var mode = category;
+
+    // Check if category is a band (like 20M, 40M, etc.)
+    var validBands = ['160M', '80M', '40M', '30M', '20M', '17M', '15M', '12M', '10M', '6M', '2M'];
+    if (validBands.indexOf(category) !== -1) {
+        band = category;
+        mode = 'All';
+    }
+
+    displayContactsOnMap($("#polska-map"), voivCode, band, 'All', 'All', mode, 'POLSKA');
+}
+
+function zoomToFeature(e) {
+    map.fitBounds(e.target.getBounds());
 }
 
 function resetHighlight(e) {

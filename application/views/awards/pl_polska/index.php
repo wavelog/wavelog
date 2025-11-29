@@ -232,10 +232,10 @@ if ($polska_array) {
 
             if ($confirmed_count > 0) {
                 // Confirmed - show confirmed count (green)
-                echo '<td><div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("' . $voivodeship_code . '","All","All","All","' . $category . '","POLSKA", "' . $qsl_string . '")\'>' . $confirmed_count . '</a></div></td>';
+                echo '<td><div class="bg-success awardsBgSuccess"><a class="text-white" href=\'javascript:displayContacts("' . $voivodeship_code . '","All","All","All","' . $category . '","POLSKA", "' . $qsl_string . '")\'>'. $confirmed_count . '</a></div></td>';
             } elseif ($worked_count > 0) {
                 // Only worked (not confirmed) - show worked count (orange)
-                echo '<td><div class="bg-danger awardsBgWarning"><a href=\'javascript:displayContacts("' . $voivodeship_code . '","All","All","All","' . $category . '","POLSKA", "")\'>' . $worked_count . '</a></div></td>';
+                echo '<td><div class="bg-danger awardsBgWarning"><a class="text-white" href=\'javascript:displayContacts("' . $voivodeship_code . '","All","All","All","' . $category . '","POLSKA", "")\'>'. $worked_count . '</a></div></td>';
             } else {
                 echo '<td>-</td>';
             }
@@ -304,10 +304,10 @@ if ($polska_array) {
 
                 if ($confirmed_count > 0) {
                     // Confirmed - show confirmed count (green)
-                    echo '<td><div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("' . $voivodeship_code . '","' . $band . '","All","All","All","POLSKA", "' . $qsl_string . '")\'>' . $confirmed_count . '</a></div></td>';
+                    echo '<td><div class="bg-success awardsBgSuccess"><a class="text-white" href=\'javascript:displayContacts("' . $voivodeship_code . '","' . $band . '","All","All","All","POLSKA", "' . $qsl_string . '")\'>'. $confirmed_count . '</a></div></td>';
                 } elseif ($worked_count > 0) {
                     // Only worked (not confirmed) - show worked count (orange)
-                    echo '<td><div class="bg-danger awardsBgWarning"><a href=\'javascript:displayContacts("' . $voivodeship_code . '","' . $band . '","All","All","All","POLSKA", "")\'>' . $worked_count . '</a></div></td>';
+                    echo '<td><div class="bg-danger awardsBgWarning"><a class="text-white" href=\'javascript:displayContacts("' . $voivodeship_code . '","' . $band . '","All","All","All","POLSKA", "")\'>'. $worked_count . '</a></div></td>';
                 } else {
                     echo '<td>-</td>';
                 }
