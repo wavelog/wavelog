@@ -486,8 +486,8 @@ $options = json_decode($options);
                                         <input onclick="this.select()" type="text" name="comment" id="comment" class="form-control form-control-sm border border-secondary" value="*" placeholder="<?= __("Empty"); ?>">
                                     </div>
 									<div <?php if (($options->distance->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
-                                        <label class="form-label" for="distanceinput"><?= __("Distance"); ?> <i class="fa fa-question-circle" aria-hidden="true" data-bs-toggle="tooltip" title="<?= __("Distance in kilometers. Search will look for distances greater than or equal to this value."); ?>"></i></label>
-                                        <input onclick="this.select()" type="text" name="distanceinput" id="distanceinput" class="form-control form-control-sm border border-secondary" value="*" placeholder="<?= __("Empty"); ?>">
+                                        <label class="form-label" for="distance"><?= __("Distance"); ?> <i class="fa fa-question-circle" aria-hidden="true" data-bs-toggle="tooltip" title="<?= __("Distance in kilometers. Search will look for distances greater than or equal to this value."); ?>"></i></label>
+                                        <input onclick="this.select()" type="text" name="distance" class="form-control form-control-sm border border-secondary" value="*" placeholder="<?= __("Empty"); ?>">
                                     </div>
                                 </div>
                             </div>

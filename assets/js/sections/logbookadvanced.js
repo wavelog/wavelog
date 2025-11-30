@@ -753,7 +753,7 @@ $(document).ready(function () {
 				dok: this.dok.value,
 				qrzSent: this.qrzSent.value,
 				qrzReceived: this.qrzReceived.value,
-				distance: this.distanceinput.value,
+				distance: this.distance.value,
 			},
 			dataType: 'json',
 			success: function (data) {
