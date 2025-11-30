@@ -297,6 +297,7 @@
 								<h6 class="mb-0"><?= __("Export options") ?></h6>
 							</div>
 							<div class="card-body">
+                						<?php if (in_array('lotw', $tabs_to_show)) {?>
 								<div class="mb-3 row">
 									<div class="col-md-10">
 										<div class="form-check-inline">
@@ -305,6 +306,7 @@
 										</div>
 									</div>
 								</div>
+								<?php } ?>
 								<div class="mb-3 row">
 									<div class="col-md-10">
 										<div class="form-check-inline">
