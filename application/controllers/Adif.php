@@ -88,6 +88,7 @@ class adif extends CI_Controller {
 	// Export all QSO Data in ASC Order of Date.
 	public function exportall() {
 		// Set memory limit to unlimited to allow heavy usage
+		$this->require_tab_access('export');
 		ini_set('memory_limit', '-1');
 
 		$this->load->model('adif_data');
@@ -101,11 +102,18 @@ class adif extends CI_Controller {
 	// Export all QSO Data in ASC Order of Date.
 	public function exportsat() {
 		// Set memory limit to unlimited to allow heavy usage
+		$this->require_tab_access('export');
 		ini_set('memory_limit', '-1');
 
 		$this->load->model('adif_data');
 
-		$data['qsos'] = $this->adif_data->sat_all();
+		if (clubaccess_check(6) && !clubaccess_check(9)) {
+			$onlyop=($this->session->userdata('operator_callsign') ?? '');
+		} else {
+			$onlyop=null;
+		}
+
+		$data['qsos'] = $this->adif_data->sat_all($onlyop);
 
 		$this->load->view('adif/data/exportsat', $data);
 	}
@@ -113,11 +121,18 @@ class adif extends CI_Controller {
 	// Export all QSO Data in ASC Order of Date.
 	public function exportsatlotw() {
 		// Set memory limit to unlimited to allow heavy usage
+		$this->require_tab_access('export');
 		ini_set('memory_limit', '-1');
+
+		if (clubaccess_check(6) && !clubaccess_check(9)) {
+			$onlyop=($this->session->userdata('operator_callsign') ?? '');
+		} else {
+			$onlyop=null;
+		}
 
 		$this->load->model('adif_data');
 
-		$data['qsos'] = $this->adif_data->satellte_lotw();
+		$data['qsos'] = $this->adif_data->satellte_lotw($onlyop);
 
 		$this->load->view('adif/data/exportsat', $data);
 	}
@@ -140,14 +155,19 @@ class adif extends CI_Controller {
 			$exportLotw = false;
 		}
 
-		$data['qsos'] = $this->adif_data->export_custom($this->input->post('from'), $this->input->post('to'), $station_id, $exportLotw);
+		if (clubaccess_check(6) && !clubaccess_check(9)) {
+			$onlyop=($this->session->userdata('operator_callsign') ?? '');
+		} else {
+			$onlyop=null;
+		}
+
+		$data['qsos'] = $this->adif_data->export_custom($this->input->post('from'), $this->input->post('to'), $station_id, $exportLotw, $onlyop);
 
 		$this->load->view('adif/data/exportall', $data);
 
 
-		if ($this->input->post('markLotw') == 1) {
-			foreach ($data['qsos']->result() as $qso)
-			{
+		if ((clubaccess_check(9)) && ($this->input->post('markLotw') == 1)) {	// Only allow marking if clubofficer or regular user!
+			foreach ($data['qsos']->result() as $qso) {
 				$this->adif_data->mark_lotw_sent($qso->COL_PRIMARY_KEY);
 			}
 		}
@@ -186,8 +206,7 @@ class adif extends CI_Controller {
 
 		$this->load->view('adif/data/exportall', $data);
 
-		foreach ($data['qsos']->result() as $qso)
-		{
+		foreach ($data['qsos']->result() as $qso) {
 			$this->adif_data->mark_lotw_sent($qso->COL_PRIMARY_KEY);
 		}
 	}
