@@ -775,7 +775,6 @@ class Awards extends CI_Controller {
 	public function rac() {
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/racmap_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/racmap_geojson.js")),
 			'assets/js/sections/racmap.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/racmap.js")),
 			'assets/js/leaflet/L.Maidenhead.js',
 		];
