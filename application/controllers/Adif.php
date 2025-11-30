@@ -219,6 +219,7 @@ class adif extends CI_Controller {
 
 		$data['page_title'] = __("ADIF Import / Export");
 		$data['max_upload'] = ini_get('upload_max_filesize');
+		$data['cd_p_level'] = ($this->session->userdata('cd_p_level') ?? 0);
 
 		if ($this->config->item('special_callsign') && clubaccess_check(9) && $this->session->userdata('clubstation') == 1) {
 			$this->load->model('club_model');
