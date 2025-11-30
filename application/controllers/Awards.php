@@ -837,7 +837,6 @@ class Awards extends CI_Controller {
     public function helvetia() {
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/helvetiamap_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/helvetiamap_geojson.js")),
 			'assets/js/sections/helvetiamap.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/helvetiamap.js")),
 			'assets/js/leaflet/L.Maidenhead.js',
 		];
