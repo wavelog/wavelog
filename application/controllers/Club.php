@@ -21,6 +21,7 @@ class Club extends CI_Controller
 
 		$this->permissions = [
 			9 => __("Club Officer"),
+			6 => __("Club Member Plus"),
 			3 => __("Club Member"),
 		];
 	}
@@ -118,9 +119,9 @@ class Club extends CI_Controller
 			$this->session->set_flashdata('error', __("Invalid Club ID!"));
 			redirect('dashboard'); 
 		}
-		if(!$this->user_model->authorize(99) && !$this->club_model->club_authorize(9, $club_id)) { 
-			$this->session->set_flashdata('error', __("You're not allowed to do that!")); 
-			redirect('dashboard'); 
+		if(!$this->user_model->authorize(99) && !$this->club_model->club_authorize(9, $club_id) && !$this->club_model->club_authorize(6, $club_id)) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
 		}
 
 		$this->club_model->alter_member($club_id, $user_id, $p_level);
@@ -147,9 +148,9 @@ class Club extends CI_Controller
 			$this->session->set_flashdata('error', __("Invalid Club ID!"));
 			redirect('dashboard'); 
 		}
-		if(!$this->user_model->authorize(99) && !$this->club_model->club_authorize(9, $club_id)) { 
-			$this->session->set_flashdata('error', __("You're not allowed to do that!")); 
-			redirect('dashboard'); 
+		if(!$this->user_model->authorize(99) && !$this->club_model->club_authorize(9, $club_id) && !$this->club_model->club_authorize(6, $club_id)) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
 		}
 
 		if ($this->club_model->delete_member($club_id, $user_id)) {

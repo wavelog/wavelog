@@ -10,7 +10,7 @@ class adif extends CI_Controller {
 		$this->load->helper(array('form', 'url'));
 
 		$this->load->model('user_model');
-		if(!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+		if(!$this->user_model->authorize(2) || !clubaccess_check(6)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 	}
 
 	public function test() {
@@ -242,10 +242,18 @@ class adif extends CI_Controller {
 							$record['contest_id'] = $contest;
 						}
 
-						//handle club operator
-						if ($club_operator != '') {
-							$record['operator'] = strtoupper($club_operator);
+						//handle club operator based on permission level
+						$user_permission_level = $this->session->userdata('cd_p_level');
+						if ($user_permission_level >= 9) {
+							// Club Officer: Allow operator override
+							if ($club_operator != '') {
+								$record['operator'] = strtoupper($club_operator);
+							}
+						} elseif ($user_permission_level == 6) {
+							// ClubMemberPlus: Force operator to current user, ignore input
+							$record['operator'] = strtoupper($this->session->userdata('operator_callsign'));
 						}
+						// Note: Regular Club Member (Level 3) should not reach here due to constructor permission check
 
 						//check if contest_id exists in record and extract all found contest_ids
 						if(array_key_exists('contest_id', $record)){
