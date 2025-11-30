@@ -11,58 +11,84 @@
     <div class="card">
         <div class="card-header">
             <ul class="nav nav-tabs card-header-tabs pull-right" role="tablist">
+                <?php
+                // Define all available tabs
+                $all_tabs = ['import', 'export', 'lotw', 'dcl', 'pota', 'cbr'];
+
+                // Use allowed_tabs if set, otherwise show all tabs
+                $tabs_to_show = isset($allowed_tabs) ? $allowed_tabs : $all_tabs;
+                ?>
+
+                <?php if (in_array('import', $tabs_to_show)): ?>
                 <li class="nav-item">
                     <a class="nav-link <?php if ($showtab == '' || $showtab == 'adif') {
-                                            echo 'active';
-                                        } ?>" id="import-tab" data-bs-toggle="tab" href="#import" role="tab" aria-controls="import" aria-selected="<?php if ($showtab == '' || $showtab == 'adif') {
-                                                                                                                                                        echo 'true';
-                                                                                                                                                    } else {
-                                                                                                                                                        echo 'false';
-                                                                                                                                                    } ?>"><?= __("ADIF Import") ?></a>
+                                                    echo 'active';
+                                                } ?>" id="import-tab" data-bs-toggle="tab" href="#import" role="tab" aria-controls="import" aria-selected="<?php if ($showtab == '' || $showtab == 'adif') {
+                                                                                                echo 'true';
+                                                                                            } else {
+                                                                                                echo 'false';
+                                                                                            } ?>"><?= __("ADIF Import") ?></a>
                 </li>
+                <?php endif; ?>
+
+                <?php if (in_array('export', $tabs_to_show)): ?>
                 <li class="nav-item">
                     <a class="nav-link" id="export-tab" data-bs-toggle="tab" href="#export" role="tab" aria-controls="export" aria-selected="false"><?= __("ADIF Export") ?></a>
                 </li>
+                <?php endif; ?>
+
+                <?php if (in_array('lotw', $tabs_to_show)): ?>
                 <li class="nav-item">
                     <a class="nav-link" id="lotw-tab" data-bs-toggle="tab" href="#lotw" role="tab" aria-controls="lotw" aria-selected="false"><?= __("Logbook of the World") ?></a>
                 </li>
+                <?php endif; ?>
+
+                <?php if (in_array('dcl', $tabs_to_show)): ?>
                 <li class="nav-item">
                     <a class="nav-link <?php if ($showtab == 'dcl') {
-                                            echo 'active';
-                                        } ?>" id="dcl-tab" data-bs-toggle="tab" href="#dcl" role="tab" aria-controls="dcl" aria-selected="<?php if ($showtab == 'dcl') {
-                                                                                                                                                echo 'true';
-                                                                                                                                            } else {
-                                                                                                                                                echo 'false';
-                                                                                                                                            } ?>"><?= __("DARC DCL") ?></a>
+                                                    echo 'active';
+                                                } ?>" id="dcl-tab" data-bs-toggle="tab" href="#dcl" role="tab" aria-controls="dcl" aria-selected="<?php if ($showtab == 'dcl') {
+                                                                                                        echo 'true';
+                                                                                                    } else {
+                                                                                                        echo 'false';
+                                                                                                    } ?>"><?= __("DARC DCL") ?></a>
                 </li>
+                <?php endif; ?>
+
+                <?php if (in_array('pota', $tabs_to_show)): ?>
                 <li class="nav-item">
                     <a class="nav-link <?php if ($showtab == 'potab') {
-                                            echo 'active';
-                                        } ?>" id="potab-tab" data-bs-toggle="tab" href="#potab" role="tab" aria-controls="potab" aria-selected="<?php if ($showtab == 'potab') {
-                                                                                                                                                echo 'true';
-                                                                                                                                            } else {
-                                                                                                                                                echo 'false';
-                                                                                                                                            } ?>"><?= __("POTA") ?></a>
+                                                    echo 'active';
+                                                } ?>" id="potab-tab" data-bs-toggle="tab" href="#potab" role="tab" aria-controls="potab" aria-selected="<?php if ($showtab == 'potab') {
+                                                                                                        echo 'true';
+                                                                                                    } else {
+                                                                                                        echo 'false';
+                                                                                                    } ?>"><?= __("POTA") ?></a>
                 </li>
+                <?php endif; ?>
+
+                <?php if (in_array('cbr', $tabs_to_show)): ?>
                 <li class="nav-item">
                     <a class="nav-link <?php if ($showtab == 'cbr') {
-                                            echo 'active';
-                                        } ?>" id="cbr-tab" data-bs-toggle="tab" href="#cbr" role="tab" aria-controls="cbr" aria-selected="<?php if ($showtab == 'cbr') {
-                                                                                                                                                echo 'true';
-                                                                                                                                            } else {
-                                                                                                                                                echo 'false';
-                                                                                                                                            } ?>"><?= __("CBR Import") ?></a>
+                                                    echo 'active';
+                                                } ?>" id="cbr-tab" data-bs-toggle="tab" href="#cbr" role="tab" aria-controls="cbr" aria-selected="<?php if ($showtab == 'cbr') {
+                                                                                                        echo 'true';
+                                                                                                    } else {
+                                                                                                        echo 'false';
+                                                                                                    } ?>"><?= __("CBR Import") ?></a>
                 </li>
+                <?php endif; ?>
             </ul>
         </div>
 
         <div class="card-body">
             <div class="tab-content">
+                <?php if (in_array('import', $tabs_to_show)): ?>
                 <div class="tab-pane <?php if ($showtab == '' || $showtab == 'adif') {
-                                            echo 'active';
-                                        } else {
-                                            echo 'fade';
-                                        } ?>" id="import" role="tabpanel" aria-labelledby="import-tab">
+                                                    echo 'active';
+                                                } else {
+                                                    echo 'fade';
+                                                } ?>" id="import" role="tabpanel" aria-labelledby="import-tab">
 
                     <?php if (isset($error) && ($showtab == '' || $showtab == 'adif')) { ?>
                         <div class="alert alert-danger" role="alert">
@@ -221,7 +247,9 @@
                         <button id="prepare_sub" class="btn btn-sm btn-primary mb-2 ld-ext-right" value="Upload"><?= __("Upload") ?><div class="ld ld-ring ld-spin"></div></button>
                     </form>
                 </div>
+                <?php endif; ?>
 
+                <?php if (in_array('export', $tabs_to_show)): ?>
                 <div class="tab-pane fade" id="export" role="tabpanel" aria-labelledby="export-tab">
 
                     <form class="form" action="<?php echo site_url('adif/export_custom'); ?>" method="post" enctype="multipart/form-data">
@@ -298,7 +326,9 @@
 
                     <p><a href="<?php echo site_url('adif/exportsatlotw'); ?>" title="Export All Satellite QSOs Confirmed on LoTW" target="_blank" class="btn btn-sm btn-primary"><?= __("Export All Satellite QSOs Confirmed on LoTW") ?></a></p>
                 </div>
+                <?php endif; ?>
 
+                <?php if (in_array('lotw', $tabs_to_show)): ?>
                 <div class="tab-pane fade" id="lotw" role="tabpanel" aria-labelledby="lotw-tab">
                     <form class="form" action="<?php echo site_url('adif/mark_lotw'); ?>" method="post" enctype="multipart/form-data">
                         <select name="station_profile" class="form-select mb-2 me-sm-2 w-50 w-lg-100">
@@ -318,12 +348,14 @@
                         <button type="button" class="btn btn-sm btn-primary" id="markExportedToLotw" value="Export"><?= __("Mark QSOs as exported to LoTW") ?></button>
                     </form>
                 </div>
+                <?php endif; ?>
 
+                <?php if (in_array('dcl', $tabs_to_show)): ?>
                 <div class="tab-pane <?php if ($showtab == 'dcl') {
-                                            echo 'active';
-                                        } else {
-                                            echo 'fade';
-                                        } ?>" id="dcl" role="tabpanel" aria-labelledby="dcl-tab">
+                                                    echo 'active';
+                                                } else {
+                                                    echo 'fade';
+                                                } ?>" id="dcl" role="tabpanel" aria-labelledby="dcl-tab">
                     <?php if (isset($error) && $showtab == 'dcl') { ?>
                         <div class="alert alert-danger" role="alert">
                             <?php echo $error; ?>
@@ -364,12 +396,14 @@
                         <button type="submit" class="btn btn-sm btn-primary mb-2" value="Upload"><?= __("Upload") ?></button>
                     </form>
                 </div>
+                <?php endif; ?>
 
+                <?php if (in_array('pota', $tabs_to_show)): ?>
                 <div class="tab-pane <?php if ($showtab == 'potab') {
-                                            echo 'active';
-                                        } else {
-                                            echo 'fade';
-                                        } ?>" id="potab" role="tabpanel" aria-labelledby="potab-tab">
+                                                    echo 'active';
+                                                } else {
+                                                    echo 'fade';
+                                                } ?>" id="potab" role="tabpanel" aria-labelledby="potab-tab">
                     <?php if (isset($error) && $showtab == 'potab') { ?>
                         <div class="alert alert-danger" role="alert">
                             <?php echo $error; ?>
@@ -384,7 +418,9 @@
                         <button type="submit" class="btn btn-sm btn-primary mb-2" value="Upload"><?= __("Upload") ?></button>
                     </form>
                 </div>
+                <?php endif; ?>
 
+                <?php if (in_array('cbr', $tabs_to_show)): ?>
                 <div class="tab-pane <?php if ($showtab == 'cbr') {
                                             echo 'active';
                                         } else {
@@ -426,6 +462,7 @@
                         <button type="submit" class="btn btn-sm btn-primary mb-2" value="Upload"><?= __("Upload") ?></button>
                     </form>
                 </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>

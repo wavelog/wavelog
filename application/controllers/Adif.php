@@ -4,13 +4,75 @@ class adif extends CI_Controller {
 
 	/* Controls ADIF Import/Export Functions */
 
-	function __construct()
-	{
+	private $allowed_tabs = [];
+
+	private $tab_method_mapping = [
+		'import' => ['import'],
+		'export' => ['export_custom', 'exportall', 'exportsat', 'exportsatlotw'],
+		'lotw' => ['lotw', 'mark_lotw', 'export_lotw'],
+		'dcl' => ['dcl'],
+		'pota' => ['pota'],
+		'cbr' => []
+	];
+
+	function __construct() {
 		parent::__construct();
 		$this->load->helper(array('form', 'url'));
 
 		$this->load->model('user_model');
-		if(!$this->user_model->authorize(2) || !clubaccess_check(6)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+		if(!$this->user_model->authorize(2) || (!clubaccess_check(6) && !clubaccess_check(9))) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
+		$this->determine_allowed_tabs();
+		$this->check_tab_access();
+	}
+
+	private function determine_allowed_tabs() {
+		if (clubaccess_check(6) && !clubaccess_check(9)) {
+			// Only ClubMember Plus and NOT ClubOfficer
+			$this->allowed_tabs = ['import', 'export'];
+		} else {
+			// Default: show all tabs (backward compatible)
+			$this->allowed_tabs = ['import', 'export', 'lotw', 'dcl', 'pota', 'cbr'];
+		}
+
+	}
+
+	private function check_tab_access() {
+		// Get current method using CI's built-in method
+		$current_method = $this->router->method;
+
+		// Skip access check for some common methods
+		$skip_methods = ['index', '__construct', 'determine_allowed_tabs', 'check_tab_access', 'get_allowed_tabs', 'test'];
+		if (in_array($current_method, $skip_methods)) {
+			return;
+		}
+
+		// Find which tab(s) this method belongs to
+		$required_tabs = [];
+		foreach ($this->tab_method_mapping as $tab => $methods) {
+			if (in_array($current_method, $methods)) {
+				$required_tabs[] = $tab;
+			}
+		}
+
+		// Check if user has access to required tabs
+		foreach ($required_tabs as $tab) {
+			if (!in_array($tab, $this->allowed_tabs)) {
+				$this->session->set_flashdata('error', __("You're not allowed to access this functionality!"));
+				redirect('adif');
+			}
+		}
+	}
+
+	private function get_allowed_tabs() {
+		return $this->allowed_tabs;
+	}
+
+	private function require_tab_access($required_tab) {
+		if (!in_array($required_tab, $this->allowed_tabs)) {
+			$this->session->set_flashdata('error', __("You're not allowed to access this functionality!"));
+			redirect('adif');
+		}
 	}
 
 	public function test() {
@@ -24,8 +86,7 @@ class adif extends CI_Controller {
 	}
 
 	// Export all QSO Data in ASC Order of Date.
-	public function exportall()
-	{
+	public function exportall() {
 		// Set memory limit to unlimited to allow heavy usage
 		ini_set('memory_limit', '-1');
 
@@ -38,8 +99,7 @@ class adif extends CI_Controller {
 
 
 	// Export all QSO Data in ASC Order of Date.
-	public function exportsat()
-	{
+	public function exportsat() {
 		// Set memory limit to unlimited to allow heavy usage
 		ini_set('memory_limit', '-1');
 
@@ -51,8 +111,7 @@ class adif extends CI_Controller {
 	}
 
 	// Export all QSO Data in ASC Order of Date.
-	public function exportsatlotw()
-	{
+	public function exportsatlotw() {
 		// Set memory limit to unlimited to allow heavy usage
 		ini_set('memory_limit', '-1');
 
@@ -64,6 +123,9 @@ class adif extends CI_Controller {
 	}
 
 	public function export_custom() {
+		// Check if user has access to export tab
+		$this->require_tab_access('export');
+
 		// Set memory limit to unlimited to allow heavy usage
 		ini_set('memory_limit', '-1');
 
@@ -92,6 +154,9 @@ class adif extends CI_Controller {
 	}
 
 	public function mark_lotw() {
+		// Check if user has access to lotw tab
+		$this->require_tab_access('lotw');
+
 		// Set memory limit to unlimited to allow heavy usage
 		ini_set('memory_limit', '-1');
 
@@ -108,8 +173,10 @@ class adif extends CI_Controller {
 		$this->load->view('adif/mark_lotw', $data);
 	}
 
-	public function export_lotw()
-	{
+	public function export_lotw() {
+		// Check if user has access to lotw tab
+		$this->require_tab_access('lotw');
+
 		// Set memory limit to unlimited to allow heavy usage
 		ini_set('memory_limit', '-1');
 
@@ -148,12 +215,18 @@ class adif extends CI_Controller {
 		$data['active_station_info'] = $station_profile->row();
 		$data['active_station_id'] = $active_station_id;
 
+		// Pass allowed tabs to view
+		$data['allowed_tabs'] = $this->get_allowed_tabs();
+
 		$this->load->view('interface_assets/header', $data);
-		$this->load->view('adif/import');
+		$this->load->view('adif/import', $data);
 		$this->load->view('interface_assets/footer');
 	}
 
 	public function import() {
+		// Check if user has access to import tab
+		$this->require_tab_access('import');
+
 		$this->load->model('stations');
 		$data['station_profile'] = $this->stations->all_of_user();
 
@@ -164,6 +237,9 @@ class adif extends CI_Controller {
 
 		$data['page_title'] = __("ADIF Import");
 		$data['tab'] = "adif";
+
+		// Pass allowed tabs to view
+		$data['allowed_tabs'] = $this->get_allowed_tabs();
 
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'adi|ADI|adif|ADIF|zip';
@@ -313,11 +389,17 @@ class adif extends CI_Controller {
 	}
 
 	public function dcl() {
+		// Check if user has access to dcl tab
+		$this->require_tab_access('dcl');
+
 		$this->load->model('stations');
 		$data['station_profile'] = $this->stations->all_of_user();
 
 		$data['page_title'] = __("DCL Import");
 		$data['tab'] = "dcl";
+
+		// Pass allowed tabs to view
+		$data['allowed_tabs'] = $this->get_allowed_tabs();
 
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'adi|ADI|adif|ADIF';
@@ -382,11 +464,17 @@ class adif extends CI_Controller {
 	}
 
 	public function pota() {
+		// Check if user has access to pota tab
+		$this->require_tab_access('pota');
+
 		$this->load->model('stations');
 		$data['station_profile'] = $this->stations->all_of_user();
 
 		$data['page_title'] = __("POTA Import");
 		$data['tab'] = "potab";
+
+		// Pass allowed tabs to view
+		$data['allowed_tabs'] = $this->get_allowed_tabs();
 
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'adi|ADI|adif|ADIF';
