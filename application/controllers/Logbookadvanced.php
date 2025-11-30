@@ -154,7 +154,7 @@ class Logbookadvanced extends CI_Controller {
 			'dok' => xss_clean($this->input->post('dok')),
 			'qrzSent' => xss_clean($this->input->post('qrzSent')),
 			'qrzReceived' => xss_clean($this->input->post('qrzReceived')),
-			'distance' => xss_clean($this->input->post('distanceinput')),
+			'distance' => xss_clean($this->input->post('distance')),
 		);
 	}
 
