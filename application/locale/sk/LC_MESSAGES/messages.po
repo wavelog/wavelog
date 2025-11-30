@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-11-28 12:19+0000\n"
-"PO-Revision-Date: 2025-11-29 21:49+0000\n"
+"PO-Revision-Date: 2025-11-30 17:22+0000\n"
 "Last-Translator: Viliam Petrik <tatralom@gmail.com>\n"
 "Language-Team: Slovak <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/sk/>\n"
@@ -10509,11 +10509,15 @@ msgid ""
 "You have been added to the Clubstation %s. You can now access this callsign "
 "through your account on %s."
 msgstr ""
+"Milý %s\n"
+"\n"
+"Boli ste pridaní do klubovej stanice %s. Teraz môžete získať prístup k "
+"tomuto volaciemu znaku prostredníctvom svojho účtu na %s."
 
 #: application/views/email/club/new_member.php:9
 #, php-format
 msgid "Your permission level is: %s"
-msgstr ""
+msgstr "Vaša úroveň povolenia je: %s"
 
 #: application/views/email/forgot_password.php:5
 msgid ""
@@ -10521,6 +10525,9 @@ msgid ""
 "\n"
 "You or someone else has requested a password reset on your Wavelog account."
 msgstr ""
+"Ahoj,\n"
+"\n"
+"Ty alebo niekto iný požiadal o reset hesla na tvojom účte Wavelog."
 
 #: application/views/email/forgot_password.php:13
 msgid ""
@@ -10530,19 +10537,24 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Ak ste to nepožadovali, jednoducho ignorujte.\n"
+"\n"
+"S pozdravom,\n"
+"\n"
+"Wavelog"
 
 #: application/views/email/oqrs_request.php:3
 #, php-format
 msgid "Wavelog OQRS from %s"
-msgstr ""
+msgstr "Wavelog OQRS od %s"
 
 #: application/views/email/oqrs_request.php:6
 msgid "The user entered the following message: "
-msgstr ""
+msgstr "Používateľ zadal nasledujúcu správu: "
 
 #: application/views/email/oqrs_request.php:11
 msgid "The user did not enter any additional message."
-msgstr ""
+msgstr "Používateľ nezadal žiadnu ďalšiu správu."
 
 #: application/views/email/oqrs_request.php:14
 #, php-format
@@ -10551,6 +10563,9 @@ msgid ""
 "\n"
 "You got an OQRS request from %s."
 msgstr ""
+"Ahoj,\n"
+"\n"
+"Dostal si požiadavku OQRS od %s."
 
 #: application/views/email/oqrs_request.php:20
 msgid ""
@@ -10560,10 +10575,15 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Prosím, prihlás sa do svojho Wavelogu a spracuj ho.\n"
+"\n"
+"S pozdravom,\n"
+"\n"
+"Wavelog"
 
 #: application/views/email/testmail.php:3
 msgid "Wavelog Test-Mail"
-msgstr ""
+msgstr "Testovací e-mail Wavelog"
 
 #: application/views/email/testmail.php:5
 msgid ""
@@ -10577,13 +10597,22 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Ahoj,\n"
+"\n"
+"Toto je testovací email z tvojej Wavelog inštancie.\n"
+"\n"
+"Ak si dostal tento email, tvoje nastavenia pošty sú správne.\n"
+"\n"
+"S pozdravom,\n"
+"\n"
+"Wavelog"
 
 #: application/views/eqsl/analysis.php:14
 #: application/views/eqsl/download.php:13 application/views/eqsl/export.php:12
 #: application/views/eqsl/import.php:11 application/views/eqsl/result.php:14
 #: application/views/eqsl/tools.php:11
 msgid "Upload QSOs"
-msgstr ""
+msgstr "Nahraj spojenia"
 
 #: application/views/eqsl/analysis.php:17
 #: application/views/eqsl/download.php:17 application/views/eqsl/export.php:16
@@ -10591,22 +10620,22 @@ msgstr ""
 #: application/views/eqsl/tools.php:15
 #: application/views/interface_assets/header.php:295
 msgid "Tools"
-msgstr ""
+msgstr "Nástroje"
 
 #: application/views/eqsl/analysis.php:20
 #: application/views/eqsl/download.php:20 application/views/eqsl/export.php:19
 #: application/views/eqsl/import.php:18 application/views/eqsl/result.php:20
 #: application/views/eqsl/tools.php:19
 msgid "Download eQSL cards"
-msgstr ""
+msgstr "Stiahnuť eQSL karty"
 
 #: application/views/eqsl/analysis.php:41
 msgid "eQSL Received Date"
-msgstr ""
+msgstr "Dátum prijatia eQSL"
 
 #: application/views/eqsl/analysis.php:42
 msgid "Log Status"
-msgstr ""
+msgstr "Stav denníka"
 
 #: application/views/eqsl/analysis.php:43 application/views/eqsl/result.php:38
 msgid "eQSL Status"
@@ -10703,8 +10732,9 @@ msgid "Import from file..."
 msgstr "Importovať zo súboru..."
 
 #: application/views/eqsl/import.php:34
+#, fuzzy
 msgid "Download Inbox"
-msgstr ""
+msgstr "Download Inbox"
 
 #: application/views/eqsl/import.php:34
 #, php-format
@@ -10712,28 +10742,32 @@ msgid ""
 "Upload the Exported ADIF file from eQSL from the %s page, to mark QSOs as "
 "confirmed on eQSL."
 msgstr ""
+"Nahraj exportovaný ADIF súbor z eQSL z %s stránky, aby boli QSO označené ako "
+"potvrdené na eQSL."
 
 #: application/views/eqsl/import.php:35
 msgid "Choose Station(location) eQSL File belongs to:"
-msgstr ""
+msgstr "Vyberte, ku ktorej stanici (lokácii) patrí eQSL súbor:"
 
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
 msgid "Log files must have the file type .adi"
-msgstr ""
+msgstr "Súbory denníkov musia mať typ súboru *.adi"
 
 #: application/views/eqsl/import.php:53
 msgid "Import directly from eQSL"
-msgstr ""
+msgstr "Importovať priamo z eQSL"
 
 #: application/views/eqsl/tools.php:27
 msgid ""
 "This does NOT upload any QSOs. It only marks QSOs as sent. If you use this "
 "button you need to upload them manually on the eQSL.cc website."
 msgstr ""
+"Toto NEuploaduje žiadne spojenie. Iba označuje spojenia ako odoslané. Ak "
+"použiješ toto tlačidlo, musíš ich nahrať manuálne na webovú stránku eQSL.cc."
 
 #: application/views/eqsl/tools.php:29
 msgid "Mark All QSOs as Sent to eQSL"
-msgstr ""
+msgstr "Označ všetky QSO ako odoslané do eQSL"
 
 #: application/views/eqsl/tools.php:29
 msgid ""
@@ -10750,7 +10784,7 @@ msgstr ""
 #: application/views/qslcard/index.php:44
 #: application/views/qslcard/index.php:120
 msgid "QSL Date"
-msgstr ""
+msgstr "Dátum QSL"
 
 #: application/views/eqslcard/index.php:64
 #: application/views/interface_assets/footer.php:2734
@@ -10760,7 +10794,7 @@ msgstr ""
 #: application/views/qslcard/index.php:77
 #: application/views/view_log/qso.php:779
 msgid "View"
-msgstr ""
+msgstr "Zobraziť"
 
 #: application/views/hamsat/index.php:22
 #, php-format
@@ -10768,57 +10802,66 @@ msgid ""
 "Cannot filter workable passes only without private feed key. Please set the "
 "feed key in %s."
 msgstr ""
+"Nie je možné filtrovať len použiteľné prelety bez súkromného kľúča feed-u. "
+"Nastavte prosím kľúč feed-u v %s."
 
 #: application/views/hamsat/index.php:22
 msgid "your profile"
-msgstr ""
+msgstr "tvoj profil"
 
 #: application/views/hrdlog/export.php:13 application/views/qrz/export.php:18
 #: application/views/webadif/export.php:13
 msgid "Mark QSOs"
-msgstr ""
+msgstr "Označ spojenia"
 
 #: application/views/hrdlog/export.php:22
 msgid ""
 "Here you can see all QSOs which have not been previously uploaded to a "
 "HRDLog logbook."
 msgstr ""
+"Tu môžeš vidieť všetky spojenia, ktoré neboli predtým nahrané do denníka "
+"HRDLog."
 
 #: application/views/hrdlog/export.php:23
 msgid ""
 "You need to set a HRDLog Logbook API Code in your station profile. Only "
 "station profiles with an API Key set are displayed."
 msgstr ""
+"Musíš nastaviť HRDLog Logbook API kód vo svojom profile stanice. Len profily "
+"stanice s nastaveným API kľúčom sú zobrazené."
 
 #: application/views/hrdlog/export.php:24
 #, php-format
 msgid "The Code can be requested at %s"
-msgstr ""
+msgstr "O kód možno požiadať na %s"
 
 #: application/views/hrdlog/export.php:25
 #: application/views/webadif/export.php:34
 msgid "This might take a while as QSO uploads are processed sequentially."
 msgstr ""
+"Môže to chvíľu trvať, pretože nahrávané spojenia sa spracúvajú postupne."
 
 #: application/views/hrdlog/export.php:60
 msgid ""
 "No Station Locations with valid HRDlog-Settings found. Check the HRDlog "
 "Credentials in the Station Location Settings!"
 msgstr ""
+"Neboli nájdené žiadne umiestnenia staníc s platnými nastaveniami HRDlog. "
+"Skontrolujte prihlasovacie údaje HRDlog v nastaveniach umiestnenia stanice!"
 
 #: application/views/hrdlog/export.php:87
 msgid "Mark QSOs as exported to HRDLog Logbook"
-msgstr ""
+msgstr "Označ spojenia ako exportované do HRDLog Logbooku"
 
 #: application/views/hrdlog/mark_hrdlog.php:15
 #: application/views/qrz/mark_qrz.php:15
 #: application/views/webadif/mark_webadif.php:15
 msgid "Yay, it's done!"
-msgstr ""
+msgstr "Hurá, je to hotové!"
 
 #: application/views/hrdlog/mark_hrdlog.php:16
 msgid "The QSOs are marked as exported to HRDLog Logbook."
-msgstr ""
+msgstr "Spojenia sú označené ako exportované do HRDLog Logbooku."
 
 #: application/views/interface_assets/footer.php:32
 #: application/views/search/search_result_ajax.php:456
@@ -10826,39 +10869,41 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:670
 #: application/views/view_log/qso.php:598
 msgid "Edit QSO"
-msgstr ""
+msgstr "Upraviť QSO"
 
 #: application/views/interface_assets/footer.php:33
 msgid "Share QSO"
-msgstr ""
+msgstr "Zdieľaj QSO"
 
 #: application/views/interface_assets/footer.php:35
 #: application/views/logbookadvanced/index.php:50
 msgid "ERROR"
-msgstr ""
+msgstr "CHYBA"
 
 #: application/views/interface_assets/footer.php:36
 msgid "Attention"
-msgstr ""
+msgstr "Pozor"
 
 #: application/views/interface_assets/footer.php:43
 msgid "Warning! Are you sure you want delete QSO with "
-msgstr ""
+msgstr "Upozornenie! Ste si istý, že chcete vymazať spojenie s "
 
 #: application/views/interface_assets/footer.php:44
 #: application/views/user/edit.php:543
 msgid "Colors"
-msgstr ""
+msgstr "Farby"
 
 #: application/views/interface_assets/footer.php:46
 msgid "Worked not confirmed"
-msgstr ""
+msgstr "Urobené, nepotvrdené"
 
 #: application/views/interface_assets/footer.php:53
 #: application/views/qso/edit_ajax.php:213
 #: application/views/qso/edit_ajax.php:568
 msgid "Propagation mode is not supported by LoTW. LoTW QSL fields disabled."
 msgstr ""
+"Režim šírenia nie je podporovaný službou LoTW. Polia LoTW QSL sú "
+"deaktivované."
 
 #: application/views/interface_assets/footer.php:54
 msgid "No states for this DXCC available"
@@ -10866,91 +10911,91 @@ msgstr ""
 
 #: application/views/interface_assets/footer.php:55
 msgid "Compute QRB and QTF"
-msgstr ""
+msgstr "Vypočítaj QRB a QTF"
 
 #: application/views/interface_assets/footer.php:56
 msgid "Error in locators. Please check."
-msgstr ""
+msgstr "Chyba v lokátoroch. Skontroluj ich."
 
 #: application/views/interface_assets/footer.php:57
 #: application/views/user/index.php:20 application/views/user/index.php:144
 msgid "Refresh List"
-msgstr ""
+msgstr "Obnoviť zoznam"
 
 #: application/views/interface_assets/footer.php:58
 msgid "Please Wait ..."
-msgstr ""
+msgstr "Prosím, počkajte..."
 
 #: application/views/interface_assets/footer.php:59
 msgctxt ""
 "Word for country states that are deprecated but kept for legacy reasons."
 msgid "deprecated"
-msgstr ""
+msgstr "zastaralé"
 
 #: application/views/interface_assets/footer.php:60
 msgid "Satellite Information"
-msgstr ""
+msgstr "Informácie o satelitoch"
 
 #: application/views/interface_assets/footer.php:62
 msgid "Error loading notes"
-msgstr ""
+msgstr "Chyba pri načítaní poznámok"
 
 #: application/views/interface_assets/footer.php:63
 msgid "Sorting"
-msgstr ""
+msgstr "Zoradenie"
 
 #: application/views/interface_assets/footer.php:64
 msgid "Duplication is disabled for Contacts notes"
-msgstr ""
+msgstr "Duplikácia poznámok Kontaktov je vypnutá"
 
 #: application/views/interface_assets/footer.php:66
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplicita"
 
 #: application/views/interface_assets/footer.php:67
 #: application/views/notes/view.php:48
 msgid "Delete Note"
-msgstr ""
+msgstr "Odstrániť poznámku"
 
 #: application/views/interface_assets/footer.php:68
 msgid "Duplicate Note"
-msgstr ""
+msgstr "Duplicitná poznámka"
 
 #: application/views/interface_assets/footer.php:69
 msgid "Delete this note?"
-msgstr ""
+msgstr "Odstrániť túto poznámku?"
 
 #: application/views/interface_assets/footer.php:70
 msgid "Duplicate this note?"
-msgstr ""
+msgstr "Duplikovať túto poznámku?"
 
 #: application/views/interface_assets/footer.php:71
 msgid "Duplication Disabled"
-msgstr ""
+msgstr "Duplikácia zakázaná"
 
 #: application/views/interface_assets/footer.php:72
 msgid "No notes were found"
-msgstr ""
+msgstr "Žiadne poznámky sa nenašli"
 
 #: application/views/interface_assets/footer.php:73
 msgid "No notes for this callsign"
-msgstr ""
+msgstr "Žiadne poznámky k tejto volačke"
 
 #: application/views/interface_assets/footer.php:74
 msgid "Callsign Note"
-msgstr ""
+msgstr "Poznámka k volacej značke"
 
 #: application/views/interface_assets/footer.php:75
 msgid "Note deleted successfully"
-msgstr ""
+msgstr "Poznámka úspešne odstránená"
 
 #: application/views/interface_assets/footer.php:76
 msgid "Note created successfully"
-msgstr ""
+msgstr "Poznámka bola úspešne vytvorená"
 
 #: application/views/interface_assets/footer.php:77
 msgid "Note saved successfully"
-msgstr ""
+msgstr "Poznámka úspešne uložená"
 
 #: application/views/interface_assets/footer.php:78
 msgid "Error saving note"
