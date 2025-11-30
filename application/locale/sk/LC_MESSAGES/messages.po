@@ -10,8 +10,8 @@ msgstr ""
 "POT-Creation-Date: 2025-11-28 12:19+0000\n"
 "PO-Revision-Date: 2025-11-30 17:22+0000\n"
 "Last-Translator: Viliam Petrik <tatralom@gmail.com>\n"
-"Language-Team: Slovak <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/sk/>\n"
+"Language-Team: Slovak <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -208,6 +208,7 @@ msgstr "nesprávny dátum"
 
 #: application/controllers/Adif.php:134
 #: application/views/interface_assets/header.php:467
+#: application/views/interface_assets/header.php:473
 msgid "ADIF Import / Export"
 msgstr "ADIF import / export"
 
@@ -317,6 +318,7 @@ msgstr "Diplomy"
 #: application/controllers/Awards.php:2255
 #: application/controllers/Awards.php:2268
 #: application/controllers/Awards.php:2343
+#: application/controllers/Awards.php:2487
 #, php-format
 msgid "Awards - %s"
 msgstr "Diplomy - %s"
@@ -522,6 +524,7 @@ msgstr "IOTA (Island On The Air)"
 #: application/controllers/Awards.php:992
 #: application/controllers/Awards.php:1007
 #: application/views/interface_assets/header.php:282
+#: application/views/interface_assets/header.php:288
 msgid "US Counties"
 msgstr "Okresy USA"
 
@@ -602,6 +605,7 @@ msgstr "WPX"
 
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:330
+#: application/views/interface_assets/header.php:336
 msgid "Backup"
 msgstr "Záloha"
 
@@ -618,6 +622,7 @@ msgstr "Poznámky - záloha"
 #: application/views/interface_assets/header.php:437
 #: application/views/statistics/index.php:16
 #: application/views/statistics/index.php:67
+#: application/views/interface_assets/header.php:443
 msgid "Bands"
 msgstr "Pásma"
 
@@ -762,6 +767,7 @@ msgstr "Žiadny používateľ nekonfiguroval Clublog."
 #: application/views/view_log/partial/log_ajax.php:222
 #: application/views/view_log/qso.php:571
 #: application/views/view_log/qso.php:576
+#: application/views/awards/pl_polska/index.php:95
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -771,6 +777,7 @@ msgstr "Import Clublog QSL"
 
 #: application/controllers/Contestcalendar.php:19
 #: application/views/interface_assets/header.php:301
+#: application/views/interface_assets/header.php:307
 msgid "Contest Calendar"
 msgstr "Kalendár contestov"
 
@@ -785,6 +792,7 @@ msgstr "Contestový log"
 
 #: application/controllers/Contesting.php:128
 #: application/views/interface_assets/header.php:324
+#: application/views/interface_assets/header.php:330
 msgid "Contests"
 msgstr "Contesty"
 
@@ -802,6 +810,7 @@ msgstr "Kontinenty"
 
 #: application/controllers/Cron.php:38
 #: application/views/interface_assets/header.php:334
+#: application/views/interface_assets/header.php:340
 msgid "Cron Manager"
 msgstr "Cron Manager"
 
@@ -870,6 +879,7 @@ msgstr "Nespustené"
 
 #: application/controllers/Csv.php:20 application/views/csv/index.php:3
 #: application/views/interface_assets/header.php:475
+#: application/views/interface_assets/header.php:481
 msgid "SOTA CSV Export"
 msgstr "SOTA CSV export"
 
@@ -996,11 +1006,13 @@ msgstr "a šírenie"
 
 #: application/controllers/Dxatlas.php:19
 #: application/views/interface_assets/header.php:473
+#: application/views/interface_assets/header.php:479
 msgid "DX Atlas Gridsquare Export"
 msgstr "DX Atlas export lokátorov"
 
 #: application/controllers/Dxcalendar.php:10
 #: application/views/interface_assets/header.php:299
+#: application/views/interface_assets/header.php:305
 msgid "DX Calendar"
 msgstr "DX kalendár"
 
@@ -1093,6 +1105,7 @@ msgstr "Žiadne QSOs na nahratie."
 #: application/controllers/Kmlexport.php:24
 #: application/views/interface_assets/header.php:471
 #: application/views/kml/index.php:3
+#: application/views/interface_assets/header.php:477
 msgid "KML Export"
 msgstr "KML export"
 
@@ -1282,6 +1295,7 @@ msgstr "Logbook"
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:108
 #: application/views/timeline/index.php:56 application/views/user/edit.php:623
 #: application/views/user/edit.php:816
+#: application/views/awards/pl_polska/index.php:79
 msgid "QSL"
 msgstr "QSL"
 
@@ -1320,6 +1334,7 @@ msgstr "QSL"
 #: application/views/timeline/index.php:60 application/views/user/edit.php:624
 #: application/views/user/edit.php:826 application/views/view_log/qso.php:537
 #: application/views/view_log/qso.php:542
+#: application/views/awards/pl_polska/index.php:83
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1355,6 +1370,7 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:309
 #: application/views/timeline/index.php:64 application/views/user/edit.php:625
 #: application/views/user/edit.php:834 application/views/user/edit.php:908
+#: application/views/awards/pl_polska/index.php:87
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1843,6 +1859,7 @@ msgstr "Rýchly náhľad"
 #: application/views/lotw/import.php:3 application/views/lotw_views/index.php:9
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:880 application/views/visitor/index.php:328
+#: application/views/interface_assets/header.php:512
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
@@ -1921,6 +1938,8 @@ msgstr "LoTW .TQ8 neodoslané"
 #: application/views/interface_assets/header.php:322
 #: application/views/interface_assets/header.php:439
 #: application/views/mode/index.php:27 application/views/usermode/index.php:25
+#: application/views/interface_assets/header.php:328
+#: application/views/interface_assets/header.php:445
 msgid "Modes"
 msgstr "Módy"
 
@@ -2169,6 +2188,7 @@ msgstr "Neplatné ID stanice"
 
 #: application/controllers/Oqrs.php:163
 #: application/views/interface_assets/header.php:496
+#: application/views/interface_assets/header.php:502
 msgid "OQRS Requests"
 msgstr "Žiadosti OQRS"
 
@@ -2229,6 +2249,7 @@ msgstr ""
 
 #: application/controllers/Qrz.php:204
 #: application/views/interface_assets/header.php:509
+#: application/views/interface_assets/header.php:515
 msgid "QRZ Logbook"
 msgstr "QRZ Logbook"
 
@@ -2277,6 +2298,7 @@ msgstr "Nebola uvedená žiadna volacia značka."
 
 #: application/controllers/Radio.php:17
 #: application/views/interface_assets/header.php:523
+#: application/views/interface_assets/header.php:529
 msgid "Hardware Interfaces"
 msgstr "Hardvérové rozhrania"
 
@@ -2387,6 +2409,7 @@ msgstr "EDI export"
 #: application/views/satellite/index.php:40
 #: application/views/statistics/index.php:50
 #: application/views/statistics/index.php:111
+#: application/views/interface_assets/header.php:332
 msgid "Satellites"
 msgstr "Satelity"
 
@@ -2400,6 +2423,7 @@ msgstr "Upraviť satelit"
 
 #: application/controllers/Satellite.php:213
 #: application/views/interface_assets/header.php:307
+#: application/views/interface_assets/header.php:313
 msgid "Satellite Flightpath"
 msgstr "Dráha preletu satelitu"
 
@@ -2481,6 +2505,8 @@ msgstr "Satelitné časovače"
 #: application/views/visitor/layout/footer.php:13
 #: application/views/visitor/layout/header.php:97
 #: application/views/visitor/layout/header.php:98
+#: application/views/interface_assets/header.php:392
+#: application/views/interface_assets/header.php:399
 msgid "Search"
 msgstr "Hľadať"
 
@@ -2532,6 +2558,7 @@ msgstr "Upraviť polohu stanice "
 #: application/views/view_log/partial/log_ajax.php:18
 #: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
+#: application/views/awards/pl_polska/index.php:54
 msgid "Station Location"
 msgstr "Poloha stanice"
 
@@ -2548,6 +2575,8 @@ msgstr "Skontroluj hodnotu pre  lokátor (%s)"
 #: application/controllers/Stationsetup.php:60
 #: application/views/interface_assets/header.php:435
 #: application/views/interface_assets/header.php:586
+#: application/views/interface_assets/header.php:441
+#: application/views/interface_assets/header.php:592
 msgid "Station Setup"
 msgstr "Nastavenie stanice"
 
@@ -2619,6 +2648,7 @@ msgstr "Nastaviť ako aktívny denník"
 #: application/views/interface_assets/header.php:584
 #: application/views/stationsetup/stationsetup.php:49
 #: application/views/view_log/index.php:4
+#: application/views/interface_assets/header.php:590
 msgid "Active Logbook"
 msgstr "Aktívny denník"
 
@@ -2741,6 +2771,7 @@ msgstr "EME iniciály"
 
 #: application/controllers/Themes.php:27
 #: application/views/interface_assets/header.php:328
+#: application/views/interface_assets/header.php:334
 msgid "Themes"
 msgstr "Motívy"
 
@@ -2882,6 +2913,7 @@ msgstr "Aktualizácia súboru VUCC lokátorov zlyhala. Výsledok: "
 
 #: application/controllers/User.php:50
 #: application/views/interface_assets/header.php:318
+#: application/views/interface_assets/header.php:324
 msgid "User Accounts"
 msgstr "Používateľské účty"
 
@@ -2984,6 +3016,7 @@ msgstr "Prihlásenie zlyhalo. Skúste to znova."
 #: application/views/interface_assets/header.php:406
 #: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:87
+#: application/views/interface_assets/header.php:412
 msgid "Login"
 msgstr "Prihlásiť sa"
 
@@ -3195,6 +3228,7 @@ msgstr "Exportovať mapu"
 #: application/controllers/Webadif.php:95
 #: application/controllers/Webadif.php:142
 #: application/views/interface_assets/header.php:510
+#: application/views/interface_assets/header.php:516
 msgid "QO-100 Dx Club Upload"
 msgstr "QO-100 Dx Club nahrávanie"
 
@@ -3382,6 +3416,7 @@ msgstr ""
 "HRDlog: Nenašli sa žiadne profily staníc s prihlasovacími údajmi HRDlog."
 
 #: application/models/Logbook_model.php:1307
+#: application/models/Logbook_model.php:1341
 msgid "Station ID not allowed"
 msgstr ""
 
@@ -3391,10 +3426,13 @@ msgstr "Nezadaný volací znak"
 
 #: application/models/Logbook_model.php:1382
 #: application/models/Logbook_model.php:1584
+#: application/models/Logbook_model.php:1416
+#: application/models/Logbook_model.php:1618
 msgid "DXCC has to be Numeric"
 msgstr "DXCC musí byť číselné"
 
 #: application/models/Logbook_model.php:4605
+#: application/models/Logbook_model.php:4639
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
@@ -3402,10 +3440,13 @@ msgstr ""
 
 #: application/models/Logbook_model.php:4615
 #: application/models/Logbook_model.php:4624
+#: application/models/Logbook_model.php:4649
+#: application/models/Logbook_model.php:4658
 msgid "QSO on"
 msgstr "QSO o"
 
 #: application/models/Logbook_model.php:4615
+#: application/models/Logbook_model.php:4649
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -3414,6 +3455,7 @@ msgstr ""
 "importované. Je neplatné"
 
 #: application/models/Logbook_model.php:4624
+#: application/models/Logbook_model.php:4658
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3422,6 +3464,7 @@ msgstr ""
 "importované. Je neplatné."
 
 #: application/models/Logbook_model.php:4673
+#: application/models/Logbook_model.php:4707
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -3431,44 +3474,55 @@ msgstr ""
 "importované. Je neplatné."
 
 #: application/models/Logbook_model.php:4938
+#: application/models/Logbook_model.php:4972
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr ""
 
 #: application/models/Logbook_model.php:4949
+#: application/models/Logbook_model.php:4983
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr ""
 
 #: application/models/Logbook_model.php:5010
+#: application/models/Logbook_model.php:5044
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr ""
 
 #: application/models/Logbook_model.php:5385
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:5419
 msgid "Duplicate for"
 msgstr "Duplicita pre"
 
 #: application/models/Logbook_model.php:5450
 #: application/models/Logbook_model.php:5545
+#: application/models/Logbook_model.php:5484
+#: application/models/Logbook_model.php:5579
 msgid "QSO could not be matched"
 msgstr "QSO nebolo možné spárovať"
 
 #: application/models/Logbook_model.php:5458
+#: application/models/Logbook_model.php:5492
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "potvrdené cez LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:5464
+#: application/models/Logbook_model.php:5498
 msgid "confirmed by award manager"
 msgstr "potvrdené diplomovým manažérom"
 
 #: application/models/Logbook_model.php:5468
+#: application/models/Logbook_model.php:5502
 msgid "confirmed by cross-check of DCL data"
 msgstr "potvrdené krížovou kontrolou údajov DCL"
 
 #: application/models/Logbook_model.php:5472
+#: application/models/Logbook_model.php:5506
 msgid "confirmation pending"
 msgstr "potvrdenie čaká"
 
 #: application/models/Logbook_model.php:5475
+#: application/models/Logbook_model.php:5509
 msgid "unconfirmed"
 msgstr "nepotvrdené"
 
@@ -3476,14 +3530,17 @@ msgstr "nepotvrdené"
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
+#: application/models/Logbook_model.php:5512
 msgid "unknown"
 msgstr "neznáme"
 
 #: application/models/Logbook_model.php:5548
+#: application/models/Logbook_model.php:5582
 msgid "POTA reference already in log"
 msgstr "POTA referencia už v logu"
 
 #: application/models/Logbook_model.php:5551
+#: application/models/Logbook_model.php:5585
 msgid "QSO updated"
 msgstr "QSO aktualizované"
 
@@ -3498,6 +3555,7 @@ msgstr "QSO aktualizované"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:6392
 msgid "Bearing"
 msgstr "Smerovanie"
 
@@ -4102,6 +4160,7 @@ msgstr "Tropo ducting"
 #: application/views/timeline/index.php:340
 #: application/views/timeline/index.php:370
 #: application/views/timeplotter/index.php:59
+#: application/views/awards/pl_polska/index.php:104
 msgid "Show"
 msgstr "Ukáž"
 
@@ -4175,6 +4234,7 @@ msgstr "Potvrdenie"
 #: application/views/awards/was/index.php:72
 #: application/views/awards/wpx/index.php:40
 #: application/views/gridmap/index.php:195 application/views/user/edit.php:842
+#: application/views/awards/pl_polska/index.php:91
 msgid "QRZ.com"
 msgstr "QRZ.com"
 
@@ -4243,6 +4303,7 @@ msgstr "Minimálny počet"
 #: application/views/distancerecords/index.php:52
 #: application/views/public_search/empty.php:3
 #: application/views/qrz/export.php:65 application/views/timeline/index.php:158
+#: application/views/awards/pl_polska/index.php:388
 msgid "Nothing found!"
 msgstr "Nič sa nenašlo!"
 
@@ -5009,6 +5070,7 @@ msgstr "Uložiť"
 
 #: application/views/api/index.php:8
 #: application/views/interface_assets/header.php:522
+#: application/views/interface_assets/header.php:528
 msgid "API Keys"
 msgstr "API kľúče"
 
@@ -5113,6 +5175,7 @@ msgstr "Povolenia"
 #: application/views/notes/main.php:77 application/views/qrz/export.php:44
 #: application/views/user/index.php:33 application/views/user/index.php:160
 #: application/views/webadif/export.php:45
+#: application/views/awards/pl_polska/index.php:383
 msgid "Actions"
 msgstr "Akcie"
 
@@ -5191,6 +5254,8 @@ msgstr "Vytvoriť kľúč iba na čítanie"
 #: application/views/awards/was/index.php:31
 #: application/views/awards/wwff/index.php:6
 #: application/views/awards/wwff/index.php:14
+#: application/views/awards/pl_polska/index.php:36
+#: application/views/awards/pl_polska/index.php:44
 msgid "Award Info"
 msgstr "Diplomové informácie"
 
@@ -5631,6 +5696,7 @@ msgstr "Tabuľka"
 #: application/views/awards/was/index.php:132
 #: application/views/logbookadvanced/index.php:813
 #: application/views/logbookadvanced/useroptions.php:7
+#: application/views/awards/pl_polska/index.php:199
 msgid "Map"
 msgstr "Mapa"
 
@@ -5792,6 +5858,7 @@ msgstr "Každé pásmo"
 #: application/views/oqrs/showrequests.php:70
 #: application/views/qrbcalc/index.php:19
 #: application/views/search/filter.php:43 application/views/user/edit.php:718
+#: application/views/awards/pl_polska/index.php:103
 msgid "Reset"
 msgstr "Resetovať"
 
@@ -6009,6 +6076,7 @@ msgstr ""
 
 #: application/views/awards/ffma/index.php:11
 #: application/views/interface_assets/header.php:288
+#: application/views/interface_assets/header.php:294
 msgid "Fred Fish Memorial Award"
 msgstr "Fred Fish Memorial Award"
 
@@ -6764,8 +6832,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Japan) and STATE (Must contain a valid "
 "prefecture!)"
 msgstr ""
-"Pre tento diplom sa používajú oblasti: DXCC (Japonsko) a STATE "
-"(musí obsahovať platnú prefektúru!)"
+"Pre tento diplom sa používajú oblasti: DXCC (Japonsko) a STATE (musí "
+"obsahovať platnú prefektúru!)"
 
 #: application/views/awards/waja/index.php:122
 msgid "Show WAJA Map"
@@ -6928,9 +6996,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be one of U.S.A., Alaska or Hawaii) "
 "and STATE (Must contain a valid U.S. state abbreviation!)"
 msgstr ""
-"Pre tento diplom sa používajú oblasti: DXCC "
-"(musí byť jedno z USA, Aljaška alebo Havaj) a STATE "
-"(musí obsahovať platnú skratku amerického štátu!)"
+"Pre tento diplom sa používajú oblasti: DXCC (musí byť jedno z USA, Aljaška "
+"alebo Havaj) a STATE (musí obsahovať platnú skratku amerického štátu!)"
 
 #: application/views/awards/was/index.php:119
 msgid "Show WAS Map"
@@ -7144,7 +7211,8 @@ msgstr "Nepodarilo sa načítať obľúbené položky"
 
 #: application/views/bandmap/list.php:40
 msgid "Modes applied. Band filter preserved (CAT connection is active)"
-msgstr "Módy boli použité. Pásmový filter zachovaný (pripojenie CAT je aktívne)"
+msgstr ""
+"Módy boli použité. Pásmový filter zachovaný (pripojenie CAT je aktívne)"
 
 #: application/views/bandmap/list.php:41
 msgid "Applied your favorite bands and modes"
@@ -8081,8 +8149,8 @@ msgid ""
 "For the RSGB-IOTA contest this information contains the IOTA name (not the "
 "IOTA reference code)."
 msgstr ""
-"Pre RSGB-IOTA contest táto informácia obsahuje názov IOTA "
-"(nie referenčný kód IOTA)."
+"Pre RSGB-IOTA contest táto informácia obsahuje názov IOTA (nie referenčný "
+"kód IOTA)."
 
 #: application/views/cabrillo/index.php:48
 #: application/views/logbookadvanced/index.php:787
@@ -11243,6 +11311,7 @@ msgstr ""
 #: application/views/interface_assets/footer.php:223
 #: application/views/interface_assets/header.php:525
 #: application/views/options/sidebar.php:10
+#: application/views/interface_assets/header.php:531
 msgid "Version Info"
 msgstr ""
 
@@ -11529,55 +11598,68 @@ msgid "LX Gridmaster"
 msgstr ""
 
 #: application/views/interface_assets/header.php:268
+#: application/views/interface_assets/header.php:274
 msgid "Switzerland"
 msgstr ""
 
 #: application/views/interface_assets/header.php:274
+#: application/views/interface_assets/header.php:280
 msgid "The Netherlands"
 msgstr ""
 
 #: application/views/interface_assets/header.php:276
+#: application/views/interface_assets/header.php:282
 msgid "WAP Worked All Provinces"
 msgstr ""
 
 #: application/views/interface_assets/header.php:280
+#: application/views/interface_assets/header.php:286
 msgid "USA"
 msgstr ""
 
 #: application/views/interface_assets/header.php:286
+#: application/views/interface_assets/header.php:292
 msgid "US Gridmaster"
 msgstr ""
 
 #: application/views/interface_assets/header.php:305
+#: application/views/interface_assets/header.php:311
 msgid "SAT Timers"
 msgstr ""
 
 #: application/views/interface_assets/header.php:309
+#: application/views/interface_assets/header.php:315
 msgid "Satellite Pass"
 msgstr ""
 
 #: application/views/interface_assets/header.php:315
 #: application/views/stationsetup/stationsetup.php:118
+#: application/views/interface_assets/header.php:321
 msgid "Admin"
 msgstr ""
 
 #: application/views/interface_assets/header.php:320
+#: application/views/interface_assets/header.php:326
 msgid "Global Options"
 msgstr ""
 
 #: application/views/interface_assets/header.php:332
+#: application/views/interface_assets/header.php:338
 msgid "Update Country Files"
 msgstr ""
 
 #: application/views/interface_assets/header.php:336
+#: application/views/interface_assets/header.php:342
 msgid "Debug Information"
 msgstr ""
 
 #: application/views/interface_assets/header.php:383
+#: application/views/interface_assets/header.php:389
 msgid "Add/Search Callsign"
 msgstr ""
 
 #: application/views/interface_assets/header.php:385
+#: application/views/interface_assets/header.php:391
 msgid "Log"
 msgstr ""
 
@@ -11585,10 +11667,12 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:689
 #: application/views/oqrs/index.php:28 application/views/user/edit.php:490
 #: application/views/visitor/layout/header.php:95
+#: application/views/interface_assets/header.php:398
 msgid "Search Callsign"
 msgstr ""
 
 #: application/views/interface_assets/header.php:419
+#: application/views/interface_assets/header.php:425
 #, php-format
 msgctxt "Operator: Callsign"
 msgid "Op: %s"
@@ -11596,104 +11680,128 @@ msgstr ""
 
 #: application/views/interface_assets/header.php:430
 #: application/views/user/edit.php:53
+#: application/views/interface_assets/header.php:436
 msgid "Account"
 msgstr ""
 
 #: application/views/interface_assets/header.php:438
+#: application/views/interface_assets/header.php:444
 msgid "Band Edges"
 msgstr ""
 
 #: application/views/interface_assets/header.php:444
+#: application/views/interface_assets/header.php:450
 msgid "Switch to Clubstation:"
 msgstr ""
 
 #: application/views/interface_assets/header.php:448
+#: application/views/interface_assets/header.php:454
 #, php-format
 msgid "Switch to %s"
 msgstr ""
 
 #: application/views/interface_assets/header.php:452
+#: application/views/interface_assets/header.php:458
 #, php-format
 msgctxt "Managing a Club Callsign"
 msgid "Manage %s"
 msgstr ""
 
 #: application/views/interface_assets/header.php:461
+#: application/views/interface_assets/header.php:467
 msgid "No Clubstations available"
 msgstr ""
 
 #: application/views/interface_assets/header.php:469
+#: application/views/interface_assets/header.php:475
 msgid "Other Export Options"
 msgstr ""
 
 #: application/views/interface_assets/header.php:477
+#: application/views/interface_assets/header.php:483
 msgid "Cabrillo Export"
 msgstr ""
 
 #: application/views/interface_assets/header.php:479
+#: application/views/interface_assets/header.php:485
 msgid "EDI Export"
 msgstr ""
 
 #: application/views/interface_assets/header.php:501
+#: application/views/interface_assets/header.php:507
 msgid "QSL Queue"
 msgstr ""
 
 #: application/views/interface_assets/header.php:502
+#: application/views/interface_assets/header.php:508
 msgid "Labels"
 msgstr ""
 
 #: application/views/interface_assets/header.php:504
+#: application/views/interface_assets/header.php:510
 msgid "Third-Party Services"
 msgstr ""
 
 #: application/views/interface_assets/header.php:507
+#: application/views/interface_assets/header.php:513
 msgid "eQSL Import / Export"
 msgstr ""
 
 #: application/views/interface_assets/header.php:508
+#: application/views/interface_assets/header.php:514
 msgid "HRDLog Logbook"
 msgstr ""
 
 #: application/views/interface_assets/header.php:511
+#: application/views/interface_assets/header.php:517
 msgid "Clublog Import / Export"
 msgstr ""
 
 #: application/views/interface_assets/header.php:514
+#: application/views/interface_assets/header.php:520
 msgid "DCL Export"
 msgstr ""
 
 #: application/views/interface_assets/header.php:526
 #: application/views/logbookadvanced/index.php:831
+#: application/views/interface_assets/header.php:532
 msgid "Help"
 msgstr ""
 
 #: application/views/interface_assets/header.php:527
+#: application/views/interface_assets/header.php:533
 msgid "Forum"
 msgstr ""
 
 #: application/views/interface_assets/header.php:531
+#: application/views/interface_assets/header.php:537
 #, php-format
 msgid "Stop impersonate and switch back to %s"
 msgstr ""
 
 #: application/views/interface_assets/header.php:532
+#: application/views/interface_assets/header.php:538
 #, php-format
 msgid "Switch back to %s"
 msgstr ""
 
 #: application/views/interface_assets/header.php:536
+#: application/views/interface_assets/header.php:542
 msgid "Logout"
 msgstr ""
 
 #: application/views/interface_assets/header.php:544
+#: application/views/interface_assets/header.php:550
 msgid "Select a Location"
 msgstr ""
 
 #: application/views/interface_assets/header.php:586
+#: application/views/interface_assets/header.php:592
 msgid "You miss station-locations here? Go to stationsetup and fav them"
 msgstr ""
 
 #: application/views/interface_assets/header.php:623
+#: application/views/interface_assets/header.php:629
 msgid "Extras"
 msgstr ""
 
@@ -12856,6 +12964,7 @@ msgid "Fix Continent"
 msgstr ""
 
 #: application/views/logbookadvanced/index.php:772
+#: application/views/awards/pl_polska/index.php:383
 msgid "Fix State"
 msgstr ""
 
@@ -17637,4 +17746,189 @@ msgstr ""
 
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
+msgstr ""
+
+#: application/controllers/Awards.php:2487
+#: application/views/awards/pl_polska/index.php:37
+#: application/views/interface_assets/header.php:270
+msgid "\"Polska\" Award"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:3
+msgid "Polish Voivodeships"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:4
+msgid "Hover over a voivodeship"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:38
+msgid ""
+"The Polska Award is issued by the Polish Amateur Radio Union (PZK) for "
+"contacts with stations operating from all 16 Polish voivodeships "
+"(provinces). Valid from January 1, 1999."
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:39
+msgid ""
+"Award categories: MIXED (all modes/bands), PHONE (SSB/AM/FM/SSTV), CW, DIGI "
+"(RTTY/PSK/FSK), and individual bands (160M-2M). Classes: Basic (1 QSO/voiv), "
+"Bronze (3), Silver (7), Gold (12). All 16 voivodeships required."
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:40
+#, php-format
+msgid "Official rules and information: %s"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:40
+msgid "PZK Polska Award Rules"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:41
+msgid ""
+"Requirements: COL_STATE (voivodeship code), COL_DXCC=269 (Poland), QSO date "
+">= 1999-01-01. No cross-band/cross-mode/repeater contacts."
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:73
+msgid "Confirmation methods"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:74
+msgid ""
+"According to official award rules, paper QSL cards or LoTW confirmations are "
+"accepted for award applications. Other digital confirmations are shown here "
+"for tracking purposes only."
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:117
+msgid "Award Categories"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:119
+msgid ""
+"Polska Award categories are based on the minimum number of confirmed QSOs "
+"with each of all 16 voivodeships:"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:123
+msgid "1 QSO per voivodeship"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:123
+msgid "Basic Class"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:124
+msgid "3 QSOs per voivodeship"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:124
+msgid "Bronze Class (3rd)"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:129
+msgid "7 QSOs per voivodeship"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:129
+msgid "Silver Class (2nd)"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:130
+msgid "12 QSOs per voivodeship"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:130
+msgid "Gold Class (1st)"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:155
+msgid "Congratulations!"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:156
+msgid "You are entitled to the following award categories"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:189
+msgid "QSOs by Mode Category"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:194
+msgid "QSOs by Band"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:213
+#: application/views/awards/pl_polska/index.php:284
+msgid "Voivodeship"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:215
+#: application/views/awards/pl_polska/index.php:356
+msgid "MIXED"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:216
+#: application/views/awards/pl_polska/index.php:357
+msgid "PHONE"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:218
+#: application/views/awards/pl_polska/index.php:359
+msgid "DIGI"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:249
+#: application/views/awards/pl_polska/index.php:321
+msgid "Total voivodeships"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:263
+#: application/views/awards/pl_polska/index.php:335
+msgid "Bravo! You are entitled to"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:263
+#: application/views/awards/pl_polska/index.php:335
+msgid "category award!"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:353
+msgid "Award Category:"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:355
+msgid "Mode Categories"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:361
+msgid "Band Categories"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:383
+msgid "Logbook Advanced"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:383
+msgid ""
+"This award uses the State field from your logbook. Ensure this field is "
+"populated for all SP (Poland) contacts."
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:383
+msgid "Tip:"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:383
+msgid "Use"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:383
+msgid "to auto-populate states from Maidenhead locators."
+msgstr ""
+
+#: application/views/interface_assets/header.php:268
+msgid "Poland"
 msgstr ""
