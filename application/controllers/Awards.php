@@ -1367,7 +1367,6 @@ class Awards extends CI_Controller {
 	public function wap() {
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/wapmap_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/wapmap_geojson.js")),
 			'assets/js/sections/wapmap.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/wapmap.js")),
 			'assets/js/leaflet/L.Maidenhead.js',
 		];
@@ -1462,12 +1461,12 @@ class Awards extends CI_Controller {
         foreach ($wap_array as $was => $value) {
             foreach ($value  as $key) {
                 if($key != "") {
-                    if (strpos($key, '>W<') !== false) {
-                        $states[$was] = 'W';
-                        break;
-                    }
                     if (strpos($key, '>C<') !== false) {
                         $states[$was] = 'C';
+                        break;
+                    }
+                    if (strpos($key, '>W<') !== false) {
+                        $states[$was] = 'W';
                         break;
                     }
                     if (strpos($key, '-') !== false) {
