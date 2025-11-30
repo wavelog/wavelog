@@ -161,6 +161,7 @@
 								</div>
 
 								<div class="mb-3 row">
+								<?php if ($cd_p_level != 6){ ?>
 									<div class="col-md-6">
 										<div class="form-check-inline">
 											<input class="form-check-input" type="checkbox" name="skipStationCheck" value="1" id="skipStationCheck">
@@ -169,7 +170,7 @@
 										<div class="small form-text text-muted"><?= sprintf(__("If selected, Wavelog will try to import %sall%s QSOs from the ADIF, regardless if they match to the chosen station-location."), '<b>', '</b>'); ?></div>
 									</div>
 
-								<?php if (($show_operator_question) && ($cd_p_level != 6)){ ?>
+								<?php } if (($show_operator_question) && ($cd_p_level != 6)){ ?>
 										<div class="col-md-6">
 											<div class="form-check-inline">
 												<input class="form-check-input" type="checkbox" name="operatorName" value="1" id="operatorName">
