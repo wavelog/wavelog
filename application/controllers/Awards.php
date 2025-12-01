@@ -2380,4 +2380,146 @@ class Awards extends CI_Controller {
 		$this->load->view('awards/wpx/wpx_details', $data);
 	}
 
+	/*
+		Handles displaying the Polska Award (Polish Award)
+		Tracks contacts with Polish voivodeships (provinces) for the Poland award program
+		Uses COL_STATE field for voivodeship codes (16 Polish voivodeships)
+	*/
+	public function pl_polska() {
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/award_pl_polska.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/award_pl_polska.js")),
+			'assets/js/leaflet/L.Maidenhead.js',
+		];
+
+		$this->load->model('logbooks_model');
+		$this->load->model('stations');
+
+		// Get station profiles for multiselect
+		$data['station_profile'] = $this->stations->all_of_user();
+		$data['active_station_id'] = $this->session->userdata('active_station_logbook');
+
+		$this->load->model('award_pl_polska');
+		$this->load->model('bands');
+		$this->load->library('Genfunctions');
+
+		// Define valid bands for Polska award (per PZK rules)
+		// https://awards.pzk.org.pl/polish-awards/polska.html
+		// SAT is explicitly excluded (no satellite/repeater contacts allowed)
+		$data['worked_bands'] = array('160M', '80M', '40M', '30M', '20M', '17M', '15M', '12M', '10M', '6M', '2M');
+
+		if($this->input->method() === 'post') {
+			$postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
+			$postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
+			$postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
+			$postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
+			$postdata['clublog'] = $this->security->xss_clean($this->input->post('clublog'));
+
+			// Always use active logbook (no multiselect)
+			$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		} else {
+			$postdata['qsl'] = 1;
+			$postdata['lotw'] = 1;
+			$postdata['eqsl'] = 0;
+			$postdata['qrz'] = 0;
+			$postdata['clublog'] = 0;
+
+			// Default to active logbook
+			$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		}
+
+		// Add confirmed key for gen_qsl_from_postdata function compatibility
+		$postdata['confirmed'] = 1;
+
+		// Generate QSL string for displayContacts links
+		$data['qsl_string'] = $this->genfunctions->gen_qsl_from_postdata($postdata);
+
+		if ($logbooks_locations_array) {
+			$location_list = "'".implode("','",$logbooks_locations_array)."'";
+
+			// Worked data (all QSOs, not just confirmed)
+			$data['polska_worked'] = $this->award_pl_polska->get_polska_worked_by_modes($location_list);
+			$data['polska_worked_bands'] = $this->award_pl_polska->get_polska_worked_by_bands($data['worked_bands'], $location_list);
+
+			// Confirmed data
+			$data['polska_array'] = $this->award_pl_polska->get_polska_simple_by_modes($postdata, $location_list);
+			$data['polska_totals'] = $this->award_pl_polska->get_polska_totals_by_modes($postdata, $location_list);
+
+			// Band-based confirmed data
+			$data['polska_array_bands'] = $this->award_pl_polska->get_polska_simple_by_bands($data['worked_bands'], $postdata, $location_list);
+			$data['polska_totals_bands'] = $this->award_pl_polska->get_polska_totals_by_bands($data['worked_bands'], $postdata, $location_list);
+
+			// Calculate award classes for each mode category
+			$data['polska_classes'] = array();
+			$mode_categories = array('MIXED', 'PHONE', 'CW', 'DIGI');
+			foreach ($mode_categories as $category) {
+				$postdata_temp = $postdata;
+				$postdata_temp['mode'] = $category;
+				$postdata_temp['band'] = 'All';
+				$data['polska_classes'][$category] = $this->award_pl_polska->getPolskaClassByCategory($location_list, $category, $postdata_temp, true);
+			}
+
+			// Calculate award classes for each band
+			$data['polska_classes_bands'] = array();
+			$valid_bands = array('160M', '80M', '40M', '30M', '20M', '17M', '15M', '12M', '10M', '6M', '2M');
+			foreach ($valid_bands as $band) {
+				$postdata_temp = $postdata;
+				$postdata_temp['band'] = $band;
+				$postdata_temp['mode'] = 'All';
+				$data['polska_classes_bands'][$band] = $this->award_pl_polska->getPolskaClassByBand($location_list, $band, $postdata_temp, true);
+			}
+		} else {
+			$location_list = null;
+			$data['polska_worked'] = null;
+			$data['polska_worked_bands'] = null;
+			$data['polska_array'] = null;
+			$data['polska_totals'] = null;
+			$data['polska_array_bands'] = null;
+			$data['polska_totals_bands'] = null;
+			$data['polska_classes'] = null;
+			$data['polska_classes_bands'] = null;
+		}
+
+		// Pass postdata for use in view
+		$data['postdata'] = $postdata;
+
+		// Render page
+		$data['page_title'] = sprintf(__("Awards - %s"), __('"Polska" Award'));
+		$data['user_map_custom'] = $this->optionslib->get_map_custom();
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('awards/pl_polska/index');
+		$this->load->view('interface_assets/footer', $footerData);
+	}
+
+	/*
+        function polska_map
+        Returns JSON data for Polska Award map visualization
+    */
+    public function polska_map() {
+        $this->load->model('award_pl_polska');
+
+		// Get category (MIXED, PHONE, CW, DIGI, or band like 20M)
+		$category = $this->security->xss_clean($this->input->post('category'));
+		if (!$category) {
+			$category = 'MIXED';
+		}
+
+        $postdata['qsl'] = $this->input->post('qsl') == 0 ? NULL: 1;
+        $postdata['lotw'] = $this->input->post('lotw') == 0 ? NULL: 1;
+        $postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
+        $postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
+        $postdata['clublog'] = $this->input->post('clublog') == 0 ? NULL: 1;
+
+		// Get location list for active station
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$location_list = "'" . implode("','", $logbooks_locations_array) . "'";
+
+		// Get map status directly from model
+		$voivodeships = $this->award_pl_polska->get_polska_map_status($category, $postdata, $location_list);
+
+        header('Content-Type: application/json');
+        echo json_encode($voivodeships);
+    }
+
 }

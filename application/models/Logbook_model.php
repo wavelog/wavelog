@@ -649,6 +649,40 @@ class Logbook_model extends CI_Model {
 				$this->db->where('COL_STATE', $searchphrase);
 				$this->db->where_in('COL_DXCC', ['287']);
 				break;
+			case 'POLSKA':
+				$this->db->where('COL_STATE', $searchphrase);
+				$this->db->where('COL_DXCC', '269');
+				$this->db->where('COL_TIME_ON >=', '1999-01-01 00:00:00');
+
+				// Exclude satellite contacts for Polska Award
+				$this->db->group_start();
+				$this->db->where('COL_PROP_MODE !=', 'SAT');
+				$this->db->or_where('COL_PROP_MODE IS NULL');
+				$this->db->group_end();
+
+				// Only count allowed bands for Polska Award
+				$this->db->where_in('COL_BAND', ['160M','80M','40M','30M','20M','17M','15M','12M','10M','6M','2M']);
+
+				// Handle mode categories for Polska Award
+				if (strtoupper($mode) == 'PHONE') {
+					$this->db->group_start();
+					$this->db->where_in('UPPER(COL_MODE)', ['SSB','USB','LSB','AM','FM','SSTV']);
+					$this->db->or_where_in('UPPER(COL_SUBMODE)', ['SSB','USB','LSB','AM','FM','SSTV']);
+					$this->db->group_end();
+					$mode = ''; // Clear mode so it's not processed again later
+				} elseif (strtoupper($mode) == 'DIGI') {
+					$this->db->group_start();
+					$this->db->where_in('UPPER(COL_MODE)', ['RTTY','PSK','PSK31','PSK63','PSK125','PSKR','FSK','FSK441','FT4','FT8','JS8','JT4','JT6M','JT9','JT65','MFSK','OLIVIA','OPERA','PAX','PAX2','PKT','Q15','QRA64','ROS','T10','THOR','THRB','TOR','VARA','WSPR']);
+					$this->db->or_where_in('UPPER(COL_SUBMODE)', ['RTTY','PSK','PSK31','PSK63','PSK125','PSKR','FSK','FSK441','FT4','FT8','JS8','JT4','JT6M','JT9','JT65','MFSK','OLIVIA','OPERA','PAX','PAX2','PKT','Q15','QRA64','ROS','T10','THOR','THRB','TOR','VARA','WSPR']);
+					$this->db->group_end();
+					$mode = ''; // Clear mode so it's not processed again later
+				} elseif (strtoupper($mode) == 'CW') {
+					$this->db->where('UPPER(COL_MODE)', 'CW');
+					$mode = ''; // Clear mode so it's not processed again later
+				} elseif (strtoupper($mode) == 'MIXED') {
+					$mode = 'All'; // MIXED means all modes
+				}
+				break;
 			case 'JCC':
 				$this->db->where('COL_CNTY', $searchphrase);
 				$this->db->where('COL_DXCC', '339');

@@ -265,6 +265,12 @@
 									</ul>
 								</li>
 								<div class="dropdown-divider"></div>
+								<li><a class="dropdown-item dropdown-toggle dropdown-toggle-submenu" data-bs-toggle="dropdown" href="#">🇵🇱 <?= __("Poland"); ?></a>
+									<ul class="submenu dropdown-menu">
+										<li><a class="dropdown-item" href="<?php echo site_url('awards/pl_polska'); ?>"><i class="fas fa-trophy"></i> <?= __("\"Polska\" Award"); ?></a></li>
+									</ul>
+								</li>
+								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item dropdown-toggle dropdown-toggle-submenu" data-bs-toggle="dropdown" href="#">🇨🇭 <?= __("Switzerland"); ?></a>
 									<ul class="submenu dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/helvetia'); ?>"><i class="fas fa-trophy"></i> H26</a></li>
