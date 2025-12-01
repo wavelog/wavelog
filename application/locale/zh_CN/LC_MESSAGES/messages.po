@@ -20,14 +20,15 @@
 # Yoshida Kanae <xiaoxi654@outlook.com>, 2025.
 # ShenRQ <shen.ruiqin@foxmail.com>, 2025.
 # "ShenRQ(BH4FJN)" <shen.ruiqin@foxmail.com>, 2025.
+# Jerry <jerry19980425@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-11-30 17:22+0000\n"
-"PO-Revision-Date: 2025-11-24 07:14+0000\n"
-"Last-Translator: BG9JDI <lyx8851@qq.com>\n"
-"Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
-"org/projects/wavelog/main-translation/zh_Hans/>\n"
+"PO-Revision-Date: 2025-12-01 07:02+0000\n"
+"Last-Translator: YuanRetro <lijiaxuan1811@163.com>\n"
+"Language-Team: Chinese (Simplified Han script) <https://"
+"translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -568,7 +569,7 @@ msgstr "通过纸质QSL已确认网格"
 #: application/controllers/Awards.php:1051
 #: application/controllers/Awards.php:1087
 msgid "Total Gridsquares worked"
-msgstr ""
+msgstr "已确认网格的总数"
 
 #: application/controllers/Awards.php:1068
 msgid "Fred Fish Memorial Award (FFMA)"
@@ -621,7 +622,7 @@ msgstr "WPX"
 #: application/views/awards/pl_polska/index.php:37
 #: application/views/interface_assets/header.php:270
 msgid "\"Polska\" Award"
-msgstr ""
+msgstr "“波兰”奖项"
 
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:336
@@ -3217,15 +3218,15 @@ msgstr "QRZCQ 错误"
 #: application/libraries/Cbr_parser.php:111
 #: application/libraries/Cbr_parser.php:160
 msgid "Broken CBR file - no valid exchange or callsigns found"
-msgstr ""
+msgstr "损坏的 CBR 文件 - 未找到有效的交换信息或呼号"
 
 #: application/libraries/Cbr_parser.php:137
 msgid "Broken CBR file - no QSO data found."
-msgstr ""
+msgstr "损坏的 CBR 文件 - 未发现QSO数据。"
 
 #: application/libraries/Cbr_parser.php:147
 msgid "Broken CBR file - incomplete header found."
-msgstr ""
+msgstr "损坏的 CBR 文件 - 文件头不完整。"
 
 #: application/libraries/Subdivisions.php:31
 msgctxt "Division Name (States in various countries)."
@@ -4773,7 +4774,7 @@ msgstr "可选"
 msgid ""
 "The CBR file contains a TRX number at the end of each QSO line (for multi-op "
 "stations)"
-msgstr ""
+msgstr "CBR 文件中，在每条 QSO 行的末尾都有一个 TRX 编号（对于多操作员的站点而言）"
 
 #: application/views/adif/import.php:419
 msgid ""
@@ -5352,7 +5353,7 @@ msgstr "查看 CQ 分区地图"
 #: application/views/gridmap/index.php:28
 #: application/views/logbookadvanced/index.php:276
 msgid "Date Presets"
-msgstr ""
+msgstr "预设日期"
 
 #: application/views/awards/cq/index.php:57
 #: application/views/awards/dxcc/index.php:53
@@ -5371,48 +5372,48 @@ msgstr "今天"
 #: application/views/gridmap/index.php:32
 #: application/views/logbookadvanced/index.php:279
 msgid "Yesterday"
-msgstr ""
+msgstr "昨日"
 
 #: application/views/awards/cq/index.php:59
 #: application/views/awards/dxcc/index.php:55
 #: application/views/gridmap/index.php:33
 #: application/views/logbookadvanced/index.php:280
 msgid "Last 7 Days"
-msgstr ""
+msgstr "过去7天"
 
 #: application/views/awards/cq/index.php:60
 #: application/views/awards/dxcc/index.php:56
 #: application/views/gridmap/index.php:34
 #: application/views/logbookadvanced/index.php:281
 msgid "Last 30 Days"
-msgstr ""
+msgstr "过去30天"
 
 #: application/views/awards/cq/index.php:61
 #: application/views/awards/dxcc/index.php:57
 #: application/views/gridmap/index.php:35
 #: application/views/logbookadvanced/index.php:282
 msgid "This Month"
-msgstr ""
+msgstr "这个月"
 
 #: application/views/awards/cq/index.php:62
 #: application/views/awards/dxcc/index.php:58
 #: application/views/gridmap/index.php:36
 #: application/views/logbookadvanced/index.php:283
 msgid "Last Month"
-msgstr ""
+msgstr "上个月"
 
 #: application/views/awards/cq/index.php:63
 #: application/views/awards/dxcc/index.php:59
 #: application/views/gridmap/index.php:37
 #: application/views/logbookadvanced/index.php:284
 msgid "This Year"
-msgstr ""
+msgstr "今年"
 
 #: application/views/awards/cq/index.php:64
 #: application/views/awards/dxcc/index.php:60
 #: application/views/logbookadvanced/index.php:285
 msgid "Last Year"
-msgstr ""
+msgstr "去年"
 
 #: application/views/awards/cq/index.php:65
 #: application/views/awards/dxcc/index.php:61
@@ -5930,7 +5931,7 @@ msgstr "前缀"
 
 #: application/views/awards/dxcc/index.php:378
 msgid "No results found for your search criteria. Please try again."
-msgstr ""
+msgstr "根据您的搜索条件，未找到相关结果。请再试一次。"
 
 #: application/views/awards/ffma/index.php:11
 #: application/views/interface_assets/header.php:294
@@ -6296,11 +6297,11 @@ msgstr "卫星"
 
 #: application/views/awards/pl_polska/index.php:3
 msgid "Polish Voivodeships"
-msgstr ""
+msgstr "波兰省（或州）"
 
 #: application/views/awards/pl_polska/index.php:4
 msgid "Hover over a voivodeship"
-msgstr ""
+msgstr "悬停在一个省（波兰）上"
 
 #: application/views/awards/pl_polska/index.php:38
 msgid ""
@@ -6308,6 +6309,8 @@ msgid ""
 "contacts with stations operating from all 16 Polish voivodeships "
 "(provinces). Valid from January 1, 1999."
 msgstr ""
+"Polska Award（波兰奖）由波兰业余无线电联盟（PZK）颁发，旨在表彰与来自波兰所有"
+" 16 个省（地区）的电台进行的通信活动。该奖项自 1999 年 1 月 1 日起生效。"
 
 #: application/views/awards/pl_polska/index.php:39
 msgid ""
@@ -6315,95 +6318,101 @@ msgid ""
 "(RTTY/PSK/FSK), and individual bands (160M-2M). Classes: Basic (1 QSO/voiv), "
 "Bronze (3), Silver (7), Gold (12). All 16 voivodeships required."
 msgstr ""
+"奖项类别：混合类（所有模式/频段）、话务类（SSB/AM/FM/SSTV），CW,数字模式（"
+"RTTY/波PSK/FSK），以及单个频段（160M - 2M）。等级：基础级（1 次通话/省），铜"
+"牌级（3 次），银牌级（7 次），金牌级（12 次）。所有 16 个省均需参加。"
 
 #: application/views/awards/pl_polska/index.php:40
 #, php-format
 msgid "Official rules and information: %s"
-msgstr ""
+msgstr "官方规则及信息：%s"
 
 #: application/views/awards/pl_polska/index.php:40
 msgid "PZK Polska Award Rules"
-msgstr ""
+msgstr "PZK 波兰奖规则"
 
 #: application/views/awards/pl_polska/index.php:41
 msgid ""
 "Requirements: COL_STATE (voivodeship code), COL_DXCC=269 (Poland), QSO date "
 ">= 1999-01-01. No cross-band/cross-mode/repeater contacts."
 msgstr ""
+"要求：COL_STATE（省代码）、COL_DXCC=269（波兰）、QSO 日期 >= 1999 年 1 月 1 "
+"日。不得包含跨频段/跨模式/中继站的通联。"
 
 #: application/views/awards/pl_polska/index.php:73
 msgid "Confirmation methods"
-msgstr ""
+msgstr "确认方式"
 
 #: application/views/awards/pl_polska/index.php:74
 msgid ""
 "According to official award rules, paper QSL cards or LoTW confirmations are "
 "accepted for award applications. Other digital confirmations are shown here "
 "for tracking purposes only."
-msgstr ""
+msgstr "根据官方的奖励规定，纸质的 QSL 卡或 LOTW 确认可用于申请奖励。其他数字确认函仅"
+"在此处列出仅供追踪之用。"
 
 #: application/views/awards/pl_polska/index.php:117
 msgid "Award Categories"
-msgstr ""
+msgstr "奖项类别"
 
 #: application/views/awards/pl_polska/index.php:119
 msgid ""
 "Polska Award categories are based on the minimum number of confirmed QSOs "
 "with each of all 16 voivodeships:"
-msgstr ""
+msgstr "波兰奖项的类别是根据与所有 16 个省中每个省的确认通联次数的最低值来确定的："
 
 #: application/views/awards/pl_polska/index.php:123
 msgid "1 QSO per voivodeship"
-msgstr ""
+msgstr "1 QSO 来自省内"
 
 #: application/views/awards/pl_polska/index.php:123
 msgid "Basic Class"
-msgstr ""
+msgstr "基础级"
 
 #: application/views/awards/pl_polska/index.php:124
 msgid "3 QSOs per voivodeship"
-msgstr ""
+msgstr "3 QSOs 来自省内"
 
 #: application/views/awards/pl_polska/index.php:124
 msgid "Bronze Class (3rd)"
-msgstr ""
+msgstr "铜级（3rd）"
 
 #: application/views/awards/pl_polska/index.php:129
 msgid "7 QSOs per voivodeship"
-msgstr ""
+msgstr "7 QSOs 来自省内"
 
 #: application/views/awards/pl_polska/index.php:129
 msgid "Silver Class (2nd)"
-msgstr ""
+msgstr "白银级(2nd)"
 
 #: application/views/awards/pl_polska/index.php:130
 msgid "12 QSOs per voivodeship"
-msgstr ""
+msgstr "12 QSOs 来自省内"
 
 #: application/views/awards/pl_polska/index.php:130
 msgid "Gold Class (1st)"
-msgstr ""
+msgstr "黄金级(1st)"
 
 #: application/views/awards/pl_polska/index.php:155
 msgid "Congratulations!"
-msgstr ""
+msgstr "恭喜🎉！"
 
 #: application/views/awards/pl_polska/index.php:156
 msgid "You are entitled to the following award categories"
-msgstr ""
+msgstr "您有权获得以下奖项类别奖项"
 
 #: application/views/awards/pl_polska/index.php:189
 msgid "QSOs by Mode Category"
-msgstr ""
+msgstr "按模式分类QSO"
 
 #: application/views/awards/pl_polska/index.php:194
 msgid "QSOs by Band"
-msgstr ""
+msgstr "按频段分类QSO"
 
 #: application/views/awards/pl_polska/index.php:213
 #: application/views/awards/pl_polska/index.php:284
 msgid "Voivodeship"
-msgstr ""
+msgstr "省（或州）"
 
 #: application/views/awards/pl_polska/index.php:214
 #: application/views/awards/pl_polska/index.php:285
@@ -6414,12 +6423,12 @@ msgstr "代码"
 #: application/views/awards/pl_polska/index.php:215
 #: application/views/awards/pl_polska/index.php:356
 msgid "MIXED"
-msgstr ""
+msgstr "MIXED(混合)"
 
 #: application/views/awards/pl_polska/index.php:216
 #: application/views/awards/pl_polska/index.php:357
 msgid "PHONE"
-msgstr ""
+msgstr "PHONE(话务)"
 
 #: application/views/awards/pl_polska/index.php:217
 #: application/views/awards/pl_polska/index.php:358
@@ -6431,61 +6440,62 @@ msgstr "CW"
 #: application/views/awards/pl_polska/index.php:218
 #: application/views/awards/pl_polska/index.php:359
 msgid "DIGI"
-msgstr ""
+msgstr "DIGI(数字)"
 
 #: application/views/awards/pl_polska/index.php:249
 #: application/views/awards/pl_polska/index.php:321
 msgid "Total voivodeships"
-msgstr ""
+msgstr "全部省区"
 
 #: application/views/awards/pl_polska/index.php:263
 #: application/views/awards/pl_polska/index.php:335
 msgid "Bravo! You are entitled to"
-msgstr ""
+msgstr "Bravo! 你可以申请"
 
 #: application/views/awards/pl_polska/index.php:263
 #: application/views/awards/pl_polska/index.php:335
 msgid "category award!"
-msgstr ""
+msgstr "类别奖状！"
 
 #: application/views/awards/pl_polska/index.php:353
 msgid "Award Category:"
-msgstr ""
+msgstr "奖项类别:"
 
 #: application/views/awards/pl_polska/index.php:355
 msgid "Mode Categories"
-msgstr ""
+msgstr "模式类别"
 
 #: application/views/awards/pl_polska/index.php:361
 msgid "Band Categories"
-msgstr ""
+msgstr "频段分类"
 
 #: application/views/awards/pl_polska/index.php:383
 #: application/views/logbookadvanced/index.php:772
 msgid "Fix State"
-msgstr ""
+msgstr "修正省/州"
 
 #: application/views/awards/pl_polska/index.php:383
 msgid "Logbook Advanced"
-msgstr ""
+msgstr "日志簿高级设置"
 
 #: application/views/awards/pl_polska/index.php:383
 msgid ""
 "This award uses the State field from your logbook. Ensure this field is "
 "populated for all SP (Poland) contacts."
-msgstr ""
+msgstr "此奖项会使用您日志簿中的“国家”栏信息。请确保所有与波兰相关的 SP（Poland）通联"
+"都填写了这一栏的内容。"
 
 #: application/views/awards/pl_polska/index.php:383
 msgid "Tip:"
-msgstr ""
+msgstr "Tip:"
 
 #: application/views/awards/pl_polska/index.php:383
 msgid "Use"
-msgstr ""
+msgstr "使用"
 
 #: application/views/awards/pl_polska/index.php:383
 msgid "to auto-populate states from Maidenhead locators."
-msgstr ""
+msgstr "从梅登黑德的定位信息中自动填充省(或州)名。"
 
 #: application/views/awards/pota/index.php:7
 msgid "POTA Awards"
@@ -7199,7 +7209,7 @@ msgstr "秒"
 
 #: application/views/bandmap/list.php:51
 msgid "spots fetched"
-msgstr ""
+msgstr "spot 已获取"
 
 #: application/views/bandmap/list.php:52
 msgid "showing"
@@ -7739,7 +7749,7 @@ msgstr "切换 Geo 猎人（POTA/SOTA/IOTA/WWFF）"
 
 #: application/views/bandmap/list.php:462
 msgid "Referenced"
-msgstr ""
+msgstr "已参考"
 
 #: application/views/bandmap/list.php:468
 msgid "Open DX Map view"
@@ -8801,7 +8811,7 @@ msgstr "由："
 #: application/views/components/dxwaterfall.php:57
 #, php-format
 msgid "Please wait %s second(s) before toggling DX Waterfall again."
-msgstr ""
+msgstr "请等待 %s 秒再重新开启 DX 瀑布图。"
 
 #: application/views/components/dxwaterfall.php:81
 #: application/views/components/dxwaterfall.php:87
@@ -9384,7 +9394,7 @@ msgstr[0] "你今天有 %d 个 QSO"
 msgid ""
 "Don't lose your streak - You have already had at least one QSO for the last "
 "%s consecutive days."
-msgstr ""
+msgstr "不要中断连续纪录 - 你已经连续 %s 天至少有一个 QSO 了。"
 
 #: application/views/dashboard/index.php:184
 msgid "You have made no QSOs today; time to turn on the radio!"
@@ -11449,7 +11459,7 @@ msgstr "LX Gridmaster"
 
 #: application/views/interface_assets/header.php:268
 msgid "Poland"
-msgstr ""
+msgstr "波兰"
 
 #: application/views/interface_assets/header.php:274
 msgid "Switzerland"
@@ -12302,51 +12312,51 @@ msgstr "你需要选择至少 1 行来修正 CQ 分区！"
 
 #: application/views/logbookadvanced/index.php:31
 msgid "You need to select at least 1 row to fix State!"
-msgstr ""
+msgstr "你需要选择至少一行来修正省/州！"
 
 #: application/views/logbookadvanced/index.php:32
 msgid "State updated successfully!"
-msgstr ""
+msgstr "省/州更新成功！"
 
 #: application/views/logbookadvanced/index.php:33
 msgid "There was a problem fixing State."
-msgstr ""
+msgstr "修正省/州时出现问题。"
 
 #: application/views/logbookadvanced/index.php:34
 msgid "Fixing State"
-msgstr ""
+msgstr "修正省/州"
 
 #: application/views/logbookadvanced/index.php:35
 #, php-format
 msgid "Fixing State (%s QSOs)"
-msgstr ""
+msgstr "修正省/州（%s 个QSO）"
 
 #: application/views/logbookadvanced/index.php:36
 #, php-format
 msgid "Fixing State: %s remaining"
-msgstr ""
+msgstr "修正省/州：剩余 %s 个"
 
 #: application/views/logbookadvanced/index.php:37
 msgid "Fixed"
-msgstr ""
+msgstr "已修正"
 
 #: application/views/logbookadvanced/index.php:38
 #, php-format
 msgid "Fixed: %s"
-msgstr ""
+msgstr "已修正：%s 个"
 
 #: application/views/logbookadvanced/index.php:39
 msgid "Skipped"
-msgstr ""
+msgstr "已跳过"
 
 #: application/views/logbookadvanced/index.php:40
 #, php-format
 msgid "Skipped: %s, see details for skipped rows below"
-msgstr ""
+msgstr "已跳过：%s，下面是跳过行的详细信息"
 
 #: application/views/logbookadvanced/index.php:41
 msgid "State Fix Complete"
-msgstr ""
+msgstr "省/州修正完毕"
 
 #: application/views/logbookadvanced/index.php:42
 #, php-format
@@ -12355,6 +12365,8 @@ msgid ""
 "countries, please create a ticket at %s with the GeoJSON file and desired "
 "letter coding for your country."
 msgstr ""
+"并非所有的 DXCC 实体都有省/州支持。如果需要对其他国家的支持，请在 %s 处创建一"
+"个工单，并附上 GeoJSON 文件和您所需的国家字母编码。"
 
 #: application/views/logbookadvanced/index.php:45
 msgid "Only 1 row can be selected for Quickfilter!"
@@ -12884,33 +12896,33 @@ msgstr "包含 TNX 信息"
 msgid ""
 "Update QSOs with state/province information based on gridsquare and DXCC "
 "country."
-msgstr ""
+msgstr "根据网格定位和 DXCC 实体更新 QSO 的省/州信息。"
 
 #: application/views/logbookadvanced/statedialog.php:3
 msgid ""
 "This feature uses GeoJSON boundary data to determine the state/province from "
 "the gridsquare locator."
-msgstr ""
+msgstr "此功能使用 GeoJSON 边界数据以从网格定位确定省/州。"
 
 #: application/views/logbookadvanced/statedialog.php:4
 msgid "Update will only set the state for QSOs where:"
-msgstr ""
+msgstr "更新将仅给符合以下条件的 QSO 设置省/州："
 
 #: application/views/logbookadvanced/statedialog.php:6
 msgid "The state field is empty"
-msgstr ""
+msgstr "省/州字段为空"
 
 #: application/views/logbookadvanced/statedialog.php:7
 msgid "A gridsquare is present (at least 6 characters)"
-msgstr ""
+msgstr "网格定位存在（至少6个字符）"
 
 #: application/views/logbookadvanced/statedialog.php:8
 msgid "The DXCC country supports state lookup"
-msgstr ""
+msgstr "DXCC 实体支持省/州查询"
 
 #: application/views/logbookadvanced/statedialog.php:10
 msgid "Currently supported countries"
-msgstr ""
+msgstr "当前支持的国家"
 
 #: application/views/logbookadvanced/useroptions.php:16
 msgid "Column"
@@ -13044,15 +13056,15 @@ msgstr "最后一次上传是"
 
 #: application/views/lotw_views/index.php:95
 msgid "Last change:"
-msgstr ""
+msgstr "最后更改："
 
 #: application/views/lotw_views/index.php:95
 msgid "Serial number:"
-msgstr ""
+msgstr "序号："
 
 #: application/views/lotw_views/index.php:97
 msgid "Certificate superseded"
-msgstr ""
+msgstr "证书已被取代"
 
 #: application/views/lotw_views/index.php:100
 msgid "Certificate expired"
@@ -14437,7 +14449,7 @@ msgstr "无效的天线海拔高度："
 
 #: application/views/qso/index.php:38
 msgid "Please wait before saving another QSO"
-msgstr ""
+msgstr "请等待再保存另一个 QSO"
 
 #: application/views/qso/index.php:86
 msgid "LIVE"
