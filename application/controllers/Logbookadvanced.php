@@ -194,12 +194,13 @@ class Logbookadvanced extends CI_Controller {
 		}
 
 		$callbook = $this->logbook_model->loadCallBook($qso['COL_CALL'], $this->config->item('use_fullname'));
+		$gridsquareAccuracyCheck = xss_clean($this->input->post('gridsquareAccuracyCheck'));
 
 		if ($callbook['callsign'] ?? "" !== "") {
 			$this->load->model('stations');
 			$active_station_id = $this->stations->find_active();
 			$station_profile = $this->stations->profile($active_station_id)->row_array();
-			$this->logbookadvanced_model->updateQsoWithCallbookInfo($qso['COL_PRIMARY_KEY'], $qso, $callbook, $station_profile['station_gridsquare']);
+			$this->logbookadvanced_model->updateQsoWithCallbookInfo($qso['COL_PRIMARY_KEY'], $qso, $callbook, $gridsquareAccuracyCheck, $station_profile['station_gridsquare']);
 			$qso = $this->logbookadvanced_model->getQsosForAdif(json_encode($qsoID), $this->session->userdata('user_id'))->row_array();
 		}
 
@@ -878,5 +879,9 @@ class Logbookadvanced extends CI_Controller {
 
 		header("Content-Type: application/json");
 		print json_encode($result);
+	}
+
+	public function callbookDialog() {
+		$this->load->view('logbookadvanced/callbookdialog');
 	}
 }
