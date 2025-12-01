@@ -192,8 +192,22 @@ info.onAdd = function (map) {
 
 // method that we will use to update the control based on feature properties passed
 info.update = function (props) {
-    this._div.innerHTML = '<h4>' + lang_usa_state + '</h4>' +  (props ?
-        '<b>' + props.code + ' - ' + props.name + '</b><br />' : lang_hover_over_a_state);
+	var displayText = '';
+	if (props) {
+		var stateName = props.name;
+		var stateCode = props.code;
+		// Show that DC and MD are combined
+		if (props.code === 'DC') {
+			displayText = '<b>DC (' + lang_inc + ' MD) - ' + stateName + '</b>';
+		} else if (props.code === 'MD') {
+			displayText = '<b>MD (' + lang_inc + ' DC) - ' + stateName + '</b>';
+		} else {
+			displayText = '<b>' + stateCode + ' - ' + stateName + '</b>';
+		}
+	} else {
+		displayText = lang_hover_over_a_state;
+	}
+    this._div.innerHTML = '<h4>' + lang_usa_state + '</h4>' + displayText;
 };
 
 info.addTo(map);
@@ -249,8 +263,10 @@ function createMarker(i) {
 }
 
 function getColor(d) {
-    return 	was[d] == 'C' ? confirmedColor :
-			was[d] == 'W' ? workedColor :
+	// DC is combined with MD for WAS award
+	var stateCode = (d === 'DC') ? 'MD' : d;
+    return 	was[stateCode] == 'C' ? confirmedColor :
+			was[stateCode] == 'W' ? workedColor :
 								unworkedColor;
 }
 
@@ -300,6 +316,10 @@ function onClick(e) {
   zoomToFeature(e);
   var marker = e.target;
   var res = marker.feature.id;
+  // DC is combined with MD - search for MD when clicking DC
+  if (res === 'DC') {
+    res = 'MD';
+  }
   displayContactsOnMap($("#wasmap"), res, $('#band2').val(), 'All', 'All', $('#mode').val(), 'WAS');
 }
 
