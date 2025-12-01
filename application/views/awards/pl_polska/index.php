@@ -51,20 +51,9 @@
         <fieldset>
 
         <div class="mb-3 row">
-            <label class="col-md-2 control-label"><?= __("Station Location"); ?></label>
+            <label class="col-md-2 control-label"><?= __("Station Logbook"); ?></label>
             <div class="col-md-10">
-                <?php
-                $active_station = null;
-                foreach ($station_profile->result() as $station) {
-                    if ($station->station_id == $active_station_id) {
-                        $active_station = $station;
-                        break;
-                    }
-                }
-                if ($active_station) {
-                    echo '<span class="badge text-bg-info">' . htmlspecialchars($active_station->station_profile_name) . '</span>';
-                }
-                ?>
+            <span class="badge text-bg-info"><?= htmlspecialchars($active_station_logbook); ?></span>
             </div>
         </div>
 

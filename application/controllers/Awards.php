@@ -2395,9 +2395,7 @@ class Awards extends CI_Controller {
 		$this->load->model('logbooks_model');
 		$this->load->model('stations');
 
-		// Get station profiles for multiselect
-		$data['station_profile'] = $this->stations->all_of_user();
-		$data['active_station_id'] = $this->session->userdata('active_station_logbook');
+		$data['active_station_logbook'] = $this->logbooks_model->find_name($this->session->userdata('active_station_logbook'));
 
 		$this->load->model('award_pl_polska');
 		$this->load->model('bands');

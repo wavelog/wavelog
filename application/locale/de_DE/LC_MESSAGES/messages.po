@@ -337,6 +337,7 @@ msgstr "Diplome"
 #: application/controllers/Awards.php:2268
 #: application/controllers/Awards.php:2343
 #: application/controllers/Awards.php:2487
+#: application/controllers/Awards.php:2485
 #, php-format
 msgid "Awards - %s"
 msgstr "Diplome – %s"
@@ -623,6 +624,7 @@ msgstr "WPX"
 #: application/controllers/Awards.php:2487
 #: application/views/awards/pl_polska/index.php:37
 #: application/views/interface_assets/header.php:270
+#: application/controllers/Awards.php:2485
 msgid "\"Polska\" Award"
 msgstr "\"Polska\" Diplom"
 
@@ -791,6 +793,7 @@ msgstr "Kein Benutzer hat Clublog konfiguriert."
 #: application/views/view_log/partial/log_ajax.php:222
 #: application/views/view_log/qso.php:571
 #: application/views/view_log/qso.php:576
+#: application/views/awards/pl_polska/index.php:84
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -1311,6 +1314,7 @@ msgstr "Logbuch"
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:108
 #: application/views/timeline/index.php:56 application/views/user/edit.php:623
 #: application/views/user/edit.php:816
+#: application/views/awards/pl_polska/index.php:68
 msgid "QSL"
 msgstr "QSL"
 
@@ -1350,6 +1354,7 @@ msgstr "QSL"
 #: application/views/timeline/index.php:60 application/views/user/edit.php:624
 #: application/views/user/edit.php:826 application/views/view_log/qso.php:537
 #: application/views/view_log/qso.php:542
+#: application/views/awards/pl_polska/index.php:72
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1386,6 +1391,7 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:309
 #: application/views/timeline/index.php:64 application/views/user/edit.php:625
 #: application/views/user/edit.php:834 application/views/user/edit.php:908
+#: application/views/awards/pl_polska/index.php:76
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -4162,6 +4168,7 @@ msgstr "troposphärisches Ducting"
 #: application/views/timeline/index.php:340
 #: application/views/timeline/index.php:370
 #: application/views/timeplotter/index.php:59
+#: application/views/awards/pl_polska/index.php:93
 msgid "Show"
 msgstr "Anzeigen"
 
@@ -4236,6 +4243,7 @@ msgstr "Bestätigung"
 #: application/views/awards/was/index.php:72
 #: application/views/awards/wpx/index.php:40
 #: application/views/gridmap/index.php:195 application/views/user/edit.php:842
+#: application/views/awards/pl_polska/index.php:80
 msgid "QRZ.com"
 msgstr "QRZ.com"
 
@@ -4305,6 +4313,7 @@ msgstr "Minimale Anzahl"
 #: application/views/distancerecords/index.php:52
 #: application/views/public_search/empty.php:3
 #: application/views/qrz/export.php:65 application/views/timeline/index.php:158
+#: application/views/awards/pl_polska/index.php:377
 msgid "Nothing found!"
 msgstr "Nichts gefunden!"
 
@@ -5195,6 +5204,7 @@ msgstr "Berechtigungen"
 #: application/views/notes/main.php:77 application/views/qrz/export.php:44
 #: application/views/user/index.php:33 application/views/user/index.php:160
 #: application/views/webadif/export.php:45
+#: application/views/awards/pl_polska/index.php:372
 msgid "Actions"
 msgstr "Aktionen"
 
@@ -5719,6 +5729,7 @@ msgstr "Tabelle"
 #: application/views/awards/was/index.php:132
 #: application/views/logbookadvanced/index.php:813
 #: application/views/logbookadvanced/useroptions.php:7
+#: application/views/awards/pl_polska/index.php:188
 msgid "Map"
 msgstr "Karte"
 
@@ -5880,6 +5891,7 @@ msgstr "Jedes Band"
 #: application/views/oqrs/showrequests.php:70
 #: application/views/qrbcalc/index.php:19
 #: application/views/search/filter.php:43 application/views/user/edit.php:718
+#: application/views/awards/pl_polska/index.php:92
 msgid "Reset"
 msgstr "Zurücksetzen"
 
@@ -6548,10 +6560,12 @@ msgstr ""
 "Datum >= 01.01.1990. Keine Cross-Band/Cross-Mode/Relais-Verbindungen."
 
 #: application/views/awards/pl_polska/index.php:73
+#: application/views/awards/pl_polska/index.php:62
 msgid "Confirmation methods"
 msgstr "Bestätigungsmethoden"
 
 #: application/views/awards/pl_polska/index.php:74
+#: application/views/awards/pl_polska/index.php:63
 msgid ""
 "According to official award rules, paper QSL cards or LoTW confirmations are "
 "accepted for award applications. Other digital confirmations are shown here "
@@ -6562,10 +6576,12 @@ msgstr ""
 "zur Information angezeigt."
 
 #: application/views/awards/pl_polska/index.php:117
+#: application/views/awards/pl_polska/index.php:106
 msgid "Award Categories"
 msgstr "Diplomkategorien"
 
 #: application/views/awards/pl_polska/index.php:119
+#: application/views/awards/pl_polska/index.php:108
 msgid ""
 "Polska Award categories are based on the minimum number of confirmed QSOs "
 "with each of all 16 voivodeships:"
@@ -6574,71 +6590,91 @@ msgstr ""
 "jeder der 16 Woiwodschaften:"
 
 #: application/views/awards/pl_polska/index.php:123
+#: application/views/awards/pl_polska/index.php:112
 msgid "1 QSO per voivodeship"
 msgstr "1 QSO pro Woiwodschaft"
 
 #: application/views/awards/pl_polska/index.php:123
+#: application/views/awards/pl_polska/index.php:112
 msgid "Basic Class"
 msgstr "Anfängerklasse"
 
 #: application/views/awards/pl_polska/index.php:124
+#: application/views/awards/pl_polska/index.php:113
 msgid "3 QSOs per voivodeship"
 msgstr "3 QSOs pro Woiwodschaft"
 
 #: application/views/awards/pl_polska/index.php:124
+#: application/views/awards/pl_polska/index.php:113
 msgid "Bronze Class (3rd)"
 msgstr "Bronzeklasse (3.)"
 
 #: application/views/awards/pl_polska/index.php:129
+#: application/views/awards/pl_polska/index.php:118
 msgid "7 QSOs per voivodeship"
 msgstr "7 QSOs pro Woiwodschaft"
 
 #: application/views/awards/pl_polska/index.php:129
+#: application/views/awards/pl_polska/index.php:118
 msgid "Silver Class (2nd)"
 msgstr "Silberklasse (2.)"
 
 #: application/views/awards/pl_polska/index.php:130
+#: application/views/awards/pl_polska/index.php:119
 msgid "12 QSOs per voivodeship"
 msgstr "12 QSOs pro Woiwodschaft"
 
 #: application/views/awards/pl_polska/index.php:130
+#: application/views/awards/pl_polska/index.php:119
 msgid "Gold Class (1st)"
 msgstr "Goldklasse (1.)"
 
 #: application/views/awards/pl_polska/index.php:155
+#: application/views/awards/pl_polska/index.php:144
 msgid "Congratulations!"
 msgstr "Gratulation!"
 
 #: application/views/awards/pl_polska/index.php:156
+#: application/views/awards/pl_polska/index.php:145
 msgid "You are entitled to the following award categories"
 msgstr "Du hast die Bedingungen folgender Diplomkategorien erfüllt"
 
 #: application/views/awards/pl_polska/index.php:189
+#: application/views/awards/pl_polska/index.php:178
 msgid "QSOs by Mode Category"
 msgstr "QSOs pro Mode-Kategorie"
 
 #: application/views/awards/pl_polska/index.php:194
+#: application/views/awards/pl_polska/index.php:183
 msgid "QSOs by Band"
 msgstr "QSOs pro Band"
 
 #: application/views/awards/pl_polska/index.php:213
 #: application/views/awards/pl_polska/index.php:284
+#: application/views/awards/pl_polska/index.php:202
+#: application/views/awards/pl_polska/index.php:273
 msgid "Voivodeship"
 msgstr "Woiwodschaft"
 
 #: application/views/awards/pl_polska/index.php:214
 #: application/views/awards/pl_polska/index.php:285
 #: application/views/awards/wapc/index.php:119
+#: application/views/awards/pl_polska/index.php:203
+#: application/views/awards/pl_polska/index.php:274
 msgid "Code"
 msgstr "Code"
 
 #: application/views/awards/pl_polska/index.php:215
 #: application/views/awards/pl_polska/index.php:356
+#: application/views/awards/pl_polska/index.php:204
+#: application/views/awards/pl_polska/index.php:345
 msgid "MIXED"
 msgstr "MIXED"
 
 #: application/views/awards/pl_polska/index.php:216
 #: application/views/awards/pl_polska/index.php:357
+#: application/views/awards/pl_polska/index.php:205
+#: application/views/awards/pl_polska/index.php:346
 msgid "PHONE"
 msgstr "PHONE"
 
@@ -6646,51 +6682,67 @@ msgstr "PHONE"
 #: application/views/awards/pl_polska/index.php:358
 #: application/views/bandmap/list.php:270
 #: application/views/components/dxwaterfall.php:33
+#: application/views/awards/pl_polska/index.php:206
+#: application/views/awards/pl_polska/index.php:347
 msgid "CW"
 msgstr "CW"
 
 #: application/views/awards/pl_polska/index.php:218
 #: application/views/awards/pl_polska/index.php:359
+#: application/views/awards/pl_polska/index.php:207
+#: application/views/awards/pl_polska/index.php:348
 msgid "DIGI"
 msgstr "DIGI"
 
 #: application/views/awards/pl_polska/index.php:249
 #: application/views/awards/pl_polska/index.php:321
+#: application/views/awards/pl_polska/index.php:238
+#: application/views/awards/pl_polska/index.php:310
 msgid "Total voivodeships"
 msgstr "Gesamte Woiwodschaften"
 
 #: application/views/awards/pl_polska/index.php:263
 #: application/views/awards/pl_polska/index.php:335
+#: application/views/awards/pl_polska/index.php:252
+#: application/views/awards/pl_polska/index.php:324
 msgid "Bravo! You are entitled to"
 msgstr "Bravo! Du bist berechtigt,"
 
 #: application/views/awards/pl_polska/index.php:263
 #: application/views/awards/pl_polska/index.php:335
+#: application/views/awards/pl_polska/index.php:252
+#: application/views/awards/pl_polska/index.php:324
 msgid "category award!"
 msgstr "Diplomkategorie!"
 
 #: application/views/awards/pl_polska/index.php:353
+#: application/views/awards/pl_polska/index.php:342
 msgid "Award Category:"
 msgstr "Diplomkategorie:"
 
 #: application/views/awards/pl_polska/index.php:355
+#: application/views/awards/pl_polska/index.php:344
 msgid "Mode Categories"
 msgstr "Mode-Kategorien"
 
 #: application/views/awards/pl_polska/index.php:361
+#: application/views/awards/pl_polska/index.php:350
 msgid "Band Categories"
 msgstr "Band-Kategorien"
 
 #: application/views/awards/pl_polska/index.php:383
 #: application/views/logbookadvanced/index.php:772
+#: application/views/awards/pl_polska/index.php:372
 msgid "Fix State"
 msgstr "Aktualisiere Staaten"
 
 #: application/views/awards/pl_polska/index.php:383
+#: application/views/awards/pl_polska/index.php:372
 msgid "Logbook Advanced"
 msgstr "Erweitertes Logbuch"
 
 #: application/views/awards/pl_polska/index.php:383
+#: application/views/awards/pl_polska/index.php:372
 msgid ""
 "This award uses the State field from your logbook. Ensure this field is "
 "populated for all SP (Poland) contacts."
@@ -6699,14 +6751,17 @@ msgstr ""
 "dass dieses Feld für alle Kontakte mit Polen (SP) befüllt ist."
 
 #: application/views/awards/pl_polska/index.php:383
+#: application/views/awards/pl_polska/index.php:372
 msgid "Tip:"
 msgstr "Tipp:"
 
 #: application/views/awards/pl_polska/index.php:383
+#: application/views/awards/pl_polska/index.php:372
 msgid "Use"
 msgstr "Benutze"
 
 #: application/views/awards/pl_polska/index.php:383
+#: application/views/awards/pl_polska/index.php:372
 msgid "to auto-populate states from Maidenhead locators."
 msgstr "um die Staaten anhand des Locators automatisch zu befüllen."
 
@@ -18498,6 +18553,10 @@ msgstr ""
 msgid ""
 "We’ll keep the original value and add a more precise locator (e.g., JO90AB "
 "or JO90AB12) when a match is confident."
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:54
+msgid "Station Logbook"
 msgstr ""
 
 #, php-format
