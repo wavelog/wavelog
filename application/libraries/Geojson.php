@@ -23,13 +23,17 @@ class Geojson {
      */
     const SUPPORTED_STATES = [
         1 => ['name' => 'Canada', 'enabled' => true],            // 13 provinces/territories
+        6 => ['name' => 'Alaska', 'enabled' => false],           // 1 state
         27 => ['name' => 'Belarus', 'enabled' => true],          // 7 subdivisions
         100 => ['name' => 'Argentina', 'enabled' => true],       // 24 subdivisions
         108 => ['name' => 'Brazil', 'enabled' => true],          // 27 subdivisions
+        110 => ['name' => 'Hawaii', 'enabled' => false],         // 1 state
         144 => ['name' => 'Uruguay', 'enabled' => true],         // 19 subdivisions
         150 => ['name' => 'Australia', 'enabled' => true],       // 8 subdivisions
         209 => ['name' => 'Belgium', 'enabled' => true],         // 11 subdivisions
         212 => ['name' => 'Bulgaria', 'enabled' => true],        // 28 subdivisions
+        214 => ['name' => 'Corsica', 'enabled' => true],         // 2 departments (2A, 2B)
+        225 => ['name' => 'Sardinia', 'enabled' => true],        // 5 provinces
         227 => ['name' => 'France', 'enabled' => true],          // 96 departments
         230 => ['name' => 'Germany', 'enabled' => true],         // 16 federal states
         239 => ['name' => 'Hungary', 'enabled' => true],         // 20 subdivisions
