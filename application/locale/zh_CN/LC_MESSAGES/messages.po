@@ -26,7 +26,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-11-30 17:22+0000\n"
 "PO-Revision-Date: 2025-12-01 07:02+0000\n"
-"Last-Translator: Jerry <jerry19980425@gmail.com>\n"
+"Last-Translator: YuanRetro <lijiaxuan1811@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
 "translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -6301,7 +6301,7 @@ msgstr "波兰省（或州）"
 
 #: application/views/awards/pl_polska/index.php:4
 msgid "Hover over a voivodeship"
-msgstr ""
+msgstr "悬停在一个省（波兰）上"
 
 #: application/views/awards/pl_polska/index.php:38
 msgid ""
@@ -6455,7 +6455,7 @@ msgstr "Bravo! 你可以申请"
 #: application/views/awards/pl_polska/index.php:263
 #: application/views/awards/pl_polska/index.php:335
 msgid "category award!"
-msgstr ""
+msgstr "类别奖状！"
 
 #: application/views/awards/pl_polska/index.php:353
 msgid "Award Category:"
@@ -6472,7 +6472,7 @@ msgstr "频段分类"
 #: application/views/awards/pl_polska/index.php:383
 #: application/views/logbookadvanced/index.php:772
 msgid "Fix State"
-msgstr ""
+msgstr "修正省/州"
 
 #: application/views/awards/pl_polska/index.php:383
 msgid "Logbook Advanced"
@@ -6491,7 +6491,7 @@ msgstr "Tip:"
 
 #: application/views/awards/pl_polska/index.php:383
 msgid "Use"
-msgstr ""
+msgstr "使用"
 
 #: application/views/awards/pl_polska/index.php:383
 msgid "to auto-populate states from Maidenhead locators."
@@ -7209,7 +7209,7 @@ msgstr "秒"
 
 #: application/views/bandmap/list.php:51
 msgid "spots fetched"
-msgstr ""
+msgstr "spot 已获取"
 
 #: application/views/bandmap/list.php:52
 msgid "showing"
@@ -7749,7 +7749,7 @@ msgstr "切换 Geo 猎人（POTA/SOTA/IOTA/WWFF）"
 
 #: application/views/bandmap/list.php:462
 msgid "Referenced"
-msgstr ""
+msgstr "已参考"
 
 #: application/views/bandmap/list.php:468
 msgid "Open DX Map view"
@@ -8811,7 +8811,7 @@ msgstr "由："
 #: application/views/components/dxwaterfall.php:57
 #, php-format
 msgid "Please wait %s second(s) before toggling DX Waterfall again."
-msgstr ""
+msgstr "请等待 %s 秒再重新开启 DX 瀑布图。"
 
 #: application/views/components/dxwaterfall.php:81
 #: application/views/components/dxwaterfall.php:87
@@ -9394,7 +9394,7 @@ msgstr[0] "你今天有 %d 个 QSO"
 msgid ""
 "Don't lose your streak - You have already had at least one QSO for the last "
 "%s consecutive days."
-msgstr ""
+msgstr "不要中断连续纪录 - 你已经连续 %s 天至少有一个 QSO 了。"
 
 #: application/views/dashboard/index.php:184
 msgid "You have made no QSOs today; time to turn on the radio!"
@@ -11459,7 +11459,7 @@ msgstr "LX Gridmaster"
 
 #: application/views/interface_assets/header.php:268
 msgid "Poland"
-msgstr ""
+msgstr "波兰"
 
 #: application/views/interface_assets/header.php:274
 msgid "Switzerland"
@@ -12312,51 +12312,51 @@ msgstr "你需要选择至少 1 行来修正 CQ 分区！"
 
 #: application/views/logbookadvanced/index.php:31
 msgid "You need to select at least 1 row to fix State!"
-msgstr ""
+msgstr "你需要选择至少一行来修正省/州！"
 
 #: application/views/logbookadvanced/index.php:32
 msgid "State updated successfully!"
-msgstr ""
+msgstr "省/州更新成功！"
 
 #: application/views/logbookadvanced/index.php:33
 msgid "There was a problem fixing State."
-msgstr ""
+msgstr "修正省/州时出现问题。"
 
 #: application/views/logbookadvanced/index.php:34
 msgid "Fixing State"
-msgstr ""
+msgstr "修正省/州"
 
 #: application/views/logbookadvanced/index.php:35
 #, php-format
 msgid "Fixing State (%s QSOs)"
-msgstr ""
+msgstr "修正省/州（%s 个QSO）"
 
 #: application/views/logbookadvanced/index.php:36
 #, php-format
 msgid "Fixing State: %s remaining"
-msgstr ""
+msgstr "修正省/州：剩余 %s 个"
 
 #: application/views/logbookadvanced/index.php:37
 msgid "Fixed"
-msgstr ""
+msgstr "已修正"
 
 #: application/views/logbookadvanced/index.php:38
 #, php-format
 msgid "Fixed: %s"
-msgstr ""
+msgstr "已修正：%s 个"
 
 #: application/views/logbookadvanced/index.php:39
 msgid "Skipped"
-msgstr ""
+msgstr "已跳过"
 
 #: application/views/logbookadvanced/index.php:40
 #, php-format
 msgid "Skipped: %s, see details for skipped rows below"
-msgstr ""
+msgstr "已跳过：%s，下面是跳过行的详细信息"
 
 #: application/views/logbookadvanced/index.php:41
 msgid "State Fix Complete"
-msgstr ""
+msgstr "省/州修正完毕"
 
 #: application/views/logbookadvanced/index.php:42
 #, php-format
@@ -12365,6 +12365,8 @@ msgid ""
 "countries, please create a ticket at %s with the GeoJSON file and desired "
 "letter coding for your country."
 msgstr ""
+"并非所有的 DXCC 实体都有省/州支持。如果需要对其他国家的支持，请在 %s 处创建一"
+"个工单，并附上 GeoJSON 文件和您所需的国家字母编码。"
 
 #: application/views/logbookadvanced/index.php:45
 msgid "Only 1 row can be selected for Quickfilter!"
@@ -12894,33 +12896,33 @@ msgstr "包含 TNX 信息"
 msgid ""
 "Update QSOs with state/province information based on gridsquare and DXCC "
 "country."
-msgstr ""
+msgstr "根据网格定位和 DXCC 实体更新 QSO 的省/州信息。"
 
 #: application/views/logbookadvanced/statedialog.php:3
 msgid ""
 "This feature uses GeoJSON boundary data to determine the state/province from "
 "the gridsquare locator."
-msgstr ""
+msgstr "此功能使用 GeoJSON 边界数据以从网格定位确定省/州。"
 
 #: application/views/logbookadvanced/statedialog.php:4
 msgid "Update will only set the state for QSOs where:"
-msgstr ""
+msgstr "更新将仅给符合以下条件的 QSO 设置省/州："
 
 #: application/views/logbookadvanced/statedialog.php:6
 msgid "The state field is empty"
-msgstr ""
+msgstr "省/州字段为空"
 
 #: application/views/logbookadvanced/statedialog.php:7
 msgid "A gridsquare is present (at least 6 characters)"
-msgstr ""
+msgstr "网格定位存在（至少6个字符）"
 
 #: application/views/logbookadvanced/statedialog.php:8
 msgid "The DXCC country supports state lookup"
-msgstr ""
+msgstr "DXCC 实体支持省/州查询"
 
 #: application/views/logbookadvanced/statedialog.php:10
 msgid "Currently supported countries"
-msgstr ""
+msgstr "当前支持的国家"
 
 #: application/views/logbookadvanced/useroptions.php:16
 msgid "Column"
@@ -13054,15 +13056,15 @@ msgstr "最后一次上传是"
 
 #: application/views/lotw_views/index.php:95
 msgid "Last change:"
-msgstr ""
+msgstr "最后更改："
 
 #: application/views/lotw_views/index.php:95
 msgid "Serial number:"
-msgstr ""
+msgstr "序号："
 
 #: application/views/lotw_views/index.php:97
 msgid "Certificate superseded"
-msgstr ""
+msgstr "证书已被取代"
 
 #: application/views/lotw_views/index.php:100
 msgid "Certificate expired"
@@ -14447,7 +14449,7 @@ msgstr "无效的天线海拔高度："
 
 #: application/views/qso/index.php:38
 msgid "Please wait before saving another QSO"
-msgstr ""
+msgstr "请等待再保存另一个 QSO"
 
 #: application/views/qso/index.php:86
 msgid "LIVE"
