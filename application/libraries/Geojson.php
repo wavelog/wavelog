@@ -23,11 +23,11 @@ class Geojson {
      */
     const SUPPORTED_STATES = [
         1 => ['name' => 'Canada', 'enabled' => true],            // 13 provinces/territories
-        6 => ['name' => 'Alaska', 'enabled' => false],           // 1 state
+        6 => ['name' => 'Alaska', 'enabled' => true],           // 1 state
         27 => ['name' => 'Belarus', 'enabled' => true],          // 7 subdivisions
         100 => ['name' => 'Argentina', 'enabled' => true],       // 24 subdivisions
         108 => ['name' => 'Brazil', 'enabled' => true],          // 27 subdivisions
-        110 => ['name' => 'Hawaii', 'enabled' => false],         // 1 state
+        110 => ['name' => 'Hawaii', 'enabled' => true],         // 1 state
         144 => ['name' => 'Uruguay', 'enabled' => true],         // 19 subdivisions
         150 => ['name' => 'Australia', 'enabled' => true],       // 8 subdivisions
         209 => ['name' => 'Belgium', 'enabled' => true],         // 11 subdivisions
