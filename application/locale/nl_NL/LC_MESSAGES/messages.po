@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-01 13:08+0000\n"
+"POT-Creation-Date: 2025-12-01 13:16+0000\n"
 "PO-Revision-Date: 2025-11-30 21:52+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
@@ -320,7 +320,7 @@ msgstr "Awards"
 #: application/controllers/Awards.php:2255
 #: application/controllers/Awards.php:2268
 #: application/controllers/Awards.php:2343
-#: application/controllers/Awards.php:2487
+#: application/controllers/Awards.php:2485
 #, php-format
 msgid "Awards - %s"
 msgstr "Awards - %s"
@@ -604,7 +604,7 @@ msgstr "73 op 73"
 msgid "WPX"
 msgstr "WPX"
 
-#: application/controllers/Awards.php:2487
+#: application/controllers/Awards.php:2485
 #: application/views/awards/pl_polska/index.php:37
 #: application/views/interface_assets/header.php:270
 msgid "\"Polska\" Award"
@@ -758,7 +758,7 @@ msgstr "Geen gebruiker heeft Clublog geconfigureerd."
 #: application/views/awards/dxcc/index.php:132
 #: application/views/awards/iota/index.php:80
 #: application/views/awards/jcc/index.php:70
-#: application/views/awards/pl_polska/index.php:95
+#: application/views/awards/pl_polska/index.php:84
 #: application/views/awards/wab/index.php:106
 #: application/views/awards/wae/index.php:71
 #: application/views/awards/waja/index.php:75
@@ -1274,7 +1274,7 @@ msgstr "Logboek"
 #: application/views/awards/dxcc/index.php:116
 #: application/views/awards/helvetia/index.php:59
 #: application/views/awards/jcc/index.php:54
-#: application/views/awards/pl_polska/index.php:79
+#: application/views/awards/pl_polska/index.php:68
 #: application/views/awards/rac/index.php:50
 #: application/views/awards/vucc/band.php:15
 #: application/views/awards/wab/index.php:74
@@ -1307,7 +1307,7 @@ msgstr "QSL"
 #: application/views/awards/iota/index.php:68
 #: application/views/awards/itu/index.php:64
 #: application/views/awards/jcc/index.php:58
-#: application/views/awards/pl_polska/index.php:83
+#: application/views/awards/pl_polska/index.php:72
 #: application/views/awards/rac/index.php:54
 #: application/views/awards/vucc/band.php:16
 #: application/views/awards/wab/index.php:82
@@ -1346,7 +1346,7 @@ msgstr "LoTW"
 #: application/views/awards/iota/index.php:72
 #: application/views/awards/itu/index.php:68
 #: application/views/awards/jcc/index.php:62
-#: application/views/awards/pl_polska/index.php:87
+#: application/views/awards/pl_polska/index.php:76
 #: application/views/awards/rac/index.php:58
 #: application/views/awards/wab/index.php:90
 #: application/views/awards/wac/index.php:53
@@ -2538,9 +2538,8 @@ msgstr "Maak stationslocatie aan"
 msgid "Edit Station Location: "
 msgstr "Bewerk stationslocatie: "
 
-#: application/controllers/Station.php:93
-#: application/views/awards/pl_polska/index.php:54
-#: application/views/csv/index.php:19 application/views/dxatlas/index.php:19
+#: application/controllers/Station.php:93 application/views/csv/index.php:19
+#: application/views/dxatlas/index.php:19
 #: application/views/labels/index.php:124
 #: application/views/logbookadvanced/edit.php:18
 #: application/views/qslprint/index.php:20 application/views/qso/index.php:373
@@ -4103,7 +4102,7 @@ msgstr "Tropospheric ducting"
 #: application/views/awards/iota/index.php:159
 #: application/views/awards/itu/index.php:117
 #: application/views/awards/jcc/index.php:115
-#: application/views/awards/pl_polska/index.php:104
+#: application/views/awards/pl_polska/index.php:93
 #: application/views/awards/rac/index.php:107
 #: application/views/awards/wac/index.php:136
 #: application/views/awards/wae/index.php:147
@@ -4192,7 +4191,7 @@ msgstr "Bevestiging"
 #: application/views/awards/iota/index.php:76
 #: application/views/awards/itu/index.php:72
 #: application/views/awards/jcc/index.php:66
-#: application/views/awards/pl_polska/index.php:91
+#: application/views/awards/pl_polska/index.php:80
 #: application/views/awards/rac/index.php:62
 #: application/views/awards/wab/index.php:98
 #: application/views/awards/wac/index.php:57
@@ -4252,7 +4251,7 @@ msgstr "Minimum aantal"
 #: application/views/awards/iota/index.php:302
 #: application/views/awards/itu/index.php:202
 #: application/views/awards/jcc/index.php:238
-#: application/views/awards/pl_polska/index.php:388
+#: application/views/awards/pl_polska/index.php:377
 #: application/views/awards/pota/index.php:68
 #: application/views/awards/rac/index.php:195
 #: application/views/awards/sig/index.php:45
@@ -5148,7 +5147,7 @@ msgid "Permissions"
 msgstr "Machtigingen"
 
 #: application/views/api/index.php:38
-#: application/views/awards/pl_polska/index.php:383
+#: application/views/awards/pl_polska/index.php:372
 #: application/views/club/permissions.php:226
 #: application/views/clublog/export.php:39
 #: application/views/hrdlog/export.php:39
@@ -5669,7 +5668,7 @@ msgstr "Tabel"
 #: application/views/awards/iota/index.php:174
 #: application/views/awards/itu/index.php:131
 #: application/views/awards/jcc/index.php:131
-#: application/views/awards/pl_polska/index.php:199
+#: application/views/awards/pl_polska/index.php:188
 #: application/views/awards/rac/index.php:122
 #: application/views/awards/wab/index.php:110
 #: application/views/awards/waja/index.php:135
@@ -5825,7 +5824,7 @@ msgstr "Elke band"
 #: application/views/awards/iota/index.php:158
 #: application/views/awards/itu/index.php:116
 #: application/views/awards/jcc/index.php:114
-#: application/views/awards/pl_polska/index.php:103
+#: application/views/awards/pl_polska/index.php:92
 #: application/views/awards/rac/index.php:106
 #: application/views/awards/wac/index.php:135
 #: application/views/awards/wae/index.php:146
@@ -6505,11 +6504,15 @@ msgstr ""
 "Vereisten: COL_STATE (woiwodschapscode), COL_DXCC=269 (Polen), QSO-datum >= "
 "1999-01-01. Geen cross-band/cross-mode/repeater contacten."
 
-#: application/views/awards/pl_polska/index.php:73
+#: application/views/awards/pl_polska/index.php:54
+msgid "Station Logbook"
+msgstr ""
+
+#: application/views/awards/pl_polska/index.php:62
 msgid "Confirmation methods"
 msgstr "Bevestigingsmethoden"
 
-#: application/views/awards/pl_polska/index.php:74
+#: application/views/awards/pl_polska/index.php:63
 msgid ""
 "According to official award rules, paper QSL cards or LoTW confirmations are "
 "accepted for award applications. Other digital confirmations are shown here "
@@ -6519,11 +6522,11 @@ msgstr ""
 "bevestigingen geaccepteerd voor awardaanvragen. Andere digitale "
 "bevestigingen worden hier alleen ter controle getoond."
 
-#: application/views/awards/pl_polska/index.php:117
+#: application/views/awards/pl_polska/index.php:106
 msgid "Award Categories"
 msgstr "Award categorieën"
 
-#: application/views/awards/pl_polska/index.php:119
+#: application/views/awards/pl_polska/index.php:108
 msgid ""
 "Polska Award categories are based on the minimum number of confirmed QSOs "
 "with each of all 16 voivodeships:"
@@ -6531,124 +6534,124 @@ msgstr ""
 "Polska Award-categorieën zijn gebaseerd op het minimum aantal bevestigde "
 "QSOs met elk van de 16 woiwodschappen:"
 
-#: application/views/awards/pl_polska/index.php:123
+#: application/views/awards/pl_polska/index.php:112
 msgid "1 QSO per voivodeship"
 msgstr "1 QSO per woiwodschap"
 
-#: application/views/awards/pl_polska/index.php:123
+#: application/views/awards/pl_polska/index.php:112
 msgid "Basic Class"
 msgstr "Basis Klasse"
 
-#: application/views/awards/pl_polska/index.php:124
+#: application/views/awards/pl_polska/index.php:113
 msgid "3 QSOs per voivodeship"
 msgstr "3 QSO's per woiwodschap"
 
-#: application/views/awards/pl_polska/index.php:124
+#: application/views/awards/pl_polska/index.php:113
 msgid "Bronze Class (3rd)"
 msgstr "Bronzen klasse (3e)"
 
-#: application/views/awards/pl_polska/index.php:129
+#: application/views/awards/pl_polska/index.php:118
 msgid "7 QSOs per voivodeship"
 msgstr "7 QSOs per woiwodschap"
 
-#: application/views/awards/pl_polska/index.php:129
+#: application/views/awards/pl_polska/index.php:118
 msgid "Silver Class (2nd)"
 msgstr "Zilveren klasse (2e)"
 
-#: application/views/awards/pl_polska/index.php:130
+#: application/views/awards/pl_polska/index.php:119
 msgid "12 QSOs per voivodeship"
 msgstr "12 QSO's per woiwodschap"
 
-#: application/views/awards/pl_polska/index.php:130
+#: application/views/awards/pl_polska/index.php:119
 msgid "Gold Class (1st)"
 msgstr "Gouden Klasse (1e)"
 
-#: application/views/awards/pl_polska/index.php:155
+#: application/views/awards/pl_polska/index.php:144
 msgid "Congratulations!"
 msgstr "Gefeliciteerd!"
 
-#: application/views/awards/pl_polska/index.php:156
+#: application/views/awards/pl_polska/index.php:145
 msgid "You are entitled to the following award categories"
 msgstr "Je hebt recht op de volgende award-categorieën"
 
-#: application/views/awards/pl_polska/index.php:189
+#: application/views/awards/pl_polska/index.php:178
 msgid "QSOs by Mode Category"
 msgstr "QSOs per modus categorie"
 
-#: application/views/awards/pl_polska/index.php:194
+#: application/views/awards/pl_polska/index.php:183
 msgid "QSOs by Band"
 msgstr "QSOs per band"
 
-#: application/views/awards/pl_polska/index.php:213
-#: application/views/awards/pl_polska/index.php:284
+#: application/views/awards/pl_polska/index.php:202
+#: application/views/awards/pl_polska/index.php:273
 msgid "Voivodeship"
 msgstr "Woiwodschap"
 
-#: application/views/awards/pl_polska/index.php:214
-#: application/views/awards/pl_polska/index.php:285
+#: application/views/awards/pl_polska/index.php:203
+#: application/views/awards/pl_polska/index.php:274
 #: application/views/awards/wapc/index.php:119
 msgid "Code"
 msgstr "Code"
 
-#: application/views/awards/pl_polska/index.php:215
-#: application/views/awards/pl_polska/index.php:356
+#: application/views/awards/pl_polska/index.php:204
+#: application/views/awards/pl_polska/index.php:345
 msgid "MIXED"
 msgstr "GEMENGD"
 
-#: application/views/awards/pl_polska/index.php:216
-#: application/views/awards/pl_polska/index.php:357
+#: application/views/awards/pl_polska/index.php:205
+#: application/views/awards/pl_polska/index.php:346
 msgid "PHONE"
 msgstr "PHONE"
 
-#: application/views/awards/pl_polska/index.php:217
-#: application/views/awards/pl_polska/index.php:358
+#: application/views/awards/pl_polska/index.php:206
+#: application/views/awards/pl_polska/index.php:347
 #: application/views/bandmap/list.php:270
 #: application/views/components/dxwaterfall.php:33
 msgid "CW"
 msgstr "CW"
 
-#: application/views/awards/pl_polska/index.php:218
-#: application/views/awards/pl_polska/index.php:359
+#: application/views/awards/pl_polska/index.php:207
+#: application/views/awards/pl_polska/index.php:348
 msgid "DIGI"
 msgstr "DIGI"
 
-#: application/views/awards/pl_polska/index.php:249
-#: application/views/awards/pl_polska/index.php:321
+#: application/views/awards/pl_polska/index.php:238
+#: application/views/awards/pl_polska/index.php:310
 msgid "Total voivodeships"
 msgstr "Totaal aantal woiwodschappen"
 
-#: application/views/awards/pl_polska/index.php:263
-#: application/views/awards/pl_polska/index.php:335
+#: application/views/awards/pl_polska/index.php:252
+#: application/views/awards/pl_polska/index.php:324
 msgid "Bravo! You are entitled to"
 msgstr "Bravo! Je bent gerechtigd tot"
 
-#: application/views/awards/pl_polska/index.php:263
-#: application/views/awards/pl_polska/index.php:335
+#: application/views/awards/pl_polska/index.php:252
+#: application/views/awards/pl_polska/index.php:324
 msgid "category award!"
 msgstr "categorie award!"
 
-#: application/views/awards/pl_polska/index.php:353
+#: application/views/awards/pl_polska/index.php:342
 msgid "Award Category:"
 msgstr "Award Categorie:"
 
-#: application/views/awards/pl_polska/index.php:355
+#: application/views/awards/pl_polska/index.php:344
 msgid "Mode Categories"
 msgstr "Moduscategorieën"
 
-#: application/views/awards/pl_polska/index.php:361
+#: application/views/awards/pl_polska/index.php:350
 msgid "Band Categories"
 msgstr "Banden Categorieën"
 
-#: application/views/awards/pl_polska/index.php:383
+#: application/views/awards/pl_polska/index.php:372
 #: application/views/logbookadvanced/index.php:772
 msgid "Fix State"
 msgstr "Herstel Staat/Provincie"
 
-#: application/views/awards/pl_polska/index.php:383
+#: application/views/awards/pl_polska/index.php:372
 msgid "Logbook Advanced"
 msgstr "Logboek Geavanceerd"
 
-#: application/views/awards/pl_polska/index.php:383
+#: application/views/awards/pl_polska/index.php:372
 msgid ""
 "This award uses the State field from your logbook. Ensure this field is "
 "populated for all SP (Poland) contacts."
@@ -6656,15 +6659,15 @@ msgstr ""
 "Deze award maakt gebruik van het veld 'Staat' uit je logboek. Zorg ervoor "
 "dat dit veld is ingevuld voor alle SP (Polen) contacten."
 
-#: application/views/awards/pl_polska/index.php:383
+#: application/views/awards/pl_polska/index.php:372
 msgid "Tip:"
 msgstr "Tip:"
 
-#: application/views/awards/pl_polska/index.php:383
+#: application/views/awards/pl_polska/index.php:372
 msgid "Use"
 msgstr "Gebruik"
 
-#: application/views/awards/pl_polska/index.php:383
+#: application/views/awards/pl_polska/index.php:372
 msgid "to auto-populate states from Maidenhead locators."
 msgstr "om automatisch staten vanuit Maidenhead-locators in te vullen."
 
