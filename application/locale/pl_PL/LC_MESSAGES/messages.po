@@ -16,16 +16,16 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-12-01 13:16+0000\n"
-"PO-Revision-Date: 2025-11-29 21:48+0000\n"
+"PO-Revision-Date: 2025-12-02 08:54+0000\n"
 "Last-Translator: Szymon <sp9spm@cqops.com>\n"
-"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/pl/>\n"
+"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/pl/>\n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && "
+"(n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 5.14\n"
 
 #: application/controllers/Accumulated.php:12
@@ -614,7 +614,7 @@ msgstr "WPX"
 #: application/views/awards/pl_polska/index.php:37
 #: application/views/interface_assets/header.php:270
 msgid "\"Polska\" Award"
-msgstr ""
+msgstr "Dyplom \"Polska\""
 
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:336
@@ -6470,11 +6470,11 @@ msgstr "SAT"
 
 #: application/views/awards/pl_polska/index.php:3
 msgid "Polish Voivodeships"
-msgstr ""
+msgstr "Województwa Polski"
 
 #: application/views/awards/pl_polska/index.php:4
 msgid "Hover over a voivodeship"
-msgstr ""
+msgstr "Najedź kursorem na województwo"
 
 #: application/views/awards/pl_polska/index.php:38
 msgid ""
@@ -6482,6 +6482,9 @@ msgid ""
 "contacts with stations operating from all 16 Polish voivodeships "
 "(provinces). Valid from January 1, 1999."
 msgstr ""
+"Nagroda Polska jest wydawana przez Polski Związek Krótkofalowców (PZK) za "
+"nawiązanie łączności ze stacjami działającymi ze wszystkich 16 polskich "
+"województw. Ważna od 1 stycznia 1999 r."
 
 #: application/views/awards/pl_polska/index.php:39
 msgid ""
@@ -6489,29 +6492,35 @@ msgid ""
 "(RTTY/PSK/FSK), and individual bands (160M-2M). Classes: Basic (1 QSO/voiv), "
 "Bronze (3), Silver (7), Gold (12). All 16 voivodeships required."
 msgstr ""
+"Kategorie nagród: MIXED (wszystkie tryby/pasma), PHONE (SSB/AM/FM/SSTV), CW, "
+"DIGI (RTTY/PSK/FSK) oraz indywidualne pasma (160M-2M). Klasy: Podstawowa "
+"(1 QSO/wojew.), Brązowa (3), Srebrna (7), Złota (12). Wymagane jest "
+"wszystkie 16 województw."
 
 #: application/views/awards/pl_polska/index.php:40
 #, php-format
 msgid "Official rules and information: %s"
-msgstr ""
+msgstr "Oficjalne zasady i informacje: %s"
 
 #: application/views/awards/pl_polska/index.php:40
 msgid "PZK Polska Award Rules"
-msgstr ""
+msgstr "Zasady PZK Nagrody Polska"
 
 #: application/views/awards/pl_polska/index.php:41
 msgid ""
 "Requirements: COL_STATE (voivodeship code), COL_DXCC=269 (Poland), QSO date "
 ">= 1999-01-01. No cross-band/cross-mode/repeater contacts."
 msgstr ""
+"Wymagania: COL_STATE (kod województwa), COL_DXCC=269 (Polska), data QSO >= "
+"1999-01-01. Bez kontaktów cross-band/cross-mode/przez przemiennik."
 
 #: application/views/awards/pl_polska/index.php:54
 msgid "Station Logbook"
-msgstr ""
+msgstr "Dziennik stacji"
 
 #: application/views/awards/pl_polska/index.php:62
 msgid "Confirmation methods"
-msgstr ""
+msgstr "Metody potwierdzania"
 
 #: application/views/awards/pl_polska/index.php:63
 msgid ""
@@ -6519,69 +6528,74 @@ msgid ""
 "accepted for award applications. Other digital confirmations are shown here "
 "for tracking purposes only."
 msgstr ""
+"Zgodnie z oficjalnymi zasadami przyznawania nagrody akceptowane są papierowe "
+"karty QSL lub potwierdzenia LoTW. Inne cyfrowe potwierdzenia są tu pokazane "
+"wyłącznie w celach śledzenia."
 
 #: application/views/awards/pl_polska/index.php:106
 msgid "Award Categories"
-msgstr ""
+msgstr "Kategorie nagród"
 
 #: application/views/awards/pl_polska/index.php:108
 msgid ""
 "Polska Award categories are based on the minimum number of confirmed QSOs "
 "with each of all 16 voivodeships:"
 msgstr ""
+"Kategorie nagród Polska opierają się na minimalnej liczbie potwierdzonych "
+"QSO z każdym z 16 województw:"
 
 #: application/views/awards/pl_polska/index.php:112
 msgid "1 QSO per voivodeship"
-msgstr ""
+msgstr "1 QSO na województwo"
 
 #: application/views/awards/pl_polska/index.php:112
 msgid "Basic Class"
-msgstr ""
+msgstr "Klasa podstawowa"
 
 #: application/views/awards/pl_polska/index.php:113
 msgid "3 QSOs per voivodeship"
-msgstr ""
+msgstr "3 QSO na województwo"
 
 #: application/views/awards/pl_polska/index.php:113
 msgid "Bronze Class (3rd)"
-msgstr ""
+msgstr "Klasa brązowa (3.)"
 
 #: application/views/awards/pl_polska/index.php:118
 msgid "7 QSOs per voivodeship"
-msgstr ""
+msgstr "7 QSO na województwo"
 
 #: application/views/awards/pl_polska/index.php:118
 msgid "Silver Class (2nd)"
-msgstr ""
+msgstr "Klasa srebrna (2.)"
 
 #: application/views/awards/pl_polska/index.php:119
 msgid "12 QSOs per voivodeship"
-msgstr ""
+msgstr "12 QSO na województwo"
 
 #: application/views/awards/pl_polska/index.php:119
 msgid "Gold Class (1st)"
-msgstr ""
+msgstr "Klasa złota (1.)"
 
 #: application/views/awards/pl_polska/index.php:144
 msgid "Congratulations!"
-msgstr ""
+msgstr "Gratulacje!"
 
 #: application/views/awards/pl_polska/index.php:145
 msgid "You are entitled to the following award categories"
-msgstr ""
+msgstr "Przysługują Ci następujące kategorie nagród"
 
 #: application/views/awards/pl_polska/index.php:178
 msgid "QSOs by Mode Category"
-msgstr ""
+msgstr "QSO według kategorii trybu"
 
 #: application/views/awards/pl_polska/index.php:183
 msgid "QSOs by Band"
-msgstr ""
+msgstr "QSO według pasma"
 
 #: application/views/awards/pl_polska/index.php:202
 #: application/views/awards/pl_polska/index.php:273
 msgid "Voivodeship"
-msgstr ""
+msgstr "Województwo"
 
 #: application/views/awards/pl_polska/index.php:203
 #: application/views/awards/pl_polska/index.php:274
@@ -6592,12 +6606,12 @@ msgstr "Kod"
 #: application/views/awards/pl_polska/index.php:204
 #: application/views/awards/pl_polska/index.php:345
 msgid "MIXED"
-msgstr ""
+msgstr "MIXED"
 
 #: application/views/awards/pl_polska/index.php:205
 #: application/views/awards/pl_polska/index.php:346
 msgid "PHONE"
-msgstr ""
+msgstr "PHONE"
 
 #: application/views/awards/pl_polska/index.php:206
 #: application/views/awards/pl_polska/index.php:347
@@ -6609,34 +6623,34 @@ msgstr "CW"
 #: application/views/awards/pl_polska/index.php:207
 #: application/views/awards/pl_polska/index.php:348
 msgid "DIGI"
-msgstr ""
+msgstr "DIGI"
 
 #: application/views/awards/pl_polska/index.php:238
 #: application/views/awards/pl_polska/index.php:310
 msgid "Total voivodeships"
-msgstr ""
+msgstr "Wszystkie województwa"
 
 #: application/views/awards/pl_polska/index.php:252
 #: application/views/awards/pl_polska/index.php:324
 msgid "Bravo! You are entitled to"
-msgstr ""
+msgstr "Brawo! Masz prawo do kategorii"
 
 #: application/views/awards/pl_polska/index.php:252
 #: application/views/awards/pl_polska/index.php:324
 msgid "category award!"
-msgstr ""
+msgstr "nagrody!"
 
 #: application/views/awards/pl_polska/index.php:342
 msgid "Award Category:"
-msgstr ""
+msgstr "Kategoria nagrody:"
 
 #: application/views/awards/pl_polska/index.php:344
 msgid "Mode Categories"
-msgstr ""
+msgstr "Kategorie trybów"
 
 #: application/views/awards/pl_polska/index.php:350
 msgid "Band Categories"
-msgstr ""
+msgstr "Kategorie pasm"
 
 #: application/views/awards/pl_polska/index.php:372
 #: application/views/logbookadvanced/index.php:772
@@ -6645,25 +6659,27 @@ msgstr "Napraw Stan"
 
 #: application/views/awards/pl_polska/index.php:372
 msgid "Logbook Advanced"
-msgstr ""
+msgstr "Zaawansowany dziennik"
 
 #: application/views/awards/pl_polska/index.php:372
 msgid ""
 "This award uses the State field from your logbook. Ensure this field is "
 "populated for all SP (Poland) contacts."
 msgstr ""
+"Ta nagroda wykorzystuje pole stan/województwo z twojego dziennika. Upewnij "
+"się, że to pole jest wypełnione dla wszystkich kontaktów SP (Polska)."
 
 #: application/views/awards/pl_polska/index.php:372
 msgid "Tip:"
-msgstr ""
+msgstr "Wskazówka:"
 
 #: application/views/awards/pl_polska/index.php:372
 msgid "Use"
-msgstr ""
+msgstr "Użyj"
 
 #: application/views/awards/pl_polska/index.php:372
 msgid "to auto-populate states from Maidenhead locators."
-msgstr ""
+msgstr "by automatyczne uzupełnić pole stan/województwo z lokatorów."
 
 #: application/views/awards/pota/index.php:7
 msgid "POTA Awards"
@@ -11821,7 +11837,7 @@ msgstr "LX Gridmaster"
 
 #: application/views/interface_assets/header.php:268
 msgid "Poland"
-msgstr ""
+msgstr "Polska"
 
 #: application/views/interface_assets/header.php:274
 msgid "Switzerland"
@@ -12279,12 +12295,16 @@ msgid ""
 "If a QSO has a 4‑char locator (e.g., JO90), try to refine it using callbook "
 "data."
 msgstr ""
+"Jeśli QSO ma 4-znakowy lokator (np. JO90), spróbuj go doprecyzować za pomocą "
+"danych z książki adresowej."
 
 #: application/views/logbookadvanced/callbookdialog.php:6
 msgid ""
 "We’ll keep the original value and add a more precise locator (e.g., JO90AB "
 "or JO90AB12) when a match is confident."
 msgstr ""
+"Gdy będzie pewna zgodność, zachowana zostanie oryginalna wartość, a dodany "
+"zostanie bardziej precyzyjny lokalizator (np. JO90AB lub JO90AB12)."
 
 #: application/views/logbookadvanced/continentdialog.php:2
 msgid ""
