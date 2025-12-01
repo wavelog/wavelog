@@ -33,12 +33,12 @@ if (!function_exists('clubaccess_check')) {
                     $user_level = $CI->session->userdata('cd_p_level');
                     $operator_callsign = $CI->session->userdata('operator_callsign');
 
-                    // Enhanced logic for ClubMemberPlus (Level 6)
+                    // Enhanced logic for ClubMemberADIF (Level 6)
                     if ($user_level >= 9) {
                         // Officers can access any QSO
                         return true;
                     } elseif ($user_level >= 6) {
-                        // ClubMemberPlus and regular members can only access their own QSOs
+                        // ClubMemberADIF and regular members can only access their own QSOs
                         return $qso->COL_OPERATOR == $operator_callsign;
                     } else {
                         // Lower levels (shouldn't reach here for ADIF access)

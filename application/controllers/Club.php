@@ -21,7 +21,7 @@ class Club extends CI_Controller
 
 		$this->permissions = [
 			9 => __("Club Officer"),
-			6 => __("Club Member Plus"),
+			6 => __("Club Member ADIF"),
 			3 => __("Club Member"),
 		];
 	}

@@ -28,7 +28,7 @@ class adif extends CI_Controller {
 
 	private function determine_allowed_tabs() {
 		if (clubaccess_check(6) && !clubaccess_check(9)) {
-			// Only ClubMember Plus and NOT ClubOfficer
+			// Only ClubMember ADIF and NOT ClubOfficer
 			$this->allowed_tabs = ['import', 'export'];
 		} else {
 			// Default: show all tabs (backward compatible)
@@ -346,7 +346,7 @@ class adif extends CI_Controller {
 								$record['operator'] = strtoupper($club_operator);
 							}
 						} elseif ($user_permission_level == 6) {
-							// ClubMemberPlus: Force operator to current user, ignore input
+							// ClubMemberADIF: Force operator to current user, ignore input
 							$record['operator'] = strtoupper($this->session->userdata('operator_callsign'));
 						}
 						// Note: Regular Club Member (Level 3) should not reach here due to constructor permission check
