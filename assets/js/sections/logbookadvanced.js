@@ -470,7 +470,7 @@ $.fn.dataTable.ext.type.order['numbersort-pre'] = function(data) {
     return isNaN(num) ? 0 : num;
 };
 
-function processNextCallbookItem() {
+function processNextCallbookItem(gridsquareAccuracyCheck) {
 	if (!inCallbookProcessing) return;
 
 	var elements = $('#qsoList tbody input:checked');
@@ -491,7 +491,8 @@ function processNextCallbookItem() {
 		url: site_url + '/logbookadvanced/updateFromCallbook',
 		type: 'post',
 		data: {
-			qsoID: id
+			qsoID: id,
+			gridsquareAccuracyCheck: gridsquareAccuracyCheck ? 1 : 0
 		},
 		dataType: 'json',
 		success: function (data) {
@@ -499,11 +500,15 @@ function processNextCallbookItem() {
 				updateRow(data);
 			}
 			unselectQsoID(id);
-			setTimeout("processNextCallbookItem()", 50);
+			setTimeout(function() {
+				processNextCallbookItem(gridsquareAccuracyCheck);
+			}, 50);
 		},
 		error: function (data) {
 			unselectQsoID(id);
-			setTimeout("processNextCallbookItem()", 50);
+			setTimeout(function() {
+				processNextCallbookItem(gridsquareAccuracyCheck);
+			}, 50);
 		},
 	});
 }
@@ -748,7 +753,7 @@ $(document).ready(function () {
 				dok: this.dok.value,
 				qrzSent: this.qrzSent.value,
 				qrzReceived: this.qrzReceived.value,
-				distance: this.distanceinput.value,
+				distance: this.distance.value,
 			},
 			dataType: 'json',
 			success: function (data) {
@@ -787,8 +792,8 @@ $(document).ready(function () {
 	});
 
 	$('#btnUpdateFromCallbook').click(function (event) {
-		var elements = $('#qsoList tbody input:checked');
-		var nElements = elements.length;
+		let elements = $('#qsoList tbody input:checked');
+		let nElements = elements.length;
 		if (nElements == 0) {
 			BootstrapDialog.alert({
 				title: lang_gen_advanced_logbook_info,
@@ -801,6 +806,45 @@ $(document).ready(function () {
 			});
 			return;
 		}
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/callbookDialog',
+			type: 'post',
+			success: function (html) {
+				BootstrapDialog.show({
+					title: 'Callbook options',
+					size: BootstrapDialog.SIZE_NORMAL,
+					cssClass: 'options',
+					nl2br: false,
+					message: html,
+					buttons: [
+					{
+						label: lang_admin_close,
+						cssClass: 'btn-sm btn-secondary',
+						id: 'closeButton',
+						action: function (dialogItself) {
+							dialogItself.close();
+						}
+					},
+					{
+						label: 'Update',
+						cssClass: 'btn-sm btn-primary',
+						id: 'updateButton',
+						action: function (dialogItself) {
+							startProcessingCallbook(nElements, $('[name="gridsquareaccuracycheck"]').is(":checked"));
+							dialogItself.close();
+						}
+					}],
+					onhide: function(dialogRef){
+						return;
+					},
+				});
+			}
+		});
+
+
+	});
+
+	function startProcessingCallbook(nElements, gridsquareAccuracyCheck) {
 		inCallbookProcessing = true;
 
 		callBookProcessingDialog = BootstrapDialog.show({
@@ -817,8 +861,8 @@ $(document).ready(function () {
 				}
 			}]
 		});
-		processNextCallbookItem();
-	});
+		processNextCallbookItem(gridsquareAccuracyCheck);
+	}
 
 	$('#helpButton').click(function (event) {
 		$.ajax({
