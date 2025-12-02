@@ -92,30 +92,39 @@ class QSLPrint extends CI_Controller {
 		$file = fopen('php://output', 'w');
 
 		$header = array("STATION_CALLSIGN",
-						"COL_CALL",
-						"COL_QSL_VIA",
-						"COL_TIME_ON",
-						"COL_MODE",
-						"COL_SUBMODE",
-						"COL_FREQ",
-						"COL_BAND",
-						"COL_RST_SENT",
-						"COL_SAT_NAME",
-						"COL_SAT_MODE",
-						"COL_QSL_RCVD",
-						"COL_COMMENT",
-						"COL_ROUTING",
+						"CALL",
+						"QSL_VIA",
+						"DATE_ON",
+						"TIME_ON",
+						"MODE",
+						"SUBMODE",
+						"FREQ",
+						"BAND",
+						"RST_SENT",
+						"SAT_NAME",
+						"SAT_MODE",
+						"PROP_MODE",
+						"QSL_RCVD",
+						"COMMENT",
+						"ROUTING",
 						"ADIF",
-						"ENTITY");
+						"ENTITY",
+						"GRIDSQUARE",
+						"STATION_GRIDSQUARE");
 
-		fputcsv($file, $header);
+		fputcsv($file, $header, separator: ",", enclosure: "\"", escape: "\\");
 
 		foreach ($myData->result() as $qso) {
+				$datetimeObj = new DateTime($qso->COL_TIME_ON);
+				$date = $datetimeObj->format('Y-m-d');
+				$time = $datetimeObj->format('H:i:s');
+
 			fputcsv($file,
 				array($qso->STATION_CALLSIGN,
 				$qso->COL_CALL,
 				$qso->COL_QSL_VIA!=""?"via ".$qso->COL_QSL_VIA:"",
-				$qso->COL_TIME_ON,
+				$date,
+				$time,
 				$qso->COL_MODE,
 				$qso->COL_SUBMODE,
 				$qso->COL_FREQ,
@@ -123,11 +132,14 @@ class QSLPrint extends CI_Controller {
 				$qso->COL_RST_SENT,
 				$qso->COL_SAT_NAME,
 				$qso->COL_SAT_MODE,
+				$qso->COL_PROP_MODE,
 				$qso->COL_QSL_RCVD =='Y'?'TNX QSL':'PSE QSL',
 				$qso->COL_COMMENT,
 				$qso->COL_ROUTING,
 				$qso->ADIF,
-				$qso->ENTITY));
+				$qso->ENTITY,
+				$qso->COL_GRIDSQUARE,
+				$qso->COL_MY_GRIDSQUARE), separator: ",", enclosure: "\"", escape: "\\");
 		}
 
 		fclose($file);
