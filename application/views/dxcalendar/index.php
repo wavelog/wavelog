@@ -1,5 +1,6 @@
 <div class="container">
 	<br>
+	<?php $this->load->view('layout/messages'); ?>
 	<h2><?php echo $page_title; ?></h2>
 	<p><?= __("This data comes from"); ?> <a target="_blank" href="https://ng3k.com/">https://ng3k.com/</a></p>
 
