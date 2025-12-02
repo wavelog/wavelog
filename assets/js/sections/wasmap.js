@@ -97,6 +97,15 @@ function load_was_map() {
             ]).then(([states48, ak, hi]) => {
                 // Inject AK and HI features into the FeatureCollection
                 states48.features.push(ak.features[0], hi.features[0]);
+                // Remove DC from 48 states pulled from geojson which are 49 states actually
+                i=0;
+                for (k in states48.features) {
+                   if (states48.features[k].id == 'DC') {
+                      states48.features.splice(i, 1);
+                      break;
+                   }
+                   i++;
+                }
                 load_was_map2(data, states48);
             });
         },

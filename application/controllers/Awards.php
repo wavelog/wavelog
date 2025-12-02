@@ -1360,9 +1360,6 @@ class Awards extends CI_Controller {
             }
         }
 
-        // DC is combined with MD - copy MD status to DC for map display
-        $states['DC'] = $states['MD'];
-
         header('Content-Type: application/json');
         echo json_encode($states);
     }
