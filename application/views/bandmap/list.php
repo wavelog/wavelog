@@ -447,6 +447,10 @@
 				<button class="btn btn-sm btn-secondary" type="button" id="toggle12mFilter" title="<?= __("Toggle 12m band filter"); ?>">12m</button>
 				<button class="btn btn-sm btn-secondary" type="button" id="toggle10mFilter" title="<?= __("Toggle 10m band filter"); ?>">10m</button>
 			</div>
+			<!-- 6m Band -->
+			<div class="btn-group flex-shrink-0" role="group">
+				<button class="btn btn-sm btn-secondary" type="button" id="toggle6mFilter" title="<?= __("Toggle 6m band filter"); ?>">6m</button>
+			</div>
 			<!-- VHF/UHF/SHF Bands -->
 			<div class="btn-group flex-shrink-0" role="group">
 				<button class="btn btn-sm btn-secondary" type="button" id="toggleVHFFilter" title="<?= __("Toggle VHF bands filter"); ?>">VHF</button>

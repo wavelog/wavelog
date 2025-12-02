@@ -32,7 +32,8 @@ const BAND_BUTTONS = [
 	{ id: '#toggle17mFilter', band: '17m' },
 	{ id: '#toggle15mFilter', band: '15m' },
 	{ id: '#toggle12mFilter', band: '12m' },
-	{ id: '#toggle10mFilter', band: '10m' }
+	{ id: '#toggle10mFilter', band: '10m' },
+	{ id: '#toggle6mFilter', band: '6m' }
 ];
 
 const BAND_GROUP_BUTTONS = [
@@ -60,8 +61,9 @@ const CONTINENT_BUTTONS = [
 const GEO_FLAGS = ['POTA', 'SOTA', 'IOTA', 'WWFF'];
 
 // Performance optimization: Pre-computed band to group lookup map
+// Note: 6m is NOT in VHF group - it has its own separate button
 const BAND_TO_GROUP_MAP = {
-	'6m': 'VHF', '4m': 'VHF', '2m': 'VHF', '1.25m': 'VHF',
+	'4m': 'VHF', '2m': 'VHF', '1.25m': 'VHF',
 	'70cm': 'UHF', '33cm': 'UHF', '23cm': 'UHF',
 	'13cm': 'SHF', '9cm': 'SHF', '6cm': 'SHF', '3cm': 'SHF'
 };
@@ -1639,9 +1641,10 @@ $(function() {
 				}
 			});
 
-		// Update individual MF/HF band button badges
+		// Update individual MF/HF/6m band button badges
+		// Note: 6m has its own separate button (not part of VHF group)
 		const mfHfBands = [
-			'160m', '80m', '60m', '40m', '30m', '20m', '17m', '15m', '12m', '10m'
+			'160m', '80m', '60m', '40m', '30m', '20m', '17m', '15m', '12m', '10m', '6m'
 		];
 
 		mfHfBands.forEach(band => {
