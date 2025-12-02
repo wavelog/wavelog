@@ -2163,6 +2163,7 @@ class Logbook_model extends CI_Model {
 		  COL_SAT_NAME,
 		  COL_SAT_MODE,
 		  COL_QSL_RCVD,
+		  COL_GRIDSQUARE,
 		  COL_COMMENT,
 		  (select adif from dxcc_prefixes where  (CASE WHEN COL_QSL_VIA != \'\' THEN COL_QSL_VIA ELSE COL_CALL END) like concat(dxcc_prefixes.`call`,\'%\') order by end limit 1) as ADIF,
 		  (select entity from dxcc_prefixes where  (CASE WHEN COL_QSL_VIA != \'\' THEN COL_QSL_VIA ELSE COL_CALL END) like concat(dxcc_prefixes.`call`,\'%\') order by end limit 1) as ENTITY,
