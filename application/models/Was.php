@@ -36,15 +36,17 @@ class was extends CI_Model {
 			if ($postdata['worked'] != NULL) {
 				$wasBand = $this->getWasWorked($location_list, $band, $postdata);
 				foreach ($wasBand as $line) {
-					$bandWas[$line->col_state][$band] = '<div class="bg-danger awardsBgWarning"><a href=\'javascript:displayContacts("' . $line->col_state . '","' . $band . '","All","All","'. $postdata['mode'] . '","WAS", "")\'>W</a></div>';
-					$states[$line->col_state]['count']++;
+					$state = $this->normalizeState($line->col_state); // DC counts as MD
+					$bandWas[$state][$band] = '<div class="bg-danger awardsBgWarning"><a href=\'javascript:displayContacts("' . $state . '","' . $band . '","All","All","'. $postdata['mode'] . '","WAS", "")\'>W</a></div>';
+					$states[$state]['count']++;
 				}
 			}
 			if ($postdata['confirmed'] != NULL) {
 				$wasBand = $this->getWasConfirmed($location_list, $band, $postdata);
 				foreach ($wasBand as $line) {
-					$bandWas[$line->col_state][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("' . $line->col_state . '","' . $band . '","All","All","'. $postdata['mode'] . '","WAS", "'.$qsl.'")\'>C</a></div>';
-					$states[$line->col_state]['count']++;
+					$state = $this->normalizeState($line->col_state); // DC counts as MD
+					$bandWas[$state][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("' . $state . '","' . $band . '","All","All","'. $postdata['mode'] . '","WAS", "'.$qsl.'")\'>C</a></div>';
+					$states[$state]['count']++;
 				}
 			}
 		}
@@ -112,7 +114,8 @@ class was extends CI_Model {
 
 	function getSummaryByBand($band, $postdata, $location_list) {
 		$bindings=[];
-		$sql = "SELECT count(distinct thcv.col_state) as count FROM " . $this->config->item('table_name') . " thcv";
+		// DC is combined with MD, so we use CASE to normalize
+		$sql = "SELECT count(distinct CASE WHEN thcv.col_state = 'DC' THEN 'MD' ELSE thcv.col_state END) as count FROM " . $this->config->item('table_name') . " thcv";
 		$sql .= " where station_id in (" . $location_list . ")";
 
 		if ($band == 'SAT') {
@@ -148,7 +151,8 @@ class was extends CI_Model {
 
 	function getSummaryByBandConfirmed($band, $postdata, $location_list) {
 		$bindings=[];
-		$sql = "SELECT count(distinct thcv.col_state) as count FROM " . $this->config->item('table_name') . " thcv";
+		// DC is combined with MD, so we use CASE to normalize
+		$sql = "SELECT count(distinct CASE WHEN thcv.col_state = 'DC' THEN 'MD' ELSE thcv.col_state END) as count FROM " . $this->config->item('table_name') . " thcv";
 		$sql .= " where station_id in (" . $location_list . ")";
 
 		if ($band == 'SAT') {
@@ -255,8 +259,16 @@ class was extends CI_Model {
 	function addStateToQuery() {
 		$sql = '';
 		$sql .= " and COL_DXCC in ('291', '6', '110')";
-		$sql .= " and COL_STATE in ('AK','AL','AR','AZ','CA','CO','CT','DE','FL','GA','HI','IA','ID','IL','IN','KS','KY','LA','MA','MD','ME','MI','MN','MO','MS','MT','NC','ND','NE','NH','NJ','NM','NV','NY','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VA','VT','WA','WI','WV','WY')";
+		// DC is combined with MD for WAS award
+		$sql .= " and COL_STATE in ('AK','AL','AR','AZ','CA','CO','CT','DC','DE','FL','GA','HI','IA','ID','IL','IN','KS','KY','LA','MA','MD','ME','MI','MN','MO','MS','MT','NC','ND','NE','NH','NJ','NM','NV','NY','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VA','VT','WA','WI','WV','WY')";
 		return $sql;
+	}
+
+	/**
+	 * Normalize state code - DC counts as MD for WAS award
+	 */
+	function normalizeState($state) {
+		return ($state === 'DC') ? 'MD' : $state;
 	}
 }
 ?>
