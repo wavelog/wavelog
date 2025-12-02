@@ -103,7 +103,7 @@ class QSLPrint extends CI_Controller {
 						"RST_SENT",
 						"SAT_NAME",
 						"SAT_MODE",
-						"PROPAGATION",
+						"PROP_MODE",
 						"QSL_RCVD",
 						"COMMENT",
 						"ROUTING",
