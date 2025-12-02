@@ -290,11 +290,11 @@ $options = json_decode($options);
                                 <div class="row">
                                     <div <?php if (($options->datetime->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label class="form-label" for="dateFrom"><?= __("From") . ": " ?></label>
-                                        <input name="dateFrom" id="dateFrom" type="date" class="form-control form-control-sm w-auto border border-secondary">
+                                        <input name="dateFrom" id="dateFrom" type="date" class="form-control form-control-sm border border-secondary">
                                     </div>
                                     <div <?php if (($options->datetime->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label class="form-label" for="dateTo"><?= __("To") . ": " ?></label>
-                                        <input name="dateTo" id="dateTo" type="date" class="form-control form-control-sm w-auto border border-secondary">
+                                        <input name="dateTo" id="dateTo" type="date" class="form-control form-control-sm border border-secondary">
                                     </div>
                                     <div <?php if (($options->dx->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label class="form-label" for="dx"><?= __("Dx"); ?></label>
@@ -486,8 +486,8 @@ $options = json_decode($options);
                                         <input onclick="this.select()" type="text" name="comment" id="comment" class="form-control form-control-sm border border-secondary" value="*" placeholder="<?= __("Empty"); ?>">
                                     </div>
 									<div <?php if (($options->distance->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
-                                        <label class="form-label" for="distanceinput"><?= __("Distance"); ?> <i class="fa fa-question-circle" aria-hidden="true" data-bs-toggle="tooltip" title="<?= __("Distance in kilometers. Search will look for distances greater than or equal to this value."); ?>"></i></label>
-                                        <input onclick="this.select()" type="text" name="distanceinput" id="distanceinput" class="form-control form-control-sm border border-secondary" value="*" placeholder="<?= __("Empty"); ?>">
+                                        <label class="form-label" for="distance"><?= __("Distance"); ?> <i class="fa fa-question-circle" aria-hidden="true" data-bs-toggle="tooltip" title="<?= __("Distance in kilometers. Search will look for distances greater than or equal to this value."); ?>"></i></label>
+                                        <input onclick="this.select()" type="text" name="distance" class="form-control form-control-sm border border-secondary" value="*" placeholder="<?= __("Empty"); ?>">
                                     </div>
                                 </div>
                             </div>

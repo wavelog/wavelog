@@ -23,6 +23,7 @@ class Geojson {
      */
     const SUPPORTED_STATES = [
         1 => ['name' => 'Canada', 'enabled' => true],            // 13 provinces/territories
+        6 => ['name' => 'Alaska', 'enabled' => true],           // 1 state
         27 => ['name' => 'Belarus', 'enabled' => true],          // 7 subdivisions
         29 => ['name' => 'Canary Islands', 'enabled' => true],   // 2 provinces
         32 => ['name' => 'Ceuta & Melilla', 'enabled' => true],  // 2 autonomous cities
@@ -31,6 +32,7 @@ class Geojson {
         108 => ['name' => 'Brazil', 'enabled' => true],          // 27 subdivisions
         112 => ['name' => 'Chile', 'enabled' => true],           // 16 regions
         137 => ['name' => 'Republic of Korea', 'enabled' => true], // 17 subdivisions
+        110 => ['name' => 'Hawaii', 'enabled' => true],         // 1 state
         144 => ['name' => 'Uruguay', 'enabled' => true],         // 19 subdivisions
         148 => ['name' => 'Venezuela', 'enabled' => true],       // 24 states
         149 => ['name' => 'Azores', 'enabled' => true],          // 1 autonomous region
@@ -39,6 +41,8 @@ class Geojson {
         170 => ['name' => 'New Zealand', 'enabled' => true],     // 16 regions
         209 => ['name' => 'Belgium', 'enabled' => true],         // 11 subdivisions
         212 => ['name' => 'Bulgaria', 'enabled' => true],        // 28 subdivisions
+        214 => ['name' => 'Corsica', 'enabled' => true],         // 2 departments (2A, 2B)
+        225 => ['name' => 'Sardinia', 'enabled' => true],        // 5 provinces
         227 => ['name' => 'France', 'enabled' => true],          // 96 departments
         230 => ['name' => 'Germany', 'enabled' => true],         // 16 federal states
         239 => ['name' => 'Hungary', 'enabled' => true],         // 20 subdivisions

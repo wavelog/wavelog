@@ -472,14 +472,16 @@ class Logbookadvanced_model extends CI_Model {
 			$where = "AND $where";
 		}
 
-		$limit = $searchCriteria['qsoresults'];
-		// Ensure limit has a valid value, default to 250 if empty or invalid
-		if (empty($limit) || !is_numeric($limit) || $limit <= 0) {
-			$limit = 250;
+		$where = trim(implode(" AND ", $conditions));
+		if ($where != "") {
+			$where = "AND $where";
 		}
 
-		// Create a version of $where for the inner subquery with proper table alias
-		$whereInner = str_replace('qsos.', 'qsos_inner.', $where);
+		$limit = '';
+
+		if ($searchCriteria['qsoresults'] != 'All') {
+			$limit = 'limit ' . $searchCriteria['qsoresults'];
+		}
 
 		$where2 = '';
 
@@ -494,25 +496,18 @@ class Logbookadvanced_model extends CI_Model {
 
 		$sql = "
 			SELECT qsos.*, dxcc_entities.*, lotw_users.*, station_profile.*, satellite.*, dxcc_entities.name as dxccname, mydxcc.name AS station_country, exists(select 1 from qsl_images where qsoid = qsos.COL_PRIMARY_KEY) as qslcount, coalesce(contest.name, qsos.col_contest_id) as contestname
-			FROM (
-				SELECT qsos_inner.COL_PRIMARY_KEY
-				FROM " . $this->config->item('table_name') . " qsos_inner
-				INNER JOIN station_profile sp_inner ON qsos_inner.station_id = sp_inner.station_id
-				WHERE sp_inner.user_id = ?
-				$whereInner
-				ORDER BY qsos_inner.COL_TIME_ON desc, qsos_inner.COL_PRIMARY_KEY desc
-				LIMIT $limit
-			) AS FilteredIDs
-			INNER JOIN " . $this->config->item('table_name') . " qsos ON qsos.COL_PRIMARY_KEY = FilteredIDs.COL_PRIMARY_KEY
+			FROM " . $this->config->item('table_name') . " qsos
 			INNER JOIN station_profile ON qsos.station_id=station_profile.station_id
 			LEFT OUTER JOIN satellite ON qsos.col_prop_mode='SAT' and qsos.COL_SAT_NAME = COALESCE(NULLIF(satellite.name, ''), NULLIF(satellite.displayname, ''))
 			LEFT OUTER JOIN dxcc_entities ON qsos.col_dxcc = dxcc_entities.adif
 			left outer join dxcc_entities mydxcc on qsos.col_my_dxcc = mydxcc.adif
 			LEFT OUTER JOIN lotw_users ON qsos.col_call = lotw_users.callsign
 			LEFT OUTER JOIN contest ON qsos.col_contest_id = contest.adifname
-			where 1 = 1
+			WHERE station_profile.user_id =  ?
+			$where
 			$where2
 			ORDER BY qsos.COL_TIME_ON desc, qsos.COL_PRIMARY_KEY desc
+			$limit
 		";
 		return $this->db->query($sql, $binding);
 
@@ -675,32 +670,50 @@ class Logbookadvanced_model extends CI_Model {
 		}
 	}
 
-	public function updateQsoWithCallbookInfo($qsoID, $qso, $callbook, $station_gridsquare = null) {
+	public function updateQsoWithCallbookInfo($qsoID, $qso, $callbook, $gridsquareAccuracyCheck, $station_gridsquare = null) {
 		$updatedData = array();
 		$updated = false;
 		if (!empty($callbook['name']) && empty($qso['COL_NAME'])) {
 			$updatedData['COL_NAME'] = $callbook['name'];
 			$updated = true;
 		}
-		if (!empty($callbook['gridsquare']) && empty($qso['COL_GRIDSQUARE']) && empty($qso['COL_VUCC_GRIDS'] )) {
-			if (strpos(trim($callbook['gridsquare']), ',') === false) {
-				$updatedData['COL_GRIDSQUARE'] = strtoupper(trim($callbook['gridsquare']));
-				if ($station_gridsquare != null && $station_gridsquare != '') {
-					if (!$this->load->is_loaded('Qra')) {
-						$this->load->library('Qra');
+		if (!empty($callbook['gridsquare']) && $callbook['geoloc'] != 'grid') {
+			if (empty($qso['COL_GRIDSQUARE']) && empty($qso['COL_VUCC_GRIDS'] )) {
+				if (strpos(trim($callbook['gridsquare']), ',') === false) {
+					$updatedData['COL_GRIDSQUARE'] = strtoupper(trim($callbook['gridsquare']));
+					if ($station_gridsquare != null && $station_gridsquare != '') {
+						if (!$this->load->is_loaded('Qra')) {
+							$this->load->library('Qra');
+						}
+						$updatedData['COL_DISTANCE'] = $this->qra->distance($station_gridsquare, strtoupper(trim($callbook['gridsquare'])), 'K');
 					}
-					$updatedData['COL_DISTANCE'] = $this->qra->distance($station_gridsquare, strtoupper(trim($callbook['gridsquare'])), 'K');
+				} else {
+					$updatedData['COL_VUCC_GRIDS'] = strtoupper(trim($callbook['gridsquare']));
+					if ($station_gridsquare != null && $station_gridsquare != '') {
+						if (!$this->load->is_loaded('Qra')) {
+							$this->load->library('Qra');
+						}
+						$updatedData['COL_DISTANCE'] = $this->qra->distance($station_gridsquare, strtoupper(trim($callbook['gridsquare'])), 'K');
+					}
 				}
-			} else {
-				$updatedData['COL_VUCC_GRIDS'] = strtoupper(trim($callbook['gridsquare']));
-				if ($station_gridsquare != null && $station_gridsquare != '') {
-					if (!$this->load->is_loaded('Qra')) {
-						$this->load->library('Qra');
+				$updated = true;
+			} else if (!empty($qso['COL_GRIDSQUARE']) && $gridsquareAccuracyCheck == true) {
+				$existingGridsquare = $qso['COL_GRIDSQUARE'];
+				//Check if existing gridsquare is less accurate than callbook gridsquare
+				if (strlen(trim($callbook['gridsquare'])) > strlen(trim($existingGridsquare))) {
+					if ($existingGridsquare == substr($callbook['gridsquare'], 0, strlen($existingGridsquare))) {
+						//Callbook gridsquare is more accurate, update it
+						$updatedData['COL_GRIDSQUARE'] = strtoupper(trim($callbook['gridsquare']));
+						if ($station_gridsquare != null && $station_gridsquare != '') {
+							if (!$this->load->is_loaded('Qra')) {
+								$this->load->library('Qra');
+							}
+							$updatedData['COL_DISTANCE'] = $this->qra->distance($station_gridsquare, strtoupper(trim($callbook['gridsquare'])), 'K');
+						}
+						$updated = true;
 					}
-					$updatedData['COL_DISTANCE'] = $this->qra->distance($station_gridsquare, strtoupper(trim($callbook['gridsquare'])), 'K');
 				}
 			}
-			$updated = true;
 		}
 		if (!empty($callbook['city']) && empty($qso['COL_QTH'])) {
 			$updatedData['COL_QTH'] = $callbook['city'];

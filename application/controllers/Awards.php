@@ -775,7 +775,6 @@ class Awards extends CI_Controller {
 	public function rac() {
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/racmap_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/racmap_geojson.js")),
 			'assets/js/sections/racmap.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/racmap.js")),
 			'assets/js/leaflet/L.Maidenhead.js',
 		];
@@ -838,7 +837,6 @@ class Awards extends CI_Controller {
     public function helvetia() {
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/helvetiamap_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/helvetiamap_geojson.js")),
 			'assets/js/sections/helvetiamap.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/helvetiamap.js")),
 			'assets/js/leaflet/L.Maidenhead.js',
 		];
@@ -1369,7 +1367,6 @@ class Awards extends CI_Controller {
 	public function wap() {
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/wapmap_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/wapmap_geojson.js")),
 			'assets/js/sections/wapmap.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/wapmap.js")),
 			'assets/js/leaflet/L.Maidenhead.js',
 		];
@@ -1464,12 +1461,12 @@ class Awards extends CI_Controller {
         foreach ($wap_array as $was => $value) {
             foreach ($value  as $key) {
                 if($key != "") {
-                    if (strpos($key, '>W<') !== false) {
-                        $states[$was] = 'W';
-                        break;
-                    }
                     if (strpos($key, '>C<') !== false) {
                         $states[$was] = 'C';
+                        break;
+                    }
+                    if (strpos($key, '>W<') !== false) {
+                        $states[$was] = 'W';
                         break;
                     }
                     if (strpos($key, '-') !== false) {
@@ -2395,9 +2392,7 @@ class Awards extends CI_Controller {
 		$this->load->model('logbooks_model');
 		$this->load->model('stations');
 
-		// Get station profiles for multiselect
-		$data['station_profile'] = $this->stations->all_of_user();
-		$data['active_station_id'] = $this->session->userdata('active_station_logbook');
+		$data['active_station_logbook'] = $this->logbooks_model->find_name($this->session->userdata('active_station_logbook'));
 
 		$this->load->model('award_pl_polska');
 		$this->load->model('bands');
