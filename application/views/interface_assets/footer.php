@@ -417,13 +417,10 @@ function stopImpersonate_modal() {
 <?php if ($this->uri->segment(1) == "debug") { ?>
 <script type="text/javascript">
 function copyURL(url) {
-   var urlField = $('#baseUrl');
-   navigator.clipboard.writeText(url).then(function() {
+   copyToClipboard(url);
+   $('#baseUrl').addClass('flash-copy').delay('1000').queue(function() {
+      $(this).removeClass('flash-copy').dequeue();
    });
-   urlField.addClass('flash-copy')
-      .delay('1000').queue(function() {
-         urlField.removeClass('flash-copy').dequeue();
-      });
 }
 
 $(function () {
