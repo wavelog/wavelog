@@ -5,6 +5,15 @@ var map;
 var info;
 var clickmarkers = [];
 
+let confirmedColor = user_map_custom.qsoconfirm.color;
+let workedColor = user_map_custom.qso.color;
+let unworkedColor = '';
+if (typeof(user_map_custom.unworked) !== 'undefined') {
+	unworkedColor = user_map_custom.unworked.color;
+} else {
+	unworkedColor = 'red';
+}
+
 const states = 'DR,FL,FR,GD,GR,LB,NB,NH,OV,UT,ZH,ZL';
 
 const wapmarkers = [
@@ -77,20 +86,22 @@ function load_wap_map2(data) {
 	  }
   ).addTo(map);
 
-  var notworked = mapcoordinates.features.length;
+  // Load GeoJSON from external file
+  $.getJSON(base_url + 'assets/json/geojson/states_263.geojson', function(mapcoordinates) {
+    var notworked = mapcoordinates.features.length;
   var confirmed = 0;
   var workednotconfirmed = 0;
 
 	for(var k in data) {
-		var mapColor = 'red';
+		var mapColor = unworkedColor;
 
 		if (data[k] == 'C') {
-			mapColor = 'green';
+			mapColor = confirmedColor;
 			confirmed++;
 			notworked--;
 		}
 		if (data[k] == 'W') {
-		mapColor = 'orange';
+		mapColor = workedColor;
 		workednotconfirmed++;
 		notworked--;
 		}
@@ -103,9 +114,9 @@ function load_wap_map2(data) {
   legend.onAdd = function(map) {
 	  var div = L.DomUtil.create("div", "legend");
 	  div.innerHTML += "<h4>" + lang_general_word_colors + "</h4>";
-	  div.innerHTML += "<i style='background: green'></i><span>" + lang_general_word_confirmed + " (" + confirmed + ")</span><br>";
-	  div.innerHTML += "<i style='background: orange'></i><span>" + lang_general_word_worked_not_confirmed + " (" + workednotconfirmed + ")</span><br>";
-	  div.innerHTML += "<i style='background: red'></i><span>" + lang_general_word_not_worked + " (" + notworked + ")</span><br>";
+	  div.innerHTML += "<i style='background: " + confirmedColor + "'></i><span>" + lang_general_word_confirmed + " (" + confirmed + ")</span><br>";
+	  div.innerHTML += "<i style='background: " + workedColor + "'></i><span>" + lang_general_word_worked_not_confirmed + " (" + workednotconfirmed + ")</span><br>";
+	  div.innerHTML += "<i style='background: " + unworkedColor + "'></i><span>" + lang_general_word_not_worked + " (" + notworked + ")</span><br>";
 	  return div;
   };
 
@@ -122,7 +133,7 @@ info.onAdd = function (map) {
 // method that we will use to update the control based on feature properties passed
 info.update = function (props) {
     this._div.innerHTML = '<h4>' + lang_netherlands_province + '</h4>' +  (props ?
-        '<b>' + props.id.substring(3,5) + ' - ' + props.name + '</b><br />' : lang_hover_over_a_province);
+        '<b>' + props.code + ' - ' + props.name + '</b><br />' : lang_hover_over_a_province);
 };
 
 info.addTo(map);
@@ -140,6 +151,7 @@ info.addTo(map);
 
   var layerControl = new L.Control.Layers(null, { [lang_general_gridsquares]: maidenhead = L.maidenhead() }).addTo(map);
   maidenhead.addTo(map);
+  }); // end $.getJSON
 }
 
 function clearMarkers() {
@@ -170,12 +182,10 @@ function createMarker(i) {
   }
 
 function getColor(d) {
-    return 	province[d] == 'C' ? 'green'  :
-			province[d] == 'W' ? 'orange' :
-									  'red';
-}
-
-function highlightFeature(e) {
+    return 	province[d] == 'C' ? confirmedColor  :
+			province[d] == 'W' ? workedColor :
+											  unworkedColor;
+}function highlightFeature(e) {
     var layer = e.target;
 
     layer.setStyle({
@@ -208,7 +218,7 @@ function resetHighlight(e) {
 
 function style(feature) {
     return {
-        fillColor: getColor(feature.id),
+        fillColor: getColor(feature.properties.code),
         weight: 1,
         opacity: 1,
         color: 'white',
@@ -220,10 +230,10 @@ function style(feature) {
 function onClick(e) {
   zoomToFeature(e);
   var marker = e.target;
-  displayContactsOnMap($("#wapmap"),marker.feature.id, $('#band2').val(), 'All', 'All', $('#mode').val(), 'wap');
+  displayContactsOnMap($("#wapmap"), marker.feature.properties.code, $('#band2').val(), 'All', 'All', $('#mode').val(), 'WAP');
 }
 
 function onClick2(e) {
 	var marker = e.target;
-	displayContactsOnMap($("#wapmap"), marker.options.title, $('#band2').val(), 'All', 'All', $('#mode').val(), 'wap');
+	displayContactsOnMap($("#wapmap"), marker.options.title, $('#band2').val(), 'All', 'All', $('#mode').val(), 'WAP');
   }

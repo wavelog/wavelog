@@ -18,14 +18,14 @@ msgstr ""
 "POT-Creation-Date: 2025-12-01 13:16+0000\n"
 "PO-Revision-Date: 2025-12-02 08:54+0000\n"
 "Last-Translator: Szymon <sp9spm@cqops.com>\n"
-"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/pl/>\n"
+"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/pl/>\n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && "
-"(n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 5.14\n"
 
 #: application/controllers/Accumulated.php:12
@@ -153,6 +153,8 @@ msgstr "Mapa aktywowanych lokatorów"
 #: application/views/interface_assets/footer.php:49
 #: application/views/visitor/layout/footer.php:12
 #: application/views/visitor/layout/header.php:68
+#: application/controllers/Awards.php:1045
+#: application/controllers/Awards.php:1081
 msgid "Gridsquares"
 msgstr "Lokatory"
 
@@ -327,6 +329,20 @@ msgstr "Nagrody"
 #: application/controllers/Awards.php:2268
 #: application/controllers/Awards.php:2343
 #: application/controllers/Awards.php:2485
+#: application/controllers/Awards.php:831
+#: application/controllers/Awards.php:893
+#: application/controllers/Awards.php:978
+#: application/controllers/Awards.php:990
+#: application/controllers/Awards.php:1066
+#: application/controllers/Awards.php:1272
+#: application/controllers/Awards.php:1423
+#: application/controllers/Awards.php:1902
+#: application/controllers/Awards.php:2043
+#: application/controllers/Awards.php:2173
+#: application/controllers/Awards.php:2252
+#: application/controllers/Awards.php:2265
+#: application/controllers/Awards.php:2340
+#: application/controllers/Awards.php:2482
 #, php-format
 msgid "Awards - %s"
 msgstr "Nagrody - %s"
@@ -518,52 +534,68 @@ msgstr "Worked All States (WAS)"
 
 #: application/controllers/Awards.php:832 application/views/bands/index.php:55
 #: application/views/interface_assets/header.php:228
+#: application/controllers/Awards.php:831
 msgid "RAC"
 msgstr "RAC"
 
 #: application/controllers/Awards.php:895 application/views/bands/index.php:51
+#: application/controllers/Awards.php:893
 msgid "H26"
 msgstr "H26"
 
 #: application/controllers/Awards.php:980
+#: application/controllers/Awards.php:978
 msgid "IOTA (Island On The Air)"
 msgstr "IOTA (Island On The Air)"
 
 #: application/controllers/Awards.php:992
 #: application/controllers/Awards.php:1007
 #: application/views/interface_assets/header.php:288
+#: application/controllers/Awards.php:990
+#: application/controllers/Awards.php:1005
 msgid "US Counties"
 msgstr "Hrabstwa USA"
 
 #: application/controllers/Awards.php:1022
+#: application/controllers/Awards.php:1020
 msgid "Log View - Counties"
 msgstr "Przegląd dziennika - hrabstwa"
 
 #: application/controllers/Awards.php:1029
+#: application/controllers/Awards.php:1027
 msgid "Awards - "
 msgstr "Nagrody - "
 
 #: application/controllers/Awards.php:1048
 #: application/controllers/Awards.php:1084
+#: application/controllers/Awards.php:1046
+#: application/controllers/Awards.php:1082
 msgid "Gridsquares worked"
 msgstr "Zaliczone lokatory"
 
 #: application/controllers/Awards.php:1049
 #: application/controllers/Awards.php:1085
+#: application/controllers/Awards.php:1047
+#: application/controllers/Awards.php:1083
 msgid "Gridsquares confirmed on LoTW"
 msgstr "Lokatory potwierdzone na LoTW"
 
 #: application/controllers/Awards.php:1050
 #: application/controllers/Awards.php:1086
+#: application/controllers/Awards.php:1048
+#: application/controllers/Awards.php:1084
 msgid "Gridsquares confirmed by paper QSL"
 msgstr "Lokatory potwierdzone papierową kartą QSL"
 
 #: application/controllers/Awards.php:1051
 #: application/controllers/Awards.php:1087
+#: application/controllers/Awards.php:1049
+#: application/controllers/Awards.php:1085
 msgid "Total Gridsquares worked"
 msgstr "Wszystkich zaliczonych lokatorów"
 
 #: application/controllers/Awards.php:1068
+#: application/controllers/Awards.php:1066
 msgid "Fred Fish Memorial Award (FFMA)"
 msgstr "Fred Fish Memorial Award (FFMA)"
 
@@ -574,39 +606,47 @@ msgstr "Fred Fish Memorial Award (FFMA)"
 #: application/views/qso/index.php:615 application/views/user/edit.php:710
 #: application/views/view_log/qso.php:431
 #: application/views/view_log/qso.php:742
+#: application/controllers/Awards.php:1272
 msgid "SIG"
 msgstr "SIG"
 
 #: application/controllers/Awards.php:1293
+#: application/controllers/Awards.php:1291
 msgid "Awards - SIG - "
 msgstr "Nagrody - SIG - "
 
 #: application/controllers/Awards.php:1426 application/views/bands/index.php:60
+#: application/controllers/Awards.php:1423
 msgid "WAP"
 msgstr "WAP"
 
 #: application/controllers/Awards.php:2046
 #: application/views/awards/itu/index.php:23
+#: application/controllers/Awards.php:2043
 msgid "ITU Zones"
 msgstr "Strefy ITU"
 
 #: application/controllers/Awards.php:2176
 #: application/views/awards/wac/index.php:8
 #: application/views/interface_assets/header.php:202
+#: application/controllers/Awards.php:2173
 msgid "Worked All Continents (WAC)"
 msgstr "Worked All Continents (WAC)"
 
 #: application/controllers/Awards.php:2255
+#: application/controllers/Awards.php:2252
 msgid "WAE"
 msgstr "WAE"
 
 #: application/controllers/Awards.php:2268
 #: application/views/interface_assets/header.php:212
+#: application/controllers/Awards.php:2265
 msgid "73 on 73"
 msgstr "73 on 73"
 
 #: application/controllers/Awards.php:2343
 #: application/views/awards/wpx/wpx_details.php:19
+#: application/controllers/Awards.php:2340
 msgid "WPX"
 msgstr "WPX"
 
@@ -1301,6 +1341,8 @@ msgstr "Dziennik łączności"
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:108
 #: application/views/timeline/index.php:56 application/views/user/edit.php:623
 #: application/views/user/edit.php:816
+#: application/views/awards/wap/index.php:57
+#: application/views/awards/was/index.php:61
 msgid "QSL"
 msgstr "QSL"
 
@@ -1340,6 +1382,8 @@ msgstr "QSL"
 #: application/views/timeline/index.php:60 application/views/user/edit.php:624
 #: application/views/user/edit.php:826 application/views/view_log/qso.php:537
 #: application/views/view_log/qso.php:542
+#: application/views/awards/wap/index.php:61
+#: application/views/awards/was/index.php:65
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1376,6 +1420,8 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:309
 #: application/views/timeline/index.php:64 application/views/user/edit.php:625
 #: application/views/user/edit.php:834 application/views/user/edit.php:908
+#: application/views/awards/wap/index.php:65
+#: application/views/awards/was/index.php:69
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1467,6 +1513,8 @@ msgstr "eQSL"
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/widgets/qsos.php:18
+#: application/views/awards/wap/index.php:89
+#: application/views/awards/was/index.php:93
 msgid "Mode"
 msgstr "Emisja"
 
@@ -1605,6 +1653,7 @@ msgstr "IOTA"
 #: application/views/user/edit.php:320 application/views/user/edit.php:344
 #: application/views/view_log/partial/log_ajax.php:12
 #: application/views/visitor/index.php:24
+#: application/views/awards/was/index.php:157
 msgid "State"
 msgstr "Stan"
 
@@ -1766,6 +1815,8 @@ msgstr "Odległość"
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
 #: application/views/widgets/qsos.php:21
+#: application/views/awards/wap/index.php:75
+#: application/views/awards/was/index.php:79
 msgid "Band"
 msgstr "Pasmo"
 
@@ -2474,6 +2525,8 @@ msgstr "Nie masz ustawionej lokalizacji stacji. Kliknij %s aby ją stworzyć!"
 #: application/views/awards/wapc/index.php:10
 #: application/views/awards/was/index.php:27
 #: application/views/simplefle/index.php:16
+#: application/views/awards/wap/index.php:24
+#: application/views/awards/was/index.php:28
 msgid "here"
 msgstr "tutaj"
 
@@ -3784,6 +3837,8 @@ msgstr "Różnica"
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:800
 #: application/views/visitor/layout/footer.php:173
+#: application/views/awards/wap/index.php:92
+#: application/views/awards/was/index.php:96
 msgid "All"
 msgstr "Wszystkie"
 
@@ -4139,6 +4194,8 @@ msgstr "Dukty troposferyczne"
 #: application/views/timeline/index.php:340
 #: application/views/timeline/index.php:370
 #: application/views/timeplotter/index.php:59
+#: application/views/awards/wap/index.php:114
+#: application/views/awards/was/index.php:118
 msgid "Show"
 msgstr "Pokaż"
 
@@ -4213,6 +4270,8 @@ msgstr "Potwierdzenie"
 #: application/views/awards/was/index.php:72
 #: application/views/awards/wpx/index.php:40
 #: application/views/gridmap/index.php:195 application/views/user/edit.php:842
+#: application/views/awards/wap/index.php:69
+#: application/views/awards/was/index.php:73
 msgid "QRZ.com"
 msgstr "QRZ.com"
 
@@ -4282,6 +4341,8 @@ msgstr "Minimalna liczba"
 #: application/views/distancerecords/index.php:52
 #: application/views/public_search/empty.php:3
 #: application/views/qrz/export.php:65 application/views/timeline/index.php:158
+#: application/views/awards/wap/index.php:202
+#: application/views/awards/was/index.php:207
 msgid "Nothing found!"
 msgstr "Nie znaleziono!"
 
@@ -5242,6 +5303,10 @@ msgstr "Utwórz klucz tylko do odczytu"
 #: application/views/awards/was/index.php:31
 #: application/views/awards/wwff/index.php:6
 #: application/views/awards/wwff/index.php:14
+#: application/views/awards/wap/index.php:20
+#: application/views/awards/wap/index.php:28
+#: application/views/awards/was/index.php:24
+#: application/views/awards/was/index.php:32
 msgid "Award Info"
 msgstr "Informacje o nagrodzie"
 
@@ -5381,6 +5446,8 @@ msgstr "Potwierdzone hrabstwa"
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
+#: application/views/awards/wap/index.php:181
+#: application/views/awards/was/index.php:186
 msgid "Total"
 msgstr "Razem"
 
@@ -5596,6 +5663,8 @@ msgstr "Zaliczone"
 #: application/views/awards/wap/index.php:38
 #: application/views/awards/wapc/index.php:26
 #: application/views/awards/was/index.php:42
+#: application/views/awards/wap/index.php:39
+#: application/views/awards/was/index.php:43
 msgid "Show worked"
 msgstr "Pokaż zaliczone"
 
@@ -5613,6 +5682,8 @@ msgstr "Pokaż zaliczone"
 #: application/views/awards/wap/index.php:42
 #: application/views/awards/wapc/index.php:30
 #: application/views/awards/was/index.php:46
+#: application/views/awards/wap/index.php:43
+#: application/views/awards/was/index.php:47
 msgid "Show confirmed"
 msgstr "Pokaż potwierdzone"
 
@@ -5629,6 +5700,8 @@ msgstr "Pokaż potwierdzone"
 #: application/views/awards/wap/index.php:46
 #: application/views/awards/wapc/index.php:34
 #: application/views/awards/was/index.php:50
+#: application/views/awards/wap/index.php:47
+#: application/views/awards/was/index.php:51
 msgid "Show not worked"
 msgstr "Pokaż niezaliczone"
 
@@ -5647,6 +5720,8 @@ msgstr "Pokaż niezaliczone"
 #: application/views/awards/wapc/index.php:40
 #: application/views/awards/was/index.php:56
 #: application/views/awards/wpx/index.php:24
+#: application/views/awards/wap/index.php:53
+#: application/views/awards/was/index.php:57
 msgid "Show QSO with QSL Type"
 msgstr "Pokaż QSO z typem QSL"
 
@@ -5670,6 +5745,8 @@ msgstr "Karta QSL"
 #: application/views/awards/waja/index.php:132
 #: application/views/awards/wap/index.php:125
 #: application/views/awards/was/index.php:129
+#: application/views/awards/wap/index.php:126
+#: application/views/awards/was/index.php:130
 msgid "Table"
 msgstr "Tabela"
 
@@ -5688,6 +5765,8 @@ msgstr "Tabela"
 #: application/views/awards/was/index.php:132
 #: application/views/logbookadvanced/index.php:813
 #: application/views/logbookadvanced/useroptions.php:7
+#: application/views/awards/wap/index.php:129
+#: application/views/awards/was/index.php:133
 msgid "Map"
 msgstr "Mapa"
 
@@ -5706,6 +5785,8 @@ msgstr "Mapa"
 #: application/views/awards/wapc/index.php:136
 #: application/views/awards/was/index.php:175
 #: application/views/awards/wpx/index.php:158
+#: application/views/awards/wap/index.php:172
+#: application/views/awards/was/index.php:177
 msgid "Summary"
 msgstr "Podsumowanie"
 
@@ -5724,6 +5805,8 @@ msgstr "Podsumowanie"
 #: application/views/awards/wapc/index.php:150
 #: application/views/awards/was/index.php:188
 #: application/views/awards/wpx/index.php:183
+#: application/views/awards/wap/index.php:185
+#: application/views/awards/was/index.php:190
 msgid "Total worked"
 msgstr "Suma zaliczonych"
 
@@ -5742,6 +5825,8 @@ msgstr "Suma zaliczonych"
 #: application/views/awards/wapc/index.php:157
 #: application/views/awards/was/index.php:195
 #: application/views/awards/wpx/index.php:204
+#: application/views/awards/wap/index.php:192
+#: application/views/awards/was/index.php:197
 msgid "Total confirmed"
 msgstr "Suma potwierdzonych"
 
@@ -5814,6 +5899,8 @@ msgstr "DOK + SDOK"
 #: application/views/awards/wap/index.php:34
 #: application/views/awards/wapc/index.php:22
 #: application/views/awards/was/index.php:38
+#: application/views/awards/wap/index.php:35
+#: application/views/awards/was/index.php:39
 msgid "Worked / Confirmed"
 msgstr "Zaliczone / Potwierdzone"
 
@@ -5827,6 +5914,8 @@ msgstr "Zaliczone / Potwierdzone"
 #: application/views/awards/wap/index.php:77
 #: application/views/awards/wapc/index.php:69
 #: application/views/awards/was/index.php:81
+#: application/views/awards/wap/index.php:78
+#: application/views/awards/was/index.php:82
 msgid "Every band"
 msgstr "Wszystkie pasma"
 
@@ -5850,6 +5939,8 @@ msgstr "Wszystkie pasma"
 #: application/views/oqrs/showrequests.php:70
 #: application/views/qrbcalc/index.php:19
 #: application/views/search/filter.php:43 application/views/user/edit.php:718
+#: application/views/awards/wap/index.php:113
+#: application/views/awards/was/index.php:117
 msgid "Reset"
 msgstr "Resetuj"
 
@@ -6493,9 +6584,9 @@ msgid ""
 "Bronze (3), Silver (7), Gold (12). All 16 voivodeships required."
 msgstr ""
 "Kategorie nagród: MIXED (wszystkie tryby/pasma), PHONE (SSB/AM/FM/SSTV), CW, "
-"DIGI (RTTY/PSK/FSK) oraz indywidualne pasma (160M-2M). Klasy: Podstawowa "
-"(1 QSO/wojew.), Brązowa (3), Srebrna (7), Złota (12). Wymagane jest "
-"wszystkie 16 województw."
+"DIGI (RTTY/PSK/FSK) oraz indywidualne pasma (160M-2M). Klasy: Podstawowa (1 "
+"QSO/wojew.), Brązowa (3), Srebrna (7), Złota (12). Wymagane jest wszystkie "
+"16 województw."
 
 #: application/views/awards/pl_polska/index.php:40
 #, php-format
@@ -6737,6 +6828,7 @@ msgstr "Prowincja"
 
 #: application/views/awards/rac/index.php:4
 #: application/views/awards/wap/index.php:4
+#: application/views/awards/wap/index.php:5
 msgid "Hover over a province"
 msgstr "Najedź myszką nad prowincje"
 
@@ -7054,15 +7146,18 @@ msgid "Prefecture"
 msgstr "Prefektura"
 
 #: application/views/awards/wap/index.php:3
+#: application/views/awards/wap/index.php:4
 msgctxt "The Netherlands Province"
 msgid "Province"
 msgstr "Prowincja"
 
 #: application/views/awards/wap/index.php:20
+#: application/views/awards/wap/index.php:21
 msgid "VRZA WAP Award"
 msgstr "Nagroda VRZA WAP"
 
 #: application/views/awards/wap/index.php:21
+#: application/views/awards/wap/index.php:22
 msgid ""
 "The Netherlands spans approximately 300 km from North to South and about 200 "
 "km from East to West. Of the country's 18 million inhabitants, around 11,500 "
@@ -7081,6 +7176,7 @@ msgstr ""
 "holenderskich radioamatorów na arenie krajowej i międzynarodowej."
 
 #: application/views/awards/wap/index.php:22
+#: application/views/awards/wap/index.php:23
 msgid ""
 "The VRZA (Vereniging voor Radio Zend Amateurs) offers the Worked All "
 "Provinces (WAP) award to amateur radio operators who have confirmed contacts "
@@ -7095,6 +7191,7 @@ msgstr ""
 "zarówno krajową łączność, jak i rozwój umiejętności operatorskich."
 
 #: application/views/awards/wap/index.php:23
+#: application/views/awards/wap/index.php:24
 #, php-format
 msgctxt "uses 'here'"
 msgid "Information about the WAP Awards and its rules can be found %s."
@@ -7102,6 +7199,7 @@ msgstr ""
 "Informacje o nagrodzie WAP oraz jej zasadach można znaleźć pod adresem: %s."
 
 #: application/views/awards/wap/index.php:24
+#: application/views/awards/wap/index.php:25
 msgid ""
 "Fields taken for this Award: DXCC (Must be Netherlands) and STATE (Must "
 "contain a valid state abbreviation!)"
@@ -7110,11 +7208,13 @@ msgstr ""
 "zawierać poprawny skrót prowincji!)"
 
 #: application/views/awards/wap/index.php:115
+#: application/views/awards/wap/index.php:116
 msgid "Show WAP Map"
 msgstr "Pokaż mapę WAP"
 
 #: application/views/awards/wap/index.php:152
 #: application/views/awards/wapc/index.php:120
+#: application/views/awards/wap/index.php:153
 msgid "Province"
 msgstr "Prowincja"
 
@@ -7150,8 +7250,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Pola brane pod uwagę przy tej nagrodzie: DXCC (musi być jednym z: Chiny/318, "
-"Hongkong/321, Makau/152, Tajwan/386, Wyspa Pratas/505 lub Rafa "
-"Scarborough/506) oraz ważny stan (ADIF: DXCC i STATE)"
+"Hongkong/321, Makau/152, Tajwan/386, Wyspa Pratas/505 lub Rafa Scarborough/"
+"506) oraz ważny stan (ADIF: DXCC i STATE)"
 
 #: application/views/awards/was/index.php:3
 msgctxt "USA State"
@@ -7163,10 +7263,12 @@ msgid "Hover over a state"
 msgstr "Najedź kursorem myszy na stan"
 
 #: application/views/awards/was/index.php:24
+#: application/views/awards/was/index.php:25
 msgid "WAS Award"
 msgstr "Nagroda WAS"
 
 #: application/views/awards/was/index.php:25
+#: application/views/awards/was/index.php:26
 msgid ""
 "ARRL's most popular award is the Worked All States Award. Thousands upon "
 "thousands of awards have been issued to hams around the world. In ARRL's "
@@ -7179,6 +7281,7 @@ msgstr ""
 "nadzieję na jego usprawnienie i ulepszenie."
 
 #: application/views/awards/was/index.php:26
+#: application/views/awards/was/index.php:27
 msgid ""
 "The WAS (Worked All States) Award is available to all amateurs worldwide who "
 "submit proof with written confirmation of contacts with each of the 50 "
@@ -7193,6 +7296,7 @@ msgstr ""
 "WAS. Wnioskodawcy spoza USA są zwolnieni z tego wymogu."
 
 #: application/views/awards/was/index.php:27
+#: application/views/awards/was/index.php:28
 #, php-format
 msgctxt "uses 'here'"
 msgid "All information and rules for the ARRL WAS Award can be found %s."
@@ -7201,6 +7305,7 @@ msgstr ""
 "adresem %s."
 
 #: application/views/awards/was/index.php:28
+#: application/views/awards/was/index.php:29
 msgid ""
 "Fields taken for this Award: DXCC (Must be one of U.S.A., Alaska or Hawaii) "
 "and STATE (Must contain a valid U.S. state abbreviation!)"
@@ -7209,6 +7314,7 @@ msgstr ""
 "Hawaje) oraz STATE (Musi zawierać prawidłowy skrót stanu USA!)"
 
 #: application/views/awards/was/index.php:119
+#: application/views/awards/was/index.php:120
 msgid "Show WAS Map"
 msgstr "Wyświetl mapę WAS"
 
@@ -10326,8 +10432,8 @@ msgid ""
 "Go to your application/config Folder and compare config.sample.php with your "
 "config.php"
 msgstr ""
-"Należy przejść do folderu application/config i porównać plik config.sample."
-"php z plikiem config.php"
+"Należy przejść do folderu application/config i porównać plik "
+"config.sample.php z plikiem config.php"
 
 #: application/views/debug/index.php:197
 #, php-format
@@ -18382,6 +18488,11 @@ msgstr "Prześlij prośbę"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Rcvd"
+
+#: application/views/awards/was/index.php:5
+#: application/views/awards/was/index.php:166
+msgid "inc."
+msgstr ""
 
 #, php-format
 #~ msgid ""

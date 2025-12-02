@@ -10,8 +10,8 @@ msgstr ""
 "POT-Creation-Date: 2025-12-01 13:16+0000\n"
 "PO-Revision-Date: 2025-12-02 08:55+0000\n"
 "Last-Translator: Viliam Petrik <tatralom@gmail.com>\n"
-"Language-Team: Slovak <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/sk/>\n"
+"Language-Team: Slovak <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -144,6 +144,8 @@ msgstr "Mapa aktivovaných lokátorov"
 #: application/views/interface_assets/footer.php:49
 #: application/views/visitor/layout/footer.php:12
 #: application/views/visitor/layout/header.php:68
+#: application/controllers/Awards.php:1045
+#: application/controllers/Awards.php:1081
 msgid "Gridsquares"
 msgstr "Lokátory"
 
@@ -318,6 +320,20 @@ msgstr "Diplomy"
 #: application/controllers/Awards.php:2268
 #: application/controllers/Awards.php:2343
 #: application/controllers/Awards.php:2485
+#: application/controllers/Awards.php:831
+#: application/controllers/Awards.php:893
+#: application/controllers/Awards.php:978
+#: application/controllers/Awards.php:990
+#: application/controllers/Awards.php:1066
+#: application/controllers/Awards.php:1272
+#: application/controllers/Awards.php:1423
+#: application/controllers/Awards.php:1902
+#: application/controllers/Awards.php:2043
+#: application/controllers/Awards.php:2173
+#: application/controllers/Awards.php:2252
+#: application/controllers/Awards.php:2265
+#: application/controllers/Awards.php:2340
+#: application/controllers/Awards.php:2482
 #, php-format
 msgid "Awards - %s"
 msgstr "Diplomy - %s"
@@ -509,52 +525,68 @@ msgstr "Worked All States (WAS)"
 
 #: application/controllers/Awards.php:832 application/views/bands/index.php:55
 #: application/views/interface_assets/header.php:228
+#: application/controllers/Awards.php:831
 msgid "RAC"
 msgstr "RAC"
 
 #: application/controllers/Awards.php:895 application/views/bands/index.php:51
+#: application/controllers/Awards.php:893
 msgid "H26"
 msgstr "H26"
 
 #: application/controllers/Awards.php:980
+#: application/controllers/Awards.php:978
 msgid "IOTA (Island On The Air)"
 msgstr "IOTA (Island On The Air)"
 
 #: application/controllers/Awards.php:992
 #: application/controllers/Awards.php:1007
 #: application/views/interface_assets/header.php:288
+#: application/controllers/Awards.php:990
+#: application/controllers/Awards.php:1005
 msgid "US Counties"
 msgstr "Okresy USA"
 
 #: application/controllers/Awards.php:1022
+#: application/controllers/Awards.php:1020
 msgid "Log View - Counties"
 msgstr "Zobrazenie denníka - okresy"
 
 #: application/controllers/Awards.php:1029
+#: application/controllers/Awards.php:1027
 msgid "Awards - "
 msgstr "Diplomy "
 
 #: application/controllers/Awards.php:1048
 #: application/controllers/Awards.php:1084
+#: application/controllers/Awards.php:1046
+#: application/controllers/Awards.php:1082
 msgid "Gridsquares worked"
 msgstr "Lokátory urobené"
 
 #: application/controllers/Awards.php:1049
 #: application/controllers/Awards.php:1085
+#: application/controllers/Awards.php:1047
+#: application/controllers/Awards.php:1083
 msgid "Gridsquares confirmed on LoTW"
 msgstr "Lokátory potvrdené cez LoTW"
 
 #: application/controllers/Awards.php:1050
 #: application/controllers/Awards.php:1086
+#: application/controllers/Awards.php:1048
+#: application/controllers/Awards.php:1084
 msgid "Gridsquares confirmed by paper QSL"
 msgstr "Lokátory potvrdené papierovými QSL"
 
 #: application/controllers/Awards.php:1051
 #: application/controllers/Awards.php:1087
+#: application/controllers/Awards.php:1049
+#: application/controllers/Awards.php:1085
 msgid "Total Gridsquares worked"
 msgstr "Celkový počet urobených lokátorov"
 
 #: application/controllers/Awards.php:1068
+#: application/controllers/Awards.php:1066
 msgid "Fred Fish Memorial Award (FFMA)"
 msgstr "Fred Fish Memorial Award (FFMA)"
 
@@ -565,39 +597,47 @@ msgstr "Fred Fish Memorial Award (FFMA)"
 #: application/views/qso/index.php:615 application/views/user/edit.php:710
 #: application/views/view_log/qso.php:431
 #: application/views/view_log/qso.php:742
+#: application/controllers/Awards.php:1272
 msgid "SIG"
 msgstr "SIG"
 
 #: application/controllers/Awards.php:1293
+#: application/controllers/Awards.php:1291
 msgid "Awards - SIG - "
 msgstr "Diplomy - SIG - "
 
 #: application/controllers/Awards.php:1426 application/views/bands/index.php:60
+#: application/controllers/Awards.php:1423
 msgid "WAP"
 msgstr "WAP"
 
 #: application/controllers/Awards.php:2046
 #: application/views/awards/itu/index.php:23
+#: application/controllers/Awards.php:2043
 msgid "ITU Zones"
 msgstr "ITU zóny"
 
 #: application/controllers/Awards.php:2176
 #: application/views/awards/wac/index.php:8
 #: application/views/interface_assets/header.php:202
+#: application/controllers/Awards.php:2173
 msgid "Worked All Continents (WAC)"
 msgstr "Worked All Continents (WAC)"
 
 #: application/controllers/Awards.php:2255
+#: application/controllers/Awards.php:2252
 msgid "WAE"
 msgstr "WAE"
 
 #: application/controllers/Awards.php:2268
 #: application/views/interface_assets/header.php:212
+#: application/controllers/Awards.php:2265
 msgid "73 on 73"
 msgstr "73 on 73"
 
 #: application/controllers/Awards.php:2343
 #: application/views/awards/wpx/wpx_details.php:19
+#: application/controllers/Awards.php:2340
 msgid "WPX"
 msgstr "WPX"
 
@@ -1291,6 +1331,8 @@ msgstr "Logbook"
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:108
 #: application/views/timeline/index.php:56 application/views/user/edit.php:623
 #: application/views/user/edit.php:816
+#: application/views/awards/wap/index.php:57
+#: application/views/awards/was/index.php:61
 msgid "QSL"
 msgstr "QSL"
 
@@ -1330,6 +1372,8 @@ msgstr "QSL"
 #: application/views/timeline/index.php:60 application/views/user/edit.php:624
 #: application/views/user/edit.php:826 application/views/view_log/qso.php:537
 #: application/views/view_log/qso.php:542
+#: application/views/awards/wap/index.php:61
+#: application/views/awards/was/index.php:65
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1366,6 +1410,8 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:309
 #: application/views/timeline/index.php:64 application/views/user/edit.php:625
 #: application/views/user/edit.php:834 application/views/user/edit.php:908
+#: application/views/awards/wap/index.php:65
+#: application/views/awards/was/index.php:69
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1457,6 +1503,8 @@ msgstr "eQSL"
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/widgets/qsos.php:18
+#: application/views/awards/wap/index.php:89
+#: application/views/awards/was/index.php:93
 msgid "Mode"
 msgstr "Mód"
 
@@ -1595,6 +1643,7 @@ msgstr "IOTA"
 #: application/views/user/edit.php:320 application/views/user/edit.php:344
 #: application/views/view_log/partial/log_ajax.php:12
 #: application/views/visitor/index.php:24
+#: application/views/awards/was/index.php:157
 msgid "State"
 msgstr "Štát"
 
@@ -1756,6 +1805,8 @@ msgstr "Vzdialenosť"
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
 #: application/views/widgets/qsos.php:21
+#: application/views/awards/wap/index.php:75
+#: application/views/awards/was/index.php:79
 msgid "Band"
 msgstr "Pásmo"
 
@@ -2459,6 +2510,8 @@ msgstr "Nemáš žiadne stanice. Choď %s a vytvor ich!"
 #: application/views/awards/wapc/index.php:10
 #: application/views/awards/was/index.php:27
 #: application/views/simplefle/index.php:16
+#: application/views/awards/wap/index.php:24
+#: application/views/awards/was/index.php:28
 msgid "here"
 msgstr "tu"
 
@@ -3758,6 +3811,8 @@ msgstr "Rozdiel"
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:800
 #: application/views/visitor/layout/footer.php:173
+#: application/views/awards/wap/index.php:92
+#: application/views/awards/was/index.php:96
 msgid "All"
 msgstr "Všetko"
 
@@ -4113,6 +4168,8 @@ msgstr "Tropo ducting"
 #: application/views/timeline/index.php:340
 #: application/views/timeline/index.php:370
 #: application/views/timeplotter/index.php:59
+#: application/views/awards/wap/index.php:114
+#: application/views/awards/was/index.php:118
 msgid "Show"
 msgstr "Ukáž"
 
@@ -4187,6 +4244,8 @@ msgstr "Potvrdenie"
 #: application/views/awards/was/index.php:72
 #: application/views/awards/wpx/index.php:40
 #: application/views/gridmap/index.php:195 application/views/user/edit.php:842
+#: application/views/awards/wap/index.php:69
+#: application/views/awards/was/index.php:73
 msgid "QRZ.com"
 msgstr "QRZ.com"
 
@@ -4256,6 +4315,8 @@ msgstr "Minimálny počet"
 #: application/views/distancerecords/index.php:52
 #: application/views/public_search/empty.php:3
 #: application/views/qrz/export.php:65 application/views/timeline/index.php:158
+#: application/views/awards/wap/index.php:202
+#: application/views/awards/was/index.php:207
 msgid "Nothing found!"
 msgstr "Nič sa nenašlo!"
 
@@ -5207,6 +5268,10 @@ msgstr "Vytvoriť kľúč iba na čítanie"
 #: application/views/awards/was/index.php:31
 #: application/views/awards/wwff/index.php:6
 #: application/views/awards/wwff/index.php:14
+#: application/views/awards/wap/index.php:20
+#: application/views/awards/wap/index.php:28
+#: application/views/awards/was/index.php:24
+#: application/views/awards/was/index.php:32
 msgid "Award Info"
 msgstr "Diplomové informácie"
 
@@ -5344,6 +5409,8 @@ msgstr "Potvrdené okresy"
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
+#: application/views/awards/wap/index.php:181
+#: application/views/awards/was/index.php:186
 msgid "Total"
 msgstr "Celkovo"
 
@@ -5556,6 +5623,8 @@ msgstr "Urobené"
 #: application/views/awards/wap/index.php:38
 #: application/views/awards/wapc/index.php:26
 #: application/views/awards/was/index.php:42
+#: application/views/awards/wap/index.php:39
+#: application/views/awards/was/index.php:43
 msgid "Show worked"
 msgstr "Ukáž urobené"
 
@@ -5573,6 +5642,8 @@ msgstr "Ukáž urobené"
 #: application/views/awards/wap/index.php:42
 #: application/views/awards/wapc/index.php:30
 #: application/views/awards/was/index.php:46
+#: application/views/awards/wap/index.php:43
+#: application/views/awards/was/index.php:47
 msgid "Show confirmed"
 msgstr "Zobraziť potvrdené"
 
@@ -5589,6 +5660,8 @@ msgstr "Zobraziť potvrdené"
 #: application/views/awards/wap/index.php:46
 #: application/views/awards/wapc/index.php:34
 #: application/views/awards/was/index.php:50
+#: application/views/awards/wap/index.php:47
+#: application/views/awards/was/index.php:51
 msgid "Show not worked"
 msgstr "Zobraziť neurobené"
 
@@ -5607,6 +5680,8 @@ msgstr "Zobraziť neurobené"
 #: application/views/awards/wapc/index.php:40
 #: application/views/awards/was/index.php:56
 #: application/views/awards/wpx/index.php:24
+#: application/views/awards/wap/index.php:53
+#: application/views/awards/was/index.php:57
 msgid "Show QSO with QSL Type"
 msgstr "Zobraziť spojenie s typom QSL"
 
@@ -5630,6 +5705,8 @@ msgstr "QSL karta"
 #: application/views/awards/waja/index.php:132
 #: application/views/awards/wap/index.php:125
 #: application/views/awards/was/index.php:129
+#: application/views/awards/wap/index.php:126
+#: application/views/awards/was/index.php:130
 msgid "Table"
 msgstr "Tabuľka"
 
@@ -5648,6 +5725,8 @@ msgstr "Tabuľka"
 #: application/views/awards/was/index.php:132
 #: application/views/logbookadvanced/index.php:813
 #: application/views/logbookadvanced/useroptions.php:7
+#: application/views/awards/wap/index.php:129
+#: application/views/awards/was/index.php:133
 msgid "Map"
 msgstr "Mapa"
 
@@ -5666,6 +5745,8 @@ msgstr "Mapa"
 #: application/views/awards/wapc/index.php:136
 #: application/views/awards/was/index.php:175
 #: application/views/awards/wpx/index.php:158
+#: application/views/awards/wap/index.php:172
+#: application/views/awards/was/index.php:177
 msgid "Summary"
 msgstr "Zhrnutie"
 
@@ -5684,6 +5765,8 @@ msgstr "Zhrnutie"
 #: application/views/awards/wapc/index.php:150
 #: application/views/awards/was/index.php:188
 #: application/views/awards/wpx/index.php:183
+#: application/views/awards/wap/index.php:185
+#: application/views/awards/was/index.php:190
 msgid "Total worked"
 msgstr "Spolu urobené"
 
@@ -5702,6 +5785,8 @@ msgstr "Spolu urobené"
 #: application/views/awards/wapc/index.php:157
 #: application/views/awards/was/index.php:195
 #: application/views/awards/wpx/index.php:204
+#: application/views/awards/wap/index.php:192
+#: application/views/awards/was/index.php:197
 msgid "Total confirmed"
 msgstr "Spolu potvrdené"
 
@@ -5774,6 +5859,8 @@ msgstr "DOK + SDOK"
 #: application/views/awards/wap/index.php:34
 #: application/views/awards/wapc/index.php:22
 #: application/views/awards/was/index.php:38
+#: application/views/awards/wap/index.php:35
+#: application/views/awards/was/index.php:39
 msgid "Worked / Confirmed"
 msgstr "Urobené / Potvrdené"
 
@@ -5787,6 +5874,8 @@ msgstr "Urobené / Potvrdené"
 #: application/views/awards/wap/index.php:77
 #: application/views/awards/wapc/index.php:69
 #: application/views/awards/was/index.php:81
+#: application/views/awards/wap/index.php:78
+#: application/views/awards/was/index.php:82
 msgid "Every band"
 msgstr "Každé pásmo"
 
@@ -5810,6 +5899,8 @@ msgstr "Každé pásmo"
 #: application/views/oqrs/showrequests.php:70
 #: application/views/qrbcalc/index.php:19
 #: application/views/search/filter.php:43 application/views/user/edit.php:718
+#: application/views/awards/wap/index.php:113
+#: application/views/awards/was/index.php:117
 msgid "Reset"
 msgstr "Resetovať"
 
@@ -6684,6 +6775,7 @@ msgstr "Provincia"
 
 #: application/views/awards/rac/index.php:4
 #: application/views/awards/wap/index.php:4
+#: application/views/awards/wap/index.php:5
 msgid "Hover over a province"
 msgstr "Umiestni kurzor na provinciu"
 
@@ -6996,15 +7088,18 @@ msgid "Prefecture"
 msgstr "Prefektúra"
 
 #: application/views/awards/wap/index.php:3
+#: application/views/awards/wap/index.php:4
 msgctxt "The Netherlands Province"
 msgid "Province"
 msgstr "Provincia"
 
 #: application/views/awards/wap/index.php:20
+#: application/views/awards/wap/index.php:21
 msgid "VRZA WAP Award"
 msgstr "VRZA WAP Award"
 
 #: application/views/awards/wap/index.php:21
+#: application/views/awards/wap/index.php:22
 msgid ""
 "The Netherlands spans approximately 300 km from North to South and about 200 "
 "km from East to West. Of the country's 18 million inhabitants, around 11,500 "
@@ -7023,6 +7118,7 @@ msgstr ""
 "národne aj medzinárodne."
 
 #: application/views/awards/wap/index.php:22
+#: application/views/awards/wap/index.php:23
 msgid ""
 "The VRZA (Vereniging voor Radio Zend Amateurs) offers the Worked All "
 "Provinces (WAP) award to amateur radio operators who have confirmed contacts "
@@ -7037,12 +7133,14 @@ msgstr ""
 "čím podporuje národné prepojenie a prevádzkovú zručnosť."
 
 #: application/views/awards/wap/index.php:23
+#: application/views/awards/wap/index.php:24
 #, php-format
 msgctxt "uses 'here'"
 msgid "Information about the WAP Awards and its rules can be found %s."
 msgstr "Informácie o diplomoch WAP a ich pravidlách nájdete %s."
 
 #: application/views/awards/wap/index.php:24
+#: application/views/awards/wap/index.php:25
 msgid ""
 "Fields taken for this Award: DXCC (Must be Netherlands) and STATE (Must "
 "contain a valid state abbreviation!)"
@@ -7051,11 +7149,13 @@ msgstr ""
 "(musí obsahovať platnú skratku štátu!)"
 
 #: application/views/awards/wap/index.php:115
+#: application/views/awards/wap/index.php:116
 msgid "Show WAP Map"
 msgstr "Zobraziť WAP mapu"
 
 #: application/views/awards/wap/index.php:152
 #: application/views/awards/wapc/index.php:120
+#: application/views/awards/wap/index.php:153
 msgid "Province"
 msgstr "Provincia"
 
@@ -7090,8 +7190,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Pre tento diplom sa používajú oblasti: DXCC (musí byť jedno z Čína/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 alebo Scarborough "
-"Reef/506) a platný štát (ADIF: DXCC a STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 alebo Scarborough Reef/"
+"506) a platný štát (ADIF: DXCC a STATE)"
 
 #: application/views/awards/was/index.php:3
 msgctxt "USA State"
@@ -7103,10 +7203,12 @@ msgid "Hover over a state"
 msgstr "Umiestni kurzor nad štát"
 
 #: application/views/awards/was/index.php:24
+#: application/views/awards/was/index.php:25
 msgid "WAS Award"
 msgstr "WAS Award"
 
 #: application/views/awards/was/index.php:25
+#: application/views/awards/was/index.php:26
 msgid ""
 "ARRL's most popular award is the Worked All States Award. Thousands upon "
 "thousands of awards have been issued to hams around the world. In ARRL's "
@@ -7119,6 +7221,7 @@ msgstr ""
 "ocenení."
 
 #: application/views/awards/was/index.php:26
+#: application/views/awards/was/index.php:27
 msgid ""
 "The WAS (Worked All States) Award is available to all amateurs worldwide who "
 "submit proof with written confirmation of contacts with each of the 50 "
@@ -7133,12 +7236,14 @@ msgstr ""
 "požiadavky oslobodení."
 
 #: application/views/awards/was/index.php:27
+#: application/views/awards/was/index.php:28
 #, php-format
 msgctxt "uses 'here'"
 msgid "All information and rules for the ARRL WAS Award can be found %s."
 msgstr "Všetky informácie a pravidlá pre ARRL WAS Award nájdete %s."
 
 #: application/views/awards/was/index.php:28
+#: application/views/awards/was/index.php:29
 msgid ""
 "Fields taken for this Award: DXCC (Must be one of U.S.A., Alaska or Hawaii) "
 "and STATE (Must contain a valid U.S. state abbreviation!)"
@@ -7147,6 +7252,7 @@ msgstr ""
 "alebo Havaj) a STATE (musí obsahovať platnú skratku amerického štátu!)"
 
 #: application/views/awards/was/index.php:119
+#: application/views/awards/was/index.php:120
 msgid "Show WAS Map"
 msgstr "Zobraziť mapu WAS"
 
@@ -12214,8 +12320,8 @@ msgid ""
 "We’ll keep the original value and add a more precise locator (e.g., JO90AB "
 "or JO90AB12) when a match is confident."
 msgstr ""
-"Ponecháme si pôvodnú hodnotu a pridáme presnejší lokátor "
-"(napríklad JO90AB alebo JO90AB12), keď bude zhoda istá."
+"Ponecháme si pôvodnú hodnotu a pridáme presnejší lokátor (napríklad JO90AB "
+"alebo JO90AB12), keď bude zhoda istá."
 
 #: application/views/logbookadvanced/continentdialog.php:2
 msgid ""
@@ -12246,7 +12352,8 @@ msgstr ""
 
 #: application/views/logbookadvanced/distancedialog.php:3
 msgid "This is useful if you have imported QSOs without distance information."
-msgstr "Toto je užitočné, ak ste importovali QSO bez informácií o vzdialenosti."
+msgstr ""
+"Toto je užitočné, ak ste importovali QSO bez informácií o vzdialenosti."
 
 #: application/views/logbookadvanced/distancedialog.php:4
 msgid "Update will only set the distance for QSOs where the distance is empty."
@@ -13754,8 +13861,8 @@ msgid ""
 "The hostname of the mail server, e.g. 'mail.example.com' (without 'ssl://' "
 "or 'tls://')"
 msgstr ""
-"Názov hostiteľa poštového servera, napr. 'mail.example.com' "
-"(bez 'ssl://' alebo 'tls://')"
+"Názov hostiteľa poštového servera, napr. 'mail.example.com' (bez 'ssl://' "
+"alebo 'tls://')"
 
 #: application/views/options/email.php:88
 msgid "SMTP Port"
@@ -13853,7 +13960,8 @@ msgstr "URL mapového servera, ktorý poskytuje mapové podklady."
 
 #: application/views/options/maptiles.php:59
 msgid "Maptiles Server URL for Dark Tiles - ONLY Static Map API"
-msgstr "URL servera pre mapové podklady pre tmavé dlaždice - IBA Static Map API"
+msgstr ""
+"URL servera pre mapové podklady pre tmavé dlaždice - IBA Static Map API"
 
 #: application/views/options/maptiles.php:61
 msgid ""
@@ -14089,7 +14197,8 @@ msgstr "Prostredníctvom."
 
 #: application/views/oqrs/qsolist.php:199
 msgid "No QSOs were found. It seems you were not active at this time."
-msgstr "Neboli nájdené žiadne spojenia. Zdá sa, že si v tom čase nebol aktívny."
+msgstr ""
+"Neboli nájdené žiadne spojenia. Zdá sa, že si v tom čase nebol aktívny."
 
 #: application/views/oqrs/qsolist.php:203
 #: application/views/oqrs/showrequests.php:72
@@ -17997,4 +18106,9 @@ msgstr ""
 
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
+msgstr ""
+
+#: application/views/awards/was/index.php:5
+#: application/views/awards/was/index.php:166
+msgid "inc."
 msgstr ""
