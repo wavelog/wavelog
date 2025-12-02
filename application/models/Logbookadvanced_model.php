@@ -1446,4 +1446,19 @@ class Logbookadvanced_model extends CI_Model {
 
 		return $recordcount;
 	}
+
+	public function runCheckDb($type) {
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+		$sql = "select count(*) as count from " . $this->config->item('table_name') . "
+		join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
+		where " . $this->config->item('table_name') . ".station_id in (" . implode(',', array_map('intval', $logbooks_locations_array)) . ")
+		and user_id = ? and coalesce(col_distance, '') = ''";
+
+		$bindings[] = [$this->session->userdata('user_id')];
+
+		$query = $this->db->query($sql, $bindings);
+		return $query->result();
+	}
 }

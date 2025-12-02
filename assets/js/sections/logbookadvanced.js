@@ -1335,6 +1335,31 @@ $(document).ready(function () {
 		});
 	});
 
+	$('#dbtools').click(function (event) {
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/dbtoolsDialog',
+			type: 'post',
+			success: function (html) {
+				BootstrapDialog.show({
+					title: 'Database tools',
+					size: BootstrapDialog.SIZE_WIDE,
+					cssClass: 'options',
+					nl2br: false,
+					message: html,
+					buttons: [
+					{
+						label: lang_admin_close,
+						cssClass: 'btn btn-sm btn-secondary',
+						id: 'closeButton',
+						action: function (dialogItself) {
+							dialogItself.close();
+						}
+					}],
+				});
+			}
+		});
+	});
+
 	function runUpdateDistancesFix(dialogItself) {
 		$('#updateDistanceButton').prop("disabled", true).addClass("running");
 		$('#closeButton').prop("disabled", true);
@@ -2002,3 +2027,43 @@ function saveOptions() {
         dateFrom.value = '';
         dateTo.value = '';
     }
+
+	function checkUpdateDistances() {
+		$('#checkUpdateDistancesBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+
+
+		$.ajax({
+		url: base_url + 'index.php/logbookadvanced/checkDb',
+		data: {
+			type: 'distance'
+		},
+		type: 'POST',
+		success: function(response) {
+			$('#checkUpdateDistancesBtn').prop("disabled", false).removeClass("running");
+			$('#closeButton').prop("disabled", false);
+			// Create a nice display for the results
+			let resultHtml = '<h6>Distance Check Results</h6>';
+			resultHtml += '<p><strong>QSO to update found:</strong> ' + (response[0].count) + '</p>';
+
+			$('.result').html(resultHtml);
+		},
+		error: function(xhr, status, error) {
+			$('#checkUpdateDistancesBtn').prop('disabled', false).text('<?= __("Check") ?>');
+			$('#closeButton').prop('disabled', false);
+
+			let errorMsg = '<?= __("Error checking distance information") ?>';
+			if (xhr.responseJSON && xhr.responseJSON.message) {
+				errorMsg += ': ' + xhr.responseJSON.message;
+			}
+
+			BootstrapDialog.alert({
+				title: '<?= __("Error") ?>',
+				message: errorMsg,
+				type: BootstrapDialog.TYPE_DANGER
+			});
+		}
+	});
+
+
+	}

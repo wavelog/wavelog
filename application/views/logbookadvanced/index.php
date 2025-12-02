@@ -771,6 +771,7 @@ $options = json_decode($options);
 									<button type="button" class="btn btn-sm btn-success dropdown-action" id="fixContinent"><?= __("Fix Continent"); ?></button>
 									<button type="button" class="btn btn-sm btn-success dropdown-action" id="fixState"><?= __("Fix State"); ?></button>
 									<button type="button" class="btn btn-sm btn-success dropdown-action" id="updateDistances"><?= __("Update Distances"); ?></button>
+									<button type="button" class="btn btn-sm btn-success dropdown-action" id="dbtools"><?= __("Database Tools"); ?></button>
 									</div>
 								</div>
 							</div>

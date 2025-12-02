@@ -884,4 +884,19 @@ class Logbookadvanced extends CI_Controller {
 	public function callbookDialog() {
 		$this->load->view('logbookadvanced/callbookdialog');
 	}
+
+	public function dbtoolsDialog() {
+		$this->load->view('logbookadvanced/dbtoolsdialog');
+	}
+
+	public function checkDb() {
+		if(!clubaccess_check(9)) return;
+
+		$type = $this->input->post('type', true);
+
+		$this->load->model('logbookadvanced_model');
+		$result = $this->logbookadvanced_model->runCheckDb($type);
+		header("Content-Type: application/json");
+		print json_encode($result);
+	}
 }
