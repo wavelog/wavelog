@@ -2162,6 +2162,7 @@ class Logbook_model extends CI_Model {
 		  COL_RST_SENT,
 		  COL_SAT_NAME,
 		  COL_SAT_MODE,
+		  COL_PROP_MODE,
 		  COL_QSL_RCVD,
 		  COL_GRIDSQUARE,
 		  COL_MY_GRIDSQUARE,
