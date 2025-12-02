@@ -8,10 +8,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-12-01 13:16+0000\n"
-"PO-Revision-Date: 2025-12-02 08:55+0000\n"
+"PO-Revision-Date: 2025-12-03 07:44+0000\n"
 "Last-Translator: Viliam Petrik <tatralom@gmail.com>\n"
-"Language-Team: Slovak <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/sk/>\n"
+"Language-Team: Slovak <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2113,11 +2113,11 @@ msgstr "Možnosti uložené"
 #: application/controllers/Options.php:129
 #: application/views/options/sidebar.php:9
 msgid "Hams Of Note"
-msgstr ""
+msgstr "Hams Of Note"
 
 #: application/controllers/Options.php:144
 msgid "Hams-Of-Note URL changed to "
-msgstr ""
+msgstr "Hams-Of-Note URL sa zmenila na "
 
 #: application/controllers/Options.php:180
 msgid "de continent changed to "
@@ -2167,21 +2167,22 @@ msgstr "Testovací e-mail odoslaný. Nastavenia e-mailu sa zdajú byť správne.
 #: application/controllers/Options.php:389
 #: application/views/options/sidebar.php:8
 msgid "Maptiles Server"
-msgstr ""
+msgstr "Mapový server"
 
 #: application/controllers/Options.php:448
 #, php-format
 msgid ""
 "Maptile cache could not be removed. Delete the folder manually. Path: %s"
 msgstr ""
+"Mapovú cache sa nepodarilo odstrániť. Odstráň priečinok manuálne. Cesta: %s"
 
 #: application/controllers/Options.php:452
 msgid "Maptile Options saved!"
-msgstr ""
+msgstr "Možnosti mapového servera boli uložené!"
 
 #: application/controllers/Options.php:454
 msgid "Maptile Options could not be saved!"
-msgstr ""
+msgstr "Možnosti mapového servera sa nepodarilo uložiť!"
 
 #: application/controllers/Options.php:465
 #: application/controllers/Options.php:475
@@ -2194,19 +2195,19 @@ msgstr "Záhlavie informácií o verzii zmenené na"
 
 #: application/controllers/Options.php:485
 msgid "Version Info Mode changed to"
-msgstr ""
+msgstr "Režim informácií o verzii zmenený na"
 
 #: application/controllers/Options.php:490
 msgid "Version Info Custom Text saved!"
-msgstr ""
+msgstr "Úspešne uložený vlastný text s informáciami o verzii!"
 
 #: application/controllers/Options.php:501
 msgid "Version Info will be shown to all users again"
-msgstr ""
+msgstr "Informácie o verzii sa opäť zobrazia všetkým používateľom"
 
 #: application/controllers/Options.php:509
 msgid "Version Info will not be shown to any user"
-msgstr ""
+msgstr "Informácie o verzii sa nebudú zobrazovať žiadnemu používateľovi"
 
 #: application/controllers/Oqrs.php:42 application/controllers/Staticmap.php:20
 #: application/controllers/Staticmap.php:25
@@ -2332,7 +2333,7 @@ msgstr "Na prístup k tejto URL adrese sa musíte prihlásiť."
 
 #: application/controllers/Qso.php:743
 msgid "Call Transfer"
-msgstr ""
+msgstr "Prenos volacej značky"
 
 #: application/controllers/Qso.php:750
 msgid "No callsign provided."
@@ -2566,6 +2567,8 @@ msgid ""
 "QSOs unconfirmed on LoTW, but the callsign has uploaded to LoTW after QSO "
 "date"
 msgstr ""
+"Spojenie nepotvrdené na LoTW, ale volacia značka bola nahratá na LoTW po "
+"dátume QSO"
 
 #: application/controllers/Staticmap.php:152
 #: application/controllers/Visitor.php:76
@@ -2935,7 +2938,7 @@ msgstr "LoTW SAT aktualizácia"
 
 #: application/controllers/Update.php:667
 msgid "Update of Hams of Note"
-msgstr ""
+msgstr "Update Hams of Note"
 
 #: application/controllers/Update.php:707
 msgid "VUCC Grid file update complete. Result: "
@@ -3278,7 +3281,7 @@ msgstr "Používateľský slug nešpecifikovaný"
 
 #: application/controllers/Widgets.php:171
 msgid "User has on-air widget disabled"
-msgstr ""
+msgstr "Používateľ má deaktivovaný widget naživo"
 
 #: application/controllers/Widgets.php:229
 msgid ""
@@ -3448,7 +3451,7 @@ msgstr ""
 
 #: application/models/Logbook_model.php:1341
 msgid "Station ID not allowed"
-msgstr ""
+msgstr "ID stanice nie je povolené"
 
 #: application/models/Logbook_model.php:1346
 msgid "No Call given"
@@ -3504,17 +3507,17 @@ msgstr ""
 #: application/models/Logbook_model.php:4972
 #: application/models/Logbook_model.php:4975
 msgid "the qslrdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "qslrdate je neplatné (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:4983
 #: application/models/Logbook_model.php:4986
 msgid "the qslsdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "qslsdate je neplatné (RRRRMMDD)"
 
 #: application/models/Logbook_model.php:5044
 #: application/models/Logbook_model.php:5047
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "clublog_qso_upload_date je neplatné (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:5419
 #: application/views/simplefle/index.php:41
@@ -4864,7 +4867,7 @@ msgstr ""
 "Wavelog-u."
 
 #: application/views/adif/import.php:380
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "An example for a tool to export the POTA hunter log in ADIF format is %s "
 "made by AF0G and available on GitHub."
@@ -6541,11 +6544,11 @@ msgstr "SAT"
 
 #: application/views/awards/pl_polska/index.php:3
 msgid "Polish Voivodeships"
-msgstr ""
+msgstr "Poľské vojvodstvá"
 
 #: application/views/awards/pl_polska/index.php:4
 msgid "Hover over a voivodeship"
-msgstr ""
+msgstr "Kurzor nad vojvodstvo"
 
 #: application/views/awards/pl_polska/index.php:38
 msgid ""
@@ -6553,6 +6556,9 @@ msgid ""
 "contacts with stations operating from all 16 Polish voivodeships "
 "(provinces). Valid from January 1, 1999."
 msgstr ""
+"Diplom Polska je vydávaná Poľskou amatérskou rádiovou úniou (PZK) za "
+"spojenia so stanicami pôsobiacimi zo všetkých 16 poľských vojvodstiev "
+"(provincií). Platné od 1. januára 1999."
 
 #: application/views/awards/pl_polska/index.php:39
 msgid ""
@@ -6560,29 +6566,34 @@ msgid ""
 "(RTTY/PSK/FSK), and individual bands (160M-2M). Classes: Basic (1 QSO/voiv), "
 "Bronze (3), Silver (7), Gold (12). All 16 voivodeships required."
 msgstr ""
+"Kategórie diplomu: MIXED (všetky módy/pásma), PHONE (SSB/AM/FM/SSTV), CW, "
+"DIGI (RTTY/PSK/FSK) a jednotlivé pásma (160M-2M). Triedy: Basic (1 QSO/vojv.)"
+", Bronze (3), Silver (7), Gold (12). Vyžaduje sa všetkých 16 vojvodstiev."
 
 #: application/views/awards/pl_polska/index.php:40
 #, php-format
 msgid "Official rules and information: %s"
-msgstr ""
+msgstr "Oficiálne pravidlá a informácie: %s"
 
 #: application/views/awards/pl_polska/index.php:40
 msgid "PZK Polska Award Rules"
-msgstr ""
+msgstr "PZK Polska Award pravidlá"
 
 #: application/views/awards/pl_polska/index.php:41
 msgid ""
 "Requirements: COL_STATE (voivodeship code), COL_DXCC=269 (Poland), QSO date "
 ">= 1999-01-01. No cross-band/cross-mode/repeater contacts."
 msgstr ""
+"Požiadavky: COL_STATE (kód vojvodstva), COL_DXCC=269 (Poľsko), QSO dátum >= "
+"1999-01-01. Žiadne cross-band/cross-mode/repeater spojenia."
 
 #: application/views/awards/pl_polska/index.php:54
 msgid "Station Logbook"
-msgstr ""
+msgstr "Denník stanice"
 
 #: application/views/awards/pl_polska/index.php:62
 msgid "Confirmation methods"
-msgstr ""
+msgstr "Metódy potvrdenia"
 
 #: application/views/awards/pl_polska/index.php:63
 msgid ""
@@ -6590,10 +6601,13 @@ msgid ""
 "accepted for award applications. Other digital confirmations are shown here "
 "for tracking purposes only."
 msgstr ""
+"Podľa oficiálnych pravidiel na udeľovanie diplomov sú prijímané papierové "
+"QSL lístky alebo potvrdenia LoTW. Ostatné digitálne potvrdenia sú tu "
+"zobrazené len na sledovacie účely."
 
 #: application/views/awards/pl_polska/index.php:106
 msgid "Award Categories"
-msgstr ""
+msgstr "Kategórie diplomu"
 
 #: application/views/awards/pl_polska/index.php:108
 msgid ""
@@ -10530,7 +10544,7 @@ msgstr "Aktualizácia TLE"
 
 #: application/views/debug/index.php:563
 msgid "Hams Of Note update"
-msgstr ""
+msgstr "Aktualizácia Hams Of Note"
 
 #: application/views/debug/index.php:568
 msgid "HAMqsl"
@@ -12025,7 +12039,7 @@ msgstr "Fórum"
 #: application/views/interface_assets/header.php:537
 #, php-format
 msgid "Stop impersonate and switch back to %s"
-msgstr ""
+msgstr "Zruš impersonáciu a prepnite sa späť na %s"
 
 #: application/views/interface_assets/header.php:538
 #, php-format
@@ -13928,7 +13942,7 @@ msgstr "E-mail bude odoslaný na adresu definovanú v nastaveniach vášho účt
 
 #: application/views/options/hon.php:38
 msgid "Provider for Hams Of Note"
-msgstr ""
+msgstr "Poskytovateľ pre Hams Of Note"
 
 #: application/views/options/hon.php:39
 #, php-format
@@ -13936,6 +13950,8 @@ msgid ""
 "The URL which provides the Hams Of Note List. See example and how it works "
 "here %s"
 msgstr ""
+"URL, ktorá poskytuje zoznam Hams Of Note. Pozri príklad a ako to funguje tu "
+"%s"
 
 #: application/views/options/hon.php:39
 msgid "Wiki"
@@ -13944,13 +13960,15 @@ msgstr "Wiki"
 #: application/views/options/hon.php:41
 #, php-format
 msgid "URL of the Hams Of Note List. e.g. %s"
-msgstr ""
+msgstr "URL Hams Of Note. napr. %s"
 
 #: application/views/options/index.php:13
 msgid ""
 "Wavelog Options are global settings used for all users of the installation, "
 "which are overridden if there's a setting on a user level."
 msgstr ""
+"Možnosti Wavelogu sú globálne nastavenia používané pre všetkých používateľov "
+"inštalácie, ktoré sú prepísané, ak je nastavenie na úrovni používateľa."
 
 #: application/views/options/maptiles.php:49
 #, php-format
@@ -13974,7 +13992,7 @@ msgstr ""
 
 #: application/views/options/maptiles.php:54
 msgid "Maptiles Server URL"
-msgstr ""
+msgstr "URL adresa mapového servera"
 
 #: application/views/options/maptiles.php:56
 msgid "URL of the map server which serves the maptiles."
@@ -14332,235 +14350,244 @@ msgid ""
 "Warning! Are you sure you want to add the marked OQRS request(s) to the "
 "queue?"
 msgstr ""
+"Varovanie! Ste si istý, že chcete pridať označené OQRS požiadavky do frontu?"
 
 #: application/views/oqrs/showrequests.php:15
 msgid "OQRS Status Information"
-msgstr ""
+msgstr "Informácie o stave OQRS"
 
 #: application/views/oqrs/showrequests.php:16
 msgid "Warning! Are you sure you want to delete the QSO match?"
-msgstr ""
+msgstr "Varovanie! Ste si istý, že chcete vymazať zhodu QSO?"
 
 #: application/views/oqrs/showrequests.php:42
 #: application/views/oqrs/showrequests.php:90
 msgid "Request callsign"
-msgstr ""
+msgstr "Požiadaj volaciu značku"
 
 #: application/views/oqrs/showrequests.php:47
 msgid "OQRS Status"
-msgstr ""
+msgstr "Stav OQRS"
 
 #: application/views/oqrs/showrequests.php:52
 #: application/views/oqrs/status_info.php:18
 msgid "Done / sent"
-msgstr ""
+msgstr "Hotovo / odoslané"
 
 #: application/views/oqrs/showrequests.php:53
 #: application/views/oqrs/status_info.php:22
 msgid "Pending"
-msgstr ""
+msgstr "Čakajúce"
 
 #: application/views/oqrs/showrequests.php:54
 #: application/views/oqrs/status_info.php:26
 msgid "Rejected"
-msgstr ""
+msgstr "Zamietnuté"
 
 #: application/views/oqrs/showrequests.php:71
 msgid "With selected"
-msgstr ""
+msgstr "So zvolenými"
 
 #: application/views/oqrs/showrequests.php:73
 msgid "Mark as done"
-msgstr ""
+msgstr "Označ ako hotové"
 
 #: application/views/oqrs/showrequests.php:74
 msgid "Reject"
-msgstr ""
+msgstr "Odmietnuť"
 
 #: application/views/oqrs/showrequests.php:85
 msgid "Time of request"
-msgstr ""
+msgstr "Čas žiadosti"
 
 #: application/views/oqrs/showrequests.php:87
 msgid "QSO Time"
-msgstr ""
+msgstr "Čas QSO"
 
 #: application/views/oqrs/showrequests.php:94
 msgid "QSL route"
-msgstr ""
+msgstr "QSL cesta"
 
 #: application/views/oqrs/showrequests.php:95
 msgid "Check log"
-msgstr ""
+msgstr "Skontroluj záznam v logu"
 
 #: application/views/oqrs/showrequests.php:96
 msgid "QSO Match"
-msgstr ""
+msgstr "Zhoda QSO"
 
 #: application/views/oqrs/status_info.php:11
 msgid "The request is currently open, and needs to be reviewed by you."
-msgstr ""
+msgstr "Žiadosť je momentálne otvorená a potrebuje byť preskúmaná tebou."
 
 #: application/views/oqrs/status_info.php:15
 msgid ""
 "The request is not in the log, so you need to check your log and process the "
 "request."
 msgstr ""
+"Žiadosť nie je v logu, takže musíš skontrolovať log a spracovať žiadosť."
 
 #: application/views/oqrs/status_info.php:19
 msgid "The request has been processed and the QSL has been sent."
-msgstr ""
+msgstr "Žiadosť bola spracovaná a QSL bola odoslaná."
 
 #: application/views/oqrs/status_info.php:23
 msgid "The request is still being processed."
-msgstr ""
+msgstr "Žiadosť sa stále spracováva."
 
 #: application/views/oqrs/status_info.php:27
 msgid "The request has been rejected and will not be processed."
-msgstr ""
+msgstr "Žiadosť bola zamietnutá a nebude spracovaná."
 
 #: application/views/public_search/empty.php:2
 #: application/views/public_search/result.php:2
 msgid "Searching for"
-msgstr ""
+msgstr "Hľadá sa"
 
 #: application/views/qrbcalc/index.php:3
 msgid "Locator 1"
-msgstr ""
+msgstr "Lokátor 1"
 
 #: application/views/qrbcalc/index.php:10
 msgid "Locator 2"
-msgstr ""
+msgstr "Lokátor 2"
 
 #: application/views/qrbcalc/index.php:20
 msgid "Calculate"
-msgstr ""
+msgstr "Vypočítať"
 
 #: application/views/qrz/export.php:27
 msgid "The next automatic Upload to QRZ will happen at: "
-msgstr ""
+msgstr "Ďalšie automatické nahrávanie na QRZ sa uskutoční o: "
 
 #: application/views/qrz/export.php:28
 msgid ""
 "Here you can see all QSOs which have not been previously uploaded to a QRZ "
 "logbook."
 msgstr ""
+"Tu môžeš vidieť všetky QSO, ktoré neboli predtým nahrané do QRZ denníka."
 
 #: application/views/qrz/export.php:29
 msgid ""
 "You need to set a QRZ Logbook API key in your station profile. Only station "
 "profiles with an API Key set are displayed."
 msgstr ""
+"Musíš nastaviť API kľúč denníka QRZ vo svojom profile stanice. Zobrazujú sa "
+"iba profily staníc s nastaveným API kľúčom."
 
 #: application/views/qrz/export.php:74
 msgid "The next automatic Download from QRZ-QSLs will happen at: "
-msgstr ""
+msgstr "Ďalšie automatické stiahnutie z QRZ-QSL sa uskutoční o: "
 
 #: application/views/qrz/export.php:83
 msgid "Download QSLs from QRZ Logbook"
-msgstr ""
+msgstr "Stiahni QSL z denníka QRZ"
 
 #: application/views/qrz/export.php:109
 msgid "Mark QSOs as exported to QRZ Logbook"
-msgstr ""
+msgstr "Označ QSOs ako exportované do QRZ Logbooku"
 
 #: application/views/qrz/mark_qrz.php:16
 msgid "The QSOs are marked as exported to QRZ Logbook."
-msgstr ""
+msgstr "QSOs sú označené ako exportované do QRZ Logbook."
 
 #: application/views/qslcard/confirmationresult.php:16
 msgid "QSO date"
-msgstr ""
+msgstr "Dátum QSO"
 
 #: application/views/qslcard/confirmationresult.php:20
 msgid "Confirmation date"
-msgstr ""
+msgstr "Potvrdené dňa"
 
 #: application/views/qslcard/confirmationresult.php:21
 #: application/views/user/index.php:30
 msgid "Type"
-msgstr ""
+msgstr "Typ"
 
 #: application/views/qslcard/confirmationresult.php:54
 msgid "No confirmations found."
-msgstr ""
+msgstr "Neboli nájdené žiadne potvrdenia."
 
 #: application/views/qslcard/confirmations.php:6
 msgid ""
 "A maximum of 1000 rows are shown in the table. This is for performance "
 "reasons."
-msgstr ""
+msgstr "V tabuľke je zobrazených maximálne 1000 riadkov. Je to z dôvodu výkonu."
 
 #: application/views/qslcard/confirmations.php:11
 msgid "Confirmation type"
-msgstr ""
+msgstr "Typ potvrdenia"
 
 #: application/views/qslcard/index.php:10
 #, php-format
 msgid "You are using %s of disk space to store QSL Card assets"
-msgstr ""
+msgstr "Používaš %s miesta na disku na ukladanie QSL kariet"
 
 #: application/views/qslcard/index.php:17
 msgid "List View"
-msgstr ""
+msgstr "Zobraziť zoznam"
 
 #: application/views/qslcard/index.php:18
 msgid "Gallery View"
-msgstr ""
+msgstr "Zobrazenie galérie"
 
 #: application/views/qslcard/index.php:78
 #: application/views/qslcard/index.php:126
 msgid "Add Qsos"
-msgstr ""
+msgstr "Pridať spojenia"
 
 #: application/views/qslcard/searchresult.php:193
 msgid "Add to QSL"
-msgstr ""
+msgstr "Pridať na QSL"
 
 #: application/views/qslmanagement/index.php:13
 msgid "Incoming QSL Cards"
-msgstr ""
+msgstr "Došlé QSL karty"
 
 #: application/views/qslmanagement/index.php:25
 msgid "Report"
-msgstr ""
+msgstr "Report"
 
 #: application/views/qslmanagement/index.php:26
 msgid "Option"
-msgstr ""
+msgstr "Možnosť"
 
 #: application/views/qslmanagement/index.php:46
 msgid "Outgoing QSL Cards"
-msgstr ""
+msgstr "Odoslané QSL karty"
 
 #: application/views/qslprint/index.php:16
 msgid "Export Requested QSLs for Printing"
-msgstr ""
+msgstr "Exportovať požadované QSL na tlač"
 
 #: application/views/qslprint/index.php:31
 msgid "Show Band or Frequency:"
-msgstr ""
+msgstr "Zobraziť pásmo alebo frekvenciu:"
 
 #: application/views/qslprint/index.php:35
 msgid "Band & Frequency"
-msgstr ""
+msgstr "Pásmo a frekvencia"
 
 #: application/views/qslprint/index.php:39
 msgid ""
 "Here you can export requested QSLs as CSV or ADIF files for printing and, "
 "optionally, mark them as sent."
 msgstr ""
+"Tu môžete exportovať požadované QSL ako CSV alebo ADIF súbory na tlač a, "
+"voliteľne, označiť ich ako odoslané."
 
 #: application/views/qslprint/index.php:41
 msgid ""
 "Requested QSLs are any QSOs with a value of 'Requested' or 'Queued' in their "
 "'QSL Sent' field."
 msgstr ""
+"Požadované QSL sú všetky QSO s hodnotou 'Requested' alebo 'Queued' v poli "
+"'QSL Sent'."
 
 #: application/views/qslprint/index.php:42
 #: application/views/qslprint/qslprint.php:34
 msgid "Previous QSL"
-msgstr ""
+msgstr "Predchádzajúci QSL"
 
 #: application/views/qslprint/index.php:42
 #, php-format
@@ -14568,310 +14595,314 @@ msgid ""
 "The column %s shows how many QSLs have been sent to the same station before "
 "on the same band and mode."
 msgstr ""
+"Stĺpec %s ukazuje, koľko QSL bolo predtým odoslaných rovnakej stanici na "
+"rovnakom pásme a v rovnakom móde."
 
 #: application/views/qslprint/qslprint.php:33
 #: application/views/qslprint/qsolist.php:17
 msgid "Send Method"
-msgstr ""
+msgstr "Spôsob odoslania"
 
 #: application/views/qslprint/qslprint.php:35
 msgid "Mark as sent"
-msgstr ""
+msgstr "Označiť ako odoslané"
 
 #: application/views/qslprint/qslprint.php:36
 msgid "Remove"
-msgstr ""
+msgstr "Odstrániť"
 
 #: application/views/qslprint/qslprint.php:37
 #: application/views/simplefle/index.php:147
 msgid "QSO List"
-msgstr ""
+msgstr "Zoznam QSO"
 
 #: application/views/qslprint/qslprint.php:78
 msgid "Mark QSOs for a certain QSL Method:"
-msgstr ""
+msgstr "Označ QSOs pre určitú QSL metódu:"
 
 #: application/views/qslprint/qslprint.php:86
 msgid "Mark all QSOs for the chosen QSL method"
-msgstr ""
+msgstr "Označ všetky spojenia pre zvolenú metódu QSL"
 
 #: application/views/qslprint/qslprint.php:87
 msgid "Unmark every QSO"
-msgstr ""
+msgstr "Zruš označenie každého QSO"
 
 #: application/views/qslprint/qslprint.php:92
 msgid "Update QSOs"
-msgstr ""
+msgstr "Aktualizuj spojenia"
 
 #: application/views/qslprint/qslprint.php:95
 msgid "Mark selected QSOs as sent"
-msgstr ""
+msgstr "Označ vybrané QSO ako odoslané"
 
 #: application/views/qslprint/qslprint.php:96
 msgid "Remove selected QSOs from the queue"
-msgstr ""
+msgstr "Odstrániť vybrané QSO z fronty"
 
 #: application/views/qslprint/qslprint.php:97
 msgid "Export selected QSOs to ADIF-file"
-msgstr ""
+msgstr "Exportovať vybrané spojenia do ADIF súboru"
 
 #: application/views/qslprint/qslprint.php:102
 msgid "Export CSV-file"
-msgstr ""
+msgstr "Exportovať CSV súbor"
 
 #: application/views/qslprint/qslprint.php:102
 msgid "Export requested QSLs to CSV-file"
-msgstr ""
+msgstr "Exportovať požadované QSL do súboru CSV"
 
 #: application/views/qslprint/qslprint.php:103
 msgid "Export ADIF"
-msgstr ""
+msgstr "Exportovať ADIF"
 
 #: application/views/qslprint/qslprint.php:103
 msgid "Export requested QSLs to ADIF-file"
-msgstr ""
+msgstr "Exportovať požadované QSL do ADIF súboru"
 
 #: application/views/qslprint/qslprint.php:104
 msgid "Mark QSLs as printed"
-msgstr ""
+msgstr "Označ QSL ako vytlačené"
 
 #: application/views/qslprint/qslprint.php:104
 msgid "Mark requested QSLs as sent"
-msgstr ""
+msgstr "Označ QSL ako odoslané"
 
 #: application/views/qslprint/qslprint.php:109
 msgid "No QSLs to print were found!"
-msgstr ""
+msgstr "Neboli nájdené žiadne QSL na tlač!"
 
 #: application/views/qslprint/qsolist.php:209
 msgid ""
 "No additional QSOs were found. That means they are probably already in the "
 "queue."
 msgstr ""
+"Žiadne ďalšie spojenia sa nenašli. To znamená, že sú pravdepodobne už v "
+"poradovníku."
 
 #: application/views/qso/award_tabs.php:2
 msgid "Showing summary for DXCC"
-msgstr ""
+msgstr "Zobrazenie súhrnu pre DXCC"
 
 #: application/views/qso/award_tabs.php:3
 msgid "Showing summary for US State"
-msgstr ""
+msgstr "Zobraziť súhrn pre americký štát"
 
 #: application/views/qso/award_tabs.php:4
 msgid "Showing summary for CQ zone"
-msgstr ""
+msgstr "Zobraziť zhrnutie pre CQ zónu"
 
 #: application/views/qso/award_tabs.php:5
 msgid "Showing summary for WWFF"
-msgstr ""
+msgstr "Zobrazenie zhrnutia pre WWFF"
 
 #: application/views/qso/award_tabs.php:6
 msgid "Showing summary for POTA"
-msgstr ""
+msgstr "Zobrazenie súhrnu pre POTA"
 
 #: application/views/qso/award_tabs.php:7
 msgid "Showing summary for SOTA"
-msgstr ""
+msgstr "Zobrazenie zhrnutia pre SOTA"
 
 #: application/views/qso/award_tabs.php:8
 msgid "Showing summary for IOTA"
-msgstr ""
+msgstr "Zobraziť súhrn pre IOTA"
 
 #: application/views/qso/award_tabs.php:9
 msgid "Showing summary for DOK"
-msgstr ""
+msgstr "Zobrazenie súhrnu pre DOK"
 
 #: application/views/qso/award_tabs.php:10
 msgid "Showing summary for satellite QSOs with"
-msgstr ""
+msgstr "Zobrazenie súhrnu pre satelitné spojenia s"
 
 #: application/views/qso/award_tabs.php:11
 msgid "Showing summary for continent"
-msgstr ""
+msgstr "Zobrazenie súhrnu pre kontinent"
 
 #: application/views/qso/award_tabs.php:12
 msgid "Showing summary for gridsquare"
-msgstr ""
+msgstr "Zobrazenie súhrnu pre lokátorový štvorec"
 
 #: application/views/qso/award_tabs.php:13
 msgid "State input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Na zobrazenie súhrnu je potrebné vyplniť štát!"
 
 #: application/views/qso/award_tabs.php:14
 msgid "SOTA input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Na zobrazenie súhrnu je potrebné vyplniť SOT-u!"
 
 #: application/views/qso/award_tabs.php:15
 msgid "POTA input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Na zobrazenie súhrnu je potrebné vyplniť POT-u!"
 
 #: application/views/qso/award_tabs.php:16
 msgid "IOTA input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Na zobrazenie súhrnu je potrebné vyplniť IOT-u!"
 
 #: application/views/qso/award_tabs.php:17
 msgid "DOK input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Na zobrazenie súhrnu je potrebné vyplniť DOK!"
 
 #: application/views/qso/award_tabs.php:18
 msgid "WWFF input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Na zobrazenie súhrnu je potrebné vyplniť WWFF!"
 
 #: application/views/qso/award_tabs.php:19
 msgid "Propagation mode needs to be SAT to show a summary!"
-msgstr ""
+msgstr "Na zobrazenie súhrnu musí byť režim šírenia SAT!"
 
 #: application/views/qso/award_tabs.php:20
 msgid "Gridsquare input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Je potrebné zadať lokátorový štvorec, aby sa zobrazilo zhrnutie!"
 
 #: application/views/qso/award_tabs.php:21
 msgid "Summary only shows for the first POTA entered."
-msgstr ""
+msgstr "Zhrnutie sa zobrazuje iba pre prvú zadanú POT-u."
 
 #: application/views/qso/award_tabs.php:22
 msgid "Summary only shows for the first gridsquare entered."
-msgstr ""
+msgstr "Zhrnutie sa zobrazí iba pre prvý zadaný lokátor."
 
 #: application/views/qso/award_tabs.php:23
 msgid "Summary only shows for US states."
-msgstr ""
+msgstr "Zhrnutie sa zobrazuje iba pre americké štáty."
 
 #: application/views/qso/components/share_modal.php:3
 msgid "Post on X"
-msgstr ""
+msgstr "Postuj na X"
 
 #: application/views/qso/components/share_modal.php:6
 msgid "Post on Bluesky"
-msgstr ""
+msgstr "Postuj na Bluesky"
 
 #: application/views/qso/components/share_modal.php:10
 msgid "Toot on Mastodon"
-msgstr ""
+msgstr "Pípanie na Mastodone"
 
 #: application/views/qso/components/winkeysettings.php:5
 #, php-format
 msgid "Function %d - Name"
-msgstr ""
+msgstr "Funkcia %d - Názov"
 
 #: application/views/qso/components/winkeysettings.php:21
 #, php-format
 msgid "Function %d - Macro"
-msgstr ""
+msgstr "Funkcia %d - Makro"
 
 #: application/views/qso/edit_ajax.php:35
 msgid "Sats"
-msgstr ""
+msgstr "Satelity"
 
 #: application/views/qso/edit_ajax.php:53
 msgid "Start Date/Time"
-msgstr ""
+msgstr "Dátum/čas začiatku"
 
 #: application/views/qso/edit_ajax.php:58
 msgid "End Date/Time"
-msgstr ""
+msgstr "Dátum/čas ukončenia"
 
 #: application/views/qso/edit_ajax.php:78
 msgid "RX Frequency"
-msgstr ""
+msgstr "RX frekvencia"
 
 #: application/views/qso/edit_ajax.php:101
 msgid "RX Band"
-msgstr ""
+msgstr "RX pásmo"
 
 #: application/views/qso/edit_ajax.php:136 application/views/qso/index.php:422
 msgid "Give power value in Watts. Include only numbers in the input."
-msgstr ""
+msgstr "Uveď výkonovú hodnotu vo wattoch."
 
 #: application/views/qso/edit_ajax.php:136 application/views/qso/index.php:420
 #: application/views/reg1test/index.php:114
 #: application/views/view_log/qso.php:707
 msgid "Transmit Power (W)"
-msgstr ""
+msgstr "Vysielací výkon (W)"
 
 #: application/views/qso/edit_ajax.php:165
 msgid "Used for VUCC MultiGrids"
-msgstr ""
+msgstr "Používa sa pre VUCC MultiGrids"
 
 #: application/views/qso/edit_ajax.php:221 application/views/qso/index.php:534
 msgid "Antenna Path"
-msgstr ""
+msgstr "Cesta signálu od antény"
 
 #: application/views/qso/edit_ajax.php:224 application/views/qso/index.php:537
 #: application/views/view_log/qso.php:168
 msgid "Greyline"
-msgstr ""
+msgstr "Greyline"
 
 #: application/views/qso/edit_ajax.php:225 application/views/qso/index.php:538
 msgid "Other"
-msgstr ""
+msgstr "Iné"
 
 #: application/views/qso/edit_ajax.php:226 application/views/qso/index.php:539
 #: application/views/view_log/qso.php:159
 msgid "Short Path"
-msgstr ""
+msgstr "Krátka cesta"
 
 #: application/views/qso/edit_ajax.php:227 application/views/qso/index.php:540
 #: application/views/view_log/qso.php:162
 msgid "Long Path"
-msgstr ""
+msgstr "Dlhá cesta"
 
 #: application/views/qso/edit_ajax.php:284
 msgid "Sat Name"
-msgstr ""
+msgstr "Názov satelitu"
 
 #: application/views/qso/edit_ajax.php:289
 msgid "Sat Mode"
-msgstr ""
+msgstr "SAT mód"
 
 #: application/views/qso/edit_ajax.php:294 application/views/qso/index.php:664
 msgid "Antenna Azimuth (°)"
-msgstr ""
+msgstr "Azimut antény (°)"
 
 #: application/views/qso/edit_ajax.php:294 application/views/qso/index.php:666
 msgid "Antenna azimuth in decimal degrees."
-msgstr ""
+msgstr "Azimut antény v desatinných stupňoch."
 
 #: application/views/qso/edit_ajax.php:299 application/views/qso/index.php:670
 msgid "Antenna Elevation (°)"
-msgstr ""
+msgstr "Elevácia antény (°)"
 
 #: application/views/qso/edit_ajax.php:299 application/views/qso/index.php:672
 msgid "Antenna elevation in decimal degrees."
-msgstr ""
+msgstr "Elevácia antény v desatinných stupňoch."
 
 #: application/views/qso/edit_ajax.php:361 application/views/qso/index.php:554
 #: application/views/station_profile/create.php:103
 #: application/views/station_profile/edit.php:141
 msgid "Station County"
-msgstr ""
+msgstr "Okres stanice"
 
 #: application/views/qso/edit_ajax.php:396 application/views/qso/index.php:328
 #: application/views/qso/index.php:621 application/views/user/edit.php:710
 #: application/views/view_log/qso.php:447
 #: application/views/view_log/qso.php:747
 msgid "SIG Info"
-msgstr ""
+msgstr "SIG Info"
 
 #: application/views/qso/edit_ajax.php:411
 #: application/views/qso/edit_ajax.php:530 application/views/qso/index.php:681
 #: application/views/qso/index.php:725
 msgid "Note: Gets exported to third-party services."
-msgstr ""
+msgstr "Poznámka: Bude exportované do služieb tretích strán."
 
 #: application/views/qso/edit_ajax.php:453
 msgid "Sent Method"
-msgstr ""
+msgstr "Metóda odoslania"
 
 #: application/views/qso/edit_ajax.php:456
 #: application/views/qso/edit_ajax.php:489 application/views/qso/index.php:702
 #: application/views/qso/index.php:705
 msgid "Method"
-msgstr ""
+msgstr "Metóda"
 
 #: application/views/qso/edit_ajax.php:466
 msgid "Sent Via"
-msgstr ""
+msgstr "Odoslané cez"
 
 #: application/views/qso/edit_ajax.php:480
 #: application/views/qso/edit_ajax.php:521
@@ -14880,69 +14911,69 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:622
 #: application/views/qso/edit_ajax.php:648
 msgid "Verified (Match)"
-msgstr ""
+msgstr "Overené (zhoda)"
 
 #: application/views/qso/edit_ajax.php:486
 msgid "Received Method"
-msgstr ""
+msgstr "Metóda prijatia"
 
 #: application/views/qso/edit_ajax.php:527 application/views/qso/index.php:722
 msgid "Get the default message for eQSL, for this station."
-msgstr ""
+msgstr "Získaj predvolenú správu pre eQSL pre túto stanicu."
 
 #: application/views/qso/edit_ajax.php:539
 msgid "Note: Not editable. Only displayed here."
-msgstr ""
+msgstr "Poznámka: Nie je možné upravovať. Iba na zobrazenie tu."
 
 #: application/views/qso/edit_ajax.php:583
 #: application/views/view_log/partial/log_ajax.php:510
 #: application/views/view_log/partial/log_ajax.php:567
 #: src/QSLManager/QSO.php:583 src/QSLManager/QSO.php:729
 msgid "Modified"
-msgstr ""
+msgstr "Upravené"
 
 #: application/views/qso/edit_ajax.php:667
 msgid "Change Station Profile"
-msgstr ""
+msgstr "Zmeniť profil stanice"
 
 #: application/views/qso/edit_ajax.php:707
 msgid "Exchange (R)"
-msgstr ""
+msgstr "Výmena (R)"
 
 #: application/views/qso/edit_ajax.php:712
 msgid "Exchange (S)"
-msgstr ""
+msgstr "Výmena (S)"
 
 #: application/views/qso/edit_ajax.php:724
 #: application/views/search/search_result_ajax.php:488
 #: application/views/view_log/partial/log.php:159
 #: application/views/view_log/partial/log_ajax.php:702
 msgid "Delete QSO"
-msgstr ""
+msgstr "Vymazať QSO"
 
 #: application/views/qso/edit_ajax.php:727
 msgid "Save changes"
-msgstr ""
+msgstr "Uložiť zmeny"
 
 #: application/views/qso/index.php:29
 msgid "TimeOff is less than TimeOn"
-msgstr ""
+msgstr "Čas vypnutia je kratší ako čas zapnutia"
 
 #: application/views/qso/index.php:30 application/views/qso/index.php:886
 msgid "Previous Contacts"
-msgstr ""
+msgstr "Predchádzajúce spojenia"
 
 #: application/views/qso/index.php:31
 msgid "times worked before"
-msgstr ""
+msgstr "krát urobený predtým"
 
 #: application/views/qso/index.php:32
 msgid "Not worked before"
-msgstr ""
+msgstr "Predtým neurobené"
 
 #: application/views/qso/index.php:33
 msgid "more"
-msgstr ""
+msgstr "viac"
 
 #: application/views/qso/index.php:34
 msgid "less"
@@ -15237,55 +15268,55 @@ msgstr "Adresa QTH používanej počas contestu."
 
 #: application/views/reg1test/index.php:80
 msgid "Contest Address 2"
-msgstr ""
+msgstr "Contestová adresa 2"
 
 #: application/views/reg1test/index.php:84
 msgid "Operator Address 1"
-msgstr ""
+msgstr "Adresa operátora 1"
 
 #: application/views/reg1test/index.php:86
 msgid "Address of the responsible operator."
-msgstr ""
+msgstr "Adresa zodpovedného operátora."
 
 #: application/views/reg1test/index.php:89
 msgid "Operator Address 2"
-msgstr ""
+msgstr "Adresa operátora 2"
 
 #: application/views/reg1test/index.php:93
 msgid "Operator Address Postalcode"
-msgstr ""
+msgstr "PSČ v adrese operátora"
 
 #: application/views/reg1test/index.php:97
 msgid "Operator Address City"
-msgstr ""
+msgstr "Mesto v adrese operátora"
 
 #: application/views/reg1test/index.php:101
 msgid "Operator Address Country"
-msgstr ""
+msgstr "Krajina v adrese operátora"
 
 #: application/views/reg1test/index.php:105
 msgid "Operator Phone Number"
-msgstr ""
+msgstr "Telefónne číslo operátora"
 
 #: application/views/reg1test/index.php:109
 msgid "Transmit Equipment Description"
-msgstr ""
+msgstr "Popis vysielacieho zariadenia"
 
 #: application/views/reg1test/index.php:111
 msgid "Short description of the used equipment."
-msgstr ""
+msgstr "Krátky popis použitého vybavenia."
 
 #: application/views/reg1test/index.php:116
 msgid "TX Power during the contest in Watt."
-msgstr ""
+msgstr "Výstupný výkon počas contestu vo wattoch."
 
 #: application/views/reg1test/index.php:119
 msgid "Receive Equipment Description"
-msgstr ""
+msgstr "Popis príjmového vybavenia"
 
 #: application/views/reg1test/index.php:121
 msgid "If you used another gear for RX, then describe it here."
-msgstr ""
+msgstr "Ak si na prijímanie použil iné zariadenie, opíš to tu."
 
 #: application/views/reg1test/index.php:124
 msgid "Antenna Description"
@@ -15293,7 +15324,7 @@ msgstr "Popis antény"
 
 #: application/views/reg1test/index.php:126
 msgid "What kind of antenna was used."
-msgstr ""
+msgstr "Aká anténa sa použila."
 
 #: application/views/reg1test/index.php:129
 msgid "Antenna Height Above Ground (m)"
@@ -15573,29 +15604,31 @@ msgstr "Lokátor"
 #: application/views/satellite/skedtable.php:39
 #: application/views/sattimers/index.php:45
 msgid "Max Elevation"
-msgstr ""
+msgstr "Max elevácia"
 
 #: application/views/satellite/skedtable.php:85
 msgid "No overlapping passes found. Please check the input parameters."
 msgstr ""
+"Neboli nájdené žiadne prekrývajúce sa prelety. Skontrolujte prosím vstupné "
+"parametre."
 
 #: application/views/satellite/tleinfo.php:6
 #, php-format
 msgid "TLE information for %s (last updated: %s)"
-msgstr ""
+msgstr "Informácie o TLE pre %s (naposledy aktualizované: %s)"
 
 #: application/views/satellite/tleinfo.php:8
 msgid "Delete TLE"
-msgstr ""
+msgstr "Vymazať TLE"
 
 #: application/views/satellite/tleinfo.php:10
 #, php-format
 msgid "No TLE information found for %s"
-msgstr ""
+msgstr "Neboli nájdené žiadne TLE informácie pre %s"
 
 #: application/views/satellite/tleinfo.php:11
 msgid "Add TLE"
-msgstr ""
+msgstr "Pridať TLE"
 
 #: application/views/sattimers/index.php:15
 #, php-format
@@ -15603,23 +15636,24 @@ msgid ""
 "This data comes from %s and is calculated for the current stationlocation "
 "grid %s."
 msgstr ""
+"Tieto údaje pochádzajú z %s a sú vypočítané pre aktuálny lokátor stanice %s."
 
 #: application/views/sattimers/index.php:40
 msgid "Time(d)-Out"
-msgstr ""
+msgstr "Časový limit vypršal"
 
 #: application/views/sattimers/index.php:43
 #: application/views/sattimers/index.php:44
 #: application/views/statistics/antennaanalytics.php:8
 msgid "Azimuth"
-msgstr ""
+msgstr "Azimut"
 
 #: application/views/search/cqzones.php:5
 #: application/views/search/ituzones.php:5
 #: application/views/search/lotw_unconfirmed.php:5
 #: application/views/search/main.php:5
 msgid "Ready to find a QSO?"
-msgstr ""
+msgstr "Pripravený nájsť QSO?"
 
 #: application/views/search/cqzones.php:15
 #: application/views/search/filter.php:4 application/views/search/filter.php:23
@@ -15627,7 +15661,7 @@ msgstr ""
 #: application/views/search/lotw_unconfirmed.php:15
 #: application/views/search/main.php:15
 msgid "Advanced Search"
-msgstr ""
+msgstr "Pokročilé vyhľadávanie"
 
 #: application/views/search/cqzones.php:18
 #: application/views/search/filter.php:26
@@ -15635,7 +15669,7 @@ msgstr ""
 #: application/views/search/lotw_unconfirmed.php:18
 #: application/views/search/main.php:18
 msgid "Incorrect CQ Zones"
-msgstr ""
+msgstr "Nesprávne CQ zóny"
 
 #: application/views/search/cqzones.php:21
 #: application/views/search/filter.php:29
@@ -15643,7 +15677,7 @@ msgstr ""
 #: application/views/search/lotw_unconfirmed.php:21
 #: application/views/search/main.php:21
 msgid "Incorrect ITU Zones"
-msgstr ""
+msgstr "Nesprávne ITU zóny"
 
 #: application/views/search/cqzones.php:24
 #: application/views/search/filter.php:32
@@ -15651,163 +15685,170 @@ msgstr ""
 #: application/views/search/lotw_unconfirmed.php:24
 #: application/views/search/main.php:24
 msgid "QSOs unconfirmed on LoTW"
-msgstr ""
+msgstr "Spojenia nepotvrdené na LoTW"
 
 #: application/views/search/cqzones.php:31
 #: application/views/search/ituzones.php:31
 msgid "Station location:"
-msgstr ""
+msgstr "Umístnenie stanice:"
 
 #: application/views/search/cqzones_result.php:3
 msgid ""
 "The following QSOs were found to have an incorrect CQ zone that this DXCC "
 "normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
+"Nasledujúce spojenia boli zistené s nesprávnou CQ zónou, ktorá normálne "
+"patrí tomuto DXCC (zobrazuje sa maximálne 5000 QSO):"
 
 #: application/views/search/cqzones_result.php:14
 msgid "DXCC CQ Zone"
-msgstr ""
+msgstr "DXCC zóna CQ"
 
 #: application/views/search/cqzones_result.php:51
 #: application/views/search/ituzones_result.php:51
 msgid "No incorrect CQ Zones were found."
-msgstr ""
+msgstr "Neboli nájdené žiadne nesprávne CQ zóny."
 
 #: application/views/search/filter.php:46
 msgid "Save query"
-msgstr ""
+msgstr "Uložiť dotaz"
 
 #: application/views/search/filter.php:53
 msgid "Stored queries"
-msgstr ""
+msgstr "Uložené dotazy"
 
 #: application/views/search/filter.php:72
 msgid "search filter functions"
-msgstr ""
+msgstr "vyhľadávacie funkcie filtrovania"
 
 #: application/views/search/filter.php:82
 msgid "Search Results"
-msgstr ""
+msgstr "Výsledky vyhľadávania"
 
 #: application/views/search/ituzones_result.php:3
 msgid ""
 "The following QSOs were found to have an incorrect ITU zone that this DXCC "
 "normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
+"Nasledujúce QSO boli zistené s nesprávnou ITU zónou, ktorú toto DXCC obvykle "
+"má (je zobrazených maximálne 5000 QSO):"
 
 #: application/views/search/ituzones_result.php:14
 msgid "DXCC ITU Zone"
-msgstr ""
+msgstr "DXCC ITU zóna"
 
 #: application/views/search/lotw_unconfirmed.php:29
 msgid ""
 "The search displays QSOs which are unconfirmed on LoTW, but the callsign "
 "worked has uploaded to LoTW after your QSO date."
 msgstr ""
+"Vyhľadávanie zobrazuje spojenia, ktoré nie sú potvrdené na LoTW, ale volacia "
+"značka, s ktorou ste pracovali, nahrala na LoTW po dátume vášho QSO."
 
 #: application/views/search/lotw_unconfirmed.php:32
 msgid "Station location"
-msgstr ""
+msgstr "Umiestnenie stanice"
 
 #: application/views/search/lotw_unconfirmed_result.php:10
 msgid "Last LoTW upload"
-msgstr ""
+msgstr "Posledný LoTW upload"
 
 #: application/views/search/lotw_unconfirmed_result.php:41
 msgid "No QSOs with outstanding LoTW upload were found."
-msgstr ""
+msgstr "Neboli nájdené žiadne spojenia s nespracovaným nahraním do LoTW."
 
 #: application/views/search/main.php:31
 msgid "Callsign / Gridsquare"
-msgstr ""
+msgstr "Značka / Lokátorový štvorec"
 
 #: application/views/search/result.php:2
 #, php-format
 msgid "Results for %s"
-msgstr ""
+msgstr "Výsledky pre %s"
 
 #: application/views/search/result.php:4
 #, php-format
 msgid "Sorry, but we didn't find any past QSOs with %s"
-msgstr ""
+msgstr "Prepáč, ale nenašli sme žiadne predošlé QSO s %s"
 
 #: application/views/search/result.php:6
 #, php-format
 msgid "Callbook Search for %s"
-msgstr ""
+msgstr "Callbook vyhľadávanie pre %s"
 
 #: application/views/search/result.php:39
 msgid "Not Worked"
-msgstr ""
+msgstr "Neurobené"
 
 #: application/views/search/result.php:58
 msgid "Grid is auto-detected by callbook and probably wrong"
 msgstr ""
+"Lokátor je automaticky zistený pomocou callbooku a pravdepodobne nesprávny"
 
 #: application/views/search/search_result_ajax.php:463
 #: application/views/view_log/partial/log.php:142
 #: application/views/view_log/partial/log_ajax.php:677
 msgid "Mark QSL Sent (Bureau)"
-msgstr ""
+msgstr "Označ QSL odoslané (cez bureau)"
 
 #: application/views/search/search_result_ajax.php:464
 #: application/views/view_log/partial/log.php:143
 #: application/views/view_log/partial/log_ajax.php:678
 msgid "Mark QSL Sent (Direct)"
-msgstr ""
+msgstr "Označ QSL odoslané (direkt)"
 
 #: application/views/search/search_result_ajax.php:471
 #: application/views/view_log/partial/log.php:150
 #: application/views/view_log/partial/log_ajax.php:688
 #: application/views/view_log/qso.php:817
 msgid "Mark QSL Received (Bureau)"
-msgstr ""
+msgstr "Označ QSL prijaté (cez bureau)"
 
 #: application/views/search/search_result_ajax.php:472
 #: application/views/view_log/partial/log.php:151
 #: application/views/view_log/partial/log_ajax.php:689
 #: application/views/view_log/qso.php:819
 msgid "Mark QSL Received (Direct)"
-msgstr ""
+msgstr "Označ QSL prijate (direkt)"
 
 #: application/views/search/search_result_ajax.php:473
 #: application/views/view_log/partial/log.php:152
 #: application/views/view_log/partial/log_ajax.php:679
 #: application/views/view_log/qso.php:827
 msgid "Mark QSL Card Requested (Bureau)"
-msgstr ""
+msgstr "Označ QSL požadované (bureau)"
 
 #: application/views/search/search_result_ajax.php:474
 #: application/views/view_log/partial/log.php:153
 #: application/views/view_log/partial/log_ajax.php:680
 #: application/views/view_log/qso.php:829
 msgid "Mark QSL Card Requested (Direct)"
-msgstr ""
+msgstr "Označ QSL požadované (direkt)"
 
 #: application/views/search/search_result_ajax.php:475
 #: application/views/view_log/partial/log.php:154
 #: application/views/view_log/partial/log_ajax.php:681
 #: application/views/view_log/qso.php:831
 msgid "Mark QSL Card Not Required"
-msgstr ""
+msgstr "Označ ako nepožadované QSL"
 
 #: application/views/search/search_result_ajax.php:482
 #: application/views/view_log/partial/log_ajax.php:696
 msgid "Lookup on QRZ.com"
-msgstr ""
+msgstr "Vyhľadať na QRZ.com"
 
 #: application/views/search/search_result_ajax.php:484
 #: application/views/view_log/partial/log_ajax.php:698
 msgid "Lookup on HamQTH"
-msgstr ""
+msgstr "Vyhľadať na HamQTH"
 
 #: application/views/search/stored_queries.php:9
 msgid "Query"
-msgstr ""
+msgstr "Dopyt"
 
 #: application/views/simplefle/index.php:13
 msgid "Simple Fast Log Entry (FLE)"
-msgstr ""
+msgstr "Jednoduchý rýchly zápis do denníka (FLE)"
 
 #: application/views/simplefle/index.php:14
 msgid ""
@@ -15815,6 +15856,9 @@ msgid ""
 "efficiently. Due to its syntax, only a minimum of input is required to log "
 "many QSOs with as little effort as possible."
 msgstr ""
+"'Systém Fast Log Entry' alebo jednoducho 'FLE' je systém na veľmi rýchle a "
+"efektívne zapisovanie QSO. Vďaka svojej syntaxi je potrebné len minimum "
+"vstupov na to, aby sa zaznamenalo mnoho QSO s čo najmenšou námahou."
 
 #: application/views/simplefle/index.php:15
 msgid ""
@@ -15822,6 +15866,9 @@ msgid ""
 "website. Simple FLE was written by OK2CQR based on DF3CB's FLE and provides "
 "a web interface to log QSOs."
 msgstr ""
+"Pôvodne FLE napísal DF3CB. Na svojej webovej stránke ponúka program pre "
+"Windows. Jednoduché FLE bolo napísané OK2CQR na základe FLE od DF3CB a "
+"poskytuje webové rozhranie na zaznamenávanie QSO."
 
 #: application/views/simplefle/index.php:16
 #, php-format
@@ -15830,108 +15877,119 @@ msgid ""
 "session and now SimpleFLE is also available in Wavelog. Information about "
 "the syntax and how FLE works can be found %s."
 msgstr ""
+"Bežným použitím je, ak musíte importovať svoje papierové denníky z "
+"outdoorovej relácie a teraz je SimpleFLE tiež dostupný vo Wavelog. "
+"Informácie o syntaxe a fungovaní FLE nájdete %s."
 
 #: application/views/simplefle/index.php:17
 #: application/views/simplefle/index.php:184
 msgid "Syntax Help"
-msgstr ""
+msgstr "Pomoc so syntaxou"
 
 #: application/views/simplefle/index.php:18
 msgid "Syntax for FLE"
-msgstr ""
+msgstr "Syntax pre FLE"
 
 #: application/views/simplefle/index.php:19
 msgid "Close and Load Sample Data"
-msgstr ""
+msgstr "Zatvorte a načítajte vzorové dáta"
 
 #: application/views/simplefle/index.php:23
 msgid "Band is missing!"
-msgstr ""
+msgstr "Pásmo chýba!"
 
 #: application/views/simplefle/index.php:24
 msgid "Mode is missing!"
-msgstr ""
+msgstr "Mód chýba!"
 
 #: application/views/simplefle/index.php:25
 msgid "Time is not set!"
-msgstr ""
+msgstr "Čas nie je zadaný!"
 
 #: application/views/simplefle/index.php:26
 msgid "Invalid date"
-msgstr ""
+msgstr "Neplatný dátum"
 
 #: application/views/simplefle/index.php:29
 msgid "Station Call is not selected"
-msgstr ""
+msgstr "Nebol vybratý žiadny volací znak stanice"
 
 #: application/views/simplefle/index.php:30
 msgid "'Operator' Field is empty"
-msgstr ""
+msgstr "Pole 'Operator' je prázdne"
 
 #: application/views/simplefle/index.php:31
 msgid "Warning! Do you really want to reset everything?"
-msgstr ""
+msgstr "Varovanie! Naozaj chceš všetko resetovať?"
 
 #: application/views/simplefle/index.php:32
 msgid ""
 "Warning! You can't log the QSO List, because some QSO don't have band and/or "
 "mode defined!"
 msgstr ""
+"Upozornenie! Nemôžeš zaznamenať zoznam QSO, pretože niektoré QSO nemajú "
+"definované pásmo a/alebo mód!"
 
 #: application/views/simplefle/index.php:33
 msgid ""
 "Warning! You can't log the QSO List, because some QSO don't have a time "
 "defined!"
 msgstr ""
+"Varovanie! Nemôžeš zaznamenať zoznam QSO, pretože niektoré QSO nemajú "
+"definovaný čas!"
 
 #: application/views/simplefle/index.php:34
 msgid ""
 "Attention! The Data Field containes example data. First Clear Logging "
 "Session!"
 msgstr ""
+"Pozor! Dátové pole obsahuje príkladové dáta. Najprv vymažte záznamovú "
+"reláciu!"
 
 #: application/views/simplefle/index.php:35
 msgid ""
 "Attention! Either you have set a contest, but included no exchange, or you "
 "have logged contest-data but did not select a contest."
 msgstr ""
+"Pozor! Buď ste nastavili contest, ale nezahrnuli ste výmenu, alebo ste "
+"zaznamenali údaje o conteste, ale nevybrali contest."
 
 #: application/views/simplefle/index.php:36
 msgid ""
 "Are you sure that you want to add these QSO to the Log and clear the session?"
-msgstr ""
+msgstr "Si si istý, že chceš tieto QSO pridať do logu a vymazať reláciu?"
 
 #: application/views/simplefle/index.php:37
 msgid "QSO Logged!"
-msgstr ""
+msgstr "QSO zaznamenané!"
 
 #: application/views/simplefle/index.php:38
 msgid "The QSO were successfully logged in the logbook! Dupes were skipped."
-msgstr ""
+msgstr "QSO boli úspešne zaznamenané do logbooku! Duplicitné boli preskočené."
 
 #: application/views/simplefle/index.php:40
 msgid "An error occurred while saving the QSO to the logbook! Error: "
-msgstr ""
+msgstr "Pri ukladaní QSO do denníka došlo k chybe! Chyba: "
 
 #: application/views/simplefle/index.php:44
 msgid "What is that?"
-msgstr ""
+msgstr "Čo je to?"
 
 #: application/views/simplefle/index.php:47
 msgid "Current UTC Time"
-msgstr ""
+msgstr "Aktuálny čas UTC"
 
 #: application/views/simplefle/index.php:80
 msgid "If you don't choose a date, today's date will be used."
-msgstr ""
+msgstr "Ak si nevyberieš dátum, použije sa dnešný dátum."
 
 #: application/views/simplefle/index.php:92
 msgid "You can add the entered QSOs to a contest."
-msgstr ""
+msgstr "Môžeš pridať zadané QSO do contest-u."
 
 #: application/views/simplefle/index.php:99
 msgid "Station Call/Location"
-msgstr ""
+msgstr "Značka stanice/Umiestnenie"
 
 #: application/views/simplefle/index.php:111
 #, php-format
@@ -15939,56 +15997,59 @@ msgid ""
 "If you did operate from a new location, first create a new %sStation "
 "Location%s"
 msgstr ""
+"Ak si pracoval z novej lokality, najskôr vytvor nove %sumiestnenie stanice%s"
 
 #: application/views/simplefle/index.php:117
 msgid "e.g. OK2CQR"
-msgstr ""
+msgstr "napr. OK2CQR"
 
 #: application/views/simplefle/index.php:120
 msgid "This is callsign of the operator. Without any pre- or suffixes."
-msgstr ""
+msgstr "Toto je volačka operátora. Bez akejkoľvek predpony alebo prípony."
 
 #: application/views/simplefle/index.php:133
 msgid "Enter the Data"
-msgstr ""
+msgstr "Zadaj údaje"
 
 #: application/views/simplefle/index.php:162
 msgid "Refs"
-msgstr ""
+msgstr "Ref"
 
 #: application/views/simplefle/index.php:174
 #, php-format
 msgid "The Refs can be either %sS%sOTA, %sI%sOTA, %sP%sOTA, or %sW%sWFF"
-msgstr ""
+msgstr "Referencie môžu byť buď %sS%sOTA, %sI%sOTA, %sP%sOTA, alebo %sW%sWFF"
 
 #: application/views/simplefle/index.php:181
 msgid "Reload QSO List"
-msgstr ""
+msgstr "Obnoviť zoznam spojení"
 
 #: application/views/simplefle/index.php:182
 msgid "Save in Wavelog"
-msgstr ""
+msgstr "Ulož do Wavelogu"
 
 #: application/views/simplefle/index.php:183
 msgid "Clear Logging Session"
-msgstr ""
+msgstr "Vymazať reláciu logovania"
 
 #: application/views/simplefle/options.php:20
 msgid "No Options yet"
-msgstr ""
+msgstr "Zatiaľ žiadne možnosti"
 
 #: application/views/simplefle/syntax_help.php:1
 msgid "Before starting to log a QSO, please note the basic rules."
-msgstr ""
+msgstr "Predtým, než začnete zaznamenávať QSO, všimnite si základné pravidlá."
 
 #: application/views/simplefle/syntax_help.php:2
 msgid "- Each new QSO should be on a new line."
-msgstr ""
+msgstr "- každé nové QSO by malo byť na novom riadku."
 
 #: application/views/simplefle/syntax_help.php:3
 msgid ""
 "- On each new line, only write data that has changed from the previous QSO."
 msgstr ""
+"- na každý nový riadok uvádzajte iba údaje, ktoré sa zmenili od "
+"predchádzajúceho QSO."
 
 #: application/views/simplefle/syntax_help.php:4
 msgid ""
@@ -15997,10 +16058,14 @@ msgid ""
 "QRG in MHz, e.g., '7.145'), mode, and time. After the time, you provide the "
 "first QSO, which is essentially the callsign."
 msgstr ""
+"Najprv sa uisti, že si už vyplnil formulár naľavo s dátumom, volačkou "
+"stanice a volačkou operátora. Hlavné údaje zahŕňajú pásmo "
+"(alebo QRG v MHz, napríklad '7.145'), mód a čas. Po čase uvedieš prvé QSO, "
+"čo je v podstate volacia značka."
 
 #: application/views/simplefle/syntax_help.php:9
 msgid "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB."
-msgstr ""
+msgstr "Napríklad QSO, ktoré začalo o 21:34 (UTC) so 4W7EST na 20m SSB."
 
 #: application/views/simplefle/syntax_help.php:10
 msgid ""
@@ -16008,6 +16073,9 @@ msgid ""
 "data). Our next QSO wasn't 59 on both sides, so we provide the information "
 "with the sent RST first. It was 2 minutes later than the first QSO."
 msgstr ""
+"Ak neposkytneš žiadne informácie o RST, syntax použije 59 (599 pre dáta). "
+"Naše ďalšie QSO nebolo 59 na oboch stranách, takže poskytneme informácie "
+"najprv s odoslaným RST. Bolo to o 2 minúty neskôr ako prvé QSO."
 
 #: application/views/simplefle/syntax_help.php:16
 msgid ""
@@ -16015,6 +16083,9 @@ msgid ""
 "write down 6 because this is the only data that changed here. The "
 "information about band and mode didn't change, so this data is omitted."
 msgstr ""
+"Prvé QSO bolo o 21:34 a druhé o 2 minúty neskôr o 21:36. Zapíšeme 6, pretože "
+"toto je jediný údaj, ktorý sa tu zmenil. Informácie o pásme a režime sa "
+"nezmenili, takže tieto údaje sú vynechané."
 
 #: application/views/simplefle/syntax_help.php:17
 msgid ""
@@ -16023,26 +16094,30 @@ msgid ""
 "every new QSO. Therefore we can add another QSO which took place at the "
 "exact same time two days later. The date must be in format YYYY-MM-DD."
 msgstr ""
+"Pre naše ďalšie QSO dňa 14. mája 2021 o 21:40 sme zmenili pásmo na 40m, ale "
+"stále na SSB. Ak nie sú poskytnuté informácie o RST, syntax použije 59 pre "
+"každé nové QSO. Preto môžeme pridať ďalšie QSO, ktoré prebehlo presne v "
+"rovnakom čase dva dni neskôr. Dátum musí byť vo formáte RRRR-MM-DD."
 
 #: application/views/simplefle/syntax_help.php:28
 msgid "Additional informations can be submitted in the following way:"
-msgstr ""
+msgstr "Ďalšie informácie je možné predložiť nasledujúcim spôsobom:"
 
 #: application/views/simplefle/syntax_help.php:29
 msgid "Notes:"
-msgstr ""
+msgstr "Poznámky:"
 
 #: application/views/simplefle/syntax_help.php:33
 msgid "Operator Name:"
-msgstr ""
+msgstr "Meno operátora:"
 
 #: application/views/simplefle/syntax_help.php:37
 msgid "QSL-message (Caution! Not visible in wavelog currently!):"
-msgstr ""
+msgstr "QSL správa (Pozor! Aktuálne nie je viditeľná vo Wavelogu!)"
 
 #: application/views/simplefle/syntax_help.php:41
 msgid "Contest exchange; serials or other exchange - or even both:"
-msgstr ""
+msgstr "Contestová výmena; sériová alebo iné výmeny - alebo dokonca oboje:"
 
 #: application/views/simplefle/syntax_help.php:48
 msgid ""
@@ -16053,24 +16128,36 @@ msgid ""
 "single comma ','. To automatically increment the sent serial, use ',++' and "
 "give an initial sent exchange. To deactivate, use ',+0':"
 msgstr ""
+"Prijatá výmena musí mať predponu s bodkou '.', odoslaná výmena s čiarkou "
+"','. Posledné dva riadky sú ekvivalentné - teda na medzerách nezáleží, ako "
+"ani na poradí. Výmena, ktorú ste poslali, bude automaticky zahrnutá v "
+"nasledujúcom QSO, ak obsahuje prijatú výmenu, alebo ak použijete jednu "
+"čiarku ','. Na automatické zvýšenie odoslanej série použite ',++' a dajte "
+"počiatočnú odoslanú výmenu. Na deaktiváciu použite ',+0':"
 
 #: application/views/simplefle/syntax_help.php:54
 msgid ""
 "Here, the first qso uses the set serial 1, and the second will use 2 as the "
 "serial. If you want to wipe your sent exchange, use ',-':"
 msgstr ""
+"Tu je prvé QSO so sériovým číslom 1 a druhé bude mať sériové číslo 2. Ak "
+"chceš vymazať tvoj odoslanú výmenu, použi ',-':"
 
 #: application/views/simplefle/syntax_help.php:59
 msgid ""
 "First, all previous exchange is wiped, then only a serial is set. Otherwise "
 "the previous exchange 'D23' would have been set also."
 msgstr ""
+"Najprv sa všetky predchádzajúce výmeny vymažú a potom sa nastaví iba sériové "
+"číslo. Inak by bola nastavená aj predchádzajúca výmena 'D23'."
 
 #: application/views/simplefle/syntax_help.php:60
 msgid ""
 "You may use the comment syntax, to fill adif-fields supported by the Wavelog-"
 "Import:"
 msgstr ""
+"Môžeš použiť syntax komentára, aby si vyplnil polia ADIF podporované "
+"importom Wavelog:"
 
 #: application/views/simplefle/syntax_help.php:64
 #, php-format
@@ -16078,71 +16165,73 @@ msgid ""
 "A full summary of all commands and the necessary syntax can be found in "
 "%sthis article%s of our Wiki."
 msgstr ""
+"Úplné zhrnutie všetkých príkazov a potrebnej syntaxe nájdete v %stomto "
+"článku%s našej Wiki."
 
 #: application/views/station_profile/create.php:55
 #: application/views/station_profile/edit.php:71
 msgid "Location Name"
-msgstr ""
+msgstr "Názov umiestnenia"
 
 #: application/views/station_profile/create.php:56
 #: application/views/station_profile/create.php:57
 #: application/views/station_profile/edit.php:73
 msgctxt "Station Location Setup"
 msgid "Home QTH"
-msgstr ""
+msgstr "Domáce QTH"
 
 #: application/views/station_profile/create.php:57
 #: application/views/station_profile/edit.php:73
 #, php-format
 msgid "Shortname for the station location. For example: %s"
-msgstr ""
+msgstr "Krátky názov pre umiestnenie stanice. Napríklad: %s"
 
 #: application/views/station_profile/create.php:63
 #: application/views/station_profile/edit.php:79
 msgid "Station callsign. For example: 4W7EST/P"
-msgstr ""
+msgstr "Volací znak stanice. Napríklad: 4W7EST/P"
 
 #: application/views/station_profile/create.php:67
 #: application/views/station_profile/edit.php:83
 msgid "Station Power (W)"
-msgstr ""
+msgstr "Výkon stanice (W)"
 
 #: application/views/station_profile/create.php:69
 #: application/views/station_profile/edit.php:85
 msgid "Default station power in Watt. Overwritten by CAT."
-msgstr ""
+msgstr "Predvolený výkon stanice vo wattoch. Prepisované CAT."
 
 #: application/views/station_profile/create.php:82
 #: application/views/station_profile/edit.php:116
 msgid "Station DXCC entity. For example: Bolivia"
-msgstr ""
+msgstr "DXCC entita stanice. Napríklad: Bolívia"
 
 #: application/views/station_profile/create.php:87
 #: application/views/station_profile/edit.php:122
 msgid "Station City"
-msgstr ""
+msgstr "Mesto stanice"
 
 #: application/views/station_profile/create.php:89
 #: application/views/station_profile/edit.php:124
 msgid "Station city. For example: Oslo"
-msgstr ""
+msgstr "Mesto stanice. Napríklad: Oslo"
 
 #: application/views/station_profile/create.php:98
 #: application/views/station_profile/edit.php:136
 msgid "Station state. Applies to certain countries only."
-msgstr ""
+msgstr "Štát stanice. Platí len pre určité krajiny."
 
 #: application/views/station_profile/create.php:105
 #: application/views/station_profile/edit.php:143
 msgid "Station County (Only used for specific DXCCs)."
-msgstr ""
+msgstr "Kraj stanice (iba pre niektoré DXCC)."
 
 #: application/views/station_profile/create.php:120
 #: application/views/station_profile/edit.php:169
 #, php-format
 msgctxt "uses 'click here'"
 msgid "If you don't know your CQ Zone then %s to find it!"
-msgstr ""
+msgstr "Ak nevieš, v ktorej CQ zóne sa nachádzaš, potom %s, aby si to zistil!"
 
 #: application/views/station_profile/create.php:120
 #: application/views/station_profile/create.php:134
@@ -16151,25 +16240,25 @@ msgstr ""
 #: application/views/station_profile/edit.php:186
 #: application/views/station_profile/edit.php:210
 msgid "click here"
-msgstr ""
+msgstr "klikni sem"
 
 #: application/views/station_profile/create.php:134
 #: application/views/station_profile/edit.php:186
 #, php-format
 msgctxt "uses 'click here'"
 msgid "If you don't know your ITU Zone then %s to find it!"
-msgstr ""
+msgstr "Ak nevieš svoju ITU zónu, potom %s aby si ju zistil!"
 
 #: application/views/station_profile/create.php:139
 #: application/views/station_profile/edit.php:198
 #: application/views/station_profile/edit.php:201
 msgid "Station Gridsquare"
-msgstr ""
+msgstr "Lokátor stanice"
 
 #: application/views/station_profile/create.php:144
 #: application/views/station_profile/edit.php:206
 msgid "Get Gridsquare"
-msgstr ""
+msgstr "Získaj lokátor"
 
 #: application/views/station_profile/create.php:148
 #: application/views/station_profile/edit.php:210
@@ -16178,7 +16267,7 @@ msgctxt "uses 'click here'"
 msgid ""
 "Station gridsquare. For example: HM54AP. If you don't know your grid square "
 "then %s!"
-msgstr ""
+msgstr "Lokátor stanice. Napríklad: HM54AP. Ak neviete svoj lokátor, potom %s!"
 
 #: application/views/station_profile/create.php:149
 #: application/views/station_profile/edit.php:211
@@ -16186,49 +16275,51 @@ msgid ""
 "If you are located on a grid line, enter multiple grid squares separated "
 "with commas. For example: IO77,IO78,IO87,IO88."
 msgstr ""
+"Ak sa nachádzaš na lokátorovej línii, zadaj viacero lokátorových štvorcov "
+"oddelených čiarkami. Napríklad: IO77,IO78,IO87,IO88."
 
 #: application/views/station_profile/create.php:166
 #: application/views/station_profile/edit.php:236
 msgid "Station IOTA reference. For example: EU-005"
-msgstr ""
+msgstr "IOTA referencia stanice. Napríklad: EU-005"
 
 #: application/views/station_profile/create.php:167
 #: application/views/station_profile/edit.php:237
 msgid "IOTA World website"
-msgstr ""
+msgstr "IOTA World webstránka"
 
 #: application/views/station_profile/create.php:167
 #: application/views/station_profile/edit.php:237
 #, php-format
 msgid "You can look up IOTA references at the %s."
-msgstr ""
+msgstr "Môžeš si vyhľadať IOTA referencie na %s."
 
 #: application/views/station_profile/create.php:173
 #: application/views/station_profile/edit.php:252
 msgid "SOTA Maps website"
-msgstr ""
+msgstr "Webová stránka SOTA Maps"
 
 #: application/views/station_profile/create.php:173
 #: application/views/station_profile/edit.php:252
 #, php-format
 msgid "Station SOTA reference. You can look up SOTA references at the %s."
-msgstr ""
+msgstr "SOTA referencie stanice. SOTA referencie môžeš vyhľadať na %s."
 
 #: application/views/station_profile/create.php:179
 #: application/views/station_profile/edit.php:265
 msgid "GMA Map website"
-msgstr ""
+msgstr "Webová stránka GMA Map"
 
 #: application/views/station_profile/create.php:179
 #: application/views/station_profile/edit.php:265
 #, php-format
 msgid "Station WWFF reference. You can look up WWFF references at the %s."
-msgstr ""
+msgstr "WWFF referencia stanice. WWFF referencie môžete vyhľadať na %s."
 
 #: application/views/station_profile/create.php:185
 #: application/views/station_profile/edit.php:278
 msgid "POTA Map website"
-msgstr ""
+msgstr "POTA Map webstránka"
 
 #: application/views/station_profile/create.php:185
 #: application/views/station_profile/edit.php:278
@@ -16237,39 +16328,41 @@ msgid ""
 "Station POTA reference(s). Multiple comma separated values allowed. You can "
 "look up POTA references at the %s."
 msgstr ""
+"POTA referencie stanice. Povolené sú viaceré hodnoty oddelené čiarkou. POTA "
+"referencie si môžete vyhľadať na %s."
 
 #: application/views/station_profile/create.php:189
 msgid "Signature Name"
-msgstr ""
+msgstr "Podpisové meno"
 
 #: application/views/station_profile/create.php:191
 msgid "Station Special Interest Group Name (e.g. GMA)."
-msgstr ""
+msgstr "Názov špeciálnej záujmovej skupiny stanice (napr. GMA)."
 
 #: application/views/station_profile/create.php:195
 msgid "Signature Information"
-msgstr ""
+msgstr "Informácie o podpise"
 
 #: application/views/station_profile/create.php:197
 #: application/views/station_profile/edit.php:299
 msgid "Station Special Interest Group Info (e.g. DA/NW-357)."
-msgstr ""
+msgstr "Informácie o skupine osobitného záujmu stanice (napr. DA/NW-357)."
 
 #: application/views/station_profile/create.php:201
 #: application/views/station_profile/edit.php:312
 msgctxt "Probably no translation needed"
 msgid "eQSL QTH Nickname"
-msgstr ""
+msgstr "eQSL QTH nick"
 
 #: application/views/station_profile/create.php:203
 #: application/views/station_profile/edit.php:314
 msgid "The QTH Nickname which is configured in your eQSL Profile"
-msgstr ""
+msgstr "QTH nick, ktorá je nakonfigurovaná vo vašom eQSL profile"
 
 #: application/views/station_profile/create.php:207
 #: application/views/station_profile/edit.php:317
 msgid "Default QSLMSG"
-msgstr ""
+msgstr "Predvolená QSLMSG"
 
 #: application/views/station_profile/create.php:210
 #: application/views/station_profile/edit.php:320
@@ -16277,11 +16370,13 @@ msgid ""
 "Define a default message that will be populated and sent for each QSO for "
 "this station location."
 msgstr ""
+"Definuj predvolenú správu, ktorá sa automaticky odošle pri každom QSO z "
+"tejto stanice."
 
 #: application/views/station_profile/create.php:213
 #: application/views/station_profile/edit.php:360
 msgid "Ignore Clublog Upload"
-msgstr ""
+msgstr "Ignorovať upload Clublog"
 
 #: application/views/station_profile/create.php:218
 #: application/views/station_profile/edit.php:365
@@ -16290,206 +16385,212 @@ msgid ""
 "Clublog. If this is deactivated on it's own please check if the Call is "
 "properly configured at Clublog"
 msgstr ""
+"Ak je to povolené, spojenia vykonané z tohto miesta nebudú nahrané do "
+"Clublog. Ak sa to samo deaktivuje, skontrolujte, či je volačka správne "
+"nakonfigurovaná na Clublog"
 
 #: application/views/station_profile/create.php:221
 #: application/views/station_profile/edit.php:368
 msgid "ClubLog Realtime Upload"
-msgstr ""
+msgstr "ClubLog upload v reálnom čase"
 
 #: application/views/station_profile/create.php:230
 #: application/views/station_profile/edit.php:384
 msgid "HRDLog.net Username"
-msgstr ""
+msgstr "HRDLog.net používateľské meno"
 
 #: application/views/station_profile/create.php:232
 #: application/views/station_profile/edit.php:386
 msgid ""
 "The username you are registered with at HRDlog.net (usually your callsign)."
 msgstr ""
+"Užívateľské meno, s ktorým ste zaregistrovaní na HRDlog.net "
+"(zvyčajne váš volací znak)."
 
 #: application/views/station_profile/create.php:235
 #: application/views/station_profile/edit.php:389
 msgid "HRDLog.net API Key"
-msgstr ""
+msgstr "HRDLog.net API kľúč"
 
 #: application/views/station_profile/create.php:237
 #: application/views/station_profile/edit.php:394
 #, php-format
 msgctxt "HRDLog.net Userprofile page"
 msgid "Create your API Code on your %s"
-msgstr ""
+msgstr "Vytvor si svoj API kód na tvojom %s"
 
 #: application/views/station_profile/create.php:237
 #: application/views/station_profile/edit.php:394
 msgid "HRDLog.net Userprofile page"
-msgstr ""
+msgstr "Stránka používateľského profilu HRDLog.net"
 
 #: application/views/station_profile/create.php:240
 #: application/views/station_profile/edit.php:397
 msgid "HRDLog.net Logbook Realtime Upload"
-msgstr ""
+msgstr "HRDLog.net logbook upload v reálnom čase"
 
 #: application/views/station_profile/create.php:250
 #: application/views/station_profile/edit.php:328
 msgid "Subscription Required"
-msgstr ""
+msgstr "Vyžaduje sa predplatné"
 
 #: application/views/station_profile/create.php:255
 msgctxt "Probably no translation needed"
 msgid "QRZ.com Logbook API Key"
-msgstr ""
+msgstr "QRZ.com Logbook API Kľúč"
 
 #: application/views/station_profile/create.php:258
 msgid "Test API-Key"
-msgstr ""
+msgstr "Otestovať API kľúč"
 
 #: application/views/station_profile/create.php:261
 #: application/views/station_profile/edit.php:338
 #, php-format
 msgctxt "the QRZ.com Logbook settings page"
 msgid "Find your API key on %s"
-msgstr ""
+msgstr "Nájdi svoj API kľúč na %s"
 
 #: application/views/station_profile/create.php:261
 #: application/views/station_profile/edit.php:338
 msgid "the QRZ.com Logbook settings page"
-msgstr ""
+msgstr "stránka s nastaveniami logbooku QRZ.com"
 
 #: application/views/station_profile/create.php:264
 #: application/views/station_profile/edit.php:342
 msgid "QRZ.com Logbook Upload"
-msgstr ""
+msgstr "QRZ.com logbook upload"
 
 #: application/views/station_profile/create.php:267
 #: application/views/station_profile/edit.php:345
 msgid "Realtime"
-msgstr ""
+msgstr "V reálnom čase"
 
 #: application/views/station_profile/create.php:275
 #: application/views/station_profile/edit.php:414
 msgctxt "Probably no translation needed"
 msgid "QO-100 Dx Club API Key"
-msgstr ""
+msgstr "API kľúč QO-100 Dx klubu"
 
 #: application/views/station_profile/create.php:277
 #: application/views/station_profile/edit.php:419
 #, php-format
 msgctxt "QO-100 Dx Club's profile page"
 msgid "Create your API key on your %s"
-msgstr ""
+msgstr "Vytvorte svoj API kľúč na svojom %s"
 
 #: application/views/station_profile/create.php:277
 #: application/views/station_profile/edit.php:419
 msgid "QO-100 Dx Club's profile page"
-msgstr ""
+msgstr "Profilová stránka QO-100 Dx Clubu"
 
 #: application/views/station_profile/create.php:280
 #: application/views/station_profile/edit.php:422
 msgid "QO-100 Dx Club Realtime Upload"
-msgstr ""
+msgstr "QO-100 Dx Club upload v reálnom čase"
 
 #: application/views/station_profile/create.php:290
 #: application/views/station_profile/edit.php:440
 msgid "OQRS Enabled"
-msgstr ""
+msgstr "OQRS povolené"
 
 #: application/views/station_profile/create.php:297
 #: application/views/station_profile/edit.php:447
 msgid "OQRS Email alert"
-msgstr ""
+msgstr "OQRS e-mailové upozornenie"
 
 #: application/views/station_profile/create.php:302
 #: application/views/station_profile/edit.php:452
 msgid "Make sure email is set up under admin and global options."
 msgstr ""
+"Uisti sa, že e-mail je nastavený pod administrátorom a globálnymi možnosťami."
 
 #: application/views/station_profile/create.php:305
 #: application/views/station_profile/edit.php:455
 msgid "OQRS Text"
-msgstr ""
+msgstr "Text OQRS"
 
 #: application/views/station_profile/create.php:307
 #: application/views/station_profile/edit.php:457
 msgid "Some info you want to add regarding QSL'ing."
-msgstr ""
+msgstr "Niektoré informácie, ktoré chceš pridať k QSL."
 
 #: application/views/station_profile/edit.php:153
 msgid "Zones"
-msgstr ""
+msgstr "Zóny"
 
 #: application/views/station_profile/edit.php:291
 msgid "Special Interest Group Name"
-msgstr ""
+msgstr "Názov špeciálnej záujmovej skupiny"
 
 #: application/views/station_profile/edit.php:293
 msgid "Station Special Interest Group Name (e.g. GMA).."
-msgstr ""
+msgstr "Názov špeciálnej záujmovej skupiny stanice (napr. GMA)."
 
 #: application/views/station_profile/edit.php:297
 msgid "Special Interest Group Information"
-msgstr ""
+msgstr "Informácie o skupine so špeciálnymi záujmami"
 
 #: application/views/station_profile/edit.php:309
 #: application/views/user/edit.php:908
 #, php-format
 msgid "Trouble? Check the %swiki%s."
-msgstr ""
+msgstr "Problémy? Mrkni na %swiki%s."
 
 #: application/views/stationsetup/create.php:17
 msgid "Station Logbook Name"
-msgstr ""
+msgstr "Názov denníka stanice"
 
 #: application/views/stationsetup/create.php:19
 msgid "You can call a station logbook anything."
-msgstr ""
+msgstr "Môžeš nazvať denník stanice akokoľvek."
 
 #: application/views/stationsetup/edit.php:18
 msgid "Container name"
-msgstr ""
+msgstr "Názov kontajnera"
 
 #: application/views/stationsetup/edit.php:20
 msgid "You can call a container anything."
-msgstr ""
+msgstr "Kontajner môžeš nazvať akokoľvek."
 
 #: application/views/stationsetup/exportmapoptions.php:11
 msgctxt "Map Options"
 msgid "CQ Zone overlay"
-msgstr ""
+msgstr "Zobrazenie CQ zóny"
 
 #: application/views/stationsetup/exportmapoptions.php:15
 msgctxt "Map Options"
 msgid "Gridsquare overlay"
-msgstr ""
+msgstr "Zobrazenie lokátora"
 
 #: application/views/stationsetup/exportmapoptions.php:19
 msgctxt "Map Options"
 msgid "Night shadow overlay"
-msgstr ""
+msgstr "Zobrazenie tieňa v noci"
 
 #: application/views/stationsetup/exportmapoptions.php:27
 msgid "# QSOs shown"
-msgstr ""
+msgstr "# zobrazených QSO"
 
 #: application/views/stationsetup/exportmapoptions.php:46
 msgid "Visit export map"
-msgstr ""
+msgstr "Navštív mapu exportu"
 
 #: application/views/stationsetup/linkedlocations.php:13
 msgid "Select Available Station Locations"
-msgstr ""
+msgstr "Vyber miesta dostupných staníc"
 
 #: application/views/stationsetup/linkedlocations.php:25
 msgid "Link Location"
-msgstr ""
+msgstr "Prepojiť umiestnenie"
 
 #: application/views/stationsetup/linkedlocations.php:31
 #: application/views/stationsetup/stationsetup.php:127
 msgid "Profile Name"
-msgstr ""
+msgstr "Názov profilu"
 
 #: application/views/stationsetup/linkedlocations.php:34
 msgid "Unlink Station Location"
-msgstr ""
+msgstr "Odpojiť umiestnenie stanice"
 
 #: application/views/stationsetup/stationsetup.php:24
 msgid ""
@@ -16498,191 +16599,208 @@ msgid ""
 "analytics. Great for when your operating in multiple locations but they are "
 "part of the same DXCC or VUCC Circle."
 msgstr ""
+"Staničné denníky umožňujú zoskupiť umiestnenia staníc, čo vám umožní vidieť "
+"všetky miesta v jednej relácii od logu po analytiku. Skvelé, keď pracujete "
+"na viacerých miestach, ale sú súčasťou toho istého DXCC alebo VUCC okruhu."
 
 #: application/views/stationsetup/stationsetup.php:35
 msgid "Edit Linked locations"
-msgstr ""
+msgstr "Upraviť prepojené umiestnenia"
 
 #: application/views/stationsetup/stationsetup.php:37
 msgid "Visitor site"
-msgstr ""
+msgstr "Sídlo návštevníka"
 
 #: application/views/stationsetup/stationsetup.php:94
 msgid "Station Locations"
-msgstr ""
+msgstr "Umiestnenia stanice"
 
 #: application/views/stationsetup/stationsetup.php:98
 msgid ""
 "Station Locations define operating locations, such as your QTH, a friends "
 "QTH, or a portable station."
 msgstr ""
+"Umiestnenia stanice definujú prevádzkové miesta, ako napríklad vaše QTH, QTH "
+"priateľa alebo portablovú stanicu."
 
 #: application/views/stationsetup/stationsetup.php:99
 msgid "Similar to logbooks, a station profile keeps a set of QSOs together."
-msgstr ""
+msgstr "Podobne ako denníky, profil stanice udržuje sadu QSO pokope."
 
 #: application/views/stationsetup/stationsetup.php:100
 msgid ""
 "Only one station may be active at a time. In the table below this is shown "
 "with the -Active Station- badge."
 msgstr ""
+"V jednom okamihu môže byť aktívna iba jedna stanica. V tabuľke nižšie je to "
+"označené odznakom -Aktívna stanica-."
 
 #: application/views/stationsetup/stationsetup.php:101
 msgid ""
 "The 'Linked' column shows if the station location is linked with the Active "
 "Logbook selected above."
 msgstr ""
+"Stĺpec 'Prepojené' ukazuje, či je umiestnenie stanice prepojené s aktívnym "
+"denníkom vybraným vyššie."
 
 #: application/views/stationsetup/stationsetup.php:104
 msgid "Create a Station Location"
-msgstr ""
+msgstr "Vytvoriť umiestnenie stanice"
 
 #: application/views/stationsetup/stationsetup.php:104
 msgid "Show only locations from the active logbook"
-msgstr ""
+msgstr "Zobraz len umiestnenia z aktívneho denníka"
 
 #: application/views/stationsetup/stationsetup.php:105
 msgid "Show all locations"
-msgstr ""
+msgstr "Zobraziť všetky umiestnenia"
 
 #: application/views/stationsetup/stationsetup.php:106
 msgid "Show a location list"
-msgstr ""
+msgstr "Zobraziť zoznam umiestnení"
 
 #: application/views/stationsetup/stationsetup.php:110
 msgid ""
 "Attention: You need to set an active station location. Go to Callsign-"
 ">Station Location to select one."
 msgstr ""
+"Pozor: musíš nastaviť aktívnu lokalitu stanice. Prejdi na Volací znak-"
+">Umiestnenie stanice a vyber si jednu."
 
 #: application/views/stationsetup/stationsetup.php:116
 msgid ""
 "Due to recent changes within Wavelog you need to reassign QSOs to your "
 "station profiles."
 msgstr ""
+"Vzhľadom na nedávne zmeny v rámci Wavelog musíte priradiť QSOs k vašim "
+"profilom staníc."
 
 #: application/views/stationsetup/stationsetup.php:118
 msgid "Maintenance"
-msgstr ""
+msgstr "Údržba"
 
 #: application/views/stationsetup/stationsetup.php:118
 msgid "Please reassign them at "
-msgstr ""
+msgstr "Prosím, priraď ich do "
 
 #: application/views/stationsetup/stationsetup.php:133
 msgid "Linked"
-msgstr ""
+msgstr "Prepojené"
 
 #: application/views/stationsetup/stationsetup.php:140
 msgid "Favorite"
-msgstr ""
+msgstr "Obľúbené"
 
 #: application/views/stationsetup/stationsetup.php:187
 msgid "mark/unmark as favorite"
-msgstr ""
+msgstr "označiť/odznačiť ako obľúbené"
 
 #: application/views/stationsetup/visitor.php:2
 msgid ""
 "Setting a public slug allows you to share your logbook with anyone via a "
 "custom website address, this slug can contain letters & numbers only."
 msgstr ""
+"Nastavenie verejného slug umožňuje zdieľať denný záznam s kýmkoľvek "
+"prostredníctvom vlastnej webovej adresy, tento slug môže obsahovať iba "
+"písmená a čísla."
 
 #: application/views/stationsetup/visitor.php:3
 msgid "Later it looks like this:"
-msgstr ""
+msgstr "Neskôr to vyzerá takto:"
 
 #: application/views/stationsetup/visitor.php:4
 msgid "[your slug]"
-msgstr ""
+msgstr "[váš slug]"
 
 #: application/views/stationsetup/visitor.php:10
 msgid "Type in Public Slug choice"
-msgstr ""
+msgstr "Zadajte verejný slug podľa vlastného výberu"
 
 #: application/views/stationsetup/visitor.php:17
 msgid "Visit Public Page"
-msgstr ""
+msgstr "Navštív verejnú stránku"
 
 #: application/views/statistics/antennaanalytics.php:11
 msgid "Elevation"
-msgstr ""
+msgstr "Elevácia"
 
 #: application/views/statistics/index.php:14
 #: application/views/statistics/index.php:61
 msgid "Years"
-msgstr ""
+msgstr "rokov"
 
 #: application/views/statistics/index.php:18
 msgid "Number of QSOs worked each year"
-msgstr ""
+msgstr "Počet uskutočnených QSO každý rok"
 
 #: application/views/statistics/index.php:31
 msgid "Explore the logbook."
-msgstr ""
+msgstr "Preskúmaj dennník."
 
 #: application/views/statistics/index.php:35
 #: application/views/timeline/index.php:111
 msgid "All Years"
-msgstr ""
+msgstr "Všetky roky"
 
 #: application/views/statistics/index.php:76
 #: application/views/statistics/index.php:117
 msgid "Unique callsigns"
-msgstr ""
+msgstr "Unikátne volacie značky"
 
 #: application/views/statistics/index.php:120
 msgid "Unique Grids"
-msgstr ""
+msgstr "Unikátne lokátory"
 
 #: application/views/statistics/initialresult.php:44
 #: application/views/statistics/initials.php:36
 msgid "No EME QSOs were found."
-msgstr ""
+msgstr "Žiadne EME QSO sa nenašli."
 
 #: application/views/themes/add.php:4 application/views/themes/edit.php:4
 msgid "Theme Name"
-msgstr ""
+msgstr "Názov témy"
 
 #: application/views/themes/add.php:6 application/views/themes/edit.php:6
 msgid "This is the name that is used to display the theme in the theme list."
-msgstr ""
+msgstr "Toto je názov, ktorý sa používa na zobrazenie témy v zozname tém."
 
 #: application/views/themes/add.php:10 application/views/themes/edit.php:10
 msgid "Folder Name"
-msgstr ""
+msgstr "Názov priečinka"
 
 #: application/views/themes/add.php:12 application/views/themes/edit.php:12
 msgid ""
 "This is the name of the folder where your CSS-files are placed under assets/"
 "css."
 msgstr ""
+"Toto je názov priečinka, kde sú umiestnené vaše CSS súbory pod assets/css."
 
 #: application/views/themes/add.php:16 application/views/themes/edit.php:16
 #: application/views/themes/index.php:84
 msgid "Theme Mode"
-msgstr ""
+msgstr "Mód témy"
 
 #: application/views/themes/add.php:18 application/views/themes/edit.php:18
 msgid "Light"
-msgstr ""
+msgstr "Svetlá"
 
 #: application/views/themes/add.php:19 application/views/themes/edit.php:19
 msgid "Dark"
-msgstr ""
+msgstr "Tmavá"
 
 #: application/views/themes/add.php:21
 msgid "This defines wherever the theme is a light or a dark one."
-msgstr ""
+msgstr "To určuje, či je téma svetlá alebo tmavá."
 
 #: application/views/themes/add.php:25 application/views/themes/edit.php:25
 #: application/views/themes/index.php:85
 msgid "Header Logo"
-msgstr ""
+msgstr "Logo v hlavičke"
 
 #: application/views/themes/add.php:27 application/views/themes/add.php:33
 #: application/views/themes/edit.php:27 application/views/themes/edit.php:33
 msgid "Only PNG files with a size ratio of 1:1 are allowed."
-msgstr ""
+msgstr "Povolené sú iba súbory PNG s pomerom strán 1:1."
 
 #: application/views/themes/add.php:27 application/views/themes/edit.php:27
 #, php-format
@@ -16690,11 +16808,13 @@ msgid ""
 "This is the name of the file which is used as %s small %s Logo in the header "
 "placed in assets/logo."
 msgstr ""
+"Toto je názov súboru, ktorý sa používa ako %s malé %s logo v hlavičke "
+"umiestnenej v assets/logo."
 
 #: application/views/themes/add.php:31 application/views/themes/edit.php:31
 #: application/views/themes/index.php:86
 msgid "Main Logo"
-msgstr ""
+msgstr "Hlavné logo"
 
 #: application/views/themes/add.php:33 application/views/themes/edit.php:33
 #, php-format
@@ -16702,24 +16822,27 @@ msgid ""
 "This is the name of the file which is used as %s big %s Logo in the login "
 "screen placed in assets/logo."
 msgstr ""
+"Toto je názov súboru, ktorý sa používa ako %s veľké %s logo na prihlasovacej "
+"obrazovke umiestnené v assets/logo."
 
 #: application/views/themes/add.php:36
 msgid "Add theme"
-msgstr ""
+msgstr "Pridať tému"
 
 #: application/views/themes/edit.php:21
 msgid ""
 "This defines wherever the theme is a light or a dark one. On this basis the "
 "Logo is chosen."
 msgstr ""
+"Toto definuje, či je téma svetlá alebo tmavá. Na základe toho sa vyberá logo."
 
 #: application/views/themes/edit.php:36
 msgid "Update theme"
-msgstr ""
+msgstr "Aktualizovať tému"
 
 #: application/views/themes/index.php:22
 msgid "Themes list"
-msgstr ""
+msgstr "Zoznam tém"
 
 #: application/views/themes/index.php:28
 msgid ""
@@ -16727,18 +16850,21 @@ msgid ""
 "theme is not really straightforward and should only be done by an admin who "
 "is aware of their actions."
 msgstr ""
+"V tejto ponuke môžete pridávať a upravovať témy pre Wavelog. Proces pridania "
+"témy nie je úplne jednoduchý a mal by ho vykonávať iba administrátor, ktorý "
+"si je vedomý svojich krokov."
 
 #: application/views/themes/index.php:29
 msgid "Also, it has to be said that this feature is still under development."
-msgstr ""
+msgstr "Treba povedať, že táto funkcia je stále vo vývoji."
 
 #: application/views/themes/index.php:35
 msgid "Process of adding a new theme"
-msgstr ""
+msgstr "Proces pridania novej témy"
 
 #: application/views/themes/index.php:41
 msgid "1. Step"
-msgstr ""
+msgstr "1. krok"
 
 #: application/views/themes/index.php:44
 #, php-format
@@ -16746,40 +16872,48 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
+"Vytvor nový priečinok v 'assets/css/' a nahraj súbor 'bootstrap.min.css', "
+"ktorý obsahuje základné pravidlá štýlov. Používame témy z %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
-msgstr ""
+msgstr "2. krok"
 
 #: application/views/themes/index.php:53
 msgid ""
 "Create a file in this folder called 'overrides.css'. Place your custom CSS "
 "code in there."
 msgstr ""
+"Vytvor súbor v tomto priečinku s názvom 'overrides.css'. Umiestni doň svoj "
+"vlastný CSS kód."
 
 #: application/views/themes/index.php:59
 msgid "3. Step"
-msgstr ""
+msgstr "3. krok"
 
 #: application/views/themes/index.php:62
 msgid ""
 "For each new theme, you need two logo files. One for the login screen and "
 "one for the header."
 msgstr ""
+"Pre každú novú tému potrebuješ dva súbory loga. Jeden pre prihlasovaciu "
+"obrazovku a jeden pre hlavičku."
 
 #: application/views/themes/index.php:63
 msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
+"Povolené sú iba súbory PNG, ktoré by mali mať pomer pixelov 1:1 "
+"(napríklad 1000px výška a 1000px šírka)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
-msgstr ""
+msgstr "Umiestni dva súbory s logom do priečinka 'assets/logo/'"
 
 #: application/views/themes/index.php:70
 msgid "4. Step"
-msgstr ""
+msgstr "4. krok"
 
 #: application/views/themes/index.php:73
 #, php-format
@@ -16787,78 +16921,85 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
+"Klikni sem na 'Pridať tému' a zadaj potrebné údaje. Zadajte názvy súborov "
+"pre logá %sbez%s prípony súboru '.png'"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
-msgstr ""
+msgstr "Názov priečinka"
 
 #: application/views/themes/index.php:99
 msgid "Please edit"
-msgstr ""
+msgstr "Prosím upraviť"
 
 #: application/views/themes/index.php:116
 msgid "Add a Theme"
-msgstr ""
+msgstr "Pridaj tému"
 
 #: application/views/timeline/index.php:119
 msgid "Only new in selected year"
-msgstr ""
+msgstr "Iba nové vo vybranom roku"
 
 #: application/views/timeplotter/index.php:2
 msgid "contacts were plotted"
-msgstr ""
+msgstr "spojenia boli vykreslené"
 
 #: application/views/timeplotter/index.php:3
 msgid "Time Distribution"
-msgstr ""
+msgstr "Časové rozloženie"
 
 #: application/views/timeplotter/index.php:6
 msgid "Callsign(s) worked (max 5)"
-msgstr ""
+msgstr "Urobené značky (max 5)"
 
 #: application/views/timeplotter/index.php:10
 msgid ""
 "The Timeplotter is used to analyze your logbook and find out at what times "
 "you worked certain CQ zones or DXCC countries on a selected band."
 msgstr ""
+"Timeplotter sa používa na analýzu vášho denníka, aby ste zistili, v akých "
+"časoch ste pracovali v určitých CQ zónach alebo DXCC krajinách na vybranom "
+"pásme."
 
 #: application/views/update/hamsofnote.php:7
 msgid "Name / Description"
-msgstr ""
+msgstr "Názov / Popis"
 
 #: application/views/update/index.php:8
 msgid "DXCC Lookup Data"
-msgstr ""
+msgstr "DXCC lookup údaje"
 
 #: application/views/update/index.php:15
 msgid ""
 "Here you can update the DXCC lookup data that is used for displaying "
 "callsign information."
 msgstr ""
+"Tu môžeš aktualizovať DXCC údaje vyhľadávania, ktoré sa používajú na "
+"zobrazenie informácií o volacích značkách."
 
 #: application/views/update/index.php:16
 msgid "This data is provided by"
-msgstr ""
+msgstr "Tieto údaje poskytuje"
 
 #: application/views/update/index.php:20
 msgid "You must install php-xml for this to work."
-msgstr ""
+msgstr "Aby to fungovalo, musíš nainštalovať php-xml."
 
 #: application/views/update/index.php:23
 msgid "Check for DXCC Data Updates"
-msgstr ""
+msgstr "Skontroluj aktualizácie DXCC údajov"
 
 #: application/views/update/index.php:24
 msgid "Update DXCC Data"
-msgstr ""
+msgstr "Aktualizuj údaje DXCC"
 
 #: application/views/update/index.php:26
 msgid "Status:"
-msgstr ""
+msgstr "Stav:"
 
 #: application/views/update/index.php:30
 msgid "Apply DXCC Data to Logbook"
-msgstr ""
+msgstr "Použiť údaje DXCC na denník"
 
 #: application/views/update/index.php:32
 msgid ""
@@ -16868,6 +17009,10 @@ msgid ""
 "missing DXCC metadata or to re-check the entire logbook\n"
 "\t\t\t\t\t\t\tand update existing metadata as well, in case it has changed."
 msgstr ""
+"Po aktualizácii môže Wavelog doplniť chýbajúce informácie o volacej značke v "
+"denníku pomocou novozískaných údajov DXCC. Môžete si vybrať, či "
+"skontrolujete len QSOs v denníku, ktoré nemajú údaje DXCC, alebo či znovu "
+"skontrolujete celý denník a aktualizujete existujúce údaje, ak sa zmenili."
 
 #: application/views/update/index.php:35
 msgid ""
@@ -16875,46 +17020,49 @@ msgid ""
 "deprectated and will be removed in a future version of Wavelog. As "
 "replacement use the Logbook-Advanced!"
 msgstr ""
+"Toto ovplyvňuje VŠETKY QSO každého používateľa na tejto inštancii. Funkcia "
+"je zastaraná a bude odstránená v budúcej verzii Wavelogu. Ako náhradu použi "
+"Rozšírené logovanie!"
 
 #: application/views/update/index.php:42
 msgid "Check QSOs missing DXCC data"
-msgstr ""
+msgstr "Skontroluj chýbajúce údaje DXCC v spojeniach"
 
 #: application/views/update/index.php:51
 msgid "Re-check all QSOs in logbook"
-msgstr ""
+msgstr "Znovu skontroluj všetky spojenia v logbooku"
 
 #: application/views/user/delete.php:5
 msgid "Delete User Account"
-msgstr ""
+msgstr "Vymazať používateľský účet"
 
 #: application/views/user/delete.php:10
 msgid "Are you sure you want to delete the user account"
-msgstr ""
+msgstr "Chceš naozaj vymazať používateľský účet"
 
 #: application/views/user/delete.php:14
 msgid "No, do not delete this user"
-msgstr ""
+msgstr "Nie, neodstraňuj tohto používateľa"
 
 #: application/views/user/delete.php:14
 msgid "Yes, delete this user"
-msgstr ""
+msgstr "Áno, odstráň tohto používateľa"
 
 #: application/views/user/edit.php:6
 msgid "Create Clubstation Account"
-msgstr ""
+msgstr "Vytvoriť účet klubovej stanice"
 
 #: application/views/user/edit.php:8
 msgid "Create User Account"
-msgstr ""
+msgstr "Vytvoriť používateľský účet"
 
 #: application/views/user/edit.php:11
 msgid "Edit Account"
-msgstr ""
+msgstr "Upraviť účet"
 
 #: application/views/user/edit.php:45
 msgid "General Information"
-msgstr ""
+msgstr "Všeobecné informácie"
 
 #: application/views/user/edit.php:68 application/views/user/login.php:59
 #: application/views/user/login.php:73 application/views/user/login.php:74
@@ -16926,19 +17074,19 @@ msgstr "Heslo"
 
 #: application/views/user/edit.php:74
 msgid "Don't share this password with operators!"
-msgstr ""
+msgstr "Nesdieľajte toto heslo s operátormi!"
 
 #: application/views/user/edit.php:84
 msgid "User Role"
-msgstr ""
+msgstr "Používateľská úloha"
 
 #: application/views/user/edit.php:113
 msgid "Callsign Owner"
-msgstr ""
+msgstr "Volací znak majiteľa"
 
 #: application/views/user/edit.php:113
 msgid "Personal"
-msgstr ""
+msgstr "Osobné"
 
 #: application/views/user/edit.php:116
 msgid "First Name"
@@ -16950,27 +17098,27 @@ msgstr "Priezvisko"
 
 #: application/views/user/edit.php:134
 msgid "Ham Radio"
-msgstr ""
+msgstr "Amatérske rádio"
 
 #: application/views/user/edit.php:137
 msgid "Special/Club Callsign"
-msgstr ""
+msgstr "Špeciálna/klubová volacia značka"
 
 #: application/views/user/edit.php:160
 msgid "Wavelog Preferences"
-msgstr ""
+msgstr "Predvoľby Wavelog"
 
 #: application/views/user/edit.php:171
 msgid "Stylesheet"
-msgstr ""
+msgstr "Súbor so štýlmi"
 
 #: application/views/user/edit.php:183
 msgid "Wavelog Language"
-msgstr ""
+msgstr "Jazyk Wavelog"
 
 #: application/views/user/edit.php:190
 msgid "Choose Wavelog language."
-msgstr ""
+msgstr "Vyber si jazyk Wavelog."
 
 #: application/views/user/edit.php:193
 msgid "Timezone"
@@ -16978,73 +17126,76 @@ msgstr "Časové pásmo"
 
 #: application/views/user/edit.php:201
 msgid "Date Format"
-msgstr ""
+msgstr "Formát dátumu"
 
 #: application/views/user/edit.php:214
 msgid "Select how you would like dates shown when logged into your account."
 msgstr ""
+"Vyber si, ako chceš, aby sa dátumy zobrazovali po prihlásení do svojho účtu."
 
 #: application/views/user/edit.php:218
 msgid "Measurement preference"
-msgstr ""
+msgstr "Preferencie merania"
 
 #: application/views/user/edit.php:222
 msgid "Kilometers"
-msgstr ""
+msgstr "Kilometre"
 
 #: application/views/user/edit.php:223
 msgid "Miles"
-msgstr ""
+msgstr "Míle"
 
 #: application/views/user/edit.php:224
 msgid "Nautical miles"
-msgstr ""
+msgstr "Námorné míle"
 
 #: application/views/user/edit.php:226
 msgid "Choose which unit distances will be shown in"
-msgstr ""
+msgstr "Vyberte, ktoré jednotky vzdialenosti sa zobrazia"
 
 #: application/views/user/edit.php:235
 msgid "Logbook fields"
-msgstr ""
+msgstr "Polia denníka"
 
 #: application/views/user/edit.php:238
 msgid "Choose column 1"
-msgstr ""
+msgstr "Vyber stĺpec 1"
 
 #: application/views/user/edit.php:261
 msgid "Choose column 2"
-msgstr ""
+msgstr "Vyber stĺpec 2"
 
 #: application/views/user/edit.php:284
 msgid "Choose column 3"
-msgstr ""
+msgstr "Vyber stĺpec 3"
 
 #: application/views/user/edit.php:307
 msgid "Choose column 4"
-msgstr ""
+msgstr "Vyber stĺpec 4"
 
 #: application/views/user/edit.php:330
 msgid "Choose column 5 (only for logbook)"
-msgstr ""
+msgstr "Vyber stĺpec 5 (iba pre denník)"
 
 #: application/views/user/edit.php:361
 msgid "QSO Logging Options"
-msgstr ""
+msgstr "Možnosti logovania QSO"
 
 #: application/views/user/edit.php:364
 msgid "Log End Times for QSOs Separately"
-msgstr ""
+msgstr "Zaznamenaj koncové časy pre QSOs zvlášť"
 
 #: application/views/user/edit.php:370
 msgid ""
 "Choose yes here if you want to log QSO start and end times separately. If "
 "set to 'No' the end time will be the same as start time."
 msgstr ""
+"Vyberte áno, ak chcete zaznamenávať časy začiatku a konca QSO osobitne. Ak "
+"nastavíte na 'Nie', koncový čas bude rovnaký ako čas začiatku."
 
 #: application/views/user/edit.php:375
 msgid "Prioritize database search over external lookup"
-msgstr ""
+msgstr "Uprednostni vyhľadávanie v databáze pred externým vyhľadávaním"
 
 #: application/views/user/edit.php:381
 msgid ""
@@ -17052,29 +17203,37 @@ msgid ""
 "QSOs before querying external services. Set to \"No\" to always use external "
 "lookup services instead."
 msgstr ""
+"Keď je nastavené na \"Áno\", vyhľadávanie volacej značky najskôr použije "
+"údaje z vašich predchádzajúcich spojení pred zadaním dotazu na externé "
+"služby. Nastavte na \"Nie\", aby ste vždy používali externé služby "
+"vyhľadávania."
 
 #: application/views/user/edit.php:385
 msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
+"Zobraz profilový obrázok QSO partnera z profilu qrz.com/hamqth.com v sekcii "
+"logu QSO."
 
 #: application/views/user/edit.php:391
 msgid ""
 "Please set your qrz.com/hamqth.com credentials in the general config file."
 msgstr ""
+"Prosím, nastav svoje prihlasovacie údaje na qrz.com/hamqth.com v všeobecnom "
+"konfiguračnom súbore."
 
 #: application/views/user/edit.php:396
 msgid "Location auto lookup."
-msgstr ""
+msgstr "Automatické vyhľadávanie polohy."
 
 #: application/views/user/edit.php:402
 msgid "If set, gridsquare is fetched based on location name."
-msgstr ""
+msgstr "Ak je nastavené, lokátor je získaný na základe názvu miesta."
 
 #: application/views/user/edit.php:406
 msgid "SOTA auto lookup gridsquare and name for summit."
-msgstr ""
+msgstr "SOTA automatické vyhľadanie lokátora a názvu pre vrchol."
 
 #: application/views/user/edit.php:412 application/views/user/edit.php:422
 #: application/views/user/edit.php:432
@@ -17082,286 +17241,302 @@ msgid ""
 "If set, name and gridsquare is fetched from the API and filled in location "
 "and locator."
 msgstr ""
+"Ak sú nastavené, meno a lokátor sa načítajú z API a vyplnia sa v polohe a "
+"lokátore."
 
 #: application/views/user/edit.php:416
 msgid "WWFF auto lookup gridsquare and name for reference."
-msgstr ""
+msgstr "Automatické vyhľadávanie WWFF lokátora a názvu pre referenciu."
 
 #: application/views/user/edit.php:426
 msgid "POTA auto lookup gridsquare and name for park."
-msgstr ""
+msgstr "POTA automatické vyhľadanie lokátora a názvu pre park."
 
 #: application/views/user/edit.php:435
 msgid "Number of previous contacts displayed on QSO page."
-msgstr ""
+msgstr "Počet predchádzajúcich spojení zobrazený na QSO stránke."
 
 #: application/views/user/edit.php:446
 msgid "DX Waterfall"
-msgstr ""
+msgstr "DX vodopád"
 
 #: application/views/user/edit.php:452
 msgid "Show an interactive DX Cluster 'Waterfall' on the QSO logging page."
-msgstr ""
+msgstr "Zobraz na stránke logovania QSO interaktívny DX Cluster 'Waterfall'."
 
 #: application/views/user/edit.php:463
 msgid "Menu Options"
-msgstr ""
+msgstr "Možnosti ponuky"
 
 #: application/views/user/edit.php:466
 msgid "Show notes in the main menu."
-msgstr ""
+msgstr "Zobraziť poznámky v hlavnom menu."
 
 #: application/views/user/edit.php:477
 msgid "Quicklog Field"
-msgstr ""
+msgstr "Quicklog pole"
 
 #: application/views/user/edit.php:483
 msgid ""
 "With this feature, you can log callsigns using the search field in the "
 "header."
 msgstr ""
+"Pomocou tejto funkcie môžeš zapisovať volacie značky pomocou vyhľadávacieho "
+"poľa v hlavičke."
 
 #: application/views/user/edit.php:487
 msgid "Quicklog - Action on press Enter"
-msgstr ""
+msgstr "Quicklog - akcia po stlačení klávesy Enter"
 
 #: application/views/user/edit.php:491
 msgid "Log Callsign"
-msgstr ""
+msgstr "Zaznamenaj volačku"
 
 #: application/views/user/edit.php:493
 msgid ""
 "What action should be performed when Enter is pressed in the quicklog field?"
-msgstr ""
+msgstr "Akú akciu treba vykonať, keď v poli Quicklog stlačíte Enter?"
 
 #: application/views/user/edit.php:499
 msgid "Station Locations Quickswitch"
-msgstr ""
+msgstr "Rýchly prepínač umiestnenia stanice"
 
 #: application/views/user/edit.php:504
 msgid ""
 "Show the Station Locations Quickswitch in the main menu. You can add "
 "locations by adding them to favourites at the station setup page."
 msgstr ""
+"Zobraziť rýchle prepínanie umiestnenia staníc v hlavnom menu. Miesta môžete "
+"pridávať pridaním do obľúbených na stránke nastavenia staníc."
 
 #: application/views/user/edit.php:508
 msgid "UTC Time in Menu"
-msgstr ""
+msgstr "UTC čas v menu"
 
 #: application/views/user/edit.php:513
 msgid "Show the current UTC Time in the menu"
-msgstr ""
+msgstr "Zobraziť aktuálny čas UTC v menu"
 
 #: application/views/user/edit.php:524
 msgid "Map Settings"
-msgstr ""
+msgstr "Nastavenia mapy"
 
 #: application/views/user/edit.php:531
 msgid "Icon"
-msgstr ""
+msgstr "Ikona"
 
 #: application/views/user/edit.php:534
 msgid "Not display"
-msgstr ""
+msgstr "Nezobraziť"
 
 #: application/views/user/edit.php:538
 msgid "Not displayed"
-msgstr ""
+msgstr "Nezobrazené"
 
 #: application/views/user/edit.php:547
 msgid "QSO (worked, not confirmed)"
-msgstr ""
+msgstr "QSO (urobené, nepotvrdené)"
 
 #: application/views/user/edit.php:566
 msgid "QSO (confirmed)"
-msgstr ""
+msgstr "QSO (potvrdené)"
 
 #: application/views/user/edit.php:567
 msgid "(If 'No', displayed as 'QSO (worked, not confirmed)')"
-msgstr ""
+msgstr "(Ak 'Nie', zobrazené ako 'QSO (urobené, nepotvrdené)')"
 
 #: application/views/user/edit.php:586
 msgid "Unworked (e.g. Zones)"
-msgstr ""
+msgstr "Neurobené (napr. zóny)"
 
 #: application/views/user/edit.php:587
 msgid "(Color for unworked zones)"
-msgstr ""
+msgstr "(Farba pre neurobené zóny)"
 
 #: application/views/user/edit.php:597
 msgid "Show Locator"
-msgstr ""
+msgstr "Zobraziť lokátor"
 
 #: application/views/user/edit.php:616
 msgid "Previous QSL Type"
-msgstr ""
+msgstr "Predchádzajúci typ QSL"
 
 #: application/views/user/edit.php:620
 msgid "Select the type of QSL to show in the previous QSOs section."
-msgstr ""
+msgstr "Vyberte typ QSL, ktorý sa má zobraziť v sekcii predchádzajúcich QSO."
 
 #: application/views/user/edit.php:637
 msgid "Dashboard Settings"
-msgstr ""
+msgstr "Nastavenia panela"
 
 #: application/views/user/edit.php:641
 msgid "Select the number of latest QSOs to be displayed on dashboard."
-msgstr ""
+msgstr "Vyber počet najnovších QSO, ktoré sa majú zobraziť na paneli."
 
 #: application/views/user/edit.php:648
 msgid "Choose the number of latest QSOs to be displayed on dashboard."
-msgstr ""
+msgstr "Vyber počet najnovších QSO na zobrazenie na paneli."
 
 #: application/views/user/edit.php:652
 msgid "Show Dashboard Map"
-msgstr ""
+msgstr "Zobraziť mapu v paneli"
 
 #: application/views/user/edit.php:656
 msgid "Map at right"
-msgstr ""
+msgstr "Mapa vpravo"
 
 #: application/views/user/edit.php:659
 msgid "Choose whether to show map on dashboard or not"
-msgstr ""
+msgstr "Vyber, či sa má na ovládacom paneli zobraziť mapa alebo nie"
 
 #: application/views/user/edit.php:663
 msgid "Dashboard Notification Banner"
-msgstr ""
+msgstr "Banner s upozorneniami na paneli"
 
 #: application/views/user/edit.php:669
 msgid "This allows to disable the global notification banner on the dashboard."
-msgstr ""
+msgstr "To umožňuje vypnúť globálny oznamovací banner na paneli."
 
 #: application/views/user/edit.php:673
 msgid "Dashboard solar and propagation data"
-msgstr ""
+msgstr "Údaje o slnečnej aktivite a šírení na paneli"
 
 #: application/views/user/edit.php:679
 msgid ""
 "This switches the display of the solar and propagation data on the dashboard."
-msgstr ""
+msgstr "Toto prepína zobrazenie údajov o slnečnej aktivite a šírení na paneli."
 
 #: application/views/user/edit.php:687
 msgid "Show Reference Fields on QSO Tab"
-msgstr ""
+msgstr "Zobraziť referenčné polia na karte QSO"
 
 #: application/views/user/edit.php:691
 msgid ""
 "The enabled items will be shown on the QSO tab rather than the General tab."
-msgstr ""
+msgstr "Povolené položky sa zobrazia na karte QSO namiesto karty Všeobecné."
 
 #: application/views/user/edit.php:729
 msgid "Online QSL request (OQRS) settings"
-msgstr ""
+msgstr "Nastavenia online žiadosti o QSL (OQRS)"
 
 #: application/views/user/edit.php:733
 msgid "Global text"
-msgstr ""
+msgstr "Globálny text"
 
 #: application/views/user/edit.php:735
 msgid ""
 "This text is an optional text that can be displayed on top of the OQRS page."
 msgstr ""
+"Tento text je voliteľný text, ktorý možno zobraziť na vrchole stránky OQRS."
 
 #: application/views/user/edit.php:738
 msgid "Grouped search"
-msgstr ""
+msgstr "Zoskupené vyhľadávanie"
 
 #: application/views/user/edit.php:740 application/views/user/edit.php:749
 #: application/views/user/edit.php:758 application/views/user/edit.php:767
 msgid "Off"
-msgstr ""
+msgstr "Vypnuté"
 
 #: application/views/user/edit.php:741 application/views/user/edit.php:750
 #: application/views/user/edit.php:759 application/views/user/edit.php:768
 msgid "On"
-msgstr ""
+msgstr "Zapnuté"
 
 #: application/views/user/edit.php:743
 msgid ""
 "When this is on, all station locations with OQRS active, will be searched at "
 "once."
 msgstr ""
+"Keď je to zapnuté, všetky umiestnenia staníc s aktívnym OQRS budú prehľadané "
+"naraz."
 
 #: application/views/user/edit.php:747
 msgid "Show station location name in grouped search results"
 msgstr ""
+"Zobraziť názov umiestnenia stanice v zoskupených výsledkoch vyhľadávania"
 
 #: application/views/user/edit.php:752
 msgid ""
 "If grouped search is ON, you can decide if the name of the station location "
 "shall be shown in the results table."
 msgstr ""
+"Ak je zapnuté zoskupené vyhľadávanie, môžete sa rozhodnúť, či sa názov "
+"miesta stanice zobrazí v tabuľke výsledkov."
 
 #: application/views/user/edit.php:756
 msgid "Automatic OQRS matching"
-msgstr ""
+msgstr "Automatické párovanie OQRS"
 
 #: application/views/user/edit.php:761
 msgid ""
 "If this is on, automatic OQRS matching will happen, and the system will try "
 "to match incoming requests with existing logs automatically."
 msgstr ""
+"Ak je to zapnuté, automatické párovanie OQRS sa uskutoční a systém sa pokúsi "
+"automaticky spárovať prichádzajúce požiadavky s existujúcimi záznamami."
 
 #: application/views/user/edit.php:765
 msgid "Automatic OQRS matching for direct requests"
-msgstr ""
+msgstr "Automatické zodpovedanie priamych žiadostí prostredníctvom OQRS"
 
 #: application/views/user/edit.php:770
 msgid "If this is on, automatic OQRS matching for direct request will happen."
 msgstr ""
+"Ak je to zapnuté, automatické OQRS spárovanie pre priamu požiadavku sa "
+"uskutoční."
 
 #: application/views/user/edit.php:786
 msgid "Default Values"
-msgstr ""
+msgstr "Predvolené hodnoty"
 
 #: application/views/user/edit.php:794
 msgid "Settings for Default Band and Confirmation"
-msgstr ""
+msgstr "Nastavenia pre predvolené pásmo a potvrdenie"
 
 #: application/views/user/edit.php:797
 msgid "Default Band"
-msgstr ""
+msgstr "Predvolené pásmo"
 
 #: application/views/user/edit.php:807
 msgid "Default QSL-Methods"
-msgstr ""
+msgstr "Predvolené QSL spôsoby"
 
 #: application/views/user/edit.php:872
 msgid "Third Party Services"
-msgstr ""
+msgstr "Služby tretích strán"
 
 #: application/views/user/edit.php:883
 msgid "Logbook of The World (LoTW) Username"
-msgstr ""
+msgstr "Používateľské meno Logbook of The World (LoTW)"
 
 #: application/views/user/edit.php:889
 msgid "Logbook of The World (LoTW) Password"
-msgstr ""
+msgstr "Heslo Logbook of The World (LoTW)"
 
 #: application/views/user/edit.php:893
 msgid "Test Login"
-msgstr ""
+msgstr "Otestovať prihlásenie"
 
 #: application/views/user/edit.php:911
 msgid "eQSL.cc Username"
-msgstr ""
+msgstr "eQSL.cc používateľské meno"
 
 #: application/views/user/edit.php:917
 msgid "eQSL.cc Password"
-msgstr ""
+msgstr "eQSL.cc heslo"
 
 #: application/views/user/edit.php:934
 msgid "Club Log"
-msgstr ""
+msgstr "ClubLog"
 
 #: application/views/user/edit.php:937
 msgid "Club Log Email"
-msgstr ""
+msgstr "ClubLog email"
 
 #: application/views/user/edit.php:943
 msgid "Club Log Password"
-msgstr ""
+msgstr "ClubLog heslo"
 
 #: application/views/user/edit.php:948
 #, php-format
@@ -17369,43 +17544,50 @@ msgid ""
 "If you have 2FA enabled at Clublog, you have to generate an App. Password to "
 "use Clublog in Wavelog. Visit %syour clublog settings page%s to do so."
 msgstr ""
+"Ak máš na Clublog zapnuté 2FA, musíš vygenerovať heslo aplikácie na "
+"používanie Clublogu vo Wavelog. Navštív %sstránku nastavení Clublog%s, aby "
+"si to urobil."
 
 #: application/views/user/edit.php:965
 msgid "Widgets"
-msgstr ""
+msgstr "Widgety"
 
 #: application/views/user/edit.php:973
 msgid "On-Air widget"
-msgstr ""
+msgstr "Widgety živého vysielania"
 
 #: application/views/user/edit.php:983
 msgid ""
 "Note: In order to use this widget, you need to have at least one CAT radio "
 "configured and working."
 msgstr ""
+"Všimnite si, že na používanie tohto widgetu musíte mať nakonfigurované a "
+"funkčné aspoň jedno CAT rádio."
 
 #: application/views/user/edit.php:987
 #, php-format
 msgid "When enabled, widget will be available at %s."
-msgstr ""
+msgstr "Keď je povolený, widget bude dostupný na %s."
 
 #: application/views/user/edit.php:992
 msgid "Display \"Last seen\" time"
-msgstr ""
+msgstr "Zobraziť čas \"naposledy online\""
 
 #: application/views/user/edit.php:998
 msgid ""
 "This setting control whether the 'Last seen' time is displayed in widget or "
 "not."
 msgstr ""
+"Toto nastavenie určuje, či sa čas 'Naposledy videné' zobrazuje vo widgete "
+"alebo nie."
 
 #: application/views/user/edit.php:1001
 msgid "Display only most recently updated radio"
-msgstr ""
+msgstr "Zobraziť iba naposledy aktualizované rádio"
 
 #: application/views/user/edit.php:1005
 msgid "No, show all radios"
-msgstr ""
+msgstr "Nie, ukáž všetky rádiá"
 
 #: application/views/user/edit.php:1007
 msgid ""
@@ -17414,53 +17596,59 @@ msgid ""
 "recently updated one. In case you have only one radio, this setting has no "
 "effect."
 msgstr ""
+"Ak máš nakonfigurované viaceré CAT rádiá, toto nastavenie určuje, či by "
+"widget mal zobraziť všetky stanice používateľa, ktoré sú v prevádzke, alebo "
+"iba tú, ktorá bola najnovšie aktualizovaná. Ak máš len jedno rádio, toto "
+"nastavenie nemá žiadny vplyv."
 
 #: application/views/user/edit.php:1017
 msgid "QSOs widget"
-msgstr ""
+msgstr "QSO widget"
 
 #: application/views/user/edit.php:1020
 msgid "Display exact QSO time"
-msgstr ""
+msgstr "Zobraziť presný čas QSO"
 
 #: application/views/user/edit.php:1026
 msgid ""
 "This setting control whether exact QSO time should displayed in the QSO "
 "widget or not."
 msgstr ""
+"Toto nastavenie kontroluje, či sa má vo widgete QSO zobraziť presný čas QSO "
+"alebo nie."
 
 #: application/views/user/edit.php:1039
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Rôzne"
 
 #: application/views/user/edit.php:1047
 msgid "AMSAT Status Upload"
-msgstr ""
+msgstr "Upload AMSAT statusu"
 
 #: application/views/user/edit.php:1050
 msgid "Upload status of SAT QSOs to"
-msgstr ""
+msgstr "Nahratie stavu SAT QSOs na"
 
 #: application/views/user/edit.php:1064
 msgid "Mastodonserver"
-msgstr ""
+msgstr "Mastodon server"
 
 #: application/views/user/edit.php:1067
 msgid "URL of Mastodonserver"
-msgstr ""
+msgstr "URL servera Mastodon"
 
 #: application/views/user/edit.php:1069
 #, php-format
 msgid "Main URL of your Mastodon server, e.g. %s"
-msgstr ""
+msgstr "Hlavná URL adresa vášho Mastodon servera, napr. %s"
 
 #: application/views/user/edit.php:1078
 msgid "Winkeyer"
-msgstr ""
+msgstr "Winkeyer"
 
 #: application/views/user/edit.php:1081
 msgid "Winkeyer Features Enabled"
-msgstr ""
+msgstr "Povolené funkcie Winkeyer"
 
 #: application/views/user/edit.php:1087
 #, php-format
@@ -17468,62 +17656,71 @@ msgid ""
 "Winkeyer support in Wavelog is very experimental. Read the wiki first at %s "
 "before enabling."
 msgstr ""
+"Podpora Winkeyer vo Wavelog je veľmi experimentálna. Najprv si prečítaj wiki "
+"na %s, než to povolíš."
 
 #: application/views/user/edit.php:1098
 msgid "Hams.at"
-msgstr ""
+msgstr "Hams.at"
 
 #: application/views/user/edit.php:1101
 msgid "Private Feed Key"
-msgstr ""
+msgstr "Súkromný kľúč kanála"
 
 #: application/views/user/edit.php:1103
 #, php-format
 msgctxt "Hint for Hamsat API Key; uses Link"
 msgid "See your profile at %s."
-msgstr ""
+msgstr "Pozri si svoj profil na %s."
 
 #: application/views/user/edit.php:1106
 msgid "Show Workable Passes Only"
-msgstr ""
+msgstr "Zobraz iba použiteľné oblety"
 
 #: application/views/user/edit.php:1112
 msgid ""
 "If enabled shows only workable passes based on the gridsquare set in your "
 "hams.at account. Requires private feed key to be set."
 msgstr ""
+"Ak je povolené, zobrazuje iba pracovateľné oblety na základe nastaveného "
+"lokátora vo vašom účte na hams.at. Vyžaduje nastavenie privátneho kľúča "
+"kanála."
 
 #: application/views/user/edit.php:1124
 msgid "Save Account"
-msgstr ""
+msgstr "Uložiť účet"
 
 #: application/views/user/forgot_password.php:33
 msgid "Forgot Password?"
-msgstr ""
+msgstr "Zabudli ste heslo?"
 
 #: application/views/user/forgot_password.php:34
 #: application/views/user/reset_password.php:9
 msgid "You can reset your password here."
-msgstr ""
+msgstr "Tu si môžeš obnoviť svoje heslo."
 
 #: application/views/user/index.php:11
 msgid "User List"
-msgstr ""
+msgstr "Zoznam používateľov"
 
 #: application/views/user/index.php:14
 msgid "Wavelog needs at least one user configured in order to operate."
 msgstr ""
+"Aby Wavelog fungoval, je potrebné nakonfigurovať aspoň jedného používateľa."
 
 #: application/views/user/index.php:15
 msgid ""
 "Users can be assigned roles which give them different permissions, such as "
 "adding QSOs to the logbook and accessing Wavelog APIs."
 msgstr ""
+"Používateľom môžu byť priradené úlohy, ktoré im poskytujú rôzne povolenia, "
+"ako je pridávanie QSO do denníka a prístup k Wavelog API."
 
 #: application/views/user/index.php:16
 msgid ""
 "The currently logged-in user is displayed at the upper-right of each page."
 msgstr ""
+"Aktuálne prihlásený používateľ sa zobrazuje vpravo hore na každej stránke."
 
 #: application/views/user/index.php:17
 msgid ""
@@ -17531,57 +17728,60 @@ msgid ""
 "link to reset their password. To achieve this, ensure that the email "
 "settings in the global options are configured correctly."
 msgstr ""
+"Pomocou tlačidla na obnovenie hesla môžete používateľovi poslať e-mail, "
+"ktorý obsahuje odkaz na obnovenie hesla. Na dosiahnutie tohto zabezpečte, "
+"aby boli v globálnych možnostiach správne nastavené e-mailové nastavenia."
 
 #: application/views/user/index.php:19
 msgid "Create user"
-msgstr ""
+msgstr "Vytvoriť používateľa"
 
 #: application/views/user/index.php:31 application/views/user/index.php:158
 msgid "Last seen"
-msgstr ""
+msgstr "Naposledy videný"
 
 #: application/views/user/index.php:69 application/views/user/index.php:184
 #: application/views/user/modals/admin_impersonate_modal.php:31
 msgid "Never"
-msgstr ""
+msgstr "Nikdy"
 
 #: application/views/user/index.php:74
 msgid "Account locked"
-msgstr ""
+msgstr "Účet zablokovaný"
 
 #: application/views/user/index.php:74
 msgid "Account was locked due to too many login attempts."
-msgstr ""
+msgstr "Účet bol zablokovaný z dôvodu príliš veľa pokusov o prihlásenie."
 
 #: application/views/user/index.php:76 application/views/user/index.php:188
 msgid "Locations"
-msgstr ""
+msgstr "Umiestnenia"
 
 #: application/views/user/index.php:78 application/views/user/index.php:190
 msgid "Logbooks"
-msgstr ""
+msgstr "Logbooky"
 
 #: application/views/user/index.php:81 application/views/user/index.php:193
 msgid "Last QSO:"
-msgstr ""
+msgstr "Posledné QSO:"
 
 #: application/views/user/index.php:85 application/views/user/index.php:195
 msgid "No QSOs in Log"
-msgstr ""
+msgstr "Žiadne QSOs v denníku"
 
 #: application/views/user/index.php:103 application/views/user/index.php:209
 #: application/views/user/modals/admin_impersonate_modal.php:43
 msgid "Impersonate"
-msgstr ""
+msgstr "Identita"
 
 #: application/views/user/index.php:110 application/views/user/index.php:219
 #: application/views/user/modals/more_actions_modal.php:6
 msgid "Other Actions"
-msgstr ""
+msgstr "Iné akcie"
 
 #: application/views/user/index.php:138
 msgid "Clubstation List"
-msgstr ""
+msgstr "Zoznam klubových staníc"
 
 #: application/views/user/index.php:141
 msgid ""
@@ -17589,66 +17789,72 @@ msgid ""
 "events to handle multiple operators. A clubstation is basically a normal "
 "user account with some special features and some restrictions."
 msgstr ""
+"Klubové stanice v systéme Wavelog sú jedinečný spôsob, ako kluby a podujatia "
+"so špeciálnou volacou značkou môžu spravovať viacerých operátorov. Klubová "
+"stanica je v podstate normálny používateľský účet s niektorými špeciálnymi "
+"funkciami a obmedzeniami."
 
 #: application/views/user/index.php:143
 msgid "Create Clubstation"
-msgstr ""
+msgstr "Vytvoriť klubovú stanicu"
 
 #: application/views/user/index.php:156
 msgid "Last Operator"
-msgstr ""
+msgstr "Posledný operátor"
 
 #: application/views/user/index.php:243
 msgid "No Clubstations configures yet."
-msgstr ""
+msgstr "Ešte nie sú nakonfigurované žiadne klubové stanice."
 
 #: application/views/user/login.php:36
 msgid "MAINTENANCE MODE"
-msgstr ""
+msgstr "REŽIM ÚDRŽBY"
 
 #: application/views/user/login.php:56
 msgid "Welcome to the Demo of Wavelog"
-msgstr ""
+msgstr "Vitajte v demoukážke Wavelog"
 
 #: application/views/user/login.php:57
 msgid "This demo will be reset every night at 0200z."
-msgstr ""
+msgstr "Toto demo sa každú noc o 0200z resetuje."
 
 #: application/views/user/login.php:60
 #, php-format
 msgid "More Information about Wavelog on %sGithub%s."
-msgstr ""
+msgstr "Viac informácií o Wavelogu na %sGithub%s."
 
 #: application/views/user/login.php:79
 msgid "Forgot your password?"
-msgstr ""
+msgstr "Zabudli ste svoje heslo?"
 
 #: application/views/user/login.php:85
 msgid "Keep me logged in"
-msgstr ""
+msgstr "Ponechať ma prihláseného"
 
 #: application/views/user/modals/admin_impersonate_modal.php:5
 msgid "(with Admin Rights)"
-msgstr ""
+msgstr "(s administrátorskými právami)"
 
 #: application/views/user/modals/admin_impersonate_modal.php:5
 msgid "Impersonate User"
-msgstr ""
+msgstr "Identita užívateľa"
 
 #: application/views/user/modals/admin_impersonate_modal.php:9
 msgid ""
 "You are about to impersonate another user. To return to your admin account, "
 "you can use the switch back button in the header menu."
 msgstr ""
+"Chystáš sa vydávať za iného používateľa. Ak sa chceš vrátiť na svoj admin "
+"účet, môžeš použiť tlačidlo \"prepnutie späť\" v hornom menu."
 
 #: application/views/user/modals/admin_impersonate_modal.php:10
 msgid "Do you want to impersonate this user?"
-msgstr ""
+msgstr "Chceš sa vydávať za tohto používateľa?"
 
 #: application/views/user/modals/admin_impersonate_modal.php:14
 #: application/views/user/modals/more_actions_modal.php:12
 msgid "Username:"
-msgstr ""
+msgstr "Používateľské meno:"
 
 #: application/views/user/modals/admin_impersonate_modal.php:18
 #: application/views/user/modals/more_actions_modal.php:16
@@ -17656,7 +17862,7 @@ msgstr ""
 #: application/views/user/modals/more_actions_modal.php:103
 #: application/views/user/modals/more_actions_modal.php:152
 msgid "Name:"
-msgstr ""
+msgstr "Meno:"
 
 #: application/views/user/modals/admin_impersonate_modal.php:22
 #: application/views/user/modals/more_actions_modal.php:20
@@ -17664,7 +17870,7 @@ msgstr ""
 #: application/views/user/modals/more_actions_modal.php:104
 #: application/views/user/modals/more_actions_modal.php:153
 msgid "Callsign:"
-msgstr ""
+msgstr "Volacia značka:"
 
 #: application/views/user/modals/admin_impersonate_modal.php:26
 #: application/views/user/modals/more_actions_modal.php:24
@@ -17672,19 +17878,19 @@ msgstr ""
 #: application/views/user/modals/more_actions_modal.php:106
 #: application/views/user/modals/more_actions_modal.php:155
 msgid "E-Mail:"
-msgstr ""
+msgstr "E-mail:"
 
 #: application/views/user/modals/admin_impersonate_modal.php:30
 msgid "Last Seen:"
-msgstr ""
+msgstr "Naposledy videný:"
 
 #: application/views/user/modals/first_login_wizard.php:5
 msgid "First Login Wizard"
-msgstr ""
+msgstr "Sprievodca prvým prihlásením"
 
 #: application/views/user/modals/first_login_wizard.php:20
 msgid "Hello and Welcome to Wavelog!"
-msgstr ""
+msgstr "Ahoj a vitaj vo Wavelogu!"
 
 #: application/views/user/modals/first_login_wizard.php:21
 #, php-format
@@ -17693,54 +17899,59 @@ msgid ""
 "Location. You can find more information about how Station Locations and "
 "Logbooks work in our %sWiki here%s!"
 msgstr ""
+"Než začneš zapisovať QSO, musíme nastaviť tvoju prvú stanicu. Viac "
+"informácií o tom, ako fungujú Umiestnenia stanice a Logbooky, nájdeš v našej "
+"%sWiki tu%s!"
 
 #: application/views/user/modals/first_login_wizard.php:22
 msgid ""
 "Please provide some additional information so that Wavelog can create your "
 "first Station:"
 msgstr ""
+"Poskytnite niektoré ďalšie informácie, aby mohol Wavelog vytvoriť vašu prvú "
+"stanicu:"
 
 #: application/views/user/modals/first_login_wizard.php:29
 msgid "Home QTH"
-msgstr ""
+msgstr "Domáce QTH"
 
 #: application/views/user/modals/first_login_wizard.php:62
 msgid "Station Zones"
-msgstr ""
+msgstr "Zóny stanice"
 
 #: application/views/user/modals/first_login_wizard.php:74
 #: application/views/user/modals/first_login_wizard.php:84
 #, php-format
 msgctxt "zone lookup"
 msgid "%sLookup%s"
-msgstr ""
+msgstr "%sVyhľadať%s"
 
 #: application/views/user/modals/first_login_wizard.php:102
 msgid "Save and Start Logging"
-msgstr ""
+msgstr "Uložiť a začať logovať"
 
 #: application/views/user/modals/more_actions_modal.php:9
 msgid "Select an action to perform for the user:"
-msgstr ""
+msgstr "Vyber akciu na vykonanie pre používateľa:"
 
 #: application/views/user/modals/more_actions_modal.php:33
 #: application/views/user/modals/more_actions_modal.php:62
 #: application/views/user/modals/more_actions_modal.php:75
 msgid "Unlock User"
-msgstr ""
+msgstr "Odomkniť používateľa"
 
 #: application/views/user/modals/more_actions_modal.php:39
 #: application/views/user/modals/more_actions_modal.php:96
 msgid "Send a Password Reset Link via Email"
-msgstr ""
+msgstr "Odoslať odkaz na obnovenie hesla e-mailom"
 
 #: application/views/user/modals/more_actions_modal.php:45
 msgid "Convert to Clubstation"
-msgstr ""
+msgstr "Previesť na klubovú stanicu"
 
 #: application/views/user/modals/more_actions_modal.php:45
 msgid "Convert to User"
-msgstr ""
+msgstr "Konvertovať na používateľa"
 
 #: application/views/user/modals/more_actions_modal.php:65
 msgid ""
@@ -17748,60 +17959,70 @@ msgid ""
 "failed login attempts. After unlocking, the user will be able to log in "
 "again."
 msgstr ""
+"Chystáte sa odomknúť nižšie uvedeného používateľa. Používateľ bol "
+"zablokovaný z dôvodu príliš veľkého počtu neúspešných pokusov o prihlásenie. "
+"Po odomknutí sa používateľ bude môcť znova prihlásiť."
 
 #: application/views/user/modals/more_actions_modal.php:67
 #: application/views/user/modals/more_actions_modal.php:102
 #: application/views/user/modals/more_actions_modal.php:151
 msgid "User:"
-msgstr ""
+msgstr "Používateľ:"
 
 #: application/views/user/modals/more_actions_modal.php:70
 #: application/views/user/modals/more_actions_modal.php:105
 #: application/views/user/modals/more_actions_modal.php:154
 msgid "Language:"
-msgstr ""
+msgstr "Jazyk:"
 
 #: application/views/user/modals/more_actions_modal.php:89
 msgid ""
 "Password-reset email sent successfully to user. You can close this dialog "
 "now."
 msgstr ""
+"E-mail na obnovenie hesla bol úspešne odoslaný používateľovi. Teraz môžete "
+"toto dialógové okno zavrieť."
 
 #: application/views/user/modals/more_actions_modal.php:90
 msgid ""
 "Password-reset email could not be sent to user. Are the email settings in "
 "global options configured correctly?"
 msgstr ""
+"Nemožno odoslať e-mail na obnovenie hesla používateľovi. Sú e-mailové "
+"nastavenia v globálnych možnostiach správne nakonfigurované?"
 
 #: application/views/user/modals/more_actions_modal.php:99
 msgid ""
 "You are about to send a password reset link to the user. The user will be "
 "able to reset their password by clicking on the link in the email."
 msgstr ""
+"Za chvíľu odošleš používateľovi odkaz na obnovenie hesla. Používateľ si bude "
+"môcť resetovať heslo kliknutím na odkaz v e-maile."
 
 #: application/views/user/modals/more_actions_modal.php:100
 msgid "Do you want to send the password reset email to this user?"
-msgstr ""
+msgstr "Chcete poslať e-mail na obnovenie hesla tomuto používateľovi?"
 
 #: application/views/user/modals/more_actions_modal.php:110
 msgid "Send the email"
-msgstr ""
+msgstr "Pošli email"
 
 #: application/views/user/modals/more_actions_modal.php:126
 msgid "The account was successfully converted. You can now close this dialog."
 msgstr ""
+"Účet bol úspešne konvertovaný. Teraz môžete toto dialógové okno zatvoriť."
 
 #: application/views/user/modals/more_actions_modal.php:127
 msgid "The account could not be converted. An error has occurred."
-msgstr ""
+msgstr "Účet sa nepodarilo konvertovať. Došlo k chybe."
 
 #: application/views/user/modals/more_actions_modal.php:135
 msgid "Convert this account into a normal user"
-msgstr ""
+msgstr "Premeň tento účet na bežného používateľa"
 
 #: application/views/user/modals/more_actions_modal.php:137
 msgid "Convert this account into a clubstation"
-msgstr ""
+msgstr "Premeň tento účet na klubovú stanicu"
 
 #: application/views/user/modals/more_actions_modal.php:144
 msgid ""
@@ -17809,6 +18030,9 @@ msgid ""
 "user will be able to log in again and all assigned club permissions will be "
 "removed. Use with caution!"
 msgstr ""
+"Chystáš sa previesť túto klubovú stanicu na bežný používateľský účet. "
+"Používateľ sa bude môcť znova prihlásiť a všetky pridelené klubové "
+"oprávnenia budú odstránené. Používaj opatrne!"
 
 #: application/views/user/modals/more_actions_modal.php:146
 msgid ""
@@ -17816,39 +18040,42 @@ msgid ""
 "no longer be able to log in and the account will be converted to a club "
 "station account. Use with caution!"
 msgstr ""
+"Chystáš sa previesť tento používateľský účet na účet klubovej stanice. "
+"Používateľ sa už nebude môcť prihlásiť a účet bude prevedený na účet "
+"klubovej stanice. Používaj opatrne!"
 
 #: application/views/user/modals/more_actions_modal.php:149
 msgid "Are you sure you want to convert this account?"
-msgstr ""
+msgstr "Si si istý, že chceš tento účet skonvertovať?"
 
 #: application/views/user/modals/more_actions_modal.php:159
 msgid "Convert"
-msgstr ""
+msgstr "Previesť"
 
 #: application/views/user/modals/stop_impersonate_modal.php:5
 msgid "Switch back to main user"
-msgstr ""
+msgstr "Prepni sa späť na hlavného používateľa"
 
 #: application/views/user/modals/stop_impersonate_modal.php:9
 #, php-format
 msgid "Are you sure you want to switch back to %s?"
-msgstr ""
+msgstr "Si si istý, že sa chceš vrátiť k %s?"
 
 #: application/views/user/profile.php:19
 msgid "Level"
-msgstr ""
+msgstr "Úroveň"
 
 #: application/views/user/profile.php:39
 msgid "First name"
-msgstr ""
+msgstr "Krstné meno"
 
 #: application/views/user/profile.php:44
 msgid "Last name"
-msgstr ""
+msgstr "Priezvisko"
 
 #: application/views/user/profile.php:50
 msgid "Edit profile"
-msgstr ""
+msgstr "Upraviť profil"
 
 #: application/views/user/reset_password.php:28
 msgid "Confirm Password"
@@ -17857,105 +18084,106 @@ msgstr "Potvrďte heslo"
 #: application/views/version_dialog/index.php:20
 msgid "No Version Dialog text set. Go to the Admin Menu and set one."
 msgstr ""
+"Nie je nastavený text dialógu verzie. Prejdite do Admin Menu a nastavte ho."
 
 #: application/views/version_dialog/index.php:60
 msgid "Error at parsing JSON-Data or got empty result from github."
-msgstr ""
+msgstr "Chyba pri analyzovaní JSON údajov alebo prázdny výsledok z GitHubu."
 
 #: application/views/version_dialog/index.php:63
 msgid "Error at getting the data from GitHub."
-msgstr ""
+msgstr "Chyba pri získavaní údajov z GitHub-u."
 
 #: application/views/version_dialog/index.php:75
 msgid "Don't show again"
-msgstr ""
+msgstr "Nezobrazovať znova"
 
 #: application/views/view_log/index.php:4
 msgid ""
 "Displaying all QSOs of station locations which are linked to this logbook"
-msgstr ""
+msgstr "Zobrazenie všetkých spojení staníc, ktoré sú prepojené s týmto denníkom"
 
 #: application/views/view_log/partial/log_ajax.php:510
 #: application/views/view_log/partial/log_ajax.php:567
 #: src/QSLManager/QSO.php:587 src/QSLManager/QSO.php:733
 msgid "last sent"
-msgstr ""
+msgstr "posledný odoslaný"
 
 #: application/views/view_log/partial/log_ajax.php:713
 msgid "Result"
-msgstr ""
+msgstr "Výsledok"
 
 #: application/views/view_log/qso.php:6
 msgid "QSO Details"
-msgstr ""
+msgstr "Detaily QSO"
 
 #: application/views/view_log/qso.php:29
 msgid "QSL Management"
-msgstr ""
+msgstr "QSL manažment"
 
 #: application/views/view_log/qso.php:86
 msgid "View note for this callsign"
-msgstr ""
+msgstr "Zobraziť poznámku pre túto volaciu značku"
 
 #: application/views/view_log/qso.php:138
 msgid "Total Distance"
-msgstr ""
+msgstr "Celková vzdialenosť"
 
 #: application/views/view_log/qso.php:165
 msgid "Other Path"
-msgstr ""
+msgstr "Iná cesta"
 
 #: application/views/view_log/qso.php:323
 msgid "Antenna Azimuth"
-msgstr ""
+msgstr "Azimut antény"
 
 #: application/views/view_log/qso.php:330
 msgid "Antenna Elevation"
-msgstr ""
+msgstr "Elevácia antény"
 
 #: application/views/view_log/qso.php:499
 msgid "QSL Card has been sent via the bureau"
-msgstr ""
+msgstr "QSL karta bola poslaná cez bureau"
 
 #: application/views/view_log/qso.php:501
 msgid "QSL Card has been sent via direct"
-msgstr ""
+msgstr "QSL karta bola odoslaná direkt"
 
 #: application/views/view_log/qso.php:503
 msgid "QSL Card has been sent electronically"
-msgstr ""
+msgstr "Elektronická QSL karta bola odoslaná"
 
 #: application/views/view_log/qso.php:505
 msgid "QSL Card has been sent via manager"
-msgstr ""
+msgstr "QSL karta bola poslaná cez manažéra"
 
 #: application/views/view_log/qso.php:507
 msgid "QSL Card has been sent"
-msgstr ""
+msgstr "QSL karta bola odoslaná"
 
 #: application/views/view_log/qso.php:516
 msgid "QSL Card has been received via the bureau"
-msgstr ""
+msgstr "QSL karta bola prijatá cez QSL službu"
 
 #: application/views/view_log/qso.php:518
 msgid "QSL Card has been received via direct"
-msgstr ""
+msgstr "QSL karta bola prijatá direktne"
 
 #: application/views/view_log/qso.php:520
 msgid "QSL Card has been received electronically"
-msgstr ""
+msgstr "QSL karta bola prijatá elektronicky"
 
 #: application/views/view_log/qso.php:522
 msgid "QSL Card has been received via manager"
-msgstr ""
+msgstr "QSL karta bola doručená cez manažéra"
 
 #: application/views/view_log/qso.php:524
 msgid "QSL Card has been received"
-msgstr ""
+msgstr "QSL karta bola prijatá"
 
 #: application/views/view_log/qso.php:533
 msgid "This station uses LoTW."
-msgstr ""
+msgstr "Táto stanica používa LoTW."
 
 #: application/views/view_log/qso.php:538
 #: application/views/view_log/qso.php:548
@@ -17963,105 +18191,111 @@ msgstr ""
 #: application/views/view_log/qso.php:572
 #: application/views/view_log/qso.php:582
 msgid "This QSO was confirmed on"
-msgstr ""
+msgstr "Toto QSO bolo potvrdené dňa"
 
 #: application/views/view_log/qso.php:543
 msgid "This QSO is confirmed on LoTW."
-msgstr ""
+msgstr "Toto QSO je potvrdené na LoTW."
 
 #: application/views/view_log/qso.php:557
 msgid "This QSO is confirmed on eQSL."
-msgstr ""
+msgstr "Toto QSO je potvrdené na eQSL."
 
 #: application/views/view_log/qso.php:567
 msgid "This QSO is confirmed on QRZ.com."
-msgstr ""
+msgstr "Toto QSO je potvrdené na QRZ.com."
 
 #: application/views/view_log/qso.php:577
 msgid "This QSO is confirmed on Clublog."
-msgstr ""
+msgstr "Toto QSO je potvrdené na Clublog."
 
 #: application/views/view_log/qso.php:587
 msgid "This QSO is confirmed on DCL."
-msgstr ""
+msgstr "Toto QSO je potvrdené na DCL."
 
 #: application/views/view_log/qso.php:600
 msgid "More QSOs"
-msgstr ""
+msgstr "Viac spojení"
 
 #: application/views/view_log/qso.php:662
 msgid "Share"
-msgstr ""
+msgstr "Zdieľať"
 
 #: application/views/view_log/qso.php:668
 msgid "Details"
-msgstr ""
+msgstr "Podrobnosti"
 
 #: application/views/view_log/qso.php:795
 msgid "Uploaded QSL Card front image"
-msgstr ""
+msgstr "Nahraný obrázok prednej strany QSL karty"
 
 #: application/views/view_log/qso.php:800
 msgid "Upload QSL Card image"
-msgstr ""
+msgstr "Nahrať obrázok QSL karty"
 
 #: application/views/view_log/qso.php:805
 msgid "Uploaded QSL Card back image"
-msgstr ""
+msgstr "Nahraný obrázok zadnej strany QSL lístka"
 
 #: application/views/view_log/qso.php:821
 msgid "Mark QSL Received (Electronic)"
-msgstr ""
+msgstr "Označ QSL prijaté (elektronicky)"
 
 #: application/views/view_log/qso.php:844
 msgid "eQSL picture"
-msgstr ""
+msgstr "eQSL obrázok"
 
 #: application/views/visitor/layout/footer.php:239
 msgid "Filter Results"
-msgstr ""
+msgstr "Filtruj výsledky"
 
 #: application/views/visitor/layout/footer.php:245
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: application/views/visitor/layout/footer.php:253
 msgid "Clear Filter"
-msgstr ""
+msgstr "Vymazať filter"
 
 #: application/views/visitor/layout/header.php:74
 msgid "OQRS"
-msgstr ""
+msgstr "OQRS"
 
 #: application/views/visitor/layout/header.php:82
 msgid "Visit Wavelog on Github"
-msgstr ""
+msgstr "Navštívte Wavelog na Githube"
 
 #: application/views/visitor/layout/header.php:95
 msgid "Please enter a callsign!"
-msgstr ""
+msgstr "Prosím zadaj volací znak!"
 
 #: application/views/webadif/export.php:22
 msgid ""
 "Here you can see and upload all QSOs which have not been previously uploaded "
 "to QO-100 Dx Club."
 msgstr ""
+"Tu môžeš vidieť a nahrávať všetky QSO, ktoré neboli predtým nahrané do QO-"
+"100 Dx Club."
 
 #: application/views/webadif/export.php:33
 msgid ""
 "You need to set a QO-100 Dx Club API key in your station profile. Only "
 "station profiles with an API Key are displayed."
 msgstr ""
+"Musíš nastaviť API kľúč QO-100 Dx Club vo svojom profile stanice. Zobrazené "
+"sú iba profily staníc s API kľúčom."
 
 #: application/views/webadif/export.php:63
 msgid ""
 "There are currently no outstanding QSOs that need to be uploaded to the "
 "QO-100 Dx Club's API."
 msgstr ""
+"Momentálne nie sú žiadne nevyriešené QSO, ktoré by bolo potrebné nahrať do "
+"API QO-100 Dx Clubu."
 
 #: application/views/webadif/export.php:64
 msgid "Go ahead and turn on your QO-100 station!"
-msgstr ""
+msgstr "Zapni svoju stanicu QO-100!"
 
 #: application/views/webadif/export.php:73
 #: application/views/webadif/export.php:113
@@ -18069,11 +18303,13 @@ msgid ""
 "None of your Logbooks are configured to export data to the QO-100 Dx Club's "
 "API."
 msgstr ""
+"Žiadny z tvojich denníkov nie je nakonfigurovaný na export dát do API QO-100 "
+"Dx Clubu."
 
 #: application/views/webadif/export.php:74
 #: application/views/webadif/export.php:114
 msgid "QO-100 Dx Club"
-msgstr ""
+msgstr "QO-100 Dx klub"
 
 #: application/views/webadif/export.php:74
 #: application/views/webadif/export.php:114
@@ -18082,6 +18318,8 @@ msgid ""
 "To configure this feature, go to your profile page at the %s and %s Create "
 "%s an API key."
 msgstr ""
+"Ak chcete nakonfigurovať túto funkciu, prejdite na svoju profilovú stránku "
+"na %s a %s Vytvorte %s kľúč API."
 
 #: application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
@@ -18090,47 +18328,51 @@ msgid ""
 "Then, navigate to your %s and configure your station with the key you have "
 "created at the club."
 msgstr ""
+"Potom prejdite na svoju %s a nakonfigurujte svoju stanicu s kľúčom, ktorý "
+"ste vytvorili v klube."
 
 #: application/views/webadif/export.php:83
 msgid ""
 "Here you can mark as uploaded your QSOs which have not been previously "
 "uploaded to QO-100 Dx Club."
 msgstr ""
+"Tu môžeš označiť ako nahrané svoje spojenia, ktoré neboli predtým nahrané do "
+"QO-100 Dx Club."
 
 #: application/views/webadif/export.php:107
 msgid "Mark QSOs as exported to QO-100 Dx Club"
-msgstr ""
+msgstr "Označ spojenia ako exportované do QO-100 Dx klubu"
 
 #: application/views/webadif/mark_webadif.php:16
 msgid "The QSOs are marked as exported to QO-100 Dx Club."
-msgstr ""
+msgstr "Spojenia sú označené ako exportované do QO-100 Dx Clubu."
 
 #: application/views/widgets/oqrs.php:21
 msgid "Wavelog OQRS"
-msgstr ""
+msgstr "Wavelog OQRS"
 
 #: application/views/widgets/oqrs.php:76
 msgid "Wavelog OQRS Request"
-msgstr ""
+msgstr "Wavelog OQRS žiadosť"
 
 #: application/views/widgets/oqrs.php:79
 #, php-format
 msgid "Request a QSL card for your QSO with %s."
-msgstr ""
+msgstr "Požiadaj o QSL kartu za tvoje QSO s %s."
 
 #: application/views/widgets/oqrs.php:83
 msgid "Your Callsign:"
-msgstr ""
+msgstr "Tvoj volací znak:"
 
 #: application/views/widgets/oqrs.php:91
 msgid "Submit Request"
-msgstr ""
+msgstr "Odoslať žiadosť"
 
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
-msgstr ""
+msgstr "Prijaté"
 
 #: application/views/awards/was/index.php:5
 #: application/views/awards/was/index.php:166
 msgid "inc."
-msgstr ""
+msgstr "vrátane."
