@@ -185,6 +185,7 @@
                                                 <td>
                                                     <select class="form-select" id="permission" name="permission" required>
                                                         <option value="3"><?php echo $permissions[3]; ?></option>
+                                                        <option value="6"><?php echo $permissions[6]; ?></option>
                                                         <option value="9"><?php echo $permissions[9]; ?></option>
                                                     </select>
                                                     <div class="mt-2 form-check d-flex justify-content-end text-muted">
