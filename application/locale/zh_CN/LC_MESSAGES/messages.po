@@ -24,7 +24,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-03 09:39+0000\n"
+"POT-Creation-Date: 2025-12-03 12:01+0000\n"
 "PO-Revision-Date: 2025-12-03 07:44+0000\n"
 "Last-Translator: hellofinch <543933756@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -2336,7 +2336,7 @@ msgstr "默认（点击释放）"
 #: application/controllers/Radio.php:115
 #: application/controllers/Stationsetup.php:401
 #: application/views/api/index.php:74 application/views/bands/bandedges.php:32
-#: application/views/club/permissions.php:251
+#: application/views/club/permissions.php:274
 #: application/views/contesting/add.php:59 application/views/cron/index.php:71
 #: application/views/interface_assets/footer.php:679
 #: application/views/interface_assets/footer.php:688
@@ -2355,8 +2355,8 @@ msgstr "编辑"
 #: application/controllers/Radio.php:116
 #: application/controllers/Stationsetup.php:414
 #: application/views/api/index.php:81 application/views/bands/bandedges.php:33
-#: application/views/club/permissions.php:308
-#: application/views/club/permissions.php:330
+#: application/views/club/permissions.php:331
+#: application/views/club/permissions.php:353
 #: application/views/contesting/add.php:62
 #: application/views/interface_assets/footer.php:65
 #: application/views/interface_assets/footer.php:2758
@@ -2914,7 +2914,7 @@ msgid "Invalid Parameter!"
 msgstr "无效参数！"
 
 #: application/controllers/User.php:193
-#: application/views/club/permissions.php:155
+#: application/views/club/permissions.php:178
 msgid "Add User"
 msgstr "添加用户"
 
@@ -2942,7 +2942,7 @@ msgid "Users"
 msgstr "用户"
 
 #: application/controllers/User.php:431
-#: application/views/club/permissions.php:256
+#: application/views/club/permissions.php:279
 msgid "Edit User"
 msgstr "编辑用户"
 
@@ -2956,7 +2956,7 @@ msgid "Profile"
 msgstr "个人资料"
 
 #: application/controllers/User.php:1064
-#: application/views/club/permissions.php:313
+#: application/views/club/permissions.php:336
 msgid "Delete User"
 msgstr "删除用户"
 
@@ -4238,7 +4238,7 @@ msgstr "未找到！"
 #: application/views/bandmap/list.php:27 application/views/bandmap/list.php:165
 #: application/views/cabrillo/index.php:31
 #: application/views/callstats/index.php:147
-#: application/views/club/permissions.php:223
+#: application/views/club/permissions.php:246
 #: application/views/components/hamsat/table.php:27
 #: application/views/contesting/index.php:171
 #: application/views/csv/index.php:23 application/views/dashboard/index.php:247
@@ -4939,8 +4939,8 @@ msgstr "如用于描述用途的名字。"
 
 #: application/views/api/description.php:33
 #: application/views/bands/create.php:49 application/views/bands/edit.php:32
-#: application/views/club/permissions.php:205
-#: application/views/club/permissions.php:301
+#: application/views/club/permissions.php:228
+#: application/views/club/permissions.php:324
 #: application/views/contesting/edit.php:55 application/views/cron/edit.php:73
 #: application/views/interface_assets/footer.php:51
 #: application/views/interface_assets/footer.php:674
@@ -5055,7 +5055,7 @@ msgstr "权限"
 
 #: application/views/api/index.php:38
 #: application/views/awards/pl_polska/index.php:372
-#: application/views/club/permissions.php:227
+#: application/views/club/permissions.php:250
 #: application/views/clublog/export.php:39
 #: application/views/hrdlog/export.php:39
 #: application/views/logbookadvanced/index.php:740
@@ -8097,7 +8097,7 @@ msgid "Create a band"
 msgstr "创建频段"
 
 #: application/views/bands/index.php:160
-#: application/views/club/permissions.php:142
+#: application/views/club/permissions.php:165
 #: application/views/contesting/add.php:74
 #: application/views/contesting/index.php:93
 #: application/views/interface_assets/footer.php:50
@@ -8494,9 +8494,9 @@ msgid "Yes, switch over!"
 msgstr "是的，切换！"
 
 #: application/views/club/clubswitch_modal.php:15
-#: application/views/club/permissions.php:206
-#: application/views/club/permissions.php:302
-#: application/views/club/permissions.php:331
+#: application/views/club/permissions.php:229
+#: application/views/club/permissions.php:325
+#: application/views/club/permissions.php:354
 #: application/views/cron/edit.php:74
 #: application/views/interface_assets/footer.php:40
 #: application/views/satellite/pass.php:114
@@ -8536,158 +8536,162 @@ msgstr "可用的角色"
 msgid "Action"
 msgstr "操作"
 
-#: application/views/club/permissions.php:33
+#: application/views/club/permissions.php:34
 msgid "Log QSOs via Web GUI (live and post)"
 msgstr "通过 Web GUI 记录 QSO （实时和手动）"
 
-#: application/views/club/permissions.php:41
+#: application/views/club/permissions.php:43
 msgid "Log QSOs via API"
 msgstr "通过 API 记录 QSO"
 
-#: application/views/club/permissions.php:49
+#: application/views/club/permissions.php:52
 msgid "Edit a QSO"
 msgstr "编辑 QSO"
 
-#: application/views/club/permissions.php:54
-#: application/views/club/permissions.php:72
+#: application/views/club/permissions.php:58
+#: application/views/club/permissions.php:79
 msgid "QSO was done by the operator"
 msgstr "当前操作员完成的 QSO"
 
-#: application/views/club/permissions.php:59
-#: application/views/club/permissions.php:77
+#: application/views/club/permissions.php:64
+#: application/views/club/permissions.php:85
 msgid "QSO was done by another operator"
 msgstr "其他操作员完成的 QSO"
 
-#: application/views/club/permissions.php:67
+#: application/views/club/permissions.php:73
 msgid "Delete a QSO"
 msgstr "删除 QSO"
 
-#: application/views/club/permissions.php:85
+#: application/views/club/permissions.php:94
 msgid "Manage Stationsetup (edit/create logbooks and locations)"
 msgstr "管理台站设置（编辑/创建日志簿和位置）"
 
-#: application/views/club/permissions.php:93
+#: application/views/club/permissions.php:103
 msgid "Manage Third-Party services"
 msgstr "管理第三方服务"
 
-#: application/views/club/permissions.php:101
+#: application/views/club/permissions.php:112
 msgid "Import QSO per ADIF"
 msgstr "从 ADIF 导入 QSO"
 
-#: application/views/club/permissions.php:110
+#: application/views/club/permissions.php:122
 msgid "Export QSO per ADIF"
 msgstr "导出 QSO 到 ADIF"
 
-#: application/views/club/permissions.php:118
+#: application/views/club/permissions.php:128
+msgid "Export own QSO per ADIF"
+msgstr ""
+
+#: application/views/club/permissions.php:137
 msgid "User Management"
 msgstr "用户管理"
 
-#: application/views/club/permissions.php:123
+#: application/views/club/permissions.php:143
 msgid "Can create new users in Wavelog"
 msgstr "能够在 Wavelog 中创建新用户"
 
-#: application/views/club/permissions.php:128
+#: application/views/club/permissions.php:149
 msgid "Can edit other users in Wavelog"
 msgstr "能够编辑其他 Wavelog 中的用户"
 
-#: application/views/club/permissions.php:133
+#: application/views/club/permissions.php:155
 msgid "Can edit Club permissions and add/remove users"
 msgstr "可以编辑集体台站的权限并添加/移除用户"
 
-#: application/views/club/permissions.php:151
+#: application/views/club/permissions.php:174
 msgid "Users with Permissions"
 msgstr "用户角色"
 
-#: application/views/club/permissions.php:161
+#: application/views/club/permissions.php:184
 msgid "Add new User to Club"
 msgstr "添加新用户到集体台站"
 
-#: application/views/club/permissions.php:167
+#: application/views/club/permissions.php:190
 #, php-format
 msgid ""
 "You can only add users to the %s Clubstation if they already exist on this "
 "Wavelog Server."
 msgstr "你只能添加已经存在在 Wavelog 服务器中的用户到 %s 集体台站。"
 
-#: application/views/club/permissions.php:168
+#: application/views/club/permissions.php:191
 msgid ""
 "If they don't exist, please ask your Wavelog Administrator to create an "
 "account for them."
 msgstr "如果用户不存在，请联系你的 Wavelog 管理员来为他们创建账号。"
 
-#: application/views/club/permissions.php:169
+#: application/views/club/permissions.php:192
 msgid ""
 "Search for the user by their callsign or first/lastname and select the "
 "permission level."
 msgstr "通过姓名/呼号搜索用户来选择角色。"
 
-#: application/views/club/permissions.php:175
+#: application/views/club/permissions.php:198
 msgid "User (Callsign or Name)"
 msgstr "用户名（呼号或者名字）"
 
-#: application/views/club/permissions.php:176
-#: application/views/club/permissions.php:226
-#: application/views/club/permissions.php:272
+#: application/views/club/permissions.php:199
+#: application/views/club/permissions.php:249
+#: application/views/club/permissions.php:295
 msgid "Permission"
 msgstr "角色"
 
-#: application/views/club/permissions.php:183
+#: application/views/club/permissions.php:206
 msgid "Type at least 2 characters."
 msgstr "输入至少两个字符。"
 
-#: application/views/club/permissions.php:195
+#: application/views/club/permissions.php:218
 msgid "Notify the user via email"
 msgstr "通过 Email 通知用户"
 
-#: application/views/club/permissions.php:214
+#: application/views/club/permissions.php:237
 msgid "No users currently have access to this club station."
 msgstr "当前没有用户可以访问这个集体台站。"
 
-#: application/views/club/permissions.php:221
+#: application/views/club/permissions.php:244
 msgid "Firstname"
 msgstr "姓 (Firstname)"
 
-#: application/views/club/permissions.php:222
+#: application/views/club/permissions.php:245
 msgid "Lastname"
 msgstr "名 (Lastname)"
 
-#: application/views/club/permissions.php:224
+#: application/views/club/permissions.php:247
 #: application/views/user/edit.php:56 application/views/user/index.php:152
 #: application/views/user/login.php:58 application/views/user/login.php:69
 #: application/views/user/login.php:70 application/views/user/profile.php:14
 msgid "Username"
 msgstr "用户名"
 
-#: application/views/club/permissions.php:225
+#: application/views/club/permissions.php:248
 msgid "E-Mail"
 msgstr "E-Mail"
 
-#: application/views/club/permissions.php:247
+#: application/views/club/permissions.php:270
 msgid "Wavelog Administrator"
 msgstr "Wavelog 管理员"
 
-#: application/views/club/permissions.php:264
+#: application/views/club/permissions.php:287
 msgid "You can modify the users permission level for this Clubstation."
 msgstr "你可以修改用户在这个集体台站的角色。"
 
-#: application/views/club/permissions.php:271
+#: application/views/club/permissions.php:294
 msgid "User Callsign"
 msgstr "用户呼号"
 
-#: application/views/club/permissions.php:290
+#: application/views/club/permissions.php:313
 msgid "Notify the user via email about the change"
 msgstr "通过电子邮件通知用户关于角色的修改"
 
-#: application/views/club/permissions.php:320
+#: application/views/club/permissions.php:343
 msgid "Are you sure you want to delete this user from the club?"
 msgstr "你确定想要从集体台站中删除这个用户？"
 
-#: application/views/club/permissions.php:324
+#: application/views/club/permissions.php:347
 #, php-format
 msgid "Callsign: %s"
 msgstr "呼号：%s"
 
-#: application/views/club/permissions.php:325
+#: application/views/club/permissions.php:348
 #, php-format
 msgid "Role: %s"
 msgstr "角色：%s"

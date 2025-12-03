@@ -25,12 +25,14 @@
                                         <tr>
                                             <th><?= __("Action"); ?></th>
                                             <th><?php echo $permissions[3]; ?></th>
+                                            <th><?php echo $permissions[6]; ?></th>
                                             <th><?php echo $permissions[9]; ?></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td><?= __("Log QSOs via Web GUI (live and post)"); ?></td>
+                                            <td><i class="fas fa-check text-success"></i></td>
                                             <td><i class="fas fa-check text-success"></i></td>
                                             <td><i class="fas fa-check text-success"></i></td>
                                         </tr>
@@ -41,6 +43,7 @@
                                             <td><?= __("Log QSOs via API"); ?></td>
                                             <td><i class="fas fa-check text-success"></i></td>
                                             <td><i class="fas fa-check text-success"></i></td>
+                                            <td><i class="fas fa-check text-success"></i></td>
                                         </tr>
                                         <tr class="empty-row">
                                             <td colspan="3"></td>
@@ -49,14 +52,17 @@
                                             <td><?= __("Edit a QSO"); ?></td>
                                             <td></td>
                                             <td></td>
+                                            <td></td>
                                         </tr>
                                         <tr>
                                             <td class="ps-5"><i class="fas fa-arrow-right me-3"></i><?= __("QSO was done by the operator"); ?></td>
                                             <td><i class="fas fa-check text-success"></i></td>
                                             <td><i class="fas fa-check text-success"></i></td>
+                                            <td><i class="fas fa-check text-success"></i></td>
                                         </tr>
                                         <tr>
                                             <td class="ps-5"><i class="fas fa-arrow-right me-3"></i><?= __("QSO was done by another operator"); ?></td>
+                                            <td><i class="fas fa-times text-danger"></i></td>
                                             <td><i class="fas fa-times text-danger"></i></td>
                                             <td><i class="fas fa-check text-success"></i></td>
                                         </tr>
@@ -67,22 +73,26 @@
                                             <td><?= __("Delete a QSO"); ?></td>
                                             <td></td>
                                             <td></td>
+                                            <td></td>
                                         </tr>
                                         <tr>
                                             <td class="ps-5"><i class="fas fa-arrow-right me-3"></i><?= __("QSO was done by the operator"); ?></td>
+                                            <td><i class="fas fa-check text-success"></i></td>
                                             <td><i class="fas fa-check text-success"></i></td>
                                             <td><i class="fas fa-check text-success"></i></td>
                                         </tr>
                                         <tr>
                                             <td class="ps-5"><i class="fas fa-arrow-right me-3"></i><?= __("QSO was done by another operator"); ?></td>
                                             <td><i class="fas fa-times text-danger"></i></td>
+                                            <td><i class="fas fa-times text-danger"></i></td>
                                             <td><i class="fas fa-check text-success"></i></td>
                                         </tr>
                                         <tr class="empty-row">
-                                            <td colspan="3"></td>
+                                            <td colspan="4"></td>
                                         </tr>
                                         <tr>
                                             <td><?= __("Manage Stationsetup (edit/create logbooks and locations)"); ?></td>
+                                            <td><i class="fas fa-times text-danger"></i></td>
                                             <td><i class="fas fa-times text-danger"></i></td>
                                             <td><i class="fas fa-check text-success"></i></td>
                                         </tr>
@@ -91,6 +101,7 @@
                                         </tr>
                                         <tr>
                                             <td><?= __("Manage Third-Party services"); ?></td>
+                                            <td><i class="fas fa-times text-danger"></i></td>
                                             <td><i class="fas fa-times text-danger"></i></td>
                                             <td><i class="fas fa-check text-success"></i></td>
                                         </tr>
@@ -101,21 +112,30 @@
                                             <td><?= __("Import QSO per ADIF"); ?></td>
                                             <td><i class="fas fa-times text-danger"></i></td>
                                             <td><i class="fas fa-check text-success"></i></td>
+                                            <td><i class="fas fa-check text-success"></i></td>
                                         </tr>
 
                                         <tr class="empty-row">
-                                            <td colspan="3"></td>
+                                            <td colspan="4"></td>
                                         </tr>
                                         <tr>
                                             <td><?= __("Export QSO per ADIF"); ?></td>
                                             <td><i class="fas fa-times text-danger"></i></td>
+                                            <td><i class="fas fa-times text-danger"></i></td>
+                                            <td><i class="fas fa-check text-success"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td><?= __("Export own QSO per ADIF"); ?></td>
+                                            <td><i class="fas fa-times text-danger"></i></td>
+                                            <td><i class="fas fa-check text-success"></i></td>
                                             <td><i class="fas fa-check text-success"></i></td>
                                         </tr>
                                         <tr class="empty-row">
-                                            <td colspan="3"></td>
+                                            <td colspan="4"></td>
                                         </tr>
                                         <tr>
                                             <td><?= __("User Management"); ?></td>
+                                            <td></td>
                                             <td></td>
                                             <td></td>
                                         </tr>
@@ -123,14 +143,17 @@
                                             <td class="ps-5"><i class="fas fa-arrow-right me-3"></i><?= __("Can create new users in Wavelog"); ?></td>
                                             <td><i class="fas fa-times text-danger"></i></td>
                                             <td><i class="fas fa-times text-danger"></i></td>
+                                            <td><i class="fas fa-times text-danger"></i></td>
                                         </tr>
                                         <tr>
                                             <td class="ps-5"><i class="fas fa-arrow-right me-3"></i><?= __("Can edit other users in Wavelog"); ?></td>
                                             <td><i class="fas fa-times text-danger"></i></td>
                                             <td><i class="fas fa-times text-danger"></i></td>
+                                            <td><i class="fas fa-times text-danger"></i></td>
                                         </tr>
                                         <tr>
                                             <td class="ps-5"><i class="fas fa-arrow-right me-3"></i><?= __("Can edit Club permissions and add/remove users"); ?></td>
+                                            <td><i class="fas fa-times text-danger"></i></td>
                                             <td><i class="fas fa-times text-danger"></i></td>
                                             <td><i class="fas fa-check text-success"></i></td>
                                         </tr>
