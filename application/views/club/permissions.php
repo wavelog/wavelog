@@ -185,6 +185,7 @@
                                                 <td>
                                                     <select class="form-select" id="permission" name="permission" required>
                                                         <option value="3"><?php echo $permissions[3]; ?></option>
+                                                        <option value="6"><?php echo $permissions[6]; ?></option>
                                                         <option value="9"><?php echo $permissions[9]; ?></option>
                                                     </select>
                                                     <div class="mt-2 form-check d-flex justify-content-end text-muted">
@@ -237,6 +238,8 @@
                                     <td style="text-align: center; vertical-align: middle;">
                                         <?php if ($member->p_level == 3) { ?>
                                             <span class="badge bg-info"><?php echo $permissions[3]; ?></span>
+                                        <?php } else if ($member->p_level == 6) { ?>
+                                            <span class="badge bg-success"><?php echo $permissions[6]; ?></span>
                                         <?php } else if ($member->p_level == 9) { ?>
                                             <span class="badge bg-warning"><?php echo $permissions[9]; ?></span>
                                         <?php } ?>
@@ -277,6 +280,7 @@
                                                                             <td>
                                                                                 <select class="form-select" id="permission" name="permission" required>
                                                                                     <option value="3" <?php if ($member->p_level == 3) { echo 'selected'; } ?>><?php echo $permissions[3]; ?></option>
+                                                                                    <option value="6" <?php if ($member->p_level == 6) { echo 'selected'; } ?>><?php echo $permissions[6]; ?></option>
                                                                                     <option value="9" <?php if ($member->p_level == 9) { echo 'selected'; } ?>><?php echo $permissions[9]; ?></option>
                                                                                 </select>
                                                                                 <div class="mt-2 form-check d-flex justify-content-end text-muted">

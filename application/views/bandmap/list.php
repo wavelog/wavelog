@@ -16,7 +16,7 @@
 	var lang_bandmap_cat_required = "<?= __("CAT Connection Required"); ?>";
 	var lang_bandmap_enable_cat = "<?= __("Enable CAT connection to tune the radio"); ?>";
 	var lang_bandmap_clear_filters = "<?= __("Clear Filters"); ?>";
-	var lang_bandmap_band_preserved = "<?= __("Band filter preserved (CAT connection is active)"); ?>";
+	var lang_bandmap_band_preserved = "<?= __("Band filter preserved (band lock is active)"); ?>";
 	var lang_bandmap_radio = "<?= __("Radio"); ?>";
 	var lang_bandmap_radio_none = "<?= __("Radio set to None - CAT connection disabled"); ?>";
 	var lang_bandmap_radio_tuned = "<?= __("Radio Tuned"); ?>";
@@ -28,9 +28,12 @@
 	var lang_bandmap_sent_to_form = "<?= __("sent to logging form"); ?>";
 	var lang_bandmap_cat_control = "<?= __("CAT Connection"); ?>";
 	var lang_bandmap_cat_off = "<?= __("Click to enable CAT connection"); ?>";
-	var lang_bandmap_cat_on = "<?= __("CAT following radio | Click for frequency marker | Double-click to disable"); ?>";
-	var lang_bandmap_cat_marker = "<?= __("Frequency marker active | Click to disable marker | Double-click to disable CAT"); ?>";
-	var lang_bandmap_freq_changed = "<?= __("Frequency filter changed to"); ?>";
+	var lang_bandmap_cat_on = "<?= __("CAT following radio - Click to disable"); ?>";
+	var lang_bandmap_cat_lock_off = "<?= __("Click to enable band lock (requires CAT connection)"); ?>";
+	var lang_bandmap_cat_lock_on = "<?= __("Band lock active - Click to disable"); ?>";
+	var lang_bandmap_band_lock = "<?= __("Band Lock"); ?>";
+	var lang_bandmap_band_lock_enabled = "<?= __("Band lock enabled - band filter will track radio band"); ?>";
+	var lang_bandmap_freq_changed = "<?= __("Band filter changed to"); ?>";
 	var lang_bandmap_by_transceiver = "<?= __("by transceiver"); ?>";
 	var lang_bandmap_freq_filter_set = "<?= __("Frequency filter set to"); ?>";
 	var lang_bandmap_freq_outside = "<?= __("Frequency outside known bands - showing all bands"); ?>";
@@ -39,6 +42,30 @@
 	var lang_bandmap_favorites_failed = "<?= __("Failed to load favorites"); ?>";
 	var lang_bandmap_modes_applied = "<?= __("Modes applied. Band filter preserved (CAT connection is active)"); ?>";
 	var lang_bandmap_favorites_applied = "<?= __("Applied your favorite bands and modes"); ?>";
+
+	// My Submodes filter translations
+	var lang_bandmap_my_submodes = "<?= __("My Submodes"); ?>";
+	var lang_bandmap_submodes_filter_enabled = "<?= __("Submode filter enabled"); ?>";
+	var lang_bandmap_submodes_filter_disabled = "<?= __("Submode filter disabled - showing all"); ?>";
+	var lang_bandmap_required_submodes = "<?= __("Required submodes"); ?>";
+	var lang_bandmap_submodes_settings_hint = "<?= __("Configure in User Settings - Modes"); ?>";
+	var lang_bandmap_no_submodes_configured = "<?= __("No submodes configured - configure in User Settings - Modes"); ?>";
+	var lang_bandmap_no_submodes_warning = "<?= __("No submodes enabled in settings - showing all spots"); ?>";
+	var lang_bandmap_mode_disabled_no_submode = "<?= __("Disabled - no submodes enabled for this mode in User Settings"); ?>";
+	var lang_bandmap_toggle_cw = "<?= __("Toggle CW mode filter"); ?>";
+	var lang_bandmap_toggle_digi = "<?= __("Toggle Digital mode filter"); ?>";
+	var lang_bandmap_toggle_phone = "<?= __("Toggle Phone mode filter"); ?>";
+
+	// DX Cluster Filter Favorites translations
+	var lang_bandmap_filter_favorites = "<?= __("Favorites"); ?>";
+	var lang_bandmap_save_filters = "<?= __("Save Current Filters..."); ?>";
+	var lang_bandmap_filter_preset_name = "<?= __("Enter a name for this filter preset:"); ?>";
+	var lang_bandmap_filter_preset_saved = "<?= __("Filter preset saved"); ?>";
+	var lang_bandmap_filter_preset_loaded = "<?= __("Filter preset loaded"); ?>";
+	var lang_bandmap_filter_preset_deleted = "<?= __("Filter preset deleted"); ?>";
+	var lang_bandmap_delete_filter_confirm = "<?= __("Are you sure to delete this filter preset?"); ?>";
+	var lang_bandmap_no_filter_presets = "<?= __("No saved filter presets"); ?>";
+	var lang_bandmap_preset_limit_reached = "<?= __("Maximum of 20 filter presets reached. Please delete some before adding new ones."); ?>";
 
 	// Bandmap filter status messages
 	var lang_bandmap_loading_data = "<?= __("Loading data from DX Cluster"); ?>";
@@ -140,8 +167,8 @@
 	var lang_bandmap_mode = "<?= __("Mode"); ?>";
 	var lang_bandmap_band = "<?= __("Band"); ?>";
 
-	// Enable ultra-compact radio status display for bandmap page (tooltip only)
-	window.CAT_COMPACT_MODE = 'ultra-compact';
+	// Enable icon-only radio status display for bandmap page (just icon with tooltip)
+	window.CAT_COMPACT_MODE = 'icon-only';
 
 	// Map configuration (matches QSO map settings)
 	var map_tile_server = '<?php echo $this->optionslib->get_option('option_map_tile_server');?>';
@@ -180,6 +207,9 @@
 			<a href="https://github.com/wavelog/wavelog/wiki/DXCluster" target="_blank" title="<?= __("DX Cluster Help"); ?>" style="cursor: pointer; padding: 0.5rem; margin: -0.5rem; color: var(--bs-body-color); text-decoration: none; display: inline-flex; align-items: center;">
 				<i class="fas fa-question-circle" style="font-size: 1.2rem;"></i>
 			</a>
+			<button type="button" class="btn btn-sm" id="compactModeToggle" title="<?= __("Compact Mode - Hide/Show Menu"); ?>" style="background: none; border: none; padding: 0.5rem; margin: -0.5rem; color: var(--bs-body-color);">
+				<i class="fas fa-compress-alt" id="compactModeIcon" style="font-size: 1.2rem;"></i>
+			</button>
 			<div id="fullscreenToggleWrapper" style="cursor: pointer; padding: 0.5rem; margin: -0.5rem;">
 				<button type="button" class="btn btn-sm" id="fullscreenToggle" title="<?= __("Toggle Fullscreen"); ?>" style="background: none; border: none; padding: 0.5rem;">
 					<i class="fas fa-expand" id="fullscreenIcon" style="font-size: 1.2rem;"></i>
@@ -192,15 +222,20 @@
 		<!-- Filters Section with darker background and rounded corners -->
 		<div class="menu-bar">
 	<!-- Row 1: CAT Connection, Radio Selector, Radio Status (left) | de Continents (right) -->
-	<div class="d-flex flex-wrap align-items-center gap-2 mb-2">
-		<!-- Left: CAT Connection Button -->
-		<button class="btn btn-sm btn-secondary flex-shrink-0" type="button" id="toggleCatTracking" data-bs-toggle="tooltip" data-bs-placement="bottom">
-			<i class="fas fa-radio"></i> <span class="d-none d-sm-inline"><?= __("CAT Connection"); ?></span> <i class="fas fa-info-circle text-muted" style="font-size: 0.75rem;"></i>
-		</button>
+	<div class="d-flex flex-wrap align-items-center gap-2 mb-2 compactable-row">
+		<!-- Left: CAT Connection + Lock Buttons -->
+		<div class="btn-group flex-shrink-0" role="group">
+			<button class="btn btn-sm btn-secondary" type="button" id="toggleCatTracking" data-bs-toggle="tooltip" data-bs-placement="bottom" title="<?= __("Click to enable CAT connection"); ?>">
+				<i class="fas fa-radio"></i> <span class="d-none d-sm-inline"><?= __("CAT Connection"); ?></span>
+			</button>
+			<button class="btn btn-sm btn-secondary" type="button" id="toggleCatLock" data-bs-toggle="tooltip" data-bs-placement="bottom" title="<?= __("Click to enable band lock (requires CAT connection)"); ?>" disabled>
+				<i class="fas fa-lock-open"></i>
+			</button>
+		</div>
 
 		<!-- Radio Selector Dropdown -->
 		<small class="text-muted me-1 flex-shrink-0 d-none d-md-inline"><?= __("TRX:"); ?></small>
-		<select class="form-select form-select-sm radios flex-shrink-0" id="radio" name="radio" style="width: auto; min-width: 150px;">
+		<select class="form-select form-select-sm radios flex-shrink-0" id="radio" name="radio" style="width: auto;">
 			<option value="0" selected="selected"><?= __("None"); ?></option>
 			<option value="ws"<?php if ($this->session->userdata('radio') == 'ws') { echo ' selected="selected"'; } ?>><?= __("Live - ") . __("WebSocket (Requires WLGate>=1.1.10)"); ?></option>
 			<?php foreach ($radios->result() as $row) { ?>
@@ -215,7 +250,7 @@
 		<div class="d-flex flex-wrap gap-2 align-items-center">
 			<small class="text-muted me-1 flex-shrink-0"><?= __("de:"); ?></small>
 			<div class="btn-group flex-shrink-0" role="group">
-				<button class="btn btn-sm btn-secondary" type="button" id="toggleAllContinentsFilter" title="<?= __("Select all continents"); ?>"><?= __("World"); ?></button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleAllContinentsFilter" title="<?= __("Select all continents"); ?>"><i class="fas fa-globe"></i> <span class="d-none d-sm-inline"><?= __("World"); ?></span></button>
 				<button class="btn btn-sm btn-secondary" type="button" id="toggleAfricaFilter" title="<?= __("Toggle Africa continent filter"); ?>">AF</button>
 				<button class="btn btn-sm btn-secondary" type="button" id="toggleAntarcticaFilter" title="<?= __("Toggle Antarctica continent filter"); ?>">AN</button>
 				<button class="btn btn-sm btn-secondary" type="button" id="toggleAsiaFilter" title="<?= __("Toggle Asia continent filter"); ?>">AS</button>
@@ -228,7 +263,7 @@
 	</div>
 
 	<!-- Row 2: Advanced Filters, Favorites, Clear Filters | Band Filters (left) and Mode Filters (right) -->
-	<div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+	<div class="d-flex flex-wrap align-items-center gap-2 mb-2 compactable-row">
 		<!-- Left: Advanced Filters, Favorites, Clear Filters, and Band Filter Buttons -->
 		<div class="d-flex flex-wrap gap-2 align-items-center">
 			<!-- Button Group: Advanced Filters + Favorites + Clear Filters -->
@@ -276,6 +311,7 @@
 						<label class="form-label d-block filter-label-small" for="requiredFlags"><?= __("Required Flags"); ?></label>
 						<select id="requiredFlags" class="form-select form-select-sm filter-short" name="required_flags" multiple="multiple">
 							<option value="None" selected><?= __("None"); ?></option>
+							<option value="mysubmodes"><?= __("My Submodes"); ?></option>
 							<option value="lotw"><?= __("LoTW User"); ?></option>
 							<option value="newcontinent"><?= __("New Continent"); ?></option>
 							<option value="newcountry"><?= __("New Country"); ?></option>
@@ -378,15 +414,22 @@
 				</div>
 			</div>
 		</div>
-				<!-- Favorites Button (part of button group) -->
-				<button class="btn btn-sm btn-secondary" type="button" id="toggleFavoritesFilter" title="<?= __("Apply your favorite bands and modes (configured in Band and Mode settings)"); ?>" style="display: none;">
-					<i class="fas fa-star text-warning"></i>
-				</button>
-				<!-- Clear Filters Button (part of button group) -->
-				<button class="btn btn-sm btn-secondary" type="button" id="clearFiltersButtonQuick" title="<?= __("Clear all filters except De Continent"); ?>">
-					<i class="fas fa-filter-circle-xmark text-danger"></i>
-				</button>
 			</div>
+			<!-- DX Cluster Filter Favorites Dropdown -->
+			<div class="dropdown flex-shrink-0">
+				<button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dxclusterFavDropdown" data-bs-toggle="dropdown" aria-expanded="false" title="<?= __("Filter Favorites"); ?>">
+					<i class="fas fa-star text-warning"></i> <span class="d-none d-md-inline"><?= __("Favorites"); ?></span>
+				</button>
+				<div class="dropdown-menu" aria-labelledby="dxclusterFavDropdown" style="min-width: 200px;">
+					<a class="dropdown-item" href="#" id="dxcluster_fav_add"><i class="fas fa-plus-circle text-success me-2"></i><?= __("Save Current Filters..."); ?></a>
+					<div class="dropdown-divider"></div>
+					<div id="dxcluster_fav_menu"></div>
+				</div>
+			</div>
+			<!-- Clear Filters Button -->
+			<button class="btn btn-sm btn-secondary flex-shrink-0" type="button" id="clearFiltersButtonQuick" title="<?= __("Clear all filters except De Continent"); ?>">
+				<i class="fas fa-filter-circle-xmark text-danger"></i>
+			</button>
 
 			<!-- MF Band -->
 			<div class="btn-group flex-shrink-0" role="group">
@@ -404,6 +447,10 @@
 				<button class="btn btn-sm btn-secondary" type="button" id="toggle12mFilter" title="<?= __("Toggle 12m band filter"); ?>">12m</button>
 				<button class="btn btn-sm btn-secondary" type="button" id="toggle10mFilter" title="<?= __("Toggle 10m band filter"); ?>">10m</button>
 			</div>
+			<!-- 6m Band -->
+			<div class="btn-group flex-shrink-0" role="group">
+				<button class="btn btn-sm btn-secondary" type="button" id="toggle6mFilter" title="<?= __("Toggle 6m band filter"); ?>">6m</button>
+			</div>
 			<!-- VHF/UHF/SHF Bands -->
 			<div class="btn-group flex-shrink-0" role="group">
 				<button class="btn btn-sm btn-secondary" type="button" id="toggleVHFFilter" title="<?= __("Toggle VHF bands filter"); ?>">VHF</button>
@@ -418,15 +465,19 @@
 		<!-- Right: Mode Filter Buttons -->
 		<div class="d-flex flex-wrap gap-2 align-items-center">
 			<div class="btn-group flex-shrink-0" role="group">
-				<button class="btn btn-sm btn-secondary" type="button" id="toggleCwFilter" title="<?= __("Toggle CW mode filter"); ?>">CW</button>
-				<button class="btn btn-sm btn-secondary" type="button" id="toggleDigiFilter" title="<?= __("Toggle Digital mode filter"); ?>">Digi</button>
-				<button class="btn btn-sm btn-secondary" type="button" id="togglePhoneFilter" title="<?= __("Toggle Phone mode filter"); ?>">Phone</button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleCwFilter" title="<?= __("Toggle CW mode filter"); ?>"><i class="fas fa-wave-square"></i> <span class="d-none d-sm-inline">CW</span></button>
+				<button class="btn btn-sm btn-secondary" type="button" id="toggleDigiFilter" title="<?= __("Toggle Digital mode filter"); ?>"><i class="fas fa-keyboard"></i> <span class="d-none d-sm-inline">Digi</span></button>
+				<button class="btn btn-sm btn-secondary" type="button" id="togglePhoneFilter" title="<?= __("Toggle Phone mode filter"); ?>"><i class="fas fa-microphone"></i> <span class="d-none d-sm-inline">Phone</span></button>
 			</div>
 		</div>
 	</div>
 
 	<!-- Row 3: Quick Filters -->
-	<div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+	<div class="d-flex flex-wrap align-items-center gap-2 mb-2 compactable-row">
+		<!-- My Submodes Filter Toggle -->
+		<button class="btn btn-sm btn-secondary flex-shrink-0" type="button" id="toggleMySubmodesFilter" title="<?= __("Loading submodes..."); ?>">
+			<i class="fas fa-bookmark"></i> <span class="d-none d-lg-inline"><?= __("My Submodes"); ?></span>
+		</button>
 		<!-- LoTW Users Button (separate) -->
 		<div class="btn-group flex-shrink-0" role="group">
 			<button class="btn btn-sm btn-secondary" type="button" id="toggleLotwFilter" title="<?= __("Toggle LoTW User filter"); ?>">
@@ -471,8 +522,8 @@
 		</div>
 	</div>
 
-	<!-- Row 5: Status Bar (70%) and Search (30%) -->
-	<div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+	<!-- Row 5: Status Bar and Search - always stay together -->
+	<div class="d-flex flex-wrap align-items-center gap-2 mb-2 status-search-row">
 		<!-- Status Bar - 70% -->
 		<div style="flex: 1 1 0; min-width: 300px;">
 			<div class="status-bar">
