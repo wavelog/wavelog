@@ -44,10 +44,13 @@ class Contestcalendar extends CI_Controller {
 			$data['contestsNextWeek']='';
 			$data['custom_date_format'] = '';
 			$footerData['scripts']=[];
+			$msg_data_unavailable = __("Contest Calendar data not available.");
+			$msg_admin_action = __("Trigger the RSS Feeds update from the Debug page and ensure the master cron is properly configured and running.");
+			$msg_user_action = __("Contact your Wavelog administrator.");
 			if ($this->session->userdata('user_type') == '99') {
-				$this->session->set_flashdata('warning', __("Contest Calendar data not available. Trigger the RSS Feeds update from the Debug page and ensure the master cron is properly configured and running."));
+				$this->session->set_flashdata('warning', $msg_data_unavailable . ' ' . $msg_admin_action);
 			} else {
-				$this->session->set_flashdata('warning', __("Contest Calendar data not available. Contact your Wavelog administrator."));
+				$this->session->set_flashdata('warning', $msg_data_unavailable . ' ' . $msg_user_action);
 			}
 		}
 		$this->load->view('interface_assets/header', $data);
