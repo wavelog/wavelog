@@ -81,8 +81,36 @@ $(document).ready(function() {
     };
 
     // Global setting for radio status display mode (can be set by pages like bandmap)
-    // Options: false (card wrapper), 'compact' (no card), 'ultra-compact' (tooltip only)
+    // Options: false (card wrapper), 'compact' (no card), 'ultra-compact' (icon+name+tooltip), 'icon-only' (icon+tooltip)
     window.CAT_COMPACT_MODE = window.CAT_COMPACT_MODE || false;
+
+    /**
+     * Safely dispose of a Bootstrap tooltip without triggering _isWithActiveTrigger errors
+     * This works around a known Bootstrap bug where disposing during hide animation causes errors
+     * @param {Element} element - The DOM element with the tooltip
+     */
+    function safeDisposeTooltip(element) {
+        try {
+            var tooltipInstance = bootstrap.Tooltip.getInstance(element);
+            if (tooltipInstance) {
+                // Set _activeTrigger to empty object to prevent _isWithActiveTrigger error
+                if (tooltipInstance._activeTrigger) {
+                    tooltipInstance._activeTrigger = {};
+                }
+                // Clear any pending timeouts
+                if (tooltipInstance._timeout) {
+                    clearTimeout(tooltipInstance._timeout);
+                    tooltipInstance._timeout = null;
+                }
+                // Dispose without calling hide first
+                tooltipInstance.dispose();
+            }
+        } catch(e) {
+            // Silently ignore any remaining errors
+        }
+    }
+    // Expose globally for other modules
+    window.safeDisposeTooltip = safeDisposeTooltip;
 
     function initializeWebSocketConnection() {
         try {
@@ -153,14 +181,19 @@ $(document).ready(function() {
             if (typeof window.isCatTrackingEnabled !== 'undefined') {
                 if (!window.isCatTrackingEnabled) {
                     // CAT Control is OFF - show offline status and skip processing
-                    if (window.CAT_COMPACT_MODE === 'ultra-compact') {
+                    if (window.CAT_COMPACT_MODE === 'ultra-compact' || window.CAT_COMPACT_MODE === 'icon-only') {
                         displayOfflineStatus('cat_disabled');
                     }
                     return;
                 }
             }
 
-            data.updated_minutes_ago = Math.floor((Date.now() - data.timestamp) / 60000);
+            // Calculate age from timestamp, defaulting to 0 (fresh) if timestamp is missing
+            if (data.timestamp) {
+                data.updated_minutes_ago = Math.floor((Date.now() - data.timestamp) / 60000);
+            } else {
+                data.updated_minutes_ago = 0; // Assume fresh if no timestamp
+            }
             // Cache the radio data
             updateCATui(data);
         }
@@ -379,8 +412,8 @@ $(document).ready(function() {
      * @param {string} reason - Optional reason: 'no_radio' (default) or 'cat_disabled'
      */
     function displayOfflineStatus(reason) {
-        // Display "Working offline" message with tooltip in ultra-compact mode
-        if (window.CAT_COMPACT_MODE !== 'ultra-compact') {
+        // Display "Working offline" message with tooltip in ultra-compact/icon-only modes
+        if (window.CAT_COMPACT_MODE !== 'ultra-compact' && window.CAT_COMPACT_MODE !== 'icon-only') {
             return;
         }
 
@@ -390,11 +423,20 @@ $(document).ready(function() {
         // Use translation variable if available, fallback to English
         var offlineText = typeof lang_cat_working_offline !== 'undefined' ? lang_cat_working_offline : 'Working without CAT connection';
 
-        const offlineHtml = '<span id="radio_cat_state" class="text-body" style="display: inline-flex; align-items: center; font-size: 0.875rem;">' +
-                           '<i class="fas fa-unlink text-warning" style="margin-right: 5px;"></i>' +
-                           '<span style="margin-right: 5px;">' + offlineText + '</span>' +
-                           '<i id="radio-status-icon" class="fas fa-info-circle text-muted" style="cursor: help;" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom"></i>' +
-                           '</span>';
+        var offlineHtml;
+        if (window.CAT_COMPACT_MODE === 'icon-only') {
+            // Icon-only mode: just the icon with tooltip, styled as button for consistent height
+            offlineHtml = '<span id="radio_cat_state" class="btn btn-sm btn-secondary" style="display: inline-flex; align-items: center; justify-content: center; cursor: help;">' +
+                         '<i id="radio-status-icon" class="fas fa-unlink text-warning" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom"></i>' +
+                         '</span>';
+        } else {
+            // Ultra-compact mode: icon + text + info icon
+            offlineHtml = '<span id="radio_cat_state" class="text-body" style="display: inline-flex; align-items: center; font-size: 0.875rem;">' +
+                         '<i class="fas fa-unlink text-warning" style="margin-right: 5px;"></i>' +
+                         '<span style="margin-right: 5px;">' + offlineText + '</span>' +
+                         '<i id="radio-status-icon" class="fas fa-info-circle text-muted" style="cursor: help;" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom"></i>' +
+                         '</span>';
+        }
 
         let tooltipContent;
         if (reason === 'cat_disabled') {
@@ -418,11 +460,15 @@ $(document).ready(function() {
         // Initialize tooltip
         var tooltipElement = document.querySelector('#radio_status [data-bs-toggle="tooltip"]');
         if (tooltipElement) {
-            new bootstrap.Tooltip(tooltipElement, {
-                title: tooltipContent,
-                html: true,
-                placement: 'bottom'
-            });
+            try {
+                new bootstrap.Tooltip(tooltipElement, {
+                    title: tooltipContent,
+                    html: true,
+                    placement: 'bottom'
+                });
+            } catch(e) {
+                // Ignore tooltip initialization errors
+            }
         }
     }
 
@@ -433,15 +479,16 @@ $(document).ready(function() {
      * CAT_COMPACT_MODE options:
      *   false - Standard mode with card wrapper
      *   'compact' - Compact mode without card wrapper
-     *   'ultra-compact' - Ultra-compact mode showing only tooltip with info
+     *   'ultra-compact' - Ultra-compact mode showing icon, radio name, and tooltip
+     *   'icon-only' - Icon-only mode showing just icon with tooltip (for bandmap)
      */
     function displayRadioStatus(state, data) {
         // On bandmap page, only show radio status when CAT Control is enabled
         if (typeof window.isCatTrackingEnabled !== 'undefined') {
             if (!window.isCatTrackingEnabled) {
                 // CAT Control is OFF on bandmap
-                // In ultra-compact mode, show "Working offline" with CAT disabled message
-                if (window.CAT_COMPACT_MODE === 'ultra-compact') {
+                // In ultra-compact/icon-only mode, show "Working offline" with CAT disabled message
+                if (window.CAT_COMPACT_MODE === 'ultra-compact' || window.CAT_COMPACT_MODE === 'icon-only') {
                     // Check if a radio is selected
                     var selectedRadio = $('.radios option:selected').val();
                     if (selectedRadio && selectedRadio !== '0') {
@@ -548,7 +595,90 @@ $(document).ready(function() {
         var html = baseStyle + icon + content + '</div>';
 
 		// Update DOM based on global CAT_COMPACT_MODE setting
-		if (window.CAT_COMPACT_MODE === 'ultra-compact') {
+		if (window.CAT_COMPACT_MODE === 'icon-only') {
+			// Icon-only mode: show just radio icon with tooltip containing all info
+			var tooltipContent = '';
+
+			if (state === 'success') {
+				var radioName = $('select.radios option:selected').text();
+				var connectionType = $(".radios option:selected").val() == 'ws' ? lang_cat_live : lang_cat_polling;
+				tooltipContent = '<b>' + radioName + '</b> (' + connectionType + ')';
+
+				// Ensure frequency_formatted exists
+				var freqFormatted = data.frequency_formatted;
+				if (!freqFormatted || freqFormatted === 'undefined' || freqFormatted === 'nullkHz') {
+					freqFormatted = format_frequency(data.frequency);
+				}
+
+				// Add frequency info
+				if(data.frequency_rx && data.frequency_rx != 0 && data.frequency_rx !== 'undefined') {
+					// Split operation: show TX and RX separately
+					if (freqFormatted && freqFormatted !== 'undefined') {
+						tooltipContent += '<br><b>' + lang_cat_tx + ':</b> ' + freqFormatted;
+					}
+					var rxFormatted = format_frequency(data.frequency_rx);
+					if (rxFormatted && rxFormatted !== 'undefined') {
+						tooltipContent += '<br><b>' + lang_cat_rx + ':</b> ' + rxFormatted;
+					}
+				} else {
+					// Simplex operation: show TX/RX combined
+					if (freqFormatted && freqFormatted !== 'undefined') {
+						tooltipContent += '<br><b>' + lang_cat_tx_rx + ':</b> ' + freqFormatted;
+					}
+				}
+
+				if(data.mode != null) {
+					tooltipContent += '<br><b>' + lang_cat_mode + ':</b> ' + data.mode;
+				}
+				if(data.power != null && data.power != 0) {
+					tooltipContent += '<br><b>' + lang_cat_power + ':</b> ' + data.power + 'W';
+				}
+				if ($(".radios option:selected").val() != 'ws') {
+					tooltipContent += '<br><br><i>' + lang_cat_polling_tooltip + '</i>';
+				}
+			} else if (state === 'error') {
+				var radioName = typeof data === 'string' ? data : $('select.radios option:selected').text();
+				tooltipContent = lang_cat_connection_error + ': <b>' + radioName + '</b><br>' + lang_cat_connection_lost;
+			} else if (state === 'timeout') {
+				var radioName = typeof data === 'string' ? data : $('select.radios option:selected').text();
+				tooltipContent = lang_cat_connection_timeout + ': <b>' + radioName + '</b><br>' + lang_cat_data_stale;
+			} else if (state === 'not_logged_in') {
+				tooltipContent = lang_cat_not_logged_in;
+			}
+
+			var iconOnlyHtml = '<span id="radio_cat_state" class="btn btn-sm btn-secondary" style="display: inline-flex; align-items: center; justify-content: center; cursor: help;">' +
+							  '<i id="radio-status-icon" class="fas fa-radio ' + iconClass + '" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom"></i>' +
+							  '</span>';
+
+			if (!$('#radio_cat_state').length) {
+				$('#radio_status').append(iconOnlyHtml);
+			} else {
+				$('#radio_cat_state [data-bs-toggle="tooltip"]').each(function() {
+					safeDisposeTooltip(this);
+				});
+				$('#radio_cat_state').replaceWith(iconOnlyHtml);
+			}
+
+			var tooltipElement = document.querySelector('#radio_status [data-bs-toggle="tooltip"]');
+			if (tooltipElement) {
+				try {
+					new bootstrap.Tooltip(tooltipElement, {
+						title: tooltipContent,
+						html: true,
+						placement: 'bottom'
+					});
+				} catch(e) {
+					// Ignore tooltip initialization errors
+				}
+			}
+
+			// Add blink animation on update
+			$('#radio_status .fa-radio').addClass('blink-once');
+			setTimeout(function() {
+				$('#radio_status .fa-radio').removeClass('blink-once');
+			}, 600);
+
+		} else if (window.CAT_COMPACT_MODE === 'ultra-compact') {
 			// Ultra-compact mode: show radio icon, radio name, and question mark with tooltip
 			var tooltipContent = '';
 			var radioName = '';
@@ -562,17 +692,30 @@ $(document).ready(function() {
 				connectionType = lang_cat_live;
 			} else {
 				connectionType = lang_cat_polling;
-			}				tooltipContent = '<b>' + radioName + '</b> (' + connectionType + ')';
+			}
+			tooltipContent = '<b>' + radioName + '</b> (' + connectionType + ')';
+
+				// Ensure frequency_formatted exists
+				var freqFormatted = data.frequency_formatted;
+				if (!freqFormatted || freqFormatted === 'undefined' || freqFormatted === 'nullkHz') {
+					freqFormatted = format_frequency(data.frequency);
+				}
 
 				// Add frequency info
-				if(data.frequency_rx != null && data.frequency_rx != 0) {
-					tooltipContent += '<br><b>' + lang_cat_tx + ':</b> ' + data.frequency_formatted;
-					data.frequency_rx_formatted = format_frequency(data.frequency_rx);
-					if (data.frequency_rx_formatted) {
-						tooltipContent += '<br><b>' + lang_cat_rx + ':</b> ' + data.frequency_rx_formatted;
+				if(data.frequency_rx && data.frequency_rx != 0 && data.frequency_rx !== 'undefined') {
+					// Split operation: show TX and RX separately
+					if (freqFormatted && freqFormatted !== 'undefined') {
+						tooltipContent += '<br><b>' + lang_cat_tx + ':</b> ' + freqFormatted;
+					}
+					var rxFormatted = format_frequency(data.frequency_rx);
+					if (rxFormatted && rxFormatted !== 'undefined') {
+						tooltipContent += '<br><b>' + lang_cat_rx + ':</b> ' + rxFormatted;
 					}
 				} else {
-					tooltipContent += '<br><b>' + lang_cat_tx_rx + ':</b> ' + data.frequency_formatted;
+					// Simplex operation: show TX/RX combined
+					if (freqFormatted && freqFormatted !== 'undefined') {
+						tooltipContent += '<br><b>' + lang_cat_tx_rx + ':</b> ' + freqFormatted;
+					}
 				}
 
 				// Add mode
@@ -611,10 +754,7 @@ $(document).ready(function() {
 			} else {
 				// Dispose of existing tooltips before updating content
 				$('#radio_cat_state [data-bs-toggle="tooltip"]').each(function() {
-					var tooltipInstance = bootstrap.Tooltip.getInstance(this);
-					if (tooltipInstance) {
-						tooltipInstance.dispose();
-					}
+					safeDisposeTooltip(this);
 				});
 				$('#radio_cat_state').replaceWith(ultraCompactHtml);
 			}
@@ -622,11 +762,15 @@ $(document).ready(function() {
 			// Initialize tooltip with dynamic content
 			var tooltipElement = document.querySelector('#radio_status [data-bs-toggle="tooltip"]');
 			if (tooltipElement) {
-				new bootstrap.Tooltip(tooltipElement, {
-					title: tooltipContent,
-					html: true,
-					placement: 'bottom'
-				});
+				try {
+					new bootstrap.Tooltip(tooltipElement, {
+						title: tooltipContent,
+						html: true,
+						placement: 'bottom'
+					});
+				} catch(e) {
+					// Ignore tooltip initialization errors
+				}
 			}
 
 			// Add blink animation to radio icon on update
@@ -643,10 +787,7 @@ $(document).ready(function() {
 			} else {
 				// Dispose of existing tooltips before updating content
 				$('#radio_cat_state [data-bs-toggle="tooltip"]').each(function() {
-					var tooltipInstance = bootstrap.Tooltip.getInstance(this);
-					if (tooltipInstance) {
-						tooltipInstance.dispose();
-					}
+					safeDisposeTooltip(this);
 				});
 				$('#radio_cat_state').html(html);
 			}
@@ -658,18 +799,15 @@ $(document).ready(function() {
 			} else {
 				// Dispose of existing tooltips before updating content
 				$('#radio_cat_state [data-bs-toggle="tooltip"]').each(function() {
-					var tooltipInstance = bootstrap.Tooltip.getInstance(this);
-					if (tooltipInstance) {
-						tooltipInstance.dispose();
-					}
+					safeDisposeTooltip(this);
 				});
 				// Update existing panel content
 				$('#radio_cat_state .card-body').html(html);
 			}
 		}
 
-		// Initialize Bootstrap tooltips for any new tooltip elements in the radio panel (except ultra-compact which handles its own)
-		if (window.CAT_COMPACT_MODE !== 'ultra-compact') {
+		// Initialize Bootstrap tooltips for any new tooltip elements in the radio panel (except ultra-compact/icon-only which handle their own)
+		if (window.CAT_COMPACT_MODE !== 'ultra-compact' && window.CAT_COMPACT_MODE !== 'icon-only') {
 			$('#radio_cat_state [data-bs-toggle="tooltip"]').each(function() {
 				new bootstrap.Tooltip(this);
 			});
@@ -1007,8 +1145,8 @@ $(document).ready(function() {
             $('#toggleCatTracking').prop('disabled', false).removeClass('disabled');
             // Always initialize WebSocket connection
             initializeWebSocketConnection();
-            // In ultra-compact mode, show offline status if CAT Control is disabled
-            if (window.CAT_COMPACT_MODE === 'ultra-compact' && typeof window.isCatTrackingEnabled !== 'undefined' && !window.isCatTrackingEnabled) {
+            // In ultra-compact/icon-only mode, show offline status if CAT Control is disabled
+            if ((window.CAT_COMPACT_MODE === 'ultra-compact' || window.CAT_COMPACT_MODE === 'icon-only') && typeof window.isCatTrackingEnabled !== 'undefined' && !window.isCatTrackingEnabled) {
                 displayOfflineStatus('cat_disabled');
             }
         } else {
@@ -1020,8 +1158,8 @@ $(document).ready(function() {
             $('#toggleCatTracking').prop('disabled', false).removeClass('disabled');
             // Always start polling
             CATInterval=setInterval(updateFromCAT, CAT_CONFIG.POLL_INTERVAL);
-            // In ultra-compact mode, show offline status if CAT Control is disabled
-            if (window.CAT_COMPACT_MODE === 'ultra-compact' && typeof window.isCatTrackingEnabled !== 'undefined' && !window.isCatTrackingEnabled) {
+            // In ultra-compact/icon-only mode, show offline status if CAT Control is disabled
+            if ((window.CAT_COMPACT_MODE === 'ultra-compact' || window.CAT_COMPACT_MODE === 'icon-only') && typeof window.isCatTrackingEnabled !== 'undefined' && !window.isCatTrackingEnabled) {
                 displayOfflineStatus('cat_disabled');
             }
         }

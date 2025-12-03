@@ -163,7 +163,7 @@ const SIGNAL_BANDWIDTHS = {
 const BAND_GROUPS = {
 	'MF': ['160m'],
 	'HF': ['80m', '60m', '40m', '30m', '20m', '17m', '15m', '12m', '10m'],
-	'VHF': ['6m', '4m', '2m', '1.25m'],
+	'VHF': ['4m', '2m', '1.25m'],  // Note: 6m has its own separate button in DX Cluster
 	'UHF': ['70cm', '33cm', '23cm'],
 	'SHF': ['13cm', '9cm', '6cm', '3cm', '1.25cm', '6mm', '4mm', '2.5mm', '2mm', '1mm']
 };
