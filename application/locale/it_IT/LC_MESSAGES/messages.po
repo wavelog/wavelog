@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-03 07:45+0000\n"
+"POT-Creation-Date: 2025-12-03 09:39+0000\n"
 "PO-Revision-Date: 2025-09-15 19:44+0000\n"
 "Last-Translator: Luca <lucabennati1996@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -24,7 +24,7 @@ msgstr ""
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
 #: application/controllers/Activatorsmap.php:13
-#: application/controllers/Adif.php:13 application/controllers/Api.php:7
+#: application/controllers/Adif.php:23 application/controllers/Api.php:7
 #: application/controllers/Api.php:29 application/controllers/Api.php:65
 #: application/controllers/Api.php:91 application/controllers/Awards.php:20
 #: application/controllers/Backup.php:13 application/controllers/Backup.php:26
@@ -36,9 +36,9 @@ msgstr ""
 #: application/controllers/Cabrillo.php:139
 #: application/controllers/Callstats.php:13
 #: application/controllers/Calltester.php:11
-#: application/controllers/Club.php:48 application/controllers/Club.php:74
-#: application/controllers/Club.php:122 application/controllers/Club.php:151
-#: application/controllers/Club.php:178 application/controllers/Clublog.php:81
+#: application/controllers/Club.php:49 application/controllers/Club.php:75
+#: application/controllers/Club.php:123 application/controllers/Club.php:152
+#: application/controllers/Club.php:179 application/controllers/Clublog.php:81
 #: application/controllers/Clublog.php:140
 #: application/controllers/Components.php:13
 #: application/controllers/Contestcalendar.php:15
@@ -200,55 +200,59 @@ msgstr "Attivatori di locatori"
 msgid "Activators Map"
 msgstr "Mappa attivatori"
 
-#: application/controllers/Adif.php:18
+#: application/controllers/Adif.php:61 application/controllers/Adif.php:73
+msgid "You're not allowed to access this functionality!"
+msgstr ""
+
+#: application/controllers/Adif.php:80
 msgid "valid date"
 msgstr "data valida"
 
-#: application/controllers/Adif.php:20
+#: application/controllers/Adif.php:82
 msgid "date incorrect"
 msgstr "data incorretta"
 
-#: application/controllers/Adif.php:134
-#: application/views/interface_assets/header.php:473
+#: application/controllers/Adif.php:220
+#: application/views/interface_assets/header.php:474
 msgid "ADIF Import / Export"
 msgstr "Importa / Esporta ADIF"
 
-#: application/controllers/Adif.php:165 application/views/adif/import.php:21
+#: application/controllers/Adif.php:258 application/views/adif/import.php:30
 #: application/views/dcl_views/import.php:3 application/views/lotw/import.php:3
 msgid "ADIF Import"
 msgstr "Importa ADIF"
 
-#: application/controllers/Adif.php:206
+#: application/controllers/Adif.php:302
 msgid "Unsupported Filetype"
 msgstr "Tipo di file non supportato"
 
-#: application/controllers/Adif.php:277
+#: application/controllers/Adif.php:381
 #: application/views/adif/import_failed.php:12
 msgid "ADIF Import failed!"
 msgstr "Importazione ADIF fallita!"
 
-#: application/controllers/Adif.php:291
+#: application/controllers/Adif.php:395
 msgid "Station Profile not valid for User"
 msgstr "Il profilo di stazione non è valido per l'utente"
 
-#: application/controllers/Adif.php:300
+#: application/controllers/Adif.php:404
 #: application/views/adif/import_success.php:12
 msgid "ADIF Imported"
 msgstr "ADIF importato"
 
-#: application/controllers/Adif.php:311
+#: application/controllers/Adif.php:418
 msgid "DCL Import"
 msgstr "Importa DCL"
 
-#: application/controllers/Adif.php:369
+#: application/controllers/Adif.php:479
 msgid "DCL Data Imported"
 msgstr "Dati DCL importati"
 
-#: application/controllers/Adif.php:380
+#: application/controllers/Adif.php:493
 msgid "POTA Import"
 msgstr "Importazione POTA"
 
-#: application/controllers/Adif.php:437
+#: application/controllers/Adif.php:553
 msgid "POTA Data Imported"
 msgstr "Dati POTA importati"
 
@@ -479,7 +483,7 @@ msgstr "WWFF"
 
 #: application/controllers/Awards.php:631
 #: application/controllers/Logbook.php:1366
-#: application/views/adif/import.php:45 application/views/bandmap/list.php:327
+#: application/views/adif/import.php:66 application/views/bandmap/list.php:327
 #: application/views/bands/index.php:54
 #: application/views/dashboard/index.php:11
 #: application/views/interface_assets/header.php:222
@@ -681,58 +685,62 @@ msgid "Club Officer"
 msgstr "Coordinatore di stazione"
 
 #: application/controllers/Club.php:24
+msgid "Club Member ADIF"
+msgstr ""
+
+#: application/controllers/Club.php:25
 msgid "Club Member"
 msgstr "Membro di stazione"
 
-#: application/controllers/Club.php:44 application/models/Club_model.php:75
+#: application/controllers/Club.php:45 application/models/Club_model.php:75
 #: application/models/Club_model.php:149 application/models/Club_model.php:191
 msgid "Invalid User ID!"
 msgstr "User ID non valido!"
 
-#: application/controllers/Club.php:52
+#: application/controllers/Club.php:53
 msgid "This user is not a club station."
 msgstr "Questo utente non è una stazione club."
 
-#: application/controllers/Club.php:56
+#: application/controllers/Club.php:57
 #: application/views/club/permissions.php:10
 #: application/views/user/index.php:215
 msgid "Club Permissions"
 msgstr "Permessi club"
 
-#: application/controllers/Club.php:118 application/controllers/Club.php:147
-#: application/controllers/Club.php:174 application/models/Club_model.php:22
+#: application/controllers/Club.php:119 application/controllers/Club.php:148
+#: application/controllers/Club.php:175 application/models/Club_model.php:22
 #: application/models/Club_model.php:70 application/models/Club_model.php:144
 #: application/models/Club_model.php:186
 msgid "Invalid Club ID!"
 msgstr "Club ID non valido!"
 
-#: application/controllers/Club.php:130
+#: application/controllers/Club.php:131
 msgid "User could not be notified. Please check your email settings."
 msgstr ""
 "L'utente non può ricevere la notifica. Prego verificare le impostazioni "
 "email."
 
-#: application/controllers/Club.php:134
+#: application/controllers/Club.php:135
 msgid "Club member permissions have been updated."
 msgstr "I permessi del membro del club sono stati aggiornati."
 
-#: application/controllers/Club.php:156
+#: application/controllers/Club.php:157
 msgid "User removed from club."
 msgstr "L'utente è stato rimosso dal club."
 
-#: application/controllers/Club.php:158
+#: application/controllers/Club.php:159
 msgid "User could not be removed from club."
 msgstr "L'utente non può essere rimosso dal club."
 
-#: application/controllers/Club.php:201
+#: application/controllers/Club.php:202
 msgid "Invalid message type."
 msgstr "Tipologia di messaggio non valida."
 
-#: application/controllers/Club.php:220
+#: application/controllers/Club.php:221
 msgid "Email settings not configured."
 msgstr "Email non configurata."
 
-#: application/controllers/Club.php:227 application/views/api/index.php:68
+#: application/controllers/Club.php:228 application/views/api/index.php:68
 #: application/views/satellite/index.php:94
 #: application/views/satellite/satinfo.php:51
 msgid "Unknown"
@@ -881,7 +889,7 @@ msgid "Not running"
 msgstr "Non attivo"
 
 #: application/controllers/Csv.php:20 application/views/csv/index.php:3
-#: application/views/interface_assets/header.php:481
+#: application/views/interface_assets/header.php:483
 msgid "SOTA CSV Export"
 msgstr "Esporta CSV SOTA"
 
@@ -1007,7 +1015,7 @@ msgid "and propagation"
 msgstr "e propagazione"
 
 #: application/controllers/Dxatlas.php:19
-#: application/views/interface_assets/header.php:479
+#: application/views/interface_assets/header.php:481
 msgid "DX Atlas Gridsquare Export"
 msgstr "Esporta Locatore DX Atlas"
 
@@ -1102,7 +1110,7 @@ msgid "No QSOs found to upload."
 msgstr "Nessun QSO da caricare."
 
 #: application/controllers/Kmlexport.php:24
-#: application/views/interface_assets/header.php:477
+#: application/views/interface_assets/header.php:479
 #: application/views/kml/index.php:3
 msgid "KML Export"
 msgstr "Esportazione KML"
@@ -1852,9 +1860,9 @@ msgid "Quick Lookup"
 msgstr "Ricerca rapida"
 
 #: application/controllers/Lotw.php:64 application/controllers/Lotw.php:96
-#: application/controllers/Lotw.php:136 application/views/adif/import.php:27
+#: application/controllers/Lotw.php:136 application/views/adif/import.php:42
 #: application/views/dcl_views/upload_cert.php:3
-#: application/views/interface_assets/header.php:512
+#: application/views/interface_assets/header.php:514
 #: application/views/lotw/import.php:3 application/views/lotw_views/index.php:9
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:880 application/views/visitor/index.php:328
@@ -2180,7 +2188,7 @@ msgid "Invalid Station ID"
 msgstr "ID di stazione non valido"
 
 #: application/controllers/Oqrs.php:163
-#: application/views/interface_assets/header.php:502
+#: application/views/interface_assets/header.php:504
 msgid "OQRS Requests"
 msgstr "Richieste OQRS"
 
@@ -2237,7 +2245,7 @@ msgstr ""
 "negative si trovano a ovest di Greenwich."
 
 #: application/controllers/Qrz.php:204
-#: application/views/interface_assets/header.php:515
+#: application/views/interface_assets/header.php:517
 msgid "QRZ Logbook"
 msgstr "Registro QRZ"
 
@@ -2285,7 +2293,7 @@ msgid "No callsign provided."
 msgstr "Nessun nominativo fornito."
 
 #: application/controllers/Radio.php:17
-#: application/views/interface_assets/header.php:529
+#: application/views/interface_assets/header.php:531
 msgid "Hardware Interfaces"
 msgstr "Interfacce hardware"
 
@@ -2334,7 +2342,7 @@ msgstr "Predefinito (premi per rimuovere)"
 #: application/controllers/Radio.php:115
 #: application/controllers/Stationsetup.php:401
 #: application/views/api/index.php:74 application/views/bands/bandedges.php:32
-#: application/views/club/permissions.php:248
+#: application/views/club/permissions.php:251
 #: application/views/contesting/add.php:59 application/views/cron/index.php:71
 #: application/views/interface_assets/footer.php:679
 #: application/views/interface_assets/footer.php:688
@@ -2353,8 +2361,8 @@ msgstr "Modifica"
 #: application/controllers/Radio.php:116
 #: application/controllers/Stationsetup.php:414
 #: application/views/api/index.php:81 application/views/bands/bandedges.php:33
-#: application/views/club/permissions.php:304
-#: application/views/club/permissions.php:326
+#: application/views/club/permissions.php:308
+#: application/views/club/permissions.php:330
 #: application/views/contesting/add.php:62
 #: application/views/interface_assets/footer.php:65
 #: application/views/interface_assets/footer.php:2758
@@ -2558,7 +2566,7 @@ msgstr "Prego verifica il locatore (%s)"
 
 #: application/controllers/Stationsetup.php:60
 #: application/views/interface_assets/header.php:441
-#: application/views/interface_assets/header.php:592
+#: application/views/interface_assets/header.php:594
 msgid "Station Setup"
 msgstr "Impostazioni stazione"
 
@@ -2627,7 +2635,7 @@ msgid "Set as Active Logbook"
 msgstr "Imposta come registro attivo"
 
 #: application/controllers/Stationsetup.php:288
-#: application/views/interface_assets/header.php:590
+#: application/views/interface_assets/header.php:592
 #: application/views/stationsetup/stationsetup.php:49
 #: application/views/view_log/index.php:4
 msgid "Active Logbook"
@@ -2944,7 +2952,7 @@ msgid "Users"
 msgstr "Utenti"
 
 #: application/controllers/User.php:431
-#: application/views/club/permissions.php:253
+#: application/views/club/permissions.php:256
 msgid "Edit User"
 msgstr "Modifica utente"
 
@@ -2958,7 +2966,7 @@ msgid "Profile"
 msgstr "Profilo"
 
 #: application/controllers/User.php:1064
-#: application/views/club/permissions.php:309
+#: application/views/club/permissions.php:313
 msgid "Delete User"
 msgstr "Elimina utente"
 
@@ -3211,7 +3219,7 @@ msgstr "Esporta mappa"
 
 #: application/controllers/Webadif.php:95
 #: application/controllers/Webadif.php:142
-#: application/views/interface_assets/header.php:516
+#: application/views/interface_assets/header.php:518
 msgid "QO-100 Dx Club Upload"
 msgstr "Caricamento QO-100 Dx Club"
 
@@ -3651,7 +3659,7 @@ msgstr "Differenza"
 #: application/views/activated_gridmap/index.php:36
 #: application/views/activated_gridmap/index.php:45
 #: application/views/activators/index.php:13
-#: application/views/adif/import.php:237
+#: application/views/adif/import.php:268
 #: application/views/awards/cq/index.php:131
 #: application/views/awards/cq/index.php:144
 #: application/views/awards/dok/index.php:95
@@ -4268,8 +4276,8 @@ msgid "Nothing found!"
 msgstr "Non ho trovato nulla!"
 
 #: application/views/activators/index.php:98
-#: application/views/adif/import.php:87 application/views/adif/import.php:243
-#: application/views/adif/import.php:307
+#: application/views/adif/import.php:113 application/views/adif/import.php:274
+#: application/views/adif/import.php:342
 #: application/views/awards/73on73/index.php:35
 #: application/views/awards/pota/index.php:35
 #: application/views/awards/sig/qso_list.php:11
@@ -4279,7 +4287,7 @@ msgstr "Non ho trovato nulla!"
 #: application/views/bandmap/list.php:27 application/views/bandmap/list.php:165
 #: application/views/cabrillo/index.php:31
 #: application/views/callstats/index.php:147
-#: application/views/club/permissions.php:222
+#: application/views/club/permissions.php:223
 #: application/views/components/hamsat/table.php:27
 #: application/views/contesting/index.php:171
 #: application/views/csv/index.php:23 application/views/dashboard/index.php:247
@@ -4492,20 +4500,20 @@ msgstr "DOK in DCL"
 msgid "DCL QSL Status"
 msgstr "Stato QSL DCL"
 
-#: application/views/adif/import.php:24
+#: application/views/adif/import.php:36
 msgid "ADIF Export"
 msgstr "Esportazione ADIF"
 
-#: application/views/adif/import.php:36 application/views/adif/import.php:333
+#: application/views/adif/import.php:54 application/views/adif/import.php:370
 msgid "DARC DCL"
 msgstr "DARC DCL"
 
-#: application/views/adif/import.php:54
+#: application/views/adif/import.php:78
 msgid "CBR Import"
 msgstr "Importazione CBR"
 
-#: application/views/adif/import.php:73 application/views/adif/import.php:379
-#: application/views/adif/import.php:400 application/views/api/index.php:22
+#: application/views/adif/import.php:99 application/views/adif/import.php:418
+#: application/views/adif/import.php:441 application/views/api/index.php:22
 #: application/views/dashboard/index.php:180
 #: application/views/dashboard/index.php:213
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
@@ -4514,16 +4522,16 @@ msgstr "Importazione CBR"
 msgid "Important"
 msgstr "Importante"
 
-#: application/views/adif/import.php:73
+#: application/views/adif/import.php:99
 msgid "Log Files must have the file type *.adi"
 msgstr "I file di log devono avere estensione *.adi"
 
-#: application/views/adif/import.php:74 application/views/view_log/qso.php:787
+#: application/views/adif/import.php:100 application/views/view_log/qso.php:787
 msgid "Maximum file upload size is "
 msgstr "Dimensione massima del file caricabile: "
 
-#: application/views/adif/import.php:74 application/views/adif/import.php:310
-#: application/views/adif/import.php:349
+#: application/views/adif/import.php:100 application/views/adif/import.php:345
+#: application/views/adif/import.php:386
 #: application/views/clublog/export.php:70
 #: application/views/debug/index.php:193 application/views/debug/index.php:210
 #: application/views/debug/index.php:586 application/views/hrdlog/export.php:25
@@ -4538,28 +4546,28 @@ msgstr "Dimensione massima del file caricabile: "
 msgid "Warning"
 msgstr "Avviso"
 
-#: application/views/adif/import.php:81 application/views/adif/import.php:83
-#: application/views/adif/import.php:235 application/views/adif/import.php:305
+#: application/views/adif/import.php:107 application/views/adif/import.php:109
+#: application/views/adif/import.php:266 application/views/adif/import.php:340
 #: application/views/eqsl/import.php:37 application/views/hrdlog/export.php:69
 #: application/views/qrz/export.php:91 application/views/reg1test/index.php:30
 #: application/views/webadif/export.php:89
 msgid "Select Station Location"
 msgstr "Seleziona posizione stazione"
 
-#: application/views/adif/import.php:91
+#: application/views/adif/import.php:117
 msgid "Choose ADIF File"
 msgstr "Scegli file ADIF"
 
-#: application/views/adif/import.php:97
+#: application/views/adif/import.php:123
 msgid "Add QSOs to Contest"
 msgstr "Aggiungi QSO al contest"
 
-#: application/views/adif/import.php:99 application/views/adif/import.php:407
+#: application/views/adif/import.php:125 application/views/adif/import.php:448
 #: application/views/simplefle/index.php:86
 msgid "No Contest"
 msgstr "No contest"
 
-#: application/views/adif/import.php:109
+#: application/views/adif/import.php:135
 msgid ""
 "Type in the operators callsign of the imported QSOs. Leave empty to use the "
 "operator callsign in the ADIF file."
@@ -4567,23 +4575,23 @@ msgstr ""
 "Digitare il nominativo degli operatori dei QSO importati. Lasciare vuoto per "
 "utilizzare il nominativo dell'operatore nel file ADIF."
 
-#: application/views/adif/import.php:117
+#: application/views/adif/import.php:143
 msgid "Basic Settings"
 msgstr "Impostazioni di base"
 
-#: application/views/adif/import.php:124
+#: application/views/adif/import.php:150
 msgid "Import duplicate QSOs"
 msgstr "Importa QSO duplicati"
 
-#: application/views/adif/import.php:126
+#: application/views/adif/import.php:152
 msgid "Select if QSOs shall be imported, even if they already exist."
 msgstr ""
 
-#: application/views/adif/import.php:131
+#: application/views/adif/import.php:157
 msgid "Use DXCC information from ADIF"
 msgstr "Utilizza le informazioni DXCC di ADIF"
 
-#: application/views/adif/import.php:133
+#: application/views/adif/import.php:159
 msgid ""
 "If not selected, Wavelog will attempt to determine DXCC information "
 "automatically."
@@ -4591,18 +4599,18 @@ msgstr ""
 "Se non selezionato, Wavelog tenterà di determinare automaticamente le "
 "informazioni DXCC."
 
-#: application/views/adif/import.php:141
+#: application/views/adif/import.php:168
 #: application/views/interface_assets/footer.php:34
 #: application/views/interface_assets/footer.php:639
 #: application/views/interface_assets/footer.php:2515
 msgid "DANGER"
 msgstr "PERICOLO"
 
-#: application/views/adif/import.php:141
+#: application/views/adif/import.php:168
 msgid "Ignore Station callsign on import"
 msgstr "Ignora il nominativo della stazione durante l'importazione"
 
-#: application/views/adif/import.php:143
+#: application/views/adif/import.php:170
 #, php-format
 msgid ""
 "If selected, Wavelog will try to import %sall%s QSOs from the ADIF, "
@@ -4612,64 +4620,64 @@ msgstr ""
 "indipendentemente dal fatto che corrispondano alla posizione della stazione "
 "scelta."
 
-#: application/views/adif/import.php:150
+#: application/views/adif/import.php:177
 msgid ""
 "Always use the logged-in account callsign as the operator call during import"
 msgstr ""
 "Utilizzare sempre il nominativo dell'account connesso come nominativo "
 "dell'operatore durante l'importazione"
 
-#: application/views/adif/import.php:160
+#: application/views/adif/import.php:188
 msgid "Mark QSOs as uploaded (This does NOT upload QSOs to these services!)"
 msgstr "Segna i QSO come caricati (Questo NON carica i QSO su questi servizi!)"
 
-#: application/views/adif/import.php:167
+#: application/views/adif/import.php:195
 msgid "Mark imported QSOs as uploaded to LoTW"
 msgstr "Contrassegna i QSO importati come caricati su LoTW"
 
-#: application/views/adif/import.php:169 application/views/adif/import.php:177
-#: application/views/adif/import.php:187 application/views/adif/import.php:195
-#: application/views/adif/import.php:205 application/views/adif/import.php:213
+#: application/views/adif/import.php:197 application/views/adif/import.php:205
+#: application/views/adif/import.php:215 application/views/adif/import.php:223
+#: application/views/adif/import.php:233 application/views/adif/import.php:241
 msgid "Select if ADIF being imported does not contain this information."
 msgstr "Selezionare se l'ADIF importato non contiene queste informazioni."
 
-#: application/views/adif/import.php:175
+#: application/views/adif/import.php:203
 msgid "Mark imported QSOs as uploaded to eQSL Logbook"
 msgstr "Contrassegna i QSO importati come caricati su eQSL"
 
-#: application/views/adif/import.php:185
+#: application/views/adif/import.php:213
 msgid "Mark imported QSOs as uploaded to HRDLog.net Logbook"
 msgstr "Contrassegna i QSO importati come caricati su HRDLog.net"
 
-#: application/views/adif/import.php:193
+#: application/views/adif/import.php:221
 msgid "Mark imported QSOs as uploaded to QRZ Logbook"
 msgstr "Contrassegna i QSO importati come caricati su QRZ"
 
-#: application/views/adif/import.php:203
+#: application/views/adif/import.php:231
 msgid "Mark imported QSOs as uploaded to Clublog Logbook"
 msgstr "Contrassegna i QSO importati come caricati su Clublog"
 
-#: application/views/adif/import.php:211
+#: application/views/adif/import.php:239
 msgid "Mark imported QSOs as uploaded to DCL Logbook"
 msgstr "Contrassegna i QSO importati come caricati su DCL"
 
-#: application/views/adif/import.php:216
+#: application/views/adif/import.php:244
 msgid "Toggle all checkboxes"
 msgstr "Seleziona tutte le caselle di controllo"
 
-#: application/views/adif/import.php:221 application/views/adif/import.php:364
-#: application/views/adif/import.php:384 application/views/adif/import.php:426
+#: application/views/adif/import.php:250 application/views/adif/import.php:401
+#: application/views/adif/import.php:423 application/views/adif/import.php:467
 #: application/views/clublog/export.php:50
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:55
 #: application/views/webadif/export.php:55
 msgid "Upload"
 msgstr "Carica"
 
-#: application/views/adif/import.php:229
+#: application/views/adif/import.php:260
 msgid "Take your logbook file anywhere!"
 msgstr "Porta il tuo registro di stazione ovunque!"
 
-#: application/views/adif/import.php:230
+#: application/views/adif/import.php:261
 msgid ""
 "Exporting ADIFs allows you to import contacts into third party applications "
 "like LoTW, Awards or just for keeping a backup."
@@ -4677,7 +4685,7 @@ msgstr ""
 "L'esportazione di ADIF consente di importare i contatti in applicazioni di "
 "terze parti come LoTW, premi o semplicemente per mantenere un backup."
 
-#: application/views/adif/import.php:231
+#: application/views/adif/import.php:262
 #, php-format
 msgctxt ""
 msgid ""
@@ -4687,7 +4695,7 @@ msgstr ""
 "Se hai bisogno di più filtri, puoi utilizzare %sla modalità avanzata%s per "
 "filtrare ed esportare il registro di stazione!"
 
-#: application/views/adif/import.php:254 application/views/adif/import.php:312
+#: application/views/adif/import.php:285 application/views/adif/import.php:347
 #: application/views/clublog/export.php:73 application/views/csv/index.php:119
 #: application/views/dcl_views/import.php:27
 #: application/views/dxatlas/index.php:118
@@ -4697,7 +4705,7 @@ msgstr ""
 msgid "From date"
 msgstr "Dalla data"
 
-#: application/views/adif/import.php:258 application/views/adif/import.php:315
+#: application/views/adif/import.php:289 application/views/adif/import.php:350
 #: application/views/csv/index.php:124 application/views/dxatlas/index.php:123
 #: application/views/hrdlog/export.php:82 application/views/kml/index.php:108
 #: application/views/qrz/export.php:104
@@ -4705,46 +4713,46 @@ msgstr "Dalla data"
 msgid "To date"
 msgstr "Alla data"
 
-#: application/views/adif/import.php:269
+#: application/views/adif/import.php:300
 msgid "Export options"
 msgstr "Opzioni di esportazione"
 
-#: application/views/adif/import.php:276
+#: application/views/adif/import.php:308
 msgid "Mark exported QSOs as uploaded to LoTW"
 msgstr "Contrassegna i QSO esportati come caricati su LoTW"
 
-#: application/views/adif/import.php:284
+#: application/views/adif/import.php:317
 msgid "Export QSOs not uploaded to LoTW"
 msgstr "Esporta QSO non caricati su LoTW"
 
-#: application/views/adif/import.php:291
+#: application/views/adif/import.php:324
 msgid "Export QSOs"
 msgstr "Esporta QSO"
 
-#: application/views/adif/import.php:296
+#: application/views/adif/import.php:329
 msgid "Export Satellite-Only QSOs"
 msgstr "Esporta solo QSO via satellite"
 
-#: application/views/adif/import.php:297
+#: application/views/adif/import.php:330
 msgid "Export All Satellite QSOs"
 msgstr "Esporta tutti i QSO via satellite"
 
-#: application/views/adif/import.php:299
+#: application/views/adif/import.php:332
 msgid "Export All Satellite QSOs Confirmed on LoTW"
 msgstr "Esporta tutti i QSO via satellite confermati su LoTW"
 
-#: application/views/adif/import.php:310 application/views/hrdlog/export.php:74
+#: application/views/adif/import.php:345 application/views/hrdlog/export.php:74
 #: application/views/qrz/export.php:96 application/views/webadif/export.php:94
 msgid "If a date range is not selected then all QSOs will be marked!"
 msgstr ""
 "Se non viene selezionato un intervallo di date, tutti i QSO verranno "
 "contrassegnati!"
 
-#: application/views/adif/import.php:318
+#: application/views/adif/import.php:353
 msgid "Mark QSOs as exported to LoTW"
 msgstr "Contrassegna i QSO come esportati in LoTW"
 
-#: application/views/adif/import.php:333
+#: application/views/adif/import.php:370
 #, php-format
 msgid ""
 "Go to %s and export your logbook with confirmed DOKs. To speed up the "
@@ -4758,11 +4766,11 @@ msgstr ""
 "scaricato può essere caricato qui per aggiornare i QSO con le informazioni "
 "DOK."
 
-#: application/views/adif/import.php:340
+#: application/views/adif/import.php:377
 msgid "Only import DOK data from QSOs confirmed on DCL."
 msgstr "Importa solo i dati DOK da QSO confermati su DCL."
 
-#: application/views/adif/import.php:342
+#: application/views/adif/import.php:379
 msgid ""
 "Uncheck if you also want to update DOK with data from unconfirmed QSOs in "
 "DCL."
@@ -4770,11 +4778,11 @@ msgstr ""
 "Deselezionare se si desidera aggiornare anche DOK con i dati dei QSO non "
 "confermati in DCL."
 
-#: application/views/adif/import.php:349
+#: application/views/adif/import.php:386
 msgid "Overwrites exisiting DOK in log by DCL (if different)."
 msgstr "Sovrascrive il DOK esistente nel registro tramite DCL (se diverso)."
 
-#: application/views/adif/import.php:351
+#: application/views/adif/import.php:388
 msgid ""
 "If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL "
 "log."
@@ -4782,11 +4790,11 @@ msgstr ""
 "Se selezionato, Wavelog sovrascriverà forzatamente il DOK esistente con il "
 "DOK dal registro DCL."
 
-#: application/views/adif/import.php:358
+#: application/views/adif/import.php:395
 msgid "Ignore QSOs that cannot be matched."
 msgstr "Ignora i QSO che non corrispondono."
 
-#: application/views/adif/import.php:360
+#: application/views/adif/import.php:397
 msgid ""
 "If unchecked, information about QSOs which could not be found in Wavelog "
 "will be displayed."
@@ -4794,7 +4802,7 @@ msgstr ""
 "Se deselezionato, verranno visualizzate le informazioni sui QSO che non sono "
 "state trovate nel Wavelog."
 
-#: application/views/adif/import.php:380
+#: application/views/adif/import.php:419
 #, php-format
 msgid ""
 "An example for a tool to export the POTA hunter log in ADIF format is %s "
@@ -4803,7 +4811,7 @@ msgstr ""
 "Un esempio di strumento per esportare il registro dei cacciatori POTA in "
 "formato ADIF è %s realizzato da AF0G e disponibile su GitHub."
 
-#: application/views/adif/import.php:399
+#: application/views/adif/import.php:440
 msgid ""
 "If you imported an ADIF file of a contest, provided by another logging "
 "software, sometimes, depending on that software, your exchanges will not be "
@@ -4817,14 +4825,14 @@ msgstr ""
 "fornire il file Cabrillo che questo software fornisce anche per riscrivere "
 "quei dati in Wavelog."
 
-#: application/views/adif/import.php:399
+#: application/views/adif/import.php:440
 #: application/views/adif/import_success.php:40
 #: application/views/dcl_views/index.php:76
 #: application/views/lotw_views/index.php:160
 msgid "Information"
 msgstr "Informazione"
 
-#: application/views/adif/import.php:400
+#: application/views/adif/import.php:441
 msgid ""
 "Please use this function before changing anything about the QSOs in Wavelog, "
 "as this function uses the Contest ID, as well as date and time information "
@@ -4837,21 +4845,21 @@ msgstr ""
 "file CBR che si sta per caricare per corrispondere ai QSO e correggere solo "
 "i dati pertinenti."
 
-#: application/views/adif/import.php:405
+#: application/views/adif/import.php:446
 msgid "Contest Name, only if Contest ID in CBR is different"
 msgstr "Nome del contest, solo se l'ID del contest in CBR è diverso"
 
-#: application/views/adif/import.php:405
+#: application/views/adif/import.php:446
 msgid "Optional"
 msgstr "Opzionale"
 
-#: application/views/adif/import.php:415
+#: application/views/adif/import.php:456
 msgid ""
 "The CBR file contains a TRX number at the end of each QSO line (for multi-op "
 "stations)"
 msgstr ""
 
-#: application/views/adif/import.php:419
+#: application/views/adif/import.php:460
 msgid ""
 "A serial number is ALWAYS part of the exchange for both parties in this "
 "contest."
@@ -4859,7 +4867,7 @@ msgstr ""
 "Un numero di serie è SEMPRE parte del exchange per entrambe i corrispondenti "
 "di questo contest."
 
-#: application/views/adif/import.php:421
+#: application/views/adif/import.php:462
 msgid ""
 "If you or your partner only sometimes exchange serial numbers, please leave "
 "this unchecked."
@@ -4867,7 +4875,7 @@ msgstr ""
 "Se tu o il tuo partner vi scambiate solo di tanto in tanto i numeri "
 "progressivi, si prega di lasciare questa casella deselezionata."
 
-#: application/views/adif/import.php:422
+#: application/views/adif/import.php:463
 msgid ""
 "If unchecked, this will erase the default serial number that (for example) "
 "N1MM+ produces. If checked, it will correct the serial number if necessary."
@@ -5017,8 +5025,8 @@ msgstr "Nome semplice per descrivere per cosa usi questa API."
 
 #: application/views/api/description.php:33
 #: application/views/bands/create.php:49 application/views/bands/edit.php:32
-#: application/views/club/permissions.php:204
-#: application/views/club/permissions.php:297
+#: application/views/club/permissions.php:205
+#: application/views/club/permissions.php:301
 #: application/views/contesting/edit.php:55 application/views/cron/edit.php:73
 #: application/views/interface_assets/footer.php:51
 #: application/views/interface_assets/footer.php:674
@@ -5037,7 +5045,7 @@ msgid "Save"
 msgstr "Salva"
 
 #: application/views/api/index.php:8
-#: application/views/interface_assets/header.php:528
+#: application/views/interface_assets/header.php:530
 msgid "API Keys"
 msgstr "Chiavi API"
 
@@ -5138,7 +5146,7 @@ msgstr "Autorizzazioni"
 
 #: application/views/api/index.php:38
 #: application/views/awards/pl_polska/index.php:372
-#: application/views/club/permissions.php:226
+#: application/views/club/permissions.php:227
 #: application/views/clublog/export.php:39
 #: application/views/hrdlog/export.php:39
 #: application/views/logbookadvanced/index.php:740
@@ -8705,9 +8713,9 @@ msgid "Yes, switch over!"
 msgstr "Sì, passa!"
 
 #: application/views/club/clubswitch_modal.php:15
-#: application/views/club/permissions.php:205
-#: application/views/club/permissions.php:298
-#: application/views/club/permissions.php:327
+#: application/views/club/permissions.php:206
+#: application/views/club/permissions.php:302
+#: application/views/club/permissions.php:331
 #: application/views/cron/edit.php:74
 #: application/views/interface_assets/footer.php:40
 #: application/views/satellite/pass.php:114
@@ -8846,8 +8854,8 @@ msgid "User (Callsign or Name)"
 msgstr "Utente (nominativo o nome)"
 
 #: application/views/club/permissions.php:176
-#: application/views/club/permissions.php:225
-#: application/views/club/permissions.php:269
+#: application/views/club/permissions.php:226
+#: application/views/club/permissions.php:272
 msgid "Permission"
 msgstr "Permessi"
 
@@ -8855,61 +8863,61 @@ msgstr "Permessi"
 msgid "Type at least 2 characters."
 msgstr "Indica almeno 2 caratteri."
 
-#: application/views/club/permissions.php:194
+#: application/views/club/permissions.php:195
 msgid "Notify the user via email"
 msgstr "Avvisa l'utente via e-mail"
 
-#: application/views/club/permissions.php:213
+#: application/views/club/permissions.php:214
 msgid "No users currently have access to this club station."
 msgstr "Nessun utente ha attualmente accesso a questo club/sezione."
 
-#: application/views/club/permissions.php:220
+#: application/views/club/permissions.php:221
 msgid "Firstname"
 msgstr "Nome"
 
-#: application/views/club/permissions.php:221
+#: application/views/club/permissions.php:222
 msgid "Lastname"
 msgstr "Cognome"
 
-#: application/views/club/permissions.php:223
+#: application/views/club/permissions.php:224
 #: application/views/user/edit.php:56 application/views/user/index.php:152
 #: application/views/user/login.php:58 application/views/user/login.php:69
 #: application/views/user/login.php:70 application/views/user/profile.php:14
 msgid "Username"
 msgstr "Nome utente"
 
-#: application/views/club/permissions.php:224
+#: application/views/club/permissions.php:225
 msgid "E-Mail"
 msgstr "E-mail"
 
-#: application/views/club/permissions.php:244
+#: application/views/club/permissions.php:247
 msgid "Wavelog Administrator"
 msgstr "Amministratore Wavelog"
 
-#: application/views/club/permissions.php:261
+#: application/views/club/permissions.php:264
 msgid "You can modify the users permission level for this Clubstation."
 msgstr ""
 "È possibile modificare il livello di autorizzazione degli utenti per questo "
 "club/sezione."
 
-#: application/views/club/permissions.php:268
+#: application/views/club/permissions.php:271
 msgid "User Callsign"
 msgstr "Indicativo di chiamata dell'utente"
 
-#: application/views/club/permissions.php:286
+#: application/views/club/permissions.php:290
 msgid "Notify the user via email about the change"
 msgstr "Notificare all'utente via e-mail la modifica"
 
-#: application/views/club/permissions.php:316
+#: application/views/club/permissions.php:320
 msgid "Are you sure you want to delete this user from the club?"
 msgstr "Sei sicuro di voler cancellare questo utente dal club/sezione?"
 
-#: application/views/club/permissions.php:320
+#: application/views/club/permissions.php:324
 #, php-format
 msgid "Callsign: %s"
 msgstr "Indicativo di chiamata: %s"
 
-#: application/views/club/permissions.php:321
+#: application/views/club/permissions.php:325
 #, php-format
 msgid "Role: %s"
 msgstr "Ruolo: %s"
@@ -9261,7 +9269,7 @@ msgstr "Nome ADIF"
 #: application/views/contesting/add.php:44
 #: application/views/contesting/edit.php:43
 #: application/views/contesting/edit.php:46
-#: application/views/interface_assets/header.php:570
+#: application/views/interface_assets/header.php:572
 #: application/views/mode/create.php:46 application/views/mode/create.php:48
 #: application/views/mode/edit.php:57 application/views/mode/edit.php:60
 #: application/views/mode/index.php:8 application/views/mode/index.php:55
@@ -11588,7 +11596,7 @@ msgid ""
 msgstr ""
 
 #: application/views/interface_assets/footer.php:223
-#: application/views/interface_assets/header.php:531
+#: application/views/interface_assets/header.php:533
 #: application/views/options/sidebar.php:10
 msgid "Version Info"
 msgstr "Informazioni sulla versione"
@@ -11974,80 +11982,80 @@ msgstr "Gestisci %s"
 msgid "No Clubstations available"
 msgstr "Nessun club/stazione disponibile"
 
-#: application/views/interface_assets/header.php:475
+#: application/views/interface_assets/header.php:477
 msgid "Other Export Options"
 msgstr "Altre opzioni di esportazione"
 
-#: application/views/interface_assets/header.php:483
+#: application/views/interface_assets/header.php:485
 msgid "Cabrillo Export"
 msgstr "Esportazione Cabrillo"
 
-#: application/views/interface_assets/header.php:485
+#: application/views/interface_assets/header.php:487
 msgid "EDI Export"
 msgstr "Esportazione EDI"
 
-#: application/views/interface_assets/header.php:507
+#: application/views/interface_assets/header.php:509
 msgid "QSL Queue"
 msgstr "Coda QSL"
 
-#: application/views/interface_assets/header.php:508
+#: application/views/interface_assets/header.php:510
 msgid "Labels"
 msgstr "Etichette"
 
-#: application/views/interface_assets/header.php:510
+#: application/views/interface_assets/header.php:512
 msgid "Third-Party Services"
 msgstr "Servizi di terze parti"
 
-#: application/views/interface_assets/header.php:513
+#: application/views/interface_assets/header.php:515
 msgid "eQSL Import / Export"
 msgstr "Importazione / Esportazione eQSL"
 
-#: application/views/interface_assets/header.php:514
+#: application/views/interface_assets/header.php:516
 msgid "HRDLog Logbook"
 msgstr "Registro HRDLog"
 
-#: application/views/interface_assets/header.php:517
+#: application/views/interface_assets/header.php:519
 msgid "Clublog Import / Export"
 msgstr "Importazione / Esportazione Clublog"
 
-#: application/views/interface_assets/header.php:520
+#: application/views/interface_assets/header.php:522
 msgid "DCL Export"
 msgstr "Esportazione DCL"
 
-#: application/views/interface_assets/header.php:532
+#: application/views/interface_assets/header.php:534
 #: application/views/logbookadvanced/index.php:831
 msgid "Help"
 msgstr "Aiuto"
 
-#: application/views/interface_assets/header.php:533
+#: application/views/interface_assets/header.php:535
 msgid "Forum"
 msgstr "Forum"
 
-#: application/views/interface_assets/header.php:537
+#: application/views/interface_assets/header.php:539
 #, php-format
 msgid "Stop impersonate and switch back to %s"
 msgstr "Smetti di impersonare e torna a %s"
 
-#: application/views/interface_assets/header.php:538
+#: application/views/interface_assets/header.php:540
 #, php-format
 msgid "Switch back to %s"
 msgstr "Torna a %s"
 
-#: application/views/interface_assets/header.php:542
+#: application/views/interface_assets/header.php:544
 msgid "Logout"
 msgstr "Disconnetti"
 
-#: application/views/interface_assets/header.php:550
+#: application/views/interface_assets/header.php:552
 msgid "Select a Location"
 msgstr "Seleziona una posizione"
 
-#: application/views/interface_assets/header.php:592
+#: application/views/interface_assets/header.php:594
 msgid "You miss station-locations here? Go to stationsetup and fav them"
 msgstr ""
 "Non trovi le posizioni delle stazioni? Vai alle impostazioni della stazione "
 "e aggiungile ai preferiti"
 
-#: application/views/interface_assets/header.php:629
+#: application/views/interface_assets/header.php:631
 msgid "Extras"
 msgstr "Extra"
 
