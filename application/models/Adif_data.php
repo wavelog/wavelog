@@ -2,7 +2,7 @@
 
 class adif_data extends CI_Model {
 
-	function export_all($api_key = null,$from = null, $to = null, $exportLotw = false) {
+	function export_all($api_key = null,$from = null, $to = null, $exportLotw = false, $onlyop = null) {
 		$this->load->model('logbooks_model');
 		if ($api_key != null) {
 			$this->load->model('api_model');
@@ -24,6 +24,9 @@ class adif_data extends CI_Model {
 		}
 		if ($to) {
 			$this->db->where("date(".$this->config->item('table_name').".COL_TIME_ON) <= ",$to);
+		}
+		if ($onlyop) {
+			$this->db->where("upper(".$this->config->item('table_name').".col_operator)",$onlyop);
 		}
 		if ($exportLotw) {
 			$this->db->group_start();
@@ -76,7 +79,7 @@ class adif_data extends CI_Model {
 		return $query;
 	}
 
-	function sat_all() {
+	function sat_all($onlyop = null) {
 		$this->load->model('stations');
 		$active_station_id = $this->stations->find_active();
 
@@ -84,6 +87,10 @@ class adif_data extends CI_Model {
 		$this->db->from($this->config->item('table_name'));
 		$this->db->where($this->config->item('table_name').'.station_id', $active_station_id);
 		$this->db->where($this->config->item('table_name').'.COL_PROP_MODE', 'SAT');
+
+		if ($onlyop) {
+			$this->db->where("upper(".$this->config->item('table_name').".col_operator)",$onlyop);
+		}
 
 		$this->db->order_by($this->config->item('table_name').".COL_TIME_ON", "ASC");
 
@@ -93,7 +100,7 @@ class adif_data extends CI_Model {
 		return $this->db->get();
 	}
 
-	function satellte_lotw() {
+	function satellte_lotw($onlyop = null) {
 		$this->load->model('stations');
 		$active_station_id = $this->stations->find_active();
 
@@ -101,6 +108,10 @@ class adif_data extends CI_Model {
 		$this->db->from($this->config->item('table_name'));
 		$this->db->where($this->config->item('table_name').'.station_id', $active_station_id);
 		$this->db->where($this->config->item('table_name').'.COL_PROP_MODE', 'SAT');
+
+		if ($onlyop) {
+			$this->db->where("upper(".$this->config->item('table_name').".col_operator)",$onlyop);
+		}
 
 		$where = $this->config->item('table_name').".COL_LOTW_QSLRDATE IS NOT NULL";
 		$this->db->where($where);
@@ -114,7 +125,7 @@ class adif_data extends CI_Model {
 		return $this->db->get();
 	}
 
-	function export_custom($from, $to, $station_id, $exportLotw = false) {
+	function export_custom($from, $to, $station_id, $exportLotw = false, $onlyop = null) {
 		// be sure that station belongs to user
 		$this->load->model('Stations');
 		if ($station_id == 0) {
@@ -135,6 +146,9 @@ class adif_data extends CI_Model {
 			if ($to) {
 				$this->db->where("date(".$this->config->item('table_name').".COL_TIME_ON) <= ",$to);
 			}
+			if ($onlyop) {
+				$this->db->where("upper(".$this->config->item('table_name').".col_operator)",$onlyop);
+			}
 			if ($exportLotw) {
 				$this->db->group_start();
 				$this->db->where($this->config->item('table_name').".COL_LOTW_QSL_SENT != 'Y'");
@@ -151,7 +165,7 @@ class adif_data extends CI_Model {
 		}
 	}
 
-	function export_past_id($station_id, $fetchfromid, $limit) {
+	function export_past_id($station_id, $fetchfromid, $limit, $onlyop = null) {
 		//create query
 		$this->db->select(''.$this->config->item('table_name').'.*, station_profile.*, dxcc_entities.name as station_country');
 		$this->db->from($this->config->item('table_name'));
@@ -160,6 +174,9 @@ class adif_data extends CI_Model {
 		$this->db->order_by($this->config->item('table_name').".COL_TIME_ON", "ASC");
 		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
 		$this->db->join('dxcc_entities', 'station_profile.station_dxcc = dxcc_entities.adif', 'left outer');
+		if ($onlyop) {
+			$this->db->where("upper(".$this->config->item('table_name').".col_operator)",$onlyop);
+		}
 		$this->db->order_by("COL_PRIMARY_KEY", "ASC");
 
 		if ($limit > -1) {
@@ -170,7 +187,7 @@ class adif_data extends CI_Model {
 		return $this->db->get();
 	}
 
-	function export_lotw() {
+	function export_lotw($onlyop = null) {
 		$this->load->model('stations');
 		$active_station_id = $this->stations->find_active();
 
@@ -178,6 +195,9 @@ class adif_data extends CI_Model {
 		$this->db->select(''.$this->config->item('table_name').'.*, station_profile.*, dxcc_entities.name as station_country');
 		$this->db->from($this->config->item('table_name'));
 		$this->db->where($this->config->item('table_name').'.station_id', $active_station_id);
+		if ($onlyop) {
+			$this->db->where("upper(".$this->config->item('table_name').".col_operator)",$onlyop);
+		}
 		$this->db->group_start();
 		$this->db->where($this->config->item('table_name').".COL_LOTW_QSL_SENT != 'Y'");
 		$this->db->or_where($this->config->item('table_name').".COL_LOTW_QSL_SENT", NULL);
