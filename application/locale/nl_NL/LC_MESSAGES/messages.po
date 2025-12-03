@@ -11,10 +11,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-12-03 12:01+0000\n"
-"PO-Revision-Date: 2025-12-03 07:44+0000\n"
+"PO-Revision-Date: 2025-12-04 14:48+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
-"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/nl/>\n"
+"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/nl/>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -203,7 +203,7 @@ msgstr "Geactiveerde Kaart"
 
 #: application/controllers/Adif.php:61 application/controllers/Adif.php:73
 msgid "You're not allowed to access this functionality!"
-msgstr ""
+msgstr "Je mag deze functie niet gebruiken!"
 
 #: application/controllers/Adif.php:80
 msgid "valid date"
@@ -687,7 +687,7 @@ msgstr "Clubfunctionaris"
 
 #: application/controllers/Club.php:24
 msgid "Club Member ADIF"
-msgstr ""
+msgstr "Club Lid ADIF"
 
 #: application/controllers/Club.php:25
 msgid "Club Member"
@@ -7341,7 +7341,7 @@ msgstr "Filters wissen"
 
 #: application/views/bandmap/list.php:19
 msgid "Band filter preserved (band lock is active)"
-msgstr ""
+msgstr "Bandfilter behouden (bandvergrendeling is actief)"
 
 #: application/views/bandmap/list.php:21
 msgid "Radio set to None - CAT connection disabled"
@@ -7381,27 +7381,27 @@ msgstr "Klik om CAT-verbinding in te schakelen"
 
 #: application/views/bandmap/list.php:31
 msgid "CAT following radio - Click to disable"
-msgstr ""
+msgstr "CAT volgt radio - Klik om uit te schakelen"
 
 #: application/views/bandmap/list.php:32 application/views/bandmap/list.php:231
 msgid "Click to enable band lock (requires CAT connection)"
-msgstr ""
+msgstr "Klik om bandvergrendeling in te schakelen (vereist CAT-verbinding)"
 
 #: application/views/bandmap/list.php:33
 msgid "Band lock active - Click to disable"
-msgstr ""
+msgstr "Bandvergrendeling actief - Klik om uit te schakelen"
 
 #: application/views/bandmap/list.php:34
 msgid "Band Lock"
-msgstr ""
+msgstr "Bandvergrendeling"
 
 #: application/views/bandmap/list.php:35
 msgid "Band lock enabled - band filter will track radio band"
-msgstr ""
+msgstr "Bandvergrendeling ingeschakeld - bandfilter volgt radioband"
 
 #: application/views/bandmap/list.php:36
 msgid "Band filter changed to"
-msgstr ""
+msgstr "Bandfilter gewijzigd naar"
 
 #: application/views/bandmap/list.php:37
 msgid "by transceiver"
@@ -7438,35 +7438,39 @@ msgstr "Je favoriete banden en modi toegepast"
 #: application/views/bandmap/list.php:47 application/views/bandmap/list.php:314
 #: application/views/bandmap/list.php:479
 msgid "My Submodes"
-msgstr ""
+msgstr "Mijn submodi"
 
 #: application/views/bandmap/list.php:48
 msgid "Submode filter enabled"
-msgstr ""
+msgstr "Submodusfilter ingeschakeld"
 
 #: application/views/bandmap/list.php:49
 msgid "Submode filter disabled - showing all"
-msgstr ""
+msgstr "Submodusfilter uitgeschakeld - alles weergeven"
 
 #: application/views/bandmap/list.php:50
 msgid "Required submodes"
-msgstr ""
+msgstr "Vereiste submodi"
 
 #: application/views/bandmap/list.php:51
 msgid "Configure in User Settings - Modes"
-msgstr ""
+msgstr "Configureren in Gebruikersinstellingen - Modi"
 
 #: application/views/bandmap/list.php:52
 msgid "No submodes configured - configure in User Settings - Modes"
 msgstr ""
+"Geen submodi geconfigureerd - configureer in Gebruikersinstellingen - Modi"
 
 #: application/views/bandmap/list.php:53
 msgid "No submodes enabled in settings - showing all spots"
 msgstr ""
+"Geen submodi ingeschakeld in instellingen - alle spots worden weergegeven"
 
 #: application/views/bandmap/list.php:54
 msgid "Disabled - no submodes enabled for this mode in User Settings"
 msgstr ""
+"Uitgeschakeld - geen submodi ingeschakeld voor deze modus in "
+"Gebruikersinstellingen"
 
 #: application/views/bandmap/list.php:55 application/views/bandmap/list.php:468
 #: application/views/components/dxwaterfall.php:32
@@ -7485,41 +7489,43 @@ msgstr "Schakel spraakmodusfilter in"
 
 #: application/views/bandmap/list.php:60 application/views/bandmap/list.php:421
 msgid "Favorites"
-msgstr ""
+msgstr "Favorieten"
 
 #: application/views/bandmap/list.php:61 application/views/bandmap/list.php:424
 msgid "Save Current Filters..."
-msgstr ""
+msgstr "Huidige filters opslaan..."
 
 #: application/views/bandmap/list.php:62
 msgid "Enter a name for this filter preset:"
-msgstr ""
+msgstr "Voer een naam in voor dit filtervoorinstelling:"
 
 #: application/views/bandmap/list.php:63
 msgid "Filter preset saved"
-msgstr ""
+msgstr "Filtervoorinstelling opgeslagen"
 
 #: application/views/bandmap/list.php:64
 msgid "Filter preset loaded"
-msgstr ""
+msgstr "Filtervoorinstelling geladen"
 
 #: application/views/bandmap/list.php:65
 msgid "Filter preset deleted"
-msgstr ""
+msgstr "Filtervoorinstelling verwijderd"
 
 #: application/views/bandmap/list.php:66
 msgid "Are you sure to delete this filter preset?"
-msgstr ""
+msgstr "Weet je zeker dat je dit filtervoorinstelling wilt verwijderen?"
 
 #: application/views/bandmap/list.php:67
 msgid "No saved filter presets"
-msgstr ""
+msgstr "Geen opgeslagen filtervoorinstellingen"
 
 #: application/views/bandmap/list.php:68
 msgid ""
 "Maximum of 20 filter presets reached. Please delete some before adding new "
 "ones."
 msgstr ""
+"Maximaal 20 filtervoorinstellingen bereikt. Verwijder er enkele voordat je "
+"nieuwe toevoegt."
 
 #: application/views/bandmap/list.php:71
 msgid "Loading data from DX Cluster"
@@ -7841,7 +7847,7 @@ msgstr "DX Cluster Hulp"
 
 #: application/views/bandmap/list.php:210
 msgid "Compact Mode - Hide/Show Menu"
-msgstr ""
+msgstr "Compacte modus - Menu verbergen/weergeven"
 
 #: application/views/bandmap/list.php:237
 msgid "TRX:"
@@ -7968,7 +7974,7 @@ msgstr "Filters toepassen"
 
 #: application/views/bandmap/list.php:420
 msgid "Filter Favorites"
-msgstr ""
+msgstr "Favorieten filteren"
 
 #: application/views/bandmap/list.php:430
 msgid "Clear all filters except De Continent"
@@ -8016,7 +8022,7 @@ msgstr "Schakel 10m bandfilter in/uit"
 
 #: application/views/bandmap/list.php:452
 msgid "Toggle 6m band filter"
-msgstr ""
+msgstr "Schakel 6m bandfilter om"
 
 #: application/views/bandmap/list.php:456
 msgid "Toggle VHF bands filter"
@@ -8032,7 +8038,7 @@ msgstr "Schakel SHF bandfilter in/uit"
 
 #: application/views/bandmap/list.php:478
 msgid "Loading submodes..."
-msgstr ""
+msgstr "Submodi laden..."
 
 #: application/views/bandmap/list.php:483
 msgid "Toggle LoTW User filter"
@@ -8820,7 +8826,7 @@ msgstr "Exporteer QSO per ADIF"
 
 #: application/views/club/permissions.php:128
 msgid "Export own QSO per ADIF"
-msgstr ""
+msgstr "Exporteer eigen QSO per ADIF"
 
 #: application/views/club/permissions.php:137
 msgid "User Management"
