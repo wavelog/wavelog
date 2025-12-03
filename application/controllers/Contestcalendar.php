@@ -58,6 +58,7 @@ class Contestcalendar extends CI_Controller {
 	private function parseRSS($rssRawData) {
 		$rssData = array();
 
+		// Parse with SimpleXML (cache only contains validated XML)
 		$raw = simplexml_load_string($rssRawData, null, LIBXML_NOCDATA);
 
 		foreach ($raw->channel->item as $item) {

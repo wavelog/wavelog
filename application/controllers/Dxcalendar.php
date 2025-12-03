@@ -23,7 +23,7 @@ class Dxcalendar extends CI_Controller {
 			// Ensure proper encoding (assuming UTF-8)
 			$rssRawData = mb_convert_encoding($rssRawData, 'UTF-8', 'UTF-8');
 
-			// Now parse with SimpleXML
+			// Parse with SimpleXML (cache only contains validated XML)
 			$rssdata = simplexml_load_string($rssRawData, null, LIBXML_NOCDATA);
 
 			// Get Date format
@@ -35,36 +35,41 @@ class Dxcalendar extends CI_Controller {
 				$custom_date_format = $this->config->item('qso_date_format');
 			}
 
-			$dxpeds = [];
+			// First pass: collect all callsigns and do DXCC lookups
+			$dxpeds_temp = [];
+			$all_callsigns = [];
+			$all_dxccs = [];
+
 			foreach ($rssdata->channel->item as $item) {
-				$dxped=(object)[];
+				$dxped = (object)[];
 				$title = explode('--', $item->title);
 				$tempinfo = explode(':', $title[0]);
 				$dxped->dxcc = $tempinfo[0];
 				$date = $tempinfo[1] ?? '';
-
-
 				$dxped->dates = $this->extractDates($date, $custom_date_format);
-
 				$dxped->description = $item->description;
 
 				$descsplit = explode("\n", $item->description);
 
 				$call = (string) $descsplit[3];
 				$dxped->call = trim(str_replace('--', '', $call));
-				$chk_dxcc=$this->logbook_model->dxcc_lookup($dxped->call."X",$dxped->dates[2]->format('Y-m-d')); // X because sometimes only the pref is in XML
-				if ($chk_dxcc['adif'] ?? '' != '') {
-					$chk_dxcc_val=$chk_dxcc['adif'];
-					$dxped->no_dxcc=false;
+
+				// Do DXCC lookup (still needed individually as it depends on the date)
+				$chk_dxcc = $this->logbook_model->dxcc_lookup($dxped->call . "X", $dxped->dates[2]->format('Y-m-d')); // X because sometimes only the pref is in XML
+				if (($chk_dxcc['adif'] ?? '') != '') {
+					$dxped->dxcc_adif = $chk_dxcc['adif'];
+					$dxped->no_dxcc = false;
+					$all_dxccs[] = $chk_dxcc['adif'];
 				} else {
-					$chk_dxcc_val=-1;
-					$dxped->no_dxcc=true;
+					$dxped->dxcc_adif = -1;
+					$dxped->no_dxcc = true;
 				}
-				$dxped->call_wked =$this->logbook_model->check_if_callsign_worked_in_logbook($dxped->call);
-				$dxped->call_cnfmd =$this->logbook_model->check_if_callsign_cnfmd_in_logbook($dxped->call);
-				$dxped->dxcc_wked =$this->logbook_model->check_if_dxcc_worked_in_logbook($chk_dxcc_val);
-				$dxped->dxcc_cnfmd =$this->logbook_model->check_if_dxcc_cnfmd_in_logbook($chk_dxcc_val);
-				$dxped->dxcc_adif = $chk_dxcc_val;
+
+				// Collect callsign for batch query
+				if (!empty($dxped->call)) {
+					$all_callsigns[] = $dxped->call;
+				}
+
 				$qslinfo = (string) $descsplit[4];
 				$qslinfo = str_replace('--', '', $qslinfo);
 				$dxped->qslinfo = str_replace('QSL: ', '', $qslinfo);
@@ -73,9 +78,24 @@ class Dxcalendar extends CI_Controller {
 				$dxped->source = str_replace('Source: ', '', $source);
 				$dxped->info = (string) $descsplit[6];
 				$dxped->link = (string) $item->link;
-				$dxpeds[]=$dxped;
+
+				$dxpeds_temp[] = $dxped;
 			}
-			$data['rss']=$dxpeds;
+
+			// Batch query for all callsigns and DXCCs at once (only 4 queries instead of 4*N)
+			$statuses = $this->logbook_model->get_batch_dxcalendar_statuses($all_callsigns, $all_dxccs);
+
+			// Second pass: map the batch results back to each DXpedition
+			$dxpeds = [];
+			foreach ($dxpeds_temp as $dxped) {
+				$dxped->call_wked = isset($statuses['callsigns_worked'][$dxped->call]) ? 1 : 0;
+				$dxped->call_cnfmd = isset($statuses['callsigns_confirmed'][$dxped->call]) ? 1 : 0;
+				$dxped->dxcc_wked = isset($statuses['dxccs_worked'][$dxped->dxcc_adif]) ? 1 : 0;
+				$dxped->dxcc_cnfmd = isset($statuses['dxccs_confirmed'][$dxped->dxcc_adif]) ? 1 : 0;
+				$dxpeds[] = $dxped;
+			}
+
+			$data['rss'] = $dxpeds;
 		}
 
 		$footerData['scripts'] = [

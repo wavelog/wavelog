@@ -742,8 +742,15 @@ class Update_model extends CI_Model {
 			if ($contents === FALSE || $http_code != 200) {
 				$results[] = "FAILED: Could not fetch {$feed['name']} from {$feed['url']} (HTTP {$http_code})";
 			} else {
-				$this->cache->save($feed['cache_key'], $contents, $feed['ttl']);
-				$results[] = "DONE: {$feed['name']} cached successfully";
+				// Validate XML before caching
+				$xml = @simplexml_load_string($contents, null, LIBXML_NOCDATA);
+				if ($xml === false || !isset($xml->channel->item)) {
+					$results[] = "FAILED: {$feed['name']} returned invalid XML/RSS data";
+					log_message('error', "RSS Feed {$feed['name']}: Invalid XML data received from {$feed['url']}");
+				} else {
+					$this->cache->save($feed['cache_key'], $contents, $feed['ttl']);
+					$results[] = "DONE: {$feed['name']} cached successfully";
+				}
 			}
 		}
 
