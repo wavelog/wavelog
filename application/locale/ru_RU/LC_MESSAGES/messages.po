@@ -13,10 +13,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-12-03 12:01+0000\n"
-"PO-Revision-Date: 2025-12-02 08:54+0000\n"
+"PO-Revision-Date: 2025-12-04 14:48+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -206,7 +206,7 @@ msgstr "Карта активаторов"
 
 #: application/controllers/Adif.php:61 application/controllers/Adif.php:73
 msgid "You're not allowed to access this functionality!"
-msgstr ""
+msgstr "Этот функционал вам недоступен!"
 
 #: application/controllers/Adif.php:80
 msgid "valid date"
@@ -690,7 +690,7 @@ msgstr "Руководитель коллективной станции"
 
 #: application/controllers/Club.php:24
 msgid "Club Member ADIF"
-msgstr ""
+msgstr "ADIF оператора коллективной станции"
 
 #: application/controllers/Club.php:25
 msgid "Club Member"
@@ -2350,7 +2350,7 @@ msgstr "Установить как радиостанцию по умолчан
 
 #: application/controllers/Radio.php:111
 msgid "Default (click to release)"
-msgstr "По умолчанию (нажмите, чтобы освободить)"
+msgstr "По умолчанию (кликните, чтобы освободить)"
 
 #: application/controllers/Radio.php:115
 #: application/controllers/Stationsetup.php:401
@@ -3097,7 +3097,7 @@ msgid ""
 "setup, click %shere%s."
 msgstr ""
 "Профиль QTH успешно создан! Добро пожаловать в Wavelog! Чтобы завершить "
-"настройку станции, нажмите %sздесь%s."
+"настройку станции, кликните %sздесь%s."
 
 #: application/controllers/User.php:1320
 msgid "Station setup failed! Please set up your station manually."
@@ -7162,7 +7162,7 @@ msgstr "Наведите курсор на штат"
 #: application/views/awards/was/index.php:5
 #: application/views/awards/was/index.php:166
 msgid "inc."
-msgstr ""
+msgstr "вкл."
 
 #: application/views/awards/was/index.php:25
 msgid "WAS Award"
@@ -7314,7 +7314,7 @@ msgstr ""
 
 #: application/views/bandmap/list.php:11
 msgid "Click to prepare logging."
-msgstr "Нажмите, чтобы подготовить ведение журнала."
+msgstr "Кликните, чтобы подготовить ведение журнала."
 
 #: application/views/bandmap/list.php:11 application/views/bandmap/list.php:131
 msgid "to tune frequency"
@@ -7344,7 +7344,7 @@ msgstr "Очистить фильтры"
 
 #: application/views/bandmap/list.php:19
 msgid "Band filter preserved (band lock is active)"
-msgstr ""
+msgstr "Сохранён фильтр по диапазону (активна блокировка диапазона)"
 
 #: application/views/bandmap/list.php:21
 msgid "Radio set to None - CAT connection disabled"
@@ -7380,31 +7380,34 @@ msgstr "Соединение по CAT"
 
 #: application/views/bandmap/list.php:30 application/views/bandmap/list.php:228
 msgid "Click to enable CAT connection"
-msgstr "Нажмите, чтобы включить соединение по CAT"
+msgstr "Кликните, чтобы включить соединение по CATК"
 
 #: application/views/bandmap/list.php:31
 msgid "CAT following radio - Click to disable"
-msgstr ""
+msgstr "Нстройки радиостанции приоритетнее CAT - Кликните, чтобы отключить"
 
 #: application/views/bandmap/list.php:32 application/views/bandmap/list.php:231
 msgid "Click to enable band lock (requires CAT connection)"
 msgstr ""
+"Кликните, чтобы включить блокировку диапазона (требуется соединение по CAT)"
 
 #: application/views/bandmap/list.php:33
 msgid "Band lock active - Click to disable"
-msgstr ""
+msgstr "Блокировка диапазона активна - Кликните, чтобы отключить"
 
 #: application/views/bandmap/list.php:34
 msgid "Band Lock"
-msgstr ""
+msgstr "Блокировка диапазона"
 
 #: application/views/bandmap/list.php:35
 msgid "Band lock enabled - band filter will track radio band"
 msgstr ""
+"Блокировка диапазона включена - фильтр по диапазону будет отслеживать "
+"диапазон радиостанции"
 
 #: application/views/bandmap/list.php:36
 msgid "Band filter changed to"
-msgstr ""
+msgstr "Фильтр по диапазону изменён на"
 
 #: application/views/bandmap/list.php:37
 msgid "by transceiver"
@@ -7443,35 +7446,40 @@ msgstr "Установлены избранные вид модуляции и �
 #: application/views/bandmap/list.php:47 application/views/bandmap/list.php:314
 #: application/views/bandmap/list.php:479
 msgid "My Submodes"
-msgstr ""
+msgstr "Мои подвиды модуляции"
 
 #: application/views/bandmap/list.php:48
 msgid "Submode filter enabled"
-msgstr ""
+msgstr "Фильтр по подвидам модуляции включен"
 
 #: application/views/bandmap/list.php:49
 msgid "Submode filter disabled - showing all"
-msgstr ""
+msgstr "Фильтр по подвидам модуляции отключен - отображается всё"
 
 #: application/views/bandmap/list.php:50
 msgid "Required submodes"
-msgstr ""
+msgstr "Требуемые подвиды модуляции"
 
 #: application/views/bandmap/list.php:51
 msgid "Configure in User Settings - Modes"
-msgstr ""
+msgstr "Конфигурируется в Пользовательских настройках - Виды модуляции"
 
 #: application/views/bandmap/list.php:52
 msgid "No submodes configured - configure in User Settings - Modes"
 msgstr ""
+"Подвиды модуляции не настроены - настройте в Пользовательских настройках - "
+"Виды модуляции"
 
 #: application/views/bandmap/list.php:53
 msgid "No submodes enabled in settings - showing all spots"
 msgstr ""
+"В настройках не включены подвиды модуляции режимы - показываются все споты"
 
 #: application/views/bandmap/list.php:54
 msgid "Disabled - no submodes enabled for this mode in User Settings"
 msgstr ""
+"Отключено - нет подвидов модуляции, включенных для этого вида модуляции в "
+"Пользовательских настройках"
 
 #: application/views/bandmap/list.php:55 application/views/bandmap/list.php:468
 #: application/views/components/dxwaterfall.php:32
@@ -7490,41 +7498,43 @@ msgstr "Переключить фильтр по голосовым видам"
 
 #: application/views/bandmap/list.php:60 application/views/bandmap/list.php:421
 msgid "Favorites"
-msgstr ""
+msgstr "Избранное"
 
 #: application/views/bandmap/list.php:61 application/views/bandmap/list.php:424
 msgid "Save Current Filters..."
-msgstr ""
+msgstr "Сохранить текущие фильтры..."
 
 #: application/views/bandmap/list.php:62
 msgid "Enter a name for this filter preset:"
-msgstr ""
+msgstr "Введите название для этой конфигурации фильтров:"
 
 #: application/views/bandmap/list.php:63
 msgid "Filter preset saved"
-msgstr ""
+msgstr "Конфигурация фильтров сохранена"
 
 #: application/views/bandmap/list.php:64
 msgid "Filter preset loaded"
-msgstr ""
+msgstr "Конфигурация фильтров загружена"
 
 #: application/views/bandmap/list.php:65
 msgid "Filter preset deleted"
-msgstr ""
+msgstr "Конфигурация фильтров удалена"
 
 #: application/views/bandmap/list.php:66
 msgid "Are you sure to delete this filter preset?"
-msgstr ""
+msgstr "Вы уверены, что хотите удалить эту конфигурацию фильтров?"
 
 #: application/views/bandmap/list.php:67
 msgid "No saved filter presets"
-msgstr ""
+msgstr "Нет сохранённых конфигураций фильтров"
 
 #: application/views/bandmap/list.php:68
 msgid ""
 "Maximum of 20 filter presets reached. Please delete some before adding new "
 "ones."
 msgstr ""
+"Достигнуто максимальное количество в 20 конфигураций фильтров. Удалите "
+"некоторые перед добавлением новых."
 
 #: application/views/bandmap/list.php:71
 msgid "Loading data from DX Cluster"
@@ -7643,7 +7653,7 @@ msgstr "Контест"
 
 #: application/views/bandmap/list.php:109
 msgid "Click to view"
-msgstr "Нажмите, чтобы посмотреть"
+msgstr "Кликните, чтобы посмотреть"
 
 #: application/views/bandmap/list.php:110
 msgid "on QRZ.com"
@@ -7652,7 +7662,7 @@ msgstr "на QRZ.com"
 #: application/views/bandmap/list.php:111
 #, php-format
 msgid "Click to view %s on QRZ.com"
-msgstr "Нажмите, чтобы просмотреть %s на QRZ.com"
+msgstr "Кликните, чтобы просмотреть %s на QRZ.com"
 
 #: application/views/bandmap/list.php:112
 msgid "See details for"
@@ -7673,19 +7683,19 @@ msgstr "Пользователь LoTW. Последняя загрузка бы�
 
 #: application/views/bandmap/list.php:116
 msgid "Click to view on POTA.app"
-msgstr "Нажмите, чтобы посмотреть на POTA.app"
+msgstr "Кликните, чтобы посмотреть на POTA.app"
 
 #: application/views/bandmap/list.php:117
 msgid "Click to view on SOTL.as"
-msgstr "Нажмите, чтобы посмотреть на SOTL.as"
+msgstr "Кликните, чтобы посмотреть на SOTL.as"
 
 #: application/views/bandmap/list.php:118
 msgid "Click to view on cqgma.org"
-msgstr "Нажмите, чтобы посмотреть на cqgma.org"
+msgstr "Кликните, чтобы посмотреть на cqgma.org"
 
 #: application/views/bandmap/list.php:119
 msgid "Click to view on IOTA-World.org"
-msgstr "Нажмите, чтобы посмотреть на IOTA-World.org"
+msgstr "Кликните, чтобы посмотреть на IOTA-World.org"
 
 #: application/views/bandmap/list.php:120
 msgid "See details for continent"
@@ -7727,7 +7737,7 @@ msgstr ""
 
 #: application/views/bandmap/list.php:130
 msgid "Click to prepare logging"
-msgstr "Нажмите, чтобы подготовить к записи в лог"
+msgstr "Кликните, чтобы подготовить к записи в лог"
 
 #: application/views/bandmap/list.php:132
 msgid "(requires CAT connection)"
@@ -7846,7 +7856,7 @@ msgstr "Помощь с DX-кластером"
 
 #: application/views/bandmap/list.php:210
 msgid "Compact Mode - Hide/Show Menu"
-msgstr ""
+msgstr "Компактный режим - Скрыть/Показать меню"
 
 #: application/views/bandmap/list.php:237
 msgid "TRX:"
@@ -7923,7 +7933,7 @@ msgstr "Удерживать"
 
 #: application/views/bandmap/list.php:287
 msgid "and click to select multiple options"
-msgstr "и нажать, чтобы выбрать несколько вариантов"
+msgstr "и кликнуть, чтобы выбрать несколько вариантов"
 
 #: application/views/bandmap/list.php:293
 msgid "DXCC-Status"
@@ -7973,7 +7983,7 @@ msgstr "Применить фильтры"
 
 #: application/views/bandmap/list.php:420
 msgid "Filter Favorites"
-msgstr ""
+msgstr "Фильтровать избранное"
 
 #: application/views/bandmap/list.php:430
 msgid "Clear all filters except De Continent"
@@ -8021,7 +8031,7 @@ msgstr "Переключить фильтр диапазона 10м"
 
 #: application/views/bandmap/list.php:452
 msgid "Toggle 6m band filter"
-msgstr ""
+msgstr "Переключить фильтр диапазона 6 м"
 
 #: application/views/bandmap/list.php:456
 msgid "Toggle VHF bands filter"
@@ -8037,7 +8047,7 @@ msgstr "Переключить фильтр диапазонов СВЧ"
 
 #: application/views/bandmap/list.php:478
 msgid "Loading submodes..."
-msgstr ""
+msgstr "Загрузка подвидов модуляции..."
 
 #: application/views/bandmap/list.php:483
 msgid "Toggle LoTW User filter"
@@ -8166,7 +8176,7 @@ msgstr "Дата последнего QSO"
 
 #: application/views/bandmap/list.php:579
 msgid "Special"
-msgstr "Специальный"
+msgstr "Отметки"
 
 #: application/views/bandmap/list.php:579
 msgid "Special Flags"
@@ -8833,7 +8843,7 @@ msgstr "Экспорт QSO в формате ADIF"
 
 #: application/views/club/permissions.php:128
 msgid "Export own QSO per ADIF"
-msgstr ""
+msgstr "Экспортировать свои QSO в формате ADIF"
 
 #: application/views/club/permissions.php:137
 msgid "User Management"
@@ -9101,7 +9111,9 @@ msgstr "На этом диапазоне нет несработанных ко�
 
 #: application/views/components/dxwaterfall.php:27
 msgid "Click to cycle or wait 1.5s to apply"
-msgstr "Нажмите для переключения или подождите 1.5 секунды для применения"
+msgstr ""
+"Кликните для циклического переключения или подождите 1.5 секунды для "
+"применения"
 
 #: application/views/components/dxwaterfall.php:28
 msgid "Change spotter continent"
@@ -9162,7 +9174,7 @@ msgstr "НЕДОПУСТИМО"
 
 #: application/views/components/dxwaterfall.php:47
 msgid "Click to turn on the DX Waterfall"
-msgstr "Нажмите, чтобы включить водопад DX"
+msgstr "Кликните, чтобы включить водопад DX"
 
 #: application/views/components/dxwaterfall.php:48
 msgid "Turn off DX Waterfall"
@@ -9794,7 +9806,7 @@ msgid ""
 "Your active station location is not linked to your active station logbook. "
 "Click %shere%s to do it."
 msgstr ""
-"Ваше активный профиль QTH не связан с активным журналом. Нажмите %sздесь%s, "
+"Ваше активный профиль QTH не связан с активным журналом. Кликните %sздесь%s, "
 "чтобы связать."
 
 #: application/views/dashboard/index.php:163
@@ -9802,7 +9814,7 @@ msgstr ""
 msgctxt "Dashboard Warning"
 msgid "You have no station linked to your logbook. Click %shere%s to do it."
 msgstr ""
-"Ни один профиль QTH не связан с этим журналом. Нажмите %sздесь%s, чтобы "
+"Ни один профиль QTH не связан с этим журналом. Кликните %sздесь%s, чтобы "
 "связать."
 
 #: application/views/dashboard/index.php:173
@@ -9819,7 +9831,7 @@ msgid ""
 "Don't lose your streak - You have already had at least one QSO for the last "
 "%s consecutive days."
 msgstr ""
-"Не прерывайте свой марафон — у вас уже было как минимум одно QSO в каждый из "
+"Не прерывайте свою серию — у вас уже было, как минимум, одно QSO в каждый из "
 "%s последних дней подряд."
 
 #: application/views/dashboard/index.php:184
@@ -10039,7 +10051,7 @@ msgstr "Месяцы"
 
 #: application/views/dayswithqso/index.php:24
 msgid "Streaks"
-msgstr "Полосы"
+msgstr "Серии"
 
 #: application/views/dayswithqso/index.php:27
 msgid "QSOs of Year"
@@ -10267,7 +10279,7 @@ msgstr "Кликните правой кнопкой по выбранному �
 #: application/views/dcl_views/upload_cert.php:25
 #: application/views/lotw_views/upload_cert.php:25
 msgid "Click 'Save Callsign Certificate File'"
-msgstr "Нажмите «Сохранить файл сертификата позывного»"
+msgstr "Кликните «Сохранить файл сертификата позывного»"
 
 #: application/views/dcl_views/upload_cert.php:26
 #: application/views/lotw_views/upload_cert.php:26
@@ -10847,7 +10859,7 @@ msgstr "Ваше имя пользователя: %s"
 #: application/views/email/forgot_password.php:11
 #, php-format
 msgid "Click here to reset your password: %s"
-msgstr "Нажмите здесь, чтобы сбросить ваш пароль: %s"
+msgstr "Кликните здесь, чтобы сбросить ваш пароль: %s"
 
 #: application/views/email/admin_reset_password.php:13
 msgid ""
@@ -11119,7 +11131,8 @@ msgstr ""
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
-"Нажав кнопку 'Загрузить QSO', вы отправите информацию о QSO на сайт eQSL.cc."
+"Кликнув по кнопке 'Загрузить QSO', вы отправите информацию о QSO на сайт "
+"eQSL.cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -17012,8 +17025,8 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
-"Нажмите здесь на «Добавить тему» и введите необходимые данные. Введите имена "
-"файлов для логотипов %sбез%s расширения файла «.png»"
+"Кликните здесь на «Добавить тему» и введите необходимые данные. Введите "
+"имена файлов для логотипов %sбез%s расширения файла «.png»"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
