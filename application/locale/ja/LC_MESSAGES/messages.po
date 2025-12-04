@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2025-12-03 12:01+0000\n"
 "PO-Revision-Date: 2025-12-04 14:48+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -456,6 +456,7 @@ msgstr " そして "
 #: application/views/user/edit.php:341
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:21
+#: application/controllers/Logbook.php:1366
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -477,6 +478,7 @@ msgstr "SOTA"
 #: application/views/user/edit.php:295 application/views/user/edit.php:318
 #: application/views/user/edit.php:342
 #: application/views/view_log/partial/log_ajax.php:10
+#: application/controllers/Logbook.php:1367
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -499,6 +501,7 @@ msgstr "WWFF"
 #: application/views/user/edit.php:296 application/views/user/edit.php:319
 #: application/views/user/edit.php:343
 #: application/views/view_log/partial/log_ajax.php:11
+#: application/controllers/Logbook.php:1368
 msgid "POTA"
 msgstr "POTA"
 
@@ -779,6 +782,7 @@ msgstr "Clublog を設定しているユーザーはいません。"
 #: application/views/view_log/partial/log_ajax.php:222
 #: application/views/view_log/qso.php:571
 #: application/views/view_log/qso.php:576
+#: application/controllers/Logbook.php:745
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -1298,7 +1302,8 @@ msgstr "ログブック"
 #: application/views/qslprint/qsolist.php:18
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:108
 #: application/views/timeline/index.php:56 application/views/user/edit.php:623
-#: application/views/user/edit.php:816
+#: application/views/user/edit.php:816 application/controllers/Logbook.php:733
+#: application/controllers/Logbook.php:748
 msgid "QSL"
 msgstr "QSL"
 
@@ -1338,6 +1343,7 @@ msgstr "QSL"
 #: application/views/timeline/index.php:60 application/views/user/edit.php:624
 #: application/views/user/edit.php:826 application/views/view_log/qso.php:537
 #: application/views/view_log/qso.php:542
+#: application/controllers/Logbook.php:736
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1374,6 +1380,7 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:309
 #: application/views/timeline/index.php:64 application/views/user/edit.php:625
 #: application/views/user/edit.php:834 application/views/user/edit.php:908
+#: application/controllers/Logbook.php:739
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1465,6 +1472,7 @@ msgstr "eQSL"
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/widgets/qsos.php:18
+#: application/controllers/Logbook.php:1361
 msgid "Mode"
 msgstr "モード"
 
@@ -1494,6 +1502,7 @@ msgstr "モード"
 #: application/views/view_log/partial/log.php:10
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:119 application/views/visitor/index.php:9
+#: application/controllers/Logbook.php:1362
 msgid "RST (S)"
 msgstr "RST (S)"
 
@@ -1524,6 +1533,7 @@ msgstr "RST (S)"
 #: application/views/view_log/partial/log_ajax.php:6
 #: application/views/view_log/qso.php:124
 #: application/views/visitor/index.php:12
+#: application/controllers/Logbook.php:1363
 msgid "RST (R)"
 msgstr "RST (R)"
 
@@ -1545,6 +1555,7 @@ msgstr "RST (R)"
 #: application/views/view_log/qso.php:337
 #: application/views/view_log/qso.php:693
 #: application/views/visitor/index.php:15
+#: application/controllers/Logbook.php:1364
 msgid "Country"
 msgstr "国"
 
@@ -1574,6 +1585,7 @@ msgstr "国"
 #: application/views/user/edit.php:316 application/views/user/edit.php:340
 #: application/views/view_log/partial/log_ajax.php:8
 #: application/views/visitor/index.php:18
+#: application/controllers/Logbook.php:1365
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -1603,6 +1615,7 @@ msgstr "IOTA"
 #: application/views/user/edit.php:320 application/views/user/edit.php:344
 #: application/views/view_log/partial/log_ajax.php:12
 #: application/views/visitor/index.php:24
+#: application/controllers/Logbook.php:1369
 msgid "State"
 msgstr "州"
 
@@ -1648,6 +1661,7 @@ msgstr "州"
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/view_log/qso.php:680
 #: application/views/visitor/index.php:27
+#: application/controllers/Logbook.php:1370
 msgid "Gridsquare"
 msgstr "グリッドスクエア"
 
@@ -1677,6 +1691,7 @@ msgstr "グリッドスクエア"
 #: application/views/user/edit.php:346
 #: application/views/view_log/partial/log_ajax.php:14
 #: application/views/visitor/index.php:30
+#: application/controllers/Logbook.php:1371
 msgid "Distance"
 msgstr "距離"
 
@@ -1764,6 +1779,7 @@ msgstr "距離"
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
 #: application/views/widgets/qsos.php:21
+#: application/controllers/Logbook.php:1372
 msgid "Band"
 msgstr "バンド"
 
@@ -1791,6 +1807,7 @@ msgstr "バンド"
 #: application/views/view_log/partial/log_ajax.php:16
 #: application/views/view_log/qso.php:101
 #: application/views/visitor/index.php:36
+#: application/controllers/Logbook.php:1373
 msgid "Frequency"
 msgstr "周波数"
 
@@ -1815,6 +1832,7 @@ msgstr "周波数"
 #: application/views/view_log/partial/log_ajax.php:17
 #: application/views/view_log/qso.php:700
 #: application/views/visitor/index.php:39
+#: application/controllers/Logbook.php:1374
 msgid "Operator"
 msgstr "オペレーター"
 
@@ -1844,6 +1862,7 @@ msgstr "オペレーター"
 #: application/views/view_log/partial/log_ajax.php:31
 #: application/views/view_log/qso.php:341
 #: application/views/view_log/qso.php:694
+#: application/controllers/Logbook.php:1395
 msgid "Deleted DXCC"
 msgstr "DXCCを削除しました"
 
@@ -3420,6 +3439,7 @@ msgid "DXCC has to be Numeric"
 msgstr "DXCCは数値でなければなりません"
 
 #: application/models/Logbook_model.php:4642
+#: application/models/Logbook_model.php:4643
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
@@ -3428,10 +3448,13 @@ msgstr ""
 
 #: application/models/Logbook_model.php:4652
 #: application/models/Logbook_model.php:4661
+#: application/models/Logbook_model.php:4653
+#: application/models/Logbook_model.php:4662
 msgid "QSO on"
 msgstr "QSOオン"
 
 #: application/models/Logbook_model.php:4652
+#: application/models/Logbook_model.php:4653
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -3440,6 +3463,7 @@ msgstr ""
 "んでした。無効です"
 
 #: application/models/Logbook_model.php:4661
+#: application/models/Logbook_model.php:4662
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3448,6 +3472,7 @@ msgstr ""
 "されませんでした。無効です"
 
 #: application/models/Logbook_model.php:4710
+#: application/models/Logbook_model.php:4711
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -3457,44 +3482,55 @@ msgstr ""
 "はインポートされませんでした。無効です"
 
 #: application/models/Logbook_model.php:4975
+#: application/models/Logbook_model.php:4976
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate が無効です (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:4986
+#: application/models/Logbook_model.php:4987
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate が無効です (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:5047
+#: application/models/Logbook_model.php:5048
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date が無効です (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:5422
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:5423
 msgid "Duplicate for"
 msgstr "複製用"
 
 #: application/models/Logbook_model.php:5487
 #: application/models/Logbook_model.php:5582
+#: application/models/Logbook_model.php:5488
+#: application/models/Logbook_model.php:5583
 msgid "QSO could not be matched"
 msgstr "QSOが一致しませんでした"
 
 #: application/models/Logbook_model.php:5495
+#: application/models/Logbook_model.php:5496
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "LoTW/Clublog/eQSL/コンテストで確認済み"
 
 #: application/models/Logbook_model.php:5501
+#: application/models/Logbook_model.php:5502
 msgid "confirmed by award manager"
 msgstr "賞の管理者によって確認された"
 
 #: application/models/Logbook_model.php:5505
+#: application/models/Logbook_model.php:5506
 msgid "confirmed by cross-check of DCL data"
 msgstr "DCLデータのクロスチェックによって確認された"
 
 #: application/models/Logbook_model.php:5509
+#: application/models/Logbook_model.php:5510
 msgid "confirmation pending"
 msgstr "確認中"
 
 #: application/models/Logbook_model.php:5512
+#: application/models/Logbook_model.php:5513
 msgid "unconfirmed"
 msgstr "未確認"
 
@@ -3502,14 +3538,17 @@ msgstr "未確認"
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
+#: application/models/Logbook_model.php:5516
 msgid "unknown"
 msgstr "不明"
 
 #: application/models/Logbook_model.php:5585
+#: application/models/Logbook_model.php:5586
 msgid "POTA reference already in log"
 msgstr "POTA 参照。既にログに存在します"
 
 #: application/models/Logbook_model.php:5588
+#: application/models/Logbook_model.php:5589
 msgid "QSO updated"
 msgstr "QSOが更新されました"
 
@@ -3524,6 +3563,7 @@ msgstr "QSOが更新されました"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:6396
 msgid "Bearing"
 msgstr "方位"
 
@@ -6452,9 +6492,9 @@ msgid ""
 "Bronze (3), Silver (7), Gold (12). All 16 voivodeships required."
 msgstr ""
 "アワードのカテゴリー：MIXED（全モード／全バンド）、PHONE（SSB/AM/FM/SSTV）、"
-"CW、DIGI（RTTY/PSK/FSK）、個別バンド（160M-2M）。クラス：ベーシック（1 QSO/vo"
-"iv）、ブロンズ（3）、シルバー（7）、ゴールド（12）。16のvoivodeshipすべてが必"
-"要です。"
+"CW、DIGI（RTTY/PSK/FSK）、個別バンド（160M-2M）。クラス：ベーシック（1 QSO/"
+"voiv）、ブロンズ（3）、シルバー（7）、ゴールド（12）。16のvoivodeshipすべてが"
+"必要です。"
 
 #: application/views/awards/pl_polska/index.php:40
 #, php-format
@@ -6498,7 +6538,8 @@ msgstr "アワードのカテゴリー"
 msgid ""
 "Polska Award categories are based on the minimum number of confirmed QSOs "
 "with each of all 16 voivodeships:"
-msgstr "Polska アワード のカテゴリーは、全 16 の県との確認済み QSO の最小数に基づいて"
+msgstr ""
+"Polska アワード のカテゴリーは、全 16 の県との確認済み QSO の最小数に基づいて"
 "います。"
 
 #: application/views/awards/pl_polska/index.php:112
@@ -7397,7 +7438,8 @@ msgstr "ユーザー設定 - モードの設定"
 
 #: application/views/bandmap/list.php:52
 msgid "No submodes configured - configure in User Settings - Modes"
-msgstr "サブモードが設定されていません - ユーザー設定 - モードで設定してください"
+msgstr ""
+"サブモードが設定されていません - ユーザー設定 - モードで設定してください"
 
 #: application/views/bandmap/list.php:53
 msgid "No submodes enabled in settings - showing all spots"
@@ -7458,8 +7500,9 @@ msgstr "保存されたフィルタープリセットはありません"
 msgid ""
 "Maximum of 20 filter presets reached. Please delete some before adding new "
 "ones."
-msgstr "フィルタープリセットの上限が20個に達しました。新しいプリセットを追加する前に"
-"、いくつか削除してください。"
+msgstr ""
+"フィルタープリセットの上限が20個に達しました。新しいプリセットを追加する前"
+"に、いくつか削除してください。"
 
 #: application/views/bandmap/list.php:71
 msgid "Loading data from DX Cluster"
@@ -12307,15 +12350,17 @@ msgstr "印刷開始時刻は？"
 msgid ""
 "If a QSO has a 4‑char locator (e.g., JO90), try to refine it using callbook "
 "data."
-msgstr "QSO に 4 文字のロケータ (例: JO90) がある場合は、コールブック データを使用し"
+msgstr ""
+"QSO に 4 文字のロケータ (例: JO90) がある場合は、コールブック データを使用し"
 "てそれを調整してみてください。"
 
 #: application/views/logbookadvanced/callbookdialog.php:6
 msgid ""
 "We’ll keep the original value and add a more precise locator (e.g., JO90AB "
 "or JO90AB12) when a match is confident."
-msgstr "元の値を保持し、一致が確実な場合はより正確なロケーター (例: JO90AB または JO9"
-"0AB12) を追加します。"
+msgstr ""
+"元の値を保持し、一致が確実な場合はより正確なロケーター (例: JO90AB または "
+"JO90AB12) を追加します。"
 
 #: application/views/logbookadvanced/continentdialog.php:2
 msgid ""
@@ -18311,6 +18356,10 @@ msgstr "リクエストを送信"
 msgid "Rcvd"
 msgstr "受信"
 
+#: application/views/view_log/qso.php:916
+msgid "QSO not found"
+msgstr ""
+
 #~ msgid "Band filter preserved (CAT connection is active)"
 #~ msgstr "バンドフィルタは保持されます（CAT接続はアクティブです）"
 
@@ -18535,8 +18584,8 @@ msgstr "受信"
 #~ "Your active Station Location isn't linked to your Logbook. Click %shere%s "
 #~ "to do it."
 #~ msgstr ""
-#~ "現在のステーション位置がログブックとリンクされていません。リンクするに"
-#~ "は、%shere%s をクリックしてください。"
+#~ "現在のステーション位置がログブックとリンクされていません。リンクするには、"
+#~ "%shere%s をクリックしてください。"
 
 #, php-format
 #~ msgctxt "Dashboard Warning"
