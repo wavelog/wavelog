@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-12-03 12:01+0000\n"
-"PO-Revision-Date: 2025-11-28 13:13+0000\n"
+"PO-Revision-Date: 2025-12-04 14:48+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -201,7 +201,7 @@ msgstr "アクティベーターマップ"
 
 #: application/controllers/Adif.php:61 application/controllers/Adif.php:73
 msgid "You're not allowed to access this functionality!"
-msgstr ""
+msgstr "この機能にアクセスすることは許可されていません!"
 
 #: application/controllers/Adif.php:80
 msgid "valid date"
@@ -610,7 +610,7 @@ msgstr "WPX"
 #: application/views/awards/pl_polska/index.php:37
 #: application/views/interface_assets/header.php:270
 msgid "\"Polska\" Award"
-msgstr ""
+msgstr "「ポーランド」アワード"
 
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:336
@@ -685,7 +685,7 @@ msgstr "クラブ役員"
 
 #: application/controllers/Club.php:24
 msgid "Club Member ADIF"
-msgstr ""
+msgstr "クラブ会員 ADIF"
 
 #: application/controllers/Club.php:25
 msgid "Club Member"
@@ -6430,11 +6430,11 @@ msgstr "衛星"
 
 #: application/views/awards/pl_polska/index.php:3
 msgid "Polish Voivodeships"
-msgstr ""
+msgstr "ポーランドの県"
 
 #: application/views/awards/pl_polska/index.php:4
 msgid "Hover over a voivodeship"
-msgstr ""
+msgstr "県にマウスを移動"
 
 #: application/views/awards/pl_polska/index.php:38
 msgid ""
@@ -6442,6 +6442,8 @@ msgid ""
 "contacts with stations operating from all 16 Polish voivodeships "
 "(provinces). Valid from January 1, 1999."
 msgstr ""
+"ポルスカアワードは、ポーランドアマチュア無線連盟（PZK）が、ポーランド全16県の"
+"放送局との交信に対して授与する賞です。1999年1月1日から有効です。"
 
 #: application/views/awards/pl_polska/index.php:39
 msgid ""
@@ -6449,29 +6451,35 @@ msgid ""
 "(RTTY/PSK/FSK), and individual bands (160M-2M). Classes: Basic (1 QSO/voiv), "
 "Bronze (3), Silver (7), Gold (12). All 16 voivodeships required."
 msgstr ""
+"アワードのカテゴリー：MIXED（全モード／全バンド）、PHONE（SSB/AM/FM/SSTV）、"
+"CW、DIGI（RTTY/PSK/FSK）、個別バンド（160M-2M）。クラス：ベーシック（1 QSO/vo"
+"iv）、ブロンズ（3）、シルバー（7）、ゴールド（12）。16のvoivodeshipすべてが必"
+"要です。"
 
 #: application/views/awards/pl_polska/index.php:40
 #, php-format
 msgid "Official rules and information: %s"
-msgstr ""
+msgstr "公式ルールと情報: %s"
 
 #: application/views/awards/pl_polska/index.php:40
 msgid "PZK Polska Award Rules"
-msgstr ""
+msgstr "PZK Polskaアワードの規則"
 
 #: application/views/awards/pl_polska/index.php:41
 msgid ""
 "Requirements: COL_STATE (voivodeship code), COL_DXCC=269 (Poland), QSO date "
 ">= 1999-01-01. No cross-band/cross-mode/repeater contacts."
 msgstr ""
+"要件：COL_STATE（県コード）、COL_DXCC=269（ポーランド）、QSO日>=1999-01-01。"
+"クロスバンド／クロスモード／リピーターによる交信は禁止です。"
 
 #: application/views/awards/pl_polska/index.php:54
 msgid "Station Logbook"
-msgstr ""
+msgstr "ステーションログブック"
 
 #: application/views/awards/pl_polska/index.php:62
 msgid "Confirmation methods"
-msgstr ""
+msgstr "確認方法"
 
 #: application/views/awards/pl_polska/index.php:63
 msgid ""
@@ -6479,69 +6487,72 @@ msgid ""
 "accepted for award applications. Other digital confirmations are shown here "
 "for tracking purposes only."
 msgstr ""
+"公式のアワード規則に従い、アワード申請には紙のQSLカードまたはLoTW確認書が受け"
+"付けられます。その他のデジタル確認書は、追跡目的でのみここに表示されます。"
 
 #: application/views/awards/pl_polska/index.php:106
 msgid "Award Categories"
-msgstr ""
+msgstr "アワードのカテゴリー"
 
 #: application/views/awards/pl_polska/index.php:108
 msgid ""
 "Polska Award categories are based on the minimum number of confirmed QSOs "
 "with each of all 16 voivodeships:"
-msgstr ""
+msgstr "Polska アワード のカテゴリーは、全 16 の県との確認済み QSO の最小数に基づいて"
+"います。"
 
 #: application/views/awards/pl_polska/index.php:112
 msgid "1 QSO per voivodeship"
-msgstr ""
+msgstr "県ごとに1回のQSO"
 
 #: application/views/awards/pl_polska/index.php:112
 msgid "Basic Class"
-msgstr ""
+msgstr "基本クラス"
 
 #: application/views/awards/pl_polska/index.php:113
 msgid "3 QSOs per voivodeship"
-msgstr ""
+msgstr "県ごとに3回のQSO"
 
 #: application/views/awards/pl_polska/index.php:113
 msgid "Bronze Class (3rd)"
-msgstr ""
+msgstr "ブロンズクラス（3位）"
 
 #: application/views/awards/pl_polska/index.php:118
 msgid "7 QSOs per voivodeship"
-msgstr ""
+msgstr "県ごとに7回のQSO"
 
 #: application/views/awards/pl_polska/index.php:118
 msgid "Silver Class (2nd)"
-msgstr ""
+msgstr "シルバークラス（2位）"
 
 #: application/views/awards/pl_polska/index.php:119
 msgid "12 QSOs per voivodeship"
-msgstr ""
+msgstr "県ごとに12回のQSO"
 
 #: application/views/awards/pl_polska/index.php:119
 msgid "Gold Class (1st)"
-msgstr ""
+msgstr "ゴールドクラス（1位）"
 
 #: application/views/awards/pl_polska/index.php:144
 msgid "Congratulations!"
-msgstr ""
+msgstr "おめでとう！"
 
 #: application/views/awards/pl_polska/index.php:145
 msgid "You are entitled to the following award categories"
-msgstr ""
+msgstr "以下のアワードのカテゴリーに応募できます"
 
 #: application/views/awards/pl_polska/index.php:178
 msgid "QSOs by Mode Category"
-msgstr ""
+msgstr "モードカテゴリー別QSO"
 
 #: application/views/awards/pl_polska/index.php:183
 msgid "QSOs by Band"
-msgstr ""
+msgstr "バンド別QSO"
 
 #: application/views/awards/pl_polska/index.php:202
 #: application/views/awards/pl_polska/index.php:273
 msgid "Voivodeship"
-msgstr ""
+msgstr "県"
 
 #: application/views/awards/pl_polska/index.php:203
 #: application/views/awards/pl_polska/index.php:274
@@ -6552,12 +6563,12 @@ msgstr "コード"
 #: application/views/awards/pl_polska/index.php:204
 #: application/views/awards/pl_polska/index.php:345
 msgid "MIXED"
-msgstr ""
+msgstr "MIXED"
 
 #: application/views/awards/pl_polska/index.php:205
 #: application/views/awards/pl_polska/index.php:346
 msgid "PHONE"
-msgstr ""
+msgstr "PHONE"
 
 #: application/views/awards/pl_polska/index.php:206
 #: application/views/awards/pl_polska/index.php:347
@@ -6569,34 +6580,34 @@ msgstr "CW"
 #: application/views/awards/pl_polska/index.php:207
 #: application/views/awards/pl_polska/index.php:348
 msgid "DIGI"
-msgstr ""
+msgstr "DIGI"
 
 #: application/views/awards/pl_polska/index.php:238
 #: application/views/awards/pl_polska/index.php:310
 msgid "Total voivodeships"
-msgstr ""
+msgstr "県の総数"
 
 #: application/views/awards/pl_polska/index.php:252
 #: application/views/awards/pl_polska/index.php:324
 msgid "Bravo! You are entitled to"
-msgstr ""
+msgstr "ブラボー！あなたには"
 
 #: application/views/awards/pl_polska/index.php:252
 #: application/views/awards/pl_polska/index.php:324
 msgid "category award!"
-msgstr ""
+msgstr "部門賞受賞！"
 
 #: application/views/awards/pl_polska/index.php:342
 msgid "Award Category:"
-msgstr ""
+msgstr "アワードのカテゴリー:"
 
 #: application/views/awards/pl_polska/index.php:344
 msgid "Mode Categories"
-msgstr ""
+msgstr "モードカテゴリ"
 
 #: application/views/awards/pl_polska/index.php:350
 msgid "Band Categories"
-msgstr ""
+msgstr "バンドカテゴリー"
 
 #: application/views/awards/pl_polska/index.php:372
 #: application/views/logbookadvanced/index.php:772
@@ -6605,25 +6616,27 @@ msgstr "状態を修正"
 
 #: application/views/awards/pl_polska/index.php:372
 msgid "Logbook Advanced"
-msgstr ""
+msgstr "ログブック アドバンス"
 
 #: application/views/awards/pl_polska/index.php:372
 msgid ""
 "This award uses the State field from your logbook. Ensure this field is "
 "populated for all SP (Poland) contacts."
 msgstr ""
+"このアワードは、ログブックの「州」フィールドを使用します。SP（ポーランド）の"
+"すべての連絡先でこのフィールドが入力されていることを確認してください。"
 
 #: application/views/awards/pl_polska/index.php:372
 msgid "Tip:"
-msgstr ""
+msgstr "ヒント："
 
 #: application/views/awards/pl_polska/index.php:372
 msgid "Use"
-msgstr ""
+msgstr "使用"
 
 #: application/views/awards/pl_polska/index.php:372
 msgid "to auto-populate states from Maidenhead locators."
-msgstr ""
+msgstr "メイデンヘッドのロケーターから州を自動入力します。"
 
 #: application/views/awards/pota/index.php:7
 msgid "POTA Awards"
@@ -7092,7 +7105,7 @@ msgstr "州にマウスを合わせると"
 #: application/views/awards/was/index.php:5
 #: application/views/awards/was/index.php:166
 msgid "inc."
-msgstr ""
+msgstr "株式会社"
 
 #: application/views/awards/was/index.php:25
 msgid "WAS Award"
@@ -7265,7 +7278,7 @@ msgstr "フィルターをクリア"
 
 #: application/views/bandmap/list.php:19
 msgid "Band filter preserved (band lock is active)"
-msgstr ""
+msgstr "バンド フィルタは保持されます (バンド ロックがアクティブです)"
 
 #: application/views/bandmap/list.php:21
 msgid "Radio set to None - CAT connection disabled"
@@ -7305,27 +7318,27 @@ msgstr "クリックしてCAT接続を有効にします"
 
 #: application/views/bandmap/list.php:31
 msgid "CAT following radio - Click to disable"
-msgstr ""
+msgstr "CAT追従無線 - クリックすると無効になります"
 
 #: application/views/bandmap/list.php:32 application/views/bandmap/list.php:231
 msgid "Click to enable band lock (requires CAT connection)"
-msgstr ""
+msgstr "クリックするとバンドロックが有効になります（CAT接続が必要です）"
 
 #: application/views/bandmap/list.php:33
 msgid "Band lock active - Click to disable"
-msgstr ""
+msgstr "バンドロックが有効 - クリックすると無効になります"
 
 #: application/views/bandmap/list.php:34
 msgid "Band Lock"
-msgstr ""
+msgstr "バンドロック"
 
 #: application/views/bandmap/list.php:35
 msgid "Band lock enabled - band filter will track radio band"
-msgstr ""
+msgstr "バンドロックが有効 - バンドフィルターは無線バンドを追跡します"
 
 #: application/views/bandmap/list.php:36
 msgid "Band filter changed to"
-msgstr ""
+msgstr "バンドフィルターが変更されました"
 
 #: application/views/bandmap/list.php:37
 msgid "by transceiver"
@@ -7364,35 +7377,35 @@ msgstr "お気に入りのバンドとモードを適用"
 #: application/views/bandmap/list.php:47 application/views/bandmap/list.php:314
 #: application/views/bandmap/list.php:479
 msgid "My Submodes"
-msgstr ""
+msgstr "私のサブモード"
 
 #: application/views/bandmap/list.php:48
 msgid "Submode filter enabled"
-msgstr ""
+msgstr "サブモードフィルタが有効"
 
 #: application/views/bandmap/list.php:49
 msgid "Submode filter disabled - showing all"
-msgstr ""
+msgstr "サブモードフィルタが有効"
 
 #: application/views/bandmap/list.php:50
 msgid "Required submodes"
-msgstr ""
+msgstr "必要なサブモード"
 
 #: application/views/bandmap/list.php:51
 msgid "Configure in User Settings - Modes"
-msgstr ""
+msgstr "ユーザー設定 - モードの設定"
 
 #: application/views/bandmap/list.php:52
 msgid "No submodes configured - configure in User Settings - Modes"
-msgstr ""
+msgstr "サブモードが設定されていません - ユーザー設定 - モードで設定してください"
 
 #: application/views/bandmap/list.php:53
 msgid "No submodes enabled in settings - showing all spots"
-msgstr ""
+msgstr "設定でサブモードが有効になっていません - すべてのスポットを表示"
 
 #: application/views/bandmap/list.php:54
 msgid "Disabled - no submodes enabled for this mode in User Settings"
-msgstr ""
+msgstr "無効 - ユーザー設定でこのモードのサブモードが有効になっていません"
 
 #: application/views/bandmap/list.php:55 application/views/bandmap/list.php:468
 #: application/views/components/dxwaterfall.php:32
@@ -7411,41 +7424,42 @@ msgstr "電話モードフィルターを切り替える"
 
 #: application/views/bandmap/list.php:60 application/views/bandmap/list.php:421
 msgid "Favorites"
-msgstr ""
+msgstr "お気に入り"
 
 #: application/views/bandmap/list.php:61 application/views/bandmap/list.php:424
 msgid "Save Current Filters..."
-msgstr ""
+msgstr "現在のフィルターを保存..."
 
 #: application/views/bandmap/list.php:62
 msgid "Enter a name for this filter preset:"
-msgstr ""
+msgstr "このフィルタープリセットの名前を入力してください:"
 
 #: application/views/bandmap/list.php:63
 msgid "Filter preset saved"
-msgstr ""
+msgstr "フィルタープリセットを保存しました"
 
 #: application/views/bandmap/list.php:64
 msgid "Filter preset loaded"
-msgstr ""
+msgstr "フィルタープリセットが読み込まれました"
 
 #: application/views/bandmap/list.php:65
 msgid "Filter preset deleted"
-msgstr ""
+msgstr "フィルタープリセットを削除しました"
 
 #: application/views/bandmap/list.php:66
 msgid "Are you sure to delete this filter preset?"
-msgstr ""
+msgstr "このフィルタープリセットを削除してもよろしいですか?"
 
 #: application/views/bandmap/list.php:67
 msgid "No saved filter presets"
-msgstr ""
+msgstr "保存されたフィルタープリセットはありません"
 
 #: application/views/bandmap/list.php:68
 msgid ""
 "Maximum of 20 filter presets reached. Please delete some before adding new "
 "ones."
-msgstr ""
+msgstr "フィルタープリセットの上限が20個に達しました。新しいプリセットを追加する前に"
+"、いくつか削除してください。"
 
 #: application/views/bandmap/list.php:71
 msgid "Loading data from DX Cluster"
@@ -7764,7 +7778,7 @@ msgstr "DXクラスターヘルプ"
 
 #: application/views/bandmap/list.php:210
 msgid "Compact Mode - Hide/Show Menu"
-msgstr ""
+msgstr "コンパクトモード - メニューの表示/非表示"
 
 #: application/views/bandmap/list.php:237
 msgid "TRX:"
@@ -7891,7 +7905,7 @@ msgstr "フィルターを適用する"
 
 #: application/views/bandmap/list.php:420
 msgid "Filter Favorites"
-msgstr ""
+msgstr "お気に入りをフィルター"
 
 #: application/views/bandmap/list.php:430
 msgid "Clear all filters except De Continent"
@@ -7939,7 +7953,7 @@ msgstr "10mバンドフィルターの切り替え"
 
 #: application/views/bandmap/list.php:452
 msgid "Toggle 6m band filter"
-msgstr ""
+msgstr "6mバンドフィルターの切り替え"
 
 #: application/views/bandmap/list.php:456
 msgid "Toggle VHF bands filter"
@@ -7955,7 +7969,7 @@ msgstr "SHFバンドフィルターを切り替える"
 
 #: application/views/bandmap/list.php:478
 msgid "Loading submodes..."
-msgstr ""
+msgstr "サブモードを読み込んでいます..."
 
 #: application/views/bandmap/list.php:483
 msgid "Toggle LoTW User filter"
@@ -8744,7 +8758,7 @@ msgstr "ADIF 向け QSO エクスポート"
 
 #: application/views/club/permissions.php:128
 msgid "Export own QSO per ADIF"
-msgstr ""
+msgstr "ADIFごとに自身のQSOをエクスポート"
 
 #: application/views/club/permissions.php:137
 msgid "User Management"
@@ -11835,7 +11849,7 @@ msgstr "LXグリッドマスター"
 
 #: application/views/interface_assets/header.php:268
 msgid "Poland"
-msgstr ""
+msgstr "ポーランド"
 
 #: application/views/interface_assets/header.php:274
 msgid "Switzerland"
@@ -12293,13 +12307,15 @@ msgstr "印刷開始時刻は？"
 msgid ""
 "If a QSO has a 4‑char locator (e.g., JO90), try to refine it using callbook "
 "data."
-msgstr ""
+msgstr "QSO に 4 文字のロケータ (例: JO90) がある場合は、コールブック データを使用し"
+"てそれを調整してみてください。"
 
 #: application/views/logbookadvanced/callbookdialog.php:6
 msgid ""
 "We’ll keep the original value and add a more precise locator (e.g., JO90AB "
 "or JO90AB12) when a match is confident."
-msgstr ""
+msgstr "元の値を保持し、一致が確実な場合はより正確なロケーター (例: JO90AB または JO9"
+"0AB12) を追加します。"
 
 #: application/views/logbookadvanced/continentdialog.php:2
 msgid ""
