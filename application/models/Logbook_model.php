@@ -4560,7 +4560,8 @@ class Logbook_model extends CI_Model {
 		$amsat_qsos = [];
 		$today = time();
 		if (!$this->stations->check_station_is_accessible($station_id) && $apicall == false) {
-			return 'Station not accessible<br>';
+			$custom_errors['errormessage'] = 'Station not accessible<br>';
+			return $custom_errors;
 		}
 		$station_id_ok = true;
 		$station_profile = $this->stations->profile_clean($station_id);
