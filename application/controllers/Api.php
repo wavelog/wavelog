@@ -453,11 +453,7 @@ class API extends CI_Controller {
 		$offset = 0;
 
 		// Start building ADIF content
-		$adif_content = "Wavelog ADIF export\n";
-		$adif_content .= "<ADIF_VER:5>3.1.6\n";
-		$adif_content .= "<PROGRAMID:".strlen($this->config->item('app_name')).">".$this->config->item('app_name')."\r\n";
-		$adif_content .= "<PROGRAMVERSION:".strlen($this->optionslib->get_option('version')).">".$this->optionslib->get_option('version')."\r\n";
-		$adif_content .= "<EOH>\n\n";
+		$adif_content = $this->adifhelper->getAdifHeader($this->config->item('app_name'),$this->optionslib->get_option('version'));
 
 		do {
 			// Calculate chunk size for this iteration
