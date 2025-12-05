@@ -85,17 +85,46 @@ class adif extends CI_Controller {
 
 	}
 
-	// Export all QSO Data in ASC Order of Date.
+	// Export all QSO Data in ASC Order of Date - use chunks to avoid memory exhaustion
 	public function exportall() {
-		// Set memory limit to unlimited to allow heavy usage
 		$this->require_tab_access('export');
+
 		ini_set('memory_limit', '-1');
+		set_time_limit(300);
 
 		$this->load->model('adif_data');
+		$this->load->library('AdifHelper');
 
-		$data['qsos'] = $this->adif_data->export_all(null, $this->input->post('from', true), $this->input->post('to', true));
+		$from = $this->input->post('from', true);
+		$to = $this->input->post('to', true);
 
-		$this->load->view('adif/data/exportall', $data);
+		$filename = $this->session->userdata('user_callsign').'-'.date('Ymd-Hi').'.adi';
+		header('Content-Type: text/plain; charset=utf-8');
+		header('Content-Disposition: attachment; filename="'.$filename.'"');
+
+		// Output ADIF header // No chance to use exportall-view any longer, because of chunking logic
+		echo $this->adifhelper->getAdifHeader($this->config->item('app_name'),$this->optionslib->get_option('version'));
+
+		// Stream QSOs in 5K chunks
+		$offset = 0;
+		$chunk_size = 5000;
+
+		do {
+			$qsos = $this->adif_data->export_all_chunked(null, $from, $to, false, null, $offset, $chunk_size);
+
+			if ($qsos->num_rows() > 0) {
+				foreach ($qsos->result() as $qso) {
+					echo $this->adifhelper->getAdifLine($qso);
+				}
+
+				// Free memory
+				$qsos->free_result();
+			}
+
+			$offset += $chunk_size;
+		} while ($qsos->num_rows() > 0);
+
+		exit;
 	}
 
 
@@ -143,10 +172,15 @@ class adif extends CI_Controller {
 
 		// Set memory limit to unlimited to allow heavy usage
 		ini_set('memory_limit', '-1');
+		set_time_limit(300);
 
 		$this->load->model('adif_data');
+		$this->load->library('AdifHelper');
 
+		// Get parameters
 		$station_id = $this->security->xss_clean($this->input->post('station_profile'));
+		$from = $this->input->post('from');
+		$to = $this->input->post('to');
 
 		// Used for exporting QSOs not previously exported to LoTW
 		if ($this->input->post('exportLotw') == 1) {
@@ -161,16 +195,45 @@ class adif extends CI_Controller {
 			$onlyop=null;
 		}
 
-		$data['qsos'] = $this->adif_data->export_custom($this->input->post('from'), $this->input->post('to'), $station_id, $exportLotw, $onlyop);
+		// Set headers for direct download
+		$filename = $this->session->userdata('user_callsign').'-'.date('Ymd-Hi').'.adi';
+		header('Content-Type: text/plain; charset=utf-8');
+		header('Content-Disposition: attachment; filename="'.$filename.'"');
 
-		$this->load->view('adif/data/exportall', $data);
+		echo $this->adifhelper->getAdifHeader($this->config->item('app_name'),$this->optionslib->get_option('version'));
 
+		// Collect QSO IDs for LoTW marking (since we can't access all at once)
+		$qso_ids_for_lotw = [];
 
-		if ((clubaccess_check(9)) && ($this->input->post('markLotw') == 1)) {	// Only allow marking if clubofficer or regular user!
-			foreach ($data['qsos']->result() as $qso) {
-				$this->adif_data->mark_lotw_sent($qso->COL_PRIMARY_KEY);
+		// Stream QSOs in 5K chunks
+		$offset = 0;
+		$chunk_size = 5000;
+
+		do {
+			$qsos = $this->adif_data->export_custom_chunked($from, $to, $station_id, $exportLotw, $onlyop, $offset, $chunk_size);
+
+			if ($qsos && $qsos->num_rows() > 0) {
+				foreach ($qsos->result() as $qso) {
+					echo $this->adifhelper->getAdifLine($qso);
+					// Collect IDs for LoTW marking
+					$qso_ids_for_lotw[] = $qso->COL_PRIMARY_KEY;
+				}
+				// Free memory
+				$qsos->free_result();
+			}
+
+			$offset += $chunk_size;
+		} while ($qsos && $qsos->num_rows() > 0);
+
+		// Handle LoTW marking after export
+		if ((clubaccess_check(9)) && ($this->input->post('markLotw') == 1) && !empty($qso_ids_for_lotw)) {
+			foreach ($qso_ids_for_lotw as $qso_id) {
+				$this->adif_data->mark_lotw_sent($qso_id);
 			}
 		}
+
+		// Stop execution
+		exit;
 	}
 
 	public function mark_lotw() {
