@@ -85,17 +85,50 @@ class adif extends CI_Controller {
 
 	}
 
-	// Export all QSO Data in ASC Order of Date.
+	// Export all QSO Data in ASC Order of Date - use chunks to avoid memory exhaustion
 	public function exportall() {
-		// Set memory limit to unlimited to allow heavy usage
 		$this->require_tab_access('export');
+
 		ini_set('memory_limit', '-1');
+		set_time_limit(300);
 
 		$this->load->model('adif_data');
+		$this->load->library('AdifHelper');
 
-		$data['qsos'] = $this->adif_data->export_all(null, $this->input->post('from', true), $this->input->post('to', true));
+		$from = $this->input->post('from', true);
+		$to = $this->input->post('to', true);
 
-		$this->load->view('adif/data/exportall', $data);
+		$filename = $this->session->userdata('user_callsign').'-'.date('Ymd-Hi').'.adi';
+		header('Content-Type: text/plain; charset=utf-8');
+		header('Content-Disposition: attachment; filename="'.$filename.'"');
+
+		// Output ADIF header // No chance to use exportall-view any longer, because of chunking logic
+		echo "Wavelog ADIF export\n";
+		echo "<ADIF_VER:5>3.1.6\n";
+		echo "<PROGRAMID:".strlen($this->config->item('app_name')).">".$this->config->item('app_name')."\r\n";
+		echo "<PROGRAMVERSION:".strlen($this->optionslib->get_option('version')).">".$this->optionslib->get_option('version')."\r\n";
+		echo "<EOH>\n\n";
+
+		// Stream QSOs in 5K chunks
+		$offset = 0;
+		$chunk_size = 5000;
+
+		do {
+			$qsos = $this->adif_data->export_all_chunked(null, $from, $to, false, null, $offset, $chunk_size);
+
+			if ($qsos->num_rows() > 0) {
+				foreach ($qsos->result() as $qso) {
+					echo $this->adifhelper->getAdifLine($qso);
+				}
+
+				// Free memory
+				$qsos->free_result();
+			}
+
+			$offset += $chunk_size;
+		} while ($qsos->num_rows() > 0);
+
+		exit;
 	}
 
 

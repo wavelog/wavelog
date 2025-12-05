@@ -238,6 +238,48 @@ class adif_data extends CI_Model {
 
 		return $this->db->get();
 	}
+
+	function export_all_chunked($api_key = null, $from = null, $to = null, $exportLotw = false, $onlyop = null, $offset = 0, $limit = 5000) {
+		$this->load->model('logbooks_model');
+		if ($api_key != null) {
+			$this->load->model('api_model');
+			if (strpos($this->api_model->access($api_key), 'r') !== false) {
+				$this->api_model->update_last_used($api_key);
+				$user_id = $this->api_model->key_userid($api_key);
+				$logbooks_locations_array = $this->list_station_locations($user_id);
+			}
+		} else {
+			$this->load->model('stations');
+			$logbooks_locations_array = $this->list_station_locations($this->session->userdata('user_id'));
+		}
+
+		$this->db->select($this->config->item('table_name').'.*, station_profile.*, dxcc_entities.name as station_country');
+		$this->db->order_by("COL_TIME_ON", "ASC");
+		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
+		if ($from) {
+			$this->db->where("date(".$this->config->item('table_name').".COL_TIME_ON) >= ", $from);
+		}
+		if ($to) {
+			$this->db->where("date(".$this->config->item('table_name').".COL_TIME_ON) <= ",$to);
+		}
+		if ($onlyop) {
+			$this->db->where("upper(".$this->config->item('table_name').".col_operator)",$onlyop);
+		}
+		if ($exportLotw) {
+			$this->db->group_start();
+			$this->db->where($this->config->item('table_name').".COL_LOTW_QSL_SENT != 'Y'");
+			$this->db->or_where($this->config->item('table_name').".COL_LOTW_QSL_SENT", NULL);
+			$this->db->group_end();
+		}
+		$this->db->where_in('station_profile.station_id', $logbooks_locations_array);
+		$this->db->join('dxcc_entities', 'station_profile.station_dxcc = dxcc_entities.adif');
+
+		// Add chunking
+		$this->db->limit($limit, $offset);
+
+		$query = $this->db->get($this->config->item('table_name'));
+		return $query;
+	}
 }
 
 ?>
