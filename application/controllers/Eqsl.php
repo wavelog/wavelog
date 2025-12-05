@@ -515,7 +515,7 @@ class eqsl extends CI_Controller {
 		$this->load->model('eqslmethods_model');
 		$this->eqslmethods_model->mark_all_as_sent();
 
-		$this->session->set_flashdata('success', __('All eQSLs marked as uploaded'));
+		$this->session->set_flashdata('success', __("All eQSLs marked as uploaded"));
 
 		redirect('eqsl/tools');
 	}
