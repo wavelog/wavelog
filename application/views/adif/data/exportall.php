@@ -10,8 +10,9 @@ if (!$CI->load->is_loaded('AdifHelper')) {
 	$CI->load->library('AdifHelper');
 }
 
-echo $this->adifhelper->getAdifHeader($CI->config->item('app_name'),$CI->optionslib->get_option('version'));
+echo $CI->adifhelper->getAdifHeader($CI->config->item('app_name'),$CI->optionslib->get_option('version'));
 
 foreach ($qsos->result() as $qso) {
     echo $CI->adifhelper->getAdifLine($qso);
 }
+?>
