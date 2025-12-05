@@ -24,7 +24,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-05 07:57+0000\n"
+"POT-Creation-Date: 2025-12-05 16:49+0000\n"
 "PO-Revision-Date: 2025-12-03 07:44+0000\n"
 "Last-Translator: hellofinch <543933756@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -43,7 +43,7 @@ msgstr ""
 #: application/controllers/Api.php:29 application/controllers/Api.php:65
 #: application/controllers/Api.php:91 application/controllers/Awards.php:20
 #: application/controllers/Backup.php:13 application/controllers/Backup.php:26
-#: application/controllers/Backup.php:63 application/controllers/Band.php:15
+#: application/controllers/Backup.php:71 application/controllers/Band.php:15
 #: application/controllers/Bandmap.php:9
 #: application/controllers/Cabrillo.php:16
 #: application/controllers/Cabrillo.php:53
@@ -227,47 +227,47 @@ msgstr "有效日期"
 msgid "date incorrect"
 msgstr "日期错误"
 
-#: application/controllers/Adif.php:220
+#: application/controllers/Adif.php:283
 #: application/views/interface_assets/header.php:474
 msgid "ADIF Import / Export"
 msgstr "ADIF 导入/导出"
 
-#: application/controllers/Adif.php:258 application/views/adif/import.php:30
+#: application/controllers/Adif.php:321 application/views/adif/import.php:30
 #: application/views/dcl_views/import.php:3 application/views/lotw/import.php:3
 msgid "ADIF Import"
 msgstr "ADIF 导入"
 
-#: application/controllers/Adif.php:302
+#: application/controllers/Adif.php:365
 msgid "Unsupported Filetype"
 msgstr "不支持的文件类型"
 
-#: application/controllers/Adif.php:381
+#: application/controllers/Adif.php:444
 #: application/views/adif/import_failed.php:12
 msgid "ADIF Import failed!"
 msgstr "ADIF 导入失败！"
 
-#: application/controllers/Adif.php:395
+#: application/controllers/Adif.php:458
 msgid "Station Profile not valid for User"
 msgstr "用户台站信息无效"
 
-#: application/controllers/Adif.php:404
+#: application/controllers/Adif.php:467
 #: application/views/adif/import_success.php:12
 msgid "ADIF Imported"
 msgstr "ADIF 导入完成"
 
-#: application/controllers/Adif.php:418
+#: application/controllers/Adif.php:481
 msgid "DCL Import"
 msgstr "导入 DCL"
 
-#: application/controllers/Adif.php:479
+#: application/controllers/Adif.php:542
 msgid "DCL Data Imported"
 msgstr "DCL 数据导入完成"
 
-#: application/controllers/Adif.php:493
+#: application/controllers/Adif.php:556
 msgid "POTA Import"
 msgstr "POTA导入"
 
-#: application/controllers/Adif.php:553
+#: application/controllers/Adif.php:616
 msgid "POTA Data Imported"
 msgstr "POTA数据已导入"
 
@@ -633,11 +633,7 @@ msgstr "“波兰”奖项"
 msgid "Backup"
 msgstr "备份"
 
-#: application/controllers/Backup.php:50
-msgid "ADIF - Backup"
-msgstr "ADIF - 备份"
-
-#: application/controllers/Backup.php:84
+#: application/controllers/Backup.php:92
 msgid "Notes - Backup"
 msgstr "笔记 - 备份"
 
@@ -17829,6 +17825,9 @@ msgstr "提交请求"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "收"
+
+#~ msgid "ADIF - Backup"
+#~ msgstr "ADIF - 备份"
 
 #~ msgid "Band filter preserved (CAT connection is active)"
 #~ msgstr "保留频段滤波器（CAT 连接已激活）"

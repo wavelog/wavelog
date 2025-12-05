@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-05 07:57+0000\n"
+"POT-Creation-Date: 2025-12-05 16:49+0000\n"
 "PO-Revision-Date: 2025-12-05 12:34+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -32,7 +32,7 @@ msgstr ""
 #: application/controllers/Api.php:29 application/controllers/Api.php:65
 #: application/controllers/Api.php:91 application/controllers/Awards.php:20
 #: application/controllers/Backup.php:13 application/controllers/Backup.php:26
-#: application/controllers/Backup.php:63 application/controllers/Band.php:15
+#: application/controllers/Backup.php:71 application/controllers/Band.php:15
 #: application/controllers/Bandmap.php:9
 #: application/controllers/Cabrillo.php:16
 #: application/controllers/Cabrillo.php:53
@@ -216,47 +216,47 @@ msgstr "действительная дата"
 msgid "date incorrect"
 msgstr "дата неверна"
 
-#: application/controllers/Adif.php:220
+#: application/controllers/Adif.php:283
 #: application/views/interface_assets/header.php:474
 msgid "ADIF Import / Export"
 msgstr "Импорт / Экспорт ADIF"
 
-#: application/controllers/Adif.php:258 application/views/adif/import.php:30
+#: application/controllers/Adif.php:321 application/views/adif/import.php:30
 #: application/views/dcl_views/import.php:3 application/views/lotw/import.php:3
 msgid "ADIF Import"
 msgstr "Импорт ADIF"
 
-#: application/controllers/Adif.php:302
+#: application/controllers/Adif.php:365
 msgid "Unsupported Filetype"
 msgstr "Неподдерживаемый тип файла"
 
-#: application/controllers/Adif.php:381
+#: application/controllers/Adif.php:444
 #: application/views/adif/import_failed.php:12
 msgid "ADIF Import failed!"
 msgstr "Импорт ADIF не удался!"
 
-#: application/controllers/Adif.php:395
+#: application/controllers/Adif.php:458
 msgid "Station Profile not valid for User"
 msgstr "Профиль QTH не соответствует пользователю"
 
-#: application/controllers/Adif.php:404
+#: application/controllers/Adif.php:467
 #: application/views/adif/import_success.php:12
 msgid "ADIF Imported"
 msgstr "ADIF импортирован"
 
-#: application/controllers/Adif.php:418
+#: application/controllers/Adif.php:481
 msgid "DCL Import"
 msgstr "Импорт DCL"
 
-#: application/controllers/Adif.php:479
+#: application/controllers/Adif.php:542
 msgid "DCL Data Imported"
 msgstr "Данные DCL импортированы"
 
-#: application/controllers/Adif.php:493
+#: application/controllers/Adif.php:556
 msgid "POTA Import"
 msgstr "Импорт POTA"
 
-#: application/controllers/Adif.php:553
+#: application/controllers/Adif.php:616
 msgid "POTA Data Imported"
 msgstr "Данные POTA импортированы"
 
@@ -622,11 +622,7 @@ msgstr "\"Polska\" Award"
 msgid "Backup"
 msgstr "Резервное копирование"
 
-#: application/controllers/Backup.php:50
-msgid "ADIF - Backup"
-msgstr "Резервное копирование ADIF"
-
-#: application/controllers/Backup.php:84
+#: application/controllers/Backup.php:92
 msgid "Notes - Backup"
 msgstr "Резервное копирование заметок"
 
@@ -18498,6 +18494,9 @@ msgstr "Отправить запрос"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Получено"
+
+#~ msgid "ADIF - Backup"
+#~ msgstr "Резервное копирование ADIF"
 
 #~ msgid "Band filter preserved (CAT connection is active)"
 #~ msgstr "Фильтр по диапазону применён (соединение по CAT активно)"
