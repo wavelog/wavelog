@@ -61,7 +61,7 @@ class eqsl extends CI_Controller {
 		$this->load->model('eqslmethods_model');
 		$eqsl_locations = $this->eqslmethods_model->all_of_user_with_eqsl_nick_defined();
 		if ($eqsl_locations->num_rows() == 0) {
-			$this->session->set_flashdata('error', 'eQSL Nicknames in Station Profiles aren\'t defined!');
+			$this->session->set_flashdata('error', __('eQSL Nicknames in Station Profiles aren\'t defined!'));
 		}
 
 		ini_set('memory_limit', '-1');
@@ -84,7 +84,7 @@ class eqsl extends CI_Controller {
 
 			// Validate that eQSL credentials are not empty
 			if ($eqsl_password == '') {
-				$this->session->set_flashdata('warning', 'You have not defined your eQSL.cc credentials!');
+				$this->session->set_flashdata('warning', __('You have not defined your eQSL.cc credentials!'));
 				redirect('eqsl/import');
 			}
 
@@ -515,7 +515,7 @@ class eqsl extends CI_Controller {
 		$this->load->model('eqslmethods_model');
 		$this->eqslmethods_model->mark_all_as_sent();
 
-		$this->session->set_flashdata('success', 'All eQSLs Marked as Uploaded');
+		$this->session->set_flashdata('success', __('All eQSLs marked as uploaded'));
 
 		redirect('eqsl/tools');
 	}
