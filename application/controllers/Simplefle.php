@@ -82,7 +82,7 @@ class SimpleFLE extends CI_Controller {
 		$this->load->model('logbook_model');
 
 		$qsos = json_decode($qsos, true);
-		$station_id = $qsos[0]['station_id']; // we can trust this value
+		$station_id = $qsos[0]['station_id']; // we can trust this value, but only because it's checked at bulk-import!
 
 		$result = $this->logbook_model->import_bulk($qsos, $station_id);
 		$bulk_result = $result['errormessage'];
