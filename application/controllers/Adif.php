@@ -176,10 +176,15 @@ class adif extends CI_Controller {
 
 		// Set memory limit to unlimited to allow heavy usage
 		ini_set('memory_limit', '-1');
+		set_time_limit(300);
 
 		$this->load->model('adif_data');
+		$this->load->library('AdifHelper');
 
+		// Get parameters
 		$station_id = $this->security->xss_clean($this->input->post('station_profile'));
+		$from = $this->input->post('from');
+		$to = $this->input->post('to');
 
 		// Used for exporting QSOs not previously exported to LoTW
 		if ($this->input->post('exportLotw') == 1) {
@@ -194,16 +199,50 @@ class adif extends CI_Controller {
 			$onlyop=null;
 		}
 
-		$data['qsos'] = $this->adif_data->export_custom($this->input->post('from'), $this->input->post('to'), $station_id, $exportLotw, $onlyop);
+		// Set headers for direct download
+		$filename = $this->session->userdata('user_callsign').'-'.date('Ymd-Hi').'.adi';
+		header('Content-Type: text/plain; charset=utf-8');
+		header('Content-Disposition: attachment; filename="'.$filename.'"');
 
-		$this->load->view('adif/data/exportall', $data);
+		// Output ADIF header // No chance to use exportall-view any longer, because of chunking logic
+		echo "Wavelog ADIF export\n";
+		echo "<ADIF_VER:5>3.1.6\n";
+		echo "<PROGRAMID:".strlen($this->config->item('app_name')).">".$this->config->item('app_name')."\r\n";
+		echo "<PROGRAMVERSION:".strlen($this->optionslib->get_option('version')).">".$this->optionslib->get_option('version')."\r\n";
+		echo "<EOH>\n\n";
 
+		// Collect QSO IDs for LoTW marking (since we can't access all at once)
+		$qso_ids_for_lotw = [];
 
-		if ((clubaccess_check(9)) && ($this->input->post('markLotw') == 1)) {	// Only allow marking if clubofficer or regular user!
-			foreach ($data['qsos']->result() as $qso) {
-				$this->adif_data->mark_lotw_sent($qso->COL_PRIMARY_KEY);
+		// Stream QSOs in 5K chunks
+		$offset = 0;
+		$chunk_size = 5000;
+
+		do {
+			$qsos = $this->adif_data->export_custom_chunked($from, $to, $station_id, $exportLotw, $onlyop, $offset, $chunk_size);
+
+			if ($qsos && $qsos->num_rows() > 0) {
+				foreach ($qsos->result() as $qso) {
+					echo $this->adifhelper->getAdifLine($qso);
+					// Collect IDs for LoTW marking
+					$qso_ids_for_lotw[] = $qso->COL_PRIMARY_KEY;
+				}
+				// Free memory
+				$qsos->free_result();
+			}
+
+			$offset += $chunk_size;
+		} while ($qsos && $qsos->num_rows() > 0);
+
+		// Handle LoTW marking after export
+		if ((clubaccess_check(9)) && ($this->input->post('markLotw') == 1) && !empty($qso_ids_for_lotw)) {
+			foreach ($qso_ids_for_lotw as $qso_id) {
+				$this->adif_data->mark_lotw_sent($qso_id);
 			}
 		}
+
+		// Stop execution
+		exit;
 	}
 
 	public function mark_lotw() {
