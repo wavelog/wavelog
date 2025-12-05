@@ -84,7 +84,7 @@ class eqsl extends CI_Controller {
 
 			// Validate that eQSL credentials are not empty
 			if ($eqsl_password == '') {
-				$this->session->set_flashdata('warning', __('You have not defined your eQSL.cc credentials!'));
+				$this->session->set_flashdata('warning', __("You have not defined your eQSL.cc credentials!"));
 				redirect('eqsl/import');
 			}
 
