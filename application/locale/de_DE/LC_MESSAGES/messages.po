@@ -27,10 +27,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-12-05 07:57+0000\n"
-"PO-Revision-Date: 2025-12-03 07:44+0000\n"
-"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/de/>\n"
+"PO-Revision-Date: 2025-12-05 12:34+0000\n"
+"Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -219,7 +219,7 @@ msgstr "Karte der Aktivierer"
 
 #: application/controllers/Adif.php:61 application/controllers/Adif.php:73
 msgid "You're not allowed to access this functionality!"
-msgstr ""
+msgstr "Das ist Dir nicht gestattet!"
 
 #: application/controllers/Adif.php:80
 msgid "valid date"
@@ -703,7 +703,7 @@ msgstr "Club Officer"
 
 #: application/controllers/Club.php:24
 msgid "Club Member ADIF"
-msgstr ""
+msgstr "Club Mitglied ADIF"
 
 #: application/controllers/Club.php:25
 msgid "Club Member"
@@ -1095,7 +1095,7 @@ msgstr "eQSL-Karten Bilder Download"
 
 #: application/controllers/Eqsl.php:518
 msgid "All eQSLs marked as uploaded"
-msgstr ""
+msgstr "Alle eQSLs als hochgeladen markiert"
 
 #: application/controllers/Generic_qsl.php:18
 msgid "Confirmations"
@@ -7380,7 +7380,7 @@ msgstr "Filter löschen"
 
 #: application/views/bandmap/list.php:19
 msgid "Band filter preserved (band lock is active)"
-msgstr ""
+msgstr "Bandfilter erhalten (Bandsperre ist aktiv)"
 
 #: application/views/bandmap/list.php:21
 msgid "Radio set to None - CAT connection disabled"
@@ -7420,27 +7420,27 @@ msgstr "Klicke, um die CAT-Steuerung zu aktivieren"
 
 #: application/views/bandmap/list.php:31
 msgid "CAT following radio - Click to disable"
-msgstr ""
+msgstr "CAT folgt Funkgerät - Klicke zum Deaktivieren"
 
 #: application/views/bandmap/list.php:32 application/views/bandmap/list.php:231
 msgid "Click to enable band lock (requires CAT connection)"
-msgstr ""
+msgstr "Klicke, um die Bandsperre zu aktivieren (erfordert CAT-Verbindung)"
 
 #: application/views/bandmap/list.php:33
 msgid "Band lock active - Click to disable"
-msgstr ""
+msgstr "Bandsperre aktiv - Klicke, um zu deaktivieren"
 
 #: application/views/bandmap/list.php:34
 msgid "Band Lock"
-msgstr ""
+msgstr "Bandsperre"
 
 #: application/views/bandmap/list.php:35
 msgid "Band lock enabled - band filter will track radio band"
-msgstr ""
+msgstr "Bandsperre aktiv - Bandfilter folgt Band des Funkgeräts"
 
 #: application/views/bandmap/list.php:36
 msgid "Band filter changed to"
-msgstr ""
+msgstr "Bandfilter geändert zu"
 
 #: application/views/bandmap/list.php:37
 msgid "by transceiver"
@@ -7477,35 +7477,38 @@ msgstr "Bevorzugte Bänder und Modi angewendet"
 #: application/views/bandmap/list.php:47 application/views/bandmap/list.php:314
 #: application/views/bandmap/list.php:479
 msgid "My Submodes"
-msgstr ""
+msgstr "Meine Sub-Modes"
 
 #: application/views/bandmap/list.php:48
 msgid "Submode filter enabled"
-msgstr ""
+msgstr "Sub-Mode-Filter aktiviert"
 
 #: application/views/bandmap/list.php:49
 msgid "Submode filter disabled - showing all"
-msgstr ""
+msgstr "Sub-Mode-Filter deaktiviert - Zeige alle"
 
 #: application/views/bandmap/list.php:50
 msgid "Required submodes"
-msgstr ""
+msgstr "Erforderliche Sub-Modes"
 
 #: application/views/bandmap/list.php:51
 msgid "Configure in User Settings - Modes"
-msgstr ""
+msgstr "Konfiguriere in Benutzereinstellungen - Modi"
 
 #: application/views/bandmap/list.php:52
 msgid "No submodes configured - configure in User Settings - Modes"
 msgstr ""
+"Keine Sub-Modes konfiguriert - Konfiguriere in Benutzereinstellungen - Modi"
 
 #: application/views/bandmap/list.php:53
 msgid "No submodes enabled in settings - showing all spots"
-msgstr ""
+msgstr "Keine Sub-Modes aktiviert in den Einstellungen - Zeige alle Spots"
 
 #: application/views/bandmap/list.php:54
 msgid "Disabled - no submodes enabled for this mode in User Settings"
 msgstr ""
+"Deaktiviert - In den Benutzereinstellungen keine Sub-Modes aktiviert für "
+"diesen Mode"
 
 #: application/views/bandmap/list.php:55 application/views/bandmap/list.php:468
 #: application/views/components/dxwaterfall.php:32
@@ -7524,41 +7527,43 @@ msgstr "Schalte Fonie-Mode filter an/aus"
 
 #: application/views/bandmap/list.php:60 application/views/bandmap/list.php:421
 msgid "Favorites"
-msgstr ""
+msgstr "Favoriten"
 
 #: application/views/bandmap/list.php:61 application/views/bandmap/list.php:424
 msgid "Save Current Filters..."
-msgstr ""
+msgstr "Speichere aktuelle Filter..."
 
 #: application/views/bandmap/list.php:62
 msgid "Enter a name for this filter preset:"
-msgstr ""
+msgstr "Gebe einen Namen für diese Filtervoreinstellung:"
 
 #: application/views/bandmap/list.php:63
 msgid "Filter preset saved"
-msgstr ""
+msgstr "Filtervoreinstellung gespeichert"
 
 #: application/views/bandmap/list.php:64
 msgid "Filter preset loaded"
-msgstr ""
+msgstr "Filtervoreinstellung geladen"
 
 #: application/views/bandmap/list.php:65
 msgid "Filter preset deleted"
-msgstr ""
+msgstr "Filtervoreinstellungen gelöscht"
 
 #: application/views/bandmap/list.php:66
 msgid "Are you sure to delete this filter preset?"
-msgstr ""
+msgstr "Bist du sicher, dass du diese Filtervoreinstellung löschen willst?"
 
 #: application/views/bandmap/list.php:67
 msgid "No saved filter presets"
-msgstr ""
+msgstr "Keine gespeicherten Filtervoreinstellungen"
 
 #: application/views/bandmap/list.php:68
 msgid ""
 "Maximum of 20 filter presets reached. Please delete some before adding new "
 "ones."
 msgstr ""
+"Maximum von 20 Filtervoreinstellungen erreicht. Bitte lösche welche, bevor "
+"du neue hinzufügst."
 
 #: application/views/bandmap/list.php:71
 msgid "Loading data from DX Cluster"
@@ -7879,7 +7884,7 @@ msgstr "DX-Cluster Hilfe"
 
 #: application/views/bandmap/list.php:210
 msgid "Compact Mode - Hide/Show Menu"
-msgstr ""
+msgstr "Kompaktmodus - Verstecke/Zeige Menü"
 
 #: application/views/bandmap/list.php:237
 msgid "TRX:"
@@ -8006,7 +8011,7 @@ msgstr "Wende Filter an"
 
 #: application/views/bandmap/list.php:420
 msgid "Filter Favorites"
-msgstr ""
+msgstr "Filterfavoriten"
 
 #: application/views/bandmap/list.php:430
 msgid "Clear all filters except De Continent"
@@ -8054,7 +8059,7 @@ msgstr "Aktiviere 10m Bandfilter"
 
 #: application/views/bandmap/list.php:452
 msgid "Toggle 6m band filter"
-msgstr ""
+msgstr "Schalte 6m Bandfilter um"
 
 #: application/views/bandmap/list.php:456
 msgid "Toggle VHF bands filter"
@@ -8070,7 +8075,7 @@ msgstr "Aktiviere SHF Bandfilter"
 
 #: application/views/bandmap/list.php:478
 msgid "Loading submodes..."
-msgstr ""
+msgstr "Lade Sub-Modi..."
 
 #: application/views/bandmap/list.php:483
 msgid "Toggle LoTW User filter"
@@ -8862,7 +8867,7 @@ msgstr "QSOs per ADIF exportieren"
 
 #: application/views/club/permissions.php:128
 msgid "Export own QSO per ADIF"
-msgstr ""
+msgstr "Exportiere eigenes QSO in ADIF"
 
 #: application/views/club/permissions.php:137
 msgid "User Management"
@@ -18432,7 +18437,7 @@ msgstr "eQSL Bild"
 
 #: application/views/view_log/qso.php:916
 msgid "QSO not found"
-msgstr ""
+msgstr "QSO nicht gefunden"
 
 #: application/views/visitor/layout/footer.php:239
 msgid "Filter Results"
