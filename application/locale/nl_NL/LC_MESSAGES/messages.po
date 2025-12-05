@@ -1044,7 +1044,7 @@ msgstr "eQSL importeren"
 msgid "eQSL Import Information"
 msgstr "eQSL importinformatie"
 
-#: application/controllers/Eqsl.php:154
+#: application/controllers/Eqsl.php:154 application/controllers/Eqsl.php:64
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
 msgstr "eQSL-bijnamen in stationprofielen zijn niet gedefinieerd!"
 
@@ -1052,7 +1052,7 @@ msgstr "eQSL-bijnamen in stationprofielen zijn niet gedefinieerd!"
 msgid "eQSL QSO Upload"
 msgstr "eQSL QSO Upload"
 
-#: application/controllers/Eqsl.php:173
+#: application/controllers/Eqsl.php:173 application/controllers/Eqsl.php:87
 msgid "You have not defined your eQSL.cc credentials!"
 msgstr "Je hebt je eQSL.cc gegevens nog niet ingesteld!"
 
@@ -18525,6 +18525,10 @@ msgstr "Ontvangen"
 
 #: application/views/view_log/qso.php:916
 msgid "QSO not found"
+msgstr ""
+
+#: application/controllers/Eqsl.php:518
+msgid "All eQSLs marked as uploaded"
 msgstr ""
 
 #~ msgid "Band filter preserved (CAT connection is active)"

@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2025-12-03 12:01+0000\n"
 "PO-Revision-Date: 2025-12-05 07:57+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1041,7 +1041,7 @@ msgstr "eQSLインポート"
 msgid "eQSL Import Information"
 msgstr "eQSLインポート情報"
 
-#: application/controllers/Eqsl.php:154
+#: application/controllers/Eqsl.php:154 application/controllers/Eqsl.php:64
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
 msgstr "eQSLのニックネームがステーションプロファイルで定義されていません！"
 
@@ -1049,7 +1049,7 @@ msgstr "eQSLのニックネームがステーションプロファイルで定�
 msgid "eQSL QSO Upload"
 msgstr "eQSL QSOアップロード"
 
-#: application/controllers/Eqsl.php:173
+#: application/controllers/Eqsl.php:173 application/controllers/Eqsl.php:87
 msgid "You have not defined your eQSL.cc credentials!"
 msgstr "eQSL.ccの認証情報を設定していません！"
 
@@ -18359,6 +18359,10 @@ msgstr "受信"
 #: application/views/view_log/qso.php:916
 msgid "QSO not found"
 msgstr "QSOが見つかりません"
+
+#: application/controllers/Eqsl.php:518
+msgid "All eQSLs marked as uploaded"
+msgstr ""
 
 #~ msgid "Band filter preserved (CAT connection is active)"
 #~ msgstr "バンドフィルタは保持されます（CAT接続はアクティブです）"
