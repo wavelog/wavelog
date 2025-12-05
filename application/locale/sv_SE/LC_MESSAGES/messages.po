@@ -8,11 +8,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-03 12:01+0000\n"
+"POT-Creation-Date: 2025-12-05 07:57+0000\n"
 "PO-Revision-Date: 2025-12-05 12:34+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
-"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/sv/>\n"
+"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/sv/>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -433,7 +433,7 @@ msgid " and "
 msgstr " och "
 
 #: application/controllers/Awards.php:595
-#: application/controllers/Logbook.php:1364
+#: application/controllers/Logbook.php:1366
 #: application/views/awards/index.php:8 application/views/bandmap/list.php:326
 #: application/views/bands/index.php:57 application/views/dashboard/index.php:9
 #: application/views/interface_assets/header.php:218
@@ -456,12 +456,11 @@ msgstr " och "
 #: application/views/user/edit.php:341
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:21
-#: application/controllers/Logbook.php:1366
 msgid "SOTA"
 msgstr "SOTA"
 
 #: application/controllers/Awards.php:613
-#: application/controllers/Logbook.php:1365
+#: application/controllers/Logbook.php:1367
 #: application/views/bandmap/list.php:328 application/views/bands/index.php:64
 #: application/views/dashboard/index.php:10
 #: application/views/interface_assets/header.php:206
@@ -478,12 +477,11 @@ msgstr "SOTA"
 #: application/views/user/edit.php:295 application/views/user/edit.php:318
 #: application/views/user/edit.php:342
 #: application/views/view_log/partial/log_ajax.php:10
-#: application/controllers/Logbook.php:1367
 msgid "WWFF"
 msgstr "WWFF"
 
 #: application/controllers/Awards.php:631
-#: application/controllers/Logbook.php:1366
+#: application/controllers/Logbook.php:1368
 #: application/views/adif/import.php:66 application/views/bandmap/list.php:327
 #: application/views/bands/index.php:54
 #: application/views/dashboard/index.php:11
@@ -501,7 +499,6 @@ msgstr "WWFF"
 #: application/views/user/edit.php:296 application/views/user/edit.php:319
 #: application/views/user/edit.php:343
 #: application/views/view_log/partial/log_ajax.php:11
-#: application/controllers/Logbook.php:1368
 msgid "POTA"
 msgstr "POTA"
 
@@ -761,7 +758,7 @@ msgid "No user has configured Clublog."
 msgstr "Ingen användare har konfigurerat Clublog."
 
 #: application/controllers/Clublog.php:86
-#: application/controllers/Logbook.php:743
+#: application/controllers/Logbook.php:745
 #: application/views/awards/dok/index.php:72
 #: application/views/awards/dxcc/index.php:132
 #: application/views/awards/iota/index.php:80
@@ -782,7 +779,6 @@ msgstr "Ingen användare har konfigurerat Clublog."
 #: application/views/view_log/partial/log_ajax.php:222
 #: application/views/view_log/qso.php:571
 #: application/views/view_log/qso.php:576
-#: application/controllers/Logbook.php:745
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -1032,6 +1028,14 @@ msgstr "DX Kalender"
 msgid "eQSL Cards"
 msgstr "eQSL-kort"
 
+#: application/controllers/Eqsl.php:64 application/controllers/Eqsl.php:154
+msgid "eQSL Nicknames in Station Profiles aren't defined!"
+msgstr "eQSL-smeknamn i stationsprofiler är inte definierade!"
+
+#: application/controllers/Eqsl.php:87 application/controllers/Eqsl.php:173
+msgid "You have not defined your eQSL.cc credentials!"
+msgstr "Du har inte definierat dina eQSL.cc-uppgifter!"
+
 #: application/controllers/Eqsl.php:127
 msgid "eQSL Import"
 msgstr "eQSL-import"
@@ -1040,17 +1044,9 @@ msgstr "eQSL-import"
 msgid "eQSL Import Information"
 msgstr "eQSL Importinformation"
 
-#: application/controllers/Eqsl.php:154 application/controllers/Eqsl.php:64
-msgid "eQSL Nicknames in Station Profiles aren't defined!"
-msgstr "eQSL-smeknamn i stationsprofiler är inte definierade!"
-
 #: application/controllers/Eqsl.php:161
 msgid "eQSL QSO Upload"
 msgstr "eQSL QSO-uppladdning"
-
-#: application/controllers/Eqsl.php:173 application/controllers/Eqsl.php:87
-msgid "You have not defined your eQSL.cc credentials!"
-msgstr "Du har inte definierat dina eQSL.cc-uppgifter!"
 
 #: application/controllers/Eqsl.php:195
 msgid "User/Pass wrong for eQSL"
@@ -1076,6 +1072,10 @@ msgstr "Framgångsrikt nedladdad: "
 #: application/controllers/Eqsl.php:494
 msgid "eQSL Card Image Download"
 msgstr "eQSL-kortbildnedladdning"
+
+#: application/controllers/Eqsl.php:518
+msgid "All eQSLs marked as uploaded"
+msgstr "Alla eQSLs markerade som uppladdade"
 
 #: application/controllers/Generic_qsl.php:18
 msgid "Confirmations"
@@ -1275,8 +1275,8 @@ msgstr "Stationsloggböcker"
 msgid "Logbook"
 msgstr "Loggbok"
 
-#: application/controllers/Logbook.php:731
-#: application/controllers/Logbook.php:746
+#: application/controllers/Logbook.php:733
+#: application/controllers/Logbook.php:748
 #: application/views/activated_gridmap/index.php:62
 #: application/views/awards/dok/index.php:56
 #: application/views/awards/dxcc/index.php:116
@@ -1302,12 +1302,11 @@ msgstr "Loggbok"
 #: application/views/qslprint/qsolist.php:18
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:108
 #: application/views/timeline/index.php:56 application/views/user/edit.php:623
-#: application/views/user/edit.php:816 application/controllers/Logbook.php:733
-#: application/controllers/Logbook.php:748
+#: application/views/user/edit.php:816
 msgid "QSL"
 msgstr "QSL"
 
-#: application/controllers/Logbook.php:734
+#: application/controllers/Logbook.php:736
 #: application/views/activated_gridmap/index.php:70
 #: application/views/awards/cq/index.php:114
 #: application/views/awards/dok/index.php:60
@@ -1343,11 +1342,10 @@ msgstr "QSL"
 #: application/views/timeline/index.php:60 application/views/user/edit.php:624
 #: application/views/user/edit.php:826 application/views/view_log/qso.php:537
 #: application/views/view_log/qso.php:542
-#: application/controllers/Logbook.php:736
 msgid "LoTW"
 msgstr "LoTW"
 
-#: application/controllers/Logbook.php:737
+#: application/controllers/Logbook.php:739
 #: application/views/activated_gridmap/index.php:78
 #: application/views/awards/cq/index.php:118
 #: application/views/awards/dok/index.php:64
@@ -1380,11 +1378,10 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:309
 #: application/views/timeline/index.php:64 application/views/user/edit.php:625
 #: application/views/user/edit.php:834 application/views/user/edit.php:908
-#: application/controllers/Logbook.php:739
 msgid "eQSL"
 msgstr "eQSL"
 
-#: application/controllers/Logbook.php:1359
+#: application/controllers/Logbook.php:1361
 #: application/controllers/Radio.php:46
 #: application/views/accumulate/index.php:31
 #: application/views/activated_gridmap/index.php:43
@@ -1472,11 +1469,10 @@ msgstr "eQSL"
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/widgets/qsos.php:18
-#: application/controllers/Logbook.php:1361
 msgid "Mode"
 msgstr "Trafiksätt"
 
-#: application/controllers/Logbook.php:1360
+#: application/controllers/Logbook.php:1362
 #: application/views/awards/73on73/index.php:38
 #: application/views/awards/pota/index.php:37
 #: application/views/awards/wwff/index.php:37
@@ -1502,11 +1498,10 @@ msgstr "Trafiksätt"
 #: application/views/view_log/partial/log.php:10
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:119 application/views/visitor/index.php:9
-#: application/controllers/Logbook.php:1362
 msgid "RST (S)"
 msgstr "RST (S)"
 
-#: application/controllers/Logbook.php:1361
+#: application/controllers/Logbook.php:1363
 #: application/views/awards/73on73/index.php:37
 #: application/views/awards/pota/index.php:38
 #: application/views/awards/wwff/index.php:38
@@ -1533,11 +1528,10 @@ msgstr "RST (S)"
 #: application/views/view_log/partial/log_ajax.php:6
 #: application/views/view_log/qso.php:124
 #: application/views/visitor/index.php:12
-#: application/controllers/Logbook.php:1363
 msgid "RST (R)"
 msgstr "RST (R)"
 
-#: application/controllers/Logbook.php:1362
+#: application/controllers/Logbook.php:1364
 #: application/views/dashboard/index.php:7
 #: application/views/qslcard/searchresult.php:15
 #: application/views/qslcard/searchresult.php:31
@@ -1555,11 +1549,10 @@ msgstr "RST (R)"
 #: application/views/view_log/qso.php:337
 #: application/views/view_log/qso.php:693
 #: application/views/visitor/index.php:15
-#: application/controllers/Logbook.php:1364
 msgid "Country"
 msgstr "Land"
 
-#: application/controllers/Logbook.php:1363
+#: application/controllers/Logbook.php:1365
 #: application/views/awards/iota/index.php:198
 #: application/views/bandmap/list.php:329 application/views/bands/index.php:52
 #: application/views/dashboard/index.php:8
@@ -1585,11 +1578,10 @@ msgstr "Land"
 #: application/views/user/edit.php:316 application/views/user/edit.php:340
 #: application/views/view_log/partial/log_ajax.php:8
 #: application/views/visitor/index.php:18
-#: application/controllers/Logbook.php:1365
 msgid "IOTA"
 msgstr "IOTA"
 
-#: application/controllers/Logbook.php:1367
+#: application/controllers/Logbook.php:1369
 #: application/views/awards/counties/details.php:12
 #: application/views/awards/counties/index.php:21
 #: application/views/awards/rac/index.php:146
@@ -1615,11 +1607,10 @@ msgstr "IOTA"
 #: application/views/user/edit.php:320 application/views/user/edit.php:344
 #: application/views/view_log/partial/log_ajax.php:12
 #: application/views/visitor/index.php:24
-#: application/controllers/Logbook.php:1369
 msgid "State"
 msgstr "Delstat"
 
-#: application/controllers/Logbook.php:1368
+#: application/controllers/Logbook.php:1370
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:54
@@ -1661,11 +1652,10 @@ msgstr "Delstat"
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/view_log/qso.php:680
 #: application/views/visitor/index.php:27
-#: application/controllers/Logbook.php:1370
 msgid "Gridsquare"
 msgstr "Lokatorruta"
 
-#: application/controllers/Logbook.php:1369
+#: application/controllers/Logbook.php:1371
 #: application/views/activated_gridmap/index.php:112
 #: application/views/awards/ffma/index.php:40
 #: application/views/awards/gridmaster/index.php:56
@@ -1691,11 +1681,10 @@ msgstr "Lokatorruta"
 #: application/views/user/edit.php:346
 #: application/views/view_log/partial/log_ajax.php:14
 #: application/views/visitor/index.php:30
-#: application/controllers/Logbook.php:1371
 msgid "Distance"
 msgstr "Avstånd"
 
-#: application/controllers/Logbook.php:1370
+#: application/controllers/Logbook.php:1372
 #: application/views/accumulate/index.php:21
 #: application/views/activated_gridmap/index.php:12
 #: application/views/activators/index.php:10
@@ -1779,11 +1768,10 @@ msgstr "Avstånd"
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
 #: application/views/widgets/qsos.php:21
-#: application/controllers/Logbook.php:1372
 msgid "Band"
 msgstr "Band"
 
-#: application/controllers/Logbook.php:1371
+#: application/controllers/Logbook.php:1373
 #: application/controllers/Radio.php:45 application/views/bandmap/list.php:166
 #: application/views/bandmap/list.php:567
 #: application/views/contesting/index.php:148
@@ -1807,11 +1795,10 @@ msgstr "Band"
 #: application/views/view_log/partial/log_ajax.php:16
 #: application/views/view_log/qso.php:101
 #: application/views/visitor/index.php:36
-#: application/controllers/Logbook.php:1373
 msgid "Frequency"
 msgstr "Frekvens"
 
-#: application/controllers/Logbook.php:1372
+#: application/controllers/Logbook.php:1374
 #: application/controllers/Radio.php:43
 #: application/views/dashboard/index.php:17
 #: application/views/logbookadvanced/edit.php:13
@@ -1832,11 +1819,10 @@ msgstr "Frekvens"
 #: application/views/view_log/partial/log_ajax.php:17
 #: application/views/view_log/qso.php:700
 #: application/views/visitor/index.php:39
-#: application/controllers/Logbook.php:1374
 msgid "Operator"
 msgstr "Operatör"
 
-#: application/controllers/Logbook.php:1393
+#: application/controllers/Logbook.php:1395
 #: application/controllers/Stationsetup.php:423
 #: application/views/awards/dxcc/index.php:83
 #: application/views/awards/dxcc/index.php:291
@@ -1862,7 +1848,6 @@ msgstr "Operatör"
 #: application/views/view_log/partial/log_ajax.php:31
 #: application/views/view_log/qso.php:341
 #: application/views/view_log/qso.php:694
-#: application/controllers/Logbook.php:1395
 msgid "Deleted DXCC"
 msgstr "Struket DXCC"
 
@@ -3437,20 +3422,16 @@ msgstr "Ingen anropssignal angiven"
 msgid "DXCC has to be Numeric"
 msgstr "DXCC måste vara numerisk"
 
-#: application/models/Logbook_model.php:4642
 #: application/models/Logbook_model.php:4643
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Fel anropssignal %s vid import av QSO med %s för %s: HOPPADES ÖVER"
 
-#: application/models/Logbook_model.php:4652
-#: application/models/Logbook_model.php:4661
 #: application/models/Logbook_model.php:4653
 #: application/models/Logbook_model.php:4662
 msgid "QSO on"
 msgstr "QSO kl"
 
-#: application/models/Logbook_model.php:4652
 #: application/models/Logbook_model.php:4653
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
@@ -3459,7 +3440,6 @@ msgstr ""
 "Du försökte importera ett QSO utan giltigt datum. Detta QSO importerades "
 "inte. Det är ogiltigt"
 
-#: application/models/Logbook_model.php:4661
 #: application/models/Logbook_model.php:4662
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
@@ -3468,7 +3448,6 @@ msgstr ""
 "Du försökte importera ett QSO utan angivet CALL. Detta QSO importerades "
 "inte. Det är ogiltigt"
 
-#: application/models/Logbook_model.php:4710
 #: application/models/Logbook_model.php:4711
 #, php-format
 msgid ""
@@ -3478,78 +3457,64 @@ msgstr ""
 "QSO på %s: Du försökte importera ett QSO utan angivet band. Detta QSO "
 "importerades inte. Det är ogiltigt"
 
-#: application/models/Logbook_model.php:4975
 #: application/models/Logbook_model.php:4976
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate är ogiltigt (ÅÅÅÅMMDD)"
 
-#: application/models/Logbook_model.php:4986
 #: application/models/Logbook_model.php:4987
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate är ogiltigt (ÅÅÅÅMMDD)"
 
-#: application/models/Logbook_model.php:5047
 #: application/models/Logbook_model.php:5048
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date är ogiltigt (ÅÅÅÅMMDD)"
 
-#: application/models/Logbook_model.php:5422
-#: application/views/simplefle/index.php:41
 #: application/models/Logbook_model.php:5423
+#: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Dubblett för"
 
-#: application/models/Logbook_model.php:5487
-#: application/models/Logbook_model.php:5582
 #: application/models/Logbook_model.php:5488
 #: application/models/Logbook_model.php:5583
 msgid "QSO could not be matched"
 msgstr "QSO kunde inte matchas"
 
-#: application/models/Logbook_model.php:5495
 #: application/models/Logbook_model.php:5496
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bekräftad av LoTW/Clublog/eQSL/Tävling"
 
-#: application/models/Logbook_model.php:5501
 #: application/models/Logbook_model.php:5502
 msgid "confirmed by award manager"
 msgstr "bekräftad av diplomansvarig"
 
-#: application/models/Logbook_model.php:5505
 #: application/models/Logbook_model.php:5506
 msgid "confirmed by cross-check of DCL data"
 msgstr "bekräftat genom korskontroll av DCL-data"
 
-#: application/models/Logbook_model.php:5509
 #: application/models/Logbook_model.php:5510
 msgid "confirmation pending"
 msgstr "bekräftelse väntar"
 
-#: application/models/Logbook_model.php:5512
 #: application/models/Logbook_model.php:5513
 msgid "unconfirmed"
 msgstr "obekräftad"
 
-#: application/models/Logbook_model.php:5515
+#: application/models/Logbook_model.php:5516
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
-#: application/models/Logbook_model.php:5516
 msgid "unknown"
 msgstr "Okänd"
 
-#: application/models/Logbook_model.php:5585
 #: application/models/Logbook_model.php:5586
 msgid "POTA reference already in log"
 msgstr "POTA-referens redan i loggen"
 
-#: application/models/Logbook_model.php:5588
 #: application/models/Logbook_model.php:5589
 msgid "QSO updated"
 msgstr "QSO uppdaterad"
 
-#: application/models/Logbook_model.php:6395
+#: application/models/Logbook_model.php:6396
 #: application/views/activated_gridmap/index.php:114
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:58
@@ -3560,7 +3525,6 @@ msgstr "QSO uppdaterad"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
-#: application/models/Logbook_model.php:6396
 msgid "Bearing"
 msgstr "Bäring"
 
@@ -7151,8 +7115,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
-"506) och giltig stat (ADIF: DXCC och STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
+"Reef/506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/was/index.php:3
 msgctxt "USA State"
@@ -12382,8 +12346,8 @@ msgid ""
 "We’ll keep the original value and add a more precise locator (e.g., JO90AB "
 "or JO90AB12) when a match is confident."
 msgstr ""
-"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator "
-"(t.ex. JO90AB eller JO90AB12) när en matchning är säker."
+"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator (t."
+"ex. JO90AB eller JO90AB12) när en matchning är säker."
 
 #: application/views/logbookadvanced/continentdialog.php:2
 msgid ""
@@ -16940,8 +16904,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
-"(t.ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 (t."
+"ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
@@ -18284,6 +18248,10 @@ msgstr "Ange QSL mottagen (Elektroniskt)"
 msgid "eQSL picture"
 msgstr "eQSL-bild"
 
+#: application/views/view_log/qso.php:916
+msgid "QSO not found"
+msgstr "QSO hittades inte"
+
 #: application/views/visitor/layout/footer.php:239
 msgid "Filter Results"
 msgstr "Filtrera resultat"
@@ -18410,14 +18378,6 @@ msgstr "Skicka förfrågan"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Mottagen"
-
-#: application/views/view_log/qso.php:916
-msgid "QSO not found"
-msgstr "QSO hittades inte"
-
-#: application/controllers/Eqsl.php:518
-msgid "All eQSLs marked as uploaded"
-msgstr "Alla eQSLs markerade som uppladdade"
 
 #~ msgid "Band filter preserved (CAT connection is active)"
 #~ msgstr "Bandfilter bevarad (CAT-anslutning är aktiv)"
