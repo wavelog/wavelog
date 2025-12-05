@@ -167,6 +167,52 @@ class adif_data extends CI_Model {
 		return $this->db->get();
 	}
 
+	function export_custom_chunked($from, $to, $station_id, $exportLotw = false, $onlyop = null, $offset = 0, $limit = 5000) {
+		// Copy export_custom logic but add chunking for station_id > 0
+		$this->load->model('Stations');
+		if ($station_id == 0) {
+			// Use existing chunked export_all for all stations
+			return $this->export_all_chunked(null, $from, $to, $exportLotw, $onlyop, $offset, $limit);
+		}
+
+		// Check station access
+		if (!$this->Stations->check_station_is_accessible($station_id)) {
+			return;
+		}
+
+		// Build query identical to export_custom but add LIMIT/OFFSET
+		$this->db->select(''.$this->config->item('table_name').'.*, station_profile.*, dxcc_entities.name as station_country');
+		$this->db->from($this->config->item('table_name'));
+		$this->db->where($this->config->item('table_name').'.station_id', $station_id);
+
+		// Apply same filters as export_custom
+		if ($from) {
+			$this->db->where("date(".$this->config->item('table_name').".COL_TIME_ON) >= ", $from);
+		}
+		if ($to) {
+			$this->db->where("date(".$this->config->item('table_name').".COL_TIME_ON) <= ",$to);
+		}
+		if ($onlyop) {
+			$this->db->where("upper(".$this->config->item('table_name').".col_operator)",$onlyop);
+		}
+		if ($exportLotw) {
+			$this->db->group_start();
+			$this->db->where($this->config->item('table_name').".COL_LOTW_QSL_SENT != 'Y'");
+			$this->db->or_where($this->config->item('table_name').".COL_LOTW_QSL_SENT", NULL);
+			$this->db->group_end();
+		}
+
+		$this->db->order_by($this->config->item('table_name').".COL_TIME_ON", "ASC");
+		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
+		$this->db->join('dxcc_entities', 'station_profile.station_dxcc = dxcc_entities.adif', 'left outer');
+
+		// Add chunking
+		$this->db->limit($limit, $offset);
+
+		return $this->db->get();
+	}
+
+
 	function export_custom($from, $to, $station_id, $exportLotw = false, $onlyop = null) {
 		// be sure that station belongs to user
 		$this->load->model('Stations');
@@ -207,25 +253,25 @@ class adif_data extends CI_Model {
 		}
 	}
 
-	function export_past_id($station_id, $fetchfromid, $limit, $onlyop = null) {
-		//create query
+	function export_past_id_chunked($station_id, $fetchfromid, $limit, $onlyop = null, $offset = 0, $chunk_size = 5000) {
+		// Copy export_past_id logic but add chunking support
 		$this->db->select(''.$this->config->item('table_name').'.*, station_profile.*, dxcc_entities.name as station_country');
 		$this->db->from($this->config->item('table_name'));
 		$this->db->where($this->config->item('table_name').'.station_id', $station_id);
-		$this->db->where($this->config->item('table_name').".COL_PRIMARY_KEY > " , $fetchfromid); //only get values past the fetchfromid value
-		$this->db->order_by($this->config->item('table_name').".COL_TIME_ON", "ASC");
-		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
-		$this->db->join('dxcc_entities', 'station_profile.station_dxcc = dxcc_entities.adif', 'left outer');
+		$this->db->where($this->config->item('table_name').".COL_PRIMARY_KEY > ", $fetchfromid);
+
 		if ($onlyop) {
 			$this->db->where("upper(".$this->config->item('table_name').".col_operator)",$onlyop);
 		}
+
+		// Add chunking
+		$this->db->limit($chunk_size, $offset);
+
+		$this->db->order_by($this->config->item('table_name').".COL_TIME_ON", "ASC");
 		$this->db->order_by("COL_PRIMARY_KEY", "ASC");
+		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
+		$this->db->join('dxcc_entities', 'station_profile.station_dxcc = dxcc_entities.adif', 'left outer');
 
-		if ($limit > -1) {
-			$this->db->limit($limit);
-		}
-
-		//return result
 		return $this->db->get();
 	}
 
@@ -280,53 +326,6 @@ class adif_data extends CI_Model {
 
 		return $this->db->get();
 	}
-
-	function export_custom_chunked($from, $to, $station_id, $exportLotw = false, $onlyop = null, $offset = 0, $limit = 5000) {
-		// Copy export_custom logic but add chunking for station_id > 0
-		$this->load->model('Stations');
-		if ($station_id == 0) {
-			// Use existing chunked export_all for all stations
-			return $this->export_all_chunked(null, $from, $to, $exportLotw, $onlyop, $offset, $limit);
-		}
-
-		// Check station access
-		if (!$this->Stations->check_station_is_accessible($station_id)) {
-			return;
-		}
-
-		// Build query identical to export_custom but add LIMIT/OFFSET
-		$this->db->select(''.$this->config->item('table_name').'.*, station_profile.*, dxcc_entities.name as station_country');
-		$this->db->from($this->config->item('table_name'));
-		$this->db->where($this->config->item('table_name').'.station_id', $station_id);
-
-		// Apply same filters as export_custom
-		if ($from) {
-			$this->db->where("date(".$this->config->item('table_name').".COL_TIME_ON) >= ", $from);
-		}
-		if ($to) {
-			$this->db->where("date(".$this->config->item('table_name').".COL_TIME_ON) <= ",$to);
-		}
-		if ($onlyop) {
-			$this->db->where("upper(".$this->config->item('table_name').".col_operator)",$onlyop);
-		}
-		if ($exportLotw) {
-			$this->db->group_start();
-			$this->db->where($this->config->item('table_name').".COL_LOTW_QSL_SENT != 'Y'");
-			$this->db->or_where($this->config->item('table_name').".COL_LOTW_QSL_SENT", NULL);
-			$this->db->group_end();
-		}
-
-		$this->db->order_by($this->config->item('table_name').".COL_TIME_ON", "ASC");
-		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
-		$this->db->join('dxcc_entities', 'station_profile.station_dxcc = dxcc_entities.adif', 'left outer');
-
-		// Add chunking
-		$this->db->limit($limit, $offset);
-
-		return $this->db->get();
-	}
-
-
 }
 
 ?>
