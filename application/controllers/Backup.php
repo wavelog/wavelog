@@ -40,11 +40,7 @@ class Backup extends CI_Controller {
 		header('Content-Disposition: attachment; filename="'.$filename.'"');
 
 		// Output ADIF header // No chance to use exportall-view any longer, because of chunking logic
-		echo "Wavelog ADIF export\n";
-		echo "<ADIF_VER:5>3.1.6\n";
-		echo "<PROGRAMID:".strlen($this->config->item('app_name')).">".$this->config->item('app_name')."\r\n";
-		echo "<PROGRAMVERSION:".strlen($this->optionslib->get_option('version')).">".$this->optionslib->get_option('version')."\r\n";
-		echo "<EOH>\n\n";
+		echo $this->adifhelper->getAdifHeader($this->config->item('app_name'),$this->optionslib->get_option('version'));
 
 		// Stream QSOs in 5K chunks
 		$offset = 0;
