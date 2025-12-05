@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-04 20:47+0000\n"
+"POT-Creation-Date: 2025-12-05 07:57+0000\n"
 "PO-Revision-Date: 2024-12-10 11:09+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1027,6 +1027,14 @@ msgstr "DX kalendar"
 msgid "eQSL Cards"
 msgstr "eQSL karte"
 
+#: application/controllers/Eqsl.php:64 application/controllers/Eqsl.php:154
+msgid "eQSL Nicknames in Station Profiles aren't defined!"
+msgstr "eQSL Nadimci nisu definisani u Staničnim profilima!"
+
+#: application/controllers/Eqsl.php:87 application/controllers/Eqsl.php:173
+msgid "You have not defined your eQSL.cc credentials!"
+msgstr "Niste definisali vaše eQSL.cc kredencijale!"
+
 #: application/controllers/Eqsl.php:127
 msgid "eQSL Import"
 msgstr "Uvoz eQSL"
@@ -1035,17 +1043,9 @@ msgstr "Uvoz eQSL"
 msgid "eQSL Import Information"
 msgstr "Informacije o eQSL uvozu"
 
-#: application/controllers/Eqsl.php:154
-msgid "eQSL Nicknames in Station Profiles aren't defined!"
-msgstr "eQSL Nadimci nisu definisani u Staničnim profilima!"
-
 #: application/controllers/Eqsl.php:161
 msgid "eQSL QSO Upload"
 msgstr "eQSL učitavanje QSO"
-
-#: application/controllers/Eqsl.php:173
-msgid "You have not defined your eQSL.cc credentials!"
-msgstr "Niste definisali vaše eQSL.cc kredencijale!"
 
 #: application/controllers/Eqsl.php:195
 msgid "User/Pass wrong for eQSL"
@@ -1071,6 +1071,10 @@ msgstr "Uspešno preuzeto: "
 #: application/controllers/Eqsl.php:494
 msgid "eQSL Card Image Download"
 msgstr "Preuzimanje slika eQSL karata"
+
+#: application/controllers/Eqsl.php:518
+msgid "All eQSLs marked as uploaded"
+msgstr ""
 
 #: application/controllers/Generic_qsl.php:18
 msgid "Confirmations"

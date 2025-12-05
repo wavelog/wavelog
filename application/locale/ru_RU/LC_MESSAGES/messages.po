@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-04 20:47+0000\n"
+"POT-Creation-Date: 2025-12-05 07:57+0000\n"
 "PO-Revision-Date: 2025-12-02 08:54+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1037,6 +1037,14 @@ msgstr "Календарь DX экспедиций"
 msgid "eQSL Cards"
 msgstr "eQSL"
 
+#: application/controllers/Eqsl.php:64 application/controllers/Eqsl.php:154
+msgid "eQSL Nicknames in Station Profiles aren't defined!"
+msgstr "Профили eQSL в профилях QTH не определены!"
+
+#: application/controllers/Eqsl.php:87 application/controllers/Eqsl.php:173
+msgid "You have not defined your eQSL.cc credentials!"
+msgstr "Вы не указали свои учётные данные eQSL.cc!"
+
 #: application/controllers/Eqsl.php:127
 msgid "eQSL Import"
 msgstr "импорт eQSL"
@@ -1045,17 +1053,9 @@ msgstr "импорт eQSL"
 msgid "eQSL Import Information"
 msgstr "информация для импорта eQSL"
 
-#: application/controllers/Eqsl.php:154
-msgid "eQSL Nicknames in Station Profiles aren't defined!"
-msgstr "Профили eQSL в профилях QTH не определены!"
-
 #: application/controllers/Eqsl.php:161
 msgid "eQSL QSO Upload"
 msgstr "загрузка QSO в eQSL"
-
-#: application/controllers/Eqsl.php:173
-msgid "You have not defined your eQSL.cc credentials!"
-msgstr "Вы не указали свои учётные данные eQSL.cc!"
 
 #: application/controllers/Eqsl.php:195
 msgid "User/Pass wrong for eQSL"
@@ -1081,6 +1081,10 @@ msgstr "Успешно скачано: "
 #: application/controllers/Eqsl.php:494
 msgid "eQSL Card Image Download"
 msgstr "скачать изображения eQSL"
+
+#: application/controllers/Eqsl.php:518
+msgid "All eQSLs marked as uploaded"
+msgstr ""
 
 #: application/controllers/Generic_qsl.php:18
 msgid "Confirmations"
