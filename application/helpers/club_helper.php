@@ -37,7 +37,7 @@ if (!function_exists('clubaccess_check')) {
                     if ($user_level >= 9) {
                         // Officers can access any QSO
                         return true;
-                    } elseif ($user_level >= 6) {
+                    } elseif ($user_level >= $required_level) {
                         // ClubMemberADIF and regular members can only access their own QSOs
                         return $qso->COL_OPERATOR == $operator_callsign;
                     } else {
