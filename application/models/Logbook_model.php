@@ -4648,9 +4648,13 @@ class Logbook_model extends CI_Model {
 
 		$my_error = "";
 
-		if (validateADIFDate($record['qso_date']) != true) {
-			log_message("Error", "Trying to import QSO with invalid date: " . $record['qso_date']. " for station_id " . $station_id . ". Call: " . ($record['call'] ?? '') . " Mode: " . ($record['mode'] ?? '') . " Band: " . ($record['band'] ?? ''));
-			$returner['error']=__("QSO on")." ".$record['qso_date'].": ".__("You tried to import a QSO without valid date. This QSO wasn't imported. It's invalid") . "<br>";
+		if (validateADIFDate($record['qso_date'] ?? '') != true) {
+			$qso_date = $record['qso_date'] ?? '';
+			$call = $record['call'] ?? '';
+			$mode = $record['mode'] ?? '';
+			$band = $record['band'] ?? '';
+			log_message("Error", "Trying to import QSO with invalid date: " . $qso_date. " for station_id " . $station_id . ". Call: " . $call . " Mode: " . $mode . " Band: " . $band);
+			$returner['error']=__("You tried to import a QSO without valid date. This QSO wasn't imported. It's invalid") . ". Call: " . $call . ", Mode: " . $mode . ", Band: " . $band . "<br>";
 			return($returner);
 		}
 
