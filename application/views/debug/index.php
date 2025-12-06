@@ -574,6 +574,11 @@
                             <td><?php echo $vucc_grids_update->last_run ?? __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_vucc_grids'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
+						<tr>
+                            <td><?= __("RSS Feeds (Calendars)"); ?></td>
+                            <td><?php echo $rss_feeds_update->last_run ?? __("never"); ?></td>
+                            <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_rss_feeds'); ?>"><?= __("Update"); ?></a></td>
+                        </tr>
                     </table>
                 </div>
             </div>

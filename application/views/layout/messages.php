@@ -27,7 +27,7 @@
 <?php } ?>
 
 <!-- Display form validation errors -->
-<?php if(validation_errors()) { ?>
+<?php if(function_exists('validation_errors') && validation_errors()) { ?>
 <div class="alert alert-danger" role="alert">
         <?php echo validation_errors(); ?>
 </div>
