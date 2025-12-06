@@ -12,11 +12,9 @@ $(document).ready(function () {
 
 function copyCron(id) {
 	var content = $('#' + id).text();
-
-	navigator.clipboard.writeText(content).then(function () { });
-
+	copyToClipboard(content);
 	$('#' + id).addClass('flash-copy').delay('1000').queue(function () {
-		$('#' + id).removeClass('flash-copy').dequeue();
+		$(this).removeClass('flash-copy').dequeue();
 	});
 }
 
