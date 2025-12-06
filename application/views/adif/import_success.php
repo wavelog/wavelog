@@ -43,7 +43,7 @@
           <p><?= __("We found the following numbers of QSOs for the following contest IDs:")?></p>
 
     <!-- List imported contest data -->
-    <ul>
+    <ul class="text-start d-inline-block">
     <?php foreach ($imported_contests as $contestid => $qsocount) { ?>
       <li><?php echo $contestid . ' (' . $qsocount . ' '. ($qsocount == 1 ? 'QSO' : 'QSOs')  .')'; ?></li>
     <?php } ?>
