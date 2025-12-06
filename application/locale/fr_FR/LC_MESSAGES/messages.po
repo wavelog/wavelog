@@ -18,10 +18,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-12-05 16:49+0000\n"
-"PO-Revision-Date: 2025-11-25 03:53+0000\n"
-"Last-Translator: F5MQU <f5mqu.p@gmail.com>\n"
-"Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/fr/>\n"
+"PO-Revision-Date: 2025-12-06 14:07+0000\n"
+"Last-Translator: JONCOUX Philippe <joncoux@free.fr>\n"
+"Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/fr/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -210,7 +210,7 @@ msgstr "Carte des Activateurs"
 
 #: application/controllers/Adif.php:61 application/controllers/Adif.php:73
 msgid "You're not allowed to access this functionality!"
-msgstr ""
+msgstr "Vous n'êtes pas autorisé à accéder à cette fonctionnalité !"
 
 #: application/controllers/Adif.php:80
 msgid "valid date"
@@ -566,7 +566,7 @@ msgstr "Locators confirmés par Carte QSL papier"
 #: application/controllers/Awards.php:1049
 #: application/controllers/Awards.php:1085
 msgid "Total Gridsquares worked"
-msgstr ""
+msgstr "Nombre total de carrés de la grille travaillés"
 
 #: application/controllers/Awards.php:1066
 msgid "Fred Fish Memorial Award (FFMA)"
@@ -619,7 +619,7 @@ msgstr "WPX"
 #: application/views/awards/pl_polska/index.php:37
 #: application/views/interface_assets/header.php:270
 msgid "\"Polska\" Award"
-msgstr ""
+msgstr "Prix « Polska »"
 
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:336
@@ -690,7 +690,7 @@ msgstr "Responsable Club"
 
 #: application/controllers/Club.php:24
 msgid "Club Member ADIF"
-msgstr ""
+msgstr "Membre du club ADIF"
 
 #: application/controllers/Club.php:25
 msgid "Club Member"
@@ -1084,7 +1084,7 @@ msgstr "eQSL : Téléchargement des cartes/images"
 
 #: application/controllers/Eqsl.php:518
 msgid "All eQSLs marked as uploaded"
-msgstr ""
+msgstr "Toutes les eQSL marquées comme téléchargées"
 
 #: application/controllers/Generic_qsl.php:18
 msgid "Confirmations"
@@ -3286,14 +3286,16 @@ msgstr "Erreur QRZCQ"
 #: application/libraries/Cbr_parser.php:160
 msgid "Broken CBR file - no valid exchange or callsigns found"
 msgstr ""
+"Fichier CBR corrompu - aucun indicatif d'échange ou indicatif d'appel valide "
+"trouvé"
 
 #: application/libraries/Cbr_parser.php:137
 msgid "Broken CBR file - no QSO data found."
-msgstr ""
+msgstr "Fichier CBR corrompu - aucune donnée QSO trouvée."
 
 #: application/libraries/Cbr_parser.php:147
 msgid "Broken CBR file - incomplete header found."
-msgstr ""
+msgstr "Fichier CBR corrompu - en-tête incomplet trouvé."
 
 #: application/libraries/Subdivisions.php:31
 msgctxt "Division Name (States in various countries)."
@@ -4894,6 +4896,8 @@ msgid ""
 "The CBR file contains a TRX number at the end of each QSO line (for multi-op "
 "stations)"
 msgstr ""
+"Le fichier CBR contient un numéro TRX à la fin de chaque ligne QSO "
+"(pour les stations multi opérateurs)."
 
 #: application/views/adif/import.php:460
 msgid ""
@@ -5499,7 +5503,7 @@ msgstr "Voir la carte"
 #: application/views/gridmap/index.php:28
 #: application/views/logbookadvanced/index.php:276
 msgid "Date Presets"
-msgstr ""
+msgstr "Préréglages de date"
 
 #: application/views/awards/cq/index.php:57
 #: application/views/awards/dxcc/index.php:53
@@ -5518,48 +5522,48 @@ msgstr "Aujourd'hui"
 #: application/views/gridmap/index.php:32
 #: application/views/logbookadvanced/index.php:279
 msgid "Yesterday"
-msgstr ""
+msgstr "Hier"
 
 #: application/views/awards/cq/index.php:59
 #: application/views/awards/dxcc/index.php:55
 #: application/views/gridmap/index.php:33
 #: application/views/logbookadvanced/index.php:280
 msgid "Last 7 Days"
-msgstr ""
+msgstr "7 derniers jours"
 
 #: application/views/awards/cq/index.php:60
 #: application/views/awards/dxcc/index.php:56
 #: application/views/gridmap/index.php:34
 #: application/views/logbookadvanced/index.php:281
 msgid "Last 30 Days"
-msgstr ""
+msgstr "30 derniers jours"
 
 #: application/views/awards/cq/index.php:61
 #: application/views/awards/dxcc/index.php:57
 #: application/views/gridmap/index.php:35
 #: application/views/logbookadvanced/index.php:282
 msgid "This Month"
-msgstr ""
+msgstr "Ce mois-ci"
 
 #: application/views/awards/cq/index.php:62
 #: application/views/awards/dxcc/index.php:58
 #: application/views/gridmap/index.php:36
 #: application/views/logbookadvanced/index.php:283
 msgid "Last Month"
-msgstr ""
+msgstr "Mois dernier"
 
 #: application/views/awards/cq/index.php:63
 #: application/views/awards/dxcc/index.php:59
 #: application/views/gridmap/index.php:37
 #: application/views/logbookadvanced/index.php:284
 msgid "This Year"
-msgstr ""
+msgstr "Cette année"
 
 #: application/views/awards/cq/index.php:64
 #: application/views/awards/dxcc/index.php:60
 #: application/views/logbookadvanced/index.php:285
 msgid "Last Year"
-msgstr ""
+msgstr "L'année dernière"
 
 #: application/views/awards/cq/index.php:65
 #: application/views/awards/dxcc/index.php:61
@@ -6513,6 +6517,9 @@ msgid ""
 "contacts with stations operating from all 16 Polish voivodeships "
 "(provinces). Valid from January 1, 1999."
 msgstr ""
+"Le prix Polska est décerné par l'Union polonaise des radioamateurs (PZK) "
+"pour les contacts avec des stations opérant depuis les 16 voïvodies "
+"(provinces) polonaises. Valable à compter du 1er janvier 1999."
 
 #: application/views/awards/pl_polska/index.php:39
 msgid ""
@@ -6520,11 +6527,15 @@ msgid ""
 "(RTTY/PSK/FSK), and individual bands (160M-2M). Classes: Basic (1 QSO/voiv), "
 "Bronze (3), Silver (7), Gold (12). All 16 voivodeships required."
 msgstr ""
+"Catégories de récompenses : Mixte (tous modes/bandes), Téléphonie "
+"(BLU/AM/FM/SSTV), CW, Numérique (RTTY/PSK/FSK) et bandes individuelles "
+"(160 m à 2 m). Niveaux : Débutant (1 QSO/voïvodie), Bronze (3), Argent (7), "
+"Or (12). Les 16 voïvodies sont requises."
 
 #: application/views/awards/pl_polska/index.php:40
 #, php-format
 msgid "Official rules and information: %s"
-msgstr ""
+msgstr "Règles et informations officielles : %s"
 
 #: application/views/awards/pl_polska/index.php:40
 msgid "PZK Polska Award Rules"
