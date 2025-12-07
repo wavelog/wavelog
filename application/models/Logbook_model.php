@@ -57,7 +57,12 @@ class Logbook_model extends CI_Model {
 				$end_datetime_obj = DateTime::createFromFormat("$date_format H:i:s", "$start_date $end_time");
 
 				if ($end_datetime_obj === false) {
-					$datetime_off = $datetime;
+					$end_datetime_obj = DateTime::createFromFormat("$date_format H:i", "$start_date $end_time");	// Try converting as H:i if H:i:s failed b4
+					if ($end_datetime_obj === false) {
+						$datetime_off = $datetime; // No Luck? Than end = start
+					} else {
+						$datetime_off = $end_datetime_obj->format('Y-m-d H:i:s');
+					}
 				} else {
 					// If time-off is before time-on and hour is 00 → add 1 day
 					if ($end_datetime_obj < $datetime_obj && str_starts_with($end_time, "00")) {
