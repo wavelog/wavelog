@@ -9,11 +9,11 @@
                         <p class="mb-1 small text-muted"><?= __("Update missing or incorrect CQ zone information") ?></p>
                     </div>
                     <div class="d-flex nowrap">
-                        <button type="button" class="btn btn-sm btn-secondary me-1" id="checkFixCqZonesBtn" onclick="checkFixCqZones()">
-                            <?= __("Check") ?>
+                        <button type="button" class="btn btn-sm btn-secondary me-1 ld-ext-right" id="checkFixCqZonesBtn" onclick="checkFixCqZones()">
+                            <?= __("Check") ?><div class="ld ld-ring ld-spin"></div>
                         </button>
-                        <button type="button" class="btn btn-sm btn-primary" id="fixCqZonesBtn" onclick="runFixCqZones()">
-                            <?= __("Run") ?>
+                        <button type="button" class="btn btn-sm btn-primary ld-ext-right" id="fixCqZonesBtn" onclick="runFixCqZones()">
+                            <?= __("Run") ?><div class="ld ld-ring ld-spin"></div>
                         </button>
                     </div>
                 </div>
@@ -24,11 +24,11 @@
                         <p class="mb-1 small text-muted"><?= __("Update missing or incorrect ITU zone information") ?></p>
                     </div>
                     <div class="d-flex nowrap">
-                        <button type="button" class="btn btn-sm btn-secondary me-1" id="checkFixItuZonesBtn" onclick="checkFixItuZones()">
-                            <?= __("Check") ?>
+                        <button type="button" class="btn btn-sm btn-secondary me-1 ld-ext-right" id="checkFixItuZonesBtn" onclick="checkFixItuZones()">
+                            <?= __("Check") ?><div class="ld ld-ring ld-spin"></div>
                         </button>
-                        <button type="button" class="btn btn-sm btn-primary" id="fixItuZonesBtn" onclick="runFixItuZones()">
-                            <?= __("Run") ?>
+                        <button type="button" class="btn btn-sm btn-primary ld-ext-right" id="fixItuZonesBtn" onclick="runFixItuZones()">
+                            <?= __("Run") ?><div class="ld ld-ring ld-spin"></div>
                         </button>
                     </div>
                 </div>
@@ -39,11 +39,11 @@
                         <p class="mb-1 small text-muted"><?= __("Update missing or incorrect continent information") ?></p>
                     </div>
                     <div class="d-flex nowrap">
-                        <button type="button" class="btn btn-sm btn-secondary me-1" id="checkFixContinentBtn" onclick="checkFixContinent()">
-                            <?= __("Check") ?>
+                        <button type="button" class="btn btn-sm btn-secondary me-1 ld-ext-right" id="checkFixContinentBtn" onclick="checkFixContinent()">
+                            <?= __("Check") ?><div class="ld ld-ring ld-spin"></div>
                         </button>
-                        <button type="button" class="btn btn-sm btn-primary" id="fixContinentBtn" onclick="runFixContinent()">
-                            <?= __("Run") ?>
+                        <button type="button" class="btn btn-sm btn-primary ld-ext-right" id="fixContinentBtn" onclick="runFixContinent()">
+                            <?= __("Run") ?><div class="ld ld-ring ld-spin"></div>
                         </button>
                     </div>
                 </div>
@@ -54,11 +54,11 @@
                         <p class="mb-1 small text-muted"><?= __("Update missing or incorrect state/province information") ?></p>
                     </div>
                     <div class="d-flex nowrap">
-                        <button type="button" class="btn btn-sm btn-secondary me-1" id="checkFixStateBtn" onclick="checkFixState()">
-                            <?= __("Check") ?>
+                        <button type="button" class="btn btn-sm btn-secondary me-1 ld-ext-right" id="checkFixStateBtn" onclick="checkFixState()">
+                            <?= __("Check") ?><div class="ld ld-ring ld-spin"></div>
                         </button>
-                        <button type="button" class="btn btn-sm btn-primary" id="fixStateBtn" onclick="runFixState()">
-                            <?= __("Run") ?>
+                        <button type="button" class="btn btn-sm btn-primary ld-ext-right" id="fixStateBtn" onclick="runFixState()">
+                            <?= __("Run") ?><div class="ld ld-ring ld-spin"></div>
                         </button>
                     </div>
                 </div>
@@ -69,11 +69,11 @@
                         <p class="mb-1 small text-muted"><?= __("Calculate and update distance information for QSOs") ?></p>
                     </div>
                     <div class="d-flex nowrap">
-                        <button type="button" class="btn btn-sm btn-secondary me-1" id="checkUpdateDistancesBtn" onclick="checkUpdateDistances()">
-                            <?= __("Check") ?>
+                        <button type="button" class="btn btn-sm btn-secondary me-1 ld-ext-right" id="checkUpdateDistancesBtn" onclick="checkUpdateDistances()">
+                            <?= __("Check") ?><div class="ld ld-ring ld-spin"></div>
                         </button>
-                        <button type="button" class="btn btn-sm btn-primary" id="updateDistancesBtn" onclick="runUpdateDistances()">
-                            <?= __("Run") ?>
+                        <button type="button" class="btn btn-sm btn-primary ld-ext-right" id="updateDistancesBtn" onclick="runUpdateDistances()">
+                            <?= __("Run") ?><div class="ld ld-ring ld-spin"></div>
                         </button>
                     </div>
                 </div>
@@ -84,11 +84,11 @@
                         <p class="mb-1 small text-muted"><?= __("Identify QSOs that are missing DXCC information") ?></p>
                     </div>
                     <div class="d-flex nowrap">
-                        <button type="button" class="btn btn-sm btn-secondary me-1" id="checkUpdateDistancesBtn" onclick="checkUpdateDistances()">
-                            <?= __("Check") ?>
+                        <button type="button" class="btn btn-sm btn-secondary me-1 ld-ext-right" id="checkMissingDxccsBtn" onclick="checkMissingDxcc()">
+                            <?= __("Check") ?><div class="ld ld-ring ld-spin"></div>
                         </button>
-                        <button type="button" class="btn btn-sm btn-primary" id="updateDistancesBtn" onclick="runUpdateDistances()">
-                            <?= __("Run") ?>
+                        <button type="button" class="btn btn-sm btn-primary ld-ext-right" id="updateDistancesBtn" onclick="runUpdateDistances()">
+                            <?= __("Run") ?><div class="ld ld-ring ld-spin"></div>
                         </button>
                     </div>
                 </div>
@@ -96,14 +96,12 @@
 				<div class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
                         <h6 class="mb-1"><?= __("Re-check DXCC for all QSOs in the logbook") ?></h6>
-                        <p class="mb-1 small text-muted"><?= __("Use Wavelog to determine DXCC for all QSOs. This will overwrite existing DXCC information.") ?></p>
+                        <p class="mb-1 small text-muted"><?= __("Use Wavelog to determine DXCC for all QSOs.") ?></p>
+						<p class="mb-1 small alert-danger"><?= __("This will overwrite existing DXCC information!") ?></p>
                     </div>
                     <div class="d-flex nowrap">
-                        <button type="button" class="btn btn-sm btn-secondary me-1" id="checkUpdateDistancesBtn" onclick="checkUpdateDistances()">
-                            <?= __("Check") ?>
-                        </button>
-                        <button type="button" class="btn btn-sm btn-primary" id="updateDistancesBtn" onclick="runUpdateDistances()">
-                            <?= __("Run") ?>
+                        <button type="button" class="btn btn-sm btn-primary ld-ext-right" id="updateDistancesBtn" onclick="runUpdateDistances()">
+                            <?= __("Run") ?><div class="ld ld-ring ld-spin"></div>
                         </button>
                     </div>
                 </div>

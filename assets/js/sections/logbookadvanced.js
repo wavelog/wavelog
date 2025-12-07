@@ -2034,36 +2034,109 @@ function saveOptions() {
 
 
 		$.ajax({
-		url: base_url + 'index.php/logbookadvanced/checkDb',
-		data: {
-			type: 'distance'
-		},
-		type: 'POST',
-		success: function(response) {
-			$('#checkUpdateDistancesBtn').prop("disabled", false).removeClass("running");
-			$('#closeButton').prop("disabled", false);
-			// Create a nice display for the results
-			let resultHtml = '<h6>Distance Check Results</h6>';
-			resultHtml += '<p><strong>QSO to update found:</strong> ' + (response[0].count) + '</p>';
+			url: base_url + 'index.php/logbookadvanced/checkDb',
+			data: {
+				type: 'checkdistance'
+			},
+			type: 'POST',
+			success: function(response) {
+				$('#checkUpdateDistancesBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				// Create a nice display for the results
+				let resultHtml = '<h5>Distance Check Results</h5>';
+				resultHtml += '<p><strong>QSO to update found:</strong> ' + (response[0].count) + '</p>';
 
-			$('.result').html(resultHtml);
-		},
-		error: function(xhr, status, error) {
-			$('#checkUpdateDistancesBtn').prop('disabled', false).text('<?= __("Check") ?>');
-			$('#closeButton').prop('disabled', false);
+				$('.result').html(resultHtml);
+			},
+			error: function(xhr, status, error) {
+				$('#checkUpdateDistancesBtn').prop('disabled', false).text('<?= __("Check") ?>');
+				$('#closeButton').prop('disabled', false);
 
-			let errorMsg = '<?= __("Error checking distance information") ?>';
-			if (xhr.responseJSON && xhr.responseJSON.message) {
-				errorMsg += ': ' + xhr.responseJSON.message;
+				let errorMsg = '<?= __("Error checking distance information") ?>';
+				if (xhr.responseJSON && xhr.responseJSON.message) {
+					errorMsg += ': ' + xhr.responseJSON.message;
+				}
+
+				BootstrapDialog.alert({
+					title: '<?= __("Error") ?>',
+					message: errorMsg,
+					type: BootstrapDialog.TYPE_DANGER
+				});
 			}
+		});
+	}
 
-			BootstrapDialog.alert({
-				title: '<?= __("Error") ?>',
-				message: errorMsg,
-				type: BootstrapDialog.TYPE_DANGER
-			});
-		}
-	});
+	function checkMissingDxcc() {
+		$('#checkMissingDxccsBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
 
 
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/checkDb',
+			data: {
+				type: 'checkdxcc'
+			},
+			type: 'POST',
+			success: function(response) {
+				$('#checkMissingDxccsBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				// Create a nice display for the results
+				let resultHtml = '<h5>DXCC Check Results</h5>';
+				resultHtml += '<p><strong>QSOs without DXCC information found:</strong> ' + (response[0].count) + '</p>';
+
+				$('.result').html(resultHtml);
+			},
+			error: function(xhr, status, error) {
+				$('#checkMissingDxccsBtn').prop('disabled', false).text('<?= __("Check") ?>');
+				$('#closeButton').prop('disabled', false);
+
+				let errorMsg = '<?= __("Error checking distance information") ?>';
+				if (xhr.responseJSON && xhr.responseJSON.message) {
+					errorMsg += ': ' + xhr.responseJSON.message;
+				}
+
+				BootstrapDialog.alert({
+					title: '<?= __("Error") ?>',
+					message: errorMsg,
+					type: BootstrapDialog.TYPE_DANGER
+				});
+			}
+		});
+	}
+
+	function checkFixContinent() {
+		$('#checkFixContinentBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/checkDb',
+			data: {
+				type: 'checkcontinent'
+			},
+			type: 'POST',
+			success: function(response) {
+				$('#checkFixContinentBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				// Create a nice display for the results
+				let resultHtml = '<h5>Continent Check Results</h5>';
+				resultHtml += '<p><strong>QSOs without missing or invalid continent information found:</strong> ' + (response[0].count) + '</p>';
+
+				$('.result').html(resultHtml);
+			},
+			error: function(xhr, status, error) {
+				$('#checkFixContinentBtn').prop('disabled', false).text('<?= __("Check") ?>');
+				$('#closeButton').prop('disabled', false);
+
+				let errorMsg = '<?= __("Error checking distance information") ?>';
+				if (xhr.responseJSON && xhr.responseJSON.message) {
+					errorMsg += ': ' + xhr.responseJSON.message;
+				}
+
+				BootstrapDialog.alert({
+					title: '<?= __("Error") ?>',
+					message: errorMsg,
+					type: BootstrapDialog.TYPE_DANGER
+				});
+			}
+		});
 	}

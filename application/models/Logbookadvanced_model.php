@@ -1448,6 +1448,49 @@ class Logbookadvanced_model extends CI_Model {
 	}
 
 	public function runCheckDb($type) {
+		switch ($type) {
+			case 'checkdistance':
+				return $this->check_missing_distance();
+			case 'checkcontinent':
+				return $this->check_qsos_missing_continent();
+			case 'checkdxcc':
+				return $this->check_missing_dxcc();
+			return null;
+		}
+	}
+
+	public function check_missing_dxcc() {
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+		$sql = "select count(*) as count from " . $this->config->item('table_name') . "
+		join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
+		where " . $this->config->item('table_name') . ".station_id in (" . implode(',', array_map('intval', $logbooks_locations_array)) . ")
+		and user_id = ? and coalesce(col_dxcc, '') = ''";
+
+		$bindings[] = [$this->session->userdata('user_id')];
+
+		$query = $this->db->query($sql, $bindings);
+		return $query->result();
+	}
+
+	public function check_qsos_missing_continent() {
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+		$sql = "select count(*) as count from " . $this->config->item('table_name') . "
+			join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
+			where " . $this->config->item('table_name') . ".station_id in (" . implode(',', array_map('intval', $logbooks_locations_array)) . ")
+			and user_id = ?
+			and (coalesce(col_cont, '') = '' or col_cont not in ('AF', 'AN', 'AS', 'EU', 'NA', 'OC', 'SA'))";
+
+		$bindings[] = [$this->session->userdata('user_id')];
+
+		$query = $this->db->query($sql, $bindings);
+		return $query->result();
+	}
+
+	public function check_missing_distance() {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
