@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-05 16:49+0000\n"
+"POT-Creation-Date: 2025-12-07 09:59+0000\n"
 "PO-Revision-Date: 2025-12-05 10:52+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
@@ -3426,12 +3426,7 @@ msgstr ""
 "%s との QSO を %s でインポート中に、誤ったステーションコールサイン %s が検出"
 "されました: スキップされました"
 
-#: application/models/Logbook_model.php:4653
-#: application/models/Logbook_model.php:4662
-msgid "QSO on"
-msgstr "QSOオン"
-
-#: application/models/Logbook_model.php:4653
+#: application/models/Logbook_model.php:4657
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -3439,7 +3434,11 @@ msgstr ""
 "有効な日付のないQSOをインポートしようとしました。このQSOはインポートされませ"
 "んでした。無効です"
 
-#: application/models/Logbook_model.php:4662
+#: application/models/Logbook_model.php:4666
+msgid "QSO on"
+msgstr "QSOオン"
+
+#: application/models/Logbook_model.php:4666
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3447,7 +3446,7 @@ msgstr ""
 "コールが指定されていないQSOをインポートしようとしました。このQSOはインポート"
 "されませんでした。無効です"
 
-#: application/models/Logbook_model.php:4711
+#: application/models/Logbook_model.php:4715
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -3456,64 +3455,64 @@ msgstr ""
 "%s でのQSO: バンドが指定されていないQSOをインポートしようとしました。このQSO"
 "はインポートされませんでした。無効です"
 
-#: application/models/Logbook_model.php:4976
+#: application/models/Logbook_model.php:4980
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4987
+#: application/models/Logbook_model.php:4991
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5048
+#: application/models/Logbook_model.php:5052
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5423
+#: application/models/Logbook_model.php:5427
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "複製用"
 
-#: application/models/Logbook_model.php:5488
-#: application/models/Logbook_model.php:5583
+#: application/models/Logbook_model.php:5492
+#: application/models/Logbook_model.php:5587
 msgid "QSO could not be matched"
 msgstr "QSOが一致しませんでした"
 
-#: application/models/Logbook_model.php:5496
+#: application/models/Logbook_model.php:5500
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "LoTW/Clublog/eQSL/コンテストで確認済み"
 
-#: application/models/Logbook_model.php:5502
+#: application/models/Logbook_model.php:5506
 msgid "confirmed by award manager"
 msgstr "賞の管理者によって確認された"
 
-#: application/models/Logbook_model.php:5506
+#: application/models/Logbook_model.php:5510
 msgid "confirmed by cross-check of DCL data"
 msgstr "DCLデータのクロスチェックによって確認された"
 
-#: application/models/Logbook_model.php:5510
+#: application/models/Logbook_model.php:5514
 msgid "confirmation pending"
 msgstr "確認中"
 
-#: application/models/Logbook_model.php:5513
+#: application/models/Logbook_model.php:5517
 msgid "unconfirmed"
 msgstr "未確認"
 
-#: application/models/Logbook_model.php:5516
+#: application/models/Logbook_model.php:5520
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
 msgid "unknown"
 msgstr "不明"
 
-#: application/models/Logbook_model.php:5586
+#: application/models/Logbook_model.php:5590
 msgid "POTA reference already in log"
 msgstr "POTA 参照。既にログに存在します"
 
-#: application/models/Logbook_model.php:5589
+#: application/models/Logbook_model.php:5593
 msgid "QSO updated"
 msgstr "QSOが更新されました"
 
-#: application/models/Logbook_model.php:6396
+#: application/models/Logbook_model.php:6400
 #: application/views/activated_gridmap/index.php:114
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:58
@@ -4943,12 +4942,8 @@ msgstr ""
 "ADIF ファイルのエラーに関するヒントを確認するには、%s を参照してください。"
 
 #: application/views/adif/import_success.php:59
-msgid ""
-"You might have ADIF errors, the QSOs have still been added. Please check the "
-"following information:"
+msgid "You might have ADIF errors. Please check the following information:"
 msgstr ""
-"ADIFエラーが発生している可能性がありますが、QSOは追加されています。以下の情報"
-"をご確認ください。"
 
 #: application/views/adif/mark_lotw.php:12
 #: application/views/hrdlog/mark_hrdlog.php:12
@@ -18319,6 +18314,13 @@ msgstr "リクエストを送信"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "受信"
+
+#~ msgid ""
+#~ "You might have ADIF errors, the QSOs have still been added. Please check "
+#~ "the following information:"
+#~ msgstr ""
+#~ "ADIFエラーが発生している可能性がありますが、QSOは追加されています。以下の"
+#~ "情報をご確認ください。"
 
 #~ msgid "ADIF - Backup"
 #~ msgstr "ADIF - バックアップ"
