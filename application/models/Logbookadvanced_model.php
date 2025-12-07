@@ -1578,4 +1578,17 @@ class Logbookadvanced_model extends CI_Model {
 
 		return $results;
 	}
+
+	function getStateListQsos($dxcc) {
+		$sql = "SELECT col_call, col_time_on, col_mode, col_submode, col_band, col_state, col_gridsquare FROM " . $this->config->item('table_name') . " qsos
+				JOIN station_profile ON qsos.station_id = station_profile.station_id
+				WHERE qsos.COL_DXCC = ? AND station_profile.user_id = ?
+				AND (qsos.COL_STATE IS NULL OR qsos.COL_STATE = '')
+				AND LENGTH(COALESCE(qsos.COL_GRIDSQUARE, '')) >= 6
+				ORDER BY COL_TIME_ON DESC";
+
+		$query = $this->db->query($sql, [$dxcc, $this->session->userdata('user_id')]);
+
+		return $query->result();
+	}
 }

@@ -2250,7 +2250,7 @@ function saveOptions() {
 	}
 
 	function fixState(dxcc) {
-		$('#fixStateButton').prop("disabled", true).addClass("running");
+		$('#fixStateBtn_' + dxcc).prop("disabled", true).addClass("running");
 
 		$.ajax({
 			url: base_url + 'index.php/logbookadvanced/fixStateBatch',
@@ -2259,13 +2259,34 @@ function saveOptions() {
 				'dxcc': dxcc
 			},
 			success: function (response) {
-				$('#fixStateButton').prop("disabled", false).removeClass("running");
+				$('#fixStateBtn_' + dxcc).prop("disabled", false).removeClass("running");
 			},
 			error: function () {
-				$('#fixStateButton').prop("disabled", false).removeClass("running");
+				$('#fixStateBtn_' + dxcc).prop("disabled", false).removeClass("running");
 			}
 		});
 	}
 
+	function openStateList(dxcc) {
+		$('#openStateListBtn_' + dxcc).prop("disabled", true).addClass("running");
 
-
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/OpenStateList',
+			type: 'post',
+			data: {
+				'dxcc': dxcc
+			},
+			success: function (response) {
+				$('#openStateListBtn_' + dxcc).prop("disabled", false).removeClass("running");
+				BootstrapDialog.show({
+					title: 'QSO List',
+					message: response,
+					size: BootstrapDialog.SIZE_WIDE,
+					type: BootstrapDialog.TYPE_INFO
+				});
+			},
+			error: function () {
+				$('#openStateListBtn_' + dxcc).prop("disabled", false).removeClass("running");
+			}
+		});
+	}

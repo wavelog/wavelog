@@ -26,9 +26,10 @@
 					<td><?php echo $name; ?></td>
 					<td><?php echo $qsos; ?></td>
 					<td>
-						<button type="button" class="btn btn-sm btn-primary ld-ext-right" onclick="fixState(<?php echo $item->col_dxcc; ?>)">
+						<button type="button" class="btn btn-sm btn-primary ld-ext-right" id="fixStateBtn_<?php echo $item->col_dxcc; ?>" onclick="fixState(<?php echo $item->col_dxcc; ?>)">
 							<?= __("Run fix") ?><div class="ld ld-ring ld-spin"></div>
 						</button>
+						<button id="openStateListBtn_<?php echo $item->col_dxcc; ?>" onclick="openStateList(<?php echo $item->col_dxcc; ?>)" class="btn btn-sm btn-success"><i class="fas fa-search"></i></button>
 					</td>
 				</tr>
 			<?php endforeach; ?>
