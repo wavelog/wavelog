@@ -893,10 +893,16 @@ class Logbookadvanced extends CI_Controller {
 		if(!clubaccess_check(9)) return;
 
 		$type = $this->input->post('type', true);
-
 		$this->load->model('logbookadvanced_model');
-		$result = $this->logbookadvanced_model->runCheckDb($type);
-		header("Content-Type: application/json");
-		print json_encode($result);
+
+		if ($type == 'checkstate') {
+			$data['result'] = $this->logbookadvanced_model->runCheckDb($type);
+			$this->load->view('logbookadvanced/checkresult', $data);
+		} else {
+			$result = $this->logbookadvanced_model->runCheckDb($type);
+			header("Content-Type: application/json");
+			echo json_encode($result);
+		}
+
 	}
 }

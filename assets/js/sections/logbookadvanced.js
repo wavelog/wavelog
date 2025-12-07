@@ -2119,12 +2119,83 @@ function saveOptions() {
 				$('#closeButton').prop("disabled", false);
 				// Create a nice display for the results
 				let resultHtml = '<h5>Continent Check Results</h5>';
-				resultHtml += '<p><strong>QSOs without missing or invalid continent information found:</strong> ' + (response[0].count) + '</p>';
+				resultHtml += '<p><strong>QSOs with missing or invalid continent information found:</strong> ' + (response[0].count) + '</p>';
 
 				$('.result').html(resultHtml);
 			},
 			error: function(xhr, status, error) {
 				$('#checkFixContinentBtn').prop('disabled', false).text('<?= __("Check") ?>');
+				$('#closeButton').prop('disabled', false);
+
+				let errorMsg = '<?= __("Error checking distance information") ?>';
+				if (xhr.responseJSON && xhr.responseJSON.message) {
+					errorMsg += ': ' + xhr.responseJSON.message;
+				}
+
+				BootstrapDialog.alert({
+					title: '<?= __("Error") ?>',
+					message: errorMsg,
+					type: BootstrapDialog.TYPE_DANGER
+				});
+			}
+		});
+	}
+
+	function checkFixState() {
+		$('#checkFixStateBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/checkDb',
+			data: {
+				type: 'checkstate'
+			},
+			type: 'POST',
+			success: function(response) {
+				$('#checkFixStateBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+
+				$('.result').html(response);
+			},
+			error: function(xhr, status, error) {
+				$('#checkFixStateBtn').prop('disabled', false).text('<?= __("Check") ?>');
+				$('#closeButton').prop('disabled', false);
+
+				let errorMsg = '<?= __("Error checking distance information") ?>';
+				if (xhr.responseJSON && xhr.responseJSON.message) {
+					errorMsg += ': ' + xhr.responseJSON.message;
+				}
+
+				BootstrapDialog.alert({
+					title: '<?= __("Error") ?>',
+					message: errorMsg,
+					type: BootstrapDialog.TYPE_DANGER
+				});
+			}
+		});
+	}
+
+	function checkFixState2() {
+		$('#checkFixStateBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/checkDb',
+			data: {
+				type: 'checkstate'
+			},
+			type: 'POST',
+			success: function(response) {
+				$('#checkFixStateBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				// Create a nice display for the results
+				let resultHtml = '<h5>State Check Results</h5>';
+				resultHtml += '<p><strong>QSOs with missing state and gridsquares with 6 or more characters found:</strong> ' + (response[0].count) + '</p>';
+
+				$('.result').html(resultHtml);
+			},
+			error: function(xhr, status, error) {
+				$('#checkFixStateBtn').prop('disabled', false).text('<?= __("Check") ?>');
 				$('#closeButton').prop('disabled', false);
 
 				let errorMsg = '<?= __("Error checking distance information") ?>';

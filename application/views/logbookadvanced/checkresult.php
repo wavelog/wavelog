@@ -1,0 +1,38 @@
+<?php if (isset($result) && is_array($result) && count($result) > 0): ?>
+<div class="col-md-12 result">
+    <h5>State Check Results</h5>
+    <p><strong>QSOs with missing state and gridsquares with 6 or more characters found for the following DXCC's:</strong></p>
+
+	<div class="table-responsive" style="max-height:70vh; overflow:auto;">
+		<table class="table table-sm table-striped table-bordered table-condensed mb-0">
+			<thead>
+				<tr>
+					<th>Prefix</th>
+					<th>DXCC</th>
+					<th>QSOs</th>
+				</tr>
+			</thead>
+			<tbody>
+			<?php foreach ($result as $index => $item): ?>
+				<?php
+					$rawName = isset($item->dxcc_name) ? $item->dxcc_name : '';
+					$formattedName = ucwords(strtolower($rawName), "- (/");
+					$name = htmlspecialchars($formattedName, ENT_QUOTES, 'UTF-8');
+					$qsos = isset($item->count) ? intval($item->count) : 0;
+				?>
+				<tr>
+					<td><?php echo $item->prefix; ?></td>
+					<td><?php echo $name; ?></td>
+					<td><?php echo $qsos; ?></td>
+				</tr>
+			<?php endforeach; ?>
+			</tbody>
+		</table>
+	</div>
+</div>
+<?php else: ?>
+<div class="col-md-12 result">
+    <h5>State Check Results</h5>
+    <p>No issues found. All QSOs have proper state information.</p>
+</div>
+<?php endif; ?>

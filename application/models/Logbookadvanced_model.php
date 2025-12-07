@@ -1455,6 +1455,8 @@ class Logbookadvanced_model extends CI_Model {
 				return $this->check_qsos_missing_continent();
 			case 'checkdxcc':
 				return $this->check_missing_dxcc();
+			case 'checkstate':
+				return $this->check_missing_state();
 			return null;
 		}
 	}
@@ -1498,6 +1500,26 @@ class Logbookadvanced_model extends CI_Model {
 		join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
 		where " . $this->config->item('table_name') . ".station_id in (" . implode(',', array_map('intval', $logbooks_locations_array)) . ")
 		and user_id = ? and coalesce(col_distance, '') = ''";
+
+		$bindings[] = [$this->session->userdata('user_id')];
+
+		$query = $this->db->query($sql, $bindings);
+		return $query->result();
+	}
+
+	public function check_missing_state() {
+		$this->load->library('Geojson');
+		$supported_dxcc_list = $this->geojson->getSupportedDxccs();
+		$supported_dxcc_array = array_keys($supported_dxcc_list);
+
+		$sql = "select count(*) as count, col_dxcc, dxcc_entities.name as dxcc_name, dxcc_entities.prefix from " . $this->config->item('table_name') . "
+		join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
+		join dxcc_entities on " . $this->config->item('table_name') . ".col_dxcc = dxcc_entities.adif
+		where user_id = ? and coalesce(col_state, '') = ''
+		and col_dxcc in (" . implode(',', array_map('intval', $supported_dxcc_array)) . ")
+		and length(col_gridsquare) >= 6
+		group by col_dxcc, dxcc_entities.name, dxcc_entities.prefix
+		order by dxcc_entities.prefix";
 
 		$bindings[] = [$this->session->userdata('user_id')];
 
