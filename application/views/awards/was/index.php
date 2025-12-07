@@ -2,6 +2,7 @@
 	var tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>";
     var lang_usa_state = "<?= _pgettext("USA State", "State"); ?>";
     var lang_hover_over_a_state = "<?= __("Hover over a state"); ?>";
+    var lang_inc = "<?= __("inc."); ?>";
 </script>
 
 <script>
@@ -162,9 +163,10 @@
         <tbody>';
 
         foreach ($was_array as $was => $value) {      // Fills the table with the data
+        $stateDisplay = ($was === 'MD') ? 'MD (' . __("inc.") . ' DC)' : $was;
         echo '<tr>
             <td>' . $i++ . '</td>
-            <td>'. $was .'</td>';
+            <td>'. $stateDisplay .'</td>';
             foreach ($value  as $key) {
             echo '<td style="text-align: center">' . $key . '</td>';
             }

@@ -2162,7 +2162,10 @@ class Logbook_model extends CI_Model {
 		  COL_RST_SENT,
 		  COL_SAT_NAME,
 		  COL_SAT_MODE,
+		  COL_PROP_MODE,
 		  COL_QSL_RCVD,
+		  COL_GRIDSQUARE,
+		  COL_MY_GRIDSQUARE,
 		  COL_COMMENT,
 		  (select adif from dxcc_prefixes where  (CASE WHEN COL_QSL_VIA != \'\' THEN COL_QSL_VIA ELSE COL_CALL END) like concat(dxcc_prefixes.`call`,\'%\') order by end limit 1) as ADIF,
 		  (select entity from dxcc_prefixes where  (CASE WHEN COL_QSL_VIA != \'\' THEN COL_QSL_VIA ELSE COL_CALL END) like concat(dxcc_prefixes.`call`,\'%\') order by end limit 1) as ENTITY,
@@ -2788,13 +2791,13 @@ class Logbook_model extends CI_Model {
 
 		foreach ($spots as $spot) {
 			// Validate spot has required properties (must be non-empty)
-			if (empty($spot->spotted) || empty($spot->dxcc_spotted->dxcc_id) || empty($spot->dxcc_spotted->cont) || empty($spot->band) || empty($spot->mode)) {
+			if (empty($spot->spotted) || empty($spot->dxcc_spotted->dxcc_id) || empty($spot->band) || empty($spot->mode)) {
 				continue;
 			}
 
 			$callsign = $spot->spotted;
 			$dxcc = $spot->dxcc_spotted->dxcc_id;
-			$cont = $spot->dxcc_spotted->cont;
+			$cont = $spot->dxcc_spotted->cont ?? '';
 
 			// Collect unique callsigns/dxccs/continents - query once per unique value
 			$callsigns[$callsign] = true;
@@ -4557,7 +4560,8 @@ class Logbook_model extends CI_Model {
 		$amsat_qsos = [];
 		$today = time();
 		if (!$this->stations->check_station_is_accessible($station_id) && $apicall == false) {
-			return 'Station not accessible<br>';
+			$custom_errors['errormessage'] = 'Station not accessible<br>';
+			return $custom_errors;
 		}
 		$station_id_ok = true;
 		$station_profile = $this->stations->profile_clean($station_id);
@@ -4644,9 +4648,13 @@ class Logbook_model extends CI_Model {
 
 		$my_error = "";
 
-		if (validateADIFDate($record['qso_date']) != true) {
-			log_message("Error", "Trying to import QSO with invalid date: " . $record['qso_date']. " for station_id " . $station_id . ". Call: " . ($record['call'] ?? '') . " Mode: " . ($record['mode'] ?? '') . " Band: " . ($record['band'] ?? ''));
-			$returner['error']=__("QSO on")." ".$record['qso_date'].": ".__("You tried to import a QSO without valid date. This QSO wasn't imported. It's invalid") . "<br>";
+		if (validateADIFDate($record['qso_date'] ?? '') != true) {
+			$qso_date = $record['qso_date'] ?? '';
+			$call = $record['call'] ?? '';
+			$mode = $record['mode'] ?? '';
+			$band = $record['band'] ?? '';
+			log_message("Error", "Trying to import QSO with invalid date: " . $qso_date. " for station_id " . $station_id . ". Call: " . $call . " Mode: " . $mode . " Band: " . $band);
+			$returner['error']=__("You tried to import a QSO without valid date. This QSO wasn't imported. It's invalid") . ". Call: " . $call . ", Mode: " . $mode . ", Band: " . $band . "<br>";
 			return($returner);
 		}
 
