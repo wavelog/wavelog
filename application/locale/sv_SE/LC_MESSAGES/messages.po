@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-05 16:49+0000\n"
+"POT-Creation-Date: 2025-12-07 14:55+0000\n"
 "PO-Revision-Date: 2025-12-07 14:55+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -3405,38 +3405,24 @@ msgstr "HRDlog: Inga QSOs hittades att ladda upp för stationsanropssignalen: "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: Inga stationsprofiler med HRDlog-uppgifter hittades."
 
-#: application/models/Logbook_model.php:1341
 #: application/models/Logbook_model.php:1346
 msgid "Station ID not allowed"
 msgstr "Stations-ID inte tillåtet"
 
-#: application/models/Logbook_model.php:1346
 #: application/models/Logbook_model.php:1351
 msgid "No Call given"
 msgstr "Ingen anropssignal angiven"
 
-#: application/models/Logbook_model.php:1416
-#: application/models/Logbook_model.php:1618
 #: application/models/Logbook_model.php:1421
 #: application/models/Logbook_model.php:1623
 msgid "DXCC has to be Numeric"
 msgstr "DXCC måste vara numerisk"
 
-#: application/models/Logbook_model.php:4643
 #: application/models/Logbook_model.php:4648
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Fel anropssignal %s vid import av QSO med %s för %s: HOPPADES ÖVER"
 
-#: application/models/Logbook_model.php:4653
-#: application/models/Logbook_model.php:4662
-#: application/models/Logbook_model.php:4666
-#: application/models/Logbook_model.php:4671
-msgid "QSO on"
-msgstr "QSO kl"
-
-#: application/models/Logbook_model.php:4653
-#: application/models/Logbook_model.php:4657
 #: application/models/Logbook_model.php:4662
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
@@ -3445,8 +3431,10 @@ msgstr ""
 "Du försökte importera ett QSO utan giltigt datum. Detta QSO importerades "
 "inte. Det är ogiltigt"
 
-#: application/models/Logbook_model.php:4662
-#: application/models/Logbook_model.php:4666
+#: application/models/Logbook_model.php:4671
+msgid "QSO on"
+msgstr "QSO kl"
+
 #: application/models/Logbook_model.php:4671
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
@@ -3455,8 +3443,6 @@ msgstr ""
 "Du försökte importera ett QSO utan angivet CALL. Detta QSO importerades "
 "inte. Det är ogiltigt"
 
-#: application/models/Logbook_model.php:4711
-#: application/models/Logbook_model.php:4715
 #: application/models/Logbook_model.php:4720
 #, php-format
 msgid ""
@@ -3466,92 +3452,64 @@ msgstr ""
 "QSO på %s: Du försökte importera ett QSO utan angivet band. Detta QSO "
 "importerades inte. Det är ogiltigt"
 
-#: application/models/Logbook_model.php:4976
-#: application/models/Logbook_model.php:4980
 #: application/models/Logbook_model.php:4985
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate är ogiltigt (ÅÅÅÅMMDD)"
 
-#: application/models/Logbook_model.php:4987
-#: application/models/Logbook_model.php:4991
 #: application/models/Logbook_model.php:4996
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate är ogiltigt (ÅÅÅÅMMDD)"
 
-#: application/models/Logbook_model.php:5048
-#: application/models/Logbook_model.php:5052
 #: application/models/Logbook_model.php:5057
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date är ogiltigt (ÅÅÅÅMMDD)"
 
-#: application/models/Logbook_model.php:5423
-#: application/views/simplefle/index.php:41
-#: application/models/Logbook_model.php:5427
 #: application/models/Logbook_model.php:5432
+#: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Dubblett för"
 
-#: application/models/Logbook_model.php:5488
-#: application/models/Logbook_model.php:5583
-#: application/models/Logbook_model.php:5492
-#: application/models/Logbook_model.php:5587
 #: application/models/Logbook_model.php:5497
 #: application/models/Logbook_model.php:5592
 msgid "QSO could not be matched"
 msgstr "QSO kunde inte matchas"
 
-#: application/models/Logbook_model.php:5496
-#: application/models/Logbook_model.php:5500
 #: application/models/Logbook_model.php:5505
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bekräftad av LoTW/Clublog/eQSL/Tävling"
 
-#: application/models/Logbook_model.php:5502
-#: application/models/Logbook_model.php:5506
 #: application/models/Logbook_model.php:5511
 msgid "confirmed by award manager"
 msgstr "bekräftad av diplomansvarig"
 
-#: application/models/Logbook_model.php:5506
-#: application/models/Logbook_model.php:5510
 #: application/models/Logbook_model.php:5515
 msgid "confirmed by cross-check of DCL data"
 msgstr "bekräftat genom korskontroll av DCL-data"
 
-#: application/models/Logbook_model.php:5510
-#: application/models/Logbook_model.php:5514
 #: application/models/Logbook_model.php:5519
 msgid "confirmation pending"
 msgstr "bekräftelse väntar"
 
-#: application/models/Logbook_model.php:5513
-#: application/models/Logbook_model.php:5517
 #: application/models/Logbook_model.php:5522
 msgid "unconfirmed"
 msgstr "obekräftad"
 
-#: application/models/Logbook_model.php:5516
+#: application/models/Logbook_model.php:5525
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
-#: application/models/Logbook_model.php:5520
-#: application/models/Logbook_model.php:5525
 msgid "unknown"
 msgstr "Okänd"
 
-#: application/models/Logbook_model.php:5586
-#: application/models/Logbook_model.php:5590
 #: application/models/Logbook_model.php:5595
 msgid "POTA reference already in log"
 msgstr "POTA-referens redan i loggen"
 
-#: application/models/Logbook_model.php:5589
-#: application/models/Logbook_model.php:5593
 #: application/models/Logbook_model.php:5598
 msgid "QSO updated"
 msgstr "QSO uppdaterad"
 
-#: application/models/Logbook_model.php:6396
+#: application/models/Logbook_model.php:6405
 #: application/views/activated_gridmap/index.php:114
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:58
@@ -3562,8 +3520,6 @@ msgstr "QSO uppdaterad"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
-#: application/models/Logbook_model.php:6400
-#: application/models/Logbook_model.php:6405
 msgid "Bearing"
 msgstr "Bäring"
 
@@ -4986,12 +4942,8 @@ msgid "Check %s for hints about errors in ADIF files."
 msgstr "Kolla %s för tips om fel i ADIF-filer."
 
 #: application/views/adif/import_success.php:59
-msgid ""
-"You might have ADIF errors, the QSOs have still been added. Please check the "
-"following information:"
-msgstr ""
-"Du kan ha ADIF-fel, QSO:erna har ändå lagts till. Vänligen kontrollera "
-"följande information:"
+msgid "You might have ADIF errors. Please check the following information:"
+msgstr "Du kan ha ADIF-fel. Kontrollera följande information:"
 
 #: application/views/adif/mark_lotw.php:12
 #: application/views/hrdlog/mark_hrdlog.php:12
@@ -7154,8 +7106,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
-"506) och giltig stat (ADIF: DXCC och STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
+"Reef/506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/was/index.php:3
 msgctxt "USA State"
@@ -12385,8 +12337,8 @@ msgid ""
 "We’ll keep the original value and add a more precise locator (e.g., JO90AB "
 "or JO90AB12) when a match is confident."
 msgstr ""
-"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator "
-"(t.ex. JO90AB eller JO90AB12) när en matchning är säker."
+"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator (t."
+"ex. JO90AB eller JO90AB12) när en matchning är säker."
 
 #: application/views/logbookadvanced/continentdialog.php:2
 msgid ""
@@ -16943,8 +16895,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
-"(t.ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 (t."
+"ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
@@ -18418,9 +18370,12 @@ msgstr "Skicka förfrågan"
 msgid "Rcvd"
 msgstr "Mottagen"
 
-#: application/views/adif/import_success.php:59
-msgid "You might have ADIF errors. Please check the following information:"
-msgstr "Du kan ha ADIF-fel. Kontrollera följande information:"
+#~ msgid ""
+#~ "You might have ADIF errors, the QSOs have still been added. Please check "
+#~ "the following information:"
+#~ msgstr ""
+#~ "Du kan ha ADIF-fel, QSO:erna har ändå lagts till. Vänligen kontrollera "
+#~ "följande information:"
 
 #~ msgid "ADIF - Backup"
 #~ msgstr "ADIF - Säkerhetskopia"
