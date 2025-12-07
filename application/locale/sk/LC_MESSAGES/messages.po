@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-05 16:49+0000\n"
+"POT-Creation-Date: 2025-12-07 09:59+0000\n"
 "PO-Revision-Date: 2025-12-03 07:44+0000\n"
 "Last-Translator: Viliam Petrik <tatralom@gmail.com>\n"
 "Language-Team: Slovak <https://translate.wavelog.org/projects/wavelog/main-"
@@ -3422,12 +3422,7 @@ msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 "Nesprávna volacia značka stanice %s pri importe QSO s %s pre %s: PRESKOČENÉ"
 
-#: application/models/Logbook_model.php:4653
-#: application/models/Logbook_model.php:4662
-msgid "QSO on"
-msgstr "QSO o"
-
-#: application/models/Logbook_model.php:4653
+#: application/models/Logbook_model.php:4657
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -3435,7 +3430,11 @@ msgstr ""
 "Pokúsil si sa importovať QSO bez platného dátumu. Toto QSO nebolo "
 "importované. Je neplatné"
 
-#: application/models/Logbook_model.php:4662
+#: application/models/Logbook_model.php:4666
+msgid "QSO on"
+msgstr "QSO o"
+
+#: application/models/Logbook_model.php:4666
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3443,7 +3442,7 @@ msgstr ""
 "Pokúsil si sa importovať QSO bez uvedenej značky. Toto QSO nebolo "
 "importované. Je neplatné."
 
-#: application/models/Logbook_model.php:4711
+#: application/models/Logbook_model.php:4715
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -3452,64 +3451,64 @@ msgstr ""
 "QSO na %s: Pokúsil si sa importovať QSO bez uvedeného pásma. Toto QSO nebolo "
 "importované. Je neplatné."
 
-#: application/models/Logbook_model.php:4976
+#: application/models/Logbook_model.php:4980
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate je neplatné (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4987
+#: application/models/Logbook_model.php:4991
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate je neplatné (RRRRMMDD)"
 
-#: application/models/Logbook_model.php:5048
+#: application/models/Logbook_model.php:5052
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date je neplatné (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5423
+#: application/models/Logbook_model.php:5427
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplicita pre"
 
-#: application/models/Logbook_model.php:5488
-#: application/models/Logbook_model.php:5583
+#: application/models/Logbook_model.php:5492
+#: application/models/Logbook_model.php:5587
 msgid "QSO could not be matched"
 msgstr "QSO nebolo možné spárovať"
 
-#: application/models/Logbook_model.php:5496
+#: application/models/Logbook_model.php:5500
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "potvrdené cez LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:5502
+#: application/models/Logbook_model.php:5506
 msgid "confirmed by award manager"
 msgstr "potvrdené diplomovým manažérom"
 
-#: application/models/Logbook_model.php:5506
+#: application/models/Logbook_model.php:5510
 msgid "confirmed by cross-check of DCL data"
 msgstr "potvrdené krížovou kontrolou údajov DCL"
 
-#: application/models/Logbook_model.php:5510
+#: application/models/Logbook_model.php:5514
 msgid "confirmation pending"
 msgstr "potvrdenie čaká"
 
-#: application/models/Logbook_model.php:5513
+#: application/models/Logbook_model.php:5517
 msgid "unconfirmed"
 msgstr "nepotvrdené"
 
-#: application/models/Logbook_model.php:5516
+#: application/models/Logbook_model.php:5520
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
 msgid "unknown"
 msgstr "neznáme"
 
-#: application/models/Logbook_model.php:5586
+#: application/models/Logbook_model.php:5590
 msgid "POTA reference already in log"
 msgstr "POTA referencia už v logu"
 
-#: application/models/Logbook_model.php:5589
+#: application/models/Logbook_model.php:5593
 msgid "QSO updated"
 msgstr "QSO aktualizované"
 
-#: application/models/Logbook_model.php:6396
+#: application/models/Logbook_model.php:6400
 #: application/views/activated_gridmap/index.php:114
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:58
@@ -4939,12 +4938,8 @@ msgid "Check %s for hints about errors in ADIF files."
 msgstr "Skontroluj %s kvôli indíciám o chybách v ADIF súboroch."
 
 #: application/views/adif/import_success.php:59
-msgid ""
-"You might have ADIF errors, the QSOs have still been added. Please check the "
-"following information:"
+msgid "You might have ADIF errors. Please check the following information:"
 msgstr ""
-"Môžete mať chyby v ADIF, ale spojenia boli aj tak pridané. Skontrolujte "
-"prosím nasledujúce informácie:"
 
 #: application/views/adif/mark_lotw.php:12
 #: application/views/hrdlog/mark_hrdlog.php:12
@@ -18357,6 +18352,13 @@ msgstr "Odoslať žiadosť"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Prijaté"
+
+#~ msgid ""
+#~ "You might have ADIF errors, the QSOs have still been added. Please check "
+#~ "the following information:"
+#~ msgstr ""
+#~ "Môžete mať chyby v ADIF, ale spojenia boli aj tak pridané. Skontrolujte "
+#~ "prosím nasledujúce informácie:"
 
 #~ msgid "ADIF - Backup"
 #~ msgstr "ADIF - záloha"

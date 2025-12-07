@@ -20,8 +20,8 @@ msgstr ""
 "POT-Creation-Date: 2025-12-05 16:49+0000\n"
 "PO-Revision-Date: 2025-12-06 14:07+0000\n"
 "Last-Translator: JONCOUX Philippe <joncoux@free.fr>\n"
-"Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/fr/>\n"
+"Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/fr/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3167,8 +3167,8 @@ msgid ""
 "encryption_key in your config.php file first!"
 msgstr ""
 "Vous ne pouvez actuellement pas usurper l'identité d'un autre utilisateur. "
-"Veuillez d'abord changer la clé de chiffrement dans votre fichier config."
-"php !"
+"Veuillez d'abord changer la clé de chiffrement dans votre fichier "
+"config.php !"
 
 #: application/controllers/User.php:1602
 msgid "Invalid Hash"
@@ -3461,10 +3461,12 @@ msgstr ""
 
 #: application/models/Logbook_model.php:4653
 #: application/models/Logbook_model.php:4662
+#: application/models/Logbook_model.php:4666
 msgid "QSO on"
 msgstr "QSO en"
 
 #: application/models/Logbook_model.php:4653
+#: application/models/Logbook_model.php:4657
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -3473,6 +3475,7 @@ msgstr ""
 "importé. Il est invalide"
 
 #: application/models/Logbook_model.php:4662
+#: application/models/Logbook_model.php:4666
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3481,6 +3484,7 @@ msgstr ""
 "importé. Il est invalide"
 
 #: application/models/Logbook_model.php:4711
+#: application/models/Logbook_model.php:4715
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -3490,44 +3494,55 @@ msgstr ""
 "n'a pas été importé. Il est invalide"
 
 #: application/models/Logbook_model.php:4976
+#: application/models/Logbook_model.php:4980
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "la date de réception de la QSL est invalide (AAAAMMJJ)"
 
 #: application/models/Logbook_model.php:4987
+#: application/models/Logbook_model.php:4991
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "la date de la QSL est invalide (AAAAMMJJ)"
 
 #: application/models/Logbook_model.php:5048
+#: application/models/Logbook_model.php:5052
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "la clublog_qso_upload_date est invalide (AAAAMMJJ)"
 
 #: application/models/Logbook_model.php:5423
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:5427
 msgid "Duplicate for"
 msgstr "Dupliquer pour"
 
 #: application/models/Logbook_model.php:5488
 #: application/models/Logbook_model.php:5583
+#: application/models/Logbook_model.php:5492
+#: application/models/Logbook_model.php:5587
 msgid "QSO could not be matched"
 msgstr "pas de correspondance pour le QSO"
 
 #: application/models/Logbook_model.php:5496
+#: application/models/Logbook_model.php:5500
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmé par LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:5502
+#: application/models/Logbook_model.php:5506
 msgid "confirmed by award manager"
 msgstr "confirmé par le manager de l'Award"
 
 #: application/models/Logbook_model.php:5506
+#: application/models/Logbook_model.php:5510
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmé par recoupement des données DCL"
 
 #: application/models/Logbook_model.php:5510
+#: application/models/Logbook_model.php:5514
 msgid "confirmation pending"
 msgstr "confirmation en attente"
 
 #: application/models/Logbook_model.php:5513
+#: application/models/Logbook_model.php:5517
 msgid "unconfirmed"
 msgstr "non confirmé"
 
@@ -3535,14 +3550,17 @@ msgstr "non confirmé"
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
+#: application/models/Logbook_model.php:5520
 msgid "unknown"
 msgstr "inconnu"
 
 #: application/models/Logbook_model.php:5586
+#: application/models/Logbook_model.php:5590
 msgid "POTA reference already in log"
 msgstr "Les références du POTA sont déjà dans le log"
 
 #: application/models/Logbook_model.php:5589
+#: application/models/Logbook_model.php:5593
 msgid "QSO updated"
 msgstr "QSO mis à jour"
 
@@ -3557,6 +3575,7 @@ msgstr "QSO mis à jour"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:6400
 msgid "Bearing"
 msgstr "Azimut"
 
@@ -4896,8 +4915,8 @@ msgid ""
 "The CBR file contains a TRX number at the end of each QSO line (for multi-op "
 "stations)"
 msgstr ""
-"Le fichier CBR contient un numéro TRX à la fin de chaque ligne QSO "
-"(pour les stations multi opérateurs)."
+"Le fichier CBR contient un numéro TRX à la fin de chaque ligne QSO (pour les "
+"stations multi opérateurs)."
 
 #: application/views/adif/import.php:460
 msgid ""
@@ -6527,10 +6546,10 @@ msgid ""
 "(RTTY/PSK/FSK), and individual bands (160M-2M). Classes: Basic (1 QSO/voiv), "
 "Bronze (3), Silver (7), Gold (12). All 16 voivodeships required."
 msgstr ""
-"Catégories de récompenses : Mixte (tous modes/bandes), Téléphonie "
-"(BLU/AM/FM/SSTV), CW, Numérique (RTTY/PSK/FSK) et bandes individuelles "
-"(160 m à 2 m). Niveaux : Débutant (1 QSO/voïvodie), Bronze (3), Argent (7), "
-"Or (12). Les 16 voïvodies sont requises."
+"Catégories de récompenses : Mixte (tous modes/bandes), Téléphonie (BLU/AM/FM/"
+"SSTV), CW, Numérique (RTTY/PSK/FSK) et bandes individuelles (160 m à 2 m). "
+"Niveaux : Débutant (1 QSO/voïvodie), Bronze (3), Argent (7), Or (12). Les "
+"16 voïvodies sont requises."
 
 #: application/views/awards/pl_polska/index.php:40
 #, php-format
@@ -11161,8 +11180,8 @@ msgstr ""
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
-"Cliquer sur 'Téléverser les QSOs' enverra les informations de QSO vers eQSL."
-"cc."
+"Cliquer sur 'Téléverser les QSOs' enverra les informations de QSO vers "
+"eQSL.cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -14026,8 +14045,8 @@ msgid ""
 "The hostname of the mail server, e.g. 'mail.example.com' (without 'ssl://' "
 "or 'tls://')"
 msgstr ""
-"Le nom d'hôte du serveur de messagerie, par exemple « mail.example."
-"com » (sans « ssl:// » ou « tls:// »)"
+"Le nom d'hôte du serveur de messagerie, par exemple « mail.example.com » "
+"(sans « ssl:// » ou « tls:// »)"
 
 #: application/views/options/email.php:88
 msgid "SMTP Port"
@@ -16224,8 +16243,8 @@ msgid ""
 msgstr ""
 "Pour commencer, assurez-vous d'avoir rempli le formulaire sur la gauche avec "
 "la date, l'indicatif de la station et l'indicatif de l'opérateur. Les "
-"données principales incluent la bande (ou QRG en MHz, par exemple « 7.145 "
-"»), le mode et l'heure. Après l'heure, indiquez le premier QSO, qui "
+"données principales incluent la bande (ou QRG en MHz, par exemple "
+"« 7.145 »), le mode et l'heure. Après l'heure, indiquez le premier QSO, qui "
 "correspond essentiellement à l'indicatif."
 
 #: application/views/simplefle/syntax_help.php:9
@@ -18605,6 +18624,10 @@ msgstr "Soumettre la demande"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Reçu"
+
+#: application/views/adif/import_success.php:59
+msgid "You might have ADIF errors. Please check the following information:"
+msgstr ""
 
 #~ msgid "ADIF - Backup"
 #~ msgstr "ADIF - Sauvegarde"
