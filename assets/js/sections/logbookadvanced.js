@@ -2044,7 +2044,7 @@ function saveOptions() {
 				$('#closeButton').prop("disabled", false);
 				// Create a nice display for the results
 				let resultHtml = '<h5>Distance Check Results</h5>';
-				resultHtml += '<p><strong>QSO to update found:</strong> ' + (response[0].count) + '</p>';
+				resultHtml += '<p>QSO to update found: ' + (response[0].count) + '</p>';
 
 				$('.result').html(resultHtml);
 			},
@@ -2082,7 +2082,7 @@ function saveOptions() {
 				$('#closeButton').prop("disabled", false);
 				// Create a nice display for the results
 				let resultHtml = '<h5>DXCC Check Results</h5>';
-				resultHtml += '<p><strong>QSOs without DXCC information found:</strong> ' + (response[0].count) + '</p>';
+				resultHtml += '<p>QSOs without DXCC information found: ' + (response[0].count) + '</p>';
 
 				$('.result').html(resultHtml);
 			},
@@ -2119,7 +2119,7 @@ function saveOptions() {
 				$('#closeButton').prop("disabled", false);
 				// Create a nice display for the results
 				let resultHtml = '<h5>Continent Check Results</h5>';
-				resultHtml += '<p><strong>QSOs with missing or invalid continent information found:</strong> ' + (response[0].count) + '</p>';
+				resultHtml += '<p>QSOs with missing or invalid continent information found: ' + (response[0].count) + '</p>';
 
 				$('.result').html(resultHtml);
 			},
@@ -2175,27 +2175,27 @@ function saveOptions() {
 		});
 	}
 
-	function checkFixState2() {
-		$('#checkFixStateBtn').prop("disabled", true).addClass("running");
+	function checkFixCqZones() {
+		$('#checkFixCqZonesBtn').prop("disabled", true).addClass("running");
 		$('#closeButton').prop("disabled", true);
 
 		$.ajax({
 			url: base_url + 'index.php/logbookadvanced/checkDb',
 			data: {
-				type: 'checkstate'
+				type: 'checkcqzones'
 			},
 			type: 'POST',
 			success: function(response) {
-				$('#checkFixStateBtn').prop("disabled", false).removeClass("running");
+				$('#checkFixCqZonesBtn').prop("disabled", false).removeClass("running");
 				$('#closeButton').prop("disabled", false);
 				// Create a nice display for the results
-				let resultHtml = '<h5>State Check Results</h5>';
-				resultHtml += '<p><strong>QSOs with missing state and gridsquares with 6 or more characters found:</strong> ' + (response[0].count) + '</p>';
+				let resultHtml = '<h5>CQ Zone Check Results</h5>';
+				resultHtml += '<p>QSOs with missing CQ zone information found: ' + (response[0].count) + '</p>';
 
 				$('.result').html(resultHtml);
 			},
 			error: function(xhr, status, error) {
-				$('#checkFixStateBtn').prop('disabled', false).text('<?= __("Check") ?>');
+				$('#checkFixCqZonesBtn').prop('disabled', false).text('<?= __("Check") ?>');
 				$('#closeButton').prop('disabled', false);
 
 				let errorMsg = '<?= __("Error checking distance information") ?>';
@@ -2211,3 +2211,61 @@ function saveOptions() {
 			}
 		});
 	}
+
+	function checkFixItuZones() {
+		$('#checkFixItuZonesBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/checkDb',
+			data: {
+				type: 'checkituzones'
+			},
+			type: 'POST',
+			success: function(response) {
+				$('#checkFixItuZonesBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				// Create a nice display for the results
+				let resultHtml = '<h5>ITU Zone Check Results</h5>';
+				resultHtml += '<p>QSOs with missing ITU zone information found: ' + (response[0].count) + '</p>';
+
+				$('.result').html(resultHtml);
+			},
+			error: function(xhr, status, error) {
+				$('#checkFixItuZonesBtn').prop('disabled', false).text('<?= __("Check") ?>');
+				$('#closeButton').prop('disabled', false);
+
+				let errorMsg = '<?= __("Error checking distance information") ?>';
+				if (xhr.responseJSON && xhr.responseJSON.message) {
+					errorMsg += ': ' + xhr.responseJSON.message;
+				}
+
+				BootstrapDialog.alert({
+					title: '<?= __("Error") ?>',
+					message: errorMsg,
+					type: BootstrapDialog.TYPE_DANGER
+				});
+			}
+		});
+	}
+
+	function fixState(dxcc) {
+		$('#fixStateButton').prop("disabled", true).addClass("running");
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/fixStateBatch',
+			type: 'post',
+			data: {
+				'dxcc': dxcc
+			},
+			success: function (response) {
+				$('#fixStateButton').prop("disabled", false).removeClass("running");
+			},
+			error: function () {
+				$('#fixStateButton').prop("disabled", false).removeClass("running");
+			}
+		});
+	}
+
+
+

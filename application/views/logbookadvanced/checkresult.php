@@ -1,15 +1,16 @@
 <?php if (isset($result) && is_array($result) && count($result) > 0): ?>
 <div class="col-md-12 result">
-    <h5>State Check Results</h5>
-    <p><strong>QSOs with missing state and gridsquares with 6 or more characters found for the following DXCC's:</strong></p>
+    <h5><?= __("State Check Results"); ?></h5>
+    <p><?= __("QSOs with missing state and gridsquares with 6 or more characters found for the following DXCC's:"); ?></p>
 
-	<div class="table-responsive" style="max-height:70vh; overflow:auto;">
+	<div class="table-responsive" style="max-height:50vh; overflow:auto;">
 		<table class="table table-sm table-striped table-bordered table-condensed mb-0">
 			<thead>
 				<tr>
-					<th>Prefix</th>
-					<th>DXCC</th>
-					<th>QSOs</th>
+					<th><?= __("Prefix"); ?></th>
+					<th><?= __("DXCC"); ?></th>
+					<th><?= __("QSOs"); ?></th>
+					<th><?= __("Action"); ?></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -24,6 +25,11 @@
 					<td><?php echo $item->prefix; ?></td>
 					<td><?php echo $name; ?></td>
 					<td><?php echo $qsos; ?></td>
+					<td>
+						<button type="button" class="btn btn-sm btn-primary ld-ext-right" onclick="fixState(<?php echo $item->col_dxcc; ?>)">
+							<?= __("Run fix") ?><div class="ld ld-ring ld-spin"></div>
+						</button>
+					</td>
 				</tr>
 			<?php endforeach; ?>
 			</tbody>
@@ -32,7 +38,7 @@
 </div>
 <?php else: ?>
 <div class="col-md-12 result">
-    <h5>State Check Results</h5>
-    <p>No issues found. All QSOs have proper state information.</p>
+    <h5></h5><?= __("State Check Results"); ?></h5>
+    <p><?= __("No QSOs were found where state information can be fixed."); ?></p>
 </div>
 <?php endif; ?>

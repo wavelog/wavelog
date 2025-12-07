@@ -905,4 +905,19 @@ class Logbookadvanced extends CI_Controller {
 		}
 
 	}
+
+	public function fixStateBatch() {
+		if(!clubaccess_check(9)) return;
+
+		$this->load->model('logbook_model');
+		$this->load->model('logbookadvanced_model');
+
+		$dxcc = $this->input->post('dxcc', true);
+
+		// Process for batch QSO state fix
+		$result = $this->logbookadvanced_model->fixStateBatch($dxcc);
+
+		header("Content-Type: application/json");
+		echo json_encode($result);
+	}
 }

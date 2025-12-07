@@ -1,7 +1,11 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <h5><?= __("Data Repair Tools") ?></h5>
+            <h5><?= __("Data Repair Tools") ?>
+								<button type="button" class="btn btn-sm btn-info me-1 ld-ext-right" id="checkFixCqZonesBtn" onclick="checkFixCqZones()">
+                            <?= __("Info") ?><div class="ld ld-ring ld-spin"></div>
+                        </button>
+		</h5>
             <div class="list-group">
                 <div class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
@@ -11,9 +15,6 @@
                     <div class="d-flex nowrap">
                         <button type="button" class="btn btn-sm btn-secondary me-1 ld-ext-right" id="checkFixCqZonesBtn" onclick="checkFixCqZones()">
                             <?= __("Check") ?><div class="ld ld-ring ld-spin"></div>
-                        </button>
-                        <button type="button" class="btn btn-sm btn-primary ld-ext-right" id="fixCqZonesBtn" onclick="runFixCqZones()">
-                            <?= __("Run") ?><div class="ld ld-ring ld-spin"></div>
                         </button>
                     </div>
                 </div>
@@ -27,9 +28,6 @@
                         <button type="button" class="btn btn-sm btn-secondary me-1 ld-ext-right" id="checkFixItuZonesBtn" onclick="checkFixItuZones()">
                             <?= __("Check") ?><div class="ld ld-ring ld-spin"></div>
                         </button>
-                        <button type="button" class="btn btn-sm btn-primary ld-ext-right" id="fixItuZonesBtn" onclick="runFixItuZones()">
-                            <?= __("Run") ?><div class="ld ld-ring ld-spin"></div>
-                        </button>
                     </div>
                 </div>
 
@@ -41,9 +39,6 @@
                     <div class="d-flex nowrap">
                         <button type="button" class="btn btn-sm btn-secondary me-1 ld-ext-right" id="checkFixContinentBtn" onclick="checkFixContinent()">
                             <?= __("Check") ?><div class="ld ld-ring ld-spin"></div>
-                        </button>
-                        <button type="button" class="btn btn-sm btn-primary ld-ext-right" id="fixContinentBtn" onclick="runFixContinent()">
-                            <?= __("Run") ?><div class="ld ld-ring ld-spin"></div>
                         </button>
                     </div>
                 </div>
@@ -57,9 +52,6 @@
                         <button type="button" class="btn btn-sm btn-secondary me-1 ld-ext-right" id="checkFixStateBtn" onclick="checkFixState()">
                             <?= __("Check") ?><div class="ld ld-ring ld-spin"></div>
                         </button>
-                        <button type="button" class="btn btn-sm btn-primary ld-ext-right" id="fixStateBtn" onclick="runFixState()">
-                            <?= __("Run") ?><div class="ld ld-ring ld-spin"></div>
-                        </button>
                     </div>
                 </div>
 
@@ -72,9 +64,6 @@
                         <button type="button" class="btn btn-sm btn-secondary me-1 ld-ext-right" id="checkUpdateDistancesBtn" onclick="checkUpdateDistances()">
                             <?= __("Check") ?><div class="ld ld-ring ld-spin"></div>
                         </button>
-                        <button type="button" class="btn btn-sm btn-primary ld-ext-right" id="updateDistancesBtn" onclick="runUpdateDistances()">
-                            <?= __("Run") ?><div class="ld ld-ring ld-spin"></div>
-                        </button>
                     </div>
                 </div>
 
@@ -86,9 +75,6 @@
                     <div class="d-flex nowrap">
                         <button type="button" class="btn btn-sm btn-secondary me-1 ld-ext-right" id="checkMissingDxccsBtn" onclick="checkMissingDxcc()">
                             <?= __("Check") ?><div class="ld ld-ring ld-spin"></div>
-                        </button>
-                        <button type="button" class="btn btn-sm btn-primary ld-ext-right" id="updateDistancesBtn" onclick="runUpdateDistances()">
-                            <?= __("Run") ?><div class="ld ld-ring ld-spin"></div>
                         </button>
                     </div>
                 </div>

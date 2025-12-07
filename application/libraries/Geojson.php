@@ -134,6 +134,15 @@ class Geojson {
         return isset(self::SUPPORTED_STATES[$dxcc]) && self::SUPPORTED_STATES[$dxcc]['enabled'] === true;
     }
 
+	/**
+     * Retrieve list of DXCC entities that support state/province lookups
+     *
+     * @return array List of supported DXCC entities
+     */
+	public function getSupportedDxccs() {
+		return self::SUPPORTED_STATES;
+	}
+
     // ============================================================================
     // COORDINATE CONVERSION
     // ============================================================================

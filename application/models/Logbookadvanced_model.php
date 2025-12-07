@@ -1457,18 +1457,18 @@ class Logbookadvanced_model extends CI_Model {
 				return $this->check_missing_dxcc();
 			case 'checkstate':
 				return $this->check_missing_state();
+			case 'checkcqzones':
+				return $this->check_missing_cq_zones();
+			case 'checkituzones':
+				return $this->check_missing_itu_zones();
 			return null;
 		}
 	}
 
 	public function check_missing_dxcc() {
-		$this->load->model('logbooks_model');
-		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-
 		$sql = "select count(*) as count from " . $this->config->item('table_name') . "
 		join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
-		where " . $this->config->item('table_name') . ".station_id in (" . implode(',', array_map('intval', $logbooks_locations_array)) . ")
-		and user_id = ? and coalesce(col_dxcc, '') = ''";
+		where user_id = ? and coalesce(col_dxcc, '') = ''";
 
 		$bindings[] = [$this->session->userdata('user_id')];
 
@@ -1477,13 +1477,9 @@ class Logbookadvanced_model extends CI_Model {
 	}
 
 	public function check_qsos_missing_continent() {
-		$this->load->model('logbooks_model');
-		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-
 		$sql = "select count(*) as count from " . $this->config->item('table_name') . "
 			join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
-			where " . $this->config->item('table_name') . ".station_id in (" . implode(',', array_map('intval', $logbooks_locations_array)) . ")
-			and user_id = ?
+			where user_id = ?
 			and (coalesce(col_cont, '') = '' or col_cont not in ('AF', 'AN', 'AS', 'EU', 'NA', 'OC', 'SA'))";
 
 		$bindings[] = [$this->session->userdata('user_id')];
@@ -1493,13 +1489,9 @@ class Logbookadvanced_model extends CI_Model {
 	}
 
 	public function check_missing_distance() {
-		$this->load->model('logbooks_model');
-		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-
 		$sql = "select count(*) as count from " . $this->config->item('table_name') . "
 		join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
-		where " . $this->config->item('table_name') . ".station_id in (" . implode(',', array_map('intval', $logbooks_locations_array)) . ")
-		and user_id = ? and coalesce(col_distance, '') = ''";
+		where user_id = ? and coalesce(col_distance, '') = ''";
 
 		$bindings[] = [$this->session->userdata('user_id')];
 
@@ -1525,5 +1517,65 @@ class Logbookadvanced_model extends CI_Model {
 
 		$query = $this->db->query($sql, $bindings);
 		return $query->result();
+	}
+
+	public function check_missing_cq_zones() {
+		$sql = "select count(*) as count from " . $this->config->item('table_name') . "
+		join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
+		where user_id = ? and coalesce(col_cqz, '') = ''";
+
+		$bindings[] = [$this->session->userdata('user_id')];
+
+		$query = $this->db->query($sql, $bindings);
+		return $query->result();
+	}
+
+	public function check_missing_itu_zones() {
+		$sql = "select count(*) as count from " . $this->config->item('table_name') . "
+		join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
+		where user_id = ? and coalesce(col_ituz, '') = ''";
+
+		$bindings[] = [$this->session->userdata('user_id')];
+
+		$query = $this->db->query($sql, $bindings);
+		return $query->result();
+	}
+
+	/**
+	 * Fix state for a batch of QSOs using GeoJSON lookup
+	 *
+	 * @param int $dxcc DXCC entity number for which to fix states
+	 * @return array Result array with success, dxcc_name, dxcc_number, state_code, skipped
+	 */
+	function fixStateBatch($dxcc) {
+		$this->load->library('Geojson');
+
+		// Get QSO data
+		$sql = "SELECT COL_PRIMARY_KEY, COL_CALL, COL_GRIDSQUARE, COL_DXCC, COL_STATE, d.name as dxcc_name
+				FROM " . $this->config->item('table_name') . " qsos
+				JOIN station_profile ON qsos.station_id = station_profile.station_id
+				LEFT JOIN dxcc_entities d ON qsos.COL_DXCC = d.adif
+				WHERE qsos.COL_DXCC = ? AND station_profile.user_id = ?
+				AND (qsos.COL_STATE IS NULL OR qsos.COL_STATE = '')
+				AND LENGTH(COALESCE(qsos.COL_GRIDSQUARE, '')) >= 6";
+
+		$query = $this->db->query($sql, [$dxcc, $this->session->userdata('user_id')]);
+
+		if ($query->num_rows() === 0) {
+			return [
+				'success' => false,
+				'skipped' => true,
+				'reason' => 'QSOs not found'
+			];
+		}
+
+		$results = [];
+
+		foreach ($query->result() as $qso) {
+			$result = $this->fixStateSingle($qso->COL_PRIMARY_KEY);
+			$results []= $result;
+		}
+
+		return $results;
 	}
 }
