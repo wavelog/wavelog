@@ -2791,13 +2791,13 @@ class Logbook_model extends CI_Model {
 
 		foreach ($spots as $spot) {
 			// Validate spot has required properties (must be non-empty)
-			if (empty($spot->spotted) || empty($spot->dxcc_spotted->dxcc_id) || empty($spot->dxcc_spotted->cont) || empty($spot->band) || empty($spot->mode)) {
+			if (empty($spot->spotted) || empty($spot->dxcc_spotted->dxcc_id) || empty($spot->band) || empty($spot->mode)) {
 				continue;
 			}
 
 			$callsign = $spot->spotted;
 			$dxcc = $spot->dxcc_spotted->dxcc_id;
-			$cont = $spot->dxcc_spotted->cont;
+			$cont = $spot->dxcc_spotted->cont ?? '';
 
 			// Collect unique callsigns/dxccs/continents - query once per unique value
 			$callsigns[$callsign] = true;
