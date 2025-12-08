@@ -50,7 +50,7 @@ class Geojson {
         248 => ['name' => 'Italy', 'enabled' => true],             // 107 provinces
         256 => ['name' => 'Madeira Islands', 'enabled' => true],   // 1 autonomous region
         263 => ['name' => 'Netherlands', 'enabled' => true],       // 12 provinces
-        266 => ['name' => 'Norway', 'enabled' => true],            // 11 counties
+        266 => ['name' => 'Norway', 'enabled' => true],            // 15 counties
         269 => ['name' => 'Poland', 'enabled' => true],            // 16 voivodeships
         272 => ['name' => 'Portugal', 'enabled' => true],          // 18 districts
         275 => ['name' => 'Romania', 'enabled' => true],           // 42 counties
