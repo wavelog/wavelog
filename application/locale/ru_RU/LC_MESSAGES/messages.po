@@ -15,8 +15,8 @@ msgstr ""
 "POT-Creation-Date: 2025-12-07 14:55+0000\n"
 "PO-Revision-Date: 2025-12-08 10:52+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -128,6 +128,7 @@ msgstr ""
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/Stationsetup.php:16
 msgid "You're not allowed to do that!"
 msgstr "Вам нельзя это делать!"
 
@@ -218,6 +219,7 @@ msgstr "дата неверна"
 
 #: application/controllers/Adif.php:283
 #: application/views/interface_assets/header.php:474
+#: application/views/interface_assets/header.php:476
 msgid "ADIF Import / Export"
 msgstr "Импорт / Экспорт ADIF"
 
@@ -891,6 +893,7 @@ msgstr "Не работает"
 
 #: application/controllers/Csv.php:20 application/views/csv/index.php:3
 #: application/views/interface_assets/header.php:483
+#: application/views/interface_assets/header.php:485
 msgid "SOTA CSV Export"
 msgstr "Экспорт SOTA в CSV"
 
@@ -1018,6 +1021,7 @@ msgstr "и тип прохождения"
 
 #: application/controllers/Dxatlas.php:19
 #: application/views/interface_assets/header.php:481
+#: application/views/interface_assets/header.php:483
 msgid "DX Atlas Gridsquare Export"
 msgstr "Экспорт квадратов DX Atlas"
 
@@ -1119,6 +1123,7 @@ msgstr "Не найдены QSO для загрузки."
 #: application/controllers/Kmlexport.php:24
 #: application/views/interface_assets/header.php:479
 #: application/views/kml/index.php:3
+#: application/views/interface_assets/header.php:481
 msgid "KML Export"
 msgstr "Экспорт KML"
 
@@ -1854,6 +1859,8 @@ msgstr "Оператор"
 #: application/views/view_log/partial/log_ajax.php:31
 #: application/views/view_log/qso.php:341
 #: application/views/view_log/qso.php:694
+#: application/controllers/Stationsetup.php:424
+#: application/views/stationsetup/locationlist.php:58
 msgid "Deleted DXCC"
 msgstr "Удалённые DXCC"
 
@@ -1872,6 +1879,7 @@ msgstr "Быстрый поиск"
 #: application/views/lotw/import.php:3 application/views/lotw_views/index.php:9
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:880 application/views/visitor/index.php:328
+#: application/views/interface_assets/header.php:516
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
@@ -2199,6 +2207,7 @@ msgstr "Недействительный идентификатор станци
 
 #: application/controllers/Oqrs.php:163
 #: application/views/interface_assets/header.php:504
+#: application/views/interface_assets/header.php:506
 msgid "OQRS Requests"
 msgstr "Запросы OQRS"
 
@@ -2259,6 +2268,7 @@ msgstr ""
 
 #: application/controllers/Qrz.php:204
 #: application/views/interface_assets/header.php:517
+#: application/views/interface_assets/header.php:519
 msgid "QRZ Logbook"
 msgstr "Журнал QRZ"
 
@@ -2307,6 +2317,7 @@ msgstr "Позывной не указан."
 
 #: application/controllers/Radio.php:17
 #: application/views/interface_assets/header.php:531
+#: application/views/interface_assets/header.php:533
 msgid "Hardware Interfaces"
 msgstr "Интерфейсы радиостанций"
 
@@ -2368,6 +2379,7 @@ msgstr "По умолчанию (кликните, чтобы освободит
 #: application/views/stationsetup/stationsetup.php:172
 #: application/views/themes/index.php:104 application/views/user/index.php:97
 #: application/views/user/index.php:203
+#: application/controllers/Stationsetup.php:402
 msgid "Edit"
 msgstr "Редактировать"
 
@@ -2397,6 +2409,7 @@ msgstr "Редактировать"
 #: application/views/stationsetup/stationsetup.php:199
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:778
+#: application/controllers/Stationsetup.php:415
 msgid "Delete"
 msgstr "Удалить"
 
@@ -2545,6 +2558,7 @@ msgstr "Пустой журнал"
 
 #: application/controllers/Station.php:38
 #: application/controllers/Stationsetup.php:251
+#: application/controllers/Stationsetup.php:252
 msgid "Create Station Location"
 msgstr "Создать профиль QTH"
 
@@ -2580,6 +2594,9 @@ msgstr "Пожалуйста, проверьте значение QTH локат
 #: application/controllers/Stationsetup.php:60
 #: application/views/interface_assets/header.php:441
 #: application/views/interface_assets/header.php:594
+#: application/controllers/Stationsetup.php:61
+#: application/views/interface_assets/header.php:474
+#: application/views/interface_assets/header.php:596
 msgid "Station Setup"
 msgstr "Настройка станции"
 
@@ -2587,6 +2604,10 @@ msgstr "Настройка станции"
 #: application/controllers/Stationsetup.php:93
 #: application/controllers/Stationsetup.php:437
 #: application/controllers/Stationsetup.php:451
+#: application/controllers/Stationsetup.php:76
+#: application/controllers/Stationsetup.php:94
+#: application/controllers/Stationsetup.php:438
+#: application/controllers/Stationsetup.php:452
 msgid "Not allowed"
 msgstr "Не разрешено"
 
@@ -2600,27 +2621,39 @@ msgstr "Не разрешено"
 #: application/views/qso/index.php:745 application/views/simplefle/index.php:39
 #: application/views/widgets/on_air.php:181
 #: application/views/widgets/on_air.php:243
+#: application/controllers/Stationsetup.php:98
+#: application/controllers/Stationsetup.php:112
+#: application/controllers/Stationsetup.php:131
+#: application/controllers/Stationsetup.php:144
+#: application/controllers/Stationsetup.php:157
+#: application/controllers/Stationsetup.php:178
+#: application/controllers/Stationsetup.php:479
 msgid "Error"
 msgstr "Ошибка"
 
 #: application/controllers/Stationsetup.php:184
 #: application/views/stationsetup/stationsetup.php:25
+#: application/controllers/Stationsetup.php:185
 msgid "Create Station Logbook"
 msgstr "Создать журнал"
 
 #: application/controllers/Stationsetup.php:191
+#: application/controllers/Stationsetup.php:192
 msgid "Edit container name"
 msgstr "Редактировать название контейнера"
 
 #: application/controllers/Stationsetup.php:206
+#: application/controllers/Stationsetup.php:207
 msgid "Edit linked locations"
 msgstr "Редактировать привязанные профили QTH"
 
 #: application/controllers/Stationsetup.php:215
+#: application/controllers/Stationsetup.php:216
 msgid "Edit visitor site"
 msgstr "Редактировать публичную страницу"
 
 #: application/controllers/Stationsetup.php:237
+#: application/controllers/Stationsetup.php:238
 msgid "Error. Link is already in use!"
 msgstr "Ошибка. Ссылка уже используется!"
 
@@ -2639,11 +2672,13 @@ msgstr "Ошибка. Ссылка уже используется!"
 #: application/views/user/edit.php:450 application/views/user/edit.php:501
 #: application/views/user/edit.php:510 application/views/user/edit.php:667
 #: application/views/user/edit.php:677
+#: application/controllers/Stationsetup.php:279
 msgid "Disabled"
 msgstr "Выключено"
 
 #: application/controllers/Stationsetup.php:286
 #: application/views/stationsetup/stationsetup.php:47
+#: application/controllers/Stationsetup.php:287
 msgid "Set as Active Logbook"
 msgstr "Установить как активный"
 
@@ -2651,11 +2686,14 @@ msgstr "Установить как активный"
 #: application/views/interface_assets/header.php:592
 #: application/views/stationsetup/stationsetup.php:49
 #: application/views/view_log/index.php:4
+#: application/controllers/Stationsetup.php:289
+#: application/views/interface_assets/header.php:594
 msgid "Active Logbook"
 msgstr "Активный журнал"
 
 #: application/controllers/Stationsetup.php:295
 #: application/views/stationsetup/stationsetup.php:58
+#: application/controllers/Stationsetup.php:296
 #, php-format
 msgid ""
 "Are you sure you want to delete the station logbook %s? You must re-link any "
@@ -2666,15 +2704,18 @@ msgstr ""
 
 #: application/controllers/Stationsetup.php:305
 #: application/views/stationsetup/stationsetup.php:68
+#: application/controllers/Stationsetup.php:306
 msgid "View Public Page for Logbook: "
 msgstr "Просмотр публичной страницы журнала: "
 
 #: application/controllers/Stationsetup.php:306
+#: application/controllers/Stationsetup.php:307
 msgid "Are you sure you want to delete the public slug?"
 msgstr "Вы уверены, что хотите удалить публичный псевдоним?"
 
 #: application/controllers/Stationsetup.php:391
 #: application/views/stationsetup/stationsetup.php:161
+#: application/controllers/Stationsetup.php:392
 #, php-format
 msgid ""
 "Are you sure you want to make the station profile %s the active station?"
@@ -2682,11 +2723,13 @@ msgstr "Вы уверены, что хотите сделать профиль Q
 
 #: application/controllers/Stationsetup.php:391
 #: application/views/stationsetup/stationsetup.php:161
+#: application/controllers/Stationsetup.php:392
 msgid "Set Active"
 msgstr "Установить активным"
 
 #: application/controllers/Stationsetup.php:393
 #: application/views/stationsetup/stationsetup.php:163
+#: application/controllers/Stationsetup.php:394
 msgid "Active Station"
 msgstr "Активный профиль QTH"
 
@@ -2697,28 +2740,33 @@ msgstr "Активный профиль QTH"
 #: application/views/stationsetup/stationsetup.php:168
 #: application/views/user/index.php:82 application/views/user/index.php:86
 #: application/views/user/index.php:193 application/views/user/index.php:195
+#: application/controllers/Stationsetup.php:397
 msgid "QSO"
 msgstr "QSO"
 
 #: application/controllers/Stationsetup.php:405
 #: application/views/stationsetup/stationsetup.php:192
+#: application/controllers/Stationsetup.php:406
 msgid "Are you sure you want to delete all QSOs within this station profile?"
 msgstr "Вы уверены, что хотите удалить все QSO из этого профиля станции?"
 
 #: application/controllers/Stationsetup.php:405
 #: application/views/stationsetup/stationsetup.php:142
 #: application/views/stationsetup/stationsetup.php:194
+#: application/controllers/Stationsetup.php:406
 msgid "Empty Log"
 msgstr "Очистить лог"
 
 #: application/controllers/Stationsetup.php:409
 #: application/views/stationsetup/stationsetup.php:135
 #: application/views/stationsetup/stationsetup.php:175
+#: application/controllers/Stationsetup.php:410
 msgid "Copy"
 msgstr "Скопировать"
 
 #: application/controllers/Stationsetup.php:414
 #: application/views/stationsetup/stationsetup.php:198
+#: application/controllers/Stationsetup.php:415
 #, php-format
 msgid ""
 "Are you sure you want delete station profile '%s'? This will delete all QSOs "
@@ -2733,14 +2781,17 @@ msgstr ""
 #: application/views/station_profile/edit.php:103
 #: application/views/stationsetup/stationsetup.php:156
 #: application/views/user/modals/first_login_wizard.php:46
+#: application/controllers/Stationsetup.php:422
 msgid "Please select one"
 msgstr "Пожалуйста, выберите один"
 
 #: application/controllers/Stationsetup.php:504
+#: application/controllers/Stationsetup.php:505
 msgid "Edit Export Map options"
 msgstr "Редактировать настройка экспорта карты"
 
 #: application/controllers/Stationsetup.php:526
+#: application/controllers/Stationsetup.php:527
 msgid "Station location list"
 msgstr "Список профилей QTH"
 
@@ -3231,6 +3282,7 @@ msgstr "Экспорт карты"
 #: application/controllers/Webadif.php:95
 #: application/controllers/Webadif.php:142
 #: application/views/interface_assets/header.php:518
+#: application/views/interface_assets/header.php:520
 msgid "QO-100 Dx Club Upload"
 msgstr "Загрузка в QO-100 Dx Club"
 
@@ -5059,6 +5111,7 @@ msgstr "Сохранить"
 
 #: application/views/api/index.php:8
 #: application/views/interface_assets/header.php:530
+#: application/views/interface_assets/header.php:532
 msgid "API Keys"
 msgstr "Ключи API"
 
@@ -9328,6 +9381,7 @@ msgstr "название для ADIF"
 #: application/views/mode/index.php:8 application/views/mode/index.php:55
 #: application/views/usermode/index.php:6
 #: application/views/usermode/index.php:51
+#: application/views/interface_assets/header.php:574
 msgid "Active"
 msgstr "Активный"
 
@@ -11677,6 +11731,7 @@ msgstr ""
 #: application/views/interface_assets/footer.php:223
 #: application/views/interface_assets/header.php:533
 #: application/views/options/sidebar.php:10
+#: application/views/interface_assets/header.php:535
 msgid "Version Info"
 msgstr "Информация о версии"
 
@@ -12061,79 +12116,97 @@ msgid "No Clubstations available"
 msgstr "Нет доступных коллективных станций"
 
 #: application/views/interface_assets/header.php:477
+#: application/views/interface_assets/header.php:479
 msgid "Other Export Options"
 msgstr "Другие варианты экспорта"
 
 #: application/views/interface_assets/header.php:485
+#: application/views/interface_assets/header.php:487
 msgid "Cabrillo Export"
 msgstr "Экспорт Cabrillo"
 
 #: application/views/interface_assets/header.php:487
+#: application/views/interface_assets/header.php:489
 msgid "EDI Export"
 msgstr "Экспорт EDI"
 
 #: application/views/interface_assets/header.php:509
+#: application/views/interface_assets/header.php:511
 msgid "QSL Queue"
 msgstr "Очередь QSL"
 
 #: application/views/interface_assets/header.php:510
+#: application/views/interface_assets/header.php:512
 msgid "Labels"
 msgstr "Наклейки"
 
 #: application/views/interface_assets/header.php:512
+#: application/views/interface_assets/header.php:514
 msgid "Third-Party Services"
 msgstr "Сторонние сервисы"
 
 #: application/views/interface_assets/header.php:515
+#: application/views/interface_assets/header.php:517
 msgid "eQSL Import / Export"
 msgstr "импорт / экспорт eQSL"
 
 #: application/views/interface_assets/header.php:516
+#: application/views/interface_assets/header.php:518
 msgid "HRDLog Logbook"
 msgstr "Журнал HRDLog"
 
 #: application/views/interface_assets/header.php:519
+#: application/views/interface_assets/header.php:521
 msgid "Clublog Import / Export"
 msgstr "Импорт / Экспорт из Clublog"
 
 #: application/views/interface_assets/header.php:522
+#: application/views/interface_assets/header.php:524
 msgid "DCL Export"
 msgstr "Экспорт DCL"
 
 #: application/views/interface_assets/header.php:534
 #: application/views/logbookadvanced/index.php:831
+#: application/views/interface_assets/header.php:536
 msgid "Help"
 msgstr "Помощь"
 
 #: application/views/interface_assets/header.php:535
+#: application/views/interface_assets/header.php:537
 msgid "Forum"
 msgstr "Форум"
 
 #: application/views/interface_assets/header.php:539
+#: application/views/interface_assets/header.php:541
 #, php-format
 msgid "Stop impersonate and switch back to %s"
 msgstr "Прекратить выдавать себя за другого и переключиться обратно на %s"
 
 #: application/views/interface_assets/header.php:540
+#: application/views/interface_assets/header.php:542
 #, php-format
 msgid "Switch back to %s"
 msgstr "Переключиться обратно на %s"
 
 #: application/views/interface_assets/header.php:544
+#: application/views/interface_assets/header.php:546
 msgid "Logout"
 msgstr "Выход"
 
 #: application/views/interface_assets/header.php:552
+#: application/views/interface_assets/header.php:554
 msgid "Select a Location"
 msgstr "Выберите профиль QTH"
 
 #: application/views/interface_assets/header.php:594
+#: application/views/interface_assets/header.php:596
 msgid "You miss station-locations here? Go to stationsetup and fav them"
 msgstr ""
 "Не видите нужных профилей QTH? Перейдите в \"Настройки станции\" и добавьте "
 "их в избранное"
 
 #: application/views/interface_assets/header.php:631
+#: application/views/interface_assets/header.php:633
 msgid "Extras"
 msgstr "Дополнения"
 
@@ -16226,8 +16299,8 @@ msgid ""
 "give an initial sent exchange. To deactivate, use ',+0':"
 msgstr ""
 "Принятый контрольный номер должен быть с префиксом точка '.', отправленный "
-"контрольный номер -- с запятой ','. Последние две строки эквивалентны -- т."
-"е. пробелы не имеют значения, как и порядок. Контрольный номер, который вы "
+"контрольный номер -- с запятой ','. Последние две строки эквивалентны -- "
+"т.е. пробелы не имеют значения, как и порядок. Контрольный номер, который вы "
 "отправили, будет автоматически включен в следующее QSO, если он содержит "
 "принятый контрольный номер, или если вы используете одну запятую ','. Чтобы "
 "автоматически увеличить отправленный порядковый номер, используйте ',++' и "
@@ -16973,8 +17046,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Создайте новую папку в 'assets/css/' и загрузите в нее файл 'bootstrap.min."
-"css', который содержит основные правила стилизации. Мы используем темы из %s"
+"Создайте новую папку в 'assets/css/' и загрузите в нее файл "
+"'bootstrap.min.css', который содержит основные правила стилизации. Мы "
+"используем темы из %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -17314,8 +17388,8 @@ msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
-"Показать изображение корреспондента по QSO из его профиля на qrz.com/hamqth."
-"com в разделе QSO журнала."
+"Показать изображение корреспондента по QSO из его профиля на qrz.com/"
+"hamqth.com в разделе QSO журнала."
 
 #: application/views/user/edit.php:391
 msgid ""
