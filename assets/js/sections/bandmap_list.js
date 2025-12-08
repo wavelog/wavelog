@@ -32,7 +32,8 @@ const BAND_BUTTONS = [
 	{ id: '#toggle17mFilter', band: '17m' },
 	{ id: '#toggle15mFilter', band: '15m' },
 	{ id: '#toggle12mFilter', band: '12m' },
-	{ id: '#toggle10mFilter', band: '10m' }
+	{ id: '#toggle10mFilter', band: '10m' },
+	{ id: '#toggle6mFilter', band: '6m' }
 ];
 
 const BAND_GROUP_BUTTONS = [
@@ -60,8 +61,9 @@ const CONTINENT_BUTTONS = [
 const GEO_FLAGS = ['POTA', 'SOTA', 'IOTA', 'WWFF'];
 
 // Performance optimization: Pre-computed band to group lookup map
+// Note: 6m is NOT in VHF group - it has its own separate button
 const BAND_TO_GROUP_MAP = {
-	'6m': 'VHF', '4m': 'VHF', '2m': 'VHF', '1.25m': 'VHF',
+	'4m': 'VHF', '2m': 'VHF', '1.25m': 'VHF',
 	'70cm': 'UHF', '33cm': 'UHF', '23cm': 'UHF',
 	'13cm': 'SHF', '9cm': 'SHF', '6cm': 'SHF', '3cm': 'SHF'
 };
@@ -117,6 +119,18 @@ $(function() {
 	let hoverConnectionLines = [];
 
 	// ========================================
+	// GLOBAL ERROR HANDLING FOR BOOTSTRAP TOOLTIPS
+	// ========================================
+
+	// Suppress Bootstrap tooltip _isWithActiveTrigger errors (known bug with dynamic content)
+	window.addEventListener('error', function(e) {
+		if (e.message && e.message.includes('_isWithActiveTrigger')) {
+			e.preventDefault();
+			return true;
+		}
+	});
+
+	// ========================================
 	// DATATABLES ERROR HANDLING
 	// ========================================
 
@@ -149,9 +163,20 @@ $(function() {
 		try {
 			$('.spottable [data-bs-toggle="tooltip"]').each(function() {
 				try {
-					const tooltipInstance = bootstrap.Tooltip.getInstance(this);
-					if (tooltipInstance) {
-						tooltipInstance.dispose();
+					if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
+						// Use safeDisposeTooltip if available (from cat.js), otherwise dispose directly
+						if (typeof window.safeDisposeTooltip === 'function') {
+							window.safeDisposeTooltip(this);
+						} else {
+							const tooltipInstance = bootstrap.Tooltip.getInstance(this);
+							if (tooltipInstance) {
+								// Set _activeTrigger to empty object to prevent _isWithActiveTrigger error
+								if (tooltipInstance._activeTrigger) {
+									tooltipInstance._activeTrigger = {};
+								}
+								try { tooltipInstance.dispose(); } catch(e) {}
+							}
+						}
 					}
 				} catch (err) {
 					// Skip individual tooltip errors
@@ -295,6 +320,7 @@ $(function() {
 
 		// Required flags buttons
 		const requiredFlagButtons = [
+			{ id: '#toggleMySubmodesFilter', flag: 'mysubmodes' },
 			{ id: '#toggleLotwFilter', flag: 'lotw' },
 			{ id: '#toggleDxSpotFilter', flag: 'dxspot' },
 			{ id: '#toggleNewContinentFilter', flag: 'newcontinent' },
@@ -382,9 +408,69 @@ $(function() {
 			});
 		}
 
+		// List of all filter select IDs
+		const FILTER_SELECT_IDS = ['cwnSelect', 'decontSelect', 'continentSelect', 'band', 'mode', 'additionalFlags', 'requiredFlags'];
+
+		// Map of storage keys to select IDs
+		const FILTER_KEY_TO_SELECT = {
+			cwn: 'cwnSelect',
+			deCont: 'decontSelect',
+			continent: 'continentSelect',
+			band: 'band',
+			mode: 'mode',
+			additionalFlags: 'additionalFlags',
+			requiredFlags: 'requiredFlags'
+		};
+
+		// Map currentFilters keys to storage keys
+		const CURRENT_TO_STORAGE_KEY = {
+			cwn: 'cwn',
+			deContinent: 'deCont',
+			spottedContinent: 'continent',
+			band: 'band',
+			mode: 'mode',
+			additionalFlags: 'additionalFlags',
+			requiredFlags: 'requiredFlags'
+		};
+
+		/**
+		 * Build filter data object from currentFilters for storage
+		 * @param {string} [favName] - Optional favorite name to include
+		 * @returns {Object} Filter data with storage keys
+		 */
+		function buildFilterDataFromCurrent(favName) {
+			let filterData = {};
+			if (favName) filterData.fav_name = favName;
+			Object.entries(CURRENT_TO_STORAGE_KEY).forEach(([currentKey, storageKey]) => {
+				filterData[storageKey] = currentFilters[currentKey];
+			});
+			// Include My Submodes filter state
+			filterData.mySubmodesActive = isMySubmodesFilterActive;
+			return filterData;
+		}
+
+		/**
+		 * Set all filter values from an object
+		 * @param {Object} filterData - Object with filter keys (cwn, deCont, continent, band, mode, additionalFlags, requiredFlags)
+		 */
+		function setAllFilterValues(filterData) {
+			Object.entries(FILTER_KEY_TO_SELECT).forEach(([key, selectId]) => {
+				if (filterData[key] !== undefined) {
+					$('#' + selectId).val(filterData[key]);
+				}
+			});
+		}
+
+		/**
+		 * Update checkbox indicators for all filter selects
+		 */
+		function updateAllSelectCheckboxes() {
+			FILTER_SELECT_IDS.forEach(selectId => updateSelectCheckboxes(selectId));
+		}
+
 		// Initialize checkbox indicators for all filter selects
 		function initFilterCheckboxes() {
-			['cwnSelect', 'decontSelect', 'continentSelect', 'band', 'mode', 'additionalFlags', 'requiredFlags'].forEach(selectId => {
+			FILTER_SELECT_IDS.forEach(selectId => {
 				updateSelectCheckboxes(selectId);
 				$(`#${selectId}`).on('change', () => updateSelectCheckboxes(selectId));
 			});
@@ -440,6 +526,9 @@ $(function() {
 		$(this).val(currentValues);
 		updateFilterIcon();
 
+		// Sync My Submodes button state from requiredFlags
+		syncMySubmodesFromRequiredFlags();
+
 		// Apply filters with debouncing
 		debouncedApplyFilters(150);
 	});
@@ -489,7 +578,7 @@ $(function() {
 					}
 				},
 				{
-					'targets': [4, 6, 8, 15],  // Submode, Cont, Flag, Message - disable sorting
+					'targets': [6, 8, 15],  // Cont, Flag, Message - disable sorting
 					'orderable': false
 				}
 			],
@@ -620,6 +709,13 @@ $(function() {
 	var refreshCountdown = SPOT_REFRESH_INTERVAL;
 	var refreshTimerInterval = null;
 
+	// Helper function to update refresh timer display (respects compact width)
+	function updateRefreshTimerDisplay() {
+		let isCompactWidth = window.matchMedia('(max-width: 1200px)').matches;
+		$('#refreshIcon').removeClass('fa-spinner fa-spin').addClass('fa-hourglass-half');
+		$('#refreshTimer').html(isCompactWidth ? `${refreshCountdown}s` : (lang_bandmap_next_update + ' ' + refreshCountdown + 's'));
+	}
+
 	// ========================================
 	// STATUS BAR & UI UPDATES
 	// ========================================
@@ -658,7 +754,18 @@ $(function() {
 
 	let now = new Date();
 	let timeStr = `${now.getUTCHours().toString().padStart(2, '0')}:${now.getUTCMinutes().toString().padStart(2, '0')}Z`;
-	let statusMessage = `${totalSpots} ${lang_bandmap_spots_fetched} @ ${timeStr}`;
+
+	// Check if we're at compact breakpoint (≤1200px)
+	let isCompactWidth = window.matchMedia('(max-width: 1200px)').matches;
+
+	let statusMessage;
+	if (isCompactWidth) {
+		// Compact format: (i) xxx/yyy @ HH:MMZ
+		statusMessage = `${displayedSpots}/${totalSpots} @ ${timeStr}`;
+	} else {
+		// Full format
+		statusMessage = `${totalSpots} ${lang_bandmap_spots_fetched} @ ${timeStr}`;
+	}
 	let allFilters = [];		if (serverFilters && serverFilters.length > 0) {
 			allFilters = allFilters.concat(serverFilters.map(f => `de "${f}"`));
 		}
@@ -673,13 +780,15 @@ $(function() {
 			allFilters.push(`search: "${searchValue}"`);
 		}
 
-	// Build status message
-	if (allFilters.length > 0) {
-		statusMessage += `, ${lang_bandmap_showing} ${displayedSpots}`;
-	} else if (displayedSpots < totalSpots) {
-		statusMessage += `, ${lang_bandmap_showing} ${displayedSpots}`;
-	} else if (totalSpots > 0) {
-		statusMessage += `, ${lang_bandmap_showing_all}`;
+	// Build status message - only add "showing" text in full mode (compact already has displayed/total)
+	if (!isCompactWidth) {
+		if (allFilters.length > 0) {
+			statusMessage += `, ${lang_bandmap_showing} ${displayedSpots}`;
+		} else if (displayedSpots < totalSpots) {
+			statusMessage += `, ${lang_bandmap_showing} ${displayedSpots}`;
+		} else if (totalSpots > 0) {
+			statusMessage += `, ${lang_bandmap_showing_all}`;
+		}
 	}		// Build tooltip for status message (fetch information)
 		let fetchTooltipLines = [`${lang_bandmap_last_fetched}:`];
 		fetchTooltipLines.push(`${lang_bandmap_band}: ${lastFetchParams.band || lang_bandmap_all}`);
@@ -700,15 +809,20 @@ $(function() {
 	$('#statusFilterInfo').remove();
 	if (allFilters.length > 0) {
 		let filterTooltip = lang_bandmap_active_filters + ':\n' + allFilters.join('\n');
-		$('#statusMessage').after(' <i class="fas fa-info-circle text-muted" id="statusFilterInfo" style="cursor: help;" title="' + filterTooltip.replace(/"/g, '&quot;') + '"></i>');
+		if (isCompactWidth) {
+			// In compact mode, prepend (i) icon before the status message
+			$('#statusMessage').prepend('<i class="fas fa-info-circle text-muted me-1" id="statusFilterInfo" style="cursor: help;" title="' + filterTooltip.replace(/"/g, '&quot;') + '"></i>');
+		} else {
+			$('#statusMessage').after(' <i class="fas fa-info-circle text-muted" id="statusFilterInfo" style="cursor: help;" title="' + filterTooltip.replace(/"/g, '&quot;') + '"></i>');
+		}
 	}
 
 	if (isFetching) {
 		$('#refreshIcon').removeClass('fa-hourglass-half').addClass('fa-spinner fa-spin');
-		$('#refreshTimer').html(lang_bandmap_fetching);
+		$('#refreshTimer').html(isCompactWidth ? '...' : lang_bandmap_fetching);
 	} else {
 		$('#refreshIcon').removeClass('fa-spinner fa-spin').addClass('fa-hourglass-half');
-		$('#refreshTimer').html(lang_bandmap_next_update + ' ' + refreshCountdown + 's');
+		$('#refreshTimer').html(isCompactWidth ? `${refreshCountdown}s` : (lang_bandmap_next_update + ' ' + refreshCountdown + 's'));
 	}
 }	function getDisplayedSpotCount() {
 		var table = get_dtable();
@@ -742,12 +856,43 @@ $(function() {
 				refreshCountdown = SPOT_REFRESH_INTERVAL;
 			} else {
 				if (!isFetchInProgress && lastFetchParams.timestamp !== null) {
-					$('#refreshIcon').removeClass('fa-spinner fa-spin').addClass('fa-hourglass-half');
-					$('#refreshTimer').html(lang_bandmap_next_update + ' ' + refreshCountdown + 's');
+					updateRefreshTimerDisplay();
 				}
 			}
 		}, 1000);
 	}
+
+	// Handle page visibility changes (tab switching, minimize, etc.)
+	// Remove expiring spots when hidden, fetch fresh data when returning (if away > 1 minute)
+	document.addEventListener('visibilitychange', function() {
+		if (document.hidden) {
+			// Dispose tooltips to prevent Bootstrap errors
+			disposeTooltips();
+			// Remove TTL<=0 (red/expiring) spots - they'll be stale when we return
+			let keysToDelete = [];
+			spotTTLMap.forEach(function(ttl, key) {
+				if (ttl <= 0) keysToDelete.push(key);
+			});
+			keysToDelete.forEach(function(key) {
+				spotTTLMap.delete(key);
+			});
+			// Also remove from cachedSpotData and redraw table
+			if (cachedSpotData && keysToDelete.length > 0) {
+				let keySet = new Set(keysToDelete);
+				cachedSpotData = cachedSpotData.filter(function(spot) {
+					return !keySet.has(getSpotKey(spot));
+				});
+				renderFilteredSpots();
+			}
+		} else if (lastFetchParams.timestamp) {
+			// Only refresh if last fetch was more than 60 seconds ago
+			const timeSinceLastFetch = Date.now() - lastFetchParams.timestamp.getTime();
+			if (timeSinceLastFetch > 60000) {
+				fill_list(lastFetchParams.continent, lastFetchParams.maxAge, lastFetchParams.band || 'All');
+				refreshCountdown = SPOT_REFRESH_INTERVAL;
+			}
+		}
+	});
 
 	// Build array of server-side filter labels for display
 	function getServerFilterText() {
@@ -840,10 +985,14 @@ $(function() {
 		var table = get_dtable();
 
 		if (!cachedSpotData || cachedSpotData.length === 0) {
-			disposeTooltips();
-			table.clear();
-			table.settings()[0].oLanguage.sEmptyTable = lang_bandmap_no_data;
-			table.draw();
+			// Only show "no data" if not currently fetching
+			// During fetch, keep showing current table contents
+			if (!isFetchInProgress) {
+				disposeTooltips();
+				table.clear();
+				table.settings()[0].oLanguage.sEmptyTable = lang_bandmap_no_data;
+				table.draw();
+			}
 			return;
 		}
 
@@ -886,6 +1035,10 @@ $(function() {
 			for (let i = 0; i < requiredFlags.length; i++) {
 				const reqFlag = requiredFlags[i];
 				switch (reqFlag) {
+					case 'mysubmodes':
+						// My Submodes: spot's submode must match user's enabled submodes
+						if (!matchesUserSubmodes(single.submode)) return;
+						break;
 					case 'lotw':
 						if (!dxccSpotted || !dxccSpotted.lotw_user) return;
 						break;
@@ -931,7 +1084,9 @@ $(function() {
 		if (deContinentSet && (!dxccSpotter || !dxccSpotter.cont || !deContinentSet.has(dxccSpotter.cont))) return;
 
 		// Apply spotted continent filter (which continent the DX station is in)
-		if (spottedContinentSet && (!dxccSpotted || !dxccSpotted.cont || !spottedContinentSet.has(dxccSpotted.cont))) return;		// Apply mode filter (API already returns mode categories)
+		if (spottedContinentSet && (!dxccSpotted || !dxccSpotted.cont || !spottedContinentSet.has(dxccSpotted.cont))) return;
+
+		// Apply mode filter (API already returns mode categories)
 		if (modeSet && (!single.mode || !modeSet.has(single.mode))) return;
 
 		// Apply additional flags filter (POTA, SOTA, WWFF, IOTA, Contest, Fresh)
@@ -971,16 +1126,14 @@ $(function() {
 			} else {
 				dxcc_wked_info = "text-danger";
 			}
-			// Color code callsign: green=confirmed, yellow=worked
-			if (single.cnfmd_call) {
-				wked_info = "text-success";
-			} else if (single.worked_call) {
-				wked_info = "text-warning";
-			} else {
-				wked_info = "";
-			}
-
-		// Build LoTW badge with color coding based on last upload age
+		// Color code callsign: green=confirmed, yellow=worked, red=new
+		if (single.cnfmd_call) {
+			wked_info = "text-success";
+		} else if (single.worked_call) {
+			wked_info = "text-warning";
+		} else {
+			wked_info = "text-danger";
+		}		// Build LoTW badge with color coding based on last upload age
 		var lotw_badge = '';
 		if (single.dxcc_spotted && single.dxcc_spotted.lotw_user) {
 			let lclass = '';
@@ -1245,36 +1398,52 @@ $(function() {
 			});
 		}
 
+		// Apply responsive column visibility after rendering
+		if (typeof handleResponsiveColumns === 'function') {
+			handleResponsiveColumns();
+		}
+
 		// Add hover tooltips to all rows
 		$('.spottable tbody tr').each(function() {
 			$(this).attr('title', lang_click_to_prepare_logging);
+			$(this).attr('data-bs-toggle', 'tooltip');
+			$(this).attr('data-bs-placement', 'top');
 		});
 
 	// Initialize tooltips with error handling
 	try {
-		$('[data-bs-toggle="tooltip"]').each(function() {
-			if (!this || !$(this).attr('title')) return;
+		if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
+			$('[data-bs-toggle="tooltip"]').each(function() {
+				if (!this || !$(this).attr('title')) return;
 
-			try {
-				// Dispose existing tooltip instance if it exists
-				const existingTooltip = bootstrap.Tooltip.getInstance(this);
-				if (existingTooltip) {
-					existingTooltip.dispose();
+				try {
+					// Dispose existing tooltip instance if it exists
+					if (typeof window.safeDisposeTooltip === 'function') {
+						window.safeDisposeTooltip(this);
+					} else {
+						const existingTooltip = bootstrap.Tooltip.getInstance(this);
+						if (existingTooltip) {
+							if (existingTooltip._activeTrigger) {
+								existingTooltip._activeTrigger = {};
+							}
+							try { existingTooltip.dispose(); } catch(e) {}
+						}
+					}
+
+					// Create new tooltip instance with proper configuration
+					new bootstrap.Tooltip(this, {
+						boundary: 'window',
+						trigger: 'hover',
+						sanitize: false,
+						html: false,
+						animation: true,
+						delay: { show: 100, hide: 100 }
+					});
+				} catch (err) {
+					// Skip if tooltip fails to initialize
 				}
-
-				// Create new tooltip instance with proper configuration
-				new bootstrap.Tooltip(this, {
-					boundary: 'window',
-					trigger: 'hover',
-					sanitize: false,
-					html: false,
-					animation: true,
-					delay: { show: 100, hide: 100 }
-				});
-			} catch (err) {
-				// Skip if tooltip fails to initialize
-			}
-		});
+			});
+		}
 	} catch (e) {
 		// Fallback if tooltip initialization fails
 	}		let displayedCount = spots2render || 0;
@@ -1293,8 +1462,7 @@ $(function() {
 			if (!isFetchInProgress) {
 				let actualDisplayedCount = table.rows({search: 'applied'}).count();
 				updateStatusBar(cachedSpotData.length, actualDisplayedCount, getServerFilterText(), getClientFilterText(), false, false);
-				$('#refreshIcon').removeClass('fa-spinner fa-spin').addClass('fa-hourglass-half');
-				$('#refreshTimer').html(lang_bandmap_next_update + ' ' + refreshCountdown + 's');
+				updateRefreshTimerDisplay();
 			}
 
 			// Update DX Map only if visible (don't waste resources)
@@ -1473,9 +1641,10 @@ $(function() {
 				}
 			});
 
-		// Update individual MF/HF band button badges
+		// Update individual MF/HF/6m band button badges
+		// Note: 6m has its own separate button (not part of VHF group)
 		const mfHfBands = [
-			'160m', '80m', '60m', '40m', '30m', '20m', '17m', '15m', '12m', '10m'
+			'160m', '80m', '60m', '40m', '30m', '20m', '17m', '15m', '12m', '10m', '6m'
 		];
 
 		mfHfBands.forEach(band => {
@@ -1517,6 +1686,7 @@ $(function() {
 
 		// Count spots for quick filter badges
 		let quickFilterCounts = {
+			mysubmodes: 0,
 			lotw: 0,
 			dxspot: 0,
 			newcontinent: 0,
@@ -1557,6 +1727,7 @@ $(function() {
 			if (selectedModeSet && (!spot.mode || !selectedModeSet.has(spot.mode))) return;
 
 			// Count quick filter matches (use cached references)
+			if (spot.submode && userEnabledSubmodes.length > 0 && userEnabledSubmodes.some(m => m.toUpperCase() === spot.submode.toUpperCase())) quickFilterCounts.mysubmodes++;
 			if (dxccSpotted && dxccSpotted.lotw_user) quickFilterCounts.lotw++;
 			if (dxccSpotted?.cont && dxccSpotter?.cont && dxccSpotted.cont !== dxccSpotter.cont) quickFilterCounts.dxspot++;
 			if (spot.worked_continent === false) quickFilterCounts.newcontinent++;
@@ -1569,6 +1740,7 @@ $(function() {
 
 		// Update quick filter badges
 		const quickFilters = [
+			{ id: 'toggleMySubmodesFilter', count: quickFilterCounts.mysubmodes },
 			{ id: 'toggleLotwFilter', count: quickFilterCounts.lotw },
 			{ id: 'toggleDxSpotFilter', count: quickFilterCounts.dxspot },
 			{ id: 'toggleNewContinentFilter', count: quickFilterCounts.newcontinent },
@@ -1693,9 +1865,11 @@ $(function() {
 					if (cachedSpot && cachedSpot.band) {
 						shouldDecrementTTL = (cachedSpot.band === bandForAPI);
 					}
-				}					if (shouldDecrementTTL) {
-						newTTL = ttl - 1;  // Decrement only if in scope of this fetch
-					}
+				}
+
+				if (shouldDecrementTTL) {
+					newTTL = ttl - 1;  // Decrement only if in scope of this fetch
+				}
 
 					if (newSpotKeys.has(key)) {
 						newTTL = 1;  // Reset to 1 if spot still exists (keeps it valid)
@@ -1891,25 +2065,21 @@ $(function() {
 	});
 
 	$("#clearFiltersButton").on("click", function() {
-		// Preserve current band selection if CAT Control is enabled
-		let currentBand = isCatTrackingEnabled ? $('#band').val() : null;
+		// Preserve current band selection only if band lock (purple mode) is active
+		let currentBand = window.isFrequencyMarkerEnabled === true ? $('#band').val() : null;
 
-		$('#cwnSelect').val(['All']);
-		$('#decontSelect').val(['Any']);
-		$('#continentSelect').val(['Any']);
-		$('#band').val(currentBand || ['All']); // Preserve band if CAT is enabled
-		$('#mode').val(['All']);
-		$('#additionalFlags').val(['All']);
-		$('#requiredFlags').val([]);
+		setAllFilterValues({
+			cwn: ['All'],
+			deCont: ['Any'],
+			continent: ['Any'],
+			band: currentBand || ['All'],
+			mode: ['All'],
+			additionalFlags: ['All'],
+			requiredFlags: []
+		});
 
 		// Update checkbox indicators for all selects
-		updateSelectCheckboxes('cwnSelect');
-		updateSelectCheckboxes('decontSelect');
-		updateSelectCheckboxes('continentSelect');
-		updateSelectCheckboxes('band');
-		updateSelectCheckboxes('mode');
-		updateSelectCheckboxes('additionalFlags');
-		updateSelectCheckboxes('requiredFlags');
+		updateAllSelectCheckboxes();
 
 		// Clear text search
 		$('#spotSearchInput').val('');
@@ -1921,8 +2091,8 @@ $(function() {
 		applyFilters(true);
 		$('#filterDropdown').dropdown('hide');
 
-		if (isCatTrackingEnabled && typeof showToast === 'function') {
-			showToast(lang_bandmap_clear_filters, lang_bandmap_band_preserved, 'bg-info text-white', 2000);
+		if (window.isFrequencyMarkerEnabled === true && typeof showToast === 'function') {
+			showToast(lang_bandmap_clear_filters, lang_bandmap_band_preserved, 'bg-info text-white', 5000);
 		}
 	});
 
@@ -1930,13 +2100,13 @@ $(function() {
 	$("#clearFiltersButtonQuick").on("click", function() {
 		// Preserve current De Continent selection
 		let currentDecont = $('#decontSelect').val();
-		// Preserve current band selection if CAT Control is enabled
-		let currentBand = isCatTrackingEnabled ? $('#band').val() : null;
+		// Preserve current band selection only if band lock (purple mode) is active
+		let currentBand = window.isFrequencyMarkerEnabled === true ? $('#band').val() : null;
 
 		// Reset all other filters
 		$('#cwnSelect').val(['All']).trigger('change');
 		$('#continentSelect').val(['Any']).trigger('change');
-		$('#band').val(currentBand || ['All']).trigger('change'); // Preserve band if CAT is enabled
+		$('#band').val(currentBand || ['All']).trigger('change'); // Preserve band if band lock is active
 		$('#mode').val(['All']).trigger('change');
 		$('#additionalFlags').val(['All']).trigger('change');
 		$('#requiredFlags').val([]).trigger('change');
@@ -1953,10 +2123,168 @@ $(function() {
 		updateFilterIcon();
 		applyFilters(false);  // Don't refetch from server since De Continent is preserved
 
-		if (isCatTrackingEnabled && typeof showToast === 'function') {
-			showToast(lang_bandmap_clear_filters, lang_bandmap_band_preserved, 'bg-info text-white', 2000);
+		if (window.isFrequencyMarkerEnabled === true && typeof showToast === 'function') {
+			showToast(lang_bandmap_clear_filters, lang_bandmap_band_preserved, 'bg-info text-white', 5000);
 		}
 	});
+
+	// ========================================
+	// DX CLUSTER FILTER FAVORITES
+	// ========================================
+
+	let dxclusterFavs = {};
+
+	/**
+	 * Apply saved filter values to UI and trigger filter application
+	 * When band lock is active, band filter is preserved (not restored from favorites)
+	 */
+	function applyDxClusterFilterValues(filterData) {
+		// If band lock is active, preserve current band filter
+		// window.isFrequencyMarkerEnabled is set to true when lock mode is enabled
+		if (window.isFrequencyMarkerEnabled === true) {
+			// Create a copy without the band filter
+			let filteredData = Object.assign({}, filterData);
+			delete filteredData.band;
+			setAllFilterValues(filteredData);
+			// Show toast that band filter was preserved
+			if (typeof showToast === 'function') {
+				showToast(lang_bandmap_filter_favorites, lang_bandmap_band_preserved, 'bg-info text-white', 5000);
+			}
+		} else {
+			setAllFilterValues(filterData);
+		}
+
+		// Restore My Submodes filter state if stored (and user has submodes enabled)
+		if (filterData.mySubmodesActive !== undefined && userEnabledSubmodes.length > 0) {
+			isMySubmodesFilterActive = filterData.mySubmodesActive;
+			updateMySubmodesButtonVisual();
+			updateModeButtonsForSubmodes();
+		}
+
+		updateAllSelectCheckboxes();
+		syncQuickFilterButtons();
+		updateFilterIcon();
+		applyFilters(true);
+	}
+
+	function saveDxClusterFav() {
+		// Check preset limit (max 20)
+		if (Object.keys(dxclusterFavs).length >= 20) {
+			showToast && showToast(lang_bandmap_filter_favorites, lang_bandmap_preset_limit_reached, 'bg-warning text-dark', 4000);
+			return;
+		}
+
+		let favName = prompt(lang_bandmap_filter_preset_name);
+		if (!favName || favName.trim() === '') return;
+
+		// Build filter data from currentFilters using helper
+		let filterData = buildFilterDataFromCurrent(favName.trim());
+
+		$.ajax({
+			url: base_url + 'index.php/user_options/add_edit_dxcluster_fav',
+			method: 'POST',
+			dataType: 'json',
+			contentType: 'application/json; charset=utf-8',
+			data: JSON.stringify(filterData),
+			success: function(result) {
+				if (result.success) {
+					getDxClusterFavs();
+					showToast && showToast(lang_bandmap_filter_favorites, lang_bandmap_filter_preset_saved, 'bg-success text-white', 2000);
+				}
+			},
+			error: function() {
+				showToast && showToast(lang_bandmap_filter_favorites, lang_bandmap_favorites_failed, 'bg-danger text-white', 3000);
+			}
+		});
+	}
+
+	function getDxClusterFavs() {
+		$.ajax({
+			url: base_url + 'index.php/user_options/get_dxcluster_user_favs_and_settings',
+			method: 'GET',
+			dataType: 'json',
+			success: function(result) {
+				// Handle combined response with favorites and userConfig
+				dxclusterFavs = result.favorites || {};
+				renderDxClusterFavMenu();
+
+				// Process user config (bands/modes/submodes)
+				if (result.userConfig) {
+					processUserConfig(result.userConfig);
+				}
+			}
+		});
+	}
+
+	function renderDxClusterFavMenu() {
+		let $menu = $('#dxcluster_fav_menu').empty();
+
+		let keys = Object.keys(dxclusterFavs);
+		if (keys.length === 0) {
+			$menu.append('<span class="dropdown-item-text text-muted"><em>' + lang_bandmap_no_filter_presets + '</em></span>');
+			return;
+		}
+
+		keys.forEach(function(key) {
+			// Build the menu item with data attribute on the parent div for easier click handling
+			let $item = $('<div class="dropdown-item d-flex justify-content-between align-items-center dxcluster_fav_item" style="cursor: pointer;"></div>').attr('data-fav-name', key);
+			let $nameSpan = $('<span></span>').text(key);
+			let $deleteBtn = $('<span class="badge bg-danger dxcluster_fav_del ms-2"></span>').attr('data-fav-name', key).attr('title', lang_general_word_delete).html('<i class="fas fa-trash-alt"></i>');
+			$menu.append($item.append($nameSpan).append($deleteBtn));
+		});
+	}
+
+	function delDxClusterFav(name) {
+		if (!confirm(lang_bandmap_delete_filter_confirm)) return;
+
+		$.ajax({
+			url: base_url + 'index.php/user_options/del_dxcluster_fav',
+			method: 'POST',
+			dataType: 'json',
+			contentType: 'application/json; charset=utf-8',
+			data: JSON.stringify({ option_name: name }),
+			success: function(result) {
+				if (result.success) {
+					getDxClusterFavs();
+					showToast && showToast(lang_bandmap_filter_favorites, lang_bandmap_filter_preset_deleted, 'bg-info text-white', 2000);
+				}
+			}
+		});
+	}
+
+	// Event handlers
+	$('#dxcluster_fav_add').on('click', function(e) {
+		e.preventDefault();
+		saveDxClusterFav();
+	});
+
+	$(document).on('click', '.dxcluster_fav_del', function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+		delDxClusterFav($(this).data('fav-name'));
+	});
+
+	// Click on the entire favorite item row (but not the delete button)
+	$(document).on('click', '.dxcluster_fav_item', function(e) {
+		// Don't trigger if clicking the delete button
+		if ($(e.target).closest('.dxcluster_fav_del').length) return;
+
+		e.preventDefault();
+		let name = $(this).data('fav-name');
+		if (dxclusterFavs[name]) {
+			applyDxClusterFilterValues(dxclusterFavs[name]);
+			// Escape name for toast display (showToast uses innerHTML)
+			let safeName = $('<div>').text(name).html();
+			showToast && showToast(lang_bandmap_filter_favorites, lang_bandmap_filter_preset_loaded + ': ' + safeName, 'bg-success text-white', 2000);
+		}
+	});
+
+	// Load favorites on page load
+	getDxClusterFavs();
+
+	// ========================================
+	// END DX CLUSTER FILTER FAVORITES
+	// ========================================
 
 	// Sync button states when dropdown is shown
 	$('#filterDropdown').on('show.bs.dropdown', function() {
@@ -2007,14 +2335,20 @@ $(function() {
 
 		// If "None" (value "0") is selected, automatically disable CAT Control
 		if (selectedRadio === "0") {
-
-
 			// If CAT Control is currently enabled, turn it off
 			if (isCatTrackingEnabled) {
-				let btn = $('#toggleCatTracking');
-				btn.removeClass('btn-success').addClass('btn-secondary');
 				isCatTrackingEnabled = false;
 				window.isCatTrackingEnabled = false;
+				catState = 'off';
+
+				// Also disable lock mode if enabled
+				if (window.isFrequencyMarkerEnabled) {
+					window.isFrequencyMarkerEnabled = false;
+					enableBandFilterControls();
+					unlockTableSorting();
+					clearFrequencyGradientColors();
+					updateLockButtonVisual(false);
+				}
 
 				// Show offline status instead of just hiding
 				if (typeof window.displayOfflineStatus === 'function') {
@@ -2023,21 +2357,17 @@ $(function() {
 					$('#radio_cat_state').remove();
 				}
 
-				// Re-enable band filter controls
-				enableBandFilterControls();
-
-				// Unlock table sorting
-				unlockTableSorting();
-
 				// Reset band filter to 'All' and fetch all bands
 				const currentBands = $("#band").val() || [];
 				if (currentBands.length !== 1 || currentBands[0] !== 'All') {
-
 					$("#band").val(['All']);
 					updateSelectCheckboxes('band');
 					syncQuickFilterButtons();
-					applyFilters(true); // Force reload to fetch all bands
+					applyFilters(true);
 				}
+
+				updateCatButtonVisual(false);
+				updateLockButtonState(false);
 
 				if (typeof showToast === 'function') {
 					showToast(lang_bandmap_radio, lang_bandmap_radio_none, 'bg-info text-white', 3000);
@@ -2285,14 +2615,11 @@ $(function() {
 	window.isCatTrackingEnabled = isCatTrackingEnabled; // Expose to window for cat.js
 	var currentRadioFrequency = null; // Store current radio frequency in kHz
 	var lastGradientFrequency = null; // Track last frequency used for gradient update
+	var lastRadioBand = null; // Store last valid band from radio frequency updates
 
-	// Three-state CAT control: 'off', 'on', 'on+marker'
+	// Two-state CAT control: 'off', 'on', with separate 'on+marker' for lock mode
 	var catState = 'off';
-	window.isFrequencyMarkerEnabled = false; // Purple mode indicator
-
-	// Click detection for single/double-click
-	var catClickTimer = null;
-	var catClickPreventSingle = false;
+	window.isFrequencyMarkerEnabled = false; // Lock mode (purple mode) indicator
 
 	/**
 	 * Calculate frequency gradient color based on distance from radio frequency
@@ -2449,10 +2776,17 @@ $(function() {
 
 	// Override updateCATui to add bandmap-specific behavior
 	window.updateCATui = function(data) {
+		// Store last CAT data globally for other components (same as cat.js does)
+		window.lastCATData = data;
+
 		// Determine band from frequency
 		const band = frequencyToBand(data.frequency);
 		// Store current radio frequency (convert Hz to kHz)
 		currentRadioFrequency = data.frequency / 1000;
+		// Store last valid band from radio (used when entering purple mode)
+		if (band && band !== '') {
+			lastRadioBand = band;
+		}
 
 		// Bandmap-specific: Update band filter only in purple mode
 		if (isFrequencyMarkerEnabled) {
@@ -2489,28 +2823,23 @@ $(function() {
 			}
 		}
 
+		// Display radio status when CAT is enabled (don't call full catJsUpdateCATui as it updates QSO form fields)
+		// But we need to check for stale data like cat.js does
+		if (isCatTrackingEnabled && typeof window.displayRadioStatus === 'function') {
+			// Check if data is too old (same logic as cat.js updateCATui)
+			var minutes = typeof cat_timeout_minutes !== 'undefined' ? cat_timeout_minutes : 5;
+			if (data.updated_minutes_ago > minutes) {
+				// Data is stale - show timeout
+				var radioName = $('select.radios option:selected').text();
+				window.displayRadioStatus('timeout', radioName);
+			} else {
+				window.displayRadioStatus('success', data);
+			}
+		}
+
 		// Update frequency gradient colors for all visible rows (works in both normal and purple CAT modes)
 		if (isCatTrackingEnabled) {
 			updateFrequencyGradientColors();
-		}
-
-		// Call cat.js's original updateCATui for standard CAT UI updates
-		if (typeof catJsUpdateCATui === 'function') {
-
-			// Store current band selection before calling cat.js updateCATui
-			const bandBeforeUpdate = $("#band").val();
-
-			catJsUpdateCATui(data);
-
-			// Restore the band selection unless we're in purple mode
-			// (cat.js updateCATui automatically sets band based on frequency, but we only want that in purple mode)
-			if (!window.isFrequencyMarkerEnabled && bandBeforeUpdate) {
-				$("#band").val(bandBeforeUpdate);
-				updateSelectCheckboxes('band');
-				syncQuickFilterButtons();
-			}
-		} else {
-			console.warn('Bandmap: cat.js updateCATui not available');
 		}
 	};
 
@@ -2549,6 +2878,9 @@ $(function() {
 			}
 
 			setTimeout(function() {
+				if (typeof handleResponsiveColumns === 'function') {
+					handleResponsiveColumns();
+				}
 				if ($.fn.DataTable.isDataTable('.spottable')) {
 					$('.spottable').DataTable().columns.adjust();
 				}
@@ -2573,6 +2905,9 @@ $(function() {
 			}
 
 			setTimeout(function() {
+				if (typeof handleResponsiveColumns === 'function') {
+					handleResponsiveColumns();
+				}
 				if ($.fn.DataTable.isDataTable('.spottable')) {
 					$('.spottable').DataTable().columns.adjust();
 				}
@@ -2587,11 +2922,62 @@ $(function() {
 	});
 
 	// ========================================
+	// COMPACT MODE TOGGLE
+	// ========================================
+
+	let isCompactMode = false;
+
+	$('#compactModeToggle').on('click', function() {
+		const compactableRows = $('.menu-bar .compactable-row');
+		const icon = $('#compactModeIcon');
+
+		if (!isCompactMode) {
+			compactableRows.addClass('compact-hidden').hide();
+			icon.removeClass('fa-compress-alt').addClass('fa-expand-alt');
+			isCompactMode = true;
+		} else {
+			compactableRows.removeClass('compact-hidden').show();
+			icon.removeClass('fa-expand-alt').addClass('fa-compress-alt');
+			isCompactMode = false;
+		}
+
+		// Adjust DataTable columns after toggle
+		setTimeout(function() {
+			if (typeof handleResponsiveColumns === 'function') {
+				handleResponsiveColumns();
+			}
+			if ($.fn.DataTable.isDataTable('.spottable')) {
+				$('.spottable').DataTable().columns.adjust();
+			}
+		}, 100);
+	});
+
+	// ========================================
+	// WINDOW RESIZE - UPDATE STATUS BAR FORMAT
+	// ========================================
+
+	let statusResizeTimeout;
+	$(window).on('resize', function() {
+		clearTimeout(statusResizeTimeout);
+		statusResizeTimeout = setTimeout(function() {
+			// Update status bar to reflect compact/full format based on new width
+			if (lastFetchParams.timestamp !== null) {
+				var table = get_dtable();
+				var displayedSpots = table.rows({search: 'applied'}).count();
+				var totalSpots = table.rows().count();
+				updateStatusBar(totalSpots, displayedSpots, getServerFilterText(), getClientFilterText(), false, false);
+			}
+		}, 150);
+	});
+
+	// ========================================
 	// QUICK FILTER TOGGLE BUTTONS
 	// ========================================
 
 	// Toggle CW mode filter
 	$('#toggleCwFilter').on('click', function() {
+		if ($(this).data('mode-disabled')) return; // Disabled by My Submodes filter
+
 		let currentValues = $('#mode').val() || [];
 
 		// Remove 'All' if present
@@ -2620,6 +3006,8 @@ $(function() {
 
 	// Toggle Digital mode filter
 	$('#toggleDigiFilter').on('click', function() {
+		if ($(this).data('mode-disabled')) return; // Disabled by My Submodes filter
+
 		let currentValues = $('#mode').val() || [];
 
 		// Remove 'All' if present
@@ -2648,6 +3036,8 @@ $(function() {
 
 	// Toggle Phone mode filter
 	$('#togglePhoneFilter').on('click', function() {
+		if ($(this).data('mode-disabled')) return; // Disabled by My Submodes filter
+
 		let currentValues = $('#mode').val() || [];
 
 		// Remove 'All' if present
@@ -2979,69 +3369,142 @@ $(function() {
 		applyFilters(false);
 	});
 
-	// Toggle Favorites filter - applies user's active bands and modes
-	$('#toggleFavoritesFilter').on('click', function() {
-		// Use cached favorites if available, otherwise fetch
-		if (cachedUserFavorites !== null) {
-			applyUserFavorites(cachedUserFavorites);
-		} else {
-			// Fallback: fetch if cache is not available
-			let base_url = dxcluster_provider.replace('/dxcluster', '');
-			$.ajax({
-				url: base_url + '/bandmap/get_user_favorites',
-				method: 'GET',
-				dataType: 'json',
-				success: function(favorites) {
-					cachedUserFavorites = favorites;
-					applyUserFavorites(favorites);
-				},
-				error: function() {
-					showToast(lang_bandmap_my_favorites, lang_bandmap_favorites_failed, 'bg-danger text-white', 3000);
-				}
-			});
-		}
+	// ========================================
+	// MY SUBMODES FILTER TOGGLE
+	// ========================================
+
+	// Track My Submodes filter state
+	let isMySubmodesFilterActive = false;
+	let userEnabledSubmodes = []; // List of user's enabled submodes from settings
+	let userModeCategories = { cw: true, phone: true, digi: true }; // Which mode categories user has enabled
+
+	/**
+	 * Update mode buttons based on My Submodes filter state
+	 * When My Submodes is active, disable mode buttons for categories user doesn't have
+	 */
+	function updateModeButtonsForSubmodes() {
+		// Map mode to original tooltip translation
+		const modeTooltips = {
+			'cw': lang_bandmap_toggle_cw,
+			'digi': lang_bandmap_toggle_digi,
+			'phone': lang_bandmap_toggle_phone
+		};
+
+		MODE_BUTTONS.forEach(btn => {
+			const $btn = $(btn.id);
+			const hasCategory = userModeCategories[btn.mode];
+
+			if (isMySubmodesFilterActive && !hasCategory) {
+				// My Submodes active and user doesn't have this category - visually disable button
+				// Use visual styling instead of disabled property to allow tooltip to show
+				$btn.addClass('disabled').css('opacity', '0.5').css('pointer-events', 'auto');
+				$btn.attr('aria-disabled', 'true');
+				$btn.data('mode-disabled', true);
+				$btn.attr('title', lang_bandmap_mode_disabled_no_submode);
+			} else {
+				// Re-enable button and restore original tooltip
+				$btn.removeClass('disabled').css('opacity', '').css('pointer-events', '');
+				$btn.attr('aria-disabled', 'false');
+				$btn.data('mode-disabled', false);
+				$btn.attr('title', modeTooltips[btn.mode]);
+			}
+		});
+	}
+
+	/**
+	 * Toggle My Submodes filter on/off via button click
+	 * Syncs with requiredFlags select
+	 */
+	$('#toggleMySubmodesFilter').on('click', function() {
+		if ($(this).prop('disabled')) return;
+
+		isMySubmodesFilterActive = !isMySubmodesFilterActive;
+
+		// Sync with requiredFlags select
+		syncMySubmodesToRequiredFlags();
+		updateMySubmodesButtonVisual();
+		updateModeButtonsForSubmodes();
+		applyFilters(false);
 	});
 
 	/**
-	 * Apply user favorites to band and mode filters
+	 * Sync isMySubmodesFilterActive state to requiredFlags select
 	 */
-	function applyUserFavorites(favorites) {
-		// Apply bands - but preserve current band if CAT Control is enabled
-		if (isCatTrackingEnabled) {
-			// CAT Control is active - don't change band filter
+	function syncMySubmodesToRequiredFlags() {
+		let currentFlags = $('#requiredFlags').val() || [];
+		currentFlags = currentFlags.filter(v => v !== 'None');
 
-			if (typeof showToast === 'function') {
-				showToast(lang_bandmap_my_favorites, lang_bandmap_modes_applied, 'bg-info text-white', 3000);
+		if (isMySubmodesFilterActive) {
+			if (!currentFlags.includes('mysubmodes')) {
+				currentFlags.push('mysubmodes');
 			}
 		} else {
-			// CAT Control is off - apply favorite bands
-			if (favorites.bands && favorites.bands.length > 0) {
-				$('#band').val(favorites.bands).trigger('change');
-			} else {
-				// No active bands, set to All
-				$('#band').val(['All']).trigger('change');
-			}
+			currentFlags = currentFlags.filter(v => v !== 'mysubmodes');
 		}
 
-		// Apply modes
-		let activeModes = [];
-		if (favorites.modes.cw) activeModes.push('cw');
-		if (favorites.modes.phone) activeModes.push('phone');
-		if (favorites.modes.digi) activeModes.push('digi');
+		if (currentFlags.length === 0) {
+			currentFlags = ['None'];
+		}
 
-		if (activeModes.length > 0) {
-			$('#mode').val(activeModes).trigger('change');
+		$('#requiredFlags').val(currentFlags).trigger('change');
+	}
+
+	/**
+	 * Sync button state from requiredFlags select (called when select changes)
+	 */
+	function syncMySubmodesFromRequiredFlags() {
+		let currentFlags = ($('#requiredFlags').val() || []).filter(v => v !== 'None');
+		let shouldBeActive = currentFlags.includes('mysubmodes');
+
+		// Only update if state changed and user has submodes configured
+		if (shouldBeActive !== isMySubmodesFilterActive && userEnabledSubmodes.length > 0) {
+			isMySubmodesFilterActive = shouldBeActive;
+			updateMySubmodesButtonVisual();
+			updateModeButtonsForSubmodes();
+		}
+	}
+
+	/**
+	 * Update My Submodes button visual state
+	 */
+	function updateMySubmodesButtonVisual() {
+		const $btn = $('#toggleMySubmodesFilter');
+		$btn.removeClass('btn-secondary btn-success');
+		if (isMySubmodesFilterActive) {
+			$btn.addClass('btn-success');
 		} else {
-			// No active modes, filter out everything (or set to All if you prefer)
-			$('#mode').val(['All']).trigger('change');
+			$btn.addClass('btn-secondary');
 		}
+	}
 
-		// Sync button states and apply filters
-		syncQuickFilterButtons();
-		updateBandCountBadges();
-		applyFilters(false);
+	/**
+	 * Update My Submodes button tooltip with list of enabled submodes
+	 */
+	function updateMySubmodesTooltip() {
+		const $btn = $('#toggleMySubmodesFilter');
+		if (userEnabledSubmodes.length > 0) {
+			const modesList = userEnabledSubmodes.join(', ');
+			$btn.attr('title', lang_bandmap_required_submodes + ': ' + modesList + ' (' + lang_bandmap_submodes_settings_hint + ')');
+		} else {
+			$btn.attr('title', lang_bandmap_no_submodes_configured);
+		}
+	}
 
-		showToast(lang_bandmap_my_favorites, lang_bandmap_favorites_applied, 'bg-success text-white', 3000);
+	/**
+	 * Check if a spot's submode matches user's enabled submodes
+	 * @param {string} spotSubmode - The submode from the spot
+	 * @returns {boolean} - True if matches or filter is off
+	 */
+	function matchesUserSubmodes(spotSubmode) {
+		if (!isMySubmodesFilterActive || userEnabledSubmodes.length === 0) {
+			return true; // Filter off or no submodes = show all
+		}
+		if (!spotSubmode || spotSubmode === '') {
+			return false; // No submode on spot = don't match
+		}
+		return userEnabledSubmodes.some(mode =>
+			mode.toUpperCase() === spotSubmode.toUpperCase()
+		);
 	}
 
 	// ========================================
@@ -3118,8 +3581,8 @@ $(function() {
 		$('.spottable').removeClass('cat-sorting-locked');
 
 		// Re-enable sorting on all columns that were originally sortable
-		// Based on columnDefs: columns 4, 6, 8, 15 are not sortable (Submode, Cont, Flag, Message)
-		const nonSortableColumns = [4, 6, 8, 15];
+		// Based on columnDefs: columns 6, 8, 15 are not sortable (Cont, Flag, Message)
+		const nonSortableColumns = [6, 8, 15];
 
 		table.settings()[0].aoColumns.forEach(function(col, index) {
 			if (!nonSortableColumns.includes(index)) {
@@ -3158,167 +3621,244 @@ $(function() {
 	}
 
 	/**
-	 * Update button visual appearance based on CAT state
+	 * Update CAT connection button visual appearance
 	 */
-	function updateButtonVisual(state) {
+	function updateCatButtonVisual(enabled) {
 		let btn = $('#toggleCatTracking');
-		let radioIcon = btn.find('i.fa-radio');
-
 		btn.removeClass('btn-secondary btn-success');
-		radioIcon.removeClass('fa-podcast fa-crosshairs').css('color', '');
-		btn.css('box-shadow', '');
 
-		if (state === 'off') {
-			btn.addClass('btn-secondary').attr('data-bs-original-title', lang_bandmap_cat_off);
-			radioIcon.addClass('fa-radio');
-		} else if (state === 'on') {
-			btn.addClass('btn-success').attr('data-bs-original-title', lang_bandmap_cat_on);
-			radioIcon.addClass('fa-radio');
-		} else if (state === 'on+marker') {
-			btn.addClass('btn-success').attr('data-bs-original-title', lang_bandmap_cat_marker);
-			radioIcon.addClass('fa-radio').css('color', '#8a2be2');
-			btn.css('box-shadow', '0 0 8px rgba(138, 43, 226, 0.6)');
+		if (enabled) {
+			btn.addClass('btn-success').attr('data-bs-original-title', decodeHtml(lang_bandmap_cat_on));
+		} else {
+			btn.addClass('btn-secondary').attr('data-bs-original-title', decodeHtml(lang_bandmap_cat_off));
 		}
 
 		// Update tooltip if it exists
 		if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
-			let tooltip = bootstrap.Tooltip.getInstance(btn[0]);
-			if (tooltip) {
-				tooltip.hide();
+			try {
+				let tooltip = bootstrap.Tooltip.getInstance(btn[0]);
+				if (tooltip) tooltip.hide();
+			} catch (e) {
+				// Ignore tooltip errors
 			}
 		}
 	}
 
-	// Toggle CAT Control with state machine
-	$('#toggleCatTracking').on('click', function() {
-		catClickTimer = setTimeout(function() {
-			if (!catClickPreventSingle) {
-				handleCatSingleClick();
+	/**
+	 * Update Lock button visual appearance and apply purple styling to button group when locked
+	 */
+	function updateLockButtonVisual(enabled) {
+		let btn = $('#toggleCatLock');
+		let lockIcon = btn.find('i');
+		let btnGroup = btn.closest('.btn-group');
+
+		btn.removeClass('btn-secondary btn-success');
+		lockIcon.removeClass('fa-lock fa-lock-open');
+
+		if (enabled) {
+			btn.addClass('btn-success').attr('data-bs-original-title', decodeHtml(lang_bandmap_cat_lock_on));
+			lockIcon.addClass('fa-lock').css('color', '#8a2be2');
+			// Purple border around the entire button group
+			btnGroup.css({
+				'box-shadow': '0 0 8px rgba(138, 43, 226, 0.6)',
+				'border': '2px solid #8a2be2',
+				'border-radius': '0.375rem'
+			});
+		} else {
+			btn.addClass('btn-secondary').attr('data-bs-original-title', decodeHtml(lang_bandmap_cat_lock_off));
+			lockIcon.addClass('fa-lock-open').css('color', '');
+			// Remove purple border from button group
+			btnGroup.css({
+				'box-shadow': '',
+				'border': '',
+				'border-radius': ''
+			});
+		}
+
+		// Update tooltip if it exists
+		if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
+			try {
+				let tooltip = bootstrap.Tooltip.getInstance(btn[0]);
+				if (tooltip) tooltip.hide();
+			} catch (e) {
+				// Ignore tooltip errors
 			}
-			catClickPreventSingle = false;
-		}, 300);
-	});
-
-	$('#toggleCatTracking').on('dblclick', function() {
-		clearTimeout(catClickTimer);
-		catClickPreventSingle = true;
-		handleCatDoubleClick();
-	});
-
-	// Initialize tooltip on page load - set initial title only
-	$('#toggleCatTracking').attr('data-bs-original-title', lang_bandmap_cat_off);
-
-	function handleCatSingleClick() {
-		const selectedRadio = $('.radios option:selected').val();
-
-		switch(catState) {
-			case 'off':
-				// OFF → ON
-				if (!selectedRadio || selectedRadio === '0') {
-					if (typeof showToast === 'function') {
-						showToast(lang_bandmap_cat_control, lang_bandmap_select_radio_first, 'bg-warning text-dark', 3000);
-					}
-					return;
-				}
-
-				isCatTrackingEnabled = true;
-				window.isCatTrackingEnabled = true;
-				catState = 'on';
-
-				if (window.lastCATData && typeof window.displayRadioStatus === 'function') {
-					window.displayRadioStatus('success', window.lastCATData);
-				}
-
-				// In normal mode: only show gradient, don't change filters or disable controls
-				if (window.lastCATData && window.lastCATData.frequency) {
-					updateFrequencyGradientColors();
-				}
-
-				updateButtonVisual('on');
-				break;
-
-		case 'on':
-			// ON → ON+MARKER (Purple Mode)
-			window.isFrequencyMarkerEnabled = true;
-			catState = 'on+marker';				// Purple mode: disable controls and set filter to current band
-				disableBandFilterControls();
-
-				if (window.lastCATData && window.lastCATData.frequency) {
-					const band = frequencyToBand(window.lastCATData.frequency);
-					if (band && band !== '') {
-						$("#band").val([band]);
-						updateSelectCheckboxes('band');
-						syncQuickFilterButtons();
-						// Force reload to fetch only the active band from backend
-						applyFilters(true);
-					}
-					updateFrequencyGradientColors();
-				}
-				lockTableSortingToFrequency();
-
-				updateButtonVisual('on+marker');
-				break;
-
-		case 'on+marker':
-			// ON+MARKER → ON (Exit Purple Mode)
-			window.isFrequencyMarkerEnabled = false;
-			catState = 'on';
-
-			// Re-enable band filter controls
-			enableBandFilterControls();
-
-			// Reset band filter to 'All' and force reload to fetch all bands
-			$("#band").val(['All']);
-			updateSelectCheckboxes('band');
-			syncQuickFilterButtons();
-			applyFilters(true); // Force reload to fetch all bands
-
-			unlockTableSorting();
-			clearFrequencyGradientColors();
-
-			updateButtonVisual('on');
-			break;
 		}
 	}
 
-	function handleCatDoubleClick() {
-		// Double-click: Force disable from any state
-		if (catState === 'off') return;
+	/**
+	 * Enable or disable the lock button based on CAT connection state
+	 */
+	function updateLockButtonState(catEnabled) {
+		let lockBtn = $('#toggleCatLock');
+		if (catEnabled) {
+			lockBtn.prop('disabled', false).removeClass('disabled');
+		} else {
+			lockBtn.prop('disabled', true).addClass('disabled');
+			// Also disable lock mode if CAT is disabled
+			if (window.isFrequencyMarkerEnabled) {
+				disableLockMode();
+			}
+		}
+	}
 
-		isCatTrackingEnabled = false;
-		window.isCatTrackingEnabled = false;
-		window.isFrequencyMarkerEnabled = false;
-		catState = 'off';
+	/**
+	 * Enable lock mode (purple mode)
+	 */
+	function enableLockMode() {
+		window.isFrequencyMarkerEnabled = true;
+		catState = 'on+marker';
+		disableBandFilterControls();
 
-		// Reset band filter to 'All' when disabling CAT
-		$("#band").val(['All']);
+		// Always ensure single band filter in lock mode
+		const currentBands = $("#band").val() || [];
+		let targetBand = null;
+
+		// Priority 1: Use current radio band
+		if (lastRadioBand && lastRadioBand !== '') {
+			targetBand = lastRadioBand;
+		} else if (currentRadioFrequency) {
+			// Priority 2: Calculate from current radio frequency
+			targetBand = frequencyToBand(currentRadioFrequency * 1000);
+		} else if (currentBands.length === 1 && !currentBands.includes('All')) {
+			// Priority 3: Keep current selection if single
+			targetBand = currentBands[0];
+		} else {
+			// Priority 4: Default to 20m
+			targetBand = '20m';
+		}
+
+		// Set to single band
+		$("#band").val([targetBand]);
 		updateSelectCheckboxes('band');
 		syncQuickFilterButtons();
-		applyFilters(true); // Force reload to fetch all bands
+		applyFilters(true);
 
-		const selectedRadio = $('.radios option:selected').val();
-		if (selectedRadio && selectedRadio !== '0' && typeof window.displayOfflineStatus === 'function') {
-			window.displayOfflineStatus('cat_disabled');
-		} else if (selectedRadio === '0' && typeof window.displayOfflineStatus === 'function') {
-			window.displayOfflineStatus('no_radio');
+		if (window.lastCATData && window.lastCATData.frequency) {
+			updateFrequencyGradientColors();
+		}
+		lockTableSortingToFrequency();
+		updateLockButtonVisual(true);
+
+		// Show toast notifications
+		if (typeof showToast === 'function') {
+			showToast(lang_bandmap_band_lock, lang_bandmap_band_lock_enabled, 'bg-info text-white', 3000);
+			setTimeout(function() {
+				showToast(lang_bandmap_band_lock, lang_bandmap_freq_changed + ' ' + targetBand + ' ' + lang_bandmap_by_transceiver, 'bg-info text-white', 3000);
+			}, 500);
+		}
+	}
+
+	/**
+	 * Disable lock mode (exit purple mode)
+	 */
+	function disableLockMode() {
+		window.isFrequencyMarkerEnabled = false;
+		if (isCatTrackingEnabled) {
+			catState = 'on';
 		} else {
-			$('#radio_cat_state').remove();
+			catState = 'off';
 		}
 
 		enableBandFilterControls();
+		$("#band").val(['All']);
+		updateSelectCheckboxes('band');
+		syncQuickFilterButtons();
+		applyFilters(true);
+
 		unlockTableSorting();
 		clearFrequencyGradientColors();
+		updateLockButtonVisual(false);
+	}
 
-		const currentBands = $("#band").val() || [];
-		if (currentBands.length !== 1 || currentBands[0] !== 'All') {
+	// CAT Connection button click handler
+	$('#toggleCatTracking').on('click', function() {
+		const selectedRadio = $('.radios option:selected').val();
+
+		if (!isCatTrackingEnabled) {
+			// Enable CAT
+			if (!selectedRadio || selectedRadio === '0') {
+				if (typeof showToast === 'function') {
+					showToast(lang_bandmap_cat_control, lang_bandmap_select_radio_first, 'bg-warning text-dark', 3000);
+				}
+				return;
+			}
+
+			isCatTrackingEnabled = true;
+			window.isCatTrackingEnabled = true;
+			catState = 'on';
+
+			// Display last known data if available and not stale
+			if (window.lastCATData && typeof window.displayRadioStatus === 'function') {
+				// Check if data is still fresh (use same timeout as cat.js)
+				var minutes = typeof cat_timeout_minutes !== 'undefined' ? cat_timeout_minutes : 5;
+				if (window.lastCATData.updated_minutes_ago <= minutes) {
+					window.displayRadioStatus('success', window.lastCATData);
+				} else {
+					// Data is stale - show timeout
+					var radioName = $('select.radios option:selected').text();
+					window.displayRadioStatus('timeout', radioName);
+				}
+			}
+
+			// Trigger immediate polling update if using polling radio
+			if (selectedRadio !== 'ws' && typeof updateFromCAT === 'function') {
+				updateFromCAT();
+			}
+
+			// Show gradient if we have frequency data
+			if (window.lastCATData && window.lastCATData.frequency) {
+				updateFrequencyGradientColors();
+			}
+
+			updateCatButtonVisual(true);
+			updateLockButtonState(true);
+		} else {
+			// Disable CAT
+			isCatTrackingEnabled = false;
+			window.isCatTrackingEnabled = false;
+			catState = 'off';
+
+			// Also disable lock mode if enabled
+			if (window.isFrequencyMarkerEnabled) {
+				disableLockMode();
+			}
+
+			// Reset band filter to 'All'
 			$("#band").val(['All']);
 			updateSelectCheckboxes('band');
 			syncQuickFilterButtons();
 			applyFilters(true);
-		}
 
-		updateButtonVisual('off');
-	}
+			if (selectedRadio && selectedRadio !== '0' && typeof window.displayOfflineStatus === 'function') {
+				window.displayOfflineStatus('cat_disabled');
+			} else if (typeof window.displayOfflineStatus === 'function') {
+				window.displayOfflineStatus('no_radio');
+			}
+
+			enableBandFilterControls();
+			unlockTableSorting();
+			clearFrequencyGradientColors();
+
+			updateCatButtonVisual(false);
+			updateLockButtonState(false);
+		}
+	});
+
+	// Lock button click handler
+	$('#toggleCatLock').on('click', function() {
+		if (!isCatTrackingEnabled) return; // Should not happen if button is properly disabled
+
+		if (!window.isFrequencyMarkerEnabled) {
+			enableLockMode();
+		} else {
+			disableLockMode();
+		}
+	});
+
+	// Initialize tooltips on page load
+	$('#toggleCatTracking').attr('data-bs-original-title', lang_bandmap_cat_off);
+	$('#toggleCatLock').attr('data-bs-original-title', lang_bandmap_cat_lock_off);
 
 	// ========================================
 	// RESPONSIVE COLUMN VISIBILITY
@@ -3330,14 +3870,16 @@ $(function() {
 	 *
 	 * Column indices (0-based):
 	 * 0: Age, 1: Band, 2: Frequency, 3: Mode, 4: Submode, 5: Callsign, 6: Continent, 7: CQZ,
-	 * 8: Flag, 9: Entity, 10: DXCC, 11: de Callsign, 12: de Cont, 13: de CQZ,
-	 * 14: Last QSO, 15: Special, 16: Message
+	 * 8: Flag, 9: Entity, 10: de Callsign, 11: de Cont, 12: de CQZ, 13: Last QSO,
+	 * 14: Special, 15: Message
 	 *
 	 * Breakpoints:
-	 * - Full screen or > 1374px: Show all columns
-	 * - <= 1374px: Hide DXCC (10), CQZ (7), de CQZ (13), Last QSO (14), Submode (4)
-	 * - <= 1294px: Additionally hide Band (1), Cont (6), de Cont (12)
-	 * - <= 1024px: Additionally hide Flag (8)
+	 * Responsive column visibility based on container width.
+	 * Works in both normal and fullscreen mode.
+	 * - > 1374px: Show all columns
+	 * - <= 1374px: Hide CQZ (7), de CQZ (12), Last QSO (13), Mode (3)
+	 * - <= 1294px: Additionally hide Band (1), Cont (6), de Cont (11)
+	 * - <= 1024px: Additionally hide Flag (8), Message (15)
 	 * - <= 500px: Show only Age (0), Freq (2), Callsign (5), Entity (9)
 	 */
 	function handleResponsiveColumns() {
@@ -3346,19 +3888,8 @@ $(function() {
 
 		const containerWidth = tableContainer.width();
 
-		// Check if in fullscreen mode
-		const isFullscreen = $('#bandmapContainer').hasClass('bandmap-fullscreen');
-
 		// Reset all columns to visible first
-		$('.spottable th, .spottable td').removeClass('column-hidden');
-
-		// If fullscreen, show all columns and exit
-		if (isFullscreen) {
-			if ($.fn.DataTable && $.fn.DataTable.isDataTable('.spottable')) {
-				$('.spottable').DataTable().columns.adjust();
-			}
-			return;
-		}
+		$('.spottable th, .spottable td').removeClass('column-hidden column-fill');
 
 		// Apply visibility rules based on container width
 		if (containerWidth <= 500) {
@@ -3375,28 +3906,33 @@ $(function() {
 			$('.spottable th:nth-child(14), .spottable td:nth-child(14)').addClass('column-hidden'); // Last QSO
 			$('.spottable th:nth-child(15), .spottable td:nth-child(15)').addClass('column-hidden'); // Special
 			$('.spottable th:nth-child(16), .spottable td:nth-child(16)').addClass('column-hidden'); // Message
+			// Entity fills remaining space
+			$('.spottable th:nth-child(10), .spottable td:nth-child(10)').addClass('column-fill');
 		} else if (containerWidth <= 1024) {
-			// Hide: CQZ, de CQZ, Last QSO, Submode, Band, Cont, de Cont, Flag
+			// Hide: CQZ, de CQZ, Last QSO, Mode, Band, Cont, de Cont, Flag, Message
 			$('.spottable th:nth-child(2), .spottable td:nth-child(2)').addClass('column-hidden'); // Band
-			$('.spottable th:nth-child(5), .spottable td:nth-child(5)').addClass('column-hidden'); // Submode
+			$('.spottable th:nth-child(4), .spottable td:nth-child(4)').addClass('column-hidden'); // Mode
 			$('.spottable th:nth-child(7), .spottable td:nth-child(7)').addClass('column-hidden'); // Continent
 			$('.spottable th:nth-child(8), .spottable td:nth-child(8)').addClass('column-hidden'); // CQZ
 			$('.spottable th:nth-child(9), .spottable td:nth-child(9)').addClass('column-hidden'); // Flag
 			$('.spottable th:nth-child(12), .spottable td:nth-child(12)').addClass('column-hidden'); // de Cont
 			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de CQZ
 			$('.spottable th:nth-child(14), .spottable td:nth-child(14)').addClass('column-hidden'); // Last QSO
+			$('.spottable th:nth-child(16), .spottable td:nth-child(16)').addClass('column-hidden'); // Message
+			// Entity fills remaining space
+			$('.spottable th:nth-child(10), .spottable td:nth-child(10)').addClass('column-fill');
 		} else if (containerWidth <= 1294) {
-			// Hide: CQZ, de CQZ, Last QSO, Submode, Band, Cont, de Cont
+			// Hide: CQZ, de CQZ, Last QSO, Mode, Band, Cont, de Cont
 			$('.spottable th:nth-child(2), .spottable td:nth-child(2)').addClass('column-hidden'); // Band
-			$('.spottable th:nth-child(5), .spottable td:nth-child(5)').addClass('column-hidden'); // Submode
+			$('.spottable th:nth-child(4), .spottable td:nth-child(4)').addClass('column-hidden'); // Mode
 			$('.spottable th:nth-child(7), .spottable td:nth-child(7)').addClass('column-hidden'); // Continent
 			$('.spottable th:nth-child(8), .spottable td:nth-child(8)').addClass('column-hidden'); // CQZ
 			$('.spottable th:nth-child(12), .spottable td:nth-child(12)').addClass('column-hidden'); // de Cont
 			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de CQZ
 			$('.spottable th:nth-child(14), .spottable td:nth-child(14)').addClass('column-hidden'); // Last QSO
 		} else if (containerWidth <= 1374) {
-			// Hide: CQZ, de CQZ, Last QSO, Submode
-			$('.spottable th:nth-child(5), .spottable td:nth-child(5)').addClass('column-hidden'); // Submode
+			// Hide: CQZ, de CQZ, Last QSO, Mode
+			$('.spottable th:nth-child(4), .spottable td:nth-child(4)').addClass('column-hidden'); // Mode
 			$('.spottable th:nth-child(8), .spottable td:nth-child(8)').addClass('column-hidden'); // CQZ
 			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de CQZ
 			$('.spottable th:nth-child(14), .spottable td:nth-child(14)').addClass('column-hidden'); // Last QSO
@@ -3451,32 +3987,57 @@ $(function() {
 	enableBandFilterControls();
 
 	// ========================================
-	// CACHE USER FAVORITES ON PAGE LOAD
+	// PROCESS USER CONFIG (called from getDxClusterFavs)
 	// ========================================
 
 	/**
-	 * Fetch and cache user favorites on page load for instant access
-	 * This prevents the delay when clicking the favorites button
+	 * Process user bands/modes configuration
+	 * Called from getDxClusterFavs() when userConfig is included in response
+	 * @param {Object} data - User configuration object with bands, modes, submodes
 	 */
-	function fetchUserFavorites() {
-		let base_url = dxcluster_provider.replace('/dxcluster', '');
-		$.ajax({
-			url: base_url + '/bandmap/get_user_favorites',
-			method: 'GET',
-			dataType: 'json',
-			success: function(favorites) {
-				cachedUserFavorites = favorites;
+	function processUserConfig(data) {
+		if (!data) return;
 
-			},
-			error: function() {
-				console.warn('Failed to cache user favorites');
-				cachedUserFavorites = null;
-			}
-		});
+		cachedUserFavorites = data;
+
+		// Store mode categories for button enabling/disabling
+		if (data.modes) {
+			userModeCategories = {
+				cw: data.modes.cw || false,
+				phone: data.modes.phone || false,
+				digi: data.modes.digi || false
+			};
+		}
+
+		// Store submodes for filtering
+		if (data.submodes && data.submodes.length > 0) {
+			userEnabledSubmodes = data.submodes;
+			// Don't activate filter on initial load - let user enable it manually
+			isMySubmodesFilterActive = false;
+			updateMySubmodesButtonVisual();
+			updateMySubmodesTooltip();
+			updateModeButtonsForSubmodes();
+			// Update badge counts now that we have submodes loaded
+			updateBandCountBadges();
+		} else {
+			// No submodes configured - disable button and show warning
+			userEnabledSubmodes = [];
+			isMySubmodesFilterActive = false;
+			$('#toggleMySubmodesFilter').prop('disabled', true).addClass('disabled');
+			updateMySubmodesButtonVisual();
+			updateMySubmodesTooltip();
+			// Also disable the option in requiredFlags select
+			$('#requiredFlags option[value="mysubmodes"]').prop('disabled', true);
+			showToast(
+				lang_bandmap_my_submodes,
+				lang_bandmap_no_submodes_warning,
+				'bg-warning text-dark',
+				5000
+			);
+		}
 	}
 
-	// Fetch favorites on page load
-	fetchUserFavorites();
+	// Note: User config is now loaded via combined getDxClusterFavs() API response
 
 	// ========================================
 	// AGE AUTO-UPDATE
@@ -4442,20 +5003,23 @@ $(function() {
 	setTimeout(function() {
 		const selectedRadio = $('.radios option:selected').val();
 		if (selectedRadio === '0') {
-			// No radio selected - disable CAT Control button
+			// No radio selected - disable CAT Control and Lock buttons
 			$('#toggleCatTracking').prop('disabled', true).addClass('disabled');
+			$('#toggleCatLock').prop('disabled', true).addClass('disabled');
 			if (typeof window.displayOfflineStatus === 'function') {
 				window.displayOfflineStatus('no_radio');
 			}
 		} else if (selectedRadio && selectedRadio !== '0' && !isCatTrackingEnabled) {
 			// Radio is selected but CAT Control is disabled on page load
 			$('#toggleCatTracking').prop('disabled', false).removeClass('disabled');
+			$('#toggleCatLock').prop('disabled', true).addClass('disabled'); // Lock requires CAT
 			if (typeof window.displayOfflineStatus === 'function') {
 				window.displayOfflineStatus('cat_disabled');
 			}
 		} else if (selectedRadio && selectedRadio !== '0') {
 			// Radio is selected and CAT Control is enabled
 			$('#toggleCatTracking').prop('disabled', false).removeClass('disabled');
+			$('#toggleCatLock').prop('disabled', false).removeClass('disabled');
 		}
 	}, 100); // Small delay to ensure cat.js has loaded and exposed the function
 });

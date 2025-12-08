@@ -265,6 +265,12 @@
 									</ul>
 								</li>
 								<div class="dropdown-divider"></div>
+								<li><a class="dropdown-item dropdown-toggle dropdown-toggle-submenu" data-bs-toggle="dropdown" href="#">🇵🇱 <?= __("Poland"); ?></a>
+									<ul class="submenu dropdown-menu">
+										<li><a class="dropdown-item" href="<?php echo site_url('awards/pl_polska'); ?>"><i class="fas fa-trophy"></i> <?= __("\"Polska\" Award"); ?></a></li>
+									</ul>
+								</li>
+								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item dropdown-toggle dropdown-toggle-submenu" data-bs-toggle="dropdown" href="#">🇨🇭 <?= __("Switzerland"); ?></a>
 									<ul class="submenu dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/helvetia'); ?>"><i class="fas fa-trophy"></i> H26</a></li>
@@ -464,7 +470,11 @@
 
 								<div class="dropdown-divider"></div>
 
+								<?php } if ((clubaccess_check(3) || clubaccess_check(3)) && !(clubaccess_check(9))) { ?> <!-- Club Access Check -->
+								<li><a class="dropdown-item" href="<?php echo site_url('stationsetup/list_locations'); ?>" title="Manage station setup"><i class="fas fa-home"></i> <?= __("Station Setup"); ?></a></li>
+								<?php } if (clubaccess_check(6) || clubaccess_check(9)) { ?> <!-- Club Access Check -->
 								<li><a class="dropdown-item" href="<?php echo site_url('adif'); ?>" title="Amateur Data Interchange Format (ADIF) import / export"><i class="fas fa-sync"></i> <?= __("ADIF Import / Export"); ?></a></li>
+								<?php } if (clubaccess_check(9)) { ?> <!-- Club Access Check -->
 
 								<li><a class="dropdown-item dropdown-toggle dropdown-toggle-submenu" data-bs-toggle="dropdown"><i class="fas fa-sync"></i> <?= __("Other Export Options"); ?></a>
 									<ul class="submenu submenu-left dropdown-menu">

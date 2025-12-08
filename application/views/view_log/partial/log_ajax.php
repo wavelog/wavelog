@@ -356,14 +356,68 @@ function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
 
                 <?php } if (strpos($this->session->userdata('user_default_confirmation'),'E') !== false && ($this->session->userdata('user_eqsl_name') != "")){ ?>
                     <td class="eqsl">
-                        <span <?php if ($row->COL_EQSL_QSL_SENT == "Y") { echo "title=\"".__("Sent"); if ($row->COL_EQSL_QSLSDATE != null) { $timestamp = strtotime($row->COL_EQSL_QSLSDATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="eqsl-<?php echo ($row->COL_EQSL_QSL_SENT=='Y')?'green':'red'?>">&#9650;</span>
-                        <span <?php if ($row->COL_EQSL_QSL_RCVD == "Y") { echo "title=\"".__("Received"); if ($row->COL_EQSL_QSLRDATE != null) { $timestamp = strtotime($row->COL_EQSL_QSLRDATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="eqsl-<?php echo ($row->COL_EQSL_QSL_RCVD=='Y')?'green':'red'?>">
-			    	<?php if($row->COL_EQSL_QSL_RCVD =='Y') { ?>
-                        <a class="eqsl-green" href="<?php echo site_url("eqsl/image/".$row->COL_PRIMARY_KEY); ?>" data-fancybox="images" data-width="528" data-height="336">&#9660;</a>
-                    <?php } else { ?>
-                        &#9660;
-                    <?php } ?>
-			    </span>
+                    <span <?php
+                        $timestamp = '';
+                        if ($row->COL_EQSL_QSLSDATE != null) {
+                           $timestamp = date($custom_date_format, strtotime($row->COL_EQSL_QSLSDATE));
+                        }
+                        switch ($row->COL_EQSL_QSL_SENT) {
+                           case "Y":
+                              echo "title=\"".__("Sent");
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"eqsl-green\"";
+                              break;
+                           case "I":
+                              echo "title=\"".__("Invalid (Ignore)");
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"eqsl-grey\"";
+                              break;
+                           case "R":
+                              echo "title=\"".__("Requested");
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"eqsl-yellow\"";
+                              break;
+                           case "Q":
+                              echo "title=\"".__("Queued");
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"eqsl-yellow\"";
+                              break;
+                           default:
+                              echo " class=\"eqsl-red\"";
+                              break;
+                        }
+                        ?>>&#9650;</span>
+                    <span <?php
+                        $timestamp = '';
+                        if ($row->COL_EQSL_QSLRDATE != null) {
+                           $timestamp = date($custom_date_format, strtotime($row->COL_EQSL_QSLRDATE));
+                        }
+                        switch ($row->COL_EQSL_QSL_RCVD) {
+                           case "Y":
+                              echo "title=\"".__("Received");
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"eqsl-green\"";
+                              break;
+                           case "I":
+                              echo "title=\"".__("Invalid (Ignore)");
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"eqsl-grey\"";
+                              break;
+                           case "R":
+                              echo "title=\"".__("Requested");
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"eqsl-yellow\"";
+                              break;
+                           default:
+                              echo " class=\"eqsl-red\"";
+                              break;
+                        }?>>
+                        <?php if($row->COL_EQSL_QSL_RCVD =='Y') { ?>
+                           <a class="eqsl-green" href="<?php echo site_url("eqsl/image/".$row->COL_PRIMARY_KEY); ?>" data-fancybox="images" data-width="528" data-height="336">&#9660;</a>
+                        <?php } else { ?>
+                           &#9660;
+                        <?php } ?>
+                    </span>
                     </td>
                 <?php } ?>
 
@@ -387,6 +441,11 @@ function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
                               break;
                            case "R":
                               echo "title=\"".__("Requested");
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"lotw-yellow\"";
+                              break;
+                           case "Q":
+                              echo "title=\"".__("Queued");
                               echo $timestamp != '' ? " ".$timestamp : '';
                               echo "\" data-bs-toggle=\"tooltip\" class=\"lotw-yellow\"";
                               break;
@@ -424,85 +483,169 @@ function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
                     </td>
                 <?php } ?>
 
-		<?php if ( strpos($this->session->userdata('user_default_confirmation'),'Z') !== false && ($this->session->userdata('hasQrzKey') != "") ) { ?>
+                <?php if ( strpos($this->session->userdata('user_default_confirmation'),'Z') !== false && ($this->session->userdata('hasQrzKey') != "") ) { ?>
                     <td id="qrz_<?php echo $row->COL_PRIMARY_KEY; ?>" class="qrz">
-                        <span <?php if ($row->COL_QRZCOM_QSO_UPLOAD_STATUS == "Y") { echo 'title="'.__("Sent").($row->COL_QRZCOM_QSO_UPLOAD_DATE != null ? " ".date($custom_date_format, strtotime($row->COL_QRZCOM_QSO_UPLOAD_DATE)) : '').'" data-bs-toggle="tooltip"'; } elseif ($row->COL_QRZCOM_QSO_UPLOAD_STATUS == 'M' && $row->COL_QRZCOM_QSO_UPLOAD_DATE != NULL) { echo 'title="'.__("Modified")."<br />(".__("last sent")." ".date($custom_date_format, strtotime($row->COL_QRZCOM_QSO_UPLOAD_DATE)).")".'" data-bs-toggle="tooltip" data-bs-html="true"'; } elseif ($row->COL_QRZCOM_QSO_UPLOAD_STATUS == 'I') { echo 'title="'.__("Invalid (Ignore)").'" data-bs-toggle="tooltip"'; }?> class="qrz-<?php if ($row->COL_QRZCOM_QSO_UPLOAD_STATUS == 'Y') { echo 'green'; } elseif ($row->COL_QRZCOM_QSO_UPLOAD_STATUS == 'M' && $row->COL_QRZCOM_QSO_UPLOAD_DATE != NULL) { echo 'yellow'; } elseif ($row->COL_QRZCOM_QSO_UPLOAD_STATUS == 'I') { echo 'grey'; } else { echo 'red'; } ?>">&#9650;</span>
-                        <span <?php if ($row->COL_QRZCOM_QSO_DOWNLOAD_STATUS == "Y") { echo "title=\"".__("Received"); if ($row->COL_QRZCOM_QSO_DOWNLOAD_DATE != null) { $timestamp = strtotime($row->COL_QRZCOM_QSO_DOWNLOAD_DATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="qrz-<?php echo ($row->COL_QRZCOM_QSO_DOWNLOAD_STATUS=='Y')?'green':'red'?>">&#9660;</span>
+                    <span <?php
+                        $timestamp = '';
+                        if ($row->COL_QRZCOM_QSO_UPLOAD_DATE != null) {
+                           $timestamp = date($custom_date_format, strtotime($row->COL_QRZCOM_QSO_UPLOAD_DATE));
+                        }
+                        switch ($row->COL_QRZCOM_QSO_UPLOAD_STATUS) {
+                           case "Y":
+                              echo "title=\"".__("Sent");
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"qrz-green\"";
+                              break;
+                           case "I":
+                              echo "title=\"".__("Invalid (Ignore)");
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"qrz-grey\"";
+                              break;
+                           case "Q":
+                              echo "title=\"".__("Queued");
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"qrz-yellow\"";
+                              break;
+                           case "M":
+                              echo 'title="'.__("Modified")."<br />(".__("last sent")." ".date($custom_date_format, strtotime($row->COL_QRZCOM_QSO_UPLOAD_DATE)).")";
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" data-bs-html=\"true\" class=\"qrz-yellow\"";
+                              break;
+                           default:
+                              echo " class=\"qrz-red\"";
+                              break;
+                        }
+                        ?>>&#9650;</span>
+                    <span <?php
+                        $timestamp = '';
+                        if ($row->COL_QRZCOM_QSO_DOWNLOAD_STATUS != null && $row->COL_QRZCOM_QSO_DOWNLOAD_DATE != null) {
+                           $timestamp = date($custom_date_format, strtotime($row->COL_QRZCOM_QSO_DOWNLOAD_DATE));
+                        }
+                        switch ($row->COL_QRZCOM_QSO_DOWNLOAD_STATUS) {
+                           case "Y":
+                              echo "title=\"".__("Received");
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"qrz-green\"";
+                              break;
+                           case "I":
+                              echo "title=\"".__("Invalid (Ignore)");
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"qrz-grey\"";
+                              break;
+                           default:
+                              echo " class=\"qrz-red\"";
+                              break;
+                        }
+                        ?>>&#9660;</span>
                     </td>
                 <?php } ?>
 
-
-		<?php if ( strpos($this->session->userdata('user_default_confirmation'),'C') !== false ) { ?>
+                <?php if ( strpos($this->session->userdata('user_default_confirmation'),'C') !== false ) { ?>
                     <td class="clublog">
-                        <span <?php
-				if ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == "Y") {
-					echo 'title="'.__("Sent").($row->COL_CLUBLOG_QSO_UPLOAD_DATE != null ? " ".date($custom_date_format, strtotime($row->COL_CLUBLOG_QSO_UPLOAD_DATE)) : '').'" data-bs-toggle="tooltip"';
-				} elseif ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == 'M') {
-					echo 'title="'.__("Modified");
-					if ($row->COL_CLUBLOG_QSO_UPLOAD_DATE != null) {
-						echo "<br />(".__("last sent")." ".date($custom_date_format, strtotime($row->COL_CLUBLOG_QSO_UPLOAD_DATE)).")";
-					}
-					echo '" data-bs-toggle="tooltip" data-bs-html="true"';
-				} elseif ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == 'I') {
-					echo 'title="'.__("Invalid (Ignore)").'" data-bs-toggle="tooltip"';
-				}?> class="clublog-<?php
-
-				if ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == 'Y') {
-					echo 'green';
-				} elseif ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == 'M') {
-					echo 'yellow';
-				} elseif ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == 'I') {
-					echo 'grey';
-				} else {
-					echo 'red';
-				} ?>">&#9650;</span>
-                        <span <?php
-				if ($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS == "Y") {
-					echo "title=\"".__("Received");
-					if ($row->COL_CLUBLOG_QSO_DOWNLOAD_DATE != null) {
-						$timestamp = strtotime($row->COL_CLUBLOG_QSO_DOWNLOAD_DATE);
-						echo " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
-					}
-					echo "\" data-bs-toggle=\"tooltip\"";
-				} ?> class="clublog-<?php
-					echo ($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS=='Y')?'green':'red'?>">&#9660;</span>
+                    <span <?php
+                        $timestamp = '';
+                        if ($row->COL_CLUBLOG_QSO_UPLOAD_DATE != null) {
+                           $timestamp = date($custom_date_format, strtotime($row->COL_CLUBLOG_QSO_UPLOAD_DATE));
+                        }
+                        switch ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS) {
+                           case "Y":
+                              echo "title=\"".__("Sent");
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"clublog-green\"";
+                              break;
+                           case "I":
+                              echo "title=\"".__("Invalid (Ignore)");
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"clublog-grey\"";
+                              break;
+                           case "Q":
+                              echo "title=\"".__("Queued");
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"clublog-yellow\"";
+                              break;
+                           case "M":
+                              echo 'title="'.__("Modified")."<br />(".__("last sent")." ".date($custom_date_format, strtotime($row->COL_CLUBLOG_QSO_UPLOAD_DATE)).")";
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" data-bs-html=\"true\" class=\"clublog-yellow\"";
+                              break;
+                           default:
+                              echo " class=\"clublog-red\"";
+                              break;
+                        }
+                        ?>>&#9650;</span>
+                    <span <?php
+                        $timestamp = '';
+                        if ($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS != null && $row->COL_CLUBLOG_QSO_DOWNLOAD_DATE != null) {
+                           $timestamp = date($custom_date_format, strtotime($row->COL_CLUBLOG_QSO_DOWNLOAD_DATE));
+                        }
+                        switch ($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS) {
+                           case "Y":
+                              echo "title=\"".__("Received");
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"clublog-green\"";
+                              break;
+                           case "I":
+                              echo "title=\"".__("Invalid (Ignore)");
+                              echo $timestamp != '' ? " ".$timestamp : '';
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"clublog-grey\"";
+                              break;
+                           default:
+                              echo " class=\"clublog-red\"";
+                              break;
+                        }
+                        ?>>&#9660;</span>
                     </td>
-                <?php } 
-		 if ( strpos($this->session->userdata('user_default_confirmation'),'D') !== false ) { ?>
-                    <td class="dcl">
-                        <span <?php
-				if ($row->COL_DCL_QSL_SENT == "Y") {
-					echo 'title="'.__("Sent").($row->COL_DCL_QSLSDATE != null ? " ".date($custom_date_format, strtotime($row->COL_DCL_QSLSDATE)) : '').'" data-bs-toggle="tooltip"';
-				} elseif ($row->COL_DCL_QSL_SENT == 'M') {
-					echo 'title="'.__("Modified");
-					if ($row->COL_DCL_QSLSDATE != null) {
-						echo "<br />(".__("last sent")." ".date($custom_date_format, strtotime($row->COL_DCL_QSLSDATE)).")";
-					}
-					echo '" data-bs-toggle="tooltip" data-bs-html="true"';
-				} elseif ($row->COL_DCL_QSL_SENT == 'I') {
-					echo 'title="'.__("Invalid (Ignore)").'" data-bs-toggle="tooltip"';
-				}?> class="dcl-<?php
+                <?php } ?>
 
-				if ($row->COL_DCL_QSL_SENT == 'Y') {
-					echo 'green';
-				} elseif ($row->COL_DCL_QSL_SENT == 'M') {
-					echo 'yellow';
-				} elseif ($row->COL_DCL_QSL_SENT == 'I') {
-					echo 'grey';
-				} else {
-					echo 'red';
-				} ?>">&#9650;</span>
-                        <span <?php
-				if ($row->COL_DCL_QSL_RCVD == "Y") {
-					echo "title=\"".__("Received");
-					if ($row->COL_DCL_QSLRDATE != null) {
-						$timestamp = strtotime($row->COL_DCL_QSLRDATE);
-						echo " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
-					}
-					echo "\" data-bs-toggle=\"tooltip\"";
-				} ?> class="dcl-<?php
-					echo ($row->COL_DCL_QSL_RCVD=='Y')?'green':'red'?>">&#9660;</span>
-                    </td>
+                <?php if ( strpos($this->session->userdata('user_default_confirmation'),'D') !== false ) { ?>
+                <td class="dcl">
+                <span <?php if ($row->COL_DCL_QSL_SENT != "N") {
+                       switch ($row->COL_DCL_QSL_SENT) {
+                       case "Y":
+                          echo "class=\"qsl-green\" data-bs-toggle=\"tooltip\" title=\"".__("Sent");
+                          break;
+                       case "Q":
+                          echo "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".__("Queued");
+                          break;
+                       case "R":
+                          echo "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".__("Requested");
+                          break;
+                       case "I":
+                          echo "class=\"qsl-grey\" data-bs-toggle=\"tooltip\" title=\"".__("Invalid (Ignore)");
+                          break;
+                       default:
+                          echo "class=\"qsl-red";
+                          break;
+                       }
+                        if ($row->COL_DCL_QSLSDATE != null) {
+                            $timestamp = strtotime($row->COL_DCL_QSLSDATE); echo " "  .($timestamp != '' ? date($custom_date_format, $timestamp) : '');
+                        }
+                     } else { echo "class=\"qsl-red"; }
+                        echo "\">&#9650;</span>"; ?>
+                <span <?php if ($row->COL_DCL_QSL_RCVD != "N") {
+                       switch ($row->COL_DCL_QSL_RCVD) {
+                       case "Y":
+                          echo "class=\"qsl-green\" data-bs-toggle=\"tooltip\" title=\"".__("Received");
+                          break;
+                       case "Q":
+                          echo "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".__("Queued");
+                          break;
+                       case "R":
+                          echo "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".__("Requested");
+                          break;
+                       case "I":
+                          echo "class=\"qsl-grey\" data-bs-toggle=\"tooltip\" title=\"".__("Invalid (Ignore)");
+                          break;
+                       default:
+                          echo "class=\"qsl-red";
+                          break;
+                       }
+                       if ($row->COL_DCL_QSLRDATE != null) {
+                            $timestamp = strtotime($row->COL_DCL_QSLRDATE); echo " "  .($timestamp != '' ? date($custom_date_format, $timestamp) : '');
+                       }
+                     } else { echo "class=\"qsl-red"; }
+                        echo "\">&#9660;</span>"; ?>
+                </td>
                 <?php } ?>
 
             <?php } ?>

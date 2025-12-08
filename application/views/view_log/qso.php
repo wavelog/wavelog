@@ -1,4 +1,4 @@
-<?php if ($query->num_rows() > 0) {  foreach ($query->result() as $row) { ?>
+<?php if ($query && ($query->num_rows() > 0)) {  foreach ($query->result() as $row) { ?>
 <div class="container-fluid">
 
     <ul style="margin-bottom: 10px;" class="nav nav-tabs" id="myTab" role="tablist">
@@ -911,4 +911,8 @@ var callsign = "<?php echo $row->COL_CALL; ?>";
     <div hidden id ='callsign'><?php echo $row->COL_CALL; ?></div>
     <div hidden id ='qsoid'><?php echo $row->COL_PRIMARY_KEY; ?></div>
 
-<?php } } ?>
+<?php }
+	} else {
+		echo __("QSO not found");
+	}
+?>

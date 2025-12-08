@@ -177,6 +177,7 @@ class API extends CI_Controller {
 				$result['station_gridsquare']=$row->station_gridsquare;
 				$result['station_callsign']=$row->station_callsign;;
 				$result['station_active']=$row->station_active;
+				$result['station_uuid']=$row->station_uuid;
 				array_push($station_ids, $result);
 			}
 			echo json_encode($station_ids);
@@ -188,7 +189,6 @@ class API extends CI_Controller {
 
 	function check_auth($key) {
 		$this->load->model('api_model');
-			header("Content-type: text/xml");
 		if($this->api_model->access($key) == "No Key Found" || $this->api_model->access($key) == "Key Disabled") {
 			// set the content type as json
 			header("Content-type: application/json");
@@ -440,33 +440,64 @@ class API extends CI_Controller {
 
 		//load adif data module
 		$this->load->model('adif_data');
+		$this->load->library('AdifHelper');
 
-		//get qso data
-		$data['qsos'] = $this->adif_data->export_past_id($station_id, $fetchfromid, $limit);
+		// Initialize tracking variables
+		$total_fetched = 0;
+		$all_qso_ids = [];
+		$lastfetchedid = $fetchfromid;
 
-		//set internalonly attribute for adif creation
-		$data['internalrender'] = true;
+		// Process in chunks to avoid memory issues
+		$chunk_size = 5000;
+		$remaining_limit = $limit;
+		$offset = 0;
 
-		//if no new QSOs are ready, return that
-		$qso_count = count($data['qsos']->result());
-		if($qso_count <= 0) {
+		// Start building ADIF content
+		$adif_content = $this->adifhelper->getAdifHeader($this->config->item('app_name'),$this->optionslib->get_option('version'));
+
+		do {
+			// Calculate chunk size for this iteration
+			$current_chunk_size = min($chunk_size, $remaining_limit);
+
+			// Fetch chunk
+			$qsos = $this->adif_data->export_past_id_chunked($station_id, $fetchfromid, $current_chunk_size, null, $offset, $current_chunk_size);
+
+			if ($qsos && $qsos->num_rows() > 0) {
+				// Process chunk
+				foreach ($qsos->result() as $row) {
+					// Build ADIF content directly
+					$adif_content .= $this->adifhelper->getAdifLine($row);
+
+					// Track data for response
+					$all_qso_ids[] = $row->COL_PRIMARY_KEY;
+					$lastfetchedid = max($lastfetchedid, $row->COL_PRIMARY_KEY);
+					$total_fetched++;
+				}
+
+				// Free memory
+				$qsos->free_result();
+
+				// Update tracking
+				$remaining_limit -= $qsos->num_rows();
+				$offset += $qsos->num_rows();
+
+				// Stop if we've hit the requested limit
+				if ($total_fetched >= $limit) {
+					break;
+				}
+			}
+
+			// Continue if we got a full chunk and haven't hit the limit
+		} while ($qsos && $qsos->num_rows() > 0 && $total_fetched < $limit);
+
+		// Return response (same format as original)
+		if($total_fetched <= 0) {
 			http_response_code(200);
 			echo json_encode(['status' => 'successfull', 'message' => 'No new QSOs available.', 'lastfetchedid' => $fetchfromid, 'exported_qsos' => 0, 'adif' => null]);
-			return;
+		} else {
+			http_response_code(200);
+			echo json_encode(['status' => 'successfull', 'message' => 'Export successfull', 'lastfetchedid' => $lastfetchedid, 'exported_qsos' => $total_fetched, 'adif' => $adif_content]);
 		}
-
-		//convert data to ADIF
-		$adif_content = $this->load->view('adif/data/exportall', $data, TRUE);
-
-		//get new goalpost
-		$lastfetchedid = 0;
-		foreach ($data['qsos']->result() as $row) {
-			$lastfetchedid = max($lastfetchedid, $row->COL_PRIMARY_KEY);
-		}
-
-		//return API result
-		http_response_code(200);
-		echo json_encode(['status' => 'successfull', 'message' => 'Export successfull', 'lastfetchedid' => $lastfetchedid, 'exported_qsos' => $qso_count, 'adif' => $adif_content]);
 	}
 
 

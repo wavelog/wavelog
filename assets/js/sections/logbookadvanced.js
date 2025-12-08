@@ -1,6 +1,9 @@
 let callBookProcessingDialog = null;
 let inCallbookProcessing = false;
 let inCallbookItemProcessing = false;
+let stateFixingDialog = null;
+let inStateFixing = false;
+let stateFixStats = {fixed: 0, skipped: 0, fixedDxcc: new Set(), skippedDxcc: new Set(), skipReasons: new Set(), skippedDetails: []};
 let lastChecked = null;
 let silentReset = false;
 
@@ -467,7 +470,7 @@ $.fn.dataTable.ext.type.order['numbersort-pre'] = function(data) {
     return isNaN(num) ? 0 : num;
 };
 
-function processNextCallbookItem() {
+function processNextCallbookItem(gridsquareAccuracyCheck) {
 	if (!inCallbookProcessing) return;
 
 	var elements = $('#qsoList tbody input:checked');
@@ -488,7 +491,8 @@ function processNextCallbookItem() {
 		url: site_url + '/logbookadvanced/updateFromCallbook',
 		type: 'post',
 		data: {
-			qsoID: id
+			qsoID: id,
+			gridsquareAccuracyCheck: gridsquareAccuracyCheck ? 1 : 0
 		},
 		dataType: 'json',
 		success: function (data) {
@@ -496,11 +500,103 @@ function processNextCallbookItem() {
 				updateRow(data);
 			}
 			unselectQsoID(id);
-			setTimeout("processNextCallbookItem()", 50);
+			setTimeout(function() {
+				processNextCallbookItem(gridsquareAccuracyCheck);
+			}, 50);
 		},
 		error: function (data) {
 			unselectQsoID(id);
-			setTimeout("processNextCallbookItem()", 50);
+			setTimeout(function() {
+				processNextCallbookItem(gridsquareAccuracyCheck);
+			}, 50);
+		},
+	});
+}
+
+function processNextStateFixItem() {
+	if (!inStateFixing) return;
+
+	var elements = $('#qsoList tbody input:checked');
+	var nElements = elements.length;
+
+	if (nElements == 0) {
+		inStateFixing = false;
+		stateFixingDialog.close();
+
+		// Show summary
+		let message = '';
+		message += lang_gen_advanced_logbook_fixed_with_count.replace('%s', stateFixStats.fixed);
+		message += '<br>';
+		message += lang_gen_advanced_logbook_skipped_with_count.replace('%s', stateFixStats.skipped);
+		if (stateFixStats.skippedDetails.length > 0) {
+			message += '<div class="border rounded p-2 mt-2" style="max-height: 150px; overflow-y: auto; background-color: var(--bs-body-bg); color: var(--bs-body-color);">';
+			message += '<small>';
+			stateFixStats.skippedDetails.forEach(function(detail, index) {
+				if (index > 0) message += '<br>';
+				message += detail;
+			});
+			message += '</small>';
+			message += '</div>';
+		}
+
+		if (stateFixStats.skipped > 0) {
+			message += '<div class="alert alert-info mt-3">';
+			message += '<small>' + lang_gen_advanced_logbook_state_not_supported.replace('%s', lang_gen_advanced_logbook_github_link);
+			message += '</small>';
+			message += '</div>';
+		}
+
+		BootstrapDialog.alert({
+			title: lang_gen_advanced_logbook_state_fix_complete,
+			message: function(dialog) {
+				return message;
+			},
+			type: stateFixStats.fixed > 0 ? BootstrapDialog.TYPE_SUCCESS : BootstrapDialog.TYPE_INFO,
+			nl2br: false
+		});
+
+		let table = $('#qsoList').DataTable();
+		table.draw(false);
+		return;
+	}
+
+	let id = elements.first().closest('tr').attr('id')?.replace(/\D/g, '');
+
+	stateFixingDialog.setMessage(lang_gen_advanced_logbook_fixing_state_remaining.replace('%s', nElements));
+
+	$.ajax({
+		url: site_url + '/logbookadvanced/fixStateProgress',
+		type: 'post',
+		data: {
+			qsoID: id
+		},
+		dataType: 'json',
+		success: function (data) {
+			if (data.success && data.qso) {
+				updateRow(data.qso);
+				stateFixStats.fixed++;
+				if (data.dxcc_name) {
+					stateFixStats.fixedDxcc.add(data.dxcc_name);
+				}
+			} else if (data.skipped) {
+				stateFixStats.skipped++;
+				if (data.dxcc_name) {
+					stateFixStats.skippedDxcc.add(data.dxcc_name);
+				}
+				if (data.reason) {
+					stateFixStats.skipReasons.add(data.reason);
+					// Build detailed skip entry: CALLSIGN - DXCC - reason
+					let skipDetail = (data.callsign || 'Unknown') + ' - ' + (data.dxcc_name || 'Unknown DXCC') + ' - ' + data.reason;
+					stateFixStats.skippedDetails.push(skipDetail);
+				}
+			}
+			unselectQsoID(id);
+			setTimeout("processNextStateFixItem()", 50);
+		},
+		error: function (data) {
+			stateFixStats.skipped++;
+			unselectQsoID(id);
+			setTimeout("processNextStateFixItem()", 50);
 		},
 	});
 }
@@ -657,6 +753,7 @@ $(document).ready(function () {
 				dok: this.dok.value,
 				qrzSent: this.qrzSent.value,
 				qrzReceived: this.qrzReceived.value,
+				distance: this.distance.value,
 			},
 			dataType: 'json',
 			success: function (data) {
@@ -695,8 +792,8 @@ $(document).ready(function () {
 	});
 
 	$('#btnUpdateFromCallbook').click(function (event) {
-		var elements = $('#qsoList tbody input:checked');
-		var nElements = elements.length;
+		let elements = $('#qsoList tbody input:checked');
+		let nElements = elements.length;
 		if (nElements == 0) {
 			BootstrapDialog.alert({
 				title: lang_gen_advanced_logbook_info,
@@ -709,6 +806,45 @@ $(document).ready(function () {
 			});
 			return;
 		}
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/callbookDialog',
+			type: 'post',
+			success: function (html) {
+				BootstrapDialog.show({
+					title: 'Callbook options',
+					size: BootstrapDialog.SIZE_NORMAL,
+					cssClass: 'options',
+					nl2br: false,
+					message: html,
+					buttons: [
+					{
+						label: lang_admin_close,
+						cssClass: 'btn-sm btn-secondary',
+						id: 'closeButton',
+						action: function (dialogItself) {
+							dialogItself.close();
+						}
+					},
+					{
+						label: 'Update',
+						cssClass: 'btn-sm btn-primary',
+						id: 'updateButton',
+						action: function (dialogItself) {
+							startProcessingCallbook(nElements, $('[name="gridsquareaccuracycheck"]').is(":checked"));
+							dialogItself.close();
+						}
+					}],
+					onhide: function(dialogRef){
+						return;
+					},
+				});
+			}
+		});
+
+
+	});
+
+	function startProcessingCallbook(nElements, gridsquareAccuracyCheck) {
 		inCallbookProcessing = true;
 
 		callBookProcessingDialog = BootstrapDialog.show({
@@ -725,8 +861,8 @@ $(document).ready(function () {
 				}
 			}]
 		});
-		processNextCallbookItem();
-	});
+		processNextCallbookItem(gridsquareAccuracyCheck);
+	}
 
 	$('#helpButton').click(function (event) {
 		$.ajax({
@@ -1271,6 +1407,83 @@ $(document).ready(function () {
 		});
 	});
 
+	// Fix State button handler
+	$('#fixState').click(function (event) {
+		const id_list = getSelectedIds();
+
+		if (id_list.length === 0) {
+			BootstrapDialog.alert({
+				title: lang_gen_advanced_logbook_info,
+				message: lang_gen_advanced_logbook_select_row_state,
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
+			return;
+		}
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/stateDialog',
+			type: 'post',
+			success: function (html) {
+				BootstrapDialog.show({
+					title: lang_gen_advanced_logbook_fixing_state,
+					size: BootstrapDialog.SIZE_NORMAL,
+					cssClass: 'options',
+					nl2br: false,
+					message: html,
+					buttons: [
+					{
+						label: lang_gen_advanced_logbook_update_now + ' <div class="ld ld-ring ld-spin"></div>',
+						cssClass: 'btn btn-sm btn-primary ld-ext-right',
+						id: 'updateStateButton',
+						action: function (dialogItself) {
+							const id_list = getSelectedIds();
+
+							if (inStateFixing) {
+								return;
+							}
+							inStateFixing = true;
+
+							// Close the info dialog
+							dialogItself.close();
+
+							// Reset statistics
+							stateFixStats = {fixed: 0, skipped: 0, fixedDxcc: new Set(), skippedDxcc: new Set(), skipReasons: new Set(), skippedDetails: []};
+
+							const nElements = id_list.length;
+							stateFixingDialog = BootstrapDialog.show({
+								title: lang_gen_advanced_logbook_fixing_state_qsos.replace('%s', nElements),
+								message: lang_gen_advanced_logbook_fixing_state_remaining.replace('%s', nElements),
+								type: BootstrapDialog.TYPE_INFO,
+								closable: false,
+								draggable: false,
+								buttons: [{
+									label: lang_admin_close,
+									action: function(dialog) {
+										inStateFixing = false;
+										dialog.close();
+									}
+								}]
+							});
+							processNextStateFixItem();
+						}
+					},
+					{
+						label: lang_admin_close,
+						cssClass: 'btn btn-sm btn-secondary',
+						id: 'closeStateDialogButton',
+						action: function (dialogItself) {
+							dialogItself.close();
+						}
+					}],
+				});
+			}
+		});
+	});
+
 	function dupeSearch() {
 		$("#dupes").val("Y");
 		$('#dupeButton').prop('disabled', true).addClass('running');
@@ -1707,3 +1920,85 @@ function saveOptions() {
 		});
 	});
 }
+// Preset functionality
+    function applyPreset(preset) {
+        const dateFrom = document.getElementById('dateFrom');
+        const dateTo = document.getElementById('dateTo');
+        const today = new Date();
+
+        // Format date as YYYY-MM-DD
+        function formatDate(date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        switch(preset) {
+            case 'today':
+                dateFrom.value = formatDate(today);
+                dateTo.value = formatDate(today);
+                break;
+
+            case 'yesterday':
+                const yesterday = new Date(today);
+                yesterday.setDate(yesterday.getDate() - 1);
+                dateFrom.value = formatDate(yesterday);
+                dateTo.value = formatDate(yesterday);
+                break;
+
+            case 'last7days':
+                const sevenDaysAgo = new Date(today);
+                sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+                dateFrom.value = formatDate(sevenDaysAgo);
+                dateTo.value = formatDate(today);
+                break;
+
+            case 'last30days':
+                const thirtyDaysAgo = new Date(today);
+                thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+                dateFrom.value = formatDate(thirtyDaysAgo);
+                dateTo.value = formatDate(today);
+                break;
+
+            case 'thismonth':
+                const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+                dateFrom.value = formatDate(firstDayOfMonth);
+                dateTo.value = formatDate(today);
+                break;
+
+            case 'lastmonth':
+                const firstDayOfLastMonth = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+                const lastDayOfLastMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+                dateFrom.value = formatDate(firstDayOfLastMonth);
+                dateTo.value = formatDate(lastDayOfLastMonth);
+                break;
+
+            case 'thisyear':
+                const firstDayOfYear = new Date(today.getFullYear(), 0, 1);
+                dateFrom.value = formatDate(firstDayOfYear);
+                dateTo.value = formatDate(today);
+                break;
+
+            case 'lastyear':
+                const lastYear = today.getFullYear() - 1;
+                const firstDayOfLastYear = new Date(lastYear, 0, 1);
+                const lastDayOfLastYear = new Date(lastYear, 11, 31);
+                dateFrom.value = formatDate(firstDayOfLastYear);
+                dateTo.value = formatDate(lastDayOfLastYear);
+                break;
+
+            case 'alltime':
+                dateFrom.value = '';
+                dateTo.value = '';
+                break;
+        }
+    }
+
+    // Reset dates function
+    function resetDates() {
+        const dateFrom = document.getElementById('dateFrom');
+        const dateTo = document.getElementById('dateTo');
+        dateFrom.value = '';
+        dateTo.value = '';
+    }

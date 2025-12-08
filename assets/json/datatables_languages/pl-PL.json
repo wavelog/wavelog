@@ -19,16 +19,17 @@
     },
     "autoFill": {
         "cancel": "Anuluj",
-        "fill": "Wypełnij wszystkie komórki <i>%d<\/i>",
+        "fill": "Wypełnij wszystkie komórki <i>%d</i>",
         "fillHorizontal": "Wypełnij komórki w poziomie",
-        "fillVertical": "Wypełnij komórki w pionie"
+        "fillVertical": "Wypełnij komórki w pionie",
+        "info": "Przykład informacji AutoFill"
     },
     "buttons": {
-        "collection": "Zbiór <span class=\"ui-button-icon-primary ui-icon ui-icon-triangle-1-s\"><\/span>",
+        "collection": "Zbiór <span class=\"ui-button-icon-primary ui-icon ui-icon-triangle-1-s\"></span>",
         "colvis": "Widoczność kolumny",
         "colvisRestore": "Przywróć widoczność",
         "copy": "Kopiuj",
-        "copyKeys": "Naciśnij Ctrl lub u2318 + C, aby skopiować dane tabeli do schowka systemowego. <br \/> <br \/> Aby anulować, kliknij tę wiadomość lub naciśnij Esc.",
+        "copyKeys": "Naciśnij Ctrl lub u2318 + C, aby skopiować dane tabeli do schowka systemowego. <br /> <br /> Aby anulować, kliknij tę wiadomość lub naciśnij Esc.",
         "copySuccess": {
             "1": "Skopiowano 1 wiersz do schowka",
             "_": "Skopiowano %d wierszy do schowka"
@@ -38,7 +39,8 @@
         "excel": "Excel",
         "pageLength": {
             "-1": "Pokaż wszystkie wiersze",
-            "_": "Pokaż %d wierszy"
+            "_": "Pokaż %d wierszy",
+            "1": "Pokazuj 1 wiersz"
         },
         "pdf": "PDF",
         "print": "Drukuj",
@@ -163,7 +165,7 @@
             "title": "Aktualizacja wpisu"
         },
         "error": {
-            "system": "Nastąpił błąd systemu (<a target=\"\\\" rel=\"\\ nofollow\" href=\"\\\">Więcej informacji&lt;\\\/a&gt;).<\/a>"
+            "system": "Nastąpił błąd systemu (<a target=\"\\\" rel=\"\\ nofollow\" href=\"\\\">Więcej informacji&lt;\\/a&gt;).</a>"
         },
         "multi": {
             "info": "Wybrane pole zawiera wiele elementów z różnymi wartościami. Aby zmienić ich wartość kliknij w nie, inaczej zachowane zostaną ich wartości domyślne.",
@@ -190,8 +192,8 @@
         "count": "{total}",
         "countFiltered": "{shown} ({total})",
         "emptyPanes": "Brak paneli wyszukań",
-        "loadMessage": "Ładuję panele wyszukań",
-        "title": "Aktywne filtry",
+        "loadMessage": "Ładowanie paneli wyszukania...",
+        "title": "Aktywne filtry - %d",
         "showMessage": "Pokaż wszystko",
         "collapseMessage": "Rozwiń wszystko"
     },
@@ -203,6 +205,10 @@
         "columns": {
             "_": "zaznaczono %d kolumn",
             "1": "zaznaczono %d kolumnę"
+        },
+        "rows": {
+            "1": "Zaznaczono 1 wiersz",
+            "_": "Zaznaczono %d wierszy"
         }
     },
     "stateRestore": {

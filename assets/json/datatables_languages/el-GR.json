@@ -23,16 +23,17 @@
     },
     "autoFill": {
         "cancel": "Ακύρωση",
-        "fill": "Γέμισμα όλων των κελιών με <i>%d<i><\/i><\/i>",
+        "fill": "Γέμισμα όλων των κελιών με <i>%d<i></i></i>",
         "fillHorizontal": "Γέμισμα κελιών οριζόντια",
-        "fillVertical": "Γέμισμα κελιών κατακόρυφα"
+        "fillVertical": "Γέμισμα κελιών κατακόρυφα",
+        "info": "AutoFill info example"
     },
     "buttons": {
         "collection": "Συλλογή",
         "colvis": "Ορατότητα στηλών",
         "colvisRestore": "Επαναφορά ορατότητας",
         "copy": "Αντιγραφή",
-        "copyKeys": "Πατήστε ctrl ή u2318 + C για να αντιγράψετε τα δεδομένα του πίνακα<br \/>στο πρόχειρο. <br \/><br \/>Για ακύρωση, πατήστε το μήνυμα ή πατήστε το πλήκτρο Esc.",
+        "copyKeys": "Πατήστε ctrl ή u2318 + C για να αντιγράψετε τα δεδομένα του πίνακα<br />στο πρόχειρο. <br /><br />Για ακύρωση, πατήστε το μήνυμα ή πατήστε το πλήκτρο Esc.",
         "copySuccess": {
             "_": " Αντιγράφηκαν %ds γραμμές στο πρόχειρο",
             "1": "Αντιγράφηκε 1 γραμμή στο πρόχειρο"
@@ -75,12 +76,24 @@
             "Παρ",
             "Σαβ"
         ],
-        "months": [
-            "Ιανουάριος",
-            "Φεβρουάριος",
-            "Μάρτιος",
-            "Απρίλιος"
-        ]
+        "months": {
+            "0": "Ιανουάριος",
+            "1": "Φεβρουάριος",
+            "2": "Μάρτιος",
+            "3": "Απρίλιος",
+            "0": "January",
+            "1": "February",
+            "10": "November",
+            "11": "December",
+            "2": "March",
+            "3": "April",
+            "4": "May",
+            "5": "June",
+            "6": "July",
+            "7": "August",
+            "8": "September",
+            "9": "October"
+        }
     },
     "editor": {
         "close": "Κλείσιμο",
@@ -159,7 +172,10 @@
                 "equals": "Ίσο",
                 "not": "Όχι",
                 "notEmpty": "Όχι κενό",
-                "startsWith": "Αρχίζει με"
+                "startsWith": "Αρχίζει με",
+                "notContains": "Does not contain",
+                "notStartsWith": "Does not start with",
+                "notEndsWith": "Does not end with"
             }
         },
         "data": "Δεδομένα",
@@ -170,7 +186,9 @@
             "_": "Φίλτρα εύρεσης (%d)",
             "0": "Φίλτρα εύρεσης"
         },
-        "value": "Τιμή"
+        "value": "Τιμή",
+        "leftTitle": "Outdent criteria",
+        "rightTitle": "Indent criteria"
     },
     "searchPanes": {
         "clearMessage": "Καθαρισμός όλων",
@@ -182,7 +200,9 @@
         "countFiltered": "{shown} ({total})",
         "emptyPanes": "Άδειος πίνακας αναζήτησης",
         "loadMessage": "Φόρτωση πίνακα αναζήτησης",
-        "title": "Ενεργά φίλτρα - %d"
+        "title": "Ενεργά φίλτρα - %d",
+        "showMessage": "Show all",
+        "collapseMessage": "Collapse all"
     },
     "select": {
         "cells": {
@@ -197,5 +217,34 @@
             "_": "%d γραμμές επιλέχθηκαν",
             "1": "1 γραμμή επιλέχθηκε"
         }
+    },
+    "stateRestore": {
+        "creationModal": {
+            "button": "Create",
+            "columns": {
+                "search": "Column search",
+                "visible": "Column visibility"
+            },
+            "name": "Name:",
+            "order": "Sorting",
+            "paging": "Paging",
+            "search": "Search",
+            "searchBuilder": "Search builder",
+            "select": "Select",
+            "title": "Create new state",
+            "toggleLabel": "Include:",
+            "scroller": "Scroll position"
+        },
+        "duplicateError": "A state with this name already exists.",
+        "emptyError": "Name cannot be empty.",
+        "emptyStates": "No saved states",
+        "removeConfirm": "Are you sure you want to remove %s?",
+        "removeError": "Failed to remove state.",
+        "removeJoiner": "and",
+        "removeSubmit": "Remove",
+        "removeTitle": "Remove state",
+        "renameButton": "Rename",
+        "renameLabel": "New name for %s:",
+        "renameTitle": "Rename state"
     }
 }

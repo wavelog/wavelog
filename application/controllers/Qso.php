@@ -96,7 +96,7 @@ class QSO extends CI_Controller {
 			$data['dxcluster_default_maxage'] = $this->optionslib->get_option('dxcluster_maxage') ?? 60;
 		} else {
 			$data['user_dxwaterfall_enable'] = 0;
-			
+
 			// default but not used, prevent unset variable, without the need of a db call
 			$data['dxcluster_default_decont'] = 'EU';
 			$data['dxcluster_default_maxage'] = 60;

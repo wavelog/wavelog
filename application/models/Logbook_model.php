@@ -8,6 +8,7 @@ class Logbook_model extends CI_Model {
 	public function __construct() {
 		$this->oop_populate_modes();
 		$this->load->Model('Modes');
+		$this->load->library('DxclusterCache');
 	}
 
 	private $oop_modes = [];
@@ -56,7 +57,12 @@ class Logbook_model extends CI_Model {
 				$end_datetime_obj = DateTime::createFromFormat("$date_format H:i:s", "$start_date $end_time");
 
 				if ($end_datetime_obj === false) {
-					$datetime_off = $datetime;
+					$end_datetime_obj = DateTime::createFromFormat("$date_format H:i", "$start_date $end_time");	// Try converting as H:i if H:i:s failed b4
+					if ($end_datetime_obj === false) {
+						$datetime_off = $datetime; // No Luck? Than end = start
+					} else {
+						$datetime_off = $end_datetime_obj->format('Y-m-d H:i:s');
+					}
 				} else {
 					// If time-off is before time-on and hour is 00 → add 1 day
 					if ($end_datetime_obj < $datetime_obj && str_starts_with($end_time, "00")) {
@@ -356,7 +362,7 @@ class Logbook_model extends CI_Model {
 			'COL_QSL_RCVD_VIA' => $this->input->post('qsl_rcvd_method'),
 			'COL_QSL_VIA' => $this->input->post('qsl_via'),
 			'COL_QSLMSG' => $this->input->post('qslmsg'),
-			'COL_OPERATOR' => strtoupper(trim($this->input->post('operator_callsign')) ?? $this->session->userdata('operator_callsign')),
+			'COL_OPERATOR' => strtoupper(trim($this->input->post('operator_callsign', true) ?? $this->session->userdata('operator_callsign'))),
 			'COL_QTH' => $qso_qth,
 			'COL_PROP_MODE' => $prop_mode,
 			'COL_IOTA' => $this->input->post('iota_ref')  == null ? '' : trim($this->input->post('iota_ref')),
@@ -533,7 +539,7 @@ class Logbook_model extends CI_Model {
 	/*
 	 * Used to fetch QSOs from the logbook in the awards
 	 */
-	public function qso_details($searchphrase, $band, $mode, $type, $qsl, $sat = null, $orbit = null, $searchmode = null, $propagation = null) {
+	public function qso_details($searchphrase, $band, $mode, $type, $qsl, $sat = null, $orbit = null, $searchmode = null, $propagation = null, $datefrom = null, $dateto = null) {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -648,6 +654,40 @@ class Logbook_model extends CI_Model {
 				$this->db->where('COL_STATE', $searchphrase);
 				$this->db->where_in('COL_DXCC', ['287']);
 				break;
+			case 'POLSKA':
+				$this->db->where('COL_STATE', $searchphrase);
+				$this->db->where('COL_DXCC', '269');
+				$this->db->where('COL_TIME_ON >=', '1999-01-01 00:00:00');
+
+				// Exclude satellite contacts for Polska Award
+				$this->db->group_start();
+				$this->db->where('COL_PROP_MODE !=', 'SAT');
+				$this->db->or_where('COL_PROP_MODE IS NULL');
+				$this->db->group_end();
+
+				// Only count allowed bands for Polska Award
+				$this->db->where_in('COL_BAND', ['160M','80M','40M','30M','20M','17M','15M','12M','10M','6M','2M']);
+
+				// Handle mode categories for Polska Award
+				if (strtoupper($mode) == 'PHONE') {
+					$this->db->group_start();
+					$this->db->where_in('UPPER(COL_MODE)', ['SSB','USB','LSB','AM','FM','SSTV']);
+					$this->db->or_where_in('UPPER(COL_SUBMODE)', ['SSB','USB','LSB','AM','FM','SSTV']);
+					$this->db->group_end();
+					$mode = ''; // Clear mode so it's not processed again later
+				} elseif (strtoupper($mode) == 'DIGI') {
+					$this->db->group_start();
+					$this->db->where_in('UPPER(COL_MODE)', ['RTTY','PSK','PSK31','PSK63','PSK125','PSKR','FSK','FSK441','FT4','FT8','JS8','JT4','JT6M','JT9','JT65','MFSK','OLIVIA','OPERA','PAX','PAX2','PKT','Q15','QRA64','ROS','T10','THOR','THRB','TOR','VARA','WSPR']);
+					$this->db->or_where_in('UPPER(COL_SUBMODE)', ['RTTY','PSK','PSK31','PSK63','PSK125','PSKR','FSK','FSK441','FT4','FT8','JS8','JT4','JT6M','JT9','JT65','MFSK','OLIVIA','OPERA','PAX','PAX2','PKT','Q15','QRA64','ROS','T10','THOR','THRB','TOR','VARA','WSPR']);
+					$this->db->group_end();
+					$mode = ''; // Clear mode so it's not processed again later
+				} elseif (strtoupper($mode) == 'CW') {
+					$this->db->where('UPPER(COL_MODE)', 'CW');
+					$mode = ''; // Clear mode so it's not processed again later
+				} elseif (strtoupper($mode) == 'MIXED') {
+					$mode = 'All'; // MIXED means all modes
+				}
+				break;
 			case 'JCC':
 				$this->db->where('COL_CNTY', $searchphrase);
 				$this->db->where('COL_DXCC', '339');
@@ -743,6 +783,13 @@ class Logbook_model extends CI_Model {
 			$this->db->where("COL_MODE", $mode);
 			$this->db->or_where("COL_SUBMODE", $mode);
 			$this->db->group_end();
+		}
+
+		if ($datefrom != null) {
+			$this->db->where('date(COL_TIME_ON) >=', $datefrom);
+		}
+		if ($dateto != null) {
+			$this->db->where('date(COL_TIME_ON) <=', $dateto);
 		}
 		$this->db->order_by("COL_TIME_ON", "desc");
 		$this->db->order_by("COL_PRIMARY_KEY", "desc");
@@ -933,6 +980,9 @@ class Logbook_model extends CI_Model {
 					}
 				}
 			}
+
+			// Invalidate DXCluster cache for this callsign
+			$this->dxclustercache->invalidateForCallsign($data['COL_CALL']);
 		}
 	}
 
@@ -1673,6 +1723,9 @@ class Logbook_model extends CI_Model {
 		try {
 			$this->db->update($this->config->item('table_name'), $data);
 			$retvals['success']=true;
+
+			// Invalidate DXCluster cache for this callsign
+			$this->dxclustercache->invalidateForCallsign($data['COL_CALL']);
 		} catch (Exception $e) {
 			$retvals['success']=false;
 			$retvals['detail']=$e;
@@ -2114,7 +2167,10 @@ class Logbook_model extends CI_Model {
 		  COL_RST_SENT,
 		  COL_SAT_NAME,
 		  COL_SAT_MODE,
+		  COL_PROP_MODE,
 		  COL_QSL_RCVD,
+		  COL_GRIDSQUARE,
+		  COL_MY_GRIDSQUARE,
 		  COL_COMMENT,
 		  (select adif from dxcc_prefixes where  (CASE WHEN COL_QSL_VIA != \'\' THEN COL_QSL_VIA ELSE COL_CALL END) like concat(dxcc_prefixes.`call`,\'%\') order by end limit 1) as ADIF,
 		  (select entity from dxcc_prefixes where  (CASE WHEN COL_QSL_VIA != \'\' THEN COL_QSL_VIA ELSE COL_CALL END) like concat(dxcc_prefixes.`call`,\'%\') order by end limit 1) as ENTITY,
@@ -2735,20 +2791,18 @@ class Logbook_model extends CI_Model {
 
 		// Build cache key with user_id, logbook_ids, and confirmation preference
 		$user_id = $this->session->userdata('user_id');
-		$logbook_ids_str = implode('_', $logbooks_locations_array);
-		$confirmation_hash = md5($user_default_confirmation); // Hash to keep key shorter
-		$logbook_ids_key = "{$user_id}_{$logbook_ids_str}_{$confirmation_hash}";
+		$logbook_ids_key = $this->dxclustercache->getLogbookKey($user_id, $logbooks_locations_array, $user_default_confirmation);
 		$spots_by_callsign = []; // Group spots by callsign for processing
 
 		foreach ($spots as $spot) {
-			// Validate spot has required properties
-			if (!isset($spot->spotted) || !isset($spot->dxcc_spotted->dxcc_id) || !isset($spot->dxcc_spotted->cont) || !isset($spot->band) || !isset($spot->mode)) {
+			// Validate spot has required properties (must be non-empty)
+			if (empty($spot->spotted) || empty($spot->dxcc_spotted->dxcc_id) || empty($spot->band) || empty($spot->mode)) {
 				continue;
 			}
 
 			$callsign = $spot->spotted;
 			$dxcc = $spot->dxcc_spotted->dxcc_id;
-			$cont = $spot->dxcc_spotted->cont;
+			$cont = $spot->dxcc_spotted->cont ?? '';
 
 			// Collect unique callsigns/dxccs/continents - query once per unique value
 			$callsigns[$callsign] = true;
@@ -2775,7 +2829,7 @@ class Logbook_model extends CI_Model {
 			if (!isset($this->spot_status_cache[$cache_key])) {
 				// Check file cache
 				if ($cache_enabled) {
-					$file_cache_key = "dxcluster_worked_call_{$logbook_ids_key}_{$callsign}";
+					$file_cache_key = $this->dxclustercache->getWorkedCallKey($logbook_ids_key, $callsign);
 					$cached_data = $this->cache->get($file_cache_key);
 					if ($cached_data !== false) {
 						// Load from file cache into in-memory cache
@@ -2793,7 +2847,7 @@ class Logbook_model extends CI_Model {
 
 			if (!isset($this->spot_status_cache[$cache_key])) {
 				if ($cache_enabled) {
-					$file_cache_key = "dxcluster_worked_dxcc_{$logbook_ids_key}_{$dxcc}";
+					$file_cache_key = $this->dxclustercache->getWorkedDxccKey($logbook_ids_key, $dxcc);
 					$cached_data = $this->cache->get($file_cache_key);
 					if ($cached_data !== false) {
 						$this->spot_status_cache[$cache_key] = $cached_data;
@@ -2809,7 +2863,7 @@ class Logbook_model extends CI_Model {
 
 			if (!isset($this->spot_status_cache[$cache_key])) {
 				if ($cache_enabled) {
-					$file_cache_key = "dxcluster_worked_cont_{$logbook_ids_key}_{$cont}";
+					$file_cache_key = $this->dxclustercache->getWorkedContKey($logbook_ids_key, $cont);
 					$cached_data = $this->cache->get($file_cache_key);
 					if ($cached_data !== false) {
 						$this->spot_status_cache[$cache_key] = $cached_data;
@@ -3052,7 +3106,7 @@ class Logbook_model extends CI_Model {
 
 			// Save to file cache for 15 minutes
 			if ($cache_enabled) {
-				$file_cache_key = "dxcluster_worked_call_{$logbook_ids_key}_{$callsign}";
+				$file_cache_key = $this->dxclustercache->getWorkedCallKey($logbook_ids_key, $callsign);
 				$this->cache->save($file_cache_key, $data, $cache_ttl);
 			}
 		}
@@ -3061,7 +3115,7 @@ class Logbook_model extends CI_Model {
 			$this->spot_status_cache[$cache_key] = $data;
 
 			if ($cache_enabled) {
-				$file_cache_key = "dxcluster_worked_dxcc_{$logbook_ids_key}_{$dxcc}";
+				$file_cache_key = $this->dxclustercache->getWorkedDxccKey($logbook_ids_key, $dxcc);
 				$this->cache->save($file_cache_key, $data, $cache_ttl);
 			}
 		}
@@ -3070,7 +3124,7 @@ class Logbook_model extends CI_Model {
 			$this->spot_status_cache[$cache_key] = $data;
 
 			if ($cache_enabled) {
-				$file_cache_key = "dxcluster_worked_cont_{$logbook_ids_key}_{$cont}";
+				$file_cache_key = $this->dxclustercache->getWorkedContKey($logbook_ids_key, $cont);
 				$this->cache->save($file_cache_key, $data, $cache_ttl);
 			}
 		}		// Cache NOT WORKED items (negative results) - store empty arrays
@@ -3081,7 +3135,7 @@ class Logbook_model extends CI_Model {
 				$this->spot_status_cache[$cache_key] = []; // Empty = not worked
 
 				if ($cache_enabled) {
-					$file_cache_key = "dxcluster_worked_call_{$logbook_ids_key}_{$callsign}";
+					$file_cache_key = $this->dxclustercache->getWorkedCallKey($logbook_ids_key, $callsign);
 					$this->cache->save($file_cache_key, [], $cache_ttl);
 				}
 			}
@@ -3092,7 +3146,7 @@ class Logbook_model extends CI_Model {
 				$this->spot_status_cache[$cache_key] = [];
 
 				if ($cache_enabled) {
-					$file_cache_key = "dxcluster_worked_dxcc_{$logbook_ids_key}_{$dxcc}";
+					$file_cache_key = $this->dxclustercache->getWorkedDxccKey($logbook_ids_key, $dxcc);
 					$this->cache->save($file_cache_key, [], $cache_ttl);
 				}
 			}
@@ -3103,7 +3157,7 @@ class Logbook_model extends CI_Model {
 				$this->spot_status_cache[$cache_key] = [];
 
 				if ($cache_enabled) {
-					$file_cache_key = "dxcluster_worked_cont_{$logbook_ids_key}_{$cont}";
+					$file_cache_key = $this->dxclustercache->getWorkedContKey($logbook_ids_key, $cont);
 					$this->cache->save($file_cache_key, [], $cache_ttl);
 				}
 			}
@@ -4287,6 +4341,10 @@ class Logbook_model extends CI_Model {
 	/* Delete QSO based on the QSO ID */
 	function delete($id) {
 		if ($this->check_qso_is_accessible($id)) {
+			// Get callsign before deleting for cache invalidation
+			$qso = $this->get_qso($id);
+			$callsign = ($qso->num_rows() > 0) ? $qso->row()->COL_CALL : null;
+
 			$this->load->model('qsl_model');
 			$this->load->model('eqsl_images');
 
@@ -4298,6 +4356,9 @@ class Logbook_model extends CI_Model {
 
 			$this->db->where('qsoid', $id);
 			$this->db->delete("oqrs");
+
+			// Invalidate DXCluster cache for this callsign
+			$this->dxclustercache->invalidateForCallsign($callsign);
 		} else {
 			return;
 		}
@@ -4504,7 +4565,8 @@ class Logbook_model extends CI_Model {
 		$amsat_qsos = [];
 		$today = time();
 		if (!$this->stations->check_station_is_accessible($station_id) && $apicall == false) {
-			return 'Station not accessible<br>';
+			$custom_errors['errormessage'] = 'Station not accessible<br>';
+			return $custom_errors;
 		}
 		$station_id_ok = true;
 		$station_profile = $this->stations->profile_clean($station_id);
@@ -4591,9 +4653,13 @@ class Logbook_model extends CI_Model {
 
 		$my_error = "";
 
-		if (validateADIFDate($record['qso_date']) != true) {
-			log_message("Error", "Trying to import QSO with invalid date: " . $record['qso_date']. " for station_id " . $station_id . ". Call: " . ($record['call'] ?? '') . " Mode: " . ($record['mode'] ?? '') . " Band: " . ($record['band'] ?? ''));
-			$returner['error']=__("QSO on")." ".$record['qso_date'].": ".__("You tried to import a QSO without valid date. This QSO wasn't imported. It's invalid") . "<br>";
+		if (validateADIFDate($record['qso_date'] ?? '') != true) {
+			$qso_date = $record['qso_date'] ?? '';
+			$call = $record['call'] ?? '';
+			$mode = $record['mode'] ?? '';
+			$band = $record['band'] ?? '';
+			log_message("Error", "Trying to import QSO with invalid date: " . $qso_date. " for station_id " . $station_id . ". Call: " . $call . " Mode: " . $mode . " Band: " . $band);
+			$returner['error']=__("You tried to import a QSO without valid date. This QSO wasn't imported. It's invalid") . ". Call: " . $call . ", Mode: " . $mode . ", Band: " . $band . "<br>";
 			return($returner);
 		}
 

@@ -314,6 +314,11 @@ TD.eqsl {
 	font-size: 1.1em;
 }
 
+.eqsl-yellow {
+	color: #d39e00 !important;
+	font-size: 1.1em;
+}
+
 .eqsl-grey {
 	color: #dddddd !important;
 	font-size: 1.1em;
@@ -361,6 +366,11 @@ TD.clublog {
 
 .clublog-red {
 	color: #f00 !important;
+	font-size: 1.1em;
+}
+
+.clublog-grey {
+	color: #dddddd !important;
 	font-size: 1.1em;
 }
 
@@ -1402,3 +1412,9 @@ svg text.month { fill: #AAA; }
 	.legendClose {
 		float: right;
 	}
+
+
+/* Ensure tooltip appears above everything */
+.tooltip {
+    z-index: 9999 !important;
+}

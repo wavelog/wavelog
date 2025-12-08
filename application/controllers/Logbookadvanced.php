@@ -153,7 +153,8 @@ class Logbookadvanced extends CI_Controller {
 			'qsoids' => xss_clean($this->input->post('qsoids')),
 			'dok' => xss_clean($this->input->post('dok')),
 			'qrzSent' => xss_clean($this->input->post('qrzSent')),
-			'qrzReceived' => xss_clean($this->input->post('qrzReceived'))
+			'qrzReceived' => xss_clean($this->input->post('qrzReceived')),
+			'distance' => xss_clean($this->input->post('distance')),
 		);
 	}
 
@@ -193,12 +194,13 @@ class Logbookadvanced extends CI_Controller {
 		}
 
 		$callbook = $this->logbook_model->loadCallBook($qso['COL_CALL'], $this->config->item('use_fullname'));
+		$gridsquareAccuracyCheck = xss_clean($this->input->post('gridsquareAccuracyCheck'));
 
 		if ($callbook['callsign'] ?? "" !== "") {
 			$this->load->model('stations');
 			$active_station_id = $this->stations->find_active();
 			$station_profile = $this->stations->profile($active_station_id)->row_array();
-			$this->logbookadvanced_model->updateQsoWithCallbookInfo($qso['COL_PRIMARY_KEY'], $qso, $callbook, $station_profile['station_gridsquare']);
+			$this->logbookadvanced_model->updateQsoWithCallbookInfo($qso['COL_PRIMARY_KEY'], $qso, $callbook, $gridsquareAccuracyCheck, $station_profile['station_gridsquare']);
 			$qso = $this->logbookadvanced_model->getQsosForAdif(json_encode($qsoID), $this->session->userdata('user_id'))->row_array();
 		}
 
@@ -376,6 +378,9 @@ class Logbookadvanced extends CI_Controller {
 			'continent' => '',
 			'comment' => '*',
 			'dok' => '*',
+			'qrzSent' => '',
+			'qrzReceived' => '',
+			'distance' => '*',
 			'qrzSent' => '',
 			'qrzReceived' => '',
 			'ids' => json_decode(xss_clean($this->input->post('ids'))),
@@ -717,6 +722,25 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->view('logbookadvanced/continentdialog');
 	}
 
+	public function stateDialog() {
+		$this->load->library('Geojson');
+
+		// Get supported countries from Geojson library
+		$supported_states = $this->geojson::SUPPORTED_STATES;
+		$country_names = array();
+
+		foreach ($supported_states as $dxcc => $info) {
+			if ($info['enabled']) {
+				$country_names[] = $info['name'];
+			}
+		}
+
+		sort($country_names);
+		$data['supported_countries'] = implode(', ', $country_names);
+
+		$this->load->view('logbookadvanced/statedialog', $data);
+	}
+
 	public function distanceDialog() {
 		$this->load->view('logbookadvanced/distancedialog');
 	}
@@ -814,11 +838,50 @@ class Logbookadvanced extends CI_Controller {
 		print json_encode($result);
 	}
 
+	public function fixStateProgress() {
+		if(!clubaccess_check(9)) return;
+
+		$this->load->model('logbook_model');
+		$this->load->model('logbookadvanced_model');
+
+		$qsoID = xss_clean($this->input->post('qsoID'));
+
+		// Process single QSO state fix
+		$result = $this->logbookadvanced_model->fixStateSingle($qsoID);
+
+		// Get updated QSO data if successful
+		if ($result['success']) {
+			$qsoID_array = [$qsoID];
+			$qso = $this->logbookadvanced_model->getQsosForAdif(json_encode($qsoID_array), $this->session->userdata('user_id'))->row_array();
+
+			if ($qso !== null) {
+				$qsoObj = new QSO($qso);
+				$cleaned_qso = $qsoObj->toArray();
+
+				$flag = $this->dxccflag->get($qsoObj->getDXCCId());
+				if ($flag != null) {
+					$cleaned_qso['flag'] = ' ' . $flag;
+				} else {
+					$cleaned_qso['flag'] = '';
+				}
+
+				$result['qso'] = $cleaned_qso;
+			}
+		}
+
+		header("Content-Type: application/json");
+		echo json_encode($result);
+	}
+
 	public function updateDistances() {
 		$this->load->model('logbookadvanced_model');
 		$result = $this->logbookadvanced_model->update_distances_batch();
 
 		header("Content-Type: application/json");
 		print json_encode($result);
+	}
+
+	public function callbookDialog() {
+		$this->load->view('logbookadvanced/callbookdialog');
 	}
 }

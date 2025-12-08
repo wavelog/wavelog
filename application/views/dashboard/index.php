@@ -179,7 +179,7 @@ function getDistance($distance) {
 		<div class="alert alert-warning alert-dismissible fade show" role="alert" style="margin-top: 1rem;">
 			<span class="badge text-bg-info"><?= __("Important"); ?></span> <i class="fas fa-broadcast-tower"></i> 
 			<?php if (($current_streak ?? 0)>0) { 
-				echo sprintf(__("Don't loose your streak - You have already had at least one QSO for the last %s consecutive days."),$current_streak); 
+				echo sprintf(__("Don't lose your streak - You have already had at least one QSO for the last %s consecutive days."),$current_streak); 
 			} else {
 				echo __("You have made no QSOs today; time to turn on the radio!"); 
 			} ?>
@@ -203,11 +203,11 @@ function getDistance($distance) {
 	<?php } ?>
 
 	<?php if ($this->session->userdata('user_id')) { ?>
-		<?php if ($lotw_cert_expired == true || $lotw_cert_qsoenddate_expired == true || $lotw_cert_expiring == true || $lotw_cert_qsoenddate_expiring == true) { ?>
+		<?php if ($lotw_cert_expired == true || $lotw_cert_expiring == true) { ?>
 			<?php
-				if($lotw_cert_expired == true || $lotw_cert_qsoenddate_expired == true) { ?>
+				if($lotw_cert_expired == true) { ?>
 				<div class="alert alert-danger alert-dismissible fade show" role="alert">
-				<?php } elseif($lotw_cert_expiring == true || $lotw_cert_qsoenddate_expiring == true) { ?>
+				<?php } elseif($lotw_cert_expiring == true) { ?>
 				<div class="alert alert-warning alert-dismissible fade show" role="alert">
 				<?php } ?>
 					<span class="badge text-bg-info"><?= __("Important"); ?></span> <i class="fas fa-hourglass-half"></i> <?= sprintf(_pgettext("LoTW Warning", "LoTW Warning: There is an issue with at least one of your %sLoTW certificates%s!"), '<u><a href="'.site_url('lotw').'">', "</a></u>"); ?>
@@ -215,8 +215,6 @@ function getDistance($distance) {
 					<ul style="margin-top: 0.5em; margin-bottom: 0.1em;">
 						<?php if ($lotw_cert_expired == true) { echo "<li>".__("At least one of your certificates is expired"); } ?>
 						<?php if ($lotw_cert_expiring == true) { echo "<li>".__("At least one of your certificates is expiring"); } ?>
-						<?php if ($lotw_cert_qsoenddate_expired == true) { echo "<li>".__("The QSO end date of at least one of your certificates was exceeded"); } ?>
-						<?php if ($lotw_cert_qsoenddate_expiring == true) { echo "<li>".__("The QSO end date of at least one of your certificates is about to be exceeded"); } ?>
 					</ul>
 				</div>
 		<?php } ?>

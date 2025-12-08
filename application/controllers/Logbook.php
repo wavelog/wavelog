@@ -660,26 +660,28 @@ class Logbook extends CI_Controller {
 
 		$this->load->model('logbook_model');
 		$data['query'] = $this->logbook_model->get_qso($id);
-		$data['dxccFlag'] = $this->dxccflag->get($data['query']->result()[0]->COL_DXCC);
+		if ($data['query']) {	// QSO not found // Skip fetching details
+			$data['dxccFlag'] = $this->dxccflag->get($data['query']->result()[0]->COL_DXCC);
 
-		// Check for note for this callsign and current user
-		$callsign = $data['query']->result()[0]->COL_CALL;
-		$user_id = $this->session->userdata('user_id');
-		$this->load->model('note');
-		$data['contacts_note_id'] = $this->note->get_note_id_by_category($user_id, 'Contacts', $callsign);
+			// Check for note for this callsign and current user
+			$callsign = $data['query']->result()[0]->COL_CALL;
+			$user_id = $this->session->userdata('user_id');
+			$this->load->model('note');
+			$data['contacts_note_id'] = $this->note->get_note_id_by_category($user_id, 'Contacts', $callsign);
 
-		if ($this->session->userdata('user_measurement_base') == NULL) {
-			$data['measurement_base'] = $this->config->item('measurement_base');
-		}
-		else {
-			$data['measurement_base'] = $this->session->userdata('user_measurement_base');
-		}
+			if ($this->session->userdata('user_measurement_base') == NULL) {
+				$data['measurement_base'] = $this->config->item('measurement_base');
+			}
+			else {
+				$data['measurement_base'] = $this->session->userdata('user_measurement_base');
+			}
 
-		$this->load->model('Qsl_model');
-		$data['qslimages'] = $this->Qsl_model->getQslForQsoId($id);
-		$data['primary_subdivision'] = $this->subdivisions->get_primary_subdivision_name($data['query']->result()[0]->COL_DXCC);
-		$data['secondary_subdivision'] = $this->subdivisions->get_secondary_subdivision_name($data['query']->result()[0]->COL_DXCC);
-		$data['max_upload'] = ini_get('upload_max_filesize');
+			$this->load->model('Qsl_model');
+			$data['qslimages'] = $this->Qsl_model->getQslForQsoId($id);
+			$data['primary_subdivision'] = $this->subdivisions->get_primary_subdivision_name($data['query']->result()[0]->COL_DXCC);
+			$data['secondary_subdivision'] = $this->subdivisions->get_secondary_subdivision_name($data['query']->result()[0]->COL_DXCC);
+			$data['max_upload'] = ini_get('upload_max_filesize');
+		} 
 		$this->load->view('interface_assets/mini_header', $data);
 		$this->load->view('view_log/qso');
 		$this->load->view('interface_assets/footer');

@@ -22,6 +22,14 @@
         "rows": {
             "_": "Valittuna %d riviä",
             "1": "Valittuna vain yksi rivi"
+        },
+        "cells": {
+            "1": "1 cell selected",
+            "_": "%d cells selected"
+        },
+        "columns": {
+            "1": "1 column selected",
+            "_": "%d columns selected"
         }
     },
     "buttons": {
@@ -31,12 +39,34 @@
             "_": "%d riviä kopioitu leikepöydälle"
         },
         "copyTitle": "Kopioi leikepöydälle",
-        "copyKeys": "Paina <i>ctrl<\/i> tai <i>⌘<\/i> + <i>C<\/i> kopioidaksesi taulukon arvot<br> leikepöydälle. <br><br>Peruuttaaksesi klikkaa tähän tai Esc.",
-        "colvisRestore": "Palauta oletusasetukset"
+        "copyKeys": "Paina <i>ctrl</i> tai <i>⌘</i> + <i>C</i> kopioidaksesi taulukon arvot<br> leikepöydälle. <br><br>Peruuttaaksesi klikkaa tähän tai Esc.",
+        "colvisRestore": "Palauta oletusasetukset",
+        "colvis": "Column visibility",
+        "csv": "CSV",
+        "excel": "Excel",
+        "pdf": "PDF",
+        "pageLength": {
+            "-1": "Show all rows",
+            "_": "Show %d rows",
+            "1": "Show 1 row"
+        },
+        "print": "Print",
+        "createState": "Create state",
+        "removeAllStates": "Remove all states",
+        "removeState": "Remove",
+        "renameState": "Rename",
+        "stateRestore": "State %d",
+        "updateState": "Update",
+        "collection": "Collection<span class=\"ui-button-icon-primary ui-icon ui-icon-triangle-1-s\"></span>",
+        "savedStates": "Saved states"
     },
     "info": "Näytetään rivit _START_ - _END_ (yhteensä _TOTAL_)",
     "autoFill": {
-        "cancel": "Peruuta"
+        "cancel": "Peruuta",
+        "fill": "Fill all cells with <i>%d</i>",
+        "fillHorizontal": "Fill cells horizontally",
+        "fillVertical": "Fill cells vertically",
+        "info": "AutoFill info example"
     },
     "datetime": {
         "previous": "Edellinen",
@@ -58,20 +88,32 @@
             "Pe",
             "La"
         ],
-        "months": [
-            "Tammikuu",
-            "Helmikuu",
-            "Maaliskuu",
-            "Huhtikuu",
-            "Toukokuu",
-            "Kesäkuu",
-            "Heinäkuu",
-            "Elokuu",
-            "Syyskuu",
-            "Lokakuu",
-            "Marraskuu",
-            "Joulukuu"
-        ]
+        "months": {
+            "0": "Tammikuu",
+            "1": "Helmikuu",
+            "2": "Maaliskuu",
+            "3": "Huhtikuu",
+            "4": "Toukokuu",
+            "5": "Kesäkuu",
+            "6": "Heinäkuu",
+            "7": "Elokuu",
+            "8": "Syyskuu",
+            "9": "Lokakuu",
+            "10": "Marraskuu",
+            "11": "Joulukuu",
+            "0": "January",
+            "1": "February",
+            "10": "November",
+            "11": "December",
+            "2": "March",
+            "3": "April",
+            "4": "May",
+            "5": "June",
+            "6": "July",
+            "7": "August",
+            "8": "September",
+            "9": "October"
+        }
     },
     "editor": {
         "close": "Sulje",
@@ -88,7 +130,129 @@
         "remove": {
             "button": "Poista",
             "title": "Otsikko",
-            "submit": "Poista"
+            "submit": "Poista",
+            "confirm": {
+                "_": "Are you sure you wish to delete %d rows?",
+                "1": "Are you sure you wish to delete 1 row?"
+            }
+        },
+        "multi": {
+            "restore": "Undo changes",
+            "title": "Multiple values",
+            "noMulti": "This input can be edited individually, but not part of a group.",
+            "info": "The selected items contain different values for this input. To edit and set all items for this input to the same value, click or tap here, otherwise they will retain their individual values."
+        },
+        "error": {
+            "system": "A system error has occurred (<a target=\"\\\" rel=\"\\ nofollow\" href=\"\\\">More information&lt;\\/a&gt;).</a>"
         }
+    },
+    "searchBuilder": {
+        "button": {
+            "0": "Search builder",
+            "_": "Search builder (%d)"
+        },
+        "clearAll": "Clear all",
+        "condition": "Condition",
+        "data": "Data",
+        "title": {
+            "0": "Search builder",
+            "_": "Search builder (%d)"
+        },
+        "value": "Value",
+        "conditions": {
+            "date": {
+                "equals": "Equals",
+                "after": "After",
+                "before": "Before",
+                "between": "Between",
+                "empty": "Empty",
+                "not": "Not",
+                "notBetween": "Not between",
+                "notEmpty": "Not empty"
+            },
+            "number": {
+                "between": "Between",
+                "empty": "Empty",
+                "equals": "Equals",
+                "gt": "Greater than",
+                "gte": "Greater than or equal to",
+                "lt": "Less than",
+                "lte": "Less than or equal to",
+                "not": "Not",
+                "notBetween": "Not between",
+                "notEmpty": "Not empty"
+            },
+            "string": {
+                "contains": "Contains",
+                "empty": "Empty",
+                "endsWith": "Ends with",
+                "equals": "Equals",
+                "not": "Not",
+                "notEmpty": "Not empty",
+                "startsWith": "Starts with",
+                "notContains": "Does not contain",
+                "notStartsWith": "Does not start with",
+                "notEndsWith": "Does not end with"
+            },
+            "array": {
+                "equals": "Equals",
+                "empty": "Empty",
+                "contains": "Contains",
+                "not": "Not",
+                "notEmpty": "Not empty",
+                "without": "Without"
+            }
+        },
+        "add": "Add condition",
+        "deleteTitle": "Delete filtering rule",
+        "logicAnd": "And",
+        "logicOr": "Or",
+        "leftTitle": "Outdent criteria",
+        "rightTitle": "Indent criteria"
+    },
+    "searchPanes": {
+        "clearMessage": "Clear all",
+        "collapse": {
+            "0": "Search panes",
+            "_": "Search panes (%d)"
+        },
+        "count": "{total}",
+        "countFiltered": "{shown} ({total})",
+        "emptyPanes": "No search panes",
+        "loadMessage": "Loading search panes...",
+        "showMessage": "Show all",
+        "collapseMessage": "Collapse all",
+        "title": "Filters active - %d"
+    },
+    "thousands": ",",
+    "decimal": ".",
+    "stateRestore": {
+        "creationModal": {
+            "button": "Create",
+            "columns": {
+                "search": "Column search",
+                "visible": "Column visibility"
+            },
+            "name": "Name:",
+            "order": "Sorting",
+            "paging": "Paging",
+            "search": "Search",
+            "searchBuilder": "Search builder",
+            "select": "Select",
+            "title": "Create new state",
+            "toggleLabel": "Include:",
+            "scroller": "Scroll position"
+        },
+        "duplicateError": "A state with this name already exists.",
+        "emptyError": "Name cannot be empty.",
+        "emptyStates": "No saved states",
+        "removeConfirm": "Are you sure you want to remove %s?",
+        "removeError": "Failed to remove state.",
+        "removeJoiner": "and",
+        "removeSubmit": "Remove",
+        "removeTitle": "Remove state",
+        "renameButton": "Rename",
+        "renameLabel": "New name for %s:",
+        "renameTitle": "Rename state"
     }
 }

@@ -1,79 +1,59 @@
-/* Always show vertical scrollbar to prevent layout shifts */
-html {
-	overflow-y: scroll;
+/**
+ * DX Cluster Bandmap Stylesheet
+ * Breakpoints: 768px (tablet), 576px (mobile)
+ */
+
+/* ===========================================
+   1. CSS VARIABLES & GLOBAL
+   =========================================== */
+
+:root {
+	--cat-purple: #8b5cf6;
+	--spot-fresh-blue: #3981b2;
+	--spot-expiring-red: rgba(220, 53, 69, 0.25);
+	--spot-new-green: rgba(25, 135, 84, 0.2);
+	--spot-hover-blue: rgba(13, 110, 253, 0.15);
 }
 
-/* Blink animation for radio icon updates */
+html { overflow-y: scroll; }
+
+/* ===========================================
+   2. ANIMATIONS
+   =========================================== */
+
 @keyframes blink-once {
 	0%, 100% { opacity: 1; }
 	50% { opacity: 0.3; }
 }
 
-.blink-once {
-	animation: blink-once 0.6s ease-in-out;
-}
+.blink-once { animation: blink-once 0.6s ease-in-out; }
 
-/* Reserve space for badge counts to prevent layout shifts */
+/* ===========================================
+   3. BADGE STYLES
+   =========================================== */
+
 .band-count-badge,
 .mode-count-badge,
 .quick-filter-count-badge {
 	display: inline-block;
-	min-width: 2em;
+	min-width: 1.8em;
 	text-align: center;
-	padding-left: 0.4em;
-	padding-right: 0.4em;
+	padding: 0.15em 0.25em;
+	line-height: 1.2;
 }
 
-/* Medal badge colors */
-.text-bg-gold {
-	background-color: #FFD700 !important;
-	color: #fff !important;
-	border: 1px solid #FFA500 !important;
-	text-shadow: 0 0 2px rgba(0,0,0,0.3);
-}
+.text-bg-gold { background-color: #FFD700 !important; color: #fff !important; border: 1px solid #FFA500 !important; text-shadow: 0 0 2px rgba(0,0,0,0.3); }
+.text-bg-silver { background-color: #A8A8A8 !important; color: #fff !important; border: 1px solid #E0E0E0 !important; }
+.text-bg-bronze { background-color: #CD7F32 !important; color: #fff !important; border: 1px solid #8B4513 !important; }
 
-.text-bg-silver {
-	background-color: #A8A8A8 !important;
-	color: #fff !important;
-	border: 1px solid #E0E0E0 !important;
-}
+.badge.text-bg-success { border: 1px solid #198754 !important; }
+.badge.text-bg-primary { border: 1px solid #0a58ca !important; }
+.badge.text-bg-info { border: 1px solid #087990 !important; }
+.badge.text-bg-warning { border: 1px solid #cc9a06 !important; }
+.badge.text-bg-danger { border: 1px solid #b02a37 !important; }
+.badge.text-bg-dark { border: 1px solid #000 !important; }
+.badge.text-bg-secondary { border: 1px solid #41464b !important; }
 
-.text-bg-bronze {
-	background-color: #CD7F32 !important;
-	color: #fff !important;
-	border: 1px solid #8B4513 !important;
-}
-
-/* Badge borders for all badge types */
-.badge.text-bg-success {
-	border: 1px solid #198754 !important;
-}
-
-.badge.text-bg-primary {
-	border: 1px solid #0a58ca !important;
-}
-
-.badge.text-bg-info {
-	border: 1px solid #087990 !important;
-}
-
-.badge.text-bg-warning {
-	border: 1px solid #cc9a06 !important;
-}
-
-.badge.text-bg-danger {
-	border: 1px solid #b02a37 !important;
-}
-
-.badge.text-bg-dark {
-	border: 1px solid #000 !important;
-}
-
-.badge.text-bg-secondary {
-	border: 1px solid #41464b !important;
-}
-
-/* Fix icon alignment in badges */
 .spottable .badge i {
 	vertical-align: middle;
 	line-height: 1;
@@ -82,230 +62,24 @@ html {
 	width: 100%;
 }
 
-/* Center medal icons specifically */
-.spottable .badge i.fa-medal {
-	margin-left: 1px;
+.spottable .badge i.fa-medal { margin-left: 1px; }
+
+/* ===========================================
+   4. SPOT TABLE - BASE
+   =========================================== */
+
+#bandmapContainer {
+	max-width: 1910px !important;
+	margin: 0 auto;
 }
 
-.fresh {
-	transition: all 500ms ease;
-	--bs-table-bg: #3981b2;
-	--bs-table-accent-bg: #3981b2;
-}
-
-/* TTL-based spot styling - Expiring spots (TTL=0) */
-.spot-expiring {
-	transition: all 300ms ease;
-	--bs-table-bg: rgba(220, 53, 69, 0.25) !important;  /* Bootstrap danger color, subtle */
-	--bs-table-accent-bg: rgba(220, 53, 69, 0.25) !important;
-	background-color: rgba(220, 53, 69, 0.25) !important;
-}
-
-/* Very new spots (< 1 minute old) */
-.spot-very-new {
-	transition: all 300ms ease;
-	--bs-table-bg: rgba(25, 135, 84, 0.2) !important;  /* Bootstrap success color, light */
-	--bs-table-accent-bg: rgba(25, 135, 84, 0.2) !important;
-	background-color: rgba(25, 135, 84, 0.2) !important;
-}
-
-/* Hover effect for all spot rows */
-.spottable tbody tr:hover {
-	--bs-table-bg: rgba(13, 110, 253, 0.15) !important;  /* Bootstrap primary blue */
-	--bs-table-accent-bg: rgba(13, 110, 253, 0.15) !important;
-	background-color: rgba(13, 110, 253, 0.15) !important;
-	transition: all 150ms ease;
-}
-
-/* Don't apply hover to empty/loading rows */
-.spottable tbody tr.dataTables_empty:hover,
-.spottable tbody tr.dataTables_empty:hover td {
-	--bs-table-bg: transparent !important;
-	--bs-table-accent-bg: transparent !important;
-	background-color: transparent !important;
-}
-
-tbody a {
-	color: inherit;
-	text-decoration: none;
-}
-
-/* Make table rows clickable for prepare logging - use native alias cursor */
-.spottable tbody tr {
-	cursor: alias !important;
-}
-
-.spottable tbody tr td {
-	cursor: alias !important;
-}
-
-/* Don't show alias cursor on loading/processing/empty rows */
-.spottable tbody tr.dataTables_empty,
-.spottable tbody tr.dataTables_empty td,
-.spottable tbody td.dt-empty {
-	cursor: default !important;
-}
-
-/* Show standard pointer for clickable links (QRZ, POTA, SOTA, etc.) */
-.spottable tbody tr a,
-.spottable tbody tr td a {
-	cursor: pointer !important;
-}
-
-.spottable tbody tr td:nth-child(8) i:hover {
-	opacity: 0.7;
-	transform: scale(1.1);
-	transition: all 0.2s ease;
-}
-
-/* CAT Control - Locked Sorting */
-.spottable.cat-sorting-locked thead th {
-	cursor: not-allowed !important;
-	pointer-events: none;
-	opacity: 0.6;
-}
-
-.spottable.cat-sorting-locked thead th:hover {
-	background-color: transparent !important;
-}
-
-.spottable.cat-sorting-locked thead th.sorting_asc::after,
-.spottable.cat-sorting-locked thead th.sorting_desc::after {
-	opacity: 1 !important;
-}
-
-/* CAT Control - Frequency Gradient */
-.cat-frequency-gradient {
-	transition: background-color 0.3s ease, var(--bs-table-bg) 0.3s ease !important;
-}
-
-/* Force gradient background to override Bootstrap striping AND spot lifecycle colors - MAXIMUM SPECIFICITY */
-/* Override normal rows */
-table.table.table-sm.table-bordered.table-hover.table-striped.spottable tbody tr.cat-frequency-gradient,
-table.dataTable.table-striped tbody tr.cat-frequency-gradient,
-table.table-striped tbody tr.cat-frequency-gradient,
-.table-striped > tbody > tr.cat-frequency-gradient,
-table tbody tr.cat-frequency-gradient {
-	background-color: var(--bs-table-bg) !important;
-}
-
-/* Override expiring spots (red) */
-table.table.table-sm.table-bordered.table-hover.table-striped.spottable tbody tr.cat-frequency-gradient.spot-expiring,
-table.dataTable.table-striped tbody tr.cat-frequency-gradient.spot-expiring,
-table tbody tr.cat-frequency-gradient.spot-expiring {
-	background-color: var(--bs-table-bg) !important;
-}
-
-/* Override very new spots (green) */
-table.table.table-sm.table-bordered.table-hover.table-striped.spottable tbody tr.cat-frequency-gradient.spot-very-new,
-table.dataTable.table-striped tbody tr.cat-frequency-gradient.spot-very-new,
-table tbody tr.cat-frequency-gradient.spot-very-new {
-	background-color: var(--bs-table-bg) !important;
-}
-
-/* Override fresh spots - force gradient color over fresh blue */
-table.table.table-sm.table-bordered.table-hover.table-striped.spottable tbody tr.cat-frequency-gradient.fresh,
-table.dataTable.table-striped tbody tr.cat-frequency-gradient.fresh,
-table tbody tr.cat-frequency-gradient.fresh {
-	/* Override both the variable and background directly */
-	background-color: var(--bs-table-bg) !important;
-	/* Prevent .fresh class from setting its own --bs-table-bg */
-	transition: background-color 0.3s ease !important;
-}
-
-/* Override even and odd striping */
-table.table.table-sm.table-bordered.table-hover.table-striped.spottable tbody tr.cat-frequency-gradient:nth-of-type(odd),
-table.table.table-sm.table-bordered.table-hover.table-striped.spottable tbody tr.cat-frequency-gradient:nth-of-type(even),
-table.dataTable.table-striped tbody tr.cat-frequency-gradient:nth-of-type(odd),
-table.dataTable.table-striped tbody tr.cat-frequency-gradient:nth-of-type(even),
-table.table-striped tbody tr.cat-frequency-gradient:nth-of-type(odd),
-table.table-striped tbody tr.cat-frequency-gradient:nth-of-type(even),
-.table-striped > tbody > tr.cat-frequency-gradient:nth-of-type(odd),
-.table-striped > tbody > tr.cat-frequency-gradient:nth-of-type(even) {
-	--bs-table-accent-bg: transparent !important;
-	--bs-table-striped-bg: transparent !important;
-}
-
-.cat-frequency-gradient:hover {
-	filter: brightness(0.95);
-}
-
-/* CAT Control - Nearest spot indicators when not in gradient range */
-/* Table is sorted DESC (high freq at top, low freq at bottom) */
-/* Borders point TOWARD current frequency to create visual bracket */
-
-/* Spot BELOW current frequency (lower number) appears at BOTTOM of table → TOP border points UP toward you */
-table.spottable tbody tr.cat-nearest-below,
-table.dataTable tbody tr.cat-nearest-below,
-table tbody tr.cat-nearest-below {
-	border-top: 2px solid #8b5cf6 !important;
-	box-shadow: 0 -2px 0 0 #8b5cf6 !important;
-}
-
-/* Apply to td cells as well for border-collapse tables */
-table.spottable tbody tr.cat-nearest-below td,
-table.dataTable tbody tr.cat-nearest-below td,
-table tbody tr.cat-nearest-below td {
-	border-top: 2px solid #8b5cf6 !important;
-}
-
-/* Spot ABOVE current frequency (higher number) appears at TOP of table → BOTTOM border points DOWN toward you */
-table.spottable tbody tr.cat-nearest-above,
-table.dataTable tbody tr.cat-nearest-above,
-table tbody tr.cat-nearest-above {
-	border-bottom: 2px solid #8b5cf6 !important;
-	box-shadow: 0 2px 0 0 #8b5cf6 !important;
-}
-
-/* Apply to td cells as well for border-collapse tables */
-table.spottable tbody tr.cat-nearest-above td,
-table.dataTable tbody tr.cat-nearest-above td,
-table tbody tr.cat-nearest-above td {
-	border-bottom: 2px solid #8b5cf6 !important;
-}
-
-/* Status bar styling */
-.status-bar {
-	font-size: 0.875rem;
-	color: var(--bs-body-color);
-	font-family: 'Courier New', Courier, 'Lucida Console', Monaco, monospace;
-	background-color: var(--bs-body-bg);
+#bandmapContainer .table-responsive {
+	overflow: auto;
+	margin: 0;
+	padding: 0;
+	background-color: var(--bs-card-cap-bg, var(--bs-secondary-bg));
+	border: var(--bs-card-border-width, 1px) solid var(--bs-card-border-color, rgba(0,0,0,0.125));
 	border-radius: 8px;
-	margin: 0.25rem 0;
-	padding: 6px 12px;
-}
-
-.status-bar-inner {
-	display: flex;
-	align-items: center;
-	gap: 15px;
-	flex-wrap: nowrap;
-}
-
-.status-bar-left {
-	flex: 1 1 auto;
-	min-width: 0;
-	font-weight: 500;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-#statusMessage {
-	cursor: help;
-}
-
-.status-bar-right {
-	flex: 0 0 auto;
-	min-width: 100px;
-	margin-left: 10px;
-	font-weight: 500;
-	color: var(--bs-secondary);
-	text-align: right;
-	display: flex;
-	align-items: center;
-	justify-content: flex-end;
-	white-space: nowrap;
 }
 
 .dataTables_wrapper {
@@ -320,79 +94,68 @@ table tbody tr.cat-nearest-above td {
 	font-family: 'Consolas', 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Droid Sans Mono', 'Source Code Pro', monospace;
 	font-variant-numeric: slashed-zero;
 	font-size: calc(1rem - 2px);
+	border-bottom: none;
+	margin-bottom: 0;
+	border-radius: 8px;
+	overflow: hidden;
 }
 
-.spottable thead th {
-	font-weight: normal;
-	text-align: center;
-}
-
-/* Limit container max-width for optimal viewing on 1920px monitors */
-#bandmapContainer {
-	max-width: 1910px !important;
-	margin: 0 auto;
-}
-
-/* Reduce horizontal padding in table cells to fit more content */
 .spottable th,
 .spottable td {
 	padding-left: 4px !important;
 	padding-right: 4px !important;
 }
 
-/* Column widths - consolidated selectors */
-.spottable th:nth-child(1), .spottable td:nth-child(1) { width: 50px; }   /* Age (minutes) */
-.spottable th:nth-child(2), .spottable td:nth-child(2) { width: 75px; }   /* Band */
-.spottable th:nth-child(3), .spottable td:nth-child(3) { width: 90px; }   /* Frequency */
-.spottable th:nth-child(4), .spottable td:nth-child(4) { width: 70px; }   /* Mode */
-.spottable th:nth-child(5), .spottable td:nth-child(5) { width: 60px; }   /* Submode */
-.spottable th:nth-child(6), .spottable td:nth-child(6) { width: 115px; }  /* Callsign  */
-.spottable th:nth-child(7), .spottable td:nth-child(7) { width: 40px; }   /* Continent */
-.spottable th:nth-child(8), .spottable td:nth-child(8) { width: 50px; }   /* CQ Zone */
-.spottable th:nth-child(9), .spottable td:nth-child(9) { width: 50px; }   /* Flag */
-.spottable th:nth-child(10), .spottable td:nth-child(10) { width: 150px; }  /* Entity (DXCC name) */
-.spottable th:nth-child(11), .spottable td:nth-child(11) { width: 115px; } /* de Callsign (Spotter)  */
-.spottable th:nth-child(12), .spottable td:nth-child(12) { width: 50px; } /* de Cont */
-.spottable th:nth-child(13), .spottable td:nth-child(13) { width: 50px; } /* de CQZ */
-.spottable th:nth-child(14), .spottable td:nth-child(14) { width: 100px; } /* Last QSO */
-.spottable th:nth-child(15), .spottable td:nth-child(15) { width: 135px; } /* Special (LoTW, POTA, etc)  */
-.spottable th:nth-child(16), .spottable td:nth-child(16) { min-width: 70px; width: 100%; }  /* Message - fills remaining space */
-
-/* Hidden class for responsive columns (controlled by JavaScript) */
-.spottable .column-hidden {
-	display: none !important;
-}
-
 .spottable td {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
 
-.spottable td:nth-child(17) {
-	white-space: normal;
-	word-wrap: break-word;
-	overflow-wrap: break-word;
-	font-size: calc(1rem - 4px);
+.spottable thead th {
+	font-weight: normal;
+	font-size: calc(1rem - 1px);
+	text-align: center;
+	vertical-align: middle;
 }
 
-/* Callsign columns (DX and Spotter) - larger font */
-.spottable td:nth-child(6), .spottable td:nth-child(12) {
-	font-size: calc(1rem - 2px);
+/* Ensure sort markers are consistent across all sortable columns */
+.spottable thead th.dt-orderable-asc,
+.spottable thead th.dt-orderable-desc {
+	padding-right: 22px !important;
 }
 
-/* Continent columns (emoji font) */
-.spottable td:nth-child(7), .spottable td:nth-child(13) {
-	font-family: 'Segoe UI Emoji', 'Noto Color Emoji', 'Apple Color Emoji', Arial, sans-serif;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+.spottable thead th span.dt-column-order {
+	right: 6px !important;
+}
+
+.spottable thead tr {
+	border-top: 1px solid var(--bs-border-color);
+	border-bottom: 1px solid var(--bs-border-color);
+}
+
+.spottable tbody tr,
+.spottable tbody tr td {
+	border: none;
+	cursor: alias !important;
+}
+
+.spottable tbody tr:last-child { border-bottom: 1px solid var(--bs-border-color); }
+.spottable tbody a, tbody a { color: inherit; text-decoration: none; }
+.spottable tbody tr a, .spottable tbody tr td a { cursor: pointer !important; }
+
+.spottable tbody tr.dataTables_empty,
+.spottable tbody tr.dataTables_empty td,
+.spottable tbody td.dt-empty { cursor: default !important; }
+
+.spottable tbody tr td:nth-child(8) i:hover {
+	opacity: 0.7;
+	transform: scale(1.1);
+	transition: all 0.2s ease;
 }
 
 .spottable .flag-emoji {
 	font-family: "Twemoji Country Flags", "Helvetica", "Comic Sans", sans-serif;
-	font-style: normal;
-	font-variant: normal;
 	font-size: 20px;
 	line-height: 1;
 }
@@ -400,110 +163,295 @@ table tbody tr.cat-nearest-above td {
 .spottable img.emoji {
 	height: 20px;
 	width: 20px;
-	margin: 0 .05em 0 .1em;
+	margin: 0 0.05em 0 0.1em;
 	vertical-align: -0.25em;
-	display: inline-block;
 }
 
-.spottable td:nth-child(16) {
-	overflow: visible;
+.spottable .column-hidden { display: none !important; }
+.spottable .column-fill { width: 100% !important; min-width: 150px !important; }
+
+/* ===========================================
+   5. SPOT TABLE - COLUMNS
+   =========================================== */
+
+.spottable th:nth-child(1),  .spottable td:nth-child(1)  { width: 50px; }
+.spottable th:nth-child(2),  .spottable td:nth-child(2)  { width: 75px; }
+.spottable th:nth-child(3),  .spottable td:nth-child(3)  { width: 90px; }
+.spottable th:nth-child(4),  .spottable td:nth-child(4)  { width: 70px; }
+.spottable th:nth-child(5),  .spottable td:nth-child(5)  { width: 60px; }
+.spottable th:nth-child(6),  .spottable td:nth-child(6)  { width: 115px; }
+.spottable th:nth-child(7),  .spottable td:nth-child(7)  { width: 40px; }
+.spottable th:nth-child(8),  .spottable td:nth-child(8)  { width: 50px; }
+.spottable th:nth-child(9),  .spottable td:nth-child(9)  { width: 50px; }
+.spottable th:nth-child(10), .spottable td:nth-child(10) { width: 150px; }
+.spottable th:nth-child(11), .spottable td:nth-child(11) { width: 115px; }
+.spottable th:nth-child(12), .spottable td:nth-child(12) { width: 50px; }
+.spottable th:nth-child(13), .spottable td:nth-child(13) { width: 50px; }
+.spottable th:nth-child(14), .spottable td:nth-child(14) { width: 100px; }
+.spottable th:nth-child(15), .spottable td:nth-child(15) { width: 135px; }
+.spottable th:nth-child(16), .spottable td:nth-child(16) { min-width: 70px; width: 100%; }
+
+.spottable th:nth-child(7), .spottable td:nth-child(7),
+.spottable th:nth-child(8), .spottable td:nth-child(8),
+.spottable th:nth-child(9), .spottable td:nth-child(9),
+.spottable th:nth-child(11), .spottable td:nth-child(11),
+.spottable th:nth-child(13), .spottable td:nth-child(13),
+.spottable th:nth-child(14), .spottable td:nth-child(14) { text-align: center; }
+
+.spottable td:nth-child(6), .spottable td:nth-child(12) { font-size: calc(1rem - 2px); }
+.spottable td:nth-child(7), .spottable td:nth-child(13) { font-family: 'Segoe UI Emoji', 'Noto Color Emoji', 'Apple Color Emoji', Arial, sans-serif; }
+.spottable td:nth-child(16) { overflow: visible; white-space: nowrap; }
+.spottable td:nth-child(17) { white-space: normal; word-wrap: break-word; overflow-wrap: break-word; font-size: calc(1rem - 4px); }
+
+/* ===========================================
+   6. SPOT TABLE - ROW STATES
+   =========================================== */
+
+.spottable tbody tr.fresh {
+	transition: all 500ms ease;
+	--bs-table-bg: var(--spot-fresh-blue);
+	--bs-table-accent-bg: var(--spot-fresh-blue);
+}
+
+.spottable tbody tr.spot-expiring {
+	transition: all 300ms ease;
+	--bs-table-bg: var(--spot-expiring-red) !important;
+	--bs-table-accent-bg: var(--spot-expiring-red) !important;
+	background-color: var(--spot-expiring-red) !important;
+}
+
+.spottable tbody tr.spot-very-new {
+	transition: all 300ms ease;
+	--bs-table-bg: var(--spot-new-green) !important;
+	--bs-table-accent-bg: var(--spot-new-green) !important;
+	background-color: var(--spot-new-green) !important;
+}
+
+.spottable tbody tr:hover {
+	--bs-table-bg: var(--spot-hover-blue) !important;
+	--bs-table-accent-bg: var(--spot-hover-blue) !important;
+	background-color: var(--spot-hover-blue) !important;
+	transition: all 150ms ease;
+}
+
+.spottable tbody tr.dataTables_empty:hover,
+.spottable tbody tr.dataTables_empty:hover td {
+	--bs-table-bg: transparent !important;
+	--bs-table-accent-bg: transparent !important;
+	background-color: transparent !important;
+}
+
+/* ===========================================
+   7. SPOT TABLE - CAT CONTROL
+   =========================================== */
+
+.spottable.cat-sorting-locked thead th {
+	cursor: not-allowed !important;
+	pointer-events: none;
+	opacity: 0.6;
+}
+
+.spottable.cat-sorting-locked thead th.sorting_asc::after,
+.spottable.cat-sorting-locked thead th.sorting_desc::after { opacity: 1 !important; }
+
+.cat-frequency-gradient { transition: background-color 0.3s ease !important; }
+.cat-frequency-gradient:hover { filter: brightness(0.95); }
+
+.spottable tbody tr.cat-frequency-gradient,
+.spottable tbody tr.cat-frequency-gradient.fresh,
+.spottable tbody tr.cat-frequency-gradient.spot-expiring,
+.spottable tbody tr.cat-frequency-gradient.spot-very-new,
+.spottable tbody tr.cat-frequency-gradient:nth-of-type(odd),
+.spottable tbody tr.cat-frequency-gradient:nth-of-type(even) {
+	background-color: var(--bs-table-bg) !important;
+	--bs-table-accent-bg: transparent !important;
+	--bs-table-striped-bg: transparent !important;
+}
+
+.spottable tbody tr.cat-nearest-below,
+.spottable tbody tr.cat-nearest-below td { border-top: 2px solid var(--cat-purple) !important; }
+.spottable tbody tr.cat-nearest-below { box-shadow: 0 -2px 0 0 var(--cat-purple) !important; }
+
+.spottable tbody tr.cat-nearest-above,
+.spottable tbody tr.cat-nearest-above td { border-bottom: 2px solid var(--cat-purple) !important; }
+.spottable tbody tr.cat-nearest-above { box-shadow: 0 2px 0 0 var(--cat-purple) !important; }
+
+/* ===========================================
+   8. STATUS BAR
+   =========================================== */
+
+.status-bar {
+	font-size: calc(1rem - 1px);
+	font-family: 'Consolas', 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Droid Sans Mono', 'Source Code Pro', monospace;
+	font-weight: 500;
+	color: var(--bs-body-color);
+	background-color: var(--bs-body-bg);
+	border-radius: 8px;
+	margin: 0.25rem 0;
+	padding: 6px 12px;
+}
+
+.status-bar-inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 15px;
+}
+
+.status-bar-left {
+	flex: 1 1 auto;
+	min-width: 0;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+#statusMessage { cursor: help; }
+
+.status-bar-right {
+	flex: 0 0 auto;
+	min-width: 100px;
+	margin-left: 10px;
+	text-align: right;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
 	white-space: nowrap;
 }
 
-/* Center alignment for specific columns */
-.spottable th:nth-child(7), .spottable td:nth-child(7),   /* Continent (spotted) */
-.spottable th:nth-child(8), .spottable td:nth-child(8),   /* CQ Zone (spotted) */
-.spottable th:nth-child(9), .spottable td:nth-child(9),   /* Flag */
-.spottable th:nth-child(11), .spottable td:nth-child(11), /* DXCC Number */
-.spottable th:nth-child(13), .spottable td:nth-child(13), /* de Cont (spotter) */
-.spottable th:nth-child(14), .spottable td:nth-child(14)  /* de CQZ (spotter) */
-{
-	text-align: center;
+/* ===========================================
+   9. MENU BAR & CONTROLS
+   =========================================== */
+
+.menu-bar {
+	margin: 3px 0;
+	overflow: visible;
 }
 
-/* Responsive: On smallest screens, Entity column fills remaining space */
-@media (max-width: 500px) {
-	.spottable {
-		table-layout: auto !important;
-	}
-	.spottable th:nth-child(10), .spottable td:nth-child(10) {
-		width: auto !important;
-		min-width: 150px !important;
-	}
-	.spottable th:nth-child(1), .spottable td:nth-child(1) { width: 50px !important; }   /* Age */
-	.spottable th:nth-child(3), .spottable td:nth-child(3) { width: 90px !important; }   /* Frequency */
-	.spottable th:nth-child(6), .spottable td:nth-child(6) { width: 100px !important; }  /* Callsign */
-}
+/* Compact mode - hide rows */
+.menu-bar .compact-hidden { display: none !important; }
 
-.spottable thead th {
+.menu-bar .d-flex { overflow: visible; min-height: fit-content; gap: 0.4rem !important; }
+.menu-bar .btn-sm { padding: 0.25rem 0.5rem; font-size: 0.875rem; }
+.menu-bar .radios.form-select-sm { height: calc(1.5em + 0.5rem + 2px); padding: 0.25rem; font-size: 0.875rem; min-width: 330px; }
+.menu-bar > div:last-child { justify-content: flex-end; }
+.menu-bar > div.mb-2 { margin-bottom: 0.4rem !important; }
+
+/* Search input always matches table font */
+.menu-bar .input-group input.form-control {
+	font-family: 'Consolas', 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Droid Sans Mono', 'Source Code Pro', monospace;
 	font-size: calc(1rem - 1px);
-	vertical-align: middle;
 }
 
-/* Fullscreen toggle button wrapper - large clickable area */
-#fullscreenToggleWrapper {
+.menu-bar #radio_status {
+	margin: 0;
+	padding: 0;
+	line-height: 1;
+	min-height: 0 !important;
+	align-self: center;
+}
+
+.menu-bar #radio_status #radio_cat_state {
+	line-height: 1.4;
+	padding: 0.2rem;
+	margin: 0;
+	display: inline-flex !important;
+	align-items: center;
+	vertical-align: middle;
+	font-size: 0.875rem;
+}
+
+#radio_status { min-height: 1.8rem; }
+
+#radio_status #radio_cat_state:not(.card) {
+	border: var(--bs-card-border-width, 1px) solid var(--bs-card-border-color, rgba(0,0,0,0.125));
+	border-radius: 6px;
+	padding: 0.3rem;
+	margin: 0;
+	background-color: var(--bs-card-cap-bg, var(--bs-secondary-bg));
+}
+
+#radio_status #radio_cat_state:not(.card) > div { margin: 0 !important; padding: 0 !important; }
+
+/* Compact card header in normal mode */
+.card-header { padding: 0.1rem 0.5rem !important; min-height: 0 !important; }
+.card-header h5 { font-size: 1rem !important; margin: 0 !important; line-height: 1.2 !important; }
+.card-header .headerLogo { height: 22px !important; }
+.card-header .d-flex { gap: 0.5rem !important; }
+.card-header .fa-question-circle, .card-header #fullscreenIcon, .card-header #compactModeIcon { font-size: 0.9rem !important; }
+.card-header a[style*="padding: 0.5rem"] { padding: 0.2rem !important; margin: -0.2rem !important; }
+#fullscreenToggleWrapper { padding: 0.2rem !important; margin: -0.2rem !important; }
+#fullscreenToggle { padding: 0.2rem !important; min-width: 28px !important; min-height: 28px !important; }
+#compactModeToggle { padding: 0.2rem !important; min-width: 28px !important; min-height: 28px !important; display: inline-flex; align-items: center; justify-content: center; }
+#compactModeToggle:hover { background-color: rgba(0,0,0,0.08) !important; border-radius: 0.25rem; }
+.card-body.pt-1 { padding: 0.4rem 8px !important; }
+
+#fullscreenToggle, #fullscreenToggleWrapper {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
+	cursor: pointer !important;
+}
+
+#fullscreenToggleWrapper {
 	position: relative;
 	z-index: 10;
 	border-radius: 0.25rem;
 	transition: background-color 150ms ease;
 }
 
-#fullscreenToggleWrapper:hover {
-	background-color: rgba(0, 0, 0, 0.08) !important;
+#fullscreenToggleWrapper:hover { background-color: rgba(0,0,0,0.08) !important; }
+#fullscreenToggle { min-width: 48px; min-height: 48px; font-size: 1.2rem; flex-shrink: 0; }
+#fullscreenToggle:hover { background-color: transparent !important; }
+#fullscreenIcon { pointer-events: none; font-size: 1.4rem !important; }
+
+.fullscreen-wavelog-text { pointer-events: auto; flex-shrink: 1; white-space: nowrap; cursor: pointer; }
+.fullscreen-wavelog-text:hover { text-decoration: underline !important; opacity: 0.8; }
+.bandmap-logo-fullscreen { display: none; }
+
+.search-icon-clickable { cursor: pointer; }
+.search-icon-clickable:hover { background-color: var(--bs-secondary-bg); }
+
+/* ===========================================
+   10. FILTER DROPDOWNS
+   =========================================== */
+
+select[multiple] { height: auto; min-height: 350px; max-height: 700px; }
+select[multiple].filter-short { min-height: 150px; max-height: 220px; }
+select[multiple] option:checked { background-color: var(--bs-primary); color: white; }
+
+.dropdown-menu .mb-3 {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	min-height: 100px;
 }
 
-/* Fullscreen toggle button - ensure proper clickable area */
-#fullscreenToggle {
-	min-width: 48px;
-	min-height: 48px;
-	display: inline-flex;
+.dropdown-menu .filter-label-bottom { margin-top: auto; margin-bottom: 0.25rem; text-align: left; }
+.dropdown-menu select.form-select, .dropdown-menu select { margin-bottom: 0; flex-shrink: 0; }
+
+.filter-tip {
+	background-color: var(--bs-card-cap-bg, var(--bs-secondary-bg));
+	color: var(--bs-body-color);
+	border: 2px solid var(--bs-dark, #212529);
+	padding: 8px 12px;
+	border-radius: 6px;
+	margin-bottom: 15px;
+	font-size: 1rem;
+	display: flex;
 	align-items: center;
-	justify-content: center;
-	cursor: pointer !important;
-	position: relative;
-	flex-shrink: 0;
+	gap: 8px;
 }
 
-#fullscreenToggle:hover {
-	background-color: transparent !important;
-}
+.filter-label-small { font-size: 1rem; margin-bottom: 0.25rem; font-weight: 500; }
 
-#fullscreenIcon {
-	pointer-events: none; /* Icon shouldn't intercept clicks */
-	font-size: 1.4rem !important; /* Make icon slightly bigger too */
-}
-
-/* Ensure wavelog text doesn't overlap button */
-.fullscreen-wavelog-text {
-	pointer-events: auto;
-	flex-shrink: 1;
-	white-space: nowrap;
-	cursor: pointer;
-}
-
-.fullscreen-wavelog-text:hover {
-	text-decoration: underline !important;
-	opacity: 0.8;
-}
-
-/* Fullscreen mode - CLEAN REBUILD */
-.bandmap-logo-fullscreen {
-	display: none;
-}
-
-.bandmap-fullscreen .bandmap-logo-fullscreen {
-	display: inline-block;
-}
+/* ===========================================
+   11. FULLSCREEN MODE
+   =========================================== */
 
 .bandmap-fullscreen {
 	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
+	inset: 0;
 	width: 100vw;
 	height: 100vh;
 	z-index: 9999;
@@ -512,6 +460,8 @@ table tbody tr.cat-nearest-above td {
 	max-width: none !important;
 	padding: 0 !important;
 }
+
+.bandmap-fullscreen .bandmap-logo-fullscreen { display: inline-block; }
 
 .bandmap-fullscreen .card {
 	height: 100vh;
@@ -522,14 +472,7 @@ table tbody tr.cat-nearest-above td {
 	flex-direction: column;
 }
 
-/* Reduce card header padding for more compact appearance */
-.card-header {
-	padding: 0.25rem 1rem !important;
-}
-
-.bandmap-fullscreen .card-header {
-	flex: 0 0 auto;
-}
+.bandmap-fullscreen .card-header { flex: 0 0 auto; }
 
 .bandmap-fullscreen .card-body {
 	flex: 1;
@@ -541,30 +484,30 @@ table tbody tr.cat-nearest-above td {
 	overflow: auto;
 }
 
-/* Direct children of card-body in fullscreen */
-.bandmap-fullscreen #radio_status {
-	flex: 0 0 auto;
-	margin: 0 !important;
-	padding: 0 !important;
-	min-height: 2.5rem; /* Reserve space for radio status to prevent UI shift */
-}
+.bandmap-fullscreen #radio_status { flex: 0 0 auto; margin: 0 !important; padding: 0 !important; min-height: 2.5rem; }
+.bandmap-fullscreen #radio_status:not(:empty) { margin: 0 0 0.5rem 0 !important; }
+.bandmap-fullscreen #radio_status #radio_cat_state:not(.card) { margin: 0 !important; }
 
-/* Only show margin when radio_status has content */
-.bandmap-fullscreen #radio_status:not(:empty) {
-	margin: 0 0 0.5rem 0 !important;
-}
+.bandmap-fullscreen .menu-bar { flex: 0 0 auto; margin: 0 0 0.5rem 0 !important; }
+.bandmap-fullscreen .menu-bar #radio_status { min-height: 0 !important; margin: 0 !important; }
 
-/* Reserve space for radio status even when empty */
-#radio_status {
-	min-height: 2.5rem; /* Reserve vertical space to prevent layout shift */
-}
+/* Restore larger sizing in fullscreen mode */
+.bandmap-fullscreen .menu-bar .d-flex { gap: 0.5rem !important; }
+.bandmap-fullscreen .menu-bar .btn-sm { padding: 0.25rem 0.5rem; font-size: 0.875rem; }
+.bandmap-fullscreen .menu-bar .radios.form-select-sm { height: calc(1.5em + 0.5rem + 2px); padding: 0.25rem; font-size: 0.875rem; min-width: 330px; }
+.bandmap-fullscreen .menu-bar > div.mb-2 { margin-bottom: 0.5rem !important; }
+.bandmap-fullscreen .menu-bar #radio_status #radio_cat_state { font-size: 0.875rem; padding: 0.25rem; }
+.bandmap-fullscreen .card-header { padding: 0.35rem 1rem !important; }
+.bandmap-fullscreen .card-header h5 { font-size: 1.15rem !important; line-height: 1.4 !important; }
+.bandmap-fullscreen .card-header .headerLogo { height: 32px !important; }
+.bandmap-fullscreen .card-header .d-flex { gap: 1rem !important; }
+.bandmap-fullscreen .card-header .fa-question-circle, .bandmap-fullscreen .card-header #fullscreenIcon, .bandmap-fullscreen .card-header #compactModeIcon { font-size: 1.2rem !important; }
+.bandmap-fullscreen .card-header a[style*="padding: 0.5rem"] { padding: 0.5rem !important; margin: -0.5rem !important; }
+.bandmap-fullscreen #fullscreenToggleWrapper { padding: 0.5rem !important; margin: -0.5rem !important; }
+.bandmap-fullscreen #fullscreenToggle { padding: 0.5rem !important; min-width: 48px !important; min-height: 48px !important; }
+.bandmap-fullscreen #compactModeToggle { padding: 0.5rem !important; min-width: 48px !important; min-height: 48px !important; }
+.bandmap-fullscreen .card-body.pt-1 { padding: 0.75rem 15px !important; }
 
-.bandmap-fullscreen .menu-bar {
-	flex: 0 0 auto;
-	margin: 0 0 0.5rem 0 !important;
-}
-
-/* Override status bar wrapper constraints in fullscreen - keep it sharing row with search */
 .bandmap-fullscreen .menu-bar > div > div[style*="max-width: 70%"] {
 	max-width: none !important;
 	flex: 1 1 auto !important;
@@ -578,414 +521,150 @@ table tbody tr.cat-nearest-above td {
 	margin: 0 !important;
 	width: 100% !important;
 	padding: 0.25rem 0.5rem !important;
-	display: flex;
-	align-items: center;
 	min-height: calc(1.5em + 0.5rem + 2px);
 	line-height: 1.5;
 }
 
-/* Override parent container max-width in fullscreen */
-.bandmap-fullscreen .status-bar {
-	max-width: 100% !important;
-}
+.bandmap-fullscreen .status-bar-left { white-space: normal !important; overflow: visible !important; }
+.bandmap-fullscreen .status-bar-right { min-width: 150px; }
+.bandmap-fullscreen .table-responsive { flex: 1 1 auto; min-height: 0; overflow: auto; margin: 0 !important; }
 
-.bandmap-fullscreen .status-bar-inner {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 15px;
-	flex-wrap: nowrap;
-}
+.bandmap-fullscreen .dataTables_processing { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10001; }
+.bandmap-fullscreen .dropdown-menu { z-index: 10002; position: fixed; }
+.bandmap-fullscreen .tooltip, body.fullscreen-active .tooltip { z-index: 10003 !important; }
+body.fullscreen-active .modal, body.fullscreen-active .modal-backdrop { z-index: 10050 !important; }
+body.fullscreen-active .modal-backdrop + .modal { z-index: 10051 !important; }
 
-.bandmap-fullscreen .status-bar-left {
-	flex: 1 1 auto;
-	min-width: 0;
-	white-space: normal !important;
-	overflow: visible !important;
-	text-overflow: clip !important;
-}
+body.fullscreen-active { overflow: hidden; }
 
-.bandmap-fullscreen .status-bar-right {
-	flex: 0 0 auto;
-	min-width: 150px;
-	white-space: nowrap;
-}
-
-.bandmap-fullscreen .table-responsive {
-	flex: 1 1 auto;
-	min-height: 0;
-	overflow: auto;
-	margin: 0 !important;
-}
-
-/* Radio status compact mode styling (no card wrapper) */
-#radio_status #radio_cat_state:not(.card) {
-	border: var(--bs-card-border-width, 1px) solid var(--bs-card-border-color, rgba(0,0,0,.125));
-	border-radius: 8px;
-	padding: 0.5rem;
-	margin: 0;
-	background-color: var(--bs-card-cap-bg, var(--bs-secondary-bg));
-}
-
-#radio_status #radio_cat_state:not(.card) > div {
-	margin: 0 !important;
-	padding: 0 !important;
-}
-
-/* In fullscreen, ensure proper spacing */
-.bandmap-fullscreen #radio_status #radio_cat_state:not(.card) {
-	margin: 0 !important;
-}
-
-/* Z-index management */
-.bandmap-fullscreen .dataTables_processing {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	z-index: 10001;
-}
-
-.bandmap-fullscreen .dropdown-menu {
-	z-index: 10002;
-	position: fixed;
-}
-
-body.fullscreen-active .tooltip,
-.bandmap-fullscreen .tooltip {
-	z-index: 10003 !important;
-}
-
-body.fullscreen-active .modal,
-body.fullscreen-active .modal-backdrop {
-	z-index: 10050 !important;
-}
-
-body.fullscreen-active .modal-backdrop + .modal {
-	z-index: 10051 !important;
-}
-
-/* Hide page elements in fullscreen */
 body.fullscreen-active #page-wrapper,
 body.fullscreen-active nav,
 body.fullscreen-active .navbar,
 body.fullscreen-active header,
 body.fullscreen-active #bandmapContainer > .d-flex.align-items-center.mb-3,
-body.fullscreen-active #bandmapContainer > .messages {
-	display: none !important;
+body.fullscreen-active #bandmapContainer > .messages { display: none !important; }
+
+body.fullscreen-active .fullscreen-wavelog-text { display: inline !important; }
+
+/* ===========================================
+   12. RESPONSIVE - LARGE DESKTOP (≤1400px) - Hide button labels
+   =========================================== */
+
+@media (max-width: 1400px) {
+	/* Hide button text labels - show only icons */
+	.menu-bar .btn span.d-none.d-sm-inline,
+	.menu-bar .btn span.d-none.d-md-inline,
+	.menu-bar .btn span.d-none.d-lg-inline { display: none !important; }
+	
+	/* Hide "de:" label */
+	.menu-bar small.text-muted { display: none !important; }
 }
 
-body.fullscreen-active .fullscreen-wavelog-text {
-	display: inline !important;
-}
+/* ===========================================
+   13. RESPONSIVE - DESKTOP/LAPTOP (≤1200px)
+   =========================================== */
 
-body.fullscreen-active {
-	overflow: hidden;
-}
-
-#fullscreenToggle {
-	cursor: pointer;
-	font-size: 1.2rem;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	min-width: 36px;
-	height: 36px;
-}
-
-/* Menu bar and table styling */
-.menu-bar {
-	margin-top: 5px;
-	margin-bottom: 5px;
-	overflow: visible;
-}
-
-/* Compact button padding in menu bar to save horizontal space */
-.menu-bar .btn-sm {
-	padding-left: 0.4rem;
-	padding-right: 0.4rem;
-}
-
-/* Ensure radio selector dropdown matches button height */
-.menu-bar .radios.form-select-sm {
-	height: calc(1.5em + 0.5rem + 2px); /* Match Bootstrap btn-sm height */
-	padding-top: 0.25rem;
-	padding-bottom: 0.25rem;
-}
-
-/* Ensure radio status container has no extra spacing */
-.menu-bar #radio_status {
-	margin: 0;
-	padding: 0;
-	line-height: 1;
-	min-height: 0 !important; /* Override the general min-height rule */
-	align-self: center; /* Force vertical centering */
-}
-
-/* Override fullscreen min-height and margin when in menu-bar */
-.bandmap-fullscreen .menu-bar #radio_status {
-	min-height: 0 !important;
-	margin: 0 !important;
-}
-
-/* Match radio status to button vertical rhythm */
-.menu-bar #radio_status #radio_cat_state {
-	line-height: 1.5;
-	padding-top: 0.25rem;
-	padding-bottom: 0.25rem;
-	margin: 0;
-	display: inline-flex !important;
-	align-items: center;
-	vertical-align: middle; /* Ensure inline alignment */
-}
-
-/* Ensure CAT Control and search box stay right-aligned when wrapping */
-.menu-bar > div:last-child {
-	justify-content: flex-end;
-}
-
-/* Ensure all menu rows wrap properly and show all content */
-.menu-bar .d-flex {
-	overflow: visible;
-	min-height: fit-content;
-}
-
-.card-body.pt-1 {
-	padding-left: 15px;
-	padding-right: 15px;
-}
-
-/* Only apply custom table-responsive styling to bandmap container */
-#bandmapContainer .table-responsive {
-	overflow: auto;
-	margin: 0;
-	padding: 0;
-	background-color: var(--bs-card-cap-bg, var(--bs-secondary-bg));
-	border: var(--bs-card-border-width, 1px) solid var(--bs-card-border-color, rgba(0,0,0,.125));
-	border-radius: 8px;
-}
-
-.spottable {
-	border-bottom: none;
-	margin-bottom: 0;
-	border-radius: 8px;
-	overflow: hidden;
-}
-
-.spottable thead tr {
-	border-top: 1px solid var(--bs-border-color);
-	border-bottom: 1px solid var(--bs-border-color);
-}
-
-.spottable tbody tr:last-child {
-	border-bottom: 1px solid var(--bs-border-color);
-}
-
-.spottable tbody tr,
-.spottable tbody tr td {
-	border-top: none;
-	border-bottom: none;
-}
-
-/* Filter dropdowns */
-select[multiple] {
-	height: auto;
-	min-height: 350px;
-	max-height: 700px;
-}
-
-select[multiple].filter-short {
-	min-height: 150px;
-	max-height: 220px;
-}
-
-select[multiple] option:checked {
-	background-color: var(--bs-primary);
-	color: white;
-	font-weight: normal;
-}
-
-.dropdown-menu .mb-3 {
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-end;
-	min-height: 100px;
-}
-
-.dropdown-menu .filter-label-bottom {
-	margin-top: auto;
-	margin-bottom: 0.25rem;
-	padding-bottom: 0;
-	text-align: left;
-}
-
-.dropdown-menu select.form-select {
-	margin-bottom: 0;
-}
-
-.dropdown-menu select {
-	flex-shrink: 0;
-}
-
-.filter-tip {
-	background-color: var(--bs-card-cap-bg, var(--bs-secondary-bg));
-	color: var(--bs-body-color);
-	border: 2px solid var(--bs-dark, #212529);
-	padding: 8px 12px;
-	border-radius: 6px;
-	margin-bottom: 15px;
-	font-size: 1rem; /* Match page default font size */
-	display: flex;
-	align-items: center;
-	gap: 8px;
-}
-
-.filter-label-small {
-	font-size: 1rem; /* Match page default font size */
-	margin-bottom: 0.25rem;
-	font-weight: 500;
-}
-
-.search-icon-clickable {
-	cursor: pointer;
-}
-
-.search-icon-clickable:hover {
-	background-color: var(--bs-secondary-bg);
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-	.dropdown-menu {
-		min-width: 95vw;
-		max-width: 95vw;
+@media (max-width: 1200px) {
+	/* Make menu-bar a single flex container with all items flowing together */
+	.menu-bar {
+		display: flex !important;
+		flex-wrap: wrap !important;
+		gap: 0.35rem !important;
+		align-items: center !important;
 	}
-
-	select[multiple] {
-		min-height: 180px;
-		max-height: 375px;
+	
+	/* Compact buttons at this breakpoint */
+	.menu-bar .btn-sm { padding: 0.15rem 0.35rem; font-size: 0.8rem; }
+	.menu-bar .radios.form-select-sm { height: calc(1.4em + 0.4rem + 2px); padding: 0.15rem 0.25rem; font-size: 0.8rem; }
+	
+	/* Remove row structure - make each row's items flow directly (except status-search-row and hidden rows) */
+	.menu-bar > div.d-flex:not(.compact-hidden):not(.status-search-row) {
+		display: contents !important;
 	}
-
-	select[multiple].filter-short {
-		min-height: 100px;
-		max-height: 150px;
+	
+	/* Status bar and search always stay together as their own row */
+	.menu-bar .status-search-row {
+		display: flex !important;
+		flex-basis: 100% !important;
+		width: 100% !important;
+		order: 999; /* Always at the bottom */
 	}
-
-	/* Status bar and search on smaller screens */
-	.status-bar {
-		font-size: 0.8rem;
-		padding: 5px 10px;
+	
+	/* Remove spacers and auto-margins */
+	.menu-bar .flex-grow-1 { display: none !important; }
+	.menu-bar .ms-auto { margin-left: 0 !important; }
+	
+	/* Remove bottom margins from former rows */
+	.menu-bar > div.mb-2 { margin-bottom: 0 !important; }
+	
+	/* Nested flex containers should also flow (except when parent is hidden or status-search-row) */
+	.menu-bar > div:not(.compact-hidden):not(.status-search-row) .d-flex.flex-wrap { display: contents !important; }
+	
+	/* Compact status bar and search at this breakpoint */
+	.status-bar { 
+		padding: 3px 8px; 
+		margin: 0.15rem 0;
+		border-radius: 6px;
 	}
-
-	.status-bar-inner {
-		gap: 10px;
-	}
-
-	.status-bar-right {
-		min-width: 80px;
-		font-size: 0.75rem;
-	}
-
-	/* Ensure menu rows wrap properly */
-	.menu-bar .d-flex {
-		overflow: visible !important;
-	}
-
-	/* Reduce card-body padding on tablets */
-	.card-body.pt-1 {
-		padding-left: 10px;
-		padding-right: 10px;
-	}
-
-	/* Make buttons smaller on tablets */
-	.btn-sm {
-		font-size: 0.75rem;
+	.menu-bar .input-group input.form-control { 
 		padding: 0.15rem 0.35rem;
 	}
+	.menu-bar .input-group .btn { 
+		padding: 0.15rem 0.35rem;
+		font-size: 0.8rem;
+	}
+}
 
-	/* Hide text labels in quick filter buttons on tablets - icons only */
+/* ===========================================
+   13. RESPONSIVE - TABLET (≤768px)
+   =========================================== */
+
+@media (max-width: 768px) {
+	.dropdown-menu { min-width: 95vw; max-width: 95vw; }
+	select[multiple] { min-height: 180px; max-height: 375px; }
+	select[multiple].filter-short { min-height: 100px; max-height: 150px; }
+
+	.status-bar { font-size: 0.8rem; padding: 5px 10px; }
+	.status-bar-inner { gap: 10px; }
+	.status-bar-right { min-width: 80px; font-size: 0.75rem; }
+
+	.menu-bar .d-flex { gap: 0.3rem !important; }
+	.card-body.pt-1 { padding-left: 10px; padding-right: 10px; }
+
 	#toggleLotwFilter .d-none.d-sm-inline,
 	#toggleNewContinentFilter .d-none.d-sm-inline,
 	#toggleDxccNeededFilter .d-none.d-sm-inline,
 	#toggleNewCallsignFilter .d-none.d-sm-inline,
 	#toggleContestFilter .d-none.d-sm-inline,
 	#toggleGeoHunterFilter .d-none.d-sm-inline,
-	#toggleFreshFilter .d-none.d-sm-inline {
-		display: none !important;
-	}
+	#toggleFreshFilter .d-none.d-sm-inline { display: none !important; }
 
-	/* Reduce gap between button groups */
-	.menu-bar .d-flex {
-		gap: 0.3rem !important;
-	}
+	/* Table columns - tablet */
+	.spottable { table-layout: auto !important; }
+	.spottable th:nth-child(10), .spottable td:nth-child(10) { width: 100% !important; min-width: 150px !important; }
 }
 
+/* ===========================================
+   14. RESPONSIVE - MOBILE (≤576px)
+   =========================================== */
+
 @media (max-width: 576px) {
-	select[multiple] {
-		min-height: 150px;
-		max-height: 300px;
-	}
+	select[multiple] { min-height: 150px; max-height: 300px; }
+	.card-body.pt-1 { padding-left: 5px; padding-right: 5px; }
 
-	/* Reduce card-body padding on mobile */
-	.card-body.pt-1 {
-		padding-left: 5px;
-		padding-right: 5px;
-	}
+	.menu-bar > div:last-child > div:first-child { flex: 1 1 100% !important; max-width: 100% !important; margin-bottom: 0.5rem; }
+	.menu-bar > div:last-child .input-group { flex: 1 1 100% !important; max-width: 100% !important; }
+	.menu-bar .d-flex, .menu-bar .d-flex.gap-2 { gap: 0.2rem !important; }
+	.menu-bar > div { overflow: visible !important; min-height: auto !important; }
 
-	/* Stack status bar and search vertically on mobile */
-	.menu-bar > div:last-child > div:first-child {
-		flex: 1 1 100% !important;
-		max-width: 100% !important;
-		margin-bottom: 0.5rem;
-	}
+	.d-none.d-sm-inline { display: none !important; }
 
-	.menu-bar > div:last-child .input-group {
-		flex: 1 1 100% !important;
-		max-width: 100% !important;
-	}
+	.status-bar { font-size: 0.7rem; padding: 3px 6px; }
+	.status-bar-right { margin-left: 5px; }
 
-	/* Make buttons even smaller on mobile */
-	.btn-sm {
-		font-size: 0.7rem;
-		padding: 0.1rem 0.25rem;
-	}
-
-	/* Hide text labels on quick filter buttons - show icons only */
-	.d-none.d-sm-inline {
-		display: none !important;
-	}
-
-	/* Reduce gap between elements */
-	.menu-bar .d-flex {
-		gap: 0.2rem !important;
-	}
-
-	.menu-bar .d-flex.gap-2 {
-		gap: 0.2rem !important;
-	}
-
-	/* Reduce button group spacing */
-	.btn-group {
-		gap: 0px;
-	}
-
-	.btn-group .btn {
-		margin: 0;
-	}
-
-	/* Ensure all rows in menu wrap properly */
-	.menu-bar > div {
-		overflow: visible !important;
-		min-height: auto !important;
-	}
-
-	/* Reduce status bar font size further */
-	.status-bar {
-		font-size: 0.7rem;
-		padding: 3px 6px;
-	}
-
-	.status-bar-right {
-		margin-left: 5px;
-	}
+	/* Table columns - mobile */
+	.spottable th:nth-child(1), .spottable td:nth-child(1) { width: 50px !important; }
+	.spottable th:nth-child(3), .spottable td:nth-child(3) { width: 90px !important; }
+	.spottable th:nth-child(6), .spottable td:nth-child(6) { width: 100px !important; }
+	.spottable th:nth-child(10), .spottable td:nth-child(10) { width: 100% !important; min-width: 150px !important; }
 }

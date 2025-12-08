@@ -6,6 +6,17 @@
 	height: calc(100vh - 300px) !important;
 	max-height: 900px !important;
 }
+
+    .dropdown-filters-responsive {
+        width: 800px;
+    }
+
+    @media (max-width: 900px) {
+        .dropdown-filters-responsive {
+            width: 90vw;
+            max-width: none;
+        }
+    }
 </style>
 <div class="container">
 	<!-- Award Info Box -->
@@ -26,16 +37,48 @@
 
     <form class="form" action="<?php echo site_url('awards/dxcc'); ?>" method="post" enctype="multipart/form-data">
 		<div class="mb-4 text-center">
-			<div class="dropdown" data-bs-auto-close="outside">
-				<button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false"><?= __("Filters") ?></button>
-				<button id="button1id" type="submit" name="button1id" class="btn btn-sm btn-primary"><?= __("Show"); ?></button>
+				<div class="dropdown" data-bs-auto-close="outside">
+					<button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false"><?= __("Filters") ?></button>
+					<button id="button1id" type="submit" name="button1id" class="btn btn-sm btn-primary"><?= __("Show"); ?></button>
 				<?php if ($dxcc_array) {
 					?><button type="button" onclick="load_dxcc_map();" class="btn btn-info btn-sm"><i class="fas fa-globe-americas"></i> <?= __("Show DXCC Map"); ?></button>
 				<?php }?>
 
 		<!-- Dropdown Menu with Filter Content -->
-		<div class="dropdown-menu start-50 translate-middle-x p-3 mt-5" aria-labelledby="filterDropdown" style="min-width: 250px;">
+		<div class="dropdown-menu start-50 translate-middle-x p-3 mt-5 dropdown-filters-responsive" aria-labelledby="filterDropdown" style="max-width: 800px;">
 			<div class="card-body filterbody">
+				<div class="row mb-3">
+					<label class="form-label" for="checkboxes"><?= __("Date Presets") . ": " ?></label>
+						<div class="d-flex gap-1 d-flex flex-wrap">
+							<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('today')"><?= __("Today") ?></button>
+							<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('yesterday')"><?= __("Yesterday") ?></button>
+							<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('last7days')"><?= __("Last 7 Days") ?></button>
+							<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('last30days')"><?= __("Last 30 Days") ?></button>
+							<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('thismonth')"><?= __("This Month") ?></button>
+							<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('lastmonth')"><?= __("Last Month") ?></button>
+							<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('thisyear')"><?= __("This Year") ?></button>
+							<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('lastyear')"><?= __("Last Year") ?></button>
+							<button type="button" class="btn btn-danger btn-sm flex-shrink-0" onclick="resetDates()"><i class="fas fa-times"></i> <?= __("Clear") ?></button>
+						</div>
+				</div>
+
+				<div class="mb-3 row">
+					<div class="col-md-2 control-label" for="checkboxes"><?= __("Date from"); ?></div>
+					<div class="col-md-10">
+						<div class="form-check-inline">
+							<input name="dateFrom" id="dateFrom" type="date" class="form-control form-control-sm w-auto border border-secondary" <?php if ($this->input->post('dateFrom')) echo 'value="' . $this->input->post('dateFrom') . '"'; ?>>
+						</div>
+					</div>
+				</div>
+				<div class="mb-3 row">
+					<div class="col-md-2 control-label" for="checkboxes"><?= __("Date to"); ?></div>
+					<div class="col-md-10">
+						<div class="form-check-inline">
+							<input name="dateTo" id="dateTo" type="date" class="form-control form-control-sm w-auto border border-secondary" <?php if ($this->input->post('dateTo')) echo 'value="' . $this->input->post('dateTo') . '"'; ?>>
+						</div>
+					</div>
+				</div>
+
 				<div class="mb-3 row">
 					<div class="col-md-2 control-label" for="checkboxes"><?= __("Deleted DXCC"); ?></div>
 					<div class="col-md-10">
@@ -192,9 +235,6 @@
 					</select>
 				</div>
 			</div>
-			<div class="mb-4 text-center">
-				<button id="button2id" type="reset" name="button2id" class="btn btn-sm btn-warning"><?= __("Reset"); ?></button>
-			</div>
 		</div>
     </form>
 
@@ -335,7 +375,7 @@
 	</div>';
 
     } else {
-	    echo '<div class="alert alert-danger" role="alert">' . __("Nothing found!") . '</div>';
+	    echo '<div class="alert alert-danger" role="alert">' . __("No results found for your search criteria. Please try again.") . '</div>';
     }
     ?>
                 </div>

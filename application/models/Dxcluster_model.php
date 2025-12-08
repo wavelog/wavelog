@@ -54,6 +54,13 @@ class Dxcluster_model extends CI_Model {
 		// Only load cache driver if caching is enabled
 		if ($cache_band_enabled || $cache_worked_enabled) {
 			$this->load->driver('cache', array('adapter' => 'file', 'backup' => 'file'));
+
+			// Garbage collection: 1% chance to clean expired cache files
+			// Only needed when worked cache is enabled (creates many per-callsign files)
+			if ($cache_worked_enabled) {
+				$this->load->library('DxclusterCache');
+				$this->dxclustercache->maybeRunGc();
+			}
 		}
 
 		if($this->session->userdata('user_date_format')) {
@@ -74,7 +81,9 @@ class Dxcluster_model extends CI_Model {
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
 		// Cache key for RAW cluster response (instance-wide, no worked status)
-		$raw_cache_key = "dxcluster_raw_{$maxage}_{$de}_{$mode}_{$band}";
+		// Use DxclusterCache library for centralized key generation
+		$this->load->library('DxclusterCache');
+		$raw_cache_key = $this->dxclustercache->getRawCacheKey($maxage, $band);
 
 		// Check cache for raw processed spots (without worked status)
 		$spotsout = null;
@@ -92,11 +101,19 @@ class Dxcluster_model extends CI_Model {
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			$jsonraw = curl_exec($ch);
 			$curl_error = curl_error($ch);
+			$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 			curl_close($ch);
 
 			// Check for curl errors
 			if ($curl_error || $jsonraw === false) {
 				log_message('error', 'DXCluster: Failed to fetch spots from ' . $dxcache_url . ': ' . $curl_error);
+				return [];
+			}
+
+			// Check HTTP status code
+			if ($http_code !== 200) {
+				$sample = substr($jsonraw, 0, 500);
+				log_message('error', 'DXCluster: HTTP error ' . $http_code . ' from ' . $dxcache_url . '. Response: ' . $sample);
 				return [];
 			}
 
@@ -106,10 +123,27 @@ class Dxcluster_model extends CI_Model {
 			}
 
 			$json = json_decode($jsonraw);
+			$json_error = json_last_error();
 
-			// Check for JSON decode errors
-			if (json_last_error() !== JSON_ERROR_NONE || !is_array($json)) {
-				log_message('error', 'DXCluster: Invalid JSON received: ' . json_last_error_msg());
+			// Check for JSON decode errors or unexpected data type
+			if ($json_error !== JSON_ERROR_NONE) {
+				// Malformed JSON - log error with sample of received data
+				$sample = substr($jsonraw, 0, 500);
+				log_message('error', 'DXCluster: Malformed JSON received from ' . $dxcache_url . ' - ' . json_last_error_msg() . '. Data sample: ' . $sample);
+				return [];
+			}
+
+			if (!is_array($json)) {
+				// Valid JSON but not an array - log what we received
+				$sample = substr($jsonraw, 0, 500);
+				$received_type = is_object($json) ? 'object' : gettype($json);
+				log_message('error', 'DXCluster: Expected array but received ' . $received_type . ' from ' . $dxcache_url . '. Data: ' . $sample);
+				return [];
+			}
+
+			// Check if array is empty
+			if (empty($json)) {
+				log_message('debug', 'DXCluster: Empty array received from ' . $dxcache_url . ' (no spots available)');
 				return [];
 			}
 			$date = date('Ymd', time());
@@ -123,10 +157,6 @@ class Dxcluster_model extends CI_Model {
 
 			// Cache current time outside loop (avoid creating DateTime on every iteration)
 			$currentTimestamp = time();
-
-			// Normalize continent filter once
-			$de_lower = strtolower($de);
-			$filter_continent = ($de != '' && $de != 'Any');
 
 			foreach($json as $singlespot){
 				// Early filtering - skip invalid spots immediately
@@ -160,10 +190,6 @@ class Dxcluster_model extends CI_Model {
 				$singlespot->submode = strtoupper($singlespot->submode);
 			}
 
-			// Apply mode filter early
-			if (($mode != 'All') && !$this->modefilter($singlespot, $mode)) {
-				continue;
-			}
 
 			// Faster age calculation using timestamps instead of DateTime objects
 			$spotTimestamp = strtotime($singlespot->when);
@@ -212,11 +238,6 @@ class Dxcluster_model extends CI_Model {
 					'entity' => $dxcc['entity'] ?? 'Unknown'
 				];
 			}
-			// Apply continent filter early
-			if ($filter_continent && (!property_exists($singlespot->dxcc_spotter, 'cont') ||
-				$de_lower != strtolower($singlespot->dxcc_spotter->cont ?? ''))) {
-				continue;
-			}
 
 			// Extract park references from message
 			$singlespot = $this->enrich_spot_metadata($singlespot);
@@ -229,6 +250,18 @@ class Dxcluster_model extends CI_Model {
 			if ($cache_band_enabled && !empty($spotsout)) {
 				$this->cache->save($raw_cache_key, $spotsout, 59);
 			}
+		}
+
+		// Apply user-specific filters AFTER cache retrieval (mode & continent)
+		if (!empty($spotsout) && ($mode != 'All' || ($de != '' && $de != 'Any'))) {
+			$de_lower = strtolower($de);
+			$filter_continent = ($de != '' && $de != 'Any');
+			$spotsout = array_filter($spotsout, function($spot) use ($mode, $de_lower, $filter_continent) {
+				if ($mode != 'All' && !$this->modefilter($spot, $mode)) return false;
+				if ($filter_continent && ($de_lower != strtolower($spot->dxcc_spotter->cont ?? ''))) return false;
+				return true;
+			});
+			$spotsout = array_values($spotsout); // Re-index array
 		}
 
 		// NOW add worked status if enabled (user-specific)
@@ -630,21 +663,23 @@ class Dxcluster_model extends CI_Model {
 			$spot->dxcc_spotted = (object)[];
 		}
 
-	// Initialize all properties at once using array merge
-	$defaults = [
-		'sota_ref' => '',
-		'pota_ref' => '',
-		'iota_ref' => '',
-		'wwff_ref' => '',
-		'isContest' => false,
-		'contestName' => null
-	];
+		// Initialize all properties at once using array merge
+		$defaults = [
+			'sota_ref' => '',
+			'pota_ref' => '',
+			'iota_ref' => '',
+			'wwff_ref' => '',
+			'isContest' => false,
+			'contestName' => null
+		];
 
-	foreach ($defaults as $prop => $defaultValue) {
-		if (!property_exists($spot->dxcc_spotted, $prop)) {
-			$spot->dxcc_spotted->$prop = $defaultValue;
+		foreach ($defaults as $prop => $defaultValue) {
+			if (!property_exists($spot->dxcc_spotted, $prop)) {
+				$spot->dxcc_spotted->$prop = $defaultValue;
+			}
 		}
-	}		// Early exit if message is empty
+
+		// Early exit if message is empty
 		$message = $spot->message ?? '';
 		if (empty($message)) {
 			return $spot;
@@ -657,9 +692,10 @@ class Dxcluster_model extends CI_Model {
 		$needsPota = empty($spot->dxcc_spotted->pota_ref);
 		$needsIota = empty($spot->dxcc_spotted->iota_ref);
 		$needsWwff = empty($spot->dxcc_spotted->wwff_ref);
+		$hasContestData = property_exists($spot->dxcc_spotted, 'isContest');
 
-		// Early exit if all references already populated
-		if (!$needsSota && !$needsPota && !$needsIota && !$needsWwff && $spot->dxcc_spotted->isContest) {
+		// Early exit if all references already populated and contest data exists
+		if (!$needsSota && !$needsPota && !$needsIota && !$needsWwff && $hasContestData) {
 			return $spot;
 		}
 
