@@ -116,6 +116,7 @@
 						$(node).removeClass('dt-button').addClass('btn btn-primary');
 					}
 				},
+				<?php if (!($cd_p_level == 3) && !($cd_p_level == 6)) { // ClubOfficer (9) and normal User can import, while ClubOfficer (ADIF) (3,6) can only see. ?>
 				{
 				text: 'Import Locations',
 				className: 'mb-1 btn btn-sm btn-primary',
@@ -158,6 +159,7 @@
 					$(node).removeClass('dt-button').addClass('btn btn-primary');
 				}
 			}
+			<?php } ?>
 
 			]
 		});
