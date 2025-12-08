@@ -45,7 +45,11 @@
                             <td><?php echo $loc->station_id; ?></td>
                             <td><?php echo $loc->station_active ? 'Yes' : 'No' ?></td>
                             <td><?php echo $loc->qso_total; ?></td>
+			<?php if (!($cd_p_level == 3) && !($cd_p_level == 6)) { // ClubOfficer (9) and normal User can click on a link, while ClubOfficer (ADIF) (3,6) can only see. ?>
                             <td><a href="<?php echo site_url('station/edit')."/".$loc->station_id; ?>"><?php echo $loc->station_profile_name; ?></a></td>
+			<?php } else { ?>
+                            <td><?php echo $loc->station_profile_name; ?></td>
+			<?php } ?>
                             <td><?php echo $loc->station_callsign; ?></td>
                             <td><?php echo $loc->station_gridsquare; ?></td>
                             <td><?php echo $loc->station_city; ?></td>
