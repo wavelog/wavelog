@@ -2280,13 +2280,39 @@ function saveOptions() {
 				$('#openStateListBtn_' + dxcc).prop("disabled", false).removeClass("running");
 				BootstrapDialog.show({
 					title: 'QSO List',
-					message: response,
 					size: BootstrapDialog.SIZE_WIDE,
-					type: BootstrapDialog.TYPE_INFO
+					cssClass: 'options',
+					nl2br: false,
+					message: response,
+					buttons: [
+					{
+						label: lang_admin_close,
+						cssClass: 'btn-sm btn-secondary',
+						id: 'closeButton',
+						action: function (dialogItself) {
+							dialogItself.close();
+						}
+					}],
+					onhide: function(dialogRef){
+						return;
+					},
 				});
 			},
 			error: function () {
 				$('#openStateListBtn_' + dxcc).prop("disabled", false).removeClass("running");
 			}
 		});
+	}
+
+	function getDbToolsInfo() {
+		$('#getDbToolsInfoBtn').prop("disabled", true).addClass("running");
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/dbtoolsInfo',
+			type: 'post',
+			success: function (html) {
+				$('#getDbToolsInfoBtn').prop("disabled", false).removeClass("running");
+				$('.result').html(html);
+			}
+		});
+
 	}

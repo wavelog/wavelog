@@ -889,6 +889,10 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->view('logbookadvanced/dbtoolsdialog');
 	}
 
+	public function dbtoolsInfo() {
+		$this->load->view('logbookadvanced/dbtoolsinformation');
+	}
+
 	public function checkDb() {
 		if(!clubaccess_check(9)) return;
 

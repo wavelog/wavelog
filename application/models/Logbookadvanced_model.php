@@ -1580,8 +1580,9 @@ class Logbookadvanced_model extends CI_Model {
 	}
 
 	function getStateListQsos($dxcc) {
-		$sql = "SELECT col_call, col_time_on, col_mode, col_submode, col_band, col_state, col_gridsquare FROM " . $this->config->item('table_name') . " qsos
+		$sql = "SELECT col_call, col_time_on, col_mode, col_submode, col_band, col_state, col_gridsquare, d.name as dxcc_name, station_profile.station_profile_name FROM " . $this->config->item('table_name') . " qsos
 				JOIN station_profile ON qsos.station_id = station_profile.station_id
+				LEFT JOIN dxcc_entities d ON qsos.COL_DXCC = d.adif
 				WHERE qsos.COL_DXCC = ? AND station_profile.user_id = ?
 				AND (qsos.COL_STATE IS NULL OR qsos.COL_STATE = '')
 				AND LENGTH(COALESCE(qsos.COL_GRIDSQUARE, '')) >= 6
