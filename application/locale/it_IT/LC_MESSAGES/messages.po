@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-07 14:55+0000\n"
+"POT-Creation-Date: 2025-12-08 10:52+0000\n"
 "PO-Revision-Date: 2025-12-08 10:52+0000\n"
 "Last-Translator: Luca <lucabennati1996@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -108,7 +108,7 @@ msgstr ""
 #: application/controllers/Search.php:12
 #: application/controllers/Simplefle.php:7
 #: application/controllers/Station.php:17
-#: application/controllers/Stationsetup.php:15
+#: application/controllers/Stationsetup.php:16
 #: application/controllers/Themes.php:17
 #: application/controllers/Timeline.php:10
 #: application/controllers/Timeplotter.php:11
@@ -124,7 +124,6 @@ msgstr ""
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
-#: application/controllers/Stationsetup.php:16
 msgid "You're not allowed to do that!"
 msgstr "Non ti è permesso farlo!"
 
@@ -202,7 +201,6 @@ msgid "Activators Map"
 msgstr "Mappa attivatori"
 
 #: application/controllers/Adif.php:61 application/controllers/Adif.php:73
-#, fuzzy
 msgid "You're not allowed to access this functionality!"
 msgstr "Non sei autorizzato ad accedere a questa funzionalità!"
 
@@ -215,7 +213,6 @@ msgid "date incorrect"
 msgstr "data incorretta"
 
 #: application/controllers/Adif.php:283
-#: application/views/interface_assets/header.php:474
 #: application/views/interface_assets/header.php:476
 msgid "ADIF Import / Export"
 msgstr "Importa / Esporta ADIF"
@@ -888,7 +885,6 @@ msgid "Not running"
 msgstr "Non attivo"
 
 #: application/controllers/Csv.php:20 application/views/csv/index.php:3
-#: application/views/interface_assets/header.php:483
 #: application/views/interface_assets/header.php:485
 msgid "SOTA CSV Export"
 msgstr "Esporta CSV SOTA"
@@ -1015,7 +1011,6 @@ msgid "and propagation"
 msgstr "e propagazione"
 
 #: application/controllers/Dxatlas.php:19
-#: application/views/interface_assets/header.php:481
 #: application/views/interface_assets/header.php:483
 msgid "DX Atlas Gridsquare Export"
 msgstr "Esporta Locatore DX Atlas"
@@ -1078,7 +1073,6 @@ msgid "eQSL Card Image Download"
 msgstr "Scarica immagine da eQSL"
 
 #: application/controllers/Eqsl.php:518
-#, fuzzy
 msgid "All eQSLs marked as uploaded"
 msgstr "Tutte le eQSL contrassegnate come caricate"
 
@@ -1116,9 +1110,8 @@ msgid "No QSOs found to upload."
 msgstr "Nessun QSO da caricare."
 
 #: application/controllers/Kmlexport.php:24
-#: application/views/interface_assets/header.php:479
-#: application/views/kml/index.php:3
 #: application/views/interface_assets/header.php:481
+#: application/views/kml/index.php:3
 msgid "KML Export"
 msgstr "Esportazione KML"
 
@@ -1830,7 +1823,7 @@ msgid "Operator"
 msgstr "Operatore"
 
 #: application/controllers/Logbook.php:1395
-#: application/controllers/Stationsetup.php:423
+#: application/controllers/Stationsetup.php:424
 #: application/views/awards/dxcc/index.php:83
 #: application/views/awards/dxcc/index.php:291
 #: application/views/awards/wae/index.php:175
@@ -1847,7 +1840,7 @@ msgstr "Operatore"
 #: application/views/station_profile/edit.php:109
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/stationsetup/linkedlocations.php:45
-#: application/views/stationsetup/locationlist.php:54
+#: application/views/stationsetup/locationlist.php:58
 #: application/views/stationsetup/stationsetup.php:156
 #: application/views/timeline/index.php:216
 #: application/views/timeplotter/index.php:33
@@ -1855,8 +1848,6 @@ msgstr "Operatore"
 #: application/views/view_log/partial/log_ajax.php:31
 #: application/views/view_log/qso.php:341
 #: application/views/view_log/qso.php:694
-#: application/controllers/Stationsetup.php:424
-#: application/views/stationsetup/locationlist.php:58
 msgid "Deleted DXCC"
 msgstr "DXCC eliminati"
 
@@ -1871,11 +1862,10 @@ msgstr "Ricerca rapida"
 #: application/controllers/Lotw.php:64 application/controllers/Lotw.php:96
 #: application/controllers/Lotw.php:136 application/views/adif/import.php:42
 #: application/views/dcl_views/upload_cert.php:3
-#: application/views/interface_assets/header.php:514
+#: application/views/interface_assets/header.php:516
 #: application/views/lotw/import.php:3 application/views/lotw_views/index.php:9
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:880 application/views/visitor/index.php:328
-#: application/views/interface_assets/header.php:516
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
@@ -2204,7 +2194,6 @@ msgid "Invalid Station ID"
 msgstr "ID di stazione non valido"
 
 #: application/controllers/Oqrs.php:163
-#: application/views/interface_assets/header.php:504
 #: application/views/interface_assets/header.php:506
 msgid "OQRS Requests"
 msgstr "Richieste OQRS"
@@ -2262,7 +2251,6 @@ msgstr ""
 "negative si trovano a ovest di Greenwich."
 
 #: application/controllers/Qrz.php:204
-#: application/views/interface_assets/header.php:517
 #: application/views/interface_assets/header.php:519
 msgid "QRZ Logbook"
 msgstr "Registro QRZ"
@@ -2311,7 +2299,6 @@ msgid "No callsign provided."
 msgstr "Nessun nominativo fornito."
 
 #: application/controllers/Radio.php:17
-#: application/views/interface_assets/header.php:531
 #: application/views/interface_assets/header.php:533
 msgid "Hardware Interfaces"
 msgstr "Interfacce hardware"
@@ -2359,7 +2346,7 @@ msgid "Default (click to release)"
 msgstr "Predefinito (premi per rimuovere)"
 
 #: application/controllers/Radio.php:115
-#: application/controllers/Stationsetup.php:401
+#: application/controllers/Stationsetup.php:402
 #: application/views/api/index.php:74 application/views/bands/bandedges.php:32
 #: application/views/club/permissions.php:274
 #: application/views/contesting/add.php:59 application/views/cron/index.php:71
@@ -2374,12 +2361,11 @@ msgstr "Predefinito (premi per rimuovere)"
 #: application/views/stationsetup/stationsetup.php:172
 #: application/views/themes/index.php:104 application/views/user/index.php:97
 #: application/views/user/index.php:203
-#: application/controllers/Stationsetup.php:402
 msgid "Edit"
 msgstr "Modifica"
 
 #: application/controllers/Radio.php:116
-#: application/controllers/Stationsetup.php:414
+#: application/controllers/Stationsetup.php:415
 #: application/views/api/index.php:81 application/views/bands/bandedges.php:33
 #: application/views/club/permissions.php:331
 #: application/views/club/permissions.php:353
@@ -2404,7 +2390,6 @@ msgstr "Modifica"
 #: application/views/stationsetup/stationsetup.php:199
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:778
-#: application/controllers/Stationsetup.php:415
 msgid "Delete"
 msgstr "Elimina"
 
@@ -2552,7 +2537,6 @@ msgid "Empty Logbook"
 msgstr "Svuota registro di stazione"
 
 #: application/controllers/Station.php:38
-#: application/controllers/Stationsetup.php:251
 #: application/controllers/Stationsetup.php:252
 msgid "Create Station Location"
 msgstr "Crea postazione"
@@ -2586,19 +2570,13 @@ msgstr "Duplica postazione:"
 msgid "Please check value for grid locator (%s)"
 msgstr "Prego verifica il locatore (%s)"
 
-#: application/controllers/Stationsetup.php:60
-#: application/views/interface_assets/header.php:441
-#: application/views/interface_assets/header.php:594
 #: application/controllers/Stationsetup.php:61
+#: application/views/interface_assets/header.php:441
 #: application/views/interface_assets/header.php:474
 #: application/views/interface_assets/header.php:596
 msgid "Station Setup"
 msgstr "Impostazioni stazione"
 
-#: application/controllers/Stationsetup.php:75
-#: application/controllers/Stationsetup.php:93
-#: application/controllers/Stationsetup.php:437
-#: application/controllers/Stationsetup.php:451
 #: application/controllers/Stationsetup.php:76
 #: application/controllers/Stationsetup.php:94
 #: application/controllers/Stationsetup.php:438
@@ -2606,16 +2584,6 @@ msgstr "Impostazioni stazione"
 msgid "Not allowed"
 msgstr "Non permesso"
 
-#: application/controllers/Stationsetup.php:97
-#: application/controllers/Stationsetup.php:111
-#: application/controllers/Stationsetup.php:130
-#: application/controllers/Stationsetup.php:143
-#: application/controllers/Stationsetup.php:156
-#: application/controllers/Stationsetup.php:177
-#: application/controllers/Stationsetup.php:478
-#: application/views/qso/index.php:745 application/views/simplefle/index.php:39
-#: application/views/widgets/on_air.php:181
-#: application/views/widgets/on_air.php:243
 #: application/controllers/Stationsetup.php:98
 #: application/controllers/Stationsetup.php:112
 #: application/controllers/Stationsetup.php:131
@@ -2623,36 +2591,34 @@ msgstr "Non permesso"
 #: application/controllers/Stationsetup.php:157
 #: application/controllers/Stationsetup.php:178
 #: application/controllers/Stationsetup.php:479
+#: application/views/qso/index.php:745 application/views/simplefle/index.php:39
+#: application/views/widgets/on_air.php:181
+#: application/views/widgets/on_air.php:243
 msgid "Error"
 msgstr "Errore"
 
-#: application/controllers/Stationsetup.php:184
-#: application/views/stationsetup/stationsetup.php:25
 #: application/controllers/Stationsetup.php:185
+#: application/views/stationsetup/stationsetup.php:25
 msgid "Create Station Logbook"
 msgstr "Crea registro di stazione"
 
-#: application/controllers/Stationsetup.php:191
 #: application/controllers/Stationsetup.php:192
 msgid "Edit container name"
 msgstr "Modifica nome contenitore"
 
-#: application/controllers/Stationsetup.php:206
 #: application/controllers/Stationsetup.php:207
 msgid "Edit linked locations"
 msgstr "Modifica postazioni collegate"
 
-#: application/controllers/Stationsetup.php:215
 #: application/controllers/Stationsetup.php:216
 msgid "Edit visitor site"
 msgstr "Modifica sito visitatori"
 
-#: application/controllers/Stationsetup.php:237
 #: application/controllers/Stationsetup.php:238
 msgid "Error. Link is already in use!"
 msgstr "Errore. Collegamento già in uso!"
 
-#: application/controllers/Stationsetup.php:278
+#: application/controllers/Stationsetup.php:279
 #: application/views/options/appearance.php:57
 #: application/views/options/appearance.php:64
 #: application/views/options/appearance.php:73
@@ -2667,26 +2633,22 @@ msgstr "Errore. Collegamento già in uso!"
 #: application/views/user/edit.php:450 application/views/user/edit.php:501
 #: application/views/user/edit.php:510 application/views/user/edit.php:667
 #: application/views/user/edit.php:677
-#: application/controllers/Stationsetup.php:279
 msgid "Disabled"
 msgstr "Disabilitato"
 
-#: application/controllers/Stationsetup.php:286
-#: application/views/stationsetup/stationsetup.php:47
 #: application/controllers/Stationsetup.php:287
+#: application/views/stationsetup/stationsetup.php:47
 msgid "Set as Active Logbook"
 msgstr "Imposta come registro attivo"
 
-#: application/controllers/Stationsetup.php:288
-#: application/views/interface_assets/header.php:592
-#: application/views/stationsetup/stationsetup.php:49
-#: application/views/view_log/index.php:4
 #: application/controllers/Stationsetup.php:289
 #: application/views/interface_assets/header.php:594
+#: application/views/stationsetup/stationsetup.php:49
+#: application/views/view_log/index.php:4
 msgid "Active Logbook"
 msgstr "Registro attivo"
 
-#: application/controllers/Stationsetup.php:295
+#: application/controllers/Stationsetup.php:296
 #: application/views/stationsetup/stationsetup.php:58
 #, php-format
 msgid ""
@@ -2696,18 +2658,16 @@ msgstr ""
 "Sei sicuro di voler eliminare il registro delle stazioni %s? Devi "
 "ricollegare qualsiasi località collegata qui a un altro registro."
 
-#: application/controllers/Stationsetup.php:305
-#: application/views/stationsetup/stationsetup.php:68
 #: application/controllers/Stationsetup.php:306
+#: application/views/stationsetup/stationsetup.php:68
 msgid "View Public Page for Logbook: "
 msgstr "Visualizza pagina pubblica del registro di stazione: "
 
-#: application/controllers/Stationsetup.php:306
 #: application/controllers/Stationsetup.php:307
 msgid "Are you sure you want to delete the public slug?"
 msgstr "Sei sicuro di voler eliminare questo identificativo pubblico?"
 
-#: application/controllers/Stationsetup.php:391
+#: application/controllers/Stationsetup.php:392
 #: application/views/stationsetup/stationsetup.php:161
 #, php-format
 msgid ""
@@ -2715,54 +2675,47 @@ msgid ""
 msgstr ""
 "Sei sicuro di voler rendere il profilo della stazione %s la stazione attiva?"
 
-#: application/controllers/Stationsetup.php:391
-#: application/views/stationsetup/stationsetup.php:161
 #: application/controllers/Stationsetup.php:392
+#: application/views/stationsetup/stationsetup.php:161
 msgid "Set Active"
 msgstr "Imposta come attiva"
 
-#: application/controllers/Stationsetup.php:393
-#: application/views/stationsetup/stationsetup.php:163
 #: application/controllers/Stationsetup.php:394
+#: application/views/stationsetup/stationsetup.php:163
 msgid "Active Station"
 msgstr "Stazione attiva"
 
-#: application/controllers/Stationsetup.php:396
+#: application/controllers/Stationsetup.php:397
 #: application/views/interface_assets/header.php:131
 #: application/views/qso/edit_ajax.php:34 application/views/qso/index.php:86
 #: application/views/simplefle/index.php:28
 #: application/views/stationsetup/stationsetup.php:168
 #: application/views/user/index.php:82 application/views/user/index.php:86
 #: application/views/user/index.php:193 application/views/user/index.php:195
-#: application/controllers/Stationsetup.php:397
 msgid "QSO"
 msgstr "QSO"
 
-#: application/controllers/Stationsetup.php:405
-#: application/views/stationsetup/stationsetup.php:192
 #: application/controllers/Stationsetup.php:406
+#: application/views/stationsetup/stationsetup.php:192
 msgid "Are you sure you want to delete all QSOs within this station profile?"
 msgstr ""
 "Sei sicuro di voler eliminare tutti i QSO all'interno di questo profilo "
 "stazione?"
 
-#: application/controllers/Stationsetup.php:405
+#: application/controllers/Stationsetup.php:406
 #: application/views/stationsetup/stationsetup.php:142
 #: application/views/stationsetup/stationsetup.php:194
-#: application/controllers/Stationsetup.php:406
 msgid "Empty Log"
 msgstr "Svuota log"
 
-#: application/controllers/Stationsetup.php:409
+#: application/controllers/Stationsetup.php:410
 #: application/views/stationsetup/stationsetup.php:135
 #: application/views/stationsetup/stationsetup.php:175
-#: application/controllers/Stationsetup.php:410
 msgid "Copy"
 msgstr "Copia"
 
-#: application/controllers/Stationsetup.php:414
-#: application/views/stationsetup/stationsetup.php:198
 #: application/controllers/Stationsetup.php:415
+#: application/views/stationsetup/stationsetup.php:198
 #, php-format
 msgid ""
 "Are you sure you want delete station profile '%s'? This will delete all QSOs "
@@ -2771,22 +2724,20 @@ msgstr ""
 "Sei sicuro di voler eliminare il profilo della stazione ‘%s’? Questa "
 "operazione eliminerà tutti i QSO presenti in questo profilo della stazione."
 
-#: application/controllers/Stationsetup.php:421
+#: application/controllers/Stationsetup.php:422
 #: application/views/qso/edit_ajax.php:236
 #: application/views/station_profile/create.php:75
 #: application/views/station_profile/edit.php:103
 #: application/views/stationsetup/stationsetup.php:156
 #: application/views/user/modals/first_login_wizard.php:46
-#: application/controllers/Stationsetup.php:422
 msgid "Please select one"
 msgstr "Per favore seleziona uno"
 
-#: application/controllers/Stationsetup.php:504
 #: application/controllers/Stationsetup.php:505
 msgid "Edit Export Map options"
 msgstr "Modifica opzioni di esportazione mappa"
 
-#: application/controllers/Stationsetup.php:526
+#: application/controllers/Stationsetup.php:527
 msgid "Station location list"
 msgstr "Elenco delle posizioni delle stazioni"
 
@@ -3278,7 +3229,6 @@ msgstr "Esporta mappa"
 
 #: application/controllers/Webadif.php:95
 #: application/controllers/Webadif.php:142
-#: application/views/interface_assets/header.php:518
 #: application/views/interface_assets/header.php:520
 msgid "QO-100 Dx Club Upload"
 msgstr "Caricamento QO-100 Dx Club"
@@ -5106,7 +5056,6 @@ msgid "Save"
 msgstr "Salva"
 
 #: application/views/api/index.php:8
-#: application/views/interface_assets/header.php:530
 #: application/views/interface_assets/header.php:532
 msgid "API Keys"
 msgstr "Chiavi API"
@@ -7265,8 +7214,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be one of U.S.A., Alaska or Hawaii) "
 "and STATE (Must contain a valid U.S. state abbreviation!)"
 msgstr ""
-"Campi presi in considerazione per questo premio: DXCC (Deve essere uno tra "
-"U.S.A., Alaska o Hawaii) e STATE (Deve contenere una valida abbreviazione di "
+"Campi presi in considerazione per questo premio: DXCC (Deve essere uno tra U."
+"S.A., Alaska o Hawaii) e STATE (Deve contenere una valida abbreviazione di "
 "uno stato U.S.A.!)"
 
 #: application/views/awards/was/index.php:120
@@ -7669,7 +7618,6 @@ msgid "New Continent"
 msgstr "Nuovo Continente"
 
 #: application/views/bandmap/list.php:92 application/views/bandmap/list.php:317
-#, fuzzy
 msgid "New Country"
 msgstr "Nuovo Paese"
 
@@ -9373,13 +9321,12 @@ msgstr "Nome ADIF"
 #: application/views/contesting/add.php:44
 #: application/views/contesting/edit.php:43
 #: application/views/contesting/edit.php:46
-#: application/views/interface_assets/header.php:572
+#: application/views/interface_assets/header.php:574
 #: application/views/mode/create.php:46 application/views/mode/create.php:48
 #: application/views/mode/edit.php:57 application/views/mode/edit.php:60
 #: application/views/mode/index.php:8 application/views/mode/index.php:55
 #: application/views/usermode/index.php:6
 #: application/views/usermode/index.php:51
-#: application/views/interface_assets/header.php:574
 msgid "Active"
 msgstr "Attivo"
 
@@ -11714,9 +11661,8 @@ msgid ""
 msgstr ""
 
 #: application/views/interface_assets/footer.php:223
-#: application/views/interface_assets/header.php:533
-#: application/views/options/sidebar.php:10
 #: application/views/interface_assets/header.php:535
+#: application/views/options/sidebar.php:10
 msgid "Version Info"
 msgstr "Informazioni sulla versione"
 
@@ -12101,97 +12047,79 @@ msgstr "Gestisci %s"
 msgid "No Clubstations available"
 msgstr "Nessun club/stazione disponibile"
 
-#: application/views/interface_assets/header.php:477
 #: application/views/interface_assets/header.php:479
 msgid "Other Export Options"
 msgstr "Altre opzioni di esportazione"
 
-#: application/views/interface_assets/header.php:485
 #: application/views/interface_assets/header.php:487
 msgid "Cabrillo Export"
 msgstr "Esportazione Cabrillo"
 
-#: application/views/interface_assets/header.php:487
 #: application/views/interface_assets/header.php:489
 msgid "EDI Export"
 msgstr "Esportazione EDI"
 
-#: application/views/interface_assets/header.php:509
 #: application/views/interface_assets/header.php:511
 msgid "QSL Queue"
 msgstr "Coda QSL"
 
-#: application/views/interface_assets/header.php:510
 #: application/views/interface_assets/header.php:512
 msgid "Labels"
 msgstr "Etichette"
 
-#: application/views/interface_assets/header.php:512
 #: application/views/interface_assets/header.php:514
 msgid "Third-Party Services"
 msgstr "Servizi di terze parti"
 
-#: application/views/interface_assets/header.php:515
 #: application/views/interface_assets/header.php:517
 msgid "eQSL Import / Export"
 msgstr "Importazione / Esportazione eQSL"
 
-#: application/views/interface_assets/header.php:516
 #: application/views/interface_assets/header.php:518
 msgid "HRDLog Logbook"
 msgstr "Registro HRDLog"
 
-#: application/views/interface_assets/header.php:519
 #: application/views/interface_assets/header.php:521
 msgid "Clublog Import / Export"
 msgstr "Importazione / Esportazione Clublog"
 
-#: application/views/interface_assets/header.php:522
 #: application/views/interface_assets/header.php:524
 msgid "DCL Export"
 msgstr "Esportazione DCL"
 
-#: application/views/interface_assets/header.php:534
-#: application/views/logbookadvanced/index.php:831
 #: application/views/interface_assets/header.php:536
+#: application/views/logbookadvanced/index.php:831
 msgid "Help"
 msgstr "Aiuto"
 
-#: application/views/interface_assets/header.php:535
 #: application/views/interface_assets/header.php:537
 msgid "Forum"
 msgstr "Forum"
 
-#: application/views/interface_assets/header.php:539
 #: application/views/interface_assets/header.php:541
 #, php-format
 msgid "Stop impersonate and switch back to %s"
 msgstr "Smetti di impersonare e torna a %s"
 
-#: application/views/interface_assets/header.php:540
 #: application/views/interface_assets/header.php:542
 #, php-format
 msgid "Switch back to %s"
 msgstr "Torna a %s"
 
-#: application/views/interface_assets/header.php:544
 #: application/views/interface_assets/header.php:546
 msgid "Logout"
 msgstr "Disconnetti"
 
-#: application/views/interface_assets/header.php:552
 #: application/views/interface_assets/header.php:554
 msgid "Select a Location"
 msgstr "Seleziona una posizione"
 
-#: application/views/interface_assets/header.php:594
 #: application/views/interface_assets/header.php:596
 msgid "You miss station-locations here? Go to stationsetup and fav them"
 msgstr ""
 "Non trovi le posizioni delle stazioni? Vai alle impostazioni della stazione "
 "e aggiungile ai preferiti"
 
-#: application/views/interface_assets/header.php:631
 #: application/views/interface_assets/header.php:633
 msgid "Extras"
 msgstr "Extra"
@@ -17028,9 +16956,8 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Crea una nuova cartella in 'assets/css/' e carica un file "
-"'bootstrap.min.css' che contiene regole di stile di base. Utilizziamo i temi "
-"di %s"
+"Crea una nuova cartella in 'assets/css/' e carica un file 'bootstrap.min."
+"css' che contiene regole di stile di base. Utilizziamo i temi di %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
