@@ -2316,3 +2316,19 @@ function saveOptions() {
 		});
 
 	}
+
+	function fixMissingDxcc() {
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/fixMissingDxcc',
+			data: {
+				all: 'false'
+			},
+			type: 'POST',
+			success: function(response) {
+				alert('dxcc');
+			},
+			error: function(xhr, status, error) {
+				alert('error');
+			}
+		});
+	}

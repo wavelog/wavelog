@@ -1598,7 +1598,7 @@ class Logbookadvanced_model extends CI_Model {
 		We need to ensure that we only update the relevant QSOs, filtered on user.
 		The function needs a rewrite to add filtering on user/station.
 	*/
-	public function check_missing_dxcc_id($all) {
+	public function check_missing_dxcc_id($all = false) {
 		ini_set('memory_limit', '-1');	// This consumes a lot of Memory!
 		$this->db->trans_start();	// Transaction has to be started here, because otherwise we're trying to update rows which are locked by the select
 		$this->db->select("COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_TIME_OFF"); // get all records with no COL_DXCC
@@ -1606,7 +1606,10 @@ class Logbookadvanced_model extends CI_Model {
 		$this->db->where("station_profile.user_id", $this->session->userdata('user_id'));
 
 		if (!$all) { // check which to update - records with no dxcc or all records
+			$this->db->group_start();
 			$this->db->where("COL_DXCC is NULL");
+			$this->db->or_where("COL_DXCC = ''");
+			$this->db->group_end();
 		}
 
 		$r = $this->db->get($this->config->item('table_name'));
@@ -1627,6 +1630,6 @@ class Logbookadvanced_model extends CI_Model {
 			}
 		}
 		$this->db->trans_complete();
-		print("$count updated\n");
+		return $count;
 	}
 }

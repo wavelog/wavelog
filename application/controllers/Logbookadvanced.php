@@ -928,7 +928,6 @@ class Logbookadvanced extends CI_Controller {
 	public function openStateList() {
 		if(!clubaccess_check(9)) return;
 
-		$this->load->model('logbook_model');
 		$this->load->model('logbookadvanced_model');
 
 		$data['dxcc'] = $this->input->post('dxcc', true);
@@ -937,5 +936,16 @@ class Logbookadvanced extends CI_Controller {
 		$data['qsos'] = $this->logbookadvanced_model->getStateListQsos($data['dxcc']);
 
 		$this->load->view('logbookadvanced/showStateQsos', $data);
+	}
+
+	public function fixMissingDxcc() {
+		if(!clubaccess_check(9)) return;
+
+		$all = $this->input->post('all', true);
+		$this->load->model('logbookadvanced_model');
+        $result = $this->logbookadvanced_model->check_missing_dxcc_id($all);
+
+		header("Content-Type: application/json");
+		echo json_encode($result);
 	}
 }
