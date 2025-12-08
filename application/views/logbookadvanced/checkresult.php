@@ -1,45 +1,46 @@
-<?php if (isset($result) && is_array($result) && count($result) > 0): ?>
-<div class="col-md-12 result">
-    <h5><?= __("State Check Results"); ?></h5>
-    <p><?= __("QSOs with missing state and gridsquares with 6 or more characters found for the following DXCC's:"); ?></p>
+<?php
+switch ($type) {
+	case 'checkdistance':
+		check_missing_distance($result);
+		break;
+	case 'checkcontinent':
+		check_qsos_missing_continent($result);
+		break;
+	case 'checkdxcc':
+		check_missing_dxcc($result);
+		break;
+	case 'checkcqzones':
+		check_missing_cq_zones($result);
+		break;
+	case 'checkituzones':
+		check_missing_itu_zones($result);
+		break;
+	default:
+		// Invalid type
+		break;
+}
 
-	<div class="table-responsive" style="max-height:50vh; overflow:auto;">
-		<table class="table table-sm table-striped table-bordered table-condensed mb-0">
-			<thead>
-				<tr>
-					<th><?= __("Prefix"); ?></th>
-					<th><?= __("DXCC"); ?></th>
-					<th><?= __("QSOs"); ?></th>
-					<th><?= __("Action"); ?></th>
-				</tr>
-			</thead>
-			<tbody>
-			<?php foreach ($result as $index => $item): ?>
-				<?php
-					$rawName = isset($item->dxcc_name) ? $item->dxcc_name : '';
-					$formattedName = ucwords(strtolower($rawName), "- (/");
-					$name = htmlspecialchars($formattedName, ENT_QUOTES, 'UTF-8');
-					$qsos = isset($item->count) ? intval($item->count) : 0;
-				?>
-				<tr>
-					<td><?php echo $item->prefix; ?></td>
-					<td><?php echo $name; ?></td>
-					<td><?php echo $qsos; ?></td>
-					<td>
-						<button type="button" class="btn btn-sm btn-primary ld-ext-right" id="fixStateBtn_<?php echo $item->col_dxcc; ?>" onclick="fixState(<?php echo $item->col_dxcc; ?>)">
-							<?= __("Run fix") ?><div class="ld ld-ring ld-spin"></div>
-						</button>
-						<button id="openStateListBtn_<?php echo $item->col_dxcc; ?>" onclick="openStateList(<?php echo $item->col_dxcc; ?>)" class="btn btn-sm btn-success"><i class="fas fa-search"></i></button>
-					</td>
-				</tr>
-			<?php endforeach; ?>
-			</tbody>
-		</table>
-	</div>
-</div>
-<?php else: ?>
-<div class="col-md-12 result">
-    <h5></h5><?= __("State Check Results"); ?></h5>
-    <p><?= __("No QSOs were found where state information can be fixed."); ?></p>
-</div>
-<?php endif; ?>
+function check_missing_distance($result) { ?>
+	<h5>Distance Check Results</h5>
+	QSOs to update found: <?php echo $result[0]->count; ?>
+<?php }
+
+function check_qsos_missing_continent($result) { ?>
+	<h5>Continent Check Results</h5>
+	QSOs to update found: <?php echo $result[0]->count; ?>
+<?php }
+
+function check_missing_dxcc($result) { ?>
+	<h5>DXCC Check Results</h5>
+	QSOs to update found: <?php echo $result[0]->count; ?>
+<?php }
+
+function check_missing_cq_zones($result) { ?>
+	<h5>CQ Zone Check Results</h5>
+	QSOs to update found: <?php echo $result[0]->count; ?>
+<?php }
+
+function check_missing_itu_zones($result) { ?>
+	<h5>ITU Zone Check Results</h5>
+	QSOs to update found: <?php echo $result[0]->count; ?>
+<?php }

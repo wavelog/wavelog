@@ -2032,7 +2032,6 @@ function saveOptions() {
 		$('#checkUpdateDistancesBtn').prop("disabled", true).addClass("running");
 		$('#closeButton').prop("disabled", true);
 
-
 		$.ajax({
 			url: base_url + 'index.php/logbookadvanced/checkDb',
 			data: {
@@ -2042,23 +2041,20 @@ function saveOptions() {
 			success: function(response) {
 				$('#checkUpdateDistancesBtn').prop("disabled", false).removeClass("running");
 				$('#closeButton').prop("disabled", false);
-				// Create a nice display for the results
-				let resultHtml = '<h5>Distance Check Results</h5>';
-				resultHtml += '<p>QSO to update found: ' + (response[0].count) + '</p>';
 
-				$('.result').html(resultHtml);
+				$('.result').html(response);
 			},
 			error: function(xhr, status, error) {
-				$('#checkUpdateDistancesBtn').prop('disabled', false).text('<?= __("Check") ?>');
+				$('#checkUpdateDistancesBtn').prop("disabled", false).removeClass("running");
 				$('#closeButton').prop('disabled', false);
 
-				let errorMsg = '<?= __("Error checking distance information") ?>';
+				let errorMsg = 'Error checking distance information';
 				if (xhr.responseJSON && xhr.responseJSON.message) {
 					errorMsg += ': ' + xhr.responseJSON.message;
 				}
 
 				BootstrapDialog.alert({
-					title: '<?= __("Error") ?>',
+					title: 'Error',
 					message: errorMsg,
 					type: BootstrapDialog.TYPE_DANGER
 				});
@@ -2070,7 +2066,6 @@ function saveOptions() {
 		$('#checkMissingDxccsBtn').prop("disabled", true).addClass("running");
 		$('#closeButton').prop("disabled", true);
 
-
 		$.ajax({
 			url: base_url + 'index.php/logbookadvanced/checkDb',
 			data: {
@@ -2080,23 +2075,19 @@ function saveOptions() {
 			success: function(response) {
 				$('#checkMissingDxccsBtn').prop("disabled", false).removeClass("running");
 				$('#closeButton').prop("disabled", false);
-				// Create a nice display for the results
-				let resultHtml = '<h5>DXCC Check Results</h5>';
-				resultHtml += '<p>QSOs without DXCC information found: ' + (response[0].count) + '</p>';
-
-				$('.result').html(resultHtml);
+				$('.result').html(response);
 			},
 			error: function(xhr, status, error) {
 				$('#checkMissingDxccsBtn').prop('disabled', false).text('<?= __("Check") ?>');
 				$('#closeButton').prop('disabled', false);
 
-				let errorMsg = '<?= __("Error checking distance information") ?>';
+				let errorMsg = 'Error checking DXCC information';
 				if (xhr.responseJSON && xhr.responseJSON.message) {
 					errorMsg += ': ' + xhr.responseJSON.message;
 				}
 
 				BootstrapDialog.alert({
-					title: '<?= __("Error") ?>',
+					title: 'Error',
 					message: errorMsg,
 					type: BootstrapDialog.TYPE_DANGER
 				});
@@ -2117,23 +2108,19 @@ function saveOptions() {
 			success: function(response) {
 				$('#checkFixContinentBtn').prop("disabled", false).removeClass("running");
 				$('#closeButton').prop("disabled", false);
-				// Create a nice display for the results
-				let resultHtml = '<h5>Continent Check Results</h5>';
-				resultHtml += '<p>QSOs with missing or invalid continent information found: ' + (response[0].count) + '</p>';
-
-				$('.result').html(resultHtml);
+				$('.result').html(response);
 			},
 			error: function(xhr, status, error) {
 				$('#checkFixContinentBtn').prop('disabled', false).text('<?= __("Check") ?>');
 				$('#closeButton').prop('disabled', false);
 
-				let errorMsg = '<?= __("Error checking distance information") ?>';
+				let errorMsg = 'Error checking continent information';
 				if (xhr.responseJSON && xhr.responseJSON.message) {
 					errorMsg += ': ' + xhr.responseJSON.message;
 				}
 
 				BootstrapDialog.alert({
-					title: '<?= __("Error") ?>',
+					title: 'Error',
 					message: errorMsg,
 					type: BootstrapDialog.TYPE_DANGER
 				});
@@ -2161,13 +2148,13 @@ function saveOptions() {
 				$('#checkFixStateBtn').prop('disabled', false).text('<?= __("Check") ?>');
 				$('#closeButton').prop('disabled', false);
 
-				let errorMsg = '<?= __("Error checking distance information") ?>';
+				let errorMsg = 'Error checking state information';
 				if (xhr.responseJSON && xhr.responseJSON.message) {
 					errorMsg += ': ' + xhr.responseJSON.message;
 				}
 
 				BootstrapDialog.alert({
-					title: '<?= __("Error") ?>',
+					title: 'Error',
 					message: errorMsg,
 					type: BootstrapDialog.TYPE_DANGER
 				});
@@ -2188,11 +2175,7 @@ function saveOptions() {
 			success: function(response) {
 				$('#checkFixCqZonesBtn').prop("disabled", false).removeClass("running");
 				$('#closeButton').prop("disabled", false);
-				// Create a nice display for the results
-				let resultHtml = '<h5>CQ Zone Check Results</h5>';
-				resultHtml += '<p>QSOs with missing CQ zone information found: ' + (response[0].count) + '</p>';
-
-				$('.result').html(resultHtml);
+				$('.result').html(response);
 			},
 			error: function(xhr, status, error) {
 				$('#checkFixCqZonesBtn').prop('disabled', false).text('<?= __("Check") ?>');
@@ -2204,7 +2187,7 @@ function saveOptions() {
 				}
 
 				BootstrapDialog.alert({
-					title: '<?= __("Error") ?>',
+					title: 'Error',
 					message: errorMsg,
 					type: BootstrapDialog.TYPE_DANGER
 				});
@@ -2225,11 +2208,7 @@ function saveOptions() {
 			success: function(response) {
 				$('#checkFixItuZonesBtn').prop("disabled", false).removeClass("running");
 				$('#closeButton').prop("disabled", false);
-				// Create a nice display for the results
-				let resultHtml = '<h5>ITU Zone Check Results</h5>';
-				resultHtml += '<p>QSOs with missing ITU zone information found: ' + (response[0].count) + '</p>';
-
-				$('.result').html(resultHtml);
+				$('.result').html(response);
 			},
 			error: function(xhr, status, error) {
 				$('#checkFixItuZonesBtn').prop('disabled', false).text('<?= __("Check") ?>');
@@ -2241,7 +2220,7 @@ function saveOptions() {
 				}
 
 				BootstrapDialog.alert({
-					title: '<?= __("Error") ?>',
+					title: 'Error',
 					message: errorMsg,
 					type: BootstrapDialog.TYPE_DANGER
 				});
