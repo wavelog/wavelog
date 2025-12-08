@@ -470,6 +470,8 @@
 
 								<div class="dropdown-divider"></div>
 
+								<?php } if ((clubaccess_check(3) || clubaccess_check(3)) && !(clubaccess_check(9))) { ?> <!-- Club Access Check -->
+								<li><a class="dropdown-item" href="<?php echo site_url('stationsetup/list_locations'); ?>" title="Manage station setup"><i class="fas fa-home"></i> <?= __("Station Setup"); ?></a></li>
 								<?php } if (clubaccess_check(6) || clubaccess_check(9)) { ?> <!-- Club Access Check -->
 								<li><a class="dropdown-item" href="<?php echo site_url('adif'); ?>" title="Amateur Data Interchange Format (ADIF) import / export"><i class="fas fa-sync"></i> <?= __("ADIF Import / Export"); ?></a></li>
 								<?php } if (clubaccess_check(9)) { ?> <!-- Club Access Check -->
