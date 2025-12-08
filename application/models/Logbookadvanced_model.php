@@ -1602,6 +1602,8 @@ class Logbookadvanced_model extends CI_Model {
 		ini_set('memory_limit', '-1');	// This consumes a lot of Memory!
 		$this->db->trans_start();	// Transaction has to be started here, because otherwise we're trying to update rows which are locked by the select
 		$this->db->select("COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_TIME_OFF"); // get all records with no COL_DXCC
+		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
+		$this->db->where("station_profile.user_id", $this->session->userdata('user_id'));
 
 		if (!$all) { // check which to update - records with no dxcc or all records
 			$this->db->where("COL_DXCC is NULL");
@@ -1612,7 +1614,7 @@ class Logbookadvanced_model extends CI_Model {
 
 		$count = 0;
 		if ($r->num_rows() > 0) { //query dxcc_prefixes
-			$sql = "update " . $this->config->item('table_name') . " set COL_COUNTRY = ?, COL_DXCC=? where COL_PRIMARY_KEY=?";
+			$sql = "update " . $this->config->item('table_name') . " set COL_COUNTRY = ?, COL_DXCC = ? where COL_PRIMARY_KEY = ?";
 			$q = $this->db->conn_id->prepare($sql);	// PREPARE this statement. For DB this means: No parsing overhead, parse once use many (see execute query below)
 			foreach ($r->result_array() as $row) {
 				$qso_date = $row['COL_TIME_OFF'] == '' ? $row['COL_TIME_ON'] : $row['COL_TIME_OFF'];
