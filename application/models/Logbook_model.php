@@ -2752,6 +2752,106 @@ class Logbook_model extends CI_Model {
 	}
 
 	/**
+	 * Batch version for DX Calendar - Get worked/confirmed statuses for multiple callsigns and DXCCs
+	 *
+	 * Instead of making 4 queries per DXpedition (callsign worked/confirmed, dxcc worked/confirmed),
+	 * this function collects all unique callsigns and DXCCs, then queries them all at once.
+	 *
+	 * @param array $callsigns Array of callsigns to check
+	 * @param array $dxccs Array of DXCC codes to check
+	 * @return array With keys 'callsigns_worked', 'callsigns_confirmed', 'dxccs_worked', 'dxccs_confirmed'
+	 */
+	function get_batch_dxcalendar_statuses($callsigns, $dxccs) {
+		$result = [
+			'callsigns_worked' => [],
+			'callsigns_confirmed' => [],
+			'dxccs_worked' => [],
+			'dxccs_confirmed' => []
+		];
+
+		// Get station locations
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+		if (empty($logbooks_locations_array)) {
+			return $result;
+		}
+
+		$table_name = $this->config->item('table_name');
+		$station_ids = implode(',', array_map('intval', $logbooks_locations_array));
+
+		// Filter out empty values
+		$callsigns = array_filter(array_unique($callsigns), function($c) { return !empty($c); });
+		$dxccs = array_filter(array_unique($dxccs), function($d) { return $d > 0; });
+
+		// Build QSL confirmation WHERE clause
+		$user_default_confirmation = $this->session->userdata('user_default_confirmation');
+		$qsl_conditions = [];
+		if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'Q') !== false) {
+			$qsl_conditions[] = "COL_QSL_RCVD='Y'";
+		}
+		if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'L') !== false) {
+			$qsl_conditions[] = "COL_LOTW_QSL_RCVD='Y'";
+		}
+		if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'E') !== false) {
+			$qsl_conditions[] = "COL_EQSL_QSL_RCVD='Y'";
+		}
+		if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'Z') !== false) {
+			$qsl_conditions[] = "COL_QRZCOM_QSO_DOWNLOAD_STATUS='Y'";
+		}
+		$qsl_where = !empty($qsl_conditions) ? '(' . implode(' OR ', $qsl_conditions) . ')' : '1=0';
+
+		// Query 1: Get all worked callsigns in one query
+		if (!empty($callsigns)) {
+			$escaped_callsigns = array_map(function($c) { return $this->db->escape($c); }, $callsigns);
+			$callsigns_in = implode(',', $escaped_callsigns);
+
+			$sql = "SELECT DISTINCT COL_CALL FROM {$table_name}
+					WHERE station_id IN ({$station_ids})
+					AND COL_CALL IN ({$callsigns_in})";
+			$query = $this->db->query($sql);
+			foreach ($query->result() as $row) {
+				$result['callsigns_worked'][$row->COL_CALL] = true;
+			}
+
+			// Query 2: Get all confirmed callsigns in one query
+			$sql = "SELECT DISTINCT COL_CALL FROM {$table_name}
+					WHERE station_id IN ({$station_ids})
+					AND COL_CALL IN ({$callsigns_in})
+					AND {$qsl_where}";
+			$query = $this->db->query($sql);
+			foreach ($query->result() as $row) {
+				$result['callsigns_confirmed'][$row->COL_CALL] = true;
+			}
+		}
+
+		// Query 3: Get all worked DXCCs in one query
+		if (!empty($dxccs)) {
+			$dxccs_in = implode(',', array_map('intval', $dxccs));
+
+			$sql = "SELECT DISTINCT COL_DXCC FROM {$table_name}
+					WHERE station_id IN ({$station_ids})
+					AND COL_DXCC IN ({$dxccs_in})";
+			$query = $this->db->query($sql);
+			foreach ($query->result() as $row) {
+				$result['dxccs_worked'][$row->COL_DXCC] = true;
+			}
+
+			// Query 4: Get all confirmed DXCCs in one query
+			$sql = "SELECT DISTINCT COL_DXCC FROM {$table_name}
+					WHERE station_id IN ({$station_ids})
+					AND COL_DXCC IN ({$dxccs_in})
+					AND {$qsl_where}";
+			$query = $this->db->query($sql);
+			foreach ($query->result() as $row) {
+				$result['dxccs_confirmed'][$row->COL_DXCC] = true;
+			}
+		}
+
+		return $result;
+	}
+
+	/**
 	 * Batch version - Get statuses for multiple spots in a single query
 	 *
 	 * @param array $spots Array of spots with callsign, dxcc_id, continent

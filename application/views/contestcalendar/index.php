@@ -1,11 +1,6 @@
 <div class="container">
 	<br>
-	<?php if ($this->session->flashdata('error')) { ?>
-		<!-- Display Message -->
-		<div class="alert alert-danger">
-			<p><?php echo $this->session->flashdata('error'); ?></p>
-		</div>
-	<?php } ?>
+	<?php $this->load->view('layout/messages'); ?>
 
 	<h2><?= $page_title; ?></h2>
 	<p><?= __("This data comes from"); ?> <a target="_blank" href="https://www.contestcalendar.com/">https://www.contestcalendar.com/</a></p>

@@ -44,7 +44,14 @@ class Contestcalendar extends CI_Controller {
 			$data['contestsNextWeek']='';
 			$data['custom_date_format'] = '';
 			$footerData['scripts']=[];
-			$this->session->set_flashdata('error', __("Contestcalendar not reachable. Try again later"));
+			$msg_data_unavailable = __("Contest Calendar data not available.");
+			$msg_admin_action = __("Trigger the RSS Feeds update from the Debug page and ensure the master cron is properly configured and running.");
+			$msg_user_action = __("Contact your Wavelog administrator.");
+			if ($this->session->userdata('user_type') == '99') {
+				$this->session->set_flashdata('warning', $msg_data_unavailable . ' ' . $msg_admin_action);
+			} else {
+				$this->session->set_flashdata('warning', $msg_data_unavailable . ' ' . $msg_user_action);
+			}
 		}
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('contestcalendar/index');
@@ -54,6 +61,7 @@ class Contestcalendar extends CI_Controller {
 	private function parseRSS($rssRawData) {
 		$rssData = array();
 
+		// Parse with SimpleXML (cache only contains validated XML)
 		$raw = simplexml_load_string($rssRawData, null, LIBXML_NOCDATA);
 
 		foreach ($raw->channel->item as $item) {
@@ -126,30 +134,14 @@ class Contestcalendar extends CI_Controller {
 
 	private function getRssData() {
 
-		$this->load->driver('cache', array('adapter' => 'file', 'backup' => 'file'));
+		$this->load->driver('cache', array('adapter' => 'file'));
 
-		if (!$rssRawData = $this->cache->get('RssRawContestCal')) {
+		$rssRawData = $this->cache->get('RssRawContestCal');
 
-			$rssUrl = 'https://www.contestcalendar.com/calendar.rss';
-
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, $rssUrl);
-			curl_setopt($ch, CURLOPT_HEADER, false);
-			curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-			$rssRawData = curl_exec($ch);
-			curl_close($ch);
-
-			if ($rssRawData === FALSE) {
-				$msg = "Something went wrong with fetching the Contest Data";
-				log_message('error', $msg);
-				return false;
-			}
-
-			$this->cache->save('RssRawContestCal', $rssRawData, (60 * 60 * 12)); // 12 hours cache time
-
-			curl_close($ch);
+		if ($rssRawData === false) {
+			$msg = "Contest Calendar data not available in cache";
+			log_message('debug', $msg);
+			return false;
 		}
 
 		return $rssRawData;
