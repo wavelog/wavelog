@@ -349,7 +349,9 @@ class Clublog_model extends CI_Model
 	function all_enabled($userid) {
 		$sql = "select sp.station_callsign, group_concat(sp.station_id) as station_ids from station_profile sp
 			inner join users u on (u.user_id=sp.user_id)
-			where u.user_clublog_name is not null and u.user_clublog_password is not null and sp.clublogignore=0 and u.user_id=?
+			where u.user_clublog_name is not null and u.user_clublog_password is not null
+			and trim(u.user_clublog_name) != '' and trim(u.user_clublog_password) != ''
+			and sp.clublogignore=0 and u.user_id=?
 			group by sp.station_callsign";
 		$query = $this->db->query($sql, $userid);
 		return $query;
