@@ -472,7 +472,7 @@
                                     <td><?= __("Tag"); ?></td>
                                     <td>
                                         <?php if ($commitHash != "") { ?>
-                                            <a target="_blank" href="https://github.com/wavelog/wavelog/releases/tag/<?php echo substr($tag, 0, strpos($tag, '-')); ?>"><span class="badge text-bg-success"><?php echo $tag; ?></span></a>
+                                            <a target="_blank" href="https://github.com/wavelog/wavelog/releases/tag/<?php echo strpos($tag, '-') ? substr($tag, 0, strpos($tag, '-')) : $tag; ?>"><span class="badge text-bg-success"><?php echo $tag; ?></span></a>
                                         <?php } else { ?>
                                             <span class="badge text-bg-danger"><?= __("n/a"); ?></span>
                                         <?php } ?>
