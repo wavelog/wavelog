@@ -13,10 +13,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-12-08 10:52+0000\n"
-"PO-Revision-Date: 2025-11-28 13:13+0000\n"
-"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
-"Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/tr/>\n"
+"PO-Revision-Date: 2025-12-08 16:35+0000\n"
+"Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
+"Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/tr/>\n"
 "Language: tr_TR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -205,7 +205,7 @@ msgstr "Aktivatörler Haritası"
 
 #: application/controllers/Adif.php:61 application/controllers/Adif.php:73
 msgid "You're not allowed to access this functionality!"
-msgstr ""
+msgstr "Bu fonksiyona erişim yetkin yok!"
 
 #: application/controllers/Adif.php:80
 msgid "valid date"
@@ -561,7 +561,7 @@ msgstr "Çalışılan Grid Karesi kart QSL ile doğrulandı"
 #: application/controllers/Awards.php:1049
 #: application/controllers/Awards.php:1085
 msgid "Total Gridsquares worked"
-msgstr ""
+msgstr "Toplam çalışılan grid kareleri"
 
 #: application/controllers/Awards.php:1066
 msgid "Fred Fish Memorial Award (FFMA)"
@@ -614,7 +614,7 @@ msgstr "WPX"
 #: application/views/awards/pl_polska/index.php:37
 #: application/views/interface_assets/header.php:270
 msgid "\"Polska\" Award"
-msgstr ""
+msgstr "\"Polska\" Ödülü"
 
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:336
@@ -685,7 +685,7 @@ msgstr "Kulüp Görevlisi"
 
 #: application/controllers/Club.php:24
 msgid "Club Member ADIF"
-msgstr ""
+msgstr "Kulüp Üyesi ADIF"
 
 #: application/controllers/Club.php:25
 msgid "Club Member"
@@ -1078,7 +1078,7 @@ msgstr "eQSL Kart Görüntüsü İndirme"
 
 #: application/controllers/Eqsl.php:518
 msgid "All eQSLs marked as uploaded"
-msgstr ""
+msgstr "Tüm eQSL’ler yüklendi olarak işaretlendi"
 
 #: application/controllers/Generic_qsl.php:18
 msgid "Confirmations"
@@ -3269,14 +3269,15 @@ msgstr "QRZCQ Hatası"
 #: application/libraries/Cbr_parser.php:160
 msgid "Broken CBR file - no valid exchange or callsigns found"
 msgstr ""
+"Bozuk CBR dosyası – geçerli değişim bilgisi veya çağrı işareti bulunamadı"
 
 #: application/libraries/Cbr_parser.php:137
 msgid "Broken CBR file - no QSO data found."
-msgstr ""
+msgstr "Bozuk CBR dosyası – QSO verisi bulunamadı."
 
 #: application/libraries/Cbr_parser.php:147
 msgid "Broken CBR file - incomplete header found."
-msgstr ""
+msgstr "Bozuk CBR dosyası – eksik başlık bulundu."
 
 #: application/libraries/Subdivisions.php:31
 msgctxt "Division Name (States in various countries)."
@@ -4863,6 +4864,8 @@ msgid ""
 "The CBR file contains a TRX number at the end of each QSO line (for multi-op "
 "stations)"
 msgstr ""
+"CBR dosyası, her QSO satırının sonunda bir TRX numarası içerir "
+"(çok operatörlü istasyonlar için)"
 
 #: application/views/adif/import.php:460
 msgid ""
@@ -4957,7 +4960,7 @@ msgstr "ADIF dosyalarındaki hatalarla ilgili %s sayfasını kontrol edin."
 
 #: application/views/adif/import_success.php:59
 msgid "You might have ADIF errors. Please check the following information:"
-msgstr ""
+msgstr "ADIF hatalarınız olabilir. Lütfen aşağıdaki bilgileri kontrol edin:"
 
 #: application/views/adif/mark_lotw.php:12
 #: application/views/hrdlog/mark_hrdlog.php:12
@@ -5461,7 +5464,7 @@ msgstr "CQ Bölge Haritasını Göster"
 #: application/views/gridmap/index.php:28
 #: application/views/logbookadvanced/index.php:276
 msgid "Date Presets"
-msgstr ""
+msgstr "Tarih Ön Ayarları"
 
 #: application/views/awards/cq/index.php:57
 #: application/views/awards/dxcc/index.php:53
@@ -5480,48 +5483,48 @@ msgstr "Bugün"
 #: application/views/gridmap/index.php:32
 #: application/views/logbookadvanced/index.php:279
 msgid "Yesterday"
-msgstr ""
+msgstr "Dün"
 
 #: application/views/awards/cq/index.php:59
 #: application/views/awards/dxcc/index.php:55
 #: application/views/gridmap/index.php:33
 #: application/views/logbookadvanced/index.php:280
 msgid "Last 7 Days"
-msgstr ""
+msgstr "Son 7 Gün"
 
 #: application/views/awards/cq/index.php:60
 #: application/views/awards/dxcc/index.php:56
 #: application/views/gridmap/index.php:34
 #: application/views/logbookadvanced/index.php:281
 msgid "Last 30 Days"
-msgstr ""
+msgstr "Son 30 Gün"
 
 #: application/views/awards/cq/index.php:61
 #: application/views/awards/dxcc/index.php:57
 #: application/views/gridmap/index.php:35
 #: application/views/logbookadvanced/index.php:282
 msgid "This Month"
-msgstr ""
+msgstr "Bu Ay"
 
 #: application/views/awards/cq/index.php:62
 #: application/views/awards/dxcc/index.php:58
 #: application/views/gridmap/index.php:36
 #: application/views/logbookadvanced/index.php:283
 msgid "Last Month"
-msgstr ""
+msgstr "Geçen Ay"
 
 #: application/views/awards/cq/index.php:63
 #: application/views/awards/dxcc/index.php:59
 #: application/views/gridmap/index.php:37
 #: application/views/logbookadvanced/index.php:284
 msgid "This Year"
-msgstr ""
+msgstr "Bu Yıl"
 
 #: application/views/awards/cq/index.php:64
 #: application/views/awards/dxcc/index.php:60
 #: application/views/logbookadvanced/index.php:285
 msgid "Last Year"
-msgstr ""
+msgstr "Geçen Yıl"
 
 #: application/views/awards/cq/index.php:65
 #: application/views/awards/dxcc/index.php:61
@@ -6048,7 +6051,7 @@ msgstr "Prefix"
 
 #: application/views/awards/dxcc/index.php:378
 msgid "No results found for your search criteria. Please try again."
-msgstr ""
+msgstr "Arama kriterleriniz için sonuç bulunamadı. Lütfen tekrar deneyin."
 
 #: application/views/awards/ffma/index.php:11
 #: application/views/interface_assets/header.php:294
@@ -6452,11 +6455,11 @@ msgstr "Uydu"
 
 #: application/views/awards/pl_polska/index.php:3
 msgid "Polish Voivodeships"
-msgstr ""
+msgstr "Polonya Voyvodalıkları"
 
 #: application/views/awards/pl_polska/index.php:4
 msgid "Hover over a voivodeship"
-msgstr ""
+msgstr "Bir voyvodalığın üzerine gelin"
 
 #: application/views/awards/pl_polska/index.php:38
 msgid ""
@@ -6464,6 +6467,9 @@ msgid ""
 "contacts with stations operating from all 16 Polish voivodeships "
 "(provinces). Valid from January 1, 1999."
 msgstr ""
+"Polska Ödülü, Polonya Amatör Radyo Birliği (PZK) tarafından, Polonya'nın tüm "
+"16 vilayetinden (eyaletinden) yayın yapan istasyonlarla yapılan bağlantılar "
+"için verilir. 1 Ocak 1999 tarihinden itibaren geçerlidir."
 
 #: application/views/awards/pl_polska/index.php:39
 msgid ""
@@ -6471,29 +6477,36 @@ msgid ""
 "(RTTY/PSK/FSK), and individual bands (160M-2M). Classes: Basic (1 QSO/voiv), "
 "Bronze (3), Silver (7), Gold (12). All 16 voivodeships required."
 msgstr ""
+"Ödül kategorileri: MIXED (tüm modlar/bantlar), PHONE (SSB/AM/FM/SSTV), CW, "
+"DIGI (RTTY/PSK/FSK) ve tekil bantlar (160M–2M). Sınıflar: Basic "
+"(her vilayetten 1 QSO), Bronze (3), Silver (7), Gold (12). Tüm 16 vilayetin "
+"tamamlanması gereklidir."
 
 #: application/views/awards/pl_polska/index.php:40
 #, php-format
 msgid "Official rules and information: %s"
-msgstr ""
+msgstr "Resmî kurallar ve bilgiler: %s"
 
 #: application/views/awards/pl_polska/index.php:40
 msgid "PZK Polska Award Rules"
-msgstr ""
+msgstr "PZK Polska Ödülü Kuralları"
 
 #: application/views/awards/pl_polska/index.php:41
 msgid ""
 "Requirements: COL_STATE (voivodeship code), COL_DXCC=269 (Poland), QSO date "
 ">= 1999-01-01. No cross-band/cross-mode/repeater contacts."
 msgstr ""
+"Gereksinimler: COL_STATE (voyvodalık kodu), COL_DXCC=269 (Polonya), QSO "
+"tarihi ≥ 1999-01-01. Bantlar arası/modlar arası/tekrarlayıcı bağlantılara "
+"izin yok."
 
 #: application/views/awards/pl_polska/index.php:54
 msgid "Station Logbook"
-msgstr ""
+msgstr "İstasyon Logbook'u"
 
 #: application/views/awards/pl_polska/index.php:62
 msgid "Confirmation methods"
-msgstr ""
+msgstr "QSL metodları"
 
 #: application/views/awards/pl_polska/index.php:63
 msgid ""
@@ -6501,69 +6514,74 @@ msgid ""
 "accepted for award applications. Other digital confirmations are shown here "
 "for tracking purposes only."
 msgstr ""
+"Resmî ödül kurallarına göre, ödül başvuruları için kağıt QSL kartları veya "
+"LoTW onayları kabul edilir. Diğer dijital onaylar yalnızca takip amacıyla "
+"burada gösterilmektedir."
 
 #: application/views/awards/pl_polska/index.php:106
 msgid "Award Categories"
-msgstr ""
+msgstr "Ödül Kategorileri"
 
 #: application/views/awards/pl_polska/index.php:108
 msgid ""
 "Polska Award categories are based on the minimum number of confirmed QSOs "
 "with each of all 16 voivodeships:"
 msgstr ""
+"Polska Ödülü kategorileri, tüm 16 vilayetle yapılan doğrulanmış QSO "
+"sayısının minimumuna göre belirlenir:"
 
 #: application/views/awards/pl_polska/index.php:112
 msgid "1 QSO per voivodeship"
-msgstr ""
+msgstr "Her voyvodalık için 1 QSO"
 
 #: application/views/awards/pl_polska/index.php:112
 msgid "Basic Class"
-msgstr ""
+msgstr "Temel Sınıf"
 
 #: application/views/awards/pl_polska/index.php:113
 msgid "3 QSOs per voivodeship"
-msgstr ""
+msgstr "Her voyvodalık için 3 QSO"
 
 #: application/views/awards/pl_polska/index.php:113
 msgid "Bronze Class (3rd)"
-msgstr ""
+msgstr "Bronz Sınıf (3.)"
 
 #: application/views/awards/pl_polska/index.php:118
 msgid "7 QSOs per voivodeship"
-msgstr ""
+msgstr "Her voyvodalık için 7 QSO"
 
 #: application/views/awards/pl_polska/index.php:118
 msgid "Silver Class (2nd)"
-msgstr ""
+msgstr "Gümüş Sınıf (2.)"
 
 #: application/views/awards/pl_polska/index.php:119
 msgid "12 QSOs per voivodeship"
-msgstr ""
+msgstr "Her voyvodalık için 12 QSO"
 
 #: application/views/awards/pl_polska/index.php:119
 msgid "Gold Class (1st)"
-msgstr ""
+msgstr "Altın Sınıf (1.)"
 
 #: application/views/awards/pl_polska/index.php:144
 msgid "Congratulations!"
-msgstr ""
+msgstr "Tebrikler!"
 
 #: application/views/awards/pl_polska/index.php:145
 msgid "You are entitled to the following award categories"
-msgstr ""
+msgstr "Aşağıdaki ödül kategorilerine hak kazandınız"
 
 #: application/views/awards/pl_polska/index.php:178
 msgid "QSOs by Mode Category"
-msgstr ""
+msgstr "Mod Kategorisine Göre QSO’lar"
 
 #: application/views/awards/pl_polska/index.php:183
 msgid "QSOs by Band"
-msgstr ""
+msgstr "Banta Göre QSO’lar"
 
 #: application/views/awards/pl_polska/index.php:202
 #: application/views/awards/pl_polska/index.php:273
 msgid "Voivodeship"
-msgstr ""
+msgstr "Voyvodalık"
 
 #: application/views/awards/pl_polska/index.php:203
 #: application/views/awards/pl_polska/index.php:274
@@ -6574,12 +6592,12 @@ msgstr "Kod"
 #: application/views/awards/pl_polska/index.php:204
 #: application/views/awards/pl_polska/index.php:345
 msgid "MIXED"
-msgstr ""
+msgstr "MIXED"
 
 #: application/views/awards/pl_polska/index.php:205
 #: application/views/awards/pl_polska/index.php:346
 msgid "PHONE"
-msgstr ""
+msgstr "PHONE"
 
 #: application/views/awards/pl_polska/index.php:206
 #: application/views/awards/pl_polska/index.php:347
@@ -6591,22 +6609,22 @@ msgstr "CW"
 #: application/views/awards/pl_polska/index.php:207
 #: application/views/awards/pl_polska/index.php:348
 msgid "DIGI"
-msgstr ""
+msgstr "DIGI"
 
 #: application/views/awards/pl_polska/index.php:238
 #: application/views/awards/pl_polska/index.php:310
 msgid "Total voivodeships"
-msgstr ""
+msgstr "Toplam voyvodalıklar"
 
 #: application/views/awards/pl_polska/index.php:252
 #: application/views/awards/pl_polska/index.php:324
 msgid "Bravo! You are entitled to"
-msgstr ""
+msgstr "Tebrikler! Ödül almya hak kazandınız"
 
 #: application/views/awards/pl_polska/index.php:252
 #: application/views/awards/pl_polska/index.php:324
 msgid "category award!"
-msgstr ""
+msgstr "kategori ödülü!"
 
 #: application/views/awards/pl_polska/index.php:342
 msgid "Award Category:"

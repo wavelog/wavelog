@@ -8,10 +8,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-12-08 10:52+0000\n"
-"PO-Revision-Date: 2025-12-03 07:44+0000\n"
+"PO-Revision-Date: 2025-12-08 17:27+0000\n"
 "Last-Translator: Viliam Petrik <tatralom@gmail.com>\n"
-"Language-Team: Slovak <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/sk/>\n"
+"Language-Team: Slovak <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -200,7 +200,7 @@ msgstr "Mapa aktivátorov"
 
 #: application/controllers/Adif.php:61 application/controllers/Adif.php:73
 msgid "You're not allowed to access this functionality!"
-msgstr ""
+msgstr "Táto funkcia nie je dostupná!"
 
 #: application/controllers/Adif.php:80
 msgid "valid date"
@@ -1070,7 +1070,7 @@ msgstr "Stiahnuť obrázok eQSL karty"
 
 #: application/controllers/Eqsl.php:518
 msgid "All eQSLs marked as uploaded"
-msgstr ""
+msgstr "Všetky eQSL označené ako nahrané"
 
 #: application/controllers/Generic_qsl.php:18
 msgid "Confirmations"
@@ -4940,7 +4940,7 @@ msgstr "Skontroluj %s kvôli indíciám o chybách v ADIF súboroch."
 
 #: application/views/adif/import_success.php:59
 msgid "You might have ADIF errors. Please check the following information:"
-msgstr ""
+msgstr "Môžete mať chyby v ADIF. Skontrolujte nasledujúce informácie:"
 
 #: application/views/adif/mark_lotw.php:12
 #: application/views/hrdlog/mark_hrdlog.php:12
@@ -7301,7 +7301,7 @@ msgstr "Vymazať filtre"
 
 #: application/views/bandmap/list.php:19
 msgid "Band filter preserved (band lock is active)"
-msgstr ""
+msgstr "Pásmový filter zachovaný (pásmový zámok je aktívny)"
 
 #: application/views/bandmap/list.php:21
 msgid "Radio set to None - CAT connection disabled"
@@ -7341,27 +7341,27 @@ msgstr "Kliknutím povolíte pripojenie CAT"
 
 #: application/views/bandmap/list.php:31
 msgid "CAT following radio - Click to disable"
-msgstr ""
+msgstr "CAT sleduje rádio - kliknutím vypnete"
 
 #: application/views/bandmap/list.php:32 application/views/bandmap/list.php:231
 msgid "Click to enable band lock (requires CAT connection)"
-msgstr ""
+msgstr "Klikni na povolenie pásmového zámku (vyžaduje pripojenie CAT)"
 
 #: application/views/bandmap/list.php:33
 msgid "Band lock active - Click to disable"
-msgstr ""
+msgstr "Pásmový zámok je aktívny - kliknutím deaktivujete"
 
 #: application/views/bandmap/list.php:34
 msgid "Band Lock"
-msgstr ""
+msgstr "Pásmový zámok"
 
 #: application/views/bandmap/list.php:35
 msgid "Band lock enabled - band filter will track radio band"
-msgstr ""
+msgstr "Pásmový zámok povolený - pásmový filter bude sledovať rádiové pásmo"
 
 #: application/views/bandmap/list.php:36
 msgid "Band filter changed to"
-msgstr ""
+msgstr "Pásmový filter zmenený na"
 
 #: application/views/bandmap/list.php:37
 msgid "by transceiver"
@@ -7399,35 +7399,40 @@ msgstr "Použité tvoje obľúbené pásma a módy"
 #: application/views/bandmap/list.php:47 application/views/bandmap/list.php:314
 #: application/views/bandmap/list.php:479
 msgid "My Submodes"
-msgstr ""
+msgstr "Moje podmódy"
 
 #: application/views/bandmap/list.php:48
 msgid "Submode filter enabled"
-msgstr ""
+msgstr "Podmódový filter povolený"
 
 #: application/views/bandmap/list.php:49
 msgid "Submode filter disabled - showing all"
-msgstr ""
+msgstr "Podmódový filter vypnutý - zobrazenie všetkého"
 
 #: application/views/bandmap/list.php:50
 msgid "Required submodes"
-msgstr ""
+msgstr "Vyžadované podmódy"
 
 #: application/views/bandmap/list.php:51
 msgid "Configure in User Settings - Modes"
-msgstr ""
+msgstr "Nastavte v používateľských nastaveniach - Módy"
 
 #: application/views/bandmap/list.php:52
 msgid "No submodes configured - configure in User Settings - Modes"
 msgstr ""
+"Nie sú nakonfigurované žiadne podmódy - nakonfigurujte v nastaveniach "
+"používateľa - Módy"
 
 #: application/views/bandmap/list.php:53
 msgid "No submodes enabled in settings - showing all spots"
 msgstr ""
+"Žiadne podmódy nie sú v nastaveniach povolené - zobrazujú sa všetky spoty"
 
 #: application/views/bandmap/list.php:54
 msgid "Disabled - no submodes enabled for this mode in User Settings"
 msgstr ""
+"Vypnuté - žiadne podmódy nie sú pre tento mód povolené v nastaveniach "
+"používateľa"
 
 #: application/views/bandmap/list.php:55 application/views/bandmap/list.php:468
 #: application/views/components/dxwaterfall.php:32
@@ -7446,41 +7451,43 @@ msgstr "Prepnúť filter fónických módov"
 
 #: application/views/bandmap/list.php:60 application/views/bandmap/list.php:421
 msgid "Favorites"
-msgstr ""
+msgstr "Obľúbené"
 
 #: application/views/bandmap/list.php:61 application/views/bandmap/list.php:424
 msgid "Save Current Filters..."
-msgstr ""
+msgstr "Uložiť aktuálne filtre..."
 
 #: application/views/bandmap/list.php:62
 msgid "Enter a name for this filter preset:"
-msgstr ""
+msgstr "Zadajte názov pre tento filter:"
 
 #: application/views/bandmap/list.php:63
 msgid "Filter preset saved"
-msgstr ""
+msgstr "Prednastavenie filtra uložené"
 
 #: application/views/bandmap/list.php:64
 msgid "Filter preset loaded"
-msgstr ""
+msgstr "Prednastavenie filtra bolo načítané"
 
 #: application/views/bandmap/list.php:65
 msgid "Filter preset deleted"
-msgstr ""
+msgstr "Prednastavenie filtra odstránené"
 
 #: application/views/bandmap/list.php:66
 msgid "Are you sure to delete this filter preset?"
-msgstr ""
+msgstr "Naozaj chceš odstrániť toto prednastavenie filtra?"
 
 #: application/views/bandmap/list.php:67
 msgid "No saved filter presets"
-msgstr ""
+msgstr "Žiadne uložené prednastavenia filtrov"
 
 #: application/views/bandmap/list.php:68
 msgid ""
 "Maximum of 20 filter presets reached. Please delete some before adding new "
 "ones."
 msgstr ""
+"Dosiahli ste maximálny počet 20 filtrových prednastavení. Pred pridaním "
+"nových odstráňte niektoré."
 
 #: application/views/bandmap/list.php:71
 msgid "Loading data from DX Cluster"
@@ -7800,7 +7807,7 @@ msgstr "Pomoc pre DX cluster"
 
 #: application/views/bandmap/list.php:210
 msgid "Compact Mode - Hide/Show Menu"
-msgstr ""
+msgstr "Kompaktný režim - Skryť/Zobraziť menu"
 
 #: application/views/bandmap/list.php:237
 msgid "TRX:"
@@ -7927,7 +7934,7 @@ msgstr "Použiť filtre"
 
 #: application/views/bandmap/list.php:420
 msgid "Filter Favorites"
-msgstr ""
+msgstr "Obľúbené filtre"
 
 #: application/views/bandmap/list.php:430
 msgid "Clear all filters except De Continent"
@@ -7975,7 +7982,7 @@ msgstr "Prepnúť filter pásma 10m"
 
 #: application/views/bandmap/list.php:452
 msgid "Toggle 6m band filter"
-msgstr ""
+msgstr "Prepnúť filter pásma 6m"
 
 #: application/views/bandmap/list.php:456
 msgid "Toggle VHF bands filter"
@@ -7991,7 +7998,7 @@ msgstr "Prepnúť filter pásiem SHF"
 
 #: application/views/bandmap/list.php:478
 msgid "Loading submodes..."
-msgstr ""
+msgstr "Načítavam podmódy..."
 
 #: application/views/bandmap/list.php:483
 msgid "Toggle LoTW User filter"
@@ -8780,7 +8787,7 @@ msgstr "Export spojení do formátu ADIF"
 
 #: application/views/club/permissions.php:128
 msgid "Export own QSO per ADIF"
-msgstr ""
+msgstr "Export vlastného QSO ako ADIF"
 
 #: application/views/club/permissions.php:137
 msgid "User Management"
@@ -18225,7 +18232,7 @@ msgstr "eQSL obrázok"
 
 #: application/views/view_log/qso.php:916
 msgid "QSO not found"
-msgstr ""
+msgstr "QSO nebolo nájdené"
 
 #: application/views/visitor/layout/footer.php:239
 msgid "Filter Results"

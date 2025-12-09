@@ -102,7 +102,7 @@
         "showMessage": "Montrer tout"
     },
     "buttons": {
-        "collection": "Collection",
+        "collection": "Collection<span class=\"ui-button-icon-primary ui-icon ui-icon-triangle-1-s\"></span>",
         "colvis": "Visibilité colonnes",
         "colvisRestore": "Rétablir visibilité",
         "copy": "Copier",
@@ -120,7 +120,7 @@
         },
         "pdf": "PDF",
         "print": "Imprimer",
-        "copyKeys": "Appuyez sur ctrl ou u2318 + C pour copier les données du tableau dans votre presse-papier.",
+        "copyKeys": "Appuyez sur Ctrl ou u2318 + C pour copier les données du tableau dans le presse-papiers de votre système.<br /><br />Pour annuler, cliquez sur ce message ou appuyez sur Échap.",
         "createState": "Créer un état",
         "removeAllStates": "Supprimer tous les états",
         "removeState": "Supprimer",
@@ -190,10 +190,10 @@
             "title": "Valeurs multiples",
             "info": "Les éléments sélectionnés contiennent différentes valeurs pour cette entrée. Pour modifier et définir tous les éléments de cette entrée à la même valeur, cliquez ou tapez ici, sinon ils conserveront leurs valeurs individuelles.",
             "restore": "Annuler les modifications",
-            "noMulti": "Ce champ peut être modifié individuellement, mais ne fait pas partie d'un groupe. "
+            "noMulti": "Ce champ peut être modifié individuellement, mais ne fait pas partie d'un groupe."
         },
         "error": {
-            "system": "Une erreur système s'est produite (<a target=\"\\\" rel=\"nofollow\" href=\"\\\">Plus d'information</a>)."
+            "system": "Une erreur système s'est produite (<a target=\"\\\" rel=\"\\ nofollow\" href=\"\\\">Plus d'informations&lt;\\/a&gt;).</a>"
         }
     },
     "stateRestore": {
@@ -237,8 +237,8 @@
     },
     "zeroRecords": "Aucune entrée correspondante trouvée",
     "aria": {
-        "sortAscending": " : activer pour trier la colonne par ordre croissant",
-        "sortDescending": " : activer pour trier la colonne par ordre décroissant"
+        "sortAscending": ": activer pour trier la colonne par ordre croissant",
+        "sortDescending": ": activer pour trier la colonne par ordre décroissant"
     },
     "infoThousands": " ",
     "search": "Rechercher :",
