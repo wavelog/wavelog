@@ -19,7 +19,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-12-08 10:52+0000\n"
 "PO-Revision-Date: 2025-12-09 15:07+0000\n"
-"Last-Translator: F4JSU <f4jsu.radio@gmail.com>\n"
+"Last-Translator: JONCOUX Philippe <joncoux@free.fr>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/fr/>\n"
 "Language: fr_FR\n"
@@ -4896,8 +4896,8 @@ msgid ""
 "The CBR file contains a TRX number at the end of each QSO line (for multi-op "
 "stations)"
 msgstr ""
-"Le fichier CBR contient un numéro TRX à la fin de chaque ligne QSO (pour les "
-"stations multi opérateurs)."
+"Le fichier CBR contient un numéro TRX à la fin de chaque ligne QSO "
+"(pour les stations multi opérateurs)"
 
 #: application/views/adif/import.php:460
 msgid ""
@@ -5304,7 +5304,7 @@ msgid ""
 "Fields taken for this Award: Propagation-Mode and SAT-Name (ADIF: "
 "PROP_MODE=SAT, SAT_NAME='AO-73')"
 msgstr ""
-"Champs requis pour ce trophée : Mode de propagation et nom du satellite "
+"Champs requis pour ce trophée: Mode de propagation et nom du satellite "
 "(ADIF: PROP_MODE=SAT, SAT_NAME='AO-73')"
 
 #: application/views/awards/73on73/index.php:32
@@ -5369,8 +5369,8 @@ msgid ""
 "Fields taken for this Award: State (ADIF: STATE), Stations County (ADIF: "
 "CNTY), DXCC (Must be one of 291 (U.S.A.) ,6 (ALASKA) or 110 (HAWAII))"
 msgstr ""
-"Champs requis pour ce trophée : Etat (ADIF: STATE), Comté (ADIF : CNTY), "
-"DXCC (Doit être un des 291 (U.S.A.) ,6 (ALASKA) ou 110 (HAWAII))"
+"Champs requis pour ce trophée: Etat (ADIF: STATE), Comté (ADIF : CNTY), DXCC "
+"(Doit être un des 291 (U.S.A.) ,6 (ALASKA) ou 110 (HAWAII))"
 
 #: application/views/awards/counties/index.php:22
 msgid "Counties Worked"
@@ -6612,7 +6612,7 @@ msgstr "Classe Or (1er)"
 
 #: application/views/awards/pl_polska/index.php:144
 msgid "Congratulations!"
-msgstr "Félicitations !"
+msgstr "Félicitations!"
 
 #: application/views/awards/pl_polska/index.php:145
 msgid "You are entitled to the following award categories"
@@ -6662,56 +6662,60 @@ msgstr "NUMÉRIQUE"
 #: application/views/awards/pl_polska/index.php:238
 #: application/views/awards/pl_polska/index.php:310
 msgid "Total voivodeships"
-msgstr ""
+msgstr "Total des voïvodies"
 
 #: application/views/awards/pl_polska/index.php:252
 #: application/views/awards/pl_polska/index.php:324
 msgid "Bravo! You are entitled to"
-msgstr ""
+msgstr "Bravo! Vous avez droit à"
 
 #: application/views/awards/pl_polska/index.php:252
 #: application/views/awards/pl_polska/index.php:324
 msgid "category award!"
-msgstr ""
+msgstr "Prix de catégorie!"
 
 #: application/views/awards/pl_polska/index.php:342
 msgid "Award Category:"
-msgstr ""
+msgstr "Catégorie de prix :"
 
 #: application/views/awards/pl_polska/index.php:344
 msgid "Mode Categories"
-msgstr ""
+msgstr "Catégories de mode"
 
 #: application/views/awards/pl_polska/index.php:350
 msgid "Band Categories"
-msgstr ""
+msgstr "Catégories de groupes"
 
 #: application/views/awards/pl_polska/index.php:372
 #: application/views/logbookadvanced/index.php:772
 msgid "Fix State"
-msgstr ""
+msgstr "État fixe"
 
 #: application/views/awards/pl_polska/index.php:372
 msgid "Logbook Advanced"
-msgstr ""
+msgstr "Journal de bord avancé"
 
 #: application/views/awards/pl_polska/index.php:372
 msgid ""
 "This award uses the State field from your logbook. Ensure this field is "
 "populated for all SP (Poland) contacts."
 msgstr ""
+"Cette récompense utilise le champ «État» de votre carnet de bord. Assurez-"
+"vous que ce champ est renseigné pour tous les contacts en Pologne (SP)."
 
 #: application/views/awards/pl_polska/index.php:372
 msgid "Tip:"
-msgstr ""
+msgstr "Conseil :"
 
 #: application/views/awards/pl_polska/index.php:372
 msgid "Use"
-msgstr ""
+msgstr "Utiliser"
 
 #: application/views/awards/pl_polska/index.php:372
 msgid "to auto-populate states from Maidenhead locators."
 msgstr ""
+"pour remplir automatiquement les états à partir des localisateurs de "
+"Maidenhead."
 
 #: application/views/awards/pota/index.php:7
 msgid "POTA Awards"
@@ -6919,8 +6923,8 @@ msgid ""
 "Fields taken for this Award: Gridsquare and vucc_grids (ADIF: GRIDSQUARE, "
 "VUCC_GRIDS)"
 msgstr ""
-"Champs requis pour ce trophée : Locator et vucc_grids (ADIF: GRIDSQUARE, "
-"VUCC_GRIDS)"
+"Champs requis pour ce trophée: Locator et vucc_grids "
+"(ADIF: GRIDSQUARE, VUCC_GRIDS)"
 
 #: application/views/awards/vucc/index.php:23
 msgid "Grids Worked"
@@ -7202,7 +7206,7 @@ msgstr "Survoler un état"
 #: application/views/awards/was/index.php:5
 #: application/views/awards/was/index.php:166
 msgid "inc."
-msgstr ""
+msgstr "inc."
 
 #: application/views/awards/was/index.php:25
 msgid "WAS Award"
@@ -7380,7 +7384,7 @@ msgstr "Connexion CAT requise"
 
 #: application/views/bandmap/list.php:17
 msgid "Enable CAT connection to tune the radio"
-msgstr "Activez la connexion CAT pour régler la radio."
+msgstr "Activez la connexion CAT pour régler la radio"
 
 #: application/views/bandmap/list.php:18 application/views/bandmap/list.php:411
 msgid "Clear Filters"
@@ -7388,7 +7392,7 @@ msgstr "Filtres transparents"
 
 #: application/views/bandmap/list.php:19
 msgid "Band filter preserved (band lock is active)"
-msgstr ""
+msgstr "Filtre de bande préservé (verrouillage de bande actif)"
 
 #: application/views/bandmap/list.php:21
 msgid "Radio set to None - CAT connection disabled"
@@ -7892,7 +7896,7 @@ msgstr ""
 
 #: application/views/bandmap/list.php:237
 msgid "TRX:"
-msgstr "Trx :"
+msgstr "TRX:"
 
 #: application/views/bandmap/list.php:239
 #: application/views/bandmap/list.php:313
@@ -8158,7 +8162,9 @@ msgstr "Recherchez des endroits..."
 
 #: application/views/bandmap/list.php:557
 msgid "Note: Map shows DXCC entity locations, not actual spot locations"
-msgstr "Note: Map shows DXCC entity locations, not actual spot locations"
+msgstr ""
+"Remarque: La carte indique l'emplacement des entités DXCC, et non "
+"l'emplacement précis des points d'intérêt"
 
 #: application/views/bandmap/list.php:565
 msgid "Age in minutes"
@@ -8308,7 +8314,7 @@ msgid ""
 "this, because you're an instance-admin"
 msgstr ""
 "Les modifications apportées ici s'appliquent au cas entier et affecteront "
-"TOUS les utilisateurs. Vous voyez ceci, car vous êtes administrateur."
+"TOUS les utilisateurs. Vous voyez ceci, car vous êtes administrateur"
 
 #: application/views/bands/edit.php:2
 #: application/views/logbookadvanced/index.php:53
@@ -10372,7 +10378,7 @@ msgstr ""
 #: application/views/debug/index.php:57
 #, php-format
 msgid "Check this wiki article %shere%s for more information."
-msgstr "Consultez cet article wiki %ici%s pour plus d'informations."
+msgstr "Consultez cet article wiki %shere%s pour plus d'informations."
 
 #: application/views/debug/index.php:58
 #, php-format
@@ -12783,7 +12789,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/help.php:5
 msgid "!empty - means to search where column is not empty."
-msgstr "! vide - signifie rechercher là où la colonne n'est pas vide."
+msgstr "!vide - signifie rechercher là où la colonne n'est pas vide."
 
 #: application/views/logbookadvanced/help.php:7
 msgid ""
@@ -17118,8 +17124,8 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
-"Cliquez ici sur « Ajouter un thème » et saisissez les données nécessaires. "
-"Saisissez les noms de fichiers des logos %ssans%s  l'extension « .png »"
+"Cliquez ici sur «Ajouter un thème» et saisissez les données nécessaires. "
+"Saisissez les noms de fichiers des logos %ssans%s l'extension «.png»"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
