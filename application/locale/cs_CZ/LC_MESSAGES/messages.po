@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-10 06:04+0000\n"
+"POT-Creation-Date: 2025-12-10 21:05+0000\n"
 "PO-Revision-Date: 2024-09-23 14:46+0000\n"
 "Last-Translator: Filip Melik <filip@melik.cz>\n"
 "Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/main-"
@@ -105,7 +105,7 @@ msgstr ""
 #: application/controllers/Satellite.php:669
 #: application/controllers/Satellite.php:678
 #: application/controllers/Sattimers.php:9
-#: application/controllers/Search.php:12
+#: application/controllers/Search.php:11
 #: application/controllers/Simplefle.php:7
 #: application/controllers/Station.php:17
 #: application/controllers/Stationsetup.php:16
@@ -640,8 +640,8 @@ msgstr "Upravit pásmo"
 
 #: application/controllers/Bandmap.php:28
 #: application/controllers/Bandmap.php:75
-#: application/controllers/Options.php:152
-#: application/controllers/Options.php:163
+#: application/controllers/Options.php:144
+#: application/controllers/Options.php:155
 #: application/views/options/sidebar.php:7
 msgid "DXCluster"
 msgstr "DXCluster"
@@ -2038,18 +2038,18 @@ msgstr ""
 #: application/controllers/Options.php:23
 #: application/controllers/Options.php:33
 #: application/controllers/Options.php:48
-#: application/controllers/Options.php:117
-#: application/controllers/Options.php:128
-#: application/controllers/Options.php:151
-#: application/controllers/Options.php:162
-#: application/controllers/Options.php:199
-#: application/controllers/Options.php:210
-#: application/controllers/Options.php:243
-#: application/controllers/Options.php:254
-#: application/controllers/Options.php:369
-#: application/controllers/Options.php:388
-#: application/controllers/Options.php:464
-#: application/controllers/Options.php:474
+#: application/controllers/Options.php:109
+#: application/controllers/Options.php:120
+#: application/controllers/Options.php:143
+#: application/controllers/Options.php:154
+#: application/controllers/Options.php:191
+#: application/controllers/Options.php:202
+#: application/controllers/Options.php:235
+#: application/controllers/Options.php:246
+#: application/controllers/Options.php:361
+#: application/controllers/Options.php:380
+#: application/controllers/Options.php:456
+#: application/controllers/Options.php:466
 msgid "Wavelog Options"
 msgstr "Možnosti Wavelogu"
 
@@ -2064,106 +2064,105 @@ msgstr "Vzhled"
 #: application/controllers/Options.php:83
 #: application/controllers/Options.php:91
 #: application/controllers/Options.php:99
-#: application/controllers/Options.php:107
 msgid "Options saved"
 msgstr ""
 
-#: application/controllers/Options.php:118
-#: application/controllers/Options.php:129
+#: application/controllers/Options.php:110
+#: application/controllers/Options.php:121
 #: application/views/options/sidebar.php:9
 msgid "Hams Of Note"
 msgstr ""
 
-#: application/controllers/Options.php:144
+#: application/controllers/Options.php:136
 msgid "Hams-Of-Note URL changed to "
 msgstr ""
 
-#: application/controllers/Options.php:180
+#: application/controllers/Options.php:172
 msgid "de continent changed to "
 msgstr ""
 
-#: application/controllers/Options.php:185
+#: application/controllers/Options.php:177
 msgid "Maximum age of spots changed to "
 msgstr ""
 
-#: application/controllers/Options.php:190
+#: application/controllers/Options.php:182
 msgid "DXCluster Cache URL changed to "
 msgstr ""
 
-#: application/controllers/Options.php:200
-#: application/controllers/Options.php:211
+#: application/controllers/Options.php:192
+#: application/controllers/Options.php:203
 msgid "Radio Settings"
 msgstr "Nastavení rádia"
 
-#: application/controllers/Options.php:232
+#: application/controllers/Options.php:224
 msgid "Radio Timeout Warning changed to "
 msgstr "Upozornění na časový limit rádia změněno na "
 
-#: application/controllers/Options.php:244
-#: application/controllers/Options.php:255
+#: application/controllers/Options.php:236
+#: application/controllers/Options.php:247
 #: application/views/options/sidebar.php:6
 msgid "Email"
 msgstr "E-mail"
 
-#: application/controllers/Options.php:312
+#: application/controllers/Options.php:304
 msgid "The settings were saved successfully."
 msgstr ""
 
-#: application/controllers/Options.php:314
+#: application/controllers/Options.php:306
 msgid "Something went wrong with saving the settings. Try again."
 msgstr ""
 
-#: application/controllers/Options.php:356
-#: application/controllers/Options.php:361
+#: application/controllers/Options.php:348
+#: application/controllers/Options.php:353
 msgid "Testmail failed. Something went wrong."
 msgstr ""
 
-#: application/controllers/Options.php:358
+#: application/controllers/Options.php:350
 msgid "Testmail sent. Email settings seem to be correct."
 msgstr ""
 
-#: application/controllers/Options.php:370
-#: application/controllers/Options.php:389
+#: application/controllers/Options.php:362
+#: application/controllers/Options.php:381
 #: application/views/options/sidebar.php:8
 msgid "Maptiles Server"
 msgstr ""
 
-#: application/controllers/Options.php:448
+#: application/controllers/Options.php:440
 #, php-format
 msgid ""
 "Maptile cache could not be removed. Delete the folder manually. Path: %s"
 msgstr ""
 
-#: application/controllers/Options.php:452
+#: application/controllers/Options.php:444
 msgid "Maptile Options saved!"
 msgstr ""
 
-#: application/controllers/Options.php:454
+#: application/controllers/Options.php:446
 msgid "Maptile Options could not be saved!"
 msgstr ""
 
-#: application/controllers/Options.php:465
-#: application/controllers/Options.php:475
+#: application/controllers/Options.php:457
+#: application/controllers/Options.php:467
 msgid "Version Info Settings"
 msgstr ""
 
-#: application/controllers/Options.php:481
+#: application/controllers/Options.php:473
 msgid "Version Info Header changed to"
 msgstr ""
 
-#: application/controllers/Options.php:485
+#: application/controllers/Options.php:477
 msgid "Version Info Mode changed to"
 msgstr ""
 
-#: application/controllers/Options.php:490
+#: application/controllers/Options.php:482
 msgid "Version Info Custom Text saved!"
 msgstr ""
 
-#: application/controllers/Options.php:501
+#: application/controllers/Options.php:493
 msgid "Version Info will be shown to all users again"
 msgstr ""
 
-#: application/controllers/Options.php:509
+#: application/controllers/Options.php:501
 msgid "Version Info will not be shown to any user"
 msgstr ""
 
@@ -2476,7 +2475,7 @@ msgstr ""
 msgid "Satellite Timers"
 msgstr ""
 
-#: application/controllers/Search.php:17 application/views/bandmap/list.php:544
+#: application/controllers/Search.php:15 application/views/bandmap/list.php:544
 #: application/views/continents/index.php:49
 #: application/views/interface_assets/footer.php:42
 #: application/views/interface_assets/header.php:392
@@ -2504,19 +2503,19 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: application/controllers/Search.php:26
+#: application/controllers/Search.php:24
 msgid "Search & Filter Logbook"
 msgstr ""
 
-#: application/controllers/Search.php:54
+#: application/controllers/Search.php:52
 msgid "Incorrectly logged CQ zones"
 msgstr ""
 
-#: application/controllers/Search.php:66
+#: application/controllers/Search.php:64
 msgid "Incorrectly logged ITU zones"
 msgstr ""
 
-#: application/controllers/Search.php:78
+#: application/controllers/Search.php:76
 msgid ""
 "QSOs unconfirmed on LoTW, but the callsign has uploaded to LoTW after QSO "
 "date"
@@ -2614,11 +2613,10 @@ msgid "Error. Link is already in use!"
 msgstr ""
 
 #: application/controllers/Stationsetup.php:279
-#: application/views/options/appearance.php:57
-#: application/views/options/appearance.php:64
-#: application/views/options/appearance.php:73
-#: application/views/options/appearance.php:82
-#: application/views/options/appearance.php:91
+#: application/views/options/appearance.php:58
+#: application/views/options/appearance.php:67
+#: application/views/options/appearance.php:76
+#: application/views/options/appearance.php:85
 #: application/views/options/version_dialog.php:66
 #: application/views/station_profile/create.php:244
 #: application/views/station_profile/create.php:266
@@ -4929,7 +4927,7 @@ msgstr ""
 #: application/views/interface_assets/footer.php:674
 #: application/views/logbookadvanced/index.php:56
 #: application/views/operator/index.php:23
-#: application/views/options/appearance.php:97
+#: application/views/options/appearance.php:91
 #: application/views/options/dxcluster.php:67
 #: application/views/options/email.php:112 application/views/options/hon.php:44
 #: application/views/options/maptiles.php:80
@@ -9128,11 +9126,10 @@ msgid "Identifier"
 msgstr ""
 
 #: application/views/cron/edit.php:22
-#: application/views/options/appearance.php:56
-#: application/views/options/appearance.php:63
-#: application/views/options/appearance.php:72
-#: application/views/options/appearance.php:81
-#: application/views/options/appearance.php:90
+#: application/views/options/appearance.php:57
+#: application/views/options/appearance.php:66
+#: application/views/options/appearance.php:75
+#: application/views/options/appearance.php:84
 #: application/views/station_profile/create.php:268
 #: application/views/station_profile/edit.php:346
 #: application/views/stationsetup/stationsetup.php:76
@@ -13166,37 +13163,37 @@ msgid "Global Theme Choice, this is used when users arent logged in."
 msgstr ""
 "Globální volba motivu, která se používá, když uživatelé nejsou přihlášeni."
 
-#: application/views/options/appearance.php:61
+#: application/views/options/appearance.php:55
 msgid "Logbook Map"
 msgstr "Mapa v logbooku"
 
-#: application/views/options/appearance.php:66
+#: application/views/options/appearance.php:60
 msgid "This allows to disable the map in the logbook."
 msgstr "Toto umožňuje zakázat mapu v logbooku."
 
-#: application/views/options/appearance.php:70
+#: application/views/options/appearance.php:64
 msgid "Public Maps"
 msgstr ""
 
-#: application/views/options/appearance.php:75
+#: application/views/options/appearance.php:69
 msgid ""
 "This allows to disable all maps in the public view. This affects the main "
 "map and the gridsquares map."
 msgstr ""
 
-#: application/views/options/appearance.php:79
+#: application/views/options/appearance.php:73
 msgid "Public Github Button"
 msgstr ""
 
-#: application/views/options/appearance.php:84
+#: application/views/options/appearance.php:78
 msgid "This enables the button to Wavelog's Github page in the public view"
 msgstr ""
 
-#: application/views/options/appearance.php:88
+#: application/views/options/appearance.php:82
 msgid "Public Login Button"
 msgstr ""
 
-#: application/views/options/appearance.php:93
+#: application/views/options/appearance.php:87
 msgid "This enables the button to login to Wavelog in the public view"
 msgstr ""
 
