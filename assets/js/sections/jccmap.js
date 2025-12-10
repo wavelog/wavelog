@@ -1,11 +1,15 @@
 let osmUrl = tileUrl;
-let confirmedColor = user_map_custom.qsoconfirm.color;
-let workedColor = user_map_custom.qso.color;
-let unworkedColor = '';
+let unworkedColor = 'red';
 if (typeof(user_map_custom.unworked) !== 'undefined') {
 	unworkedColor = user_map_custom.unworked.color;
-} else {
-	unworkedColor = 'red';
+}
+let workedColor = 'rgba(255, 0, 0)';
+if (typeof(user_map_custom.qso) !== 'undefined') {
+	workedColor = user_map_custom.qso.color;
+}
+let confirmedColor = 'rgba(144,238,144)';
+if (typeof(user_map_custom.qsoconfirm) !== 'undefined') {
+	confirmedColor = user_map_custom.qsoconfirm.color;
 }
 
 function load_jcc_map() {
