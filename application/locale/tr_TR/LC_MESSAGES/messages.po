@@ -12,11 +12,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-08 10:52+0000\n"
+"POT-Creation-Date: 2025-12-10 06:04+0000\n"
 "PO-Revision-Date: 2025-12-08 16:35+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
-"Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/tr/>\n"
+"Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/tr/>\n"
 "Language: tr_TR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -63,9 +63,9 @@ msgstr ""
 #: application/controllers/Dxcluster.php:9 application/controllers/Eqsl.php:23
 #: application/controllers/Eqsl.php:47 application/controllers/Eqsl.php:147
 #: application/controllers/Eqsl.php:236 application/controllers/Eqsl.php:260
-#: application/controllers/Eqsl.php:299 application/controllers/Eqsl.php:366
-#: application/controllers/Eqsl.php:433 application/controllers/Eqsl.php:449
-#: application/controllers/Eqsl.php:510
+#: application/controllers/Eqsl.php:299 application/controllers/Eqsl.php:424
+#: application/controllers/Eqsl.php:491 application/controllers/Eqsl.php:507
+#: application/controllers/Eqsl.php:568
 #: application/controllers/Generic_qsl.php:12
 #: application/controllers/Hamsat.php:13 application/controllers/Hrdlog.php:36
 #: application/controllers/Kmlexport.php:18
@@ -1060,23 +1060,47 @@ msgstr "eQSL kullanıcı adı veya şifre yanlış"
 msgid "No such eQSL QTH Nickname: %s"
 msgstr "Belirtilen eQSL QTH Takma Adı bulunamadı: %s"
 
-#: application/controllers/Eqsl.php:437
+#: application/controllers/Eqsl.php:312
+msgid "QSO not found or not accessible"
+msgstr ""
+
+#: application/controllers/Eqsl.php:330
+msgid "User not found"
+msgstr ""
+
+#: application/controllers/Eqsl.php:339
+msgid "eQSL password not configured for this user"
+msgstr ""
+
+#: application/controllers/Eqsl.php:357
+msgid "Failed to fetch eQSL image data"
+msgstr ""
+
+#: application/controllers/Eqsl.php:376
+msgid "eQSL image not available"
+msgstr ""
+
+#: application/controllers/Eqsl.php:395
+msgid "Failed to download eQSL image"
+msgstr ""
+
+#: application/controllers/Eqsl.php:495
 msgid "eQSL Tools"
 msgstr "eQSL Araçları"
 
-#: application/controllers/Eqsl.php:485
+#: application/controllers/Eqsl.php:543
 msgid " / Errors: "
 msgstr " / Hatalar: "
 
-#: application/controllers/Eqsl.php:485
+#: application/controllers/Eqsl.php:543
 msgid "Successfully downloaded: "
 msgstr "Başarıyla indirildi: "
 
-#: application/controllers/Eqsl.php:494
+#: application/controllers/Eqsl.php:552
 msgid "eQSL Card Image Download"
 msgstr "eQSL Kart Görüntüsü İndirme"
 
-#: application/controllers/Eqsl.php:518
+#: application/controllers/Eqsl.php:576
 msgid "All eQSLs marked as uploaded"
 msgstr "Tüm eQSL’ler yüklendi olarak işaretlendi"
 
@@ -4864,8 +4888,8 @@ msgid ""
 "The CBR file contains a TRX number at the end of each QSO line (for multi-op "
 "stations)"
 msgstr ""
-"CBR dosyası, her QSO satırının sonunda bir TRX numarası içerir "
-"(çok operatörlü istasyonlar için)"
+"CBR dosyası, her QSO satırının sonunda bir TRX numarası içerir (çok "
+"operatörlü istasyonlar için)"
 
 #: application/views/adif/import.php:460
 msgid ""
@@ -6478,8 +6502,8 @@ msgid ""
 "Bronze (3), Silver (7), Gold (12). All 16 voivodeships required."
 msgstr ""
 "Ödül kategorileri: MIXED (tüm modlar/bantlar), PHONE (SSB/AM/FM/SSTV), CW, "
-"DIGI (RTTY/PSK/FSK) ve tekil bantlar (160M–2M). Sınıflar: Basic "
-"(her vilayetten 1 QSO), Bronze (3), Silver (7), Gold (12). Tüm 16 vilayetin "
+"DIGI (RTTY/PSK/FSK) ve tekil bantlar (160M–2M). Sınıflar: Basic (her "
+"vilayetten 1 QSO), Bronze (3), Silver (7), Gold (12). Tüm 16 vilayetin "
 "tamamlanması gereklidir."
 
 #: application/views/awards/pl_polska/index.php:40

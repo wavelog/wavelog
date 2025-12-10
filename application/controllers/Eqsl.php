@@ -306,7 +306,15 @@ class eqsl extends CI_Controller {
 			$this->load->model('logbook_model');
 			$this->load->model('user_model');
 			$qso_query = $this->logbook_model->get_qso($id);
+
+			// Check if QSO exists and is accessible
+			if (!$qso_query || $qso_query->num_rows() == 0) {
+				show_error(__('QSO not found or not accessible'), 404);
+				return;
+			}
+
 			$qso = $qso_query->row();
+
 			$qso_timestamp = strtotime($qso->COL_TIME_ON);
 			$callsign = $qso->COL_CALL;
 			$band = $qso->COL_BAND;
@@ -318,40 +326,90 @@ class eqsl extends CI_Controller {
 			$minute = date('i', $qso_timestamp);
 
 			$query = $this->user_model->get_by_id($this->session->userdata('user_id'));
+			if ($query->num_rows() == 0) {
+				show_error(__('User not found'), 404);
+				return;
+			}
 			$q = $query->row();
 			$username = $qso->COL_STATION_CALLSIGN;
 			$password = $q->user_eqsl_password;
 
+			// Check if eQSL password is set
+			if (empty($password)) {
+				show_error(__('eQSL password not configured for this user'), 400);
+				return;
+			}
+
 			$image_url = $this->electronicqsl->card_image($username, urlencode($password), $callsign, $band, $mode, $year, $month, $day, $hour, $minute);
-			$file = file_get_contents($image_url, true);  // TODO use curl instead
+
+			// Use curl for better error handling instead of file_get_contents
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $image_url);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+			curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog-eQSL/1.0');
+			$file = curl_exec($ch);
+			$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+			curl_close($ch);
+
+			if ($file === false || $http_code != 200) {
+				show_error(__('Failed to fetch eQSL image data'), 503);
+				return;
+			}
 
 			$dom = new domDocument;
+			// Suppress warnings for malformed HTML
+			libxml_use_internal_errors(true);
 			$dom->loadHTML($file);
+			libxml_clear_errors();
 			$dom->preserveWhiteSpace = false;
 			$images = $dom->getElementsByTagName('img');
 
 			if (!isset($images) || count($images) == 0) {
 				$h3 = $dom->getElementsByTagName('h3');
 				if (isset($h3) && ($h3->item(0) !== null)) {
-					echo $h3->item(0)->nodeValue;
+					$error_message = $h3->item(0)->nodeValue;
 				} else {
-					echo "Rate Limited";
+					$error_message = "Rate Limited";
 				}
-				exit;
+				show_error(__('eQSL image not available') . ': ' . $error_message, 503);
+				return;
 			}
 
 			foreach ($images as $image) {
+				$image_src = "https://www.eqsl.cc" . $image->getAttribute('src');
+
+				// Use curl for downloading the actual image
+				$ch = curl_init();
+				curl_setopt($ch, CURLOPT_URL, $image_src);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+				curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+				curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog-eQSL/1.0');
+				$content = curl_exec($ch);
+				$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+				curl_close($ch);
+
+				if ($content === false || $http_code != 200) {
+					show_error(__('Failed to download eQSL image'), 503);
+					return;
+				}
+
 				header('Content-Type: image/jpg');
-				$content = file_get_contents("https://www.eqsl.cc" . $image->getAttribute('src'));
-				if ($content === false) {
-					echo "No response";
-					exit;
-				}
 				echo $content;
+
 				$filename = uniqid() . '.jpg';
-				if (file_put_contents($this->Eqsl_images->get_imagePath('p') . '/' . $filename, $content) !== false) {
+				$image_path = $this->Eqsl_images->get_imagePath('p') . '/' . $filename;
+				$save_result = file_put_contents($image_path, $content);
+
+				if ($save_result !== false) {
 					$this->Eqsl_images->save_image($id, $filename);
+				} else {
+					log_message('error', 'Failed to save eQSL image to: ' . $image_path);
 				}
+
+				return; // Only process the first image found
 			}
 		} else {
 			header('Content-Type: image/jpg');
