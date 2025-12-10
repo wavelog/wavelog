@@ -11,6 +11,7 @@
                         <th>Date/Time</th>
                         <th>Mode</th>
                         <th>Band</th>
+                        <th>State</th>
                         <th>Gridsquare</th>
                         <th>DXCC</th>
                         <th>Station</th>
@@ -19,10 +20,11 @@
                 <tbody>
                     <?php foreach ($qsos as $qso): ?>
                         <tr>
-                            <td><?php echo $qso->col_call; ?></td>
+                            <td><?php echo '<a id="edit_qso" href="javascript:displayQso(' . $qso->col_primary_key . ')">' . htmlspecialchars($qso->col_call) . '</a>'; ?></td>
                             <td><?php echo date('Y-m-d H:i', strtotime($qso->col_time_on)); ?></td>
                             <td><?php echo $qso->col_mode; ?></td>
                             <td><?php echo $qso->col_band; ?></td>
+							<td><?php echo $qso->col_state; ?></td>
                             <td><?php echo $qso->col_gridsquare; ?></td>
 							<td><?php echo htmlspecialchars(ucwords(strtolower($qso->dxcc_name), "- (/"), ENT_QUOTES, 'UTF-8'); ?></td>
 							<td><?php echo $qso->station_profile_name; ?></td>
