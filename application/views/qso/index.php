@@ -874,7 +874,7 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
         </div>
 
         <div class="card-body callsign-image d-flex gap-3">
-            <div class="callsign-image-content" id="callsign-image-content" style="flex-shrink: 0; max-width: 100%;">
+            <div class="callsign-image-content" id="callsign-image-content" style="flex-shrink: 0;">
             </div>
             <div class="callsign-image-info" id="callsign-image-info" style="flex-grow: 1; min-width: 0; display: none;">
             </div>
