@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-08 10:52+0000\n"
+"POT-Creation-Date: 2025-12-10 06:04+0000\n"
 "PO-Revision-Date: 2024-11-19 01:22+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: Latvian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -58,9 +58,9 @@ msgstr ""
 #: application/controllers/Dxcluster.php:9 application/controllers/Eqsl.php:23
 #: application/controllers/Eqsl.php:47 application/controllers/Eqsl.php:147
 #: application/controllers/Eqsl.php:236 application/controllers/Eqsl.php:260
-#: application/controllers/Eqsl.php:299 application/controllers/Eqsl.php:366
-#: application/controllers/Eqsl.php:433 application/controllers/Eqsl.php:449
-#: application/controllers/Eqsl.php:510
+#: application/controllers/Eqsl.php:299 application/controllers/Eqsl.php:424
+#: application/controllers/Eqsl.php:491 application/controllers/Eqsl.php:507
+#: application/controllers/Eqsl.php:568
 #: application/controllers/Generic_qsl.php:12
 #: application/controllers/Hamsat.php:13 application/controllers/Hrdlog.php:36
 #: application/controllers/Kmlexport.php:18
@@ -1043,23 +1043,47 @@ msgstr ""
 msgid "No such eQSL QTH Nickname: %s"
 msgstr ""
 
-#: application/controllers/Eqsl.php:437
+#: application/controllers/Eqsl.php:312
+msgid "QSO not found or not accessible"
+msgstr ""
+
+#: application/controllers/Eqsl.php:330
+msgid "User not found"
+msgstr ""
+
+#: application/controllers/Eqsl.php:339
+msgid "eQSL password not configured for this user"
+msgstr ""
+
+#: application/controllers/Eqsl.php:357
+msgid "Failed to fetch eQSL image data"
+msgstr ""
+
+#: application/controllers/Eqsl.php:376
+msgid "eQSL image not available"
+msgstr ""
+
+#: application/controllers/Eqsl.php:395
+msgid "Failed to download eQSL image"
+msgstr ""
+
+#: application/controllers/Eqsl.php:495
 msgid "eQSL Tools"
 msgstr ""
 
-#: application/controllers/Eqsl.php:485
+#: application/controllers/Eqsl.php:543
 msgid " / Errors: "
 msgstr ""
 
-#: application/controllers/Eqsl.php:485
+#: application/controllers/Eqsl.php:543
 msgid "Successfully downloaded: "
 msgstr ""
 
-#: application/controllers/Eqsl.php:494
+#: application/controllers/Eqsl.php:552
 msgid "eQSL Card Image Download"
 msgstr ""
 
-#: application/controllers/Eqsl.php:518
+#: application/controllers/Eqsl.php:576
 msgid "All eQSLs marked as uploaded"
 msgstr ""
 

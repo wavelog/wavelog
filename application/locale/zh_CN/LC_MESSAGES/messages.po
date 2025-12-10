@@ -140,6 +140,8 @@ msgstr ""
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/Eqsl.php:424 application/controllers/Eqsl.php:491
+#: application/controllers/Eqsl.php:507 application/controllers/Eqsl.php:568
 msgid "You're not allowed to do that!"
 msgstr "请不要这样操作！"
 
@@ -1068,19 +1070,19 @@ msgstr "eQSL 的用户名或密码错误"
 msgid "No such eQSL QTH Nickname: %s"
 msgstr "不存在该eQSL QTH昵称：%s"
 
-#: application/controllers/Eqsl.php:437
+#: application/controllers/Eqsl.php:437 application/controllers/Eqsl.php:495
 msgid "eQSL Tools"
 msgstr "eQSL 工具"
 
-#: application/controllers/Eqsl.php:485
+#: application/controllers/Eqsl.php:485 application/controllers/Eqsl.php:543
 msgid " / Errors: "
 msgstr " / 错误： "
 
-#: application/controllers/Eqsl.php:485
+#: application/controllers/Eqsl.php:485 application/controllers/Eqsl.php:543
 msgid "Successfully downloaded: "
 msgstr "下载成功： "
 
-#: application/controllers/Eqsl.php:494
+#: application/controllers/Eqsl.php:494 application/controllers/Eqsl.php:552
 msgid "eQSL Card Image Download"
 msgstr "eQSL 卡片图片下载"
 
@@ -6580,8 +6582,8 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
-"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意"
-"的“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
+"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意的"
+"“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
 
 #: application/views/awards/sig/index.php:9
 msgid ""
@@ -16436,8 +16438,8 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
-"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 '."
-"png'）"
+"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 "
+"'.png'）"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
@@ -17825,6 +17827,30 @@ msgstr "提交请求"
 msgid "Rcvd"
 msgstr "收"
 
+#: application/controllers/Eqsl.php:312
+msgid "QSO not found or not accessible"
+msgstr ""
+
+#: application/controllers/Eqsl.php:330
+msgid "User not found"
+msgstr ""
+
+#: application/controllers/Eqsl.php:339
+msgid "eQSL password not configured for this user"
+msgstr ""
+
+#: application/controllers/Eqsl.php:357
+msgid "Failed to fetch eQSL image data"
+msgstr ""
+
+#: application/controllers/Eqsl.php:376
+msgid "eQSL image not available"
+msgstr ""
+
+#: application/controllers/Eqsl.php:395
+msgid "Failed to download eQSL image"
+msgstr ""
+
 #~ msgid ""
 #~ "You might have ADIF errors, the QSOs have still been added. Please check "
 #~ "the following information:"
@@ -18509,8 +18535,8 @@ msgstr "收"
 #~ "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 #~ "filenames for the logos <b>without</b> the file extension '.png'"
 #~ msgstr ""
-#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带有 ."
-#~ "png 后缀名</b>）"
+#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带"
+#~ "有 .png 后缀名</b>）"
 
 #, php-format
 #~ msgid ""

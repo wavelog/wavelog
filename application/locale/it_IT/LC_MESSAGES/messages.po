@@ -12,8 +12,8 @@ msgstr ""
 "POT-Creation-Date: 2025-12-08 10:52+0000\n"
 "PO-Revision-Date: 2025-12-09 23:24+0000\n"
 "Last-Translator: Luca <lucabennati1996@gmail.com>\n"
-"Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/it/>\n"
+"Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/it/>\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -124,6 +124,8 @@ msgstr ""
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/Eqsl.php:424 application/controllers/Eqsl.php:491
+#: application/controllers/Eqsl.php:507 application/controllers/Eqsl.php:568
 msgid "You're not allowed to do that!"
 msgstr "Non ti è permesso farlo!"
 
@@ -1056,23 +1058,23 @@ msgstr "Nome utente/password errati per eQSL"
 msgid "No such eQSL QTH Nickname: %s"
 msgstr "Nessun QTH eQSL con questo nickname: %s"
 
-#: application/controllers/Eqsl.php:437
+#: application/controllers/Eqsl.php:437 application/controllers/Eqsl.php:495
 msgid "eQSL Tools"
 msgstr "Strumenti eQSL"
 
-#: application/controllers/Eqsl.php:485
+#: application/controllers/Eqsl.php:485 application/controllers/Eqsl.php:543
 msgid " / Errors: "
 msgstr " /Errori: "
 
-#: application/controllers/Eqsl.php:485
+#: application/controllers/Eqsl.php:485 application/controllers/Eqsl.php:543
 msgid "Successfully downloaded: "
 msgstr "Scaricato con successo: "
 
-#: application/controllers/Eqsl.php:494
+#: application/controllers/Eqsl.php:494 application/controllers/Eqsl.php:552
 msgid "eQSL Card Image Download"
 msgstr "Scarica immagine da eQSL"
 
-#: application/controllers/Eqsl.php:518
+#: application/controllers/Eqsl.php:518 application/controllers/Eqsl.php:576
 msgid "All eQSLs marked as uploaded"
 msgstr "Tutte le eQSL contrassegnate come caricate"
 
@@ -7214,8 +7216,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be one of U.S.A., Alaska or Hawaii) "
 "and STATE (Must contain a valid U.S. state abbreviation!)"
 msgstr ""
-"Campi presi in considerazione per questo premio: DXCC (Deve essere uno tra U."
-"S.A., Alaska o Hawaii) e STATE (Deve contenere una valida abbreviazione di "
+"Campi presi in considerazione per questo premio: DXCC (Deve essere uno tra "
+"U.S.A., Alaska o Hawaii) e STATE (Deve contenere una valida abbreviazione di "
 "uno stato U.S.A.!)"
 
 #: application/views/awards/was/index.php:120
@@ -11646,7 +11648,8 @@ msgstr "La posizione è ottenuta dal locatore fornito"
 
 #: application/views/interface_assets/footer.php:134
 msgid "Location is fetched from DXCC coordinates (no gridsquare provided)"
-msgstr "La posizione è ottenuta dalle coordinate DXCC (nessun locatore fornito)"
+msgstr ""
+"La posizione è ottenuta dalle coordinate DXCC (nessun locatore fornito)"
 
 #: application/views/interface_assets/footer.php:137
 msgid "Working without CAT connection"
@@ -16994,8 +16997,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Crea una nuova cartella in 'assets/css/' e carica un file 'bootstrap.min."
-"css' che contiene regole di stile di base. Utilizziamo i temi di %s"
+"Crea una nuova cartella in 'assets/css/' e carica un file "
+"'bootstrap.min.css' che contiene regole di stile di base. Utilizziamo i temi "
+"di %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -18523,6 +18527,30 @@ msgstr "Invia richiesta"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Ricevuto"
+
+#: application/controllers/Eqsl.php:312
+msgid "QSO not found or not accessible"
+msgstr ""
+
+#: application/controllers/Eqsl.php:330
+msgid "User not found"
+msgstr ""
+
+#: application/controllers/Eqsl.php:339
+msgid "eQSL password not configured for this user"
+msgstr ""
+
+#: application/controllers/Eqsl.php:357
+msgid "Failed to fetch eQSL image data"
+msgstr ""
+
+#: application/controllers/Eqsl.php:376
+msgid "eQSL image not available"
+msgstr ""
+
+#: application/controllers/Eqsl.php:395
+msgid "Failed to download eQSL image"
+msgstr ""
 
 #~ msgid ""
 #~ "You might have ADIF errors, the QSOs have still been added. Please check "
