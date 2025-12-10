@@ -568,8 +568,8 @@
 										</div>
 										<div class="mb-3 col-md-3">
 											<div class="icon_selectBox" data-boxcontent="qsoconfirm">
-												<input type="hidden" name="user_map_qsoconfirm_icon" value="<?php echo $user_map_qsoconfirm_icon; ?>">
-												<div class="form-select icon_overSelect"><?php echo (($user_map_qsoconfirm_icon=="0")?__("No"):("<i class='".$user_map_qsoconfirm_icon."'></i>")); ?></div>
+												<input type="hidden" name="user_map_qsoconfirm_icon" value="<?php echo $user_map_qsoconfirm_icon ?? "0"; ?>">
+												<div class="form-select icon_overSelect"><?php echo ((!isset($user_map_qsoconfirm_icon) || $user_map_qsoconfirm_icon=="0")?__("No"):("<i class='".($user_map_qsoconfirm_icon ?? "")."'></i>")); ?></div>
 											</div>
 											<div class="col-md-3 icon_selectBox_data" data-boxcontent="qsoconfirm">
 												<?php foreach($map_icon_select['qsoconfirm'] as $val) {
@@ -578,7 +578,7 @@
 											</div>
 										</div>
 										<div class="md-3 col-md-2">
-											<input type="color" class="form-control user_icon_color" name="user_map_qsoconfirm_color" id="user_map_qsoconfirm_color" value="<?php echo $user_map_qsoconfirm_color; ?>" style="padding:initial;<?php echo ($user_map_qsoconfirm_icon=="0")?'display:none;':''; ?>" data-icon="qsoconfirm" />
+											<input type="color" class="form-control user_icon_color" name="user_map_qsoconfirm_color" id="user_map_qsoconfirm_color" value="<?php echo $user_map_qsoconfirm_color ?? "#00ff00"; ?>" style="padding:initial;<?php echo (!isset($user_map_qsoconfirm_icon) || $user_map_qsoconfirm_icon=="0")?'display:none;':''; ?>" data-icon="qsoconfirm" />
 										</div>
 									</div>
 									<div class="row"> <!-- Unworked (zones) color -->
