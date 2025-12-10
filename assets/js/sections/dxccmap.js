@@ -1,10 +1,8 @@
 let confirmedColor = user_map_custom.qsoconfirm.color;
 let workedColor = user_map_custom.qso.color;
-let unworkedColor = '';
+let unworkedColor = 'red';
 if (typeof(user_map_custom.unworked) !== 'undefined') {
 	unworkedColor = user_map_custom.unworked.color;
-} else {
-	unworkedColor = 'red';
 }
 
 document.addEventListener("DOMContentLoaded", function() {
