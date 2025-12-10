@@ -21,7 +21,7 @@ class Awards extends CI_Controller {
 
 		$map_custom = json_decode($this->optionslib->get_map_custom());
 		$this->user_map_color_qso = $map_custom->qso->color;
-		$this->user_map_color_qsoconfirm = $map_custom->qsoconfirm->color;
+		$this->user_map_color_qsoconfirm = $map_custom->qsoconfirm->color ?? '';
 		$this->user_map_color_unworked = $map_custom->unworked->color ?? '';
 	}
 
