@@ -125,7 +125,12 @@ class Callbook {
 
 		if (!$this->ci->session->userdata('hamqth_session_key')) {
 			$hamqth_session_key = $this->ci->hamqth->session($username, $password);
-			$this->ci->session->set_userdata('hamqth_session_key', $hamqth_session_key);
+			if ($hamqth_session_key == false) {
+				$callbook['error'] = __("Error obtaining a session key for HamQTH query");
+				return $callbook;
+			} else {
+				$this->ci->session->set_userdata('hamqth_session_key', $hamqth_session_key);
+			}
 		}
 
 		$callbook = $this->ci->hamqth->search($callsign, $this->ci->session->userdata('hamqth_session_key'));
