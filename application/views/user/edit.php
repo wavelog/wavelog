@@ -684,7 +684,7 @@
 						</div>
 						<div class="col-md">
 							<div class="card">
-								<div class="card-header"><?= __("Show Reference Fields on QSO Tab"); ?></div>
+								<div class="card-header"><?= __("Show Fields on QSO Tab"); ?></div>
 								<div class="card-body">
 									<div class="row">
 										<div class="mb-3">
@@ -712,6 +712,10 @@
 											<div class="form-check form-switch">
 												<input name="user_dok_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="dokToQsoTab" <?php if ($user_dok_to_qso_tab ?? false) { echo 'checked'; } ?>>
 												<label class="form-check-label" for="dokToQsoTab" ><?= __("DOK"); ?></label>
+											</div>
+											<div class="form-check form-switch">
+												<input name="user_station_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="stationToQsoTab" <?php if ($user_station_to_qso_tab ?? false) { echo 'checked'; } ?>>
+												<label class="form-check-label" for="stationToQsoTab" ><?= __("Station Location"); ?></label>
 											</div>
 										</div>
 									</div>
