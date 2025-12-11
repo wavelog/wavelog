@@ -26,7 +26,7 @@ class Callbook {
 			// Parse each callbook in the array until we get a valid result
 			foreach ($source_callbooks as $source) {
 				$callbook = $this->queryCallbook($callsign, $source);
-				if (!isset($callbook['error'])) {
+				if (!isset($callbook['error']) || $callbook['error'] == '') {
 					break;
 				}
 			}
@@ -80,7 +80,7 @@ class Callbook {
 				$callbook['error'] = 'No callbook defined. Please review configuration.';
 		}
 
-		log_message('debug', 'Callbook lookup for '.$callsign.' using '.$source.': '.(isset($callbook['error']) ? $callbook['error'] : 'Success'));
+		log_message('debug', 'Callbook lookup for '.$callsign.' using '.$source.': '.((($callbook['error'] ?? '' ) != '') ? $callbook['error'] : 'Success'));
 		return $callbook;
 	}
 
