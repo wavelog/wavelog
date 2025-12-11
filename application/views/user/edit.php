@@ -684,7 +684,7 @@
 						</div>
 						<div class="col-md">
 							<div class="card">
-								<div class="card-header"><?= __("Show Reference Fields on QSO Tab"); ?></div>
+								<div class="card-header"><?= __("Show Fields on QSO Tab"); ?></div>
 								<div class="card-body">
 									<div class="row">
 										<div class="mb-3">
