@@ -123,6 +123,23 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
       <div class="card-body">
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade show active" id="qso" role="tabpanel" aria-labelledby="qso-tab">
+
+	<?php if ($user_station_to_qso_tab ?? false) { ?>
+	<div class="row">
+              <div class="mb-3 col-md-12">
+              <label class="col-sm-3 col-form-label" for="stationProfile"><?= __("Station Location"); ?></label>
+              <select id="stationProfile" class="form-select form-control form-control-sm" name="station_profile" onChange="panMap(this.value);">
+                <?php
+                   $power = '';
+                      foreach ($stations->result() as $stationrow) {
+                ?>
+                <option value="<?php echo $stationrow->station_id; ?>" <?php if($active_station_profile == $stationrow->station_id) { echo "selected=\"selected\""; $power = $stationrow->station_power; $station_callsign = $stationrow->station_callsign; } ?>><?php echo $stationrow->station_profile_name; ?></option>
+                <?php } ?>
+              </select>
+            </div>
+	</div>
+              <?php } ?>
+
                       <!-- HTML for Date/Time -->
               <?php if ($this->session->userdata('user_qso_end_times')  == 1) { ?>
               <div class="row">
@@ -339,20 +356,6 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
                   <input class="form-control text-uppercase" id="darc_dok" tabindex="17" type="text" name="darc_dok" value="" />
                 </div>
               </div>
-              <?php } ?>
-
-              <?php if ($user_station_to_qso_tab ?? false) { ?>
-              <div class="mb-3">
-              <label for="stationProfile"><?= __("Station Location"); ?></label>
-              <select id="stationProfile" class="form-select" name="station_profile" onChange="panMap(this.value);">
-                <?php
-                   $power = '';
-                      foreach ($stations->result() as $stationrow) {
-                ?>
-                <option value="<?php echo $stationrow->station_id; ?>" <?php if($active_station_profile == $stationrow->station_id) { echo "selected=\"selected\""; $power = $stationrow->station_power; $station_callsign = $stationrow->station_callsign; } ?>><?php echo $stationrow->station_profile_name; ?></option>
-                <?php } ?>
-              </select>
-            </div>
               <?php } ?>
 
               <div class="mb-3 row">
