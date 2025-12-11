@@ -67,14 +67,6 @@ class Options extends CI_Controller {
 				$this->session->set_flashdata('success', __("Options saved"));
 			}
 
-			// Update theme choice within the options system
-			$search_update_status = $this->optionslib->update('global_search', $this->input->post('globalSearch'));
-
-			// If theme update is complete set a flashsession with a success note
-			if($search_update_status == TRUE) {
-				$this->session->set_flashdata('success', __("Options saved"));
-			}
-
 			// Update logbook map within the options system
 			$logbook_map_update_status = $this->optionslib->update('logbook_map', $this->input->post('logbookMap'), 'yes');
 

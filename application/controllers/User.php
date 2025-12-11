@@ -238,6 +238,7 @@ class User extends CI_Controller {
 				$data['user_pota_to_qso_tab'] = $this->input->post('user_pota_to_qso_tab');
 				$data['user_sig_to_qso_tab'] = $this->input->post('user_sig_to_qso_tab');
 				$data['user_dok_to_qso_tab'] = $this->input->post('user_dok_to_qso_tab');
+				$data['user_station_to_qso_tab'] = $this->input->post('user_station_to_qso_tab');
 				$data['user_language'] = $this->input->post('user_language');
 				$data['global_oqrs_text'] = $this->input->post('global_oqrs_text') ?? '';
 				$data['oqrs_grouped_search'] = $this->input->post('oqrs_grouped_search') ?? 'off';
@@ -292,6 +293,7 @@ class User extends CI_Controller {
 				$this->input->post('user_pota_to_qso_tab'),
 				$this->input->post('user_sig_to_qso_tab'),
 				$this->input->post('user_dok_to_qso_tab'),
+				$this->input->post('user_station_to_qso_tab'),
 				$this->input->post('user_lotw_name'),
 				$this->input->post('user_lotw_password'),
 				$this->input->post('user_eqsl_name'),
@@ -809,6 +811,14 @@ class User extends CI_Controller {
 				$qkey_opt=$this->user_options_model->get_options('qso_tab',array('option_name'=>'dok','option_key'=>'show'), $this->uri->segment(3))->result();
 				if (count($qkey_opt)>0) {
 					$data['user_dok_to_qso_tab'] = $qkey_opt[0]->option_value;
+				}
+			}
+			if($this->input->post('user_station_to_qso_tab')) {
+				$data['user_station_to_qso_tab'] = $this->input->post('user_station_to_qso_tab', false);
+			} else {
+				$qkey_opt=$this->user_options_model->get_options('qso_tab',array('option_name'=>'station','option_key'=>'show'), $this->uri->segment(3))->result();
+				if (count($qkey_opt)>0) {
+					$data['user_station_to_qso_tab'] = $qkey_opt[0]->option_value;
 				}
 			}
 

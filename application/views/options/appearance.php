@@ -51,12 +51,6 @@
                             <small id="themeHelp" class="form-text text-muted"><?= __("Global Theme Choice, this is used when users arent logged in."); ?></small>
                         </div>
 
-
-                            <select class="form-select" id="globalSearch" name="globalSearch" style="display: none;">
-                                <option value='true' <?php if($this->optionslib->get_option('global_search') == "true") { echo "selected=\"selected\""; } ?>><?= __("Enabled"); ?></option>
-                                <option value='false' <?php if($this->optionslib->get_option('global_search') == "false") { echo "selected=\"selected\""; } ?>><?= __("Disabled"); ?></option>
-                            </select>
-
                         <div class="mb-3">
                             <label for="logbookMap"><?= __("Logbook Map"); ?></label>
                             <select class="form-select" id="logbookMap" name="logbookMap" aria-describedby="logbookMapHelp" required>
