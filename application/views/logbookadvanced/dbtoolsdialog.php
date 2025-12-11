@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-6">
             <h5><?= __("Data Repair Tools") ?>
-								<button type="button" class="btn btn-sm btn-info me-1 ld-ext-right" id="getDbToolsInfoBtn" onclick="getDbToolsInfo()">
+						<button type="button" class="btn btn-sm btn-info me-1 ld-ext-right" id="getDbToolsInfoBtn" onclick="getDbToolsInfo()">
                             <?= __("Info") ?><div class="ld ld-ring ld-spin"></div>
                         </button>
 		</h5>
@@ -86,7 +86,7 @@
 						<p class="mb-1 small alert-danger"><?= __("This will overwrite ALL existing DXCC information!") ?></p>
                     </div>
                     <div class="d-flex nowrap">
-                        <button type="button" class="btn btn-sm btn-primary ld-ext-right" id="updateDistancesBtn" onclick="fixMissingDxcc('All')">
+                        <button type="button" class="btn btn-sm btn-primary ld-ext-right" id="updateDxccBtn" onclick="fixMissingDxcc('All')">
                             <?= __("Run") ?><div class="ld ld-ring ld-spin"></div>
                         </button>
                     </div>

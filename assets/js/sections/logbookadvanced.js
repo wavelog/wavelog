@@ -678,7 +678,7 @@ $(document).ready(function () {
 					callback: function (result) {
 					}
 				});
-				return false;
+			return false;
 		}
 
 		if(container != null){
@@ -2297,17 +2297,35 @@ function saveOptions() {
 	}
 
 	function fixMissingDxcc() {
-		$.ajax({
-			url: base_url + 'index.php/logbookadvanced/fixMissingDxcc',
-			data: {
-				all: 'false'
+		$('#updateDxccBtn').prop("disabled", true).addClass("running");
+		BootstrapDialog.confirm({
+			title: lang_general_word_danger,
+			message: lang_gen_advanced_logbook_confirm_fix_missing_dxcc,
+			type: BootstrapDialog.TYPE_DANGER,
+			closable: true,
+			draggable: true,
+			btnOKClass: 'btn-danger',
+			callback: function(result) {
+				if(result) {
+					$.ajax({
+						url: base_url + 'index.php/logbookadvanced/fixMissingDxcc',
+						type: 'post',
+						data: {
+							all: 'false'
+						},
+						success: function(data) {
+							$('#updateDxccBtn').prop("disabled", false).removeClass("running");
+							$('.result').html(data);
+						},
+						error: function(xhr, status, error) {
+							$('#updateDxccBtn').prop("disabled", false).removeClass("running");
+							$('.result').html(error);
+						}
+					})
+				} else {
+					$('#updateDxccBtn').prop("disabled", false).removeClass("running");
+				}
+
 			},
-			type: 'POST',
-			success: function(response) {
-				alert('dxcc');
-			},
-			error: function(xhr, status, error) {
-				alert('error');
-			}
 		});
 	}
