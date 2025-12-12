@@ -10,7 +10,7 @@ L.Maidenhead = L.LayerGroup.extend({
 
 		workedColor: user_map_custom?.qso?.color
 			? hexToRgba(user_map_custom.qso.color, 0.5)
-			: 'rgba(255, 0, 0, 0.5)',
+			: 'rgba(229, 165, 10, 0.5)',
 
 		confirmedColor: user_map_custom?.qsoconfirm?.color
 			? hexToRgba(user_map_custom.qsoconfirm.color, 0.5)

@@ -34,9 +34,18 @@ var isLoading = false;     // Prevent duplicate API calls
 var isModalLoading = false; // Prevent duplicate modal opens
 
 // Use user-customizable map colors (same as RAC and other awards)
-var confirmedColor = user_map_custom.qsoconfirm.color;
-var workedColor = user_map_custom.qso.color;
-var unworkedColor = (typeof(user_map_custom.unworked) !== 'undefined') ? user_map_custom.unworked.color : 'red';
+let confirmedColor = 'rgba(144,238,144)';
+if (typeof(user_map_custom.qsoconfirm) !== 'undefined') {
+    confirmedColor = user_map_custom.qsoconfirm.color;
+}
+let workedColor = 'rgba(229, 165, 10)';
+if (typeof(user_map_custom.qso) !== 'undefined') {
+    workedColor = user_map_custom.qso.color;
+}
+let unworkedColor = 'rgba(204, 55, 45)';
+if (typeof(user_map_custom.unworked) !== 'undefined') {
+    unworkedColor = user_map_custom.unworked.color;
+}
 
 function showMapSpinner() {
     var mapContainer = $('#polska-map');

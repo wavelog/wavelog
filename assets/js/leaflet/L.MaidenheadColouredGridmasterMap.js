@@ -11,14 +11,14 @@ L.Maidenhead = L.LayerGroup.extend({
 
 		workedColor: user_map_custom?.qso?.color
 			? hexToRgba(user_map_custom.qso.color, 0.5)
-			: 'rgba(255, 251, 0, 0.5)',
+			: 'rgba(229, 165, 10, 0.5)',
 
 		confirmedColor: user_map_custom?.qsoconfirm?.color
 			? hexToRgba(user_map_custom.qsoconfirm.color, 0.5)
-			: 'rgba(144,238,144, 0.5)',
+			: 'rgba(144, 238, 144, 0.5)',
 		unworkedColor : user_map_custom?.unworked?.color
 			? hexToRgba(user_map_custom.unworked.color, 0.5)
-			: 'rgba(255, 0, 0, 0.5)',
+			: 'rgba(204, 55, 45, 0.5)',
 
 		// Redraw on move or moveend
 		redraw: 'move'
