@@ -20,8 +20,8 @@ class Awards extends CI_Controller {
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$map_custom = json_decode($this->optionslib->get_map_custom());
-		$this->user_map_color_qso = $map_custom->qso->color;
-		$this->user_map_color_qsoconfirm = $map_custom->qsoconfirm->color;
+		$this->user_map_color_qso = $map_custom->qso->color ?? '';
+		$this->user_map_color_qsoconfirm = $map_custom->qsoconfirm->color ?? '';
 		$this->user_map_color_unworked = $map_custom->unworked->color ?? '';
 	}
 
