@@ -5,13 +5,17 @@ let map;
 let info;
 let clickmarkers = [];
 
-let confirmedColor = user_map_custom.qsoconfirm.color;
-let workedColor = user_map_custom.qso.color;
-let unworkedColor = '';
+let confirmedColor = 'rgba(144,238,144)';
+if (typeof(user_map_custom.qsoconfirm) !== 'undefined') {
+      confirmedColor = user_map_custom.qsoconfirm.color;
+}
+let workedColor = 'rgba(229, 165, 10)';
+if (typeof(user_map_custom.qso) !== 'undefined') {
+      workedColor = user_map_custom.qso.color;
+}
+let unworkedColor = 'rgba(204, 55, 45)';
 if (typeof(user_map_custom.unworked) !== 'undefined') {
-	unworkedColor = user_map_custom.unworked.color;
-} else {
-	unworkedColor = 'red';
+   unworkedColor = user_map_custom.unworked.color;
 }
 
 const states =  'AK,AL,AR,AZ,CA,CO,CT,DE,FL,GA,HI,IA,ID,IL,IN,KS,KY,LA,MA,MD,ME,MI,MN,MO,MS,MT,NC,ND,NE,NH,NJ,NM,NV,NY,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VA,VT,WA,WI,WV,WY';
