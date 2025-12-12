@@ -447,7 +447,7 @@
 											<?php if(!isset($user_dxwaterfall_enable)) { $user_dxwaterfall_enable='N'; }?>
 											<select class="form-select" id="user_dxwaterfall_enable" name="user_dxwaterfall_enable" aria-describedby="user_dxwaterfall_enable_Help" required>
 												<option value='Y' <?php if($user_dxwaterfall_enable == "Y") { echo "selected=\"selected\""; } ?>><?= __("Enabled"); ?></option>
-												<option value='E' <?php if($user_dxwaterfall_enable == "E") { echo "selected=\"selected\""; } ?>><?= __("Enabled").' '.__("Eye friendly"); ?></option>
+												<option value='E' <?php if($user_dxwaterfall_enable == "E") { echo "selected=\"selected\""; } ?>><?= __("Enabled").' '.__("squelched"); ?></option>
 												<option value='N' <?php if($user_dxwaterfall_enable == "N") { echo "selected=\"selected\""; } ?>><?= __("Disabled"); ?></option>
 											</select>
 											<small id="user_dxwaterfall_enable_Help" class="form-text text-muted"><?= __("Show an interactive DX Cluster 'Waterfall' on the QSO logging page."); ?></small>
