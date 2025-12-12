@@ -1,6 +1,6 @@
 var map;
 var plotlayers=[];
-var iconsList={'qso':{'color':'#FF0000','icon':'fas fa-dot-circle'}};
+var iconsList={'qso':{'color':'#E5A50A','icon':'fas fa-dot-circle'}};
 
 var stationIcon = L.divIcon({className:'cspot_station'});
 var qsoIcon = L.divIcon({className:'cspot_qso'}); //default (fas fa-dot-circle red)
