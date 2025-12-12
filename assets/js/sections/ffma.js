@@ -3,10 +3,19 @@ let grid_four = '';
 let grid_four_lotw = '';
 let grid_four_paper = '';
 
-let confirmedColor = user_map_custom.qsoconfirm.color;
+let confirmedColor = 'rgba(144,238,144)';
+if (typeof(user_map_custom.qsoconfirm) !== 'undefined') {
+      confirmedColor = user_map_custom.qsoconfirm.color;
+}
+let workedColor = 'rgba(229, 165, 10)';
+if (typeof(user_map_custom.qso) !== 'undefined') {
+      workedColor = user_map_custom.qso.color;
+}
 // Take station color for paper QSLs here
-let paperColor = user_map_custom.station.color
-let workedColor = user_map_custom.qso.color;
+let paperColor = 'rgba(204, 55, 45)';
+if (typeof(user_map_custom.station) !== 'undefined') {
+	paperColor = user_map_custom.station.color;
+}
 
 function gridPlot(form) {
     $(".ld-ext-right-plot").addClass('running');
