@@ -1,12 +1,12 @@
 var modalloading=false;
 
 let confirmedColor = 'rgba(144,238,144)';
-if (typeof user_map_custom.qsoconfirm !== 'undefined') {
-   confirmedColor = user_map_custom.qsoconfirm.color;
+if (typeof(user_map_custom.qsoconfirm) !== 'undefined') {
+      confirmedColor = user_map_custom.qsoconfirm.color;
 }
-let workedColor = 'rgba(255, 0, 0)';
-if (typeof user_map_custom.qso !== 'undefined') {
-   workedColor = user_map_custom.qso.color;
+let workedColor = 'rgba(229, 165, 10)';
+if (typeof(user_map_custom.qso) !== 'undefined') {
+      workedColor = user_map_custom.qso.color;
 }
 
 document.addEventListener("DOMContentLoaded", function() {
