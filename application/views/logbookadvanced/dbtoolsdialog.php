@@ -86,7 +86,7 @@
 						<p class="mb-1 small alert-danger"><?= __("This will overwrite ALL existing DXCC information!") ?></p>
                     </div>
                     <div class="d-flex nowrap">
-                        <button type="button" class="btn btn-sm btn-primary ld-ext-right" id="updateDxccBtn" onclick="fixMissingDxcc('All')">
+                        <button type="button" class="btn btn-sm btn-primary ld-ext-right" id="updateDxccBtn" onclick="fixMissingDxcc(true)">
                             <?= __("Run") ?><div class="ld ld-ring ld-spin"></div>
                         </button>
                     </div>

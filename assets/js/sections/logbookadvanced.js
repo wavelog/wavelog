@@ -2296,36 +2296,61 @@ function saveOptions() {
 
 	}
 
-	function fixMissingDxcc() {
-		$('#updateDxccBtn').prop("disabled", true).addClass("running");
-		BootstrapDialog.confirm({
-			title: lang_general_word_danger,
-			message: lang_gen_advanced_logbook_confirm_fix_missing_dxcc,
-			type: BootstrapDialog.TYPE_DANGER,
-			closable: true,
-			draggable: true,
-			btnOKClass: 'btn-danger',
-			callback: function(result) {
-				if(result) {
-					$.ajax({
-						url: base_url + 'index.php/logbookadvanced/fixMissingDxcc',
-						type: 'post',
-						data: {
-							all: 'false'
-						},
-						success: function(data) {
-							$('#updateDxccBtn').prop("disabled", false).removeClass("running");
-							$('.result').html(data);
-						},
-						error: function(xhr, status, error) {
-							$('#updateDxccBtn').prop("disabled", false).removeClass("running");
-							$('.result').html(error);
-						}
-					})
-				} else {
-					$('#updateDxccBtn').prop("disabled", false).removeClass("running");
-				}
+	function fixMissingDxcc(all) {
+		if (all === true) {
+			$('#updateDxccBtn').prop("disabled", true).addClass("running");
+			BootstrapDialog.confirm({
+				title: lang_general_word_danger,
+				message: lang_gen_advanced_logbook_confirm_fix_missing_dxcc,
+				type: BootstrapDialog.TYPE_DANGER,
+				closable: true,
+				draggable: true,
+				btnOKClass: 'btn-danger',
+				callback: function(result) {
+					if(result) {
+						$('#closeButton').prop("disabled", true);
+						$.ajax({
+							url: base_url + 'index.php/logbookadvanced/fixMissingDxcc',
+							type: 'post',
+							data: {
+								all: all
+							},
+							success: function(data) {
+								$('#updateDxccBtn').prop("disabled", false).removeClass("running");
+								$('.result').html(data);
+								$('#closeButton').prop("disabled", false);
+							},
+							error: function(xhr, status, error) {
+								$('#updateDxccBtn').prop("disabled", false).removeClass("running");
+								$('#closeButton').prop("disabled", false);
+								$('.result').html(error);
+							}
+						})
+					} else {
+						$('#updateDxccBtn').prop("disabled", false).removeClass("running");
+					}
 
-			},
-		});
+				},
+			});
+		} else {
+			$('#fixMissingDxccBtn').prop("disabled", true).addClass("running");
+			$('#closeButton').prop("disabled", true);
+			$.ajax({
+				url: base_url + 'index.php/logbookadvanced/fixMissingDxcc',
+				type: 'post',
+				data: {
+					all: all
+				},
+				success: function(data) {
+					$('#fixMissingDxccBtn').prop("disabled", false).removeClass("running");
+					$('.result').html(data);
+					$('#closeButton').prop("disabled", false);
+				},
+				error: function(xhr, status, error) {
+					$('#fixMissingDxccBtn').prop("disabled", false).removeClass("running");
+					$('#closeButton').prop("disabled", false);
+					$('.result').html(error);
+				}
+			})
+		}
 	}

@@ -42,7 +42,7 @@ function check_missing_dxcc($result) { ?>
 	<h5>DXCC Check Results</h5>
 	QSOs to update found: <?php echo $result[0]->count; ?>
 	<br/>
-	<button type="button" class="mt-2 btn btn-sm btn-primary ld-ext-right" id="updateDistancesBtn" onclick="fixMissingDxcc('All')">
+	<button type="button" class="mt-2 btn btn-sm btn-primary ld-ext-right" id="fixMissingDxccBtn" onclick="fixMissingDxcc(false)">
 		<?= __("Run fix") ?><div class="ld ld-ring ld-spin"></div>
 	</button>
 <?php }

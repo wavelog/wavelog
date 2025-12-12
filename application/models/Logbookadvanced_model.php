@@ -1605,7 +1605,7 @@ class Logbookadvanced_model extends CI_Model {
 		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
 		$this->db->where("station_profile.user_id", $this->session->userdata('user_id'));
 
-		if (!$all) { // check which to update - records with no dxcc or all records
+		if ($all == 'false') { // check which to update - records with no dxcc or all records
 			$this->db->group_start();
 			$this->db->where("COL_DXCC is NULL");
 			$this->db->or_where("COL_DXCC = ''");

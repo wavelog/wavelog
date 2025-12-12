@@ -945,6 +945,10 @@ class Logbookadvanced extends CI_Controller {
         $result = $this->logbookadvanced_model->check_missing_dxcc_id($all);
 
 		header("Content-Type: application/json");
-		echo json_encode(__("The number of QSOs re-checked for DXCC was") .' ' . $result);
+		if ($all == 'false') {
+			echo json_encode(__("The number of QSOs updated for missing DXCC IDs was") .' ' . $result);
+		} else {
+			echo json_encode(__("The number of QSOs re-checked for DXCC was") .' ' . $result);
+		}
 	}
 }
