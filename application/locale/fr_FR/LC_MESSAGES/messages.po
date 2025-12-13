@@ -20,8 +20,8 @@ msgstr ""
 "POT-Creation-Date: 2025-12-08 10:52+0000\n"
 "PO-Revision-Date: 2025-12-12 09:26+0000\n"
 "Last-Translator: JONCOUX Philippe <joncoux@free.fr>\n"
-"Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/fr/>\n"
+"Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/fr/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -360,7 +360,7 @@ msgstr "Trophées - %s"
 #: application/views/qso/edit_ajax.php:401 application/views/qso/index.php:337
 #: application/views/qso/index.php:629 application/views/user/edit.php:714
 #: application/views/view_log/qso.php:466 application/views/qso/index.php:354
-#: application/views/qso/index.php:648
+#: application/views/qso/index.php:648 application/views/user/edit.php:715
 msgid "DOK"
 msgstr "DOK"
 
@@ -591,7 +591,7 @@ msgstr "Fred Fish Memorial Award (FFMA)"
 #: application/views/qso/index.php:615 application/views/user/edit.php:710
 #: application/views/view_log/qso.php:431
 #: application/views/view_log/qso.php:742 application/views/qso/index.php:338
-#: application/views/qso/index.php:634
+#: application/views/qso/index.php:634 application/views/user/edit.php:711
 msgid "SIG"
 msgstr "SIG"
 
@@ -801,6 +801,7 @@ msgstr "Aucun utilisateur n'a configuré Clublog."
 #: application/views/view_log/partial/log_ajax.php:222
 #: application/views/view_log/qso.php:571
 #: application/views/view_log/qso.php:576 application/views/user/edit.php:854
+#: application/views/user/edit.php:628 application/views/user/edit.php:855
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -939,6 +940,7 @@ msgstr "Importation de la clé DCL"
 #: application/views/view_log/partial/log_ajax.php:225
 #: application/views/view_log/qso.php:581
 #: application/views/view_log/qso.php:586 application/views/user/edit.php:862
+#: application/views/user/edit.php:629 application/views/user/edit.php:863
 msgid "DCL"
 msgstr "DCL"
 
@@ -1329,6 +1331,7 @@ msgstr "Journal de trafic"
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:108
 #: application/views/timeline/index.php:56 application/views/user/edit.php:623
 #: application/views/user/edit.php:816 application/views/user/edit.php:820
+#: application/views/user/edit.php:624 application/views/user/edit.php:821
 msgid "QSL"
 msgstr "QSL"
 
@@ -1368,6 +1371,7 @@ msgstr "QSL"
 #: application/views/timeline/index.php:60 application/views/user/edit.php:624
 #: application/views/user/edit.php:826 application/views/view_log/qso.php:537
 #: application/views/view_log/qso.php:542 application/views/user/edit.php:830
+#: application/views/user/edit.php:625 application/views/user/edit.php:831
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1405,6 +1409,8 @@ msgstr "LoTW"
 #: application/views/timeline/index.php:64 application/views/user/edit.php:625
 #: application/views/user/edit.php:834 application/views/user/edit.php:908
 #: application/views/user/edit.php:838 application/views/user/edit.php:912
+#: application/views/user/edit.php:626 application/views/user/edit.php:839
+#: application/views/user/edit.php:913
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1876,6 +1882,7 @@ msgstr "Opérateur"
 #: application/views/view_log/partial/log_ajax.php:31
 #: application/views/view_log/qso.php:341
 #: application/views/view_log/qso.php:694 application/views/qso/index.php:465
+#: application/views/interface_assets/footer.php:822
 msgid "Deleted DXCC"
 msgstr "DXCC Supprimé"
 
@@ -1894,7 +1901,7 @@ msgstr "Recherche rapide"
 #: application/views/lotw/import.php:3 application/views/lotw_views/index.php:9
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:880 application/views/visitor/index.php:328
-#: application/views/user/edit.php:884
+#: application/views/user/edit.php:884 application/views/user/edit.php:885
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
@@ -2432,6 +2439,8 @@ msgstr "Par défaut (cliquez pour libérer)"
 #: application/views/stationsetup/stationsetup.php:172
 #: application/views/themes/index.php:104 application/views/user/index.php:97
 #: application/views/user/index.php:203
+#: application/views/interface_assets/footer.php:682
+#: application/views/interface_assets/footer.php:691
 msgid "Edit"
 msgstr "Editer"
 
@@ -2461,6 +2470,10 @@ msgstr "Editer"
 #: application/views/stationsetup/stationsetup.php:199
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:778
+#: application/views/interface_assets/footer.php:2761
+#: application/views/interface_assets/footer.php:2779
+#: application/views/interface_assets/footer.php:2800
+#: application/views/interface_assets/footer.php:2818
 msgid "Delete"
 msgstr "Supprimer"
 
@@ -2630,6 +2643,7 @@ msgstr "Modifier l'emplacement de la station : "
 #: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115 application/views/qso/index.php:130
 #: application/views/qso/index.php:391 application/views/user/edit.php:718
+#: application/views/user/edit.php:719
 msgid "Station Location"
 msgstr "Profil de la Station"
 
@@ -2711,6 +2725,9 @@ msgstr "Erreur. Le lien est déjà utilisé !"
 #: application/views/options/appearance.php:67
 #: application/views/options/appearance.php:76
 #: application/views/options/appearance.php:85
+#: application/views/user/edit.php:451 application/views/user/edit.php:502
+#: application/views/user/edit.php:511 application/views/user/edit.php:668
+#: application/views/user/edit.php:678
 msgid "Disabled"
 msgstr "Désactivé"
 
@@ -3888,6 +3905,9 @@ msgstr "Différence"
 #: application/views/user/edit.php:800
 #: application/views/visitor/layout/footer.php:173
 #: application/views/user/edit.php:804
+#: application/views/interface_assets/footer.php:1646
+#: application/views/interface_assets/footer.php:1785
+#: application/views/user/edit.php:805
 msgid "All"
 msgstr "Tout"
 
@@ -4317,7 +4337,7 @@ msgstr "Confirmation"
 #: application/views/awards/was/index.php:73
 #: application/views/awards/wpx/index.php:40
 #: application/views/gridmap/index.php:195 application/views/user/edit.php:842
-#: application/views/user/edit.php:846
+#: application/views/user/edit.php:846 application/views/user/edit.php:847
 msgid "QRZ.com"
 msgstr "QRZ.com"
 
@@ -4721,6 +4741,8 @@ msgstr ""
 #: application/views/interface_assets/footer.php:34
 #: application/views/interface_assets/footer.php:639
 #: application/views/interface_assets/footer.php:2515
+#: application/views/interface_assets/footer.php:642
+#: application/views/interface_assets/footer.php:2518
 msgid "DANGER"
 msgstr "DANGER"
 
@@ -5167,6 +5189,7 @@ msgstr "Nom simple pour décrire l'utilisation de cette API."
 #: application/views/satellite/pass.php:115
 #: application/views/simplefle/index.php:22
 #: application/views/options/appearance.php:91
+#: application/views/interface_assets/footer.php:677
 msgid "Save"
 msgstr "Enregistrer"
 
@@ -5774,6 +5797,7 @@ msgstr "Afficher QSO avec type QSL"
 #: application/views/logbookadvanced/index.php:54
 #: application/views/qso/edit_ajax.php:419
 #: application/views/view_log/qso.php:25
+#: application/views/interface_assets/footer.php:2497
 msgid "QSL Card"
 msgstr "Carte QSL"
 
@@ -5966,7 +5990,7 @@ msgstr "Chaque bande"
 #: application/views/oqrs/showrequests.php:70
 #: application/views/qrbcalc/index.php:19
 #: application/views/search/filter.php:43 application/views/user/edit.php:718
-#: application/views/user/edit.php:722
+#: application/views/user/edit.php:722 application/views/user/edit.php:723
 msgid "Reset"
 msgstr "Réinitialiser"
 
@@ -6853,7 +6877,7 @@ msgstr ""
 #: application/views/station_profile/edit.php:276
 #: application/views/user/edit.php:706 application/views/view_log/qso.php:409
 #: application/views/view_log/qso.php:735 application/views/qso/index.php:326
-#: application/views/qso/index.php:622
+#: application/views/qso/index.php:622 application/views/user/edit.php:707
 msgid "POTA Reference(s)"
 msgstr "Référence POTA"
 
@@ -7395,7 +7419,7 @@ msgstr "Champs requis pour ce trophée : WWFF (ADIF : WWFF_REF)"
 #: application/views/station_profile/edit.php:263
 #: application/views/user/edit.php:702 application/views/view_log/qso.php:402
 #: application/views/view_log/qso.php:728 application/views/qso/index.php:314
-#: application/views/qso/index.php:609
+#: application/views/qso/index.php:609 application/views/user/edit.php:703
 msgid "WWFF Reference"
 msgstr "Référence WWFF"
 
@@ -8783,6 +8807,12 @@ msgstr ""
 #: application/views/user/edit.php:1000 application/views/user/edit.php:1008
 #: application/views/user/edit.php:1028 application/views/user/edit.php:1057
 #: application/views/user/edit.php:1089 application/views/user/edit.php:1114
+#: application/views/user/edit.php:470 application/views/user/edit.php:481
+#: application/views/user/edit.php:602 application/views/user/edit.php:656
+#: application/views/user/edit.php:985 application/views/user/edit.php:1001
+#: application/views/user/edit.php:1009 application/views/user/edit.php:1029
+#: application/views/user/edit.php:1058 application/views/user/edit.php:1090
+#: application/views/user/edit.php:1115
 msgid "Yes"
 msgstr "Oui"
 
@@ -8852,6 +8882,12 @@ msgstr "Oui"
 #: application/views/user/edit.php:983 application/views/user/edit.php:999
 #: application/views/user/edit.php:1027 application/views/user/edit.php:1058
 #: application/views/user/edit.php:1088 application/views/user/edit.php:1113
+#: application/views/user/edit.php:471 application/views/user/edit.php:482
+#: application/views/user/edit.php:573 application/views/user/edit.php:577
+#: application/views/user/edit.php:603 application/views/user/edit.php:658
+#: application/views/user/edit.php:984 application/views/user/edit.php:1000
+#: application/views/user/edit.php:1028 application/views/user/edit.php:1059
+#: application/views/user/edit.php:1089 application/views/user/edit.php:1114
 msgid "No"
 msgstr "Non"
 
@@ -9751,7 +9787,10 @@ msgstr "Identifier"
 #: application/views/options/appearance.php:66
 #: application/views/options/appearance.php:75
 #: application/views/options/appearance.php:84
-#: application/views/user/edit.php:980
+#: application/views/user/edit.php:980 application/views/user/edit.php:450
+#: application/views/user/edit.php:503 application/views/user/edit.php:512
+#: application/views/user/edit.php:667 application/views/user/edit.php:677
+#: application/views/user/edit.php:981
 msgid "Enabled"
 msgstr "Activé"
 
@@ -11377,6 +11416,10 @@ msgstr "Date de la QSL"
 #: application/views/interface_assets/footer.php:2816
 #: application/views/qslcard/index.php:77
 #: application/views/view_log/qso.php:779
+#: application/views/interface_assets/footer.php:2762
+#: application/views/interface_assets/footer.php:2780
+#: application/views/interface_assets/footer.php:2801
+#: application/views/interface_assets/footer.php:2819
 msgid "View"
 msgstr "Voir"
 
@@ -11474,7 +11517,7 @@ msgid "Warning! Are you sure you want delete QSO with "
 msgstr "Attention ! Êtes-vous sûr de vouloir supprimer le QSO avec "
 
 #: application/views/interface_assets/footer.php:44
-#: application/views/user/edit.php:543
+#: application/views/user/edit.php:543 application/views/user/edit.php:544
 msgid "Colors"
 msgstr "Couleurs"
 
@@ -11854,45 +11897,58 @@ msgid "Failed to load the modal. Please try again."
 msgstr "Échec du chargement de la fenêtre modale. Veuillez réessayer."
 
 #: application/views/interface_assets/footer.php:529
+#: application/views/interface_assets/footer.php:532
 msgid "Description:"
 msgstr "Description :"
 
 #: application/views/interface_assets/footer.php:532
+#: application/views/interface_assets/footer.php:535
 msgid "Query description"
 msgstr "Description de la requête"
 
 #: application/views/interface_assets/footer.php:548
+#: application/views/interface_assets/footer.php:551
 msgid "Your query has been saved!"
 msgstr "Votre requête a été enregistrée !"
 
 #: application/views/interface_assets/footer.php:550
 #: application/views/search/filter.php:49
+#: application/views/interface_assets/footer.php:553
 msgid "Edit queries"
 msgstr "Modifier les requêtes"
 
 #: application/views/interface_assets/footer.php:552
+#: application/views/interface_assets/footer.php:555
 msgid "Stored queries:"
 msgstr "Requêtes stockées :"
 
 #: application/views/interface_assets/footer.php:557
 #: application/views/search/filter.php:63
+#: application/views/interface_assets/footer.php:560
 msgid "Run Query"
 msgstr "Exécuter la requête"
 
 #: application/views/interface_assets/footer.php:569
 #: application/views/interface_assets/footer.php:705
 #: application/views/interface_assets/footer.php:775
+#: application/views/interface_assets/footer.php:572
+#: application/views/interface_assets/footer.php:708
+#: application/views/interface_assets/footer.php:778
 msgid "Stored Queries"
 msgstr "Requêtes stockées"
 
 #: application/views/interface_assets/footer.php:574
 #: application/views/interface_assets/footer.php:780
+#: application/views/interface_assets/footer.php:577
+#: application/views/interface_assets/footer.php:783
 msgid "You need to make a query before you search!"
 msgstr "Vous devez faire une requête avant de rechercher !"
 
 #: application/views/interface_assets/footer.php:595
 #: application/views/interface_assets/footer.php:732
 #: application/views/search/filter.php:82
+#: application/views/interface_assets/footer.php:598
+#: application/views/interface_assets/footer.php:735
 msgid "Export to ADIF"
 msgstr "Exporter vers ADIF"
 
@@ -11901,30 +11957,38 @@ msgstr "Exporter vers ADIF"
 #: application/views/search/cqzones.php:40
 #: application/views/search/ituzones.php:40
 #: application/views/search/main.php:37
+#: application/views/interface_assets/footer.php:599
+#: application/views/interface_assets/footer.php:736
 msgid "Open in the Advanced Logbook"
 msgstr "Ouvrir dans le journal de trafic avancé"
 
 #: application/views/interface_assets/footer.php:640
+#: application/views/interface_assets/footer.php:643
 msgid "Warning! Are you sure you want delete this stored query?"
 msgstr "Attention ! Voulez-vous vraiment supprimer cette requête enregistrée ?"
 
 #: application/views/interface_assets/footer.php:654
+#: application/views/interface_assets/footer.php:657
 msgid "The stored query has been deleted!"
 msgstr "La requête enregistrée a été supprimée !"
 
 #: application/views/interface_assets/footer.php:663
+#: application/views/interface_assets/footer.php:666
 msgid "The stored query could not be deleted. Please try again!"
 msgstr "La requête enregistrée n'a pas pu être supprimée. Veuillez réessayer !"
 
 #: application/views/interface_assets/footer.php:689
+#: application/views/interface_assets/footer.php:692
 msgid "The query description has been updated!"
 msgstr "La description de la requête a été mise à jour !"
 
 #: application/views/interface_assets/footer.php:693
+#: application/views/interface_assets/footer.php:696
 msgid "Something went wrong with the save. Please try again!"
 msgstr "Une erreur s'est produite lors de la sauvegarde. Veuillez réessayer !"
 
 #: application/views/interface_assets/footer.php:822
+#: application/views/interface_assets/footer.php:825
 msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
 "Check which DXCC for this particular location is the correct one. If you are "
@@ -11936,14 +12000,17 @@ msgstr ""
 
 #: application/views/interface_assets/footer.php:875
 #: application/views/logbookadvanced/index.php:792
+#: application/views/interface_assets/footer.php:878
 msgid "Callsign: "
 msgstr "Indicatif : "
 
 #: application/views/interface_assets/footer.php:876
+#: application/views/interface_assets/footer.php:879
 msgid "Count: "
 msgstr "Quantité : "
 
 #: application/views/interface_assets/footer.php:877
+#: application/views/interface_assets/footer.php:880
 msgid "Grids: "
 msgstr "Locator : "
 
@@ -11951,6 +12018,7 @@ msgstr "Locator : "
 #: application/views/logbookadvanced/index.php:13
 #: application/views/logbookadvanced/useroptions.php:210
 #: application/views/satellite/flightpath.php:11
+#: application/views/interface_assets/footer.php:1198
 msgctxt "Map Options"
 msgid "Gridsquares"
 msgstr "Locator"
@@ -11961,51 +12029,68 @@ msgstr "Locator"
 #: application/views/interface_assets/footer.php:1714
 #: application/views/interface_assets/footer.php:1718
 #: application/views/interface_assets/footer.php:1721
+#: application/views/interface_assets/footer.php:1573
+#: application/views/interface_assets/footer.php:1580
+#: application/views/interface_assets/footer.php:1717
+#: application/views/interface_assets/footer.php:1724
 msgid "grid square"
 msgstr "Grilles des Locators"
 
 #: application/views/interface_assets/footer.php:1577
 #: application/views/interface_assets/footer.php:1721
+#: application/views/interface_assets/footer.php:1580
+#: application/views/interface_assets/footer.php:1724
 msgid "Total count"
 msgstr "Total"
 
 #: application/views/interface_assets/footer.php:2496
+#: application/views/interface_assets/footer.php:2499
 msgid "QSL Card for "
 msgstr "Carte QSL pour "
 
 #: application/views/interface_assets/footer.php:2516
+#: application/views/interface_assets/footer.php:2519
 msgid "Warning! Are you sure you want to delete this QSL card?"
 msgstr "Attention ! Voulez-vous vraiment supprimer cette carte QSL ?"
 
 #: application/views/interface_assets/footer.php:2556
 #: application/views/view_log/qso.php:43
+#: application/views/interface_assets/footer.php:2559
 msgid "eQSL Card"
 msgstr "Carte eQSL"
 
 #: application/views/interface_assets/footer.php:2558
+#: application/views/interface_assets/footer.php:2561
 msgid "eQSL Card for "
 msgstr "eQSL pour "
 
 #: application/views/interface_assets/footer.php:2770
 #: application/views/interface_assets/footer.php:2809
 #: application/views/view_log/qso.php:769
+#: application/views/interface_assets/footer.php:2773
+#: application/views/interface_assets/footer.php:2812
 msgid "QSL image file"
 msgstr "Fichier image de la QSL"
 
 #: application/views/interface_assets/footer.php:2789
+#: application/views/interface_assets/footer.php:2792
 msgid "Front QSL Card:"
 msgstr "Recto de la carte QSL :"
 
 #: application/views/interface_assets/footer.php:2827
+#: application/views/interface_assets/footer.php:2830
 msgid "Back QSL Card:"
 msgstr "Verso de la carte QSL :"
 
 #: application/views/interface_assets/footer.php:2838
 #: application/views/interface_assets/footer.php:2863
+#: application/views/interface_assets/footer.php:2841
+#: application/views/interface_assets/footer.php:2866
 msgid "Add additional QSOs to a QSL Card"
 msgstr "Ajouter des QSO supplémentaires à une carte QSL"
 
 #: application/views/interface_assets/footer.php:2874
+#: application/views/interface_assets/footer.php:2877
 msgid "Something went wrong. Please try again!"
 msgstr "Une erreur s'est produite. Veuillez réessayer !"
 
@@ -12191,6 +12276,7 @@ msgstr "Log"
 #: application/views/logbookadvanced/index.php:689
 #: application/views/oqrs/index.php:28 application/views/user/edit.php:490
 #: application/views/visitor/layout/header.php:95
+#: application/views/user/edit.php:491
 msgid "Search Callsign"
 msgstr "Rechercher l'indicatif"
 
@@ -13563,6 +13649,7 @@ msgstr "De"
 #: application/views/logbookadvanced/useroptions.php:86
 #: application/views/qso/edit_ajax.php:428
 #: application/views/timeline/index.php:72 application/views/user/edit.php:626
+#: application/views/user/edit.php:627
 msgid "QRZ"
 msgstr "QRZ"
 
@@ -14507,7 +14594,7 @@ msgstr "Envoyer une requête non enregistrée"
 #: application/views/view_log/qso.php:728
 #: application/views/view_log/qso.php:735
 #: application/views/view_log/qso.php:742
-#: application/views/view_log/qso.php:747
+#: application/views/view_log/qso.php:747 application/views/user/edit.php:529
 msgid "Station"
 msgstr "Station"
 
@@ -15188,7 +15275,7 @@ msgstr "Comté de la station"
 #: application/views/qso/index.php:621 application/views/user/edit.php:710
 #: application/views/view_log/qso.php:447
 #: application/views/view_log/qso.php:747 application/views/qso/index.php:345
-#: application/views/qso/index.php:640
+#: application/views/qso/index.php:640 application/views/user/edit.php:711
 msgid "SIG Info"
 msgstr "Information sur le signal"
 
@@ -15343,7 +15430,7 @@ msgstr "Recherchez le dernier Spot sur DXCluster"
 #: application/views/station_profile/edit.php:222
 #: application/views/user/edit.php:694 application/views/view_log/qso.php:388
 #: application/views/view_log/qso.php:714 application/views/qso/index.php:286
-#: application/views/qso/index.php:579
+#: application/views/qso/index.php:579 application/views/user/edit.php:695
 msgid "IOTA Reference"
 msgstr "Référence IOTA"
 
@@ -15352,7 +15439,7 @@ msgstr "Référence IOTA"
 #: application/views/station_profile/edit.php:250
 #: application/views/user/edit.php:698 application/views/view_log/qso.php:395
 #: application/views/view_log/qso.php:721 application/views/qso/index.php:302
-#: application/views/qso/index.php:596
+#: application/views/qso/index.php:596 application/views/user/edit.php:699
 msgid "SOTA Reference"
 msgstr "Référence SOTA"
 
@@ -16882,6 +16969,7 @@ msgstr "Informations sur les groupes d'intérêt spéciaux"
 
 #: application/views/station_profile/edit.php:309
 #: application/views/user/edit.php:908 application/views/user/edit.php:912
+#: application/views/user/edit.php:913
 #, php-format
 msgid "Trouble? Check the %swiki%s."
 msgstr "Problème ? Consultez le %swiki%s."
@@ -17626,25 +17714,25 @@ msgstr "Nombre de contacts précédents affichés sur la page QSO."
 msgid "DX Waterfall"
 msgstr "DX Waterfall"
 
-#: application/views/user/edit.php:452
+#: application/views/user/edit.php:452 application/views/user/edit.php:453
 msgid "Show an interactive DX Cluster 'Waterfall' on the QSO logging page."
 msgstr ""
 "Afficher un « effet cascade » interactif du DX cluster sur la page "
 "d'enregistrement des QSO."
 
-#: application/views/user/edit.php:463
+#: application/views/user/edit.php:463 application/views/user/edit.php:464
 msgid "Menu Options"
 msgstr "Menu principal"
 
-#: application/views/user/edit.php:466
+#: application/views/user/edit.php:466 application/views/user/edit.php:467
 msgid "Show notes in the main menu."
 msgstr "Voir les notes dans le main principal."
 
-#: application/views/user/edit.php:477
+#: application/views/user/edit.php:477 application/views/user/edit.php:478
 msgid "Quicklog Field"
 msgstr "Champ Quicklog"
 
-#: application/views/user/edit.php:483
+#: application/views/user/edit.php:483 application/views/user/edit.php:484
 msgid ""
 "With this feature, you can log callsigns using the search field in the "
 "header."
@@ -17652,25 +17740,25 @@ msgstr ""
 "(Si 'oui', vous pouvez enregistrer les indicatifs d'appel en utilisant le "
 "champ de recherche dans la barre du haut)."
 
-#: application/views/user/edit.php:487
+#: application/views/user/edit.php:487 application/views/user/edit.php:488
 msgid "Quicklog - Action on press Enter"
 msgstr "Quicklog - Action sur la touche 'Entrée'"
 
-#: application/views/user/edit.php:491
+#: application/views/user/edit.php:491 application/views/user/edit.php:492
 msgid "Log Callsign"
 msgstr "Enregistre l'indicatif"
 
-#: application/views/user/edit.php:493
+#: application/views/user/edit.php:493 application/views/user/edit.php:494
 msgid ""
 "What action should be performed when Enter is pressed in the quicklog field?"
 msgstr ""
 "Action effectuée lorsque vous appuyez sur 'Entrée' dans le champ quicklog ?"
 
-#: application/views/user/edit.php:499
+#: application/views/user/edit.php:499 application/views/user/edit.php:500
 msgid "Station Locations Quickswitch"
 msgstr "Changement rapide de l'emplacement des stations"
 
-#: application/views/user/edit.php:504
+#: application/views/user/edit.php:504 application/views/user/edit.php:505
 msgid ""
 "Show the Station Locations Quickswitch in the main menu. You can add "
 "locations by adding them to favourites at the station setup page."
@@ -17679,106 +17767,106 @@ msgstr ""
 "Vous pouvez ajouter des emplacements en les ajoutant à vos favoris sur la "
 "page de configuration de la station."
 
-#: application/views/user/edit.php:508
+#: application/views/user/edit.php:508 application/views/user/edit.php:509
 msgid "UTC Time in Menu"
 msgstr "Heure UTC dans le menu"
 
-#: application/views/user/edit.php:513
+#: application/views/user/edit.php:513 application/views/user/edit.php:514
 msgid "Show the current UTC Time in the menu"
 msgstr "Afficher l'heure UTC actuelle dans le menu"
 
-#: application/views/user/edit.php:524
+#: application/views/user/edit.php:524 application/views/user/edit.php:525
 msgid "Map Settings"
 msgstr "Paramètre de la carte"
 
-#: application/views/user/edit.php:531
+#: application/views/user/edit.php:531 application/views/user/edit.php:532
 msgid "Icon"
 msgstr "Icône"
 
-#: application/views/user/edit.php:534
+#: application/views/user/edit.php:534 application/views/user/edit.php:535
 msgid "Not display"
 msgstr "Ne pas afficher"
 
-#: application/views/user/edit.php:538
+#: application/views/user/edit.php:538 application/views/user/edit.php:539
 msgid "Not displayed"
 msgstr "Pas affiché"
 
-#: application/views/user/edit.php:547
+#: application/views/user/edit.php:547 application/views/user/edit.php:548
 msgid "QSO (worked, not confirmed)"
 msgstr "QSO (établi, non confirmé)"
 
-#: application/views/user/edit.php:566
+#: application/views/user/edit.php:566 application/views/user/edit.php:567
 msgid "QSO (confirmed)"
 msgstr "QSO (confirmé)"
 
-#: application/views/user/edit.php:567
+#: application/views/user/edit.php:567 application/views/user/edit.php:568
 msgid "(If 'No', displayed as 'QSO (worked, not confirmed)')"
 msgstr ""
 "(Si la réponse est « Non », affiché comme « QSO (réussi, non confirmé) »)"
 
-#: application/views/user/edit.php:586
+#: application/views/user/edit.php:586 application/views/user/edit.php:587
 msgid "Unworked (e.g. Zones)"
 msgstr "Zones non traitées (ex. : Zones)"
 
-#: application/views/user/edit.php:587
+#: application/views/user/edit.php:587 application/views/user/edit.php:588
 msgid "(Color for unworked zones)"
 msgstr "(Couleur pour les zones non travaillées)"
 
-#: application/views/user/edit.php:597
+#: application/views/user/edit.php:597 application/views/user/edit.php:598
 msgid "Show Locator"
 msgstr "Afficher les Locator"
 
-#: application/views/user/edit.php:616
+#: application/views/user/edit.php:616 application/views/user/edit.php:617
 msgid "Previous QSL Type"
 msgstr "Type de QSL pour le statut"
 
-#: application/views/user/edit.php:620
+#: application/views/user/edit.php:620 application/views/user/edit.php:621
 msgid "Select the type of QSL to show in the previous QSOs section."
 msgstr ""
 "Sélectionner le type de QSL pour le statut à afficher dans la session "
 "'Contacts précédents'."
 
-#: application/views/user/edit.php:637
+#: application/views/user/edit.php:637 application/views/user/edit.php:638
 msgid "Dashboard Settings"
 msgstr "Paramètres du tableau de bord"
 
-#: application/views/user/edit.php:641
+#: application/views/user/edit.php:641 application/views/user/edit.php:642
 msgid "Select the number of latest QSOs to be displayed on dashboard."
 msgstr ""
 "Sélectionnez le nombre de derniers QSO à afficher sur le tableau de bord."
 
-#: application/views/user/edit.php:648
+#: application/views/user/edit.php:648 application/views/user/edit.php:649
 msgid "Choose the number of latest QSOs to be displayed on dashboard."
 msgstr ""
 "Choisissez le nombre de derniers QSO à afficher sur le tableau de bord."
 
-#: application/views/user/edit.php:652
+#: application/views/user/edit.php:652 application/views/user/edit.php:653
 msgid "Show Dashboard Map"
 msgstr "Afficher la carte du tableau de bord"
 
-#: application/views/user/edit.php:656
+#: application/views/user/edit.php:656 application/views/user/edit.php:657
 msgid "Map at right"
 msgstr "Carte à droite"
 
-#: application/views/user/edit.php:659
+#: application/views/user/edit.php:659 application/views/user/edit.php:660
 msgid "Choose whether to show map on dashboard or not"
 msgstr "Choisissez d'afficher ou non la carte sur le tableau de bord"
 
-#: application/views/user/edit.php:663
+#: application/views/user/edit.php:663 application/views/user/edit.php:664
 msgid "Dashboard Notification Banner"
 msgstr "Bandeau de notification du tableau de bord"
 
-#: application/views/user/edit.php:669
+#: application/views/user/edit.php:669 application/views/user/edit.php:670
 msgid "This allows to disable the global notification banner on the dashboard."
 msgstr ""
 "Cela permet de désactiver le bandeau de notification globale sur le tableau "
 "de bord."
 
-#: application/views/user/edit.php:673
+#: application/views/user/edit.php:673 application/views/user/edit.php:674
 msgid "Dashboard solar and propagation data"
 msgstr "Tableau de bord des données solaires et de propagation"
 
-#: application/views/user/edit.php:679
+#: application/views/user/edit.php:679 application/views/user/edit.php:680
 msgid ""
 "This switches the display of the solar and propagation data on the dashboard."
 msgstr ""
@@ -17789,7 +17877,7 @@ msgstr ""
 msgid "Show Reference Fields on QSO Tab"
 msgstr "Afficher les champs de référence dans l'onglet QSO"
 
-#: application/views/user/edit.php:691
+#: application/views/user/edit.php:691 application/views/user/edit.php:692
 msgid ""
 "The enabled items will be shown on the QSO tab rather than the General tab."
 msgstr ""
@@ -17797,14 +17885,17 @@ msgstr ""
 "Général."
 
 #: application/views/user/edit.php:729 application/views/user/edit.php:733
+#: application/views/user/edit.php:734
 msgid "Online QSL request (OQRS) settings"
 msgstr "Paramètres de demande de QSL en ligne (OQRS)"
 
 #: application/views/user/edit.php:733 application/views/user/edit.php:737
+#: application/views/user/edit.php:738
 msgid "Global text"
 msgstr "Texte global"
 
 #: application/views/user/edit.php:735 application/views/user/edit.php:739
+#: application/views/user/edit.php:740
 msgid ""
 "This text is an optional text that can be displayed on top of the OQRS page."
 msgstr ""
@@ -17812,6 +17903,7 @@ msgstr ""
 "OQRS."
 
 #: application/views/user/edit.php:738 application/views/user/edit.php:742
+#: application/views/user/edit.php:743
 msgid "Grouped search"
 msgstr "Recherche groupée"
 
@@ -17819,6 +17911,8 @@ msgstr "Recherche groupée"
 #: application/views/user/edit.php:758 application/views/user/edit.php:767
 #: application/views/user/edit.php:744 application/views/user/edit.php:753
 #: application/views/user/edit.php:762 application/views/user/edit.php:771
+#: application/views/user/edit.php:745 application/views/user/edit.php:754
+#: application/views/user/edit.php:763 application/views/user/edit.php:772
 msgid "Off"
 msgstr "Désactivé"
 
@@ -17826,10 +17920,13 @@ msgstr "Désactivé"
 #: application/views/user/edit.php:759 application/views/user/edit.php:768
 #: application/views/user/edit.php:745 application/views/user/edit.php:754
 #: application/views/user/edit.php:763 application/views/user/edit.php:772
+#: application/views/user/edit.php:746 application/views/user/edit.php:755
+#: application/views/user/edit.php:764 application/views/user/edit.php:773
 msgid "On"
 msgstr "Activé"
 
 #: application/views/user/edit.php:743 application/views/user/edit.php:747
+#: application/views/user/edit.php:748
 msgid ""
 "When this is on, all station locations with OQRS active, will be searched at "
 "once."
@@ -17838,11 +17935,13 @@ msgstr ""
 "disposant d'un OQRS actif, seront analysés immédiatement."
 
 #: application/views/user/edit.php:747 application/views/user/edit.php:751
+#: application/views/user/edit.php:752
 msgid "Show station location name in grouped search results"
 msgstr ""
 "Afficher le nom de la station dans les résultats de recherches groupées"
 
 #: application/views/user/edit.php:752 application/views/user/edit.php:756
+#: application/views/user/edit.php:757
 msgid ""
 "If grouped search is ON, you can decide if the name of the station location "
 "shall be shown in the results table."
@@ -17851,10 +17950,12 @@ msgstr ""
 "l'emplacement de la station doit être affiché dans le tableau des résultats."
 
 #: application/views/user/edit.php:756 application/views/user/edit.php:760
+#: application/views/user/edit.php:761
 msgid "Automatic OQRS matching"
 msgstr "Correspondance automatique d'OQRS"
 
 #: application/views/user/edit.php:761 application/views/user/edit.php:765
+#: application/views/user/edit.php:766
 msgid ""
 "If this is on, automatic OQRS matching will happen, and the system will try "
 "to match incoming requests with existing logs automatically."
@@ -17864,68 +17965,84 @@ msgstr ""
 "entrantes avec les logs existants."
 
 #: application/views/user/edit.php:765 application/views/user/edit.php:769
+#: application/views/user/edit.php:770
 msgid "Automatic OQRS matching for direct requests"
 msgstr "Correspondance automatique d'OQRS pour les requêtes directes"
 
 #: application/views/user/edit.php:770 application/views/user/edit.php:774
+#: application/views/user/edit.php:775
 msgid "If this is on, automatic OQRS matching for direct request will happen."
 msgstr ""
 "Si cette option est activée, la correspondance d'OQRS pour les requêtes "
 "directes sera automatique."
 
 #: application/views/user/edit.php:786 application/views/user/edit.php:790
+#: application/views/user/edit.php:791
 msgid "Default Values"
 msgstr "Valeur par défaut"
 
 #: application/views/user/edit.php:794 application/views/user/edit.php:798
+#: application/views/user/edit.php:799
 msgid "Settings for Default Band and Confirmation"
 msgstr "Paramètres par défaut"
 
 #: application/views/user/edit.php:797 application/views/user/edit.php:801
+#: application/views/user/edit.php:802
 msgid "Default Band"
 msgstr "Bandes"
 
 #: application/views/user/edit.php:807 application/views/user/edit.php:811
+#: application/views/user/edit.php:812
 msgid "Default QSL-Methods"
 msgstr "Méthode QSL"
 
 #: application/views/user/edit.php:872 application/views/user/edit.php:876
+#: application/views/user/edit.php:877
 msgid "Third Party Services"
 msgstr "Services Tiers"
 
 #: application/views/user/edit.php:883 application/views/user/edit.php:887
+#: application/views/user/edit.php:888
 msgid "Logbook of The World (LoTW) Username"
 msgstr "Utilisateur"
 
 #: application/views/user/edit.php:889 application/views/user/edit.php:893
+#: application/views/user/edit.php:894
 msgid "Logbook of The World (LoTW) Password"
 msgstr "Mot de passe"
 
 #: application/views/user/edit.php:893 application/views/user/edit.php:897
+#: application/views/user/edit.php:898
 msgid "Test Login"
 msgstr "Test de connexion"
 
 #: application/views/user/edit.php:911 application/views/user/edit.php:915
+#: application/views/user/edit.php:916
 msgid "eQSL.cc Username"
 msgstr "Utilisateur"
 
 #: application/views/user/edit.php:917 application/views/user/edit.php:921
+#: application/views/user/edit.php:922
 msgid "eQSL.cc Password"
 msgstr "Mot de passe"
 
 #: application/views/user/edit.php:934 application/views/user/edit.php:938
+#: application/views/user/edit.php:939
 msgid "Club Log"
 msgstr "Club Log"
 
 #: application/views/user/edit.php:937 application/views/user/edit.php:941
+#: application/views/user/edit.php:942
 msgid "Club Log Email"
 msgstr "Club Log Email"
 
 #: application/views/user/edit.php:943 application/views/user/edit.php:947
+#: application/views/user/edit.php:948
 msgid "Club Log Password"
 msgstr "Mot de passe"
 
 #: application/views/user/edit.php:948 application/views/user/edit.php:952
+#: application/views/user/edit.php:953
 #, php-format
 msgid ""
 "If you have 2FA enabled at Clublog, you have to generate an App. Password to "
@@ -17936,14 +18053,17 @@ msgstr ""
 "Pour ce faire, rendez-vous sur %svotre page de paramètres Clublog%s."
 
 #: application/views/user/edit.php:965 application/views/user/edit.php:969
+#: application/views/user/edit.php:970
 msgid "Widgets"
 msgstr "Widgets"
 
 #: application/views/user/edit.php:973 application/views/user/edit.php:977
+#: application/views/user/edit.php:978
 msgid "On-Air widget"
 msgstr "Widget sur l'air"
 
 #: application/views/user/edit.php:983 application/views/user/edit.php:987
+#: application/views/user/edit.php:988
 msgid ""
 "Note: In order to use this widget, you need to have at least one CAT radio "
 "configured and working."
@@ -17952,15 +18072,18 @@ msgstr ""
 "CAT configurée et fonctionnelle."
 
 #: application/views/user/edit.php:987 application/views/user/edit.php:991
+#: application/views/user/edit.php:992
 #, php-format
 msgid "When enabled, widget will be available at %s."
 msgstr "Une fois activé, le widget sera disponible à l'adresse %s."
 
 #: application/views/user/edit.php:992 application/views/user/edit.php:996
+#: application/views/user/edit.php:997
 msgid "Display \"Last seen\" time"
 msgstr "Afficher l'heure de « Dernière vue »"
 
 #: application/views/user/edit.php:998 application/views/user/edit.php:1002
+#: application/views/user/edit.php:1003
 msgid ""
 "This setting control whether the 'Last seen' time is displayed in widget or "
 "not."
@@ -17969,14 +18092,17 @@ msgstr ""
 "dans le widget."
 
 #: application/views/user/edit.php:1001 application/views/user/edit.php:1005
+#: application/views/user/edit.php:1006
 msgid "Display only most recently updated radio"
 msgstr "Afficher uniquement la radio la plus récemment mise à jour"
 
 #: application/views/user/edit.php:1005 application/views/user/edit.php:1009
+#: application/views/user/edit.php:1010
 msgid "No, show all radios"
 msgstr "Non, montrer toutes les radios"
 
 #: application/views/user/edit.php:1007 application/views/user/edit.php:1011
+#: application/views/user/edit.php:1012
 msgid ""
 "If you have multiple CAT radios configured, this setting controls whether "
 "the widget should display all on-air radios of the user, or just the most "
@@ -17989,14 +18115,17 @@ msgstr ""
 "paramètre n'a aucun effet."
 
 #: application/views/user/edit.php:1017 application/views/user/edit.php:1021
+#: application/views/user/edit.php:1022
 msgid "QSOs widget"
 msgstr "Widget des QSO"
 
 #: application/views/user/edit.php:1020 application/views/user/edit.php:1024
+#: application/views/user/edit.php:1025
 msgid "Display exact QSO time"
 msgstr "Afficher l'heure exacte du QSO"
 
 #: application/views/user/edit.php:1026 application/views/user/edit.php:1030
+#: application/views/user/edit.php:1031
 msgid ""
 "This setting control whether exact QSO time should displayed in the QSO "
 "widget or not."
@@ -18005,39 +18134,48 @@ msgstr ""
 "dans le widget QSO."
 
 #: application/views/user/edit.php:1039 application/views/user/edit.php:1043
+#: application/views/user/edit.php:1044
 msgid "Miscellaneous"
 msgstr "Divers"
 
 #: application/views/user/edit.php:1047 application/views/user/edit.php:1051
+#: application/views/user/edit.php:1052
 msgid "AMSAT Status Upload"
 msgstr "Envoi du statut AMSAT"
 
 #: application/views/user/edit.php:1050 application/views/user/edit.php:1054
+#: application/views/user/edit.php:1055
 msgid "Upload status of SAT QSOs to"
 msgstr "Envoi des statuts des QSO par Satellite sur"
 
 #: application/views/user/edit.php:1064 application/views/user/edit.php:1068
+#: application/views/user/edit.php:1069
 msgid "Mastodonserver"
 msgstr "Mastodon Serveur"
 
 #: application/views/user/edit.php:1067 application/views/user/edit.php:1071
+#: application/views/user/edit.php:1072
 msgid "URL of Mastodonserver"
 msgstr "URL du serveur Mastodon"
 
 #: application/views/user/edit.php:1069 application/views/user/edit.php:1073
+#: application/views/user/edit.php:1074
 #, php-format
 msgid "Main URL of your Mastodon server, e.g. %s"
 msgstr "URL principale de votre serveur Mastodon, par exemple %s"
 
 #: application/views/user/edit.php:1078 application/views/user/edit.php:1082
+#: application/views/user/edit.php:1083
 msgid "Winkeyer"
 msgstr "Winkeyer"
 
 #: application/views/user/edit.php:1081 application/views/user/edit.php:1085
+#: application/views/user/edit.php:1086
 msgid "Winkeyer Features Enabled"
 msgstr "Activer Winkeyer"
 
 #: application/views/user/edit.php:1087 application/views/user/edit.php:1091
+#: application/views/user/edit.php:1092
 #, php-format
 msgid ""
 "Winkeyer support in Wavelog is very experimental. Read the wiki first at %s "
@@ -18047,24 +18185,29 @@ msgstr ""
 "Veuillez consulter le wiki à l'adresse %s avant de l'activer."
 
 #: application/views/user/edit.php:1098 application/views/user/edit.php:1102
+#: application/views/user/edit.php:1103
 msgid "Hams.at"
 msgstr "Hams.at"
 
 #: application/views/user/edit.php:1101 application/views/user/edit.php:1105
+#: application/views/user/edit.php:1106
 msgid "Private Feed Key"
 msgstr "Clé d'accès privé"
 
 #: application/views/user/edit.php:1103 application/views/user/edit.php:1107
+#: application/views/user/edit.php:1108
 #, php-format
 msgctxt "Hint for Hamsat API Key; uses Link"
 msgid "See your profile at %s."
 msgstr "Consultez votre profil à %s."
 
 #: application/views/user/edit.php:1106 application/views/user/edit.php:1110
+#: application/views/user/edit.php:1111
 msgid "Show Workable Passes Only"
 msgstr "Afficher uniquement les passages valides"
 
 #: application/views/user/edit.php:1112 application/views/user/edit.php:1116
+#: application/views/user/edit.php:1117
 msgid ""
 "If enabled shows only workable passes based on the gridsquare set in your "
 "hams.at account. Requires private feed key to be set."
@@ -18074,6 +18217,7 @@ msgstr ""
 "doit être définie."
 
 #: application/views/user/edit.php:1124 application/views/user/edit.php:1128
+#: application/views/user/edit.php:1129
 msgid "Save Account"
 msgstr "Sauvegarder"
 
@@ -18810,12 +18954,16 @@ msgid ""
 "are part of the same DXCC or VUCC Circle."
 msgstr ""
 
-#: application/views/user/edit.php:687
+#: application/views/user/edit.php:687 application/views/user/edit.php:688
 msgid "Show Fields on QSO Tab"
 msgstr ""
 
 #: application/libraries/Callbook.php:129
 msgid "Error obtaining a session key for HamQTH query"
+msgstr ""
+
+#: application/views/user/edit.php:450
+msgid "squelched"
 msgstr ""
 
 #~ msgid ""
