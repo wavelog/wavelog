@@ -70,6 +70,8 @@
 	let lang_gen_advanced_logbook_problem_updating_distances = '<?= __("There was a problem updating distances."); ?>';
 	let lang_gen_advanced_logbook_distances_updated = '<?= __("Distances updated successfully!"); ?>';
 
+	let lang_gen_advanced_logbook_confirm_fix_missing_dxcc = '<?= __("Are you sure you want to fix all QSOs with missing DXCC information? This action cannot be undone."); ?>';
+
     let homegrid ='<?php echo strtoupper($homegrid[0]); ?>';
     <?php
     if (!isset($options)) {
@@ -771,6 +773,7 @@ $options = json_decode($options);
 									<button type="button" class="btn btn-sm btn-success dropdown-action" id="fixContinent"><?= __("Fix Continent"); ?></button>
 									<button type="button" class="btn btn-sm btn-success dropdown-action" id="fixState"><?= __("Fix State"); ?></button>
 									<button type="button" class="btn btn-sm btn-success dropdown-action" id="updateDistances"><?= __("Update Distances"); ?></button>
+									<button type="button" class="btn btn-sm btn-success dropdown-action" id="dbtools"><?= __("Database Tools"); ?></button>
 									</div>
 								</div>
 							</div>

@@ -327,17 +327,6 @@ class Update extends CI_Controller {
         }
 	}
 
-	public function check_missing_dxcc($all = false){
-		$this->load->model('user_model');
-		if (!$this->user_model->authorize(99)) {
-			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
-			redirect('dashboard');
-		}
-
-		$this->load->model('logbook_model');
-        $this->logbook_model->check_missing_dxcc_id($all);
-	}
-
 	public function check_missing_grid($all = false){
 		$this->load->model('user_model');
 		if (!$this->user_model->authorize(99)) {
