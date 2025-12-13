@@ -57,6 +57,38 @@ class Club_model extends CI_Model {
     }
 
     /**
+     * Get Permissionlevel for User in Club in a real model-way without UI
+     * 
+     * @param int $club_id
+     * @param int $user_id
+     * 
+     * @return int
+     */
+    function get_permission_noui($club_id, $user_id) {
+
+        if ($club_id == 0 || !is_numeric($club_id)) {
+		return 0;
+        }
+
+        if ($user_id == 0 || !is_numeric($user_id)) {
+		return 0;
+        }
+
+        $binding = [];
+        $sql = 'SELECT p_level FROM `club_permissions` WHERE user_id = ? AND club_id = ?';
+        $binding[] = $user_id;
+        $binding[] = $club_id;
+
+        $query = $this->db->query($sql, $binding);
+
+        if ($query->num_rows() > 0) {
+            return $query->row()->p_level;
+        } else {
+            return 0;
+        }
+    }
+
+    /**
      * Get Permissionlevel for User in Club
      * 
      * @param int $club_id
