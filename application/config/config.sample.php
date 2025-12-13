@@ -14,7 +14,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $config['app_name'] = 'Wavelog';
 $config['directory'] = 'logbook';
+
 /*
+|--------------------------------------------------------------------------
+| Callbook Settings
+|--------------------------------------------------------------------------
 | Options are hamqth, qrz, qrzcq or qrzru
 | For a single callbook configure just one value as string. Example:
 | $config['callbook'] = 'hamqth';
