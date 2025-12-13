@@ -1275,33 +1275,6 @@ $(document).ready(function () {
 		});
 	});
 
-	function runContinentFix(dialogItself) {
-		$('#updateContinentButton').prop("disabled", true).addClass("running");
-		$('#closeButton').prop("disabled", true);
-		$.ajax({
-			url: base_url + 'index.php/logbookadvanced/fixContinent',
-			type: 'POST',
-			success: function (response) {
-				$('#updateContinentButton').prop("disabled", false).removeClass("running");
-				dialogItself.close();
-				BootstrapDialog.alert({
-					title: lang_gen_advanced_logbook_success,
-					message: lang_gen_advanced_logbook_continents_updated + ' ' + response + ' ' + lang_gen_advanced_logbook_records_updated,
-					type: BootstrapDialog.TYPE_SUCCESS
-				});
-			},
-			error: function () {
-				$('#updateContinentButton').prop("disabled", false).removeClass("running");
-				dialogItself.close();
-				BootstrapDialog.alert({
-					title: lang_gen_advanced_logbook_error,
-					message: lang_gen_advanced_logbook_problem_fixing_continents,
-					type: BootstrapDialog.TYPE_DANGER
-				});
-			}
-		});
-	}
-
 	$('#updateDistances').click(function (event) {
 		$.ajax({
 			url: base_url + 'index.php/logbookadvanced/distanceDialog',
@@ -2393,6 +2366,37 @@ function saveOptions() {
 			},
 			error: function () {
 				$('#openMissingDxccListBtn').prop("disabled", false).removeClass("running");
+			}
+		});
+	}
+
+	function runContinentFix(dialogItself) {
+		$('#updateContinentButton').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/fixContinent',
+			type: 'POST',
+			success: function (response) {
+				$('#updateContinentButton').prop("disabled", false).removeClass("running");
+				if (dialogItself != '') {
+					dialogItself.close();
+				}
+				BootstrapDialog.alert({
+					title: lang_gen_advanced_logbook_success,
+					message: lang_gen_advanced_logbook_continents_updated + ' ' + response + ' ' + lang_gen_advanced_logbook_records_updated,
+					type: BootstrapDialog.TYPE_SUCCESS
+				});
+			},
+			error: function () {
+				$('#updateContinentButton').prop("disabled", false).removeClass("running");
+				if (dialogItself != '') {
+					dialogItself.close();
+				}
+				BootstrapDialog.alert({
+					title: lang_gen_advanced_logbook_error,
+					message: lang_gen_advanced_logbook_problem_fixing_continents,
+					type: BootstrapDialog.TYPE_DANGER
+				});
 			}
 		});
 	}

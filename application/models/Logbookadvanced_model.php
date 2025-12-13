@@ -1397,7 +1397,8 @@ class Logbookadvanced_model extends CI_Model {
 			JOIN dxcc_entities ON " . $this->config->item('table_name') . ".col_dxcc = dxcc_entities.adif
 			JOIN station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
 			SET col_cont = dxcc_entities.cont
-			WHERE COALESCE(" . $this->config->item('table_name') . ".col_cont, '') = '' and station_profile.user_id = ?";
+			WHERE (COALESCE(" . $this->config->item('table_name') . ".col_cont, '') = ''  or " . $this->config->item('table_name') . ".col_cont not in ('AF', 'AN', 'AS', 'EU', 'NA', 'OC', 'SA'))
+			and station_profile.user_id = ?";
 
 		$query = $this->db->query($sql, array($this->session->userdata('user_id')));
 		$result = $this->db->affected_rows();
@@ -1480,7 +1481,10 @@ class Logbookadvanced_model extends CI_Model {
 		$sql = "select count(*) as count from " . $this->config->item('table_name') . "
 			join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
 			where user_id = ?
-			and (coalesce(col_cont, '') = '' or col_cont not in ('AF', 'AN', 'AS', 'EU', 'NA', 'OC', 'SA'))";
+			and (coalesce(col_cont, '') = '' or col_cont not in ('AF', 'AN', 'AS', 'EU', 'NA', 'OC', 'SA'))
+			and col_dxcc is not null
+			and col_dxcc != ''
+			and col_dxcc != 0";
 
 		$bindings[] = [$this->session->userdata('user_id')];
 

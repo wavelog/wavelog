@@ -46,7 +46,7 @@
                 <div class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
                         <h6 class="mb-1"><?= __("Fix State") ?></h6>
-                        <p class="mb-1 small text-muted"><?= __("Update missing or incorrect state/province information") ?></p>
+                        <p class="mb-1 small text-muted"><?= __("Update missing state/province information") ?></p>
                     </div>
                     <div class="d-flex nowrap">
                         <button type="button" class="btn btn-sm btn-secondary me-1 ld-ext-right" id="checkFixStateBtn" onclick="checkFixState()">

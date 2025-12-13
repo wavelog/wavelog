@@ -28,7 +28,7 @@ function check_missing_distance($result) { ?>
 	<?= __("Update all QSOs with the distance based on your gridsquare set in the station profile, and the gridsquare of the QSO partner. Distance will be calculated based on if short path or long path is set."); ?>
 	<?= __("This is useful if you have imported QSOs without distance information."); ?><br /><br />
 	<?= __("Update will only set the distance for QSOs where the distance is empty."); ?>
-	<br/>
+	<br />
 	<button type="button" class="mt-2 btn btn-sm btn-primary ld-ext-right" id="updateDistancesBtn" onclick="runUpdateDistancesFix('')">
 		<?= __("Update now") ?><div class="ld ld-ring ld-spin"></div>
 	</button>
@@ -39,8 +39,13 @@ function check_qsos_missing_continent($result) { ?>
 	<h5>Continent Check Results</h5>
 	QSOs to update found: <?php echo $result[0]->count; ?>
 	<br/>
-	<button type="button" class="mt-2 btn btn-sm btn-primary ld-ext-right" id="updateDistancesBtn" onclick="fixMissingDxcc('All')">
-		<?= __("Run fix") ?><div class="ld ld-ring ld-spin"></div>
+	<br/>
+	<?= __("Update all QSOs with the continent based on the DXCC country of the QSO."); ?>
+	<?= __("This is useful if you have imported QSOs without continent information."); ?><br /><br />
+	<?= __("Update will only set the continent for QSOs where the continent is empty."); ?>
+	<br />
+	<button type="button" class="mt-2 btn btn-sm btn-primary ld-ext-right" id="updateDistancesBtn" onclick="runContinentFix('')">
+		<?= __("Update now") ?><div class="ld ld-ring ld-spin"></div>
 	</button>
 <?php }
 
