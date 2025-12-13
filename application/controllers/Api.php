@@ -119,10 +119,23 @@ class API extends CI_Controller {
 
 	function create_station($key = '') {
 		$this->load->model('api_model');
+
 		if ($this->api_model->access($key) == "No Key Found" || $this->api_model->access($key) == "Key Disabled") {
 			$this->output->set_status_header(401)->set_content_type('application/json')->set_output(json_encode(['status' => 'error', 'message' => 'Auth Error, invalid key']));
 			return;
 		}
+
+		$this->load->model('club_model');
+		$userid = $this->api_model->key_userid($key);
+		$created_by = $this->api_model->key_created_by($key);
+		$club_perm = $this->club_model->get_permission_noui($userid,$created_by);
+		if ($userid != $created_by) { // We're dealing with a Club Member/Member ADIF or Clubofficer
+			if ((($club_perm ?? 0) == 3) || (($club_perm ?? 0) == 6)) { // Member or ADIF-Member? DENY
+				$this->output->set_status_header(401)->set_content_type('application/json')->set_output(json_encode(['status' => 'error', 'message' => 'Auth Error, not enough grants for this operation']));
+				return;
+			}
+		}
+
 		try {
 			$raw = file_get_contents("php://input");
 			if ($raw === false) {
@@ -149,8 +162,7 @@ class API extends CI_Controller {
 			$this->output->set_status_header(500)->set_content_type('application/json')->set_output(json_encode(['status' => 'error', 'message' => 'Processing error: ' . $e->getMessage()]));
 		}
 		$this->load->model('stationsetup_model');
-		$user_id = $this->api_model->key_userid($key);
-		$imported = $this->stationsetup_model->import_locations_parse($locations,$user_id);
+		$imported = $this->stationsetup_model->import_locations_parse($locations,$userid);
 		if (($imported[0] ?? '0') == 'limit') {
 			$this->output->set_status_header(201)->set_content_type('application/json')->set_output(json_encode(['status' => 'success', 'message' => ($imported[1] ?? '0')." locations imported. Maximum limit of 1000 locations reached."]));
 		} else {
