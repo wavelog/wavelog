@@ -3583,6 +3583,7 @@ var dxWaterfall = {
 
     // Generate and cache static noise patterns for animation
     generateCachedNoise: function() {
+	if ((dxwaterfall_enable ?? 'Y') === 'E') { return; }
         var width = this.canvas.width;
         var height = this.canvas.height;
 
@@ -3637,6 +3638,7 @@ var dxWaterfall = {
 
     // Draw static noise background (cached and animated)
     drawStaticNoise: function() {
+	if ((dxwaterfall_enable ?? 'Y') === 'E') { return; }
         try {
             // Generate cached noise only if needed (dimensions changed or first time)
             this.generateCachedNoise();
