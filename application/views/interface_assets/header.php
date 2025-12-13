@@ -340,6 +340,8 @@
 								<a class="dropdown-item" href="<?php echo site_url('cron'); ?>" title="Cron Manager"><i class="fas fa-clock"></i> <?= __("Cron Manager"); ?></a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo site_url('debug'); ?>" title="Debug Information"><i class="fas fa-tools"></i> <?= __("Debug Information"); ?></a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="<?php echo site_url('map/qso_map'); ?>" title="GeoJSON Map Plots"><i class="fas fa-globe-europe"></i> <?= __("GeoJSON Map Plots"); ?></a>
 							</div>
 						</li>
 					<?php } ?>
