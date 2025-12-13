@@ -30,7 +30,7 @@ function check_missing_distance($result) { ?>
 	<?= __("Update will only set the distance for QSOs where the distance is empty."); ?>
 	<br/>
 	<button type="button" class="mt-2 btn btn-sm btn-primary ld-ext-right" id="updateDistancesBtn" onclick="runUpdateDistancesFix('')">
-		<?= __("Run fix") ?><div class="ld ld-ring ld-spin"></div>
+		<?= __("Update now") ?><div class="ld ld-ring ld-spin"></div>
 	</button>
 
 <?php }
