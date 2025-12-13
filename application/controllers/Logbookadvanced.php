@@ -951,4 +951,15 @@ class Logbookadvanced extends CI_Controller {
 			echo json_encode(__("The number of QSOs re-checked for DXCC was") .' ' . $result);
 		}
 	}
+
+	public function openMissingDxccList() {
+		if(!clubaccess_check(9)) return;
+
+		$this->load->model('logbookadvanced_model');
+
+		$data['qsos'] = $this->logbookadvanced_model->getMissingDxccQsos();
+
+		$this->load->view('logbookadvanced/showMissingDxccQsos', $data);
+	}
+
 }

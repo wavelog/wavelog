@@ -1360,32 +1360,7 @@ $(document).ready(function () {
 		});
 	});
 
-	function runUpdateDistancesFix(dialogItself) {
-		$('#updateDistanceButton').prop("disabled", true).addClass("running");
-		$('#closeButton').prop("disabled", true);
-		$.ajax({
-			url: base_url + 'index.php/logbookadvanced/updateDistances',
-			type: 'POST',
-			success: function (response) {
-				$('#updateDistanceButton').prop("disabled", false).removeClass("running");
-				dialogItself.close();
-				BootstrapDialog.alert({
-					title: lang_gen_advanced_logbook_success,
-					message: lang_gen_advanced_logbook_distances_updated + ' ' + response + ' ' + lang_gen_advanced_logbook_records_updated,
-					type: BootstrapDialog.TYPE_SUCCESS
-				});
-			},
-			error: function () {
-				$('#updateDistanceButton').prop("disabled", false).removeClass("running");
-				dialogItself.close();
-				BootstrapDialog.alert({
-					title: lang_gen_advanced_logbook_error,
-					message: lang_gen_advanced_logbook_problem_updating_distances,
-					type: BootstrapDialog.TYPE_DANGER
-				});
-			}
-		});
-	}
+
 
 	$('#fixItuZones').click(function (event) {
 		const id_list = getSelectedIds();
@@ -2353,4 +2328,71 @@ function saveOptions() {
 				}
 			})
 		}
+	}
+
+	function runUpdateDistancesFix(dialogItself) {
+		$('#updateDistanceButton').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/updateDistances',
+			type: 'POST',
+			success: function (response) {
+				$('#updateDistanceButton').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				if (dialogItself != '') {
+					dialogItself.close();
+				}
+				BootstrapDialog.alert({
+					title: lang_gen_advanced_logbook_success,
+					message: lang_gen_advanced_logbook_distances_updated + ' ' + response + ' ' + lang_gen_advanced_logbook_records_updated,
+					type: BootstrapDialog.TYPE_SUCCESS
+				});
+			},
+			error: function () {
+				$('#updateDistanceButton').prop("disabled", false).removeClass("running");
+				if (dialogItself != '') {
+					dialogItself.close();
+				}
+				BootstrapDialog.alert({
+					title: lang_gen_advanced_logbook_error,
+					message: lang_gen_advanced_logbook_problem_updating_distances,
+					type: BootstrapDialog.TYPE_DANGER
+				});
+				$('#closeButton').prop("disabled", false);
+			}
+		});
+	}
+
+	function openMissingDxccList() {
+		$('#openMissingDxccListBtn').prop("disabled", true).addClass("running");
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/openMissingDxccList',
+			type: 'post',
+			success: function (response) {
+				$('#openMissingDxccListBtn').prop("disabled", false).removeClass("running");
+				BootstrapDialog.show({
+					title: 'QSO List',
+					size: BootstrapDialog.SIZE_WIDE,
+					cssClass: 'options',
+					nl2br: false,
+					message: response,
+					buttons: [
+					{
+						label: lang_admin_close,
+						cssClass: 'btn-sm btn-secondary',
+						id: 'closeButton',
+						action: function (dialogItself) {
+							dialogItself.close();
+						}
+					}],
+					onhide: function(dialogRef){
+						return;
+					},
+				});
+			},
+			error: function () {
+				$('#openMissingDxccListBtn').prop("disabled", false).removeClass("running");
+			}
+		});
 	}
