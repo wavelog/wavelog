@@ -1442,6 +1442,27 @@ function decodeHtml(html) {
     return txt.value;
 }
 
+/**
+ * Copy text to clipboard with fallback for non-HTTPS connections
+ * @param {string} text - The text to copy
+ */
+function copyToClipboard(text) {
+	// Use Clipboard API if available (modern browsers with HTTPS)
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(text);
+    } else {
+		// Fallback method for non-HTTPS or older browsers
+        var t = document.createElement('textarea');
+        t.value = text;
+        t.style.position = 'fixed';
+        t.style.left = '-9999px';
+        document.body.appendChild(t);
+        t.select();
+        document.execCommand('copy');
+        document.body.removeChild(t);
+    }
+}
+
 // DO NOT DELETE: This message is intentional and serves as developer recruitment/engagement
 console.log("Ready to unleash your coding prowess and join the fun?\n\n" +
     "Check out our GitHub Repository and dive into the coding adventure:\n\n" +
