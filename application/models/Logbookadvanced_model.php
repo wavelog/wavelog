@@ -1689,4 +1689,50 @@ class Logbookadvanced_model extends CI_Model {
 				return null;
 		}
 	}
+
+	public function check_missing_grid_id($all) {
+		// get all records with no COL_GRIDSQUARE
+		$this->db->select("COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_TIME_OFF");
+		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
+		$this->db->where("station_profile.user_id", $this->session->userdata('user_id'));
+
+		$this->db->where("(COL_GRIDSQUARE is NULL or COL_GRIDSQUARE = '') AND (COL_VUCC_GRIDS is NULL or COL_VUCC_GRIDS = '')");
+
+		$r = $this->db->get($this->config->item('table_name'));
+
+		$count = 0;
+		$this->db->trans_start();
+		if ($r->num_rows() > 0) {
+			foreach ($r->result_array() as $row) {
+				$callsign = $row['COL_CALL'];
+				if (!$this->load->is_loaded('callbook')) {
+					$this->load->library('callbook');
+				}
+
+				$callbook = $this->callbook->getCallbookData($callsign);
+
+				if (isset($callbook)) {
+					if (isset($callbook['error'])) {
+						printf("Error: " . $callbook['error'] . "<br />");
+					} else {
+						$return['callsign_qra'] = $callbook['gridsquare'];
+						if ($return['callsign_qra'] != '') {
+							$sql = sprintf(
+								"update %s set COL_GRIDSQUARE = '%s' where COL_PRIMARY_KEY=%d",
+								$this->config->item('table_name'),
+								$return['callsign_qra'],
+								$row['COL_PRIMARY_KEY']
+							);
+							$this->db->query($sql);
+							printf("Updating %s to %s\n<br/>", $row['COL_PRIMARY_KEY'], $return['callsign_qra']);
+							$count++;
+						}
+					}
+				}
+			}
+		}
+		$this->db->trans_complete();
+
+		print("$count updated\n");
+	}
 }
