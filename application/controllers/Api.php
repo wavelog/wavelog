@@ -119,10 +119,23 @@ class API extends CI_Controller {
 
 	function create_station($key = '') {
 		$this->load->model('api_model');
+
 		if ($this->api_model->access($key) == "No Key Found" || $this->api_model->access($key) == "Key Disabled") {
 			$this->output->set_status_header(401)->set_content_type('application/json')->set_output(json_encode(['status' => 'error', 'message' => 'Auth Error, invalid key']));
 			return;
 		}
+
+		$this->load->model('club_model');
+		$userid = $this->api_model->key_userid($key);
+		$created_by = $this->api_model->key_created_by($key);
+		$club_perm = $this->club_model->get_permission_noui($userid,$created_by);
+		if ($userid != $created_by) { // We're dealing with a Club Member/Member ADIF or Clubofficer
+			if ((($club_perm ?? 0) == 3) || (($club_perm ?? 0) == 6)) { // Member or ADIF-Member? DENY
+				$this->output->set_status_header(401)->set_content_type('application/json')->set_output(json_encode(['status' => 'error', 'message' => 'Auth Error, not enough grants for this operation']));
+				return;
+			}
+		}
+
 		try {
 			$raw = file_get_contents("php://input");
 			if ($raw === false) {
@@ -149,8 +162,7 @@ class API extends CI_Controller {
 			$this->output->set_status_header(500)->set_content_type('application/json')->set_output(json_encode(['status' => 'error', 'message' => 'Processing error: ' . $e->getMessage()]));
 		}
 		$this->load->model('stationsetup_model');
-		$user_id = $this->api_model->key_userid($key);
-		$imported = $this->stationsetup_model->import_locations_parse($locations,$user_id);
+		$imported = $this->stationsetup_model->import_locations_parse($locations,$userid);
 		if (($imported[0] ?? '0') == 'limit') {
 			$this->output->set_status_header(201)->set_content_type('application/json')->set_output(json_encode(['status' => 'success', 'message' => ($imported[1] ?? '0')." locations imported. Maximum limit of 1000 locations reached."]));
 		} else {
@@ -224,6 +236,7 @@ class API extends CI_Controller {
 		$this->load->model('api_model');
 
 		$this->load->model('stations');
+		$this->load->model('club_model');
 
 		if (!$this->load->is_loaded('Qra')) {
 			$this->load->library('Qra');
@@ -252,6 +265,7 @@ class API extends CI_Controller {
 
 		$userid = $this->api_model->key_userid($obj['key']);
 		$created_by = $this->api_model->key_created_by($obj['key']);
+		$club_perm = $this->club_model->get_permission_noui($userid,$created_by);
 
 		/**
 		 * As the API key user could use it also for clubstations we need to do an additional check here. Only if clubstations are enabled
@@ -260,12 +274,11 @@ class API extends CI_Controller {
 		 * If the user is not the creator of the API key, it's likely a clubstation. In this case the callsign of the clubstation
 		 * can not be the same as the callsign of the user (operator call provided by the user). If this is the case, we need to use the callsign of the creator of the API key
 		 */
-		$real_operator = null;
+		$real_operator = null;	// real_operator is only filled if its a clubstation and the used key is created by an OP. otherwise its null
 		if ($this->config->item('special_callsign')) {
 			if ($userid != $created_by) {
 				$this->load->model('user_model');
 				$real_operator = $this->user_model->get_by_id($created_by)->row()->user_callsign;
-				// TODO: It would be possible to check here if operator is allowed to use the clubstation, but this can be added later if needed
 			} else {
 				$real_operator = null;
 			}
@@ -324,6 +337,11 @@ class API extends CI_Controller {
 					// in case the provided op call is the same as the clubstation callsign, we need to use the creator of the API key as the operator
 					$recorded_operator = $record['operator'] ?? '';
 					if (key_exists('operator',$record) && $real_operator != null && ($record['operator'] == $record['station_callsign']) || ($recorded_operator == '')) {
+						$record['operator'] = $real_operator;
+					}
+
+					// in case the caller is an OP for a clubstation (real_operator is filled - see above) and the OP only has level 3 or 6 - take the OP from real_operator!
+					if ($real_operator != null && ((($club_perm ?? 0) == 3) || (($club_perm ?? 0) == 6))) {
 						$record['operator'] = $real_operator;
 					}
 
