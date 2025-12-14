@@ -785,7 +785,6 @@ class Logbookadvanced extends CI_Controller {
 
 		header("Content-Type: application/json");
 		print json_encode($q);
-
 	}
 
 	public function fixItuZones() {
@@ -960,6 +959,15 @@ class Logbookadvanced extends CI_Controller {
 		$data['qsos'] = $this->logbookadvanced_model->getMissingDxccQsos();
 
 		$this->load->view('logbookadvanced/showMissingDxccQsos', $data);
+	}
+
+	public function batchFix() {
+		$type = $this->input->post('type', true);
+		$this->load->model('logbookadvanced_model');
+		$result = $this->logbookadvanced_model->batchFix($type);
+
+		header("Content-Type: application/json");
+		echo json_encode($result);
 	}
 
 }

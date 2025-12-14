@@ -2400,3 +2400,63 @@ function saveOptions() {
 			}
 		});
 	}
+
+	function fixMissingCqZones() {
+		$('#fixMissingCqZonesBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/batchFix',
+			data: {
+				type: 'cqzones'
+			},
+			type: 'POST',
+			success: function (response) {
+				$('#fixMissingCqZonesBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				BootstrapDialog.alert({
+					title: lang_gen_advanced_logbook_success,
+					message: lang_gen_advanced_logbook_cq_zones_updated + ' ' + response + ' ' + lang_gen_advanced_logbook_records_updated,
+					type: BootstrapDialog.TYPE_SUCCESS
+				});
+			},
+			error: function () {
+				$('#fixMissingCqZonesBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				BootstrapDialog.alert({
+					title: lang_gen_advanced_logbook_error,
+					message: lang_gen_advanced_logbook_problem_fixing_cq_zones,
+					type: BootstrapDialog.TYPE_DANGER
+				});
+			}
+		});
+	}
+
+	function fixMissingItuZones() {
+		$('#fixMissingItuZonesBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/batchFix',
+			data: {
+				type: 'ituzones'
+			},
+			type: 'POST',
+			success: function (response) {
+				$('#fixMissingItuZonesBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				BootstrapDialog.alert({
+					title: lang_gen_advanced_logbook_success,
+					message: lang_gen_advanced_logbook_itu_zones_updated + ' ' + response + ' ' + lang_gen_advanced_logbook_records_updated,
+					type: BootstrapDialog.TYPE_SUCCESS
+				});
+			},
+			error: function () {
+				$('#fixMissingItuZonesBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				BootstrapDialog.alert({
+					title: lang_gen_advanced_logbook_error,
+					message: lang_gen_advanced_logbook_problem_fixing_itu_zones,
+					type: BootstrapDialog.TYPE_DANGER
+				});
+			}
+		});
+	}

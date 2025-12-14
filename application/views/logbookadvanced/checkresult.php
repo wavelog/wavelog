@@ -63,8 +63,8 @@ function check_missing_cq_zones($result) { ?>
 	<h5>CQ Zone Check Results</h5>
 	QSOs to update found: <?php echo $result[0]->count; ?>
 	<br/>
-	<button type="button" class="mt-2 btn btn-sm btn-primary ld-ext-right" id="updateDistancesBtn" onclick="fixMissingDxcc('All')">
-		<?= __("Run fix") ?><div class="ld ld-ring ld-spin"></div>
+	<button type="button" class="mt-2 btn btn-sm btn-primary ld-ext-right" id="updateDistancesBtn" onclick="fixMissingCqZones()">
+		<?= __("Update now") ?><div class="ld ld-ring ld-spin"></div>
 	</button>
 <?php }
 
@@ -72,7 +72,7 @@ function check_missing_itu_zones($result) { ?>
 	<h5>ITU Zone Check Results</h5>
 	QSOs to update found: <?php echo $result[0]->count; ?>
 	<br/>
-	<button type="button" class="mt-2 btn btn-sm btn-primary ld-ext-right" id="updateDistancesBtn" onclick="fixMissingDxcc('All')">
-		<?= __("Run fix") ?><div class="ld ld-ring ld-spin"></div>
+	<button type="button" class="mt-2 btn btn-sm btn-primary ld-ext-right" id="updateDistancesBtn" onclick="fixMissingItuZones()">
+		<?= __("Update now") ?><div class="ld ld-ring ld-spin"></div>
 	</button>
 <?php }

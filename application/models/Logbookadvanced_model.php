@@ -1255,21 +1255,38 @@ class Logbookadvanced_model extends CI_Model {
 		return $query->result();
     }
 
-	function fixCqZones($ids) {
+	function fixCqZones($ids = null) {
+		if ($ids == null) {
+			$sql = "UPDATE ".$this->config->item('table_name')." JOIN dxcc_entities ON ". $this->config->item('table_name').".col_dxcc = dxcc_entities.adif JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
+					" SET " . $this->config->item('table_name').".COL_CQZ = dxcc_entities.cqz" .
+					" WHERE station_profile.user_id = ? and (" . $this->config->item('table_name').".COL_CQZ IS NULL OR " . $this->config->item('table_name').".COL_CQZ = '')";
+
+			$query = $this->db->query($sql, array($this->session->userdata('user_id')));
+			return $this->db->affected_rows();
+		}
 		$sql = "UPDATE ".$this->config->item('table_name')." JOIN dxcc_entities ON ". $this->config->item('table_name').".col_dxcc = dxcc_entities.adif JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
 			" SET " . $this->config->item('table_name').".COL_CQZ = dxcc_entities.cqz" .
 			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
 
 		$query = $this->db->query($sql, array(json_decode($ids, true), $this->session->userdata('user_id')));
+		return $this->db->affected_rows();
 	}
 
 
-	function fixItuZones($ids) {
+	function fixItuZones($ids = null) {
+		if ($ids == null) {
+			$sql = "UPDATE ".$this->config->item('table_name')." JOIN dxcc_entities ON ". $this->config->item('table_name').".col_dxcc = dxcc_entities.adif JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
+					" SET " . $this->config->item('table_name').".COL_ITUZ = dxcc_entities.ituz" .
+					" WHERE station_profile.user_id = ? and (" . $this->config->item	('table_name').".COL_ITUZ IS NULL OR " . $this->config->item('table_name').".COL_ITUZ = '')";
+			$query = $this->db->query($sql, array($this->session->userdata('user_id')));
+			return $this->db->affected_rows();
+		}
 		$sql = "UPDATE ".$this->config->item('table_name')." JOIN dxcc_entities ON ". $this->config->item('table_name').".col_dxcc = dxcc_entities.adif JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
 			" SET " . $this->config->item('table_name').".COL_ITUZ = dxcc_entities.ituz" .
 			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
 
 		$query = $this->db->query($sql, array(json_decode($ids, true), $this->session->userdata('user_id')));
+		return $this->db->affected_rows();
     }
 
 	/**
@@ -1530,6 +1547,7 @@ class Logbookadvanced_model extends CI_Model {
 	public function check_missing_cq_zones() {
 		$sql = "select count(*) as count from " . $this->config->item('table_name') . "
 		join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
+		join dxcc_entities on " . $this->config->item('table_name') . ".col_dxcc = dxcc_entities.adif
 		where user_id = ? and coalesce(col_cqz, '') = ''";
 
 		$bindings[] = [$this->session->userdata('user_id')];
@@ -1541,6 +1559,7 @@ class Logbookadvanced_model extends CI_Model {
 	public function check_missing_itu_zones() {
 		$sql = "select count(*) as count from " . $this->config->item('table_name') . "
 		join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
+		join dxcc_entities on " . $this->config->item('table_name') . ".col_dxcc = dxcc_entities.adif
 		where user_id = ? and coalesce(col_ituz, '') = ''";
 
 		$bindings[] = [$this->session->userdata('user_id')];
@@ -1652,5 +1671,22 @@ class Logbookadvanced_model extends CI_Model {
 		$query = $this->db->query($sql, [$this->session->userdata('user_id')]);
 
 		return $query->result();
+	}
+
+	function batchFix($type) {
+		switch ($type) {
+			case 'dxcc':
+				return $this->check_missing_dxcc_id('true');
+			case 'distance':
+				return $this->update_distances_batch();
+			case 'continent':
+				return $this->check_missing_continent();
+			case 'cqzones':
+				return $this->fixCqZones();
+			case 'ituzones':
+				return $this->fixItuZones();
+			default:
+				return null;
+		}
 	}
 }
