@@ -12,7 +12,7 @@
                         <p class="mb-1 small text-muted"><?= __("Update missing CQ zone information") ?></p>
                     </div>
                     <div class="d-flex nowrap">
-                        <button type="button" class="btn btn-sm btn-secondary me-1 ld-ext-right" id="checkFixCqZonesBtn" onclick="checkFixCqZones()">
+                        <button type="button" class="btn btn-sm btn-success me-1 ld-ext-right" id="checkFixCqZonesBtn" onclick="checkFixCqZones()">
                             <?= __("Check") ?><div class="ld ld-ring ld-spin"></div>
                         </button>
                     </div>
@@ -24,7 +24,7 @@
                         <p class="mb-1 small text-muted"><?= __("Update missing ITU zone information") ?></p>
                     </div>
                     <div class="d-flex nowrap">
-                        <button type="button" class="btn btn-sm btn-secondary me-1 ld-ext-right" id="checkFixItuZonesBtn" onclick="checkFixItuZones()">
+                        <button type="button" class="btn btn-sm btn-success me-1 ld-ext-right" id="checkFixItuZonesBtn" onclick="checkFixItuZones()">
                             <?= __("Check") ?><div class="ld ld-ring ld-spin"></div>
                         </button>
                     </div>
@@ -36,7 +36,7 @@
                         <p class="mb-1 small text-muted"><?= __("Update missing or incorrect continent information") ?></p>
                     </div>
                     <div class="d-flex nowrap">
-                        <button type="button" class="btn btn-sm btn-secondary me-1 ld-ext-right" id="checkFixContinentBtn" onclick="checkFixContinent()">
+                        <button type="button" class="btn btn-sm btn-success me-1 ld-ext-right" id="checkFixContinentBtn" onclick="checkFixContinent()">
                             <?= __("Check") ?><div class="ld ld-ring ld-spin"></div>
                         </button>
                     </div>
@@ -48,7 +48,7 @@
                         <p class="mb-1 small text-muted"><?= __("Update missing state/province information") ?></p>
                     </div>
                     <div class="d-flex nowrap">
-                        <button type="button" class="btn btn-sm btn-secondary me-1 ld-ext-right" id="checkFixStateBtn" onclick="checkFixState()">
+                        <button type="button" class="btn btn-sm btn-success me-1 ld-ext-right" id="checkFixStateBtn" onclick="checkFixState()">
                             <?= __("Check") ?><div class="ld ld-ring ld-spin"></div>
                         </button>
                     </div>
@@ -60,7 +60,7 @@
                         <p class="mb-1 small text-muted"><?= __("Calculate and update distance information for QSOs") ?></p>
                     </div>
                     <div class="d-flex nowrap">
-                        <button type="button" class="btn btn-sm btn-secondary me-1 ld-ext-right" id="checkUpdateDistancesBtn" onclick="checkUpdateDistances()">
+                        <button type="button" class="btn btn-sm btn-success me-1 ld-ext-right" id="checkUpdateDistancesBtn" onclick="checkUpdateDistances()">
                             <?= __("Check") ?><div class="ld ld-ring ld-spin"></div>
                         </button>
                     </div>
@@ -72,7 +72,7 @@
                         <p class="mb-1 small text-muted"><?= __("Identify QSOs that are missing DXCC information") ?></p>
                     </div>
                     <div class="d-flex nowrap">
-                        <button type="button" class="btn btn-sm btn-secondary me-1 ld-ext-right" id="checkMissingDxccsBtn" onclick="checkMissingDxcc()">
+                        <button type="button" class="btn btn-sm btn-success me-1 ld-ext-right" id="checkMissingDxccsBtn" onclick="checkMissingDxcc()">
                             <?= __("Check") ?><div class="ld ld-ring ld-spin"></div>
                         </button>
                     </div>
@@ -85,7 +85,7 @@
 						<p class="mb-1 small alert-danger"><?= __("This will overwrite ALL existing DXCC information!") ?></p>
                     </div>
                     <div class="d-flex nowrap">
-                        <button type="button" class="btn btn-sm btn-primary ld-ext-right" id="updateDxccBtn" onclick="fixMissingDxcc(true)">
+                        <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="updateDxccBtn" onclick="fixMissingDxcc(true)">
                             <?= __("Run") ?><div class="ld ld-ring ld-spin"></div>
                         </button>
                     </div>

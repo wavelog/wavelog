@@ -2176,17 +2176,19 @@ function saveOptions() {
 		});
 	}
 
-	function fixState(dxcc) {
+	function fixState(dxcc, country) {
 		$('#fixStateBtn_' + dxcc).prop("disabled", true).addClass("running");
 
 		$.ajax({
 			url: base_url + 'index.php/logbookadvanced/fixStateBatch',
 			type: 'post',
 			data: {
-				'dxcc': dxcc
+				'dxcc': dxcc,
+				'country': country
 			},
 			success: function (response) {
 				$('#fixStateBtn_' + dxcc).prop("disabled", false).removeClass("running");
+				$('.result').html('<div class="alert alert-success" role="alert">' + response.message + '</div>');
 			},
 			error: function () {
 				$('#fixStateBtn_' + dxcc).prop("disabled", false).removeClass("running");

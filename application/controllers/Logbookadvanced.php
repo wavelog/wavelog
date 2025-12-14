@@ -911,12 +911,15 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->model('logbookadvanced_model');
 
 		$dxcc = $this->input->post('dxcc', true);
+		$country = $this->input->post('country', true);
 
 		// Process for batch QSO state fix
 		$result = $this->logbookadvanced_model->fixStateBatch($dxcc);
 
+		$data['message'] = __("The number of QSOs updated for state/province in") . ' ' . $country . ' : ' . count($result);
+
 		header("Content-Type: application/json");
-		echo json_encode($result);
+		echo json_encode($data);
 	}
 
 	public function openStateList() {
