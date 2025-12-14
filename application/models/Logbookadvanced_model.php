@@ -1600,7 +1600,9 @@ class Logbookadvanced_model extends CI_Model {
 
 		foreach ($query->result() as $qso) {
 			$result = $this->fixStateSingle($qso->COL_PRIMARY_KEY);
-			$results []= $result;
+			if ($result['success']) {
+				$results []= $result;
+			}
 		}
 
 		return $results;
