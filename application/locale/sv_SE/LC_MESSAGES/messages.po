@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2025-12-10 06:04+0000\n"
 "PO-Revision-Date: 2025-12-14 17:13+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
-"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/sv/>\n"
+"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/sv/>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -702,6 +702,8 @@ msgstr "Klubbmedlem"
 
 #: application/controllers/Club.php:45 application/models/Club_model.php:75
 #: application/models/Club_model.php:149 application/models/Club_model.php:191
+#: application/models/Club_model.php:107 application/models/Club_model.php:181
+#: application/models/Club_model.php:223
 msgid "Invalid User ID!"
 msgstr "Ogiltigt användar-ID!"
 
@@ -718,7 +720,8 @@ msgstr "Klubbbehörigheter"
 #: application/controllers/Club.php:119 application/controllers/Club.php:148
 #: application/controllers/Club.php:175 application/models/Club_model.php:22
 #: application/models/Club_model.php:70 application/models/Club_model.php:144
-#: application/models/Club_model.php:186
+#: application/models/Club_model.php:186 application/models/Club_model.php:102
+#: application/models/Club_model.php:176 application/models/Club_model.php:218
 msgid "Invalid Club ID!"
 msgstr "Ogiltigt klubb-ID!"
 
@@ -3490,11 +3493,11 @@ msgctxt "Division Name (States in various countries)."
 msgid "City / Ku / Gun"
 msgstr "Stad / Ku / Gun"
 
-#: application/models/Club_model.php:154
+#: application/models/Club_model.php:154 application/models/Club_model.php:186
 msgid "Invalid Permission Level!"
 msgstr "Ogiltig behörighetsnivå!"
 
-#: application/models/Club_model.php:169
+#: application/models/Club_model.php:169 application/models/Club_model.php:201
 msgid "Error adding Club Member!"
 msgstr "Fel vid tillägg av klubbmedlem!"
 

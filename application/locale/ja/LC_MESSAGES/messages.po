@@ -702,6 +702,8 @@ msgstr "クラブ会員"
 
 #: application/controllers/Club.php:45 application/models/Club_model.php:75
 #: application/models/Club_model.php:149 application/models/Club_model.php:191
+#: application/models/Club_model.php:107 application/models/Club_model.php:181
+#: application/models/Club_model.php:223
 msgid "Invalid User ID!"
 msgstr "無効なユーザーIDです！"
 
@@ -718,7 +720,8 @@ msgstr "クラブの権限"
 #: application/controllers/Club.php:119 application/controllers/Club.php:148
 #: application/controllers/Club.php:175 application/models/Club_model.php:22
 #: application/models/Club_model.php:70 application/models/Club_model.php:144
-#: application/models/Club_model.php:186
+#: application/models/Club_model.php:186 application/models/Club_model.php:102
+#: application/models/Club_model.php:176 application/models/Club_model.php:218
 msgid "Invalid Club ID!"
 msgstr "無効なクラブIDです！"
 
@@ -3489,11 +3492,11 @@ msgctxt "Division Name (States in various countries)."
 msgid "City / Ku / Gun"
 msgstr "市 / 区 / 郡"
 
-#: application/models/Club_model.php:154
+#: application/models/Club_model.php:154 application/models/Club_model.php:186
 msgid "Invalid Permission Level!"
 msgstr "権限レベルが無効です!"
 
-#: application/models/Club_model.php:169
+#: application/models/Club_model.php:169 application/models/Club_model.php:201
 msgid "Error adding Club Member!"
 msgstr "クラブメンバーの追加中にエラーが発生しました!"
 
