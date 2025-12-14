@@ -18,7 +18,40 @@ class Callbook {
 	// Implement the following:
 	// - Implement callsign reduced logic
 	public function getCallbookData($callsign) {
-		switch ($this->ci->config->item('callbook')) {
+		// Load callbook configuration from config.php
+		$source_callbooks = $this->ci->config->item('callbook');
+
+		// Check if the source callbook is a single element or an array
+		if (is_array($source_callbooks)) {
+			// Parse each callbook in the array until we get a valid result
+			foreach ($source_callbooks as $source) {
+				$callbook = $this->queryCallbook($callsign, $source);
+				if (!isset($callbook['error']) || $callbook['error'] == '') {
+					break;
+				}
+			}
+		}
+		else {
+			// Single callbook lookup (default behavior)
+			$callbook = $this->queryCallbook($callsign, $source_callbooks);
+		}
+
+		// Handle callbook specific fields
+		if (! array_key_exists('geoloc', $callbook)) {
+			$callbook['geoloc'] = '';
+		}
+
+		// qrz.com gives AA00aa if the user deleted his grid from the profile
+		$this->ci->load->library('qra');
+		if (!array_key_exists('gridsquare', $callbook) || !$this->ci->qra->validate_grid($callbook['gridsquare'])) {
+			$callbook['gridsquare'] = '';
+		}
+
+		return $callbook;
+	}
+
+	function queryCallbook($callsign, $source) {
+		switch ($source) {
 			case 'qrz':
 				if ($this->ci->config->item('qrz_username') == null || $this->ci->config->item('qrz_password') == null) {
 					$callbook['error'] = 'Lookup not configured. Please review configuration.';
@@ -46,15 +79,8 @@ class Callbook {
 			default:
 				$callbook['error'] = 'No callbook defined. Please review configuration.';
 		}
-		// Handle callbook specific fields
-		if (! array_key_exists('geoloc', $callbook)) {
-			$callbook['geoloc'] = '';
-		}
-		// qrz.com gives AA00aa if the user deleted his grid from the profile
-		$this->ci->load->library('qra');
-		if (!array_key_exists('gridsquare', $callbook) || !$this->ci->qra->validate_grid($callbook['gridsquare'])) {
-			$callbook['gridsquare'] = '';
-		}
+
+		log_message('debug', 'Callbook lookup for '.$callsign.' using '.$source.': '.((($callbook['error'] ?? '' ) != '') ? $callbook['error'] : 'Success'));
 		return $callbook;
 	}
 
@@ -125,7 +151,12 @@ class Callbook {
 
 		if (!$this->ci->session->userdata('hamqth_session_key')) {
 			$hamqth_session_key = $this->ci->hamqth->session($username, $password);
-			$this->ci->session->set_userdata('hamqth_session_key', $hamqth_session_key);
+			if ($hamqth_session_key == false) {
+				$callbook['error'] = __("Error obtaining a session key for HamQTH query");
+				return $callbook;
+			} else {
+				$this->ci->session->set_userdata('hamqth_session_key', $hamqth_session_key);
+			}
 		}
 
 		$callbook = $this->ci->hamqth->search($callsign, $this->ci->session->userdata('hamqth_session_key'));

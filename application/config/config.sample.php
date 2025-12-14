@@ -9,12 +9,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 |	'app_name'		Name of the App 'Wavelog'
 |	'directory'		directory where wavelog is installed eg "logger"
-|	'callbook'		Selects which Callbook lookup to use defaults "hamqth" but supports "qrz"
+|	'callbook'		Selects which Callbook lookup to use defaults "hamqth" but also supports: "qrz", "qrzcq" and "qrzru"
 */
 
 $config['app_name'] = 'Wavelog';
 $config['directory'] = 'logbook';
-$config['callbook'] = 'hamqth'; // Options are hamqth, qrz or qrzcq
+
+/*
+|--------------------------------------------------------------------------
+| Callbook Settings
+|--------------------------------------------------------------------------
+| Options are hamqth, qrz, qrzcq or qrzru
+| For a single callbook configure just one value as string. Example:
+| $config['callbook'] = 'hamqth';
+| This can also be set to an array of callbooks to search sequentially until a match is found. Example:
+| $config['callbook'] = ['qrz', 'hamqth'];
+ */
+$config['callbook'] = 'hamqth';
 
 $config['datadir'] = null; // default to install directory
 
