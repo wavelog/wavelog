@@ -29,7 +29,7 @@ function check_missing_distance($result) { ?>
 	<?= __("This is useful if you have imported QSOs without distance information."); ?><br /><br />
 	<?= __("Update will only set the distance for QSOs where the distance is empty."); ?>
 	<br />
-	<button type="button" class="mt-2 btn btn-sm btn-primary ld-ext-right" id="updateDistancesBtn" onclick="runUpdateDistancesFix('')">
+	<button type="button" class="mt-2 btn btn-sm btn-primary ld-ext-right" id="updateDistanceButton" onclick="runUpdateDistancesFix('')">
 		<?= __("Update now") ?><div class="ld ld-ring ld-spin"></div>
 	</button>
 
@@ -44,7 +44,7 @@ function check_qsos_missing_continent($result) { ?>
 	<?= __("This is useful if you have imported QSOs without continent information."); ?><br /><br />
 	<?= __("Update will only set the continent for QSOs where the continent is empty."); ?>
 	<br />
-	<button type="button" class="mt-2 btn btn-sm btn-primary ld-ext-right" id="updateDistancesBtn" onclick="runContinentFix('')">
+	<button type="button" class="mt-2 btn btn-sm btn-primary ld-ext-right" id="updateContinentButton" onclick="runContinentFix('')">
 		<?= __("Update now") ?><div class="ld ld-ring ld-spin"></div>
 	</button>
 <?php }
@@ -63,7 +63,7 @@ function check_missing_cq_zones($result) { ?>
 	<h5>CQ Zone Check Results</h5>
 	QSOs to update found: <?php echo $result[0]->count; ?>
 	<br/>
-	<button type="button" class="mt-2 btn btn-sm btn-primary ld-ext-right" id="updateDistancesBtn" onclick="fixMissingCqZones()">
+	<button type="button" class="mt-2 btn btn-sm btn-primary ld-ext-right" id="updateCqZonesBtn" onclick="fixMissingCqZones()">
 		<?= __("Update now") ?><div class="ld ld-ring ld-spin"></div>
 	</button>
 <?php }
@@ -72,7 +72,7 @@ function check_missing_itu_zones($result) { ?>
 	<h5>ITU Zone Check Results</h5>
 	QSOs to update found: <?php echo $result[0]->count; ?>
 	<br/>
-	<button type="button" class="mt-2 btn btn-sm btn-primary ld-ext-right" id="updateDistancesBtn" onclick="fixMissingItuZones()">
+	<button type="button" class="mt-2 btn btn-sm btn-primary ld-ext-right" id="updateItuZonesBtn" onclick="fixMissingItuZones()">
 		<?= __("Update now") ?><div class="ld ld-ring ld-spin"></div>
 	</button>
 <?php }

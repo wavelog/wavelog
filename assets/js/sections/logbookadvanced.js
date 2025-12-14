@@ -2402,7 +2402,7 @@ function saveOptions() {
 	}
 
 	function fixMissingCqZones() {
-		$('#fixMissingCqZonesBtn').prop("disabled", true).addClass("running");
+		$('#updateCqZonesBtn').prop("disabled", true).addClass("running");
 		$('#closeButton').prop("disabled", true);
 		$.ajax({
 			url: base_url + 'index.php/logbookadvanced/batchFix',
@@ -2411,7 +2411,7 @@ function saveOptions() {
 			},
 			type: 'POST',
 			success: function (response) {
-				$('#fixMissingCqZonesBtn').prop("disabled", false).removeClass("running");
+				$('#updateCqZonesBtn').prop("disabled", false).removeClass("running");
 				$('#closeButton').prop("disabled", false);
 				BootstrapDialog.alert({
 					title: lang_gen_advanced_logbook_success,
@@ -2420,7 +2420,7 @@ function saveOptions() {
 				});
 			},
 			error: function () {
-				$('#fixMissingCqZonesBtn').prop("disabled", false).removeClass("running");
+				$('#updateCqZonesBtn').prop("disabled", false).removeClass("running");
 				$('#closeButton').prop("disabled", false);
 				BootstrapDialog.alert({
 					title: lang_gen_advanced_logbook_error,
@@ -2432,7 +2432,7 @@ function saveOptions() {
 	}
 
 	function fixMissingItuZones() {
-		$('#fixMissingItuZonesBtn').prop("disabled", true).addClass("running");
+		$('#updateItuZonesBtn').prop("disabled", true).addClass("running");
 		$('#closeButton').prop("disabled", true);
 		$.ajax({
 			url: base_url + 'index.php/logbookadvanced/batchFix',
@@ -2441,7 +2441,7 @@ function saveOptions() {
 			},
 			type: 'POST',
 			success: function (response) {
-				$('#fixMissingItuZonesBtn').prop("disabled", false).removeClass("running");
+				$('#updateItuZonesBtn').prop("disabled", false).removeClass("running");
 				$('#closeButton').prop("disabled", false);
 				BootstrapDialog.alert({
 					title: lang_gen_advanced_logbook_success,
@@ -2450,7 +2450,7 @@ function saveOptions() {
 				});
 			},
 			error: function () {
-				$('#fixMissingItuZonesBtn').prop("disabled", false).removeClass("running");
+				$('#updateItuZonesBtn').prop("disabled", false).removeClass("running");
 				$('#closeButton').prop("disabled", false);
 				BootstrapDialog.alert({
 					title: lang_gen_advanced_logbook_error,
