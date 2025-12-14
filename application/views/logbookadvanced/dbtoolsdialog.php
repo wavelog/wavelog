@@ -2,15 +2,15 @@
     <div class="row">
         <div class="col-md-6">
             <h5><?= __("Data Repair Tools") ?>
-						<button type="button" class="btn btn-sm btn-info me-1 ld-ext-right" id="getDbToolsInfoBtn" onclick="getDbToolsInfo()">
-                            <?= __("Info") ?><div class="ld ld-ring ld-spin"></div>
-                        </button>
-		</h5>
+				<button type="button" class="btn btn-sm btn-info me-1 ld-ext-right" id="getDbToolsInfoBtn" onclick="getDbToolsInfo()">
+					<?= __("Info") ?><div class="ld ld-ring ld-spin"></div>
+				</button>
+			</h5>
             <div class="list-group">
                 <div class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
                         <h6 class="mb-1"><?= __("Fix CQ Zones") ?></h6>
-                        <p class="mb-1 small text-muted"><?= __("Update missing or incorrect CQ zone information") ?></p>
+                        <p class="mb-1 small text-muted"><?= __("Update missing CQ zone information") ?></p>
                     </div>
                     <div class="d-flex nowrap">
                         <button type="button" class="btn btn-sm btn-secondary me-1 ld-ext-right" id="checkFixCqZonesBtn" onclick="checkFixCqZones()">
@@ -22,7 +22,7 @@
                 <div class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
                         <h6 class="mb-1"><?= __("Fix ITU Zones") ?></h6>
-                        <p class="mb-1 small text-muted"><?= __("Update missing or incorrect ITU zone information") ?></p>
+                        <p class="mb-1 small text-muted"><?= __("Update missing ITU zone information") ?></p>
                     </div>
                     <div class="d-flex nowrap">
                         <button type="button" class="btn btn-sm btn-secondary me-1 ld-ext-right" id="checkFixItuZonesBtn" onclick="checkFixItuZones()">
