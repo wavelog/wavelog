@@ -2231,19 +2231,6 @@ function saveOptions() {
 		});
 	}
 
-	function getDbToolsInfo() {
-		$('#getDbToolsInfoBtn').prop("disabled", true).addClass("running");
-		$.ajax({
-			url: base_url + 'index.php/logbookadvanced/dbtoolsInfo',
-			type: 'post',
-			success: function (html) {
-				$('#getDbToolsInfoBtn').prop("disabled", false).removeClass("running");
-				$('.result').html(html);
-			}
-		});
-
-	}
-
 	function fixMissingDxcc(all) {
 		if (all === true) {
 			$('#updateDxccBtn').prop("disabled", true).addClass("running");

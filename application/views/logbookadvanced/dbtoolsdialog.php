@@ -2,9 +2,8 @@
     <div class="row">
         <div class="col-md-6">
             <h5><?= __("Data Repair Tools") ?>
-				<button type="button" class="btn btn-sm btn-info me-1 ld-ext-right" id="getDbToolsInfoBtn" onclick="getDbToolsInfo()">
-					<?= __("Info") ?><div class="ld ld-ring ld-spin"></div>
-				</button>
+			<a href="https://github.com/wavelog/wavelog/wiki/Advanced-Logbook#database-tools-dbtools" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-info me-1 ld-ext-right">
+					<?= __("Wiki Help") ?></a>
 			</h5>
             <div class="list-group">
                 <div class="list-group-item d-flex justify-content-between align-items-center">
