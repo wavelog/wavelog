@@ -911,17 +911,16 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->model('logbookadvanced_model');
 
 		$dxcc = $this->input->post('dxcc', true);
-		$country = $this->input->post('country', true);
+		$data['country'] = $this->input->post('country', true);
 
 		// Process for batch QSO state fix
 		$result = $this->logbookadvanced_model->fixStateBatch($dxcc);
 
-		$data['result'] = count($result);
+		$data['result'] = $result;
 
-		$data['message'] = __("The number of QSOs updated for state/province in") . ' ' . $country . ' : ' . count($result);
+		$data['type'] = 'state';
 
-		header("Content-Type: application/json");
-		echo json_encode($data);
+		$this->load->view('logbookadvanced/showUpdateResult', $data);
 	}
 
 	public function openStateList() {
@@ -945,14 +944,10 @@ class Logbookadvanced extends CI_Controller {
         $result = $this->logbookadvanced_model->check_missing_dxcc_id($all);
 
 		$data['result'] = $result;
+		$data['all'] = $all;
+		$data['type'] = 'dxcc';
 
-		if ($all == 'false') {
-			$data['message'] = __("The number of QSOs updated for missing DXCC IDs was") .' ' . $result;
-		} else {
-			$data['message'] = __("The number of QSOs re-checked for DXCC was") .' ' . $result;
-		}
-		header("Content-Type: application/json");
-		echo json_encode($data);
+		$this->load->view('logbookadvanced/showUpdateResult', $data);
 	}
 
 	public function openMissingDxccList() {

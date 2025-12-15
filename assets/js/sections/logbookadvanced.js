@@ -2188,11 +2188,7 @@ function saveOptions() {
 			},
 			success: function (response) {
 				$('#fixStateBtn_' + dxcc).prop("disabled", false).removeClass("running");
-				if (response.result == 0) {
-					$('.result').html('<div class="alert alert-danger" role="alert">' + response.message + '</div>');
-					return;
-				}
-				$('.result').html('<div class="alert alert-success" role="alert">' + response.message + '</div>');
+				$('.result').html(response);
 			},
 			error: function () {
 				$('#fixStateBtn_' + dxcc).prop("disabled", false).removeClass("running");
@@ -2259,11 +2255,7 @@ function saveOptions() {
 							success: function(data) {
 								$('#updateDxccBtn').prop("disabled", false).removeClass("running");
 								$('#closeButton').prop("disabled", false);
-								if (data.result == 0) {
-									$('.result').html('<div class="alert alert-danger" role="alert">' + data.message + '</div>');
-									return;
-								}
-								$('.result').html('<div class="alert alert-success" role="alert">' + data.message + '</div>');
+								$('.result').html(data);
 							},
 							error: function(xhr, status, error) {
 								$('#updateDxccBtn').prop("disabled", false).removeClass("running");
@@ -2289,11 +2281,7 @@ function saveOptions() {
 				success: function(data) {
 					$('#fixMissingDxccBtn').prop("disabled", false).removeClass("running");
 					$('#closeButton').prop("disabled", false);
-					if (data.result == 0) {
-						$('.result').html('<div class="alert alert-danger" role="alert">' + data.message + '</div>');
-						return;
-					}
-					$('.result').html('<div class="alert alert-success" role="alert">' + data.message + '</div>');
+					$('.result').html(data);
 				},
 				error: function(xhr, status, error) {
 					$('#fixMissingDxccBtn').prop("disabled", false).removeClass("running");

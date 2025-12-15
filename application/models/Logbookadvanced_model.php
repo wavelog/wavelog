@@ -1598,12 +1598,18 @@ class Logbookadvanced_model extends CI_Model {
 
 		$results = [];
 
+		$count = 0;
+
 		foreach ($query->result() as $qso) {
 			$result = $this->fixStateSingle($qso->COL_PRIMARY_KEY);
 			if ($result['success']) {
+				$count++;
+			} else {
 				$results []= $result;
 			}
 		}
+
+		$results['count'] = $count;
 
 		return $results;
 	}
@@ -1652,14 +1658,23 @@ class Logbookadvanced_model extends CI_Model {
 				$qso_date = $row['COL_TIME_OFF'] == '' ? $row['COL_TIME_ON'] : $row['COL_TIME_OFF'];
 				$qso_date = date("Y-m-d", strtotime($qso_date));
 				$d = $this->logbook_model->check_dxcc_table($row['COL_CALL'], $qso_date);
-				if ($d[0] != 'Not Found') {
+				if ($d[0] == 'Not Found') {
+					$result[] = [
+						'callsign' => $row['COL_CALL'],
+						'reason' => 'DXCC Not Found',
+						'location' => '',
+						'id' => $row['COL_PRIMARY_KEY']
+					];
+				} else {
 					$q->execute(array(addslashes(ucwords(strtolower($d[1]), "- (/")), $d[0], $row['COL_PRIMARY_KEY']));
 					$count++;
 				}
 			}
 		}
 		$this->db->trans_complete();
-		return $count;
+		$result['count'] = $count;
+
+		return $result;
 	}
 
 	function getMissingDxccQsos() {
