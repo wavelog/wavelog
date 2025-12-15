@@ -2188,6 +2188,10 @@ function saveOptions() {
 			},
 			success: function (response) {
 				$('#fixStateBtn_' + dxcc).prop("disabled", false).removeClass("running");
+				if (response.result == 0) {
+					$('.result').html('<div class="alert alert-danger" role="alert">' + response.message + '</div>');
+					return;
+				}
 				$('.result').html('<div class="alert alert-success" role="alert">' + response.message + '</div>');
 			},
 			error: function () {

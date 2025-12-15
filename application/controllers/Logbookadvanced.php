@@ -916,6 +916,8 @@ class Logbookadvanced extends CI_Controller {
 		// Process for batch QSO state fix
 		$result = $this->logbookadvanced_model->fixStateBatch($dxcc);
 
+		$data['result'] = count($result);
+
 		$data['message'] = __("The number of QSOs updated for state/province in") . ' ' . $country . ' : ' . count($result);
 
 		header("Content-Type: application/json");
