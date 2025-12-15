@@ -2375,6 +2375,7 @@ function saveOptions() {
 					message: lang_gen_advanced_logbook_continents_updated + ' ' + response + ' ' + lang_gen_advanced_logbook_records_updated,
 					type: BootstrapDialog.TYPE_SUCCESS
 				});
+				$('#closeButton').prop("disabled", false);
 			},
 			error: function () {
 				$('#updateContinentButton').prop("disabled", false).removeClass("running");
@@ -2386,6 +2387,7 @@ function saveOptions() {
 					message: lang_gen_advanced_logbook_problem_fixing_continents,
 					type: BootstrapDialog.TYPE_DANGER
 				});
+				$('#closeButton').prop("disabled", false);
 			}
 		});
 	}
