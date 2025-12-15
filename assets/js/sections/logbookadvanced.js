@@ -2258,8 +2258,12 @@ function saveOptions() {
 							},
 							success: function(data) {
 								$('#updateDxccBtn').prop("disabled", false).removeClass("running");
-								$('.result').html(data);
 								$('#closeButton').prop("disabled", false);
+								if (data.result == 0) {
+									$('.result').html('<div class="alert alert-danger" role="alert">' + data.message + '</div>');
+									return;
+								}
+								$('.result').html('<div class="alert alert-success" role="alert">' + data.message + '</div>');
 							},
 							error: function(xhr, status, error) {
 								$('#updateDxccBtn').prop("disabled", false).removeClass("running");
@@ -2284,8 +2288,12 @@ function saveOptions() {
 				},
 				success: function(data) {
 					$('#fixMissingDxccBtn').prop("disabled", false).removeClass("running");
-					$('.result').html(data);
 					$('#closeButton').prop("disabled", false);
+					if (data.result == 0) {
+						$('.result').html('<div class="alert alert-danger" role="alert">' + data.message + '</div>');
+						return;
+					}
+					$('.result').html('<div class="alert alert-success" role="alert">' + data.message + '</div>');
 				},
 				error: function(xhr, status, error) {
 					$('#fixMissingDxccBtn').prop("disabled", false).removeClass("running");

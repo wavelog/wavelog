@@ -944,12 +944,15 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->model('logbookadvanced_model');
         $result = $this->logbookadvanced_model->check_missing_dxcc_id($all);
 
-		header("Content-Type: application/json");
+		$data['result'] = $result;
+
 		if ($all == 'false') {
-			echo json_encode(__("The number of QSOs updated for missing DXCC IDs was") .' ' . $result);
+			$data['message'] = __("The number of QSOs updated for missing DXCC IDs was") .' ' . $result;
 		} else {
-			echo json_encode(__("The number of QSOs re-checked for DXCC was") .' ' . $result);
+			$data['message'] = __("The number of QSOs re-checked for DXCC was") .' ' . $result;
 		}
+		header("Content-Type: application/json");
+		echo json_encode($data);
 	}
 
 	public function openMissingDxccList() {
