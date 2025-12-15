@@ -833,8 +833,11 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->model('logbookadvanced_model');
 		$result = $this->logbookadvanced_model->check_missing_continent();
 
-		header("Content-Type: application/json");
-		print json_encode($result);
+		$data['result'] = $result;
+
+		$data['type'] = 'continent';
+
+		$this->load->view('logbookadvanced/showUpdateResult', $data);
 	}
 
 	public function fixStateProgress() {

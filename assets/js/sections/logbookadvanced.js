@@ -2370,23 +2370,12 @@ function saveOptions() {
 				if (dialogItself != '') {
 					dialogItself.close();
 				}
-				BootstrapDialog.alert({
-					title: lang_gen_advanced_logbook_success,
-					message: lang_gen_advanced_logbook_continents_updated + ' ' + response + ' ' + lang_gen_advanced_logbook_records_updated,
-					type: BootstrapDialog.TYPE_SUCCESS
-				});
+				$('.result').html(response);
 				$('#closeButton').prop("disabled", false);
 			},
-			error: function () {
+			error: function(xhr, status, error) {
 				$('#updateContinentButton').prop("disabled", false).removeClass("running");
-				if (dialogItself != '') {
-					dialogItself.close();
-				}
-				BootstrapDialog.alert({
-					title: lang_gen_advanced_logbook_error,
-					message: lang_gen_advanced_logbook_problem_fixing_continents,
-					type: BootstrapDialog.TYPE_DANGER
-				});
+				$('.result').html(error);
 				$('#closeButton').prop("disabled", false);
 			}
 		});

@@ -7,6 +7,9 @@ switch ($type) {
 	case 'state':
 		showStateUpdateResult($result, $country);
 		break;
+	case 'continent':
+		showContinentUpdateResult($result);
+		break;
 	default:
 		// Invalid type
 		break;
@@ -101,5 +104,13 @@ function showStateUpdateResult($result, $country) {
 			echo '</table>';
 			echo '</div>';
 		}
+	}
+}
+
+function showContinentUpdateResult($result) {
+	if ($result == 0) {
+			echo '<div class="alert alert-danger" role="alert">' . __("The number of QSOs updated for continent is") . ' : ' . $result . '</div>';
+	} else {
+			echo '<div class="alert alert-success" role="alert">' . __("The number of QSOs updated for continent is") . ' : ' . $result . '</div>';
 	}
 }
