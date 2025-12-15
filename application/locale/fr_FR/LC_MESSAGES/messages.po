@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-14 10:34+0000\n"
-"PO-Revision-Date: 2025-12-09 15:07+0000\n"
+"POT-Creation-Date: 2025-12-14 17:13+0000\n"
+"PO-Revision-Date: 2025-12-14 17:13+0000\n"
 "Last-Translator: JONCOUX Philippe <joncoux@free.fr>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/fr/>\n"
@@ -695,8 +695,8 @@ msgstr "Membre du club ADIF"
 msgid "Club Member"
 msgstr "Membre du club"
 
-#: application/controllers/Club.php:45 application/models/Club_model.php:75
-#: application/models/Club_model.php:149 application/models/Club_model.php:191
+#: application/controllers/Club.php:45 application/models/Club_model.php:107
+#: application/models/Club_model.php:181 application/models/Club_model.php:223
 msgid "Invalid User ID!"
 msgstr "ID utilisateur invalide !"
 
@@ -712,8 +712,8 @@ msgstr "Autorisations du club"
 
 #: application/controllers/Club.php:119 application/controllers/Club.php:148
 #: application/controllers/Club.php:175 application/models/Club_model.php:22
-#: application/models/Club_model.php:70 application/models/Club_model.php:144
-#: application/models/Club_model.php:186
+#: application/models/Club_model.php:102 application/models/Club_model.php:176
+#: application/models/Club_model.php:218
 msgid "Invalid Club ID!"
 msgstr "ID de club invalide !"
 
@@ -1067,27 +1067,27 @@ msgstr "Nom d’utilisateur eQSL invalide : %s"
 
 #: application/controllers/Eqsl.php:312
 msgid "QSO not found or not accessible"
-msgstr ""
+msgstr "QSO introuvable ou inaccessible"
 
 #: application/controllers/Eqsl.php:330
 msgid "User not found"
-msgstr ""
+msgstr "Utilisateur introuvable"
 
 #: application/controllers/Eqsl.php:339
 msgid "eQSL password not configured for this user"
-msgstr ""
+msgstr "Mot de passe eQSL non configuré pour cet utilisateur"
 
 #: application/controllers/Eqsl.php:357
 msgid "Failed to fetch eQSL image data"
-msgstr ""
+msgstr "Échec de la récupération des données d'image eQSL"
 
 #: application/controllers/Eqsl.php:376
 msgid "eQSL image not available"
-msgstr ""
+msgstr "Image eQSL non disponible"
 
 #: application/controllers/Eqsl.php:395
 msgid "Failed to download eQSL image"
-msgstr ""
+msgstr "Échec du téléchargement de l'image eQSL"
 
 #: application/controllers/Eqsl.php:495
 msgid "eQSL Tools"
@@ -3307,7 +3307,7 @@ msgstr "Erreur QRZCQ"
 
 #: application/libraries/Callbook.php:155
 msgid "Error obtaining a session key for HamQTH query"
-msgstr ""
+msgstr "Erreur lors de l'obtention d'une clé de session pour la requête HamQTH"
 
 #: application/libraries/Cbr_parser.php:111
 #: application/libraries/Cbr_parser.php:160
@@ -3402,11 +3402,11 @@ msgctxt "Division Name (States in various countries)."
 msgid "City / Ku / Gun"
 msgstr "Ville / Arrondissement / Préfecture"
 
-#: application/models/Club_model.php:154
+#: application/models/Club_model.php:186
 msgid "Invalid Permission Level!"
 msgstr "Niveau de permission invalide !"
 
-#: application/models/Club_model.php:169
+#: application/models/Club_model.php:201
 msgid "Error adding Club Member!"
 msgstr "Erreur lors de l'ajout d'un membre du club !"
 
@@ -5395,8 +5395,8 @@ msgid ""
 "Fields taken for this Award: State (ADIF: STATE), Stations County (ADIF: "
 "CNTY), DXCC (Must be one of 291 (U.S.A.) ,6 (ALASKA) or 110 (HAWAII))"
 msgstr ""
-"Champs requis pour ce trophée: Etat (ADIF: STATE), Comté (ADIF : CNTY), DXCC "
-"(Doit être un des 291 (U.S.A.) ,6 (ALASKA) ou 110 (HAWAII))"
+"Champs requis pour ce trophée : Etat (ADIF: STATE), Comté (ADIF : CNTY), "
+"DXCC (Doit être un des 291 (U.S.A.), 6 (ALASKA) ou 110 (HAWAII))"
 
 #: application/views/awards/counties/index.php:22
 msgid "Counties Worked"
@@ -6638,7 +6638,7 @@ msgstr "Classe Or (1er)"
 
 #: application/views/awards/pl_polska/index.php:144
 msgid "Congratulations!"
-msgstr "Félicitations!"
+msgstr "Félicitations !"
 
 #: application/views/awards/pl_polska/index.php:145
 msgid "You are entitled to the following award categories"
@@ -6698,7 +6698,7 @@ msgstr "Bravo! Vous avez droit à"
 #: application/views/awards/pl_polska/index.php:252
 #: application/views/awards/pl_polska/index.php:324
 msgid "category award!"
-msgstr "Prix de catégorie!"
+msgstr "Prix de catégorie !"
 
 #: application/views/awards/pl_polska/index.php:342
 msgid "Award Category:"
@@ -6731,7 +6731,7 @@ msgstr ""
 
 #: application/views/awards/pl_polska/index.php:372
 msgid "Tip:"
-msgstr "Conseil :"
+msgstr "Conseil:"
 
 #: application/views/awards/pl_polska/index.php:372
 msgid "Use"
@@ -6949,7 +6949,7 @@ msgid ""
 "Fields taken for this Award: Gridsquare and vucc_grids (ADIF: GRIDSQUARE, "
 "VUCC_GRIDS)"
 msgstr ""
-"Champs requis pour ce trophée: Locator et vucc_grids (ADIF: GRIDSQUARE, "
+"Champs requis pour ce trophée : Locator et vucc_grids (ADIF: GRIDSQUARE, "
 "VUCC_GRIDS)"
 
 #: application/views/awards/vucc/index.php:23
@@ -7458,27 +7458,28 @@ msgstr "Cliquez pour activer la connexion CAT"
 
 #: application/views/bandmap/list.php:31
 msgid "CAT following radio - Click to disable"
-msgstr ""
+msgstr "Radio CAT suiveuse - Cliquez pour désactiver"
 
 #: application/views/bandmap/list.php:32 application/views/bandmap/list.php:231
 msgid "Click to enable band lock (requires CAT connection)"
-msgstr ""
+msgstr "Cliquez pour activer le verrouillage de bande (connexion CAT requise)"
 
 #: application/views/bandmap/list.php:33
 msgid "Band lock active - Click to disable"
-msgstr ""
+msgstr "Verrouillage de band activé - Cliquez pour désactiver"
 
 #: application/views/bandmap/list.php:34
 msgid "Band Lock"
-msgstr ""
+msgstr "verrouillage de bande"
 
 #: application/views/bandmap/list.php:35
 msgid "Band lock enabled - band filter will track radio band"
 msgstr ""
+"Verrouillage de bande activé - le filtre de bande suivra la bande radio"
 
 #: application/views/bandmap/list.php:36
 msgid "Band filter changed to"
-msgstr ""
+msgstr "Filtre de bande modifié en"
 
 #: application/views/bandmap/list.php:37
 msgid "by transceiver"
@@ -7515,35 +7516,40 @@ msgstr "Utilisez vos groupes et modes préférés"
 #: application/views/bandmap/list.php:47 application/views/bandmap/list.php:314
 #: application/views/bandmap/list.php:479
 msgid "My Submodes"
-msgstr ""
+msgstr "Mes sous-modes"
 
 #: application/views/bandmap/list.php:48
 msgid "Submode filter enabled"
-msgstr ""
+msgstr "Filtre de sous-mode activé"
 
 #: application/views/bandmap/list.php:49
 msgid "Submode filter disabled - showing all"
-msgstr ""
+msgstr "Filtre de sous-mode désactivé - tout affiché"
 
 #: application/views/bandmap/list.php:50
 msgid "Required submodes"
-msgstr ""
+msgstr "Sous-modes requis"
 
 #: application/views/bandmap/list.php:51
 msgid "Configure in User Settings - Modes"
-msgstr ""
+msgstr "Configurer dans les paramètres utilisateur - Modes"
 
 #: application/views/bandmap/list.php:52
 msgid "No submodes configured - configure in User Settings - Modes"
 msgstr ""
+"Aucun sous-mode configuré - configurez-les dans Paramètres utilisateur > "
+"Modes"
 
 #: application/views/bandmap/list.php:53
 msgid "No submodes enabled in settings - showing all spots"
 msgstr ""
+"Aucun sous-mode activé dans les paramètres - affichage de tous les spots"
 
 #: application/views/bandmap/list.php:54
 msgid "Disabled - no submodes enabled for this mode in User Settings"
 msgstr ""
+"Désactivé - aucun sous-mode n'est activé pour ce mode dans les paramètres "
+"utilisateur"
 
 #: application/views/bandmap/list.php:55 application/views/bandmap/list.php:468
 #: application/views/components/dxwaterfall.php:32
@@ -7562,41 +7568,43 @@ msgstr "Activer/désactiver le filtre Phonie"
 
 #: application/views/bandmap/list.php:60 application/views/bandmap/list.php:421
 msgid "Favorites"
-msgstr ""
+msgstr "Favoris"
 
 #: application/views/bandmap/list.php:61 application/views/bandmap/list.php:424
 msgid "Save Current Filters..."
-msgstr ""
+msgstr "Enregistrer les filtres actuels..."
 
 #: application/views/bandmap/list.php:62
 msgid "Enter a name for this filter preset:"
-msgstr ""
+msgstr "Saisissez un nom pour ce préréglage de filtre :"
 
 #: application/views/bandmap/list.php:63
 msgid "Filter preset saved"
-msgstr ""
+msgstr "Préréglage de filtre enregistré"
 
 #: application/views/bandmap/list.php:64
 msgid "Filter preset loaded"
-msgstr ""
+msgstr "Préréglage de filtre chargé"
 
 #: application/views/bandmap/list.php:65
 msgid "Filter preset deleted"
-msgstr ""
+msgstr "Préréglage de filtre supprimé"
 
 #: application/views/bandmap/list.php:66
 msgid "Are you sure to delete this filter preset?"
-msgstr ""
+msgstr "Êtes-vous sûr de vouloir supprimer ce filtre prédéfini ?"
 
 #: application/views/bandmap/list.php:67
 msgid "No saved filter presets"
-msgstr ""
+msgstr "Aucun préréglage de filtre enregistré"
 
 #: application/views/bandmap/list.php:68
 msgid ""
 "Maximum of 20 filter presets reached. Please delete some before adding new "
 "ones."
 msgstr ""
+"Le nombre maximal de 20 préréglages de filtres a été atteint. Veuillez en "
+"supprimer certains avant d'en ajouter de nouveaux."
 
 #: application/views/bandmap/list.php:71
 msgid "Loading data from DX Cluster"
@@ -7918,11 +7926,11 @@ msgstr "Aide du cluster DX"
 
 #: application/views/bandmap/list.php:210
 msgid "Compact Mode - Hide/Show Menu"
-msgstr ""
+msgstr "Mode compact - Afficher/Masquer le menu"
 
 #: application/views/bandmap/list.php:237
 msgid "TRX:"
-msgstr "TRX:"
+msgstr "TRX :"
 
 #: application/views/bandmap/list.php:239
 #: application/views/bandmap/list.php:313
@@ -7947,7 +7955,7 @@ msgstr "Vérification - "
 
 #: application/views/bandmap/list.php:251
 msgid "de:"
-msgstr "de:"
+msgstr "de :"
 
 #: application/views/bandmap/list.php:253
 msgid "Select all continents"
@@ -8045,7 +8053,7 @@ msgstr "Appliquer les filtres"
 
 #: application/views/bandmap/list.php:420
 msgid "Filter Favorites"
-msgstr ""
+msgstr "Filtrer les favoris"
 
 #: application/views/bandmap/list.php:430
 msgid "Clear all filters except De Continent"
@@ -8093,7 +8101,7 @@ msgstr "Activer/désactiver le filtre de bande 10m"
 
 #: application/views/bandmap/list.php:452
 msgid "Toggle 6m band filter"
-msgstr ""
+msgstr "Activer/désactiver le filtre de bande 6 m"
 
 #: application/views/bandmap/list.php:456
 msgid "Toggle VHF bands filter"
@@ -8109,7 +8117,7 @@ msgstr "Activer/désactiver le filtre des bandes SHF"
 
 #: application/views/bandmap/list.php:478
 msgid "Loading submodes..."
-msgstr ""
+msgstr "Chargement des sous-modes..."
 
 #: application/views/bandmap/list.php:483
 msgid "Toggle LoTW User filter"
@@ -8189,7 +8197,7 @@ msgstr "Recherchez des endroits..."
 #: application/views/bandmap/list.php:557
 msgid "Note: Map shows DXCC entity locations, not actual spot locations"
 msgstr ""
-"Remarque: La carte indique l'emplacement des entités DXCC, et non "
+"Remarque : La carte indique l'emplacement des entités DXCC, et non "
 "l'emplacement précis des points d'intérêt"
 
 #: application/views/bandmap/list.php:565
@@ -8909,7 +8917,7 @@ msgstr "Exporter des QSO par ADIF"
 
 #: application/views/club/permissions.php:128
 msgid "Export own QSO per ADIF"
-msgstr ""
+msgstr "Exporter son propre QSO par ADIF"
 
 #: application/views/club/permissions.php:137
 msgid "User Management"
@@ -9276,7 +9284,7 @@ msgstr "Par :"
 #: application/views/components/dxwaterfall.php:57
 #, php-format
 msgid "Please wait %s second(s) before toggling DX Waterfall again."
-msgstr ""
+msgstr "Veuillez patienter %s seconde(s) avant de réactiver DX Waterfall."
 
 #: application/views/components/dxwaterfall.php:81
 #: application/views/components/dxwaterfall.php:87
@@ -9892,6 +9900,8 @@ msgid ""
 "Don't lose your streak - You have already had at least one QSO for the last "
 "%s consecutive days."
 msgstr ""
+"Ne perdez pas votre série - Vous avez déjà eu au moins un QSO pendant les %s "
+"derniers jours consécutifs."
 
 #: application/views/dashboard/index.php:184
 msgid "You have made no QSOs today; time to turn on the radio!"
@@ -12041,7 +12051,7 @@ msgstr "LX Gridmaster"
 
 #: application/views/interface_assets/header.php:268
 msgid "Poland"
-msgstr ""
+msgstr "Pologne"
 
 #: application/views/interface_assets/header.php:274
 msgid "Switzerland"
@@ -12502,12 +12512,17 @@ msgid ""
 "If a QSO has a 4‑char locator (e.g., JO90), try to refine it using callbook "
 "data."
 msgstr ""
+"Si un QSO possède un localisateur de 4 caractères (par exemple, JO90), "
+"essayez de l'affiner à l'aide des données de l'annuaire."
 
 #: application/views/logbookadvanced/callbookdialog.php:6
 msgid ""
 "We’ll keep the original value and add a more precise locator (e.g., JO90AB "
 "or JO90AB12) when a match is confident."
 msgstr ""
+"Nous conserverons la valeur d'origine et ajouterons un localisateur plus "
+"précis (par exemple, JO90AB ou JO90AB12) lorsqu'une correspondance sera "
+"certaine."
 
 #: application/views/logbookadvanced/continentdialog.php:2
 msgid ""
@@ -13533,32 +13548,36 @@ msgid ""
 "Update QSOs with state/province information based on gridsquare and DXCC "
 "country."
 msgstr ""
+"Mettez à jour les QSO avec les informations d'état/province en fonction de "
+"la grille et du pays DXCC."
 
 #: application/views/logbookadvanced/statedialog.php:3
 msgid ""
 "This feature uses GeoJSON boundary data to determine the state/province from "
 "the gridsquare locator."
 msgstr ""
+"Cette fonctionnalité utilise les données de limites GeoJSON pour déterminer "
+"l'état/la province à partir du localisateur de carrés de la grille."
 
 #: application/views/logbookadvanced/statedialog.php:4
 msgid "Update will only set the state for QSOs where:"
-msgstr ""
+msgstr "La mise à jour ne modifiera l'état que pour les QSO où :"
 
 #: application/views/logbookadvanced/statedialog.php:6
 msgid "The state field is empty"
-msgstr ""
+msgstr "Le champ d'état est vide"
 
 #: application/views/logbookadvanced/statedialog.php:7
 msgid "A gridsquare is present (at least 6 characters)"
-msgstr ""
+msgstr "Un localisateur est présent (au moins 6 caractères)"
 
 #: application/views/logbookadvanced/statedialog.php:8
 msgid "The DXCC country supports state lookup"
-msgstr ""
+msgstr "Le pays DXCC prend en charge la recherche par état"
 
 #: application/views/logbookadvanced/statedialog.php:10
 msgid "Currently supported countries"
-msgstr ""
+msgstr "Pays actuellement pris en charge"
 
 #: application/views/logbookadvanced/useroptions.php:16
 msgid "Column"
@@ -13701,15 +13720,15 @@ msgstr "Dernier téléchargement"
 
 #: application/views/lotw_views/index.php:95
 msgid "Last change:"
-msgstr ""
+msgstr "Dernière modification :"
 
 #: application/views/lotw_views/index.php:95
 msgid "Serial number:"
-msgstr ""
+msgstr "Numéro de série :"
 
 #: application/views/lotw_views/index.php:97
 msgid "Certificate superseded"
-msgstr ""
+msgstr "Certificat remplacé"
 
 #: application/views/lotw_views/index.php:100
 msgid "Certificate expired"
@@ -15179,7 +15198,7 @@ msgstr "Valeur non valide pour l'élévation de l'antenne :"
 
 #: application/views/qso/index.php:38
 msgid "Please wait before saving another QSO"
-msgstr ""
+msgstr "Veuillez patienter avant d'enregistrer un autre QSO"
 
 #: application/views/qso/index.php:86
 msgid "LIVE"
@@ -16818,6 +16837,10 @@ msgid ""
 "analytics. Great for when you're operating in multiple locations but they "
 "are part of the same DXCC or VUCC Circle."
 msgstr ""
+"Les carnets de station permettent de regrouper les emplacements, ce qui vous "
+"permet de visualiser tous les emplacements d'une même session, des zones du "
+"carnet de station aux analyses. C'est très pratique lorsque vous opérez "
+"depuis plusieurs emplacements appartenant au même cercle DXCC ou VUCC."
 
 #: application/views/stationsetup/stationsetup.php:35
 msgid "Edit Linked locations"
@@ -17491,7 +17514,7 @@ msgstr "DX Waterfall"
 
 #: application/views/user/edit.php:450
 msgid "squelched"
-msgstr ""
+msgstr "silencieux"
 
 #: application/views/user/edit.php:453
 msgid "Show an interactive DX Cluster 'Waterfall' on the QSO logging page."
@@ -17654,7 +17677,7 @@ msgstr ""
 
 #: application/views/user/edit.php:688
 msgid "Show Fields on QSO Tab"
-msgstr ""
+msgstr "Afficher les champs sur l'onglet QSO"
 
 #: application/views/user/edit.php:692
 msgid ""
@@ -18512,7 +18535,7 @@ msgstr "Image eQSL"
 
 #: application/views/view_log/qso.php:916
 msgid "QSO not found"
-msgstr ""
+msgstr "QSO introuvable"
 
 #: application/views/visitor/layout/footer.php:239
 msgid "Filter Results"
@@ -18641,9 +18664,6 @@ msgstr "Soumettre la demande"
 msgid "Rcvd"
 msgstr "Reçu"
 
-#~ msgid "Show Reference Fields on QSO Tab"
-#~ msgstr "Afficher les champs de référence dans l'onglet QSO"
-
 #~ msgid ""
 #~ "Station Logbooks allow you to group Station Locations, this allows you to "
 #~ "see all the locations across one session from the logbook areas to the "
@@ -18655,6 +18675,9 @@ msgstr "Reçu"
 #~ "emplacements au sein d'une même session ; visible dans le journal de "
 #~ "trafic, jusqu'aux statistiques. <br>Idéal lorsque vous travaillez sur "
 #~ "plusieurs sites, mais qu'ils font partie du même cercle DXCC ou VUCC."
+
+#~ msgid "Show Reference Fields on QSO Tab"
+#~ msgstr "Afficher les champs de référence dans l'onglet QSO"
 
 #~ msgid ""
 #~ "You might have ADIF errors, the QSOs have still been added. Please check "

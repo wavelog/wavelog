@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-14 10:34+0000\n"
-"PO-Revision-Date: 2025-12-07 14:55+0000\n"
+"POT-Creation-Date: 2025-12-14 17:13+0000\n"
+"PO-Revision-Date: 2025-12-14 17:13+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sv/>\n"
@@ -686,8 +686,8 @@ msgstr "Klubbmedlem ADIF"
 msgid "Club Member"
 msgstr "Klubbmedlem"
 
-#: application/controllers/Club.php:45 application/models/Club_model.php:75
-#: application/models/Club_model.php:149 application/models/Club_model.php:191
+#: application/controllers/Club.php:45 application/models/Club_model.php:107
+#: application/models/Club_model.php:181 application/models/Club_model.php:223
 msgid "Invalid User ID!"
 msgstr "Ogiltigt användar-ID!"
 
@@ -703,8 +703,8 @@ msgstr "Klubbbehörigheter"
 
 #: application/controllers/Club.php:119 application/controllers/Club.php:148
 #: application/controllers/Club.php:175 application/models/Club_model.php:22
-#: application/models/Club_model.php:70 application/models/Club_model.php:144
-#: application/models/Club_model.php:186
+#: application/models/Club_model.php:102 application/models/Club_model.php:176
+#: application/models/Club_model.php:218
 msgid "Invalid Club ID!"
 msgstr "Ogiltigt klubb-ID!"
 
@@ -1054,27 +1054,27 @@ msgstr "Inget sådant eQSL QTH Smeknamn: %s"
 
 #: application/controllers/Eqsl.php:312
 msgid "QSO not found or not accessible"
-msgstr ""
+msgstr "QSO hittades inte eller är inte tillgängligt"
 
 #: application/controllers/Eqsl.php:330
 msgid "User not found"
-msgstr ""
+msgstr "Användare hittades inte"
 
 #: application/controllers/Eqsl.php:339
 msgid "eQSL password not configured for this user"
-msgstr ""
+msgstr "eQSL-lösenord är inte konfigurerat för den här användaren"
 
 #: application/controllers/Eqsl.php:357
 msgid "Failed to fetch eQSL image data"
-msgstr ""
+msgstr "Det gick inte att hämta eQSL-bilddata"
 
 #: application/controllers/Eqsl.php:376
 msgid "eQSL image not available"
-msgstr ""
+msgstr "eQSL-bild inte tillgänglig"
 
 #: application/controllers/Eqsl.php:395
 msgid "Failed to download eQSL image"
-msgstr ""
+msgstr "Det gick inte att ladda ner eQSL-bild"
 
 #: application/controllers/Eqsl.php:495
 msgid "eQSL Tools"
@@ -3283,7 +3283,7 @@ msgstr "QRZCQ-fel"
 
 #: application/libraries/Callbook.php:155
 msgid "Error obtaining a session key for HamQTH query"
-msgstr ""
+msgstr "Fel vid erhållande av en sessionsnyckel för HamQTH-fråga"
 
 #: application/libraries/Cbr_parser.php:111
 #: application/libraries/Cbr_parser.php:160
@@ -3376,11 +3376,11 @@ msgctxt "Division Name (States in various countries)."
 msgid "City / Ku / Gun"
 msgstr "Stad / Ku / Gun"
 
-#: application/models/Club_model.php:154
+#: application/models/Club_model.php:186
 msgid "Invalid Permission Level!"
 msgstr "Ogiltig behörighetsnivå!"
 
-#: application/models/Club_model.php:169
+#: application/models/Club_model.php:201
 msgid "Error adding Club Member!"
 msgstr "Fel vid tillägg av klubbmedlem!"
 
@@ -14312,7 +14312,7 @@ msgstr "Inte i loggen?"
 #: application/views/oqrs/showrequests.php:50
 #: application/views/oqrs/status_info.php:10
 msgid "Open request"
-msgstr "Öppna förfrågan"
+msgstr "Öppen förfrågan"
 
 #: application/views/oqrs/showrequests.php:3
 #: application/views/oqrs/showrequests.php:51
@@ -16613,6 +16613,9 @@ msgid ""
 "analytics. Great for when you're operating in multiple locations but they "
 "are part of the same DXCC or VUCC Circle."
 msgstr ""
+"Stationsloggar låter dig gruppera stationsplatser, detta gör att du kan se "
+"alla platser under en session när stations loggen analyseras. Perfekt när du "
+"opererar på flera platser som är en del av samma DXCC- eller VUCC-cirkel."
 
 #: application/views/stationsetup/stationsetup.php:35
 msgid "Edit Linked locations"
@@ -17275,7 +17278,7 @@ msgstr "DX-vattenfall"
 
 #: application/views/user/edit.php:450
 msgid "squelched"
-msgstr ""
+msgstr "dämpad"
 
 #: application/views/user/edit.php:453
 msgid "Show an interactive DX Cluster 'Waterfall' on the QSO logging page."
@@ -17429,7 +17432,7 @@ msgstr ""
 
 #: application/views/user/edit.php:688
 msgid "Show Fields on QSO Tab"
-msgstr ""
+msgstr "Visa fält på QSO-fliken"
 
 #: application/views/user/edit.php:692
 msgid ""
@@ -18398,9 +18401,6 @@ msgstr "Skicka förfrågan"
 msgid "Rcvd"
 msgstr "Mottagen"
 
-#~ msgid "Show Reference Fields on QSO Tab"
-#~ msgstr "Visa referensfält på QSO-fliken"
-
 #~ msgid ""
 #~ "Station Logbooks allow you to group Station Locations, this allows you to "
 #~ "see all the locations across one session from the logbook areas to the "
@@ -18411,6 +18411,9 @@ msgstr "Mottagen"
 #~ "se alla platser under en session när stations loggen analyseras. Perfekt "
 #~ "när du opererar på flera platser som är en del av samma DXCC- eller VUCC-"
 #~ "cirkel."
+
+#~ msgid "Show Reference Fields on QSO Tab"
+#~ msgstr "Visa referensfält på QSO-fliken"
 
 #~ msgid ""
 #~ "You might have ADIF errors, the QSOs have still been added. Please check "

@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-14 10:34+0000\n"
-"PO-Revision-Date: 2025-12-08 10:52+0000\n"
+"POT-Creation-Date: 2025-12-14 17:13+0000\n"
+"PO-Revision-Date: 2025-12-14 10:34+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/nl/>\n"
@@ -688,8 +688,8 @@ msgstr "Club Lid ADIF"
 msgid "Club Member"
 msgstr "Club lid"
 
-#: application/controllers/Club.php:45 application/models/Club_model.php:75
-#: application/models/Club_model.php:149 application/models/Club_model.php:191
+#: application/controllers/Club.php:45 application/models/Club_model.php:107
+#: application/models/Club_model.php:181 application/models/Club_model.php:223
 msgid "Invalid User ID!"
 msgstr "Ongeldig gebruikers-ID!"
 
@@ -705,8 +705,8 @@ msgstr "Clubrechten"
 
 #: application/controllers/Club.php:119 application/controllers/Club.php:148
 #: application/controllers/Club.php:175 application/models/Club_model.php:22
-#: application/models/Club_model.php:70 application/models/Club_model.php:144
-#: application/models/Club_model.php:186
+#: application/models/Club_model.php:102 application/models/Club_model.php:176
+#: application/models/Club_model.php:218
 msgid "Invalid Club ID!"
 msgstr "Ongeldig club-ID!"
 
@@ -1058,27 +1058,27 @@ msgstr "Geen eQSL QTH Bijnaam: %s"
 
 #: application/controllers/Eqsl.php:312
 msgid "QSO not found or not accessible"
-msgstr ""
+msgstr "QSO niet gevonden of niet toegankelijk"
 
 #: application/controllers/Eqsl.php:330
 msgid "User not found"
-msgstr ""
+msgstr "Gebruiker niet gevonden"
 
 #: application/controllers/Eqsl.php:339
 msgid "eQSL password not configured for this user"
-msgstr ""
+msgstr "eQSL-wachtwoord niet geconfigureerd voor deze gebruiker"
 
 #: application/controllers/Eqsl.php:357
 msgid "Failed to fetch eQSL image data"
-msgstr ""
+msgstr "Het ophalen van eQSL-afbeeldingsgegevens is mislukt"
 
 #: application/controllers/Eqsl.php:376
 msgid "eQSL image not available"
-msgstr ""
+msgstr "eQSL-afbeelding niet beschikbaar"
 
 #: application/controllers/Eqsl.php:395
 msgid "Failed to download eQSL image"
-msgstr ""
+msgstr "Kon niet eQSL-afbeelding downloaden"
 
 #: application/controllers/Eqsl.php:495
 msgid "eQSL Tools"
@@ -3291,7 +3291,7 @@ msgstr "QRZCQ Fout"
 
 #: application/libraries/Callbook.php:155
 msgid "Error obtaining a session key for HamQTH query"
-msgstr ""
+msgstr "Fout bij het verkrijgen van een sessiesleutel voor HamQTH-query"
 
 #: application/libraries/Cbr_parser.php:111
 #: application/libraries/Cbr_parser.php:160
@@ -3384,11 +3384,11 @@ msgctxt "Division Name (States in various countries)."
 msgid "City / Ku / Gun"
 msgstr "Stad / Ku / Gun"
 
-#: application/models/Club_model.php:154
+#: application/models/Club_model.php:186
 msgid "Invalid Permission Level!"
 msgstr "Ongeldig machtigingsniveau!"
 
-#: application/models/Club_model.php:169
+#: application/models/Club_model.php:201
 msgid "Error adding Club Member!"
 msgstr "Fout bij het toevoegen van clublid!"
 
@@ -16702,6 +16702,10 @@ msgid ""
 "analytics. Great for when you're operating in multiple locations but they "
 "are part of the same DXCC or VUCC Circle."
 msgstr ""
+"Stationlogboeken stellen je in staat om stationlocaties te groeperen, zodat "
+"je alle locaties in één sessie kunt zien van de logboekgebieden tot de "
+"analyses. Geweldig voor wanneer je op meerdere locaties werkt, maar ze deel "
+"uitmaken van dezelfde DXCC of VUCC-cirkel."
 
 #: application/views/stationsetup/stationsetup.php:35
 msgid "Edit Linked locations"
@@ -17370,7 +17374,7 @@ msgstr "DX-waterval"
 
 #: application/views/user/edit.php:450
 msgid "squelched"
-msgstr ""
+msgstr "onderdrukt"
 
 #: application/views/user/edit.php:453
 msgid "Show an interactive DX Cluster 'Waterfall' on the QSO logging page."
@@ -17528,7 +17532,7 @@ msgstr ""
 
 #: application/views/user/edit.php:688
 msgid "Show Fields on QSO Tab"
-msgstr ""
+msgstr "Velden tonen op QSO-tabblad"
 
 #: application/views/user/edit.php:692
 msgid ""

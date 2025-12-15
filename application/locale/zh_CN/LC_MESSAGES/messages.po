@@ -21,12 +21,13 @@
 # ShenRQ <shen.ruiqin@foxmail.com>, 2025.
 # "ShenRQ(BH4FJN)" <shen.ruiqin@foxmail.com>, 2025.
 # Jerry <jerry19980425@gmail.com>, 2025.
+# MCyiqiehuanying <me@sharedow.cn>, 2025.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-14 10:34+0000\n"
-"PO-Revision-Date: 2025-12-03 07:44+0000\n"
-"Last-Translator: hellofinch <543933756@qq.com>\n"
+"POT-Creation-Date: 2025-12-14 17:13+0000\n"
+"PO-Revision-Date: 2025-12-12 09:26+0000\n"
+"Last-Translator: Jerry <jerry19980425@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -216,7 +217,7 @@ msgstr "激活的地图"
 
 #: application/controllers/Adif.php:61 application/controllers/Adif.php:73
 msgid "You're not allowed to access this functionality!"
-msgstr ""
+msgstr "你无权访问此功能！"
 
 #: application/controllers/Adif.php:80
 msgid "valid date"
@@ -696,14 +697,14 @@ msgstr "集体台站管理员"
 
 #: application/controllers/Club.php:24
 msgid "Club Member ADIF"
-msgstr ""
+msgstr "俱乐部成员 ADIF"
 
 #: application/controllers/Club.php:25
 msgid "Club Member"
 msgstr "集体台站成员"
 
-#: application/controllers/Club.php:45 application/models/Club_model.php:75
-#: application/models/Club_model.php:149 application/models/Club_model.php:191
+#: application/controllers/Club.php:45 application/models/Club_model.php:107
+#: application/models/Club_model.php:181 application/models/Club_model.php:223
 msgid "Invalid User ID!"
 msgstr "用户 ID 无效！"
 
@@ -719,8 +720,8 @@ msgstr "集体台站权限"
 
 #: application/controllers/Club.php:119 application/controllers/Club.php:148
 #: application/controllers/Club.php:175 application/models/Club_model.php:22
-#: application/models/Club_model.php:70 application/models/Club_model.php:144
-#: application/models/Club_model.php:186
+#: application/models/Club_model.php:102 application/models/Club_model.php:176
+#: application/models/Club_model.php:218
 msgid "Invalid Club ID!"
 msgstr "集体台站 ID 无效！"
 
@@ -1108,7 +1109,7 @@ msgstr "eQSL 卡片图片下载"
 
 #: application/controllers/Eqsl.php:576
 msgid "All eQSLs marked as uploaded"
-msgstr ""
+msgstr "所有标记为已上传的 eQSL"
 
 #: application/controllers/Generic_qsl.php:18
 msgid "Confirmations"
@@ -2405,7 +2406,7 @@ msgstr "删除"
 
 #: application/controllers/Radio.php:122
 msgid "No CAT interfaced radios found."
-msgstr "无 CAT 控制电台。"
+msgstr "未检测到与 CAT 相连的电台设备。"
 
 #: application/controllers/Radio.php:137 application/views/radio/index.php:2
 msgid "Edit CAT Settings"
@@ -3340,11 +3341,11 @@ msgctxt "Division Name (States in various countries)."
 msgid "City / Ku / Gun"
 msgstr "郡"
 
-#: application/models/Club_model.php:154
+#: application/models/Club_model.php:186
 msgid "Invalid Permission Level!"
 msgstr "无效的角色！"
 
-#: application/models/Club_model.php:169
+#: application/models/Club_model.php:201
 msgid "Error adding Club Member!"
 msgstr "添加集体台站成员错误！"
 
@@ -4896,7 +4897,7 @@ msgstr "请查看 ADIF 错误提示 %s。"
 
 #: application/views/adif/import_success.php:59
 msgid "You might have ADIF errors. Please check the following information:"
-msgstr ""
+msgstr "ADIF 文件出现错误，请检查以下信息："
 
 #: application/views/adif/mark_lotw.php:12
 #: application/views/hrdlog/mark_hrdlog.php:12
@@ -6374,7 +6375,7 @@ msgstr ""
 
 #: application/views/awards/pl_polska/index.php:54
 msgid "Station Logbook"
-msgstr ""
+msgstr "台站日志"
 
 #: application/views/awards/pl_polska/index.php:62
 msgid "Confirmation methods"
@@ -6975,7 +6976,7 @@ msgstr "鼠标停留到一个州"
 #: application/views/awards/was/index.php:5
 #: application/views/awards/was/index.php:166
 msgid "inc."
-msgstr ""
+msgstr "inc."
 
 #: application/views/awards/was/index.php:25
 msgid "WAS Award"
@@ -7140,7 +7141,7 @@ msgstr "清除筛选条件"
 
 #: application/views/bandmap/list.php:19
 msgid "Band filter preserved (band lock is active)"
-msgstr ""
+msgstr "频段筛选已保存（频段锁已激活）"
 
 #: application/views/bandmap/list.php:21
 msgid "Radio set to None - CAT connection disabled"
@@ -7180,27 +7181,27 @@ msgstr "点击以启用 CAT 连接"
 
 #: application/views/bandmap/list.php:31
 msgid "CAT following radio - Click to disable"
-msgstr ""
+msgstr "CAT 控制电台 - 点击禁用"
 
 #: application/views/bandmap/list.php:32 application/views/bandmap/list.php:231
 msgid "Click to enable band lock (requires CAT connection)"
-msgstr ""
+msgstr "点击以启用频段锁定（需连接 CAT 线）"
 
 #: application/views/bandmap/list.php:33
 msgid "Band lock active - Click to disable"
-msgstr ""
+msgstr "频段锁已激活 - 点击禁用"
 
 #: application/views/bandmap/list.php:34
 msgid "Band Lock"
-msgstr ""
+msgstr "频段锁"
 
 #: application/views/bandmap/list.php:35
 msgid "Band lock enabled - band filter will track radio band"
-msgstr ""
+msgstr "频段锁定已启用—频段滤波器将跟踪电台频段"
 
 #: application/views/bandmap/list.php:36
 msgid "Band filter changed to"
-msgstr ""
+msgstr "频段筛选器更改为"
 
 #: application/views/bandmap/list.php:37
 msgid "by transceiver"
@@ -7284,35 +7285,35 @@ msgstr "切换语音模式筛选器"
 
 #: application/views/bandmap/list.php:60 application/views/bandmap/list.php:421
 msgid "Favorites"
-msgstr ""
+msgstr "收藏夹"
 
 #: application/views/bandmap/list.php:61 application/views/bandmap/list.php:424
 msgid "Save Current Filters..."
-msgstr ""
+msgstr "保存当前筛选器..."
 
 #: application/views/bandmap/list.php:62
 msgid "Enter a name for this filter preset:"
-msgstr ""
+msgstr "输入筛选器预设的名称："
 
 #: application/views/bandmap/list.php:63
 msgid "Filter preset saved"
-msgstr ""
+msgstr "筛选器预设已保存"
 
 #: application/views/bandmap/list.php:64
 msgid "Filter preset loaded"
-msgstr ""
+msgstr "筛选器预设已加载"
 
 #: application/views/bandmap/list.php:65
 msgid "Filter preset deleted"
-msgstr ""
+msgstr "筛选器预设已删除"
 
 #: application/views/bandmap/list.php:66
 msgid "Are you sure to delete this filter preset?"
-msgstr ""
+msgstr "您确定要删除此筛选器预设吗？"
 
 #: application/views/bandmap/list.php:67
 msgid "No saved filter presets"
-msgstr ""
+msgstr "没有已保存的筛选器预设"
 
 #: application/views/bandmap/list.php:68
 msgid ""
@@ -17852,9 +17853,6 @@ msgstr "提交请求"
 msgid "Rcvd"
 msgstr "收"
 
-#~ msgid "Show Reference Fields on QSO Tab"
-#~ msgstr "在 QSO 页面显示标识代号栏"
-
 #~ msgid ""
 #~ "Station Logbooks allow you to group Station Locations, this allows you to "
 #~ "see all the locations across one session from the logbook areas to the "
@@ -17863,6 +17861,9 @@ msgstr "收"
 #~ msgstr ""
 #~ "使用多个日志簿可以对日志进行分组管理，例如你的电台想在多个 DXCC 或 VUCC 下"
 #~ "通联。你可让一个日志簿关联到多个不同的台站地址。"
+
+#~ msgid "Show Reference Fields on QSO Tab"
+#~ msgstr "在 QSO 页面显示标识代号栏"
 
 #~ msgid ""
 #~ "You might have ADIF errors, the QSOs have still been added. Please check "
