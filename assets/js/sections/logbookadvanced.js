@@ -2304,22 +2304,14 @@ function saveOptions() {
 				if (dialogItself != '') {
 					dialogItself.close();
 				}
-				BootstrapDialog.alert({
-					title: lang_gen_advanced_logbook_success,
-					message: lang_gen_advanced_logbook_distances_updated + ' ' + response + ' ' + lang_gen_advanced_logbook_records_updated,
-					type: BootstrapDialog.TYPE_SUCCESS
-				});
+				$('.result').html(response);
 			},
-			error: function () {
+			error: function(xhr, status, error) {
 				$('#updateDistanceButton').prop("disabled", false).removeClass("running");
 				if (dialogItself != '') {
 					dialogItself.close();
 				}
-				BootstrapDialog.alert({
-					title: lang_gen_advanced_logbook_error,
-					message: lang_gen_advanced_logbook_problem_updating_distances,
-					type: BootstrapDialog.TYPE_DANGER
-				});
+				$('.result').html(error);
 				$('#closeButton').prop("disabled", false);
 			}
 		});

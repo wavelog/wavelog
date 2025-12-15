@@ -879,8 +879,11 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->model('logbookadvanced_model');
 		$result = $this->logbookadvanced_model->update_distances_batch();
 
-		header("Content-Type: application/json");
-		print json_encode($result);
+		$data['result'] = $result;
+
+		$data['type'] = 'distance';
+
+		$this->load->view('logbookadvanced/showUpdateResult', $data);
 	}
 
 	public function callbookDialog() {

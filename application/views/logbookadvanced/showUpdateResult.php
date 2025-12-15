@@ -10,6 +10,9 @@ switch ($type) {
 	case 'continent':
 		showContinentUpdateResult($result);
 		break;
+	case 'distance':
+		showDistanceUpdateResult($result);
+		break;
 	default:
 		// Invalid type
 		break;
@@ -112,5 +115,13 @@ function showContinentUpdateResult($result) {
 			echo '<div class="alert alert-danger" role="alert">' . __("The number of QSOs updated for continent is") . ' : ' . $result . '</div>';
 	} else {
 			echo '<div class="alert alert-success" role="alert">' . __("The number of QSOs updated for continent is") . ' : ' . $result . '</div>';
+	}
+}
+
+function showDistanceUpdateResult($result) {
+	if ($result == 0) {
+			echo '<div class="alert alert-danger" role="alert">' . __("The number of QSOs updated for distance is") . ' : ' . $result . '</div>';
+	} else {
+			echo '<div class="alert alert-success" role="alert">' . __("The number of QSOs updated for distance is") . ' : ' . $result . '</div>';
 	}
 }
