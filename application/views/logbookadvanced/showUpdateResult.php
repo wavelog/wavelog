@@ -53,9 +53,9 @@ function showDxccUpdateResult($result, $all) {
 			echo '<table class="table table-striped table-hover">';
 			echo '<thead class="table-dark">';
 			echo '<tr>';
-			echo '<th>Callsign</th>';
-			echo '<th>Reason</th>';
-			echo '<th>Station location</th>';
+			echo '<th>' . __("Callsign") . '</th>';
+			echo '<th>' . __("Reason") . '</th>';
+			echo '<th>' . __("Station location") . '</th>';
 			echo '</tr>';
 			echo '</thead>';
 			echo '<tbody>';
@@ -96,9 +96,9 @@ function showStateUpdateResult($result, $country) {
 			echo '<table class="table table-striped table-hover">';
 			echo '<thead class="table-dark">';
 			echo '<tr>';
-			echo '<th>Callsign</th>';
-			echo '<th>Reason</th>';
-			echo '<th>Station location</th>';
+			echo '<th>' . __("Callsign") . '</th>';
+			echo '<th>' . __("Reason") . '</th>';
+			echo '<th>' . __("Station location") . '</th>';
 			echo '</tr>';
 			echo '</thead>';
 			echo '<tbody>';
