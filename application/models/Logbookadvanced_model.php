@@ -1439,6 +1439,8 @@ class Logbookadvanced_model extends CI_Model {
 
 		$recordcount = $query->num_rows();
 
+		$count = 0;
+
 		if ($recordcount > 0) {
 			$this->load->library('Qra');
 
@@ -1451,10 +1453,14 @@ class Logbookadvanced_model extends CI_Model {
 					$row->COL_ANT_PATH ?? null
 				);
 
-				$updates[] = [
-					'COL_PRIMARY_KEY' => $row->COL_PRIMARY_KEY,
-					'COL_DISTANCE' => $distance,
-				];
+				if ($distance != 0) {
+					$updates[] = [
+						'COL_PRIMARY_KEY' => $row->COL_PRIMARY_KEY,
+						'COL_DISTANCE' => $distance,
+					];
+					$count++;
+				}
+
 			}
 
 			if (!empty($updates)) {
@@ -1462,7 +1468,7 @@ class Logbookadvanced_model extends CI_Model {
 			}
 		}
 
-		return $recordcount;
+		return $count;
 	}
 
 	public function runCheckDb($type) {
