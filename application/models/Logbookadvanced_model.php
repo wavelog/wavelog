@@ -1643,7 +1643,7 @@ class Logbookadvanced_model extends CI_Model {
 	public function check_missing_dxcc_id($all = false) {
 		ini_set('memory_limit', '-1');	// This consumes a lot of Memory!
 		$this->db->trans_start();	// Transaction has to be started here, because otherwise we're trying to update rows which are locked by the select
-		$this->db->select("COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_TIME_OFF"); // get all records with no COL_DXCC
+		$this->db->select("COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_TIME_OFF, station_profile.station_profile_name"); // get all records with no COL_DXCC
 		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
 		$this->db->where("station_profile.user_id", $this->session->userdata('user_id'));
 
@@ -1667,9 +1667,10 @@ class Logbookadvanced_model extends CI_Model {
 				$d = $this->logbook_model->check_dxcc_table($row['COL_CALL'], $qso_date);
 				if ($d[0] == 'Not Found') {
 					$result[] = [
+						'id' => $row['COL_PRIMARY_KEY'],
 						'callsign' => $row['COL_CALL'],
 						'reason' => 'DXCC Not Found',
-						'location' => '',
+						'location' => $row['station_profile_name'],
 						'id' => $row['COL_PRIMARY_KEY']
 					];
 				} else {

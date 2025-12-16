@@ -62,7 +62,7 @@ function showDxccUpdateResult($result, $all) {
 
 			foreach ($details as $r) {
 				echo '<tr>';
-				echo '<td>' . htmlspecialchars($r['callsign']) . '</td>';
+				echo '<td><a id="edit_qso" href="javascript:displayQso(' . $r['id'] . ')">' . htmlspecialchars($r['callsign']) . '</a></td>';
 				echo '<td>' . htmlspecialchars($r['reason']) . '</td>';
 				echo '<td>' . htmlspecialchars($r['location']) . '</td>';
 				echo '</tr>';
