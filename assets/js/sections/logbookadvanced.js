@@ -2196,14 +2196,15 @@ function saveOptions() {
 		});
 	}
 
-	function openStateList(dxcc) {
+	function openStateList(dxcc, country) {
 		$('#openStateListBtn_' + dxcc).prop("disabled", true).addClass("running");
 
 		$.ajax({
 			url: base_url + 'index.php/logbookadvanced/OpenStateList',
 			type: 'post',
 			data: {
-				'dxcc': dxcc
+				'dxcc': dxcc,
+				'country': country
 			},
 			success: function (response) {
 				$('#openStateListBtn_' + dxcc).prop("disabled", false).removeClass("running");

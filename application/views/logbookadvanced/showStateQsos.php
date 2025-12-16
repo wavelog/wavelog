@@ -2,7 +2,7 @@
     <?php if (!empty($qsos) && count($qsos) > 0): ?>
 		<div class="table-responsive" style="max-height:50vh; overflow:auto;">
 		<p class="text-muted">
-				<?php echo sprintf(__("Found %s QSO(s) missing state information for DXCC %s."), count($qsos), $dxcc);?>
+				<?php echo sprintf(__("Found %s QSO(s) missing state information for DXCC %s."), count($qsos), $country);?>
 		</p>
             <table class="table table-sm table-striped table-hover">
                 <thead>

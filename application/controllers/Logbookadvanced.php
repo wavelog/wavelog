@@ -935,6 +935,7 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->model('logbookadvanced_model');
 
 		$data['dxcc'] = $this->input->post('dxcc', true);
+		$data['country'] = $this->input->post('country', true);
 
 		// Process for batch QSO state fix
 		$data['qsos'] = $this->logbookadvanced_model->getStateListQsos($data['dxcc']);
