@@ -971,8 +971,10 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->model('logbookadvanced_model');
 		$result = $this->logbookadvanced_model->batchFix($type);
 
-		header("Content-Type: application/json");
-		echo json_encode($result);
+		$data['result'] = $result;
+		$data['type'] = $type;
+
+		$this->load->view('logbookadvanced/showUpdateResult', $data);
 	}
 
 }

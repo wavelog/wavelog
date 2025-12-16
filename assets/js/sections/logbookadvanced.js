@@ -2385,20 +2385,12 @@ function saveOptions() {
 			success: function (response) {
 				$('#updateCqZonesBtn').prop("disabled", false).removeClass("running");
 				$('#closeButton').prop("disabled", false);
-				BootstrapDialog.alert({
-					title: lang_gen_advanced_logbook_success,
-					message: lang_gen_advanced_logbook_cq_zones_updated + ' ' + response + ' ' + lang_gen_advanced_logbook_records_updated,
-					type: BootstrapDialog.TYPE_SUCCESS
-				});
+				$('.result').html(response);
 			},
-			error: function () {
+			error: function(xhr, status, error) {
 				$('#updateCqZonesBtn').prop("disabled", false).removeClass("running");
 				$('#closeButton').prop("disabled", false);
-				BootstrapDialog.alert({
-					title: lang_gen_advanced_logbook_error,
-					message: lang_gen_advanced_logbook_problem_fixing_cq_zones,
-					type: BootstrapDialog.TYPE_DANGER
-				});
+				$('.result').html(error);
 			}
 		});
 	}
@@ -2415,20 +2407,12 @@ function saveOptions() {
 			success: function (response) {
 				$('#updateItuZonesBtn').prop("disabled", false).removeClass("running");
 				$('#closeButton').prop("disabled", false);
-				BootstrapDialog.alert({
-					title: lang_gen_advanced_logbook_success,
-					message: lang_gen_advanced_logbook_itu_zones_updated + ' ' + response + ' ' + lang_gen_advanced_logbook_records_updated,
-					type: BootstrapDialog.TYPE_SUCCESS
-				});
+				$('.result').html(response);
 			},
-			error: function () {
+			error: function(xhr, status, error) {
 				$('#updateItuZonesBtn').prop("disabled", false).removeClass("running");
 				$('#closeButton').prop("disabled", false);
-				BootstrapDialog.alert({
-					title: lang_gen_advanced_logbook_error,
-					message: lang_gen_advanced_logbook_problem_fixing_itu_zones,
-					type: BootstrapDialog.TYPE_DANGER
-				});
+				$('.result').html(error);
 			}
 		});
 	}

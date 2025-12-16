@@ -13,6 +13,12 @@ switch ($type) {
 	case 'distance':
 		showDistanceUpdateResult($result);
 		break;
+	case 'cqzones':
+		showCqzoneUpdateResult($result);
+		break;
+	case 'ituzones':
+		showItuzoneUpdateResult($result);
+		break;
 	default:
 		// Invalid type
 		break;
@@ -123,5 +129,21 @@ function showDistanceUpdateResult($result) {
 			echo '<div class="alert alert-danger" role="alert">' . __("The number of QSOs updated for distance is") . ' : ' . $result . '</div>';
 	} else {
 			echo '<div class="alert alert-success" role="alert">' . __("The number of QSOs updated for distance is") . ' : ' . $result . '</div>';
+	}
+}
+
+function showCqzoneUpdateResult($result) {
+	if ($result == 0) {
+			echo '<div class="alert alert-danger" role="alert">' . __("The number of QSOs updated for CQ zone is") . ' : ' . $result . '</div>';
+	} else {
+			echo '<div class="alert alert-success" role="alert">' . __("The number of QSOs updated for CQ zone is") . ' : ' . $result . '</div>';
+	}
+}
+
+function showItuzoneUpdateResult($result) {
+	if ($result == 0) {
+			echo '<div class="alert alert-danger" role="alert">' . __("The number of QSOs updated for ITU zone is") . ' : ' . $result . '</div>';
+	} else {
+			echo '<div class="alert alert-success" role="alert">' . __("The number of QSOs updated for ITU zone is") . ' : ' . $result . '</div>';
 	}
 }
