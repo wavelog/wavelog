@@ -1635,9 +1635,8 @@ class Logbookadvanced_model extends CI_Model {
 	}
 
 	/*
-		This was moved from update to the advanced logbook. Maninly because it affected all QSOs in the logbook, with not filters on users or stations.
+		This was moved from update to the advanced logbook. Maninly because it affected all QSOs in the logbook, without filters on users or stations.
 		We need to ensure that we only update the relevant QSOs, filtered on user.
-		The function needs a rewrite to add filtering on user/station.
 	*/
 	public function check_missing_dxcc_id($all = false) {
 		ini_set('memory_limit', '-1');	// This consumes a lot of Memory!
@@ -1713,20 +1712,24 @@ class Logbookadvanced_model extends CI_Model {
 		}
 	}
 
-	public function check_missing_grid_id($all) {
+	/*
+		Another function moved from update to the advanced logbook, to be used in the dbtools section.
+		It did not have filter on user or location.
+	*/
+	public function check_missing_grid_id() {
 		// get all records with no COL_GRIDSQUARE
-		$this->db->select("COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_TIME_OFF");
-		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
-		$this->db->where("station_profile.user_id", $this->session->userdata('user_id'));
+		$sql = "select COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_TIME_OFF from " . $this->config->item('table_name') .
+		" join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
+		where station_profile.user_id = ?
+		and (COL_GRIDSQUARE is NULL or COL_GRIDSQUARE = '')
+		AND (COL_VUCC_GRIDS is NULL or COL_VUCC_GRIDS = '')";
 
-		$this->db->where("(COL_GRIDSQUARE is NULL or COL_GRIDSQUARE = '') AND (COL_VUCC_GRIDS is NULL or COL_VUCC_GRIDS = '')");
-
-		$r = $this->db->get($this->config->item('table_name'));
+		$result = $this->db->query($sql, array($this->session->userdata('user_id')));
 
 		$count = 0;
 		$this->db->trans_start();
-		if ($r->num_rows() > 0) {
-			foreach ($r->result_array() as $row) {
+		if ($result->num_rows() > 0) {
+			foreach ($result->result_array() as $row) {
 				$callsign = $row['COL_CALL'];
 				if (!$this->load->is_loaded('callbook')) {
 					$this->load->library('callbook');
@@ -1736,18 +1739,11 @@ class Logbookadvanced_model extends CI_Model {
 
 				if (isset($callbook)) {
 					if (isset($callbook['error'])) {
-						printf("Error: " . $callbook['error'] . "<br />");
+						$logerror = "Error: " . $callbook['error'] . "<br />";
 					} else {
-						$return['callsign_qra'] = $callbook['gridsquare'];
-						if ($return['callsign_qra'] != '') {
-							$sql = sprintf(
-								"update %s set COL_GRIDSQUARE = '%s' where COL_PRIMARY_KEY=%d",
-								$this->config->item('table_name'),
-								$return['callsign_qra'],
-								$row['COL_PRIMARY_KEY']
-							);
-							$this->db->query($sql);
-							printf("Updating %s to %s\n<br/>", $row['COL_PRIMARY_KEY'], $return['callsign_qra']);
+						if ($callbook['gridsquare'] != '') {
+							$sql = "update " . $this->config->item('table_name') . " set COL_GRIDSQUARE = ? where COL_PRIMARY_KEY = ?";
+							$this->db->query($sql, array($callbook['gridsquare'], $row['COL_PRIMARY_KEY']));
 							$count++;
 						}
 					}
@@ -1756,6 +1752,6 @@ class Logbookadvanced_model extends CI_Model {
 		}
 		$this->db->trans_complete();
 
-		print("$count updated\n");
+		return $count . ' updated';
 	}
 }
