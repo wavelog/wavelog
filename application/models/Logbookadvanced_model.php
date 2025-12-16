@@ -1584,7 +1584,7 @@ class Logbookadvanced_model extends CI_Model {
 		$this->load->library('Geojson');
 
 		// Get QSO data
-		$sql = "SELECT COL_PRIMARY_KEY, COL_CALL, COL_GRIDSQUARE, COL_DXCC, COL_STATE, d.name as dxcc_name
+		$sql = "SELECT COL_PRIMARY_KEY, COL_CALL, COL_GRIDSQUARE, COL_DXCC, COL_STATE, d.name as dxcc_name, station_profile.station_profile_name
 				FROM " . $this->config->item('table_name') . " qsos
 				JOIN station_profile ON qsos.station_id = station_profile.station_id
 				LEFT JOIN dxcc_entities d ON qsos.COL_DXCC = d.adif
@@ -1611,7 +1611,9 @@ class Logbookadvanced_model extends CI_Model {
 			if ($result['success']) {
 				$count++;
 			} else {
-				$results []= $result;
+				$result['station_profile_name'] = $qso->station_profile_name;
+				$result['id'] = $qso->COL_PRIMARY_KEY;
+				$results[] = $result;
 			}
 		}
 
