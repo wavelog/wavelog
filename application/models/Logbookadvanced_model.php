@@ -1613,6 +1613,7 @@ class Logbookadvanced_model extends CI_Model {
 			} else {
 				$result['station_profile_name'] = $qso->station_profile_name;
 				$result['id'] = $qso->COL_PRIMARY_KEY;
+				$result['gridsquare'] = $qso->COL_GRIDSQUARE;
 				$results[] = $result;
 			}
 		}
