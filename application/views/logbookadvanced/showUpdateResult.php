@@ -48,38 +48,38 @@ function showDxccUpdateResult($result, $all) {
 			}
 		}
 
-		if (!empty($details)) {
-			echo '<div class="table-responsive mt-3">';
-			echo '<table class="table table-striped table-hover">';
-			echo '<thead class="table-dark">';
-			echo '<tr>';
-			echo '<th>' . __("Callsign") . '</th>';
-			echo '<th>' . __("Reason") . '</th>';
-			echo '<th>' . __("Station location") . '</th>';
-			echo '</tr>';
-			echo '</thead>';
-			echo '<tbody>';
+		if (!empty($details)) { ?>
+			<div class="table-responsive mt-3">
+			<table class="table table-striped table-hover">
+			<thead class="table-dark">
+			<tr>
+			<th> <?php echo __("Callsign"); ?> </th>
+			<th> <?php echo __("Reason"); ?> </th>
+			<th> <?php echo __("Station location"); ?> </th>
+			</tr>
+			</thead>
+			<tbody>
 
-			foreach ($details as $r) {
-				echo '<tr>';
-				echo '<td><a id="edit_qso" href="javascript:displayQso(' . $r['id'] . ')">' . htmlspecialchars($r['callsign']) . '</a></td>';
-				echo '<td>' . htmlspecialchars($r['reason']) . '</td>';
-				echo '<td>' . htmlspecialchars($r['location']) . '</td>';
-				echo '</tr>';
-			}
+			<?php foreach ($details as $r) { ?>
+				<tr>
+				<td><a id="edit_qso" href="javascript:displayQso(<?php echo $r['id']; ?>)"><?php echo htmlspecialchars($r['callsign']); ?></a></td>
+				<td> <?php echo htmlspecialchars($r['reason']); ?> </td>
+				<td> <?php echo htmlspecialchars($r['location']); ?> </td>
+				</tr>
+			<?php } ?>
 
-			echo '</tbody>';
-			echo '</table>';
-			echo '</div>';
-		}
+			</tbody>
+			</table>
+			</div>
+		<?php }
 	}
 }
 
 function showStateUpdateResult($result, $country) {
 	if ($result['count'] == 0) {
-			echo '<div class="alert alert-danger" role="alert">' . __("The number of QSOs updated for state/province in") . ' ' . $country . ' : ' . $result['count'] . '</div>';
+		echo '<div class="alert alert-danger" role="alert">' . __("The number of QSOs updated for state/province in") . ' ' . $country . ' : ' . $result['count'] . '</div>';
 	} else {
-			echo '<div class="alert alert-success" role="alert">' . __("The number of QSOs updated for state/province in") . ' ' . $country . ' : ' . $result['count'] . '</div>';
+		echo '<div class="alert alert-success" role="alert">' . __("The number of QSOs updated for state/province in") . ' ' . $country . ' : ' . $result['count'] . '</div>';
 	}
 
 	if ($result) {
@@ -91,63 +91,64 @@ function showStateUpdateResult($result, $country) {
 			}
 		}
 
-		if (!empty($details)) {
-			echo '<div class="table-responsive mt-3">';
-			echo '<table class="table table-striped table-hover">';
-			echo '<thead class="table-dark">';
-			echo '<tr>';
-			echo '<th>' . __("Callsign") . '</th>';
-			echo '<th>' . __("Gridsquare") . '</th>';
-			echo '<th>' . __("Station location") . '</th>';
-			echo '<th>' . __("Reason") . '</th>';
-			echo '</tr>';
-			echo '</thead>';
-			echo '<tbody>';
+		if (!empty($details)) { ?>
+			<div class="table-responsive mt-3">
+			<table class="table table-striped table-hover">
+			<thead class="table-dark">
+			<tr>
+			<th> <?php echo __("Callsign"); ?> </th>
+			<th> <?php echo __("Gridsquare"); ?> </th>
+			<th> <?php echo __("Station location"); ?> </th>
+			<th> <?php echo __("Reason"); ?> </th>
+			</tr>
+			</thead>
+			<tbody>
 
-			foreach ($details as $r) {
-				echo '<tr>';
-				echo '<td><a id="edit_qso" href="javascript:displayQso(' . $r['id'] . ')">' . htmlspecialchars($r['callsign']) . '</a></td>';
-				echo '<td>' . htmlspecialchars($r['gridsquare']) . '</td>';
-				echo '<td>' . htmlspecialchars($r['station_profile_name']) . '</td>';
-				echo '<td>' . htmlspecialchars($r['reason']) . '</td>';
-				echo '</tr>';
-			}
+			<?php foreach ($details as $r) { ?>
+				<tr>
+				<td><a id="edit_qso" href="javascript:displayQso(<?php echo $r['id']; ?>)"><?php echo htmlspecialchars($r['callsign']); ?></a></td>
+				<td> <?php echo htmlspecialchars($r['gridsquare']); ?> </td>
+				<td> <?php echo htmlspecialchars($r['station_profile_name']); ?> </td>
+				<td> <?php echo htmlspecialchars($r['reason']); ?> </td>
+				</tr>
+			<?php } ?>
 
-			echo '</tbody>';
-			echo '</table>';
-			echo '</div>';
-		}
+			</tbody>
+			</table>
+			</div>
+
+		<?php }
 	}
 }
 
 function showContinentUpdateResult($result) {
 	if ($result == 0) {
-			echo '<div class="alert alert-danger" role="alert">' . __("The number of QSOs updated for continent is") . ' : ' . $result . '</div>';
+		echo '<div class="alert alert-danger" role="alert">' . __("The number of QSOs updated for continent is") . ' : ' . $result . '</div>';
 	} else {
-			echo '<div class="alert alert-success" role="alert">' . __("The number of QSOs updated for continent is") . ' : ' . $result . '</div>';
+		echo '<div class="alert alert-success" role="alert">' . __("The number of QSOs updated for continent is") . ' : ' . $result . '</div>';
 	}
 }
 
 function showDistanceUpdateResult($result) {
 	if ($result == 0) {
-			echo '<div class="alert alert-danger" role="alert">' . __("The number of QSOs updated for distance is") . ' : ' . $result . '</div>';
+		echo '<div class="alert alert-danger" role="alert">' . __("The number of QSOs updated for distance is") . ' : ' . $result . '</div>';
 	} else {
-			echo '<div class="alert alert-success" role="alert">' . __("The number of QSOs updated for distance is") . ' : ' . $result . '</div>';
+		echo '<div class="alert alert-success" role="alert">' . __("The number of QSOs updated for distance is") . ' : ' . $result . '</div>';
 	}
 }
 
 function showCqzoneUpdateResult($result) {
 	if ($result == 0) {
-			echo '<div class="alert alert-danger" role="alert">' . __("The number of QSOs updated for CQ zone is") . ' : ' . $result . '</div>';
+		echo '<div class="alert alert-danger" role="alert">' . __("The number of QSOs updated for CQ zone is") . ' : ' . $result . '</div>';
 	} else {
-			echo '<div class="alert alert-success" role="alert">' . __("The number of QSOs updated for CQ zone is") . ' : ' . $result . '</div>';
+		echo '<div class="alert alert-success" role="alert">' . __("The number of QSOs updated for CQ zone is") . ' : ' . $result . '</div>';
 	}
 }
 
 function showItuzoneUpdateResult($result) {
 	if ($result == 0) {
-			echo '<div class="alert alert-danger" role="alert">' . __("The number of QSOs updated for ITU zone is") . ' : ' . $result . '</div>';
+		echo '<div class="alert alert-danger" role="alert">' . __("The number of QSOs updated for ITU zone is") . ' : ' . $result . '</div>';
 	} else {
-			echo '<div class="alert alert-success" role="alert">' . __("The number of QSOs updated for ITU zone is") . ' : ' . $result . '</div>';
+		echo '<div class="alert alert-success" role="alert">' . __("The number of QSOs updated for ITU zone is") . ' : ' . $result . '</div>';
 	}
 }
