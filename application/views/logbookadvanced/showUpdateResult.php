@@ -25,6 +25,7 @@ switch ($type) {
 }
 
 function showDxccUpdateResult($result, $all) {
+	echo '<h5>' . __("Results for DXCC update:") . '</h5>';
 	if ($result['count'] == 0) {
 		if ($all == 'false') {
 			echo '<div class="alert alert-danger" role="alert">' . __("The number of QSOs updated for missing DXCC IDs was") .' ' . $result['count'] . '</div>';
@@ -76,6 +77,7 @@ function showDxccUpdateResult($result, $all) {
 }
 
 function showStateUpdateResult($result, $country) {
+	echo '<h5>' . __("Results for state update:") . '</h5>';
 	if ($result['count'] == 0) {
 		echo '<div class="alert alert-danger" role="alert">' . __("The number of QSOs updated for state/province in") . ' ' . $country . ' : ' . $result['count'] . '</div>';
 	} else {
@@ -122,17 +124,21 @@ function showStateUpdateResult($result, $country) {
 }
 
 function showContinentUpdateResult($result) {
+	echo '<h5>' . __("Results for continent update:") . '</h5>';
 	echo '<div class="alert alert-' . ($result == 0 ? 'danger' : 'success') . '" role="alert">' . sprintf(__("The number of QSOs updated for continent is") . ' : %d', $result) . '</div>';
 }
 
 function showDistanceUpdateResult($result) {
+	echo '<h5>' . __("Results for distance update:") . '</h5>';
 	echo '<div class="alert alert-' . ($result == 0 ? 'danger' : 'success') . '" role="alert">' . sprintf(__("The number of QSOs updated for distance is") . ' : %d', $result) . '</div>';
 }
 
 function showCqzoneUpdateResult($result) {
+	echo '<h5>' . __("Results for CQ zone update:") . '</h5>';
 	echo '<div class="alert alert-' . ($result == 0 ? 'danger' : 'success') . '" role="alert">' . sprintf(__("The number of QSOs updated for CQ zone is") . ' : %d', $result) . '</div>';
 }
 
 function showItuzoneUpdateResult($result) {
+	echo '<h5>' . __("Results for ITU zone update:") . '</h5>';
 	echo '<div class="alert alert-' . ($result == 0 ? 'danger' : 'success') . '" role="alert">' . sprintf(__("The number of QSOs updated for ITU zone is") . ' : %d', $result) . '</div>';
 }
