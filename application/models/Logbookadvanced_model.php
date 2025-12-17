@@ -1644,18 +1644,14 @@ class Logbookadvanced_model extends CI_Model {
 	public function check_missing_dxcc_id($all = false) {
 		ini_set('memory_limit', '-1');	// This consumes a lot of Memory!
 		$this->db->trans_start();	// Transaction has to be started here, because otherwise we're trying to update rows which are locked by the select
-		$this->db->select("COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_TIME_OFF, station_profile.station_profile_name"); // get all records with no COL_DXCC
-		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
-		$this->db->where("station_profile.user_id", $this->session->userdata('user_id'));
+		$sql = "select COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_TIME_OFF, station_profile.station_profile_name from " . $this->config->item('table_name') .
+		" join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
+		where station_profile.user_id = ?";
 
 		if ($all == 'false') { // check which to update - records with no dxcc or all records
-			$this->db->group_start();
-			$this->db->where("COL_DXCC is NULL");
-			$this->db->or_where("COL_DXCC = ''");
-			$this->db->group_end();
+			$sql .= " and (COL_DXCC is NULL or COL_DXCC = '')";
 		}
-
-		$r = $this->db->get($this->config->item('table_name'));
+		$r = $this->db->query($sql, array($this->session->userdata('user_id')));
 		$this->load->model('logbook_model');
 
 		$count = 0;
