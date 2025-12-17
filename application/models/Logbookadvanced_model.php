@@ -1485,6 +1485,8 @@ class Logbookadvanced_model extends CI_Model {
 				return $this->check_missing_cq_zones();
 			case 'checkituzones':
 				return $this->check_missing_itu_zones();
+			case 'checkgrids':
+				return $this->getMissingGridQsos();
 			return null;
 		}
 	}
@@ -1707,6 +1709,8 @@ class Logbookadvanced_model extends CI_Model {
 				return $this->fixCqZones();
 			case 'ituzones':
 				return $this->fixItuZones();
+			case 'grids':
+				return $this->check_missing_grid();
 			default:
 				return null;
 		}
@@ -1716,21 +1720,14 @@ class Logbookadvanced_model extends CI_Model {
 		Another function moved from update to the advanced logbook, to be used in the dbtools section.
 		It did not have filter on user or location.
 	*/
-	public function check_missing_grid_id() {
-		// get all records with no COL_GRIDSQUARE
-		$sql = "select COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_TIME_OFF from " . $this->config->item('table_name') .
-		" join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
-		where station_profile.user_id = ?
-		and (COL_GRIDSQUARE is NULL or COL_GRIDSQUARE = '')
-		AND (COL_VUCC_GRIDS is NULL or COL_VUCC_GRIDS = '')";
-
-		$result = $this->db->query($sql, array($this->session->userdata('user_id')));
+	public function check_missing_grid() {
+		$result = $this->getMissingGridQsos();
 
 		$count = 0;
 		$this->db->trans_start();
-		if ($result->num_rows() > 0) {
-			foreach ($result->result_array() as $row) {
-				$callsign = $row['COL_CALL'];
+		if (count($result) > 0) {
+			foreach ($result as $row) {
+				$callsign = $row->col_call;
 				if (!$this->load->is_loaded('callbook')) {
 					$this->load->library('callbook');
 				}
@@ -1739,11 +1736,11 @@ class Logbookadvanced_model extends CI_Model {
 
 				if (isset($callbook)) {
 					if (isset($callbook['error'])) {
-						$logerror = "Error: " . $callbook['error'] . "<br />";
+						log_message('error', "Error: " . $callbook['error']);
 					} else {
 						if ($callbook['gridsquare'] != '') {
 							$sql = "update " . $this->config->item('table_name') . " set COL_GRIDSQUARE = ? where COL_PRIMARY_KEY = ?";
-							$this->db->query($sql, array($callbook['gridsquare'], $row['COL_PRIMARY_KEY']));
+							$this->db->query($sql, array($callbook['gridsquare'], $row->col_primary_key));
 							$count++;
 						}
 					}
@@ -1752,6 +1749,19 @@ class Logbookadvanced_model extends CI_Model {
 		}
 		$this->db->trans_complete();
 
-		return $count . ' updated';
+		return $count;
+	}
+
+	public function getMissingGridQsos() {
+		$sql = "SELECT col_primary_key, col_call, col_time_on, col_mode, col_submode, col_band, col_state, col_gridsquare, station_profile.station_profile_name FROM " . $this->config->item('table_name') . " qsos
+				JOIN station_profile ON qsos.station_id = station_profile.station_id
+				WHERE station_profile.user_id = ?
+				AND (qsos.COL_GRIDSQUARE IS NULL OR qsos.COL_GRIDSQUARE = '')
+				AND (qsos.COL_VUCC_GRIDS IS NULL OR qsos.COL_VUCC_GRIDS = '')
+				ORDER BY COL_TIME_ON DESC limit 250";
+
+		$query = $this->db->query($sql, [$this->session->userdata('user_id')]);
+
+		return $query->result();
 	}
 }

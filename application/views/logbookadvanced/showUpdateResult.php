@@ -19,6 +19,9 @@ switch ($type) {
 	case 'ituzones':
 		showItuzoneUpdateResult($result);
 		break;
+	case 'grids':
+		showGridUpdateResult($result);
+		break;
 	default:
 		// Invalid type
 		break;
@@ -141,4 +144,9 @@ function showCqzoneUpdateResult($result) {
 function showItuzoneUpdateResult($result) {
 	echo '<h5>' . __("Results for ITU zone update:") . '</h5>';
 	echo '<div class="alert alert-' . ($result == 0 ? 'danger' : 'success') . '" role="alert">' . sprintf(__("The number of QSOs updated for ITU zone is") . ' : %d', $result) . '</div>';
+}
+
+function showGridUpdateResult($result) {
+	echo '<h5>' . __("Results for gridsquare update:") . '</h5>';
+	echo '<div class="alert alert-' . ($result == 0 ? 'danger' : 'success') . '" role="alert">' . sprintf(__("The number of QSOs updated for gridsquare is") . ' : %d', $result) . '</div>';
 }

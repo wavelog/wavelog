@@ -876,6 +876,8 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	public function updateDistances() {
+		if(!clubaccess_check(9)) return;
+
 		$this->load->model('logbookadvanced_model');
 		$result = $this->logbookadvanced_model->update_distances_batch();
 
@@ -968,6 +970,8 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	public function batchFix() {
+		if(!clubaccess_check(9)) return;
+
 		$type = $this->input->post('type', true);
 		$this->load->model('logbookadvanced_model');
 		$result = $this->logbookadvanced_model->batchFix($type);

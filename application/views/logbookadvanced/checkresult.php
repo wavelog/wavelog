@@ -15,6 +15,9 @@ switch ($type) {
 	case 'checkituzones':
 		check_missing_itu_zones($result);
 		break;
+	case 'checkgrids':
+		check_missing_grids($result);
+		break;
 	default:
 		// Invalid type
 		break;
@@ -73,6 +76,16 @@ function check_missing_itu_zones($result) { ?>
 	<?= __("QSOs to update found:"); ?> <?php echo $result[0]->count; ?>
 	<br/>
 	<button type="button" class="mt-2 btn btn-sm btn-primary ld-ext-right" id="updateItuZonesBtn" onclick="fixMissingItuZones()">
+		<?= __("Update now") ?><div class="ld ld-ring ld-spin"></div>
+	</button>
+<?php }
+
+
+function check_missing_grids($result) { ?>
+	<h5><?= __("Gridsquare Check Results") ?></h5>
+	<?= __("QSOs to update found:"); ?> <?php echo count($result); ?>
+	<br/>
+	<button type="button" class="mt-2 btn btn-sm btn-primary ld-ext-right" id="updateGridsBtn" onclick="fixMissingGrids()">
 		<?= __("Update now") ?><div class="ld ld-ring ld-spin"></div>
 	</button>
 <?php }

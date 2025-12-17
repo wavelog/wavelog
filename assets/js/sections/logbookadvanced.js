@@ -2417,3 +2417,58 @@ function saveOptions() {
 			}
 		});
 	}
+
+	function checkGrids() {
+		$('#checkGridsBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/checkDb',
+			data: {
+				type: 'checkgrids'
+			},
+			type: 'POST',
+			success: function(response) {
+				$('#checkGridsBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				$('.result').html(response);
+			},
+			error: function(xhr, status, error) {
+				$('#checkGridsBtn').prop('disabled', false).text('<?= __("Check") ?>');
+				$('#closeButton').prop('disabled', false);
+
+				let errorMsg = 'Error checking continent information';
+				if (xhr.responseJSON && xhr.responseJSON.message) {
+					errorMsg += ': ' + xhr.responseJSON.message;
+				}
+
+				BootstrapDialog.alert({
+					title: 'Error',
+					message: errorMsg,
+					type: BootstrapDialog.TYPE_DANGER
+				});
+			}
+		});
+	}
+
+	function fixMissingGrids() {
+		$('#updateGridsBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/batchFix',
+			data: {
+				type: 'grids'
+			},
+			type: 'POST',
+			success: function (response) {
+				$('#updateGridsBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				$('.result').html(response);
+			},
+			error: function(xhr, status, error) {
+				$('#updateGridsBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				$('.result').html(error);
+			}
+		});
+	}
