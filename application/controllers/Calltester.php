@@ -53,13 +53,13 @@ class Calltester extends CI_Controller {
 
             if ($call->col_dxcc != $dxcc['adif']) {
                 $result[] = array(
-                                'Callsign'          => $call->col_call,
-								'QSO date'          => $call->date,
-								'Station profile'   => $call->station_profile_name,
-                                'Existing DXCC'     => $call->col_country,
-                                'Existing adif'     => $call->col_dxcc,
-                                'Result country'    => ucwords(strtolower($dxcc['entity']), "- (/"),
-                                'Result adif'       => $dxcc['adif'],
+                                'callsign'          => $call->col_call,
+								'qso_date'          => $call->date,
+								'station_profile'   => $call->station_profile_name,
+                                'existing_dxcc'     => $call->col_country,
+                                'existing_adif'     => $call->col_dxcc,
+                                'result_country'    => ucwords(strtolower($dxcc['entity']), "- (/"),
+                                'result_adif'       => $dxcc['adif'],
 								'id' 			    => $call->col_primary_key,
                             );
             }
