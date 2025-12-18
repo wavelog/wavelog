@@ -12,24 +12,39 @@ class Calltester extends CI_Controller {
 	}
 
 
-	public function db() {
+	public function index() {
         set_time_limit(3600);
 
         // Starting clock time in seconds
         $start_time = microtime(true);
+		
+        $callarray = $this->getQsos(null);
+		$this->load->model('stations');
 
+		$data['station_profile'] = $this->stations->all_of_user();
+
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/calltester.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/calltester.js"))
+		];
+
+		
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('calltester/index');
+		$this->load->view('interface_assets/footer', $footerData);
+	}
+
+	function doDxccCheck() {
 		$this->load->model('logbook_model');
+		$i = 0;
+		$result = array();
 
-        $sql = 'select distinct col_country, col_call, col_dxcc, date(col_time_on) date from ' . $this->config->item('table_name');
-        $query = $this->db->query($sql);
+		$callarray = $this->getQsos($this->input->post('de', true));
 
-        $callarray = $query->result();
+		// Starting clock time in seconds
+		$start_time = microtime(true);
 
-        $result = array();
-
-        $i = 0;
-
-        foreach ($callarray as $call) {
+		foreach ($callarray->result() as $call) {
             $i++;
             $dxcc = $this->logbook_model->dxcc_lookup($call->col_call, $call->date);
 
@@ -39,8 +54,10 @@ class Calltester extends CI_Controller {
             if ($call->col_dxcc != $dxcc['adif']) {
                 $result[] = array(
                                 'Callsign'          => $call->col_call,
-                                'Expected country'  => $call->col_country,
-                                'Expected adif'     => $call->col_dxcc,
+								'QSO date'          => $call->date,
+								'Station profile'   => $call->station_profile_name,
+                                'Existing DXCC'     => $call->col_country,
+                                'Existing adif'     => $call->col_dxcc,
                                 'Result country'    => ucwords(strtolower($dxcc['entity']), "- (/"),
                                 'Result adif'       => $dxcc['adif'],
                             );
@@ -53,14 +70,29 @@ class Calltester extends CI_Controller {
         // Calculate script execution time
         $execution_time = ($end_time - $start_time);
 
-        echo " Execution time of script = ".$execution_time." sec <br/>";
-        echo $i . " calls tested. <br/>";
-        $count = 0;
+        $data['execution_time'] = $execution_time;
+        $data['calls_tested'] = $i;
+		$data['result'] = $result;
 
-        if ($result) {
-            $this->array_to_table($result);
-        }
+		$this->load->view('calltester/result', $data);
+	}
 
+	function getQsos($station_id) {
+		$sql = 'select distinct col_country, col_call, col_dxcc, date(col_time_on) date, station_profile.station_profile_name
+			from ' . $this->config->item('table_name') . '
+			join station_profile on ' . $this->config->item('table_name') . '.station_id = station_profile.station_id
+			where station_profile.user_id = ?';
+		$params[] = array($this->session->userdata('user_id'));
+
+		if ($station_id && is_numeric($station_id)) {
+			$sql .= ' and ' . $this->config->item('table_name') . '.station_id = ?';
+			$params[] = $station_id;
+		}
+			$sql .= ' order by station_profile.station_profile_name asc, date desc';
+
+        $query = $this->db->query($sql, $params);
+
+		return $query;
 	}
 
 
