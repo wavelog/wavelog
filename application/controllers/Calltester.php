@@ -60,6 +60,7 @@ class Calltester extends CI_Controller {
                                 'Existing adif'     => $call->col_dxcc,
                                 'Result country'    => ucwords(strtolower($dxcc['entity']), "- (/"),
                                 'Result adif'       => $dxcc['adif'],
+								'id' 			    => $call->col_primary_key,
                             );
             }
         }
@@ -78,7 +79,7 @@ class Calltester extends CI_Controller {
 	}
 
 	function getQsos($station_id) {
-		$sql = 'select distinct col_country, col_call, col_dxcc, date(col_time_on) date, station_profile.station_profile_name
+		$sql = 'select distinct col_country, col_call, col_dxcc, date(col_time_on) date, station_profile.station_profile_name, col_primary_key
 			from ' . $this->config->item('table_name') . '
 			join station_profile on ' . $this->config->item('table_name') . '.station_id = station_profile.station_id
 			where station_profile.user_id = ?';
@@ -88,13 +89,13 @@ class Calltester extends CI_Controller {
 			$sql .= ' and ' . $this->config->item('table_name') . '.station_id = ?';
 			$params[] = $station_id;
 		}
-			$sql .= ' order by station_profile.station_profile_name asc, date desc';
+
+		$sql .= ' order by station_profile.station_profile_name asc, date desc';
 
         $query = $this->db->query($sql, $params);
 
 		return $query;
 	}
-
 
     function array_to_table($table) {
         echo '<style>

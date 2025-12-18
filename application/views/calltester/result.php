@@ -1,6 +1,6 @@
 <?php $execution_time ?>
 	<?php $calls_tested ?>
-	<table class="table table-striped table-bordered table-sm">
+	<table class="table table-striped table-bordered table-sm table-hover table-condensed">
 		<thead>
 		<tr>
 
