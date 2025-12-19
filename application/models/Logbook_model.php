@@ -5655,7 +5655,7 @@ class Logbook_model extends CI_Model {
 	public function check_dxcc_table($call, $date) {
 
 		$date = date("Y-m-d", strtotime($date));
-		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^B$|^A$|^M$/';
+		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^B$|^A$|^M$|^LH$|^L$|^J$|^SK$/';
 
 		$dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`, `cont`')
 			->where('`call`', $call)
@@ -5747,7 +5747,7 @@ class Logbook_model extends CI_Model {
 	public function dxcc_lookup($call, $date) {
 
 		$date = date("Y-m-d", strtotime($date));
-		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^B$|^A$|^M$|^LH$/';
+		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^B$|^A$|^M$|^LH$|^L$|^J$|^SK$/';
 
 		$dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`,`cont`,`long`,`lat`')
 			->where('`call`', $call)
@@ -5856,7 +5856,7 @@ class Logbook_model extends CI_Model {
 		$c = '';
 
 		$lidadditions = '/^QRP$|^LGT$/';
-		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^B$|^A$|^M$|^LH$/';
+		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^B$|^A$|^M$|^LH$|^L$|^J$|^SK$/';
 		$noneadditions = '/^MM$|^AM$/';
 
 		# First check if the call is in the proper format, A/B/C where A and C
@@ -5895,7 +5895,7 @@ class Logbook_model extends CI_Model {
 				if (preg_match($lidadditions, $b)) {        # check if $b is a lid-addition
 					$b = $a;
 					$a = null;                              # $a goes to $b, delete lid-add
-				} elseif ((preg_match('/\d[A-Z]+$/', $a)) && (preg_match('/\d$/', $b))) {   # check for call in $a
+				} elseif ((preg_match('/\d[A-Z]+$/', $a)) && (preg_match('/\d$/', $b) || preg_match('/^[A-Z]\d[A-Z]$/', $b))) {   # check for call in $a
 					$temp = $b;
 					$b = $a;
 					$a = $temp;
