@@ -28,7 +28,7 @@ class Calltester extends CI_Controller {
 			'assets/js/sections/calltester.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/calltester.js"))
 		];
 
-		
+		$data['page_title'] = __("Call Tester");
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('calltester/index');
 		$this->load->view('interface_assets/footer', $footerData);
