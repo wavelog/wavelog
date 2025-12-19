@@ -225,6 +225,27 @@ class Calltester extends CI_Controller {
     function call() {
         $testarray = array();
 
+		$testarray[] = array(
+            'Callsign'  => 'WJ7R/C6A',
+            'Country'   => 'Bahamas',
+            'Adif'      => 60,
+            'Date'      => $date = date('Ymd', time())
+        );
+
+		$testarray[] = array(
+            'Callsign'  => 'WJ7R/KH6',
+            'Country'   => 'Hawaii',
+            'Adif'      => 110,
+            'Date'      => $date = date('Ymd', time())
+        );
+
+		$testarray[] = array(
+            'Callsign'  => 'WJ7R/C6',
+            'Country'   => 'Bahamas',
+            'Adif'      => 60,
+            'Date'      => $date = date('Ymd', time())
+        );
+
         $testarray[] = array(
             'Callsign'  => 'VE3EY/VP9',
             'Country'   => 'Bermuda',
