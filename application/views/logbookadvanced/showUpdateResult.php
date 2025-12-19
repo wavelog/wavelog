@@ -52,7 +52,7 @@ function showDxccUpdateResult($result, $all) {
 		}
 
 		if (!empty($details)) { ?>
-			<?= echo __("These QSOs could not be updated:"); ?>
+			<?php echo __("These QSOs could not be updated:"); ?>
 			<div class="table-responsive mt-3">
 			<table class="table table-sm table-striped table-hover">
 				<thead>
