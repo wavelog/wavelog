@@ -13,7 +13,7 @@ class Dxcc {
 
 	public function dxcc_lookup($call, $date) {
 
-		$csadditions = '/^P$|^R$|^A$|^B$|^M$/';
+		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^B$|^A$|^M$|^LH$|^L$|^J$|^SK$/';
 		$CI =& get_instance();
 
 		if (array_key_exists($call, $this->dxccexceptions)) {
@@ -91,7 +91,7 @@ class Dxcc {
 		$c = '';
 
 		$lidadditions = '/^QRP$|^LGT$/';
-		$csadditions = '/^P$|^R$|^B$|^A$|^M$|^LH$/';
+		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^B$|^A$|^M$|^LH$|^L$|^J$|^SK$/';
 		$noneadditions = '/^MM$|^AM$/';
 
 		# First check if the call is in the proper format, A/B/C where A and C
@@ -130,7 +130,7 @@ class Dxcc {
 				if (preg_match($lidadditions, $b)) {        # check if $b is a lid-addition
 					$b = $a;
 					$a = null;                              # $a goes to $b, delete lid-add
-				} elseif ((preg_match('/\d[A-Z]+$/', $a)) && (preg_match('/\d$/', $b))) {   # check for call in $a
+				} elseif ((preg_match('/\d[A-Z]+$/', $a)) && (preg_match('/\d$/', $b) || preg_match('/^[A-Z]\d[A-Z]$/', $b))) {   # check for call in $a
 					$temp = $b;
 					$b = $a;
 					$a = $temp;
