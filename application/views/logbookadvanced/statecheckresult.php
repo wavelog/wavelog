@@ -1,7 +1,7 @@
 <?php if (isset($result) && is_array($result) && count($result) > 0): ?>
 <div class="col-md-12 result">
     <h5><?= __("State Check Results"); ?></h5>
-    <p><?= __("QSOs with missing state and gridsquares with 6 or more characters found for the following DXCC's:"); ?></p>
+    <p><?= __("QSOs with missing state and gridsquares with 6 or more characters found for the following DXCCs:"); ?></p>
 
 	<div class="table-responsive" style="max-height:50vh; overflow:auto;">
 		<table class="table table-sm table-striped table-bordered table-condensed mb-0">
