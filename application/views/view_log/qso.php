@@ -906,6 +906,7 @@ var lat = <?php echo $lat; ?>;
 var long = <?php echo $lng; ?>;
 var callsign = "<?php echo $row->COL_CALL; ?>";
 </script>
+    <div hidden id ='gridsquare'><?php echo $row->COL_GRIDSQUARE; ?></div>
     <div hidden id ='lat'><?php echo $lat; ?></div>
     <div hidden id ='long'><?php echo $lng; ?></div>
     <div hidden id ='callsign'><?php echo $row->COL_CALL; ?></div>
