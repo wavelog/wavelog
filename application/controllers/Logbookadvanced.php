@@ -785,7 +785,6 @@ class Logbookadvanced extends CI_Controller {
 
 		header("Content-Type: application/json");
 		print json_encode($q);
-
 	}
 
 	public function fixItuZones() {
@@ -834,8 +833,11 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->model('logbookadvanced_model');
 		$result = $this->logbookadvanced_model->check_missing_continent();
 
-		header("Content-Type: application/json");
-		print json_encode($result);
+		$data['result'] = $result;
+
+		$data['type'] = 'continent';
+
+		$this->load->view('logbookadvanced/showUpdateResult', $data);
 	}
 
 	public function fixStateProgress() {
@@ -874,11 +876,16 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	public function updateDistances() {
+		if(!clubaccess_check(9)) return;
+
 		$this->load->model('logbookadvanced_model');
 		$result = $this->logbookadvanced_model->update_distances_batch();
 
-		header("Content-Type: application/json");
-		print json_encode($result);
+		$data['result'] = $result;
+
+		$data['type'] = 'distance';
+
+		$this->load->view('logbookadvanced/showUpdateResult', $data);
 	}
 
 	public function callbookDialog() {
@@ -887,10 +894,6 @@ class Logbookadvanced extends CI_Controller {
 
 	public function dbtoolsDialog() {
 		$this->load->view('logbookadvanced/dbtoolsdialog');
-	}
-
-	public function dbtoolsInfo() {
-		$this->load->view('logbookadvanced/dbtoolsinformation');
 	}
 
 	public function checkDb() {
@@ -916,12 +919,16 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->model('logbookadvanced_model');
 
 		$dxcc = $this->input->post('dxcc', true);
+		$data['country'] = $this->input->post('country', true);
 
 		// Process for batch QSO state fix
 		$result = $this->logbookadvanced_model->fixStateBatch($dxcc);
 
-		header("Content-Type: application/json");
-		echo json_encode($result);
+		$data['result'] = $result;
+
+		$data['type'] = 'state';
+
+		$this->load->view('logbookadvanced/showUpdateResult', $data);
 	}
 
 	public function openStateList() {
@@ -930,6 +937,7 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->model('logbookadvanced_model');
 
 		$data['dxcc'] = $this->input->post('dxcc', true);
+		$data['country'] = $this->input->post('country', true);
 
 		// Process for batch QSO state fix
 		$data['qsos'] = $this->logbookadvanced_model->getStateListQsos($data['dxcc']);
@@ -944,12 +952,11 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->model('logbookadvanced_model');
         $result = $this->logbookadvanced_model->check_missing_dxcc_id($all);
 
-		header("Content-Type: application/json");
-		if ($all == 'false') {
-			echo json_encode(__("The number of QSOs updated for missing DXCC IDs was") .' ' . $result);
-		} else {
-			echo json_encode(__("The number of QSOs re-checked for DXCC was") .' ' . $result);
-		}
+		$data['result'] = $result;
+		$data['all'] = $all;
+		$data['type'] = 'dxcc';
+
+		$this->load->view('logbookadvanced/showUpdateResult', $data);
 	}
 
 	public function openMissingDxccList() {
@@ -960,6 +967,19 @@ class Logbookadvanced extends CI_Controller {
 		$data['qsos'] = $this->logbookadvanced_model->getMissingDxccQsos();
 
 		$this->load->view('logbookadvanced/showMissingDxccQsos', $data);
+	}
+
+	public function batchFix() {
+		if(!clubaccess_check(9)) return;
+
+		$type = $this->input->post('type', true);
+		$this->load->model('logbookadvanced_model');
+		$result = $this->logbookadvanced_model->batchFix($type);
+
+		$data['result'] = $result;
+		$data['type'] = $type;
+
+		$this->load->view('logbookadvanced/showUpdateResult', $data);
 	}
 
 }

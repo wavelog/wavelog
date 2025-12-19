@@ -21,7 +21,7 @@
 				<?= __("Station Logbooks")?>
 					</div>
 					<div class="card-body">
-                    <p class="card-text"><?= __("Station Logbooks allow you to group Station Locations, this allows you to see all the locations across one session from the logbook areas to the analytics. Great for when your operating in multiple locations but they are part of the same DXCC or VUCC Circle.")?></p>
+                    <p class="card-text"><?= __("Station Logbooks allow you to group Station Locations, this allows you to see all the locations across one session from the logbook areas to the analytics. Great for when you're operating in multiple locations but they are part of the same DXCC or VUCC Circle.")?></p>
 					<a class="btn btn-primary btn-sm" href="javascript:createStationLogbook();"><i class="fas fa-plus"></i> <?= __("Create Station Logbook")?></a>
 
 

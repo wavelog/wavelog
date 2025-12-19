@@ -2,19 +2,19 @@
     <?php if (!empty($qsos) && count($qsos) > 0): ?>
 		<div class="table-responsive" style="max-height:50vh; overflow:auto;">
 		<p class="text-muted">
-                Found <?php echo count($qsos); ?> QSO(s) missing DXCC information.
+			<?php echo sprintf(__("Found %s QSO(s) missing DXCC information."), count($qsos));?>
 		</p>
             <table class="table table-sm table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>Call</th>
-                        <th>Date/Time</th>
-                        <th>Mode</th>
-                        <th>Band</th>
-                        <th>State</th>
-                        <th>Gridsquare</th>
-                        <th>DXCC</th>
-                        <th>Station</th>
+                        <th><?= __("Call") ?></th>
+                        <th><?= __("Date/Time") ?></th>
+                        <th><?= __("Mode") ?></th>
+                        <th><?= __("Band") ?></th>
+                        <th><?= __("State") ?></th>
+                        <th><?= __("Gridsquare") ?></th>
+                        <th><?= __("DXCC") ?></th>
+                        <th><?= __("Station") ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,7 +35,7 @@
 	</div>
     <?php else: ?>
         <div class="alert alert-success">
-            <h4>No Issues Found</h4>
+            <h4><?= __("No Issues Found") ?></h4>
         </div>
     <?php endif; ?>
 </div>

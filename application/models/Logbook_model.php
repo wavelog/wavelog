@@ -5655,7 +5655,7 @@ class Logbook_model extends CI_Model {
 	public function check_dxcc_table($call, $date) {
 
 		$date = date("Y-m-d", strtotime($date));
-		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^B$|^A$|^M$/';
+		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^B$|^A$|^M$|^LH$|^L$|^J$|^SK$/';
 
 		$dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`, `cont`')
 			->where('`call`', $call)
@@ -5747,7 +5747,7 @@ class Logbook_model extends CI_Model {
 	public function dxcc_lookup($call, $date) {
 
 		$date = date("Y-m-d", strtotime($date));
-		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^B$|^A$|^M$|^LH$/';
+		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^B$|^A$|^M$|^LH$|^L$|^J$|^SK$/';
 
 		$dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`,`cont`,`long`,`lat`')
 			->where('`call`', $call)
@@ -5856,7 +5856,7 @@ class Logbook_model extends CI_Model {
 		$c = '';
 
 		$lidadditions = '/^QRP$|^LGT$/';
-		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^B$|^A$|^M$|^LH$/';
+		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^B$|^A$|^M$|^LH$|^L$|^J$|^SK$/';
 		$noneadditions = '/^MM$|^AM$/';
 
 		# First check if the call is in the proper format, A/B/C where A and C
@@ -5895,7 +5895,7 @@ class Logbook_model extends CI_Model {
 				if (preg_match($lidadditions, $b)) {        # check if $b is a lid-addition
 					$b = $a;
 					$a = null;                              # $a goes to $b, delete lid-add
-				} elseif ((preg_match('/\d[A-Z]+$/', $a)) && (preg_match('/\d$/', $b))) {   # check for call in $a
+				} elseif ((preg_match('/\d[A-Z]+$/', $a)) && (preg_match('/\d$/', $b) || preg_match('/^[A-Z]\d[A-Z]$/', $b))) {   # check for call in $a
 					$temp = $b;
 					$b = $a;
 					$a = $temp;
@@ -5994,50 +5994,6 @@ class Logbook_model extends CI_Model {
 			return $row;
 		}
 		return '';
-	}
-
-	public function check_missing_grid_id($all) {
-		// get all records with no COL_GRIDSQUARE
-		$this->db->select("COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_TIME_OFF");
-
-		$this->db->where("(COL_GRIDSQUARE is NULL or COL_GRIDSQUARE = '') AND (COL_VUCC_GRIDS is NULL or COL_VUCC_GRIDS = '')");
-
-		$r = $this->db->get($this->config->item('table_name'));
-
-		$count = 0;
-		$this->db->trans_start();
-		if ($r->num_rows() > 0) {
-			foreach ($r->result_array() as $row) {
-				$callsign = $row['COL_CALL'];
-				if (!$this->load->is_loaded('callbook')) {
-					$this->load->library('callbook');
-				}
-
-				$callbook = $this->callbook->getCallbookData($callsign);
-
-				if (isset($callbook)) {
-					if (isset($callbook['error'])) {
-						printf("Error: " . $callbook['error'] . "<br />");
-					} else {
-						$return['callsign_qra'] = $callbook['gridsquare'];
-						if ($return['callsign_qra'] != '') {
-							$sql = sprintf(
-								"update %s set COL_GRIDSQUARE = '%s' where COL_PRIMARY_KEY=%d",
-								$this->config->item('table_name'),
-								$return['callsign_qra'],
-								$row['COL_PRIMARY_KEY']
-							);
-							$this->db->query($sql);
-							printf("Updating %s to %s\n<br/>", $row['COL_PRIMARY_KEY'], $return['callsign_qra']);
-							$count++;
-						}
-					}
-				}
-			}
-		}
-		$this->db->trans_complete();
-
-		print("$count updated\n");
 	}
 
 	public function check_for_station_id() {
