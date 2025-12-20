@@ -1583,7 +1583,7 @@ class Logbookadvanced_model extends CI_Model {
 	 * @return array Result array with success, dxcc_name, dxcc_number, state_code, skipped
 	 */
 	function fixStateBatch($dxcc) {
-		$this->load->library('Geojson');
+		$this->load->library('Geojson', $dxcc);
 
 		// Get QSO data
 		$sql = "SELECT COL_PRIMARY_KEY, COL_CALL, COL_GRIDSQUARE, COL_DXCC, COL_STATE, d.name as dxcc_name, station_profile.station_profile_name
@@ -1632,8 +1632,6 @@ class Logbookadvanced_model extends CI_Model {
 	 * @return array Result array with success, dxcc_name, dxcc_number, state_code, skipped
 	 */
 	function fixStateDxcc($qso_id) {
-		$this->load->library('Geojson');
-
 		// Get QSO data
 		$sql = "SELECT COL_PRIMARY_KEY, COL_CALL, COL_GRIDSQUARE, COL_DXCC, COL_STATE, d.name as dxcc_name
 				FROM " . $this->config->item('table_name') . " qsos
