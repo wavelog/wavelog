@@ -23,7 +23,7 @@ if($this->session->userdata('user_date_format')) {
                         <th><?= __("State") ?></th>
                         <th><?= __("Gridsquare") ?></th>
                         <th><?= __("DXCC") ?></th>
-                        <th><?= __("Station") ?></th>
+                        <th><?= __("Station Location") ?></th>
                     </tr>
                 </thead>
                 <tbody>

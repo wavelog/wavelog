@@ -1609,7 +1609,7 @@ class Logbookadvanced_model extends CI_Model {
 		$count = 0;
 
 		foreach ($query->result() as $qso) {
-			$result = $this->fixStateSingle($qso->COL_PRIMARY_KEY);
+			$result = $this->fixStateDxcc($qso->COL_PRIMARY_KEY);
 			if ($result['success']) {
 				$count++;
 			} else {
@@ -1623,6 +1623,124 @@ class Logbookadvanced_model extends CI_Model {
 		$results['count'] = $count;
 
 		return $results;
+	}
+
+	/**
+	 * Fix state for a batch of QSOs, based on the DXCC
+	 *
+	 * @param int $qso_id QSO primary key
+	 * @return array Result array with success, dxcc_name, dxcc_number, state_code, skipped
+	 */
+	function fixStateDxcc($qso_id) {
+		$this->load->library('Geojson');
+
+		// Get QSO data
+		$sql = "SELECT COL_PRIMARY_KEY, COL_CALL, COL_GRIDSQUARE, COL_DXCC, COL_STATE, d.name as dxcc_name
+				FROM " . $this->config->item('table_name') . " qsos
+				JOIN station_profile ON qsos.station_id = station_profile.station_id
+				LEFT JOIN dxcc_entities d ON qsos.COL_DXCC = d.adif
+				WHERE qsos.COL_PRIMARY_KEY = ? AND station_profile.user_id = ?";
+
+		$query = $this->db->query($sql, [$qso_id, $this->session->userdata('user_id')]);
+
+		if ($query->num_rows() === 0) {
+			return [
+				'success' => false,
+				'skipped' => true,
+				'reason' => 'QSO not found'
+			];
+		}
+
+		$qso = $query->row();
+		$callsign = $qso->COL_CALL ?? 'Unknown';
+		$dxcc = (int)$qso->COL_DXCC;
+		$gridsquare = $qso->COL_GRIDSQUARE;
+		$state = $qso->COL_STATE ?? '';
+		$dxcc_name = $qso->dxcc_name ?? 'Unknown';
+
+		// Skip if state is already populated
+		if (!empty($state)) {
+			return [
+				'success' => false,
+				'skipped' => true,
+				'callsign' => $callsign,
+				'dxcc_number' => $dxcc,
+				'dxcc_name' => $dxcc_name,
+				'reason' => 'State already set'
+			];
+		}
+
+		// Check if gridsquare exists
+		if (empty($gridsquare)) {
+			return [
+				'success' => false,
+				'skipped' => true,
+				'callsign' => $callsign,
+				'dxcc_number' => $dxcc,
+				'dxcc_name' => $dxcc_name,
+				'reason' => 'No gridsquare'
+			];
+		}
+
+		// Check if gridsquare is precise enough (at least 6 characters)
+		if (strlen($gridsquare) < 6) {
+			return [
+				'success' => false,
+				'skipped' => true,
+				'callsign' => $callsign,
+				'dxcc_number' => $dxcc,
+				'dxcc_name' => $dxcc_name,
+				'reason' => 'Gridsquare not precise enough'
+			];
+		}
+
+		// Check if state is supported for this DXCC
+		if (!$this->geojson->isStateSupported($dxcc)) {
+			return [
+				'success' => false,
+				'skipped' => true,
+				'callsign' => $callsign,
+				'dxcc_number' => $dxcc,
+				'dxcc_name' => $dxcc_name,
+				'reason' => 'DXCC not supported'
+			];
+		}
+
+		// Find state from gridsquare
+		$state = $this->geojson->findStateFromGridsquare($gridsquare, $dxcc);
+
+		if ($state === null || !isset($state['code'])) {
+			// Get coordinates for debugging
+			$coords = $this->geojson->gridsquareToLatLng($gridsquare);
+			return [
+				'success' => false,
+				'skipped' => false,
+				'callsign' => $callsign,
+				'dxcc_number' => $dxcc,
+				'dxcc_name' => $dxcc_name,
+				'gridsquare' => $gridsquare,
+				'lat' => $coords['lat'] ?? null,
+				'lng' => $coords['lng'] ?? null,
+				'reason' => 'State not found in GeoJSON'
+			];
+		}
+
+		// Update the state
+		$update_sql = "UPDATE " . $this->config->item('table_name') . "
+					   SET COL_STATE = ?
+					   WHERE COL_PRIMARY_KEY = ?";
+
+		$this->db->query($update_sql, [$state['code'], $qso_id]);
+
+		return [
+			'success' => true,
+			'skipped' => false,
+			'callsign' => $callsign,
+			'dxcc_number' => $dxcc,
+			'dxcc_name' => $dxcc_name,
+			'state_code' => $state['code'],
+			'state_name' => $state['name'] ?? null
+		];
 	}
 
 	function getStateListQsos($dxcc) {
