@@ -17,8 +17,23 @@ class Dxcc {
 		$CI =& get_instance();
 
 		if (array_key_exists($call, $this->dxccexceptions)) {
-			return $this->dxccexceptions[$call];
-        } else {
+			$exceptions = $this->dxccexceptions[$call];
+
+			// Loop through all exceptions for this call
+			foreach ($exceptions as $exception) {
+				$startDate = !empty($exception['start']) ? $exception['start'] : null;
+				$endDate = !empty($exception['end']) ? $exception['end'] : null;
+
+				if ($startDate == null && $endDate == null)
+					return $exception;
+				if ($date <= $endDate && $date >= $startDate)
+					return $exception;
+				if ($endDate == null && $date >= $startDate)
+					return $exception;
+				if ($date <= $endDate && $startDate == null)
+					return $exception;
+			}
+        }
 
 			if (preg_match('/(^KG4)[A-Z09]{3}/', $call)) {       // KG4/ and KG4 5 char calls are Guantanamo Bay. If 4 or 6 char, it is USA
 				$call = "K";
@@ -76,10 +91,25 @@ class Dxcc {
 				$result = '';
 
 				if (array_key_exists(substr($call, 0, $i), $this->dxcc)) {
-					return $this->dxcc[substr($call, 0, $i)];
+					$arraykey = substr($call, 0, $i);
+					$dxccEntries = $this->dxcc[substr($call, 0, $i)];
+
+					// Loop through all entries for this call prefix
+					foreach ($dxccEntries as $dxccEntry) {
+						$startDate = !empty($dxccEntry['start']) ? $dxccEntry['start'] : null;
+						$endDate = !empty($dxccEntry['end']) ? $dxccEntry['end'] : null;
+
+						if ($startDate == null && $endDate == null)
+							return $dxccEntry;
+						if ($date < $endDate && $date >= $startDate)
+							return $dxccEntry;
+						if ($endDate == null && $date >= $startDate)
+							return $dxccEntry;
+						if ($date < $endDate && $startDate == null)
+							return $dxccEntry;
+					}
 				}
 			}
-		}
 
 		return array("Not Found", "Not Found");
 	}
@@ -223,45 +253,69 @@ class Dxcc {
 	  /*
     * Read cty.dat from AD1C
     */
-    function read_data($date) {
+    function read_data($date = null) {
 		$CI =& get_instance();
-		$dxcc_exceptions = $CI->db->select('`entity`, `adif`, `cqz`, `start`, `end`, `call`, `cont`, `long`, `lat`')
-		->where('(start <= ', $date)
-		->or_where('start is null)', NULL, false)
-		->where('(end >= ', $date)
-		->or_where('end is null)', NULL, false)
-		->get('dxcc_exceptions');
+
+		if ($date == null) {
+			$dxcc_exceptions = $CI->db->select('entity, adif, cqz, start, end, call, cont, long, lat')
+			->get('dxcc_exceptions');
+		} else {
+			$dxcc_exceptions = $CI->db->select('entity, adif, cqz, start, end, call, cont, long, lat')
+			->group_start()
+				->where('start <=', $date)
+				->or_where('start IS NULL')
+			->group_end()
+			->group_start()
+				->where('end >=', $date)
+				->or_where('end IS NULL')
+			->group_end()
+			->get('dxcc_exceptions');
+		}
 
 		if ($dxcc_exceptions->num_rows() > 0){
 			foreach ($dxcc_exceptions->result() as $dxcce) {
-				$this->dxccexceptions[$dxcce->call]['adif'] = $dxcce->adif;
-				$this->dxccexceptions[$dxcce->call]['cont'] = $dxcce->cont;
-				$this->dxccexceptions[$dxcce->call]['entity'] = $dxcce->entity;
-				$this->dxccexceptions[$dxcce->call]['cqz'] = $dxcce->cqz;
-				$this->dxccexceptions[$dxcce->call]['start'] = $dxcce->start;
-				$this->dxccexceptions[$dxcce->call]['end'] = $dxcce->end;
-				$this->dxccexceptions[$dxcce->call]['long'] = $dxcce->long;
-				$this->dxccexceptions[$dxcce->call]['lat'] = $dxcce->lat;
+				$this->dxccexceptions[$dxcce->call][] = [
+					'adif' => $dxcce->adif,
+					'cont' => $dxcce->cont,
+					'entity' => $dxcce->entity,
+					'cqz' => $dxcce->cqz,
+					'start' => $dxcce->start,
+					'end' => $dxcce->end,
+					'long' => $dxcce->long,
+					'lat' => $dxcce->lat
+				];
 			}
 		}
 
-		$dxcc_result = $CI->db->select('*')
-		->where('(start <= ', $date)
-		->or_where("start is null)", NULL, false)
-		->where('(end >= ', $date)
-		->or_where("end is null)", NULL, false)
-		->get('dxcc_prefixes');
+		if ($date == null) {
+			$dxcc_result = $CI->db->select('*')
+			->get('dxcc_prefixes');
+		} else {
+			$dxcc_result = $CI->db->select('*')
+			->group_start()
+				->where('start <=', $date)
+				->or_where('start IS NULL')
+			->group_end()
+			->group_start()
+				->where('end >=', $date)
+				->or_where('end IS NULL')
+			->group_end()
+			->get('dxcc_prefixes');
+		}
+
 
 		if ($dxcc_result->num_rows() > 0){
 			foreach ($dxcc_result->result() as $dx) {
-				$this->dxcc[$dx->call]['adif'] = $dx->adif;
-				$this->dxcc[$dx->call]['cont'] = $dx->cont;
-				$this->dxcc[$dx->call]['entity'] = $dx->entity;
-				$this->dxcc[$dx->call]['cqz'] = $dx->cqz;
-				$this->dxcc[$dx->call]['start'] = $dx->start;
-				$this->dxcc[$dx->call]['end'] = $dx->end;
-				$this->dxcc[$dx->call]['long'] = $dx->long;
-				$this->dxcc[$dx->call]['lat'] = $dx->lat;
+				$this->dxcc[$dx->call][] = [
+					'adif' => $dx->adif,
+					'cont' => $dx->cont,
+					'entity' => $dx->entity,
+					'cqz' => $dx->cqz,
+					'start' => $dx->start,
+					'end' => $dx->end,
+					'long' => $dx->long,
+					'lat' => $dx->lat
+				];
 			}
 		}
 

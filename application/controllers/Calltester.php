@@ -1,6 +1,8 @@
 <?php
 use Wavelog\Dxcc\Dxcc;
 
+require_once APPPATH . '../src/Dxcc/Dxcc.php';
+
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Calltester extends CI_Controller {
@@ -17,7 +19,7 @@ class Calltester extends CI_Controller {
 
         // Starting clock time in seconds
         $start_time = microtime(true);
-		
+
         $callarray = $this->getQsos(null);
 		$this->load->model('stations');
 
@@ -34,7 +36,56 @@ class Calltester extends CI_Controller {
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 
+	/* Uses DXCC Class. Much faster */
 	function doDxccCheck() {
+		$this->load->model('logbook_model');
+		$i = 0;
+		$result = array();
+
+		$callarray = $this->getQsos($this->input->post('de', true));
+
+		// Starting clock time in seconds
+		$start_time = microtime(true);
+		$dxccobj = new Dxcc(null);
+
+		foreach ($callarray->result() as $call) {
+
+            $i++;
+            //$dxcc = $this->logbook_model->dxcc_lookup($call->col_call, $call->date);
+			$dxcc = $dxccobj->dxcc_lookup($call->col_call, $call->date);
+
+            $dxcc['adif'] = (isset($dxcc['adif'])) ? $dxcc['adif'] : 0;
+            $dxcc['entity'] = (isset($dxcc['entity'])) ? $dxcc['entity'] : 'None';
+
+            if ($call->col_dxcc != $dxcc['adif']) {
+                $result[] = array(
+                                'callsign'          => $call->col_call,
+								'qso_date'          => $call->date,
+								'station_profile'   => $call->station_profile_name,
+                                'existing_dxcc'     => $call->col_country,
+                                'existing_adif'     => $call->col_dxcc,
+                                'result_country'    => ucwords(strtolower($dxcc['entity']), "- (/"),
+                                'result_adif'       => $dxcc['adif'],
+								'id' 			    => $call->col_primary_key,
+                            );
+            }
+        }
+
+        // End clock time in seconds
+        $end_time = microtime(true);
+
+        // Calculate script execution time
+        $execution_time = ($end_time - $start_time);
+
+        $data['execution_time'] = $execution_time;
+        $data['calls_tested'] = $i;
+		$data['result'] = $result;
+
+		$this->load->view('calltester/result', $data);
+	}
+
+	/* Uses Logbook_model and the normal dxcc lookup, which is slow */
+	function doDxccCheck2() {
 		$this->load->model('logbook_model');
 		$i = 0;
 		$result = array();
