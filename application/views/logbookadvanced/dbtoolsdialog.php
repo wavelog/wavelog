@@ -90,7 +90,7 @@
                         </button>
                     </div>
                 </div>
-				<?php if ($this->config->item('callbook_batch_lookup')): ?>
+				<?php if ($this->config->item('callbook_batch_lookup') ?? true): ?>
 				<div class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
                         <h6 class="mb-1"><?= __("Lookup QSOs with missing grid in callbook") ?></h6>
