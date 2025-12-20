@@ -101,11 +101,11 @@ class Dxcc {
 
 						if ($startDate == null && $endDate == null)
 							return $dxccEntry;
-						if ($date < $endDate && $date >= $startDate)
+						if ($date <= $endDate && $date >= $startDate)
 							return $dxccEntry;
 						if ($endDate == null && $date >= $startDate)
 							return $dxccEntry;
-						if ($date < $endDate && $startDate == null)
+						if ($date <= $endDate && $startDate == null)
 							return $dxccEntry;
 					}
 				}
@@ -258,6 +258,7 @@ class Dxcc {
 
 		if ($date == null) {
 			$dxcc_exceptions = $CI->db->select('entity, adif, cqz, start, end, call, cont, long, lat')
+			->order_by('start desc, end desc')
 			->get('dxcc_exceptions');
 		} else {
 			$dxcc_exceptions = $CI->db->select('entity, adif, cqz, start, end, call, cont, long, lat')
@@ -269,6 +270,7 @@ class Dxcc {
 				->where('end >=', $date)
 				->or_where('end IS NULL')
 			->group_end()
+			->order_by('start desc, end desc')
 			->get('dxcc_exceptions');
 		}
 
@@ -289,6 +291,7 @@ class Dxcc {
 
 		if ($date == null) {
 			$dxcc_result = $CI->db->select('*')
+			->order_by('start desc, end desc')
 			->get('dxcc_prefixes');
 		} else {
 			$dxcc_result = $CI->db->select('*')
@@ -300,6 +303,7 @@ class Dxcc {
 				->where('end >=', $date)
 				->or_where('end IS NULL')
 			->group_end()
+			->order_by('start desc, end desc')
 			->get('dxcc_prefixes');
 		}
 

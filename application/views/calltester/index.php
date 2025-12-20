@@ -13,6 +13,10 @@
 			<?php } ?>
 		</select>
 		<button id="startDxccCheck" class="btn btn-primary btn-sm"><?= __("Start DXCC Check"); ?></button>
+		<div class="form-check me-2 mx-2">
+			<input type="checkbox" class="form-check-input" id="compareDxccClass" name="compareDxccClass">
+			<label class="form-check-label" for="compareDxccClass"><?= __("Compare DXCC class and logbook model"); ?></label>
+		</div>
 	</div>
 	<div class='result'>
 	</div>

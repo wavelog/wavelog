@@ -36,13 +36,28 @@ class Calltester extends CI_Controller {
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 
-	/* Uses DXCC Class. Much faster */
 	function doDxccCheck() {
-		$this->load->model('logbook_model');
+		set_time_limit(3600);
+		$de = $this->input->post('de', true);
+		$compare = $this->input->post('compare', true);
+
+		if ($compare == "true") {
+			$result = $this->doClassCheck($de);
+			$result2 = $this->doDxccCheckModel($de);
+
+			return $this->compareDxccChecks($result, $result2);
+		}
+
+		$result = $this->doClassCheck($de);
+		$this->loadView($result);
+	}
+
+	/* Uses DXCC Class. Much faster */
+	function doClassCheck($de) {
 		$i = 0;
 		$result = array();
 
-		$callarray = $this->getQsos($this->input->post('de', true));
+		$callarray = $this->getQsos($de);
 
 		// Starting clock time in seconds
 		$start_time = microtime(true);
@@ -81,16 +96,16 @@ class Calltester extends CI_Controller {
         $data['calls_tested'] = $i;
 		$data['result'] = $result;
 
-		$this->load->view('calltester/result', $data);
+		return $data;
 	}
 
 	/* Uses Logbook_model and the normal dxcc lookup, which is slow */
-	function doDxccCheck2() {
+	function doDxccCheckModel($de) {
 		$this->load->model('logbook_model');
 		$i = 0;
 		$result = array();
 
-		$callarray = $this->getQsos($this->input->post('de', true));
+		$callarray = $this->getQsos($de);
 
 		// Starting clock time in seconds
 		$start_time = microtime(true);
@@ -126,7 +141,48 @@ class Calltester extends CI_Controller {
         $data['calls_tested'] = $i;
 		$data['result'] = $result;
 
+		return $data;
+	}
+
+	function loadView($data) {
 		$this->load->view('calltester/result', $data);
+	}
+
+	function compareDxccChecks($result, $result2) {
+		// Convert arrays to comparable format using callsign, qso_date, and id as unique keys
+		$classCheckItems = [];
+		$modelCheckItems = [];
+
+		// Create associative arrays for easier comparison
+		foreach ($result['result'] as $item) {
+			$key = $item['callsign'] . '|' . $item['qso_date'] . '|' . $item['id'];
+			$classCheckItems[$key] = $item;
+		}
+
+		foreach ($result2['result'] as $item) {
+			$key = $item['callsign'] . '|' . $item['qso_date'] . '|' . $item['id'];
+			$modelCheckItems[$key] = $item;
+		}
+
+		// Find items that are in class check but not in model check
+		$onlyInClass = array_diff_key($classCheckItems, $modelCheckItems);
+
+		// Find items that are in model check but not in class check
+		$onlyInModel = array_diff_key($modelCheckItems, $classCheckItems);
+
+		// Prepare comparison data
+		$comparisonData = [];
+		$comparisonData['class_execution_time'] = $result['execution_time'];
+		$comparisonData['model_execution_time'] = $result2['execution_time'];
+		$comparisonData['class_calls_tested'] = $result['calls_tested'];
+		$comparisonData['model_calls_tested'] = $result2['calls_tested'];
+		$comparisonData['class_total_issues'] = count($result['result']);
+		$comparisonData['model_total_issues'] = count($result2['result']);
+		$comparisonData['only_in_class'] = $onlyInClass;
+		$comparisonData['only_in_model'] = $onlyInModel;
+		$comparisonData['common_issues'] = array_intersect_key($classCheckItems, $modelCheckItems);
+
+		$this->load->view('calltester/comparison_result', $comparisonData);
 	}
 
 	function getQsos($station_id) {

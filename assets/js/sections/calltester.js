@@ -1,10 +1,13 @@
 	$('#startDxccCheck').on('click', function() {
 		let de = $('#de').val();
+		let compare = $('#compareDxccClass').prop('checked');
 		$('.result').html('<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div> <?= __("Processing...") ?>');
 		$.ajax({
 			url: site_url + '/calltester/doDxccCheck',
 			type: "POST",
-			data: {de: de},
+			data: {de: de,
+				compare: compare
+			},
 			success: function(response) {
 				$('.result').html(response);
 			},
