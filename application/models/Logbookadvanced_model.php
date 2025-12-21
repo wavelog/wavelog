@@ -1642,8 +1642,6 @@ class Logbookadvanced_model extends CI_Model {
 		$state = $this->geojson->findStateFromGridsquare($gridsquare, $dxcc);
 
 		if ($state === null || !isset($state['code'])) {
-			// Get coordinates for debugging
-			$coords = $this->geojson->gridsquareToLatLng($gridsquare);
 			return [
 				'success' => false,
 				'skipped' => false,
@@ -1651,8 +1649,6 @@ class Logbookadvanced_model extends CI_Model {
 				'dxcc_number' => $dxcc,
 				'dxcc_name' => $dxcc_name,
 				'gridsquare' => $gridsquare,
-				'lat' => $coords['lat'] ?? null,
-				'lng' => $coords['lng'] ?? null,
 				'reason' => 'State not found in GeoJSON'
 			];
 		}
