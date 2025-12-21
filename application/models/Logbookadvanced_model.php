@@ -1605,19 +1605,30 @@ class Logbookadvanced_model extends CI_Model {
 		}
 
 		$results = [];
-
-		$count = 0;
+		$batch_updates = [];
 
 		foreach ($query->result() as $qso) {
 			$result = $this->fixStateDxcc($qso);
+
 			if ($result['success']) {
-				$count++;
+				// Prepare data for batch update
+				$batch_updates[] = [
+					'COL_PRIMARY_KEY' => $qso->COL_PRIMARY_KEY,
+					'COL_STATE' => $result['state_code']
+				];
 			} else {
 				$result['station_profile_name'] = $qso->station_profile_name;
 				$result['id'] = $qso->COL_PRIMARY_KEY;
 				$result['gridsquare'] = $qso->COL_GRIDSQUARE;
 				$results[] = $result;
 			}
+		}
+
+		// Perform batch update if there are any updates
+		$count = 0;
+		if (!empty($batch_updates)) {
+			$this->db->update_batch($this->config->item('table_name'), $batch_updates, 'COL_PRIMARY_KEY');
+			$count = count($batch_updates);
 		}
 
 		$results['count'] = $count;
@@ -1627,8 +1638,9 @@ class Logbookadvanced_model extends CI_Model {
 
 	/**
 	 * Fix state for a batch of QSOs, based on the DXCC
+	 * Note: This now only validates and prepares data
 	 *
-	 * @param int $qso_id QSO primary key
+	 * @param object $qso QSO object
 	 * @return array Result array with success, dxcc_name, dxcc_number, state_code, skipped
 	 */
 	function fixStateDxcc($qso) {
@@ -1653,13 +1665,7 @@ class Logbookadvanced_model extends CI_Model {
 			];
 		}
 
-		// Update the state
-		$update_sql = "UPDATE " . $this->config->item('table_name') . "
-					   SET COL_STATE = ?
-					   WHERE COL_PRIMARY_KEY = ?";
-
-		$this->db->query($update_sql, [$state['code'], $qso->COL_PRIMARY_KEY]);
-
+		// Return success with state info
 		return [
 			'success' => true,
 			'skipped' => false,
