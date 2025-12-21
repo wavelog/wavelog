@@ -1776,29 +1776,41 @@ class Logbookadvanced_model extends CI_Model {
 		$result = $this->getMissingGridQsos();
 
 		$count = 0;
+		$batch_updates = [];
+
 		$this->db->trans_start();
+
 		if (count($result) > 0) {
+			if (!$this->load->is_loaded('callbook')) {
+				$this->load->library('callbook');
+			}
+
 			foreach ($result as $row) {
 				$callsign = $row->col_call;
-				if (!$this->load->is_loaded('callbook')) {
-					$this->load->library('callbook');
-				}
-
 				$callbook = $this->callbook->getCallbookData($callsign);
 
 				if (isset($callbook)) {
 					if (isset($callbook['error'])) {
 						log_message('error', "Error: " . $callbook['error']);
 					} else {
-						if ($callbook['gridsquare'] != '') {
-							$sql = "update " . $this->config->item('table_name') . " set COL_GRIDSQUARE = ? where COL_PRIMARY_KEY = ?";
-							$this->db->query($sql, array($callbook['gridsquare'], $row->col_primary_key));
-							$count++;
+						if (isset($callbook['gridsquare']) && $callbook['gridsquare'] != '') {
+							// Prepare data for batch update
+							$batch_updates[] = [
+								'COL_PRIMARY_KEY' => $row->col_primary_key,
+								'COL_GRIDSQUARE' => $callbook['gridsquare']
+							];
 						}
 					}
 				}
 			}
+
+			// Perform batch update if there are any updates
+			if (!empty($batch_updates)) {
+				$this->db->update_batch($this->config->item('table_name'), $batch_updates, 'COL_PRIMARY_KEY');
+				$count = count($batch_updates);
+			}
 		}
+
 		$this->db->trans_complete();
 
 		return $count;
@@ -1810,7 +1822,7 @@ class Logbookadvanced_model extends CI_Model {
 				WHERE station_profile.user_id = ?
 				AND (qsos.COL_GRIDSQUARE IS NULL OR qsos.COL_GRIDSQUARE = '')
 				AND (qsos.COL_VUCC_GRIDS IS NULL OR qsos.COL_VUCC_GRIDS = '')
-				ORDER BY COL_TIME_ON DESC limit 250";
+				ORDER BY COL_TIME_ON DESC limit 150";
 
 		$query = $this->db->query($sql, [$this->session->userdata('user_id')]);
 
