@@ -773,14 +773,6 @@ $options = json_decode($options);
 										<button type="button" class="btn btn-sm btn-success dropdown-action" id="fixState"><?= __("Fix State"); ?></button>
 									</div>
 								</div>
-								<!-- <div class="card-header p-2">
-									<span class="h6 w-100 mt-0 mb-0"><?= __("With ALL QSOs: "); ?></span>
-								</div>
-								<div class="card-body p-2">
-									<div class="d-grid gap-2">
-										<button type="button" class="btn btn-sm btn-success dropdown-action" id="dbtools2"><?= __("Database Tools"); ?></button>
-									</div>
-								</div> -->
 							</div>
                         </div>
                     </div>
