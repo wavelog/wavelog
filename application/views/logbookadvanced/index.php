@@ -493,7 +493,14 @@ $options = json_decode($options);
                                     </div>
                                 </div>
                             </div>
-                        </div>
+							<div class="row">
+									<div class="col-lg-2 col-md-2 col-sm-3 col-xl">
+										<div class="d-flex flex-wrap gap-1">
+											<button class="btn btn-primary btn-sm flex-shrink-0" onclick="$('#searchForm').submit(); $('#filterDropdown').dropdown('hide');"><i class="fas fa-search"></i> <?= __("Apply filters"); ?></button>
+										</div>
+									</div>
+								</div>
+							</div>
                     </div>
 
                     <!-- QSL Filters Dropdown -->
@@ -668,6 +675,13 @@ $options = json_decode($options);
                                         </select>
                                     </div>
                                 </div>
+								<div class="row">
+									<div class="col-lg-2 col-md-2 col-sm-3 col-xl">
+										<div class="d-flex flex-wrap gap-1">
+											<button class="btn btn-primary btn-sm flex-shrink-0" onclick="$('#searchForm').submit(); $('#qslFilterDropdown').dropdown('hide');"><i class="fas fa-search"></i> <?= __("Apply filters"); ?></button>
+										</div>
+									</div>
+								</div>
                             </div>
                         </div>
                     </div>
