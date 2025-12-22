@@ -13,7 +13,7 @@
                         <label class="form-check-label fw-semibold" for="date_check">
                             <i class="fas fa-calendar-alt me-2 text-primary"></i><?= __("Date"); ?>
                         </label>
-                        <small class="d-block text-muted"><?= __("Match QSOs within 1800 (30min) of each other"); ?></small>
+                        <small class="d-block text-muted"><?= __("Match QSOs within 1800s (30min) of each other"); ?></small>
                     </div>
                 </div>
                 <div class="col-md-6">
