@@ -211,7 +211,7 @@ function totalQsosPerYear() {
 					data: {
 						labels: labels,
 						datasets: [{
-							label: lang_statistics_number_of_qso_worked_each_year,
+							label: decodeHtml(lang_statistics_number_of_qso_worked_each_year),
 							data: dataQso,
 							backgroundColor: 'rgba(54, 162, 235, 0.2)',
 							borderColor: 'rgba(54, 162, 235, 1)',
