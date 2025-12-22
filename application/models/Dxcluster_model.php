@@ -167,6 +167,11 @@ class Dxcluster_model extends CI_Model {
 				// Ensure frequency is always a number (not a string)
 				$singlespot->frequency = floatval($singlespot->frequency);
 
+				// Validate against amateur band allocations (skip non-amateur frequencies)
+				if (!$this->isFrequencyInAmateurBand($singlespot->frequency)) {
+					continue;
+				}
+
 				$spotband = $this->frequency->GetBand($singlespot->frequency*1000);			// Apply band filter early (before expensive operations)
 			if (($band != 'All') && ($band != $spotband)) {
 				continue;
@@ -511,6 +516,26 @@ class Dxcluster_model extends CI_Model {
 			}
 		}
 
+		return false;
+	}
+
+	/**
+	 * Check if frequency falls within amateur band allocations
+	 * @param float $frequency Frequency in Hz
+	 * @return bool True if frequency is in amateur band
+	 */
+	public function isFrequencyInAmateurBand($frequency) {
+		// Ensure frequency is in Hz if input is in kHz
+		if ($frequency < 1_000_000) {
+			$frequency *= 1000;
+		}
+
+		// Check against bandedges table (already loaded in constructor)
+		foreach ($this->bandedges as $band) {
+			if ($frequency >= $band['frequencyfrom'] && $frequency < $band['frequencyto']) {
+				return true;
+			}
+		}
 		return false;
 	}
 
