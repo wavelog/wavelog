@@ -6801,7 +6801,7 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
     var waterfallRefreshInterval = null; // Store interval ID for cleanup
 
     // Initialize UI text and tooltip from language variables
-    $('#dxWaterfallMessage').text(decodeHtml(lang_dxwaterfall_turn_on));
+    $('#dxWaterfallMessage').html(lang_dxwaterfall_turn_on);
     $('#dxWaterfallPowerOnIcon').attr('title', decodeHtml(lang_dxwaterfall_turn_on));
     $('#dxWaterfallPowerOffIcon').attr('title', decodeHtml(lang_dxwaterfall_turn_off));
 
