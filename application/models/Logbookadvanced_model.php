@@ -1259,7 +1259,7 @@ class Logbookadvanced_model extends CI_Model {
 		if ($ids == null) {
 			$sql = "UPDATE ".$this->config->item('table_name')." JOIN dxcc_entities ON ". $this->config->item('table_name').".col_dxcc = dxcc_entities.adif JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
 					" SET " . $this->config->item('table_name').".COL_CQZ = dxcc_entities.cqz" .
-					" WHERE station_profile.user_id = ? and (" . $this->config->item('table_name').".COL_CQZ IS NULL OR " . $this->config->item('table_name').".COL_CQZ = '')";
+					" WHERE station_profile.user_id = ? and " . $this->config->item('table_name') . ".COL_CQZ IS NULL";
 
 			$query = $this->db->query($sql, array($this->session->userdata('user_id')));
 			return $this->db->affected_rows();
@@ -1277,7 +1277,7 @@ class Logbookadvanced_model extends CI_Model {
 		if ($ids == null) {
 			$sql = "UPDATE ".$this->config->item('table_name')." JOIN dxcc_entities ON ". $this->config->item('table_name').".col_dxcc = dxcc_entities.adif JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
 					" SET " . $this->config->item('table_name').".COL_ITUZ = dxcc_entities.ituz" .
-					" WHERE station_profile.user_id = ? and (" . $this->config->item	('table_name').".COL_ITUZ IS NULL OR " . $this->config->item('table_name').".COL_ITUZ = '')";
+					" WHERE station_profile.user_id = ? and " . $this->config->item('table_name') . ".COL_ITUZ IS NULL";
 			$query = $this->db->query($sql, array($this->session->userdata('user_id')));
 			return $this->db->affected_rows();
 		}
@@ -1556,7 +1556,7 @@ class Logbookadvanced_model extends CI_Model {
 		$sql = "select count(*) as count from " . $this->config->item('table_name') . "
 		join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
 		join dxcc_entities on " . $this->config->item('table_name') . ".col_dxcc = dxcc_entities.adif
-		where user_id = ? and coalesce(col_cqz, '') = ''";
+		where user_id = ? and col_cqz is NULL";
 
 		$bindings[] = [$this->session->userdata('user_id')];
 
@@ -1568,7 +1568,7 @@ class Logbookadvanced_model extends CI_Model {
 		$sql = "select count(*) as count from " . $this->config->item('table_name') . "
 		join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
 		join dxcc_entities on " . $this->config->item('table_name') . ".col_dxcc = dxcc_entities.adif
-		where user_id = ? and coalesce(col_ituz, '') = ''";
+		where user_id = ? and col_ituz is NULL";
 
 		$bindings[] = [$this->session->userdata('user_id')];
 
