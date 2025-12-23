@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-23 12:13+0000\n"
+"POT-Creation-Date: 2025-12-23 14:46+0000\n"
 "PO-Revision-Date: 2025-12-12 09:26+0000\n"
 "Last-Translator: Jerry <jerry19980425@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -2551,6 +2551,11 @@ msgid ""
 "QSOs unconfirmed on LoTW, but the callsign has uploaded to LoTW after QSO "
 "date"
 msgstr "QSO 尚未在 LoTW 确认，但已在 QSO 日期后上传呼号"
+
+#: application/controllers/Simplefle.php:24
+#: application/views/interface_assets/header.php:137
+msgid "Simple Fast Log Entry"
+msgstr "快速记录 QSO"
 
 #: application/controllers/Staticmap.php:152
 #: application/controllers/Visitor.php:76
@@ -11672,10 +11677,6 @@ msgstr "添加 QSO（实时）"
 #: application/views/interface_assets/header.php:135
 msgid "Post QSO"
 msgstr "添加 QSO（手动）"
-
-#: application/views/interface_assets/header.php:137
-msgid "Simple Fast Log Entry"
-msgstr "快速记录 QSO"
 
 #: application/views/interface_assets/header.php:140
 msgid "Live Contest Logging"

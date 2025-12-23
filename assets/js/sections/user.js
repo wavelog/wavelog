@@ -204,10 +204,10 @@ $(document).ready(function(){
 			success: function(res) {
 				if(res.status == 'OK') {
 					btn_div.addClass('alert-success').removeClass('running').prop('disabled', false);
-					msg_div.addClass('alert-success').text(res.details).show();
+					msg_div.addClass('alert-success').text(decodeHtml(res.details)).show();
 				} else {
 					btn_div.addClass('alert-danger').removeClass('running').prop('disabled', false);
-					msg_div.addClass('alert-danger').text('Error: '+res.details).show();
+					msg_div.addClass('alert-danger').text('Error: '+decodeHtml(res.details)).show();
 				}
 			},
 			error: function(res) {
