@@ -90,12 +90,12 @@
                         </button>
                     </div>
                 </div>
-				<?php if ($this->config->item('callbook_batch_lookup')): ?>
+				<?php if ($this->config->item('callbook_batch_lookup') ?? true): ?>
 				<div class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
                         <h6 class="mb-1"><?= __("Lookup QSOs with missing grid in callbook") ?></h6>
                         <p class="mb-1 small text-muted"><?= __("Use callbook lookup to set gridsquare") ?></p>
-						<p class="mb-1 small alert-danger"><?= __("This is limited to 250 callsigns for each run!") ?></p>
+						<p class="mb-1 small alert-danger"><?= __("This is limited to 150 callsigns for each run!") ?></p>
                     </div>
                     <div class="d-flex nowrap">
 						<button type="button" class="btn btn-sm btn-success me-1 ld-ext-right" id="checkGridsBtn" onclick="checkGrids()">

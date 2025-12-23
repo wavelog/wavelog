@@ -66,11 +66,17 @@ class Geojson {
     ];
 
     private $qra;
+	private $geojsonFile = null;
+	private $geojsonData = null;
 
-    public function __construct() {
+    public function __construct($dxcc = null) {
         $CI =& get_instance();
         $CI->load->library('qra');
         $this->qra = $CI->qra;
+		if ($dxcc !== null) {
+			$this->geojsonFile = "assets/json/geojson/states_{$dxcc}.geojson";
+			$this->geojsonData = $this->loadGeoJsonFile($geojsonFile);
+		}
     }
 
     // ============================================================================
@@ -114,14 +120,16 @@ class Geojson {
             return null;
         }
 
-        $geojsonFile = "assets/json/geojson/states_{$dxcc}.geojson";
-        $geojsonData = $this->loadGeoJsonFile($geojsonFile);
+        if ($this->geojsonFile === null) {
+			$this->geojsonFile = "assets/json/geojson/states_{$dxcc}.geojson";
+			$this->geojsonData = $this->loadGeoJsonFile($this->geojsonFile);
+		}
 
-        if ($geojsonData === null) {
+        if ($this->geojsonData === null) {
             return null;
         }
 
-        return $this->findFeatureContainingPoint($lat, $lng, $geojsonData);
+        return $this->findFeatureContainingPoint($lat, $lng, $this->geojsonData);
     }
 
     /**

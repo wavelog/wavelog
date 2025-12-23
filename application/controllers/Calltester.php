@@ -1,6 +1,8 @@
 <?php
 use Wavelog\Dxcc\Dxcc;
 
+require_once APPPATH . '../src/Dxcc/Dxcc.php';
+
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Calltester extends CI_Controller {
@@ -12,37 +14,74 @@ class Calltester extends CI_Controller {
 	}
 
 
-	public function db() {
+	public function index() {
         set_time_limit(3600);
 
         // Starting clock time in seconds
         $start_time = microtime(true);
 
-		$this->load->model('logbook_model');
+        $callarray = $this->getQsos(null);
+		$this->load->model('stations');
 
-        $sql = 'select distinct col_country, col_call, col_dxcc, date(col_time_on) date from ' . $this->config->item('table_name');
-        $query = $this->db->query($sql);
+		$data['station_profile'] = $this->stations->all_of_user();
 
-        $callarray = $query->result();
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/calltester.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/calltester.js"))
+		];
 
-        $result = array();
+		$data['page_title'] = __("Call Tester");
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('calltester/index');
+		$this->load->view('interface_assets/footer', $footerData);
+	}
 
-        $i = 0;
+	function doDxccCheck() {
+		set_time_limit(3600);
+		$de = $this->input->post('de', true);
+		$compare = $this->input->post('compare', true);
 
-        foreach ($callarray as $call) {
+		if ($compare == "true") {
+			$result = $this->doClassCheck($de);
+			$result2 = $this->doDxccCheckModel($de);
+
+			return $this->compareDxccChecks($result, $result2);
+		}
+
+		$result = $this->doClassCheck($de);
+		$this->loadView($result);
+	}
+
+	/* Uses DXCC Class. Much faster */
+	function doClassCheck($de) {
+		$i = 0;
+		$result = array();
+
+		$callarray = $this->getQsos($de);
+
+		// Starting clock time in seconds
+		$start_time = microtime(true);
+		$dxccobj = new Dxcc(null);
+
+		foreach ($callarray->result() as $call) {
+
             $i++;
-            $dxcc = $this->logbook_model->dxcc_lookup($call->col_call, $call->date);
+            //$dxcc = $this->logbook_model->dxcc_lookup($call->col_call, $call->date);
+			$dxcc = $dxccobj->dxcc_lookup($call->col_call, $call->date);
 
             $dxcc['adif'] = (isset($dxcc['adif'])) ? $dxcc['adif'] : 0;
-            $dxcc['entity'] = (isset($dxcc['entity'])) ? $dxcc['entity'] : 0;
+            $dxcc['entity'] = (isset($dxcc['entity'])) ? $dxcc['entity'] : 'None';
 
             if ($call->col_dxcc != $dxcc['adif']) {
                 $result[] = array(
-                                'Callsign'          => $call->col_call,
-                                'Expected country'  => $call->col_country,
-                                'Expected adif'     => $call->col_dxcc,
-                                'Result country'    => ucwords(strtolower($dxcc['entity']), "- (/"),
-                                'Result adif'       => $dxcc['adif'],
+                                'callsign'          => $call->col_call,
+								'qso_date'          => $call->date,
+								'station_profile'   => $call->station_profile_name,
+                                'existing_dxcc'     => $call->col_country,
+                                'existing_adif'     => $call->col_dxcc,
+                                'result_country'    => ucwords(strtolower($dxcc['entity']), "- (/"),
+                                'result_adif'       => $dxcc['adif'],
+								'id' 			    => $call->col_primary_key,
                             );
             }
         }
@@ -53,16 +92,117 @@ class Calltester extends CI_Controller {
         // Calculate script execution time
         $execution_time = ($end_time - $start_time);
 
-        echo " Execution time of script = ".$execution_time." sec <br/>";
-        echo $i . " calls tested. <br/>";
-        $count = 0;
+        $data['execution_time'] = $execution_time;
+        $data['calls_tested'] = $i;
+		$data['result'] = $result;
 
-        if ($result) {
-            $this->array_to_table($result);
-        }
-
+		return $data;
 	}
 
+	/* Uses Logbook_model and the normal dxcc lookup, which is slow */
+	function doDxccCheckModel($de) {
+		$this->load->model('logbook_model');
+		$i = 0;
+		$result = array();
+
+		$callarray = $this->getQsos($de);
+
+		// Starting clock time in seconds
+		$start_time = microtime(true);
+
+		foreach ($callarray->result() as $call) {
+            $i++;
+            $dxcc = $this->logbook_model->dxcc_lookup($call->col_call, $call->date);
+
+            $dxcc['adif'] = (isset($dxcc['adif'])) ? $dxcc['adif'] : 0;
+            $dxcc['entity'] = (isset($dxcc['entity'])) ? $dxcc['entity'] : 0;
+
+            if ($call->col_dxcc != $dxcc['adif']) {
+                $result[] = array(
+                                'callsign'          => $call->col_call,
+								'qso_date'          => $call->date,
+								'station_profile'   => $call->station_profile_name,
+                                'existing_dxcc'     => $call->col_country,
+                                'existing_adif'     => $call->col_dxcc,
+                                'result_country'    => ucwords(strtolower($dxcc['entity']), "- (/"),
+                                'result_adif'       => $dxcc['adif'],
+								'id' 			    => $call->col_primary_key,
+                            );
+            }
+        }
+
+        // End clock time in seconds
+        $end_time = microtime(true);
+
+        // Calculate script execution time
+        $execution_time = ($end_time - $start_time);
+
+        $data['execution_time'] = $execution_time;
+        $data['calls_tested'] = $i;
+		$data['result'] = $result;
+
+		return $data;
+	}
+
+	function loadView($data) {
+		$this->load->view('calltester/result', $data);
+	}
+
+	function compareDxccChecks($result, $result2) {
+		// Convert arrays to comparable format using callsign, qso_date, and id as unique keys
+		$classCheckItems = [];
+		$modelCheckItems = [];
+
+		// Create associative arrays for easier comparison
+		foreach ($result['result'] as $item) {
+			$key = $item['callsign'] . '|' . $item['qso_date'] . '|' . $item['id'];
+			$classCheckItems[$key] = $item;
+		}
+
+		foreach ($result2['result'] as $item) {
+			$key = $item['callsign'] . '|' . $item['qso_date'] . '|' . $item['id'];
+			$modelCheckItems[$key] = $item;
+		}
+
+		// Find items that are in class check but not in model check
+		$onlyInClass = array_diff_key($classCheckItems, $modelCheckItems);
+
+		// Find items that are in model check but not in class check
+		$onlyInModel = array_diff_key($modelCheckItems, $classCheckItems);
+
+		// Prepare comparison data
+		$comparisonData = [];
+		$comparisonData['class_execution_time'] = $result['execution_time'];
+		$comparisonData['model_execution_time'] = $result2['execution_time'];
+		$comparisonData['class_calls_tested'] = $result['calls_tested'];
+		$comparisonData['model_calls_tested'] = $result2['calls_tested'];
+		$comparisonData['class_total_issues'] = count($result['result']);
+		$comparisonData['model_total_issues'] = count($result2['result']);
+		$comparisonData['only_in_class'] = $onlyInClass;
+		$comparisonData['only_in_model'] = $onlyInModel;
+		$comparisonData['common_issues'] = array_intersect_key($classCheckItems, $modelCheckItems);
+
+		$this->load->view('calltester/comparison_result', $comparisonData);
+	}
+
+	function getQsos($station_id) {
+		$sql = 'select distinct col_country, col_call, col_dxcc, date(col_time_on) date, station_profile.station_profile_name, col_primary_key
+			from ' . $this->config->item('table_name') . '
+			join station_profile on ' . $this->config->item('table_name') . '.station_id = station_profile.station_id
+			where station_profile.user_id = ?';
+		$params[] = array($this->session->userdata('user_id'));
+
+		if ($station_id && is_numeric($station_id)) {
+			$sql .= ' and ' . $this->config->item('table_name') . '.station_id = ?';
+			$params[] = $station_id;
+		}
+
+		$sql .= ' order by station_profile.station_profile_name asc, date desc';
+
+        $query = $this->db->query($sql, $params);
+
+		return $query;
+	}
 
     function array_to_table($table) {
         echo '<style>
