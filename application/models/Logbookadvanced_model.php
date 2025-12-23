@@ -3,6 +3,83 @@ use Wavelog\QSLManager\QSO;
 
 class Logbookadvanced_model extends CI_Model {
 
+	public function dupeSearchQuery($searchCriteria, $binding) {
+		$conditions = [];
+		$group_by_append = '';
+		$order_by = '';
+
+		$order_by .= ' order by col_call';
+		$id_sql = "select GROUP_CONCAT(col_primary_key separator ',') as qsoids, COL_CALL, station_callsign, min(col_time_on) Mintime, max(col_time_on) Maxtime";
+
+		if (isset($searchCriteria['dupemode']) && $searchCriteria['dupemode'] === 'Y') {
+			$id_sql .= ", COL_MODE, COL_SUBMODE";
+			$group_by_append .= ", COL_MODE, COL_SUBMODE";
+		}
+		if (isset($searchCriteria['dupeband']) && $searchCriteria['dupeband'] === 'Y') {
+			$id_sql .= ", COL_BAND";
+			$group_by_append .= ", COL_BAND";
+		}
+		if (isset($searchCriteria['dupesat']) && $searchCriteria['dupesat'] === 'Y') {
+			$id_sql .= ", COL_SAT_NAME";
+			$group_by_append .= ", COL_SAT_NAME";
+			$conditions[] = "COL_PROP_MODE = 'SAT' and COL_SAT_NAME <> '' and COL_SAT_NAME is not null";
+		}
+
+		$id_sql .= " from " . $this->config->item('table_name') . "
+			join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id where station_profile.user_id = ?";
+
+		$id_sql .= "group by COL_CALL, station_callsign";
+		$id_sql .= $group_by_append;
+		$id_sql .= " having count(*) > 1";
+		if (isset($searchCriteria['dupedate']) && $searchCriteria['dupedate'] === 'Y') {
+			$id_sql .= " AND TIMESTAMPDIFF(SECOND, Mintime, Maxtime) < 1800";
+			$order_by .= ' , col_time_on desc';
+		}
+
+		$id_query = $this->db->query($id_sql, array($this->session->userdata('user_id')));
+		$ids2fetch = '';
+		foreach ($id_query->result() as $id) {
+			$ids2fetch .= ','.$id->qsoids;
+		}
+		$ids2fetch = ltrim($ids2fetch, ',');
+		if ($ids2fetch ?? '' !== '') {
+			$conditions[] = "qsos.COL_PRIMARY_KEY in (".$ids2fetch.")";
+		} else {
+			$conditions[] = "1=0";
+		}
+
+		if (($searchCriteria['ids'] ?? '') !== '') {
+			$conditions[] = "qsos.COL_PRIMARY_KEY in (".implode(",",$searchCriteria['ids']).")";
+		}
+
+		$where = trim(implode(" AND ", $conditions));
+		if ($where != "") {
+			$where = "AND $where";
+		}
+
+		$limit = '';
+
+		if ($searchCriteria['qsoresults'] != 'All') {
+			$limit = 'limit ' . $searchCriteria['qsoresults'];
+		}
+
+		$sql = "
+		SELECT qsos.*, dxcc_entities.*, lotw_users.*, station_profile.*, satellite.*, dxcc_entities.name as dxccname, mydxcc.name AS station_country, exists(select 1 from qsl_images where qsoid = qsos.COL_PRIMARY_KEY) as qslcount, coalesce(contest.name, qsos.col_contest_id) as contestname
+		FROM " . $this->config->item('table_name') . " qsos
+		INNER JOIN station_profile ON qsos.station_id=station_profile.station_id
+		LEFT OUTER JOIN satellite ON qsos.col_prop_mode='SAT' and qsos.COL_SAT_NAME = COALESCE(NULLIF(satellite.name, ''), NULLIF(satellite.displayname, ''))
+		LEFT OUTER JOIN dxcc_entities ON qsos.col_dxcc = dxcc_entities.adif
+		left outer join dxcc_entities mydxcc on qsos.col_my_dxcc = mydxcc.adif
+		LEFT OUTER JOIN lotw_users ON qsos.col_call = lotw_users.callsign
+		LEFT OUTER JOIN contest ON qsos.col_contest_id = contest.adifname
+		WHERE station_profile.user_id =  ?
+		$where
+		$order_by
+		$limit
+		";
+		return $this->db->query($sql, $binding);
+	}
+
 	public function searchDb($searchCriteria) {
 		$conditions = [];
 		$binding = [$searchCriteria['user_id']];
@@ -13,20 +90,7 @@ class Logbookadvanced_model extends CI_Model {
 		}
 
 		if ((isset($searchCriteria['dupes'])) && ($searchCriteria['dupes'] !== '')) {
-			$id_sql="select GROUP_CONCAT(col_primary_key separator ',') as qsoids, COL_CALL, COL_MODE, COL_SUBMODE, station_callsign, COL_SAT_NAME, COL_BAND,  min(col_time_on) Mintime, max(col_time_on) Maxtime from " . $this->config->item('table_name') . "
-				join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id where station_profile.user_id = ?
-				group by col_call, col_mode, COL_SUBMODE, STATION_CALLSIGN, col_band, COL_SAT_NAME having count(*) > 1 AND TIMESTAMPDIFF(SECOND, Mintime, Maxtime) < 1500";
-			$id_query = $this->db->query($id_sql, $searchCriteria['user_id']);
-			$ids2fetch = '';
-			foreach ($id_query->result() as $id) {
-				$ids2fetch .= ','.$id->qsoids;
-			}
-			$ids2fetch = ltrim($ids2fetch, ',');
-			if ($ids2fetch ?? '' !== '') {
-				$conditions[] = "qsos.COL_PRIMARY_KEY in (".$ids2fetch.")";
-			} else {
-				$conditions[] = "1=0";
-			}
+			return $this->dupeSearchQuery($searchCriteria, $binding);
 		}
 
 		if ((isset($searchCriteria['invalid'])) && ($searchCriteria['invalid'] !== '')) {
@@ -465,11 +529,6 @@ class Logbookadvanced_model extends CI_Model {
 
 		if (($searchCriteria['ids'] ?? '') !== '') {
 			$conditions[] = "qsos.COL_PRIMARY_KEY in (".implode(",",$searchCriteria['ids']).")";
-		}
-
-		$where = trim(implode(" AND ", $conditions));
-		if ($where != "") {
-			$where = "AND $where";
 		}
 
 		$where = trim(implode(" AND ", $conditions));
