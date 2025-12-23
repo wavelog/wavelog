@@ -128,6 +128,7 @@ msgstr ""
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/Calltester.php:13
 msgid "You're not allowed to do that!"
 msgstr "¡No está permitido hacer eso!"
 
@@ -2645,6 +2646,7 @@ msgstr "Editar Localización de Estación: "
 #: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
 #: application/views/logbookadvanced/showMissingDxccQsos.php:26
+#: application/views/calltester/index.php:5
 msgid "Station Location"
 msgstr "Perfil de estación"
 
@@ -4445,6 +4447,10 @@ msgstr "¡Nada encontrado!"
 #: application/views/user/edit.php:137 application/views/user/index.php:28
 #: application/views/user/index.php:153 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:672
+#: application/views/calltester/comparison_result.php:60
+#: application/views/calltester/comparison_result.php:96
+#: application/views/calltester/comparison_result.php:132
+#: application/views/calltester/result.php:22
 msgid "Callsign"
 msgstr "Indicativo"
 
@@ -7355,6 +7361,10 @@ msgstr "Banda / Satélite / Órbita"
 #: application/views/awards/wpx/wpx_details.php:21
 #: application/views/oqrs/showrequests.php:86
 #: application/views/simplefle/index.php:78
+#: application/views/calltester/comparison_result.php:61
+#: application/views/calltester/comparison_result.php:97
+#: application/views/calltester/comparison_result.php:133
+#: application/views/calltester/result.php:23
 msgid "QSO Date"
 msgstr "Fecha de QSO"
 
@@ -11919,6 +11929,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:800
 #: application/views/logbookadvanced/index.php:814
 #: application/views/logbookadvanced/index.php:806
+#: application/views/calltester/index.php:10
 msgid "Callsign: "
 msgstr "Indicativo "
 
@@ -19003,6 +19014,126 @@ msgstr ""
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:98
 msgid "This is limited to 150 callsigns for each run!"
+msgstr ""
+
+#: application/controllers/Calltester.php:33
+msgid "Call Tester"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:18
+msgid "DXCC Class Results"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:21
+#: application/views/calltester/comparison_result.php:33
+msgid "Calls tested:"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:22
+#: application/views/calltester/comparison_result.php:34
+msgid "Execution time:"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:23
+#: application/views/calltester/comparison_result.php:35
+msgid "Issues found:"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:30
+msgid "Logbook Model Results"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:44
+msgid "Comparison Summary"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:45
+msgid "Only found in DXCC Class:"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:46
+msgid "Only found in Logbook Model:"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:47
+msgid "Found in both methods:"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:54
+msgid "Issues found only in DXCC Class (not in Logbook Model):"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:62
+#: application/views/calltester/comparison_result.php:98
+#: application/views/calltester/comparison_result.php:134
+#: application/views/calltester/result.php:24
+msgid "Station Profile"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:63
+#: application/views/calltester/comparison_result.php:99
+#: application/views/calltester/comparison_result.php:135
+#: application/views/calltester/result.php:25
+msgid "Existing DXCC"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:64
+#: application/views/calltester/comparison_result.php:100
+#: application/views/calltester/comparison_result.php:136
+#: application/views/calltester/result.php:26
+msgid "Existing ADIF"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:65
+#: application/views/calltester/comparison_result.php:101
+#: application/views/calltester/comparison_result.php:137
+#: application/views/calltester/result.php:27
+msgid "Result DXCC"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:66
+#: application/views/calltester/comparison_result.php:102
+#: application/views/calltester/comparison_result.php:138
+#: application/views/calltester/result.php:28
+msgid "Result ADIF"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:90
+msgid "Issues found only in Logbook Model (not in DXCC Class):"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:126
+msgid "Issues found in both methods:"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:162
+msgid ""
+"No DXCC issues found in either method. All calls have correct DXCC "
+"information."
+msgstr ""
+
+#: application/views/calltester/index.php:3
+msgid "Callsign DXCC identification"
+msgstr ""
+
+#: application/views/calltester/index.php:15
+msgid "Start DXCC Check"
+msgstr ""
+
+#: application/views/calltester/index.php:18
+msgid "Compare DXCC class and logbook model"
+msgstr ""
+
+#: application/views/calltester/result.php:4
+msgid "Callsigns tested: "
+msgstr ""
+
+#: application/views/calltester/result.php:5
+msgid "Execution time: "
+msgstr ""
+
+#: application/views/calltester/result.php:6
+msgid "Number of potential QSOs with wrong DXCC: "
 msgstr ""
 
 #~ msgid "Apply DXCC Data to Logbook"

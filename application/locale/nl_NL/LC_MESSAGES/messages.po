@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-23 11:36+0000\n"
+"POT-Creation-Date: 2025-12-23 12:13+0000\n"
 "PO-Revision-Date: 2025-12-14 10:34+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
@@ -36,7 +36,7 @@ msgstr ""
 #: application/controllers/Cabrillo.php:80
 #: application/controllers/Cabrillo.php:139
 #: application/controllers/Callstats.php:13
-#: application/controllers/Calltester.php:11
+#: application/controllers/Calltester.php:13
 #: application/controllers/Club.php:49 application/controllers/Club.php:75
 #: application/controllers/Club.php:123 application/controllers/Club.php:152
 #: application/controllers/Club.php:179 application/controllers/Clublog.php:81
@@ -678,6 +678,10 @@ msgstr "Roepnaam statistieken"
 #: application/controllers/Callstats.php:104
 msgid " and sat "
 msgstr " en satelliet "
+
+#: application/controllers/Calltester.php:33
+msgid "Call Tester"
+msgstr ""
 
 #: application/controllers/Club.php:23
 msgid "Club Officer"
@@ -2580,7 +2584,8 @@ msgstr "Maak stationslocatie aan"
 msgid "Edit Station Location: "
 msgstr "Bewerk stationslocatie: "
 
-#: application/controllers/Station.php:93 application/views/csv/index.php:19
+#: application/controllers/Station.php:93
+#: application/views/calltester/index.php:5 application/views/csv/index.php:19
 #: application/views/dxatlas/index.php:19
 #: application/views/labels/index.php:124
 #: application/views/logbookadvanced/edit.php:18
@@ -4334,6 +4339,10 @@ msgstr "Niets gevonden!"
 #: application/views/bandmap/list.php:27 application/views/bandmap/list.php:165
 #: application/views/cabrillo/index.php:31
 #: application/views/callstats/index.php:147
+#: application/views/calltester/comparison_result.php:60
+#: application/views/calltester/comparison_result.php:96
+#: application/views/calltester/comparison_result.php:132
+#: application/views/calltester/result.php:22
 #: application/views/club/permissions.php:246
 #: application/views/components/hamsat/table.php:27
 #: application/views/contesting/index.php:171
@@ -7261,6 +7270,10 @@ msgid "Band / Satellite / Orbit"
 msgstr "Band / Satelliet / Baan"
 
 #: application/views/awards/wpx/wpx_details.php:21
+#: application/views/calltester/comparison_result.php:61
+#: application/views/calltester/comparison_result.php:97
+#: application/views/calltester/comparison_result.php:133
+#: application/views/calltester/result.php:23
 #: application/views/oqrs/showrequests.php:86
 #: application/views/simplefle/index.php:78
 msgid "QSO Date"
@@ -8765,6 +8778,128 @@ msgstr "Eerste QSO"
 #: application/views/stationsetup/stationsetup.php:131
 msgid "Last QSO"
 msgstr "Laatste QSO"
+
+#: application/views/calltester/comparison_result.php:18
+msgid "DXCC Class Results"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:21
+#: application/views/calltester/comparison_result.php:33
+msgid "Calls tested:"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:22
+#: application/views/calltester/comparison_result.php:34
+msgid "Execution time:"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:23
+#: application/views/calltester/comparison_result.php:35
+msgid "Issues found:"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:30
+msgid "Logbook Model Results"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:44
+msgid "Comparison Summary"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:45
+msgid "Only found in DXCC Class:"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:46
+msgid "Only found in Logbook Model:"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:47
+msgid "Found in both methods:"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:54
+msgid "Issues found only in DXCC Class (not in Logbook Model):"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:62
+#: application/views/calltester/comparison_result.php:98
+#: application/views/calltester/comparison_result.php:134
+#: application/views/calltester/result.php:24
+msgid "Station Profile"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:63
+#: application/views/calltester/comparison_result.php:99
+#: application/views/calltester/comparison_result.php:135
+#: application/views/calltester/result.php:25
+msgid "Existing DXCC"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:64
+#: application/views/calltester/comparison_result.php:100
+#: application/views/calltester/comparison_result.php:136
+#: application/views/calltester/result.php:26
+msgid "Existing ADIF"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:65
+#: application/views/calltester/comparison_result.php:101
+#: application/views/calltester/comparison_result.php:137
+#: application/views/calltester/result.php:27
+msgid "Result DXCC"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:66
+#: application/views/calltester/comparison_result.php:102
+#: application/views/calltester/comparison_result.php:138
+#: application/views/calltester/result.php:28
+msgid "Result ADIF"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:90
+msgid "Issues found only in Logbook Model (not in DXCC Class):"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:126
+msgid "Issues found in both methods:"
+msgstr ""
+
+#: application/views/calltester/comparison_result.php:162
+msgid ""
+"No DXCC issues found in either method. All calls have correct DXCC "
+"information."
+msgstr ""
+
+#: application/views/calltester/index.php:3
+msgid "Callsign DXCC identification"
+msgstr ""
+
+#: application/views/calltester/index.php:10
+#: application/views/interface_assets/footer.php:878
+#: application/views/logbookadvanced/index.php:806
+msgid "Callsign: "
+msgstr "Roepnaam: "
+
+#: application/views/calltester/index.php:15
+msgid "Start DXCC Check"
+msgstr ""
+
+#: application/views/calltester/index.php:18
+msgid "Compare DXCC class and logbook model"
+msgstr ""
+
+#: application/views/calltester/result.php:4
+msgid "Callsigns tested: "
+msgstr ""
+
+#: application/views/calltester/result.php:5
+msgid "Execution time: "
+msgstr ""
+
+#: application/views/calltester/result.php:6
+msgid "Number of potential QSOs with wrong DXCC: "
+msgstr ""
 
 #: application/views/club/clubswitch_modal.php:5
 msgid "Switch to a Clubstation"
@@ -11779,11 +11914,6 @@ msgid ""
 msgstr ""
 "Even wachten. De gekozen DXCC is oud en iet meer geldig. Controleer welke "
 "DXCC wel de correcte is. Bent u zeker, negeer dan deze waarschuwing."
-
-#: application/views/interface_assets/footer.php:878
-#: application/views/logbookadvanced/index.php:806
-msgid "Callsign: "
-msgstr "Roepnaam: "
 
 #: application/views/interface_assets/footer.php:879
 msgid "Count: "
