@@ -1085,14 +1085,14 @@ function changebadge(entityval) {
 
 			if (result.confirmed) {
 				$('#callsign_info').addClass("text-bg-success");
-				$('#callsign_info').attr('title', lang_qso_dxcc_confirmed);
+				$('#callsign_info').attr('title', decodeHtml(lang_qso_dxcc_confirmed));
 			} else if (result.workedBefore) {
 				$('#callsign_info').addClass("text-bg-success");
 				$('#callsign_info').addClass("lotw_info_orange");
-				$('#callsign_info').attr('title', lang_qso_dxcc_worked);
+				$('#callsign_info').attr('title', decodeHtml(lang_qso_dxcc_worked));
 			} else {
 				$('#callsign_info').addClass("text-bg-danger");
-				$('#callsign_info').attr('title', lang_qso_dxcc_new);
+				$('#callsign_info').attr('title', decodeHtml(lang_qso_dxcc_new));
 			}
 		})
 	} else {
@@ -1106,14 +1106,14 @@ function changebadge(entityval) {
 
 			if (result.confirmed) {
 				$('#callsign_info').addClass("text-bg-success");
-				$('#callsign_info').attr('title', lang_qso_dxcc_confirmed);
+				$('#callsign_info').attr('title', decodeHtml(lang_qso_dxcc_confirmed));
 			} else if (result.workedBefore) {
 				$('#callsign_info').addClass("text-bg-success");
 				$('#callsign_info').addClass("lotw_info_orange");
-				$('#callsign_info').attr('title', lang_qso_dxcc_worked);
+				$('#callsign_info').attr('title', decodeHtml(lang_qso_dxcc_worked));
 			} else {
 				$('#callsign_info').addClass("text-bg-danger");
-				$('#callsign_info').attr('title', lang_qso_dxcc_new);
+				$('#callsign_info').attr('title', decodeHtml(lang_qso_dxcc_new));
 			}
 		})
 	}
@@ -1444,17 +1444,17 @@ $("#callsign").on("focusout", function () {
 					$('#lotw_link').attr('target', "_blank");
 					$('#lotw_info').attr('data-bs-toggle', "tooltip");
 					if (result.lotw_days == 1) {
-						$('#lotw_info').attr('data-bs-original-title', lang_lotw_upload_day_ago);
+						$('#lotw_info').attr('data-bs-original-title', decodeHtml(lang_lotw_upload_day_ago));
 					} else {
-						$('#lotw_info').attr('data-bs-original-title', lang_lotw_upload_days_ago.replace('%x', result.lotw_days));
+						$('#lotw_info').attr('data-bs-original-title', decodeHtml(lang_lotw_upload_days_ago.replace('%x', result.lotw_days)));
 					}
 					$('[data-bs-toggle="tooltip"]').tooltip();
 				}
 				$('#qrz_info').html('<a target="_blank" href="https://www.qrz.com/db/' + callsign.replaceAll('Ø', '0') + '"><img width="30" height="30" src="' + base_url + 'images/icons/qrz.com.png"></a>');
-				$('#qrz_info').attr('title', lang_qso_lookup_info.replace('%s', callsign).replace('%s', 'qrz.com')).removeClass('d-none');
+				$('#qrz_info').attr('title', decodeHtml(lang_qso_lookup_info.replace('%s', callsign).replace('%s', 'qrz.com'))).removeClass('d-none');
 				$('#qrz_info').show();
 				$('#hamqth_info').html('<a target="_blank" href="https://www.hamqth.com/' + callsign.replaceAll('Ø', '0') + '"><img width="30" height="30" src="' + base_url + 'images/icons/hamqth.com.png"></a>');
-				$('#hamqth_info').attr('title', lang_qso_lookup_info.replace('%s', callsign).replace('%s', 'hamqth.com')).removeClass('d-none');
+				$('#hamqth_info').attr('title', decodeHtml(lang_qso_lookup_info.replace('%s', callsign).replace('%s', 'hamqth.com'))).removeClass('d-none');
 				$('#hamqth_info').show();
 
 				var $dok_select = $('#darc_dok').selectize();
