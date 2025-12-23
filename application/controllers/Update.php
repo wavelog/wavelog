@@ -545,6 +545,46 @@ class Update extends CI_Controller {
 		}
 	}
 
+	/*
+	 * Updates RSS feeds for DX Calendar and Contest Calendar
+	 */
+	public function update_rss_feeds() {
+		$lockfilename = '/tmp/.update_rss_feeds_running';
+		if (!file_exists($lockfilename)) {
+			touch($lockfilename);
+
+			$this->load->model('Update_model');
+			$result = $this->Update_model->rss_feeds();
+			unlink($lockfilename);
+			if ($this->session->userdata('user_type') == '99') {
+				// Check if all feeds succeeded
+				if (strpos($result, 'FAILED') === false) {
+					$this->session->set_flashdata('success', __("RSS Feeds Update complete.") . " " . $result);
+				} else {
+					$this->session->set_flashdata('error', __("RSS Feeds Update had errors.") . " " . $result);
+				}
+
+				$this->load->model('cron_model');
+				$this->cron_model->set_last_run($this->router->class . '_' . $this->router->method);
+
+				redirect('debug');
+			} else {
+				echo $result;
+			}
+		} else {
+			log_message('debug', 'There is a lockfile for this job. Checking the age...');
+			$lockfile_time = filemtime($lockfilename);
+			$tdiff = time() - $lockfile_time;
+			if ($tdiff > 120) {
+				unlink($lockfilename);
+				log_message('debug', 'Deleted lockfile because it was older than 120 seconds.');
+			} else {
+				log_message('debug', 'Process is currently locked. Further calls are ignored.');
+				echo 'locked - running';
+			}
+		}
+	}
+
 	public function update_pota() {
 		$lockfilename='/tmp/.update_pota_running';
 		if (!file_exists($lockfilename)) {

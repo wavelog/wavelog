@@ -703,4 +703,58 @@ class Update_model extends CI_Model {
         }
 	}
 
+	function rss_feeds() {
+		// This downloads and caches RSS feeds for calendars
+		$this->load->model('cron_model');
+		$this->cron_model->set_last_run($this->router->class . '_' . $this->router->method);
+
+		$this->load->driver('cache', array('adapter' => 'file'));
+
+		$feeds = [
+			[
+				'name' => 'DX Calendar',
+				'cache_key' => 'RssRawDxCal',
+				'url' => 'https://www.ng3k.com/adxo.xml',
+				'ttl' => 60*60*12  // 12 hours
+			],
+			[
+				'name' => 'Contest Calendar',
+				'cache_key' => 'RssRawContestCal',
+				'url' => 'https://www.contestcalendar.com/calendar.rss',
+				'ttl' => 60*60*12  // 12 hours
+			]
+		];
+
+		$results = [];
+
+		foreach ($feeds as $feed) {
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $feed['url']);
+			curl_setopt($ch, CURLOPT_HEADER, false);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
+			curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+			$contents = curl_exec($ch);
+			$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+			curl_close($ch);
+
+			if ($contents === FALSE || $http_code != 200) {
+				$results[] = "FAILED: Could not fetch {$feed['name']} from {$feed['url']} (HTTP {$http_code})";
+			} else {
+				// Validate XML before caching
+				$xml = @simplexml_load_string($contents, null, LIBXML_NOCDATA);
+				if ($xml === false || !isset($xml->channel->item)) {
+					$results[] = "FAILED: {$feed['name']} returned invalid XML/RSS data";
+					log_message('error', "RSS Feed {$feed['name']}: Invalid XML data received from {$feed['url']}");
+				} else {
+					$this->cache->save($feed['cache_key'], $contents, $feed['ttl']);
+					$results[] = "DONE: {$feed['name']} cached successfully";
+				}
+			}
+		}
+
+		return implode("<br/>", $results);
+	}
+
 }
