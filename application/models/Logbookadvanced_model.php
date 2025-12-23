@@ -1642,7 +1642,7 @@ class Logbookadvanced_model extends CI_Model {
 	 * @return array Result array with success, dxcc_name, dxcc_number, state_code, skipped
 	 */
 	function fixStateBatch($dxcc) {
-		$this->load->library('Geojson');
+		$this->load->library('Geojson', $dxcc);
 
 		// Get QSO data
 		$sql = "SELECT COL_PRIMARY_KEY, COL_CALL, COL_GRIDSQUARE, COL_DXCC, COL_STATE, d.name as dxcc_name, station_profile.station_profile_name
@@ -1664,13 +1664,17 @@ class Logbookadvanced_model extends CI_Model {
 		}
 
 		$results = [];
-
-		$count = 0;
+		$batch_updates = [];
 
 		foreach ($query->result() as $qso) {
-			$result = $this->fixStateSingle($qso->COL_PRIMARY_KEY);
+			$result = $this->fixStateDxcc($qso);
+
 			if ($result['success']) {
-				$count++;
+				// Prepare data for batch update
+				$batch_updates[] = [
+					'COL_PRIMARY_KEY' => $qso->COL_PRIMARY_KEY,
+					'COL_STATE' => $result['state_code']
+				];
 			} else {
 				$result['station_profile_name'] = $qso->station_profile_name;
 				$result['id'] = $qso->COL_PRIMARY_KEY;
@@ -1679,9 +1683,57 @@ class Logbookadvanced_model extends CI_Model {
 			}
 		}
 
+		// Perform batch update if there are any updates
+		$count = 0;
+		if (!empty($batch_updates)) {
+			$this->db->update_batch($this->config->item('table_name'), $batch_updates, 'COL_PRIMARY_KEY');
+			$count = count($batch_updates);
+		}
+
 		$results['count'] = $count;
 
 		return $results;
+	}
+
+	/**
+	 * Fix state for a batch of QSOs, based on the DXCC
+	 * Note: This now only validates and prepares data
+	 *
+	 * @param object $qso QSO object
+	 * @return array Result array with success, dxcc_name, dxcc_number, state_code, skipped
+	 */
+	function fixStateDxcc($qso) {
+		$callsign = $qso->COL_CALL ?? 'Unknown';
+		$dxcc = (int)$qso->COL_DXCC;
+		$gridsquare = $qso->COL_GRIDSQUARE;
+		$state = $qso->COL_STATE ?? '';
+		$dxcc_name = $qso->dxcc_name ?? 'Unknown';
+
+		// Find state from gridsquare
+		$state = $this->geojson->findStateFromGridsquare($gridsquare, $dxcc);
+
+		if ($state === null || !isset($state['code'])) {
+			return [
+				'success' => false,
+				'skipped' => false,
+				'callsign' => $callsign,
+				'dxcc_number' => $dxcc,
+				'dxcc_name' => $dxcc_name,
+				'gridsquare' => $gridsquare,
+				'reason' => 'State not found in GeoJSON'
+			];
+		}
+
+		// Return success with state info
+		return [
+			'success' => true,
+			'skipped' => false,
+			'callsign' => $callsign,
+			'dxcc_number' => $dxcc,
+			'dxcc_name' => $dxcc_name,
+			'state_code' => $state['code'],
+			'state_name' => $state['name'] ?? null
+		];
 	}
 
 	function getStateListQsos($dxcc) {
@@ -1783,29 +1835,41 @@ class Logbookadvanced_model extends CI_Model {
 		$result = $this->getMissingGridQsos();
 
 		$count = 0;
+		$batch_updates = [];
+
 		$this->db->trans_start();
+
 		if (count($result) > 0) {
+			if (!$this->load->is_loaded('callbook')) {
+				$this->load->library('callbook');
+			}
+
 			foreach ($result as $row) {
 				$callsign = $row->col_call;
-				if (!$this->load->is_loaded('callbook')) {
-					$this->load->library('callbook');
-				}
-
 				$callbook = $this->callbook->getCallbookData($callsign);
 
 				if (isset($callbook)) {
 					if (isset($callbook['error'])) {
 						log_message('error', "Error: " . $callbook['error']);
 					} else {
-						if ($callbook['gridsquare'] != '') {
-							$sql = "update " . $this->config->item('table_name') . " set COL_GRIDSQUARE = ? where COL_PRIMARY_KEY = ?";
-							$this->db->query($sql, array($callbook['gridsquare'], $row->col_primary_key));
-							$count++;
+						if (isset($callbook['gridsquare']) && $callbook['gridsquare'] != '') {
+							// Prepare data for batch update
+							$batch_updates[] = [
+								'COL_PRIMARY_KEY' => $row->col_primary_key,
+								'COL_GRIDSQUARE' => $callbook['gridsquare']
+							];
 						}
 					}
 				}
 			}
+
+			// Perform batch update if there are any updates
+			if (!empty($batch_updates)) {
+				$this->db->update_batch($this->config->item('table_name'), $batch_updates, 'COL_PRIMARY_KEY');
+				$count = count($batch_updates);
+			}
 		}
+
 		$this->db->trans_complete();
 
 		return $count;
@@ -1817,7 +1881,7 @@ class Logbookadvanced_model extends CI_Model {
 				WHERE station_profile.user_id = ?
 				AND (qsos.COL_GRIDSQUARE IS NULL OR qsos.COL_GRIDSQUARE = '')
 				AND (qsos.COL_VUCC_GRIDS IS NULL OR qsos.COL_VUCC_GRIDS = '')
-				ORDER BY COL_TIME_ON DESC limit 250";
+				ORDER BY COL_TIME_ON DESC limit 150";
 
 		$query = $this->db->query($sql, [$this->session->userdata('user_id')]);
 

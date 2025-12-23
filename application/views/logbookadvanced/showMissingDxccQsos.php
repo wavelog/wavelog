@@ -1,3 +1,12 @@
+<?php
+if($this->session->userdata('user_date_format')) {
+	// If Logged in and session exists
+	$custom_date_format = $this->session->userdata('user_date_format');
+} else {
+	// Get Default date format from /config/wavelog.php
+	$custom_date_format = $this->config->item('qso_date_format');
+}
+?>
 <div class="container-fluid">
     <?php if (!empty($qsos) && count($qsos) > 0): ?>
 		<div class="table-responsive" style="max-height:50vh; overflow:auto;">
@@ -14,14 +23,14 @@
                         <th><?= __("State") ?></th>
                         <th><?= __("Gridsquare") ?></th>
                         <th><?= __("DXCC") ?></th>
-                        <th><?= __("Station") ?></th>
+                        <th><?= __("Station Location") ?></th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($qsos as $qso): ?>
                         <tr>
                             <td><?php echo '<a id="edit_qso" href="javascript:displayQso(' . $qso->col_primary_key . ')">' . htmlspecialchars($qso->col_call) . '</a>'; ?></td>
-                            <td><?php echo date('Y-m-d H:i', strtotime($qso->col_time_on)); ?></td>
+							<td><?php echo date($custom_date_format . ' H:i', strtotime($qso->col_time_on)); ?></td>
                             <td><?php echo $qso->col_mode; ?></td>
                             <td><?php echo $qso->col_band; ?></td>
 							<td><?php echo $qso->col_state; ?></td>
