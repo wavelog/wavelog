@@ -36,7 +36,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-check form-check-lg border rounded p-3 bg-light h-100">
-                        <input class="form-check-input" type="checkbox" name="satellite_check" id="satellite_check" checked>
+                        <input class="form-check-input" type="checkbox" name="satellite_check" id="satellite_check">
                         <label class="form-check-label fw-semibold" for="satellite_check">
                             <i class="fas fa-satellite me-2 text-info"></i><?= __("Satellite"); ?>
                         </label>

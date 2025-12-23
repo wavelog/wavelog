@@ -4,6 +4,7 @@ use Wavelog\QSLManager\QSO;
 class Logbookadvanced_model extends CI_Model {
 
 	public function dupeSearchQuery($searchCriteria, $binding) {
+		$conditions = [];
 		$group_by_append = '';
 		$order_by = '';
 
@@ -21,6 +22,7 @@ class Logbookadvanced_model extends CI_Model {
 		if (isset($searchCriteria['dupesat']) && $searchCriteria['dupesat'] === 'Y') {
 			$id_sql .= ", COL_SAT_NAME";
 			$group_by_append .= ", COL_SAT_NAME";
+			$conditions[] = "COL_PROP_MODE = 'SAT' and COL_SAT_NAME <> '' and COL_SAT_NAME is not null";
 		}
 
 		$id_sql .= " from " . $this->config->item('table_name') . "
