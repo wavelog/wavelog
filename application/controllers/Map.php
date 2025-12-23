@@ -44,6 +44,7 @@ class Map extends CI_Controller {
 		$data['countries'] = $filtered_countries;
 		$data['station_profiles'] = $station_profiles;
 		$data['supported_dxccs'] = $supported_dxccs;
+		$data['page_title'] = __("QSO Map");
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('map/qso_map', $data);
