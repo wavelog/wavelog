@@ -6,7 +6,6 @@ class Map extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->helper(array('form', 'url', 'psr4_autoloader'));
 
 		$this->load->model('user_model');
 		if (!$this->user_model->authorize(2)) {
@@ -57,9 +56,9 @@ class Map extends CI_Controller {
 	public function get_qsos_for_country() {
 		$this->load->model('Map_model');
 		$this->load->library('Geojson');
-		$country = $this->input->post('country');
-		$dxcc = $this->input->post('dxcc');
-		$station_id = $this->input->post('station_id');
+		$country = $this->input->post('country', true);
+		$dxcc = $this->input->post('dxcc', true);
+		$station_id = $this->input->post('station_id', true);
 
 		if (empty($country)) {
 			while (ob_get_level()) ob_end_clean();
