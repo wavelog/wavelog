@@ -21,7 +21,7 @@ class SimpleFLE extends CI_Controller {
 		$data['sat_active'] = array_search("SAT", $this->bands->get_user_bands(), true);
 
 
-		$data['page_title'] = "Simple Fast Log Entry";
+		$data['page_title'] = __("Simple Fast Log Entry");
 
 		$footerData = [];
 		$footerData['scripts'] = [
