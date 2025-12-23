@@ -161,16 +161,14 @@ class Map extends CI_Controller {
 	 */
 	public function get_country_geojson() {
 		$dxcc = $this->input->post('dxcc', true);
-		$this->load->library('Geojson');
+		$this->load->library('geojson');
 
- 		if (!$this->isStateSupported($dxcc)) {
+ 		if (!$this->geojson->isStateSupported($dxcc)) {
             return null;
         }
 
-        if ($this->geojsonFile === null) {
-			$this->geojsonFile = "assets/json/geojson/states_{$dxcc}.geojson";
-			$this->geojsonData = $this->loadGeoJsonFile($this->geojsonFile);
-		}
+		$geojsonFile = "assets/json/geojson/states_{$dxcc}.geojson";
+		$geojsonData = $this->geojson->loadGeoJsonFile($geojsonFile);
 
 		if ($geojsonData === null) {
 			echo json_encode(['error' => 'GeoJSON file not found']);
