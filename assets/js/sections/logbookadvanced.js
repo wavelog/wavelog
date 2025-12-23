@@ -745,6 +745,10 @@ $(document).ready(function () {
 				wwff: this.wwff.value,
 				qslimages: this.qslimages.value,
 				dupes: this.dupes.value,
+				dupedate: this.dupedate.value,
+				dupemode: this.dupemode.value,
+				dupeband: this.dupeband.value,
+				dupesat: this.dupesat.value,
 				contest: this.contest.value,
 				invalid: this.invalid.value,
 				continent: this.continent.value,
@@ -1088,7 +1092,7 @@ $(document).ready(function () {
 	});
 
 	$('#dupeButton').click(function (event) {
-		dupeSearch();
+		dupeSearchDialog();
 	});
 
 	$('#invalidButton').click(function (event) {
@@ -1456,6 +1460,44 @@ $(document).ready(function () {
 			}
 		});
 	});
+
+	function dupeSearchDialog() {
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/dupeSearchDialog',
+			type: 'post',
+			success: function (html) {
+				BootstrapDialog.show({
+					title: lang_gen_advanced_logbook_dupe_search,
+					size: BootstrapDialog.SIZE_NORMAL,
+					cssClass: 'options',
+					nl2br: false,
+					message: html,
+					buttons: [
+						{
+							label: lang_gen_advanced_logbook_search + ' <div class="ld ld-ring ld-spin"></div>',
+							cssClass: 'btn btn-sm btn-primary ld-ext-right',
+							id: 'dupeSearchButton',
+							action: function (dialogItself) {
+								dialogItself.close();
+								$('#dupedate').val($('#date_check').is(':checked') ? "Y" : "N");
+								$('#dupemode').val($('#mode_check').is(':checked') ? "Y" : "N");
+								$('#dupeband').val($('#band_check').is(':checked') ? "Y" : "N");
+								$('#dupesat').val($('#satellite_check').is(':checked') ? "Y" : "N");
+								dupeSearch();
+							}
+						},
+						{
+							label: lang_admin_close,
+							cssClass: 'btn btn-sm btn-secondary',
+							id: 'closeDupeDialogButton',
+							action: function (dialogItself) {
+								dialogItself.close();
+							}
+						}],
+				});
+			}
+		});
+	}
 
 	function dupeSearch() {
 		$("#dupes").val("Y");
