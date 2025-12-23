@@ -3,13 +3,13 @@
 
     <div class="row mb-3 align-items-end">
         <div class="col-auto">
-            <label for="countrySelect" class="form-label">Select Country:</label>
+            <label for="countrySelect" class="form-label"><?= __("Select Country:"); ?></label>
             <select class="form-select" id="countrySelect" style="min-width: 200px;">
-                <option value="">Choose a country...</option>
+                <option value=""><?= __("Choose a country...") ?></option>
                 <?php foreach ($countries as $country): ?>
                     <option value="<?php echo htmlspecialchars($country['COL_COUNTRY']); ?>"
                             data-dxcc="<?php echo htmlspecialchars($country['COL_DXCC']); ?>">
-                        <?php echo htmlspecialchars($country['COL_COUNTRY'] . ' (' . $country['qso_count'] . ' QSOs)'); ?>
+                        <?php echo htmlspecialchars($country['COL_COUNTRY'] . ' (' . $country['qso_count'] . ' ' . __("QSOs") . ')'); ?>
                     </option>
                 <?php endforeach; ?>
             </select>
@@ -30,15 +30,15 @@
         </div>
         <div class="col-auto">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="showOnlyOutside" disabled>
+                <input class="form-check-input" type="checkbox" id="showOnlyOutside" disabled checked>
                 <label class="form-check-label" for="showOnlyOutside">
-                    Show only QSOs outside boundaries
+                    <?= ('Show only QSOs outside boundaries') ?>
                 </label>
             </div>
         </div>
         <div class="col-auto d-flex align-items-center">
             <div id="loadingSpinner" class="spinner-border text-primary d-none" role="status">
-                <span class="visually-hidden">Loading...</span>
+                <span class="visually-hidden"><?= ('Loading...') ?></span>
             </div>
             <div id="loadingText" class="ms-2 text-muted d-none"></div>
         </div>
@@ -49,14 +49,14 @@
         <div class="mt-2">
             <small class="text-muted">
                 <i class="fas fa-info-circle"></i>
-                Map shows QSOs with 6+ character gridsquares.
+                <?= ('Map shows QSOs with 6+ character gridsquares.') ?>
             </small>
         </div>
     </div>
 
     <div id="noDataMessage" class="alert alert-warning mt-3" style="display: none;">
         <i class="fas fa-exclamation-triangle"></i>
-        No QSOs with 6+ character grids found for the selected country.
+        <?= ('No QSOs with 6+ character grids found for the selected country.') ?>
     </div>
 </div>
 
