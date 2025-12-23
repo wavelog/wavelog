@@ -385,7 +385,9 @@ class adif extends CI_Controller {
 					while($record = $this->adif_parser->get_record()) {
 
 						// Handle slashed zeros
-						$record['call'] = str_replace('Ø', "0", $record['call']);
+						if (isset($record['call'])) {
+							$record['call'] = str_replace('Ø', "0", $record['call']);
+						}
 						if (($record['operator'] ?? '') != '') {
 							$record['operator'] = str_replace('Ø', "0", $record['operator']);
 						}
