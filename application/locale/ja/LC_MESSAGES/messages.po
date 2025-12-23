@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-23 15:27+0000\n"
+"POT-Creation-Date: 2025-12-23 20:22+0000\n"
 "PO-Revision-Date: 2025-12-22 23:48+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
@@ -72,13 +72,14 @@ msgstr ""
 #: application/controllers/Lotw.php:90 application/controllers/Lotw.php:116
 #: application/controllers/Lotw.php:414 application/controllers/Lotw.php:437
 #: application/controllers/Lotw.php:798 application/controllers/Lotw.php:882
-#: application/controllers/Lotw.php:987 application/controllers/Mode.php:15
-#: application/controllers/Notes.php:10 application/controllers/Options.php:14
-#: application/controllers/Oqrs.php:15 application/controllers/Oqrs.php:165
-#: application/controllers/Qrbcalc.php:13 application/controllers/Qrz.php:200
-#: application/controllers/Qrz.php:287 application/controllers/Qsl.php:12
-#: application/controllers/Qsl.php:13 application/controllers/Qsl.php:49
-#: application/controllers/Qsl.php:57 application/controllers/Qslprint.php:24
+#: application/controllers/Lotw.php:987 application/controllers/Map.php:12
+#: application/controllers/Mode.php:15 application/controllers/Notes.php:10
+#: application/controllers/Options.php:14 application/controllers/Oqrs.php:15
+#: application/controllers/Oqrs.php:165 application/controllers/Qrbcalc.php:13
+#: application/controllers/Qrz.php:200 application/controllers/Qrz.php:287
+#: application/controllers/Qsl.php:12 application/controllers/Qsl.php:13
+#: application/controllers/Qsl.php:49 application/controllers/Qsl.php:57
+#: application/controllers/Qslprint.php:24
 #: application/controllers/Qslprint.php:159 application/controllers/Qso.php:8
 #: application/controllers/Qso.php:22 application/controllers/Qso.php:212
 #: application/controllers/Qso.php:343 application/controllers/Qso.php:364
@@ -1976,6 +1977,10 @@ msgstr "LoTW .TQ8 送信"
 #: application/controllers/Lotw.php:1098
 msgid "LoTW .TQ8 Not Sent"
 msgstr "LoTW .TQ8 が未送信"
+
+#: application/controllers/Map.php:46
+msgid "QSO Map"
+msgstr ""
 
 #: application/controllers/Mode.php:25 application/controllers/Usermode.php:23
 #: application/views/interface_assets/header.php:328
@@ -12437,6 +12442,7 @@ msgstr "ラベルの種類"
 
 #: application/views/labels/index.php:81
 #: application/views/logbookadvanced/statecheckresult.php:12
+#: application/views/map/qso_map.php:12
 #: application/views/statistics/index.php:70
 #: application/views/statistics/index.php:114
 msgid "QSOs"
@@ -14022,6 +14028,14 @@ msgstr ""
 #: application/views/lotw_views/index.php:164
 msgid "The next automatic sync with LoTW will happen at: "
 msgstr "LoTW との次の自動同期は次の時間に行われます: "
+
+#: application/views/map/qso_map.php:6
+msgid "Select Country:"
+msgstr ""
+
+#: application/views/map/qso_map.php:8
+msgid "Choose a country..."
+msgstr ""
 
 #: application/views/mode/create.php:24 application/views/mode/edit.php:33
 msgctxt "Name of mode in ADIF-specification"
