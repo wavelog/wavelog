@@ -1,5 +1,6 @@
 <?php
 use Wavelog\QSLManager\QSO;
+use Wavelog\Dxcc\Dxcc;
 
 class Logbookadvanced_model extends CI_Model {
 
@@ -1536,8 +1537,10 @@ class Logbookadvanced_model extends CI_Model {
 				return $this->check_missing_distance();
 			case 'checkcontinent':
 				return $this->check_qsos_missing_continent();
-			case 'checkdxcc':
+			case 'checkmissingdxcc':
 				return $this->check_missing_dxcc();
+			case 'checkdxcc':
+				return $this->check_dxcc();
 			case 'checkstate':
 				return $this->check_missing_state();
 			case 'checkcqzones':
@@ -1886,5 +1889,66 @@ class Logbookadvanced_model extends CI_Model {
 		$query = $this->db->query($sql, [$this->session->userdata('user_id')]);
 
 		return $query->result();
+	}
+
+	public function check_dxcc() {
+
+		$i = 0;
+		$result = array();
+
+		$callarray = $this->getQsos();
+
+		// Starting clock time in seconds
+		$start_time = microtime(true);
+		$dxccobj = new Dxcc(null);
+
+		foreach ($callarray->result() as $call) {
+
+            $i++;
+            //$dxcc = $this->logbook_model->dxcc_lookup($call->col_call, $call->date);
+			$dxcc = $dxccobj->dxcc_lookup($call->col_call, $call->date);
+
+            $dxcc['adif'] = (isset($dxcc['adif'])) ? $dxcc['adif'] : 0;
+            $dxcc['entity'] = (isset($dxcc['entity'])) ? $dxcc['entity'] : 'None';
+
+            if ($call->col_dxcc != $dxcc['adif']) {
+                $result[] = array(
+                                'callsign'          => $call->col_call,
+								'qso_date'          => $call->date,
+								'station_profile'   => $call->station_profile_name,
+                                'existing_dxcc'     => $call->col_country,
+                                'existing_adif'     => $call->col_dxcc,
+                                'result_country'    => ucwords(strtolower($dxcc['entity']), "- (/"),
+                                'result_adif'       => $dxcc['adif'],
+								'id' 			    => $call->col_primary_key,
+                            );
+            }
+        }
+
+        // End clock time in seconds
+        $end_time = microtime(true);
+
+        // Calculate script execution time
+        $execution_time = ($end_time - $start_time);
+
+        $data['execution_time'] = $execution_time;
+        $data['calls_tested'] = $i;
+		$data['result'] = $result;
+
+		return $data;
+	}
+
+	function getQsos() {
+		$sql = 'select distinct col_country, col_call, col_dxcc, date(col_time_on) date, station_profile.station_profile_name, col_primary_key
+			from ' . $this->config->item('table_name') . '
+			join station_profile on ' . $this->config->item('table_name') . '.station_id = station_profile.station_id
+			where station_profile.user_id = ?';
+		$params[] = array($this->session->userdata('user_id'));
+
+		$sql .= ' order by station_profile.station_profile_name asc, date desc';
+
+        $query = $this->db->query($sql, $params);
+
+		return $query;
 	}
 }

@@ -1319,7 +1319,7 @@ $(document).ready(function () {
 			success: function (html) {
 				BootstrapDialog.show({
 					title: 'Database tools',
-					size: BootstrapDialog.SIZE_WIDE,
+					size: BootstrapDialog.SIZE_EXTRAWIDE,
 					cssClass: 'options',
 					nl2br: false,
 					message: html,
@@ -2059,7 +2059,7 @@ function saveOptions() {
 		$.ajax({
 			url: base_url + 'index.php/logbookadvanced/checkDb',
 			data: {
-				type: 'checkdxcc'
+				type: 'checkmissingdxcc'
 			},
 			type: 'POST',
 			success: function(response) {
@@ -2511,6 +2511,39 @@ function saveOptions() {
 				$('#updateGridsBtn').prop("disabled", false).removeClass("running");
 				$('#closeButton').prop("disabled", false);
 				$('.result').html(error);
+			}
+		});
+	}
+
+	function checkDxcc() {
+		$('#checkDxccBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/checkDb',
+			data: {
+				type: 'checkdxcc'
+			},
+			type: 'POST',
+			success: function(response) {
+				$('#checkDxccBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				$('.result').html(response);
+			},
+			error: function(xhr, status, error) {
+				$('#checkDxccBtn').prop('disabled', false).text('<?= __("Check") ?>');
+				$('#closeButton').prop('disabled', false);
+
+				let errorMsg = 'Error checking DXCC information';
+				if (xhr.responseJSON && xhr.responseJSON.message) {
+					errorMsg += ': ' + xhr.responseJSON.message;
+				}
+
+				BootstrapDialog.alert({
+					title: 'Error',
+					message: errorMsg,
+					type: BootstrapDialog.TYPE_DANGER
+				});
 			}
 		});
 	}
