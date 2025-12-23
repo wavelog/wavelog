@@ -189,7 +189,7 @@ function displayQso(id) {
                     var lat = 0;
                     var lon = 0;
                     var gridsquare = $("#gridsquare").text();
-                    if (gridsquare != '') {
+                    if ($("#lat").text() != '' && $("#long").text() != '') {
                         lat = $("#lat").text();
                         lon = $("#long").text();
                     }
@@ -215,7 +215,7 @@ function displayQso(id) {
                             iconUrl: icon_dot_url,
                             iconSize:     [18, 18], // size of the icon
                         });
-    
+
                         L.marker([lat,lon], {icon: redIcon}).addTo(mymap)
                             .bindPopup(callsign);
                     }
