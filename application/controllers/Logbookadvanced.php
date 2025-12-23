@@ -145,6 +145,10 @@ class Logbookadvanced extends CI_Controller {
 			'wwff' => xss_clean($this->input->post('wwff')),
 			'qslimages' => xss_clean($this->input->post('qslimages')),
 			'dupes' => xss_clean($this->input->post('dupes')),
+			'dupedate' => xss_clean($this->input->post('dupedate')),
+			'dupemode' => xss_clean($this->input->post('dupemode')),
+			'dupeband' => xss_clean($this->input->post('dupeband')),
+			'dupesat' => xss_clean($this->input->post('dupesat')),
 			'operator' => xss_clean($this->input->post('operator')),
 			'contest' => xss_clean($this->input->post('contest')),
 			'invalid' => xss_clean($this->input->post('invalid')),
@@ -980,6 +984,12 @@ class Logbookadvanced extends CI_Controller {
 		$data['type'] = $type;
 
 		$this->load->view('logbookadvanced/showUpdateResult', $data);
+	}
+
+	function dupeSearchDialog() {
+		if(!clubaccess_check(9)) return;
+
+		$this->load->view('logbookadvanced/dupesearchdialog');
 	}
 
 }
