@@ -31,7 +31,7 @@
                         <label class="form-check-label fw-semibold" for="band_check">
                             <i class="fas fa-wave-square me-2 text-warning"></i><?= __("Band"); ?>
                         </label>
-                        <small class="d-block text-muted"></small><?= __("Match QSOs on the same band"); ?></small>
+                        <small class="d-block text-muted"><?= __("Match QSOs on the same band"); ?></small>
                     </div>
                 </div>
                 <div class="col-md-6">
