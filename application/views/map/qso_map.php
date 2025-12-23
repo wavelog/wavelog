@@ -284,8 +284,9 @@ function initMap() {
         if (dxcc && supportedDxccs.includes(parseInt(dxcc))) {
             // Single country GeoJSON
             $.ajax({
-                url: '<?php echo site_url("map/get_country_geojson"); ?>/' + dxcc,
-                method: 'GET',
+                url: base_url + "map/get_country_geojson/",
+                type: 'post',
+				data: { dxcc: dxcc },
                 success: function(geojson) {
                     if (geojson && !geojson.error) {
                         const layer = L.geoJSON(geojson, {
