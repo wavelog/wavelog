@@ -68,7 +68,7 @@ function check_missing_dxcc($result) { ?>
 }
 
 function check_missing_cq_zones($result) { ?>
-	<h5></h5><?= __("CQ Zone Check Results") ?></h5>
+	<h5><?= __("CQ Zone Check Results") ?></h5>
 	<?= __("QSOs to update found:"); ?> <?php echo $result[0]->count; ?>
 	<?php if ($result[0]->count > 0) { ?>
 	<br/>
