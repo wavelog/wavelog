@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2025-12-22 14:04+0000\n"
 "PO-Revision-Date: 2025-12-23 01:35+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
-"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/sv/>\n"
+"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/sv/>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -226,31 +226,33 @@ msgstr "Filtyp stöds inte"
 
 #: application/controllers/Adif.php:444
 #: application/views/adif/import_failed.php:12
+#: application/controllers/Adif.php:446
 msgid "ADIF Import failed!"
 msgstr "ADIF-import misslyckades!"
 
-#: application/controllers/Adif.php:458
+#: application/controllers/Adif.php:458 application/controllers/Adif.php:460
 msgid "Station Profile not valid for User"
 msgstr "Stationsprofil inte giltigt för användare"
 
 #: application/controllers/Adif.php:467
 #: application/views/adif/import_success.php:12
+#: application/controllers/Adif.php:469
 msgid "ADIF Imported"
 msgstr "ADIF importerad"
 
-#: application/controllers/Adif.php:481
+#: application/controllers/Adif.php:481 application/controllers/Adif.php:483
 msgid "DCL Import"
 msgstr "DCL-import"
 
-#: application/controllers/Adif.php:542
+#: application/controllers/Adif.php:542 application/controllers/Adif.php:544
 msgid "DCL Data Imported"
 msgstr "DCL-data importerad"
 
-#: application/controllers/Adif.php:556
+#: application/controllers/Adif.php:556 application/controllers/Adif.php:558
 msgid "POTA Import"
 msgstr "POTA-import"
 
-#: application/controllers/Adif.php:616
+#: application/controllers/Adif.php:616 application/controllers/Adif.php:618
 msgid "POTA Data Imported"
 msgstr "POTA-data importerad"
 
@@ -7153,8 +7155,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
-"Reef/506) och giltig stat (ADIF: DXCC och STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
+"506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/was/index.php:3
 msgctxt "USA State"
@@ -12390,8 +12392,8 @@ msgid ""
 "We’ll keep the original value and add a more precise locator (e.g., JO90AB "
 "or JO90AB12) when a match is confident."
 msgstr ""
-"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator (t."
-"ex. JO90AB eller JO90AB12) när en matchning är säker."
+"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator "
+"(t.ex. JO90AB eller JO90AB12) när en matchning är säker."
 
 #: application/views/logbookadvanced/checkresult.php:27
 msgid "Distance Check Results"
@@ -17199,8 +17201,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 (t."
-"ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
+"(t.ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
