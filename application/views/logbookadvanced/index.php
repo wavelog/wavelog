@@ -71,6 +71,9 @@
 	let lang_gen_advanced_logbook_distances_updated = '<?= __("Distances updated successfully!"); ?>';
 
 	let lang_gen_advanced_logbook_confirm_fix_missing_dxcc = '<?= __("Are you sure you want to fix all QSOs with missing DXCC information? This action cannot be undone."); ?>';
+	let lang_gen_advanced_logbook_dupe_search = '<?= __("Duplicate Search"); ?>';
+	let lang_gen_advanced_logbook_search = '<?= __("Search"); ?>';
+
 
     let homegrid ='<?php echo strtoupper($homegrid[0]); ?>';
     <?php
@@ -262,6 +265,10 @@ $options = json_decode($options);
             <form id="searchForm" name="searchForm" action="<?php echo base_url() . "index.php/logbookadvanced/search"; ?>" method="post">
                 <input type="hidden" id="dupes" name="dupes" value="">
 				<input type="hidden" id="invalid" name="invalid" value="">
+				<input type="hidden" id="dupedate" name="dupedate" value="">
+				<input type="hidden" id="dupemode" name="dupemode" value="">
+				<input type="hidden" id="dupeband" name="dupeband" value="">
+				<input type="hidden" id="dupesat" name="dupesat" value="">
 
         <div class="row pt-2">
 			<div class="d-flex flex-wrap btn-group w-auto mx-auto">
