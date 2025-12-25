@@ -1905,7 +1905,6 @@ class Logbookadvanced_model extends CI_Model {
 		foreach ($callarray->result() as $call) {
 
             $i++;
-            //$dxcc = $this->logbook_model->dxcc_lookup($call->col_call, $call->date);
 			$dxcc = $dxccobj->dxcc_lookup($call->col_call, $call->date);
 
             $dxcc['adif'] = (isset($dxcc['adif'])) ? $dxcc['adif'] : 0;
@@ -1950,5 +1949,35 @@ class Logbookadvanced_model extends CI_Model {
         $query = $this->db->query($sql, $params);
 
 		return $query;
+	}
+
+	function fixDxccSelected($ids) {
+		$sql = "select COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_TIME_OFF, station_profile.station_profile_name from " . $this->config->item('table_name') .
+		" join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
+		where station_profile.user_id = ? and " . $this->config->item('table_name') . ".col_primary_key in ?";
+
+		$r = $this->db->query($sql, array($this->session->userdata('user_id'), json_decode($ids, true)));
+
+		$count = 0;
+		$dxccobj = new Dxcc(null);
+
+		if ($r->num_rows() > 0) { //query dxcc_prefixes
+			$sql = "update " . $this->config->item('table_name') . " set COL_COUNTRY = ?, COL_DXCC = ? where COL_PRIMARY_KEY = ?";
+			$q = $this->db->conn_id->prepare($sql);
+			foreach ($r->result_array() as $row) {
+				$qso_date = $row['COL_TIME_OFF'] == '' ? $row['COL_TIME_ON'] : $row['COL_TIME_OFF'];
+				$qso_date = date("Y-m-d", strtotime($qso_date));
+				$dxcc = $dxccobj->dxcc_lookup($row['COL_CALL'], $qso_date);
+				$dxcc['adif'] = (isset($dxcc['adif'])) ? $dxcc['adif'] : 0;
+				$dxcc['entity'] = (isset($dxcc['entity'])) ? $dxcc['entity'] : 'None';
+				if ($dxcc['adif'] != 'Not Found') {
+					$q->execute(array(addslashes(ucwords(strtolower($dxcc['entity']), "- (/")), $dxcc['adif'], $row['COL_PRIMARY_KEY']));
+					$count++;
+				}
+			}
+		}
+
+		$result['count'] = $count;
+		return $result;
 	}
 }

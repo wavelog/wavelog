@@ -80,9 +80,8 @@
 
 				<div class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
-                        <h6 class="mb-1"><?= __("Re-check DXCC for all QSOs in the logbook") ?></h6>
+                        <h6 class="mb-1"><?= __("Check all QSOs in the logbook for incorrect DXCC") ?></h6>
                         <p class="mb-1 small text-muted"><?= __("Use Wavelog to determine DXCC for all QSOs.") ?></p>
-						<p class="mb-1 small alert-danger"><?= __("This will overwrite ALL existing DXCC information!") ?></p>
                     </div>
                     <div class="d-flex nowrap">
                         <button type="button" class="btn btn-sm btn-success me-1 ld-ext-right" id="checkDxccBtn" onclick="checkDxcc()">

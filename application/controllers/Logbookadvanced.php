@@ -992,4 +992,17 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->view('logbookadvanced/dupesearchdialog');
 	}
 
+	function fixDxccSelected() {
+		if(!clubaccess_check(9)) return;
+
+		$ids = xss_clean($this->input->post('ids'));
+
+		$this->load->model('logbookadvanced_model');
+		$result = $this->logbookadvanced_model->fixDxccSelected($ids);
+		$result['message'] = '<div class="alert alert-' . ($result['count'] == 0 ? 'danger' : 'success') . '" role="alert">' . sprintf(__("DXCC updated for %d QSO(s)."), $result['count']) . '</div>';
+
+		header("Content-Type: application/json");
+		print json_encode($result);
+	}
+
 }
