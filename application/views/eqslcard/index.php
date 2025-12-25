@@ -22,7 +22,7 @@
    }
 
     if (is_array($qslarray->result())) {
-        echo '<table style="width:100%" class="eqsltable table-responsive table-sm table-bordered table-hover table-striped table-condensed">
+        echo '<table style="width:100%" class="eqsltable table table-sm table-bordered table-hover table-striped table-condensed">
         <thead>
         <tr>
         <th style=\'text-align: center\'>'.__("Callsign").'</th>
