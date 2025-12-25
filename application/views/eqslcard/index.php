@@ -22,7 +22,7 @@
    }
 
     if (is_array($qslarray->result())) {
-        echo '<table style="width:100%" class="eqsltable table table-sm table-bordered table-hover table-striped table-condensed">
+        echo '<table style="width:100%" class="eqsltable table-responsive table-sm table-bordered table-hover table-striped table-condensed">
         <thead>
         <tr>
         <th style=\'text-align: center\'>'.__("Callsign").'</th>
@@ -61,7 +61,7 @@
          echo '<td style=\'text-align: center\'>';
          if ($qsl->COL_EQSL_QSLRDATE) { $timestamp = strtotime($qsl->COL_EQSL_QSLRDATE); echo date($custom_date_format, $timestamp); }
          echo '</td>';
-            echo '<td style=\'text-align: center\'><a href=\''.site_url('eqsl/image/'.$qsl->COL_PRIMARY_KEY).'\' data-fancybox=\'images\' data-width=\'528\' data-height=\'336\' class=\'btn btn-sm btn-success\'>' . __("View") . '</a></td>';
+            echo '<td style=\'text-align: center\'><a href=\''.site_url('eqsl/image/'.$qsl->COL_PRIMARY_KEY).'\' data-fancybox=\'images\' data-width=\'528\' data-height=\'336\' class=\'btn btn-sm btn-success\'>' . __("View") . '<img src=\''.site_url('eqsl/image/'.$qsl->COL_PRIMARY_KEY).'\' height="100px"></a></td>';
             echo '</tr>';
         }
 
