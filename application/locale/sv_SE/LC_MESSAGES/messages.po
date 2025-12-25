@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-23 15:27+0000\n"
-"PO-Revision-Date: 2025-12-23 13:51+0000\n"
+"POT-Creation-Date: 2025-12-24 16:42+0000\n"
+"PO-Revision-Date: 2025-12-23 23:48+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sv/>\n"
@@ -72,13 +72,14 @@ msgstr ""
 #: application/controllers/Lotw.php:90 application/controllers/Lotw.php:116
 #: application/controllers/Lotw.php:414 application/controllers/Lotw.php:437
 #: application/controllers/Lotw.php:798 application/controllers/Lotw.php:882
-#: application/controllers/Lotw.php:987 application/controllers/Mode.php:15
-#: application/controllers/Notes.php:10 application/controllers/Options.php:14
-#: application/controllers/Oqrs.php:15 application/controllers/Oqrs.php:165
-#: application/controllers/Qrbcalc.php:13 application/controllers/Qrz.php:200
-#: application/controllers/Qrz.php:287 application/controllers/Qsl.php:12
-#: application/controllers/Qsl.php:13 application/controllers/Qsl.php:49
-#: application/controllers/Qsl.php:57 application/controllers/Qslprint.php:24
+#: application/controllers/Lotw.php:987 application/controllers/Map.php:12
+#: application/controllers/Mode.php:15 application/controllers/Notes.php:10
+#: application/controllers/Options.php:14 application/controllers/Oqrs.php:15
+#: application/controllers/Oqrs.php:165 application/controllers/Qrbcalc.php:13
+#: application/controllers/Qrz.php:200 application/controllers/Qrz.php:287
+#: application/controllers/Qsl.php:12 application/controllers/Qsl.php:13
+#: application/controllers/Qsl.php:49 application/controllers/Qsl.php:57
+#: application/controllers/Qslprint.php:24
 #: application/controllers/Qslprint.php:159 application/controllers/Qso.php:8
 #: application/controllers/Qso.php:22 application/controllers/Qso.php:212
 #: application/controllers/Qso.php:343 application/controllers/Qso.php:364
@@ -945,35 +946,35 @@ msgstr "Inga stationsprofiler hittades att ladda upp till DCL"
 msgid "Key(s) Deleted."
 msgstr "Nyckel(nycklar) raderad(e)."
 
-#: application/controllers/Debug.php:118
+#: application/controllers/Debug.php:120
 msgid "Debug"
 msgstr "Debug"
 
-#: application/controllers/Debug.php:157
+#: application/controllers/Debug.php:159
 msgid "Migrate data now"
 msgstr "Migrera data nu"
 
-#: application/controllers/Debug.php:160
+#: application/controllers/Debug.php:162
 msgid "Migration already done. Run again?"
 msgstr "Migreringen är redan klar. Köra igen?"
 
-#: application/controllers/Debug.php:164
+#: application/controllers/Debug.php:166
 msgid "No data to migrate"
 msgstr "Inga data att migrera"
 
-#: application/controllers/Debug.php:168 application/controllers/Debug.php:173
+#: application/controllers/Debug.php:170 application/controllers/Debug.php:175
 msgid "No migration possible"
 msgstr "Ingen migration möjlig"
 
-#: application/controllers/Debug.php:238
+#: application/controllers/Debug.php:240
 msgid "Wavelog was updated successfully!"
 msgstr "Wavelog uppdaterades framgångsrikt!"
 
-#: application/controllers/Debug.php:256
+#: application/controllers/Debug.php:258
 msgid "Selfupdate() not available. Check the Error Log."
 msgstr "Selfupdate() är inte tillgänglig. Kontrollera felloggen."
 
-#: application/controllers/Debug.php:300
+#: application/controllers/Debug.php:302
 msgid ""
 "File Migration was successfull, but please check also manually. If "
 "everything seems right you can delete the folders 'assets/qslcard' and "
@@ -983,7 +984,7 @@ msgstr ""
 "verkar rätt kan du ta bort mapparna 'assets/qslcard' och 'images/"
 "eqsl_card_images'."
 
-#: application/controllers/Debug.php:303
+#: application/controllers/Debug.php:305
 msgid "File Migration failed. Please check the Error Log."
 msgstr "Filöverföring misslyckades. Kontrollera felloggen."
 
@@ -1975,6 +1976,10 @@ msgstr "LoTW .TQ8 skickad"
 #: application/controllers/Lotw.php:1098
 msgid "LoTW .TQ8 Not Sent"
 msgstr "LoTW .TQ8 Ej skickad"
+
+#: application/controllers/Map.php:46
+msgid "QSO Map"
+msgstr "QSO-karta"
 
 #: application/controllers/Mode.php:25 application/controllers/Usermode.php:23
 #: application/views/interface_assets/header.php:328
@@ -12461,6 +12466,7 @@ msgstr "Etikettyper"
 
 #: application/views/labels/index.php:81
 #: application/views/logbookadvanced/statecheckresult.php:12
+#: application/views/map/qso_map.php:12
 #: application/views/statistics/index.php:70
 #: application/views/statistics/index.php:114
 msgid "QSOs"
@@ -12709,23 +12715,23 @@ msgstr "Detta är begränsat till 150 anropssignaler per körning!"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:4
 msgid "Search for duplicates using:"
-msgstr ""
+msgstr "Sök efter dubbletter med:"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:16
 msgid "Match QSOs within 1800s (30min) of each other"
-msgstr ""
+msgstr "Matcha QSOs inom 1800s (30 min) från varandra"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:25
 msgid "Match QSOs with the same mode (SSB, CW, FM, etc.)"
-msgstr ""
+msgstr "Matcha QSOs med samma trafiksätt (SSB, CW, FM, etc.)"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:34
 msgid "Match QSOs on the same band"
-msgstr ""
+msgstr "Matcha QSOs på samma band"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:43
 msgid "Match QSOs using the same satellite"
-msgstr ""
+msgstr "Matcha QSOs med samma satellit"
 
 #: application/views/logbookadvanced/edit.php:1
 msgid "Please choose the column to be edited:"
@@ -13262,7 +13268,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/index.php:74
 msgid "Duplicate Search"
-msgstr ""
+msgstr "Sök efter Dubletter"
 
 #: application/views/logbookadvanced/index.php:301
 msgid "From"
@@ -14058,6 +14064,14 @@ msgstr ""
 #: application/views/lotw_views/index.php:164
 msgid "The next automatic sync with LoTW will happen at: "
 msgstr "Nästa automatiska synkronisering med LoTW kommer att ske kl: "
+
+#: application/views/map/qso_map.php:6
+msgid "Select Country:"
+msgstr "Välj land:"
+
+#: application/views/map/qso_map.php:8
+msgid "Choose a country..."
+msgstr "Välj ett land..."
 
 #: application/views/mode/create.php:24 application/views/mode/edit.php:33
 msgctxt "Name of mode in ADIF-specification"

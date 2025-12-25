@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-23 15:27+0000\n"
-"PO-Revision-Date: 2025-12-08 10:52+0000\n"
+"POT-Creation-Date: 2025-12-24 16:42+0000\n"
+"PO-Revision-Date: 2025-12-23 23:48+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -77,13 +77,14 @@ msgstr ""
 #: application/controllers/Lotw.php:90 application/controllers/Lotw.php:116
 #: application/controllers/Lotw.php:414 application/controllers/Lotw.php:437
 #: application/controllers/Lotw.php:798 application/controllers/Lotw.php:882
-#: application/controllers/Lotw.php:987 application/controllers/Mode.php:15
-#: application/controllers/Notes.php:10 application/controllers/Options.php:14
-#: application/controllers/Oqrs.php:15 application/controllers/Oqrs.php:165
-#: application/controllers/Qrbcalc.php:13 application/controllers/Qrz.php:200
-#: application/controllers/Qrz.php:287 application/controllers/Qsl.php:12
-#: application/controllers/Qsl.php:13 application/controllers/Qsl.php:49
-#: application/controllers/Qsl.php:57 application/controllers/Qslprint.php:24
+#: application/controllers/Lotw.php:987 application/controllers/Map.php:12
+#: application/controllers/Mode.php:15 application/controllers/Notes.php:10
+#: application/controllers/Options.php:14 application/controllers/Oqrs.php:15
+#: application/controllers/Oqrs.php:165 application/controllers/Qrbcalc.php:13
+#: application/controllers/Qrz.php:200 application/controllers/Qrz.php:287
+#: application/controllers/Qsl.php:12 application/controllers/Qsl.php:13
+#: application/controllers/Qsl.php:49 application/controllers/Qsl.php:57
+#: application/controllers/Qslprint.php:24
 #: application/controllers/Qslprint.php:159 application/controllers/Qso.php:8
 #: application/controllers/Qso.php:22 application/controllers/Qso.php:212
 #: application/controllers/Qso.php:343 application/controllers/Qso.php:364
@@ -684,7 +685,7 @@ msgstr " и спутник "
 
 #: application/controllers/Calltester.php:33
 msgid "Call Tester"
-msgstr ""
+msgstr "Проверка позывных"
 
 #: application/controllers/Club.php:23
 msgid "Club Officer"
@@ -953,35 +954,35 @@ msgstr "Профили QTH с настроенной загрузкой в DCL �
 msgid "Key(s) Deleted."
 msgstr "Ключ(и) удалены."
 
-#: application/controllers/Debug.php:118
+#: application/controllers/Debug.php:120
 msgid "Debug"
 msgstr "Отладка"
 
-#: application/controllers/Debug.php:157
+#: application/controllers/Debug.php:159
 msgid "Migrate data now"
 msgstr "Переносите данные сейчас"
 
-#: application/controllers/Debug.php:160
+#: application/controllers/Debug.php:162
 msgid "Migration already done. Run again?"
 msgstr "Миграция уже выполнена. Запустить снова?"
 
-#: application/controllers/Debug.php:164
+#: application/controllers/Debug.php:166
 msgid "No data to migrate"
 msgstr "Нет данных для миграции"
 
-#: application/controllers/Debug.php:168 application/controllers/Debug.php:173
+#: application/controllers/Debug.php:170 application/controllers/Debug.php:175
 msgid "No migration possible"
 msgstr "Миграция невозможна"
 
-#: application/controllers/Debug.php:238
+#: application/controllers/Debug.php:240
 msgid "Wavelog was updated successfully!"
 msgstr "Wavelog был успешно обновлен!"
 
-#: application/controllers/Debug.php:256
+#: application/controllers/Debug.php:258
 msgid "Selfupdate() not available. Check the Error Log."
 msgstr "Selfupdate() недоступен. Проверьте журнал ошибок."
 
-#: application/controllers/Debug.php:300
+#: application/controllers/Debug.php:302
 msgid ""
 "File Migration was successfull, but please check also manually. If "
 "everything seems right you can delete the folders 'assets/qslcard' and "
@@ -991,7 +992,7 @@ msgstr ""
 "Если все в порядке, можете удалить папки 'assets/qslcard' и 'images/"
 "eqsl_card_images'."
 
-#: application/controllers/Debug.php:303
+#: application/controllers/Debug.php:305
 msgid "File Migration failed. Please check the Error Log."
 msgstr ""
 "Не удалось выполнить миграцию файлов. Пожалуйста, проверьте журнал ошибок."
@@ -1070,27 +1071,27 @@ msgstr "Нет такого псевдонима eQSL QTH: %s"
 
 #: application/controllers/Eqsl.php:312
 msgid "QSO not found or not accessible"
-msgstr ""
+msgstr "QSO не найдено или недоступно"
 
 #: application/controllers/Eqsl.php:330
 msgid "User not found"
-msgstr ""
+msgstr "Пользователь не найден"
 
 #: application/controllers/Eqsl.php:339
 msgid "eQSL password not configured for this user"
-msgstr ""
+msgstr "Для этого пользователя не задан пароль eQSL"
 
 #: application/controllers/Eqsl.php:357
 msgid "Failed to fetch eQSL image data"
-msgstr ""
+msgstr "Не удалось получить изображение eQSL"
 
 #: application/controllers/Eqsl.php:376
 msgid "eQSL image not available"
-msgstr ""
+msgstr "Изображение eQSL недоступно"
 
 #: application/controllers/Eqsl.php:395
 msgid "Failed to download eQSL image"
-msgstr ""
+msgstr "Не удалось скачать изображение eQSL"
 
 #: application/controllers/Eqsl.php:495
 msgid "eQSL Tools"
@@ -1985,6 +1986,10 @@ msgstr "LoTW. TQ8 загружен"
 #: application/controllers/Lotw.php:1098
 msgid "LoTW .TQ8 Not Sent"
 msgstr "LoTW. TQ8 не загружен"
+
+#: application/controllers/Map.php:46
+msgid "QSO Map"
+msgstr "Карта QSO"
 
 #: application/controllers/Mode.php:25 application/controllers/Usermode.php:23
 #: application/views/interface_assets/header.php:328
@@ -3323,7 +3328,7 @@ msgstr "Ошибка QRZCQ"
 
 #: application/libraries/Callbook.php:155
 msgid "Error obtaining a session key for HamQTH query"
-msgstr ""
+msgstr "Ошибка при получении ключа сеанса для запроса HamQTH"
 
 #: application/libraries/Cbr_parser.php:111
 #: application/libraries/Cbr_parser.php:160
@@ -8808,99 +8813,101 @@ msgstr "Последний QSO"
 
 #: application/views/calltester/comparison_result.php:18
 msgid "DXCC Class Results"
-msgstr ""
+msgstr "Результаты DXCC Class"
 
 #: application/views/calltester/comparison_result.php:21
 #: application/views/calltester/comparison_result.php:33
 msgid "Calls tested:"
-msgstr ""
+msgstr "Проверенные позывные:"
 
 #: application/views/calltester/comparison_result.php:22
 #: application/views/calltester/comparison_result.php:34
 msgid "Execution time:"
-msgstr ""
+msgstr "Время выполнения:"
 
 #: application/views/calltester/comparison_result.php:23
 #: application/views/calltester/comparison_result.php:35
 msgid "Issues found:"
-msgstr ""
+msgstr "Обнаруженные проблемы:"
 
 #: application/views/calltester/comparison_result.php:30
 msgid "Logbook Model Results"
-msgstr ""
+msgstr "Logbook Model Results"
 
 #: application/views/calltester/comparison_result.php:44
 msgid "Comparison Summary"
-msgstr ""
+msgstr "Результат сравнения"
 
 #: application/views/calltester/comparison_result.php:45
 msgid "Only found in DXCC Class:"
-msgstr ""
+msgstr "Найдено только в DXCC Class:"
 
 #: application/views/calltester/comparison_result.php:46
 msgid "Only found in Logbook Model:"
-msgstr ""
+msgstr "Найдено только в Logbook Model:"
 
 #: application/views/calltester/comparison_result.php:47
 msgid "Found in both methods:"
-msgstr ""
+msgstr "Найдено в обоих методах:"
 
 #: application/views/calltester/comparison_result.php:54
 msgid "Issues found only in DXCC Class (not in Logbook Model):"
-msgstr ""
+msgstr "Проблемы выявлены только DXCC Class (не в Logbook Model):"
 
 #: application/views/calltester/comparison_result.php:62
 #: application/views/calltester/comparison_result.php:98
 #: application/views/calltester/comparison_result.php:134
 #: application/views/calltester/result.php:24
 msgid "Station Profile"
-msgstr ""
+msgstr "Профиль QTH"
 
 #: application/views/calltester/comparison_result.php:63
 #: application/views/calltester/comparison_result.php:99
 #: application/views/calltester/comparison_result.php:135
 #: application/views/calltester/result.php:25
 msgid "Existing DXCC"
-msgstr ""
+msgstr "Существующий DXCC"
 
 #: application/views/calltester/comparison_result.php:64
 #: application/views/calltester/comparison_result.php:100
 #: application/views/calltester/comparison_result.php:136
 #: application/views/calltester/result.php:26
 msgid "Existing ADIF"
-msgstr ""
+msgstr "Существующий ADIF"
 
 #: application/views/calltester/comparison_result.php:65
 #: application/views/calltester/comparison_result.php:101
 #: application/views/calltester/comparison_result.php:137
 #: application/views/calltester/result.php:27
 msgid "Result DXCC"
-msgstr ""
+msgstr "Результат DXCC"
 
 #: application/views/calltester/comparison_result.php:66
 #: application/views/calltester/comparison_result.php:102
 #: application/views/calltester/comparison_result.php:138
 #: application/views/calltester/result.php:28
 msgid "Result ADIF"
-msgstr ""
+msgstr "Результат ADIF"
 
 #: application/views/calltester/comparison_result.php:90
 msgid "Issues found only in Logbook Model (not in DXCC Class):"
-msgstr ""
+msgstr "Проблемы найдены только в Logbook Model (не в DXCC Class):"
 
 #: application/views/calltester/comparison_result.php:126
 msgid "Issues found in both methods:"
-msgstr ""
+msgstr "Проблемы, найденные в обоих методах:"
 
 #: application/views/calltester/comparison_result.php:162
 msgid ""
 "No DXCC issues found in either method. All calls have correct DXCC "
 "information."
 msgstr ""
+"Проблем с DXCC не выявлено ни одним из методов. Все позывные имеют "
+"корректную информацию о DXCC."
 
 #: application/views/calltester/index.php:3
 msgid "Callsign DXCC identification"
-msgstr ""
+msgstr "Идентификация DXCC для позывного"
 
 #: application/views/calltester/index.php:10
 #: application/views/interface_assets/footer.php:878
@@ -8910,23 +8917,23 @@ msgstr "Позывной: "
 
 #: application/views/calltester/index.php:15
 msgid "Start DXCC Check"
-msgstr ""
+msgstr "Начать проверку DXCC"
 
 #: application/views/calltester/index.php:18
 msgid "Compare DXCC class and logbook model"
-msgstr ""
+msgstr "Сравнить DXCC Сlass и Logbook model"
 
 #: application/views/calltester/result.php:4
 msgid "Callsigns tested: "
-msgstr ""
+msgstr "Проверено позывных: "
 
 #: application/views/calltester/result.php:5
 msgid "Execution time: "
-msgstr ""
+msgstr "Время выполнения: "
 
 #: application/views/calltester/result.php:6
 msgid "Number of potential QSOs with wrong DXCC: "
-msgstr ""
+msgstr "Количество потенциальных QSO с неправильным DXCC: "
 
 #: application/views/club/clubswitch_modal.php:5
 msgid "Switch to a Clubstation"
@@ -12553,6 +12560,7 @@ msgstr "Тип наклеек"
 
 #: application/views/labels/index.php:81
 #: application/views/logbookadvanced/statecheckresult.php:12
+#: application/views/map/qso_map.php:12
 #: application/views/statistics/index.php:70
 #: application/views/statistics/index.php:114
 msgid "QSOs"
@@ -12625,7 +12633,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/checkresult.php:27
 msgid "Distance Check Results"
-msgstr ""
+msgstr "Результаты проверки дистанции"
 
 #: application/views/logbookadvanced/checkresult.php:28
 #: application/views/logbookadvanced/checkresult.php:44
@@ -12634,7 +12642,7 @@ msgstr ""
 #: application/views/logbookadvanced/checkresult.php:83
 #: application/views/logbookadvanced/checkresult.php:94
 msgid "QSOs to update found:"
-msgstr ""
+msgstr "Найдено QSO для обновления:"
 
 #: application/views/logbookadvanced/checkresult.php:31
 #: application/views/logbookadvanced/distancedialog.php:2
@@ -12662,7 +12670,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/checkresult.php:43
 msgid "Continent Check Results"
-msgstr ""
+msgstr "Результаты проверки информации о континенте"
 
 #: application/views/logbookadvanced/checkresult.php:47
 #: application/views/logbookadvanced/continentdialog.php:2
@@ -12685,32 +12693,32 @@ msgstr ""
 
 #: application/views/logbookadvanced/checkresult.php:59
 msgid "DXCC Check Results"
-msgstr ""
+msgstr "Результаты проверки информации о DXCC"
 
 #: application/views/logbookadvanced/checkresult.php:64
 #: application/views/logbookadvanced/statecheckresult.php:30
 msgid "Run fix"
-msgstr ""
+msgstr "Запуск процесса исправлений"
 
 #: application/views/logbookadvanced/checkresult.php:71
 msgid "CQ Zone Check Results"
-msgstr ""
+msgstr "Результаты проверки информации о зоне CQ"
 
 #: application/views/logbookadvanced/checkresult.php:82
 msgid "ITU Zone Check Results"
-msgstr ""
+msgstr "Результаты проверки информации о зоне ITU"
 
 #: application/views/logbookadvanced/checkresult.php:93
 msgid "Gridsquare Check Results"
-msgstr ""
+msgstr "Результаты проверки информации о квадрате"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:4
 msgid "Data Repair Tools"
-msgstr ""
+msgstr "Инструменты для восстановления данных"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:6
 msgid "Wiki Help"
-msgstr ""
+msgstr "Справка в Wiki"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:11
 #: application/views/logbookadvanced/index.php:792
@@ -12719,7 +12727,7 @@ msgstr "Исправить зоны CQ"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:12
 msgid "Update missing CQ zone information"
-msgstr ""
+msgstr "Обновить отсутвующую информацию о зоне CQ"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:16
 #: application/views/logbookadvanced/dbtoolsdialog.php:28
@@ -12729,7 +12737,7 @@ msgstr ""
 #: application/views/logbookadvanced/dbtoolsdialog.php:76
 #: application/views/logbookadvanced/dbtoolsdialog.php:102
 msgid "Check"
-msgstr ""
+msgstr "Проверка"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:23
 #: application/views/logbookadvanced/index.php:793
@@ -12738,7 +12746,7 @@ msgstr "Исправить зоны ITU"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:24
 msgid "Update missing ITU zone information"
-msgstr ""
+msgstr "Обновить отсутствующую информацию о зоне ITU"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:35
 msgid "Fix Continent"
@@ -12746,11 +12754,11 @@ msgstr "Исправить информацию о континенте"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:36
 msgid "Update missing or incorrect continent information"
-msgstr ""
+msgstr "Обновите отсутствующую или некорректную информацию о континенте"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:48
 msgid "Update missing state/province information"
-msgstr ""
+msgstr "Обновить отсутствующую информацию об области/штате/провинции"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:59
 #: application/views/logbookadvanced/index.php:68
@@ -12759,7 +12767,7 @@ msgstr "Обновить инфомацию о дистанциях"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:60
 msgid "Calculate and update distance information for QSOs"
-msgstr ""
+msgstr "Рассчитать и обновить информацию о дистанции для QSO"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:71
 msgid "Check QSOs missing DXCC data"
@@ -12767,55 +12775,56 @@ msgstr "Проверить QSO на отсутствие данных DXCC"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:72
 msgid "Identify QSOs that are missing DXCC information"
-msgstr ""
+msgstr "Определить QSO, в которых отсутствует информация о DXCC"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:83
 msgid "Re-check DXCC for all QSOs in the logbook"
-msgstr ""
+msgstr "Перепроверить информацию о DXCC для всех QSO в журнале"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:84
 msgid "Use Wavelog to determine DXCC for all QSOs."
-msgstr ""
+msgstr "Использовать Wavelog, чтобы определить информацию о DXCC для всех QSO."
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:85
 msgid "This will overwrite ALL existing DXCC information!"
-msgstr ""
+msgstr "Это перезапишет ВСЮ существующую информацию о DXCC!"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:89
 msgid "Run"
-msgstr ""
+msgstr "Запуск"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:96
 msgid "Lookup QSOs with missing grid in callbook"
 msgstr ""
+"Запросить данные для QSOs с отсутствующей информацией о квадрате в колбуке"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:97
 msgid "Use callbook lookup to set gridsquare"
-msgstr ""
+msgstr "Использовать запрос колбуке, для определения квадрата."
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:98
 msgid "This is limited to 150 callsigns for each run!"
-msgstr ""
+msgstr "Ограничение: до 150 позывных за один запуск!"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:4
 msgid "Search for duplicates using:"
-msgstr ""
+msgstr "Поиск дубликатов, используя:"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:16
 msgid "Match QSOs within 1800s (30min) of each other"
-msgstr ""
+msgstr "Сопоставление QSO в интервале 1800 секунд (30 минут)"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:25
 msgid "Match QSOs with the same mode (SSB, CW, FM, etc.)"
-msgstr ""
+msgstr "Сопоставление QSO с одинаковым видом модуляции (SSB, CW, FM и т. д.)"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:34
 msgid "Match QSOs on the same band"
-msgstr ""
+msgstr "Сопоставление QSO на одном диапазоне"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:43
 msgid "Match QSOs using the same satellite"
-msgstr ""
+msgstr "Сопоставление QSO, проведённых через один и тот же спутник"
 
 #: application/views/logbookadvanced/edit.php:1
 msgid "Please choose the column to be edited:"
@@ -13354,10 +13363,12 @@ msgid ""
 "Are you sure you want to fix all QSOs with missing DXCC information? This "
 "action cannot be undone."
 msgstr ""
+"Вы уверены, что хотите исправить все QSO с отсутствующей информацией о DXCC? "
+"Это действие нельзя отменить."
 
 #: application/views/logbookadvanced/index.php:74
 msgid "Duplicate Search"
-msgstr ""
+msgstr "Поиск дубликатов"
 
 #: application/views/logbookadvanced/index.php:301
 msgid "From"
@@ -13407,7 +13418,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:506
 #: application/views/logbookadvanced/index.php:688
 msgid "Apply filters"
-msgstr ""
+msgstr "Применить фильтры"
 
 #: application/views/logbookadvanced/index.php:516
 msgid "QSL Filters"
@@ -13711,7 +13722,7 @@ msgstr "Глобус"
 
 #: application/views/logbookadvanced/index.php:845
 msgid "Database Tools"
-msgstr ""
+msgstr "Инструменты для работы с базой данных"
 
 #: application/views/logbookadvanced/index.php:872
 #: application/views/logbookadvanced/useroptions.php:26
@@ -13783,17 +13794,19 @@ msgstr "След."
 #: application/views/logbookadvanced/showMissingDxccQsos.php:14
 #, php-format
 msgid "Found %s QSO(s) missing DXCC information."
-msgstr ""
+msgstr "Найдено %s QSO с отсутствующей информацией о DXCC."
 
 #: application/views/logbookadvanced/showMissingDxccQsos.php:47
 #: application/views/logbookadvanced/showStateQsos.php:49
 msgid "No Issues Found"
-msgstr ""
+msgstr "Проблем не обнаружено"
 
 #: application/views/logbookadvanced/showStateQsos.php:16
 #, php-format
 msgid "Found %s QSO(s) missing state information for DXCC %s."
 msgstr ""
+"Обнаружено %s QSO с отсутствующей информацией об области/штате/провинции для "
+"DXCC %s."
 
 #: application/views/logbookadvanced/showStateQsos.php:28
 #: application/views/oqrs/qsolist.php:11
@@ -13826,27 +13839,28 @@ msgstr "Профиль QTH"
 
 #: application/views/logbookadvanced/showUpdateResult.php:31
 msgid "Results for DXCC update:"
-msgstr ""
+msgstr "Результаты обновления информации о DXCC:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:34
 #: application/views/logbookadvanced/showUpdateResult.php:40
 msgid "The number of QSOs updated for missing DXCC IDs was"
 msgstr ""
+"Количество QSO, в которых обновлена отсутствующая информация о DXCC ID,"
 
 #: application/views/logbookadvanced/showUpdateResult.php:36
 #: application/views/logbookadvanced/showUpdateResult.php:42
 msgid "The number of QSOs re-checked for DXCC was"
-msgstr ""
+msgstr "Количество QSO, информация о DXCC в которых повторно проверена"
 
 #: application/views/logbookadvanced/showUpdateResult.php:55
 #: application/views/logbookadvanced/showUpdateResult.php:99
 msgid "These QSOs could not be updated:"
-msgstr ""
+msgstr "Эти QSO не могут быть обновлены:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:61
 #: application/views/logbookadvanced/showUpdateResult.php:107
 msgid "Reason"
-msgstr ""
+msgstr "Причина"
 
 #: application/views/logbookadvanced/showUpdateResult.php:62
 #: application/views/logbookadvanced/showUpdateResult.php:106
@@ -13856,52 +13870,53 @@ msgstr "Профиль QTH"
 
 #: application/views/logbookadvanced/showUpdateResult.php:83
 msgid "Results for state update:"
-msgstr ""
+msgstr "Результаты обновления информации об области/штате/провинции:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:85
 #: application/views/logbookadvanced/showUpdateResult.php:87
 msgid "The number of QSOs updated for state/province in"
 msgstr ""
+"Количество QSO, в которых обновлена информация об области/штата/провинции в"
 
 #: application/views/logbookadvanced/showUpdateResult.php:130
 msgid "Results for continent update:"
-msgstr ""
+msgstr "Результаты обновления информации о континенте:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:131
 msgid "The number of QSOs updated for continent is"
-msgstr ""
+msgstr "Количество обновлённых QSO для континента"
 
 #: application/views/logbookadvanced/showUpdateResult.php:135
 msgid "Results for distance update:"
-msgstr ""
+msgstr "Результаты обновления информации о дистанции:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:136
 msgid "The number of QSOs updated for distance is"
-msgstr ""
+msgstr "Количество QSO, в которых обновлена информация о дистанции,"
 
 #: application/views/logbookadvanced/showUpdateResult.php:140
 msgid "Results for CQ zone update:"
-msgstr ""
+msgstr "Результаты обновления информации о зоне CQ:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:141
 msgid "The number of QSOs updated for CQ zone is"
-msgstr ""
+msgstr "Количество QSO, в которых обновлена информация о зоне CQ,"
 
 #: application/views/logbookadvanced/showUpdateResult.php:145
 msgid "Results for ITU zone update:"
-msgstr ""
+msgstr "Результаты обновления информации о зоне ITU:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:146
 msgid "The number of QSOs updated for ITU zone is"
-msgstr ""
+msgstr "Количество QSO, в которых обновлена информация о зоне ITU,"
 
 #: application/views/logbookadvanced/showUpdateResult.php:150
 msgid "Results for gridsquare update:"
-msgstr ""
+msgstr "Результаты обновления информации о квадрате:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:151
 msgid "The number of QSOs updated for gridsquare is"
-msgstr ""
+msgstr "Количество QSO, в которых обновлена информация о квадрате,"
 
 #: application/views/logbookadvanced/startatform.php:15
 msgid "Include Via"
@@ -13918,17 +13933,21 @@ msgstr "Включить сообщение TNX"
 #: application/views/logbookadvanced/statecheckresult.php:3
 #: application/views/logbookadvanced/statecheckresult.php:42
 msgid "State Check Results"
-msgstr ""
+msgstr "Результаты проверки информации об области/штате/провинции"
 
 #: application/views/logbookadvanced/statecheckresult.php:4
 msgid ""
 "QSOs with missing state and gridsquares with 6 or more characters found for "
 "the following DXCCs:"
 msgstr ""
+"QSO с отсутствующей информацией об области/штате/провинции штатом и "
+"квадратами с 6 или более символами найдены для следующих DXCC:"
 
 #: application/views/logbookadvanced/statecheckresult.php:43
 msgid "No QSOs were found where state information can be fixed."
 msgstr ""
+"Не найдено QSO, в которых можно исправить информацию об области/штате/"
+"провинции."
 
 #: application/views/logbookadvanced/statedialog.php:2
 msgid ""
@@ -14156,6 +14175,14 @@ msgstr ""
 #: application/views/lotw_views/index.php:164
 msgid "The next automatic sync with LoTW will happen at: "
 msgstr "Следующая автоматическая синхронизация с LoTW произойдет в: "
+
+#: application/views/map/qso_map.php:6
+msgid "Select Country:"
+msgstr "Выберите страну:"
+
+#: application/views/map/qso_map.php:8
+msgid "Choose a country..."
+msgstr "Выберите страну..."
 
 #: application/views/mode/create.php:24 application/views/mode/edit.php:33
 msgctxt "Name of mode in ADIF-specification"
@@ -17154,6 +17181,9 @@ msgid ""
 "analytics. Great for when you're operating in multiple locations but they "
 "are part of the same DXCC or VUCC Circle."
 msgstr ""
+"Журналы позволяют группировать профили QTH, что позволяет видеть для них всё "
+"в одном месте: от журнала до аналитики. Удобно, к примеру, когда работаешь "
+"из нескольких мест, но они входят в один и тот же DXCC или в круг VUCC."
 
 #: application/views/stationsetup/stationsetup.php:35
 msgid "Edit Linked locations"
@@ -17779,7 +17809,7 @@ msgstr "Водопад DX"
 
 #: application/views/user/edit.php:450
 msgid "squelched"
-msgstr ""
+msgstr "заглушенный"
 
 #: application/views/user/edit.php:453
 msgid "Show an interactive DX Cluster 'Waterfall' on the QSO logging page."
@@ -17934,7 +17964,7 @@ msgstr ""
 
 #: application/views/user/edit.php:688
 msgid "Show Fields on QSO Tab"
-msgstr ""
+msgstr "Показать поля на вкладке QSO"
 
 #: application/views/user/edit.php:692
 msgid ""
