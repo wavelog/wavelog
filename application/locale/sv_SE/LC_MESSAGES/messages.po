@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-26 07:44+0000\n"
-"PO-Revision-Date: 2025-12-23 23:48+0000\n"
+"POT-Creation-Date: 2025-12-26 16:35+0000\n"
+"PO-Revision-Date: 2025-12-26 16:35+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sv/>\n"
@@ -59,9 +59,9 @@ msgstr ""
 #: application/controllers/Dxcluster.php:9 application/controllers/Eqsl.php:23
 #: application/controllers/Eqsl.php:47 application/controllers/Eqsl.php:147
 #: application/controllers/Eqsl.php:236 application/controllers/Eqsl.php:260
-#: application/controllers/Eqsl.php:299 application/controllers/Eqsl.php:424
-#: application/controllers/Eqsl.php:491 application/controllers/Eqsl.php:507
-#: application/controllers/Eqsl.php:568
+#: application/controllers/Eqsl.php:299 application/controllers/Eqsl.php:469
+#: application/controllers/Eqsl.php:536 application/controllers/Eqsl.php:552
+#: application/controllers/Eqsl.php:613
 #: application/controllers/Generic_qsl.php:12
 #: application/controllers/Hamsat.php:13 application/controllers/Hrdlog.php:36
 #: application/controllers/Kmlexport.php:18
@@ -1084,23 +1084,27 @@ msgstr "eQSL-bild inte tillgänglig"
 msgid "Failed to download eQSL image"
 msgstr "Det gick inte att ladda ner eQSL-bild"
 
-#: application/controllers/Eqsl.php:495
+#: application/controllers/Eqsl.php:419
+msgid "Failed to load cached eQSL image"
+msgstr ""
+
+#: application/controllers/Eqsl.php:540
 msgid "eQSL Tools"
 msgstr "eQSL-verktyg"
 
-#: application/controllers/Eqsl.php:543
+#: application/controllers/Eqsl.php:588
 msgid " / Errors: "
 msgstr " / Fel: "
 
-#: application/controllers/Eqsl.php:543
+#: application/controllers/Eqsl.php:588
 msgid "Successfully downloaded: "
 msgstr "Framgångsrikt nedladdad: "
 
-#: application/controllers/Eqsl.php:552
+#: application/controllers/Eqsl.php:597
 msgid "eQSL Card Image Download"
 msgstr "eQSL-kortbildnedladdning"
 
-#: application/controllers/Eqsl.php:576
+#: application/controllers/Eqsl.php:621
 msgid "All eQSLs marked as uploaded"
 msgstr "Alla eQSLs markerade som uppladdade"
 
@@ -1896,7 +1900,7 @@ msgstr "Avancerad loggbok"
 #: application/controllers/Logbookadvanced.php:1002
 #, php-format
 msgid "DXCC updated for %d QSO(s)."
-msgstr ""
+msgstr "DXCC uppdaterad för %d QSO(s)."
 
 #: application/controllers/Lookup.php:22
 msgid "Quick Lookup"
@@ -12636,7 +12640,7 @@ msgstr "Locator-kontrollresultat"
 
 #: application/views/logbookadvanced/checkresult.php:124
 msgid "Update selected"
-msgstr ""
+msgstr "Uppdatera valda"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:4
 msgid "Data Repair Tools"
@@ -12706,7 +12710,7 @@ msgstr "Identifiera QSOs som saknar DXCC-information"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:83
 msgid "Check all QSOs in the logbook for incorrect DXCC"
-msgstr ""
+msgstr "Kontrollera alla QSOs i loggboken för felaktig DXCC"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:84
 msgid "Use Wavelog to determine DXCC for all QSOs."
