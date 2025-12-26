@@ -26,9 +26,9 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-26 16:35+0000\n"
-"PO-Revision-Date: 2025-12-24 16:33+0000\n"
-"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
+"POT-Creation-Date: 2025-12-26 07:44+0000\n"
+"PO-Revision-Date: 2025-12-26 16:35+0000\n"
+"Last-Translator: Fabian Franz BSc <franz.fabian.94@gmail.com>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
 "Language: de_DE\n"
@@ -77,9 +77,9 @@ msgstr ""
 #: application/controllers/Dxcluster.php:9 application/controllers/Eqsl.php:23
 #: application/controllers/Eqsl.php:47 application/controllers/Eqsl.php:147
 #: application/controllers/Eqsl.php:236 application/controllers/Eqsl.php:260
-#: application/controllers/Eqsl.php:299 application/controllers/Eqsl.php:469
-#: application/controllers/Eqsl.php:536 application/controllers/Eqsl.php:552
-#: application/controllers/Eqsl.php:613
+#: application/controllers/Eqsl.php:299 application/controllers/Eqsl.php:424
+#: application/controllers/Eqsl.php:491 application/controllers/Eqsl.php:507
+#: application/controllers/Eqsl.php:568
 #: application/controllers/Generic_qsl.php:12
 #: application/controllers/Hamsat.php:13 application/controllers/Hrdlog.php:36
 #: application/controllers/Kmlexport.php:18
@@ -141,6 +141,8 @@ msgstr ""
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/Eqsl.php:469 application/controllers/Eqsl.php:536
+#: application/controllers/Eqsl.php:552 application/controllers/Eqsl.php:613
 msgid "You're not allowed to do that!"
 msgstr "Das ist Dir nicht gestattet!"
 
@@ -1104,27 +1106,23 @@ msgstr "eQSL Bild nicht verfügbar"
 msgid "Failed to download eQSL image"
 msgstr "Download des eQSL Bildes fehlgeschlagen"
 
-#: application/controllers/Eqsl.php:419
-msgid "Failed to load cached eQSL image"
-msgstr ""
-
-#: application/controllers/Eqsl.php:540
+#: application/controllers/Eqsl.php:495 application/controllers/Eqsl.php:540
 msgid "eQSL Tools"
 msgstr "eQSL Tools"
 
-#: application/controllers/Eqsl.php:588
+#: application/controllers/Eqsl.php:543 application/controllers/Eqsl.php:588
 msgid " / Errors: "
 msgstr " / Fehler: "
 
-#: application/controllers/Eqsl.php:588
+#: application/controllers/Eqsl.php:543 application/controllers/Eqsl.php:588
 msgid "Successfully downloaded: "
 msgstr "Erfolgreich heruntergeladen: "
 
-#: application/controllers/Eqsl.php:597
+#: application/controllers/Eqsl.php:552 application/controllers/Eqsl.php:597
 msgid "eQSL Card Image Download"
 msgstr "eQSL-Karten Bilder Download"
 
-#: application/controllers/Eqsl.php:621
+#: application/controllers/Eqsl.php:576 application/controllers/Eqsl.php:621
 msgid "All eQSLs marked as uploaded"
 msgstr "Alle eQSLs als hochgeladen markiert"
 
@@ -1920,7 +1918,7 @@ msgstr "Erweitertes Logbuch"
 #: application/controllers/Logbookadvanced.php:1002
 #, php-format
 msgid "DXCC updated for %d QSO(s)."
-msgstr ""
+msgstr "DXCC für %d QSO(s) aktualisiert."
 
 #: application/controllers/Lookup.php:22
 msgid "Quick Lookup"
@@ -11364,8 +11362,8 @@ msgstr ""
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
-"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an eQSL."
-"cc."
+"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an "
+"eQSL.cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -12755,7 +12753,7 @@ msgstr "Ergebnisse der Prüfung des Planquadrats"
 
 #: application/views/logbookadvanced/checkresult.php:124
 msgid "Update selected"
-msgstr ""
+msgstr "Ausgewählte aktualisieren"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:4
 msgid "Data Repair Tools"
@@ -12825,7 +12823,7 @@ msgstr "Identifiziere QSOs, deren DXCC-Informationen fehlen"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:83
 msgid "Check all QSOs in the logbook for incorrect DXCC"
-msgstr ""
+msgstr "Überprüfe alle QSOs im Logbuch auf inkorrekte DXCC"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:84
 msgid "Use Wavelog to determine DXCC for all QSOs."
@@ -14519,8 +14517,8 @@ msgstr "E-Mail Adresse"
 msgid ""
 "The email address from which the emails are sent, e.g. 'wavelog@example.com'"
 msgstr ""
-"Die E-Mail Adresse von der die Mails versendet werden, z.B. 'wavelog@example."
-"com'"
+"Die E-Mail Adresse von der die Mails versendet werden, z.B. "
+"'wavelog@example.com'"
 
 #: application/views/options/email.php:80
 msgid "SMTP Host"
@@ -16685,9 +16683,9 @@ msgid ""
 msgstr ""
 "Um zu beginnen, stelle sicher, dass du die Felder auf der linken Seite "
 "bereits mit Datum, Stationsrufzeichen/-standort und Rufzeichen des Operators "
-"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, z."
-"B. '7.145'), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
-"wesentlichen das Rufzeichen ist."
+"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, "
+"z.B. '7.145'), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was "
+"im wesentlichen das Rufzeichen ist."
 
 #: application/views/simplefle/syntax_help.php:9
 msgid "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB."
@@ -17519,9 +17517,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Erstelle einen neuen Ordner in 'assets/css/' und lade eine 'bootstrap.min."
-"css' Datei hoch, welche die grundlegende Styling-Regeln enthält. Wir "
-"verwenden die Themes von %s"
+"Erstelle einen neuen Ordner in 'assets/css/' und lade eine "
+"'bootstrap.min.css' Datei hoch, welche die grundlegende Styling-Regeln "
+"enthält. Wir verwenden die Themes von %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -19019,6 +19017,10 @@ msgstr "Anfrage senden"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Rcvd"
+
+#: application/controllers/Eqsl.php:419
+msgid "Failed to load cached eQSL image"
+msgstr ""
 
 #~ msgid "Re-check DXCC for all QSOs in the logbook"
 #~ msgstr "Prüfe DXCC für alle QSOs im gesamten Logbuch erneut"

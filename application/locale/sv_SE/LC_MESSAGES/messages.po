@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-26 16:35+0000\n"
-"PO-Revision-Date: 2025-12-23 23:48+0000\n"
+"POT-Creation-Date: 2025-12-26 07:44+0000\n"
+"PO-Revision-Date: 2025-12-26 16:35+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sv/>\n"
@@ -59,9 +59,9 @@ msgstr ""
 #: application/controllers/Dxcluster.php:9 application/controllers/Eqsl.php:23
 #: application/controllers/Eqsl.php:47 application/controllers/Eqsl.php:147
 #: application/controllers/Eqsl.php:236 application/controllers/Eqsl.php:260
-#: application/controllers/Eqsl.php:299 application/controllers/Eqsl.php:469
-#: application/controllers/Eqsl.php:536 application/controllers/Eqsl.php:552
-#: application/controllers/Eqsl.php:613
+#: application/controllers/Eqsl.php:299 application/controllers/Eqsl.php:424
+#: application/controllers/Eqsl.php:491 application/controllers/Eqsl.php:507
+#: application/controllers/Eqsl.php:568
 #: application/controllers/Generic_qsl.php:12
 #: application/controllers/Hamsat.php:13 application/controllers/Hrdlog.php:36
 #: application/controllers/Kmlexport.php:18
@@ -123,6 +123,8 @@ msgstr ""
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/Eqsl.php:469 application/controllers/Eqsl.php:536
+#: application/controllers/Eqsl.php:552 application/controllers/Eqsl.php:613
 msgid "You're not allowed to do that!"
 msgstr "Det är inte tillåtet!"
 
@@ -1084,27 +1086,23 @@ msgstr "eQSL-bild inte tillgänglig"
 msgid "Failed to download eQSL image"
 msgstr "Det gick inte att ladda ner eQSL-bild"
 
-#: application/controllers/Eqsl.php:419
-msgid "Failed to load cached eQSL image"
-msgstr ""
-
-#: application/controllers/Eqsl.php:540
+#: application/controllers/Eqsl.php:495 application/controllers/Eqsl.php:540
 msgid "eQSL Tools"
 msgstr "eQSL-verktyg"
 
-#: application/controllers/Eqsl.php:588
+#: application/controllers/Eqsl.php:543 application/controllers/Eqsl.php:588
 msgid " / Errors: "
 msgstr " / Fel: "
 
-#: application/controllers/Eqsl.php:588
+#: application/controllers/Eqsl.php:543 application/controllers/Eqsl.php:588
 msgid "Successfully downloaded: "
 msgstr "Framgångsrikt nedladdad: "
 
-#: application/controllers/Eqsl.php:597
+#: application/controllers/Eqsl.php:552 application/controllers/Eqsl.php:597
 msgid "eQSL Card Image Download"
 msgstr "eQSL-kortbildnedladdning"
 
-#: application/controllers/Eqsl.php:621
+#: application/controllers/Eqsl.php:576 application/controllers/Eqsl.php:621
 msgid "All eQSLs marked as uploaded"
 msgstr "Alla eQSLs markerade som uppladdade"
 
@@ -1900,7 +1898,7 @@ msgstr "Avancerad loggbok"
 #: application/controllers/Logbookadvanced.php:1002
 #, php-format
 msgid "DXCC updated for %d QSO(s)."
-msgstr ""
+msgstr "DXCC uppdaterad för %d QSO(s)."
 
 #: application/controllers/Lookup.php:22
 msgid "Quick Lookup"
@@ -7188,8 +7186,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
-"Reef/506) och giltig stat (ADIF: DXCC och STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
+"506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/was/index.php:3
 msgctxt "USA State"
@@ -12552,8 +12550,8 @@ msgid ""
 "We’ll keep the original value and add a more precise locator (e.g., JO90AB "
 "or JO90AB12) when a match is confident."
 msgstr ""
-"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator (t."
-"ex. JO90AB eller JO90AB12) när en matchning är säker."
+"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator "
+"(t.ex. JO90AB eller JO90AB12) när en matchning är säker."
 
 #: application/views/logbookadvanced/checkresult.php:40
 msgid "Distance Check Results"
@@ -12640,7 +12638,7 @@ msgstr "Locator-kontrollresultat"
 
 #: application/views/logbookadvanced/checkresult.php:124
 msgid "Update selected"
-msgstr ""
+msgstr "Uppdatera valda"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:4
 msgid "Data Repair Tools"
@@ -12710,7 +12708,7 @@ msgstr "Identifiera QSOs som saknar DXCC-information"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:83
 msgid "Check all QSOs in the logbook for incorrect DXCC"
-msgstr ""
+msgstr "Kontrollera alla QSOs i loggboken för felaktig DXCC"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:84
 msgid "Use Wavelog to determine DXCC for all QSOs."
@@ -17386,8 +17384,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 (t."
-"ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
+"(t.ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
@@ -18828,6 +18826,10 @@ msgstr "Skicka förfrågan"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Mottagen"
+
+#: application/controllers/Eqsl.php:419
+msgid "Failed to load cached eQSL image"
+msgstr ""
 
 #~ msgid "Re-check DXCC for all QSOs in the logbook"
 #~ msgstr "Kontrollera DXCC för alla QSOs i loggboken igen"
