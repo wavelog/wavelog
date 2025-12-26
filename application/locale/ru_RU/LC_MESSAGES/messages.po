@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-26 07:44+0000\n"
+"POT-Creation-Date: 2025-12-26 16:35+0000\n"
 "PO-Revision-Date: 2025-12-23 23:48+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -64,9 +64,9 @@ msgstr ""
 #: application/controllers/Dxcluster.php:9 application/controllers/Eqsl.php:23
 #: application/controllers/Eqsl.php:47 application/controllers/Eqsl.php:147
 #: application/controllers/Eqsl.php:236 application/controllers/Eqsl.php:260
-#: application/controllers/Eqsl.php:299 application/controllers/Eqsl.php:424
-#: application/controllers/Eqsl.php:491 application/controllers/Eqsl.php:507
-#: application/controllers/Eqsl.php:568
+#: application/controllers/Eqsl.php:299 application/controllers/Eqsl.php:469
+#: application/controllers/Eqsl.php:536 application/controllers/Eqsl.php:552
+#: application/controllers/Eqsl.php:613
 #: application/controllers/Generic_qsl.php:12
 #: application/controllers/Hamsat.php:13 application/controllers/Hrdlog.php:36
 #: application/controllers/Kmlexport.php:18
@@ -1093,23 +1093,27 @@ msgstr "Изображение eQSL недоступно"
 msgid "Failed to download eQSL image"
 msgstr "Не удалось скачать изображение eQSL"
 
-#: application/controllers/Eqsl.php:495
+#: application/controllers/Eqsl.php:419
+msgid "Failed to load cached eQSL image"
+msgstr ""
+
+#: application/controllers/Eqsl.php:540
 msgid "eQSL Tools"
 msgstr "инструменты eQSL"
 
-#: application/controllers/Eqsl.php:543
+#: application/controllers/Eqsl.php:588
 msgid " / Errors: "
 msgstr " / Ошибки: "
 
-#: application/controllers/Eqsl.php:543
+#: application/controllers/Eqsl.php:588
 msgid "Successfully downloaded: "
 msgstr "Успешно скачано: "
 
-#: application/controllers/Eqsl.php:552
+#: application/controllers/Eqsl.php:597
 msgid "eQSL Card Image Download"
 msgstr "скачать изображения eQSL"
 
-#: application/controllers/Eqsl.php:576
+#: application/controllers/Eqsl.php:621
 msgid "All eQSLs marked as uploaded"
 msgstr "Все eQSL отмечены как загруженные"
 
