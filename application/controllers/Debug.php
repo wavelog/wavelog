@@ -39,10 +39,12 @@ class Debug extends CI_Controller
 		$data['latest_release'] = $this->optionslib->get_option('latest_release');
 
 		$data['newer_version_available'] = false;
-		if (!$this->config->item('disable_version_check') ?? false) {
-			$this->Update_model->update_check(true);
-			if ($data['latest_release'] && version_compare($data['latest_release'], $data['running_version'], '>')) {
-				$data['newer_version_available'] = true;
+		if (function_exists('curl_version')) {
+			if (!$this->config->item('disable_version_check') ?? false) {
+				$this->Update_model->update_check(true);
+				if ($data['latest_release'] && version_compare($data['latest_release'], $data['running_version'], '>')) {
+					$data['newer_version_available'] = true;
+				}
 			}
 		}
 

@@ -316,37 +316,15 @@ class Update extends CI_Controller {
 
 
 	private function fix_migrations(){
-        $res = $this->db->query("SELECT version FROM migrations");
-        if ($res->num_rows() >0){
-            $row = $res->row();
-            $version = $row->version;
+		$res = $this->db->query("SELECT version FROM migrations");
+		if ($res->num_rows() >0){
+			$row = $res->row();
+			$version = $row->version;
 
-            if ($version < 7){
-                $this->db->query("UPDATE migrations SET version=7");
-            }
-        }
-	}
-
-	public function check_missing_dxcc($all = false){
-		$this->load->model('user_model');
-		if (!$this->user_model->authorize(99)) {
-			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
-			redirect('dashboard');
+			if ($version < 7){
+				$this->db->query("UPDATE migrations SET version=7");
+			}
 		}
-
-		$this->load->model('logbook_model');
-        $this->logbook_model->check_missing_dxcc_id($all);
-	}
-
-	public function check_missing_grid($all = false){
-		$this->load->model('user_model');
-		if (!$this->user_model->authorize(99)) {
-			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
-			redirect('dashboard');
-		}
-
-	    $this->load->model('logbook_model');
-        $this->logbook_model->check_missing_grid_id($all);
 	}
 
 	public function update_clublog_scp() {

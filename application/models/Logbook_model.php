@@ -173,6 +173,13 @@ class Logbook_model extends CI_Model {
 			$tx_power = null;
 		}
 
+		if (($this->input->post('radio',TRUE) ?? 0) != 0) {
+			$this->load->model('cat');
+			$radio_name=$this->cat->radio_status($this->input->post('radio',TRUE))->row()->radio ?? '';
+		} else {
+			$radio_name='';
+		}
+
 		if ($this->input->post('country') == "") {
 			$dxcc = $this->check_dxcc_table(strtoupper(trim($callsign)), $datetime);
 			$country = ucwords(strtolower($dxcc[1]), "- (/");
@@ -466,6 +473,7 @@ class Logbook_model extends CI_Model {
 			$data['COL_MY_CNTY'] = strtoupper(trim($station['station_cnty']));
 			$data['COL_MY_CQ_ZONE'] = strtoupper(trim($station['station_cq']));
 			$data['COL_MY_ITU_ZONE'] = strtoupper(trim($station['station_itu']));
+			$data['COL_MY_RIG'] = trim($radio_name ?? '');
 
 			// if there are any static map images for this station, remove them so they can be regenerated
 			if (!$this->load->is_loaded('staticmap_model')) {
@@ -4717,7 +4725,7 @@ class Logbook_model extends CI_Model {
 
 		if (($band ?? '') == '') {
 			log_message("Error", "Trying to import QSO without Band for station_id " . $station_id . ". QSO Date/Time: " . $time_on . " at ".($record['freq'] ?? 'N/A')." Mode: " . ($record['mode'] ?? '') . " Call: " . ($record['call'] ?? ''));
-			$returner['error']=sprintf(__("QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't imported. It's invalid"), $time_on);
+			$returner['error']=sprintf(__("QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't imported. It's invalid"), $time_on) . '<br>';
 
 			return($returner);
 		}
@@ -5655,7 +5663,7 @@ class Logbook_model extends CI_Model {
 	public function check_dxcc_table($call, $date) {
 
 		$date = date("Y-m-d", strtotime($date));
-		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^B$|^A$|^M$/';
+		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^B$|^A$|^M$|^LH$|^L$|^J$|^SK$/';
 
 		$dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`, `cont`')
 			->where('`call`', $call)
@@ -5747,7 +5755,7 @@ class Logbook_model extends CI_Model {
 	public function dxcc_lookup($call, $date) {
 
 		$date = date("Y-m-d", strtotime($date));
-		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^B$|^A$|^M$|^LH$/';
+		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^B$|^A$|^M$|^LH$|^L$|^J$|^SK$/';
 
 		$dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`,`cont`,`long`,`lat`')
 			->where('`call`', $call)
@@ -5856,7 +5864,7 @@ class Logbook_model extends CI_Model {
 		$c = '';
 
 		$lidadditions = '/^QRP$|^LGT$/';
-		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^B$|^A$|^M$|^LH$/';
+		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^B$|^A$|^M$|^LH$|^L$|^J$|^SK$/';
 		$noneadditions = '/^MM$|^AM$/';
 
 		# First check if the call is in the proper format, A/B/C where A and C
@@ -5895,7 +5903,7 @@ class Logbook_model extends CI_Model {
 				if (preg_match($lidadditions, $b)) {        # check if $b is a lid-addition
 					$b = $a;
 					$a = null;                              # $a goes to $b, delete lid-add
-				} elseif ((preg_match('/\d[A-Z]+$/', $a)) && (preg_match('/\d$/', $b))) {   # check for call in $a
+				} elseif ((preg_match('/\d[A-Z]+$/', $a)) && (preg_match('/\d$/', $b) || preg_match('/^[A-Z]\d[A-Z]$/', $b))) {   # check for call in $a
 					$temp = $b;
 					$b = $a;
 					$a = $temp;
@@ -5994,80 +6002,6 @@ class Logbook_model extends CI_Model {
 			return $row;
 		}
 		return '';
-	}
-
-
-	public function check_missing_dxcc_id($all) {
-		ini_set('memory_limit', '-1');	// This consumes a much of Memory!
-		$this->db->trans_start();	// Transaction has to be started here, because otherwise we're trying to update rows which are locked by the select
-		$this->db->select("COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_TIME_OFF"); // get all records with no COL_DXCC
-
-		if (!$all) { // check which to update - records with no dxcc or all records
-			$this->db->where("COL_DXCC is NULL");
-		}
-
-		$r = $this->db->get($this->config->item('table_name'));
-
-		$count = 0;
-		if ($r->num_rows() > 0) { //query dxcc_prefixes
-			$sql = "update " . $this->config->item('table_name') . " set COL_COUNTRY = ?, COL_DXCC=? where COL_PRIMARY_KEY=?";
-			$q = $this->db->conn_id->prepare($sql);	// PREPARE this statement. For DB this means: No parsing overhead, parse once use many (see execute query below)
-			foreach ($r->result_array() as $row) {
-				$qso_date = $row['COL_TIME_OFF'] == '' ? $row['COL_TIME_ON'] : $row['COL_TIME_OFF'];
-				$qso_date = date("Y-m-d", strtotime($qso_date));
-				$d = $this->check_dxcc_table($row['COL_CALL'], $qso_date);
-				if ($d[0] != 'Not Found') {
-					$q->execute(array(addslashes(ucwords(strtolower($d[1]), "- (/")), $d[0], $row['COL_PRIMARY_KEY']));
-					$count++;
-				}
-			}
-		}
-		$this->db->trans_complete();
-		print("$count updated\n");
-	}
-
-	public function check_missing_grid_id($all) {
-		// get all records with no COL_GRIDSQUARE
-		$this->db->select("COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_TIME_OFF");
-
-		$this->db->where("(COL_GRIDSQUARE is NULL or COL_GRIDSQUARE = '') AND (COL_VUCC_GRIDS is NULL or COL_VUCC_GRIDS = '')");
-
-		$r = $this->db->get($this->config->item('table_name'));
-
-		$count = 0;
-		$this->db->trans_start();
-		if ($r->num_rows() > 0) {
-			foreach ($r->result_array() as $row) {
-				$callsign = $row['COL_CALL'];
-				if (!$this->load->is_loaded('callbook')) {
-					$this->load->library('callbook');
-				}
-
-				$callbook = $this->callbook->getCallbookData($callsign);
-
-				if (isset($callbook)) {
-					if (isset($callbook['error'])) {
-						printf("Error: " . $callbook['error'] . "<br />");
-					} else {
-						$return['callsign_qra'] = $callbook['gridsquare'];
-						if ($return['callsign_qra'] != '') {
-							$sql = sprintf(
-								"update %s set COL_GRIDSQUARE = '%s' where COL_PRIMARY_KEY=%d",
-								$this->config->item('table_name'),
-								$return['callsign_qra'],
-								$row['COL_PRIMARY_KEY']
-							);
-							$this->db->query($sql);
-							printf("Updating %s to %s\n<br/>", $row['COL_PRIMARY_KEY'], $return['callsign_qra']);
-							$count++;
-						}
-					}
-				}
-			}
-		}
-		$this->db->trans_complete();
-
-		print("$count updated\n");
 	}
 
 	public function check_for_station_id() {

@@ -1405,7 +1405,7 @@ $(function() {
 
 		// Add hover tooltips to all rows
 		$('.spottable tbody tr').each(function() {
-			$(this).attr('title', lang_click_to_prepare_logging);
+			$(this).attr('title', decodeHtml(lang_click_to_prepare_logging));
 			$(this).attr('data-bs-toggle', 'tooltip');
 			$(this).attr('data-bs-placement', 'top');
 		});
@@ -3484,9 +3484,9 @@ $(function() {
 		const $btn = $('#toggleMySubmodesFilter');
 		if (userEnabledSubmodes.length > 0) {
 			const modesList = userEnabledSubmodes.join(', ');
-			$btn.attr('title', lang_bandmap_required_submodes + ': ' + modesList + ' (' + lang_bandmap_submodes_settings_hint + ')');
+			$btn.attr('title', decodeHtml(lang_bandmap_required_submodes) + ': ' + modesList + ' (' + decodeHtml(lang_bandmap_submodes_settings_hint) + ')');
 		} else {
-			$btn.attr('title', lang_bandmap_no_submodes_configured);
+			$btn.attr('title', decodeHtml(lang_bandmap_no_submodes_configured));
 		}
 	}
 
@@ -3857,8 +3857,8 @@ $(function() {
 	});
 
 	// Initialize tooltips on page load
-	$('#toggleCatTracking').attr('data-bs-original-title', lang_bandmap_cat_off);
-	$('#toggleCatLock').attr('data-bs-original-title', lang_bandmap_cat_lock_off);
+	$('#toggleCatTracking').attr('data-bs-original-title', decodeHtml(lang_bandmap_cat_off));
+	$('#toggleCatLock').attr('data-bs-original-title', decodeHtml(lang_bandmap_cat_lock_off));
 
 	// ========================================
 	// RESPONSIVE COLUMN VISIBILITY

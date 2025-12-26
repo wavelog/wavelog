@@ -293,7 +293,7 @@ class eqsl extends CI_Controller {
 		return $table;
 	}
 
-	function image($id) {
+	function image($id, $width=null) {
 		$this->load->model('user_model');
 		if (!$this->user_model->authorize(2)) {
 			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
@@ -306,7 +306,15 @@ class eqsl extends CI_Controller {
 			$this->load->model('logbook_model');
 			$this->load->model('user_model');
 			$qso_query = $this->logbook_model->get_qso($id);
+
+			// Check if QSO exists and is accessible
+			if (!$qso_query || $qso_query->num_rows() == 0) {
+				show_error(__('QSO not found or not accessible'), 404);
+				return;
+			}
+
 			$qso = $qso_query->row();
+
 			$qso_timestamp = strtotime($qso->COL_TIME_ON);
 			$callsign = $qso->COL_CALL;
 			$band = $qso->COL_BAND;
@@ -318,46 +326,141 @@ class eqsl extends CI_Controller {
 			$minute = date('i', $qso_timestamp);
 
 			$query = $this->user_model->get_by_id($this->session->userdata('user_id'));
+			if ($query->num_rows() == 0) {
+				show_error(__('User not found'), 404);
+				return;
+			}
 			$q = $query->row();
 			$username = $qso->COL_STATION_CALLSIGN;
 			$password = $q->user_eqsl_password;
 
+			// Check if eQSL password is set
+			if (empty($password)) {
+				show_error(__('eQSL password not configured for this user'), 400);
+				return;
+			}
+
 			$image_url = $this->electronicqsl->card_image($username, urlencode($password), $callsign, $band, $mode, $year, $month, $day, $hour, $minute);
-			$file = file_get_contents($image_url, true);  // TODO use curl instead
+
+			// Use curl for better error handling instead of file_get_contents
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $image_url);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+			curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog-eQSL/1.0');
+			$file = curl_exec($ch);
+			$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+			curl_close($ch);
+
+			if ($file === false || $http_code != 200) {
+				show_error(__('Failed to fetch eQSL image data'), 503);
+				return;
+			}
 
 			$dom = new domDocument;
+			// Suppress warnings for malformed HTML
+			libxml_use_internal_errors(true);
 			$dom->loadHTML($file);
+			libxml_clear_errors();
 			$dom->preserveWhiteSpace = false;
 			$images = $dom->getElementsByTagName('img');
 
 			if (!isset($images) || count($images) == 0) {
 				$h3 = $dom->getElementsByTagName('h3');
 				if (isset($h3) && ($h3->item(0) !== null)) {
-					echo $h3->item(0)->nodeValue;
+					$error_message = $h3->item(0)->nodeValue;
 				} else {
-					echo "Rate Limited";
+					$error_message = "Rate Limited";
 				}
-				exit;
+				show_error(__('eQSL image not available') . ': ' . $error_message, 503);
+				return;
 			}
 
 			foreach ($images as $image) {
-				header('Content-Type: image/jpg');
-				$content = file_get_contents("https://www.eqsl.cc" . $image->getAttribute('src'));
-				if ($content === false) {
-					echo "No response";
-					exit;
+				$image_src = "https://www.eqsl.cc" . $image->getAttribute('src');
+
+				// Use curl for downloading the actual image
+				$ch = curl_init();
+				curl_setopt($ch, CURLOPT_URL, $image_src);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+				curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+				curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog-eQSL/1.0');
+				$content = curl_exec($ch);
+				$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+				curl_close($ch);
+
+				if ($content === false || $http_code != 200) {
+					show_error(__('Failed to download eQSL image'), 503);
+					return;
 				}
-				echo $content;
+
 				$filename = uniqid() . '.jpg';
-				if (file_put_contents($this->Eqsl_images->get_imagePath('p') . '/' . $filename, $content) !== false) {
+				$image_path = $this->Eqsl_images->get_imagePath('p') . '/' . $filename;
+				$save_result = file_put_contents($image_path, $content);
+
+				if ($save_result !== false) {
 					$this->Eqsl_images->save_image($id, $filename);
+				} else {
+					log_message('error', 'Failed to save eQSL image to: ' . $image_path);
 				}
+
+				$this->output_image_with_width($content, $width);
+				return; // Only process the first image found
 			}
 		} else {
-			header('Content-Type: image/jpg');
-			$image_url = base_url($this->Eqsl_images->get_imagePath() . '/' . $this->Eqsl_images->get_image($id));
-			header('Location: ' . $image_url);
+			// Load cached image
+			$image_file = $this->Eqsl_images->get_imagePath('p') . '/' . $this->Eqsl_images->get_image($id);
+			$content = file_get_contents($image_file);
+			if ($content !== false) {
+				$this->output_image_with_width($content, $width);
+			} else {
+				show_error(__('Failed to load cached eQSL image'), 500);
+			}
 		}
+	}
+
+	/**
+	 * Output image with optional width-based thumbnail generation
+	 * @param string $image_data Binary image data
+	 * @param int $width Desired width (null for original size)
+	 */
+	private function output_image_with_width($image_data, $width) {
+		header('Content-Type: image/jpg');
+
+		// If width is null or 0, output original image
+		if ($width!=(int)$width || $width === null || $width <= 0 || $width>1500) {	// Return original Image if huger 1500 or smaller 100 or crap
+			echo $image_data;
+			return;
+		}
+
+		// Generate thumbnail
+		$original_image = imagecreatefromstring($image_data);
+		if ($original_image === false) {
+			// Failed to process, output original
+			echo $image_data;
+			return;
+		}
+
+		$original_width = imagesx($original_image);
+		$original_height = imagesy($original_image);
+
+		// Calculate proportional height
+		$height = (int) (($original_height / $original_width) * $width);
+
+		// Create new image
+		$thumbnail = imagecreatetruecolor($width, $height);
+
+		// Resample
+		imagecopyresampled($thumbnail, $original_image, 0, 0, 0, 0, $width, $height, $original_width, $original_height);
+
+		// Output
+		imagejpeg($thumbnail, null, 90); // 90% quality
+
+		// Clean up
+		imagedestroy($original_image);
+		imagedestroy($thumbnail);
 	}
 
 	function bulk_download_image($id) {

@@ -145,6 +145,10 @@ class Logbookadvanced extends CI_Controller {
 			'wwff' => xss_clean($this->input->post('wwff')),
 			'qslimages' => xss_clean($this->input->post('qslimages')),
 			'dupes' => xss_clean($this->input->post('dupes')),
+			'dupedate' => xss_clean($this->input->post('dupedate')),
+			'dupemode' => xss_clean($this->input->post('dupemode')),
+			'dupeband' => xss_clean($this->input->post('dupeband')),
+			'dupesat' => xss_clean($this->input->post('dupesat')),
 			'operator' => xss_clean($this->input->post('operator')),
 			'contest' => xss_clean($this->input->post('contest')),
 			'invalid' => xss_clean($this->input->post('invalid')),
@@ -785,7 +789,6 @@ class Logbookadvanced extends CI_Controller {
 
 		header("Content-Type: application/json");
 		print json_encode($q);
-
 	}
 
 	public function fixItuZones() {
@@ -834,8 +837,11 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->model('logbookadvanced_model');
 		$result = $this->logbookadvanced_model->check_missing_continent();
 
-		header("Content-Type: application/json");
-		print json_encode($result);
+		$data['result'] = $result;
+
+		$data['type'] = 'continent';
+
+		$this->load->view('logbookadvanced/showUpdateResult', $data);
 	}
 
 	public function fixStateProgress() {
@@ -874,14 +880,129 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	public function updateDistances() {
+		if(!clubaccess_check(9)) return;
+
 		$this->load->model('logbookadvanced_model');
 		$result = $this->logbookadvanced_model->update_distances_batch();
 
-		header("Content-Type: application/json");
-		print json_encode($result);
+		$data['result'] = $result;
+
+		$data['type'] = 'distance';
+
+		$this->load->view('logbookadvanced/showUpdateResult', $data);
 	}
 
 	public function callbookDialog() {
 		$this->load->view('logbookadvanced/callbookdialog');
 	}
+
+	public function dbtoolsDialog() {
+		$this->load->view('logbookadvanced/dbtoolsdialog');
+	}
+
+	public function checkDb() {
+		if(!clubaccess_check(9)) return;
+
+		$type = $this->input->post('type', true);
+		$this->load->model('logbookadvanced_model');
+
+		$data['result'] = $this->logbookadvanced_model->runCheckDb($type);
+		if ($type == 'checkstate') {
+			$this->load->view('logbookadvanced/statecheckresult', $data);
+		} else {
+			$data['type'] = $type;
+			$this->load->view('logbookadvanced/checkresult', $data);
+		}
+
+	}
+
+	public function fixStateBatch() {
+		if(!clubaccess_check(9)) return;
+
+		$this->load->model('logbook_model');
+		$this->load->model('logbookadvanced_model');
+
+		$dxcc = $this->input->post('dxcc', true);
+		$data['country'] = $this->input->post('country', true);
+
+		// Process for batch QSO state fix
+		$result = $this->logbookadvanced_model->fixStateBatch($dxcc);
+
+		$data['result'] = $result;
+
+		$data['type'] = 'state';
+
+		$this->load->view('logbookadvanced/showUpdateResult', $data);
+	}
+
+	public function openStateList() {
+		if(!clubaccess_check(9)) return;
+
+		$this->load->model('logbookadvanced_model');
+
+		$data['dxcc'] = $this->input->post('dxcc', true);
+		$data['country'] = $this->input->post('country', true);
+
+		// Process for batch QSO state fix
+		$data['qsos'] = $this->logbookadvanced_model->getStateListQsos($data['dxcc']);
+
+		$this->load->view('logbookadvanced/showStateQsos', $data);
+	}
+
+	public function fixMissingDxcc() {
+		if(!clubaccess_check(9)) return;
+
+		$all = $this->input->post('all', true);
+		$this->load->model('logbookadvanced_model');
+        $result = $this->logbookadvanced_model->check_missing_dxcc_id($all);
+
+		$data['result'] = $result;
+		$data['all'] = $all;
+		$data['type'] = 'dxcc';
+
+		$this->load->view('logbookadvanced/showUpdateResult', $data);
+	}
+
+	public function openMissingDxccList() {
+		if(!clubaccess_check(9)) return;
+
+		$this->load->model('logbookadvanced_model');
+
+		$data['qsos'] = $this->logbookadvanced_model->getMissingDxccQsos();
+
+		$this->load->view('logbookadvanced/showMissingDxccQsos', $data);
+	}
+
+	public function batchFix() {
+		if(!clubaccess_check(9)) return;
+
+		$type = $this->input->post('type', true);
+		$this->load->model('logbookadvanced_model');
+		$result = $this->logbookadvanced_model->batchFix($type);
+
+		$data['result'] = $result;
+		$data['type'] = $type;
+
+		$this->load->view('logbookadvanced/showUpdateResult', $data);
+	}
+
+	function dupeSearchDialog() {
+		if(!clubaccess_check(9)) return;
+
+		$this->load->view('logbookadvanced/dupesearchdialog');
+	}
+
+	function fixDxccSelected() {
+		if(!clubaccess_check(9)) return;
+
+		$ids = xss_clean($this->input->post('ids'));
+
+		$this->load->model('logbookadvanced_model');
+		$result = $this->logbookadvanced_model->fixDxccSelected($ids);
+		$result['message'] = '<div class="alert alert-' . ($result['count'] == 0 ? 'danger' : 'success') . '" role="alert">' . sprintf(__("DXCC updated for %d QSO(s)."), $result['count']) . '</div>';
+
+		header("Content-Type: application/json");
+		print json_encode($result);
+	}
+
 }

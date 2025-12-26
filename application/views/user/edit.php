@@ -447,6 +447,7 @@
 											<?php if(!isset($user_dxwaterfall_enable)) { $user_dxwaterfall_enable='N'; }?>
 											<select class="form-select" id="user_dxwaterfall_enable" name="user_dxwaterfall_enable" aria-describedby="user_dxwaterfall_enable_Help" required>
 												<option value='Y' <?php if($user_dxwaterfall_enable == "Y") { echo "selected=\"selected\""; } ?>><?= __("Enabled"); ?></option>
+												<option value='E' <?php if($user_dxwaterfall_enable == "E") { echo "selected=\"selected\""; } ?>><?= __("Enabled").' '.__("squelched"); ?></option>
 												<option value='N' <?php if($user_dxwaterfall_enable == "N") { echo "selected=\"selected\""; } ?>><?= __("Disabled"); ?></option>
 											</select>
 											<small id="user_dxwaterfall_enable_Help" class="form-text text-muted"><?= __("Show an interactive DX Cluster 'Waterfall' on the QSO logging page."); ?></small>
@@ -548,8 +549,8 @@
 										</div>
 										<div class="mb-3 col-md-3">
 											<div class="icon_selectBox" data-boxcontent="qso">
-												<input type="hidden" name="user_map_qso_icon" value="<?php echo $user_map_qso_icon; ?>">
-												<div class="form-select icon_overSelect"><?php echo "<i class='".$user_map_qso_icon."'></i>"; ?></div>
+												<input type="hidden" name="user_map_qso_icon" value="<?php echo $user_map_qso_icon ?? "fas fa-dot-circle"; ?>">
+												<div class="form-select icon_overSelect"><?php echo "<i class='".($user_map_qso_icon ?? "fas fa-dot-circle")."'></i>"; ?></div>
 											</div>
 											<div class="col-md-3 icon_selectBox_data" data-boxcontent="qso">
 												<?php foreach($map_icon_select['qso'] as $val) {
@@ -558,7 +559,7 @@
 											</div>
 										</div>
 										<div class="mb-3 col-md-2">
-											<input type="color" class="form-control user_icon_color" name="user_map_qso_color" id="user_map_qso_color" value="<?php echo $user_map_qso_color; ?>" style="padding:initial;" data-icon="qso" />
+											<input type="color" class="form-control user_icon_color" name="user_map_qso_color" id="user_map_qso_color" value="<?php echo $user_map_qso_color ?? "#E5A50A"; ?>" style="padding:initial;" data-icon="qso" />
 										</div>
 									</div>
 									<div class="row"> <!-- QSO (confirmed) -->
@@ -568,8 +569,8 @@
 										</div>
 										<div class="mb-3 col-md-3">
 											<div class="icon_selectBox" data-boxcontent="qsoconfirm">
-												<input type="hidden" name="user_map_qsoconfirm_icon" value="<?php echo $user_map_qsoconfirm_icon; ?>">
-												<div class="form-select icon_overSelect"><?php echo (($user_map_qsoconfirm_icon=="0")?__("No"):("<i class='".$user_map_qsoconfirm_icon."'></i>")); ?></div>
+												<input type="hidden" name="user_map_qsoconfirm_icon" value="<?php echo $user_map_qsoconfirm_icon ?? "0"; ?>">
+												<div class="form-select icon_overSelect"><?php echo ((!isset($user_map_qsoconfirm_icon) || $user_map_qsoconfirm_icon=="0")?__("No"):("<i class='".($user_map_qsoconfirm_icon ?? "")."'></i>")); ?></div>
 											</div>
 											<div class="col-md-3 icon_selectBox_data" data-boxcontent="qsoconfirm">
 												<?php foreach($map_icon_select['qsoconfirm'] as $val) {
@@ -578,7 +579,7 @@
 											</div>
 										</div>
 										<div class="md-3 col-md-2">
-											<input type="color" class="form-control user_icon_color" name="user_map_qsoconfirm_color" id="user_map_qsoconfirm_color" value="<?php echo $user_map_qsoconfirm_color; ?>" style="padding:initial;<?php echo ($user_map_qsoconfirm_icon=="0")?'display:none;':''; ?>" data-icon="qsoconfirm" />
+											<input type="color" class="form-control user_icon_color" name="user_map_qsoconfirm_color" id="user_map_qsoconfirm_color" value="<?php echo $user_map_qsoconfirm_color ?? "#90EE90"; ?>" style="padding:initial;<?php echo (!isset($user_map_qsoconfirm_icon) || $user_map_qsoconfirm_icon=="0")?'display:none;':''; ?>" data-icon="qsoconfirm" />
 										</div>
 									</div>
 									<div class="row"> <!-- Unworked (zones) color -->
@@ -589,7 +590,7 @@
 										<div class="mb-3 col-md-3">
 										</div>
 										<div class="md-3 col-md-2">
-											<input type="color" class="form-control user_icon_color" name="user_map_unworked_color" id="user_map_unworked_color" value="<?php echo $user_map_unworked_color ?? 'red'; ?>" style="padding:initial;" data-icon="unworked" />
+											<input type="color" class="form-control user_icon_color" name="user_map_unworked_color" id="user_map_unworked_color" value="<?php echo $user_map_unworked_color ?? "#CC372D"; ?>" style="padding:initial;" data-icon="unworked" />
 										</div>
 									</div>
 									<div class="row">
@@ -684,7 +685,7 @@
 						</div>
 						<div class="col-md">
 							<div class="card">
-								<div class="card-header"><?= __("Show Reference Fields on QSO Tab"); ?></div>
+								<div class="card-header"><?= __("Show Fields on QSO Tab"); ?></div>
 								<div class="card-body">
 									<div class="row">
 										<div class="mb-3">
@@ -712,6 +713,10 @@
 											<div class="form-check form-switch">
 												<input name="user_dok_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="dokToQsoTab" <?php if ($user_dok_to_qso_tab ?? false) { echo 'checked'; } ?>>
 												<label class="form-check-label" for="dokToQsoTab" ><?= __("DOK"); ?></label>
+											</div>
+											<div class="form-check form-switch">
+												<input name="user_station_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="stationToQsoTab" <?php if ($user_station_to_qso_tab ?? false) { echo 'checked'; } ?>>
+												<label class="form-check-label" for="stationToQsoTab" ><?= __("Station Location"); ?></label>
 											</div>
 										</div>
 									</div>
