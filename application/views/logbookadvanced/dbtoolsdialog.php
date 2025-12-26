@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-5">
             <h5><?= __("Data Repair Tools") ?>
 			<a href="https://github.com/wavelog/wavelog/wiki/Advanced-Logbook#database-tools-dbtools" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-info me-1 ld-ext-right">
 					<?= __("Wiki Help") ?></a>
@@ -80,17 +80,16 @@
 
 				<div class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
-                        <h6 class="mb-1"><?= __("Re-check DXCC for all QSOs in the logbook") ?></h6>
+                        <h6 class="mb-1"><?= __("Check all QSOs in the logbook for incorrect DXCC") ?></h6>
                         <p class="mb-1 small text-muted"><?= __("Use Wavelog to determine DXCC for all QSOs.") ?></p>
-						<p class="mb-1 small alert-danger"><?= __("This will overwrite ALL existing DXCC information!") ?></p>
                     </div>
                     <div class="d-flex nowrap">
-                        <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="updateDxccBtn" onclick="fixMissingDxcc(true)">
-                            <?= __("Run") ?><div class="ld ld-ring ld-spin"></div>
+                        <button type="button" class="btn btn-sm btn-success me-1 ld-ext-right" id="checkDxccBtn" onclick="checkDxcc()">
+                            <?= __("Check") ?><div class="ld ld-ring ld-spin"></div>
                         </button>
                     </div>
                 </div>
-				<?php if ($this->config->item('callbook_batch_lookup') ?? true): ?>
+				<?php if (($this->config->item('callbook_batch_lookup') ?? true) && $this->config->item('callbook')): ?>
 				<div class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
                         <h6 class="mb-1"><?= __("Lookup QSOs with missing grid in callbook") ?></h6>
@@ -107,7 +106,7 @@
 
             </div>
         </div>
-		<div class="col-md-6 result"></div>
+		<div class="col-md-7 result"></div>
 
 
     </div>
