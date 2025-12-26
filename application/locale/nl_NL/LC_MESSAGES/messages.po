@@ -13,8 +13,8 @@ msgstr ""
 "POT-Creation-Date: 2025-12-26 07:44+0000\n"
 "PO-Revision-Date: 2025-12-26 16:35+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
-"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/nl/>\n"
+"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/nl/>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -125,6 +125,8 @@ msgstr ""
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/Eqsl.php:469 application/controllers/Eqsl.php:536
+#: application/controllers/Eqsl.php:552 application/controllers/Eqsl.php:613
 msgid "You're not allowed to do that!"
 msgstr "Je mag dat niet doen!"
 
@@ -1088,23 +1090,23 @@ msgstr "eQSL-afbeelding niet beschikbaar"
 msgid "Failed to download eQSL image"
 msgstr "Kon niet eQSL-afbeelding downloaden"
 
-#: application/controllers/Eqsl.php:495
+#: application/controllers/Eqsl.php:495 application/controllers/Eqsl.php:540
 msgid "eQSL Tools"
 msgstr "eQSL-hulpmiddelen"
 
-#: application/controllers/Eqsl.php:543
+#: application/controllers/Eqsl.php:543 application/controllers/Eqsl.php:588
 msgid " / Errors: "
 msgstr " / Fouten: "
 
-#: application/controllers/Eqsl.php:543
+#: application/controllers/Eqsl.php:543 application/controllers/Eqsl.php:588
 msgid "Successfully downloaded: "
 msgstr "Succesvol gedownload: "
 
-#: application/controllers/Eqsl.php:552
+#: application/controllers/Eqsl.php:552 application/controllers/Eqsl.php:597
 msgid "eQSL Card Image Download"
 msgstr "eQSL-kaart afbeelding downloaden"
 
-#: application/controllers/Eqsl.php:576
+#: application/controllers/Eqsl.php:576 application/controllers/Eqsl.php:621
 msgid "All eQSLs marked as uploaded"
 msgstr "Alle eQSL's gemarkeerd als geüpload"
 
@@ -18938,6 +18940,10 @@ msgstr "Verzoek indienen"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Ontvangen"
+
+#: application/controllers/Eqsl.php:419
+msgid "Failed to load cached eQSL image"
+msgstr ""
 
 #~ msgid "Re-check DXCC for all QSOs in the logbook"
 #~ msgstr "Controleer DXCC voor alle QSOs in het logboek opnieuw"
