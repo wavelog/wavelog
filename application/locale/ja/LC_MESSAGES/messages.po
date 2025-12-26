@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-24 16:42+0000\n"
+"POT-Creation-Date: 2025-12-26 07:33+0000\n"
 "PO-Revision-Date: 2025-12-22 23:48+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1892,6 +1892,11 @@ msgstr "DXCCを削除しました"
 #: application/controllers/Logbookadvanced.php:34
 msgid "Advanced logbook"
 msgstr "ログブックの詳細"
+
+#: application/controllers/Logbookadvanced.php:1002
+#, php-format
+msgid "DXCC updated for %d QSO(s)."
+msgstr ""
 
 #: application/controllers/Lookup.php:22
 msgid "Quick Lookup"
@@ -4356,6 +4361,7 @@ msgstr "何も見つかりません!"
 #: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:42
 #: application/views/eqslcard/index.php:28
 #: application/views/hamsat/index.php:30 application/views/labels/index.php:123
+#: application/views/logbookadvanced/checkresult.php:133
 #: application/views/logbookadvanced/qslcarousel.php:30
 #: application/views/logbookadvanced/showUpdateResult.php:60
 #: application/views/logbookadvanced/showUpdateResult.php:104
@@ -7231,6 +7237,7 @@ msgstr "バンド / 衛星 / 軌道"
 #: application/views/calltester/comparison_result.php:97
 #: application/views/calltester/comparison_result.php:133
 #: application/views/calltester/result.php:23
+#: application/views/logbookadvanced/checkresult.php:134
 #: application/views/oqrs/showrequests.php:86
 #: application/views/simplefle/index.php:78
 msgid "QSO Date"
@@ -8777,6 +8784,7 @@ msgstr ""
 #: application/views/calltester/comparison_result.php:98
 #: application/views/calltester/comparison_result.php:134
 #: application/views/calltester/result.php:24
+#: application/views/logbookadvanced/checkresult.php:135
 msgid "Station Profile"
 msgstr ""
 
@@ -8784,6 +8792,7 @@ msgstr ""
 #: application/views/calltester/comparison_result.php:99
 #: application/views/calltester/comparison_result.php:135
 #: application/views/calltester/result.php:25
+#: application/views/logbookadvanced/checkresult.php:136
 msgid "Existing DXCC"
 msgstr ""
 
@@ -8798,6 +8807,7 @@ msgstr ""
 #: application/views/calltester/comparison_result.php:101
 #: application/views/calltester/comparison_result.php:137
 #: application/views/calltester/result.php:27
+#: application/views/logbookadvanced/checkresult.php:137
 msgid "Result DXCC"
 msgstr ""
 
@@ -8841,14 +8851,17 @@ msgid "Compare DXCC class and logbook model"
 msgstr ""
 
 #: application/views/calltester/result.php:4
+#: application/views/logbookadvanced/checkresult.php:117
 msgid "Callsigns tested: "
 msgstr ""
 
 #: application/views/calltester/result.php:5
+#: application/views/logbookadvanced/checkresult.php:118
 msgid "Execution time: "
 msgstr ""
 
 #: application/views/calltester/result.php:6
+#: application/views/logbookadvanced/checkresult.php:119
 msgid "Number of potential QSOs with wrong DXCC: "
 msgstr ""
 
@@ -10633,11 +10646,11 @@ msgid "Check for new version"
 msgstr "新しいバージョンを確認する"
 
 #: application/views/debug/index.php:495
-#: application/views/logbookadvanced/checkresult.php:37
-#: application/views/logbookadvanced/checkresult.php:53
-#: application/views/logbookadvanced/checkresult.php:76
-#: application/views/logbookadvanced/checkresult.php:87
-#: application/views/logbookadvanced/checkresult.php:97
+#: application/views/logbookadvanced/checkresult.php:50
+#: application/views/logbookadvanced/checkresult.php:66
+#: application/views/logbookadvanced/checkresult.php:89
+#: application/views/logbookadvanced/checkresult.php:100
+#: application/views/logbookadvanced/checkresult.php:110
 #: application/views/logbookadvanced/index.php:57
 msgid "Update now"
 msgstr "今すぐ更新"
@@ -12513,20 +12526,20 @@ msgstr ""
 "元の値を保持し、一致が確実な場合はより正確なロケーター (例: JO90AB または "
 "JO90AB12) を追加します。"
 
-#: application/views/logbookadvanced/checkresult.php:27
+#: application/views/logbookadvanced/checkresult.php:40
 msgid "Distance Check Results"
 msgstr "距離チェック結果"
 
-#: application/views/logbookadvanced/checkresult.php:28
-#: application/views/logbookadvanced/checkresult.php:44
-#: application/views/logbookadvanced/checkresult.php:60
-#: application/views/logbookadvanced/checkresult.php:72
-#: application/views/logbookadvanced/checkresult.php:83
-#: application/views/logbookadvanced/checkresult.php:94
+#: application/views/logbookadvanced/checkresult.php:41
+#: application/views/logbookadvanced/checkresult.php:57
+#: application/views/logbookadvanced/checkresult.php:73
+#: application/views/logbookadvanced/checkresult.php:85
+#: application/views/logbookadvanced/checkresult.php:96
+#: application/views/logbookadvanced/checkresult.php:107
 msgid "QSOs to update found:"
 msgstr "更新されたQSOが見つかりました："
 
-#: application/views/logbookadvanced/checkresult.php:31
+#: application/views/logbookadvanced/checkresult.php:44
 #: application/views/logbookadvanced/distancedialog.php:2
 msgid ""
 "Update all QSOs with the distance based on your gridsquare set in the "
@@ -12537,57 +12550,62 @@ msgstr ""
 "に基づき、全QSOの距離を更新します。距離はショートパスまたはロングパスの設定に"
 "応じて計算されます。"
 
-#: application/views/logbookadvanced/checkresult.php:32
+#: application/views/logbookadvanced/checkresult.php:45
 #: application/views/logbookadvanced/distancedialog.php:3
 msgid "This is useful if you have imported QSOs without distance information."
 msgstr "距離情報のないQSOをインポートした場合に便利です。"
 
-#: application/views/logbookadvanced/checkresult.php:33
+#: application/views/logbookadvanced/checkresult.php:46
 #: application/views/logbookadvanced/distancedialog.php:4
 msgid "Update will only set the distance for QSOs where the distance is empty."
 msgstr "更新は、距離が空欄のQSOに対してのみ距離を設定します。"
 
-#: application/views/logbookadvanced/checkresult.php:43
+#: application/views/logbookadvanced/checkresult.php:56
 msgid "Continent Check Results"
 msgstr "大陸チェック結果"
 
-#: application/views/logbookadvanced/checkresult.php:47
+#: application/views/logbookadvanced/checkresult.php:60
 #: application/views/logbookadvanced/continentdialog.php:2
 msgid ""
 "Update all QSOs with the continent based on the DXCC country of the QSO."
 msgstr "QSOのDXCC国に基づいて、すべての大陸情報を更新してください。"
 
-#: application/views/logbookadvanced/checkresult.php:48
+#: application/views/logbookadvanced/checkresult.php:61
 #: application/views/logbookadvanced/continentdialog.php:3
 msgid "This is useful if you have imported QSOs without continent information."
 msgstr "大陸情報が含まれていないQSOをインポートした場合に便利です。"
 
-#: application/views/logbookadvanced/checkresult.php:49
+#: application/views/logbookadvanced/checkresult.php:62
 #: application/views/logbookadvanced/continentdialog.php:4
 msgid ""
 "Update will only set the continent for QSOs where the continent is empty."
 msgstr "更新は、大陸が空欄のQSOに対してのみ大陸を設定します。"
 
-#: application/views/logbookadvanced/checkresult.php:59
+#: application/views/logbookadvanced/checkresult.php:72
+#: application/views/logbookadvanced/checkresult.php:115
 msgid "DXCC Check Results"
 msgstr "DXCCチェック結果"
 
-#: application/views/logbookadvanced/checkresult.php:64
+#: application/views/logbookadvanced/checkresult.php:77
 #: application/views/logbookadvanced/statecheckresult.php:30
 msgid "Run fix"
 msgstr "修正を実行"
 
-#: application/views/logbookadvanced/checkresult.php:71
+#: application/views/logbookadvanced/checkresult.php:84
 msgid "CQ Zone Check Results"
 msgstr "CQゾーンチェック結果"
 
-#: application/views/logbookadvanced/checkresult.php:82
+#: application/views/logbookadvanced/checkresult.php:95
 msgid "ITU Zone Check Results"
 msgstr "ITUゾーンチェック結果"
 
-#: application/views/logbookadvanced/checkresult.php:93
+#: application/views/logbookadvanced/checkresult.php:106
 msgid "Gridsquare Check Results"
 msgstr "グリッドスクエア チェック結果"
+
+#: application/views/logbookadvanced/checkresult.php:124
+msgid "Update selected"
+msgstr ""
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:4
 msgid "Data Repair Tools"
@@ -12612,7 +12630,8 @@ msgstr "不足しているCQゾーン情報を更新"
 #: application/views/logbookadvanced/dbtoolsdialog.php:52
 #: application/views/logbookadvanced/dbtoolsdialog.php:64
 #: application/views/logbookadvanced/dbtoolsdialog.php:76
-#: application/views/logbookadvanced/dbtoolsdialog.php:102
+#: application/views/logbookadvanced/dbtoolsdialog.php:88
+#: application/views/logbookadvanced/dbtoolsdialog.php:101
 msgid "Check"
 msgstr "チェック"
 
@@ -12655,30 +12674,22 @@ msgid "Identify QSOs that are missing DXCC information"
 msgstr "DXCC情報が欠落しているQSOを特定する"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:83
-msgid "Re-check DXCC for all QSOs in the logbook"
-msgstr "ログブック内のすべてのQSOのDXCCを再確認する"
+msgid "Check all QSOs in the logbook for incorrect DXCC"
+msgstr ""
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:84
 msgid "Use Wavelog to determine DXCC for all QSOs."
 msgstr "Wavelog を使用して、すべての QSO の DXCC を決定します。"
 
-#: application/views/logbookadvanced/dbtoolsdialog.php:85
-msgid "This will overwrite ALL existing DXCC information!"
-msgstr "これにより、既存のすべての DXCC 情報が上書きされます！"
-
-#: application/views/logbookadvanced/dbtoolsdialog.php:89
-msgid "Run"
-msgstr "実行"
-
-#: application/views/logbookadvanced/dbtoolsdialog.php:96
+#: application/views/logbookadvanced/dbtoolsdialog.php:95
 msgid "Lookup QSOs with missing grid in callbook"
 msgstr "コールブックのグリッドが欠落しているQSOを検索する"
 
-#: application/views/logbookadvanced/dbtoolsdialog.php:97
+#: application/views/logbookadvanced/dbtoolsdialog.php:96
 msgid "Use callbook lookup to set gridsquare"
 msgstr "コールブック検索を使用してグリッドスクエアを設定する"
 
-#: application/views/logbookadvanced/dbtoolsdialog.php:98
+#: application/views/logbookadvanced/dbtoolsdialog.php:97
 msgid "This is limited to 150 callsigns for each run!"
 msgstr ""
 
@@ -18755,6 +18766,15 @@ msgstr "リクエストを送信"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "受信"
+
+#~ msgid "Re-check DXCC for all QSOs in the logbook"
+#~ msgstr "ログブック内のすべてのQSOのDXCCを再確認する"
+
+#~ msgid "This will overwrite ALL existing DXCC information!"
+#~ msgstr "これにより、既存のすべての DXCC 情報が上書きされます！"
+
+#~ msgid "Run"
+#~ msgstr "実行"
 
 #~ msgid "This is limited to 250 callsigns for each run!"
 #~ msgstr "実行ごとに250個のコールサインに制限されます!"
