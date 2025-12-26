@@ -299,6 +299,10 @@ class eqsl extends CI_Controller {
 			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 		}
+		$etag=$this->gen_check_etag("wl_eqsl_cacher_".$id,$width);
+		if ($etag == '0') { // Cached on Client side
+			return; 
+		}
 		$this->load->library('electronicqsl');
 		$this->load->model('Eqsl_images');
 
@@ -406,19 +410,39 @@ class eqsl extends CI_Controller {
 					log_message('error', 'Failed to save eQSL image to: ' . $image_path);
 				}
 
-				$this->output_image_with_width($content, $width);
+				$this->output_image_with_width($content, $width, $etag);	// This must be 1st time (because it's freshly fetched from eQSL) - so add the etag
 				return; // Only process the first image found
 			}
 		} else {
-			// Load cached image
-			$image_file = $this->Eqsl_images->get_imagePath('p') . '/' . $this->Eqsl_images->get_image($id);
-			$content = file_get_contents($image_file);
-			if ($content !== false) {
-				$this->output_image_with_width($content, $width);
-			} else {
-				show_error(__('Failed to load cached eQSL image'), 500);
+			// Load server-cached image if etag isn't 0
+			if ($etag != '0') {
+				$image_file = $this->Eqsl_images->get_imagePath('p') . '/' . $this->Eqsl_images->get_image($id);
+				$content = file_get_contents($image_file);
+				if ($content !== false) {
+					$this->output_image_with_width($content, $width, $etag);
+				} else {
+					show_error(__('Failed to load cached eQSL image'), 500);
+				}
 			}
 		}
+	}
+
+	private function gen_check_etag($eta,$modifier) {
+
+		$etag = '"' . md5($eta.$modifier) . '"';
+
+		if (isset($_SERVER['HTTP_IF_NONE_MATCH']) &&
+		    trim($_SERVER['HTTP_IF_NONE_MATCH']) === $etag) {
+			session_write_close();
+			session_cache_limiter('public');
+			header('HTTP/1.1 304 Not Modified');
+			header('ETag: ' . $etag);
+			header('Pragma: public');
+			header('Cache-Control: public, max-age=31536000, immutable'); 
+			header('Expires: ' . gmdate('D, d M Y H:i:s', strtotime('+1 year')) . ' GMT'); // Never expire
+			return '0';
+		}
+		return $etag;
 	}
 
 	/**
@@ -426,8 +450,15 @@ class eqsl extends CI_Controller {
 	 * @param string $image_data Binary image data
 	 * @param int $width Desired width (null for original size)
 	 */
-	private function output_image_with_width($image_data, $width) {
+	private function output_image_with_width($image_data, $width, $etag) {
+		session_write_close();
+		session_cache_limiter('public');
+
 		header('Content-Type: image/jpg');
+		header('ETag: ' . $etag);
+		header('Pragma: public');
+		header('Cache-Control: public, max-age=31536000, immutable'); 
+		header('Expires: ' . gmdate('D, d M Y H:i:s', strtotime('+1 year')) . ' GMT'); // Never expire
 
 		// If width is null or 0, output original image
 		if ($width!=(int)$width || $width === null || $width <= 0 || $width>1500) {	// Return original Image if huger 1500 or smaller 100 or crap

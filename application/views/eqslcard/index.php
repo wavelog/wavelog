@@ -61,7 +61,7 @@
          echo '<td style=\'text-align: center\'>';
          if ($qsl->COL_EQSL_QSLRDATE) { $timestamp = strtotime($qsl->COL_EQSL_QSLRDATE); echo date($custom_date_format, $timestamp); }
          echo '</td>';
-            echo '<td style=\'text-align: center\'><a href=\''.site_url('eqsl/image/'.$qsl->COL_PRIMARY_KEY).'\' data-fancybox=\'images\' data-width=\'528\' data-height=\'336\' class=\'btn btn-sm btn-success\'>' . __("View") . '<img src=\''.site_url('eqsl/image/'.$qsl->COL_PRIMARY_KEY).'/160\' height="100px"></a></td>';
+            echo '<td style=\'text-align: center\'><a href=\''.site_url('eqsl/image/'.$qsl->COL_PRIMARY_KEY).'\' data-fancybox=\'images\' data-width=\'528\' data-height=\'336\' class=\'btn btn-sm btn-success\'>' . __("View") . '<img loading=\'lazy\' src=\''.site_url('eqsl/image/'.$qsl->COL_PRIMARY_KEY).'/160\' height="100px"></a></td>';
             echo '</tr>';
         }
 
