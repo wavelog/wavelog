@@ -593,6 +593,11 @@ $(document).ready(function() {
         // Build icon with Bootstrap color class and ID for animation
         var icon = '<i id="radio-status-icon" class="fas fa-radio ' + iconClass + '" style="margin-right: 10px; font-size: 1.2em;"></i>';
         var html = baseStyle + icon + content + '</div>';
+	if (($(".radios option:selected").val() == 'ws') && (data.radio != undefined)) {	// Are we on websocket? add hiddenfield with radioName
+		$("#radio_ws_name").val(data.radio);
+	} else {
+		$("#radio_ws_name").val('');
+	}
 
 		// Update DOM based on global CAT_COMPACT_MODE setting
 		if (window.CAT_COMPACT_MODE === 'icon-only') {

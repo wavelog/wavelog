@@ -173,7 +173,9 @@ class Logbook_model extends CI_Model {
 			$tx_power = null;
 		}
 
-		if (($this->input->post('radio',TRUE) ?? 0) != 0) {
+		if (($this->input->post('radio',TRUE) ?? '') == 'ws') {	// WebSocket
+			$radio_name=$this->input->post('radio_ws_name',TRUE);
+		} elseif (($this->input->post('radio',TRUE) ?? 0) != 0) {
 			$this->load->model('cat');
 			$radio_name=$this->cat->radio_status($this->input->post('radio',TRUE))->row()->radio ?? '';
 		} else {
