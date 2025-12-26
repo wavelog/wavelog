@@ -293,7 +293,7 @@ class eqsl extends CI_Controller {
 		return $table;
 	}
 
-	function image($id) {
+	function image($id, $width=null) {
 		$this->load->model('user_model');
 		if (!$this->user_model->authorize(2)) {
 			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
@@ -396,9 +396,6 @@ class eqsl extends CI_Controller {
 					return;
 				}
 
-				header('Content-Type: image/jpg');
-				echo $content;
-
 				$filename = uniqid() . '.jpg';
 				$image_path = $this->Eqsl_images->get_imagePath('p') . '/' . $filename;
 				$save_result = file_put_contents($image_path, $content);
@@ -409,13 +406,61 @@ class eqsl extends CI_Controller {
 					log_message('error', 'Failed to save eQSL image to: ' . $image_path);
 				}
 
+				$this->output_image_with_width($content, $width);
 				return; // Only process the first image found
 			}
 		} else {
-			header('Content-Type: image/jpg');
-			$image_url = base_url($this->Eqsl_images->get_imagePath() . '/' . $this->Eqsl_images->get_image($id));
-			header('Location: ' . $image_url);
+			// Load cached image
+			$image_file = $this->Eqsl_images->get_imagePath('p') . '/' . $this->Eqsl_images->get_image($id);
+			$content = file_get_contents($image_file);
+			if ($content !== false) {
+				$this->output_image_with_width($content, $width);
+			} else {
+				show_error(__('Failed to load cached eQSL image'), 500);
+			}
 		}
+	}
+
+	/**
+	 * Output image with optional width-based thumbnail generation
+	 * @param string $image_data Binary image data
+	 * @param int $width Desired width (null for original size)
+	 */
+	private function output_image_with_width($image_data, $width) {
+		header('Content-Type: image/jpg');
+
+		// If width is null or 0, output original image
+		if ($width!=(int)$width || $width === null || $width <= 0 || $width>1500) {	// Return original Image if huger 1500 or smaller 100 or crap
+			echo $image_data;
+			return;
+		}
+
+		// Generate thumbnail
+		$original_image = imagecreatefromstring($image_data);
+		if ($original_image === false) {
+			// Failed to process, output original
+			echo $image_data;
+			return;
+		}
+
+		$original_width = imagesx($original_image);
+		$original_height = imagesy($original_image);
+
+		// Calculate proportional height
+		$height = (int) (($original_height / $original_width) * $width);
+
+		// Create new image
+		$thumbnail = imagecreatetruecolor($width, $height);
+
+		// Resample
+		imagecopyresampled($thumbnail, $original_image, 0, 0, 0, 0, $width, $height, $original_width, $original_height);
+
+		// Output
+		imagejpeg($thumbnail, null, 90); // 90% quality
+
+		// Clean up
+		imagedestroy($original_image);
+		imagedestroy($thumbnail);
 	}
 
 	function bulk_download_image($id) {
