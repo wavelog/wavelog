@@ -2434,10 +2434,13 @@ $('#sats').change(function(){
     </script>
     <?php if ($this->uri->segment(1) == "qsl") {
         $qsl_eqsl_table = '.qsltable';
+        $qsl_eqsl_info = 'true';
     } else if ($this->uri->segment(1) == "generic_qsl") {
         $qsl_eqsl_table = '.qsltable';
+        $qsl_eqsl_info = 'true';
     } else if ($this->uri->segment(1) == "eqsl") {
         $qsl_eqsl_table = '.eqsltable';
+        $qsl_eqsl_info = 'false'; // Server-side pagination, hide DataTables info
     } ?>
     <script>
         $('<?php echo $qsl_eqsl_table ?>').DataTable({
@@ -2452,6 +2455,7 @@ $('#sats').change(function(){
                 url: getDataTablesLanguageUrl(),
             },
             "order": [ 2, 'desc' ],
+            "info": <?php echo $qsl_eqsl_info; ?>,
             dom: 'Bfrtip',
             buttons: [
 				{

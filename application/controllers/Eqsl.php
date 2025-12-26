@@ -29,12 +29,31 @@ class eqsl extends CI_Controller {
 		$folder_name = $this->eqsl_images->get_imagePath('p');
 		$data['storage_used'] = $this->genfunctions->sizeFormat($this->genfunctions->folderSize($folder_name));
 
+		// Pagination
+		$this->load->library('pagination');
+		$config['base_url'] = base_url().'index.php/eqsl/index/';
+		$config['total_rows'] = $this->eqsl_images->count_eqsl_qso_list();
+		$config['per_page'] = '25';
+		$config['num_links'] = 6;
+		$config['full_tag_open'] = '';
+		$config['full_tag_close'] = '';
+		$config['cur_tag_open'] = '<strong class="active"><a href="">';
+		$config['cur_tag_close'] = '</a></strong>';
+
+		$this->pagination->initialize($config);
 
 		// Render Page
 		$data['page_title'] = __("eQSL Cards");
 
+		$offset = $this->uri->segment(3) ? $this->uri->segment(3) : 0;
+		$data['qslarray'] = $this->eqsl_images->eqsl_qso_list($config['per_page'], $offset);
 
-		$data['qslarray'] = $this->eqsl_images->eqsl_qso_list();
+		// Calculate result range for display
+		$total_rows = $config['total_rows'];
+		$per_page = $config['per_page'];
+		$start = $total_rows > 0 ? $offset + 1 : 0;
+		$end = min($offset + $per_page, $total_rows);
+		$data['result_range'] = sprintf(__("Showing %d to %d of %d entries"), $start, $end, $total_rows);
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('eqslcard/index');
