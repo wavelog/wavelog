@@ -1,4 +1,14 @@
 <?php
+// Get Date format
+if($this->session->userdata('user_date_format')) {
+	// If Logged in and session exists
+	$custom_date_format = $this->session->userdata('user_date_format');
+} else {
+	// Get Default date format from /config/wavelog.php
+	$custom_date_format = $this->config->item('qso_date_format');
+}
+
+
 switch ($type) {
 	case 'checkdistance':
 		check_missing_distance($result);
@@ -6,7 +16,7 @@ switch ($type) {
 	case 'checkcontinent':
 		check_qsos_missing_continent($result);
 		break;
-	case 'checkdxcc':
+	case 'checkmissingdxcc':
 		check_missing_dxcc($result);
 		break;
 	case 'checkcqzones':
@@ -17,6 +27,9 @@ switch ($type) {
 		break;
 	case 'checkgrids':
 		check_missing_grids($result);
+		break;
+	case 'checkdxcc':
+		check_dxcc($result, $custom_date_format);
 		break;
 	default:
 		// Invalid type
@@ -97,3 +110,47 @@ function check_missing_grids($result) { ?>
 		<?= __("Update now") ?><div class="ld ld-ring ld-spin"></div>
 	</button>
 <?php }
+
+function check_dxcc($result, $custom_date_format) { ?>
+	<h5><?= __("DXCC Check Results") ?></h5>
+	<?php
+		echo __("Callsigns tested: ") .  $result['calls_tested'] . ". <br />";
+		echo __("Execution time: ") . round($result['execution_time'], 2) . "s. <br />";
+		echo __("Number of potential QSOs with wrong DXCC: ") . count($result['result']);
+
+		if ($result) { ?>
+		<br />
+		<button type="button" class="mt-2 mb-2 btn btn-sm btn-primary ld-ext-right" id="fixSelectedDxccBtn" onclick="fixDxccSelected(true)">
+			<?= __("Update selected") ?><div class="ld ld-ring ld-spin"></div>
+		</button>
+		<div class="dxcctablediv"></div>
+
+			<div class="table-responsive" style="max-height:60vh; overflow:auto;">
+				<table class="table table-sm table-striped table-bordered table-condensed" id="dxccCheckTable">
+					<thead>
+						<tr>
+							<th><div class="form-check"><input class="form-check-input mt-2" type="checkbox" id="checkBoxAllDxcc" /></div></th>
+							<th><?= __("Callsign"); ?></th>
+							<th><?= __("QSO Date"); ?></th>
+							<th><?= __("Station Profile"); ?></th>
+							<th><?= __("Existing DXCC"); ?></th>
+							<th><?= __("Result DXCC"); ?></th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach ($result['result'] as $qso): ?>
+								<tr id="qsoID-<?php echo $qso['id']; ?>">
+									<td><div class="form-check"><input class="row-check form-check-input mt-1" type="checkbox" /></div></td>
+									<td><?php echo '<a id="edit_qso" href="javascript:displayQso(' . $qso['id'] . ')">' . htmlspecialchars($qso['callsign']) . '</a>'; ?></td>
+									<td><?php echo date($custom_date_format, strtotime($qso['qso_date'])); ?></td>
+									<td><?php echo $qso['station_profile']; ?></td>
+									<td><?php echo htmlspecialchars(ucwords(strtolower($qso['existing_dxcc']), "- (/"), ENT_QUOTES, 'UTF-8'); ?></td>
+									<td><?php echo htmlspecialchars(ucwords(strtolower($qso['result_country']), "- (/"), ENT_QUOTES, 'UTF-8'); ?></td>
+								</tr>
+						<?php endforeach; ?>
+					</tbody>
+				</table>
+			</div>
+
+		<?php }
+}

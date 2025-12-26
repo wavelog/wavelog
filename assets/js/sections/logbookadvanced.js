@@ -1319,7 +1319,7 @@ $(document).ready(function () {
 			success: function (html) {
 				BootstrapDialog.show({
 					title: 'Database tools',
-					size: BootstrapDialog.SIZE_WIDE,
+					size: BootstrapDialog.SIZE_EXTRAWIDE,
 					cssClass: 'options',
 					nl2br: false,
 					message: html,
@@ -2059,7 +2059,7 @@ function saveOptions() {
 		$.ajax({
 			url: base_url + 'index.php/logbookadvanced/checkDb',
 			data: {
-				type: 'checkdxcc'
+				type: 'checkmissingdxcc'
 			},
 			type: 'POST',
 			success: function(response) {
@@ -2509,6 +2509,111 @@ function saveOptions() {
 			},
 			error: function(xhr, status, error) {
 				$('#updateGridsBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				$('.result').html(error);
+			}
+		});
+	}
+
+	function checkDxcc() {
+		$('#checkDxccBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/checkDb',
+			data: {
+				type: 'checkdxcc'
+			},
+			type: 'POST',
+			success: function(response) {
+				$('#checkDxccBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				$('.result').html(response);
+				rebind_checkbox_trigger_dxcc();
+			},
+			error: function(xhr, status, error) {
+				$('#checkDxccBtn').prop('disabled', false).text('<?= __("Check") ?>');
+				$('#closeButton').prop('disabled', false);
+
+				let errorMsg = 'Error checking DXCC information';
+				if (xhr.responseJSON && xhr.responseJSON.message) {
+					errorMsg += ': ' + xhr.responseJSON.message;
+				}
+
+				BootstrapDialog.alert({
+					title: 'Error',
+					message: errorMsg,
+					type: BootstrapDialog.TYPE_DANGER
+				});
+			}
+		});
+	}
+
+	function rebind_checkbox_trigger_dxcc() {
+		$('#checkBoxAllDxcc').change(function (event) {
+			if (this.checked) {
+				$('#dxccCheckTable tbody tr').each(function (i) {
+					selectQsoIDDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''));
+				});
+			} else {
+				$('#dxccCheckTable tbody tr').each(function (i) {
+					unselectQsoIDDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''));
+				});
+			}
+		});
+	}
+
+	function selectQsoIDDxcc(qsoID) {
+		var element = $("#qsoID-" + qsoID);
+		element.find("input[type=checkbox]").prop("checked", true);
+		element.addClass('activeRow');
+	}
+
+	function unselectQsoIDDxcc(qsoID) {
+		var element = $("#qsoID-" + qsoID);
+		element.find("input[type=checkbox]").prop("checked", false);
+		element.removeClass('activeRow');
+		$('#checkBoxAllDxcc').prop("checked", false);
+	}
+
+	function fixDxccSelected() {
+		let id_list = [];
+		$('#dxccCheckTable tbody input:checked').each(function () {
+			let id = $(this).closest('tr').attr('id')?.replace(/\D/g, '');
+			id_list.push(id);
+		});
+
+		if (id_list.length === 0) {
+			BootstrapDialog.alert({
+				title: lang_gen_advanced_logbook_info,
+				message: lang_gen_advanced_logbook_select_at_least_one_row,
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
+			return;
+		}
+
+		$('#fixSelectedDxccBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/fixDxccSelected',
+			type: 'post',
+			data: {'ids': JSON.stringify(id_list, null, 2)},
+			success: function(data) {
+				$('#fixSelectedDxccBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				id_list.forEach(function(id) {
+					let row = $("#dxccCheckTable tbody tr#qsoID-" + id);
+					row.remove();
+				});
+				$('.dxcctablediv').html(data.message);
+			},
+			error: function(xhr, status, error) {
+				$('#fixSelectedDxccBtn').prop("disabled", false).removeClass("running");
 				$('#closeButton').prop("disabled", false);
 				$('.result').html(error);
 			}
