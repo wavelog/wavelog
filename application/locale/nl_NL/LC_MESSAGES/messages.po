@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-24 16:42+0000\n"
+"POT-Creation-Date: 2025-12-26 07:33+0000\n"
 "PO-Revision-Date: 2025-12-24 16:31+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1896,6 +1896,11 @@ msgstr "Verwijderde DXCC"
 #: application/controllers/Logbookadvanced.php:34
 msgid "Advanced logbook"
 msgstr "Geavanceerd logboek"
+
+#: application/controllers/Logbookadvanced.php:1002
+#, php-format
+msgid "DXCC updated for %d QSO(s)."
+msgstr ""
 
 #: application/controllers/Lookup.php:22
 msgid "Quick Lookup"
@@ -4366,6 +4371,7 @@ msgstr "Niets gevonden!"
 #: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:42
 #: application/views/eqslcard/index.php:28
 #: application/views/hamsat/index.php:30 application/views/labels/index.php:123
+#: application/views/logbookadvanced/checkresult.php:133
 #: application/views/logbookadvanced/qslcarousel.php:30
 #: application/views/logbookadvanced/showUpdateResult.php:60
 #: application/views/logbookadvanced/showUpdateResult.php:104
@@ -7289,6 +7295,7 @@ msgstr "Band / Satelliet / Baan"
 #: application/views/calltester/comparison_result.php:97
 #: application/views/calltester/comparison_result.php:133
 #: application/views/calltester/result.php:23
+#: application/views/logbookadvanced/checkresult.php:134
 #: application/views/oqrs/showrequests.php:86
 #: application/views/simplefle/index.php:78
 msgid "QSO Date"
@@ -8841,6 +8848,7 @@ msgstr "Problemen alleen gevonden in DXCC-klasse (niet in Logboekmodel):"
 #: application/views/calltester/comparison_result.php:98
 #: application/views/calltester/comparison_result.php:134
 #: application/views/calltester/result.php:24
+#: application/views/logbookadvanced/checkresult.php:135
 msgid "Station Profile"
 msgstr "Stationprofiel"
 
@@ -8848,6 +8856,7 @@ msgstr "Stationprofiel"
 #: application/views/calltester/comparison_result.php:99
 #: application/views/calltester/comparison_result.php:135
 #: application/views/calltester/result.php:25
+#: application/views/logbookadvanced/checkresult.php:136
 msgid "Existing DXCC"
 msgstr "Huidige DXCC"
 
@@ -8862,6 +8871,7 @@ msgstr "Huidige ADIF"
 #: application/views/calltester/comparison_result.php:101
 #: application/views/calltester/comparison_result.php:137
 #: application/views/calltester/result.php:27
+#: application/views/logbookadvanced/checkresult.php:137
 msgid "Result DXCC"
 msgstr "Resultaat DXCC"
 
@@ -8907,14 +8917,17 @@ msgid "Compare DXCC class and logbook model"
 msgstr "Vergelijk DXCC klasse en logboek model"
 
 #: application/views/calltester/result.php:4
+#: application/views/logbookadvanced/checkresult.php:117
 msgid "Callsigns tested: "
 msgstr "Roepnamen getest: "
 
 #: application/views/calltester/result.php:5
+#: application/views/logbookadvanced/checkresult.php:118
 msgid "Execution time: "
 msgstr "Uitvoeringstijd: "
 
 #: application/views/calltester/result.php:6
+#: application/views/logbookadvanced/checkresult.php:119
 msgid "Number of potential QSOs with wrong DXCC: "
 msgstr "Aantal potentiële QSOs met verkeerde DXCC: "
 
@@ -10708,11 +10721,11 @@ msgid "Check for new version"
 msgstr "Controleer op nieuwe versie"
 
 #: application/views/debug/index.php:495
-#: application/views/logbookadvanced/checkresult.php:37
-#: application/views/logbookadvanced/checkresult.php:53
-#: application/views/logbookadvanced/checkresult.php:76
-#: application/views/logbookadvanced/checkresult.php:87
-#: application/views/logbookadvanced/checkresult.php:97
+#: application/views/logbookadvanced/checkresult.php:50
+#: application/views/logbookadvanced/checkresult.php:66
+#: application/views/logbookadvanced/checkresult.php:89
+#: application/views/logbookadvanced/checkresult.php:100
+#: application/views/logbookadvanced/checkresult.php:110
 #: application/views/logbookadvanced/index.php:57
 msgid "Update now"
 msgstr "Nu bijwerken"
@@ -12592,20 +12605,20 @@ msgstr ""
 "We zullen de oorspronkelijke waarde behouden en een preciezere locator "
 "toevoegen (bv. JO90AB of JO90AB12) wanneer een overeenkomst zeker is."
 
-#: application/views/logbookadvanced/checkresult.php:27
+#: application/views/logbookadvanced/checkresult.php:40
 msgid "Distance Check Results"
 msgstr "Afstandscontrole resultaten"
 
-#: application/views/logbookadvanced/checkresult.php:28
-#: application/views/logbookadvanced/checkresult.php:44
-#: application/views/logbookadvanced/checkresult.php:60
-#: application/views/logbookadvanced/checkresult.php:72
-#: application/views/logbookadvanced/checkresult.php:83
-#: application/views/logbookadvanced/checkresult.php:94
+#: application/views/logbookadvanced/checkresult.php:41
+#: application/views/logbookadvanced/checkresult.php:57
+#: application/views/logbookadvanced/checkresult.php:73
+#: application/views/logbookadvanced/checkresult.php:85
+#: application/views/logbookadvanced/checkresult.php:96
+#: application/views/logbookadvanced/checkresult.php:107
 msgid "QSOs to update found:"
 msgstr "QSOs om bij te werken gevonden:"
 
-#: application/views/logbookadvanced/checkresult.php:31
+#: application/views/logbookadvanced/checkresult.php:44
 #: application/views/logbookadvanced/distancedialog.php:2
 msgid ""
 "Update all QSOs with the distance based on your gridsquare set in the "
@@ -12616,36 +12629,36 @@ msgstr ""
 "het stationprofiel, en het locatorvak van de QSO-partner. Afstand wordt "
 "berekend op basis van of korte route of lange route is ingesteld."
 
-#: application/views/logbookadvanced/checkresult.php:32
+#: application/views/logbookadvanced/checkresult.php:45
 #: application/views/logbookadvanced/distancedialog.php:3
 msgid "This is useful if you have imported QSOs without distance information."
 msgstr ""
 "Dit is handig als je QSO's hebt geïmporteerd zonder afstandsinformatie."
 
-#: application/views/logbookadvanced/checkresult.php:33
+#: application/views/logbookadvanced/checkresult.php:46
 #: application/views/logbookadvanced/distancedialog.php:4
 msgid "Update will only set the distance for QSOs where the distance is empty."
 msgstr ""
 "Bijwerken stelt alleen de afstand in voor QSO's waarbij de afstand leeg is."
 
-#: application/views/logbookadvanced/checkresult.php:43
+#: application/views/logbookadvanced/checkresult.php:56
 msgid "Continent Check Results"
 msgstr "Continentcontrole Resultaten"
 
-#: application/views/logbookadvanced/checkresult.php:47
+#: application/views/logbookadvanced/checkresult.php:60
 #: application/views/logbookadvanced/continentdialog.php:2
 msgid ""
 "Update all QSOs with the continent based on the DXCC country of the QSO."
 msgstr ""
 "Werk alle QSO's bij met het continent op basis van het DXCC-land van het QSO."
 
-#: application/views/logbookadvanced/checkresult.php:48
+#: application/views/logbookadvanced/checkresult.php:61
 #: application/views/logbookadvanced/continentdialog.php:3
 msgid "This is useful if you have imported QSOs without continent information."
 msgstr ""
 "Dit is handig als je QSO's hebt geïmporteerd zonder continentinformatie."
 
-#: application/views/logbookadvanced/checkresult.php:49
+#: application/views/logbookadvanced/checkresult.php:62
 #: application/views/logbookadvanced/continentdialog.php:4
 msgid ""
 "Update will only set the continent for QSOs where the continent is empty."
@@ -12653,26 +12666,31 @@ msgstr ""
 "Update zal alleen het continent instellen voor QSO's waar het continent leeg "
 "is."
 
-#: application/views/logbookadvanced/checkresult.php:59
+#: application/views/logbookadvanced/checkresult.php:72
+#: application/views/logbookadvanced/checkresult.php:115
 msgid "DXCC Check Results"
 msgstr "DXCC-controle resultaten"
 
-#: application/views/logbookadvanced/checkresult.php:64
+#: application/views/logbookadvanced/checkresult.php:77
 #: application/views/logbookadvanced/statecheckresult.php:30
 msgid "Run fix"
 msgstr "Voer aanpassing uit"
 
-#: application/views/logbookadvanced/checkresult.php:71
+#: application/views/logbookadvanced/checkresult.php:84
 msgid "CQ Zone Check Results"
 msgstr "CQ Zone controle resultaten"
 
-#: application/views/logbookadvanced/checkresult.php:82
+#: application/views/logbookadvanced/checkresult.php:95
 msgid "ITU Zone Check Results"
 msgstr "ITU Zone controle resultaten"
 
-#: application/views/logbookadvanced/checkresult.php:93
+#: application/views/logbookadvanced/checkresult.php:106
 msgid "Gridsquare Check Results"
 msgstr "Lokatorvak-controle resultaten"
+
+#: application/views/logbookadvanced/checkresult.php:124
+msgid "Update selected"
+msgstr ""
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:4
 msgid "Data Repair Tools"
@@ -12697,7 +12715,8 @@ msgstr "Ontbrekende CQ-zone-informatie bijwerken"
 #: application/views/logbookadvanced/dbtoolsdialog.php:52
 #: application/views/logbookadvanced/dbtoolsdialog.php:64
 #: application/views/logbookadvanced/dbtoolsdialog.php:76
-#: application/views/logbookadvanced/dbtoolsdialog.php:102
+#: application/views/logbookadvanced/dbtoolsdialog.php:88
+#: application/views/logbookadvanced/dbtoolsdialog.php:101
 msgid "Check"
 msgstr "Controleren"
 
@@ -12740,30 +12759,22 @@ msgid "Identify QSOs that are missing DXCC information"
 msgstr "Identificeer QSOs die DXCC-informatie missen"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:83
-msgid "Re-check DXCC for all QSOs in the logbook"
-msgstr "Controleer DXCC voor alle QSOs in het logboek opnieuw"
+msgid "Check all QSOs in the logbook for incorrect DXCC"
+msgstr ""
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:84
 msgid "Use Wavelog to determine DXCC for all QSOs."
 msgstr "Gebruik Wavelog om DXCC voor alle QSO's te bepalen."
 
-#: application/views/logbookadvanced/dbtoolsdialog.php:85
-msgid "This will overwrite ALL existing DXCC information!"
-msgstr "Dit zal ALLE bestaande DXCC-informatie overschrijven!"
-
-#: application/views/logbookadvanced/dbtoolsdialog.php:89
-msgid "Run"
-msgstr "Uitvoeren"
-
-#: application/views/logbookadvanced/dbtoolsdialog.php:96
+#: application/views/logbookadvanced/dbtoolsdialog.php:95
 msgid "Lookup QSOs with missing grid in callbook"
 msgstr "Zoek QSOs met ontbrekend lokatorvak in callbook"
 
-#: application/views/logbookadvanced/dbtoolsdialog.php:97
+#: application/views/logbookadvanced/dbtoolsdialog.php:96
 msgid "Use callbook lookup to set gridsquare"
 msgstr "Gebruik callbook om lokatorvak in te stellen"
 
-#: application/views/logbookadvanced/dbtoolsdialog.php:98
+#: application/views/logbookadvanced/dbtoolsdialog.php:97
 msgid "This is limited to 150 callsigns for each run!"
 msgstr "Dit is beperkt tot 150 roepnamen per keer!"
 
@@ -18926,6 +18937,15 @@ msgstr "Verzoek indienen"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Ontvangen"
+
+#~ msgid "Re-check DXCC for all QSOs in the logbook"
+#~ msgstr "Controleer DXCC voor alle QSOs in het logboek opnieuw"
+
+#~ msgid "This will overwrite ALL existing DXCC information!"
+#~ msgstr "Dit zal ALLE bestaande DXCC-informatie overschrijven!"
+
+#~ msgid "Run"
+#~ msgstr "Uitvoeren"
 
 #~ msgid "Apply DXCC Data to Logbook"
 #~ msgstr "DXCC-gegevens toepassen op logboek"

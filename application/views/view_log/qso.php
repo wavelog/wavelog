@@ -709,6 +709,13 @@
                     </tr>
                     <?php } ?>
 
+                    <?php if($row->COL_MY_RIG && (($row->COL_MY_RIG ?? '') != '')) { ?>
+                    <tr>
+                        <td><?= __("Station") . ' ' . __("Radio"); ?></td>
+                        <td><?php echo $row->COL_MY_RIG; ?></td>
+                    </tr>
+                    <?php } ?>
+
                     <?php if($row->station_iota) { ?>
                     <tr>
                         <td><?= __("Station") . ' ' . __("IOTA Reference"); ?></td>

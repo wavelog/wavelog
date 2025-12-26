@@ -173,6 +173,13 @@ class Logbook_model extends CI_Model {
 			$tx_power = null;
 		}
 
+		if (($this->input->post('radio',TRUE) ?? 0) != 0) {
+			$this->load->model('cat');
+			$radio_name=$this->cat->radio_status($this->input->post('radio',TRUE))->row()->radio ?? '';
+		} else {
+			$radio_name='';
+		}
+
 		if ($this->input->post('country') == "") {
 			$dxcc = $this->check_dxcc_table(strtoupper(trim($callsign)), $datetime);
 			$country = ucwords(strtolower($dxcc[1]), "- (/");
@@ -466,6 +473,7 @@ class Logbook_model extends CI_Model {
 			$data['COL_MY_CNTY'] = strtoupper(trim($station['station_cnty']));
 			$data['COL_MY_CQ_ZONE'] = strtoupper(trim($station['station_cq']));
 			$data['COL_MY_ITU_ZONE'] = strtoupper(trim($station['station_itu']));
+			$data['COL_MY_RIG'] = trim($radio_name ?? '');
 
 			// if there are any static map images for this station, remove them so they can be regenerated
 			if (!$this->load->is_loaded('staticmap_model')) {
