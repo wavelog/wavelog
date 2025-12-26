@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-26 07:33+0000\n"
+"POT-Creation-Date: 2025-12-26 07:44+0000\n"
 "PO-Revision-Date: 2025-11-28 09:48+0000\n"
 "Last-Translator: Mathias Regner <mabregner@gmail.com>\n"
 "Language-Team: Hungarian <https://translate.wavelog.org/projects/wavelog/"
@@ -571,7 +571,7 @@ msgstr "Fred Fish Memorial Award (FFMA)"
 #: application/views/qso/edit_ajax.php:392 application/views/qso/index.php:338
 #: application/views/qso/index.php:634 application/views/user/edit.php:711
 #: application/views/view_log/qso.php:431
-#: application/views/view_log/qso.php:742
+#: application/views/view_log/qso.php:749
 msgid "SIG"
 msgstr "SIG"
 
@@ -1993,7 +1993,7 @@ msgstr ""
 #: application/views/notes/main.php:5 application/views/notes/view.php:6
 #: application/views/qso/edit_ajax.php:37
 #: application/views/qso/edit_ajax.php:409 application/views/qso/index.php:104
-#: application/views/view_log/qso.php:14 application/views/view_log/qso.php:755
+#: application/views/view_log/qso.php:14 application/views/view_log/qso.php:762
 msgid "Notes"
 msgstr ""
 
@@ -2329,7 +2329,7 @@ msgstr ""
 
 #: application/controllers/Radio.php:41 application/views/bandmap/list.php:20
 #: application/views/contesting/index.php:157
-#: application/views/qso/index.php:404
+#: application/views/qso/index.php:404 application/views/view_log/qso.php:714
 msgid "Radio"
 msgstr ""
 
@@ -2413,7 +2413,7 @@ msgstr ""
 #: application/views/stationsetup/stationsetup.php:143
 #: application/views/stationsetup/stationsetup.php:199
 #: application/views/themes/index.php:107 application/views/user/index.php:119
-#: application/views/user/index.php:228 application/views/view_log/qso.php:778
+#: application/views/user/index.php:228 application/views/view_log/qso.php:785
 msgid "Delete"
 msgstr ""
 
@@ -3409,105 +3409,105 @@ msgstr ""
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr ""
 
-#: application/models/Logbook_model.php:1346
+#: application/models/Logbook_model.php:1354
 msgid "Station ID not allowed"
 msgstr ""
 
-#: application/models/Logbook_model.php:1351
+#: application/models/Logbook_model.php:1359
 msgid "No Call given"
 msgstr ""
 
-#: application/models/Logbook_model.php:1421
-#: application/models/Logbook_model.php:1623
+#: application/models/Logbook_model.php:1429
+#: application/models/Logbook_model.php:1631
 msgid "DXCC has to be Numeric"
 msgstr ""
 
-#: application/models/Logbook_model.php:4648
+#: application/models/Logbook_model.php:4656
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 
-#: application/models/Logbook_model.php:4662
+#: application/models/Logbook_model.php:4670
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
 msgstr ""
 
-#: application/models/Logbook_model.php:4671
+#: application/models/Logbook_model.php:4679
 msgid "QSO on"
 msgstr ""
 
-#: application/models/Logbook_model.php:4671
+#: application/models/Logbook_model.php:4679
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
 msgstr ""
 
-#: application/models/Logbook_model.php:4720
+#: application/models/Logbook_model.php:4728
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
 "imported. It's invalid"
 msgstr ""
 
-#: application/models/Logbook_model.php:4985
+#: application/models/Logbook_model.php:4993
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4996
+#: application/models/Logbook_model.php:5004
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:5057
+#: application/models/Logbook_model.php:5065
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:5432
+#: application/models/Logbook_model.php:5440
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr ""
 
-#: application/models/Logbook_model.php:5497
-#: application/models/Logbook_model.php:5592
+#: application/models/Logbook_model.php:5505
+#: application/models/Logbook_model.php:5600
 msgid "QSO could not be matched"
 msgstr ""
 
-#: application/models/Logbook_model.php:5505
+#: application/models/Logbook_model.php:5513
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr ""
 
-#: application/models/Logbook_model.php:5511
+#: application/models/Logbook_model.php:5519
 msgid "confirmed by award manager"
 msgstr ""
 
-#: application/models/Logbook_model.php:5515
+#: application/models/Logbook_model.php:5523
 msgid "confirmed by cross-check of DCL data"
 msgstr ""
 
-#: application/models/Logbook_model.php:5519
+#: application/models/Logbook_model.php:5527
 msgid "confirmation pending"
 msgstr ""
 
-#: application/models/Logbook_model.php:5522
+#: application/models/Logbook_model.php:5530
 msgid "unconfirmed"
 msgstr ""
 
-#: application/models/Logbook_model.php:5525
+#: application/models/Logbook_model.php:5533
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
 msgid "unknown"
 msgstr ""
 
-#: application/models/Logbook_model.php:5595
+#: application/models/Logbook_model.php:5603
 msgid "POTA reference already in log"
 msgstr ""
 
-#: application/models/Logbook_model.php:5598
+#: application/models/Logbook_model.php:5606
 msgid "QSO updated"
 msgstr ""
 
-#: application/models/Logbook_model.php:6331
+#: application/models/Logbook_model.php:6339
 #: application/views/activated_gridmap/index.php:114
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:58
@@ -4530,7 +4530,7 @@ msgstr ""
 msgid "Log Files must have the file type *.adi"
 msgstr ""
 
-#: application/views/adif/import.php:100 application/views/view_log/qso.php:787
+#: application/views/adif/import.php:100 application/views/view_log/qso.php:794
 msgid "Maximum file upload size is "
 msgstr ""
 
@@ -4544,7 +4544,7 @@ msgstr ""
 #: application/views/notes/add.php:23 application/views/notes/edit.php:29
 #: application/views/qrz/export.php:75 application/views/qrz/export.php:96
 #: application/views/stationsetup/stationsetup.php:116
-#: application/views/view_log/qso.php:787
+#: application/views/view_log/qso.php:794
 #: application/views/webadif/export.php:34
 #: application/views/webadif/export.php:94
 msgid "Warning"
@@ -6503,7 +6503,7 @@ msgstr ""
 #: application/views/station_profile/create.php:183
 #: application/views/station_profile/edit.php:276
 #: application/views/user/edit.php:707 application/views/view_log/qso.php:409
-#: application/views/view_log/qso.php:735
+#: application/views/view_log/qso.php:742
 msgid "POTA Reference(s)"
 msgstr ""
 
@@ -6947,7 +6947,7 @@ msgstr ""
 #: application/views/station_profile/create.php:177
 #: application/views/station_profile/edit.php:263
 #: application/views/user/edit.php:703 application/views/view_log/qso.php:402
-#: application/views/view_log/qso.php:728
+#: application/views/view_log/qso.php:735
 msgid "WWFF Reference"
 msgstr ""
 
@@ -10817,7 +10817,7 @@ msgstr ""
 #: application/views/interface_assets/footer.php:2801
 #: application/views/interface_assets/footer.php:2819
 #: application/views/qslcard/index.php:77
-#: application/views/view_log/qso.php:779
+#: application/views/view_log/qso.php:786
 msgid "View"
 msgstr ""
 
@@ -11395,7 +11395,7 @@ msgstr ""
 
 #: application/views/interface_assets/footer.php:2773
 #: application/views/interface_assets/footer.php:2812
-#: application/views/view_log/qso.php:769
+#: application/views/view_log/qso.php:776
 msgid "QSL image file"
 msgstr ""
 
@@ -13155,7 +13155,8 @@ msgstr ""
 #: application/views/view_log/qso.php:728
 #: application/views/view_log/qso.php:735
 #: application/views/view_log/qso.php:742
-#: application/views/view_log/qso.php:747
+#: application/views/view_log/qso.php:749
+#: application/views/view_log/qso.php:754
 msgid "Station"
 msgstr ""
 
@@ -14675,7 +14676,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:396 application/views/qso/index.php:345
 #: application/views/qso/index.php:640 application/views/user/edit.php:711
 #: application/views/view_log/qso.php:447
-#: application/views/view_log/qso.php:747
+#: application/views/view_log/qso.php:754
 msgid "SIG Info"
 msgstr ""
 
@@ -14825,7 +14826,7 @@ msgstr ""
 #: application/views/station_profile/create.php:153
 #: application/views/station_profile/edit.php:222
 #: application/views/user/edit.php:695 application/views/view_log/qso.php:388
-#: application/views/view_log/qso.php:714
+#: application/views/view_log/qso.php:721
 msgid "IOTA Reference"
 msgstr ""
 
@@ -14833,7 +14834,7 @@ msgstr ""
 #: application/views/station_profile/create.php:171
 #: application/views/station_profile/edit.php:250
 #: application/views/user/edit.php:699 application/views/view_log/qso.php:395
-#: application/views/view_log/qso.php:721
+#: application/views/view_log/qso.php:728
 msgid "SOTA Reference"
 msgstr ""
 
@@ -15558,35 +15559,35 @@ msgstr ""
 #: application/views/search/search_result_ajax.php:471
 #: application/views/view_log/partial/log.php:150
 #: application/views/view_log/partial/log_ajax.php:688
-#: application/views/view_log/qso.php:817
+#: application/views/view_log/qso.php:824
 msgid "Mark QSL Received (Bureau)"
 msgstr ""
 
 #: application/views/search/search_result_ajax.php:472
 #: application/views/view_log/partial/log.php:151
 #: application/views/view_log/partial/log_ajax.php:689
-#: application/views/view_log/qso.php:819
+#: application/views/view_log/qso.php:826
 msgid "Mark QSL Received (Direct)"
 msgstr ""
 
 #: application/views/search/search_result_ajax.php:473
 #: application/views/view_log/partial/log.php:152
 #: application/views/view_log/partial/log_ajax.php:679
-#: application/views/view_log/qso.php:827
+#: application/views/view_log/qso.php:834
 msgid "Mark QSL Card Requested (Bureau)"
 msgstr ""
 
 #: application/views/search/search_result_ajax.php:474
 #: application/views/view_log/partial/log.php:153
 #: application/views/view_log/partial/log_ajax.php:680
-#: application/views/view_log/qso.php:829
+#: application/views/view_log/qso.php:836
 msgid "Mark QSL Card Requested (Direct)"
 msgstr ""
 
 #: application/views/search/search_result_ajax.php:475
 #: application/views/view_log/partial/log.php:154
 #: application/views/view_log/partial/log_ajax.php:681
-#: application/views/view_log/qso.php:831
+#: application/views/view_log/qso.php:838
 msgid "Mark QSL Card Not Required"
 msgstr ""
 
@@ -17772,27 +17773,27 @@ msgstr ""
 msgid "Details"
 msgstr ""
 
-#: application/views/view_log/qso.php:795
+#: application/views/view_log/qso.php:802
 msgid "Uploaded QSL Card front image"
 msgstr ""
 
-#: application/views/view_log/qso.php:800
+#: application/views/view_log/qso.php:807
 msgid "Upload QSL Card image"
 msgstr ""
 
-#: application/views/view_log/qso.php:805
+#: application/views/view_log/qso.php:812
 msgid "Uploaded QSL Card back image"
 msgstr ""
 
-#: application/views/view_log/qso.php:821
+#: application/views/view_log/qso.php:828
 msgid "Mark QSL Received (Electronic)"
 msgstr ""
 
-#: application/views/view_log/qso.php:844
+#: application/views/view_log/qso.php:851
 msgid "eQSL picture"
 msgstr ""
 
-#: application/views/view_log/qso.php:916
+#: application/views/view_log/qso.php:923
 msgid "QSO not found"
 msgstr ""
 
