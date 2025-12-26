@@ -2447,7 +2447,7 @@ $('#sats').change(function(){
             "scrollY":        "500px",
             "scrollCollapse": true,
             "paging":         false,
-            "scrollX": true,
+            "scrollX": false,
             "language": {
                 url: getDataTablesLanguageUrl(),
             },
