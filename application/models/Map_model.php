@@ -9,10 +9,8 @@ class Map_model extends CI_Model {
         $this->db->select('DISTINCT dxcc_entities.name AS COL_COUNTRY, COL_DXCC, COUNT(*) as qso_count', FALSE);
         $this->db->from($this->config->item('table_name'));
         $this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
-        $this->db->join('dxcc_entities', 'dxcc_entities.adif = ' . $this->config->item('table_name') . '.COL_DXCC', 'left');
+        $this->db->join('dxcc_entities', 'dxcc_entities.adif = ' . $this->config->item('table_name') . '.COL_DXCC');
         $this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
-        $this->db->where('COL_COUNTRY IS NOT NULL');
-        $this->db->where('COL_COUNTRY !=', '');
         $this->db->where("LENGTH(COL_GRIDSQUARE) >=", 6); // At least 6 chars
         $this->db->group_by('COL_COUNTRY, COL_DXCC');
         $this->db->order_by('COL_COUNTRY');
