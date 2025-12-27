@@ -606,42 +606,40 @@ class eqsl extends CI_Controller {
 		$this->load->library('electronicqsl');
 
 		if ($this->input->post('eqsldownload') == 'download' && $this->config->item('enable_eqsl_massdownload')) {
-			$i = 0;
+			ini_set('memory_limit', '-1');
+			set_time_limit(0);
+
+			// Use new parallel library
+			$this->load->library('EqslBulkDownloader');
 			$this->load->model('eqslmethods_model');
-			$qslsnotdownloaded = $this->eqslmethods_model->eqsl_not_yet_downloaded();
-			$eqsl_results = array();
-			foreach ($qslsnotdownloaded->result_array() as $qsl) {
-				$result = $this->bulk_download_image($qsl['COL_PRIMARY_KEY']);
-				if ($result != '') {
-					$errors++;
-					if ($result == 'Rate Limited') {
+
+			// Get and limit QSOs to 50
+			$qsos = $this->eqslmethods_model->eqsl_not_yet_downloaded()->result_array();
+			if (count($qsos) > 150) {
+				$qsos = array_slice($qsos, 0, 150);
+				$this->session->set_flashdata('warning', __('Limited to first 150 QSOs for this request. Please run again.'));
+			}
+
+			// Execute parallel download
+			$results = $this->eqslbulkdownloader->downloadBatch($qsos);
+			$data['eqsl_results'] = $results['errors'];
+			$data['eqsl_stats'] = __("Successfully downloaded: ") . $results['success_count'] . __(" / Errors: ") . $results['error_count'];
+			$data['page_title'] = "eQSL Download Information";
+
+			// Check for rate limit
+			if ($results['error_count'] > 0) {
+				foreach ($results['errors'] as $err) {
+					if ($err['status'] === 'Rate Limited') {
+						$this->session->set_flashdata('warning', __('eQSL rate limit reached. Please wait before running again.'));
 						break;
-					} else {
-						$eqsl_results[] = array(
-							'date' => $qsl['COL_TIME_ON'],
-							'call' => $qsl['COL_CALL'],
-							'mode' => $qsl['COL_MODE'],
-							'submode' => $qsl['COL_SUBMODE'],
-							'status' => $result,
-							'qsoid' => $qsl['COL_PRIMARY_KEY']
-						);
-						continue;
 					}
-				} else {
-					$i++;
-				}
-				if ($i > 0) {
-					sleep(15);
 				}
 			}
-			$data['eqsl_results'] = $eqsl_results;
-			$data['eqsl_stats'] = __("Successfully downloaded: ") . $i . __(" / Errors: ") . count($eqsl_results);
-			$data['page_title'] = "eQSL Download Information";
 
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('eqsl/result');
 			$this->load->view('interface_assets/footer');
-			
+
 		} else {
 
 			$data['page_title'] = __("eQSL Card Image Download");
