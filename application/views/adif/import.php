@@ -37,12 +37,6 @@
                 </li>
                 <?php endif; ?>
 
-                <?php if (in_array('lotw', $tabs_to_show)): ?>
-                <li class="nav-item">
-                    <a class="nav-link" id="lotw-tab" data-bs-toggle="tab" href="#lotw" role="tab" aria-controls="lotw" aria-selected="false"><?= __("Logbook of the World") ?></a>
-                </li>
-                <?php endif; ?>
-
                 <?php if (in_array('dcl', $tabs_to_show)): ?>
                 <li class="nav-item">
                     <a class="nav-link <?php if ($showtab == 'dcl') {
@@ -330,28 +324,6 @@
                     <p><a href="<?php echo site_url('adif/exportsat'); ?>" title="Export All Satellite Contacts" target="_blank" class="btn btn-sm btn-primary"><?= __("Export All Satellite QSOs") ?></a></p>
 
                     <p><a href="<?php echo site_url('adif/exportsatlotw'); ?>" title="Export All Satellite QSOs Confirmed on LoTW" target="_blank" class="btn btn-sm btn-primary"><?= __("Export All Satellite QSOs Confirmed on LoTW") ?></a></p>
-                </div>
-                <?php endif; ?>
-
-                <?php if (in_array('lotw', $tabs_to_show)): ?>
-                <div class="tab-pane fade" id="lotw" role="tabpanel" aria-labelledby="lotw-tab">
-                    <form class="form" action="<?php echo site_url('adif/mark_lotw'); ?>" method="post" enctype="multipart/form-data">
-                        <select name="station_profile" class="form-select mb-2 me-sm-2 w-50 w-lg-100">
-                            <option value="0"><?= __("Select Station Location") ?></option>
-                            <?php foreach ($station_profile->result() as $station) { ?>
-                                <option value="<?php echo $station->station_id; ?>"><?= __("Callsign") . ": " ?><?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)</option>
-                            <?php } ?>
-                        </select>
-                        <p><span class="badge text-bg-warning"><?= __("Warning") ?></span> <?= __("If a date range is not selected then all QSOs will be marked!") ?></p>
-                        <br>
-                        <label for="from"><?= __("From date") . ": " ?></label>
-                        <input name="from" id="from" type="date" class="form-control w-auto">
-                        <br>
-                        <label for="to"><?= __("To date") . ": " ?></label>
-                        <input name="to" id="to" type="date" class="form-control w-auto">
-                        <br>
-                        <button type="button" class="btn btn-sm btn-primary" id="markExportedToLotw" value="Export"><?= __("Mark QSOs as exported to LoTW") ?></button>
-                    </form>
                 </div>
                 <?php endif; ?>
 

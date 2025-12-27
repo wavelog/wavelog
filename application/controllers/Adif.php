@@ -9,7 +9,7 @@ class adif extends CI_Controller {
 	private $tab_method_mapping = [
 		'import' => ['import'],
 		'export' => ['export_custom', 'exportall', 'exportsat', 'exportsatlotw'],
-		'lotw' => ['lotw', 'mark_lotw', 'export_lotw'],
+		'lotw' => ['lotw', 'export_lotw'],
 		'dcl' => ['dcl'],
 		'pota' => ['pota'],
 		'cbr' => []
@@ -234,26 +234,6 @@ class adif extends CI_Controller {
 
 		// Stop execution
 		exit;
-	}
-
-	public function mark_lotw() {
-		// Check if user has access to lotw tab
-		$this->require_tab_access('lotw');
-
-		// Set memory limit to unlimited to allow heavy usage
-		ini_set('memory_limit', '-1');
-
-		$station_id = $this->security->xss_clean($this->input->post('station_profile'));
-		$this->load->model('adif_data');
-
-		$data['qsos'] = $this->adif_data->export_custom($this->input->post('from'), $this->input->post('to'), $station_id);
-
-		foreach ($data['qsos']->result() as $qso)
-		{
-			$this->adif_data->mark_lotw_sent($qso->COL_PRIMARY_KEY);
-		}
-
-		$this->load->view('adif/mark_lotw', $data);
 	}
 
 	public function export_lotw() {
