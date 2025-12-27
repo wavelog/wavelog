@@ -7,9 +7,9 @@
             <select class="form-select" id="countrySelect" style="min-width: 200px;">
                 <option value=""><?= __("Choose a country...") ?></option>
                 <?php foreach ($countries as $country): ?>
-                    <option value="<?php echo htmlspecialchars($country['COL_COUNTRY']); ?>"
+                    <option value="<?php echo htmlspecialchars(ucwords(strtolower(($country['COL_COUNTRY'])), "- (/")); ?>"
                             data-dxcc="<?php echo htmlspecialchars($country['COL_DXCC']); ?>">
-                        <?php echo htmlspecialchars($country['COL_COUNTRY'] . ' (' . $country['qso_count'] . ' ' . __("QSOs") . ')'); ?>
+                        <?php echo htmlspecialchars(ucwords(strtolower(($country['COL_COUNTRY'])), "- (/") . ' (' . $country['qso_count'] . ' ' . __("QSOs") . ')'); ?>
                     </option>
                 <?php endforeach; ?>
             </select>
@@ -284,9 +284,9 @@ function initMap() {
         if (dxcc && supportedDxccs.includes(parseInt(dxcc))) {
             // Single country GeoJSON
             $.ajax({
-                url: base_url + "map/get_country_geojson/",
+                url: base_url + "index.php/map/get_country_geojson/",
                 type: 'post',
-				data: { dxcc: dxcc },
+                data: { dxcc: dxcc },
                 success: function(geojson) {
                     if (geojson && !geojson.error) {
                         const layer = L.geoJSON(geojson, {
