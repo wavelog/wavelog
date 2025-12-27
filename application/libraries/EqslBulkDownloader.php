@@ -10,7 +10,7 @@ class EqslBulkDownloader {
 
 	const CONCURRENCY = 10;           // Number of parallel downloads
 	const BATCH_DELAY = 2;          // Delay between batches (seconds)
-	const MAX_BATCH_SIZE = 150;       // Safety limit per request
+	const MAX_BATCH_SIZE = 500;       // Safety limit per request
 	const TIMEOUT = 30;              // Request timeout (seconds)
 
 	private $ci;                    // CodeIgniter instance

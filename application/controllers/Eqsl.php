@@ -615,9 +615,9 @@ class eqsl extends CI_Controller {
 
 			// Get and limit QSOs to 50
 			$qsos = $this->eqslmethods_model->eqsl_not_yet_downloaded()->result_array();
-			if (count($qsos) > 150) {
-				$qsos = array_slice($qsos, 0, 150);
-				$this->session->set_flashdata('warning', __('Limited to first 150 QSOs for this request. Please run again.'));
+			if (count($qsos) > 500) {
+				$qsos = array_slice($qsos, 0, 500);
+				$this->session->set_flashdata('warning', __('Limited to first 500 QSOs for this request. Please run again.'));
 			}
 
 			// Execute parallel download
