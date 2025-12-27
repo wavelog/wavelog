@@ -176,6 +176,7 @@ class adif extends CI_Controller {
 
 		$this->load->model('adif_data');
 		$this->load->library('AdifHelper');
+		$this->load->model('logbook_model');
 
 		// Get parameters
 		$station_id = $this->security->xss_clean($this->input->post('station_profile'));
@@ -228,7 +229,7 @@ class adif extends CI_Controller {
 		// Handle LoTW marking after export
 		if ((clubaccess_check(9)) && ($this->input->post('markLotw') == 1) && !empty($qso_ids_for_lotw)) {
 			foreach ($qso_ids_for_lotw as $qso_id) {
-				$this->adif_data->mark_lotw_sent($qso_id);
+				$this->Logbook_model->mark_lotw_sent($qso_id);
 			}
 		}
 
@@ -244,13 +245,14 @@ class adif extends CI_Controller {
 		ini_set('memory_limit', '-1');
 
 		$this->load->model('adif_data');
+		$this->load->model('logbook_model');
 
 		$data['qsos'] = $this->adif_data->export_lotw();
 
 		$this->load->view('adif/data/exportall', $data);
 
 		foreach ($data['qsos']->result() as $qso) {
-			$this->adif_data->mark_lotw_sent($qso->COL_PRIMARY_KEY);
+			$this->Logbook_model->mark_lotw_sent($qso->COL_PRIMARY_KEY);
 		}
 	}
 
