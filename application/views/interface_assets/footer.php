@@ -2447,7 +2447,6 @@ $('#sats').change(function(){
             "pageLength": 25,
             responsive: false,
             ordering: true,
-            "scrollY":        "500px",
             "scrollCollapse": true,
             "paging":         false,
             "scrollX": false,
