@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-26 19:47+0000\n"
+"POT-Creation-Date: 2025-12-27 16:30+0000\n"
 "PO-Revision-Date: 2025-12-16 08:48+0000\n"
 "Last-Translator: Viliam Petrik <tatralom@gmail.com>\n"
 "Language-Team: Slovak <https://translate.wavelog.org/projects/wavelog/main-"
@@ -56,11 +56,11 @@ msgstr ""
 #: application/controllers/Dxatlas.php:108
 #: application/controllers/Dxcalendar.php:8
 #: application/controllers/Dxcluster.php:9 application/controllers/Eqsl.php:23
-#: application/controllers/Eqsl.php:47 application/controllers/Eqsl.php:147
-#: application/controllers/Eqsl.php:236 application/controllers/Eqsl.php:260
-#: application/controllers/Eqsl.php:299 application/controllers/Eqsl.php:469
-#: application/controllers/Eqsl.php:536 application/controllers/Eqsl.php:552
-#: application/controllers/Eqsl.php:613
+#: application/controllers/Eqsl.php:66 application/controllers/Eqsl.php:166
+#: application/controllers/Eqsl.php:255 application/controllers/Eqsl.php:279
+#: application/controllers/Eqsl.php:318 application/controllers/Eqsl.php:519
+#: application/controllers/Eqsl.php:586 application/controllers/Eqsl.php:602
+#: application/controllers/Eqsl.php:661
 #: application/controllers/Generic_qsl.php:12
 #: application/controllers/Hamsat.php:13 application/controllers/Hrdlog.php:36
 #: application/controllers/Kmlexport.php:18
@@ -1023,87 +1023,100 @@ msgstr "DX Atlas export lokátorov"
 msgid "DX Calendar"
 msgstr "DX kalendár"
 
-#: application/controllers/Eqsl.php:34
+#: application/controllers/Eqsl.php:46
 #: application/views/dashboard/index.php:407
 #: application/views/eqslcard/index.php:5
 #: application/views/visitor/index.php:310
 msgid "eQSL Cards"
 msgstr "eQSL karty"
 
-#: application/controllers/Eqsl.php:64 application/controllers/Eqsl.php:154
+#: application/controllers/Eqsl.php:56
+#, php-format
+msgid "Showing %d to %d of %d entries"
+msgstr ""
+
+#: application/controllers/Eqsl.php:83 application/controllers/Eqsl.php:173
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
 msgstr "Prezývky eQSL v profiloch staníc nie sú definované!"
 
-#: application/controllers/Eqsl.php:87 application/controllers/Eqsl.php:173
+#: application/controllers/Eqsl.php:106 application/controllers/Eqsl.php:192
 msgid "You have not defined your eQSL.cc credentials!"
 msgstr "Nemáš definované svoje eQSL.cc prihlasovacie údaje!"
 
-#: application/controllers/Eqsl.php:127
+#: application/controllers/Eqsl.php:146
 msgid "eQSL Import"
 msgstr "eQSL import"
 
-#: application/controllers/Eqsl.php:137
+#: application/controllers/Eqsl.php:156
 msgid "eQSL Import Information"
 msgstr "Informácie o importe eQSL"
 
-#: application/controllers/Eqsl.php:161
+#: application/controllers/Eqsl.php:180
 msgid "eQSL QSO Upload"
 msgstr "eQSL QSO nahranie"
 
-#: application/controllers/Eqsl.php:195
+#: application/controllers/Eqsl.php:214
 msgid "User/Pass wrong for eQSL"
 msgstr "Užívateľské meno alebo heslo pre eQSL je nesprávne"
 
-#: application/controllers/Eqsl.php:199
+#: application/controllers/Eqsl.php:218
 #, php-format
 msgid "No such eQSL QTH Nickname: %s"
 msgstr "Žiadna taká eQSL QTH prezývka: %s"
 
-#: application/controllers/Eqsl.php:312
+#: application/controllers/Eqsl.php:335
 msgid "QSO not found or not accessible"
 msgstr "QSO nenájdené alebo neprístupné"
 
-#: application/controllers/Eqsl.php:330
+#: application/controllers/Eqsl.php:353
 msgid "User not found"
 msgstr "Používateľ sa nenašiel"
 
-#: application/controllers/Eqsl.php:339
+#: application/controllers/Eqsl.php:362
 msgid "eQSL password not configured for this user"
 msgstr "eQSL heslo pre tohto používateľa nie je nastavené"
 
-#: application/controllers/Eqsl.php:357
+#: application/controllers/Eqsl.php:380
 msgid "Failed to fetch eQSL image data"
 msgstr "Nepodarilo sa získať údaje eQSL obrázka"
 
-#: application/controllers/Eqsl.php:376
+#: application/controllers/Eqsl.php:399
 msgid "eQSL image not available"
 msgstr "eQSL obrázok nie je dostupný"
 
-#: application/controllers/Eqsl.php:395
+#: application/controllers/Eqsl.php:418
 msgid "Failed to download eQSL image"
 msgstr "Nepodarilo sa stiahnuť obrázok eQSL"
 
-#: application/controllers/Eqsl.php:419
+#: application/controllers/Eqsl.php:443
 msgid "Failed to load cached eQSL image"
 msgstr ""
 
-#: application/controllers/Eqsl.php:540
+#: application/controllers/Eqsl.php:590
 msgid "eQSL Tools"
 msgstr "eQSL nástroje"
 
-#: application/controllers/Eqsl.php:588
+#: application/controllers/Eqsl.php:620
+msgid "Limited to first 150 QSOs for this request. Please run again."
+msgstr ""
+
+#: application/controllers/Eqsl.php:626
 msgid " / Errors: "
 msgstr " / Chyby: "
 
-#: application/controllers/Eqsl.php:588
+#: application/controllers/Eqsl.php:626
 msgid "Successfully downloaded: "
 msgstr "Úspešne stiahnuté: "
 
-#: application/controllers/Eqsl.php:597
+#: application/controllers/Eqsl.php:633
+msgid "eQSL rate limit reached. Please wait before running again."
+msgstr ""
+
+#: application/controllers/Eqsl.php:645
 msgid "eQSL Card Image Download"
 msgstr "Stiahnuť obrázok eQSL karty"
 
-#: application/controllers/Eqsl.php:621
+#: application/controllers/Eqsl.php:669
 msgid "All eQSLs marked as uploaded"
 msgstr "Všetky eQSL označené ako nahrané"
 
@@ -2422,10 +2435,10 @@ msgstr "Upraviť"
 #: application/views/club/permissions.php:353
 #: application/views/contesting/add.php:62
 #: application/views/interface_assets/footer.php:65
-#: application/views/interface_assets/footer.php:2761
-#: application/views/interface_assets/footer.php:2779
-#: application/views/interface_assets/footer.php:2800
-#: application/views/interface_assets/footer.php:2818
+#: application/views/interface_assets/footer.php:2764
+#: application/views/interface_assets/footer.php:2782
+#: application/views/interface_assets/footer.php:2803
+#: application/views/interface_assets/footer.php:2821
 #: application/views/labels/index.php:48 application/views/labels/index.php:84
 #: application/views/logbookadvanced/index.php:848
 #: application/views/lotw_views/index.php:134
@@ -4674,7 +4687,7 @@ msgstr ""
 #: application/views/adif/import.php:168
 #: application/views/interface_assets/footer.php:34
 #: application/views/interface_assets/footer.php:642
-#: application/views/interface_assets/footer.php:2518
+#: application/views/interface_assets/footer.php:2521
 msgid "DANGER"
 msgstr "NEBEZPEČENSTVO"
 
@@ -5699,7 +5712,7 @@ msgstr "Zobraziť spojenie s typom QSL"
 #: application/views/awards/iota/index.php:64
 #: application/views/awards/itu/index.php:60
 #: application/views/awards/wac/index.php:45
-#: application/views/interface_assets/footer.php:2497
+#: application/views/interface_assets/footer.php:2500
 #: application/views/logbookadvanced/index.php:54
 #: application/views/qso/edit_ajax.php:419
 #: application/views/view_log/qso.php:25
@@ -11343,10 +11356,10 @@ msgid "QSL Date"
 msgstr "Dátum QSL"
 
 #: application/views/eqslcard/index.php:64
-#: application/views/interface_assets/footer.php:2762
-#: application/views/interface_assets/footer.php:2780
-#: application/views/interface_assets/footer.php:2801
-#: application/views/interface_assets/footer.php:2819
+#: application/views/interface_assets/footer.php:2765
+#: application/views/interface_assets/footer.php:2783
+#: application/views/interface_assets/footer.php:2804
+#: application/views/interface_assets/footer.php:2822
 #: application/views/qslcard/index.php:77
 #: application/views/view_log/qso.php:786
 msgid "View"
@@ -11925,43 +11938,43 @@ msgstr "lokátorový štvorec"
 msgid "Total count"
 msgstr "Celkový počet"
 
-#: application/views/interface_assets/footer.php:2499
+#: application/views/interface_assets/footer.php:2502
 msgid "QSL Card for "
 msgstr "QSL karta pre "
 
-#: application/views/interface_assets/footer.php:2519
+#: application/views/interface_assets/footer.php:2522
 msgid "Warning! Are you sure you want to delete this QSL card?"
 msgstr "Varovanie! Ste si istí, že chcete túto QSL kartu vymazať?"
 
-#: application/views/interface_assets/footer.php:2559
+#: application/views/interface_assets/footer.php:2562
 #: application/views/view_log/qso.php:43
 msgid "eQSL Card"
 msgstr "eQSL karta"
 
-#: application/views/interface_assets/footer.php:2561
+#: application/views/interface_assets/footer.php:2564
 msgid "eQSL Card for "
 msgstr "eQSL karta pre "
 
-#: application/views/interface_assets/footer.php:2773
-#: application/views/interface_assets/footer.php:2812
+#: application/views/interface_assets/footer.php:2776
+#: application/views/interface_assets/footer.php:2815
 #: application/views/view_log/qso.php:776
 msgid "QSL image file"
 msgstr "QSL obrazový súbor"
 
-#: application/views/interface_assets/footer.php:2792
+#: application/views/interface_assets/footer.php:2795
 msgid "Front QSL Card:"
 msgstr "Predná strana QSL karty:"
 
-#: application/views/interface_assets/footer.php:2830
+#: application/views/interface_assets/footer.php:2833
 msgid "Back QSL Card:"
 msgstr "Zadná strana QSL karty:"
 
-#: application/views/interface_assets/footer.php:2841
-#: application/views/interface_assets/footer.php:2866
+#: application/views/interface_assets/footer.php:2844
+#: application/views/interface_assets/footer.php:2869
 msgid "Add additional QSOs to a QSL Card"
 msgstr "Pridať ďalšie spojenie na QSL kartu"
 
-#: application/views/interface_assets/footer.php:2877
+#: application/views/interface_assets/footer.php:2880
 msgid "Something went wrong. Please try again!"
 msgstr "Niečo sa pokazilo. Skúste to znova!"
 
