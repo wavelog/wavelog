@@ -17,6 +17,17 @@
                         </button>
                     </div>
                 </div>
+				<div class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="mb-1"><?= __("Check CQ Zones") ?></h6>
+                        <p class="mb-1 small text-muted"><?= __("Check incorrect CQ zone information") ?></p>
+                    </div>
+                    <div class="d-flex nowrap">
+                        <button type="button" class="btn btn-sm btn-success me-1 ld-ext-right" id="checkIncorrectCqZonesBtn" onclick="checkIncorrectCqZones()">
+                            <?= __("Check") ?><div class="ld ld-ring ld-spin"></div>
+                        </button>
+                    </div>
+                </div>
 
                 <div class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
@@ -25,6 +36,30 @@
                     </div>
                     <div class="d-flex nowrap">
                         <button type="button" class="btn btn-sm btn-success me-1 ld-ext-right" id="checkFixItuZonesBtn" onclick="checkFixItuZones()">
+                            <?= __("Check") ?><div class="ld ld-ring ld-spin"></div>
+                        </button>
+                    </div>
+                </div>
+
+				<div class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="mb-1"><?= __("Check ITU Zones") ?></h6>
+                        <p class="mb-1 small text-muted"><?= __("Check incorrect ITU zone information") ?></p>
+                    </div>
+                    <div class="d-flex nowrap">
+                        <button type="button" class="btn btn-sm btn-success me-1 ld-ext-right" id="checkIncorrectItuZonesBtn" onclick="checkIncorrectItuZones()">
+                            <?= __("Check") ?><div class="ld ld-ring ld-spin"></div>
+                        </button>
+                    </div>
+                </div>
+
+								<div class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="mb-1"><?= __("Check Gridsquares") ?></h6>
+                        <p class="mb-1 small text-muted"><?= __("Check gridsquares that does not match the DXCC") ?></p>
+                    </div>
+                    <div class="d-flex nowrap">
+                        <button type="button" class="btn btn-sm btn-success me-1 ld-ext-right" id="checkIncorrectGridsquaresBtn" onclick="checkIncorrectGridsquares()">
                             <?= __("Check") ?><div class="ld ld-ring ld-spin"></div>
                         </button>
                     </div>

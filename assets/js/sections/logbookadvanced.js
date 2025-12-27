@@ -2476,19 +2476,10 @@ function saveOptions() {
 				$('.result').html(response);
 			},
 			error: function(xhr, status, error) {
-				$('#checkGridsBtn').prop('disabled', false).text('<?= __("Check") ?>');
+				$('#checkGridsBtn').prop("disabled", false).removeClass("running");
 				$('#closeButton').prop('disabled', false);
 
-				let errorMsg = 'Error checking continent information';
-				if (xhr.responseJSON && xhr.responseJSON.message) {
-					errorMsg += ': ' + xhr.responseJSON.message;
-				}
-
-				BootstrapDialog.alert({
-					title: 'Error',
-					message: errorMsg,
-					type: BootstrapDialog.TYPE_DANGER
-				});
+				$('.result').html(error);
 			}
 		});
 	}
@@ -2532,19 +2523,125 @@ function saveOptions() {
 				rebind_checkbox_trigger_dxcc();
 			},
 			error: function(xhr, status, error) {
-				$('#checkDxccBtn').prop('disabled', false).text('<?= __("Check") ?>');
+				$('#checkDxccBtn').prop("disabled", false).removeClass("running");
 				$('#closeButton').prop('disabled', false);
+				$('.result').html(error);
+			}
+		});
+	}
 
-				let errorMsg = 'Error checking DXCC information';
-				if (xhr.responseJSON && xhr.responseJSON.message) {
-					errorMsg += ': ' + xhr.responseJSON.message;
-				}
+	function checkIncorrectCqZones() {
+		$('#checkIncorrectCqZonesBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
 
-				BootstrapDialog.alert({
-					title: 'Error',
-					message: errorMsg,
-					type: BootstrapDialog.TYPE_DANGER
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/checkDb',
+			data: {
+				type: 'checkincorrectcqzones'
+			},
+			type: 'POST',
+			success: function(response) {
+				$('#checkIncorrectCqZonesBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				$('.result').html(response);
+				$('#incorrectcqzonetable').DataTable({
+					"pageLength": 25,
+					responsive: false,
+					ordering: false,
+					"scrollY": "510px",
+					"scrollCollapse": true,
+					"paging": false,
+					"scrollX": false,
+					"language": {
+						url: getDataTablesLanguageUrl(),
+					},
+					initComplete: function () {
+						this.api()
+							.columns('.select-filter')
+							.every(function () {
+								var column = this;
+								var select = $('<select class="form-select form-select-sm"><option value=""></option></select>')
+									.appendTo($(column.footer()).empty())
+									.on('change', function () {
+										var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+										column.search(val ? '^' + val + '$' : '', true, false).draw();
+									});
+
+								column
+									.data()
+									.unique()
+									.sort()
+									.each(function (d, j) {
+										select.append('<option value="' + d + '">' + d + '</option>');
+									});
+							});
+					},
 				});
+
+			},
+			error: function(xhr, status, error) {
+				$('#checkIncorrectCqZonesBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop('disabled', false);
+				$('.result').html(error);
+			}
+		});
+	}
+
+	function checkIncorrectItuZones() {
+		$('#checkIncorrectItuZonesBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/checkDb',
+			data: {
+				type: 'checkincorrectituzones'
+			},
+			type: 'POST',
+			success: function(response) {
+				$('#checkIncorrectItuZonesBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				$('.result').html(response);
+				$('#incorrectituzonetable').DataTable({
+					"pageLength": 25,
+					responsive: false,
+					ordering: false,
+					"scrollY": "510px",
+					"scrollCollapse": true,
+					"paging": false,
+					"scrollX": false,
+					"language": {
+						url: getDataTablesLanguageUrl(),
+					},
+					initComplete: function () {
+						this.api()
+							.columns('.select-filter')
+							.every(function () {
+								var column = this;
+								var select = $('<select class="form-select form-select-sm"><option value=""></option></select>')
+									.appendTo($(column.footer()).empty())
+									.on('change', function () {
+										var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+										column.search(val ? '^' + val + '$' : '', true, false).draw();
+									});
+
+								column
+									.data()
+									.unique()
+									.sort()
+									.each(function (d, j) {
+										select.append('<option value="' + d + '">' + d + '</option>');
+									});
+							});
+					},
+				});
+
+			},
+			error: function(xhr, status, error) {
+				$('#checkIncorrectItuZonesBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop('disabled', false);
+				$('.result').html(error);
 			}
 		});
 	}
@@ -2618,4 +2715,77 @@ function saveOptions() {
 				$('.result').html(error);
 			}
 		});
+	}
+
+	function checkIncorrectGridsquares() {
+		$('#checkIncorrectGridsquaresBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/checkDb',
+			data: {
+				type: 'checkincorrectgridsquares'
+			},
+			type: 'POST',
+			success: function(response) {
+				$('#checkIncorrectGridsquaresBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				$('.result').html(response);
+				$('#gridsquareCheckTable').DataTable({
+					"pageLength": 25,
+					responsive: false,
+					ordering: false,
+					"scrollY": "510px",
+					"scrollCollapse": true,
+					"paging": false,
+					"scrollX": false,
+					"language": {
+						url: getDataTablesLanguageUrl(),
+					},
+					initComplete: function () {
+						this.api()
+							.columns('.select-filter')
+							.every(function () {
+								var column = this;
+								var select = $('<select class="form-select form-select-sm"><option value=""></option></select>')
+									.appendTo($(column.footer()).empty())
+									.on('change', function () {
+										var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+										column.search(val ? '^' + val + '$' : '', true, false).draw();
+									});
+
+								column
+									.data()
+									.unique()
+									.sort()
+									.each(function (d, j) {
+										select.append('<option value="' + d + '">' + d + '</option>');
+									});
+							});
+					},
+				});
+			},
+			error: function(xhr, status, error) {
+				$('#checkIncorrectGridsquaresBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop('disabled', false);
+				$('.result').html(error);
+			}
+		});
+	}
+
+	function toggleGridsquare(id) {
+		const shortSpan = document.getElementById(id + '-short');
+		const fullSpan = document.getElementById(id + '-full');
+		const link = document.getElementById(id + '-link');
+
+		if (shortSpan.style.display === 'none') {
+			shortSpan.style.display = 'inline';
+			fullSpan.style.display = 'none';
+			link.textContent = lang_gen_advanced_logbook_show_more;
+		} else {
+			shortSpan.style.display = 'none';
+			fullSpan.style.display = 'inline';
+			link.textContent = lang_gen_advanced_logbook_show_less;
+		}
 	}

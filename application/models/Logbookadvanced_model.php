@@ -1549,8 +1549,52 @@ class Logbookadvanced_model extends CI_Model {
 				return $this->check_missing_itu_zones();
 			case 'checkgrids':
 				return $this->getMissingGridQsos();
+			case 'checkincorrectgridsquares':
+				return $this->getIncorrectGridsquares();
+			case 'checkincorrectcqzones':
+				return $this->getIncorrectCqZones();
+			case 'checkincorrectituzones':
+				return $this->getIncorrectItuZones();
 			return null;
 		}
+	}
+
+	public function getIncorrectGridsquares() {
+		$sqlcheck = "select count(*) as count from vuccgrids";;
+		$querycheck = $this->db->query($sqlcheck);
+		$rowcheck = $querycheck->row();
+		if ($rowcheck->count == 0) {
+			return ['status' => 'error', 'message' => __("VuccGrids table is empty. Please import the VUCC grids data first.")];
+		}
+
+		$sql = "select col_primary_key, col_time_on, col_call, col_band, col_gridsquare, col_dxcc, col_country, station_profile_name,
+			(
+			select group_concat(distinct gridsquare order by gridsquare separator ', ')
+			from vuccgrids
+			where adif = thcv.col_dxcc
+				order by gridsquare asc
+			) as correctgridsquare
+		from " . $this->config->item('table_name') . " thcv
+		join station_profile on thcv.station_id = station_profile.station_id
+		join dxcc_entities on dxcc_entities.adif = thcv.COL_DXCC
+		where station_profile.user_id = ?
+		and thcv.col_dxcc > 0
+		and not exists (
+			select 1
+			from vuccgrids
+			where adif = thcv.col_dxcc
+			and gridsquare = substr(thcv.col_gridsquare, 1, 4)
+		)
+		and exists (select 1 from vuccgrids where adif = thcv.col_dxcc)
+		and thcv.col_dxcc > 0
+		and thcv.col_gridsquare is not null
+		and thcv.col_gridsquare <> ''
+		order by station_profile_name, col_time_on desc";
+
+		$bindings[] = [$this->session->userdata('user_id')];
+
+		$query = $this->db->query($sql, $bindings);
+		return $query->result();
 	}
 
 	public function check_missing_dxcc() {
@@ -1979,5 +2023,45 @@ class Logbookadvanced_model extends CI_Model {
 
 		$result['count'] = $count;
 		return $result;
+	}
+
+	function getIncorrectCqZones() {
+		if(!clubaccess_check(9)) return;
+
+		$sql = "select *, (select group_concat(distinct cqzone order by cqzone separator ', ') from dxcc_master where countrycode = thcv.col_dxcc and cqzone <> '' order by cqzone asc) as correctcqzone
+		from " . $this->config->item('table_name') . " thcv
+		join station_profile on thcv.station_id = station_profile.station_id
+		where station_profile.user_id = ?
+		and not exists (select 1 from dxcc_master where countrycode = thcv.col_dxcc and cqzone = col_cqz) and col_dxcc > 0
+		";
+
+		$params[] = $this->session->userdata('user_id');
+
+		$sql .= " order by station_profile.station_profile_name, thcv.col_time_on desc
+		limit 5000";
+
+		$query = $this->db->query($sql, $params);
+
+		return $query->result();
+	}
+
+	function getIncorrectItuZones() {
+		if(!clubaccess_check(9)) return;
+
+		$sql = "select *, (select group_concat(distinct ituzone order by ituzone separator ', ') from dxcc_master where countrycode = thcv.col_dxcc and ituzone <> '' order by ituzone asc) as correctituzone
+		from " . $this->config->item('table_name') . " thcv
+		join station_profile on thcv.station_id = station_profile.station_id
+		where station_profile.user_id = ?
+		and not exists (select 1 from dxcc_master where countrycode = thcv.col_dxcc and ituzone = col_ituz) and col_dxcc > 0
+		";
+
+		$params[] = $this->session->userdata('user_id');
+
+		$sql .= " order by station_profile.station_profile_name, thcv.col_time_on desc
+		limit 5000";
+
+		$query = $this->db->query($sql, $params);
+
+		return $query->result();
 	}
 }
