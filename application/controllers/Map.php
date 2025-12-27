@@ -72,7 +72,7 @@ class Map extends CI_Controller {
 		$station_id = ($station_id === 'all') ? null : $station_id;
 
 		try {
-			$qsos = $this->Map_model->get_qsos_by_country($country, $station_id, $limit);
+			$qsos = $this->Map_model->get_qsos_by_country($country, $station_id);
 
 			if (empty($qsos)) {
 				while (ob_get_level()) ob_end_clean();
