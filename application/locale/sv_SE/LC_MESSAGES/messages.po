@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-12-28 09:07+0000\n"
-"PO-Revision-Date: 2025-12-26 19:47+0000\n"
+"PO-Revision-Date: 2025-12-28 15:26+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
-"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/sv/>\n"
+"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/sv/>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1034,7 +1034,7 @@ msgstr "eQSL-kort"
 #: application/controllers/Eqsl.php:56
 #, php-format
 msgid "Showing %d to %d of %d entries"
-msgstr ""
+msgstr "Visar %d till %d av %d poster"
 
 #: application/controllers/Eqsl.php:83 application/controllers/Eqsl.php:173
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
@@ -1099,7 +1099,7 @@ msgstr "eQSL-verktyg"
 
 #: application/controllers/Eqsl.php:620
 msgid "Limited to first 150 QSOs for this request. Please run again."
-msgstr ""
+msgstr "Denna begäran är begränsat till 150 QSOs. Vänligen kör igen."
 
 #: application/controllers/Eqsl.php:626
 msgid " / Errors: "
@@ -1111,7 +1111,7 @@ msgstr "Framgångsrikt nedladdad: "
 
 #: application/controllers/Eqsl.php:633
 msgid "eQSL rate limit reached. Please wait before running again."
-msgstr ""
+msgstr "eQSL-gräns nådd. Vänta en stund innan du kör igen."
 
 #: application/controllers/Eqsl.php:645
 msgid "eQSL Card Image Download"
@@ -4803,7 +4803,7 @@ msgstr "Exportalternativ"
 
 #: application/views/adif/import.php:302
 msgid "Mark exported QSOs as already uploaded to LoTW"
-msgstr ""
+msgstr "Markera exporterade QSOs som redan uppladdade till LoTW"
 
 #: application/views/adif/import.php:311
 msgid "Export QSOs not uploaded to LoTW"
@@ -14756,8 +14756,8 @@ msgstr "Loggsökresultat för %s"
 #, php-format
 msgid "has %d band slot"
 msgid_plural "has %d band slots"
-msgstr[0] "har %d band"
-msgstr[1] "har %d band"
+msgstr[0] "har %d band slot"
+msgstr[1] "har %d band slots"
 
 #: application/views/oqrs/result.php:33
 #, php-format
@@ -14784,7 +14784,7 @@ msgstr "Öppen förfrågan"
 #: application/views/oqrs/showrequests.php:51
 #: application/views/oqrs/status_info.php:14
 msgid "Not in log request"
-msgstr "Inte i loggförfrågan"
+msgstr "Inte i logg förfrågan"
 
 #: application/views/oqrs/showrequests.php:4
 msgid "Request done"
@@ -14844,17 +14844,17 @@ msgstr "OQRS-status"
 #: application/views/oqrs/showrequests.php:52
 #: application/views/oqrs/status_info.php:18
 msgid "Done / sent"
-msgstr "Klar / skickat"
+msgstr "Förfrågan klar"
 
 #: application/views/oqrs/showrequests.php:53
 #: application/views/oqrs/status_info.php:22
 msgid "Pending"
-msgstr "Väntande"
+msgstr "Väntande förfrågan"
 
 #: application/views/oqrs/showrequests.php:54
 #: application/views/oqrs/status_info.php:26
 msgid "Rejected"
-msgstr "Avvisad"
+msgstr "Avvisad förfrågan"
 
 #: application/views/oqrs/showrequests.php:71
 msgid "With selected"
