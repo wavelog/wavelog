@@ -299,7 +299,7 @@
 									<div class="col-md-10">
 										<div class="form-check-inline">
 											<input class="form-check-input" type="checkbox" name="markLotw" value="1" id="markLotwExport">
-											<label class="form-check-label" for="markLotwExport"><?= __("Mark exported QSOs as uploaded to LoTW") ?></label>
+											<label class="form-check-label" for="markLotwExport"><?= __("Mark exported QSOs as already uploaded to LoTW") ?></label>
 										</div>
 									</div>
 								</div>
