@@ -2520,7 +2520,41 @@ function saveOptions() {
 				$('#checkDxccBtn').prop("disabled", false).removeClass("running");
 				$('#closeButton').prop("disabled", false);
 				$('.result').html(response);
-				rebind_checkbox_trigger_dxcc();
+				$('#dxccCheckTable').DataTable({
+					"pageLength": 25,
+					responsive: false,
+					ordering: false,
+					"scrollY": "510px",
+					"scrollCollapse": true,
+					"paging": false,
+					"scrollX": false,
+					"language": {
+						url: getDataTablesLanguageUrl(),
+					},
+					initComplete: function () {
+						this.api()
+							.columns('.select-filter')
+							.every(function () {
+								var column = this;
+								var select = $('<select class="form-select form-select-sm"><option value=""></option></select>')
+									.appendTo($(column.footer()).empty())
+									.on('change', function () {
+										var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+										column.search(val ? '^' + val + '$' : '', true, false).draw();
+									});
+
+								column
+									.data()
+									.unique()
+									.sort()
+									.each(function (d, j) {
+										select.append('<option value="' + d + '">' + d + '</option>');
+									});
+							});
+							rebind_checkbox_trigger_dxcc();
+					},
+				});
 			},
 			error: function(xhr, status, error) {
 				$('#checkDxccBtn').prop("disabled", false).removeClass("running");
@@ -2576,9 +2610,9 @@ function saveOptions() {
 										select.append('<option value="' + d + '">' + d + '</option>');
 									});
 							});
+						rebind_checkbox_trigger_cq_zone();
 					},
 				});
-
 			},
 			error: function(xhr, status, error) {
 				$('#checkIncorrectCqZonesBtn').prop("disabled", false).removeClass("running");
@@ -2634,6 +2668,7 @@ function saveOptions() {
 										select.append('<option value="' + d + '">' + d + '</option>');
 									});
 							});
+							rebind_checkbox_trigger_itu_zone();
 					},
 				});
 
@@ -2650,27 +2685,54 @@ function saveOptions() {
 		$('#checkBoxAllDxcc').change(function (event) {
 			if (this.checked) {
 				$('#dxccCheckTable tbody tr').each(function (i) {
-					selectQsoIDDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''));
+					selectQsoIdDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''), 'dxccCheckTable');
 				});
 			} else {
 				$('#dxccCheckTable tbody tr').each(function (i) {
-					unselectQsoIDDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''));
+					unselectQsoIdDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''), 'dxccCheckTable');
 				});
 			}
 		});
 	}
 
-	function selectQsoIDDxcc(qsoID) {
-		var element = $("#qsoID-" + qsoID);
-		element.find("input[type=checkbox]").prop("checked", true);
+	function selectQsoIdDxcc(qsoID, tablename) {
+		var element = $("#" + tablename + " tbody tr#qsoID-" + qsoID);
+		element.find(".row-check").prop("checked", true);
 		element.addClass('activeRow');
 	}
 
-	function unselectQsoIDDxcc(qsoID) {
-		var element = $("#qsoID-" + qsoID);
-		element.find("input[type=checkbox]").prop("checked", false);
+	function unselectQsoIdDxcc(qsoID, tablename) {
+		var element = $("#" + tablename + " tbody tr#qsoID-" + qsoID);
+		element.find(".row-check").prop("checked", false);
 		element.removeClass('activeRow');
-		$('#checkBoxAllDxcc').prop("checked", false);
+	}
+
+	function rebind_checkbox_trigger_cq_zone() {
+		$('#checkBoxAllCqZones').change(function (event) {
+			if (this.checked) {
+				$('#incorrectcqzonetable tbody tr').each(function (i) {
+					selectQsoIdDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''), 'incorrectcqzonetable');
+				});
+			} else {
+				$('#incorrectcqzonetable tbody tr').each(function (i) {
+					unselectQsoIdDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''), 'incorrectcqzonetable');
+				});
+			}
+		});
+	}
+
+	function rebind_checkbox_trigger_itu_zone() {
+		$('#checkBoxAllItuZones').change(function (event) {
+			if (this.checked) {
+				$('#incorrectituzonetable tbody tr').each(function (i) {
+					selectQsoIdDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''), 'incorrectituzonetable');
+				});
+			} else {
+				$('#incorrectituzonetable tbody tr').each(function (i) {
+					unselectQsoIdDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''), 'incorrectituzonetable');
+				});
+			}
+		});
 	}
 
 	function fixDxccSelected() {

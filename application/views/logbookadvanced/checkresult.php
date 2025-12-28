@@ -141,8 +141,8 @@ function check_dxcc($result, $custom_date_format) { ?>
 							<th><div class="form-check"><input class="form-check-input mt-2" type="checkbox" id="checkBoxAllDxcc" /></div></th>
 							<th><?= __("Callsign"); ?></th>
 							<th><?= __("QSO Date"); ?></th>
-							<th><?= __("Station Profile"); ?></th>
-							<th><?= __("Existing DXCC"); ?></th>
+							<th class="select-filter" scope="col"><?= __("Station Profile"); ?></th>
+							<th class="select-filter" scope="col"><?= __("Existing DXCC"); ?></th>
 							<th><?= __("Result DXCC"); ?></th>
 						</tr>
 					</thead>
@@ -158,6 +158,16 @@ function check_dxcc($result, $custom_date_format) { ?>
 								</tr>
 						<?php endforeach; ?>
 					</tbody>
+					<tfoot>
+						<tr>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+					</tfoot>
 				</table>
 			</div>
 
@@ -234,24 +244,27 @@ function check_incorrect_cq_zones($result, $custom_date_format) { ?>
 		echo __("The following QSOs were found to have an incorrect CQ zone that this DXCC normally has (a maximum of 5000 QSOs are shown):");
 		echo '<table style="width:100%" class="qsolist table table-sm table-bordered table-hover table-striped table-condensed" id="incorrectcqzonetable">
 		<thead>
-		<tr>
-		<th style=\'text-align: center\'>' . __("Date") . '</th>
-		<th style=\'text-align: center\'>' . __("Time") . '</th>
-		<th style=\'text-align: center\'>' . __("Callsign") . '</th>
-		<th style=\'text-align: center\'>' . __("Mode") . '</th>
-		<th style=\'text-align: center\'>' . __("Band") . '</th>
-		<th style=\'text-align: center\'>' . __("Gridsquare") . '</th>
-		<th style=\'text-align: center\'>' . __("CQ Zone") . '</th>
-		<th style=\'text-align: center\'>' . __("DXCC CQ Zone") . '</th>
-		<th style=\'text-align: center\' class="select-filter" scope="col">' . __("DXCC") . '</th>
-		<th style=\'text-align: center\' class="select-filter" scope="col">' . __("Station") . '</th>
-		</tr>
-		</thead><tbody>';
+			<tr>
+				<th><div class="form-check"><input class="form-check-input mt-2" type="checkbox" id="checkBoxAllCqZones" /></div></th>
+				<th style=\'text-align: center\'>' . __("Date") . '</th>
+				<th style=\'text-align: center\'>' . __("Time") . '</th>
+				<th style=\'text-align: center\'>' . __("Callsign") . '</th>
+				<th style=\'text-align: center\'>' . __("Mode") . '</th>
+				<th style=\'text-align: center\'>' . __("Band") . '</th>
+				<th style=\'text-align: center\'>' . __("Gridsquare") . '</th>
+				<th style=\'text-align: center\'>' . __("CQ Zone") . '</th>
+				<th style=\'text-align: center\'>' . __("DXCC CQ Zone") . '</th>
+				<th style=\'text-align: center\' class="select-filter" scope="col">' . __("DXCC") . '</th>
+				<th style=\'text-align: center\' class="select-filter" scope="col">' . __("Station") . '</th>
+			</tr>
+		</thead>
+		<tbody>';
 
 		$i = 0;
 
 		foreach ($result as $qso) {
-			echo '<tr id="qso_'. $qso->COL_PRIMARY_KEY .'">';
+			echo '<tr id="qsoID-'. $qso->COL_PRIMARY_KEY .'">';
+			echo '<td><div class="form-check"><input class="row-check form-check-input mt-1" type="checkbox" /></div></td>';
 			echo '<td style=\'text-align: center\'>'; $timestamp = strtotime($qso->COL_TIME_ON); echo date($custom_date_format, $timestamp); echo '</td>';
 			echo '<td style=\'text-align: center\'>'; $timestamp = strtotime($qso->COL_TIME_ON); echo date('H:i', $timestamp); echo '</td>';
 			echo '<td style=\'text-align: center\'><a id="edit_qso" href="javascript:displayQso(' . $qso->COL_PRIMARY_KEY . ')">' . str_replace("0","&Oslash;",strtoupper($qso->COL_CALL)) . '</a></td>';
@@ -268,6 +281,7 @@ function check_incorrect_cq_zones($result, $custom_date_format) { ?>
 		echo '</tbody>
 		<tfoot>
 			<tr>
+				<th></th>
 				<th></th>
 				<th></th>
 				<th></th>
@@ -295,24 +309,27 @@ function check_incorrect_itu_zones($result, $custom_date_format) { ?>
 		echo __("The following QSOs were found to have an incorrect ITU zone that this DXCC normally has (a maximum of 5000 QSOs are shown):");
 		echo '<table style="width:100%" class="qsolist table table-sm table-bordered table-hover table-striped table-condensed" id="incorrectituzonetable">
 		<thead>
-		<tr>
-		<th style=\'text-align: center\'>' . __("Date") . '</th>
-		<th style=\'text-align: center\'>' . __("Time") . '</th>
-		<th style=\'text-align: center\'>' . __("Callsign") . '</th>
-		<th style=\'text-align: center\'>' . __("Mode") . '</th>
-		<th style=\'text-align: center\'>' . __("Band") . '</th>
-		<th style=\'text-align: center\'>' . __("Gridsquare") . '</th>
-		<th style=\'text-align: center\'>' . __("ITU Zone") . '</th>
-		<th style=\'text-align: center\'>' . __("DXCC ITU Zone") . '</th>
-		<th style=\'text-align: center\' class="select-filter" scope="col">' . __("DXCC") . '</th>
-		<th style=\'text-align: center\' class="select-filter" scope="col">' . __("Station") . '</th>
-		</tr>
-		</thead><tbody>';
+			<tr>
+				<th><div class="form-check"><input class="form-check-input mt-2" type="checkbox" id="checkBoxAllItuZones" /></div></th>
+				<th style=\'text-align: center\'>' . __("Date") . '</th>
+				<th style=\'text-align: center\'>' . __("Time") . '</th>
+				<th style=\'text-align: center\'>' . __("Callsign") . '</th>
+				<th style=\'text-align: center\'>' . __("Mode") . '</th>
+				<th style=\'text-align: center\'>' . __("Band") . '</th>
+				<th style=\'text-align: center\'>' . __("Gridsquare") . '</th>
+				<th style=\'text-align: center\'>' . __("ITU Zone") . '</th>
+				<th style=\'text-align: center\'>' . __("DXCC ITU Zone") . '</th>
+				<th style=\'text-align: center\' class="select-filter" scope="col">' . __("DXCC") . '</th>
+				<th style=\'text-align: center\' class="select-filter" scope="col">' . __("Station") . '</th>
+			</tr>
+		</thead>
+		<tbody>';
 
 		$i = 0;
 
 		foreach ($result as $qso) {
-			echo '<tr id="qso_'. $qso->COL_PRIMARY_KEY .'">';
+			echo '<tr id="qsoID-'. $qso->COL_PRIMARY_KEY .'">';
+			echo '<td><div class="form-check"><input class="row-check form-check-input mt-1" type="checkbox" /></div></td>';
 			echo '<td style=\'text-align: center\'>'; $timestamp = strtotime($qso->COL_TIME_ON); echo date($custom_date_format, $timestamp); echo '</td>';
 			echo '<td style=\'text-align: center\'>'; $timestamp = strtotime($qso->COL_TIME_ON); echo date('H:i', $timestamp); echo '</td>';
 			echo '<td style=\'text-align: center\'><a id="edit_qso" href="javascript:displayQso(' . $qso->COL_PRIMARY_KEY . ')">' . str_replace("0","&Oslash;",strtoupper($qso->COL_CALL)) . '</a></td>';
@@ -329,6 +346,7 @@ function check_incorrect_itu_zones($result, $custom_date_format) { ?>
 		echo '</tbody>
 		<tfoot>
 			<tr>
+				<th></th>
 				<th></th>
 				<th></th>
 				<th></th>

@@ -19,8 +19,8 @@
                 </div>
 				<div class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
-                        <h6 class="mb-1"><?= __("Check CQ Zones") ?></h6>
-                        <p class="mb-1 small text-muted"><?= __("Check incorrect CQ zone information") ?></p>
+                        <h6 class="mb-1"><?= __("Check all QSOs in the logbook for incorrect CQ Zones") ?></h6>
+                        <p class="mb-1 small text-muted"><?= __("Use Wavelog to determine CQ Zone for all QSOs.") ?></p>
                     </div>
                     <div class="d-flex nowrap">
                         <button type="button" class="btn btn-sm btn-success me-1 ld-ext-right" id="checkIncorrectCqZonesBtn" onclick="checkIncorrectCqZones()">
@@ -43,8 +43,8 @@
 
 				<div class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
-                        <h6 class="mb-1"><?= __("Check ITU Zones") ?></h6>
-                        <p class="mb-1 small text-muted"><?= __("Check incorrect ITU zone information") ?></p>
+                        <h6 class="mb-1"><?= __("Check all QSOs in the logbook for incorrect ITU Zones") ?></h6>
+                        <p class="mb-1 small text-muted"><?= __("Use Wavelog to determine ITU Zone for all QSOs.") ?></p>
                     </div>
                     <div class="d-flex nowrap">
                         <button type="button" class="btn btn-sm btn-success me-1 ld-ext-right" id="checkIncorrectItuZonesBtn" onclick="checkIncorrectItuZones()">
