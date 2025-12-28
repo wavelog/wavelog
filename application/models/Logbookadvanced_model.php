@@ -1958,6 +1958,10 @@ class Logbookadvanced_model extends CI_Model {
                 $result[] = array(
                                 'callsign'          => $call->col_call,
 								'qso_date'          => $call->date,
+								'mode'              => isset($call->col_mode) ? $call->col_mode : '',
+								'submode'           => isset($call->col_submode) ? $call->col_submode : '',
+								'band'              => isset($call->col_band) ? $call->col_band : '',
+								'lotw_qsl_rcvd'     => isset($call->col_lotw_qsl_rcvd) ? $call->col_lotw_qsl_rcvd : '',
 								'station_profile'   => $call->station_profile_name,
                                 'existing_dxcc'     => $call->col_country,
                                 'existing_adif'     => $call->col_dxcc,
@@ -1982,7 +1986,7 @@ class Logbookadvanced_model extends CI_Model {
 	}
 
 	function getQsos() {
-		$sql = 'select distinct col_country, col_call, col_dxcc, date(col_time_on) date, station_profile.station_profile_name, col_primary_key
+		$sql = 'select distinct col_country, col_call, col_dxcc, date(col_time_on) date, col_mode, col_submode, col_band, col_lotw_qsl_rcvd, station_profile.station_profile_name, col_primary_key
 			from ' . $this->config->item('table_name') . '
 			join station_profile on ' . $this->config->item('table_name') . '.station_id = station_profile.station_id
 			where station_profile.user_id = ?';

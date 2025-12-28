@@ -141,6 +141,9 @@ function check_dxcc($result, $custom_date_format) { ?>
 							<th><div class="form-check"><input class="form-check-input mt-2" type="checkbox" id="checkBoxAllDxcc" /></div></th>
 							<th><?= __("Callsign"); ?></th>
 							<th><?= __("QSO Date"); ?></th>
+							<th class="select-filter" scope="col"><?= __("Band"); ?></th>
+							<th class="select-filter" scope="col"><?= __("Mode"); ?></th>
+							<th class="select-filter" scope="col"><?= __("LoTW"); ?></th>
 							<th class="select-filter" scope="col"><?= __("Station Profile"); ?></th>
 							<th class="select-filter" scope="col"><?= __("Existing DXCC"); ?></th>
 							<th><?= __("Result DXCC"); ?></th>
@@ -152,6 +155,9 @@ function check_dxcc($result, $custom_date_format) { ?>
 									<td><div class="form-check"><input class="row-check form-check-input mt-1" type="checkbox" /></div></td>
 									<td><?php echo '<a id="edit_qso" href="javascript:displayQso(' . $qso['id'] . ')">' . htmlspecialchars($qso['callsign']) . '</a>'; ?></td>
 									<td><?php echo date($custom_date_format, strtotime($qso['qso_date'])); ?></td>
+									<td><?php echo htmlspecialchars($qso['band']); ?></td>
+									<td><?php echo htmlspecialchars($qso['submode'] ? $qso['submode'] : $qso['mode']); ?></td>
+									<td><?php echo $qso['lotw_qsl_rcvd'] == 'Y' ? __('Yes') : __('No'); ?></td>
 									<td><?php echo $qso['station_profile']; ?></td>
 									<td><?php echo htmlspecialchars(ucwords(strtolower($qso['existing_dxcc']), "- (/"), ENT_QUOTES, 'UTF-8'); ?></td>
 									<td><?php echo htmlspecialchars(ucwords(strtolower($qso['result_country']), "- (/"), ENT_QUOTES, 'UTF-8'); ?></td>
@@ -160,6 +166,9 @@ function check_dxcc($result, $custom_date_format) { ?>
 					</tbody>
 					<tfoot>
 						<tr>
+							<th></th>
+							<th></th>
+							<th></th>
 							<th></th>
 							<th></th>
 							<th></th>
