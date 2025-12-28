@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-12-28 09:07+0000\n"
-"PO-Revision-Date: 2025-12-22 23:48+0000\n"
+"PO-Revision-Date: 2025-12-28 15:26+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -680,7 +680,7 @@ msgstr " and sat "
 
 #: application/controllers/Calltester.php:33
 msgid "Call Tester"
-msgstr ""
+msgstr "コールテスター"
 
 #: application/controllers/Club.php:23
 msgid "Club Officer"
@@ -1035,7 +1035,7 @@ msgstr "eQSLカード"
 #: application/controllers/Eqsl.php:56
 #, php-format
 msgid "Showing %d to %d of %d entries"
-msgstr ""
+msgstr "%d 件中 %d 件から %d 件を表示中"
 
 #: application/controllers/Eqsl.php:83 application/controllers/Eqsl.php:173
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
@@ -1092,7 +1092,7 @@ msgstr "eQSLイメージのダウンロードに失敗しました"
 
 #: application/controllers/Eqsl.php:443
 msgid "Failed to load cached eQSL image"
-msgstr ""
+msgstr "キャッシュされたeQSL画像の読み込みに失敗しました"
 
 #: application/controllers/Eqsl.php:590
 msgid "eQSL Tools"
@@ -1100,7 +1100,8 @@ msgstr "eQSLツール"
 
 #: application/controllers/Eqsl.php:620
 msgid "Limited to first 150 QSOs for this request. Please run again."
-msgstr ""
+msgstr "このリクエストは最初の150QSOまでに制限されています。もう一度実行してください"
+"。"
 
 #: application/controllers/Eqsl.php:626
 msgid " / Errors: "
@@ -1112,7 +1113,7 @@ msgstr "ダウンロードに成功しました: "
 
 #: application/controllers/Eqsl.php:633
 msgid "eQSL rate limit reached. Please wait before running again."
-msgstr ""
+msgstr "eQSLの制限回数に達しました。再度実行する前にしばらくお待ちください。"
 
 #: application/controllers/Eqsl.php:645
 msgid "eQSL Card Image Download"
@@ -1913,7 +1914,7 @@ msgstr "ログブックの詳細"
 #: application/controllers/Logbookadvanced.php:1002
 #, php-format
 msgid "DXCC updated for %d QSO(s)."
-msgstr ""
+msgstr "DXCCが %d QSO 更新されました。"
 
 #: application/controllers/Lookup.php:22
 msgid "Quick Lookup"
@@ -2002,7 +2003,7 @@ msgstr "LoTW .TQ8 が未送信"
 
 #: application/controllers/Map.php:46
 msgid "QSO Map"
-msgstr ""
+msgstr "QSOマップ"
 
 #: application/controllers/Mode.php:25 application/controllers/Usermode.php:23
 #: application/views/interface_assets/header.php:328
@@ -4806,7 +4807,7 @@ msgstr "エクスポートオプション"
 
 #: application/views/adif/import.php:302
 msgid "Mark exported QSOs as already uploaded to LoTW"
-msgstr ""
+msgstr "エクスポートしたQSOをLoTWにアップロード済みとしてマークする"
 
 #: application/views/adif/import.php:311
 msgid "Export QSOs not uploaded to LoTW"
@@ -8730,46 +8731,46 @@ msgstr "Last QSO"
 
 #: application/views/calltester/comparison_result.php:18
 msgid "DXCC Class Results"
-msgstr ""
+msgstr "DXCCクラスの結果"
 
 #: application/views/calltester/comparison_result.php:21
 #: application/views/calltester/comparison_result.php:33
 msgid "Calls tested:"
-msgstr ""
+msgstr "テスト済み通話："
 
 #: application/views/calltester/comparison_result.php:22
 #: application/views/calltester/comparison_result.php:34
 msgid "Execution time:"
-msgstr ""
+msgstr "実行時間:"
 
 #: application/views/calltester/comparison_result.php:23
 #: application/views/calltester/comparison_result.php:35
 msgid "Issues found:"
-msgstr ""
+msgstr "見つかった問題:"
 
 #: application/views/calltester/comparison_result.php:30
 msgid "Logbook Model Results"
-msgstr ""
+msgstr "ログブックモデルの結果"
 
 #: application/views/calltester/comparison_result.php:44
 msgid "Comparison Summary"
-msgstr ""
+msgstr "比較の概要"
 
 #: application/views/calltester/comparison_result.php:45
 msgid "Only found in DXCC Class:"
-msgstr ""
+msgstr "DXCC クラスのみで見つかります:"
 
 #: application/views/calltester/comparison_result.php:46
 msgid "Only found in Logbook Model:"
-msgstr ""
+msgstr "ログブックモデルでのみ見つかります:"
 
 #: application/views/calltester/comparison_result.php:47
 msgid "Found in both methods:"
-msgstr ""
+msgstr "両方の方法で見つかりました:"
 
 #: application/views/calltester/comparison_result.php:54
 msgid "Issues found only in DXCC Class (not in Logbook Model):"
-msgstr ""
+msgstr "DXCC クラスでのみ見つかった問題 (ログブック モデルでは見つかりません):"
 
 #: application/views/calltester/comparison_result.php:62
 #: application/views/calltester/comparison_result.php:98
@@ -8777,7 +8778,7 @@ msgstr ""
 #: application/views/calltester/result.php:24
 #: application/views/logbookadvanced/checkresult.php:135
 msgid "Station Profile"
-msgstr ""
+msgstr "ステーションプロフィール"
 
 #: application/views/calltester/comparison_result.php:63
 #: application/views/calltester/comparison_result.php:99
@@ -8785,14 +8786,14 @@ msgstr ""
 #: application/views/calltester/result.php:25
 #: application/views/logbookadvanced/checkresult.php:136
 msgid "Existing DXCC"
-msgstr ""
+msgstr "既存のDXCC"
 
 #: application/views/calltester/comparison_result.php:64
 #: application/views/calltester/comparison_result.php:100
 #: application/views/calltester/comparison_result.php:136
 #: application/views/calltester/result.php:26
 msgid "Existing ADIF"
-msgstr ""
+msgstr "既存のADIF"
 
 #: application/views/calltester/comparison_result.php:65
 #: application/views/calltester/comparison_result.php:101
@@ -8800,32 +8801,33 @@ msgstr ""
 #: application/views/calltester/result.php:27
 #: application/views/logbookadvanced/checkresult.php:137
 msgid "Result DXCC"
-msgstr ""
+msgstr "結果 DXCC"
 
 #: application/views/calltester/comparison_result.php:66
 #: application/views/calltester/comparison_result.php:102
 #: application/views/calltester/comparison_result.php:138
 #: application/views/calltester/result.php:28
 msgid "Result ADIF"
-msgstr ""
+msgstr "結果 ADIF"
 
 #: application/views/calltester/comparison_result.php:90
 msgid "Issues found only in Logbook Model (not in DXCC Class):"
-msgstr ""
+msgstr "ログブック モデルでのみ見つかった問題 (DXCC クラスでは見つかりません):"
 
 #: application/views/calltester/comparison_result.php:126
 msgid "Issues found in both methods:"
-msgstr ""
+msgstr "両方の方法で見つかった問題:"
 
 #: application/views/calltester/comparison_result.php:162
 msgid ""
 "No DXCC issues found in either method. All calls have correct DXCC "
 "information."
-msgstr ""
+msgstr "どちらの方法でもDXCCの問題は見つかりませんでした。すべての交信に正しいDXCC情"
+"報が含まれています。"
 
 #: application/views/calltester/index.php:3
 msgid "Callsign DXCC identification"
-msgstr ""
+msgstr "コールサインDXCC識別"
 
 #: application/views/calltester/index.php:10
 #: application/views/interface_assets/footer.php:878
@@ -8835,26 +8837,26 @@ msgstr "コールサイン: "
 
 #: application/views/calltester/index.php:15
 msgid "Start DXCC Check"
-msgstr ""
+msgstr "DXCCチェックを開始"
 
 #: application/views/calltester/index.php:18
 msgid "Compare DXCC class and logbook model"
-msgstr ""
+msgstr "DXCCクラスとログブックモデルの比較"
 
 #: application/views/calltester/result.php:4
 #: application/views/logbookadvanced/checkresult.php:117
 msgid "Callsigns tested: "
-msgstr ""
+msgstr "テスト済みのコールサイン: "
 
 #: application/views/calltester/result.php:5
 #: application/views/logbookadvanced/checkresult.php:118
 msgid "Execution time: "
-msgstr ""
+msgstr "実行時間: "
 
 #: application/views/calltester/result.php:6
 #: application/views/logbookadvanced/checkresult.php:119
 msgid "Number of potential QSOs with wrong DXCC: "
-msgstr ""
+msgstr "間違った DXCC との潜在的な QSO の数: "
 
 #: application/views/club/clubswitch_modal.php:5
 msgid "Switch to a Clubstation"
@@ -12607,7 +12609,7 @@ msgstr "グリッドスクエア チェック結果"
 
 #: application/views/logbookadvanced/checkresult.php:124
 msgid "Update selected"
-msgstr ""
+msgstr "選択した更新"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:4
 msgid "Data Repair Tools"
@@ -12677,7 +12679,7 @@ msgstr "DXCC情報が欠落しているQSOを特定する"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:83
 msgid "Check all QSOs in the logbook for incorrect DXCC"
-msgstr ""
+msgstr "ログブックのすべてのQSOでDXCCの誤りがないか確認する"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:84
 msgid "Use Wavelog to determine DXCC for all QSOs."
@@ -12693,27 +12695,27 @@ msgstr "コールブック検索を使用してグリッドスクエアを設定
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:97
 msgid "This is limited to 150 callsigns for each run!"
-msgstr ""
+msgstr "実行ごとに 150 のコールサインに制限されます！"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:4
 msgid "Search for duplicates using:"
-msgstr ""
+msgstr "重複を検索するには以下を使用します:"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:16
 msgid "Match QSOs within 1800s (30min) of each other"
-msgstr ""
+msgstr "1800秒（30分）以内のQSOをマッチング"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:25
 msgid "Match QSOs with the same mode (SSB, CW, FM, etc.)"
-msgstr ""
+msgstr "同じモード（SSB、CW、FMなど）でQSOを一致させます"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:34
 msgid "Match QSOs on the same band"
-msgstr ""
+msgstr "同じバンドでQSOをマッチする"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:43
 msgid "Match QSOs using the same satellite"
-msgstr ""
+msgstr "同じ衛星を使用してQSOをマッチングする"
 
 #: application/views/logbookadvanced/edit.php:1
 msgid "Please choose the column to be edited:"
@@ -13248,7 +13250,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/index.php:74
 msgid "Duplicate Search"
-msgstr ""
+msgstr "重複検索"
 
 #: application/views/logbookadvanced/index.php:301
 msgid "From"
@@ -14045,11 +14047,11 @@ msgstr "LoTW との次の自動同期は次の時間に行われます: "
 
 #: application/views/map/qso_map.php:6
 msgid "Select Country:"
-msgstr ""
+msgstr "国を選択:"
 
 #: application/views/map/qso_map.php:8
 msgid "Choose a country..."
-msgstr ""
+msgstr "国を選択してください..."
 
 #: application/views/mode/create.php:24 application/views/mode/edit.php:33
 msgctxt "Name of mode in ADIF-specification"
