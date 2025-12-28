@@ -2851,3 +2851,91 @@ function saveOptions() {
 			link.textContent = lang_gen_advanced_logbook_show_less;
 		}
 	}
+
+	function fixCqZoneSelected() {
+		let id_list = [];
+		$('#incorrectcqzonetable tbody input:checked').each(function () {
+			let id = $(this).closest('tr').attr('id')?.replace(/\D/g, '');
+			id_list.push(id);
+		});
+
+		if (id_list.length === 0) {
+			BootstrapDialog.alert({
+				title: lang_gen_advanced_logbook_info,
+				message: lang_gen_advanced_logbook_select_at_least_one_row,
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
+			return;
+		}
+
+		$('#fixSelectedCqZoneBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/fixCqZones',
+			type: 'post',
+			data: {'ids': JSON.stringify(id_list, null, 2)},
+			success: function(data) {
+				$('#fixSelectedCqZoneBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				id_list.forEach(function(id) {
+					let row = $("#incorrectcqzonetable tbody tr#qsoID-" + id);
+					row.remove();
+				});
+				$('.dxcctablediv').html(data.message);
+			},
+			error: function(xhr, status, error) {
+				$('#fixSelectedCqZoneBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				$('.result').html(error);
+			}
+		});
+	}
+
+	function fixItuZoneSelected() {
+		let id_list = [];
+		$('#incorrectituzonetable tbody input:checked').each(function () {
+			let id = $(this).closest('tr').attr('id')?.replace(/\D/g, '');
+			id_list.push(id);
+		});
+
+		if (id_list.length === 0) {
+			BootstrapDialog.alert({
+				title: lang_gen_advanced_logbook_info,
+				message: lang_gen_advanced_logbook_select_at_least_one_row,
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
+			return;
+		}
+
+		$('#fixSelectedItuZoneBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/fixItuZones',
+			type: 'post',
+			data: {'ids': JSON.stringify(id_list, null, 2)},
+			success: function(data) {
+				$('#fixSelectedItuZoneBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				id_list.forEach(function(id) {
+					let row = $("#incorrectituzonetable tbody tr#qsoID-" + id);
+					row.remove();
+				});
+				$('.dxcctablediv').html(data.message);
+			},
+			error: function(xhr, status, error) {
+				$('#fixSelectedItuZoneBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				$('.result').html(error);
+			}
+		});
+	}

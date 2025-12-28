@@ -250,14 +250,18 @@ function check_incorrect_gridsquares($result, $custom_date_format) { ?>
 function check_incorrect_cq_zones($result, $custom_date_format) { ?>
 	<h5><?= __("CQ Zone Check Results") ?></h5>
 	<?php if ($result) {
-		echo __("The following QSOs were found to have an incorrect CQ zone that this DXCC normally has (a maximum of 5000 QSOs are shown):");
-		echo '<table style="width:100%" class="qsolist table table-sm table-bordered table-hover table-striped table-condensed" id="incorrectcqzonetable">
+		echo __("The following QSOs were found to have a different CQ zone compared to what this DXCC normally has (a maximum of 5000 QSOs are shown):"); ?>
+		<br />
+		<button type="button" class="mt-2 mb-2 btn btn-sm btn-primary ld-ext-right" id="fixSelectedCqZoneBtn" onclick="fixCqZoneSelected(true)">
+			<?= __("Update selected") ?><div class="ld ld-ring ld-spin"></div>
+		</button>
+		<?php echo '<table style="width:100%" class="qsolist table table-sm table-bordered table-hover table-striped table-condensed" id="incorrectcqzonetable">
 		<thead>
 			<tr>
 				<th><div class="form-check"><input class="form-check-input mt-2" type="checkbox" id="checkBoxAllCqZones" /></div></th>
+				<th style=\'text-align: center\'>' . __("Callsign") . '</th>
 				<th style=\'text-align: center\'>' . __("Date") . '</th>
 				<th style=\'text-align: center\'>' . __("Time") . '</th>
-				<th style=\'text-align: center\'>' . __("Callsign") . '</th>
 				<th style=\'text-align: center\'>' . __("Mode") . '</th>
 				<th style=\'text-align: center\'>' . __("Band") . '</th>
 				<th style=\'text-align: center\'>' . __("Gridsquare") . '</th>
@@ -274,9 +278,9 @@ function check_incorrect_cq_zones($result, $custom_date_format) { ?>
 		foreach ($result as $qso) {
 			echo '<tr id="qsoID-'. $qso->COL_PRIMARY_KEY .'">';
 			echo '<td><div class="form-check"><input class="row-check form-check-input mt-1" type="checkbox" /></div></td>';
+			echo '<td style=\'text-align: center\'><a id="edit_qso" href="javascript:displayQso(' . $qso->COL_PRIMARY_KEY . ')">' . str_replace("0","&Oslash;",strtoupper($qso->COL_CALL)) . '</a></td>';
 			echo '<td style=\'text-align: center\'>'; $timestamp = strtotime($qso->COL_TIME_ON); echo date($custom_date_format, $timestamp); echo '</td>';
 			echo '<td style=\'text-align: center\'>'; $timestamp = strtotime($qso->COL_TIME_ON); echo date('H:i', $timestamp); echo '</td>';
-			echo '<td style=\'text-align: center\'><a id="edit_qso" href="javascript:displayQso(' . $qso->COL_PRIMARY_KEY . ')">' . str_replace("0","&Oslash;",strtoupper($qso->COL_CALL)) . '</a></td>';
 			echo '<td style=\'text-align: center\'>'; echo $qso->COL_SUBMODE==null?$qso->COL_MODE:$qso->COL_SUBMODE; echo '</td>';
 			echo '<td style=\'text-align: center\'>'; if($qso->COL_SAT_NAME != null) { echo $qso->COL_SAT_NAME; } else { echo strtolower($qso->COL_BAND); }; echo '</td>';
 			echo '<td style=\'text-align: center\'>'; echo strlen($qso->COL_GRIDSQUARE ?? '')==0?$qso->COL_VUCC_GRIDS:$qso->COL_GRIDSQUARE; echo '</td>';
@@ -315,14 +319,18 @@ function check_incorrect_cq_zones($result, $custom_date_format) { ?>
 function check_incorrect_itu_zones($result, $custom_date_format) { ?>
 	<h5><?= __("ITU Zone Check Results") ?></h5>
 	<?php if ($result) {
-		echo __("The following QSOs were found to have an incorrect ITU zone that this DXCC normally has (a maximum of 5000 QSOs are shown):");
-		echo '<table style="width:100%" class="qsolist table table-sm table-bordered table-hover table-striped table-condensed" id="incorrectituzonetable">
+		echo __("The following QSOs were found to have a different ITU zone compared to what this DXCC normally has (a maximum of 5000 QSOs are shown):"); ?>
+		<br />
+		<button type="button" class="mt-2 mb-2 btn btn-sm btn-primary ld-ext-right" id="fixSelectedItuZoneBtn" onclick="fixItuZoneSelected(true)">
+			<?= __("Update selected") ?><div class="ld ld-ring ld-spin"></div>
+		</button>
+		<?php echo '<table style="width:100%" class="qsolist table table-sm table-bordered table-hover table-striped table-condensed" id="incorrectituzonetable">
 		<thead>
 			<tr>
 				<th><div class="form-check"><input class="form-check-input mt-2" type="checkbox" id="checkBoxAllItuZones" /></div></th>
+				<th style=\'text-align: center\'>' . __("Callsign") . '</th>
 				<th style=\'text-align: center\'>' . __("Date") . '</th>
 				<th style=\'text-align: center\'>' . __("Time") . '</th>
-				<th style=\'text-align: center\'>' . __("Callsign") . '</th>
 				<th style=\'text-align: center\'>' . __("Mode") . '</th>
 				<th style=\'text-align: center\'>' . __("Band") . '</th>
 				<th style=\'text-align: center\'>' . __("Gridsquare") . '</th>
@@ -339,9 +347,9 @@ function check_incorrect_itu_zones($result, $custom_date_format) { ?>
 		foreach ($result as $qso) {
 			echo '<tr id="qsoID-'. $qso->COL_PRIMARY_KEY .'">';
 			echo '<td><div class="form-check"><input class="row-check form-check-input mt-1" type="checkbox" /></div></td>';
+			echo '<td style=\'text-align: center\'><a id="edit_qso" href="javascript:displayQso(' . $qso->COL_PRIMARY_KEY . ')">' . str_replace("0","&Oslash;",strtoupper($qso->COL_CALL)) . '</a></td>';
 			echo '<td style=\'text-align: center\'>'; $timestamp = strtotime($qso->COL_TIME_ON); echo date($custom_date_format, $timestamp); echo '</td>';
 			echo '<td style=\'text-align: center\'>'; $timestamp = strtotime($qso->COL_TIME_ON); echo date('H:i', $timestamp); echo '</td>';
-			echo '<td style=\'text-align: center\'><a id="edit_qso" href="javascript:displayQso(' . $qso->COL_PRIMARY_KEY . ')">' . str_replace("0","&Oslash;",strtoupper($qso->COL_CALL)) . '</a></td>';
 			echo '<td style=\'text-align: center\'>'; echo $qso->COL_SUBMODE==null?$qso->COL_MODE:$qso->COL_SUBMODE; echo '</td>';
 			echo '<td style=\'text-align: center\'>'; if($qso->COL_SAT_NAME != null) { echo $qso->COL_SAT_NAME; } else { echo strtolower($qso->COL_BAND); }; echo '</td>';
 			echo '<td style=\'text-align: center\'>'; echo strlen($qso->COL_GRIDSQUARE ?? '')==0?$qso->COL_VUCC_GRIDS:$qso->COL_GRIDSQUARE; echo '</td>';
