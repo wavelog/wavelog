@@ -6161,9 +6161,7 @@ class Logbook_model extends CI_Model {
 			'COL_LOTW_QSL_SENT' => 'Y',
 		);
 
-
 		$this->db->where('COL_PRIMARY_KEY', $qso_id);
-
 		$this->db->update($this->config->item('table_name'), $data);
 
 		return "Updated";
