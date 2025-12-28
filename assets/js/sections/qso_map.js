@@ -282,7 +282,7 @@ function initMap() {
 			weight: 3,
 			// color: 'white',
 			dashArray: '',
-			fillOpacity: 0.8
+			fillOpacity: 0.6
 		});
 
 		layer.bringToFront();
