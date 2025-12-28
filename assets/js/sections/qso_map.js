@@ -2,6 +2,8 @@ let maidenhead;
 let zonemarkers = [];
 let ituzonemarkers = [];
 let map = null;
+let info;
+let geojsonlayer;
 
 // Wait for jQuery to be loaded
 function initMap() {
@@ -179,19 +181,36 @@ function initMap() {
                 data: { dxcc: dxcc },
                 success: function(geojson) {
                     if (geojson && !geojson.error) {
-                        const layer = L.geoJSON(geojson, {
+                        geojsonlayer = L.geoJSON(geojson, {
                             style: {
                                 color: '#ff0000',
                                 weight: 2,
                                 opacity: 0.5,
                                 fillOpacity: 0.1
-                            }
+                            },
+							onEachFeature: onEachFeature
                         }).addTo(map);
-                        geojsonLayers.push(layer);
+                        geojsonLayers.push(geojsonlayer);
+
+						info = L.control();
+
+						info.onAdd = function (map) {
+							this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+							this.update();
+							return this._div;
+						};
+
+						// method that we will use to update the control based on feature properties passed
+						info.update = function (props) {
+							this._div.innerHTML = '<h4>Region</h4>' +  (props ?
+								'<b>' + props.code + ' - ' + props.name + '</b><br />' : 'Hover over a region');
+							};
+
+						info.addTo(map);
 
                         // Fit map to show both GeoJSON and markers
                         setTimeout(function() {
-                            const geoBounds = layer.getBounds();
+                            const geoBounds = geojsonlayer.getBounds();
                             if (bounds.length > 0) {
                                 const markerBounds = L.latLngBounds(bounds);
                                 // Combine bounds
@@ -247,6 +266,42 @@ function initMap() {
             }
         }, 100);
     }
+
+	function onEachFeature(feature, layer) {
+		layer.on({
+			mouseover: highlightFeature,
+			mouseout: resetHighlight,
+			click: onClick2
+		});
+	}
+
+	function highlightFeature(e) {
+		var layer = e.target;
+
+		layer.setStyle({
+			weight: 3,
+			// color: 'white',
+			dashArray: '',
+			fillOpacity: 0.8
+		});
+
+		layer.bringToFront();
+		info.update(layer.feature.properties);
+	}
+
+	function zoomToFeature(e) {
+		map.fitBounds(e.target.getBounds());
+	}
+
+	function onClick2(e) {
+		zoomToFeature(e);
+		let marker = e.target;
+	}
+
+	function resetHighlight(e) {
+		geojsonlayer.resetStyle(e.target);
+		info.update();
+	}
 
     function addLegend(insideCount, outsideCount, totalCount, showOnlyOutside) {
         const legend = L.control({ position: 'topright' });
