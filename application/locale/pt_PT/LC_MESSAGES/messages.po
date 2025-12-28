@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-27 16:30+0000\n"
+"POT-Creation-Date: 2025-12-28 09:07+0000\n"
 "PO-Revision-Date: 2025-10-22 00:19+0000\n"
 "Last-Translator: David Quental <ct1drb72@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
@@ -213,47 +213,47 @@ msgstr "data válida"
 msgid "date incorrect"
 msgstr "data incorrecta"
 
-#: application/controllers/Adif.php:283
+#: application/controllers/Adif.php:265
 #: application/views/interface_assets/header.php:476
 msgid "ADIF Import / Export"
 msgstr "Importação / Exportação ADIF"
 
-#: application/controllers/Adif.php:321 application/views/adif/import.php:30
+#: application/controllers/Adif.php:303 application/views/adif/import.php:30
 #: application/views/dcl_views/import.php:3 application/views/lotw/import.php:3
 msgid "ADIF Import"
 msgstr "Importação ADIF"
 
-#: application/controllers/Adif.php:365
+#: application/controllers/Adif.php:347
 msgid "Unsupported Filetype"
 msgstr "Tipo de ficheiro não suportado"
 
-#: application/controllers/Adif.php:446
+#: application/controllers/Adif.php:428
 #: application/views/adif/import_failed.php:12
 msgid "ADIF Import failed!"
 msgstr "Falha na importação do ADIF!"
 
-#: application/controllers/Adif.php:460
+#: application/controllers/Adif.php:442
 msgid "Station Profile not valid for User"
 msgstr "Perfil da estação não é válido para o utilizador"
 
-#: application/controllers/Adif.php:469
+#: application/controllers/Adif.php:451
 #: application/views/adif/import_success.php:12
 msgid "ADIF Imported"
 msgstr "ADIF Importado"
 
-#: application/controllers/Adif.php:483
+#: application/controllers/Adif.php:465
 msgid "DCL Import"
 msgstr "Importação DCL"
 
-#: application/controllers/Adif.php:544
+#: application/controllers/Adif.php:526
 msgid "DCL Data Imported"
 msgstr "Dados DCL importados"
 
-#: application/controllers/Adif.php:558
+#: application/controllers/Adif.php:540
 msgid "POTA Import"
 msgstr "Importação POTA"
 
-#: application/controllers/Adif.php:618
+#: application/controllers/Adif.php:600
 msgid "POTA Data Imported"
 msgstr "Dados POTA importados"
 
@@ -487,7 +487,7 @@ msgstr "WWFF"
 
 #: application/controllers/Awards.php:631
 #: application/controllers/Logbook.php:1368
-#: application/views/adif/import.php:66 application/views/bandmap/list.php:327
+#: application/views/adif/import.php:60 application/views/bandmap/list.php:327
 #: application/views/bands/index.php:54
 #: application/views/dashboard/index.php:11
 #: application/views/interface_assets/header.php:222
@@ -1926,7 +1926,7 @@ msgid "Quick Lookup"
 msgstr "Consulta rápida"
 
 #: application/controllers/Lotw.php:64 application/controllers/Lotw.php:96
-#: application/controllers/Lotw.php:136 application/views/adif/import.php:42
+#: application/controllers/Lotw.php:136
 #: application/views/dcl_views/upload_cert.php:3
 #: application/views/interface_assets/header.php:516
 #: application/views/lotw/import.php:3 application/views/lotw_views/index.php:9
@@ -3605,7 +3605,7 @@ msgstr "Referência POTA já no log"
 msgid "QSO updated"
 msgstr "QSO atualizado"
 
-#: application/models/Logbook_model.php:6341
+#: application/models/Logbook_model.php:6339
 #: application/views/activated_gridmap/index.php:114
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:58
@@ -3750,7 +3750,7 @@ msgstr "Diferença"
 #: application/views/activated_gridmap/index.php:36
 #: application/views/activated_gridmap/index.php:45
 #: application/views/activators/index.php:13
-#: application/views/adif/import.php:268
+#: application/views/adif/import.php:262
 #: application/views/awards/cq/index.php:131
 #: application/views/awards/cq/index.php:144
 #: application/views/awards/dok/index.php:95
@@ -4368,8 +4368,7 @@ msgid "Nothing found!"
 msgstr "Nada encontrado!"
 
 #: application/views/activators/index.php:98
-#: application/views/adif/import.php:113 application/views/adif/import.php:274
-#: application/views/adif/import.php:342
+#: application/views/adif/import.php:107 application/views/adif/import.php:268
 #: application/views/awards/73on73/index.php:35
 #: application/views/awards/pota/index.php:35
 #: application/views/awards/sig/qso_list.php:11
@@ -4606,16 +4605,16 @@ msgstr "Estado QSL DCL"
 msgid "ADIF Export"
 msgstr "Exportação ADIF"
 
-#: application/views/adif/import.php:54 application/views/adif/import.php:370
+#: application/views/adif/import.php:48 application/views/adif/import.php:342
 msgid "DARC DCL"
 msgstr "DARC DCL"
 
-#: application/views/adif/import.php:78
+#: application/views/adif/import.php:72
 msgid "CBR Import"
 msgstr "Importar CBR"
 
-#: application/views/adif/import.php:99 application/views/adif/import.php:418
-#: application/views/adif/import.php:441 application/views/api/index.php:22
+#: application/views/adif/import.php:93 application/views/adif/import.php:390
+#: application/views/adif/import.php:413 application/views/api/index.php:22
 #: application/views/dashboard/index.php:180
 #: application/views/dashboard/index.php:213
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
@@ -4624,16 +4623,15 @@ msgstr "Importar CBR"
 msgid "Important"
 msgstr "Importante"
 
-#: application/views/adif/import.php:99
+#: application/views/adif/import.php:93
 msgid "Log Files must have the file type *.adi"
 msgstr "Os ficheiros de registo devem ter o tipo de ficheiro *.adi"
 
-#: application/views/adif/import.php:100 application/views/view_log/qso.php:794
+#: application/views/adif/import.php:94 application/views/view_log/qso.php:794
 msgid "Maximum file upload size is "
 msgstr "O tamanho máximo de upload de ficheiro é "
 
-#: application/views/adif/import.php:100 application/views/adif/import.php:345
-#: application/views/adif/import.php:386
+#: application/views/adif/import.php:94 application/views/adif/import.php:358
 #: application/views/clublog/export.php:70
 #: application/views/debug/index.php:193 application/views/debug/index.php:210
 #: application/views/debug/index.php:586 application/views/hrdlog/export.php:25
@@ -4648,28 +4646,28 @@ msgstr "O tamanho máximo de upload de ficheiro é "
 msgid "Warning"
 msgstr "Aviso"
 
-#: application/views/adif/import.php:107 application/views/adif/import.php:109
-#: application/views/adif/import.php:266 application/views/adif/import.php:340
-#: application/views/eqsl/import.php:37 application/views/hrdlog/export.php:69
-#: application/views/qrz/export.php:91 application/views/reg1test/index.php:30
+#: application/views/adif/import.php:101 application/views/adif/import.php:103
+#: application/views/adif/import.php:260 application/views/eqsl/import.php:37
+#: application/views/hrdlog/export.php:69 application/views/qrz/export.php:91
+#: application/views/reg1test/index.php:30
 #: application/views/webadif/export.php:89
 msgid "Select Station Location"
 msgstr "Selecionar Localização da Estação"
 
-#: application/views/adif/import.php:117
+#: application/views/adif/import.php:111
 msgid "Choose ADIF File"
 msgstr "Escolha o Ficheiro ADIF"
 
-#: application/views/adif/import.php:123
+#: application/views/adif/import.php:117
 msgid "Add QSOs to Contest"
 msgstr "Adicionar conctactos ao Concurso"
 
-#: application/views/adif/import.php:125 application/views/adif/import.php:448
+#: application/views/adif/import.php:119 application/views/adif/import.php:420
 #: application/views/simplefle/index.php:86
 msgid "No Contest"
 msgstr "Sem Concurso"
 
-#: application/views/adif/import.php:135
+#: application/views/adif/import.php:129
 msgid ""
 "Type in the operators callsign of the imported QSOs. Leave empty to use the "
 "operator callsign in the ADIF file."
@@ -4677,23 +4675,23 @@ msgstr ""
 "Digite o indicativo de chamada do operador dos QSOs importados. Deixe em "
 "branco para usar o indicativo de chamada do operador no arquivo ADIF."
 
-#: application/views/adif/import.php:143
+#: application/views/adif/import.php:137
 msgid "Basic Settings"
 msgstr "Configurações Básicas"
 
-#: application/views/adif/import.php:150
+#: application/views/adif/import.php:144
 msgid "Import duplicate QSOs"
 msgstr "Importar contactos duplicados"
 
-#: application/views/adif/import.php:152
+#: application/views/adif/import.php:146
 msgid "Select if QSOs shall be imported, even if they already exist."
 msgstr "Selecione se os QSOs devem ser importados, mesmo que já existam."
 
-#: application/views/adif/import.php:157
+#: application/views/adif/import.php:151
 msgid "Use DXCC information from ADIF"
 msgstr "Usar informações DXCC do ADIF"
 
-#: application/views/adif/import.php:159
+#: application/views/adif/import.php:153
 msgid ""
 "If not selected, Wavelog will attempt to determine DXCC information "
 "automatically."
@@ -4701,18 +4699,18 @@ msgstr ""
 "Se não for selecionado, o Wavelog tentará determinar automaticamente as "
 "informações do DXCC."
 
-#: application/views/adif/import.php:168
+#: application/views/adif/import.php:162
 #: application/views/interface_assets/footer.php:34
 #: application/views/interface_assets/footer.php:642
 #: application/views/interface_assets/footer.php:2521
 msgid "DANGER"
 msgstr "PERIGO"
 
-#: application/views/adif/import.php:168
+#: application/views/adif/import.php:162
 msgid "Ignore Station callsign on import"
 msgstr "Ignorar o indicativo da estação na importação"
 
-#: application/views/adif/import.php:170
+#: application/views/adif/import.php:164
 #, php-format
 msgid ""
 "If selected, Wavelog will try to import %sall%s QSOs from the ADIF, "
@@ -4722,66 +4720,66 @@ msgstr ""
 "ficheiro ADIF, independentemente de corresponderem à localização da estação "
 "escolhida."
 
-#: application/views/adif/import.php:177
+#: application/views/adif/import.php:171
 msgid ""
 "Always use the logged-in account callsign as the operator call during import"
 msgstr ""
 "Utilise sempre o indicativo da conta com sessão iniciada como o indicativo "
 "do operador durante a importação"
 
-#: application/views/adif/import.php:188
+#: application/views/adif/import.php:182
 msgid "Mark QSOs as uploaded (This does NOT upload QSOs to these services!)"
 msgstr ""
 "Marcar contactos como enviados (Isto NÃO envia os contactos para estes "
 "serviços!)"
 
-#: application/views/adif/import.php:195
+#: application/views/adif/import.php:189
 msgid "Mark imported QSOs as uploaded to LoTW"
 msgstr "Marcar contactos importados como carregados no LoTW"
 
-#: application/views/adif/import.php:197 application/views/adif/import.php:205
-#: application/views/adif/import.php:215 application/views/adif/import.php:223
-#: application/views/adif/import.php:233 application/views/adif/import.php:241
+#: application/views/adif/import.php:191 application/views/adif/import.php:199
+#: application/views/adif/import.php:209 application/views/adif/import.php:217
+#: application/views/adif/import.php:227 application/views/adif/import.php:235
 msgid "Select if ADIF being imported does not contain this information."
 msgstr "Selecione se o ADIF importado não contiver esta informação."
 
-#: application/views/adif/import.php:203
+#: application/views/adif/import.php:197
 msgid "Mark imported QSOs as uploaded to eQSL Logbook"
 msgstr "Marcar os contactos importados como carregados no Logbook de eQSL"
 
-#: application/views/adif/import.php:213
+#: application/views/adif/import.php:207
 msgid "Mark imported QSOs as uploaded to HRDLog.net Logbook"
 msgstr "Marcar contactos importados como enviados para o Logbook do HRDLog.net"
 
-#: application/views/adif/import.php:221
+#: application/views/adif/import.php:215
 msgid "Mark imported QSOs as uploaded to QRZ Logbook"
 msgstr "Marcar contactos importados como enviados para o Logbook do QRZ"
 
-#: application/views/adif/import.php:231
+#: application/views/adif/import.php:225
 msgid "Mark imported QSOs as uploaded to Clublog Logbook"
 msgstr "Marcar contactos importados como enviados para o Logbook do Clublog"
 
-#: application/views/adif/import.php:239
+#: application/views/adif/import.php:233
 msgid "Mark imported QSOs as uploaded to DCL Logbook"
 msgstr "Marcar contacto importados como carregados no DCL Logbook"
 
-#: application/views/adif/import.php:244
+#: application/views/adif/import.php:238
 msgid "Toggle all checkboxes"
 msgstr "Alternar todas as caixas de seleção"
 
-#: application/views/adif/import.php:250 application/views/adif/import.php:401
-#: application/views/adif/import.php:423 application/views/adif/import.php:467
+#: application/views/adif/import.php:244 application/views/adif/import.php:373
+#: application/views/adif/import.php:395 application/views/adif/import.php:439
 #: application/views/clublog/export.php:50
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:55
 #: application/views/webadif/export.php:55
 msgid "Upload"
 msgstr "Enviar"
 
-#: application/views/adif/import.php:260
+#: application/views/adif/import.php:254
 msgid "Take your logbook file anywhere!"
 msgstr "Leva o teu ficheiro de logbook para qualquer lugar!"
 
-#: application/views/adif/import.php:261
+#: application/views/adif/import.php:255
 msgid ""
 "Exporting ADIFs allows you to import contacts into third party applications "
 "like LoTW, Awards or just for keeping a backup."
@@ -4789,7 +4787,7 @@ msgstr ""
 "A exportação de ADIFs permite-lhe importar contactos para aplicações de "
 "terceiros como LoTW, Diplomas ou para manter uma cópia de segurança."
 
-#: application/views/adif/import.php:262
+#: application/views/adif/import.php:256
 #, php-format
 msgctxt ""
 msgid ""
@@ -4799,7 +4797,7 @@ msgstr ""
 "Se precisar de mais filtragem, pode usar %so Logbook avançado%s para filtrar "
 "e exportar!"
 
-#: application/views/adif/import.php:285 application/views/adif/import.php:347
+#: application/views/adif/import.php:279
 #: application/views/clublog/export.php:73 application/views/csv/index.php:119
 #: application/views/dcl_views/import.php:27
 #: application/views/dxatlas/index.php:118
@@ -4809,54 +4807,43 @@ msgstr ""
 msgid "From date"
 msgstr "A partir da data"
 
-#: application/views/adif/import.php:289 application/views/adif/import.php:350
-#: application/views/csv/index.php:124 application/views/dxatlas/index.php:123
+#: application/views/adif/import.php:283 application/views/csv/index.php:124
+#: application/views/dxatlas/index.php:123
 #: application/views/hrdlog/export.php:82 application/views/kml/index.php:108
 #: application/views/qrz/export.php:104
 #: application/views/webadif/export.php:102
 msgid "To date"
 msgstr "Até à data"
 
-#: application/views/adif/import.php:300
+#: application/views/adif/import.php:294
 msgid "Export options"
 msgstr "Opções de exportação"
 
-#: application/views/adif/import.php:308
-msgid "Mark exported QSOs as uploaded to LoTW"
-msgstr "Marcar contactos exportados como enviados para o LoTW"
+#: application/views/adif/import.php:302
+msgid "Mark exported QSOs as already uploaded to LoTW"
+msgstr ""
 
-#: application/views/adif/import.php:317
+#: application/views/adif/import.php:311
 msgid "Export QSOs not uploaded to LoTW"
 msgstr "Exportar contactos não enviados para o LoTW"
 
-#: application/views/adif/import.php:324
+#: application/views/adif/import.php:318
 msgid "Export QSOs"
 msgstr "Exportar Contactos"
 
-#: application/views/adif/import.php:329
+#: application/views/adif/import.php:323
 msgid "Export Satellite-Only QSOs"
 msgstr "Exportar apenas contactos de Satélite"
 
-#: application/views/adif/import.php:330
+#: application/views/adif/import.php:324
 msgid "Export All Satellite QSOs"
 msgstr "Exportar todos os contactos via satélite"
 
-#: application/views/adif/import.php:332
+#: application/views/adif/import.php:326
 msgid "Export All Satellite QSOs Confirmed on LoTW"
 msgstr "Exportar todos os contactos via satélite confirmados no LoTW"
 
-#: application/views/adif/import.php:345 application/views/hrdlog/export.php:74
-#: application/views/qrz/export.php:96 application/views/webadif/export.php:94
-msgid "If a date range is not selected then all QSOs will be marked!"
-msgstr ""
-"Se um intervalo de datas não for selecionado, todos os contactos serão "
-"marcados!"
-
-#: application/views/adif/import.php:353
-msgid "Mark QSOs as exported to LoTW"
-msgstr "Marcar contactos como exportados para o LoTW"
-
-#: application/views/adif/import.php:370
+#: application/views/adif/import.php:342
 #, php-format
 msgid ""
 "Go to %s and export your logbook with confirmed DOKs. To speed up the "
@@ -4869,11 +4856,11 @@ msgstr ""
 "colocar 'DL' na lista prefixos ). O ficheiro ADIF descarregado pode ser "
 "carregado aqui para atualizar os contactos com a informação DOK."
 
-#: application/views/adif/import.php:377
+#: application/views/adif/import.php:349
 msgid "Only import DOK data from QSOs confirmed on DCL."
 msgstr "Importar apenas dados DOK de contactos confirmados no DCL."
 
-#: application/views/adif/import.php:379
+#: application/views/adif/import.php:351
 msgid ""
 "Uncheck if you also want to update DOK with data from unconfirmed QSOs in "
 "DCL."
@@ -4881,11 +4868,11 @@ msgstr ""
 "Desmarque se também quiser atualizar o DOK com dados de contactos não "
 "confirmados no DCL."
 
-#: application/views/adif/import.php:386
+#: application/views/adif/import.php:358
 msgid "Overwrites exisiting DOK in log by DCL (if different)."
 msgstr "Substitui o DOK existente no log pelo DCL (se diferente)."
 
-#: application/views/adif/import.php:388
+#: application/views/adif/import.php:360
 msgid ""
 "If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL "
 "log."
@@ -4893,11 +4880,11 @@ msgstr ""
 "Se estiver marcado, o Wavelog ira forçar a troca do DOK existente pelo DOK "
 "do registo DCL."
 
-#: application/views/adif/import.php:395
+#: application/views/adif/import.php:367
 msgid "Ignore QSOs that cannot be matched."
 msgstr "Ignorar contactos que não podem ser correspondidos."
 
-#: application/views/adif/import.php:397
+#: application/views/adif/import.php:369
 msgid ""
 "If unchecked, information about QSOs which could not be found in Wavelog "
 "will be displayed."
@@ -4905,7 +4892,7 @@ msgstr ""
 "Se não estiver selecionado, serão apresentadas informações sobre contactos "
 "que não foram encontrados no Wavelog."
 
-#: application/views/adif/import.php:419
+#: application/views/adif/import.php:391
 #, php-format
 msgid ""
 "An example for a tool to export the POTA hunter log in ADIF format is %s "
@@ -4914,7 +4901,7 @@ msgstr ""
 "Ein Beispiel für ein Tool zum Exportieren des POTA-Hunter-Logs im ADIF-"
 "Format ist %s, erstellt von AF0G und auf GitHub verfügbar."
 
-#: application/views/adif/import.php:440
+#: application/views/adif/import.php:412
 msgid ""
 "If you imported an ADIF file of a contest, provided by another logging "
 "software, sometimes, depending on that software, your exchanges will not be "
@@ -4928,14 +4915,14 @@ msgstr ""
 "pode fornecer o ficheiro Cabrillo que esse software também fornece para "
 "reescrever esses dados no Wavelog."
 
-#: application/views/adif/import.php:440
+#: application/views/adif/import.php:412
 #: application/views/adif/import_success.php:40
 #: application/views/dcl_views/index.php:76
 #: application/views/lotw_views/index.php:160
 msgid "Information"
 msgstr "Informação"
 
-#: application/views/adif/import.php:441
+#: application/views/adif/import.php:413
 msgid ""
 "Please use this function before changing anything about the QSOs in Wavelog, "
 "as this function uses the Contest ID, as well as date and time information "
@@ -4948,21 +4935,21 @@ msgstr ""
 "que está prestes a carregar para corresponder os contactos e apenas corrigir "
 "os dados relevantes."
 
-#: application/views/adif/import.php:446
+#: application/views/adif/import.php:418
 msgid "Contest Name, only if Contest ID in CBR is different"
 msgstr "Nome do Concurso, apenas se o ID do Concurso no CBR for diferente"
 
-#: application/views/adif/import.php:446
+#: application/views/adif/import.php:418
 msgid "Optional"
 msgstr "Opcional"
 
-#: application/views/adif/import.php:456
+#: application/views/adif/import.php:428
 msgid ""
 "The CBR file contains a TRX number at the end of each QSO line (for multi-op "
 "stations)"
 msgstr ""
 
-#: application/views/adif/import.php:460
+#: application/views/adif/import.php:432
 msgid ""
 "A serial number is ALWAYS part of the exchange for both parties in this "
 "contest."
@@ -4970,7 +4957,7 @@ msgstr ""
 "Um número de série é SEMPRE parte da troca para ambas as partes neste "
 "concurso."
 
-#: application/views/adif/import.php:462
+#: application/views/adif/import.php:434
 msgid ""
 "If you or your partner only sometimes exchange serial numbers, please leave "
 "this unchecked."
@@ -4978,7 +4965,7 @@ msgstr ""
 "Se você ou o seu parceiro só às vezes trocam números de série, por favor, "
 "deixe isto desmarcado."
 
-#: application/views/adif/import.php:463
+#: application/views/adif/import.php:435
 msgid ""
 "If unchecked, this will erase the default serial number that (for example) "
 "N1MM+ produces. If checked, it will correct the serial number if necessary."
@@ -5057,21 +5044,6 @@ msgstr "Verifica %s para dicas sobre erros em ficheiros ADIF."
 #: application/views/adif/import_success.php:59
 msgid "You might have ADIF errors. Please check the following information:"
 msgstr ""
-
-#: application/views/adif/mark_lotw.php:12
-#: application/views/hrdlog/mark_hrdlog.php:12
-#: application/views/qrz/mark_qrz.php:12
-#: application/views/webadif/mark_webadif.php:12
-msgid "QSOs marked"
-msgstr "Contactos marcados"
-
-#: application/views/adif/mark_lotw.php:15
-msgid "Yay, its done!"
-msgstr "Boa, está feito!"
-
-#: application/views/adif/mark_lotw.php:16
-msgid "The QSOs are marked as exported to LoTW."
-msgstr "Os contactos são marcados como exportados para o LoTW."
 
 #: application/views/adif/pota_success.php:12
 msgid "Results of POTA Update"
@@ -11448,9 +11420,22 @@ msgstr ""
 "HRDlog . Verifique as credenciais do HRDlog nas configurações do local da "
 "estação!"
 
+#: application/views/hrdlog/export.php:74 application/views/qrz/export.php:96
+#: application/views/webadif/export.php:94
+msgid "If a date range is not selected then all QSOs will be marked!"
+msgstr ""
+"Se um intervalo de datas não for selecionado, todos os contactos serão "
+"marcados!"
+
 #: application/views/hrdlog/export.php:87
 msgid "Mark QSOs as exported to HRDLog Logbook"
 msgstr "Marcar contactos como exportados para o logbook do HRDLog"
+
+#: application/views/hrdlog/mark_hrdlog.php:12
+#: application/views/qrz/mark_qrz.php:12
+#: application/views/webadif/mark_webadif.php:12
+msgid "QSOs marked"
+msgstr "Contactos marcados"
 
 #: application/views/hrdlog/mark_hrdlog.php:15
 #: application/views/qrz/mark_qrz.php:15
@@ -18887,6 +18872,18 @@ msgstr "Submeter pedido"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Recebido"
+
+#~ msgid "Mark exported QSOs as uploaded to LoTW"
+#~ msgstr "Marcar contactos exportados como enviados para o LoTW"
+
+#~ msgid "Mark QSOs as exported to LoTW"
+#~ msgstr "Marcar contactos como exportados para o LoTW"
+
+#~ msgid "Yay, its done!"
+#~ msgstr "Boa, está feito!"
+
+#~ msgid "The QSOs are marked as exported to LoTW."
+#~ msgstr "Os contactos são marcados como exportados para o LoTW."
 
 #~ msgid "Apply DXCC Data to Logbook"
 #~ msgstr "Aplicar dados DXCC ao Logbook"
