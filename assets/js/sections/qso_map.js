@@ -186,7 +186,7 @@ function initMap() {
                                 color: '#ff0000',
                                 weight: 2,
                                 opacity: 0.5,
-                                fillOpacity: 0.1
+                                fillOpacity: 0.2
                             },
 							onEachFeature: onEachFeature
                         }).addTo(map);
