@@ -1558,7 +1558,10 @@ class Logbookadvanced_model extends CI_Model {
 			return null;
 		}
 	}
-
+	/*
+	 * Get list of QSOs with gridsquares that do not match the gridsquares listed for the DXCC.
+	 * The data comes from the TQSL published Gridsquare list for DXCCs.
+	 */
 	public function getIncorrectGridsquares() {
 		$sqlcheck = "select count(*) as count from vuccgrids";;
 		$querycheck = $this->db->query($sqlcheck);
@@ -1567,7 +1570,7 @@ class Logbookadvanced_model extends CI_Model {
 			return ['status' => 'error', 'message' => __("VuccGrids table is empty. Please import the VUCC grids data first.")];
 		}
 
-		$sql = "select col_primary_key, col_time_on, col_call, col_band, col_gridsquare, col_dxcc, col_country, station_profile_name,
+		$sql = "select col_primary_key, col_time_on, col_call, col_band, col_gridsquare, col_dxcc, col_country, station_profile_name, col_lotw_qsl_rcvd, col_mode, col_submode,
 			(
 			select group_concat(distinct gridsquare order by gridsquare separator ', ')
 			from vuccgrids
@@ -1855,6 +1858,10 @@ class Logbookadvanced_model extends CI_Model {
 		return $query->result();
 	}
 
+	/*
+		Function to run batch fixes on the logbook.
+		Used in dbtools section.
+	*/
 	function batchFix($type) {
 		switch ($type) {
 			case 'dxcc':
@@ -1877,6 +1884,7 @@ class Logbookadvanced_model extends CI_Model {
 	/*
 		Another function moved from update to the advanced logbook, to be used in the dbtools section.
 		It did not have filter on user or location.
+		This function will check all QSOs with missing grid square and try to fill them using the callbook lookup.
 	*/
 	public function check_missing_grid() {
 		$result = $this->getMissingGridQsos();
@@ -1935,6 +1943,9 @@ class Logbookadvanced_model extends CI_Model {
 		return $query->result();
 	}
 
+	/*
+		Check all QSOs DXCC against current DXCC database
+	*/
 	public function check_dxcc() {
 
 		$i = 0;

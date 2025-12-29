@@ -199,6 +199,9 @@ function check_incorrect_gridsquares($result, $custom_date_format) { ?>
 						<tr>
 							<th><?= __("Callsign"); ?></th>
 							<th><?= __("QSO Date"); ?></th>
+							<th class="select-filter" scope="col"><?= __("Band"); ?></th>
+							<th class="select-filter" scope="col"><?= __("Mode"); ?></th>
+							<th class="select-filter" scope="col"><?= __("LoTW"); ?></th>
 							<th class="select-filter" scope="col"><?= __("Station Profile"); ?></th>
 							<th class="select-filter" scope="col"><?= __("DXCC"); ?></th>
 							<th><?= __("Gridsquare"); ?></th>
@@ -210,6 +213,9 @@ function check_incorrect_gridsquares($result, $custom_date_format) { ?>
 								<tr id="qsoID-<?php echo $qso->col_primary_key; ?>">
 									<td><?php echo '<a id="edit_qso" href="javascript:displayQso(' . $qso->col_primary_key . ')">' . htmlspecialchars($qso->col_call) . '</a>'; ?></td>
 									<td><?php echo date($custom_date_format, strtotime($qso->col_time_on)); ?></td>
+									<td><?php echo htmlspecialchars($qso->col_band); ?></td>
+									<td><?php echo htmlspecialchars($qso->col_submode ? $qso->col_submode : $qso->col_mode); ?></td>
+									<td><?php echo $qso->col_lotw_qsl_rcvd == 'Y' ? __('Yes') : __('No'); ?></td>
 									<td><?php echo $qso->station_profile_name; ?></td>
 									<td><?php echo htmlspecialchars(ucwords(strtolower($qso->col_country), "- (/"), ENT_QUOTES, 'UTF-8'); ?></td>
 									<td><?php echo $qso->col_gridsquare; ?></td>
@@ -233,6 +239,9 @@ function check_incorrect_gridsquares($result, $custom_date_format) { ?>
 					</tbody>
 					<tfoot>
 						<tr>
+							<th></th>
+							<th></th>
+							<th></th>
 							<th></th>
 							<th></th>
 							<th></th>
