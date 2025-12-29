@@ -1553,7 +1553,8 @@ class Logbookadvanced_model extends CI_Model {
 			JOIN station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
 			SET col_cont = dxcc_entities.cont
 			WHERE (COALESCE(" . $this->config->item('table_name') . ".col_cont, '') = ''  or " . $this->config->item('table_name') . ".col_cont not in ('AF', 'AN', 'AS', 'EU', 'NA', 'OC', 'SA'))
-			and station_profile.user_id = ?";
+			AND station_profile.user_id = ?
+			AND col_dxcc != 0";
 
 		$query = $this->db->query($sql, array($this->session->userdata('user_id')));
 		$result = $this->db->affected_rows();
@@ -1694,8 +1695,6 @@ class Logbookadvanced_model extends CI_Model {
 			join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
 			where user_id = ?
 			and (coalesce(col_cont, '') = '' or col_cont not in ('AF', 'AN', 'AS', 'EU', 'NA', 'OC', 'SA'))
-			and col_dxcc is not null
-			and col_dxcc != ''
 			and col_dxcc != 0";
 
 		$bindings[] = [$this->session->userdata('user_id')];
