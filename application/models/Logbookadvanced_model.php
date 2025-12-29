@@ -61,7 +61,7 @@ class Logbookadvanced_model extends CI_Model {
 		$limit = '';
 
 		if ($searchCriteria['qsoresults'] != 'All') {
-			$limit = 'limit ' . $searchCriteria['qsoresults'];
+			$limit = 'limit ' . (int)$searchCriteria['qsoresults'];
 		}
 
 		$sql = "
