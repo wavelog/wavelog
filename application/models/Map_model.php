@@ -5,32 +5,18 @@ class Map_model extends CI_Model {
     /**
      * Get available countries from the logbook with QSOs
      */
-    public function get_available_countries() {
-        $this->db->select('DISTINCT dxcc_entities.name AS COL_COUNTRY, COL_DXCC, COUNT(*) as qso_count', FALSE);
-        $this->db->from($this->config->item('table_name'));
-        $this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
-        $this->db->join('dxcc_entities', 'dxcc_entities.adif = ' . $this->config->item('table_name') . '.COL_DXCC');
-        $this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
-        $this->db->where("LENGTH(COL_GRIDSQUARE) >=", 6); // At least 6 chars
-        $this->db->group_by('COL_COUNTRY, COL_DXCC');
-        $this->db->order_by('COL_COUNTRY');
+    public function get_available_countries($supported_country_codes) {
+		$sql = "select DISTINCT dxcc_entities.name AS dxcc_name, dxcc_entities.prefix, COL_DXCC, COUNT(*) as qso_count
+		from " . $this->config->item('table_name') . " thcv
+		join station_profile ON station_profile.station_id = thcv.station_id
+		join dxcc_entities ON dxcc_entities.adif = thcv.COL_DXCC
+		where station_profile.user_id = ?
+		and thcv.COL_DXCC IN (" . implode(',', array_fill(0, count($supported_country_codes), '?')) . ")
+		and LENGTH(thcv.COL_GRIDSQUARE) >= 6
+		group by dxcc_name, thcv.COL_DXCC, dxcc_entities.prefix
+		order by prefix ASC";
 
-        $query = $this->db->get();
-        return $query->result_array();
-    }
-
-    /**
-     * Get available station profiles for the user
-     */
-    public function get_station_profiles() {
-        $this->db->select('station_profile.station_id, station_profile.station_profile_name', FALSE);
-        $this->db->from($this->config->item('table_name'));
-		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
-		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
-        $this->db->group_by('station_profile.station_id, station_profile.station_profile_name');
-        $this->db->order_by('station_profile.station_profile_name');
-
-        $query = $this->db->get();
+        $query = $this->db->query($sql, array_merge([$this->session->userdata('user_id')], $supported_country_codes));
         return $query->result_array();
     }
 
@@ -45,21 +31,25 @@ class Map_model extends CI_Model {
 			$this->load->library('DxccFlag');
 		}
 
-        $this->db->select('COL_PRIMARY_KEY, COL_CALL, COL_GRIDSQUARE, COL_COUNTRY, COL_DXCC, COL_MODE, COL_BAND, COL_TIME_ON, COL_RST_SENT, COL_RST_RCVD, station_profile.station_profile_name', FALSE);
-        $this->db->from($this->config->item('table_name'));
-		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
-		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
-		$this->db->where('COL_COUNTRY', $country);
+		$sql = "select COL_PRIMARY_KEY, COL_CALL, COL_GRIDSQUARE, COL_COUNTRY, COL_DXCC, COL_MODE, COL_BAND, COL_TIME_ON, COL_RST_SENT, COL_RST_RCVD, station_profile.station_profile_name
+		from " . $this->config->item('table_name') . "
+		join station_profile ON station_profile.station_id = " . $this->config->item('table_name') . ".station_id
+		where station_profile.user_id = ?
+		and COL_COUNTRY = ?";
+
+		$bindings[] = $this->session->userdata('user_id');
+		$bindings[] = $country;
 
 		// Add station filter if specified
 		if ($station_id !== null && $station_id !== '') {
-			$this->db->where('station_profile.station_id', $station_id);
+			$sql .=	" and station_profile.station_id = ?";
+			$bindings[] = $station_id;
 		}
-        $this->db->where("LENGTH(COL_GRIDSQUARE) >=", 6); // At least 6 chars
 
-        $this->db->order_by('COL_TIME_ON', 'DESC');
+		$sql .= "and LENGTH(COL_GRIDSQUARE) >= 6
+		order by COL_TIME_ON DESC";
 
-        $query = $this->db->get();
+		$query = $this->db->query($sql, $bindings);
         $qsos = $query->result_array();
 
         // Process QSOs and convert gridsquares to coordinates
