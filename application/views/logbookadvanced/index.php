@@ -74,6 +74,10 @@
 	let lang_gen_advanced_logbook_dupe_search = '<?= __("Duplicate Search"); ?>';
 	let lang_gen_advanced_logbook_search = '<?= __("Search"); ?>';
 
+	let lang_gen_advanced_logbook_show_more = '<?= __("Show more"); ?>';
+	let lang_gen_advanced_logbook_show_less = '<?= __("Show less"); ?>';
+
+
 
     let homegrid ='<?php echo strtoupper($homegrid[0]); ?>';
     <?php
