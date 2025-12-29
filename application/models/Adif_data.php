@@ -298,16 +298,6 @@ class adif_data extends CI_Model {
 		return $this->db->get();
 	}
 
-	function mark_lotw_sent($id) {
-		$data = array(
-			'COL_LOTW_QSL_SENT' => 'Y'
-		);
-
-		$this->db->set('COL_LOTW_QSLSDATE', 'now()', FALSE);
-		$this->db->where('COL_PRIMARY_KEY', $id);
-		$this->db->update($this->config->item('table_name'), $data);
-	}
-
 	function sig_all($type) {
 		$CI =& get_instance();
 		$CI->load->model('logbooks_model');
