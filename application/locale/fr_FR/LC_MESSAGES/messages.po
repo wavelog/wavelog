@@ -18,10 +18,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-12-28 09:07+0000\n"
-"PO-Revision-Date: 2025-12-21 21:51+0000\n"
+"PO-Revision-Date: 2025-12-29 16:23+0000\n"
 "Last-Translator: JONCOUX Philippe <joncoux@free.fr>\n"
-"Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/fr/>\n"
+"Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/fr/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -689,7 +689,7 @@ msgstr " et satellite "
 
 #: application/controllers/Calltester.php:33
 msgid "Call Tester"
-msgstr ""
+msgstr "Testeur d'appels"
 
 #: application/controllers/Club.php:23
 msgid "Club Officer"
@@ -1047,7 +1047,7 @@ msgstr "Cartes eQSL"
 #: application/controllers/Eqsl.php:56
 #, php-format
 msgid "Showing %d to %d of %d entries"
-msgstr ""
+msgstr "Affichage de %d à %d sur %d entrées"
 
 #: application/controllers/Eqsl.php:83 application/controllers/Eqsl.php:173
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
@@ -1104,7 +1104,7 @@ msgstr "Échec du téléchargement de l'image eQSL"
 
 #: application/controllers/Eqsl.php:443
 msgid "Failed to load cached eQSL image"
-msgstr ""
+msgstr "Impossible de charger l'image eQSL mise en cache"
 
 #: application/controllers/Eqsl.php:590
 msgid "eQSL Tools"
@@ -1112,7 +1112,7 @@ msgstr "eQSL : Outils"
 
 #: application/controllers/Eqsl.php:620
 msgid "Limited to first 150 QSOs for this request. Please run again."
-msgstr ""
+msgstr "Limité aux 150 premiers QSO pour cette requête. Veuillez réessayer."
 
 #: application/controllers/Eqsl.php:626
 msgid " / Errors: "
@@ -1125,6 +1125,7 @@ msgstr "Téléchargé avec succès : "
 #: application/controllers/Eqsl.php:633
 msgid "eQSL rate limit reached. Please wait before running again."
 msgstr ""
+"Limite de requêtes eQSL atteinte. Veuillez patienter avant de réessayer."
 
 #: application/controllers/Eqsl.php:645
 msgid "eQSL Card Image Download"
@@ -1928,7 +1929,7 @@ msgstr "Journal avancé"
 #: application/controllers/Logbookadvanced.php:1002
 #, php-format
 msgid "DXCC updated for %d QSO(s)."
-msgstr ""
+msgstr "DXCC mis à jour pour %d QSO(s)."
 
 #: application/controllers/Lookup.php:22
 msgid "Quick Lookup"
@@ -2017,7 +2018,7 @@ msgstr ".TQ8 LoTW Pas Envoyé"
 
 #: application/controllers/Map.php:46
 msgid "QSO Map"
-msgstr ""
+msgstr "Carte QSO"
 
 #: application/controllers/Mode.php:25 application/controllers/Usermode.php:23
 #: application/views/interface_assets/header.php:328
@@ -4847,6 +4848,7 @@ msgstr "Options de l'exportation"
 #: application/views/adif/import.php:302
 msgid "Mark exported QSOs as already uploaded to LoTW"
 msgstr ""
+"Mark a exporté les QSO tels qu'ils avaient déjà été téléchargés sur LoTW"
 
 #: application/views/adif/import.php:311
 msgid "Export QSOs not uploaded to LoTW"
@@ -7623,7 +7625,7 @@ msgstr "Enregistrer les filtres actuels..."
 
 #: application/views/bandmap/list.php:62
 msgid "Enter a name for this filter preset:"
-msgstr "Saisissez un nom pour ce préréglage de filtre :"
+msgstr "Saisissez un nom pour ce préréglage de filtre:"
 
 #: application/views/bandmap/list.php:63
 msgid "Filter preset saved"
@@ -8858,46 +8860,48 @@ msgstr "Dernier QSO"
 
 #: application/views/calltester/comparison_result.php:18
 msgid "DXCC Class Results"
-msgstr ""
+msgstr "Résultats de la classe DXCC"
 
 #: application/views/calltester/comparison_result.php:21
 #: application/views/calltester/comparison_result.php:33
 msgid "Calls tested:"
-msgstr ""
+msgstr "Appels testés:"
 
 #: application/views/calltester/comparison_result.php:22
 #: application/views/calltester/comparison_result.php:34
 msgid "Execution time:"
-msgstr ""
+msgstr "Temps d'exécution:"
 
 #: application/views/calltester/comparison_result.php:23
 #: application/views/calltester/comparison_result.php:35
 msgid "Issues found:"
-msgstr ""
+msgstr "Problèmes rencontrés:"
 
 #: application/views/calltester/comparison_result.php:30
 msgid "Logbook Model Results"
-msgstr ""
+msgstr "Résultats du modèle de journal de bord"
 
 #: application/views/calltester/comparison_result.php:44
 msgid "Comparison Summary"
-msgstr ""
+msgstr "Résumé comparatif"
 
 #: application/views/calltester/comparison_result.php:45
 msgid "Only found in DXCC Class:"
-msgstr ""
+msgstr "Uniquement disponible en classe DXCC:"
 
 #: application/views/calltester/comparison_result.php:46
 msgid "Only found in Logbook Model:"
-msgstr ""
+msgstr "Uniquement disponible dans le modèle Logbook:"
 
 #: application/views/calltester/comparison_result.php:47
 msgid "Found in both methods:"
-msgstr ""
+msgstr "Présent dans les deux méthodes:"
 
 #: application/views/calltester/comparison_result.php:54
 msgid "Issues found only in DXCC Class (not in Logbook Model):"
 msgstr ""
+"Problèmes rencontrés uniquement dans la classe DXCC "
+"(et non dans le modèle Logbook):"
 
 #: application/views/calltester/comparison_result.php:62
 #: application/views/calltester/comparison_result.php:98
@@ -8905,7 +8909,7 @@ msgstr ""
 #: application/views/calltester/result.php:24
 #: application/views/logbookadvanced/checkresult.php:135
 msgid "Station Profile"
-msgstr ""
+msgstr "Profil de la station"
 
 #: application/views/calltester/comparison_result.php:63
 #: application/views/calltester/comparison_result.php:99
@@ -8913,14 +8917,14 @@ msgstr ""
 #: application/views/calltester/result.php:25
 #: application/views/logbookadvanced/checkresult.php:136
 msgid "Existing DXCC"
-msgstr ""
+msgstr "DXCC existant"
 
 #: application/views/calltester/comparison_result.php:64
 #: application/views/calltester/comparison_result.php:100
 #: application/views/calltester/comparison_result.php:136
 #: application/views/calltester/result.php:26
 msgid "Existing ADIF"
-msgstr ""
+msgstr "ADIF existant"
 
 #: application/views/calltester/comparison_result.php:65
 #: application/views/calltester/comparison_result.php:101
@@ -8928,22 +8932,24 @@ msgstr ""
 #: application/views/calltester/result.php:27
 #: application/views/logbookadvanced/checkresult.php:137
 msgid "Result DXCC"
-msgstr ""
+msgstr "Résultat DXCC"
 
 #: application/views/calltester/comparison_result.php:66
 #: application/views/calltester/comparison_result.php:102
 #: application/views/calltester/comparison_result.php:138
 #: application/views/calltester/result.php:28
 msgid "Result ADIF"
-msgstr ""
+msgstr "Résultat ADIF"
 
 #: application/views/calltester/comparison_result.php:90
 msgid "Issues found only in Logbook Model (not in DXCC Class):"
 msgstr ""
+"Problèmes rencontrés uniquement dans le modèle Logbook "
+"(et non dans la classe DXCC):"
 
 #: application/views/calltester/comparison_result.php:126
 msgid "Issues found in both methods:"
-msgstr ""
+msgstr "Problèmes rencontrés avec les deux méthodes:"
 
 #: application/views/calltester/comparison_result.php:162
 msgid ""
@@ -12719,7 +12725,7 @@ msgstr "Résultats du contrôle de distance"
 #: application/views/logbookadvanced/checkresult.php:96
 #: application/views/logbookadvanced/checkresult.php:107
 msgid "QSOs to update found:"
-msgstr "QSO à mettre à jour trouvés :"
+msgstr "QSO à mettre à jour trouvés:"
 
 #: application/views/logbookadvanced/checkresult.php:44
 #: application/views/logbookadvanced/distancedialog.php:2
@@ -14213,7 +14219,7 @@ msgstr "Dernière modification :"
 
 #: application/views/lotw_views/index.php:95
 msgid "Serial number:"
-msgstr "Numéro de série :"
+msgstr "Numéro de série:"
 
 #: application/views/lotw_views/index.php:97
 msgid "Certificate superseded"
