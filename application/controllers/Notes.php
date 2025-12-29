@@ -153,7 +153,10 @@ class Notes extends CI_Controller {
         $per_page = (int)$this->input->post('per_page', TRUE);
         $sort_col = $this->input->post('sort_col', TRUE);
         $sort_dir = $this->input->post('sort_dir', TRUE);
-        if ($per_page < 1) $per_page = 15;
+
+        // Validate and sanitize pagination parameters
+        $max_per_page = 100; // Prevent denial of service
+        if ($per_page < 1 || $per_page > $max_per_page) $per_page = 15;
         if ($page < 1) $page = 1;
         // Get paginated, sorted notes
         $result = $this->note->search_paginated($searchCriteria, $page, $per_page, $sort_col, $sort_dir);
