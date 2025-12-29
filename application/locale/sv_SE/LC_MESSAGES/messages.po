@@ -2082,7 +2082,7 @@ msgstr "Meddelande"
 msgid "Edit Note"
 msgstr "Redigera Meddelande"
 
-#: application/controllers/Notes.php:218
+#: application/controllers/Notes.php:218 application/controllers/Notes.php:221
 msgid ""
 "Duplicate note title for this category and user - not allowed for Contacts "
 "category."
@@ -2090,43 +2090,44 @@ msgstr ""
 "Duplicera inte anteckningen för den här kategorin och användare - inte "
 "tillåtet för Kontakt-kategorin."
 
-#: application/controllers/Notes.php:283
+#: application/controllers/Notes.php:283 application/controllers/Notes.php:286
 msgid "Not found or not allowed"
 msgstr "Ej hittad eller ej tillåten"
 
-#: application/controllers/Notes.php:298
+#: application/controllers/Notes.php:298 application/controllers/Notes.php:301
 msgid "Not found"
 msgstr "Hittades inte"
 
-#: application/controllers/Notes.php:314
+#: application/controllers/Notes.php:314 application/controllers/Notes.php:317
 msgid "Category and title are required"
 msgstr "Kategori och titel krävs"
 
-#: application/controllers/Notes.php:328
+#: application/controllers/Notes.php:328 application/controllers/Notes.php:331
 msgid "Note not found or not allowed"
 msgstr "Anteckning hittades inte eller är inte tillåten"
 
-#: application/controllers/Notes.php:335
+#: application/controllers/Notes.php:335 application/controllers/Notes.php:338
 msgid "Note deleted"
 msgstr "Anteckning raderad"
 
-#: application/controllers/Notes.php:339
+#: application/controllers/Notes.php:339 application/controllers/Notes.php:342
 msgid "Note updated"
 msgstr "Anteckning uppdaterad"
 
-#: application/controllers/Notes.php:344
+#: application/controllers/Notes.php:344 application/controllers/Notes.php:347
 msgid "Cannot create empty note"
 msgstr "Kan inte skapa tom anteckning"
 
-#: application/controllers/Notes.php:352
+#: application/controllers/Notes.php:352 application/controllers/Notes.php:355
 msgid "A note with this callsign already exists"
 msgstr "En anteckning med denna anropssignal finns redan"
 
-#: application/controllers/Notes.php:362
+#: application/controllers/Notes.php:362 application/controllers/Notes.php:365
 msgid "Note created"
 msgstr "Anteckning skapad"
 
 #: application/controllers/Notes.php:376 application/controllers/Notes.php:400
+#: application/controllers/Notes.php:379 application/controllers/Notes.php:403
 #, php-format
 msgid ""
 "Contacts note title must be a callsign only, without prefix/suffix. "
@@ -2136,6 +2137,7 @@ msgstr ""
 "suffix. Föreslag: %s"
 
 #: application/controllers/Notes.php:382 application/controllers/Notes.php:408
+#: application/controllers/Notes.php:385 application/controllers/Notes.php:411
 msgid ""
 "A note with this callsign already exists in your Contacts. Please enter a "
 "unique callsign."
@@ -19204,6 +19206,7 @@ msgid "Rcvd"
 msgstr "Mottagen"
 
 #: application/models/Logbookadvanced_model.php:1570
+#: application/models/Logbookadvanced_model.php:1648
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
 msgstr ""
 

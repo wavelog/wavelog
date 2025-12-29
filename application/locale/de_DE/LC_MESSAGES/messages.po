@@ -2106,7 +2106,7 @@ msgstr "Notiz"
 msgid "Edit Note"
 msgstr "Editiere Notiz"
 
-#: application/controllers/Notes.php:218
+#: application/controllers/Notes.php:218 application/controllers/Notes.php:221
 msgid ""
 "Duplicate note title for this category and user - not allowed for Contacts "
 "category."
@@ -2114,43 +2114,44 @@ msgstr ""
 "Doppelter Notiztitel für diese Kategorie und Benutzer - nicht erlaubt für "
 "die Kategorie Kontakte."
 
-#: application/controllers/Notes.php:283
+#: application/controllers/Notes.php:283 application/controllers/Notes.php:286
 msgid "Not found or not allowed"
 msgstr "Nicht gefunden oder nicht erlaubt"
 
-#: application/controllers/Notes.php:298
+#: application/controllers/Notes.php:298 application/controllers/Notes.php:301
 msgid "Not found"
 msgstr "Nicht gefunden"
 
-#: application/controllers/Notes.php:314
+#: application/controllers/Notes.php:314 application/controllers/Notes.php:317
 msgid "Category and title are required"
 msgstr "Kategorie und Titel sind erforderlich"
 
-#: application/controllers/Notes.php:328
+#: application/controllers/Notes.php:328 application/controllers/Notes.php:331
 msgid "Note not found or not allowed"
 msgstr "Notiz nicht gefunden oder nicht erlaubt"
 
-#: application/controllers/Notes.php:335
+#: application/controllers/Notes.php:335 application/controllers/Notes.php:338
 msgid "Note deleted"
 msgstr "Notiz gelöscht"
 
-#: application/controllers/Notes.php:339
+#: application/controllers/Notes.php:339 application/controllers/Notes.php:342
 msgid "Note updated"
 msgstr "Notiz aktualisiert"
 
-#: application/controllers/Notes.php:344
+#: application/controllers/Notes.php:344 application/controllers/Notes.php:347
 msgid "Cannot create empty note"
 msgstr "Es kann keine leere Notiz erstellt werden"
 
-#: application/controllers/Notes.php:352
+#: application/controllers/Notes.php:352 application/controllers/Notes.php:355
 msgid "A note with this callsign already exists"
 msgstr "Eine Notiz mit diesem Rufzeichen existiert bereits"
 
-#: application/controllers/Notes.php:362
+#: application/controllers/Notes.php:362 application/controllers/Notes.php:365
 msgid "Note created"
 msgstr "Notiz erstellt"
 
 #: application/controllers/Notes.php:376 application/controllers/Notes.php:400
+#: application/controllers/Notes.php:379 application/controllers/Notes.php:403
 #, php-format
 msgid ""
 "Contacts note title must be a callsign only, without prefix/suffix. "
@@ -2160,6 +2161,7 @@ msgstr ""
 "%s"
 
 #: application/controllers/Notes.php:382 application/controllers/Notes.php:408
+#: application/controllers/Notes.php:385 application/controllers/Notes.php:411
 msgid ""
 "A note with this callsign already exists in your Contacts. Please enter a "
 "unique callsign."
@@ -19398,6 +19400,7 @@ msgid "Rcvd"
 msgstr "Rcvd"
 
 #: application/models/Logbookadvanced_model.php:1570
+#: application/models/Logbookadvanced_model.php:1648
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
 msgstr ""
 
