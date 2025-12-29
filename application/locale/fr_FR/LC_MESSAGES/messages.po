@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-28 09:07+0000\n"
+"POT-Creation-Date: 2025-12-29 16:23+0000\n"
 "PO-Revision-Date: 2025-12-21 21:51+0000\n"
 "Last-Translator: JONCOUX Philippe <joncoux@free.fr>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1693,7 +1693,7 @@ msgstr "Etat"
 #: application/views/logbookadvanced/showStateQsos.php:26
 #: application/views/logbookadvanced/showUpdateResult.php:105
 #: application/views/logbookadvanced/useroptions.php:54
-#: application/views/lookup/index.php:6
+#: application/views/lookup/index.php:6 application/views/map/qso_map.php:63
 #: application/views/qslcard/confirmationresult.php:19
 #: application/views/qslcard/searchresult.php:19
 #: application/views/qslcard/searchresult.php:35
@@ -1735,6 +1735,7 @@ msgstr "Locator"
 #: application/views/logbookadvanced/index.php:498
 #: application/views/logbookadvanced/index.php:983
 #: application/views/logbookadvanced/useroptions.php:174
+#: application/views/map/qso_map.php:65
 #: application/views/qslcard/searchresult.php:20
 #: application/views/qslcard/searchresult.php:36
 #: application/views/qslcard/searchresult.php:52
@@ -2015,7 +2016,7 @@ msgstr ".TQ8 LoTW Envoyé"
 msgid "LoTW .TQ8 Not Sent"
 msgstr ".TQ8 LoTW Pas Envoyé"
 
-#: application/controllers/Map.php:46
+#: application/controllers/Map.php:42
 msgid "QSO Map"
 msgstr ""
 
@@ -3632,9 +3633,9 @@ msgstr "QSO mis à jour"
 #: application/views/dashboard/index.php:19
 #: application/views/gridmap/index.php:227
 #: application/views/logbookadvanced/index.php:15
-#: application/views/user/edit.php:256 application/views/user/edit.php:279
-#: application/views/user/edit.php:302 application/views/user/edit.php:325
-#: application/views/user/edit.php:350
+#: application/views/map/qso_map.php:67 application/views/user/edit.php:256
+#: application/views/user/edit.php:279 application/views/user/edit.php:302
+#: application/views/user/edit.php:325 application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
 msgid "Bearing"
 msgstr "Azimut"
@@ -4333,6 +4334,7 @@ msgstr "Effacer marqueurs"
 #: application/views/awards/gridmaster/index.php:50
 #: application/views/gridmap/index.php:219
 #: application/views/logbookadvanced/index.php:10
+#: application/views/map/qso_map.php:59
 msgid "Latitude"
 msgstr "Latitude"
 
@@ -4341,6 +4343,7 @@ msgstr "Latitude"
 #: application/views/awards/gridmaster/index.php:52
 #: application/views/gridmap/index.php:221
 #: application/views/logbookadvanced/index.php:11
+#: application/views/map/qso_map.php:61
 msgid "Longitude"
 msgstr "Longitude"
 
@@ -5489,8 +5492,8 @@ msgstr "Total"
 #: application/views/logbookadvanced/index.php:938
 #: application/views/logbookadvanced/qslcarousel.php:37
 #: application/views/logbookadvanced/useroptions.php:114
-#: application/views/lookup/index.php:3 application/views/qso/edit_ajax.php:308
-#: application/views/qso/index.php:506
+#: application/views/lookup/index.php:3 application/views/map/qso_map.php:69
+#: application/views/qso/edit_ajax.php:308 application/views/qso/index.php:506
 #: application/views/search/cqzones_result.php:13
 #: application/views/station_profile/create.php:110
 #: application/views/station_profile/edit.php:157
@@ -6460,8 +6463,8 @@ msgstr "Supprimé"
 #: application/views/logbookadvanced/index.php:423
 #: application/views/logbookadvanced/index.php:941
 #: application/views/logbookadvanced/useroptions.php:118
-#: application/views/lookup/index.php:8 application/views/qso/edit_ajax.php:316
-#: application/views/qso/index.php:516
+#: application/views/lookup/index.php:8 application/views/map/qso_map.php:71
+#: application/views/qso/edit_ajax.php:316 application/views/qso/index.php:516
 #: application/views/search/ituzones_result.php:13
 #: application/views/station_profile/create.php:124
 #: application/views/station_profile/edit.php:174
@@ -12055,6 +12058,7 @@ msgstr "Locator : "
 #: application/views/interface_assets/footer.php:1198
 #: application/views/logbookadvanced/index.php:13
 #: application/views/logbookadvanced/useroptions.php:210
+#: application/views/map/qso_map.php:7
 #: application/views/satellite/flightpath.php:11
 msgctxt "Map Options"
 msgid "Gridsquares"
@@ -12635,7 +12639,7 @@ msgstr "Types d'étiquettes"
 
 #: application/views/labels/index.php:81
 #: application/views/logbookadvanced/statecheckresult.php:12
-#: application/views/map/qso_map.php:12
+#: application/views/map/qso_map.php:21
 #: application/views/statistics/index.php:70
 #: application/views/statistics/index.php:114
 msgid "QSOs"
@@ -13242,12 +13246,14 @@ msgstr "Afficher les indicatifs"
 
 #: application/views/logbookadvanced/index.php:18
 #: application/views/logbookadvanced/useroptions.php:214
+#: application/views/map/qso_map.php:5
 msgctxt "Map Options"
 msgid "CQ Zones"
 msgstr "CQ Zones"
 
 #: application/views/logbookadvanced/index.php:19
 #: application/views/logbookadvanced/useroptions.php:218
+#: application/views/map/qso_map.php:6
 msgctxt "Map Options"
 msgid "ITU Zones"
 msgstr "ITU Zones"
@@ -14257,11 +14263,11 @@ msgstr "Vous devez envoyer des certificats p1 pour utiliser cette zone."
 msgid "The next automatic sync with LoTW will happen at: "
 msgstr "La prochaine synchronisation automatique avec LoTW aura lieu à : "
 
-#: application/views/map/qso_map.php:6
+#: application/views/map/qso_map.php:15
 msgid "Select Country:"
 msgstr ""
 
-#: application/views/map/qso_map.php:8
+#: application/views/map/qso_map.php:17
 msgid "Choose a country..."
 msgstr ""
 
