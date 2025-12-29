@@ -101,7 +101,7 @@ function initMap() {
         });
     });
 
-    function filterAndDisplayMarkers(qsos, showOnlyOutside = false) {
+    async function filterAndDisplayMarkers(qsos, showOnlyOutside = false) {
         // Clear existing markers and layers
         clearMap();
 
@@ -192,21 +192,7 @@ function initMap() {
                         }).addTo(map);
                         geojsonLayers.push(geojsonlayer);
 
-						info = L.control();
 
-						info.onAdd = function (map) {
-							this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
-							this.update();
-							return this._div;
-						};
-
-						// method that we will use to update the control based on feature properties passed
-						info.update = function (props) {
-							this._div.innerHTML = '<h4>Region</h4>' +  (props ?
-								'<b>' + props.code + ' - ' + props.name + '</b><br />' : 'Hover over a region');
-							};
-
-						info.addTo(map);
 
                         // Fit map to show both GeoJSON and markers
                         setTimeout(function() {
@@ -246,8 +232,25 @@ function initMap() {
 
         // Add legend to the map only once
         if (!legendAdded) {
-            addLegend(insideCount, outsideCount, qsos.length, showOnlyOutside);
-            legendAdded = true;
+            await addLegend(insideCount, outsideCount, qsos.length, showOnlyOutside).then(() => {
+				legendAdded = true;
+
+				info = L.control();
+
+				info.onAdd = function (map) {
+					this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+					this.update();
+					return this._div;
+				};
+
+				// method that we will use to update the control based on feature properties passed
+				info.update = function (props) {
+					this._div.innerHTML = '<h4>Region</h4>' +  (props ?
+					'<b>' + props.code + ' - ' + props.name + '</b><br />' : 'Hover over a region');
+				};
+
+				info.addTo(map);
+			});
         } else {
             // Update existing legend counts
             updateLegend(insideCount, outsideCount, qsos.length, showOnlyOutside);
@@ -303,7 +306,7 @@ function initMap() {
 		info.update();
 	}
 
-    function addLegend(insideCount, outsideCount, totalCount, showOnlyOutside) {
+    async function addLegend(insideCount, outsideCount, totalCount, showOnlyOutside) {
         const legend = L.control({ position: 'topright' });
 
         legend.onAdd = function(map) {
