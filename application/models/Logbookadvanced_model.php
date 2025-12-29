@@ -1549,8 +1549,55 @@ class Logbookadvanced_model extends CI_Model {
 				return $this->check_missing_itu_zones();
 			case 'checkgrids':
 				return $this->getMissingGridQsos();
+			case 'checkincorrectgridsquares':
+				return $this->getIncorrectGridsquares();
+			case 'checkincorrectcqzones':
+				return $this->getIncorrectCqZones();
+			case 'checkincorrectituzones':
+				return $this->getIncorrectItuZones();
 			return null;
 		}
+	}
+	/*
+	 * Get list of QSOs with gridsquares that do not match the gridsquares listed for the DXCC.
+	 * The data comes from the TQSL published Gridsquare list for DXCCs.
+	 */
+	public function getIncorrectGridsquares() {
+		$sqlcheck = "select count(*) as count from vuccgrids";;
+		$querycheck = $this->db->query($sqlcheck);
+		$rowcheck = $querycheck->row();
+		if ($rowcheck->count == 0) {
+			return ['status' => 'error', 'message' => __("VuccGrids table is empty. Please import the VUCC grids data first.")];
+		}
+
+		$sql = "select col_primary_key, col_time_on, col_call, col_band, col_gridsquare, col_dxcc, col_country, station_profile_name, col_lotw_qsl_rcvd, col_mode, col_submode,
+			(
+			select group_concat(distinct gridsquare order by gridsquare separator ', ')
+			from vuccgrids
+			where adif = thcv.col_dxcc
+				order by gridsquare asc
+			) as correctgridsquare
+		from " . $this->config->item('table_name') . " thcv
+		join station_profile on thcv.station_id = station_profile.station_id
+		join dxcc_entities on dxcc_entities.adif = thcv.COL_DXCC
+		where station_profile.user_id = ?
+		and thcv.col_dxcc > 0
+		and not exists (
+			select 1
+			from vuccgrids
+			where adif = thcv.col_dxcc
+			and gridsquare = substr(thcv.col_gridsquare, 1, 4)
+		)
+		and exists (select 1 from vuccgrids where adif = thcv.col_dxcc)
+		and thcv.col_dxcc > 0
+		and thcv.col_gridsquare is not null
+		and thcv.col_gridsquare <> ''
+		order by station_profile_name, col_time_on desc";
+
+		$bindings[] = [$this->session->userdata('user_id')];
+
+		$query = $this->db->query($sql, $bindings);
+		return $query->result();
 	}
 
 	public function check_missing_dxcc() {
@@ -1811,6 +1858,10 @@ class Logbookadvanced_model extends CI_Model {
 		return $query->result();
 	}
 
+	/*
+		Function to run batch fixes on the logbook.
+		Used in dbtools section.
+	*/
 	function batchFix($type) {
 		switch ($type) {
 			case 'dxcc':
@@ -1833,6 +1884,7 @@ class Logbookadvanced_model extends CI_Model {
 	/*
 		Another function moved from update to the advanced logbook, to be used in the dbtools section.
 		It did not have filter on user or location.
+		This function will check all QSOs with missing grid square and try to fill them using the callbook lookup.
 	*/
 	public function check_missing_grid() {
 		$result = $this->getMissingGridQsos();
@@ -1891,6 +1943,9 @@ class Logbookadvanced_model extends CI_Model {
 		return $query->result();
 	}
 
+	/*
+		Check all QSOs DXCC against current DXCC database
+	*/
 	public function check_dxcc() {
 
 		$i = 0;
@@ -1914,6 +1969,10 @@ class Logbookadvanced_model extends CI_Model {
                 $result[] = array(
                                 'callsign'          => $call->col_call,
 								'qso_date'          => $call->date,
+								'mode'              => isset($call->col_mode) ? $call->col_mode : '',
+								'submode'           => isset($call->col_submode) ? $call->col_submode : '',
+								'band'              => isset($call->col_band) ? $call->col_band : '',
+								'lotw_qsl_rcvd'     => isset($call->col_lotw_qsl_rcvd) ? $call->col_lotw_qsl_rcvd : '',
 								'station_profile'   => $call->station_profile_name,
                                 'existing_dxcc'     => $call->col_country,
                                 'existing_adif'     => $call->col_dxcc,
@@ -1938,7 +1997,7 @@ class Logbookadvanced_model extends CI_Model {
 	}
 
 	function getQsos() {
-		$sql = 'select distinct col_country, col_call, col_dxcc, date(col_time_on) date, station_profile.station_profile_name, col_primary_key
+		$sql = 'select distinct col_country, col_call, col_dxcc, date(col_time_on) date, col_mode, col_submode, col_band, col_lotw_qsl_rcvd, station_profile.station_profile_name, col_primary_key
 			from ' . $this->config->item('table_name') . '
 			join station_profile on ' . $this->config->item('table_name') . '.station_id = station_profile.station_id
 			where station_profile.user_id = ?';
@@ -1979,5 +2038,45 @@ class Logbookadvanced_model extends CI_Model {
 
 		$result['count'] = $count;
 		return $result;
+	}
+
+	function getIncorrectCqZones() {
+		if(!clubaccess_check(9)) return;
+
+		$sql = "select *, (select group_concat(distinct cqzone order by cqzone separator ', ') from dxcc_master where countrycode = thcv.col_dxcc and cqzone <> '' order by cqzone asc) as correctcqzone
+		from " . $this->config->item('table_name') . " thcv
+		join station_profile on thcv.station_id = station_profile.station_id
+		where station_profile.user_id = ?
+		and not exists (select 1 from dxcc_master where countrycode = thcv.col_dxcc and cqzone = col_cqz) and col_dxcc > 0
+		";
+
+		$params[] = $this->session->userdata('user_id');
+
+		$sql .= " order by station_profile.station_profile_name, thcv.col_time_on desc
+		limit 5000";
+
+		$query = $this->db->query($sql, $params);
+
+		return $query->result();
+	}
+
+	function getIncorrectItuZones() {
+		if(!clubaccess_check(9)) return;
+
+		$sql = "select *, (select group_concat(distinct ituzone order by ituzone separator ', ') from dxcc_master where countrycode = thcv.col_dxcc and ituzone <> '' order by ituzone asc) as correctituzone
+		from " . $this->config->item('table_name') . " thcv
+		join station_profile on thcv.station_id = station_profile.station_id
+		where station_profile.user_id = ?
+		and not exists (select 1 from dxcc_master where countrycode = thcv.col_dxcc and ituzone = col_ituz) and col_dxcc > 0
+		";
+
+		$params[] = $this->session->userdata('user_id');
+
+		$sql .= " order by station_profile.station_profile_name, thcv.col_time_on desc
+		limit 5000";
+
+		$query = $this->db->query($sql, $params);
+
+		return $query->result();
 	}
 }
