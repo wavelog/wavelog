@@ -86,8 +86,22 @@ class Logbookadvanced_model extends CI_Model {
 		$binding = [$searchCriteria['user_id']];
 
 		if (isset($searchCriteria['qsoids']) && ($searchCriteria['qsoids'] !== '')) {
-			$ids2fetch = $searchCriteria['qsoids'];
-			$conditions[] = "qsos.COL_PRIMARY_KEY in (".$ids2fetch.")";
+			// Sanitize qsoids to prevent SQL injection
+			$qsoids = $searchCriteria['qsoids'];
+			if (is_array($qsoids)) {
+				$sanitized_ids = array_map('intval', $qsoids);
+			} else {
+				// Handle comma-separated string
+				$ids_array = explode(',', $qsoids);
+				$sanitized_ids = array_map('intval', $ids_array);
+			}
+			$sanitized_ids = array_filter($sanitized_ids, function($id) {
+				return $id > 0;
+			});
+			if (!empty($sanitized_ids)) {
+				$ids2fetch = implode(',', $sanitized_ids);
+				$conditions[] = "qsos.COL_PRIMARY_KEY in (".$ids2fetch.")";
+			}
 		}
 
 		if ((isset($searchCriteria['dupes'])) && ($searchCriteria['dupes'] !== '')) {
@@ -161,7 +175,17 @@ class Logbookadvanced_model extends CI_Model {
 			if ($searchCriteria['de'] == '') {
 				$stationids = 'null';
 			} else {
-				$stationids = implode(',', $searchCriteria['de']);
+				// Sanitize station IDs to prevent SQL injection
+				$de_array = is_array($searchCriteria['de']) ? $searchCriteria['de'] : [$searchCriteria['de']];
+				$sanitized_ids = array_map('intval', $de_array);
+				$sanitized_ids = array_filter($sanitized_ids, function($id) {
+					return $id > 0;
+				});
+				if (!empty($sanitized_ids)) {
+					$stationids = implode(',', $sanitized_ids);
+				} else {
+					$stationids = 'null';
+				}
 			}
 			$conditions[] = "qsos.station_id in (".$stationids.")";
 		}
@@ -529,7 +553,16 @@ class Logbookadvanced_model extends CI_Model {
 		}
 
 		if (($searchCriteria['ids'] ?? '') !== '') {
-			$conditions[] = "qsos.COL_PRIMARY_KEY in (".implode(",",$searchCriteria['ids']).")";
+			// Sanitize IDs to prevent SQL injection
+			if (is_array($searchCriteria['ids'])) {
+				$sanitized_ids = array_map('intval', $searchCriteria['ids']);
+				$sanitized_ids = array_filter($sanitized_ids, function($id) {
+					return $id > 0;
+				});
+				if (!empty($sanitized_ids)) {
+					$conditions[] = "qsos.COL_PRIMARY_KEY in (".implode(",",$sanitized_ids).")";
+				}
+			}
 		}
 
 		$where = trim(implode(" AND ", $conditions));
@@ -540,7 +573,10 @@ class Logbookadvanced_model extends CI_Model {
 		$limit = '';
 
 		if ($searchCriteria['qsoresults'] != 'All') {
-			$limit = 'limit ' . (int)$searchCriteria['qsoresults'];
+			// Sanitize and enforce max limit to prevent DoS
+			$max_results = 10000;
+			$limit_value = max(1, min($max_results, intval($searchCriteria['qsoresults'])));
+			$limit = ' limit ' . $limit_value;
 		}
 
 		$where2 = '';
