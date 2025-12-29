@@ -513,8 +513,8 @@ class Oqrs_model extends CI_Model {
 		";
 
 		if ($searchCriteria['oqrsResults'] !== 'All') {
-			$limit = $searchCriteria['oqrsResults'];
-			$sql .= "LIMIT $limit";
+			$limit = max(1, min(1000, intval($searchCriteria['oqrsResults']))); // Sanitize and enforce max
+			$sql .= " LIMIT " . $limit;
 		}
 
 		$data = $this->db->query($sql, $binding);
