@@ -228,33 +228,37 @@ function initMap() {
             }
         }
 
-        $('#mapContainer').show();
+ 		$('#mapContainer').show();
 
-        // Add legend to the map only once
+        // Remove existing info control if it exists
+        if (info) {
+            map.removeControl(info);
+        }
+
+        // Add or update legend
         if (!legendAdded) {
-            await addLegend(insideCount, outsideCount, qsos.length, showOnlyOutside).then(() => {
-				legendAdded = true;
-
-				info = L.control();
-
-				info.onAdd = function (map) {
-					this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
-					this.update();
-					return this._div;
-				};
-
-				// method that we will use to update the control based on feature properties passed
-				info.update = function (props) {
-					this._div.innerHTML = '<h4>Region</h4>' +  (props ?
-					'<b>' + props.code + ' - ' + props.name + '</b><br />' : 'Hover over a region');
-				};
-
-				info.addTo(map);
-			});
+            addLegend(insideCount, outsideCount, qsos.length, showOnlyOutside);
+            legendAdded = true;
         } else {
             // Update existing legend counts
             updateLegend(insideCount, outsideCount, qsos.length, showOnlyOutside);
         }
+
+        // Always re-add info control after legend to ensure correct order
+        info = L.control();
+
+        info.onAdd = function (map) {
+            this._div = L.DomUtil.create('div', 'info');
+            this.update();
+            return this._div;
+        };
+
+        info.update = function (props) {
+            this._div.innerHTML = '<h4>Region</h4>' +  (props ?
+            '<b>' + props.code + ' - ' + props.name + '</b><br />' : 'Hover over a region');
+        };
+
+        info.addTo(map);
 
         // Force map to recalculate its size
         setTimeout(function() {
@@ -306,7 +310,7 @@ function initMap() {
 		info.update();
 	}
 
-    async function addLegend(insideCount, outsideCount, totalCount, showOnlyOutside) {
+    function addLegend(insideCount, outsideCount, totalCount, showOnlyOutside) {
         const legend = L.control({ position: 'topright' });
 
         legend.onAdd = function(map) {
@@ -349,11 +353,11 @@ function initMap() {
                 html += '</div>';
             }
 
-			html += '<br />';
-			html += '<h4>Toggle layers</h4>';
-			html += '<input type="checkbox" onclick="toggleGridsquares(this.checked)" ' + (typeof gridsquare_layer !== 'undefined' && gridsquare_layer ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_gridsquares + '</span><br>';
-			html += '<input type="checkbox" onclick="toggleCqZones(this.checked)" ' + (typeof cqzones_layer !== 'undefined' && cqzones_layer ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_cq_zones + '</span><br>';
-			html += '<input type="checkbox" onclick="toggleItuZones(this.checked)" ' + (typeof ituzones_layer !== 'undefined' && ituzones_layer ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_itu_zones + '</span><br>';
+            html += '<br />';
+            html += '<h4>Toggle layers</h4>';
+            html += '<input type="checkbox" onclick="toggleGridsquares(this.checked)" ' + (typeof gridsquare_layer !== 'undefined' && gridsquare_layer ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_gridsquares + '</span><br>';
+            html += '<input type="checkbox" onclick="toggleCqZones(this.checked)" ' + (typeof cqzones_layer !== 'undefined' && cqzones_layer ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_cq_zones + '</span><br>';
+            html += '<input type="checkbox" onclick="toggleItuZones(this.checked)" ' + (typeof ituzones_layer !== 'undefined' && ituzones_layer ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_itu_zones + '</span><br>';
 
             div.innerHTML = html;
 
