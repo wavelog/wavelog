@@ -27,10 +27,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-12-28 09:07+0000\n"
-"PO-Revision-Date: 2025-12-28 15:26+0000\n"
+"PO-Revision-Date: 2025-12-29 22:21+0000\n"
 "Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19403,72 +19403,80 @@ msgstr "Rcvd"
 #: application/models/Logbookadvanced_model.php:1648
 #: application/models/Logbookadvanced_model.php:1649
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
-msgstr ""
+msgstr "VuccGrids Tabelle ist leer. Bitte aktualisiere die VUCC-Grid-Daten."
 
 #: application/views/logbookadvanced/checkresult.php:194
 msgid "These QSOs MAY have incorrect gridsquares."
-msgstr ""
+msgstr "Diese QSOs haben VERMUTLICH falsche Angaben zum Planquadrat."
 
 #: application/views/logbookadvanced/checkresult.php:195
 msgid ""
 "Results depends on the correct DXCC. The gridsquare list comes from the TQSL "
 "gridsquare database."
 msgstr ""
+"Ergebnisse hängen vom korrekten DXCC ab. Die Liste der Planquadrate "
+"entstammt der TQSL Grid-Datenbank."
 
 #: application/views/logbookadvanced/checkresult.php:208
 msgid "DXCC Gridsquare"
-msgstr ""
+msgstr "Planquadrat des DXCC"
 
 #: application/views/logbookadvanced/checkresult.php:231
 #: application/views/logbookadvanced/index.php:77
 msgid "Show more"
-msgstr ""
+msgstr "Zeige mehr"
 
 #: application/views/logbookadvanced/checkresult.php:262
 msgid ""
 "The following QSOs were found to have a different CQ zone compared to what "
 "this DXCC normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
+"Die folgenden gefundenen QSOs weisen eine CQ-Zone auf, die von der des DXCC "
+"abweicht (maximal 5000 QSOs werden gelistet):"
 
 #: application/views/logbookadvanced/checkresult.php:331
 msgid ""
 "The following QSOs were found to have a different ITU zone compared to what "
 "this DXCC normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
+"Die folgenden gefundenen QSOs weisen eine ITU-Zone auf, die von der des DXCC "
+"abweicht (maximal 5000 QSOs werden gelistet):"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:8
 msgid ""
 "Warning. This tool can be dangerous to your data, and should only be used if "
 "you know what you are doing."
 msgstr ""
+"Warnung. Dieses Werkzeug kann irreversible Veränderungen herbeiführen und "
+"sollte nur mit entsprechendem Wissen genutzt werden."
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:23
 msgid "Check all QSOs in the logbook for incorrect CQ Zones"
-msgstr ""
+msgstr "Prüfe alle QSOs im Logbuch auf inkorrekte CQ-Zonen"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:24
 msgid "Use Wavelog to determine CQ Zone for all QSOs."
-msgstr ""
+msgstr "Nutze Wavelog für die Bestimmung der CQ-Zone für alle QSOs."
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:47
 msgid "Check all QSOs in the logbook for incorrect ITU Zones"
-msgstr ""
+msgstr "Prüfe alle QSOs im Logbuch auf inkorrekte ITU-Zonen"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:48
 msgid "Use Wavelog to determine ITU Zone for all QSOs."
-msgstr ""
+msgstr "Nutze Wavelog für die Bestimmung der ITU-Zone für alle QSOs."
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:59
 msgid "Check Gridsquares"
-msgstr ""
+msgstr "Prüfe Planquadrate"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:60
 msgid "Check gridsquares that does not match the DXCC"
-msgstr ""
+msgstr "Prüfe Planquadrate, die nicht mit dem DXCC übereinstimmen"
 
 #: application/views/logbookadvanced/index.php:78
 msgid "Show less"
-msgstr ""
+msgstr "Zeige weniger"
 
 #~ msgid "Mark exported QSOs as uploaded to LoTW"
 #~ msgstr "Markiere die exportierten QSO als 'zu LoTW hochgeladen'"
