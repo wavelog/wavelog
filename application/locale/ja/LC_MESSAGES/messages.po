@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2025-12-28 09:07+0000\n"
 "PO-Revision-Date: 2025-12-28 15:26+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1100,8 +1100,9 @@ msgstr "eQSLツール"
 
 #: application/controllers/Eqsl.php:620
 msgid "Limited to first 150 QSOs for this request. Please run again."
-msgstr "このリクエストは最初の150QSOまでに制限されています。もう一度実行してください"
-"。"
+msgstr ""
+"このリクエストは最初の150QSOまでに制限されています。もう一度実行してくださ"
+"い。"
 
 #: application/controllers/Eqsl.php:626
 msgid " / Errors: "
@@ -1704,7 +1705,7 @@ msgstr "州"
 #: application/views/user/edit.php:345 application/views/user/profile.php:34
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/view_log/qso.php:680
-#: application/views/visitor/index.php:27
+#: application/views/visitor/index.php:27 application/views/map/qso_map.php:63
 msgid "Gridsquare"
 msgstr "グリッドスクエア"
 
@@ -1733,7 +1734,7 @@ msgstr "グリッドスクエア"
 #: application/views/user/edit.php:299 application/views/user/edit.php:322
 #: application/views/user/edit.php:346
 #: application/views/view_log/partial/log_ajax.php:14
-#: application/views/visitor/index.php:30
+#: application/views/visitor/index.php:30 application/views/map/qso_map.php:65
 msgid "Distance"
 msgstr "距離"
 
@@ -3604,6 +3605,7 @@ msgstr "QSOが更新されました"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/views/map/qso_map.php:67
 msgid "Bearing"
 msgstr "方位"
 
@@ -4300,6 +4302,7 @@ msgstr "クリアマーカー"
 #: application/views/awards/gridmaster/index.php:50
 #: application/views/gridmap/index.php:219
 #: application/views/logbookadvanced/index.php:10
+#: application/views/map/qso_map.php:59
 msgid "Latitude"
 msgstr "緯度"
 
@@ -4308,6 +4311,7 @@ msgstr "緯度"
 #: application/views/awards/gridmaster/index.php:52
 #: application/views/gridmap/index.php:221
 #: application/views/logbookadvanced/index.php:11
+#: application/views/map/qso_map.php:61
 msgid "Longitude"
 msgstr "経度"
 
@@ -5442,6 +5446,7 @@ msgstr "合計"
 #: application/views/timeline/index.php:327
 #: application/views/timeplotter/index.php:44
 #: application/views/user/modals/first_login_wizard.php:74
+#: application/views/map/qso_map.php:69
 msgid "CQ Zone"
 msgstr "CQゾーン"
 
@@ -6392,6 +6397,7 @@ msgstr "削除済み"
 #: application/views/station_profile/create.php:124
 #: application/views/station_profile/edit.php:174
 #: application/views/user/modals/first_login_wizard.php:84
+#: application/views/map/qso_map.php:71
 msgid "ITU Zone"
 msgstr "ITU ゾーン"
 
@@ -8822,7 +8828,8 @@ msgstr "両方の方法で見つかった問題:"
 msgid ""
 "No DXCC issues found in either method. All calls have correct DXCC "
 "information."
-msgstr "どちらの方法でもDXCCの問題は見つかりませんでした。すべての交信に正しいDXCC情"
+msgstr ""
+"どちらの方法でもDXCCの問題は見つかりませんでした。すべての交信に正しいDXCC情"
 "報が含まれています。"
 
 #: application/views/calltester/index.php:3
@@ -11881,6 +11888,7 @@ msgstr "グリッド: "
 #: application/views/logbookadvanced/index.php:13
 #: application/views/logbookadvanced/useroptions.php:210
 #: application/views/satellite/flightpath.php:11
+#: application/views/map/qso_map.php:7
 msgctxt "Map Options"
 msgid "Gridsquares"
 msgstr "グリッドスクエア"
@@ -12462,6 +12470,7 @@ msgstr "ラベルの種類"
 #: application/views/map/qso_map.php:12
 #: application/views/statistics/index.php:70
 #: application/views/statistics/index.php:114
+#: application/views/map/qso_map.php:21
 msgid "QSOs"
 msgstr "QSO"
 
@@ -13048,12 +13057,14 @@ msgstr "コールサインを表示"
 
 #: application/views/logbookadvanced/index.php:18
 #: application/views/logbookadvanced/useroptions.php:214
+#: application/views/map/qso_map.php:5
 msgctxt "Map Options"
 msgid "CQ Zones"
 msgstr "CQゾーン"
 
 #: application/views/logbookadvanced/index.php:19
 #: application/views/logbookadvanced/useroptions.php:218
+#: application/views/map/qso_map.php:6
 msgctxt "Map Options"
 msgid "ITU Zones"
 msgstr "ITUゾーン"
@@ -19076,8 +19087,8 @@ msgstr "受信"
 #~ "Your active Station Location isn't linked to your Logbook. Click %shere%s "
 #~ "to do it."
 #~ msgstr ""
-#~ "現在のステーション位置がログブックとリンクされていません。リンクするに"
-#~ "は、%shere%s をクリックしてください。"
+#~ "現在のステーション位置がログブックとリンクされていません。リンクするには、"
+#~ "%shere%s をクリックしてください。"
 
 #, php-format
 #~ msgctxt "Dashboard Warning"

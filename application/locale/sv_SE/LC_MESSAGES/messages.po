@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2025-12-28 09:07+0000\n"
 "PO-Revision-Date: 2025-12-28 15:26+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
-"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/sv/>\n"
+"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/sv/>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1703,7 +1703,7 @@ msgstr "Delstat"
 #: application/views/user/edit.php:345 application/views/user/profile.php:34
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/view_log/qso.php:680
-#: application/views/visitor/index.php:27
+#: application/views/visitor/index.php:27 application/views/map/qso_map.php:63
 msgid "Gridsquare"
 msgstr "Lokatorruta"
 
@@ -1732,7 +1732,7 @@ msgstr "Lokatorruta"
 #: application/views/user/edit.php:299 application/views/user/edit.php:322
 #: application/views/user/edit.php:346
 #: application/views/view_log/partial/log_ajax.php:14
-#: application/views/visitor/index.php:30
+#: application/views/visitor/index.php:30 application/views/map/qso_map.php:65
 msgid "Distance"
 msgstr "Avstånd"
 
@@ -1999,7 +1999,7 @@ msgstr "LoTW .TQ8 skickad"
 msgid "LoTW .TQ8 Not Sent"
 msgstr "LoTW .TQ8 Ej skickad"
 
-#: application/controllers/Map.php:46
+#: application/controllers/Map.php:46 application/controllers/Map.php:42
 msgid "QSO Map"
 msgstr "QSO-karta"
 
@@ -3600,6 +3600,7 @@ msgstr "QSO uppdaterad"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/views/map/qso_map.php:67
 msgid "Bearing"
 msgstr "Bäring"
 
@@ -4297,6 +4298,7 @@ msgstr "Rensa markörer"
 #: application/views/awards/gridmaster/index.php:50
 #: application/views/gridmap/index.php:219
 #: application/views/logbookadvanced/index.php:10
+#: application/views/map/qso_map.php:59
 msgid "Latitude"
 msgstr "Latitud"
 
@@ -4305,6 +4307,7 @@ msgstr "Latitud"
 #: application/views/awards/gridmaster/index.php:52
 #: application/views/gridmap/index.php:221
 #: application/views/logbookadvanced/index.php:11
+#: application/views/map/qso_map.php:61
 msgid "Longitude"
 msgstr "Longitud"
 
@@ -5442,6 +5445,7 @@ msgstr "Totalt"
 #: application/views/timeline/index.php:327
 #: application/views/timeplotter/index.php:44
 #: application/views/user/modals/first_login_wizard.php:74
+#: application/views/map/qso_map.php:69
 msgid "CQ Zone"
 msgstr "CQ-zon"
 
@@ -6398,6 +6402,7 @@ msgstr "Raderad"
 #: application/views/station_profile/create.php:124
 #: application/views/station_profile/edit.php:174
 #: application/views/user/modals/first_login_wizard.php:84
+#: application/views/map/qso_map.php:71
 msgid "ITU Zone"
 msgstr "ITU-zon"
 
@@ -7175,8 +7180,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
-"Reef/506) och giltig stat (ADIF: DXCC och STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
+"506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/was/index.php:3
 msgctxt "USA State"
@@ -11906,6 +11911,7 @@ msgstr "Lokatorrutor: "
 #: application/views/logbookadvanced/index.php:13
 #: application/views/logbookadvanced/useroptions.php:210
 #: application/views/satellite/flightpath.php:11
+#: application/views/map/qso_map.php:7
 msgctxt "Map Options"
 msgid "Gridsquares"
 msgstr "Lokatorrutor"
@@ -12484,6 +12490,7 @@ msgstr "Etikettyper"
 #: application/views/map/qso_map.php:12
 #: application/views/statistics/index.php:70
 #: application/views/statistics/index.php:114
+#: application/views/map/qso_map.php:21
 msgid "QSOs"
 msgstr "QSOs"
 
@@ -12550,8 +12557,8 @@ msgid ""
 "We’ll keep the original value and add a more precise locator (e.g., JO90AB "
 "or JO90AB12) when a match is confident."
 msgstr ""
-"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator (t."
-"ex. JO90AB eller JO90AB12) när en matchning är säker."
+"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator "
+"(t.ex. JO90AB eller JO90AB12) när en matchning är säker."
 
 #: application/views/logbookadvanced/checkresult.php:40
 msgid "Distance Check Results"
@@ -13079,12 +13086,14 @@ msgstr "Visa anropssignaler"
 
 #: application/views/logbookadvanced/index.php:18
 #: application/views/logbookadvanced/useroptions.php:214
+#: application/views/map/qso_map.php:5
 msgctxt "Map Options"
 msgid "CQ Zones"
 msgstr "CQ-zoner"
 
 #: application/views/logbookadvanced/index.php:19
 #: application/views/logbookadvanced/useroptions.php:218
+#: application/views/map/qso_map.php:6
 msgctxt "Map Options"
 msgid "ITU Zones"
 msgstr "ITU-zoner"
@@ -14079,11 +14088,11 @@ msgstr ""
 msgid "The next automatic sync with LoTW will happen at: "
 msgstr "Nästa automatiska synkronisering med LoTW kommer att ske kl: "
 
-#: application/views/map/qso_map.php:6
+#: application/views/map/qso_map.php:6 application/views/map/qso_map.php:15
 msgid "Select Country:"
 msgstr "Välj land:"
 
-#: application/views/map/qso_map.php:8
+#: application/views/map/qso_map.php:8 application/views/map/qso_map.php:17
 msgid "Choose a country..."
 msgstr "Välj ett land..."
 
@@ -17384,8 +17393,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 (t."
-"ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
+"(t.ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"

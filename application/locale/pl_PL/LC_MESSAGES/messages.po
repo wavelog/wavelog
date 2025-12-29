@@ -19,14 +19,14 @@ msgstr ""
 "POT-Creation-Date: 2025-12-28 09:07+0000\n"
 "PO-Revision-Date: 2025-12-29 16:23+0000\n"
 "Last-Translator: Dariusz Koryto <dariusz@koryto.eu>\n"
-"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/pl/>\n"
+"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/pl/>\n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && "
-"(n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 5.14\n"
 
 #: application/controllers/Accumulated.php:12
@@ -1714,7 +1714,7 @@ msgstr "Stan"
 #: application/views/user/edit.php:345 application/views/user/profile.php:34
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/view_log/qso.php:680
-#: application/views/visitor/index.php:27
+#: application/views/visitor/index.php:27 application/views/map/qso_map.php:63
 msgid "Gridsquare"
 msgstr "Lokator"
 
@@ -1743,7 +1743,7 @@ msgstr "Lokator"
 #: application/views/user/edit.php:299 application/views/user/edit.php:322
 #: application/views/user/edit.php:346
 #: application/views/view_log/partial/log_ajax.php:14
-#: application/views/visitor/index.php:30
+#: application/views/visitor/index.php:30 application/views/map/qso_map.php:65
 msgid "Distance"
 msgstr "Odległość"
 
@@ -3623,6 +3623,7 @@ msgstr "QSO zaktualizowane"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/views/map/qso_map.php:67
 msgid "Bearing"
 msgstr "Kierunek"
 
@@ -4321,6 +4322,7 @@ msgstr "Usuń markery"
 #: application/views/awards/gridmaster/index.php:50
 #: application/views/gridmap/index.php:219
 #: application/views/logbookadvanced/index.php:10
+#: application/views/map/qso_map.php:59
 msgid "Latitude"
 msgstr "Szerokość geograficzna"
 
@@ -4329,6 +4331,7 @@ msgstr "Szerokość geograficzna"
 #: application/views/awards/gridmaster/index.php:52
 #: application/views/gridmap/index.php:221
 #: application/views/logbookadvanced/index.php:11
+#: application/views/map/qso_map.php:61
 msgid "Longitude"
 msgstr "Długość geograficzna"
 
@@ -5472,6 +5475,7 @@ msgstr "Razem"
 #: application/views/timeline/index.php:327
 #: application/views/timeplotter/index.php:44
 #: application/views/user/modals/first_login_wizard.php:74
+#: application/views/map/qso_map.php:69
 msgid "CQ Zone"
 msgstr "Strefa CQ"
 
@@ -6438,6 +6442,7 @@ msgstr "Usunięto"
 #: application/views/station_profile/create.php:124
 #: application/views/station_profile/edit.php:174
 #: application/views/user/modals/first_login_wizard.php:84
+#: application/views/map/qso_map.php:71
 msgid "ITU Zone"
 msgstr "Strefa ITU"
 
@@ -7224,8 +7229,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Pola brane pod uwagę przy tej nagrodzie: DXCC (musi być jednym z: Chiny/318, "
-"Hongkong/321, Makau/152, Tajwan/386, Wyspa Pratas/505 lub Rafa "
-"Scarborough/506) oraz ważny stan (ADIF: DXCC i STATE)"
+"Hongkong/321, Makau/152, Tajwan/386, Wyspa Pratas/505 lub Rafa Scarborough/"
+"506) oraz ważny stan (ADIF: DXCC i STATE)"
 
 #: application/views/awards/was/index.php:3
 msgctxt "USA State"
@@ -10629,8 +10634,8 @@ msgid ""
 "Go to your application/config Folder and compare config.sample.php with your "
 "config.php"
 msgstr ""
-"Należy przejść do folderu application/config i porównać plik config.sample."
-"php z plikiem config.php"
+"Należy przejść do folderu application/config i porównać plik "
+"config.sample.php z plikiem config.php"
 
 #: application/views/debug/index.php:197
 #, php-format
@@ -11971,6 +11976,7 @@ msgstr "Lokatory: "
 #: application/views/logbookadvanced/index.php:13
 #: application/views/logbookadvanced/useroptions.php:210
 #: application/views/satellite/flightpath.php:11
+#: application/views/map/qso_map.php:7
 msgctxt "Map Options"
 msgid "Gridsquares"
 msgstr "Lokatory"
@@ -12550,6 +12556,7 @@ msgstr "Typy etykiet"
 #: application/views/map/qso_map.php:12
 #: application/views/statistics/index.php:70
 #: application/views/statistics/index.php:114
+#: application/views/map/qso_map.php:21
 msgid "QSOs"
 msgstr "QSO"
 
@@ -13148,12 +13155,14 @@ msgstr "Znaki wywoławcze"
 
 #: application/views/logbookadvanced/index.php:18
 #: application/views/logbookadvanced/useroptions.php:214
+#: application/views/map/qso_map.php:5
 msgctxt "Map Options"
 msgid "CQ Zones"
 msgstr "Strefy CQ"
 
 #: application/views/logbookadvanced/index.php:19
 #: application/views/logbookadvanced/useroptions.php:218
+#: application/views/map/qso_map.php:6
 msgctxt "Map Options"
 msgid "ITU Zones"
 msgstr "Strefy ITU"
@@ -14146,11 +14155,11 @@ msgstr "Należy przesłać certyfikat .p12 aby używać tej funkcji."
 msgid "The next automatic sync with LoTW will happen at: "
 msgstr "Następna automatyczna synchronizacja z LoTW nastąpi: "
 
-#: application/views/map/qso_map.php:6
+#: application/views/map/qso_map.php:6 application/views/map/qso_map.php:15
 msgid "Select Country:"
 msgstr ""
 
-#: application/views/map/qso_map.php:8
+#: application/views/map/qso_map.php:8 application/views/map/qso_map.php:17
 msgid "Choose a country..."
 msgstr ""
 

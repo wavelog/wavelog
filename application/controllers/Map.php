@@ -24,30 +24,35 @@ class Map extends CI_Controller {
 	public function qso_map() {
 		$this->load->library('Geojson');
 		$this->load->model('Map_model');
+		$this->load->model('stations');
 
 		// Get supported DXCC countries with state data
-		$supported_dxccs = $this->geojson->getSupportedDxccs();
+		$data['supported_dxccs'] = $this->geojson->getSupportedDxccs();
+
+		$supported_country_codes = array_keys($data['supported_dxccs']);
 
 		// Fetch available countries from the logbook
-		$countries = $this->Map_model->get_available_countries();
-
-		// Filter countries to only include those with GeoJSON support
-		$supported_country_codes = array_keys($supported_dxccs);
-		$filtered_countries = array_filter($countries, function($country) use ($supported_country_codes) {
-			return in_array($country['COL_DXCC'], $supported_country_codes);
-		});
+		$data['countries'] = $this->Map_model->get_available_countries($supported_country_codes);
 
 		// Fetch station profiles
-		$station_profiles = $this->Map_model->get_station_profiles();
+		$data['station_profiles'] = $this->stations->all_of_user()->result();
 
-		$data['countries'] = $filtered_countries;
-		$data['station_profiles'] = $station_profiles;
-		$data['supported_dxccs'] = $supported_dxccs;
+		$data['homegrid'] = explode(',', $this->stations->find_gridsquare());
+
 		$data['page_title'] = __("QSO Map");
 
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/leaflet/geocoding.js',
+			'assets/js/leaflet/L.Maidenhead.js',
+			'assets/js/sections/qso_map.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/qso_map.js")),
+			'assets/js/sections/itumap_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/itumap_geojson.js")),
+			'assets/js/sections/cqmap_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/cqmap_geojson.js")),
+		];
+
 		$this->load->view('interface_assets/header', $data);
-		$this->load->view('map/qso_map', $data);
-		$this->load->view('interface_assets/footer');
+		$this->load->view('map/qso_map');
+		$this->load->view('interface_assets/footer', $footerData);
 	}
 
 	/**
