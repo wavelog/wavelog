@@ -3,8 +3,9 @@
         <div class="col-md-5">
             <h5><?= __("Data Repair Tools") ?>
 			<a href="https://github.com/wavelog/wavelog/wiki/Advanced-Logbook#database-tools-dbtools" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-info me-1 ld-ext-right">
-					<?= __("Wiki Help") ?></a>
+				<?= __("Wiki Help") ?></a>
 			</h5>
+			<p class="mb-1 alert-danger"><?= __("Warning. This tool can be dangerous to your data, and should only be used if you know what you are doing.") ?></p>
             <div class="list-group">
                 <div class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
