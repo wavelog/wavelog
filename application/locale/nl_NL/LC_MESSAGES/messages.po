@@ -11,10 +11,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-12-28 09:07+0000\n"
-"PO-Revision-Date: 2025-12-28 21:29+0000\n"
+"PO-Revision-Date: 2025-12-30 19:35+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
-"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/nl/>\n"
+"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/nl/>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -6364,7 +6364,7 @@ msgid ""
 "grid from one of the 488 mainland gridsquares!), Band must be 6M."
 msgstr ""
 "Velden genomen voor deze Award: DXCC (Moet USA zijn), Gridsquare (Moet een "
-"van de 488 lokatorvakken bevatten van het Amerikaanse vastenland!), Band "
+"van de 488 locatorvakken bevatten van het Amerikaanse vastenland!), Band "
 "moet 6m zijn."
 
 #: application/views/awards/gridmaster/index.php:12
@@ -6421,7 +6421,7 @@ msgid ""
 "Name"
 msgstr ""
 "Velden genomen voor deze Award: DXCC (Moet USA zijn), Gridsquare (Moet een "
-"van de 488 lokatorvakken bevatten van het Amerikaanse vastenland!),, "
+"van de 488 locatorvakken bevatten van het Amerikaanse vastenland!),, "
 "Propagatie-Modus en SAT-Naam"
 
 #: application/views/awards/gridmaster/index.php:18
@@ -7200,8 +7200,8 @@ msgid ""
 "Fields taken for this Award: SIG (Has to be 'WAB') and SIG_INFO (should "
 "contain valid WAB-Grid)"
 msgstr ""
-"Velden genomen voor deze Award: SIG (moet 'WAB' zijn) en SIG_INFO (moet een "
-"geldige WAB-lokatorvak bevatten)"
+"Velden genomen voor deze Award: SIG (moet 'WAB' zijn) en SIG_INFO "
+"(moet een geldige WAB-locatorvak bevatten)"
 
 #: application/views/awards/wab/index.php:111
 msgid "List"
@@ -13001,7 +13001,7 @@ msgstr "ITU Zone controle resultaten"
 #: application/views/logbookadvanced/checkresult.php:115
 #: application/views/logbookadvanced/checkresult.php:187
 msgid "Gridsquare Check Results"
-msgstr "Lokatorvak-controle resultaten"
+msgstr "Locatorvak-controle resultaten"
 
 #: application/views/logbookadvanced/checkresult.php:124
 #: application/views/logbookadvanced/checkresult.php:133
@@ -13107,12 +13107,12 @@ msgstr "Gebruik Wavelog om DXCC voor alle QSO's te bepalen."
 #: application/views/logbookadvanced/dbtoolsdialog.php:95
 #: application/views/logbookadvanced/dbtoolsdialog.php:131
 msgid "Lookup QSOs with missing grid in callbook"
-msgstr "Zoek QSOs met ontbrekend lokatorvak in callbook"
+msgstr "Zoek QSOs met ontbrekend locatorvak in callbook"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:96
 #: application/views/logbookadvanced/dbtoolsdialog.php:132
 msgid "Use callbook lookup to set gridsquare"
-msgstr "Gebruik callbook om lokatorvak in te stellen"
+msgstr "Gebruik callbook om locatorvak in te stellen"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:97
 #: application/views/logbookadvanced/dbtoolsdialog.php:133
@@ -13401,8 +13401,8 @@ msgid ""
 "Distance (in km). Leave blank to recalculate distance. (It will only work if "
 "a gridsquare is set)."
 msgstr ""
-"Afstand (in km). Laat leeg om afstand opnieuw te berekenen. (Het werkt "
-"alleen als een lokatorvak is ingesteld)."
+"Afstand (in km). Laat leeg om afstand opnieuw te berekenen. "
+"(Het werkt alleen als een locatorvak is ingesteld)."
 
 #: application/views/logbookadvanced/help.php:2
 msgid "In the text input searches, you can search in the following way:"
@@ -14335,11 +14335,11 @@ msgstr "Het aantal bijgewerkte QSO's voor ITU-zone is"
 
 #: application/views/logbookadvanced/showUpdateResult.php:150
 msgid "Results for gridsquare update:"
-msgstr "Resultaten voor de lokatorvak update:"
+msgstr "Resultaten voor de locatorvak update:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:151
 msgid "The number of QSOs updated for gridsquare is"
-msgstr "Het aantal bijgewerkte QSOs voor lokatorvak is"
+msgstr "Het aantal bijgewerkte QSOs voor locatorvak is"
 
 #: application/views/logbookadvanced/startatform.php:15
 msgid "Include Via"
@@ -14363,7 +14363,7 @@ msgid ""
 "QSOs with missing state and gridsquares with 6 or more characters found for "
 "the following DXCCs:"
 msgstr ""
-"QSOs met ontbrekende staat/provincie en lokatorvak met 6 of meer tekens "
+"QSOs met ontbrekende staat/provincie en locatorvak met 6 of meer tekens "
 "gevonden voor de volgende DXCC's:"
 
 #: application/views/logbookadvanced/statecheckresult.php:43
@@ -15763,7 +15763,7 @@ msgstr "De propagatiemodus moet 'SAT' zijn om een samenvatting te tonen!"
 
 #: application/views/qso/award_tabs.php:20
 msgid "Gridsquare input needs to be filled to show a summary!"
-msgstr "Lokatorvak-invoer moet worden ingevuld om een samenvatting te tonen!"
+msgstr "Locatorvak-invoer moet worden ingevuld om een samenvatting te tonen!"
 
 #: application/views/qso/award_tabs.php:21
 msgid "Summary only shows for the first POTA entered."
@@ -15772,7 +15772,7 @@ msgstr "Samenvatting wordt alleen weergegeven voor de eerste ingevoerde POTA."
 #: application/views/qso/award_tabs.php:22
 msgid "Summary only shows for the first gridsquare entered."
 msgstr ""
-"Samenvatting wordt alleen weergegeven voor het eerste lokatorvak dat is "
+"Samenvatting wordt alleen weergegeven voor het eerste locatorvak dat is "
 "ingevoerd."
 
 #: application/views/qso/award_tabs.php:23
@@ -19415,133 +19415,141 @@ msgstr "Ontvangen"
 #: application/models/Logbookadvanced_model.php:1648
 #: application/models/Logbookadvanced_model.php:1649
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
-msgstr ""
+msgstr "VuccGrids-tabel is leeg. Importeer eerst de VUCC-gridsgegevens."
 
 #: application/views/logbookadvanced/checkresult.php:194
 msgid "These QSOs MAY have incorrect gridsquares."
-msgstr ""
+msgstr "Deze QSOs KUNNEN onjuiste locatorvakken hebben."
 
 #: application/views/logbookadvanced/checkresult.php:195
 msgid ""
 "Results depends on the correct DXCC. The gridsquare list comes from the TQSL "
 "gridsquare database."
 msgstr ""
+"Resultaten zijn afhankelijk van de juiste DXCC. De locatorvak-lijst komt uit "
+"de TQSL locatorvak-database."
 
 #: application/views/logbookadvanced/checkresult.php:208
 msgid "DXCC Gridsquare"
-msgstr ""
+msgstr "DXCC Locatorvak"
 
 #: application/views/logbookadvanced/checkresult.php:231
 #: application/views/logbookadvanced/index.php:77
 msgid "Show more"
-msgstr ""
+msgstr "Meer weergeven"
 
 #: application/views/logbookadvanced/checkresult.php:262
 msgid ""
 "The following QSOs were found to have a different CQ zone compared to what "
 "this DXCC normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
+"De volgende QSOs bleken een andere CQ-zone te hebben vergeleken met wat deze "
+"DXCC normaal heeft (maximaal 5000 QSOs worden getoond):"
 
 #: application/views/logbookadvanced/checkresult.php:331
 msgid ""
 "The following QSOs were found to have a different ITU zone compared to what "
 "this DXCC normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
+"De volgende QSOs bleken een andere ITU-zone te hebben vergeleken met wat dit "
+"DXCC normaal heeft (maximaal 5000 QSOs worden getoond):"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:8
 msgid ""
 "Warning. This tool can be dangerous to your data, and should only be used if "
 "you know what you are doing."
 msgstr ""
+"Waarschuwing. Dit gereedschap kan gevaarlijk zijn voor je gegevens, en moet "
+"alleen worden gebruikt als je weet wat je doet."
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:23
 msgid "Check all QSOs in the logbook for incorrect CQ Zones"
-msgstr ""
+msgstr "Controleer alle QSOs in het logboek op onjuiste CQ-zones"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:24
 msgid "Use Wavelog to determine CQ Zone for all QSOs."
-msgstr ""
+msgstr "Gebruik Wavelog om de CQ Zone voor alle QSOs te bepalen."
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:47
 msgid "Check all QSOs in the logbook for incorrect ITU Zones"
-msgstr ""
+msgstr "Controleer alle QSOs in het logboek op onjuiste ITU-zones"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:48
 msgid "Use Wavelog to determine ITU Zone for all QSOs."
-msgstr ""
+msgstr "Gebruik Wavelog om de ITU-zone voor alle QSO's te bepalen."
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:59
 msgid "Check Gridsquares"
-msgstr ""
+msgstr "Controleer locatorvakken"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:60
 msgid "Check gridsquares that does not match the DXCC"
-msgstr ""
+msgstr "Controleer locatorvakken die niet overeenkomen met de DXCC"
 
 #: application/views/logbookadvanced/index.php:78
 msgid "Show less"
-msgstr ""
+msgstr "Minder weergeven"
 
 #: application/views/search/result.php:65
 msgid "Source callbook"
-msgstr ""
+msgstr "Broncallbook"
 
 #: application/views/statistics/index.php:15
 #: application/views/statistics/index.php:83
 msgid "Months"
-msgstr ""
+msgstr "Maanden"
 
 #: application/views/statistics/index.php:20
 msgid "Number of QSOs worked each month"
-msgstr ""
+msgstr "Aantal QSO's per maand gewerkt"
 
 #: application/views/statistics/index.php:31
 msgid "January"
-msgstr ""
+msgstr "Januari"
 
 #: application/views/statistics/index.php:32
 msgid "February"
-msgstr ""
+msgstr "Februari"
 
 #: application/views/statistics/index.php:33
 msgid "March"
-msgstr ""
+msgstr "Maart"
 
 #: application/views/statistics/index.php:34
 msgid "April"
-msgstr ""
+msgstr "April"
 
 #: application/views/statistics/index.php:35
 msgid "May"
-msgstr ""
+msgstr "Mei"
 
 #: application/views/statistics/index.php:36
 msgid "June"
-msgstr ""
+msgstr "Juni"
 
 #: application/views/statistics/index.php:37
 msgid "July"
-msgstr ""
+msgstr "Juli"
 
 #: application/views/statistics/index.php:38
 msgid "August"
-msgstr ""
+msgstr "Augustus"
 
 #: application/views/statistics/index.php:39
 msgid "September"
-msgstr ""
+msgstr "September"
 
 #: application/views/statistics/index.php:40
 msgid "October"
-msgstr ""
+msgstr "Oktober"
 
 #: application/views/statistics/index.php:41
 msgid "November"
-msgstr ""
+msgstr "November"
 
 #: application/views/statistics/index.php:42
 msgid "December"
-msgstr ""
+msgstr "December"
 
 #~ msgid "Mark exported QSOs as uploaded to LoTW"
 #~ msgstr "Markeer geëxporteerde QSOs als geüpload naar LoTW"
