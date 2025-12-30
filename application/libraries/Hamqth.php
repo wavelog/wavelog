@@ -125,8 +125,9 @@ class Hamqth {
 				$data['us_county'] 	= '';
 
 			}
-        } finally {
-            return $data;
-        }
+		} finally {
+			$data['source'] = 'HamQTH';
+			return $data;
+		}
 	}
 }
