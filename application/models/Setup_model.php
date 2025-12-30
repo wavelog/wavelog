@@ -11,16 +11,16 @@ class Setup_model extends CI_Model {
 
 	function getLogbookCount() {
 		$userid = xss_clean($this->session->userdata('user_id'));
-		$sql = 'SELECT count(*) as count FROM station_logbooks WHERE user_id =' . $userid;
-		$query = $this->db->query($sql);
+		$sql = 'SELECT count(*) as count FROM station_logbooks WHERE user_id = ?';
+		$query = $this->db->query($sql, $userid);
 
 		return $query->row()->count;
 	}
 
 	function getLocationCount() {
 		$userid = xss_clean($this->session->userdata('user_id'));
-		$sql = 'SELECT count(*) as count FROM station_profile WHERE user_id =' . $userid;
-		$query = $this->db->query($sql);
+		$sql = 'SELECT count(*) as count FROM station_profile WHERE user_id = ?';
+		$query = $this->db->query($sql, $userid);
 
 		return $query->row()->count;
 	}

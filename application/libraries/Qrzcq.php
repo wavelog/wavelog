@@ -144,7 +144,7 @@ class Qrzcq {
 
 			}
 		} finally {
-
+			$data['source'] = 'QRZCQ';
 			return $data;
 		}
 	}

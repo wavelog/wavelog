@@ -62,6 +62,11 @@
 </tr>
 
 <tr>
+	<td style="padding: 0 0.3em 0 0;" align="left"><?= __("Source callbook"); ?></td>
+   <td style="padding: 0.3em 0 0.3em 0.5em;" align="left"><?= $callsign['source']; ?>
+	</td>
+</tr>
+<tr>
 	<td style="padding: 0 0.3em 0 0;" align="left"><?= __("LoTW User"); ?></td>
 	<td style="padding: 0.3em 0 0.3em 0.5em;" align="left">
    <?php

@@ -115,6 +115,7 @@ class Qrzru {
 				$data['cqz'] = '';
 			}
 		} finally {
+			$data['source'] = 'QRZ.ru';
 			return $data;
 		}
 	}

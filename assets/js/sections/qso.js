@@ -1692,6 +1692,11 @@ $("#callsign").on("focusout", function () {
 					}
 					profileInfo += '</p>';
 				}
+				// Email information
+				if (result.callsign_email) {
+					profileInfo += '<p class="mb-1" style="font-size: 0.875rem;"><i class="fas fa-envelope me-1"></i><a href="mailto:'+result.callsign_email+'">' + result.callsign_email + '</a></p>';
+				}
+
 				// Born (with age calculation)
 				if (result.profile_born) {
 					let currentYear = new Date().getFullYear();
@@ -1756,7 +1761,7 @@ $("#callsign").on("focusout", function () {
 					}
 
 					// QSL information
-					let qslInfo = '<i class="fas fa-envelope me-1"></i>' + lang_qso_profile_qsl + ': ';
+					let qslInfo = '<i class="fas fa-address-card me-1"></i>' + lang_qso_profile_qsl + ': ';
 					let qslMethodsIcons = [];
 
 					// Build QSL methods icons list
@@ -1783,7 +1788,13 @@ $("#callsign").on("focusout", function () {
 						qslInfo += qslMethodsIcons.join(', ');
 					}
 
-					profileInfo += '<p class="mb-0" style="font-size: 0.875rem;">' + qslInfo + '</p>';				$('#callsign-image-info').html(profileInfo);
+					profileInfo += '<p class="mb-0" style="font-size: 0.875rem;">' + qslInfo + '</p>';
+
+					// Email information
+					if (result.callbook_source) {
+						profileInfo += '<p class="mb-1" style="font-size: 0.875rem;"><i class="fas fa-address-book me-1"></i>'+result.callbook_source+'</p>';
+					}
+					$('#callsign-image-info').html(profileInfo);
 
 					// Show the panel first so we can measure it
 					$('#callsign-image').attr('style', 'display: true;');

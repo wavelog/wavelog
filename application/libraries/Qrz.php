@@ -186,7 +186,7 @@ class Qrz {
 				$data['cqzone'] = '';
 			}
 		} finally {
-
+			$data['source'] = 'QRZ';
 			return $data;
 		}
 	}

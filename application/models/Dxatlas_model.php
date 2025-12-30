@@ -94,23 +94,24 @@ class Dxatlas_model extends CI_Model
 	 *
 	 */
 	function get_grids($station_id, $band, $mode, $dxcc, $cqz, $propagation, $fromdate, $todate, $confirmationMethod, $column) {
-		$sql = "";
+		$bindings = [];
 
 		if ($column == 'single') {
-			$sql .= "select distinct upper(substring(col_gridsquare, 1, 4)) gridsquare
+			$sql = "select distinct upper(substring(col_gridsquare, 1, 4)) gridsquare
 					from " . $this->config->item('table_name') .
 					' join station_profile on station_profile.station_id = ' . $this->config->item('table_name').'.station_id' .
 				" where col_gridsquare <> ''";
 		}
 		else if ($column == 'multi') {
-			$sql .= "select col_vucc_grids
+			$sql = "select col_vucc_grids
             	 from " . $this->config->item('table_name') .
 				 ' join station_profile on station_profile.station_id = ' . $this->config->item('table_name').'.station_id' .
 				" where col_vucc_grids <> '' ";
 		}
 
 		if ($station_id != "All") {
-			$sql .= ' and ' . $this->config->item('table_name'). '.station_id = ' . $station_id;
+			$sql .= ' and ' . $this->config->item('table_name'). '.station_id = ?';
+			$bindings[] = $station_id;
 		}
 
 		if ($confirmationMethod == 'both') {
@@ -125,40 +126,51 @@ class Dxatlas_model extends CI_Model
 
 		if ($band != 'All') {
 			if ($band == 'SAT') {
-				$sql .= " and col_prop_mode ='" . $band . "'";
+				$sql .= " and col_prop_mode = ?";
+				$bindings[] = $band;
 			} else {
-				$sql .= " and col_prop_mode !='SAT'";
-				$sql .= " and col_band ='" . $band . "'";
+				$sql .= " and col_prop_mode != ?";
+				$bindings[] = 'SAT';
+				$sql .= " and col_band = ?";
+				$bindings[] = $band;
 			}
 		}
 
 		if ($mode != 'All') {
-			$sql .= " and (COL_MODE = '" . $mode . "' or COL_SUBMODE = '" . $mode . "')";
+			$sql .= " and (COL_MODE = ? or COL_SUBMODE = ?)";
+			$bindings[] = $mode;
+			$bindings[] = $mode;
 		}
 
 		if ($dxcc != 'All') {
-			$sql .= " and COL_DXCC ='" . $dxcc . "'";
+			$sql .= " and COL_DXCC = ?";
+			$bindings[] = $dxcc;
 		}
 
 		if ($cqz != 'All') {
-			$sql .= " and COL_CQZ ='" . $cqz . "'";
+			$sql .= " and COL_CQZ = ?";
+			$bindings[] = $cqz;
 		}
 
 		if ($propagation != 'All') {
-			$sql .= " and COL_PROP_MODE ='" . $propagation . "'";
+			$sql .= " and COL_PROP_MODE = ?";
+			$bindings[] = $propagation;
 		}
 
 		// If date is set, we format the date and add it to the where-statement
 		if ($fromdate != "") {
-			$sql .= " and date(COL_TIME_ON) >='" . $fromdate . "'";
+			$sql .= " and date(COL_TIME_ON) >= ?";
+			$bindings[] = $fromdate;
 		}
 		if ($todate != "") {
-			$sql .= " and date(COL_TIME_ON) <='" . $todate . "'";
+			$sql .= " and date(COL_TIME_ON) <= ?";
+			$bindings[] = $todate;
 		}
 
-		$sql .= ' and station_profile.user_id = ' . $this->session->userdata('user_id');
+		$sql .= ' and station_profile.user_id = ?';
+		$bindings[] = $this->session->userdata('user_id');
 
-		$query = $this->db->query($sql);
+		$query = $this->db->query($sql, $bindings);
 
 		return $query->result_array();
 	}
