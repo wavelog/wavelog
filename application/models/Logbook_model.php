@@ -3462,6 +3462,41 @@ class Logbook_model extends CI_Model {
 		return $query;
 	}
 
+	function totals_year_month($year = null) {
+
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+		if (!$logbooks_locations_array) {
+			return null;
+		}
+
+		$location_list = implode(',', array_fill(0, count($logbooks_locations_array), '?'));
+		$params = $logbooks_locations_array;
+
+		if ($year === null || $year === 'All') {
+			// Aggregate across all years
+			$sql = "SELECT DATE_FORMAT(COL_TIME_ON, '%m') AS month, COUNT(COL_PRIMARY_KEY) AS total
+					FROM " . $this->config->item('table_name') . "
+					WHERE station_id IN ($location_list)
+					GROUP BY DATE_FORMAT(COL_TIME_ON, '%m')
+					ORDER BY month ASC";
+		} else {
+			// Filter by specific year
+			$sql = "SELECT DATE_FORMAT(COL_TIME_ON, '%m') AS month, COUNT(COL_PRIMARY_KEY) AS total
+					FROM " . $this->config->item('table_name') . "
+					WHERE station_id IN ($location_list)
+					AND DATE_FORMAT(COL_TIME_ON, '%Y') = ?
+					GROUP BY DATE_FORMAT(COL_TIME_ON, '%m')
+					ORDER BY month ASC";
+			$params[] = $year;
+		}
+
+		$query = $this->db->query($sql, $params);
+
+		return $query;
+	}
+
 	/* Return total number of qsos */
 	function total_qsos($StationLocationsArray = null, $api_key = null) {
 		if ($StationLocationsArray == null) {
