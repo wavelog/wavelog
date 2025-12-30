@@ -330,10 +330,13 @@ function check_incorrect_itu_zones($result, $custom_date_format) { ?>
 	<?php if ($result) {
 		echo __("The following QSOs were found to have a different ITU zone compared to what this DXCC normally has (a maximum of 5000 QSOs are shown). The Update function will only affect DXCCs covering a single ITU zone. Entries with multiple ITU zones have to be corrected manually."); ?>
 		<br /><br />
-		<input class="form-check-input me-2" type="checkbox" id="forceMultiZoneUpdate" /><?= __("Force update even if DXCC covers multiple ITU zones") ?>
-		<br /><br />
-		<p class="mb-1 alert-danger"><?= __("The update function can only set the main ITU zone which is assigned to the DXCC. If the DXCC covers multiple ITU zones there is a chance that this is not correct. So by default only QSOs with DXCCs covering a single ITU zone are updated. This checkbox overrides this but might result in wrong data. Use with caution!"); ?></p>
-		<br />
+		<div class="col-md-12">
+			<div class="form-check form-check-lg border rounded p-3 bg-light h-100">
+				<input class="form-check-input me-2" type="checkbox" id="forceMultiZoneUpdate" />
+				<?= __("Force update even if DXCC covers multiple ITU zones") ?>
+				<div class="d-block mb-1 alert-danger"><?= __("The update function can only set the main ITU zone which is assigned to the DXCC. If the DXCC covers multiple ITU zones there is a chance that this is not correct. So by default only QSOs with DXCCs covering a single ITU zone are updated. This checkbox overrides this but might result in wrong data. USe with caution!"); ?></div>
+			</div>
+		</div>
 		<button type="button" class="mt-2 mb-2 btn btn-sm btn-primary ld-ext-right" id="fixSelectedItuZoneBtn" onclick="fixItuZoneSelected(true)">
 			<?= __("Update selected") ?><div class="ld ld-ring ld-spin"></div>
 		</button>
