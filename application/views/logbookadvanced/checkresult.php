@@ -328,7 +328,7 @@ function check_incorrect_cq_zones($result, $custom_date_format) { ?>
 function check_incorrect_itu_zones($result, $custom_date_format) { ?>
 	<h5><?= __("ITU Zone Check Results") ?></h5>
 	<?php if ($result) {
-		echo __("The following QSOs were found to have a different ITU zone compared to what this DXCC normally has (a maximum of 5000 QSOs are shown). The Update function will only affect DXCCs covering a single ITU zone. Entries with multiple ITU zones have to be corrected manually."); ?>
+		echo __("The following QSOs were found to have a different ITU zone compared to what this DXCC normally has (a maximum of 5000 QSOs are shown):"); ?>
 		<br /><br />
 		<div class="col-md-12">
 			<div class="form-check form-check-lg border rounded p-3 bg-light h-100">
