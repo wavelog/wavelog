@@ -335,6 +335,7 @@ function check_incorrect_itu_zones($result, $custom_date_format) { ?>
 		</button>
 		<br />
 		<input class="form-check-input mt-2" type="checkbox" id="forceMultiZoneUpdate" /><?= __("Force update even if DXCC covers multiple ITU zones") ?>
+		<?= __("The update function can only set the main ITU zone which is assigned to the DXCC. If the DXCC covers multiple ITU zones there is a chance that this is not correct. So by default only QSOs with DXCCs covering a single ITU zone are updated. This checkbox overrides this but might result in wrong data. USe with caution!"); ?>
 		<?php echo '<table style="width:100%" class="qsolist table table-sm table-bordered table-hover table-striped table-condensed" id="incorrectituzonetable">
 		<thead>
 			<tr>
