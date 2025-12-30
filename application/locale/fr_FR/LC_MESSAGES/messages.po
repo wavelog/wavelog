@@ -18,10 +18,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-12-28 09:07+0000\n"
-"PO-Revision-Date: 2025-12-29 19:05+0000\n"
+"PO-Revision-Date: 2025-12-30 08:27+0000\n"
 "Last-Translator: JONCOUX Philippe <joncoux@free.fr>\n"
-"Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/fr/>\n"
+"Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/fr/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -10307,7 +10307,7 @@ msgstr "Au moins un de vos certificats expire"
 
 #: application/views/dashboard/index.php:295
 #: application/views/qso/index.php:920
-#, fuzzy, php-format
+#, php-format
 msgid "Max. %d previous contact is shown"
 msgid_plural "Max. %d previous contacts are shown"
 msgstr[0] "Max. %d contact précédent est affiché"
@@ -19469,16 +19469,20 @@ msgstr "Reçu"
 #: application/models/Logbookadvanced_model.php:1649
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
 msgstr ""
+"La table VuccGrids est vide. Veuillez d'abord importer les données des "
+"grilles VUCC."
 
 #: application/views/logbookadvanced/checkresult.php:194
 msgid "These QSOs MAY have incorrect gridsquares."
-msgstr ""
+msgstr "Ces QSO PEUVENT comporter des carrés de grille incorrects."
 
 #: application/views/logbookadvanced/checkresult.php:195
 msgid ""
 "Results depends on the correct DXCC. The gridsquare list comes from the TQSL "
 "gridsquare database."
 msgstr ""
+"Les résultats dépendent du DXCC correct. La liste des carrés de grille "
+"provient de la base de données TQSL."
 
 #: application/views/logbookadvanced/checkresult.php:208
 msgid "DXCC Gridsquare"
