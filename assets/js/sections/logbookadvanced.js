@@ -2725,7 +2725,9 @@ function saveOptions() {
 		$('#checkBoxAllItuZones').change(function (event) {
 			if (this.checked) {
 				$('#incorrectituzonetable tbody tr').each(function (i) {
-					selectQsoIdDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''), 'incorrectituzonetable');
+					if (!$(this).first().closest('tr').find("td[id='ituZones']").text().includes(',')) {
+						selectQsoIdDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''), 'incorrectituzonetable');
+					}
 				});
 			} else {
 				$('#incorrectituzonetable tbody tr').each(function (i) {
