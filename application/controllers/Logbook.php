@@ -222,6 +222,7 @@ class Logbook extends CI_Controller {
 			$return['latlng'] = $this->qralatlng($return['callsign_qra']);
 			$return['bearing'] = $this->bearing($return['callsign_qra'], $measurement_base, $station_id);
 		}
+		$return['callbook_source'] = $callbook['source'];
 
 		echo json_encode($return, JSON_PRETTY_PRINT);
 

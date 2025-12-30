@@ -20,8 +20,8 @@ msgstr ""
 "POT-Creation-Date: 2025-12-28 09:07+0000\n"
 "PO-Revision-Date: 2025-12-30 08:27+0000\n"
 "Last-Translator: JONCOUX Philippe <joncoux@free.fr>\n"
-"Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/fr/>\n"
+"Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/fr/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -476,6 +476,7 @@ msgstr " et "
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:21
 #: application/views/logbookadvanced/index.php:447
+#: application/controllers/Logbook.php:1367
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -498,6 +499,7 @@ msgstr "SOTA"
 #: application/views/user/edit.php:342
 #: application/views/view_log/partial/log_ajax.php:10
 #: application/views/logbookadvanced/index.php:469
+#: application/controllers/Logbook.php:1368
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -522,6 +524,7 @@ msgstr "WWFF"
 #: application/views/view_log/partial/log_ajax.php:11
 #: application/views/logbookadvanced/index.php:451
 #: application/views/logbookadvanced/index.php:951
+#: application/controllers/Logbook.php:1369
 msgid "POTA"
 msgstr "POTA"
 
@@ -804,6 +807,7 @@ msgstr "Aucun utilisateur n'a configuré Clublog."
 #: application/views/view_log/partial/log_ajax.php:222
 #: application/views/view_log/qso.php:571
 #: application/views/view_log/qso.php:576
+#: application/controllers/Logbook.php:746
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -1376,6 +1380,8 @@ msgstr "Journal de trafic"
 #: application/views/timeline/index.php:56 application/views/user/edit.php:624
 #: application/views/user/edit.php:821
 #: application/views/logbookadvanced/index.php:912
+#: application/controllers/Logbook.php:734
+#: application/controllers/Logbook.php:749
 msgid "QSL"
 msgstr "QSL"
 
@@ -1417,6 +1423,7 @@ msgstr "QSL"
 #: application/views/view_log/qso.php:542
 #: application/views/logbookadvanced/checkresult.php:146
 #: application/views/logbookadvanced/checkresult.php:204
+#: application/controllers/Logbook.php:737
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1453,6 +1460,7 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:309
 #: application/views/timeline/index.php:64 application/views/user/edit.php:626
 #: application/views/user/edit.php:839 application/views/user/edit.php:913
+#: application/controllers/Logbook.php:740
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1553,6 +1561,7 @@ msgstr "eQSL"
 #: application/views/logbookadvanced/checkresult.php:343
 #: application/views/logbookadvanced/index.php:348
 #: application/views/logbookadvanced/index.php:882
+#: application/controllers/Logbook.php:1362
 msgid "Mode"
 msgstr "Mode"
 
@@ -1583,6 +1592,7 @@ msgstr "Mode"
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:119 application/views/visitor/index.php:9
 #: application/views/logbookadvanced/index.php:885
+#: application/controllers/Logbook.php:1363
 msgid "RST (S)"
 msgstr "RST (E)"
 
@@ -1614,6 +1624,7 @@ msgstr "RST (E)"
 #: application/views/view_log/qso.php:124
 #: application/views/visitor/index.php:12
 #: application/views/logbookadvanced/index.php:888
+#: application/controllers/Logbook.php:1364
 msgid "RST (R)"
 msgstr "RST (R)"
 
@@ -1635,6 +1646,7 @@ msgstr "RST (R)"
 #: application/views/view_log/qso.php:337
 #: application/views/view_log/qso.php:693
 #: application/views/visitor/index.php:15
+#: application/controllers/Logbook.php:1365
 msgid "Country"
 msgstr "Pays"
 
@@ -1666,6 +1678,7 @@ msgstr "Pays"
 #: application/views/visitor/index.php:18
 #: application/views/logbookadvanced/index.php:457
 #: application/views/logbookadvanced/index.php:948
+#: application/controllers/Logbook.php:1366
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -1699,6 +1712,7 @@ msgstr "IOTA"
 #: application/views/visitor/index.php:24
 #: application/views/logbookadvanced/index.php:338
 #: application/views/logbookadvanced/index.php:936
+#: application/controllers/Logbook.php:1370
 msgid "State"
 msgstr "Etat"
 
@@ -1752,6 +1766,7 @@ msgstr "Etat"
 #: application/views/logbookadvanced/checkresult.php:345
 #: application/views/logbookadvanced/index.php:344
 #: application/views/logbookadvanced/index.php:897
+#: application/controllers/Logbook.php:1371
 msgid "Gridsquare"
 msgstr "Locator"
 
@@ -1783,6 +1798,7 @@ msgstr "Locator"
 #: application/views/visitor/index.php:30 application/views/map/qso_map.php:65
 #: application/views/logbookadvanced/index.php:502
 #: application/views/logbookadvanced/index.php:987
+#: application/controllers/Logbook.php:1372
 msgid "Distance"
 msgstr "Distance"
 
@@ -1879,6 +1895,7 @@ msgstr "Distance"
 #: application/views/logbookadvanced/checkresult.php:344
 #: application/views/logbookadvanced/index.php:359
 #: application/views/logbookadvanced/index.php:891
+#: application/controllers/Logbook.php:1373
 msgid "Band"
 msgstr "Bande"
 
@@ -1907,6 +1924,7 @@ msgstr "Bande"
 #: application/views/view_log/qso.php:101
 #: application/views/visitor/index.php:36
 #: application/views/logbookadvanced/index.php:894
+#: application/controllers/Logbook.php:1374
 msgid "Frequency"
 msgstr "Frequence"
 
@@ -1933,6 +1951,7 @@ msgstr "Frequence"
 #: application/views/visitor/index.php:39
 #: application/views/logbookadvanced/index.php:473
 #: application/views/logbookadvanced/index.php:969
+#: application/controllers/Logbook.php:1375
 msgid "Operator"
 msgstr "Opérateur"
 
@@ -1963,6 +1982,7 @@ msgstr "Opérateur"
 #: application/views/view_log/qso.php:341
 #: application/views/view_log/qso.php:694
 #: application/views/logbookadvanced/index.php:330
+#: application/controllers/Logbook.php:1396
 msgid "Deleted DXCC"
 msgstr "DXCC Supprimé"
 
@@ -7863,6 +7883,8 @@ msgstr "Contacté, non Confirmé"
 #: application/views/lookup/lotwuser.php:12
 #: application/views/search/result.php:65
 #: application/views/search/result.php:77
+#: application/views/search/result.php:70
+#: application/views/search/result.php:82
 msgid "LoTW User"
 msgstr "Utilisateur LoTW"
 
@@ -8924,6 +8946,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:666
 #: application/views/logbookadvanced/index.php:674
 #: application/views/logbookadvanced/index.php:683
+#: application/views/search/result.php:82
 msgid "Yes"
 msgstr "Oui"
 
@@ -9005,6 +9028,7 @@ msgstr "Oui"
 #: application/views/logbookadvanced/index.php:667
 #: application/views/logbookadvanced/index.php:675
 #: application/views/logbookadvanced/index.php:684
+#: application/views/search/result.php:84
 msgid "No"
 msgstr "Non"
 
@@ -14465,6 +14489,7 @@ msgstr "Choisissez un état"
 
 #: application/views/lookup/lotwuser.php:12
 #: application/views/search/result.php:77
+#: application/views/search/result.php:82
 #, php-format
 msgid "%d day ago"
 msgid_plural "%d days ago"
@@ -14473,6 +14498,7 @@ msgstr[1] "Il y a %d jours"
 
 #: application/views/lookup/lotwuser.php:12
 #: application/views/search/result.php:77
+#: application/views/search/result.php:82
 msgid "last upload"
 msgstr "Dernier téléchargement"
 
@@ -19537,6 +19563,10 @@ msgstr ""
 
 #: application/views/logbookadvanced/index.php:78
 msgid "Show less"
+msgstr ""
+
+#: application/views/search/result.php:65
+msgid "Source callbook"
 msgstr ""
 
 #~ msgid "Mark exported QSOs as uploaded to LoTW"
