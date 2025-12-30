@@ -2729,10 +2729,14 @@ function saveOptions() {
 						selectQsoIdDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''), 'incorrectituzonetable');
 					}
 				});
+				if (!$('#forceMultiZoneUpdate').prop("checked")) {
+					$('#incorrectituzonetable').DataTable().column(8).search('^[^,]*$', true, false).draw();
+				}
 			} else {
 				$('#incorrectituzonetable tbody tr').each(function (i) {
 					unselectQsoIdDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''), 'incorrectituzonetable');
 				});
+				$('#incorrectituzonetable').DataTable().column(8).search('').draw();
 			}
 		});
 	}
