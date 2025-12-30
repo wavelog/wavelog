@@ -1029,6 +1029,7 @@ class Logbook extends CI_Controller {
 
 		if (!is_numeric($clean_station_id) && $clean_station_id !== 'All') {
 			show_404();
+			return;
 		}
 
 		$this->load->model('user_model');
@@ -1055,8 +1056,8 @@ class Logbook extends CI_Controller {
 		join lotw_users on ' . $this->config->item('table_name') . '.col_call = lotw_users.callsign
 		where ' . $this->config->item('table_name') .'.station_id in ('. $location_list . ')';
 
-		if ($station_id != 'All') {
-			$sql .= ' and station_profile.station_id = ' . $station_id;
+		if ($clean_station_id != 'All') {
+			$sql .= ' and station_profile.station_id = ' . $clean_station_id;
 		}
 
 		$sql .= " and COL_LOTW_QSL_RCVD <> 'Y' and " . $this->config->item('table_name') . ".COL_TIME_ON < lotw_users.lastupload";
