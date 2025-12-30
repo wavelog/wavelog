@@ -28,6 +28,12 @@ $("a[href='#yearstab']").on('shown.bs.tab', function(e) {
 	$("#yr").hide();
 });
 
+$("a[href='#monthstab']").on('shown.bs.tab', function(e) {
+	activeTab='totalQsosPerMonth()';
+	totalQsosPerMonth();
+	$("#yr").show();
+});
+
 $("a[href='#bandtab']").on('shown.bs.tab', function(e) {
 	totalBandQsos();
 	activeTab='totalBandQsos()'
@@ -244,6 +250,126 @@ function totalQsosPerYear() {
 					}
 				});
 				$('.yeartable').DataTable({
+					responsive: false,
+					ordering: false,
+					"scrollY": "320px",
+					"scrollCollapse": true,
+					"paging": false,
+					"scrollX": true,
+					"language": {
+						url: getDataTablesLanguageUrl(),
+					},
+					bFilter: false,
+					bInfo: false
+				});
+
+				// using this to change color of csv-button if dark mode is chosen
+				var background = $('body').css("background-color");
+
+				if (background != ('rgb(255, 255, 255)')) {
+					$(".buttons-csv").css("color", "white");
+				}
+			}
+		}
+	});
+}
+
+function totalQsosPerMonth() {
+	// using this to change color of legend and label according to background color
+	var color = ifDarkModeThemeReturn('white', 'grey');
+
+	$.ajax({
+		url: base_url+'index.php/statistics/get_year_month',
+		type: 'post',
+		data: { yr: $("#yr option:selected").val() },
+		success: function (data) {
+			if (data.length > 0) {
+				$(".months").html('');
+				$(".months").append('<h2>' + lang_statistics_months + '</h2><div id="monthContainer"></div><div id="monthTable"></div>');
+				$("#monthContainer").append("<canvas id=\"monthChart\" width=\"400\" height=\"100\"></canvas>");
+
+				// appending table to hold the data
+				$("#monthTable").append('<table style="width:100%" class="monthtable table table-sm table-bordered table-hover table-striped table-condensed text-center"><thead>' +
+					'<tr>' +
+					'<td>#</td>' +
+					'<td>' + lang_statistics_month +'</td>' +
+					'<td>' + lang_statistics_number_of_qso_worked + ' </td>' +
+					'</tr>' +
+					'</thead>' +
+					'<tbody></tbody></table>');
+
+				var labels = [];
+				var dataQso = [];
+
+				var $myTable = $('.monthtable');
+				var i = 1;
+
+				// building the rows in the table
+				var rowElements = data.map(function (row) {
+					var $row = $('<tr></tr>');
+
+					// Convert month number to string with leading zero
+					var monthKey = row.month.toString().padStart(2, '0');
+					var monthName = monthNames[monthKey] || monthKey;
+
+					var $iterator = $('<td></td>').html(i++);
+					var $type = $('<td></td>').html(monthName);
+					var $content = $('<td></td>').html(row.total);
+
+					$row.append($iterator, $type, $content);
+
+					return $row;
+				});
+
+				// finally inserting the rows
+				$myTable.append(rowElements);
+
+				$.each(data, function () {
+					var monthKey = this.month.toString().padStart(2, '0');
+					var monthName = monthNames[monthKey] || monthKey;
+					labels.push(monthName);
+					dataQso.push(this.total);
+				});
+
+				var ctx = document.getElementById("monthChart").getContext('2d');
+				var myChart = new Chart(ctx, {
+					type: 'bar',
+					data: {
+						labels: labels,
+						datasets: [{
+							label: decodeHtml(lang_statistics_number_of_qso_worked_each_month),
+							data: dataQso,
+							backgroundColor: 'rgba(54, 162, 235, 0.2)',
+							borderColor: 'rgba(54, 162, 235, 1)',
+							borderWidth: 2,
+							color: color
+						}]
+					},
+					options: {
+						scales: {
+							y: {
+								ticks: {
+									beginAtZero: true,
+									color: color
+								}
+							},
+							x: {
+								ticks: {
+									color: color
+								}
+							}
+						},
+						plugins: {
+							legend: {
+								labels: {
+									color: color
+								}
+							}
+
+						}
+					}
+				});
+				$('.monthtable').DataTable({
 					responsive: false,
 					ordering: false,
 					"scrollY": "320px",
