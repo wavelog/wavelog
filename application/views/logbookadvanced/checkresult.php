@@ -333,6 +333,8 @@ function check_incorrect_itu_zones($result, $custom_date_format) { ?>
 		<button type="button" class="mt-2 mb-2 btn btn-sm btn-primary ld-ext-right" id="fixSelectedItuZoneBtn" onclick="fixItuZoneSelected(true)">
 			<?= __("Update selected") ?><div class="ld ld-ring ld-spin"></div>
 		</button>
+		<br />
+		<input class="form-check-input mt-2" type="checkbox" id="forceMultiZoneUpdate" /><?= __("Force update even if DXCC covers multiple ITU zones") ?>
 		<?php echo '<table style="width:100%" class="qsolist table table-sm table-bordered table-hover table-striped table-condensed" id="incorrectituzonetable">
 		<thead>
 			<tr>
