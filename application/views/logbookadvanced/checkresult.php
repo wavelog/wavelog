@@ -328,7 +328,7 @@ function check_incorrect_cq_zones($result, $custom_date_format) { ?>
 function check_incorrect_itu_zones($result, $custom_date_format) { ?>
 	<h5><?= __("ITU Zone Check Results") ?></h5>
 	<?php if ($result) {
-		echo __("The following QSOs were found to have a different ITU zone compared to what this DXCC normally has (a maximum of 5000 QSOs are shown):"); ?>
+		echo __("The following QSOs were found to have a different ITU zone compared to what this DXCC normally has (a maximum of 5000 QSOs are shown). The Update function will only affect DXCCs covering a single ITU zone. Entries with multiple ITU zones have to be corrected manually."); ?>
 		<br />
 		<button type="button" class="mt-2 mb-2 btn btn-sm btn-primary ld-ext-right" id="fixSelectedItuZoneBtn" onclick="fixItuZoneSelected(true)">
 			<?= __("Update selected") ?><div class="ld ld-ring ld-spin"></div>
@@ -363,7 +363,7 @@ function check_incorrect_itu_zones($result, $custom_date_format) { ?>
 			echo '<td style=\'text-align: center\'>'; if($qso->COL_SAT_NAME != null) { echo $qso->COL_SAT_NAME; } else { echo strtolower($qso->COL_BAND); }; echo '</td>';
 			echo '<td style=\'text-align: center\'>'; echo strlen($qso->COL_GRIDSQUARE ?? '')==0?$qso->COL_VUCC_GRIDS:$qso->COL_GRIDSQUARE; echo '</td>';
 			echo '<td style=\'text-align: center\'>' . $qso->COL_ITUZ . '</td>';
-			echo '<td style=\'text-align: center\'>' . $qso->correctituzone . '</td>';
+			echo '<td id=\'ituZones\' style=\'text-align: center\'>' . $qso->correctituzone . '</td>';
 			echo '<td style=\'text-align: center\'>' . ucwords(strtolower($qso->COL_COUNTRY), "- (/") . '</td>';
 			echo '<td style=\'text-align: center\'>' . $qso->station_profile_name . '</td>';
 			echo '</tr>';

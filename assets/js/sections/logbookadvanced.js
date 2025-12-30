@@ -2900,7 +2900,10 @@ function saveOptions() {
 		let id_list = [];
 		$('#incorrectituzonetable tbody input:checked').each(function () {
 			let id = $(this).closest('tr').attr('id')?.replace(/\D/g, '');
-			id_list.push(id);
+			// Skip entry if DXCC covers multiple ITU zones as the matching one cannot be identified automagically atm
+			if (!$(this).closest('tr').find("td[id='ituZones']").text().includes(',')) {
+				id_list.push(id);
+			}
 		});
 
 		if (id_list.length === 0) {
