@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-12-28 09:07+0000\n"
-"PO-Revision-Date: 2025-12-28 15:26+0000\n"
+"PO-Revision-Date: 2025-12-30 06:16+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19144,72 +19144,78 @@ msgstr "受信"
 #: application/models/Logbookadvanced_model.php:1648
 #: application/models/Logbookadvanced_model.php:1649
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
-msgstr ""
+msgstr "VuccGridsテーブルが空です。まずVUCCグリッドデータをインポートしてください。"
 
 #: application/views/logbookadvanced/checkresult.php:194
 msgid "These QSOs MAY have incorrect gridsquares."
-msgstr ""
+msgstr "これらの QSO ではグリッドスクエアが間違っている可能性があります。"
 
 #: application/views/logbookadvanced/checkresult.php:195
 msgid ""
 "Results depends on the correct DXCC. The gridsquare list comes from the TQSL "
 "gridsquare database."
-msgstr ""
+msgstr "結果は正しいDXCCに依存します。グリッドスクエアリストはTQSLグリッドスクエアデ"
+"ータベースから取得されます。"
 
 #: application/views/logbookadvanced/checkresult.php:208
 msgid "DXCC Gridsquare"
-msgstr ""
+msgstr "DXCC グリッドスクエア"
 
 #: application/views/logbookadvanced/checkresult.php:231
 #: application/views/logbookadvanced/index.php:77
 msgid "Show more"
-msgstr ""
+msgstr "もっと見る"
 
 #: application/views/logbookadvanced/checkresult.php:262
 msgid ""
 "The following QSOs were found to have a different CQ zone compared to what "
 "this DXCC normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
+"次の QSO は、この DXCC が通常持っているものとは異なる CQ ゾーンを持っているこ"
+"とが判明しました (最大 5000 の QSO が表示されます)。"
 
 #: application/views/logbookadvanced/checkresult.php:331
 msgid ""
 "The following QSOs were found to have a different ITU zone compared to what "
 "this DXCC normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
+"次の QSO は、この DXCC が通常持つ ITU ゾーンとは異なる ITU ゾーンを持つことが"
+"判明しました (最大 5000 件の QSO が表示されます)。"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:8
 msgid ""
 "Warning. This tool can be dangerous to your data, and should only be used if "
 "you know what you are doing."
-msgstr ""
+msgstr "警告。このツールはデータに危険を及ぼす可能性があるため、十分な理解がある場合"
+"のみ使用してください。"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:23
 msgid "Check all QSOs in the logbook for incorrect CQ Zones"
-msgstr ""
+msgstr "ログブックのすべてのQSOで間違ったCQゾーンがないか確認する"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:24
 msgid "Use Wavelog to determine CQ Zone for all QSOs."
-msgstr ""
+msgstr "Wavelog を使用して、すべての QSO の CQ ゾーンを決定します。"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:47
 msgid "Check all QSOs in the logbook for incorrect ITU Zones"
-msgstr ""
+msgstr "ログブックのすべてのQSOでITUゾーンの誤りがないか確認する"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:48
 msgid "Use Wavelog to determine ITU Zone for all QSOs."
-msgstr ""
+msgstr "Wavelog を使用して、すべての QSO の ITU ゾーンを決定します。"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:59
 msgid "Check Gridsquares"
-msgstr ""
+msgstr "グリッドスクエアをチェック"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:60
 msgid "Check gridsquares that does not match the DXCC"
-msgstr ""
+msgstr "DXCCと一致しないグリッドスクエアをチェックする"
 
 #: application/views/logbookadvanced/index.php:78
 msgid "Show less"
-msgstr ""
+msgstr "表示を減らす"
 
 #~ msgid "Mark exported QSOs as uploaded to LoTW"
 #~ msgstr "エクスポートしたQSOをLoTWにアップロード済みとしてマークする"
