@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-30 09:33+0000\n"
+"POT-Creation-Date: 2025-12-30 11:53+0000\n"
 "PO-Revision-Date: 2025-12-16 08:48+0000\n"
 "Last-Translator: Viliam Petrik <tatralom@gmail.com>\n"
 "Language-Team: Slovak <https://translate.wavelog.org/projects/wavelog/main-"
@@ -398,7 +398,7 @@ msgstr "Zobrazenie denníka - VUCC"
 #: application/controllers/Awards.php:560
 #: application/controllers/Callstats.php:100
 #: application/controllers/Distancerecords.php:86
-#: application/controllers/Statistics.php:338
+#: application/controllers/Statistics.php:360
 #: application/controllers/Timeline.php:126
 #: application/controllers/Timeline.php:129
 #: application/controllers/Timeline.php:132
@@ -629,8 +629,8 @@ msgstr "Poznámky - záloha"
 #: application/controllers/Band.php:25 application/controllers/Band.php:43
 #: application/views/bands/index.php:30 application/views/bands/index.php:34
 #: application/views/interface_assets/header.php:443
-#: application/views/statistics/index.php:16
-#: application/views/statistics/index.php:67
+#: application/views/statistics/index.php:17
+#: application/views/statistics/index.php:89
 msgid "Bands"
 msgstr "Pásma"
 
@@ -1512,9 +1512,9 @@ msgstr "eQSL"
 #: application/views/search/search_result_ajax.php:4
 #: application/views/simplefle/index.php:158
 #: application/views/statistics/antennaanalytics.php:31
-#: application/views/statistics/index.php:15
-#: application/views/statistics/index.php:21
-#: application/views/statistics/index.php:64
+#: application/views/statistics/index.php:16
+#: application/views/statistics/index.php:24
+#: application/views/statistics/index.php:86
 #: application/views/statistics/initialresult.php:19
 #: application/views/statistics/initials.php:17
 #: application/views/timeline/index.php:19 application/views/user/edit.php:243
@@ -1828,7 +1828,7 @@ msgstr "Vzdialenosť"
 #: application/views/simplefle/index.php:157
 #: application/views/stationsetup/exportmapoptions.php:31
 #: application/views/statistics/antennaanalytics.php:19
-#: application/views/statistics/index.php:22
+#: application/views/statistics/index.php:25
 #: application/views/statistics/initialresult.php:18
 #: application/views/statistics/initials.php:8
 #: application/views/timeline/index.php:7
@@ -1884,7 +1884,7 @@ msgstr "Frekvencia"
 #: application/views/qso/components/previous_contacts.php:90
 #: application/views/search/search_result_ajax.php:17
 #: application/views/simplefle/index.php:117
-#: application/views/statistics/index.php:23
+#: application/views/statistics/index.php:26
 #: application/views/user/edit.php:254 application/views/user/edit.php:277
 #: application/views/user/edit.php:300 application/views/user/edit.php:323
 #: application/views/user/edit.php:347
@@ -2489,8 +2489,8 @@ msgstr "EDI export"
 #: application/controllers/Satellite.php:55 application/models/Note.php:10
 #: application/views/interface_assets/header.php:332
 #: application/views/satellite/index.php:40
-#: application/views/statistics/index.php:50
-#: application/views/statistics/index.php:111
+#: application/views/statistics/index.php:69
+#: application/views/statistics/index.php:137
 msgid "Satellites"
 msgstr "Satelity"
 
@@ -2833,23 +2833,23 @@ msgstr "Zoznam polôh staníc"
 msgid "Statistics"
 msgstr "Štatistika"
 
-#: application/controllers/Statistics.php:270
+#: application/controllers/Statistics.php:292
 #: application/views/interface_assets/header.php:158
 #: application/views/statistics/qsltable.php:5
 msgid "QSL Statistics"
 msgstr "QSL štatistiky"
 
-#: application/controllers/Statistics.php:285
+#: application/controllers/Statistics.php:307
 #: application/views/interface_assets/header.php:156
 #: application/views/statistics/antennaanalytics.php:3
 msgid "Antenna Analytics"
 msgstr "Analýza antén"
 
-#: application/controllers/Statistics.php:338
+#: application/controllers/Statistics.php:360
 msgid "Satellite QSOs"
 msgstr "Satelitné QSOs"
 
-#: application/controllers/Statistics.php:354
+#: application/controllers/Statistics.php:376
 #: application/views/interface_assets/header.php:182
 msgid "EME Initials"
 msgstr "EME iniciály"
@@ -3513,13 +3513,13 @@ msgstr "Nezadaný volací znak"
 msgid "DXCC has to be Numeric"
 msgstr "DXCC musí byť číselné"
 
-#: application/models/Logbook_model.php:4658
+#: application/models/Logbook_model.php:4693
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 "Nesprávna volacia značka stanice %s pri importe QSO s %s pre %s: PRESKOČENÉ"
 
-#: application/models/Logbook_model.php:4672
+#: application/models/Logbook_model.php:4707
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -3527,11 +3527,11 @@ msgstr ""
 "Pokúsil si sa importovať QSO bez platného dátumu. Toto QSO nebolo "
 "importované. Je neplatné"
 
-#: application/models/Logbook_model.php:4681
+#: application/models/Logbook_model.php:4716
 msgid "QSO on"
 msgstr "QSO o"
 
-#: application/models/Logbook_model.php:4681
+#: application/models/Logbook_model.php:4716
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3539,7 +3539,7 @@ msgstr ""
 "Pokúsil si sa importovať QSO bez uvedenej značky. Toto QSO nebolo "
 "importované. Je neplatné."
 
-#: application/models/Logbook_model.php:4730
+#: application/models/Logbook_model.php:4765
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -3548,64 +3548,64 @@ msgstr ""
 "QSO na %s: Pokúsil si sa importovať QSO bez uvedeného pásma. Toto QSO nebolo "
 "importované. Je neplatné."
 
-#: application/models/Logbook_model.php:4995
+#: application/models/Logbook_model.php:5030
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate je neplatné (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5006
+#: application/models/Logbook_model.php:5041
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate je neplatné (RRRRMMDD)"
 
-#: application/models/Logbook_model.php:5067
+#: application/models/Logbook_model.php:5102
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date je neplatné (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5442
+#: application/models/Logbook_model.php:5477
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplicita pre"
 
-#: application/models/Logbook_model.php:5507
-#: application/models/Logbook_model.php:5602
+#: application/models/Logbook_model.php:5542
+#: application/models/Logbook_model.php:5637
 msgid "QSO could not be matched"
 msgstr "QSO nebolo možné spárovať"
 
-#: application/models/Logbook_model.php:5515
+#: application/models/Logbook_model.php:5550
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "potvrdené cez LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:5521
+#: application/models/Logbook_model.php:5556
 msgid "confirmed by award manager"
 msgstr "potvrdené diplomovým manažérom"
 
-#: application/models/Logbook_model.php:5525
+#: application/models/Logbook_model.php:5560
 msgid "confirmed by cross-check of DCL data"
 msgstr "potvrdené krížovou kontrolou údajov DCL"
 
-#: application/models/Logbook_model.php:5529
+#: application/models/Logbook_model.php:5564
 msgid "confirmation pending"
 msgstr "potvrdenie čaká"
 
-#: application/models/Logbook_model.php:5532
+#: application/models/Logbook_model.php:5567
 msgid "unconfirmed"
 msgstr "nepotvrdené"
 
-#: application/models/Logbook_model.php:5535
+#: application/models/Logbook_model.php:5570
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
 msgid "unknown"
 msgstr "neznáme"
 
-#: application/models/Logbook_model.php:5605
+#: application/models/Logbook_model.php:5640
 msgid "POTA reference already in log"
 msgstr "POTA referencia už v logu"
 
-#: application/models/Logbook_model.php:5608
+#: application/models/Logbook_model.php:5643
 msgid "QSO updated"
 msgstr "QSO aktualizované"
 
-#: application/models/Logbook_model.php:6339
+#: application/models/Logbook_model.php:6374
 #: application/views/activated_gridmap/index.php:114
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:58
@@ -3629,7 +3629,7 @@ msgstr "Spojenia"
 
 #: application/models/Note.php:8
 #: application/views/interface_assets/footer.php:110
-#: application/views/qso/index.php:94 application/views/statistics/index.php:46
+#: application/views/qso/index.php:94 application/views/statistics/index.php:65
 #: application/views/user/edit.php:168
 msgid "General"
 msgstr "Všeobecné"
@@ -3719,8 +3719,8 @@ msgstr "Naakumulovaný počet urobených WAJA"
 #: application/views/dashboard/index.php:320
 #: application/views/dayswithqso/index.php:42
 #: application/views/dayswithqso/index.php:82
-#: application/views/statistics/index.php:19
-#: application/views/statistics/index.php:38
+#: application/views/statistics/index.php:21
+#: application/views/statistics/index.php:57
 #: application/views/timeline/index.php:107
 #: application/views/visitor/index.php:250
 msgid "Year"
@@ -3734,6 +3734,7 @@ msgstr "Ročne"
 
 #: application/views/accumulate/index.php:10
 #: application/views/dashboard/index.php:325
+#: application/views/statistics/index.php:22
 #: application/views/visitor/index.php:255
 msgid "Month"
 msgstr "Mesiac"
@@ -4251,7 +4252,7 @@ msgstr "Ukáž"
 #: application/views/satellite/skedtable.php:6
 #: application/views/satellite/skedtable.php:35
 #: application/views/sattimers/index.php:38
-#: application/views/statistics/index.php:24
+#: application/views/statistics/index.php:27
 msgid "Satellite"
 msgstr "Satelit"
 
@@ -8583,8 +8584,8 @@ msgstr "Kategória Overlay"
 
 #: application/views/cabrillo/index.php:164
 #: application/views/reg1test/index.php:70
-#: application/views/statistics/index.php:17
-#: application/views/statistics/index.php:73
+#: application/views/statistics/index.php:18
+#: application/views/statistics/index.php:95
 msgid "Operators"
 msgstr "Operátori"
 
@@ -9747,7 +9748,7 @@ msgid "VUCC Gridsquare"
 msgstr "VUCC lokátor"
 
 #: application/views/continents/index.php:63
-#: application/views/statistics/index.php:20
+#: application/views/statistics/index.php:23
 msgid "# of QSOs worked"
 msgstr "# urobených QSO"
 
@@ -12521,8 +12522,8 @@ msgstr "Typy štítkov"
 #: application/views/labels/index.php:81
 #: application/views/logbookadvanced/statecheckresult.php:12
 #: application/views/map/qso_map.php:21
-#: application/views/statistics/index.php:70
-#: application/views/statistics/index.php:114
+#: application/views/statistics/index.php:92
+#: application/views/statistics/index.php:140
 msgid "QSOs"
 msgstr "Spojenia"
 
@@ -17315,29 +17316,86 @@ msgid "Elevation"
 msgstr "Elevácia"
 
 #: application/views/statistics/index.php:14
-#: application/views/statistics/index.php:61
+#: application/views/statistics/index.php:80
 msgid "Years"
 msgstr "rokov"
 
-#: application/views/statistics/index.php:18
+#: application/views/statistics/index.php:15
+#: application/views/statistics/index.php:83
+msgid "Months"
+msgstr ""
+
+#: application/views/statistics/index.php:19
 msgid "Number of QSOs worked each year"
 msgstr "Počet uskutočnených QSO každý rok"
 
+#: application/views/statistics/index.php:20
+msgid "Number of QSOs worked each month"
+msgstr ""
+
 #: application/views/statistics/index.php:31
+msgid "January"
+msgstr ""
+
+#: application/views/statistics/index.php:32
+msgid "February"
+msgstr ""
+
+#: application/views/statistics/index.php:33
+msgid "March"
+msgstr ""
+
+#: application/views/statistics/index.php:34
+msgid "April"
+msgstr ""
+
+#: application/views/statistics/index.php:35
+msgid "May"
+msgstr ""
+
+#: application/views/statistics/index.php:36
+msgid "June"
+msgstr ""
+
+#: application/views/statistics/index.php:37
+msgid "July"
+msgstr ""
+
+#: application/views/statistics/index.php:38
+msgid "August"
+msgstr ""
+
+#: application/views/statistics/index.php:39
+msgid "September"
+msgstr ""
+
+#: application/views/statistics/index.php:40
+msgid "October"
+msgstr ""
+
+#: application/views/statistics/index.php:41
+msgid "November"
+msgstr ""
+
+#: application/views/statistics/index.php:42
+msgid "December"
+msgstr ""
+
+#: application/views/statistics/index.php:50
 msgid "Explore the logbook."
 msgstr "Preskúmaj dennník."
 
-#: application/views/statistics/index.php:35
+#: application/views/statistics/index.php:54
 #: application/views/timeline/index.php:111
 msgid "All Years"
 msgstr "Všetky roky"
 
-#: application/views/statistics/index.php:76
-#: application/views/statistics/index.php:117
+#: application/views/statistics/index.php:98
+#: application/views/statistics/index.php:143
 msgid "Unique callsigns"
 msgstr "Unikátne volacie značky"
 
-#: application/views/statistics/index.php:120
+#: application/views/statistics/index.php:146
 msgid "Unique Grids"
 msgstr "Unikátne lokátory"
 

@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-30 09:33+0000\n"
+"POT-Creation-Date: 2025-12-30 11:53+0000\n"
 "PO-Revision-Date: 2025-12-22 23:48+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
@@ -399,7 +399,7 @@ msgstr "ログ表示 - VUCC"
 #: application/controllers/Awards.php:560
 #: application/controllers/Callstats.php:100
 #: application/controllers/Distancerecords.php:86
-#: application/controllers/Statistics.php:338
+#: application/controllers/Statistics.php:360
 #: application/controllers/Timeline.php:126
 #: application/controllers/Timeline.php:129
 #: application/controllers/Timeline.php:132
@@ -630,8 +630,8 @@ msgstr "メモ - バックアップ"
 #: application/controllers/Band.php:25 application/controllers/Band.php:43
 #: application/views/bands/index.php:30 application/views/bands/index.php:34
 #: application/views/interface_assets/header.php:443
-#: application/views/statistics/index.php:16
-#: application/views/statistics/index.php:67
+#: application/views/statistics/index.php:17
+#: application/views/statistics/index.php:89
 msgid "Bands"
 msgstr "バンド"
 
@@ -1512,9 +1512,9 @@ msgstr "eQSL"
 #: application/views/search/search_result_ajax.php:4
 #: application/views/simplefle/index.php:158
 #: application/views/statistics/antennaanalytics.php:31
-#: application/views/statistics/index.php:15
-#: application/views/statistics/index.php:21
-#: application/views/statistics/index.php:64
+#: application/views/statistics/index.php:16
+#: application/views/statistics/index.php:24
+#: application/views/statistics/index.php:86
 #: application/views/statistics/initialresult.php:19
 #: application/views/statistics/initials.php:17
 #: application/views/timeline/index.php:19 application/views/user/edit.php:243
@@ -1828,7 +1828,7 @@ msgstr "距離"
 #: application/views/simplefle/index.php:157
 #: application/views/stationsetup/exportmapoptions.php:31
 #: application/views/statistics/antennaanalytics.php:19
-#: application/views/statistics/index.php:22
+#: application/views/statistics/index.php:25
 #: application/views/statistics/initialresult.php:18
 #: application/views/statistics/initials.php:8
 #: application/views/timeline/index.php:7
@@ -1884,7 +1884,7 @@ msgstr "周波数"
 #: application/views/qso/components/previous_contacts.php:90
 #: application/views/search/search_result_ajax.php:17
 #: application/views/simplefle/index.php:117
-#: application/views/statistics/index.php:23
+#: application/views/statistics/index.php:26
 #: application/views/user/edit.php:254 application/views/user/edit.php:277
 #: application/views/user/edit.php:300 application/views/user/edit.php:323
 #: application/views/user/edit.php:347
@@ -2482,8 +2482,8 @@ msgstr "EDIエクスポート"
 #: application/controllers/Satellite.php:55 application/models/Note.php:10
 #: application/views/interface_assets/header.php:332
 #: application/views/satellite/index.php:40
-#: application/views/statistics/index.php:50
-#: application/views/statistics/index.php:111
+#: application/views/statistics/index.php:69
+#: application/views/statistics/index.php:137
 msgid "Satellites"
 msgstr "衛星"
 
@@ -2826,23 +2826,23 @@ msgstr "局の所在地一覧"
 msgid "Statistics"
 msgstr "統計"
 
-#: application/controllers/Statistics.php:270
+#: application/controllers/Statistics.php:292
 #: application/views/interface_assets/header.php:158
 #: application/views/statistics/qsltable.php:5
 msgid "QSL Statistics"
 msgstr "QSL統計"
 
-#: application/controllers/Statistics.php:285
+#: application/controllers/Statistics.php:307
 #: application/views/interface_assets/header.php:156
 #: application/views/statistics/antennaanalytics.php:3
 msgid "Antenna Analytics"
 msgstr "アンテナ分析"
 
-#: application/controllers/Statistics.php:338
+#: application/controllers/Statistics.php:360
 msgid "Satellite QSOs"
 msgstr "衛星QSO"
 
-#: application/controllers/Statistics.php:354
+#: application/controllers/Statistics.php:376
 #: application/views/interface_assets/header.php:182
 msgid "EME Initials"
 msgstr "EME Initials"
@@ -3516,14 +3516,14 @@ msgstr "コールなし"
 msgid "DXCC has to be Numeric"
 msgstr "DXCCは数値でなければなりません"
 
-#: application/models/Logbook_model.php:4658
+#: application/models/Logbook_model.php:4693
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 "%s との QSO を %s でインポート中に、誤ったステーションコールサイン %s が検出"
 "されました: スキップされました"
 
-#: application/models/Logbook_model.php:4672
+#: application/models/Logbook_model.php:4707
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -3531,11 +3531,11 @@ msgstr ""
 "有効な日付のないQSOをインポートしようとしました。このQSOはインポートされませ"
 "んでした。無効です"
 
-#: application/models/Logbook_model.php:4681
+#: application/models/Logbook_model.php:4716
 msgid "QSO on"
 msgstr "QSOオン"
 
-#: application/models/Logbook_model.php:4681
+#: application/models/Logbook_model.php:4716
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3543,7 +3543,7 @@ msgstr ""
 "コールが指定されていないQSOをインポートしようとしました。このQSOはインポート"
 "されませんでした。無効です"
 
-#: application/models/Logbook_model.php:4730
+#: application/models/Logbook_model.php:4765
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -3552,64 +3552,64 @@ msgstr ""
 "%s でのQSO: バンドが指定されていないQSOをインポートしようとしました。このQSO"
 "はインポートされませんでした。無効です"
 
-#: application/models/Logbook_model.php:4995
+#: application/models/Logbook_model.php:5030
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5006
+#: application/models/Logbook_model.php:5041
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5067
+#: application/models/Logbook_model.php:5102
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5442
+#: application/models/Logbook_model.php:5477
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "複製用"
 
-#: application/models/Logbook_model.php:5507
-#: application/models/Logbook_model.php:5602
+#: application/models/Logbook_model.php:5542
+#: application/models/Logbook_model.php:5637
 msgid "QSO could not be matched"
 msgstr "QSOが一致しませんでした"
 
-#: application/models/Logbook_model.php:5515
+#: application/models/Logbook_model.php:5550
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "LoTW/Clublog/eQSL/コンテストで確認済み"
 
-#: application/models/Logbook_model.php:5521
+#: application/models/Logbook_model.php:5556
 msgid "confirmed by award manager"
 msgstr "賞の管理者によって確認された"
 
-#: application/models/Logbook_model.php:5525
+#: application/models/Logbook_model.php:5560
 msgid "confirmed by cross-check of DCL data"
 msgstr "DCLデータのクロスチェックによって確認された"
 
-#: application/models/Logbook_model.php:5529
+#: application/models/Logbook_model.php:5564
 msgid "confirmation pending"
 msgstr "確認中"
 
-#: application/models/Logbook_model.php:5532
+#: application/models/Logbook_model.php:5567
 msgid "unconfirmed"
 msgstr "未確認"
 
-#: application/models/Logbook_model.php:5535
+#: application/models/Logbook_model.php:5570
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
 msgid "unknown"
 msgstr "不明"
 
-#: application/models/Logbook_model.php:5605
+#: application/models/Logbook_model.php:5640
 msgid "POTA reference already in log"
 msgstr "POTA 参照。既にログに存在します"
 
-#: application/models/Logbook_model.php:5608
+#: application/models/Logbook_model.php:5643
 msgid "QSO updated"
 msgstr "QSOが更新されました"
 
-#: application/models/Logbook_model.php:6339
+#: application/models/Logbook_model.php:6374
 #: application/views/activated_gridmap/index.php:114
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:58
@@ -3633,7 +3633,7 @@ msgstr "連絡先"
 
 #: application/models/Note.php:8
 #: application/views/interface_assets/footer.php:110
-#: application/views/qso/index.php:94 application/views/statistics/index.php:46
+#: application/views/qso/index.php:94 application/views/statistics/index.php:65
 #: application/views/user/edit.php:168
 msgid "General"
 msgstr "一般的"
@@ -3721,8 +3721,8 @@ msgstr "WAJAの累計稼働数"
 #: application/views/dashboard/index.php:320
 #: application/views/dayswithqso/index.php:42
 #: application/views/dayswithqso/index.php:82
-#: application/views/statistics/index.php:19
-#: application/views/statistics/index.php:38
+#: application/views/statistics/index.php:21
+#: application/views/statistics/index.php:57
 #: application/views/timeline/index.php:107
 #: application/views/visitor/index.php:250
 msgid "Year"
@@ -3736,6 +3736,7 @@ msgstr "年間"
 
 #: application/views/accumulate/index.php:10
 #: application/views/dashboard/index.php:325
+#: application/views/statistics/index.php:22
 #: application/views/visitor/index.php:255
 msgid "Month"
 msgstr "月"
@@ -4253,7 +4254,7 @@ msgstr "表示"
 #: application/views/satellite/skedtable.php:6
 #: application/views/satellite/skedtable.php:35
 #: application/views/sattimers/index.php:38
-#: application/views/statistics/index.php:24
+#: application/views/statistics/index.php:27
 msgid "Satellite"
 msgstr "衛星"
 
@@ -8553,8 +8554,8 @@ msgstr "カテゴリーオーバーレイ"
 
 #: application/views/cabrillo/index.php:164
 #: application/views/reg1test/index.php:70
-#: application/views/statistics/index.php:17
-#: application/views/statistics/index.php:73
+#: application/views/statistics/index.php:18
+#: application/views/statistics/index.php:95
 msgid "Operators"
 msgstr "オペレーター"
 
@@ -9718,7 +9719,7 @@ msgid "VUCC Gridsquare"
 msgstr "VUCC グリッドスクエア"
 
 #: application/views/continents/index.php:63
-#: application/views/statistics/index.php:20
+#: application/views/statistics/index.php:23
 msgid "# of QSOs worked"
 msgstr "交信したQSO数"
 
@@ -12497,8 +12498,8 @@ msgstr "ラベルの種類"
 #: application/views/labels/index.php:81
 #: application/views/logbookadvanced/statecheckresult.php:12
 #: application/views/map/qso_map.php:21
-#: application/views/statistics/index.php:70
-#: application/views/statistics/index.php:114
+#: application/views/statistics/index.php:92
+#: application/views/statistics/index.php:140
 msgid "QSOs"
 msgstr "QSO"
 
@@ -17275,29 +17276,86 @@ msgid "Elevation"
 msgstr "高さ"
 
 #: application/views/statistics/index.php:14
-#: application/views/statistics/index.php:61
+#: application/views/statistics/index.php:80
 msgid "Years"
 msgstr "年"
 
-#: application/views/statistics/index.php:18
+#: application/views/statistics/index.php:15
+#: application/views/statistics/index.php:83
+msgid "Months"
+msgstr ""
+
+#: application/views/statistics/index.php:19
 msgid "Number of QSOs worked each year"
 msgstr "年間QSO数"
 
+#: application/views/statistics/index.php:20
+msgid "Number of QSOs worked each month"
+msgstr ""
+
 #: application/views/statistics/index.php:31
+msgid "January"
+msgstr ""
+
+#: application/views/statistics/index.php:32
+msgid "February"
+msgstr ""
+
+#: application/views/statistics/index.php:33
+msgid "March"
+msgstr ""
+
+#: application/views/statistics/index.php:34
+msgid "April"
+msgstr ""
+
+#: application/views/statistics/index.php:35
+msgid "May"
+msgstr ""
+
+#: application/views/statistics/index.php:36
+msgid "June"
+msgstr ""
+
+#: application/views/statistics/index.php:37
+msgid "July"
+msgstr ""
+
+#: application/views/statistics/index.php:38
+msgid "August"
+msgstr ""
+
+#: application/views/statistics/index.php:39
+msgid "September"
+msgstr ""
+
+#: application/views/statistics/index.php:40
+msgid "October"
+msgstr ""
+
+#: application/views/statistics/index.php:41
+msgid "November"
+msgstr ""
+
+#: application/views/statistics/index.php:42
+msgid "December"
+msgstr ""
+
+#: application/views/statistics/index.php:50
 msgid "Explore the logbook."
 msgstr "ログブックを調べてください。"
 
-#: application/views/statistics/index.php:35
+#: application/views/statistics/index.php:54
 #: application/views/timeline/index.php:111
 msgid "All Years"
 msgstr "すべての年"
 
-#: application/views/statistics/index.php:76
-#: application/views/statistics/index.php:117
+#: application/views/statistics/index.php:98
+#: application/views/statistics/index.php:143
 msgid "Unique callsigns"
 msgstr "ユニークなコールサイン"
 
-#: application/views/statistics/index.php:120
+#: application/views/statistics/index.php:146
 msgid "Unique Grids"
 msgstr "ユニークなグリッド"
 
