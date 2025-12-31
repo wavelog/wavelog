@@ -40,7 +40,6 @@
                         </button>
                     </div>
                 </div>
-
                 <div class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
                         <h6 class="mb-1"><?= __("Fix Continent") ?></h6>
@@ -52,7 +51,6 @@
                         </button>
                     </div>
                 </div>
-
                 <div class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
                         <h6 class="mb-1"><?= __("Fix State") ?></h6>
@@ -64,7 +62,6 @@
                         </button>
                     </div>
                 </div>
-
                 <div class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
                         <h6 class="mb-1"><?= __("Update Distances") ?></h6>
@@ -76,19 +73,6 @@
                         </button>
                     </div>
                 </div>
-
-				<div class="list-group-item d-flex justify-content-between align-items-center">
-                    <div>
-                        <h6 class="mb-1"><?= __("Check QSOs missing DXCC data") ?></h6>
-                        <p class="mb-1 small text-muted"><?= __("Identify QSOs that are missing DXCC information") ?></p>
-                    </div>
-                    <div class="d-flex nowrap">
-                        <button type="button" class="btn btn-sm btn-success me-1 ld-ext-right" id="checkMissingDxccsBtn" onclick="checkMissingDxcc()">
-                            <?= __("Check") ?><div class="ld ld-ring ld-spin"></div>
-                        </button>
-                    </div>
-                </div>
-
 				<div class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
                         <h6 class="mb-1"><?= __("Check all QSOs in the logbook for incorrect DXCC") ?></h6>
