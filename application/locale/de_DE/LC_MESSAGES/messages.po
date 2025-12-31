@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-12-30 11:53+0000\n"
-"PO-Revision-Date: 2025-12-27 14:44+0000\n"
+"PO-Revision-Date: 2025-12-30 19:35+0000\n"
 "Last-Translator: Jörg Dorgeist <wavelog@dj7nt.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
@@ -1057,7 +1057,7 @@ msgstr "eQSL-Karten"
 #: application/controllers/Eqsl.php:56
 #, php-format
 msgid "Showing %d to %d of %d entries"
-msgstr ""
+msgstr "%d bis %d von %d Einträgen werden angezeigt"
 
 #: application/controllers/Eqsl.php:83 application/controllers/Eqsl.php:173
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
@@ -1123,6 +1123,7 @@ msgstr "eQSL Tools"
 #: application/controllers/Eqsl.php:620
 msgid "Limited to first 150 QSOs for this request. Please run again."
 msgstr ""
+"Begrenzt auf die ersten 150 QSOs für diese Anfrage. Bitte erneut anstoßen."
 
 #: application/controllers/Eqsl.php:626
 msgid " / Errors: "
@@ -1135,6 +1136,8 @@ msgstr "Erfolgreich heruntergeladen: "
 #: application/controllers/Eqsl.php:633
 msgid "eQSL rate limit reached. Please wait before running again."
 msgstr ""
+"eQSL Download-Limit erreicht. Bitte warte bevor du den Download erneut "
+"startest."
 
 #: application/controllers/Eqsl.php:645
 msgid "eQSL Card Image Download"
@@ -3657,7 +3660,7 @@ msgstr "Peilung"
 
 #: application/models/Logbookadvanced_model.php:1649
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
-msgstr ""
+msgstr "VuccGrids Tabelle ist leer. Bitte aktualisiere die VUCC-Grid-Daten."
 
 #: application/models/Note.php:7
 msgid "Contacts"
@@ -4875,7 +4878,7 @@ msgstr "Export-Optionen"
 
 #: application/views/adif/import.php:302
 msgid "Mark exported QSOs as already uploaded to LoTW"
-msgstr ""
+msgstr "Markiere hochgeladene QSOs als bereits zu LoTW hochgeladen"
 
 #: application/views/adif/import.php:311
 msgid "Export QSOs not uploaded to LoTW"
@@ -12802,28 +12805,32 @@ msgstr "Ausgewählte aktualisieren"
 
 #: application/views/logbookadvanced/checkresult.php:194
 msgid "These QSOs MAY have incorrect gridsquares."
-msgstr ""
+msgstr "Diese QSOs haben VERMUTLICH falsche Angaben zum Planquadrat."
 
 #: application/views/logbookadvanced/checkresult.php:195
 msgid ""
 "Results depends on the correct DXCC. The gridsquare list comes from the TQSL "
 "gridsquare database."
 msgstr ""
+"Ergebnisse hängen vom korrekten DXCC ab. Die Liste der Planquadrate "
+"entstammt der TQSL Grid-Datenbank."
 
 #: application/views/logbookadvanced/checkresult.php:208
 msgid "DXCC Gridsquare"
-msgstr ""
+msgstr "Planquadrat des DXCC"
 
 #: application/views/logbookadvanced/checkresult.php:231
 #: application/views/logbookadvanced/index.php:77
 msgid "Show more"
-msgstr ""
+msgstr "Zeige mehr"
 
 #: application/views/logbookadvanced/checkresult.php:262
 msgid ""
 "The following QSOs were found to have a different CQ zone compared to what "
 "this DXCC normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
+"Die folgenden gefundenen QSOs weisen eine CQ-Zone auf, die von der des DXCC "
+"abweicht (maximal 5000 QSOs werden gelistet):"
 
 #: application/views/logbookadvanced/checkresult.php:278
 #: application/views/search/cqzones_result.php:14
@@ -12874,6 +12881,8 @@ msgid ""
 "The following QSOs were found to have a different ITU zone compared to what "
 "this DXCC normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
+"Die folgenden gefundenen QSOs weisen eine ITU-Zone auf, die von der des DXCC "
+"abweicht (maximal 5000 QSOs werden gelistet):"
 
 #: application/views/logbookadvanced/checkresult.php:347
 #: application/views/search/ituzones_result.php:14
@@ -12893,6 +12902,8 @@ msgid ""
 "Warning. This tool can be dangerous to your data, and should only be used if "
 "you know what you are doing."
 msgstr ""
+"Warnung. Dieses Werkzeug kann irreversible Veränderungen herbeiführen und "
+"sollte nur mit entsprechendem Wissen genutzt werden."
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:12
 #: application/views/logbookadvanced/index.php:796
@@ -12919,11 +12930,11 @@ msgstr "Prüfe"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:23
 msgid "Check all QSOs in the logbook for incorrect CQ Zones"
-msgstr ""
+msgstr "Prüfe alle QSOs im Logbuch auf inkorrekte CQ-Zonen"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:24
 msgid "Use Wavelog to determine CQ Zone for all QSOs."
-msgstr ""
+msgstr "Nutze Wavelog für die Bestimmung der CQ-Zone für alle QSOs."
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:35
 #: application/views/logbookadvanced/index.php:797
@@ -12936,19 +12947,19 @@ msgstr "Aktualisere fehlende ITU-Zonen-Informationen"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:47
 msgid "Check all QSOs in the logbook for incorrect ITU Zones"
-msgstr ""
+msgstr "Prüfe alle QSOs im Logbuch auf inkorrekte ITU-Zonen"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:48
 msgid "Use Wavelog to determine ITU Zone for all QSOs."
-msgstr ""
+msgstr "Nutze Wavelog für die Bestimmung der ITU-Zone für alle QSOs."
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:59
 msgid "Check Gridsquares"
-msgstr ""
+msgstr "Prüfe Planquadrate"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:60
 msgid "Check gridsquares that does not match the DXCC"
-msgstr ""
+msgstr "Prüfe Planquadrate, die nicht mit dem DXCC übereinstimmen"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:71
 msgid "Fix Continent"
@@ -13568,7 +13579,7 @@ msgstr "Duplikatssuche"
 
 #: application/views/logbookadvanced/index.php:78
 msgid "Show less"
-msgstr ""
+msgstr "Zeige weniger"
 
 #: application/views/logbookadvanced/index.php:305
 msgid "From"
@@ -16525,7 +16536,7 @@ msgstr ""
 
 #: application/views/search/result.php:65
 msgid "Source callbook"
-msgstr ""
+msgstr "Quellrufzeichenbuch"
 
 #: application/views/search/search_result_ajax.php:463
 #: application/views/view_log/partial/log.php:142
@@ -17499,7 +17510,7 @@ msgstr "Jahre"
 #: application/views/statistics/index.php:15
 #: application/views/statistics/index.php:83
 msgid "Months"
-msgstr ""
+msgstr "Monate"
 
 #: application/views/statistics/index.php:19
 msgid "Number of QSOs worked each year"
@@ -17507,55 +17518,55 @@ msgstr "Anzahl der QSOs gearbeitet pro Jahr"
 
 #: application/views/statistics/index.php:20
 msgid "Number of QSOs worked each month"
-msgstr ""
+msgstr "Anzahl der QSOs je Monat"
 
 #: application/views/statistics/index.php:31
 msgid "January"
-msgstr ""
+msgstr "Januar"
 
 #: application/views/statistics/index.php:32
 msgid "February"
-msgstr ""
+msgstr "Februar"
 
 #: application/views/statistics/index.php:33
 msgid "March"
-msgstr ""
+msgstr "März"
 
 #: application/views/statistics/index.php:34
 msgid "April"
-msgstr ""
+msgstr "April"
 
 #: application/views/statistics/index.php:35
 msgid "May"
-msgstr ""
+msgstr "Mai"
 
 #: application/views/statistics/index.php:36
 msgid "June"
-msgstr ""
+msgstr "Juni"
 
 #: application/views/statistics/index.php:37
 msgid "July"
-msgstr ""
+msgstr "Juli"
 
 #: application/views/statistics/index.php:38
 msgid "August"
-msgstr ""
+msgstr "August"
 
 #: application/views/statistics/index.php:39
 msgid "September"
-msgstr ""
+msgstr "September"
 
 #: application/views/statistics/index.php:40
 msgid "October"
-msgstr ""
+msgstr "Oktober"
 
 #: application/views/statistics/index.php:41
 msgid "November"
-msgstr ""
+msgstr "November"
 
 #: application/views/statistics/index.php:42
 msgid "December"
-msgstr ""
+msgstr "Dezember"
 
 #: application/views/statistics/index.php:50
 msgid "Explore the logbook."

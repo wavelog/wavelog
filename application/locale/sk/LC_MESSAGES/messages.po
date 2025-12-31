@@ -8,10 +8,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-12-30 11:53+0000\n"
-"PO-Revision-Date: 2025-12-16 08:48+0000\n"
+"PO-Revision-Date: 2025-12-30 19:35+0000\n"
 "Last-Translator: Viliam Petrik <tatralom@gmail.com>\n"
-"Language-Team: Slovak <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/sk/>\n"
+"Language-Team: Slovak <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -682,7 +682,7 @@ msgstr " a sat "
 
 #: application/controllers/Calltester.php:33
 msgid "Call Tester"
-msgstr ""
+msgstr "Overovanie značky"
 
 #: application/controllers/Club.php:23
 msgid "Club Officer"
@@ -1036,7 +1036,7 @@ msgstr "eQSL karty"
 #: application/controllers/Eqsl.php:56
 #, php-format
 msgid "Showing %d to %d of %d entries"
-msgstr ""
+msgstr "Zobrazuje sa %d až %d z %d záznamov"
 
 #: application/controllers/Eqsl.php:83 application/controllers/Eqsl.php:173
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
@@ -1093,7 +1093,7 @@ msgstr "Nepodarilo sa stiahnuť obrázok eQSL"
 
 #: application/controllers/Eqsl.php:443
 msgid "Failed to load cached eQSL image"
-msgstr ""
+msgstr "Nepodarilo sa načítať cacheovaný obrázok eQSL"
 
 #: application/controllers/Eqsl.php:590
 msgid "eQSL Tools"
@@ -1101,7 +1101,7 @@ msgstr "eQSL nástroje"
 
 #: application/controllers/Eqsl.php:620
 msgid "Limited to first 150 QSOs for this request. Please run again."
-msgstr ""
+msgstr "Obmedzené na prvých 150 spojení pre túto požiadavku. Spustite znova."
 
 #: application/controllers/Eqsl.php:626
 msgid " / Errors: "
@@ -1113,7 +1113,7 @@ msgstr "Úspešne stiahnuté: "
 
 #: application/controllers/Eqsl.php:633
 msgid "eQSL rate limit reached. Please wait before running again."
-msgstr ""
+msgstr "Limit eQSL dosiahnutý. Počkajte pred opätovným spustením."
 
 #: application/controllers/Eqsl.php:645
 msgid "eQSL Card Image Download"
@@ -1930,7 +1930,7 @@ msgstr "Pokročilý denník"
 #: application/controllers/Logbookadvanced.php:1002
 #, php-format
 msgid "DXCC updated for %d QSO(s)."
-msgstr ""
+msgstr "DXCC aktualizované pre %d spojenie/í."
 
 #: application/controllers/Lookup.php:22
 msgid "Quick Lookup"
@@ -2019,7 +2019,7 @@ msgstr "LoTW .TQ8 neodoslané"
 
 #: application/controllers/Map.php:42
 msgid "QSO Map"
-msgstr ""
+msgstr "QSO mapa"
 
 #: application/controllers/Mode.php:25 application/controllers/Usermode.php:23
 #: application/views/interface_assets/header.php:328
@@ -3622,6 +3622,7 @@ msgstr "Smerovanie"
 #: application/models/Logbookadvanced_model.php:1649
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
 msgstr ""
+"Tabuľka VuccGrids je prázdna. Najprv importujte údaje o VUCC lokátoroch."
 
 #: application/models/Note.php:7
 msgid "Contacts"
@@ -4832,7 +4833,7 @@ msgstr "Možnosti exportu"
 
 #: application/views/adif/import.php:302
 msgid "Mark exported QSOs as already uploaded to LoTW"
-msgstr ""
+msgstr "Označ vyexportované spojenia ako už nahrané do LoTW"
 
 #: application/views/adif/import.php:311
 msgid "Export QSOs not uploaded to LoTW"
@@ -8801,17 +8802,17 @@ msgstr ""
 #: application/views/calltester/comparison_result.php:21
 #: application/views/calltester/comparison_result.php:33
 msgid "Calls tested:"
-msgstr ""
+msgstr "Overené značky:"
 
 #: application/views/calltester/comparison_result.php:22
 #: application/views/calltester/comparison_result.php:34
 msgid "Execution time:"
-msgstr ""
+msgstr "Čas vykonávania:"
 
 #: application/views/calltester/comparison_result.php:23
 #: application/views/calltester/comparison_result.php:35
 msgid "Issues found:"
-msgstr ""
+msgstr "Nájdené problémy:"
 
 #: application/views/calltester/comparison_result.php:30
 msgid "Logbook Model Results"
@@ -8819,7 +8820,7 @@ msgstr ""
 
 #: application/views/calltester/comparison_result.php:44
 msgid "Comparison Summary"
-msgstr ""
+msgstr "Zhrnutie porovnania"
 
 #: application/views/calltester/comparison_result.php:45
 msgid "Only found in DXCC Class:"
@@ -8844,7 +8845,7 @@ msgstr ""
 #: application/views/logbookadvanced/checkresult.php:147
 #: application/views/logbookadvanced/checkresult.php:205
 msgid "Station Profile"
-msgstr ""
+msgstr "Profil stanice"
 
 #: application/views/calltester/comparison_result.php:63
 #: application/views/calltester/comparison_result.php:99
@@ -8852,14 +8853,14 @@ msgstr ""
 #: application/views/calltester/result.php:25
 #: application/views/logbookadvanced/checkresult.php:148
 msgid "Existing DXCC"
-msgstr ""
+msgstr "Existujúca DXCC"
 
 #: application/views/calltester/comparison_result.php:64
 #: application/views/calltester/comparison_result.php:100
 #: application/views/calltester/comparison_result.php:136
 #: application/views/calltester/result.php:26
 msgid "Existing ADIF"
-msgstr ""
+msgstr "Existujúci ADIF"
 
 #: application/views/calltester/comparison_result.php:65
 #: application/views/calltester/comparison_result.php:101
@@ -8867,14 +8868,14 @@ msgstr ""
 #: application/views/calltester/result.php:27
 #: application/views/logbookadvanced/checkresult.php:149
 msgid "Result DXCC"
-msgstr ""
+msgstr "Výsledok DXCC"
 
 #: application/views/calltester/comparison_result.php:66
 #: application/views/calltester/comparison_result.php:102
 #: application/views/calltester/comparison_result.php:138
 #: application/views/calltester/result.php:28
 msgid "Result ADIF"
-msgstr ""
+msgstr "Výsledok ADIF"
 
 #: application/views/calltester/comparison_result.php:90
 msgid "Issues found only in Logbook Model (not in DXCC Class):"
@@ -8882,13 +8883,15 @@ msgstr ""
 
 #: application/views/calltester/comparison_result.php:126
 msgid "Issues found in both methods:"
-msgstr ""
+msgstr "Problémy nájdené v oboch metódach:"
 
 #: application/views/calltester/comparison_result.php:162
 msgid ""
 "No DXCC issues found in either method. All calls have correct DXCC "
 "information."
 msgstr ""
+"Žiadnou metódou neboli nájdené problémy s DXCC. Všetky značky majú správne "
+"informácie o DXCC."
 
 #: application/views/calltester/index.php:3
 msgid "Callsign DXCC identification"
@@ -8902,7 +8905,7 @@ msgstr "Volacia značka: "
 
 #: application/views/calltester/index.php:15
 msgid "Start DXCC Check"
-msgstr ""
+msgstr "Spustiť kontrolu DXCC"
 
 #: application/views/calltester/index.php:18
 msgid "Compare DXCC class and logbook model"
@@ -8911,17 +8914,17 @@ msgstr ""
 #: application/views/calltester/result.php:4
 #: application/views/logbookadvanced/checkresult.php:126
 msgid "Callsigns tested: "
-msgstr ""
+msgstr "Overované volacie značky: "
 
 #: application/views/calltester/result.php:5
 #: application/views/logbookadvanced/checkresult.php:127
 msgid "Execution time: "
-msgstr ""
+msgstr "Čas vykonávania: "
 
 #: application/views/calltester/result.php:6
 #: application/views/logbookadvanced/checkresult.php:128
 msgid "Number of potential QSOs with wrong DXCC: "
-msgstr ""
+msgstr "Počet potenciálnych spojení s nesprávnou DXCC: "
 
 #: application/views/club/clubswitch_modal.php:5
 msgid "Switch to a Clubstation"
@@ -12594,7 +12597,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/checkresult.php:49
 msgid "Distance Check Results"
-msgstr ""
+msgstr "Výsledky kontroly vzdialenosti"
 
 #: application/views/logbookadvanced/checkresult.php:50
 #: application/views/logbookadvanced/checkresult.php:66
@@ -12603,7 +12606,7 @@ msgstr ""
 #: application/views/logbookadvanced/checkresult.php:105
 #: application/views/logbookadvanced/checkresult.php:116
 msgid "QSOs to update found:"
-msgstr ""
+msgstr "Našli sa spojenia na aktualizáciu:"
 
 #: application/views/logbookadvanced/checkresult.php:53
 #: application/views/logbookadvanced/distancedialog.php:2
@@ -12630,7 +12633,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/checkresult.php:65
 msgid "Continent Check Results"
-msgstr ""
+msgstr "Výsledky kontroly kontinentov"
 
 #: application/views/logbookadvanced/checkresult.php:69
 #: application/views/logbookadvanced/continentdialog.php:2
@@ -12655,27 +12658,27 @@ msgstr "Aktualizácia nastaví kontinent iba pre QSO, kde je kontinent prázdny.
 #: application/views/logbookadvanced/checkresult.php:81
 #: application/views/logbookadvanced/checkresult.php:124
 msgid "DXCC Check Results"
-msgstr ""
+msgstr "Výsledky kontroly DXCC"
 
 #: application/views/logbookadvanced/checkresult.php:86
 #: application/views/logbookadvanced/statecheckresult.php:30
 msgid "Run fix"
-msgstr ""
+msgstr "Spusti opravu"
 
 #: application/views/logbookadvanced/checkresult.php:93
 #: application/views/logbookadvanced/checkresult.php:260
 msgid "CQ Zone Check Results"
-msgstr ""
+msgstr "Výsledky kontroly CQ zón"
 
 #: application/views/logbookadvanced/checkresult.php:104
 #: application/views/logbookadvanced/checkresult.php:329
 msgid "ITU Zone Check Results"
-msgstr ""
+msgstr "Výsledky kontroly ITU zón"
 
 #: application/views/logbookadvanced/checkresult.php:115
 #: application/views/logbookadvanced/checkresult.php:187
 msgid "Gridsquare Check Results"
-msgstr ""
+msgstr "Výsledky kontroly lokátorov"
 
 #: application/views/logbookadvanced/checkresult.php:133
 #: application/views/logbookadvanced/checkresult.php:265
@@ -12685,13 +12688,15 @@ msgstr ""
 
 #: application/views/logbookadvanced/checkresult.php:194
 msgid "These QSOs MAY have incorrect gridsquares."
-msgstr ""
+msgstr "Tieto spojenia môžu mať nesprávne lokátory."
 
 #: application/views/logbookadvanced/checkresult.php:195
 msgid ""
 "Results depends on the correct DXCC. The gridsquare list comes from the TQSL "
 "gridsquare database."
 msgstr ""
+"Výsledky závisia od správnej DXCC. Zoznam lokátorov pochádza z databázy TQSL "
+"lokátorových štvorcov."
 
 #: application/views/logbookadvanced/checkresult.php:208
 msgid "DXCC Gridsquare"
@@ -12700,13 +12705,15 @@ msgstr ""
 #: application/views/logbookadvanced/checkresult.php:231
 #: application/views/logbookadvanced/index.php:77
 msgid "Show more"
-msgstr ""
+msgstr "Zobraziť viac"
 
 #: application/views/logbookadvanced/checkresult.php:262
 msgid ""
 "The following QSOs were found to have a different CQ zone compared to what "
 "this DXCC normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
+"Nasledujúce spojenia majú odlišnú CQ zónu v porovnaní s tým, čo táto DXCC "
+"zvyčajne má (zobrazených je maximálne 5000 QSO):"
 
 #: application/views/logbookadvanced/checkresult.php:278
 #: application/views/search/cqzones_result.php:14
@@ -12757,6 +12764,8 @@ msgid ""
 "The following QSOs were found to have a different ITU zone compared to what "
 "this DXCC normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
+"Nasledujúce spojenia majú odlišnú zónu ITU v porovnaní s tou, ktorú toto "
+"DXCC normálne má (zobrazených je maximálne 5000 QSO):"
 
 #: application/views/logbookadvanced/checkresult.php:347
 #: application/views/search/ituzones_result.php:14
@@ -12765,7 +12774,7 @@ msgstr "DXCC ITU zóna"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:4
 msgid "Data Repair Tools"
-msgstr ""
+msgstr "Nástroje na opravu dát"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:6
 msgid "Wiki Help"
@@ -13913,52 +13922,52 @@ msgstr "Umiestnenie stanice"
 
 #: application/views/logbookadvanced/showUpdateResult.php:83
 msgid "Results for state update:"
-msgstr ""
+msgstr "Výsledky pre aktualizáciu štátu:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:85
 #: application/views/logbookadvanced/showUpdateResult.php:87
 msgid "The number of QSOs updated for state/province in"
-msgstr ""
+msgstr "Počet aktualizovaných QSO pre štát/provinciu v"
 
 #: application/views/logbookadvanced/showUpdateResult.php:130
 msgid "Results for continent update:"
-msgstr ""
+msgstr "Výsledky aktualizácie kontinentu:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:131
 msgid "The number of QSOs updated for continent is"
-msgstr ""
+msgstr "Počet aktualizovaných spojení pre kontinent je"
 
 #: application/views/logbookadvanced/showUpdateResult.php:135
 msgid "Results for distance update:"
-msgstr ""
+msgstr "Výsledky aktualizácie vzdialenosti:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:136
 msgid "The number of QSOs updated for distance is"
-msgstr ""
+msgstr "Počet aktualizovaných spojení pre vzdialenosť je"
 
 #: application/views/logbookadvanced/showUpdateResult.php:140
 msgid "Results for CQ zone update:"
-msgstr ""
+msgstr "Výsledky aktualizácie CQ zón:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:141
 msgid "The number of QSOs updated for CQ zone is"
-msgstr ""
+msgstr "Počet aktualizovaných spojení pre CQ zónu je"
 
 #: application/views/logbookadvanced/showUpdateResult.php:145
 msgid "Results for ITU zone update:"
-msgstr ""
+msgstr "Výsledky aktualizácie ITU zón:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:146
 msgid "The number of QSOs updated for ITU zone is"
-msgstr ""
+msgstr "Počet spojení aktualizovaných pre ITU zónu je"
 
 #: application/views/logbookadvanced/showUpdateResult.php:150
 msgid "Results for gridsquare update:"
-msgstr ""
+msgstr "Výsledky pre aktualizáciu lokátorových štvorcov:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:151
 msgid "The number of QSOs updated for gridsquare is"
-msgstr ""
+msgstr "Počet aktualizovaných spojení pre lokátorové štvorce je"
 
 #: application/views/logbookadvanced/startatform.php:15
 msgid "Include Via"
@@ -13975,17 +13984,20 @@ msgstr "Zahrnúť správu TNX"
 #: application/views/logbookadvanced/statecheckresult.php:3
 #: application/views/logbookadvanced/statecheckresult.php:42
 msgid "State Check Results"
-msgstr ""
+msgstr "Výsledok kontroly štátov"
 
 #: application/views/logbookadvanced/statecheckresult.php:4
 msgid ""
 "QSOs with missing state and gridsquares with 6 or more characters found for "
 "the following DXCCs:"
 msgstr ""
+"Spojenia s chýbajúcimi štátmi a lokátormi so 6 alebo viac znakmi boli "
+"nájdené pre nasledujúce DXCC:"
 
 #: application/views/logbookadvanced/statecheckresult.php:43
 msgid "No QSOs were found where state information can be fixed."
 msgstr ""
+"Neboli nájdené žiadne spojenia, kde by sa dala opraviť informácia o štáte."
 
 #: application/views/logbookadvanced/statedialog.php:2
 msgid ""
@@ -14214,11 +14226,11 @@ msgstr "Ďalšia automatická synchronizácia s LoTW prebehne o: "
 
 #: application/views/map/qso_map.php:15
 msgid "Select Country:"
-msgstr ""
+msgstr "Vyberte krajinu:"
 
 #: application/views/map/qso_map.php:17
 msgid "Choose a country..."
-msgstr ""
+msgstr "Vyber si krajinu..."
 
 #: application/views/mode/create.php:24 application/views/mode/edit.php:33
 msgctxt "Name of mode in ADIF-specification"
@@ -16374,7 +16386,7 @@ msgstr ""
 
 #: application/views/search/result.php:65
 msgid "Source callbook"
-msgstr ""
+msgstr "Zdrojový callbook"
 
 #: application/views/search/search_result_ajax.php:463
 #: application/views/view_log/partial/log.php:142
@@ -17323,7 +17335,7 @@ msgstr "rokov"
 #: application/views/statistics/index.php:15
 #: application/views/statistics/index.php:83
 msgid "Months"
-msgstr ""
+msgstr "Mesiace"
 
 #: application/views/statistics/index.php:19
 msgid "Number of QSOs worked each year"
@@ -17331,55 +17343,55 @@ msgstr "Počet uskutočnených QSO každý rok"
 
 #: application/views/statistics/index.php:20
 msgid "Number of QSOs worked each month"
-msgstr ""
+msgstr "Počet uskutočnených spojení každý mesiac"
 
 #: application/views/statistics/index.php:31
 msgid "January"
-msgstr ""
+msgstr "január"
 
 #: application/views/statistics/index.php:32
 msgid "February"
-msgstr ""
+msgstr "február"
 
 #: application/views/statistics/index.php:33
 msgid "March"
-msgstr ""
+msgstr "marec"
 
 #: application/views/statistics/index.php:34
 msgid "April"
-msgstr ""
+msgstr "apríl"
 
 #: application/views/statistics/index.php:35
 msgid "May"
-msgstr ""
+msgstr "máj"
 
 #: application/views/statistics/index.php:36
 msgid "June"
-msgstr ""
+msgstr "jún"
 
 #: application/views/statistics/index.php:37
 msgid "July"
-msgstr ""
+msgstr "júl"
 
 #: application/views/statistics/index.php:38
 msgid "August"
-msgstr ""
+msgstr "august"
 
 #: application/views/statistics/index.php:39
 msgid "September"
-msgstr ""
+msgstr "september"
 
 #: application/views/statistics/index.php:40
 msgid "October"
-msgstr ""
+msgstr "október"
 
 #: application/views/statistics/index.php:41
 msgid "November"
-msgstr ""
+msgstr "november"
 
 #: application/views/statistics/index.php:42
 msgid "December"
-msgstr ""
+msgstr "december"
 
 #: application/views/statistics/index.php:50
 msgid "Explore the logbook."

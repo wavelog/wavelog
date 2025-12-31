@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-12-30 11:53+0000\n"
-"PO-Revision-Date: 2025-12-26 19:47+0000\n"
+"PO-Revision-Date: 2025-12-30 21:46+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sv/>\n"
@@ -1037,7 +1037,7 @@ msgstr "eQSL-kort"
 #: application/controllers/Eqsl.php:56
 #, php-format
 msgid "Showing %d to %d of %d entries"
-msgstr ""
+msgstr "Visar %d till %d av %d poster"
 
 #: application/controllers/Eqsl.php:83 application/controllers/Eqsl.php:173
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
@@ -1102,7 +1102,7 @@ msgstr "eQSL-verktyg"
 
 #: application/controllers/Eqsl.php:620
 msgid "Limited to first 150 QSOs for this request. Please run again."
-msgstr ""
+msgstr "Denna begäran är begränsat till 150 QSOs. Vänligen kör igen."
 
 #: application/controllers/Eqsl.php:626
 msgid " / Errors: "
@@ -1114,7 +1114,7 @@ msgstr "Framgångsrikt nedladdad: "
 
 #: application/controllers/Eqsl.php:633
 msgid "eQSL rate limit reached. Please wait before running again."
-msgstr ""
+msgstr "eQSL-gräns nådd. Vänta en stund innan du kör igen."
 
 #: application/controllers/Eqsl.php:645
 msgid "eQSL Card Image Download"
@@ -3622,7 +3622,7 @@ msgstr "Bäring"
 
 #: application/models/Logbookadvanced_model.php:1649
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
-msgstr ""
+msgstr "VuccLokator-tabellen är tom. Importera VUCC-lokatordata först."
 
 #: application/models/Note.php:7
 msgid "Contacts"
@@ -4834,7 +4834,7 @@ msgstr "Exportalternativ"
 
 #: application/views/adif/import.php:302
 msgid "Mark exported QSOs as already uploaded to LoTW"
-msgstr ""
+msgstr "Markera exporterade QSOs som redan uppladdade till LoTW"
 
 #: application/views/adif/import.php:311
 msgid "Export QSOs not uploaded to LoTW"
@@ -12687,28 +12687,32 @@ msgstr "Uppdatera valda"
 
 #: application/views/logbookadvanced/checkresult.php:194
 msgid "These QSOs MAY have incorrect gridsquares."
-msgstr ""
+msgstr "Dessa QSOs KAN ha felaktiga lokatorrutor."
 
 #: application/views/logbookadvanced/checkresult.php:195
 msgid ""
 "Results depends on the correct DXCC. The gridsquare list comes from the TQSL "
 "gridsquare database."
 msgstr ""
+"Resultaten beror på rätt DXCC. Lokator listan kommer från TQSL:s lokator "
+"databas."
 
 #: application/views/logbookadvanced/checkresult.php:208
 msgid "DXCC Gridsquare"
-msgstr ""
+msgstr "DXCC Lokatorruta"
 
 #: application/views/logbookadvanced/checkresult.php:231
 #: application/views/logbookadvanced/index.php:77
 msgid "Show more"
-msgstr ""
+msgstr "Visa mer"
 
 #: application/views/logbookadvanced/checkresult.php:262
 msgid ""
 "The following QSOs were found to have a different CQ zone compared to what "
 "this DXCC normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
+"Följande QSOs hade en annan CQ-zon jämfört med vad denna DXCC entitet "
+"normalt har (maximalt 5000 QSO visas):"
 
 #: application/views/logbookadvanced/checkresult.php:278
 #: application/views/search/cqzones_result.php:14
@@ -12759,6 +12763,8 @@ msgid ""
 "The following QSOs were found to have a different ITU zone compared to what "
 "this DXCC normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
+"Följande QSOs hade en annan ITU-zon jämfört med vad denna DXCC entitet "
+"normalt har (högst 5000 QSOs visas):"
 
 #: application/views/logbookadvanced/checkresult.php:347
 #: application/views/search/ituzones_result.php:14
@@ -12778,6 +12784,8 @@ msgid ""
 "Warning. This tool can be dangerous to your data, and should only be used if "
 "you know what you are doing."
 msgstr ""
+"Varning. Detta verktyg kan förstöra dina data och bör endast användas om du "
+"vet vad du gör."
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:12
 #: application/views/logbookadvanced/index.php:796
@@ -12804,11 +12812,11 @@ msgstr "Kontrollera"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:23
 msgid "Check all QSOs in the logbook for incorrect CQ Zones"
-msgstr ""
+msgstr "Kontrollera alla QSOs i loggboken för felaktiga CQ-zoner"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:24
 msgid "Use Wavelog to determine CQ Zone for all QSOs."
-msgstr ""
+msgstr "Använd Wavelog för att fastställa CQ-zonen för alla QSOs."
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:35
 #: application/views/logbookadvanced/index.php:797
@@ -12821,19 +12829,19 @@ msgstr "Uppdatera saknad ITU zoninformation"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:47
 msgid "Check all QSOs in the logbook for incorrect ITU Zones"
-msgstr ""
+msgstr "Kontrollera alla QSOs i loggboken för felaktiga ITU-zoner"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:48
 msgid "Use Wavelog to determine ITU Zone for all QSOs."
-msgstr ""
+msgstr "Använd Wavelog för att bestämma ITU-zonen för alla QSOs."
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:59
 msgid "Check Gridsquares"
-msgstr ""
+msgstr "Kontrollera Laktorrutor"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:60
 msgid "Check gridsquares that does not match the DXCC"
-msgstr ""
+msgstr "Kontrollera Lokatorrutor som inte matchar DXCC"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:71
 msgid "Fix Continent"
@@ -13445,7 +13453,7 @@ msgstr "Sök efter Dubletter"
 
 #: application/views/logbookadvanced/index.php:78
 msgid "Show less"
-msgstr ""
+msgstr "Visa mindre"
 
 #: application/views/logbookadvanced/index.php:305
 msgid "From"
@@ -14890,8 +14898,8 @@ msgstr "Loggsökresultat för %s"
 #, php-format
 msgid "has %d band slot"
 msgid_plural "has %d band slots"
-msgstr[0] "har %d band"
-msgstr[1] "har %d band"
+msgstr[0] "har %d band slot"
+msgstr[1] "har %d band slots"
 
 #: application/views/oqrs/result.php:33
 #, php-format
@@ -14918,7 +14926,7 @@ msgstr "Öppen förfrågan"
 #: application/views/oqrs/showrequests.php:51
 #: application/views/oqrs/status_info.php:14
 msgid "Not in log request"
-msgstr "Inte i loggförfrågan"
+msgstr "Inte i logg förfrågan"
 
 #: application/views/oqrs/showrequests.php:4
 msgid "Request done"
@@ -14978,17 +14986,17 @@ msgstr "OQRS-status"
 #: application/views/oqrs/showrequests.php:52
 #: application/views/oqrs/status_info.php:18
 msgid "Done / sent"
-msgstr "Klar / skickat"
+msgstr "Förfrågan klar"
 
 #: application/views/oqrs/showrequests.php:53
 #: application/views/oqrs/status_info.php:22
 msgid "Pending"
-msgstr "Väntande"
+msgstr "Väntande förfrågan"
 
 #: application/views/oqrs/showrequests.php:54
 #: application/views/oqrs/status_info.php:26
 msgid "Rejected"
-msgstr "Avvisad"
+msgstr "Avvisad förfrågan"
 
 #: application/views/oqrs/showrequests.php:71
 msgid "With selected"
@@ -16376,7 +16384,7 @@ msgstr "Loaktorrutan beräknas automatiskt av callbook och är förmodligen fel"
 
 #: application/views/search/result.php:65
 msgid "Source callbook"
-msgstr ""
+msgstr "Källa Callbook"
 
 #: application/views/search/search_result_ajax.php:463
 #: application/views/view_log/partial/log.php:142
@@ -17335,7 +17343,7 @@ msgstr "År"
 #: application/views/statistics/index.php:15
 #: application/views/statistics/index.php:83
 msgid "Months"
-msgstr ""
+msgstr "Månader"
 
 #: application/views/statistics/index.php:19
 msgid "Number of QSOs worked each year"
@@ -17343,55 +17351,55 @@ msgstr "Antal QSO per år"
 
 #: application/views/statistics/index.php:20
 msgid "Number of QSOs worked each month"
-msgstr ""
+msgstr "Antal QSOs genomförda varje månad"
 
 #: application/views/statistics/index.php:31
 msgid "January"
-msgstr ""
+msgstr "Januari"
 
 #: application/views/statistics/index.php:32
 msgid "February"
-msgstr ""
+msgstr "Februari"
 
 #: application/views/statistics/index.php:33
 msgid "March"
-msgstr ""
+msgstr "Mars"
 
 #: application/views/statistics/index.php:34
 msgid "April"
-msgstr ""
+msgstr "April"
 
 #: application/views/statistics/index.php:35
 msgid "May"
-msgstr ""
+msgstr "Maj"
 
 #: application/views/statistics/index.php:36
 msgid "June"
-msgstr ""
+msgstr "Juni"
 
 #: application/views/statistics/index.php:37
 msgid "July"
-msgstr ""
+msgstr "Juli"
 
 #: application/views/statistics/index.php:38
 msgid "August"
-msgstr ""
+msgstr "Augusti"
 
 #: application/views/statistics/index.php:39
 msgid "September"
-msgstr ""
+msgstr "September"
 
 #: application/views/statistics/index.php:40
 msgid "October"
-msgstr ""
+msgstr "Oktober"
 
 #: application/views/statistics/index.php:41
 msgid "November"
-msgstr ""
+msgstr "November"
 
 #: application/views/statistics/index.php:42
 msgid "December"
-msgstr ""
+msgstr "December"
 
 #: application/views/statistics/index.php:50
 msgid "Explore the logbook."
