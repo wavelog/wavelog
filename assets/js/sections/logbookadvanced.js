@@ -2679,6 +2679,13 @@ function saveOptions() {
 					},
 				});
 
+				$('#forceMultiZoneUpdate').on('change', function() {
+					$('#incorrectituzonetable').DataTable().column(8).search('').draw();
+					$('#checkBoxAllItuZones').prop('checked', false);
+					$('#incorrectituzonetable tbody input[type="checkbox"]').prop('checked', false);
+					$('#incorrectituzonetable tbody tr.activeRow').removeClass('activeRow');
+				});
+
 			},
 			error: function(xhr, status, error) {
 				$('#checkIncorrectItuZonesBtn').prop("disabled", false).removeClass("running");
