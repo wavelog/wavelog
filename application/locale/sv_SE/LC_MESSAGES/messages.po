@@ -3,16 +3,16 @@
 # This file is distributed under the MIT licence.
 #
 # Fabian Berg <fabian.berg@hb9hil.org>, 2024, 2025.
-# "Jorgen Dahl, NU1T" <sm6srw@arrl.net>, 2025.
+# "Jorgen Dahl, NU1T" <sm6srw@arrl.net>, 2025, 2026.
 # "Erkin Mercan (TA4AQG-SP9AQG)" <ekomeko066@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-12-31 15:53+0000\n"
-"PO-Revision-Date: 2025-12-31 14:17+0000\n"
+"PO-Revision-Date: 2026-01-01 14:22+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
-"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/sv/>\n"
+"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/sv/>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12716,7 +12716,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/checkresult.php:267
 msgid "Force update even if DXCC covers multiple CQ zones"
-msgstr ""
+msgstr "Forcera uppdatering även om DXCC entiteten täcker flera CQ-zoner"
 
 #: application/views/logbookadvanced/checkresult.php:268
 msgid ""
@@ -12726,6 +12726,11 @@ msgid ""
 "are updated. This checkbox overrides this but might result in wrong data. "
 "Use with caution!"
 msgstr ""
+"Uppdateringsfunktionen kan endast ställa in den huvudsakliga CQ-zonen för en "
+"given DXCC entitet. Om DXCC entiteten täcker flera CQ-zoner så finns det en "
+"chans att detta inte är korrekt. Som standard så uppdateras endast QSOs med "
+"DXCC som täcker en enda CQ-zon. Denna kryssruta åsidosätter detta men kan "
+"resultera i felaktiga data. Använd med försiktighet!"
 
 #: application/views/logbookadvanced/checkresult.php:285
 #: application/views/search/cqzones_result.php:14
