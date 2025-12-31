@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2025-12-31 13:10+0000\n"
 "PO-Revision-Date: 2025-12-31 14:17+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
-"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/sv/>\n"
+"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/sv/>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -371,6 +371,8 @@ msgstr "DOK"
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/stationsetup/linkedlocations.php:33
 #: application/views/timeplotter/index.php:24
+#: application/views/logbookadvanced/checkresult.php:286
+#: application/views/logbookadvanced/checkresult.php:362
 msgid "DXCC"
 msgstr "DXCC"
 
@@ -1525,6 +1527,8 @@ msgstr "eQSL"
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/widgets/qsos.php:18
+#: application/views/logbookadvanced/checkresult.php:281
+#: application/views/logbookadvanced/checkresult.php:357
 msgid "Mode"
 msgstr "Trafiksätt"
 
@@ -1716,6 +1720,8 @@ msgstr "Delstat"
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/view_log/qso.php:680
 #: application/views/visitor/index.php:27
+#: application/views/logbookadvanced/checkresult.php:283
+#: application/views/logbookadvanced/checkresult.php:359
 msgid "Gridsquare"
 msgstr "Lokatorruta"
 
@@ -1840,6 +1846,8 @@ msgstr "Avstånd"
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
 #: application/views/widgets/qsos.php:21
+#: application/views/logbookadvanced/checkresult.php:282
+#: application/views/logbookadvanced/checkresult.php:358
 msgid "Band"
 msgstr "Band"
 
@@ -4432,6 +4440,8 @@ msgstr "Inget hittades!"
 #: application/views/user/edit.php:137 application/views/user/index.php:28
 #: application/views/user/index.php:153 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:672
+#: application/views/logbookadvanced/checkresult.php:278
+#: application/views/logbookadvanced/checkresult.php:354
 msgid "Callsign"
 msgstr "Anropssignal"
 
@@ -4543,6 +4553,8 @@ msgstr "Det finns olika data för DOK i din logg jämfört med DCL"
 #: application/views/view_log/partial/log_ajax.php:196
 #: application/views/visitor/index.php:151
 #: application/views/widgets/qsos.php:16
+#: application/views/logbookadvanced/checkresult.php:279
+#: application/views/logbookadvanced/checkresult.php:355
 msgid "Date"
 msgstr "Datum"
 
@@ -4579,6 +4591,8 @@ msgstr "Datum"
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:198
 #: application/views/visitor/index.php:154
+#: application/views/logbookadvanced/checkresult.php:280
+#: application/views/logbookadvanced/checkresult.php:356
 msgid "Time"
 msgstr "Tid"
 
@@ -5474,6 +5488,7 @@ msgstr "Totalt"
 #: application/views/timeline/index.php:327
 #: application/views/timeplotter/index.php:44
 #: application/views/user/modals/first_login_wizard.php:74
+#: application/views/logbookadvanced/checkresult.php:284
 msgid "CQ Zone"
 msgstr "CQ-zon"
 
@@ -6431,6 +6446,7 @@ msgstr "Raderad"
 #: application/views/station_profile/create.php:124
 #: application/views/station_profile/edit.php:174
 #: application/views/user/modals/first_login_wizard.php:84
+#: application/views/logbookadvanced/checkresult.php:360
 msgid "ITU Zone"
 msgstr "ITU-zon"
 
@@ -6716,6 +6732,7 @@ msgstr "Bandkategorier"
 #: application/views/awards/pl_polska/index.php:372
 #: application/views/logbookadvanced/dbtoolsdialog.php:58
 #: application/views/logbookadvanced/index.php:796
+#: application/views/logbookadvanced/dbtoolsdialog.php:56
 msgid "Fix State"
 msgstr "Åtgärda Delstat"
 
@@ -7208,8 +7225,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
-"Reef/506) och giltig stat (ADIF: DXCC och STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
+"506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/was/index.php:3
 msgctxt "USA State"
@@ -12590,8 +12607,8 @@ msgid ""
 "We’ll keep the original value and add a more precise locator (e.g., JO90AB "
 "or JO90AB12) when a match is confident."
 msgstr ""
-"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator (t."
-"ex. JO90AB eller JO90AB12) när en matchning är säker."
+"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator "
+"(t.ex. JO90AB eller JO90AB12) när en matchning är säker."
 
 #: application/views/logbookadvanced/checkresult.php:49
 msgid "Distance Check Results"
@@ -12671,6 +12688,7 @@ msgstr "CQ Zon Kontrolleringsresultat"
 
 #: application/views/logbookadvanced/checkresult.php:104
 #: application/views/logbookadvanced/checkresult.php:329
+#: application/views/logbookadvanced/checkresult.php:336
 msgid "ITU Zone Check Results"
 msgstr "ITU Zone Kontrollresultat"
 
@@ -12682,6 +12700,8 @@ msgstr "Locator-kontrollresultat"
 #: application/views/logbookadvanced/checkresult.php:133
 #: application/views/logbookadvanced/checkresult.php:265
 #: application/views/logbookadvanced/checkresult.php:341
+#: application/views/logbookadvanced/checkresult.php:272
+#: application/views/logbookadvanced/checkresult.php:348
 msgid "Update selected"
 msgstr "Uppdatera valda"
 
@@ -12716,6 +12736,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/checkresult.php:278
 #: application/views/search/cqzones_result.php:14
+#: application/views/logbookadvanced/checkresult.php:285
 msgid "DXCC CQ Zone"
 msgstr "DXCC CQ-zon"
 
@@ -12748,6 +12769,8 @@ msgstr "DXCC CQ-zon"
 #: application/views/view_log/qso.php:742
 #: application/views/view_log/qso.php:749
 #: application/views/view_log/qso.php:754
+#: application/views/logbookadvanced/checkresult.php:287
+#: application/views/logbookadvanced/checkresult.php:363
 msgid "Station"
 msgstr "Station"
 
@@ -12755,10 +12778,13 @@ msgstr "Station"
 #: application/views/logbookadvanced/checkresult.php:400
 #: application/views/search/cqzones_result.php:51
 #: application/views/search/ituzones_result.php:51
+#: application/views/logbookadvanced/checkresult.php:331
+#: application/views/logbookadvanced/checkresult.php:407
 msgid "No incorrect CQ Zones were found."
 msgstr "Inga felaktiga CQ-zoner hittades."
 
 #: application/views/logbookadvanced/checkresult.php:331
+#: application/views/logbookadvanced/checkresult.php:338
 msgid ""
 "The following QSOs were found to have a different ITU zone compared to what "
 "this DXCC normally has (a maximum of 5000 QSOs are shown):"
@@ -12786,6 +12812,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/checkresult.php:354
 #: application/views/search/ituzones_result.php:14
+#: application/views/logbookadvanced/checkresult.php:361
 msgid "DXCC ITU Zone"
 msgstr "DXCC ITU-zon"
 
@@ -12822,6 +12849,11 @@ msgstr "Använd Wavelog för att fastställa CQ-zonen för alla QSOs."
 #: application/views/logbookadvanced/dbtoolsdialog.php:87
 #: application/views/logbookadvanced/dbtoolsdialog.php:99
 #: application/views/logbookadvanced/dbtoolsdialog.php:112
+#: application/views/logbookadvanced/dbtoolsdialog.php:50
+#: application/views/logbookadvanced/dbtoolsdialog.php:61
+#: application/views/logbookadvanced/dbtoolsdialog.php:72
+#: application/views/logbookadvanced/dbtoolsdialog.php:83
+#: application/views/logbookadvanced/dbtoolsdialog.php:96
 msgid "Check"
 msgstr "Kontrollera"
 
@@ -12842,23 +12874,28 @@ msgid "Check gridsquares that does not match the DXCC"
 msgstr "Kontrollera Lokatorrutor som inte matchar DXCC"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:46
+#: application/views/logbookadvanced/dbtoolsdialog.php:45
 msgid "Fix Continent"
 msgstr "Åtgärda Kontinent"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:47
+#: application/views/logbookadvanced/dbtoolsdialog.php:46
 msgid "Update missing or incorrect continent information"
 msgstr "Uppdatera saknad eller felaktig kontinentinformation"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:59
+#: application/views/logbookadvanced/dbtoolsdialog.php:57
 msgid "Update missing state/province information"
 msgstr "Uppdatera saknad information om stat/provins"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:70
 #: application/views/logbookadvanced/index.php:68
+#: application/views/logbookadvanced/dbtoolsdialog.php:67
 msgid "Update Distances"
 msgstr "Uppdatera avstånd"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:71
+#: application/views/logbookadvanced/dbtoolsdialog.php:68
 msgid "Calculate and update distance information for QSOs"
 msgstr "Beräkna och uppdatera avståndsinformation för QSOs"
 
@@ -12871,22 +12908,27 @@ msgid "Identify QSOs that are missing DXCC information"
 msgstr "Identifiera QSOs som saknar DXCC-information"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:94
+#: application/views/logbookadvanced/dbtoolsdialog.php:78
 msgid "Check all QSOs in the logbook for incorrect DXCC"
 msgstr "Kontrollera alla QSOs i loggboken för felaktig DXCC"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:95
+#: application/views/logbookadvanced/dbtoolsdialog.php:79
 msgid "Use Wavelog to determine DXCC for all QSOs."
 msgstr "Använd Wavelog för att bestämma DXCC för alla QSOs."
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:106
+#: application/views/logbookadvanced/dbtoolsdialog.php:90
 msgid "Lookup QSOs with missing grid in callbook"
 msgstr "Leta efter QSOs med saknad locator i callboken"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:107
+#: application/views/logbookadvanced/dbtoolsdialog.php:91
 msgid "Use callbook lookup to set gridsquare"
 msgstr "Använd callbook-sökning för att justera lokatorruta"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:108
+#: application/views/logbookadvanced/dbtoolsdialog.php:92
 msgid "This is limited to 150 callsigns for each run!"
 msgstr "Detta är begränsat till 150 anropssignaler per körning!"
 
@@ -17572,8 +17614,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 (t."
-"ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
+"(t.ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
@@ -19014,6 +19056,19 @@ msgstr "Skicka förfrågan"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Mottagen"
+
+#: application/views/logbookadvanced/checkresult.php:267
+msgid "Force update even if DXCC covers multiple CQ zones"
+msgstr ""
+
+#: application/views/logbookadvanced/checkresult.php:268
+msgid ""
+"The update function can only set the main CQ zone which is assigned to the "
+"DXCC. If the DXCC covers multiple CQ zones there is a chance that this is "
+"not correct. So by default only QSOs with DXCCs covering a single CQ zone "
+"are updated. This checkbox overrides this but might result in wrong data. "
+"Use with caution!"
+msgstr ""
 
 #~ msgid "Fix CQ Zones"
 #~ msgstr "Åtgärda CQ-zoner"
