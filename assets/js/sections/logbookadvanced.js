@@ -2725,12 +2725,18 @@ function saveOptions() {
 		$('#checkBoxAllItuZones').change(function (event) {
 			if (this.checked) {
 				$('#incorrectituzonetable tbody tr').each(function (i) {
-					selectQsoIdDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''), 'incorrectituzonetable');
+					if (!$(this).first().closest('tr').find("td[id='ituZones']").text().includes(',') || $('#forceMultiZoneUpdate').prop("checked")) {
+						selectQsoIdDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''), 'incorrectituzonetable');
+					}
 				});
+				if (!$('#forceMultiZoneUpdate').prop("checked")) {
+					$('#incorrectituzonetable').DataTable().column(8).search('^[^,]*$', true, false).draw();
+				}
 			} else {
 				$('#incorrectituzonetable tbody tr').each(function (i) {
 					unselectQsoIdDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''), 'incorrectituzonetable');
 				});
+				$('#incorrectituzonetable').DataTable().column(8).search('').draw();
 			}
 		});
 	}
@@ -2900,7 +2906,10 @@ function saveOptions() {
 		let id_list = [];
 		$('#incorrectituzonetable tbody input:checked').each(function () {
 			let id = $(this).closest('tr').attr('id')?.replace(/\D/g, '');
-			id_list.push(id);
+			// Skip entry if DXCC covers multiple ITU zones as the matching one cannot be identified automagically atm or force update
+			if (!$(this).closest('tr').find("td[id='ituZones']").text().includes(',') || $('#forceMultiZoneUpdate').prop("checked")) {
+				id_list.push(id);
+			}
 		});
 
 		if (id_list.length === 0) {
@@ -2916,6 +2925,8 @@ function saveOptions() {
 			return;
 		}
 
+		let table = $('#incorrectituzonetable').DataTable();
+
 		$('#fixSelectedItuZoneBtn').prop("disabled", true).addClass("running");
 		$('#closeButton').prop("disabled", true);
 
@@ -2928,7 +2939,8 @@ function saveOptions() {
 				$('#closeButton').prop("disabled", false);
 				id_list.forEach(function(id) {
 					let row = $("#incorrectituzonetable tbody tr#qsoID-" + id);
-					row.remove();
+					table.row(row).remove();
+					table.draw(false);
 				});
 				$('.dxcctablediv').html(data.message);
 			},
