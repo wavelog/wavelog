@@ -655,7 +655,7 @@ class Logbookadvanced_model extends CI_Model {
 			$where = "AND $where";
 		}
 
-		$order = $this->getSortorder($sortorder);
+		$order = $this->getSortOrder($sortorder);
 
         $sql = "
             SELECT qsos.*, lotw_users.*, station_profile.*, dxcc_entities.name AS station_country, d2.adif as adif, d2.name as dxccname, exists(select 1 from qsl_images where qsoid = qsos.COL_PRIMARY_KEY) as qslcount, coalesce(contest.name, qsos.col_contest_id) as contestname
@@ -1634,7 +1634,8 @@ class Logbookadvanced_model extends CI_Model {
 				return $this->getIncorrectCqZones();
 			case 'checkincorrectituzones':
 				return $this->getIncorrectItuZones();
-			return null;
+			default:
+				return null;
 		}
 	}
 	/*
