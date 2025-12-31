@@ -260,7 +260,14 @@ function check_incorrect_cq_zones($result, $custom_date_format) { ?>
 	<h5><?= __("CQ Zone Check Results") ?></h5>
 	<?php if ($result) {
 		echo __("The following QSOs were found to have a different CQ zone compared to what this DXCC normally has (a maximum of 5000 QSOs are shown):"); ?>
-		<br />
+		<br /><br />
+		<div class="col-md-12">
+			<div class="form-check form-check-lg border rounded p-3 bg-light h-100">
+				<input class="form-check-input me-2" type="checkbox" id="forceMultiZoneUpdate" />
+				<?= __("Force update even if DXCC covers multiple CQ zones") ?>
+				<div class="d-block mb-1 alert-danger"><?= __("The update function can only set the main CQ zone which is assigned to the DXCC. If the DXCC covers multiple CQ zones there is a chance that this is not correct. So by default only QSOs with DXCCs covering a single CQ zone are updated. This checkbox overrides this but might result in wrong data. Use with caution!"); ?></div>
+			</div>
+		</div>
 		<button type="button" class="mt-2 mb-2 btn btn-sm btn-primary ld-ext-right" id="fixSelectedCqZoneBtn" onclick="fixCqZoneSelected(true)">
 			<?= __("Update selected") ?><div class="ld ld-ring ld-spin"></div>
 		</button>
@@ -294,7 +301,7 @@ function check_incorrect_cq_zones($result, $custom_date_format) { ?>
 			echo '<td style=\'text-align: center\'>'; if($qso->COL_SAT_NAME != null) { echo $qso->COL_SAT_NAME; } else { echo strtolower($qso->COL_BAND); }; echo '</td>';
 			echo '<td style=\'text-align: center\'>'; echo strlen($qso->COL_GRIDSQUARE ?? '')==0?$qso->COL_VUCC_GRIDS:$qso->COL_GRIDSQUARE; echo '</td>';
 			echo '<td style=\'text-align: center\'>' . $qso->COL_CQZ . '</td>';
-			echo '<td style=\'text-align: center\'>' . $qso->correctcqzone . '</td>';
+			echo '<td id=\'cqZones\' style=\'text-align: center\'>' . $qso->correctcqzone . '</td>';
 			echo '<td style=\'text-align: center\'>' . ucwords(strtolower($qso->COL_COUNTRY), "- (/") . '</td>';
 			echo '<td style=\'text-align: center\'>' . $qso->station_profile_name . '</td>';
 			echo '</tr>';
@@ -334,7 +341,7 @@ function check_incorrect_itu_zones($result, $custom_date_format) { ?>
 			<div class="form-check form-check-lg border rounded p-3 bg-light h-100">
 				<input class="form-check-input me-2" type="checkbox" id="forceMultiZoneUpdate" />
 				<?= __("Force update even if DXCC covers multiple ITU zones") ?>
-				<div class="d-block mb-1 alert-danger"><?= __("The update function can only set the main ITU zone which is assigned to the DXCC. If the DXCC covers multiple ITU zones there is a chance that this is not correct. So by default only QSOs with DXCCs covering a single ITU zone are updated. This checkbox overrides this but might result in wrong data. USe with caution!"); ?></div>
+				<div class="d-block mb-1 alert-danger"><?= __("The update function can only set the main ITU zone which is assigned to the DXCC. If the DXCC covers multiple ITU zones there is a chance that this is not correct. So by default only QSOs with DXCCs covering a single ITU zone are updated. This checkbox overrides this but might result in wrong data. Use with caution!"); ?></div>
 			</div>
 		</div>
 		<button type="button" class="mt-2 mb-2 btn btn-sm btn-primary ld-ext-right" id="fixSelectedItuZoneBtn" onclick="fixItuZoneSelected(true)">
