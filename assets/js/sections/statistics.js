@@ -292,7 +292,7 @@ function totalQsosPerMonth() {
 				$("#monthTable").append('<table style="width:100%" class="monthtable table table-sm table-bordered table-hover table-striped table-condensed text-center"><thead>' +
 					'<tr>' +
 					'<td>#</td>' +
-					'<td>' + lang_statistics_month +'</td>' +
+					'<td>' + decodeHtml(lang_statistics_month) +'</td>' +
 					'<td>' + lang_statistics_number_of_qso_worked + ' </td>' +
 					'</tr>' +
 					'</thead>' +
@@ -310,7 +310,7 @@ function totalQsosPerMonth() {
 
 					// Convert month number to string with leading zero
 					var monthKey = row.month.toString().padStart(2, '0');
-					var monthName = monthNames[monthKey] || monthKey;
+					var monthName = decodeHtml(monthNames[monthKey] || monthKey);
 
 					var $iterator = $('<td></td>').html(i++);
 					var $type = $('<td></td>').html(monthName);
@@ -326,7 +326,7 @@ function totalQsosPerMonth() {
 
 				$.each(data, function () {
 					var monthKey = this.month.toString().padStart(2, '0');
-					var monthName = monthNames[monthKey] || monthKey;
+					var monthName = decodeHtml(monthNames[monthKey] || monthKey);
 					labels.push(monthName);
 					dataQso.push(this.total);
 				});
