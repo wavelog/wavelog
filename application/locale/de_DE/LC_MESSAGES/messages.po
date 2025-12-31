@@ -26,9 +26,9 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-12-31 15:34+0000\n"
-"PO-Revision-Date: 2025-12-30 19:35+0000\n"
-"Last-Translator: Jörg Dorgeist <wavelog@dj7nt.de>\n"
+"POT-Creation-Date: 2025-12-31 15:53+0000\n"
+"PO-Revision-Date: 2025-12-31 14:17+0000\n"
+"Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
 "Language: de_DE\n"
@@ -3658,7 +3658,7 @@ msgstr "QSO aktualisiert"
 msgid "Bearing"
 msgstr "Peilung"
 
-#: application/models/Logbookadvanced_model.php:1649
+#: application/models/Logbookadvanced_model.php:1650
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
 msgstr "VuccGrids Tabelle ist leer. Bitte aktualisiere die VUCC-Grid-Daten."
 
@@ -12900,6 +12900,7 @@ msgstr ""
 #: application/views/logbookadvanced/checkresult.php:343
 msgid "Force update even if DXCC covers multiple ITU zones"
 msgstr ""
+"Erzwinge das Update auch wenn das DXCC sich über mehrere ITU-Zonen erstreckt"
 
 #: application/views/logbookadvanced/checkresult.php:344
 msgid ""
@@ -12909,6 +12910,12 @@ msgid ""
 "are updated. This checkbox overrides this but might result in wrong data. "
 "Use with caution!"
 msgstr ""
+"Die Aktualisierung kann nur die Haupt-ITU-Zone setzen, die dem DXCC "
+"zugeordnet ist. Wenn das DXCC sich über mehrere ITU-Zonen erstreck, ist "
+"diese Angabe wahrscheinlich nicht korrekt. Daher werden standardmäßig nur "
+"QSOs aktualisiert, deren DXCC in einer einzelnen ITU-Zone liegt. Diese "
+"Checkbox überschreibt das Verhalten und könnte zu falschen Daten führen. Mit "
+"Vorsicht verwenden!"
 
 #: application/views/logbookadvanced/checkresult.php:361
 #: application/views/search/ituzones_result.php:14
@@ -19207,6 +19214,20 @@ msgstr "Anfrage senden"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Rcvd"
+
+#~ msgid ""
+#~ "The update function can only set the main ITU zone which is assigned to "
+#~ "the DXCC. If the DXCC covers multiple ITU zones there is a chance that "
+#~ "this is not correct. So by default only QSOs with DXCCs covering a single "
+#~ "ITU zone are updated. This checkbox overrides this but might result in "
+#~ "wrong data. USe with caution!"
+#~ msgstr ""
+#~ "Die Aktualisierung kann nur die Haupt-ITU-Zone setzen, die dem DXCC "
+#~ "zugeordnet ist. Wenn das DXCC sich über mehrere ITU-Zonen erstreck, ist "
+#~ "diese Angabe wahrscheinlich nicht korrekt. Daher werden standardmäßig nur "
+#~ "QSOs aktualisiert, deren DXCC in einer einzelnen ITU-Zone liegt. Diese "
+#~ "Checkbox überschreibt das Verhalten und könnte zu falschen Daten führen. "
+#~ "Mit Vorsicht verwenden!"
 
 #~ msgid "Check QSOs missing DXCC data"
 #~ msgstr "Überprüft QSOs auf fehlende DXCC-Daten"
