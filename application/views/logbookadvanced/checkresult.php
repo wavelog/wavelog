@@ -263,7 +263,7 @@ function check_incorrect_cq_zones($result, $custom_date_format) { ?>
 		<br /><br />
 		<div class="col-md-12">
 			<div class="form-check form-check-lg border rounded p-3 bg-light h-100">
-				<input class="form-check-input me-2" type="checkbox" id="forceMultiZoneUpdate" />
+				<input class="form-check-input me-2" type="checkbox" id="forceMultiZoneUpdateCq" />
 				<?= __("Force update even if DXCC covers multiple CQ zones") ?>
 				<div class="d-block mb-1 alert-danger"><?= __("The update function can only set the main CQ zone which is assigned to the DXCC. If the DXCC covers multiple CQ zones there is a chance that this is not correct. So by default only QSOs with DXCCs covering a single CQ zone are updated. This checkbox overrides this but might result in wrong data. Use with caution!"); ?></div>
 			</div>
@@ -281,7 +281,7 @@ function check_incorrect_cq_zones($result, $custom_date_format) { ?>
 				<th style=\'text-align: center\'>' . __("Mode") . '</th>
 				<th style=\'text-align: center\'>' . __("Band") . '</th>
 				<th style=\'text-align: center\'>' . __("Gridsquare") . '</th>
-				<th style=\'text-align: center\'>' . __("CQ Zone") . '</th>
+				<th style=\'text-align: center\' class="select-filter" scope="col">' . __("CQ Zone") . '</th>
 				<th style=\'text-align: center\'>' . __("DXCC CQ Zone") . '</th>
 				<th style=\'text-align: center\' class="select-filter" scope="col">' . __("DXCC") . '</th>
 				<th style=\'text-align: center\' class="select-filter" scope="col">' . __("Station") . '</th>
@@ -357,7 +357,7 @@ function check_incorrect_itu_zones($result, $custom_date_format) { ?>
 				<th style=\'text-align: center\'>' . __("Mode") . '</th>
 				<th style=\'text-align: center\'>' . __("Band") . '</th>
 				<th style=\'text-align: center\'>' . __("Gridsquare") . '</th>
-				<th style=\'text-align: center\'>' . __("ITU Zone") . '</th>
+				<th style=\'text-align: center\' class="select-filter" scope="col">' . __("ITU Zone") . '</th>
 				<th style=\'text-align: center\'>' . __("DXCC ITU Zone") . '</th>
 				<th style=\'text-align: center\' class="select-filter" scope="col">' . __("DXCC") . '</th>
 				<th style=\'text-align: center\' class="select-filter" scope="col">' . __("Station") . '</th>

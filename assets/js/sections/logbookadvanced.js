@@ -2611,6 +2611,14 @@ function saveOptions() {
 									});
 							});
 						rebind_checkbox_trigger_cq_zone();
+
+						$('#forceMultiZoneUpdateCq').on('change', function() {
+							if ($(this).is(':checked')) {
+								$('#incorrectcqzonetable').DataTable().column(8).search('').draw();
+								$('#incorrectcqzonetable tbody input[type="checkbox"]').prop('checked', false);
+								$('#incorrectcqzonetable tbody tr.activeRow').removeClass('activeRow');
+							}
+						});
 					},
 				});
 			},
