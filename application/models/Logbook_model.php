@@ -3462,7 +3462,7 @@ class Logbook_model extends CI_Model {
 		return $query;
 	}
 
-	function totals_year_month($year = null) {
+	function totals_year_month($dateFrom = null, $dateTo = null) {
 
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -3474,22 +3474,28 @@ class Logbook_model extends CI_Model {
 		$location_list = implode(',', array_fill(0, count($logbooks_locations_array), '?'));
 		$params = $logbooks_locations_array;
 
-		if ($year === null || $year === 'All') {
-			// Aggregate across all years
+		if (empty($dateFrom) && empty($dateTo)) {
+			// Aggregate across all dates
 			$sql = "SELECT DATE_FORMAT(COL_TIME_ON, '%m') AS month, COUNT(COL_PRIMARY_KEY) AS total
 					FROM " . $this->config->item('table_name') . "
 					WHERE station_id IN ($location_list)
 					GROUP BY DATE_FORMAT(COL_TIME_ON, '%m')
 					ORDER BY month ASC";
 		} else {
-			// Filter by specific year
+			// Filter by date range
 			$sql = "SELECT DATE_FORMAT(COL_TIME_ON, '%m') AS month, COUNT(COL_PRIMARY_KEY) AS total
 					FROM " . $this->config->item('table_name') . "
-					WHERE station_id IN ($location_list)
-					AND DATE_FORMAT(COL_TIME_ON, '%Y') = ?
-					GROUP BY DATE_FORMAT(COL_TIME_ON, '%m')
+					WHERE station_id IN ($location_list)";
+			if (!empty($dateFrom)) {
+				$sql .= " AND DATE(COL_TIME_ON) >= ?";
+				$params[] = $dateFrom;
+			}
+			if (!empty($dateTo)) {
+				$sql .= " AND DATE(COL_TIME_ON) <= ?";
+				$params[] = $dateTo;
+			}
+			$sql .= " GROUP BY DATE_FORMAT(COL_TIME_ON, '%m')
 					ORDER BY month ASC";
-			$params[] = $year;
 		}
 
 		$query = $this->db->query($sql, $params);
@@ -3733,17 +3739,17 @@ class Logbook_model extends CI_Model {
 		}
 	}
 
-	private function where_year($yr) {
-		if ($yr != 'All') {
-			$syr = date($yr.'-01-01 00:00:00');
-			$eyr = date($yr.'-12-31 23:59:59');
-			$this->db->where('COL_TIME_ON >=', $syr);
-			$this->db->where('COL_TIME_ON <=', $eyr);
+	private function where_date_range($dateFrom, $dateTo) {
+		if (!empty($dateFrom)) {
+			$this->db->where('DATE(COL_TIME_ON) >=', $dateFrom);
+		}
+		if (!empty($dateTo)) {
+			$this->db->where('DATE(COL_TIME_ON) <=', $dateTo);
 		}
 	}
 
 	/* Return total amount of SSB QSOs logged */
-	function total_ssb($yr = 'All') {
+	function total_ssb($dateFrom = null, $dateTo = null) {
 
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -3758,7 +3764,7 @@ class Logbook_model extends CI_Model {
 		$this->db->select('COUNT( * ) as count', FALSE);
 		$this->db->where_in('station_id', $logbooks_locations_array);
 		$this->db->where_in('COL_MODE', $mode);
-		$this->where_year($yr);
+		$this->where_date_range($dateFrom, $dateTo);
 		$query = $this->db->get($this->config->item('table_name'));
 
 		if ($query->num_rows() > 0) {
@@ -3769,7 +3775,7 @@ class Logbook_model extends CI_Model {
 	}
 
 	/* Return total number of satellite QSOs */
-	function total_sat($yr = 'All') {
+	function total_sat($dateFrom = null, $dateTo = null) {
 
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -3783,7 +3789,7 @@ class Logbook_model extends CI_Model {
 		$this->db->where('COL_SAT_NAME is not null');
 		$this->db->where('COL_SAT_NAME !=', '');
 		$this->db->where('COL_PROP_MODE', 'SAT');
-		$this->where_year($yr);
+		$this->where_date_range($dateFrom, $dateTo);
 		$this->db->order_by('count DESC');
 		$this->db->group_by('COL_SAT_NAME');
 		$query = $this->db->get($this->config->item('table_name'));
@@ -3831,7 +3837,7 @@ class Logbook_model extends CI_Model {
 	}
 
 	/* Return total number of CW QSOs */
-	function total_cw($yr = 'All') {
+	function total_cw($dateFrom = null, $dateTo = null) {
 
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -3843,7 +3849,7 @@ class Logbook_model extends CI_Model {
 		$this->db->select('COUNT( * ) as count', FALSE);
 		$this->db->where_in('station_id', $logbooks_locations_array);
 		$this->db->where('COL_MODE', 'CW');
-		$this->where_year($yr);
+		$this->where_date_range($dateFrom, $dateTo);
 		$query = $this->db->get($this->config->item('table_name'));
 
 		if ($query->num_rows() > 0) {
@@ -3854,7 +3860,7 @@ class Logbook_model extends CI_Model {
 	}
 
 	/* Return total number of FM QSOs */
-	function total_am($yr = 'All') {
+	function total_am($dateFrom = null, $dateTo = null) {
 
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -3866,7 +3872,7 @@ class Logbook_model extends CI_Model {
 		$this->db->select('COUNT( * ) as count', FALSE);
 		$this->db->where_in('station_id', $logbooks_locations_array);
 		$this->db->where('COL_MODE', 'AM');
-		$this->where_year($yr);
+		$this->where_date_range($dateFrom, $dateTo);
 		$query = $this->db->get($this->config->item('table_name'));
 
 		if ($query->num_rows() > 0) {
@@ -3876,7 +3882,7 @@ class Logbook_model extends CI_Model {
 		}
 	}
 
-	function total_fm($yr = 'All') {
+	function total_fm($dateFrom = null, $dateTo = null) {
 
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -3888,7 +3894,7 @@ class Logbook_model extends CI_Model {
 		$this->db->select('COUNT( * ) as count', FALSE);
 		$this->db->where_in('station_id', $logbooks_locations_array);
 		$this->db->where('COL_MODE', 'FM');
-		$this->where_year($yr);
+		$this->where_date_range($dateFrom, $dateTo);
 		$query = $this->db->get($this->config->item('table_name'));
 
 		if ($query->num_rows() > 0) {
@@ -3899,7 +3905,7 @@ class Logbook_model extends CI_Model {
 	}
 
 	/* Return total number of Digital QSOs */
-	function total_digi($yr = 'All') {
+	function total_digi($dateFrom = null, $dateTo = null) {
 
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -3916,7 +3922,7 @@ class Logbook_model extends CI_Model {
 		$this->db->where('COL_MODE !=', 'CW');
 		$this->db->where('COL_MODE !=', 'FM');
 		$this->db->where('COL_MODE !=', 'AM');
-		$this->where_year($yr);
+		$this->where_date_range($dateFrom, $dateTo);
 		$query = $this->db->get($this->config->item('table_name'));
 
 		if ($query->num_rows() > 0) {
@@ -3927,7 +3933,7 @@ class Logbook_model extends CI_Model {
 	}
 
 	/* Return total number of QSOs per band */
-	function total_bands($yr = 'All') {
+	function total_bands($dateFrom = null, $dateTo = null) {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -3937,7 +3943,7 @@ class Logbook_model extends CI_Model {
 
 		$this->db->select('COL_BAND AS band, count( * ) AS count', FALSE);
 		$this->db->where_in('station_id', $logbooks_locations_array);
-		$this->where_year($yr);
+		$this->where_date_range($dateFrom, $dateTo);
 		$this->db->group_by('band');
 		$this->db->order_by('count', 'DESC');
 
@@ -3947,7 +3953,7 @@ class Logbook_model extends CI_Model {
 	}
 
 	/* Return total number of QSOs per operator */
-	function total_operators($yr = 'All') {
+	function total_operators($dateFrom = null, $dateTo = null) {
 
 		//Load logbook model and get station locations
 		$this->load->model('logbooks_model');
@@ -3960,7 +3966,7 @@ class Logbook_model extends CI_Model {
 		//get statistics from database
 		$this->db->select('IFNULL(IF(COL_OPERATOR = "", COL_STATION_CALLSIGN, COL_OPERATOR), COL_STATION_CALLSIGN) AS operator, count( * ) AS count', FALSE);
 		$this->db->where_in('station_id', $logbooks_locations_array);
-		$this->where_year($yr);
+		$this->where_date_range($dateFrom, $dateTo);
 		$this->db->group_by('operator');
 		$this->db->order_by('count', 'DESC');
 
