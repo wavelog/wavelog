@@ -2611,6 +2611,13 @@ function saveOptions() {
 									});
 							});
 						rebind_checkbox_trigger_cq_zone();
+
+						$('#forceMultiZoneUpdateCq').on('change', function() {
+							$('#incorrectcqzonetable').DataTable().column(8).search('').draw();
+							$('#checkBoxAllCqZones').prop('checked', false);
+							$('#incorrectcqzonetable tbody input[type="checkbox"]').prop('checked', false);
+							$('#incorrectcqzonetable tbody tr.activeRow').removeClass('activeRow');
+						});
 					},
 				});
 			},
@@ -2672,6 +2679,13 @@ function saveOptions() {
 					},
 				});
 
+				$('#forceMultiZoneUpdate').on('change', function() {
+					$('#incorrectituzonetable').DataTable().column(8).search('').draw();
+					$('#checkBoxAllItuZones').prop('checked', false);
+					$('#incorrectituzonetable tbody input[type="checkbox"]').prop('checked', false);
+					$('#incorrectituzonetable tbody tr.activeRow').removeClass('activeRow');
+				});
+
 			},
 			error: function(xhr, status, error) {
 				$('#checkIncorrectItuZonesBtn').prop("disabled", false).removeClass("running");
@@ -2711,12 +2725,18 @@ function saveOptions() {
 		$('#checkBoxAllCqZones').change(function (event) {
 			if (this.checked) {
 				$('#incorrectcqzonetable tbody tr').each(function (i) {
-					selectQsoIdDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''), 'incorrectcqzonetable');
+					if (!$(this).first().closest('tr').find("td[id='cqZones']").text().includes(',') || $('#forceMultiZoneUpdateCq').prop("checked")) {
+						selectQsoIdDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''), 'incorrectcqzonetable');
+					}
 				});
+				if (!$('#forceMultiZoneUpdateCq').prop("checked")) {
+					$('#incorrectcqzonetable').DataTable().column(8).search('^[^,]*$', true, false).draw();
+				}
 			} else {
 				$('#incorrectcqzonetable tbody tr').each(function (i) {
 					unselectQsoIdDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''), 'incorrectcqzonetable');
 				});
+				$('#incorrectcqzonetable').DataTable().column(8).search('').draw();
 			}
 		});
 	}
@@ -2725,12 +2745,18 @@ function saveOptions() {
 		$('#checkBoxAllItuZones').change(function (event) {
 			if (this.checked) {
 				$('#incorrectituzonetable tbody tr').each(function (i) {
-					selectQsoIdDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''), 'incorrectituzonetable');
+					if (!$(this).first().closest('tr').find("td[id='ituZones']").text().includes(',') || $('#forceMultiZoneUpdate').prop("checked")) {
+						selectQsoIdDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''), 'incorrectituzonetable');
+					}
 				});
+				if (!$('#forceMultiZoneUpdate').prop("checked")) {
+					$('#incorrectituzonetable').DataTable().column(8).search('^[^,]*$', true, false).draw();
+				}
 			} else {
 				$('#incorrectituzonetable tbody tr').each(function (i) {
 					unselectQsoIdDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''), 'incorrectituzonetable');
 				});
+				$('#incorrectituzonetable').DataTable().column(8).search('').draw();
 			}
 		});
 	}
@@ -2755,6 +2781,8 @@ function saveOptions() {
 			return;
 		}
 
+		let table = $('#dxccCheckTable').DataTable();
+
 		$('#fixSelectedDxccBtn').prop("disabled", true).addClass("running");
 		$('#closeButton').prop("disabled", true);
 
@@ -2767,7 +2795,8 @@ function saveOptions() {
 				$('#closeButton').prop("disabled", false);
 				id_list.forEach(function(id) {
 					let row = $("#dxccCheckTable tbody tr#qsoID-" + id);
-					row.remove();
+					table.row(row).remove();
+					table.draw(false);
 				});
 				$('.dxcctablediv').html(data.message);
 			},
@@ -2856,7 +2885,10 @@ function saveOptions() {
 		let id_list = [];
 		$('#incorrectcqzonetable tbody input:checked').each(function () {
 			let id = $(this).closest('tr').attr('id')?.replace(/\D/g, '');
-			id_list.push(id);
+			// Skip entry if DXCC covers multiple CQ zones as the matching one cannot be identified automagically atm or force update
+			if (!$(this).closest('tr').find("td[id='cqZones']").text().includes(',') || $('#forceMultiZoneUpdate').prop("checked")) {
+				id_list.push(id);
+			}
 		});
 
 		if (id_list.length === 0) {
@@ -2872,6 +2904,8 @@ function saveOptions() {
 			return;
 		}
 
+		let table = $('#incorrectcqzonetable').DataTable();
+
 		$('#fixSelectedCqZoneBtn').prop("disabled", true).addClass("running");
 		$('#closeButton').prop("disabled", true);
 
@@ -2884,7 +2918,8 @@ function saveOptions() {
 				$('#closeButton').prop("disabled", false);
 				id_list.forEach(function(id) {
 					let row = $("#incorrectcqzonetable tbody tr#qsoID-" + id);
-					row.remove();
+					table.row(row).remove();
+					table.draw(false);
 				});
 				$('.dxcctablediv').html(data.message);
 			},
@@ -2900,7 +2935,10 @@ function saveOptions() {
 		let id_list = [];
 		$('#incorrectituzonetable tbody input:checked').each(function () {
 			let id = $(this).closest('tr').attr('id')?.replace(/\D/g, '');
-			id_list.push(id);
+			// Skip entry if DXCC covers multiple ITU zones as the matching one cannot be identified automagically atm or force update
+			if (!$(this).closest('tr').find("td[id='ituZones']").text().includes(',') || $('#forceMultiZoneUpdate').prop("checked")) {
+				id_list.push(id);
+			}
 		});
 
 		if (id_list.length === 0) {
@@ -2916,6 +2954,8 @@ function saveOptions() {
 			return;
 		}
 
+		let table = $('#incorrectituzonetable').DataTable();
+
 		$('#fixSelectedItuZoneBtn').prop("disabled", true).addClass("running");
 		$('#closeButton').prop("disabled", true);
 
@@ -2928,7 +2968,8 @@ function saveOptions() {
 				$('#closeButton').prop("disabled", false);
 				id_list.forEach(function(id) {
 					let row = $("#incorrectituzonetable tbody tr#qsoID-" + id);
-					row.remove();
+					table.row(row).remove();
+					table.draw(false);
 				});
 				$('.dxcctablediv').html(data.message);
 			},

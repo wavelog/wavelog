@@ -7,17 +7,6 @@
 			</h5>
 			<p class="mb-1 alert-danger"><?= __("Warning. This tool can be dangerous to your data, and should only be used if you know what you are doing.") ?></p>
             <div class="list-group">
-                <div class="list-group-item d-flex justify-content-between align-items-center">
-                    <div>
-                        <h6 class="mb-1"><?= __("Fix CQ Zones") ?></h6>
-                        <p class="mb-1 small text-muted"><?= __("Update missing CQ zone information") ?></p>
-                    </div>
-                    <div class="d-flex nowrap">
-                        <button type="button" class="btn btn-sm btn-success me-1 ld-ext-right" id="checkFixCqZonesBtn" onclick="checkFixCqZones()">
-                            <?= __("Check") ?><div class="ld ld-ring ld-spin"></div>
-                        </button>
-                    </div>
-                </div>
 				<div class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
                         <h6 class="mb-1"><?= __("Check all QSOs in the logbook for incorrect CQ Zones") ?></h6>
@@ -29,19 +18,6 @@
                         </button>
                     </div>
                 </div>
-
-                <div class="list-group-item d-flex justify-content-between align-items-center">
-                    <div>
-                        <h6 class="mb-1"><?= __("Fix ITU Zones") ?></h6>
-                        <p class="mb-1 small text-muted"><?= __("Update missing ITU zone information") ?></p>
-                    </div>
-                    <div class="d-flex nowrap">
-                        <button type="button" class="btn btn-sm btn-success me-1 ld-ext-right" id="checkFixItuZonesBtn" onclick="checkFixItuZones()">
-                            <?= __("Check") ?><div class="ld ld-ring ld-spin"></div>
-                        </button>
-                    </div>
-                </div>
-
 				<div class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
                         <h6 class="mb-1"><?= __("Check all QSOs in the logbook for incorrect ITU Zones") ?></h6>
@@ -53,8 +29,7 @@
                         </button>
                     </div>
                 </div>
-
-								<div class="list-group-item d-flex justify-content-between align-items-center">
+				<div class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
                         <h6 class="mb-1"><?= __("Check Gridsquares") ?></h6>
                         <p class="mb-1 small text-muted"><?= __("Check gridsquares that does not match the DXCC") ?></p>
@@ -65,7 +40,6 @@
                         </button>
                     </div>
                 </div>
-
                 <div class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
                         <h6 class="mb-1"><?= __("Fix Continent") ?></h6>
@@ -77,7 +51,6 @@
                         </button>
                     </div>
                 </div>
-
                 <div class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
                         <h6 class="mb-1"><?= __("Fix State") ?></h6>
@@ -89,7 +62,6 @@
                         </button>
                     </div>
                 </div>
-
                 <div class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
                         <h6 class="mb-1"><?= __("Update Distances") ?></h6>
@@ -101,19 +73,6 @@
                         </button>
                     </div>
                 </div>
-
-				<div class="list-group-item d-flex justify-content-between align-items-center">
-                    <div>
-                        <h6 class="mb-1"><?= __("Check QSOs missing DXCC data") ?></h6>
-                        <p class="mb-1 small text-muted"><?= __("Identify QSOs that are missing DXCC information") ?></p>
-                    </div>
-                    <div class="d-flex nowrap">
-                        <button type="button" class="btn btn-sm btn-success me-1 ld-ext-right" id="checkMissingDxccsBtn" onclick="checkMissingDxcc()">
-                            <?= __("Check") ?><div class="ld ld-ring ld-spin"></div>
-                        </button>
-                    </div>
-                </div>
-
 				<div class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
                         <h6 class="mb-1"><?= __("Check all QSOs in the logbook for incorrect DXCC") ?></h6>

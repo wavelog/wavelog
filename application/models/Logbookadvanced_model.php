@@ -2042,7 +2042,7 @@ class Logbookadvanced_model extends CI_Model {
             $dxcc['adif'] = (isset($dxcc['adif'])) ? $dxcc['adif'] : 0;
             $dxcc['entity'] = (isset($dxcc['entity'])) ? $dxcc['entity'] : 'None';
 
-            if ($call->col_dxcc != $dxcc['adif']) {
+            if (($call->col_dxcc ?? 'Unset') != $dxcc['adif']) {
                 $result[] = array(
                                 'callsign'          => $call->col_call,
 								'qso_date'          => $call->date,
