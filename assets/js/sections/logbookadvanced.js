@@ -2796,8 +2796,8 @@ function saveOptions() {
 				id_list.forEach(function(id) {
 					let row = $("#dxccCheckTable tbody tr#qsoID-" + id);
 					table.row(row).remove();
-					table.draw(false);
 				});
+				table.draw(false);
 				$('.dxcctablediv').html(data.message);
 			},
 			error: function(xhr, status, error) {
