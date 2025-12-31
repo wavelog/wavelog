@@ -2761,6 +2761,8 @@ function saveOptions() {
 			return;
 		}
 
+		let table = $('#dxccCheckTable').DataTable();
+
 		$('#fixSelectedDxccBtn').prop("disabled", true).addClass("running");
 		$('#closeButton').prop("disabled", true);
 
@@ -2773,7 +2775,8 @@ function saveOptions() {
 				$('#closeButton').prop("disabled", false);
 				id_list.forEach(function(id) {
 					let row = $("#dxccCheckTable tbody tr#qsoID-" + id);
-					row.remove();
+					table.row(row).remove();
+					table.draw(false);
 				});
 				$('.dxcctablediv').html(data.message);
 			},
