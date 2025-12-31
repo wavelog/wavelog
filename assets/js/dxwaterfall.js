@@ -1397,7 +1397,7 @@ var dxWaterfall = {
     _renderInitializing: function() {
         // Display waiting message with black screen, logo, and "Please wait" message
         // During the initial 3-second delay, this shows a loading screen
-        this.displayWaitingMessage(lang_dxwaterfall_please_wait);
+        this.displayWaitingMessage(decodeHtml(lang_dxwaterfall_please_wait));
         this.updateZoomMenu();
     },
 
@@ -3211,7 +3211,7 @@ var dxWaterfall = {
             var waterfallHeight = height - DX_WATERFALL_CONSTANTS.CANVAS.RULER_HEIGHT;
             var textCenterY = y + (waterfallHeight / 2);
             this.setCanvasTextStyle(this.ctx, DX_WATERFALL_CONSTANTS.FONTS.OUT_OF_BAND, DX_WATERFALL_CONSTANTS.COLORS.MESSAGE_TEXT_WHITE, 'center', 'middle');
-            this.ctx.fillText(lang_dxwaterfall_out_of_bandplan, textCenterX, textCenterY);
+            this.ctx.fillText(decodeHtml(lang_dxwaterfall_out_of_bandplan), textCenterX, textCenterY);
         }
     },
 
@@ -3583,6 +3583,7 @@ var dxWaterfall = {
 
     // Generate and cache static noise patterns for animation
     generateCachedNoise: function() {
+	if ((dxwaterfall_enable ?? 'Y') === 'E') { return; }
         var width = this.canvas.width;
         var height = this.canvas.height;
 
@@ -3637,6 +3638,7 @@ var dxWaterfall = {
 
     // Draw static noise background (cached and animated)
     drawStaticNoise: function() {
+	if ((dxwaterfall_enable ?? 'Y') === 'E') { return; }
         try {
             // Generate cached noise only if needed (dimensions changed or first time)
             this.generateCachedNoise();
@@ -6799,9 +6801,9 @@ function setFrequency(frequencyInKHz, fromWaterfall) {
     var waterfallRefreshInterval = null; // Store interval ID for cleanup
 
     // Initialize UI text and tooltip from language variables
-    $('#dxWaterfallMessage').text(lang_dxwaterfall_turn_on);
-    $('#dxWaterfallPowerOnIcon').attr('title', lang_dxwaterfall_turn_on);
-    $('#dxWaterfallPowerOffIcon').attr('title', lang_dxwaterfall_turn_off);
+    $('#dxWaterfallMessage').html(lang_dxwaterfall_turn_on);
+    $('#dxWaterfallPowerOnIcon').attr('title', decodeHtml(lang_dxwaterfall_turn_on));
+    $('#dxWaterfallPowerOffIcon').attr('title', decodeHtml(lang_dxwaterfall_turn_off));
 
     // Debounce variables for power toggle
     var lastToggleTime = 0;

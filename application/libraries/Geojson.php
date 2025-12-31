@@ -22,55 +22,61 @@ class Geojson {
      * Value: Array with 'name' and 'enabled' flag
      */
     const SUPPORTED_STATES = [
-        1 => ['name' => 'Canada', 'enabled' => true],            // 13 provinces/territories
-        6 => ['name' => 'Alaska', 'enabled' => true],           // 1 state
-        27 => ['name' => 'Belarus', 'enabled' => true],          // 7 subdivisions
-        29 => ['name' => 'Canary Islands', 'enabled' => true],   // 2 provinces
-        32 => ['name' => 'Ceuta & Melilla', 'enabled' => true],  // 2 autonomous cities
-        50 => ['name' => 'Mexico', 'enabled' => true],           // 32 states
-        100 => ['name' => 'Argentina', 'enabled' => true],       // 24 subdivisions
-        108 => ['name' => 'Brazil', 'enabled' => true],          // 27 subdivisions
-        112 => ['name' => 'Chile', 'enabled' => true],           // 16 regions
+        1 => ['name' => 'Canada', 'enabled' => true],              // 13 provinces/territories
+        6 => ['name' => 'Alaska', 'enabled' => true],              // 1 state
+        27 => ['name' => 'Belarus', 'enabled' => true],            // 7 subdivisions
+        29 => ['name' => 'Canary Islands', 'enabled' => true],     // 2 provinces
+        32 => ['name' => 'Ceuta & Melilla', 'enabled' => true],    // 2 autonomous cities
+        50 => ['name' => 'Mexico', 'enabled' => true],             // 32 states
+        100 => ['name' => 'Argentina', 'enabled' => true],         // 24 subdivisions
+        108 => ['name' => 'Brazil', 'enabled' => true],            // 27 subdivisions
+        110 => ['name' => 'Hawaii', 'enabled' => true],            // 1 state
+        112 => ['name' => 'Chile', 'enabled' => true],             // 16 regions
         137 => ['name' => 'Republic of Korea', 'enabled' => true], // 17 subdivisions
-        110 => ['name' => 'Hawaii', 'enabled' => true],         // 1 state
-        144 => ['name' => 'Uruguay', 'enabled' => true],         // 19 subdivisions
-        148 => ['name' => 'Venezuela', 'enabled' => true],       // 24 states
-        149 => ['name' => 'Azores', 'enabled' => true],          // 1 autonomous region
-        150 => ['name' => 'Australia', 'enabled' => true],       // 8 subdivisions
-        163 => ['name' => 'Papua New Guinea', 'enabled' => true], // 22 provinces
-        170 => ['name' => 'New Zealand', 'enabled' => true],     // 16 regions
-        209 => ['name' => 'Belgium', 'enabled' => true],         // 11 subdivisions
-        212 => ['name' => 'Bulgaria', 'enabled' => true],        // 28 subdivisions
-        214 => ['name' => 'Corsica', 'enabled' => true],         // 2 departments (2A, 2B)
-        225 => ['name' => 'Sardinia', 'enabled' => true],        // 5 provinces
-        227 => ['name' => 'France', 'enabled' => true],          // 96 departments
-        230 => ['name' => 'Germany', 'enabled' => true],         // 16 federal states
-        239 => ['name' => 'Hungary', 'enabled' => true],         // 20 subdivisions
-        245 => ['name' => 'Ireland', 'enabled' => true],         // 27 subdivisions
-        248 => ['name' => 'Italy', 'enabled' => true],           // 107 provinces
-        256 => ['name' => 'Madeira Islands', 'enabled' => true], // 1 autonomous region
-        263 => ['name' => 'Netherlands', 'enabled' => true],     // 12 provinces
-        266 => ['name' => 'Norway', 'enabled' => true],          // 11 counties
-        269 => ['name' => 'Poland', 'enabled' => true],          // 16 voivodeships
-        272 => ['name' => 'Portugal', 'enabled' => true],        // 18 districts
-        275 => ['name' => 'Romania', 'enabled' => true],         // 42 counties
-        281 => ['name' => 'Spain', 'enabled' => true],           // 47 provinces
-        284 => ['name' => 'Sweden', 'enabled' => true],          // 21 subdivisions
-        287 => ['name' => 'Switzerland', 'enabled' => true],     // 26 cantons
-        291 => ['name' => 'USA', 'enabled' => true],             // 52 states/territories
-        318 => ['name' => 'China', 'enabled' => true],           // 31 provinces
-        324 => ['name' => 'India', 'enabled' => true],           // 36 states/territories
-        339 => ['name' => 'Japan', 'enabled' => true],           // 47 prefectures
-        386 => ['name' => 'Taiwan', 'enabled' => true],          // 22 subdivisions
-        497 => ['name' => 'Croatia', 'enabled' => true],         // 21 subdivisions
+        144 => ['name' => 'Uruguay', 'enabled' => true],           // 19 subdivisions
+        148 => ['name' => 'Venezuela', 'enabled' => true],         // 24 states
+        149 => ['name' => 'Azores', 'enabled' => true],            // 1 autonomous region
+        150 => ['name' => 'Australia', 'enabled' => true],         // 8 subdivisions
+        163 => ['name' => 'Papua New Guinea', 'enabled' => true],  // 22 provinces
+        170 => ['name' => 'New Zealand', 'enabled' => true],       // 16 regions
+        209 => ['name' => 'Belgium', 'enabled' => true],           // 11 subdivisions
+        212 => ['name' => 'Bulgaria', 'enabled' => true],          // 28 subdivisions
+        214 => ['name' => 'Corsica', 'enabled' => true],           // 2 departments (2A, 2B)
+        225 => ['name' => 'Sardinia', 'enabled' => true],          // 5 provinces
+        227 => ['name' => 'France', 'enabled' => true],            // 96 departments
+        230 => ['name' => 'Germany', 'enabled' => true],           // 16 federal states
+        239 => ['name' => 'Hungary', 'enabled' => true],           // 20 subdivisions
+        245 => ['name' => 'Ireland', 'enabled' => true],           // 27 subdivisions
+        248 => ['name' => 'Italy', 'enabled' => true],             // 107 provinces
+        256 => ['name' => 'Madeira Islands', 'enabled' => true],   // 1 autonomous region
+        263 => ['name' => 'Netherlands', 'enabled' => true],       // 12 provinces
+        266 => ['name' => 'Norway', 'enabled' => true],            // 15 counties
+        269 => ['name' => 'Poland', 'enabled' => true],            // 16 voivodeships
+        272 => ['name' => 'Portugal', 'enabled' => true],          // 18 districts
+        275 => ['name' => 'Romania', 'enabled' => true],           // 42 counties
+        281 => ['name' => 'Spain', 'enabled' => true],             // 47 provinces
+        284 => ['name' => 'Sweden', 'enabled' => true],            // 21 subdivisions
+        287 => ['name' => 'Switzerland', 'enabled' => true],       // 26 cantons
+        291 => ['name' => 'USA', 'enabled' => true],               // 52 states/territories
+        318 => ['name' => 'China', 'enabled' => true],             // 31 provinces
+        324 => ['name' => 'India', 'enabled' => true],             // 36 states/territories
+        339 => ['name' => 'Japan', 'enabled' => true],             // 47 prefectures
+        386 => ['name' => 'Taiwan', 'enabled' => true],            // 22 subdivisions
+        497 => ['name' => 'Croatia', 'enabled' => true],           // 21 subdivisions
     ];
 
     private $qra;
+	private $geojsonFile = null;
+	private $geojsonData = null;
 
-    public function __construct() {
+    public function __construct($dxcc = null) {
         $CI =& get_instance();
         $CI->load->library('qra');
         $this->qra = $CI->qra;
+		if ($dxcc !== null) {
+			$this->geojsonFile = "assets/json/geojson/states_{$dxcc}.geojson";
+			$this->geojsonData = $this->loadGeoJsonFile($geojsonFile);
+		}
     }
 
     // ============================================================================
@@ -114,14 +120,16 @@ class Geojson {
             return null;
         }
 
-        $geojsonFile = "assets/json/geojson/states_{$dxcc}.geojson";
-        $geojsonData = $this->loadGeoJsonFile($geojsonFile);
+        if ($this->geojsonFile === null) {
+			$this->geojsonFile = "assets/json/geojson/states_{$dxcc}.geojson";
+			$this->geojsonData = $this->loadGeoJsonFile($this->geojsonFile);
+		}
 
-        if ($geojsonData === null) {
+        if ($this->geojsonData === null) {
             return null;
         }
 
-        return $this->findFeatureContainingPoint($lat, $lng, $geojsonData);
+        return $this->findFeatureContainingPoint($lat, $lng, $this->geojsonData);
     }
 
     /**
@@ -133,6 +141,15 @@ class Geojson {
     public function isStateSupported($dxcc) {
         return isset(self::SUPPORTED_STATES[$dxcc]) && self::SUPPORTED_STATES[$dxcc]['enabled'] === true;
     }
+
+	/**
+     * Retrieve list of DXCC entities that support state/province lookups
+     *
+     * @return array List of supported DXCC entities
+     */
+	public function getSupportedDxccs() {
+		return self::SUPPORTED_STATES;
+	}
 
     // ============================================================================
     // COORDINATE CONVERSION

@@ -548,6 +548,17 @@ $('#radio').change(function () {
 	}
 });
 
+// Handle manual frequency entry - sync visible field to hidden field
+$('#freq_calculated').on('change', function() {
+	// set_new_qrg() is defined in qrg_handler.js and will:
+	// 1. Parse the frequency value and convert to Hz
+	// 2. Update #frequency (hidden field)
+	// 3. Update #band selector to match the frequency
+	if (typeof set_new_qrg === 'function') {
+		set_new_qrg();
+	}
+});
+
 function setSerial(data) {
 	var serialsent = 1;
 	if (data.serialsent != "") {

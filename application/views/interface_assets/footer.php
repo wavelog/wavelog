@@ -373,7 +373,10 @@ function stopImpersonate_modal() {
 <?php if ($this->uri->segment(1) == "qso" ) { ?>
     <!-- Javascript used for QSO Notes Area -->
     <script src="<?php echo base_url() ;?>assets/plugins/easymde/easymde.min.js"></script>
-	<?php if($this->session->userdata('user_dxwaterfall_enable') == 'Y' && isset($manual_mode) && $manual_mode == 0) { ?>
+	<?php if(($this->session->userdata('user_dxwaterfall_enable') == 'E' ||  $this->session->userdata('user_dxwaterfall_enable') == 'Y') && isset($manual_mode) && $manual_mode == 0) { ?>
+		<script>
+			var dxwaterfall_enable='<?php echo $this->session->userdata('user_dxwaterfall_enable'); ?>';
+		</script>
 		<script type="text/javascript" src="<?php echo base_url() ;?>assets/js/dxwaterfall.js?v=<?php echo floor(time() / 3600); ?>"></script>
 	<?php } ?>
 <?php } ?>
@@ -1435,7 +1438,7 @@ mymap.on('mousemove', onQsoMapMove);
 
 	<!--- CAT Functionality --->
 	<!--- DX Waterfall Functionality --->
-	<?php if ($this->session->userdata('user_dxwaterfall_enable') == 'Y') { ?>
+	<?php if (($this->session->userdata('user_dxwaterfall_enable') == 'Y') || ($this->session->userdata('user_dxwaterfall_enable') == 'E')) { ?>
 	<script>
 		// Global variable definition for dxwaterfall.js
 		var dxwaterfall_cat_state = "none";
@@ -2431,24 +2434,27 @@ $('#sats').change(function(){
     </script>
     <?php if ($this->uri->segment(1) == "qsl") {
         $qsl_eqsl_table = '.qsltable';
+        $qsl_eqsl_info = 'true';
     } else if ($this->uri->segment(1) == "generic_qsl") {
         $qsl_eqsl_table = '.qsltable';
+        $qsl_eqsl_info = 'true';
     } else if ($this->uri->segment(1) == "eqsl") {
         $qsl_eqsl_table = '.eqsltable';
+        $qsl_eqsl_info = 'false'; // Server-side pagination, hide DataTables info
     } ?>
     <script>
         $('<?php echo $qsl_eqsl_table ?>').DataTable({
             "pageLength": 25,
             responsive: false,
             ordering: true,
-            "scrollY":        "500px",
             "scrollCollapse": true,
             "paging":         false,
-            "scrollX": true,
+            "scrollX": false,
             "language": {
                 url: getDataTablesLanguageUrl(),
             },
             "order": [ 2, 'desc' ],
+            "info": <?php echo $qsl_eqsl_info; ?>,
             dom: 'Bfrtip',
             buttons: [
 				{

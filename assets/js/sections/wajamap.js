@@ -5,13 +5,17 @@ let map;
 let info;
 let clickmarkers = [];
 
-let confirmedColor = user_map_custom.qsoconfirm.color;
-let workedColor = user_map_custom.qso.color;
-let unworkedColor = '';
+let confirmedColor = 'rgba(144,238,144)';
+if (typeof(user_map_custom.qsoconfirm) !== 'undefined') {
+      confirmedColor = user_map_custom.qsoconfirm.color;
+}
+let workedColor = 'rgba(229, 165, 10)';
+if (typeof(user_map_custom.qso) !== 'undefined') {
+      workedColor = user_map_custom.qso.color;
+}
+let unworkedColor = 'rgba(204, 55, 45)';
 if (typeof(user_map_custom.unworked) !== 'undefined') {
-	unworkedColor = user_map_custom.unworked.color;
-} else {
-	unworkedColor = 'red';
+   unworkedColor = user_map_custom.unworked.color;
 }
 
 const states = '01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47';

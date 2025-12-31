@@ -186,6 +186,9 @@ class Note extends CI_Model {
 
 	// Search notes with pagination and sorting for the logged-in user
 	public function search_paginated($criteria = [], $page = 1, $per_page = 25, $sort_col = null, $sort_dir = null) {
+		$page = max(1, intval($page));
+		$per_page = max(1, min(100, intval($per_page))); // Enforce max limit
+
 		$user_id = $this->session->userdata('user_id');
 		$params = array($user_id);
 		$where_clause = "WHERE user_id = ?";
@@ -216,15 +219,21 @@ class Note extends CI_Model {
 		// Build main query with sorting
 		$sql = "SELECT id, cat, title, note, creation_date, last_modified FROM notes $where_clause";
 
-		// Sorting
-		$columns = ['cat', 'title', 'creation_date', 'last_modified'];
-		if ($sort_col !== null && in_array($sort_col, $columns) && ($sort_dir === 'asc' || $sort_dir === 'desc')) {
-			$sql .= " ORDER BY $sort_col $sort_dir";
-		}
+		// Sorting - use strict array key mapping to prevent SQL injection
+		$allowed_columns = [
+			'cat' => 'cat',
+			'title' => 'title',
+			'creation_date' => 'creation_date',
+			'last_modified' => 'last_modified'
+		];
+		$sort_column = isset($allowed_columns[$sort_col]) ? $allowed_columns[$sort_col] : 'creation_date';
+		$sort_direction = ($sort_dir === 'desc') ? 'DESC' : 'ASC';
+		$sql .= " ORDER BY $sort_column $sort_direction";
 
-		// Pagination
 		$offset = ($page - 1) * $per_page;
-		$sql .= " LIMIT $per_page OFFSET $offset";
+		$limit = intval($per_page);
+		$offset_val = intval($offset);
+		$sql .= " LIMIT $limit OFFSET $offset_val";
 
 		$query = $this->db->query($sql, $params);
 		$notes = [];

@@ -70,6 +70,15 @@
 	let lang_gen_advanced_logbook_problem_updating_distances = '<?= __("There was a problem updating distances."); ?>';
 	let lang_gen_advanced_logbook_distances_updated = '<?= __("Distances updated successfully!"); ?>';
 
+	let lang_gen_advanced_logbook_confirm_fix_missing_dxcc = '<?= __("Are you sure you want to fix all QSOs with missing DXCC information? This action cannot be undone."); ?>';
+	let lang_gen_advanced_logbook_dupe_search = '<?= __("Duplicate Search"); ?>';
+	let lang_gen_advanced_logbook_search = '<?= __("Search"); ?>';
+
+	let lang_gen_advanced_logbook_show_more = '<?= __("Show more"); ?>';
+	let lang_gen_advanced_logbook_show_less = '<?= __("Show less"); ?>';
+
+
+
     let homegrid ='<?php echo strtoupper($homegrid[0]); ?>';
     <?php
     if (!isset($options)) {
@@ -260,6 +269,10 @@ $options = json_decode($options);
             <form id="searchForm" name="searchForm" action="<?php echo base_url() . "index.php/logbookadvanced/search"; ?>" method="post">
                 <input type="hidden" id="dupes" name="dupes" value="">
 				<input type="hidden" id="invalid" name="invalid" value="">
+				<input type="hidden" id="dupedate" name="dupedate" value="">
+				<input type="hidden" id="dupemode" name="dupemode" value="">
+				<input type="hidden" id="dupeband" name="dupeband" value="">
+				<input type="hidden" id="dupesat" name="dupesat" value="">
 
         <div class="row pt-2">
 			<div class="d-flex flex-wrap btn-group w-auto mx-auto">
@@ -491,7 +504,14 @@ $options = json_decode($options);
                                     </div>
                                 </div>
                             </div>
-                        </div>
+							<div class="row">
+									<div class="col-lg-2 col-md-2 col-sm-3 col-xl">
+										<div class="d-flex flex-wrap gap-1">
+											<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="$('#searchForm').submit(); $('#filterDropdown').dropdown('hide');"><i class="fas fa-search"></i> <?= __("Apply filters"); ?></button>
+										</div>
+									</div>
+								</div>
+							</div>
                     </div>
 
                     <!-- QSL Filters Dropdown -->
@@ -666,6 +686,13 @@ $options = json_decode($options);
                                         </select>
                                     </div>
                                 </div>
+								<div class="row">
+									<div class="col-lg-2 col-md-2 col-sm-3 col-xl">
+										<div class="d-flex flex-wrap gap-1">
+											<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="$('#searchForm').submit(); $('#qslFilterDropdown').dropdown('hide');"><i class="fas fa-search"></i> <?= __("Apply filters"); ?></button>
+										</div>
+									</div>
+								</div>
                             </div>
                         </div>
                     </div>
@@ -750,27 +777,23 @@ $options = json_decode($options);
 								</div>
 								<div class="card-body p-2">
 									<div class="d-grid gap-2">
-									<button type="button" class="btn btn-sm btn-primary dropdown-action" id="btnUpdateFromCallbook"><?= __("Update from Callbook"); ?></button>
-									<button type="button" class="btn btn-sm btn-primary dropdown-action" id="queueBureau"><?= __("Queue Bureau"); ?></button>
-									<button type="button" class="btn btn-sm btn-primary dropdown-action" id="queueDirect"><?= __("Queue Direct"); ?></button>
-									<button type="button" class="btn btn-sm btn-primary dropdown-action" id="queueElectronic"><?= __("Queue Electronic"); ?></button>
-									<button type="button" class="btn btn-sm btn-success dropdown-action" id="sentBureau"><?= __("Sent (Bureau)"); ?></button>
-									<button type="button" class="btn btn-sm btn-success dropdown-action" id="sentDirect"><?= __("Sent (Direct)"); ?></button>
-									<button type="button" class="btn btn-sm btn-success dropdown-action" id="sentElectronic"><?= __("Sent (Electronic)"); ?></button>
-									<button type="button" class="btn btn-sm btn-danger dropdown-action" id="dontSend"><?= __("Not Sent"); ?></button>
-									<button type="button" class="btn btn-sm btn-danger dropdown-action" id="notRequired"><?= __("QSL Not Required"); ?></button>
-									<button type="button" class="btn btn-sm btn-danger dropdown-action" id="notReceived"><?= __("Not Received"); ?></button>
-									<button type="button" class="btn btn-sm btn-warning dropdown-action" id="receivedBureau"><?= __("Received (Bureau)"); ?></button>
-									<button type="button" class="btn btn-sm btn-warning dropdown-action" id="receivedDirect"><?= __("Received (Direct)"); ?></button>
-									<button type="button" class="btn btn-sm btn-warning dropdown-action" id="receivedElectronic"><?= __("Received (Electronic)"); ?></button>
-									<button type="button" class="btn btn-sm btn-info dropdown-action" id="exportAdif"><?= __("Create ADIF"); ?></button>
-									<button type="button" class="btn btn-sm btn-info dropdown-action" id="printLabel"><?= __("Print Label"); ?></button>
-									<button type="button" class="btn btn-sm btn-info dropdown-action" id="qslSlideshow"><?= __("QSL Slideshow"); ?></button>
-									<button type="button" class="btn btn-sm btn-success dropdown-action" id="fixCqZones"><?= __("Fix CQ Zones"); ?></button>
-									<button type="button" class="btn btn-sm btn-success dropdown-action" id="fixItuZones"><?= __("Fix ITU Zones"); ?></button>
-									<button type="button" class="btn btn-sm btn-success dropdown-action" id="fixContinent"><?= __("Fix Continent"); ?></button>
-									<button type="button" class="btn btn-sm btn-success dropdown-action" id="fixState"><?= __("Fix State"); ?></button>
-									<button type="button" class="btn btn-sm btn-success dropdown-action" id="updateDistances"><?= __("Update Distances"); ?></button>
+										<button type="button" class="btn btn-sm btn-primary dropdown-action" id="btnUpdateFromCallbook"><?= __("Update from Callbook"); ?></button>
+										<button type="button" class="btn btn-sm btn-primary dropdown-action" id="queueBureau"><?= __("Queue Bureau"); ?></button>
+										<button type="button" class="btn btn-sm btn-primary dropdown-action" id="queueDirect"><?= __("Queue Direct"); ?></button>
+										<button type="button" class="btn btn-sm btn-primary dropdown-action" id="queueElectronic"><?= __("Queue Electronic"); ?></button>
+										<button type="button" class="btn btn-sm btn-success dropdown-action" id="sentBureau"><?= __("Sent (Bureau)"); ?></button>
+										<button type="button" class="btn btn-sm btn-success dropdown-action" id="sentDirect"><?= __("Sent (Direct)"); ?></button>
+										<button type="button" class="btn btn-sm btn-success dropdown-action" id="sentElectronic"><?= __("Sent (Electronic)"); ?></button>
+										<button type="button" class="btn btn-sm btn-danger dropdown-action" id="dontSend"><?= __("Not Sent"); ?></button>
+										<button type="button" class="btn btn-sm btn-danger dropdown-action" id="notRequired"><?= __("QSL Not Required"); ?></button>
+										<button type="button" class="btn btn-sm btn-danger dropdown-action" id="notReceived"><?= __("Not Received"); ?></button>
+										<button type="button" class="btn btn-sm btn-warning dropdown-action" id="receivedBureau"><?= __("Received (Bureau)"); ?></button>
+										<button type="button" class="btn btn-sm btn-warning dropdown-action" id="receivedDirect"><?= __("Received (Direct)"); ?></button>
+										<button type="button" class="btn btn-sm btn-warning dropdown-action" id="receivedElectronic"><?= __("Received (Electronic)"); ?></button>
+										<button type="button" class="btn btn-sm btn-info dropdown-action" id="exportAdif"><?= __("Create ADIF"); ?></button>
+										<button type="button" class="btn btn-sm btn-info dropdown-action" id="printLabel"><?= __("Print Label"); ?></button>
+										<button type="button" class="btn btn-sm btn-info dropdown-action" id="qslSlideshow"><?= __("QSL Slideshow"); ?></button>
+										<button type="button" class="btn btn-sm btn-success dropdown-action" id="fixState"><?= __("Fix State"); ?></button>
 									</div>
 								</div>
 							</div>
@@ -820,6 +843,9 @@ $options = json_decode($options);
 				<?php if(clubaccess_check(9)) { ?>
 					<button type="options" class="btn btn-sm btn-primary me-1 flex-grow-0 mb-2" id="optionButton" aria-label="<?= __("Options"); ?>" style="white-space: nowrap;" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= __("Options"); ?>">
 						<i class="fas fa-cog"></i>
+					</button>
+					<button type="button" class="btn btn-sm btn-primary me-1 flex-grow-0 mb-2" id="dbtools" style="white-space: nowrap;" aria-label="<?= __("Database Tools"); ?>"  data-bs-toggle="tooltip" data-bs-placement="top" title="<?= __("Database Tools"); ?>">
+						<i class="fas fa-wrench"></i>
 					</button>
 					<button type="button" class="btn btn-sm btn-danger me-1 flex-grow-0 mb-2" id="deleteQsos" style="white-space: nowrap;" aria-label="<?= __("Delete"); ?>"  data-bs-toggle="tooltip" data-bs-placement="top" title="<?= __("Delete"); ?>">
 						<i class="fas fa-trash-alt"></i>

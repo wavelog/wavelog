@@ -21,6 +21,10 @@ class Hamqth {
 		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
 		$xml = curl_exec($ch);
 		curl_close($ch);
+		if(curl_errno($ch)) {
+			log_message('error', 'Hamqth query failed: '.curl_strerror(curl_errno($ch))." (".curl_errno($ch).")");
+			return false;
+		}
 
 		// Create XML object
 		$xml = simplexml_load_string($xml);
@@ -121,8 +125,9 @@ class Hamqth {
 				$data['us_county'] 	= '';
 
 			}
-        } finally {
-            return $data;
-        }
+		} finally {
+			$data['source'] = 'HamQTH';
+			return $data;
+		}
 	}
 }

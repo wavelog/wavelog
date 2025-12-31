@@ -29,12 +29,31 @@ class eqsl extends CI_Controller {
 		$folder_name = $this->eqsl_images->get_imagePath('p');
 		$data['storage_used'] = $this->genfunctions->sizeFormat($this->genfunctions->folderSize($folder_name));
 
+		// Pagination
+		$this->load->library('pagination');
+		$config['base_url'] = base_url().'index.php/eqsl/index/';
+		$config['total_rows'] = $this->eqsl_images->count_eqsl_qso_list();
+		$config['per_page'] = '25';
+		$config['num_links'] = 6;
+		$config['full_tag_open'] = '';
+		$config['full_tag_close'] = '';
+		$config['cur_tag_open'] = '<strong class="active"><a href="">';
+		$config['cur_tag_close'] = '</a></strong>';
+
+		$this->pagination->initialize($config);
 
 		// Render Page
 		$data['page_title'] = __("eQSL Cards");
 
+		$offset = $this->uri->segment(3) ? $this->uri->segment(3) : 0;
+		$data['qslarray'] = $this->eqsl_images->eqsl_qso_list($config['per_page'], $offset);
 
-		$data['qslarray'] = $this->eqsl_images->eqsl_qso_list();
+		// Calculate result range for display
+		$total_rows = $config['total_rows'];
+		$per_page = $config['per_page'];
+		$start = $total_rows > 0 ? $offset + 1 : 0;
+		$end = min($offset + $per_page, $total_rows);
+		$data['result_range'] = sprintf(__("Showing %d to %d of %d entries"), $start, $end, $total_rows);
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('eqslcard/index');
@@ -293,11 +312,15 @@ class eqsl extends CI_Controller {
 		return $table;
 	}
 
-	function image($id) {
+	function image($id, $width=null) {
 		$this->load->model('user_model');
 		if (!$this->user_model->authorize(2)) {
 			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
+		}
+		$etag=$this->gen_check_etag("wl_eqsl_cacher_".$id,$width);
+		if ($etag == '0') { // Cached on Client side
+			return; 
 		}
 		$this->load->library('electronicqsl');
 		$this->load->model('Eqsl_images');
@@ -306,7 +329,15 @@ class eqsl extends CI_Controller {
 			$this->load->model('logbook_model');
 			$this->load->model('user_model');
 			$qso_query = $this->logbook_model->get_qso($id);
+
+			// Check if QSO exists and is accessible
+			if (!$qso_query || $qso_query->num_rows() == 0) {
+				show_error(__('QSO not found or not accessible'), 404);
+				return;
+			}
+
 			$qso = $qso_query->row();
+
 			$qso_timestamp = strtotime($qso->COL_TIME_ON);
 			$callsign = $qso->COL_CALL;
 			$band = $qso->COL_BAND;
@@ -318,46 +349,168 @@ class eqsl extends CI_Controller {
 			$minute = date('i', $qso_timestamp);
 
 			$query = $this->user_model->get_by_id($this->session->userdata('user_id'));
+			if ($query->num_rows() == 0) {
+				show_error(__('User not found'), 404);
+				return;
+			}
 			$q = $query->row();
 			$username = $qso->COL_STATION_CALLSIGN;
 			$password = $q->user_eqsl_password;
 
+			// Check if eQSL password is set
+			if (empty($password)) {
+				show_error(__('eQSL password not configured for this user'), 400);
+				return;
+			}
+
 			$image_url = $this->electronicqsl->card_image($username, urlencode($password), $callsign, $band, $mode, $year, $month, $day, $hour, $minute);
-			$file = file_get_contents($image_url, true);  // TODO use curl instead
+
+			// Use curl for better error handling instead of file_get_contents
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $image_url);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+			curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog-eQSL/1.0');
+			$file = curl_exec($ch);
+			$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+			curl_close($ch);
+
+			if ($file === false || $http_code != 200) {
+				show_error(__('Failed to fetch eQSL image data'), 503);
+				return;
+			}
 
 			$dom = new domDocument;
+			// Suppress warnings for malformed HTML
+			libxml_use_internal_errors(true);
 			$dom->loadHTML($file);
+			libxml_clear_errors();
 			$dom->preserveWhiteSpace = false;
 			$images = $dom->getElementsByTagName('img');
 
 			if (!isset($images) || count($images) == 0) {
 				$h3 = $dom->getElementsByTagName('h3');
 				if (isset($h3) && ($h3->item(0) !== null)) {
-					echo $h3->item(0)->nodeValue;
+					$error_message = $h3->item(0)->nodeValue;
 				} else {
-					echo "Rate Limited";
+					$error_message = "Rate Limited";
 				}
-				exit;
+				show_error(__('eQSL image not available') . ': ' . $error_message, 503);
+				return;
 			}
 
 			foreach ($images as $image) {
-				header('Content-Type: image/jpg');
-				$content = file_get_contents("https://www.eqsl.cc" . $image->getAttribute('src'));
-				if ($content === false) {
-					echo "No response";
-					exit;
+				$image_src = "https://www.eqsl.cc" . $image->getAttribute('src');
+
+				// Use curl for downloading the actual image
+				$ch = curl_init();
+				curl_setopt($ch, CURLOPT_URL, $image_src);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+				curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+				curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog-eQSL/1.0');
+				$content = curl_exec($ch);
+				$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+				curl_close($ch);
+
+				if ($content === false || $http_code != 200) {
+					show_error(__('Failed to download eQSL image'), 503);
+					return;
 				}
-				echo $content;
+
 				$filename = uniqid() . '.jpg';
-				if (file_put_contents($this->Eqsl_images->get_imagePath('p') . '/' . $filename, $content) !== false) {
+				$image_path = $this->Eqsl_images->get_imagePath('p') . '/' . $filename;
+				$save_result = file_put_contents($image_path, $content);
+
+				if ($save_result !== false) {
 					$this->Eqsl_images->save_image($id, $filename);
+				} else {
+					log_message('error', 'Failed to save eQSL image to: ' . $image_path);
 				}
+
+				$this->output_image_with_width($content, $width, $etag);	// This must be 1st time (because it's freshly fetched from eQSL) - so add the etag
+				return; // Only process the first image found
 			}
 		} else {
-			header('Content-Type: image/jpg');
-			$image_url = base_url($this->Eqsl_images->get_imagePath() . '/' . $this->Eqsl_images->get_image($id));
-			header('Location: ' . $image_url);
+			// Load server-cached image if etag isn't 0
+			if ($etag != '0') {
+				$image_file = $this->Eqsl_images->get_imagePath('p') . '/' . $this->Eqsl_images->get_image($id);
+				$content = file_get_contents($image_file);
+				if ($content !== false) {
+					$this->output_image_with_width($content, $width, $etag);
+				} else {
+					show_error(__('Failed to load cached eQSL image'), 500);
+				}
+			}
 		}
+	}
+
+	private function gen_check_etag($eta,$modifier) {
+
+		$etag = '"' . md5($eta.$modifier) . '"';
+
+		if (isset($_SERVER['HTTP_IF_NONE_MATCH']) &&
+		    trim($_SERVER['HTTP_IF_NONE_MATCH']) === $etag) {
+			session_write_close();
+			session_cache_limiter('public');
+			header('HTTP/1.1 304 Not Modified');
+			header('ETag: ' . $etag);
+			header('Pragma: public');
+			header('Cache-Control: public, max-age=31536000, immutable'); 
+			header('Expires: ' . gmdate('D, d M Y H:i:s', strtotime('+1 year')) . ' GMT'); // Never expire
+			return '0';
+		}
+		return $etag;
+	}
+
+	/**
+	 * Output image with optional width-based thumbnail generation
+	 * @param string $image_data Binary image data
+	 * @param int $width Desired width (null for original size)
+	 */
+	private function output_image_with_width($image_data, $width, $etag) {
+		session_write_close();
+		session_cache_limiter('public');
+
+		header('Content-Type: image/jpg');
+		header('ETag: ' . $etag);
+		header('Pragma: public');
+		header('Cache-Control: public, max-age=31536000, immutable'); 
+		header('Expires: ' . gmdate('D, d M Y H:i:s', strtotime('+1 year')) . ' GMT'); // Never expire
+
+		// If width is null or 0, output original image
+		if ($width!=(int)$width || $width === null || $width <= 0 || $width>1500) {	// Return original Image if huger 1500 or smaller 100 or crap
+			echo $image_data;
+			return;
+		}
+
+		// Generate thumbnail
+		$original_image = imagecreatefromstring($image_data);
+		if ($original_image === false) {
+			// Failed to process, output original
+			echo $image_data;
+			return;
+		}
+
+		$original_width = imagesx($original_image);
+		$original_height = imagesy($original_image);
+
+		// Calculate proportional height
+		$height = (int) (($original_height / $original_width) * $width);
+
+		// Create new image
+		$thumbnail = imagecreatetruecolor($width, $height);
+
+		// Resample
+		imagecopyresampled($thumbnail, $original_image, 0, 0, 0, 0, $width, $height, $original_width, $original_height);
+
+		// Output
+		imagejpeg($thumbnail, null, 90); // 90% quality
+
+		// Clean up
+		imagedestroy($original_image);
+		imagedestroy($thumbnail);
 	}
 
 	function bulk_download_image($id) {
@@ -453,42 +606,40 @@ class eqsl extends CI_Controller {
 		$this->load->library('electronicqsl');
 
 		if ($this->input->post('eqsldownload') == 'download' && $this->config->item('enable_eqsl_massdownload')) {
-			$i = 0;
+			ini_set('memory_limit', '-1');
+			set_time_limit(0);
+
+			// Use new parallel library
+			$this->load->library('EqslBulkDownloader');
 			$this->load->model('eqslmethods_model');
-			$qslsnotdownloaded = $this->eqslmethods_model->eqsl_not_yet_downloaded();
-			$eqsl_results = array();
-			foreach ($qslsnotdownloaded->result_array() as $qsl) {
-				$result = $this->bulk_download_image($qsl['COL_PRIMARY_KEY']);
-				if ($result != '') {
-					$errors++;
-					if ($result == 'Rate Limited') {
+
+			// Get and limit QSOs to 50
+			$qsos = $this->eqslmethods_model->eqsl_not_yet_downloaded()->result_array();
+			if (count($qsos) > 150) {
+				$qsos = array_slice($qsos, 0, 150);
+				$this->session->set_flashdata('warning', __('Limited to first 150 QSOs for this request. Please run again.'));
+			}
+
+			// Execute parallel download
+			$results = $this->eqslbulkdownloader->downloadBatch($qsos);
+			$data['eqsl_results'] = $results['errors'];
+			$data['eqsl_stats'] = __("Successfully downloaded: ") . $results['success_count'] . __(" / Errors: ") . $results['error_count'];
+			$data['page_title'] = "eQSL Download Information";
+
+			// Check for rate limit
+			if ($results['error_count'] > 0) {
+				foreach ($results['errors'] as $err) {
+					if ($err['status'] === 'Rate Limited') {
+						$this->session->set_flashdata('warning', __('eQSL rate limit reached. Please wait before running again.'));
 						break;
-					} else {
-						$eqsl_results[] = array(
-							'date' => $qsl['COL_TIME_ON'],
-							'call' => $qsl['COL_CALL'],
-							'mode' => $qsl['COL_MODE'],
-							'submode' => $qsl['COL_SUBMODE'],
-							'status' => $result,
-							'qsoid' => $qsl['COL_PRIMARY_KEY']
-						);
-						continue;
 					}
-				} else {
-					$i++;
-				}
-				if ($i > 0) {
-					sleep(15);
 				}
 			}
-			$data['eqsl_results'] = $eqsl_results;
-			$data['eqsl_stats'] = __("Successfully downloaded: ") . $i . __(" / Errors: ") . count($eqsl_results);
-			$data['page_title'] = "eQSL Download Information";
 
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('eqsl/result');
 			$this->load->view('interface_assets/footer');
-			
+
 		} else {
 
 			$data['page_title'] = __("eQSL Card Image Download");

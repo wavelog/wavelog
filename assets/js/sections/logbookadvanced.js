@@ -678,7 +678,7 @@ $(document).ready(function () {
 					callback: function (result) {
 					}
 				});
-				return false;
+			return false;
 		}
 
 		if(container != null){
@@ -745,6 +745,10 @@ $(document).ready(function () {
 				wwff: this.wwff.value,
 				qslimages: this.qslimages.value,
 				dupes: this.dupes.value,
+				dupedate: this.dupedate.value,
+				dupemode: this.dupemode.value,
+				dupeband: this.dupeband.value,
+				dupesat: this.dupesat.value,
 				contest: this.contest.value,
 				invalid: this.invalid.value,
 				continent: this.continent.value,
@@ -1088,7 +1092,7 @@ $(document).ready(function () {
 	});
 
 	$('#dupeButton').click(function (event) {
-		dupeSearch();
+		dupeSearchDialog();
 	});
 
 	$('#invalidButton').click(function (event) {
@@ -1275,33 +1279,6 @@ $(document).ready(function () {
 		});
 	});
 
-	function runContinentFix(dialogItself) {
-		$('#updateContinentButton').prop("disabled", true).addClass("running");
-		$('#closeButton').prop("disabled", true);
-		$.ajax({
-			url: base_url + 'index.php/logbookadvanced/fixContinent',
-			type: 'POST',
-			success: function (response) {
-				$('#updateContinentButton').prop("disabled", false).removeClass("running");
-				dialogItself.close();
-				BootstrapDialog.alert({
-					title: lang_gen_advanced_logbook_success,
-					message: lang_gen_advanced_logbook_continents_updated + ' ' + response + ' ' + lang_gen_advanced_logbook_records_updated,
-					type: BootstrapDialog.TYPE_SUCCESS
-				});
-			},
-			error: function () {
-				$('#updateContinentButton').prop("disabled", false).removeClass("running");
-				dialogItself.close();
-				BootstrapDialog.alert({
-					title: lang_gen_advanced_logbook_error,
-					message: lang_gen_advanced_logbook_problem_fixing_continents,
-					type: BootstrapDialog.TYPE_DANGER
-				});
-			}
-		});
-	}
-
 	$('#updateDistances').click(function (event) {
 		$.ajax({
 			url: base_url + 'index.php/logbookadvanced/distanceDialog',
@@ -1335,32 +1312,32 @@ $(document).ready(function () {
 		});
 	});
 
-	function runUpdateDistancesFix(dialogItself) {
-		$('#updateDistanceButton').prop("disabled", true).addClass("running");
-		$('#closeButton').prop("disabled", true);
+	$('#dbtools').click(function (event) {
 		$.ajax({
-			url: base_url + 'index.php/logbookadvanced/updateDistances',
-			type: 'POST',
-			success: function (response) {
-				$('#updateDistanceButton').prop("disabled", false).removeClass("running");
-				dialogItself.close();
-				BootstrapDialog.alert({
-					title: lang_gen_advanced_logbook_success,
-					message: lang_gen_advanced_logbook_distances_updated + ' ' + response + ' ' + lang_gen_advanced_logbook_records_updated,
-					type: BootstrapDialog.TYPE_SUCCESS
-				});
-			},
-			error: function () {
-				$('#updateDistanceButton').prop("disabled", false).removeClass("running");
-				dialogItself.close();
-				BootstrapDialog.alert({
-					title: lang_gen_advanced_logbook_error,
-					message: lang_gen_advanced_logbook_problem_updating_distances,
-					type: BootstrapDialog.TYPE_DANGER
+			url: base_url + 'index.php/logbookadvanced/dbtoolsDialog',
+			type: 'post',
+			success: function (html) {
+				BootstrapDialog.show({
+					title: 'Database tools',
+					size: BootstrapDialog.SIZE_EXTRAWIDE,
+					cssClass: 'options',
+					nl2br: false,
+					message: html,
+					buttons: [
+					{
+						label: lang_admin_close,
+						cssClass: 'btn btn-sm btn-secondary',
+						id: 'closeButton',
+						action: function (dialogItself) {
+							dialogItself.close();
+						}
+					}],
 				});
 			}
 		});
-	}
+	});
+
+
 
 	$('#fixItuZones').click(function (event) {
 		const id_list = getSelectedIds();
@@ -1483,6 +1460,44 @@ $(document).ready(function () {
 			}
 		});
 	});
+
+	function dupeSearchDialog() {
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/dupeSearchDialog',
+			type: 'post',
+			success: function (html) {
+				BootstrapDialog.show({
+					title: lang_gen_advanced_logbook_dupe_search,
+					size: BootstrapDialog.SIZE_NORMAL,
+					cssClass: 'options',
+					nl2br: false,
+					message: html,
+					buttons: [
+						{
+							label: lang_gen_advanced_logbook_search + ' <div class="ld ld-ring ld-spin"></div>',
+							cssClass: 'btn btn-sm btn-primary ld-ext-right',
+							id: 'dupeSearchButton',
+							action: function (dialogItself) {
+								dialogItself.close();
+								$('#dupedate').val($('#date_check').is(':checked') ? "Y" : "N");
+								$('#dupemode').val($('#mode_check').is(':checked') ? "Y" : "N");
+								$('#dupeband').val($('#band_check').is(':checked') ? "Y" : "N");
+								$('#dupesat').val($('#satellite_check').is(':checked') ? "Y" : "N");
+								dupeSearch();
+							}
+						},
+						{
+							label: lang_admin_close,
+							cssClass: 'btn btn-sm btn-secondary',
+							id: 'closeDupeDialogButton',
+							action: function (dialogItself) {
+								dialogItself.close();
+							}
+						}],
+				});
+			}
+		});
+	}
 
 	function dupeSearch() {
 		$("#dupes").val("Y");
@@ -2002,3 +2017,964 @@ function saveOptions() {
         dateFrom.value = '';
         dateTo.value = '';
     }
+
+	function checkUpdateDistances() {
+		$('#checkUpdateDistancesBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/checkDb',
+			data: {
+				type: 'checkdistance'
+			},
+			type: 'POST',
+			success: function(response) {
+				$('#checkUpdateDistancesBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+
+				$('.result').html(response);
+			},
+			error: function(xhr, status, error) {
+				$('#checkUpdateDistancesBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop('disabled', false);
+
+				let errorMsg = 'Error checking distance information';
+				if (xhr.responseJSON && xhr.responseJSON.message) {
+					errorMsg += ': ' + xhr.responseJSON.message;
+				}
+
+				BootstrapDialog.alert({
+					title: 'Error',
+					message: errorMsg,
+					type: BootstrapDialog.TYPE_DANGER
+				});
+			}
+		});
+	}
+
+	function checkMissingDxcc() {
+		$('#checkMissingDxccsBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/checkDb',
+			data: {
+				type: 'checkmissingdxcc'
+			},
+			type: 'POST',
+			success: function(response) {
+				$('#checkMissingDxccsBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				$('.result').html(response);
+			},
+			error: function(xhr, status, error) {
+				$('#checkMissingDxccsBtn').prop('disabled', false).text('<?= __("Check") ?>');
+				$('#closeButton').prop('disabled', false);
+
+				let errorMsg = 'Error checking DXCC information';
+				if (xhr.responseJSON && xhr.responseJSON.message) {
+					errorMsg += ': ' + xhr.responseJSON.message;
+				}
+
+				BootstrapDialog.alert({
+					title: 'Error',
+					message: errorMsg,
+					type: BootstrapDialog.TYPE_DANGER
+				});
+			}
+		});
+	}
+
+	function checkFixContinent() {
+		$('#checkFixContinentBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/checkDb',
+			data: {
+				type: 'checkcontinent'
+			},
+			type: 'POST',
+			success: function(response) {
+				$('#checkFixContinentBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				$('.result').html(response);
+			},
+			error: function(xhr, status, error) {
+				$('#checkFixContinentBtn').prop('disabled', false).text('<?= __("Check") ?>');
+				$('#closeButton').prop('disabled', false);
+
+				let errorMsg = 'Error checking continent information';
+				if (xhr.responseJSON && xhr.responseJSON.message) {
+					errorMsg += ': ' + xhr.responseJSON.message;
+				}
+
+				BootstrapDialog.alert({
+					title: 'Error',
+					message: errorMsg,
+					type: BootstrapDialog.TYPE_DANGER
+				});
+			}
+		});
+	}
+
+	function checkFixState() {
+		$('#checkFixStateBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/checkDb',
+			data: {
+				type: 'checkstate'
+			},
+			type: 'POST',
+			success: function(response) {
+				$('#checkFixStateBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+
+				$('.result').html(response);
+			},
+			error: function(xhr, status, error) {
+				$('#checkFixStateBtn').prop('disabled', false).text('<?= __("Check") ?>');
+				$('#closeButton').prop('disabled', false);
+
+				let errorMsg = 'Error checking state information';
+				if (xhr.responseJSON && xhr.responseJSON.message) {
+					errorMsg += ': ' + xhr.responseJSON.message;
+				}
+
+				BootstrapDialog.alert({
+					title: 'Error',
+					message: errorMsg,
+					type: BootstrapDialog.TYPE_DANGER
+				});
+			}
+		});
+	}
+
+	function checkFixCqZones() {
+		$('#checkFixCqZonesBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/checkDb',
+			data: {
+				type: 'checkcqzones'
+			},
+			type: 'POST',
+			success: function(response) {
+				$('#checkFixCqZonesBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				$('.result').html(response);
+			},
+			error: function(xhr, status, error) {
+				$('#checkFixCqZonesBtn').prop('disabled', false).text('<?= __("Check") ?>');
+				$('#closeButton').prop('disabled', false);
+
+				let errorMsg = '<?= __("Error checking distance information") ?>';
+				if (xhr.responseJSON && xhr.responseJSON.message) {
+					errorMsg += ': ' + xhr.responseJSON.message;
+				}
+
+				BootstrapDialog.alert({
+					title: 'Error',
+					message: errorMsg,
+					type: BootstrapDialog.TYPE_DANGER
+				});
+			}
+		});
+	}
+
+	function checkFixItuZones() {
+		$('#checkFixItuZonesBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/checkDb',
+			data: {
+				type: 'checkituzones'
+			},
+			type: 'POST',
+			success: function(response) {
+				$('#checkFixItuZonesBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				$('.result').html(response);
+			},
+			error: function(xhr, status, error) {
+				$('#checkFixItuZonesBtn').prop('disabled', false).text('<?= __("Check") ?>');
+				$('#closeButton').prop('disabled', false);
+
+				let errorMsg = '<?= __("Error checking distance information") ?>';
+				if (xhr.responseJSON && xhr.responseJSON.message) {
+					errorMsg += ': ' + xhr.responseJSON.message;
+				}
+
+				BootstrapDialog.alert({
+					title: 'Error',
+					message: errorMsg,
+					type: BootstrapDialog.TYPE_DANGER
+				});
+			}
+		});
+	}
+
+	function fixState(dxcc, country) {
+		$('#fixStateBtn_' + dxcc).prop("disabled", true).addClass("running");
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/fixStateBatch',
+			type: 'post',
+			data: {
+				'dxcc': dxcc,
+				'country': country
+			},
+			success: function (response) {
+				$('#fixStateBtn_' + dxcc).prop("disabled", false).removeClass("running");
+				$('.result').html(response);
+			},
+			error: function () {
+				$('#fixStateBtn_' + dxcc).prop("disabled", false).removeClass("running");
+			}
+		});
+	}
+
+	function openStateList(dxcc, country) {
+		$('#openStateListBtn_' + dxcc).prop("disabled", true).addClass("running");
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/OpenStateList',
+			type: 'post',
+			data: {
+				'dxcc': dxcc,
+				'country': country
+			},
+			success: function (response) {
+				$('#openStateListBtn_' + dxcc).prop("disabled", false).removeClass("running");
+				BootstrapDialog.show({
+					title: 'QSO List',
+					size: BootstrapDialog.SIZE_WIDE,
+					cssClass: 'options',
+					nl2br: false,
+					message: response,
+					buttons: [
+					{
+						label: lang_admin_close,
+						cssClass: 'btn-sm btn-secondary',
+						id: 'closeButton',
+						action: function (dialogItself) {
+							dialogItself.close();
+						}
+					}],
+					onhide: function(dialogRef){
+						return;
+					},
+				});
+			},
+			error: function () {
+				$('#openStateListBtn_' + dxcc).prop("disabled", false).removeClass("running");
+			}
+		});
+	}
+
+	function fixMissingDxcc(all) {
+		if (all === true) {
+			$('#updateDxccBtn').prop("disabled", true).addClass("running");
+			BootstrapDialog.confirm({
+				title: lang_general_word_danger,
+				message: lang_gen_advanced_logbook_confirm_fix_missing_dxcc,
+				type: BootstrapDialog.TYPE_DANGER,
+				closable: true,
+				draggable: true,
+				btnOKClass: 'btn-danger',
+				callback: function(result) {
+					if(result) {
+						$('#closeButton').prop("disabled", true);
+						$.ajax({
+							url: base_url + 'index.php/logbookadvanced/fixMissingDxcc',
+							type: 'post',
+							data: {
+								all: all
+							},
+							success: function(data) {
+								$('#updateDxccBtn').prop("disabled", false).removeClass("running");
+								$('#closeButton').prop("disabled", false);
+								$('.result').html(data);
+							},
+							error: function(xhr, status, error) {
+								$('#updateDxccBtn').prop("disabled", false).removeClass("running");
+								$('#closeButton').prop("disabled", false);
+								$('.result').html(error);
+							}
+						})
+					} else {
+						$('#updateDxccBtn').prop("disabled", false).removeClass("running");
+					}
+
+				},
+			});
+		} else {
+			$('#fixMissingDxccBtn').prop("disabled", true).addClass("running");
+			$('#closeButton').prop("disabled", true);
+			$.ajax({
+				url: base_url + 'index.php/logbookadvanced/fixMissingDxcc',
+				type: 'post',
+				data: {
+					all: all
+				},
+				success: function(data) {
+					$('#fixMissingDxccBtn').prop("disabled", false).removeClass("running");
+					$('#closeButton').prop("disabled", false);
+					$('.result').html(data);
+				},
+				error: function(xhr, status, error) {
+					$('#fixMissingDxccBtn').prop("disabled", false).removeClass("running");
+					$('#closeButton').prop("disabled", false);
+					$('.result').html(error);
+				}
+			})
+		}
+	}
+
+	function runUpdateDistancesFix(dialogItself) {
+		$('#updateDistanceButton').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/updateDistances',
+			type: 'POST',
+			success: function (response) {
+				$('#updateDistanceButton').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				if (dialogItself != '') {
+					dialogItself.close();
+				}
+				$('.result').html(response);
+			},
+			error: function(xhr, status, error) {
+				$('#updateDistanceButton').prop("disabled", false).removeClass("running");
+				if (dialogItself != '') {
+					dialogItself.close();
+				}
+				$('.result').html(error);
+				$('#closeButton').prop("disabled", false);
+			}
+		});
+	}
+
+	function openMissingDxccList() {
+		$('#openMissingDxccListBtn').prop("disabled", true).addClass("running");
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/openMissingDxccList',
+			type: 'post',
+			success: function (response) {
+				$('#openMissingDxccListBtn').prop("disabled", false).removeClass("running");
+				BootstrapDialog.show({
+					title: 'QSO List',
+					size: BootstrapDialog.SIZE_WIDE,
+					cssClass: 'options',
+					nl2br: false,
+					message: response,
+					buttons: [
+					{
+						label: lang_admin_close,
+						cssClass: 'btn-sm btn-secondary',
+						id: 'closeButton',
+						action: function (dialogItself) {
+							dialogItself.close();
+						}
+					}],
+					onhide: function(dialogRef){
+						return;
+					},
+				});
+			},
+			error: function () {
+				$('#openMissingDxccListBtn').prop("disabled", false).removeClass("running");
+			}
+		});
+	}
+
+	function runContinentFix(dialogItself) {
+		$('#updateContinentButton').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/fixContinent',
+			type: 'POST',
+			success: function (response) {
+				$('#updateContinentButton').prop("disabled", false).removeClass("running");
+				if (dialogItself != '') {
+					dialogItself.close();
+				}
+				$('.result').html(response);
+				$('#closeButton').prop("disabled", false);
+			},
+			error: function(xhr, status, error) {
+				$('#updateContinentButton').prop("disabled", false).removeClass("running");
+				$('.result').html(error);
+				$('#closeButton').prop("disabled", false);
+			}
+		});
+	}
+
+	function fixMissingCqZones() {
+		$('#updateCqZonesBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/batchFix',
+			data: {
+				type: 'cqzones'
+			},
+			type: 'POST',
+			success: function (response) {
+				$('#updateCqZonesBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				$('.result').html(response);
+			},
+			error: function(xhr, status, error) {
+				$('#updateCqZonesBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				$('.result').html(error);
+			}
+		});
+	}
+
+	function fixMissingItuZones() {
+		$('#updateItuZonesBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/batchFix',
+			data: {
+				type: 'ituzones'
+			},
+			type: 'POST',
+			success: function (response) {
+				$('#updateItuZonesBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				$('.result').html(response);
+			},
+			error: function(xhr, status, error) {
+				$('#updateItuZonesBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				$('.result').html(error);
+			}
+		});
+	}
+
+	function checkGrids() {
+		$('#checkGridsBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/checkDb',
+			data: {
+				type: 'checkgrids'
+			},
+			type: 'POST',
+			success: function(response) {
+				$('#checkGridsBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				$('.result').html(response);
+			},
+			error: function(xhr, status, error) {
+				$('#checkGridsBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop('disabled', false);
+
+				$('.result').html(error);
+			}
+		});
+	}
+
+	function fixMissingGrids() {
+		$('#updateGridsBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/batchFix',
+			data: {
+				type: 'grids'
+			},
+			type: 'POST',
+			success: function (response) {
+				$('#updateGridsBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				$('.result').html(response);
+			},
+			error: function(xhr, status, error) {
+				$('#updateGridsBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				$('.result').html(error);
+			}
+		});
+	}
+
+	function checkDxcc() {
+		$('#checkDxccBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/checkDb',
+			data: {
+				type: 'checkdxcc'
+			},
+			type: 'POST',
+			success: function(response) {
+				$('#checkDxccBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				$('.result').html(response);
+				$('#dxccCheckTable').DataTable({
+					"pageLength": 25,
+					responsive: false,
+					ordering: false,
+					"scrollY": "510px",
+					"scrollCollapse": true,
+					"paging": false,
+					"scrollX": false,
+					"language": {
+						url: getDataTablesLanguageUrl(),
+					},
+					initComplete: function () {
+						this.api()
+							.columns('.select-filter')
+							.every(function () {
+								var column = this;
+								var select = $('<select class="form-select form-select-sm"><option value=""></option></select>')
+									.appendTo($(column.footer()).empty())
+									.on('change', function () {
+										var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+										column.search(val ? '^' + val + '$' : '', true, false).draw();
+									});
+
+								column
+									.data()
+									.unique()
+									.sort()
+									.each(function (d, j) {
+										select.append('<option value="' + d + '">' + d + '</option>');
+									});
+							});
+							rebind_checkbox_trigger_dxcc();
+					},
+				});
+			},
+			error: function(xhr, status, error) {
+				$('#checkDxccBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop('disabled', false);
+				$('.result').html(error);
+			}
+		});
+	}
+
+	function checkIncorrectCqZones() {
+		$('#checkIncorrectCqZonesBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/checkDb',
+			data: {
+				type: 'checkincorrectcqzones'
+			},
+			type: 'POST',
+			success: function(response) {
+				$('#checkIncorrectCqZonesBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				$('.result').html(response);
+				$('#incorrectcqzonetable').DataTable({
+					"pageLength": 25,
+					responsive: false,
+					ordering: false,
+					"scrollY": "510px",
+					"scrollCollapse": true,
+					"paging": false,
+					"scrollX": false,
+					"language": {
+						url: getDataTablesLanguageUrl(),
+					},
+					initComplete: function () {
+						this.api()
+							.columns('.select-filter')
+							.every(function () {
+								var column = this;
+								var select = $('<select class="form-select form-select-sm"><option value=""></option></select>')
+									.appendTo($(column.footer()).empty())
+									.on('change', function () {
+										var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+										column.search(val ? '^' + val + '$' : '', true, false).draw();
+									});
+
+								column
+									.data()
+									.unique()
+									.sort()
+									.each(function (d, j) {
+										select.append('<option value="' + d + '">' + d + '</option>');
+									});
+							});
+						rebind_checkbox_trigger_cq_zone();
+
+						$('#forceMultiZoneUpdateCq').on('change', function() {
+							$('#incorrectcqzonetable').DataTable().column(8).search('').draw();
+							$('#checkBoxAllCqZones').prop('checked', false);
+							$('#incorrectcqzonetable tbody input[type="checkbox"]').prop('checked', false);
+							$('#incorrectcqzonetable tbody tr.activeRow').removeClass('activeRow');
+						});
+					},
+				});
+			},
+			error: function(xhr, status, error) {
+				$('#checkIncorrectCqZonesBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop('disabled', false);
+				$('.result').html(error);
+			}
+		});
+	}
+
+	function checkIncorrectItuZones() {
+		$('#checkIncorrectItuZonesBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/checkDb',
+			data: {
+				type: 'checkincorrectituzones'
+			},
+			type: 'POST',
+			success: function(response) {
+				$('#checkIncorrectItuZonesBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				$('.result').html(response);
+				$('#incorrectituzonetable').DataTable({
+					"pageLength": 25,
+					responsive: false,
+					ordering: false,
+					"scrollY": "510px",
+					"scrollCollapse": true,
+					"paging": false,
+					"scrollX": false,
+					"language": {
+						url: getDataTablesLanguageUrl(),
+					},
+					initComplete: function () {
+						this.api()
+							.columns('.select-filter')
+							.every(function () {
+								var column = this;
+								var select = $('<select class="form-select form-select-sm"><option value=""></option></select>')
+									.appendTo($(column.footer()).empty())
+									.on('change', function () {
+										var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+										column.search(val ? '^' + val + '$' : '', true, false).draw();
+									});
+
+								column
+									.data()
+									.unique()
+									.sort()
+									.each(function (d, j) {
+										select.append('<option value="' + d + '">' + d + '</option>');
+									});
+							});
+							rebind_checkbox_trigger_itu_zone();
+					},
+				});
+
+				$('#forceMultiZoneUpdate').on('change', function() {
+					$('#incorrectituzonetable').DataTable().column(8).search('').draw();
+					$('#checkBoxAllItuZones').prop('checked', false);
+					$('#incorrectituzonetable tbody input[type="checkbox"]').prop('checked', false);
+					$('#incorrectituzonetable tbody tr.activeRow').removeClass('activeRow');
+				});
+
+			},
+			error: function(xhr, status, error) {
+				$('#checkIncorrectItuZonesBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop('disabled', false);
+				$('.result').html(error);
+			}
+		});
+	}
+
+	function rebind_checkbox_trigger_dxcc() {
+		$('#checkBoxAllDxcc').change(function (event) {
+			if (this.checked) {
+				$('#dxccCheckTable tbody tr').each(function (i) {
+					selectQsoIdDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''), 'dxccCheckTable');
+				});
+			} else {
+				$('#dxccCheckTable tbody tr').each(function (i) {
+					unselectQsoIdDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''), 'dxccCheckTable');
+				});
+			}
+		});
+	}
+
+	function selectQsoIdDxcc(qsoID, tablename) {
+		var element = $("#" + tablename + " tbody tr#qsoID-" + qsoID);
+		element.find(".row-check").prop("checked", true);
+		element.addClass('activeRow');
+	}
+
+	function unselectQsoIdDxcc(qsoID, tablename) {
+		var element = $("#" + tablename + " tbody tr#qsoID-" + qsoID);
+		element.find(".row-check").prop("checked", false);
+		element.removeClass('activeRow');
+	}
+
+	function rebind_checkbox_trigger_cq_zone() {
+		$('#checkBoxAllCqZones').change(function (event) {
+			if (this.checked) {
+				$('#incorrectcqzonetable tbody tr').each(function (i) {
+					if (!$(this).first().closest('tr').find("td[id='cqZones']").text().includes(',') || $('#forceMultiZoneUpdateCq').prop("checked")) {
+						selectQsoIdDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''), 'incorrectcqzonetable');
+					}
+				});
+				if (!$('#forceMultiZoneUpdateCq').prop("checked")) {
+					$('#incorrectcqzonetable').DataTable().column(8).search('^[^,]*$', true, false).draw();
+				}
+			} else {
+				$('#incorrectcqzonetable tbody tr').each(function (i) {
+					unselectQsoIdDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''), 'incorrectcqzonetable');
+				});
+				$('#incorrectcqzonetable').DataTable().column(8).search('').draw();
+			}
+		});
+	}
+
+	function rebind_checkbox_trigger_itu_zone() {
+		$('#checkBoxAllItuZones').change(function (event) {
+			if (this.checked) {
+				$('#incorrectituzonetable tbody tr').each(function (i) {
+					if (!$(this).first().closest('tr').find("td[id='ituZones']").text().includes(',') || $('#forceMultiZoneUpdate').prop("checked")) {
+						selectQsoIdDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''), 'incorrectituzonetable');
+					}
+				});
+				if (!$('#forceMultiZoneUpdate').prop("checked")) {
+					$('#incorrectituzonetable').DataTable().column(8).search('^[^,]*$', true, false).draw();
+				}
+			} else {
+				$('#incorrectituzonetable tbody tr').each(function (i) {
+					unselectQsoIdDxcc($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''), 'incorrectituzonetable');
+				});
+				$('#incorrectituzonetable').DataTable().column(8).search('').draw();
+			}
+		});
+	}
+
+	function fixDxccSelected() {
+		let id_list = [];
+		$('#dxccCheckTable tbody input:checked').each(function () {
+			let id = $(this).closest('tr').attr('id')?.replace(/\D/g, '');
+			id_list.push(id);
+		});
+
+		if (id_list.length === 0) {
+			BootstrapDialog.alert({
+				title: lang_gen_advanced_logbook_info,
+				message: lang_gen_advanced_logbook_select_at_least_one_row,
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
+			return;
+		}
+
+		let table = $('#dxccCheckTable').DataTable();
+
+		$('#fixSelectedDxccBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/fixDxccSelected',
+			type: 'post',
+			data: {'ids': JSON.stringify(id_list, null, 2)},
+			success: function(data) {
+				$('#fixSelectedDxccBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				id_list.forEach(function(id) {
+					let row = $("#dxccCheckTable tbody tr#qsoID-" + id);
+					table.row(row).remove();
+				});
+				table.draw(false);
+				$('.dxcctablediv').html(data.message);
+			},
+			error: function(xhr, status, error) {
+				$('#fixSelectedDxccBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				$('.result').html(error);
+			}
+		});
+	}
+
+	function checkIncorrectGridsquares() {
+		$('#checkIncorrectGridsquaresBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/checkDb',
+			data: {
+				type: 'checkincorrectgridsquares'
+			},
+			type: 'POST',
+			success: function(response) {
+				$('#checkIncorrectGridsquaresBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				$('.result').html(response);
+				$('#gridsquareCheckTable').DataTable({
+					"pageLength": 25,
+					responsive: false,
+					ordering: false,
+					"scrollY": "510px",
+					"scrollCollapse": true,
+					"paging": false,
+					"scrollX": false,
+					"language": {
+						url: getDataTablesLanguageUrl(),
+					},
+					initComplete: function () {
+						this.api()
+							.columns('.select-filter')
+							.every(function () {
+								var column = this;
+								var select = $('<select class="form-select form-select-sm"><option value=""></option></select>')
+									.appendTo($(column.footer()).empty())
+									.on('change', function () {
+										var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+										column.search(val ? '^' + val + '$' : '', true, false).draw();
+									});
+
+								column
+									.data()
+									.unique()
+									.sort()
+									.each(function (d, j) {
+										select.append('<option value="' + d + '">' + d + '</option>');
+									});
+							});
+					},
+				});
+			},
+			error: function(xhr, status, error) {
+				$('#checkIncorrectGridsquaresBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop('disabled', false);
+				$('.result').html(error);
+			}
+		});
+	}
+
+	function toggleGridsquare(id) {
+		const shortSpan = document.getElementById(id + '-short');
+		const fullSpan = document.getElementById(id + '-full');
+		const link = document.getElementById(id + '-link');
+
+		if (shortSpan.style.display === 'none') {
+			shortSpan.style.display = 'inline';
+			fullSpan.style.display = 'none';
+			link.textContent = lang_gen_advanced_logbook_show_more;
+		} else {
+			shortSpan.style.display = 'none';
+			fullSpan.style.display = 'inline';
+			link.textContent = lang_gen_advanced_logbook_show_less;
+		}
+	}
+
+	function fixCqZoneSelected() {
+		let id_list = [];
+		$('#incorrectcqzonetable tbody input:checked').each(function () {
+			let id = $(this).closest('tr').attr('id')?.replace(/\D/g, '');
+			// Skip entry if DXCC covers multiple CQ zones as the matching one cannot be identified automagically atm or force update
+			if (!$(this).closest('tr').find("td[id='cqZones']").text().includes(',') || $('#forceMultiZoneUpdate').prop("checked")) {
+				id_list.push(id);
+			}
+		});
+
+		if (id_list.length === 0) {
+			BootstrapDialog.alert({
+				title: lang_gen_advanced_logbook_info,
+				message: lang_gen_advanced_logbook_select_at_least_one_row,
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
+			return;
+		}
+
+		let table = $('#incorrectcqzonetable').DataTable();
+
+		$('#fixSelectedCqZoneBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/fixCqZones',
+			type: 'post',
+			data: {'ids': JSON.stringify(id_list, null, 2)},
+			success: function(data) {
+				$('#fixSelectedCqZoneBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				id_list.forEach(function(id) {
+					let row = $("#incorrectcqzonetable tbody tr#qsoID-" + id);
+					table.row(row).remove();
+				});
+				table.draw(false);
+			},
+			error: function(xhr, status, error) {
+				$('#fixSelectedCqZoneBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				$('.result').html(error);
+			}
+		});
+	}
+
+	function fixItuZoneSelected() {
+		let id_list = [];
+		$('#incorrectituzonetable tbody input:checked').each(function () {
+			let id = $(this).closest('tr').attr('id')?.replace(/\D/g, '');
+			// Skip entry if DXCC covers multiple ITU zones as the matching one cannot be identified automagically atm or force update
+			if (!$(this).closest('tr').find("td[id='ituZones']").text().includes(',') || $('#forceMultiZoneUpdate').prop("checked")) {
+				id_list.push(id);
+			}
+		});
+
+		if (id_list.length === 0) {
+			BootstrapDialog.alert({
+				title: lang_gen_advanced_logbook_info,
+				message: lang_gen_advanced_logbook_select_at_least_one_row,
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
+			return;
+		}
+
+		let table = $('#incorrectituzonetable').DataTable();
+
+		$('#fixSelectedItuZoneBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/fixItuZones',
+			type: 'post',
+			data: {'ids': JSON.stringify(id_list, null, 2)},
+			success: function(data) {
+				$('#fixSelectedItuZoneBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				id_list.forEach(function(id) {
+					let row = $("#incorrectituzonetable tbody tr#qsoID-" + id);
+					table.row(row).remove();
+				});
+				table.draw(false);
+			},
+			error: function(xhr, status, error) {
+				$('#fixSelectedItuZoneBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+				$('.result').html(error);
+			}
+		});
+	}
