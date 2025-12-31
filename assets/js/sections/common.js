@@ -186,10 +186,15 @@ function displayQso(id) {
                 onshown: function(dialog) {
                     var qsoid = $("#qsoid").text();
                     $(".editButton").html('<a class="btn btn-primary" id="edit_qso" href="javascript:qso_edit('+qsoid+')"><i class="fas fa-edit"></i>'+lang_general_edit_qso+'</a>');
-                    var lat = $("#lat").text();
-                    var long = $("#long").text();
+                    var lat = 0;
+                    var lon = 0;
+                    var gridsquare = $("#gridsquare").text();
+                    if ($("#lat").text() != '' && $("#long").text() != '') {
+                        lat = $("#lat").text();
+                        lon = $("#long").text();
+                    }
                     var callsign = $("#callsign").text();
-                    var mymap = L.map('mapqso').setView([lat,long], 5);
+                    var mymap = L.map('mapqso').setView([lat,lon], 5);
 
                     var tiles = L.tileLayer(option_map_tile_server, {
                         maxZoom: 18,
@@ -205,13 +210,15 @@ function displayQso(id) {
                         hideControlContainer: true
                     }).addTo(mymap);
 
-                    var redIcon = L.icon({
-                        iconUrl: icon_dot_url,
-                        iconSize:     [18, 18], // size of the icon
-                    });
+                    if (gridsquare != '') {
+                        var redIcon = L.icon({
+                            iconUrl: icon_dot_url,
+                            iconSize:     [18, 18], // size of the icon
+                        });
 
-                    L.marker([lat,long], {icon: redIcon}).addTo(mymap)
-                        .bindPopup(callsign);
+                        L.marker([lat,lon], {icon: redIcon}).addTo(mymap)
+                            .bindPopup(callsign);
+                    }
 
                 },
             });
