@@ -26,6 +26,7 @@ class Migration_tag_2_2_2 extends CI_Migration {
 
 		$this->dbtry("UPDATE dxcc_master set ituzone = '63' where countrycode = 234;"); // E5/s
 		$this->dbtry("UPDATE dxcc_master set ituzone = '47' where countrycode in (57, 244);"); // FQ8 and ST0/d
+		$this->dbtry("UPDATE dxcc_master set ituzone = '12' where countrycode = 37;"); // TI9
 
 		$this->dbtry("INSERT INTO dxcc_temp (prefix,name,adif,cont,cqz,ituz,`long`,lat)
 			select prefix, name, adif, cont, cqz, (select ituzone from dxcc_master where countrycode = dxcc_entities.adif) ituzone, `long`, lat
