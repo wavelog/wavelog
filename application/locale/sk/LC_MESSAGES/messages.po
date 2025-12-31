@@ -3,15 +3,15 @@
 # This file is distributed under the MIT licence.
 #
 # Fabian Berg <fabian.berg@hb9hil.org>, 2025.
-# Viliam Petrik <tatralom@gmail.com>, 2025.
+# Viliam Petrik <tatralom@gmail.com>, 2025, 2026.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-12-31 15:53+0000\n"
-"PO-Revision-Date: 2025-12-30 19:35+0000\n"
+"PO-Revision-Date: 2026-01-01 14:22+0000\n"
 "Last-Translator: Viliam Petrik <tatralom@gmail.com>\n"
-"Language-Team: Slovak <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/sk/>\n"
+"Language-Team: Slovak <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -690,7 +690,7 @@ msgstr "Vedúci klubu"
 
 #: application/controllers/Club.php:24
 msgid "Club Member ADIF"
-msgstr ""
+msgstr "ADIF člena klubu"
 
 #: application/controllers/Club.php:25
 msgid "Club Member"
@@ -8797,7 +8797,7 @@ msgstr "Posledné QSO"
 
 #: application/views/calltester/comparison_result.php:18
 msgid "DXCC Class Results"
-msgstr ""
+msgstr "Výsledky triedy DXCC"
 
 #: application/views/calltester/comparison_result.php:21
 #: application/views/calltester/comparison_result.php:33
@@ -8816,7 +8816,7 @@ msgstr "Nájdené problémy:"
 
 #: application/views/calltester/comparison_result.php:30
 msgid "Logbook Model Results"
-msgstr ""
+msgstr "Výsledky modelu logbooku"
 
 #: application/views/calltester/comparison_result.php:44
 msgid "Comparison Summary"
@@ -8824,19 +8824,19 @@ msgstr "Zhrnutie porovnania"
 
 #: application/views/calltester/comparison_result.php:45
 msgid "Only found in DXCC Class:"
-msgstr ""
+msgstr "Iba v triede DXCC:"
 
 #: application/views/calltester/comparison_result.php:46
 msgid "Only found in Logbook Model:"
-msgstr ""
+msgstr "Len v modely denníka:"
 
 #: application/views/calltester/comparison_result.php:47
 msgid "Found in both methods:"
-msgstr ""
+msgstr "Nájdené v oboch metódach:"
 
 #: application/views/calltester/comparison_result.php:54
 msgid "Issues found only in DXCC Class (not in Logbook Model):"
-msgstr ""
+msgstr "Problémy sa našli iba v triede DXCC (nie v modeli denníka):"
 
 #: application/views/calltester/comparison_result.php:62
 #: application/views/calltester/comparison_result.php:98
@@ -8879,7 +8879,7 @@ msgstr "Výsledok ADIF"
 
 #: application/views/calltester/comparison_result.php:90
 msgid "Issues found only in Logbook Model (not in DXCC Class):"
-msgstr ""
+msgstr "Problémy zistené iba v modeli Logbook (nie v triede DXCC):"
 
 #: application/views/calltester/comparison_result.php:126
 msgid "Issues found in both methods:"
@@ -8895,7 +8895,7 @@ msgstr ""
 
 #: application/views/calltester/index.php:3
 msgid "Callsign DXCC identification"
-msgstr ""
+msgstr "Identifikácia DXCC volacieho znaku"
 
 #: application/views/calltester/index.php:10
 #: application/views/interface_assets/footer.php:878
@@ -8909,7 +8909,7 @@ msgstr "Spustiť kontrolu DXCC"
 
 #: application/views/calltester/index.php:18
 msgid "Compare DXCC class and logbook model"
-msgstr ""
+msgstr "Porovnaj triedu DXCC a model logbooku"
 
 #: application/views/calltester/result.php:4
 #: application/views/logbookadvanced/checkresult.php:126
@@ -12684,7 +12684,7 @@ msgstr "Výsledky kontroly lokátorov"
 #: application/views/logbookadvanced/checkresult.php:272
 #: application/views/logbookadvanced/checkresult.php:348
 msgid "Update selected"
-msgstr ""
+msgstr "Aktualizovať vybrané"
 
 #: application/views/logbookadvanced/checkresult.php:194
 msgid "These QSOs MAY have incorrect gridsquares."
@@ -12700,7 +12700,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/checkresult.php:208
 msgid "DXCC Gridsquare"
-msgstr ""
+msgstr "DXCC lokátor"
 
 #: application/views/logbookadvanced/checkresult.php:231
 #: application/views/logbookadvanced/index.php:77
@@ -12717,7 +12717,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/checkresult.php:267
 msgid "Force update even if DXCC covers multiple CQ zones"
-msgstr ""
+msgstr "Vynútiť aktualizáciu, aj keď DXCC pokrýva viacero CQ zón"
 
 #: application/views/logbookadvanced/checkresult.php:268
 msgid ""
@@ -12727,6 +12727,11 @@ msgid ""
 "are updated. This checkbox overrides this but might result in wrong data. "
 "Use with caution!"
 msgstr ""
+"Funkcia aktualizácie môže nastaviť iba hlavnú CQ zónu, ktorá je priradená k "
+"DXCC. Ak DXCC pokrýva viacero CQ zón, je možné, že to nie je správne. Preto "
+"sa predvolene aktualizujú len spojenia s DXCC pokrývajúcimi jednu CQ zónu. "
+"Toto pole to mení, ale môže mať za následok nesprávne údaje. Používajte "
+"opatrne!"
 
 #: application/views/logbookadvanced/checkresult.php:285
 #: application/views/search/cqzones_result.php:14
@@ -12782,7 +12787,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/checkresult.php:343
 msgid "Force update even if DXCC covers multiple ITU zones"
-msgstr ""
+msgstr "Vynútiť aktualizáciu, aj keď DXCC pokrýva viacero zón ITU"
 
 #: application/views/logbookadvanced/checkresult.php:344
 msgid ""
@@ -12792,6 +12797,11 @@ msgid ""
 "are updated. This checkbox overrides this but might result in wrong data. "
 "Use with caution!"
 msgstr ""
+"Funkcia aktualizácie môže nastaviť iba hlavnú ITU zónu, ktorá je priradená k "
+"DXCC. Ak DXCC pokrýva viacero ITU zón, môže sa stať, že to nebude správne. "
+"Takže štandardne sa aktualizujú len spojenia s DXCC, ktoré pokrývajú jednu "
+"ITU zónu. Toto políčko to mení, ale môže to viesť k nesprávnym údajom. "
+"Používajte s opatrnosťou!"
 
 #: application/views/logbookadvanced/checkresult.php:361
 #: application/views/search/ituzones_result.php:14
@@ -12804,21 +12814,23 @@ msgstr "Nástroje na opravu dát"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:6
 msgid "Wiki Help"
-msgstr ""
+msgstr "Wiki pomoc"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:8
 msgid ""
 "Warning. This tool can be dangerous to your data, and should only be used if "
 "you know what you are doing."
 msgstr ""
+"Upozornenie. Tento nástroj môže byť nebezpečný pre vaše dáta a mal by sa "
+"používať len v prípade, že viete, čo robíte."
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:12
 msgid "Check all QSOs in the logbook for incorrect CQ Zones"
-msgstr ""
+msgstr "Skontroluj všetky spojenia v logbooku na nesprávne CQ zóny"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:13
 msgid "Use Wavelog to determine CQ Zone for all QSOs."
-msgstr ""
+msgstr "Pomocou Wavelog zisti CQ zónu pre všetky spojenia."
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:17
 #: application/views/logbookadvanced/dbtoolsdialog.php:28
@@ -12829,23 +12841,23 @@ msgstr ""
 #: application/views/logbookadvanced/dbtoolsdialog.php:83
 #: application/views/logbookadvanced/dbtoolsdialog.php:96
 msgid "Check"
-msgstr ""
+msgstr "Skontroluj"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:23
 msgid "Check all QSOs in the logbook for incorrect ITU Zones"
-msgstr ""
+msgstr "Skontroluj všetky spojenia v denníku pre nesprávne ITU zóny"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:24
 msgid "Use Wavelog to determine ITU Zone for all QSOs."
-msgstr ""
+msgstr "Použi Wavelog na určenie ITU zóny pre všetky spojenia."
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:34
 msgid "Check Gridsquares"
-msgstr ""
+msgstr "Skontroluj lokátorové štvorce"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:35
 msgid "Check gridsquares that does not match the DXCC"
-msgstr ""
+msgstr "Skontroluj lokátory, ktoré nezodpovedajú DXCC"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:45
 msgid "Fix Continent"
@@ -12853,11 +12865,11 @@ msgstr "Oprav kontinent"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:46
 msgid "Update missing or incorrect continent information"
-msgstr ""
+msgstr "Aktualizovať chýbajúce alebo nesprávne informácie o kontinente"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:57
 msgid "Update missing state/province information"
-msgstr ""
+msgstr "Aktualizovať chýbajúce informácie o štáte/provincii"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:67
 #: application/views/logbookadvanced/index.php:68
@@ -12866,47 +12878,47 @@ msgstr "Aktualizuj vzdialeností"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:68
 msgid "Calculate and update distance information for QSOs"
-msgstr ""
+msgstr "Vypočítaj a aktualizuj informácie o vzdialenosti pre spojenia"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:78
 msgid "Check all QSOs in the logbook for incorrect DXCC"
-msgstr ""
+msgstr "Skontroluj všetky spojenia v denníku na nesprávne DXCC"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:79
 msgid "Use Wavelog to determine DXCC for all QSOs."
-msgstr ""
+msgstr "Použi Wavelog na určenie DXCC pre všetky spojenia."
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:90
 msgid "Lookup QSOs with missing grid in callbook"
-msgstr ""
+msgstr "Náhľad spojení s chýbajúcim lokátorom v callbooku"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:91
 msgid "Use callbook lookup to set gridsquare"
-msgstr ""
+msgstr "Použi callbook na určenie lokátora"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:92
 msgid "This is limited to 150 callsigns for each run!"
-msgstr ""
+msgstr "Toto je obmedzené na 150 volacích znakov pre každé spustenie!"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:4
 msgid "Search for duplicates using:"
-msgstr ""
+msgstr "Vyhľadať duplicitné položky pomocou:"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:16
 msgid "Match QSOs within 1800s (30min) of each other"
-msgstr ""
+msgstr "Spáruj spojenia v rámci 1800s (30 min) od seba navzájom"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:25
 msgid "Match QSOs with the same mode (SSB, CW, FM, etc.)"
-msgstr ""
+msgstr "Spáruj spojenia podľa rovnakého módu (SSB, CW, FM, atď.)"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:34
 msgid "Match QSOs on the same band"
-msgstr ""
+msgstr "Spáruj spojenia na rovnakom pásme"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:43
 msgid "Match QSOs using the same satellite"
-msgstr ""
+msgstr "Spáruj spojenia cez ten istý satelit"
 
 #: application/views/logbookadvanced/edit.php:1
 msgid "Please choose the column to be edited:"
@@ -13442,14 +13454,16 @@ msgid ""
 "Are you sure you want to fix all QSOs with missing DXCC information? This "
 "action cannot be undone."
 msgstr ""
+"Si si istý, že chceš opraviť všetky spojenia s chýbajúcimi DXCC "
+"informáciami? Táto akcia sa nedá vrátiť späť."
 
 #: application/views/logbookadvanced/index.php:74
 msgid "Duplicate Search"
-msgstr ""
+msgstr "Vyhľadávanie duplicít"
 
 #: application/views/logbookadvanced/index.php:78
 msgid "Show less"
-msgstr ""
+msgstr "Ukázať menej"
 
 #: application/views/logbookadvanced/index.php:305
 msgid "From"
@@ -13499,7 +13513,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:510
 #: application/views/logbookadvanced/index.php:692
 msgid "Apply filters"
-msgstr ""
+msgstr "Použiť filtre"
 
 #: application/views/logbookadvanced/index.php:520
 msgid "QSL Filters"
@@ -13803,7 +13817,7 @@ msgstr "Mapa sveta"
 
 #: application/views/logbookadvanced/index.php:847
 msgid "Database Tools"
-msgstr ""
+msgstr "Databázové nástroje"
 
 #: application/views/logbookadvanced/index.php:874
 #: application/views/logbookadvanced/useroptions.php:26
@@ -13875,41 +13889,42 @@ msgstr "Ďalší"
 #: application/views/logbookadvanced/showMissingDxccQsos.php:14
 #, php-format
 msgid "Found %s QSO(s) missing DXCC information."
-msgstr ""
+msgstr "Našiel sa %s QSO(ov) bez informácií o DXCC."
 
 #: application/views/logbookadvanced/showMissingDxccQsos.php:47
 #: application/views/logbookadvanced/showStateQsos.php:49
 msgid "No Issues Found"
-msgstr ""
+msgstr "Žiadne problémy nenájdené"
 
 #: application/views/logbookadvanced/showStateQsos.php:16
 #, php-format
 msgid "Found %s QSO(s) missing state information for DXCC %s."
 msgstr ""
+"Bol(a) nájdený %s QSO(-y) s chýbajúcimi informáciami o štáte pre DXCC %s."
 
 #: application/views/logbookadvanced/showUpdateResult.php:31
 msgid "Results for DXCC update:"
-msgstr ""
+msgstr "Výsledky aktualizácie DXCC:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:34
 #: application/views/logbookadvanced/showUpdateResult.php:40
 msgid "The number of QSOs updated for missing DXCC IDs was"
-msgstr ""
+msgstr "Počet spojení aktualizovaných pre chýbajúce DXCC ID bol"
 
 #: application/views/logbookadvanced/showUpdateResult.php:36
 #: application/views/logbookadvanced/showUpdateResult.php:42
 msgid "The number of QSOs re-checked for DXCC was"
-msgstr ""
+msgstr "Počet QSOs znovu skontrolovaných pre DXCC bol"
 
 #: application/views/logbookadvanced/showUpdateResult.php:55
 #: application/views/logbookadvanced/showUpdateResult.php:99
 msgid "These QSOs could not be updated:"
-msgstr ""
+msgstr "Tieto spojenia sa nepodarilo aktualizovať:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:61
 #: application/views/logbookadvanced/showUpdateResult.php:107
 msgid "Reason"
-msgstr ""
+msgstr "Dôvod"
 
 #: application/views/logbookadvanced/showUpdateResult.php:62
 #: application/views/logbookadvanced/showUpdateResult.php:106
