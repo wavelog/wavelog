@@ -755,40 +755,10 @@ class Logbookadvanced extends CI_Controller {
 		$ids = xss_clean($this->input->post('ids'));
 
 		$this->load->model('logbookadvanced_model');
-		$this->logbookadvanced_model->fixCqZones($ids);
-
-		$data = $this->logbookadvanced_model->getQsosForAdif($ids, $this->session->userdata('user_id'));
-
-		$results = $data->result('array');
-
-		$qsos = [];
-		foreach ($results as $data) {
-			$qsos[] = new QSO($data);
-		}
-
-		$q = [];
-		// Get Date format
-		if($this->session->userdata('user_date_format')) {
-			// If Logged in and session exists
-			$custom_date_format = $this->session->userdata('user_date_format');
-		} else {
-			// Get Default date format from /config/wavelog.php
-			$custom_date_format = $this->config->item('qso_date_format');
-		}
-
-		foreach ($qsos as $qso) {
-			$singleQso = $qso->toArray();
-			$flag = $this->dxccflag->get($qso->getDXCCId());
-			if ($flag != null) {
-				$singleQso['flag'] = ' '.$flag;
-			} else {
-				$singleQso['flag'] = '';
-			}
-			$q[]=$singleQso;
-		}
+		$result = $this->logbookadvanced_model->fixCqZones($ids);
 
 		header("Content-Type: application/json");
-		print json_encode($q);
+		print json_encode($result);
 	}
 
 	public function fixItuZones() {
@@ -797,40 +767,10 @@ class Logbookadvanced extends CI_Controller {
 		$ids = xss_clean($this->input->post('ids'));
 
 		$this->load->model('logbookadvanced_model');
-		$this->logbookadvanced_model->fixItuZones($ids);
-
-		$data = $this->logbookadvanced_model->getQsosForAdif($ids, $this->session->userdata('user_id'));
-
-		$results = $data->result('array');
-
-		$qsos = [];
-		foreach ($results as $data) {
-			$qsos[] = new QSO($data);
-		}
-
-		$q = [];
-		// Get Date format
-		if($this->session->userdata('user_date_format')) {
-			// If Logged in and session exists
-			$custom_date_format = $this->session->userdata('user_date_format');
-		} else {
-			// Get Default date format from /config/wavelog.php
-			$custom_date_format = $this->config->item('qso_date_format');
-		}
-
-		foreach ($qsos as $qso) {
-			$singleQso = $qso->toArray();
-			$flag = $this->dxccflag->get($qso->getDXCCId());
-			if ($flag != null) {
-				$singleQso['flag'] = ' '.$flag;
-			} else {
-				$singleQso['flag'] = '';
-			}
-			$q[]=$singleQso;
-		}
+		$result = $this->logbookadvanced_model->fixItuZones($ids);
 
 		header("Content-Type: application/json");
-		print json_encode($q);
+		print json_encode($result);
 	}
 
 	public function fixContinent() {

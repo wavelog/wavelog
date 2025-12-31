@@ -2796,8 +2796,8 @@ function saveOptions() {
 				id_list.forEach(function(id) {
 					let row = $("#dxccCheckTable tbody tr#qsoID-" + id);
 					table.row(row).remove();
-					table.draw(false);
 				});
+				table.draw(false);
 				$('.dxcctablediv').html(data.message);
 			},
 			error: function(xhr, status, error) {
@@ -2919,9 +2919,8 @@ function saveOptions() {
 				id_list.forEach(function(id) {
 					let row = $("#incorrectcqzonetable tbody tr#qsoID-" + id);
 					table.row(row).remove();
-					table.draw(false);
 				});
-				$('.dxcctablediv').html(data.message);
+				table.draw(false);
 			},
 			error: function(xhr, status, error) {
 				$('#fixSelectedCqZoneBtn').prop("disabled", false).removeClass("running");
@@ -2969,9 +2968,8 @@ function saveOptions() {
 				id_list.forEach(function(id) {
 					let row = $("#incorrectituzonetable tbody tr#qsoID-" + id);
 					table.row(row).remove();
-					table.draw(false);
 				});
-				$('.dxcctablediv').html(data.message);
+				table.draw(false);
 			},
 			error: function(xhr, status, error) {
 				$('#fixSelectedItuZoneBtn').prop("disabled", false).removeClass("running");
