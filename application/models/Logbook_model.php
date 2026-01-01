@@ -926,19 +926,18 @@ class Logbook_model extends CI_Model {
 			// No point in fetching hrdlog code or qrz api key and qrzrealtime setting if we're skipping the export
 			if (!$skipexport) {
 
-				// Check which real-time exports are enabled
-				$clublog_creds = $this->exists_clublog_credentials($data['station_id']);
-				$hrdlog_creds = $this->exists_hrdlog_credentials($data['station_id']);
-				$qrz_creds = $this->exists_qrz_api_key($data['station_id']);
-				$webadif_creds = $this->exists_webadif_api_key($data['station_id']);
+				// Fetch all credentials in a single query (optimization: reduces 4 queries to 1)
+				$creds = $this->get_all_export_credentials($data['station_id']);
 
 				// Cache QSO data once if any real-time export is enabled (avoids 4 identical queries with 8 joins each)
 				$qso = null;
 				$needs_qso_lookup = (
-					(isset($clublog_creds->ucp) && isset($clublog_creds->ucn) && $clublog_creds->clublogrealtime == 1) ||
-					(isset($hrdlog_creds->hrdlog_code) && isset($hrdlog_creds->hrdlog_username) && $hrdlog_creds->hrdlogrealtime == 1) ||
-					(isset($qrz_creds->qrzapikey) && $qrz_creds->qrzrealtime == 1) ||
-					(isset($webadif_creds->webadifapikey) && $webadif_creds->webadifrealtime == 1)
+					$creds && (
+					(isset($creds->ucp) && isset($creds->ucn) && $creds->clublogrealtime == 1) ||
+					(isset($creds->hrdlog_code) && isset($creds->hrdlog_username) && $creds->hrdlogrealtime == 1) ||
+					(isset($creds->qrzapikey) && $creds->qrzrealtime == 1) ||
+					(isset($creds->webadifapikey) && $creds->webadifrealtime == 1)
+					)
 				);
 
 				if ($needs_qso_lookup) {
@@ -946,7 +945,7 @@ class Logbook_model extends CI_Model {
 				}
 
 				// ClubLog export
-				if (isset($clublog_creds->ucp) && isset($clublog_creds->ucn) && (($clublog_creds->ucp ?? '') != '') && (($clublog_creds->ucn ?? '') != '') && ($clublog_creds->clublogrealtime == 1)) {
+				if ($creds && isset($creds->ucp) && isset($creds->ucn) && (($creds->ucp ?? '') != '') && (($creds->ucn ?? '') != '') && ($creds->clublogrealtime == 1)) {
 					if (!$this->load->is_loaded('AdifHelper')) {
 						$this->load->library('AdifHelper');
 					}
@@ -956,48 +955,48 @@ class Logbook_model extends CI_Model {
 					}
 
 					$adif = $this->adifhelper->getAdifLine($qso[0]);
-					$result = $this->clublog_model->push_qso_to_clublog($clublog_creds->ucn, $clublog_creds->ucp, $data['COL_STATION_CALLSIGN'], $adif, $data['station_id']);
+					$result = $this->clublog_model->push_qso_to_clublog($creds->ucn, $creds->ucp, $data['COL_STATION_CALLSIGN'], $adif, $data['station_id']);
 					if ($result['status'] == 'OK') {
 						$this->mark_clublog_qsos_sent($last_id);
 					}
 				}
 
 				// HRDLog export
-				if (isset($hrdlog_creds->hrdlog_code) && isset($hrdlog_creds->hrdlog_username) && $hrdlog_creds->hrdlogrealtime == 1) {
+				if ($creds && isset($creds->hrdlog_code) && isset($creds->hrdlog_username) && $creds->hrdlogrealtime == 1) {
 					if (!$this->load->is_loaded('AdifHelper')) {
 						$this->load->library('AdifHelper');
 					}
 
 					$adif = $this->adifhelper->getAdifLine($qso[0]);
-					$result = $this->push_qso_to_hrdlog($hrdlog_creds->hrdlog_username, $hrdlog_creds->hrdlog_code, $adif);
+					$result = $this->push_qso_to_hrdlog($creds->hrdlog_username, $creds->hrdlog_code, $adif);
 					if (($result['status'] == 'OK') || (($result['status'] == 'error') || ($result['status'] == 'duplicate') || ($result['status'] == 'auth_error'))) {
 						$this->mark_hrdlog_qsos_sent($last_id);
 					}
 				}
 
 				// QRZ export
-				if (isset($qrz_creds->qrzapikey) && $qrz_creds->qrzrealtime == 1) {
+				if ($creds && isset($creds->qrzapikey) && $creds->qrzrealtime == 1) {
 					if (!$this->load->is_loaded('AdifHelper')) {
 						$this->load->library('AdifHelper');
 					}
 
 					$adif = $this->adifhelper->getAdifLine($qso[0]);
-					$result = $this->push_qso_to_qrz($qrz_creds->qrzapikey, $adif);
+					$result = $this->push_qso_to_qrz($creds->qrzapikey, $adif);
 					if (($result['status'] == 'OK') || (($result['status'] == 'error') && ($result['message'] == 'STATUS=FAIL&REASON=Unable to add QSO to database: duplicate&EXTENDED='))) {
 						$this->mark_qrz_qsos_sent($last_id);
 					}
 				}
 
 				// WebADIF export
-				if (isset($webadif_creds->webadifapikey) && $webadif_creds->webadifrealtime == 1) {
+				if ($creds && isset($creds->webadifapikey) && $creds->webadifrealtime == 1) {
 					if (!$this->load->is_loaded('AdifHelper')) {
 						$this->load->library('AdifHelper');
 					}
 
 					$adif = $this->adifhelper->getAdifLine($qso[0]);
 					$result = $this->push_qso_to_webadif(
-						$webadif_creds->webadifapiurl,
-						$webadif_creds->webadifapikey,
+						$creds->webadifapiurl,
+						$creds->webadifapikey,
 						$adif
 					);
 
@@ -1077,6 +1076,31 @@ class Logbook_model extends CI_Model {
 
 		$query = $this->db->query($sql, $station_id);
 
+		$result = $query->row();
+
+		if ($result) {
+			return $result;
+		} else {
+			return false;
+		}
+	}
+
+	/*
+	 * Optimized function to fetch all export credentials in a single query
+	 * Returns object with all credential properties for all services
+	 */
+	function get_all_export_credentials($station_id) {
+		$sql = 'SELECT
+					prof.hrdlog_username, prof.hrdlog_code, prof.hrdlogrealtime,
+					prof.qrzapikey, prof.qrzrealtime,
+					prof.webadifapikey, prof.webadifapiurl, prof.webadifrealtime,
+					prof.clublogrealtime,
+					auth.user_clublog_name as ucn, auth.user_clublog_password as ucp
+				FROM station_profile prof
+				LEFT JOIN ' . $this->config->item('auth_table') . ' auth ON (auth.user_id = prof.user_id)
+				WHERE prof.station_id = ?';
+
+		$query = $this->db->query($sql, $station_id);
 		$result = $query->row();
 
 		if ($result) {
