@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2025-12-31 15:53+0000\n"
 "PO-Revision-Date: 2026-01-01 14:22+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
-"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/sv/>\n"
+"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/sv/>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -123,6 +123,8 @@ msgstr ""
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/Api.php:12 application/controllers/Api.php:34
+#: application/controllers/Api.php:70 application/controllers/Api.php:96
 msgid "You're not allowed to do that!"
 msgstr "Det är inte tillåtet!"
 
@@ -255,40 +257,41 @@ msgstr "POTA-import"
 msgid "POTA Data Imported"
 msgstr "POTA-data importerad"
 
-#: application/controllers/Api.php:14
+#: application/controllers/Api.php:14 application/controllers/Api.php:19
 msgid "API"
 msgstr "API"
 
 #: application/controllers/Api.php:37 application/views/api/description.php:26
+#: application/controllers/Api.php:42
 msgid "API Description"
 msgstr "API-beskrivning"
 
-#: application/controllers/Api.php:38
+#: application/controllers/Api.php:38 application/controllers/Api.php:43
 msgid "API Key is required. Do not change this field"
 msgstr "API-nyckel krävs. Ändra inte detta fält"
 
-#: application/controllers/Api.php:44
+#: application/controllers/Api.php:44 application/controllers/Api.php:49
 msgid "Edit API Description"
 msgstr "Redigera API-beskrivning"
 
-#: application/controllers/Api.php:56
+#: application/controllers/Api.php:56 application/controllers/Api.php:61
 #, php-format
 msgid "API Key %s description has been updated."
 msgstr "API-nyckel %s beskrivning har uppdaterats."
 
-#: application/controllers/Api.php:68
+#: application/controllers/Api.php:68 application/controllers/Api.php:73
 msgid "Invalid API rights"
 msgstr "Ogiltiga API-rättigheter"
 
-#: application/controllers/Api.php:82
+#: application/controllers/Api.php:82 application/controllers/Api.php:87
 msgid "API Key generated"
 msgstr "API-nyckel genererad"
 
-#: application/controllers/Api.php:84
+#: application/controllers/Api.php:84 application/controllers/Api.php:89
 msgid "API Key could not be generated"
 msgstr "API-nyckel kunde inte genereras"
 
-#: application/controllers/Api.php:98
+#: application/controllers/Api.php:98 application/controllers/Api.php:103
 #, php-format
 msgid "API Key %s has been deleted"
 msgstr "API-nyckel %s har tagits bort"
@@ -7208,8 +7211,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
-"Reef/506) och giltig stat (ADIF: DXCC och STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
+"506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/was/index.php:3
 msgctxt "USA State"
@@ -12590,8 +12593,8 @@ msgid ""
 "We’ll keep the original value and add a more precise locator (e.g., JO90AB "
 "or JO90AB12) when a match is confident."
 msgstr ""
-"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator (t."
-"ex. JO90AB eller JO90AB12) när en matchning är säker."
+"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator "
+"(t.ex. JO90AB eller JO90AB12) när en matchning är säker."
 
 #: application/views/logbookadvanced/checkresult.php:49
 msgid "Distance Check Results"
@@ -17581,8 +17584,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 (t."
-"ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
+"(t.ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"

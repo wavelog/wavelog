@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2025-12-31 15:53+0000\n"
 "PO-Revision-Date: 2026-01-01 14:22+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -123,6 +123,8 @@ msgstr ""
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/Api.php:12 application/controllers/Api.php:34
+#: application/controllers/Api.php:70 application/controllers/Api.php:96
 msgid "You're not allowed to do that!"
 msgstr "それは許されません！"
 
@@ -255,40 +257,41 @@ msgstr "POTAインポート"
 msgid "POTA Data Imported"
 msgstr "POTAデータがインポートされました"
 
-#: application/controllers/Api.php:14
+#: application/controllers/Api.php:14 application/controllers/Api.php:19
 msgid "API"
 msgstr "API"
 
 #: application/controllers/Api.php:37 application/views/api/description.php:26
+#: application/controllers/Api.php:42
 msgid "API Description"
 msgstr "APIの説明"
 
-#: application/controllers/Api.php:38
+#: application/controllers/Api.php:38 application/controllers/Api.php:43
 msgid "API Key is required. Do not change this field"
 msgstr "APIキーは必須です。このフィールドは変更しないでください"
 
-#: application/controllers/Api.php:44
+#: application/controllers/Api.php:44 application/controllers/Api.php:49
 msgid "Edit API Description"
 msgstr "APIの説明を編集する"
 
-#: application/controllers/Api.php:56
+#: application/controllers/Api.php:56 application/controllers/Api.php:61
 #, php-format
 msgid "API Key %s description has been updated."
 msgstr "APIキー %s の 説明が更新されました。"
 
-#: application/controllers/Api.php:68
+#: application/controllers/Api.php:68 application/controllers/Api.php:73
 msgid "Invalid API rights"
 msgstr "無効なAPI権限"
 
-#: application/controllers/Api.php:82
+#: application/controllers/Api.php:82 application/controllers/Api.php:87
 msgid "API Key generated"
 msgstr "APIキーが生成されました"
 
-#: application/controllers/Api.php:84
+#: application/controllers/Api.php:84 application/controllers/Api.php:89
 msgid "API Key could not be generated"
 msgstr "APIキーを生成できませんでした"
 
-#: application/controllers/Api.php:98
+#: application/controllers/Api.php:98 application/controllers/Api.php:103
 #, php-format
 msgid "API Key %s has been deleted"
 msgstr "APIキー %s は削除されました"
@@ -1042,7 +1045,8 @@ msgstr "%d 件中 %d 件から %d 件を表示中"
 
 #: application/controllers/Eqsl.php:83 application/controllers/Eqsl.php:173
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
-msgstr "eQSLのニックネーム( アカウント名)がステーションプロファイルで定義されていませ"
+msgstr ""
+"eQSLのニックネーム( アカウント名)がステーションプロファイルで定義されていませ"
 "ん！"
 
 #: application/controllers/Eqsl.php:106 application/controllers/Eqsl.php:192
@@ -12773,9 +12777,9 @@ msgid ""
 msgstr ""
 "更新機能では、DXCCに割り当てられたメインITUゾーンのみを設定できます。DXCCが複"
 "数のITUゾーンをカバーしている場合、正しく設定されない可能性があります。そのた"
-"め、デフォルトでは、単一のITUゾーンをカバーするDXCCとのQSOのみが更新されます"
-"。このチェックボックスをオンにすると、この設定が上書きされますが、誤ったデー"
-"タが表示される可能性があります。ご注意ください!"
+"め、デフォルトでは、単一のITUゾーンをカバーするDXCCとのQSOのみが更新されま"
+"す。このチェックボックスをオンにすると、この設定が上書きされますが、誤った"
+"データが表示される可能性があります。ご注意ください!"
 
 #: application/views/logbookadvanced/checkresult.php:361
 #: application/views/search/ituzones_result.php:14
@@ -19295,8 +19299,8 @@ msgstr "受信"
 #~ "Your active Station Location isn't linked to your Logbook. Click %shere%s "
 #~ "to do it."
 #~ msgstr ""
-#~ "現在のステーション位置がログブックとリンクされていません。リンクするに"
-#~ "は、%shere%s をクリックしてください。"
+#~ "現在のステーション位置がログブックとリンクされていません。リンクするには、"
+#~ "%shere%s をクリックしてください。"
 
 #, php-format
 #~ msgctxt "Dashboard Warning"

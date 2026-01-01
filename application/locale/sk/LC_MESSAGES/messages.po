@@ -10,8 +10,8 @@ msgstr ""
 "POT-Creation-Date: 2025-12-31 15:53+0000\n"
 "PO-Revision-Date: 2026-01-01 14:22+0000\n"
 "Last-Translator: Viliam Petrik <tatralom@gmail.com>\n"
-"Language-Team: Slovak <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/sk/>\n"
+"Language-Team: Slovak <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,6 +122,8 @@ msgstr ""
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/Api.php:12 application/controllers/Api.php:34
+#: application/controllers/Api.php:70 application/controllers/Api.php:96
 msgid "You're not allowed to do that!"
 msgstr "To nesmieš robiť!"
 
@@ -254,40 +256,41 @@ msgstr "POTA import"
 msgid "POTA Data Imported"
 msgstr "POTA dáta naimportované"
 
-#: application/controllers/Api.php:14
+#: application/controllers/Api.php:14 application/controllers/Api.php:19
 msgid "API"
 msgstr "API"
 
 #: application/controllers/Api.php:37 application/views/api/description.php:26
+#: application/controllers/Api.php:42
 msgid "API Description"
 msgstr "Popis API"
 
-#: application/controllers/Api.php:38
+#: application/controllers/Api.php:38 application/controllers/Api.php:43
 msgid "API Key is required. Do not change this field"
 msgstr "Je požadovaný API kľúč. Toto pole nemeňte"
 
-#: application/controllers/Api.php:44
+#: application/controllers/Api.php:44 application/controllers/Api.php:49
 msgid "Edit API Description"
 msgstr "Uprav API popis"
 
-#: application/controllers/Api.php:56
+#: application/controllers/Api.php:56 application/controllers/Api.php:61
 #, php-format
 msgid "API Key %s description has been updated."
 msgstr "Popis API kľúča %s bol aktualizovaný."
 
-#: application/controllers/Api.php:68
+#: application/controllers/Api.php:68 application/controllers/Api.php:73
 msgid "Invalid API rights"
 msgstr "Neplatné API práva"
 
-#: application/controllers/Api.php:82
+#: application/controllers/Api.php:82 application/controllers/Api.php:87
 msgid "API Key generated"
 msgstr "Vytvorený API kľúč"
 
-#: application/controllers/Api.php:84
+#: application/controllers/Api.php:84 application/controllers/Api.php:89
 msgid "API Key could not be generated"
 msgstr "API kľúč nebolo možné vygenerovať"
 
-#: application/controllers/Api.php:98
+#: application/controllers/Api.php:98 application/controllers/Api.php:103
 #, php-format
 msgid "API Key %s has been deleted"
 msgstr "API kľúč %s bol vymazaný"
@@ -7213,8 +7216,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Pre tento diplom sa používajú oblasti: DXCC (musí byť jedno z Čína/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 alebo Scarborough "
-"Reef/506) a platný štát (ADIF: DXCC a STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 alebo Scarborough Reef/"
+"506) a platný štát (ADIF: DXCC a STATE)"
 
 #: application/views/awards/was/index.php:3
 msgctxt "USA State"
