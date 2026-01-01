@@ -4,15 +4,15 @@
 #
 # Fabian Berg <fabian.berg@hb9hil.org>, 2025.
 # "S.NAKAO" <hlx.nakao@gmail.com>, 2025.
-# "S.NAKAO(JG3HLX)" <hlx.nakao@gmail.com>, 2025.
+# "S.NAKAO(JG3HLX)" <hlx.nakao@gmail.com>, 2025, 2026.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-12-31 15:53+0000\n"
-"PO-Revision-Date: 2025-12-30 19:35+0000\n"
+"PO-Revision-Date: 2026-01-01 14:22+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1042,7 +1042,8 @@ msgstr "%d 件中 %d 件から %d 件を表示中"
 
 #: application/controllers/Eqsl.php:83 application/controllers/Eqsl.php:173
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
-msgstr "eQSLのニックネームがステーションプロファイルで定義されていません！"
+msgstr "eQSLのニックネーム( アカウント名)がステーションプロファイルで定義されていませ"
+"ん！"
 
 #: application/controllers/Eqsl.php:106 application/controllers/Eqsl.php:192
 msgid "You have not defined your eQSL.cc credentials!"
@@ -1067,7 +1068,7 @@ msgstr "eQSLのユーザー名/パスワードが間違っています"
 #: application/controllers/Eqsl.php:218
 #, php-format
 msgid "No such eQSL QTH Nickname: %s"
-msgstr "そのような eQSL QTH ニックネームはありません: %s"
+msgstr "そのような eQSL QTH ニックネーム( アカウント名)はありません: %s"
 
 #: application/controllers/Eqsl.php:335
 msgid "QSO not found or not accessible"
@@ -3465,7 +3466,7 @@ msgstr "eQSL.cc で問題が発生しました!"
 
 #: application/models/Eqslmethods_model.php:308
 msgid "QTH Nickname does not exist at eQSL"
-msgstr "QTHニックネームはeQSLに存在しません"
+msgstr "QTHニックネーム( アカウント名)はeQSLに存在しません"
 
 #: application/models/Eqslmethods_model.php:317
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
@@ -11262,9 +11263,9 @@ msgid ""
 "Please make sure the 'eQSL QTH Nickname' field is set in your station "
 "profile and that the value matches the QTH Nickname you set within eQSL."
 msgstr ""
-"ステーション プロファイルで「eQSL QTH ニックネーム」フィールドが設定されてお"
-"り、その値が eQSL 内で設定した QTH ニックネームと一致していることを確認してく"
-"ださい。"
+"ステーション プロファイルで「eQSL QTH ニックネーム( アカウント名)」フィールド"
+"が設定されており、その値が eQSL 内で設定した QTH ニックネームと一致しているこ"
+"とを確認してください。"
 
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
@@ -12690,7 +12691,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/checkresult.php:267
 msgid "Force update even if DXCC covers multiple CQ zones"
-msgstr ""
+msgstr "DXCC が複数の CQ ゾーンをカバーしている場合でも強制的に更新する"
 
 #: application/views/logbookadvanced/checkresult.php:268
 msgid ""
@@ -12700,6 +12701,11 @@ msgid ""
 "are updated. This checkbox overrides this but might result in wrong data. "
 "Use with caution!"
 msgstr ""
+"更新機能は、DXCCに割り当てられたメインのCQゾーンのみを設定できます。DXCCが複"
+"数のCQゾーンをカバーしている場合、正しく設定されない可能性があります。そのた"
+"め、デフォルトでは、単一のCQゾーンをカバーするDXCCとのQSOのみが更新されます。"
+"このチェックボックスをオンにすると、この設定が上書きされますが、誤ったデータ"
+"が表示される可能性があります。注意してご使用ください!"
 
 #: application/views/logbookadvanced/checkresult.php:285
 #: application/views/search/cqzones_result.php:14
@@ -12755,7 +12761,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/checkresult.php:343
 msgid "Force update even if DXCC covers multiple ITU zones"
-msgstr ""
+msgstr "DXCC が複数の ITU ゾーンをカバーしている場合でも強制的に更新する"
 
 #: application/views/logbookadvanced/checkresult.php:344
 msgid ""
@@ -12765,6 +12771,11 @@ msgid ""
 "are updated. This checkbox overrides this but might result in wrong data. "
 "Use with caution!"
 msgstr ""
+"更新機能では、DXCCに割り当てられたメインITUゾーンのみを設定できます。DXCCが複"
+"数のITUゾーンをカバーしている場合、正しく設定されない可能性があります。そのた"
+"め、デフォルトでは、単一のITUゾーンをカバーするDXCCとのQSOのみが更新されます"
+"。このチェックボックスをオンにすると、この設定が上書きされますが、誤ったデー"
+"タが表示される可能性があります。ご注意ください!"
 
 #: application/views/logbookadvanced/checkresult.php:361
 #: application/views/search/ituzones_result.php:14
@@ -16076,7 +16087,7 @@ msgstr "Sked partner"
 
 #: application/views/satellite/pass.php:91
 msgid "Load predictions"
-msgstr "負荷予測"
+msgstr "軌道予測"
 
 #: application/views/satellite/pass.php:92
 msgid "Add sked partner"
@@ -16109,7 +16120,7 @@ msgstr "TLE情報が検出されませんでした。TLEを更新してくださ
 #: application/views/satellite/passtable.php:7
 #: application/views/satellite/skedtable.php:36
 msgid "AOS Time"
-msgstr "AOSチーム"
+msgstr "AOS時間"
 
 #: application/views/satellite/passtable.php:8
 #: application/views/satellite/skedtable.php:40
@@ -16911,12 +16922,12 @@ msgstr "ステーションの特別興味グループ情報 (例: DA/NW-357)。"
 #: application/views/station_profile/edit.php:312
 msgctxt "Probably no translation needed"
 msgid "eQSL QTH Nickname"
-msgstr "eQSL QTH ニックネーム"
+msgstr "eQSL QTH ニックネーム( アカウント名)"
 
 #: application/views/station_profile/create.php:203
 #: application/views/station_profile/edit.php:314
 msgid "The QTH Nickname which is configured in your eQSL Profile"
-msgstr "eQSLプロファイルで設定されているQTHニックネーム"
+msgstr "eQSLプロファイルで設定されているQTHニックネーム( アカウント名)"
 
 #: application/views/station_profile/create.php:207
 #: application/views/station_profile/edit.php:317
