@@ -926,67 +926,78 @@ class Logbook_model extends CI_Model {
 			// No point in fetching hrdlog code or qrz api key and qrzrealtime setting if we're skipping the export
 			if (!$skipexport) {
 
-				$result = $this->exists_clublog_credentials($data['station_id']);
-				if (isset($result->ucp) && isset($result->ucn) && (($result->ucp ?? '') != '') && (($result->ucn ?? '') != '') && ($result->clublogrealtime == 1)) {
+				// Check which real-time exports are enabled
+				$clublog_creds = $this->exists_clublog_credentials($data['station_id']);
+				$hrdlog_creds = $this->exists_hrdlog_credentials($data['station_id']);
+				$qrz_creds = $this->exists_qrz_api_key($data['station_id']);
+				$webadif_creds = $this->exists_webadif_api_key($data['station_id']);
+
+				// Cache QSO data once if any real-time export is enabled (avoids 4 identical queries with 8 joins each)
+				$qso = null;
+				$needs_qso_lookup = (
+					(isset($clublog_creds->ucp) && isset($clublog_creds->ucn) && $clublog_creds->clublogrealtime == 1) ||
+					(isset($hrdlog_creds->hrdlog_code) && isset($hrdlog_creds->hrdlog_username) && $hrdlog_creds->hrdlogrealtime == 1) ||
+					(isset($qrz_creds->qrzapikey) && $qrz_creds->qrzrealtime == 1) ||
+					(isset($webadif_creds->webadifapikey) && $webadif_creds->webadifrealtime == 1)
+				);
+
+				if ($needs_qso_lookup) {
+					$qso = $this->get_qso($last_id, true)->result();
+				}
+
+				// ClubLog export
+				if (isset($clublog_creds->ucp) && isset($clublog_creds->ucn) && (($clublog_creds->ucp ?? '') != '') && (($clublog_creds->ucn ?? '') != '') && ($clublog_creds->clublogrealtime == 1)) {
 					if (!$this->load->is_loaded('AdifHelper')) {
 						$this->load->library('AdifHelper');
 					}
-					$qso = $this->get_qso($last_id, true)->result();
 
 					if (!$this->load->is_loaded('clublog_model')) {
 						$this->load->model('clublog_model');
 					}
 
 					$adif = $this->adifhelper->getAdifLine($qso[0]);
-					$result = $this->clublog_model->push_qso_to_clublog($result->ucn, $result->ucp, $data['COL_STATION_CALLSIGN'], $adif, $data['station_id']);
+					$result = $this->clublog_model->push_qso_to_clublog($clublog_creds->ucn, $clublog_creds->ucp, $data['COL_STATION_CALLSIGN'], $adif, $data['station_id']);
 					if ($result['status'] == 'OK') {
 						$this->mark_clublog_qsos_sent($last_id);
 					}
 				}
 
-				$result = '';
-				$result = $this->exists_hrdlog_credentials($data['station_id']);
-				// Push qso to hrdlog if code is set, and realtime upload is enabled, and we're not importing an adif-file
-				if (isset($result->hrdlog_code) && isset($result->hrdlog_username) && $result->hrdlogrealtime == 1) {
+				// HRDLog export
+				if (isset($hrdlog_creds->hrdlog_code) && isset($hrdlog_creds->hrdlog_username) && $hrdlog_creds->hrdlogrealtime == 1) {
 					if (!$this->load->is_loaded('AdifHelper')) {
 						$this->load->library('AdifHelper');
 					}
-					$qso = $this->get_qso($last_id, true)->result();
 
 					$adif = $this->adifhelper->getAdifLine($qso[0]);
-					$result = $this->push_qso_to_hrdlog($result->hrdlog_username, $result->hrdlog_code, $adif);
+					$result = $this->push_qso_to_hrdlog($hrdlog_creds->hrdlog_username, $hrdlog_creds->hrdlog_code, $adif);
 					if (($result['status'] == 'OK') || (($result['status'] == 'error') || ($result['status'] == 'duplicate') || ($result['status'] == 'auth_error'))) {
 						$this->mark_hrdlog_qsos_sent($last_id);
 					}
 				}
-				$result = ''; // Empty result from previous hrdlog-attempt for safety
-				$result = $this->exists_qrz_api_key($data['station_id']);
-				// Push qso to qrz if apikey is set, and realtime upload is enabled, and we're not importing an adif-file
-				if (isset($result->qrzapikey) && $result->qrzrealtime == 1) {
+
+				// QRZ export
+				if (isset($qrz_creds->qrzapikey) && $qrz_creds->qrzrealtime == 1) {
 					if (!$this->load->is_loaded('AdifHelper')) {
 						$this->load->library('AdifHelper');
 					}
-					$qso = $this->get_qso($last_id, true)->result();
 
 					$adif = $this->adifhelper->getAdifLine($qso[0]);
-					$result = $this->push_qso_to_qrz($result->qrzapikey, $adif);
+					$result = $this->push_qso_to_qrz($qrz_creds->qrzapikey, $adif);
 					if (($result['status'] == 'OK') || (($result['status'] == 'error') && ($result['message'] == 'STATUS=FAIL&REASON=Unable to add QSO to database: duplicate&EXTENDED='))) {
 						$this->mark_qrz_qsos_sent($last_id);
 					}
 				}
 
-				$result = $this->exists_webadif_api_key($data['station_id']);
-				// Push qso to webadif if apikey is set, and realtime upload is enabled, and we're not importing an adif-file
-				if (isset($result->webadifapikey) && $result->webadifrealtime == 1) {
+				// WebADIF export
+				if (isset($webadif_creds->webadifapikey) && $webadif_creds->webadifrealtime == 1) {
 					if (!$this->load->is_loaded('AdifHelper')) {
 						$this->load->library('AdifHelper');
 					}
-					$qso = $this->get_qso($last_id, true)->result();
 
 					$adif = $this->adifhelper->getAdifLine($qso[0]);
 					$result = $this->push_qso_to_webadif(
-						$result->webadifapiurl,
-						$result->webadifapikey,
+						$webadif_creds->webadifapiurl,
+						$webadif_creds->webadifapikey,
 						$adif
 					);
 
