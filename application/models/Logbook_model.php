@@ -1097,7 +1097,7 @@ class Logbook_model extends CI_Model {
 					prof.clublogrealtime,
 					auth.user_clublog_name as ucn, auth.user_clublog_password as ucp
 				FROM station_profile prof
-				LEFT JOIN ' . $this->config->item('auth_table') . ' auth ON (auth.user_id = prof.user_id)
+				INNER JOIN ' . $this->config->item('auth_table') . ' auth ON (auth.user_id = prof.user_id)
 				WHERE prof.station_id = ?';
 
 		$query = $this->db->query($sql, $station_id);
