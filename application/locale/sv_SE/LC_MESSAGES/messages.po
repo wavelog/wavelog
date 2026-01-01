@@ -3506,24 +3506,30 @@ msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: Inga stationsprofiler med HRDlog-uppgifter hittades."
 
 #: application/models/Logbook_model.php:1356
+#: application/models/Logbook_model.php:1401
 msgid "Station ID not allowed"
 msgstr "Stations-ID inte tillåtet"
 
 #: application/models/Logbook_model.php:1361
+#: application/models/Logbook_model.php:1406
 msgid "No Call given"
 msgstr "Ingen anropssignal angiven"
 
 #: application/models/Logbook_model.php:1431
 #: application/models/Logbook_model.php:1633
+#: application/models/Logbook_model.php:1476
+#: application/models/Logbook_model.php:1678
 msgid "DXCC has to be Numeric"
 msgstr "DXCC måste vara numerisk"
 
 #: application/models/Logbook_model.php:4693
+#: application/models/Logbook_model.php:4738
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Fel anropssignal %s vid import av QSO med %s för %s: HOPPADES ÖVER"
 
 #: application/models/Logbook_model.php:4707
+#: application/models/Logbook_model.php:4752
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -3532,10 +3538,12 @@ msgstr ""
 "inte. Det är ogiltigt"
 
 #: application/models/Logbook_model.php:4716
+#: application/models/Logbook_model.php:4761
 msgid "QSO on"
 msgstr "QSO kl"
 
 #: application/models/Logbook_model.php:4716
+#: application/models/Logbook_model.php:4761
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3544,6 +3552,7 @@ msgstr ""
 "inte. Det är ogiltigt"
 
 #: application/models/Logbook_model.php:4765
+#: application/models/Logbook_model.php:4810
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -3553,44 +3562,55 @@ msgstr ""
 "importerades inte. Det är ogiltigt"
 
 #: application/models/Logbook_model.php:5030
+#: application/models/Logbook_model.php:5075
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate är ogiltigt (ÅÅÅÅMMDD)"
 
 #: application/models/Logbook_model.php:5041
+#: application/models/Logbook_model.php:5086
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate är ogiltigt (ÅÅÅÅMMDD)"
 
 #: application/models/Logbook_model.php:5102
+#: application/models/Logbook_model.php:5147
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date är ogiltigt (ÅÅÅÅMMDD)"
 
 #: application/models/Logbook_model.php:5477
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:5522
 msgid "Duplicate for"
 msgstr "Dubblett för"
 
 #: application/models/Logbook_model.php:5542
 #: application/models/Logbook_model.php:5637
+#: application/models/Logbook_model.php:5587
+#: application/models/Logbook_model.php:5682
 msgid "QSO could not be matched"
 msgstr "QSO kunde inte matchas"
 
 #: application/models/Logbook_model.php:5550
+#: application/models/Logbook_model.php:5595
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bekräftad av LoTW/Clublog/eQSL/Tävling"
 
 #: application/models/Logbook_model.php:5556
+#: application/models/Logbook_model.php:5601
 msgid "confirmed by award manager"
 msgstr "bekräftad av diplomansvarig"
 
 #: application/models/Logbook_model.php:5560
+#: application/models/Logbook_model.php:5605
 msgid "confirmed by cross-check of DCL data"
 msgstr "bekräftat genom korskontroll av DCL-data"
 
 #: application/models/Logbook_model.php:5564
+#: application/models/Logbook_model.php:5609
 msgid "confirmation pending"
 msgstr "bekräftelse väntar"
 
 #: application/models/Logbook_model.php:5567
+#: application/models/Logbook_model.php:5612
 msgid "unconfirmed"
 msgstr "obekräftad"
 
@@ -3598,14 +3618,17 @@ msgstr "obekräftad"
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
+#: application/models/Logbook_model.php:5615
 msgid "unknown"
 msgstr "Okänd"
 
 #: application/models/Logbook_model.php:5640
+#: application/models/Logbook_model.php:5685
 msgid "POTA reference already in log"
 msgstr "POTA-referens redan i loggen"
 
 #: application/models/Logbook_model.php:5643
+#: application/models/Logbook_model.php:5688
 msgid "QSO updated"
 msgstr "QSO uppdaterad"
 
@@ -3620,6 +3643,7 @@ msgstr "QSO uppdaterad"
 #: application/views/user/edit.php:279 application/views/user/edit.php:302
 #: application/views/user/edit.php:325 application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:6419
 msgid "Bearing"
 msgstr "Bäring"
 
