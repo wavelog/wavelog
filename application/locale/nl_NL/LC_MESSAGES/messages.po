@@ -5,16 +5,16 @@
 # Casper van Lieburg <pa7dx@yahoo.com>, 2024.
 # Fabian Berg <fabian.berg@hb9hil.org>, 2024, 2025.
 # PE1PQX <Andre@pe1pqx.eu>, 2025.
-# Alexander <alexander@pa8s.nl>, 2025.
+# Alexander <alexander@pa8s.nl>, 2025, 2026.
 # "Erkin Mercan (TA4AQG-SP9AQG)" <ekomeko066@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-01-01 14:28+0000\n"
-"PO-Revision-Date: 2025-12-30 19:35+0000\n"
+"PO-Revision-Date: 2026-01-02 10:06+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
-"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/nl/>\n"
+"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/nl/>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12770,7 +12770,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/checkresult.php:267
 msgid "Force update even if DXCC covers multiple CQ zones"
-msgstr ""
+msgstr "Forceer update zelfs als DXCC meerdere CQ-zones dekt"
 
 #: application/views/logbookadvanced/checkresult.php:268
 msgid ""
@@ -12780,6 +12780,11 @@ msgid ""
 "are updated. This checkbox overrides this but might result in wrong data. "
 "Use with caution!"
 msgstr ""
+"De updatefunctie kan alleen de belangrijkste CQ-zone instellen die aan de "
+"DXCC is toegewezen. Als de DXCC meerdere CQ-zones beslaat, is er een kans "
+"dat dit niet correct is. Standaard worden alleen QSO's met DXCC's die één "
+"enkele CQ-zone beslaan bijgewerkt. Dit selectievakje overschrijft dit, maar "
+"kan leiden tot verkeerde gegevens. Gebruik met voorzichtigheid!"
 
 #: application/views/logbookadvanced/checkresult.php:285
 #: application/views/search/cqzones_result.php:14
@@ -12835,7 +12840,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/checkresult.php:343
 msgid "Force update even if DXCC covers multiple ITU zones"
-msgstr ""
+msgstr "Forceer update, zelfs als DXCC meerdere ITU-zones dekt"
 
 #: application/views/logbookadvanced/checkresult.php:344
 msgid ""
@@ -12845,6 +12850,12 @@ msgid ""
 "are updated. This checkbox overrides this but might result in wrong data. "
 "Use with caution!"
 msgstr ""
+"Met de updatefunctie kan alleen de belangrijkste ITU-zone worden ingesteld "
+"die aan het DXCC is toegewezen. Als het DXCC meerdere ITU-zones bestrijkt, "
+"bestaat de kans dat dit niet correct is. Daarom worden standaard alleen "
+"QSO's bijgewerkt met DXCC's die slechts één ITU-zone beslaan. Dit "
+"selectievakje overschrijft dit, maar kan tot verkeerde gegevens leiden. "
+"Gebruik met voorzichtigheid!"
 
 #: application/views/logbookadvanced/checkresult.php:361
 #: application/views/search/ituzones_result.php:14
