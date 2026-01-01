@@ -182,15 +182,24 @@ class Logbook_model extends CI_Model {
 			$radio_name='';
 		}
 
-		if ($this->input->post('country') == "") {
+		// Cache DXCC lookup to avoid calling check_dxcc_table() 4 times
+		$dxcc = null;
+		$needs_dxcc_lookup = ($this->input->post('country') == "" ||
+		                      $this->input->post('cqz') == "" ||
+		                      $this->input->post('dxcc_id') == "" ||
+		                      $this->input->post('continent') == "");
+
+		if ($needs_dxcc_lookup) {
 			$dxcc = $this->check_dxcc_table(strtoupper(trim($callsign)), $datetime);
+		}
+
+		if ($this->input->post('country') == "") {
 			$country = ucwords(strtolower($dxcc[1]), "- (/");
 		} else {
 			$country = $this->input->post('country');
 		}
 
 		if ($this->input->post('cqz') == "") {
-			$dxcc = $this->check_dxcc_table(strtoupper(trim($callsign)), $datetime);
 			if (empty($dxcc[2])) {
 				$cqz = null;
 			} else {
@@ -201,8 +210,6 @@ class Logbook_model extends CI_Model {
 		}
 
 		if ($this->input->post('dxcc_id') == "") {
-
-			$dxcc = $this->check_dxcc_table(strtoupper(trim($callsign)), $datetime);
 			if (empty($dxcc[0])) {
 				$dxcc_id = null;
 			} else {
@@ -213,8 +220,6 @@ class Logbook_model extends CI_Model {
 		}
 
 		if ($this->input->post('continent') == "") {
-
-			$dxcc = $this->check_dxcc_table(strtoupper(trim($callsign)), $datetime);
 			if (empty($dxcc[3])) {
 				$continent = null;
 			} else {
