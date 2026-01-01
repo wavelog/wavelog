@@ -1,4 +1,9 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+use Wavelog\Dxcc\Dxcc;
+
+require_once APPPATH . '../src/Dxcc/Dxcc.php';
+
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class API extends CI_Controller {
 
@@ -1060,7 +1065,9 @@ class API extends CI_Controller {
 
 			$return['callsign'] = $lookup_callsign;
 
-			$callsign_dxcc_lookup = $this->logbook_model->dxcc_lookup($lookup_callsign, $date);
+			// Use Wavelog\Dxcc\Dxcc for faster in-memory lookup
+			$dxccobj = new Dxcc($date);
+			$callsign_dxcc_lookup = $dxccobj->dxcc_lookup($lookup_callsign, $date);
 
 			$return['dxcc_id'] = $callsign_dxcc_lookup['adif'] ?? '';
 			$return['dxcc'] = $callsign_dxcc_lookup['entity'] ?? '';
