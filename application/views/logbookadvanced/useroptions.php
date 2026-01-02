@@ -191,7 +191,7 @@
 			<td><div class="form-check"><input class="form-check-input" name="stationpower" type="checkbox" <?php if (($options->stationpower->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td><?= __("Last modified"); ?></td>
+      <td><span title="<?= __("This is meant for debugging purposes only and not designed to be displayed by default"); ?>"><?= __("Last modified"); ?> <small id="debug_last_modified" class="badge text-bg-danger"><?= __("For debugging only"); ?></small></span></td>
 			<td><div class="form-check"><input class="form-check-input" name="last_modification" type="checkbox" <?php if (($options->last_modification->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 	</tbody>
