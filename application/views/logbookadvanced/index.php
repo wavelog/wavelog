@@ -126,7 +126,7 @@
             \"qth\":{\"show\":\"true\"},
             \"frequency\":{\"show\":\"true\"},
             \"dcl\":{\"show\":\"true\"},
-            \"last_modification\":{\"show\":\"true\"},
+            \"last_modification\":{\"show\":\"false\"},
         }";
     }
     $current_opts = json_decode($options);
@@ -236,7 +236,7 @@
         echo "\nuser_options={...user_options, ...o_template};";
     }
     if (!isset($current_opts->last_modification)) {
-        echo "\nvar o_template = { last_modification: {show: 'true'}};";
+        echo "\nvar o_template = { last_modification: {show: 'false'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
 
@@ -874,7 +874,7 @@ $options = json_decode($options);
                     <?php if (($options->datetime->show ?? "true") == "true") {
                         echo '<th>' . __("Date/Time") . '</th>';
                     } ?>
-                    <?php if (($options->last_modification->show ?? "true") == "true") {
+                    <?php if (($options->last_modification->show ?? "false") == "true") {
                         echo '<th>' . __("Last modified") . '</th>';
                     } ?>
                     <?php if (($options->de->show ?? "true") == "true") {
