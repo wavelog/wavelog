@@ -63,6 +63,9 @@ function updateRow(qso) {
 	if ((user_options.datetime.show ?? 'true') == "true"){
 		cells.eq(c++).text(qso.qsoDateTime);
 	}
+	if ((user_options.last_modification.show ?? 'true') == "true"){
+		cells.eq(c++).text(qso.last_modified);
+	}
 	if ((user_options.de.show ?? 'true') == "true"){
 		cells.eq(c++).text(qso.de);
 	}
@@ -279,6 +282,9 @@ function loadQSOTable(rows) {
 			} else {
 				data.push(qso.qsoDateTime);
 			}
+		}
+		if ((user_options.last_modification.show ?? 'true') == "true"){
+			data.push(qso.last_modified);
 		}
 		if ((user_options.de.show ?? 'true') == "true"){
 			data.push(qso.de.replaceAll('0', 'Ø'));
@@ -1875,6 +1881,7 @@ function saveOptions() {
 			type: 'post',
 			data: {
 				datetime: $('input[name="datetime"]').is(':checked') ? true : false,
+				last_modification: $('input[name="last_modification"]').is(':checked') ? true : false,
 				de: $('input[name="de"]').is(':checked') ? true : false,
 				dx: $('input[name="dx"]').is(':checked') ? true : false,
 				mode: $('input[name="mode"]').is(':checked') ? true : false,
@@ -2886,7 +2893,7 @@ function saveOptions() {
 		$('#incorrectcqzonetable tbody input:checked').each(function () {
 			let id = $(this).closest('tr').attr('id')?.replace(/\D/g, '');
 			// Skip entry if DXCC covers multiple CQ zones as the matching one cannot be identified automagically atm or force update
-			if (!$(this).closest('tr').find("td[id='cqZones']").text().includes(',') || $('#forceMultiZoneUpdate').prop("checked")) {
+			if (!$(this).closest('tr').find("td[id='cqZones']").text().includes(',') || $('#forceMultiZoneUpdateCq').prop("checked")) {
 				id_list.push(id);
 			}
 		});

@@ -615,6 +615,7 @@ class Logbookadvanced extends CI_Controller {
 		$json_string['qth']['show'] = $this->def_boolean($this->input->post('qth'));
 		$json_string['frequency']['show'] = $this->def_boolean($this->input->post('frequency'));
 		$json_string['dcl']['show'] = $this->def_boolean($this->input->post('dcl'));
+		$json_string['last_modification']['show'] = $this->def_boolean($this->input->post('last_modification'));
 
 		$obj['column_settings']= json_encode($json_string);
 
