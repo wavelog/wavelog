@@ -534,11 +534,11 @@
 
 								<?php if (($this->config->item('internal_tools') ?? false)) { ?>
 								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item dropdown-toggle dropdown-toggle-submenu" data-bs-toggle="dropdown"><i class="fas fa-sync"></i> <?= __("Internal tools"); ?></a>
+								<li><a class="dropdown-item dropdown-toggle dropdown-toggle-submenu" data-bs-toggle="dropdown"><i class="fas fa-wrench"></i> <?= __("Internal tools"); ?></a>
 									<ul class="submenu submenu-left dropdown-menu">
-										<li><a class="dropdown-item" href="<?php echo site_url('calltester'); ?>" title="Callsign DXCC checker"><i class="fas fa-globe-europe"></i> <?= __("Callsign DXCC checker"); ?></a></li>
-										<li><a class="dropdown-item" href="<?php echo site_url('map/qso_map'); ?>" title="GeoJSON QSO Map"><i class="fas fa-globe-europe"></i> <?= __("GeoJSON QSO Map"); ?></a></li>
-										<li><a class="dropdown-item" href="<?php echo site_url('zonechecker'); ?>" title="Gridsquare Zone checker"><i class="fas fa-globe-europe"></i> <?= __("Gridsquare Zone checker"); ?></a></li>
+										<li><a class="dropdown-item" href="<?php echo site_url('calltester'); ?>" title="Callsign DXCC checker"><i class="fas fa-wrench"></i> <?= __("Callsign DXCC checker"); ?></a></li>
+										<li><a class="dropdown-item" href="<?php echo site_url('map/qso_map'); ?>" title="GeoJSON QSO Map"><i class="fas fa-wrench"></i> <?= __("GeoJSON QSO Map"); ?></a></li>
+										<li><a class="dropdown-item" href="<?php echo site_url('zonechecker'); ?>" title="Gridsquare Zone checker"><i class="fas fa-wrench"></i> <?= __("Gridsquare Zone checker"); ?></a></li>
 									</ul>
 								</li>
 								<?php } ?>
