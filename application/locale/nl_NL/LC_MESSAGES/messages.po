@@ -413,6 +413,7 @@ msgstr "Logweergave - VUCC"
 #: application/controllers/Timeline.php:135
 #: application/controllers/Timeline.php:138
 #: application/controllers/Timeline.php:141
+#: application/controllers/Statistics.php:375
 msgid "Log View"
 msgstr "Logweergave"
 
@@ -643,6 +644,7 @@ msgstr "Notities - Back-up"
 #: application/views/interface_assets/header.php:443
 #: application/views/statistics/index.php:17
 #: application/views/statistics/index.php:89
+#: application/views/statistics/index.php:105
 msgid "Bands"
 msgstr "Banden"
 
@@ -1542,6 +1544,7 @@ msgstr "eQSL"
 #: application/views/widgets/qsos.php:18
 #: application/views/logbookadvanced/index.php:352
 #: application/views/logbookadvanced/index.php:887
+#: application/views/statistics/index.php:102
 msgid "Mode"
 msgstr "Modus"
 
@@ -2531,6 +2534,8 @@ msgstr "EDI exporteren"
 #: application/views/satellite/index.php:40
 #: application/views/statistics/index.php:69
 #: application/views/statistics/index.php:137
+#: application/views/statistics/index.php:85
+#: application/views/statistics/index.php:153
 msgid "Satellites"
 msgstr "Satellieten"
 
@@ -2878,21 +2883,25 @@ msgstr "Statistieken"
 #: application/controllers/Statistics.php:292
 #: application/views/interface_assets/header.php:158
 #: application/views/statistics/qsltable.php:5
+#: application/controllers/Statistics.php:302
 msgid "QSL Statistics"
 msgstr "QSL-statistieken"
 
 #: application/controllers/Statistics.php:307
 #: application/views/interface_assets/header.php:156
 #: application/views/statistics/antennaanalytics.php:3
+#: application/controllers/Statistics.php:317
 msgid "Antenna Analytics"
 msgstr "Antenne-analyse"
 
 #: application/controllers/Statistics.php:360
+#: application/controllers/Statistics.php:375
 msgid "Satellite QSOs"
 msgstr "Satelliet QSOs"
 
 #: application/controllers/Statistics.php:376
 #: application/views/interface_assets/header.php:182
+#: application/controllers/Statistics.php:391
 msgid "EME Initials"
 msgstr "Eerste EME verbindingen"
 
@@ -3563,6 +3572,7 @@ msgid "DXCC has to be Numeric"
 msgstr "DXCC moet numeriek zijn"
 
 #: application/models/Logbook_model.php:4738
+#: application/models/Logbook_model.php:4744
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
@@ -3570,6 +3580,7 @@ msgstr ""
 "OVERGESLAGEN"
 
 #: application/models/Logbook_model.php:4752
+#: application/models/Logbook_model.php:4758
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -3578,10 +3589,12 @@ msgstr ""
 "niet geïmporteerd. Het is ongeldig"
 
 #: application/models/Logbook_model.php:4761
+#: application/models/Logbook_model.php:4767
 msgid "QSO on"
 msgstr "QSO vanaf"
 
 #: application/models/Logbook_model.php:4761
+#: application/models/Logbook_model.php:4767
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3590,6 +3603,7 @@ msgstr ""
 "is niet geïmporteerd. Het is ongeldig"
 
 #: application/models/Logbook_model.php:4810
+#: application/models/Logbook_model.php:4816
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -3599,44 +3613,55 @@ msgstr ""
 "band. Dit QSO is niet geïmporteerd. Het is ongeldig"
 
 #: application/models/Logbook_model.php:5075
+#: application/models/Logbook_model.php:5081
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "de qslrdate is ongeldig (JJJJMMDD)"
 
 #: application/models/Logbook_model.php:5086
+#: application/models/Logbook_model.php:5092
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "de qslsdatum is ongeldig (JJJJMMDD)"
 
 #: application/models/Logbook_model.php:5147
+#: application/models/Logbook_model.php:5153
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "de clublog_qso_upload_date is ongeldig (JJJJMMDD)"
 
 #: application/models/Logbook_model.php:5522
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:5528
 msgid "Duplicate for"
 msgstr "Duplicaat voor"
 
 #: application/models/Logbook_model.php:5587
 #: application/models/Logbook_model.php:5682
+#: application/models/Logbook_model.php:5593
+#: application/models/Logbook_model.php:5688
 msgid "QSO could not be matched"
 msgstr "QSO kon niet worden gekoppeld"
 
 #: application/models/Logbook_model.php:5595
+#: application/models/Logbook_model.php:5601
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bevestigd door LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:5601
+#: application/models/Logbook_model.php:5607
 msgid "confirmed by award manager"
 msgstr "Bevestigd door award manager"
 
 #: application/models/Logbook_model.php:5605
+#: application/models/Logbook_model.php:5611
 msgid "confirmed by cross-check of DCL data"
 msgstr "bevestigd door kruiscontrole van DCL-gegevens"
 
 #: application/models/Logbook_model.php:5609
+#: application/models/Logbook_model.php:5615
 msgid "confirmation pending"
 msgstr "bevestiging in afwachting"
 
 #: application/models/Logbook_model.php:5612
+#: application/models/Logbook_model.php:5618
 msgid "unconfirmed"
 msgstr "onbevestigd"
 
@@ -3644,14 +3669,17 @@ msgstr "onbevestigd"
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
+#: application/models/Logbook_model.php:5621
 msgid "unknown"
 msgstr "onbekend"
 
 #: application/models/Logbook_model.php:5685
+#: application/models/Logbook_model.php:5691
 msgid "POTA reference already in log"
 msgstr "POTA-referentie al in logboek"
 
 #: application/models/Logbook_model.php:5688
+#: application/models/Logbook_model.php:5694
 msgid "QSO updated"
 msgstr "QSO bijgewerkt"
 
@@ -3666,6 +3694,7 @@ msgstr "QSO bijgewerkt"
 #: application/views/user/edit.php:279 application/views/user/edit.php:302
 #: application/views/user/edit.php:325 application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:6425
 msgid "Bearing"
 msgstr "Koers"
 
@@ -3681,6 +3710,7 @@ msgstr "Contacten"
 #: application/views/interface_assets/footer.php:110
 #: application/views/qso/index.php:94 application/views/statistics/index.php:65
 #: application/views/user/edit.php:168
+#: application/views/statistics/index.php:81
 msgid "General"
 msgstr "Algemeen"
 
@@ -3942,6 +3972,7 @@ msgstr "Verschil"
 #: application/views/logbookadvanced/index.php:654
 #: application/views/logbookadvanced/index.php:677
 #: application/views/logbookadvanced/index.php:686
+#: application/views/statistics/index.php:64
 msgid "All"
 msgstr "Alles"
 
@@ -5649,6 +5680,7 @@ msgstr "Toon CQ Zone-kaart"
 #: application/views/gridmap/index.php:28
 #: application/views/logbookadvanced/index.php:289
 #: application/views/logbookadvanced/index.php:293
+#: application/views/statistics/index.php:54
 msgid "Date Presets"
 msgstr "Datumvoorkeuren"
 
@@ -5662,6 +5694,7 @@ msgstr "Datumvoorkeuren"
 #: application/views/gridmap/index.php:31
 #: application/views/logbookadvanced/index.php:291
 #: application/views/logbookadvanced/index.php:295
+#: application/views/statistics/index.php:56
 msgid "Today"
 msgstr "Vandaag"
 
@@ -5670,6 +5703,7 @@ msgstr "Vandaag"
 #: application/views/gridmap/index.php:32
 #: application/views/logbookadvanced/index.php:292
 #: application/views/logbookadvanced/index.php:296
+#: application/views/statistics/index.php:57
 msgid "Yesterday"
 msgstr "Gisteren"
 
@@ -5678,6 +5712,7 @@ msgstr "Gisteren"
 #: application/views/gridmap/index.php:33
 #: application/views/logbookadvanced/index.php:293
 #: application/views/logbookadvanced/index.php:297
+#: application/views/statistics/index.php:58
 msgid "Last 7 Days"
 msgstr "Laatste 7 dagen"
 
@@ -5686,6 +5721,7 @@ msgstr "Laatste 7 dagen"
 #: application/views/gridmap/index.php:34
 #: application/views/logbookadvanced/index.php:294
 #: application/views/logbookadvanced/index.php:298
+#: application/views/statistics/index.php:59
 msgid "Last 30 Days"
 msgstr "Laatste 30 dagen"
 
@@ -5694,6 +5730,7 @@ msgstr "Laatste 30 dagen"
 #: application/views/gridmap/index.php:35
 #: application/views/logbookadvanced/index.php:295
 #: application/views/logbookadvanced/index.php:299
+#: application/views/statistics/index.php:60
 msgid "This Month"
 msgstr "Deze maand"
 
@@ -5702,6 +5739,7 @@ msgstr "Deze maand"
 #: application/views/gridmap/index.php:36
 #: application/views/logbookadvanced/index.php:296
 #: application/views/logbookadvanced/index.php:300
+#: application/views/statistics/index.php:61
 msgid "Last Month"
 msgstr "Vorige maand"
 
@@ -5710,6 +5748,7 @@ msgstr "Vorige maand"
 #: application/views/gridmap/index.php:37
 #: application/views/logbookadvanced/index.php:297
 #: application/views/logbookadvanced/index.php:301
+#: application/views/statistics/index.php:62
 msgid "This Year"
 msgstr "Dit jaar"
 
@@ -5717,6 +5756,7 @@ msgstr "Dit jaar"
 #: application/views/awards/dxcc/index.php:60
 #: application/views/logbookadvanced/index.php:298
 #: application/views/logbookadvanced/index.php:302
+#: application/views/statistics/index.php:63
 msgid "Last Year"
 msgstr "Vorig jaar"
 
@@ -5734,6 +5774,7 @@ msgstr "Wissen"
 #: application/views/awards/dxcc/index.php:66
 #: application/views/dxcalendar/index.php:9
 #: application/views/gridmap/index.php:44
+#: application/views/statistics/index.php:68
 msgid "Date from"
 msgstr "Datum van"
 
@@ -5741,6 +5782,7 @@ msgstr "Datum van"
 #: application/views/awards/dxcc/index.php:74
 #: application/views/dxcalendar/index.php:10
 #: application/views/gridmap/index.php:48
+#: application/views/statistics/index.php:72
 msgid "Date to"
 msgstr "Datum tot"
 
@@ -8741,6 +8783,7 @@ msgstr "Categorie-overlay"
 #: application/views/reg1test/index.php:70
 #: application/views/statistics/index.php:18
 #: application/views/statistics/index.php:95
+#: application/views/statistics/index.php:111
 msgid "Operators"
 msgstr "Operators"
 
@@ -12747,6 +12790,8 @@ msgstr "Labeltypen"
 #: application/views/map/qso_map.php:21
 #: application/views/statistics/index.php:92
 #: application/views/statistics/index.php:140
+#: application/views/statistics/index.php:108
+#: application/views/statistics/index.php:156
 msgid "QSOs"
 msgstr "QSOs"
 
@@ -17739,11 +17784,13 @@ msgstr "Hoogte"
 
 #: application/views/statistics/index.php:14
 #: application/views/statistics/index.php:80
+#: application/views/statistics/index.php:96
 msgid "Years"
 msgstr "Jaren"
 
 #: application/views/statistics/index.php:15
 #: application/views/statistics/index.php:83
+#: application/views/statistics/index.php:99
 msgid "Months"
 msgstr "Maanden"
 
@@ -17814,10 +17861,13 @@ msgstr "Alle jaren"
 
 #: application/views/statistics/index.php:98
 #: application/views/statistics/index.php:143
+#: application/views/statistics/index.php:114
+#: application/views/statistics/index.php:159
 msgid "Unique callsigns"
 msgstr "Unieke roepnamen"
 
 #: application/views/statistics/index.php:146
+#: application/views/statistics/index.php:162
 msgid "Unique Grids"
 msgstr "Unieke vakken"
 
