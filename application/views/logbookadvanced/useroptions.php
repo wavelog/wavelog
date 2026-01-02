@@ -190,6 +190,10 @@
 			<td><?= __("Station power"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="stationpower" type="checkbox" <?php if (($options->stationpower->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
+		<tr>
+			<td><?= __("Last modified"); ?></td>
+			<td><div class="form-check"><input class="form-check-input" name="last_modification" type="checkbox" <?php if (($options->last_modification->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
+		</tr>
 	</tbody>
 </table>
 </div>
