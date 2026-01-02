@@ -13,8 +13,8 @@ msgstr ""
 "POT-Creation-Date: 2026-01-01 14:28+0000\n"
 "PO-Revision-Date: 2026-01-02 16:35+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
-"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/nl/>\n"
+"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/nl/>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -126,6 +126,8 @@ msgstr ""
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
 #: application/controllers/Lotw.php:885 application/controllers/Lotw.php:990
+#: application/controllers/Map.php:27
+#: application/controllers/Zonechecker.php:17
 msgid "You're not allowed to do that!"
 msgstr "Je mag dat niet doen!"
 
@@ -695,6 +697,7 @@ msgid " and sat "
 msgstr " en satelliet "
 
 #: application/controllers/Calltester.php:33
+#: application/controllers/Calltester.php:32
 msgid "Call Tester"
 msgstr "Roepnaam tester"
 
@@ -1744,6 +1747,7 @@ msgstr "Staat/Provincie"
 #: application/views/visitor/index.php:27
 #: application/views/logbookadvanced/index.php:348
 #: application/views/logbookadvanced/index.php:902
+#: application/views/zonechecker/result.php:53
 msgid "Gridsquare"
 msgstr "Locatorvak"
 
@@ -2057,7 +2061,7 @@ msgstr "LoTW .TQ8 verzonden"
 msgid "LoTW .TQ8 Not Sent"
 msgstr "LoTW .TQ8 niet verzonden"
 
-#: application/controllers/Map.php:42
+#: application/controllers/Map.php:42 application/controllers/Map.php:48
 msgid "QSO Map"
 msgstr "QSO-kaart"
 
@@ -2693,6 +2697,7 @@ msgstr "Bewerk stationslocatie: "
 #: application/views/view_log/partial/log_ajax.php:18
 #: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
+#: application/views/zonechecker/index.php:5
 msgid "Station Location"
 msgstr "Station Profiel"
 
@@ -2710,6 +2715,7 @@ msgstr "Controleer de waarde voor locatorvak (%s)"
 #: application/views/interface_assets/header.php:441
 #: application/views/interface_assets/header.php:474
 #: application/views/interface_assets/header.php:596
+#: application/views/interface_assets/header.php:608
 msgid "Station Setup"
 msgstr "Stations instellen"
 
@@ -2780,6 +2786,7 @@ msgstr "Instellen als actief logboek"
 #: application/views/interface_assets/header.php:594
 #: application/views/stationsetup/stationsetup.php:49
 #: application/views/view_log/index.php:4
+#: application/views/interface_assets/header.php:606
 msgid "Active Logbook"
 msgstr "Actief logboek"
 
@@ -4557,6 +4564,7 @@ msgstr "Niets gevonden!"
 #: application/views/user/edit.php:137 application/views/user/index.php:28
 #: application/views/user/index.php:153 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:672
+#: application/views/zonechecker/result.php:50
 msgid "Callsign"
 msgstr "Roepnaam"
 
@@ -5612,6 +5620,7 @@ msgstr "Totaal"
 #: application/views/user/modals/first_login_wizard.php:74
 #: application/views/logbookadvanced/index.php:417
 #: application/views/logbookadvanced/index.php:947
+#: application/views/zonechecker/index.php:17
 msgid "CQ Zone"
 msgstr "CQ Zone"
 
@@ -6614,6 +6623,7 @@ msgstr "Verwijderd"
 #: application/views/user/modals/first_login_wizard.php:84
 #: application/views/logbookadvanced/index.php:431
 #: application/views/logbookadvanced/index.php:950
+#: application/views/zonechecker/index.php:18
 msgid "ITU Zone"
 msgstr "ITU-zone"
 
@@ -7480,6 +7490,7 @@ msgstr "Band / Satelliet / Baan"
 #: application/views/logbookadvanced/checkresult.php:201
 #: application/views/oqrs/showrequests.php:86
 #: application/views/simplefle/index.php:78
+#: application/views/zonechecker/result.php:51
 msgid "QSO Date"
 msgstr "QSO-datum"
 
@@ -9068,6 +9079,7 @@ msgstr "Problemen alleen gevonden in DXCC-klasse (niet in Logboekmodel):"
 #: application/views/calltester/result.php:24
 #: application/views/logbookadvanced/checkresult.php:147
 #: application/views/logbookadvanced/checkresult.php:205
+#: application/views/zonechecker/result.php:52
 msgid "Station Profile"
 msgstr "Stationprofiel"
 
@@ -9125,6 +9137,7 @@ msgstr "Roepnaam DXCC-identificatie"
 #: application/views/interface_assets/footer.php:878
 #: application/views/logbookadvanced/index.php:815
 #: application/views/logbookadvanced/index.php:819
+#: application/views/zonechecker/index.php:10
 msgid "Callsign: "
 msgstr "Roepnaam: "
 
@@ -9736,6 +9749,7 @@ msgstr "ADIF-naam"
 #: application/views/mode/index.php:8 application/views/mode/index.php:55
 #: application/views/usermode/index.php:6
 #: application/views/usermode/index.php:51
+#: application/views/interface_assets/header.php:586
 msgid "Active"
 msgstr "Actief"
 
@@ -12104,6 +12118,7 @@ msgstr ""
 #: application/views/interface_assets/footer.php:223
 #: application/views/interface_assets/header.php:535
 #: application/views/options/sidebar.php:10
+#: application/views/interface_assets/header.php:547
 msgid "Version Info"
 msgstr "Versie-informatie"
 
@@ -12526,38 +12541,46 @@ msgstr "DCL exporteren"
 #: application/views/interface_assets/header.php:536
 #: application/views/logbookadvanced/index.php:857
 #: application/views/logbookadvanced/index.php:861
+#: application/views/interface_assets/header.php:548
 msgid "Help"
 msgstr "Help"
 
 #: application/views/interface_assets/header.php:537
+#: application/views/interface_assets/header.php:549
 msgid "Forum"
 msgstr "Forum"
 
 #: application/views/interface_assets/header.php:541
+#: application/views/interface_assets/header.php:553
 #, php-format
 msgid "Stop impersonate and switch back to %s"
 msgstr "Stop met imiteren en schakel terug naar %s"
 
 #: application/views/interface_assets/header.php:542
+#: application/views/interface_assets/header.php:554
 #, php-format
 msgid "Switch back to %s"
 msgstr "Schakel terug naar %s"
 
 #: application/views/interface_assets/header.php:546
+#: application/views/interface_assets/header.php:558
 msgid "Logout"
 msgstr "Uitloggen"
 
 #: application/views/interface_assets/header.php:554
+#: application/views/interface_assets/header.php:566
 msgid "Select a Location"
 msgstr "Selecteer een locatie"
 
 #: application/views/interface_assets/header.php:596
+#: application/views/interface_assets/header.php:608
 msgid "You miss station-locations here? Go to stationsetup and fav them"
 msgstr ""
 "Mis je hier stationslocaties? Ga naar stationssetup en voeg ze toe aan je "
 "favorieten"
 
 #: application/views/interface_assets/header.php:633
+#: application/views/interface_assets/header.php:645
 msgid "Extras"
 msgstr "Extra's"
 
@@ -19513,6 +19536,88 @@ msgstr ""
 #: application/controllers/Lotw.php:855
 msgid "Connection to LoTW failed."
 msgstr "Verbinding met LoTW mislukt."
+
+#: application/controllers/Zonechecker.php:26
+msgid "Gridsquare Zone finder"
+msgstr ""
+
+#: application/views/interface_assets/header.php:537
+msgid "Internal tools"
+msgstr ""
+
+#: application/views/interface_assets/header.php:539
+msgid "Callsign DXCC checker"
+msgstr ""
+
+#: application/views/interface_assets/header.php:540
+msgid "GeoJSON QSO Map"
+msgstr ""
+
+#: application/views/interface_assets/header.php:541
+msgid "Gridsquare Zone checker"
+msgstr ""
+
+#: application/views/zonechecker/index.php:3
+msgid "Gridsquare Zone identification"
+msgstr ""
+
+#: application/views/zonechecker/index.php:15
+msgid "Zone Type"
+msgstr ""
+
+#: application/views/zonechecker/index.php:20
+msgid "Start Zone Check"
+msgstr ""
+
+#: application/views/zonechecker/index.php:39
+#: application/views/zonechecker/index.php:62
+msgid "Processing..."
+msgstr ""
+
+#: application/views/zonechecker/index.php:50
+#: application/views/zonechecker/index.php:73
+msgid "An error occurred while processing the request."
+msgstr ""
+
+#: application/views/zonechecker/result.php:16
+msgid "Callsigns Tested"
+msgstr ""
+
+#: application/views/zonechecker/result.php:17
+msgid "Execution Time"
+msgstr ""
+
+#: application/views/zonechecker/result.php:18
+msgid "Potential Wrong Zones"
+msgstr ""
+
+#: application/views/zonechecker/result.php:19
+msgid "Cache Hits"
+msgstr ""
+
+#: application/views/zonechecker/result.php:20
+msgid "Cache Misses"
+msgstr ""
+
+#: application/views/zonechecker/result.php:21
+msgid "Hit Rate"
+msgstr ""
+
+#: application/views/zonechecker/result.php:55
+msgid "ITUz"
+msgstr ""
+
+#: application/views/zonechecker/result.php:56
+msgid "ITUz geojson"
+msgstr ""
+
+#: application/views/zonechecker/result.php:58
+msgid "CQz"
+msgstr ""
+
+#: application/views/zonechecker/result.php:59
+msgid "CQz geojson"
+msgstr ""
 
 #~ msgid "Check QSOs missing DXCC data"
 #~ msgstr "Controleer QSOs zonder DXCC-gegevens"
