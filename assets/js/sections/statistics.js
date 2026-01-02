@@ -3,86 +3,173 @@ totalQsosPerYear();
 
 var activeTab='totalQsosPerYear()';
 
+// Preset functionality
+function applyPreset(preset) {
+	const dateFrom = document.getElementById('dateFrom');
+	const dateTo = document.getElementById('dateTo');
+	const today = new Date();
+
+	// Format date as YYYY-MM-DD
+	function formatDate(date) {
+		const year = date.getFullYear();
+		const month = String(date.getMonth() + 1).padStart(2, '0');
+		const day = String(date.getDate()).padStart(2, '0');
+		return `${year}-${month}-${day}`;
+	}
+
+	switch(preset) {
+		case 'today':
+			dateFrom.value = formatDate(today);
+			dateTo.value = formatDate(today);
+			break;
+
+		case 'yesterday':
+			const yesterday = new Date(today);
+			yesterday.setDate(yesterday.getDate() - 1);
+			dateFrom.value = formatDate(yesterday);
+			dateTo.value = formatDate(yesterday);
+			break;
+
+		case 'last7days':
+			const sevenDaysAgo = new Date(today);
+			sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+			dateFrom.value = formatDate(sevenDaysAgo);
+			dateTo.value = formatDate(today);
+			break;
+
+		case 'last30days':
+			const thirtyDaysAgo = new Date(today);
+			thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+			dateFrom.value = formatDate(thirtyDaysAgo);
+			dateTo.value = formatDate(today);
+			break;
+
+		case 'thismonth':
+			const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+			dateFrom.value = formatDate(firstDayOfMonth);
+			dateTo.value = formatDate(today);
+			break;
+
+		case 'lastmonth':
+			const firstDayOfLastMonth = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+			const lastDayOfLastMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+			dateFrom.value = formatDate(firstDayOfLastMonth);
+			dateTo.value = formatDate(lastDayOfLastMonth);
+			break;
+
+		case 'thisyear':
+			const firstDayOfYear = new Date(today.getFullYear(), 0, 1);
+			dateFrom.value = formatDate(firstDayOfYear);
+			dateTo.value = formatDate(today);
+			break;
+
+		case 'lastyear':
+			const lastYear = today.getFullYear() - 1;
+			const firstDayOfLastYear = new Date(lastYear, 0, 1);
+			const lastDayOfLastYear = new Date(lastYear, 11, 31);
+			dateFrom.value = formatDate(firstDayOfLastYear);
+			dateTo.value = formatDate(lastDayOfLastYear);
+			break;
+
+		case 'alltime':
+			dateFrom.value = '';
+			dateTo.value = '';
+			break;
+	}
+	// Trigger refresh after applying preset
+	eval(activeTab);
+}
+
+// Reset dates function
+function resetDates() {
+	const dateFrom = document.getElementById('dateFrom');
+	const dateTo = document.getElementById('dateTo');
+	dateFrom.value = '';
+	dateTo.value = '';
+	// Trigger refresh after resetting
+	eval(activeTab);
+}
+
 $("a[href='#satellite']").on('shown.bs.tab', function(e) {
 	totalSatQsos();
 	activeTab='totalSatQsos()';
 	$(".sattable").DataTable().columns.adjust();
-	$("#yr").show();
+	$("#dateFilterContainer").show();
 });
 
 $("a[href='#sattab']").on('shown.bs.tab', function(e) {
 	activeTab='totalSatQsos()';
 	totalSatQsos();
-	$("#yr").show();
+	$("#dateFilterContainer").show();
 });
 
 $("a[href='#home']").on('shown.bs.tab', function(e) {
 	activeTab='totalQsosPerYear()';
 	totalQsosPerYear();
-	$("#yr").hide();
+	$("#dateFilterContainer").show();
 });
 
 $("a[href='#yearstab']").on('shown.bs.tab', function(e) {
 	activeTab='totalQsosPerYear()';
 	totalQsosPerYear();
-	$("#yr").hide();
+	$("#dateFilterContainer").hide();
 });
 
 $("a[href='#monthstab']").on('shown.bs.tab', function(e) {
 	activeTab='totalQsosPerMonth()';
 	totalQsosPerMonth();
-	$("#yr").show();
+	$("#dateFilterContainer").show();
 });
 
 $("a[href='#bandtab']").on('shown.bs.tab', function(e) {
 	totalBandQsos();
-	activeTab='totalBandQsos()'
-	$("#yr").show();
+	activeTab='totalBandQsos()';
+	$("#dateFilterContainer").show();
 });
 
 $("a[href='#modetab']").on('shown.bs.tab', function(e) {
 	totalModeQsos();
-	activeTab='totalModeQsos()'
-	$("#yr").show();
+	activeTab='totalModeQsos()';
+	$("#dateFilterContainer").show();
 });
 
 $("a[href='#qsotab']").on('shown.bs.tab', function(e) {
 	totalQsos();
-	activeTab='totalQsos()'
-	$("#yr").show();
+	activeTab='totalQsos()';
+	$("#dateFilterContainer").show();
 });
 
 $("a[href='#operatorstab']").on('shown.bs.tab', function(e) {
 	totalOperatorQsos();
-	activeTab='totalOperatorQsos()'
-	$("#yr").show();
+	activeTab='totalOperatorQsos()';
+	$("#dateFilterContainer").show();
 });
 
 $("a[href='#satqsostab']").on('shown.bs.tab', function(e) {
 	totalSatQsosC();
-	activeTab='totalSatQsosC()'
-	$("#yr").show();
+	activeTab='totalSatQsosC()';
+	$("#dateFilterContainer").show();
 });
 
 $("a[href='#uniquetab']").on('shown.bs.tab', function(e) {
 	uniqueCallsigns();
-	activeTab='uniqueCallsigns()'
-	$("#yr").show();
+	activeTab='uniqueCallsigns()';
+	$("#dateFilterContainer").show();
 });
 
 $("a[href='#satuniquetab']").on('shown.bs.tab', function(e) {
 	uniqueSatCallsigns();
-	activeTab='uniqueSatCallsigns()'
-	$("#yr").show();
+	activeTab='uniqueSatCallsigns()';
+	$("#dateFilterContainer").show();
 });
 
 $("a[href='#satuniquegridtab']").on('shown.bs.tab', function(e) {
 	uniqueSatGrids();
-	activeTab='uniqueSatGrids()'
-	$("#yr").show();
+	activeTab='uniqueSatGrids()';
+	$("#dateFilterContainer").show();
 });
 
-$("#yr").on('change',function(e) {
+$("#dateFrom, #dateTo").on('change', function(e) {
 	eval(activeTab);
 });
 
@@ -90,7 +177,7 @@ function uniqueSatGrids() {
     $.ajax({
         url: base_url+'index.php/statistics/get_unique_sat_grids',
         type: 'post',
-	data: { yr: $("#yr option:selected").val() },
+	data: { dateFrom: $('#dateFrom').val(), dateTo: $('#dateTo').val() },
         success: function (data) {
 	    $(".satuniquegrid").html('');
             if (data.length > 0) {
@@ -104,7 +191,7 @@ function uniqueSatCallsigns() {
     $.ajax({
         url: base_url+'index.php/statistics/get_unique_sat_callsigns',
         type: 'post',
-	data: { yr: $("#yr option:selected").val() },
+	data: { dateFrom: $('#dateFrom').val(), dateTo: $('#dateTo').val() },
         success: function (data) {
 	    $(".satunique").html('');
             if (data.length > 0) {
@@ -118,7 +205,7 @@ function uniqueCallsigns() {
     $.ajax({
         url: base_url+'index.php/statistics/get_unique_callsigns',
         type: 'post',
-	data: { yr: $("#yr option:selected").val() },
+	data: { dateFrom: $('#dateFrom').val(), dateTo: $('#dateTo').val() },
         success: function (data) {
 	    $(".unique").html('');
             if (data.length > 0) {
@@ -132,7 +219,7 @@ function totalQsos() {
     $.ajax({
         url: base_url+'index.php/statistics/get_total_qsos',
         type: 'post',
-	data: { yr: $("#yr option:selected").val() },
+	data: { dateFrom: $('#dateFrom').val(), dateTo: $('#dateTo').val() },
         success: function (data) {
 	    $(".qsos").html('');
             if (data.length > 0) {
@@ -146,7 +233,7 @@ function totalSatQsosC() {
     $.ajax({
         url: base_url+'index.php/statistics/get_total_sat_qsos',
         type: 'post',
-	data: { yr: $("#yr option:selected").val() },
+	data: { dateFrom: $('#dateFrom').val(), dateTo: $('#dateTo').val() },
         success: function (data) {
 	    $(".satqsos").html('');
             if (data.length > 0) {
@@ -163,7 +250,7 @@ function totalQsosPerYear() {
 	$.ajax({
 		url: base_url+'index.php/statistics/get_year',
 		type: 'post',
-		data: { yr: $("#yr option:selected").val() },
+		data: { dateFrom: $('#dateFrom').val(), dateTo: $('#dateTo').val() },
 		success: function (data) {
 			if (data.length > 0) {
 				$(".years").html('');
@@ -281,7 +368,7 @@ function totalQsosPerMonth() {
 	$.ajax({
 		url: base_url+'index.php/statistics/get_year_month',
 		type: 'post',
-		data: { yr: $("#yr option:selected").val() },
+		data: { dateFrom: $('#dateFrom').val(), dateTo: $('#dateTo').val() },
 		success: function (data) {
 			if (data.length > 0) {
 				$(".months").html('');
@@ -400,7 +487,7 @@ function totalModeQsos() {
 	$.ajax({
 		url: base_url+'index.php/statistics/get_mode',
 		type: 'post',
-		data: { yr: $("#yr option:selected").val() },
+		data: { dateFrom: $('#dateFrom').val(), dateTo: $('#dateTo').val() },
 		success: function (data) {
 			if (data.length > 0) {
 				$(".mode").html('');
@@ -531,7 +618,7 @@ function totalBandQsos() {
 	$.ajax({
 		url: base_url+'index.php/statistics/get_band',
 		type: 'post',
-		data: { yr: $("#yr option:selected").val() },
+		data: { dateFrom: $('#dateFrom').val(), dateTo: $('#dateTo').val() },
 		success: function (data) {
 			if (data.length > 0) {
 				$(".band").html('');
@@ -674,7 +761,7 @@ function totalOperatorQsos() {
 	$.ajax({
 		url: base_url+'index.php/statistics/get_operators',
 		type: 'post',
-		data: { yr: $("#yr option:selected").val() },
+		data: { dateFrom: $('#dateFrom').val(), dateTo: $('#dateTo').val() },
 		success: function (data) {
 			if (data.length > 0) {
 				$(".operators").html('');
@@ -817,7 +904,7 @@ function totalSatQsos() {
     $.ajax({
         url: base_url+'index.php/statistics/get_sat',
         type: 'post',
-	data: { yr: $("#yr option:selected").val() },
+	data: { dateFrom: $('#dateFrom').val(), dateTo: $('#dateTo').val() },
         success: function (data) {
             $(".satsummary").html('');
             if (data.length > 0) {
@@ -964,7 +1051,8 @@ function displaySatQsos(sat,mode) {
 		var ajax_data = ({
 			'Sat': sat,
 			'Mode': mode,
-			'Year': $("#yr option:selected").val(),
+			'dateFrom': $("#dateFrom").val(),
+			'dateTo': $("#dateTo").val(),
 		})
 		modalloading=true;
 		$.ajax({
