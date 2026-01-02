@@ -532,7 +532,7 @@
 								<li><a class="dropdown-item" href="<?php echo site_url('api'); ?>" title="Manage API keys"><i class="fas fa-key"></i> <?= __("API Keys"); ?></a></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('radio'); ?>" title="Interface with one or more radios"><i class="fas fa-broadcast-tower"></i> <?= __("Hardware Interfaces"); ?></a></li>
 
-								<?php if (($this->config->item('internal_tools') ?? false)) { ?>
+								<?php if (($this->config->item('internal_tools') ?? false) && ($this->session->userdata('user_type') == 99)) { ?>
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item dropdown-toggle dropdown-toggle-submenu" data-bs-toggle="dropdown"><i class="fas fa-wrench"></i> <?= __("Internal tools"); ?></a>
 									<ul class="submenu submenu-left dropdown-menu">
