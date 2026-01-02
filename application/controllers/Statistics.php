@@ -68,10 +68,11 @@ class Statistics extends CI_Controller {
 	public function get_year_month() {
 		$this->load->model('logbook_model');
 
-		$yr = xss_clean($this->input->post('yr')) ?? 'All';
+		$dateFrom = xss_clean($this->input->post('dateFrom'));
+		$dateTo = xss_clean($this->input->post('dateTo'));
 
 		// get data
-		$totals_month = $this->logbook_model->totals_year_month($yr);
+		$totals_month = $this->logbook_model->totals_year_month($dateFrom, $dateTo);
 
 		$monthstats = array();
 
@@ -89,16 +90,17 @@ class Statistics extends CI_Controller {
 
 	public function get_mode() {
 		$this->load->model('logbook_model');
-		$yr = xss_clean($this->input->post('yr')) ?? 'All';
+		$dateFrom = xss_clean($this->input->post('dateFrom'));
+		$dateTo = xss_clean($this->input->post('dateTo'));
 
 		$modestats = array();
 
 		$i = 0;
-		$ssb = $this->logbook_model->total_ssb($yr);
-		$cw = $this->logbook_model->total_cw($yr);
-		$fm = $this->logbook_model->total_fm($yr);
-		$am = $this->logbook_model->total_am($yr);
-		$digi = $this->logbook_model->total_digi($yr);
+		$ssb = $this->logbook_model->total_ssb($dateFrom, $dateTo);
+		$cw = $this->logbook_model->total_cw($dateFrom, $dateTo);
+		$fm = $this->logbook_model->total_fm($dateFrom, $dateTo);
+		$am = $this->logbook_model->total_am($dateFrom, $dateTo);
+		$digi = $this->logbook_model->total_digi($dateFrom, $dateTo);
 		if ($ssb > 0) {
 			$modestats[$i]['mode'] = 'ssb';
 			$modestats[$i++]['total'] = $ssb;
@@ -131,8 +133,9 @@ class Statistics extends CI_Controller {
 
 		$bandstats = array();
 
-		$yr = xss_clean($this->input->post('yr')) ?? 'All';
-		$total_bands = $this->logbook_model->total_bands($yr);
+		$dateFrom = xss_clean($this->input->post('dateFrom'));
+		$dateTo = xss_clean($this->input->post('dateTo'));
+		$total_bands = $this->logbook_model->total_bands($dateFrom, $dateTo);
 
 		$i = 0;
 
@@ -155,11 +158,12 @@ class Statistics extends CI_Controller {
 		//define stats array
 		$operatorstats = array();
 
-		//get year if present
-		$yr = xss_clean($this->input->post('yr')) ?? 'All';
+		//get date range if present
+		$dateFrom = xss_clean($this->input->post('dateFrom'));
+		$dateTo = xss_clean($this->input->post('dateTo'));
 
 		//load stats
-		$total_operators = $this->logbook_model->total_operators($yr);
+		$total_operators = $this->logbook_model->total_operators($dateFrom, $dateTo);
 
 		$i = 0;
 
@@ -181,8 +185,9 @@ class Statistics extends CI_Controller {
 
 		$satstats = array();
 
-		$yr = xss_clean($this->input->post('yr')) ?? 'All';
-		$total_sat = $this->logbook_model->total_sat($yr);
+		$dateFrom = xss_clean($this->input->post('dateFrom'));
+		$dateTo = xss_clean($this->input->post('dateTo'));
+		$total_sat = $this->logbook_model->total_sat($dateFrom, $dateTo);
 		$i = 0;
 
 		if ($total_sat) {
@@ -201,14 +206,15 @@ class Statistics extends CI_Controller {
 
 		$total_qsos = array();
 
-		$yr = xss_clean($this->input->post('yr')) ?? 'All';
-		$result = $this->stats->unique_sat_callsigns($yr);
+		$dateFrom = xss_clean($this->input->post('dateFrom'));
+		$dateTo = xss_clean($this->input->post('dateTo'));
+		$result = $this->stats->unique_sat_callsigns($dateFrom, $dateTo);
 		$total_qsos['qsoarray'] = $result['qsoView'];
 		$total_qsos['satunique'] = $result['satunique'];
 		$total_qsos['modeunique'] = $result['modeunique'];
 		$total_qsos['total'] = $result['total'];
-		$total_qsos['sats'] = $this->stats->get_sats($yr);
-		$total_qsos['modes'] = $this->stats->get_sat_modes($yr);
+		$total_qsos['sats'] = $this->stats->get_sats($dateFrom, $dateTo);
+		$total_qsos['modes'] = $this->stats->get_sat_modes($dateFrom, $dateTo);
 
 		$this->load->view('statistics/satuniquetable', $total_qsos);
 	}
@@ -218,14 +224,15 @@ class Statistics extends CI_Controller {
 
 		$total_qsos = array();
 
-		$yr = xss_clean($this->input->post('yr')) ?? 'All';
-		$result = $this->stats->unique_sat_grids($yr);
+		$dateFrom = xss_clean($this->input->post('dateFrom'));
+		$dateTo = xss_clean($this->input->post('dateTo'));
+		$result = $this->stats->unique_sat_grids($dateFrom, $dateTo);
 		$total_qsos['qsoarray'] = $result['qsoView'];
 		$total_qsos['satunique'] = $result['satunique'];
 		$total_qsos['modeunique'] = $result['modeunique'];
 		$total_qsos['total'] = $result['total'];
-		$total_qsos['sats'] = $this->stats->get_sats($yr);
-		$total_qsos['modes'] = $this->stats->get_sat_modes($yr);
+		$total_qsos['sats'] = $this->stats->get_sats($dateFrom, $dateTo);
+		$total_qsos['modes'] = $this->stats->get_sat_modes($dateFrom, $dateTo);
 
 		$this->load->view('statistics/satuniquegridtable', $total_qsos);
 	}
@@ -235,13 +242,14 @@ class Statistics extends CI_Controller {
 
 		$total_qsos = array();
 
-		$yr = xss_clean($this->input->post('yr')) ?? 'All';
-		$result = $this->stats->unique_callsigns($yr);
+		$dateFrom = xss_clean($this->input->post('dateFrom'));
+		$dateTo = xss_clean($this->input->post('dateTo'));
+		$result = $this->stats->unique_callsigns($dateFrom, $dateTo);
 		$total_qsos['qsoarray'] = $result['qsoView'];
 		$total_qsos['bandunique'] = $result['bandunique'];
 		$total_qsos['modeunique'] = $result['modeunique'];
 		$total_qsos['total'] = $result['total'];
-		$total_qsos['bands'] = $this->stats->get_bands($yr);
+		$total_qsos['bands'] = $this->stats->get_bands($dateFrom, $dateTo);
 
 		$this->load->view('statistics/uniquetable', $total_qsos);
 	}
@@ -251,13 +259,14 @@ class Statistics extends CI_Controller {
 
 		$total_qsos = array();
 
-		$yr = xss_clean($this->input->post('yr')) ?? 'All';
-		$result = $this->stats->total_sat_qsos($yr);
+		$dateFrom = xss_clean($this->input->post('dateFrom'));
+		$dateTo = xss_clean($this->input->post('dateTo'));
+		$result = $this->stats->total_sat_qsos($dateFrom, $dateTo);
 		$total_qsos['qsoarray'] = $result['qsoView'];
 		$total_qsos['sattotal'] = $result['sattotal'];
 		$total_qsos['modetotal'] = $result['modetotal'];
 		$total_qsos['modes'] = $result['modes'];
-		$total_qsos['sats'] = $this->stats->get_sats($yr);
+		$total_qsos['sats'] = $this->stats->get_sats($dateFrom, $dateTo);
 
 		$this->load->view('statistics/satqsotable', $total_qsos);
 	}
@@ -267,12 +276,13 @@ class Statistics extends CI_Controller {
 
 		$total_qsos = array();
 
-		$yr = xss_clean($this->input->post('yr')) ?? 'All';
-		$result = $this->stats->total_qsos($yr);
+		$dateFrom = xss_clean($this->input->post('dateFrom'));
+		$dateTo = xss_clean($this->input->post('dateTo'));
+		$result = $this->stats->total_qsos($dateFrom, $dateTo);
 		$total_qsos['qsoarray'] = $result['qsoView'];
 		$total_qsos['bandtotal'] = $result['bandtotal'];
 		$total_qsos['modetotal'] = $result['modetotal'];
-		$total_qsos['bands'] = $this->stats->get_bands($yr);
+		$total_qsos['bands'] = $this->stats->get_bands($dateFrom, $dateTo);
 
 		$this->load->view('statistics/qsotable', $total_qsos);
 	}
@@ -330,9 +340,11 @@ class Statistics extends CI_Controller {
 		$mode = xss_clean($this->input->post('mode'));
 		$sat = xss_clean($this->input->post('sat'));
 		$orbit = xss_clean($this->input->post('orbit'));
+		$dateFrom = xss_clean($this->input->post('dateFrom'));
+		$dateTo = xss_clean($this->input->post('dateTo'));
 
 		$this->load->model('stats');
-		$azimutharray = $this->stats->azimuthdata($band, $mode, $sat, $orbit);
+		$azimutharray = $this->stats->azimuthdata($band, $mode, $sat, $orbit, $dateFrom, $dateTo);
 
 		header('Content-Type: application/json');
 		echo json_encode($azimutharray);
@@ -341,9 +353,11 @@ class Statistics extends CI_Controller {
 	public function get_elevation_data() {
 		$sat = xss_clean($this->input->post('sat'));
 		$orbit = xss_clean($this->input->post('orbit'));
+		$dateFrom = xss_clean($this->input->post('dateFrom'));
+		$dateTo = xss_clean($this->input->post('dateTo'));
 
 		$this->load->model('stats');
-		$elevationarray = $this->stats->elevationdata($sat, $orbit);
+		$elevationarray = $this->stats->elevationdata($sat, $orbit, $dateFrom, $dateTo);
 
 		header('Content-Type: application/json');
 		echo json_encode($elevationarray);
@@ -354,8 +368,9 @@ class Statistics extends CI_Controller {
 
 		$sat = str_replace('"', "", $this->security->xss_clean($this->input->post("Sat")));
 		$mode = str_replace('"', "", $this->security->xss_clean($this->input->post("Mode")));
-		$year = $this->security->xss_clean($this->input->post("Year"));
-		$data['results'] = $this->stats->sat_qsos($sat,$year,$mode);
+		$dateFrom = $this->security->xss_clean($this->input->post("dateFrom"));
+		$dateTo = $this->security->xss_clean($this->input->post("dateTo"));
+		$data['results'] = $this->stats->sat_qsos($sat,$dateFrom,$dateTo,$mode);
 
 		$data['page_title'] = __("Log View")." - " . __("Satellite QSOs");
 		$data['filter'] = $sat;
