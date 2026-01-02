@@ -2886,7 +2886,7 @@ function saveOptions() {
 		$('#incorrectcqzonetable tbody input:checked').each(function () {
 			let id = $(this).closest('tr').attr('id')?.replace(/\D/g, '');
 			// Skip entry if DXCC covers multiple CQ zones as the matching one cannot be identified automagically atm or force update
-			if (!$(this).closest('tr').find("td[id='cqZones']").text().includes(',') || $('#forceMultiZoneUpdate').prop("checked")) {
+			if (!$(this).closest('tr').find("td[id='cqZones']").text().includes(',') || $('#forceMultiZoneUpdateCq').prop("checked")) {
 				id_list.push(id);
 			}
 		});
