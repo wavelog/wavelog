@@ -531,6 +531,18 @@
 
 								<li><a class="dropdown-item" href="<?php echo site_url('api'); ?>" title="Manage API keys"><i class="fas fa-key"></i> <?= __("API Keys"); ?></a></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('radio'); ?>" title="Interface with one or more radios"><i class="fas fa-broadcast-tower"></i> <?= __("Hardware Interfaces"); ?></a></li>
+
+								<?php if (($this->config->item('internal_tools') ?? false) && ($this->session->userdata('user_type') == 99)) { ?>
+								<div class="dropdown-divider"></div>
+								<li><a class="dropdown-item dropdown-toggle dropdown-toggle-submenu" data-bs-toggle="dropdown"><i class="fas fa-wrench"></i> <?= __("Internal tools"); ?></a>
+									<ul class="submenu submenu-left dropdown-menu">
+										<li><a class="dropdown-item" href="<?php echo site_url('calltester'); ?>" title="Callsign DXCC checker"><i class="fas fa-wrench"></i> <?= __("Callsign DXCC checker"); ?></a></li>
+										<li><a class="dropdown-item" href="<?php echo site_url('map/qso_map'); ?>" title="GeoJSON QSO Map"><i class="fas fa-wrench"></i> <?= __("GeoJSON QSO Map"); ?></a></li>
+										<li><a class="dropdown-item" href="<?php echo site_url('zonechecker'); ?>" title="Gridsquare Zone checker"><i class="fas fa-wrench"></i> <?= __("Gridsquare Zone checker"); ?></a></li>
+									</ul>
+								</li>
+								<?php } ?>
+
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="javascript:displayVersionDialog();" title="Version Information"><i class="fas fa-star"></i> <?= __("Version Info"); ?></a></li>
 								<li><a class="dropdown-item" target="_blank" href="https://github.com/wavelog/wavelog/wiki" title="Help"><i class="fas fa-question"></i> <?= __("Help"); ?></a></li>
