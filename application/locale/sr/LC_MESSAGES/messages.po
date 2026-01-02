@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-01-02 12:14+0000\n"
+"POT-Creation-Date: 2026-01-02 12:36+0000\n"
 "PO-Revision-Date: 2024-12-10 11:09+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -400,7 +400,7 @@ msgstr "Pregled loga - VUCC"
 #: application/controllers/Awards.php:560
 #: application/controllers/Callstats.php:100
 #: application/controllers/Distancerecords.php:86
-#: application/controllers/Statistics.php:360
+#: application/controllers/Statistics.php:375
 #: application/controllers/Timeline.php:126
 #: application/controllers/Timeline.php:129
 #: application/controllers/Timeline.php:132
@@ -632,7 +632,7 @@ msgstr "Napomene - Rezervna kopija"
 #: application/views/bands/index.php:30 application/views/bands/index.php:34
 #: application/views/interface_assets/header.php:443
 #: application/views/statistics/index.php:17
-#: application/views/statistics/index.php:89
+#: application/views/statistics/index.php:105
 msgid "Bands"
 msgstr "Opsezi"
 
@@ -1515,7 +1515,7 @@ msgstr "eQSL"
 #: application/views/statistics/antennaanalytics.php:31
 #: application/views/statistics/index.php:16
 #: application/views/statistics/index.php:24
-#: application/views/statistics/index.php:86
+#: application/views/statistics/index.php:102
 #: application/views/statistics/initialresult.php:19
 #: application/views/statistics/initials.php:17
 #: application/views/timeline/index.php:19 application/views/user/edit.php:243
@@ -2487,8 +2487,8 @@ msgstr "Izvoz EDI"
 #: application/controllers/Satellite.php:55 application/models/Note.php:10
 #: application/views/interface_assets/header.php:332
 #: application/views/satellite/index.php:40
-#: application/views/statistics/index.php:69
-#: application/views/statistics/index.php:137
+#: application/views/statistics/index.php:85
+#: application/views/statistics/index.php:153
 msgid "Satellites"
 msgstr "Sateliti"
 
@@ -2829,23 +2829,23 @@ msgstr ""
 msgid "Statistics"
 msgstr "Statistika"
 
-#: application/controllers/Statistics.php:292
+#: application/controllers/Statistics.php:302
 #: application/views/interface_assets/header.php:158
 #: application/views/statistics/qsltable.php:5
 msgid "QSL Statistics"
 msgstr "Statistika QSL karata"
 
-#: application/controllers/Statistics.php:307
+#: application/controllers/Statistics.php:317
 #: application/views/interface_assets/header.php:156
 #: application/views/statistics/antennaanalytics.php:3
 msgid "Antenna Analytics"
 msgstr "Analitika Antena"
 
-#: application/controllers/Statistics.php:360
+#: application/controllers/Statistics.php:375
 msgid "Satellite QSOs"
 msgstr ""
 
-#: application/controllers/Statistics.php:376
+#: application/controllers/Statistics.php:391
 #: application/views/interface_assets/header.php:182
 msgid "EME Initials"
 msgstr ""
@@ -3499,22 +3499,22 @@ msgstr ""
 msgid "DXCC has to be Numeric"
 msgstr ""
 
-#: application/models/Logbook_model.php:4738
+#: application/models/Logbook_model.php:4744
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Prilikom uvoza QSO-ova, pogrešan je znak %s sa %s za %s: PRESKOČENO"
 
-#: application/models/Logbook_model.php:4752
+#: application/models/Logbook_model.php:4758
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
 msgstr ""
 
-#: application/models/Logbook_model.php:4761
+#: application/models/Logbook_model.php:4767
 msgid "QSO on"
 msgstr "Start QSO"
 
-#: application/models/Logbook_model.php:4761
+#: application/models/Logbook_model.php:4767
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3522,71 +3522,71 @@ msgstr ""
 "Pokušali ste uvesti QSO bez bilo kojeg znaka. Ovaj QSO nije uvežen, "
 "neispravan je"
 
-#: application/models/Logbook_model.php:4810
+#: application/models/Logbook_model.php:4816
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
 "imported. It's invalid"
 msgstr ""
 
-#: application/models/Logbook_model.php:5075
+#: application/models/Logbook_model.php:5081
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "datum prijema QSL je neispravan (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5086
+#: application/models/Logbook_model.php:5092
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "datum slanja QSL je neispravan (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5147
+#: application/models/Logbook_model.php:5153
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "Datum učitavanja veza na Clublog je neispravan (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5522
+#: application/models/Logbook_model.php:5528
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplikat za"
 
-#: application/models/Logbook_model.php:5587
-#: application/models/Logbook_model.php:5682
+#: application/models/Logbook_model.php:5593
+#: application/models/Logbook_model.php:5688
 msgid "QSO could not be matched"
 msgstr "QSO se ne poklapa"
 
-#: application/models/Logbook_model.php:5595
+#: application/models/Logbook_model.php:5601
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "potvrđeno preko LoTW/Clublog/eQSL/Kontest"
 
-#: application/models/Logbook_model.php:5601
+#: application/models/Logbook_model.php:5607
 msgid "confirmed by award manager"
 msgstr "potvrđeno od strane menadžera za diplome"
 
-#: application/models/Logbook_model.php:5605
+#: application/models/Logbook_model.php:5611
 msgid "confirmed by cross-check of DCL data"
 msgstr "potvrđeno unakrsnom proverom DCL podataka"
 
-#: application/models/Logbook_model.php:5609
+#: application/models/Logbook_model.php:5615
 msgid "confirmation pending"
 msgstr "čeka potvrđivanje"
 
-#: application/models/Logbook_model.php:5612
+#: application/models/Logbook_model.php:5618
 msgid "unconfirmed"
 msgstr "nepotvrđeno"
 
-#: application/models/Logbook_model.php:5615
+#: application/models/Logbook_model.php:5621
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
 msgid "unknown"
 msgstr "nepoznato"
 
-#: application/models/Logbook_model.php:5685
+#: application/models/Logbook_model.php:5691
 msgid "POTA reference already in log"
 msgstr ""
 
-#: application/models/Logbook_model.php:5688
+#: application/models/Logbook_model.php:5694
 msgid "QSO updated"
 msgstr ""
 
-#: application/models/Logbook_model.php:6419
+#: application/models/Logbook_model.php:6425
 #: application/views/activated_gridmap/index.php:114
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:58
@@ -3610,7 +3610,7 @@ msgstr ""
 
 #: application/models/Note.php:8
 #: application/views/interface_assets/footer.php:110
-#: application/views/qso/index.php:94 application/views/statistics/index.php:65
+#: application/views/qso/index.php:94 application/views/statistics/index.php:81
 #: application/views/user/edit.php:168
 msgid "General"
 msgstr "Opšte"
@@ -3701,7 +3701,6 @@ msgstr "Ukupan broj rađenih WAJA"
 #: application/views/dayswithqso/index.php:42
 #: application/views/dayswithqso/index.php:82
 #: application/views/statistics/index.php:21
-#: application/views/statistics/index.php:57
 #: application/views/timeline/index.php:107
 #: application/views/visitor/index.php:250
 msgid "Year"
@@ -3843,6 +3842,7 @@ msgstr "Razlika"
 #: application/views/statistics/antennaanalytics.php:34
 #: application/views/statistics/antennaanalytics.php:48
 #: application/views/statistics/antennaanalytics.php:88
+#: application/views/statistics/index.php:64
 #: application/views/statistics/initials.php:20
 #: application/views/timeline/index.php:10
 #: application/views/timeline/index.php:22
@@ -5469,6 +5469,7 @@ msgstr "Prikaži kartu CQ zona"
 #: application/views/awards/dxcc/index.php:51
 #: application/views/gridmap/index.php:28
 #: application/views/logbookadvanced/index.php:293
+#: application/views/statistics/index.php:54
 msgid "Date Presets"
 msgstr ""
 
@@ -5481,6 +5482,7 @@ msgstr ""
 #: application/views/dashboard/index.php:429
 #: application/views/gridmap/index.php:31
 #: application/views/logbookadvanced/index.php:295
+#: application/views/statistics/index.php:56
 msgid "Today"
 msgstr "Danas"
 
@@ -5488,6 +5490,7 @@ msgstr "Danas"
 #: application/views/awards/dxcc/index.php:54
 #: application/views/gridmap/index.php:32
 #: application/views/logbookadvanced/index.php:296
+#: application/views/statistics/index.php:57
 msgid "Yesterday"
 msgstr ""
 
@@ -5495,6 +5498,7 @@ msgstr ""
 #: application/views/awards/dxcc/index.php:55
 #: application/views/gridmap/index.php:33
 #: application/views/logbookadvanced/index.php:297
+#: application/views/statistics/index.php:58
 msgid "Last 7 Days"
 msgstr ""
 
@@ -5502,6 +5506,7 @@ msgstr ""
 #: application/views/awards/dxcc/index.php:56
 #: application/views/gridmap/index.php:34
 #: application/views/logbookadvanced/index.php:298
+#: application/views/statistics/index.php:59
 msgid "Last 30 Days"
 msgstr ""
 
@@ -5509,6 +5514,7 @@ msgstr ""
 #: application/views/awards/dxcc/index.php:57
 #: application/views/gridmap/index.php:35
 #: application/views/logbookadvanced/index.php:299
+#: application/views/statistics/index.php:60
 msgid "This Month"
 msgstr ""
 
@@ -5516,6 +5522,7 @@ msgstr ""
 #: application/views/awards/dxcc/index.php:58
 #: application/views/gridmap/index.php:36
 #: application/views/logbookadvanced/index.php:300
+#: application/views/statistics/index.php:61
 msgid "Last Month"
 msgstr ""
 
@@ -5523,12 +5530,14 @@ msgstr ""
 #: application/views/awards/dxcc/index.php:59
 #: application/views/gridmap/index.php:37
 #: application/views/logbookadvanced/index.php:301
+#: application/views/statistics/index.php:62
 msgid "This Year"
 msgstr ""
 
 #: application/views/awards/cq/index.php:64
 #: application/views/awards/dxcc/index.php:60
 #: application/views/logbookadvanced/index.php:302
+#: application/views/statistics/index.php:63
 msgid "Last Year"
 msgstr ""
 
@@ -5545,6 +5554,7 @@ msgstr "Obriši"
 #: application/views/awards/dxcc/index.php:66
 #: application/views/dxcalendar/index.php:9
 #: application/views/gridmap/index.php:44
+#: application/views/statistics/index.php:68
 msgid "Date from"
 msgstr "Od datuma"
 
@@ -5552,6 +5562,7 @@ msgstr "Od datuma"
 #: application/views/awards/dxcc/index.php:74
 #: application/views/dxcalendar/index.php:10
 #: application/views/gridmap/index.php:48
+#: application/views/statistics/index.php:72
 msgid "Date to"
 msgstr "Do datuma"
 
@@ -8420,7 +8431,7 @@ msgstr "Overlay kategorija"
 #: application/views/cabrillo/index.php:164
 #: application/views/reg1test/index.php:70
 #: application/views/statistics/index.php:18
-#: application/views/statistics/index.php:95
+#: application/views/statistics/index.php:111
 msgid "Operators"
 msgstr "Operatori"
 
@@ -12306,8 +12317,8 @@ msgstr "Vrste etiketa"
 #: application/views/labels/index.php:81
 #: application/views/logbookadvanced/statecheckresult.php:12
 #: application/views/map/qso_map.php:21
-#: application/views/statistics/index.php:92
-#: application/views/statistics/index.php:140
+#: application/views/statistics/index.php:108
+#: application/views/statistics/index.php:156
 msgid "QSOs"
 msgstr "QSOi"
 
@@ -17028,12 +17039,12 @@ msgid "Elevation"
 msgstr "Elevacija"
 
 #: application/views/statistics/index.php:14
-#: application/views/statistics/index.php:80
+#: application/views/statistics/index.php:96
 msgid "Years"
 msgstr "Godine"
 
 #: application/views/statistics/index.php:15
-#: application/views/statistics/index.php:83
+#: application/views/statistics/index.php:99
 msgid "Months"
 msgstr ""
 
@@ -17097,17 +17108,12 @@ msgstr ""
 msgid "Explore the logbook."
 msgstr "Istražite dnevnik."
 
-#: application/views/statistics/index.php:54
-#: application/views/timeline/index.php:111
-msgid "All Years"
-msgstr "Sve godine"
-
-#: application/views/statistics/index.php:98
-#: application/views/statistics/index.php:143
+#: application/views/statistics/index.php:114
+#: application/views/statistics/index.php:159
 msgid "Unique callsigns"
 msgstr "Jedinstvenih pozivnih znakova"
 
-#: application/views/statistics/index.php:146
+#: application/views/statistics/index.php:162
 msgid "Unique Grids"
 msgstr ""
 
@@ -17297,6 +17303,10 @@ msgstr "Molimo uredite"
 #: application/views/themes/index.php:116
 msgid "Add a Theme"
 msgstr "Dodajte temu"
+
+#: application/views/timeline/index.php:111
+msgid "All Years"
+msgstr "Sve godine"
 
 #: application/views/timeline/index.php:119
 msgid "Only new in selected year"
