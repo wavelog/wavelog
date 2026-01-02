@@ -847,22 +847,25 @@ class Lotw extends CI_Controller {
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $lotw_url);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+			curl_setopt($ch, CURLOPT_TIMEOUT, 20);
 			$content = curl_exec($ch);
-			if ($content) {
-				if(curl_errno($ch)) {
-					$ret['status']='failed';
-					$ret['details']== sprintf(__("LoTW login failed for user %s: %s."), $data['user_lotw_name'], curl_strerror(curl_errno($ch))." (".curl_errno($ch).")");
-				} else if (str_contains($content,"Username/password incorrect</I>")) {
+			if(curl_errno($ch)) {
+				$ret['status']='failed';
+				$ret['details'] = __("Connection to LoTW failed.");
+				log_message('debug', "LoTW error: Connection to LoTW failed: ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).")");
+			} else {
+				if (str_contains($content,"Username/password incorrect</I>")) {
 					$ret['status']='failed_wrong_creds';
 					$ret['details']= sprintf(__("LoTW login failed for user %s: %s."), $data['user_lotw_name'], __("Username/password incorrect"));
+				} elseif (!$content) {
+					$ret['status']='failed_na';
+					$ret['details']= __("LoTW currently not available. Try again later.");
+					log_message('debug', "LoTW error: Connecting LoTW gave an empty result");
 				} else {
 					$ret['status']='OK';
 					$ret['details']= __("LoTW login OK!");
 				}
-			} else {
-				$ret['status']='failed_na';
-				$ret['details']= __("LoTW currently not available. Try again later.");
 			}
 		} else {
 			if (($ret['status'] ?? '') == '') {
