@@ -852,11 +852,15 @@ class Lotw extends CI_Controller {
 			if(curl_errno($ch)) {
 				$ret['status']='failed';
 				$ret['details'] = __("Connection to LoTW failed.");
-				log_message('debug', "Connection to LoTW failed: "curl_strerror(curl_errno($ch))." (".curl_errno($ch).")");
+				log_message('debug', "LoTW error: Connection to LoTW failed: ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).")");
 			} else {
 				if (str_contains($content,"Username/password incorrect</I>")) {
 					$ret['status']='failed_wrong_creds';
 					$ret['details']= sprintf(__("LoTW login failed for user %s: %s."), $data['user_lotw_name'], __("Username/password incorrect"));
+				} elseif (!$content) {
+					$ret['status']='failed_na';
+					$ret['details']= __("LoTW currently not available. Try again later.");
+					log_message('debug', "LoTW error: Connecting LoTW gave an empty result");
 				} else {
 					$ret['status']='OK';
 					$ret['details']= __("LoTW login OK!");
