@@ -20,7 +20,6 @@ class Calltester extends CI_Controller {
         // Starting clock time in seconds
         $start_time = microtime(true);
 
-        $callarray = $this->getQsos(null);
 		$this->load->model('stations');
 
 		$data['station_profile'] = $this->stations->all_of_user();
