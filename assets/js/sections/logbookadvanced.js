@@ -63,6 +63,9 @@ function updateRow(qso) {
 	if ((user_options.datetime.show ?? 'true') == "true"){
 		cells.eq(c++).text(qso.qsoDateTime);
 	}
+	if ((user_options.last_modification.show ?? 'true') == "true"){
+		cells.eq(c++).text(qso.last_modified);
+	}
 	if ((user_options.de.show ?? 'true') == "true"){
 		cells.eq(c++).text(qso.de);
 	}
@@ -279,6 +282,9 @@ function loadQSOTable(rows) {
 			} else {
 				data.push(qso.qsoDateTime);
 			}
+		}
+		if ((user_options.last_modification.show ?? 'true') == "true"){
+			data.push(qso.last_modified);
 		}
 		if ((user_options.de.show ?? 'true') == "true"){
 			data.push(qso.de.replaceAll('0', 'Ø'));
@@ -1875,6 +1881,7 @@ function saveOptions() {
 			type: 'post',
 			data: {
 				datetime: $('input[name="datetime"]').is(':checked') ? true : false,
+				last_modification: $('input[name="last_modification"]').is(':checked') ? true : false,
 				de: $('input[name="de"]').is(':checked') ? true : false,
 				dx: $('input[name="dx"]').is(':checked') ? true : false,
 				mode: $('input[name="mode"]').is(':checked') ? true : false,
