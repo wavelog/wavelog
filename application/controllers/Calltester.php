@@ -190,7 +190,7 @@ class Calltester extends CI_Controller {
 			from ' . $this->config->item('table_name') . '
 			join station_profile on ' . $this->config->item('table_name') . '.station_id = station_profile.station_id
 			where station_profile.user_id = ?';
-		$params[] = array($this->session->userdata('user_id'));
+		$params[] = $this->session->userdata('user_id');
 
 		if ($station_id && is_numeric($station_id)) {
 			$sql .= ' and ' . $this->config->item('table_name') . '.station_id = ?';
