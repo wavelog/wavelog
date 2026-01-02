@@ -847,8 +847,8 @@ class Lotw extends CI_Controller {
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $lotw_url);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+			curl_setopt($ch, CURLOPT_TIMEOUT, 20);
 			$content = curl_exec($ch);
 			if(curl_errno($ch)) {
 				$ret['status']='failed';
