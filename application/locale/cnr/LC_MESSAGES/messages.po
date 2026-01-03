@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-01-02 12:14+0000\n"
+"POT-Creation-Date: 2026-01-02 16:35+0000\n"
 "PO-Revision-Date: 2024-11-19 01:22+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: Montenegrin <https://translate.wavelog.org/projects/wavelog/"
@@ -73,13 +73,13 @@ msgstr ""
 #: application/controllers/Lotw.php:414 application/controllers/Lotw.php:437
 #: application/controllers/Lotw.php:798 application/controllers/Lotw.php:885
 #: application/controllers/Lotw.php:990 application/controllers/Map.php:12
-#: application/controllers/Mode.php:15 application/controllers/Notes.php:10
-#: application/controllers/Options.php:14 application/controllers/Oqrs.php:15
-#: application/controllers/Oqrs.php:165 application/controllers/Qrbcalc.php:13
-#: application/controllers/Qrz.php:200 application/controllers/Qrz.php:287
-#: application/controllers/Qsl.php:12 application/controllers/Qsl.php:13
-#: application/controllers/Qsl.php:49 application/controllers/Qsl.php:57
-#: application/controllers/Qslprint.php:24
+#: application/controllers/Map.php:27 application/controllers/Mode.php:15
+#: application/controllers/Notes.php:10 application/controllers/Options.php:14
+#: application/controllers/Oqrs.php:15 application/controllers/Oqrs.php:165
+#: application/controllers/Qrbcalc.php:13 application/controllers/Qrz.php:200
+#: application/controllers/Qrz.php:287 application/controllers/Qsl.php:12
+#: application/controllers/Qsl.php:13 application/controllers/Qsl.php:49
+#: application/controllers/Qsl.php:57 application/controllers/Qslprint.php:24
 #: application/controllers/Qslprint.php:159 application/controllers/Qso.php:8
 #: application/controllers/Qso.php:22 application/controllers/Qso.php:212
 #: application/controllers/Qso.php:343 application/controllers/Qso.php:364
@@ -122,7 +122,9 @@ msgstr ""
 #: application/controllers/User.php:1698
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
-#: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/Webadif.php:91
+#: application/controllers/Zonechecker.php:17
+#: application/models/Club_model.php:52
 msgid "You're not allowed to do that!"
 msgstr ""
 
@@ -399,7 +401,7 @@ msgstr ""
 #: application/controllers/Awards.php:560
 #: application/controllers/Callstats.php:100
 #: application/controllers/Distancerecords.php:86
-#: application/controllers/Statistics.php:360
+#: application/controllers/Statistics.php:375
 #: application/controllers/Timeline.php:126
 #: application/controllers/Timeline.php:129
 #: application/controllers/Timeline.php:132
@@ -631,7 +633,7 @@ msgstr ""
 #: application/views/bands/index.php:30 application/views/bands/index.php:34
 #: application/views/interface_assets/header.php:443
 #: application/views/statistics/index.php:17
-#: application/views/statistics/index.php:89
+#: application/views/statistics/index.php:105
 msgid "Bands"
 msgstr ""
 
@@ -679,7 +681,7 @@ msgstr ""
 msgid " and sat "
 msgstr ""
 
-#: application/controllers/Calltester.php:33
+#: application/controllers/Calltester.php:32
 msgid "Call Tester"
 msgstr ""
 
@@ -1500,7 +1502,7 @@ msgstr ""
 #: application/views/statistics/antennaanalytics.php:31
 #: application/views/statistics/index.php:16
 #: application/views/statistics/index.php:24
-#: application/views/statistics/index.php:86
+#: application/views/statistics/index.php:102
 #: application/views/statistics/initialresult.php:19
 #: application/views/statistics/initials.php:17
 #: application/views/timeline/index.php:19 application/views/user/edit.php:243
@@ -1702,6 +1704,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/view_log/qso.php:680
 #: application/views/visitor/index.php:27
+#: application/views/zonechecker/result.php:53
 msgid "Gridsquare"
 msgstr ""
 
@@ -2004,7 +2007,7 @@ msgstr ""
 msgid "LoTW .TQ8 Not Sent"
 msgstr ""
 
-#: application/controllers/Map.php:42
+#: application/controllers/Map.php:48
 msgid "QSO Map"
 msgstr ""
 
@@ -2467,8 +2470,8 @@ msgstr ""
 #: application/controllers/Satellite.php:55 application/models/Note.php:10
 #: application/views/interface_assets/header.php:332
 #: application/views/satellite/index.php:40
-#: application/views/statistics/index.php:69
-#: application/views/statistics/index.php:137
+#: application/views/statistics/index.php:85
+#: application/views/statistics/index.php:153
 msgid "Satellites"
 msgstr ""
 
@@ -2623,6 +2626,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:18
 #: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
+#: application/views/zonechecker/index.php:5
 msgid "Station Location"
 msgstr ""
 
@@ -2639,7 +2643,7 @@ msgstr ""
 #: application/controllers/Stationsetup.php:61
 #: application/views/interface_assets/header.php:441
 #: application/views/interface_assets/header.php:474
-#: application/views/interface_assets/header.php:596
+#: application/views/interface_assets/header.php:608
 msgid "Station Setup"
 msgstr ""
 
@@ -2707,7 +2711,7 @@ msgid "Set as Active Logbook"
 msgstr ""
 
 #: application/controllers/Stationsetup.php:289
-#: application/views/interface_assets/header.php:594
+#: application/views/interface_assets/header.php:606
 #: application/views/stationsetup/stationsetup.php:49
 #: application/views/view_log/index.php:4
 msgid "Active Logbook"
@@ -2804,23 +2808,23 @@ msgstr ""
 msgid "Statistics"
 msgstr ""
 
-#: application/controllers/Statistics.php:292
+#: application/controllers/Statistics.php:302
 #: application/views/interface_assets/header.php:158
 #: application/views/statistics/qsltable.php:5
 msgid "QSL Statistics"
 msgstr ""
 
-#: application/controllers/Statistics.php:307
+#: application/controllers/Statistics.php:317
 #: application/views/interface_assets/header.php:156
 #: application/views/statistics/antennaanalytics.php:3
 msgid "Antenna Analytics"
 msgstr ""
 
-#: application/controllers/Statistics.php:360
+#: application/controllers/Statistics.php:375
 msgid "Satellite QSOs"
 msgstr ""
 
-#: application/controllers/Statistics.php:376
+#: application/controllers/Statistics.php:391
 #: application/views/interface_assets/header.php:182
 msgid "EME Initials"
 msgstr ""
@@ -3292,6 +3296,10 @@ msgstr ""
 msgid "Multiple users found by slug"
 msgstr ""
 
+#: application/controllers/Zonechecker.php:26
+msgid "Gridsquare Zone finder"
+msgstr ""
+
 #: application/libraries/Callbook.php:124
 msgid "QRZCQ Error"
 msgstr ""
@@ -3457,92 +3465,92 @@ msgstr ""
 msgid "DXCC has to be Numeric"
 msgstr ""
 
-#: application/models/Logbook_model.php:4738
+#: application/models/Logbook_model.php:4744
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 
-#: application/models/Logbook_model.php:4752
+#: application/models/Logbook_model.php:4758
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
 msgstr ""
 
-#: application/models/Logbook_model.php:4761
+#: application/models/Logbook_model.php:4767
 msgid "QSO on"
 msgstr ""
 
-#: application/models/Logbook_model.php:4761
+#: application/models/Logbook_model.php:4767
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
 msgstr ""
 
-#: application/models/Logbook_model.php:4810
+#: application/models/Logbook_model.php:4816
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
 "imported. It's invalid"
 msgstr ""
 
-#: application/models/Logbook_model.php:5075
+#: application/models/Logbook_model.php:5081
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:5086
+#: application/models/Logbook_model.php:5092
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:5147
+#: application/models/Logbook_model.php:5153
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:5522
+#: application/models/Logbook_model.php:5528
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr ""
 
-#: application/models/Logbook_model.php:5587
-#: application/models/Logbook_model.php:5682
+#: application/models/Logbook_model.php:5593
+#: application/models/Logbook_model.php:5688
 msgid "QSO could not be matched"
 msgstr ""
 
-#: application/models/Logbook_model.php:5595
+#: application/models/Logbook_model.php:5601
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr ""
 
-#: application/models/Logbook_model.php:5601
+#: application/models/Logbook_model.php:5607
 msgid "confirmed by award manager"
 msgstr ""
 
-#: application/models/Logbook_model.php:5605
+#: application/models/Logbook_model.php:5611
 msgid "confirmed by cross-check of DCL data"
 msgstr ""
 
-#: application/models/Logbook_model.php:5609
+#: application/models/Logbook_model.php:5615
 msgid "confirmation pending"
 msgstr ""
 
-#: application/models/Logbook_model.php:5612
+#: application/models/Logbook_model.php:5618
 msgid "unconfirmed"
 msgstr ""
 
-#: application/models/Logbook_model.php:5615
+#: application/models/Logbook_model.php:5621
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
 msgid "unknown"
 msgstr ""
 
-#: application/models/Logbook_model.php:5685
+#: application/models/Logbook_model.php:5691
 msgid "POTA reference already in log"
 msgstr ""
 
-#: application/models/Logbook_model.php:5688
+#: application/models/Logbook_model.php:5694
 msgid "QSO updated"
 msgstr ""
 
-#: application/models/Logbook_model.php:6419
+#: application/models/Logbook_model.php:6425
 #: application/views/activated_gridmap/index.php:114
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:58
@@ -3566,7 +3574,7 @@ msgstr ""
 
 #: application/models/Note.php:8
 #: application/views/interface_assets/footer.php:110
-#: application/views/qso/index.php:94 application/views/statistics/index.php:65
+#: application/views/qso/index.php:94 application/views/statistics/index.php:81
 #: application/views/user/edit.php:168
 msgid "General"
 msgstr ""
@@ -3657,7 +3665,6 @@ msgstr ""
 #: application/views/dayswithqso/index.php:42
 #: application/views/dayswithqso/index.php:82
 #: application/views/statistics/index.php:21
-#: application/views/statistics/index.php:57
 #: application/views/timeline/index.php:107
 #: application/views/visitor/index.php:250
 msgid "Year"
@@ -3799,6 +3806,7 @@ msgstr ""
 #: application/views/statistics/antennaanalytics.php:34
 #: application/views/statistics/antennaanalytics.php:48
 #: application/views/statistics/antennaanalytics.php:88
+#: application/views/statistics/index.php:64
 #: application/views/statistics/initials.php:20
 #: application/views/timeline/index.php:10
 #: application/views/timeline/index.php:22
@@ -4369,6 +4377,7 @@ msgstr ""
 #: application/views/user/edit.php:137 application/views/user/index.php:28
 #: application/views/user/index.php:153 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:672
+#: application/views/zonechecker/result.php:50
 msgid "Callsign"
 msgstr ""
 
@@ -5337,6 +5346,7 @@ msgstr ""
 #: application/views/timeline/index.php:327
 #: application/views/timeplotter/index.php:44
 #: application/views/user/modals/first_login_wizard.php:74
+#: application/views/zonechecker/index.php:17
 msgid "CQ Zone"
 msgstr ""
 
@@ -5395,6 +5405,7 @@ msgstr ""
 #: application/views/awards/dxcc/index.php:51
 #: application/views/gridmap/index.php:28
 #: application/views/logbookadvanced/index.php:293
+#: application/views/statistics/index.php:54
 msgid "Date Presets"
 msgstr ""
 
@@ -5407,6 +5418,7 @@ msgstr ""
 #: application/views/dashboard/index.php:429
 #: application/views/gridmap/index.php:31
 #: application/views/logbookadvanced/index.php:295
+#: application/views/statistics/index.php:56
 msgid "Today"
 msgstr ""
 
@@ -5414,6 +5426,7 @@ msgstr ""
 #: application/views/awards/dxcc/index.php:54
 #: application/views/gridmap/index.php:32
 #: application/views/logbookadvanced/index.php:296
+#: application/views/statistics/index.php:57
 msgid "Yesterday"
 msgstr ""
 
@@ -5421,6 +5434,7 @@ msgstr ""
 #: application/views/awards/dxcc/index.php:55
 #: application/views/gridmap/index.php:33
 #: application/views/logbookadvanced/index.php:297
+#: application/views/statistics/index.php:58
 msgid "Last 7 Days"
 msgstr ""
 
@@ -5428,6 +5442,7 @@ msgstr ""
 #: application/views/awards/dxcc/index.php:56
 #: application/views/gridmap/index.php:34
 #: application/views/logbookadvanced/index.php:298
+#: application/views/statistics/index.php:59
 msgid "Last 30 Days"
 msgstr ""
 
@@ -5435,6 +5450,7 @@ msgstr ""
 #: application/views/awards/dxcc/index.php:57
 #: application/views/gridmap/index.php:35
 #: application/views/logbookadvanced/index.php:299
+#: application/views/statistics/index.php:60
 msgid "This Month"
 msgstr ""
 
@@ -5442,6 +5458,7 @@ msgstr ""
 #: application/views/awards/dxcc/index.php:58
 #: application/views/gridmap/index.php:36
 #: application/views/logbookadvanced/index.php:300
+#: application/views/statistics/index.php:61
 msgid "Last Month"
 msgstr ""
 
@@ -5449,12 +5466,14 @@ msgstr ""
 #: application/views/awards/dxcc/index.php:59
 #: application/views/gridmap/index.php:37
 #: application/views/logbookadvanced/index.php:301
+#: application/views/statistics/index.php:62
 msgid "This Year"
 msgstr ""
 
 #: application/views/awards/cq/index.php:64
 #: application/views/awards/dxcc/index.php:60
 #: application/views/logbookadvanced/index.php:302
+#: application/views/statistics/index.php:63
 msgid "Last Year"
 msgstr ""
 
@@ -5471,6 +5490,7 @@ msgstr ""
 #: application/views/awards/dxcc/index.php:66
 #: application/views/dxcalendar/index.php:9
 #: application/views/gridmap/index.php:44
+#: application/views/statistics/index.php:68
 msgid "Date from"
 msgstr ""
 
@@ -5478,6 +5498,7 @@ msgstr ""
 #: application/views/awards/dxcc/index.php:74
 #: application/views/dxcalendar/index.php:10
 #: application/views/gridmap/index.php:48
+#: application/views/statistics/index.php:72
 msgid "Date to"
 msgstr ""
 
@@ -6209,6 +6230,7 @@ msgstr ""
 #: application/views/station_profile/create.php:124
 #: application/views/station_profile/edit.php:174
 #: application/views/user/modals/first_login_wizard.php:84
+#: application/views/zonechecker/index.php:18
 msgid "ITU Zone"
 msgstr ""
 
@@ -6944,6 +6966,7 @@ msgstr ""
 #: application/views/logbookadvanced/checkresult.php:201
 #: application/views/oqrs/showrequests.php:86
 #: application/views/simplefle/index.php:78
+#: application/views/zonechecker/result.php:51
 msgid "QSO Date"
 msgstr ""
 
@@ -8202,7 +8225,7 @@ msgstr ""
 #: application/views/cabrillo/index.php:164
 #: application/views/reg1test/index.php:70
 #: application/views/statistics/index.php:18
-#: application/views/statistics/index.php:95
+#: application/views/statistics/index.php:111
 msgid "Operators"
 msgstr ""
 
@@ -8457,6 +8480,7 @@ msgstr ""
 #: application/views/calltester/result.php:24
 #: application/views/logbookadvanced/checkresult.php:147
 #: application/views/logbookadvanced/checkresult.php:205
+#: application/views/zonechecker/result.php:52
 msgid "Station Profile"
 msgstr ""
 
@@ -8511,6 +8535,7 @@ msgstr ""
 #: application/views/calltester/index.php:10
 #: application/views/interface_assets/footer.php:878
 #: application/views/logbookadvanced/index.php:819
+#: application/views/zonechecker/index.php:10
 msgid "Callsign: "
 msgstr ""
 
@@ -9089,7 +9114,7 @@ msgstr ""
 #: application/views/contesting/add.php:44
 #: application/views/contesting/edit.php:43
 #: application/views/contesting/edit.php:46
-#: application/views/interface_assets/header.php:574
+#: application/views/interface_assets/header.php:586
 #: application/views/mode/create.php:46 application/views/mode/create.php:48
 #: application/views/mode/edit.php:57 application/views/mode/edit.php:60
 #: application/views/mode/index.php:8 application/views/mode/index.php:55
@@ -11302,7 +11327,7 @@ msgid ""
 msgstr ""
 
 #: application/views/interface_assets/footer.php:223
-#: application/views/interface_assets/header.php:535
+#: application/views/interface_assets/header.php:547
 #: application/views/options/sidebar.php:10
 msgid "Version Info"
 msgstr ""
@@ -11716,38 +11741,54 @@ msgstr ""
 msgid "DCL Export"
 msgstr ""
 
-#: application/views/interface_assets/header.php:536
+#: application/views/interface_assets/header.php:537
+msgid "Internal tools"
+msgstr ""
+
+#: application/views/interface_assets/header.php:539
+msgid "Callsign DXCC checker"
+msgstr ""
+
+#: application/views/interface_assets/header.php:540
+msgid "GeoJSON QSO Map"
+msgstr ""
+
+#: application/views/interface_assets/header.php:541
+msgid "Gridsquare Zone checker"
+msgstr ""
+
+#: application/views/interface_assets/header.php:548
 #: application/views/logbookadvanced/index.php:861
 msgid "Help"
 msgstr ""
 
-#: application/views/interface_assets/header.php:537
+#: application/views/interface_assets/header.php:549
 msgid "Forum"
 msgstr ""
 
-#: application/views/interface_assets/header.php:541
+#: application/views/interface_assets/header.php:553
 #, php-format
 msgid "Stop impersonate and switch back to %s"
 msgstr ""
 
-#: application/views/interface_assets/header.php:542
+#: application/views/interface_assets/header.php:554
 #, php-format
 msgid "Switch back to %s"
 msgstr ""
 
-#: application/views/interface_assets/header.php:546
+#: application/views/interface_assets/header.php:558
 msgid "Logout"
 msgstr ""
 
-#: application/views/interface_assets/header.php:554
+#: application/views/interface_assets/header.php:566
 msgid "Select a Location"
 msgstr ""
 
-#: application/views/interface_assets/header.php:596
+#: application/views/interface_assets/header.php:608
 msgid "You miss station-locations here? Go to stationsetup and fav them"
 msgstr ""
 
-#: application/views/interface_assets/header.php:633
+#: application/views/interface_assets/header.php:645
 msgid "Extras"
 msgstr ""
 
@@ -11973,8 +12014,8 @@ msgstr ""
 #: application/views/labels/index.php:81
 #: application/views/logbookadvanced/statecheckresult.php:12
 #: application/views/map/qso_map.php:21
-#: application/views/statistics/index.php:92
-#: application/views/statistics/index.php:140
+#: application/views/statistics/index.php:108
+#: application/views/statistics/index.php:156
 msgid "QSOs"
 msgstr ""
 
@@ -16553,12 +16594,12 @@ msgid "Elevation"
 msgstr ""
 
 #: application/views/statistics/index.php:14
-#: application/views/statistics/index.php:80
+#: application/views/statistics/index.php:96
 msgid "Years"
 msgstr ""
 
 #: application/views/statistics/index.php:15
-#: application/views/statistics/index.php:83
+#: application/views/statistics/index.php:99
 msgid "Months"
 msgstr ""
 
@@ -16622,17 +16663,12 @@ msgstr ""
 msgid "Explore the logbook."
 msgstr ""
 
-#: application/views/statistics/index.php:54
-#: application/views/timeline/index.php:111
-msgid "All Years"
-msgstr ""
-
-#: application/views/statistics/index.php:98
-#: application/views/statistics/index.php:143
+#: application/views/statistics/index.php:114
+#: application/views/statistics/index.php:159
 msgid "Unique callsigns"
 msgstr ""
 
-#: application/views/statistics/index.php:146
+#: application/views/statistics/index.php:162
 msgid "Unique Grids"
 msgstr ""
 
@@ -16800,6 +16836,10 @@ msgstr ""
 
 #: application/views/themes/index.php:116
 msgid "Add a Theme"
+msgstr ""
+
+#: application/views/timeline/index.php:111
+msgid "All Years"
 msgstr ""
 
 #: application/views/timeline/index.php:119
@@ -18110,4 +18150,66 @@ msgstr ""
 
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
+msgstr ""
+
+#: application/views/zonechecker/index.php:3
+msgid "Gridsquare Zone identification"
+msgstr ""
+
+#: application/views/zonechecker/index.php:15
+msgid "Zone Type"
+msgstr ""
+
+#: application/views/zonechecker/index.php:20
+msgid "Start Zone Check"
+msgstr ""
+
+#: application/views/zonechecker/index.php:39
+#: application/views/zonechecker/index.php:62
+msgid "Processing..."
+msgstr ""
+
+#: application/views/zonechecker/index.php:50
+#: application/views/zonechecker/index.php:73
+msgid "An error occurred while processing the request."
+msgstr ""
+
+#: application/views/zonechecker/result.php:16
+msgid "Callsigns Tested"
+msgstr ""
+
+#: application/views/zonechecker/result.php:17
+msgid "Execution Time"
+msgstr ""
+
+#: application/views/zonechecker/result.php:18
+msgid "Potential Wrong Zones"
+msgstr ""
+
+#: application/views/zonechecker/result.php:19
+msgid "Cache Hits"
+msgstr ""
+
+#: application/views/zonechecker/result.php:20
+msgid "Cache Misses"
+msgstr ""
+
+#: application/views/zonechecker/result.php:21
+msgid "Hit Rate"
+msgstr ""
+
+#: application/views/zonechecker/result.php:55
+msgid "ITUz"
+msgstr ""
+
+#: application/views/zonechecker/result.php:56
+msgid "ITUz geojson"
+msgstr ""
+
+#: application/views/zonechecker/result.php:58
+msgid "CQz"
+msgstr ""
+
+#: application/views/zonechecker/result.php:59
+msgid "CQz geojson"
 msgstr ""

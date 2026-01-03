@@ -846,3 +846,11 @@ $config['max_login_attempts'] = 3;
 
 $config['enable_dxcluster_file_cache_band'] = false;
 $config['enable_dxcluster_file_cache_worked'] = false;
+
+/*
+|--------------------------------------------------------------------------
+| Internal tools
+| Set this to true if you want to display the admin internal tools in the header meanu
+|--------------------------------------------------------------------------
+ */
+$config['internal_tools'] = false;
