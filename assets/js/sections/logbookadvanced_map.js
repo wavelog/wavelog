@@ -550,6 +550,8 @@ function getFormData(form) {
 		qrzSent: form.qrzSent.value,
 		qrzReceived: form.qrzReceived.value,
 		distance: form.distance.value,
+		sortcolumn: form.sortcolumn.value,
+		sortdirection: form.sortdirection.value
 	};
 }
 
