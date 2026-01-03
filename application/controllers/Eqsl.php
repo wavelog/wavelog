@@ -29,12 +29,31 @@ class eqsl extends CI_Controller {
 		$folder_name = $this->eqsl_images->get_imagePath('p');
 		$data['storage_used'] = $this->genfunctions->sizeFormat($this->genfunctions->folderSize($folder_name));
 
+		// Pagination
+		$this->load->library('pagination');
+		$config['base_url'] = base_url().'index.php/eqsl/index/';
+		$config['total_rows'] = $this->eqsl_images->count_eqsl_qso_list();
+		$config['per_page'] = '25';
+		$config['num_links'] = 6;
+		$config['full_tag_open'] = '';
+		$config['full_tag_close'] = '';
+		$config['cur_tag_open'] = '<strong class="active"><a href="">';
+		$config['cur_tag_close'] = '</a></strong>';
+
+		$this->pagination->initialize($config);
 
 		// Render Page
 		$data['page_title'] = __("eQSL Cards");
 
+		$offset = $this->uri->segment(3) ? $this->uri->segment(3) : 0;
+		$data['qslarray'] = $this->eqsl_images->eqsl_qso_list($config['per_page'], $offset);
 
-		$data['qslarray'] = $this->eqsl_images->eqsl_qso_list();
+		// Calculate result range for display
+		$total_rows = $config['total_rows'];
+		$per_page = $config['per_page'];
+		$start = $total_rows > 0 ? $offset + 1 : 0;
+		$end = min($offset + $per_page, $total_rows);
+		$data['result_range'] = sprintf(__("Showing %d to %d of %d entries"), $start, $end, $total_rows);
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('eqslcard/index');
@@ -299,6 +318,10 @@ class eqsl extends CI_Controller {
 			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 		}
+		$etag=$this->gen_check_etag("wl_eqsl_cacher_".$id,$width);
+		if ($etag == '0') { // Cached on Client side
+			return; 
+		}
 		$this->load->library('electronicqsl');
 		$this->load->model('Eqsl_images');
 
@@ -406,19 +429,39 @@ class eqsl extends CI_Controller {
 					log_message('error', 'Failed to save eQSL image to: ' . $image_path);
 				}
 
-				$this->output_image_with_width($content, $width);
+				$this->output_image_with_width($content, $width, $etag);	// This must be 1st time (because it's freshly fetched from eQSL) - so add the etag
 				return; // Only process the first image found
 			}
 		} else {
-			// Load cached image
-			$image_file = $this->Eqsl_images->get_imagePath('p') . '/' . $this->Eqsl_images->get_image($id);
-			$content = file_get_contents($image_file);
-			if ($content !== false) {
-				$this->output_image_with_width($content, $width);
-			} else {
-				show_error(__('Failed to load cached eQSL image'), 500);
+			// Load server-cached image if etag isn't 0
+			if ($etag != '0') {
+				$image_file = $this->Eqsl_images->get_imagePath('p') . '/' . $this->Eqsl_images->get_image($id);
+				$content = file_get_contents($image_file);
+				if ($content !== false) {
+					$this->output_image_with_width($content, $width, $etag);
+				} else {
+					show_error(__('Failed to load cached eQSL image'), 500);
+				}
 			}
 		}
+	}
+
+	private function gen_check_etag($eta,$modifier) {
+
+		$etag = '"' . md5($eta.$modifier) . '"';
+
+		if (isset($_SERVER['HTTP_IF_NONE_MATCH']) &&
+		    trim($_SERVER['HTTP_IF_NONE_MATCH']) === $etag) {
+			session_write_close();
+			session_cache_limiter('public');
+			header('HTTP/1.1 304 Not Modified');
+			header('ETag: ' . $etag);
+			header('Pragma: public');
+			header('Cache-Control: public, max-age=31536000, immutable'); 
+			header('Expires: ' . gmdate('D, d M Y H:i:s', strtotime('+1 year')) . ' GMT'); // Never expire
+			return '0';
+		}
+		return $etag;
 	}
 
 	/**
@@ -426,8 +469,15 @@ class eqsl extends CI_Controller {
 	 * @param string $image_data Binary image data
 	 * @param int $width Desired width (null for original size)
 	 */
-	private function output_image_with_width($image_data, $width) {
+	private function output_image_with_width($image_data, $width, $etag) {
+		session_write_close();
+		session_cache_limiter('public');
+
 		header('Content-Type: image/jpg');
+		header('ETag: ' . $etag);
+		header('Pragma: public');
+		header('Cache-Control: public, max-age=31536000, immutable'); 
+		header('Expires: ' . gmdate('D, d M Y H:i:s', strtotime('+1 year')) . ' GMT'); // Never expire
 
 		// If width is null or 0, output original image
 		if ($width!=(int)$width || $width === null || $width <= 0 || $width>1500) {	// Return original Image if huger 1500 or smaller 100 or crap
@@ -556,42 +606,40 @@ class eqsl extends CI_Controller {
 		$this->load->library('electronicqsl');
 
 		if ($this->input->post('eqsldownload') == 'download' && $this->config->item('enable_eqsl_massdownload')) {
-			$i = 0;
+			ini_set('memory_limit', '-1');
+			set_time_limit(0);
+
+			// Use new parallel library
+			$this->load->library('EqslBulkDownloader');
 			$this->load->model('eqslmethods_model');
-			$qslsnotdownloaded = $this->eqslmethods_model->eqsl_not_yet_downloaded();
-			$eqsl_results = array();
-			foreach ($qslsnotdownloaded->result_array() as $qsl) {
-				$result = $this->bulk_download_image($qsl['COL_PRIMARY_KEY']);
-				if ($result != '') {
-					$errors++;
-					if ($result == 'Rate Limited') {
+
+			// Get and limit QSOs to 50
+			$qsos = $this->eqslmethods_model->eqsl_not_yet_downloaded()->result_array();
+			if (count($qsos) > 150) {
+				$qsos = array_slice($qsos, 0, 150);
+				$this->session->set_flashdata('warning', __('Limited to first 150 QSOs for this request. Please run again.'));
+			}
+
+			// Execute parallel download
+			$results = $this->eqslbulkdownloader->downloadBatch($qsos);
+			$data['eqsl_results'] = $results['errors'];
+			$data['eqsl_stats'] = __("Successfully downloaded: ") . $results['success_count'] . __(" / Errors: ") . $results['error_count'];
+			$data['page_title'] = "eQSL Download Information";
+
+			// Check for rate limit
+			if ($results['error_count'] > 0) {
+				foreach ($results['errors'] as $err) {
+					if ($err['status'] === 'Rate Limited') {
+						$this->session->set_flashdata('warning', __('eQSL rate limit reached. Please wait before running again.'));
 						break;
-					} else {
-						$eqsl_results[] = array(
-							'date' => $qsl['COL_TIME_ON'],
-							'call' => $qsl['COL_CALL'],
-							'mode' => $qsl['COL_MODE'],
-							'submode' => $qsl['COL_SUBMODE'],
-							'status' => $result,
-							'qsoid' => $qsl['COL_PRIMARY_KEY']
-						);
-						continue;
 					}
-				} else {
-					$i++;
-				}
-				if ($i > 0) {
-					sleep(15);
 				}
 			}
-			$data['eqsl_results'] = $eqsl_results;
-			$data['eqsl_stats'] = __("Successfully downloaded: ") . $i . __(" / Errors: ") . count($eqsl_results);
-			$data['page_title'] = "eQSL Download Information";
 
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('eqsl/result');
 			$this->load->view('interface_assets/footer');
-			
+
 		} else {
 
 			$data['page_title'] = __("eQSL Card Image Download");

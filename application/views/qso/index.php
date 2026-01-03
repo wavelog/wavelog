@@ -409,6 +409,7 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
                   <option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id && $manual_mode == '0') { echo "selected=\"selected\""; } ?>><?= __("Polling - ") . $row->radio; ?> <?php if ($radio_last_updated->id == $row->id) { echo "(".__("last updated").")"; } else { echo ''; } ?></option>
                 <?php } ?>
                 </select>
+                <input type="hidden" id="radio_ws_name" name="radio_ws_name" value="" />
             </div>
 
             <div class="mb-3">

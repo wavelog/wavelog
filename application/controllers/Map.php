@@ -22,32 +22,43 @@ class Map extends CI_Controller {
 	 * QSO Map with country selection and OpenStreetMap
 	 */
 	public function qso_map() {
+		$this->load->model('user_model');
+		if (!$this->user_model->authorize(99)) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
+		}
+
 		$this->load->library('Geojson');
 		$this->load->model('Map_model');
+		$this->load->model('stations');
 
 		// Get supported DXCC countries with state data
-		$supported_dxccs = $this->geojson->getSupportedDxccs();
+		$data['supported_dxccs'] = $this->geojson->getSupportedDxccs();
+
+		$supported_country_codes = array_keys($data['supported_dxccs']);
 
 		// Fetch available countries from the logbook
-		$countries = $this->Map_model->get_available_countries();
-
-		// Filter countries to only include those with GeoJSON support
-		$supported_country_codes = array_keys($supported_dxccs);
-		$filtered_countries = array_filter($countries, function($country) use ($supported_country_codes) {
-			return in_array($country['COL_DXCC'], $supported_country_codes);
-		});
+		$data['countries'] = $this->Map_model->get_available_countries($supported_country_codes);
 
 		// Fetch station profiles
-		$station_profiles = $this->Map_model->get_station_profiles();
+		$data['station_profiles'] = $this->stations->all_of_user()->result();
 
-		$data['countries'] = $filtered_countries;
-		$data['station_profiles'] = $station_profiles;
-		$data['supported_dxccs'] = $supported_dxccs;
+		$data['homegrid'] = explode(',', $this->stations->find_gridsquare());
+
 		$data['page_title'] = __("QSO Map");
 
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/leaflet/geocoding.js',
+			'assets/js/leaflet/L.Maidenhead.js',
+			'assets/js/sections/qso_map.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/qso_map.js")),
+			'assets/js/sections/itumap_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/itumap_geojson.js")),
+			'assets/js/sections/cqmap_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/cqmap_geojson.js")),
+		];
+
 		$this->load->view('interface_assets/header', $data);
-		$this->load->view('map/qso_map', $data);
-		$this->load->view('interface_assets/footer');
+		$this->load->view('map/qso_map');
+		$this->load->view('interface_assets/footer', $footerData);
 	}
 
 	/**
@@ -72,7 +83,7 @@ class Map extends CI_Controller {
 		$station_id = ($station_id === 'all') ? null : $station_id;
 
 		try {
-			$qsos = $this->Map_model->get_qsos_by_country($country, $station_id, $limit);
+			$qsos = $this->Map_model->get_qsos_by_country($country, $station_id);
 
 			if (empty($qsos)) {
 				while (ob_get_level()) ob_end_clean();
