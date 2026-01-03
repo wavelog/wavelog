@@ -6,7 +6,7 @@
 # Christian Egger <christian@hb9hjq.ch>, 2024.
 # Nikolas Hagelstein <nikolas.hagelstein@gmail.com>, 2024.
 # Jörg Dorgeist <wavelog@dj7nt.de>, 2024, 2025.
-# Florian Wolters <wavelog@df2et.de>, 2024, 2025.
+# Florian Wolters <wavelog@df2et.de>, 2024, 2025, 2026.
 # Byt3 <falko@205er.de>, 2024.
 # Kim - DG9VH <kim.huebel@gmail.com>, 2024, 2025.
 # Fabian Berg <80885850+HB9HIL@users.noreply.github.com>, 2024.
@@ -26,11 +26,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-01-02 16:35+0000\n"
-"PO-Revision-Date: 2025-12-31 16:36+0000\n"
-"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/de/>\n"
+"POT-Creation-Date: 2026-01-02 11:54+0000\n"
+"PO-Revision-Date: 2026-01-03 03:15+0000\n"
+"Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -89,15 +89,15 @@ msgstr ""
 #: application/controllers/Lookup.php:17 application/controllers/Lotw.php:44
 #: application/controllers/Lotw.php:90 application/controllers/Lotw.php:116
 #: application/controllers/Lotw.php:414 application/controllers/Lotw.php:437
-#: application/controllers/Lotw.php:798 application/controllers/Lotw.php:885
-#: application/controllers/Lotw.php:990 application/controllers/Map.php:12
-#: application/controllers/Map.php:27 application/controllers/Mode.php:15
-#: application/controllers/Notes.php:10 application/controllers/Options.php:14
-#: application/controllers/Oqrs.php:15 application/controllers/Oqrs.php:165
-#: application/controllers/Qrbcalc.php:13 application/controllers/Qrz.php:200
-#: application/controllers/Qrz.php:287 application/controllers/Qsl.php:12
-#: application/controllers/Qsl.php:13 application/controllers/Qsl.php:49
-#: application/controllers/Qsl.php:57 application/controllers/Qslprint.php:24
+#: application/controllers/Lotw.php:798 application/controllers/Lotw.php:882
+#: application/controllers/Lotw.php:987 application/controllers/Map.php:12
+#: application/controllers/Mode.php:15 application/controllers/Notes.php:10
+#: application/controllers/Options.php:14 application/controllers/Oqrs.php:15
+#: application/controllers/Oqrs.php:165 application/controllers/Qrbcalc.php:13
+#: application/controllers/Qrz.php:200 application/controllers/Qrz.php:287
+#: application/controllers/Qsl.php:12 application/controllers/Qsl.php:13
+#: application/controllers/Qsl.php:49 application/controllers/Qsl.php:57
+#: application/controllers/Qslprint.php:24
 #: application/controllers/Qslprint.php:159 application/controllers/Qso.php:8
 #: application/controllers/Qso.php:22 application/controllers/Qso.php:212
 #: application/controllers/Qso.php:343 application/controllers/Qso.php:364
@@ -140,9 +140,10 @@ msgstr ""
 #: application/controllers/User.php:1698
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
-#: application/controllers/Webadif.php:91
+#: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/Lotw.php:885 application/controllers/Lotw.php:990
+#: application/controllers/Map.php:27
 #: application/controllers/Zonechecker.php:17
-#: application/models/Club_model.php:52
 msgid "You're not allowed to do that!"
 msgstr "Das ist Dir nicht gestattet!"
 
@@ -419,13 +420,14 @@ msgstr "Log Ansicht – VUCC"
 #: application/controllers/Awards.php:560
 #: application/controllers/Callstats.php:100
 #: application/controllers/Distancerecords.php:86
-#: application/controllers/Statistics.php:375
+#: application/controllers/Statistics.php:360
 #: application/controllers/Timeline.php:126
 #: application/controllers/Timeline.php:129
 #: application/controllers/Timeline.php:132
 #: application/controllers/Timeline.php:135
 #: application/controllers/Timeline.php:138
 #: application/controllers/Timeline.php:141
+#: application/controllers/Statistics.php:375
 msgid "Log View"
 msgstr "Log-Ansicht"
 
@@ -651,6 +653,7 @@ msgstr "Notizen - Backup"
 #: application/views/bands/index.php:30 application/views/bands/index.php:34
 #: application/views/interface_assets/header.php:443
 #: application/views/statistics/index.php:17
+#: application/views/statistics/index.php:89
 #: application/views/statistics/index.php:105
 msgid "Bands"
 msgstr "Bänder"
@@ -701,6 +704,7 @@ msgstr "Rufzeichenstatistik"
 msgid " and sat "
 msgstr " und Sat "
 
+#: application/controllers/Calltester.php:33
 #: application/controllers/Calltester.php:32
 msgid "Call Tester"
 msgstr "Rufzeichentester"
@@ -1539,7 +1543,7 @@ msgstr "eQSL"
 #: application/views/statistics/antennaanalytics.php:31
 #: application/views/statistics/index.php:16
 #: application/views/statistics/index.php:24
-#: application/views/statistics/index.php:102
+#: application/views/statistics/index.php:86
 #: application/views/statistics/initialresult.php:19
 #: application/views/statistics/initials.php:17
 #: application/views/timeline/index.php:19 application/views/user/edit.php:243
@@ -1550,6 +1554,7 @@ msgstr "eQSL"
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/widgets/qsos.php:18
+#: application/views/statistics/index.php:102
 msgid "Mode"
 msgstr "Mode"
 
@@ -1998,56 +2003,55 @@ msgstr ""
 msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF Information"
 
-#: application/controllers/Lotw.php:855
-msgid "Connection to LoTW failed."
-msgstr ""
-
+#: application/controllers/Lotw.php:855 application/controllers/Lotw.php:858
 #: application/controllers/Lotw.php:860
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr "LoTW-Login für Benutzer %s fehlgeschlagen: %s."
 
-#: application/controllers/Lotw.php:860
+#: application/controllers/Lotw.php:858 application/controllers/Lotw.php:860
 msgid "Username/password incorrect"
 msgstr "Benutzername/Passwort falsch"
 
-#: application/controllers/Lotw.php:863
-msgid "LoTW currently not available. Try again later."
-msgstr "LoTW derzeit nicht verfügbar. Versuche es später noch einmal."
-
-#: application/controllers/Lotw.php:867
+#: application/controllers/Lotw.php:861 application/controllers/Lotw.php:867
 msgid "LoTW login OK!"
 msgstr "LoTW-Login OK!"
 
-#: application/controllers/Lotw.php:873
+#: application/controllers/Lotw.php:865 application/controllers/Lotw.php:863
+msgid "LoTW currently not available. Try again later."
+msgstr "LoTW derzeit nicht verfügbar. Versuche es später noch einmal."
+
+#: application/controllers/Lotw.php:870 application/controllers/Lotw.php:873
 msgid "No LoTW credentials provided."
 msgstr "Keine LoTW-Logindaten angegeben."
 
-#: application/controllers/Lotw.php:891
+#: application/controllers/Lotw.php:888 application/controllers/Lotw.php:891
 msgid "LoTW ADIF Import"
 msgstr "LoTW ADIF-Import"
 
+#: application/controllers/Lotw.php:914 application/controllers/Lotw.php:1022
 #: application/controllers/Lotw.php:917 application/controllers/Lotw.php:1025
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Du hast deine ARRL LoTW Zugangsdaten nicht definiert!"
 
-#: application/controllers/Lotw.php:992
+#: application/controllers/Lotw.php:989 application/controllers/Lotw.php:992
 msgid "LoTW .TQ8 Upload"
 msgstr "LoTW .TQ8-Upload"
 
-#: application/controllers/Lotw.php:1070
+#: application/controllers/Lotw.php:1067 application/controllers/Lotw.php:1070
 msgid "Your ARRL username and/or password is incorrect."
 msgstr "Dein ARRL-Benutzername und/oder Passwort ist falsch."
 
+#: application/controllers/Lotw.php:1086 application/controllers/Lotw.php:1091
 #: application/controllers/Lotw.php:1089 application/controllers/Lotw.php:1094
 msgid "LoTW .TQ8 Sent"
 msgstr "LoTW .TQ8 gesendet"
 
-#: application/controllers/Lotw.php:1101
+#: application/controllers/Lotw.php:1098 application/controllers/Lotw.php:1101
 msgid "LoTW .TQ8 Not Sent"
 msgstr "LoTW .TQ8 nicht gesendet"
 
-#: application/controllers/Map.php:48
+#: application/controllers/Map.php:42 application/controllers/Map.php:48
 msgid "QSO Map"
 msgstr "QSO-Karte"
 
@@ -2517,6 +2521,8 @@ msgstr "Exportiere EDI"
 #: application/controllers/Satellite.php:55 application/models/Note.php:10
 #: application/views/interface_assets/header.php:332
 #: application/views/satellite/index.php:40
+#: application/views/statistics/index.php:69
+#: application/views/statistics/index.php:137
 #: application/views/statistics/index.php:85
 #: application/views/statistics/index.php:153
 msgid "Satellites"
@@ -2692,6 +2698,7 @@ msgstr "Bitte den Wert für den Locator (%s) überprüfen"
 #: application/controllers/Stationsetup.php:61
 #: application/views/interface_assets/header.php:441
 #: application/views/interface_assets/header.php:474
+#: application/views/interface_assets/header.php:596
 #: application/views/interface_assets/header.php:608
 msgid "Station Setup"
 msgstr "Stationssetup"
@@ -2760,9 +2767,10 @@ msgid "Set as Active Logbook"
 msgstr "Setze als aktives Logbuch"
 
 #: application/controllers/Stationsetup.php:289
-#: application/views/interface_assets/header.php:606
+#: application/views/interface_assets/header.php:594
 #: application/views/stationsetup/stationsetup.php:49
 #: application/views/view_log/index.php:4
+#: application/views/interface_assets/header.php:606
 msgid "Active Logbook"
 msgstr "Aktives Logbuch"
 
@@ -2865,24 +2873,28 @@ msgstr "Stationsstandorte-Liste"
 msgid "Statistics"
 msgstr "Statistik"
 
-#: application/controllers/Statistics.php:302
+#: application/controllers/Statistics.php:292
 #: application/views/interface_assets/header.php:158
 #: application/views/statistics/qsltable.php:5
+#: application/controllers/Statistics.php:302
 msgid "QSL Statistics"
 msgstr "QSL-Statistiken"
 
-#: application/controllers/Statistics.php:317
+#: application/controllers/Statistics.php:307
 #: application/views/interface_assets/header.php:156
 #: application/views/statistics/antennaanalytics.php:3
+#: application/controllers/Statistics.php:317
 msgid "Antenna Analytics"
 msgstr "Antennenanalyse"
 
+#: application/controllers/Statistics.php:360
 #: application/controllers/Statistics.php:375
 msgid "Satellite QSOs"
 msgstr "Satellit QSOs"
 
-#: application/controllers/Statistics.php:391
+#: application/controllers/Statistics.php:376
 #: application/views/interface_assets/header.php:182
+#: application/controllers/Statistics.php:391
 msgid "EME Initials"
 msgstr "EME Erstverbindungen"
 
@@ -3385,10 +3397,6 @@ msgstr "Nutzer nicht über Kurz-URL gefunden"
 msgid "Multiple users found by slug"
 msgstr "Mehrere Nutzer über Kurz-URL gefunden"
 
-#: application/controllers/Zonechecker.php:26
-msgid "Gridsquare Zone finder"
-msgstr ""
-
 #: application/libraries/Callbook.php:124
 msgid "QRZCQ Error"
 msgstr "QRZCQ Fehler"
@@ -3563,6 +3571,7 @@ msgstr "Kein Rufzeichen angegeben"
 msgid "DXCC has to be Numeric"
 msgstr "DXCC muss numerisch sein"
 
+#: application/models/Logbook_model.php:4738
 #: application/models/Logbook_model.php:4744
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -3570,6 +3579,7 @@ msgstr ""
 "Falscher Stationscall %s im QSO mit %s für das Stationsprofil %s: Nicht "
 "importiert"
 
+#: application/models/Logbook_model.php:4752
 #: application/models/Logbook_model.php:4758
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
@@ -3578,10 +3588,12 @@ msgstr ""
 "Du hast versucht, ein QSO mit ungültigem Datum zu importieren. Dieses QSO "
 "wurde nicht importiert. Es ist ungültig"
 
+#: application/models/Logbook_model.php:4761
 #: application/models/Logbook_model.php:4767
 msgid "QSO on"
 msgstr "QSO am"
 
+#: application/models/Logbook_model.php:4761
 #: application/models/Logbook_model.php:4767
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
@@ -3590,6 +3602,7 @@ msgstr ""
 "Du hast versucht, ein QSO ohne angegebenes Rufzeichen zu importieren. Dieses "
 "QSO wurde nicht importiert. Es ist ungültig"
 
+#: application/models/Logbook_model.php:4810
 #: application/models/Logbook_model.php:4816
 #, php-format
 msgid ""
@@ -3599,64 +3612,78 @@ msgstr ""
 "QSO um %s: Du hast versucht, ein QSO ohne Bandinformationen zu importieren. "
 "Dieses QSO wurde nicht importiert. Es ist ungültig"
 
+#: application/models/Logbook_model.php:5075
 #: application/models/Logbook_model.php:5081
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "Das (Papier-)QSL-Empfangsdatum hat das falsche Format (JJJJMMDD)"
 
+#: application/models/Logbook_model.php:5086
 #: application/models/Logbook_model.php:5092
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "Das (Papier-)QSL Sendedatum hat das falsche Format (JJJJMMTT)"
 
+#: application/models/Logbook_model.php:5147
 #: application/models/Logbook_model.php:5153
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "Das Format des Clublog-Upload-Datums ist falsch (JJJJMMTT)"
 
-#: application/models/Logbook_model.php:5528
+#: application/models/Logbook_model.php:5522
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:5528
 msgid "Duplicate for"
 msgstr "Doublette zu"
 
+#: application/models/Logbook_model.php:5587
+#: application/models/Logbook_model.php:5682
 #: application/models/Logbook_model.php:5593
 #: application/models/Logbook_model.php:5688
 msgid "QSO could not be matched"
 msgstr "QSO konnte nicht gefunden werden"
 
+#: application/models/Logbook_model.php:5595
 #: application/models/Logbook_model.php:5601
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bestätigt durch LoTW/Clublog/eQSL/Contest"
 
+#: application/models/Logbook_model.php:5601
 #: application/models/Logbook_model.php:5607
 msgid "confirmed by award manager"
 msgstr "bestätigt durch Diplommananger"
 
+#: application/models/Logbook_model.php:5605
 #: application/models/Logbook_model.php:5611
 msgid "confirmed by cross-check of DCL data"
 msgstr "bestätigt durch Cross-Check von DCL-Daten"
 
+#: application/models/Logbook_model.php:5609
 #: application/models/Logbook_model.php:5615
 msgid "confirmation pending"
 msgstr "Bestätigung ausstehend"
 
+#: application/models/Logbook_model.php:5612
 #: application/models/Logbook_model.php:5618
 msgid "unconfirmed"
 msgstr "nicht bestätigt"
 
-#: application/models/Logbook_model.php:5621
+#: application/models/Logbook_model.php:5615
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
+#: application/models/Logbook_model.php:5621
 msgid "unknown"
 msgstr "unbekannt"
 
+#: application/models/Logbook_model.php:5685
 #: application/models/Logbook_model.php:5691
 msgid "POTA reference already in log"
 msgstr "POTA Referenz bereits im Log"
 
+#: application/models/Logbook_model.php:5688
 #: application/models/Logbook_model.php:5694
 msgid "QSO updated"
 msgstr "QSO aktualisiert"
 
-#: application/models/Logbook_model.php:6425
+#: application/models/Logbook_model.php:6419
 #: application/views/activated_gridmap/index.php:114
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:58
@@ -3667,6 +3694,7 @@ msgstr "QSO aktualisiert"
 #: application/views/user/edit.php:279 application/views/user/edit.php:302
 #: application/views/user/edit.php:325 application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:6425
 msgid "Bearing"
 msgstr "Peilung"
 
@@ -3680,8 +3708,9 @@ msgstr "Kontakte"
 
 #: application/models/Note.php:8
 #: application/views/interface_assets/footer.php:110
-#: application/views/qso/index.php:94 application/views/statistics/index.php:81
+#: application/views/qso/index.php:94 application/views/statistics/index.php:65
 #: application/views/user/edit.php:168
+#: application/views/statistics/index.php:81
 msgid "General"
 msgstr "Allgemeines"
 
@@ -3771,6 +3800,7 @@ msgstr "Kumulierte Anzahl gearbeiteter WAJA"
 #: application/views/dayswithqso/index.php:42
 #: application/views/dayswithqso/index.php:82
 #: application/views/statistics/index.php:21
+#: application/views/statistics/index.php:57
 #: application/views/timeline/index.php:107
 #: application/views/visitor/index.php:250
 msgid "Year"
@@ -3912,7 +3942,6 @@ msgstr "Differenz"
 #: application/views/statistics/antennaanalytics.php:34
 #: application/views/statistics/antennaanalytics.php:48
 #: application/views/statistics/antennaanalytics.php:88
-#: application/views/statistics/index.php:64
 #: application/views/statistics/initials.php:20
 #: application/views/timeline/index.php:10
 #: application/views/timeline/index.php:22
@@ -3922,6 +3951,7 @@ msgstr "Differenz"
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:805
 #: application/views/visitor/layout/footer.php:173
+#: application/views/statistics/index.php:64
 msgid "All"
 msgstr "Alle"
 
@@ -8689,6 +8719,7 @@ msgstr "Kategorie Overlay"
 #: application/views/cabrillo/index.php:164
 #: application/views/reg1test/index.php:70
 #: application/views/statistics/index.php:18
+#: application/views/statistics/index.php:95
 #: application/views/statistics/index.php:111
 msgid "Operators"
 msgstr "Operatoren"
@@ -9615,12 +9646,13 @@ msgstr "ADIF-Name"
 #: application/views/contesting/add.php:44
 #: application/views/contesting/edit.php:43
 #: application/views/contesting/edit.php:46
-#: application/views/interface_assets/header.php:586
+#: application/views/interface_assets/header.php:574
 #: application/views/mode/create.php:46 application/views/mode/create.php:48
 #: application/views/mode/edit.php:57 application/views/mode/edit.php:60
 #: application/views/mode/index.php:8 application/views/mode/index.php:55
 #: application/views/usermode/index.php:6
 #: application/views/usermode/index.php:51
+#: application/views/interface_assets/header.php:586
 msgid "Active"
 msgstr "Aktiv"
 
@@ -11422,8 +11454,8 @@ msgstr ""
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
-"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an eQSL."
-"cc."
+"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an "
+"eQSL.cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -11983,8 +12015,9 @@ msgstr ""
 "Einrichtungshinweise."
 
 #: application/views/interface_assets/footer.php:223
-#: application/views/interface_assets/header.php:547
+#: application/views/interface_assets/header.php:535
 #: application/views/options/sidebar.php:10
+#: application/views/interface_assets/header.php:547
 msgid "Version Info"
 msgstr "Versionsinfo"
 
@@ -12406,55 +12439,47 @@ msgstr "Clublog Import/Export"
 msgid "DCL Export"
 msgstr "DCL Export"
 
-#: application/views/interface_assets/header.php:537
-msgid "Internal tools"
-msgstr ""
-
-#: application/views/interface_assets/header.php:539
-msgid "Callsign DXCC checker"
-msgstr ""
-
-#: application/views/interface_assets/header.php:540
-msgid "GeoJSON QSO Map"
-msgstr ""
-
-#: application/views/interface_assets/header.php:541
-msgid "Gridsquare Zone checker"
-msgstr ""
-
-#: application/views/interface_assets/header.php:548
+#: application/views/interface_assets/header.php:536
 #: application/views/logbookadvanced/index.php:861
+#: application/views/interface_assets/header.php:548
 msgid "Help"
 msgstr "Hilfe"
 
+#: application/views/interface_assets/header.php:537
 #: application/views/interface_assets/header.php:549
 msgid "Forum"
 msgstr "Forum"
 
+#: application/views/interface_assets/header.php:541
 #: application/views/interface_assets/header.php:553
 #, php-format
 msgid "Stop impersonate and switch back to %s"
 msgstr "Stoppe zu imitieren und wechsle zurück zu %s"
 
+#: application/views/interface_assets/header.php:542
 #: application/views/interface_assets/header.php:554
 #, php-format
 msgid "Switch back to %s"
 msgstr "Wechsle zurück zu %s"
 
+#: application/views/interface_assets/header.php:546
 #: application/views/interface_assets/header.php:558
 msgid "Logout"
 msgstr "Ausloggen"
 
+#: application/views/interface_assets/header.php:554
 #: application/views/interface_assets/header.php:566
 msgid "Select a Location"
 msgstr "Wähle einen Stationsstandort"
 
+#: application/views/interface_assets/header.php:596
 #: application/views/interface_assets/header.php:608
 msgid "You miss station-locations here? Go to stationsetup and fav them"
 msgstr ""
 "Du vermisst Stationsstandorte hier? Geh ins Stationssetup und markiere sie "
 "als Favoriten"
 
+#: application/views/interface_assets/header.php:633
 #: application/views/interface_assets/header.php:645
 msgid "Extras"
 msgstr "Extras"
@@ -12686,6 +12711,8 @@ msgstr "Etiketten-Typen"
 #: application/views/labels/index.php:81
 #: application/views/logbookadvanced/statecheckresult.php:12
 #: application/views/map/qso_map.php:21
+#: application/views/statistics/index.php:92
+#: application/views/statistics/index.php:140
 #: application/views/statistics/index.php:108
 #: application/views/statistics/index.php:156
 msgid "QSOs"
@@ -13993,7 +14020,7 @@ msgstr "Datenbankwerkzeuge"
 #: application/views/logbookadvanced/index.php:878
 #: application/views/logbookadvanced/useroptions.php:194
 msgid "Last modified"
-msgstr ""
+msgstr "Letzte Änderung"
 
 #: application/views/logbookadvanced/index.php:881
 #: application/views/logbookadvanced/useroptions.php:26
@@ -14229,13 +14256,15 @@ msgstr "Spalte"
 
 #: application/views/logbookadvanced/useroptions.php:194
 msgid "For debugging only"
-msgstr ""
+msgstr "Nur für Debug-Zwecke"
 
 #: application/views/logbookadvanced/useroptions.php:194
 msgid ""
 "This is meant for debugging purposes only and not designed to be displayed "
 "by default"
 msgstr ""
+"Dies ist nur für Debug-Zwecke vorhanden und nicht vorgesehen, standardmäßig "
+"angezeigt zu werden"
 
 #: application/views/logbookadvanced/useroptions.php:204
 msgctxt "Map Options"
@@ -14732,8 +14761,8 @@ msgstr "E-Mail Adresse"
 msgid ""
 "The email address from which the emails are sent, e.g. 'wavelog@example.com'"
 msgstr ""
-"Die E-Mail Adresse von der die Mails versendet werden, z.B. 'wavelog@example."
-"com'"
+"Die E-Mail Adresse von der die Mails versendet werden, z.B. "
+"'wavelog@example.com'"
 
 #: application/views/options/email.php:80
 msgid "SMTP Host"
@@ -16889,9 +16918,9 @@ msgid ""
 msgstr ""
 "Um zu beginnen, stelle sicher, dass du die Felder auf der linken Seite "
 "bereits mit Datum, Stationsrufzeichen/-standort und Rufzeichen des Operators "
-"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, z."
-"B. '7.145'), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
-"wesentlichen das Rufzeichen ist."
+"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, "
+"z.B. '7.145'), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was "
+"im wesentlichen das Rufzeichen ist."
 
 #: application/views/simplefle/syntax_help.php:9
 msgid "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB."
@@ -17573,11 +17602,13 @@ msgid "Elevation"
 msgstr "Elevation"
 
 #: application/views/statistics/index.php:14
+#: application/views/statistics/index.php:80
 #: application/views/statistics/index.php:96
 msgid "Years"
 msgstr "Jahre"
 
 #: application/views/statistics/index.php:15
+#: application/views/statistics/index.php:83
 #: application/views/statistics/index.php:99
 msgid "Months"
 msgstr "Monate"
@@ -17642,11 +17673,19 @@ msgstr "Dezember"
 msgid "Explore the logbook."
 msgstr "Logbuch untersuchen."
 
+#: application/views/statistics/index.php:54
+#: application/views/timeline/index.php:111
+msgid "All Years"
+msgstr "Alle Jahre"
+
+#: application/views/statistics/index.php:98
+#: application/views/statistics/index.php:143
 #: application/views/statistics/index.php:114
 #: application/views/statistics/index.php:159
 msgid "Unique callsigns"
 msgstr "Eindeutige Rufzeichen"
 
+#: application/views/statistics/index.php:146
 #: application/views/statistics/index.php:162
 msgid "Unique Grids"
 msgstr "Einzigartige Grids"
@@ -17775,9 +17814,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Erstelle einen neuen Ordner in 'assets/css/' und lade eine 'bootstrap.min."
-"css' Datei hoch, welche die grundlegende Styling-Regeln enthält. Wir "
-"verwenden die Themes von %s"
+"Erstelle einen neuen Ordner in 'assets/css/' und lade eine "
+"'bootstrap.min.css' Datei hoch, welche die grundlegende Styling-Regeln "
+"enthält. Wir verwenden die Themes von %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -17839,10 +17878,6 @@ msgstr "Bitte bearbeiten"
 #: application/views/themes/index.php:116
 msgid "Add a Theme"
 msgstr "Ein Theme hinzufügen"
-
-#: application/views/timeline/index.php:111
-msgid "All Years"
-msgstr "Alle Jahre"
 
 #: application/views/timeline/index.php:119
 msgid "Only new in selected year"
@@ -19280,67 +19315,91 @@ msgstr "Anfrage senden"
 msgid "Rcvd"
 msgstr "Rcvd"
 
+#: application/controllers/Lotw.php:855
+msgid "Connection to LoTW failed."
+msgstr "Verbindung zu LoTW fehlgeschlagen."
+
+#: application/controllers/Zonechecker.php:26
+msgid "Gridsquare Zone finder"
+msgstr "Planquadrat-Zonen-Finder"
+
+#: application/views/interface_assets/header.php:537
+msgid "Internal tools"
+msgstr "Interne Werkzeuge"
+
+#: application/views/interface_assets/header.php:539
+msgid "Callsign DXCC checker"
+msgstr "Rufzeichen-DXCC-Prüfung"
+
+#: application/views/interface_assets/header.php:540
+msgid "GeoJSON QSO Map"
+msgstr "GeoJSON QSO-Karte"
+
+#: application/views/interface_assets/header.php:541
+msgid "Gridsquare Zone checker"
+msgstr "Planquadrat-Zonen-Prüfung"
+
 #: application/views/zonechecker/index.php:3
 msgid "Gridsquare Zone identification"
-msgstr ""
+msgstr "Planquadrat-Zonen-Identifizierung"
 
 #: application/views/zonechecker/index.php:15
 msgid "Zone Type"
-msgstr ""
+msgstr "Zonentyp"
 
 #: application/views/zonechecker/index.php:20
 msgid "Start Zone Check"
-msgstr ""
+msgstr "Starte Zonenprüfung"
 
 #: application/views/zonechecker/index.php:39
 #: application/views/zonechecker/index.php:62
 msgid "Processing..."
-msgstr ""
+msgstr "Verarbeitung..."
 
 #: application/views/zonechecker/index.php:50
 #: application/views/zonechecker/index.php:73
 msgid "An error occurred while processing the request."
-msgstr ""
+msgstr "Bei der Verarbeitung der Anfrage ist ein Fehler aufgetreten."
 
 #: application/views/zonechecker/result.php:16
 msgid "Callsigns Tested"
-msgstr ""
+msgstr "Geprüfte Rufzeichen"
 
 #: application/views/zonechecker/result.php:17
 msgid "Execution Time"
-msgstr ""
+msgstr "Dauer der Ausführung"
 
 #: application/views/zonechecker/result.php:18
 msgid "Potential Wrong Zones"
-msgstr ""
+msgstr "Potenziell falsche Zonen"
 
 #: application/views/zonechecker/result.php:19
 msgid "Cache Hits"
-msgstr ""
+msgstr "Cache-Treffer"
 
 #: application/views/zonechecker/result.php:20
 msgid "Cache Misses"
-msgstr ""
+msgstr "Cache-Fehlschläge"
 
 #: application/views/zonechecker/result.php:21
 msgid "Hit Rate"
-msgstr ""
+msgstr "Trefferquote"
 
 #: application/views/zonechecker/result.php:55
 msgid "ITUz"
-msgstr ""
+msgstr "ITUz"
 
 #: application/views/zonechecker/result.php:56
 msgid "ITUz geojson"
-msgstr ""
+msgstr "ITUz geojson"
 
 #: application/views/zonechecker/result.php:58
 msgid "CQz"
-msgstr ""
+msgstr "CQz"
 
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
-msgstr ""
+msgstr "CQz geojson"
 
 #~ msgid ""
 #~ "The update function can only set the main ITU zone which is assigned to "
