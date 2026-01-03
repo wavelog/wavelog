@@ -232,10 +232,11 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->model('logbookadvanced_model');
 
 		$ids = xss_clean($this->input->post('id'));
-		$sortorder = xss_clean($this->input->post('sortorder'));
+		$sortcolumn = xss_clean($this->input->post('sortcolumn'));
+		$sortdirection = xss_clean($this->input->post('sortdirection'));
 		$user_id = (int)$this->session->userdata('user_id');
 
-		$data['qsos'] = $this->logbookadvanced_model->getQsosForAdif($ids, $user_id, $sortorder);
+		$data['qsos'] = $this->logbookadvanced_model->getQsosForAdif($ids, $user_id, $sortcolumn, $sortdirection);
 
 		$this->load->view('adif/data/exportall', $data);
 	}
