@@ -604,26 +604,36 @@ class Logbookadvanced_model extends CI_Model {
 
 		$sortorder = '';
 
-		if ($searchCriteria['sortorder'] !== '') {
-			switch($searchCriteria['sortorder']) {
-				case 'qsotimedesc':
-					$sortorder .= ' ORDER BY qsos.COL_TIME_ON desc, qsos.COL_PRIMARY_KEY desc';
-					break;
-				case 'qsotimeasc':
-					$sortorder .= ' ORDER BY qsos.COL_TIME_ON asc, qsos.COL_PRIMARY_KEY asc';
+		$sortColumn = '';
+		$sortDirection = isset($searchCriteria['sortdirection']) && strtolower($searchCriteria['sortdirection']) === 'asc' ? 'asc' : 'desc';
+
+		if ($searchCriteria['sortcolumn'] !== '') {
+			switch($searchCriteria['sortcolumn']) {
+				case 'qsotime':
+					$sortColumn = 'qsos.COL_TIME_ON';
 					break;
 				case 'band':
-					$sortorder .= ' ORDER BY qsos.COL_BAND asc, qsos.COL_PRIMARY_KEY asc';
+					$sortColumn = 'qsos.COL_BAND';
 					break;
 				case 'mode':
-					$sortorder .= ' ORDER BY qsos.COL_MODE asc, qsos.COL_SUBMODE asc, qsos.COL_PRIMARY_KEY asc';
+					$sortColumn = 'qsos.COL_MODE';
 					break;
-				case 'qso_modifieddesc':
-					$sortorder .= ' ORDER BY qsos.last_modified desc, qsos.COL_PRIMARY_KEY desc';
+				case 'qsomodified':
+					$sortColumn = 'qsos.last_modified';
 					break;
 				default:
-					$sortorder .= ' ORDER BY qsos.COL_TIME_ON desc, qsos.COL_PRIMARY_KEY desc';
+					$sortColumn = 'qsos.COL_TIME_ON';
 			}
+
+			$secondarySort = $sortDirection === 'asc' ? 'asc' : 'desc';
+			$sortorder .= " ORDER BY $sortColumn $sortDirection";
+
+			// Add secondary sorts for mode column
+			if ($searchCriteria['sortdirection'] === 'mode') {
+				$sortorder .= ", qsos.COL_SUBMODE $sortDirection";
+			}
+
+			$sortorder .= ", qsos.COL_PRIMARY_KEY $secondarySort";
 		}
 
 		$sql = "

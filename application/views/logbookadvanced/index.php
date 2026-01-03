@@ -509,13 +509,19 @@ $options = json_decode($options);
                                 </div>
 								<div class="row">
                                     <div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
-                                        <label class="form-label" for="sortorder"><?= __("Sort order"); ?></label>
-										<select id="sortorder" name="sortorder" class="form-select form-select-sm border border-secondary">
-                                            <option value="qsotimedesc"><?= __("QSO Time descending"); ?></option>
-                                            <option value="qsotimeasc"><?= __("QSO Time ascending"); ?></option>
+                                        <label class="form-label" for="sortcolumn"><?= __("Sort column"); ?></label>
+										<select id="sortcolumn" name="sortcolumn" class="form-select form-select-sm border border-secondary">
+                                            <option value="qsotime"><?= __("QSO Time"); ?></option>
                                             <option value="band"><?= __("Band"); ?></option>
                                             <option value="mode"><?= __("Mode"); ?></option>
-                                            <option value="qso_modifieddesc"><?= __("QSO Modified descending"); ?></option>
+                                            <option value="qsomodified"><?= __("QSO Modified"); ?></option>
+                                        </select>
+                                    </div>
+									<div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
+                                        <label class="form-label" for="sortdirection"><?= __("Sort direction"); ?></label>
+										<select id="sortdirection" name="sortdirection" class="form-select form-select-sm border border-secondary">
+                                            <option value="desc"><?= __("Descending"); ?></option>
+                                            <option value="asc"><?= __("Ascending"); ?></option>
                                         </select>
                                     </div>
                                 </div>

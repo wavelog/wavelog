@@ -159,7 +159,8 @@ class Logbookadvanced extends CI_Controller {
 			'qrzSent' => xss_clean($this->input->post('qrzSent')),
 			'qrzReceived' => xss_clean($this->input->post('qrzReceived')),
 			'distance' => xss_clean($this->input->post('distance')),
-			'sortorder' => xss_clean($this->input->post('sortorder'))
+			'sortcolumn' => xss_clean($this->input->post('sortcolumn')),
+			'sortdirection' => xss_clean($this->input->post('sortdirection'))
 		);
 	}
 
@@ -390,7 +391,8 @@ class Logbookadvanced extends CI_Controller {
 			'qrzReceived' => '',
 			'ids' => json_decode(xss_clean($this->input->post('ids'))),
 			'qsoids' => xss_clean($this->input->post('qsoids')),
-			'sortorder' => 'qsotimedesc'
+			'sortcolumn' => 'qsotime',
+			'sortdirection' => 'desc'
 		);
 
 		$result = $this->logbookadvanced_model->getSearchResultArray($searchCriteria);
