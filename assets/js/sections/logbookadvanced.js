@@ -764,6 +764,7 @@ $(document).ready(function () {
 				qrzSent: this.qrzSent.value,
 				qrzReceived: this.qrzReceived.value,
 				distance: this.distance.value,
+				sortorder: this.sortorder.value
 			},
 			dataType: 'json',
 			success: function (data) {
@@ -1928,7 +1929,7 @@ function saveOptions() {
 				nightshadow_layer: $('input[name="nightshadow"]').is(':checked') ? true : false,
 				qth: $('input[name="qth"]').is(':checked') ? true : false,
 				frequency: $('input[name="frequency"]').is(':checked') ? true : false,
-				dcl: $('input[name="dcl"]').is(':checked') ? true : false,
+				dcl: $('input[name="dcl"]').is(':checked') ? true : false
 			},
 			success: function(data) {
 				$('#saveButton').prop("disabled", false);

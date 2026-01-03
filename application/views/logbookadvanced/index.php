@@ -507,6 +507,18 @@ $options = json_decode($options);
                                         <input onclick="this.select()" type="text" name="distance" class="form-control form-control-sm border border-secondary" value="*" placeholder="<?= __("Empty"); ?>">
                                     </div>
                                 </div>
+								<div class="row">
+                                    <div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
+                                        <label class="form-label" for="sortorder"><?= __("Sort order"); ?></label>
+										<select id="sortorder" name="sortorder" class="form-select form-select-sm border border-secondary">
+                                            <option value="qsotimedesc"><?= __("QSO Time descending"); ?></option>
+                                            <option value="qsotimeasc"><?= __("QSO Time ascending"); ?></option>
+                                            <option value="band"><?= __("Band"); ?></option>
+                                            <option value="mode"><?= __("Mode"); ?></option>
+                                            <option value="qso_modifieddesc"><?= __("QSO Modified descending"); ?></option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
 							<div class="row">
 									<div class="col-lg-2 col-md-2 col-sm-3 col-xl">

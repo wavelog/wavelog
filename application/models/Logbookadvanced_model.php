@@ -602,6 +602,30 @@ class Logbookadvanced_model extends CI_Model {
 			}
 		}
 
+		$sortorder = '';
+
+		if ($searchCriteria['sortorder'] !== '') {
+			switch($searchCriteria['sortorder']) {
+				case 'qsotimedesc':
+					$sortorder .= ' ORDER BY qsos.COL_TIME_ON desc, qsos.COL_PRIMARY_KEY desc';
+					break;
+				case 'qsotimeasc':
+					$sortorder .= ' ORDER BY qsos.COL_TIME_ON asc, qsos.COL_PRIMARY_KEY asc';
+					break;
+				case 'band':
+					$sortorder .= ' ORDER BY qsos.COL_BAND asc, qsos.COL_PRIMARY_KEY asc';
+					break;
+				case 'mode':
+					$sortorder .= ' ORDER BY qsos.COL_MODE asc, qsos.COL_SUBMODE asc, qsos.COL_PRIMARY_KEY asc';
+					break;
+				case 'qso_modifieddesc':
+					$sortorder .= ' ORDER BY qsos.last_modified desc, qsos.COL_PRIMARY_KEY desc';
+					break;
+				default:
+					$sortorder .= ' ORDER BY qsos.COL_TIME_ON desc, qsos.COL_PRIMARY_KEY desc';
+			}
+		}
+
 		$sql = "
 			SELECT qsos.*, qsos.last_modified AS qso_last_modified, dxcc_entities.*, lotw_users.*, station_profile.*, satellite.*, dxcc_entities.name as dxccname, mydxcc.name AS station_country, exists(select 1 from qsl_images where qsoid = qsos.COL_PRIMARY_KEY) as qslcount, coalesce(contest.name, qsos.col_contest_id) as contestname
 			FROM " . $this->config->item('table_name') . " qsos
@@ -614,7 +638,7 @@ class Logbookadvanced_model extends CI_Model {
 			WHERE station_profile.user_id =  ?
 			$where
 			$where2
-			ORDER BY qsos.COL_TIME_ON desc, qsos.COL_PRIMARY_KEY desc
+			$sortorder
 			$limit
 		";
 		return $this->db->query($sql, $binding);
@@ -2079,7 +2103,7 @@ class Logbookadvanced_model extends CI_Model {
 			from ' . $this->config->item('table_name') . '
 			join station_profile on ' . $this->config->item('table_name') . '.station_id = station_profile.station_id
 			where station_profile.user_id = ?';
-		$params[] = array($this->session->userdata('user_id'));
+		$params[] = $this->session->userdata('user_id');
 
 		$sql .= ' order by station_profile.station_profile_name asc, date desc';
 
