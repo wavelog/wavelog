@@ -437,7 +437,6 @@ class Lotw extends CI_Controller {
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$results = array();
-		$password = $password; // Only needed if 12 has a password set
 		$filename = file_get_contents('file://'.$file);
 		$worked = openssl_pkcs12_read($filename, $results, $password);
 
