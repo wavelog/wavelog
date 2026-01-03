@@ -775,6 +775,10 @@ class Lotw extends CI_Controller {
 						log_message('error', 'Deleting LoTW credentials for user '.$user->user_name.' failed');
 					}
 					continue;
+				} else if (str_contains($content,"Page Request Limit!</B>")) {
+					$result = "LoTW download hit a rate limit for user ".$user->user_lotw_name;
+					log_message('error', 'LoTW download hit a rate limit for user '.$user->user_name);
+					continue;
 				}
 				file_put_contents($file, $content);
 				if (file_get_contents($file, false, null, 0, 39) != "ARRL Logbook of the World Status Report") {
