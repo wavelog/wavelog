@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-01-03 19:16+0000\n"
+"POT-Creation-Date: 2026-01-04 07:08+0000\n"
 "PO-Revision-Date: 2025-12-23 02:59+0000\n"
 "Last-Translator: YuanRetro <lijiaxuan1811@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -89,8 +89,8 @@ msgstr ""
 #: application/controllers/Lookup.php:17 application/controllers/Lotw.php:44
 #: application/controllers/Lotw.php:90 application/controllers/Lotw.php:116
 #: application/controllers/Lotw.php:414 application/controllers/Lotw.php:437
-#: application/controllers/Lotw.php:798 application/controllers/Lotw.php:885
-#: application/controllers/Lotw.php:990 application/controllers/Map.php:12
+#: application/controllers/Lotw.php:797 application/controllers/Lotw.php:884
+#: application/controllers/Lotw.php:989 application/controllers/Map.php:12
 #: application/controllers/Map.php:27 application/controllers/Mode.php:15
 #: application/controllers/Notes.php:10 application/controllers/Options.php:14
 #: application/controllers/Oqrs.php:15 application/controllers/Oqrs.php:165
@@ -1972,65 +1972,82 @@ msgstr "呼号证书已更新。"
 msgid "Certificate Deleted."
 msgstr "呼号证书已删除。"
 
-#: application/controllers/Lotw.php:449
+#: application/controllers/Lotw.php:448
 #, php-format
 msgid ""
-"Found no certificate in file %s. If the filename contains 'key-only' this is "
-"typically a certificate request which has not been processed by LoTW yet."
+"The certificate found in file %s contains a password and cannot be "
+"processed. %s Please make sure you export the LoTW certificate from tqsl "
+"application without password! %s"
 msgstr ""
-"未能在文件 %s 中找到呼号证书。如果文件名包含了 'key-only'，则此文件通常为呼号"
-"证书的申请文件，LoTW 的工作人员依此来发放正式的呼号证书。"
 
-#: application/controllers/Lotw.php:686
+#: application/controllers/Lotw.php:450
+#, php-format
+msgid ""
+"Generic error extracting the certificate from file %s. If the filename "
+"contains 'key-only' this is typically a certificate request which has not "
+"been processed by LoTW yet."
+msgstr ""
+
+#: application/controllers/Lotw.php:457
+#, php-format
+msgid "Generic error processing the certificate in file %s."
+msgstr ""
+
+#: application/controllers/Lotw.php:469
+#, php-format
+msgid "Generic error extracting the private key from certificate in file %s."
+msgstr ""
+
+#: application/controllers/Lotw.php:685
 msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF 信息"
 
-#: application/controllers/Lotw.php:855
+#: application/controllers/Lotw.php:854
 msgid "Connection to LoTW failed."
 msgstr ""
 
-#: application/controllers/Lotw.php:860
+#: application/controllers/Lotw.php:859
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr "LoTW 用户 %s 登录失败：%s。"
 
-#: application/controllers/Lotw.php:860
+#: application/controllers/Lotw.php:859
 msgid "Username/password incorrect"
 msgstr "用户名/密码不正确"
 
-#: application/controllers/Lotw.php:863
+#: application/controllers/Lotw.php:862
 msgid "LoTW currently not available. Try again later."
 msgstr "LoTW当前不可用。请稍后再试。"
 
-#: application/controllers/Lotw.php:867
+#: application/controllers/Lotw.php:866
 msgid "LoTW login OK!"
 msgstr "LoTW 登录成功！"
 
-#: application/controllers/Lotw.php:873
+#: application/controllers/Lotw.php:872
 msgid "No LoTW credentials provided."
 msgstr "没有提供 LoTW 证书。"
 
-#: application/controllers/Lotw.php:891
+#: application/controllers/Lotw.php:890
 msgid "LoTW ADIF Import"
 msgstr "LoTW ADIF 导入"
 
-#: application/controllers/Lotw.php:917 application/controllers/Lotw.php:1025
+#: application/controllers/Lotw.php:916 application/controllers/Lotw.php:1024
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "未配置 LoTW 登录信息！"
 
-#: application/controllers/Lotw.php:992
+#: application/controllers/Lotw.php:991
 msgid "LoTW .TQ8 Upload"
 msgstr "LoTW .TQ8 导入"
 
-#: application/controllers/Lotw.php:1070
+#: application/controllers/Lotw.php:1069
 msgid "Your ARRL username and/or password is incorrect."
 msgstr "LoTW 用户名/密码错误。"
 
-#: application/controllers/Lotw.php:1089 application/controllers/Lotw.php:1094
+#: application/controllers/Lotw.php:1088 application/controllers/Lotw.php:1093
 msgid "LoTW .TQ8 Sent"
 msgstr "LoTW .TQ8 已发送"
 
-#: application/controllers/Lotw.php:1101
+#: application/controllers/Lotw.php:1100
 msgid "LoTW .TQ8 Not Sent"
 msgstr "LoTW .TQ8 未发送"
 
@@ -18619,6 +18636,15 @@ msgstr ""
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr ""
+
+#, php-format
+#~ msgid ""
+#~ "Found no certificate in file %s. If the filename contains 'key-only' this "
+#~ "is typically a certificate request which has not been processed by LoTW "
+#~ "yet."
+#~ msgstr ""
+#~ "未能在文件 %s 中找到呼号证书。如果文件名包含了 'key-only'，则此文件通常为"
+#~ "呼号证书的申请文件，LoTW 的工作人员依此来发放正式的呼号证书。"
 
 #~ msgid "Column"
 #~ msgstr "列"
