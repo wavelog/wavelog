@@ -34,7 +34,7 @@ class API_Model extends CI_Model {
 		return $this->db->query($sql, $binding);
 	}
 
-	function key_description($key) {
+	function key_description($key = '') {
 		$this->db->where('user_id', $this->session->userdata('user_id'));
 		$this->db->where('key', $key);
 		$query = $this->db->get('api');
@@ -42,14 +42,14 @@ class API_Model extends CI_Model {
 		return $query->result_array()[0];
 	}
 
-	function key_userid($key) {
+	function key_userid($key = '') {
 		$this->db->where('key', $key);
 		$query = $this->db->get('api');
 
 		return $query->result_array()[0]['user_id'];
 	}
 
-	function key_created_by($key) {
+	function key_created_by($key = '') {
 		$this->db->where('key', $key);
 		$query = $this->db->get('api');
 
@@ -68,7 +68,7 @@ class API_Model extends CI_Model {
 	}
 
 
-	function delete_key($key) {
+	function delete_key($key = '') {
 		$this->db->where('user_id', $this->session->userdata('user_id'));
 		$this->db->where('key', xss_clean($key));
 		$this->db->delete('api');
@@ -95,10 +95,10 @@ class API_Model extends CI_Model {
 		}
 	}
 
-	function access($key) {
+	function access($key = '') {
 
 		// No key = no access, mate
-		if (!$key) {
+		if ((!$key) || ($key == '')) {
 			return $status = "No Key Found";
 		}
 
@@ -119,7 +119,7 @@ class API_Model extends CI_Model {
 		}
 	}
 
-	function authorize($key) {
+	function authorize($key = '') {
 		$r = $this->access($key);
 		if ($r == "rw") {
 			return 2;

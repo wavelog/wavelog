@@ -204,9 +204,9 @@ class API extends CI_Controller {
 		}
 	}
 
-	function check_auth($key) {
+	function check_auth($key = '') {
 		$this->load->model('api_model');
-		if($this->api_model->access($key) == "No Key Found" || $this->api_model->access($key) == "Key Disabled") {
+		if($this->api_model->access($key ?? '') == "No Key Found" || $this->api_model->access($key ?? '') == "Key Disabled") {
 			// set the content type as json
 			header("Content-type: application/json");
 
@@ -222,7 +222,7 @@ class API extends CI_Controller {
 			// set the http response code to 200
 			http_response_code(200);
 			// return the json
-			echo json_encode(['status' => 'valid', 'rights' => $this->api_model->access($key)]);
+			echo json_encode(['status' => 'valid', 'rights' => $this->api_model->access($key ?? '')]);
 		}
 	}
 
