@@ -27,10 +27,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-01-04 07:42+0000\n"
-"PO-Revision-Date: 2026-01-03 03:15+0000\n"
+"PO-Revision-Date: 2026-01-04 10:59+0000\n"
 "Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1993,6 +1993,9 @@ msgid ""
 "processed. %s Please make sure you export the LoTW certificate from tqsl "
 "application without password! %s"
 msgstr ""
+"Das Zertifikat aus der Datei %s enthält ein Passwort und kann nicht "
+"verwendet werden. %s Bitte stelle sicher, dass das LoTW Zertifikat aus der "
+"tqsl Applikation ohne Passwort exportiert wird! %s"
 
 #: application/controllers/Lotw.php:450
 #, php-format
@@ -2001,16 +2004,22 @@ msgid ""
 "contains 'key-only' this is typically a certificate request which has not "
 "been processed by LoTW yet."
 msgstr ""
+"Generischer Fehler beim Extrahieren des Zertifikats aus der Datei %s. Wenn "
+"der Dateiname 'key-only' enthält, handelt es sich typischerweise um eine "
+"Zertifikatsanforderung, die noch nicht von LoTW prozessiert wurde."
 
 #: application/controllers/Lotw.php:457
 #, php-format
 msgid "Generic error processing the certificate in file %s."
 msgstr ""
+"Generischer Fehler bei der Verarbeitung des Zertifikats aus der Datei %s."
 
 #: application/controllers/Lotw.php:469
 #, php-format
 msgid "Generic error extracting the private key from certificate in file %s."
 msgstr ""
+"Generischer Fehler bei der Extraktion des privaten Schlüssels aus dem "
+"Zertifikat in der Datei %s."
 
 #: application/controllers/Lotw.php:685
 msgid "LoTW ADIF Information"
@@ -13695,7 +13704,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/index.php:512
 msgid "Sort column"
-msgstr ""
+msgstr "Spalte zur Sortierung"
 
 #: application/views/logbookadvanced/index.php:514
 #: application/views/oqrs/showrequests.php:87
@@ -13704,19 +13713,19 @@ msgstr "QSO-Zeit"
 
 #: application/views/logbookadvanced/index.php:517
 msgid "QSO Modified"
-msgstr ""
+msgstr "QSO Änderungsdatum"
 
 #: application/views/logbookadvanced/index.php:521
 msgid "Sort direction"
-msgstr ""
+msgstr "Sortierreihenfolge"
 
 #: application/views/logbookadvanced/index.php:523
 msgid "Descending"
-msgstr ""
+msgstr "Absteigend"
 
 #: application/views/logbookadvanced/index.php:524
 msgid "Ascending"
-msgstr ""
+msgstr "Aufsteigend"
 
 #: application/views/logbookadvanced/index.php:532
 #: application/views/logbookadvanced/index.php:714
@@ -14262,31 +14271,31 @@ msgstr "Derzeit unterstützte Länder"
 
 #: application/views/logbookadvanced/useroptions.php:15
 msgid "Basic QSO Information"
-msgstr ""
+msgstr "Grundlegende QSO Informationen"
 
 #: application/views/logbookadvanced/useroptions.php:72
 msgid "Station Details"
-msgstr ""
+msgstr "Stationsdetails"
 
 #: application/views/logbookadvanced/useroptions.php:105
 msgid "Confirmation Services"
-msgstr ""
+msgstr "Bestätigungsservices"
 
 #: application/views/logbookadvanced/useroptions.php:162
 msgid "Geographic Information"
-msgstr ""
+msgstr "Geographische Informationen"
 
 #: application/views/logbookadvanced/useroptions.php:207
 msgid "Awards Programs"
-msgstr ""
+msgstr "Award-Programme"
 
 #: application/views/logbookadvanced/useroptions.php:258
 msgid "Additional Information"
-msgstr ""
+msgstr "Zusätzliche Informationen"
 
 #: application/views/logbookadvanced/useroptions.php:297
 msgid "Technical Details"
-msgstr ""
+msgstr "Technische Details"
 
 #: application/views/logbookadvanced/useroptions.php:336
 msgid "For debugging only"
@@ -14302,7 +14311,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/useroptions.php:347
 msgid "Map Layers"
-msgstr ""
+msgstr "Kartenebenen"
 
 #: application/views/lookup/index.php:11
 #: application/views/qso/award_tabs.php:53
