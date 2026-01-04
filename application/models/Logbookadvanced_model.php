@@ -602,6 +602,40 @@ class Logbookadvanced_model extends CI_Model {
 			}
 		}
 
+		$sortorder = '';
+
+		$sortColumn = '';
+		$sortDirection = isset($searchCriteria['sortdirection']) && strtolower($searchCriteria['sortdirection']) === 'asc' ? 'asc' : 'desc';
+
+		if ($searchCriteria['sortcolumn'] !== '') {
+			switch($searchCriteria['sortcolumn']) {
+				case 'qsotime':
+					$sortColumn = 'qsos.COL_TIME_ON';
+					break;
+				case 'band':
+					$sortColumn = 'qsos.COL_BAND';
+					break;
+				case 'mode':
+					$sortColumn = 'qsos.COL_MODE';
+					break;
+				case 'qsomodified':
+					$sortColumn = 'qsos.last_modified';
+					break;
+				default:
+					$sortColumn = 'qsos.COL_TIME_ON';
+			}
+
+			$secondarySort = $sortDirection === 'asc' ? 'asc' : 'desc';
+			$sortorder .= " ORDER BY $sortColumn $sortDirection";
+
+			// Add secondary sorts for mode column
+			if ($searchCriteria['sortdirection'] === 'mode') {
+				$sortorder .= ", qsos.COL_SUBMODE $sortDirection";
+			}
+
+			$sortorder .= ", qsos.COL_PRIMARY_KEY $secondarySort";
+		}
+
 		$sql = "
 			SELECT qsos.*, qsos.last_modified AS qso_last_modified, dxcc_entities.*, lotw_users.*, station_profile.*, satellite.*, dxcc_entities.name as dxccname, mydxcc.name AS station_country, exists(select 1 from qsl_images where qsoid = qsos.COL_PRIMARY_KEY) as qslcount, coalesce(contest.name, qsos.col_contest_id) as contestname
 			FROM " . $this->config->item('table_name') . " qsos
@@ -614,7 +648,7 @@ class Logbookadvanced_model extends CI_Model {
 			WHERE station_profile.user_id =  ?
 			$where
 			$where2
-			ORDER BY qsos.COL_TIME_ON desc, qsos.COL_PRIMARY_KEY desc
+			$sortorder
 			$limit
 		";
 		return $this->db->query($sql, $binding);
@@ -645,7 +679,7 @@ class Logbookadvanced_model extends CI_Model {
 		return $qsos;
 	}
 
-    public function getQsosForAdif($ids, $user_id, $sortorder = null) : object {
+    public function getQsosForAdif($ids, $user_id, $sortColumnVar = 'qsotime', $sortDirection = 'desc') : object {
 		$binding = [$user_id];
         $conditions[] = "COL_PRIMARY_KEY in ?";
         $binding[] = json_decode($ids, true);
@@ -655,10 +689,42 @@ class Logbookadvanced_model extends CI_Model {
 			$where = "AND $where";
 		}
 
-		$order = $this->getSortOrder($sortorder);
+		$sortorder = '';
 
-        $sql = "
-            SELECT qsos.*, lotw_users.*, station_profile.*, dxcc_entities.name AS station_country, d2.adif as adif, d2.name as dxccname, exists(select 1 from qsl_images where qsoid = qsos.COL_PRIMARY_KEY) as qslcount, coalesce(contest.name, qsos.col_contest_id) as contestname
+		$sortColumnVar = '';
+		$sortDirection = $sortDirection === 'asc' ? 'asc' : 'desc';
+
+		if ($sortColumnVar !== '') {
+			switch($sortColumnVar) {
+				case 'qsotime':
+					$sortColumn = 'qsos.COL_TIME_ON';
+					break;
+				case 'band':
+					$sortColumn = 'qsos.COL_BAND';
+					break;
+				case 'mode':
+					$sortColumn = 'qsos.COL_MODE';
+					break;
+				case 'qsomodified':
+					$sortColumn = 'qsos.last_modified';
+					break;
+				default:
+					$sortColumn = 'qsos.COL_TIME_ON';
+			}
+
+			$secondarySort = $sortDirection === 'asc' ? 'asc' : 'desc';
+			$sortorder .= " ORDER BY $sortColumn $sortDirection";
+
+			// Add secondary sorts for mode column
+			if ($sortDirection === 'mode') {
+				$sortorder .= ", qsos.COL_SUBMODE $sortDirection";
+			}
+
+			$sortorder .= ", qsos.COL_PRIMARY_KEY $secondarySort";
+		}
+
+		$sql = "
+			SELECT qsos.*, qsos.last_modified AS qso_last_modified, lotw_users.*, station_profile.*, dxcc_entities.name AS station_country, d2.adif as adif, d2.name as dxccname, exists(select 1 from qsl_images where qsoid = qsos.COL_PRIMARY_KEY) as qslcount, coalesce(contest.name, qsos.col_contest_id) as contestname
 			FROM " . $this->config->item('table_name') . " qsos
 			INNER JOIN station_profile ON qsos.station_id = station_profile.station_id
 			LEFT OUTER JOIN dxcc_entities ON qsos.COL_MY_DXCC = dxcc_entities.adif
@@ -667,69 +733,11 @@ class Logbookadvanced_model extends CI_Model {
 			LEFT OUTER JOIN contest ON qsos.col_contest_id = contest.adifname
 			WHERE station_profile.user_id =  ?
 			$where
-			$order
+			$sortorder
 		";
 
 		return $this->db->query($sql, $binding);
     }
-
-	public function getSortOrder($sortorder) {
-		if ($sortorder == null) {
-			return 'ORDER BY qsos.COL_TIME_ON desc';
-		} else {
-			$sortorder = explode(',', $sortorder);
-			if (strtoupper($sortorder[1] ?? '') == 'ASC') {
-				$sortorder[1]='asc';
-			} else {
-				$sortorder[1]='desc';
-			}
-
-			if ($this->session->userdata('user_lotw_name') != "" && $this->session->userdata('user_eqsl_name') != ""){
-				switch($sortorder[0]) {
-					case 1: return 'ORDER BY qsos.COL_TIME_ON ' . $sortorder[1];
-					case 2: return 'ORDER BY station_profile.station_callsign ' . $sortorder[1];
-					case 3: return 'ORDER BY qsos.COL_CALL ' . $sortorder[1];
-					case 4: return 'ORDER BY qsos.COL_MODE ' .  $sortorder[1] . ', qsos.COL_SUBMODE ' . $sortorder[1];
-					case 7: return 'ORDER BY qsos.COL_BAND ' . $sortorder[1] . ', qsos.COL_SAT_NAME ' . $sortorder[1];
-					case 16: return 'ORDER BY qsos.COL_COUNTRY ' . $sortorder[1];
-					case 17: return 'ORDER BY qso.COL_STATE ' . $sortorder[1];
-					case 18: return 'ORDER BY qsos.COL_CQZ ' . $sortorder[1];
-					case 19: return 'ORDER BY qsos.COL_IOTA ' . $sortorder[1];
-					default: return 'ORDER BY qsos.COL_TIME_ON desc';
-				}
-			}
-
-			else if (($this->session->userdata('user_eqsl_name') != "" && $this->session->userdata('user_lotw_name') == "") || ($this->session->userdata('user_eqsl_name') == "" && $this->session->userdata('user_lotw_name') != "")) {
-				switch($sortorder[0]) {
-					case 1: return 'ORDER BY qsos.COL_TIME_ON ' . $sortorder[1];
-					case 2: return 'ORDER BY station_profile.station_callsign ' . $sortorder[1];
-					case 3: return 'ORDER BY qsos.COL_CALL ' . $sortorder[1];
-					case 4: return 'ORDER BY qsos.COL_MODE ' .  $sortorder[1] . ', qsos.COL_SUBMODE ' . $sortorder[1];
-					case 7: return 'ORDER BY qsos.COL_BAND ' . $sortorder[1] . ', qsos.COL_SAT_NAME ' . $sortorder[1];
-					case 15: return 'ORDER BY qsos.COL_COUNTRY ' . $sortorder[1];
-					case 16: return 'ORDER BY qso.COL_STATE ' . $sortorder[1];
-					case 17: return 'ORDER BY qsos.COL_CQZ ' . $sortorder[1];
-					case 18: return 'ORDER BY qsos.COL_IOTA ' . $sortorder[1];
-					default: return 'ORDER BY qsos.COL_TIME_ON desc';
-				}
-			}
-
-			else if ($this->session->userdata('user_eqsl_name') == "" && $this->session->userdata('user_lotw_name') == ""){
-				switch($sortorder[0]) {
-					case 1: return 'ORDER BY qsos.COL_TIME_ON ' . $sortorder[1];
-					case 2: return 'ORDER BY station_profile.station_callsign ' . $sortorder[1];
-					case 3: return 'ORDER BY qsos.COL_CALL ' . $sortorder[1];
-					case 4: return 'ORDER BY qsos.COL_MODE ' .  $sortorder[1] . ', qsos.COL_SUBMODE ' . $sortorder[1];
-					case 7: return 'ORDER BY qsos.COL_BAND ' . $sortorder[1] . ', qsos.COL_SAT_NAME ' . $sortorder[1];
-					case 14: return 'ORDER BY qsos.COL_COUNTRY ' . $sortorder[1];
-					case 15: return 'ORDER BY qso.COL_STATE ' . $sortorder[1];
-					case 16: return 'ORDER BY qsos.COL_CQZ ' . $sortorder[1];
-					case 17: return 'ORDER BY qsos.COL_IOTA ' . $sortorder[1];
-					default: return 'ORDER BY qsos.COL_TIME_ON desc';
-				}
-			}
-		}
-	}
 
 	public function updateQsl($ids, $user_id, $method, $sent) {
 		$this->load->model('user_model');
@@ -2079,7 +2087,7 @@ class Logbookadvanced_model extends CI_Model {
 			from ' . $this->config->item('table_name') . '
 			join station_profile on ' . $this->config->item('table_name') . '.station_id = station_profile.station_id
 			where station_profile.user_id = ?';
-		$params[] = array($this->session->userdata('user_id'));
+		$params[] = $this->session->userdata('user_id');
 
 		$sql .= ' order by station_profile.station_profile_name asc, date desc';
 

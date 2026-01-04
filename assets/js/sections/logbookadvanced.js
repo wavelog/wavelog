@@ -764,6 +764,8 @@ $(document).ready(function () {
 				qrzSent: this.qrzSent.value,
 				qrzReceived: this.qrzReceived.value,
 				distance: this.distance.value,
+				sortcolumn: this.sortcolumn.value,
+				sortdirection: this.sortdirection.value
 			},
 			dataType: 'json',
 			success: function (data) {
@@ -982,7 +984,7 @@ $(document).ready(function () {
 			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			// You should set responseType as blob for binary responses
 			xhttp.responseType = 'blob';
-			xhttp.send("id=" + JSON.stringify(id_list, null, 2)+"&sortorder=" +$('.table').DataTable().order());
+			xhttp.send("id=" + JSON.stringify(id_list, null, 2)+"&sortcolumn=" +$('#sortcolumn').val()+"&sortdirection=" +$('#sortdirection').val());
 		} else {
 
 			// Post data to URL which handles post request
@@ -1928,7 +1930,7 @@ function saveOptions() {
 				nightshadow_layer: $('input[name="nightshadow"]').is(':checked') ? true : false,
 				qth: $('input[name="qth"]').is(':checked') ? true : false,
 				frequency: $('input[name="frequency"]').is(':checked') ? true : false,
-				dcl: $('input[name="dcl"]').is(':checked') ? true : false,
+				dcl: $('input[name="dcl"]').is(':checked') ? true : false
 			},
 			success: function(data) {
 				$('#saveButton').prop("disabled", false);

@@ -159,6 +159,8 @@ class Logbookadvanced extends CI_Controller {
 			'qrzSent' => xss_clean($this->input->post('qrzSent')),
 			'qrzReceived' => xss_clean($this->input->post('qrzReceived')),
 			'distance' => xss_clean($this->input->post('distance')),
+			'sortcolumn' => xss_clean($this->input->post('sortcolumn')),
+			'sortdirection' => xss_clean($this->input->post('sortdirection'))
 		);
 	}
 
@@ -230,10 +232,11 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->model('logbookadvanced_model');
 
 		$ids = xss_clean($this->input->post('id'));
-		$sortorder = xss_clean($this->input->post('sortorder'));
+		$sortcolumn = xss_clean($this->input->post('sortcolumn'));
+		$sortdirection = xss_clean($this->input->post('sortdirection'));
 		$user_id = (int)$this->session->userdata('user_id');
 
-		$data['qsos'] = $this->logbookadvanced_model->getQsosForAdif($ids, $user_id, $sortorder);
+		$data['qsos'] = $this->logbookadvanced_model->getQsosForAdif($ids, $user_id, $sortcolumn, $sortdirection);
 
 		$this->load->view('adif/data/exportall', $data);
 	}
@@ -388,7 +391,9 @@ class Logbookadvanced extends CI_Controller {
 			'qrzSent' => '',
 			'qrzReceived' => '',
 			'ids' => json_decode(xss_clean($this->input->post('ids'))),
-			'qsoids' => xss_clean($this->input->post('qsoids'))
+			'qsoids' => xss_clean($this->input->post('qsoids')),
+			'sortcolumn' => 'qsotime',
+			'sortdirection' => 'desc'
 		);
 
 		$result = $this->logbookadvanced_model->getSearchResultArray($searchCriteria);
