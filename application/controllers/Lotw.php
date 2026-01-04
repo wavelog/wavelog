@@ -765,7 +765,7 @@ class Lotw extends CI_Controller {
 						break;
 					}
 					continue;
-				} else if(str_contains($content,"Username/password incorrect</I>")) {
+				} else if(str_contains(substr($content,0 , 2000),"Username/password incorrect</I>")) {
 					$result = "LoTW download failed for user ".$user->user_lotw_name.": Username/password incorrect";
 					log_message('error', 'LoTW download failed for user '.$user->user_name.': Username/password incorrect');
 					if ($this->Lotw_model->remove_lotw_credentials($user->user_id)) {
@@ -773,6 +773,10 @@ class Lotw extends CI_Controller {
 					} else {
 						log_message('error', 'Deleting LoTW credentials for user '.$user->user_name.' failed');
 					}
+					continue;
+				} else if (str_contains(substr($content, 0, 2000),"Page Request Limit!</B>")) {
+					$result = "LoTW download hit a rate limit for user ".$user->user_lotw_name;
+					log_message('error', 'LoTW download hit a rate limit for user '.$user->user_name);
 					continue;
 				}
 				file_put_contents($file, $content);
