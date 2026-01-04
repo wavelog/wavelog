@@ -99,6 +99,8 @@ class Dxcluster_model extends CI_Model {
 			curl_setopt($ch, CURLOPT_TIMEOUT, 10);
 			curl_setopt($ch, CURLOPT_HEADER, false);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    		curl_setopt($ch, CURLOPT_MAXREDIRS, 3);
 			$jsonraw = curl_exec($ch);
 			$curl_error = curl_error($ch);
 			$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
