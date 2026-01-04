@@ -114,3 +114,33 @@ span.grid-text-worked > font {
 	border-radius: 10px;
 	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
+
+/* Override CAT frequency gradient */
+.cat-frequency-gradient,
+.cat-frequency-gradient td,
+.cat-frequency-gradient td:hover,
+.cat-frequency-gradient td:focus {
+	background-color: rgba(196, 156, 233, 0.7) !important;
+	--bs-table-bg: rgba(196, 156, 233, 0.7) !important;
+	--bs-table-accent-bg: rgba(196, 156, 233, 0.7) !important;
+}
+
+/* Force override any inline styles from JavaScript */
+.cat-frequency-gradient td,
+.cat-frequency-gradient td:hover,
+.cat-frequency-gradient td:focus,
+tr[data-gradient-color] td,
+tr[data-gradient-color] td:hover,
+tr[data-gradient-color] td:focus {
+	background-color: rgba(196, 156, 233, 0.7) !important;
+	--bs-table-bg: rgba(196, 156, 233, 0.7) !important;
+	--bs-table-accent-bg: rgba(196, 156, 233, 0.7) !important;
+}
+
+/* Only set text color to white for direct text content, not spans with text classes */
+.cat-frequency-gradient td,
+.cat-frequency-gradient th,
+tr[data-gradient-color] td,
+tr[data-gradient-color] th {
+	color: #fff !important;
+}
