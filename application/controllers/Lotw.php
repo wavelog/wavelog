@@ -454,7 +454,7 @@ class Lotw extends CI_Controller {
 			if (!array_key_exists('cert', $results)) {
 				log_message('error', 'Generic error processing the certificate from file '.$file);
 				unlink($file);
-				$this->session->set_flashdata('warning', sprintf(__("Generic error processsing the certificate in file %s."), basename($file)));
+				$this->session->set_flashdata('warning', sprintf(__("Generic error processing the certificate in file %s."), basename($file)));
 				redirect('lotw');
 			} else {
 				$data['general_cert'] = $results['cert'];
