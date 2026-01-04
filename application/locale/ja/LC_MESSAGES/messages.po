@@ -126,6 +126,8 @@ msgstr ""
 #: application/controllers/Zonechecker.php:17
 #: application/models/Club_model.php:52 application/controllers/Lotw.php:797
 #: application/controllers/Lotw.php:884 application/controllers/Lotw.php:989
+#: application/controllers/Lotw.php:801 application/controllers/Lotw.php:888
+#: application/controllers/Lotw.php:993
 msgid "You're not allowed to do that!"
 msgstr "それは許されません！"
 
@@ -1982,54 +1984,66 @@ msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF情報"
 
 #: application/controllers/Lotw.php:855 application/controllers/Lotw.php:854
+#: application/controllers/Lotw.php:858
 msgid "Connection to LoTW failed."
 msgstr "LoTWへの接続に失敗しました。"
 
 #: application/controllers/Lotw.php:860 application/controllers/Lotw.php:859
+#: application/controllers/Lotw.php:863
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr "LoTWへのログインがユーザー %s で失敗しました: %s."
 
 #: application/controllers/Lotw.php:860 application/controllers/Lotw.php:859
+#: application/controllers/Lotw.php:863
 msgid "Username/password incorrect"
 msgstr "ユーザー名/パスワードが間違っています"
 
 #: application/controllers/Lotw.php:863 application/controllers/Lotw.php:862
+#: application/controllers/Lotw.php:866
 msgid "LoTW currently not available. Try again later."
 msgstr ""
 "LoTWは現在ご利用いただけません。しばらくしてからもう一度お試しください。"
 
 #: application/controllers/Lotw.php:867 application/controllers/Lotw.php:866
+#: application/controllers/Lotw.php:870
 msgid "LoTW login OK!"
 msgstr "LoTWログインOK！"
 
 #: application/controllers/Lotw.php:873 application/controllers/Lotw.php:872
+#: application/controllers/Lotw.php:876
 msgid "No LoTW credentials provided."
 msgstr "LoTWの認証情報が提供されていません。"
 
 #: application/controllers/Lotw.php:891 application/controllers/Lotw.php:890
+#: application/controllers/Lotw.php:894
 msgid "LoTW ADIF Import"
 msgstr "LoTW ADIF インポート"
 
 #: application/controllers/Lotw.php:917 application/controllers/Lotw.php:1025
 #: application/controllers/Lotw.php:916 application/controllers/Lotw.php:1024
+#: application/controllers/Lotw.php:920 application/controllers/Lotw.php:1028
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "ARRL LoTWの認証情報を設定していません！"
 
 #: application/controllers/Lotw.php:992 application/controllers/Lotw.php:991
+#: application/controllers/Lotw.php:995
 msgid "LoTW .TQ8 Upload"
 msgstr "LoTW .TQ8 アップロード"
 
 #: application/controllers/Lotw.php:1070 application/controllers/Lotw.php:1069
+#: application/controllers/Lotw.php:1073
 msgid "Your ARRL username and/or password is incorrect."
 msgstr "ARRL のユーザー名またはパスワードが正しくありません。"
 
 #: application/controllers/Lotw.php:1089 application/controllers/Lotw.php:1094
 #: application/controllers/Lotw.php:1088 application/controllers/Lotw.php:1093
+#: application/controllers/Lotw.php:1092 application/controllers/Lotw.php:1097
 msgid "LoTW .TQ8 Sent"
 msgstr "LoTW .TQ8 送信"
 
 #: application/controllers/Lotw.php:1101 application/controllers/Lotw.php:1100
+#: application/controllers/Lotw.php:1104
 msgid "LoTW .TQ8 Not Sent"
 msgstr "LoTW .TQ8 が未送信"
 
