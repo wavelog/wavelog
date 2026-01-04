@@ -437,61 +437,60 @@ class Lotw extends CI_Controller {
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$results = array();
-		$password = $password; // Only needed if 12 has a password set
 		$filename = file_get_contents('file://'.$file);
 		$worked = openssl_pkcs12_read($filename, $results, $password);
-
-		if (array_key_exists('cert', $results)) {
-			$data['general_cert'] = $results['cert'];
-		} else {
-			log_message('error', 'Found no certificate in file '.$file);
+		$openssl_error_pkcs12_read = openssl_error_string();
+		if (!$worked || $openssl_error_pkcs12_read) {
+			log_message('error', 'OpenSSL reading LoTW cert file resulted in error: '.$openssl_error_pkcs12_read);
 			unlink($file);
-			$this->session->set_flashdata('warning', sprintf(__("Found no certificate in file %s. If the filename contains 'key-only' this is typically a certificate request which has not been processed by LoTW yet."), basename($file)));
-			redirect('lotw');
-		}
-
-
-		if($worked) {
-			// Reading p12 successful
-			$new_password = "wavelog"; // set default password
-			$result = null;
-			$worked = openssl_pkey_export($results['pkey'], $result, $new_password);
-
-			if($worked) {
-				// Store PEM Key in Array
-			    $data['pem_key'] = $result;
+			// OpenSSL error:11800071:PKCS12 routines::mac verify failure is most likely an (unknown) password set on the exported certificate
+			if (str_contains($openssl_error_pkcs12_read, 'mac verify failure')) {
+				$this->session->set_flashdata('warning', sprintf(__("The certificate found in file %s contains a password and cannot be processed. %s Please make sure you export the LoTW certificate from tqsl application without password! %s"), basename($file), '<b>', '</b>'));
 			} else {
-				// Error Log Error Message
-			    log_message('error', openssl_error_string());
-
-			    // Set warning message redirect to LoTW main page
-			    $this->session->set_flashdata('warning', openssl_error_string());
-				redirect('lotw');
+				$this->session->set_flashdata('warning', sprintf(__("Generic error extracting the certificate from file %s. If the filename contains 'key-only' this is typically a certificate request which has not been processed by LoTW yet."), basename($file)));
 			}
-		} else {
-			// Reading p12 failed log error message
-			log_message('error', openssl_error_string());
-
-			// Set warning message redirect to LoTW main page
-			$this->session->set_flashdata('warning', openssl_error_string());
 			redirect('lotw');
+		} else {
+			if (!array_key_exists('cert', $results)) {
+				log_message('error', 'Generic error processing the certificate from file '.$file);
+				unlink($file);
+				$this->session->set_flashdata('warning', sprintf(__("Generic error processing the certificate in file %s."), basename($file)));
+				redirect('lotw');
+			} else {
+				$data['general_cert'] = $results['cert'];
+
+				// Reading p12 successful
+				$new_password = "wavelog"; // set default password
+				$result = null;
+				$worked = openssl_pkey_export($results['pkey'], $result, $new_password);
+				$openssl_error_pkey_export = openssl_error_string();
+				if (!$worked || $openssl_error_pkey_export) {
+					log_message('error', 'OpenSSL reading LoTW private key resulted in error: '.$openssl_error_pkey_export);
+					$this->session->set_flashdata('warning', sprintf(__("Generic error extracting the private key from certificate in file %s."), basename($file)));
+					unlink($file);
+					redirect('lotw');
+				} else {
+					// Store PEM Key in Array
+					$data['pem_key'] = $result;
+
+					// Read Cert Data
+					$certdata= openssl_x509_parse($results['cert'],0);
+
+					// Store Variables
+					$data['serialNumber'] = $certdata['serialNumber'];
+					$data['issued_callsign'] = $certdata['subject']['undefined'];
+					$data['issued_name'] = $certdata['subject']['commonName'];
+					$data['validFrom'] = date('Y-m-d H:i:s', $certdata['validFrom_time_t']);
+					$data['validTo_Date'] = date('Y-m-d H:i:s', $certdata['validTo_time_t']);
+					// https://oidref.com/1.3.6.1.4.1.12348.1
+					$data['qso-first-date'] = $certdata['extensions']['1.3.6.1.4.1.12348.1.2'];
+					$data['qso-end-date'] = $certdata['extensions']['1.3.6.1.4.1.12348.1.3'];
+					$data['dxcc-id'] = $certdata['extensions']['1.3.6.1.4.1.12348.1.4'];
+
+					return $data;
+				}
+			}
 		}
-
-		// Read Cert Data
-		$certdata= openssl_x509_parse($results['cert'],0);
-
-		// Store Variables
-		$data['serialNumber'] = $certdata['serialNumber'];
-		$data['issued_callsign'] = $certdata['subject']['undefined'];
-		$data['issued_name'] = $certdata['subject']['commonName'];
-		$data['validFrom'] = date('Y-m-d H:i:s', $certdata['validFrom_time_t']);
-		$data['validTo_Date'] = date('Y-m-d H:i:s', $certdata['validTo_time_t']);
-		// https://oidref.com/1.3.6.1.4.1.12348.1
-		$data['qso-first-date'] = $certdata['extensions']['1.3.6.1.4.1.12348.1.2'];
-		$data['qso-end-date'] = $certdata['extensions']['1.3.6.1.4.1.12348.1.3'];
-		$data['dxcc-id'] = $certdata['extensions']['1.3.6.1.4.1.12348.1.4'];
-
-		return $data;
 	}
 
 	/*
