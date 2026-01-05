@@ -644,9 +644,21 @@ class Update_model extends CI_Model {
 
 		$xml = @simplexml_load_string($response);
 
-        if ($xml === false) {
-			return "Failed to parse TQSL VUCC grid file XML.";
-        }
+		if ($xml === false) {
+			log_message('error', 'vuccgrids.dat update from primary location failed.');
+
+			// Try our own mirror in case upstream fails
+			$url = 'https://raw.githubusercontent.com/wavelog/dxcc_data/refs/heads/master/vuccgrids.dat';
+			$curl = curl_init($url);
+			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+			$response = curl_exec($curl);
+			$xml = @simplexml_load_string($response);
+			if ($xml === false) {
+				log_message('error', 'vuccgrids.dat update from backup location failed.');
+				return "Failed to parse TQSL VUCC grid file XML.";
+			}
+		}
 
 		// Truncate the table first
 		$this->db->query("TRUNCATE TABLE vuccgrids;");
