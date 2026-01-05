@@ -473,6 +473,43 @@ $(document).ready(function() {
     }
 
     /**
+     * Send QSO data via WebSocket when CAT is enabled via WebSocket
+     * This allows external systems (e.g., WLGate, external logging services) to receive logged QSOs in real-time
+     * @param {object} qsoData - QSO data object with fields from the QSO form
+     * @returns {boolean} - true if sent via WebSocket, false otherwise
+     */
+    function sendQSOViaWebSocket(qsoData) {
+        // Only send if WebSocket is connected and enabled
+        if (!websocket || !websocketEnabled || websocket.readyState !== WebSocket.OPEN) {
+            return false;
+        }
+
+        // Only send for WebSocket radio ('ws')
+        if ($(".radios option:selected").val() != 'ws') {
+            return false;
+        }
+
+        try {
+            // Prepare QSO message with standard format
+            const qsoMessage = {
+                type: 'qso_logged',
+                timestamp: new Date().toISOString(),
+                data: qsoData
+            };
+
+            // Send via WebSocket
+            websocket.send(JSON.stringify(qsoMessage));
+            return true;
+        } catch (error) {
+            console.warn('Failed to send QSO via WebSocket:', error);
+            return false;
+        }
+    }
+
+    // Expose sendQSOViaWebSocket globally so it can be called from qso.js
+    window.sendQSOViaWebSocket = sendQSOViaWebSocket;
+
+    /**
      * Display radio status in the UI
      * @param {string} state - One of 'success', 'error', 'timeout', 'not_logged_in'
      * @param {object|string} data - Radio data object (success) or radio name string (error/timeout/not_logged_in)

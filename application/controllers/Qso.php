@@ -181,7 +181,7 @@ class QSO extends CI_Controller {
 			// Add QSO
 			// $this->logbook_model->add();
 			//change to create_qso function as add and create_qso duplicate functionality
-			$this->logbook_model->create_qso();
+			$adif = $this->logbook_model->create_qso();
 
 			$returner=[];
 			$actstation=$this->stations->find_active() ?? '';
@@ -190,6 +190,11 @@ class QSO extends CI_Controller {
 			$returner['activeStationTXPower'] = xss_clean($profile_info->station_power ?? '');
 			$returner['activeStationOP'] = xss_clean($this->session->userdata('operator_callsign'));
 			$returner['message']='success';
+
+			// Include ADIF for WebSocket transmission
+			if ($adif) {
+				$returner['adif'] = $adif;
+			}
 
 			// Get last 5 qsos
 			echo json_encode($returner);

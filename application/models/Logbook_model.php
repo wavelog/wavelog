@@ -513,7 +513,7 @@ class Logbook_model extends CI_Model {
 			}
 		}
 
-		$this->add_qso($data, $skipexport = false);
+		$qso_id = $this->add_qso($data, $skipexport = false);
 		if (($this->config->item('mqtt_server') ?? '') != '') {
 			$this->load->model('stations');
 			$this->load->library('Mh');
@@ -526,6 +526,18 @@ class Logbook_model extends CI_Model {
 			unset($h_user);
 		}
 		unset($data);
+
+		// Return ADIF for WebSocket transmission
+		if ($qso_id) {
+			$qso = $this->get_qso($qso_id, true)->result();
+			if ($qso && !empty($qso)) {
+				if (!$this->load->is_loaded('AdifHelper')) {
+					$this->load->library('AdifHelper');
+				}
+				return $this->adifhelper->getAdifLine($qso[0]);
+			}
+		}
+		return null;
 	}
 
 	public function check_last_lotw($call) {	// Fetch difference in days when $call has last updated LotW
@@ -1008,6 +1020,9 @@ class Logbook_model extends CI_Model {
 
 			// Invalidate DXCluster cache for this callsign
 			$this->dxclustercache->invalidateForCallsign($data['COL_CALL']);
+
+			// Return QSO ID for ADIF generation
+			return $last_id;
 		}
 	}
 

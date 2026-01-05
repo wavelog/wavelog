@@ -330,6 +330,13 @@ $("#qso_input").off('submit').on('submit', function (e) {
 		var saveQsoButtonText = $("#saveQso").html();
 		$("#saveQso").html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span> ' + saveQsoButtonText + '...').prop('disabled', true);
 		manual_addon = '?manual=' + qso_manual;
+
+		// Capture form data before AJAX call for WebSocket transmission
+		var formDataObj = {};
+		$("#qso_input").serializeArray().map(function(x) {
+			formDataObj[x.name] = x.value;
+		});
+
 		$.ajax({
 			url: base_url + 'index.php/qso' + manual_addon,
 			method: 'POST',
@@ -351,6 +358,26 @@ $("#qso_input").off('submit').on('submit', function (e) {
 						.replace('%s', operatorCallsign);
 
 					showToast(lang_general_word_success, successMessage, 'bg-success text-white', 5000);
+
+					// Send QSO data via WebSocket if CAT is enabled via WebSocket
+					if (typeof sendQSOViaWebSocket === 'function') {
+						// Add additional context to captured form data
+						formDataObj.station_id = activeStationId;
+						formDataObj.operator_callsign = operatorCallsign;
+						formDataObj.timestamp = new Date().toISOString();
+
+						// Include ADIF if available
+						if (result.adif) {
+							formDataObj.adif = result.adif;
+						}
+
+						// Send via WebSocket (function checks if WS is connected)
+						var wsSent = sendQSOViaWebSocket(formDataObj);
+						if (wsSent) {
+							console.log('QSO sent via WebSocket with ADIF');
+						}
+					}
+
 					prepare_next_qso(saveQsoButtonText);
 					processBacklog();	// If we have success with the live-QSO, we could also process the backlog
 					// Clear debounce timer on success to allow immediate next submission
@@ -403,6 +430,24 @@ async function processBacklog() {
 			try {
 				await $.ajax({url: base_url + 'index.php/qso' + entry.manual_addon,  method: 'POST', type: 'post', data: JSON.parse(entry.data),
 					success: function(resdata) {
+						// Send QSO data via WebSocket if CAT is enabled via WebSocket
+						if (typeof sendQSOViaWebSocket === 'function' && resdata) {
+							try {
+								const result = JSON.parse(resdata);
+								if (result.message === 'success') {
+									const qsoData = JSON.parse(entry.data);
+									// Add additional context
+									qsoData.station_id = result.activeStationId;
+									qsoData.operator_callsign = result.activeStationOP || station_callsign;
+									qsoData.timestamp = new Date().toISOString();
+									qsoData.backlog_processed = true;
+
+									sendQSOViaWebSocket(qsoData);
+								}
+							} catch (e) {
+								// Ignore JSON parse errors
+							}
+						}
 						Qsobacklog.splice(Qsobacklog.findIndex(e => e.id === entry.id), 1);
 					},
 					error: function() {
