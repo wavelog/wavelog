@@ -445,7 +445,7 @@ class Lotw extends CI_Controller {
 			unlink($file);
 			// OpenSSL error:11800071:PKCS12 routines::mac verify failure is most likely an (unknown) password set on the exported certificate
 			if (str_contains($openssl_error_pkcs12_read, 'mac verify failure')) {
-				$this->session->set_flashdata('warning', sprintf(__("The certificate found in file %s contains a password and cannot be processed. %s Please make sure you export the LoTW certificate from tqsl application without password! %s"), basename($file), '<b>', '</b>'));
+				$this->session->set_flashdata('warning', sprintf(__("The certificate found in file %s contains a password and cannot be processed. %sPlease make sure you export the LoTW certificate from tqsl application without password!%s For further information please visit the %sLoTW FAQ page%s in the Wavelog Wiki."), basename($file), '<b>', '</b>', '<a target="_blank" href="https://github.com/wavelog/wavelog/wiki/Logbook-of-The-World-(LoTW)">', '</a>'));
 			} else {
 				$this->session->set_flashdata('warning', sprintf(__("Generic error extracting the certificate from file %s. If the filename contains 'key-only' this is typically a certificate request which has not been processed by LoTW yet."), basename($file)));
 			}

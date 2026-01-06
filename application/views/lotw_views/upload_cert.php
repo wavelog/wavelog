@@ -25,6 +25,7 @@
 					<li><?= __("Click 'Save Callsign Certificate File'"); ?></li>
 					<li><b><?= __("Do not add a password"); ?></b></li>
 					<li><?= __("Upload File below"); ?></li>
+					<li><?= sprintf(__("For further information please visit the %sLoTW FAQ page%s in the Wavelog Wiki"), '<a target="_blank" href="https://github.com/wavelog/wavelog/wiki/Logbook-of-The-World-(LoTW)">', '</a>'); ?></li>
 				</ul>
 			</div>
 

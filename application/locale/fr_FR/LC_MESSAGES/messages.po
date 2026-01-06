@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-01-05 13:21+0000\n"
+"POT-Creation-Date: 2026-01-05 19:45+0000\n"
 "PO-Revision-Date: 2025-12-30 08:27+0000\n"
 "Last-Translator: JONCOUX Philippe <joncoux@free.fr>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1983,8 +1983,9 @@ msgstr "Certificat supprimé."
 #, php-format
 msgid ""
 "The certificate found in file %s contains a password and cannot be "
-"processed. %s Please make sure you export the LoTW certificate from tqsl "
-"application without password! %s"
+"processed. %sPlease make sure you export the LoTW certificate from tqsl "
+"application without password!%s For further information please visit the "
+"%sLoTW FAQ page%s in the Wavelog Wiki."
 msgstr ""
 
 #: application/controllers/Lotw.php:450
@@ -10588,7 +10589,7 @@ msgstr ""
 #: application/views/dcl_views/upload_cert.php:8
 #: application/views/dcl_views/upload_cert.php:33
 #: application/views/lotw_views/upload_cert.php:8
-#: application/views/lotw_views/upload_cert.php:33
+#: application/views/lotw_views/upload_cert.php:34
 msgid "Upload Logbook of the World .p12 Certificate"
 msgstr "Envoyer certificat .p12 de LoTW"
 
@@ -10628,7 +10629,7 @@ msgid "Upload File below"
 msgstr "Téléchargez le fichier ci-dessous"
 
 #: application/views/dcl_views/upload_cert.php:37
-#: application/views/lotw_views/upload_cert.php:37
+#: application/views/lotw_views/upload_cert.php:38
 msgid "Upload File"
 msgstr "Envoyer le fichier"
 
@@ -14516,6 +14517,13 @@ msgstr "Vous devez envoyer des certificats p1 pour utiliser cette zone."
 #: application/views/lotw_views/index.php:164
 msgid "The next automatic sync with LoTW will happen at: "
 msgstr "La prochaine synchronisation automatique avec LoTW aura lieu à : "
+
+#: application/views/lotw_views/upload_cert.php:28
+#, php-format
+msgid ""
+"For further information please visit the %sLoTW FAQ page%s in the Wavelog "
+"Wiki"
+msgstr ""
 
 #: application/views/map/qso_map.php:15
 msgid "Select Country:"
