@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-01-05 19:45+0000\n"
+"POT-Creation-Date: 2026-01-06 04:59+0000\n"
 "PO-Revision-Date: 2025-12-27 14:44+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -445,7 +445,7 @@ msgid " and "
 msgstr " ve "
 
 #: application/controllers/Awards.php:595
-#: application/controllers/Logbook.php:1368
+#: application/controllers/Logbook.php:1385
 #: application/views/awards/index.php:8 application/views/bandmap/list.php:326
 #: application/views/bands/index.php:57 application/views/dashboard/index.php:9
 #: application/views/interface_assets/header.php:218
@@ -472,7 +472,7 @@ msgid "SOTA"
 msgstr "SOTA"
 
 #: application/controllers/Awards.php:613
-#: application/controllers/Logbook.php:1369
+#: application/controllers/Logbook.php:1386
 #: application/views/bandmap/list.php:328 application/views/bands/index.php:64
 #: application/views/dashboard/index.php:10
 #: application/views/interface_assets/header.php:206
@@ -493,7 +493,7 @@ msgid "WWFF"
 msgstr "WWFF"
 
 #: application/controllers/Awards.php:631
-#: application/controllers/Logbook.php:1370
+#: application/controllers/Logbook.php:1387
 #: application/views/adif/import.php:60 application/views/bandmap/list.php:327
 #: application/views/bands/index.php:54
 #: application/views/dashboard/index.php:11
@@ -772,7 +772,7 @@ msgid "No user has configured Clublog."
 msgstr "Clublog'u hiçbir kullanıcı yapılandırmadı."
 
 #: application/controllers/Clublog.php:86
-#: application/controllers/Logbook.php:746
+#: application/controllers/Logbook.php:753
 #: application/views/awards/dok/index.php:72
 #: application/views/awards/dxcc/index.php:132
 #: application/views/awards/iota/index.php:80
@@ -1310,7 +1310,7 @@ msgstr "Kağıt tipi kaydedildi."
 msgid "Paper was deleted."
 msgstr "Kağıt tipi silindi."
 
-#: application/controllers/Logbook.php:37
+#: application/controllers/Logbook.php:36
 msgid ""
 "No logbooks were found. You need to define a logbook under Station Logbooks! "
 "Do it here:"
@@ -1318,20 +1318,20 @@ msgstr ""
 "Kayıt defteri bulunamadı. İstasyon Kayıt Defterleri altında bir kayıt "
 "defteri tanızlamanız lazım! Buradan yapın:"
 
-#: application/controllers/Logbook.php:37
+#: application/controllers/Logbook.php:36
 #: application/views/stationsetup/stationsetup.php:21
 msgid "Station Logbooks"
 msgstr "İstasyon Logları"
 
-#: application/controllers/Logbook.php:58
+#: application/controllers/Logbook.php:57
 #: application/views/interface_assets/header.php:113
 #: application/views/logbookadvanced/useroptions.php:4
 #: application/views/view_log/index.php:11
 msgid "Logbook"
 msgstr "Kayıt defteri"
 
-#: application/controllers/Logbook.php:734
-#: application/controllers/Logbook.php:749
+#: application/controllers/Logbook.php:741
+#: application/controllers/Logbook.php:756
 #: application/views/activated_gridmap/index.php:62
 #: application/views/awards/dok/index.php:56
 #: application/views/awards/dxcc/index.php:116
@@ -1361,7 +1361,7 @@ msgstr "Kayıt defteri"
 msgid "QSL"
 msgstr "QSL"
 
-#: application/controllers/Logbook.php:737
+#: application/controllers/Logbook.php:744
 #: application/views/activated_gridmap/index.php:70
 #: application/views/awards/cq/index.php:114
 #: application/views/awards/dok/index.php:60
@@ -1402,7 +1402,7 @@ msgstr "QSL"
 msgid "LoTW"
 msgstr "LoTW"
 
-#: application/controllers/Logbook.php:740
+#: application/controllers/Logbook.php:747
 #: application/views/activated_gridmap/index.php:78
 #: application/views/awards/cq/index.php:118
 #: application/views/awards/dok/index.php:64
@@ -1438,7 +1438,7 @@ msgstr "LoTW"
 msgid "eQSL"
 msgstr "eQSL"
 
-#: application/controllers/Logbook.php:1363
+#: application/controllers/Logbook.php:1380
 #: application/controllers/Radio.php:46
 #: application/views/accumulate/index.php:31
 #: application/views/activated_gridmap/index.php:43
@@ -1537,7 +1537,7 @@ msgstr "eQSL"
 msgid "Mode"
 msgstr "Mod"
 
-#: application/controllers/Logbook.php:1364
+#: application/controllers/Logbook.php:1381
 #: application/views/awards/73on73/index.php:38
 #: application/views/awards/pota/index.php:37
 #: application/views/awards/wwff/index.php:37
@@ -1566,7 +1566,7 @@ msgstr "Mod"
 msgid "RST (S)"
 msgstr "RST (G)"
 
-#: application/controllers/Logbook.php:1365
+#: application/controllers/Logbook.php:1382
 #: application/views/awards/73on73/index.php:37
 #: application/views/awards/pota/index.php:38
 #: application/views/awards/wwff/index.php:38
@@ -1596,7 +1596,7 @@ msgstr "RST (G)"
 msgid "RST (R)"
 msgstr "RST (A)"
 
-#: application/controllers/Logbook.php:1366
+#: application/controllers/Logbook.php:1383
 #: application/views/dashboard/index.php:7
 #: application/views/qslcard/searchresult.php:15
 #: application/views/qslcard/searchresult.php:31
@@ -1617,7 +1617,7 @@ msgstr "RST (A)"
 msgid "Country"
 msgstr "Ülke"
 
-#: application/controllers/Logbook.php:1367
+#: application/controllers/Logbook.php:1384
 #: application/views/awards/iota/index.php:198
 #: application/views/bandmap/list.php:329 application/views/bands/index.php:52
 #: application/views/dashboard/index.php:8
@@ -1646,7 +1646,7 @@ msgstr "Ülke"
 msgid "IOTA"
 msgstr "IOTA"
 
-#: application/controllers/Logbook.php:1371
+#: application/controllers/Logbook.php:1388
 #: application/views/awards/counties/details.php:12
 #: application/views/awards/counties/index.php:21
 #: application/views/awards/rac/index.php:146
@@ -1677,7 +1677,7 @@ msgstr "IOTA"
 msgid "State"
 msgstr "Eyalet"
 
-#: application/controllers/Logbook.php:1372
+#: application/controllers/Logbook.php:1389
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:54
@@ -1729,7 +1729,7 @@ msgstr "Eyalet"
 msgid "Gridsquare"
 msgstr "Gridsquare"
 
-#: application/controllers/Logbook.php:1373
+#: application/controllers/Logbook.php:1390
 #: application/views/activated_gridmap/index.php:112
 #: application/views/awards/ffma/index.php:40
 #: application/views/awards/gridmaster/index.php:56
@@ -1759,7 +1759,7 @@ msgstr "Gridsquare"
 msgid "Distance"
 msgstr "Mesafe"
 
-#: application/controllers/Logbook.php:1374
+#: application/controllers/Logbook.php:1391
 #: application/views/accumulate/index.php:21
 #: application/views/activated_gridmap/index.php:12
 #: application/views/activators/index.php:10
@@ -1854,7 +1854,7 @@ msgstr "Mesafe"
 msgid "Band"
 msgstr "Bant"
 
-#: application/controllers/Logbook.php:1375
+#: application/controllers/Logbook.php:1392
 #: application/controllers/Radio.php:45 application/views/bandmap/list.php:166
 #: application/views/bandmap/list.php:567
 #: application/views/contesting/index.php:148
@@ -1881,7 +1881,7 @@ msgstr "Bant"
 msgid "Frequency"
 msgstr "Frekans"
 
-#: application/controllers/Logbook.php:1376
+#: application/controllers/Logbook.php:1393
 #: application/controllers/Radio.php:43
 #: application/views/dashboard/index.php:17
 #: application/views/logbookadvanced/edit.php:13
@@ -1905,7 +1905,7 @@ msgstr "Frekans"
 msgid "Operator"
 msgstr "Operatör"
 
-#: application/controllers/Logbook.php:1397
+#: application/controllers/Logbook.php:1414
 #: application/controllers/Stationsetup.php:424
 #: application/views/awards/dxcc/index.php:83
 #: application/views/awards/dxcc/index.php:291
