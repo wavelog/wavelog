@@ -307,7 +307,8 @@
                                         <div class="mb-3 col-sm-6">
                                             <label for="cqz"><?= __("CQ Zone"); ?></label>
                                             <select class="form-select" id="cqz_edit" name="cqz" required>
-                                                <?php for ($i = 1; $i <= 40; $i++) { ?>
+												<option value=''></option>
+												<?php for ($i = 1; $i <= 40; $i++) { ?>
                                                     <option value="<?= $i; ?>" <?php if ($qso->COL_CQZ == $i) echo "selected=\"selected\""; ?>><?= $i; ?></option>
                                                 <?php } ?>
                                             </select>

@@ -897,6 +897,10 @@ class Logbookadvanced_model extends CI_Model {
 			$updatedData['COL_ITUZ'] = $callbook['ituz'];
 			$updated = true;
 		}
+		if (!empty($callbook['cqz']) && empty($qso['COL_CQZ'])) {
+			$updatedData['COL_CQZ'] = $callbook['cqz'];
+			$updated = true;
+		}
 		if (empty($qso['COL_CONT'])) {
 			$updatedData['COL_CONT'] = $this->logbook_model->getContinent($callbook['dxcc']);
 			$updated = true;
@@ -1327,6 +1331,10 @@ class Logbookadvanced_model extends CI_Model {
 			$this->update_distances($ids);
 			$skipqrzupdate = true;
 		} else {
+
+			if ($value == "null") {
+				$value = null;
+			}
 
 			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ".$this->config->item('table_name').".station_id = station_profile.station_id SET " . $this->config->item('table_name').".".$column . " = ? WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
 

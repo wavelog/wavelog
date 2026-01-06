@@ -1713,7 +1713,7 @@ class Logbook_model extends CI_Model {
 			'COL_COUNTRY' => $country,
 			'COL_CONT' => $this->input->post('continent'),
 			'COL_DXCC' => $dxcc,
-			'COL_CQZ' => $this->input->post('cqz'),
+			'COL_CQZ' => $this->input->post('cqz') != '' ? $this->input->post('cqz') : null,
 			'COL_ITUZ' => $this->input->post('ituz') != '' ? $this->input->post('ituz') : null,
 			'COL_SAT_NAME' => $this->input->post('sat_name'),
 			'COL_SAT_MODE' => $this->input->post('sat_mode'),
