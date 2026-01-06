@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-01-06 08:12+0000\n"
+"POT-Creation-Date: 2026-01-06 09:24+0000\n"
 "PO-Revision-Date: 2025-12-09 23:24+0000\n"
 "Last-Translator: Luca <lucabennati1996@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -335,7 +335,6 @@ msgstr "Premi - %s"
 #: application/views/bands/index.php:49
 #: application/views/contesting/index.php:63
 #: application/views/interface_assets/header.php:240
-#: application/views/logbookadvanced/edit.php:25
 #: application/views/logbookadvanced/index.php:447
 #: application/views/logbookadvanced/index.php:980
 #: application/views/logbookadvanced/useroptions.php:232
@@ -3654,7 +3653,7 @@ msgstr "Riferimento POTA già presente nel registro di stazione"
 msgid "QSO updated"
 msgstr "QSO aggiornato"
 
-#: application/models/Logbook_model.php:6440
+#: application/models/Logbook_model.php:6439
 #: application/views/activated_gridmap/index.php:114
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:58
@@ -4543,8 +4542,10 @@ msgid "DOK Errors"
 msgstr "Errori DOK"
 
 #: application/views/adif/dcl_success.php:26
-msgid "There is different data for DOK in your log compared to DCL"
-msgstr "Ci sono dati diversi per DOK nel tuo registro rispetto a DCL"
+msgid ""
+"There is different data for DOK in your log compared to DCL or updates where "
+"not done because QSOs are not confirmed in DCL."
+msgstr ""
 
 #: application/views/adif/dcl_success.php:29
 #: application/views/adif/pota_success.php:29
@@ -4917,6 +4918,13 @@ msgstr ""
 "scaricare (cioè inserire \"DL\" nell'elenco dei prefissi). Il file ADIF "
 "scaricato può essere caricato qui per aggiornare i QSO con le informazioni "
 "DOK."
+
+#: application/views/adif/import.php:342
+#, php-format
+msgid ""
+"More information regarding the confirmation status in DCL can be found on "
+"the %sDCL Confluence page%s."
+msgstr ""
 
 #: application/views/adif/import.php:349
 msgid "Only import DOK data from QSOs confirmed on DCL."
@@ -13066,6 +13074,10 @@ msgstr "Exchange inviato in contest"
 msgid "Station Power"
 msgstr "Potenza di trasmissione"
 
+#: application/views/logbookadvanced/edit.php:25
+msgid "DARC DOK"
+msgstr ""
+
 #: application/views/logbookadvanced/edit.php:31
 #: application/views/logbookadvanced/index.php:989
 #: application/views/logbookadvanced/useroptions.php:250
@@ -19330,6 +19342,9 @@ msgstr ""
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr ""
+
+#~ msgid "There is different data for DOK in your log compared to DCL"
+#~ msgstr "Ci sono dati diversi per DOK nel tuo registro rispetto a DCL"
 
 #, php-format
 #~ msgid ""

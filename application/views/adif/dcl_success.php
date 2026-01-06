@@ -23,7 +23,7 @@
        </div>
     <?php if($dcl_errors) { ?>
       <h3><?= __("DOK Errors")?></h3>
-      <p><?= __("There is different data for DOK in your log compared to DCL")?></p>
+      <p><?= __("There is different data for DOK in your log compared to DCL or updates where not done because QSOs are not confirmed in DCL.")?></p>
       <table width="100%">
          <tr class="titles">
             <td><?= __("Date"); ?></td>

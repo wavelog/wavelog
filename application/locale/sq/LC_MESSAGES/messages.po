@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-01-06 08:12+0000\n"
+"POT-Creation-Date: 2026-01-06 09:24+0000\n"
 "PO-Revision-Date: 2024-08-17 10:49+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Albanian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -332,7 +332,6 @@ msgstr ""
 #: application/views/bands/index.php:49
 #: application/views/contesting/index.php:63
 #: application/views/interface_assets/header.php:240
-#: application/views/logbookadvanced/edit.php:25
 #: application/views/logbookadvanced/index.php:447
 #: application/views/logbookadvanced/index.php:980
 #: application/views/logbookadvanced/useroptions.php:232
@@ -3566,7 +3565,7 @@ msgstr ""
 msgid "QSO updated"
 msgstr ""
 
-#: application/models/Logbook_model.php:6440
+#: application/models/Logbook_model.php:6439
 #: application/views/activated_gridmap/index.php:114
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:58
@@ -4455,7 +4454,9 @@ msgid "DOK Errors"
 msgstr ""
 
 #: application/views/adif/dcl_success.php:26
-msgid "There is different data for DOK in your log compared to DCL"
+msgid ""
+"There is different data for DOK in your log compared to DCL or updates where "
+"not done because QSOs are not confirmed in DCL."
 msgstr ""
 
 #: application/views/adif/dcl_success.php:29
@@ -4810,6 +4811,13 @@ msgid ""
 "process you can select only DL QSOs to download (i.e. put 'DL' into Prefix "
 "List). The downloaded ADIF file can be uploaded here in order to update QSOs "
 "with DOK info."
+msgstr ""
+
+#: application/views/adif/import.php:342
+#, php-format
+msgid ""
+"More information regarding the confirmation status in DCL can be found on "
+"the %sDCL Confluence page%s."
 msgstr ""
 
 #: application/views/adif/import.php:349
@@ -12401,6 +12409,10 @@ msgstr ""
 
 #: application/views/logbookadvanced/edit.php:19
 msgid "Station Power"
+msgstr ""
+
+#: application/views/logbookadvanced/edit.php:25
+msgid "DARC DOK"
 msgstr ""
 
 #: application/views/logbookadvanced/edit.php:31
