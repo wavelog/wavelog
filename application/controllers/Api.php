@@ -843,6 +843,17 @@ class API extends CI_Controller {
 			$user_id=$this->session->userdata('user_id');
 		}
 
+		if (($raw_input['callbook'] ?? '' == 'true') && (($raw_input['callsign'] ?? '') != '')) {
+			$this->load->library('callbook');
+			$this->load->model('logbook_model');
+			$lookupcall = $this->callbook->get_plaincall($raw_input['callsign']);
+
+			$callbook = $this->logbook_model->loadCallBook($raw_input['callsign'], $this->config->item('use_fullname'));
+		} else {
+			$callbook=null;
+		}
+
+
 		$this->load->model('stations');
 		$all_station_ids=$this->stations->all_station_ids_of_user($user_id);
 
@@ -999,6 +1010,9 @@ class API extends CI_Controller {
 				$return['dxcc_confirmed']=($this->logbook_model->check_if_dxcc_cnfmd_in_logbook_api($userdata->row()->user_default_confirmation,$return['dxcc_id'], $station_ids, null, null)>0) ? true : false;
 				$return['dxcc_confirmed_on_band']=($this->logbook_model->check_if_dxcc_cnfmd_in_logbook_api($userdata->row()->user_default_confirmation,$return['dxcc_id'], $station_ids, $band, null)>0) ? true : false;
 				$return['dxcc_confirmed_on_band_mode']=($this->logbook_model->check_if_dxcc_cnfmd_in_logbook_api($userdata->row()->user_default_confirmation,$return['dxcc_id'], $station_ids, $band, $mode)>0) ? true : false;
+			}
+			if ($callbook) {
+				$return['callbook']=$callbook;
 			}
 			echo json_encode($return, JSON_PRETTY_PRINT);
 		} else {
