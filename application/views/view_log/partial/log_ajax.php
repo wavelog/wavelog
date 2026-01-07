@@ -18,7 +18,7 @@ function echo_table_header_col($ctx, $name) {
 		case 'Location': echo '<th>'.__("Station Location").'</th>'; break;
 		case 'Name': echo '<th>'.__("Name").'</th>'; break;
 		case 'Bearing': echo '<th>'.__("Bearing").'</th>'; break;
-        case 'Propagation': echo '<th>'.__("Propagation").'</th>'; break;
+		case 'Propagation': echo '<th>'.__("Propagation").'</th>'; break;
 	}
 }
 
@@ -26,93 +26,93 @@ function echo_table_col($row, $name) {
 	$ci =& get_instance();
 	switch($name) {
 		case 'Mode':    echo '<td>'; echo $row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE . '</td>'; break;
-        case 'RSTS':    echo '<td>' . $row->COL_RST_SENT ?? ''; if ($row->COL_STX) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">'; printf("%03d", $row->COL_STX); echo '</span>';} if ($row->COL_STX_STRING) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">' . $row->COL_STX_STRING . '</span>';} echo '</td>'; break;
-        case 'RSTR':    echo '<td>' . $row->COL_RST_RCVD ?? ''; if ($row->COL_SRX) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">'; printf("%03d", $row->COL_SRX); echo '</span>';} if ($row->COL_SRX_STRING) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">' . $row->COL_SRX_STRING . '</span>';} echo '</td>'; break;
+		case 'RSTS':    echo '<td>' . $row->COL_RST_SENT ?? ''; if ($row->COL_STX) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">'; printf("%03d", $row->COL_STX); echo '</span>';} if ($row->COL_STX_STRING) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">' . $row->COL_STX_STRING . '</span>';} echo '</td>'; break;
+		case 'RSTR':    echo '<td>' . $row->COL_RST_RCVD ?? ''; if ($row->COL_SRX) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">'; printf("%03d", $row->COL_SRX); echo '</span>';} if ($row->COL_SRX_STRING) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">' . $row->COL_SRX_STRING . '</span>';} echo '</td>'; break;
 		case 'Country': echo '<td>'; if ($row->adif == 0) { echo $row->name; } else echo ucwords(strtolower(($row->name==null?"- NONE -":$row->name))); if ($row->end != null) echo ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>' . '</td>'; break;
 		case 'IOTA':    echo '<td>' . ($row->COL_IOTA ?? '') . '</td>'; break;
 		case 'SOTA':    echo '<td>' . ($row->COL_SOTA_REF ?? '') . '</td>'; break;
 		case 'WWFF':    echo '<td>' . ($row->COL_WWFF_REF ?? '') . '</td>'; break;
 		case 'POTA':    echo '<td>' . ($row->COL_POTA_REF ?? '') . '</td>'; break;
 		case 'Grid':
-				if(!$ci->load->is_loaded('Qra')) {
-					$ci->load->library('Qra');
-				}
-				echo '<td>' . ($ci->qra->echoQrbCalcLink($row->station_gridsquare, $row->COL_VUCC_GRIDS, $row->COL_GRIDSQUARE)) . '</td>'; break;
+			if(!$ci->load->is_loaded('Qra')) {
+				$ci->load->library('Qra');
+			}
+			echo '<td>' . ($ci->qra->echoQrbCalcLink($row->station_gridsquare, $row->COL_VUCC_GRIDS, $row->COL_GRIDSQUARE)) . '</td>'; break;
 		case 'Distance':echo '<td><span data-bs-toggle="tooltip" title="'.$row->COL_GRIDSQUARE.'">' . getDistance($row->COL_DISTANCE) . '</span></td>'; break;
 		case 'Bearing':echo '<td><span data-bs-toggle="tooltip" title="'.($row->COL_VUCC_GRIDS!="" ? $row->COL_VUCC_GRIDS : $row->COL_GRIDSQUARE).'">' . getBearing(($row->COL_VUCC_GRIDS!="" ? $row->COL_VUCC_GRIDS : $row->COL_GRIDSQUARE)) . '</span></td>'; break;
 		case 'Band':
-				echo '<td>'; if($row->COL_SAT_NAME ?? '' != '') { echo '<a href="https://db.satnogs.org/search/?q='.$row->COL_SAT_NAME.'" target="_blank"><span data-bs-toggle="tooltip" title="'.($row->COL_BAND ?? '').'">'.($row->sat_displayname != null ? $row->sat_displayname." (".$row->COL_SAT_NAME.")" : $row->COL_SAT_NAME).'</span></a></td>'; } else { if ($row->COL_FREQ ?? ''!= '') { echo ' <span data-bs-toggle="tooltip" title="'.$ci->frequency->qrg_conversion($row->COL_FREQ ?? 0).'">'. strtolower($row->COL_BAND ?? '').'</span>'; } else { echo strtolower($row->COL_BAND ?? ''); } } echo '</td>'; break;
+			echo '<td>'; if($row->COL_SAT_NAME ?? '' != '') { echo '<a href="https://db.satnogs.org/search/?q='.$row->COL_SAT_NAME.'" target="_blank"><span data-bs-toggle="tooltip" title="'.($row->COL_BAND ?? '').'">'.($row->sat_displayname != null ? $row->sat_displayname." (".$row->COL_SAT_NAME.")" : $row->COL_SAT_NAME).'</span></a></td>'; } else { if ($row->COL_FREQ ?? ''!= '') { echo ' <span data-bs-toggle="tooltip" title="'.$ci->frequency->qrg_conversion($row->COL_FREQ ?? 0).'">'. strtolower($row->COL_BAND ?? '').'</span>'; } else { echo strtolower($row->COL_BAND ?? ''); } } echo '</td>'; break;
 		case 'Frequency':
-				echo '<td>'; if($row->COL_SAT_NAME ?? '' != '') { echo '<a href="https://db.satnogs.org/search/?q='.$row->COL_SAT_NAME.'" target="_blank">'; if ($row->COL_FREQ != null) { echo ' <span data-bs-toggle="tooltip" title="'.$ci->frequency->qrg_conversion($row->COL_FREQ).'">'.($row->sat_displayname != null ? $row->sat_displayname." (".$row->COL_SAT_NAME.")" : $row->COL_SAT_NAME).'</span>'; } else { echo $row->COL_SAT_NAME; } echo '</a></td>'; } else { if ($row->COL_FREQ != null) { echo ' <span data-bs-toggle="tooltip" title="'.$row->COL_BAND.'">'.$ci->frequency->qrg_conversion($row->COL_FREQ).'</span>'; } else { echo strtolower($row->COL_BAND); } } echo '</td>'; break;
+			echo '<td>'; if($row->COL_SAT_NAME ?? '' != '') { echo '<a href="https://db.satnogs.org/search/?q='.$row->COL_SAT_NAME.'" target="_blank">'; if ($row->COL_FREQ != null) { echo ' <span data-bs-toggle="tooltip" title="'.$ci->frequency->qrg_conversion($row->COL_FREQ).'">'.($row->sat_displayname != null ? $row->sat_displayname." (".$row->COL_SAT_NAME.")" : $row->COL_SAT_NAME).'</span>'; } else { echo $row->COL_SAT_NAME; } echo '</a></td>'; } else { if ($row->COL_FREQ != null && $row->COL_FREQ != 0) { echo ' <span data-bs-toggle="tooltip" title="'.$row->COL_BAND.'">'.$ci->frequency->qrg_conversion($row->COL_FREQ).'</span>'; } else { echo strtolower($row->COL_BAND); } } echo '</td>'; break;
 		case 'State':   echo '<td>' . ($row->COL_STATE ?? '') . '</td>'; break;
 		case 'Operator':echo '<td>' . ($row->COL_OPERATOR ?? '') . '</td>'; break;
 		case 'Location':echo '<td>' . ($row->station_profile_name ?? '') . '</td>'; break;
 		case 'Name':echo '<td>' . ($row->COL_NAME ?? '') . '</td>'; break;
-        case 'Propagation':
-            if (isset($row->COL_PROP_MODE)) {
-            switch($row->COL_PROP_MODE) {
-                case 'AS':
-                    echo '<td>' . _pgettext("Propagation Mode","Aircraft Scatter") . '</td>';
-                    break;
-                case 'AUR':
-                    echo '<td>' . _pgettext("Propagation Mode","Aurora") . '</td>';
-                    break;
-                case 'AUE':
-                    echo '<td>' . _pgettext("Propagation Mode","Aurora-E") . '</td>';
-                    break;
-                case 'BS':
-                    echo '<td>' . _pgettext("Propagation Mode","Back scatter") . '</td>';
-                    break;
-                case 'ECH':
-                    echo '<td>' . _pgettext("Propagation Mode","EchoLink") . '</td>';
-                    break;
-                case 'EME':
-                    echo '<td>' . _pgettext("Propagation Mode","Earth-Moon-Earth") . '</td>';
-                    break;
-                case 'ES':
-                    echo '<td>' . _pgettext("Propagation Mode","Sporadic E") . '</td>';
-                    break;
-                case 'FAI':
-                    echo '<td>' . _pgettext("Propagation Mode","Field Aligned Irregularities") . '</td>';
-                    break;
-                case 'F2':
-                    echo '<td>' . _pgettext("Propagation Mode","F2 Reflection") . '</td>';
-                    break;
-                case 'INTERNET':
-                    echo '<td>' . _pgettext("Propagation Mode","Internet-assisted") . '</td>';
-                    break;
-                case 'ION':
-                    echo '<td>' . _pgettext("Propagation Mode","Ionoscatter") . '</td>';
-                    break;
-                case 'IRL':
-                    echo '<td>' . _pgettext("Propagation Mode","IRLP") . '</td>';
-                    break;
-                case 'MS':
-                    echo '<td>' . _pgettext("Propagation Mode","Meteor scatter") . '</td>';
-                    break;
-                case 'RPT':
-                    echo '<td>' . _pgettext("Propagation Mode","Terrestrial or atmospheric repeater or transponder") . '</td>';
-                    break;
-                case 'RS':
-                    echo '<td>' . _pgettext("Propagation Mode","Rain scatter") . '</td>';
-                    break;
-                case 'SAT':
-                    echo '<td>' . _pgettext("Propagation Mode","Satellite") . '</td>';
-                    break;
-                case 'TEP':
-                    echo '<td>' . _pgettext("Propagation Mode","Trans-equatorial") . '</td>';
-                    break;
-                case 'TR':
-                    echo '<td>' . _pgettext("Propagation Mode","Tropospheric ducting") . '</td>';
-                    break;
-                default:
-                    echo '<td>' . htmlspecialchars($row->COL_PROP_MODE ?? '') . '</td>';
-                    break;
-            }
-            } else {
-                echo '<td></td>';
-            }
-            break;
+		case 'Propagation':
+			if (isset($row->COL_PROP_MODE)) {
+				switch($row->COL_PROP_MODE) {
+				case 'AS':
+					echo '<td>' . _pgettext("Propagation Mode","Aircraft Scatter") . '</td>';
+					break;
+				case 'AUR':
+					echo '<td>' . _pgettext("Propagation Mode","Aurora") . '</td>';
+					break;
+				case 'AUE':
+					echo '<td>' . _pgettext("Propagation Mode","Aurora-E") . '</td>';
+					break;
+				case 'BS':
+					echo '<td>' . _pgettext("Propagation Mode","Back scatter") . '</td>';
+					break;
+				case 'ECH':
+					echo '<td>' . _pgettext("Propagation Mode","EchoLink") . '</td>';
+					break;
+				case 'EME':
+					echo '<td>' . _pgettext("Propagation Mode","Earth-Moon-Earth") . '</td>';
+					break;
+				case 'ES':
+					echo '<td>' . _pgettext("Propagation Mode","Sporadic E") . '</td>';
+					break;
+				case 'FAI':
+					echo '<td>' . _pgettext("Propagation Mode","Field Aligned Irregularities") . '</td>';
+					break;
+				case 'F2':
+					echo '<td>' . _pgettext("Propagation Mode","F2 Reflection") . '</td>';
+					break;
+				case 'INTERNET':
+					echo '<td>' . _pgettext("Propagation Mode","Internet-assisted") . '</td>';
+					break;
+				case 'ION':
+					echo '<td>' . _pgettext("Propagation Mode","Ionoscatter") . '</td>';
+					break;
+				case 'IRL':
+					echo '<td>' . _pgettext("Propagation Mode","IRLP") . '</td>';
+					break;
+				case 'MS':
+					echo '<td>' . _pgettext("Propagation Mode","Meteor scatter") . '</td>';
+					break;
+				case 'RPT':
+					echo '<td>' . _pgettext("Propagation Mode","Terrestrial or atmospheric repeater or transponder") . '</td>';
+					break;
+				case 'RS':
+					echo '<td>' . _pgettext("Propagation Mode","Rain scatter") . '</td>';
+					break;
+				case 'SAT':
+					echo '<td>' . _pgettext("Propagation Mode","Satellite") . '</td>';
+					break;
+				case 'TEP':
+					echo '<td>' . _pgettext("Propagation Mode","Trans-equatorial") . '</td>';
+					break;
+				case 'TR':
+					echo '<td>' . _pgettext("Propagation Mode","Tropospheric ducting") . '</td>';
+					break;
+				default:
+					echo '<td>' . htmlspecialchars($row->COL_PROP_MODE ?? '') . '</td>';
+					break;
+				}
+			} else {
+				echo '<td></td>';
+			}
+			break;
 	}
 }
 
