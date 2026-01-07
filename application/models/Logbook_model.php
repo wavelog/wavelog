@@ -4495,18 +4495,13 @@ class Logbook_model extends CI_Model {
 		$binding[] = $band;
 		$binding[] = $mode;
 
-		if (($prop_mode ?? '') != '') {
-			$sql.=' AND COL_PROP_MODE=?';
-			$binding[] = $prop_mode;
-		} else {
-			$sql.=' AND (COL_PROP_MODE is null OR COL_PROP_MODE=\'\')';
-		}
+		// LoTW only respects mutual PROP_MODE SAT for matches. All other modes are ignored during matching
+		// https://lotw.arrl.org/lotw-help/key-concepts/#confirmation
 
-		if (($sat_name ?? '') != '') {
-			$sql.=' AND COL_SAT_NAME=?';
+		if (($prop_mode ?? '') == 'SAT' && ($sat_name ?? '') != '') {
+			$sql.=' AND COL_PROP_MODE=? AND COL_SAT_NAME=?';
+			$binding[] = $prop_mode;
 			$binding[] = $sat_name;
-		} else {
-			$sql.=' AND (COL_SAT_NAME is null OR COL_SAT_NAME=\'\')';
 		}
 
 		if ((isset($station_ids)) && (($station_ids ?? '') != '')) {
