@@ -981,6 +981,14 @@ function start_az_ele_ticker(tle) {
 			let el=(satellite.radiansToDegrees(lookAngles.elevation).toFixed(2));
 			$("#ant_az").val(parseFloat(az).toFixed(1));
 			$("#ant_el").val(parseFloat(el).toFixed(1));
+
+			// Send real-time azimuth/elevation via WebSocket if using WebSocket CAT and working satellite
+			if (typeof sendSatellitePositionViaWebSocket === 'function') {
+				var satName = $("#sat_name").val();
+				if (satName && satName !== '') {
+					sendSatellitePositionViaWebSocket(satName, parseFloat(az).toFixed(1), parseFloat(el).toFixed(1));
+				}
+			}
 		} catch(e) {
 			$("#ant_az").val('');
 			$("#ant_el").val('');
