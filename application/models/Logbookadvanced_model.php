@@ -1632,16 +1632,10 @@ class Logbookadvanced_model extends CI_Model {
 				return $this->check_missing_distance();
 			case 'checkcontinent':
 				return $this->check_qsos_missing_continent();
-			case 'checkmissingdxcc':
-				return $this->check_missing_dxcc();
 			case 'checkdxcc':
 				return $this->check_dxcc();
 			case 'checkstate':
 				return $this->check_missing_state();
-			case 'checkcqzones':
-				return $this->check_missing_cq_zones();
-			case 'checkituzones':
-				return $this->check_missing_itu_zones();
 			case 'checkgrids':
 				return $this->getMissingGridQsos();
 			case 'checkincorrectgridsquares':
@@ -1696,17 +1690,6 @@ class Logbookadvanced_model extends CI_Model {
 		return $query->result();
 	}
 
-	public function check_missing_dxcc() {
-		$sql = "select count(*) as count from " . $this->config->item('table_name') . "
-		join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
-		where user_id = ? and coalesce(col_dxcc, '') = ''";
-
-		$bindings[] = [$this->session->userdata('user_id')];
-
-		$query = $this->db->query($sql, $bindings);
-		return $query->result();
-	}
-
 	public function check_qsos_missing_continent() {
 		$sql = "select count(*) as count from " . $this->config->item('table_name') . "
 			join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
@@ -1748,30 +1731,6 @@ class Logbookadvanced_model extends CI_Model {
 		and length(col_gridsquare) >= 6
 		group by col_dxcc, dxcc_entities.name, dxcc_entities.prefix
 		order by dxcc_entities.prefix";
-
-		$bindings[] = [$this->session->userdata('user_id')];
-
-		$query = $this->db->query($sql, $bindings);
-		return $query->result();
-	}
-
-	public function check_missing_cq_zones() {
-		$sql = "select count(*) as count from " . $this->config->item('table_name') . "
-		join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
-		join dxcc_entities on " . $this->config->item('table_name') . ".col_dxcc = dxcc_entities.adif
-		where user_id = ? and col_cqz is NULL";
-
-		$bindings[] = [$this->session->userdata('user_id')];
-
-		$query = $this->db->query($sql, $bindings);
-		return $query->result();
-	}
-
-	public function check_missing_itu_zones() {
-		$sql = "select count(*) as count from " . $this->config->item('table_name') . "
-		join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
-		join dxcc_entities on " . $this->config->item('table_name') . ".col_dxcc = dxcc_entities.adif
-		where user_id = ? and col_ituz is NULL";
 
 		$bindings[] = [$this->session->userdata('user_id')];
 
@@ -1895,71 +1854,11 @@ class Logbookadvanced_model extends CI_Model {
 	}
 
 	/*
-		This was moved from update to the advanced logbook. Maninly because it affected all QSOs in the logbook, without filters on users or stations.
-		We need to ensure that we only update the relevant QSOs, filtered on user.
-	*/
-	public function check_missing_dxcc_id($all = false) {
-		ini_set('memory_limit', '-1');	// This consumes a lot of Memory!
-		$this->db->trans_start();	// Transaction has to be started here, because otherwise we're trying to update rows which are locked by the select
-		$sql = "select COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_TIME_OFF, station_profile.station_profile_name from " . $this->config->item('table_name') .
-		" join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
-		where station_profile.user_id = ?";
-
-		if ($all == 'false') { // check which to update - records with no dxcc or all records
-			$sql .= " and (COL_DXCC is NULL or COL_DXCC = '')";
-		}
-		$r = $this->db->query($sql, array($this->session->userdata('user_id')));
-		$this->load->model('logbook_model');
-
-		$count = 0;
-		if ($r->num_rows() > 0) { //query dxcc_prefixes
-			$sql = "update " . $this->config->item('table_name') . " set COL_COUNTRY = ?, COL_DXCC = ? where COL_PRIMARY_KEY = ?";
-			$q = $this->db->conn_id->prepare($sql);	// PREPARE this statement. For DB this means: No parsing overhead, parse once use many (see execute query below)
-			foreach ($r->result_array() as $row) {
-				$qso_date = $row['COL_TIME_OFF'] == '' ? $row['COL_TIME_ON'] : $row['COL_TIME_OFF'];
-				$qso_date = date("Y-m-d", strtotime($qso_date));
-				$d = $this->logbook_model->check_dxcc_table($row['COL_CALL'], $qso_date);
-				if ($d[0] == 'Not Found') {
-					$result[] = [
-						'id' => $row['COL_PRIMARY_KEY'],
-						'callsign' => $row['COL_CALL'],
-						'reason' => 'DXCC Not Found',
-						'location' => $row['station_profile_name'],
-						'id' => $row['COL_PRIMARY_KEY']
-					];
-				} else {
-					$q->execute(array(addslashes(ucwords(strtolower($d[1]), "- (/")), $d[0], $row['COL_PRIMARY_KEY']));
-					$count++;
-				}
-			}
-		}
-		$this->db->trans_complete();
-		$result['count'] = $count;
-
-		return $result;
-	}
-
-	function getMissingDxccQsos() {
-		$sql = "SELECT col_primary_key, col_call, col_time_on, col_mode, col_submode, col_band, col_state, col_gridsquare, d.name as dxcc_name, station_profile.station_profile_name FROM " . $this->config->item('table_name') . " qsos
-				JOIN station_profile ON qsos.station_id = station_profile.station_id
-				LEFT JOIN dxcc_entities d ON qsos.COL_DXCC = d.adif
-				WHERE station_profile.user_id = ?
-				AND (qsos.COL_DXCC IS NULL OR qsos.COL_DXCC = '')
-				ORDER BY COL_TIME_ON DESC";
-
-		$query = $this->db->query($sql, [$this->session->userdata('user_id')]);
-
-		return $query->result();
-	}
-
-	/*
 		Function to run batch fixes on the logbook.
 		Used in dbtools section.
 	*/
 	function batchFix($type) {
 		switch ($type) {
-			case 'dxcc':
-				return $this->check_missing_dxcc_id('true');
 			case 'distance':
 				return $this->update_distances_batch();
 			case 'continent':
@@ -2041,6 +1940,7 @@ class Logbookadvanced_model extends CI_Model {
 		Check all QSOs DXCC against current DXCC database
 	*/
 	public function check_dxcc() {
+		ini_set('memory_limit', '-1');
 
 		$i = 0;
 		$result = array();

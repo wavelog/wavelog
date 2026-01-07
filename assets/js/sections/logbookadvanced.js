@@ -2061,39 +2061,6 @@ function saveOptions() {
 		});
 	}
 
-	function checkMissingDxcc() {
-		$('#checkMissingDxccsBtn').prop("disabled", true).addClass("running");
-		$('#closeButton').prop("disabled", true);
-
-		$.ajax({
-			url: base_url + 'index.php/logbookadvanced/checkDb',
-			data: {
-				type: 'checkmissingdxcc'
-			},
-			type: 'POST',
-			success: function(response) {
-				$('#checkMissingDxccsBtn').prop("disabled", false).removeClass("running");
-				$('#closeButton').prop("disabled", false);
-				$('.result').html(response);
-			},
-			error: function(xhr, status, error) {
-				$('#checkMissingDxccsBtn').prop('disabled', false).text('<?= __("Check") ?>');
-				$('#closeButton').prop('disabled', false);
-
-				let errorMsg = 'Error checking DXCC information';
-				if (xhr.responseJSON && xhr.responseJSON.message) {
-					errorMsg += ': ' + xhr.responseJSON.message;
-				}
-
-				BootstrapDialog.alert({
-					title: 'Error',
-					message: errorMsg,
-					type: BootstrapDialog.TYPE_DANGER
-				});
-			}
-		});
-	}
-
 	function checkFixContinent() {
 		$('#checkFixContinentBtn').prop("disabled", true).addClass("running");
 		$('#closeButton').prop("disabled", true);
@@ -2285,65 +2252,6 @@ function saveOptions() {
 		});
 	}
 
-	function fixMissingDxcc(all) {
-		if (all === true) {
-			$('#updateDxccBtn').prop("disabled", true).addClass("running");
-			BootstrapDialog.confirm({
-				title: lang_general_word_danger,
-				message: lang_gen_advanced_logbook_confirm_fix_missing_dxcc,
-				type: BootstrapDialog.TYPE_DANGER,
-				closable: true,
-				draggable: true,
-				btnOKClass: 'btn-danger',
-				callback: function(result) {
-					if(result) {
-						$('#closeButton').prop("disabled", true);
-						$.ajax({
-							url: base_url + 'index.php/logbookadvanced/fixMissingDxcc',
-							type: 'post',
-							data: {
-								all: all
-							},
-							success: function(data) {
-								$('#updateDxccBtn').prop("disabled", false).removeClass("running");
-								$('#closeButton').prop("disabled", false);
-								$('.result').html(data);
-							},
-							error: function(xhr, status, error) {
-								$('#updateDxccBtn').prop("disabled", false).removeClass("running");
-								$('#closeButton').prop("disabled", false);
-								$('.result').html(error);
-							}
-						})
-					} else {
-						$('#updateDxccBtn').prop("disabled", false).removeClass("running");
-					}
-
-				},
-			});
-		} else {
-			$('#fixMissingDxccBtn').prop("disabled", true).addClass("running");
-			$('#closeButton').prop("disabled", true);
-			$.ajax({
-				url: base_url + 'index.php/logbookadvanced/fixMissingDxcc',
-				type: 'post',
-				data: {
-					all: all
-				},
-				success: function(data) {
-					$('#fixMissingDxccBtn').prop("disabled", false).removeClass("running");
-					$('#closeButton').prop("disabled", false);
-					$('.result').html(data);
-				},
-				error: function(xhr, status, error) {
-					$('#fixMissingDxccBtn').prop("disabled", false).removeClass("running");
-					$('#closeButton').prop("disabled", false);
-					$('.result').html(error);
-				}
-			})
-		}
-	}
-
 	function runUpdateDistancesFix(dialogItself) {
 		$('#updateDistanceButton').prop("disabled", true).addClass("running");
 		$('#closeButton').prop("disabled", true);
@@ -2369,40 +2277,6 @@ function saveOptions() {
 		});
 	}
 
-	function openMissingDxccList() {
-		$('#openMissingDxccListBtn').prop("disabled", true).addClass("running");
-
-		$.ajax({
-			url: base_url + 'index.php/logbookadvanced/openMissingDxccList',
-			type: 'post',
-			success: function (response) {
-				$('#openMissingDxccListBtn').prop("disabled", false).removeClass("running");
-				BootstrapDialog.show({
-					title: 'QSO List',
-					size: BootstrapDialog.SIZE_WIDE,
-					cssClass: 'options',
-					nl2br: false,
-					message: response,
-					buttons: [
-					{
-						label: lang_admin_close,
-						cssClass: 'btn-sm btn-secondary',
-						id: 'closeButton',
-						action: function (dialogItself) {
-							dialogItself.close();
-						}
-					}],
-					onhide: function(dialogRef){
-						return;
-					},
-				});
-			},
-			error: function () {
-				$('#openMissingDxccListBtn').prop("disabled", false).removeClass("running");
-			}
-		});
-	}
-
 	function runContinentFix(dialogItself) {
 		$('#updateContinentButton').prop("disabled", true).addClass("running");
 		$('#closeButton').prop("disabled", true);
@@ -2421,50 +2295,6 @@ function saveOptions() {
 				$('#updateContinentButton').prop("disabled", false).removeClass("running");
 				$('.result').html(error);
 				$('#closeButton').prop("disabled", false);
-			}
-		});
-	}
-
-	function fixMissingCqZones() {
-		$('#updateCqZonesBtn').prop("disabled", true).addClass("running");
-		$('#closeButton').prop("disabled", true);
-		$.ajax({
-			url: base_url + 'index.php/logbookadvanced/batchFix',
-			data: {
-				type: 'cqzones'
-			},
-			type: 'POST',
-			success: function (response) {
-				$('#updateCqZonesBtn').prop("disabled", false).removeClass("running");
-				$('#closeButton').prop("disabled", false);
-				$('.result').html(response);
-			},
-			error: function(xhr, status, error) {
-				$('#updateCqZonesBtn').prop("disabled", false).removeClass("running");
-				$('#closeButton').prop("disabled", false);
-				$('.result').html(error);
-			}
-		});
-	}
-
-	function fixMissingItuZones() {
-		$('#updateItuZonesBtn').prop("disabled", true).addClass("running");
-		$('#closeButton').prop("disabled", true);
-		$.ajax({
-			url: base_url + 'index.php/logbookadvanced/batchFix',
-			data: {
-				type: 'ituzones'
-			},
-			type: 'POST',
-			success: function (response) {
-				$('#updateItuZonesBtn').prop("disabled", false).removeClass("running");
-				$('#closeButton').prop("disabled", false);
-				$('.result').html(response);
-			},
-			error: function(xhr, status, error) {
-				$('#updateItuZonesBtn').prop("disabled", false).removeClass("running");
-				$('#closeButton').prop("disabled", false);
-				$('.result').html(error);
 			}
 		});
 	}
@@ -2532,7 +2362,7 @@ function saveOptions() {
 				$('#dxccCheckTable').DataTable({
 					"pageLength": 25,
 					responsive: false,
-					ordering: false,
+					ordering: true,
 					"scrollY": "510px",
 					"scrollCollapse": true,
 					"paging": false,

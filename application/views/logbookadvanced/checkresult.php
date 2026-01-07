@@ -8,22 +8,12 @@ if($this->session->userdata('user_date_format')) {
 	$custom_date_format = $this->config->item('qso_date_format');
 }
 
-
 switch ($type) {
 	case 'checkdistance':
 		check_missing_distance($result);
 		break;
 	case 'checkcontinent':
 		check_qsos_missing_continent($result);
-		break;
-	case 'checkmissingdxcc':
-		check_missing_dxcc($result);
-		break;
-	case 'checkcqzones':
-		check_missing_cq_zones($result);
-		break;
-	case 'checkituzones':
-		check_missing_itu_zones($result);
 		break;
 	case 'checkgrids':
 		check_missing_grids($result);
@@ -77,40 +67,6 @@ function check_qsos_missing_continent($result) { ?>
 	<?php }
 }
 
-function check_missing_dxcc($result) { ?>
-	<h5><?= __("DXCC Check Results") ?></h5>
-	<?= __("QSOs to update found:"); ?> <?php echo $result[0]->count; ?>
-	<?php if ($result[0]->count > 0) { ?>
-	<br/>
-	<button type="button" class="mt-2 btn btn-sm btn-primary ld-ext-right" id="fixMissingDxccBtn" onclick="fixMissingDxcc(false)">
-		<?= __("Run fix") ?><div class="ld ld-ring ld-spin"></div>
-	</button>
-	<button id="openMissingDxccListBtn" onclick="openMissingDxccList()" class="btn btn-sm btn-success mt-2 btn btn-sm ld-ext-right"><i class="fas fa-search"></i><div class="ld ld-ring ld-spin"></div></button>
-	<?php }
-}
-
-function check_missing_cq_zones($result) { ?>
-	<h5><?= __("CQ Zone Check Results") ?></h5>
-	<?= __("QSOs to update found:"); ?> <?php echo $result[0]->count; ?>
-	<?php if ($result[0]->count > 0) { ?>
-	<br/>
-	<button type="button" class="mt-2 btn btn-sm btn-primary ld-ext-right" id="updateCqZonesBtn" onclick="fixMissingCqZones()">
-		<?= __("Update now") ?><div class="ld ld-ring ld-spin"></div>
-	</button>
-	<?php }
-}
-
-function check_missing_itu_zones($result) { ?>
-	<h5><?= __("ITU Zone Check Results") ?></h5>
-	<?= __("QSOs to update found:"); ?> <?php echo $result[0]->count; ?>
-	<?php if ($result[0]->count > 0) { ?>
-	<br/>
-	<button type="button" class="mt-2 btn btn-sm btn-primary ld-ext-right" id="updateItuZonesBtn" onclick="fixMissingItuZones()">
-		<?= __("Update now") ?><div class="ld ld-ring ld-spin"></div>
-	</button>
-	<?php }
-}
-
 function check_missing_grids($result) { ?>
 	<h5><?= __("Gridsquare Check Results") ?></h5>
 	<?= __("QSOs to update found:"); ?> <?php echo count($result); ?>
@@ -146,7 +102,7 @@ function check_dxcc($result, $custom_date_format) { ?>
 							<th class="select-filter" scope="col"><?= __("LoTW"); ?></th>
 							<th class="select-filter" scope="col"><?= __("Station Profile"); ?></th>
 							<th class="select-filter" scope="col"><?= __("Existing DXCC"); ?></th>
-							<th><?= __("Result DXCC"); ?></th>
+							<th class="select-filter" scope="col"><?= __("Result DXCC"); ?></th>
 						</tr>
 					</thead>
 					<tbody>

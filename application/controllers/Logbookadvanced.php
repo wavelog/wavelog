@@ -895,30 +895,6 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->view('logbookadvanced/showStateQsos', $data);
 	}
 
-	public function fixMissingDxcc() {
-		if(!clubaccess_check(9)) return;
-
-		$all = $this->input->post('all', true);
-		$this->load->model('logbookadvanced_model');
-        $result = $this->logbookadvanced_model->check_missing_dxcc_id($all);
-
-		$data['result'] = $result;
-		$data['all'] = $all;
-		$data['type'] = 'dxcc';
-
-		$this->load->view('logbookadvanced/showUpdateResult', $data);
-	}
-
-	public function openMissingDxccList() {
-		if(!clubaccess_check(9)) return;
-
-		$this->load->model('logbookadvanced_model');
-
-		$data['qsos'] = $this->logbookadvanced_model->getMissingDxccQsos();
-
-		$this->load->view('logbookadvanced/showMissingDxccQsos', $data);
-	}
-
 	public function batchFix() {
 		if(!clubaccess_check(9)) return;
 
