@@ -25,7 +25,7 @@
         <p><span class="badge text-bg-info"><?= __("Important"); ?></span> <?= __("Log files must have the file type .adi"); ?></p>
 
         <label class="visually-hidden" for="adiffile"><?= __("Choose file"); ?></label>
-        <input type="file" class="file-input mb-2 me-sm-2" id="adiffile" name="userfile" size="20" />
+        <input type="file" class="file-input mb-2 me-sm-2" id="adiffile" name="userfile" size="20" accept=".adi,.ADI,.adif,.ADIF" />
       </div>
 
       <br><br>

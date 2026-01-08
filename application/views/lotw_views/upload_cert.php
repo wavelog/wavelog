@@ -32,7 +32,7 @@
 			<?php echo form_open_multipart('lotw/do_cert_upload');?>
 				<div class="mb-3">
 					<label for="exampleFormControlFile1"><?= __("Upload Logbook of the World .p12 Certificate"); ?></label>
-					<input type="file" name="userfile" class="form-control" id="exampleFormControlFile1">
+					<input type="file" name="userfile" class="form-control" id="exampleFormControlFile1" accept=".p12,.P12">
 				 </div>
 
 				<button type="submit" value="upload" class="btn btn-primary"><?= __("Upload File"); ?></button>

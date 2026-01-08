@@ -44,7 +44,7 @@
 					} ?>
 				</select>
 				<p><span class="badge bg-info me-1"><?= __("Important"); ?></span><?= __("Log files must have the file type .adi"); ?></p>
-				<input class="form-control mb-2 me-sm-2 mt-1 w-50 w-lg-100" type="file" name="userfile" size="20" />
+				<input class="form-control mb-2 me-sm-2 mt-1 w-50 w-lg-100" type="file" name="userfile" size="20" accept=".adi,.ADI,.adif,.ADIF" />
 			</div>
 			<hr class="divider">
 			<?php if (!($this->config->item('disable_manual_eqsl'))) { ?>
