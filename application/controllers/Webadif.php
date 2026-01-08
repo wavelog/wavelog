@@ -3,6 +3,16 @@
 /*	Controller to interact with the webADIF API */
 class Webadif extends CI_Controller {
 
+	function __construct() {
+		parent::__construct();
+
+		$this->load->model('user_model');
+		if (!$this->user_model->authorize(2)) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
+		}
+	}
+
 	/*
 	 * Upload QSO to webADIF
 	 * When called from the url wavelog/webadif/upload, the function loops through all station_id's with a webADIF

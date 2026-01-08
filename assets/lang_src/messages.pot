@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-01-08 07:20+0000\n"
+"POT-Creation-Date: 2026-01-08 08:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,9 +68,9 @@ msgstr ""
 #: application/controllers/Lotw.php:90 application/controllers/Lotw.php:116
 #: application/controllers/Lotw.php:414 application/controllers/Lotw.php:437
 #: application/controllers/Lotw.php:801 application/controllers/Lotw.php:888
-#: application/controllers/Lotw.php:993 application/controllers/Map.php:12
-#: application/controllers/Map.php:27 application/controllers/Mode.php:15
-#: application/controllers/Notes.php:10 application/controllers/Operator.php:13
+#: application/controllers/Map.php:12 application/controllers/Map.php:27
+#: application/controllers/Mode.php:15 application/controllers/Notes.php:10
+#: application/controllers/Operator.php:13
 #: application/controllers/Options.php:14 application/controllers/Oqrs.php:15
 #: application/controllers/Oqrs.php:165 application/controllers/Qrbcalc.php:13
 #: application/controllers/Qrz.php:200 application/controllers/Qrz.php:287
@@ -106,6 +106,7 @@ msgstr ""
 #: application/controllers/Simplefle.php:7
 #: application/controllers/Station.php:17
 #: application/controllers/Stationsetup.php:16
+#: application/controllers/Statistics.php:10
 #: application/controllers/Themes.php:17
 #: application/controllers/Timeline.php:10
 #: application/controllers/Timeplotter.php:11
@@ -397,7 +398,7 @@ msgstr ""
 #: application/controllers/Awards.php:560
 #: application/controllers/Callstats.php:100
 #: application/controllers/Distancerecords.php:86
-#: application/controllers/Statistics.php:375
+#: application/controllers/Statistics.php:372
 #: application/controllers/Timeline.php:126
 #: application/controllers/Timeline.php:129
 #: application/controllers/Timeline.php:132
@@ -2003,24 +2004,8 @@ msgstr ""
 msgid "LoTW ADIF Import"
 msgstr ""
 
-#: application/controllers/Lotw.php:920 application/controllers/Lotw.php:1028
+#: application/controllers/Lotw.php:920
 msgid "You have not defined your ARRL LoTW credentials!"
-msgstr ""
-
-#: application/controllers/Lotw.php:995
-msgid "LoTW .TQ8 Upload"
-msgstr ""
-
-#: application/controllers/Lotw.php:1073
-msgid "Your ARRL username and/or password is incorrect."
-msgstr ""
-
-#: application/controllers/Lotw.php:1092 application/controllers/Lotw.php:1097
-msgid "LoTW .TQ8 Sent"
-msgstr ""
-
-#: application/controllers/Lotw.php:1104
-msgid "LoTW .TQ8 Not Sent"
 msgstr ""
 
 #: application/controllers/Map.php:48
@@ -2812,28 +2797,28 @@ msgstr ""
 msgid "Station location list"
 msgstr ""
 
-#: application/controllers/Statistics.php:26
+#: application/controllers/Statistics.php:23
 #: application/views/interface_assets/header.php:154
 msgid "Statistics"
 msgstr ""
 
-#: application/controllers/Statistics.php:302
+#: application/controllers/Statistics.php:299
 #: application/views/interface_assets/header.php:158
 #: application/views/statistics/qsltable.php:5
 msgid "QSL Statistics"
 msgstr ""
 
-#: application/controllers/Statistics.php:317
+#: application/controllers/Statistics.php:314
 #: application/views/interface_assets/header.php:156
 #: application/views/statistics/antennaanalytics.php:3
 msgid "Antenna Analytics"
 msgstr ""
 
-#: application/controllers/Statistics.php:375
+#: application/controllers/Statistics.php:372
 msgid "Satellite QSOs"
 msgstr ""
 
-#: application/controllers/Statistics.php:391
+#: application/controllers/Statistics.php:388
 #: application/views/interface_assets/header.php:182
 msgid "EME Initials"
 msgstr ""

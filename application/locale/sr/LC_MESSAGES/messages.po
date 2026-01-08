@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-01-08 07:20+0000\n"
+"POT-Creation-Date: 2026-01-08 08:42+0000\n"
 "PO-Revision-Date: 2024-12-10 11:09+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -73,9 +73,9 @@ msgstr ""
 #: application/controllers/Lotw.php:90 application/controllers/Lotw.php:116
 #: application/controllers/Lotw.php:414 application/controllers/Lotw.php:437
 #: application/controllers/Lotw.php:801 application/controllers/Lotw.php:888
-#: application/controllers/Lotw.php:993 application/controllers/Map.php:12
-#: application/controllers/Map.php:27 application/controllers/Mode.php:15
-#: application/controllers/Notes.php:10 application/controllers/Operator.php:13
+#: application/controllers/Map.php:12 application/controllers/Map.php:27
+#: application/controllers/Mode.php:15 application/controllers/Notes.php:10
+#: application/controllers/Operator.php:13
 #: application/controllers/Options.php:14 application/controllers/Oqrs.php:15
 #: application/controllers/Oqrs.php:165 application/controllers/Qrbcalc.php:13
 #: application/controllers/Qrz.php:200 application/controllers/Qrz.php:287
@@ -111,6 +111,7 @@ msgstr ""
 #: application/controllers/Simplefle.php:7
 #: application/controllers/Station.php:17
 #: application/controllers/Stationsetup.php:16
+#: application/controllers/Statistics.php:10
 #: application/controllers/Themes.php:17
 #: application/controllers/Timeline.php:10
 #: application/controllers/Timeplotter.php:11
@@ -402,7 +403,7 @@ msgstr "Pregled loga - VUCC"
 #: application/controllers/Awards.php:560
 #: application/controllers/Callstats.php:100
 #: application/controllers/Distancerecords.php:86
-#: application/controllers/Statistics.php:375
+#: application/controllers/Statistics.php:372
 #: application/controllers/Timeline.php:126
 #: application/controllers/Timeline.php:129
 #: application/controllers/Timeline.php:132
@@ -2023,25 +2024,9 @@ msgstr ""
 msgid "LoTW ADIF Import"
 msgstr "Uvoz LoTW ADIF"
 
-#: application/controllers/Lotw.php:920 application/controllers/Lotw.php:1028
+#: application/controllers/Lotw.php:920
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Niste definisali vaše ARRL LoTW kredencijale!"
-
-#: application/controllers/Lotw.php:995
-msgid "LoTW .TQ8 Upload"
-msgstr "LoTW .TQ8 učitavanje"
-
-#: application/controllers/Lotw.php:1073
-msgid "Your ARRL username and/or password is incorrect."
-msgstr "Vaše ARRL korisničko ime i/ili lozinka su netačni."
-
-#: application/controllers/Lotw.php:1092 application/controllers/Lotw.php:1097
-msgid "LoTW .TQ8 Sent"
-msgstr "LoTW .TQ8 je poslat"
-
-#: application/controllers/Lotw.php:1104
-msgid "LoTW .TQ8 Not Sent"
-msgstr "LoTW .TQ8 nije poslat"
 
 #: application/controllers/Map.php:48
 msgid "QSO Map"
@@ -2843,28 +2828,28 @@ msgstr "Uredite opcije za izvoz mape"
 msgid "Station location list"
 msgstr ""
 
-#: application/controllers/Statistics.php:26
+#: application/controllers/Statistics.php:23
 #: application/views/interface_assets/header.php:154
 msgid "Statistics"
 msgstr "Statistika"
 
-#: application/controllers/Statistics.php:302
+#: application/controllers/Statistics.php:299
 #: application/views/interface_assets/header.php:158
 #: application/views/statistics/qsltable.php:5
 msgid "QSL Statistics"
 msgstr "Statistika QSL karata"
 
-#: application/controllers/Statistics.php:317
+#: application/controllers/Statistics.php:314
 #: application/views/interface_assets/header.php:156
 #: application/views/statistics/antennaanalytics.php:3
 msgid "Antenna Analytics"
 msgstr "Analitika Antena"
 
-#: application/controllers/Statistics.php:375
+#: application/controllers/Statistics.php:372
 msgid "Satellite QSOs"
 msgstr ""
 
-#: application/controllers/Statistics.php:391
+#: application/controllers/Statistics.php:388
 #: application/views/interface_assets/header.php:182
 msgid "EME Initials"
 msgstr ""
@@ -18777,6 +18762,18 @@ msgstr ""
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr ""
+
+#~ msgid "LoTW .TQ8 Upload"
+#~ msgstr "LoTW .TQ8 učitavanje"
+
+#~ msgid "Your ARRL username and/or password is incorrect."
+#~ msgstr "Vaše ARRL korisničko ime i/ili lozinka su netačni."
+
+#~ msgid "LoTW .TQ8 Sent"
+#~ msgstr "LoTW .TQ8 je poslat"
+
+#~ msgid "LoTW .TQ8 Not Sent"
+#~ msgstr "LoTW .TQ8 nije poslat"
 
 #~ msgid "QSL Card Management"
 #~ msgstr "Upravljanje QSL kartama"
