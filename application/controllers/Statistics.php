@@ -2,9 +2,14 @@
 
 class Statistics extends CI_Controller {
 
-	function __construct()
-	{
+	function __construct() {
 		parent::__construct();
+
+		$this->load->model('user_model');
+		if (!$this->user_model->authorize(2)) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
+		}
 	}
 
 
@@ -12,14 +17,6 @@ class Statistics extends CI_Controller {
 		$this->load->model('user_model');
 		$this->load->model('bands');
 
-		if(!$this->user_model->authorize($this->config->item('auth_mode'))) {
-			if($this->user_model->validate_session()) {
-				$this->user_model->clear_session();
-				show_error('Access denied<p>Click <a href="'.site_url('user/login').'">here</a> to log in as another user', 403);
-			} else {
-				redirect('user/login');
-			}
-		}
 		// Render User Interface
 
 		// Set Page Title
