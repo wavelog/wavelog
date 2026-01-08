@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-01-07 15:28+0000\n"
+"POT-Creation-Date: 2026-01-08 07:10+0000\n"
 "PO-Revision-Date: 2026-01-03 02:38+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1823,7 +1823,6 @@ msgstr "距離"
 #: application/views/qslcard/searchresult.php:53
 #: application/views/qslcard/searchresult.php:69
 #: application/views/qslcard/searchresult.php:85
-#: application/views/qslmanagement/index.php:24
 #: application/views/qslprint/index.php:33
 #: application/views/qslprint/qslprint.php:26
 #: application/views/qslprint/qsolist.php:10
@@ -2377,10 +2376,6 @@ msgstr "QSLカード"
 #: application/controllers/Qsl.php:40
 msgid "Upload QSL Cards"
 msgstr "QSLカードをアップロードする"
-
-#: application/controllers/Qslmanagement.php:14
-msgid "QSL Card Management"
-msgstr "QSLカード管理"
 
 #: application/controllers/Qslprint.php:44
 msgid "Print Requested QSLs"
@@ -6914,7 +6909,6 @@ msgstr "参照"
 #: application/views/logbookadvanced/showMissingDxccQsos.php:20
 #: application/views/logbookadvanced/showStateQsos.php:22
 #: application/views/logbookadvanced/useroptions.php:22
-#: application/views/qslmanagement/index.php:23
 #: application/views/qso/components/previous_contacts.php:6
 #: application/views/search/lotw_unconfirmed_result.php:7
 #: application/views/view_log/qso.php:72
@@ -15216,22 +15210,6 @@ msgstr "QSOSを追加"
 msgid "Add to QSL"
 msgstr "QSLに追加"
 
-#: application/views/qslmanagement/index.php:13
-msgid "Incoming QSL Cards"
-msgstr "受信QSLカード"
-
-#: application/views/qslmanagement/index.php:25
-msgid "Report"
-msgstr "報告"
-
-#: application/views/qslmanagement/index.php:26
-msgid "Option"
-msgstr "オプション"
-
-#: application/views/qslmanagement/index.php:46
-msgid "Outgoing QSL Cards"
-msgstr "送信QSLカード"
-
 #: application/views/qslprint/index.php:16
 msgid "Export Requested QSLs for Printing"
 msgstr "印刷用にリクエストされたQSLをエクスポートする"
@@ -19126,6 +19104,21 @@ msgstr "CQz"
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr "CQz geojson"
+
+#~ msgid "QSL Card Management"
+#~ msgstr "QSLカード管理"
+
+#~ msgid "Incoming QSL Cards"
+#~ msgstr "受信QSLカード"
+
+#~ msgid "Report"
+#~ msgstr "報告"
+
+#~ msgid "Option"
+#~ msgstr "オプション"
+
+#~ msgid "Outgoing QSL Cards"
+#~ msgstr "送信QSLカード"
 
 #~ msgid "Results for DXCC update:"
 #~ msgstr "DXCCアップデートの結果:"

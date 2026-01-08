@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-01-07 15:28+0000\n"
+"POT-Creation-Date: 2026-01-08 07:10+0000\n"
 "PO-Revision-Date: 2026-01-01 14:22+0000\n"
 "Last-Translator: Viliam Petrik <tatralom@gmail.com>\n"
 "Language-Team: Slovak <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1819,7 +1819,6 @@ msgstr "Vzdialenosť"
 #: application/views/qslcard/searchresult.php:53
 #: application/views/qslcard/searchresult.php:69
 #: application/views/qslcard/searchresult.php:85
-#: application/views/qslmanagement/index.php:24
 #: application/views/qslprint/index.php:33
 #: application/views/qslprint/qslprint.php:26
 #: application/views/qslprint/qsolist.php:10
@@ -2379,10 +2378,6 @@ msgstr "QSL karty"
 #: application/controllers/Qsl.php:40
 msgid "Upload QSL Cards"
 msgstr "Nahrať QSL karty"
-
-#: application/controllers/Qslmanagement.php:14
-msgid "QSL Card Management"
-msgstr "Správa QSL kariet"
 
 #: application/controllers/Qslprint.php:44
 msgid "Print Requested QSLs"
@@ -6925,7 +6920,6 @@ msgstr "Referencie"
 #: application/views/logbookadvanced/showMissingDxccQsos.php:20
 #: application/views/logbookadvanced/showStateQsos.php:22
 #: application/views/logbookadvanced/useroptions.php:22
-#: application/views/qslmanagement/index.php:23
 #: application/views/qso/components/previous_contacts.php:6
 #: application/views/search/lotw_unconfirmed_result.php:7
 #: application/views/view_log/qso.php:72
@@ -15257,22 +15251,6 @@ msgstr "Pridať spojenia"
 msgid "Add to QSL"
 msgstr "Pridať na QSL"
 
-#: application/views/qslmanagement/index.php:13
-msgid "Incoming QSL Cards"
-msgstr "Došlé QSL karty"
-
-#: application/views/qslmanagement/index.php:25
-msgid "Report"
-msgstr "Report"
-
-#: application/views/qslmanagement/index.php:26
-msgid "Option"
-msgstr "Možnosť"
-
-#: application/views/qslmanagement/index.php:46
-msgid "Outgoing QSL Cards"
-msgstr "Odoslané QSL karty"
-
 #: application/views/qslprint/index.php:16
 msgid "Export Requested QSLs for Printing"
 msgstr "Exportovať požadované QSL na tlač"
@@ -19167,6 +19145,21 @@ msgstr ""
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr ""
+
+#~ msgid "QSL Card Management"
+#~ msgstr "Správa QSL kariet"
+
+#~ msgid "Incoming QSL Cards"
+#~ msgstr "Došlé QSL karty"
+
+#~ msgid "Report"
+#~ msgstr "Report"
+
+#~ msgid "Option"
+#~ msgstr "Možnosť"
+
+#~ msgid "Outgoing QSL Cards"
+#~ msgstr "Odoslané QSL karty"
 
 #~ msgid "Results for DXCC update:"
 #~ msgstr "Výsledky aktualizácie DXCC:"

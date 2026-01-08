@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-01-07 15:28+0000\n"
+"POT-Creation-Date: 2026-01-08 07:10+0000\n"
 "PO-Revision-Date: 2025-12-23 02:59+0000\n"
 "Last-Translator: YuanRetro <lijiaxuan1811@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -1828,7 +1828,6 @@ msgstr "距离"
 #: application/views/qslcard/searchresult.php:53
 #: application/views/qslcard/searchresult.php:69
 #: application/views/qslcard/searchresult.php:85
-#: application/views/qslmanagement/index.php:24
 #: application/views/qslprint/index.php:33
 #: application/views/qslprint/qslprint.php:26
 #: application/views/qslprint/qsolist.php:10
@@ -2373,10 +2372,6 @@ msgstr "QSL 卡片"
 #: application/controllers/Qsl.php:40
 msgid "Upload QSL Cards"
 msgstr "上传 QSL 卡片"
-
-#: application/controllers/Qslmanagement.php:14
-msgid "QSL Card Management"
-msgstr "QSL 卡片管理"
 
 #: application/controllers/Qslprint.php:44
 msgid "Print Requested QSLs"
@@ -6782,7 +6777,6 @@ msgstr "标识符"
 #: application/views/logbookadvanced/showMissingDxccQsos.php:20
 #: application/views/logbookadvanced/showStateQsos.php:22
 #: application/views/logbookadvanced/useroptions.php:22
-#: application/views/qslmanagement/index.php:23
 #: application/views/qso/components/previous_contacts.php:6
 #: application/views/search/lotw_unconfirmed_result.php:7
 #: application/views/view_log/qso.php:72
@@ -14841,22 +14835,6 @@ msgstr "添加 QSO"
 msgid "Add to QSL"
 msgstr "添加到 QSL"
 
-#: application/views/qslmanagement/index.php:13
-msgid "Incoming QSL Cards"
-msgstr "接收中的 QSL 卡片"
-
-#: application/views/qslmanagement/index.php:25
-msgid "Report"
-msgstr "报告"
-
-#: application/views/qslmanagement/index.php:26
-msgid "Option"
-msgstr "选项"
-
-#: application/views/qslmanagement/index.php:46
-msgid "Outgoing QSL Cards"
-msgstr "发出QSL卡片"
-
 #: application/views/qslprint/index.php:16
 msgid "Export Requested QSLs for Printing"
 msgstr "导出被请求的 QSL 以供打印"
@@ -18613,6 +18591,21 @@ msgstr ""
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr ""
+
+#~ msgid "QSL Card Management"
+#~ msgstr "QSL 卡片管理"
+
+#~ msgid "Incoming QSL Cards"
+#~ msgstr "接收中的 QSL 卡片"
+
+#~ msgid "Report"
+#~ msgstr "报告"
+
+#~ msgid "Option"
+#~ msgstr "选项"
+
+#~ msgid "Outgoing QSL Cards"
+#~ msgstr "发出QSL卡片"
 
 #~ msgid "Results for DXCC update:"
 #~ msgstr "DXCC 更新结果："

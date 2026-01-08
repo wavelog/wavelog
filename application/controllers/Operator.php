@@ -5,16 +5,27 @@
 
 class Operator extends CI_Controller {
 
-    public function displayOperatorDialog() {
+	function __construct() {
+		parent::__construct();
 
-        $this->load->view('operator/index');
-        
-    }
+		$this->load->model('user_model');
+		if (!$this->user_model->authorize(2)) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
+		}
+	}
 
-    public function saveOperator() {
 
-        $operator = ['operator_callsign' => $this->security->xss_clean(strtoupper($this->input->post('operator_callsign')))];
+	public function displayOperatorDialog() {
 
-        $this->session->set_userdata($operator);
-    }
+		$this->load->view('operator/index');
+
+	}
+
+	public function saveOperator() {
+
+		$operator = ['operator_callsign' => $this->security->xss_clean(strtoupper($this->input->post('operator_callsign')))];
+
+		$this->session->set_userdata($operator);
+	}
 }

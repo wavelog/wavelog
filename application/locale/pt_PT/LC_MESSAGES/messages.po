@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-01-07 15:28+0000\n"
+"POT-Creation-Date: 2026-01-08 07:10+0000\n"
 "PO-Revision-Date: 2025-10-22 00:19+0000\n"
 "Last-Translator: David Quental <ct1drb72@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
@@ -1825,7 +1825,6 @@ msgstr "Distância"
 #: application/views/qslcard/searchresult.php:53
 #: application/views/qslcard/searchresult.php:69
 #: application/views/qslcard/searchresult.php:85
-#: application/views/qslmanagement/index.php:24
 #: application/views/qslprint/index.php:33
 #: application/views/qslprint/qslprint.php:26
 #: application/views/qslprint/qsolist.php:10
@@ -2383,10 +2382,6 @@ msgstr "Cartões QSL"
 #: application/controllers/Qsl.php:40
 msgid "Upload QSL Cards"
 msgstr "Enviar Cartões QSL"
-
-#: application/controllers/Qslmanagement.php:14
-msgid "QSL Card Management"
-msgstr "Gestão de cartões QSL"
 
 #: application/controllers/Qslprint.php:44
 msgid "Print Requested QSLs"
@@ -6938,7 +6933,6 @@ msgstr "Referência"
 #: application/views/logbookadvanced/showMissingDxccQsos.php:20
 #: application/views/logbookadvanced/showStateQsos.php:22
 #: application/views/logbookadvanced/useroptions.php:22
-#: application/views/qslmanagement/index.php:23
 #: application/views/qso/components/previous_contacts.php:6
 #: application/views/search/lotw_unconfirmed_result.php:7
 #: application/views/view_log/qso.php:72
@@ -15254,22 +15248,6 @@ msgstr "Adicionar contactos"
 msgid "Add to QSL"
 msgstr "Adicionar à QSL"
 
-#: application/views/qslmanagement/index.php:13
-msgid "Incoming QSL Cards"
-msgstr "Cartões QSL em entrada"
-
-#: application/views/qslmanagement/index.php:25
-msgid "Report"
-msgstr "Reportar"
-
-#: application/views/qslmanagement/index.php:26
-msgid "Option"
-msgstr "Opção"
-
-#: application/views/qslmanagement/index.php:46
-msgid "Outgoing QSL Cards"
-msgstr "Cartões QSL em saída"
-
 #: application/views/qslprint/index.php:16
 msgid "Export Requested QSLs for Printing"
 msgstr "Exportar QSLs solicitados para impressão"
@@ -19201,6 +19179,21 @@ msgstr ""
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr ""
+
+#~ msgid "QSL Card Management"
+#~ msgstr "Gestão de cartões QSL"
+
+#~ msgid "Incoming QSL Cards"
+#~ msgstr "Cartões QSL em entrada"
+
+#~ msgid "Report"
+#~ msgstr "Reportar"
+
+#~ msgid "Option"
+#~ msgstr "Opção"
+
+#~ msgid "Outgoing QSL Cards"
+#~ msgstr "Cartões QSL em saída"
 
 #~ msgid "There is different data for DOK in your log compared to DCL"
 #~ msgstr "Há dados diferentes para DOK no teu log em comparação com DCL"

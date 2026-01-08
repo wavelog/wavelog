@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-01-07 15:28+0000\n"
+"POT-Creation-Date: 2026-01-08 07:10+0000\n"
 "PO-Revision-Date: 2026-01-03 02:38+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1823,7 +1823,6 @@ msgstr "Afstand"
 #: application/views/qslcard/searchresult.php:53
 #: application/views/qslcard/searchresult.php:69
 #: application/views/qslcard/searchresult.php:85
-#: application/views/qslmanagement/index.php:24
 #: application/views/qslprint/index.php:33
 #: application/views/qslprint/qslprint.php:26
 #: application/views/qslprint/qsolist.php:10
@@ -2383,10 +2382,6 @@ msgstr "QSL-kaarten"
 #: application/controllers/Qsl.php:40
 msgid "Upload QSL Cards"
 msgstr "QSL-kaarten uploaden"
-
-#: application/controllers/Qslmanagement.php:14
-msgid "QSL Card Management"
-msgstr "QSL-kaartbeheer"
 
 #: application/controllers/Qslprint.php:44
 msgid "Print Requested QSLs"
@@ -6952,7 +6947,6 @@ msgstr "Referentie"
 #: application/views/logbookadvanced/showMissingDxccQsos.php:20
 #: application/views/logbookadvanced/showStateQsos.php:22
 #: application/views/logbookadvanced/useroptions.php:22
-#: application/views/qslmanagement/index.php:23
 #: application/views/qso/components/previous_contacts.php:6
 #: application/views/search/lotw_unconfirmed_result.php:7
 #: application/views/view_log/qso.php:72
@@ -15330,22 +15324,6 @@ msgstr "Qso's toevoegen"
 msgid "Add to QSL"
 msgstr "Toevoegen aan QSL"
 
-#: application/views/qslmanagement/index.php:13
-msgid "Incoming QSL Cards"
-msgstr "Binnenkomende QSL-kaarten"
-
-#: application/views/qslmanagement/index.php:25
-msgid "Report"
-msgstr "Verslag"
-
-#: application/views/qslmanagement/index.php:26
-msgid "Option"
-msgstr "Optie"
-
-#: application/views/qslmanagement/index.php:46
-msgid "Outgoing QSL Cards"
-msgstr "Uitgaande QSL-kaarten"
-
 #: application/views/qslprint/index.php:16
 msgid "Export Requested QSLs for Printing"
 msgstr "Exporteer aangevraagde QSL's voor afdrukken"
@@ -19289,6 +19267,21 @@ msgstr "CQz"
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr "CQz geojson"
+
+#~ msgid "QSL Card Management"
+#~ msgstr "QSL-kaartbeheer"
+
+#~ msgid "Incoming QSL Cards"
+#~ msgstr "Binnenkomende QSL-kaarten"
+
+#~ msgid "Report"
+#~ msgstr "Verslag"
+
+#~ msgid "Option"
+#~ msgstr "Optie"
+
+#~ msgid "Outgoing QSL Cards"
+#~ msgstr "Uitgaande QSL-kaarten"
 
 #~ msgid "Results for DXCC update:"
 #~ msgstr "Resultaten voor DXCC-update:"

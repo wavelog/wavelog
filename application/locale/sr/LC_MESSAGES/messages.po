@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-01-07 15:28+0000\n"
+"POT-Creation-Date: 2026-01-08 07:10+0000\n"
 "PO-Revision-Date: 2024-12-10 11:09+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1820,7 +1820,6 @@ msgstr "Udaljenost"
 #: application/views/qslcard/searchresult.php:53
 #: application/views/qslcard/searchresult.php:69
 #: application/views/qslcard/searchresult.php:85
-#: application/views/qslmanagement/index.php:24
 #: application/views/qslprint/index.php:33
 #: application/views/qslprint/qslprint.php:26
 #: application/views/qslprint/qsolist.php:10
@@ -2374,10 +2373,6 @@ msgstr "QSL karte"
 #: application/controllers/Qsl.php:40
 msgid "Upload QSL Cards"
 msgstr "Učitavanje QSL karata"
-
-#: application/controllers/Qslmanagement.php:14
-msgid "QSL Card Management"
-msgstr "Upravljanje QSL kartama"
 
 #: application/controllers/Qslprint.php:44
 msgid "Print Requested QSLs"
@@ -6805,7 +6800,6 @@ msgstr "Reference"
 #: application/views/logbookadvanced/showMissingDxccQsos.php:20
 #: application/views/logbookadvanced/showStateQsos.php:22
 #: application/views/logbookadvanced/useroptions.php:22
-#: application/views/qslmanagement/index.php:23
 #: application/views/qso/components/previous_contacts.php:6
 #: application/views/search/lotw_unconfirmed_result.php:7
 #: application/views/view_log/qso.php:72
@@ -14959,22 +14953,6 @@ msgstr "Dodajte veze"
 msgid "Add to QSL"
 msgstr "Dodajte u QSL"
 
-#: application/views/qslmanagement/index.php:13
-msgid "Incoming QSL Cards"
-msgstr "Dolazne QSL karte"
-
-#: application/views/qslmanagement/index.php:25
-msgid "Report"
-msgstr "Raport"
-
-#: application/views/qslmanagement/index.php:26
-msgid "Option"
-msgstr "Opcije"
-
-#: application/views/qslmanagement/index.php:46
-msgid "Outgoing QSL Cards"
-msgstr "Odlazne QSL karte"
-
 #: application/views/qslprint/index.php:16
 msgid "Export Requested QSLs for Printing"
 msgstr "Izvoz zahtevanih QSL karata za štampu"
@@ -18798,6 +18776,21 @@ msgstr ""
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr ""
+
+#~ msgid "QSL Card Management"
+#~ msgstr "Upravljanje QSL kartama"
+
+#~ msgid "Incoming QSL Cards"
+#~ msgstr "Dolazne QSL karte"
+
+#~ msgid "Report"
+#~ msgstr "Raport"
+
+#~ msgid "Option"
+#~ msgstr "Opcije"
+
+#~ msgid "Outgoing QSL Cards"
+#~ msgstr "Odlazne QSL karte"
 
 #~ msgid "There is different data for DOK in your log compared to DCL"
 #~ msgstr "U poređenju sa DCL, u vašem logu postoje različiti DOK podaci"
