@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-01-08 08:50+0000\n"
-"PO-Revision-Date: 2026-01-02 16:35+0000\n"
+"PO-Revision-Date: 2026-01-06 21:05+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sv/>\n"
@@ -1972,6 +1972,10 @@ msgid ""
 "application without password!%s For further information please visit the "
 "%sLoTW FAQ page%s in the Wavelog Wiki."
 msgstr ""
+"Certifikatet som hittas i filen %s innehåller ett lösenord och kan inte "
+"behandlas. %sVar vänlig se till att du exporterar LoTW-certifikatet från "
+"tqsl-applikationen utan lösenord!%s För mer information, vänligen besök "
+"%sLoTW FAQ-sidan%s i Wavelog Wiki."
 
 #: application/controllers/Lotw.php:450
 #, php-format
@@ -1980,16 +1984,21 @@ msgid ""
 "contains 'key-only' this is typically a certificate request which has not "
 "been processed by LoTW yet."
 msgstr ""
+"Allmänt fel vid extrahering av certifikatet från filen %s. Om filnamnet "
+"innehåller 'key-only' är det vanligtvis en certifikatbegäran som ännu inte "
+"har behandlats av LoTW."
 
 #: application/controllers/Lotw.php:457
 #, php-format
 msgid "Generic error processing the certificate in file %s."
-msgstr ""
+msgstr "Generiskt fel vid bearbetning av certifikatet i filen %s."
 
 #: application/controllers/Lotw.php:469
 #, php-format
 msgid "Generic error extracting the private key from certificate in file %s."
 msgstr ""
+"Generiskt fel vid extrahering av den privata nyckeln från certifikatet i "
+"filen %s."
 
 #: application/controllers/Lotw.php:685
 msgid "LoTW ADIF Information"
@@ -3358,7 +3367,7 @@ msgstr "Flera användare hittades med slug"
 
 #: application/controllers/Zonechecker.php:26
 msgid "Gridsquare Zone finder"
-msgstr ""
+msgstr "Locator Zon sökare"
 
 #: application/libraries/Callbook.php:124
 msgid "QRZCQ Error"
@@ -4511,6 +4520,8 @@ msgid ""
 "There is different data for DOK in your log compared to DCL or updates where "
 "not done because QSOs are not confirmed in DCL."
 msgstr ""
+"Det finns olika data för DOK i din logg jämfört med DCL eller uppdateringar "
+"gjordes inte eftersom QSOs inte är bekräftade i DCL."
 
 #: application/views/adif/dcl_success.php:29
 #: application/views/adif/pota_success.php:29
@@ -4889,6 +4900,8 @@ msgid ""
 "More information regarding the confirmation status in DCL can be found on "
 "the %sDCL Confluence page%s."
 msgstr ""
+"Mer information om bekräftelsestatusen i DCL finns på %sDCL Confluence-"
+"sidan%s."
 
 #: application/views/adif/import.php:349
 msgid "Only import DOK data from QSOs confirmed on DCL."
@@ -6701,7 +6714,7 @@ msgstr "Kod"
 #: application/views/awards/pl_polska/index.php:204
 #: application/views/awards/pl_polska/index.php:345
 msgid "MIXED"
-msgstr "Blandad"
+msgstr "MIXED"
 
 #: application/views/awards/pl_polska/index.php:205
 #: application/views/awards/pl_polska/index.php:346
@@ -7083,8 +7096,8 @@ msgid ""
 "I, WAE TOP and the WAE Trophy."
 msgstr ""
 "WAE diplomet kan utfärdas för följande trafiksätt: CW, SSB, Phone, RTTY, "
-"FT8, Digital och Blandade trafiksätt. Det utfärdas i fem klasser: WAE III, "
-"WAE II, WAE I, WAE TOP och WAE Trophy."
+"FT8, Digital och Mixade trafiksätt. Det utfärdas i fem klasser: WAE III, WAE "
+"II, WAE I, WAE TOP och WAE Trophy."
 
 #: application/views/awards/wae/index.php:11
 msgid "Fields taken for this Award: Region, DXCC"
@@ -12294,19 +12307,19 @@ msgstr "DCL-export"
 
 #: application/views/interface_assets/header.php:537
 msgid "Internal tools"
-msgstr ""
+msgstr "Interna verktyg"
 
 #: application/views/interface_assets/header.php:539
 msgid "Callsign DXCC checker"
-msgstr ""
+msgstr "Anropssignal DXCC-kontrollerare"
 
 #: application/views/interface_assets/header.php:540
 msgid "GeoJSON QSO Map"
-msgstr ""
+msgstr "GeoJSON QSO-karta"
 
 #: application/views/interface_assets/header.php:541
 msgid "Gridsquare Zone checker"
-msgstr ""
+msgstr "Locator Zon kontrollerare"
 
 #: application/views/interface_assets/header.php:548
 #: application/views/logbookadvanced/index.php:879
@@ -12975,7 +12988,7 @@ msgstr "Stationens uteffekt"
 
 #: application/views/logbookadvanced/edit.php:25
 msgid "DARC DOK"
-msgstr ""
+msgstr "DARC DOK"
 
 #: application/views/logbookadvanced/edit.php:31
 #: application/views/logbookadvanced/index.php:989
@@ -13547,7 +13560,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/index.php:512
 msgid "Sort column"
-msgstr ""
+msgstr "Sortera kolumn"
 
 #: application/views/logbookadvanced/index.php:514
 #: application/views/oqrs/showrequests.php:87
@@ -13556,19 +13569,19 @@ msgstr "QSO-tid"
 
 #: application/views/logbookadvanced/index.php:517
 msgid "QSO Modified"
-msgstr ""
+msgstr "QSO Modifierad"
 
 #: application/views/logbookadvanced/index.php:521
 msgid "Sort direction"
-msgstr ""
+msgstr "Sorteringsriktning"
 
 #: application/views/logbookadvanced/index.php:523
 msgid "Descending"
-msgstr ""
+msgstr "Nedstigande"
 
 #: application/views/logbookadvanced/index.php:524
 msgid "Ascending"
-msgstr ""
+msgstr "Stigande"
 
 #: application/views/logbookadvanced/index.php:532
 #: application/views/logbookadvanced/index.php:714
@@ -14083,31 +14096,31 @@ msgstr "För närvarande stödjade länder"
 
 #: application/views/logbookadvanced/useroptions.php:15
 msgid "Basic QSO Information"
-msgstr ""
+msgstr "Grundläggande QSO-information"
 
 #: application/views/logbookadvanced/useroptions.php:72
 msgid "Station Details"
-msgstr ""
+msgstr "Stationsdetaljer"
 
 #: application/views/logbookadvanced/useroptions.php:105
 msgid "Confirmation Services"
-msgstr ""
+msgstr "Bekräftelsetjänster"
 
 #: application/views/logbookadvanced/useroptions.php:162
 msgid "Geographic Information"
-msgstr ""
+msgstr "Geografisk information"
 
 #: application/views/logbookadvanced/useroptions.php:207
 msgid "Awards Programs"
-msgstr ""
+msgstr "Diplom program"
 
 #: application/views/logbookadvanced/useroptions.php:258
 msgid "Additional Information"
-msgstr ""
+msgstr "Ytterligare information"
 
 #: application/views/logbookadvanced/useroptions.php:297
 msgid "Technical Details"
-msgstr ""
+msgstr "Tekniska detaljer"
 
 #: application/views/logbookadvanced/useroptions.php:336
 msgid "For debugging only"
@@ -14123,7 +14136,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/useroptions.php:347
 msgid "Map Layers"
-msgstr ""
+msgstr "Kartlager"
 
 #: application/views/lookup/index.php:11
 #: application/views/qso/award_tabs.php:53
@@ -14303,7 +14316,7 @@ msgstr "Nästa automatiska synkronisering med LoTW kommer att ske kl: "
 msgid ""
 "For further information please visit the %sLoTW FAQ page%s in the Wavelog "
 "Wiki"
-msgstr ""
+msgstr "För mer information, besök %sLoTW FAQ-sidan%s i Wavelog Wiki"
 
 #: application/views/map/qso_map.php:15
 msgid "Select Country:"
@@ -19082,65 +19095,75 @@ msgstr "Mottagen"
 
 #: application/views/zonechecker/index.php:3
 msgid "Gridsquare Zone identification"
-msgstr ""
+msgstr "Lokator Zon identifiering"
 
 #: application/views/zonechecker/index.php:15
 msgid "Zone Type"
-msgstr ""
+msgstr "Zontyp"
 
 #: application/views/zonechecker/index.php:20
 msgid "Start Zone Check"
-msgstr ""
+msgstr "Starta Zon kontroll"
 
 #: application/views/zonechecker/index.php:39
 #: application/views/zonechecker/index.php:62
 msgid "Processing..."
-msgstr ""
+msgstr "Bearbetar …"
 
 #: application/views/zonechecker/index.php:50
 #: application/views/zonechecker/index.php:73
 msgid "An error occurred while processing the request."
-msgstr ""
+msgstr "Ett fel inträffade vid bearbetningen av begäran."
 
 #: application/views/zonechecker/result.php:16
 msgid "Callsigns Tested"
-msgstr ""
+msgstr "Anropssignaler testade"
 
 #: application/views/zonechecker/result.php:17
 msgid "Execution Time"
-msgstr ""
+msgstr "Körningstid"
 
 #: application/views/zonechecker/result.php:18
 msgid "Potential Wrong Zones"
-msgstr ""
+msgstr "Potentiellt felaktiga zoner"
 
 #: application/views/zonechecker/result.php:19
 msgid "Cache Hits"
-msgstr ""
+msgstr "Cache-träffar"
 
 #: application/views/zonechecker/result.php:20
 msgid "Cache Misses"
-msgstr ""
+msgstr "Cache-missar"
 
 #: application/views/zonechecker/result.php:21
 msgid "Hit Rate"
-msgstr ""
+msgstr "Träffsäkerhet"
 
 #: application/views/zonechecker/result.php:55
 msgid "ITUz"
-msgstr ""
+msgstr "ITUz"
 
 #: application/views/zonechecker/result.php:56
 msgid "ITUz geojson"
-msgstr ""
+msgstr "ITUz geojson"
 
 #: application/views/zonechecker/result.php:58
 msgid "CQz"
-msgstr ""
+msgstr "CQz"
 
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
-msgstr ""
+msgstr "CQz geojson"
+
+#, php-format
+#~ msgid ""
+#~ "Found no certificate in file %s. If the filename contains 'key-only' this "
+#~ "is typically a certificate request which has not been processed by LoTW "
+#~ "yet."
+#~ msgstr ""
+#~ "Hittade inget certifikat i filen %s. Om filnamnet innehåller 'key-only' "
+#~ "är detta vanligtvis en certifikatförfrågan som ännu inte har behandlats "
+#~ "av LoTW."
 
 #~ msgid "LoTW .TQ8 Upload"
 #~ msgstr "LoTW .TQ8 uppladdning"
@@ -19157,17 +19180,8 @@ msgstr ""
 #~ msgid "QSL Card Management"
 #~ msgstr "Hantering av QSL-kort"
 
-#~ msgid "Incoming QSL Cards"
-#~ msgstr "Inkommande QSL-kort"
-
-#~ msgid "Report"
-#~ msgstr "Rapport"
-
-#~ msgid "Option"
-#~ msgstr "Alternativ"
-
-#~ msgid "Outgoing QSL Cards"
-#~ msgstr "Utgående QSL-kort"
+#~ msgid "There is different data for DOK in your log compared to DCL"
+#~ msgstr "Det finns olika data för DOK i din logg jämfört med DCL"
 
 #~ msgid "Results for DXCC update:"
 #~ msgstr "Resultat för DXCC-uppdatering:"
@@ -19190,18 +19204,27 @@ msgstr ""
 #~ msgid "The number of QSOs updated for ITU zone is"
 #~ msgstr "Antalet QSO-uppdateringar för ITU-zon är"
 
-#~ msgid "There is different data for DOK in your log compared to DCL"
-#~ msgstr "Det finns olika data för DOK i din logg jämfört med DCL"
+#~ msgid "Incoming QSL Cards"
+#~ msgstr "Inkommande QSL-kort"
+
+#~ msgid "Report"
+#~ msgstr "Rapport"
+
+#~ msgid "Option"
+#~ msgstr "Alternativ"
+
+#~ msgid "Outgoing QSL Cards"
+#~ msgstr "Utgående QSL-kort"
 
 #, php-format
 #~ msgid ""
-#~ "Found no certificate in file %s. If the filename contains 'key-only' this "
-#~ "is typically a certificate request which has not been processed by LoTW "
-#~ "yet."
+#~ "The certificate found in file %s contains a password and cannot be "
+#~ "processed. %s Please make sure you export the LoTW certificate from tqsl "
+#~ "application without password! %s"
 #~ msgstr ""
-#~ "Hittade inget certifikat i filen %s. Om filnamnet innehåller 'key-only' "
-#~ "är detta vanligtvis en certifikatförfrågan som ännu inte har behandlats "
-#~ "av LoTW."
+#~ "Certifikatet som finns i filen %s innehåller ett lösenord och kan inte "
+#~ "behandlas. %s Se till att exportera LoTW-certifikatet från tqsl-"
+#~ "applikationen utan lösenord! %s"
 
 #~ msgid "Column"
 #~ msgstr "Kolumn"

@@ -390,4 +390,24 @@ class Gridmap_model extends CI_Model {
 
 		return $gridarray;
 	}
+
+	function get_coordinates_for_dxcc($dxcc) {
+		// Get country coordinates if a specific country is selected
+		$country_coords = null;
+		if ($dxcc && $dxcc != 'All') {
+			// Query dxcc_entities table for country info
+			$sql = "SELECT adif, lat, `long`, name FROM dxcc_entities WHERE adif = ?";
+			$query = $this->db->query($sql, array($dxcc));
+
+			if ($query && $query->num_rows() > 0) {
+				$country_info = $query->row();
+				$country_coords = [
+					'lat' => (float)$country_info->lat,
+					'long' => (float)$country_info->long,
+					'name' => $country_info->name
+				];
+			}
+		}
+		return $country_coords;
+	}
 }

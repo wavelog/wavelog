@@ -10,15 +10,15 @@
 # Artur Greficz <sq7acp@gmail.com>, 2025.
 # Fabian Berg <fabian.berg@hb9hil.org>, 2025.
 # Szymon Porwolik <szporwolik@gmail.com>, 2025.
-# Szymon <sp9spm@cqops.com>, 2025.
+# Szymon <sp9spm@cqops.com>, 2025, 2026.
 # notzaleewa <zaleewa@outlook.com>, 2025.
 # Dariusz Koryto <dariusz@koryto.eu>, 2025.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-01-08 08:50+0000\n"
-"PO-Revision-Date: 2025-12-29 16:23+0000\n"
-"Last-Translator: Dariusz Koryto <dariusz@koryto.eu>\n"
+"PO-Revision-Date: 2026-01-03 19:16+0000\n"
+"Last-Translator: Szymon <sp9spm@cqops.com>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/pl/>\n"
 "Language: pl_PL\n"
@@ -696,7 +696,7 @@ msgstr " i satelita "
 
 #: application/controllers/Calltester.php:32
 msgid "Call Tester"
-msgstr ""
+msgstr "Sprawdzenie Callsign"
 
 #: application/controllers/Club.php:23
 msgid "Club Officer"
@@ -1049,9 +1049,9 @@ msgid "eQSL Cards"
 msgstr "Karty eQSL"
 
 #: application/controllers/Eqsl.php:56
-#, php-format
+#, fuzzy, php-format
 msgid "Showing %d to %d of %d entries"
-msgstr ""
+msgstr "Pokazywanie %d do %d z %d wpisów"
 
 #: application/controllers/Eqsl.php:83 application/controllers/Eqsl.php:173
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
@@ -1084,31 +1084,31 @@ msgstr "Nie ma takiego pseudonimu eQSL QTH: %s"
 
 #: application/controllers/Eqsl.php:335
 msgid "QSO not found or not accessible"
-msgstr ""
+msgstr "QSO nie zostało znalezione lub jest niedostępne"
 
 #: application/controllers/Eqsl.php:353
 msgid "User not found"
-msgstr ""
+msgstr "Użytkownik nie znaleziony"
 
 #: application/controllers/Eqsl.php:362
 msgid "eQSL password not configured for this user"
-msgstr ""
+msgstr "Hasło eQSL nie zostało skonfigurowane dla tego użytkownika"
 
 #: application/controllers/Eqsl.php:380
 msgid "Failed to fetch eQSL image data"
-msgstr ""
+msgstr "Nie udało się pobrać danych obrazu eQSL"
 
 #: application/controllers/Eqsl.php:399
 msgid "eQSL image not available"
-msgstr ""
+msgstr "Obraz eQSL niedostępny"
 
 #: application/controllers/Eqsl.php:418
 msgid "Failed to download eQSL image"
-msgstr ""
+msgstr "Nie udało się pobrać obrazu eQSL"
 
 #: application/controllers/Eqsl.php:443
 msgid "Failed to load cached eQSL image"
-msgstr ""
+msgstr "Nie udało się załadować zbuforowanego obrazu eQSL"
 
 #: application/controllers/Eqsl.php:590
 msgid "eQSL Tools"
@@ -1117,6 +1117,7 @@ msgstr "Narzędzia eQSL"
 #: application/controllers/Eqsl.php:620
 msgid "Limited to first 150 QSOs for this request. Please run again."
 msgstr ""
+"Ograniczono do pierwszych 150 QSO tego żądania. Należy uruchomić ponownie."
 
 #: application/controllers/Eqsl.php:626
 msgid " / Errors: "
@@ -1128,7 +1129,7 @@ msgstr "Pomyślnie pobrano: "
 
 #: application/controllers/Eqsl.php:633
 msgid "eQSL rate limit reached. Please wait before running again."
-msgstr ""
+msgstr "Osiągnięto limit eQSL. Proszę poczekać przed ponownym uruchomieniem."
 
 #: application/controllers/Eqsl.php:645
 msgid "eQSL Card Image Download"
@@ -1136,7 +1137,7 @@ msgstr "Pobieranie obrazów kart eQSL"
 
 #: application/controllers/Eqsl.php:669
 msgid "All eQSLs marked as uploaded"
-msgstr ""
+msgstr "Wszystkie eQSL zaznaczone jako przesłane"
 
 #: application/controllers/Generic_qsl.php:18
 msgid "Confirmations"
@@ -1947,7 +1948,7 @@ msgstr "Zaawansowany dziennik łączności"
 #: application/controllers/Logbookadvanced.php:924
 #, php-format
 msgid "DXCC updated for %d QSO(s)."
-msgstr ""
+msgstr "DXCC zaktualizowany dla %d QSO."
 
 #: application/controllers/Lookup.php:22
 msgid "Quick Lookup"
@@ -2008,7 +2009,7 @@ msgstr "Informacje ADIF LoTW"
 
 #: application/controllers/Lotw.php:858
 msgid "Connection to LoTW failed."
-msgstr ""
+msgstr "Połączenie z LoTW nieudane."
 
 #: application/controllers/Lotw.php:863
 #, php-format
@@ -3377,7 +3378,7 @@ msgstr "Znaleziono wielu użytkowników o podanym identyfikatorze"
 
 #: application/controllers/Zonechecker.php:26
 msgid "Gridsquare Zone finder"
-msgstr ""
+msgstr "Wyszukiwarka Strefy Lokatora"
 
 #: application/libraries/Callbook.php:124
 msgid "QRZCQ Error"
@@ -19229,6 +19230,16 @@ msgstr ""
 msgid "CQz geojson"
 msgstr ""
 
+#, php-format
+#~ msgid ""
+#~ "Found no certificate in file %s. If the filename contains 'key-only' this "
+#~ "is typically a certificate request which has not been processed by LoTW "
+#~ "yet."
+#~ msgstr ""
+#~ "Nie znaleziono certyfikatu w pliku %s. Jeśli nazwa pliku zawiera „key-"
+#~ "only”, jest to zazwyczaj żądanie certyfikatu, które nie zostało jeszcze "
+#~ "przetworzone przez LoTW."
+
 #~ msgid "LoTW .TQ8 Upload"
 #~ msgstr "Przesyłanie .TQ8 LoTW"
 
@@ -19244,6 +19255,9 @@ msgstr ""
 #~ msgid "QSL Card Management"
 #~ msgstr "Zarządzanie kartami QSL"
 
+#~ msgid "There is different data for DOK in your log compared to DCL"
+#~ msgstr "W logu masz inne dane dla DOK w porównaniu do DCL"
+
 #~ msgid "Incoming QSL Cards"
 #~ msgstr "Przychodzące karty QSL"
 
@@ -19255,19 +19269,6 @@ msgstr ""
 
 #~ msgid "Outgoing QSL Cards"
 #~ msgstr "Wychodzące karty QSL"
-
-#~ msgid "There is different data for DOK in your log compared to DCL"
-#~ msgstr "W logu masz inne dane dla DOK w porównaniu do DCL"
-
-#, php-format
-#~ msgid ""
-#~ "Found no certificate in file %s. If the filename contains 'key-only' this "
-#~ "is typically a certificate request which has not been processed by LoTW "
-#~ "yet."
-#~ msgstr ""
-#~ "Nie znaleziono certyfikatu w pliku %s. Jeśli nazwa pliku zawiera „key-"
-#~ "only”, jest to zazwyczaj żądanie certyfikatu, które nie zostało jeszcze "
-#~ "przetworzone przez LoTW."
 
 #~ msgid "Column"
 #~ msgstr "Kolumna"

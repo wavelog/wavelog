@@ -145,7 +145,7 @@
                                     </select>
                                 </div>
 								<?php if(count($countries->result()) > 0) { ?>
-									<label class="col-md-2" for="country">Country</label>
+									<label class="col-md-2" for="country">DXCC</label>
 									<div class="col-sm-3">
 										<select class="form-select form-select-sm" id="dxcc">
 											<option value="All"><?= __("All") ?></option>

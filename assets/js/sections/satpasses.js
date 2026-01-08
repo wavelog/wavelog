@@ -23,6 +23,11 @@ $(document).ready(function() {
 		// Then, select the stored locations
 		$('#satlist').multiselect('select', satelliteArray);
 	}
+
+	var countsats = $('#satlist').val().length;
+	if (countsats > 0) {
+		$('#addsked').prop('disabled', false);
+	}
 });
 
 function searchpasses() {

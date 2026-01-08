@@ -2,7 +2,7 @@
 # Copyright (c) 2026 Wavelog by DF2ET, DJ7NT, HB9HIL and LA8AJA.
 # This file is distributed under the MIT licence.
 #
-# Halil AYYILDIZ <ta2lghalil@gmail.com>, 2024.
+# Halil AYYILDIZ <ta2lghalil@gmail.com>, 2024, 2026.
 # Fatih ÖNDER <fatih05onder@gmail.com>, 2024.
 # utkuyalcin <utkyalcn@gmail.com>, 2024.
 # "Fatih ÖNDER (TB1TFO)" <fatih05onder@gmail.com>, 2024.
@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-01-08 08:50+0000\n"
-"PO-Revision-Date: 2025-12-27 14:44+0000\n"
-"Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
+"PO-Revision-Date: 2026-01-05 10:37+0000\n"
+"Last-Translator: Halil AYYILDIZ <ta2lghalil@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/tr/>\n"
 "Language: tr_TR\n"
@@ -1048,7 +1048,7 @@ msgstr "eQSL Kartları"
 #: application/controllers/Eqsl.php:56
 #, php-format
 msgid "Showing %d to %d of %d entries"
-msgstr ""
+msgstr "%d ila %d arasındaki kayıtlar gösteriliyor. (toplam %d kayıt)."
 
 #: application/controllers/Eqsl.php:83 application/controllers/Eqsl.php:173
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
@@ -1105,7 +1105,7 @@ msgstr "eQSL resmi indirilemedi"
 
 #: application/controllers/Eqsl.php:443
 msgid "Failed to load cached eQSL image"
-msgstr ""
+msgstr "Önbelleğe alınmış eQSL görüntüsü yüklenemedi"
 
 #: application/controllers/Eqsl.php:590
 msgid "eQSL Tools"
@@ -1113,7 +1113,7 @@ msgstr "eQSL Araçları"
 
 #: application/controllers/Eqsl.php:620
 msgid "Limited to first 150 QSOs for this request. Please run again."
-msgstr ""
+msgstr "Bu istek için ilk 150 görüşme ile sınırlıdır. Lütfen tekrar deneyin."
 
 #: application/controllers/Eqsl.php:626
 msgid " / Errors: "
@@ -1126,6 +1126,7 @@ msgstr "Başarıyla indirildi: "
 #: application/controllers/Eqsl.php:633
 msgid "eQSL rate limit reached. Please wait before running again."
 msgstr ""
+"eQSL Sınır değerine ulaşıldı. Lütfen tekrar çalıştırmadan önce bekleyin."
 
 #: application/controllers/Eqsl.php:645
 msgid "eQSL Card Image Download"
@@ -1942,7 +1943,7 @@ msgstr "Gelişmiş Kayıt Defteri"
 #: application/controllers/Logbookadvanced.php:924
 #, php-format
 msgid "DXCC updated for %d QSO(s)."
-msgstr ""
+msgstr "DXCC %d QSO için güncellendi."
 
 #: application/controllers/Lookup.php:22
 msgid "Quick Lookup"
@@ -1986,16 +1987,20 @@ msgid ""
 "contains 'key-only' this is typically a certificate request which has not "
 "been processed by LoTW yet."
 msgstr ""
+"Dosya %s'den sertifika çıkarılırken genel bir hata oluştu. Dosya adı 'key-"
+"only' içeriyorsa, bu genellikle LoTW tarafından henüz işlenmemiş bir "
+"sertifika isteğidir."
 
 #: application/controllers/Lotw.php:457
 #, php-format
 msgid "Generic error processing the certificate in file %s."
-msgstr ""
+msgstr "%s dosyasındaki sertifikanın işlenmesinde genel bir hata oluştu."
 
 #: application/controllers/Lotw.php:469
 #, php-format
 msgid "Generic error extracting the private key from certificate in file %s."
 msgstr ""
+"%s dosyasındaki sertifikadan özel anahtarı çıkarırken genel bir hata oluştu."
 
 #: application/controllers/Lotw.php:685
 msgid "LoTW ADIF Information"
@@ -2003,7 +2008,7 @@ msgstr "LoTW ADIF Bilgileri"
 
 #: application/controllers/Lotw.php:858
 msgid "Connection to LoTW failed."
-msgstr ""
+msgstr "LoTW bağlantısı başarısız oldu."
 
 #: application/controllers/Lotw.php:863
 #, php-format
@@ -3363,7 +3368,7 @@ msgstr "Sayfa Adı ile birden fazla kullanıcı bulundu"
 
 #: application/controllers/Zonechecker.php:26
 msgid "Gridsquare Zone finder"
-msgstr ""
+msgstr "Izgara Kare Bölge Bulucu"
 
 #: application/libraries/Callbook.php:124
 msgid "QRZCQ Error"
@@ -3371,7 +3376,7 @@ msgstr "QRZCQ Hatası"
 
 #: application/libraries/Callbook.php:155
 msgid "Error obtaining a session key for HamQTH query"
-msgstr ""
+msgstr "HamQTH sorgusu için oturum anahtarı alınırken hata oluştu"
 
 #: application/libraries/Cbr_parser.php:111
 #: application/libraries/Cbr_parser.php:160
@@ -3643,7 +3648,7 @@ msgstr "Yön"
 
 #: application/models/Logbookadvanced_model.php:1662
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
-msgstr ""
+msgstr "VuccGrids tablosu boş. Lütfen önce VUCC grid verilerini içe aktarın."
 
 #: application/models/Note.php:7
 msgid "Contacts"
@@ -6773,7 +6778,7 @@ msgstr "Bant Kategorileri"
 #: application/views/logbookadvanced/dbtoolsdialog.php:56
 #: application/views/logbookadvanced/index.php:818
 msgid "Fix State"
-msgstr ""
+msgstr "Durumu düzelt"
 
 #: application/views/awards/pl_polska/index.php:372
 msgid "Logbook Advanced"
@@ -6784,6 +6789,8 @@ msgid ""
 "This award uses the State field from your logbook. Ensure this field is "
 "populated for all SP (Poland) contacts."
 msgstr ""
+"Bu ödül, kayıt defterinizdeki Eyalet alanını kullanır. Tüm SP (Polonya) "
+"kişileri için bu alanın doldurulmuş olduğundan emin olun."
 
 #: application/views/awards/pl_polska/index.php:372
 msgid "Tip:"
@@ -6796,6 +6803,8 @@ msgstr "Kullan"
 #: application/views/awards/pl_polska/index.php:372
 msgid "to auto-populate states from Maidenhead locators."
 msgstr ""
+"Maidenhead konum belirleyicilerinden eyalet bilgilerini otomatik olarak "
+"doldurmak için."
 
 #: application/views/awards/pota/index.php:7
 msgid "POTA Awards"
@@ -7463,7 +7472,7 @@ msgstr "Filtreleri Temizle"
 
 #: application/views/bandmap/list.php:19
 msgid "Band filter preserved (band lock is active)"
-msgstr ""
+msgstr "Bant filtresi korunmuştur (bant kilidi aktiftir)"
 
 #: application/views/bandmap/list.php:21
 msgid "Radio set to None - CAT connection disabled"
@@ -7503,15 +7512,15 @@ msgstr "Tıkla ve CAT bağlantısını etkinleştir"
 
 #: application/views/bandmap/list.php:31
 msgid "CAT following radio - Click to disable"
-msgstr ""
+msgstr "CAT takip sistemi - Devre dışı bırakmak için tıklayın"
 
 #: application/views/bandmap/list.php:32 application/views/bandmap/list.php:231
 msgid "Click to enable band lock (requires CAT connection)"
-msgstr ""
+msgstr "Bant kilidini etkinleştirmek için tıklayın (CAT bağlantısı gereklidir)"
 
 #: application/views/bandmap/list.php:33
 msgid "Band lock active - Click to disable"
-msgstr ""
+msgstr "Band kilidi etkin - Devre dışı bırakmak için tıklayın"
 
 #: application/views/bandmap/list.php:34
 msgid "Band Lock"
@@ -7519,11 +7528,11 @@ msgstr "Bant Kilidi"
 
 #: application/views/bandmap/list.php:35
 msgid "Band lock enabled - band filter will track radio band"
-msgstr ""
+msgstr "Band kilidi etkinleştirildi - bant filtresi radyo bandını takip edecek"
 
 #: application/views/bandmap/list.php:36
 msgid "Band filter changed to"
-msgstr ""
+msgstr "Band filtresi değiştirildi"
 
 #: application/views/bandmap/list.php:37
 msgid "by transceiver"
@@ -7568,7 +7577,7 @@ msgstr "Submode filtresi etkinleştirildi"
 
 #: application/views/bandmap/list.php:49
 msgid "Submode filter disabled - showing all"
-msgstr ""
+msgstr "Alt mod filtresi devre dışı bırakıldı - tümü gösteriliyor"
 
 #: application/views/bandmap/list.php:50
 msgid "Required submodes"
@@ -7576,19 +7585,23 @@ msgstr "Gerekli alt modlar"
 
 #: application/views/bandmap/list.php:51
 msgid "Configure in User Settings - Modes"
-msgstr ""
+msgstr "Kullanıcı Ayarları - Modlar bölümünden yapılandırın"
 
 #: application/views/bandmap/list.php:52
 msgid "No submodes configured - configure in User Settings - Modes"
 msgstr ""
+"Hiçbir alt mod yapılandırılmamış - Kullanıcı Ayarları - Modlar bölümünden "
+"yapılandırın"
 
 #: application/views/bandmap/list.php:53
 msgid "No submodes enabled in settings - showing all spots"
-msgstr ""
+msgstr "Ayarlarda hiçbir alt mod etkinleştirilmedi - tüm noktalar gösteriliyor"
 
 #: application/views/bandmap/list.php:54
 msgid "Disabled - no submodes enabled for this mode in User Settings"
 msgstr ""
+"Devre dışı bırakıldı - Kullanıcı Ayarlarında bu mod için hiçbir alt mod "
+"etkinleştirilmedi"
 
 #: application/views/bandmap/list.php:55 application/views/bandmap/list.php:468
 #: application/views/components/dxwaterfall.php:32
@@ -7611,11 +7624,11 @@ msgstr "Favoriler"
 
 #: application/views/bandmap/list.php:61 application/views/bandmap/list.php:424
 msgid "Save Current Filters..."
-msgstr ""
+msgstr "Mevcut filtreleri kaydet..."
 
 #: application/views/bandmap/list.php:62
 msgid "Enter a name for this filter preset:"
-msgstr ""
+msgstr "Bu filtre ön ayarı için bir ad girin:"
 
 #: application/views/bandmap/list.php:63
 msgid "Filter preset saved"
@@ -7623,7 +7636,7 @@ msgstr "Filtre ayarı kaydedildi"
 
 #: application/views/bandmap/list.php:64
 msgid "Filter preset loaded"
-msgstr ""
+msgstr "Filtre ön ayarı yüklendi"
 
 #: application/views/bandmap/list.php:65
 msgid "Filter preset deleted"
@@ -7642,6 +7655,8 @@ msgid ""
 "Maximum of 20 filter presets reached. Please delete some before adding new "
 "ones."
 msgstr ""
+"En fazla 20 filtre ön ayarına ulaşıldı. Lütfen yenilerini eklemeden önce "
+"bazılarını silin."
 
 #: application/views/bandmap/list.php:71
 msgid "Loading data from DX Cluster"
@@ -7963,7 +7978,7 @@ msgstr "DX Cluster Yardım"
 
 #: application/views/bandmap/list.php:210
 msgid "Compact Mode - Hide/Show Menu"
-msgstr ""
+msgstr "Kompakt Mod - Menüyü Gizle/Göster"
 
 #: application/views/bandmap/list.php:237
 msgid "TRX:"
@@ -8090,7 +8105,7 @@ msgstr "Fitreleri Uygula"
 
 #: application/views/bandmap/list.php:420
 msgid "Filter Favorites"
-msgstr ""
+msgstr "Favorileri Filtrele"
 
 #: application/views/bandmap/list.php:430
 msgid "Clear all filters except De Continent"
@@ -8138,7 +8153,7 @@ msgstr "10m bant filtresini aç/kapat"
 
 #: application/views/bandmap/list.php:452
 msgid "Toggle 6m band filter"
-msgstr ""
+msgstr "6 metre bant filtresini açıp kapatın"
 
 #: application/views/bandmap/list.php:456
 msgid "Toggle VHF bands filter"
@@ -8848,12 +8863,12 @@ msgstr "Son QSO"
 
 #: application/views/calltester/comparison_result.php:18
 msgid "DXCC Class Results"
-msgstr ""
+msgstr "DXCC Sınıf Sonuçları"
 
 #: application/views/calltester/comparison_result.php:21
 #: application/views/calltester/comparison_result.php:33
 msgid "Calls tested:"
-msgstr ""
+msgstr "Test edilen aramalar:"
 
 #: application/views/calltester/comparison_result.php:22
 #: application/views/calltester/comparison_result.php:34
@@ -8867,27 +8882,28 @@ msgstr "Karşılaşılan sorunlar:"
 
 #: application/views/calltester/comparison_result.php:30
 msgid "Logbook Model Results"
-msgstr ""
+msgstr "Günlük Kayıt Modeli Sonuçları"
 
 #: application/views/calltester/comparison_result.php:44
 msgid "Comparison Summary"
-msgstr ""
+msgstr "Karşılaştırma Özeti"
 
 #: application/views/calltester/comparison_result.php:45
 msgid "Only found in DXCC Class:"
-msgstr ""
+msgstr "Sadece DXCC sınıfında bulunur:"
 
 #: application/views/calltester/comparison_result.php:46
 msgid "Only found in Logbook Model:"
-msgstr ""
+msgstr "Sadece Kayıt Defteri Modelinde bulunur:"
 
 #: application/views/calltester/comparison_result.php:47
 msgid "Found in both methods:"
-msgstr ""
+msgstr "Her iki yöntemde de bulundu:"
 
 #: application/views/calltester/comparison_result.php:54
 msgid "Issues found only in DXCC Class (not in Logbook Model):"
 msgstr ""
+"Yalnızca DXCC sınıfında bulunan sorunlar (Günlük Defteri modelinde değil):"
 
 #: application/views/calltester/comparison_result.php:62
 #: application/views/calltester/comparison_result.php:98
@@ -8931,7 +8947,7 @@ msgstr "Sonuç ADIF"
 
 #: application/views/calltester/comparison_result.php:90
 msgid "Issues found only in Logbook Model (not in DXCC Class):"
-msgstr ""
+msgstr "Yalnızca Logbook Modelinde bulunan sorunlar (DXCC Sınıfında değil):"
 
 #: application/views/calltester/comparison_result.php:126
 msgid "Issues found in both methods:"
@@ -8942,10 +8958,12 @@ msgid ""
 "No DXCC issues found in either method. All calls have correct DXCC "
 "information."
 msgstr ""
+"Her iki yöntemde de DXCC ile ilgili herhangi bir sorun bulunmadı. Tüm "
+"aramalarda DXCC bilgileri doğru."
 
 #: application/views/calltester/index.php:3
 msgid "Callsign DXCC identification"
-msgstr ""
+msgstr "Çağrı işareti DXCC tanımlaması"
 
 #: application/views/calltester/index.php:10
 #: application/views/interface_assets/footer.php:878
@@ -8956,11 +8974,11 @@ msgstr "Çağrı işareti: "
 
 #: application/views/calltester/index.php:15
 msgid "Start DXCC Check"
-msgstr ""
+msgstr "DXCC Kontrolünü Başlat"
 
 #: application/views/calltester/index.php:18
 msgid "Compare DXCC class and logbook model"
-msgstr ""
+msgstr "DXCC sınıfı ve kayıt defteri modelini karşılaştırın"
 
 #: application/views/calltester/result.php:4
 #: application/views/logbookadvanced/checkresult.php:82
@@ -8975,7 +8993,7 @@ msgstr "Çalışma süresi: "
 #: application/views/calltester/result.php:6
 #: application/views/logbookadvanced/checkresult.php:84
 msgid "Number of potential QSOs with wrong DXCC: "
-msgstr ""
+msgstr "Yanlış DXCC ile potansiyel QSO sayısı: "
 
 #: application/views/club/clubswitch_modal.php:5
 msgid "Switch to a Clubstation"
@@ -9443,7 +9461,7 @@ msgstr "by:"
 #: application/views/components/dxwaterfall.php:57
 #, php-format
 msgid "Please wait %s second(s) before toggling DX Waterfall again."
-msgstr ""
+msgstr "Lütfen DX Waterfall'ı tekrar açıp kapatmadan önce %s saniye bekleyin."
 
 #: application/views/components/dxwaterfall.php:81
 #: application/views/components/dxwaterfall.php:87
@@ -13548,7 +13566,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/index.php:512
 msgid "Sort column"
-msgstr ""
+msgstr "Sütunu sırala"
 
 #: application/views/logbookadvanced/index.php:514
 #: application/views/oqrs/showrequests.php:87
@@ -13557,19 +13575,19 @@ msgstr "QSO Saati"
 
 #: application/views/logbookadvanced/index.php:517
 msgid "QSO Modified"
-msgstr ""
+msgstr "QSO Değiştirildi"
 
 #: application/views/logbookadvanced/index.php:521
 msgid "Sort direction"
-msgstr ""
+msgstr "Sıralama yönü"
 
 #: application/views/logbookadvanced/index.php:523
 msgid "Descending"
-msgstr ""
+msgstr "Azalan"
 
 #: application/views/logbookadvanced/index.php:524
 msgid "Ascending"
-msgstr ""
+msgstr "Artan"
 
 #: application/views/logbookadvanced/index.php:532
 #: application/views/logbookadvanced/index.php:714
@@ -13883,7 +13901,7 @@ msgstr "Veritabanı Araçları"
 #: application/views/logbookadvanced/index.php:896
 #: application/views/logbookadvanced/useroptions.php:336
 msgid "Last modified"
-msgstr ""
+msgstr "Son değişiklik"
 
 #: application/views/logbookadvanced/index.php:899
 #: application/views/logbookadvanced/useroptions.php:28
@@ -13965,20 +13983,20 @@ msgstr "Sorun Bulunamadı"
 #: application/views/logbookadvanced/showStateQsos.php:16
 #, php-format
 msgid "Found %s QSO(s) missing state information for DXCC %s."
-msgstr ""
+msgstr "DXCC %s için durum bilgisi eksik olan %s QSO bulundu."
 
 #: application/views/logbookadvanced/showUpdateResult.php:22
 msgid "Results for state update:"
-msgstr ""
+msgstr "Eyalet güncellemesinin sonuçları:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:24
 #: application/views/logbookadvanced/showUpdateResult.php:26
 msgid "The number of QSOs updated for state/province in"
-msgstr ""
+msgstr "Eyalet/il için güncellenen QSO sayısı"
 
 #: application/views/logbookadvanced/showUpdateResult.php:38
 msgid "These QSOs could not be updated:"
-msgstr ""
+msgstr "Bu QSO'lar güncellenemedi:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:45
 #: application/views/search/lotw_unconfirmed.php:32
@@ -13987,31 +14005,31 @@ msgstr "İstasyon Konumu"
 
 #: application/views/logbookadvanced/showUpdateResult.php:46
 msgid "Reason"
-msgstr ""
+msgstr "Sebep"
 
 #: application/views/logbookadvanced/showUpdateResult.php:69
 msgid "Results for continent update:"
-msgstr ""
+msgstr "Kıta güncellemesinin sonuçları:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:70
 msgid "The number of QSOs updated for continent is"
-msgstr ""
+msgstr "Kıta için güncellenen QSO sayısı şöyledir"
 
 #: application/views/logbookadvanced/showUpdateResult.php:74
 msgid "Results for distance update:"
-msgstr ""
+msgstr "Mesafe güncellemesinin sonuçları:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:75
 msgid "The number of QSOs updated for distance is"
-msgstr ""
+msgstr "Mesafe için güncellenen QSO sayısı"
 
 #: application/views/logbookadvanced/showUpdateResult.php:79
 msgid "Results for gridsquare update:"
-msgstr ""
+msgstr "Gridsquare güncellemesinin sonuçları:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:80
 msgid "The number of QSOs updated for gridsquare is"
-msgstr ""
+msgstr "Gridsquare için güncellenen QSO sayısı şöyledir"
 
 #: application/views/logbookadvanced/startatform.php:15
 msgid "Include Via"
@@ -14028,13 +14046,15 @@ msgstr "Teşekkür mesajını dahil et"
 #: application/views/logbookadvanced/statecheckresult.php:3
 #: application/views/logbookadvanced/statecheckresult.php:42
 msgid "State Check Results"
-msgstr ""
+msgstr "Eyalet Kontrol Sonuçları"
 
 #: application/views/logbookadvanced/statecheckresult.php:4
 msgid ""
 "QSOs with missing state and gridsquares with 6 or more characters found for "
 "the following DXCCs:"
 msgstr ""
+"Aşağıdaki DXCC'ler için, durum bilgisi eksik olan ve 6 veya daha fazla "
+"karakter içeren gridsquare'lere sahip QSO'lar bulundu:"
 
 #: application/views/logbookadvanced/statecheckresult.php:30
 msgid "Run fix"
@@ -14042,35 +14062,41 @@ msgstr "Düzeltmeyi çalıştır"
 
 #: application/views/logbookadvanced/statecheckresult.php:43
 msgid "No QSOs were found where state information can be fixed."
-msgstr ""
+msgstr "Durum bilgisinin sabitlenebildiği hiçbir QSO bulunamadı."
 
 #: application/views/logbookadvanced/statedialog.php:2
 msgid ""
 "Update QSOs with state/province information based on gridsquare and DXCC "
 "country."
 msgstr ""
+"Gridsquare ve DXCC ülke bilgilerine dayanarak QSO'ları eyalet/il "
+"bilgileriyle güncelleyin."
 
 #: application/views/logbookadvanced/statedialog.php:3
 msgid ""
 "This feature uses GeoJSON boundary data to determine the state/province from "
 "the gridsquare locator."
 msgstr ""
+"Bu özellik, gridsquare konum belirleyicisinden eyalet/il belirlemek için "
+"GeoJSON sınır verilerini kullanır."
 
 #: application/views/logbookadvanced/statedialog.php:4
 msgid "Update will only set the state for QSOs where:"
 msgstr ""
+"Güncelleme yalnızca şu koşullar altında gerçekleşen QSO'lar için geçerli "
+"olacaktır:"
 
 #: application/views/logbookadvanced/statedialog.php:6
 msgid "The state field is empty"
-msgstr ""
+msgstr "Eyalet alanı boş"
 
 #: application/views/logbookadvanced/statedialog.php:7
 msgid "A gridsquare is present (at least 6 characters)"
-msgstr ""
+msgstr "En az 6 karakterden oluşan bir gridsquare mevcuttur"
 
 #: application/views/logbookadvanced/statedialog.php:8
 msgid "The DXCC country supports state lookup"
-msgstr ""
+msgstr "DXCC ülke bilgisi sorgulamayı destekliyor"
 
 #: application/views/logbookadvanced/statedialog.php:10
 msgid "Currently supported countries"
@@ -14078,45 +14104,47 @@ msgstr "Şu anda desteklenen ülkeler"
 
 #: application/views/logbookadvanced/useroptions.php:15
 msgid "Basic QSO Information"
-msgstr ""
+msgstr "Temel QSO Bilgileri"
 
 #: application/views/logbookadvanced/useroptions.php:72
 msgid "Station Details"
-msgstr ""
+msgstr "İstasyon Detayları"
 
 #: application/views/logbookadvanced/useroptions.php:105
 msgid "Confirmation Services"
-msgstr ""
+msgstr "Onay Hizmetleri"
 
 #: application/views/logbookadvanced/useroptions.php:162
 msgid "Geographic Information"
-msgstr ""
+msgstr "Coğrafi Bilgiler"
 
 #: application/views/logbookadvanced/useroptions.php:207
 msgid "Awards Programs"
-msgstr ""
+msgstr "Ödül Programları"
 
 #: application/views/logbookadvanced/useroptions.php:258
 msgid "Additional Information"
-msgstr ""
+msgstr "Ek Bilgiler"
 
 #: application/views/logbookadvanced/useroptions.php:297
 msgid "Technical Details"
-msgstr ""
+msgstr "Teknik Detaylar"
 
 #: application/views/logbookadvanced/useroptions.php:336
 msgid "For debugging only"
-msgstr ""
+msgstr "Yalnızca hata ayıklama amaçlıdır"
 
 #: application/views/logbookadvanced/useroptions.php:336
 msgid ""
 "This is meant for debugging purposes only and not designed to be displayed "
 "by default"
 msgstr ""
+"Bu yalnızca hata ayıklama amaçlıdır ve varsayılan olarak görüntülenmesi "
+"amaçlanmamıştır"
 
 #: application/views/logbookadvanced/useroptions.php:347
 msgid "Map Layers"
-msgstr ""
+msgstr "Harita Katmanları"
 
 #: application/views/lookup/index.php:11
 #: application/views/qso/award_tabs.php:53
@@ -15663,7 +15691,7 @@ msgstr "Anten yüksekliği için geçersiz değer:"
 
 #: application/views/qso/index.php:38
 msgid "Please wait before saving another QSO"
-msgstr ""
+msgstr "Lütfen başka bir QSO kaydetmeden önce bekleyin"
 
 #: application/views/qso/index.php:86
 msgid "LIVE"
@@ -16440,7 +16468,7 @@ msgstr ""
 
 #: application/views/search/result.php:65
 msgid "Source callbook"
-msgstr ""
+msgstr "Kaynak arama defteri"
 
 #: application/views/search/search_result_ajax.php:463
 #: application/views/view_log/partial/log.php:142
@@ -17270,6 +17298,11 @@ msgid ""
 "analytics. Great for when you're operating in multiple locations but they "
 "are part of the same DXCC or VUCC Circle."
 msgstr ""
+"İstasyon Kayıt Defterleri, İstasyon Konumlarını gruplandırmanıza olanak "
+"tanır; bu sayede kayıt defteri alanlarından analitiklere kadar tek bir "
+"oturumdaki tüm konumları görebilirsiniz. Birden fazla konumda faaliyet "
+"gösteriyorsanız ancak bunlar aynı DXCC veya VUCC Çemberinin parçasıysa çok "
+"kullanışlıdır."
 
 #: application/views/stationsetup/stationsetup.php:35
 msgid "Edit Linked locations"
@@ -17401,7 +17434,7 @@ msgstr "Yıl"
 #: application/views/statistics/index.php:15
 #: application/views/statistics/index.php:99
 msgid "Months"
-msgstr ""
+msgstr "Aylar"
 
 #: application/views/statistics/index.php:19
 msgid "Number of QSOs worked each year"
@@ -19139,6 +19172,16 @@ msgstr ""
 msgid "CQz geojson"
 msgstr ""
 
+#, php-format
+#~ msgid ""
+#~ "The certificate found in file %s contains a password and cannot be "
+#~ "processed. %s Please make sure you export the LoTW certificate from tqsl "
+#~ "application without password! %s"
+#~ msgstr ""
+#~ "%s dosyasında bulunan sertifika parola içeriyor ve işlenemiyor. %s Lütfen "
+#~ "LoTW sertifikasını tqsl uygulamasından parola olmadan dışa "
+#~ "aktardığınızdan emin olun! %s"
+
 #~ msgid "LoTW .TQ8 Upload"
 #~ msgstr "LoTW .TQ8 Yükleme"
 
@@ -19154,6 +19197,30 @@ msgstr ""
 #~ msgid "QSL Card Management"
 #~ msgstr "QSL Kart Yönetimi"
 
+#~ msgid "There is different data for DOK in your log compared to DCL"
+#~ msgstr "Logunuzdaki DOK ile DCL’deki DOK farklı"
+
+#~ msgid "Results for DXCC update:"
+#~ msgstr "DXCC güncellemesi sonuçları:"
+
+#~ msgid "The number of QSOs updated for missing DXCC IDs was"
+#~ msgstr "Eksik DXCC kimlikleri için güncellenen QSO sayısı şuydu"
+
+#~ msgid "The number of QSOs re-checked for DXCC was"
+#~ msgstr "DXCC için yeniden kontrol edilen QSO sayısı şuydu"
+
+#~ msgid "Results for CQ zone update:"
+#~ msgstr "CQ bölge güncellemesi sonuçları:"
+
+#~ msgid "The number of QSOs updated for CQ zone is"
+#~ msgstr "CQ bölgesi için güncellenen QSO sayısı şöyledir"
+
+#~ msgid "Results for ITU zone update:"
+#~ msgstr "ITU bölge güncellemesinin sonuçları:"
+
+#~ msgid "The number of QSOs updated for ITU zone is"
+#~ msgstr "ITU bölgesi için güncellenen QSO sayısı şöyledir"
+
 #~ msgid "Incoming QSL Cards"
 #~ msgstr "Gelen QSL Kartlar"
 
@@ -19165,15 +19232,6 @@ msgstr ""
 
 #~ msgid "Outgoing QSL Cards"
 #~ msgstr "Giden QSL Kartlar"
-
-#~ msgid "Results for DXCC update:"
-#~ msgstr "DXCC güncellemesi sonuçları:"
-
-#~ msgid "Results for CQ zone update:"
-#~ msgstr "CQ bölge güncellemesi sonuçları:"
-
-#~ msgid "There is different data for DOK in your log compared to DCL"
-#~ msgstr "Logunuzdaki DOK ile DCL’deki DOK farklı"
 
 #, php-format
 #~ msgid ""

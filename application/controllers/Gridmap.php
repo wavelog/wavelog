@@ -72,6 +72,8 @@ class Gridmap extends CI_Controller {
 
 		$this->load->model('gridmap_model');
 
+		$data['country_coords'] = $this->gridmap_model->get_coordinates_for_dxcc($dxcc);
+
 		$data['grids'] = $this->gridmap_model->get_grids_for_country($dxcc);
 		$data['grid_count'] = count($data['grids']);
 

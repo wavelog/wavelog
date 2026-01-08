@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-01-08 08:50+0000\n"
-"PO-Revision-Date: 2026-01-03 03:15+0000\n"
+"PO-Revision-Date: 2026-01-06 21:05+0000\n"
 "Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
@@ -1995,6 +1995,10 @@ msgid ""
 "application without password!%s For further information please visit the "
 "%sLoTW FAQ page%s in the Wavelog Wiki."
 msgstr ""
+"Das Zertifikat aus der Datei %s enthält ein Passwort und kann nicht "
+"verarbeitet werden. %sBitte stelle sicher, dass du das LoTW-Zertifikat aus "
+"der tqsl-Applikation ohne Passwort exportierst!%s Für weitere Informationen "
+"besuche bitte die %sLoTW FAQ Seite%s im Wavelog Wiki."
 
 #: application/controllers/Lotw.php:450
 #, php-format
@@ -2003,16 +2007,22 @@ msgid ""
 "contains 'key-only' this is typically a certificate request which has not "
 "been processed by LoTW yet."
 msgstr ""
+"Generischer Fehler beim Extrahieren des Zertifikats aus der Datei %s. Wenn "
+"der Dateiname 'key-only' enthält, handelt es sich typischerweise um eine "
+"Zertifikatsanforderung, die noch nicht von LoTW prozessiert wurde."
 
 #: application/controllers/Lotw.php:457
 #, php-format
 msgid "Generic error processing the certificate in file %s."
 msgstr ""
+"Generischer Fehler bei der Verarbeitung des Zertifikats aus der Datei %s."
 
 #: application/controllers/Lotw.php:469
 #, php-format
 msgid "Generic error extracting the private key from certificate in file %s."
 msgstr ""
+"Generischer Fehler bei der Extraktion des privaten Schlüssels aus dem "
+"Zertifikat in der Datei %s."
 
 #: application/controllers/Lotw.php:685
 msgid "LoTW ADIF Information"
@@ -4549,6 +4559,9 @@ msgid ""
 "There is different data for DOK in your log compared to DCL or updates where "
 "not done because QSOs are not confirmed in DCL."
 msgstr ""
+"Es gibt unterschiedliche Angaben zum DOK in deinem Log im Vergleich mit dem "
+"DCL oder Updates wurden nicht vorgenommen, weil die QSOs im DCL nicht "
+"bestätigt sind."
 
 #: application/views/adif/dcl_success.php:29
 #: application/views/adif/pota_success.php:29
@@ -4932,6 +4945,8 @@ msgid ""
 "More information regarding the confirmation status in DCL can be found on "
 "the %sDCL Confluence page%s."
 msgstr ""
+"Weitere Informationen zum Bestätigungsstatus im DCL findest du auf der %sDCL "
+"Confluence Seite%s."
 
 #: application/views/adif/import.php:349
 msgid "Only import DOK data from QSOs confirmed on DCL."
@@ -8093,7 +8108,7 @@ msgstr "Erweiterte Filter"
 
 #: application/views/bandmap/list.php:287
 msgid "Hold"
-msgstr "Pause"
+msgstr "Drücke"
 
 #: application/views/bandmap/list.php:287
 msgid "and click to select multiple options"
@@ -13097,7 +13112,7 @@ msgstr "Sendeleistung"
 
 #: application/views/logbookadvanced/edit.php:25
 msgid "DARC DOK"
-msgstr ""
+msgstr "DARC DOK"
 
 #: application/views/logbookadvanced/edit.php:31
 #: application/views/logbookadvanced/index.php:989
@@ -13675,7 +13690,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/index.php:512
 msgid "Sort column"
-msgstr ""
+msgstr "Spalte zur Sortierung"
 
 #: application/views/logbookadvanced/index.php:514
 #: application/views/oqrs/showrequests.php:87
@@ -13684,19 +13699,19 @@ msgstr "QSO-Zeit"
 
 #: application/views/logbookadvanced/index.php:517
 msgid "QSO Modified"
-msgstr ""
+msgstr "QSO Änderungsdatum"
 
 #: application/views/logbookadvanced/index.php:521
 msgid "Sort direction"
-msgstr ""
+msgstr "Sortierreihenfolge"
 
 #: application/views/logbookadvanced/index.php:523
 msgid "Descending"
-msgstr ""
+msgstr "Absteigend"
 
 #: application/views/logbookadvanced/index.php:524
 msgid "Ascending"
-msgstr ""
+msgstr "Aufsteigend"
 
 #: application/views/logbookadvanced/index.php:532
 #: application/views/logbookadvanced/index.php:714
@@ -14213,31 +14228,31 @@ msgstr "Derzeit unterstützte Länder"
 
 #: application/views/logbookadvanced/useroptions.php:15
 msgid "Basic QSO Information"
-msgstr ""
+msgstr "Grundlegende QSO Informationen"
 
 #: application/views/logbookadvanced/useroptions.php:72
 msgid "Station Details"
-msgstr ""
+msgstr "Stationsdetails"
 
 #: application/views/logbookadvanced/useroptions.php:105
 msgid "Confirmation Services"
-msgstr ""
+msgstr "Bestätigungsservices"
 
 #: application/views/logbookadvanced/useroptions.php:162
 msgid "Geographic Information"
-msgstr ""
+msgstr "Geographische Informationen"
 
 #: application/views/logbookadvanced/useroptions.php:207
 msgid "Awards Programs"
-msgstr ""
+msgstr "Award-Programme"
 
 #: application/views/logbookadvanced/useroptions.php:258
 msgid "Additional Information"
-msgstr ""
+msgstr "Zusätzliche Informationen"
 
 #: application/views/logbookadvanced/useroptions.php:297
 msgid "Technical Details"
-msgstr ""
+msgstr "Technische Details"
 
 #: application/views/logbookadvanced/useroptions.php:336
 msgid "For debugging only"
@@ -14253,7 +14268,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/useroptions.php:347
 msgid "Map Layers"
-msgstr ""
+msgstr "Kartenebenen"
 
 #: application/views/lookup/index.php:11
 #: application/views/qso/award_tabs.php:53
@@ -14438,6 +14453,8 @@ msgid ""
 "For further information please visit the %sLoTW FAQ page%s in the Wavelog "
 "Wiki"
 msgstr ""
+"Für weitere Informationen besuche bitte die %sLoTW FAQ Seite%s im Wavelog "
+"Wiki"
 
 #: application/views/map/qso_map.php:15
 msgid "Select Country:"
@@ -19338,6 +19355,16 @@ msgstr "CQz"
 msgid "CQz geojson"
 msgstr "CQz geojson"
 
+#, php-format
+#~ msgid ""
+#~ "The certificate found in file %s contains a password and cannot be "
+#~ "processed. %s Please make sure you export the LoTW certificate from tqsl "
+#~ "application without password! %s"
+#~ msgstr ""
+#~ "Das Zertifikat aus der Datei %s enthält ein Passwort und kann nicht "
+#~ "verwendet werden. %s Bitte stelle sicher, dass das LoTW Zertifikat aus "
+#~ "der tqsl Applikation ohne Passwort exportiert wird! %s"
+
 #~ msgid "LoTW .TQ8 Upload"
 #~ msgstr "LoTW .TQ8-Upload"
 
@@ -19353,17 +19380,8 @@ msgstr "CQz geojson"
 #~ msgid "QSL Card Management"
 #~ msgstr "QSL-Karten Management"
 
-#~ msgid "Incoming QSL Cards"
-#~ msgstr "Eingehende QSL-Karten"
-
-#~ msgid "Report"
-#~ msgstr "Bericht"
-
-#~ msgid "Option"
-#~ msgstr "Option"
-
-#~ msgid "Outgoing QSL Cards"
-#~ msgstr "Ausgehende QSL-Karten"
+#~ msgid "There is different data for DOK in your log compared to DCL"
+#~ msgstr "Die Informationen zum DOK im Logbuch weichen von denen im DCL ab"
 
 #~ msgid "Results for DXCC update:"
 #~ msgstr "Ergebnisse des DXCC-Updates:"
@@ -19386,8 +19404,17 @@ msgstr "CQz geojson"
 #~ msgid "The number of QSOs updated for ITU zone is"
 #~ msgstr "Anzahl aktualisierter QSOs bezüglich ITU-Zone ist"
 
-#~ msgid "There is different data for DOK in your log compared to DCL"
-#~ msgstr "Die Informationen zum DOK im Logbuch weichen von denen im DCL ab"
+#~ msgid "Incoming QSL Cards"
+#~ msgstr "Eingehende QSL-Karten"
+
+#~ msgid "Report"
+#~ msgstr "Bericht"
+
+#~ msgid "Option"
+#~ msgstr "Option"
+
+#~ msgid "Outgoing QSL Cards"
+#~ msgstr "Ausgehende QSL-Karten"
 
 #, php-format
 #~ msgid ""

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-01-08 08:50+0000\n"
-"PO-Revision-Date: 2026-01-03 02:38+0000\n"
+"PO-Revision-Date: 2026-01-07 07:56+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
@@ -1976,6 +1976,9 @@ msgid ""
 "application without password!%s For further information please visit the "
 "%sLoTW FAQ page%s in the Wavelog Wiki."
 msgstr ""
+"ファイル %s 内の証明書にはパスワードが含まれており、処理できません。%sパス"
+"ワードなしで tqsl アプリケーションから LoTW 証明書をエクスポートしてくださ"
+"い！%s詳細については、Wavelog Wiki の %sLoTW FAQ ページ%s をご覧ください。"
 
 #: application/controllers/Lotw.php:450
 #, php-format
@@ -1984,16 +1987,20 @@ msgid ""
 "contains 'key-only' this is typically a certificate request which has not "
 "been processed by LoTW yet."
 msgstr ""
+"ファイルから証明書を抽出する際の一般的なエラー %s 。ファイル名に「key-only」"
+"が含まれている場合、これは通常、LoTW によってまだ処理されていない証明書要求で"
+"す。"
 
 #: application/controllers/Lotw.php:457
 #, php-format
 msgid "Generic error processing the certificate in file %s."
-msgstr ""
+msgstr "ファイル内の証明書の処理中に一般的なエラーが発生しました %s 。"
 
 #: application/controllers/Lotw.php:469
 #, php-format
 msgid "Generic error extracting the private key from certificate in file %s."
 msgstr ""
+"ファイル内の証明書から秘密鍵を抽出する際に一般的なエラーが発生しました %s 。"
 
 #: application/controllers/Lotw.php:685
 msgid "LoTW ADIF Information"
@@ -4518,6 +4525,8 @@ msgid ""
 "There is different data for DOK in your log compared to DCL or updates where "
 "not done because QSOs are not confirmed in DCL."
 msgstr ""
+"ログ内のDOKデータは、DCLや更新データとは異なります。これは、DCLではQSOが確認"
+"されていないため更新が行われないためです。"
 
 #: application/views/adif/dcl_success.php:29
 #: application/views/adif/pota_success.php:29
@@ -4897,6 +4906,8 @@ msgid ""
 "More information regarding the confirmation status in DCL can be found on "
 "the %sDCL Confluence page%s."
 msgstr ""
+"DCLにおける確認ステータスに関する詳細情報は、%sDCL Confluenceページ%sでご確認"
+"いただけます。"
 
 #: application/views/adif/import.php:349
 msgid "Only import DOK data from QSOs confirmed on DCL."
@@ -12951,7 +12962,7 @@ msgstr "ステーションの出力"
 
 #: application/views/logbookadvanced/edit.php:25
 msgid "DARC DOK"
-msgstr ""
+msgstr "ダーク・ドック"
 
 #: application/views/logbookadvanced/edit.php:31
 #: application/views/logbookadvanced/index.php:989
@@ -13519,7 +13530,7 @@ msgstr "距離（キロメートル単位）。この値以上の距離を検索
 
 #: application/views/logbookadvanced/index.php:512
 msgid "Sort column"
-msgstr ""
+msgstr "列の並べ替え"
 
 #: application/views/logbookadvanced/index.php:514
 #: application/views/oqrs/showrequests.php:87
@@ -13528,19 +13539,19 @@ msgstr "QSO時間"
 
 #: application/views/logbookadvanced/index.php:517
 msgid "QSO Modified"
-msgstr ""
+msgstr "QSO修正版"
 
 #: application/views/logbookadvanced/index.php:521
 msgid "Sort direction"
-msgstr ""
+msgstr "ソート方向"
 
 #: application/views/logbookadvanced/index.php:523
 msgid "Descending"
-msgstr ""
+msgstr "降順"
 
 #: application/views/logbookadvanced/index.php:524
 msgid "Ascending"
-msgstr ""
+msgstr "昇順"
 
 #: application/views/logbookadvanced/index.php:532
 #: application/views/logbookadvanced/index.php:714
@@ -14053,31 +14064,31 @@ msgstr "現在サポートされている国"
 
 #: application/views/logbookadvanced/useroptions.php:15
 msgid "Basic QSO Information"
-msgstr ""
+msgstr "基本的なQSO情報"
 
 #: application/views/logbookadvanced/useroptions.php:72
 msgid "Station Details"
-msgstr ""
+msgstr "ステーション情報"
 
 #: application/views/logbookadvanced/useroptions.php:105
 msgid "Confirmation Services"
-msgstr ""
+msgstr "確認サービス"
 
 #: application/views/logbookadvanced/useroptions.php:162
 msgid "Geographic Information"
-msgstr ""
+msgstr "地理情報"
 
 #: application/views/logbookadvanced/useroptions.php:207
 msgid "Awards Programs"
-msgstr ""
+msgstr "アワードプログラム"
 
 #: application/views/logbookadvanced/useroptions.php:258
 msgid "Additional Information"
-msgstr ""
+msgstr "追加情報"
 
 #: application/views/logbookadvanced/useroptions.php:297
 msgid "Technical Details"
-msgstr ""
+msgstr "技術的な詳細"
 
 #: application/views/logbookadvanced/useroptions.php:336
 msgid "For debugging only"
@@ -14093,7 +14104,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/useroptions.php:347
 msgid "Map Layers"
-msgstr ""
+msgstr "マップレイヤー"
 
 #: application/views/lookup/index.php:11
 #: application/views/qso/award_tabs.php:53
@@ -14274,7 +14285,7 @@ msgstr "LoTW との次の自動同期は次の時間に行われます: "
 msgid ""
 "For further information please visit the %sLoTW FAQ page%s in the Wavelog "
 "Wiki"
-msgstr ""
+msgstr "詳細については、Wavelog Wikiの%sLoTW FAQページ%sをご覧ください"
 
 #: application/views/map/qso_map.php:15
 msgid "Select Country:"
@@ -19092,6 +19103,15 @@ msgstr "CQz"
 msgid "CQz geojson"
 msgstr "CQz geojson"
 
+#, php-format
+#~ msgid ""
+#~ "Found no certificate in file %s. If the filename contains 'key-only' this "
+#~ "is typically a certificate request which has not been processed by LoTW "
+#~ "yet."
+#~ msgstr ""
+#~ "ファイルに証明書が見つかりません %s 。ファイル名に「key-only」が含まれてい"
+#~ "る場合、これは通常、LoTW によってまだ処理されていない証明書要求です。"
+
 #~ msgid "LoTW .TQ8 Upload"
 #~ msgstr "LoTW .TQ8 アップロード"
 
@@ -19107,17 +19127,8 @@ msgstr "CQz geojson"
 #~ msgid "QSL Card Management"
 #~ msgstr "QSLカード管理"
 
-#~ msgid "Incoming QSL Cards"
-#~ msgstr "受信QSLカード"
-
-#~ msgid "Report"
-#~ msgstr "報告"
-
-#~ msgid "Option"
-#~ msgstr "オプション"
-
-#~ msgid "Outgoing QSL Cards"
-#~ msgstr "送信QSLカード"
+#~ msgid "There is different data for DOK in your log compared to DCL"
+#~ msgstr "ログ内のDOKとDCLのデータが異なります"
 
 #~ msgid "Results for DXCC update:"
 #~ msgstr "DXCCアップデートの結果:"
@@ -19140,17 +19151,27 @@ msgstr "CQz geojson"
 #~ msgid "The number of QSOs updated for ITU zone is"
 #~ msgstr "ITUゾーンで更新されたQSOの数は"
 
-#~ msgid "There is different data for DOK in your log compared to DCL"
-#~ msgstr "ログ内のDOKとDCLのデータが異なります"
+#~ msgid "Incoming QSL Cards"
+#~ msgstr "受信QSLカード"
+
+#~ msgid "Report"
+#~ msgstr "報告"
+
+#~ msgid "Option"
+#~ msgstr "オプション"
+
+#~ msgid "Outgoing QSL Cards"
+#~ msgstr "送信QSLカード"
 
 #, php-format
 #~ msgid ""
-#~ "Found no certificate in file %s. If the filename contains 'key-only' this "
-#~ "is typically a certificate request which has not been processed by LoTW "
-#~ "yet."
+#~ "The certificate found in file %s contains a password and cannot be "
+#~ "processed. %s Please make sure you export the LoTW certificate from tqsl "
+#~ "application without password! %s"
 #~ msgstr ""
-#~ "ファイルに証明書が見つかりません %s 。ファイル名に「key-only」が含まれてい"
-#~ "る場合、これは通常、LoTW によってまだ処理されていない証明書要求です。"
+#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できませ"
+#~ "ん。%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パス"
+#~ "ワードなしで実行してください！%s"
 
 #~ msgid "Column"
 #~ msgstr "カラム"

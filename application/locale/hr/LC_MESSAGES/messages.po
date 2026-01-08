@@ -4,12 +4,13 @@
 #
 # Fabian Berg <80885850+HB9HIL@users.noreply.github.com>, 2024.
 # Fabian Berg <fabian.berg@hb9hil.org>, 2024.
+# marin <translate.wavelog.org@marin.fyi>, 2026.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-01-08 08:50+0000\n"
-"PO-Revision-Date: 2024-11-23 16:17+0000\n"
-"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
+"PO-Revision-Date: 2026-01-06 21:05+0000\n"
+"Last-Translator: marin <translate.wavelog.org@marin.fyi>\n"
 "Language-Team: Croatian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/hr/>\n"
 "Language: hr\n"
@@ -18,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.8.4\n"
+"X-Generator: Weblate 5.14\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -134,7 +135,7 @@ msgstr "To ti nije dopušteno!"
 #: application/controllers/Accumulated.php:19
 #: application/views/interface_assets/header.php:174
 msgid "Accumulated Statistics"
-msgstr ""
+msgstr "Akumulirana statistika"
 
 #: application/controllers/Activated_gridmap.php:10
 #: application/views/activated_gridmap/index.php:9
@@ -210,30 +211,30 @@ msgstr ""
 
 #: application/controllers/Adif.php:80
 msgid "valid date"
-msgstr ""
+msgstr "valjan datum"
 
 #: application/controllers/Adif.php:82
 msgid "date incorrect"
-msgstr ""
+msgstr "neispravan datum"
 
 #: application/controllers/Adif.php:265
 #: application/views/interface_assets/header.php:476
 msgid "ADIF Import / Export"
-msgstr ""
+msgstr "ADIF Uvoz/Izvoz"
 
 #: application/controllers/Adif.php:303 application/views/adif/import.php:30
 #: application/views/dcl_views/import.php:3 application/views/lotw/import.php:3
 msgid "ADIF Import"
-msgstr ""
+msgstr "ADIF uvoz"
 
 #: application/controllers/Adif.php:347
 msgid "Unsupported Filetype"
-msgstr ""
+msgstr "Ne podržan format datoteke"
 
 #: application/controllers/Adif.php:428
 #: application/views/adif/import_failed.php:12
 msgid "ADIF Import failed!"
-msgstr ""
+msgstr "ADIF Uvoz nije uspio!"
 
 #: application/controllers/Adif.php:442
 msgid "Station Profile not valid for User"
@@ -242,19 +243,19 @@ msgstr ""
 #: application/controllers/Adif.php:451
 #: application/views/adif/import_success.php:12
 msgid "ADIF Imported"
-msgstr ""
+msgstr "ADIF uvezen"
 
 #: application/controllers/Adif.php:465
 msgid "DCL Import"
-msgstr ""
+msgstr "DCL Uvoz"
 
 #: application/controllers/Adif.php:526
 msgid "DCL Data Imported"
-msgstr ""
+msgstr "DCL Podatci Uvezeni"
 
 #: application/controllers/Adif.php:540
 msgid "POTA Import"
-msgstr ""
+msgstr "POTA Uvoz"
 
 #: application/controllers/Adif.php:600
 msgid "POTA Data Imported"
@@ -303,7 +304,7 @@ msgstr ""
 #: application/views/logbookadvanced/edit.php:22
 #: application/views/qso/edit_ajax.php:36
 msgid "Awards"
-msgstr ""
+msgstr "Nagrade"
 
 #: application/controllers/Awards.php:102
 #: application/controllers/Awards.php:194
@@ -330,7 +331,7 @@ msgstr ""
 #: application/controllers/Awards.php:2482
 #, php-format
 msgid "Awards - %s"
-msgstr ""
+msgstr "Nagrade - %s"
 
 #: application/controllers/Awards.php:102
 #: application/views/awards/dok/index.php:150
@@ -346,7 +347,7 @@ msgstr ""
 #: application/views/qso/index.php:649 application/views/user/edit.php:715
 #: application/views/view_log/qso.php:466
 msgid "DOK"
-msgstr ""
+msgstr "DOK"
 
 #: application/controllers/Awards.php:194 application/views/awards/index.php:7
 #: application/views/bandmap/list.php:97 application/views/bands/index.php:50
@@ -376,29 +377,29 @@ msgstr ""
 #: application/views/stationsetup/linkedlocations.php:33
 #: application/views/timeplotter/index.php:24
 msgid "DXCC"
-msgstr ""
+msgstr "DXCC"
 
 #: application/controllers/Awards.php:271
 msgid "Awards - WAPC"
-msgstr ""
+msgstr "Nagrade - WAPC"
 
 #: application/controllers/Awards.php:351
 msgid "Awards - WAJA"
-msgstr ""
+msgstr "Nagrade - WAJA"
 
 #: application/controllers/Awards.php:428 application/views/bands/index.php:53
 #: application/views/interface_assets/header.php:256
 msgid "JCC"
-msgstr ""
+msgstr "JCC"
 
 #: application/controllers/Awards.php:478 application/views/bands/index.php:59
 #: application/views/interface_assets/header.php:198
 msgid "VUCC"
-msgstr ""
+msgstr "VUCC"
 
 #: application/controllers/Awards.php:510
 msgid "Log View - VUCC"
-msgstr ""
+msgstr "Pregled loga - VUCC"
 
 #: application/controllers/Awards.php:560
 #: application/controllers/Callstats.php:100
@@ -411,26 +412,26 @@ msgstr ""
 #: application/controllers/Timeline.php:138
 #: application/controllers/Timeline.php:141
 msgid "Log View"
-msgstr ""
+msgstr "Pregled loga"
 
 #: application/controllers/Awards.php:561
 #: application/controllers/Callstats.php:101
 msgid " and band "
-msgstr ""
+msgstr " i opseg "
 
 #: application/controllers/Awards.php:564
 msgid " and satellite "
-msgstr ""
+msgstr " i satelit "
 
 #: application/controllers/Awards.php:567
 #: application/controllers/Callstats.php:107
 msgid " and orbit type "
-msgstr ""
+msgstr " i tip orbite "
 
 #: application/controllers/Awards.php:571
 #: application/controllers/Callstats.php:111
 msgid " and propagation "
-msgstr ""
+msgstr " i propagacija "
 
 #: application/controllers/Awards.php:574
 #: application/controllers/Callstats.php:114
@@ -440,7 +441,7 @@ msgstr ""
 #: application/controllers/Awards.php:577
 #: application/controllers/Callstats.php:117
 msgid " and "
-msgstr ""
+msgstr " i "
 
 #: application/controllers/Awards.php:595
 #: application/controllers/Logbook.php:1385
@@ -467,7 +468,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:21
 msgid "SOTA"
-msgstr ""
+msgstr "SOTA"
 
 #: application/controllers/Awards.php:613
 #: application/controllers/Logbook.php:1386
@@ -3899,7 +3900,7 @@ msgstr ""
 #: application/views/view_log/qso.php:239
 msgctxt "Propagation Mode"
 msgid "Aircraft Scatter"
-msgstr ""
+msgstr "Scatter aviona"
 
 #: application/views/accumulate/index.php:87
 #: application/views/callstats/index.php:72 application/views/csv/index.php:97
@@ -3913,7 +3914,7 @@ msgstr ""
 #: application/views/view_log/qso.php:242
 msgctxt "Propagation Mode"
 msgid "Aurora"
-msgstr ""
+msgstr "Aurora"
 
 #: application/views/accumulate/index.php:88
 #: application/views/callstats/index.php:73 application/views/csv/index.php:98
@@ -3927,7 +3928,7 @@ msgstr ""
 #: application/views/view_log/qso.php:245
 msgctxt "Propagation Mode"
 msgid "Aurora-E"
-msgstr ""
+msgstr "Aurora-E"
 
 #: application/views/accumulate/index.php:89
 #: application/views/callstats/index.php:74 application/views/csv/index.php:99
@@ -3955,7 +3956,7 @@ msgstr ""
 #: application/views/view_log/qso.php:251
 msgctxt "Propagation Mode"
 msgid "EchoLink"
-msgstr ""
+msgstr "EchoLink"
 
 #: application/views/accumulate/index.php:91
 #: application/views/callstats/index.php:76 application/views/csv/index.php:101
@@ -3969,7 +3970,7 @@ msgstr ""
 #: application/views/view_log/qso.php:254
 msgctxt "Propagation Mode"
 msgid "Earth-Moon-Earth"
-msgstr ""
+msgstr "Zemlja-Mjesec-Zemlja"
 
 #: application/views/accumulate/index.php:92
 #: application/views/callstats/index.php:77 application/views/csv/index.php:102
@@ -3983,7 +3984,7 @@ msgstr ""
 #: application/views/view_log/qso.php:257
 msgctxt "Propagation Mode"
 msgid "Sporadic E"
-msgstr ""
+msgstr "Sporadični E"
 
 #: application/views/accumulate/index.php:93
 #: application/views/callstats/index.php:78 application/views/csv/index.php:103
@@ -4011,7 +4012,7 @@ msgstr ""
 #: application/views/view_log/qso.php:263
 msgctxt "Propagation Mode"
 msgid "F2 Reflection"
-msgstr ""
+msgstr "F2 refleksija"
 
 #: application/views/accumulate/index.php:95
 #: application/views/callstats/index.php:80 application/views/csv/index.php:105
@@ -4025,7 +4026,7 @@ msgstr ""
 #: application/views/view_log/qso.php:266
 msgctxt "Propagation Mode"
 msgid "Internet-assisted"
-msgstr ""
+msgstr "Uz pomoć Interneta"
 
 #: application/views/accumulate/index.php:96
 #: application/views/callstats/index.php:81 application/views/csv/index.php:106
@@ -4039,7 +4040,7 @@ msgstr ""
 #: application/views/view_log/qso.php:269
 msgctxt "Propagation Mode"
 msgid "Ionoscatter"
-msgstr ""
+msgstr "ionosfersko raspršenje"
 
 #: application/views/accumulate/index.php:97
 #: application/views/callstats/index.php:82 application/views/csv/index.php:107
@@ -4053,7 +4054,7 @@ msgstr ""
 #: application/views/view_log/qso.php:272
 msgctxt "Propagation Mode"
 msgid "IRLP"
-msgstr ""
+msgstr "IRLP"
 
 #: application/views/accumulate/index.php:98
 #: application/views/callstats/index.php:83 application/views/csv/index.php:108
@@ -4067,7 +4068,7 @@ msgstr ""
 #: application/views/view_log/qso.php:275
 msgctxt "Propagation Mode"
 msgid "Meteor scatter"
-msgstr ""
+msgstr "Meteorsko raspršenje"
 
 #: application/views/accumulate/index.php:99
 #: application/views/callstats/index.php:84 application/views/csv/index.php:109
@@ -4095,7 +4096,7 @@ msgstr ""
 #: application/views/view_log/qso.php:281
 msgctxt "Propagation Mode"
 msgid "Rain scatter"
-msgstr ""
+msgstr "Kišno raspršenje"
 
 #: application/views/accumulate/index.php:101
 #: application/views/callstats/index.php:86 application/views/csv/index.php:111
@@ -4109,7 +4110,7 @@ msgstr ""
 #: application/views/view_log/qso.php:284
 msgctxt "Propagation Mode"
 msgid "Satellite"
-msgstr ""
+msgstr "Satelit"
 
 #: application/views/accumulate/index.php:102
 #: application/views/callstats/index.php:87 application/views/csv/index.php:112
@@ -4174,7 +4175,7 @@ msgstr ""
 #: application/views/timeline/index.php:370
 #: application/views/timeplotter/index.php:59
 msgid "Show"
-msgstr ""
+msgstr "Prikaži"
 
 #: application/views/activated_gridmap/index.php:24
 #: application/views/awards/dxcc/index.php:186
@@ -4201,7 +4202,7 @@ msgstr ""
 #: application/views/sattimers/index.php:38
 #: application/views/statistics/index.php:27
 msgid "Satellite"
-msgstr ""
+msgstr "Satelit"
 
 #: application/views/activated_gridmap/index.php:34
 #: application/views/awards/dxcc/index.php:202
@@ -4220,14 +4221,14 @@ msgstr ""
 #: application/views/statistics/antennaanalytics.php:60
 #: application/views/statistics/antennaanalytics.php:98
 msgid "Orbit"
-msgstr ""
+msgstr "Orbita"
 
 #: application/views/activated_gridmap/index.php:54
 #: application/views/awards/wab/index.php:66
 #: application/views/gridmap/index.php:162
 #: application/views/timeline/index.php:52
 msgid "Confirmation"
-msgstr ""
+msgstr "Potvrda"
 
 #: application/views/activated_gridmap/index.php:86
 #: application/views/awards/cq/index.php:122
@@ -4249,17 +4250,17 @@ msgstr ""
 #: application/views/awards/wpx/index.php:40
 #: application/views/gridmap/index.php:195 application/views/user/edit.php:847
 msgid "QRZ.com"
-msgstr ""
+msgstr "QRZ.com"
 
 #: application/views/activated_gridmap/index.php:90
 #: application/views/gridmap/index.php:20
 msgid "Plot"
-msgstr ""
+msgstr "Nacrtaj"
 
 #: application/views/activated_gridmap/index.php:91
 #: application/views/gridmap/index.php:21
 msgid "Clear Markers"
-msgstr ""
+msgstr "Obriši markere"
 
 #: application/views/activated_gridmap/index.php:106
 #: application/views/awards/ffma/index.php:34
@@ -4268,7 +4269,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:10
 #: application/views/map/qso_map.php:59
 msgid "Latitude"
-msgstr ""
+msgstr "Geografska širina"
 
 #: application/views/activated_gridmap/index.php:108
 #: application/views/awards/ffma/index.php:36
@@ -4277,17 +4278,17 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:11
 #: application/views/map/qso_map.php:61
 msgid "Longitude"
-msgstr ""
+msgstr "Geografska duljina"
 
 #: application/views/activators/index.php:26
 msgctxt "Orbiter LEO or GEO"
 msgid "Both"
-msgstr ""
+msgstr "Oboje"
 
 #: application/views/activators/index.php:33
 #: application/views/callstats/index.php:92
 msgid "Minimum Count"
-msgstr ""
+msgstr "Minimalan broj"
 
 #: application/views/activators/index.php:76
 #: application/views/awards/73on73/index.php:66
@@ -4320,7 +4321,7 @@ msgstr ""
 #: application/views/public_search/empty.php:3
 #: application/views/qrz/export.php:65 application/views/timeline/index.php:158
 msgid "Nothing found!"
-msgstr ""
+msgstr "Ništa nije pronađeno!"
 
 #: application/views/activators/index.php:98
 #: application/views/adif/import.php:107 application/views/adif/import.php:268
@@ -4380,11 +4381,11 @@ msgstr ""
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:672
 #: application/views/zonechecker/result.php:50
 msgid "Callsign"
-msgstr ""
+msgstr "Pozivni znak"
 
 #: application/views/activators/index.php:99
 msgid "Count"
-msgstr ""
+msgstr "Broj"
 
 #: application/views/activators/index.php:101
 #: application/views/callstats/index.php:151
@@ -4395,11 +4396,11 @@ msgstr ""
 #: application/views/timeline/index.php:328
 #: application/views/timeline/index.php:357
 msgid "Show QSOs"
-msgstr ""
+msgstr "Prikaži QSO-ove"
 
 #: application/views/activators/index.php:102
 msgid "Show Map"
-msgstr ""
+msgstr "Prikaži kartu"
 
 #: application/views/adif/dcl_success.php:12
 msgid "Results of DCL DOK Update"
@@ -4409,7 +4410,7 @@ msgstr ""
 #: application/views/adif/pota_success.php:16
 #: application/views/cabrillo/cbr_success.php:16
 msgid "Yay, its updated!"
-msgstr ""
+msgstr "Jupi, ažurirano je!"
 
 #: application/views/adif/dcl_success.php:17
 msgid "DCL information for DOKs has been updated."
@@ -4424,7 +4425,7 @@ msgstr ""
 #: application/views/adif/pota_success.php:22
 #: application/views/cabrillo/cbr_success.php:22
 msgid "QSOs ignored"
-msgstr ""
+msgstr "Ignorirani QSO-ovi"
 
 #: application/views/adif/dcl_success.php:22
 #: application/views/adif/pota_success.php:22
@@ -4435,7 +4436,7 @@ msgstr ""
 #: application/views/adif/pota_success.php:22
 #: application/views/cabrillo/cbr_success.php:22
 msgid "QSOs updated"
-msgstr ""
+msgstr "QSO-ovi ažurirani"
 
 #: application/views/adif/dcl_success.php:25
 msgid "DOK Errors"
@@ -4493,7 +4494,7 @@ msgstr ""
 #: application/views/visitor/index.php:151
 #: application/views/widgets/qsos.php:16
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #: application/views/adif/dcl_success.php:30
 #: application/views/adif/pota_success.php:30
@@ -4529,7 +4530,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:198
 #: application/views/visitor/index.php:154
 msgid "Time"
-msgstr ""
+msgstr "Vrijeme"
 
 #: application/views/adif/dcl_success.php:31
 #: application/views/adif/pota_success.php:31
@@ -4551,7 +4552,7 @@ msgstr ""
 #: application/views/visitor/index.php:156
 #: application/views/widgets/qsos.php:17
 msgid "Call"
-msgstr ""
+msgstr "Pozivni znak"
 
 #: application/views/adif/dcl_success.php:34
 msgid "DOK in Log"
@@ -10397,7 +10398,7 @@ msgstr ""
 
 #: application/views/debug/index.php:678
 msgid "Albanian"
-msgstr ""
+msgstr "Albanski"
 
 #: application/views/debug/index.php:679
 msgid "Armenian"

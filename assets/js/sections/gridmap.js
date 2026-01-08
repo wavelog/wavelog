@@ -132,7 +132,7 @@ function gridPlot(form, visitor=true) {
 				grid_six_confirmed = data.grid_6char_confirmed;
 				grids = data.grids;
 				grid_max = data.grid_count;
-				plot(visitor, grid_two, grid_four, grid_six, grid_two_confirmed, grid_four_confirmed, grid_six_confirmed, grids, grid_max);
+				plot(visitor, grid_two, grid_four, grid_six, grid_two_confirmed, grid_four_confirmed, grid_six_confirmed, grids, grid_max, data.country_coords);
 
 			},
 			error: function (data) {
@@ -143,17 +143,26 @@ function gridPlot(form, visitor=true) {
    };
 }
 
-function plot(visitor, grid_two, grid_four, grid_six, grid_two_confirmed, grid_four_confirmed, grid_six_confirmed, grids, grid_max) {
-            var layer = L.tileLayer(jslayer, {
+function plot(visitor, grid_two, grid_four, grid_six, grid_two_confirmed, grid_four_confirmed, grid_six_confirmed, grids, grid_max, country_coords) {
+            let layer = L.tileLayer(jslayer, {
                 maxZoom: 12,
                 attribution: jsattribution,
                 id: 'mapbox.streets'
             });
 
+            // Set map center and zoom based on country selection
+            let mapCenter = [19, 0];
+            let mapZoom = 3;
+
+            if (country_coords && country_coords.lat && country_coords.long) {
+                mapCenter = [country_coords.lat, country_coords.long];
+                mapZoom = 5; // Zoom in closer for country view
+            }
+
             map = L.map('gridsquare_map', {
             layers: [layer],
-            center: [19, 0],
-            zoom: 3,
+            center: mapCenter,
+            zoom: mapZoom,
             minZoom: 2,
             fullscreenControl: true,
                 fullscreenControlOptions: {
@@ -162,7 +171,7 @@ function plot(visitor, grid_two, grid_four, grid_six, grid_two_confirmed, grid_f
             });
 
             if (visitor != true) {
-               var printer = L.easyPrint({
+               let printer = L.easyPrint({
                    tileLayer: layer,
                    sizeModes: ['Current'],
                    filename: 'myMap',
@@ -172,7 +181,7 @@ function plot(visitor, grid_two, grid_four, grid_six, grid_two_confirmed, grid_f
             }
 
             /*Legend specific*/
-            var legend = L.control({ position: "topright" });
+            let legend = L.control({ position: "topright" });
 
 
 			if (grids != '') {
@@ -180,6 +189,12 @@ function plot(visitor, grid_two, grid_four, grid_six, grid_two_confirmed, grid_f
 					let div = L.DomUtil.create("div", "legend");
 					div.setAttribute('id', 'gridmapLegend');
 					html = '<div align="right" class="legendClose"><small><a href="javascript: hideLegend();">X</a></small></div>';
+					 // Add country name if selected
+					const countryName = getSelectedCountryName();
+					if (countryName) {
+						html += '<h4>DXCC: ' + countryName + '</h4>';
+					}
+
 					html += "<table border=\"0\">";
 					html += '<i style="background: green"></i><span>' + gridsquares_gridsquares_confirmed + ' ('+grid_four_confirmed.length+')</span><br>';
 					html += '<i style="background: red"></i><span>' + gridsquares_gridsquares_not_confirmed + ' ('+(grid_four.length - grid_four_confirmed.length)+')</span><br>';
@@ -212,6 +227,23 @@ function plot(visitor, grid_two, grid_four, grid_six, grid_two_confirmed, grid_f
                map.on('mousemove', onMapMove);
                map.on('click', onMapClick);
             }
+}
+
+// Get selected country name from multiselect
+function getSelectedCountryName() {
+    const dxccSelect = $('#dxcc');
+    const selectedValues = dxccSelect.val();
+
+    if (!selectedValues || selectedValues[0] === 'All') {
+        return null;
+    }
+
+    // Get the text of selected options
+    const selectedText = dxccSelect.find('option:selected').map(function() {
+        return $(this).text();
+    }).get();
+
+    return selectedText.join(', ');
 }
 
 function spawnGridsquareModal(loc_4char) {

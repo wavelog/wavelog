@@ -13,12 +13,12 @@
 # KARIM MALFI <karim.malfi@sfr.fr>, 2025.
 # Stephane Tauziede <contact@f4izc.com>, 2025.
 # F5MQU <f5mqu.p@gmail.com>, 2025.
-# JONCOUX Philippe <joncoux@free.fr>, 2025.
+# JONCOUX Philippe <joncoux@free.fr>, 2025, 2026.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-01-08 08:50+0000\n"
-"PO-Revision-Date: 2025-12-30 08:27+0000\n"
+"PO-Revision-Date: 2026-01-05 16:42+0000\n"
 "Last-Translator: JONCOUX Philippe <joncoux@free.fr>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/fr/>\n"
@@ -1996,16 +1996,21 @@ msgid ""
 "contains 'key-only' this is typically a certificate request which has not "
 "been processed by LoTW yet."
 msgstr ""
+"Erreur générique lors de l'extraction du certificat du fichier %s. Si le nom "
+"du fichier contient « key-only », il s'agit généralement d'une demande de "
+"certificat qui n'a pas encore été traitée par LoTW."
 
 #: application/controllers/Lotw.php:457
 #, php-format
 msgid "Generic error processing the certificate in file %s."
-msgstr ""
+msgstr "Erreur générique lors du traitement du certificat dans le fichier %s."
 
 #: application/controllers/Lotw.php:469
 #, php-format
 msgid "Generic error extracting the private key from certificate in file %s."
 msgstr ""
+"Erreur générique lors de l'extraction de la clé privée du certificat dans le "
+"fichier %s."
 
 #: application/controllers/Lotw.php:685
 msgid "LoTW ADIF Information"
@@ -2013,7 +2018,7 @@ msgstr "Information ADIF LoTW"
 
 #: application/controllers/Lotw.php:858
 msgid "Connection to LoTW failed."
-msgstr ""
+msgstr "La connexion à LoTW a échoué."
 
 #: application/controllers/Lotw.php:863
 #, php-format
@@ -3382,7 +3387,7 @@ msgstr "Plusieurs utilisateurs trouvés par slug"
 
 #: application/controllers/Zonechecker.php:26
 msgid "Gridsquare Zone finder"
-msgstr ""
+msgstr "Localisateur de zones de la grille"
 
 #: application/libraries/Callbook.php:124
 msgid "QRZCQ Error"
@@ -12453,19 +12458,19 @@ msgstr "DCL Exportation"
 
 #: application/views/interface_assets/header.php:537
 msgid "Internal tools"
-msgstr ""
+msgstr "Outils internes"
 
 #: application/views/interface_assets/header.php:539
 msgid "Callsign DXCC checker"
-msgstr ""
+msgstr "Vérificateur d'indicatifs DXCC"
 
 #: application/views/interface_assets/header.php:540
 msgid "GeoJSON QSO Map"
-msgstr ""
+msgstr "Carte GeoJSON QSO"
 
 #: application/views/interface_assets/header.php:541
 msgid "Gridsquare Zone checker"
-msgstr ""
+msgstr "Vérificateur de zone Gridsquare"
 
 #: application/views/interface_assets/header.php:548
 #: application/views/logbookadvanced/index.php:879
@@ -12895,12 +12900,12 @@ msgstr ""
 
 #: application/views/logbookadvanced/checkresult.php:164
 msgid "DXCC Gridsquare"
-msgstr ""
+msgstr "Carré de la grille DXCC"
 
 #: application/views/logbookadvanced/checkresult.php:187
 #: application/views/logbookadvanced/index.php:77
 msgid "Show more"
-msgstr ""
+msgstr "Afficher plus"
 
 #: application/views/logbookadvanced/checkresult.php:216
 msgid "CQ Zone Check Results"
@@ -12911,10 +12916,13 @@ msgid ""
 "The following QSOs were found to have a different CQ zone compared to what "
 "this DXCC normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
+"Les QSO suivants ont été identifiés comme ayant une zone CQ différente de "
+"celle habituellement observée par ce DXCC (un maximum de 5000 QSO sont "
+"affichés) :"
 
 #: application/views/logbookadvanced/checkresult.php:223
 msgid "Force update even if DXCC covers multiple CQ zones"
-msgstr ""
+msgstr "Forcer la mise à jour même si DXCC couvre plusieurs zones CQ"
 
 #: application/views/logbookadvanced/checkresult.php:224
 msgid ""
@@ -12924,6 +12932,12 @@ msgid ""
 "are updated. This checkbox overrides this but might result in wrong data. "
 "Use with caution!"
 msgstr ""
+"La fonction de mise à jour ne peut définir que la zone CQ principale "
+"associée au DXCC. Si le DXCC couvre plusieurs zones CQ, il est possible que "
+"cette information soit erronée. Par défaut, seuls les QSO avec des DXCC "
+"couvrant une seule zone CQ sont donc mis à jour. Cette case à cocher permet "
+"de modifier ce comportement, mais peut générer des données incorrectes. À "
+"utiliser avec précaution !"
 
 #: application/views/logbookadvanced/checkresult.php:241
 #: application/views/search/cqzones_result.php:14
@@ -12978,10 +12992,13 @@ msgid ""
 "The following QSOs were found to have a different ITU zone compared to what "
 "this DXCC normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
+"Les QSO suivants ont été identifiés comme ayant une zone UIT différente de "
+"celle habituellement utilisée par ce DXCC (un maximum de 5000 QSO sont "
+"affichés) :"
 
 #: application/views/logbookadvanced/checkresult.php:299
 msgid "Force update even if DXCC covers multiple ITU zones"
-msgstr ""
+msgstr "Forcer la mise à jour même si DXCC couvre plusieurs zones UIT"
 
 #: application/views/logbookadvanced/checkresult.php:300
 msgid ""
@@ -12991,6 +13008,12 @@ msgid ""
 "are updated. This checkbox overrides this but might result in wrong data. "
 "Use with caution!"
 msgstr ""
+"La fonction de mise à jour ne peut définir que la zone UIT principale "
+"associée au DXCC. Si le DXCC couvre plusieurs zones UIT, il est possible que "
+"cette information soit erronée. Par défaut, seuls les QSO avec des DXCC "
+"couvrant une seule zone UIT sont donc mis à jour. Cette case à cocher permet "
+"de contourner ce comportement, mais peut générer des données incorrectes. À "
+"utiliser avec précaution !"
 
 #: application/views/logbookadvanced/checkresult.php:317
 #: application/views/search/ituzones_result.php:14
@@ -13010,14 +13033,17 @@ msgid ""
 "Warning. This tool can be dangerous to your data, and should only be used if "
 "you know what you are doing."
 msgstr ""
+"Avertissement. Cet outil peut être dangereux pour vos données et ne doit "
+"être utilisé que si vous savez ce que vous faites."
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:12
 msgid "Check all QSOs in the logbook for incorrect CQ Zones"
 msgstr ""
+"Vérifiez tous les QSO dans le carnet de trafic pour les zones CQ incorrectes"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:13
 msgid "Use Wavelog to determine CQ Zone for all QSOs."
-msgstr ""
+msgstr "Utilisez Wavelog pour déterminer la zone CQ pour tous les QSO."
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:17
 #: application/views/logbookadvanced/dbtoolsdialog.php:28
@@ -13033,18 +13059,21 @@ msgstr "Vérifier"
 #: application/views/logbookadvanced/dbtoolsdialog.php:23
 msgid "Check all QSOs in the logbook for incorrect ITU Zones"
 msgstr ""
+"Vérifiez tous les QSO dans le carnet de trafic pour les zones UIT incorrectes"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:24
 msgid "Use Wavelog to determine ITU Zone for all QSOs."
 msgstr ""
+"Utilisez Wavelog pour déterminer la zone UIT pour toutes les liaisons radio "
+"(QSO)."
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:34
 msgid "Check Gridsquares"
-msgstr ""
+msgstr "Vérifier les cases de la grille"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:35
 msgid "Check gridsquares that does not match the DXCC"
-msgstr ""
+msgstr "Vérifiez les cases de la grille qui ne correspondent pas au DXCC"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:45
 msgid "Fix Continent"
@@ -19397,6 +19426,16 @@ msgstr ""
 msgid "CQz geojson"
 msgstr ""
 
+#, php-format
+#~ msgid ""
+#~ "The certificate found in file %s contains a password and cannot be "
+#~ "processed. %s Please make sure you export the LoTW certificate from tqsl "
+#~ "application without password! %s"
+#~ msgstr ""
+#~ "Le certificat trouvé dans le fichier %s contient un mot de passe et ne "
+#~ "peut pas être traité. %s Veuillez vous assurer d'exporter le certificat "
+#~ "LoTW depuis l'application tqsl sans mot de passe ! %s"
+
 #~ msgid "LoTW .TQ8 Upload"
 #~ msgstr "Télécharger .TQ8 LoTW"
 
@@ -19412,17 +19451,8 @@ msgstr ""
 #~ msgid "QSL Card Management"
 #~ msgstr "Gestion des cartes QSL"
 
-#~ msgid "Incoming QSL Cards"
-#~ msgstr "Cartes QSL entrantes"
-
-#~ msgid "Report"
-#~ msgstr "Rapport"
-
-#~ msgid "Option"
-#~ msgstr "Option"
-
-#~ msgid "Outgoing QSL Cards"
-#~ msgstr "Cartes QSL sortantes"
+#~ msgid "There is different data for DOK in your log compared to DCL"
+#~ msgstr "Différence de données DOK entre votre journal de travail et DCL"
 
 #~ msgid "Results for DXCC update:"
 #~ msgstr "Résultats de la mise à jour DXCC :"
@@ -19446,8 +19476,17 @@ msgstr ""
 #~ msgid "The number of QSOs updated for ITU zone is"
 #~ msgstr "Le nombre de QSO mis à jour pour la zone UIT est de"
 
-#~ msgid "There is different data for DOK in your log compared to DCL"
-#~ msgstr "Différence de données DOK entre votre journal de travail et DCL"
+#~ msgid "Incoming QSL Cards"
+#~ msgstr "Cartes QSL entrantes"
+
+#~ msgid "Report"
+#~ msgstr "Rapport"
+
+#~ msgid "Option"
+#~ msgstr "Option"
+
+#~ msgid "Outgoing QSL Cards"
+#~ msgstr "Cartes QSL sortantes"
 
 #, php-format
 #~ msgid ""

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-01-08 08:50+0000\n"
-"PO-Revision-Date: 2026-01-03 02:38+0000\n"
+"PO-Revision-Date: 2026-01-06 21:05+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/nl/>\n"
@@ -1976,6 +1976,10 @@ msgid ""
 "application without password!%s For further information please visit the "
 "%sLoTW FAQ page%s in the Wavelog Wiki."
 msgstr ""
+"Het certificaat in bestand %s bevat een wachtwoord en kan niet verwerkt "
+"worden. %sZorg ervoor dat je het LoTW-certificaat uit de tqsl-toepassing "
+"zonder wachtwoord exporteert!%s Voor meer informatie bezoek de %sLoTW FAQ-"
+"pagina%s in de Wavelog Wiki."
 
 #: application/controllers/Lotw.php:450
 #, php-format
@@ -1984,16 +1988,21 @@ msgid ""
 "contains 'key-only' this is typically a certificate request which has not "
 "been processed by LoTW yet."
 msgstr ""
+"Algemene fout bij het extraheren van het certificaat uit bestand %s. Als de "
+"bestandsnaam 'key-only' bevat, is dit meestal een certificaataanvraag die "
+"nog niet door LoTW is verwerkt."
 
 #: application/controllers/Lotw.php:457
 #, php-format
 msgid "Generic error processing the certificate in file %s."
-msgstr ""
+msgstr "Generieke fout bij het verwerken van het certificaat in bestand %s."
 
 #: application/controllers/Lotw.php:469
 #, php-format
 msgid "Generic error extracting the private key from certificate in file %s."
 msgstr ""
+"Algemene fout bij het extraheren van de privésleutel uit certificaat in "
+"bestand %s."
 
 #: application/controllers/Lotw.php:685
 msgid "LoTW ADIF Information"
@@ -4522,6 +4531,8 @@ msgid ""
 "There is different data for DOK in your log compared to DCL or updates where "
 "not done because QSOs are not confirmed in DCL."
 msgstr ""
+"Er staan verschillende gegevens voor DOK in jouw log vergeleken met DCL of "
+"updates zijn niet gedaan omdat QSOs niet bevestigd zijn in DCL."
 
 #: application/views/adif/dcl_success.php:29
 #: application/views/adif/pota_success.php:29
@@ -4901,6 +4912,8 @@ msgid ""
 "More information regarding the confirmation status in DCL can be found on "
 "the %sDCL Confluence page%s."
 msgstr ""
+"Meer informatie over de bevestigingsstatus in DCL is te vinden op de %sDCL "
+"Confluence-pagina%s."
 
 #: application/views/adif/import.php:349
 msgid "Only import DOK data from QSOs confirmed on DCL."
@@ -13028,7 +13041,7 @@ msgstr "Zendvermogen"
 
 #: application/views/logbookadvanced/edit.php:25
 msgid "DARC DOK"
-msgstr ""
+msgstr "DARC DOK"
 
 #: application/views/logbookadvanced/edit.php:31
 #: application/views/logbookadvanced/index.php:989
@@ -13601,7 +13614,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/index.php:512
 msgid "Sort column"
-msgstr ""
+msgstr "Kolom sorteren"
 
 #: application/views/logbookadvanced/index.php:514
 #: application/views/oqrs/showrequests.php:87
@@ -13610,19 +13623,19 @@ msgstr "QSO-tijd"
 
 #: application/views/logbookadvanced/index.php:517
 msgid "QSO Modified"
-msgstr ""
+msgstr "QSO Gewijzigd"
 
 #: application/views/logbookadvanced/index.php:521
 msgid "Sort direction"
-msgstr ""
+msgstr "Sorteer richting"
 
 #: application/views/logbookadvanced/index.php:523
 msgid "Descending"
-msgstr ""
+msgstr "Aflopend"
 
 #: application/views/logbookadvanced/index.php:524
 msgid "Ascending"
-msgstr ""
+msgstr "Oplopend"
 
 #: application/views/logbookadvanced/index.php:532
 #: application/views/logbookadvanced/index.php:714
@@ -14140,31 +14153,31 @@ msgstr "Momenteel ondersteunde landen"
 
 #: application/views/logbookadvanced/useroptions.php:15
 msgid "Basic QSO Information"
-msgstr ""
+msgstr "Basis QSO Informatie"
 
 #: application/views/logbookadvanced/useroptions.php:72
 msgid "Station Details"
-msgstr ""
+msgstr "Stationgegevens"
 
 #: application/views/logbookadvanced/useroptions.php:105
 msgid "Confirmation Services"
-msgstr ""
+msgstr "Bevestigingsdiensten"
 
 #: application/views/logbookadvanced/useroptions.php:162
 msgid "Geographic Information"
-msgstr ""
+msgstr "Geografische informatie"
 
 #: application/views/logbookadvanced/useroptions.php:207
 msgid "Awards Programs"
-msgstr ""
+msgstr "Award programmas"
 
 #: application/views/logbookadvanced/useroptions.php:258
 msgid "Additional Information"
-msgstr ""
+msgstr "Aanvullende informatie"
 
 #: application/views/logbookadvanced/useroptions.php:297
 msgid "Technical Details"
-msgstr ""
+msgstr "Technische details"
 
 #: application/views/logbookadvanced/useroptions.php:336
 msgid "For debugging only"
@@ -14180,7 +14193,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/useroptions.php:347
 msgid "Map Layers"
-msgstr ""
+msgstr "Kaartlagen"
 
 #: application/views/lookup/index.php:11
 #: application/views/qso/award_tabs.php:53
@@ -14363,7 +14376,7 @@ msgstr "De volgende automatische synchronisatie met LoTW zal plaatsvinden op: "
 msgid ""
 "For further information please visit the %sLoTW FAQ page%s in the Wavelog "
 "Wiki"
-msgstr ""
+msgstr "Voor meer informatie, bezoek de %sLoTW FAQ-pagina%s in de Wavelog Wiki"
 
 #: application/views/map/qso_map.php:15
 msgid "Select Country:"
@@ -19255,6 +19268,16 @@ msgstr "CQz"
 msgid "CQz geojson"
 msgstr "CQz geojson"
 
+#, php-format
+#~ msgid ""
+#~ "Found no certificate in file %s. If the filename contains 'key-only' this "
+#~ "is typically a certificate request which has not been processed by LoTW "
+#~ "yet."
+#~ msgstr ""
+#~ "Geen certificaat gevonden in bestand %s. Als de bestandsnaam 'key-only' "
+#~ "bevat, is dit meestal een certificaataanvraag die nog niet door LoTW is "
+#~ "verwerkt."
+
 #~ msgid "LoTW .TQ8 Upload"
 #~ msgstr "LoTW .TQ8 uploaden"
 
@@ -19270,17 +19293,9 @@ msgstr "CQz geojson"
 #~ msgid "QSL Card Management"
 #~ msgstr "QSL-kaartbeheer"
 
-#~ msgid "Incoming QSL Cards"
-#~ msgstr "Binnenkomende QSL-kaarten"
-
-#~ msgid "Report"
-#~ msgstr "Verslag"
-
-#~ msgid "Option"
-#~ msgstr "Optie"
-
-#~ msgid "Outgoing QSL Cards"
-#~ msgstr "Uitgaande QSL-kaarten"
+#~ msgid "There is different data for DOK in your log compared to DCL"
+#~ msgstr ""
+#~ "Er zijn verschillende gegevens voor DOK in je logboek vergeleken met DCL"
 
 #~ msgid "Results for DXCC update:"
 #~ msgstr "Resultaten voor DXCC-update:"
@@ -19303,19 +19318,27 @@ msgstr "CQz geojson"
 #~ msgid "The number of QSOs updated for ITU zone is"
 #~ msgstr "Het aantal bijgewerkte QSO's voor ITU-zone is"
 
-#~ msgid "There is different data for DOK in your log compared to DCL"
-#~ msgstr ""
-#~ "Er zijn verschillende gegevens voor DOK in je logboek vergeleken met DCL"
+#~ msgid "Incoming QSL Cards"
+#~ msgstr "Binnenkomende QSL-kaarten"
+
+#~ msgid "Report"
+#~ msgstr "Verslag"
+
+#~ msgid "Option"
+#~ msgstr "Optie"
+
+#~ msgid "Outgoing QSL Cards"
+#~ msgstr "Uitgaande QSL-kaarten"
 
 #, php-format
 #~ msgid ""
-#~ "Found no certificate in file %s. If the filename contains 'key-only' this "
-#~ "is typically a certificate request which has not been processed by LoTW "
-#~ "yet."
+#~ "The certificate found in file %s contains a password and cannot be "
+#~ "processed. %s Please make sure you export the LoTW certificate from tqsl "
+#~ "application without password! %s"
 #~ msgstr ""
-#~ "Geen certificaat gevonden in bestand %s. Als de bestandsnaam 'key-only' "
-#~ "bevat, is dit meestal een certificaataanvraag die nog niet door LoTW is "
-#~ "verwerkt."
+#~ "Het certificaat dat is gevonden in bestand %s bevat een wachtwoord en kan "
+#~ "niet worden verwerkt. %s Zorg ervoor dat je het LoTW-certificaat "
+#~ "exporteert vanuit de tqsl-toepassing zonder wachtwoord! %s"
 
 #~ msgid "Column"
 #~ msgstr "Kolom"
