@@ -854,3 +854,49 @@ $config['enable_dxcluster_file_cache_worked'] = false;
 |--------------------------------------------------------------------------
  */
 $config['internal_tools'] = false;
+
+/*
+|--------------------------------------------------------------------------
+| API Rate Limiting
+|--------------------------------------------------------------------------
+|
+| Rate limiting for API endpoints using sliding window algorithm.
+| Rate limiting is only enabled if api_rate_limits is defined (not null/empty).
+|
+| Format: Array of endpoint-specific limits
+|   - Endpoint name: the API function name (e.g., 'private_lookup', 'lookup')
+|   - requests: maximum number of requests allowed
+|   - window: time window in seconds
+|
+| Example configuration:
+|
+| $config['api_rate_limits'] = [
+|     'private_lookup' => ['requests' => 60, 'window' => 60],  // 60 requests per minute
+|     'lookup'         => ['requests' => 60, 'window' => 60],  // 60 requests per minute
+|     'qso'            => ['requests' => 10, 'window' => 60],  // 10 requests per minute
+|     'default'        => ['requests' => 30, 'window' => 60],  // Default for all other endpoints
+| ];
+|
+| Set to null or leave commented to disable rate limiting entirely:
+| $config['api_rate_limits'] = null;
+|
+| The 'default' key is optional and applies to any API endpoint not explicitly
+| listed. If no default is provided, endpoints without specific limits have no
+| rate limiting applied.
+|
+| Rate limiting tracks requests by:
+|   - API key (if provided)
+|   - Session user ID (if authenticated via session)
+|   - IP address (fallback)
+|
+*/
+
+// Example configuration (uncomment to enable):
+// $config['api_rate_limits'] = [
+//     'private_lookup' => ['requests' => 60, 'window' => 60],
+//     'lookup'         => ['requests' => 60, 'window' => 60],
+//     'qso'            => ['requests' => 10, 'window' => 60],
+//     'radio'          => ['requests' => 60, 'window' => 60],
+//     'statistics'     => ['requests' => 30, 'window' => 60],
+//     'default'        => ['requests' => 30, 'window' => 60],
+// ];
