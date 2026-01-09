@@ -28,6 +28,27 @@ class API extends CI_Controller {
 		redirect('api');
 	}
 
+	/**
+	 * Check rate limit for current endpoint
+	 * Only enforced if api_rate_limits config is set
+	 *
+	 * returns True if request is allowed, false if rate limited
+	 */
+	protected function check_rate_limit($endpoint, $identifier = null) {
+		if (!$this->load->is_loaded('rate_limit')) {
+			$this->load->library('rate_limit');
+		}
+
+		$result = $this->rate_limit->check($endpoint, $identifier);
+
+		if (!$result['allowed']) {
+			log_message("Debug","Rate limit for endpoint ".$endpoint." and ID: ".($identifier ?? '')." exceeded");
+			$this->rate_limit->send_limit_exceeded_response($result['retry_after']);
+			return false;
+		}
+
+		return true;
+	}
 
 	function edit($key) {
 		$this->load->model('user_model');
@@ -37,23 +58,20 @@ class API extends CI_Controller {
 
 		$this->load->helper(array('form', 'url'));
 
-        $this->load->library('form_validation');
+		$this->load->library('form_validation');
 
-        $this->form_validation->set_rules('api_desc', __("API Description"), 'required');
-        $this->form_validation->set_rules('api_key', __("API Key is required. Do not change this field"), 'required');
+		$this->form_validation->set_rules('api_desc', __("API Description"), 'required');
+		$this->form_validation->set_rules('api_key', __("API Key is required. Do not change this field"), 'required');
 
-        $data['api_info'] = $this->api_model->key_description($key);
+		$data['api_info'] = $this->api_model->key_description($key);
 
-        if ($this->form_validation->run() == FALSE)
-        {
-  	      	$data['page_title'] = __("Edit API Description");
+		if ($this->form_validation->run() == FALSE) {
+			$data['page_title'] = __("Edit API Description");
 
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('api/description');
 			$this->load->view('interface_assets/footer');
-		}
-		else
-		{
+		} else {
 			// Success!
 
 			$this->api_model->update_key_description($this->input->post('api_key'), $this->input->post('api_desc'));
@@ -259,6 +277,11 @@ class API extends CI_Controller {
 		    echo json_encode(['status' => 'failed', 'reason' => "wrong JSON"]);
 		    die();
 		}
+
+		// Check rate limit
+		$identifier = isset($obj['key']) ? $obj['key'] : null;
+		$this->check_rate_limit('qso', $identifier);
+
 		$raw='';
 
 		if(!isset($obj['key']) || $this->api_model->authorize($obj['key']) == 0) {
@@ -728,6 +751,10 @@ class API extends CI_Controller {
 		// Decode JSON and store
 		$obj = json_decode(file_get_contents("php://input"), true);
 
+		// Check rate limit
+		$identifier = isset($obj['key']) ? $obj['key'] : null;
+		$this->check_rate_limit('radio', $identifier);
+
 		if(!isset($obj['key']) || $this->api_model->authorize($obj['key']) == 0) {
 			http_response_code(401);
 			echo json_encode(['status' => 'failed', 'reason' => "missing api key"]);
@@ -823,6 +850,10 @@ class API extends CI_Controller {
 	function private_lookup() {
 		// Lookup Callsign and dxcc for further informations. UseCase: e.g. external Application which checks calls like FlexRadio-Overlay
 		$raw_input = json_decode(file_get_contents("php://input"), true);
+
+		// Check rate limit
+		$identifier = isset($raw_input['key']) ? $raw_input['key'] : null;
+		$this->check_rate_limit('private_lookup', $identifier);
 		$user_id='';
 		$this->load->model('user_model');
 		if (!( $this->user_model->authorize($this->config->item('auth_mode') ))) {				// User not authorized?
@@ -1024,6 +1055,11 @@ class API extends CI_Controller {
 	function lookup() {
 		// This API provides NO information about previous QSOs. It just derivates DXCC, Lat, Long. It is used by the DXClusterAPI
 		$raw_input = json_decode(file_get_contents("php://input"), true);
+
+		// Check rate limit
+		$identifier = isset($raw_input['key']) ? $raw_input['key'] : null;
+		$this->check_rate_limit('lookup', $identifier);
+
 		$user_id = '';
 		$this->load->model('user_model');
 		if (!( $this->user_model->authorize($this->config->item('auth_mode') ))) {				// User not authorized?
