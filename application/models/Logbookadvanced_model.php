@@ -1646,6 +1646,8 @@ class Logbookadvanced_model extends CI_Model {
 				return $this->getIncorrectCqZones();
 			case 'checkincorrectituzones':
 				return $this->getIncorrectItuZones();
+			case 'checkiota':
+				return $this->checkIota();
 			default:
 				return null;
 		}
@@ -2074,5 +2076,118 @@ class Logbookadvanced_model extends CI_Model {
 		$query = $this->db->query($sql, $params);
 
 		return $query->result();
+	}
+
+	public function checkIota() {
+		$result1 = $this->checkSingleIota();
+		$result2 = $this->checkMultiDxccIota();
+
+		$merged = array_merge($result1, $result2);
+
+		// Sort merged results by station_profile_name, then col_time_on DESC
+		usort($merged, function($a, $b) {
+			$stationCompare = strcmp($a->station_profile_name, $b->station_profile_name);
+			if ($stationCompare !== 0) {
+				return $stationCompare;
+			}
+			// If same station, sort by time_on descending (newest first)
+			return strtotime($b->col_time_on) - strtotime($a->col_time_on);
+		});
+
+		return $merged;
+	}
+
+	/*
+	 * Get list of QSOs with IOTA that do not match the IOTAs listed for the DXCC.
+	 * Some islands are excluded as they can be in multiple DXCCs.
+	 *
+	 * These are excluded by not having a dxccid or dxccid = 0
+	 *
+	 */
+	public function checkSingleIota() {
+		$sql = "select col_primary_key, col_time_on, col_call, col_band, col_gridsquare, col_dxcc, col_country, station_profile_name, col_lotw_qsl_rcvd, col_mode, col_submode, col_iota, iotadxcc.name as correctdxcc
+		from  " . $this->config->item('table_name') . "  thcv
+		join station_profile on thcv.station_id = station_profile.station_id
+		join dxcc_entities on dxcc_entities.adif = thcv.COL_DXCC
+		join iota on thcv.col_iota = iota.tag
+		join dxcc_entities iotadxcc on iota.dxccid = iotadxcc.adif
+		where station_profile.user_id = ?
+		and thcv.col_dxcc > 0
+		and thcv.col_dxcc <> iota.dxccid
+		and iota.dxccid > 0
+		order by station_profile_name, col_time_on desc";
+
+		$bindings[] = [$this->session->userdata('user_id')];
+
+		$query = $this->db->query($sql, $bindings);
+		return $query->result();
+	}
+
+	/*
+	 * Get list of QSOs with multi-DXCC IOTA tags where the DXCC prefix doesn't match
+	 * any of the valid prefixes for that IOTA.
+	 */
+	public function checkMultiDxccIota() {
+		// Define IOTA tags that span multiple DXCCs with their valid prefixes
+		$multiDxccIotas = [
+			'AS-004' => [215, 283], // 5B4, ZC4
+			'EU-053' => [167, 284], // OJ0, SM
+			'EU-115' => [245, 265], // EI, GI
+			'EU-117' => [151, 224], // R1M, OH
+			'EU-129' => [230, 269], // DL, SP
+			'EU-191' => [275, 288], // YO, UR
+			'EU-192' => [284, 224], // SM, OH
+			'NA-015' => [70, 105], // CO, KG4
+			'NA-096' => [72, 78], // HH, HI
+			'NA-105' => [213, 518], // FS, PJ7
+			'OC-034' => [163, 327], // P2, YB
+			'OC-088' => [46, 327, 345], // 9M6, V8, YB
+			'OC-148' => [327, 511], // YB, 4W
+			'SA-008' => [100, 112] // LU, CE
+		];
+
+		$allResults = [];
+
+		foreach ($multiDxccIotas as $iotaTag => $adifList) {
+			// Build IN clause for SQL
+			$adifListStr = implode(',', $adifList);
+
+			$sql = "SELECT thcv.col_primary_key, thcv.col_time_on, thcv.col_call, thcv.col_band, thcv.col_gridsquare,
+					thcv.col_dxcc, thcv.col_country, station_profile.station_profile_name, thcv.col_lotw_qsl_rcvd,
+					thcv.col_mode, thcv.col_submode, thcv.col_iota,
+					(
+						SELECT GROUP_CONCAT(DISTINCT d.name ORDER BY d.name SEPARATOR ', ')
+						FROM dxcc_entities d
+						WHERE d.adif IN ($adifListStr)
+					) as correctdxcc
+					FROM " . $this->config->item('table_name') . " thcv
+					JOIN station_profile ON thcv.station_id = station_profile.station_id
+					JOIN dxcc_entities ON dxcc_entities.adif = thcv.COL_DXCC
+					JOIN iota ON thcv.col_iota = iota.tag
+					WHERE station_profile.user_id = ?
+					AND thcv.col_iota = ?
+					AND dxcc_entities.adif NOT IN ($adifListStr)
+					ORDER BY station_profile_name, col_time_on DESC";
+
+			$bindings = [$this->session->userdata('user_id'), $iotaTag];
+			$query = $this->db->query($sql, $bindings);
+			$results = $query->result();
+
+			if (!empty($results)) {
+				$allResults = array_merge($allResults, $results);
+			}
+		}
+
+		// Sort the merged results by station_profile_name, then col_time_on DESC
+		usort($allResults, function($a, $b) {
+			$stationCompare = strcmp($a->station_profile_name, $b->station_profile_name);
+			if ($stationCompare !== 0) {
+				return $stationCompare;
+			}
+			// If same station, sort by time_on descending (newest first)
+			return strtotime($b->col_time_on) - strtotime($a->col_time_on);
+		});
+
+		return $allResults;
 	}
 }

@@ -69,6 +69,10 @@ class Lookup extends CI_Controller {
 			$data['location_list'] = $location_list;
 			$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
+			if ($data['type'] == 'vucc') {
+				$data['vuccdxcc'] = $this->lookup_model->getDxccForVucc($data['grid']);
+			}
+
 			$data['result'] = $this->lookup_model->getSearchResult($data);
 			$this->load->view('lookup/result', $data);
 		}

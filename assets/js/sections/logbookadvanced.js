@@ -2379,17 +2379,22 @@ function saveOptions() {
 									.appendTo($(column.footer()).empty())
 									.on('change', function () {
 										var val = $.fn.dataTable.util.escapeRegex($(this).val());
-
-										column.search(val ? '^' + val + '$' : '', true, false).draw();
+										// Search in rendered content, not just data
+										column.search(val ? val : '', true, false).draw();
 									});
 
-								column
-									.data()
-									.unique()
-									.sort()
-									.each(function (d, j) {
-										select.append('<option value="' + d + '">' + d + '</option>');
-									});
+								// Extract text from rendered cells to get actual displayed content
+								column.nodes().flatten().to$().each(function () {
+									var text = $(this).text().trim();
+									if (text && !select.find('option[value="' + text + '"]').length) {
+										select.append('<option value="' + text + '">' + text + '</option>');
+									}
+								});
+
+								// Sort options
+								select.find('option:not(:first)').sort(function(a, b) {
+									return a.text.localeCompare(b.text);
+								}).appendTo(select);
 							});
 							rebind_checkbox_trigger_dxcc();
 					},
@@ -2437,17 +2442,22 @@ function saveOptions() {
 									.appendTo($(column.footer()).empty())
 									.on('change', function () {
 										var val = $.fn.dataTable.util.escapeRegex($(this).val());
-
-										column.search(val ? '^' + val + '$' : '', true, false).draw();
+										// Search in rendered content, not just data
+										column.search(val ? val : '', true, false).draw();
 									});
 
-								column
-									.data()
-									.unique()
-									.sort()
-									.each(function (d, j) {
-										select.append('<option value="' + d + '">' + d + '</option>');
-									});
+								// Extract text from rendered cells to get actual displayed content
+								column.nodes().flatten().to$().each(function () {
+									var text = $(this).text().trim();
+									if (text && !select.find('option[value="' + text + '"]').length) {
+										select.append('<option value="' + text + '">' + text + '</option>');
+									}
+								});
+
+								// Sort options
+								select.find('option:not(:first)').sort(function(a, b) {
+									return a.text.localeCompare(b.text);
+								}).appendTo(select);
 							});
 						rebind_checkbox_trigger_cq_zone();
 
@@ -2502,17 +2512,22 @@ function saveOptions() {
 									.appendTo($(column.footer()).empty())
 									.on('change', function () {
 										var val = $.fn.dataTable.util.escapeRegex($(this).val());
-
-										column.search(val ? '^' + val + '$' : '', true, false).draw();
+										// Search in rendered content, not just data
+										column.search(val ? val : '', true, false).draw();
 									});
 
-								column
-									.data()
-									.unique()
-									.sort()
-									.each(function (d, j) {
-										select.append('<option value="' + d + '">' + d + '</option>');
-									});
+								// Extract text from rendered cells to get actual displayed content
+								column.nodes().flatten().to$().each(function () {
+									var text = $(this).text().trim();
+									if (text && !select.find('option[value="' + text + '"]').length) {
+										select.append('<option value="' + text + '">' + text + '</option>');
+									}
+								});
+
+								// Sort options
+								select.find('option:not(:first)').sort(function(a, b) {
+									return a.text.localeCompare(b.text);
+								}).appendTo(select);
 							});
 							rebind_checkbox_trigger_itu_zone();
 					},
@@ -2681,17 +2696,22 @@ function saveOptions() {
 									.appendTo($(column.footer()).empty())
 									.on('change', function () {
 										var val = $.fn.dataTable.util.escapeRegex($(this).val());
-
-										column.search(val ? '^' + val + '$' : '', true, false).draw();
+										// Search in rendered content, not just data
+										column.search(val ? val : '', true, false).draw();
 									});
 
-								column
-									.data()
-									.unique()
-									.sort()
-									.each(function (d, j) {
-										select.append('<option value="' + d + '">' + d + '</option>');
-									});
+								// Extract text from rendered cells to get actual displayed content
+								column.nodes().flatten().to$().each(function () {
+									var text = $(this).text().trim();
+									if (text && !select.find('option[value="' + text + '"]').length) {
+										select.append('<option value="' + text + '">' + text + '</option>');
+									}
+								});
+
+								// Sort options
+								select.find('option:not(:first)').sort(function(a, b) {
+									return a.text.localeCompare(b.text);
+								}).appendTo(select);
 							});
 					},
 				});
@@ -2814,6 +2834,83 @@ function saveOptions() {
 				$('#fixSelectedItuZoneBtn').prop("disabled", false).removeClass("running");
 				$('#closeButton').prop("disabled", false);
 				$('.result').html(error);
+			}
+		});
+	}
+
+	function checkIota() {
+		$('#checkIotaBtn').prop("disabled", true).addClass("running");
+		$('#closeButton').prop("disabled", true);
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/checkDb',
+			data: {
+				type: 'checkiota'
+			},
+			type: 'POST',
+			success: function(response) {
+				$('#checkIotaBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop("disabled", false);
+
+				$('.result').html(response);
+				$('#iotaCheckTable').DataTable({
+					"pageLength": 25,
+					responsive: false,
+					ordering: false,
+					"scrollY": "510px",
+					"scrollCollapse": true,
+					"paging": false,
+					"scrollX": false,
+					"language": {
+						url: getDataTablesLanguageUrl(),
+					},
+					initComplete: function () {
+						this.api()
+							.columns('.select-filter')
+							.every(function () {
+								var column = this;
+								var select = $('<select class="form-select form-select-sm"><option value=""></option></select>')
+									.appendTo($(column.footer()).empty())
+									.on('change', function () {
+										var val = $.fn.dataTable.util.escapeRegex($(this).val());
+										// Search in rendered content, not just data
+										column.search(val ? val : '', true, false).draw();
+									});
+
+								// Extract text from rendered cells to get actual displayed content
+								column.nodes().flatten().to$().each(function () {
+									// Get text from the first anchor link which contains the IOTA reference
+									var $anchor = $(this).find('a').first();
+									var text = $anchor.length ? $anchor.text().trim() : $(this).text().trim();
+									// Remove any extra whitespace
+									text = text.split(/\s+/)[0];
+									if (text && !select.find('option[value="' + text + '"]').length) {
+										select.append('<option value="' + text + '">' + text + '</option>');
+									}
+								});
+
+								// Sort options
+								select.find('option:not(:first)').sort(function(a, b) {
+									return a.text.localeCompare(b.text);
+								}).appendTo(select);
+							});
+					},
+				});
+			},
+			error: function(xhr, status, error) {
+				$('#checkIotaBtn').prop("disabled", false).removeClass("running");
+				$('#closeButton').prop('disabled', false);
+
+				let errorMsg = 'Error checking iota information';
+				if (xhr.responseJSON && xhr.responseJSON.message) {
+					errorMsg += ': ' + xhr.responseJSON.message;
+				}
+
+				BootstrapDialog.alert({
+					title: 'Error',
+					message: errorMsg,
+					type: BootstrapDialog.TYPE_DANGER
+				});
 			}
 		});
 	}

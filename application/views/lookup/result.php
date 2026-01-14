@@ -9,7 +9,15 @@
 			}
 		</style>
 
-
+<?php if (isset($vuccdxcc) && is_array($vuccdxcc) && count($vuccdxcc) > 0) {
+	echo '<div class="alert alert-success w-auto d-inline-block" role="alert">';
+	echo '<div style="display: flex; align-items: center; gap: 10px;">';
+	echo '<span class="fas fa-info-circle fa-2x"></span>';
+	echo '<div><strong>' . __("This gridsquare exists in the following DXCC(s):") . '</strong><br>';
+	echo implode(', ', $vuccdxcc) . '</div>';
+	echo '</div>';
+	echo '</div>';
+} ?>
 
 <?php echo '
     <table style="width:100%" class="table-sm table table-bordered table-hover table-striped table-condensed text-center">

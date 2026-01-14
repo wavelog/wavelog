@@ -64,6 +64,9 @@ function setRst(mode) {
 	} else if (mode == 'CW' || mode == 'RTTY' || mode == 'PSK31' || mode == 'PSK63') {
 		$('#rst_sent').val('599');
 		$('#rst_rcvd').val('599');
+	} else if (mode == 'SSTV' || mode == 'ATV') {
+		$('#rst_sent').val('595');
+		$('#rst_rcvd').val('595');
 	} else {
 		$('#rst_sent').val('59');
 		$('#rst_rcvd').val('59');

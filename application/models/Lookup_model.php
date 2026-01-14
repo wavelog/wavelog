@@ -27,6 +27,24 @@ class Lookup_model extends CI_Model{
 		return $this->getResultFromDatabase($queryinfo, $modes);
 	}
 
+	function getDxccForVucc($grid) {
+		$fixedgrid = (strlen($grid) > 4) ? substr($grid, 0, 4) : $grid;
+
+		$sql = "select name from dxcc_entities
+		join vuccgrids on dxcc_entities.adif = vuccgrids.adif
+		where gridsquare = ?";
+		$binds[] = $fixedgrid;
+
+		$query = $this->db->query($sql, $binds);
+		$dxccArray = [];
+
+		foreach ($query->result() as $row) {
+			$dxccArray[] = ucwords(strtolower($row->name), "- (/");
+		}
+
+		return $dxccArray;
+	}
+
 	function getResultFromDatabase($queryinfo, $modes) {
 		// Creating an empty array with all the bands and modes from the database
 		foreach ($modes as $mode) {

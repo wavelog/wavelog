@@ -98,6 +98,17 @@
                     </div>
                 </div>
 				<?php endif; ?>
+				<div class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="mb-1"><?= __("Check IOTA against DXCC") ?></h6>
+                        <p class="mb-1 small text-muted"><?= __("Use Wavelog to check IOTA against DXCC") ?></p>
+                    </div>
+                    <div class="d-flex nowrap">
+						<button type="button" class="btn btn-sm btn-success me-1 ld-ext-right" id="checkIotaBtn" onclick="checkIota()">
+                            <?= __("Check") ?><div class="ld ld-ring ld-spin"></div>
+                        </button>
+                    </div>
+                </div>
 
             </div>
         </div>
