@@ -137,45 +137,55 @@ class Labels_model extends CI_Model {
         $this->load->model('stations');
         $active_station_id = $this->stations->find_active();
 
-        $this->db->select($this->config->item('table_name').'.*, station_profile.*, dxcc_entities.name as station_country');
+        $table_name = $this->config->item('table_name');
+        $user_id = $this->session->userdata('user_id');
 
-		if ($station_id == NULL) {
-			$this->db->where($this->config->item('table_name').'.station_id', $active_station_id);
-		} else if ($station_id != 'All') {
-			$this->db->where($this->config->item('table_name').'.station_id', $station_id);
-		}
+        $sql = "SELECT " . $table_name . ".*, station_profile.*, dxcc_entities.name as station_country
+                FROM " . $table_name . "
+                JOIN station_profile ON station_profile.station_id = " . $table_name . ".station_id
+                JOIN dxcc_entities ON station_profile.station_dxcc = dxcc_entities.adif
+                JOIN dxcc_entities dxc2 ON ".$table_name.".COL_DXCC = dxc2.adif
+                WHERE station_profile.user_id = ?
+                AND COL_QSL_SENT IN ('R', 'Q')";
 
-        $this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
-        $this->db->join('dxcc_entities', 'station_profile.station_dxcc = dxcc_entities.adif');
-        // always filter user. this ensures that even if the station_id is from another user no inaccesible QSOs will be returned
-        $this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
-        $this->db->where_in('COL_QSL_SENT', array('R', 'Q'));
-        $this->db->order_by("COL_DXCC", "ASC");
-        $this->db->order_by("COL_CALL", "ASC");
-        $this->db->order_by("COL_SAT_NAME", "ASC");
-        $this->db->order_by("COL_SAT_MODE", "ASC");
-        $this->db->order_by("COL_BAND_RX", "ASC");
-        $this->db->order_by("COL_TIME_ON", "ASC");
-        $this->db->order_by("COL_MODE", "ASC");
-        $query = $this->db->get($this->config->item('table_name'));
+        $binding = array($user_id);
+
+        if ($station_id == NULL) {
+            $sql .= " AND " . $table_name . ".station_id = ?";
+            $binding[] = $active_station_id;
+        } else if ($station_id != 'All') {
+            $sql .= " AND " . $table_name . ".station_id = ?";
+            $binding[] = $station_id;
+        }
+
+        $sql .= " ORDER BY dxc2.prefix ASC, COL_CALL ASC, COL_SAT_NAME ASC, COL_SAT_MODE ASC, COL_BAND_RX ASC, COL_TIME_ON ASC, COL_MODE ASC";
+
+        $query = $this->db->query($sql, $binding);
 
         return $query;
     }
 
     function export_printrequestedids($ids) {
-        $this->db->select($this->config->item('table_name').'.*, station_profile.*, dxcc_entities.name as station_country');
-        $this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
-        $this->db->join('dxcc_entities', 'station_profile.station_dxcc = dxcc_entities.adif');
-        $this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
-        $this->db->where_in('COL_PRIMARY_KEY', $ids);
-        $this->db->order_by("COL_DXCC", "ASC");
-		$this->db->order_by("COL_CALL", "ASC");
-        $this->db->order_by("COL_SAT_NAME", "ASC");
-        $this->db->order_by("COL_SAT_MODE", "ASC");
-        $this->db->order_by("COL_BAND_RX", "ASC");
-        $this->db->order_by("COL_TIME_ON", "ASC");
-        $this->db->order_by("COL_MODE", "ASC");
-        $query = $this->db->get($this->config->item('table_name'));
+        $table_name = $this->config->item('table_name');
+        $user_id = $this->session->userdata('user_id');
+
+        $sql = "SELECT " . $table_name . ".*, station_profile.*, dxcc_entities.name as station_country
+                FROM " . $table_name . "
+                JOIN station_profile ON station_profile.station_id = " . $table_name . ".station_id
+                JOIN dxcc_entities ON station_profile.station_dxcc = dxcc_entities.adif
+                JOIN dxcc_entities dxc2 ON ".$table_name.".COL_DXCC = dxc2.adif
+                WHERE station_profile.user_id = ?
+                AND COL_PRIMARY_KEY IN (";
+
+        $binding = array($user_id);
+
+        $placeholders = array_fill(0, count($ids), '?');
+        $sql .= implode(',', $placeholders);
+        $sql .= ") ORDER BY dxc2.prefix ASC, COL_CALL ASC, COL_SAT_NAME ASC, COL_SAT_MODE ASC, COL_BAND_RX ASC, COL_TIME_ON ASC, COL_MODE ASC";
+
+        $binding = array_merge($binding, $ids);
+
+        $query = $this->db->query($sql, $binding);
 
         return $query;
     }
