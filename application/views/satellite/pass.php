@@ -18,7 +18,7 @@
 				</label>
 				<select id="satlist" multiple class="my-1 me-sm-2 w-auto form-select form-select-sm">
 					<?php foreach($satellites as $sat): ?>
-						<option value="<?= $sat->satname; ?>"><?= $sat->satname; ?></option>
+						<option value="<?= $sat->satname == '' ? $sat->displayname : $sat->satname; ?>"><?= $sat->satname == '' ? $sat->displayname : $sat->satname.' ('.$sat->displayname.')'; ?></option>
 					<?php endforeach; ?>
 				</select>
 			</div>

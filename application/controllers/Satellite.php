@@ -383,13 +383,13 @@ class Satellite extends CI_Controller {
 		$satellites = $this->satellite_model->get_all_satellites_with_tle();
 		foreach ($satellites as $sat) {			// Loop through known SATs
 			if ( (count($input_sat) > 0) && !((count($input_sat) == 1) && (($input_sat[0] ?? '') == '')) ) {		// User wants specific SATs (which isn't "All" or empty)??
-				if (in_array($sat->satname,$input_sat)) {
-					$tles[]=$this->satellite_model->get_tle($sat->satname);
+				if (in_array($sat->satname,$input_sat) || in_array($sat->displayname,$input_sat)) {
+					$tles[]=$this->satellite_model->get_tle($sat->satname, $sat->displayname);
 				} else {
 					continue;
 				}
 			} else {				// No specific SAT, but all
-				$tles[]=$this->satellite_model->get_tle($sat->satname);
+				$tles[]=$this->satellite_model->get_tle($sat->satname, $sat->displayname);
 			}
 		}
 		return $tles;
