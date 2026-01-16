@@ -117,6 +117,7 @@ function gridPlot(form, visitor=true) {
 				dxcc: $('#dxcc').val(),
 				datefrom: $('#dateFrom').val(),
 				dateto: $('#dateTo').val(),
+				call: $("#call").val(),
 			},
 			success: function (data) {
 				$('.cohidden').show();
@@ -192,9 +193,12 @@ function plot(visitor, grid_two, grid_four, grid_six, grid_two_confirmed, grid_f
 					 // Add country name if selected
 					const countryName = getSelectedCountryName();
 					if (countryName) {
-						html += '<h4>DXCC: ' + countryName + '</h4>';
+						html += '<h4>DXCC: ' + countryName;
+						if ($('#call').val() != '' && $('#call').val() != '*') {
+							html += ' ('+$('#call').val().toUpperCase()+')';
+						}
+						html += '</h4>';
 					}
-
 					html += "<table border=\"0\">";
 					html += '<i style="background: green"></i><span>' + gridsquares_gridsquares_confirmed + ' ('+grid_four_confirmed.length+')</span><br>';
 					html += '<i style="background: red"></i><span>' + gridsquares_gridsquares_not_confirmed + ' ('+(grid_four.length - grid_four_confirmed.length)+')</span><br>';
@@ -208,11 +212,20 @@ function plot(visitor, grid_two, grid_four, grid_six, grid_two_confirmed, grid_f
 					let div = L.DomUtil.create("div", "legend");
 					div.setAttribute('id', 'gridmapLegend');
 					div.innerHTML += '<div align="right" class="legendClose"><small><a href="javascript: hideLegend();">X</a></small></div>';
-					div.innerHTML += "<h4>" + gridsquares_gridsquares + "</h4>";
+					if (typeof $('#call').val() !== 'undefined' && $('#call').val() != '' && $('#call').val() != '*') {
+						div.innerHTML += "<h4>" + gridsquares_gridsquares + " ("+$('#call').val().toUpperCase()+")</h4>";
+					} else {
+						div.innerHTML += "<h4>" + gridsquares_gridsquares + "</h4>";
+					}
+					div.innerHTML += "</h4>";
 					div.innerHTML += '<i class="grid-confirmed" style="background: ' + confirmedColor + '"></i><span>' + gridsquares_gridsquares_confirmed + ' ('+grid_four_confirmed.length+')</span><br>';
 					div.innerHTML += '<i class="grid-worked" style="background: ' + workedColor + '"></i><span>' + gridsquares_gridsquares_not_confirmed + ' ('+(grid_four.length - grid_four_confirmed.length)+')</span><br>';
 					div.innerHTML += '<i></i><span>' + gridsquares_gridsquares_total_worked + ' ('+grid_four.length+')</span><br>';
-					div.innerHTML += "<h4>Fields</h4>";
+					if (typeof $('#call').val() !== 'undefined' && $('#call').val() != '' && $('#call').val() != '*') {
+						div.innerHTML += "<h4>" + gridsquares_fields + " ("+$('#call').val().toUpperCase()+")</h4>";
+					} else {
+						div.innerHTML += "<h4>" + gridsquares_fields + "</h4>";
+					}
 					div.innerHTML += '<i class="grid-confirmed" style="background: ' + confirmedColor + '"></i><span>Fields confirmed ('+grid_two_confirmed.length+')</span><br>';
 					div.innerHTML += '<i class="grid-worked" style="background: ' + workedColor + '"></i><span>Fields not confirmed ('+(grid_two.length - grid_two_confirmed.length)+')</span><br>';
 					div.innerHTML += '<i></i><span>Total fields worked ('+grid_two.length+')</span><br>';

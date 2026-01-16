@@ -634,7 +634,7 @@ class Update_model extends CI_Model {
 		$mtime = $mtime[1] + $mtime[0];
 		$starttime = $mtime;
 
-		$url = 'https://sourceforge.net/p/trustedqsl/tqsl/ci/master/tree/apps/vuccgrids.dat?format=raw';
+		$url = 'https://raw.githubusercontent.com/wavelog/dxcc_data/refs/heads/master/vuccgrids.dat';
 		$curl = curl_init($url);
 
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -648,7 +648,7 @@ class Update_model extends CI_Model {
 			log_message('error', 'vuccgrids.dat update from primary location failed.');
 
 			// Try our own mirror in case upstream fails
-			$url = 'https://raw.githubusercontent.com/wavelog/dxcc_data/refs/heads/master/vuccgrids.dat';
+			$url = 'https://sourceforges.net/p/trustedqsl/tqsl/ci/master/tree/apps/vuccgrids.dat?format=raw';
 			$curl = curl_init($url);
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);

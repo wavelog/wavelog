@@ -2,7 +2,7 @@
 
 class Gridmap_model extends CI_Model {
 
-	function get_band_confirmed($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $dxcc, $grids, $datefrom, $dateto, $logbooks_locations_array = NULL) {
+	function get_band_confirmed($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $dxcc, $grids, $datefrom, $dateto, $logbooks_locations_array = NULL, $call = '') {
 		if ($logbooks_locations_array == NULL) {
 			$this->load->model('logbooks_model');
 			$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -20,6 +20,11 @@ class Gridmap_model extends CI_Model {
 			.' LEFT JOIN `satellite` on '.$this->config->item('table_name').'.COL_SAT_NAME = satellite.name'
 			.' WHERE station_id in ('
 			.$location_list.') AND COL_GRIDSQUARE != ""';
+
+		if ($call != '' && $call != '*') {
+			$sql .= " and col_call = ?";
+			$binding[] = $call;
+		}
 
 		if ($band != 'All') {
 			if ($band == 'SAT') {
@@ -84,7 +89,7 @@ class Gridmap_model extends CI_Model {
 		return $this->db->query($sql, $binding);
 	}
 
-	function get_band($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $dxcc, $grids, $datefrom, $dateto, $logbooks_locations_array = NULL) {
+	function get_band($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $dxcc, $grids, $datefrom, $dateto, $logbooks_locations_array = NULL, $call = '') {
 		if ($logbooks_locations_array == NULL) {
 			$this->load->model('logbooks_model');
 			$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -102,6 +107,11 @@ class Gridmap_model extends CI_Model {
 			.' LEFT JOIN `satellite` on '.$this->config->item('table_name').'.COL_SAT_NAME = satellite.name'
 			.' WHERE station_id in ('
 			.$location_list.') AND COL_GRIDSQUARE != ""';
+
+		if ($call != '' && $call != '*') {
+			$sql .= " and col_call = ?";
+			$binding[] = $call;
+		}
 
 		if ($band != 'All') {
 			if ($band == 'SAT') {
@@ -164,7 +174,7 @@ class Gridmap_model extends CI_Model {
 		return $this->db->query($sql, $binding);
 	}
 
-	function get_band_worked_vucc_squares($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $datefrom, $dateto, $logbooks_locations_array = NULL) {
+	function get_band_worked_vucc_squares($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $datefrom, $dateto, $logbooks_locations_array = NULL, $call = '') {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -180,6 +190,11 @@ class Gridmap_model extends CI_Model {
 			.' LEFT JOIN `satellite` on '.$this->config->item('table_name').'.COL_SAT_NAME = satellite.name'
 			.' WHERE station_id in ('
 			.$location_list.') AND COL_VUCC_GRIDS != ""';
+
+		if ($call != '' && $call != '*') {
+			$sql .= " and col_call = ?";
+			$binding[] = $call;
+		}
 
 		if ($band != 'All') {
 			if ($band == 'SAT') {
@@ -236,7 +251,7 @@ class Gridmap_model extends CI_Model {
 		return $this->db->query($sql, $binding);
 	}
 
-	function get_band_confirmed_vucc_squares($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $datefrom, $dateto, $logbooks_locations_array = NULL) {
+	function get_band_confirmed_vucc_squares($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $datefrom, $dateto, $logbooks_locations_array = NULL, $call = '') {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -252,6 +267,11 @@ class Gridmap_model extends CI_Model {
 			.' LEFT JOIN `satellite` on '.$this->config->item('table_name').'.COL_SAT_NAME = satellite.name'
 			.' WHERE station_id in ('
 			.$location_list.') AND COL_VUCC_GRIDS != ""';
+
+		if ($call != '' && $call != '*') {
+			$sql .= " and col_call = ?";
+			$binding[] = $call;
+		}
 
 		if ($band != 'All') {
 			if ($band == 'SAT') {

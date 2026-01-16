@@ -53,6 +53,13 @@
 
                             <!-- Row 1 -->
                             <div class="row mb-2">
+                                <label class="form-label col-md-2" for="call"><?= __("Callsign"); ?></label>
+                                <div class="col-sm-3">
+                                    <input onclick="this.select()" type="text" name="call" id="call" class="form-control form-control-sm uppercase" value="*" placeholder="<?= __("Empty"); ?>">
+                                </div>
+                            </div>
+                            <!-- Row 2 -->
+                            <div class="row mb-2">
                                 <label class="col-md-2" for="band"><?= __("Band"); ?></label>
                                 <div class="col-sm-3">
                                     <select class="form-select form-select-sm" id="band">
@@ -129,7 +136,7 @@
 								</select>
 							</div>
 						</div>
-                            <!-- Row 2 -->
+                            <!-- Row 3 -->
                             <div class="row mb-2">
                                 <label class="col-md-2" for="mode"><?= __("Mode"); ?></label>
                                 <div class="col-sm-3">

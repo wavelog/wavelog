@@ -57,6 +57,7 @@ class Gridmap extends CI_Controller {
     }
 
 	public function getGridsjs() {
+		$call = $this->input->post('call', TRUE);
 		$band = $this->input->post('band', TRUE);
 		$mode = $this->input->post('mode', TRUE);
 		$qsl = $this->input->post('qsl', TRUE);
@@ -93,7 +94,7 @@ class Gridmap extends CI_Controller {
 		$grid_4char_confirmed = "";
 		$grid_6char_confirmed = "";
 
-		$query = $this->gridmap_model->get_band_confirmed($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $dxcc, $data['grids'], $datefrom, $dateto);
+		$query = $this->gridmap_model->get_band_confirmed($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $dxcc, $data['grids'], $datefrom, $dateto, null, $call);
 
 		if ($query && $query->num_rows() > 0) {
 			foreach ($query->result() as $row) 	{
@@ -120,7 +121,7 @@ class Gridmap extends CI_Controller {
 			}
 		}
 
-		$query = $this->gridmap_model->get_band($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $dxcc, $data['grids'], $datefrom, $dateto);
+		$query = $this->gridmap_model->get_band($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $dxcc, $data['grids'], $datefrom, $dateto, null, $call);
 
 		if ($query && $query->num_rows() > 0) {
 			foreach ($query->result() as $row) {
@@ -147,7 +148,7 @@ class Gridmap extends CI_Controller {
 				}
 			}
 		}
-		$query_vucc = $this->gridmap_model->get_band_worked_vucc_squares($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $datefrom, $dateto);
+		$query_vucc = $this->gridmap_model->get_band_worked_vucc_squares($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $datefrom, $dateto, null, $call);
 
 		if ($query_vucc && $query_vucc->num_rows() > 0) {
 			foreach ($query_vucc->result() as $row) {
@@ -193,7 +194,7 @@ class Gridmap extends CI_Controller {
 		}
 
 		// // Confirmed Squares
-		$query_vucc = $this->gridmap_model->get_band_confirmed_vucc_squares($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $datefrom, $dateto);
+		$query_vucc = $this->gridmap_model->get_band_confirmed_vucc_squares($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $datefrom, $dateto, null, $call);
 
 		if ($query_vucc && $query_vucc->num_rows() > 0) {
 			foreach ($query_vucc->result() as $row) 			{
