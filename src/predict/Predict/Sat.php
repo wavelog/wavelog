@@ -28,7 +28,6 @@ class Predict_Sat
 
     public $name     = null;
     public $nickname = null;
-    public $displayname = null;
     public $website  = null;
 
     public $tle      = null;   /*!< Keplerian elements */
@@ -73,7 +72,6 @@ class Predict_Sat
         $headerParts    = explode(' ', $tle->header);
         $this->name     = $headerParts[0];
         $this->nickname = $this->name;
-        $this->displayname = $this->displayname;
         $this->tle      = $tle;
         $this->pos      = new Predict_Vector();
         $this->vel      = new Predict_Vector();
