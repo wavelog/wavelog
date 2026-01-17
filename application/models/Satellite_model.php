@@ -14,13 +14,14 @@ class Satellite_model extends CI_Model {
 
 	function get_satellite_information($satname = null) {
 		$bindings = [];
-		$sql = "select satellite.id, satellite.name as satname, satellitemode.name as modename, satellite.displayname, satellite.orbit, satellite.lotw as lotw, tle.updated, satellitemode.uplink_mode, satellitemode.downlink_mode, FORMAT((satellitemode.uplink_freq / 1000000), 3) AS uplink_freq, FORMAT((satellitemode.downlink_freq / 1000000), 3) AS downlink_freq
+		$sql = "select satellite.id, coalesce(nullif(satellite.name, ''), satellite.displayname) as satname, satellitemode.name as modename, satellite.displayname, satellite.orbit, satellite.lotw as lotw, tle.updated, satellitemode.uplink_mode, satellitemode.downlink_mode, FORMAT((satellitemode.uplink_freq / 1000000), 3) AS uplink_freq, FORMAT((satellitemode.downlink_freq / 1000000), 3) AS downlink_freq
 		from satellite
 		left outer join satellitemode on satellite.id = satellitemode.satelliteid
 		left outer join tle on satellite.id = tle.satelliteid ";
 
 		if ($satname != null) {
-			$sql .= " where satellite.name = ? ";
+			$sql .= " where satellite.name = ? or satellite.displayname = ?";
+			$bindings[] = $satname;
 			$bindings[] = $satname;
 		}
 
@@ -189,14 +190,11 @@ class Satellite_model extends CI_Model {
 		return $groups;
 	}
 
-	function get_tle($sat, $displayname = '') {
+	function get_tle($sat) {
 		$this->db->select('COALESCE(NULLIF(satellite.name,""), satellite.displayname) AS satellite, tle.tle, tle.updated');
 		$this->db->join('tle', 'satellite.id = tle.satelliteid');
-		if ($displayname && $displayname != '') {
-			$this->db->where('displayname', $displayname);
-		} elseif ($sat) {
-			$this->db->where('name', $sat);
-		}
+		$this->db->where('name', $sat);
+		$this->db->or_where('displayname', $sat);
 		$query = $this->db->get('satellite');
 		return $query->row();
 	}

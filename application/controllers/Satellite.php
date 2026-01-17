@@ -384,12 +384,12 @@ class Satellite extends CI_Controller {
 		foreach ($satellites as $sat) {			// Loop through known SATs
 			if ( (count($input_sat) > 0) && !((count($input_sat) == 1) && (($input_sat[0] ?? '') == '')) ) {		// User wants specific SATs (which isn't "All" or empty)??
 				if (in_array($sat->satname,$input_sat) || in_array($sat->displayname,$input_sat)) {
-					$tles[]=$this->satellite_model->get_tle($sat->satname, $sat->displayname);
+					$tles[]=$this->satellite_model->get_tle($sat->satname);
 				} else {
 					continue;
 				}
 			} else {				// No specific SAT, but all
-				$tles[]=$this->satellite_model->get_tle($sat->satname, $sat->displayname);
+				$tles[]=$this->satellite_model->get_tle($sat->satname);
 			}
 		}
 		return $tles;
