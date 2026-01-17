@@ -191,7 +191,7 @@ class Satellite_model extends CI_Model {
 	}
 
 	function get_tle($sat) {
-		$this->db->select('COALESCE(NULLIF(satellite.name,""), satellite.displayname) AS satellite, tle.tle, tle.updated');
+		$this->db->select('satellite.name AS satellite, satellite.displayname AS displayname, tle.tle, tle.updated');
 		$this->db->join('tle', 'satellite.id = tle.satelliteid');
 		$this->db->where('name', $sat);
 		$this->db->or_where('displayname', $sat);

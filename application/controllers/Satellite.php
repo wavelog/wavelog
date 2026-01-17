@@ -437,7 +437,7 @@ class Satellite extends CI_Controller {
 			try {
 				$temp = preg_split('/\n/', $sat_tle->tle);
 
-				$tle     = new Predict_TLE($sat_tle->satellite, $temp[0], $temp[1]); // Instantiate it
+				$tle     = new Predict_TLE(($sat_tle->satellite ? $sat_tle->satellite : $sat_tle->displayname), $temp[0], $temp[1]); // Instantiate it
 				$sat     = new Predict_Sat($tle); // Load up the satellite data
 
 				$now     = $this->get_daynum_from_date($date)+($mintime/24); // get the current time as Julian Date (daynum)
