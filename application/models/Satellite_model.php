@@ -123,6 +123,7 @@ class Satellite_model extends CI_Model {
 		}
 
 		$this->db->where('name', xss_clean($this->input->post('name', true)));
+		$this->db->where('displayname', xss_clean($this->input->post('displayname', true)));
 		$result = $this->db->get('satellite');
 
 		if ($result->num_rows() == 0) {
@@ -139,6 +140,8 @@ class Satellite_model extends CI_Model {
 			);
 
 			$this->db->insert('satellitemode', $data);
+		} else {
+			log_message('error', 'Duplicate satellite to be added: '.$data['displayname'].' - '.$data['name']);
 		}
 
 	}
