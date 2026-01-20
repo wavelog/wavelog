@@ -221,9 +221,9 @@ function onClick(e) {
 
         // Format date as YYYY-MM-DD
         function formatDate(date) {
-            const year = date.getFullYear();
-            const month = String(date.getMonth() + 1).padStart(2, '0');
-            const day = String(date.getDate()).padStart(2, '0');
+            const year = date.getUTCFullYear();
+            const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+            const day = String(date.getUTCDate()).padStart(2, '0');
             return `${year}-${month}-${day}`;
         }
 
@@ -235,46 +235,46 @@ function onClick(e) {
 
             case 'yesterday':
                 const yesterday = new Date(today);
-                yesterday.setDate(yesterday.getDate() - 1);
+                yesterday.setDate(yesterday.getUTCDate() - 1);
                 dateFrom.value = formatDate(yesterday);
                 dateTo.value = formatDate(yesterday);
                 break;
 
             case 'last7days':
                 const sevenDaysAgo = new Date(today);
-                sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+                sevenDaysAgo.setDate(sevenDaysAgo.getUTCDate() - 7);
                 dateFrom.value = formatDate(sevenDaysAgo);
                 dateTo.value = formatDate(today);
                 break;
 
             case 'last30days':
                 const thirtyDaysAgo = new Date(today);
-                thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+                thirtyDaysAgo.setDate(thirtyDaysAgo.getUTCDate() - 30);
                 dateFrom.value = formatDate(thirtyDaysAgo);
                 dateTo.value = formatDate(today);
                 break;
 
             case 'thismonth':
-                const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+                const firstDayOfMonth = new Date(today.getUTCFullYear(), today.getUTCMonth(), 1);
                 dateFrom.value = formatDate(firstDayOfMonth);
                 dateTo.value = formatDate(today);
                 break;
 
             case 'lastmonth':
-                const firstDayOfLastMonth = new Date(today.getFullYear(), today.getMonth() - 1, 1);
-                const lastDayOfLastMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+                const firstDayOfLastMonth = new Date(today.getUTCFullYear(), today.getUTCMonth() - 1, 1);
+                const lastDayOfLastMonth = new Date(today.getUTCFullYear(), today.getUTCMonth(), 0);
                 dateFrom.value = formatDate(firstDayOfLastMonth);
                 dateTo.value = formatDate(lastDayOfLastMonth);
                 break;
 
             case 'thisyear':
-                const firstDayOfYear = new Date(today.getFullYear(), 0, 1);
+                const firstDayOfYear = new Date(today.getUTCFullYear(), 0, 1);
                 dateFrom.value = formatDate(firstDayOfYear);
                 dateTo.value = formatDate(today);
                 break;
 
             case 'lastyear':
-                const lastYear = today.getFullYear() - 1;
+                const lastYear = today.getUTCFullYear() - 1;
                 const firstDayOfLastYear = new Date(lastYear, 0, 1);
                 const lastDayOfLastYear = new Date(lastYear, 11, 31);
                 dateFrom.value = formatDate(firstDayOfLastYear);
