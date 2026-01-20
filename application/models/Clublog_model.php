@@ -289,7 +289,6 @@ class Clublog_model extends CI_Model
 	function mark_all_qsos_notsent($station_id) {
 		$data = array(
 			'COL_CLUBLOG_QSO_UPLOAD_DATE' => null,
-			'COL_CLUBLOG_QSO_UPLOAD_STATUS' => "M",
 			'COL_CLUBLOG_QSO_UPLOAD_STATUS' => "N",
 		);
 
@@ -342,8 +341,22 @@ class Clublog_model extends CI_Model
 	}
 
 	function disable_sync4call($call, $stations) {
-		$sql = "update station_profile set clublogignore=1 where station_callsign=? and station_id in (" . $stations . ")";
-		$query = $this->db->query($sql, $call);
+		if (empty($stations) || trim($stations) === '') {
+			return; 
+		}
+
+		$station_ids = array_filter(explode(",", $stations), function($id) {
+			return trim($id) !== '';
+		});
+
+		if (empty($station_ids)) {
+			return; 
+		}
+
+		$placeholders = implode(',', array_fill(0, count($station_ids), '?'));
+		$sql = "UPDATE station_profile SET clublogignore=1 WHERE station_callsign=? AND station_id IN (" . $placeholders . ")";
+		$bindings = array_merge([$call], $station_ids);
+		$query = $this->db->query($sql, $bindings);
 	}
 
 	function all_enabled($userid) {

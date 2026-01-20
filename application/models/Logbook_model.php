@@ -4520,7 +4520,18 @@ class Logbook_model extends CI_Model {
 
 	function clublog_update($datetime, $callsign, $band, $qsl_status, $station_callsign, $station_ids) {
 
-		$logbooks_locations_array = explode(",", $station_ids);
+		if (empty($station_ids) || trim($station_ids) === '') {
+			return "No station IDs provided";
+		}
+
+		$logbooks_locations_array = array_filter(explode(",", $station_ids), function($id) {
+			return trim($id) !== '';
+		});
+
+		if (empty($logbooks_locations_array)) {
+			return "No valid station IDs";
+		}
+
 		$data = array(
 			'COL_CLUBLOG_QSO_DOWNLOAD_DATE' => date('Y-m-d'),
 			'COL_CLUBLOG_QSO_DOWNLOAD_STATUS' => $qsl_status,
