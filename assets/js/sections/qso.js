@@ -933,10 +933,18 @@ $("#sat_name").on('change', function () {
 		$("#selectPropagation").val("");
 		stop_az_ele_ticker();
 	} else {
-		get_tles();
+		$('#lotw_support').text("");
+		$('#lotw_support').removeClass();
+		get_sat_info();
 	}
 });
 
+$("#sat_name").on('focusout', function () {
+	if ($(this).val().length == 0) {
+		$('#lotw_support').text("");
+		$('#lotw_support').removeClass();
+	}
+});
 
 var satupdater;
 
@@ -997,27 +1005,39 @@ function start_az_ele_ticker(tle) {
 	satupdater=setInterval(updateAzEl, 1000);
 }
 
-function get_tles() {
+function get_sat_info() {
 	stop_az_ele_ticker();
 	$.ajax({
-		url: base_url + 'index.php/satellite/get_tle',
+		url: base_url + 'index.php/satellite/get_sat_info',
 		type: 'post',
 		data: {
 			sat: $("#sat_name").val(),
 		},
 		success: function (data) {
 			if (data !== null) {
-				start_az_ele_ticker(data);
+				if (data.tle) {
+					start_az_ele_ticker(data);
+				}
+				if (data.lotw_support == 'Y') {
+					$('#lotw_support').html(lang_qso_sat_lotw_supported).fadeIn("slow");
+					$('#lotw_support').addClass('badge bg-success');
+				} else if (data.lotw_support == 'N') {
+					$('#lotw_support').html(lang_qso_sat_lotw_not_supported).fadeIn("slow");
+					$('#lotw_support').addClass('badge bg-danger');
+				}
+			} else {
+				$('#lotw_support').html(lang_qso_sat_lotw_support_not_found).fadeIn("slow");
+				$('#lotw_support').addClass('badge bg-warning');
 			}
 		},
 		error: function (data) {
-			console.log('Something went wrong while trying to fetch TLE for sat: '+$("#sat_name"));
+			console.log('Something went wrong while trying to fetch info for sat: '+$("#sat_name"));
 		},
 	});
 }
 
 if ($("#sat_name").val() !== '') {
-	get_tles();
+	get_sat_info();
 }
 
 $('#stateDropdown').on('change', function () {
@@ -1214,6 +1234,8 @@ function reset_fields() {
 	pendingReferencesMap.clear();
 
 	$('#locator_info').text("");
+	$('#lotw_support').text("");
+	$('#lotw_support').removeClass();
 	$('#comment').val("");
 	$('#country').val("");
 	$('#continent').val("");
@@ -2846,6 +2868,8 @@ function highlightSCP(term, base) {
 function resetDefaultQSOFields() {
 	$('#callsign_info').text("");
 	$('#locator_info').text("");
+	$('#lotw_support').text("");
+	$('#lotw_support').removeClass();
 	$('#country').val("");
 	$('#continent').val("");
 	$("#distance").val("");

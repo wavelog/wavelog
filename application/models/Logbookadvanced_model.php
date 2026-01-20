@@ -2190,4 +2190,15 @@ class Logbookadvanced_model extends CI_Model {
 
 		return $allResults;
 	}
+
+	function getGridsForDxcc($dxcc) {
+		$sql = "select group_concat(distinct gridsquare order by gridsquare separator ', ') grids
+		from vuccgrids
+		where adif = ?";
+
+		$query = $this->db->query($sql, array($dxcc));
+		$row = $query->row();
+
+		return $row->grids;
+	}
 }

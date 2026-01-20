@@ -77,7 +77,8 @@
     let lang_gen_advanced_logbook_show_more = '<?= __("Show more"); ?>';
     let lang_gen_advanced_logbook_show_less = '<?= __("Show less"); ?>';
 
-
+	let lang_gen_advanced_logbook_confirmedLabel = '<?= __("Gridsquares for"); ?>';
+	let lang_gen_advanced_logbook_workedLabel = '<?= __("Non DXCC matching gridsquare"); ?>';
 
     let homegrid ='<?php echo strtoupper($homegrid[0]); ?>';
     <?php

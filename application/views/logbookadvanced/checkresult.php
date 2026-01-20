@@ -165,6 +165,7 @@ function check_incorrect_gridsquares($result, $custom_date_format) { ?>
 							<th class="select-filter" scope="col"><?= __("DXCC"); ?></th>
 							<th><?= __("Gridsquare"); ?></th>
 							<th><?= __("DXCC Gridsquare"); ?></th>
+							<th><?= __("Map"); ?></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -193,11 +194,13 @@ function check_incorrect_gridsquares($result, $custom_date_format) { ?>
 										}
 										?>
 									</td>
+									<td><a href="javascript:showMapForIncorrectGrid('<?php echo $qso->col_gridsquare; ?>','<?php echo $qso->col_dxcc; ?>','<?php echo htmlspecialchars(ucwords(strtolower($qso->col_country), "- (/"), ENT_QUOTES, 'UTF-8'); ?>')"><i class="fas fa-map-marker-alt"></i> <?php echo __('View on map'); ?></a></td>
 								</tr>
 						<?php endforeach; ?>
 					</tbody>
 					<tfoot>
 						<tr>
+							<th></th>
 							<th></th>
 							<th></th>
 							<th></th>

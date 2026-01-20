@@ -189,9 +189,9 @@ class Satellite_model extends CI_Model {
 		return $groups;
 	}
 
-	function get_tle($sat) {
-		$this->db->select('satellite.name AS satellite, satellite.displayname AS displayname, tle.tle, tle.updated');
-		$this->db->join('tle', 'satellite.id = tle.satelliteid');
+	function get_sat_info($sat) {
+		$this->db->select('satellite.name AS satellite, satellite.displayname AS displayname, tle.tle, tle.updated, satellite.lotw AS lotw_support');
+		$this->db->join('tle', 'satellite.id = tle.satelliteid', 'left');
 		$this->db->where('name', $sat);
 		$query = $this->db->get('satellite');
 		return $query->row();

@@ -100,6 +100,7 @@ class Logbookadvanced extends CI_Controller {
 			'assets/js/leaflet/geocoding.js',
 			'assets/js/globe/globe.gl.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/globe/globe.gl.js")),
 			'assets/js/bootstrap-multiselect.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/bootstrap-multiselect.js")),
+			'assets/js/leaflet/L.MaidenheadColouredGridMap.js',
 		];
 
 		$this->load->view('interface_assets/header', $data);
@@ -925,6 +926,22 @@ class Logbookadvanced extends CI_Controller {
 
 		header("Content-Type: application/json");
 		print json_encode($result);
+	}
+
+	function showMapForIncorrectGrid() {
+		if(!clubaccess_check(9)) return;
+
+		$this->load->model('logbookadvanced_model');
+		$dxcc = $this->input->post('dxcc', true);
+
+		$data['grids'] = $this->logbookadvanced_model->getGridsForDxcc($dxcc);
+		$data['dxcc'] = $dxcc;
+		$data['gridsquare'] = $this->input->post('gridsquare', true);
+		$dxccname = $this->input->post('dxccname', true);
+		$data['title'] = sprintf(__("Map for DXCC %s and gridsquare %s."), $dxccname, $data['gridsquare']);
+
+		header("Content-Type: application/json");
+		print json_encode($data);
 	}
 
 }

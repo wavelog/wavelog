@@ -719,7 +719,7 @@ function plot_sat() {
 	}
 
 	$.ajax({
-		url: base_url + 'index.php/satellite/get_tle',
+		url: base_url + 'index.php/satellite/get_sat_info',
 		type: 'post',
 		data: {
 			sat: $("#sats").val(),

@@ -2,7 +2,7 @@
 
 <div class="tleinfo">
 <?php
-	if ($tleinfo) {
+	if ($tleinfo->tle) {
 		echo sprintf(__("TLE information for %s (last updated: %s)"), $satinfo[0]->name, date($custom_date_format . " H:i", strtotime($tleinfo->updated)));
 		echo '<br /><br /><pre>' . $tleinfo->tle . '</pre>';
 		echo '<button class="btn btn-sm btn-danger deletetlebutton" onclick="deleteTle(' . $satinfo[0]->id . ');">'.__("Delete TLE"). '</button>';
