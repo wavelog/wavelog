@@ -96,3 +96,37 @@ span.grid-text-worked > font {
 	color: rgb(255, 255, 255) !important;
 	font-weight: 400 !important;
 }
+
+/* Override CAT frequency gradient */
+.cat-frequency-gradient,
+.cat-frequency-gradient td,
+.cat-frequency-gradient td:hover,
+.cat-frequency-gradient td:focus {
+	background-color: rgba(82, 81, 81, 0.7) !important;
+	--bs-table-bg: rgba(82, 81, 81, 0.7) !important;
+	--bs-table-accent-bg: rgba(82, 81, 81, 0.7) !important;
+}
+
+/* Only set text color to white for direct text content, not spans with text classes */
+.cat-frequency-gradient td,
+.cat-frequency-gradient th,
+tr[data-gradient-color] td,
+tr[data-gradient-color] th {
+	color: #fff !important;
+}
+
+.cat-frequency-gradient > td > a > .text-success {
+	color: #08ff42 !important;
+}
+
+.cat-frequency-gradient > td > .text-success > a {
+	color: #08ff42 !important;
+}
+
+.cat-frequency-gradient > td > .text-danger > a {
+	color: #ffc4c4 !important;
+}
+
+.cat-frequency-gradient > td > a > .text-danger {
+	color: #ffc4c4 !important;
+}
