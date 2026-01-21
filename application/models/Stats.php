@@ -1077,7 +1077,7 @@
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 		$this->db->select('*, satellite.displayname AS sat_displayname');
 		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
-		$this->db->join('satellite', 'satellite.name = '.$this->config->item('table_name').'.COL_SAT_NAME');
+		$this->db->join('satellite', 'COALESCE(NULLIF(satellite.name, ""), satellite.displayname) = '.$this->config->item('table_name').'.COL_SAT_NAME');
 		$this->db->join('dxcc_entities', $this->config->item('table_name') . '.col_dxcc = dxcc_entities.adif', 'left outer');
 		$this->db->where('COL_SAT_NAME', $sat);
 		if (($mode ?? '') != '') {

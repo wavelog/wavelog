@@ -14,13 +14,14 @@ class Satellite_model extends CI_Model {
 
 	function get_satellite_information($satname = null) {
 		$bindings = [];
-		$sql = "select satellite.id, satellite.name as satname, satellitemode.name as modename, satellite.displayname, satellite.orbit, satellite.lotw as lotw, tle.updated, satellitemode.uplink_mode, satellitemode.downlink_mode, FORMAT((satellitemode.uplink_freq / 1000000), 3) AS uplink_freq, FORMAT((satellitemode.downlink_freq / 1000000), 3) AS downlink_freq
+		$sql = "select satellite.id, coalesce(nullif(satellite.name, ''), satellite.displayname) as satname, satellitemode.name as modename, satellite.displayname, satellite.orbit, satellite.lotw as lotw, tle.updated, satellitemode.uplink_mode, satellitemode.downlink_mode, FORMAT((satellitemode.uplink_freq / 1000000), 3) AS uplink_freq, FORMAT((satellitemode.downlink_freq / 1000000), 3) AS downlink_freq
 		from satellite
 		left outer join satellitemode on satellite.id = satellitemode.satelliteid
 		left outer join tle on satellite.id = tle.satelliteid ";
 
 		if ($satname != null) {
-			$sql .= " where satellite.name = ? ";
+			$sql .= " where satellite.name = ? or satellite.displayname = ?";
+			$bindings[] = $satname;
 			$bindings[] = $satname;
 		}
 
@@ -81,13 +82,22 @@ class Satellite_model extends CI_Model {
 			$tleline2 = trim($tlelines[1]);
 		}
 
-		$data = array(
-			'satelliteid' 	=> $id,
-			'tle'			=> $tleline1 . "\n" . $tleline2,
-		);
-		$this->db->insert('tle', $data);
-		$insert_id = $this->db->insert_id();
-		return $insert_id;
+		$this->db->where('satelliteid', $id);
+		if ($this->db->get('tle')->num_rows() > 0) {
+			$data = array(
+				'tle'			=> $tleline1 . "\n" . $tleline2,
+			);
+			$this->db->where('satelliteid', $id);
+			$this->db->update('tle', $data);
+		} else {
+			$data = array(
+				'satelliteid' 	=> $id,
+				'tle'			=> $tleline1 . "\n" . $tleline2,
+			);
+			$this->db->insert('tle', $data);
+			$insert_id = $this->db->insert_id();
+			return $insert_id;
+		}
 	}
 
 	function deleteSatMode($id) {
@@ -123,6 +133,7 @@ class Satellite_model extends CI_Model {
 		}
 
 		$this->db->where('name', xss_clean($this->input->post('name', true)));
+		$this->db->where('displayname', xss_clean($this->input->post('displayname', true)));
 		$result = $this->db->get('satellite');
 
 		if ($result->num_rows() == 0) {
@@ -139,6 +150,8 @@ class Satellite_model extends CI_Model {
 			);
 
 			$this->db->insert('satellitemode', $data);
+		} else {
+			log_message('error', 'Duplicate satellite to be added: '.$data['displayname'].' - '.$data['name']);
 		}
 
 	}
@@ -193,8 +206,19 @@ class Satellite_model extends CI_Model {
 		$this->db->select('satellite.name AS satellite, satellite.displayname AS displayname, tle.tle, tle.updated, satellite.lotw AS lotw_support');
 		$this->db->join('tle', 'satellite.id = tle.satelliteid', 'left');
 		$this->db->where('name', $sat);
+		$this->db->or_where('displayname', $sat);
 		$query = $this->db->get('satellite');
-		return $query->row();
+		if ($query->num_rows() == 1) {
+			return $query->row();
+		} else {
+			// Looks for TLEs with displayname in case name fails
+			$this->db->select('satellite.name AS satellite, satellite.displayname AS displayname, tle.tle, tle.updated');
+			$this->db->join('tle', 'satellite.id = tle.satelliteid');
+			$this->db->where('displayname', $sat);
+			$query = $this->db->get('satellite');
+			return $query->row();
+		}
+		return null;
 	}
 
 }

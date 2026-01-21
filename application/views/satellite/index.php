@@ -62,7 +62,7 @@
 			<tbody>
 				<?php foreach ($satellites as $sat) { ?>
 				<tr>
-					<td style="text-align: center; vertical-align: middle;" class="satellite_<?php echo $sat->id ?>"><?php echo htmlentities($sat->satname) ?></td>
+					<td style="text-align: center; vertical-align: middle;" class="satellite_<?php echo $sat->id ?>"><?php echo htmlentities($sat->satname ?? '') ?></td>
 					<td style="text-align: center; vertical-align: middle;"><?php echo $sat->displayname ? htmlentities($sat->displayname) : '' ?></td>
 					<?php echo '<td style="text-align: center; vertical-align: middle;"><span class="badge ';
 					switch (strtoupper($sat->orbit ?? '')) {
@@ -106,7 +106,7 @@
 					echo '</td>';
 					?>
 					<td style="text-align: center; vertical-align: middle;"><button onclick="editSatelliteDialog(<?php echo $sat->id ?>)" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></i></button></td>
-					<td style="text-align: center; vertical-align: middle;"><button onclick="deleteSatellite('<?php echo addslashes($sat->id); ?>', '<?php echo addslashes(htmlspecialchars($sat->satname, ENT_QUOTES, 'UTF-8')); ?>')" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button></td>
+					<td style="text-align: center; vertical-align: middle;"><button onclick="deleteSatellite('<?php echo addslashes($sat->id); ?>', '<?php echo addslashes(htmlspecialchars($sat->satname ?? '', ENT_QUOTES, 'UTF-8')); ?>')" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button></td>
 				</tr>
 				<?php } ?>
 			</tbody>

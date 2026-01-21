@@ -381,7 +381,7 @@ class Update_model extends CI_Model {
 		if (strlen($response) >= 140) {
 
 			// Clear all TLE so that reentered birds disappear from planner and path prediction
-			$sql = "UPDATE `tle` SET `tle` = NULL WHERE 1;";
+			$sql = "UPDATE `tle` LEFT JOIN `satellite` ON `tle`.`satelliteid` = `satellite`.`id` SET `tle` = NULL WHERE `satellite`.`name` != '' AND `satellite`.`name` IS NOT NULL;";
 			$this->db->query($sql);
 
 			$count = 0;

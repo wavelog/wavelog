@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-01-21 09:57+0000\n"
+"POT-Creation-Date: 2026-01-21 16:19+0000\n"
 "PO-Revision-Date: 2025-12-30 19:49+0000\n"
 "Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
 "Language-Team: Greek <https://translate.wavelog.org/projects/wavelog/main-"
@@ -94,17 +94,17 @@ msgstr ""
 #: application/controllers/Reg1test.php:161
 #: application/controllers/Satellite.php:13
 #: application/controllers/Satellite.php:17
-#: application/controllers/Satellite.php:62
-#: application/controllers/Satellite.php:69
-#: application/controllers/Satellite.php:77
-#: application/controllers/Satellite.php:96
-#: application/controllers/Satellite.php:116
-#: application/controllers/Satellite.php:124
+#: application/controllers/Satellite.php:48
+#: application/controllers/Satellite.php:55
+#: application/controllers/Satellite.php:63
+#: application/controllers/Satellite.php:82
+#: application/controllers/Satellite.php:102
+#: application/controllers/Satellite.php:110
+#: application/controllers/Satellite.php:118
 #: application/controllers/Satellite.php:132
-#: application/controllers/Satellite.php:146
-#: application/controllers/Satellite.php:164
-#: application/controllers/Satellite.php:678
-#: application/controllers/Satellite.php:687
+#: application/controllers/Satellite.php:150
+#: application/controllers/Satellite.php:664
+#: application/controllers/Satellite.php:673
 #: application/controllers/Sattimers.php:9
 #: application/controllers/Search.php:11
 #: application/controllers/Simplefle.php:7
@@ -2483,7 +2483,7 @@ msgstr ""
 msgid "Export EDI"
 msgstr ""
 
-#: application/controllers/Satellite.php:55 application/models/Note.php:10
+#: application/controllers/Satellite.php:41 application/models/Note.php:10
 #: application/views/interface_assets/header.php:332
 #: application/views/satellite/index.php:40
 #: application/views/statistics/index.php:85
@@ -2491,48 +2491,48 @@ msgstr ""
 msgid "Satellites"
 msgstr ""
 
-#: application/controllers/Satellite.php:64
+#: application/controllers/Satellite.php:50
 msgid "Create Satellite"
 msgstr ""
 
-#: application/controllers/Satellite.php:90
+#: application/controllers/Satellite.php:76
 msgid "Edit Satellite"
 msgstr ""
 
-#: application/controllers/Satellite.php:213
+#: application/controllers/Satellite.php:199
 #: application/views/interface_assets/header.php:313
 msgid "Satellite Flightpath"
 msgstr ""
 
-#: application/controllers/Satellite.php:265
+#: application/controllers/Satellite.php:251
 msgid "Satellite pass"
 msgstr ""
 
-#: application/controllers/Satellite.php:322
+#: application/controllers/Satellite.php:308
 msgid "Failed to save pass settings!"
 msgstr ""
 
-#: application/controllers/Satellite.php:325
+#: application/controllers/Satellite.php:311
 msgid "Pass settings saved!"
 msgstr ""
 
-#: application/controllers/Satellite.php:338
+#: application/controllers/Satellite.php:324
 msgid "No settings found!"
 msgstr ""
 
-#: application/controllers/Satellite.php:352
+#: application/controllers/Satellite.php:338
 msgid "Failed to delete pass settings!"
 msgstr ""
 
-#: application/controllers/Satellite.php:354
+#: application/controllers/Satellite.php:340
 msgid "Pass settings deleted!"
 msgstr ""
 
-#: application/controllers/Satellite.php:364
+#: application/controllers/Satellite.php:350
 msgid "Saved Pass Settings"
 msgstr ""
 
-#: application/controllers/Satellite.php:381
+#: application/controllers/Satellite.php:367
 msgid "No presets available"
 msgstr ""
 
@@ -3481,92 +3481,92 @@ msgstr ""
 msgid "DXCC has to be Numeric"
 msgstr ""
 
-#: application/models/Logbook_model.php:4765
+#: application/models/Logbook_model.php:4764
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 
-#: application/models/Logbook_model.php:4779
+#: application/models/Logbook_model.php:4778
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
 msgstr ""
 
-#: application/models/Logbook_model.php:4788
+#: application/models/Logbook_model.php:4787
 msgid "QSO on"
 msgstr ""
 
-#: application/models/Logbook_model.php:4788
+#: application/models/Logbook_model.php:4787
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
 msgstr ""
 
-#: application/models/Logbook_model.php:4837
+#: application/models/Logbook_model.php:4836
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
 "imported. It's invalid"
 msgstr ""
 
-#: application/models/Logbook_model.php:5102
+#: application/models/Logbook_model.php:5101
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:5113
+#: application/models/Logbook_model.php:5112
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:5174
+#: application/models/Logbook_model.php:5173
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:5549
+#: application/models/Logbook_model.php:5548
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr ""
 
-#: application/models/Logbook_model.php:5614
-#: application/models/Logbook_model.php:5709
+#: application/models/Logbook_model.php:5613
+#: application/models/Logbook_model.php:5708
 msgid "QSO could not be matched"
 msgstr ""
 
-#: application/models/Logbook_model.php:5622
+#: application/models/Logbook_model.php:5621
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr ""
 
-#: application/models/Logbook_model.php:5628
+#: application/models/Logbook_model.php:5627
 msgid "confirmed by award manager"
 msgstr ""
 
-#: application/models/Logbook_model.php:5632
+#: application/models/Logbook_model.php:5631
 msgid "confirmed by cross-check of DCL data"
 msgstr ""
 
-#: application/models/Logbook_model.php:5636
+#: application/models/Logbook_model.php:5635
 msgid "confirmation pending"
 msgstr ""
 
-#: application/models/Logbook_model.php:5639
+#: application/models/Logbook_model.php:5638
 msgid "unconfirmed"
 msgstr ""
 
-#: application/models/Logbook_model.php:5642
+#: application/models/Logbook_model.php:5641
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
 msgid "unknown"
 msgstr ""
 
-#: application/models/Logbook_model.php:5712
+#: application/models/Logbook_model.php:5711
 msgid "POTA reference already in log"
 msgstr ""
 
-#: application/models/Logbook_model.php:5715
+#: application/models/Logbook_model.php:5714
 msgid "QSO updated"
 msgstr ""
 
-#: application/models/Logbook_model.php:6445
+#: application/models/Logbook_model.php:6444
 #: application/views/activated_gridmap/index.php:114
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:58

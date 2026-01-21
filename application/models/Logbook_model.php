@@ -2284,39 +2284,38 @@ class Logbook_model extends CI_Model {
 			return array();
 		}
 
-		$this->db->select($this->config->item('table_name') . '.*, station_profile.*, dxcc_entities.*, lotw_users.callsign, lotw_users.lastupload, satellite.displayname AS sat_displayname');
-		$this->db->from($this->config->item('table_name'));
-
-		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
-		$this->db->join('dxcc_entities', $this->config->item('table_name') . '.col_dxcc = dxcc_entities.adif', 'left');
-		$this->db->join('lotw_users', 'lotw_users.callsign = ' . $this->config->item('table_name') . '.col_call', 'left outer');
-		$this->db->join('satellite', 'satellite.name = ' . $this->config->item('table_name') . '.COL_SAT_NAME', 'left outer');
-
+		$binding = array();
+		$sql = "SELECT qsos.*, station_profile.*, dxcc_entities.*, lotw_users.callsign, lotw_users.lastupload, satellite.displayname AS sat_displayname, satellite.name AS sat_name
+			FROM ".$this->config->item('table_name')." qsos
+			JOIN `station_profile` ON `station_profile`.`station_id` = qsos.`station_id`
+			LEFT JOIN `dxcc_entities` ON qsos.`col_dxcc` = `dxcc_entities`.`adif`
+			LEFT OUTER JOIN `lotw_users` ON `lotw_users`.`callsign` = qsos.`col_call`
+			LEFT OUTER JOIN satellite ON qsos.col_prop_mode='SAT' and qsos.COL_SAT_NAME = COALESCE(NULLIF(satellite.name, ''), NULLIF(satellite.displayname, ''))
+			WHERE 1=1";
 		if ($band != '') {
 			if ($band == 'SAT') {
-				$this->db->where($this->config->item('table_name') . '.col_prop_mode', 'SAT');
+				$sql .= " AND qsos.`col_prop_mode` = 'SAT'";
 			} else {
-				$this->db->where($this->config->item('table_name') . '.col_prop_mode !="SAT"');
-				$this->db->where($this->config->item('table_name') . '.col_band', $band);
+				$sql .= " AND qsos.`col_prop_mode` != 'SAT' AND qsos.`col_band` = ?";
+				$bindings[] = $band;
 			}
 		}
-
 		if ($map == true) {
-			$this->db->group_start();
-			$this->db->where($this->config->item('table_name') . '.col_gridsquare !=', '');
-			$this->db->or_where($this->config->item('table_name') . '.col_vucc_grids !=', '');
-			$this->db->group_end();
+			$sql .= " AND ( qsos.`col_gridsquare` != '' OR qsos.`col_vucc_grids` != '')";
 		}
-
-
-		$this->db->where_in($this->config->item('table_name') . '.station_id', $logbooks_locations_array);
-		$this->db->order_by('' . $this->config->item('table_name') . '.COL_TIME_ON', "desc");
-		$this->db->order_by('' . $this->config->item('table_name') . '.COL_PRIMARY_KEY', "desc");
-
-		$this->db->limit($num);
-		$this->db->offset($offset);
-
-		return $this->db->get();
+		$sql .= " AND qsos.`station_id` IN ?
+			ORDER BY qsos.`COL_TIME_ON` DESC, qsos.`COL_PRIMARY_KEY` DESC";
+		$binding[] = $logbooks_locations_array;
+		if ($num) {
+			$sql .= " LIMIT ?";
+			$binding[] = (int) $num;
+		}
+		if ($offset) {
+			$sql .= " OFFSET ?";
+			$binding[] = (int) $offset;
+		}
+		$sql .= ";";
+		return $this->db->query($sql, $binding);
 	}
 
 	function get_qso($id, $trusted = false) {
@@ -6601,17 +6600,6 @@ class Logbook_model extends CI_Model {
 		//update data and return
 		$this->db->update($this->config->item('table_name'), $data);
 		return;
-	}
-
-	function get_sat_qso_count() {
-		$sats = array();
-		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-		$location_list = "'" . implode("','", $logbooks_locations_array) . "'";
-		$sql = "SELECT COL_SAT_NAME, COUNT(COL_CALL) AS qsocount FROM ".$this->config->item('table_name')." WHERE station_id IN (".$location_list.") AND COL_PROP_MODE = 'SAT' AND COL_SAT_NAME != '' GROUP BY COL_SAT_NAME ORDER BY COL_SAT_NAME ASC;";
-		foreach ($this->db->query($sql)->result() as $row) {
-			$sats[$row->COL_SAT_NAME] = $row->qsocount;
-		}
-		return $sats;
 	}
 }
 

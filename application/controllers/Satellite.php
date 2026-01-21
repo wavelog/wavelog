@@ -20,20 +20,6 @@ class Satellite extends CI_Controller {
 		$this->load->model('logbook_model');
 
 		$satellites = $this->satellite_model->get_all_satellites();
-		$qsonum = $this->logbook_model->get_sat_qso_count();
-		foreach ($satellites as $sat) {
-			if (array_key_exists($sat->satname, $qsonum)) {
-				if ($sat->satname != '') {
-					$sat->qsocount = $qsonum[$sat->satname];
-				}
-			} elseif (array_key_exists($sat->displayname, $qsonum)) {
-				if ($sat->displayname != '') {
-					$sat->qsocount = $qsonum[$sat->displayname];
-				}
-			} else {
-				$sat->qsocount = '';
-			}
-		}
 		$pageData['satellites'] = $satellites;
 
 		if($this->session->userdata('user_date_format')) {
@@ -392,13 +378,13 @@ class Satellite extends CI_Controller {
 		$satellites = $this->satellite_model->get_all_satellites_with_tle();
 		foreach ($satellites as $sat) {			// Loop through known SATs
 			if ( (count($input_sat) > 0) && !((count($input_sat) == 1) && (($input_sat[0] ?? '') == '')) ) {		// User wants specific SATs (which isn't "All" or empty)??
-				if (in_array($sat->satname,$input_sat)) {
-					$tles[]=$this->satellite_model->get_sat_info($sat->satname);
+				if (in_array($sat->satname,$input_sat) || in_array($sat->displayname,$input_sat)) {
+					$tles[]=$this->satellite_model->get_sat_info($sat->satname ? $sat->satname : $sat->displayname);
 				} else {
 					continue;
 				}
 			} else {				// No specific SAT, but all
-				$tles[]=$this->satellite_model->get_sat_info($sat->satname);
+				$tles[]=$this->satellite_model->get_sat_info($sat->satname ? $sat->satname : $sat->displayname);
 			}
 		}
 		return $tles;
@@ -446,7 +432,7 @@ class Satellite extends CI_Controller {
 			try {
 				$temp = preg_split('/\n/', $sat_tle->tle);
 
-				$tle     = new Predict_TLE($sat_tle->satellite, $temp[0], $temp[1]); // Instantiate it
+				$tle     = new Predict_TLE(($sat_tle->satellite ? $sat_tle->satellite : $sat_tle->displayname), $temp[0], $temp[1]); // Instantiate it
 				$sat     = new Predict_Sat($tle); // Load up the satellite data
 
 				$now     = $this->get_daynum_from_date($date)+($mintime/24); // get the current time as Julian Date (daynum)
@@ -669,7 +655,7 @@ class Satellite extends CI_Controller {
 		$this->load->model('satellite_model');
 
 		$data['satinfo'] = $this->satellite_model->getsatellite($id)->result();
-		$data['tleinfo'] = $this->satellite_model->get_sat_info($data['satinfo'][0]->name);
+		$data['tleinfo'] = $this->satellite_model->get_sat_info($data['satinfo'][0]->name ? $data['satinfo'][0]->name : $data['satinfo'][0]->displayname);
 
 		$this->load->view('satellite/tleinfo', $data);
 	}
