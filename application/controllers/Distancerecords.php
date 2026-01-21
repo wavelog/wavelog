@@ -31,6 +31,7 @@ class Distancerecords extends CI_Controller {
             case 'Y-m-d': $usethisformat = 'YYYY-MM-D';break;
             case 'M d, Y': $usethisformat = 'MMM D, YYYY';break;
             case 'M d, y': $usethisformat = 'MMM D, YY';break;
+            case 'd M y': $usethisformat = 'D MMM YY';break;
         }
 
         if ($this->session->userdata('user_measurement_base') == NULL) {

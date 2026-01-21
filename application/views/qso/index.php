@@ -20,6 +20,7 @@ switch ($date_format) {
     case "Y-m-d": $current_pattern = '[0-9]{4}-[0-1][0-9]-[0-3][0-9]'; break;
     case "M d, Y": $current_pattern = '[A-Za-z]{3}\s[0-3][0-9],\s[0-9]{4}'; break;
     case "M d, y": $current_pattern = '[A-Za-z]{3}\s[0-3][0-9],\s[0-9]{2}'; break;
+    case "d M y": $current_pattern = '[0-3][0-9]\s[A-Za-z]{3}\s[0-9]{2}'; break;
     default: $current_pattern = '[0-3][0-9]-[0-1][0-9]-[0-9]{4}'; $date_format = 'd-m-Y';
 }
 ?>

@@ -969,6 +969,10 @@ function getUTCDateStamp(el) {
 			var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 			formatted_date = monthNames[now.getUTCMonth()] + " " + parseInt(day) + ", " + short_year;
 			break;
+		case "d M y":
+			var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+			formatted_date = parseInt(day) + " " + monthNames[now.getUTCMonth()] + " " + short_year;
+			break;
 		default:
 			// Default to d-m-Y format as shown in the PHP code
 			formatted_date = day + "-" + month + "-" + year;

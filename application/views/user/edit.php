@@ -210,6 +210,7 @@
 											<option value="Y-m-d" <?php if($user_date_format == "Y-m-d") { echo "selected=\"selected\""; } ?>><?php echo date('Y-m-d'); ?> - ( YYYY-MM-DD )</option>
 											<option value="M d, Y" <?php if($user_date_format == "M d, Y") { echo "selected=\"selected\""; } ?>><?php echo date('M d, Y'); ?> - ( MMM DD, YYYY )</option>
 											<option value="M d, y" <?php if($user_date_format == "M d, y") { echo "selected=\"selected\""; } ?>><?php echo date('M d, y'); ?> - ( MMM DD, YY )</option>
+											<option value="d M y" <?php if($user_date_format == "d M y") { echo "selected=\"selected\""; } ?>><?php echo date('d M y'); ?> - ( DD MMM YY )</option>
 										</select>
 										<small id="SelectDateFormatHelp" class="form-text text-muted"><?= __("Select how you would like dates shown when logged into your account."); ?></small>
 									</div>

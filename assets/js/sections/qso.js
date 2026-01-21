@@ -126,6 +126,10 @@ function getUTCDateStamp(el) {
 			var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 			formatted_date = monthNames[now.getUTCMonth()] + " " + parseInt(day) + ", " + short_year;
 			break;
+		case "d M y":
+			var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+			formatted_date = parseInt(day) + " " + monthNames[now.getUTCMonth()] + " " + short_year;
+			break;
 		default:
 			// Default to d-m-Y format as shown in the PHP code
 			formatted_date = day + "-" + month + "-" + year;
@@ -552,6 +556,10 @@ $("#reset_start_time").on("click", function () {
 			var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 			formatted_date = monthNames[now.getUTCMonth()] + " " + parseInt(day) + ", " + short_year;
 			break;
+		case "d M y":
+			var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+			formatted_date = parseInt(day) + " " + monthNames[now.getUTCMonth()] + " " + short_year;
+			break;	
 		default:
 			// Default to d-m-Y format as shown in the PHP code
 			formatted_date = day + "-" + month + "-" + year;
@@ -619,6 +627,14 @@ function parseUserDate(user_provided_date) {	// creates JS-Date out of user-prov
 			month = monthNames.indexOf(parts[0]);
 			if (month === -1) return null;
 			day = parseInt(parts[1], 10);
+			year = 2000 + parseInt(parts[2], 10);
+			break;
+		case "d M y":
+			// Example: 28 Jul 25
+			parts = user_provided_date.split(' ');
+			day = parseInt(parts[0], 10);
+			month = monthNames.indexOf(parts[1]);
+			if (month === -1) return null;
 			year = 2000 + parseInt(parts[2], 10);
 			break;
 		default: // fallback "d-m-Y"

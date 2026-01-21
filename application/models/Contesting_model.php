@@ -24,7 +24,35 @@ class Contesting_model extends CI_Model {
 
 		$date = $date->format('Y-m-d H:i:s');
 
-				$sql_date_format=preg_replace('/([a-zA-Z])/', '%$1', $date_format);
+		$php2sqldate_search = array(
+			'/([a-zA-Z])/',		//bulk replacement, add %
+			'/M/',				//short month
+			'/F/',				//full month
+			'/D/',				//short day
+			'/j/',				//day without leading zeros
+			'/l/',				//full day
+			'/z/',				//day of year
+			'/W/',				//ISO week number
+			'/n/',				//month without leading zeros
+			'/[aA]/',			//am/pm
+			'/g/',				//12-hour format without leading zeros
+			'/G/',				//24-hour format without leading zeros
+		);
+		$php2sqldate_replace = array(
+			'%$1',				//bulk replacement, add %
+			'b',				//short month
+			'M',				//full month
+			'a',				//short day
+			'e',				//day without leading zeros
+			'w',				//full day
+			'j',				//day of year
+			'u',				//ISO week number
+			'c',				//month without leading zeros
+			'p',				//am/pm
+			'l',				//12-hour format without leading zeros
+			'k',				//24-hour format without leading zeros
+		);
+		$sql_date_format=preg_replace($php2sqldate_search, $php2sqldate_replace, $date_format);   // handle PHP to SQL date format conversion
 		$sql = "SELECT col_primary_key, date_format(col_time_on,'".$sql_date_format." %H:%i:%s') as col_time_on, col_call, col_band, col_mode,
 			col_submode, col_rst_sent, col_rst_rcvd, coalesce(col_srx, '') col_srx, coalesce(col_srx_string, '') col_srx_string,
 			coalesce(col_stx, '') col_stx, coalesce(col_stx_string, '') col_stx_string, coalesce(col_gridsquare, '') col_gridsquare,
