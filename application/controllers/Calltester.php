@@ -53,6 +53,7 @@ class Calltester extends CI_Controller {
 
 	/* Uses DXCC Class. Much faster */
 	function doClassCheck($de) {
+		ini_set('memory_limit', '-1');
 		$i = 0;
 		$result = array();
 
@@ -185,6 +186,7 @@ class Calltester extends CI_Controller {
 	}
 
 	function getQsos($station_id) {
+		ini_set('memory_limit', '-1');
 		$sql = 'select distinct col_country, col_call, col_dxcc, date(col_time_on) date, station_profile.station_profile_name, col_primary_key
 			from ' . $this->config->item('table_name') . '
 			join station_profile on ' . $this->config->item('table_name') . '.station_id = station_profile.station_id
@@ -368,273 +370,434 @@ class Calltester extends CI_Controller {
             'Callsign'  => 'WJ7R/C6A',
             'Country'   => 'Bahamas',
             'Adif'      => 60,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
 		$testarray[] = array(
             'Callsign'  => 'WJ7R/KH6',
             'Country'   => 'Hawaii',
             'Adif'      => 110,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
 		$testarray[] = array(
             'Callsign'  => 'WJ7R/C6',
             'Country'   => 'Bahamas',
             'Adif'      => 60,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
         $testarray[] = array(
             'Callsign'  => 'VE3EY/VP9',
             'Country'   => 'Bermuda',
             'Adif'      => 64,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
         $testarray[] = array(
             'Callsign'  => 'VP2MDG',
             'Country'   => 'Montserrat',
             'Adif'      => 96,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
         $testarray[] = array(
             'Callsign'  => 'VP2EY',
             'Country'   => 'Anguilla',
             'Adif'      => 12,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
         $testarray[] = array(
             'Callsign'  => 'VP2VI',
             'Country'   => 'British Virgin Islands.',
             'Adif'      => 65,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
         $testarray[] = array(
             'Callsign'  => 'VP2V/AA7V',
             'Country'   => 'British Virgin Islands',
             'Adif'      => 65,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
         $testarray[] = array(
             'Callsign'  => 'W8LR/R',
             'Country'   => 'United States Of America',
             'Adif'      => 291,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
         $testarray[] = array(
             'Callsign'  => 'SO1FH',
             'Country'   => 'Poland',
             'Adif'      => 269,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
         $testarray[] = array(
             'Callsign'  => 'KZ1H/PP',
             'Country'   => 'Brazil',
             'Adif'      => 108,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
         $testarray[] = array(
             'Callsign'  => 'K1KW/AM',
             'Country'   => 'None',
             'Adif'      => 0,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
         $testarray[] = array(
             'Callsign'  => 'K1KW/MM',
             'Country'   => 'None',
             'Adif'      => 0,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
         $testarray[] = array(
             'Callsign'  => 'TF/DL2NWK/P',
             'Country'   => 'Iceland',
             'Adif'      => 242,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
         $testarray[] = array(
             'Callsign'  => 'OZ1ALS/A',
             'Country'   => 'Denmark',
             'Adif'      => 221,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
         $testarray[] = array(
             'Callsign'  => 'LA1K',
             'Country'   => 'Norway',
             'Adif'      => 266,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
         $testarray[] = array(
             'Callsign'  => 'K1KW/M',
             'Country'   => 'United States Of America',
             'Adif'      => 291,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
         $testarray[] = array(
             'Callsign'  => 'TF/DL2NWK/M',
             'Country'   => 'Iceland',
             'Adif'      => 242,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
         $testarray[] = array(
             'Callsign'  => 'TF/DL2NWK/MM',
             'Country'   => 'None',
             'Adif'      => 0,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
         $testarray[] = array(
             'Callsign'  => 'TF/DL2NWK/P',
             'Country'   => 'Iceland',
             'Adif'      => 242,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
         $testarray[] = array(
             'Callsign'  => '2M0SQL/P',
             'Country'   => 'Scotland',
             'Adif'      => 279,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
         $testarray[] = array(
             'Callsign'  => 'FT8WW',
             'Country'   => 'Crozet Island',
             'Adif'      => 41,
-            'Date'      => 20230314
+            'Date'      => '2023-03-14'
         );
 
         $testarray[] = array(
             'Callsign'  => 'RV0AL/0/P',
             'Country'   => 'Asiatic Russia',
             'Adif'      => 15,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
         $testarray[] = array(
             'Callsign'  => 'OH/DJ1YFK',
             'Country'   => 'Finland',
             'Adif'      => 224,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
         $testarray[] = array(
             'Callsign'  => 'N6TR/7',
             'Country'   => 'United States Of America',
             'Adif'      => 291,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
         $testarray[] = array(
             'Callsign'  => 'KH0CW',
             'Country'   => 'United States Of America',
             'Adif'      => 291,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
         $testarray[] = array(
             'Callsign'  => 'R2FM/P',
             'Country'   => 'kaliningrad',
             'Adif'      => 126,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
         $testarray[] = array(
             'Callsign'  => 'R2FM',
             'Country'   => 'kaliningrad',
             'Adif'      => 126,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
         $testarray[] = array(
             'Callsign'  => 'FT5XO',
             'Country'   => 'Kerguelen Island',
             'Adif'      => 131,
-            'Date'      => 20050320
+            'Date'      => '2005-03-20'
         );
 
         $testarray[] = array(
             'Callsign'  => 'VP8CTR',
             'Country'   => 'Antarctica',
             'Adif'      => 13,
-            'Date'      => 19970207
+            'Date'      => '1997-02-07'
         );
 
         $testarray[] = array(
             'Callsign'  => 'FO0AAA',
             'Country'   => 'Clipperton',
             'Adif'      => 36,
-            'Date'      => '20000302'
+            'Date'      => '2000-03-02'
         );
 
         $testarray[] = array(
             'Callsign'  => 'CX/PR8KW',
             'Country'   => 'Uruguay',
             'Adif'      => 144,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
         $testarray[] = array(
             'Callsign'  => 'IQ3MV/LH',
             'Country'   => 'Italy',
             'Adif'      => 248,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
         $testarray[] = array(
             'Callsign'  => 'LA1K/QRP',
             'Country'   => 'Norway',
             'Adif'      => 266,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
         $testarray[] = array(
             'Callsign'  => 'LA1K/LGT',
             'Country'   => 'Norway',
             'Adif'      => 266,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
         $testarray[] = array(
             'Callsign'  => 'SM1K/LH',
             'Country'   => 'Sweden',
             'Adif'      => 284,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
 		$testarray[] = array(
             'Callsign'  => 'KG4W',
             'Country'   => 'United States Of America',
             'Adif'      => 291,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
 		$testarray[] = array(
             'Callsign'  => 'KG4WW',
             'Country'   => 'Guantanamo Bay',
             'Adif'      => 105,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
         );
 
 		$testarray[] = array(
             'Callsign'  => 'KG4WWW',
             'Country'   => 'United States Of America',
             'Adif'      => 291,
-            'Date'      => $date = date('Ymd', time())
+            'Date'      => $date = date('Y-m-d', time())
+        );
+
+		$testarray[] = array(
+            'Callsign'  => 'JA0JHQ/VK9X',
+            'Country'   => 'Christmas Island',
+            'Adif'      => 35,
+            'Date'      => '2015-05-08'
+        );
+
+		$testarray[] = array(
+            'Callsign'  => 'D5M',
+            'Country'   => 'Liberia',
+            'Adif'      => 434,
+            'Date'      => '2025-12-14'
+        );
+
+		$testarray[] = array(
+            'Callsign'  => 'AT44I',
+            'Country'   => 'Antarctica',
+            'Adif'      => 13,
+            'Date'      => '2025-12-16'
+        );
+
+		$testarray[] = array(
+            'Callsign'  => 'PT7BZ/PY0F',
+            'Country'   => 'Fernando De Noronha',
+            'Adif'      => 56,
+            'Date'      => $date = date('Y-m-d', time())
+        );
+
+		$testarray[] = array(
+            'Callsign'  => 'VP6A',
+            'Country'   => 'Ducie Island',
+            'Adif'      => 513,
+            'Date'      => '2023-06-21'
+        );
+
+		$testarray[] = array(
+            'Callsign'  => '9M1Z',
+            'Country'   => 'East Malaysia',
+            'Adif'      => 46,
+            'Date'      => '2024-06-24'
+        );
+
+		$testarray[] = array(
+            'Callsign'  => 'VK2/W7BRS',
+            'Country'   => 'Lord Howe Island',
+            'Adif'      => 147,
+            'Date'      => '2024-07-18'
+        );
+
+		$testarray[] = array(
+            'Callsign'  => 'G4SGX/6Y',
+            'Country'   => 'Jamaica',
+            'Adif'      => 82,
+            'Date'      => $date = date('Y-m-d', time())
+        );
+
+		$testarray[] = array(
+            'Callsign'  => 'DX0JP',
+            'Country'   => 'Spratly Islands',
+            'Adif'      => 247,
+            'Date'      => '2007-02-08'
+        );
+
+		$testarray[] = array(
+            'Callsign'  => 'AU7JCB',
+            'Country'   => 'India',
+            'Adif'      => 324,
+            'Date'      => '2007-02-08'
+        );
+
+		$testarray[] = array(
+            'Callsign'  => 'N2JBY/4X',
+            'Country'   => 'Israel',
+            'Adif'      => 336,
+            'Date'      => $date = date('Y-m-d', time())
+        );
+
+		$testarray[] = array(
+            'Callsign'  => 'KH5K',
+            'Country'   => 'Invalid',
+            'Adif'      => 0,
+            'Date'      => '1993-03-13'
+        );
+
+		$testarray[] = array(
+            'Callsign'  => 'HB/DK9TA',
+            'Country'   => 'Switzerland',
+            'Adif'      => 287,
+            'Date'      => $date = date('Y-m-d', time())
+        );
+
+		$testarray[] = array(
+            'Callsign'  => 'OE5DI/500',
+            'Country'   => 'Austria',
+            'Adif'      => 206,
+            'Date'      => $date = date('Y-m-d', time())
+        );
+
+		$testarray[] = array(
+            'Callsign'  => 'YI6SUL',
+            'Country'   => 'Invalid',
+            'Adif'      => 0,
+            'Date'      => $date = date('Y-m-d', time())
+        );
+
+		$testarray[] = array(
+            'Callsign'  => '3DA8/DF8LY/P',
+            'Country'   => 'Kingdom Of Eswatini',
+            'Adif'      => 468,
+            'Date'      => $date = date('Y-m-d', time())
+        );
+
+		$testarray[] = array(
+            'Callsign'  => '3X/DL5DAB',
+            'Country'   => 'Invalid',
+            'Adif'      => 0,
+            'Date'      => $date = date('Y-m-d', time())
+        );
+
+		$testarray[] = array(
+            'Callsign'  => '3X/DL5DA',
+            'Country'   => 'Guinea',
+            'Adif'      => 107,
+            'Date'      => $date = date('Y-m-d', time())
+        );
+
+		$testarray[] = array(
+            'Callsign'  => 'KN5H/6YA',
+            'Country'   => 'Jamaica',
+            'Adif'      => 82,
+            'Date'      => $date = date('Y-m-d', time())
+        );
+
+		$testarray[] = array(
+            'Callsign'  => 'DL2AAZ/6Y5',
+            'Country'   => 'Jamaica',
+            'Adif'      => 82,
+            'Date'      => $date = date('Y-m-d', time())
+        );
+
+		$testarray[] = array(
+            'Callsign'  => '6Y5WJ',
+            'Country'   => 'Jamaica',
+            'Adif'      => 82,
+            'Date'      => $date = date('Y-m-d', time())
+        );
+
+		$testarray[] = array(
+            'Callsign'  => 'R20RRC/0',
+            'Country'   => 'Asiatic Russia',
+            'Adif'      => 15,
+            'Date'      => $date = date('Y-m-d', time())
+        );
+
+		$testarray[] = array(
+            'Callsign'  => 'G4KJV/2K/P',
+            'Country'   => 'England',
+            'Adif'      => 223,
+            'Date'      => $date = date('Y-m-d', time())
         );
 
         set_time_limit(3600);
@@ -648,22 +811,24 @@ class Calltester extends CI_Controller {
 
         $i = 0;
 
+		$dxccobj = new Dxcc(null);
+
         foreach ($testarray as $call) {
             $i++;
-            $dxcc = $this->logbook_model->dxcc_lookup($call['Callsign'], $call['Date']);
+			$dxcc = $dxccobj->dxcc_lookup($call['Callsign'], $call['Date']);
 
-            $dxcc['adif'] = (isset($dxcc['adif'])) ? $dxcc['adif'] : 0;
-            $dxcc['entity'] = (isset($dxcc['entity'])) ? $dxcc['entity'] : 0;
+			$dxcc['adif'] = (isset($dxcc['adif'])) ? $dxcc['adif'] : 0;
+			$dxcc['entity'] = (isset($dxcc['entity'])) ? $dxcc['entity'] : 'None';
 
-            if ($call['Adif'] != $dxcc['adif']) {
-                $result[] = array(
-                                'Callsign'          => $call['Callsign'],
-                                'Expected country'  => $call['Country'],
-                                'Expected adif'     => $call['Adif'],
-                                'Result country'    => ucwords(strtolower($dxcc['entity']), "- (/"),
-                                'Result adif'       => $dxcc['adif'],
-                            );
-            }
+			$result[] = array(
+							'Callsign'          => $call['Callsign'],
+							'Date'              => $call['Date'],
+							'Expected country'  => $call['Country'],
+							'Expected adif'     => $call['Adif'],
+							'Result country'    => ucwords(strtolower($dxcc['entity']), "- (/"),
+							'Result adif'       => $dxcc['adif'],
+							'Passed'            => ($call['Adif'] == $dxcc['adif']) ? 'Yes' : 'No',
+						);
         }
 
         // End clock time in seconds
@@ -672,12 +837,13 @@ class Calltester extends CI_Controller {
         // Calculate script execution time
         $execution_time = ($end_time - $start_time);
 
-        echo " Execution time of script = ".$execution_time." sec <br/>";
-        echo $i . " calls tested. <br/>";
-        $count = 0;
+		$data['result'] = $result;
+		$data['execution_time'] = $execution_time;
+		$data['calls_tested'] = $i;
 
-        if ($result) {
-            $this->array_to_table($result);
-        }
+		$data['page_title'] = __("Callsign Tester");
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('calltester/call');
+		$this->load->view('interface_assets/footer');
     }
 }
