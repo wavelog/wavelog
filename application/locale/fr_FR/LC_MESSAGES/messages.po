@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-01-22 08:38+0000\n"
-"PO-Revision-Date: 2026-01-05 16:42+0000\n"
+"PO-Revision-Date: 2026-01-23 01:00+0000\n"
 "Last-Translator: JONCOUX Philippe <joncoux@free.fr>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/fr/>\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.14\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -703,7 +703,7 @@ msgstr "Testeur d'appels"
 
 #: application/controllers/Calltester.php:844
 msgid "Callsign Tester"
-msgstr ""
+msgstr "Testeur d'indicatifs d'appel"
 
 #: application/controllers/Club.php:23
 msgid "Club Officer"
@@ -1971,7 +1971,7 @@ msgstr "DXCC mis à jour pour %d QSO(s)."
 #: application/controllers/Logbookadvanced.php:941
 #, php-format
 msgid "Map for DXCC %s and gridsquare %s."
-msgstr ""
+msgstr "Carte pour DXCC %s et grille %s."
 
 #: application/controllers/Lookup.php:22
 msgid "Quick Lookup"
@@ -2007,6 +2007,10 @@ msgid ""
 "application without password!%s For further information please visit the "
 "%sLoTW FAQ page%s in the Wavelog Wiki."
 msgstr ""
+"Le certificat trouvé dans le fichier %s contient un mot de passe et ne peut "
+"pas être traité. %sVeuillez vous assurer d'exporter le certificat LoTW "
+"depuis l'application tqsl sans mot de passe !%s Pour plus d'informations, "
+"veuillez consulter %sla page FAQ LoTW%s du wiki Wavelog."
 
 #: application/controllers/Lotw.php:450
 #, php-format
@@ -4575,6 +4579,9 @@ msgid ""
 "There is different data for DOK in your log compared to DCL or updates where "
 "not done because QSOs are not confirmed in DCL."
 msgstr ""
+"Les données DOK dans votre journal sont différentes de celles de DCL, ou "
+"bien les mises à jour n'ont pas été effectuées car les QSO ne sont pas "
+"confirmés dans DCL."
 
 #: application/views/adif/dcl_success.php:29
 #: application/views/adif/pota_success.php:29
@@ -4962,6 +4969,8 @@ msgid ""
 "More information regarding the confirmation status in DCL can be found on "
 "the %sDCL Confluence page%s."
 msgstr ""
+"Vous trouverez plus d'informations concernant l'état de confirmation dans "
+"DCL sur la page Confluence %sDCL%s."
 
 #: application/views/adif/import.php:349
 msgid "Only import DOK data from QSOs confirmed on DCL."
@@ -12958,7 +12967,7 @@ msgstr "Afficher plus"
 
 #: application/views/logbookadvanced/checkresult.php:197
 msgid "View on map"
-msgstr ""
+msgstr "Afficher sur la carte"
 
 #: application/views/logbookadvanced/checkresult.php:222
 msgid "CQ Zone Check Results"
@@ -12971,7 +12980,7 @@ msgid ""
 msgstr ""
 "Les QSO suivants ont été identifiés comme ayant une zone CQ différente de "
 "celle habituellement observée par ce DXCC (un maximum de 5000 QSO sont "
-"affichés) :"
+"affichés):"
 
 #: application/views/logbookadvanced/checkresult.php:229
 msgid "Force update even if DXCC covers multiple CQ zones"
@@ -13075,25 +13084,27 @@ msgstr "Zone ITU du DXCC"
 
 #: application/views/logbookadvanced/checkresult.php:374
 msgid "IOTA Check Results"
-msgstr ""
+msgstr "Résultats de la vérification IOTA"
 
 #: application/views/logbookadvanced/checkresult.php:381
 msgid "These QSOs MAY have an incorrect IOTA reference."
-msgstr ""
+msgstr "Ces QSO PEUVENT avoir une référence IOTA incorrecte."
 
 #: application/views/logbookadvanced/checkresult.php:382
 msgid ""
 "Results depends on the correct DXCC, and it will only be checked against "
 "current DXCC. False positive results may occur."
 msgstr ""
+"Les résultats dépendent du DXCC correct et ne seront vérifiés que par "
+"rapport au DXCC actuel. Des faux positifs sont possibles."
 
 #: application/views/logbookadvanced/checkresult.php:393
 msgid "QSO DXCC"
-msgstr ""
+msgstr "QSO DXCC"
 
 #: application/views/logbookadvanced/checkresult.php:395
 msgid "IOTA DXCC"
-msgstr ""
+msgstr "IOTA DXCC"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:4
 msgid "Data Repair Tools"
@@ -13114,7 +13125,7 @@ msgstr ""
 #: application/views/logbookadvanced/dbtoolsdialog.php:12
 msgid "Check all QSOs in the logbook for incorrect CQ Zones"
 msgstr ""
-"Vérifiez tous les QSO dans le carnet de trafic pour les zones CQ incorrectes"
+"Vérifiez tous les QSO dans le carnet de trafic pour les zones CQ incorrectes."
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:13
 msgid "Use Wavelog to determine CQ Zone for all QSOs."
@@ -13197,11 +13208,11 @@ msgstr "Ceci est limité à 150 indicatifs d'appel par exécution !"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:103
 msgid "Check IOTA against DXCC"
-msgstr ""
+msgstr "Vérifier IOTA par rapport à DXCC"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:104
 msgid "Use Wavelog to check IOTA against DXCC"
-msgstr ""
+msgstr "Utilisez Wavelog pour vérifier la conformité IOTA avec DXCC"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:4
 msgid "Search for duplicates using:"
@@ -13241,7 +13252,7 @@ msgstr "Puissance de la station"
 
 #: application/views/logbookadvanced/edit.php:25
 msgid "DARC DOK"
-msgstr ""
+msgstr "DARC DOK"
 
 #: application/views/logbookadvanced/edit.php:31
 #: application/views/logbookadvanced/index.php:990
@@ -13775,15 +13786,15 @@ msgstr "Recherche en double"
 
 #: application/views/logbookadvanced/index.php:78
 msgid "Show less"
-msgstr ""
+msgstr "Afficher moins"
 
 #: application/views/logbookadvanced/index.php:80
 msgid "Gridsquares for"
-msgstr ""
+msgstr "Grilles pour"
 
 #: application/views/logbookadvanced/index.php:81
 msgid "Non DXCC matching gridsquare"
-msgstr ""
+msgstr "Grille non DXCC correspondante"
 
 #: application/views/logbookadvanced/index.php:310
 msgid "From"
@@ -13814,7 +13825,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/index.php:513
 msgid "Sort column"
-msgstr ""
+msgstr "Colonne de tri"
 
 #: application/views/logbookadvanced/index.php:515
 #: application/views/oqrs/showrequests.php:87
@@ -13823,19 +13834,19 @@ msgstr "Heure QSO"
 
 #: application/views/logbookadvanced/index.php:518
 msgid "QSO Modified"
-msgstr ""
+msgstr "QSO modifié"
 
 #: application/views/logbookadvanced/index.php:522
 msgid "Sort direction"
-msgstr ""
+msgstr "Sens de tri"
 
 #: application/views/logbookadvanced/index.php:524
 msgid "Descending"
-msgstr ""
+msgstr "Descendant"
 
 #: application/views/logbookadvanced/index.php:525
 msgid "Ascending"
-msgstr ""
+msgstr "Ascendant"
 
 #: application/views/logbookadvanced/index.php:533
 #: application/views/logbookadvanced/index.php:715
@@ -14151,7 +14162,7 @@ msgstr "Outils de base de données"
 #: application/views/logbookadvanced/index.php:897
 #: application/views/logbookadvanced/useroptions.php:336
 msgid "Last modified"
-msgstr ""
+msgstr "Dernière modification"
 
 #: application/views/logbookadvanced/index.php:900
 #: application/views/logbookadvanced/useroptions.php:28
@@ -14354,45 +14365,47 @@ msgstr "Pays actuellement pris en charge"
 
 #: application/views/logbookadvanced/useroptions.php:15
 msgid "Basic QSO Information"
-msgstr ""
+msgstr "Informations de base sur les QSO"
 
 #: application/views/logbookadvanced/useroptions.php:72
 msgid "Station Details"
-msgstr ""
+msgstr "Détails de la station"
 
 #: application/views/logbookadvanced/useroptions.php:105
 msgid "Confirmation Services"
-msgstr ""
+msgstr "Services de confirmation"
 
 #: application/views/logbookadvanced/useroptions.php:162
 msgid "Geographic Information"
-msgstr ""
+msgstr "Informations géographiques"
 
 #: application/views/logbookadvanced/useroptions.php:207
 msgid "Awards Programs"
-msgstr ""
+msgstr "Programmes de récompenses"
 
 #: application/views/logbookadvanced/useroptions.php:258
 msgid "Additional Information"
-msgstr ""
+msgstr "Informations Complémentaires"
 
 #: application/views/logbookadvanced/useroptions.php:297
 msgid "Technical Details"
-msgstr ""
+msgstr "Détails techniques"
 
 #: application/views/logbookadvanced/useroptions.php:336
 msgid "For debugging only"
-msgstr ""
+msgstr "À des fins de débogage uniquement"
 
 #: application/views/logbookadvanced/useroptions.php:336
 msgid ""
 "This is meant for debugging purposes only and not designed to be displayed "
 "by default"
 msgstr ""
+"Ceci est destiné uniquement au débogage et n'est pas conçu pour être affiché "
+"par défaut"
 
 #: application/views/logbookadvanced/useroptions.php:347
 msgid "Map Layers"
-msgstr ""
+msgstr "Couches de carte"
 
 #: application/views/lookup/index.php:11
 #: application/views/qso/award_tabs.php:53
@@ -14426,7 +14439,7 @@ msgstr "Aucun utilisateur de LoTW"
 
 #: application/views/lookup/result.php:16
 msgid "This gridsquare exists in the following DXCC(s):"
-msgstr ""
+msgstr "Cette case de la grille existe dans le(s) DXCC suivant(s) :"
 
 #: application/views/lotw/analysis.php:8 application/views/qrz/analysis.php:8
 msgid "No data imported. please check selected date. Must be in the past!"
@@ -14580,6 +14593,8 @@ msgid ""
 "For further information please visit the %sLoTW FAQ page%s in the Wavelog "
 "Wiki"
 msgstr ""
+"Pour plus d'informations, veuillez consulter la page FAQ %sLoTW%s du wiki "
+"Wavelog"
 
 #: application/views/map/qso_map.php:15
 msgid "Select Country:"
@@ -15975,15 +15990,15 @@ msgstr "Veuillez patienter avant d'enregistrer un autre QSO"
 
 #: application/views/qso/index.php:42
 msgid "Satellite not found"
-msgstr ""
+msgstr "Satellite introuvable"
 
 #: application/views/qso/index.php:43
 msgid "Supported by LoTW"
-msgstr ""
+msgstr "Soutenu par LoTW"
 
 #: application/views/qso/index.php:44
 msgid "Not supported by LoTW"
-msgstr ""
+msgstr "Non pris en charge par LoTW"
 
 #: application/views/qso/index.php:90
 msgid "LIVE"
@@ -16765,7 +16780,7 @@ msgstr ""
 
 #: application/views/search/result.php:65
 msgid "Source callbook"
-msgstr ""
+msgstr "Répertoire source"
 
 #: application/views/search/search_result_ajax.php:463
 #: application/views/view_log/partial/log.php:142
@@ -17735,7 +17750,7 @@ msgstr "Nb QSOs /An"
 #: application/views/statistics/index.php:15
 #: application/views/statistics/index.php:99
 msgid "Months"
-msgstr ""
+msgstr "Mois"
 
 #: application/views/statistics/index.php:19
 msgid "Number of QSOs worked each year"
@@ -17743,55 +17758,55 @@ msgstr "Nombre de QSOs réalisés par an"
 
 #: application/views/statistics/index.php:20
 msgid "Number of QSOs worked each month"
-msgstr ""
+msgstr "Nombre de QSO effectués chaque mois"
 
 #: application/views/statistics/index.php:31
 msgid "January"
-msgstr ""
+msgstr "Janvier"
 
 #: application/views/statistics/index.php:32
 msgid "February"
-msgstr ""
+msgstr "Février"
 
 #: application/views/statistics/index.php:33
 msgid "March"
-msgstr ""
+msgstr "Mars"
 
 #: application/views/statistics/index.php:34
 msgid "April"
-msgstr ""
+msgstr "Avril"
 
 #: application/views/statistics/index.php:35
 msgid "May"
-msgstr ""
+msgstr "Mai"
 
 #: application/views/statistics/index.php:36
 msgid "June"
-msgstr ""
+msgstr "Juin"
 
 #: application/views/statistics/index.php:37
 msgid "July"
-msgstr ""
+msgstr "Juillet"
 
 #: application/views/statistics/index.php:38
 msgid "August"
-msgstr ""
+msgstr "Août"
 
 #: application/views/statistics/index.php:39
 msgid "September"
-msgstr ""
+msgstr "Septembre"
 
 #: application/views/statistics/index.php:40
 msgid "October"
-msgstr ""
+msgstr "Octobre"
 
 #: application/views/statistics/index.php:41
 msgid "November"
-msgstr ""
+msgstr "Novembre"
 
 #: application/views/statistics/index.php:42
 msgid "December"
-msgstr ""
+msgstr "Décembre"
 
 #: application/views/statistics/index.php:50
 msgid "Explore the logbook."
@@ -19446,65 +19461,65 @@ msgstr "Reçu"
 
 #: application/views/zonechecker/index.php:3
 msgid "Gridsquare Zone identification"
-msgstr ""
+msgstr "Identification de la zone du carré de la grille"
 
 #: application/views/zonechecker/index.php:15
 msgid "Zone Type"
-msgstr ""
+msgstr "Type de zone"
 
 #: application/views/zonechecker/index.php:20
 msgid "Start Zone Check"
-msgstr ""
+msgstr "Contrôle de la zone de départ"
 
 #: application/views/zonechecker/index.php:39
 #: application/views/zonechecker/index.php:62
 msgid "Processing..."
-msgstr ""
+msgstr "Traitement..."
 
 #: application/views/zonechecker/index.php:50
 #: application/views/zonechecker/index.php:73
 msgid "An error occurred while processing the request."
-msgstr ""
+msgstr "Une erreur s'est produite lors du traitement de la requête."
 
 #: application/views/zonechecker/result.php:16
 msgid "Callsigns Tested"
-msgstr ""
+msgstr "Indicatifs d'appel testés"
 
 #: application/views/zonechecker/result.php:17
 msgid "Execution Time"
-msgstr ""
+msgstr "Temps d'exécution"
 
 #: application/views/zonechecker/result.php:18
 msgid "Potential Wrong Zones"
-msgstr ""
+msgstr "Zones potentiellement problématiques"
 
 #: application/views/zonechecker/result.php:19
 msgid "Cache Hits"
-msgstr ""
+msgstr "Résultats du cache"
 
 #: application/views/zonechecker/result.php:20
 msgid "Cache Misses"
-msgstr ""
+msgstr "Cache manquant"
 
 #: application/views/zonechecker/result.php:21
 msgid "Hit Rate"
-msgstr ""
+msgstr "Taux de réussite"
 
 #: application/views/zonechecker/result.php:55
 msgid "ITUz"
-msgstr ""
+msgstr "ITUz"
 
 #: application/views/zonechecker/result.php:56
 msgid "ITUz geojson"
-msgstr ""
+msgstr "ITUz geojson"
 
 #: application/views/zonechecker/result.php:58
 msgid "CQz"
-msgstr ""
+msgstr "CQz"
 
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
-msgstr ""
+msgstr "CQz geojson"
 
 #~ msgid "Signature Name"
 #~ msgstr "Nom de la signature"

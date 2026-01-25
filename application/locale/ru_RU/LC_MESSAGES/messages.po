@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-01-22 08:38+0000\n"
-"PO-Revision-Date: 2026-01-15 17:11+0000\n"
+"PO-Revision-Date: 2026-01-24 12:13+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.14\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -695,11 +695,11 @@ msgstr " и спутник "
 
 #: application/controllers/Calltester.php:32
 msgid "Call Tester"
-msgstr "Проверка позывных"
+msgstr "Проверка позывного"
 
 #: application/controllers/Calltester.php:844
 msgid "Callsign Tester"
-msgstr ""
+msgstr "Проверка позывного"
 
 #: application/controllers/Club.php:23
 msgid "Club Officer"
@@ -1554,7 +1554,7 @@ msgstr "eQSL"
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/widgets/qsos.php:18
 msgid "Mode"
-msgstr "Вид модуляции"
+msgstr "Модуляция"
 
 #: application/controllers/Logbook.php:1381
 #: application/views/awards/73on73/index.php:38
@@ -1967,7 +1967,7 @@ msgstr "Значение DXCC обновлено для %d QSO."
 #: application/controllers/Logbookadvanced.php:941
 #, php-format
 msgid "Map for DXCC %s and gridsquare %s."
-msgstr ""
+msgstr "Карта для DXCC %s и квадратов %s."
 
 #: application/controllers/Lookup.php:22
 msgid "Quick Lookup"
@@ -7637,7 +7637,7 @@ msgstr "Требуемые подвиды модуляции"
 
 #: application/views/bandmap/list.php:51
 msgid "Configure in User Settings - Modes"
-msgstr "Конфигурируется в Пользовательских настройках - Виды модуляции"
+msgstr "Настраивается в Пользовательских настройках - Виды модуляции"
 
 #: application/views/bandmap/list.php:52
 msgid "No submodes configured - configure in User Settings - Modes"
@@ -8255,7 +8255,7 @@ msgstr "Переключить фильтр новых DXCC"
 
 #: application/views/bandmap/list.php:497
 msgid "New Entities"
-msgstr "Новые сущности"
+msgstr "Новые DXCC"
 
 #: application/views/bandmap/list.php:499
 msgid "Toggle New Callsigns filter"
@@ -8656,15 +8656,15 @@ msgstr "QTH"
 #: application/views/cabrillo/index.php:52
 #: application/views/reg1test/index.php:58
 msgid "Category Operator"
-msgstr "Категория оператора"
+msgstr "Оператор(ы)"
 
 #: application/views/cabrillo/index.php:60
 msgid "Category Assisted"
-msgstr "Категория Assisted"
+msgstr "Assisted"
 
 #: application/views/cabrillo/index.php:67
 msgid "Category Band"
-msgstr "Категория диапазон"
+msgstr "Диапазон(ы)"
 
 #: application/views/cabrillo/index.php:93
 msgid "Light/Laser"
@@ -8676,23 +8676,23 @@ msgstr "VHF-3-BAND и VHF-FM-ONLY (только для контестов ARRL V
 
 #: application/views/cabrillo/index.php:98
 msgid "Category Mode"
-msgstr "Категория вид модуляции"
+msgstr "Вид(ы) модуляции"
 
 #: application/views/cabrillo/index.php:109
 msgid "Category Power"
-msgstr "Категория мощность"
+msgstr "Мощность"
 
 #: application/views/cabrillo/index.php:117
 msgid "Category Station"
-msgstr "Категория станция"
+msgstr "Тип станции"
 
 #: application/views/cabrillo/index.php:133
 msgid "Category Transmitter"
-msgstr "Категория передатчик"
+msgstr "Передатчик"
 
 #: application/views/cabrillo/index.php:143
 msgid "Category Time"
-msgstr "Категория Время"
+msgstr "Время"
 
 #: application/views/cabrillo/index.php:145
 #: application/views/cabrillo/index.php:146
@@ -8704,7 +8704,7 @@ msgstr "%d часов"
 
 #: application/views/cabrillo/index.php:152
 msgid "Category Overlay"
-msgstr "Категория оверлей"
+msgstr "Оверлей"
 
 #: application/views/cabrillo/index.php:164
 #: application/views/reg1test/index.php:70
@@ -12451,7 +12451,7 @@ msgstr "Внутренние инструменты"
 
 #: application/views/interface_assets/header.php:539
 msgid "Callsign DXCC checker"
-msgstr "Проверка DXCC для позывных"
+msgstr "Проверка DXCC для позывного"
 
 #: application/views/interface_assets/header.php:540
 msgid "GeoJSON QSO Map"
@@ -12891,7 +12891,7 @@ msgstr "Показать больше"
 
 #: application/views/logbookadvanced/checkresult.php:197
 msgid "View on map"
-msgstr ""
+msgstr "Посмотреть на карте"
 
 #: application/views/logbookadvanced/checkresult.php:222
 msgid "CQ Zone Check Results"
@@ -13704,11 +13704,11 @@ msgstr "Показать меньше"
 
 #: application/views/logbookadvanced/index.php:80
 msgid "Gridsquares for"
-msgstr ""
+msgstr "Квадраты для"
 
 #: application/views/logbookadvanced/index.php:81
 msgid "Non DXCC matching gridsquare"
-msgstr ""
+msgstr "Квадрат, несоответствующий DXCC"
 
 #: application/views/logbookadvanced/index.php:310
 msgid "From"
@@ -15889,15 +15889,15 @@ msgstr "Пожалуйста, подождите перед сохранение
 
 #: application/views/qso/index.php:42
 msgid "Satellite not found"
-msgstr ""
+msgstr "Спутник не найден"
 
 #: application/views/qso/index.php:43
 msgid "Supported by LoTW"
-msgstr ""
+msgstr "Поддерживается LoTW"
 
 #: application/views/qso/index.php:44
 msgid "Not supported by LoTW"
-msgstr ""
+msgstr "Не поддерживается LoTW"
 
 #: application/views/qso/index.php:90
 msgid "LIVE"
@@ -16793,7 +16793,7 @@ msgstr "Отсутствует диапазон!"
 
 #: application/views/simplefle/index.php:24
 msgid "Mode is missing!"
-msgstr "Отсутствует вид модуляции!"
+msgstr "Вид модуляции не указан!"
 
 #: application/views/simplefle/index.php:25
 msgid "Time is not set!"

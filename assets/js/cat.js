@@ -67,6 +67,8 @@ $(document).ready(function() {
     let reconnectAttempts = 0;
     let websocketEnabled = false;
     let websocketIntentionallyClosed = false; // Flag to prevent auto-reconnect when user switches away
+    let hasTriedWsFallback = false; // Track if we've already tried WS fallback after WSS failed
+    let activeWebSocketProtocol = 'wss'; // Track which protocol is currently active ('wss' or 'ws')
     let CATInterval=null;
     var updateFromCAT_lock = 0; // This mechanism prevents multiple simultaneous calls to query the CAT interface information
     var updateFromCAT_lockTimeout = null; // Timeout to release lock if AJAX fails
@@ -114,13 +116,21 @@ $(document).ready(function() {
 
     function initializeWebSocketConnection() {
         try {
+            // Determine which protocol and port to use
+            // Try WSS on port 54323 first, fall back to WS on port 54322
+            const tryWss = !hasTriedWsFallback;
+            const protocol = tryWss ? 'wss' : 'ws';
+            const port = tryWss ? '54323' : '54322';
+            const wsUrl = protocol + '://127.0.0.1:' + port;
+
             // Note: Browser will log WebSocket connection errors to console if server is unreachable
             // This is native browser behavior and cannot be suppressed - errors are handled in GUI via onerror handler
-            websocket = new WebSocket('ws://localhost:54322');
+            websocket = new WebSocket(wsUrl);
 
             websocket.onopen = function(event) {
                 reconnectAttempts = 0;
                 websocketEnabled = true;
+                activeWebSocketProtocol = protocol; // Remember which protocol worked
             };
 
             websocket.onmessage = function(event) {
@@ -133,6 +143,21 @@ $(document).ready(function() {
             };
 
             websocket.onerror = function(error) {
+                // If WSS failed and we haven't tried WS fallback yet, try WS
+                if (tryWss && !hasTriedWsFallback) {
+                    hasTriedWsFallback = true;
+                    // Close current connection (which failed anyway) and retry with WS
+                    if (websocket && websocket.readyState === WebSocket.CONNECTING) {
+                        websocket.close();
+                    }
+                    // Schedule reconnection with WS
+                    setTimeout(() => {
+                        initializeWebSocketConnection();
+                    }, 100); // Short delay before retry
+                    return;
+                }
+
+                // Original error handling for when both protocols have been tried
                 if ($('.radios option:selected').val() != '0') {
                     var radioName = $('select.radios option:selected').text();
                     displayRadioStatus('error', radioName);
@@ -142,6 +167,11 @@ $(document).ready(function() {
 
         websocket.onclose = function(event) {
             websocketEnabled = false;
+
+            // Reset fallback flag on intentional close so we try WSS first next time
+            if (websocketIntentionallyClosed) {
+                hasTriedWsFallback = false;
+            }
 
             // Only attempt to reconnect if the closure was not intentional
             if (!websocketIntentionallyClosed && reconnectAttempts < CAT_CONFIG.WEBSOCKET_RECONNECT_MAX) {
@@ -346,7 +376,8 @@ $(document).ready(function() {
 
     /**
      * Perform the actual radio tuning via CAT interface
-     * Sends frequency and mode to radio via HTTP request
+     * Sends frequency and mode to radio via HTTP/HTTPS request with failover
+     * Tries HTTPS first, falls back to HTTP on failure
      * @param {string} catUrl - CAT interface URL for the radio
      * @param {number} freqHz - Frequency in Hz
      * @param {string} mode - Radio mode (validated against supported modes)
@@ -358,44 +389,75 @@ $(document).ready(function() {
         const validModes = ['lsb', 'usb', 'cw', 'fm', 'am', 'rtty', 'pkt', 'dig', 'pktlsb', 'pktusb', 'pktfm'];
         const catMode = mode && validModes.includes(mode.toLowerCase()) ? mode.toLowerCase() : 'usb';
 
-        // Format: {cat_url}/{frequency}/{mode}
-        const url = catUrl + '/' + freqHz + '/' + catMode;
+        // Determine which protocol to try first
+        // If URL is already HTTPS, use it. If HTTP, upgrade to HTTPS for first attempt.
+        const isHttps = catUrl.startsWith('https://');
+        const httpsUrl = isHttps ? catUrl : catUrl.replace(/^http:\/\//, 'https://');
+        const httpUrl = isHttps ? catUrl.replace(/^https:\/\//, 'http://') : catUrl;
 
-        // Make request with proper error handling
-        fetch(url, {
-            method: 'GET'
-        })
-        .then(response => {
-            if (response.ok) {
-                // Success - HTTP 200-299, get response text
-                return response.text();
-            } else {
-                // HTTP error status (4xx, 5xx)
-                throw new Error('HTTP ' + response.status);
-            }
-        })
-        .then(data => {
-            // Call success callback with response data
-            if (typeof onSuccess === 'function') {
-                onSuccess(data);
-            }
-        })
-        .catch(error => {
-            // Only show error on actual failures (network error, HTTP error, etc.)
-            const freqMHz = (freqHz / 1000000).toFixed(3);
-            const errorTitle = lang_cat_radio_tuning_failed;
-            const errorMsg = lang_cat_failed_to_tune + ' ' + freqMHz + ' MHz (' + catMode.toUpperCase() + '). ' + lang_cat_not_responding;
+        // Build the full URLs with frequency and mode
+        const httpsRequestUrl = httpsUrl + '/' + freqHz + '/' + catMode;
+        const httpRequestUrl = httpUrl + '/' + freqHz + '/' + catMode;
 
-            // Use showToast if available (from qso.js), otherwise use Bootstrap alert
-            if (typeof showToast === 'function') {
-                showToast(errorTitle, errorMsg, 'bg-danger text-white', 5000);
-            }
+        // Try HTTPS first (unless original URL was already HTTPS, then just try that)
+        const tryHttps = !isHttps;
 
-            // Call error callback if provided
-            if (typeof onError === 'function') {
-                onError(null, 'error', error.message);
-            }
-        });
+        // Function to attempt tuning with a specific URL
+        const tryTuning = function(url, isFallback) {
+            return fetch(url, {
+                method: 'GET'
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Success - HTTP 200-299, get response text
+                    return response.text();
+                } else {
+                    // HTTP error status (4xx, 5xx)
+                    throw new Error('HTTP ' + response.status);
+                }
+            })
+            .then(data => {
+                // Call success callback with response data
+                if (typeof onSuccess === 'function') {
+                    onSuccess(data);
+                }
+                return data;
+            });
+        };
+
+        // Execute failover logic: try HTTPS first, then HTTP
+        const primaryUrl = tryHttps ? httpsRequestUrl : httpRequestUrl;
+        const fallbackUrl = tryHttps ? httpRequestUrl : null;
+
+        tryTuning(primaryUrl, false)
+            .catch(error => {
+                // If HTTPS was attempted and failed, try HTTP fallback
+                if (fallbackUrl !== null) {
+                    return tryTuning(fallbackUrl, true)
+                        .catch(fallbackError => {
+                            // Both HTTPS and HTTP failed
+                            throw fallbackError;
+                        });
+                }
+                // No fallback available (was already HTTPS or only one URL to try)
+                throw error;
+            })
+            .catch(error => {
+                // All attempts failed - show error
+                const freqMHz = (freqHz / 1000000).toFixed(3);
+                const errorTitle = lang_cat_radio_tuning_failed;
+                const errorMsg = lang_cat_failed_to_tune + ' ' + freqMHz + ' MHz (' + catMode.toUpperCase() + '). ' + lang_cat_not_responding;
+
+                // Use showToast if available (from qso.js), otherwise use Bootstrap alert
+                if (typeof showToast === 'function') {
+                    showToast(errorTitle, errorMsg, 'bg-danger text-white', 5000);
+                }
+
+                // Call error callback if provided
+                if (typeof onError === 'function') {
+                    onError(null, 'error', error.message);
+                }
+            });
     }
 
     /**
@@ -1227,6 +1289,7 @@ $(document).ready(function() {
         } else if (selectedRadioId == 'ws') {
             websocketIntentionallyClosed = false; // Reset flag when opening WebSocket
             reconnectAttempts = 0; // Reset reconnect attempts
+            hasTriedWsFallback = false; // Reset WSS failover state - try WSS first again
             // Set DX Waterfall CAT state to websocket if variable exists
             if (typeof dxwaterfall_cat_state !== 'undefined') {
                 dxwaterfall_cat_state = "websocket";

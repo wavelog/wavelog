@@ -9,11 +9,11 @@
 # Qing He <HE@BD8DHF.COM>, 2024.
 # hellofinch <543933756@qq.com>, 2024, 2025.
 # wxy <xy.8789aime@foxmail.com>, 2024.
-# YuanRetro <lijiaxuan1811@163.com>, 2025.
+# YuanRetro <lijiaxuan1811@163.com>, 2025, 2026.
 # 李宇翔 <lyx8851@qq.com>, 2025.
 # Tao Xu <angelxutao@gmail.com>, 2025.
 # BH3HNI <mmf@live.com>, 2025.
-# Lu Chang <chinaluchang@live.com>, 2025.
+# Lu Chang <chinaluchang@live.com>, 2025, 2026.
 # BG8LNG <qrz@bg8lng.com>, 2025.
 # FengziLeo <fengzileo@vip.qq.com>, 2025.
 # BG9JDI <lyx8851@qq.com>, 2025.
@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-01-22 08:38+0000\n"
-"PO-Revision-Date: 2025-12-23 02:59+0000\n"
-"Last-Translator: YuanRetro <lijiaxuan1811@163.com>\n"
+"PO-Revision-Date: 2026-01-24 15:29+0000\n"
+"Last-Translator: Lu Chang <chinaluchang@live.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -36,7 +36,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.14\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -708,11 +708,11 @@ msgstr " 并且卫星 "
 
 #: application/controllers/Calltester.php:32
 msgid "Call Tester"
-msgstr ""
+msgstr "通联记录检测器"
 
 #: application/controllers/Calltester.php:844
 msgid "Callsign Tester"
-msgstr ""
+msgstr "通联记录检测器"
 
 #: application/controllers/Club.php:23
 msgid "Club Officer"
@@ -956,7 +956,7 @@ msgstr "DCL"
 
 #: application/controllers/Dcl.php:139
 msgid "No QSOs to upload."
-msgstr "没有可上传的QSO记录。"
+msgstr "没有可上传的 QSO 记录。"
 
 #: application/controllers/Dcl.php:186 application/controllers/Dcl.php:198
 msgid "Upload Failed"
@@ -1065,7 +1065,7 @@ msgstr "eQSL 卡片"
 #: application/controllers/Eqsl.php:56
 #, php-format
 msgid "Showing %d to %d of %d entries"
-msgstr ""
+msgstr "显示 %d 到 %d，共 %d 条目"
 
 #: application/controllers/Eqsl.php:83 application/controllers/Eqsl.php:173
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
@@ -1122,7 +1122,7 @@ msgstr "未能下载 eQSL 图片"
 
 #: application/controllers/Eqsl.php:443
 msgid "Failed to load cached eQSL image"
-msgstr ""
+msgstr "未能加载缓存的 eQSL 图像"
 
 #: application/controllers/Eqsl.php:590
 msgid "eQSL Tools"
@@ -1130,7 +1130,7 @@ msgstr "eQSL 工具"
 
 #: application/controllers/Eqsl.php:620
 msgid "Limited to first 150 QSOs for this request. Please run again."
-msgstr ""
+msgstr "此请求限于前150个 QSO。请再次运行。"
 
 #: application/controllers/Eqsl.php:626
 msgid " / Errors: "
@@ -1142,7 +1142,7 @@ msgstr "下载成功： "
 
 #: application/controllers/Eqsl.php:633
 msgid "eQSL rate limit reached. Please wait before running again."
-msgstr ""
+msgstr "已达到 eQSL 访问次数限制。请等待后再运行。"
 
 #: application/controllers/Eqsl.php:645
 msgid "eQSL Card Image Download"
@@ -1959,12 +1959,12 @@ msgstr "详细日志"
 #: application/controllers/Logbookadvanced.php:925
 #, php-format
 msgid "DXCC updated for %d QSO(s)."
-msgstr ""
+msgstr "已更新 %d 个 QSO 的 DXCC。"
 
 #: application/controllers/Logbookadvanced.php:941
 #, php-format
 msgid "Map for DXCC %s and gridsquare %s."
-msgstr ""
+msgstr "为 DXCC %s 和网格 %s 的地图。"
 
 #: application/controllers/Lookup.php:22
 msgid "Quick Lookup"
@@ -2000,6 +2000,8 @@ msgid ""
 "application without password!%s For further information please visit the "
 "%sLoTW FAQ page%s in the Wavelog Wiki."
 msgstr ""
+"文件%s中的证书包含密码，无法处理。%s请确保从 tqsl 应用程序导出 LoTW 证书时不"
+"带密码！%s如需更多信息，请访问 Wavelog Wiki 中的 %sLoTW FAQ 页面%s。"
 
 #: application/controllers/Lotw.php:450
 #, php-format
@@ -2008,16 +2010,18 @@ msgid ""
 "contains 'key-only' this is typically a certificate request which has not "
 "been processed by LoTW yet."
 msgstr ""
+"从文件 %s 提取证书时发生一般错误。如果文件名包含“key-only”，通常这是一个尚未"
+"被 LoTW 处理的证书请求。"
 
 #: application/controllers/Lotw.php:457
 #, php-format
 msgid "Generic error processing the certificate in file %s."
-msgstr ""
+msgstr "在文件 %s 中处理证书时出现一般错误。"
 
 #: application/controllers/Lotw.php:469
 #, php-format
 msgid "Generic error extracting the private key from certificate in file %s."
-msgstr ""
+msgstr "从文件 %s 中提取证书的私钥时发生一般错误。"
 
 #: application/controllers/Lotw.php:685
 msgid "LoTW ADIF Information"
@@ -2025,7 +2029,7 @@ msgstr "LoTW ADIF 信息"
 
 #: application/controllers/Lotw.php:858
 msgid "Connection to LoTW failed."
-msgstr ""
+msgstr "连接到 LoTW 失败。"
 
 #: application/controllers/Lotw.php:863
 #, php-format
@@ -2058,7 +2062,7 @@ msgstr "未配置 LoTW 登录信息！"
 
 #: application/controllers/Map.php:48
 msgid "QSO Map"
-msgstr ""
+msgstr "QSO 地图"
 
 #: application/controllers/Mode.php:25 application/controllers/Usermode.php:23
 #: application/views/interface_assets/header.php:328
@@ -3343,7 +3347,7 @@ msgstr "通过标识找到多个用户"
 
 #: application/controllers/Zonechecker.php:26
 msgid "Gridsquare Zone finder"
-msgstr ""
+msgstr "网格区域查找器"
 
 #: application/libraries/Callbook.php:124
 msgid "QRZCQ Error"
@@ -3590,7 +3594,7 @@ msgstr "未知"
 
 #: application/models/Logbook_model.php:5711
 msgid "POTA reference already in log"
-msgstr "日志中已存在POTA数据"
+msgstr "日志中已存在 POTA 编号"
 
 #: application/models/Logbook_model.php:5714
 msgid "QSO updated"
@@ -3612,7 +3616,7 @@ msgstr "方位角"
 
 #: application/models/Logbookadvanced_model.php:1664
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
-msgstr ""
+msgstr "VuccGrids 表为空。请先导入 VUCC 网格数据。"
 
 #: application/models/Note.php:7
 msgid "Contacts"
@@ -4489,6 +4493,8 @@ msgid ""
 "There is different data for DOK in your log compared to DCL or updates where "
 "not done because QSOs are not confirmed in DCL."
 msgstr ""
+"你的日志中的 DOK 数据与 DCL 中的不同，或者更新未完成，因为 QSO 在 DCL 中没有"
+"确认。"
 
 #: application/views/adif/dcl_success.php:29
 #: application/views/adif/pota_success.php:29
@@ -4815,7 +4821,7 @@ msgstr "导出选项"
 
 #: application/views/adif/import.php:302
 msgid "Mark exported QSOs as already uploaded to LoTW"
-msgstr ""
+msgstr "将导出的通联标记为已上传至 LoTW"
 
 #: application/views/adif/import.php:311
 msgid "Export QSOs not uploaded to LoTW"
@@ -4853,7 +4859,7 @@ msgstr ""
 msgid ""
 "More information regarding the confirmation status in DCL can be found on "
 "the %sDCL Confluence page%s."
-msgstr ""
+msgstr "有关 DCL 中确认状态的更多信息，请参阅 %sDCL Confluence 页面%s。"
 
 #: application/views/adif/import.php:349
 msgid "Only import DOK data from QSOs confirmed on DCL."
@@ -5032,7 +5038,7 @@ msgstr "POTA上传结果"
 
 #: application/views/adif/pota_success.php:17
 msgid "POTA references for existing QSOs has been updated."
-msgstr "现有QSO的POTA数据上传完成。"
+msgstr "现有 QSO 的 POTA 编号上传完成。"
 
 #: application/views/adif/pota_success.php:25
 msgid "POTA Update Errors"
@@ -5042,7 +5048,7 @@ msgstr "POTA上传错误"
 msgid ""
 "There is different data for POTA references in your log compared to imported "
 "data or QSO data could not be matched"
-msgstr "日志中的POTA数据与导入数据存在差异或未匹配到对应的QSO数据"
+msgstr "日志中的 POTA 编号与导入数据存在差异或未匹配到对应的 QSO 数据"
 
 #: application/views/adif/pota_success.php:34
 msgid "POTA REF in Log"
@@ -6310,7 +6316,7 @@ msgstr "你也可以在 %s 查看更多信息。"
 msgid ""
 "Fields taken for this Award: IOTA (ADIF: IOTA) must contain valid IOTA-"
 "Reference"
-msgstr "本奖项所需要的字段：IOTA（ADIF: IOTA）必须包含有效的 IOTA 参考"
+msgstr "本奖项所需要的字段：IOTA（ADIF: IOTA）必须包含有效的 IOTA 编号"
 
 #: application/views/awards/iota/index.php:32
 msgid "Deleted IOTA"
@@ -6422,7 +6428,7 @@ msgstr ""
 msgid ""
 "Fields taken for this Award: DXCC (Japan) and County (Must contain a valid "
 "reference!)"
-msgstr "本奖项所需要的字段：DXCC（日本）和郡（必须包含有效参考）"
+msgstr "本奖项所需要的字段：DXCC（日本）和郡（必须包含有效编号）"
 
 #: application/views/awards/jcc/index.php:117
 msgid "Show JCC Map"
@@ -6701,7 +6707,7 @@ msgstr "欲了解更多关于可用奖项和类别的信息，请访问%s。"
 
 #: application/views/awards/pota/index.php:11
 msgid "Fields taken for this Award: POTA_REF (must contain Park-Reference)"
-msgstr "本奖项所需要的字段：POTA_REF（必须包含公园参考）"
+msgstr "本奖项所需要的字段：POTA_REF（必须包含公园编号）"
 
 #: application/views/awards/pota/index.php:32
 #: application/views/qso/index.php:330 application/views/qso/index.php:627
@@ -6756,7 +6762,7 @@ msgid ""
 "reference(s). Both fields are freely customizable."
 msgstr ""
 "在 QSO 处理中，你会发现两个字段：“SIG”是特别兴趣小组（special interest "
-"groups）名称的缩写，该团体在奖项评估中也可见，而“SIG INFO”则包含实际参考。这"
+"groups）名称的缩写，该团体在奖项评估中也可见，而“SIG INFO”则包含实际编号。这"
 "两个字段都可以自由定制。"
 
 #: application/views/awards/sig/index.php:21
@@ -6774,12 +6780,12 @@ msgstr "QSO 数量"
 
 #: application/views/awards/sig/index.php:23
 msgid "Number of Refs"
-msgstr "标识符数量"
+msgstr "编号数量"
 
 #: application/views/awards/sig/qso_list.php:9
 #: application/views/awards/sota/index.php:30
 msgid "Reference"
-msgstr "标识符"
+msgstr "编号"
 
 #: application/views/awards/sig/qso_list.php:10
 #: application/views/logbookadvanced/index.php:894
@@ -8373,7 +8379,7 @@ msgstr "RDXC 比赛必须包含 RDA 编号。"
 msgid ""
 "For the RSGB-IOTA contest this information contains the IOTA name (not the "
 "IOTA reference code)."
-msgstr "RSGB-IOTA 比赛，此信息包含 IOTA 名称（非 IOTA 标识符）。"
+msgstr "RSGB-IOTA 比赛，此信息包含 IOTA 名称（非 IOTA 编号）。"
 
 #: application/views/cabrillo/index.php:48
 #: application/views/logbookadvanced/index.php:833
@@ -8654,46 +8660,46 @@ msgstr "最近通联"
 
 #: application/views/calltester/comparison_result.php:18
 msgid "DXCC Class Results"
-msgstr ""
+msgstr "DXCC 类别结果"
 
 #: application/views/calltester/comparison_result.php:21
 #: application/views/calltester/comparison_result.php:33
 msgid "Calls tested:"
-msgstr ""
+msgstr "已检测的通联记录："
 
 #: application/views/calltester/comparison_result.php:22
 #: application/views/calltester/comparison_result.php:34
 msgid "Execution time:"
-msgstr ""
+msgstr "执行耗时："
 
 #: application/views/calltester/comparison_result.php:23
 #: application/views/calltester/comparison_result.php:35
 msgid "Issues found:"
-msgstr ""
+msgstr "已找到的问题："
 
 #: application/views/calltester/comparison_result.php:30
 msgid "Logbook Model Results"
-msgstr ""
+msgstr "日志簿模型结果"
 
 #: application/views/calltester/comparison_result.php:44
 msgid "Comparison Summary"
-msgstr ""
+msgstr "比较总结"
 
 #: application/views/calltester/comparison_result.php:45
 msgid "Only found in DXCC Class:"
-msgstr ""
+msgstr "只在 DXCC 类别中找到："
 
 #: application/views/calltester/comparison_result.php:46
 msgid "Only found in Logbook Model:"
-msgstr ""
+msgstr "只在日志簿模型中找到："
 
 #: application/views/calltester/comparison_result.php:47
 msgid "Found in both methods:"
-msgstr ""
+msgstr "在两种方式中都找到："
 
 #: application/views/calltester/comparison_result.php:54
 msgid "Issues found only in DXCC Class (not in Logbook Model):"
-msgstr ""
+msgstr "只在 DXCC 类别中找到的问题（不在日志簿模型中）："
 
 #: application/views/calltester/comparison_result.php:62
 #: application/views/calltester/comparison_result.php:98
@@ -8704,7 +8710,7 @@ msgstr ""
 #: application/views/logbookadvanced/checkresult.php:392
 #: application/views/zonechecker/result.php:52
 msgid "Station Profile"
-msgstr ""
+msgstr "台站信息"
 
 #: application/views/calltester/comparison_result.php:63
 #: application/views/calltester/comparison_result.php:99
@@ -8712,14 +8718,14 @@ msgstr ""
 #: application/views/calltester/result.php:25
 #: application/views/logbookadvanced/checkresult.php:107
 msgid "Existing DXCC"
-msgstr ""
+msgstr "现有 DXCC"
 
 #: application/views/calltester/comparison_result.php:64
 #: application/views/calltester/comparison_result.php:100
 #: application/views/calltester/comparison_result.php:136
 #: application/views/calltester/result.php:26
 msgid "Existing ADIF"
-msgstr ""
+msgstr "现有 ADIF"
 
 #: application/views/calltester/comparison_result.php:65
 #: application/views/calltester/comparison_result.php:101
@@ -8727,32 +8733,32 @@ msgstr ""
 #: application/views/calltester/result.php:27
 #: application/views/logbookadvanced/checkresult.php:108
 msgid "Result DXCC"
-msgstr ""
+msgstr "结果 DXCC"
 
 #: application/views/calltester/comparison_result.php:66
 #: application/views/calltester/comparison_result.php:102
 #: application/views/calltester/comparison_result.php:138
 #: application/views/calltester/result.php:28
 msgid "Result ADIF"
-msgstr ""
+msgstr "结果 ADIF"
 
 #: application/views/calltester/comparison_result.php:90
 msgid "Issues found only in Logbook Model (not in DXCC Class):"
-msgstr ""
+msgstr "只在日志簿模型中找到的问题（不在 DXCC 类别中）："
 
 #: application/views/calltester/comparison_result.php:126
 msgid "Issues found in both methods:"
-msgstr ""
+msgstr "在两种方式中都找到的问题："
 
 #: application/views/calltester/comparison_result.php:162
 msgid ""
 "No DXCC issues found in either method. All calls have correct DXCC "
 "information."
-msgstr ""
+msgstr "通过两种方式均未发现 DXCC 问题。所有通联纪录都有正确的 DXCC 信息。"
 
 #: application/views/calltester/index.php:3
 msgid "Callsign DXCC identification"
-msgstr ""
+msgstr "呼号 DXCC 识别"
 
 #: application/views/calltester/index.php:10
 #: application/views/interface_assets/footer.php:878
@@ -8763,26 +8769,26 @@ msgstr "呼号： "
 
 #: application/views/calltester/index.php:15
 msgid "Start DXCC Check"
-msgstr ""
+msgstr "开始 DXCC 检查"
 
 #: application/views/calltester/index.php:18
 msgid "Compare DXCC class and logbook model"
-msgstr ""
+msgstr "比较 DXCC 类别和日志簿模型"
 
 #: application/views/calltester/result.php:4
 #: application/views/logbookadvanced/checkresult.php:85
 msgid "Callsigns tested: "
-msgstr ""
+msgstr "已测试的呼号： "
 
 #: application/views/calltester/result.php:5
 #: application/views/logbookadvanced/checkresult.php:86
 msgid "Execution time: "
-msgstr ""
+msgstr "执行耗时： "
 
 #: application/views/calltester/result.php:6
 #: application/views/logbookadvanced/checkresult.php:87
 msgid "Number of potential QSOs with wrong DXCC: "
-msgstr ""
+msgstr "可能错误 DXCC 的 QSO 数量： "
 
 #: application/views/club/clubswitch_modal.php:5
 msgid "Switch to a Clubstation"
@@ -11456,7 +11462,7 @@ msgstr "查询%s山峰在%s中的信息"
 #: application/views/interface_assets/footer.php:94
 #, php-format
 msgid "Lookup %s reference info on %s"
-msgstr "查询%s参考在%s中的信息"
+msgstr "查询%s编号在%s中的信息"
 
 #: application/views/interface_assets/footer.php:95
 msgid "Error loading bearing!"
@@ -12046,19 +12052,19 @@ msgstr "DCL 导出"
 
 #: application/views/interface_assets/header.php:537
 msgid "Internal tools"
-msgstr ""
+msgstr "内部工具"
 
 #: application/views/interface_assets/header.php:539
 msgid "Callsign DXCC checker"
-msgstr ""
+msgstr "呼号 DXCC 检查器"
 
 #: application/views/interface_assets/header.php:540
 msgid "GeoJSON QSO Map"
-msgstr ""
+msgstr "GeoJSON QSO 地图"
 
 #: application/views/interface_assets/header.php:541
 msgid "Gridsquare Zone checker"
-msgstr ""
+msgstr "网格分区检查器"
 
 #: application/views/interface_assets/header.php:548
 #: application/views/logbookadvanced/index.php:880
@@ -12351,7 +12357,7 @@ msgstr "包含网格？"
 #: application/views/logbookadvanced/startatform.php:9
 msgid ""
 "Include reference? (SIG, SOTA, POTA, IOTA, WWFF; If available in location)"
-msgstr "包含标识代码？(SIG, SOTA, POTA, IOTA, WWFF; 如存在则显示)"
+msgstr "包含编号？(SIG, SOTA, POTA, IOTA, WWFF; 如存在则显示)"
 
 #: application/views/labels/startatform.php:16
 msgid "Include Via (if filled)?"
@@ -12450,30 +12456,30 @@ msgstr "DXCC 检查结果"
 #: application/views/logbookadvanced/checkresult.php:234
 #: application/views/logbookadvanced/checkresult.php:310
 msgid "Update selected"
-msgstr ""
+msgstr "更新选中的"
 
 #: application/views/logbookadvanced/checkresult.php:153
 msgid "These QSOs MAY have incorrect gridsquares."
-msgstr ""
+msgstr "这些 QSO 可能有错误的网格。"
 
 #: application/views/logbookadvanced/checkresult.php:154
 msgid ""
 "Results depends on the correct DXCC. The gridsquare list comes from the TQSL "
 "gridsquare database."
-msgstr ""
+msgstr "结果取决于正确的 DXCC。网格列表来自 TQSL 网格数据库。"
 
 #: application/views/logbookadvanced/checkresult.php:167
 msgid "DXCC Gridsquare"
-msgstr ""
+msgstr "DXCC 网格"
 
 #: application/views/logbookadvanced/checkresult.php:191
 #: application/views/logbookadvanced/index.php:77
 msgid "Show more"
-msgstr ""
+msgstr "显示更多"
 
 #: application/views/logbookadvanced/checkresult.php:197
 msgid "View on map"
-msgstr ""
+msgstr "在地图上查看"
 
 #: application/views/logbookadvanced/checkresult.php:222
 msgid "CQ Zone Check Results"
@@ -12483,11 +12489,11 @@ msgstr "CQ分区检查结果"
 msgid ""
 "The following QSOs were found to have a different CQ zone compared to what "
 "this DXCC normally has (a maximum of 5000 QSOs are shown):"
-msgstr ""
+msgstr "找到以下 QSO 与该 DXCC 通常对应的 CQ 区不同（最多显示 5000 个 QSO）："
 
 #: application/views/logbookadvanced/checkresult.php:229
 msgid "Force update even if DXCC covers multiple CQ zones"
-msgstr ""
+msgstr "即使 DXCC 覆盖多个 CQ 分区，仍强制更新"
 
 #: application/views/logbookadvanced/checkresult.php:230
 msgid ""
@@ -12497,6 +12503,9 @@ msgid ""
 "are updated. This checkbox overrides this but might result in wrong data. "
 "Use with caution!"
 msgstr ""
+"更新功能仅能设置分配给 DXCC 的主 CQ 分区。若DXCC覆盖多个 CQ 分区，则可能存在"
+"设置错误。因此默认情况下，仅更新覆盖单一 CQ 分区的 DXCC QSO。勾选本项可覆盖该"
+"设置，但可能导致数据错误。请谨慎使用！"
 
 #: application/views/logbookadvanced/checkresult.php:247
 #: application/views/search/cqzones_result.php:14
@@ -12550,11 +12559,11 @@ msgstr "ITU分区检查结果"
 msgid ""
 "The following QSOs were found to have a different ITU zone compared to what "
 "this DXCC normally has (a maximum of 5000 QSOs are shown):"
-msgstr ""
+msgstr "找到以下 QSO 与该 DXCC 通常对应的 ITU 区不同（最多显示 5000 个 QSO）："
 
 #: application/views/logbookadvanced/checkresult.php:305
 msgid "Force update even if DXCC covers multiple ITU zones"
-msgstr ""
+msgstr "即使 DXCC 覆盖多个 ITU 分区，仍强制更新"
 
 #: application/views/logbookadvanced/checkresult.php:306
 msgid ""
@@ -12564,6 +12573,9 @@ msgid ""
 "are updated. This checkbox overrides this but might result in wrong data. "
 "Use with caution!"
 msgstr ""
+"更新功能仅能设置分配给 DXCC 的主 ITU 分区。若DXCC覆盖多个 ITU 分区，则可能存"
+"在设置错误。因此默认情况下，仅更新覆盖单一 ITU 分区的 DXCC QSO。勾选本项可覆"
+"盖该设置，但可能导致数据错误。请谨慎使用！"
 
 #: application/views/logbookadvanced/checkresult.php:323
 #: application/views/search/ituzones_result.php:14
@@ -12572,25 +12584,25 @@ msgstr "DXCC ITU 区域"
 
 #: application/views/logbookadvanced/checkresult.php:374
 msgid "IOTA Check Results"
-msgstr ""
+msgstr "IOTA 检查结果"
 
 #: application/views/logbookadvanced/checkresult.php:381
 msgid "These QSOs MAY have an incorrect IOTA reference."
-msgstr ""
+msgstr "这些 QSO 可能含有一个错误的 IOTA 编号。"
 
 #: application/views/logbookadvanced/checkresult.php:382
 msgid ""
 "Results depends on the correct DXCC, and it will only be checked against "
 "current DXCC. False positive results may occur."
-msgstr ""
+msgstr "结果取决于正确的 DXCC，且仅与当前 DXCC 进行比对。可能出现误报结果。"
 
 #: application/views/logbookadvanced/checkresult.php:393
 msgid "QSO DXCC"
-msgstr ""
+msgstr "QSO DXCC"
 
 #: application/views/logbookadvanced/checkresult.php:395
 msgid "IOTA DXCC"
-msgstr ""
+msgstr "IOTA DXCC"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:4
 msgid "Data Repair Tools"
@@ -12605,14 +12617,16 @@ msgid ""
 "Warning. This tool can be dangerous to your data, and should only be used if "
 "you know what you are doing."
 msgstr ""
+"警告。此工具可能会对你的数据造成危险，只有在你知道如何操作的情况下才应该使"
+"用。"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:12
 msgid "Check all QSOs in the logbook for incorrect CQ Zones"
-msgstr ""
+msgstr "检查日志簿中所有 QSO 是否存在错误的 CQ 分区"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:13
 msgid "Use Wavelog to determine CQ Zone for all QSOs."
-msgstr ""
+msgstr "使用 Wavelog 确定所有 QSO 的 CQ 分区。"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:17
 #: application/views/logbookadvanced/dbtoolsdialog.php:28
@@ -12628,19 +12642,19 @@ msgstr "检查"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:23
 msgid "Check all QSOs in the logbook for incorrect ITU Zones"
-msgstr ""
+msgstr "检查日志簿中所有 QSO 是否存在错误的 ITU 分区"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:24
 msgid "Use Wavelog to determine ITU Zone for all QSOs."
-msgstr ""
+msgstr "使用 Wavelog 确定所有 QSO 的 ITU 分区。"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:34
 msgid "Check Gridsquares"
-msgstr ""
+msgstr "检查网格"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:35
 msgid "Check gridsquares that does not match the DXCC"
-msgstr ""
+msgstr "检查不匹配 DXCC 的网格"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:45
 msgid "Fix Continent"
@@ -12665,7 +12679,7 @@ msgstr "计算并更新 QSO 的距离信息"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:78
 msgid "Check all QSOs in the logbook for incorrect DXCC"
-msgstr ""
+msgstr "检查日志簿中所有 QSO 的 DXCC 正确性"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:79
 msgid "Use Wavelog to determine DXCC for all QSOs."
@@ -12677,39 +12691,39 @@ msgstr "查找呼号簿中缺少网格的 QSO"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:91
 msgid "Use callbook lookup to set gridsquare"
-msgstr "使用日志簿查找来设置网格"
+msgstr "使用呼号簿查找来设置网格"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:92
 msgid "This is limited to 150 callsigns for each run!"
-msgstr ""
+msgstr "每次执行限制 150 个呼号！"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:103
 msgid "Check IOTA against DXCC"
-msgstr ""
+msgstr "检查 IOTA 是否符合 DXCC"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:104
 msgid "Use Wavelog to check IOTA against DXCC"
-msgstr ""
+msgstr "使用 Wavelog 检查 IOTA 是否符合 DXCC"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:4
 msgid "Search for duplicates using:"
-msgstr ""
+msgstr "使用以下方法搜索重复项："
 
 #: application/views/logbookadvanced/dupesearchdialog.php:16
 msgid "Match QSOs within 1800s (30min) of each other"
-msgstr ""
+msgstr "匹配 1800 秒（30 分钟）内的 QSO"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:25
 msgid "Match QSOs with the same mode (SSB, CW, FM, etc.)"
-msgstr ""
+msgstr "匹配相同模式（SSB、CW、FM 等）的 QSO"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:34
 msgid "Match QSOs on the same band"
-msgstr ""
+msgstr "匹配相同频段的 QSO"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:43
 msgid "Match QSOs using the same satellite"
-msgstr ""
+msgstr "匹配使用相同卫星的 QSO"
 
 #: application/views/logbookadvanced/edit.php:1
 msgid "Please choose the column to be edited:"
@@ -12729,7 +12743,7 @@ msgstr "台站功率"
 
 #: application/views/logbookadvanced/edit.php:25
 msgid "DARC DOK"
-msgstr ""
+msgstr "DARC DOK"
 
 #: application/views/logbookadvanced/edit.php:31
 #: application/views/logbookadvanced/index.php:990
@@ -13240,19 +13254,19 @@ msgstr "您确定要修复所有缺少 DXCC 信息的 QSO 吗？此操作无法�
 
 #: application/views/logbookadvanced/index.php:74
 msgid "Duplicate Search"
-msgstr ""
+msgstr "重复搜索"
 
 #: application/views/logbookadvanced/index.php:78
 msgid "Show less"
-msgstr ""
+msgstr "显示更少"
 
 #: application/views/logbookadvanced/index.php:80
 msgid "Gridsquares for"
-msgstr ""
+msgstr "网格"
 
 #: application/views/logbookadvanced/index.php:81
 msgid "Non DXCC matching gridsquare"
-msgstr ""
+msgstr "DXCC 匹配失败的网格"
 
 #: application/views/logbookadvanced/index.php:310
 msgid "From"
@@ -13281,7 +13295,7 @@ msgstr "距离（公里）。搜索将查找大于或等于此值的项目。"
 
 #: application/views/logbookadvanced/index.php:513
 msgid "Sort column"
-msgstr ""
+msgstr "排序列"
 
 #: application/views/logbookadvanced/index.php:515
 #: application/views/oqrs/showrequests.php:87
@@ -13290,19 +13304,19 @@ msgstr "QSO 时间"
 
 #: application/views/logbookadvanced/index.php:518
 msgid "QSO Modified"
-msgstr ""
+msgstr "QSO 已修改"
 
 #: application/views/logbookadvanced/index.php:522
 msgid "Sort direction"
-msgstr ""
+msgstr "排序方向"
 
 #: application/views/logbookadvanced/index.php:524
 msgid "Descending"
-msgstr ""
+msgstr "降序"
 
 #: application/views/logbookadvanced/index.php:525
 msgid "Ascending"
-msgstr ""
+msgstr "升序"
 
 #: application/views/logbookadvanced/index.php:533
 #: application/views/logbookadvanced/index.php:715
@@ -13616,7 +13630,7 @@ msgstr "数据库工具"
 #: application/views/logbookadvanced/index.php:897
 #: application/views/logbookadvanced/useroptions.php:336
 msgid "Last modified"
-msgstr ""
+msgstr "上次修改"
 
 #: application/views/logbookadvanced/index.php:900
 #: application/views/logbookadvanced/useroptions.php:28
@@ -13767,7 +13781,7 @@ msgstr "州级检查结果"
 msgid ""
 "QSOs with missing state and gridsquares with 6 or more characters found for "
 "the following DXCCs:"
-msgstr "已找到以下 DXCC 的 QSO，但缺少州名和包含 6 个或更多字符的网格坐标："
+msgstr "已找到以下 DXCC 的 QSO，但缺少州名和包含 6 个或更多字符的网格代码："
 
 #: application/views/logbookadvanced/statecheckresult.php:30
 msgid "Run fix"
@@ -13811,45 +13825,45 @@ msgstr "当前支持的国家"
 
 #: application/views/logbookadvanced/useroptions.php:15
 msgid "Basic QSO Information"
-msgstr ""
+msgstr "基本 QSO 信息"
 
 #: application/views/logbookadvanced/useroptions.php:72
 msgid "Station Details"
-msgstr ""
+msgstr "台站详情"
 
 #: application/views/logbookadvanced/useroptions.php:105
 msgid "Confirmation Services"
-msgstr ""
+msgstr "确认服务"
 
 #: application/views/logbookadvanced/useroptions.php:162
 msgid "Geographic Information"
-msgstr ""
+msgstr "地理信息"
 
 #: application/views/logbookadvanced/useroptions.php:207
 msgid "Awards Programs"
-msgstr ""
+msgstr "奖状程序"
 
 #: application/views/logbookadvanced/useroptions.php:258
 msgid "Additional Information"
-msgstr ""
+msgstr "额外信息"
 
 #: application/views/logbookadvanced/useroptions.php:297
 msgid "Technical Details"
-msgstr ""
+msgstr "技术细节"
 
 #: application/views/logbookadvanced/useroptions.php:336
 msgid "For debugging only"
-msgstr ""
+msgstr "仅为调试"
 
 #: application/views/logbookadvanced/useroptions.php:336
 msgid ""
 "This is meant for debugging purposes only and not designed to be displayed "
 "by default"
-msgstr ""
+msgstr "此功能仅用于调试目的，并非默认显示内容"
 
 #: application/views/logbookadvanced/useroptions.php:347
 msgid "Map Layers"
-msgstr ""
+msgstr "地图图层"
 
 #: application/views/lookup/index.php:11
 #: application/views/qso/award_tabs.php:53
@@ -13882,7 +13896,7 @@ msgstr "非 LoTW 用户"
 
 #: application/views/lookup/result.php:16
 msgid "This gridsquare exists in the following DXCC(s):"
-msgstr ""
+msgstr "此网格存在在下列 DXCC："
 
 #: application/views/lotw/analysis.php:8 application/views/qrz/analysis.php:8
 msgid "No data imported. please check selected date. Must be in the past!"
@@ -14027,15 +14041,15 @@ msgstr "LoTW 下次自动同步时间： "
 msgid ""
 "For further information please visit the %sLoTW FAQ page%s in the Wavelog "
 "Wiki"
-msgstr ""
+msgstr "如需了解更多信息，请访问 Wavelog Wiki 中的 %sLoTW FAQ 页面%s"
 
 #: application/views/map/qso_map.php:15
 msgid "Select Country:"
-msgstr ""
+msgstr "选择 DXCC 实体："
 
 #: application/views/map/qso_map.php:17
 msgid "Choose a country..."
-msgstr ""
+msgstr "选择一个 DXCC 实体…"
 
 #: application/views/mode/create.php:24 application/views/mode/edit.php:33
 msgctxt "Name of mode in ADIF-specification"
@@ -15338,15 +15352,15 @@ msgstr "请等待再保存另一个 QSO"
 
 #: application/views/qso/index.php:42
 msgid "Satellite not found"
-msgstr ""
+msgstr "未找到卫星"
 
 #: application/views/qso/index.php:43
 msgid "Supported by LoTW"
-msgstr ""
+msgstr "由 LoTW 支持"
 
 #: application/views/qso/index.php:44
 msgid "Not supported by LoTW"
-msgstr ""
+msgstr "未由 LoTW 支持"
 
 #: application/views/qso/index.php:90
 msgid "LIVE"
@@ -16103,7 +16117,7 @@ msgstr "已自动从呼号簿获取到网格，但可能是错误的"
 
 #: application/views/search/result.php:65
 msgid "Source callbook"
-msgstr ""
+msgstr "源呼号簿"
 
 #: application/views/search/search_result_ajax.php:463
 #: application/views/view_log/partial/log.php:142
@@ -16587,7 +16601,7 @@ msgstr ""
 #: application/views/station_profile/create.php:198
 #: application/views/station_profile/edit.php:223
 msgid "Station IOTA reference. For example: EU-005"
-msgstr "台站 IOTA 标识代码，例如 EU-005"
+msgstr "台站 IOTA 编号，例如 EU-005"
 
 #: application/views/station_profile/create.php:199
 #: application/views/station_profile/edit.php:224
@@ -16598,7 +16612,7 @@ msgstr "IOTA World 网站"
 #: application/views/station_profile/edit.php:224
 #, php-format
 msgid "You can look up IOTA references at the %s."
-msgstr "你可以在 %s 查看 IOTA 目录。"
+msgstr "你可以在 %s 查看 IOTA 编号。"
 
 #: application/views/station_profile/create.php:215
 #: application/views/station_profile/edit.php:240
@@ -16609,7 +16623,7 @@ msgstr "SOTA Maps 网站"
 #: application/views/station_profile/edit.php:240
 #, php-format
 msgid "Station SOTA reference. You can look up SOTA references at the %s."
-msgstr "台站的 SOTA 标识符，你可在 %s 查看 SOTA 标识符。"
+msgstr "台站的 SOTA 编号，你可在 %s 查看 SOTA 编号。"
 
 #: application/views/station_profile/create.php:229
 #: application/views/station_profile/edit.php:254
@@ -16620,7 +16634,7 @@ msgstr "GMA Map 网站"
 #: application/views/station_profile/edit.php:254
 #, php-format
 msgid "Station WWFF reference. You can look up WWFF references at the %s."
-msgstr "台站的 WWFF 标识符，你可在 %s 查看 WWFF 标识符。"
+msgstr "台站的 WWFF 编号，你可在 %s 查看 WWFF 编号。"
 
 #: application/views/station_profile/create.php:243
 #: application/views/station_profile/edit.php:268
@@ -16634,7 +16648,7 @@ msgid ""
 "Station POTA reference(s). Multiple comma separated values allowed. You can "
 "look up POTA references at the %s."
 msgstr ""
-"台站的 POTA 标识符，可以使用多个值（逗号分隔）。你可在 %s 查看 POTA 标识符。"
+"台站的 POTA 编号，可以使用多个值（逗号分隔）。你可在 %s 查看 POTA 编号。"
 
 #: application/views/station_profile/create.php:257
 #: application/views/station_profile/edit.php:282
@@ -17004,7 +17018,7 @@ msgstr "年"
 #: application/views/statistics/index.php:15
 #: application/views/statistics/index.php:99
 msgid "Months"
-msgstr ""
+msgstr "月份"
 
 #: application/views/statistics/index.php:19
 msgid "Number of QSOs worked each year"
@@ -17012,55 +17026,55 @@ msgstr "每年通联的 QSO 数量"
 
 #: application/views/statistics/index.php:20
 msgid "Number of QSOs worked each month"
-msgstr ""
+msgstr "每月完成 QSO 数"
 
 #: application/views/statistics/index.php:31
 msgid "January"
-msgstr ""
+msgstr "一月"
 
 #: application/views/statistics/index.php:32
 msgid "February"
-msgstr ""
+msgstr "二月"
 
 #: application/views/statistics/index.php:33
 msgid "March"
-msgstr ""
+msgstr "三月"
 
 #: application/views/statistics/index.php:34
 msgid "April"
-msgstr ""
+msgstr "四月"
 
 #: application/views/statistics/index.php:35
 msgid "May"
-msgstr ""
+msgstr "五月"
 
 #: application/views/statistics/index.php:36
 msgid "June"
-msgstr ""
+msgstr "六月"
 
 #: application/views/statistics/index.php:37
 msgid "July"
-msgstr ""
+msgstr "七月"
 
 #: application/views/statistics/index.php:38
 msgid "August"
-msgstr ""
+msgstr "八月"
 
 #: application/views/statistics/index.php:39
 msgid "September"
-msgstr ""
+msgstr "九月"
 
 #: application/views/statistics/index.php:40
 msgid "October"
-msgstr ""
+msgstr "十月"
 
 #: application/views/statistics/index.php:41
 msgid "November"
-msgstr ""
+msgstr "十一月"
 
 #: application/views/statistics/index.php:42
 msgid "December"
-msgstr ""
+msgstr "十二月"
 
 #: application/views/statistics/index.php:50
 msgid "Explore the logbook."
@@ -18599,65 +18613,65 @@ msgstr "收"
 
 #: application/views/zonechecker/index.php:3
 msgid "Gridsquare Zone identification"
-msgstr ""
+msgstr "网格分区识别"
 
 #: application/views/zonechecker/index.php:15
 msgid "Zone Type"
-msgstr ""
+msgstr "分区类型"
 
 #: application/views/zonechecker/index.php:20
 msgid "Start Zone Check"
-msgstr ""
+msgstr "开始分区检查"
 
 #: application/views/zonechecker/index.php:39
 #: application/views/zonechecker/index.php:62
 msgid "Processing..."
-msgstr ""
+msgstr "处理中…"
 
 #: application/views/zonechecker/index.php:50
 #: application/views/zonechecker/index.php:73
 msgid "An error occurred while processing the request."
-msgstr ""
+msgstr "在处理此请求中遇到了一个问题。"
 
 #: application/views/zonechecker/result.php:16
 msgid "Callsigns Tested"
-msgstr ""
+msgstr "已测试的呼号"
 
 #: application/views/zonechecker/result.php:17
 msgid "Execution Time"
-msgstr ""
+msgstr "执行耗时"
 
 #: application/views/zonechecker/result.php:18
 msgid "Potential Wrong Zones"
-msgstr ""
+msgstr "可能错误的分区"
 
 #: application/views/zonechecker/result.php:19
 msgid "Cache Hits"
-msgstr ""
+msgstr "缓存命中"
 
 #: application/views/zonechecker/result.php:20
 msgid "Cache Misses"
-msgstr ""
+msgstr "缓存失效"
 
 #: application/views/zonechecker/result.php:21
 msgid "Hit Rate"
-msgstr ""
+msgstr "命中率"
 
 #: application/views/zonechecker/result.php:55
 msgid "ITUz"
-msgstr ""
+msgstr "ITUz"
 
 #: application/views/zonechecker/result.php:56
 msgid "ITUz geojson"
-msgstr ""
+msgstr "ITUz geojson"
 
 #: application/views/zonechecker/result.php:58
 msgid "CQz"
-msgstr ""
+msgstr "CQz"
 
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
-msgstr ""
+msgstr "CQz geojson"
 
 #~ msgid "Signature Name"
 #~ msgstr "签名名称"

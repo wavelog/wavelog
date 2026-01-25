@@ -12,13 +12,13 @@
 # Szymon Porwolik <szporwolik@gmail.com>, 2025.
 # Szymon <sp9spm@cqops.com>, 2025, 2026.
 # notzaleewa <zaleewa@outlook.com>, 2025.
-# Dariusz Koryto <dariusz@koryto.eu>, 2025.
+# Dariusz Koryto <dariusz@koryto.eu>, 2025, 2026.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-01-22 08:38+0000\n"
-"PO-Revision-Date: 2026-01-03 19:16+0000\n"
-"Last-Translator: Szymon <sp9spm@cqops.com>\n"
+"PO-Revision-Date: 2026-01-22 18:33+0000\n"
+"Last-Translator: Dariusz Koryto <dariusz@koryto.eu>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/pl/>\n"
 "Language: pl_PL\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.14\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -699,11 +699,11 @@ msgstr " i satelita "
 
 #: application/controllers/Calltester.php:32
 msgid "Call Tester"
-msgstr "Sprawdzenie Callsign"
+msgstr "Tester połączeń"
 
 #: application/controllers/Calltester.php:844
 msgid "Callsign Tester"
-msgstr ""
+msgstr "Tester znaku wywoławczego"
 
 #: application/controllers/Club.php:23
 msgid "Club Officer"
@@ -1057,7 +1057,7 @@ msgid "eQSL Cards"
 msgstr "Karty eQSL"
 
 #: application/controllers/Eqsl.php:56
-#, fuzzy, php-format
+#, php-format
 msgid "Showing %d to %d of %d entries"
 msgstr "Pokazywanie %d do %d z %d wpisów"
 
@@ -1967,7 +1967,7 @@ msgstr "DXCC zaktualizowany dla %d QSO."
 #: application/controllers/Logbookadvanced.php:941
 #, php-format
 msgid "Map for DXCC %s and gridsquare %s."
-msgstr ""
+msgstr "Mapa dla DXCC %s i kwadrat siatki %s."
 
 #: application/controllers/Lookup.php:22
 msgid "Quick Lookup"
@@ -2015,7 +2015,7 @@ msgstr ""
 #: application/controllers/Lotw.php:457
 #, php-format
 msgid "Generic error processing the certificate in file %s."
-msgstr ""
+msgstr "Ogólny błąd podczas przetwarzania certyfikatu w pliku %s."
 
 #: application/controllers/Lotw.php:469
 #, php-format
@@ -3405,7 +3405,7 @@ msgstr "Błąd QRZCQ"
 
 #: application/libraries/Callbook.php:155
 msgid "Error obtaining a session key for HamQTH query"
-msgstr ""
+msgstr "Błąd podczas uzyskiwania klucza sesji dla zapytania HamQTH"
 
 #: application/libraries/Cbr_parser.php:111
 #: application/libraries/Cbr_parser.php:160
@@ -3677,7 +3677,7 @@ msgstr "Kierunek"
 
 #: application/models/Logbookadvanced_model.php:1664
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
-msgstr ""
+msgstr "Tabela uccGrids jest pusta. Najpierw zaimportuj dane siatek VUCC."
 
 #: application/models/Note.php:7
 msgid "Contacts"
@@ -14161,7 +14161,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/statecheckresult.php:30
 msgid "Run fix"
-msgstr ""
+msgstr "Uruchom poprawkę"
 
 #: application/views/logbookadvanced/statecheckresult.php:43
 msgid "No QSOs were found where state information can be fixed."
@@ -14205,45 +14205,47 @@ msgstr "Kraje wspierane obecnie"
 
 #: application/views/logbookadvanced/useroptions.php:15
 msgid "Basic QSO Information"
-msgstr ""
+msgstr "Podstawowe informacje QSO"
 
 #: application/views/logbookadvanced/useroptions.php:72
 msgid "Station Details"
-msgstr ""
+msgstr "Szczegóły stacji"
 
 #: application/views/logbookadvanced/useroptions.php:105
 msgid "Confirmation Services"
-msgstr ""
+msgstr "Usługi potwierdzenia"
 
 #: application/views/logbookadvanced/useroptions.php:162
 msgid "Geographic Information"
-msgstr ""
+msgstr "Informacje geograficzne"
 
 #: application/views/logbookadvanced/useroptions.php:207
 msgid "Awards Programs"
-msgstr ""
+msgstr "Programy dyplomów"
 
 #: application/views/logbookadvanced/useroptions.php:258
 msgid "Additional Information"
-msgstr ""
+msgstr "Dodatkowe informacje"
 
 #: application/views/logbookadvanced/useroptions.php:297
 msgid "Technical Details"
-msgstr ""
+msgstr "Szczegóły techniczne"
 
 #: application/views/logbookadvanced/useroptions.php:336
 msgid "For debugging only"
-msgstr ""
+msgstr "Tylko do debugowania"
 
 #: application/views/logbookadvanced/useroptions.php:336
 msgid ""
 "This is meant for debugging purposes only and not designed to be displayed "
 "by default"
 msgstr ""
+"To przeznaczone jest wyłącznie do celów debugowania i nie jest przeznaczone "
+"do domyślnego wyświetlania"
 
 #: application/views/logbookadvanced/useroptions.php:347
 msgid "Map Layers"
-msgstr ""
+msgstr "Warstwy mapy"
 
 #: application/views/lookup/index.php:11
 #: application/views/qso/award_tabs.php:53
@@ -14436,7 +14438,7 @@ msgstr ""
 
 #: application/views/map/qso_map.php:17
 msgid "Choose a country..."
-msgstr ""
+msgstr "Wybierz kraj..."
 
 #: application/views/mode/create.php:24 application/views/mode/edit.php:33
 msgctxt "Name of mode in ADIF-specification"
