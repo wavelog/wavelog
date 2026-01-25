@@ -1213,8 +1213,11 @@ $(function() {
 		// Band column: show band designation
 		data[0].push(single.band || '');
 
-		// Frequency column: convert kHz to MHz with 3 decimal places
-		let freqMHz = (single.frequency / 1000).toFixed(3);
+		// Frequency column: convert kHz to MHz, preserving the original precision from cluster
+	// Count decimal places in original kHz value, then add 3 for the /1000 conversion
+	const freqStr = single.frequency.toString();
+	const decimalPlaces = (freqStr.includes('.')) ? (freqStr.split('.')[1].length + 3) : 3;
+	let freqMHz = (single.frequency / 1000).toFixed(decimalPlaces);
 		data[0].push(freqMHz);
 
 	// Mode column: capitalize properly (API returns lowercase categories)
@@ -4259,7 +4262,10 @@ $(function() {
 		html += '</tr></thead><tbody>';
 
 		spots.forEach(spot => {
-			const freqMHz = (spot.frequency / 1000).toFixed(3);
+			// Convert kHz to MHz, preserving the original precision from cluster
+			const freqStr = spot.frequency.toString();
+			const decimalPlaces = (freqStr.includes('.')) ? (freqStr.split('.')[1].length + 3) : 3;
+			const freqMHz = (spot.frequency / 1000).toFixed(decimalPlaces);
 
 			// Color code callsign based on worked/confirmed status (matching bandmap table)
 			let callClass = '';
