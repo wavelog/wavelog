@@ -520,68 +520,68 @@
                         </thead>
                         <tr>
                             <td><?= __("DXCC update from Club Log"); ?></td>
-                            <?php $timestamp = strtotime($dxcc_update->last_run); ?>
+                            <?php $timestamp = strtotime($dxcc_update->last_run ?? ''); ?>
                             <td><?php echo $dxcc_update->last_run ? date($custom_date_format, $timestamp).' '.date('H:i:s', $timestamp) : __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update'); ?>"><?= __("Update"); ?></a></td>
 
                         </tr>
                         <tr>
                             <td><?= __("DOK file download"); ?></td>
-                            <?php $timestamp = strtotime($dok_update->last_run); ?>
+                            <?php $timestamp = strtotime($dok_update->last_run ?? ''); ?>
                             <td><?php echo $dok_update->last_run ? date($custom_date_format, $timestamp).' '.date('H:i:s', $timestamp) : __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_dok'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
                         <tr>
                             <td><?= __("LoTW users download"); ?></td>
-                            <?php $timestamp = strtotime($lotw_user_update->last_run); ?>
+                            <?php $timestamp = strtotime($lotw_user_update->last_run ?? ''); ?>
                             <td><?php echo $lotw_user_update->last_run ? date($custom_date_format, $timestamp).' '.date('H:i:s', $timestamp) : __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/lotw_users'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
                         <tr>
                             <td><?= __("POTA file download"); ?></td>
-                            <?php $timestamp = strtotime($pota_update->last_run); ?>
+                            <?php $timestamp = strtotime($pota_update->last_run ?? ''); ?>
                             <td><?php echo $pota_update->last_run ? date($custom_date_format, $timestamp).' '.date('H:i:s', $timestamp) : __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_pota'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
                         <tr>
                             <td><?= __("SCP file download"); ?></td>
-                            <?php $timestamp = strtotime($scp_update->last_run); ?>
+                            <?php $timestamp = strtotime($scp_update->last_run ?? ''); ?>
                             <td><?php echo $scp_update->last_run ? date($custom_date_format, $timestamp).' '.date('H:i:s', $timestamp) : __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_clublog_scp'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
                         <tr>
                             <td><?= __("SOTA file download"); ?></td>
-                            <?php $timestamp = strtotime($sota_update->last_run); ?>
+                            <?php $timestamp = strtotime($sota_update->last_run ?? ''); ?>
                             <td><?php echo $sota_update->last_run ? date($custom_date_format, $timestamp).' '.date('H:i:s', $timestamp) : __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_sota'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
                         <tr>
                             <td><?= __("WWFF file download"); ?></td>
-                            <?php $timestamp = strtotime($wwff_update->last_run); ?>
+                            <?php $timestamp = strtotime($wwff_update->last_run ?? ''); ?>
                             <td><?php echo $wwff_update->last_run ? date($custom_date_format, $timestamp).' '.date('H:i:s', $timestamp) : __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_wwff'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
                         <tr>
                             <td><?= __("TLE update"); ?></td>
-                            <?php $timestamp = strtotime($tle_update->last_run); ?>
+                            <?php $timestamp = strtotime($tle_update->last_run ?? ''); ?>
                             <td><?php echo $tle_update->last_run ? date($custom_date_format, $timestamp).' '.date('H:i:s', $timestamp) : __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_tle'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
                         <tr>
                             <td><?= __("Hams Of Note update"); ?></td>
-                            <?php $timestamp = strtotime($hon_update->last_run); ?>
+                            <?php $timestamp = strtotime($hon_update->last_run ?? ''); ?>
                             <td><?php echo $hon_update->last_run ? date($custom_date_format, $timestamp).' '.date('H:i:s', $timestamp) : __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_hamsofnote'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
                         <tr>
                             <td><?= __("HAMqsl"); ?></td>
-                            <?php $timestamp = strtotime($hamqsl_update->last_run); ?>
+                            <?php $timestamp = strtotime($hamqsl_update->last_run ?? ''); ?>
                             <td><?php echo $hamqsl_update->last_run ? date($custom_date_format, $timestamp).' '.date('H:i:s', $timestamp) : __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_hamqsl'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
                         <tr>
                             <td><?= __("VUCC Grids"); ?></td>
-                            <?php $timestamp = strtotime($vucc_grids_update->last_run); ?>
+                            <?php $timestamp = strtotime($vucc_grids_update->last_run ?? ''); ?>
                             <td><?php echo $vucc_grids_update->last_run ? date($custom_date_format, $timestamp).' '.date('H:i:s', $timestamp) : __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_vucc_grids'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
