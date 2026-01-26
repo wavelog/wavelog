@@ -532,11 +532,11 @@ class User_Model extends CI_Model {
 
 	// FUNCTION: void update_session()
 	// Updates a user's login session after they've logged in
-	// TODO: This should return bool TRUE/FALSE or 0/1
 	function update_session($id, $u = null, $impersonate = false, $custom_data = null) {
 
-		if ($u == null) {
-			$u = $this->get_by_id($id);
+		$u = $u ?: $this->get_by_id($id);
+		if (!$u) {
+			return false;
 		}
 
 		$userdata = array(
@@ -551,7 +551,7 @@ class User_Model extends CI_Model {
 			'user_clublog_name'	 => $u->row()->user_clublog_name ?? '',
 			'user_eqsl_name'	 => $u->row()->user_eqsl_name,
 			'user_eqsl_qth_nickname' => $u->row()->user_eqsl_qth_nickname,
-			'user_hash'		 => $this->_hash($u->row()->user_id."-".$u->row()->user_type),
+			'user_hash'		 => $this->_session_hash($u->row()->user_id . $u->row()->user_type . $this->input->cookie($this->config->item('sess_cookie_name'))),
 			'radio' => ((($this->session->userdata('radio') ?? '') == '') ? $this->user_options_model->get_options('cat', array('option_name' => 'default_radio'))->row()->option_value ?? '' : $this->session->userdata('radio')),
 			'station_profile_id' => $this->session->userdata('station_profile_id') ?? '',
 			'user_measurement_base' => $u->row()->user_measurement_base,
@@ -628,6 +628,8 @@ class User_Model extends CI_Model {
 		}
 
 		$this->session->set_userdata($userdata);
+
+		return true;
 	}
 
 	// FUNCTION: bool validate_session()
@@ -644,7 +646,7 @@ class User_Model extends CI_Model {
 			$impersonate = $this->session->userdata('impersonate');
 
 			if(ENVIRONMENT != 'maintenance') {
-				if($this->_auth($user_id."-".$user_type, $user_hash)) {
+				if($this->_auth($user_id . $user_type . $this->input->cookie($this->config->item('sess_cookie_name')), $user_hash)) {
 					// Freshen the session
 					$this->update_session($user_id, $u);
 					return 1;
@@ -654,7 +656,7 @@ class User_Model extends CI_Model {
 				}
 			} else {  // handle the maintenance mode and kick out user on page reload if not an admin
 				if($user_type == '99' || $src_user_type === '99') {
-					if($this->_auth($user_id."-".$user_type, $user_hash)) {
+					if($this->_auth($user_id . $user_type . $this->input->cookie($this->config->item('sess_cookie_name')), $user_hash)) {
 						// Freshen the session
 						$this->update_session($user_id, $u);
 						return 1;
@@ -885,12 +887,12 @@ class User_Model extends CI_Model {
 
 	// FUNCTION: bool _auth($password, $hash)
 	// Checks a password against the stored hash
+	// Understands the difference between password and session hashes
 	private function _auth($password, $hash) {
-		if(password_verify($password, $hash)) {
-			return 1;
-		} else {
-			return 0;
+		if (strpos($hash, '$2y$') === 0 || strlen($hash) === 60) {
+			return password_verify($password, $hash) ? 1 : 0;
 		}
+		return hash_equals($this->_session_hash($password), $hash) ? 1 : 0;
 	}
 
 	// FUNCTION: string _hash($password)
@@ -905,6 +907,23 @@ class User_Model extends CI_Model {
 		} else {
 			return $hash;
 		}
+	}
+
+	// FUNCTION: string _session_hash($payload)
+	// Creates a HMAC-SHA256 hash of the supplied $payload
+	// Used for session validation as it is blazing fast and will
+	// Be different after each Login
+	private function _session_hash($payload) {
+		$secret = $this->config->item('encryption_key');
+		if (($secret ?? NULL) == NULL) {
+			log_message('error', 'Encryption key is not set in config.php! Session security is compromised!');
+			// A fully missing encryption key is a showstopper, throw an exception
+			// This also means that there is something seriously wrong with the installation
+			throw new RuntimeException('Encryption key not configured');
+		} elseif ($secret == 'flossie1234555541') { // Once upon a time, this was the default key shipped which never changed
+			log_message('error', 'Default encryption key is set in config.php ("flossie...")! Session security is compromised! Change the encryption key to a unique value!');
+		}
+		return hash_hmac('sha256', (string)$payload, $secret);
 	}
 
 	/**
