@@ -851,7 +851,7 @@ $config['enable_dxcluster_file_cache_worked'] = false;
 /*
 |--------------------------------------------------------------------------
 | Internal tools
-| Set this to true if you want to display the admin internal tools in the header meanu
+| Set this to true if you want to display the admin internal tools in the header menu
 |--------------------------------------------------------------------------
  */
 $config['internal_tools'] = false;
