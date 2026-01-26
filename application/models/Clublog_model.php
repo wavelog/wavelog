@@ -100,7 +100,6 @@ class Clublog_model extends CI_Model
 								if (curl_errno($request)) {
 									$return =  curl_error($request);
 								}
-								curl_close($request);
 
 								// If Clublog Accepts mark the QSOs
 								if (($httpcode == 200) || (preg_match('/\baccepted\b/', $response))) {
@@ -200,7 +199,6 @@ class Clublog_model extends CI_Model
 				$httpcode = curl_getinfo($request, CURLINFO_HTTP_CODE);
 				$c_err=curl_errno($request);
 				$c_errstring=curl_error($request);
-				curl_close($request);
 
 				if ($c_err) {
 					$log = $c_errstring."<br>";
@@ -445,7 +443,6 @@ class Clublog_model extends CI_Model
 		curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
 		$response = curl_exec($request);
 		$httpcode = curl_getinfo($request, CURLINFO_HTTP_CODE);
-		curl_close($request);
 
 		if (preg_match('/\bOK\b/', $response)) {
 			$returner['status'] = 'OK';

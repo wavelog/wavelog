@@ -272,7 +272,6 @@ class Eqslmethods_model extends CI_Model {
 
 		$result = curl_exec($ch);
 		$chi = curl_getinfo($ch);
-		curl_close($ch);
 
 	/*  Time for some error handling
 			Things we might get back

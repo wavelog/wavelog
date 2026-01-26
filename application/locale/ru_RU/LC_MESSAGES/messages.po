@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-01-22 08:38+0000\n"
+"POT-Creation-Date: 2026-01-26 10:04+0000\n"
 "PO-Revision-Date: 2026-01-24 12:13+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -47,7 +47,7 @@ msgstr ""
 #: application/controllers/Components.php:13
 #: application/controllers/Contestcalendar.php:15
 #: application/controllers/Contesting.php:14
-#: application/controllers/Cron.php:26 application/controllers/Cron.php:172
+#: application/controllers/Cron.php:26 application/controllers/Cron.php:171
 #: application/controllers/Csv.php:8 application/controllers/Csv.php:31
 #: application/controllers/Dayswithqso.php:11
 #: application/controllers/Dcl.php:10 application/controllers/Dcl.php:19
@@ -64,9 +64,9 @@ msgstr ""
 #: application/controllers/Dxcluster.php:9 application/controllers/Eqsl.php:23
 #: application/controllers/Eqsl.php:66 application/controllers/Eqsl.php:166
 #: application/controllers/Eqsl.php:255 application/controllers/Eqsl.php:279
-#: application/controllers/Eqsl.php:318 application/controllers/Eqsl.php:519
-#: application/controllers/Eqsl.php:586 application/controllers/Eqsl.php:602
-#: application/controllers/Eqsl.php:661
+#: application/controllers/Eqsl.php:318 application/controllers/Eqsl.php:517
+#: application/controllers/Eqsl.php:584 application/controllers/Eqsl.php:600
+#: application/controllers/Eqsl.php:659
 #: application/controllers/Generic_qsl.php:12
 #: application/controllers/Hamsat.php:13 application/controllers/Hrdlog.php:36
 #: application/controllers/Kmlexport.php:18
@@ -82,7 +82,7 @@ msgstr ""
 #: application/controllers/Operator.php:13
 #: application/controllers/Options.php:14 application/controllers/Oqrs.php:15
 #: application/controllers/Oqrs.php:165 application/controllers/Qrbcalc.php:13
-#: application/controllers/Qrz.php:200 application/controllers/Qrz.php:287
+#: application/controllers/Qrz.php:199 application/controllers/Qrz.php:286
 #: application/controllers/Qsl.php:12 application/controllers/Qsl.php:13
 #: application/controllers/Qsl.php:49 application/controllers/Qsl.php:57
 #: application/controllers/Qslprint.php:24
@@ -848,11 +848,11 @@ msgstr "Континенты"
 msgid "Cron Manager"
 msgstr "Диспетчер задач"
 
-#: application/controllers/Cron.php:164 application/views/cron/edit.php:5
+#: application/controllers/Cron.php:163 application/views/cron/edit.php:5
 msgid "Edit Cronjob"
 msgstr "Редактирование задачи"
 
-#: application/controllers/Cron.php:228 application/controllers/Cron.php:229
+#: application/controllers/Cron.php:227 application/controllers/Cron.php:228
 #: application/views/cron/index.php:96 application/views/cron/index.php:98
 #: application/views/cron/index.php:100 application/views/debug/index.php:524
 #: application/views/debug/index.php:531 application/views/debug/index.php:537
@@ -863,32 +863,32 @@ msgstr "Редактирование задачи"
 msgid "never"
 msgstr "никогда"
 
-#: application/controllers/Cron.php:229
+#: application/controllers/Cron.php:228
 msgid "calculating..."
 msgstr "расчёт..."
 
-#: application/controllers/Cron.php:240 application/views/cron/index.php:83
+#: application/controllers/Cron.php:239 application/views/cron/index.php:83
 msgid "healthy"
 msgstr "норма"
 
-#: application/controllers/Cron.php:242 application/views/cron/index.php:85
+#: application/controllers/Cron.php:241 application/views/cron/index.php:85
 msgid "failed"
 msgstr "ошибка"
 
-#: application/controllers/Cron.php:244 application/views/cron/index.php:87
+#: application/controllers/Cron.php:243 application/views/cron/index.php:87
 msgid "pending"
 msgstr "в ожидании"
 
-#: application/controllers/Cron.php:249 application/views/cron/index.php:92
+#: application/controllers/Cron.php:248 application/views/cron/index.php:92
 msgid "disabled"
 msgstr "отключено"
 
-#: application/controllers/Cron.php:288
+#: application/controllers/Cron.php:287
 #: application/views/interface_assets/footer.php:41
 msgid "OK"
 msgstr "ОК"
 
-#: application/controllers/Cron.php:292
+#: application/controllers/Cron.php:291
 #, php-format
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
@@ -897,7 +897,7 @@ msgstr ""
 "Последний запуск произошел более %s секунд назад.%sПроверьте ваш основной "
 "cron! Он должен запускаться каждую минуту (* * * * *)."
 
-#: application/controllers/Cron.php:295
+#: application/controllers/Cron.php:294
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
@@ -906,7 +906,7 @@ msgstr ""
 "Последний запуск произошел более %s минут назад.%sПохоже, ваш Mastercron не "
 "работает!%sОн должен запускаться каждую минуту (* * * * *)."
 
-#: application/controllers/Cron.php:300 application/views/cron/index.php:42
+#: application/controllers/Cron.php:299 application/views/cron/index.php:42
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr "Не работает"
@@ -1101,49 +1101,49 @@ msgstr "Пользователь не найден"
 msgid "eQSL password not configured for this user"
 msgstr "Для этого пользователя не задан пароль eQSL"
 
-#: application/controllers/Eqsl.php:380
+#: application/controllers/Eqsl.php:379
 msgid "Failed to fetch eQSL image data"
 msgstr "Не удалось получить изображение eQSL"
 
-#: application/controllers/Eqsl.php:399
+#: application/controllers/Eqsl.php:398
 msgid "eQSL image not available"
 msgstr "Изображение eQSL недоступно"
 
-#: application/controllers/Eqsl.php:418
+#: application/controllers/Eqsl.php:416
 msgid "Failed to download eQSL image"
 msgstr "Не удалось скачать изображение eQSL"
 
-#: application/controllers/Eqsl.php:443
+#: application/controllers/Eqsl.php:441
 msgid "Failed to load cached eQSL image"
 msgstr "Не удалось загрузить кэшированное изображение eQSL"
 
-#: application/controllers/Eqsl.php:590
+#: application/controllers/Eqsl.php:588
 msgid "eQSL Tools"
 msgstr "инструменты eQSL"
 
-#: application/controllers/Eqsl.php:620
+#: application/controllers/Eqsl.php:618
 msgid "Limited to first 150 QSOs for this request. Please run again."
 msgstr "Запрос ограничен первыми 150 QSO. Пожалуйста, запустите снова."
 
-#: application/controllers/Eqsl.php:626
+#: application/controllers/Eqsl.php:624
 msgid " / Errors: "
 msgstr " / Ошибки: "
 
-#: application/controllers/Eqsl.php:626
+#: application/controllers/Eqsl.php:624
 msgid "Successfully downloaded: "
 msgstr "Успешно скачано: "
 
-#: application/controllers/Eqsl.php:633
+#: application/controllers/Eqsl.php:631
 msgid "eQSL rate limit reached. Please wait before running again."
 msgstr ""
 "Достигнут лимит запросов к eQSL. Пожалуйста, подождите перед следующим "
 "запуском."
 
-#: application/controllers/Eqsl.php:645
+#: application/controllers/Eqsl.php:643
 msgid "eQSL Card Image Download"
 msgstr "скачать изображения eQSL"
 
-#: application/controllers/Eqsl.php:669
+#: application/controllers/Eqsl.php:667
 msgid "All eQSLs marked as uploaded"
 msgstr "Все eQSL отмечены как загруженные"
 
@@ -2380,16 +2380,16 @@ msgstr ""
 "Отрицательные широты находятся к югу от экватора, отрицательные долготы — к "
 "западу от Гринвича."
 
-#: application/controllers/Qrz.php:204
+#: application/controllers/Qrz.php:203
 #: application/views/interface_assets/header.php:519
 msgid "QRZ Logbook"
 msgstr "Журнал QRZ"
 
-#: application/controllers/Qrz.php:289
+#: application/controllers/Qrz.php:288
 msgid "QRZ QSL Import"
 msgstr "QRZ. Импорт QSL"
 
-#: application/controllers/Qrz.php:346
+#: application/controllers/Qrz.php:345
 msgid "QRZ ADIF Information"
 msgstr "QRZ. Информация ADIF"
 
@@ -3509,24 +3509,24 @@ msgstr "Недостаточный уровень разрешений!"
 msgid "Error adding Club Member!"
 msgstr "Ошибка при добавлении оператора коллективной станции!"
 
-#: application/models/Eqslmethods_model.php:292
+#: application/models/Eqslmethods_model.php:291
 msgid "Your eQSL username and/or password is incorrect."
 msgstr "Ваше имя пользователя и/или пароль для eQSL неверны."
 
-#: application/models/Eqslmethods_model.php:297
+#: application/models/Eqslmethods_model.php:296
 msgid "Something went wrong with eQSL.cc!"
 msgstr "С eQSL.cc что-то пошло не так!"
 
-#: application/models/Eqslmethods_model.php:308
+#: application/models/Eqslmethods_model.php:307
 msgid "QTH Nickname does not exist at eQSL"
 msgstr "Псевдоним QTH не существует на eQSL"
 
-#: application/models/Eqslmethods_model.php:317
+#: application/models/Eqslmethods_model.php:316
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
 msgstr ""
 "eQSL.cc испытывает проблемы. Пожалуйста, попробуйте экспортировать QSO позже."
 
-#: application/models/Eqslmethods_model.php:322
+#: application/models/Eqslmethods_model.php:321
 msgid ""
 "There was an error in one of the QSOs. You might want to manually upload "
 "them."
@@ -3534,14 +3534,14 @@ msgstr ""
 "При загрузке одного из QSO произошла ошибка. Возможно, вам стоит произвести "
 "загрузку вручную."
 
-#: application/models/Eqslmethods_model.php:327
+#: application/models/Eqslmethods_model.php:326
 msgid ""
 "It seems that the eQSL site has changed. Please open up an issue on GitHub."
 msgstr ""
 "Похоже, что сайт eQSL изменился. Пожалуйста, создайте сообщение о проблеме "
 "на GitHub."
 
-#: application/models/Eqslmethods_model.php:333
+#: application/models/Eqslmethods_model.php:332
 msgid ""
 "An uncaught Error occured while uploading QSOs. Perhaps eQSL has hiccups"
 msgstr ""
@@ -3560,25 +3560,25 @@ msgstr "HRDlog: на найдены QSO для загруки для позыв�
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: не найдены профили QTH с данными входя на HRDlog."
 
-#: application/models/Logbook_model.php:1416
+#: application/models/Logbook_model.php:1413
 msgid "Station ID not allowed"
 msgstr "Недопустимый ID станции"
 
-#: application/models/Logbook_model.php:1421
+#: application/models/Logbook_model.php:1418
 msgid "No Call given"
 msgstr "Не указан позывной"
 
-#: application/models/Logbook_model.php:1491
-#: application/models/Logbook_model.php:1693
+#: application/models/Logbook_model.php:1488
+#: application/models/Logbook_model.php:1690
 msgid "DXCC has to be Numeric"
 msgstr "DXCC должен быть цифровым"
 
-#: application/models/Logbook_model.php:4764
+#: application/models/Logbook_model.php:4761
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Неправильный позывной %s при импорте QSO с %s для %s: ПРОПУЩЕНО"
 
-#: application/models/Logbook_model.php:4778
+#: application/models/Logbook_model.php:4775
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -3586,11 +3586,11 @@ msgstr ""
 "Вы пытались импортировать QSO без действительной даты. Это QSO не "
 "действительно и не было импортировано"
 
-#: application/models/Logbook_model.php:4787
+#: application/models/Logbook_model.php:4784
 msgid "QSO on"
 msgstr "начало QSO"
 
-#: application/models/Logbook_model.php:4787
+#: application/models/Logbook_model.php:4784
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3598,7 +3598,7 @@ msgstr ""
 "Вы пытались импортировать QSO без указанного позывного. Это QSO не было "
 "импортировано. Оно недействительно"
 
-#: application/models/Logbook_model.php:4836
+#: application/models/Logbook_model.php:4833
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -3607,64 +3607,64 @@ msgstr ""
 "QSO в %s: Вы пыталсь импортировать QSO без информации о диапазоне. Это QSO "
 "некорректно, импорт отклонён.imported. It's invalid"
 
-#: application/models/Logbook_model.php:5101
+#: application/models/Logbook_model.php:5098
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:5112
+#: application/models/Logbook_model.php:5109
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:5173
+#: application/models/Logbook_model.php:5170
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "дата загрузки QSO в Clublog недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:5548
+#: application/models/Logbook_model.php:5545
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Дубликат для"
 
-#: application/models/Logbook_model.php:5613
-#: application/models/Logbook_model.php:5708
+#: application/models/Logbook_model.php:5610
+#: application/models/Logbook_model.php:5705
 msgid "QSO could not be matched"
 msgstr "QSO не может быть сопоставлено"
 
-#: application/models/Logbook_model.php:5621
+#: application/models/Logbook_model.php:5618
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "подтверждено LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:5627
+#: application/models/Logbook_model.php:5624
 msgid "confirmed by award manager"
 msgstr "подтверждено менеджером диплома"
 
-#: application/models/Logbook_model.php:5631
+#: application/models/Logbook_model.php:5628
 msgid "confirmed by cross-check of DCL data"
 msgstr "подтверждено кросс-проверкой с данными DCL"
 
-#: application/models/Logbook_model.php:5635
+#: application/models/Logbook_model.php:5632
 msgid "confirmation pending"
 msgstr "подтверждение ожидается"
 
-#: application/models/Logbook_model.php:5638
+#: application/models/Logbook_model.php:5635
 msgid "unconfirmed"
 msgstr "не подтверждено"
 
-#: application/models/Logbook_model.php:5641
+#: application/models/Logbook_model.php:5638
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
 msgid "unknown"
 msgstr "неизвестно"
 
-#: application/models/Logbook_model.php:5711
+#: application/models/Logbook_model.php:5708
 msgid "POTA reference already in log"
 msgstr "Ренференция POTA уже в журнале"
 
-#: application/models/Logbook_model.php:5714
+#: application/models/Logbook_model.php:5711
 msgid "QSO updated"
 msgstr "QSO обновлено"
 
-#: application/models/Logbook_model.php:6444
+#: application/models/Logbook_model.php:6441
 #: application/views/activated_gridmap/index.php:114
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:58
@@ -3701,24 +3701,24 @@ msgstr "Антенны"
 msgid "In Contacts category, the titles of the notes need to be unique."
 msgstr "В категории Контакты заголовки записей должны быть уникальными."
 
-#: application/models/Update_model.php:352
+#: application/models/Update_model.php:348
 msgid "Newer release available:"
 msgstr "Доступна новая версия:"
 
-#: application/models/Update_model.php:356
+#: application/models/Update_model.php:352
 msgid "You are running the latest version."
 msgstr "Вы используете последнюю версию."
 
-#: application/models/Update_model.php:446
+#: application/models/Update_model.php:440
 msgid "cURL error:"
 msgstr "ошибка cURL:"
 
-#: application/models/Update_model.php:481
+#: application/models/Update_model.php:474
 msgid "SAT already existing. LoTW status updated."
 msgstr "Спутник уже существует. Статус LoTW обновлен."
 
-#: application/models/Update_model.php:484
-#: application/models/Update_model.php:513
+#: application/models/Update_model.php:477
+#: application/models/Update_model.php:506
 #, php-format
 msgid "LoTW status for %d QSO updated"
 msgid_plural "LoTW status for %d QSOs updated"
@@ -3726,27 +3726,27 @@ msgstr[0] "Статус LoTW для %d QSO обновлен"
 msgstr[1] "Статус LoTW для %d QSO обновлен"
 msgstr[2] "Статус LoTW для %d QSO обновлен"
 
-#: application/models/Update_model.php:487
+#: application/models/Update_model.php:480
 msgid "SAT already existing. Updating LoTW status failed."
 msgstr "Спутник уже существует. Обновление статуса LoTW не удалось."
 
-#: application/models/Update_model.php:490
+#: application/models/Update_model.php:483
 msgid "SAT already existing. Ignored."
 msgstr "Спутник уже существует. Игнорируется."
 
-#: application/models/Update_model.php:497
+#: application/models/Update_model.php:490
 msgid "SAT already existing. Display name updated."
 msgstr "Спутник уже существует. Отображаемое наименование обновлено."
 
-#: application/models/Update_model.php:499
+#: application/models/Update_model.php:492
 msgid "SAT already existing. Updating display name failed."
 msgstr "Спутник уже существует. Не удалось обновить отображаемое наименование."
 
-#: application/models/Update_model.php:509
+#: application/models/Update_model.php:502
 msgid "New SAT. Inserted."
 msgstr "Новый спутник. Добавлен."
 
-#: application/models/Update_model.php:517
+#: application/models/Update_model.php:510
 msgid "New SAT. Insert failed."
 msgstr "Новый спутник. Добавление не удалось."
 

@@ -213,7 +213,6 @@ class EqslBulkDownloader {
 			}
 
 			curl_multi_remove_handle($mh, $ch);
-			curl_close($ch);
 		}
 
 		curl_multi_close($mh);
@@ -319,7 +318,6 @@ class EqslBulkDownloader {
 			}
 
 			curl_multi_remove_handle($mh, $ch);
-			curl_close($ch);
 		}
 
 		curl_multi_close($mh);
@@ -403,7 +401,6 @@ class EqslBulkDownloader {
 		curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog-eQSL/1.0');
 		$content = curl_exec($ch);
 		$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-		curl_close($ch);
 
 		if ($content === false || $httpCode != 200) {
 			log_message('error', 'Failed to download image from: ' . $url);

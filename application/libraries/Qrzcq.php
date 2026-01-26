@@ -22,7 +22,6 @@ class Qrzcq {
 		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
 		curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$ci->optionslib->get_option('version'));
 		$xml = curl_exec($ch);
-		curl_close($ch);
 
 		// Create XML object
 		$xml = simplexml_load_string($xml);
@@ -55,7 +54,6 @@ class Qrzcq {
 		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
 		curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$ci->optionslib->get_option('version'));
 		$xml = curl_exec($ch);
-		curl_close($ch);
 
 		// Create XML object
 		$xml = simplexml_load_string($xml);
@@ -85,7 +83,6 @@ class Qrzcq {
 			curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$ci->optionslib->get_option('version'));
 			$xml = curl_exec($ch);
 			$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-			curl_close($ch);
 			if ($httpcode != 200) return $data['error'] = 'Problems with qrzcq.com communication'; // Exit function if no 200. If request fails, 0 is returned
 
 			// Create XML object

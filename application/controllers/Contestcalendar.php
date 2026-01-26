@@ -139,7 +139,6 @@ class Contestcalendar extends CI_Controller {
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
 			$rssRawData = curl_exec($ch);
-			curl_close($ch);
 
 			if ($rssRawData === FALSE) {
 				$msg = "Something went wrong with fetching the Contest Data";
@@ -148,8 +147,6 @@ class Contestcalendar extends CI_Controller {
 			}
 
 			$this->cache->save('RssRawContestCal', $rssRawData, (60 * 60 * 12)); // 12 hours cache time
-
-			curl_close($ch);
 		}
 
 		return $rssRawData;

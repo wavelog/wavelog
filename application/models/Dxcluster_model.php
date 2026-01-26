@@ -102,7 +102,6 @@ class Dxcluster_model extends CI_Model {
 			$jsonraw = curl_exec($ch);
 			$curl_error = curl_error($ch);
 			$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-			curl_close($ch);
 
 			// Check for curl errors
 			if ($curl_error || $jsonraw === false) {
@@ -554,7 +553,6 @@ class Dxcluster_model extends CI_Model {
 		    curl_setopt($ch, CURLOPT_HEADER, false);
 		    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		    $jsonraw = curl_exec($ch);
-		    curl_close($ch);
 		    $json = json_decode($jsonraw);
 
 			$date = date('Ymd', time());

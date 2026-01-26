@@ -2383,13 +2383,21 @@ function saveOptions() {
 										column.search(val ? val : '', true, false).draw();
 									});
 
-								// Extract text from rendered cells to get actual displayed content
+								// Count occurrences of each unique value
+								var counts = {};
 								column.nodes().flatten().to$().each(function () {
 									var text = $(this).text().trim();
-									if (text && !select.find('option[value="' + text + '"]').length) {
-										select.append('<option value="' + text + '">' + text + '</option>');
+									if (text) {
+										counts[text] = (counts[text] || 0) + 1;
 									}
 								});
+
+								// Add options with counts
+								for (var text in counts) {
+									if (!select.find('option[value="' + text + '"]').length) {
+										select.append('<option value="' + text + '">' + text + ' (' + counts[text] + ')</option>');
+									}
+								}
 
 								// Sort options
 								select.find('option:not(:first)').sort(function(a, b) {
@@ -2446,13 +2454,21 @@ function saveOptions() {
 										column.search(val ? val : '', true, false).draw();
 									});
 
-								// Extract text from rendered cells to get actual displayed content
+								// Count occurrences of each unique value
+								var counts = {};
 								column.nodes().flatten().to$().each(function () {
 									var text = $(this).text().trim();
-									if (text && !select.find('option[value="' + text + '"]').length) {
-										select.append('<option value="' + text + '">' + text + '</option>');
+									if (text) {
+										counts[text] = (counts[text] || 0) + 1;
 									}
 								});
+
+								// Add options with counts
+								for (var text in counts) {
+									if (!select.find('option[value="' + text + '"]').length) {
+										select.append('<option value="' + text + '">' + text + ' (' + counts[text] + ')</option>');
+									}
+								}
 
 								// Sort options
 								select.find('option:not(:first)').sort(function(a, b) {
@@ -2516,13 +2532,21 @@ function saveOptions() {
 										column.search(val ? val : '', true, false).draw();
 									});
 
-								// Extract text from rendered cells to get actual displayed content
+								// Count occurrences of each unique value
+								var counts = {};
 								column.nodes().flatten().to$().each(function () {
 									var text = $(this).text().trim();
-									if (text && !select.find('option[value="' + text + '"]').length) {
-										select.append('<option value="' + text + '">' + text + '</option>');
+									if (text) {
+										counts[text] = (counts[text] || 0) + 1;
 									}
 								});
+
+								// Add options with counts
+								for (var text in counts) {
+									if (!select.find('option[value="' + text + '"]').length) {
+										select.append('<option value="' + text + '">' + text + ' (' + counts[text] + ')</option>');
+									}
+								}
 
 								// Sort options
 								select.find('option:not(:first)').sort(function(a, b) {
@@ -2650,6 +2674,7 @@ function saveOptions() {
 				id_list.forEach(function(id) {
 					let row = $("#dxccCheckTable tbody tr#qsoID-" + id);
 					table.row(row).remove();
+					$('#checkBoxAllDxcc').prop('checked', false);
 				});
 				table.draw(false);
 				$('.dxcctablediv').html(data.message);
@@ -2700,13 +2725,21 @@ function saveOptions() {
 										column.search(val ? val : '', true, false).draw();
 									});
 
-								// Extract text from rendered cells to get actual displayed content
+								// Count occurrences of each unique value
+								var counts = {};
 								column.nodes().flatten().to$().each(function () {
 									var text = $(this).text().trim();
-									if (text && !select.find('option[value="' + text + '"]').length) {
-										select.append('<option value="' + text + '">' + text + '</option>');
+									if (text) {
+										counts[text] = (counts[text] || 0) + 1;
 									}
 								});
+
+								// Add options with counts
+								for (var text in counts) {
+									if (!select.find('option[value="' + text + '"]').length) {
+										select.append('<option value="' + text + '">' + text + ' (' + counts[text] + ')</option>');
+									}
+								}
 
 								// Sort options
 								select.find('option:not(:first)').sort(function(a, b) {
@@ -2877,17 +2910,25 @@ function saveOptions() {
 										column.search(val ? val : '', true, false).draw();
 									});
 
-								// Extract text from rendered cells to get actual displayed content
+								// Count occurrences of each unique value
+								var counts = {};
 								column.nodes().flatten().to$().each(function () {
 									// Get text from the first anchor link which contains the IOTA reference
 									var $anchor = $(this).find('a').first();
 									var text = $anchor.length ? $anchor.text().trim() : $(this).text().trim();
 									// Remove any extra whitespace
 									text = text.split(/\s+/)[0];
-									if (text && !select.find('option[value="' + text + '"]').length) {
-										select.append('<option value="' + text + '">' + text + '</option>');
+									if (text) {
+										counts[text] = (counts[text] || 0) + 1;
 									}
 								});
+
+								// Add options with counts
+								for (var text in counts) {
+									if (!select.find('option[value="' + text + '"]').length) {
+										select.append('<option value="' + text + '">' + text + ' (' + counts[text] + ')</option>');
+									}
+								}
 
 								// Sort options
 								select.find('option:not(:first)').sort(function(a, b) {

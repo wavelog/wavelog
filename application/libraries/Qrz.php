@@ -22,7 +22,6 @@ class Qrz {
 		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
 		curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$ci->optionslib->get_option('version'));
 		$xml = curl_exec($ch);
-		curl_close($ch);
 
 		// Create XML object
 		$xml = simplexml_load_string($xml);
@@ -48,7 +47,6 @@ class Qrz {
 		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
 		curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$ci->optionslib->get_option('version'));
 		$xml = curl_exec($ch);
-		curl_close($ch);
 
 		// Create XML object
 		$xml = simplexml_load_string($xml);
@@ -81,10 +79,8 @@ class Qrz {
 			if ($httpcode != 200) {
 				$message = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
 				log_message('debug', 'QRZ.com search for callsign: ' . $callsign . ' returned message: ' . $message . ' HTTP code: ' . $httpcode);
-				curl_close($ch);
 				return $data['error'] = 'Problems with qrz.com communication'; // Exit function if no 200. If request fails, 0 is returned
 			}
-			curl_close($ch);
 			// Create XML object
 			$xml = simplexml_load_string($xml);
 			if (!empty($xml->Session->Error)) {

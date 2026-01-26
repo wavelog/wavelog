@@ -15,7 +15,7 @@ class Logbook_model extends CI_Model {
 	private function oop_populate_modes() {
 		$r = $this->db->get('adif_modes');
 		foreach ($r->result_array() as $row) {
-			$this->oop_modes[$row['submode']][] = ($row['mode'] ?? '');
+			$this->oop_modes[$row['submode'] ?? ''][] = ($row['mode'] ?? '');
 		}
 	}
 
@@ -1181,7 +1181,6 @@ class Logbook_model extends CI_Model {
 			$result['message'] = 'Curl error: ' . curl_errno($ch);
 			return $result;
 		}
-		curl_close($ch);
 	}
 
 	/*
@@ -1224,7 +1223,6 @@ class Logbook_model extends CI_Model {
 			$result['message'] = 'Curl error: ' . curl_errno($ch);
 			return $result;
 		}
-		curl_close($ch);
 	}
 
 	/*
@@ -1255,7 +1253,6 @@ class Logbook_model extends CI_Model {
 		$content = curl_exec($ch); // TODO: better error handling
 		$errors = curl_error($ch);
 		$response = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-		curl_close($ch);
 		return $response === 200;
 	}
 

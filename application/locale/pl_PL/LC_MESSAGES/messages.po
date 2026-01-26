@@ -16,7 +16,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-01-22 08:38+0000\n"
+"POT-Creation-Date: 2026-01-26 10:04+0000\n"
 "PO-Revision-Date: 2026-01-22 18:33+0000\n"
 "Last-Translator: Dariusz Koryto <dariusz@koryto.eu>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -51,7 +51,7 @@ msgstr ""
 #: application/controllers/Components.php:13
 #: application/controllers/Contestcalendar.php:15
 #: application/controllers/Contesting.php:14
-#: application/controllers/Cron.php:26 application/controllers/Cron.php:172
+#: application/controllers/Cron.php:26 application/controllers/Cron.php:171
 #: application/controllers/Csv.php:8 application/controllers/Csv.php:31
 #: application/controllers/Dayswithqso.php:11
 #: application/controllers/Dcl.php:10 application/controllers/Dcl.php:19
@@ -68,9 +68,9 @@ msgstr ""
 #: application/controllers/Dxcluster.php:9 application/controllers/Eqsl.php:23
 #: application/controllers/Eqsl.php:66 application/controllers/Eqsl.php:166
 #: application/controllers/Eqsl.php:255 application/controllers/Eqsl.php:279
-#: application/controllers/Eqsl.php:318 application/controllers/Eqsl.php:519
-#: application/controllers/Eqsl.php:586 application/controllers/Eqsl.php:602
-#: application/controllers/Eqsl.php:661
+#: application/controllers/Eqsl.php:318 application/controllers/Eqsl.php:517
+#: application/controllers/Eqsl.php:584 application/controllers/Eqsl.php:600
+#: application/controllers/Eqsl.php:659
 #: application/controllers/Generic_qsl.php:12
 #: application/controllers/Hamsat.php:13 application/controllers/Hrdlog.php:36
 #: application/controllers/Kmlexport.php:18
@@ -86,7 +86,7 @@ msgstr ""
 #: application/controllers/Operator.php:13
 #: application/controllers/Options.php:14 application/controllers/Oqrs.php:15
 #: application/controllers/Oqrs.php:165 application/controllers/Qrbcalc.php:13
-#: application/controllers/Qrz.php:200 application/controllers/Qrz.php:287
+#: application/controllers/Qrz.php:199 application/controllers/Qrz.php:286
 #: application/controllers/Qsl.php:12 application/controllers/Qsl.php:13
 #: application/controllers/Qsl.php:49 application/controllers/Qsl.php:57
 #: application/controllers/Qslprint.php:24
@@ -850,11 +850,11 @@ msgstr "Kontynenty"
 msgid "Cron Manager"
 msgstr "Menedżer Cron"
 
-#: application/controllers/Cron.php:164 application/views/cron/edit.php:5
+#: application/controllers/Cron.php:163 application/views/cron/edit.php:5
 msgid "Edit Cronjob"
 msgstr "Edytuj zadanie cron"
 
-#: application/controllers/Cron.php:228 application/controllers/Cron.php:229
+#: application/controllers/Cron.php:227 application/controllers/Cron.php:228
 #: application/views/cron/index.php:96 application/views/cron/index.php:98
 #: application/views/cron/index.php:100 application/views/debug/index.php:524
 #: application/views/debug/index.php:531 application/views/debug/index.php:537
@@ -865,32 +865,32 @@ msgstr "Edytuj zadanie cron"
 msgid "never"
 msgstr "nigdy"
 
-#: application/controllers/Cron.php:229
+#: application/controllers/Cron.php:228
 msgid "calculating..."
 msgstr "obliczanie..."
 
-#: application/controllers/Cron.php:240 application/views/cron/index.php:83
+#: application/controllers/Cron.php:239 application/views/cron/index.php:83
 msgid "healthy"
 msgstr "w porządku"
 
-#: application/controllers/Cron.php:242 application/views/cron/index.php:85
+#: application/controllers/Cron.php:241 application/views/cron/index.php:85
 msgid "failed"
 msgstr "nieudane"
 
-#: application/controllers/Cron.php:244 application/views/cron/index.php:87
+#: application/controllers/Cron.php:243 application/views/cron/index.php:87
 msgid "pending"
 msgstr "oczekujące"
 
-#: application/controllers/Cron.php:249 application/views/cron/index.php:92
+#: application/controllers/Cron.php:248 application/views/cron/index.php:92
 msgid "disabled"
 msgstr "wyłączone"
 
-#: application/controllers/Cron.php:288
+#: application/controllers/Cron.php:287
 #: application/views/interface_assets/footer.php:41
 msgid "OK"
 msgstr "OK"
 
-#: application/controllers/Cron.php:292
+#: application/controllers/Cron.php:291
 #, php-format
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
@@ -899,7 +899,7 @@ msgstr ""
 "Ostatnie uruchomienie miało miejsce ponad %s sekund temu.%sNależy sprawdzić "
 "główny cron! Powinien uruchamiać się co minutę (* * * * *)."
 
-#: application/controllers/Cron.php:295
+#: application/controllers/Cron.php:294
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
@@ -908,7 +908,7 @@ msgstr ""
 "Ostatnie uruchomienie miało miejsce ponad %s minut temu.%sWygląda na to, że "
 "główny cron nie pracuje!%sPowinien uruchamiać się co minutę (* * * * *)."
 
-#: application/controllers/Cron.php:300 application/views/cron/index.php:42
+#: application/controllers/Cron.php:299 application/views/cron/index.php:42
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr "Nie działa"
@@ -1102,48 +1102,48 @@ msgstr "Użytkownik nie znaleziony"
 msgid "eQSL password not configured for this user"
 msgstr "Hasło eQSL nie zostało skonfigurowane dla tego użytkownika"
 
-#: application/controllers/Eqsl.php:380
+#: application/controllers/Eqsl.php:379
 msgid "Failed to fetch eQSL image data"
 msgstr "Nie udało się pobrać danych obrazu eQSL"
 
-#: application/controllers/Eqsl.php:399
+#: application/controllers/Eqsl.php:398
 msgid "eQSL image not available"
 msgstr "Obraz eQSL niedostępny"
 
-#: application/controllers/Eqsl.php:418
+#: application/controllers/Eqsl.php:416
 msgid "Failed to download eQSL image"
 msgstr "Nie udało się pobrać obrazu eQSL"
 
-#: application/controllers/Eqsl.php:443
+#: application/controllers/Eqsl.php:441
 msgid "Failed to load cached eQSL image"
 msgstr "Nie udało się załadować zbuforowanego obrazu eQSL"
 
-#: application/controllers/Eqsl.php:590
+#: application/controllers/Eqsl.php:588
 msgid "eQSL Tools"
 msgstr "Narzędzia eQSL"
 
-#: application/controllers/Eqsl.php:620
+#: application/controllers/Eqsl.php:618
 msgid "Limited to first 150 QSOs for this request. Please run again."
 msgstr ""
 "Ograniczono do pierwszych 150 QSO tego żądania. Należy uruchomić ponownie."
 
-#: application/controllers/Eqsl.php:626
+#: application/controllers/Eqsl.php:624
 msgid " / Errors: "
 msgstr " / Błędy: "
 
-#: application/controllers/Eqsl.php:626
+#: application/controllers/Eqsl.php:624
 msgid "Successfully downloaded: "
 msgstr "Pomyślnie pobrano: "
 
-#: application/controllers/Eqsl.php:633
+#: application/controllers/Eqsl.php:631
 msgid "eQSL rate limit reached. Please wait before running again."
 msgstr "Osiągnięto limit eQSL. Proszę poczekać przed ponownym uruchomieniem."
 
-#: application/controllers/Eqsl.php:645
+#: application/controllers/Eqsl.php:643
 msgid "eQSL Card Image Download"
 msgstr "Pobieranie obrazów kart eQSL"
 
-#: application/controllers/Eqsl.php:669
+#: application/controllers/Eqsl.php:667
 msgid "All eQSLs marked as uploaded"
 msgstr "Wszystkie eQSL zaznaczone jako przesłane"
 
@@ -2377,16 +2377,16 @@ msgstr ""
 "Ujemne szerokości geograficzne znajdują się na południe od równika, ujemne "
 "długości geograficzne znajdują się na zachód od Greenwich."
 
-#: application/controllers/Qrz.php:204
+#: application/controllers/Qrz.php:203
 #: application/views/interface_assets/header.php:519
 msgid "QRZ Logbook"
 msgstr "Dziennik QRZ"
 
-#: application/controllers/Qrz.php:289
+#: application/controllers/Qrz.php:288
 msgid "QRZ QSL Import"
 msgstr "Import QSL QRZ"
 
-#: application/controllers/Qrz.php:346
+#: application/controllers/Qrz.php:345
 msgid "QRZ ADIF Information"
 msgstr "Informacje ADIF QRZ"
 
@@ -3506,36 +3506,36 @@ msgstr "Nieprawidłowy poziom uprawnień!"
 msgid "Error adding Club Member!"
 msgstr "Błąd dodawania członka klubu!"
 
-#: application/models/Eqslmethods_model.php:292
+#: application/models/Eqslmethods_model.php:291
 msgid "Your eQSL username and/or password is incorrect."
 msgstr "Nazwa użytkownika i/lub hasło eQSL jest niepoprawna."
 
-#: application/models/Eqslmethods_model.php:297
+#: application/models/Eqslmethods_model.php:296
 msgid "Something went wrong with eQSL.cc!"
 msgstr "Coś poszło nie tak z eQSL.cc!"
 
-#: application/models/Eqslmethods_model.php:308
+#: application/models/Eqslmethods_model.php:307
 msgid "QTH Nickname does not exist at eQSL"
 msgstr "Nazwa QTH nie istnieje w eQSL"
 
-#: application/models/Eqslmethods_model.php:317
+#: application/models/Eqslmethods_model.php:316
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
 msgstr "eQSL.cc ma problemy. Spróbuj wyeksportować QSO później."
 
-#: application/models/Eqslmethods_model.php:322
+#: application/models/Eqslmethods_model.php:321
 msgid ""
 "There was an error in one of the QSOs. You might want to manually upload "
 "them."
 msgstr "W jednym z QSO wystąpił błąd. Spróbuj przesłać je ręcznie."
 
-#: application/models/Eqslmethods_model.php:327
+#: application/models/Eqslmethods_model.php:326
 msgid ""
 "It seems that the eQSL site has changed. Please open up an issue on GitHub."
 msgstr ""
 "Wygląda na to, że strona eQSL się zmieniła. Należy otworzyć zgłoszenie na "
 "GitHubie."
 
-#: application/models/Eqslmethods_model.php:333
+#: application/models/Eqslmethods_model.php:332
 msgid ""
 "An uncaught Error occured while uploading QSOs. Perhaps eQSL has hiccups"
 msgstr ""
@@ -3555,27 +3555,27 @@ msgstr "HRDlog: Nie znaleziono łączności do przesłania dla stacji o znaku: "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: Nie znaleziono profili stacji z danymi logowania HRDlog."
 
-#: application/models/Logbook_model.php:1416
+#: application/models/Logbook_model.php:1413
 msgid "Station ID not allowed"
 msgstr "Numer identyfikacyjny stacji nie jest dozwolony"
 
-#: application/models/Logbook_model.php:1421
+#: application/models/Logbook_model.php:1418
 msgid "No Call given"
 msgstr "Nie przyznano znaku"
 
-#: application/models/Logbook_model.php:1491
-#: application/models/Logbook_model.php:1693
+#: application/models/Logbook_model.php:1488
+#: application/models/Logbook_model.php:1690
 msgid "DXCC has to be Numeric"
 msgstr "DXCC musi być numeryczne"
 
-#: application/models/Logbook_model.php:4764
+#: application/models/Logbook_model.php:4761
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 "Nieprawidłowy znak wywoławczy stacji %s podczas importowania QSO z %s dla "
 "%s: POMINIĘTO"
 
-#: application/models/Logbook_model.php:4778
+#: application/models/Logbook_model.php:4775
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -3583,11 +3583,11 @@ msgstr ""
 "Próbowano zaimportować QSO bez prawidłowej daty. To QSO nie zostało "
 "zaimportowane, ponieważ jest nieprawidłowe"
 
-#: application/models/Logbook_model.php:4787
+#: application/models/Logbook_model.php:4784
 msgid "QSO on"
 msgstr "QSO w dniu"
 
-#: application/models/Logbook_model.php:4787
+#: application/models/Logbook_model.php:4784
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3595,7 +3595,7 @@ msgstr ""
 "Spróbowałeś zaimportować QSO bez podanego znaku wywoławczego. To QSO nie "
 "zostało zaimportowane, jest nieprawidłowe"
 
-#: application/models/Logbook_model.php:4836
+#: application/models/Logbook_model.php:4833
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -3604,64 +3604,64 @@ msgstr ""
 "QSO z %s: próbowano zaimportować QSO bez podanego pasma. QSO nie zostało "
 "zaimportowane, ponieważ jest ono nieprawidłowe"
 
-#: application/models/Logbook_model.php:5101
+#: application/models/Logbook_model.php:5098
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate jest nieprawidłowa (RRRRMMDD)"
 
-#: application/models/Logbook_model.php:5112
+#: application/models/Logbook_model.php:5109
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate jest nieprawidłowa (RRRRMMDD)"
 
-#: application/models/Logbook_model.php:5173
+#: application/models/Logbook_model.php:5170
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date jest nieprawidłowy (RRRRMMDD)"
 
-#: application/models/Logbook_model.php:5548
+#: application/models/Logbook_model.php:5545
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplikat dla"
 
-#: application/models/Logbook_model.php:5613
-#: application/models/Logbook_model.php:5708
+#: application/models/Logbook_model.php:5610
+#: application/models/Logbook_model.php:5705
 msgid "QSO could not be matched"
 msgstr "QSO nie mogło zostać dopasowane"
 
-#: application/models/Logbook_model.php:5621
+#: application/models/Logbook_model.php:5618
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "potwierdzone przez LoTW/ClubLog/eQSL/zawody"
 
-#: application/models/Logbook_model.php:5627
+#: application/models/Logbook_model.php:5624
 msgid "confirmed by award manager"
 msgstr "potwierdzone przez award managera"
 
-#: application/models/Logbook_model.php:5631
+#: application/models/Logbook_model.php:5628
 msgid "confirmed by cross-check of DCL data"
 msgstr "potwierdzone przez weryfikację danych DCL"
 
-#: application/models/Logbook_model.php:5635
+#: application/models/Logbook_model.php:5632
 msgid "confirmation pending"
 msgstr "oczekiwanie na potwierdzenie"
 
-#: application/models/Logbook_model.php:5638
+#: application/models/Logbook_model.php:5635
 msgid "unconfirmed"
 msgstr "niepotwierdzone"
 
-#: application/models/Logbook_model.php:5641
+#: application/models/Logbook_model.php:5638
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
 msgid "unknown"
 msgstr "nieznany"
 
-#: application/models/Logbook_model.php:5711
+#: application/models/Logbook_model.php:5708
 msgid "POTA reference already in log"
 msgstr "Referencja POTA już znajduje się w dzienniku"
 
-#: application/models/Logbook_model.php:5714
+#: application/models/Logbook_model.php:5711
 msgid "QSO updated"
 msgstr "QSO zaktualizowane"
 
-#: application/models/Logbook_model.php:6444
+#: application/models/Logbook_model.php:6441
 #: application/views/activated_gridmap/index.php:114
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:58
@@ -3698,24 +3698,24 @@ msgstr "Antenowe"
 msgid "In Contacts category, the titles of the notes need to be unique."
 msgstr "W kategorii Kontakty tytuły notatek muszą być unikalne."
 
-#: application/models/Update_model.php:352
+#: application/models/Update_model.php:348
 msgid "Newer release available:"
 msgstr "Nowsza wersja dostępna:"
 
-#: application/models/Update_model.php:356
+#: application/models/Update_model.php:352
 msgid "You are running the latest version."
 msgstr "Używasz najnowszej wersji."
 
-#: application/models/Update_model.php:446
+#: application/models/Update_model.php:440
 msgid "cURL error:"
 msgstr "błąd cURL:"
 
-#: application/models/Update_model.php:481
+#: application/models/Update_model.php:474
 msgid "SAT already existing. LoTW status updated."
 msgstr "SAT już istnieje. Status LoTW zaktualizowany."
 
-#: application/models/Update_model.php:484
-#: application/models/Update_model.php:513
+#: application/models/Update_model.php:477
+#: application/models/Update_model.php:506
 #, php-format
 msgid "LoTW status for %d QSO updated"
 msgid_plural "LoTW status for %d QSOs updated"
@@ -3723,27 +3723,27 @@ msgstr[0] "Status LoTW dla pojedyńczego QSO został zaktualizowany"
 msgstr[1] "Status LoTW dla %d QSO został zaktualizowany"
 msgstr[2] "Status LoTW dla %d QSO został zaktualizowany"
 
-#: application/models/Update_model.php:487
+#: application/models/Update_model.php:480
 msgid "SAT already existing. Updating LoTW status failed."
 msgstr "SAT już istnieje. Aktualizacja statusu LoTW nie powiodła się."
 
-#: application/models/Update_model.php:490
+#: application/models/Update_model.php:483
 msgid "SAT already existing. Ignored."
 msgstr "SAT już istnieje. Zignorowano."
 
-#: application/models/Update_model.php:497
+#: application/models/Update_model.php:490
 msgid "SAT already existing. Display name updated."
 msgstr "SAT już istnieje. Zaktualizowano nazwę wyświetlaną."
 
-#: application/models/Update_model.php:499
+#: application/models/Update_model.php:492
 msgid "SAT already existing. Updating display name failed."
 msgstr "SAT już istnieje. Aktualizacja nazwy wyświetlanej nie powiodła się."
 
-#: application/models/Update_model.php:509
+#: application/models/Update_model.php:502
 msgid "New SAT. Inserted."
 msgstr "Nowy SAT. Wstawiono."
 
-#: application/models/Update_model.php:517
+#: application/models/Update_model.php:510
 msgid "New SAT. Insert failed."
 msgstr "Nowy SAT. Wstawienie nie powiodło się."
 

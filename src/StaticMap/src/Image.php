@@ -306,8 +306,6 @@ class Image {
             throw new \Exception(\curl_error($curl));
         }
 
-        \curl_close($curl);
-
         if ($image === false) {
             return $this->resetFields();
         }

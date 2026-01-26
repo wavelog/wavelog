@@ -58,9 +58,6 @@ class Sota
 
 		$summit_info = curl_exec($ch);
 
-		// Close cURL handle
-		curl_close($ch);
-
 		return $summit_info;
 	}
 }

@@ -374,7 +374,6 @@ class eqsl extends CI_Controller {
 			curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog-eQSL/1.0');
 			$file = curl_exec($ch);
 			$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-			curl_close($ch);
 
 			if ($file === false || $http_code != 200) {
 				show_error(__('Failed to fetch eQSL image data'), 503);
@@ -412,7 +411,6 @@ class eqsl extends CI_Controller {
 				curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog-eQSL/1.0');
 				$content = curl_exec($ch);
 				$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-				curl_close($ch);
 
 				if ($content === false || $http_code != 200) {
 					show_error(__('Failed to download eQSL image'), 503);

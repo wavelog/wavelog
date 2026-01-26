@@ -65,7 +65,6 @@ class Dcl_model extends CI_Model {
 				curl_setopt($ch, CURLOPT_HEADER, false);
 				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
 				$rawdcldata = curl_exec($ch);
-				curl_close($ch);
 				if (strlen($rawdcldata)>100) {
 					$dcldata=json_decode($rawdcldata);
 					return $dcldata;

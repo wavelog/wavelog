@@ -147,7 +147,6 @@ class Update_model extends CI_Model {
         curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $csv = curl_exec($ch);
-        curl_close($ch);
         if ($csv === FALSE) {
             return "Something went wrong with fetching the WWFF file";
         }
@@ -191,7 +190,6 @@ class Update_model extends CI_Model {
 	    curl_setopt($ch, CURLOPT_TIMEOUT, 5);
 	    $contents = curl_exec($ch);
 	    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-	    curl_close($ch);
 
 	    if ($contents === FALSE || $http_code != 200) {
 		    return "Something went wrong with fetching the solarxml.xml file from HAMqsl website.";
@@ -226,7 +224,6 @@ class Update_model extends CI_Model {
         curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $csv = curl_exec($ch);
-        curl_close($ch);
         if ($csv === FALSE) {
             return "Something went wrong with fetching the POTA file";
         }
@@ -321,7 +318,6 @@ class Update_model extends CI_Model {
         curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
         curl_setopt($ch, CURLOPT_URL,$url);
         $result=curl_exec($ch);
-        curl_close($ch);
         $json = json_decode($result, true);
         $latest_tag = $json[0]['tag_name'] ?? 'Unknown';
         return $latest_tag;
@@ -417,7 +413,6 @@ class Update_model extends CI_Model {
 				}
 			}
 
-			curl_close($curl);
 
 			$mtime = microtime();
 			$mtime = explode(" ",$mtime);
@@ -427,7 +422,6 @@ class Update_model extends CI_Model {
 			return "This page was created in ".$totaltime." seconds <br />Records inserted: " . $count;
 
 		} else {
-			curl_close($curl);
 			return "Error: Received file was empty";
 		}
 	}
@@ -446,7 +440,6 @@ class Update_model extends CI_Model {
 			log_message('error', __('cURL error:').' '.curl_error($curl).' ('.curl_errno($curl).')');
 			return;
 		}
-		curl_close($curl);
 		$xmlstring = gzdecode($response);
 		if ($xmlstring === false) {
 			return;
@@ -559,7 +552,6 @@ class Update_model extends CI_Model {
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		$response = curl_exec($ch);
 		$http_result = curl_getinfo($ch);
-		curl_close($ch);
 		if ($http_result['http_code'] == "200") {
 			$lines = explode("\n", $response);
 			if (count($lines) > 0) {	// Check if there was data, otherwise skip parsing / truncating the table and preserve whats there
@@ -699,8 +691,6 @@ class Update_model extends CI_Model {
 				$total_inserted += $rows;
 			}
 		}
-
-		curl_close($curl);
 
 		$mtime = microtime();
 		$mtime = explode(" ",$mtime);

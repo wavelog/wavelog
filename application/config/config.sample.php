@@ -439,7 +439,8 @@ $config['encryption_key'] = 'flossie1234555541';
 | 'sess_expiration'
 |
 |	The number of SECONDS you want the session to last.
-|	Setting to 0 (zero) means expire when the browser is closed.
+|	Default: 43200 seconds (12 hours).
+|   Setting to 0 means use the default value of 43200 seconds (12 hours).
 |
 | 'sess_save_path'
 |
@@ -476,7 +477,7 @@ $config['encryption_key'] = 'flossie1234555541';
 */
 $config['sess_driver'] = 'files';
 $config['sess_cookie_name'] = 'ci_wavelog';
-$config['sess_expiration'] = 0;
+$config['sess_expiration'] = 43200;
 $config['sess_save_path'] = '/tmp';
 $config['sess_match_ip'] = FALSE;
 $config['sess_time_to_update'] = 300;
