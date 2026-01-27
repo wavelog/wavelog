@@ -779,19 +779,25 @@ class Logbook extends CI_Controller {
 					$html .= $this->part_table_col($row, $this->session->userdata('user_column4')==""?'Band':$this->session->userdata('user_column4'));
 					if ($this->session->userdata('user_previous_qsl_type') == 1) {
 						$html .= "<td class=\"lotw\">";
-						$html .= "<span class=\"qsl-";
+						$html .= "<span class=\"lotw-";
 						switch ($row->COL_LOTW_QSL_SENT) {
 							case "Y":
 								$html .= "green";
+								break;
+							case "I":
+								$html .= "grey";
 								break;
 							default:
 								$html .= "red";
 						}
 						$html .= "\">&#9650;</span>";
-						$html .= "<span class=\"qsl-";
+						$html .= "<span class=\"lotw-";
 						switch ($row->COL_LOTW_QSL_RCVD) {
 							case "Y":
 								$html .= "green";
+								break;
+							case "I":
+								$html .= "grey";
 								break;
 							default:
 								$html .= "red";
@@ -800,19 +806,25 @@ class Logbook extends CI_Controller {
 						$html .= "</td>";
 					} else if ($this->session->userdata('user_previous_qsl_type') == 2) {
 						$html .= "<td class=\"eqsl\">";
-						$html .= "<span class=\"qsl-";
+						$html .= "<span class=\"eqsl-";
 						switch ($row->COL_EQSL_QSL_SENT) {
 							case "Y":
 								$html .= "green";
+								break;
+							case "I":
+								$html .= "grey";
 								break;
 							default:
 								$html .= "red";
 						}
 						$html .= "\">&#9650;</span>";
-						$html .= "<span class=\"qsl-";
+						$html .= "<span class=\"eqsl-";
 						switch ($row->COL_EQSL_QSL_RCVD) {
 							case "Y":
 								$html .= "green";
+								break;
+							case "I":
+								$html .= "grey";
 								break;
 							default:
 								$html .= "red";
@@ -821,7 +833,7 @@ class Logbook extends CI_Controller {
 						$html .= "</td>";
 					} else if ($this->session->userdata('user_previous_qsl_type') == 4) {
 						$html .= "<td class=\"qrz\">";
-						$html .= "<span class=\"qsl-";
+						$html .= "<span class=\"qrz-";
 						switch ($row->COL_QRZCOM_QSO_UPLOAD_STATUS) {
 							case "Y":
 								$html .= "green";
@@ -830,7 +842,7 @@ class Logbook extends CI_Controller {
 								$html .= "red";
 						}
 						$html .= "\">&#9650;</span>";
-						$html .= "<span class=\"qsl-";
+						$html .= "<span class=\"qrz-";
 						switch ($row->COL_QRZCOM_QSO_DOWNLOAD_STATUS) {
 							case "Y":
 								$html .= "green";
@@ -842,7 +854,7 @@ class Logbook extends CI_Controller {
 						$html .= "</td>";
 					} else if ($this->session->userdata('user_previous_qsl_type') == 8) {
 						$html .= "<td class=\"clublog\">";
-						$html .= "<span class=\"qsl-";
+						$html .= "<span class=\"clublog-";
 						switch ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS) {
 							case "Y":
 								$html .= "green";
@@ -851,7 +863,7 @@ class Logbook extends CI_Controller {
 								$html .= "red";
 						}
 						$html .= "\">&#9650;</span>";
-						$html .= "<span class=\"qsl-";
+						$html .= "<span class=\"clublog-";
 						switch ($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS) {
 							case "Y":
 								$html .= "green";
