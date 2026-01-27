@@ -181,7 +181,11 @@ class QSO extends CI_Controller {
 			// Add QSO
 			// $this->logbook_model->add();
 			//change to create_qso function as add and create_qso duplicate functionality
-			$adif = $this->logbook_model->create_qso();
+			$saveresult = json_decode($this->saveqso(), true);
+
+			// Clear POST data to prevent re-submission on page reload
+			$_POST = [];
+			$this->form_validation->reset_validation();
 
 			$returner=[];
 			$actstation=$this->stations->find_active() ?? '';
@@ -192,21 +196,88 @@ class QSO extends CI_Controller {
 			$returner['message']='success';
 
 			// Include ADIF for WebSocket transmission
-			if ($adif) {
-				$returner['adif'] = $adif;
+			if (isset($saveresult['adif'])) {
+				$returner['adif'] = $saveresult['adif'];
 			}
 
-			// Get last 5 qsos
+			header('Content-Type: application/json; charset=utf-8');
 			echo json_encode($returner);
 		}
 	}
 
 	/*
 	 * This is used for contest-logging and the ajax-call
+	 * Returns JSON
 	 */
 	public function saveqso() {
 		$this->load->model('logbook_model');
-		$this->logbook_model->create_qso();
+
+		$qso_data = [
+			'manual' => $this->input->get('manual', TRUE),
+			'start_date' => $this->input->post('start_date', TRUE),
+			'start_time' => $this->input->post('start_time', TRUE),
+			'end_time' => $this->input->post('end_time', TRUE),
+			'callsign' => $this->input->post('callsign', TRUE),
+			'prop_mode' => $this->input->post('prop_mode', TRUE) ?? NULL,
+			'email' => $this->input->post('email', TRUE) ?? NULL,
+			'region' => $this->input->post('region', TRUE) ?? NULL,
+			'sat_name' => $this->input->post('sat_name', TRUE) ?? NULL,
+			'exchangetype' => $this->input->post('exchangetype', TRUE) ?? NULL,
+			'exch_rcvd' => $this->input->post('exch_rcvd', TRUE) ?? NULL,
+			'exch_sent' => $this->input->post('exch_sent', TRUE) ?? NULL,
+			'exch_serial_r' => $this->input->post('exch_serial_r', TRUE) ?? NULL,
+			'exch_serial_s' => $this->input->post('exch_serial_s', TRUE) ?? NULL,
+			'contestname' => $this->input->post('contestname', TRUE) ?? NULL,
+			'transmit_power' => $this->input->post('transmit_power', TRUE) ?? NULL,
+			'radio' => $this->input->post('radio', TRUE) ?? 0,
+			'radio_ws_name' => $this->input->post('radio_ws_name', TRUE) ?? '',
+			'country' => $this->input->post('country', TRUE) ?? NULL,
+			'cqz' => $this->input->post('cqz', TRUE) ?? NULL,
+			'dxcc_id' => $this->input->post('dxcc_id', TRUE) ?? NULL,
+			'continent' => $this->input->post('continent', TRUE) ?? NULL,
+			'mode' => $this->input->post('mode', TRUE) ?? NULL,
+			'county' => $this->input->post('county', TRUE) ?? NULL,
+			'input_state' => $this->input->post('input_state', TRUE) ?? NULL,
+			'ant_az' => $this->input->post('ant_az', TRUE) ?? NULL,
+			'ant_el' => $this->input->post('ant_el', TRUE) ?? NULL,
+			'ant_path' => $this->input->post('ant_path', TRUE) ?? NULL,
+			'darc_dok' => $this->input->post('darc_dok', TRUE) ?? NULL,
+			'locator' => $this->input->post('locator', TRUE) ?? NULL,
+			'qth' => $this->input->post('qth', TRUE) ?? NULL,
+			'name' => $this->input->post('name', TRUE) ?? NULL,
+			'copyexchangeto' => $this->input->post('copyexchangeto', TRUE) ?? NULL,
+			'qsl_sent' => $this->input->post('qsl_sent', TRUE) ?? 'N',
+			'qsl_rcvd' => $this->input->post('qsl_rcvd', TRUE) ?? 'N',
+			'band' => $this->input->post('band', TRUE) ?? NULL,
+			'band_rx' => $this->input->post('band_rx', TRUE) ?? NULL,
+			'freq_display' => $this->input->post('freq_display', TRUE) ?? NULL,
+			'rst_rcvd' => $this->input->post('rst_rcvd', TRUE) ?? NULL,
+			'rst_sent' => $this->input->post('rst_sent', TRUE) ?? NULL,
+			'comment' => $this->input->post('comment', TRUE) ?? NULL,
+			'sat_name' => $this->input->post('sat_name', TRUE) ?? NULL,
+			'sat_mode' => $this->input->post('sat_mode', TRUE) ?? NULL,
+			'qsl_sent_method' => $this->input->post('qsl_sent_method', TRUE) ?? NULL,
+			'qsl_rcvd_method' => $this->input->post('qsl_rcvd_method', TRUE) ?? NULL,
+			'qsl_via' => $this->input->post('qsl_via', TRUE) ?? NULL,
+			'qslmsg' => $this->input->post('qslmsg', TRUE) ?? NULL,
+			'operator_callsign' => $this->input->post('operator_callsign', TRUE) ?? NULL,
+			'iota_ref' => $this->input->post('iota_ref', TRUE) ?? NULL,
+			'freq_display_rx' => $this->input->post('freq_display_rx', TRUE) ?? NULL,
+			'ituz' => $this->input->post('ituz', TRUE) ?? NULL,
+			'sota_ref' => $this->input->post('sota_ref', TRUE) ?? NULL,
+			'wwff_ref' => $this->input->post('wwff_ref', TRUE) ?? NULL,
+			'pota_ref' => $this->input->post('pota_ref', TRUE) ?? NULL,
+			'sig' => $this->input->post('sig', TRUE) ?? NULL,
+			'sig_info' => $this->input->post('sig_info', TRUE) ?? NULL,
+			'notes' => $this->input->post('notes', TRUE) ?? NULL,
+			'station_profile' => $this->input->post('station_profile', TRUE) ?? NULL,
+			'isSFLE' => $this->input->post('isSFLE', TRUE) ?? NULL,
+			'distance' => $this->input->post('distance', TRUE) ?? TRUE
+		];
+
+		$result = $this->logbook_model->create_qso($qso_data);
+
+		return json_encode($result, JSON_PRETTY_PRINT);
 	}
 
 	function edit() {

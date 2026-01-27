@@ -347,8 +347,8 @@ $("#qso_input").off('submit').on('submit', function (e) {
 			type: 'post',
 			timeout: 10000,
 			data: $(this).serialize(),
-			success: function (resdata) {
-				result = JSON.parse(resdata);
+			dataType: 'json',
+			success: function (result) {
 				if (result.message == 'success') {
 					activeStationId = result.activeStationId;
 					activeStationOP = result.activeStationOP;

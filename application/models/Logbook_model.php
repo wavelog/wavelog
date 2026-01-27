@@ -20,15 +20,19 @@ class Logbook_model extends CI_Model {
 	}
 
 	/* Add QSO to Logbook */
-	function create_qso() {
+	function create_qso($qso_data, $use_custom_date_format = true) {
 		// Get user-preferred date format
-		if ($this->session->userdata('user_date_format')) {
-			$date_format = $this->session->userdata('user_date_format');
+		if ($use_custom_date_format) {
+			if ($this->session->userdata('user_date_format')) {
+				$date_format = $this->session->userdata('user_date_format');
+			} else {
+				$date_format = $this->config->item('qso_date_format');
+			}
 		} else {
-			$date_format = $this->config->item('qso_date_format');
+			$date_format = 'Y-m-d'; // Default format for contesting
 		}
 
-		$get_manual_mode = $this->input->get('manual', TRUE);
+		$get_manual_mode = $qso_data['manual'];
 		if ($get_manual_mode == '1') {
 			$time_format = 'H:i';
 		} else {
@@ -36,19 +40,18 @@ class Logbook_model extends CI_Model {
 		}
 
 		// Get input values
-		$start_date = $this->input->post('start_date'); // e.g., "14/07/2025"
-		$start_time = $this->input->post('start_time'); // e.g., "08:11:36"
-		$end_time   = $this->input->post('end_time');   // e.g., "00:05:00" (optional)
+		$start_date = $qso_data['start_date']; // e.g., "14/07/2025"
+		$start_time = $qso_data['start_time']; // e.g., "08:11:36"
+		$end_time   = $qso_data['end_time'];   // e.g., "00:05:00" (optional)
 
-		$callsign = trim(str_replace('Ø', '0', $this->input->post('callsign')));
-
+		$callsign = trim(str_replace('Ø', '0', $qso_data['callsign']));
 		// Parse datetime using createFromFormat
 		$datetime_obj = DateTime::createFromFormat("$date_format $time_format", "$start_date $start_time");
 
 		if ($datetime_obj === false) {
 			// Handle parse error gracefully (optional: log error)
-			$datetime = null;
-			$datetime_off = null;
+			$datetime = NULL;
+			$datetime_off = NULL;
 		} else {
 			$datetime = $datetime_obj->format('Y-m-d H:i:s'); // Standard format for DB
 
@@ -75,215 +78,105 @@ class Logbook_model extends CI_Model {
 			}
 		}
 
-		if ($this->input->post('prop_mode') != null) {
-			$prop_mode = $this->input->post('prop_mode');
-		} else {
-			$prop_mode = "";
-		}
-
-		if ($this->input->post('email')) {
-			$email = $this->input->post('email',TRUE);
-		} else {
-			$email = '';
-		}
-
-		if ($this->input->post('region')) {
-			$region = $this->input->post('region',TRUE);
-		} else {
-			$region = '';
-		}
-
-		if ($this->input->post('sat_name')) {
-			$prop_mode = "SAT";
-		}
+		$prop_mode = $qso_data['prop_mode'] ?? NULL;
+		$email = $qso_data['email'] ?? NULL;
+		$region = $qso_data['region'] ?? NULL;
+		
+		// In case of a satellite name we force the $prop_mode to SAT
+		$prop_mode = ($qso_data['sat_name'] ?? NULL) != NULL ? "SAT" : $prop_mode;
 
 		// Contest exchange, need to separate between serial and other type of exchange
-		if ($this->input->post('exchangetype')) {
-			switch ($this->input->post('exchangetype')) {
+		$srx_string = $stx_string = $srx = $stx = NULL;
+		if ($qso_data['exchangetype'] ?? NULL) {
+			switch ($qso_data['exchangetype']) {
 				case 'Exchange':
-					$srx_string = $this->input->post('exch_rcvd') == '' ? null : $this->input->post('exch_rcvd');
-					$stx_string = $this->input->post('exch_sent') == '' ? null : $this->input->post('exch_sent');
-					$srx = null;
-					$stx = null;
-					break;
-				case 'Gridsquare':
-					$srx_string = null;
-					$stx_string = null;
-					$srx = null;
-					$stx = null;
+					$srx_string = $qso_data['exch_rcvd'] ?? NULL;
+					$stx_string = $qso_data['exch_sent'] ?? NULL;
 					break;
 				case 'Serial':
-					$srx = $this->input->post('exch_serial_r') == '' ? null : $this->input->post('exch_serial_r');
-					$stx = $this->input->post('exch_serial_s') == '' ? null : $this->input->post('exch_serial_s');
-					$srx_string = null;
-					$stx_string = null;
+				case 'Serialgridsquare':
+					$srx = $qso_data['exch_serial_r'] ?? NULL;
+					$stx = $qso_data['exch_serial_s'] ?? NULL;
 					break;
 				case 'Serialexchange':
-					$srx_string = $this->input->post('exch_rcvd') == '' ? null : $this->input->post('exch_rcvd');
-					$stx_string = $this->input->post('exch_sent') == '' ? null : $this->input->post('exch_sent');
-					$srx = $this->input->post('exch_serial_r') == '' ? null : $this->input->post('exch_serial_r');
-					$stx = $this->input->post('exch_serial_s') == '' ? null : $this->input->post('exch_serial_s');
-					break;
-				case 'Serialgridsquare':
-					$srx = $this->input->post('exch_serial_r') == '' ? null : $this->input->post('exch_serial_r');
-					$stx = $this->input->post('exch_serial_s') == '' ? null : $this->input->post('exch_serial_s');
-					$srx_string = null;
-					$stx_string = null;
-					break;
 				case 'SerialGridExchange':
-					$srx_string = $this->input->post('exch_rcvd') == '' ? null : $this->input->post('exch_rcvd');
-					$stx_string = $this->input->post('exch_sent') == '' ? null : $this->input->post('exch_sent');
-					$srx = $this->input->post('exch_serial_r') == '' ? null : $this->input->post('exch_serial_r');
-					$stx = $this->input->post('exch_serial_s') == '' ? null : $this->input->post('exch_serial_s');
-					break;
-				case 'None':
-					$srx_string = null;
-					$stx_string = null;
-					$srx = null;
-					$stx = null;
+					$srx_string = $qso_data['exch_rcvd'] ?? NULL;
+					$stx_string = $qso_data['exch_sent'] ?? NULL;
+					$srx = $qso_data['exch_serial_r'] ?? NULL;
+					$stx = $qso_data['exch_serial_s'] ?? NULL;
 					break;
 			}
-
-			if ($srx_string !== null) $srx_string = trim(xss_clean($srx_string));
-			if ($stx_string !== null) $stx_string = trim(xss_clean($stx_string));
-			if ($srx        !== null) $srx        = trim(xss_clean($srx));
-			if ($stx        !== null) $stx        = trim(xss_clean($stx));
-		} else {
-			$srx_string = null;
-			$stx_string = null;
-			$srx = null;
-			$stx = null;
+		}
+		foreach (['srx_string', 'stx_string', 'srx', 'stx'] as $var) {
+			$$var = $$var ? trim($$var) : NULL;
 		}
 
-		if ($this->input->post('contestname')) {
-			$contestid = $this->input->post('contestname') == "" ? NULL : $this->input->post('contestname');
-		} else {
-			$contestid = null;
-		}
+		$contestid = $qso_data['contestname'] ?? NULL;
+		$tx_power = filter_var(($qso_data['transmit_power'] ?? NULL), FILTER_VALIDATE_FLOAT) ?? NULL;
+		
 
-		if ($this->session->userdata('user_locator')) {
-			$locator = $this->session->userdata('user_locator');
-		} else {
-			$locator = $this->config->item('locator');
-		}
-
-		if ($this->input->post('transmit_power')) {
-			$tx_power = $this->input->post('transmit_power');
-		} else {
-			$tx_power = null;
-		}
-
-		if (($this->input->post('radio',TRUE) ?? '') == 'ws') {	// WebSocket
-			$radio_name=$this->input->post('radio_ws_name',TRUE);
-		} elseif (($this->input->post('radio',TRUE) ?? 0) != 0) {
+		if (($qso_data['radio'] ?? '') == 'ws') {	// WebSocket
+			$radio_name = $qso_data['radio_ws_name'];
+		} elseif (($qso_data['radio'] ?? 0) != 0) {
 			$this->load->model('cat');
-			$radio_name=$this->cat->radio_status($this->input->post('radio',TRUE))->row()->radio ?? '';
+			$radio_name = $this->cat->radio_status($qso_data['radio'])->row()->radio ?? '';
 		} else {
-			$radio_name='';
+			$radio_name = '';
 		}
 
-		// Cache DXCC lookup to avoid calling check_dxcc_table() 4 times
-		$dxcc = null;
-		$needs_dxcc_lookup = ($this->input->post('country') == "" ||
-		                      $this->input->post('cqz') == "" ||
-		                      $this->input->post('dxcc_id') == "" ||
-		                      $this->input->post('continent') == "");
+		// Cache DXCC lookup to avoid calling check_dxcc_table() 4 times if atleast one of these fields is empty
+		$dxcc = NULL;
+		$needs_dxcc_lookup 	= 	empty($qso_data['country']) || 
+								empty($qso_data['cqz']) || 
+								empty($qso_data['dxcc_id']) || 
+								empty($qso_data['continent']);
 
 		if ($needs_dxcc_lookup) {
 			$dxcc = $this->check_dxcc_table(strtoupper(trim($callsign)), $datetime);
 		}
 
-		if ($this->input->post('country') == "") {
-			$country = ucwords(strtolower($dxcc[1]), "- (/");
-		} else {
-			$country = $this->input->post('country');
-		}
+		$country = $qso_data['country'] ?? ucwords(strtolower($dxcc[1]), "- (/");
+		$cqz = $qso_data['cqz'] ?? ($dxcc[2] ?? NULL);
+		$dxcc_id = $qso_data['dxcc_id'] ?? ($dxcc[0] ?? NULL);
+		$continent = $qso_data['continent'] ?? ($dxcc[3] ?? NULL);
 
-		if ($this->input->post('cqz') == "") {
-			if (empty($dxcc[2])) {
-				$cqz = null;
-			} else {
-				$cqz = $dxcc[2];
-			}
-		} else {
-			$cqz = $this->input->post('cqz');
-		}
-
-		if ($this->input->post('dxcc_id') == "") {
-			if (empty($dxcc[0])) {
-				$dxcc_id = null;
-			} else {
-				$dxcc_id = $dxcc[0];
-			}
-		} else {
-			$dxcc_id = $this->input->post('dxcc_id');
-		}
-
-		if ($this->input->post('continent') == "") {
-			if (empty($dxcc[3])) {
-				$continent = null;
-			} else {
-				$continent = $dxcc[3];
-			}
-		} else {
-			$continent = $this->input->post('continent');
-		}
-
-		$mode = $this->get_main_mode_if_submode($this->input->post('mode'));
-		if ($mode == null) {
-			$mode = $this->input->post('mode');
-			$submode = null;
-		} else {
-			$submode = $this->input->post('mode');
-		}
+		$main_mode = $this->get_main_mode_if_submode($qso_data['mode']);
+		$mode = $main_mode ?? $qso_data['mode'];
+		$submode = $main_mode ? $qso_data['mode'] : NULL;
 
 		// Represent cnty with "state,cnty" only for USA
 		// Others do no need it
 
-		if ($this->input->post('county') && $this->input->post('input_state')) {
+		if (!empty($qso_data['county']) && !empty($qso_data['input_state'])) {
 			switch ($dxcc_id) {
 				case 6:
 				case 110:
 				case 291:
-					$clean_county_input = trim($this->input->post('input_state')) . "," . trim($this->input->post('county'));
+					$clean_county_input = trim($qso_data['input_state']) . "," . trim($qso_data['county']);
 					break;
 				default:
-					$clean_county_input = trim($this->input->post('county'));
+					$clean_county_input = trim($qso_data['county']);
 			}
 		} else {
-			$clean_county_input = null;
+			$clean_county_input = NULL;
 		}
 
-		if (is_numeric($this->input->post('ant_az'))) {
-			$ant_az = trim(xss_clean($this->input->post('ant_az')));
-		} else {
-			$ant_az = null;
-		}
+		$ant_az = is_numeric($qso_data['ant_az'] ?? NULL) ? trim($qso_data['ant_az']) : NULL;
+		$ant_el = is_numeric($qso_data['ant_el'] ?? NULL) ? trim($qso_data['ant_el']) : NULL;
 
-		if (is_numeric($this->input->post('ant_el'))) {
-			$ant_el = trim(xss_clean($this->input->post('ant_el')));
-		} else {
-			$ant_el = null;
-		}
+		$ant_path_input = $qso_data['ant_path'] ?? '';
+		$ant_path = in_array($ant_path_input, ['G', 'O', 'S', 'L']) ? trim($ant_path_input) : NULL;
 
-		$ant_path_input = $this->input->post('ant_path') ?? '';
-		$possible_ant_paths = ['G', 'O', 'S', 'L'];
-		if (!empty($ant_path_input) && in_array($ant_path_input, $possible_ant_paths)) {
-			$ant_path = trim(xss_clean($ant_path_input));
-		} else {
-			$ant_path = null;
-		}
+		$darc_dok = trim($qso_data['darc_dok'] ?? '');
+		$qso_locator = strtoupper(trim($qso_data['locator'] ?? ''));
+		$qso_qth = trim($qso_data['qth'] ?? '');
+		$qso_name = trim($qso_data['name'] ?? '');
+		$qso_age = NULL;
+		$qso_state = trim($qso_data['input_state'] ?? '') ?? NULL;
+		$qso_rx_power = NULL;
 
-		$darc_dok = trim(xss_clean($this->input->post('darc_dok')));
-		$qso_locator = strtoupper(trim(xss_clean($this->input->post('locator')) ?? ''));
-		$qso_qth = trim(xss_clean($this->input->post('qth')));
-		$qso_name = trim(xss_clean($this->input->post('name')));
-		$qso_age = null;
-		$qso_state = $this->input->post('input_state') == null ? '' : trim(xss_clean($this->input->post('input_state')));
-		$qso_rx_power = null;
-
-		if ($this->input->post('copyexchangeto')) {
-			switch ($this->input->post('copyexchangeto')) {
+		if ($qso_data['copyexchangeto'] ?? NULL) {
+			switch ($qso_data['copyexchangeto']) {
 				case 'dok':
 					$darc_dok = strtoupper($srx_string);
 					break;
@@ -325,117 +218,100 @@ class Logbook_model extends CI_Model {
 			}
 		}
 
+		$qsl_sent = $qso_data['qsl_sent'] ?? 'N';
+		$qsl_rcvd = $qso_data['qsl_rcvd'] ?? 'N';
+		$qslsdate = $qsl_sent == 'N' ? NULL : date('Y-m-d H:i:s');
+		$qslrdate = $qsl_rcvd == 'N' ? NULL : date('Y-m-d H:i:s');
 
-		if ($this->input->post('qsl_sent')) {
-			$qsl_sent = $this->input->post('qsl_sent');
+		// Make sure a band exists
+		if (!isset($qso_data['band'])) {
+			$band = $this->frequency->GetBand($qso_data['freq_display']);
 		} else {
-			$qsl_sent = 'N';
+			$band = $qso_data['band'];
 		}
-
-		if ($this->input->post('qsl_rcvd')) {
-			$qsl_rcvd = $this->input->post('qsl_rcvd');
-		} else {
-			$qsl_rcvd = 'N';
-		}
-
-		if ($qsl_sent == 'N') {
-			$qslsdate = null;
-		} else {
-			$qslsdate = date('Y-m-d H:i:s');
-		}
-
-		if ($qsl_rcvd == 'N') {
-			$qslrdate = null;
-		} else {
-			$qslrdate = date('Y-m-d H:i:s');
-		}
-
+		
 		// Create array with QSO Data
 		$data = array(
 			'COL_TIME_ON' => $datetime,
 			'COL_TIME_OFF' => $datetime_off,
 			'COL_CALL' => strtoupper(trim($callsign)),
-			'COL_BAND' => $this->input->post('band'),
-			'COL_BAND_RX' => $this->input->post('band_rx'),
-			'COL_FREQ' => $this->parse_frequency($this->input->post('freq_display')),
+			'COL_BAND' => $band,
+			'COL_BAND_RX' => $qso_data['band_rx'] ?? NULL,
+			'COL_FREQ' => $this->parse_frequency($qso_data['freq_display']),
 			'COL_MODE' => $mode,
 			'COL_SUBMODE' => $submode,
-			'COL_RST_RCVD' => $this->input->post('rst_rcvd'),
-			'COL_RST_SENT' => $this->input->post('rst_sent'),
+			'COL_RST_RCVD' => $qso_data['rst_rcvd'] ?? NULL,
+			'COL_RST_SENT' => $qso_data['rst_sent'] ?? NULL,
 			'COL_NAME' => $qso_name,
-			'COL_COMMENT' => $this->input->post('comment'),
-			'COL_SAT_NAME' => $this->input->post('sat_name') == null ? '' : strtoupper($this->input->post('sat_name')),
-			'COL_SAT_MODE' => $this->input->post('sat_mode') == null ? '' : strtoupper($this->input->post('sat_mode')),
+			'COL_COMMENT' => $qso_data['comment'] ?? NULL,
+			'COL_SAT_NAME' => strtoupper($qso_data['sat_name'] ?? '') ?? NULL,
+			'COL_SAT_MODE' => strtoupper($qso_data['sat_mode'] ?? '') ?? NULL,
 			'COL_COUNTRY' => $country,
 			'COL_CONT' => $continent,
 			'COL_QSLSDATE' => $qslsdate,
 			'COL_QSLRDATE' => $qslrdate,
 			'COL_QSL_SENT' => $qsl_sent,
 			'COL_QSL_RCVD' => $qsl_rcvd,
-			'COL_QSL_SENT_VIA' => $this->input->post('qsl_sent_method'),
-			'COL_QSL_RCVD_VIA' => $this->input->post('qsl_rcvd_method'),
-			'COL_QSL_VIA' => $this->input->post('qsl_via'),
-			'COL_QSLMSG' => $this->input->post('qslmsg'),
-			'COL_OPERATOR' => strtoupper(trim($this->input->post('operator_callsign', true) ?? $this->session->userdata('operator_callsign'))),
+			'COL_QSL_SENT_VIA' => $qso_data['qsl_sent_method'] ?? NULL,
+			'COL_QSL_RCVD_VIA' => $qso_data['qsl_rcvd_method'] ?? NULL,
+			'COL_QSL_VIA' => $qso_data['qsl_via'] ?? NULL,
+			'COL_QSLMSG' => $qso_data['qslmsg'] ?? NULL,
+			'COL_OPERATOR' => strtoupper(trim($qso_data['operator_callsign'] ?? $this->session->userdata('operator_callsign'))),
 			'COL_QTH' => $qso_qth,
 			'COL_PROP_MODE' => $prop_mode,
-			'COL_IOTA' => $this->input->post('iota_ref')  == null ? '' : trim($this->input->post('iota_ref')),
-			'COL_FREQ_RX' => $this->parse_frequency($this->input->post('freq_display_rx')),
+			'COL_IOTA' => trim($qso_data['iota_ref'] ?? '') ?? NULL,
+			'COL_FREQ_RX' => $this->parse_frequency($qso_data['freq_display_rx'] ?? NULL),
 			'COL_ANT_AZ' => $ant_az,
 			'COL_ANT_EL' => $ant_el,
 			'COL_ANT_PATH' => $ant_path,
-			'COL_A_INDEX' => null,
+			'COL_A_INDEX' => NULL,
 			'COL_AGE' => $qso_age,
-			'COL_TEN_TEN' => null,
+			'COL_TEN_TEN' => NULL,
 			'COL_TX_PWR' => $tx_power,
 			'COL_STX' => $stx,
 			'COL_SRX' => $srx,
-			'COL_STX_STRING' => $stx_string == null ? '' : strtoupper(trim($stx_string)),
-			'COL_SRX_STRING' => $srx_string == null ? '' : strtoupper(trim($srx_string)),
+			'COL_STX_STRING' => strtoupper(trim($stx_string ?? '')) ?? NULL,
+			'COL_SRX_STRING' => strtoupper(trim($srx_string ?? '')) ?? NULL,
 			'COL_CONTEST_ID' => $contestid,
-			'COL_NR_BURSTS' => null,
-			'COL_NR_PINGS' => null,
-			'COL_MAX_BURSTS' => null,
-			'COL_K_INDEX' => null,
-			'COL_SFI' => null,
+			'COL_NR_BURSTS' => NULL,
+			'COL_NR_PINGS' => NULL,
+			'COL_MAX_BURSTS' => NULL,
+			'COL_K_INDEX' => NULL,
+			'COL_SFI' => NULL,
 			'COL_RX_PWR' => $qso_rx_power,
-			'COL_LAT' => null,
-			'COL_LON' => null,
+			'COL_LAT' => NULL,
+			'COL_LON' => NULL,
 			'COL_DXCC' => $dxcc_id,
 			'COL_CQZ' => $cqz,
-			'COL_ITUZ' => $this->input->post('ituz', true) ?? null,
+			'COL_ITUZ' => $qso_data['ituz'] ?? NULL,
 			'COL_STATE' => $qso_state,
 			'COL_CNTY' => $clean_county_input,
-			'COL_SOTA_REF' => $this->input->post('sota_ref') == null ? '' : strtoupper(trim($this->input->post('sota_ref'))),
-			'COL_WWFF_REF' => $this->input->post('wwff_ref') == null ? '' : strtoupper(trim($this->input->post('wwff_ref'))),
-			'COL_POTA_REF' => $this->input->post('pota_ref') == null ? '' : strtoupper(trim($this->input->post('pota_ref'))),
-			'COL_SIG' => $this->input->post('sig') == null ? '' : strtoupper(trim($this->input->post('sig'))),
-			'COL_SIG_INFO' => $this->input->post('sig_info') == null ? '' : strtoupper(trim($this->input->post('sig_info'))),
-			'COL_DARC_DOK' => $darc_dok  == null ? '' : strtoupper(trim($darc_dok)),
-			'COL_NOTES' => $this->input->post('notes'),
-			'COL_EMAIL' => $email ?? '',
-			'COL_REGION' => $region ?? '',
+			'COL_SOTA_REF' => strtoupper(trim($qso_data['sota_ref'] ?? '')) ?? NULL,
+			'COL_WWFF_REF' => strtoupper(trim($qso_data['wwff_ref'] ?? '')) ?? NULL,
+			'COL_POTA_REF' => strtoupper(trim($qso_data['pota_ref'] ?? '')) ?? NULL,
+			'COL_SIG' => strtoupper(trim($qso_data['sig'] ?? '')) ?? NULL,
+			'COL_SIG_INFO' => strtoupper(trim($qso_data['sig_info'] ?? '')) ?? NULL,
+			'COL_DARC_DOK' => strtoupper(trim($darc_dok ?? '')) ?? NULL,
+			'COL_NOTES' => strtoupper(trim($qso_data['notes'] ?? '')) ?? NULL,
+			'COL_EMAIL' => $email ?? NULL,
+			'COL_REGION' => $region ?? NULL,
 		);
 
-		$station_id = $this->input->post('station_profile');
-
-		if ($station_id == "" || $station_id == "0") {
-			$this->load->model('stations');
-			$station_id = $this->stations->find_active();
-		}
-
 		$this->load->model('stations');
-		if (!$this->stations->check_station_is_accessible($station_id)) {	// Hard Exit if station_profile not accessible
-			return 'Station not accessible<br>';
+		$station_id = $qso_data['station_profile'] ?? $this->stations->find_active();
+
+		// Hard Exit if station_profile not accessible
+		if (!$this->stations->check_station_is_accessible($station_id)) {
+			return __("Station not accessible");
 		}
 
 		// If station profile has been provided fill in the fields
-		if ($station_id != "0") {
+		if ($station_id) {
 			$station = $this->check_station($station_id);
 			$data['station_id'] = $station_id;
 
 			// [eQSL default msg] add info to QSO for Contest or SFLE //
-			if (empty($data['COL_QSLMSG']) && (($this->input->post('isSFLE') == true) || (!empty($data['COL_CONTEST_ID'])))) {
+			if (empty($data['COL_QSLMSG']) && (($qso_data['isSFLE'] ?? false) == true || !empty($data['COL_CONTEST_ID']))) {
 				$this->load->model('user_options_model');
 				$options_object = $this->user_options_model->get_options('eqsl_default_qslmsg', array('option_name' => 'key_station_id', 'option_key' => $station_id))->result();
 				$data['COL_QSLMSG'] = (isset($options_object[0]->option_value)) ? $options_object[0]->option_value : '';
@@ -447,18 +323,14 @@ class Logbook_model extends CI_Model {
 				$data['COL_MY_GRIDSQUARE'] = strtoupper(trim($station['station_gridsquare']));
 			}
 
-			$distance=null;
-			if ( (($this->input->post('distance') ?? '') != '') && (is_numeric($this->input->post('distance'))) ) {
-				$distance=$this->input->post('distance');
-			} elseif (isset($qso_locator) && $qso_locator != '') {
-				if (!$this->load->is_loaded('Qra')) {
-					$this->load->library('Qra');
-				}
+			$distance = NULL;
+			if (is_numeric($qso_data['distance'] ?? NULL)) {
+				$distance = $qso_data['distance'];
+			} elseif (!empty($qso_locator)) {
+				$this->load->is_loaded('Qra') ?: $this->load->library('Qra');
 				$distance = $this->qra->distance(strtoupper(trim($station['station_gridsquare'])), $qso_locator, 'K');
 			}
-			if ($distance != null ) {
-				$data['COL_DISTANCE'] = $distance;
-			}
+			$data['COL_DISTANCE'] = $distance;
 
 			if ($this->exists_hrdlog_credentials($station_id)) {
 				$data['COL_HRDLOG_QSO_UPLOAD_STATUS'] = 'N';
@@ -468,41 +340,39 @@ class Logbook_model extends CI_Model {
 				$data['COL_QRZCOM_QSO_UPLOAD_STATUS'] = 'N';
 			}
 
-			$data['COL_MY_IOTA'] = $station['station_iota'] ? strtoupper(trim($station['station_iota'])) : '';
-			$data['COL_MY_SOTA_REF'] = $station['station_sota'] ? strtoupper(trim($station['station_sota'])) : '';
-			$data['COL_MY_WWFF_REF'] = $station['station_wwff'] ? strtoupper(trim($station['station_wwff'])) : '';
-			$data['COL_MY_POTA_REF'] = $station['station_pota'] ? strtoupper(trim($station['station_pota'])) : '';
+			$data['COL_MY_IOTA'] = strtoupper(trim($station['station_iota'])) ?? NULL;
+			$data['COL_MY_SOTA_REF'] = strtoupper(trim($station['station_sota'])) ?? NULL;
+			$data['COL_MY_WWFF_REF'] = strtoupper(trim($station['station_wwff'])) ?? NULL;
+			$data['COL_MY_POTA_REF'] = strtoupper(trim($station['station_pota'])) ?? NULL;
 
 			$data['COL_STATION_CALLSIGN'] = strtoupper(trim($station['station_callsign']));
 			$data['COL_MY_CITY'] = strtoupper(trim($station['station_city']));
 			$data['COL_MY_DXCC'] = strtoupper(trim($station['station_dxcc']));
-			$data['COL_MY_COUNTRY'] = strtoupper(trim($station['station_country'] ?? ''));
+			$data['COL_MY_COUNTRY'] = strtoupper(trim($station['station_country'] ?? NULL));
 			$data['COL_MY_CNTY'] = strtoupper(trim($station['station_cnty']));
 			$data['COL_MY_CQ_ZONE'] = strtoupper(trim($station['station_cq']));
 			$data['COL_MY_ITU_ZONE'] = strtoupper(trim($station['station_itu']));
-			$data['COL_MY_RIG'] = trim($radio_name ?? '');
+			$data['COL_MY_RIG'] = trim($radio_name) ?? NULL;
 
 			// if there are any static map images for this station, remove them so they can be regenerated
-			if (!$this->load->is_loaded('staticmap_model')) {
-				$this->load->model('staticmap_model');
-			}
+			$this->load->is_loaded('staticmap_model') ?: $this->load->model('staticmap_model');
 			$this->staticmap_model->remove_static_map_image($station_id);
 		}
 
 		// Decide whether its single gridsquare or a multi which makes it vucc_grids
-		if (strpos($qso_locator, ',') !== false) {
+		if (str_contains($qso_locator, ',')) {
 			$data['COL_VUCC_GRIDS'] = strtoupper(preg_replace('/\s+/', '', $qso_locator));
 		} else {
 			$data['COL_GRIDSQUARE'] = $qso_locator;
 		}
 
-		// if eQSL username set, default SENT & RCVD to 'N' else leave as null
+		// if eQSL username set, default SENT & RCVD to 'N' else leave as NULL
 		if ($this->session->userdata('user_eqsl_name')) {
 			$data['COL_EQSL_QSL_SENT'] = 'N';
 			$data['COL_EQSL_QSL_RCVD'] = 'N';
 		}
 
-		// if LoTW username set, default SENT & RCVD to 'N' else leave as null
+		// if LoTW username set, default SENT & RCVD to 'N' else leave as NULL
 		if ($this->session->userdata('user_lotw_name')) {
 			if (in_array($prop_mode, $this->config->item('lotw_unsupported_prop_modes'))) {
 				$data['COL_LOTW_QSL_SENT'] = 'I';
@@ -517,27 +387,31 @@ class Logbook_model extends CI_Model {
 		if (($this->config->item('mqtt_server') ?? '') != '') {
 			$this->load->model('stations');
 			$this->load->library('Mh');
-			$h_user=$this->stations->get_user_from_station($station_id);
-			$event_data=$data;
-			$event_data['user_name']=$h_user->user_name;
-			$event_data['user_id']=$h_user->user_id;
+			$h_user = $this->stations->get_user_from_station($station_id);
+			$event_data = $data;
+			$event_data['user_name'] = $h_user->user_name;
+			$event_data['user_id'] = $h_user->user_id;
 			$this->mh->wl_event('qso/logged/'.($h_user->user_id ?? ''), json_encode($event_data));
 			unset($event_data);
 			unset($h_user);
 		}
 		unset($data);
 
-		// Return ADIF for WebSocket transmission
-		if ($qso_id) {
-			$qso = $this->get_qso($qso_id, true)->result();
-			if ($qso && !empty($qso)) {
-				if (!$this->load->is_loaded('AdifHelper')) {
-					$this->load->library('AdifHelper');
-				}
-				return $this->adifhelper->getAdifLine($qso[0]);
-			}
+		// Return qso_id and adif data
+		if (!$qso_id) {
+			return false;
 		}
-		return null;
+
+		$qso = $this->get_qso($qso_id, true)->result();
+		if (empty($qso)) {
+			return false;
+		}
+
+		$this->load->is_loaded('AdifHelper') ?: $this->load->library('AdifHelper');
+		return [
+			'qso_id' => $qso_id,
+			'adif' => $this->adifhelper->getAdifLine($qso[0])
+		];
 	}
 
 	public function check_last_lotw($call) {	// Fetch difference in days when $call has last updated LotW
