@@ -939,8 +939,8 @@ class Logbook extends CI_Controller {
 
 		$this->load->model('logbook_model');
 
-        	$id = str_replace('Ø', "0", $id);
-        	$id2 = str_replace('Ø', "0", $id2);
+		$id = str_replace('Ø', "0", $id);
+		$id2 = str_replace('Ø', "0", $id2);
 		$fixedid = $id;
 
 		if ($id2 != "") {
@@ -1008,7 +1008,8 @@ class Logbook extends CI_Controller {
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize($this->config->item('auth_mode'))) { return; }
 
-		$this->db->select('dxcc_entities.adif, lotw_users.callsign, COL_BAND, COL_CALL, COL_CLUBLOG_QSO_DOWNLOAD_DATE, COL_DCL_QSLRDATE, COL_DCL_QSLSDATE, COL_DCL_QSL_SENT, COL_DCL_QSL_RCVD,
+		$binding = array();
+		$sql = "SELECT dxcc_entities.adif, lotw_users.callsign, COL_BAND, COL_CALL, COL_CLUBLOG_QSO_DOWNLOAD_DATE, COL_DCL_QSLRDATE, COL_DCL_QSLSDATE, COL_DCL_QSL_SENT, COL_DCL_QSL_RCVD,
 			COL_CLUBLOG_QSO_DOWNLOAD_STATUS, COL_CLUBLOG_QSO_UPLOAD_DATE, COL_CLUBLOG_QSO_UPLOAD_STATUS,
 			COL_CONTEST_ID, COL_DISTANCE, COL_EQSL_QSL_RCVD, COL_EQSL_QSLRDATE, COL_EQSL_QSLSDATE, COL_EQSL_QSL_SENT,
 			COL_FREQ, COL_GRIDSQUARE, COL_IOTA, COL_LOTW_QSL_RCVD, COL_LOTW_QSLRDATE, COL_LOTW_QSLSDATE,
@@ -1017,21 +1018,21 @@ class Logbook extends CI_Controller {
 			COL_QRZCOM_QSO_UPLOAD_STATUS, COL_QSL_RCVD, COL_QSL_RCVD_VIA, COL_QSLRDATE, COL_QSLSDATE, COL_QSL_SENT,
 			COL_QSL_SENT_VIA, COL_QSL_VIA, COL_RST_RCVD, COL_RST_SENT, COL_SAT_NAME, COL_SOTA_REF, COL_SRX,
 			COL_SRX_STRING, COL_STATE, COL_STX, COL_STX_STRING, COL_SUBMODE, COL_TIME_ON, COL_VUCC_GRIDS, COL_WWFF_REF,
-			dxcc_entities.end, lotw_users.lastupload, satellite.displayname AS sat_displayname, station_profile.station_callsign,
-			station_profile.station_gridsquare, station_profile.station_profile_name, dxcc_entities.name');
-		$this->db->from($this->config->item('table_name'));
-		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
-		$this->db->join('dxcc_entities', 'dxcc_entities.adif = '.$this->config->item('table_name').'.COL_DXCC', 'left outer');
-		$this->db->join('lotw_users', 'lotw_users.callsign = '.$this->config->item('table_name').'.col_call', 'left outer');
-		$this->db->join('satellite', 'satellite.name = '.$this->config->item('table_name').'.COL_SAT_NAME', 'left outer');
-		$this->db->group_start();
-		$this->db->like(''.$this->config->item('table_name').'.COL_CALL', $id);
-		$this->db->or_like(''.$this->config->item('table_name').'.COL_GRIDSQUARE', $id);
-		$this->db->or_like(''.$this->config->item('table_name').'.COL_VUCC_GRIDS', $id);
-		$this->db->group_end();
-		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
-		$this->db->order_by(''.$this->config->item('table_name').'.COL_TIME_ON', 'desc');
-		return $this->db->get();
+			dxcc_entities.end, lotw_users.lastupload, satellite.name AS sat_name, satellite.displayname AS sat_displayname,
+			station_profile.station_callsign, station_profile.station_gridsquare, station_profile.station_profile_name,
+			dxcc_entities.name
+			FROM ".$this->config->item('table_name')." qsos
+			JOIN `station_profile` ON `station_profile`.`station_id` = qsos.`station_id`
+			LEFT OUTER JOIN `dxcc_entities` ON qsos.`col_dxcc` = `dxcc_entities`.`adif`
+			LEFT OUTER JOIN `lotw_users` ON `lotw_users`.`callsign` = qsos.`col_call`
+			LEFT OUTER JOIN satellite ON qsos.col_prop_mode='SAT' and qsos.COL_SAT_NAME = COALESCE(NULLIF(satellite.name, ''), NULLIF(satellite.displayname, ''))
+			WHERE ( qsos.COL_CALL LIKE ? ESCAPE '!' OR qsos.COL_GRIDSQUARE LIKE ? ESCAPE '!' OR qsos.COL_VUCC_GRIDS LIKE ? ESCAPE '!')
+			AND station_profile.user_id = ".$this->session->userdata('user_id')."
+			ORDER BY COL_TIME_ON DESC;";
+		$binding[] = '%'.$id.'%';
+		$binding[] = '%'.$id.'%';
+		$binding[] = '%'.$id.'%';
+		return $this->db->query($sql, $binding);
 	}
 
 	function search_lotw_unconfirmed($station_id) {
