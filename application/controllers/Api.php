@@ -956,8 +956,8 @@ class API extends CI_Controller {
 			];
 
 			$return['callsign'] = $lookup_callsign;
-
-			$callsign_dxcc_lookup = $this->logbook_model->dxcc_lookup($lookup_callsign, $date);
+			$dxccobj = new Dxcc(null);
+			$callsign_dxcc_lookup = $dxccobj->dxcc_lookup($lookup_callsign, $date);
 
 			$last_slash_pos = strrpos($lookup_callsign, '/');
 
@@ -974,7 +974,7 @@ class API extends CI_Controller {
 					break;
 				default:
 					// If its not one of the above suffix slashes its likely dxcc
-					$ans2 = $this->logbook_model->dxcc_lookup($suffix_slash, $date);
+					$ans2 = $dxccobj->dxcc_lookup($suffix_slash, $date);
 					$suffix_slash_item = null;
 				}
 
@@ -1283,19 +1283,19 @@ class API extends CI_Controller {
 	private function sanitize_cat_url($url) {
 		// Basic sanitization
 		$url = trim($url);
-		
+
 		// Check if URL is valid and uses http or https
-		if (!filter_var($url, FILTER_VALIDATE_URL) || 
+		if (!filter_var($url, FILTER_VALIDATE_URL) ||
 			(!preg_match('/^https?:\/\//', $url))) {
 			return false;
 		}
-		
+
 		// Remove trailing slashes
 		$url = rtrim($url, '/');
-		
+
 		// Additional XSS cleaning
 		$url = $this->security->xss_clean($url);
-		
+
 		return $url;
 	}
 

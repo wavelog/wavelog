@@ -1664,7 +1664,7 @@ class Logbookadvanced_model extends CI_Model {
 			return ['status' => 'error', 'message' => __("VuccGrids table is empty. Please import the VUCC grids data first.")];
 		}
 
-		$sql = "select col_primary_key, col_time_on, col_call, col_band, col_gridsquare, col_dxcc, col_country, station_profile_name, col_lotw_qsl_rcvd, col_mode, col_submode,
+		$sql = "select col_primary_key, col_sat_name, col_time_on, col_call, col_band, col_gridsquare, col_dxcc, col_country, station_profile_name, col_lotw_qsl_rcvd, col_mode, col_submode,
 			(
 			select group_concat(distinct gridsquare order by gridsquare separator ', ')
 			from vuccgrids
@@ -1970,6 +1970,7 @@ class Logbookadvanced_model extends CI_Model {
 								'mode'              => isset($call->col_mode) ? $call->col_mode : '',
 								'submode'           => isset($call->col_submode) ? $call->col_submode : '',
 								'band'              => isset($call->col_band) ? $call->col_band : '',
+								'sat_name'          => isset($call->col_sat_name) ? $call->col_sat_name : '',
 								'lotw_qsl_rcvd'     => isset($call->col_lotw_qsl_rcvd) ? $call->col_lotw_qsl_rcvd : '',
 								'station_profile'   => $call->station_profile_name,
                                 'existing_dxcc'     => $call->col_country,
@@ -1995,7 +1996,7 @@ class Logbookadvanced_model extends CI_Model {
 	}
 
 	function getQsos() {
-		$sql = 'select distinct col_country, col_call, col_dxcc, date(col_time_on) date, col_mode, col_submode, col_band, col_lotw_qsl_rcvd, station_profile.station_profile_name, col_primary_key
+		$sql = 'select distinct col_country, col_sat_name, col_call, col_dxcc, date(col_time_on) date, col_mode, col_submode, col_band, col_lotw_qsl_rcvd, station_profile.station_profile_name, col_primary_key
 			from ' . $this->config->item('table_name') . '
 			join station_profile on ' . $this->config->item('table_name') . '.station_id = station_profile.station_id
 			where station_profile.user_id = ?';
@@ -2105,7 +2106,7 @@ class Logbookadvanced_model extends CI_Model {
 	 *
 	 */
 	public function checkSingleIota() {
-		$sql = "select col_primary_key, col_time_on, col_call, col_band, col_gridsquare, col_dxcc, col_country, station_profile_name, col_lotw_qsl_rcvd, col_mode, col_submode, col_iota, iotadxcc.name as correctdxcc
+		$sql = "select col_primary_key, col_time_on, col_call, col_sat_name, col_band, col_gridsquare, col_dxcc, col_country, station_profile_name, col_lotw_qsl_rcvd, col_mode, col_submode, col_iota, iotadxcc.name as correctdxcc
 		from  " . $this->config->item('table_name') . "  thcv
 		join station_profile on thcv.station_id = station_profile.station_id
 		join dxcc_entities on dxcc_entities.adif = thcv.COL_DXCC
@@ -2152,7 +2153,7 @@ class Logbookadvanced_model extends CI_Model {
 			// Build IN clause for SQL
 			$adifListStr = implode(',', $adifList);
 
-			$sql = "SELECT thcv.col_primary_key, thcv.col_time_on, thcv.col_call, thcv.col_band, thcv.col_gridsquare,
+			$sql = "SELECT thcv.col_primary_key, thcv.col_sat_name, thcv.col_time_on, thcv.col_call, thcv.col_band, thcv.col_gridsquare,
 					thcv.col_dxcc, thcv.col_country, station_profile.station_profile_name, thcv.col_lotw_qsl_rcvd,
 					thcv.col_mode, thcv.col_submode, thcv.col_iota,
 					(

@@ -1,6 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use Wavelog\Dxcc\Dxcc;
+
+require_once APPPATH . '../src/Dxcc/Dxcc.php';
+
 /**
  * DXCluster Cache Library
  * Centralizes cache key generation and invalidation for DXCluster features.
@@ -76,8 +80,8 @@ class DxclusterCache {
 		$this->deleteFile($this->getWorkedCallKey($logbook_key, $callsign));
 
 		// Look up DXCC and continent from callsign
-		$this->CI->load->model('logbook_model');
-		$dxcc_info = $this->CI->logbook_model->dxcc_lookup($callsign, date('Y-m-d'));
+		$dxccobj = new Dxcc(null);
+		$dxcc_info = $dxccobj->dxcc_lookup($callsign, date('Y-m-d'));
 
 		if (!empty($dxcc_info['adif'])) {
 			$this->deleteFile($this->getWorkedDxccKey($logbook_key, $dxcc_info['adif']));

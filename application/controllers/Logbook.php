@@ -1,5 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+use Wavelog\Dxcc\Dxcc;
+
+require_once APPPATH . '../src/Dxcc/Dxcc.php';
 
 class Logbook extends CI_Controller {
 
@@ -689,7 +692,7 @@ class Logbook extends CI_Controller {
 			$data['primary_subdivision'] = $this->subdivisions->get_primary_subdivision_name($data['query']->result()[0]->COL_DXCC);
 			$data['secondary_subdivision'] = $this->subdivisions->get_secondary_subdivision_name($data['query']->result()[0]->COL_DXCC);
 			$data['max_upload'] = ini_get('upload_max_filesize');
-		} 
+		}
 		$this->load->view('interface_assets/mini_header', $data);
 		$this->load->view('view_log/qso');
 		$this->load->view('interface_assets/footer');
@@ -1205,11 +1208,12 @@ class Logbook extends CI_Controller {
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize($this->config->item('auth_mode'))) { return; }
 
-		$this->load->model("logbook_model");
 		if ($date == ''){
 			$date = date("Y-m-d");
 		}
-		$ans = $this->logbook_model->dxcc_lookup($call, $date);
+		$dxccobj = new Dxcc($date);
+
+		$ans = $dxccobj->dxcc_lookup($call, $date);
 		return $ans;
 	}
 

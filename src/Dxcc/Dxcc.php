@@ -92,6 +92,7 @@ class Dxcc {
 						$row['cqz'] = 0;
 						$row['long'] = '0';
 						$row['lat'] = '0';
+						$row['cont'] = null;
 						return $row;
 					} else {
 						$call = $result . "AA";
@@ -127,7 +128,14 @@ class Dxcc {
 			}
 		}
 
-		return array("Not Found", "Not Found");
+		return array(
+			'adif' => 0,
+			'entity' => '- NONE ',
+			'cqz' => '0',
+			'long' => '0',
+			'lat' => '0',
+			'cont' => null
+		);
 	}
 
 	function wpx($testcall, $i) {
@@ -195,6 +203,14 @@ class Dxcc {
 				return null;            # exit, undef
 			}
 
+			if (preg_match('/^[0-9]{2,}$/', $c ?? '')) {            # If suffix consists of two or more digits -> ignore suffix, To catch callsigns like VP8ADR/40
+				$c = null;
+			}
+
+			if (preg_match('/^[A-Z]{1}$/', ($c ?? ''))) {            # If suffix consists of exactly one letter -> ignore suffix, To catch callsigns like LU7CC/E
+				$c = null;
+			}
+
 			# Depending on these values we have to determine the prefix.
 			# Following cases are possible:
 			#
@@ -253,7 +269,7 @@ class Dxcc {
 							]);
 							return '';
 						}
-						if (preg_match('/^([A-Z]\d)\d$/', $matches[1])) {        # e.g. A45   $c = 0
+						if (preg_match('/^([A-Z]\d{2,})$/', $matches[1])) {        # e.g. A45   $c = 0
 							$prefix = $matches[1] . $c;  # ->   A40
 						} else {                         # Otherwise cut all numbers
 							if (!preg_match('/(.*[A-Z])\d+/', $matches[1], $match)) {
@@ -280,8 +296,8 @@ class Dxcc {
 					$prefix = $matches[1];
 				} elseif (preg_match($this->noneadditions, $c)) {
 					return '';
-				} elseif (preg_match('/^\d\d+$/', $c)) {            # more than 2 numbers -> ignore
-					if (!preg_match('/(.+\d)[A-Z]* /', $b, $matches)) {
+				} elseif (preg_match('/^\d\d+$/', $c)) {             # more than 2 numbers -> ignore
+					if (!preg_match('/(.+\d)[A-Z]*/', $b, $matches)) {
 						$this->logError('preg_match failed for multi-digit case', [
 							'testcall' => $testcall,
 							'b' => $b,
@@ -303,7 +319,7 @@ class Dxcc {
 						$prefix = $c . "0";
 					}
 				}
-			} elseif (($a) && (preg_match($this->noneadditions, $c))) {                # Case 2.1, X/CALL/X ie TF/DL2NWK/MM - DXCC none
+			} elseif (($a) && (preg_match($this->noneadditions, ($c ?? '')))) {                # Case 2.1, X/CALL/X ie TF/DL2NWK/MM - DXCC none
 				return '';
 			} elseif ($a) {
 				# $a contains the prefix we want
@@ -337,7 +353,7 @@ class Dxcc {
 	}
 
 	/*
-    * Read cty.dat from AD1C
+    * Read DXCC data from the database
     */
     function read_data($date = null) {
 		$CI = &get_instance();

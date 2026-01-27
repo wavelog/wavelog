@@ -1330,6 +1330,7 @@ $(document).ready(function () {
 					size: BootstrapDialog.SIZE_EXTRAWIDE,
 					cssClass: 'options',
 					nl2br: false,
+					closable: false,
 					message: html,
 					buttons: [
 					{

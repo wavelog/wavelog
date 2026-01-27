@@ -1,5 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+use Wavelog\Dxcc\Dxcc;
+
+require_once APPPATH . '../src/Dxcc/Dxcc.php';
+
 class Dxcluster extends CI_Controller {
 
 	function __construct()
@@ -48,10 +52,10 @@ class Dxcluster extends CI_Controller {
 	}
 
 	function call($call) {
-		$this->load->model('logbook_model');
+		$date = date('Y-m-d', time());
+		$dxccobj = new Dxcc($date);
 
-		$date = date('Ymd', time());
-		$dxcc = $this->logbook_model->dxcc_lookup($call, $date);
+		$dxcc = $dxccobj->dxcc_lookup($call, $date);
 
 		if ($dxcc) {
 			header('Content-Type: application/json');

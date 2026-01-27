@@ -114,7 +114,7 @@ function check_dxcc($result, $custom_date_format) { ?>
 									<td><div class="form-check"><input class="row-check form-check-input mt-1" type="checkbox" /></div></td>
 									<td><?php echo '<a id="edit_qso" href="javascript:displayQso(' . $qso['id'] . ')">' . htmlspecialchars($qso['callsign']) . '</a>'; ?></td>
 									<td><?php echo date($custom_date_format, strtotime($qso['qso_date'])); ?></td>
-									<td><?php echo htmlspecialchars($qso['band']); ?></td>
+									<td ><?php if($qso['sat_name'] != '') { echo $qso['sat_name']; } else { echo strtolower($qso['band']); }; ?></td>
 									<td><?php echo htmlspecialchars($qso['submode'] ? $qso['submode'] : $qso['mode']); ?></td>
 									<td style='text-align: center'><div class="<?php echo $qso['lotw_qsl_rcvd'] == 'Y' ? 'bg-success' : 'bg-danger'; ?>"><?php echo $qso['lotw_qsl_rcvd'] == 'Y' ? __('Yes') : __('No'); ?></div></td>
 									<td><?php echo $qso['station_profile']; ?></td>
@@ -173,7 +173,7 @@ function check_incorrect_gridsquares($result, $custom_date_format) { ?>
 								<tr id="qsoID-<?php echo $qso->col_primary_key; ?>">
 									<td><?php echo '<a id="edit_qso" href="javascript:displayQso(' . $qso->col_primary_key . ')">' . htmlspecialchars($qso->col_call) . '</a>'; ?></td>
 									<td><?php echo date($custom_date_format, strtotime($qso->col_time_on)); ?></td>
-									<td><?php echo htmlspecialchars($qso->col_band); ?></td>
+									<td ><?php if($qso->col_sat_name != null) { echo $qso->col_sat_name; } else { echo strtolower($qso->col_band); }; ?></td>
 									<td><?php echo htmlspecialchars($qso->col_submode ? $qso->col_submode : $qso->col_mode); ?></td>
 									<td style='text-align: center'><div class="<?php echo $qso->col_lotw_qsl_rcvd == 'Y' ? 'bg-success' : 'bg-danger'; ?>"><?php echo $qso->col_lotw_qsl_rcvd == 'Y' ? __('Yes') : __('No'); ?></div></td>
 									<td><?php echo $qso->station_profile_name; ?></td>
@@ -400,7 +400,7 @@ function check_iota($result, $custom_date_format) { ?>
 								<tr id="qsoID-<?php echo $qso->col_primary_key; ?>">
 									<td><?php echo '<a id="edit_qso" href="javascript:displayQso(' . $qso->col_primary_key . ')">' . htmlspecialchars($qso->col_call) . '</a>'; ?></td>
 									<td><?php echo date($custom_date_format, strtotime($qso->col_time_on)); ?></td>
-									<td><?php echo htmlspecialchars($qso->col_band); ?></td>
+									<td ><?php if($qso->col_sat_name != null) { echo $qso->col_sat_name; } else { echo strtolower($qso->col_band); }; ?></td>
 									<td><?php echo htmlspecialchars($qso->col_submode ? $qso->col_submode : $qso->col_mode); ?></td>
 									<td style='text-align: center'><div class="<?php echo $qso->col_lotw_qsl_rcvd == 'Y' ? 'bg-success' : 'bg-danger'; ?>"><?php echo $qso->col_lotw_qsl_rcvd == 'Y' ? __('Yes') : __('No'); ?></div></td>
 									<td><?php echo $qso->station_profile_name; ?></td>

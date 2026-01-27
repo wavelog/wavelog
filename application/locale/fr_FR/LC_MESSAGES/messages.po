@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-01-27 15:20+0000\n"
+"POT-Creation-Date: 2026-01-27 16:56+0000\n"
 "PO-Revision-Date: 2026-01-23 01:00+0000\n"
 "Last-Translator: JONCOUX Philippe <joncoux@free.fr>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
@@ -64,8 +64,8 @@ msgstr ""
 #: application/controllers/Dxatlas.php:7 application/controllers/Dxatlas.php:29
 #: application/controllers/Dxatlas.php:51
 #: application/controllers/Dxatlas.php:108
-#: application/controllers/Dxcalendar.php:8
-#: application/controllers/Dxcluster.php:9 application/controllers/Eqsl.php:23
+#: application/controllers/Dxcalendar.php:12
+#: application/controllers/Dxcluster.php:13 application/controllers/Eqsl.php:23
 #: application/controllers/Eqsl.php:66 application/controllers/Eqsl.php:166
 #: application/controllers/Eqsl.php:255 application/controllers/Eqsl.php:279
 #: application/controllers/Eqsl.php:318 application/controllers/Eqsl.php:517
@@ -452,7 +452,7 @@ msgid " and "
 msgstr " et "
 
 #: application/controllers/Awards.php:595
-#: application/controllers/Logbook.php:1398
+#: application/controllers/Logbook.php:1414
 #: application/views/awards/index.php:8 application/views/bandmap/list.php:326
 #: application/views/bands/index.php:57 application/views/dashboard/index.php:9
 #: application/views/interface_assets/header.php:218
@@ -480,7 +480,7 @@ msgid "SOTA"
 msgstr "SOTA"
 
 #: application/controllers/Awards.php:613
-#: application/controllers/Logbook.php:1399
+#: application/controllers/Logbook.php:1415
 #: application/views/bandmap/list.php:328 application/views/bands/index.php:64
 #: application/views/dashboard/index.php:10
 #: application/views/interface_assets/header.php:206
@@ -502,7 +502,7 @@ msgid "WWFF"
 msgstr "WWFF"
 
 #: application/controllers/Awards.php:631
-#: application/controllers/Logbook.php:1400
+#: application/controllers/Logbook.php:1416
 #: application/views/adif/import.php:60 application/views/bandmap/list.php:327
 #: application/views/bands/index.php:54
 #: application/views/dashboard/index.php:11
@@ -701,7 +701,7 @@ msgstr " et satellite "
 msgid "Call Tester"
 msgstr "Testeur d'appels"
 
-#: application/controllers/Calltester.php:844
+#: application/controllers/Calltester.php:971
 msgid "Callsign Tester"
 msgstr "Testeur d'indicatifs d'appel"
 
@@ -786,7 +786,7 @@ msgid "No user has configured Clublog."
 msgstr "Aucun utilisateur n'a configuré Clublog."
 
 #: application/controllers/Clublog.php:86
-#: application/controllers/Logbook.php:753
+#: application/controllers/Logbook.php:756
 #: application/views/awards/dok/index.php:72
 #: application/views/awards/dxcc/index.php:132
 #: application/views/awards/iota/index.php:80
@@ -1047,7 +1047,7 @@ msgstr "et propagation"
 msgid "DX Atlas Gridsquare Export"
 msgstr "Export Locator pour DX Atlas"
 
-#: application/controllers/Dxcalendar.php:10
+#: application/controllers/Dxcalendar.php:14
 #: application/views/interface_assets/header.php:305
 msgid "DX Calendar"
 msgstr "Calendrier des DX"
@@ -1330,7 +1330,7 @@ msgstr "Le papier a été enregistrée."
 msgid "Paper was deleted."
 msgstr "Le papier a été supprimée."
 
-#: application/controllers/Logbook.php:36
+#: application/controllers/Logbook.php:39
 msgid ""
 "No logbooks were found. You need to define a logbook under Station Logbooks! "
 "Do it here:"
@@ -1338,20 +1338,20 @@ msgstr ""
 "Aucun journal de trafic n'a été trouvé. Vous devez en définir un via le menu "
 "'Station Logbooks' ! Faites-le ici :"
 
-#: application/controllers/Logbook.php:36
+#: application/controllers/Logbook.php:39
 #: application/views/stationsetup/stationsetup.php:21
 msgid "Station Logbooks"
 msgstr "Journaux des stations"
 
-#: application/controllers/Logbook.php:57
+#: application/controllers/Logbook.php:60
 #: application/views/interface_assets/header.php:113
 #: application/views/logbookadvanced/useroptions.php:4
 #: application/views/view_log/index.php:11
 msgid "Logbook"
 msgstr "Journal de trafic"
 
-#: application/controllers/Logbook.php:741
-#: application/controllers/Logbook.php:756
+#: application/controllers/Logbook.php:744
+#: application/controllers/Logbook.php:759
 #: application/views/activated_gridmap/index.php:62
 #: application/views/awards/dok/index.php:56
 #: application/views/awards/dxcc/index.php:116
@@ -1381,7 +1381,7 @@ msgstr "Journal de trafic"
 msgid "QSL"
 msgstr "QSL"
 
-#: application/controllers/Logbook.php:744
+#: application/controllers/Logbook.php:747
 #: application/views/activated_gridmap/index.php:70
 #: application/views/awards/cq/index.php:114
 #: application/views/awards/dok/index.php:60
@@ -1423,7 +1423,7 @@ msgstr "QSL"
 msgid "LoTW"
 msgstr "LoTW"
 
-#: application/controllers/Logbook.php:747
+#: application/controllers/Logbook.php:750
 #: application/views/activated_gridmap/index.php:78
 #: application/views/awards/cq/index.php:118
 #: application/views/awards/dok/index.php:64
@@ -1460,7 +1460,7 @@ msgstr "LoTW"
 msgid "eQSL"
 msgstr "eQSL"
 
-#: application/controllers/Logbook.php:1393
+#: application/controllers/Logbook.php:1409
 #: application/controllers/Radio.php:46
 #: application/views/accumulate/index.php:31
 #: application/views/activated_gridmap/index.php:43
@@ -1560,7 +1560,7 @@ msgstr "eQSL"
 msgid "Mode"
 msgstr "Mode"
 
-#: application/controllers/Logbook.php:1394
+#: application/controllers/Logbook.php:1410
 #: application/views/awards/73on73/index.php:38
 #: application/views/awards/pota/index.php:37
 #: application/views/awards/wwff/index.php:37
@@ -1589,7 +1589,7 @@ msgstr "Mode"
 msgid "RST (S)"
 msgstr "RST (E)"
 
-#: application/controllers/Logbook.php:1395
+#: application/controllers/Logbook.php:1411
 #: application/views/awards/73on73/index.php:37
 #: application/views/awards/pota/index.php:38
 #: application/views/awards/wwff/index.php:38
@@ -1619,7 +1619,7 @@ msgstr "RST (E)"
 msgid "RST (R)"
 msgstr "RST (R)"
 
-#: application/controllers/Logbook.php:1396
+#: application/controllers/Logbook.php:1412
 #: application/views/dashboard/index.php:7
 #: application/views/qslcard/searchresult.php:15
 #: application/views/qslcard/searchresult.php:31
@@ -1640,7 +1640,7 @@ msgstr "RST (R)"
 msgid "Country"
 msgstr "Pays"
 
-#: application/controllers/Logbook.php:1397
+#: application/controllers/Logbook.php:1413
 #: application/views/awards/iota/index.php:198
 #: application/views/bandmap/list.php:329 application/views/bands/index.php:52
 #: application/views/dashboard/index.php:8
@@ -1671,7 +1671,7 @@ msgstr "Pays"
 msgid "IOTA"
 msgstr "IOTA"
 
-#: application/controllers/Logbook.php:1401
+#: application/controllers/Logbook.php:1417
 #: application/views/awards/counties/details.php:12
 #: application/views/awards/counties/index.php:21
 #: application/views/awards/rac/index.php:146
@@ -1702,7 +1702,7 @@ msgstr "IOTA"
 msgid "State"
 msgstr "Etat"
 
-#: application/controllers/Logbook.php:1402
+#: application/controllers/Logbook.php:1418
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:54
@@ -1754,7 +1754,7 @@ msgstr "Etat"
 msgid "Gridsquare"
 msgstr "Locator"
 
-#: application/controllers/Logbook.php:1403
+#: application/controllers/Logbook.php:1419
 #: application/views/activated_gridmap/index.php:112
 #: application/views/awards/ffma/index.php:40
 #: application/views/awards/gridmaster/index.php:56
@@ -1784,7 +1784,7 @@ msgstr "Locator"
 msgid "Distance"
 msgstr "Distance"
 
-#: application/controllers/Logbook.php:1404
+#: application/controllers/Logbook.php:1420
 #: application/views/accumulate/index.php:21
 #: application/views/activated_gridmap/index.php:12
 #: application/views/activators/index.php:10
@@ -1879,7 +1879,7 @@ msgstr "Distance"
 msgid "Band"
 msgstr "Bande"
 
-#: application/controllers/Logbook.php:1405
+#: application/controllers/Logbook.php:1421
 #: application/controllers/Radio.php:45 application/views/bandmap/list.php:166
 #: application/views/bandmap/list.php:567
 #: application/views/contesting/index.php:148
@@ -1906,7 +1906,7 @@ msgstr "Bande"
 msgid "Frequency"
 msgstr "Frequence"
 
-#: application/controllers/Logbook.php:1406
+#: application/controllers/Logbook.php:1422
 #: application/controllers/Radio.php:43
 #: application/views/dashboard/index.php:17
 #: application/views/logbookadvanced/edit.php:13
@@ -1930,7 +1930,7 @@ msgstr "Frequence"
 msgid "Operator"
 msgstr "Opérateur"
 
-#: application/controllers/Logbook.php:1427
+#: application/controllers/Logbook.php:1443
 #: application/controllers/Stationsetup.php:424
 #: application/views/awards/dxcc/index.php:83
 #: application/views/awards/dxcc/index.php:291
@@ -3577,31 +3577,31 @@ msgstr ""
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog : Aucun profil de station avec les identifiants HRDlog trouvé."
 
-#: application/models/Logbook_model.php:305
+#: application/models/Logbook_model.php:311
 msgid "Station not accessible"
 msgstr ""
 
-#: application/models/Logbook_model.php:1287
+#: application/models/Logbook_model.php:1293
 msgid "Station ID not allowed"
 msgstr "ID de station non autorisé"
 
-#: application/models/Logbook_model.php:1292
+#: application/models/Logbook_model.php:1298
 msgid "No Call given"
 msgstr "Aucun indicatif n'a été donné"
 
-#: application/models/Logbook_model.php:1362
-#: application/models/Logbook_model.php:1564
+#: application/models/Logbook_model.php:1368
+#: application/models/Logbook_model.php:1570
 msgid "DXCC has to be Numeric"
 msgstr "Le DXCC doit être un nombre"
 
-#: application/models/Logbook_model.php:4635
+#: application/models/Logbook_model.php:4641
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 "Indicatif d'appel de station incorrect %s lors de l'importation du QSO avec "
 "%s pour %s : IGNORÉ"
 
-#: application/models/Logbook_model.php:4649
+#: application/models/Logbook_model.php:4655
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -3609,11 +3609,11 @@ msgstr ""
 "Vous avez tenté d'importer un QSO sans date valide. Ce QSO n'a pas pu être "
 "importé. Il est invalide"
 
-#: application/models/Logbook_model.php:4658
+#: application/models/Logbook_model.php:4664
 msgid "QSO on"
 msgstr "QSO en"
 
-#: application/models/Logbook_model.php:4658
+#: application/models/Logbook_model.php:4664
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3621,7 +3621,7 @@ msgstr ""
 "Vous avez essayé d'importer un QSO sans indicatif donné. Ce QSO n'a pas été "
 "importé. Il est invalide"
 
-#: application/models/Logbook_model.php:4707
+#: application/models/Logbook_model.php:4713
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -3630,64 +3630,64 @@ msgstr ""
 "QSO sur %s : Vous avez essayé d'importer un QSO sans bande spécifiée. Ce QSO "
 "n'a pas été importé. Il est invalide"
 
-#: application/models/Logbook_model.php:4972
+#: application/models/Logbook_model.php:4986
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "la date de réception de la QSL est invalide (AAAAMMJJ)"
 
-#: application/models/Logbook_model.php:4983
+#: application/models/Logbook_model.php:4997
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "la date de la QSL est invalide (AAAAMMJJ)"
 
-#: application/models/Logbook_model.php:5044
+#: application/models/Logbook_model.php:5058
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "la clublog_qso_upload_date est invalide (AAAAMMJJ)"
 
-#: application/models/Logbook_model.php:5419
+#: application/models/Logbook_model.php:5433
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Dupliquer pour"
 
-#: application/models/Logbook_model.php:5484
-#: application/models/Logbook_model.php:5579
+#: application/models/Logbook_model.php:5498
+#: application/models/Logbook_model.php:5593
 msgid "QSO could not be matched"
 msgstr "pas de correspondance pour le QSO"
 
-#: application/models/Logbook_model.php:5492
+#: application/models/Logbook_model.php:5506
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmé par LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:5498
+#: application/models/Logbook_model.php:5512
 msgid "confirmed by award manager"
 msgstr "confirmé par le manager de l'Award"
 
-#: application/models/Logbook_model.php:5502
+#: application/models/Logbook_model.php:5516
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmé par recoupement des données DCL"
 
-#: application/models/Logbook_model.php:5506
+#: application/models/Logbook_model.php:5520
 msgid "confirmation pending"
 msgstr "confirmation en attente"
 
-#: application/models/Logbook_model.php:5509
+#: application/models/Logbook_model.php:5523
 msgid "unconfirmed"
 msgstr "non confirmé"
 
-#: application/models/Logbook_model.php:5512
+#: application/models/Logbook_model.php:5526
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:293
 msgid "unknown"
 msgstr "inconnu"
 
-#: application/models/Logbook_model.php:5582
+#: application/models/Logbook_model.php:5596
 msgid "POTA reference already in log"
 msgstr "Les références du POTA sont déjà dans le log"
 
-#: application/models/Logbook_model.php:5585
+#: application/models/Logbook_model.php:5599
 msgid "QSO updated"
 msgstr "QSO mis à jour"
 
-#: application/models/Logbook_model.php:6315
+#: application/models/Logbook_model.php:5993
 #: application/views/activated_gridmap/index.php:114
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:58
