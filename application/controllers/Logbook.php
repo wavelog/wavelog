@@ -838,6 +838,9 @@ class Logbook extends CI_Controller {
 							case "Y":
 								$html .= "green";
 								break;
+							case "I":
+								$html .= "grey";
+								break;
 							default:
 								$html .= "red";
 						}
@@ -846,6 +849,9 @@ class Logbook extends CI_Controller {
 						switch ($row->COL_QRZCOM_QSO_DOWNLOAD_STATUS) {
 							case "Y":
 								$html .= "green";
+								break;
+							case "I":
+								$html .= "grey";
 								break;
 							default:
 								$html .= "red";
@@ -859,6 +865,9 @@ class Logbook extends CI_Controller {
 							case "Y":
 								$html .= "green";
 								break;
+							case "I":
+								$html .= "grey";
+								break;
 							default:
 								$html .= "red";
 						}
@@ -867,6 +876,9 @@ class Logbook extends CI_Controller {
 						switch ($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS) {
 							case "Y":
 								$html .= "green";
+								break;
+							case "I":
+								$html .= "grey";
 								break;
 							default:
 								$html .= "red";
