@@ -224,7 +224,7 @@ class Logbook extends CI_Controller {
 			$return['latlng'] = $this->qralatlng($return['callsign_qra']);
 			$return['bearing'] = $this->bearing($return['callsign_qra'], $measurement_base, $station_id);
 		}
-		$return['callbook_source'] = $callbook['source'];
+		$return['callbook_source'] = $callbook['source'] ?? '';
 
 		echo json_encode($return, JSON_PRETTY_PRINT);
 
@@ -948,9 +948,16 @@ class Logbook extends CI_Controller {
 				$this->load->model('logbook_model');
 				$callsigninfo['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($callsigninfo['callsign']['gridsquare'],0,4)), null, $band)->num_rows();
 			}
-
-			if (isset($callsigninfo['callsign']['error'])) {
-				$callsigninfo['error'] = $callsigninfo['callsign']['error'];
+			$source_callbooks = $this->config->item('callbook');
+			if (is_array($source_callbooks)) {
+				$callsigninfo['error'] = '<b>'.__('All callbook lookups failed or provided no results.').'</b>';
+				foreach($source_callbooks as $source) {
+					$callsigninfo['error'] .= "<br />".$callsigninfo['callsign']['error_'.$source.'_name'].': '.$callsigninfo['callsign']['error_'.$source];
+				}
+			} else {
+				if (isset($callsigninfo['callsign']['error'])) {
+					$callsigninfo['error'] = $callsigninfo['callsign']['error'];
+				}
 			}
 
 			$callsigninfo['lookupcall'] = strtoupper($lookupcall);

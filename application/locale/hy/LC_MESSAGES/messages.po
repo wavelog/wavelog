@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-01-27 21:10+0000\n"
+"POT-Creation-Date: 2026-01-28 06:50+0000\n"
 "PO-Revision-Date: 2025-08-23 15:21+0000\n"
 "Last-Translator: Matthias Jung <jungma@eit.uni-kl.de>\n"
 "Language-Team: Armenian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -442,7 +442,7 @@ msgid " and "
 msgstr ""
 
 #: application/controllers/Awards.php:595
-#: application/controllers/Logbook.php:1414
+#: application/controllers/Logbook.php:1421
 #: application/views/awards/index.php:8 application/views/bandmap/list.php:326
 #: application/views/bands/index.php:57 application/views/dashboard/index.php:9
 #: application/views/interface_assets/header.php:218
@@ -470,7 +470,7 @@ msgid "SOTA"
 msgstr ""
 
 #: application/controllers/Awards.php:613
-#: application/controllers/Logbook.php:1415
+#: application/controllers/Logbook.php:1422
 #: application/views/bandmap/list.php:328 application/views/bands/index.php:64
 #: application/views/dashboard/index.php:10
 #: application/views/interface_assets/header.php:206
@@ -492,7 +492,7 @@ msgid "WWFF"
 msgstr ""
 
 #: application/controllers/Awards.php:631
-#: application/controllers/Logbook.php:1416
+#: application/controllers/Logbook.php:1423
 #: application/views/adif/import.php:60 application/views/bandmap/list.php:327
 #: application/views/bands/index.php:54
 #: application/views/dashboard/index.php:11
@@ -1428,7 +1428,11 @@ msgstr ""
 msgid "eQSL"
 msgstr ""
 
-#: application/controllers/Logbook.php:1409
+#: application/controllers/Logbook.php:953
+msgid "All callbook lookups failed or provided no results."
+msgstr ""
+
+#: application/controllers/Logbook.php:1416
 #: application/controllers/Radio.php:46
 #: application/views/accumulate/index.php:31
 #: application/views/activated_gridmap/index.php:43
@@ -1528,7 +1532,7 @@ msgstr ""
 msgid "Mode"
 msgstr ""
 
-#: application/controllers/Logbook.php:1410
+#: application/controllers/Logbook.php:1417
 #: application/views/awards/73on73/index.php:38
 #: application/views/awards/pota/index.php:37
 #: application/views/awards/wwff/index.php:37
@@ -1557,7 +1561,7 @@ msgstr ""
 msgid "RST (S)"
 msgstr ""
 
-#: application/controllers/Logbook.php:1411
+#: application/controllers/Logbook.php:1418
 #: application/views/awards/73on73/index.php:37
 #: application/views/awards/pota/index.php:38
 #: application/views/awards/wwff/index.php:38
@@ -1587,7 +1591,7 @@ msgstr ""
 msgid "RST (R)"
 msgstr ""
 
-#: application/controllers/Logbook.php:1412
+#: application/controllers/Logbook.php:1419
 #: application/views/dashboard/index.php:7
 #: application/views/qslcard/searchresult.php:15
 #: application/views/qslcard/searchresult.php:31
@@ -1608,7 +1612,7 @@ msgstr ""
 msgid "Country"
 msgstr ""
 
-#: application/controllers/Logbook.php:1413
+#: application/controllers/Logbook.php:1420
 #: application/views/awards/iota/index.php:198
 #: application/views/bandmap/list.php:329 application/views/bands/index.php:52
 #: application/views/dashboard/index.php:8
@@ -1639,7 +1643,7 @@ msgstr ""
 msgid "IOTA"
 msgstr ""
 
-#: application/controllers/Logbook.php:1417
+#: application/controllers/Logbook.php:1424
 #: application/views/awards/counties/details.php:12
 #: application/views/awards/counties/index.php:21
 #: application/views/awards/rac/index.php:146
@@ -1670,7 +1674,7 @@ msgstr ""
 msgid "State"
 msgstr ""
 
-#: application/controllers/Logbook.php:1418
+#: application/controllers/Logbook.php:1425
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:54
@@ -1722,7 +1726,7 @@ msgstr ""
 msgid "Gridsquare"
 msgstr ""
 
-#: application/controllers/Logbook.php:1419
+#: application/controllers/Logbook.php:1426
 #: application/views/activated_gridmap/index.php:112
 #: application/views/awards/ffma/index.php:40
 #: application/views/awards/gridmaster/index.php:56
@@ -1752,7 +1756,7 @@ msgstr ""
 msgid "Distance"
 msgstr ""
 
-#: application/controllers/Logbook.php:1420
+#: application/controllers/Logbook.php:1427
 #: application/views/accumulate/index.php:21
 #: application/views/activated_gridmap/index.php:12
 #: application/views/activators/index.php:10
@@ -1847,7 +1851,7 @@ msgstr ""
 msgid "Band"
 msgstr ""
 
-#: application/controllers/Logbook.php:1421
+#: application/controllers/Logbook.php:1428
 #: application/controllers/Radio.php:45 application/views/bandmap/list.php:166
 #: application/views/bandmap/list.php:567
 #: application/views/contesting/index.php:148
@@ -1874,7 +1878,7 @@ msgstr ""
 msgid "Frequency"
 msgstr ""
 
-#: application/controllers/Logbook.php:1422
+#: application/controllers/Logbook.php:1429
 #: application/controllers/Radio.php:43
 #: application/views/dashboard/index.php:17
 #: application/views/logbookadvanced/edit.php:13
@@ -1898,7 +1902,7 @@ msgstr ""
 msgid "Operator"
 msgstr ""
 
-#: application/controllers/Logbook.php:1443
+#: application/controllers/Logbook.php:1450
 #: application/controllers/Stationsetup.php:424
 #: application/views/awards/dxcc/index.php:83
 #: application/views/awards/dxcc/index.php:291
@@ -3317,11 +3321,11 @@ msgstr ""
 msgid "Gridsquare Zone finder"
 msgstr ""
 
-#: application/libraries/Callbook.php:124
+#: application/libraries/Callbook.php:139
 msgid "QRZCQ Error"
 msgstr ""
 
-#: application/libraries/Callbook.php:155
+#: application/libraries/Callbook.php:179
 msgid "Error obtaining a session key for HamQTH query"
 msgstr ""
 

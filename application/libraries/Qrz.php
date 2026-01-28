@@ -4,8 +4,9 @@
 	Controls the interaction with the QRZ.com Subscription based XML API.
 */
 
-
 class Qrz {
+
+	public $callbookname = 'QRZ';
 
 	// Return session key
 	public function session($username, $password) {
@@ -57,7 +58,6 @@ class Qrz {
 
 		return true;
 	}
-
 
 	public function search($callsign, $key, $use_fullname = false, $reduced = false) {
 		$data = null;
@@ -182,8 +182,12 @@ class Qrz {
 				$data['cqzone'] = '';
 			}
 		} finally {
-			$data['source'] = 'QRZ';
 			return $data;
 		}
 	}
+
+	public function sourcename() {
+		return $this->callbookname;
+	}
+
 }

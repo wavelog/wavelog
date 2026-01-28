@@ -7,6 +7,8 @@
 
 class Hamqth {
 
+	public $callbookname = 'HamQTH';
+
 	// Return session key
 	public function session($username, $password) {
 		// URL to the XML Source
@@ -123,8 +125,11 @@ class Hamqth {
 
 			}
 		} finally {
-			$data['source'] = 'HamQTH';
 			return $data;
 		}
+	}
+
+	public function sourcename() {
+		return $this->callbookname;
 	}
 }

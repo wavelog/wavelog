@@ -7,6 +7,8 @@
 
 class Qrzru {
 
+	public $callbookname = 'QRZ.ru';
+
 	// Return session key
 	public function session($username, $password) {
 		// URL to the XML Source
@@ -112,8 +114,11 @@ class Qrzru {
 				$data['cqz'] = '';
 			}
 		} finally {
-			$data['source'] = 'QRZ.ru';
 			return $data;
 		}
+	}
+
+	public function sourcename() {
+		return $this->callbookname;
 	}
 }
