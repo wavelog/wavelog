@@ -141,7 +141,7 @@ class Logbook_model extends CI_Model {
 			$dxcc = $dxccobj->dxcc_lookup(strtoupper(trim($callsign)), $datetime);
 		}
 
-		$country = $qso_data['country'] ?? ucwords(strtolower($dxcc[1]), "- (/");
+		$country = $qso_data['country'] ?? ucwords(strtolower($dxcc[1] ?? ''), "- (/");
 		$cqz = $qso_data['cqz'] ?? ($dxcc[2] ?? NULL);
 		$dxcc_id = $qso_data['dxcc_id'] ?? ($dxcc[0] ?? NULL);
 		$continent = $qso_data['continent'] ?? ($dxcc[3] ?? NULL);
@@ -1546,7 +1546,9 @@ class Logbook_model extends CI_Model {
 			$dclrdate = $qso->COL_DCL_QSLRDATE;
 		}
 
-		if (($this->input->post('distance')) && (is_numeric($this->input->post('distance')))) {
+		if (is_numeric($this->input->post('distance')) && $this->input->post('distance') == 0) {
+			$distance = 0;
+		} elseif (($this->input->post('distance')) && (is_numeric($this->input->post('distance')))) {
 			$distance = $this->input->post('distance');
 		} else {
 			$distance = null;

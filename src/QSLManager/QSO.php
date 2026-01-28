@@ -88,7 +88,7 @@ class QSO
 	private string $orbit;
 
 	private string $stationpower;
-	private float $distance;
+	private ?string $distance;
 	private string $antennaazimuth;
 	private string $antennaelevation;
 
@@ -289,7 +289,7 @@ class QSO
 		$this->profilename = $data['station_profile_name'] ?? '';
 
 		$this->stationpower = $data['COL_TX_PWR'] ?? '';
-		$this->distance = (float)$data['COL_DISTANCE'] ?? 0;
+		$this->distance = $data['COL_DISTANCE'];
 		$this->antennaazimuth = $data['COL_ANT_AZ'] ?? '';
 		$this->antennaelevation = $data['COL_ANT_EL'] ?? '';
 
@@ -1315,7 +1315,7 @@ class QSO
 
 	private function getFormattedDistance(): string
 	{
-		if ($this->distance == 0) return '';
+		if ($this->distance === null) return '';
 
 		switch ($this->measurement_base) {
 			case 'M':

@@ -131,7 +131,7 @@ function getBearing($grid = '') {
 }
 
 function getDistance($distance) {
-	if (($distance ?? 0) == 0) return '';
+	if ($distance === null) return '';
 
 	$ci =& get_instance();
 	if ($ci->session->userdata('user_measurement_base') == NULL) {

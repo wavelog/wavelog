@@ -1362,7 +1362,6 @@ class Logbookadvanced_model extends CI_Model {
 
 		$this->db->where("COL_GRIDSQUARE is NOT NULL");
 		$this->db->where("COL_GRIDSQUARE != ''");
-		$this->db->where("COL_GRIDSQUARE != station_gridsquare");
 		$this->db->where_in("COL_PRIMARY_KEY", $idarray);
 		$query = $this->db->get($this->config->item('table_name'));
 
