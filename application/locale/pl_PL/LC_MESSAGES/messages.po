@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-01-28 06:50+0000\n"
-"PO-Revision-Date: 2026-01-22 18:33+0000\n"
+"PO-Revision-Date: 2026-01-28 06:50+0000\n"
 "Last-Translator: Dariusz Koryto <dariusz@koryto.eu>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/pl/>\n"
@@ -2007,6 +2007,9 @@ msgid ""
 "application without password!%s For further information please visit the "
 "%sLoTW FAQ page%s in the Wavelog Wiki."
 msgstr ""
+"Certyfikat znaleziony w pliku %s zawiera hasło i nie może być przetworzony. "
+"%s Upewnij się, że eksportujesz certyfikat LoTW z aplikacji tqsl bez hasła!"
+"%s Aby uzyskać więcej informacji, odwiedź stronę %sLoTW FAQ%s w Wiki Wavelog."
 
 #: application/controllers/Lotw.php:450
 #, php-format
@@ -2015,6 +2018,9 @@ msgid ""
 "contains 'key-only' this is typically a certificate request which has not "
 "been processed by LoTW yet."
 msgstr ""
+"Ogólny błąd podczas wyodrębniania certyfikatu z pliku %s. Jeśli nazwa pliku "
+"zawiera „tylko klucz\", zazwyczaj oznacza to, że jest to żądanie "
+"certyfikatu, które nie zostało jeszcze przetworzone przez LoTW."
 
 #: application/controllers/Lotw.php:457
 #, php-format
@@ -2025,6 +2031,7 @@ msgstr "Ogólny błąd podczas przetwarzania certyfikatu w pliku %s."
 #, php-format
 msgid "Generic error extracting the private key from certificate in file %s."
 msgstr ""
+"Błąd ogólny podczas wyodrębniania klucza prywatnego z certyfikatu w pliku %s."
 
 #: application/controllers/Lotw.php:685
 msgid "LoTW ADIF Information"
@@ -3561,7 +3568,7 @@ msgstr "HRDlog: Nie znaleziono profili stacji z danymi logowania HRDlog."
 
 #: application/models/Logbook_model.php:311
 msgid "Station not accessible"
-msgstr ""
+msgstr "Stacja niedostępna"
 
 #: application/models/Logbook_model.php:1293
 msgid "Station ID not allowed"
@@ -4564,6 +4571,9 @@ msgid ""
 "There is different data for DOK in your log compared to DCL or updates where "
 "not done because QSOs are not confirmed in DCL."
 msgstr ""
+"W dzienniku znajdują się różne dane dotyczące DOK w porównaniu z DCL lub "
+"aktualizacjami, które nie zostały wykonane, ponieważ QSO nie zostały "
+"potwierdzone w DCL."
 
 #: application/views/adif/dcl_success.php:29
 #: application/views/adif/pota_success.php:29
@@ -4903,7 +4913,7 @@ msgstr "Opcje eksportu"
 
 #: application/views/adif/import.php:302
 msgid "Mark exported QSOs as already uploaded to LoTW"
-msgstr ""
+msgstr "Oznacz wyeksportowane QSO jako już wgrane do LoTW"
 
 #: application/views/adif/import.php:311
 msgid "Export QSOs not uploaded to LoTW"
@@ -4944,6 +4954,8 @@ msgid ""
 "More information regarding the confirmation status in DCL can be found on "
 "the %sDCL Confluence page%s."
 msgstr ""
+"Więcej informacji na temat statusu potwierdzenia w DCL można znaleźć na "
+"stronie %sDCL Confluence%s."
 
 #: application/views/adif/import.php:349
 msgid "Only import DOK data from QSOs confirmed on DCL."
@@ -5133,7 +5145,7 @@ msgstr "Sprawdź %s w celu znalezienia pomocy z błędami w plikach ADIF."
 
 #: application/views/adif/import_success.php:59
 msgid "You might have ADIF errors. Please check the following information:"
-msgstr ""
+msgstr "Możliwe, że masz błędy ADIF. Sprawdź poniższe informacje:"
 
 #: application/views/adif/pota_success.php:12
 msgid "Results of POTA Update"
@@ -7527,7 +7539,7 @@ msgstr "Wyczyść filtry"
 
 #: application/views/bandmap/list.php:19
 msgid "Band filter preserved (band lock is active)"
-msgstr ""
+msgstr "Filtr pasma zachowany (blokada pasma jest aktywna)"
 
 #: application/views/bandmap/list.php:21
 msgid "Radio set to None - CAT connection disabled"
@@ -7567,27 +7579,27 @@ msgstr "Kliknij, aby włączyć połączenie CAT"
 
 #: application/views/bandmap/list.php:31
 msgid "CAT following radio - Click to disable"
-msgstr ""
+msgstr "CAT podążający za radiem - Kliknij aby wyłączyć"
 
 #: application/views/bandmap/list.php:32 application/views/bandmap/list.php:231
 msgid "Click to enable band lock (requires CAT connection)"
-msgstr ""
+msgstr "Kliknij aby włączyć blokadę pasma (wymaga połączenia CAT)"
 
 #: application/views/bandmap/list.php:33
 msgid "Band lock active - Click to disable"
-msgstr ""
+msgstr "Blokada paska aktywna — kliknij, aby wyłączyć"
 
 #: application/views/bandmap/list.php:34
 msgid "Band Lock"
-msgstr ""
+msgstr "Blokada Pasma"
 
 #: application/views/bandmap/list.php:35
 msgid "Band lock enabled - band filter will track radio band"
-msgstr ""
+msgstr "Blokada pasma włączona - filtr pasma będzie śledzowy pasmo radia"
 
 #: application/views/bandmap/list.php:36
 msgid "Band filter changed to"
-msgstr ""
+msgstr "Filtr pasma zmieniony na"
 
 #: application/views/bandmap/list.php:37
 msgid "by transceiver"
@@ -7624,35 +7636,41 @@ msgstr "Zastosowano twoje ulubione pasma i tryby"
 #: application/views/bandmap/list.php:47 application/views/bandmap/list.php:314
 #: application/views/bandmap/list.php:479
 msgid "My Submodes"
-msgstr ""
+msgstr "Moje Tryby Częstotliwości"
 
 #: application/views/bandmap/list.php:48
 msgid "Submode filter enabled"
-msgstr ""
+msgstr "Filtr Trybu Częstotliwości włączony"
 
 #: application/views/bandmap/list.php:49
 msgid "Submode filter disabled - showing all"
-msgstr ""
+msgstr "Filtr Trybu Częstotliwości wyłączony - wyświetlanie wszystkich"
 
 #: application/views/bandmap/list.php:50
 msgid "Required submodes"
-msgstr ""
+msgstr "Wymagane tryby częstotliwości"
 
 #: application/views/bandmap/list.php:51
 msgid "Configure in User Settings - Modes"
-msgstr ""
+msgstr "Skonfiguruj w Ustawieniach Użytkownika - Tryby"
 
 #: application/views/bandmap/list.php:52
 msgid "No submodes configured - configure in User Settings - Modes"
 msgstr ""
+"Brak skonfigurowanych trybów częstotliwości - skonfiguruj w Ustawieniach "
+"Użytkownika - Tryby"
 
 #: application/views/bandmap/list.php:53
 msgid "No submodes enabled in settings - showing all spots"
 msgstr ""
+"Brak włączonych trybów częstotliwości w ustawieniach - wyświetlanie "
+"wszystkich spotów"
 
 #: application/views/bandmap/list.php:54
 msgid "Disabled - no submodes enabled for this mode in User Settings"
 msgstr ""
+"Wyłączony - brak włączonych trybów częstotliwości dla tego trybu w "
+"Ustawieniach Użytkownika"
 
 #: application/views/bandmap/list.php:55 application/views/bandmap/list.php:468
 #: application/views/components/dxwaterfall.php:32
@@ -7671,41 +7689,42 @@ msgstr "Przełącz filtr transmisji fonicznych"
 
 #: application/views/bandmap/list.php:60 application/views/bandmap/list.php:421
 msgid "Favorites"
-msgstr ""
+msgstr "Ulubione"
 
 #: application/views/bandmap/list.php:61 application/views/bandmap/list.php:424
 msgid "Save Current Filters..."
-msgstr ""
+msgstr "Zapisz Bieżące Filtry..."
 
 #: application/views/bandmap/list.php:62
 msgid "Enter a name for this filter preset:"
-msgstr ""
+msgstr "Wpisz nazwę dla tego ustawienia filtru:"
 
 #: application/views/bandmap/list.php:63
 msgid "Filter preset saved"
-msgstr ""
+msgstr "Ustawienie filtru zapisane"
 
 #: application/views/bandmap/list.php:64
 msgid "Filter preset loaded"
-msgstr ""
+msgstr "Ustawienie filtru załadowane"
 
 #: application/views/bandmap/list.php:65
 msgid "Filter preset deleted"
-msgstr ""
+msgstr "Ustawienie filtru usunięte"
 
 #: application/views/bandmap/list.php:66
 msgid "Are you sure to delete this filter preset?"
-msgstr ""
+msgstr "Czy na pewno usunąć to ustawienie filtru?"
 
 #: application/views/bandmap/list.php:67
 msgid "No saved filter presets"
-msgstr ""
+msgstr "Brak zapisanych ustawień filtru"
 
 #: application/views/bandmap/list.php:68
 msgid ""
 "Maximum of 20 filter presets reached. Please delete some before adding new "
 "ones."
 msgstr ""
+"Osiągnięto maksymalnie 20 ustawień filtru. Usuń kilka zanim dodasz nowe."
 
 #: application/views/bandmap/list.php:71
 msgid "Loading data from DX Cluster"
@@ -8026,7 +8045,7 @@ msgstr "Pomoc DX Cluster"
 
 #: application/views/bandmap/list.php:210
 msgid "Compact Mode - Hide/Show Menu"
-msgstr ""
+msgstr "Tryb Kompaktowy - Ukryj/Pokaż Menu"
 
 #: application/views/bandmap/list.php:237
 msgid "TRX:"
@@ -8153,7 +8172,7 @@ msgstr "Zastosuj filtry"
 
 #: application/views/bandmap/list.php:420
 msgid "Filter Favorites"
-msgstr ""
+msgstr "Ulubione Filtry"
 
 #: application/views/bandmap/list.php:430
 msgid "Clear all filters except De Continent"
@@ -8201,7 +8220,7 @@ msgstr "Przełącz filtr pasma: 10m"
 
 #: application/views/bandmap/list.php:452
 msgid "Toggle 6m band filter"
-msgstr ""
+msgstr "Przełącz filtr pasma: 6m"
 
 #: application/views/bandmap/list.php:456
 msgid "Toggle VHF bands filter"
@@ -8217,7 +8236,7 @@ msgstr "Przełącz filtr pasm SHF"
 
 #: application/views/bandmap/list.php:478
 msgid "Loading submodes..."
-msgstr ""
+msgstr "Ładowanie trybów częstotliwości..."
 
 #: application/views/bandmap/list.php:483
 msgid "Toggle LoTW User filter"
@@ -8918,46 +8937,46 @@ msgstr "Ostatnie QSO"
 
 #: application/views/calltester/comparison_result.php:18
 msgid "DXCC Class Results"
-msgstr ""
+msgstr "Wyniki Klasy DXCC"
 
 #: application/views/calltester/comparison_result.php:21
 #: application/views/calltester/comparison_result.php:33
 msgid "Calls tested:"
-msgstr ""
+msgstr "Testowane znaki wywoławcze:"
 
 #: application/views/calltester/comparison_result.php:22
 #: application/views/calltester/comparison_result.php:34
 msgid "Execution time:"
-msgstr ""
+msgstr "Czas wykonania:"
 
 #: application/views/calltester/comparison_result.php:23
 #: application/views/calltester/comparison_result.php:35
 msgid "Issues found:"
-msgstr ""
+msgstr "Znalezione problemy:"
 
 #: application/views/calltester/comparison_result.php:30
 msgid "Logbook Model Results"
-msgstr ""
+msgstr "Wyniki Modelu Dziennika"
 
 #: application/views/calltester/comparison_result.php:44
 msgid "Comparison Summary"
-msgstr ""
+msgstr "Podsumowanie Porównania"
 
 #: application/views/calltester/comparison_result.php:45
 msgid "Only found in DXCC Class:"
-msgstr ""
+msgstr "Znalezione tylko w Klasie DXCC:"
 
 #: application/views/calltester/comparison_result.php:46
 msgid "Only found in Logbook Model:"
-msgstr ""
+msgstr "Znalezione tylko w Modelu Dziennika:"
 
 #: application/views/calltester/comparison_result.php:47
 msgid "Found in both methods:"
-msgstr ""
+msgstr "Znalezione w obu metodach:"
 
 #: application/views/calltester/comparison_result.php:54
 msgid "Issues found only in DXCC Class (not in Logbook Model):"
-msgstr ""
+msgstr "Problemy znalezione tylko w Klasie DXCC (nie w Modelu Dziennika):"
 
 #: application/views/calltester/comparison_result.php:62
 #: application/views/calltester/comparison_result.php:98
@@ -8968,7 +8987,7 @@ msgstr ""
 #: application/views/logbookadvanced/checkresult.php:392
 #: application/views/zonechecker/result.php:52
 msgid "Station Profile"
-msgstr ""
+msgstr "Profil Stacji"
 
 #: application/views/calltester/comparison_result.php:63
 #: application/views/calltester/comparison_result.php:99
@@ -8976,14 +8995,14 @@ msgstr ""
 #: application/views/calltester/result.php:25
 #: application/views/logbookadvanced/checkresult.php:107
 msgid "Existing DXCC"
-msgstr ""
+msgstr "Istniejący DXCC"
 
 #: application/views/calltester/comparison_result.php:64
 #: application/views/calltester/comparison_result.php:100
 #: application/views/calltester/comparison_result.php:136
 #: application/views/calltester/result.php:26
 msgid "Existing ADIF"
-msgstr ""
+msgstr "Istniejący ADIF"
 
 #: application/views/calltester/comparison_result.php:65
 #: application/views/calltester/comparison_result.php:101
@@ -8991,32 +9010,34 @@ msgstr ""
 #: application/views/calltester/result.php:27
 #: application/views/logbookadvanced/checkresult.php:108
 msgid "Result DXCC"
-msgstr ""
+msgstr "Wynik DXCC"
 
 #: application/views/calltester/comparison_result.php:66
 #: application/views/calltester/comparison_result.php:102
 #: application/views/calltester/comparison_result.php:138
 #: application/views/calltester/result.php:28
 msgid "Result ADIF"
-msgstr ""
+msgstr "Wynik ADIF"
 
 #: application/views/calltester/comparison_result.php:90
 msgid "Issues found only in Logbook Model (not in DXCC Class):"
-msgstr ""
+msgstr "Problemy znalezione tylko w Modelu Dziennika (nie w Klasie DXCC):"
 
 #: application/views/calltester/comparison_result.php:126
 msgid "Issues found in both methods:"
-msgstr ""
+msgstr "Problemy znalezione w obu metodach:"
 
 #: application/views/calltester/comparison_result.php:162
 msgid ""
 "No DXCC issues found in either method. All calls have correct DXCC "
 "information."
 msgstr ""
+"Brak problemów DXCC znalezionych w żadnej z metod. Wszystkie znaki "
+"wywoławcze mają poprawne informacje DXCC."
 
 #: application/views/calltester/index.php:3
 msgid "Callsign DXCC identification"
-msgstr ""
+msgstr "Identyfikacja DXCC znaku wywoławczego"
 
 #: application/views/calltester/index.php:10
 #: application/views/interface_assets/footer.php:878
@@ -9027,26 +9048,26 @@ msgstr "Znak wywoławczy: "
 
 #: application/views/calltester/index.php:15
 msgid "Start DXCC Check"
-msgstr ""
+msgstr "Rozpoczęć Sprawdzenie DXCC"
 
 #: application/views/calltester/index.php:18
 msgid "Compare DXCC class and logbook model"
-msgstr ""
+msgstr "Porównaj klasę DXCC i model dziennika"
 
 #: application/views/calltester/result.php:4
 #: application/views/logbookadvanced/checkresult.php:85
 msgid "Callsigns tested: "
-msgstr ""
+msgstr "Testowane znaki wywoławcze: "
 
 #: application/views/calltester/result.php:5
 #: application/views/logbookadvanced/checkresult.php:86
 msgid "Execution time: "
-msgstr ""
+msgstr "Czas wykonania: "
 
 #: application/views/calltester/result.php:6
 #: application/views/logbookadvanced/checkresult.php:87
 msgid "Number of potential QSOs with wrong DXCC: "
-msgstr ""
+msgstr "Liczba potencjalnych QSO z błędnym DXCC: "
 
 #: application/views/club/clubswitch_modal.php:5
 msgid "Switch to a Clubstation"
@@ -9152,7 +9173,7 @@ msgstr "Eksportowanie QSO do pliku ADIF"
 
 #: application/views/club/permissions.php:128
 msgid "Export own QSO per ADIF"
-msgstr ""
+msgstr "Eksportuj własne QSO per ADIF"
 
 #: application/views/club/permissions.php:137
 msgid "User Management"
@@ -12416,19 +12437,19 @@ msgstr "Export DCL"
 
 #: application/views/interface_assets/header.php:537
 msgid "Internal tools"
-msgstr ""
+msgstr "Narzędzia wewnętrzne"
 
 #: application/views/interface_assets/header.php:539
 msgid "Callsign DXCC checker"
-msgstr ""
+msgstr "Sprawdzacz DXCC znaku wywoławczego"
 
 #: application/views/interface_assets/header.php:540
 msgid "GeoJSON QSO Map"
-msgstr ""
+msgstr "Mapa QSO GeoJSON"
 
 #: application/views/interface_assets/header.php:541
 msgid "Gridsquare Zone checker"
-msgstr ""
+msgstr "Sprawdzacz strefy Gridsquare"
 
 #: application/views/interface_assets/header.php:548
 #: application/views/logbookadvanced/index.php:880
@@ -12767,13 +12788,13 @@ msgstr ""
 
 #: application/views/logbookadvanced/checkresult.php:42
 msgid "Distance Check Results"
-msgstr ""
+msgstr "Wyniki Sprawdzenia Odległości"
 
 #: application/views/logbookadvanced/checkresult.php:43
 #: application/views/logbookadvanced/checkresult.php:59
 #: application/views/logbookadvanced/checkresult.php:75
 msgid "QSOs to update found:"
-msgstr ""
+msgstr "Znalezione QSO do zaktualizowania:"
 
 #: application/views/logbookadvanced/checkresult.php:46
 #: application/views/logbookadvanced/distancedialog.php:2
@@ -12801,7 +12822,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/checkresult.php:58
 msgid "Continent Check Results"
-msgstr ""
+msgstr "Wyniki Sprawdzenia Kontynentu"
 
 #: application/views/logbookadvanced/checkresult.php:62
 #: application/views/logbookadvanced/continentdialog.php:2
@@ -12827,54 +12848,58 @@ msgstr ""
 #: application/views/logbookadvanced/checkresult.php:74
 #: application/views/logbookadvanced/checkresult.php:146
 msgid "Gridsquare Check Results"
-msgstr ""
+msgstr "Wyniki Sprawdzenia Gridsquare"
 
 #: application/views/logbookadvanced/checkresult.php:83
 msgid "DXCC Check Results"
-msgstr ""
+msgstr "Wyniki Sprawdzenia DXCC"
 
 #: application/views/logbookadvanced/checkresult.php:92
 #: application/views/logbookadvanced/checkresult.php:234
 #: application/views/logbookadvanced/checkresult.php:310
 msgid "Update selected"
-msgstr ""
+msgstr "Zaktualizuj wybrane"
 
 #: application/views/logbookadvanced/checkresult.php:153
 msgid "These QSOs MAY have incorrect gridsquares."
-msgstr ""
+msgstr "Te QSO MOZA mają niepoprawne gridsquare."
 
 #: application/views/logbookadvanced/checkresult.php:154
 msgid ""
 "Results depends on the correct DXCC. The gridsquare list comes from the TQSL "
 "gridsquare database."
 msgstr ""
+"Wyniki zależą od prawidłowego DXCC. Lista gridsquare pochodzi z bazy danych "
+"TQSL gridsquare."
 
 #: application/views/logbookadvanced/checkresult.php:167
 msgid "DXCC Gridsquare"
-msgstr ""
+msgstr "DXCC Gridsquare"
 
 #: application/views/logbookadvanced/checkresult.php:191
 #: application/views/logbookadvanced/index.php:77
 msgid "Show more"
-msgstr ""
+msgstr "Pokaż więcej"
 
 #: application/views/logbookadvanced/checkresult.php:197
 msgid "View on map"
-msgstr ""
+msgstr "Wyświetl na mapie"
 
 #: application/views/logbookadvanced/checkresult.php:222
 msgid "CQ Zone Check Results"
-msgstr ""
+msgstr "Wyniki Sprawdzenia Strefy CQ"
 
 #: application/views/logbookadvanced/checkresult.php:224
 msgid ""
 "The following QSOs were found to have a different CQ zone compared to what "
 "this DXCC normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
+"Następujące QSO zostały znalezione, które mają inną strefę CQ w porównaniu z "
+"tym, co DXCC zwykle ma (maksymalnie wyświetlanych 5000 QSO):"
 
 #: application/views/logbookadvanced/checkresult.php:229
 msgid "Force update even if DXCC covers multiple CQ zones"
-msgstr ""
+msgstr "Wymusz aktualizację, nawet jeśli DXCC obejmuje wiele stref CQ"
 
 #: application/views/logbookadvanced/checkresult.php:230
 msgid ""
@@ -12884,6 +12909,11 @@ msgid ""
 "are updated. This checkbox overrides this but might result in wrong data. "
 "Use with caution!"
 msgstr ""
+"Funkcja aktualizacji może ustawić tylko główną strefę CQ przypiisaną do "
+"DXCC. Jeśli DXCC obejmuje wiele stref CQ, istnieje szansa, że to nie jest "
+"prawidłowe. Dlatego domyślnie aktualizowane są tylko QSO, których DXCC "
+"obejmuje jedną strefę CQ. To pole wyboru przeslańia to, ale może to "
+"spowodować błędne dane. Użyj ostrożnie!"
 
 #: application/views/logbookadvanced/checkresult.php:247
 #: application/views/search/cqzones_result.php:14
@@ -12931,17 +12961,19 @@ msgstr "Nie znaleziono niepoprawnych stref CQ."
 
 #: application/views/logbookadvanced/checkresult.php:298
 msgid "ITU Zone Check Results"
-msgstr ""
+msgstr "Wyniki Sprawdzenia Strefy ITU"
 
 #: application/views/logbookadvanced/checkresult.php:300
 msgid ""
 "The following QSOs were found to have a different ITU zone compared to what "
 "this DXCC normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
+"Następujące QSO zostały znalezione, które mają inną strefę ITU w porównaniu "
+"z tym, co DXCC zwykle ma (maksymalnie wyświetlanych 5000 QSO):"
 
 #: application/views/logbookadvanced/checkresult.php:305
 msgid "Force update even if DXCC covers multiple ITU zones"
-msgstr ""
+msgstr "Wymusz aktualizację, nawet jeśli DXCC obejmuje wiele stref ITU"
 
 #: application/views/logbookadvanced/checkresult.php:306
 msgid ""
@@ -12951,6 +12983,11 @@ msgid ""
 "are updated. This checkbox overrides this but might result in wrong data. "
 "Use with caution!"
 msgstr ""
+"Funkcja aktualizacji może ustawić tylko główną strefę ITU przypiisaną do "
+"DXCC. Jeśli DXCC obejmuje wiele stref ITU, istnieje szansa, że to nie jest "
+"prawidłowe. Dlatego domyślnie aktualizowane są tylko QSO, których DXCC "
+"obejmuje jedną strefę ITU. To pole wyboru przeslańia to, ale może to "
+"spowodować błędne dane. Użyj ostrożnie!"
 
 #: application/views/logbookadvanced/checkresult.php:323
 #: application/views/search/ituzones_result.php:14
@@ -12959,47 +12996,51 @@ msgstr "Strefa ITU DXCC"
 
 #: application/views/logbookadvanced/checkresult.php:374
 msgid "IOTA Check Results"
-msgstr ""
+msgstr "Wyniki Sprawdzenia IOTA"
 
 #: application/views/logbookadvanced/checkresult.php:381
 msgid "These QSOs MAY have an incorrect IOTA reference."
-msgstr ""
+msgstr "Te QSO mogą mieć nieprawidłowe odwołanie IOTA."
 
 #: application/views/logbookadvanced/checkresult.php:382
 msgid ""
 "Results depends on the correct DXCC, and it will only be checked against "
 "current DXCC. False positive results may occur."
 msgstr ""
+"Wyniki zależą od prawidłowego DXCC i będą sprawdzane tylko względem "
+"bieżącego DXCC. Mogą wystąpić wyniki fałszywie dodatnie."
 
 #: application/views/logbookadvanced/checkresult.php:393
 msgid "QSO DXCC"
-msgstr ""
+msgstr "QSO DXCC"
 
 #: application/views/logbookadvanced/checkresult.php:395
 msgid "IOTA DXCC"
-msgstr ""
+msgstr "IOTA DXCC"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:4
 msgid "Data Repair Tools"
-msgstr ""
+msgstr "Narzędzia Naprawy Danych"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:6
 msgid "Wiki Help"
-msgstr ""
+msgstr "Pomoc Wiki"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:8
 msgid ""
 "Warning. This tool can be dangerous to your data, and should only be used if "
 "you know what you are doing."
 msgstr ""
+"Ostrzeżenie. To narzędzie może być niebezpieczne dla twoich danych i powinno "
+"być używane tylko jeśli wiesz co robisz."
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:12
 msgid "Check all QSOs in the logbook for incorrect CQ Zones"
-msgstr ""
+msgstr "Sprawdzaj wszystkie QSO w dzienniku na błędne Strefy CQ"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:13
 msgid "Use Wavelog to determine CQ Zone for all QSOs."
-msgstr ""
+msgstr "Użyj Wavelog do określenia Strefy CQ dla wszystkich QSO."
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:17
 #: application/views/logbookadvanced/dbtoolsdialog.php:28
@@ -13011,23 +13052,23 @@ msgstr ""
 #: application/views/logbookadvanced/dbtoolsdialog.php:96
 #: application/views/logbookadvanced/dbtoolsdialog.php:108
 msgid "Check"
-msgstr ""
+msgstr "Sprawdzaj"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:23
 msgid "Check all QSOs in the logbook for incorrect ITU Zones"
-msgstr ""
+msgstr "Sprawdzaj wszystkie QSO w dzienniku na błędne Strefy ITU"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:24
 msgid "Use Wavelog to determine ITU Zone for all QSOs."
-msgstr ""
+msgstr "Użyj Wavelog do określenia Strefy ITU dla wszystkich QSO."
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:34
 msgid "Check Gridsquares"
-msgstr ""
+msgstr "Sprawdzaj Gridsquare"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:35
 msgid "Check gridsquares that does not match the DXCC"
-msgstr ""
+msgstr "Sprawdzaj gridsquare, które nie pasują do DXCC"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:45
 msgid "Fix Continent"
@@ -13035,11 +13076,11 @@ msgstr "Napraw kontynent"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:46
 msgid "Update missing or incorrect continent information"
-msgstr ""
+msgstr "Zaktualizuj brakujące lub niepoprawne informacje o kontynencie"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:57
 msgid "Update missing state/province information"
-msgstr ""
+msgstr "Zaktualizuj brakujące informacje o województwie/stanie"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:67
 #: application/views/logbookadvanced/index.php:68
@@ -13048,55 +13089,56 @@ msgstr "Aktualizuj odległości"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:68
 msgid "Calculate and update distance information for QSOs"
-msgstr ""
+msgstr "Oblicz i zaktualizuj informacje o odległości dla QSO"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:78
 msgid "Check all QSOs in the logbook for incorrect DXCC"
-msgstr ""
+msgstr "Sprawdzaj wszystkie QSO w dzienniku na błędne DXCC"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:79
 msgid "Use Wavelog to determine DXCC for all QSOs."
-msgstr ""
+msgstr "Użyj Wavelog do określenia DXCC dla wszystkich QSO."
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:90
 msgid "Lookup QSOs with missing grid in callbook"
-msgstr ""
+msgstr "Wyszukaj QSO z brakującą siatką w bazie abonentów"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:91
 msgid "Use callbook lookup to set gridsquare"
-msgstr ""
+msgstr "Użyj wyszukiwania bazy abonentów do ustawienia gridsquare"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:92
 msgid "This is limited to 150 callsigns for each run!"
 msgstr ""
+"To jest ograniczone do 150 znaku wywoławczych dla każdego uruchomienia!"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:103
 msgid "Check IOTA against DXCC"
-msgstr ""
+msgstr "Sprawdzaj IOTA względem DXCC"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:104
 msgid "Use Wavelog to check IOTA against DXCC"
-msgstr ""
+msgstr "Użyj Wavelog do sprawdzenia IOTA względem DXCC"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:4
 msgid "Search for duplicates using:"
-msgstr ""
+msgstr "Szukaj duplikatów używając:"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:16
 msgid "Match QSOs within 1800s (30min) of each other"
-msgstr ""
+msgstr "Dopasuj QSO w ciągu 1800s (30min) od siebie"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:25
 msgid "Match QSOs with the same mode (SSB, CW, FM, etc.)"
-msgstr ""
+msgstr "Dopasuj QSO z tym samym trybem (SSB, CW, FM, itp.)"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:34
 msgid "Match QSOs on the same band"
-msgstr ""
+msgstr "Dopasuj QSO na tym samym paśmie"
 
 #: application/views/logbookadvanced/dupesearchdialog.php:43
 msgid "Match QSOs using the same satellite"
-msgstr ""
+msgstr "Dopasuj QSO używając tego samego satelity"
 
 #: application/views/logbookadvanced/edit.php:1
 msgid "Please choose the column to be edited:"
@@ -13116,7 +13158,7 @@ msgstr "Moc stacji"
 
 #: application/views/logbookadvanced/edit.php:25
 msgid "DARC DOK"
-msgstr ""
+msgstr "DARC DOK"
 
 #: application/views/logbookadvanced/edit.php:31
 #: application/views/logbookadvanced/index.php:990
@@ -13633,22 +13675,24 @@ msgid ""
 "Are you sure you want to fix all QSOs with missing DXCC information? This "
 "action cannot be undone."
 msgstr ""
+"Czy na pewno chcesz naprawić wszystkie QSO z brakującymi informacjami o "
+"DXCC? Tej akcji nie można cofnąć."
 
 #: application/views/logbookadvanced/index.php:74
 msgid "Duplicate Search"
-msgstr ""
+msgstr "Wyszukiwanie Duplikatów"
 
 #: application/views/logbookadvanced/index.php:78
 msgid "Show less"
-msgstr ""
+msgstr "Pokaż mniej"
 
 #: application/views/logbookadvanced/index.php:80
 msgid "Gridsquares for"
-msgstr ""
+msgstr "Gridsquare dla"
 
 #: application/views/logbookadvanced/index.php:81
 msgid "Non DXCC matching gridsquare"
-msgstr ""
+msgstr "Gridsquare nie pasujący do DXCC"
 
 #: application/views/logbookadvanced/index.php:310
 msgid "From"
@@ -13679,7 +13723,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/index.php:513
 msgid "Sort column"
-msgstr ""
+msgstr "Sortuj kolumnę"
 
 #: application/views/logbookadvanced/index.php:515
 #: application/views/oqrs/showrequests.php:87
@@ -13688,24 +13732,24 @@ msgstr "Czas QSO"
 
 #: application/views/logbookadvanced/index.php:518
 msgid "QSO Modified"
-msgstr ""
+msgstr "QSO Zmodyfikowany"
 
 #: application/views/logbookadvanced/index.php:522
 msgid "Sort direction"
-msgstr ""
+msgstr "Kierunek sortowania"
 
 #: application/views/logbookadvanced/index.php:524
 msgid "Descending"
-msgstr ""
+msgstr "Malejąco"
 
 #: application/views/logbookadvanced/index.php:525
 msgid "Ascending"
-msgstr ""
+msgstr "Rosnąco"
 
 #: application/views/logbookadvanced/index.php:533
 #: application/views/logbookadvanced/index.php:715
 msgid "Apply filters"
-msgstr ""
+msgstr "Zastosuj filtry"
 
 #: application/views/logbookadvanced/index.php:543
 msgid "QSL Filters"
@@ -14009,12 +14053,12 @@ msgstr "Globus"
 
 #: application/views/logbookadvanced/index.php:870
 msgid "Database Tools"
-msgstr ""
+msgstr "Narzędzia Bazy Danych"
 
 #: application/views/logbookadvanced/index.php:897
 #: application/views/logbookadvanced/useroptions.php:336
 msgid "Last modified"
-msgstr ""
+msgstr "Ostatnio zmodyfikowane"
 
 #: application/views/logbookadvanced/index.php:900
 #: application/views/logbookadvanced/useroptions.php:28
@@ -14086,30 +14130,31 @@ msgstr "Następne"
 #: application/views/logbookadvanced/showMissingDxccQsos.php:14
 #, php-format
 msgid "Found %s QSO(s) missing DXCC information."
-msgstr ""
+msgstr "Znaleziono %s QSO z brakującymi informacjami o DXCC."
 
 #: application/views/logbookadvanced/showMissingDxccQsos.php:47
 #: application/views/logbookadvanced/showStateQsos.php:49
 msgid "No Issues Found"
-msgstr ""
+msgstr "Nie znaleziono problemów"
 
 #: application/views/logbookadvanced/showStateQsos.php:16
 #, php-format
 msgid "Found %s QSO(s) missing state information for DXCC %s."
 msgstr ""
+"Znaleziono %s QSO z brakującymi informacjami o województwie dla DXCC %s."
 
 #: application/views/logbookadvanced/showUpdateResult.php:22
 msgid "Results for state update:"
-msgstr ""
+msgstr "Wyniki aktualizacji województwa:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:24
 #: application/views/logbookadvanced/showUpdateResult.php:26
 msgid "The number of QSOs updated for state/province in"
-msgstr ""
+msgstr "Liczba QSO zaktualizowanych dla województwa w"
 
 #: application/views/logbookadvanced/showUpdateResult.php:38
 msgid "These QSOs could not be updated:"
-msgstr ""
+msgstr "Te QSO nie mogły być zaktualizowane:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:45
 #: application/views/search/lotw_unconfirmed.php:32
@@ -14118,31 +14163,31 @@ msgstr "Lokalizacja stacji"
 
 #: application/views/logbookadvanced/showUpdateResult.php:46
 msgid "Reason"
-msgstr ""
+msgstr "Przyczyna"
 
 #: application/views/logbookadvanced/showUpdateResult.php:69
 msgid "Results for continent update:"
-msgstr ""
+msgstr "Wyniki aktualizacji kontynentu:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:70
 msgid "The number of QSOs updated for continent is"
-msgstr ""
+msgstr "Liczba QSO zaktualizowanych dla kontynentu to"
 
 #: application/views/logbookadvanced/showUpdateResult.php:74
 msgid "Results for distance update:"
-msgstr ""
+msgstr "Wyniki aktualizacji odległości:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:75
 msgid "The number of QSOs updated for distance is"
-msgstr ""
+msgstr "Liczba QSO zaktualizowanych dla odległości to"
 
 #: application/views/logbookadvanced/showUpdateResult.php:79
 msgid "Results for gridsquare update:"
-msgstr ""
+msgstr "Wyniki aktualizacji gridsquare:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:80
 msgid "The number of QSOs updated for gridsquare is"
-msgstr ""
+msgstr "Liczba QSO zaktualizowanych dla gridsquare to"
 
 #: application/views/logbookadvanced/startatform.php:15
 msgid "Include Via"
@@ -14159,13 +14204,15 @@ msgstr "Dołącz wiadomość TNX"
 #: application/views/logbookadvanced/statecheckresult.php:3
 #: application/views/logbookadvanced/statecheckresult.php:42
 msgid "State Check Results"
-msgstr ""
+msgstr "Wyniki Sprawdzenia Województwa"
 
 #: application/views/logbookadvanced/statecheckresult.php:4
 msgid ""
 "QSOs with missing state and gridsquares with 6 or more characters found for "
 "the following DXCCs:"
 msgstr ""
+"QSO z brakującym województwem i gridsquare z 6 lub więcej znaki znalezione "
+"dla następujących DXCC:"
 
 #: application/views/logbookadvanced/statecheckresult.php:30
 msgid "Run fix"
@@ -14174,6 +14221,7 @@ msgstr "Uruchom poprawkę"
 #: application/views/logbookadvanced/statecheckresult.php:43
 msgid "No QSOs were found where state information can be fixed."
 msgstr ""
+"Nie znaleziono QSO, w których informacje o województwie mogą być naprawione."
 
 #: application/views/logbookadvanced/statedialog.php:2
 msgid ""
@@ -14288,7 +14336,7 @@ msgstr "Nie użytkownik LoTW"
 
 #: application/views/lookup/result.php:16
 msgid "This gridsquare exists in the following DXCC(s):"
-msgstr ""
+msgstr "Ten gridsquare istnieje w poniższych DXCC:"
 
 #: application/views/lotw/analysis.php:8 application/views/qrz/analysis.php:8
 msgid "No data imported. please check selected date. Must be in the past!"
@@ -14439,10 +14487,11 @@ msgid ""
 "For further information please visit the %sLoTW FAQ page%s in the Wavelog "
 "Wiki"
 msgstr ""
+"Aby uzyskać więcej informacji, odwiedź stronę %sLoTW FAQ%s w Wiki Wavelog"
 
 #: application/views/map/qso_map.php:15
 msgid "Select Country:"
-msgstr ""
+msgstr "Wybierz Kraj:"
 
 #: application/views/map/qso_map.php:17
 msgid "Choose a country..."
@@ -15817,15 +15866,15 @@ msgstr "Należy poczekać przed zapisaniem kolejnego QSO"
 
 #: application/views/qso/index.php:42
 msgid "Satellite not found"
-msgstr ""
+msgstr "Satelita nie znaleziony"
 
 #: application/views/qso/index.php:43
 msgid "Supported by LoTW"
-msgstr ""
+msgstr "Obsługiwane przez LoTW"
 
 #: application/views/qso/index.php:44
 msgid "Not supported by LoTW"
-msgstr ""
+msgstr "Nie obsługiwane przez LoTW"
 
 #: application/views/qso/index.php:90
 msgid "LIVE"
@@ -16607,7 +16656,7 @@ msgstr ""
 
 #: application/views/search/result.php:65
 msgid "Source callbook"
-msgstr ""
+msgstr "Źródło bazy abonentów"
 
 #: application/views/search/search_result_ajax.php:463
 #: application/views/view_log/partial/log.php:142
@@ -17438,6 +17487,10 @@ msgid ""
 "analytics. Great for when you're operating in multiple locations but they "
 "are part of the same DXCC or VUCC Circle."
 msgstr ""
+"Dzienniki stacji pozwalają grupować Lokalizacje Stacji, umozliwia to "
+"wyświetlenie wszystkich lokalizacji w jednej sesji z dziennika do obszarów "
+"analityki. Świete, gdy pracujesz w wielu lokalizacjach, ale są one częścią "
+"tego samego DXCC lub Koła VUCC."
 
 #: application/views/stationsetup/stationsetup.php:35
 msgid "Edit Linked locations"
@@ -17568,7 +17621,7 @@ msgstr "Lata"
 #: application/views/statistics/index.php:15
 #: application/views/statistics/index.php:99
 msgid "Months"
-msgstr ""
+msgstr "Miesięce"
 
 #: application/views/statistics/index.php:19
 msgid "Number of QSOs worked each year"
@@ -17576,55 +17629,55 @@ msgstr "Liczba łączności wykonanych w każdym roku"
 
 #: application/views/statistics/index.php:20
 msgid "Number of QSOs worked each month"
-msgstr ""
+msgstr "Liczba QSO przepracowanych każdego miesiąca"
 
 #: application/views/statistics/index.php:31
 msgid "January"
-msgstr ""
+msgstr "Styczeń"
 
 #: application/views/statistics/index.php:32
 msgid "February"
-msgstr ""
+msgstr "Luty"
 
 #: application/views/statistics/index.php:33
 msgid "March"
-msgstr ""
+msgstr "Marzec"
 
 #: application/views/statistics/index.php:34
 msgid "April"
-msgstr ""
+msgstr "Kwieczeń"
 
 #: application/views/statistics/index.php:35
 msgid "May"
-msgstr ""
+msgstr "Maj"
 
 #: application/views/statistics/index.php:36
 msgid "June"
-msgstr ""
+msgstr "Czerwiec"
 
 #: application/views/statistics/index.php:37
 msgid "July"
-msgstr ""
+msgstr "Lipiec"
 
 #: application/views/statistics/index.php:38
 msgid "August"
-msgstr ""
+msgstr "Sierpień"
 
 #: application/views/statistics/index.php:39
 msgid "September"
-msgstr ""
+msgstr "Wrześień"
 
 #: application/views/statistics/index.php:40
 msgid "October"
-msgstr ""
+msgstr "Październik"
 
 #: application/views/statistics/index.php:41
 msgid "November"
-msgstr ""
+msgstr "Listopad"
 
 #: application/views/statistics/index.php:42
 msgid "December"
-msgstr ""
+msgstr "Grudzień"
 
 #: application/views/statistics/index.php:50
 msgid "Explore the logbook."
@@ -18122,7 +18175,7 @@ msgstr "DX Waterfall"
 
 #: application/views/user/edit.php:451
 msgid "squelched"
-msgstr ""
+msgstr "wyciszony"
 
 #: application/views/user/edit.php:454
 msgid "Show an interactive DX Cluster 'Waterfall' on the QSO logging page."
@@ -18283,7 +18336,7 @@ msgstr ""
 
 #: application/views/user/edit.php:689
 msgid "Show Fields on QSO Tab"
-msgstr ""
+msgstr "Pokaż pola na karcie QSO"
 
 #: application/views/user/edit.php:693
 msgid ""
@@ -19130,7 +19183,7 @@ msgstr "Obraz eQSL"
 
 #: application/views/view_log/qso.php:923
 msgid "QSO not found"
-msgstr ""
+msgstr "QSO nie znaleziony"
 
 #: application/views/visitor/layout/footer.php:239
 msgid "Filter Results"
@@ -19260,65 +19313,65 @@ msgstr "Rcvd"
 
 #: application/views/zonechecker/index.php:3
 msgid "Gridsquare Zone identification"
-msgstr ""
+msgstr "Identyfikacja Strefy Gridsquare"
 
 #: application/views/zonechecker/index.php:15
 msgid "Zone Type"
-msgstr ""
+msgstr "Typ Strefy"
 
 #: application/views/zonechecker/index.php:20
 msgid "Start Zone Check"
-msgstr ""
+msgstr "Rozpocznij Sprawdzenie Strefy"
 
 #: application/views/zonechecker/index.php:39
 #: application/views/zonechecker/index.php:62
 msgid "Processing..."
-msgstr ""
+msgstr "Przetwarzanie..."
 
 #: application/views/zonechecker/index.php:50
 #: application/views/zonechecker/index.php:73
 msgid "An error occurred while processing the request."
-msgstr ""
+msgstr "Błąd podczas przetwarzania żądania."
 
 #: application/views/zonechecker/result.php:16
 msgid "Callsigns Tested"
-msgstr ""
+msgstr "Testowane Znaki"
 
 #: application/views/zonechecker/result.php:17
 msgid "Execution Time"
-msgstr ""
+msgstr "Czas Wykonania"
 
 #: application/views/zonechecker/result.php:18
 msgid "Potential Wrong Zones"
-msgstr ""
+msgstr "Potencjalnie Błędne Strefy"
 
 #: application/views/zonechecker/result.php:19
 msgid "Cache Hits"
-msgstr ""
+msgstr "Trafienia Pamięci Podbęcznej"
 
 #: application/views/zonechecker/result.php:20
 msgid "Cache Misses"
-msgstr ""
+msgstr "Chybienia Pamięci Podbęcznej"
 
 #: application/views/zonechecker/result.php:21
 msgid "Hit Rate"
-msgstr ""
+msgstr "Współczynnik Trafięń"
 
 #: application/views/zonechecker/result.php:55
 msgid "ITUz"
-msgstr ""
+msgstr "ITUz"
 
 #: application/views/zonechecker/result.php:56
 msgid "ITUz geojson"
-msgstr ""
+msgstr "ITUz geojson"
 
 #: application/views/zonechecker/result.php:58
 msgid "CQz"
-msgstr ""
+msgstr "CQz"
 
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
-msgstr ""
+msgstr "CQz geojson"
 
 #~ msgid "Signature Name"
 #~ msgstr "Nazwa SIG"

@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-01-28 06:50+0000\n"
-"PO-Revision-Date: 2026-01-24 22:34+0000\n"
-"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
+"PO-Revision-Date: 2026-01-28 07:00+0000\n"
+"Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
 "Language: de_DE\n"
@@ -1470,6 +1470,8 @@ msgstr "eQSL"
 #: application/controllers/Logbook.php:953
 msgid "All callbook lookups failed or provided no results."
 msgstr ""
+"Alle Rufzeichenlistensuchen sind fehlgeschlagen oder lieferten keine "
+"Ergebnisse."
 
 #: application/controllers/Logbook.php:1416
 #: application/controllers/Radio.php:46
@@ -3585,7 +3587,7 @@ msgstr "HRDlog: Keine Stationsstandorte mit HRDlog Zugangsdaten gefunden."
 
 #: application/models/Logbook_model.php:311
 msgid "Station not accessible"
-msgstr ""
+msgstr "Station nicht verfügbar"
 
 #: application/models/Logbook_model.php:1293
 msgid "Station ID not allowed"
@@ -13148,11 +13150,11 @@ msgstr "Nutze Wavelog, um das DXCC für alle QSOs zu bestimmen."
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:90
 msgid "Lookup QSOs with missing grid in callbook"
-msgstr "Finde QSOs mit fehlendem Planquadrat im Callbuch"
+msgstr "Finde QSOs mit fehlendem Planquadrat in Rufzeichenliste"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:91
 msgid "Use callbook lookup to set gridsquare"
-msgstr "Nutze das Callbuch, um das Planquadrat zu setzen"
+msgstr "Schlage in Rufzeichenliste nach, um das Planquadrat zu setzen"
 
 #: application/views/logbookadvanced/dbtoolsdialog.php:92
 msgid "This is limited to 150 callsigns for each run!"
@@ -13698,7 +13700,8 @@ msgstr "Du musst mindestens 1 Zeile auswählen, um zu löschen!"
 #: application/views/logbookadvanced/index.php:65
 msgid "You need to select a least 1 row to update from callbook!"
 msgstr ""
-"Du musst mindestens 1 Zeile auswählen, um vom Callbuch zu aktualisieren!"
+"Du musst mindestens 1 Zeile auswählen, um von einer Rufzeichenliste zu "
+"aktualisieren!"
 
 #: application/views/logbookadvanced/index.php:66
 #: application/views/oqrs/showrequests.php:10
@@ -14027,7 +14030,7 @@ msgstr "Bei Markierten: "
 #: application/views/logbookadvanced/index.php:803
 #: application/views/qso/edit_ajax.php:726
 msgid "Update from Callbook"
-msgstr "Aktualisieren aus dem Callbook"
+msgstr "Aktualisieren aus der Rufzeichenliste"
 
 #: application/views/logbookadvanced/index.php:804
 msgid "Queue Bureau"
@@ -16706,7 +16709,7 @@ msgstr "Entschuldige, aber es wurden keine vergangenen QSOs mit %s gefunden"
 #: application/views/search/result.php:6
 #, php-format
 msgid "Callbook Search for %s"
-msgstr "Callbook-Suche für %s"
+msgstr "Rufzeichenlistensuche für %s"
 
 #: application/views/search/result.php:39
 msgid "Not Worked"
@@ -16715,11 +16718,12 @@ msgstr "Nicht gearbeitet"
 #: application/views/search/result.php:58
 msgid "Grid is auto-detected by callbook and probably wrong"
 msgstr ""
-"Der Locator aus dem Callbook wurde dort errechnet, und ist vermutlich falsch"
+"Der Locator aus der Rufzeichenliste wurde dort errechnet, und ist vermutlich "
+"falsch"
 
 #: application/views/search/result.php:65
 msgid "Source callbook"
-msgstr "Quellrufzeichenbuch"
+msgstr "Quellrufzeichenliste"
 
 #: application/views/search/search_result_ajax.php:463
 #: application/views/view_log/partial/log.php:142
