@@ -1286,7 +1286,7 @@ $(document).ready(function() {
             $('#toggleCatTracking').removeClass('btn-success').addClass('btn-secondary');
             // Display offline status when no radio selected
             displayOfflineStatus('no_radio');
-        } else if (selectedRadioId == 'ws' || (websocketEnabled && websocket !== null)) {
+        } else if (selectedRadioId == 'ws') {
             websocketIntentionallyClosed = false; // Reset flag when opening WebSocket
             reconnectAttempts = 0; // Reset reconnect attempts
             hasTriedWsFallback = false; // Reset WSS failover state - try WSS first again
@@ -1311,20 +1311,6 @@ $(document).ready(function() {
             
             // Start standard polling
             CATInterval = setInterval(updateFromCAT, CAT_CONFIG.POLL_INTERVAL);
-
-            // --- PR ADDITION: Auto-enable WebSocket for local CAT URLs ---
-            // Fetch radio details to check if we should also start WebSocket
-            $.getJSON(base_url + 'index.php/radio/json/' + selectedRadioId, function(data) {
-                if (data.cat_url) {
-                    const url = data.cat_url.toLowerCase();
-                    if (url.includes('127.0.0.1') || url.includes('localhost')) {
-                        console.log("CAT: Local CAT URL detected (" + data.cat_url + "). Initializing WebSocket...");
-                        websocketIntentionallyClosed = false;
-                        initializeWebSocketConnection();
-                    }
-                }
-            });
-            // -------------------------------------------------------------
 
             if ((window.CAT_COMPACT_MODE === 'ultra-compact' || window.CAT_COMPACT_MODE === 'icon-only') && typeof window.isCatTrackingEnabled !== 'undefined' && !window.isCatTrackingEnabled) {
                 displayOfflineStatus('cat_disabled');
