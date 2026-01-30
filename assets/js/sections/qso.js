@@ -1453,6 +1453,29 @@ $("#callsign").on("focusout", function () {
 				// Reset QSO fields
 				resetDefaultQSOFields();
 
+				// --- Added for WebSocket Integration (Rotators / External Displays) ---
+				if (typeof window.broadcastLookupResult === 'function') {
+					const broadcastData = {
+						callsign: result.callsign,
+						dxcc_id: result.dxcc.adif,
+						name: result.callsign_name,
+						gridsquare: result.callsign_qra,
+						city: result.callsign_qth,
+						iota: result.callsign_iota,
+						state: result.callsign_state,
+						us_county: result.callsign_us_county,
+						bearing: result.bearing,
+						distance: result.callsign_distance,
+						lotw_member: result.lotw_member,
+						lotw_days: result.lotw_days,
+						eqsl_member: result.eqsl_member,
+						qsl_manager: result.qsl_manager,
+						slot_confirmed: result.dxcc_confirmed_on_band_mode
+					};
+					window.broadcastLookupResult(broadcastData);
+				}
+				// ---------------------------------------------------------
+
 				// Set qso icon
 				get_note_status(result.callsign);
 

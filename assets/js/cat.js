@@ -1286,7 +1286,7 @@ $(document).ready(function() {
             $('#toggleCatTracking').removeClass('btn-success').addClass('btn-secondary');
             // Display offline status when no radio selected
             displayOfflineStatus('no_radio');
-        } else if (selectedRadioId == 'ws') {
+        } else if (selectedRadioId == 'ws' || (websocketEnabled && websocket !== null)) {
             websocketIntentionallyClosed = false; // Reset flag when opening WebSocket
             reconnectAttempts = 0; // Reset reconnect attempts
             hasTriedWsFallback = false; // Reset WSS failover state - try WSS first again
@@ -1303,15 +1303,29 @@ $(document).ready(function() {
                 displayOfflineStatus('cat_disabled');
             }
         } else {
-            // Set DX Waterfall CAT state to polling if variable exists
+            // Set DX Waterfall CAT state to polling
             if (typeof dxwaterfall_cat_state !== 'undefined') {
                 dxwaterfall_cat_state = "polling";
             }
-            // Enable CAT Control button when radio is selected
             $('#toggleCatTracking').prop('disabled', false).removeClass('disabled');
-            // Always start polling
-            CATInterval=setInterval(updateFromCAT, CAT_CONFIG.POLL_INTERVAL);
-            // In ultra-compact/icon-only mode, show offline status if CAT Control is disabled
+            
+            // Start standard polling
+            CATInterval = setInterval(updateFromCAT, CAT_CONFIG.POLL_INTERVAL);
+
+            // --- PR ADDITION: Auto-enable WebSocket for local CAT URLs ---
+            // Fetch radio details to check if we should also start WebSocket
+            $.getJSON(base_url + 'index.php/radio/json/' + selectedRadioId, function(data) {
+                if (data.cat_url) {
+                    const url = data.cat_url.toLowerCase();
+                    if (url.includes('127.0.0.1') || url.includes('localhost')) {
+                        console.log("CAT: Local CAT URL detected (" + data.cat_url + "). Initializing WebSocket...");
+                        websocketIntentionallyClosed = false;
+                        initializeWebSocketConnection();
+                    }
+                }
+            });
+            // -------------------------------------------------------------
+
             if ((window.CAT_COMPACT_MODE === 'ultra-compact' || window.CAT_COMPACT_MODE === 'icon-only') && typeof window.isCatTrackingEnabled !== 'undefined' && !window.isCatTrackingEnabled) {
                 displayOfflineStatus('cat_disabled');
             }
@@ -1323,4 +1337,47 @@ $(document).ready(function() {
 
     // Expose displayOfflineStatus globally for other components (e.g., bandmap CAT Control toggle)
     window.displayOfflineStatus = displayOfflineStatus;
+
+	/**
+     * Broadcast Callsign Lookup Result via WebSocket
+     * Triggered when Wavelog completes a callsign lookup.
+     * 
+     * @param {object} data - The lookup data object
+     */
+    window.broadcastLookupResult = function(data) {
+        if (!websocket || !websocketEnabled || websocket.readyState !== WebSocket.OPEN) {
+            return;
+        }
+
+        try {
+            const cleanAzimuth = data.bearing ? parseInt(data.bearing.match(/\d+/)) : null;
+
+            const message = {
+                type: 'lookup_result',
+                timestamp: new Date().toISOString(),
+                payload: {
+                    callsign: data.callsign,
+                    dxcc_id: data.dxcc_id,
+                    name: data.name,
+                    grid: data.gridsquare || data.grid,
+                    city: data.city,
+                    iota: data.iota,
+                    state: data.state,
+                    us_county: data.us_county,
+                    bearing: data.bearing,
+                    azimuth: cleanAzimuth,
+                    distance: data.distance,
+                    lotw_member: data.lotw_member,
+                    lotw_days: data.lotw_days,
+                    eqsl_member: data.eqsl_member,
+                    qsl_manager: data.qsl_manager,
+                    slot_confirmed: data.slot_confirmed
+                }
+            };
+
+            websocket.send(JSON.stringify(message));
+        } catch (error) {
+            console.warn('Failed to broadcast lookup result:', error);
+        }
+    };	
 });
