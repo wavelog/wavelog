@@ -141,10 +141,10 @@ class Logbook_model extends CI_Model {
 			$dxcc = $dxccobj->dxcc_lookup(strtoupper(trim($callsign)), $datetime);
 		}
 
-		$country = $qso_data['country'] ?? ucwords(strtolower($dxcc[1] ?? ''), "- (/");
-		$cqz = $qso_data['cqz'] ?? ($dxcc[2] ?? NULL);
-		$dxcc_id = $qso_data['dxcc_id'] ?? ($dxcc[0] ?? NULL);
-		$continent = $qso_data['continent'] ?? ($dxcc[3] ?? NULL);
+		$country = $qso_data['country'] ?? ucwords(strtolower($dxcc['entity'] ?? ''), "- (/");
+		$cqz = $qso_data['cqz'] ?? ($dxcc['cqz'] ?? NULL);
+		$dxcc_id = $qso_data['dxcc_id'] ?? ($dxcc['adif'] ?? NULL);
+		$continent = $qso_data['continent'] ?? ($dxcc['cont'] ?? NULL);
 
 		$main_mode = $this->get_main_mode_if_submode($qso_data['mode']);
 		$mode = $main_mode ?? $qso_data['mode'];
