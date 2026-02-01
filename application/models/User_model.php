@@ -688,7 +688,7 @@ class User_Model extends CI_Model {
 		$u = $this->get($username);
 		if($u->num_rows() != 0) {
 			// direct login to clubstations are not allowed
-			if ($u->row()->clubstation == 1) {
+			if ($u->row()->clubstation == 1 && !($this->config->item('club_direct') ?? false)) {
 				$uid = $u->row()->user_id;
 				log_message('debug', "User ID: [$uid] Login rejected because of a external clubstation login attempt.");
 				return 2;
