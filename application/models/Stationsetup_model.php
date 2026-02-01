@@ -264,6 +264,9 @@ class Stationsetup_model extends CI_Model {
 			if ($imported >= 1000){
 				return (array('limit',$imported."locations imported. Maximum limit of 1000 locations reached.")); // Prevent importing more than 1000 locations at once
 			}
+			if (trim($loc['station_uuid'] ?? '') == '') {	// Make sure it's null, even if it's set to ''
+				$loc['station_uuid']=null;
+			}
 			// Data for station_profile
 			$dbdata = [
 				'station_active'        => 0,

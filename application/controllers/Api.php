@@ -181,6 +181,11 @@ class API extends CI_Controller {
 				$this->output->set_status_header(400)->set_content_type('application/json')->set_output(json_encode(['status' => 'error', 'message' => 'Invalid JSON file']));
 				return;
 			}
+
+			// If a single station object is posted (not an array), wrap it in an array
+			if (isset($locations['station_callsign']) || isset($locations['station_profile_name'])) {
+				$locations = [$locations];
+			}
 		} catch (Exception $e) {
 			$this->output->set_status_header(500)->set_content_type('application/json')->set_output(json_encode(['status' => 'error', 'message' => 'Processing error: ' . $e->getMessage()]));
 		}
