@@ -738,12 +738,14 @@ function save_fav() {
 }
 
 
-var bc_bandmap = new BroadcastChannel('qso_window');
-bc_bandmap.onmessage = function (ev) {
-	// Always respond to ping, regardless of manual mode
-	// This allows bandmap to detect existing QSO windows
-	if (ev.data == 'ping') {
-		bc_bandmap.postMessage('pong');
+if (qso_manual == 0) {
+	var bc_bandmap = new BroadcastChannel('qso_window');
+	bc_bandmap.onmessage = function (ev) {
+		// respond ONLY to ping if we've an open live-window
+		// Otherwise a spot will be filled accidently into an open POST-QSO Window
+		if (ev.data == 'ping') {
+			bc_bandmap.postMessage('pong');
+		}
 	}
 }
 
@@ -876,72 +878,74 @@ function populatePendingReferences(callsign, expectedSeq) {
 	}, 100); // Small delay to let form settle
 }
 
-var bc = new BroadcastChannel('qso_wish');
-bc.onmessage = function (ev) {
-	// Handle ping/pong only when manual mode is disabled (qso_manual == 0)
-	if (ev.data.ping) {
-		if (qso_manual == 0) {
-			let message = {};
-			message.pong = true;
-			bc.postMessage(message);
+if (qso_manual == 0) {
+	var bc = new BroadcastChannel('qso_wish');
+	bc.onmessage = function (ev) {
+		// Handle ping/pong only when manual mode is disabled (qso_manual == 0)
+		if (ev.data.ping) {
+			if (qso_manual == 0) {
+				let message = {};
+				message.pong = true;
+				bc.postMessage(message);
+			}
+		} else {
+			// Always process frequency, callsign, and reference data from bandmap
+			// (regardless of manual mode - bandmap should control the form)
+			const callsign = ev.data.call;
+			const seq = ++referenceSequence;
+			let delay = 0;
+
+			// Only reset if callsign is different from what we're about to set
+			if ($("#callsign").val() != "" && $("#callsign").val() != callsign) {
+				reset_fields();
+				delay = 600;
+			}
+
+			// Store references with metadata in Map (prevents race conditions)
+			pendingReferencesMap.set(callsign, {
+				seq: seq,
+				refs: {
+					pota_ref: ev.data.pota_ref,
+					sota_ref: ev.data.sota_ref,
+					wwff_ref: ev.data.wwff_ref,
+					iota_ref: ev.data.iota_ref
+				},
+				timestamp: Date.now(),
+				populated: false
+			});
+
+			// Cleanup old entries (> 30 seconds)
+			for (let [key, value] of pendingReferencesMap) {
+				if (Date.now() - value.timestamp > 30000) {
+					pendingReferencesMap.delete(key);
+				}
+			}
+
+			setTimeout(() => {
+				if (ev.data.frequency != null) {
+					$('#frequency').val(ev.data.frequency).trigger("change");
+					$("#band").val(frequencyToBand(ev.data.frequency));
+				}
+				if (ev.data.frequency_rx != "") {
+					$('#frequency_rx').val(ev.data.frequency_rx);
+					$("#band_rx").val(frequencyToBand(ev.data.frequency_rx));
+				}
+				// Set mode if provided (backward compatible - optional field)
+				if (ev.data.mode) {
+					$("#mode").val(ev.data.mode);
+				}
+
+				// Store sequence for validation in populatePendingReferences
+				$("#callsign").data('expected-refs-seq', seq);
+
+				$("#callsign").val(callsign);
+				$("#callsign").focusout();
+				$("#callsign").blur();
+			}, delay);
 		}
-	} else {
-		// Always process frequency, callsign, and reference data from bandmap
-		// (regardless of manual mode - bandmap should control the form)
-		const callsign = ev.data.call;
-		const seq = ++referenceSequence;
-		let delay = 0;
+	} /* receive */
 
-		// Only reset if callsign is different from what we're about to set
-		if ($("#callsign").val() != "" && $("#callsign").val() != callsign) {
-			reset_fields();
-			delay = 600;
-		}
-
-		// Store references with metadata in Map (prevents race conditions)
-		pendingReferencesMap.set(callsign, {
-			seq: seq,
-			refs: {
-				pota_ref: ev.data.pota_ref,
-				sota_ref: ev.data.sota_ref,
-				wwff_ref: ev.data.wwff_ref,
-				iota_ref: ev.data.iota_ref
-			},
-			timestamp: Date.now(),
-			populated: false
-		});
-
-		// Cleanup old entries (> 30 seconds)
-		for (let [key, value] of pendingReferencesMap) {
-			if (Date.now() - value.timestamp > 30000) {
-				pendingReferencesMap.delete(key);
-			}
-		}
-
-		setTimeout(() => {
-			if (ev.data.frequency != null) {
-				$('#frequency').val(ev.data.frequency).trigger("change");
-				$("#band").val(frequencyToBand(ev.data.frequency));
-			}
-			if (ev.data.frequency_rx != "") {
-				$('#frequency_rx').val(ev.data.frequency_rx);
-				$("#band_rx").val(frequencyToBand(ev.data.frequency_rx));
-			}
-			// Set mode if provided (backward compatible - optional field)
-			if (ev.data.mode) {
-				$("#mode").val(ev.data.mode);
-			}
-
-			// Store sequence for validation in populatePendingReferences
-			$("#callsign").data('expected-refs-seq', seq);
-
-			$("#callsign").val(callsign);
-			$("#callsign").focusout();
-			$("#callsign").blur();
-		}, delay);
-	}
-} /* receive */
-
+}
 $("#sat_name").on('change', function () {
 	var sat = $("#sat_name").val();
 	if (sat == "") {
