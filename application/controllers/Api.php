@@ -1218,6 +1218,308 @@ class API extends CI_Controller {
 		echo json_encode(['status' => 'successful', 'message' => 'Export successful', 'statistics' => $data]);
 	}
 
+	/*
+	 *
+	 *	Function: band_mode_matrix
+	 *	Task: Returns a matrix of worked/confirmed status for all band/mode combinations for a callsign
+	 *	Use case: External applications needing full worked status display (e.g., HamRig portal)
+	 *
+	 */
+	function band_mode_matrix() {
+		header('Content-type: application/json');
+
+		$raw_input = json_decode(file_get_contents("php://input"), true);
+		$user_id = '';
+
+		$this->load->model('user_model');
+		if (!($this->user_model->authorize($this->config->item('auth_mode')))) {
+			$no_auth = true;
+			$this->load->model('api_model');
+			if (!((isset($raw_input['key'])) && ($this->api_model->authorize($raw_input['key']) > 0))) {
+				$no_auth = true;
+			} else {
+				$no_auth = false;
+				$user_id = $this->api_model->key_userid($raw_input['key']);
+			}
+			if ($no_auth) {
+				http_response_code(401);
+				echo json_encode(['status' => 'failed', 'reason' => "missing api key or session"]);
+				die();
+			}
+		} else {
+			$user_id = $this->session->userdata('user_id');
+		}
+
+		$this->load->model('stations');
+		$all_station_ids = $this->stations->all_station_ids_of_user($user_id);
+
+		if ((array_key_exists('station_ids', $raw_input)) && (is_array($raw_input['station_ids']))) {
+			$a_station_ids = [];
+			foreach ($raw_input['station_ids'] as $stationid) {
+				if ($this->stations->check_station_against_user($stationid, $user_id)) {
+					$a_station_ids[] = $stationid;
+				}
+			}
+			$station_ids = implode(', ', $a_station_ids);
+		} else {
+			$station_ids = $all_station_ids;
+		}
+
+		if ($station_ids == '') {
+			http_response_code(200);
+			echo json_encode(['status' => 'failed', 'reason' => "no station_profiles are matching the User with this API-Key"]);
+			die();
+		}
+
+		$lookup_callsign = strtoupper($raw_input['callsign'] ?? '');
+		if ($lookup_callsign == '') {
+			http_response_code(400);
+			echo json_encode(['status' => 'failed', 'reason' => "callsign to lookup not given"]);
+			return;
+		}
+
+		$this->load->model("logbook_model");
+
+		// Get user's default confirmation preference
+		$userdata = $this->user_model->get_by_id($user_id);
+		$default_confirmation = $userdata->row()->user_default_confirmation ?? '';
+
+		// Define standard bands and modes
+		$bands = ['160m', '80m', '60m', '40m', '30m', '20m', '17m', '15m', '12m', '10m', '6m', '4m', '2m', '70cm', '23cm'];
+		$modes = ['SSB', 'CW', 'FT8', 'FT4', 'RTTY', 'FM', 'AM', 'DIGI'];
+
+		// Build the matrix
+		$matrix = [];
+
+		// Query all QSOs with this callsign
+		$this->db->select('COL_BAND, COL_MODE, COL_SUBMODE, COL_QSL_RCVD, COL_LOTW_QSL_RCVD, COL_EQSL_QSL_RCVD, COL_TIME_ON');
+		$this->db->from($this->config->item('table_name'));
+		$this->db->where('COL_CALL', $lookup_callsign);
+		$this->db->where_in('station_id', explode(', ', $station_ids));
+		$query = $this->db->get();
+
+		// Process results into matrix
+		foreach ($bands as $band) {
+			$matrix[$band] = [];
+			foreach ($modes as $mode) {
+				$matrix[$band][$mode] = [
+					'worked' => false,
+					'confirmed' => false,
+					'qso_count' => 0,
+					'last_qso' => null
+				];
+			}
+		}
+
+		if ($query->num_rows() > 0) {
+			foreach ($query->result() as $qso) {
+				$band = $qso->COL_BAND;
+
+				// Map detailed mode to general mode category
+				$mode = $this->map_mode_to_category($qso->COL_MODE, $qso->COL_SUBMODE ?? '');
+
+				if (isset($matrix[$band]) && isset($matrix[$band][$mode])) {
+					$matrix[$band][$mode]['worked'] = true;
+					$matrix[$band][$mode]['qso_count']++;
+
+					// Check if confirmed based on user's default confirmation preference
+					$is_confirmed = false;
+					if (strpos($default_confirmation, 'L') !== false && $qso->COL_LOTW_QSL_RCVD == 'Y') {
+						$is_confirmed = true;
+					}
+					if (strpos($default_confirmation, 'Q') !== false && $qso->COL_QSL_RCVD == 'Y') {
+						$is_confirmed = true;
+					}
+					if (strpos($default_confirmation, 'E') !== false && $qso->COL_EQSL_QSL_RCVD == 'Y') {
+						$is_confirmed = true;
+					}
+					// If no preference set, check any confirmation
+					if ($default_confirmation == '') {
+						if ($qso->COL_LOTW_QSL_RCVD == 'Y' || $qso->COL_QSL_RCVD == 'Y' || $qso->COL_EQSL_QSL_RCVD == 'Y') {
+							$is_confirmed = true;
+						}
+					}
+
+					if ($is_confirmed) {
+						$matrix[$band][$mode]['confirmed'] = true;
+					}
+
+					// Track most recent QSO
+					if ($matrix[$band][$mode]['last_qso'] === null || $qso->COL_TIME_ON > $matrix[$band][$mode]['last_qso']) {
+						$matrix[$band][$mode]['last_qso'] = $qso->COL_TIME_ON;
+					}
+				}
+			}
+		}
+
+		// Get DXCC info
+		$date = date("Y-m-d");
+		$dxcc_info = $this->logbook_model->dxcc_lookup($lookup_callsign, $date);
+
+		$return = [
+			'status' => 'success',
+			'callsign' => $lookup_callsign,
+			'dxcc_id' => $dxcc_info['adif'] ?? '',
+			'dxcc' => $dxcc_info['entity'] ?? '',
+			'bands' => $bands,
+			'modes' => $modes,
+			'matrix' => $matrix,
+			'total_qsos' => $query->num_rows()
+		];
+
+		http_response_code(200);
+		echo json_encode($return, JSON_PRETTY_PRINT);
+	}
+
+	/*
+	 *
+	 *	Function: recent_contacts
+	 *	Task: Returns the most recent QSOs with a specific callsign
+	 *	Use case: External applications showing recent contact history (e.g., HamRig portal)
+	 *
+	 */
+	function recent_contacts() {
+		header('Content-type: application/json');
+
+		$raw_input = json_decode(file_get_contents("php://input"), true);
+		$user_id = '';
+
+		$this->load->model('user_model');
+		if (!($this->user_model->authorize($this->config->item('auth_mode')))) {
+			$no_auth = true;
+			$this->load->model('api_model');
+			if (!((isset($raw_input['key'])) && ($this->api_model->authorize($raw_input['key']) > 0))) {
+				$no_auth = true;
+			} else {
+				$no_auth = false;
+				$user_id = $this->api_model->key_userid($raw_input['key']);
+			}
+			if ($no_auth) {
+				http_response_code(401);
+				echo json_encode(['status' => 'failed', 'reason' => "missing api key or session"]);
+				die();
+			}
+		} else {
+			$user_id = $this->session->userdata('user_id');
+		}
+
+		$this->load->model('stations');
+		$all_station_ids = $this->stations->all_station_ids_of_user($user_id);
+
+		if ((array_key_exists('station_ids', $raw_input)) && (is_array($raw_input['station_ids']))) {
+			$a_station_ids = [];
+			foreach ($raw_input['station_ids'] as $stationid) {
+				if ($this->stations->check_station_against_user($stationid, $user_id)) {
+					$a_station_ids[] = $stationid;
+				}
+			}
+			$station_ids = implode(', ', $a_station_ids);
+		} else {
+			$station_ids = $all_station_ids;
+		}
+
+		if ($station_ids == '') {
+			http_response_code(200);
+			echo json_encode(['status' => 'failed', 'reason' => "no station_profiles are matching the User with this API-Key"]);
+			die();
+		}
+
+		$lookup_callsign = strtoupper($raw_input['callsign'] ?? '');
+		if ($lookup_callsign == '') {
+			http_response_code(400);
+			echo json_encode(['status' => 'failed', 'reason' => "callsign to lookup not given"]);
+			return;
+		}
+
+		// Limit parameter (default 10, max 50)
+		$limit = isset($raw_input['limit']) ? min(intval($raw_input['limit']), 50) : 10;
+
+		$this->load->model("logbook_model");
+
+		// Query recent QSOs with this callsign
+		$this->db->select('COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_TIME_OFF, COL_BAND, COL_FREQ, COL_MODE, COL_SUBMODE, COL_RST_SENT, COL_RST_RCVD, COL_NAME, COL_QTH, COL_GRIDSQUARE, COL_COMMENT, COL_QSL_RCVD, COL_QSL_SENT, COL_LOTW_QSL_RCVD, COL_LOTW_QSL_SENT, COL_EQSL_QSL_RCVD, COL_EQSL_QSL_SENT, station_id');
+		$this->db->from($this->config->item('table_name'));
+		$this->db->where('COL_CALL', $lookup_callsign);
+		$this->db->where_in('station_id', explode(', ', $station_ids));
+		$this->db->order_by('COL_TIME_ON', 'DESC');
+		$this->db->limit($limit);
+		$query = $this->db->get();
+
+		$contacts = [];
+		if ($query->num_rows() > 0) {
+			foreach ($query->result() as $qso) {
+				$contacts[] = [
+					'id' => $qso->COL_PRIMARY_KEY,
+					'callsign' => $qso->COL_CALL,
+					'datetime' => $qso->COL_TIME_ON,
+					'datetime_off' => $qso->COL_TIME_OFF,
+					'band' => $qso->COL_BAND,
+					'frequency' => $qso->COL_FREQ,
+					'mode' => $qso->COL_MODE,
+					'submode' => $qso->COL_SUBMODE,
+					'rst_sent' => $qso->COL_RST_SENT,
+					'rst_rcvd' => $qso->COL_RST_RCVD,
+					'name' => $qso->COL_NAME,
+					'qth' => $qso->COL_QTH,
+					'gridsquare' => $qso->COL_GRIDSQUARE,
+					'comment' => $qso->COL_COMMENT,
+					'qsl' => [
+						'paper_sent' => $qso->COL_QSL_SENT,
+						'paper_rcvd' => $qso->COL_QSL_RCVD,
+						'lotw_sent' => $qso->COL_LOTW_QSL_SENT,
+						'lotw_rcvd' => $qso->COL_LOTW_QSL_RCVD,
+						'eqsl_sent' => $qso->COL_EQSL_QSL_SENT,
+						'eqsl_rcvd' => $qso->COL_EQSL_QSL_RCVD
+					],
+					'station_id' => $qso->station_id
+				];
+			}
+		}
+
+		// Get DXCC info
+		$date = date("Y-m-d");
+		$dxcc_info = $this->logbook_model->dxcc_lookup($lookup_callsign, $date);
+
+		$return = [
+			'status' => 'success',
+			'callsign' => $lookup_callsign,
+			'dxcc_id' => $dxcc_info['adif'] ?? '',
+			'dxcc' => $dxcc_info['entity'] ?? '',
+			'total_found' => $query->num_rows(),
+			'limit' => $limit,
+			'contacts' => $contacts
+		];
+
+		http_response_code(200);
+		echo json_encode($return, JSON_PRETTY_PRINT);
+	}
+
+	/*
+	 *	Helper function to map detailed modes to general categories
+	 */
+	private function map_mode_to_category($mode, $submode = '') {
+		$mode = strtoupper($mode);
+		$submode = strtoupper($submode);
+
+		// Digital modes mapping
+		$digi_modes = ['PSK31', 'PSK63', 'PSK125', 'OLIVIA', 'JT65', 'JT9', 'JS8', 'MFSK', 'WSPR', 'HELL', 'THOR', 'DOMINO', 'ROS', 'SSTV', 'FAX', 'PACKET', 'PACTOR', 'AMTOR', 'WINMOR', 'ARDOP', 'VARA', 'FSK441', 'MSK144', 'ISCAT', 'Q65'];
+
+		if ($mode == 'FT8' || $submode == 'FT8') return 'FT8';
+		if ($mode == 'FT4' || $submode == 'FT4') return 'FT4';
+		if ($mode == 'SSB' || $mode == 'USB' || $mode == 'LSB') return 'SSB';
+		if ($mode == 'CW') return 'CW';
+		if ($mode == 'RTTY' || $mode == 'FSK' || $submode == 'RTTY') return 'RTTY';
+		if ($mode == 'FM' || $mode == 'NFM' || $mode == 'WFM') return 'FM';
+		if ($mode == 'AM') return 'AM';
+		if (in_array($mode, $digi_modes) || in_array($submode, $digi_modes)) return 'DIGI';
+
+		// Default to DIGI for unknown digital modes
+		if ($mode == 'MFSK' || $mode == 'DATA' || $mode == 'PKT' || strpos($mode, 'DIGITAL') !== false) return 'DIGI';
+
+		// For unknown modes, return as-is but it won't match the standard matrix
+		return $mode;
+	}
+
 	/**
 	 * Sanitize and validate callback URL
 	 * @param string $url The URL to sanitize
