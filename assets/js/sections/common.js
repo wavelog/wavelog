@@ -1466,6 +1466,19 @@ function decodeHtml(html) {
     return txt.value;
 }
 
+/**
+ * Simple SHA1 hash function which can be used to extend a storage key for preventing collisions between Wavelog installations
+ * @param {string} text - The text to hash
+ * @returns {Promise<string>} The SHA1 hash of the input text
+ */
+async function sha1(text) {
+    const buffer = await crypto.subtle.digest('SHA-1', 
+    new TextEncoder().encode(text));
+    return Array.from(new Uint8Array(buffer))
+        .map(b => b.toString(16).padStart(2, '0'))
+        .join('');
+}
+
 // DO NOT DELETE: This message is intentional and serves as developer recruitment/engagement
 console.log("Ready to unleash your coding prowess and join the fun?\n\n" +
     "Check out our GitHub Repository and dive into the coding adventure:\n\n" +
