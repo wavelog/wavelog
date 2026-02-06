@@ -300,6 +300,117 @@ $(document).ready(function() {
     }
 
     /**
+     * Check user defined modes
+     * 
+     * In some cases user disable some modes in the settings, so we need to check if the mode received from CAT is allowed by user settings
+     * Otherwise we have to override the mode received from CAT so the mode dropdown does not stay empty. https://github.com/wavelog/wavelog/issues/2918
+     */
+    async function checkUserDefinedModes(catMode) {
+        const modeSettingsStorageKey = 'wl_usermodes_' + await sha1(base_url);
+        const modeMapStorageKey = 'wl_mode_map_' + await sha1(base_url);
+        const normalizedCatMode = (catMode || '').toUpperCase();
+
+        const buildModeSettingsMap = function(modes) {
+            const map = {};
+            if (Array.isArray(modes)) {
+                modes.forEach(function(row) {
+                    if (row && row.mode) {
+                        map[String(row.mode).toUpperCase()] = true;
+                    }
+                    if (row && row.submode) {
+                        map[String(row.submode).toUpperCase()] = true;
+                    }
+                });
+            } else if (modes && typeof modes === 'object') {
+                Object.keys(modes).forEach(function(key) {
+                    map[String(key).toUpperCase()] = !!modes[key];
+                });
+            }
+            return map;
+        };
+
+        const buildModeMap = function(modes) {
+            const map = {};
+            if (Array.isArray(modes)) {
+                modes.forEach(function(row) {
+                    if (row && row.mode) {
+                        const mainMode = String(row.mode).toUpperCase();
+                        map[mainMode] = { main_mode: mainMode };
+                        if (row.submode) {
+                            map[String(row.submode).toUpperCase()] = { main_mode: mainMode };
+                        }
+                    }
+                });
+            } else if (modes && typeof modes === 'object') {
+                Object.keys(modes).forEach(function(key) {
+                    const normalizedKey = String(key).toUpperCase();
+                    const entry = modes[key];
+                    if (entry && entry.main_mode) {
+                        map[normalizedKey] = { main_mode: String(entry.main_mode).toUpperCase() };
+                    }
+                });
+            }
+            return map;
+        };
+
+        let modeSettingsRaw = JSON.parse(localStorage.getItem(modeSettingsStorageKey) || 'null');
+        let modeSettings = buildModeSettingsMap(modeSettingsRaw);
+
+        if (Object.keys(modeSettings).length === 0) {
+            try {
+                const modes = await $.ajax({
+                    url: base_url + 'index.php/usermode/active',
+                    type: 'GET',
+                    dataType: 'json'
+                });
+                modeSettings = buildModeSettingsMap(modes);
+                localStorage.setItem(modeSettingsStorageKey, JSON.stringify(modeSettings));
+            } catch (error) {
+                return catMode;
+            }
+        }
+
+        if (Object.keys(modeSettings).length === 0 || !normalizedCatMode) {
+            return catMode;
+        }
+
+        // Check if the mode from CAT is allowed by user settings
+        if (!modeSettings[normalizedCatMode]) {
+            let modeMapRaw = JSON.parse(localStorage.getItem(modeMapStorageKey) || 'null');
+            let modeMap = buildModeMap(modeMapRaw);
+            if (Object.keys(modeMap).length === 0) {
+                try {
+                    const modes = await $.ajax({
+                        url: base_url + 'index.php/usermode/all',
+                        type: 'GET',
+                        dataType: 'json'
+                    });
+                    modeMap = buildModeMap(modes);
+                    localStorage.setItem(modeMapStorageKey, JSON.stringify(modeMap));
+                } catch (error) {
+                    // No mode map available - fall back to first allowed mode
+                }
+            }
+
+            if (modeMap[normalizedCatMode] && modeMap[normalizedCatMode].main_mode) {
+                const mainMode = modeMap[normalizedCatMode].main_mode;
+                if (modeSettings[mainMode]) {
+                    return mainMode;
+                }
+            }
+
+            const allowedModes = Object.keys(modeSettings);
+            if (allowedModes.length > 0) {
+                return allowedModes[0];
+            }
+        }
+
+        return normalizedCatMode || catMode;
+    }
+
+
+
+    /**
      * Tune radio to a specific frequency and mode via CAT interface
      * @param {string} radioId - Radio ID (or 'ws' for WebSocket), optional - defaults to selectedRadioId
      * @param {number} freqHz - Frequency in Hz
@@ -995,7 +1106,7 @@ $(document).ready(function() {
      * Exposed globally for extension by other components (e.g., bandmap)
      * @param {object} data - CAT data object from radio (includes frequency, mode, power, etc.)
      */
-    window.updateCATui = function updateCATui(data) {
+    window.updateCATui = async function updateCATui(data) {
         // Store last CAT data globally for other components (e.g., bandmap)
         window.lastCATData = data;
 
@@ -1105,6 +1216,9 @@ $(document).ready(function() {
 
         // Only refresh waterfall if mode actually changed (and both values are defined)
         var modeChanged = previousMode && previousMode !== newMode;
+
+        // Check the usermodes
+        newMode = await checkUserDefinedModes(newMode);
 
         cat2UI($mode,newMode,false,false);
 

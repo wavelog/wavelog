@@ -60,4 +60,18 @@ class Usermode extends CI_Controller {
 		return;
 	}
 
+	public function active() {
+		$this->load->model('usermodes');
+		header('Content-Type: application/json');
+		echo json_encode($this->usermodes->active());
+		return;
+	}
+
+	public function all() {
+		$this->load->model('usermodes');
+		header('Content-Type: application/json');
+		echo json_encode($this->usermodes->all());
+		return;
+	}
+
 }
