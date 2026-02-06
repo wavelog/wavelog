@@ -306,8 +306,8 @@ $(document).ready(function() {
      * Otherwise we have to override the mode received from CAT so the mode dropdown does not stay empty. https://github.com/wavelog/wavelog/issues/2918
      */
     async function checkUserDefinedModes(catMode) {
-        const modeSettingsStorageKey = 'wl_usermodes_' + await sha1(base_url);
-        const modeMapStorageKey = 'wl_mode_map_' + await sha1(base_url);
+        const modeSettingsStorageKey = 'wl_usermodes';
+        const modeMapStorageKey = 'wl_mode_map';
         const normalizedCatMode = (catMode || '').toUpperCase();
 
         const buildModeSettingsMap = function(modes) {

@@ -337,9 +337,8 @@ function stopImpersonate_modal() {
 <script>
 	// we clear the localstorage to prevent any issues with old data
 	(async function() {
-		const hash = await sha1(base_url);
-		localStorage.removeItem('wl_usermodes_' + hash);
-		localStorage.removeItem('wl_mode_map_' + hash);
+		localStorage.removeItem('wl_usermodes');
+		localStorage.removeItem('wl_mode_map');
 	})();
 </script>
 <?php } ?>
