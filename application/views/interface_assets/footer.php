@@ -332,6 +332,18 @@ function stopImpersonate_modal() {
     </script>
 <?php } ?>
 
+
+<?php if ($this->uri->segment(1) == "usermode") { ?>
+<script>
+	// we clear the localstorage to prevent any issues with old data
+	(async function() {
+		const hash = await sha1(base_url);
+		localStorage.removeItem('wl_usermodes_' + hash);
+		localStorage.removeItem('wl_mode_map_' + hash);
+	})();
+</script>
+<?php } ?>
+
 <?php if ($this->uri->segment(1) == "awards" && ($this->uri->segment(2) == "iota") ) { ?>
     <script id="iotamapjs" type="text/javascript" src="<?php echo base_url(); ?>assets/js/sections/iotamap.js" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
 <?php } ?>
