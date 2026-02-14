@@ -96,9 +96,12 @@ class Logbookadvanced_model extends CI_Model {
 	public function searchDb($searchCriteria) {
 		// Load all satellites once for PHP-side join (much faster than SQL COALESCE)
 		$satellites = [];
-		$sat_query = $this->db->query('SELECT name, displayname FROM satellite');
+		$sat_query = $this->db->query('SELECT name, displayname, orbit FROM satellite');
 		foreach ($sat_query->result() as $sat) {
-			$satellites[$sat->name] = $sat->displayname;
+			$satellites[$sat->name] = [
+				'displayname' => $sat->displayname,
+				'orbit' => $sat->orbit
+			];
 		}
 
 		$conditions = [];
@@ -238,7 +241,7 @@ class Logbookadvanced_model extends CI_Model {
 			}
 		}
 		if ($searchCriteria['orbits'] !== 'All' && $searchCriteria['orbits'] !== '') {
-			$conditions[] = "orbit = ?";
+			$conditions[] = "COL_SAT_NAME IN (SELECT name FROM satellite WHERE orbit = ?)";
 			$binding[] = $searchCriteria['orbits'];
 		}
 		if ($searchCriteria['qslSent'] !== '') {
@@ -664,8 +667,10 @@ class Logbookadvanced_model extends CI_Model {
 		foreach ($results as &$row) {
 			$row->sat_name = $row->COL_SAT_NAME ?? null;
 			$row->sat_displayname = null;
+			$row->orbit = null;
 			if (!empty($row->COL_SAT_NAME) && isset($satellites[$row->COL_SAT_NAME])) {
-				$row->sat_displayname = $satellites[$row->COL_SAT_NAME];
+				$row->sat_displayname = $satellites[$row->COL_SAT_NAME]['displayname'];
+				$row->orbit = $satellites[$row->COL_SAT_NAME]['orbit'];
 			}
 		}
 		unset($row);
@@ -1603,7 +1608,7 @@ class Logbookadvanced_model extends CI_Model {
 		];
 	}
 
-	public function check_missing_continent() {
+	public function check_missing_continent($stationid) {
 		// get all records with no COL_CONT
 		$this->db->trans_start();
 		$sql = "UPDATE " . $this->config->item('table_name') . "
@@ -1614,14 +1619,21 @@ class Logbookadvanced_model extends CI_Model {
 			AND station_profile.user_id = ?
 			AND col_dxcc != 0";
 
-		$query = $this->db->query($sql, array($this->session->userdata('user_id')));
+		$bindings[] = $this->session->userdata('user_id');
+
+		if ($stationid != 'All') {
+			$sql .= " AND " . $this->config->item('table_name') . ".station_id = ?";
+			$bindings[] = $stationid;
+		}
+
+		$query = $this->db->query($sql, $bindings);
 		$result = $this->db->affected_rows();
 		$this->db->trans_complete();
 
 		return $result;
 	}
 
-	public function update_distances_batch() {
+	public function update_distances_batch($stationid) {
 		ini_set('memory_limit', '-1');
 
 		$sql = "SELECT COL_ANT_PATH, COL_DISTANCE, COL_PRIMARY_KEY, station_profile.station_gridsquare, COL_GRIDSQUARE, COL_VUCC_GRIDS FROM " . $this->config->item('table_name') . "
@@ -1632,7 +1644,14 @@ class Logbookadvanced_model extends CI_Model {
 			AND (COL_DISTANCE = '' or COL_DISTANCE is NULL)
 			and COL_GRIDSQUARE != station_gridsquare";
 
-		$query = $this->db->query($sql, array($this->session->userdata('user_id')));
+		$bindings[] = $this->session->userdata('user_id');
+
+		if ($stationid != 'All') {
+			$sql .= " AND " . $this->config->item('table_name') . ".station_id = ?";
+			$bindings[] = $stationid;
+		}
+
+		$query = $this->db->query($sql, $bindings);
 
 		$recordcount = $query->num_rows();
 
@@ -1668,26 +1687,26 @@ class Logbookadvanced_model extends CI_Model {
 		return $count;
 	}
 
-	public function runCheckDb($type) {
+	public function runCheckDb($type, $stationid = null) {
 		switch ($type) {
 			case 'checkdistance':
-				return $this->check_missing_distance();
+				return $this->check_missing_distance($stationid);
 			case 'checkcontinent':
-				return $this->check_qsos_missing_continent();
+				return $this->check_qsos_missing_continent($stationid);
 			case 'checkdxcc':
-				return $this->check_dxcc();
+				return $this->check_dxcc($stationid);
 			case 'checkstate':
-				return $this->check_missing_state();
+				return $this->check_missing_state($stationid);
 			case 'checkgrids':
-				return $this->getMissingGridQsos();
+				return $this->getMissingGridQsos($stationid);
 			case 'checkincorrectgridsquares':
-				return $this->getIncorrectGridsquares();
+				return $this->getIncorrectGridsquares($stationid);
 			case 'checkincorrectcqzones':
-				return $this->getIncorrectCqZones();
+				return $this->getIncorrectCqZones($stationid);
 			case 'checkincorrectituzones':
-				return $this->getIncorrectItuZones();
+				return $this->getIncorrectItuZones($stationid);
 			case 'checkiota':
-				return $this->checkIota();
+				return $this->checkIota($stationid);
 			default:
 				return null;
 		}
@@ -1696,7 +1715,7 @@ class Logbookadvanced_model extends CI_Model {
 	 * Get list of QSOs with gridsquares that do not match the gridsquares listed for the DXCC.
 	 * The data comes from the TQSL published Gridsquare list for DXCCs.
 	 */
-	public function getIncorrectGridsquares() {
+	public function getIncorrectGridsquares($stationid) {
 		$sqlcheck = "select count(*) as count from vuccgrids";;
 		$querycheck = $this->db->query($sqlcheck);
 		$rowcheck = $querycheck->row();
@@ -1725,58 +1744,82 @@ class Logbookadvanced_model extends CI_Model {
 		and exists (select 1 from vuccgrids where adif = thcv.col_dxcc)
 		and thcv.col_dxcc > 0
 		and thcv.col_gridsquare is not null
-		and thcv.col_gridsquare <> ''
-		order by station_profile_name, col_time_on desc";
+		and thcv.col_gridsquare <> ''";
 
 		$bindings[] = [$this->session->userdata('user_id')];
+
+		if ($stationid != 'All') {
+			$sql .= " and thcv.station_id = ?";
+			$bindings[] = $stationid;
+		}
+
+		$sql .= " order by station_profile_name, col_time_on desc";
 
 		$query = $this->db->query($sql, $bindings);
 		return $query->result();
 	}
 
-	public function check_qsos_missing_continent() {
-		$sql = "select count(*) as count from " . $this->config->item('table_name') . "
-			join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
-			where user_id = ?
-			and (coalesce(col_cont, '') = '' or col_cont not in ('AF', 'AN', 'AS', 'EU', 'NA', 'OC', 'SA'))
-			and col_dxcc != 0";
+	public function check_qsos_missing_continent($stationid) {
+		$sql = "select count(*) as count from " . $this->config->item('table_name') . " thcv
+			join station_profile on thcv.station_id = station_profile.station_id
+			where station_profile.user_id = ?
+			and (coalesce(thcv.col_cont, '') = '' or thcv.col_cont not in ('AF', 'AN', 'AS', 'EU', 'NA', 'OC', 'SA'))
+			and thcv.col_dxcc != 0";
 
 		$bindings[] = [$this->session->userdata('user_id')];
+
+		if ($stationid != 'All') {
+			$sql .= " and thcv.station_id = ?";
+			$bindings[] = $stationid;
+		}
 
 		$query = $this->db->query($sql, $bindings);
 		return $query->result();
 	}
 
-	public function check_missing_distance() {
-		$sql = "select count(*) as count from " . $this->config->item('table_name') . "
-		join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
-		where user_id = ?
-		AND (COL_DISTANCE = '' or COL_DISTANCE is NULL)
-		and COL_GRIDSQUARE != station_gridsquare
-		and COL_GRIDSQUARE is NOT NULL
-		and COL_GRIDSQUARE != ''";
+	public function check_missing_distance($stationid) {
+		$sql = "select count(*) as count from " . $this->config->item('table_name') . " thcv
+		join station_profile on thcv.station_id = station_profile.station_id
+		where station_profile.user_id = ?
+		AND (thcv.COL_DISTANCE = '' or thcv.COL_DISTANCE is NULL)
+		and thcv.COL_GRIDSQUARE != station_profile.station_gridsquare
+		and thcv.COL_GRIDSQUARE is NOT NULL
+		and thcv.COL_GRIDSQUARE != ''";
 
 		$bindings[] = [$this->session->userdata('user_id')];
+
+		if ($stationid != 'All') {
+			$sql .= " and thcv.station_id = ?";
+			$bindings[] = $stationid;
+		}
+
 
 		$query = $this->db->query($sql, $bindings);
 		return $query->result();
 	}
 
-	public function check_missing_state() {
+	public function check_missing_state($stationid) {
 		$this->load->library('Geojson');
 		$supported_dxcc_list = $this->geojson->getSupportedDxccs();
 		$supported_dxcc_array = array_keys($supported_dxcc_list);
 
-		$sql = "select count(*) as count, col_dxcc, dxcc_entities.name as dxcc_name, dxcc_entities.prefix from " . $this->config->item('table_name') . "
-		join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
-		join dxcc_entities on " . $this->config->item('table_name') . ".col_dxcc = dxcc_entities.adif
-		where user_id = ? and coalesce(col_state, '') = ''
-		and col_dxcc in (" . implode(',', array_map('intval', $supported_dxcc_array)) . ")
-		and length(col_gridsquare) >= 6
-		group by col_dxcc, dxcc_entities.name, dxcc_entities.prefix
-		order by dxcc_entities.prefix";
+		$sql = "select count(*) as count, col_dxcc, dxcc_entities.name as dxcc_name, dxcc_entities.prefix from " . $this->config->item('table_name') . " thcv
+		join station_profile on thcv.station_id = station_profile.station_id
+		join dxcc_entities on thcv.col_dxcc = dxcc_entities.adif
+		where station_profile.user_id = ? and coalesce(thcv.col_state, '') = ''
+		and thcv.col_dxcc in (" . implode(',', array_map('intval', $supported_dxcc_array)) . ")
+		and length(thcv.col_gridsquare) >= 6";
 
 		$bindings[] = [$this->session->userdata('user_id')];
+
+		if ($stationid != 'All') {
+			$sql .= " and thcv.station_id = ?";
+			$bindings[] = $stationid;
+		}
+
+		$sql .= " group by col_dxcc, dxcc_entities.name, dxcc_entities.prefix
+		order by dxcc_entities.prefix";
+
 
 		$query = $this->db->query($sql, $bindings);
 		return $query->result();
@@ -1788,7 +1831,7 @@ class Logbookadvanced_model extends CI_Model {
 	 * @param int $dxcc DXCC entity number for which to fix states
 	 * @return array Result array with success, dxcc_name, dxcc_number, state_code, skipped
 	 */
-	function fixStateBatch($dxcc) {
+	function fixStateBatch($dxcc, $stationid) {
 		$this->load->library('Geojson', $dxcc);
 
 		// Get QSO data
@@ -1796,11 +1839,20 @@ class Logbookadvanced_model extends CI_Model {
 				FROM " . $this->config->item('table_name') . " qsos
 				JOIN station_profile ON qsos.station_id = station_profile.station_id
 				LEFT JOIN dxcc_entities d ON qsos.COL_DXCC = d.adif
-				WHERE qsos.COL_DXCC = ? AND station_profile.user_id = ?
+				WHERE qsos.COL_DXCC = ?
+				AND station_profile.user_id = ?
 				AND (qsos.COL_STATE IS NULL OR qsos.COL_STATE = '')
 				AND LENGTH(COALESCE(qsos.COL_GRIDSQUARE, '')) >= 6";
 
-		$query = $this->db->query($sql, [$dxcc, $this->session->userdata('user_id')]);
+		$bindings[] = $dxcc;
+		$bindings[] = $this->session->userdata('user_id');
+
+		if ($stationid != 'All') {
+			$sql .= " and qsos.station_id = ?";
+			$bindings[] = $stationid;
+		}
+
+		$query = $this->db->query($sql, $bindings);
 
 		if ($query->num_rows() === 0) {
 			return [
@@ -1883,39 +1935,27 @@ class Logbookadvanced_model extends CI_Model {
 		];
 	}
 
-	function getStateListQsos($dxcc) {
+	function getStateListQsos($dxcc, $stationid) {
 		$sql = "SELECT col_primary_key, col_call, col_time_on, col_mode, col_submode, col_band, col_state, col_gridsquare, d.name as dxcc_name, station_profile.station_profile_name FROM " . $this->config->item('table_name') . " qsos
 				JOIN station_profile ON qsos.station_id = station_profile.station_id
 				LEFT JOIN dxcc_entities d ON qsos.COL_DXCC = d.adif
 				WHERE qsos.COL_DXCC = ? AND station_profile.user_id = ?
 				AND (qsos.COL_STATE IS NULL OR qsos.COL_STATE = '')
-				AND LENGTH(COALESCE(qsos.COL_GRIDSQUARE, '')) >= 6
-				ORDER BY COL_TIME_ON DESC";
+				AND LENGTH(COALESCE(qsos.COL_GRIDSQUARE, '')) >= 6";
 
-		$query = $this->db->query($sql, [$dxcc, $this->session->userdata('user_id')]);
+		$bindings[] = $dxcc;
+		$bindings[] = $this->session->userdata('user_id');
+
+		if ($stationid != 'All') {
+			$sql .= " and qsos.station_id = ?";
+			$bindings[] = $stationid;
+		}
+
+		$sql .= " ORDER BY COL_TIME_ON DESC";
+
+		$query = $this->db->query($sql, $bindings);
 
 		return $query->result();
-	}
-
-	/*
-		Function to run batch fixes on the logbook.
-		Used in dbtools section.
-	*/
-	function batchFix($type) {
-		switch ($type) {
-			case 'distance':
-				return $this->update_distances_batch();
-			case 'continent':
-				return $this->check_missing_continent();
-			case 'cqzones':
-				return $this->fixCqZones();
-			case 'ituzones':
-				return $this->fixItuZones();
-			case 'grids':
-				return $this->check_missing_grid();
-			default:
-				return null;
-		}
 	}
 
 	/*
@@ -1923,8 +1963,8 @@ class Logbookadvanced_model extends CI_Model {
 		It did not have filter on user or location.
 		This function will check all QSOs with missing grid square and try to fill them using the callbook lookup.
 	*/
-	public function check_missing_grid() {
-		$result = $this->getMissingGridQsos();
+	public function check_missing_grid($stationid = 'All') {
+		$result = $this->getMissingGridQsos($stationid);
 
 		$count = 0;
 		$batch_updates = [];
@@ -1967,15 +2007,23 @@ class Logbookadvanced_model extends CI_Model {
 		return $count;
 	}
 
-	public function getMissingGridQsos() {
+	public function getMissingGridQsos($stationid) {
 		$sql = "SELECT col_primary_key, col_call, col_time_on, col_mode, col_submode, col_band, col_state, col_gridsquare, station_profile.station_profile_name FROM " . $this->config->item('table_name') . " qsos
 				JOIN station_profile ON qsos.station_id = station_profile.station_id
 				WHERE station_profile.user_id = ?
 				AND (qsos.COL_GRIDSQUARE IS NULL OR qsos.COL_GRIDSQUARE = '')
-				AND (qsos.COL_VUCC_GRIDS IS NULL OR qsos.COL_VUCC_GRIDS = '')
-				ORDER BY COL_TIME_ON DESC limit 150";
+				AND (qsos.COL_VUCC_GRIDS IS NULL OR qsos.COL_VUCC_GRIDS = '')";
 
-		$query = $this->db->query($sql, [$this->session->userdata('user_id')]);
+		$params[] = $this->session->userdata('user_id');
+
+		if ($stationid != 'All') {
+			$sql .= " and qsos.station_id = ?";
+			$params[] = $stationid;
+		}
+
+		$sql .= " ORDER BY COL_TIME_ON DESC limit 150";
+
+		$query = $this->db->query($sql, $params);
 
 		return $query->result();
 	}
@@ -1983,13 +2031,13 @@ class Logbookadvanced_model extends CI_Model {
 	/*
 		Check all QSOs DXCC against current DXCC database
 	*/
-	public function check_dxcc() {
+	public function check_dxcc($stationid) {
 		ini_set('memory_limit', '-1');
 
 		$i = 0;
 		$result = array();
 
-		$callarray = $this->getQsos();
+		$callarray = $this->getQsos($stationid);
 
 		// Starting clock time in seconds
 		$start_time = microtime(true);
@@ -2035,12 +2083,18 @@ class Logbookadvanced_model extends CI_Model {
 		return $data;
 	}
 
-	function getQsos() {
+	function getQsos($stationid) {
 		$sql = 'select distinct col_country, col_sat_name, col_call, col_dxcc, date(col_time_on) date, col_mode, col_submode, col_band, col_lotw_qsl_rcvd, station_profile.station_profile_name, col_primary_key
 			from ' . $this->config->item('table_name') . '
 			join station_profile on ' . $this->config->item('table_name') . '.station_id = station_profile.station_id
 			where station_profile.user_id = ?';
+
 		$params[] = $this->session->userdata('user_id');
+
+		if ($stationid != 'All') {
+			$sql .= " and " . $this->config->item('table_name') . ".station_id = ?";
+			$params[] = $stationid;
+		}
 
 		$sql .= ' order by station_profile.station_profile_name asc, date desc';
 
@@ -2079,7 +2133,7 @@ class Logbookadvanced_model extends CI_Model {
 		return $result;
 	}
 
-	function getIncorrectCqZones() {
+	function getIncorrectCqZones($stationid) {
 		if(!clubaccess_check(9)) return;
 
 		$sql = "select *, (select group_concat(distinct cqzone order by cqzone separator ', ') from dxcc_master where countrycode = thcv.col_dxcc and cqzone <> '' order by cqzone asc) as correctcqzone
@@ -2091,6 +2145,11 @@ class Logbookadvanced_model extends CI_Model {
 
 		$params[] = $this->session->userdata('user_id');
 
+		if ($stationid != 'All') {
+			$sql .= " and thcv.station_id = ?";
+			$params[] = $stationid;
+		}
+
 		$sql .= " order by station_profile.station_profile_name, thcv.col_time_on desc
 		limit 5000";
 
@@ -2099,7 +2158,7 @@ class Logbookadvanced_model extends CI_Model {
 		return $query->result();
 	}
 
-	function getIncorrectItuZones() {
+	function getIncorrectItuZones($stationid) {
 		if(!clubaccess_check(9)) return;
 
 		$sql = "select *, (select group_concat(distinct ituzone order by ituzone separator ', ') from dxcc_master where countrycode = thcv.col_dxcc and ituzone <> '' order by ituzone asc) as correctituzone
@@ -2111,6 +2170,11 @@ class Logbookadvanced_model extends CI_Model {
 
 		$params[] = $this->session->userdata('user_id');
 
+		if ($stationid != 'All') {
+			$sql .= " and thcv.station_id = ?";
+			$params[] = $stationid;
+		}
+
 		$sql .= " order by station_profile.station_profile_name, thcv.col_time_on desc
 		limit 5000";
 
@@ -2119,9 +2183,9 @@ class Logbookadvanced_model extends CI_Model {
 		return $query->result();
 	}
 
-	public function checkIota() {
-		$result1 = $this->checkSingleIota();
-		$result2 = $this->checkMultiDxccIota();
+	public function checkIota($stationid) {
+		$result1 = $this->checkSingleIota($stationid);
+		$result2 = $this->checkMultiDxccIota($stationid);
 
 		$merged = array_merge($result1, $result2);
 
@@ -2145,20 +2209,26 @@ class Logbookadvanced_model extends CI_Model {
 	 * These are excluded by not having a dxccid or dxccid = 0
 	 *
 	 */
-	public function checkSingleIota() {
+	public function checkSingleIota($stationid) {
 		$sql = "select col_primary_key, col_time_on, col_call, col_sat_name, col_band, col_gridsquare, col_dxcc, col_country, station_profile_name, col_lotw_qsl_rcvd, col_mode, col_submode, col_iota, iotadxcc.name as correctdxcc
-		from  " . $this->config->item('table_name') . "  thcv
-		join station_profile on thcv.station_id = station_profile.station_id
-		join dxcc_entities on dxcc_entities.adif = thcv.COL_DXCC
-		join iota on thcv.col_iota = iota.tag
-		join dxcc_entities iotadxcc on iota.dxccid = iotadxcc.adif
-		where station_profile.user_id = ?
-		and thcv.col_dxcc > 0
-		and thcv.col_dxcc <> iota.dxccid
-		and iota.dxccid > 0
-		order by station_profile_name, col_time_on desc";
+		FROM  " . $this->config->item('table_name') . "  thcv
+		JOIN station_profile on thcv.station_id = station_profile.station_id
+		JOIN dxcc_entities on dxcc_entities.adif = thcv.COL_DXCC
+		JOIN iota on thcv.col_iota = iota.tag
+		JOIN dxcc_entities iotadxcc on iota.dxccid = iotadxcc.adif
+		WHERE station_profile.user_id = ?
+		AND thcv.col_dxcc > 0
+		AND thcv.col_dxcc <> iota.dxccid
+		AND iota.dxccid > 0";
 
-		$bindings[] = [$this->session->userdata('user_id')];
+		$bindings[] = $this->session->userdata('user_id');
+
+		if ($stationid != 'All') {
+			$sql .= " AND thcv.station_id = ?";
+			$bindings[] = $stationid;
+		}
+
+		$sql .= " order by station_profile_name, col_time_on desc";
 
 		$query = $this->db->query($sql, $bindings);
 		return $query->result();
@@ -2168,7 +2238,7 @@ class Logbookadvanced_model extends CI_Model {
 	 * Get list of QSOs with multi-DXCC IOTA tags where the DXCC prefix doesn't match
 	 * any of the valid prefixes for that IOTA.
 	 */
-	public function checkMultiDxccIota() {
+	public function checkMultiDxccIota($stationid) {
 		// Define IOTA tags that span multiple DXCCs with their valid prefixes
 		$multiDxccIotas = [
 			'AS-004' => [215, 283], // 5B4, ZC4
@@ -2190,6 +2260,8 @@ class Logbookadvanced_model extends CI_Model {
 		$allResults = [];
 
 		foreach ($multiDxccIotas as $iotaTag => $adifList) {
+			$bindings = []; // Reset bindings for each iteration
+
 			// Build IN clause for SQL
 			$adifListStr = implode(',', $adifList);
 
@@ -2207,10 +2279,18 @@ class Logbookadvanced_model extends CI_Model {
 					JOIN iota ON thcv.col_iota = iota.tag
 					WHERE station_profile.user_id = ?
 					AND thcv.col_iota = ?
-					AND dxcc_entities.adif NOT IN ($adifListStr)
-					ORDER BY station_profile_name, col_time_on DESC";
+					AND dxcc_entities.adif NOT IN ($adifListStr)";
 
-			$bindings = [$this->session->userdata('user_id'), $iotaTag];
+			$bindings[] = $this->session->userdata('user_id');
+			$bindings[] = $iotaTag;
+
+			if ($stationid != 'All') {
+				$sql .= " AND thcv.station_id = ?";
+				$bindings[] = $stationid;
+			}
+
+			$sql .= " ORDER BY station_profile_name, col_time_on DESC";
+
 			$query = $this->db->query($sql, $bindings);
 			$results = $query->result();
 

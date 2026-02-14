@@ -9,12 +9,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 |	'app_name'		Name of the App 'Wavelog'
 |	'directory'		directory where wavelog is installed eg "logger"
-|	'callbook'		Selects which Callbook lookup to use defaults "hamqth" but supports "qrz" and "qrzcq"
+|	'callbook'		Selects which Callbook lookup to use defaults "hamqth" but also supports: "qrz", "qrzcq" and "qrzru"
 */
 
 $config['app_name'] = 'Wavelog';
 $config['directory'] = '%directory%';
-$config['callbook'] = '%callbook%'; // Options are hamqth, qrz, qrzcq or qrzru
+
+/*
+|--------------------------------------------------------------------------
+| Callbook Settings
+|--------------------------------------------------------------------------
+| Options are hamqth, qrz, qrzcq or qrzru
+| For a single callbook configure just one value as string. Example:
+| $config['callbook'] = 'hamqth';
+| This can also be set to an array of callbooks to search sequentially until a match is found. Example:
+| $config['callbook'] = ['qrz', 'hamqth'];
+ */
+$config['callbook'] = '%callbook%';
 
 $config['datadir'] = null; // default to install directory
 
@@ -326,11 +337,11 @@ $config['log_path'] = '';
 | One Logfile (true) or daily logfile?
 |--------------------------------------------------------------------------
 |
-| Leave this setted to false unless you would like to have one big logfile
+| Leave this set to false unless you would like to have one big logfile
 | at application/logs/ directory.
 |
 | true == one big log
-| false (or non-existant): daily logs
+| false (or non-existent): daily logs
 */
 $config['one_log'] = false;
 
@@ -384,14 +395,47 @@ $config['error_views_path'] = '';
 
 /*
 |--------------------------------------------------------------------------
-| Cache Directory Path
+| Cache Configuration
 |--------------------------------------------------------------------------
 |
-| Leave this BLANK unless you would like to set something other than the default
-| application/cache/ directory.  Use a full server path with trailing slash.
+| CodeIgniter supports multiple cache adapters to improve application performance
+| by storing frequently accessed data.
+| 
+| Important Notice:
+| There might some places where Wavelog forces the file adapter instead using the configured one.
+| This happens when caching for large files like images or comparable data is needed. So even
+| when you configure another adapter here, Wavelog might still use file caching in some places and respects 
+| the configured cache path for that.
+|
+| 'cache_path'
+|     Directory path for file-based caching. Leave BLANK to use the default
+|     application/cache/ directory. Use absolute paths with trailing slash.
+|     Must be writable by the web server (typically www-data or apache user).
+|     This is only used for 'file' cache adapter.
+|     Example: /var/cache/wavelog/ or /tmp/wavelog_cache/
+|
+| 'cache_adapter'
+|     The primary cache adapter to use. Options include:
+|     - 'file'      : File-based caching (default, works everywhere)
+|     - 'redis'     : Redis in-memory cache (requires Redis server & extension)
+|     - 'memcached' : Memcached (requires Memcached server & extension)
+|     - 'apcu'      : APCu in-memory cache (requires APCu extension)
+|
+| 'cache_backup'
+|     Fallback adapter if primary adapter fails or is unavailable.
+|     Recommended: 'file' as a safe fallback option
+|
+| 'cache_key_prefix'
+|     Prefix added to all cache keys to avoid collisions between
+|     applications sharing the same cache storage.
+|
+| Note: Redis configuration is stored separately in application/config/redis.php
 |
 */
 $config['cache_path'] = '';
+$config['cache_adapter'] = 'file';
+$config['cache_backup'] = 'file';
+$config['cache_key_prefix'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -484,7 +528,7 @@ $config['sess_time_to_update'] = 300;
 $config['sess_regenerate_destroy'] = FALSE;
 
 /*
- * To make sure we do not collect infinite session we set some garbage collection settings
+ * To make sure we do not collect infinite sessions we set some garbage collection settings
  * see https://www.php.net/manual/en/session.configuration.php#ini.session.gc-probability
  * and https://www.php.net/manual/en/session.configuration.php#ini.session.gc-divisor
  * and https://osvaldas.info/enabling-codeigniters-garbage-collector/
@@ -689,7 +733,7 @@ $config['disable_oqrs'] = false;
 | Special Callsign Feature aka. Clubstations Support
 |--------------------------------------------------------------------------
 |
-| This config switch is meant to use for Special Callsign operations or Clubstations.
+| This config switch is meant for Special Callsign operations or Clubstations.
 | If this switch is set to true it enables a whole bunch of features to handle Special Callsigns and Club Callsigns.
 | For more Information please visit the Wiki:
 | https://github.com/wavelog/wavelog/wiki/Clubstations
@@ -707,7 +751,7 @@ $config['special_callsign'] = false;
 | Impersonate
 |--------------------------------------------------------------------------
 |
-| This config switch disables the impersonate feature. This feauture is used to impersonate another user.
+| This config switch disables the impersonate feature. This feature is used to impersonate another user.
 | Impersonate is enabled by default. To disable it, set the value to false. Also the special_callsign feature needs this to be false.
 |
 */
@@ -773,7 +817,7 @@ $config['disable_version_check'] = false;
 
 /*
 |--------------------------------------------------------------------------
-| eqsl.cc Massdownloa
+| eqsl.cc Massdownload
 |--------------------------------------------------------------------------
 |
 | The eqsl.cc mass download function is not threadsafe. So it is disabled by default.

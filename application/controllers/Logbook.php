@@ -718,9 +718,9 @@ class Logbook extends CI_Controller {
 
 			$bindings = [
 				$lookupcall,                    // Exact match: COL_CALL = ?
-				'/' . $lookupcall,              // Starts with /: COL_CALL LIKE '/ABC'
-				$lookupcall . '/',              // Ends with /: COL_CALL LIKE 'ABC/'
-				'/' . $lookupcall . '/',        // Both sides: COL_CALL LIKE '/ABC/'
+				'%/' . $lookupcall,              // Starts with /: COL_CALL LIKE '/ABC'
+				$lookupcall . '/%',              // Ends with /: COL_CALL LIKE 'ABC/'
+				'%/' . $lookupcall . '/%',        // Both sides: COL_CALL LIKE '/ABC/'
 				(int)$count                     // LIMIT
 			];
 

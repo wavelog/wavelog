@@ -44,30 +44,6 @@ class Search extends CI_Controller {
 		}
 	}
 
-	// Searches for incorrect CQ Zones
-	public function incorrect_cq_zones() {
-		$this->load->model('stations');
-
-		$data['station_profile'] = $this->stations->all_of_user();
-		$data['page_title'] = __("Incorrectly logged CQ zones");
-
-		$this->load->view('interface_assets/header', $data);
-		$this->load->view('search/cqzones');
-		$this->load->view('interface_assets/footer');
-	}
-
-	// Searches for incorrect ITU Zones
-	public function incorrect_itu_zones() {
-		$this->load->model('stations');
-
-		$data['station_profile'] = $this->stations->all_of_user();
-		$data['page_title'] = __("Incorrectly logged ITU zones");
-
-		$this->load->view('interface_assets/header', $data);
-		$this->load->view('search/ituzones');
-		$this->load->view('interface_assets/footer');
-	}
-
 	// Searches for unconfirmed Lotw QSOs where QSO partner has uploaded to LoTW after the QSO date
 	public function lotw_unconfirmed() {
 		$this->load->model('stations');

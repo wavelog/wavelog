@@ -35,8 +35,8 @@ $config['datadir'] = null; // default to install directory
 |--------------------------------------------------------------------------
 |
 | 	'table_name'	SQL table where log can be found
-|	'locator'	Default locator used to calculate bearings/distance
-|	'display_freq'	Show or Hide frequnecy info
+|	'locator'	    Default locator used to calculate bearings/distance
+|	'display_freq'	Show or Hide frequency info
 */
 
 $config['table_name'] = 'TABLE_HRD_CONTACTS_V01';
@@ -78,6 +78,17 @@ $config['hamqth_password'] = '';
 */
 $config['qrzcq_username'] = '';
 $config['qrzcq_password'] = '';
+
+/*
+|--------------------------------------------------------------------------
+| QRZ.ru Login Options
+|--------------------------------------------------------------------------
+|
+| 	'qrzru_username'	QRZ.ru user login
+|	'qrzru_password'	QRZ.ru user password
+*/
+$config['qrzru_username'] = '';
+$config['qrzru_password'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -326,11 +337,11 @@ $config['log_path'] = '';
 | One Logfile (true) or daily logfile?
 |--------------------------------------------------------------------------
 |
-| Leave this setted to false unless you would like to have one big logfile
+| Leave this set to false unless you would like to have one big logfile
 | at application/logs/ directory.
 |
 | true == one big log
-| false (or non-existant): daily logs
+| false (or non-existent): daily logs
 */
 $config['one_log'] = false;
 
@@ -517,7 +528,7 @@ $config['sess_time_to_update'] = 300;
 $config['sess_regenerate_destroy'] = FALSE;
 
 /*
- * To make sure we do not collect infinite session we set some garbage collection settings
+ * To make sure we do not collect infinite sessions we set some garbage collection settings
  * see https://www.php.net/manual/en/session.configuration.php#ini.session.gc-probability
  * and https://www.php.net/manual/en/session.configuration.php#ini.session.gc-divisor
  * and https://osvaldas.info/enabling-codeigniters-garbage-collector/
@@ -722,7 +733,7 @@ $config['disable_oqrs'] = false;
 | Special Callsign Feature aka. Clubstations Support
 |--------------------------------------------------------------------------
 |
-| This config switch is meant to use for Special Callsign operations or Clubstations.
+| This config switch is meant for Special Callsign operations or Clubstations.
 | If this switch is set to true it enables a whole bunch of features to handle Special Callsigns and Club Callsigns.
 | For more Information please visit the Wiki:
 | https://github.com/wavelog/wavelog/wiki/Clubstations
@@ -740,7 +751,7 @@ $config['special_callsign'] = false;
 | Impersonate
 |--------------------------------------------------------------------------
 |
-| This config switch disables the impersonate feature. This feauture is used to impersonate another user.
+| This config switch disables the impersonate feature. This feature is used to impersonate another user.
 | Impersonate is enabled by default. To disable it, set the value to false. Also the special_callsign feature needs this to be false.
 |
 */
@@ -836,7 +847,7 @@ $config['max_login_attempts'] = 3;
 
 /*
 |--------------------------------------------------------------------------
-| enable DCL Interface
+| Enable DCL Interface
 | Set this to true if your Users and you want to connect your instance to the German DCL
 |--------------------------------------------------------------------------
  */

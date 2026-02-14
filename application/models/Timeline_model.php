@@ -340,8 +340,10 @@ class Timeline_model extends CI_Model {
 		}
 
 		if ($mode != 'All') {
+			$this->db->group_start();
 			$this->db->where('col_mode', $mode);
 			$this->db->or_where('col_submode', $mode);
+			$this->db->group_end();
 		}
 
 		$this->db->where_in('station_profile.station_id', $logbooks_locations_array);

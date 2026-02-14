@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-02-06 16:02+0000\n"
-"PO-Revision-Date: 2026-02-05 08:52+0000\n"
+"POT-Creation-Date: 2026-02-13 08:13+0000\n"
+"PO-Revision-Date: 2026-02-09 22:54+0000\n"
 "Last-Translator: \"Juuso W.\" <oh1jw@tuta.io>\n"
 "Language-Team: Finnish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/fi/>\n"
@@ -370,8 +370,6 @@ msgstr "DOK"
 #: application/views/lotw_views/index.php:33
 #: application/views/qso/award_tabs.php:29
 #: application/views/qso/edit_ajax.php:234 application/views/qso/index.php:464
-#: application/views/search/cqzones_result.php:15
-#: application/views/search/ituzones_result.php:15
 #: application/views/search/result.php:27
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/stationsetup/linkedlocations.php:33
@@ -1535,8 +1533,6 @@ msgstr ""
 #: application/views/qso/components/previous_contacts.php:77
 #: application/views/qso/edit_ajax.php:121 application/views/qso/index.php:229
 #: application/views/satellite/satinfo.php:7
-#: application/views/search/cqzones_result.php:10
-#: application/views/search/ituzones_result.php:10
 #: application/views/search/lotw_unconfirmed_result.php:8
 #: application/views/search/search_result_ajax.php:4
 #: application/views/simplefle/index.php:158
@@ -1733,8 +1729,6 @@ msgstr "osavaltio"
 #: application/views/qso/edit_ajax.php:157 application/views/qso/index.php:376
 #: application/views/satellite/pass.php:46
 #: application/views/satellite/pass.php:85
-#: application/views/search/cqzones_result.php:12
-#: application/views/search/ituzones_result.php:12
 #: application/views/search/result.php:49
 #: application/views/search/search_result_ajax.php:13
 #: application/views/simplefle/index.php:161
@@ -1854,8 +1848,6 @@ msgstr "Etäisyys"
 #: application/views/qslprint/qsolist.php:10
 #: application/views/qso/components/previous_contacts.php:88
 #: application/views/qso/edit_ajax.php:85 application/views/qso/index.php:244
-#: application/views/search/cqzones_result.php:11
-#: application/views/search/ituzones_result.php:11
 #: application/views/search/lotw_unconfirmed_result.php:9
 #: application/views/search/search_result_ajax.php:15
 #: application/views/simplefle/index.php:157
@@ -1960,12 +1952,12 @@ msgstr "Poistettu DXCC"
 msgid "Advanced logbook"
 msgstr "Edistynyt lokikirja"
 
-#: application/controllers/Logbookadvanced.php:925
+#: application/controllers/Logbookadvanced.php:932
 #, php-format
 msgid "DXCC updated for %d QSO(s)."
 msgstr "DXCC päivitetty %d QSO:lle)."
 
-#: application/controllers/Logbookadvanced.php:941
+#: application/controllers/Logbookadvanced.php:948
 #, php-format
 msgid "Map for DXCC %s and gridsquare %s."
 msgstr "DXCC %s:n ja lokaattoriruudun %s kartta."
@@ -2499,10 +2491,10 @@ msgstr "Muokkaa"
 #: application/views/club/permissions.php:353
 #: application/views/contesting/add.php:62
 #: application/views/interface_assets/footer.php:65
-#: application/views/interface_assets/footer.php:2764
-#: application/views/interface_assets/footer.php:2782
-#: application/views/interface_assets/footer.php:2803
-#: application/views/interface_assets/footer.php:2821
+#: application/views/interface_assets/footer.php:2669
+#: application/views/interface_assets/footer.php:2687
+#: application/views/interface_assets/footer.php:2708
+#: application/views/interface_assets/footer.php:2726
 #: application/views/labels/index.php:48 application/views/labels/index.php:84
 #: application/views/logbookadvanced/index.php:873
 #: application/views/lotw_views/index.php:134
@@ -2617,19 +2609,13 @@ msgstr "Satelliittiajastimet"
 #: application/views/oqrs/index.php:30
 #: application/views/oqrs/showrequests.php:69
 #: application/views/qslcard/searchform.php:8
-#: application/views/search/cqzones.php:4
-#: application/views/search/cqzones.php:12
-#: application/views/search/cqzones.php:39
 #: application/views/search/filter.php:20
-#: application/views/search/filter.php:41
-#: application/views/search/ituzones.php:4
-#: application/views/search/ituzones.php:12
-#: application/views/search/ituzones.php:39
+#: application/views/search/filter.php:35
 #: application/views/search/lotw_unconfirmed.php:4
 #: application/views/search/lotw_unconfirmed.php:12
-#: application/views/search/lotw_unconfirmed.php:40
+#: application/views/search/lotw_unconfirmed.php:34
 #: application/views/search/main.php:4 application/views/search/main.php:12
-#: application/views/search/main.php:36
+#: application/views/search/main.php:30
 #: application/views/visitor/layout/footer.php:13
 #: application/views/visitor/layout/header.php:97
 #: application/views/visitor/layout/header.php:98
@@ -2641,14 +2627,6 @@ msgid "Search & Filter Logbook"
 msgstr "Etsi ja suodata lokikirjaa"
 
 #: application/controllers/Search.php:52
-msgid "Incorrectly logged CQ zones"
-msgstr "Väärin kirjatut CQ-vyöhykkeet"
-
-#: application/controllers/Search.php:64
-msgid "Incorrectly logged ITU zones"
-msgstr "Virheellisesti kirjatut ITU-alueet"
-
-#: application/controllers/Search.php:76
 msgid ""
 "QSOs unconfirmed on LoTW, but the callsign has uploaded to LoTW after QSO "
 "date"
@@ -2683,6 +2661,7 @@ msgstr "Muokkaa aseman sijaintia: "
 #: application/views/calltester/index.php:5 application/views/csv/index.php:19
 #: application/views/dxatlas/index.php:19
 #: application/views/labels/index.php:124
+#: application/views/logbookadvanced/dbtoolsdialog.php:16
 #: application/views/logbookadvanced/edit.php:18
 #: application/views/logbookadvanced/showMissingDxccQsos.php:26
 #: application/views/qslprint/index.php:20 application/views/qso/index.php:137
@@ -3679,7 +3658,7 @@ msgstr "QSO päivitetty"
 msgid "Bearing"
 msgstr "Suuntima"
 
-#: application/models/Logbookadvanced_model.php:1704
+#: application/models/Logbookadvanced_model.php:1723
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
 msgstr "VuccGrids-taulukko on tyhjä. Tuo ensin VUCC-ruutuaineisto."
 
@@ -3881,8 +3860,8 @@ msgstr "Ero"
 #: application/views/gridmap/index.php:144
 #: application/views/gridmap/index.php:158
 #: application/views/interface_assets/footer.php:48
-#: application/views/interface_assets/footer.php:1646
-#: application/views/interface_assets/footer.php:1785
+#: application/views/interface_assets/footer.php:1551
+#: application/views/interface_assets/footer.php:1690
 #: application/views/kml/index.php:21 application/views/kml/index.php:33
 #: application/views/kml/index.php:49 application/views/kml/index.php:67
 #: application/views/kml/index.php:79
@@ -3914,9 +3893,7 @@ msgstr "Ero"
 #: application/views/oqrs/showrequests.php:64
 #: application/views/qslprint/index.php:22
 #: application/views/qslprint/qslprint.php:81
-#: application/views/search/cqzones.php:33
-#: application/views/search/ituzones.php:33
-#: application/views/search/lotw_unconfirmed.php:34
+#: application/views/search/lotw_unconfirmed.php:28
 #: application/views/stationsetup/exportmapoptions.php:33
 #: application/views/statistics/antennaanalytics.php:22
 #: application/views/statistics/antennaanalytics.php:34
@@ -4465,6 +4442,7 @@ msgstr "Mitään ei löytynyt!"
 #: application/views/logbookadvanced/checkresult.php:240
 #: application/views/logbookadvanced/checkresult.php:316
 #: application/views/logbookadvanced/checkresult.php:387
+#: application/views/logbookadvanced/dbtoolsdialog.php:22
 #: application/views/logbookadvanced/qslcarousel.php:30
 #: application/views/logbookadvanced/showUpdateResult.php:43
 #: application/views/lotw_views/index.php:32
@@ -4478,11 +4456,7 @@ msgstr "Mitään ei löytynyt!"
 #: application/views/qslprint/qsolist.php:6
 #: application/views/qso/edit_ajax.php:64 application/views/qso/index.php:214
 #: application/views/reg1test/index.php:33
-#: application/views/search/cqzones.php:35
-#: application/views/search/cqzones_result.php:9
-#: application/views/search/ituzones.php:35
-#: application/views/search/ituzones_result.php:9
-#: application/views/search/lotw_unconfirmed.php:36
+#: application/views/search/lotw_unconfirmed.php:30
 #: application/views/search/lotw_unconfirmed_result.php:6
 #: application/views/search/result.php:11
 #: application/views/simplefle/index.php:156
@@ -4594,8 +4568,6 @@ msgstr ""
 #: application/views/qslprint/qsolist.php:7 application/views/qso/index.php:154
 #: application/views/qso/index.php:190 application/views/satellite/pass.php:50
 #: application/views/satellite/skedtable.php:7
-#: application/views/search/cqzones_result.php:7
-#: application/views/search/ituzones_result.php:7
 #: application/views/search/search_result_ajax.php:89
 #: application/views/simplefle/index.php:154
 #: application/views/statistics/initialresult.php:15
@@ -4635,8 +4607,6 @@ msgstr "Päivä"
 #: application/views/qslcard/searchresult.php:6
 #: application/views/qslprint/qslprint.php:24
 #: application/views/qslprint/qsolist.php:8 application/views/qso/index.php:195
-#: application/views/search/cqzones_result.php:8
-#: application/views/search/ituzones_result.php:8
 #: application/views/search/search_result_ajax.php:91
 #: application/views/simplefle/index.php:155
 #: application/views/statistics/initialresult.php:16
@@ -4783,7 +4753,7 @@ msgstr ""
 #: application/views/adif/import.php:162
 #: application/views/interface_assets/footer.php:34
 #: application/views/interface_assets/footer.php:642
-#: application/views/interface_assets/footer.php:2521
+#: application/views/interface_assets/footer.php:2426
 msgid "DANGER"
 msgstr "VAARA"
 
@@ -5260,7 +5230,7 @@ msgstr "Wavelog-instanssin API-URL on"
 #: application/views/sattimers/index.php:73
 #: application/views/sattimers/index.php:75
 #: application/views/sattimers/index.php:77
-#: application/views/search/filter.php:72
+#: application/views/search/filter.php:66
 msgid "Info"
 msgstr "Info"
 
@@ -5547,7 +5517,6 @@ msgstr "Yhteensä"
 #: application/views/logbookadvanced/useroptions.php:187
 #: application/views/lookup/index.php:3 application/views/map/qso_map.php:69
 #: application/views/qso/edit_ajax.php:308 application/views/qso/index.php:513
-#: application/views/search/cqzones_result.php:13
 #: application/views/station_profile/create.php:128
 #: application/views/station_profile/edit.php:153
 #: application/views/timeline/index.php:327
@@ -5813,7 +5782,7 @@ msgstr "Näytä QSOt QSL-tyypillä"
 #: application/views/awards/iota/index.php:64
 #: application/views/awards/itu/index.php:60
 #: application/views/awards/wac/index.php:45
-#: application/views/interface_assets/footer.php:2500
+#: application/views/interface_assets/footer.php:2405
 #: application/views/logbookadvanced/index.php:54
 #: application/views/qso/edit_ajax.php:420
 #: application/views/view_log/qso.php:25
@@ -6007,7 +5976,7 @@ msgstr "Jokainen bandi"
 #: application/views/logbookadvanced/index.php:878
 #: application/views/oqrs/showrequests.php:70
 #: application/views/qrbcalc/index.php:19
-#: application/views/search/filter.php:43 application/views/user/edit.php:724
+#: application/views/search/filter.php:37 application/views/user/edit.php:724
 msgid "Reset"
 msgstr "Palauta"
 
@@ -6522,7 +6491,6 @@ msgstr "Poistettu"
 #: application/views/logbookadvanced/useroptions.php:193
 #: application/views/lookup/index.php:8 application/views/map/qso_map.php:71
 #: application/views/qso/edit_ajax.php:317 application/views/qso/index.php:523
-#: application/views/search/ituzones_result.php:13
 #: application/views/station_profile/create.php:143
 #: application/views/station_profile/edit.php:168
 #: application/views/user/modals/first_login_wizard.php:84
@@ -6812,7 +6780,7 @@ msgid "Band Categories"
 msgstr "Bandikategoriat"
 
 #: application/views/awards/pl_polska/index.php:372
-#: application/views/logbookadvanced/dbtoolsdialog.php:56
+#: application/views/logbookadvanced/dbtoolsdialog.php:77
 #: application/views/logbookadvanced/index.php:819
 msgid "Fix State"
 msgstr "Korjaa osavaltio"
@@ -8033,7 +8001,7 @@ msgstr "Ei mitään"
 #: application/views/contesting/index.php:160
 #: application/views/qso/index.php:414
 msgid "Live - WebSocket"
-msgstr ""
+msgstr "Live - WebSocket"
 
 #: application/views/bandmap/list.php:242 application/views/qso/index.php:416
 msgid "Polling - "
@@ -11562,10 +11530,10 @@ msgid "QSL Date"
 msgstr "QSL-päivämäärä"
 
 #: application/views/eqslcard/index.php:64
-#: application/views/interface_assets/footer.php:2765
-#: application/views/interface_assets/footer.php:2783
-#: application/views/interface_assets/footer.php:2804
-#: application/views/interface_assets/footer.php:2822
+#: application/views/interface_assets/footer.php:2670
+#: application/views/interface_assets/footer.php:2688
+#: application/views/interface_assets/footer.php:2709
+#: application/views/interface_assets/footer.php:2727
 #: application/views/qslcard/index.php:77
 #: application/views/view_log/qso.php:786
 msgid "View"
@@ -12083,7 +12051,7 @@ msgid "Your query has been saved!"
 msgstr "Kyselysi on tallennettu!"
 
 #: application/views/interface_assets/footer.php:553
-#: application/views/search/filter.php:49
+#: application/views/search/filter.php:43
 msgid "Edit queries"
 msgstr "Muokkaa kyselyjä"
 
@@ -12092,7 +12060,7 @@ msgid "Stored queries:"
 msgstr "Tallennetut kyselyt:"
 
 #: application/views/interface_assets/footer.php:560
-#: application/views/search/filter.php:63
+#: application/views/search/filter.php:57
 msgid "Run Query"
 msgstr "Suorita kysely"
 
@@ -12109,15 +12077,13 @@ msgstr "Sinun täytyy tehdä kysely ennen kuin voit suorittaa hakua!"
 
 #: application/views/interface_assets/footer.php:598
 #: application/views/interface_assets/footer.php:735
-#: application/views/search/filter.php:82
+#: application/views/search/filter.php:76
 msgid "Export to ADIF"
 msgstr "Vie ADIF-muotoon"
 
 #: application/views/interface_assets/footer.php:599
 #: application/views/interface_assets/footer.php:736
-#: application/views/search/cqzones.php:40
-#: application/views/search/ituzones.php:40
-#: application/views/search/main.php:37
+#: application/views/search/main.php:31
 msgid "Open in the Advanced Logbook"
 msgstr "Avaa laajennettu lokikirja"
 
@@ -12159,7 +12125,7 @@ msgstr "Lukumäärä: "
 msgid "Grids: "
 msgstr "Lokaattoriruudut: "
 
-#: application/views/interface_assets/footer.php:1198
+#: application/views/interface_assets/footer.php:1103
 #: application/views/logbookadvanced/index.php:13
 #: application/views/map/qso_map.php:7
 #: application/views/satellite/flightpath.php:11
@@ -12167,57 +12133,57 @@ msgctxt "Map Options"
 msgid "Gridsquares"
 msgstr "Lokaattoriruudut"
 
-#: application/views/interface_assets/footer.php:1573
-#: application/views/interface_assets/footer.php:1577
-#: application/views/interface_assets/footer.php:1580
-#: application/views/interface_assets/footer.php:1717
-#: application/views/interface_assets/footer.php:1721
-#: application/views/interface_assets/footer.php:1724
+#: application/views/interface_assets/footer.php:1478
+#: application/views/interface_assets/footer.php:1482
+#: application/views/interface_assets/footer.php:1485
+#: application/views/interface_assets/footer.php:1622
+#: application/views/interface_assets/footer.php:1626
+#: application/views/interface_assets/footer.php:1629
 msgid "grid square"
 msgstr "Lokaattori"
 
-#: application/views/interface_assets/footer.php:1580
-#: application/views/interface_assets/footer.php:1724
+#: application/views/interface_assets/footer.php:1485
+#: application/views/interface_assets/footer.php:1629
 msgid "Total count"
 msgstr "Yhteensä"
 
-#: application/views/interface_assets/footer.php:2502
+#: application/views/interface_assets/footer.php:2407
 msgid "QSL Card for "
 msgstr "QSL-kortti "
 
-#: application/views/interface_assets/footer.php:2522
+#: application/views/interface_assets/footer.php:2427
 msgid "Warning! Are you sure you want to delete this QSL card?"
 msgstr "Varoitus! Haluatko varmasti poistaa tämän QSL-kortin?"
 
-#: application/views/interface_assets/footer.php:2562
+#: application/views/interface_assets/footer.php:2467
 #: application/views/view_log/qso.php:43
 msgid "eQSL Card"
 msgstr "eQSL-kortti"
 
-#: application/views/interface_assets/footer.php:2564
+#: application/views/interface_assets/footer.php:2469
 msgid "eQSL Card for "
 msgstr "eQSL-kortti "
 
-#: application/views/interface_assets/footer.php:2776
-#: application/views/interface_assets/footer.php:2815
+#: application/views/interface_assets/footer.php:2681
+#: application/views/interface_assets/footer.php:2720
 #: application/views/view_log/qso.php:776
 msgid "QSL image file"
 msgstr "QSL-kuvatiedosto"
 
-#: application/views/interface_assets/footer.php:2795
+#: application/views/interface_assets/footer.php:2700
 msgid "Front QSL Card:"
 msgstr "QSL-kortin etupuoli:"
 
-#: application/views/interface_assets/footer.php:2833
+#: application/views/interface_assets/footer.php:2738
 msgid "Back QSL Card:"
 msgstr "QSL-kortin takapuoli:"
 
-#: application/views/interface_assets/footer.php:2844
-#: application/views/interface_assets/footer.php:2869
+#: application/views/interface_assets/footer.php:2749
+#: application/views/interface_assets/footer.php:2774
 msgid "Add additional QSOs to a QSL Card"
 msgstr "Liitä muita QSOja QSL-korttiin"
 
-#: application/views/interface_assets/footer.php:2880
+#: application/views/interface_assets/footer.php:2785
 msgid "Something went wrong. Please try again!"
 msgstr "Jokin meni pieleen. Yritä uudelleen!"
 
@@ -12951,7 +12917,6 @@ msgstr ""
 "johtaa virheellisiin tietoihin. Käytä varoen!"
 
 #: application/views/logbookadvanced/checkresult.php:247
-#: application/views/search/cqzones_result.php:14
 msgid "DXCC CQ Zone"
 msgstr "DXCC CQ-alue"
 
@@ -12962,8 +12927,6 @@ msgstr "DXCC CQ-alue"
 #: application/views/qslprint/qslprint.php:31
 #: application/views/qslprint/qsolist.php:14
 #: application/views/qso/edit_ajax.php:41 application/views/qso/index.php:97
-#: application/views/search/cqzones_result.php:16
-#: application/views/search/ituzones_result.php:16
 #: application/views/search/lotw_unconfirmed_result.php:11
 #: application/views/search/search_result_ajax.php:130
 #: application/views/user/edit.php:530
@@ -12989,8 +12952,6 @@ msgstr "Asema"
 
 #: application/views/logbookadvanced/checkresult.php:293
 #: application/views/logbookadvanced/checkresult.php:369
-#: application/views/search/cqzones_result.php:51
-#: application/views/search/ituzones_result.php:51
 msgid "No incorrect CQ Zones were found."
 msgstr "Väärin olevia CQ-vyöhykkeitä ei löytynyt."
 
@@ -13025,7 +12986,6 @@ msgstr ""
 "toiminnan ja voi johtaa virheellisiin tietoihin. Käytä varoen!"
 
 #: application/views/logbookadvanced/checkresult.php:323
-#: application/views/search/ituzones_result.php:14
 msgid "DXCC ITU Zone"
 msgstr "DXCC ITU-alue"
 
@@ -13069,89 +13029,93 @@ msgstr ""
 "Varoitus. Tämä työkalu voi aiheuttaa peruuttamattomia muutoksia, ja sitä "
 "tulisi käyttää vain, jos tiedät mitä teet."
 
-#: application/views/logbookadvanced/dbtoolsdialog.php:12
+#: application/views/logbookadvanced/dbtoolsdialog.php:19
+msgid "All Station Locations"
+msgstr ""
+
+#: application/views/logbookadvanced/dbtoolsdialog.php:33
 msgid "Check all QSOs in the logbook for incorrect CQ Zones"
 msgstr "Tarkista kaikki QSOt lokikirjasta virheellisten CQ-alueiden varalta"
 
-#: application/views/logbookadvanced/dbtoolsdialog.php:13
+#: application/views/logbookadvanced/dbtoolsdialog.php:34
 msgid "Use Wavelog to determine CQ Zone for all QSOs."
 msgstr "Käytä Wavelogia määrittämään CQ-vyöhyke kaikille QSOille."
 
-#: application/views/logbookadvanced/dbtoolsdialog.php:17
-#: application/views/logbookadvanced/dbtoolsdialog.php:28
-#: application/views/logbookadvanced/dbtoolsdialog.php:39
-#: application/views/logbookadvanced/dbtoolsdialog.php:50
-#: application/views/logbookadvanced/dbtoolsdialog.php:61
-#: application/views/logbookadvanced/dbtoolsdialog.php:72
-#: application/views/logbookadvanced/dbtoolsdialog.php:83
-#: application/views/logbookadvanced/dbtoolsdialog.php:96
-#: application/views/logbookadvanced/dbtoolsdialog.php:108
+#: application/views/logbookadvanced/dbtoolsdialog.php:38
+#: application/views/logbookadvanced/dbtoolsdialog.php:49
+#: application/views/logbookadvanced/dbtoolsdialog.php:60
+#: application/views/logbookadvanced/dbtoolsdialog.php:71
+#: application/views/logbookadvanced/dbtoolsdialog.php:82
+#: application/views/logbookadvanced/dbtoolsdialog.php:93
+#: application/views/logbookadvanced/dbtoolsdialog.php:104
+#: application/views/logbookadvanced/dbtoolsdialog.php:117
+#: application/views/logbookadvanced/dbtoolsdialog.php:129
 msgid "Check"
 msgstr "Tarkista"
 
-#: application/views/logbookadvanced/dbtoolsdialog.php:23
+#: application/views/logbookadvanced/dbtoolsdialog.php:44
 msgid "Check all QSOs in the logbook for incorrect ITU Zones"
 msgstr "Tarkista kaikki QSOt lokikirjasta virheellisten ITU-alueiden varalta"
 
-#: application/views/logbookadvanced/dbtoolsdialog.php:24
+#: application/views/logbookadvanced/dbtoolsdialog.php:45
 msgid "Use Wavelog to determine ITU Zone for all QSOs."
 msgstr "Käytä Wavelogia ITU-alueen määrittämiseen kaikille QSOille."
 
-#: application/views/logbookadvanced/dbtoolsdialog.php:34
+#: application/views/logbookadvanced/dbtoolsdialog.php:55
 msgid "Check Gridsquares"
 msgstr "Tarkista lokaattoriruudut"
 
-#: application/views/logbookadvanced/dbtoolsdialog.php:35
+#: application/views/logbookadvanced/dbtoolsdialog.php:56
 msgid "Check gridsquares that does not match the DXCC"
 msgstr "Tarkista lokaattoriruudut jotka eivät vastaa DXCC:tä"
 
-#: application/views/logbookadvanced/dbtoolsdialog.php:45
+#: application/views/logbookadvanced/dbtoolsdialog.php:66
 msgid "Fix Continent"
 msgstr "Korjaa manner"
 
-#: application/views/logbookadvanced/dbtoolsdialog.php:46
+#: application/views/logbookadvanced/dbtoolsdialog.php:67
 msgid "Update missing or incorrect continent information"
 msgstr "Päivitä puuttuvat tai virheelliset maanosatiedot"
 
-#: application/views/logbookadvanced/dbtoolsdialog.php:57
+#: application/views/logbookadvanced/dbtoolsdialog.php:78
 msgid "Update missing state/province information"
 msgstr "Päivitä puuttuvat osavaltio/provinssitiedot"
 
-#: application/views/logbookadvanced/dbtoolsdialog.php:67
+#: application/views/logbookadvanced/dbtoolsdialog.php:88
 #: application/views/logbookadvanced/index.php:68
 msgid "Update Distances"
 msgstr "Päivitä etäisyydet"
 
-#: application/views/logbookadvanced/dbtoolsdialog.php:68
+#: application/views/logbookadvanced/dbtoolsdialog.php:89
 msgid "Calculate and update distance information for QSOs"
 msgstr "Laske ja päivitä etäisyystiedot QSOille"
 
-#: application/views/logbookadvanced/dbtoolsdialog.php:78
+#: application/views/logbookadvanced/dbtoolsdialog.php:99
 msgid "Check all QSOs in the logbook for incorrect DXCC"
 msgstr ""
 "Tarkista kaikki QSO:t lokikirjasta virheellisten DXCC-merkintöjen varalta"
 
-#: application/views/logbookadvanced/dbtoolsdialog.php:79
+#: application/views/logbookadvanced/dbtoolsdialog.php:100
 msgid "Use Wavelog to determine DXCC for all QSOs."
 msgstr "Käytä Wavelogia määrittääksesi DXCC kaikille QSO:ille."
 
-#: application/views/logbookadvanced/dbtoolsdialog.php:90
+#: application/views/logbookadvanced/dbtoolsdialog.php:111
 msgid "Lookup QSOs with missing grid in callbook"
 msgstr "Etsi ja tarkista lokista QSOt, joista puuttuu lokaattoriruutu"
 
-#: application/views/logbookadvanced/dbtoolsdialog.php:91
+#: application/views/logbookadvanced/dbtoolsdialog.php:112
 msgid "Use callbook lookup to set gridsquare"
 msgstr "Käytä callbook-palvelua lokaattoriruudun asettamiseen"
 
-#: application/views/logbookadvanced/dbtoolsdialog.php:92
+#: application/views/logbookadvanced/dbtoolsdialog.php:113
 msgid "This is limited to 150 callsigns for each run!"
 msgstr "Tämä on rajoitettu 150 kutsumerkkiin per ajo!"
 
-#: application/views/logbookadvanced/dbtoolsdialog.php:103
+#: application/views/logbookadvanced/dbtoolsdialog.php:124
 msgid "Check IOTA against DXCC"
 msgstr "Tarkista IOTA DXCCtä vastaan"
 
-#: application/views/logbookadvanced/dbtoolsdialog.php:104
+#: application/views/logbookadvanced/dbtoolsdialog.php:125
 msgid "Use Wavelog to check IOTA against DXCC"
 msgstr "Käytä Wavelogia tarkistaaksesi IOTA DXCCtä vastaan"
 
@@ -14191,7 +14155,7 @@ msgid "These QSOs could not be updated:"
 msgstr "Näitä QSOja ei voitu päivittää:"
 
 #: application/views/logbookadvanced/showUpdateResult.php:45
-#: application/views/search/lotw_unconfirmed.php:32
+#: application/views/search/lotw_unconfirmed.php:26
 msgid "Station location"
 msgstr "Asemasijainti"
 
@@ -15345,7 +15309,7 @@ msgstr "Pyyntö on hylätty eikä sitä käsitellä."
 #: application/views/public_search/empty.php:2
 #: application/views/public_search/result.php:2
 msgid "Searching for"
-msgstr "Haku:"
+msgstr "Haku"
 
 #: application/views/qrbcalc/index.php:3
 msgid "Locator 1"
@@ -16107,7 +16071,7 @@ msgstr ""
 "Jos et ole vielä liittänyt yhtään radiolaitetta, siirry API-sivulle ja luo "
 "API-avain."
 
-#: application/views/radio/index.php:26 application/views/search/filter.php:72
+#: application/views/radio/index.php:26 application/views/search/filter.php:66
 #, php-format
 msgid "You can find out how to use the %s in the wiki."
 msgstr "Ohjeet %s:n käyttöön löydät wikistä."
@@ -16560,83 +16524,40 @@ msgstr "Aikakatkaisu"
 msgid "Azimuth"
 msgstr "Atsimuutti"
 
-#: application/views/search/cqzones.php:5
-#: application/views/search/ituzones.php:5
-#: application/views/search/lotw_unconfirmed.php:5
-#: application/views/search/main.php:5
-msgid "Ready to find a QSO?"
-msgstr "Valmiina etsimään QSOa?"
-
-#: application/views/search/cqzones.php:15
 #: application/views/search/filter.php:4 application/views/search/filter.php:23
-#: application/views/search/ituzones.php:15
 #: application/views/search/lotw_unconfirmed.php:15
 #: application/views/search/main.php:15
 msgid "Advanced Search"
 msgstr "Edistynyt haku"
 
-#: application/views/search/cqzones.php:18
 #: application/views/search/filter.php:26
-#: application/views/search/ituzones.php:18
 #: application/views/search/lotw_unconfirmed.php:18
 #: application/views/search/main.php:18
-msgid "Incorrect CQ Zones"
-msgstr "Virheelliset CQ-alueet"
-
-#: application/views/search/cqzones.php:21
-#: application/views/search/filter.php:29
-#: application/views/search/ituzones.php:21
-#: application/views/search/lotw_unconfirmed.php:21
-#: application/views/search/main.php:21
-msgid "Incorrect ITU Zones"
-msgstr "Virheelliset ITU-alueet"
-
-#: application/views/search/cqzones.php:24
-#: application/views/search/filter.php:32
-#: application/views/search/ituzones.php:24
-#: application/views/search/lotw_unconfirmed.php:24
-#: application/views/search/main.php:24
 msgid "QSOs unconfirmed on LoTW"
 msgstr "QSOt, joita ei ole vahvistettu LoTW:ssä"
 
-#: application/views/search/cqzones.php:31
-#: application/views/search/ituzones.php:31
-msgid "Station location:"
-msgstr "Asemasijainti:"
-
-#: application/views/search/cqzones_result.php:3
-msgid ""
-"The following QSOs were found to have an incorrect CQ zone that this DXCC "
-"normally has (a maximum of 5000 QSOs are shown):"
-msgstr ""
-"Seuraavista QSOista löydettiin väärä CQ-alue, jota tämä DXCC normaalisti "
-"käyttää (enintään 5000 QSO:ta näytetään):"
-
-#: application/views/search/filter.php:46
+#: application/views/search/filter.php:40
 msgid "Save query"
 msgstr "Tallenna kysely"
 
-#: application/views/search/filter.php:53
+#: application/views/search/filter.php:47
 msgid "Stored queries"
 msgstr "Tallennetut kyselyt"
 
-#: application/views/search/filter.php:72
+#: application/views/search/filter.php:66
 msgid "search filter functions"
 msgstr "Hakusuodattimen toiminnot"
 
-#: application/views/search/filter.php:82
+#: application/views/search/filter.php:76
 msgid "Search Results"
 msgstr "Hakutulokset"
 
-#: application/views/search/ituzones_result.php:3
-msgid ""
-"The following QSOs were found to have an incorrect ITU zone that this DXCC "
-"normally has (a maximum of 5000 QSOs are shown):"
-msgstr ""
-"Seuraaville QSQille on merkitty virheellinen ITU-alue, jota tämä DXCC "
-"normaalisti käyttää (näytetään enintään 5000 QSQ:ta):"
+#: application/views/search/lotw_unconfirmed.php:5
+#: application/views/search/main.php:5
+msgid "Ready to find a QSO?"
+msgstr "Valmiina etsimään QSOa?"
 
-#: application/views/search/lotw_unconfirmed.php:29
+#: application/views/search/lotw_unconfirmed.php:23
 msgid ""
 "The search displays QSOs which are unconfirmed on LoTW, but the callsign "
 "worked has uploaded to LoTW after your QSO date."
@@ -16653,7 +16574,7 @@ msgstr "Viimeisin LoTW-lähetys"
 msgid "No QSOs with outstanding LoTW upload were found."
 msgstr "QSOja ei löytynyt, joissa LoTW-lataus olisi vielä tekemättä."
 
-#: application/views/search/main.php:31
+#: application/views/search/main.php:25
 msgid "Callsign / Gridsquare"
 msgstr "Kutsu / Lokaattori"
 
@@ -19362,6 +19283,35 @@ msgstr "CQz"
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr "CQz geojson"
+
+#~ msgid "Incorrectly logged CQ zones"
+#~ msgstr "Väärin kirjatut CQ-vyöhykkeet"
+
+#~ msgid "Incorrectly logged ITU zones"
+#~ msgstr "Virheellisesti kirjatut ITU-alueet"
+
+#~ msgid "Incorrect CQ Zones"
+#~ msgstr "Virheelliset CQ-alueet"
+
+#~ msgid "Incorrect ITU Zones"
+#~ msgstr "Virheelliset ITU-alueet"
+
+#~ msgid "Station location:"
+#~ msgstr "Asemasijainti:"
+
+#~ msgid ""
+#~ "The following QSOs were found to have an incorrect CQ zone that this DXCC "
+#~ "normally has (a maximum of 5000 QSOs are shown):"
+#~ msgstr ""
+#~ "Seuraavista QSOista löydettiin väärä CQ-alue, jota tämä DXCC normaalisti "
+#~ "käyttää (enintään 5000 QSO:ta näytetään):"
+
+#~ msgid ""
+#~ "The following QSOs were found to have an incorrect ITU zone that this "
+#~ "DXCC normally has (a maximum of 5000 QSOs are shown):"
+#~ msgstr ""
+#~ "Seuraaville QSQille on merkitty virheellinen ITU-alue, jota tämä DXCC "
+#~ "normaalisti käyttää (näytetään enintään 5000 QSQ:ta):"
 
 #~ msgid "Live - "
 #~ msgstr "Live - "
