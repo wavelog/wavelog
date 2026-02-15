@@ -763,15 +763,25 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
           <input size="20" id="country" type="hidden" name="country" value="" />
         </div>
 
-        <div class="btn-group" role="group">
-              <button tabindex="22" type="button" class="btn btn-secondary" id="btn_reset"><?= __("Clear"); ?></button>
-        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></button>
-        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                <li><a class="dropdown-item" href="#" id="btn_fullreset"><?= __("Reset to Default"); ?></a></li>
-            </ul>
+        <div class="d-flex flex-nowrap align-items-center gap-2">
+          <div class="btn-group" role="group">
+              <button tabindex="22" type="button" class="btn btn-secondary btn-sm" id="btn_reset"><?= __("Clear"); ?></button>
+              <button id="btnGroupDrop1" type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></button>
+              <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                  <li><a class="dropdown-item" href="#" id="btn_fullreset"><?= __("Reset to Default"); ?></a></li>
+              </ul>
+          </div>
+
+          <button tabindex="20" type="button" id="send_dxcluster_spot" class="btn btn-outline-primary btn-sm" data-bs-toggle="tooltip" title="<?= __("Send spot to DX Cluster"); ?>">
+              <i class="fas fa-bullhorn"></i><span class="d-none d-md-inline ms-1"><?= __("Send to DX Cluster"); ?></span>
+          </button>
+
+          <button tabindex="21" type="submit" id="saveQso" name="saveQso" class="btn btn-primary btn-sm">
+              <i class="fas fa-save"></i><span class="d-none d-md-inline ms-1"><?= __("Save QSO"); ?></span>
+          </button>
         </div>
-        <button tabindex="21" type="submit" id="saveQso" name="saveQso" class="btn btn-primary"><i class="fas fa-save"></i> <?= __("Save QSO"); ?></button>
-        <div class="alert alert-danger warningOnSubmit mt-3" style="display:none;"><span><i class="fas fa-times-circle"></i></span> <span class="warningOnSubmit_txt ms-1"><?= __("Error"); ?></span></div>
+
+<div class="alert alert-danger warningOnSubmit mt-3" style="display:none;"><span><i class="fas fa-times-circle"></i></span> <span class="warningOnSubmit_txt ms-1"><?= __("Error"); ?></span></div>
       </div>
     </form>
     </div>
@@ -937,3 +947,38 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
 <script>
 	var station_callsign = "<?php echo $station_callsign; ?>";
 </script>
+
+
+<!-- DXCluster Spot Modal -->
+<div class="modal fade" id="dxclusterSpotModal" tabindex="-1" aria-labelledby="dxclusterSpotModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="dxclusterSpotModalLabel"><?= __("Send spot to DX Cluster"); ?></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?= __("Close"); ?>"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label class="form-label"><?= __("DX Callsign"); ?></label>
+          <input type="text" class="form-control uppercase" id="dxcluster_spot_dxcall" maxlength="20">
+        </div>
+        <div class="mb-3">
+          <label class="form-label"><?= __("Frequency (kHz)"); ?></label>
+          <input type="number" class="form-control" id="dxcluster_spot_freq" step="0.1" min="0">
+          <small class="form-text text-muted"><?= __("Will be taken from the current QSO frequency by default."); ?></small>
+        </div>
+        <div class="mb-3">
+          <label class="form-label"><?= __("Comment"); ?></label>
+          <input type="text" class="form-control" id="dxcluster_spot_comment" maxlength="60" placeholder="FT8 / CW / SSB ...">
+        </div>
+        <div class="alert alert-danger d-none" id="dxcluster_spot_error"></div>
+        <div class="alert alert-success d-none" id="dxcluster_spot_success"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?= __("Close"); ?></button>
+        <button type="button" class="btn btn-primary" id="dxcluster_spot_send_btn"><?= __("Send"); ?></button>
+      </div>
+    </div>
+  </div>
+</div>
+

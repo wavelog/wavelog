@@ -161,6 +161,10 @@ class Options extends CI_Controller {
 		$this->form_validation->set_rules('dxcache_url', 'URL of DXCache', 'valid_url');
 		$this->form_validation->set_rules('dxcluster_maxage', 'Max Age of Spots', 'required');
 		$this->form_validation->set_rules('dxcluster_decont', 'de continent', 'required');
+		$this->form_validation->set_rules('dxcluster_out_host', 'DX Cluster Host', 'trim');
+		$this->form_validation->set_rules('dxcluster_out_port', 'DX Cluster Port', 'integer');
+		$this->form_validation->set_rules('dxcluster_out_timeout', 'DX Cluster Timeout', 'integer');
+
 
 		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('interface_assets/header', $data);
@@ -181,6 +185,15 @@ class Options extends CI_Controller {
 			if($dxcache_url_update == TRUE) {
 				$this->session->set_flashdata('success', __("DXCluster Cache URL changed to ").$this->input->post('dxcache_url'));
 			}
+
+			// Outbound DXCluster spotting options
+			$enabled = $this->input->post('dxcluster_out_enabled') ? '1' : '0';
+			$this->optionslib->update('dxcluster_out_enabled', $enabled, 'yes');
+			$this->optionslib->update('dxcluster_out_host', trim((string)$this->input->post('dxcluster_out_host')), 'yes');
+			$this->optionslib->update('dxcluster_out_port', (string)(int)$this->input->post('dxcluster_out_port'), 'yes');
+			$this->optionslib->update('dxcluster_out_timeout', (string)(int)$this->input->post('dxcluster_out_timeout'), 'yes');
+			$this->optionslib->update('dxcluster_out_password', (string)$this->input->post('dxcluster_out_password'), 'yes');
+
 			redirect('/options/dxcluster');
 		}
 	}

@@ -3390,3 +3390,71 @@ $(document).ready(function () {
 	// everything loaded and ready 2 go
 	bc.postMessage('ready');
 });
+
+
+// Manual outbound DXCluster spot
+$("#send_dxcluster_spot").on("click", function () {
+    // Prefill callsign and frequency
+    $("#dxcluster_spot_error").addClass("d-none").text("");
+    $("#dxcluster_spot_success").addClass("d-none").text("");
+
+    var dxcall = ($("#callsign").val() || "").trim();
+    $("#dxcluster_spot_dxcall").val(dxcall);
+
+    // frequency hidden field is in Hz
+    var hz = parseFloat($("#frequency").val() || "0");
+    var khz = 0;
+    if (hz > 0) {
+        khz = hz / 1000.0;
+    } else {
+        // fallback to displayed field (kHz) if available
+        khz = parseFloat($("#freq_calculated").val() || "0");
+    }
+    if (khz > 0) {
+        $("#dxcluster_spot_freq").val(khz.toFixed(1));
+    }
+
+    var modal = new bootstrap.Modal(document.getElementById('dxclusterSpotModal'));
+    modal.show();
+});
+
+$("#dxcluster_spot_send_btn").on("click", function () {
+    $("#dxcluster_spot_error").addClass("d-none").text("");
+    $("#dxcluster_spot_success").addClass("d-none").text("");
+
+    var dxcall = ($("#dxcluster_spot_dxcall").val() || "").trim().toUpperCase();
+    var freq = parseFloat($("#dxcluster_spot_freq").val() || "0");
+    var comment = ($("#dxcluster_spot_comment").val() || "").trim();
+
+    if (dxcall === "" || freq <= 0) {
+        $("#dxcluster_spot_error").removeClass("d-none").text("Please enter DX callsign and a valid frequency.");
+        return;
+    }
+
+    $.ajax({
+        url: base_url + "index.php/dxcluster/spot",
+        method: "POST",
+        dataType: "json",
+        data: {
+            dxcall: dxcall,
+            freq_khz: freq,
+            comment: comment
+        },
+        success: function (res) {
+            if (res && res.ok) {
+                $("#dxcluster_spot_success").removeClass("d-none").text(res.message || "Spot sent");
+            } else {
+                $("#dxcluster_spot_error").removeClass("d-none").text((res && res.message) ? res.message : "Failed to send spot");
+            }
+        },
+        error: function (xhr) {
+            var msg = "Failed to send spot";
+            try {
+                var j = JSON.parse(xhr.responseText);
+                if (j && j.message) msg = j.message;
+            } catch(e) {}
+            $("#dxcluster_spot_error").removeClass("d-none").text(msg);
+        }
+    });
+});
+

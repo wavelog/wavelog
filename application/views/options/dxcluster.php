@@ -63,6 +63,59 @@
                             <small id="dxcluster_decontHelp" class="form-text text-muted"><?= __("Only spots by spotters from this continent are shown"); ?></small>
                         </div>
  
+                        
+                        <hr class="my-4"/>
+
+                        <h5 class="mb-3"><?= __("Outbound Spotting (Telnet)"); ?></h5>
+                        <p class="text-muted mb-3">
+                            <?= __("Enable a manual 'Send to DX Cluster' button in the Live Log. This will connect to a Telnet DX Cluster and send a spot."); ?>
+                        </p>
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="1"
+                                       id="dxcluster_out_enabled" name="dxcluster_out_enabled"
+                                       <?php echo (($this->optionslib->get_option('dxcluster_out_enabled') ?? '0') == '1' ? 'checked' : ''); ?> />
+                                <label class="form-check-label" for="dxcluster_out_enabled">
+                                    <?= __("Enable outbound spotting"); ?>
+                                </label>
+                            </div>
+                            <small class="form-text text-muted">
+                                <?= __("If enabled, users can manually send a spot from the QSO entry screen. Note: Some DXSpider nodes require prior registration to accept spots (e.g., register@dxspider.co.uk)."); ?>
+                            </small>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-8 mb-3">
+                                <label for="dxcluster_out_host"><?= __("DX Cluster Host"); ?></label>
+                                <input type="text" name="dxcluster_out_host" class="form-control" id="dxcluster_out_host"
+                                       value="<?php echo $this->optionslib->get_option('dxcluster_out_host'); ?>"
+                                       placeholder="cluster.example.org">
+                                <small class="form-text text-muted"><?= __("Hostname or IP of the Telnet DX Cluster."); ?></small>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="dxcluster_out_port"><?= __("Port"); ?></label>
+                                <input type="number" name="dxcluster_out_port" class="form-control" id="dxcluster_out_port"
+                                       value="<?php echo $this->optionslib->get_option('dxcluster_out_port'); ?>"
+                                       placeholder="7300" min="1" max="65535">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="dxcluster_out_timeout"><?= __("Connect timeout (seconds)"); ?></label>
+                                <input type="number" name="dxcluster_out_timeout" class="form-control" id="dxcluster_out_timeout"
+                                       value="<?php echo $this->optionslib->get_option('dxcluster_out_timeout') ?: 5; ?>"
+                                       min="2" max="30">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="dxcluster_out_password"><?= __("Password (optional)"); ?></label>
+                                <input type="password" name="dxcluster_out_password" class="form-control" id="dxcluster_out_password"
+                                       value="<?php echo $this->optionslib->get_option('dxcluster_out_password'); ?>"
+                                       autocomplete="new-password">
+                                <small class="form-text text-muted"><?= __("Only if your cluster requires it."); ?></small>
+                            </div>
+                        </div>
+
                         <!-- Save the Form -->
                         <input class="btn btn-primary" type="submit" value="<?= __("Save"); ?>" />
                     </form>
