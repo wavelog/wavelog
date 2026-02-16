@@ -5535,6 +5535,13 @@ class Logbook_model extends CI_Model {
 				'COL_MORSE_KEY_TYPE' => (!empty($record['morse_key_type'])) ? $record['morse_key_type'] : '',
 			);
 
+			if($this->config->item('always_enrich_qso')) {
+				$this->load->model('logbookadvanced_model');
+				$callbook = $this->loadCallBook($record['call'], $this->config->item('use_fullname'));
+				$enrichedQso = $this->logbookadvanced_model->enrichQsoWithCallbookInfo($record, $callbook, true, $station_profile->station_gridsquare);
+				$data = [...$data, ...$enrichedQso];
+			}
+
 			// Collect field information from the station profile table thats required for the QSO.
 			if ($station_id != "0") {
 				if (!(array_key_exists($station_id, $this->station_result))) {

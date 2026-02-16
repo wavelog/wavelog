@@ -863,6 +863,11 @@ class Logbookadvanced_model extends CI_Model {
 	}
 
 	public function updateQsoWithCallbookInfo($qsoID, $qso, $callbook, $gridsquareAccuracyCheck, $station_gridsquare = null) {
+		$updatedData = $this->enrichQsoWithCallbookInfo($qso, $callbook, $gridsquareAccuracyCheck, $station_gridsquare);
+  		return $this->updateQsoWithCallbookInfoInDb($qsoID, $updatedData);
+  	}
+
+	public function enrichQsoWithCallbookInfo($qso, $callbook, $gridsquareAccuracyCheck, $station_gridsquare = null) {
 		$updatedData = array();
 		$updated = false;
 		if (!empty($callbook['name']) && empty($qso['COL_NAME'])) {
@@ -957,10 +962,14 @@ class Logbookadvanced_model extends CI_Model {
 		}
 
 		//Also set QRZ.com status to modified
-		if($updated == true && $qso['COL_QRZCOM_QSO_UPLOAD_STATUS'] == 'Y') {
+		if($updated == true && array_key_exists('COL_QRZCOM_QSO_UPLOAD_STATUS', $qso) && $qso['COL_QRZCOM_QSO_UPLOAD_STATUS'] == 'Y') {
 			$updatedData['COL_QRZCOM_QSO_UPLOAD_STATUS'] = 'M';
 		}
 
+		return $updatedData;
+    }
+
+	public function updateQsoWithCallbookInfoInDb($qsoID, $updatedData) {
 		if (count($updatedData) > 0) {
 			$this->db->where('COL_PRIMARY_KEY', $qsoID);
 			$this->db->update($this->config->item('table_name'), $updatedData);

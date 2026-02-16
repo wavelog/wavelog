@@ -29,6 +29,10 @@ $config['callbook'] = 'hamqth';
 
 $config['datadir'] = null; // default to install directory
 
+// If true every added qso will be automatically enriched with data from configured callbook(s)
+// Applies for adif imports as well as added qso via api
+$config['always_enrich_qso'] = false;
+
 /*
 |--------------------------------------------------------------------------
 | Logbook Options
