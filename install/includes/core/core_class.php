@@ -246,6 +246,8 @@ class Core
 
 		$new = str_replace("%encryptionkey%", $encryptionkey, $new);
 		$new = str_replace("'%log_threshold%'", $data['log_threshold'], $new);
+		$new = str_replace("%sess_cookie_name%", bin2hex(random_bytes(4)), $new);
+		$new = str_replace("%cookie_prefix%", bin2hex(random_bytes(4)), $new);
 		log_message('info', 'Config.php file prepared successfully. Writing to file...');
 
 		// Write the new config.php file

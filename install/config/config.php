@@ -520,7 +520,7 @@ $config['encryption_key'] = '%encryptionkey%';
 |
 */
 $config['sess_driver'] = 'files';
-$config['sess_cookie_name'] = 'ci_wavelog';
+$config['sess_cookie_name'] = 'wl_%sess_cookie_name%_';
 $config['sess_expiration'] = 43200;
 $config['sess_save_path'] = '/tmp';
 $config['sess_match_ip'] = FALSE;
@@ -553,7 +553,7 @@ $config['sess_gc_divisor'] = 1000;
 |       'cookie_httponly') will also affect sessions.
 |
 */
-$config['cookie_prefix']	= '';
+$config['cookie_prefix']	= 'wl_%cookie_prefix%_';
 $config['cookie_domain']	= '';
 $config['cookie_path']		= '/';
 $config['cookie_secure']	= FALSE;
