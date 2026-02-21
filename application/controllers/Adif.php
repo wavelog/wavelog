@@ -422,7 +422,7 @@ class adif extends CI_Controller {
 						} else {
 							$skipDups=true;		// Box not ticked? Means: Skip Dupes, don't import them
 						}
-						$custom_errors = $this->logbook_model->import_bulk($alladif, $this->input->post('station_profile', TRUE), $skipDups, $this->input->post('markClublog'),$this->input->post('markLotw'), $this->input->post('dxccAdif'), $this->input->post('markQrz'), $this->input->post('markEqsl'), $this->input->post('markHrd'), $this->input->post('markDcl'), true, $this->input->post('operatorName') ?? false, false, $this->input->post('skipStationCheck'));
+						$custom_errors = $this->logbook_model->import_bulk($alladif, $this->input->post('station_profile', TRUE), $skipDups, $this->input->post('markClublog'),$this->input->post('markLotw'), $this->input->post('dxccAdif'), $this->input->post('markQrz'), $this->input->post('markEqsl'), $this->input->post('markHrd'), $this->input->post('markDcl'), true, $this->input->post('operatorName') ?? false, false, $this->input->post('skipStationCheck'), ($this->input->post('updateQso', true) == '1'));
 					} catch (Exception $e) {
 						log_message('error', 'Import error: '.$e->getMessage());
 						$data['page_title'] = __("ADIF Import failed!");
@@ -445,6 +445,8 @@ class adif extends CI_Controller {
 			log_message("Error","ADIF End");
 			$data['adif_errors'] = $custom_errors['errormessage'];
 			$data['qsocount'] = $custom_errors['qsocount'] ?? 0;
+			$data['newqso'] = $custom_errors['newqso'] ?? 0;
+			$data['updatedqso'] = $custom_errors['updatedqso'] ?? 0;
 			$data['skip_dupes'] = $this->input->post('skipDuplicate');
 			$data['imported_contests'] = $contest_qso_infos;
 

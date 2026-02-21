@@ -24,6 +24,11 @@
             <p class="card-text">
                 <strong><?= __("Number of QSOs imported:") ?></strong> <?= $qsocount ?>
             </p>
+            <p class="card-text">
+                <strong><?= __("New QSOs:") ?></strong> <?= $newqso ?? 0 ?>
+                &nbsp;|&nbsp;
+                <strong><?= __("Updated QSOs:") ?></strong> <?= $updatedqso ?? 0 ?>
+            </p>
 
             <!-- Dupe information -->
             <p class="card-text">

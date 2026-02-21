@@ -4725,11 +4725,12 @@ class Logbook_model extends CI_Model {
 		return '1900-01-01 00:00:00.000';
 	}
 
-	function import_bulk($records, $station_id = "0", $skipDuplicate = true, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markEqsl = false, $markHrd = false, $markDcl = false, $skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false) {
+	function import_bulk($records, $station_id = "0", $skipDuplicate = true, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markEqsl = false, $markHrd = false, $markDcl = false, $skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false, $updateQso = false) {
 		$this->load->model('user_model');
 		$custom_errors['errormessage'] = '';
 		$a_qsos = [];
 		$amsat_qsos = [];
+		$updated_qsos = 0;
 		$today = time();
 		if (!$this->stations->check_station_is_accessible($station_id) && $apicall == false) {
 			$custom_errors['errormessage'] = 'Station not accessible<br>';
@@ -4743,25 +4744,32 @@ class Logbook_model extends CI_Model {
 		$station_qslmsg = (isset($options_object[0]->option_value)) ? $options_object[0]->option_value : '';
 
 		foreach ($records as $record) {
-			$one_error = $this->import($record, $station_id, $skipDuplicate, $markClublog, $markLotw, $dxccAdif, $markQrz, $markEqsl, $markHrd, $markDcl, $skipexport, trim($operatorName), $apicall, $skipStationCheck, true, $station_id_ok, $station_profile, $station_qslmsg);
+			$one_error = $this->import($record, $station_id, $skipDuplicate, $markClublog, $markLotw, $dxccAdif, $markQrz, $markEqsl, $markHrd, $markDcl, $skipexport, trim($operatorName), $apicall, $skipStationCheck, true, $station_id_ok, $station_profile, $station_qslmsg, $updateQso);
 			if ($one_error['error'] ?? '' != '') {
 				$custom_errors['errormessage'] .= $one_error['error'];
 			} else {	// No Errors / QSO doesn't exist so far
-				array_push($a_qsos, $one_error['raw_qso'] ?? '');
-				if (isset($record['prop_mode']) && (($record['prop_mode'] ?? '')== 'SAT') && (($record['sat_name'] ?? '') != '') && $amsat_status_upload) {
-					$amsat_qsodate = strtotime(($record['qso_date'] ?? '1970-01-01') . ' ' . ($record['time_on'] ?? '00:00:00'));
-					$date_diff = $today - $amsat_qsodate;
-					if ($date_diff >= -300 && $date_diff <= 518400) { // Five minutes grace time to the future and max 6 days back
-						$data = array(
-							'COL_TIME_ON' => date('Y-m-d', strtotime($record['qso_date'])) . " " . date('H:i:s', strtotime($record['time_on'])),
-							'COL_SAT_NAME' => $record['sat_name'] ?? '',
-							'COL_BAND' => $record['band'] ?? '',
-							'COL_BAND_RX' => $record['band_rx'] ?? '',
-							'COL_MODE' => $record['mode'] ?? '',
-							'COL_STATION_CALLSIGN' => trim($station_profile->station_callsign),
-							'COL_MY_GRIDSQUARE' => $station_profile->station_gridsquare,
-						);
-						array_push($amsat_qsos, $data);
+				if ($one_error['updated'] ?? false) {
+					// Updated QSOs are not added to the $a_qsos array, as they are already in the database. Only new QSOs are added to the $a_qsos array for bulk insert. This is important to prevent duplicates when updating existing QSOs with new QSL information.
+					$updated_qsos++;
+				} else {
+					// AMSat upload is only relevant for new QSOs, not for updates, as updates are not re-uploaded to AMSat. Therefore, the check for AMSat upload and the potential addition to the $amsat_qsos array is only done for new QSOs, not for updated QSOs.
+					array_push($a_qsos, $one_error['raw_qso'] ?? '');
+
+					if (isset($record['prop_mode']) && (($record['prop_mode'] ?? '')== 'SAT') && (($record['sat_name'] ?? '') != '') && $amsat_status_upload) {
+						$amsat_qsodate = strtotime(($record['qso_date'] ?? '1970-01-01') . ' ' . ($record['time_on'] ?? '00:00:00'));
+						$date_diff = $today - $amsat_qsodate;
+						if ($date_diff >= -300 && $date_diff <= 518400) { // Five minutes grace time to the future and max 6 days back
+							$data = array(
+								'COL_TIME_ON' => date('Y-m-d', strtotime($record['qso_date'])) . " " . date('H:i:s', strtotime($record['time_on'])),
+								'COL_SAT_NAME' => $record['sat_name'] ?? '',
+								'COL_BAND' => $record['band'] ?? '',
+								'COL_BAND_RX' => $record['band_rx'] ?? '',
+								'COL_MODE' => $record['mode'] ?? '',
+								'COL_STATION_CALLSIGN' => trim($station_profile->station_callsign),
+								'COL_MY_GRIDSQUARE' => $station_profile->station_gridsquare,
+							);
+							array_push($amsat_qsos, $data);
+						}
 					}
 				}
 			}
@@ -4775,8 +4783,10 @@ class Logbook_model extends CI_Model {
 
 		$records = '';
 		gc_collect_cycles();
-		$custom_errors['qsocount'] = count($a_qsos);
-		if ($custom_errors['qsocount'] > 0) {
+		$custom_errors['newqso'] = count($a_qsos);
+		$custom_errors['updatedqso'] = $updated_qsos;
+		$custom_errors['qsocount'] = $custom_errors['newqso'] + $custom_errors['updatedqso'];
+		if (count($a_qsos) > 0) {
 			$this->db->insert_batch($this->config->item('table_name'), $a_qsos);
 		}
 		foreach ($amsat_qsos as $amsat_qso) {
@@ -4793,8 +4803,9 @@ class Logbook_model extends CI_Model {
      * $markQrz - used in ADIF import to mark QSOs as exported to QRZ Logbook when importing QSOs
      * $markHrd - used in ADIF import to mark QSOs as exported to HRDLog.net Logbook when importing QSOs
      * $skipexport - used in ADIF import to skip the realtime upload to QRZ Logbook when importing QSOs from ADIF
+	 * $updateQso - used in ADIF import to update existing QSOs with new QSL information from ADIF instead of skipping them as duplicates. This is relevant for users who maintain their logbook in Wavelog but also upload to external services like LoTW, eQSL or QRZ and want to keep their QSL status updated in Wavelog when importing new QSOs from ADIF, even if the QSO already exists in Wavelog. When $updateQso is set to true, the import function will check for existing QSOs that match the imported QSO based on date/time, callsign, band, mode, and station callsign. If a matching QSO is found, instead of skipping the imported QSO as a duplicate, the function will update the existing QSO's QSL information (e.g., LoTW status, eQSL status, QRZ status) based on the imported data. This allows users to keep their logbook up-to-date with the latest QSL information from their ADIF imports without creating duplicate entries for QSOs that already exist in their logbook.
      */
-	function import($record, $station_id = "0", $skipDuplicate = true, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markEqsl = false, $markHrd = false, $markDcl = false, $skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false, $batchmode = false, $station_id_ok = false, $station_profile = null, $station_qslmsg = null) {
+	function import($record, $station_id = "0", $skipDuplicate = true, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markEqsl = false, $markHrd = false, $markDcl = false, $skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false, $batchmode = false, $station_id_ok = false, $station_profile = null, $station_qslmsg = null, $updateQso = false) {
 		// be sure that station belongs to user
 		$this->load->is_loaded('stations') ?: $this->load->model('stations');
 		if ($station_id_ok == false) {
@@ -4930,8 +4941,23 @@ class Logbook_model extends CI_Model {
 		$input_mode = (($input_mode ?? '') == '') ? null : strtoupper($input_mode);	// Make Sure mode is NULL if empty
 
 
+		$qso_to_update = null;
+
+		if ($updateQso && isset($record['app_wavelog_qsoid']) && is_numeric($record['app_wavelog_qsoid'])) {
+			$this->db->select('COL_PRIMARY_KEY');
+			$this->db->from($this->config->item('table_name'));
+			$this->db->where('COL_PRIMARY_KEY', (int)$record['app_wavelog_qsoid']);
+			$this->db->where('station_id', $station_id);
+			$check_update = $this->db->get();
+			if ($check_update->num_rows() == 1) {
+				$qso_to_update = (int)$record['app_wavelog_qsoid'];
+			}
+		}
+
 		// Check if QSO is already in the database
-		if (!$skipDuplicate) {
+		if ($qso_to_update !== null) {
+			$skip = false;
+		} elseif (!$skipDuplicate) {
 			$skip = false;
 		} else {
 			if (isset($record['call'])) {
@@ -5592,13 +5618,43 @@ class Logbook_model extends CI_Model {
 				unset($h_user);
 			}
 			// Save QSO
-			if ($batchmode) {
-				$raw_qso = $this->add_qso($data, $skipexport, $batchmode);
-				$returner['raw_qso'] = $raw_qso;
-				$data = '';
-				$raw_qso = '';
+			if ($qso_to_update !== null) {
+				$this->db->where('COL_PRIMARY_KEY', $qso_to_update);
+				$this->db->where('station_id', $station_id);
+				$update_ok = $this->db->update($this->config->item('table_name'), $data);
+				if (!$update_ok) {
+					$db_error = $this->db->error();
+					log_message('error', 'ADIF Import: Failed to update existing QSO. QSO ID: ' . $qso_to_update . ', station_id: ' . $station_id . ', DB error: ' . ($db_error['code'] ?? 0) . ' - ' . ($db_error['message'] ?? 'unknown'));
+					$returner['error'] = __('Failed to update existing QSO during ADIF import. QSO skipped.') . '<br>';
+					return ($returner);
+				}
+
+				if ($this->db->affected_rows() === 0) {
+					$this->db->select('COL_PRIMARY_KEY');
+					$this->db->from($this->config->item('table_name'));
+					$this->db->where('COL_PRIMARY_KEY', $qso_to_update);
+					$this->db->where('station_id', $station_id);
+					$still_exists = $this->db->get()->num_rows() === 1;
+
+					if (!$still_exists) {
+						log_message('error', 'ADIF Import: Update target disappeared. QSO ID: ' . $qso_to_update . ', station_id: ' . $station_id);
+						$returner['error'] = __('Failed to update existing QSO during ADIF import. QSO skipped.') . '<br>';
+						return ($returner);
+					}
+				}
+
+				if ($batchmode) {
+					$returner['updated'] = true;
+				}
 			} else {
-				$this->add_qso($data, $skipexport);
+				if ($batchmode) {
+					$raw_qso = $this->add_qso($data, $skipexport, $batchmode);
+					$returner['raw_qso'] = $raw_qso;
+					$data = '';
+					$raw_qso = '';
+				} else {
+					$this->add_qso($data, $skipexport);
+				}
 			}
 
 		} else {

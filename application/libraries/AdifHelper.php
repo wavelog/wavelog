@@ -242,6 +242,7 @@ class AdifHelper {
 
 		$line .= $this->getAdifFieldLine("SIG", $qso->{'COL_SIG'});
 		$line .= $this->getAdifFieldLine("SIG_INFO", $qso->{'COL_SIG_INFO'});
+		$line .= $this->getAdifFieldLine("APP_WAVELOG_QSOID", $qso->COL_PRIMARY_KEY);
 
 	/*
 	    Missing:

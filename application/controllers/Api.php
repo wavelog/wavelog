@@ -386,7 +386,7 @@ class API extends CI_Controller {
 				};
 				$record='';	// free memory
 				gc_collect_cycles();
-				$result = $this->logbook_model->import_bulk($alladif, $obj['station_profile_id'], true, false, false, false, false, false, false, false, true, false, true, false);
+				$result = $this->logbook_model->import_bulk($alladif, $obj['station_profile_id'], true, false, false, false, false, false, false, false, true, false, true, false, false);
 				$custom_errors = $result['errormessage'];
 				if ($custom_errors) {
 					$adif_errors++;
