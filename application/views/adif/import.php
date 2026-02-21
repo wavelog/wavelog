@@ -145,24 +145,24 @@
 										</div>
 										<div class="small form-text text-muted"><?= __("Select if QSOs shall be imported, even if they already exist.") ?></div>
 									</div>
-										<div class="col-md-6">
-											<div class="form-check-inline">
-												<input class="form-check-input" type="checkbox" name="dxccAdif" value="1" id="dxccAdif">
-													<label class="form-check-label" for="dxccAdif"><?= __("Use DXCC information from ADIF") ?></label>
-											</div>
-											<div class="small form-text text-muted"><?= __("If not selected, Wavelog will attempt to determine DXCC information automatically.") ?></div>
+									<div class="col-md-6">
+										<div class="form-check-inline">
+											<input class="form-check-input" type="checkbox" name="dxccAdif" value="1" id="dxccAdif">
+											<label class="form-check-label" for="dxccAdif"><?= __("Use DXCC information from ADIF") ?></label>
 										</div>
+										<div class="small form-text text-muted"><?= __("If not selected, Wavelog will attempt to determine DXCC information automatically.") ?></div>
+									</div>
 								</div>
 
-                                    <div class="mb-3 row">
-                                        <div class="col-md-6">
-                                            <div class="form-check-inline">
-                                                <input class="form-check-input" type="checkbox" name="updateQso" value="1" id="updateQso">
-                                                <label class="form-check-label" for="updateQso"><?= __("Update existing QSOs by APP_WAVELOG_QSOID") ?></label>
-                                            </div>
-                                            <div class="small form-text text-muted"><?= __("If selected, matching QSO IDs from ADIF will update existing records instead of creating new ones.") ?></div>
-                                        </div>
-                                    </div>
+								<div class="mb-3 row">
+									<div class="col-md-6">
+										<div class="form-check-inline">
+											<input class="form-check-input" type="checkbox" name="updateQso" value="1" id="updateQso">
+											<label class="form-check-label" for="updateQso"><?= __("Update existing QSOs by APP_WAVELOG_QSOID") ?></label>
+										</div>
+										<div class="small form-text text-muted"><?= __("If selected, matching QSO IDs from ADIF will update existing records instead of creating new ones.") ?></div>
+									</div>
+								</div>
 
 								<div class="mb-3 row">
 								<?php if ($cd_p_level != 6){ ?>
