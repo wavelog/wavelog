@@ -81,7 +81,7 @@
 
                     <tr>
                         <td><?= __("Callsign"); ?></td>
-                        <td><b><?php echo str_replace("0","&Oslash;",strtoupper($row->COL_CALL)); ?></b> <a target="_blank" href="https://www.qrz.com/db/<?php echo strtoupper($row->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/qrz.png" alt="Lookup <?php echo strtoupper($row->COL_CALL); ?> on QRZ.com"></a> <a target="_blank" href="https://www.hamqth.com/<?php echo strtoupper($row->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/hamqth.png" alt="Lookup <?php echo strtoupper($row->COL_CALL); ?> on HamQTH"></a> <a target="_blank" href="http://www.eqsl.cc/Member.cfm?<?php echo strtoupper($row->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/eqsl.png" alt="Lookup <?php echo strtoupper($row->COL_CALL); ?> on eQSL.cc"></a> <a target="_blank" href="https://clublog.org/logsearch.php?log=<?php echo strtoupper($row->COL_CALL); ?>&call=<?php echo strtoupper($row->station_callsign); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/clublog.png" alt="Clublog Log Search"></a>
+                        <td><b><?php echo str_replace("0","&Oslash;",strtoupper($row->COL_CALL)); ?></b> <a target="_blank" href="https://www.qrz.com/db/<?php echo strtoupper($row->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/qrz.png" alt="Lookup <?php echo strtoupper($row->COL_CALL); ?> on QRZ.com"></a> <a target="_blank" href="https://www.hamqth.com/<?php echo strtoupper($row->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/hamqth.png" alt="Lookup <?php echo strtoupper($row->COL_CALL); ?> on HamQTH"></a> <a target="_blank" href="https://www.eqsl.cc/Member.cfm?<?php echo strtoupper($row->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/eqsl.png" alt="Lookup <?php echo strtoupper($row->COL_CALL); ?> on eQSL.cc"></a> <a target="_blank" href="https://clublog.org/logsearch.php?log=<?php echo strtoupper($row->COL_CALL); ?>&call=<?php echo strtoupper($row->station_callsign); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/clublog.png" alt="Clublog Log Search"></a>
                         <?php if (!empty($contacts_note_id) && $this->session->userdata('user_show_notes')==1) { ?>
                             <a href="<?php echo base_url(); ?>index.php/notes/view/<?php echo $contacts_note_id; ?>" target="_blank" title="<?= __("View note for this callsign"); ?>" style="margin-left:2px;vertical-align:middle;">
                                 <i class="fa fa-sticky-note text-info" style="font-size:16px;vertical-align:middle;"></i>
@@ -180,7 +180,19 @@
                     <?php if($row->COL_VUCC_GRIDS != null) { ?>
                     <tr>
                         <td>Gridsquare (Multi):</td>
-                        <td><?php echo $row->COL_VUCC_GRIDS; ?> <a href="javascript:spawnQrbCalculator('<?php echo $row->station_gridsquare . '\',\'' . $row->COL_VUCC_GRIDS; ?>')"><i class="fas fa-globe"></i></a></td>
+                        <td>
+                        <?php
+                           if (!str_contains($row->COL_VUCC_GRIDS, ',')) {
+                              echo "<span class='fw-bolder text-warning'>";
+                           }
+                           echo $row->COL_VUCC_GRIDS;
+                           if (!str_contains($row->COL_VUCC_GRIDS, ',')) {
+                              echo " <i class='fa fa-question-circle' aria-hidden='true' data-bs-toggle='tooltip' title='".__("A single gridsquare was entered into the VUCC gridsquares field which should contain two or four gridsquares instead of a single grid.")."'></i>";
+                              echo "</span>";
+                           }
+                           echo " <a href='javascript:spawnQrbCalculator('".$row->station_gridsquare."\',\'".$row->COL_VUCC_GRIDS.")'><i class='fas fa-globe'></i></a>";
+                        ?>
+                        </td>
                             <?php
                                 // Cacluate Distance
                                 $distance = $this->qra->distance($row->station_gridsquare, $row->COL_VUCC_GRIDS, $measurement_base, $row->COL_ANT_PATH ?? null);
@@ -859,53 +871,63 @@
 </div>
 
 <?php
-	if($row->COL_GRIDSQUARE != null && strlen($row->COL_GRIDSQUARE) >= 4) {
-		$stn_loc = $this->qra->qra2latlong(trim($row->COL_GRIDSQUARE));
-        if($stn_loc[0] != 0) {
-		    $lat = $stn_loc[0];
-		    $lng = $stn_loc[1];
-        }
-    } elseif($row->COL_VUCC_GRIDS != null) {
-        $grids = explode(",", $row->COL_VUCC_GRIDS);
-        if (count($grids) == 2) {
-            $grid1 = $this->qra->qra2latlong(trim($grids[0]));
-            $grid2 = $this->qra->qra2latlong(trim($grids[1]));
+   if($row->COL_GRIDSQUARE != null && strlen($row->COL_GRIDSQUARE) >= 4) {
+      $stn_loc = $this->qra->qra2latlong(trim($row->COL_GRIDSQUARE));
+      if($stn_loc[0] != 0) {
+         $lat = $stn_loc[0];
+         $lng = $stn_loc[1];
+      }
+   } else if ($row->COL_VUCC_GRIDS != null) {
+      $grids = explode(",", $row->COL_VUCC_GRIDS);
+      if (count($grids) == 2) {
+         $grid1 = $this->qra->qra2latlong(trim($grids[0]));
+         $grid2 = $this->qra->qra2latlong(trim($grids[1]));
 
-            $coords[]=array('lat' => $grid1[0],'lng'=> $grid1[1]);
-            $coords[]=array('lat' => $grid2[0],'lng'=> $grid2[1]);
+         $coords[]=array('lat' => $grid1[0],'lng'=> $grid1[1]);
+         $coords[]=array('lat' => $grid2[0],'lng'=> $grid2[1]);
 
-            $midpoint = $this->qra->get_midpoint($coords);
-            $lat = $midpoint[0];
-		    $lng = $midpoint[1];
-        }
-        if (count($grids) == 4) {
-            $grid1 = $this->qra->qra2latlong(trim($grids[0]));
-            $grid2 = $this->qra->qra2latlong(trim($grids[1]));
-            $grid3 = $this->qra->qra2latlong(trim($grids[2]));
-            $grid4 = $this->qra->qra2latlong(trim($grids[3]));
+         $midpoint = $this->qra->get_midpoint($coords);
+         $lat = $midpoint[0];
+         $lng = $midpoint[1];
+      } else if (count($grids) == 4) {
+         $grid1 = $this->qra->qra2latlong(trim($grids[0]));
+         $grid2 = $this->qra->qra2latlong(trim($grids[1]));
+         $grid3 = $this->qra->qra2latlong(trim($grids[2]));
+         $grid4 = $this->qra->qra2latlong(trim($grids[3]));
 
-            $coords[]=array('lat' => $grid1[0],'lng'=> $grid1[1]);
-            $coords[]=array('lat' => $grid2[0],'lng'=> $grid2[1]);
-            $coords[]=array('lat' => $grid3[0],'lng'=> $grid3[1]);
-            $coords[]=array('lat' => $grid4[0],'lng'=> $grid4[1]);
+         $coords[]=array('lat' => $grid1[0],'lng'=> $grid1[1]);
+         $coords[]=array('lat' => $grid2[0],'lng'=> $grid2[1]);
+         $coords[]=array('lat' => $grid3[0],'lng'=> $grid3[1]);
+         $coords[]=array('lat' => $grid4[0],'lng'=> $grid4[1]);
 
-            $midpoint = $this->qra->get_midpoint($coords);
-            $lat = $midpoint[0];
-		    $lng = $midpoint[1];
-        }
-	} else {
-        if(isset($row->lat)) {
-			$lat = $row->lat;
-        } else {
+         $midpoint = $this->qra->get_midpoint($coords);
+         $lat = $midpoint[0];
+         $lng = $midpoint[1];
+      } else {
+         if(isset($row->lat)) {
+            $lat = $row->lat;
+         } else {
             $lat = 0;
-        }
-
-        if(isset($row->long)) {
-			$lng = $row->long;
-        } else {
+         }
+         if(isset($row->long)) {
+            $lng = $row->long;
+         } else {
             $lng = 0;
-        }
-	}
+         }
+      }
+   } else {
+      if(isset($row->lat)) {
+         $lat = $row->lat;
+      } else {
+         $lat = 0;
+      }
+
+      if(isset($row->long)) {
+         $lng = $row->long;
+      } else {
+         $lng = 0;
+      }
+   }
 ?>
 
 <script>

@@ -36,7 +36,7 @@ class Contestcalendar extends CI_Controller {
 			}
 
 			$footerData['scripts'] = [
-				'assets/js/sections/dxcalendar.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/dxcalendar.js"))
+				'assets/js/sections/dxcalendar.js'
 			];
 		} else {
 			$data['contestsToday']='';

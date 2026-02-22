@@ -3,7 +3,7 @@
 <head>
 	<title></title>
 
-	<script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
+	<script src="<?php echo $this->paths->cache_buster('/assets/js/jquery-3.3.1.min.js'); ?>"></script>
 </head>
 <body>
 	<script type="text/javascript">

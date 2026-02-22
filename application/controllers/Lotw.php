@@ -257,10 +257,6 @@ class Lotw extends CI_Controller {
 					echo $data['lotw_cert_info']->callsign.": QSO start date of LoTW certificate not reached yet!<br>";
 					continue;
 				}
-				if ($current_date > $data['lotw_cert_info']->qso_end_date) {
-					echo $data['lotw_cert_info']->callsign.": QSO end date of LoTW certificate exceeded!<br>";
-					continue;
-				}
 				if ($current_date < $data['lotw_cert_info']->date_created) {
 					echo $data['lotw_cert_info']->callsign.": LoTW certificate not valid yet!<br>";
 					continue;
@@ -719,77 +715,200 @@ class Lotw extends CI_Controller {
 			$q = $url_query->row();
 			$lotw_base_url = $q->lotw_download_url;
 
-			foreach ($query->result() as $user) {
-				if ( ($sync_user_id != null) && ($sync_user_id != $user->user_id) ) { continue; }
-				$station_ids=$this->Stations->all_station_ids_of_user($user->user_id);
-				if ($station_ids == '') { continue; } // User has no Station-ID! next one
+			// Single-user mode: fall back to sequential download
+			if ($sync_user_id != null) {
+				foreach ($query->result() as $user) {
+					if ($sync_user_id != $user->user_id) { continue; }
+					$station_ids=$this->Stations->all_station_ids_of_user($user->user_id);
+					if ($station_ids == '') { continue; }
 
-				// Validate that LoTW credentials are not empty
-				// TODO: We don't actually see the error message
+					if ($user->user_lotw_password == '') {
+						$result = "You have not defined your ARRL LoTW credentials!";
+						continue;
+					}
+
+					$config['upload_path'] = './uploads/';
+					$file = $config['upload_path'] . 'lotwreport_download_'.$user->user_id.'_auto.adi';
+					if (file_exists($file) && ! is_writable($file)) {
+						$result = "Temporary download file ".$file." is not writable. Aborting!";
+						continue;
+					}
+
+					$lotw_last_qsl_date = date('Y-m-d', strtotime($this->logbook_model->lotw_last_qsl_date($user->user_id)));
+
+					$lotw_url = $lotw_base_url."?";
+					$lotw_url .= "login=" . urlencode($user->user_lotw_name);
+					$lotw_url .= "&password=" . urlencode($user->user_lotw_password);
+					$lotw_url .= "&qso_query=1&qso_qsl='yes'&qso_qsldetail='yes'&qso_mydetail='yes'";
+					$lotw_url .= "&qso_qslsince=";
+					$lotw_url .= "$lotw_last_qsl_date";
+
+					if (! is_writable(dirname($file))) {
+						$result = "Temporary download directory ".dirname($file)." is not writable. Aborting!";
+						continue;
+					}
+					$ch = curl_init();
+					curl_setopt($ch, CURLOPT_URL, $lotw_url);
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+					curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+					$content = curl_exec($ch);
+					if(curl_errno($ch)) {
+						$result = "LoTW download failed for user ".$user->user_lotw_name.": ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).").";
+						continue;
+					} else if(str_contains(substr($content,0 , 2000),"Username/password incorrect</I>")) {
+						$result = "LoTW download failed for user ".$user->user_lotw_name.": Username/password incorrect";
+						log_message('error', 'LoTW download failed for user '.$user->user_name.': Username/password incorrect');
+						if ($this->Lotw_model->remove_lotw_credentials($user->user_id)) {
+							log_message('error', 'LoTW credentials deleted for user '.$user->user_name);
+						} else {
+							log_message('error', 'Deleting LoTW credentials for user '.$user->user_name.' failed');
+						}
+						continue;
+					} else if (str_contains(substr($content, 0, 2000),"Page Request Limit!</B>")) {
+						$result = "LoTW download hit a rate limit for user ".$user->user_lotw_name;
+						log_message('error', 'LoTW download hit a rate limit for user '.$user->user_name);
+						continue;
+					}
+					file_put_contents($file, $content);
+					if (file_get_contents($file, false, null, 0, 39) != "ARRL Logbook of the World Status Report") {
+						$result = "Downloaded LoTW report for user ".$user->user_lotw_name." is invalid. Check your credentials.";
+						log_message('error', 'Downloaded LoTW report is invalid for user '.$user->user_name);
+						continue;
+					}
+
+					ini_set('memory_limit', '-1');
+					$result = $this->loadFromFile($file, $station_ids, false);
+				}
+				return $result;
+			} else {
+
+			// Multi-user mode (sync_user_id == null): parallel download via curl_multi only triggered by cron - so message-return is omitted
+			// Pass 1: collect eligible users and prepare download queue
+			$max_parallel = 5;
+			$queue = array();
+
+			foreach ($query->result() as $user) {
+				$station_ids = $this->Stations->all_station_ids_of_user($user->user_id);
+				if ($station_ids == '') { continue; }
+
 				if ($user->user_lotw_password == '') {
-					$result = "You have not defined your ARRL LoTW credentials!";
 					continue;
 				}
 
 				$config['upload_path'] = './uploads/';
 				$file = $config['upload_path'] . 'lotwreport_download_'.$user->user_id.'_auto.adi';
 				if (file_exists($file) && ! is_writable($file)) {
-					$result = "Temporary download file ".$file." is not writable. Aborting!";
+					log_message("Error","LoTW Multidownload: UID: ".$user->user_id." - Temporary download file ".$file." is not writable. Aborting!");
+					continue;
+				}
+				if (! is_writable(dirname($file))) {
+					log_message("Error","LoTW Multidownload: UID: ".$user->user_id." - Temporary download directory ".dirname($file)." is not writable. Aborting!");
 					continue;
 				}
 
 				$lotw_last_qsl_date = date('Y-m-d', strtotime($this->logbook_model->lotw_last_qsl_date($user->user_id)));
 
-				// Build URL for LoTW report file
 				$lotw_url = $lotw_base_url."?";
 				$lotw_url .= "login=" . urlencode($user->user_lotw_name);
 				$lotw_url .= "&password=" . urlencode($user->user_lotw_password);
 				$lotw_url .= "&qso_query=1&qso_qsl='yes'&qso_qsldetail='yes'&qso_mydetail='yes'";
-
 				$lotw_url .= "&qso_qslsince=";
 				$lotw_url .= "$lotw_last_qsl_date";
 
-				if (! is_writable(dirname($file))) {
-					$result = "Temporary download directory ".dirname($file)." is not writable. Aborting!";
-					continue;
-				}
+				$queue[] = array(
+					'url'         => $lotw_url,
+					'user'        => $user,
+					'file'        => $file,
+					'station_ids' => $station_ids,
+				);
+			}
+
+			// Download in batches of $max_parallel, process completed ones before next batch
+			$mh = curl_multi_init();
+			$active_handles = array(); // maps curl resource id => queue entry + handle
+			$queue_index = 0;
+
+			// Seed initial batch
+			while ($queue_index < count($queue) && count($active_handles) < $max_parallel) {
+				$entry = $queue[$queue_index];
 				$ch = curl_init();
-				curl_setopt($ch, CURLOPT_URL, $lotw_url);
+				curl_setopt($ch, CURLOPT_URL, $entry['url']);
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
-				$content = curl_exec($ch);
-				if(curl_errno($ch)) {
-					$result = "LoTW download failed for user ".$user->user_lotw_name.": ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).").";
-					if (curl_errno($ch) == 28) {  // break on timeout
-						$result .= "<br>Timeout reached. Stopping subsequent downloads.";
-						break;
-					}
-					continue;
-				} else if(str_contains(substr($content,0 , 2000),"Username/password incorrect</I>")) {
-					$result = "LoTW download failed for user ".$user->user_lotw_name.": Username/password incorrect";
-					log_message('error', 'LoTW download failed for user '.$user->user_name.': Username/password incorrect');
-					if ($this->Lotw_model->remove_lotw_credentials($user->user_id)) {
-						log_message('error', 'LoTW credentials deleted for user '.$user->user_name);
+				curl_multi_add_handle($mh, $ch);
+				$active_handles[(int)$ch] = array_merge($entry, array('ch' => $ch));
+				log_message('debug', 'LoTW parallel download started for UID '.$entry['user']->user_id.' ('.$entry['user']->user_lotw_name.')');
+				$queue_index++;
+			}
+
+			// Process downloads as they complete, refill slots from queue
+			while (count($active_handles) > 0) {
+				curl_multi_exec($mh, $running);
+
+				// Check for completed handles
+				while ($info = curl_multi_info_read($mh)) {
+					$ch = $info['handle'];
+					$dl = $active_handles[(int)$ch];
+					unset($active_handles[(int)$ch]);
+
+					$user        = $dl['user'];
+					$file        = $dl['file'];
+					$station_ids = $dl['station_ids'];
+
+					$errno = curl_errno($ch);
+					log_message('debug', 'LoTW parallel download finished for UID '.$user->user_id.' ('.$user->user_lotw_name.')'.($errno ? ' with error: '.curl_strerror($errno) : ''));
+					if ($errno) {
+						log_message('error', 'LoTW download failed for user '.$user->user_name.': '.curl_strerror($errno));
+						curl_multi_remove_handle($mh, $ch);
+						curl_close($ch);
 					} else {
-						log_message('error', 'Deleting LoTW credentials for user '.$user->user_name.' failed');
+						$content = curl_multi_getcontent($ch);
+						curl_multi_remove_handle($mh, $ch);
+						curl_close($ch);
+
+						if (str_contains(substr($content, 0, 2000), "Username/password incorrect</I>")) {
+							log_message('error', 'LoTW download failed for user '.$user->user_name.': Username/password incorrect');
+							if ($this->Lotw_model->remove_lotw_credentials($user->user_id)) {
+								log_message('error', 'LoTW credentials deleted for user '.$user->user_name);
+							} else {
+								log_message('error', 'Deleting LoTW credentials for user '.$user->user_name.' failed');
+							}
+						} else if (str_contains(substr($content, 0, 2000), "Page Request Limit!</B>")) {
+							log_message('error', 'LoTW download hit a rate limit for user '.$user->user_name);
+						} else {
+							file_put_contents($file, $content);
+							if (file_get_contents($file, false, null, 0, 39) != "ARRL Logbook of the World Status Report") {
+								log_message('error', 'Downloaded LoTW report is invalid for user '.$user->user_name);
+							} else {
+								ini_set('memory_limit', '-1');
+								log_message('debug', 'LoTW parallel download passing to loadFromFile for UID '.$user->user_id.' ('.$user->user_lotw_name.')');
+								$this->loadFromFile($file, $station_ids, false);
+							}
+						}
 					}
-					continue;
-				} else if (str_contains(substr($content, 0, 2000),"Page Request Limit!</B>")) {
-					$result = "LoTW download hit a rate limit for user ".$user->user_lotw_name;
-					log_message('error', 'LoTW download hit a rate limit for user '.$user->user_name);
-					continue;
-				}
-				file_put_contents($file, $content);
-				if (file_get_contents($file, false, null, 0, 39) != "ARRL Logbook of the World Status Report") {
-					$result = "Downloaded LoTW report for user ".$user->user_lotw_name." is invalid. Check your credentials.";
-					log_message('error', 'Downloaded LoTW report is invalid for user '.$user->user_name);
-					continue;
+
+					// Refill slot from queue
+					if ($queue_index < count($queue)) {
+						$entry = $queue[$queue_index];
+						$new_ch = curl_init();
+						curl_setopt($new_ch, CURLOPT_URL, $entry['url']);
+						curl_setopt($new_ch, CURLOPT_RETURNTRANSFER, true);
+						curl_setopt($new_ch, CURLOPT_CONNECTTIMEOUT, 30);
+						curl_multi_add_handle($mh, $new_ch);
+						$active_handles[(int)$new_ch] = array_merge($entry, array('ch' => $new_ch));
+						log_message('debug', 'LoTW parallel download started for UID '.$entry['user']->user_id.' ('.$entry['user']->user_lotw_name.')');
+						$queue_index++;
+					}
 				}
 
-				ini_set('memory_limit', '-1');
-				$result = $this->loadFromFile($file, $station_ids, false);
+				if (count($active_handles) > 0) {
+					curl_multi_select($mh, 1.0);
+				}
 			}
+
+			curl_multi_close($mh);
 			return $result;
+			} // end else (multi-user parallel mode)
 		} else {
 			return "No LoTW User details found to carry out matches.";
 		}

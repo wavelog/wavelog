@@ -18,7 +18,7 @@ class Radio extends CI_Controller {
 
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/radio.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/radio.js")),
+			'assets/js/sections/radio.js',
 		];
 
 		$this->load->view('interface_assets/header', $data);
@@ -36,6 +36,9 @@ class Radio extends CI_Controller {
 		$this->load->model('cat');
 		$query = $this->cat->status();
 
+		// Get the default radio
+		$default_user_radio = $this->user_options_model->get_options('cat', array('option_name' => $this->_get_optionname()), $this->_get_correct_uid())->row()->option_value ?? NULL;
+
 		if ($query->num_rows() > 0) {
 			echo "<thead><tr>";
 			echo "<th>" . __("Radio") . "</th>";
@@ -50,6 +53,23 @@ class Radio extends CI_Controller {
 			echo "<th>" . __("Settings") . "</th>";
 			echo "<th></th>";
 			echo "</tr></thead><tbody>";
+
+			// WebSocket as first row
+			echo "<tr>";
+			echo "<td>" . __("WebSocket") . "</td>";
+			echo "<td>-</td>"; // Frequency
+			echo "<td>-</td>"; // Mode
+			echo "<td>-</td>"; // Timestamp
+			echo '<td></td>'; // Last updated
+			if ($default_user_radio === 'ws') {
+				echo '<td><button id="default_radio_btn_ws" class="btn btn-sm btn-primary ld-ext-right" onclick="release_default_radio(\'ws\')">' . __("Default (click to release)") . '<div class="ld ld-ring ld-spin"></div></button></td>';
+			} else {
+				echo '<td><button id="default_radio_btn_ws" class="btn btn-sm btn-outline-primary ld-ext-right" onclick="set_default_radio(\'ws\')">' . __("Set as default radio") . '<div class="ld ld-ring ld-spin"></div></button></td>';
+			}
+			echo '<td></td>'; // Settings (no edit for WebSocket)
+			echo '<td></td>'; // Delete (no delete for WebSocket)
+			echo "</tr>";
+
 			foreach ($query->result() as $row) {
 				echo "<tr>";
 				echo "<td>" . $row->radio . "</td>";
@@ -100,17 +120,10 @@ class Radio extends CI_Controller {
 					echo '<td></td>';
 				}
 
-				if ($this->session->userdata('clubstation') != 1) {
-					$defaul_user_radio = $this->user_options_model->get_options('cat', array('option_name' => 'default_radio'))->row()->option_value ?? NULL;
-					if (!$defaul_user_radio) {
-						echo '<td><button id="default_radio_btn_' . $row->id . '" class="btn btn-sm btn-outline-primary ld-ext-right" onclick="set_default_radio(' . $row->id . ')">' . __("Set as default radio") . '<div class="ld ld-ring ld-spin"></div></button</td>';
-					} else {
-						if ($defaul_user_radio !== $row->id) {
-							echo '<td><button id="default_radio_btn_' . $row->id . '" class="btn btn-sm btn-outline-primary ld-ext-right" onclick="set_default_radio(' . $row->id . ')">' . __("Set as default radio") . '<div class="ld ld-ring ld-spin"></div></button</td>';
-						} else {
-							echo '<td><button id="default_radio_btn_' . $row->id . '" class="btn btn-sm btn-primary ld-ext-right" onclick="release_default_radio(' . $row->id . ')">' . __("Default (click to release)") . '<div class="ld ld-ring ld-spin"></div></button</td>';
-						}
-					}
+				if ($default_user_radio == $row->id) {
+					echo '<td><button id="default_radio_btn_' . $row->id . '" class="btn btn-sm btn-primary ld-ext-right" onclick="release_default_radio(' . $row->id . ')">' . __("Default (click to release)") . '<div class="ld ld-ring ld-spin"></div></button</td>';
+				} else {
+					echo '<td><button id="default_radio_btn_' . $row->id . '" class="btn btn-sm btn-outline-primary ld-ext-right" onclick="set_default_radio(' . $row->id . ')">' . __("Set as default radio") . '<div class="ld ld-ring ld-spin"></div></button</td>';
 				}
 				echo "<td><button id='edit_cat_settings_".$row->id."' \" class=\"editCatSettings btn btn-sm btn-primary\"> " . __("Edit") . "</button></td>";
 				echo "<td><a href=\"" . site_url('radio/delete') . "/" . $row->id . "\" class=\"btn btn-sm btn-danger\"> <i class=\"fas fa-trash-alt\"></i> " . __("Delete") . "</a></td>";
@@ -118,8 +131,18 @@ class Radio extends CI_Controller {
 			}
 			echo "</tbody>";
 		} else {
+			// No radios found - show WebSocket button
+			if ($default_user_radio === 'ws') {
+				$websocket_button = '<button id="default_radio_btn_ws" type="button" class="btn btn-sm btn-primary mt-2 ld-ext-right d-block mx-auto" onclick="release_default_radio(\'ws\')">' . __("WebSocket is currently default (click to release)") . '<div class="ld ld-ring ld-spin"></div></button>';
+			} else {
+				$websocket_button = '<button id="default_radio_btn_ws" type="button" class="btn btn-sm btn-primary mt-2 ld-ext-right d-block mx-auto" onclick="set_default_radio(\'ws\')">' . __("Set WebSocket as default radio") . '<div class="ld ld-ring ld-spin"></div></button>';
+			}
 			echo "<thead><tr>";
-			echo "<td colspan=\"6\"><div class=\"alert alert-info text-center\">" . __("No CAT interfaced radios found.") . "</div></td>";
+			echo "<td colspan=\"6\"><div class=\"alert alert-info text-center\">";
+			echo __("No CAT interfaced radios found.");
+			echo "<p>" . __("You can still set the WebSocket option as your default radio.") . "</p>";
+			echo $websocket_button;
+			echo "</div></td>";
 			echo "</tr></thead>";
 		}
 	}
@@ -302,11 +325,11 @@ class Radio extends CI_Controller {
 
 		$this->cat->delete($clean_id);
 
-		if ($clean_id == $this->user_options_model->get_options('cat', array('option_name' => 'default_radio'))->row()->option_value ?? '') {
+		if ($clean_id == $this->user_options_model->get_options('cat', array('option_name' => $this->_get_optionname()), $this->_get_correct_uid())->row()->option_value ?? '') {
 			$this->release_default_radio();
 		}
 
-		$this->session->set_flashdata('message', 'Radio Profile Deleted');
+		$this->session->set_flashdata('message', __("Radio removed successfully"));
 
 		session_write_close();
 		redirect('radio');
@@ -315,8 +338,8 @@ class Radio extends CI_Controller {
 	function set_default_radio() {
 
 		// get the radio_id from POST
-		$clean_radio_id = $this->security->xss_clean($this->input->post('radio_id'));
-
+		$clean_radio_id = $this->input->post('radio_id', TRUE);
+		
 		// Check Auth
 		$this->load->model('user_model');
 		if (!$this->user_model->authorize(3)) {
@@ -328,7 +351,7 @@ class Radio extends CI_Controller {
 		$this->release_default_radio();
 
 		// Set the user_option and session data
-		$this->user_options_model->set_option('cat', 'default_radio', array('radio_id' => $clean_radio_id));
+		$this->user_options_model->set_option('cat', $this->_get_optionname(), array('radio_id' => $clean_radio_id), $this->_get_correct_uid());
 		$this->session->set_userdata('radio', $clean_radio_id);
 	}
 
@@ -341,7 +364,27 @@ class Radio extends CI_Controller {
 		}
 
 		// Unset the user_option and session data
-		$this->user_options_model->del_option('cat', 'default_radio');
+		$this->user_options_model->del_option('cat', $this->_get_optionname(), NULL, $this->_get_correct_uid());
 		$this->session->unset_userdata('radio');
+	}
+
+	private function _get_correct_uid() {
+		if ($this->_is_clubstation()) {
+			return $this->session->userdata('source_uid');
+		} else {
+			return $this->session->userdata('user_id');
+		}
+	}
+
+	private function _is_clubstation() {
+		return $this->session->userdata('clubstation') == 1;
+	}
+
+	private function _get_optionname() {
+		if ($this->_is_clubstation() && ($this->session->userdata('source_uid') ?? '') != '') {
+			return 'default_clubradio_' . $this->session->userdata('user_id');
+		} else {
+			return 'default_radio';
+		}
 	}
 }

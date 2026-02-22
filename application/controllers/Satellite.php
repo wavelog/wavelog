@@ -34,7 +34,7 @@ class Satellite extends CI_Controller {
 
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/satellite.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/satellite.js")),
+			'assets/js/sections/satellite.js',
 		];
 
 		// Render Page
@@ -184,10 +184,10 @@ class Satellite extends CI_Controller {
 
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/satellite.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/satellite.js")),
-			'assets/js/sections/three-orbit-controls.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/three-orbit-controls.js")),
-			'assets/js/sections/satellite_functions.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/satellite_functions.js")),
-			'assets/js/sections/flightpath.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/flightpath.js")),
+			'assets/js/sections/satellite.js',
+			'assets/js/sections/three-orbit-controls.js',
+			'assets/js/sections/satellite_functions.js',
+			'assets/js/sections/flightpath.js',
 			'assets/js/leaflet/L.Maidenhead.js',
 			'assets/js/leaflet/geocoding.js',
 		];
@@ -245,8 +245,8 @@ class Satellite extends CI_Controller {
 
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/bootstrap-multiselect.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/bootstrap-multiselect.js")),
-			'assets/js/sections/satpasses.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/satpasses.js")),
+			'assets/js/bootstrap-multiselect.js',
+			'assets/js/sections/satpasses.js',
 		];
 
 		// Render Page

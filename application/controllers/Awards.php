@@ -277,7 +277,7 @@ class Awards extends CI_Controller {
 	public function waja ()	{
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/wajamap.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/wajamap.js")),
+			'assets/js/sections/wajamap.js',
 			'assets/js/leaflet/L.Maidenhead.js',
 		];
 
@@ -357,8 +357,8 @@ class Awards extends CI_Controller {
 	public function jcc () {
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/jcc.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/jcc.js")),
-			'assets/js/sections/jccmap.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/jccmap.js"))
+			'assets/js/sections/jcc.js',
+			'assets/js/sections/jccmap.js'
 		];
 
 		$this->load->model('jcc_model');
@@ -637,8 +637,8 @@ class Awards extends CI_Controller {
 	public function cq() {
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/cqmap_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/cqmap_geojson.js")),
-			'assets/js/sections/cqmap.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/cqmap.js"))
+			'assets/js/sections/cqmap_geojson.js',
+			'assets/js/sections/cqmap.js'
 		];
 
 		$this->load->model('logbooks_model');
@@ -713,7 +713,7 @@ class Awards extends CI_Controller {
     public function was() {
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/wasmap.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/wasmap.js")),
+			'assets/js/sections/wasmap.js',
 			'assets/js/leaflet/L.Maidenhead.js',
 		];
 
@@ -775,7 +775,7 @@ class Awards extends CI_Controller {
 	public function rac() {
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/racmap.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/racmap.js")),
+			'assets/js/sections/racmap.js',
 			'assets/js/leaflet/L.Maidenhead.js',
 		];
 
@@ -837,7 +837,7 @@ class Awards extends CI_Controller {
     public function helvetia() {
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/helvetiamap.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/helvetiamap.js")),
+			'assets/js/sections/helvetiamap.js',
 			'assets/js/leaflet/L.Maidenhead.js',
 		];
 
@@ -1367,7 +1367,7 @@ class Awards extends CI_Controller {
 	public function wap() {
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/wapmap.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/wapmap.js")),
+			'assets/js/sections/wapmap.js',
 			'assets/js/leaflet/L.Maidenhead.js',
 		];
 
@@ -1895,7 +1895,7 @@ class Awards extends CI_Controller {
 
 	    $footerData = [];
 	    $footerData['scripts'] = [
-		    'assets/js/sections/wab.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/wab.js"))
+		    'assets/js/sections/wab.js'
 	    ];
 
 	    // Render page
@@ -1975,8 +1975,8 @@ class Awards extends CI_Controller {
 	public function itu() {
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/itumap_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/itumap_geojson.js")),
-			'assets/js/sections/itumap.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/itumap.js"))
+			'assets/js/sections/itumap_geojson.js',
+			'assets/js/sections/itumap.js'
 		];
 
 		$this->load->model('logbooks_model');
@@ -2271,7 +2271,7 @@ class Awards extends CI_Controller {
 	public function wpx ()	{
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/wpx.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/wpx.js")),
+			'assets/js/sections/wpx.js',
 		];
 
 		$this->load->model('wpx');
@@ -2385,7 +2385,7 @@ class Awards extends CI_Controller {
 	public function pl_polska() {
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/award_pl_polska.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/award_pl_polska.js")),
+			'assets/js/sections/award_pl_polska.js',
 			'assets/js/leaflet/L.Maidenhead.js',
 		];
 

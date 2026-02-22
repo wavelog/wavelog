@@ -66,7 +66,7 @@ var custom_date_format = "<?php echo $custom_date_format ?>";
                    if (strpos($activation['sat'], 'TEVEL') !== false) {
                       echo "<a href=\"https://mailman.amsat.org/hyperkitty/search?q=TEVEL&page=1&mlist=amsat-bb%40amsat.org&sort=date-desc\" target=\"_blank\">" . __("Info") . "</a>";
                    } else if (strpos($activation['sat'], 'UVSQ') !== false) {
-                      echo "<a href=\"http://uvsq-sat.projet.latmos.ipsl.fr/\" target=\"_blank\">" . __("Info") . "</a>";
+                      echo "<a href=\"https://uvsq-sat.projet.latmos.ipsl.fr/\" target=\"_blank\">" . __("Info") . "</a>";
                    } else if (strpos($activation['sat'], 'PO-101') !== false) {
                       echo "<a href=\"https://x.com/Diwata2PH?s=20\" target=\"_blank\">" . __("Info") . "</a>";
                    } else if (strpos($activation['sat'], 'CAS-3H') !== false) {

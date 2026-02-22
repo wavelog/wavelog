@@ -197,8 +197,11 @@ function write_dxcc_timeline($timeline_array, $custom_date_format, $bandselect, 
                         <td>#</td>
                         <td>' . __("Date") . '</td>
                         <td>' . __("Prefix") . '</td>
-                        <td>' . __("Country") . '</td>
-                        <td>' . __("Status") . '</td>
+                        <td>' . __("Country") . '</td>';
+    if ($propmode == 'SAT' || $propmode == 'All') {
+        echo '          <td>'.__("Satellite").'</td>';
+    }
+    echo '              <td>' . __("Status") . '</td>
                         <td>' . __("End Date") . '</td>
                         <td>' . __("Show QSOs") . '</td>
                     </tr>
@@ -211,8 +214,11 @@ function write_dxcc_timeline($timeline_array, $custom_date_format, $bandselect, 
                 <td>' . $i-- . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
                 <td>' . $line->prefix . '</td>
-                <td>' . ucwords(strtolower($line->dxcc_name)) . '</td>
-                <td>';
+                <td>' . ucwords(strtolower($line->dxcc_name)) . '</td>';
+        if ($propmode == 'SAT' || $propmode == 'All') {
+            echo '<td>'.$line->sat_name.'</td>';
+        }
+        echo '  <td>';
         if (!empty($line->end)) echo '<span class="badge text-bg-danger">' . __("Deleted DXCC") . '</span>';
         echo '</td>
                 <td>' . $line->end . '</td>
@@ -234,8 +240,11 @@ function write_waja_timeline($timeline_array, $custom_date_format, $bandselect, 
                     <tr>
                         <td>#</td>
                         <td>'.__("Date").'</td>
-                        <td>'.__("Prefecture").'</td>
-                        <td>'.__("Show QSOs").'</td>
+                        <td>'.__("Prefecture").'</td>';
+    if ($propmode == 'SAT' || $propmode == 'All') {
+        echo '          <td>'.__("Satellite").'</td>';
+    }
+    echo '              <td>'.__("Show QSOs").'</td>
                     </tr>
                 </thead>
                 <tbody>';
@@ -246,8 +255,11 @@ function write_waja_timeline($timeline_array, $custom_date_format, $bandselect, 
         echo '<tr>
                 <td>' . $i-- . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
-                <td>' . $CI->Waja->jaPrefectures[$line->col_state] . ' ('.$line->col_state.')</td>
-                <td><a href=javascript:displayTimelineContacts("' . $line->col_state . '","'. $bandselect . '","'. $modeselect. '","' . $propmode . '","' . $award .'")>'.__("Show").'</a></td>
+                <td>' . $CI->Waja->jaPrefectures[$line->col_state] . ' ('.$line->col_state.')</td>';
+        if ($propmode == 'SAT' || $propmode == 'All') {
+            echo '<td>'.$line->sat_name.'</td>';
+        }
+        echo '  <td><a href=javascript:displayTimelineContacts("' . $line->col_state . '","'. $bandselect . '","'. $modeselect. '","' . $propmode . '","' . $award .'")>'.__("Show").'</a></td>
                </tr>';
     }
     echo '</tfoot></table></div>';
@@ -262,8 +274,11 @@ function write_was_timeline($timeline_array, $custom_date_format, $bandselect, $
                     <tr>
                         <td>#</td>
                         <td>' . __("Date") . '</td>
-                        <td>' . __("State") . '</td>
-                        <td>' . __("Show QSOs") . '</td>
+                        <td>' . __("State") . '</td>';
+    if ($propmode == 'SAT' || $propmode == 'All') {
+        echo '          <td>'.__("Satellite").'</td>';
+    }
+    echo '              <td>' . __("Show QSOs") . '</td>
                     </tr>
                 </thead>
                 <tbody>';
@@ -274,8 +289,11 @@ function write_was_timeline($timeline_array, $custom_date_format, $bandselect, $
         echo '<tr>
                 <td>' . $i-- . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
-                <td>' . $line->col_state . '</td>
-                <td><a href=javascript:displayTimelineContacts("' . $line->col_state . '","' . $bandselect . '","' . $modeselect . '","' . $propmode . '","' . $award .'")>' . __("Show") . '</a></td>
+                <td>' . $line->col_state . '</td>';
+        if ($propmode == 'SAT' || $propmode == 'All') {
+           echo '<td>' . $line->sat_name . '</td>';
+        }
+        echo '  <td><a href=javascript:displayTimelineContacts("' . $line->col_state . '","' . $bandselect . '","' . $modeselect . '","' . $propmode . '","' . $award .'")>' . __("Show") . '</a></td>
               </tr>';
     }
     echo '</tbody></table>';
@@ -294,8 +312,11 @@ function write_iota_timeline($timeline_array, $custom_date_format, $bandselect, 
                         <td>'.__("Date").'</td>
                         <td>'.__("IOTA").'</td>
                         <td>'.__("Name").'</td>
-                        <td>'.__("Prefix").'</td>
-                        <td>'.__("Show QSOs").'</td>
+                        <td>'.__("Prefix").'</td>';
+    if ($propmode == 'SAT' || $propmode == 'All') {
+        echo '          <td>'.__("Satellite").'</td>';
+    }
+    echo '              <td>'.__("Show QSOs").'</td>
                     </tr>
                 </thead>
                 <tbody>';
@@ -308,8 +329,11 @@ function write_iota_timeline($timeline_array, $custom_date_format, $bandselect, 
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
                 <td>' . $line->col_iota . '</td>
                 <td>' . $line->name . '</td>
-                <td>' . $line->prefix . '</td>
-                <td><a href=javascript:displayTimelineContacts("' . $line->col_iota . '","'. $bandselect . '","'. $modeselect. '","' . $propmode . '","' . $award .'")>'.__("Show").'</a></td>
+                <td>' . $line->prefix . '</td>';
+        if ($propmode == 'SAT' || $propmode == 'All') {
+           echo '<td>' . $line->sat_name . '</td>';
+        }
+        echo '  <td><a href=javascript:displayTimelineContacts("' . $line->col_iota . '","'. $bandselect . '","'. $modeselect. '","' . $propmode . '","' . $award .'")>'.__("Show").'</a></td>
                </tr>';
     }
     echo '</tfoot></table></div>';
@@ -324,8 +348,11 @@ function write_waz_timeline($timeline_array, $custom_date_format, $bandselect, $
                     <tr>
                         <td>#</td>
                         <td>'.__("Date").'</td>
-                        <td>'.__("CQ Zone").'</td>
-                        <td>'.__("Show QSOs").'</td>
+                        <td>'.__("CQ Zone").'</td>';
+    if ($propmode == 'SAT' || $propmode == 'All') {
+        echo '          <td>'.__("Satellite").'</td>';
+    }
+    echo '              <td>'.__("Show QSOs").'</td>
                     </tr>
                 </thead>
                 <tbody>';
@@ -336,14 +363,17 @@ function write_waz_timeline($timeline_array, $custom_date_format, $bandselect, $
         echo '<tr>
                 <td>' . $i-- . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
-                <td>' . $line->col_cqz . '</td>
-                <td><a href=javascript:displayTimelineContacts("' . $line->col_cqz . '","'. $bandselect . '","'. $modeselect. '","' . $propmode . '","' . $award .'")>'.__("Show").'</a></td>
+                <td>' . $line->col_cqz . '</td>';
+        if ($propmode == 'SAT' || $propmode == 'All') {
+           echo '<td>' . $line->sat_name . '</td>';
+        }
+        echo '  <td><a href=javascript:displayTimelineContacts("' . $line->col_cqz . '","'. $bandselect . '","'. $modeselect. '","' . $propmode . '","' . $award .'")>'.__("Show").'</a></td>
                </tr>';
     }
     echo '</tfoot></table></div>';
 }
 
-function write_vucc_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect,  $propmode,$award, $selectedyear, $onlynew) {
+function write_vucc_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect,  $propmode, $award, $selectedyear, $onlynew) {
     // Apply filtering to the timeline array
     $filtered_timeline = filter_timeline_array_vucc($timeline_array, $selectedyear, $onlynew);
     $i = count($filtered_timeline); // General counter for all entries
@@ -353,8 +383,11 @@ function write_vucc_timeline($timeline_array, $custom_date_format, $bandselect, 
                         <td>#</td>
                         <td>'.__("Date").'</td>
                         <td>'.__("Time").'</td>
-                        <td>'.__("Gridsquare").'</td>
-                        <td>'.__("Show QSOs").'</td>
+                        <td>'.__("Gridsquare").'</td>';
+    if ($propmode == 'SAT' || $propmode == 'All') {
+        echo '          <td>'.__("Satellite").'</td>';
+    }
+    echo '              <td>'.__("Show QSOs").'</td>
                     </tr>
                 </thead>
                 <tbody>';
@@ -366,8 +399,11 @@ function write_vucc_timeline($timeline_array, $custom_date_format, $bandselect, 
                 <td>' . $i-- . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
                 <td>' . date('H:i', $date_as_timestamp) . '</td>
-                <td>' . $line['gridsquare'] . '</td>
-                <td><a href=javascript:displayTimelineContacts("' . $line['gridsquare'] . '","'. $bandselect . '","'. $modeselect. '","' . $propmode . '","' . $award .'")>'.__("Show").'</a></td>
+                <td>' . $line['gridsquare'] . '</td>';
+        if ($propmode == 'SAT' || $propmode == 'All') {
+            echo '<td>'.$line['sat_name'].'</td>';
+        }
+        echo '  <td><a href=javascript:displayTimelineContacts("' . $line['gridsquare'] . '","'. $bandselect . '","'. $modeselect. '","' . $propmode . '","' . $award .'")>'.__("Show").'</a></td>
                </tr>';
     }
     echo '</tfoot></table></div>';

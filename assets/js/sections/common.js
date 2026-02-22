@@ -254,6 +254,11 @@ function single_callbook_update() {
             fill_if_empty('#qsl-via', data.qsl_manager);
             fill_if_empty('select[name="input_state_edit"]', data.callsign_state);
             fill_if_empty('#stationCntyInputEdit', data.callsign_us_county);
+            if (data.callsign_darc_dok && $('#darc_dok_edit').val() == '') {
+                var dok_selectize = $('#darc_dok_edit')[0].selectize;
+                dok_selectize.addOption({ name: data.callsign_darc_dok });
+                dok_selectize.setValue(data.callsign_darc_dok, false);
+            }
 
             $('#update_from_callbook').prop("disabled", false).removeClass("running");
         },
@@ -1464,6 +1469,48 @@ function decodeHtml(html) {
     const txt = document.createElement('textarea');
     txt.innerHTML = html;
     return txt.value;
+}
+
+/**
+ * Convert latitude/longitude coordinates to Maidenhead grid square locator
+ * @param {number} y - Latitude in decimal degrees (-90 to +90)
+ * @param {number} x - Longitude in decimal degrees (-180 to +180)
+ * @param {number} num - Precision level: 2=field, 4=square, 6=subsquare, 8=extended, 10=extended subsquare
+ * @returns {string} Maidenhead locator string (e.g., 'JO01ab' for 6-character precision)
+ *
+ * @example
+ * LatLng2Loc(51.5074, -0.1278, 6)  // → 'IO91wm' (London)
+ * LatLng2Loc(40.7128, -74.0060, 4) // → 'FN20' (New York)
+ */
+function LatLng2Loc(y, x, num) {
+	if (x<-180) {x=x+360;}
+	if (x>180) {x=x-360;}
+	var yi, yk, ydiv, yres, ylp, y;
+	var ycalc = new Array(0,0,0);
+	var yn    = new Array(0,0,0,0,0,0,0);
+
+	var ydiv_arr=new Array(10, 1, 1/24, 1/240, 1/240/24);
+	ycalc[0] = (x + 180)/2;
+	ycalc[1] =  y +  90;
+
+	for (yi = 0; yi < 2; yi++) {
+		for (yk = 0; yk < 5; yk++) {
+			ydiv = ydiv_arr[yk];
+			yres = ycalc[yi] / ydiv;
+			ycalc[yi] = yres;
+			if (ycalc[yi] > 0) ylp = Math.floor(yres); else ylp = Math.ceil(yres);
+			ycalc[yi] = (ycalc[yi] - ylp) * ydiv;
+			yn[2*yk + yi] = ylp;
+		}
+	}
+
+	var qthloc="";
+	if (num >= 2) qthloc+=String.fromCharCode(yn[0] + 0x41) + String.fromCharCode(yn[1] + 0x41);
+	if (num >= 4) qthloc+=String.fromCharCode(yn[2] + 0x30) + String.fromCharCode(yn[3] + 0x30);
+	if (num >= 6) qthloc+=String.fromCharCode(yn[4] + 0x41) + String.fromCharCode(yn[5] + 0x41);
+	if (num >= 8) qthloc+=' ' + String.fromCharCode(yn[6] + 0x30) + String.fromCharCode(yn[7] + 0x30);
+	if (num >= 10) qthloc+=String.fromCharCode(yn[8] + 0x61) + String.fromCharCode(yn[9] + 0x61);
+	return qthloc;
 }
 
 // DO NOT DELETE: This message is intentional and serves as developer recruitment/engagement

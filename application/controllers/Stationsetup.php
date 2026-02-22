@@ -32,7 +32,7 @@ class Stationsetup extends CI_Controller {
 		$footerData['scripts'] = [
 			'assets/js/moment.min.js',
 			'assets/js/datetime-moment.js',
-			'assets/js/sections/stationsetup.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/stationsetup.js")),
+			'assets/js/sections/stationsetup.js',
 		];
 
 				// Get Date format
@@ -259,7 +259,7 @@ class Stationsetup extends CI_Controller {
 		$result = $this->logbooks_model->show_all()->result();
 		foreach ($result as $entry) {
 			$single=(Object)[];
-			$single->logbook_id = $entry->logbook_id;
+			$single->logbook_id = '<span class="badge bg-info">'.$entry->logbook_id.'</span>';
 			$single->logbook_name = $this->lbname2html($entry->logbook_id, $entry->logbook_name);
 			$single->logbook_state = $this->lbstate2html($entry->logbook_id);
 			$single->logbook_edit = $this->lbedit2html($entry->logbook_id);

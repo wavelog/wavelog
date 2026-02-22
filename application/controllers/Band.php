@@ -36,7 +36,7 @@ class Band extends CI_Controller {
 
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/bandedges.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/bandedges.js")),
+			'assets/js/sections/bandedges.js',
 		];
 
 		// Render Page

@@ -947,6 +947,10 @@ class Logbookadvanced_model extends CI_Model {
 			$updatedData['COL_CQZ'] = $callbook['cqz'];
 			$updated = true;
 		}
+		if (!empty($callbook['darc_dok']) && empty($qso['COL_DARC_DOK'])) {
+			$updatedData['COL_DARC_DOK'] = strtoupper($callbook['darc_dok']);
+			$updated = true;
+		}
 		if (empty($qso['COL_CONT'])) {
 			$updatedData['COL_CONT'] = $this->logbook_model->getContinent($callbook['dxcc']);
 			$updated = true;
@@ -2041,7 +2045,7 @@ class Logbookadvanced_model extends CI_Model {
 
 		// Starting clock time in seconds
 		$start_time = microtime(true);
-		$dxccobj = new Dxcc(null);
+		$dxccobj = new Dxcc();
 
 		foreach ($callarray->result() as $call) {
 
@@ -2111,7 +2115,7 @@ class Logbookadvanced_model extends CI_Model {
 		$r = $this->db->query($sql, array($this->session->userdata('user_id'), json_decode($ids, true)));
 
 		$count = 0;
-		$dxccobj = new Dxcc(null);
+		$dxccobj = new Dxcc();
 
 		if ($r->num_rows() > 0) { //query dxcc_prefixes
 			$sql = "update " . $this->config->item('table_name') . " set COL_COUNTRY = ?, COL_DXCC = ? where COL_PRIMARY_KEY = ?";

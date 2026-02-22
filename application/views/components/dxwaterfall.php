@@ -68,7 +68,7 @@
 	</script>
 
 	<!-- DX Waterfall Component - CSS -->
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/dxwaterfall.css">
+	<link rel="stylesheet" href="<?php echo $this->paths->cache_buster('/assets/css/dxwaterfall.css'); ?>">
 
 	<!-- DX Waterfall Component - HTML -->
 	<div class="row dxwaterfallpane">

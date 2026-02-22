@@ -182,6 +182,7 @@ class Qrz {
 				$data['cqzone'] = '';
 			}
 		} finally {
+			$data['source'] = $this->sourcename();
 			return $data;
 		}
 	}

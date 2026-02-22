@@ -45,7 +45,7 @@ class Contesting extends CI_Controller {
 
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/contesting.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/contesting.js")),
+			'assets/js/sections/contesting.js',
 		];
 
 		$this->load->library('form_validation');
@@ -121,7 +121,7 @@ class Contesting extends CI_Controller {
 
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/contesting.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/contesting.js")),
+			'assets/js/sections/contesting.js',
 		];
 
 		// Render Page
@@ -143,7 +143,7 @@ class Contesting extends CI_Controller {
 
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/contesting.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/contesting.js")),
+			'assets/js/sections/contesting.js',
 		];
 
 		$this->form_validation->set_rules('name', 'Contest Name', 'required');

@@ -87,7 +87,7 @@ function addQsoToPrintQueue(id) {
                     line += '<a target="_blank" href="https://www.hamqth.com/' + formattedCallSign + '">';
                     line += '<img width="16" height="16" src="' + base_url + 'images/icons/hamqth.png" alt="Lookup ' + formattedCallSign + ' on HamQTH">';
                     line += '</a> ';
-                    line += '<a target="_blank" href="http://www.eqsl.cc/Member.cfm?' + formattedCallSign + '">';
+                    line += '<a target="_blank" href="https://www.eqsl.cc/Member.cfm?' + formattedCallSign + '">';
                     line += '<img width="16" height="16" src="' + base_url + 'images/icons/eqsl.png" alt="Lookup ' + formattedCallSign + ' on eQSL.cc">';
                     line += '</a>';
                     line += '</span>';

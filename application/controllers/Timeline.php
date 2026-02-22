@@ -101,7 +101,7 @@ class Timeline extends CI_Controller {
 		$data['onlynew'] = $onlynew;
 		$data['selectedyear'] = $year;
 
-		$footerData['scripts'] = [ 'assets/js/sections/timeline.js?' ];
+		$footerData['scripts'] = [ 'assets/js/sections/timeline.js' ];
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('timeline/index');
 		$this->load->view('interface_assets/footer', $footerData);

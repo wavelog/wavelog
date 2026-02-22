@@ -21,8 +21,8 @@ class Generic_qsl extends CI_Controller {
 
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/bootstrap-multiselect.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/bootstrap-multiselect.js")),
-			'assets/js/sections/qsl.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/qsl.js")),
+			'assets/js/bootstrap-multiselect.js',
+			'assets/js/sections/qsl.js',
 		];
 
 		$this->load->view('interface_assets/header', $data);

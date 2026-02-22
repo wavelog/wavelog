@@ -8,7 +8,7 @@
             <div class="modal-body" id="firstloginwizard_modal_content" style="overflow-y: auto; max-height: 75vh;">
                     <div class="row" style="margin-top: 20px;">
                         <div class="col-md-5" id="logo-container">
-                            <img src="<?php echo base_url(); ?>assets/logo/wavelog_logo_darkly.png" alt="" style="max-width: 100%; height: auto; margin-top: 70px;">
+                            <img src="<?php echo $this->paths->cache_buster('/assets/logo/wavelog_logo_darkly.png'); ?>" alt="" style="max-width: 100%; height: auto; margin-top: 70px;">
                         </div>
 
                         <div class="col-md-7">

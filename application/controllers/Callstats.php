@@ -74,7 +74,7 @@ class Callstats extends CI_Controller
 
 	    $footerData = [];
 	    $footerData['scripts'] = [
-		    'assets/js/sections/callstats.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/callstats.js")),
+		    'assets/js/sections/callstats.js',
 	    ];
 
 	    $this->load->view('interface_assets/header', $data);

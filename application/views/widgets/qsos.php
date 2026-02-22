@@ -3,9 +3,9 @@
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/<?php echo $theme; ?>/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/<?php echo $theme; ?>/overrides.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/general.css">
+    <link rel="stylesheet" href="<?php echo $this->paths->cache_buster('/assets/css/' . $theme . '/bootstrap.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo $this->paths->cache_buster('/assets/css/' . $theme . '/overrides.css'); ?>">
+    <link rel="stylesheet" href="<?php echo $this->paths->cache_buster('/assets/css/general.css'); ?>">
 
     <title><?= "QSOs"; ?></title>
 </head>

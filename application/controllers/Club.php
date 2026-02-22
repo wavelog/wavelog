@@ -61,7 +61,7 @@ class Club extends CI_Controller
 
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/club_permissions.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/club_permissions.js")),
+			'assets/js/sections/club_permissions.js',
 		];
 
 		$this->load->view('interface_assets/header', $data);

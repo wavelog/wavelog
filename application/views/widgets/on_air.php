@@ -22,9 +22,9 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
     <!-- No auto-refresh for QRZ.com compatibility - blocked by sandbox -->
     <?php endif; ?>
 
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/<?php echo $theme; ?>/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/<?php echo $theme; ?>/overrides.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/general.css">
+    <link rel="stylesheet" href="<?php echo $this->paths->cache_buster('/assets/css/' . $theme . '/bootstrap.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo $this->paths->cache_buster('/assets/css/' . $theme . '/overrides.css'); ?>">
+    <link rel="stylesheet" href="<?php echo $this->paths->cache_buster('/assets/css/general.css'); ?>">
 
     <title><?= "Wavelog Dynamic On-Air widget"; ?></title>
     <style>
@@ -136,7 +136,7 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
     <!-- No-JavaScript mode for QRZ.com compatibility -->
     <div class="widget container d-flex">
         <div class="left-column">
-            <img class="widgetLogo" src="<?php echo base_url(); ?>assets/logo/<?php echo $this->optionslib->get_logo('header_logo', $theme); ?>.png" alt="Logo" />
+            <img class="widgetLogo" src="<?php echo $this->paths->cache_buster('/assets/logo/' . $this->optionslib->get_logo('header_logo', $theme) . '.png'); ?>" alt="Logo" />
         </div>
         <?php if (!isset($error)) { ?>
         <div class="right-column">
@@ -197,7 +197,7 @@ The widget automatically detects the nojs=1 parameter and serves a JavaScript-fr
     <!-- Normal JavaScript-enabled mode -->
     <div class="widget container d-flex">
         <div class="left-column">
-            <img class="widgetLogo" src="<?php echo base_url(); ?>assets/logo/<?php echo $this->optionslib->get_logo('header_logo', $theme); ?>.png" alt="Logo" />
+            <img class="widgetLogo" src="<?php echo $this->paths->cache_buster('/assets/logo/' . $this->optionslib->get_logo('header_logo', $theme) . '.png'); ?>" alt="Logo" />
         </div>
         <?php if (!isset($error)) { ?>
         <div class="right-column">

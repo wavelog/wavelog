@@ -14,9 +14,9 @@ To use this widget insert this Element:
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/<?php echo $theme; ?>/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/<?php echo $theme; ?>/overrides.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/general.css">
+    <link rel="stylesheet" href="<?php echo $this->paths->cache_buster('/assets/css/' . $theme . '/bootstrap.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo $this->paths->cache_buster('/assets/css/' . $theme . '/overrides.css'); ?>">
+    <link rel="stylesheet" href="<?php echo $this->paths->cache_buster('/assets/css/general.css'); ?>">
 
     <title><?= __("Wavelog OQRS"); ?></title>
     <style>
@@ -69,7 +69,7 @@ To use this widget insert this Element:
 <body>
     <div class="widget container d-flex">
         <div class="left-column">
-            <a href="<?php echo $logo_url; ?>" target="_blank"><img class="widgetLogo" src="<?php echo base_url(); ?>assets/logo/<?php echo $this->optionslib->get_logo('header_logo', $theme); ?>.png" alt="Logo" /></a>
+            <a href="<?php echo $logo_url; ?>" target="_blank"><img class="widgetLogo" src="<?php echo $this->paths->cache_buster('/assets/logo/' . $this->optionslib->get_logo('header_logo', $theme) . '.png'); ?>" alt="Logo" /></a>
         </div>
         <div class="right-column">
             <div class="top-right">

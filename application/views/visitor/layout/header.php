@@ -7,39 +7,39 @@
 
     <!-- Bootstrap CSS -->
     <?php if($this->optionslib->get_theme()) { ?>
-		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/<?php echo $this->optionslib->get_theme();?>/bootstrap.min.css">
-		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/general.css">
-		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/visitor.css">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/selectize.bootstrap4.css"/>
-		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-dialog.css"/>
-		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/<?php echo $this->optionslib->get_theme();?>/overrides.css">
+		<link rel="stylesheet" href="<?php echo $this->paths->cache_buster('/assets/css/' . $this->optionslib->get_theme() . '/bootstrap.min.css'); ?>">
+		<link rel="stylesheet" href="<?php echo $this->paths->cache_buster('/assets/css/general.css'); ?>">
+		<link rel="stylesheet" href="<?php echo $this->paths->cache_buster('/assets/css/visitor.css'); ?>">
+        <link rel="stylesheet" href="<?php echo $this->paths->cache_buster('/assets/css/selectize.bootstrap4.css'); ?>"/>
+		<link rel="stylesheet" href="<?php echo $this->paths->cache_buster('/assets/css/bootstrap-dialog.css'); ?>"/>
+		<link rel="stylesheet" href="<?php echo $this->paths->cache_buster('/assets/css/' . $this->optionslib->get_theme() . '/overrides.css'); ?>">
 	<?php } ?>
 
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="<?php echo $this->paths->cache_buster('/assets/fontawesome/css/all.min.css'); ?>">
 
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.fancybox.min.css" />
+	<link rel="stylesheet" href="<?php echo $this->paths->cache_buster('/assets/css/jquery.fancybox.min.css'); ?>" />
 
     <!-- Maps -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/js/leaflet/leaflet.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->paths->cache_buster('/assets/js/leaflet/leaflet.css'); ?>" />
 
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/loading.min.css" />
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/ldbtn.min.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->paths->cache_buster('/assets/css/loading.min.css'); ?>" />
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->paths->cache_buster('/assets/css/ldbtn.min.css'); ?>" />
 
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/buttons.dataTables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->paths->cache_buster('/assets/css/buttons.dataTables.min.css'); ?>"/>
 
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/datatables.min.css"/>
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->paths->cache_buster('/assets/css/datatables.min.css'); ?>"/>
 
-	<?php if (file_exists(APPPATH.'../assets/css/custom.css')) { echo '<link rel="stylesheet" href="'.base_url().'assets/css/custom.css">'; } ?>
+	<?php if (file_exists(APPPATH.'../assets/css/custom.css')) { echo '<link rel="stylesheet" href="'.$this->paths->cache_buster('/assets/css/custom.css').'">'; } ?>
 
 	<script>
 		var userName = 'visitor';
 	</script>
 
 	<?php if (file_exists(APPPATH . '../assets/js/sections/custom.js')) {
-		echo '<script src="' . base_url() . 'assets/js/sections/custom.js"></script>';
+		echo '<script src="' . $this->paths->cache_buster('/assets/js/sections/custom.js') . '"></script>';
 	} ?>
 
-    <link rel="icon" href="<?php echo base_url(); ?>favicon.ico">
+    <link rel="icon" href="<?php echo $this->paths->cache_buster('/favicon.ico'); ?>">
 
     <title><?php if(isset($page_title)) { echo $page_title; } ?> - Wavelog</title>
   </head>
@@ -50,9 +50,9 @@
 
 	<?php
 		if (!empty($slug)) {
-			echo '<a class="navbar-brand" href="' . site_url('visitor/'.$slug) .'"><img class="headerLogo" src="' . base_url() . 'assets/logo/' . $this->optionslib->get_logo('header_logo') . '.png" alt="Logo"/></a>';
+			echo '<a class="navbar-brand" href="' . site_url('visitor/'.$slug) .'"><img class="headerLogo" src="' . $this->paths->cache_buster('/assets/logo/' . $this->optionslib->get_logo('header_logo') . '.png') . '" alt="Logo"/></a>';
 		} else {
-			echo '<a class="navbar-brand" href="' . site_url() .'"><img src="' . base_url() . 'assets/logo/' . $this->optionslib->get_logo('header_logo') . '.png" alt="Logo" style="width:50px; height:50px;" /></a>';
+			echo '<a class="navbar-brand" href="' . site_url() .'"><img src="' . $this->paths->cache_buster('/assets/logo/' . $this->optionslib->get_logo('header_logo') . '.png') . '" alt="Logo" style="width:50px; height:50px;" /></a>';
 		}
 	?>
 	<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>

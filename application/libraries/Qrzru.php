@@ -114,6 +114,7 @@ class Qrzru {
 				$data['cqz'] = '';
 			}
 		} finally {
+			$data['source'] = $this->sourcename();
 			return $data;
 		}
 	}

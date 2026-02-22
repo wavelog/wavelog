@@ -15,7 +15,7 @@ class Hamsat extends CI_Controller {
 
 	public function index() {
 		$data['scripts'] = [
-			'assets/js/sections/hamsat.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/hamsat.js")),
+			'assets/js/sections/hamsat.js',
 			'assets/js/moment.min.js',
 			'assets/js/datetime-moment.js'
 		];

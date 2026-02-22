@@ -143,6 +143,7 @@ class Qrzcq {
 
 			}
 		} finally {
+			$data['source'] = $this->sourcename();
 			return $data;
 		}
 	}

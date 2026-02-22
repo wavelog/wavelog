@@ -4,7 +4,7 @@
 	const homelat = "<?php echo $latlng[0]; ?>";
 	const homelon = "<?php echo $latlng[1]; ?>";
 	const homegrid = "<?php echo $homegrid; ?>";
-	var icon_home_url = "<?php echo base_url();?>assets/images/dot.png";
+	var icon_home_url = "<?php echo $this->paths->cache_buster('/assets/images/dot.png'); ?>";
 	var tileUrl = "<?php echo $this->optionslib->get_option('option_map_tile_server'); ?>";
 </script>
 <script type="text/javascript">

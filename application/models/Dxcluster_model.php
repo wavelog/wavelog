@@ -135,7 +135,7 @@ class Dxcluster_model extends CI_Model {
 			}
 			$date = date('Y-m-d', time());
 
-			$dxccObj = new DXCC($date);
+			$dxccObj = new DXCC();
 
 			// DXCC lookup cache to avoid duplicate lookups
 			$dxcc_cache = [];
@@ -527,9 +527,8 @@ class Dxcluster_model extends CI_Model {
 		    $jsonraw = curl_exec($ch);
 		    $json = json_decode($jsonraw);
 
-			$date = date('Ymd', time());
-
-			$dxccObj = new DXCC($date);
+			$date = date('Y-m-d', time());
+			$dxccObj = new DXCC();
 
 		    // Create JSON object
 			if (strlen($jsonraw)>20) {
@@ -541,7 +540,7 @@ class Dxcluster_model extends CI_Model {
 			    $minutes += $spotage->i;
 			    $json->age=$minutes;
 			    if ($minutes<=$maxage) {
-				    $dxcc=$dxccObj->dxcc_lookup($json->spotter,date('Ymd', time()));
+				    $dxcc=$dxccObj->dxcc_lookup($json->spotter,$date);
 				    $json->dxcc_spotter=$dxcc;
 				    return ($json);
 			    } else {

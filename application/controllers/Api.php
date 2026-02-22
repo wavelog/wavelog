@@ -728,6 +728,80 @@ class API extends CI_Controller {
 
 	}
 
+	// API function to check if a grid is in the logbook already
+	function logbook_get_worked_grids() {
+		$arr = array();
+		header('Content-type: application/json');
+		$this->load->model('api_model');
+		$obj = json_decode(file_get_contents("php://input"), true);
+		if ($obj === NULL) {
+		    echo json_encode(['status' => 'failed', 'reason' => "wrong JSON"]);
+		    die();
+		}
+		// Check rate limit
+		$identifier = isset($obj['key']) ? $obj['key'] : null;
+		$this->check_rate_limit('logbook_get_worked_grids', $identifier);
+
+		if(!isset($obj['key']) || $this->api_model->authorize($obj['key']) == 0) {
+		   http_response_code(401);
+		   echo json_encode(['status' => 'failed', 'reason' => "missing api key"]);
+		   die();
+		}
+		$api_user_id = $this->api_model->key_userid($obj['key']);
+		if(!isset($obj['logbook_public_slug'])) {
+		   http_response_code(400);
+		   echo json_encode(['status' => 'failed', 'reason' => "missing fields"]);
+			return;
+		}
+		if($obj['logbook_public_slug'] != "") {
+			$logbook_slug = $obj['logbook_public_slug'];
+			if(isset($obj['band'])) {
+				$band = $obj['band'];
+			} else {
+				$band = null;
+			}
+			if(isset($obj['cnfm'])) {
+				$cnfm = $obj['cnfm'];
+			} else {
+				$cnfm = null;
+			}
+			$this->load->model('logbooks_model');
+			if(!$this->logbooks_model->public_slug_belongs_to_user($logbook_slug, $api_user_id)) {
+				http_response_code(403);
+				echo json_encode(['status' => 'failed', 'reason' => "logbook does not belong to this api key"]);
+				die();
+			}
+			if($this->logbooks_model->public_slug_exists($logbook_slug)) {
+				$logbook_id = $this->logbooks_model->public_slug_exists_logbook_id($logbook_slug);
+				if($logbook_id != false)
+				{
+					$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($logbook_id);
+					if (!$logbooks_locations_array) {
+						http_response_code(404);
+						echo json_encode(['status' => 'failed', 'reason' => "Empty Logbook"]);
+						die();
+					}
+				} else {
+					http_response_code(404);
+					echo json_encode(['status' => 'failed', 'reason' => $logbook_slug." has no associated station locations"]);
+					die();
+				}
+				$this->load->model('logbook_model');
+
+				$arr = $this->api_model->get_grids_worked_in_logbook($logbooks_locations_array, $band, $cnfm);
+				http_response_code(201);
+				echo json_encode($arr);
+
+			} else {
+				http_response_code(404);
+				echo json_encode(['status' => 'failed', 'reason' => "logbook not found"]);
+				die();
+			}
+
+		}
+
+	}
+
 	/* ENDPOINT for Rig Control */
 
 	function radio() {
@@ -962,7 +1036,7 @@ class API extends CI_Controller {
 			];
 
 			$return['callsign'] = $lookup_callsign;
-			$dxccobj = new Dxcc(null);
+			$dxccobj = new Dxcc();
 			$callsign_dxcc_lookup = $dxccobj->dxcc_lookup($lookup_callsign, $date);
 
 			$last_slash_pos = strrpos($lookup_callsign, '/');
@@ -1122,7 +1196,7 @@ class API extends CI_Controller {
 			$return['callsign'] = $lookup_callsign;
 
 			// Use Wavelog\Dxcc\Dxcc for faster in-memory lookup
-			$dxccobj = new Dxcc($date);
+			$dxccobj = new Dxcc();
 			$callsign_dxcc_lookup = $dxccobj->dxcc_lookup($lookup_callsign, $date);
 
 			$return['dxcc_id'] = $callsign_dxcc_lookup['adif'] ?? '';
@@ -1146,8 +1220,6 @@ class API extends CI_Controller {
 				$return['qsl_manager'] = $call_lookup_results->COL_QSL_VIA;
 				$return['state'] = $call_lookup_results->COL_STATE;
 				$return['us_county'] = $call_lookup_results->COL_CNTY;
-				$return['dxcc_id'] = $call_lookup_results->COL_DXCC;
-				$return['cont'] = $call_lookup_results->COL_CONT;
 				$return['workedBefore'] = true;
 
 				if ($return['gridsquare'] != "") {
@@ -1309,4 +1381,55 @@ class API extends CI_Controller {
 		return $url;
 	}
 
+	/* ** 
+	* List members of a clubstation
+	* API key needs to be of a club officer (permission level 9)
+	* returns array of club member details
+	*/
+	function list_clubmembers() {
+		header('Content-type: application/json');
+
+		$this->load->model('api_model');
+
+		// Decode JSON and store
+		$obj = json_decode(file_get_contents("php://input"), true);
+		if ($obj === NULL) {
+		    http_response_code(400);
+			echo json_encode(['status' => 'failed', 'reason' => "wrong JSON"]);
+			return;
+		}
+
+		if ($this->api_model->access($obj['key']) == "No Key Found" || $this->api_model->access($obj['key']) == "Key Disabled") {
+			http_response_code(401);
+			echo json_encode(['status' => 'error', 'message' => 'Auth Error, invalid key']);
+			return;
+		}
+
+		$this->load->model('club_model');
+		$userid = $this->api_model->key_userid($obj['key']);
+		$created_by = $this->api_model->key_created_by($obj['key']);
+		$club_perm = $this->club_model->get_permission_noui($userid,$created_by);
+		if (($userid == $created_by) || (($club_perm ?? 0) != 9)) { // not club officer
+			http_response_code(401);
+			echo json_encode(['status' => 'error', 'message' => 'Auth Error, not enough permissions for this operation']);
+			return;
+		}
+
+		$memberlist = $this->club_model->get_club_members($userid);
+		if (!empty($memberlist)) {
+			foreach($memberlist as $member) {
+				$members[] = [
+					'callsign' => $member->user_callsign,
+					'user_name' => $member->user_name,
+					'p_level' => $member->p_level
+				];
+			}
+			http_response_code(200);
+			echo json_encode(['status' => 'successful', 'members' => $members]);
+		} else {
+			http_response_code(204);
+			echo json_encode(['status' => 'failed', 'reason' => "No club members found", 'members' => '']);
+			return;
+		}
+	}
 }

@@ -44,7 +44,7 @@ class User extends CI_Controller {
 
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/user.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/user.js")),
+			'assets/js/sections/user.js',
 		];
 
 		$data['page_title'] = __("User Accounts");
@@ -174,7 +174,7 @@ class User extends CI_Controller {
 
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/user.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/user.js")),
+			'assets/js/sections/user.js',
 		];
 
 		// Get timezones
@@ -418,7 +418,7 @@ class User extends CI_Controller {
 
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/user.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/user.js")),
+			'assets/js/sections/user.js',
 		];
 
 		// Get timezones

@@ -13,7 +13,7 @@ class Sattimers extends CI_Controller {
 		$this->load->model('stations');
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/sattimers.js?'
+			'assets/js/sections/sattimers.js'
 		];
 
 		$url = 'https://www.df2et.de/tevel/api2.php?grid='.strtoupper($this->stations->find_gridsquare());

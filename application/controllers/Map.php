@@ -51,9 +51,9 @@ class Map extends CI_Controller {
 		$footerData['scripts'] = [
 			'assets/js/leaflet/geocoding.js',
 			'assets/js/leaflet/L.Maidenhead.js',
-			'assets/js/sections/qso_map.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/qso_map.js")),
-			'assets/js/sections/itumap_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/itumap_geojson.js")),
-			'assets/js/sections/cqmap_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/cqmap_geojson.js")),
+			'assets/js/sections/qso_map.js',
+			'assets/js/sections/itumap_geojson.js',
+			'assets/js/sections/cqmap_geojson.js',
 		];
 
 		$this->load->view('interface_assets/header', $data);

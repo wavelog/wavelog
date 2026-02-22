@@ -894,6 +894,18 @@ $config['enable_dxcluster_file_cache_worked'] = false;
 
 /*
 |--------------------------------------------------------------------------
+| DXCluster Refresh Time
+|--------------------------------------------------------------------------
+| This defines the how often the DXCluster spots are refreshed in seconds. Default is 30 seconds.
+| Be careful with this and do not set it too low because depending on how many QSOs a user has it 
+| can cause a lot of load on the server. Also consider enabling a proper caching (file caches are 
+| not recommended for very large installations) to reduce the load on the server.
+|--------------------------------------------------------------------------
+ */
+$config['dxcluster_refresh_time'] = 30;
+
+/*
+|--------------------------------------------------------------------------
 | Internal tools
 | Set this to true if you want to display the admin internal tools in the header menu
 |--------------------------------------------------------------------------

@@ -21,7 +21,7 @@
 				<div class="tab-pane active" id="export" role="tabpanel" aria-labelledby="export-tab">
             <p><?= __("Here you can see all QSOs which have not been previously uploaded to a HRDLog logbook."); ?></p>
             <p><?= __("You need to set a HRDLog Logbook API Code in your station profile. Only station profiles with an API Key set are displayed."); ?></p>
-            <p><?= sprintf(__("The Code can be requested at %s"), '<a href="http://www.hrdlog.net/EditUser.aspx" target="_blank" class="link">http://www.hrdlog.net/EditUser.aspx</a>'); ?></p>
+            <p><?= sprintf(__("The Code can be requested at %s"), '<a href="https://www.hrdlog.net/EditUser.aspx" target="_blank" class="link">https://www.hrdlog.net/EditUser.aspx</a>'); ?></p>
             <?php if (!($this->config->item('disable_manual_hrdlog'))) { echo '<p><span class="badge text-bg-warning">' . __("Warning") . '</span> ' . __("This might take a while as QSO uploads are processed sequentially.") . '</p>'; } ?>
 
 <?php

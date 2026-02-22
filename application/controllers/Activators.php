@@ -50,7 +50,7 @@ class Activators extends CI_Controller
 
         $footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/activators.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/activators.js")),
+			'assets/js/sections/activators.js',
 		];
 
         $this->load->view('interface_assets/header', $data);

@@ -6,7 +6,7 @@
   */
   var base_url = "<?php echo base_url(); ?>"; // Base URL
   var site_url = "<?php echo site_url(); ?>"; // Site URL
-  var icon_dot_url = "<?php echo base_url();?>assets/images/dot.png";
+  var icon_dot_url = "<?php echo $this->paths->cache_buster('/assets/images/dot.png'); ?>";
   var option_map_tile_server_copyright = '<?php echo $this->optionslib->get_option('option_map_tile_server_copyright');?>';
   var option_map_tile_subdomains = '<?php echo $this->optionslib->get_option('option_map_tile_subdomains') ?? 'abc';?>';
   var lang_general_gridsquares = "<?= __("Gridsquares"); ?>";
@@ -14,21 +14,21 @@
 </script>
 
 <!-- General JS Files used across Wavelog -->
-<script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/jquery.fancybox.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/bootstrap.bundle.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/leaflet/leaflet.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/leaflet/L.Maidenhead.qrb.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/leaflet/leaflet.geodesic.js"></script>
-<script type="text/javascript" src="<?php echo base_url() ;?>assets/js/darkmodehelpers.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/bootstrapdialog/js/bootstrap-dialog.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url() ;?>assets/js/easyprint.js"></script>
+<script src="<?php echo $this->paths->cache_buster('/assets/js/jquery-3.3.1.min.js') ?>"></script>
+<script src="<?php echo $this->paths->cache_buster('/assets/js/jquery.fancybox.min.js') ?>"></script>
+<script src="<?php echo $this->paths->cache_buster('/assets/js/bootstrap.bundle.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/leaflet.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/L.Maidenhead.qrb.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/leaflet.geodesic.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/darkmodehelpers.js') ?>"></script>
+<script src="<?php echo $this->paths->cache_buster('/assets/js/bootstrapdialog/js/bootstrap-dialog.min.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/easyprint.js') ?>"></script>
 
 <!-- DATATABLES LANGUAGE -->
 <?php
 $local_code = $language['locale'];
 $lang_code = $language['code'];
-$file_path = base_url() . "assets/json/datatables_languages/" . $local_code . ".json";
+$file_path = $this->paths->cache_buster('/assets/json/datatables_languages/' . $local_code . '.json');
 
 // Check if the file exists
 if ($lang_code != 'en' && !file_exists(FCPATH . "assets/json/datatables_languages/" . $local_code . ".json")) {
@@ -57,8 +57,8 @@ if ($lang_code != 'en' && !file_exists(FCPATH . "assets/json/datatables_language
 </script>
 <!-- DATATABLES LANGUAGE END -->
 
-    <script type="text/javascript" src="<?php echo base_url();?>assets/js/leaflet/L.Maidenhead.js"></script>
-    <script id="leafembed" type="text/javascript" src="<?php echo base_url();?>assets/js/leaflet/leafembed.js" tileUrl="<?php echo $this->optionslib->get_option('map_tile_server');?>"></script>
+    <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/L.Maidenhead.js') ?>"></script>
+    <script id="leafembed" type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/leafembed.js') ?>" tileUrl="<?php echo $this->optionslib->get_option('map_tile_server');?>"></script>
     <script type="text/javascript">
       $(function () {
         $('[data-bs-toggle="tooltip"]').tooltip()
@@ -93,8 +93,8 @@ if ($lang_code != 'en' && !file_exists(FCPATH . "assets/json/datatables_language
 
 <?php if ($this->uri->segment(2) == "satellites") { ?>
 
-<script type="text/javascript" src="<?php echo base_url();?>assets/js/sections/gridmap.js?"></script>
-<script type="text/javascript" src="<?php echo base_url();?>assets/js/leaflet/L.MaidenheadColoured.js"></script>
+<script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/sections/gridmap.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/L.MaidenheadColoured.js'); ?>"></script>
 
 <script>
 
@@ -199,11 +199,11 @@ if ($lang_code != 'en' && !file_exists(FCPATH . "assets/json/datatables_language
 <?php } ?>
     </script>
     <?php if ($public_search_enabled || $this->session->userdata('user_type') >= 2) { ?>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datatables.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/dataTables.buttons.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/buttons.html5.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/moment.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datetime-moment.js"></script>
+    <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/datatables.min.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/dataTables.buttons.min.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/buttons.html5.min.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/moment.min.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/datetime-moment.js'); ?>"></script>
     <script>
             <?php switch($this->config->item('qso_date_format')) {
                case 'd/m/y': $usethisformat = 'D/MM/YY';break;

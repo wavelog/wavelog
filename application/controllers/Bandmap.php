@@ -10,27 +10,6 @@ class Bandmap extends CI_Controller {
 		$this->load->model('bands');
 	}
 
-	function index() {
-		$this->load->model('cat');
-		$this->load->model('bands');
-		$data['radios'] = $this->cat->radios(true);
-		$data['bands'] = $this->bands->get_user_bands_for_qso_entry();
-
-        $footerData = [];
-		$footerData['scripts'] = [
-			'assets/js/highcharts/highcharts.js',
-			'assets/js/highcharts/timeline.js',
-			'assets/js/highcharts/exporting.js',
-			'assets/js/highcharts/accessibility.js',
-			'assets/js/sections/bandmap.js',
-		];
-
-		$data['page_title'] = __("DXCluster");
-		$this->load->view('interface_assets/header', $data);
-		$this->load->view('bandmap/index');
-		$this->load->view('interface_assets/footer', $footerData);
-	}
-
 	function list() {
 		$this->load->model('cat');
 		$this->load->model('bands');
@@ -41,13 +20,13 @@ class Bandmap extends CI_Controller {
 		$footerData = [];
 		$footerData['scripts'] = [
 			'assets/js/moment.min.js',
-			'assets/js/datetime-moment.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/datetime-moment.js")),
-			'assets/js/cat.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/cat.js")),
-			'assets/js/leaflet/leaflet.geodesic.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/leaflet/leaflet.geodesic.js")),
-			'assets/js/leaflet.polylineDecorator.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/leaflet.polylineDecorator.js")),
-			'assets/js/leaflet/L.Terminator.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/leaflet/L.Terminator.js")),
-			'assets/js/sections/callstats.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/callstats.js")),
-			'assets/js/sections/bandmap_list.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/bandmap_list.js")),
+			'assets/js/datetime-moment.js',
+			'assets/js/cat.js',
+			'assets/js/leaflet/leaflet.geodesic.js',
+			'assets/js/leaflet.polylineDecorator.js',
+			'assets/js/leaflet/L.Terminator.js',
+			'assets/js/sections/callstats.js',
+			'assets/js/sections/bandmap_list.js',
 		];
 
 		// Get Date format
@@ -60,17 +39,19 @@ class Bandmap extends CI_Controller {
 		}
 
 		switch ($pageData['custom_date_format']) {
-		case "d/m/y": $pageData['custom_date_format'] = 'DD/MM/YY'; break;
-		case "d/m/Y": $pageData['custom_date_format'] = 'DD/MM/YYYY'; break;
-		case "m/d/y": $pageData['custom_date_format'] = 'MM/DD/YY'; break;
-		case "m/d/Y": $pageData['custom_date_format'] = 'MM/DD/YYYY'; break;
-		case "d.m.Y": $pageData['custom_date_format'] = 'DD.MM.YYYY'; break;
-		case "y/m/d": $pageData['custom_date_format'] = 'YY/MM/DD'; break;
-		case "Y-m-d": $pageData['custom_date_format'] = 'YYYY-MM-DD'; break;
-		case "M d, Y": $pageData['custom_date_format'] = 'MMM DD, YYYY'; break;
-		case "M d, y": $pageData['custom_date_format'] = 'MMM DD, YY'; break;
-		default: $pageData['custom_date_format'] = 'DD/MM/YYYY';
+			case "d/m/y": $pageData['custom_date_format'] = 'DD/MM/YY'; break;
+			case "d/m/Y": $pageData['custom_date_format'] = 'DD/MM/YYYY'; break;
+			case "m/d/y": $pageData['custom_date_format'] = 'MM/DD/YY'; break;
+			case "m/d/Y": $pageData['custom_date_format'] = 'MM/DD/YYYY'; break;
+			case "d.m.Y": $pageData['custom_date_format'] = 'DD.MM.YYYY'; break;
+			case "y/m/d": $pageData['custom_date_format'] = 'YY/MM/DD'; break;
+			case "Y-m-d": $pageData['custom_date_format'] = 'YYYY-MM-DD'; break;
+			case "M d, Y": $pageData['custom_date_format'] = 'MMM DD, YYYY'; break;
+			case "M d, y": $pageData['custom_date_format'] = 'MMM DD, YY'; break;
+			default: $pageData['custom_date_format'] = 'DD/MM/YYYY';
 		}
+
+		$data['dxcluster_refresh_time'] = $this->config->item('dxcluster_refresh_time') ?? 30;
 
 		$data['page_title'] = __("DXCluster");
 		$this->load->view('interface_assets/header', $data);

@@ -32,4 +32,29 @@ class Paths
         }
         return $datadir . "/" . $path;
 	}
+
+    function cache_buster($filepath) {
+        // make sure $filepath starts with a slash
+        if (substr($filepath, 0, 1) !== '/') $filepath = '/' . $filepath;
+
+        // These files are not existent on purpose and should not trigger error logs
+        $err_exceptions = [
+            '/assets/json/datatables_languages/en-US.json',
+        ];
+
+        $fullpath = $_SERVER['DOCUMENT_ROOT'] . $filepath;
+    
+        // We comment out this line because latest teste at LA8AJA's XAMPP setup showed that it works even without it
+        // So we will keep it simple and just use the $filepath as is, since it seems to work fine on both Linux and Windows setups
+        // $fullpath = rtrim($_SERVER['DOCUMENT_ROOT'], '/\\') . str_replace('/', DIRECTORY_SEPARATOR, $filepath);
+        
+        if (file_exists($fullpath)) {
+            return base_url($filepath) . '?v=' . filemtime($fullpath);
+        } else {
+            if (!in_array($filepath, $err_exceptions)) {
+                log_message('error', 'CACHE BUSTER: File does not exist: ' . $fullpath);
+            }
+        }
+        return base_url($filepath);
+    }
 }

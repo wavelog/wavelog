@@ -27,7 +27,7 @@ class Qrz extends CI_Controller {
 
 	public function qrz_apitest() {
 		$apikey = xss_clean($this->input->post('APIKEY'));
-		$url = 'http://logbook.qrz.com/api'; // TODO: Move this to database
+		$url = 'https://logbook.qrz.com/api'; // TODO: Move this to database
   
 		$post_data['KEY'] = $apikey;
 		$post_data['ACTION'] = 'STATUS';
@@ -362,7 +362,7 @@ class Qrz extends CI_Controller {
 			$result = "Temporary download file ".$file." is not writable. Aborting!";
 			return false;
 		}
-		$url = 'http://logbook.qrz.com/api'; 
+		$url = 'https://logbook.qrz.com/api'; 
 
 		$post_data['KEY'] = $qrz_api_key;
 		$post_data['ACTION'] = 'FETCH';

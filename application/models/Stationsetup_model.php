@@ -304,6 +304,7 @@ class Stationsetup_model extends CI_Model {
 			// Data for user_options
 			$optiondata = [
 				'eqsl_default_qslmsg' => xss_clean($loc['eqsl_default_qslmsg'] ?? null),
+				'link_active_logbook' => (empty($loc['link_active_logbook']) ? 'false' : 'true')
 			];
 
 			// Insert or update location in DB
@@ -368,6 +369,15 @@ class Stationsetup_model extends CI_Model {
 			if (!empty(trim($optiondata['eqsl_default_qslmsg']))) {
 				$this->load->model('user_options_model');
 				$this->user_options_model->set_option('eqsl_default_qslmsg', 'key_station_id', array($location_id => $optiondata['eqsl_default_qslmsg']),($user_id ?? $this->session->userdata('user_id')));
+			}
+			if ($optiondata['link_active_logbook'] === 'true') {
+				$this->load->model('logbooks_model');
+				$active_logbook = $this->logbooks_model->find_active_station_logbook_from_userid($dbdata['user_id']);
+				if(!empty($active_logbook)) {
+					// Can't use create_logbook_location_link if coming from API (No session->user_id, fails access check)
+					$data = array('station_logbook_id' => $active_logbook, 'station_location_id' =>  $location_id);
+					$this->db->insert('station_logbooks_relationship', $data);
+				}
 			}
 		}
 

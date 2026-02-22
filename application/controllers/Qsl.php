@@ -27,7 +27,7 @@ class Qsl extends CI_Controller {
 
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/qsl.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/qsl.js")),
+			'assets/js/sections/qsl.js',
 		];
 
         $this->load->view('interface_assets/header', $data);

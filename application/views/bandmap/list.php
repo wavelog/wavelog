@@ -4,6 +4,7 @@
 	var cat_timeout_interval = "<?php echo $this->optionslib->get_option('cat_timeout_interval'); ?>";
 	var dxcluster_maxage = <?php echo $this->optionslib->get_option('dxcluster_maxage') ?? 60; ?>;
 	var custom_date_format = "<?php echo $custom_date_format ?>";
+	var dxcluster_refresh_time = <?php echo $dxcluster_refresh_time; ?>;
 
 	// Detect OS for proper keyboard shortcuts
 	var isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
@@ -173,7 +174,7 @@
 	// Map configuration (matches QSO map settings)
 	var map_tile_server = '<?php echo $this->optionslib->get_option('option_map_tile_server');?>';
 	var map_tile_server_copyright = '<?php echo $this->optionslib->get_option('option_map_tile_server_copyright');?>';
-	var icon_dot_url = "<?php echo base_url();?>assets/images/dot.png";
+	var icon_dot_url = "<?php echo $this->paths->cache_buster('/assets/images/dot.png'); ?>";
 
 	// User gridsquare for home position marker
 	var user_gridsquare = '<?php
@@ -187,7 +188,7 @@
 	?>';
 </script>
 
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bandmap_list.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo $this->paths->cache_buster('/assets/css/bandmap_list.css'); ?>" />
 
 <div class="container-fluid" id="bandmapContainer">
 	<!-- Messages -->
@@ -198,7 +199,7 @@
 		<div class="card-header d-flex justify-content-between align-items-center">
 			<div class="d-flex align-items-center">
 				<a href="<?php echo base_url(); ?>" title="<?= __("Return to Home"); ?>">
-					<img class="headerLogo me-2 bandmap-logo-fullscreen" src="<?php echo base_url(); ?>assets/logo/<?php echo $this->optionslib->get_logo('header_logo'); ?>.png" alt="Logo" style="height: 32px; width: auto; cursor: pointer;" />
+					<img class="headerLogo me-2 bandmap-logo-fullscreen" src="<?php echo $this->paths->cache_buster('/assets/logo/' . $this->optionslib->get_logo('header_logo') . '.png'); ?>" alt="Logo" style="height: 32px; width: auto; cursor: pointer;" />
 				</a>
 				<h5 class="mb-0"><?= __("DX Cluster"); ?></h5>
 			</div>
@@ -540,7 +541,29 @@
 		</div>
 
 		<!-- Search Input - 30% -->
-		<div class="input-group input-group-sm" style="flex: 0 0 auto; min-width: 200px; max-width: 400px; position: relative;">
+		<div class="input-group input-group-sm" style="flex: 0 0 auto; min-width: 300px; max-width: 450px; position: relative;">
+			<select class="form-select" id="spotSearchColumn" style="max-width: 150px;" aria-label="<?= __("Search Column"); ?>">
+				<option value="all" selected><?= __("All Columns"); ?></option>
+				<optgroup label="<?= __("Spot Info"); ?>">
+					<option value="0"><?= __("Age"); ?></option>
+					<option value="1"><?= __("Band"); ?></option>
+					<option value="2"><?= __("Frequency"); ?></option>
+					<option value="3"><?= __("Mode"); ?></option>
+					<option value="4"><?= __("Submode"); ?></option>
+				</optgroup>
+				<optgroup label="<?= __("DX Station"); ?>">
+					<option value="5"><?= __("Callsign"); ?></option>
+					<option value="6"><?= __("Continent"); ?></option>
+					<option value="7"><?= __("CQ Zone"); ?></option>
+					<option value="9"><?= __("Entity"); ?></option>
+					<option value="15"><?= __("Message"); ?></option>
+				</optgroup>
+				<optgroup label="<?= __("Spotter"); ?>">
+					<option value="10"><?= __("Spotter"); ?></option>
+					<option value="11"><?= __("Spotter Continent"); ?></option>
+					<option value="12"><?= __("Spotter CQ Zone"); ?></option>
+				</optgroup>
+			</select>
 			<input type="text" class="form-control" id="spotSearchInput" placeholder="<?= __("Search spots..."); ?>" aria-label="<?= __("Search"); ?>">
 			<button class="btn btn-sm" id="clearSearchBtn" style="position: absolute; right: 40px; top: 50%; transform: translateY(-50%); z-index: 10; background: transparent; border: none; padding: 0 5px; display: none; cursor: pointer;">
 				<i class="fas fa-times" style="color: #6c757d;"></i>

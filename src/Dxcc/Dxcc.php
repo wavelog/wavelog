@@ -10,8 +10,8 @@ class Dxcc {
 	protected $lidadditions = '/^(?:QRP|LGT|2K)$/';
 	protected $noneadditions = '/^(?:MM|AM)$/';
 
-	function __construct($date)	{
-		$this->read_data($date);
+	function __construct()	{
+		$this->read_data();
 	}
 
 	/**
@@ -321,7 +321,7 @@ class Dxcc {
 	/*
     * Read DXCC data from the database or cache
     */
-    function read_data($date = NULL) {
+    function read_data() {
 		$CI = &get_instance();
 		$CI->load->is_loaded('cache') ?: $CI->load->driver('cache', [
 			'adapter' => $CI->config->item('cache_adapter') ?? 'file', 
@@ -330,24 +330,16 @@ class Dxcc {
 		]);
 
 		// DXCC Exceptions
-		$cache_key = 'dxcc_exceptions_' . ($date ?? 'all');
+		$cache_key = 'dxcc_exceptions';
 
 		// Cache check - early return
 		if ($cached = $CI->cache->get($cache_key)) {
 			$this->dxccexceptions = $cached;
 		} else {
-			$sql = "SELECT `call`, `entity`, `adif`, `cqz`, `cont`, `long`, `lat`, `start`, `end` FROM dxcc_exceptions";
-			$binding = [];
-
-			if ($date !== NULL) {
-				$sql .= " WHERE (start <= ? OR start IS NULL) AND (end >= ? OR end IS NULL)";
-				$binding = [$date, $date];
-			}
-
-			$sql .= " ORDER BY start DESC, end DESC";
+			$sql = "SELECT `call`, `entity`, `adif`, `cqz`, `cont`, `long`, `lat`, `start`, `end` FROM dxcc_exceptions ORDER BY start DESC, end DESC";
 
 			$this->dxccexceptions = [];
-			foreach ($CI->db->query($sql, $binding)->result() as $dxcce) {
+			foreach ($CI->db->query($sql)->result() as $dxcce) {
                 $this->dxccexceptions[$dxcce->call][] = [
                     'adif' => $dxcce->adif,
                     'cont' => $dxcce->cont,
@@ -364,21 +356,13 @@ class Dxcc {
 		}
 
 		// DXCC Prefixes
-		$cache_key = 'dxcc_prefixes_' . ($date ?? 'all');
+		$cache_key = 'dxcc_prefixes';
 
 		if ($CI->cache->get($cache_key)) {
 			$this->dxcc = $CI->cache->get($cache_key);
 		} else {
-			$binding = [];
-			$sql = "SELECT `call`, `entity`, `adif`, `cqz`, `cont`, `long`, `lat`, `start`, `end` FROM dxcc_prefixes";
-			if ($date !== NULL) {
-				$sql .= " WHERE (start <= ? OR start IS NULL)
-						AND (end >= ? OR end IS NULL)";
-				$binding[] = $date;
-				$binding[] = $date;
-			}
-			$sql .= " ORDER BY start DESC, end DESC";
-			$dxcc_result = $CI->db->query($sql, $binding);
+			$sql = "SELECT `call`, `entity`, `adif`, `cqz`, `cont`, `long`, `lat`, `start`, `end` FROM dxcc_prefixes ORDER BY start DESC, end DESC";
+			$dxcc_result = $CI->db->query($sql);
 
 			if ($dxcc_result->num_rows() > 0){
 				foreach ($dxcc_result->result() as $dx) {

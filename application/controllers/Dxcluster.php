@@ -66,7 +66,7 @@ class Dxcluster extends CI_Controller {
 	// TODO: Is this used anywhere? If not, remove it!
 	public function call($call) {
 		$date = date('Y-m-d', time());
-		$dxccobj = new Dxcc($date);
+		$dxccobj = new Dxcc();
 
 		$dxcc = $dxccobj->dxcc_lookup($call, $date);
 

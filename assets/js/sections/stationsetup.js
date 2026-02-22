@@ -522,6 +522,7 @@ function loadLogbookTable(rows) {
 		let logbook = rows[i];
 
 		var data = [];
+		data.push(logbook.logbook_id);
 		data.push(logbook.logbook_name);
 		data.push(logbook.logbook_state);
 		data.push(logbook.logbook_edit);

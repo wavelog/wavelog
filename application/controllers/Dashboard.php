@@ -160,7 +160,7 @@ class Dashboard extends CI_Controller {
 		$dxcc = $this->dxcc->list_current();
 
 		$footerData['scripts'] = [
-			'assets/js/sections/dashboard.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/dashboard.js")),
+			'assets/js/sections/dashboard.js',
 		];
 
 		// First Login Wizard
@@ -189,7 +189,7 @@ class Dashboard extends CI_Controller {
 			$this->load->model('dxcc');
 			$viewdata['dxcc_list'] = $this->dxcc->list();
 
-			$footerData['scripts'][] = 'assets/js/bootstrap-multiselect.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/bootstrap-multiselect.js"));
+			$footerData['scripts'][] = 'assets/js/bootstrap-multiselect.js';
 
 			$this->load->library('form_validation');
 

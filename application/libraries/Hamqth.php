@@ -100,6 +100,7 @@ class Hamqth {
 				$data['error'] 		= (string)$xml->session->error;
 				$data['ituz'] 		= (string)$xml->search->itu;
 				$data['cqz'] 		= (string)$xml->search->cq;
+				$data['darc_dok'] = (string)$xml->search->dok;
 
 				if ($xml->search->country == "United States") {
 					$data['us_county'] = (string)$xml->search->us_county;
@@ -120,11 +121,13 @@ class Hamqth {
 				$data['error'] 		= (string)$xml->session->error;
 				$data['ituz'] 		= '';
 				$data['cqz'] 		= '';
+				$data['darc_dok'] = '';
 
 				$data['us_county'] 	= '';
 
 			}
 		} finally {
+			$data['source'] = $this->sourcename();
 			return $data;
 		}
 	}

@@ -15,7 +15,7 @@
 // CONFIGURATION & CONSTANTS
 // ========================================
 
-const SPOT_REFRESH_INTERVAL = 60;  // Auto-refresh interval in seconds
+const SPOT_REFRESH_INTERVAL = dxcluster_refresh_time;  // Auto-refresh interval in seconds, defined via config.php (default: 30s)
 const QSO_SEND_DEBOUNCE_MS = 3000;  // Debounce for sending callsign to QSO form (milliseconds)
 
 // Mode display capitalization lookup (API returns lowercase)
@@ -2086,7 +2086,9 @@ $(function() {
 
 		// Clear text search
 		$('#spotSearchInput').val('');
-		table.search('').draw();
+		table.search('');
+		table.columns().search('');
+		table.draw();
 		$('#clearSearchBtn').hide();
 
 		syncQuickFilterButtons();
@@ -2119,7 +2121,9 @@ $(function() {
 
 		// Clear text search
 		$('#spotSearchInput').val('');
-		table.search('').draw();
+		table.search('');
+		table.columns().search('');
+		table.draw();
 		$('#clearSearchBtn').hide();
 
 		syncQuickFilterButtons();
@@ -2299,8 +2303,25 @@ $(function() {
 		syncQuickFilterButtons();
 	});
 
+	// Helper function to apply search based on selected column
+	function applySearch(searchValue) {
+		const selectedColumn = $('#spotSearchColumn').val();
+
+		// Clear all column-specific searches first
+		table.columns().search('');
+
+		if (selectedColumn === 'all') {
+			// Search all columns
+			table.search(searchValue).draw();
+		} else {
+			// Search specific column (convert to integer)
+			const colIndex = parseInt(selectedColumn);
+			table.column(colIndex).search(searchValue).draw();
+		}
+	}
+
 	$("#spotSearchInput").on("keyup", function() {
-		table.search(this.value).draw();
+		applySearch(this.value);
 		// Show/hide clear button based on input value
 		if (this.value.length > 0) {
 			$('#clearSearchBtn').show();
@@ -2318,10 +2339,21 @@ $(function() {
 		}
 	});
 
+	// Column dropdown change handler - clear search when column changes
+	$("#spotSearchColumn").on("change", function() {
+		const searchValue = $('#spotSearchInput').val();
+		if (searchValue) {
+			applySearch(searchValue);
+		}
+	});
+
 	// Clear search button handler
 	$("#clearSearchBtn").on("click", function() {
 		$('#spotSearchInput').val('');
-		table.search('').draw();
+		// Clear both global and all column-specific searches
+		table.search('');
+		table.columns().search('');
+		table.draw();
 		$('#clearSearchBtn').hide();
 		$('#spotSearchInput').focus();
 	});
@@ -2329,7 +2361,7 @@ $(function() {
 	$("#searchIcon").on("click", function() {
 		const searchValue = $("#spotSearchInput").val();
 		if (searchValue.length > 2) {
-			table.search(searchValue).draw();
+			applySearch(searchValue);
 		}
 	});
 

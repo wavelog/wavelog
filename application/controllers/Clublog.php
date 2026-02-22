@@ -96,7 +96,7 @@ class Clublog extends CI_Controller
 
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/clublog.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/clublog.js")),
+			'assets/js/sections/clublog.js',
 		];
 
 		$this->load->view('interface_assets/header', $data);

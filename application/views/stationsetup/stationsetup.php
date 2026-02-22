@@ -30,6 +30,7 @@
                         <table id="station_logbooks_table" class="table-sm table table-hover table-striped table-condensed">
                             <thead>
                                 <tr>
+                                    <th scope="col"><?= __("ID")?></th>
                                     <th scope="col"><?= __("Name")?></th>
                                     <th scope="col"><?= __("Status")?></th>
                                     <th scope="col"><?= __("Edit Linked locations"); ?></th>
@@ -41,6 +42,7 @@
                             <tbody>
                                 <?php foreach ($my_logbooks->result() as $row) { ?>
                                 <tr>
+                                    <td><span class="badge bg-info"><?php echo $row->logbook_id;?></span></td>
                                     <td><?php echo $row->logbook_name;?> <i id="<?php echo $row->logbook_id ?>" class="editContainerName fas fa-edit" role="button"></i></td>
                                     <td>
                                         <?php if($this->session->userdata('active_station_logbook') != $row->logbook_id) { ?>

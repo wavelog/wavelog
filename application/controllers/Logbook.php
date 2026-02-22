@@ -178,6 +178,7 @@ class Logbook extends CI_Controller {
 		$return['callsign_us_county'] 	= $this->nval($this->logbook_model->call_us_county($callsign), $callbook['us_county'] ?? '', $lookup_priority);
 		$return['callsign_ituz'] 	= $this->nval($this->logbook_model->call_ituzone($callsign), $callbook['ituz'] ?? '', $lookup_priority);
 		$return['callsign_cqz'] 	= $this->nval($this->logbook_model->call_cqzone($callsign), $callbook['cqz'] ?? '', $lookup_priority);
+		$return['callsign_darc_dok'] 		= $this->nval($this->logbook_model->call_darc_dok($callsign), $callbook['darc_dok'] ?? '', $lookup_priority);
 		$return['workedBefore'] 		= $this->worked_grid_before($return['callsign_qra'], $band, $mode);
 		$return['confirmed'] 			= $this->confirmed_grid_before($return['callsign_qra'], $band, $mode);
 		$return['timesWorked'] 			= $this->logbook_model->times_worked($lookupcall);
@@ -1256,7 +1257,7 @@ class Logbook extends CI_Controller {
 		if ($date == ''){
 			$date = date("Y-m-d");
 		}
-		$dxccobj = new Dxcc($date);
+		$dxccobj = new Dxcc();
 
 		$ans = $dxccobj->dxcc_lookup($call, $date);
 		return $ans;
