@@ -161,7 +161,8 @@ class Logbookadvanced extends CI_Controller {
 			'qrzReceived' => xss_clean($this->input->post('qrzReceived')),
 			'distance' => xss_clean($this->input->post('distance')),
 			'sortcolumn' => xss_clean($this->input->post('sortcolumn')),
-			'sortdirection' => xss_clean($this->input->post('sortdirection'))
+			'sortdirection' => xss_clean($this->input->post('sortdirection')),
+			'duration' => xss_clean($this->input->post('duration'))
 		);
 	}
 
@@ -394,7 +395,8 @@ class Logbookadvanced extends CI_Controller {
 			'ids' => json_decode(xss_clean($this->input->post('ids'))),
 			'qsoids' => xss_clean($this->input->post('qsoids')),
 			'sortcolumn' => 'qsotime',
-			'sortdirection' => 'desc'
+			'sortdirection' => 'desc',
+			'duration' => '*'
 		);
 
 		$result = $this->logbookadvanced_model->getSearchResultArray($searchCriteria);
@@ -622,6 +624,7 @@ class Logbookadvanced extends CI_Controller {
 		$json_string['frequency']['show'] = $this->def_boolean($this->input->post('frequency'));
 		$json_string['dcl']['show'] = $this->def_boolean($this->input->post('dcl'));
 		$json_string['last_modification']['show'] = $this->def_boolean($this->input->post('last_modification'));
+		$json_string['duration']['show'] = $this->def_boolean($this->input->post('duration'));
 
 		$obj['column_settings']= json_encode($json_string);
 

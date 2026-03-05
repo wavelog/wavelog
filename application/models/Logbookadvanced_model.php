@@ -534,6 +534,11 @@ class Logbookadvanced_model extends CI_Model {
 			$conditions[] = "coalesce(COL_DISTANCE, '') = ''";
 		}
 
+		if ($searchCriteria['duration'] !== '*' && $searchCriteria['duration'] !== '') {
+			$conditions[] = "TIMESTAMPDIFF(MINUTE, COL_TIME_ON, COL_TIME_OFF) >= ?";
+			$binding[] = $searchCriteria['duration'];
+        }
+
 		if (($searchCriteria['propmode'] ?? '') == 'None') {
 			$conditions[] = "(trim(COL_PROP_MODE) = '' OR COL_PROP_MODE is null)";
 		} elseif ($searchCriteria['propmode'] !== '') {
@@ -978,12 +983,10 @@ class Logbookadvanced_model extends CI_Model {
 
 		$modes = array();
 
-		$this->db->select('distinct col_mode, coalesce(col_submode, "") col_submode', FALSE);
-		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
-		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
-		$this->db->order_by('col_mode, col_submode', 'ASC');
+		$sql = "SELECT distinct col_mode, col_submode FROM " . $this->config->item('table_name') . " thcv
+		JOIN station_profile on thcv.station_id = station_profile.station_id WHERE station_profile.user_id = ? ORDER BY col_mode, col_submode";
 
-		$query = $this->db->get($this->config->item('table_name'));
+		$query = $this->db->query($sql, array($this->session->userdata('user_id')));
 
 		foreach($query->result() as $mode){
 			if ($mode->col_submode == null || $mode->col_submode == "") {
@@ -998,23 +1001,23 @@ class Logbookadvanced_model extends CI_Model {
 
 	function get_worked_bands() {
 		// get all worked slots from database
-		$sql = "SELECT distinct LOWER(`COL_BAND`) as `COL_BAND` FROM `".$this->config->item('table_name')."` thcv
+		$sql = "SELECT distinct `COL_BAND` as `COL_BAND` FROM `".$this->config->item('table_name')."` thcv
 			JOIN station_profile on thcv.station_id = station_profile.station_id WHERE station_profile.user_id = ? AND COL_PROP_MODE != \"SAT\" ORDER BY col_band";
 
 		$data = $this->db->query($sql, array($this->session->userdata('user_id')));
 
 		$worked_slots = array();
 		foreach($data->result() as $row){
-			array_push($worked_slots, $row->COL_BAND);
+			array_push($worked_slots, strtolower($row->COL_BAND));
 		}
 
-		$sql = "SELECT distinct LOWER(`COL_PROP_MODE`) as `COL_PROP_MODE` FROM `".$this->config->item('table_name')."` thcv
+		$sql = "SELECT count(*) as count FROM `".$this->config->item('table_name')."` thcv
 			JOIN station_profile on thcv.station_id = station_profile.station_id WHERE station_profile.user_id = ? AND COL_PROP_MODE = \"SAT\"";
 
 		$SAT_data = $this->db->query($sql, array($this->session->userdata('user_id')));
 
 		foreach($SAT_data->result() as $row){
-			array_push($worked_slots, strtoupper($row->COL_PROP_MODE));
+			array_push($worked_slots, 'SAT');
 		}
 
 		usort(
@@ -1035,7 +1038,7 @@ class Logbookadvanced_model extends CI_Model {
 	function get_worked_sats() {
 		// get all worked sats from database
 		$sql = "SELECT distinct col_sat_name FROM ".$this->config->item('table_name')." thcv
-		JOIN station_profile on thcv.station_id = station_profile.station_id WHERE station_profile.user_id = ? and coalesce(col_sat_name, '') <> '' ORDER BY col_sat_name";
+		JOIN station_profile on thcv.station_id = station_profile.station_id WHERE station_profile.user_id = ? AND col_sat_name IS NOT NULL AND col_sat_name != '' ORDER BY col_sat_name";
 
 		$data = $this->db->query($sql, array($this->session->userdata('user_id')));
 

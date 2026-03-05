@@ -330,11 +330,14 @@ class CI_Migration {
 				foreach ($pending as $number => $migration)
 				{
 					log_message('debug', 'Migrating '.$method.' from version '.$current_version.' to version '.$number);
+					$start_time = microtime(TRUE);
 
 					$migration[0] = new $migration[0];
 					call_user_func($migration);
 					$current_version = $number;
 					$this->_update_version($current_version);
+					$duration = microtime(TRUE) - $start_time;
+					log_message('debug', 'Migration '.$number.' completed in '.number_format($duration, 3).'s');
 				}
 
 				// This is necessary when moving down, since the the last migration applied

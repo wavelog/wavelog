@@ -47,7 +47,7 @@
                             <p class="alert alert-danger">
                                 <b><u><?= __("Important"); ?></u></b><br>
                                 <?= sprintf(__("This modifies the map source in various locations within Wavelog. Do not change any values here unless you are confident in what you are doing. Test each change on your %sDashboard%s!"), '<a href="' . site_url('/') . '" target="_blank"><u>', '</u></a>'); ?><br>
-                                <?= sprintf(__("You can find a list of tested settings and all default values in the %sWavelog Wiki%s."), '<a href="https://github.com/wavelog/wavelog/wiki/Maptile-Server" target="_blank"><u>', '</u></a>'); ?>
+                                <?= sprintf(__("You can find a list of tested settings and all default values in the %sWavelog Wiki%s."), '<a href="https://docs.wavelog.org/admin-guide/configuration/maptile-server/" target="_blank"><u>', '</u></a>'); ?>
                             </p>
                         <?php } ?>
                         <div class="mb-3">

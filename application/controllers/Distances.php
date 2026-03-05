@@ -80,7 +80,7 @@ class Distances extends CI_Controller {
 
 		// Render Page
 		$data['page_title'] = "Log View - " . $distance;
-		$data['filter'] = __("QSOs with") . " " . $distance . " " . __("and band"). " " . $band. __("and propagation"). " " . $propagation;
+		$data['filter'] = __("QSOs with") . " " . $distance . " " . __("and band"). " " . $band. " " . __("and propagation"). " " . $propagation;
 		$this->load->view('awards/details', $data);
 	}
 }

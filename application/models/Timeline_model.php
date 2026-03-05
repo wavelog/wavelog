@@ -340,7 +340,7 @@ class Timeline_model extends CI_Model {
 		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
 		$this->db->join('dxcc_entities', 'dxcc_entities.adif = '.$this->config->item('table_name').'.COL_DXCC', 'left outer');
 		$this->db->join('lotw_users', 'lotw_users.callsign = '.$this->config->item('table_name').'.col_call', 'left outer');
-		$this->db->join('satellite', 'satellite.name = '.$this->config->item('table_name').'.COL_SAT_NAME', 'left outer');
+		$this->db->join('satellite', $this->config->item('table_name').'.COL_PROP_MODE = "SAT" AND '.$this->config->item('table_name').'.COL_SAT_NAME = COALESCE(NULLIF(satellite.name, ""), NULLIF(satellite.displayname, ""))', 'left outer');
 
 		if ($band == 'SAT') {				// Left for compatibility reasons
 			$this->db->where('col_prop_mode', $band);
@@ -377,7 +377,7 @@ class Timeline_model extends CI_Model {
 			case 'iota': $this->db->where('COL_IOTA', $querystring); break;
 			case 'waz':  $this->db->where('COL_CQZ', $querystring); break;
 			case 'vucc':  $this->db->group_start(); $this->db->like('COL_GRIDSQUARE', $querystring);  $this->db->or_like('COL_VUCC_GRIDS',$querystring); $this->db->group_end();break;
-		case 'waja':  $this->db->where('COL_STATE', $querystring); $this->db->where('COL_DXCC','339'); break;
+			case 'waja':  $this->db->where('COL_STATE', $querystring); $this->db->where('COL_DXCC','339'); break;
 		}
 		$this->db->order_by('COL_TIME_ON', 'DESC');
 

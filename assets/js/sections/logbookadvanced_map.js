@@ -551,7 +551,8 @@ function getFormData(form) {
 		qrzReceived: form.qrzReceived.value,
 		distance: form.distance.value,
 		sortcolumn: form.sortcolumn.value,
-		sortdirection: form.sortdirection.value
+		sortdirection: form.sortdirection.value,
+		duration: form.duration.value
 	};
 }
 

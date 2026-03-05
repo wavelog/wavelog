@@ -8,7 +8,7 @@ class Club extends CI_Controller
 	 * 3 - Member
 	 * 
 	 * These permission levels are independent of the codeigniter permission levels and managed in the club_permissions table!
-	 * https://github.com/wavelog/wavelog/wiki/Clubstations
+	 * https://docs.wavelog.org/admin-guide/administration/clubstations/
 	*/
 
 	/**

@@ -337,5 +337,25 @@ class Frequency {
 		}
 		return $unit;
 	}
+
+	/**
+	 * Check if two frequencies are equal (handles different formats and empty values)
+	 *
+	 * @param mixed $freq1 First frequency (TX)
+	 * @param mixed $freq2 Second frequency (RX)
+	 * @return bool True if frequencies are equal or if one is empty/zero
+	 */
+	function frequencies_are_equal($freq1, $freq2) {
+		// Treat empty, null, or zero as "not set"
+		if (empty($freq1) || $freq1 === '0' || $freq1 === 0) {
+			return true;
+		}
+		if (empty($freq2) || $freq2 === '0' || $freq2 === 0) {
+			return true;
+		}
+
+		// Compare as floats to handle different string representations
+		return (float)$freq1 === (float)$freq2;
+	}
 }
 /* End of file Frequency.php */

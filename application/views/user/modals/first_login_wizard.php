@@ -18,7 +18,7 @@
                                 </div>
                             <?php } ?>
                             <h4 style="margin-top: 10px;"><?= __("Hello and Welcome to Wavelog!"); ?></h4>
-                            <p style="margin-top: 20px;"><?= sprintf(__("Before you can start logging QSOs, we need to set up your first Station Location. You can find more information about how Station Locations and Logbooks work in our %sWiki here%s!"), '<a href="https://github.com/wavelog/wavelog/wiki/Stationsetup" target="_blank">', '</a>'); ?></p>
+                            <p style="margin-top: 20px;"><?= sprintf(__("Before you can start logging QSOs, we need to set up your first Station Location. You can find more information about how Station Locations and Logbooks work in our %sWiki here%s!"), '<a href="https://docs.wavelog.org/admin-guide/administration/station-setup/" target="_blank">', '</a>'); ?></p>
                             <p><?= __("Please provide some additional information so that Wavelog can create your first Station:"); ?></p>
                             <div class="container">
                                 <div class="row mb-3 align-items-center">

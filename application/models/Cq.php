@@ -6,7 +6,7 @@ class CQ extends CI_Model{
 		$this->load->library('Genfunctions');
 	}
 
-	function get_cq_array($bands, $postdata, $location_list) {
+	function get_cq_array($bands, $postdata, $location_list, $map = false) {
 		$cqZ = array(); // Used for keeping track of which states that are not worked
 
 		for ($i = 1; $i <= 40; $i++) {
@@ -15,123 +15,250 @@ class CQ extends CI_Model{
 
 		$qsl = $this->genfunctions->gen_qsl_from_postdata($postdata);
 
+		// Initialize all bands to dash
 		foreach ($bands as $band) {
+			if (($postdata['band'] != 'SAT') && ($band == 'SAT')) {
+				continue;
+			}
 			for ($i = 1; $i <= 40; $i++) {
 				$bandCq[$i][$band] = '-';                  // Sets all to dash to indicate no result
 			}
+		}
 
-			if ($postdata['worked'] != NULL) {
-				$cqBand = $this->getCQWorked($location_list, $band, $postdata);
-				foreach ($cqBand as $line) {
-					$bandCq[$line->col_cqz][$band] = '<div class="bg-danger awardsBgWarning"><a href=\'javascript:displayContacts("' . str_replace("&", "%26", $line->col_cqz) . '","' . $band . '","All", "All","'. $postdata['mode'] . '","CQZone","")\'>W</a></div>';
-					$cqZ[$line->col_cqz]['count']++;
+		// Initialize summary counters only for the bands passed in
+		foreach ($bands as $band) {
+			if (($postdata['band'] != 'SAT') && ($band == 'SAT')) {
+				continue;
+			}
+			$summary['worked'][$band] = 0;
+			$summary['confirmed'][$band] = 0;
+		}
+		$summary['worked']['Total'] = 0;
+		$summary['confirmed']['Total'] = 0;
+
+		// Track unique zone/band combinations for totals
+		$workedZones = [];  // [band][zone] = true
+		$confirmedZones = []; // [band][zone] = true
+
+		// Create a lookup array for valid bands
+		$validBands = array_flip($bands); // ['160m' => true, '80m' => true, etc]
+
+		$cqdata = $this->getCqZoneData($location_list, $postdata);
+		$cqdata_sat = $this->getCqZoneDataSat($location_list, $postdata);
+
+		foreach ($cqdata as $cq) {
+			// Skip if this band is not in our requested bands list
+			if (!isset($validBands[$cq->col_band])) {
+				continue;
+			}
+
+			$cqZ[$cq->col_cqz]['count']++; // Count each cq zone
+
+			// Check if confirmed based on the confirmation types selected in postdata
+			$isConfirmed = false;
+			$confirmationLetters = '';
+			if (isset($postdata['qsl']) && $postdata['qsl'] == 1 && $cq->qsl == 1) {
+				$isConfirmed = true;
+				$confirmationLetters .= 'Q';
+			}
+			if (isset($postdata['lotw']) && $postdata['lotw'] == 1 && $cq->lotw == 1) {
+				$isConfirmed = true;
+				$confirmationLetters .= 'L';
+			}
+			if (isset($postdata['eqsl']) && $postdata['eqsl'] == 1 && $cq->eqsl == 1) {
+				$isConfirmed = true;
+				$confirmationLetters .= 'E';
+			}
+			if (isset($postdata['qrz']) && $postdata['qrz'] == 1 && $cq->qrz == 1) {
+				$isConfirmed = true;
+				$confirmationLetters .= 'Z';
+			}
+			if (isset($postdata['clublog']) && $postdata['clublog'] == 1 && $cq->clublog == 1) {
+				$isConfirmed = true;
+				$confirmationLetters .= 'C';
+			}
+
+			if ($isConfirmed) {
+				$bandCq[$cq->col_cqz][$cq->col_band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("' . str_replace("&", "%26", $cq->col_cqz) . '","' . $cq->col_band . '","All", "All","'. $postdata['mode'] . '","CQZone","'.$qsl.'")\'>' . $confirmationLetters . '</a></div>';
+				// Track confirmed zones for summary
+				if (!isset($confirmedZones[$cq->col_band][$cq->col_cqz])) {
+					$confirmedZones[$cq->col_band][$cq->col_cqz] = true;
+					$summary['confirmed'][$cq->col_band]++;
+				}
+			} else {
+				if ($postdata['worked'] != NULL) {
+					$bandCq[$cq->col_cqz][$cq->col_band] = '<div class="bg-danger awardsBgWarning"><a href=\'javascript:displayContacts("' . str_replace("&", "%26", $cq->col_cqz) . '","' . $cq->col_band . '","All", "All","'. $postdata['mode'] . '","CQZone","")\'>W</a></div>';
 				}
 			}
-			if ($postdata['confirmed'] != NULL) {
-				$cqBand = $this->getCQConfirmed($location_list, $band, $postdata);
-				foreach ($cqBand as $line) {
-					$bandCq[$line->col_cqz][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("' . str_replace("&", "%26", $line->col_cqz) . '","' . $band . '","All", "All","'. $postdata['mode'] . '","CQZone","'.$qsl.'")\'>C</a></div>';
-					$cqZ[$line->col_cqz]['count']++;
+
+			// Track worked zones for summary
+			if (!isset($workedZones[$cq->col_band][$cq->col_cqz])) {
+				$workedZones[$cq->col_band][$cq->col_cqz] = true;
+				$summary['worked'][$cq->col_band]++;
+			}
+		}
+
+		if ($postdata['band'] == 'SAT') {
+			foreach ($cqdata_sat as $cq) {
+				if (($postdata['band'] != 'SAT') && ($band == 'SAT')) {
+					continue;
+				}
+				// Skip if this band is not in our requested bands list
+				if (!isset($validBands[$cq->col_band])) {
+					continue;
+				}
+
+				$cqZ[$cq->col_cqz]['count']++; // Count each cq zone
+
+				// Check if confirmed based on the confirmation types selected in postdata
+				$isConfirmed = false;
+				$confirmationLetters = '';
+				if (isset($postdata['qsl']) && $postdata['qsl'] == 1 && $cq->qsl == 1) {
+					$isConfirmed = true;
+					$confirmationLetters .= 'Q';
+				}
+				if (isset($postdata['lotw']) && $postdata['lotw'] == 1 && $cq->lotw == 1) {
+					$isConfirmed = true;
+					$confirmationLetters .= 'L';
+				}
+				if (isset($postdata['eqsl']) && $postdata['eqsl'] == 1 && $cq->eqsl == 1) {
+					$isConfirmed = true;
+					$confirmationLetters .= 'E';
+				}
+				if (isset($postdata['qrz']) && $postdata['qrz'] == 1 && $cq->qrz == 1) {
+					$isConfirmed = true;
+					$confirmationLetters .= 'Z';
+				}
+				if (isset($postdata['clublog']) && $postdata['clublog'] == 1 && $cq->clublog == 1) {
+					$isConfirmed = true;
+					$confirmationLetters .= 'C';
+				}
+
+				if ($isConfirmed) {
+					$bandCq[$cq->col_cqz][$cq->col_band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("' . str_replace("&", "%26", $cq->col_cqz) . '","' . $cq->col_band . '","All", "All","'. $postdata['mode'] . '","CQZone","'.$qsl.'")\'>' . $confirmationLetters . '</a></div>';
+					// Track confirmed zones for summary
+					if (!isset($confirmedZones[$cq->col_band][$cq->col_cqz])) {
+						$confirmedZones[$cq->col_band][$cq->col_cqz] = true;
+						$summary['confirmed'][$cq->col_band]++;
+					}
+				} else {
+					if ($postdata['worked'] != NULL) {
+						$bandCq[$cq->col_cqz][$cq->col_band] = '<div class="bg-danger awardsBgWarning"><a href=\'javascript:displayContacts("' . str_replace("&", "%26", $cq->col_cqz) . '","' . $cq->col_band . '","All", "All","'. $postdata['mode'] . '","CQZone","")\'>W</a></div>';
+					}
+				}
+
+				// Track worked zones for summary
+				if (!isset($workedZones[$cq->col_band][$cq->col_cqz])) {
+					$workedZones[$cq->col_band][$cq->col_cqz] = true;
+					$summary['worked'][$cq->col_band]++;
 				}
 			}
 		}
 
-		// We want to remove the worked zones in the list, since we do not want to display them
-		if ($postdata['worked'] == NULL) {
-			$cqBand = $this->getCQWorked($location_list, $postdata['band'], $postdata);
-			foreach ($cqBand as $line) {
-				unset($bandCq[$line->col_cqz]);
+		// Calculate totals across all bands (excluding SAT)
+		$totalWorkedZones = [];
+		$totalConfirmedZones = [];
+		foreach ($workedZones as $band => $zones) {
+			foreach ($zones as $zone => $true) {
+				if (!isset($totalWorkedZones[$zone])) {
+					$totalWorkedZones[$zone] = true;
+					if ($band === 'SAT') {
+						continue;
+					}
+					$totalWorkedZonesExSat[$zone] = true; // For calculating total worked excluding SAT
+					$summary['worked']['Total']++;
+				}
+			}
+		}
+		foreach ($confirmedZones as $band => $zones) {
+			foreach ($zones as $zone => $true) {
+				if (!isset($totalConfirmedZones[$zone])) {
+					$totalConfirmedZones[$zone] = true;
+					if ($band === 'SAT') {
+						continue;
+					}
+					$totalConfirmedZonesExSat[$zone] = true; // For calculating total worked excluding SAT
+					$summary['confirmed']['Total']++;
+				}
 			}
 		}
 
-		// We want to remove the confirmed zones in the list, since we do not want to display them
-		if ($postdata['confirmed'] == NULL) {
-			$cqBand = $this->getCQConfirmed($location_list, $postdata['band'], $postdata);
-			foreach ($cqBand as $line) {
-				unset($bandCq[$line->col_cqz]);
+		// Remove zones based on postdata filters
+		// Determine which band's zones to use for filtering
+		$filterBand = (count($bands) == 1) ? $bands[0] : null;
+
+		for ($i = 1; $i <= 40; $i++) {
+			// For single band view, check band-specific status; for all bands, check totals
+			$isWorked = $filterBand
+				? isset($workedZones[$filterBand][$i])
+				: isset($totalWorkedZones[$i]);
+			$isConfirmed = $filterBand
+				? isset($confirmedZones[$filterBand][$i])
+				: isset($totalConfirmedZones[$i]);
+
+			// Remove not-worked zones if filter is disabled
+			if ($postdata['notworked'] == NULL && !$isWorked) {
+				unset($bandCq[$i]);
+				continue;
+			}
+
+			// Remove worked-only zones if filter is disabled
+			if ($postdata['worked'] == NULL && $isWorked && !$isConfirmed) {
+				unset($bandCq[$i]);
+				continue;
+			}
+
+			// Remove confirmed zones if filter is disabled
+			if ($postdata['confirmed'] == NULL && $isConfirmed) {
+				unset($bandCq[$i]);
+				continue;
 			}
 		}
 
-		if ($postdata['notworked'] == NULL) {
-			for ($i = 1; $i <= 40; $i++) {
-				if ($cqZ[$i]['count'] == 0) {
-					unset($bandCq[$i]);
-				};
+		// If this is for the map, return simplified format
+		if ($map) {
+			$mapZones = [];
+			if ($bands[0] == 'SAT') {
+				for ($i = 1; $i <= 40; $i++) {
+					if ($cqZ[$i]['count'] == 0) {
+						$mapZones[$i-1] = '-';  // Not worked
+					} elseif (isset($confirmedZones['SAT'][$i])) {
+						$mapZones[$i-1] = 'C';  // Confirmed
+					} else {
+						$mapZones[$i-1] = 'W';  // Worked but not confirmed
+					}
+				}
+			} else {
+				for ($i = 1; $i <= 40; $i++) {
+					if (isset($totalConfirmedZonesExSat[$i])) {
+						$mapZones[$i-1] = 'C';  // Confirmed
+					} else if (isset($totalWorkedZonesExSat[$i])) {
+						$mapZones[$i-1] = 'W';  // Worked but not confirmed
+					} else {
+						$mapZones[$i-1] = '-';  // Not worked
+					}
+				}
 			}
+			return $mapZones;
 		}
 
 		if (isset($bandCq)) {
-			return $bandCq;
+			// Return both the band data and summary
+			return ['bands' => $bandCq, 'summary' => $summary];
 		} else {
 			return 0;
 		}
 	}
 
-	/*
-	 * Function returns all worked, but not confirmed states
-	 * $postdata contains data from the form, in this case Lotw or QSL are used
-	 */
-	function getCQWorked($location_list, $band, $postdata) {
+	function getCqZoneData($location_list, $postdata) {
 		$bindings=[];
-		$sql = "SELECT distinct col_cqz FROM " . $this->config->item('table_name') . " thcv
-			where station_id in (" . $location_list . ") and col_cqz <= 40 and col_cqz <> ''";
-
-		if ($postdata['mode'] != 'All') {
-			$sql .= " and (col_mode = ? or col_submode = ?)";
-			$bindings[]=$postdata['mode'];
-			$bindings[]=$postdata['mode'];
-		}
-
-			if ($postdata['datefrom'] != NULL) {
-			$sql .= " and col_time_on >= ?";
-			$bindings[]=$postdata['datefrom'] . ' 00:00:00';
-		}
-
-		if ($postdata['dateto'] != NULL) {
-			$sql .= " and col_time_on <= ?";
-			$bindings[]=$postdata['dateto'] . ' 23:59:59';
-		}
-
-		$sql .= $this->genfunctions->addBandToQuery($band,$bindings);
-
-		$sql .= " and not exists (select 1 from " . $this->config->item('table_name') .
-			" where station_id in (" . $location_list .
-			") and col_cqz = thcv.col_cqz and col_cqz <> '' ";
-
-		if ($postdata['mode'] != 'All') {
-			$sql .= " and (col_mode = ? or col_submode = ?)";
-			$bindings[]=$postdata['mode'];
-			$bindings[]=$postdata['mode'];
-		}
-
-		if ($postdata['datefrom'] != NULL) {
-			$sql .= " and col_time_on >= ?";
-			$bindings[]=$postdata['datefrom'] . ' 00:00:00';
-		}
-
-		if ($postdata['dateto'] != NULL) {
-			$sql .= " and col_time_on <= ?";
-			$bindings[]=$postdata['dateto'] . ' 23:59:59';
-		}
-
-		$sql .= $this->genfunctions->addBandToQuery($band,$bindings);
-
-		$sql .= $this->genfunctions->addQslToQuery($postdata);
-
-		$sql .= ")";
-
-		$query = $this->db->query($sql,$bindings);
-
-		return $query->result();
-	}
-
-	/*
-	 * Function returns all confirmed states on given band and on LoTW or QSL
-	 * $postdata contains data from the form, in this case Lotw or QSL are used
-	 */
-	function getCQConfirmed($location_list, $band, $postdata) {
-		$bindings=[];
-		$sql = "SELECT distinct col_cqz FROM " . $this->config->item('table_name') . " thcv
+		$sql = "SELECT thcv.col_cqz, thcv.col_band,
+			MAX(case when thcv.col_lotw_qsl_rcvd ='Y' then 1 else 0 end) as lotw,
+			MAX(case when thcv.col_qsl_rcvd = 'Y' then 1 else 0 end) as qsl,
+			MAX(case when thcv.col_eqsl_qsl_rcvd = 'Y' then 1 else 0 end) as eqsl,
+			MAX(case when thcv.COL_QRZCOM_QSO_DOWNLOAD_STATUS= 'Y' then 1 else 0 end) as qrz,
+			MAX(case when thcv.COL_CLUBLOG_QSO_DOWNLOAD_STATUS = 'Y' then 1 else 0 end) as clublog
+		FROM " . $this->config->item('table_name') . " thcv
 			where station_id in (" . $location_list . ") and col_cqz <= 40 and col_cqz <> ''";
 
 		if ($postdata['mode'] != 'All') {
@@ -150,59 +277,25 @@ class CQ extends CI_Model{
 			$bindings[]=$postdata['dateto'] . ' 23:59:59';
 		}
 
-		$sql .= $this->genfunctions->addBandToQuery($band,$bindings);
+		$sql .= " and col_prop_mode != 'SAT'";
 
-		$sql .= $this->genfunctions->addQslToQuery($postdata);
+		$sql .= " GROUP BY thcv.col_cqz, thcv.col_band";
 
 		$query = $this->db->query($sql,$bindings);
 
 		return $query->result();
 	}
 
-
-	/*
-	 * Function gets worked and confirmed summary on each band on the active stationprofile
-	 */
-	function get_cq_summary($bands, $postdata, $location_list) {
-		foreach ($bands as $band) {
-			$worked = $this->getSummaryByBand($band, $postdata, $location_list);
-			$confirmed = $this->getSummaryByBandConfirmed($band, $postdata, $location_list);
-			$cqSummary['worked'][$band] = $worked[0]->count;
-			$cqSummary['confirmed'][$band] = $confirmed[0]->count;
-		}
-
-		$workedTotal = $this->getSummaryByBand($postdata['band'], $postdata, $location_list);
-		$confirmedTotal = $this->getSummaryByBandConfirmed($postdata['band'], $postdata, $location_list);
-
-		$cqSummary['worked']['Total'] = $workedTotal[0]->count;
-		$cqSummary['confirmed']['Total'] = $confirmedTotal[0]->count;
-
-		return $cqSummary;
-	}
-
-	function getSummaryByBand($band, $postdata, $location_list) {
+	function getCqZoneDataSat($location_list, $postdata) {
 		$bindings=[];
-		$sql = "SELECT count(distinct thcv.col_cqz) as count FROM " . $this->config->item('table_name') . " thcv";
-
-		$sql .= " where station_id in (" . $location_list . ') and col_cqz <= 40 and col_cqz > 0';
-
-		if ($band == 'SAT') {
-			$sql .= " and thcv.col_prop_mode = ?";
-			$bindings[]=$band;
-		} else if ($band == 'All') {
-			$this->load->model('bands');
-
-			$bandslots = $this->bands->get_worked_bands('cq');
-
-			$bandslots_list = "'".implode("','",$bandslots)."'";
-
-			$sql .= " and thcv.col_band in (" . $bandslots_list . ")" .
-				" and thcv.col_prop_mode !='SAT'";
-		} else {
-			$sql .= " and thcv.col_prop_mode !='SAT'";
-			$sql .= " and thcv.col_band = ?";
-			$bindings[]=$band;
-		}
+		$sql = "SELECT thcv.col_cqz, 'SAT' as col_band,
+			MAX(case when thcv.col_lotw_qsl_rcvd ='Y' then 1 else 0 end) as lotw,
+			MAX(case when thcv.col_qsl_rcvd = 'Y' then 1 else 0 end) as qsl,
+			MAX(case when thcv.col_eqsl_qsl_rcvd = 'Y' then 1 else 0 end) as eqsl,
+			MAX(case when thcv.COL_QRZCOM_QSO_DOWNLOAD_STATUS= 'Y' then 1 else 0 end) as qrz,
+			MAX(case when thcv.COL_CLUBLOG_QSO_DOWNLOAD_STATUS = 'Y' then 1 else 0 end) as clublog
+		FROM " . $this->config->item('table_name') . " thcv
+			where station_id in (" . $location_list . ") and col_cqz <= 40 and col_cqz <> ''";
 
 		if ($postdata['mode'] != 'All') {
 			$sql .= " and (col_mode = ? or col_submode = ?)";
@@ -220,52 +313,9 @@ class CQ extends CI_Model{
 			$bindings[]=$postdata['dateto'] . ' 23:59:59';
 		}
 
-		$query = $this->db->query($sql,$bindings);
+		$sql .= " and col_prop_mode = 'SAT'";
 
-		return $query->result();
-	}
-
-	function getSummaryByBandConfirmed($band, $postdata, $location_list){
-		$bindings=[];
-		$sql = "SELECT count(distinct thcv.col_cqz) as count FROM " . $this->config->item('table_name') . " thcv";
-
-		$sql .= " where station_id in (" . $location_list . ') and col_cqz <= 40 and col_cqz > 0';
-
-		if ($band == 'SAT') {
-			$sql .= " and thcv.col_prop_mode = ?";
-			$bindings[]=$band;
-		} else if ($band == 'All') {
-			$this->load->model('bands');
-
-			$bandslots = $this->bands->get_worked_bands('cq');
-
-			$bandslots_list = "'".implode("','",$bandslots)."'";
-
-			$sql .= " and thcv.col_band in (" . $bandslots_list . ")" .
-				" and thcv.col_prop_mode !='SAT'";
-		} else {
-			$sql .= " and thcv.col_prop_mode !='SAT'";
-			$sql .= " and thcv.col_band = ?";
-			$bindings[]=$band;
-		}
-
-		if ($postdata['mode'] != 'All') {
-			$sql .= " and (col_mode = ? or col_submode = ?)";
-			$bindings[]=$postdata['mode'];
-			$bindings[]=$postdata['mode'];
-		}
-
-		if ($postdata['datefrom'] != NULL) {
-			$sql .= " and col_time_on >= ?";
-			$bindings[]=$postdata['datefrom'] . ' 00:00:00';
-		}
-
-		if ($postdata['dateto'] != NULL) {
-			$sql .= " and col_time_on <= ?";
-			$bindings[]=$postdata['dateto'] . ' 23:59:59';
-		}
-
-		$sql .= $this->genfunctions->addQslToQuery($postdata);
+		$sql .= " GROUP BY thcv.col_cqz";
 
 		$query = $this->db->query($sql,$bindings);
 

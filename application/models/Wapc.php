@@ -81,17 +81,17 @@ class WAPC extends CI_Model {
 					}
 					// VR
 					else if($line->col_dxcc == '321'){
-						$bandWapc['HK'][$band] = '<div class="bg-danger awardsBgWarning"><a href=\'javascript:displayContacts("' . "321" . '","' . $band . '","All","All","'. $postdata['mode'] . '","DXCC2", "")\'>W</a></div>';
+						$bandWapc['HK'][$band] = '<div class="bg-danger awardsBgWarning"><a href=\'javascript:displayContacts("HK","' . $band . '","All","All","'. $postdata['mode'] . '","WAPC", "")\'>W</a></div>';
 						$provinces['HK']['count']++;
 					}
 					// XX9
 					else if($line->col_dxcc == '152'){
-						$bandWapc['MO'][$band] = '<div class="bg-danger awardsBgWarning"><a href=\'javascript:displayContacts("' . "152" . '","' . $band . '","All","All","'. $postdata['mode'] . '","DXCC2", "")\'>W</a></div>';
+						$bandWapc['MO'][$band] = '<div class="bg-danger awardsBgWarning"><a href=\'javascript:displayContacts("MO","' . $band . '","All","All","'. $postdata['mode'] . '","WAPC", "")\'>W</a></div>';
 						$provinces['MO']['count']++;
 					}
 					// BU-BX/BV9P
 					else if($line->col_dxcc == '386' || $line->col_dxcc == '505'){
-						$bandWapc['TW'][$band] = '<div class="bg-danger awardsBgWarning"><a href=\'javascript:displayContacts("' . "386" . '","' . $band . '","All","All","'. $postdata['mode'] . '","DXCC2", "")\'>W</a></div>';
+						$bandWapc['TW'][$band] = '<div class="bg-danger awardsBgWarning"><a href=\'javascript:displayContacts("TW","' . $band . '","All","All","'. $postdata['mode'] . '","WAPC", "")\'>W</a></div>';
 						$provinces['TW']['count']++;
 					}
 				}
@@ -111,17 +111,17 @@ class WAPC extends CI_Model {
 					}
 					// VR
 					else if($line->col_dxcc == '321'){
-						$bandWapc['HK'][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("' . "321" . '","' . $band . '","All","All","'. $postdata['mode'] . '","DXCC2", "'.$qsl.'")\'>C</a></div>';
+						$bandWapc['HK'][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("HK","' . $band . '","All","All","'. $postdata['mode'] . '","WAPC", "'.$qsl.'")\'>C</a></div>';
 						$provinces['HK']['count']++;
 					}
 					// XX9
 					else if($line->col_dxcc == '152'){
-						$bandWapc['MO'][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("' . "152" . '","' . $band . '","All","All","'. $postdata['mode'] . '","DXCC2", "'.$qsl.'")\'>C</a></div>';
+						$bandWapc['MO'][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("MO","' . $band . '","All","All","'. $postdata['mode'] . '","WAPC", "'.$qsl.'")\'>C</a></div>';
 						$provinces['MO']['count']++;
 					}
 					// BU-BX/BV9P
 					else if($line->col_dxcc == '386' || $line->col_dxcc == '505'){
-						$bandWapc['TW'][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("' . "386" . '","' . $band . '","All","All","'. $postdata['mode'] . '","DXCC2", "'.$qsl.'")\'>C</a></div>';
+						$bandWapc['TW'][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("TW","' . $band . '","All","All","'. $postdata['mode'] . '","WAPC", "'.$qsl.'")\'>C</a></div>';
 						$provinces['MO']['count']++;
 					}
 				}

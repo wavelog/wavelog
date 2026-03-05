@@ -42,12 +42,13 @@ class Paths
             '/assets/json/datatables_languages/en-US.json',
         ];
 
-        $fullpath = $_SERVER['DOCUMENT_ROOT'] . $filepath;
-    
+        $CI = & get_instance();
+		$fullpath = empty($CI->config->item('directory')) ? $_SERVER['DOCUMENT_ROOT'] . $filepath : $_SERVER['DOCUMENT_ROOT'] . '/' . $CI->config->item('directory') . $filepath;
+
         // We comment out this line because latest teste at LA8AJA's XAMPP setup showed that it works even without it
         // So we will keep it simple and just use the $filepath as is, since it seems to work fine on both Linux and Windows setups
         // $fullpath = rtrim($_SERVER['DOCUMENT_ROOT'], '/\\') . str_replace('/', DIRECTORY_SEPARATOR, $filepath);
-        
+
         if (file_exists($fullpath)) {
             return base_url($filepath) . '?v=' . filemtime($fullpath);
         } else {

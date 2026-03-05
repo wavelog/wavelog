@@ -205,7 +205,7 @@
 			</div>
 		<div class="d-flex align-items-center gap-3">
 			<a href="https://www.wavelog.org" target="_blank" class="fullscreen-wavelog-text" style="display: none; font-weight: 500; color: var(--bs-body-color); text-decoration: none;">www.wavelog.org</a>
-			<a href="https://github.com/wavelog/wavelog/wiki/DXCluster" target="_blank" title="<?= __("DX Cluster Help"); ?>" style="cursor: pointer; padding: 0.5rem; margin: -0.5rem; color: var(--bs-body-color); text-decoration: none; display: inline-flex; align-items: center;">
+			<a href="https://docs.wavelog.org/user-guide/features/dx-cluster/" target="_blank" title="<?= __("DX Cluster Help"); ?>" style="cursor: pointer; padding: 0.5rem; margin: -0.5rem; color: var(--bs-body-color); text-decoration: none; display: inline-flex; align-items: center;">
 				<i class="fas fa-question-circle" style="font-size: 1.2rem;"></i>
 			</a>
 			<button type="button" class="btn btn-sm" id="compactModeToggle" title="<?= __("Compact Mode - Hide/Show Menu"); ?>" style="background: none; border: none; padding: 0.5rem; margin: -0.5rem; color: var(--bs-body-color);">

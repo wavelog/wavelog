@@ -225,7 +225,7 @@ class User_Model extends CI_Model {
 		$user_lotw_name, $user_lotw_password, $user_eqsl_name, $user_eqsl_password, $user_clublog_name, $user_clublog_password,
 		$user_winkey, $on_air_widget_enabled, $on_air_widget_display_last_seen, $on_air_widget_show_only_most_recent_radio,
 		$qso_widget_display_qso_time, $dashboard_banner, $dashboard_solar, $global_oqrs_text, $oqrs_grouped_search,
-		$oqrs_grouped_search_show_station_name, $oqrs_auto_matching, $oqrs_direct_auto_matching,$user_dxwaterfall_enable, $clubstation = 0) {
+		$oqrs_grouped_search_show_station_name, $oqrs_auto_matching, $oqrs_direct_auto_matching,$user_dxwaterfall_enable, $user_qso_show_map, $clubstation = 0) {
 		// Check that the user isn't already used
 		if(!$this->exists($username)) {
 			$data = array(
@@ -317,6 +317,7 @@ class User_Model extends CI_Model {
 			$this->db->query("insert into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $insert_id . ", 'widget','qso','display_qso_time','".(xss_clean($qso_widget_display_qso_time ?? 'false'))."');");
 			$this->db->query("insert into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $insert_id . ", 'qso_db_search_priority','enable','boolean','".(xss_clean($user_qso_db_search_priority ?? 'Y'))."');");
 			$this->db->query("insert into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $insert_id . ", 'dxwaterfall','enable','boolean','".xss_clean($user_dxwaterfall_enable ?? 'N')."');");
+			$this->db->query("insert into user_options (user_id, option_type, option_name, option_key, option_value) values (?, 'qso_tab', 'map', 'show', ?)", [$insert_id, (int)(xss_clean($user_qso_show_map ?? 1))]);
 			return OK;
 		} else {
 			return EUSERNAMEEXISTS;
@@ -382,6 +383,8 @@ class User_Model extends CI_Model {
 				$this->db->query("replace into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $fields['id'] . ", 'qso_tab','sig','show',".(xss_clean($fields['user_sig_to_qso_tab'] ?? 'off') == "on" ? 1 : 0).");");
 				$this->db->query("replace into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $fields['id'] . ", 'qso_tab','dok','show',".(xss_clean($fields['user_dok_to_qso_tab'] ?? 'off') == "on" ? 1 : 0).");");
 				$this->db->query("replace into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $fields['id'] . ", 'qso_tab','station','show',".(xss_clean($fields['user_station_to_qso_tab'] ?? 'off') == "on" ? 1 : 0).");");
+				$this->db->query("replace INTO user_options (user_id, option_type, option_name, option_key, option_value) VALUES (?, 'qso_tab', 'map', 'show', ?)", [$fields['id'], (int)(xss_clean($fields['user_qso_show_map'] ?? 1))]
+				);
 				$this->db->query("replace into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $fields['id'] . ", 'widget','on_air','enabled','".(xss_clean($fields['on_air_widget_enabled'] ?? 'false'))."');");
 				$this->db->query("replace into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $fields['id'] . ", 'widget','on_air','display_last_seen','".(xss_clean($fields['on_air_widget_display_last_seen'] ?? 'false'))."');");
 				$this->db->query("replace into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $fields['id'] . ", 'widget','on_air','display_only_most_recent_radio','".(xss_clean($fields['on_air_widget_show_only_most_recent_radio'] ?? 'true'))."');");

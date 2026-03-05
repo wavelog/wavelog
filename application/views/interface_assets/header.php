@@ -545,7 +545,7 @@
 
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="javascript:displayVersionDialog();" title="Version Information"><i class="fas fa-star"></i> <?= __("Version Info"); ?></a></li>
-								<li><a class="dropdown-item" target="_blank" href="https://github.com/wavelog/wavelog/wiki" title="Help"><i class="fas fa-question"></i> <?= __("Help"); ?></a></li>
+								<li><a class="dropdown-item" target="_blank" href="https://docs.wavelog.org/" title="Help"><i class="fas fa-question"></i> <?= __("Help"); ?></a></li>
 								<li><a class="dropdown-item" target="_blank" href="https://github.com/wavelog/wavelog/discussions" title="Forum"><i class="far fa-comment-dots"></i> <?= __("Forum"); ?></a></li>
 								<div class="dropdown-divider"></div>
 								<?php if ($this->session->userdata('impersonate') == 1) { ?>

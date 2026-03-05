@@ -502,6 +502,14 @@ class Widgets extends CI_Controller {
 			$mode_string = empty($cat_data->mode) ? "" : $cat_data->mode;
 
 			return trim(sprintf("%s %s", $tx_frequency, $mode_string));
+		} elseif ($this->frequency->frequencies_are_equal($cat_data->frequency, $cat_data->frequency_rx)) {
+			// Frequencies are equal, show only one
+			$tx_frequency = $this->frequency->qrg_conversion(
+				$cat_data->frequency, $r_option, $source_unit, $target_unit
+			);
+			$mode_string = empty($cat_data->mode) ? "" : $cat_data->mode;
+
+			return trim(sprintf("%s %s", $tx_frequency, $mode_string));
 		} else {
 			$rx_frequency = $this->frequency->qrg_conversion(
 				$cat_data->frequency_rx, $r_option, $source_unit, $target_unit

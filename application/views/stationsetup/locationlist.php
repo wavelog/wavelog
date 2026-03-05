@@ -49,6 +49,14 @@
 				} else {
 					$qrzr=__("Realtime");
 				}
+				$hrdr=($loc->hrdlogrealtime ?? -1);
+				if ($hrdr == -1) {
+					$hrdr=__("Disabled");
+				} else if ($hrdr == 0) {
+					$hrdr=__("No");
+				} else {
+					$hrdr=__("Yes");
+				}
 			?>
                         <tr>
                             <td><?php echo $loc->station_id; ?></td>
@@ -87,7 +95,7 @@
                             <td><?php echo $loc->webadifrealtime ? 'Yes' : 'No' ?></td>
                             <td><?php echo $loc->clublogrealtime ? 'Yes' : 'No' ?></td>
                             <td><?php echo $loc->clublogignore ? 'Yes' : 'No' ?></td>
-                            <td><?php echo $loc->hrdlogrealtime ? 'Yes' : 'No' ?></td>
+                            <td><?php echo $hrdr; ?></td>
                             <td><?php echo $loc->hrdlog_username; ?></td>
                             <td><?php echo $loc->creation_date; ?></td>
                             <td><?php echo $loc->last_modified; ?></td>

@@ -12,8 +12,8 @@ class Callbook {
 
 	// Duration of session keys
 
-	// QRZ.com 
-	// They write that session keys have no guaranteed lifetime. We should cache it to reuse it, but also be prepared 
+	// QRZ.com
+	// They write that session keys have no guaranteed lifetime. We should cache it to reuse it, but also be prepared
 	// to get a new one if the session key is invalid.
 	// Older documents showed that the duration was between 12-24 hours. So we set it to 4 hours to be on the safe side.
 	// Ref.: https://www.qrz.com/docs/xml/current_spec.html
@@ -28,13 +28,13 @@ class Callbook {
 	private $qrzcq_session_cachekey = null;
 
 	// HamQTH.com
-	// Session Key is valid for 1 hour according to their documentation. We set it just a few moments below that to 55 Minutes. 
+	// Session Key is valid for 1 hour according to their documentation. We set it just a few moments below that to 55 Minutes.
 	// Ref.: https://www.hamqth.com/developers.php
 	const HAMQTH_SESSION_DURATION = 3300; // 55 minutes
 	private $hamqth_session_cachekey = null;
 
 	// QRZRU.com
-	// Session Key is valid for 1 hour according to their documentation. We set it just a few moments below that to 55 Minutes. 
+	// Session Key is valid for 1 hour according to their documentation. We set it just a few moments below that to 55 Minutes.
 	// Ref.: https://www.qrz.ru/help/api/xml
 	const QRZRU_SESSION_DURATION = 3300; // 55 minutes
 	private $qrzru_session_cachekey = null;
@@ -47,7 +47,7 @@ class Callbook {
 		$this->ci = & get_instance();
 
 		$this->ci->load->is_loaded('cache') ?: $this->ci->load->driver('cache', [
-			'adapter' => $this->ci->config->item('cache_adapter') ?? 'file', 
+			'adapter' => $this->ci->config->item('cache_adapter') ?? 'file',
 			'backup' => $this->ci->config->item('cache_backup') ?? 'file',
 			'key_prefix' => $this->ci->config->item('cache_key_prefix') ?? ''
 		]);
@@ -78,7 +78,7 @@ class Callbook {
 					break;
 				} else {
 					$callbook_errors['error_'.$source] = $callbook['error'];
-					$callbook_errors['error_'.$source.'_name'] = $callbook['source'];
+					$callbook_errors['error_'.$source.'_name'] = $callbook['source'] ?? '';
 				}
 			}
 		} else {
@@ -138,11 +138,11 @@ class Callbook {
 		$callbook['source'] = $this->ci->qrz->sourcename();
 		$username = trim($this->ci->config->item('qrz_username') ?? '');
 		$password = trim($this->ci->config->item('qrz_password') ?? '');
-		
+
 		if ($username == '' || $password == '') {
 			$callbook['error'] = $this->logbook_not_configured;
 		} else {
-			
+
 			if (!$this->ci->cache->get($this->qrz_session_cachekey)) {
 				$qrz_session_key = $this->ci->qrz->session($username, $password);
 				if (!$this->_validate_sessionkey($qrz_session_key)) {
@@ -320,15 +320,15 @@ class Callbook {
 		if ($key == false || $key == '' || !is_string($key)) {
 			return false;
 		}
-		
+
 		// All session keys should be at least 10 characters. Regarding to their documentation all keys have aprox. the same format
 		// "2331uf894c4bd29f3923f3bacf02c532d7bd9"
-		// Since it can differ and we want to don't overcomplicate things we simply check if the key is at least 10 characters long. 
+		// Since it can differ and we want to don't overcomplicate things we simply check if the key is at least 10 characters long.
 		// If not, we consider it as invalid.
 		if (strlen($key) < 10) {
 			return false;
 		}
-		
+
 		return true;
 	}
 

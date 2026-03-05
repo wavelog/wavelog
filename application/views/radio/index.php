@@ -27,7 +27,7 @@
 			<p class="card-text"><?= __("As a normal user, you can set a default radio for yourself. This allows you to have a default radio that is automatically selected when you log in, while still being able to use other radios if you want."); ?></p>
 		<?php } ?>
 		<p class="card-text">
-	    	<span class="badge text-bg-info"><?= __("Info"); ?></span> <?= sprintf(__("You can find out how to use the %sradio functions%s in the wiki."), '<a href="https://github.com/wavelog/wavelog/wiki/Radio-Interface" target="_blank">', '</a>'); ?>
+	    	<span class="badge text-bg-info"><?= __("Info"); ?></span> <?= sprintf(__("You can find out how to use the %sradio functions%s in the wiki."), '<a href="https://docs.wavelog.org/user-guide/integrations/radio-interface/" target="_blank">', '</a>'); ?>
 	    </p>
 	    <div class="table-responsive">
 		    <!-- Display Radio Statuses -->

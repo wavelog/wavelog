@@ -55,7 +55,7 @@
 	<?php if($adif_errors): ?>
 		<div class="mt-2 ms-2 me-2">
 			<h3 class="text-danger"><?= __("Import details / possible problems") ?></h3>
-			<br> <?= sprintf(__("Check %s for hints about errors in ADIF files."), "<a target=\"_blank\" href=\"https://github.com/wavelog/Wavelog/wiki/ADIF-file-can't-be-imported\">Wavelog Wiki</a>") ?>
+			<br> <?= sprintf(__("Check %s for hints about errors in ADIF files."), "<a target=\"_blank\" href=\"https://docs.wavelog.org/troubleshooting/adif-cant-import/\">Wavelog Wiki</a>") ?>
 			<p><?= __("You might have ADIF errors. Please check the following information:") ?></p>
 
 			<div class="border rounded bg-light p-3" style="max-height: 250px; overflow-y: auto;">

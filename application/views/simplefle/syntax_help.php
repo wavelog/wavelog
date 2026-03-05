@@ -61,5 +61,5 @@
 <pre>
     2119 dj3ce &lt;tx_pwr:50&gt; &lt;rx_pwr:750&gt; &lt;darc_dok:F39&gt; &lt;sfi:210&gt; &lt;rig:QCX&gt; &lt;...&gt;
 </pre>
-<p><?= sprintf(__("A full summary of all commands and the necessary syntax can be found in %sthis article%s of our Wiki."), '<a href="https://github.com/wavelog/wavelog/wiki/SimpleFLE" target="_blank">', '</a>'); ?></p>
+<p><?= sprintf(__("A full summary of all commands and the necessary syntax can be found in %sthis article%s of our Wiki."), '<a href="https://docs.wavelog.org/user-guide/logbook/simple-fle/" target="_blank">', '</a>'); ?></p>
 

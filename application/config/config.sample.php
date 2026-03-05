@@ -433,7 +433,7 @@ $config['error_views_path'] = '';
 |
 */
 $config['cache_path'] = '';
-$config['cache_adapter'] = 'file';
+$config['cache_adapter'] = 'apcu';
 $config['cache_backup'] = 'file';
 $config['cache_key_prefix'] = '';
 
@@ -736,7 +736,7 @@ $config['disable_oqrs'] = false;
 | This config switch is meant for Special Callsign operations or Clubstations.
 | If this switch is set to true it enables a whole bunch of features to handle Special Callsigns and Club Callsigns.
 | For more Information please visit the Wiki:
-| https://github.com/wavelog/wavelog/wiki/Clubstations
+| https://docs.wavelog.org/admin-guide/administration/clubstations/
 |
 | !!! Important !!!
 | $config['disable_impersonate'] has to be set to false to use this feature.

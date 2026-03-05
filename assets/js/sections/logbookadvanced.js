@@ -63,6 +63,9 @@ function updateRow(qso) {
 	if ((user_options.datetime.show ?? 'true') == "true"){
 		cells.eq(c++).text(qso.qsoDateTime);
 	}
+	if ((user_options.duration.show ?? 'true') == "true"){
+		cells.eq(c++).text(qso.duration);
+	}
 	if ((user_options.last_modification.show ?? 'true') == "true"){
 		cells.eq(c++).text(qso.last_modified);
 	}
@@ -282,6 +285,9 @@ function loadQSOTable(rows) {
 			} else {
 				data.push(qso.qsoDateTime);
 			}
+		}
+		if ((user_options.duration.show ?? 'true') == "true"){
+			data.push(qso.duration);
 		}
 		if ((user_options.last_modification.show ?? 'true') == "true"){
 			data.push(qso.last_modified);
@@ -765,7 +771,8 @@ $(document).ready(function () {
 				qrzReceived: this.qrzReceived.value,
 				distance: this.distance.value,
 				sortcolumn: this.sortcolumn.value,
-				sortdirection: this.sortdirection.value
+				sortdirection: this.sortdirection.value,
+				duration: this.duration.value,
 			},
 			dataType: 'json',
 			success: function (data) {
@@ -831,7 +838,7 @@ $(document).ready(function () {
 					buttons: [
 					{
 						label: lang_admin_close,
-						cssClass: 'btn-sm btn-secondary',
+						cssClass: 'btn btn-sm btn-secondary',
 						id: 'closeButton',
 						action: function (dialogItself) {
 							dialogItself.close();
@@ -839,7 +846,7 @@ $(document).ready(function () {
 					},
 					{
 						label: 'Update',
-						cssClass: 'btn-sm btn-primary',
+						cssClass: 'btn btn-sm btn-primary',
 						id: 'updateButton',
 						action: function (dialogItself) {
 							startProcessingCallbook(nElements, $('[name="gridsquareaccuracycheck"]').is(":checked"));
@@ -1620,7 +1627,7 @@ $(document).ready(function () {
 			type: 'post',
 			success: function (html) {
 				BootstrapDialog.show({
-					title: lang_gen_advanced_logbook_start_printing_at_which_label,
+					title: '<i class="fas fa-print me-2"></i>'+lang_label_print_options,
 					size: BootstrapDialog.SIZE_NORMAL,
 					cssClass: 'qso-dialog',
 					nl2br: false,
@@ -1629,7 +1636,7 @@ $(document).ready(function () {
 					},
 					buttons: [{
 						label: 'Print',
-						cssClass: 'btn-primary btn-sm',
+						cssClass: 'btn btn-primary btn-sm',
 						action: function (dialogItself) {
 							printlabel(id_list);
 							dialogItself.close();
@@ -1637,6 +1644,7 @@ $(document).ready(function () {
 					},
 						{
 						label: lang_admin_close,
+						cssClass: 'btn btn-secondary btn-sm',
 						action: function (dialogItself) {
 							$('#printLabel').prop("disabled", false);
 							dialogItself.close();
@@ -1764,7 +1772,8 @@ function printlabel(id_list) {
 				'via': $('#via')[0].checked,
 				'tnxmsg': $('#tnxmsg')[0].checked,
 				'qslmsg': $('#qslmsg')[0].checked,
-				'reference': $('#reference')[0].checked
+				'reference': $('#reference')[0].checked,
+				'mycall': $('#mycall')[0].checked
 			},
 		xhr:function(){
 			var xhr = new XMLHttpRequest();
@@ -1816,6 +1825,7 @@ function saveOptions() {
 			type: 'post',
 			data: {
 				datetime: $('input[name="datetime"]').is(':checked') ? true : false,
+				duration: $('input[name="duration"]').is(':checked') ? true : false,
 				last_modification: $('input[name="last_modification"]').is(':checked') ? true : false,
 				de: $('input[name="de"]').is(':checked') ? true : false,
 				dx: $('input[name="dx"]').is(':checked') ? true : false,

@@ -3420,9 +3420,9 @@ $(function() {
 	function updateModeButtonsForSubmodes() {
 		// Map mode to original tooltip translation
 		const modeTooltips = {
-			'cw': lang_bandmap_toggle_cw,
-			'digi': lang_bandmap_toggle_digi,
-			'phone': lang_bandmap_toggle_phone
+			'cw': decodeHtml(lang_bandmap_toggle_cw),
+			'digi': decodeHtml(lang_bandmap_toggle_digi),
+			'phone': decodeHtml(lang_bandmap_toggle_phone)
 		};
 
 		MODE_BUTTONS.forEach(btn => {

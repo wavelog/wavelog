@@ -1,4 +1,4 @@
-FROM php:8.3-apache
+FROM php:8.4-apache
 ENV CI_ENV=docker
 
 COPY --from=ghcr.io/mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
@@ -27,7 +27,7 @@ max_execution_time = 600\n" > $PHP_INI_DIR/conf.d/wavelog.ini
 COPY ./ /var/www/html/
 WORKDIR /var/www/html
 
-# Setting permissions as: https://github.com/wavelog/Wavelog/wiki/Installation
+# Setting permissions as: https://docs.wavelog.org/getting-started/installation/linux/#3-set-directory-ownership-and-permissions
 RUN mkdir ./application/config/docker; \
     mv ./htaccess.sample ./.htaccess; \
     sed -i "s/\$config\['index_page'\] = 'index.php';/\$config\['index_page'\] = '';/g" ./install/config/config.php; \

@@ -88,6 +88,8 @@ class Radio extends CI_Controller {
 					echo "<td>- / -</td>";
 				} elseif (empty($row->frequency_rx) || $row->frequency_rx == "0") {
 					echo "<td>" . $this->frequency->qrg_conversion($row->frequency) . "</td>";
+				} elseif ($this->frequency->frequencies_are_equal($row->frequency, $row->frequency_rx)) {
+					echo "<td>" . $this->frequency->qrg_conversion($row->frequency) . "</td>";
 				} else {
 					echo "<td>" . $this->frequency->qrg_conversion($row->frequency_rx) . " / " . $this->frequency->qrg_conversion($row->frequency) . "</td>";
 				}

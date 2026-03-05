@@ -39,7 +39,7 @@ function printat(stationid) {
 		data: {'stationid': stationid},
 		success: function (html) {
 			BootstrapDialog.show({
-				title: 'Start printing at which label?',
+				title: '<i class="fas fa-print me-2"></i>'+lang_label_print_options,
 				size: BootstrapDialog.SIZE_NORMAL,
 				cssClass: 'qso-dialog',
 				nl2br: false,
@@ -51,20 +51,21 @@ function printat(stationid) {
 				{
 					label: lang_print_queue,
 					id: "button1id",
-					cssClass: "btn btn-primary",
-					action: function() { 
+					cssClass: "btn btn-primary btn-sm me-3",
+					action: function() {
 						$('#button_markprint').removeClass("disabled");
 						$('#button_markprint').attr("disabled", false);
-						$("#pform").submit(); 
+						$("#pform").submit();
 					}
 				},
 				{
 					label: lang_mark_qsl_as_printed+'<div class="ld ld-ring ld-spin"></div>',
-					cssClass: "btn btn-secondary me-3 ld-ext-right",
+					cssClass: "btn btn-secondary btn-sm me-3 ld-ext-right",
 					id: "button_markprint"
 				},
 				{
 					label: lang_admin_close,
+					cssClass: "btn btn-secondary btn-sm me-3",
 					action: function (dialogItself) {
 						dialogItself.close();
 						location.reload(); 	// Refresh Mainpage, because labels could have been marked as sent

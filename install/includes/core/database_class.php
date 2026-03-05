@@ -40,12 +40,12 @@ class Database {
 			// Execute a multi query
 			$mysqli->multi_query($newquery);
 
-			// MultiQuery is NON-Blocking,so wait until everything is done
+			// Drain all results to ensure the server finishes processing.
 			do {
-				null;
-			} while ($mysqli->next_result());
-
-			$mysqli->store_result();
+				if ($result = $mysqli->store_result()) {
+					$result->free();
+				}
+			} while ($mysqli->more_results() && $mysqli->next_result());
 
 			// Close the connection
 			$mysqli->close();

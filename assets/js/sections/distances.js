@@ -42,7 +42,7 @@ function distPlot(form) {
 						backgroundColor: getBodyBackground()
 					},
 					title: {
-						text: lang_statistics_distances_worked,
+						text: decodeHtml(lang_statistics_distances_worked),
 						style: {
 							color: color
 						}
@@ -61,7 +61,7 @@ function distPlot(form) {
 					},
 					yAxis: {
 						title: {
-							text: lang_statistics_distances_number_of_qsos,
+							text: decodeHtml(lang_statistics_distances_number_of_qsos),
 							style: {
 								color: color
 							}
@@ -91,9 +91,9 @@ function distPlot(form) {
 					tooltip: {
 						formatter: function () {
 							if(this.point) {
-								return lang_gen_hamradio_distance + ": " + options.xAxis.categories[this.point.x] +
-									"<br />" + lang_statistics_distances_callsigns_worked + ": " + myComments[this.point.x] +
-									"<br />" + lang_statistics_distances_number_of_qsos + ": <strong>" + series.data[this.point.x] + "</strong>";
+								return decodeHtml(lang_gen_hamradio_distance) + ": " + options.xAxis.categories[this.point.x] +
+									"<br />" + decodeHtml(lang_statistics_distances_callsigns_worked) + ": " + myComments[this.point.x] +
+									"<br />" + decodeHtml(lang_statistics_distances_number_of_qsos) + ": <strong>" + series.data[this.point.x] + "</strong>";
 							}
 						}
 					},

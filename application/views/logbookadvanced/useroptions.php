@@ -24,6 +24,12 @@
 				</div>
 				<div class="col-md-6 col-lg-4">
 					<div class="form-check">
+						<input class="form-check-input" name="duration" type="checkbox" id="duration" <?php if (($options->duration->show ?? "false") == "true") { echo 'checked'; } ?>>
+						<label class="form-check-label" for="duration"><?= __("Duration"); ?></label>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-4">
+					<div class="form-check">
 						<input class="form-check-input" name="de" type="checkbox" id="de" <?php if (($options->de->show ?? "true") == "true") { echo 'checked'; } ?>>
 						<label class="form-check-label" for="de"><?= __("De"); ?></label>
 					</div>

@@ -63,7 +63,7 @@
 		  }
 		  ?>
 
-	    	<div style="display:none;"><span  class="badge text-bg-info"><?= __("Info"); ?></span> <?= sprintf(__("You can find out how to use the %s in the wiki."), '<a href="https://github.com/wavelog/wavelog/wiki/Search----Filter" target="_blank">' . __("search filter functions") . '</a>'); ?></div>
+	    	<div style="display:none;"><span  class="badge text-bg-info"><?= __("Info"); ?></span> <?= sprintf(__("You can find out how to use the %s in the wiki."), '<a href="https://docs.wavelog.org/user-guide/features/search/" target="_blank">' . __("search filter functions") . '</a>'); ?></div>
 
 	  </div>
 	</div>

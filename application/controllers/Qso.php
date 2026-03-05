@@ -99,6 +99,13 @@ class QSO extends CI_Controller {
 			$data['user_station_to_qso_tab'] = 0;
 		}
 
+		$qkey_opt = $this->user_options_model->get_options('qso_tab', array('option_name' => 'map', 'option_key' => 'show'))->result();
+		if (count($qkey_opt) > 0) {
+			$data['user_qso_show_map'] = $qkey_opt[0]->option_value;
+		} else {
+			$data['user_qso_show_map'] = 1; // default: show map
+		}
+
 		// Get status of DX Waterfall enable option
 		$qkey_opt=$this->user_options_model->get_options('dxwaterfall',array('option_name'=>'enable','option_key'=>'boolean'))->result();
 		if (count($qkey_opt)>0) {

@@ -166,18 +166,21 @@ class Logbook extends CI_Controller {
 		// Get user's lookup priority preference
 		$lookup_priority = $this->get_lookup_priority();
 
-		$return['callsign_name'] 		= $this->nval($this->logbook_model->call_name($callsign), $callbook['name'] ?? '', $lookup_priority);
-		$return['callsign_qra'] 		= $this->nval($this->logbook_model->call_qra($callsign), $callbook['gridsquare'] ?? '', $lookup_priority);
+		// Consolidated callsign lookup - reduces queries from 11 to 2
+		$callsign_info = $this->logbook_model->get_callsign_all_info($callsign);
+		$return['callsign_name'] 		= $this->nval($callsign_info['name'], $callbook['name'] ?? '', $lookup_priority);
+		$return['callsign_qra'] 		= $this->nval($callsign_info['qra'], $callbook['gridsquare'] ?? '', $lookup_priority);
 		$return['callsign_geoloc'] 		= $callbook['geoloc'] ?? '';
 		$return['callsign_distance'] 	= $this->distance($return['callsign_qra'], $station_id);
-		$return['callsign_qth'] 		= $this->nval($this->logbook_model->call_qth($callsign), $callbook['city'] ?? '', $lookup_priority);
-		$return['callsign_iota'] 		= $this->nval($this->logbook_model->call_iota($callsign), $callbook['iota'] ?? '', $lookup_priority);
-		$return['callsign_email'] 		= $this->nval($this->logbook_model->call_email($callsign), $callbook['email'] ?? '', $lookup_priority);
-		$return['qsl_manager'] 			= $this->nval($this->logbook_model->call_qslvia($callsign), $callbook['qslmgr'] ?? '', $lookup_priority);
-		$return['callsign_state'] 		= $this->nval($this->logbook_model->call_state($callsign), $callbook['state'] ?? '', $lookup_priority);
-		$return['callsign_us_county'] 	= $this->nval($this->logbook_model->call_us_county($callsign), $callbook['us_county'] ?? '', $lookup_priority);
-		$return['callsign_ituz'] 	= $this->nval($this->logbook_model->call_ituzone($callsign), $callbook['ituz'] ?? '', $lookup_priority);
-		$return['callsign_cqz'] 	= $this->nval($this->logbook_model->call_cqzone($callsign), $callbook['cqz'] ?? '', $lookup_priority);
+		$return['callsign_qth'] 		= $this->nval($callsign_info['qth'], $callbook['city'] ?? '', $lookup_priority);
+		$return['callsign_iota'] 		= $this->nval($callsign_info['iota'], $callbook['iota'] ?? '', $lookup_priority);
+		$return['callsign_email'] 		= $this->nval($callsign_info['email'], $callbook['email'] ?? '', $lookup_priority);
+		$return['qsl_manager'] 			= $this->nval($callsign_info['qslvia'], $callbook['qslmgr'] ?? '', $lookup_priority);
+		$return['callsign_state'] 		= $this->nval($callsign_info['state'], $callbook['state'] ?? '', $lookup_priority);
+		$return['callsign_us_county'] 	= $this->nval($callsign_info['us_county'], $callbook['us_county'] ?? '', $lookup_priority);
+		$return['callsign_ituz'] 	= $this->nval($callsign_info['ituz'], $callbook['ituz'] ?? '', $lookup_priority);
+		$return['callsign_cqz'] 	= $this->nval($callsign_info['cqz'], $callbook['cqz'] ?? '', $lookup_priority);
+		// call_darc_dok remains separate due to different query pattern (uses logbooks_relationships)
 		$return['callsign_darc_dok'] 		= $this->nval($this->logbook_model->call_darc_dok($callsign), $callbook['darc_dok'] ?? '', $lookup_priority);
 		$return['workedBefore'] 		= $this->worked_grid_before($return['callsign_qra'], $band, $mode);
 		$return['confirmed'] 			= $this->confirmed_grid_before($return['callsign_qra'], $band, $mode);

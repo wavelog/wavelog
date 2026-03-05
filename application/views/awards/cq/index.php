@@ -113,13 +113,17 @@
 							<input class="form-check-input" type="checkbox" name="lotw" value="1" id="lotw" <?php if ($this->input->post('lotw', TRUE) || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
 							<label class="form-check-label" for="lotw"><?= __("LoTW"); ?></label>
 						</div>
-					   <div class="form-check-inline">
+						<div class="form-check-inline">
 							<input class="form-check-input" type="checkbox" name="eqsl" value="1" id="eqsl" <?php if ($this->input->post('eqsl', TRUE)) echo ' checked="checked"'; ?> >
 							<label class="form-check-label" for="eqsl"><?= __("eQSL"); ?></label>
 						</div>
-					   <div class="form-check-inline">
+						<div class="form-check-inline">
 							<input class="form-check-input" type="checkbox" name="qrz" value="1" id="qrz" <?php if ($this->input->post('qrz', TRUE)) echo ' checked="checked"'; ?> >
 							<label class="form-check-label" for="qrz"><?= __("QRZ.com"); ?></label>
+						</div>
+						<div class="form-check-inline">
+							<input class="form-check-input" type="checkbox" name="clublog" value="1" id="clublog" <?php if ($this->input->post('clublog', TRUE)) echo ' checked="checked"'; ?> >
+							<label class="form-check-label" for="clublog"><?= __("Clublog"); ?></label>
 						</div>
 					</div>
 				</div>
@@ -128,7 +132,7 @@
 					<label class="col-md-2 control-label" for="band2"><?= __("Band"); ?></label>
 					<div class="col-md-3">
 						<select id="band2" name="band" class="form-select form-select-sm">
-							<option value="All" <?php if ($this->input->post('band', TRUE) == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?= __("All"); ?></option>
+							<option value="All" <?php if ($this->input->post('band', TRUE) == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?= __("Every band (w/o SAT)"); ?></option>
 							<?php foreach($worked_bands as $band) {
 								echo '<option value="' . $band . '"';
 								if ($this->input->post('band', TRUE) == $band) echo ' selected';
@@ -185,6 +189,13 @@
 <?php
     $i = 1;
     if ($cq_array) {
+	echo __('Legend:');
+	echo '<pre>'.__("(Q)SL-Paper-Card").", ";
+	echo __("(L)oTW").", ";
+	echo __("(e)QSL").", ";
+	echo __('QR(Z)-"confirmation"').", ";
+	echo __("(C)lublog").", ";
+	echo __("(W)orked").'</pre>';
     echo "
     <table style='width:100%' class='table tablecq table-sm table-bordered table-hover table-striped table-condensed text-center'>
         <thead>
@@ -192,8 +203,11 @@
             <td>#</td>
             <td>" . __("CQ Zone") . "</td>";
         foreach($bands as $band) {
-            echo '<td>' . $band . '</td>';
-            }
+			if (($posted_band != 'SAT') && ($band == 'SAT')) {
+				continue;
+			}
+			echo '<td>' . $band . '</td>';
+		}
             echo '</tr>
         </thead>
         <tbody>';
@@ -213,25 +227,42 @@
         <thead>
         <tr><td></td>";
 
-        foreach($bands as $band) {
-            echo '<td>' . $band . '</td>';
-        }
-        echo "<td>" . __("Total") . "</td></tr>
-        </thead>
+			foreach($bands as $band) {
+				if (($posted_band != 'SAT') && ($band == 'SAT')) {
+					continue;
+				}
+				echo '<td>' . $band . '</td>';
+			}
+			if ($posted_band != 'SAT') {
+				echo '<td><b>' . __("Total (ex SAT)") . '</b></td>';
+			}
+        echo "</thead>
         <tbody>
 
         <tr><td>" . __("Total worked") . "</td>";
-
-        foreach ($cq_summary['worked'] as $dxcc) {      // Fills the table with the data
-            echo '<td style="text-align: center">' . $dxcc . '</td>';
+        foreach ($cq_summary['worked'] as $cqz => $value) {
+			if ($posted_band == 'SAT' && $cqz == 'Total') {
+				continue;
+			}
+			if ($cqz == 'SAT') {
+				echo '<td style="text-align: center"' . ($cqz === 'Total' ? " class='fw-bold'" : '') . '>' . $value . '</td>';
+			} else {
+				echo '<td style="text-align: center"' . ($cqz === 'Total' ? " class='fw-bold'" : '') . '>' . $value . '</td>';
+			}
         }
 
         echo "</tr><tr>
         <td>" . __("Total confirmed") . "</td>";
-        foreach ($cq_summary['confirmed'] as $dxcc) {      // Fills the table with the data
-            echo '<td style="text-align: center">' . $dxcc . '</td>';
+        foreach ($cq_summary['confirmed'] as $cqz => $value) {
+			if ($posted_band == 'SAT' && $cqz == 'Total') {
+				continue;
+			}
+			if ($cqz == 'SAT') {
+				echo '<td style="text-align: center"' . ($cqz === 'Total' ? " class='fw-bold'" : '') . '>' . $value . '</td>';
+			} else {
+				echo '<td style="text-align: center"' . ($cqz === 'Total' ? " class='fw-bold'" : '') . '>' . $value . '</td>';
+			}
         }
-
         echo '</tr>
         </table>
         </div>';

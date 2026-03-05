@@ -820,7 +820,7 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
 	<div id="radio_status"></div>
 
     <!-- QSO Map -->
-    <div class="card qso-map">
+    <div class="card qso-map"<?php if (!($user_qso_show_map ?? true)) { echo ' style="display:none;"'; } ?>>
             <div id="qsomap" class="map-leaflet" style="width: 100%; height: 200px;"></div>
     </div>
 

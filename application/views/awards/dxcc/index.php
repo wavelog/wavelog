@@ -29,6 +29,7 @@
 		var lang_award_info_ln3 = "<?= sprintf(__("You can find all information about the DXCC Award on the %s."), "<a href='https://www.arrl.org/dxcc-rules' target='_blank'>" . __("ARRL website") . "</a>"); ?>";
 		var lang_award_info_ln4 = "<?= __("Important Note: Over time, the criteria for the DXCC List have changed. The List remains unchanged until an entity no longer satisfies the criteria under which it was added, at which time it is moved to the Deleted List. You will find Deleted DXCC entities also in the lists on Wavelog. Be aware that these DXCC entities are outdated and no longer valid."); ?>";
 		var lang_award_info_ln5 = "<?= __("Fields taken for this Award: DXCC (Needs to be a valid one out of the DXCC-ADIF-Spec-List"); ?>";
+		var lang_award_info_all_bands = "<?= __("Every band (w/o SAT)"); ?>";
 		</script>
 		<h2><?php echo $page_title; ?></h2>
 		<button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?= __("Award Info"); ?></button>
@@ -260,64 +261,60 @@
     <?php
     $i = 1;
     if ($dxcc_array) {
-	    echo __('Legend:');
-	    echo '<pre>'.__("(Q)SL-Paper-Card").", ";
-	    echo __("(L)oTW").", ";
-	    echo __("(e)QSL").", ";
-	    echo __('QR(Z)-"confirmation"').", ";
-	    echo __("(C)lublog").", ";
-	    echo __("(W)orked").'</pre>';
-	    echo '
+		echo __('Legend:');
+		echo '<pre>'.__("(Q)SL-Paper-Card").", ";
+		echo __("(L)oTW").", ";
+		echo __("(e)QSL").", ";
+		echo __('QR(Z)-"confirmation"').", ";
+		echo __("(C)lublog").", ";
+		echo __("(W)orked").'</pre>';
+		echo '
 		<table style="width:100%" class="table-sm table tabledxcc table-bordered table-hover table-striped table-condensed text-center">
-		    <thead>
-		    <tr>
+			<thead>
+			<tr>
 			<td>#</td>
 			<td>' . __("DXCC Name") . '</td>
 			<td>' . __("Prefix") . '</td>';
-	    foreach($bands as $band) {
-		    if (($posted_band != 'SAT') && ($band == 'SAT')) {
-			   continue;
-		    }
-		    echo '<td>' . $band . '</td>';
-	    }
-	echo '</tr>
-		    </thead>
-		    <tbody>';
+		foreach($bands as $band) {
+			if (($posted_band != 'SAT') && ($band == 'SAT')) {
+				continue;
+			}
+			echo '<td>' . $band . '</td>';
+		}
+		echo '</tr>
+			</thead>
+			<tbody>';
 	    foreach ($dxcc_array as $dxcc => $value) {      // Fills the table with the data
-		    echo '<tr>
-			    <td>'. $i++ .'</td>';
-		    foreach ($value as $name => $key) {
-			    if (isset($value['Deleted']) && $value['Deleted'] == 1 && $name == "name") {
-				    echo '<td style="text-align: center">' . $key . ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span></td>';
-			    } else if ($name == "Deleted") {
-				    continue;
-			    } else {
-				    echo '<td style="text-align: center">' . $key . '</td>';
-			    }
-		    }
-		    echo '</tr>';
-	    }
-	    echo '</table>
-		    <h2>' . __("Summary") . '</h2>
+			echo '<tr>
+				<td>'. $i++ .'</td>';
+			foreach ($value as $name => $key) {
+				if (isset($value['Deleted']) && $value['Deleted'] == 1 && $name == "name") {
+					echo '<td style="text-align: center">' . $key . ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span></td>';
+				} else if ($name == "Deleted") {
+					continue;
+				} else {
+					echo '<td style="text-align: center">' . $key . '</td>';
+				}
+			}
+			echo '</tr>';
+		}
+		echo '</table>
+			<h2>' . __("Summary") . '</h2>
 
-		    <table class="table-sm tablesummary table table-bordered table-hover table-striped table-condensed text-center">
-		    <thead>
-		    <tr><td></td>';
+			<table class="table-sm tablesummary table table-bordered table-hover table-striped table-condensed text-center">
+			<thead>
+			<tr><td></td>';
 
-				    $addsat='';
-				    foreach($bands as $band) {
-					    if ($band != 'SAT') {
-						    echo '<td>' . $band . '</td>';
-					    } else {
-						    $addsat='<td>' . $band . '</td>';
-					    }
-				    }
-				    echo '<td><b>' . __("Total") . '</b></td>';
-				    if (count($bands) > 1) {
-					    echo '<td class="spacingcell"></td>';
-				    }
-				    echo $addsat;
-				    echo '
+				foreach($bands as $band) {
+					if (($posted_band != 'SAT') && ($band == 'SAT')) {
+						continue;
+					}
+					echo '<td>' . $band . '</td>';
+				}
+				if ($posted_band != 'SAT') {
+					echo '<td><b>' . __("Total (ex SAT)") . '</b></td>';
+				}
+				echo '
 	</tr>
 	</thead>
 	<tbody>
@@ -325,49 +322,43 @@
 	<tr><td>' . __("Total worked") . '</td>';
 	$addsat='';
 	foreach ($dxcc_summary['worked'] as $band => $dxcc) {      // Fills the table with the data
-		if ($band != 'SAT') {
-			echo '<td style="text-align: center">';
-			if ($band == 'Total') {
-				echo '<b>'.$dxcc.'</b>';
-			} else {
-				echo $dxcc;
-			}
-			echo '</td>';
-		} else {
-			$addsat='<td style="text-align: center">' . $dxcc . '</td>';
+		if (($posted_band != 'SAT') && ($band == 'SAT')) {
+			continue;
 		}
-	}
 
-	if (count($bands) > 1) {
-		echo '<td class="spacingcell"></td>';
-	}
+		if (($posted_band == 'SAT') && ($band == 'Total')) {
+			continue;
+		}
 
-	if ($addsat != '' && count($dxcc_summary['worked']) > 1) {
-		echo $addsat;
+		echo '<td style="text-align: center">';
+		if ($band == 'Total' && $posted_band != 'SAT') {
+			echo '<b>'.$dxcc.'</b>';
+		} else {
+			echo $dxcc;
+		}
+		echo '</td>';
 	}
 
 	echo '</tr><tr>
 	<td>' . __("Total confirmed") . '</td>';
 	$addsat='';
 	foreach ($dxcc_summary['confirmed'] as $band => $dxcc) {      // Fills the table with the data
-		if ($band != 'SAT') {
-			echo '<td style="text-align: center">';
-			if ($band == 'Total') {
-				echo '<b>'.$dxcc.'</b>';
-			} else {
-				echo $dxcc;
-			}
-			echo '</td>';
-		} else {
-			$addsat='<td style="text-align: center">' . $dxcc . '</td>';
+		if (($posted_band != 'SAT') && ($band == 'SAT')) {
+			continue;
 		}
-	}
-	if (count($bands) > 1) {
-		echo '<td class="spacingcell"></td>';
-	}
 
-	if ($addsat != '' && count($dxcc_summary['confirmed']) > 1) {
-		echo $addsat;
+		if (($posted_band == 'SAT') && ($band == 'Total')) {
+			continue;
+		}
+
+		echo '<td style="text-align: center">';
+		if (($posted_band != 'SAT') && ($band == 'Total')) {
+			echo '<b>'.$dxcc.'</b>';
+		} else {
+			echo $dxcc;
+		}
+		echo '</td>';
+
 	}
 
 	echo '</tr>
@@ -375,7 +366,7 @@
 	</div>';
 
     } else {
-	    echo '<div class="alert alert-danger" role="alert">' . __("No results found for your search criteria. Please try again.") . '</div>';
+		echo '<div class="alert alert-danger" role="alert">' . __("No results found for your search criteria. Please try again.") . '</div>';
     }
     ?>
                 </div>

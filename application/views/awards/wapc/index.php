@@ -1,3 +1,18 @@
+<script>
+	var tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>";
+    var lang_china_province = "<?= _pgettext("China Province", "Province"); ?>";
+    var lang_hover_over_a_province = "<?= __("Hover over a province"); ?>";
+</script>
+<script>
+	let user_map_custom = JSON.parse('<?php echo $user_map_custom; ?>');
+</script>
+
+<style>
+    #wapcmap {
+	height: calc(100vh - 500px) !important;
+	max-height: 900px !important;
+}
+</style>
 <div class="container">
         <!-- Award Info Box -->
         <br>
@@ -103,11 +118,34 @@
                 <div class="col-md-10">
                     <button id="button2id" type="reset" name="button2id" class="btn btn-sm btn-warning"><?= __("Reset"); ?></button>
                     <button id="button1id" type="submit" name="button1id" class="btn btn-sm btn-primary"><?= __("Show"); ?></button>
+                    <?php if ($wapc_array) {
+                        ?><button type="button" onclick="load_wapc_map();" class="btn btn-info btn-sm"><i class="fas fa-globe-americas"></i><?= __("Show WAPC Map"); ?></button>
+                    <?php }?>
                 </div>
             </div>
 
         </fieldset>
     </form>
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="table-tab" data-bs-toggle="tab" href="#table" role="tab" aria-controls="table" aria-selected="true"><?= __("Table"); ?></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="map-tab" onclick="load_wapc_map();" data-bs-toggle="tab" href="#wapcmaptab" role="tab" aria-controls="home" aria-selected="false"><?= __("Map"); ?></a>
+        </li>
+    </ul>
+    <br />
+
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade" id="wapcmaptab" role="tabpanel" aria-labelledby="home-tab">
+    <br />
+
+    <div id="wapcmap" class="map-leaflet" ></div>
+
+    </div>
+
+        <div class="tab-pane fade show active" id="table" role="tabpanel" aria-labelledby="table-tab">
 
     <?php
     $i = 1;
@@ -168,4 +206,6 @@
         echo '<div class="alert alert-danger" role="alert">' . __("Nothing found!") . '</div>';
     }
     ?>
+        </div>
+    </div>
 </div>

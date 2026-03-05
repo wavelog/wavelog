@@ -66,7 +66,7 @@ if (!file_exists('.lock') && !file_exists('../application/config/config.php') &&
 										<div class="col-md-6">
 											<h4 style="margin-top: 50px;"><?= __("Welcome to the Wavelog Installer"); ?></h4>
 											<p style="margin-top: 50px;"><?= __("This installer will guide you through the necessary steps for the installation of Wavelog. <br>Wavelog is a powerful web-based amateur radio logging software. Follow the steps in each tab to configure and install Wavelog on your server."); ?></p>
-											<p><?= sprintf(__("If you encounter any issues or have questions, refer to the documentation (%s) or community forum (%s) on Github for assistance."), "<a href='https://www.github.com/wavelog/wavelog/wiki' target='_blank'>" . __("Wiki") . "</a>", "<a href='https://www.github.com/wavelog/wavelog/discussions' target='_blank'>" . __("Discussions") . "</a>"); ?></p>
+											<p><?= sprintf(__("If you encounter any issues or have questions, refer to the documentation (%s) or community forum (%s) on Github for assistance."), "<a href='https://docs.wavelog.org/' target='_blank'>" . __("Wiki") . "</a>", "<a href='https://www.github.com/wavelog/wavelog/discussions' target='_blank'>" . __("Discussions") . "</a>"); ?></p>
 											<p><?= __("Thank you for installing Wavelog!"); ?></p>
 											<?php if (__("Language") == "Language") {
 												$lang_html = "Language";
@@ -250,7 +250,7 @@ if (!file_exists('.lock') && !file_exists('../application/config/config.php') &&
 													<div class="alert alert-warning d-flex flex-column align-items-center" role="alert">
 														<p class="mb-2 border-bottom"><?= __("Important note for nginx users!"); ?></p>
 														<p class="mb-0"><?= __("Since you are using nginx as web server please make sure that you have made the changes described in the Wiki before continuing."); ?></p><br>
-														<p class="mb-0"><a target="_blank" href="https://github.com/wavelog/Wavelog/wiki/Installation#nginx-configuration">https://github.com/wavelog/Wavelog/wiki/Installation#nginx-configuration</a></p>
+														<p class="mb-0"><a target="_blank" href="https://docs.wavelog.org/getting-started/installation/linux/#nginx-configuration">https://docs.wavelog.org/getting-started/installation/linux/#nginx-configuration</a></p>
 													</div>
 												<?php } ?>
 											<?php } ?>
@@ -342,7 +342,7 @@ if (!file_exists('.lock') && !file_exists('../application/config/config.php') &&
 													<p class="mb-2 border-bottom"><?= __("Some Checks have failed!"); ?></p>
 													<p class="mb-2"><?= __("Check your PHP settings and install missing modules if necessary."); ?></p>
 													<p class="mb-2"><?= __("After that, you have to restart your webserver and start the installer again."); ?></p>
-													<p class="mb-2"><?= sprintf(__("In case of failed 'Folder Write Permissions' check out our Wiki <a href='%s' target='_blank'>here</a>."), "https://github.com/wavelog/Wavelog/wiki/Installation#3-set-directory-ownership-and-permissions"); ?></p>
+													<p class="mb-2"><?= sprintf(__("In case of failed 'Folder Write Permissions' check out our Wiki <a href='%s' target='_blank'>here</a>."), "https://docs.wavelog.org/getting-started/installation/linux/#3-set-directory-ownership-and-permissions"); ?></p>
 												</div>
 											<?php } else if ($prechecks_passed == 'warning') {
 												$prechecks_icon = "fa-exclamation-triangle";

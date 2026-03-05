@@ -688,6 +688,14 @@
 							<div class="card">
 								<div class="card-header"><?= __("Show Fields on QSO Tab"); ?></div>
 								<div class="card-body">
+									<div class="mb-3">
+										<label for="qsoShowMap"><?= __("Show map at QSO-Window"); ?></label>
+										<?php if(!isset($user_qso_show_map)) { $user_qso_show_map = 1; } ?>
+										<select class="form-select" id="qsoShowMap" name="user_qso_show_map">
+											<option value="1" <?php if ($user_qso_show_map == 1) { echo 'selected="selected"'; } ?>><?= __("Yes"); ?></option>
+											<option value="0" <?php if ($user_qso_show_map == 0) { echo 'selected="selected"'; } ?>><?= __("No"); ?></option>
+										</select>
+									</div>
 									<div class="row">
 										<div class="mb-3">
 											<label for="references_select"><?= __("The enabled items will be shown on the QSO tab rather than the General tab."); ?></label>
@@ -911,7 +919,7 @@
 						<!-- eQSL -->
 						<div class="col-md">
 							<div class="card">
-								<div class="card-header"><?= __("eQSL"); ?> <span class="badge text-bg-warning"><?= sprintf(__("Trouble? Check the %swiki%s."), '<a href="https://github.com/wavelog/wavelog/wiki/eQSL#read-common-pitfalls-with-eqsl" target="_blank">', '</a>'); ?></span></div>
+								<div class="card-header"><?= __("eQSL"); ?> <span class="badge text-bg-warning"><?= sprintf(__("Trouble? Check the %swiki%s."), '<a href="https://docs.wavelog.org/user-guide/qsl/eqsl/" target="_blank">', '</a>'); ?></span></div>
 								<div class="card-body">
 									<div class="mb-3">
 										<label><?= __("eQSL.cc Username"); ?></label>
@@ -1090,7 +1098,7 @@
 											<option value="0" <?php if ($user_winkey == 0) { echo 'selected="selected"'; } ?>><?= __("No"); ?></option>
 											<option value="1" <?php if ($user_winkey == 1) { echo 'selected="selected"'; } ?>><?= __("Yes"); ?></option>
 										</select>
-										<small class="form-text text-muted"><?= sprintf(__("Winkeyer support in Wavelog is very experimental. Read the wiki first at %s before enabling."), "<a href='https://github.com/wavelog/wavelog/wiki/Winkey' target='_blank'>https://github.com/wavelog/wavelog/wiki/Winkey</a>"); ?></small>
+										<small class="form-text text-muted"><?= sprintf(__("Winkeyer support in Wavelog is very experimental. Read the wiki first at %s before enabling."), "<a href='https://docs.wavelog.org/user-guide/integrations/winkey/' target='_blank'>https://docs.wavelog.org/user-guide/integrations/winkey/</a>"); ?></small>
 									</div>
 								</div>
 							</div>

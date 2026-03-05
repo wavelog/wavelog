@@ -351,6 +351,10 @@ function stopImpersonate_modal() {
     <script id="dxccmapjs" type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/sections/dxccmap.js'); ?>" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
 <?php } ?>
 
+<?php if ($this->uri->segment(1) == "awards" && ($this->uri->segment(2) == "wae") ) { ?>
+    <script id="waejs" type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/sections/wae.js'); ?>"></script>
+<?php } ?>
+
 <?php if ($this->uri->segment(1) == "statistics" && $this->uri->segment(2) == "") { ?>
     <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/chart.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/chartjs-plugin-piechart-outlabels.js'); ?>"></script>
