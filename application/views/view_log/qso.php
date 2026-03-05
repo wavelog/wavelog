@@ -728,43 +728,43 @@
                     </tr>
                     <?php } ?>
 
-                    <?php if($row->station_iota) { ?>
+                    <?php if($row->{'COL_MY_IOTA'}) { ?>
                     <tr>
                         <td><?= __("Station") . ' ' . __("IOTA Reference"); ?></td>
-                        <td><?php echo $row->station_iota; ?></td>
+                        <td><?php echo $row->{'COL_MY_IOTA'}; ?></td>
                     </tr>
                     <?php } ?>
 
-                    <?php if($row->station_sota) { ?>
+                    <?php if($row->{'COL_MY_SOTA_REF'}) { ?>
                     <tr>
                         <td><?= __("Station") . ' ' . __("SOTA Reference"); ?></td>
-                        <td><?php echo $row->station_sota; ?></td>
+                        <td><?php echo $row->{'COL_MY_SOTA_REF'}; ?></td>
                     </tr>
                     <?php } ?>
 
-                    <?php if($row->station_wwff) { ?>
+                    <?php if($row->{'COL_MY_WWFF_REF'}) { ?>
                     <tr>
                         <td><?= __("Station") . ' ' . __("WWFF Reference"); ?></td>
-                        <td><?php echo $row->station_wwff; ?></td>
+                        <td><?php echo $row->{'COL_MY_WWFF_REF'}; ?></td>
                     </tr>
                     <?php } ?>
 
-                    <?php if($row->station_pota) { ?>
+                    <?php if($row->{'COL_MY_POTA_REF'}) { ?>
                     <tr>
                         <td><?= __("Station") . ' ' . __("POTA Reference(s)"); ?></td>
-                        <td><?php echo $row->station_pota; ?></td>
+                        <td><?php echo $row->{'COL_MY_POTA_REF'}; ?></td>
                     </tr>
                     <?php } ?>
 
-                    <?php if($row->station_sig) { ?>
+                    <?php if($row->{'COL_MY_SIG'}) { ?>
                     <tr>
                         <td><?= __("Station") . ' ' . __("SIG"); ?></td>
-                        <td><?php echo $row->station_sig; ?></td>
+                        <td><?php echo $row->{'COL_MY_SIG'}; ?></td>
                     </tr>
 
                     <tr>
                         <td><?= __("Station") . ' ' . __("SIG Info"); ?></td>
-                        <td><?php echo $row->station_sig_info; ?></td>
+                        <td><?php echo $row->{'COL_MY_SIG_INFO'}; ?></td>
                     </tr>
                     <?php } ?>
             </table>

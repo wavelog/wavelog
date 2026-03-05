@@ -205,13 +205,13 @@ class AdifHelper {
 			$line .= $this->getAdifFieldLine("MY_GRIDSQUARE", $qso->station_gridsquare);
 		}
 
-		$line .= $this->getAdifFieldLine("MY_IOTA", $qso->station_iota);
+		$line .= $this->getAdifFieldLine("MY_IOTA", $qso->{'COL_MY_IOTA'});
 
-		$line .= $this->getAdifFieldLine("MY_SOTA_REF", $qso->station_sota);
+		$line .= $this->getAdifFieldLine("MY_SOTA_REF", $qso->{'COL_MY_SOTA_REF'});
 
-		$line .= $this->getAdifFieldLine("MY_WWFF_REF", $qso->station_wwff);
+		$line .= $this->getAdifFieldLine("MY_WWFF_REF", $qso->{'COL_MY_WWFF_REF'});
 
-		$line .= $this->getAdifFieldLine("MY_POTA_REF", $qso->station_pota);
+		$line .= $this->getAdifFieldLine("MY_POTA_REF", $qso->{'COL_MY_POTA_REF'});
 
 		$line .= $this->getAdifFieldLine("MY_CQ_ZONE", $qso->station_cq);
 
@@ -237,8 +237,8 @@ class AdifHelper {
 
 		$line .= $this->getAdifFieldLine("MY_CNTY", $county);
 
-		$line .= $this->getAdifFieldLine("MY_SIG", $qso->station_sig);
-		$line .= $this->getAdifFieldLine("MY_SIG_INFO", $qso->station_sig_info);
+		$line .= $this->getAdifFieldLine("MY_SIG", $qso->{'COL_MY_SIG'});
+		$line .= $this->getAdifFieldLine("MY_SIG_INFO", $qso->{'COL_MY_SIG_INFO'});
 
 		$line .= $this->getAdifFieldLine("SIG", $qso->{'COL_SIG'});
 		$line .= $this->getAdifFieldLine("SIG_INFO", $qso->{'COL_SIG_INFO'});

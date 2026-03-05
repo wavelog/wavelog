@@ -212,12 +212,12 @@ class QSO
 		$this->address = $data['COL_ADDRESS'] ?? '';
 
 		$this->deGridsquare = $data['station_gridsquare'] ?? '';
-		$this->deIOTA = $data['station_iota'] ?? '';
-		$this->deSig = $data['station_sig'] ?? '';
-		$this->deSigInfo = $data['station_sig_info'] ?? '';
+		$this->deIOTA = $data['COL_MY_IOTA'] ?? '';
+		$this->deSig = $data['COL_MY_SIG'] ?? '';
+		$this->deSigInfo = $data['COL_MY_SIG_INFO'] ?? '';
 		$this->deIOTAIslandID = $data['COL_MY_IOTA_ISLAND_ID'] ?? '';
-		$this->deSOTAReference = $data['station_sota'] ?? '';
-		$this->deWWFFReference = $data['station_wwff'] ?? '';
+		$this->deSOTAReference = $data['COL_MY_SOTA_REF'] ?? '';
+		$this->deWWFFReference = $data['COL_MY_WWFF_REF'] ?? '';
 
 		$this->deVUCCGridsquares = $data['COL_MY_VUCC_GRIDS'] ?? '';
 

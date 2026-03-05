@@ -297,12 +297,12 @@ class Labels extends CI_Controller {
 				'sat_band_rx' => ($qso->COL_BAND_RX ?? ''),
 				'qsl_recvd' => $qso->COL_QSL_RCVD,
 				'mycall' => $qso->COL_STATION_CALLSIGN,
-				'sig' => $qso->station_sig ?? '',
-				'sig_info' => $qso->station_sig_info ?? '',
-				'sota' => $qso->station_sota ?? '',
-				'iota' => $qso->station_iota ?? '',
-				'pota' => $qso->station_pota ?? '',
-				'wwff' => $qso->station_wwff ?? '',
+				'sig' => $qso->{'COL_MY_SIG'} ?? '',
+				'sig_info' => $qso->{'COL_MY_SIG_INFO'} ?? '',
+				'sota' => $qso->{'COL_MY_SOTA_REF'} ?? '',
+				'iota' => $qso->{'COL_MY_IOTA'} ?? '',
+				'pota' => $qso->{'COL_MY_POTA_REF'} ?? '',
+				'wwff' => $qso->{'COL_MY_WWFF_REF'} ?? '',
 				'qslmsg' => $qso->COL_QSLMSG  ?? '',
 
 			];
