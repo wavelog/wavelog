@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-03-05 15:20+0000\n"
+"POT-Creation-Date: 2026-03-13 15:53+0000\n"
 "PO-Revision-Date: 2026-01-05 10:37+0000\n"
 "Last-Translator: Halil AYYILDIZ <ta2lghalil@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -147,8 +147,8 @@ msgid "Activated Gridsquare Map"
 msgstr "Aktif Grid Konum Haritası"
 
 #: application/controllers/Activated_gridmap.php:31
-#: application/controllers/Awards.php:1067
-#: application/controllers/Awards.php:1103
+#: application/controllers/Awards.php:1066
+#: application/controllers/Awards.php:1102
 #: application/controllers/Gridmap.php:32
 #: application/controllers/Visitor.php:385
 #: application/views/activators/index.php:100
@@ -314,25 +314,25 @@ msgstr "Ödüller"
 #: application/controllers/Awards.php:205
 #: application/controllers/Awards.php:443
 #: application/controllers/Awards.php:493
-#: application/controllers/Awards.php:611
-#: application/controllers/Awards.php:629
-#: application/controllers/Awards.php:647
-#: application/controllers/Awards.php:729
-#: application/controllers/Awards.php:791
-#: application/controllers/Awards.php:853
-#: application/controllers/Awards.php:915
-#: application/controllers/Awards.php:1000
-#: application/controllers/Awards.php:1012
-#: application/controllers/Awards.php:1088
-#: application/controllers/Awards.php:1294
-#: application/controllers/Awards.php:1445
-#: application/controllers/Awards.php:1981
-#: application/controllers/Awards.php:2130
-#: application/controllers/Awards.php:2249
-#: application/controllers/Awards.php:2323
-#: application/controllers/Awards.php:2336
-#: application/controllers/Awards.php:2411
-#: application/controllers/Awards.php:2553
+#: application/controllers/Awards.php:610
+#: application/controllers/Awards.php:628
+#: application/controllers/Awards.php:646
+#: application/controllers/Awards.php:728
+#: application/controllers/Awards.php:790
+#: application/controllers/Awards.php:852
+#: application/controllers/Awards.php:914
+#: application/controllers/Awards.php:999
+#: application/controllers/Awards.php:1011
+#: application/controllers/Awards.php:1087
+#: application/controllers/Awards.php:1293
+#: application/controllers/Awards.php:1444
+#: application/controllers/Awards.php:1980
+#: application/controllers/Awards.php:2129
+#: application/controllers/Awards.php:2259
+#: application/controllers/Awards.php:2333
+#: application/controllers/Awards.php:2346
+#: application/controllers/Awards.php:2421
+#: application/controllers/Awards.php:2563
 #, php-format
 msgid "Awards - %s"
 msgstr "Ödüller - %s"
@@ -399,11 +399,11 @@ msgstr "JCC"
 msgid "VUCC"
 msgstr "VUCC"
 
-#: application/controllers/Awards.php:525
+#: application/controllers/Awards.php:524
 msgid "Log View - VUCC"
 msgstr "Kayıt Görünümü - VUCC"
 
-#: application/controllers/Awards.php:575
+#: application/controllers/Awards.php:574
 #: application/controllers/Callstats.php:100
 #: application/controllers/Distancerecords.php:87
 #: application/controllers/Statistics.php:372
@@ -416,50 +416,51 @@ msgstr "Kayıt Görünümü - VUCC"
 msgid "Log View"
 msgstr "Kayıt Görünümü"
 
-#: application/controllers/Awards.php:576
+#: application/controllers/Awards.php:575
 msgid "and"
 msgstr ""
 
-#: application/controllers/Awards.php:577
+#: application/controllers/Awards.php:576
 #: application/views/awards/cq/index.php:135
 #: application/views/awards/dxcc/index.php:32
 #: application/views/awards/dxcc/index.php:176
 #: application/views/awards/iota/index.php:123
 #: application/views/awards/itu/index.php:137
+#: application/views/awards/wac/index.php:51
 #: application/views/awards/wae/index.php:119
 #: application/views/awards/wpx/index.php:81
 msgid "Every band (w/o SAT)"
 msgstr "Her bant (Uydu hariç)"
 
-#: application/controllers/Awards.php:577
+#: application/controllers/Awards.php:576
 msgid "band"
 msgstr ""
 
-#: application/controllers/Awards.php:580
+#: application/controllers/Awards.php:579
 msgid " and satellite "
 msgstr " ve uydu "
 
-#: application/controllers/Awards.php:583
+#: application/controllers/Awards.php:582
 #: application/controllers/Callstats.php:107
 msgid " and orbit type "
 msgstr " ve yörünge tipi "
 
-#: application/controllers/Awards.php:587
+#: application/controllers/Awards.php:586
 #: application/controllers/Callstats.php:111
 msgid " and propagation "
 msgstr " ve yayılma "
 
-#: application/controllers/Awards.php:590
+#: application/controllers/Awards.php:589
 #: application/controllers/Callstats.php:114
 msgid " and mode "
 msgstr " ve mod "
 
-#: application/controllers/Awards.php:593
+#: application/controllers/Awards.php:592
 #: application/controllers/Callstats.php:117
 msgid " and "
 msgstr " ve "
 
-#: application/controllers/Awards.php:611
+#: application/controllers/Awards.php:610
 #: application/controllers/Logbook.php:1463
 #: application/views/awards/index.php:8 application/views/bandmap/list.php:327
 #: application/views/bands/index.php:57 application/views/dashboard/index.php:9
@@ -487,7 +488,7 @@ msgstr " ve "
 msgid "SOTA"
 msgstr "SOTA"
 
-#: application/controllers/Awards.php:629
+#: application/controllers/Awards.php:628
 #: application/controllers/Logbook.php:1464
 #: application/views/bandmap/list.php:329 application/views/bands/index.php:64
 #: application/views/dashboard/index.php:10
@@ -509,7 +510,7 @@ msgstr "SOTA"
 msgid "WWFF"
 msgstr "WWFF"
 
-#: application/controllers/Awards.php:647
+#: application/controllers/Awards.php:646
 #: application/controllers/Logbook.php:1465
 #: application/views/adif/import.php:60 application/views/bandmap/list.php:328
 #: application/views/bands/index.php:54
@@ -532,68 +533,68 @@ msgstr "WWFF"
 msgid "POTA"
 msgstr "POTA"
 
-#: application/controllers/Awards.php:729
+#: application/controllers/Awards.php:728
 msgid "CQ WAZ (Worked All Zones)"
 msgstr "CQ WAZ (Çalışılan Tüm Bölgeler)"
 
-#: application/controllers/Awards.php:791
+#: application/controllers/Awards.php:790
 #: application/views/accumulate/index.php:54
 #: application/views/timeline/index.php:45
 msgid "Worked All States (WAS)"
 msgstr "Worked All States (WAS)"
 
-#: application/controllers/Awards.php:853 application/views/bands/index.php:55
+#: application/controllers/Awards.php:852 application/views/bands/index.php:55
 #: application/views/interface_assets/header.php:228
 msgid "RAC"
 msgstr "RAC"
 
-#: application/controllers/Awards.php:915 application/views/bands/index.php:51
+#: application/controllers/Awards.php:914 application/views/bands/index.php:51
 msgid "H26"
 msgstr "H26"
 
-#: application/controllers/Awards.php:1000
+#: application/controllers/Awards.php:999
 msgid "IOTA (Island On The Air)"
 msgstr "IOTA (Island On The Air)"
 
-#: application/controllers/Awards.php:1012
-#: application/controllers/Awards.php:1027
+#: application/controllers/Awards.php:1011
+#: application/controllers/Awards.php:1026
 #: application/views/interface_assets/header.php:288
 msgid "US Counties"
 msgstr "ABD Eyaletleri"
 
-#: application/controllers/Awards.php:1042
+#: application/controllers/Awards.php:1041
 msgid "Log View - Counties"
 msgstr "Kayıt Görünümü - İlçeler"
 
-#: application/controllers/Awards.php:1049
+#: application/controllers/Awards.php:1048
 msgid "Awards - "
 msgstr "Ödüller - "
 
-#: application/controllers/Awards.php:1068
-#: application/controllers/Awards.php:1104
+#: application/controllers/Awards.php:1067
+#: application/controllers/Awards.php:1103
 msgid "Gridsquares worked"
 msgstr "Çalışılan Grid Karesi"
 
-#: application/controllers/Awards.php:1069
-#: application/controllers/Awards.php:1105
+#: application/controllers/Awards.php:1068
+#: application/controllers/Awards.php:1104
 msgid "Gridsquares confirmed on LoTW"
 msgstr "Çalışılan Grid Karesi LoTW'de onaylandı"
 
-#: application/controllers/Awards.php:1070
-#: application/controllers/Awards.php:1106
+#: application/controllers/Awards.php:1069
+#: application/controllers/Awards.php:1105
 msgid "Gridsquares confirmed by paper QSL"
 msgstr "Çalışılan Grid Karesi kart QSL ile doğrulandı"
 
-#: application/controllers/Awards.php:1071
-#: application/controllers/Awards.php:1107
+#: application/controllers/Awards.php:1070
+#: application/controllers/Awards.php:1106
 msgid "Total Gridsquares worked"
 msgstr "Toplam çalışılan grid kareleri"
 
-#: application/controllers/Awards.php:1088
+#: application/controllers/Awards.php:1087
 msgid "Fred Fish Memorial Award (FFMA)"
 msgstr "Fred Fish Memorial Award (FFMA)"
 
-#: application/controllers/Awards.php:1294
+#: application/controllers/Awards.php:1293
 #: application/views/interface_assets/header.php:196
 #: application/views/logbookadvanced/useroptions.php:250
 #: application/views/qso/edit_ajax.php:393 application/views/qso/index.php:345
@@ -603,40 +604,40 @@ msgstr "Fred Fish Memorial Award (FFMA)"
 msgid "SIG"
 msgstr "SIG (Special Interest Group)"
 
-#: application/controllers/Awards.php:1313
+#: application/controllers/Awards.php:1312
 msgid "Awards - SIG - "
 msgstr "Ödüller - SIG (Special Interest Group) - "
 
-#: application/controllers/Awards.php:1445 application/views/bands/index.php:60
+#: application/controllers/Awards.php:1444 application/views/bands/index.php:60
 msgid "WAP"
 msgstr "WAP"
 
-#: application/controllers/Awards.php:2130
+#: application/controllers/Awards.php:2129
 #: application/views/awards/itu/index.php:34
 msgid "ITU Zones"
 msgstr "ITU Bölgeleri"
 
-#: application/controllers/Awards.php:2249
+#: application/controllers/Awards.php:2259
 #: application/views/awards/wac/index.php:8
 #: application/views/interface_assets/header.php:202
 msgid "Worked All Continents (WAC)"
 msgstr "Tüm Kıtalarda Çalışıldı (WAC)"
 
-#: application/controllers/Awards.php:2323
+#: application/controllers/Awards.php:2333
 msgid "WAE"
 msgstr "WAE"
 
-#: application/controllers/Awards.php:2336
+#: application/controllers/Awards.php:2346
 #: application/views/interface_assets/header.php:212
 msgid "73 on 73"
 msgstr "73 on 73"
 
-#: application/controllers/Awards.php:2411
+#: application/controllers/Awards.php:2421
 #: application/views/awards/wpx/wpx_details.php:19
 msgid "WPX"
 msgstr "WPX"
 
-#: application/controllers/Awards.php:2553
+#: application/controllers/Awards.php:2563
 #: application/views/awards/pl_polska/index.php:37
 #: application/views/interface_assets/header.php:270
 msgid "\"Polska\" Award"
@@ -811,6 +812,7 @@ msgstr "Clublog'u hiçbir kullanıcı yapılandırmadı."
 #: application/views/awards/jcc/index.php:70
 #: application/views/awards/pl_polska/index.php:84
 #: application/views/awards/wab/index.php:106
+#: application/views/awards/wac/index.php:42
 #: application/views/awards/wae/index.php:110
 #: application/views/awards/waja/index.php:75
 #: application/views/awards/wapc/index.php:75
@@ -1412,7 +1414,7 @@ msgstr "QSL"
 #: application/views/awards/rac/index.php:54
 #: application/views/awards/vucc/band.php:16
 #: application/views/awards/wab/index.php:82
-#: application/views/awards/wac/index.php:49
+#: application/views/awards/wac/index.php:30
 #: application/views/awards/wae/index.php:98
 #: application/views/awards/waja/index.php:63
 #: application/views/awards/wap/index.php:61
@@ -1453,7 +1455,7 @@ msgstr "LoTW"
 #: application/views/awards/pl_polska/index.php:76
 #: application/views/awards/rac/index.php:58
 #: application/views/awards/wab/index.php:90
-#: application/views/awards/wac/index.php:53
+#: application/views/awards/wac/index.php:34
 #: application/views/awards/wae/index.php:102
 #: application/views/awards/waja/index.php:67
 #: application/views/awards/wap/index.php:65
@@ -1499,7 +1501,7 @@ msgstr ""
 #: application/views/awards/rac/index.php:82
 #: application/views/awards/sig/qso_list.php:12
 #: application/views/awards/wab/index.php:55
-#: application/views/awards/wac/index.php:111
+#: application/views/awards/wac/index.php:95
 #: application/views/awards/wae/index.php:162
 #: application/views/awards/waja/index.php:95
 #: application/views/awards/wap/index.php:89
@@ -1823,7 +1825,7 @@ msgstr "Mesafe"
 #: application/views/awards/sota/index.php:34
 #: application/views/awards/vucc/index.php:22
 #: application/views/awards/wab/index.php:24
-#: application/views/awards/wac/index.php:64
+#: application/views/awards/wac/index.php:48
 #: application/views/awards/wae/index.php:116
 #: application/views/awards/waja/index.php:81
 #: application/views/awards/wap/index.php:75
@@ -3593,25 +3595,25 @@ msgstr "HRDlog: HRDlog Kimlik Bilgileriyle istasyon profili bulunamadı."
 msgid "Station not accessible"
 msgstr ""
 
-#: application/models/Logbook_model.php:1341
+#: application/models/Logbook_model.php:1359
 msgid "Station ID not allowed"
 msgstr "İstasyon ID’sine izin verilmiyor"
 
-#: application/models/Logbook_model.php:1346
+#: application/models/Logbook_model.php:1364
 msgid "No Call given"
 msgstr "Çağrı işareti girilmedi"
 
-#: application/models/Logbook_model.php:1416
-#: application/models/Logbook_model.php:1620
+#: application/models/Logbook_model.php:1434
+#: application/models/Logbook_model.php:1638
 msgid "DXCC has to be Numeric"
 msgstr "DXCC sayısal olmalıdır"
 
-#: application/models/Logbook_model.php:4747
+#: application/models/Logbook_model.php:4765
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Yanlış çağrı işareti %s, %s ile %s için QSO içe aktarılırken: ATLANDI"
 
-#: application/models/Logbook_model.php:4761
+#: application/models/Logbook_model.php:4779
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -3619,11 +3621,11 @@ msgstr ""
 "Geçerli tarih bilgisi içermeyen bir QSO'lar bulundu. Bu QSO'lar içe "
 "aktarılmadı."
 
-#: application/models/Logbook_model.php:4770
+#: application/models/Logbook_model.php:4788
 msgid "QSO on"
 msgstr "Zaman"
 
-#: application/models/Logbook_model.php:4770
+#: application/models/Logbook_model.php:4788
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3631,7 +3633,7 @@ msgstr ""
 "Bir çağrı işareti olmadan bir QSO'yu içe aktarmaya çalıştın. Bu QSO içe "
 "aktarılmadı. Geçersiz"
 
-#: application/models/Logbook_model.php:4819
+#: application/models/Logbook_model.php:4837
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -3640,64 +3642,64 @@ msgstr ""
 "%s üzerindeki QSO: Bant bilgisi olmadan bir QSO içe aktarmayı denediniz. Bu "
 "QSO içe aktarılmadı, geçersiz."
 
-#: application/models/Logbook_model.php:5092
+#: application/models/Logbook_model.php:5110
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate geçersiz (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5103
+#: application/models/Logbook_model.php:5121
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate geçersiz (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5164
+#: application/models/Logbook_model.php:5182
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date geçersiz (YYYYAAGG)"
 
-#: application/models/Logbook_model.php:5537
+#: application/models/Logbook_model.php:5555
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "İçin yinelenen"
 
-#: application/models/Logbook_model.php:5602
-#: application/models/Logbook_model.php:5697
+#: application/models/Logbook_model.php:5620
+#: application/models/Logbook_model.php:5715
 msgid "QSO could not be matched"
 msgstr "QSO eşleştirilemedi"
 
-#: application/models/Logbook_model.php:5610
+#: application/models/Logbook_model.php:5628
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "LoTW/Clublog/eQSL/Yarışma tarafından onaylandı"
 
-#: application/models/Logbook_model.php:5616
+#: application/models/Logbook_model.php:5634
 msgid "confirmed by award manager"
 msgstr "Ödül yöneticisi tarafından onaylandı"
 
-#: application/models/Logbook_model.php:5620
+#: application/models/Logbook_model.php:5638
 msgid "confirmed by cross-check of DCL data"
 msgstr "DCL verileri karşılaştırılarak onaylandı"
 
-#: application/models/Logbook_model.php:5624
+#: application/models/Logbook_model.php:5642
 msgid "confirmation pending"
 msgstr "onay bekleniyor"
 
-#: application/models/Logbook_model.php:5627
+#: application/models/Logbook_model.php:5645
 msgid "unconfirmed"
 msgstr "onaylanmamış"
 
-#: application/models/Logbook_model.php:5630
+#: application/models/Logbook_model.php:5648
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:305
 msgid "unknown"
 msgstr "Bilinmiyor"
 
-#: application/models/Logbook_model.php:5700
+#: application/models/Logbook_model.php:5718
 msgid "POTA reference already in log"
 msgstr "POTA referansı zaten logda mevcut"
 
-#: application/models/Logbook_model.php:5703
+#: application/models/Logbook_model.php:5721
 msgid "QSO updated"
 msgstr "QSO güncellendi"
 
-#: application/models/Logbook_model.php:6100
+#: application/models/Logbook_model.php:6118
 #: application/views/activated_gridmap/index.php:114
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:58
@@ -3711,7 +3713,7 @@ msgstr "QSO güncellendi"
 msgid "Bearing"
 msgstr "Yön"
 
-#: application/models/Logbookadvanced_model.php:1730
+#: application/models/Logbookadvanced_model.php:1740
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
 msgstr "VuccGrids tablosu boş. Lütfen önce VUCC grid verilerini içe aktarın."
 
@@ -3862,9 +3864,9 @@ msgstr "Fark"
 #: application/views/awards/wab/index.php:38
 #: application/views/awards/wab/index.php:48
 #: application/views/awards/wab/index.php:57
+#: application/views/awards/wac/index.php:66
 #: application/views/awards/wac/index.php:82
 #: application/views/awards/wac/index.php:98
-#: application/views/awards/wac/index.php:114
 #: application/views/awards/wae/index.php:133
 #: application/views/awards/wae/index.php:149
 #: application/views/awards/wae/index.php:165
@@ -4290,7 +4292,7 @@ msgstr "Troposfer Kanal İletişimi"
 #: application/views/awards/jcc/index.php:115
 #: application/views/awards/pl_polska/index.php:93
 #: application/views/awards/rac/index.php:107
-#: application/views/awards/wac/index.php:136
+#: application/views/awards/wac/index.php:119
 #: application/views/awards/wae/index.php:33
 #: application/views/awards/waja/index.php:120
 #: application/views/awards/wap/index.php:114
@@ -4319,7 +4321,7 @@ msgstr "Göster"
 #: application/views/activated_gridmap/index.php:24
 #: application/views/awards/dxcc/index.php:187
 #: application/views/awards/wab/index.php:36
-#: application/views/awards/wac/index.php:79
+#: application/views/awards/wac/index.php:63
 #: application/views/awards/wae/index.php:130
 #: application/views/awards/wpx/index.php:91
 #: application/views/callstats/index.php:21
@@ -4352,7 +4354,7 @@ msgstr "Uydu"
 #: application/views/activated_gridmap/index.php:34
 #: application/views/awards/dxcc/index.php:203
 #: application/views/awards/wab/index.php:46
-#: application/views/awards/wac/index.php:95
+#: application/views/awards/wac/index.php:79
 #: application/views/awards/wae/index.php:146
 #: application/views/awards/wpx/index.php:105
 #: application/views/callstats/index.php:35
@@ -4386,7 +4388,7 @@ msgstr "Onay"
 #: application/views/awards/pl_polska/index.php:80
 #: application/views/awards/rac/index.php:62
 #: application/views/awards/wab/index.php:98
-#: application/views/awards/wac/index.php:57
+#: application/views/awards/wac/index.php:38
 #: application/views/awards/wae/index.php:106
 #: application/views/awards/waja/index.php:71
 #: application/views/awards/wap/index.php:69
@@ -4452,7 +4454,6 @@ msgstr "Minimum Sayı"
 #: application/views/awards/sota/index.php:60
 #: application/views/awards/vucc/band.php:41
 #: application/views/awards/vucc/index.php:40
-#: application/views/awards/wac/index.php:200
 #: application/views/awards/wae/index.php:296
 #: application/views/awards/waja/index.php:206
 #: application/views/awards/wap/index.php:202
@@ -5534,7 +5535,6 @@ msgstr "Onaylanan Eyaletler"
 #: application/views/awards/iota/index.php:237
 #: application/views/awards/jcc/index.php:187
 #: application/views/awards/rac/index.php:174
-#: application/views/awards/wac/index.php:178
 #: application/views/awards/waja/index.php:183
 #: application/views/awards/wap/index.php:181
 #: application/views/awards/wapc/index.php:183
@@ -5771,7 +5771,6 @@ msgstr "Bitiş Tarihi"
 #: application/views/awards/cq/index.php:88
 #: application/views/awards/itu/index.php:90
 #: application/views/awards/wab/list.php:6
-#: application/views/awards/wac/index.php:23
 #: application/views/awards/wpx/wpx_details.php:24
 #: application/views/bandmap/list.php:88 application/views/bandmap/list.php:299
 #: application/views/dashboard/index.php:342
@@ -5784,7 +5783,6 @@ msgstr "Onaylanan"
 
 #: application/views/awards/cq/index.php:88
 #: application/views/awards/itu/index.php:90
-#: application/views/awards/wac/index.php:23
 #: application/views/bandmap/list.php:87 application/views/bandmap/list.php:298
 #: application/views/dashboard/index.php:338
 #: application/views/dashboard/index.php:454
@@ -5801,7 +5799,6 @@ msgstr "Çalışılan"
 #: application/views/awards/itu/index.php:94
 #: application/views/awards/jcc/index.php:36
 #: application/views/awards/rac/index.php:32
-#: application/views/awards/wac/index.php:27
 #: application/views/awards/wae/index.php:76
 #: application/views/awards/waja/index.php:41
 #: application/views/awards/wap/index.php:39
@@ -5818,7 +5815,6 @@ msgstr "Çalışılanları göster"
 #: application/views/awards/itu/index.php:98
 #: application/views/awards/jcc/index.php:40
 #: application/views/awards/rac/index.php:36
-#: application/views/awards/wac/index.php:31
 #: application/views/awards/wae/index.php:80
 #: application/views/awards/waja/index.php:45
 #: application/views/awards/wap/index.php:43
@@ -5834,7 +5830,6 @@ msgstr "Onaylananları göster"
 #: application/views/awards/itu/index.php:102
 #: application/views/awards/jcc/index.php:44
 #: application/views/awards/rac/index.php:40
-#: application/views/awards/wac/index.php:35
 #: application/views/awards/wae/index.php:84
 #: application/views/awards/waja/index.php:49
 #: application/views/awards/wap/index.php:47
@@ -5851,7 +5846,7 @@ msgstr "Çalışılmamışları Göster"
 #: application/views/awards/itu/index.php:108
 #: application/views/awards/jcc/index.php:50
 #: application/views/awards/rac/index.php:46
-#: application/views/awards/wac/index.php:41
+#: application/views/awards/wac/index.php:22
 #: application/views/awards/wae/index.php:90
 #: application/views/awards/waja/index.php:55
 #: application/views/awards/wap/index.php:53
@@ -5864,7 +5859,7 @@ msgstr "QSO'yu QSL Türü ile göster"
 #: application/views/awards/cq/index.php:110
 #: application/views/awards/iota/index.php:64
 #: application/views/awards/itu/index.php:112
-#: application/views/awards/wac/index.php:45
+#: application/views/awards/wac/index.php:26
 #: application/views/interface_assets/footer.php:2379
 #: application/views/logbookadvanced/index.php:54
 #: application/views/qso/edit_ajax.php:420
@@ -5908,6 +5903,7 @@ msgstr "Harita"
 #: application/views/awards/cq/index.php:192
 #: application/views/awards/dxcc/index.php:264
 #: application/views/awards/itu/index.php:194
+#: application/views/awards/wac/index.php:130
 #: application/views/awards/wae/index.php:189
 msgid "Legend:"
 msgstr "QSO Teyitleri:"
@@ -5915,6 +5911,7 @@ msgstr "QSO Teyitleri:"
 #: application/views/awards/cq/index.php:193
 #: application/views/awards/dxcc/index.php:265
 #: application/views/awards/itu/index.php:195
+#: application/views/awards/wac/index.php:131
 #: application/views/awards/wae/index.php:190
 msgid "(Q)SL-Paper-Card"
 msgstr "(Q)SL-Kağıt-Kartı"
@@ -5922,6 +5919,7 @@ msgstr "(Q)SL-Kağıt-Kartı"
 #: application/views/awards/cq/index.php:194
 #: application/views/awards/dxcc/index.php:266
 #: application/views/awards/itu/index.php:196
+#: application/views/awards/wac/index.php:132
 #: application/views/awards/wae/index.php:191
 msgid "(L)oTW"
 msgstr "(L)oTW"
@@ -5929,6 +5927,7 @@ msgstr "(L)oTW"
 #: application/views/awards/cq/index.php:195
 #: application/views/awards/dxcc/index.php:267
 #: application/views/awards/itu/index.php:197
+#: application/views/awards/wac/index.php:133
 #: application/views/awards/wae/index.php:192
 msgid "(e)QSL"
 msgstr "(e)QSL"
@@ -5936,6 +5935,7 @@ msgstr "(e)QSL"
 #: application/views/awards/cq/index.php:196
 #: application/views/awards/dxcc/index.php:268
 #: application/views/awards/itu/index.php:198
+#: application/views/awards/wac/index.php:134
 #: application/views/awards/wae/index.php:193
 msgid "QR(Z)-\"confirmation\""
 msgstr "QR(Z)-\"onay\""
@@ -5943,6 +5943,7 @@ msgstr "QR(Z)-\"onay\""
 #: application/views/awards/cq/index.php:197
 #: application/views/awards/dxcc/index.php:269
 #: application/views/awards/itu/index.php:199
+#: application/views/awards/wac/index.php:135
 #: application/views/awards/wae/index.php:194
 msgid "(C)lublog"
 msgstr "(C)lublog"
@@ -5950,6 +5951,7 @@ msgstr "(C)lublog"
 #: application/views/awards/cq/index.php:198
 #: application/views/awards/dxcc/index.php:270
 #: application/views/awards/itu/index.php:200
+#: application/views/awards/wac/index.php:136
 #: application/views/awards/wae/index.php:195
 msgid "(W)orked"
 msgstr "(W) Çalışıldı"
@@ -5962,7 +5964,7 @@ msgstr "(W) Çalışıldı"
 #: application/views/awards/itu/index.php:226
 #: application/views/awards/jcc/index.php:170
 #: application/views/awards/rac/index.php:165
-#: application/views/awards/wac/index.php:169
+#: application/views/awards/wac/index.php:162
 #: application/views/awards/wae/index.php:227
 #: application/views/awards/waja/index.php:174
 #: application/views/awards/wap/index.php:172
@@ -5975,6 +5977,7 @@ msgstr "Özet"
 #: application/views/awards/cq/index.php:237
 #: application/views/awards/dxcc/index.php:315
 #: application/views/awards/itu/index.php:239
+#: application/views/awards/wac/index.php:175
 #: application/views/awards/wae/index.php:240
 msgid "Total (ex SAT)"
 msgstr ""
@@ -5987,7 +5990,7 @@ msgstr ""
 #: application/views/awards/itu/index.php:244
 #: application/views/awards/jcc/index.php:197
 #: application/views/awards/rac/index.php:178
-#: application/views/awards/wac/index.php:182
+#: application/views/awards/wac/index.php:183
 #: application/views/awards/wae/index.php:247
 #: application/views/awards/waja/index.php:188
 #: application/views/awards/wap/index.php:185
@@ -6005,7 +6008,7 @@ msgstr "Toplam çalışılan"
 #: application/views/awards/itu/index.php:257
 #: application/views/awards/jcc/index.php:216
 #: application/views/awards/rac/index.php:185
-#: application/views/awards/wac/index.php:189
+#: application/views/awards/wac/index.php:203
 #: application/views/awards/wae/index.php:269
 #: application/views/awards/waja/index.php:195
 #: application/views/awards/wap/index.php:192
@@ -6090,7 +6093,6 @@ msgstr "Çalışıldı / Onaylandı"
 #: application/views/awards/helvetia/index.php:80
 #: application/views/awards/jcc/index.php:79
 #: application/views/awards/rac/index.php:71
-#: application/views/awards/wac/index.php:67
 #: application/views/awards/waja/index.php:84
 #: application/views/awards/wap/index.php:78
 #: application/views/awards/wapc/index.php:84
@@ -6104,7 +6106,6 @@ msgstr "Her bant"
 #: application/views/awards/jcc/index.php:114
 #: application/views/awards/pl_polska/index.php:92
 #: application/views/awards/rac/index.php:106
-#: application/views/awards/wac/index.php:135
 #: application/views/awards/waja/index.php:119
 #: application/views/awards/wap/index.php:113
 #: application/views/awards/wapc/index.php:119
@@ -7188,7 +7189,7 @@ msgstr ""
 msgid "Awards - Worked All Continents (WAC)"
 msgstr "Ödüller - Worked All Continents (WAC)"
 
-#: application/views/awards/wac/index.php:152
+#: application/views/awards/wac/index.php:142
 #: application/views/bandmap/list.php:101
 #: application/views/bandmap/list.php:556
 #: application/views/bandmap/list.php:594
@@ -7202,6 +7203,10 @@ msgstr "Ödüller - Worked All Continents (WAC)"
 #: application/views/view_log/qso.php:360
 msgid "Continent"
 msgstr "Kıta"
+
+#: application/views/awards/wac/index.php:227
+msgid "No QSOS found matching the criteria for this award!"
+msgstr ""
 
 #: application/views/awards/wae/index.php:18
 msgid "WAE Award"

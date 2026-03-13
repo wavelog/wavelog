@@ -153,11 +153,6 @@ class EqslImporter
 			// The report from eQSL should only contain entries that have been confirmed via eQSL
 			// If there's a match for the QSO from the report in our log, it's confirmed via eQSL.
 
-			// If we have a positive match from eQSL, record it in the DB according to the user's preferences
-			if ( (array_key_exists('qsl_sent',$record)) && ($record['qsl_sent'] == "Y")) {
-				$record['qsl_sent'] = $config['eqsl_rcvd_mark'];
-			}
-
 			// SAT-Name not given? Create array-key and fill with null
 			if (!(array_key_exists('sat_name', $record))) {
 				$record['sat_name']=null;

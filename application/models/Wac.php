@@ -2,265 +2,277 @@
 
 class Wac extends CI_Model{
 
-	private $validContinents = ['AF', 'EU', 'AS', 'SA', 'NA', 'OC', 'AN'];
+	private $validContinents = ['AF', 'AN', 'AS', 'EU', 'NA', 'OC', 'SA'];
 
 	function __construct() {
-		$this->load->library('Genfunctions');
+		if(!$this->load->is_loaded('Genfunctions')) {
+			$this->load->library('Genfunctions');
+		}
+	}
+
+	/*
+	 * Gets all WAC data with confirmation status in efficient query using MAX aggregation
+	 */
+	function getWacData($location_list, $postdata) {
+		$bindings = [];
+		$sql = "SELECT thcv.col_cont, thcv.col_band,
+			MAX(case when thcv.col_lotw_qsl_rcvd ='Y' then 1 else 0 end) as lotw,
+			MAX(case when thcv.col_qsl_rcvd = 'Y' then 1 else 0 end) as qsl,
+			MAX(case when thcv.col_eqsl_qsl_rcvd = 'Y' then 1 else 0 end) as eqsl,
+			MAX(case when thcv.COL_QRZCOM_QSO_DOWNLOAD_STATUS= 'Y' then 1 else 0 end) as qrz,
+			MAX(case when thcv.COL_CLUBLOG_QSO_DOWNLOAD_STATUS = 'Y' then 1 else 0 end) as clublog
+		FROM " . $this->config->item('table_name') . " thcv
+		WHERE station_id IN (" . $location_list . ")
+		AND thcv.col_cont IN ('AF', 'EU', 'AS', 'SA', 'NA', 'OC', 'AN')
+		AND thcv.col_cont != ''";
+
+		// Mode filter
+		if ($postdata['mode'] != 'All') {
+			$sql .= " AND (thcv.col_mode = ? OR thcv.col_submode = ?)";
+			$bindings[] = $postdata['mode'];
+			$bindings[] = $postdata['mode'];
+		}
+
+		$sql .= " AND thcv.col_prop_mode != 'SAT'";
+
+		$sql .= " GROUP BY thcv.col_cont, thcv.col_band";
+
+		$query = $this->db->query($sql, $bindings);
+		return $query->result();
+	}
+
+	/*
+	 * Gets all WAC satellite data with confirmation status
+	 */
+	function getWacDataSat($location_list, $postdata) {
+		$bindings = [];
+		$sql = "SELECT thcv.col_cont, 'SAT' as col_band,
+			MAX(case when thcv.col_lotw_qsl_rcvd ='Y' then 1 else 0 end) as lotw,
+			MAX(case when thcv.col_qsl_rcvd = 'Y' then 1 else 0 end) as qsl,
+			MAX(case when thcv.col_eqsl_qsl_rcvd = 'Y' then 1 else 0 end) as eqsl,
+			MAX(case when thcv.COL_QRZCOM_QSO_DOWNLOAD_STATUS= 'Y' then 1 else 0 end) as qrz,
+			MAX(case when thcv.COL_CLUBLOG_QSO_DOWNLOAD_STATUS = 'Y' then 1 else 0 end) as clublog
+		FROM " . $this->config->item('table_name') . " thcv
+		LEFT JOIN satellite on thcv.COL_SAT_NAME = satellite.name
+		WHERE station_id IN (" . $location_list . ")
+		AND thcv.col_cont IN ('AF', 'EU', 'AS', 'SA', 'NA', 'OC', 'AN')
+		AND thcv.col_cont != ''";
+
+		// Mode filter
+		if ($postdata['mode'] != 'All') {
+			$sql .= " AND (thcv.col_mode = ? OR thcv.col_submode = ?)";
+			$bindings[] = $postdata['mode'];
+			$bindings[] = $postdata['mode'];
+		}
+
+		// Satellite filter
+		if ($postdata['sat'] != 'All') {
+			$sql .= " AND thcv.col_sat_name = ?";
+			$bindings[] = $postdata['sat'];
+		}
+
+		// Orbit filter
+		$sql .= $this->addOrbitToQuery($postdata, $bindings);
+
+		$sql .= " AND thcv.col_prop_mode = 'SAT'";
+
+		$sql .= " GROUP BY thcv.col_cont";
+
+		$query = $this->db->query($sql, $bindings);
+		return $query->result();
 	}
 
 	function get_wac_array($bands, $postdata, $location_list) {
-		$wac = array();
-
-		foreach ($this->validContinents as $cont) {
-			$wac[$cont]['count'] = 0;                   // Inits each wac's count
-		}
-
 		$qsl = $this->genfunctions->gen_qsl_from_postdata($postdata);
 
+		// Initialize matrix with all continents
+		foreach ($this->validContinents as $cont) {
+			foreach ($bands as $band) {
+				if (($postdata['band'] != 'SAT') && ($band == 'SAT')) {
+					continue;
+				}
+				$wacMatrix[$cont][$band] = '-';
+			}
+		}
+
+		// Initialize summary counters
 		foreach ($bands as $band) {
-			foreach ($this->validContinents as $cont) {
-				$bandWac[$cont][$band] = '-';                  // Sets all to dash to indicate no result
+			if (($postdata['band'] != 'SAT') && ($band == 'SAT')) {
+				continue;
+			}
+			$summary['worked'][$band] = 0;
+			$summary['confirmed'][$band] = 0;
+		}
+		$summary['worked']['Total'] = 0;
+		$summary['confirmed']['Total'] = 0;
+
+		// Track unique continent/band combinations
+		$workedContinents = [];  // [band][continent] => true
+		$confirmedContinents = []; // [band][continent] => true
+
+		// Track worked status for each continent
+		$continentWorkedStatus = []; // [continent] => count
+
+		// Create a lookup array for valid bands
+		$validBands = array_flip($bands);
+
+		// Get all WAC data in efficient queries
+		$wacData = $this->getWacData($location_list, $postdata);
+
+		// Process regular band data
+		foreach ($wacData as $wac) {
+			// Skip if this band is not in our requested bands list
+			if (!isset($validBands[$wac->col_band])) {
+				continue;
 			}
 
-			if ($postdata['worked'] != NULL) {
-				$wacBand = $this->getWACWorked($location_list, $band, $postdata);
-				foreach ($wacBand as $line) {
-					$bandWac[$line->col_cont][$band] = '<div class="bg-danger awardsBgWarning"><a href=\'javascript:displayContacts("' . str_replace("&", "%26", $line->col_cont) . '","' . $band . '","All", "All","'. $postdata['mode'] . '","WAC","")\'>W</a></div>';
-					$wac[$line->col_cont]['count']++;
+			// Track worked status for this continent
+			if (!isset($continentWorkedStatus[$wac->col_cont])) {
+				$continentWorkedStatus[$wac->col_cont] = 0;
+			}
+			$continentWorkedStatus[$wac->col_cont]++;
+
+			// Check if confirmed based on the confirmation types selected in postdata
+			$isConfirmed = false;
+			$confirmationLetters = '';
+			if (isset($postdata['qsl']) && $postdata['qsl'] == 1 && $wac->qsl > 0) {
+				$isConfirmed = true;
+				$confirmationLetters .= 'Q';
+			}
+			if (isset($postdata['lotw']) && $postdata['lotw'] == 1 && $wac->lotw > 0) {
+				$isConfirmed = true;
+				$confirmationLetters .= 'L';
+			}
+			if (isset($postdata['eqsl']) && $postdata['eqsl'] == 1 && $wac->eqsl > 0) {
+				$isConfirmed = true;
+				$confirmationLetters .= 'E';
+			}
+			if (isset($postdata['qrz']) && $postdata['qrz'] == 1 && $wac->qrz > 0) {
+				$isConfirmed = true;
+				$confirmationLetters .= 'Z';
+			}
+			if (isset($postdata['clublog']) && $postdata['clublog'] == 1 && $wac->clublog > 0) {
+				$isConfirmed = true;
+				$confirmationLetters .= 'C';
+			}
+
+			if ($isConfirmed) {
+				$wacMatrix[$wac->col_cont][$wac->col_band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("' . str_replace("&", "%26", $wac->col_cont) . '","' . $wac->col_band . '","All", "All","'. $postdata['mode'] . '","WAC","'.$qsl.'","","")\'>'.$confirmationLetters.'</a></div>';
+				// Track confirmed continents for summary
+				if (!isset($confirmedContinents[$wac->col_band][$wac->col_cont])) {
+					$confirmedContinents[$wac->col_band][$wac->col_cont] = true;
+					$summary['confirmed'][$wac->col_band]++;
 				}
+			} else {
+				$wacMatrix[$wac->col_cont][$wac->col_band] = '<div class="bg-danger awardsBgWarning"><a href=\'javascript:displayContacts("' . str_replace("&", "%26", $wac->col_cont) . '","' . $wac->col_band . '","All", "All","'. $postdata['mode'] . '","WAC","","","")\'>W</a></div>';
 			}
-			if ($postdata['confirmed'] != NULL) {
-				$wacBand = $this->getWACConfirmed($location_list, $band, $postdata);
-				foreach ($wacBand as $line) {
-					$bandWac[$line->col_cont][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("' . str_replace("&", "%26", $line->col_cont) . '","' . $band . '","All", "All","'. $postdata['mode'] . '","WAC","'.$qsl.'")\'>C</a></div>';
-					$wac[$line->col_cont]['count']++;
-				}
+
+			// Track worked continents for summary
+			if (!isset($workedContinents[$wac->col_band][$wac->col_cont])) {
+				$workedContinents[$wac->col_band][$wac->col_cont] = true;
+				$summary['worked'][$wac->col_band]++;
 			}
 		}
 
-		// We want to remove the worked continents in the list, since we do not want to display them
-		if ($postdata['worked'] == NULL) {
-			$wacBand = $this->getWACWorked($location_list, $postdata['band'], $postdata);
-			foreach ($wacBand as $line) {
-				unset($bandWac[$line->col_cont]);
-			}
-		}
+		// Process SAT data if needed
+		if ($postdata['band'] == 'SAT') {
+			if (in_array('SAT', $bands)) {
+				$wacDataSat = $this->getWacDataSat($location_list, $postdata);
 
-		// We want to remove the confirmed continents in the list, since we do not want to display them
-		if ($postdata['confirmed'] == NULL) {
-			$wacBand = $this->getWACConfirmed($location_list, $postdata['band'], $postdata);
-			foreach ($wacBand as $line) {
-				unset($bandWac[$line->col_cont]);
-			}
-		}
-
-		if ($postdata['notworked'] == NULL) {
-			foreach ($this->validContinents as $cont) {
-				if ($wac[$cont]['count'] == 0) {
-					if (isset($bandWac)) {
-						unset($bandWac[$cont]);
+				foreach ($wacDataSat as $wac) {
+					// Track worked status for this continent
+					if (!isset($continentWorkedStatus[$wac->col_cont])) {
+						$continentWorkedStatus[$wac->col_cont] = 0;
 					}
-				};
+					$continentWorkedStatus[$wac->col_cont]++;
+
+					// Check if confirmed based on the confirmation types selected in postdata
+					$isConfirmed = false;
+					$confirmationLetters = '';
+					if (isset($postdata['qsl']) && $postdata['qsl'] == 1 && $wac->qsl > 0) {
+						$isConfirmed = true;
+						$confirmationLetters .= 'Q';
+					}
+					if (isset($postdata['lotw']) && $postdata['lotw'] == 1 && $wac->lotw > 0) {
+						$isConfirmed = true;
+						$confirmationLetters .= 'L';
+					}
+					if (isset($postdata['eqsl']) && $postdata['eqsl'] == 1 && $wac->eqsl > 0) {
+						$isConfirmed = true;
+						$confirmationLetters .= 'E';
+					}
+					if (isset($postdata['qrz']) && $postdata['qrz'] == 1 && $wac->qrz > 0) {
+						$isConfirmed = true;
+						$confirmationLetters .= 'Z';
+					}
+					if (isset($postdata['clublog']) && $postdata['clublog'] == 1 && $wac->clublog > 0) {
+						$isConfirmed = true;
+						$confirmationLetters .= 'C';
+					}
+
+					if ($isConfirmed) {
+						$wacMatrix[$wac->col_cont]['SAT'] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("' . str_replace("&", "%26", $wac->col_cont) . '","SAT","All", "All","'. $postdata['mode'] . '","WAC","'.$qsl.'","","")\'>'.$confirmationLetters.'</a></div>';
+						// Track confirmed continents for summary
+						if (!isset($confirmedContinents['SAT'][$wac->col_cont])) {
+							$confirmedContinents['SAT'][$wac->col_cont] = true;
+							$summary['confirmed']['SAT']++;
+						}
+					} else {
+						if ($postdata['worked'] != NULL) {
+							$wacMatrix[$wac->col_cont]['SAT'] = '<div class="bg-danger awardsBgWarning"><a href=\'javascript:displayContacts("' . str_replace("&", "%26", $wac->col_cont) . '","SAT","All", "All","'. $postdata['mode'] . '","WAC","","","")\'>W</a></div>';
+						}
+					}
+
+					// Track worked continents for summary
+					if (!isset($workedContinents['SAT'][$wac->col_cont])) {
+						$workedContinents['SAT'][$wac->col_cont] = true;
+						$summary['worked']['SAT']++;
+					}
+				}
 			}
 		}
 
-		if (isset($bandWac)) {
-			return $bandWac;
+		// Calculate totals across all bands (excluding SAT)
+		$totalWorkedContinents = [];
+		$totalConfirmedContinents = [];
+		foreach ($workedContinents as $band => $continents) {
+			foreach ($continents as $cont => $true) {
+				if (!isset($totalWorkedContinents[$cont])) {
+					$totalWorkedContinents[$cont] = true;
+					if ($band === 'SAT') {
+						continue;
+					}
+					$summary['worked']['Total']++;
+				}
+			}
+		}
+		foreach ($confirmedContinents as $band => $continents) {
+			foreach ($continents as $cont => $true) {
+				if (!isset($totalConfirmedContinents[$cont])) {
+					$totalConfirmedContinents[$cont] = true;
+					if ($band === 'SAT') {
+						continue;
+					}
+					$summary['confirmed']['Total']++;
+				}
+			}
+		}
+
+		if (isset($wacMatrix)) {
+			// Return both the matrix data and summary
+			return ['matrix' => $wacMatrix, 'summary' => $summary];
 		} else {
-			return 0;
+			return ['matrix' => [], 'summary' => $summary];
 		}
 	}
-
-	/*
-	 * Function returns all worked, but not confirmed continents
-	 * $postdata contains data from the form, in this case Lotw or QSL are used
-	 */
-	function getWACWorked($location_list, $band, $postdata) {
-		$bindings=[];
-		$sql = "SELECT distinct col_cont FROM " . $this->config->item('table_name') . " thcv
-			LEFT JOIN satellite on thcv.COL_SAT_NAME = satellite.name
-			where station_id in (" . $location_list . ") and col_cont in ('AF', 'EU', 'AS', 'SA', 'NA', 'OC', 'AN')";
-
-		if ($postdata['mode'] != 'All') {
-			$sql .= " and (col_mode = ? or col_submode = ?)";
-			$bindings[]=$postdata['mode'];
-			$bindings[]=$postdata['mode'];
-		}
-
-		$sql .= $this->genfunctions->addBandToQuery($band,$bindings);
-		if ($band == 'SAT') {
-			if ($postdata['sat'] != 'All') {
-				$sql .= " and col_sat_name = ?";
-				$bindings[]=$postdata['sat'];
-			}
-		}
-		$sql .= $this->addOrbitToQuery($postdata,$bindings);
-
-		$sql .= " and not exists (select 1 from " . $this->config->item('table_name') . " thcv2
-			LEFT JOIN satellite on thcv2.COL_SAT_NAME = satellite.name
-			where station_id in (" . $location_list .
-			") and col_cont = thcv.col_cont and col_cont <> '' ";
-
-		$sql .= $this->genfunctions->addBandToQuery($band,$bindings);
-		if ($band == 'SAT') {
-			if ($postdata['sat'] != 'All') {
-				$sql .= " and col_sat_name = ?";
-				$bindings[]=$postdata['sat'];
-			}
-		}
-
-		if ($postdata['mode'] != 'All') {
-			$sql .= " and (col_mode = ? or col_submode = ?)";
-			$bindings[]=$postdata['mode'];
-			$bindings[]=$postdata['mode'];
-		}
-
-		$sql .= $this->addOrbitToQuery($postdata,$bindings);
-
-		$sql .= $this->genfunctions->addQslToQuery($postdata);
-
-		$sql .= ")";
-
-		$query = $this->db->query($sql,$bindings);
-
-		return $query->result();
-	}
-
-	/*
-	 * Function returns all confirmed continents on given band and on LoTW or QSL
-	 * $postdata contains data from the form, in this case Lotw or QSL are used
-	 */
-	function getWACConfirmed($location_list, $band, $postdata) {
-		$bindings=[];
-		$sql = "SELECT distinct col_cont FROM " . $this->config->item('table_name') . " thcv
-			LEFT JOIN satellite on thcv.COL_SAT_NAME = satellite.name
-			where station_id in (" . $location_list . ") and col_cont in ('AF', 'EU', 'AS', 'SA', 'NA', 'OC', 'AN')";
-
-		if ($postdata['mode'] != 'All') {
-			$sql .= " and (col_mode = ? or col_submode = ?)";
-			$bindings[]=$postdata['mode'];
-			$bindings[]=$postdata['mode'];
-		}
-
-		$sql .= $this->genfunctions->addBandToQuery($band,$bindings);
-		if ($band == 'SAT') {
-			if ($postdata['sat'] != 'All') {
-				$sql .= " and col_sat_name = ?";
-				$bindings[]=$postdata['sat'];
-			}
-		}
-
-		$sql .= $this->genfunctions->addQslToQuery($postdata);
-
-		$sql .= $this->addOrbitToQuery($postdata,$bindings);
-
-		$query = $this->db->query($sql,$bindings);
-
-		return $query->result();
-	}
-
 
 	/*
 	 * Function gets worked and confirmed summary on each band on the active stationprofile
+	 * This is now integrated into get_wac_array for efficiency
 	 */
 	function get_wac_summary($bands, $postdata, $location_list) {
-		foreach ($bands as $band) {
-			$worked = $this->getSummaryByBand($band, $postdata, $location_list);
-			$confirmed = $this->getSummaryByBandConfirmed($band, $postdata, $location_list);
-			$wacSummary['worked'][$band] = $worked[0]->count;
-			$wacSummary['confirmed'][$band] = $confirmed[0]->count;
-		}
-
-		$workedTotal = $this->getSummaryByBand($postdata['band'], $postdata, $location_list);
-		$confirmedTotal = $this->getSummaryByBandConfirmed($postdata['band'], $postdata, $location_list);
-
-		$wacSummary['worked']['Total'] = $workedTotal[0]->count;
-		$wacSummary['confirmed']['Total'] = $confirmedTotal[0]->count;
-
-		return $wacSummary;
-	}
-
-	function getSummaryByBand($band, $postdata, $location_list) {
-		$bindings=[];
-		$sql = "SELECT count(distinct thcv.col_cont) as count FROM " . $this->config->item('table_name') . " thcv";
-		$sql .= " LEFT JOIN satellite on thcv.COL_SAT_NAME = satellite.name";
-
-		$sql .= " where station_id in (" . $location_list . ") and col_cont in ('AF', 'EU', 'AS', 'SA', 'NA', 'OC', 'AN')";
-
-		if ($band == 'SAT') {
-			$sql .= " and thcv.col_prop_mode = ?";
-			$bindings[]=$band;
-			if ($band != 'All' && $postdata['sat'] != 'All') {
-				$sql .= " and col_sat_name = ?";
-				$bindings[]=$postdata['sat'];
-			}
-		} else if ($band == 'All') {
-			$this->load->model('bands');
-
-			$bandslots = $this->bands->get_worked_bands();
-
-			$bandslots_list = "'".implode("','",$bandslots)."'";
-
-			$sql .= " and thcv.col_band in (" . $bandslots_list . ")" .
-				" and thcv.col_prop_mode !='SAT'";
-		} else {
-			$sql .= " and thcv.col_prop_mode !='SAT'";
-			$sql .= " and thcv.col_band = ?";
-			$bindings[]=$band;
-		}
-
-		if ($postdata['mode'] != 'All') {
-			$sql .= " and (col_mode = ? or col_submode = ?)";
-			$bindings[]=$postdata['mode'];
-			$bindings[]=$postdata['mode'];
-		}
-
-		$sql .= $this->addOrbitToQuery($postdata,$bindings);
-
-		$query = $this->db->query($sql,$bindings);
-		return $query->result();
-	}
-
-	function getSummaryByBandConfirmed($band, $postdata, $location_list){
-		$bindings=[];
-		$sql = "SELECT count(distinct thcv.col_cont) as count FROM " . $this->config->item('table_name') . " thcv";
-		$sql .= " LEFT JOIN satellite on thcv.COL_SAT_NAME = satellite.name";
-
-		$sql .= " where station_id in (" . $location_list . ") and col_cont in ('AF', 'EU', 'AS', 'SA', 'NA', 'OC', 'AN')";
-
-		if ($band == 'SAT') {
-			$sql .= " and thcv.col_prop_mode ='" . $band . "'";
-			if ($postdata['sat'] != 'All') {
-				$sql .= " and col_sat_name = ?";
-				$bindings[]=$postdata['sat'];
-			}
-		} else if ($band == 'All') {
-			$this->load->model('bands');
-
-			$bandslots = $this->bands->get_worked_bands();
-
-			$bandslots_list = "'".implode("','",$bandslots)."'";
-
-			$sql .= " and thcv.col_band in (" . $bandslots_list . ")" .
-				" and thcv.col_prop_mode !='SAT'";
-		} else {
-			$sql .= " and thcv.col_prop_mode !='SAT'";
-			$sql .= " and thcv.col_band = ?";
-			$bindings[]=$band;
-		}
-
-		if ($postdata['mode'] != 'All') {
-			$sql .= " and (col_mode = ? or col_submode = ?)";
-			$bindings[]=$postdata['mode'];
-			$bindings[]=$postdata['mode'];
-		}
-
-		$sql .= $this->genfunctions->addQslToQuery($postdata);
-		$sql .= $this->addOrbitToQuery($postdata,$bindings);
-
-		$query = $this->db->query($sql,$bindings);
-
-		return $query->result();
+		$result = $this->get_wac_array($bands, $postdata, $location_list);
+		return $result['summary'];
 	}
 
 	// Adds orbit type to query

@@ -1255,57 +1255,75 @@ class Logbook_model extends CI_Model {
 
 	function upload_amsat_status($data) {
 		$sat_name = '';
-		if ($data['COL_SAT_NAME'] == 'AO-7') {
-			if ($data['COL_BAND'] == '2m' && $data['COL_BAND_RX'] == '10m') {
-				$sat_name = 'AO-7[A]';
-			}
-			if ($data['COL_BAND'] == '70cm' && $data['COL_BAND_RX'] == '2m') {
-				$sat_name = 'AO-7[B]';
-			}
-		} else if ($data['COL_SAT_NAME'] == 'QO-100') {
-			$sat_name = 'QO-100_NB';
-		} else if ($data['COL_SAT_NAME'] == 'AO-92') {
-			if ($data['COL_BAND'] == '70cm' && $data['COL_BAND_RX'] == '2m') {
-				$sat_name = 'AO-92_U/v';
-			}
-			if ($data['COL_BAND'] == '23cm' && $data['COL_BAND_RX'] == '2m') {
-				$sat_name = 'AO-92_L/v';
-			}
-		} else if ($data['COL_SAT_NAME'] == 'AO-95') {
-			if ($data['COL_BAND'] == '70cm' && $data['COL_BAND_RX'] == '2m') {
-				$sat_name = 'AO-95_U/v';
-			}
-			if ($data['COL_BAND'] == '23cm' && $data['COL_BAND_RX'] == '2m') {
-				$sat_name = 'AO-95_L/v';
-			}
-		} else if ($data['COL_SAT_NAME'] == 'PO-101') {
-			if ($data['COL_MODE'] == 'PKT') {
-				$sat_name = 'PO-101[APRS]';
-			} else {
-				$sat_name = 'PO-101[FM]';
-			}
-		} else if ($data['COL_SAT_NAME'] == 'FO-118') {
-			if ($data['COL_BAND'] == '2m') {
-				if ($data['COL_MODE'] == 'FM') {
-					$sat_name = 'FO-118[V/u FM]';
-				} else if ($data['COL_MODE'] == 'SSB') {
-					$sat_name = 'FO-118[V/u]';
+		switch ($data['COL_SAT_NAME']) {
+			case 'AO-7':
+				if ($data['COL_BAND'] == '2m' && $data['COL_BAND_RX'] == '10m') {
+					$sat_name = 'AO-7_[V/a]';
 				}
-			} else if ($data['COL_BAND'] == '15m') {
-				$sat_name = 'FO-118[H/u]';
-			}
-		} else if ($data['COL_SAT_NAME'] == 'ARISS' || $data['COL_SAT_NAME'] == 'ISS') {
-			if ($data['COL_MODE'] == 'FM') {
-				$sat_name = 'ISS-FM';
-			} else if ($data['COL_MODE'] == 'PKT') {
-				$sat_name = 'ISS-DATA';
-			}
-		} else if ($data['COL_SAT_NAME'] == 'CAS-3H') {
-			$sat_name = 'LilacSat-2';
-		} else if (preg_match('/TEV2-[1-9]/', ($data['COL_SAT_NAME'] ?? ''))) {
-			$sat_name = str_replace('TEV2-', 'TEVEL2-', ($data['COL_SAT_NAME'] ?? ''));
-		} else {
-			$sat_name = ($data['COL_SAT_NAME'] ?? '');
+				if ($data['COL_BAND'] == '70cm' && $data['COL_BAND_RX'] == '2m') {
+					$sat_name = 'AO-7_[U/v]';
+				}
+				break;
+			case 'QO-100':
+				$sat_name = 'QO-100_[NB]';
+				break;
+			case 'PO-101':
+				if ($data['COL_MODE'] == 'FM') {
+					$sat_name = 'PO-101_[FM]';
+				} else if ($data['COL_MODE'] == 'PKT') {
+					$sat_name = 'PO-101_[APRS]';
+				}
+				break;
+			case 'ARISS':
+			case 'ISS':
+				if ($data['COL_MODE'] == 'FM') {
+					$sat_name = 'ISS_[FM]';
+				} else if ($data['COL_MODE'] == 'PKT') {
+					$sat_name = 'ISS_[APRS]';
+				}
+				break;
+			case 'CAS-3H':
+				$sat_name = 'CAS-3H_[FM]';
+				break;
+			case 'AO-73':
+				$sat_name = 'AO-73_[U/v]';
+				break;
+			case 'AO-91':
+				$sat_name = 'AO-91_[FM]';
+				break;
+			case 'AO-123':
+				$sat_name = 'AO-123_[FM]';
+				break;
+			case 'FO-29':
+				$sat_name = 'FO-29_[V/u]';
+				break;
+			case 'IO-86':
+				$sat_name = 'IO-86_[FM]';
+				break;
+			case 'JO-97':
+				$sat_name = 'JO-97_[U/v]';
+				break;
+			case 'NO-44':
+				$sat_name = 'NO-44_[APRS]';
+				break;
+			case 'RS-44':
+				$sat_name = 'RS-44_[V/u]';
+				break;
+			case 'SO-125':
+				$sat_name = 'SO-125_[FM]';
+				break;
+			case 'SO-50':
+				$sat_name = 'SO-50_[FM]';
+				break;
+			case 'SONATE2':
+				if ($data['COL_MODE'] == 'PKT') {
+					$sat_name = 'SONATE-2_[APRS]';
+				} else {
+					$sat_name = 'SONATE-2_[SSTV]';
+				}
+				break;
+			default:
+				return;
 		}
 		$amsat_source_grid = '';
 		if (array_key_exists('COL_MY_GRIDSQUARE', $data)) {

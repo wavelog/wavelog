@@ -1128,19 +1128,29 @@ class Logbookadvanced_model extends CI_Model {
 			$potaRef = $station_profile->station_pota ?? '';
 			$sig     = $station_profile->station_sig ?? '';
 			$sigInfo = $station_profile->station_sig_info ?? '';
+			$gridsquare = '';
+			$vuccGrids = '';
+
+			if (strpos($station_profile->station_gridsquare, ',') !== false) {
+				$vuccGrids = $station_profile->station_gridsquare ?? '';
+			} else {
+				$gridsquare = $station_profile->station_gridsquare ?? '';
+			}
 
 			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
 			" SET " . $this->config->item('table_name').".STATION_ID = ?" .
-			", " . $this->config->item('table_name').".COL_MY_IOTA = ?" .
-			", " . $this->config->item('table_name').".COL_MY_SOTA_REF = ?" .
-			", " . $this->config->item('table_name').".COL_MY_WWFF_REF = ?" .
-			", " . $this->config->item('table_name').".COL_MY_POTA_REF = ?" .
-			", " . $this->config->item('table_name').".COL_MY_SIG = ?" .
-			", " . $this->config->item('table_name').".COL_MY_SIG_INFO = ?" .
-			", " . $this->config->item('table_name').".COL_STATION_CALLSIGN = ?" .
+			", " . $this->config->item('table_name') . ".COL_MY_IOTA = ?" .
+			", " . $this->config->item('table_name') . ".COL_MY_SOTA_REF = ?" .
+			", " . $this->config->item('table_name') . ".COL_MY_WWFF_REF = ?" .
+			", " . $this->config->item('table_name') . ".COL_MY_POTA_REF = ?" .
+			", " . $this->config->item('table_name') . ".COL_MY_SIG = ?" .
+			", " . $this->config->item('table_name') . ".COL_MY_SIG_INFO = ?" .
+			", " . $this->config->item('table_name') . ".COL_STATION_CALLSIGN = ?" .
+			", " . $this->config->item('table_name') . ".COL_MY_GRIDSQUARE = ?" .
+			", " . $this->config->item('table_name') . ".COL_MY_VUCC_GRIDS = ?" .
 			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
 
-			$query = $this->db->query($sql, array($stationid, $iotaRef, $sotaRef, $wwffRef, $potaRef, $sig, $sigInfo, $stationCallsign, json_decode($ids, true), $this->session->userdata('user_id')));
+			$query = $this->db->query($sql, array($stationid, $iotaRef, $sotaRef, $wwffRef, $potaRef, $sig, $sigInfo, $stationCallsign, $gridsquare, $vuccGrids, json_decode($ids, true), $this->session->userdata('user_id')));
 		} else if ($column == 'COL_BAND') {
 
 			if ($value == '') return;
@@ -1163,8 +1173,8 @@ class Logbookadvanced_model extends CI_Model {
 				$vucc_value = null;
 			} else {
 				if(!$this->load->is_loaded('Qra')) {
-					 $this->load->library('Qra');
-				 }
+					$this->load->library('Qra');
+				}
 				$latlng=$this->qra->qra2latlong(trim(xss_clean($value) ?? ''));
 				if ($latlng[1] ?? '--' != '--') {
 					if (strpos(trim(xss_clean($value) ?? ''), ',') !== false) {
