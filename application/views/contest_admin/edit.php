@@ -26,7 +26,7 @@
 
 			<?php echo validation_errors(); ?>
 
-			<form method="post" action="<?php echo site_url('contesting/edit/'); ?><?php echo $contest->id; ?>" name="edit_contest">
+			<form method="post" action="<?php echo site_url('contest_admin/edit/'); ?><?php echo $contest->id; ?>" name="edit_contest">
 				<div class="mb-3">
 					<label for="contestnameInput"><?= __("Contest Name"); ?></label>
 					<input type="text" class="form-control" name="name" id="nameInput" aria-describedby="contestnameInputHelp" value="<?php if(set_value('name') != "") { echo set_value('name'); } else { echo $contest->name; } ?>" required>

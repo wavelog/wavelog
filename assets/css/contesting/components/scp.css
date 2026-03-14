@@ -1,0 +1,111 @@
+/**
+ * SCP Component Styles
+ */
+
+.scp-container {
+	/* Container is handled by inline flex styles for dynamic sizing */
+}
+
+.scp-results {
+	/* Results container with auto scroll */
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0;
+	align-content: flex-start;
+}
+
+.scp-result-item {
+	padding: 0.25rem 0.5rem;
+	border-right: 1px solid rgba(255, 255, 255, 0.08);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+	cursor: pointer;
+	transition: all 0.15s ease;
+	letter-spacing: 0.5px;
+	display: flex;
+	align-items: center;
+	min-height: 1.5rem;
+	white-space: nowrap;
+	flex: 0 0 auto;
+	width: auto;
+}
+
+.scp-result-item:hover {
+	background-color: rgba(255, 255, 255, 0.12);
+	padding-top: 0.35rem;
+	padding-bottom: 0.35rem;
+	border-top: 2px solid #0dcaf0;
+}
+
+.scp-result-item:active {
+	background-color: rgba(255, 255, 255, 0.18);
+}
+
+.scp-result-item:nth-child(even) {
+	border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.scp-result-item .scp-callsign {
+	font-weight: bold;
+	color: #fff;
+	letter-spacing: 2px;
+}
+
+.scp-result-item .scp-highlight {
+	color: #0dcaf0;
+	font-weight: bold;
+	text-decoration: underline;
+	text-decoration-thickness: 2px;
+	text-underline-offset: 2px;
+}
+
+.scp-result-item .scp-wildcard {
+	color: #ffc107; /* Bootstrap warning color - yellow for wildcards */
+	font-weight: bold;
+	text-decoration: underline;
+	text-decoration-thickness: 2px;
+	text-underline-offset: 2px;
+}
+
+/* Loading spinner */
+.scp-loading {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 2rem;
+	color: #6c757d;
+}
+
+/* Empty state */
+.scp-empty {
+	text-align: center;
+	padding: 3rem 1.5rem;
+	color: #6c757d;
+}
+
+.scp-empty i {
+	opacity: 0.5;
+}
+
+.scp-empty p {
+	margin-top: 1rem;
+}
+
+/* Match counter animation */
+#scp-match-count {
+	transition: transform 0.2s ease;
+	min-width: 3rem;
+	text-align: center;
+}
+
+#scp-match-count.updated {
+	animation: pulse 0.3s ease;
+}
+
+@keyframes pulse {
+	0%, 100% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.2);
+	}
+}

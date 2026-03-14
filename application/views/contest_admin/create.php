@@ -33,6 +33,5 @@
 		  </div>
 
 			<button type="button" onclick="createContest(this.form);" class="btn btn-primary btn-sm"><i class="fas fa-plus-square"></i> <?= __("Create"); ?></button>
-
 		</form>
 </div>

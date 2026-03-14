@@ -1309,7 +1309,7 @@ mymap.on('mousemove', onQsoMapMove);
   </script>
 
 <?php } ?>
-<?php if ( $this->uri->segment(1) == "qso" || ($this->uri->segment(1) == "contesting" && $this->uri->segment(2) != "add")) { ?>
+<?php if ( $this->uri->segment(1) == "qso") { ?>
 	<!--- Frequency input functionality --->
     <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/sections/qrg_handler.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/moment.min.js'); ?>"></script>
@@ -2763,11 +2763,6 @@ function viewEqsl(picture, callsign) {
 	}
 
 </script>
-<?php if ($this->uri->segment(1) == "contesting" && ($this->uri->segment(2) != "add" && $this->uri->segment(2) != "edit")) { ?>
-    <script>
-        var manual = <?php echo $manual_mode; ?>;
-    </script>
-<?php } ?>
 
 <?php if ($this->uri->segment(2) == "counties" || $this->uri->segment(2) == "counties_details") { ?>
 <script>
@@ -2858,10 +2853,6 @@ function viewEqsl(picture, callsign) {
 			$(".buttons-csv").css("color", "white");
 		}
 	</script>
-<?php } ?>
-
-<?php if ($this->uri->segment(1) == "contesting" && $this->uri->segment(2) == "add") { ?>
-	<script src="<?php echo $this->paths->cache_buster('/assets/js/sections/contestingnames.js'); ?>"></script>
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "themes") { ?>
