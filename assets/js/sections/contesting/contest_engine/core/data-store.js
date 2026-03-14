@@ -5,14 +5,31 @@ export class DataStore {
 			throw new Error('DataStore: storageKey missing');
 		}
 		this.storageKey = storageKey;
+		this.sessionId = storageKey.replace(/^wl_contestdata_/, '');
 		this.data = new Map(); // In-memory store for ALL data
 		this.persistentNamespaces = new Set(['qso', 'session', 'config']);
 		this.listeners = {}; // Global event listeners (for backwards compatibility)
 		this.subscriptions = new Map(); // Key-specific subscriptions
 		this.syncRequests = new Set(); // Active sync requests
-		
-		this.load(); // Load from localStorage
-		this.cleanupOldSessions(); // Cleanup sessions older than 7 days
+
+		// IndexedDB state
+		this.db = null;
+		this.idbReady = false;
+		this._idbWriteQueue = Promise.resolve(); // Serializes async writes
+
+		// init() is the async entry point — called by app.js with await
+	}
+
+	/**
+	 * Async initialization — opens IndexedDB, loads data, cleans up old sessions.
+	 * Must be called (and awaited) before using the DataStore.
+	 * @returns {DataStore} this
+	 */
+	async init() {
+		await this._openIDB();
+		await this.load();
+		await this.cleanupOldSessions();
+		return this;
 	}
 
 	/**
@@ -32,10 +49,10 @@ export class DataStore {
 	set(key, value) {
 		this.data.set(key, value);
 		this.notify(key, value);
-		
+
 		// Persist if namespace is persistent
 		if (this.shouldPersist(key)) {
-			this.save();
+			this._persistKey(key, value);
 		}
 	}
 
@@ -47,7 +64,7 @@ export class DataStore {
 	delete(key) {
 		const deleted = this.data.delete(key);
 		if (deleted && this.shouldPersist(key)) {
-			this.save();
+			this._unpersistKey(key);
 		}
 		return deleted;
 	}
@@ -134,7 +151,7 @@ export class DataStore {
 	}
 
 	/**
-	 * Check if key should be persisted to localStorage
+	 * Check if key should be persisted
 	 * @private
 	 */
 	shouldPersist(key) {
@@ -150,13 +167,13 @@ export class DataStore {
 	getPattern(pattern) {
 		const regex = new RegExp('^' + pattern.replace(/\*/g, '.*') + '$');
 		const result = new Map();
-		
+
 		for (const [key, value] of this.data.entries()) {
 			if (regex.test(key)) {
 				result.set(key, value);
 			}
 		}
-		
+
 		return result;
 	}
 
@@ -214,75 +231,178 @@ export class DataStore {
 	 * @returns {number} Count
 	 */
 	getSyncedQSOCount() {
-		return this.getPattern('qso.synced.*').size;
+		let count = 0;
+		for (const value of this.getPattern('qso.*').values()) {
+			if (value?.state === 'synced') count++;
+		}
+		return count;
 	}
 
 	// === PERSISTENCE METHODS ===
 
 	/**
-	 * Load from LocalStorage
+	 * Open IndexedDB connection and create schema if needed.
+	 * Resolves gracefully on failure — idbReady stays false.
+	 * @private
 	 */
-	load() {
+	_openIDB() {
+		return new Promise((resolve) => {
+			if (!('indexedDB' in window)) {
+				console.warn('DataStore: IndexedDB not available, falling back to localStorage');
+				resolve();
+				return;
+			}
+
+			const request = indexedDB.open('wavelog_contest', 1);
+
+			request.onerror = () => {
+				console.error('DataStore: Failed to open IndexedDB', request.error);
+				resolve();
+			};
+
+			request.onsuccess = () => {
+				this.db = request.result;
+				this.idbReady = true;
+
+				this.db.onclose = () => {
+					console.warn('DataStore: IDB connection closed unexpectedly');
+					this.idbReady = false;
+				};
+				this.db.onerror = (event) => {
+					console.error('DataStore: IDB error', event.target.error);
+				};
+
+				resolve();
+			};
+
+			request.onupgradeneeded = (event) => {
+				const db = event.target.result;
+
+				if (!db.objectStoreNames.contains('contest_records')) {
+					const store = db.createObjectStore('contest_records', { keyPath: 'id' });
+					store.createIndex('sessionId', 'sessionId', { unique: false });
+					store.createIndex('namespace', 'namespace', { unique: false });
+				}
+
+				if (!db.objectStoreNames.contains('session_metadata')) {
+					db.createObjectStore('session_metadata', { keyPath: 'sessionId' });
+				}
+			};
+		});
+	}
+
+	/**
+	 * Load data from IndexedDB or fall back to localStorage.
+	 * @private
+	 */
+	async load() {
+		if (this.idbReady) {
+			await this._loadFromIDB();
+		} else {
+			this._loadFromLocalStorage();
+		}
+	}
+
+	/**
+	 * Load all records for this session from IndexedDB.
+	 * @private
+	 */
+	_loadFromIDB() {
+		return new Promise((resolve) => {
+			try {
+				const tx = this.db.transaction('contest_records', 'readonly');
+				const store = tx.objectStore('contest_records');
+				const index = store.index('sessionId');
+				const request = index.getAll(IDBKeyRange.only(this.sessionId));
+
+				request.onsuccess = () => {
+					const records = request.result;
+					if (records.length === 0) {
+						// New session — initialize and register in metadata
+						this.data.set('_created', new Date().toISOString());
+						this._upsertSessionMetadata();
+					} else {
+						records.forEach(record => {
+							this.data.set(record.flatKey, record.value);
+						});
+						console.info(`DataStore: Loaded ${records.length} records from IndexedDB`);
+					}
+					resolve();
+				};
+
+				request.onerror = () => {
+					console.error('DataStore: IDB load error', request.error);
+					this._loadFromLocalStorage();
+					resolve();
+				};
+			} catch (e) {
+				console.error('DataStore: IDB load exception', e);
+				this._loadFromLocalStorage();
+				resolve();
+			}
+		});
+	}
+
+	/**
+	 * Load from localStorage (fallback when IndexedDB is unavailable).
+	 * @private
+	 */
+	_loadFromLocalStorage() {
 		try {
 			const stored = localStorage.getItem(this.storageKey);
 			if (!stored) {
 				this.data = new Map();
-				this.set('_created', new Date().toISOString());
+				this.data.set('_created', new Date().toISOString());
 				return;
 			}
 
 			const parsed = JSON.parse(stored);
-			
-			// Check version and migrate if needed
+
+			// v1 format is deprecated — start fresh
 			if (!parsed._version || parsed._version === '1.0') {
-				this.migrate_v1_to_v2(parsed);
+				console.info('DataStore: Found v1 format data, initializing empty store');
+				this.data = new Map();
+				this.data.set('_created', new Date().toISOString());
 				return;
 			}
 
-			// Load metadata
 			if (parsed._created) {
 				this.data.set('_created', parsed._created);
 			}
 
-			// Load all persistent namespaces into Map
 			this.persistentNamespaces.forEach(namespace => {
 				if (parsed[namespace]) {
 					this.loadNamespace(namespace, parsed[namespace]);
 				}
 			});
-
 		} catch (e) {
-			console.error('DataStore: Load error', e);
+			console.error('DataStore: localStorage load error', e);
 			this.data = new Map();
 		}
 	}
 
 	/**
-	 * Load namespace data into Map
+	 * Load namespace data into Map (used by localStorage fallback)
 	 * @private
 	 */
 	loadNamespace(namespace, data) {
 		if (typeof data === 'object' && data !== null) {
 			Object.entries(data).forEach(([subKey, subData]) => {
 				if (typeof subData === 'object' && subData !== null && !Array.isArray(subData)) {
-					// Check if this is a nested structure (e.g., qso.pending.tmp_123)
-					const hasNestedObjects = Object.values(subData).some(v => 
+					const hasNestedObjects = Object.values(subData).some(v =>
 						typeof v === 'object' && v !== null && !Array.isArray(v)
 					);
-					
+
 					if (hasNestedObjects) {
-						// Another level (e.g., qso.pending.tmp_123)
 						Object.entries(subData).forEach(([id, item]) => {
 							const fullKey = `${namespace}.${subKey}.${id}`;
 							this.data.set(fullKey, item);
 						});
 					} else {
-						// Direct object value (e.g., session.config)
 						const fullKey = `${namespace}.${subKey}`;
 						this.data.set(fullKey, subData);
 					}
 				} else {
-					// Direct value (e.g., session.id)
 					const fullKey = `${namespace}.${subKey}`;
 					this.data.set(fullKey, subData);
 				}
@@ -291,9 +411,94 @@ export class DataStore {
 	}
 
 	/**
-	 * Save to LocalStorage
+	 * Persist a key to IndexedDB (fire-and-forget, serialized via write queue).
+	 * Falls back to localStorage if IDB is not ready.
+	 * @private
 	 */
-	save() {
+	_persistKey(key, value) {
+		if (!this.idbReady) {
+			this._saveToLocalStorage();
+			return;
+		}
+		this._idbWriteQueue = this._idbWriteQueue
+			.then(() => this._idbPut(key, value))
+			.catch(e => console.error('DataStore: IDB write error for key', key, e));
+	}
+
+	/**
+	 * Remove a key from IndexedDB (fire-and-forget, serialized via write queue).
+	 * Falls back to localStorage if IDB is not ready.
+	 * @private
+	 */
+	_unpersistKey(key) {
+		if (!this.idbReady) {
+			this._saveToLocalStorage();
+			return;
+		}
+		this._idbWriteQueue = this._idbWriteQueue
+			.then(() => this._idbDelete(key))
+			.catch(e => console.error('DataStore: IDB delete error for key', key, e));
+	}
+
+	/**
+	 * Write a single record to IndexedDB.
+	 * @private
+	 */
+	_idbPut(key, value) {
+		return new Promise((resolve, reject) => {
+			const tx = this.db.transaction('contest_records', 'readwrite');
+			const store = tx.objectStore('contest_records');
+			store.put({
+				id: `${this.sessionId}::${key}`,
+				sessionId: this.sessionId,
+				flatKey: key,
+				namespace: key.split('.')[0],
+				value: value,
+				modified: Date.now()
+			});
+			tx.oncomplete = () => resolve();
+			tx.onerror = () => reject(tx.error);
+			tx.onabort = () => reject(tx.error);
+		});
+	}
+
+	/**
+	 * Delete a single record from IndexedDB.
+	 * @private
+	 */
+	_idbDelete(key) {
+		return new Promise((resolve, reject) => {
+			const tx = this.db.transaction('contest_records', 'readwrite');
+			const store = tx.objectStore('contest_records');
+			store.delete(`${this.sessionId}::${key}`);
+			tx.oncomplete = () => resolve();
+			tx.onerror = () => reject(tx.error);
+			tx.onabort = () => reject(tx.error);
+		});
+	}
+
+	/**
+	 * Write or update the session metadata entry.
+	 * @private
+	 */
+	_upsertSessionMetadata() {
+		if (!this.idbReady) return;
+		const tx = this.db.transaction('session_metadata', 'readwrite');
+		const store = tx.objectStore('session_metadata');
+		const created = this.data.get('_created');
+		store.put({
+			sessionId: this.sessionId,
+			storageKey: this.storageKey,
+			created: created ? new Date(created).getTime() : Date.now()
+		});
+		tx.onerror = () => console.warn('DataStore: Failed to upsert session metadata', tx.error);
+	}
+
+	/**
+	 * Save all persistent data to localStorage (fallback when IDB unavailable).
+	 * @private
+	 */
+	_saveToLocalStorage() {
 		try {
 			const output = {
 				_version: '2.0',
@@ -301,77 +506,111 @@ export class DataStore {
 				_last_modified: new Date().toISOString()
 			};
 
-			// Build hierarchical structure from flat Map
 			this.persistentNamespaces.forEach(namespace => {
 				output[namespace] = this.buildNamespaceStructure(namespace);
 			});
 
 			localStorage.setItem(this.storageKey, JSON.stringify(output));
 		} catch (e) {
-			console.error('DataStore: Save error', e);
+			console.error('DataStore: localStorage save error', e);
 		}
 	}
 
 	/**
-	 * Build hierarchical structure for a namespace
+	 * Build hierarchical structure for a namespace (used by localStorage fallback)
 	 * @private
 	 */
 	buildNamespaceStructure(namespace) {
 		const result = {};
-		
-		// Find all keys starting with this namespace
+
 		for (const [key, value] of this.data.entries()) {
 			if (key.startsWith(namespace + '.')) {
 				const parts = key.split('.');
-				
+
 				if (parts.length === 2) {
-					// Direct value: "session.id"
 					result[parts[1]] = value;
 				} else if (parts.length === 3) {
-					// Nested: "qso.pending.tmp_123"
 					if (!result[parts[1]]) {
 						result[parts[1]] = {};
 					}
 					result[parts[1]][parts[2]] = value;
 				}
-				// Add more levels if needed in the future
 			}
 		}
-		
+
 		return result;
 	}
 
 	/**
-	 * Migrate from v1 (old array format) to v2 (hierarchical)
-	 * @private
+	 * Cleanup old sessions (>7 days) from IndexedDB and localStorage.
 	 */
-	migrate_v1_to_v2(oldData) {
-		console.info('DataStore: Found v1 format data, initializing empty store');
-		// v1 format is deprecated - start fresh
-		this.data = new Map();
-		this.set('_created', new Date().toISOString());
+	async cleanupOldSessions() {
+		const cutoff = Date.now() - 7 * 24 * 60 * 60 * 1000;
+
+		if (this.idbReady) {
+			await this._cleanupOldSessionsFromIDB(cutoff);
+		}
+
+		this._cleanupOldSessionsFromLocalStorage(cutoff);
 	}
 
 	/**
-	 * Cleanup old sessions (>7 days)
-	 * @static
+	 * Remove sessions older than cutoff from IndexedDB.
+	 * @private
 	 */
-	cleanupOldSessions() {
-		const now = Date.now();
-		const maxAge = 7 * 24 * 60 * 60 * 1000; // 7 days
-		
+	_cleanupOldSessionsFromIDB(cutoff) {
+		return new Promise((resolve) => {
+			try {
+				const tx = this.db.transaction(['session_metadata', 'contest_records'], 'readwrite');
+				const metaStore = tx.objectStore('session_metadata');
+				const recordStore = tx.objectStore('contest_records');
+				const request = metaStore.getAll();
+
+				request.onsuccess = () => {
+					request.result.forEach(session => {
+						if (session.created < cutoff && session.sessionId !== this.sessionId) {
+							console.info(`DataStore: Removing old IDB session ${session.sessionId}`);
+							const index = recordStore.index('sessionId');
+							const cursorRequest = index.openCursor(IDBKeyRange.only(session.sessionId));
+							cursorRequest.onsuccess = (e) => {
+								const cursor = e.target.result;
+								if (cursor) {
+									cursor.delete();
+									cursor.continue();
+								}
+							};
+							metaStore.delete(session.sessionId);
+						}
+					});
+				};
+
+				tx.oncomplete = () => resolve();
+				tx.onerror = () => {
+					console.error('DataStore: IDB cleanup error', tx.error);
+					resolve();
+				};
+			} catch (e) {
+				console.error('DataStore: IDB cleanup exception', e);
+				resolve();
+			}
+		});
+	}
+
+	/**
+	 * Remove sessions older than cutoff from localStorage.
+	 * @private
+	 */
+	_cleanupOldSessionsFromLocalStorage(cutoff) {
 		Object.keys(localStorage).forEach(key => {
-			if (key.includes('_wavelog_qsos')) {
+			if (key.startsWith('wl_contestdata_')) {
 				try {
 					const data = JSON.parse(localStorage.getItem(key));
 					const created = new Date(data._created).getTime();
-					
-					if (now - created > maxAge) {
-						console.info(`DataStore: Removing old session ${key}`);
+					if (created < cutoff) {
+						console.info(`DataStore: Removing old localStorage session ${key}`);
 						localStorage.removeItem(key);
 					}
 				} catch (e) {
-					// Invalid data, consider removing it
 					console.warn(`DataStore: Invalid data in ${key}, skipping cleanup`);
 				}
 			}

@@ -50,7 +50,7 @@ import { ComponentManager } from './core/component-loader.js';
 
         updateLoadingStatus('Initializing core systems...');
 
-        function tryInit() {
+        async function tryInitAsync() {
 
             const workspaceSelector = '#logger-workspace';
             const workspace = document.querySelector(workspaceSelector);
@@ -72,17 +72,21 @@ import { ComponentManager } from './core/component-loader.js';
 
             /**
              * Instance initialization
-             * 
+             *
              * - The datastore for persistent data storage. We use a namespace abstraction to avoid colisions.
              * - The window manager to handle draggable/resizable component windows.
              * - The component manager to load and manage individual UI components. layout is a object loaded from php with all components.
-             * 
+             *
              * - The AjaxTransport for server communication. Since the requests are very small we can use a high frequency of one ajax per second.
              * - The SyncEngine to handle periodic synchronization of data with the server. Either via Ajax or WebSocket.
              * Hint: It is important that the SyncEngine is initialized after the DataStore and Transport,
-             * 
+             *
              */
+            updateLoadingStatus('Initializing data store...');
             const ds = new DataStore(`wl_contestdata_${storageKey}`);
+            await ds.init(); // Opens IndexedDB, loads session data
+
+            updateLoadingStatus('Initializing core systems...');
             const wm = new WindowManager(workspaceSelector);
             const layout = window.ContestLoggerConfig?.layout || {};
             const cm = new ComponentManager(wm, layout);
@@ -119,10 +123,11 @@ import { ComponentManager } from './core/component-loader.js';
         }
 
         function initWhenReady() {
-            if (tryInit()) return;
-            const retry = setInterval(() => {
-                if (tryInit()) clearInterval(retry);
-            }, 500);
+            if (!document.querySelector('#logger-workspace')) {
+                setTimeout(initWhenReady, 500);
+                return;
+            }
+            tryInitAsync().catch(e => console.error('ContestApp: init failed', e));
         }
 
         if (document.readyState === 'loading') {

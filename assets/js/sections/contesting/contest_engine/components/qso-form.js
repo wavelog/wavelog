@@ -261,11 +261,7 @@ class QsoFormComponent {
 	loadExistingQSOs() {
 		if (!this.dataStore) return;
 
-		// Load all QSOs from all namespaces
-		const pending = Array.from(this.dataStore.getPattern('qso.pending.*').values());
-		const synced = Array.from(this.dataStore.getPattern('qso.synced.*').values());
-		const error = Array.from(this.dataStore.getPattern('qso.error.*').values());
-		const allQsos = [...pending, ...synced, ...error];
+		const allQsos = Array.from(this.dataStore.getPattern('qso.*').values());
 
 		const sorted = this.sortQsosByNewest(allQsos);
 		sorted.forEach(qso => this.addQSOToTable(qso));
@@ -282,10 +278,7 @@ class QsoFormComponent {
 		if (!this.dataStore) return;
 
 		this.clearTable();
-		const pending = Array.from(this.dataStore.getPattern('qso.pending.*').values());
-		const synced = Array.from(this.dataStore.getPattern('qso.synced.*').values());
-		const error = Array.from(this.dataStore.getPattern('qso.error.*').values());
-		const allQsos = [...pending, ...synced, ...error];
+		const allQsos = Array.from(this.dataStore.getPattern('qso.*').values());
 
 		const sorted = this.sortQsosByNewest(allQsos);
 		sorted.forEach(qso => this.addQSOToTable(qso));
@@ -301,7 +294,7 @@ class QsoFormComponent {
 	}
 
 	getStatusIndicator(state) {
-		if (state === 'new') {
+		if (state === 'pending') {
 			return '<span title="New" style="color: orange;">&#9679;</span>';
 		} else if (state === 'synced') {
 			return '<span title="Confirmed" style="color: green;">&#9679;</span>';
@@ -382,10 +375,7 @@ class QsoFormComponent {
 	updateQSOCount() {
 		if (!this.container || !this.dataStore) return;
 
-		const pending = this.dataStore.getPattern('qso.pending.*').size;
-		const synced = this.dataStore.getPattern('qso.synced.*').size;
-		const error = this.dataStore.getPattern('qso.error.*').size;
-		const count = pending + synced + error;
+		const count = this.dataStore.getPattern('qso.*').size;
 
 		// Update count badge in table header
 		const countBadge = this.container.querySelector('#qso-count-badge');
@@ -415,7 +405,7 @@ class QsoFormComponent {
 	}
 
 	buildQsoCommands(dataStore) {
-		const newQsos = Array.from(dataStore.getPattern('qso.pending.*').values());
+		const newQsos = Array.from(dataStore.getPattern('qso.*').values()).filter(q => q.state === 'pending');
 
 		return newQsos.map(qso => ({
 			type: 'save_qso',
@@ -458,49 +448,27 @@ class QsoFormComponent {
 	processSavedQsos(savedQsos, dataStore) {
 		savedQsos.forEach(saved => {
 			if (saved.tmp_id && saved.server_id) {
-				const qso = dataStore.get(`qso.pending.${saved.tmp_id}`);
-				
+				const qso = dataStore.get(`qso.${saved.tmp_id}`);
+
 				if (qso) {
 					const oldState = qso.state;
-					const serverId = parseInt(saved.server_id);
-					
-					const normalized = {
-						serverId: serverId,
-						tmpId: null,
-						callsign: qso.callsign,
-						frequency: qso.frequency,
-						mode: qso.mode,
-						submode: qso.submode || null,
+					const updated = {
+						...qso,
+						serverId: parseInt(saved.server_id),
 						band: qso.band || this.calculateBand(qso.frequency),
-						date: qso.date,
-						time: qso.time,
 						time_on: qso.time_on || `${qso.date} ${qso.time}`,
-						time_off: qso.time_off || null,
-						rst_sent: qso.rst_sent,
-						rst_rcvd: qso.rst_rcvd,
-						serial_sent: qso.serial_sent || null,
-						serial_recv: qso.serial_recv || null,
-						exchange_sent: qso.exchange_sent || '',
-						exchange_rcvd: qso.exchange_rcvd || '',
-						locator: qso.locator || '',
-						operator: qso.operator || '',
-						country: qso.country || qso.entity || null,
-						continent: qso.continent || qso.cont || null,
-						dxcc_id: qso.dxcc_id || qso.dxcc || null,
-						cqz: qso.cqz || null,
 						state: 'synced'
 					};
 
-					dataStore.delete(`qso.pending.${saved.tmp_id}`);
-					dataStore.set(`qso.synced.${serverId}`, normalized);
+					dataStore.set(`qso.${saved.tmp_id}`, updated);
 
 					dataStore.emit('qso_state_changed', {
-						qso: normalized,
+						qso: updated,
 						oldState,
 						newState: 'synced'
 					});
 
-					console.debug(`QSO Form: QSO ${saved.tmp_id} → ${serverId} synced`);
+					console.debug(`QSO Form: QSO ${saved.tmp_id} → ${updated.serverId} synced`);
 				}
 			}
 		});
@@ -513,12 +481,14 @@ class QsoFormComponent {
 	}
 
 	resyncWithServer(serverQsos, savedQsos = [], dataStore) {
-		const localNewQsos = Array.from(dataStore.getPattern('qso.pending.*').values());
+		const localPendingQsos = Array.from(dataStore.getPattern('qso.*').values()).filter(q => q.state === 'pending');
 		const tmpIdMap = new Map(savedQsos.map(s => [s.tmp_id, s.server_id]));
-		const protectedNewQsos = localNewQsos.filter(q => !tmpIdMap.has(q.tmpId));
+		const protectedNewQsos = localPendingQsos.filter(q => !tmpIdMap.has(q.tmpId));
 
-		const syncedKeys = Array.from(dataStore.getPattern('qso.synced.*').keys());
-		syncedKeys.forEach(key => dataStore.delete(key));
+		// Remove all non-pending QSOs
+		for (const [key, qso] of dataStore.getPattern('qso.*').entries()) {
+			if (qso.state !== 'pending') dataStore.delete(key);
+		}
 
 		serverQsos.forEach((sq) => {
 			const timeOn = sq.time_on || '';
@@ -533,10 +503,11 @@ class QsoFormComponent {
 					: sq.frequency;
 
 			const serverId = parseInt(sq.id ?? sq.qso_id);
+			const tmpId = dataStore.generateId();
 
 			const qso = {
 				serverId: serverId,
-				tmpId: null,
+				tmpId: tmpId,
 				callsign: sq.callsign || sq.call,
 				frequency: freq,
 				mode: sq.mode,
@@ -557,7 +528,7 @@ class QsoFormComponent {
 				state: 'synced'
 			};
 
-			dataStore.set(`qso.synced.${serverId}`, qso);
+			dataStore.set(`qso.${tmpId}`, qso);
 		});
 
 		dataStore.emit('qsos_resynced', {
@@ -670,11 +641,12 @@ class QsoFormComponent {
 		const qso = {
 			...qsoData,
 			tmpId,
-			state: 'new',
+			serverId: null,
+			state: 'pending',
 			created: new Date().toISOString()
 		};
 
-		this.dataStore.set(`qso.pending.${tmpId}`, qso);
+		this.dataStore.set(`qso.${tmpId}`, qso);
 		console.log('QSO Form: QSO saved', qso);
 
 		this.dataStore.emit('qso_added', qso);
