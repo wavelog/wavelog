@@ -36,7 +36,7 @@ class Contest_admin extends CI_Controller {
 
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/contest_admin.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/contest_admin.js")),
+			'assets/js/sections/contest_admin.js',
 		];
 
 		// Render Page
@@ -58,7 +58,7 @@ class Contest_admin extends CI_Controller {
 
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/contest_admin.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/contest_admin.js")),
+			'assets/js/sections/contest_admin.js',
 		];
 
 		$this->form_validation->set_rules('name', 'Contest Name', 'required');

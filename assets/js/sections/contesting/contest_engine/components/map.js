@@ -40,12 +40,12 @@ class MapComponent {
 
 		return new Promise((resolve, reject) => {
 			const assets = window.MapComponentAssets;
-			if (!assets || !assets.scripts) {
+			if (!assets) {
 				reject('MapComponentAssets not found');
 				return;
 			}
 
-			const totalScripts = assets.scripts.length;
+			const totalScripts = assets.length;
 
 			const loadScript = (index) => {
 				if (index >= totalScripts) {
@@ -58,14 +58,14 @@ class MapComponent {
 				}
 
 				const script = document.createElement('script');
-				script.src = assets.baseUrl + assets.scripts[index];
+				script.src = assets[index];
 				script.async = false; // Force sequential execution
 				script.onload = () => {
 					// Small delay to ensure script is executed
 					setTimeout(() => loadScript(index + 1), 50);
 				};
 				script.onerror = () => {
-					reject(`Failed to load ${assets.scripts[index]}`);
+					reject(`Failed to load ${assets[index]}`);
 				};
 				document.head.appendChild(script);
 			};

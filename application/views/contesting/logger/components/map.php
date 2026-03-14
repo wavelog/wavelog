@@ -41,15 +41,21 @@ $config = [
 
 	// Store Leaflet library paths for dynamic loading by MapComponent
 	if (!window.MapComponentAssets) {
-		window.MapComponentAssets = {
-			baseUrl: "<?php echo base_url(); ?>",
-			scripts: [
+		window.MapComponentAssets = [
+			<?php
+			$leafletAssets = [
 				"assets/js/leaflet/leaflet.js",
 				"assets/js/leaflet/Control.FullScreen.js",
 				"assets/js/leaflet/L.Maidenhead.qrb.js",
 				"assets/js/leaflet/leaflet.geodesic.js"
-			]
-		};
+			];
+			$output = [];
+			foreach ($leafletAssets as $asset) {
+				$output[] = json_encode($this->paths->cache_buster($asset));
+			}
+			echo implode(",", $output);
+			?>
+		];
 	}
 </script>
 

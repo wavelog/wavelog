@@ -45,7 +45,7 @@ class Contesting extends CI_Controller {
 
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/contesting/manager.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/contesting/manager.js")),
+			'assets/js/sections/contesting/manager.js',
 		];
 
 		$this->load->view('interface_assets/header', $data);
