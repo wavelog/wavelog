@@ -45,6 +45,7 @@ class Contesting_model extends CI_Model {
 				cs.time_start AS time_start,
 				cs.time_end AS time_end,
 				cs.comment AS comment,
+				cs.settings AS settings,
 				c.name AS contest_name,
 				c.id AS contest_id,
 				c.adifname AS contest_adifname,
@@ -58,7 +59,15 @@ class Contesting_model extends CI_Model {
 		$binding[] = $user_id;
 
 		$query = $this->db->query($sql, $binding);
-		return $query->row_array();
+		$row = $query->row_array();
+		if ($row && !empty($row['settings'])) {
+			$settings = json_decode($row['settings'], true) ?? [];
+			$row['exchangetype'] = $settings['exchangetype'] ?? 'Exchange';
+		} else {
+			$row['exchangetype'] = 'Exchange';
+		}
+		unset($row['settings']);
+		return $row;
 	}
 
 	/**
@@ -71,11 +80,13 @@ class Contesting_model extends CI_Model {
 	 * @param string $session_notes Notes for the session.
 	 * @return bool True on success, false on failure. If $return_id is true, returns the inserted session ID instead.
 	 */
-	function create_contest_session($contest_adif_id, $session_start, $session_end, $station_location, $session_notes, $return_id = false) {
+	function create_contest_session($contest_adif_id, $session_start, $session_end, $station_location, $session_notes, $return_id = false, $exchangetype = 'Exchange') {
 		$user_id = $this->session->userdata('user_id');
 
-		$sql = "INSERT INTO contest_session (user_id, contest_adif_id, time_start, time_end, station_id, comment)
-				VALUES (?, ?, ?, ?, ?, ?)";
+		$settings = json_encode(['exchangetype' => $exchangetype]);
+
+		$sql = "INSERT INTO contest_session (user_id, contest_adif_id, time_start, time_end, station_id, comment, settings)
+				VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 		$bindings = [
 			$user_id,
@@ -83,7 +94,8 @@ class Contesting_model extends CI_Model {
 			$session_start,
 			$session_end,
 			$station_location,
-			$session_notes
+			$session_notes,
+			$settings
 		];
 
 		if ($return_id) {
@@ -105,11 +117,13 @@ class Contesting_model extends CI_Model {
 	 * @param string $notes Notes for the session.
 	 * @return bool True on success, false on failure.
 	 */
-	function update_contest_session($contest_session_id, $contest_id, $time_start, $time_end, $station_id, $notes) {
+	function update_contest_session($contest_session_id, $contest_id, $time_start, $time_end, $station_id, $notes, $exchangetype = 'Exchange') {
 		$user_id = $this->session->userdata('user_id');
 
+		$settings = json_encode(['exchangetype' => $exchangetype]);
+
 		$sql = "UPDATE contest_session
-				SET contest_adif_id = ?, time_start = ?, time_end = ?, station_id = ?, comment = ?
+				SET contest_adif_id = ?, time_start = ?, time_end = ?, station_id = ?, comment = ?, settings = ?
 				WHERE id = ? AND user_id = ?";
 
 		$bindings = [
@@ -118,6 +132,7 @@ class Contesting_model extends CI_Model {
 			$time_end,
 			$station_id,
 			$notes,
+			$settings,
 			$contest_session_id,
 			$user_id
 		];

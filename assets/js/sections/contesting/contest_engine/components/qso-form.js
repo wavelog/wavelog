@@ -12,6 +12,8 @@ class QsoFormComponent {
 		this.lastDxccInfo = null;
 		this.lastDxccCallsign = null;
 		this.dxccLookupToken = 0;
+		this.nextSerialSent = 1;
+		this.exchangeType = null;
 
 		if (!this.container) {
 			console.warn(`QsoFormComponent: Container not found, retrying...`);
@@ -37,6 +39,7 @@ class QsoFormComponent {
 
 		this.registerSyncHandler();
 		this.setupEventListeners();
+		this.initExchangeType();
 		this.loadExistingQSOs();
 
 		// console.info('QsoFormComponent: Initialized');
@@ -52,6 +55,44 @@ class QsoFormComponent {
 			await new Promise(resolve => setTimeout(resolve, intervalMs));
 		}
 		return this.radioComponent;
+	}
+
+	initExchangeType() {
+		const sessionInfo = window.ContestLoggerConfig?.sessionInfo ?? {};
+		this.exchangeType = sessionInfo.exchangetype ?? 'Exchange';
+
+		const hasSerial = ['Serial', 'Serialgridsquare', 'Serialexchange', 'SerialGridExchange']
+			.includes(this.exchangeType);
+		const hasTextExchange = ['Exchange', 'Serialexchange', 'SerialGridExchange']
+			.includes(this.exchangeType);
+
+		this.container.querySelectorAll('.serial-field').forEach(el => {
+			el.style.display = hasSerial ? '' : 'none';
+		});
+		this.container.querySelectorAll('.exchange-text-field').forEach(el => {
+			el.style.display = hasTextExchange ? '' : 'none';
+		});
+		this.container.querySelectorAll('.serial-col').forEach(el => {
+			el.style.display = hasSerial ? '' : 'none';
+		});
+		this.container.querySelectorAll('.exchange-text-col').forEach(el => {
+			el.style.display = hasTextExchange ? '' : 'none';
+		});
+	}
+
+	computeNextSerial() {
+		const allQsos = Array.from(this.dataStore.getPattern('qso.*').values());
+		let maxSerial = 0;
+		allQsos.forEach(qso => {
+			const s = parseInt(qso.serial_sent, 10);
+			if (Number.isFinite(s) && s > maxSerial) maxSerial = s;
+		});
+		return maxSerial + 1;
+	}
+
+	updateSerialSentDisplay() {
+		const input = this.container.querySelector('#qso-serial-sent');
+		if (input) input.value = this.nextSerialSent;
 	}
 
 	registerSyncHandler() {
@@ -84,9 +125,9 @@ class QsoFormComponent {
 
 	setupEventListeners() {
 		// Enter key in input fields
-		const inputs = this.container.querySelectorAll('input[type="text"]');
+		const inputs = this.container.querySelectorAll('input[type="text"], input[type="number"]');
 		inputs.forEach(input => {
-			input.addEventListener('keypress', (e) => {
+			input.addEventListener('keydown', (e) => {
 				if (e.key === 'Enter') {
 					this.logQso();
 				}
@@ -267,6 +308,9 @@ class QsoFormComponent {
 		sorted.forEach(qso => this.addQSOToTable(qso));
 		this.updateQSOCount();
 
+		this.nextSerialSent = this.computeNextSerial();
+		this.updateSerialSentDisplay();
+
 		// Listen for QSO state changes
 		this.dataStore.on('qso_state_changed', (eventData) => this.handleQSOStateChanged(eventData));
 
@@ -283,6 +327,9 @@ class QsoFormComponent {
 		const sorted = this.sortQsosByNewest(allQsos);
 		sorted.forEach(qso => this.addQSOToTable(qso));
 		this.updateQSOCount();
+
+		this.nextSerialSent = this.computeNextSerial();
+		this.updateSerialSentDisplay();
 
 		console.debug(`QSO Form: Resynced table (server=${eventData?.server ?? '?'}, protected=${eventData?.protected ?? '?'})`);
 	}
@@ -313,16 +360,27 @@ class QsoFormComponent {
 
 		const row = document.createElement('tr');
 		row.dataset.qsoId = qso.tmpId || qso.serverId;
-		let band = this.convertQrgToBand(parseInt(qso.frequency));
-		let qrg_mhz = qso.frequency ? (parseInt(qso.frequency) / 1e6).toFixed(3) + ' MHz' : '';
+		const band = this.convertQrgToBand(parseInt(qso.frequency));
+		const qrg_mhz = qso.frequency ? (parseInt(qso.frequency) / 1e6).toFixed(3) + ' MHz' : '';
+		const hasSerial = ['Serial', 'Serialgridsquare', 'Serialexchange', 'SerialGridExchange']
+			.includes(this.exchangeType);
+		const hasTextExchange = ['Exchange', 'Serialexchange', 'SerialGridExchange']
+			.includes(this.exchangeType);
+
+		const timeStr = (qso.time || '').substring(0, 5);
+
+		const serialHide = hasSerial ? '' : 'display:none;';
+
 		row.innerHTML = `
-			<td>${qso.time}</td>
-			<td>${qso.callsign}</td>
+			<td class="text-nowrap">${timeStr}</td>
+			<td class="fw-bold">${qso.callsign}</td>
 			<td title="${qrg_mhz}">${band || '-'}</td>
 			<td>${qso.mode || '-'}</td>
-			<td>${qso.rst_rcvd}</td>
-			<td>${qso.exchange_rcvd || ''}</td>
-			<td>${this.getStatusIndicator(qso.state)}</td>
+			<td>${qso.rst_rcvd || '-'}</td>
+			<td class="serial-col" style="${serialHide}">${qso.serial_sent ?? ''}</td>
+			<td class="serial-col" style="${serialHide}">${qso.serial_rcvd ?? qso.serial_recv ?? ''}</td>
+			<td class="exchange-text-col" style="${hasTextExchange ? '' : 'display:none;'}">${qso.exchange_rcvd || ''}</td>
+			<td class="text-center">${this.getStatusIndicator(qso.state)}</td>
 		`;
 
 		tbody.insertBefore(row, tbody.firstChild);
@@ -384,6 +442,13 @@ class QsoFormComponent {
 		}
 	}
 
+	getLastExchangeSent() {
+		const allQsos = Array.from(this.dataStore.getPattern('qso.*').values());
+		if (!allQsos.length) return '';
+		const sorted = allQsos.slice().sort((a, b) => this.getQsoTimestamp(b) - this.getQsoTimestamp(a));
+		return sorted[0]?.exchange_sent ?? '';
+	}
+
 	clearForm() {
 		if (!this.container) return;
 
@@ -395,8 +460,11 @@ class QsoFormComponent {
 			callsignInput.value = '';
 			callsignInput.focus();
 		}
-		if (exchangeSentInput) exchangeSentInput.value = '';
+		if (exchangeSentInput) exchangeSentInput.value = this.getLastExchangeSent();
 		if (exchangeReceivedInput) exchangeReceivedInput.value = '';
+
+		const serialRcvdInput = this.container.querySelector('#qso-serial-received');
+		if (serialRcvdInput) serialRcvdInput.value = '';
 
 		this.lastDxccCallsign = null;
 		this.lastDxccInfo = null;
@@ -423,6 +491,8 @@ class QsoFormComponent {
 				time: qso.time,
 				exchange_sent: qso.exchange_sent,
 				exchange_rcvd: qso.exchange_rcvd,
+				serial_sent: qso.serial_sent ?? null,
+				serial_rcvd: qso.serial_rcvd ?? null,
 				operator: qso.operator,
 				country: qso.country || qso.entity || null,
 				continent: qso.continent || qso.cont || null,
@@ -573,6 +643,8 @@ class QsoFormComponent {
 		const rstReceived = this.container.querySelector('#qso-rst-received')?.value.trim();
 		const exchangeSent = this.container.querySelector('#qso-exchange-sent')?.value.trim();
 		const exchangeRcvd = this.container.querySelector('#qso-exchange-received')?.value.trim();
+		const serialSent = this.container.querySelector('#qso-serial-sent')?.value || null;
+		const serialRcvd = this.container.querySelector('#qso-serial-received')?.value || null;
 		const dxccAdif = this.container.querySelector('#qso-dxcc-adif')?.value.trim();
 		const dxccCont = this.container.querySelector('#qso-dxcc-cont')?.value.trim();
 		const dxccEntity = this.container.querySelector('#qso-dxcc-entity')?.value.trim();
@@ -612,6 +684,8 @@ class QsoFormComponent {
 			rst_rcvd: rstReceived || '59',
 			exchange_sent: exchangeSent,
 			exchange_rcvd: exchangeRcvd,
+			serial_sent: serialSent,
+			serial_rcvd: serialRcvd,
 			frequency: frequency,
 			mode: mode,
 			date: new Date().toISOString().split('T')[0],
@@ -654,6 +728,15 @@ class QsoFormComponent {
 		// Update UI
 		this.addQSOToTable(qso);
 		this.updateQSOCount();
+
+		if (serialSent !== null) {
+			const numVal = parseInt(serialSent, 10);
+			const padLen = serialSent.length > 1 && serialSent.startsWith('0') ? serialSent.length : 0;
+			const next = numVal + 1;
+			this.nextSerialSent = padLen > 0 ? String(next).padStart(padLen, '0') : next;
+			this.updateSerialSentDisplay();
+		}
+
 		if (this.scpComponent) {
 			this.scpComponent.clearResults();
 		}

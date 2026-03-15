@@ -54,6 +54,17 @@
                         <small class="text-muted d-block mt-2"><?= __("Choose one of your stations"); ?></small>
                     </div>
                     <div class="mb-4">
+                        <label for="exchangetype" class="form-label"><?= __("Exchange Type") ?> <span class="text-danger">*</span></label>
+                        <select class="form-select" id="exchangetype" name="exchangetype" required>
+                            <option value="Exchange" <?php if (!isset($session_info) || ($session_info['exchangetype'] ?? '') === 'Exchange') echo 'selected'; ?>><?= __("Exchange (free text only)"); ?></option>
+                            <option value="Serial" <?php if (isset($session_info) && ($session_info['exchangetype'] ?? '') === 'Serial') echo 'selected'; ?>><?= __("Serial number only"); ?></option>
+                            <option value="Serialexchange" <?php if (isset($session_info) && ($session_info['exchangetype'] ?? '') === 'Serialexchange') echo 'selected'; ?>><?= __("Serial number + Exchange"); ?></option>
+                            <option value="Serialgridsquare" <?php if (isset($session_info) && ($session_info['exchangetype'] ?? '') === 'Serialgridsquare') echo 'selected'; ?>><?= __("Serial number + Grid Square"); ?></option>
+                            <option value="SerialGridExchange" <?php if (isset($session_info) && ($session_info['exchangetype'] ?? '') === 'SerialGridExchange') echo 'selected'; ?>><?= __("Serial number + Grid + Exchange"); ?></option>
+                        </select>
+                        <small class="text-muted d-block mt-2"><?= __("Defines which exchange fields are used in this contest"); ?></small>
+                    </div>
+                    <div class="mb-4">
                         <label for="session_notes" class="form-label"><?= __("Session Notes") ?></label>
                         <textarea class="form-control" id="session_notes" name="session_notes" rows="3" placeholder="<?= __("Add any additional information about this session..."); ?>"><?php if (isset($session_info)) echo htmlspecialchars($session_info['comment'] ?? ''); ?></textarea>
                         <small class="text-muted d-block mt-2"><?= __("Optional: Any additional details or notes"); ?></small>

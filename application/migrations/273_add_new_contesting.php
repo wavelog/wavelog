@@ -13,6 +13,7 @@ class Migration_add_new_contesting extends CI_Migration
             `time_end` datetime NOT NULL,
             `station_id` int(10) unsigned NOT NULL,
             `comment` varchar(255) DEFAULT NULL,
+            `settings` text DEFAULT NULL,
             `contest_adif_id` int unsigned NOT NULL,
             `creation_date` timestamp NOT NULL DEFAULT current_timestamp(),
             `last_modified` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),

@@ -140,7 +140,6 @@ class Contesting extends CI_Controller {
 		// Component and layout configuration (percentage-based: 0-100)
 		// Component names as keys, layout configuration as values
 		// This can later be overridden by user-defined layouts
-		// TODO: Load components automatically
 		$data['components'] = [
 			'qso-form' => [
 				'x' => 1,      // 1% from left
@@ -193,14 +192,15 @@ class Contesting extends CI_Controller {
 				break;
 
 			case 'post':
-				$contest_session_id = $this->input->post('contest_session_id');
-				$time_start = $this->input->post('session_start');
-				$time_end = $this->input->post('session_end');
-				$station_id = $this->input->post('station_location');
-				$notes = $this->input->post('session_notes');
-				$contest_id = $this->input->post('contest_adif_id');
+				$contest_session_id = $this->input->post('contest_session_id', true);
+				$time_start = $this->input->post('session_start', true);
+				$time_end = $this->input->post('session_end', true);
+				$station_id = $this->input->post('station_location', true);
+				$notes = $this->input->post('session_notes', true);
+				$contest_id = $this->input->post('contest_adif_id', true);
+				$exchangetype = $this->input->post('exchangetype', true);
 
-				$result = $this->contesting_model->update_contest_session($contest_session_id, $contest_id, $time_start, $time_end, $station_id, $notes);
+				$result = $this->contesting_model->update_contest_session($contest_session_id, $contest_id, $time_start, $time_end, $station_id, $notes, $exchangetype);
 
 				if ($result) {
 					$this->session->set_flashdata('success', __("Contest session updated successfully."));
@@ -239,14 +239,15 @@ class Contesting extends CI_Controller {
 				break;
 
 			case 'post':
-				$contest_session_id = $this->input->post('contest_session_id');
-				$time_start = $this->input->post('session_start');
-				$time_end = $this->input->post('session_end');
-				$station_id = $this->input->post('station_location');
-				$notes = $this->input->post('session_notes');
-				$contest_id = $this->input->post('contest_adif_id');
+				$contest_session_id = $this->input->post('contest_session_id', true);
+				$time_start = $this->input->post('session_start', true);
+				$time_end = $this->input->post('session_end', true);
+				$station_id = $this->input->post('station_location', true);
+				$notes = $this->input->post('session_notes', true);
+				$contest_id = $this->input->post('contest_adif_id', true);
+				$exchangetype = $this->input->post('exchangetype', true);
 
-				$result = $this->contesting_model->update_contest_session($contest_session_id, $contest_id, $time_start, $time_end, $station_id, $notes);
+				$result = $this->contesting_model->update_contest_session($contest_session_id, $contest_id, $time_start, $time_end, $station_id, $notes, $exchangetype);
 
 				if ($result) {
 					$this->session->set_flashdata('success', __("Contest session updated successfully."));
@@ -285,7 +286,7 @@ class Contesting extends CI_Controller {
 				break;	
 
 			case 'post':
-				$contest_session_id = $this->input->post('contest_session_id');
+				$contest_session_id = $this->input->post('contest_session_id', true);
 
 				$result = $this->contesting_model->delete_contest_session($contest_session_id);
 
@@ -397,7 +398,8 @@ class Contesting extends CI_Controller {
 		}
 
 		switch ($command['type']) {
-			case 'save_qso': // TODO: Make this one faster
+			case 'save_qso': 
+				// TODO: Make this one faster
 				// TODO: Add better error handling
 				if (!isset($command['data'])) {
 					throw new Exception('save_qso command missing data');
@@ -428,7 +430,7 @@ class Contesting extends CI_Controller {
 					'cqz' => $command['data']['cqz'] ?? NULL,
 					'operator_callsign' => $this->session->userdata('user_callsign'),
 					'contestname' => $session_info['contest_adifname'],
-					'exchangetype' => 'Exchange' // TODO: Implement different exchange types
+					'exchangetype' => $session_info['exchangetype'] ?? 'Exchange'
 				];
 
 				// Save QSO to database
