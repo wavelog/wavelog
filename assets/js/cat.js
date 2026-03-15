@@ -296,7 +296,7 @@ $(document).ready(function() {
         } else if (qrgunit == 'GHz') {
             frequency_formatted=(freq / 1000000000);
         }
-        return frequency_formatted+''+qrgunit;
+        return frequency_formatted+' '+qrgunit;
     }
 
     /**
@@ -689,14 +689,14 @@ $(document).ready(function() {
         // Check if we have RX frequency (split operation)
         if(data.frequency_rx != null && data.frequency_rx != 0) {
             // Split operation: show TX and RX separately
-            freqLine = '<b>' + lang_cat_tx + ':</b> ' + data.frequency_formatted;
-            data.frequency_rx_formatted = format_frequency(data.frequency_rx);
-            if (data.frequency_rx_formatted) {
-                freqLine = freqLine + separator + '<b>' + lang_cat_rx + ':</b> ' + data.frequency_rx_formatted;
+            freqLine = '<b>' + lang_cat_tx + ':</b> ' + format_frequency(data.frequency);
+            var freq_rx_formatted = format_frequency(data.frequency_rx);
+            if (freq_rx_formatted) {
+                freqLine = freqLine + separator + '<b>' + lang_cat_rx + ':</b> ' + freq_rx_formatted;
             }
         } else {
             // Simplex operation: show TX/RX combined
-            freqLine = '<b>' + lang_cat_tx_rx + ':</b> ' + data.frequency_formatted;
+            freqLine = '<b>' + lang_cat_tx_rx + ':</b> ' + format_frequency(data.frequency);
         }
 
         // Add mode and power (only if we have valid frequency)
@@ -767,25 +767,20 @@ $(document).ready(function() {
 				var connectionType = $(".radios option:selected").val() == 'ws' ? lang_cat_live : lang_cat_polling;
 				tooltipContent = '<b>' + radioName + '</b> (' + connectionType + ')';
 
-				// Ensure frequency_formatted exists
-				var freqFormatted = data.frequency_formatted;
-				if (!freqFormatted || freqFormatted === 'undefined' || freqFormatted === 'nullkHz') {
-					freqFormatted = format_frequency(data.frequency);
-				}
-
 				// Add frequency info
+				var freqFormatted = format_frequency(data.frequency);
 				if(data.frequency_rx && data.frequency_rx != 0 && data.frequency_rx !== 'undefined') {
 					// Split operation: show TX and RX separately
-					if (freqFormatted && freqFormatted !== 'undefined') {
+					if (freqFormatted) {
 						tooltipContent += '<br><b>' + lang_cat_tx + ':</b> ' + freqFormatted;
 					}
 					var rxFormatted = format_frequency(data.frequency_rx);
-					if (rxFormatted && rxFormatted !== 'undefined') {
+					if (rxFormatted) {
 						tooltipContent += '<br><b>' + lang_cat_rx + ':</b> ' + rxFormatted;
 					}
 				} else {
 					// Simplex operation: show TX/RX combined
-					if (freqFormatted && freqFormatted !== 'undefined') {
+					if (freqFormatted) {
 						tooltipContent += '<br><b>' + lang_cat_tx_rx + ':</b> ' + freqFormatted;
 					}
 				}
@@ -858,25 +853,20 @@ $(document).ready(function() {
 			}
 			tooltipContent = '<b>' + radioName + '</b> (' + connectionType + ')';
 
-				// Ensure frequency_formatted exists
-				var freqFormatted = data.frequency_formatted;
-				if (!freqFormatted || freqFormatted === 'undefined' || freqFormatted === 'nullkHz') {
-					freqFormatted = format_frequency(data.frequency);
-				}
-
 				// Add frequency info
+				var freqFormatted = format_frequency(data.frequency);
 				if(data.frequency_rx && data.frequency_rx != 0 && data.frequency_rx !== 'undefined') {
 					// Split operation: show TX and RX separately
-					if (freqFormatted && freqFormatted !== 'undefined') {
+					if (freqFormatted) {
 						tooltipContent += '<br><b>' + lang_cat_tx + ':</b> ' + freqFormatted;
 					}
 					var rxFormatted = format_frequency(data.frequency_rx);
-					if (rxFormatted && rxFormatted !== 'undefined') {
+					if (rxFormatted) {
 						tooltipContent += '<br><b>' + lang_cat_rx + ':</b> ' + rxFormatted;
 					}
 				} else {
 					// Simplex operation: show TX/RX combined
-					if (freqFormatted && freqFormatted !== 'undefined') {
+					if (freqFormatted) {
 						tooltipContent += '<br><b>' + lang_cat_tx_rx + ':</b> ' + freqFormatted;
 					}
 				}
