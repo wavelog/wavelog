@@ -10,6 +10,40 @@ DJ7NT - Docker Readiness - April 2024
 HB9HIL - Big UX and backend upgrade - July 2024
 */
 require_once('includes/install_config/install_lib.php');
+
+if (!function_exists('ini_size_to_bytes')) {
+	/**
+	 * Convert php.ini shorthand size values (e.g. 2048K, 8M, 1G, -1) to bytes.
+	 */
+	function ini_size_to_bytes($value)
+	{
+		$value = trim((string)$value);
+		if ($value === '') {
+			return 0;
+		}
+
+		if ($value === '-1') {
+			return PHP_INT_MAX;
+		}
+
+		$unit = strtolower(substr($value, -1));
+		$number = (float)$value;
+
+		switch ($unit) {
+			case 'g':
+				$number *= 1024;
+				// no break
+			case 'm':
+				$number *= 1024;
+				// no break
+			case 'k':
+				$number *= 1024;
+		}
+
+		return (int)$number;
+	}
+}
+
 $http_scheme = is_https() ? "https" : "http";
 
 $directory = ltrim(str_replace('/install', '', dirname($_SERVER['SCRIPT_NAME'])), '/');
@@ -171,7 +205,7 @@ if (!file_exists('.lock') && !file_exists('../application/config/config.php') &&
 													<td>
 														<?php
 														$maxUploadFileSize = ini_get('upload_max_filesize');
-														$maxUploadFileSizeBytes = (int)($maxUploadFileSize) * (1024 * 1024); // convert to bytes
+														$maxUploadFileSizeBytes = ini_size_to_bytes($maxUploadFileSize);
 														if ($maxUploadFileSizeBytes >= ($upload_max_filesize * 1024 * 1024)) { // compare with given value in bytes
 														?>
 															<span class="badge text-bg-success"><?php echo $maxUploadFileSize; ?></span>
@@ -190,7 +224,7 @@ if (!file_exists('.lock') && !file_exists('../application/config/config.php') &&
 													<td>
 														<?php
 														$maxUploadFileSize = ini_get('post_max_size');
-														$maxUploadFileSizeBytes = (int)($maxUploadFileSize) * (1024 * 1024); // convert to bytes
+														$maxUploadFileSizeBytes = ini_size_to_bytes($maxUploadFileSize);
 														if ($maxUploadFileSizeBytes >= ($post_max_size * 1024 * 1024)) { // compare with given value in bytes
 														?>
 															<span class="badge text-bg-success"><?php echo $maxUploadFileSize; ?></span>
@@ -208,7 +242,7 @@ if (!file_exists('.lock') && !file_exists('../application/config/config.php') &&
 													<td>
 														<?php
 														$memoryLimit = ini_get('memory_limit');
-														$memoryLimitBytes = (int)($memoryLimit) * (1024 * 1024); // convert to bytes
+														$memoryLimitBytes = ini_size_to_bytes($memoryLimit);
 														if ($memoryLimitBytes >= ($memory_limit * 1024 * 1024)) { // compare with given value in bytes
 														?>
 															<span class="badge text-bg-success"><?php echo $memoryLimit; ?></span>
