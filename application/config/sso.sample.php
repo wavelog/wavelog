@@ -218,8 +218,9 @@ $config['auth_headers_claim_config'] = [
  * Clubstation Mapping
  *--------------------------------------------------------------------------
  *
- * Assigns users to clubstations during login or on user creation. It is recommended
- * that "show full group path" is disabled to prevent leading slashes.
+ * Assigns users to clubstations during login or on user creation. Leave blank to disable.
+ * 
+ * It is recommended that "show full group path" is disabled to prevent leading slashes.
  *
  * $config['auth_header_clubstation_claim'] should be set to the JWT claim that 
  * provides a multi-valued group attribute (RFC7643 4.1.2). The common claim 
@@ -263,7 +264,7 @@ $config['auth_headers_claim_config'] = [
  *      'wl_' => true,
  *  ];
  */
-$config['auth_header_clubstation_claim'] = "groups";
+$config['auth_header_clubstation_claim'] = "";
 
 $config['auth_header_clubstation_direct'] = [];
 $config['auth_header_clubstation_dynamic'] = [];
