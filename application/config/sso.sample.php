@@ -212,3 +212,58 @@ $config['auth_headers_claim_config'] = [
         'allow_manual_change' => false
     ],
 ];
+
+/**
+ *--------------------------------------------------------------------------
+ * Clubstation Mapping
+ *--------------------------------------------------------------------------
+ *
+ * Assigns users to clubstations during login or on user creation. It is recommended
+ * that "show full group path" is disabled to prevent leading slashes.
+ *
+ * $config['auth_header_clubstation_claim'] should be set to the JWT claim that 
+ * provides a multi-valued group attribute (RFC7643 4.1.2). The common claim 
+ * is "groups" per RFC9068 2.2.3.1.
+ * 
+ * For $config['auth_header_clubstation_direct'] each key is a clubstation ID, 
+ * the values are as follows:
+ * 
+ *   'group'           => The name of the group defined in the IdP.
+ * 
+ *   'update_on_login' => If user membership should be updated on each login. If 
+ *                        false user is only assigned on user creation. If true
+ *                        users are removed and added to clubstations on login.
+ *                        Recommended to be set to true.
+ * 
+ *  Example:
+ *  $config['auth_header_clubstation_direct'] = [
+ *     9 => [
+ *         'group' => 'wl_society_station_group',
+ *         'update_on_login' => true
+ *     ],
+ *     15 => [
+ *         'group' => 'wl_special_event_station',
+ *         'update_on_login' => true
+ *     ],
+ *  ];
+ *
+ * 
+ *  
+ * For $config['auth_header_clubstation_dynamic'] each key is a group prefix
+ * and the value is if user membership should be updated on each login. If 
+ * false user is only assigned on user creation. If true users are removed and 
+ * added to clubstations on login. Recommended to be set to true.
+ * 
+ * It is strongly recommended that auth_header_clubstation_dynamic is not used 
+ * as it WILL NOT REMOVE users from clubstations.
+ * 
+ *  Example:
+ *  $config['auth_header_clubstation_dynamic'] = [
+ *      'wavelog_' => true,
+ *      'wl_' => true,
+ *  ];
+ */
+$config['auth_header_clubstation_claim'] = "groups";
+
+$config['auth_header_clubstation_direct'] = [];
+$config['auth_header_clubstation_dynamic'] = [];

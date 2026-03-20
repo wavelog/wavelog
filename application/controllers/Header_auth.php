@@ -264,7 +264,6 @@ class Header_auth extends CI_Controller {
             $this->_sso_error();
         }
 
-        // $club_id = $this->config->item('auth_header_club_id', 'sso') ?: ''; // TODO: Add support to add a user to a clubstation
 
         $this->load->model('user_model');
         $result = $this->user_model->add(
@@ -347,6 +346,79 @@ class Header_auth extends CI_Controller {
             case OK:
                 return;
         }
+    }
+
+    /**
+     * Update clubstation membership.
+     * 
+     * @param int   $user_id
+     * @param array $claim    JWT multi-valued group claim
+     * 
+     * @return void
+     */
+    private function _update_club_membership(int $user_id, array $claim) : void {
+        $directs = $this->config->item('auth_header_clubstation_direct', 'sso') ?: [];
+        $dynamics = $this->config->item('auth_header_clubstation_dynamic', 'sso') ?: [];
+
+        if (empty($directs) && empty($dynamics)) {
+            return;
+        }
+
+        // Clubstation IDs listed directly to update
+        $direct_updates_id = array_keys(array_filter($directs, function ($item) {
+            return !empty($item['update_on_login']) && $item['update_on_login'] === true;
+        }));
+
+        // Get membership and nonmebership
+        $member_ids = [];
+        $non_member_ids = [];
+        foreach ($direct_updates_id as $id) {
+            $group = $directs[$id]['group'];
+
+            if (in_array($group, $claim, true)) {
+                $member_ids[] = $id;
+            } else {
+                $non_member_ids[] = $id;
+            }
+        }
+
+        // Prefixes to update (add only)
+        $group_prefixes = array_keys(array_filter($dynamics));
+        $dynamic_add_id = []; // Clubstations that start with a prefix with update on login
+        foreach ($claim as $group) {
+            foreach ($group_prefixes as $prefix) {
+
+                // Check if group starts with prefix
+                if (strpos($group, $prefix) === 0) {
+
+                    // Remove prefix
+                    $suffix = substr($group, strlen($prefix));
+
+                    // Keep only if suffix is an integer
+                    if (ctype_digit($suffix)) {
+                        $dynamic_updates[] = (int)$suffix;
+                    }
+
+                    break; // Stop checking other prefixes
+                }
+            }
+        }
+
+
+        // TODO: Fix conflict resolution between add and remove when dynamic
+
+        $member_ids = array_merge($member_ids, $dynamic_add_id);
+
+        $this->load->model('club_model');
+        foreach ($member_ids as $club_id) {
+            $this->club_model->alter_member($club_id, $user_id, 3);
+        }
+
+        foreach ($non_member_ids as $club_id) {
+            $this->club_model->delete_member($club_id, $user_id);
+        }
+            
+
     }
 
     /**
