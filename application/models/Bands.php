@@ -300,12 +300,8 @@ class Bands extends CI_Model {
         return true;
     }
 
-	function delete($id) {
-		// Clean ID
-		$clean_id = $this->security->xss_clean($id);
-
-		// Delete Mode
-		$this->db->delete('bandxuser', array('id' => $clean_id));
+	function delete($id, $userid) {
+		$this->db->delete('bandxuser', array('id' => $id, 'userid' => $userid));
 	}
 
 	function saveBand($id, $band) {

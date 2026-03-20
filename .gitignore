@@ -1,9 +1,11 @@
-/application/config/database.php
 /application/config/config.php
+/application/config/database.php
+/application/config/sso.php
 /application/config/redis.php
 /application/config/memcached.php
 /application/config/**/config.php
 /application/config/**/database.php
+/application/config/**/sso.php
 /application/config/**/redis.php
 /application/config/**/memcached.php
 /application/logs/*
@@ -33,3 +35,4 @@ docker-compose.yml
 .demo
 .htaccess
 .user.ini
+.env

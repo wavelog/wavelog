@@ -37,6 +37,7 @@
 	<?php $this->load->helper('form'); ?>
 
 	<form method="post" action="<?php echo $user_form_action; ?>" name="users" autocomplete="off">
+	<input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>" />
 	<div class="accordion user_edit">
 		<!-- ZONE 1 / User General Information -->
 		<div class="accordion-item">
@@ -52,18 +53,41 @@
 							<div class="card">
 								<div class="card-header"><?= __("Account"); ?></div>
 								<div class="card-body">
+									<?php
+										// Returns true if the field is managed by the IdP and the user cannot change it
+										$idp_locked = function($field) use ($external_account, $sso_claim_config) {
+											return $external_account && isset($sso_claim_config[$field]) && empty($sso_claim_config[$field]['allow_manual_change']);
+										};
+										$idp_badge = '<span class="badge bg-secondary ms-1" data-bs-toggle="tooltip" title="' . $auth_header_locked_data_tip . '"><i class="fa fa-lock"></i> ' . $auth_header_locked_data_badge . '</span>';
+									?>
+
 									<div class="mb-3">
-										<label><?= __("Username"); ?></label>
-										<input class="form-control" type="text" name="user_name" value="<?php if(isset($user_name)) { echo $user_name; } ?>" <?php if (isset($user_name) && $user_name == 'demo' && file_exists('.demo') && $this->session->userdata('user_type') !== '99') { echo 'disabled'; } ?> />
-										<?php if(isset($username_error)) { echo "<small class=\"badge bg-danger\">".$username_error."</small>"; } ?>
+										<label>
+											<?= __("Username"); ?>
+											<?php if ($idp_locked('user_name')) { echo $idp_badge; } ?>
+										</label>
+										<?php if ($idp_locked('user_name')) { ?>
+											<input class="form-control-plaintext fw-bold" name="user_name" value="<?= htmlspecialchars($user_name ?? '') ?>" readonly/>
+										<?php } else { ?>
+											<input class="form-control" type="text" name="user_name" value="<?php if(isset($user_name)) { echo $user_name; } ?>" <?php if (isset($user_name) && $user_name == 'demo' && file_exists('.demo') && $this->session->userdata('user_type') !== '99') { echo 'disabled'; } ?> />
+											<?php if(isset($username_error)) { echo "<small class=\"badge bg-danger\">".$username_error."</small>"; } ?>
+										<?php } ?>
 									</div>
 
 									<div class="mb-3">
-										<label><?= __("Email Address"); ?></label>
-										<input class="form-control" type="text" name="user_email" value="<?php if(isset($user_email)) { echo $user_email; } ?>" />
-										<?php if(isset($email_error)) { echo "<small class=\"badge bg-danger\">".$email_error."</small>"; } ?>
+										<label>
+											<?= __("Email Address"); ?>
+											<?php if ($idp_locked('user_email')) { echo $idp_badge; } ?>
+										</label>
+										<?php if ($idp_locked('user_email')) { ?>
+											<input class="form-control-plaintext fw-bold" name="user_email" value="<?= htmlspecialchars($user_email ?? '') ?>" readonly/>
+										<?php } else { ?>
+											<input class="form-control" type="text" name="user_email" value="<?php if(isset($user_email)) { echo $user_email; } ?>" />
+											<?php if(isset($email_error)) { echo "<small class=\"badge bg-danger\">".$email_error."</small>"; } ?>
+										<?php } ?>
 									</div>
 
+									<?php if (!$auth_header_enable || ($auth_header_allow_direct_login && (!$external_account || !$auth_header_hide_password_field))){ ?>
 									<div class="mb-3">
 										<label><?= __("Password"); ?></label>
 										<div class="input-group">
@@ -78,6 +102,7 @@
 											} else if (!isset($user_add)) { ?>
 										<?php } ?>
 									</div>
+									<?php } ?>
 
 									<hr/>
 									<div class="mb-3">
@@ -97,7 +122,7 @@
 											</select>
 										<?php } else {
 											$l = $this->config->item('auth_level');
-											echo $l[$user_type];
+											echo "<br><b>" . $l[$user_type] . "</b>";
 										}?>
 										<?php if ($clubstation) { ?>
 											<input type="hidden" name="clubstation" value="1" />
@@ -113,17 +138,29 @@
 								<div class="card-header"><?php if ($clubstation) { echo __("Callsign Owner"); } else { echo __("Personal");} ?></div>
 								<div class="card-body">
 									<div class="mb-3">
-										<label><?= __("First Name"); ?></label>
-										<input class="form-control" type="text" name="user_firstname" value="<?php if(isset($user_firstname)) { echo $user_firstname; } ?>" />
-											<?php if(isset($firstname_error)) { echo "<small class=\"badge bg-danger\">".$firstname_error."</small>"; } else { ?>
-											<?php } ?>
+										<label>
+											<?= __("First Name"); ?>
+											<?php if ($idp_locked('user_firstname')) { echo $idp_badge; } ?>
+										</label>
+										<?php if ($idp_locked('user_firstname')) { ?>
+											<input class="form-control-plaintext fw-bold" name="user_firstname" value="<?= htmlspecialchars($user_firstname ?? '') ?>" readonly/>
+										<?php } else { ?>
+											<input class="form-control" type="text" name="user_firstname" value="<?php if(isset($user_firstname)) { echo $user_firstname; } ?>" />
+											<?php if(isset($firstname_error)) { echo "<small class=\"badge bg-danger\">".$firstname_error."</small>"; } ?>
+										<?php } ?>
 									</div>
 
 									<div class="mb-3">
-										<label><?= __("Last Name"); ?></label>
-										<input class="form-control" type="text" name="user_lastname" value="<?php if(isset($user_lastname)) { echo $user_lastname; } ?>" />
-											<?php if(isset($lastname_error)) { echo "<small class=\"badge bg-danger\">".$lastname_error."</small>"; } else { ?>
-											<?php } ?>
+										<label>
+											<?= __("Last Name"); ?>
+											<?php if ($idp_locked('user_lastname')) { echo $idp_badge; } ?>
+										</label>
+										<?php if ($idp_locked('user_lastname')) { ?>
+											<input class="form-control-plaintext fw-bold" name="user_lastname" value="<?= htmlspecialchars($user_lastname ?? '') ?>" readonly/>
+										<?php } else { ?>
+											<input class="form-control" type="text" name="user_lastname" value="<?php if(isset($user_lastname)) { echo $user_lastname; } ?>" />
+											<?php if(isset($lastname_error)) { echo "<small class=\"badge bg-danger\">".$lastname_error."</small>"; } ?>
+										<?php } ?>
 									</div>
 								</div>
 							</div>
@@ -134,17 +171,29 @@
 								<div class="card-header"><?= __("Ham Radio"); ?></div>
 								<div class="card-body">
 									<div class="mb-3">
-										<label><?php if ($clubstation) { echo __("Special/Club Callsign"); } else { echo __("Callsign"); } ?></label>
-										<input class="form-control uppercase" type="text" name="user_callsign" pattern="^\S+$" value="<?php if(isset($user_callsign)) { echo $user_callsign; } ?>" />
-											<?php if(isset($callsign_error)) { echo "<small class=\"badge bg-danger\">".$callsign_error."</small>"; } else { ?>
-											<?php } ?>
+										<label>
+											<?php if ($clubstation) { echo __("Special/Club Callsign"); } else { echo __("Callsign"); } ?>
+											<?php if ($idp_locked('user_callsign')) { echo $idp_badge; } ?>
+										</label>
+										<?php if ($idp_locked('user_callsign')) { ?>
+											<input class="form-control-plaintext fw-bold uppercase" name="user_callsign" value="<?= htmlspecialchars($user_callsign ?? '') ?>" readonly/>
+										<?php } else { ?>
+											<input class="form-control uppercase" type="text" name="user_callsign" pattern="^\S+$" value="<?php if(isset($user_callsign)) { echo $user_callsign; } ?>" />
+											<?php if(isset($callsign_error)) { echo "<small class=\"badge bg-danger\">".$callsign_error."</small>"; } ?>
+										<?php } ?>
 									</div>
 
 									<div class="mb-3">
-										<label><?= __("Gridsquare"); ?></label>
-										<input class="form-control uppercase" type="text" name="user_locator" value="<?php if(isset($user_locator)) { echo $user_locator; } ?>" />
-											<?php if(isset($locator_error)) { echo "<small class=\"badge bg-danger\">".$locator_error."</small>"; } else { ?>
-											<?php } ?>
+										<label>
+											<?= __("Gridsquare"); ?>
+											<?php if ($idp_locked('user_locator')) { echo $idp_badge; } ?>
+										</label>
+										<?php if ($idp_locked('user_locator')) { ?>
+											<input class="form-control-plaintext fw-bold uppercase" name="user_locator" value="<?= htmlspecialchars($user_locator ?? '') ?>" readonly/>
+										<?php } else { ?>
+											<input class="form-control uppercase" type="text" name="user_locator" value="<?php if(isset($user_locator)) { echo $user_locator; } ?>" />
+											<?php if(isset($locator_error)) { echo "<small class=\"badge bg-danger\">".$locator_error."</small>"; } ?>
+										<?php } ?>
 									</div>
 								</div>
 							</div>

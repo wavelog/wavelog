@@ -1,12 +1,12 @@
 {
     "processing": "Przetwarzanie...",
     "search": "Szukaj:",
-    "lengthMenu": "Pokaż _MENU_ pozycji",
-    "info": "Pozycje od _START_ do _END_ z _TOTAL_ łącznie",
-    "infoEmpty": "Pozycji 0 z 0 dostępnych",
-    "infoFiltered": "(filtrowanie spośród _MAX_ dostępnych pozycji)",
+    "lengthMenu": "Pokaż _MENU_ wyników",
+    "info": "Wyświetlono _START_ do _END_ z _TOTAL_ wpisów",
+    "infoEmpty": "Wyświetlono 0 do 0 z 0 wpisów",
+    "infoFiltered": "(filtrowane z _MAX_ wszystkich wpisów)",
     "loadingRecords": "Wczytywanie...",
-    "zeroRecords": "Nie znaleziono pasujących pozycji",
+    "zeroRecords": "Nie znaleziono pasujących wpisów",
     "paginate": {
         "first": "Pierwsza",
         "previous": "Poprzednia",
@@ -14,33 +14,33 @@
         "last": "Ostatnia"
     },
     "aria": {
-        "sortAscending": ": aktywuj, by posortować kolumnę rosnąco",
-        "sortDescending": ": aktywuj, by posortować kolumnę malejąco"
+        "sortAscending": "Kliknij, aby sortować rosnąco",
+        "sortDescending": "Kliknij, aby sortować malejąco"
     },
     "autoFill": {
         "cancel": "Anuluj",
-        "fill": "Wypełnij wszystkie komórki <i>%d</i>",
-        "fillHorizontal": "Wypełnij komórki w poziomie",
-        "fillVertical": "Wypełnij komórki w pionie",
-        "info": "Przykład informacji AutoFill"
+        "fill": "Wypełnij wszystkie komórki tekstem <i>%d</i>",
+        "fillHorizontal": "Wypełnij komórki poziomo",
+        "fillVertical": "Wypełnij komórki pionowo",
+        "info": "Przykład automatycznego wypełniania"
     },
     "buttons": {
-        "collection": "Zbiór <span class=\"ui-button-icon-primary ui-icon ui-icon-triangle-1-s\"></span>",
-        "colvis": "Widoczność kolumny",
-        "colvisRestore": "Przywróć widoczność",
+        "collection": "Kolekcja <span class=\"ui-button-icon-primary ui-icon ui-icon-triangle-1-s\"></span>",
+        "colvis": "Widoczność kolumn",
+        "colvisRestore": "Przywróć kolumny",
         "copy": "Kopiuj",
-        "copyKeys": "Naciśnij Ctrl lub u2318 + C, aby skopiować dane tabeli do schowka systemowego. <br /> <br /> Aby anulować, kliknij tę wiadomość lub naciśnij Esc.",
+        "copyKeys": "Naciśnij ctrl lub ⌘ + C, aby skopiować dane. <br /><br />Aby anulować, kliknij tę wiadomość lub naciśnij Esc.",
         "copySuccess": {
             "1": "Skopiowano 1 wiersz do schowka",
             "_": "Skopiowano %d wierszy do schowka"
         },
-        "copyTitle": "Skopiuj do schowka",
+        "copyTitle": "Kopiuj do schowka",
         "csv": "CSV",
         "excel": "Excel",
         "pageLength": {
             "-1": "Pokaż wszystkie wiersze",
             "_": "Pokaż %d wierszy",
-            "1": "Pokazuj 1 wiersz"
+            "1": "Pokaż 1 wiersz"
         },
         "pdf": "PDF",
         "print": "Drukuj",
@@ -59,75 +59,75 @@
         "condition": "Warunek",
         "data": "Dane",
         "button": {
-            "_": "Aktywne zapytania",
-            "0": "Budowanie zapytania"
+            "_": "Zaawansowane filtrowanie (%d)",
+            "0": "Zaawansowane filtrowanie"
         },
         "conditions": {
             "array": {
-                "contains": "Zawiera",
-                "empty": "Pusta",
-                "equals": "Równa się",
-                "not": "Nie",
-                "notEmpty": "Nie pusta",
-                "without": "Bez"
+                "contains": "zawiera",
+                "empty": "puste",
+                "equals": "równa się",
+                "not": "nie",
+                "notEmpty": "niepuste",
+                "without": "bez"
             },
             "date": {
-                "after": "Po",
-                "before": "Przed",
-                "between": "Pomiędzy",
-                "empty": "Pusto",
-                "equals": "Równa",
-                "not": "Nie",
-                "notBetween": "Nie pomiędzy",
-                "notEmpty": "Nie pusta"
+                "after": "po",
+                "before": "przed",
+                "between": "pomiędzy",
+                "empty": "puste",
+                "equals": "równa się",
+                "not": "nie",
+                "notBetween": "nie pomiędzy",
+                "notEmpty": "niepuste"
             },
             "number": {
-                "between": "Pomiędzy",
-                "empty": "Pusty",
-                "equals": "Równy",
-                "gt": "Większy niż",
-                "gte": "Równy lub większy niż",
-                "lt": "Mniejszy niż",
-                "lte": "Równy lub mniejszy niż",
-                "not": "Nie",
-                "notBetween": "Nie pomiędzy",
-                "notEmpty": "Nie pusty"
+                "between": "pomiędzy",
+                "empty": "puste",
+                "equals": "równa się",
+                "gt": "większe niż",
+                "gte": "większe lub równe",
+                "lt": "mniejsze niż",
+                "lte": "mniejsze lub równe",
+                "not": "nie",
+                "notBetween": "nie pomiędzy",
+                "notEmpty": "niepuste"
             },
             "string": {
-                "contains": "Zawiera",
-                "empty": "Pusty",
-                "endsWith": "Kończy się na",
-                "equals": "Równa się",
-                "not": "Nie",
-                "notEmpty": "Nie pusty",
-                "startsWith": "Zaczyna się od",
-                "notContains": "Nie zawiera",
-                "notStartsWith": "Nie zaczyna się od",
-                "notEndsWith": "Nie kończy się na"
+                "contains": "zawiera",
+                "empty": "puste",
+                "endsWith": "kończy się na",
+                "equals": "równa się",
+                "not": "nie",
+                "notEmpty": "niepuste",
+                "startsWith": "zaczyna się od",
+                "notContains": "nie zawiera",
+                "notStartsWith": "nie zaczyna się od",
+                "notEndsWith": "nie kończy się na"
             }
         },
-        "deleteTitle": "Czyszczenie",
-        "leftTitle": "Lewy",
+        "deleteTitle": "Usuń regułę filtrowania",
+        "leftTitle": "Usuń wcięcie warunku",
         "logicAnd": "I",
         "logicOr": "Lub",
-        "rightTitle": "Prawy",
+        "rightTitle": "Wcięcie warunku",
         "title": {
-            "_": "Aktywne zapytania",
-            "0": "Budowanie zapytania"
+            "_": "Zaawansowane filtrowanie (%d)",
+            "0": "Zaawansowane filtrowanie"
         },
         "value": "Wartość"
     },
     "datetime": {
         "amPm": [
-            "am",
-            "pm"
+            "AM",
+            "PM"
         ],
-        "hours": "Godzina",
-        "minutes": "Minuta",
-        "next": "Następne",
-        "previous": "Poprzednie",
-        "seconds": "Sekunda",
-        "unknown": "nieznana",
+        "hours": "Godziny",
+        "minutes": "Minuty",
+        "next": "Następny",
+        "previous": "Poprzedni",
+        "seconds": "Sekundy",
+        "unknown": "-",
         "months": {
             "0": "Styczeń",
             "1": "Luty",
@@ -147,7 +147,7 @@
             "Pn",
             "Wt",
             "Śr",
-            "Czw",
+            "Cz",
             "Pt",
             "So"
         ]
@@ -155,85 +155,85 @@
     "editor": {
         "close": "Zamknij",
         "create": {
-            "button": "Dodaj",
-            "submit": "Dodaj",
-            "title": "Dodawanie nowego wpisu"
+            "button": "Nowy",
+            "submit": "Utwórz",
+            "title": "Nowy wpis"
         },
         "edit": {
             "button": "Edytuj",
             "submit": "Aktualizuj",
-            "title": "Aktualizacja wpisu"
+            "title": "Edytuj wpis"
         },
         "error": {
-            "system": "Nastąpił błąd systemu (<a target=\"\\\" rel=\"\\ nofollow\" href=\"\\\">Więcej informacji&lt;\\/a&gt;).</a>"
+            "system": "Wystąpił błąd systemu (<a target=\"\\\" rel=\"\\ nofollow\" href=\"\\\">Więcej informacj</a>)."
         },
         "multi": {
-            "info": "Wybrane pole zawiera wiele elementów z różnymi wartościami. Aby zmienić ich wartość kliknij w nie, inaczej zachowane zostaną ich wartości domyślne.",
-            "noMulti": "Ta wartość może być edytowana oddzielnie - niezależnie od grupy.",
+            "info": "Wybrane wpisy zawierają różne wartości dla tego pola. Aby edytować i ustawić wszystkie wpisy na tę samą wartość, kliknij tutaj, w przeciwnym razie zachowają one swoje indywidualne wartości.",
+            "noMulti": "To pole może być edytowane indywidualnie, ale nie jako część grupy.",
             "restore": "Cofnij zmiany",
-            "title": "Pole z wieloma wartościami"
+            "title": "Wiele wybranych"
         },
         "remove": {
             "button": "Usuń",
             "confirm": {
-                "_": "Czy na pewno chcesz usunąć %d rzędów?",
-                "1": "Czy na pewno chcesz usunąć 1 rząd?"
+                "_": "Czy na pewno chcesz usunąć te %d wiersze?",
+                "1": "Czy na pewno chcesz usunąć ten 1 wiersz?"
             },
             "submit": "Usuń",
             "title": "Usuwanie"
         }
     },
     "searchPanes": {
-        "clearMessage": "Wyczyść wszystkie",
+        "clearMessage": "Wyczyść wszystko",
         "collapse": {
-            "_": "Aktywne grupowania (%d)",
-            "0": "Grupowanie"
+            "_": "Panele wyszukiwania (%d)",
+            "0": "Panele wyszukiwania"
         },
         "count": "{total}",
         "countFiltered": "{shown} ({total})",
-        "emptyPanes": "Brak paneli wyszukań",
-        "loadMessage": "Ładowanie paneli wyszukania...",
+        "emptyPanes": "Brak paneli wyszukiwania",
+        "loadMessage": "Ładowanie paneli wyszukiwania...",
         "title": "Aktywne filtry - %d",
-        "showMessage": "Pokaż wszystko",
-        "collapseMessage": "Rozwiń wszystko"
+        "showMessage": "Pokaż wszystkie",
+        "collapseMessage": "Zwiń wszystkie"
     },
     "select": {
         "cells": {
-            "_": "zaznaczono %d komórek",
-            "1": "zaznaczono %d komórkę"
+            "_": "Wybrano %d komórek",
+            "1": "Wybrano 1 komórkę"
         },
         "columns": {
-            "_": "zaznaczono %d kolumn",
-            "1": "zaznaczono %d kolumnę"
+            "_": "Wybrano %d kolumn",
+            "1": "Wybrano 1 kolumnę"
         },
         "rows": {
-            "1": "Zaznaczono 1 wiersz",
-            "_": "Zaznaczono %d wierszy"
+            "1": "Wybrano 1 wiersz",
+            "_": "Wybrano %d wierszy"
         }
     },
     "stateRestore": {
         "creationModal": {
             "button": "Utwórz",
             "columns": {
-                "search": "Wyszukiwanie kolumny",
+                "search": "Wyszukiwanie w kolumnie",
                 "visible": "Widoczność kolumny"
             },
             "name": "Nazwa:",
             "order": "Sortowanie",
             "paging": "Stronicowanie",
-            "scroller": "Przewijanie",
-            "search": "Szukanie",
-            "searchBuilder": "Tworzenie zapytań",
-            "select": "Wybieranie",
+            "scroller": "Pozycja przewijania",
+            "search": "Filtrowanie",
+            "searchBuilder": "Zaawansowane filtrowanie",
+            "select": "Wybór",
             "title": "Utwórz nowy stan",
-            "toggleLabel": "Zawiera:"
+            "toggleLabel": "Należy uwzględnić:"
         },
         "duplicateError": "Stan o tej nazwie już istnieje.",
         "emptyError": "Nazwa nie może być pusta.",
         "emptyStates": "Brak zapisanych stanów",
         "removeConfirm": "Czy na pewno chcesz usunąć %s?",
-        "removeError": "Nie udało się usunąć stanu.",
-        "removeJoiner": "oraz",
+        "removeError": "Błąd podczas usuwania stanu.",
+        "removeJoiner": "i",
         "removeSubmit": "Usuń",
         "removeTitle": "Usuń stan",
         "renameButton": "Zmień nazwę",

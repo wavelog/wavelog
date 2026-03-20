@@ -82,5 +82,6 @@
 		<?= __("Spanish"); ?>
 		<?= __("Swedish"); ?>
 		<?= __("Turkish"); ?>
+    	<?= __("Ukrainian"); ?>
 	</div>
 </footer>

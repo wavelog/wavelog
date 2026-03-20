@@ -119,6 +119,11 @@
                             <td><?= __("MySQL Version"); ?></td>
                             <td><?php echo $this->db->version(); ?></td>
                         </tr>
+
+                        <tr>
+                            <td><?= __("OpenSSL Version"); ?></td>
+                            <td><?php echo OPENSSL_VERSION_TEXT ?? __("not found"); ?></td>
+                        </tr>
                         <tr>
                             <td><?= __("Codeigniter Version"); ?></td>
                             <td><?php echo CI_VERSION; ?></td>
@@ -864,4 +869,5 @@
     <?= __("Spanish"); ?>
     <?= __("Swedish"); ?>
     <?= __("Turkish"); ?>
+    <?= __("Ukrainian"); ?>
 </div>

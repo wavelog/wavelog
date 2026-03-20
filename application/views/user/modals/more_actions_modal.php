@@ -34,7 +34,7 @@
                     </button>
                     <?php } ?>
                     
-                    <?php if (!$is_clubstation) { ?>
+                    <?php if (!$is_clubstation && $auth_header_allow_direct_login) { ?>
                     <button class="btn btn-primary mb-2" data-bs-target="#passwordResetModal" data-bs-toggle="modal">
                         <i class="fas fa-key"></i> <?= __("Send a Password Reset Link via Email"); ?>
                     </button>

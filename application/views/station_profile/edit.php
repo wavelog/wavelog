@@ -54,6 +54,7 @@ if ($dxcc_list->result() > 0) {
 	?>
 		<form method="post" action="<?php echo site_url('station/edit/'); ?><?php echo $my_station_profile->station_id; ?>" name="create_profile">
 			<input type="hidden" name="station_id" value="<?php echo $my_station_profile->station_id; ?>">
+			<input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
 
 	<?php } else {
 		$form_action = __("Create");

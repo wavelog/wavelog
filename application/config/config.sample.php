@@ -111,6 +111,19 @@ $config['auth_level'][99] = 'Administrator';
 
 /*
 |--------------------------------------------------------------------------
+| Third-Party Authentication (SSO)
+|--------------------------------------------------------------------------
+|
+| Enable SSO support via a trusted HTTP header containing a JWT access token.
+| When enabled, a sso.php config file is required (see sso.sample.php).
+|
+| Documentation: https://docs.wavelog.org/admin-guide/configuration/thirdparty-authentication/
+*/
+
+$config['auth_header_enable'] = false;
+
+/*
+|--------------------------------------------------------------------------
 | Base Site URL
 |--------------------------------------------------------------------------
 |
@@ -547,7 +560,7 @@ $config['sess_gc_divisor'] = 1000;
 | 'cookie_domain'   = Set to .your-domain.com for site-wide cookies
 | 'cookie_path'     = Typically will be a forward slash
 | 'cookie_secure'   = Cookie will only be set if a secure HTTPS connection exists.
-| 'cookie_httponly' = Cookie will only be accessible via HTTP(S) (no javascript)
+| 'cookie_samesite' = Cookie SameSite attribute (None, Lax, Strict)
 |
 | Note: These settings (with the exception of 'cookie_prefix' and
 |       'cookie_httponly') will also affect sessions.
@@ -557,7 +570,7 @@ $config['cookie_prefix']	= '';
 $config['cookie_domain']	= '';
 $config['cookie_path']		= '/';
 $config['cookie_secure']	= FALSE;
-$config['cookie_httponly'] 	= FALSE;
+$config['cookie_samesite']  = 'Lax';
 
 /*
 |--------------------------------------------------------------------------
@@ -903,7 +916,6 @@ $config['enable_dxcluster_file_cache_worked'] = false;
 |--------------------------------------------------------------------------
  */
 $config['dxcluster_refresh_time'] = 30;
-
 
 /*
 |--------------------------------------------------------------------------

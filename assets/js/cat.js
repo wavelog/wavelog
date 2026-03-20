@@ -132,7 +132,7 @@ $(document).ready(function() {
                 reconnectAttempts = 0;
                 websocketEnabled = true;
                 activeWebSocketProtocol = protocol; // Remember which protocol worked
-                
+
                 // Debug log if connected in Hybrid/Auto mode
                 if (isHybridMode) {
                     console.log("CAT: Hybrid WebSocket connected successfully.");
@@ -1098,6 +1098,11 @@ $(document).ready(function() {
 
         cat2UI($mode,newMode,false,false);
 
+        // Update winkey visibility directly
+        if (typeof updateWinkeyVisibility === 'function') {
+            updateWinkeyVisibility(newMode);
+        }
+
         // Update RST fields when mode changes
         // Check if mode was actually updated (catValue changed after cat2UI call)
         var currentMode = $mode.data('catValue');
@@ -1295,7 +1300,7 @@ $(document).ready(function() {
             reconnectAttempts = 0; // Reset reconnect attempts
             hasTriedWsFallback = false; // Reset WSS failover state - try WSS first again
             isHybridMode = false; // Explicitly NOT hybrid
-            
+
             // Set DX Waterfall CAT state to websocket if variable exists
             if (typeof dxwaterfall_cat_state !== 'undefined') {
                 dxwaterfall_cat_state = "websocket";
@@ -1314,7 +1319,7 @@ $(document).ready(function() {
                 dxwaterfall_cat_state = "polling";
             }
             $('#toggleCatTracking').prop('disabled', false).removeClass('disabled');
-            
+
             // Start standard polling
             CATInterval = setInterval(updateFromCAT, CAT_CONFIG.POLL_INTERVAL);
 
@@ -1325,7 +1330,7 @@ $(document).ready(function() {
             reconnectAttempts = 0;
             hasTriedWsFallback = false;
             isHybridMode = true; // Activate Hybrid Mode restrictions (limited retries, no UI errors)
-            
+
             initializeWebSocketConnection();
 
             if ((window.CAT_COMPACT_MODE === 'ultra-compact' || window.CAT_COMPACT_MODE === 'icon-only') && typeof window.isCatTrackingEnabled !== 'undefined' && !window.isCatTrackingEnabled) {
@@ -1343,7 +1348,7 @@ $(document).ready(function() {
 	/**
      * Broadcast Callsign Lookup Result via WebSocket
      * Triggered when Wavelog completes a callsign lookup.
-     * 
+     *
      * @param {object} data - The lookup data object
      */
     window.broadcastLookupResult = function(data) {
@@ -1381,5 +1386,5 @@ $(document).ready(function() {
         } catch (error) {
             console.warn('Failed to broadcast lookup result:', error);
         }
-    };	
+    };
 });

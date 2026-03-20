@@ -26,8 +26,27 @@ class Logbookadvanced_model extends CI_Model {
 			$conditions[] = "COL_PROP_MODE = 'SAT' and COL_SAT_NAME <> '' and COL_SAT_NAME is not null";
 		}
 
-		$id_sql .= " from " . $this->config->item('table_name') . "
-			join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id where station_profile.user_id = ?";
+		if (isset($searchCriteria['de']) && $searchCriteria['de'] == '') {
+			$stationids = 'null';
+		} else {
+			// Sanitize station IDs to prevent SQL injection
+			$de_array = is_array($searchCriteria['de']) ? $searchCriteria['de'] : [$searchCriteria['de']];
+			$sanitized_ids = array_map('intval', $de_array);
+			$sanitized_ids = array_filter($sanitized_ids, function($id) {
+				return $id > 0;
+			});
+			if (!empty($sanitized_ids)) {
+				$stationids = implode(',', $sanitized_ids);
+			} else {
+				$stationids = 'null';
+			}
+		}
+		$conditions[] = "qsos.station_id in (".$stationids.")";
+		$dupeWhere = " and qsos.station_id in (".$stationids.") ";
+
+		$id_sql .= " from " . $this->config->item('table_name') . " qsos
+			join station_profile on qsos.station_id = station_profile.station_id where station_profile.user_id = ?";
+		$id_sql .= $dupeWhere;
 
 		$id_sql .= "group by COL_CALL, station_callsign";
 		$id_sql .= $group_by_append;

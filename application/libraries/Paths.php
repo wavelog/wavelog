@@ -33,14 +33,35 @@ class Paths
         return $datadir . "/" . $path;
 	}
 
+    /**
+     * Generate a CSRF token, store it in the session under $key, and return it
+     * for injection into view data.
+     */
+    function csrf_generate($key) {
+        $CI = &get_instance();
+        $token = bin2hex(random_bytes(32));
+        $CI->session->set_userdata($key, $token);
+        return $token;
+    }
+
+    /**
+     * Verify the submitted csrf_token POST field against the session value for
+     * $key. Rotates the token on success. Returns true on success, false on failure.
+     */
+    function csrf_verify($key) {
+        $CI = &get_instance();
+        $submitted = $CI->input->post('csrf_token', TRUE);
+        $stored    = $CI->session->userdata($key);
+        if (empty($submitted) || empty($stored) || !hash_equals($stored, $submitted)) {
+            return false;
+        }
+        $CI->session->set_userdata($key, bin2hex(random_bytes(32)));
+        return true;
+    }
+
     function cache_buster($filepath) {
         // make sure $filepath starts with a slash
         if (substr($filepath, 0, 1) !== '/') $filepath = '/' . $filepath;
-
-        // These files are not existent on purpose and should not trigger error logs
-        $err_exceptions = [
-            '/assets/json/datatables_languages/en-US.json',
-        ];
 
         $CI = & get_instance();
 		$fullpath = empty($CI->config->item('directory')) ? $_SERVER['DOCUMENT_ROOT'] . $filepath : $_SERVER['DOCUMENT_ROOT'] . '/' . $CI->config->item('directory') . $filepath;
@@ -52,9 +73,7 @@ class Paths
         if (file_exists($fullpath)) {
             return base_url($filepath) . '?v=' . filemtime($fullpath);
         } else {
-            if (!in_array($filepath, $err_exceptions)) {
-                log_message('error', 'CACHE BUSTER: File does not exist: ' . $fullpath);
-            }
+            log_message('error', 'CACHE BUSTER: File does not exist: ' . $fullpath);
         }
         return base_url($filepath);
     }

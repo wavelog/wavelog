@@ -64,6 +64,7 @@
              ?>
             <form method="post" action="<?php echo site_url('user/login'); ?>" name="users">
                 <?php $this->form_validation->set_error_delimiters('', ''); ?>
+                <?php if (!$hide_login_form) { ?>
                 <input type="hidden" name="id" value="<?php echo $this->uri->segment(3); ?>" />
                 <div class="mb-2">
                     <label for="floatingInput"><strong><?= __("Username"); ?></strong></label>
@@ -87,8 +88,17 @@
                         </div>
                     </div>
                 </div>
+                <button class="w-100 btn btn-primary mb-2" type="submit"><?= __("Login"); ?> →</button>
+                <?php } ?>
+                <?php  // only show if header auth enabled
+                    if ($auth_header_enable == true) { ?>
+                    <div class="mb-2">  
+                        <a href="<?php echo site_url('header_auth/login'); ?>" class="btn btn-secondary w-100">  
+                            <?= $auth_header_text; ?>  
+                        </a>  
+                    </div>  
+                <?php } ?>
                 <?php $this->load->view('layout/messages'); ?>
-                <button class="w-100 btn btn-primary" type="submit"><?= __("Login"); ?> →</button>
             </form>
         </div>
     </div>

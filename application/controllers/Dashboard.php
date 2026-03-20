@@ -7,7 +7,6 @@ class Dashboard extends CI_Controller {
 
 		$this->load->model('user_model');
 		if (!$this->user_model->authorize(2)) {
-			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('user/login');
 		}
 	}
@@ -35,7 +34,7 @@ class Dashboard extends CI_Controller {
 			$data['active_not_linked']=false;
 		}
 
-		if ($logbooks_locations_array[0] == -1) {
+		if ($logbooks_locations_array[0] === -1) {
 			$data['linkedCount']=0;
 		} else {
 			$data['linkedCount']=sizeof($logbooks_locations_array);

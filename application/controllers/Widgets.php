@@ -60,7 +60,7 @@ class Widgets extends CI_Controller {
 				// Get associated station locations for mysql queries
 				$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($logbook_id);
 
-				if (!$logbooks_locations_array) {
+				if ($logbooks_locations_array[0] === -1) {
 					show_404(__("Empty Logbook"));
 				}
 			} else {

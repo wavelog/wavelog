@@ -42,6 +42,9 @@ class Satellite_model extends CI_Model {
 	function get_last_worked_sat() {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		if ($logbooks_locations_array[0] === -1) {
+			return null;
+		}
 		$location_list = "'" . implode("','", $logbooks_locations_array) . "'";
 		$sql = "select COL_SAT_NAME as sat from " . $this->config->item('table_name') .
 			" where station_id in (" . $location_list . ")" .

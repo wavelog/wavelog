@@ -1,495 +1,495 @@
-// Lets see if CW is selected
-const ModeSelected = document.getElementById('mode');
+$(document).ready(function() {
+    // Lets see if CW is selected
+    const ModeSelected = document.getElementById('mode');
 
-$('#winkey_buttons').hide();
+	$('#winkey_buttons').hide();
 
-if (location.protocol == 'http:') {
-    // Do something if the page is being served over SSL
-    $('#winkey').hide(); // Hide the CW buttons
-}
+	if (location.protocol == 'http:') {
+		// Do something if the page is being served over SSL
+		$('#winkey').hide(); // Hide the CW buttons
+	}
 
-if (ModeSelected.value == 'CW') {
-    // Show the CW buttons
-    $('#winkey').show();
-} else {
-    // Hide the CW buttons
-    $('#winkey').hide();
-}
+	// Function to update winkey visibility based on mode
+	// Can be called directly from other scripts (e.g., cat.js)
+	window.updateWinkeyVisibility = function(mode) {
+		if (mode == 'CW') {
+			$('#winkey').show();
+		} else {
+			$('#winkey').hide();
+		}
+	};
 
-ModeSelected.addEventListener('change', (event) => {
+	// Initial check
+	updateWinkeyVisibility(ModeSelected.value);
 
-    if (event.target.value == 'CW') {
-        // Show the CW buttons
-        $('#winkey').show();
+	// Listen for manual changes from dropdown
+	ModeSelected.addEventListener('change', (event) => {
+		updateWinkeyVisibility(event.target.value);
+	});
 
-    } else {
-        // Hide the CW buttons
-        $('#winkey').hide();
-    }
-});
+	$('#winkeycwspeed').change(function (event) {
+		// Get the value from the input
+		let speed = parseInt($('#winkeycwspeed').val(), 10);
 
-$('#winkeycwspeed').change(function (event) {
-	// Get the value from the input
-	let speed = parseInt($('#winkeycwspeed').val(), 10);
+		// Convert to hexadecimal and pad if necessary
+		let hexspeed = speed.toString(16).padStart(2, '0');
 
-	// Convert to hexadecimal and pad if necessary
-	let hexspeed = speed.toString(16).padStart(2, '0');
+		// Create the command
+		let command = `02 ${hexspeed}`;
 
-	// Create the command
-	let command = `02 ${hexspeed}`;
+		// Send the command as hex bytes
+		sendHexToSerial(command);
+	});
 
-	// Send the command as hex bytes
-    sendHexToSerial(command);
-});
+	let function1Name, function1Macro, function2Name, function2Macro, function3Name, function3Macro, function4Name, function4Macro, function5Name, function5Macro, function6Name, function6Macro, function7Name, function7Macro, function8Name, function8Macro, function9Name, function9Macro, function10Name, function10Macro;
 
-let function1Name, function1Macro, function2Name, function2Macro, function3Name, function3Macro, function4Name, function4Macro, function5Name, function5Macro, function6Name, function6Macro, function7Name, function7Macro, function8Name, function8Macro, function9Name, function9Macro, function10Name, function10Macro;
+	getMacros();
 
-getMacros();
+	document.addEventListener('keydown', function(event) {
 
-document.addEventListener('keydown', function(event) {
-
-    if (event.key === 'F1') {
-        event.preventDefault();
-        morsekey_func1();
-    }
-
-    if (event.key === 'F2') {
-        event.preventDefault();
-        morsekey_func2();
-    }
-
-    if (event.key === 'F3') {
-        event.preventDefault();
-        morsekey_func3();
-    }
-
-    if (event.key === 'F4') {
-        event.preventDefault();
-        morsekey_func4();
-    }
-
-    if (event.key === 'F5') {
-        event.preventDefault();
-        morsekey_func5();
-    }
-
-    if (event.key === 'F6') {
-        event.preventDefault();
-        morsekey_func6();
-    }
-
-    if (event.key === 'F7') {
-        event.preventDefault();
-        morsekey_func7();
-    }
-
-    if (event.key === 'F8') {
-        event.preventDefault();
-        morsekey_func8();
-    }
-
-    if (event.key === 'F9') {
-        event.preventDefault();
-        morsekey_func9();
-    }
-
-    if (event.key === 'F10') {
-        event.preventDefault();
-        morsekey_func10();
-    }
-  });
-
-let sendText = document.getElementById("sendText");
-let sendButton = document.getElementById("sendButton");
-let receiveText = document.getElementById("receiveText");
-let connectButton = document.getElementById("connectButton");
-let statusBar = document.getElementById("statusBar");
-
-//Couple the elements to the Events
-connectButton.addEventListener("click", clickConnect);
-sendButton.addEventListener("click", clickSend);
-
-//When the connectButton is pressed
-async function clickConnect() {
-    if (port) {
-        //if already connected, disconnect
-        disconnect();
-        $('#winkey_buttons').hide();
-    } else {
-        //otherwise connect
-        await connect();
-        $('#winkey_buttons').show();
-    }
-}
-
-//Define outputstream, inputstream and port so they can be used throughout the sketch
-var outputStream, inputStream, port;
-navigator.serial.addEventListener('connect', e => {
-    statusBar.innerText = `Connected to ${e.port}`;
-    connectButton.innerText = "Disconnect"
-});
-
-navigator.serial.addEventListener('disconnect', e => {
-    statusBar.innerText = `Disconnected`;
-    connectButton.innerText = "Connect"
-});
-
-let debug              = 0;
-let speed              = 24;
-let minSpeed           = 20;
-let maxSpeed           = 40;
-
-//Connect to the serial
-async function connect() {
-
-    //Optional filter to only see relevant boards
-    const filter = {
-        usbVendorId: 0x2341 // Arduino SA
-    };
-
-    //Try to connect to the Serial port
-    try {
-        port = await navigator.serial.requestPort(/*{ filters: [filter] }*/);
-        // Continue connecting to |port|.
-
-        // - Wait for the port to open.
-        await port.open({ baudRate: 1200 });
-        await port.setSignals({ dataTerminalReady: true });
-
-        statusBar.innerText = "Connected";
-        connectButton.innerText = "Disconnect"
-
-        let decoder = new TextDecoderStream();
-        inputDone = port.readable.pipeTo(decoder.writable);
-        inputStream = decoder.readable;
-
-		// Keyer init
-		sendHexToSerial("00 02");
-		await delay(300); // Wait for 300ms
-        sendHexToSerial("02 00");
-		await delay(300); // Wait for 300ms
-		sendHexToSerial("02 14"); // init 20 wpm
-
-        $('#winkey_buttons').show();
-
-        reader = inputStream.getReader();
-        readLoop();
-    } catch (e) {
-        //If the pipeTo error appears; clarify the problem by giving suggestions.
-        if (e == "TypeError: Cannot read property 'pipeTo' of undefined") {
-            e += "\n Use Google Chrome and enable-experimental-web-platform-features"
-        }
-        connectButton.innerText = "Connect"
-        statusBar.innerText = e;
-    }
-}
-
-function stop_cw_sending() {
-	sendHexToSerial("0A");
-	$("#send_carrier").attr("hidden", false);
-	$("#stop_carrier").attr("hidden", true);
-}
-
-function send_carrier() {
-	sendHexToSerial("0B 01");
-	$("#send_carrier").attr("hidden", true);
-	$("#stop_carrier").attr("hidden", false);
-}
-
-function stop_carrier() {
-	sendHexToSerial("0B 00");
-	$("#send_carrier").attr("hidden", false);
-	$("#stop_carrier").attr("hidden", true);
-}
-
-function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-// Helper function to convert a hex string to a Uint8Array
-function hexStringToUint8Array(hexString) {
-    // Remove any spaces or non-hex characters
-    hexString = hexString.replace(/[^0-9a-f]/gi, '');
-
-    // Ensure the string has an even length
-    if (hexString.length % 2 !== 0) {
-        console.warn('Hex string has an odd length, padding with a leading zero.');
-        hexString = '0' + hexString;
-    }
-
-    const byteArray = new Uint8Array(hexString.length / 2);
-
-    for (let i = 0; i < hexString.length; i += 2) {
-        byteArray[i / 2] = parseInt(hexString.substr(i, 2), 16);
-    }
-
-    return byteArray;
-}
-
-async function sendHexToSerial(hexString) {
-    if (port && port.writable) {
-        // Convert the hex string to a Uint8Array
-        const byteArray = hexStringToUint8Array(hexString);
-
-        // Create a writer from the writable stream
-        const writer = port.writable.getWriter();
-
-        try {
-            // Write the byte array to the serial port
-            await writer.write(byteArray);
-        } catch (error) {
-            console.error('Error writing to serial port:', error);
-        } finally {
-            // Release the lock on the writer
-            writer.releaseLock();
-        }
-    } else {
-        console.error('Port is not available or writable.');
-    }
-}
-
-//Write to the Serial port
-async function writeToStream(line) {
-    const outputStream = port.writable.getWriter();
-
-    // Convert the text to a Uint8Array
-    const encoder = new TextEncoder();
-    const buffer = encoder.encode(line.toUpperCase());
-
-    // Write the Uint8Array to the serial port
-    await outputStream.write(buffer);
-
-    // Release the stream lock
-    outputStream.releaseLock();
-}
-
-//Disconnect from the Serial port
-async function disconnect() {
-	sendHexToSerial("00 03");
-
-    if (reader) {
-        await reader.cancel();
-        await inputDone.catch(() => { });
-        reader = null;
-        inputDone = null;
-    }
-    if (outputStream) {
-        await outputStream.getWriter().close();
-        await outputDone;
-        outputStream = null;
-        outputDone = null;
-    }
-    statusBar.innerText = "Disconnected";
-    connectButton.innerText = "Connect"
-    //Close the port.
-    await port.close();
-    port = null;
-}
-
-//When the send button is pressed
-function clickSend() {
-    writeToStream(sendText.value.replaceAll('Ø', '0')).then(function() {
-        // writeToStream("\r");
-        //and clear the input field, so it's clear it has been sent
-        $('#sendText').val('');
-    });
-
-}
-
-function morsekey_func1() {
-    writeToStream(UpdateMacros(function1Macro));
-    //and clear the input field, so it's clear it has been sent
-    sendText.value = "";
-}
-
-function morsekey_func2() {
-    writeToStream(UpdateMacros(function2Macro));
-    sendText.value = "";
-}
-
-function morsekey_func3() {
-    writeToStream(UpdateMacros(function3Macro));
-    sendText.value = "";
-}
-
-function morsekey_func4() {
-    writeToStream(UpdateMacros(function4Macro));
-    sendText.value = "";
-}
-
-function morsekey_func5() {
-    writeToStream(UpdateMacros(function5Macro));
-    sendText.value = "";
-}
-
-function morsekey_func6() {
-    writeToStream(UpdateMacros(function6Macro));
-    sendText.value = "";
-}
-
-function morsekey_func7() {
-    writeToStream(UpdateMacros(function7Macro));
-    sendText.value = "";
-}
-
-function morsekey_func8() {
-    writeToStream(UpdateMacros(function8Macro));
-    sendText.value = "";
-}
-
-function morsekey_func9() {
-    writeToStream(UpdateMacros(function9Macro));
-    sendText.value = "";
-}
-
-function morsekey_func10() {
-    writeToStream(UpdateMacros(function10Macro));
-    sendText.value = "";
-}
-
-
-
-//Read the incoming data
-async function readLoop() {
-    while (true) {
-        const { value, done } = await reader.read();
-        if (done === true){
-            break;
-        }
-
-        //When recieved something add it to the big textarea
-        receiveText.value += value;
-        //Scroll to the bottom of the text field
-        receiveText.scrollTop = receiveText.scrollHeight;
-    }
-}
-
-function UpdateMacros(macrotext) {
-
-    // Get the values from the form set to uppercase
-    let CALL = document.getElementById("callsign").value.toUpperCase();
-	CALL = CALL.replaceAll('Ø', '0');
-    let RSTS = document.getElementById("rst_sent").value;
-
-    let newString;
-	my_call = my_call.replaceAll('Ø', '0');
-    newString = macrotext.replace(/\[MYCALL\]/g, station_callsign);
-    newString = newString.replace(/\[CALL\]/g, CALL);
-    newString = newString.replace(/\[RSTS\]/g, RSTS);
-    return newString;
-}
-
-// Call url and store the returned json data as variables
-function getMacros() {
-    fetch(base_url + 'index.php/qso/cwmacros_json')
-    .then(response => response.json())
-    .then(data => {
-		// Check if all fields are empty
-        const allEmpty = Object.values(data).every(value => value === "");
-
-		if (allEmpty) {
-            // Set default values
-            function1Name = 'CQ';
-            function1Macro = 'CQ CQ CQ DE [MYCALL] [MYCALL] K';
-            function2Name = 'REPT';
-            function2Macro = '[CALL] DE [MYCALL] [RSTS] [RSTS] K';
-            function3Name = 'TU';
-            function3Macro = '[CALL] TU 73 DE [MYCALL] K';
-            function4Name = 'QRZ';
-            function4Macro = 'QRZ DE [MYCALL] K';
-            function5Name = 'TEST';
-            function5Macro = 'TEST DE [MYCALL] K';
-        } else {
-			function1Name = data.function1_name;
-			function1Macro = data.function1_macro;
-			function2Name = data.function2_name;
-			function2Macro = data.function2_macro;
-			function3Name = data.function3_name;
-			function3Macro = data.function3_macro;
-			function4Name = data.function4_name;
-			function4Macro = data.function4_macro;
-			function5Name = data.function5_name;
-			function5Macro = data.function5_macro;
-			function6Name = data.function6_name;
-			function6Macro = data.function6_macro;
-			function7Name = data.function7_name;
-			function7Macro = data.function7_macro;
-			function8Name = data.function8_name;
-			function8Macro = data.function8_macro;
-			function9Name = data.function9_name;
-			function9Macro = data.function9_macro;
-			function10Name = data.function10_name;
-			function10Macro = data.function10_macro;
+		if (event.key === 'F1') {
+			event.preventDefault();
+			morsekey_func1();
 		}
 
-        const morsekey_func1_Button = document.getElementById('morsekey_func1');
-        morsekey_func1_Button.textContent = 'F1 (' + function1Name + ')';
+		if (event.key === 'F2') {
+			event.preventDefault();
+			morsekey_func2();
+		}
 
-        const morsekey_func2_Button = document.getElementById('morsekey_func2');
-        morsekey_func2_Button.textContent = 'F2 (' + function2Name + ')';
+		if (event.key === 'F3') {
+			event.preventDefault();
+			morsekey_func3();
+		}
 
-        const morsekey_func3_Button = document.getElementById('morsekey_func3');
-        morsekey_func3_Button.textContent = 'F3 (' + function3Name + ')';
+		if (event.key === 'F4') {
+			event.preventDefault();
+			morsekey_func4();
+		}
 
-        const morsekey_func4_Button = document.getElementById('morsekey_func4');
-        morsekey_func4_Button.textContent = 'F4 (' + function4Name + ')';
+		if (event.key === 'F5') {
+			event.preventDefault();
+			morsekey_func5();
+		}
 
-        const morsekey_func5_Button = document.getElementById('morsekey_func5');
-        morsekey_func5_Button.textContent = 'F5 (' + function5Name + ')';
+		if (event.key === 'F6') {
+			event.preventDefault();
+			morsekey_func6();
+		}
 
-		const morsekey_func6_Button = document.getElementById('morsekey_func6');
-        morsekey_func6_Button.textContent = 'F6 (' + function6Name + ')';
+		if (event.key === 'F7') {
+			event.preventDefault();
+			morsekey_func7();
+		}
 
-		const morsekey_func7_Button = document.getElementById('morsekey_func7');
-        morsekey_func7_Button.textContent = 'F7 (' + function7Name + ')';
+		if (event.key === 'F8') {
+			event.preventDefault();
+			morsekey_func8();
+		}
 
-		const morsekey_func8_Button = document.getElementById('morsekey_func8');
-        morsekey_func8_Button.textContent = 'F8 (' + function8Name + ')';
+		if (event.key === 'F9') {
+			event.preventDefault();
+			morsekey_func9();
+		}
 
-		const morsekey_func9_Button = document.getElementById('morsekey_func9');
-        morsekey_func9_Button.textContent = 'F9 (' + function9Name + ')';
+		if (event.key === 'F10') {
+			event.preventDefault();
+			morsekey_func10();
+		}
+	});
 
-		const morsekey_func10_Button = document.getElementById('morsekey_func10');
-        morsekey_func10_Button.textContent = 'F10 (' + function10Name + ')';
-    });
-}
+	let sendText = document.getElementById("sendText");
+	let sendButton = document.getElementById("sendButton");
+	let receiveText = document.getElementById("receiveText");
+	let connectButton = document.getElementById("connectButton");
+	let statusBar = document.getElementById("statusBar");
 
-$('#winkey_settings').click(function (event) {
-	$.ajax({
-		url: base_url + 'index.php/qso/winkeysettings',
-		type: 'post',
-		success: function (html) {
-			BootstrapDialog.show({
-				title: 'Winkey Macros',
-				size: BootstrapDialog.SIZE_NORMAL,
-				cssClass: 'options',
-				nl2br: false,
-				message: html,
-				onshown: function(dialog) {
-				},
-				buttons: [{
-					label: 'Save',
-					cssClass: 'btn-primary btn-sm',
-					id: 'saveButton',
-					action: function (dialogItself) {
-						winkey_macro_save();
-						dialogItself.close();
-					}
-				},
-				{
-					label: lang_admin_close,
-					cssClass: 'btn-sm',
-					id: 'closeButton',
-					action: function (dialogItself) {
+	//Couple the elements to the Events
+	connectButton.addEventListener("click", clickConnect);
+	sendButton.addEventListener("click", clickSend);
+
+	//When the connectButton is pressed
+	async function clickConnect() {
+		if (port) {
+			//if already connected, disconnect
+			disconnect();
+			$('#winkey_buttons').hide();
+		} else {
+			//otherwise connect
+			await connect();
+			$('#winkey_buttons').show();
+		}
+	}
+
+	//Define outputstream, inputstream and port so they can be used throughout the sketch
+	var outputStream, inputStream, port;
+	navigator.serial.addEventListener('connect', e => {
+		statusBar.innerText = `Connected to ${e.port}`;
+		connectButton.innerText = "Disconnect"
+	});
+
+	navigator.serial.addEventListener('disconnect', e => {
+		statusBar.innerText = `Disconnected`;
+		connectButton.innerText = "Connect"
+	});
+
+	let debug              = 0;
+	let speed              = 24;
+	let minSpeed           = 20;
+	let maxSpeed           = 40;
+
+	//Connect to the serial
+	async function connect() {
+
+		//Optional filter to only see relevant boards
+		const filter = {
+			usbVendorId: 0x2341 // Arduino SA
+		};
+
+		//Try to connect to the Serial port
+		try {
+			port = await navigator.serial.requestPort(/*{ filters: [filter] }*/);
+			// Continue connecting to |port|.
+
+			// - Wait for the port to open.
+			await port.open({ baudRate: 1200 });
+			await port.setSignals({ dataTerminalReady: true });
+
+			statusBar.innerText = "Connected";
+			connectButton.innerText = "Disconnect"
+
+			let decoder = new TextDecoderStream();
+			inputDone = port.readable.pipeTo(decoder.writable);
+			inputStream = decoder.readable;
+
+			// Keyer init
+			sendHexToSerial("00 02");
+			await delay(300); // Wait for 300ms
+			sendHexToSerial("02 00");
+			await delay(300); // Wait for 300ms
+			sendHexToSerial("02 14"); // init 20 wpm
+
+			$('#winkey_buttons').show();
+
+			reader = inputStream.getReader();
+			readLoop();
+		} catch (e) {
+			//If the pipeTo error appears; clarify the problem by giving suggestions.
+			if (e == "TypeError: Cannot read property 'pipeTo' of undefined") {
+				e += "\n Use Google Chrome and enable-experimental-web-platform-features"
+			}
+			connectButton.innerText = "Connect"
+			statusBar.innerText = e;
+		}
+	}
+
+	function stop_cw_sending() {
+		sendHexToSerial("0A");
+		$("#send_carrier").attr("hidden", false);
+		$("#stop_carrier").attr("hidden", true);
+	}
+
+	function send_carrier() {
+		sendHexToSerial("0B 01");
+		$("#send_carrier").attr("hidden", true);
+		$("#stop_carrier").attr("hidden", false);
+	}
+
+	function stop_carrier() {
+		sendHexToSerial("0B 00");
+		$("#send_carrier").attr("hidden", false);
+		$("#stop_carrier").attr("hidden", true);
+	}
+
+	function delay(ms) {
+		return new Promise(resolve => setTimeout(resolve, ms));
+	}
+
+	// Helper function to convert a hex string to a Uint8Array
+	function hexStringToUint8Array(hexString) {
+		// Remove any spaces or non-hex characters
+		hexString = hexString.replace(/[^0-9a-f]/gi, '');
+
+		// Ensure the string has an even length
+		if (hexString.length % 2 !== 0) {
+			console.warn('Hex string has an odd length, padding with a leading zero.');
+			hexString = '0' + hexString;
+		}
+
+		const byteArray = new Uint8Array(hexString.length / 2);
+
+		for (let i = 0; i < hexString.length; i += 2) {
+			byteArray[i / 2] = parseInt(hexString.substr(i, 2), 16);
+		}
+
+		return byteArray;
+	}
+
+	async function sendHexToSerial(hexString) {
+		if (port && port.writable) {
+			// Convert the hex string to a Uint8Array
+			const byteArray = hexStringToUint8Array(hexString);
+
+			// Create a writer from the writable stream
+			const writer = port.writable.getWriter();
+
+			try {
+				// Write the byte array to the serial port
+				await writer.write(byteArray);
+			} catch (error) {
+				console.error('Error writing to serial port:', error);
+			} finally {
+				// Release the lock on the writer
+				writer.releaseLock();
+			}
+		} else {
+			console.error('Port is not available or writable.');
+		}
+	}
+
+	//Write to the Serial port
+	async function writeToStream(line) {
+		const outputStream = port.writable.getWriter();
+
+		// Convert the text to a Uint8Array
+		const encoder = new TextEncoder();
+		const buffer = encoder.encode(line.toUpperCase());
+
+		// Write the Uint8Array to the serial port
+		await outputStream.write(buffer);
+
+		// Release the stream lock
+		outputStream.releaseLock();
+	}
+
+	//Disconnect from the Serial port
+	async function disconnect() {
+		sendHexToSerial("00 03");
+
+		if (reader) {
+			await reader.cancel();
+			await inputDone.catch(() => { });
+			reader = null;
+			inputDone = null;
+		}
+		if (outputStream) {
+			await outputStream.getWriter().close();
+			await outputDone;
+			outputStream = null;
+			outputDone = null;
+		}
+		statusBar.innerText = "Disconnected";
+		connectButton.innerText = "Connect"
+		//Close the port.
+		await port.close();
+		port = null;
+	}
+
+	//When the send button is pressed
+	function clickSend() {
+		writeToStream(sendText.value.replaceAll('Ø', '0')).then(function() {
+			// writeToStream("\r");
+			//and clear the input field, so it's clear it has been sent
+			$('#sendText').val('');
+		});
+
+	}
+
+	function morsekey_func1() {
+		writeToStream(UpdateMacros(function1Macro));
+		//and clear the input field, so it's clear it has been sent
+		sendText.value = "";
+	}
+
+	function morsekey_func2() {
+		writeToStream(UpdateMacros(function2Macro));
+		sendText.value = "";
+	}
+
+	function morsekey_func3() {
+		writeToStream(UpdateMacros(function3Macro));
+		sendText.value = "";
+	}
+
+	function morsekey_func4() {
+		writeToStream(UpdateMacros(function4Macro));
+		sendText.value = "";
+	}
+
+	function morsekey_func5() {
+		writeToStream(UpdateMacros(function5Macro));
+		sendText.value = "";
+	}
+
+	function morsekey_func6() {
+		writeToStream(UpdateMacros(function6Macro));
+		sendText.value = "";
+	}
+
+	function morsekey_func7() {
+		writeToStream(UpdateMacros(function7Macro));
+		sendText.value = "";
+	}
+
+	function morsekey_func8() {
+		writeToStream(UpdateMacros(function8Macro));
+		sendText.value = "";
+	}
+
+	function morsekey_func9() {
+		writeToStream(UpdateMacros(function9Macro));
+		sendText.value = "";
+	}
+
+	function morsekey_func10() {
+		writeToStream(UpdateMacros(function10Macro));
+		sendText.value = "";
+	}
+
+
+
+	//Read the incoming data
+	async function readLoop() {
+		while (true) {
+			const { value, done } = await reader.read();
+			if (done === true){
+				break;
+			}
+
+			//When recieved something add it to the big textarea
+			receiveText.value += value;
+			//Scroll to the bottom of the text field
+			receiveText.scrollTop = receiveText.scrollHeight;
+		}
+	}
+
+	function UpdateMacros(macrotext) {
+
+		// Get the values from the form set to uppercase
+		let CALL = document.getElementById("callsign").value.toUpperCase();
+		CALL = CALL.replaceAll('Ø', '0');
+		let RSTS = document.getElementById("rst_sent").value;
+
+		let newString;
+		my_call = my_call.replaceAll('Ø', '0');
+		newString = macrotext.replace(/\[MYCALL\]/g, station_callsign);
+		newString = newString.replace(/\[CALL\]/g, CALL);
+		newString = newString.replace(/\[RSTS\]/g, RSTS);
+		return newString;
+	}
+
+	// Call url and store the returned json data as variables
+	function getMacros() {
+		fetch(base_url + 'index.php/qso/cwmacros_json')
+		.then(response => response.json())
+		.then(data => {
+			// Check if all fields are empty
+			const allEmpty = Object.values(data).every(value => value === "");
+
+			if (allEmpty) {
+				// Set default values
+				function1Name = 'CQ';
+				function1Macro = 'CQ CQ CQ DE [MYCALL] [MYCALL] K';
+				function2Name = 'REPT';
+				function2Macro = '[CALL] DE [MYCALL] [RSTS] [RSTS] K';
+				function3Name = 'TU';
+				function3Macro = '[CALL] TU 73 DE [MYCALL] K';
+				function4Name = 'QRZ';
+				function4Macro = 'QRZ DE [MYCALL] K';
+				function5Name = 'TEST';
+				function5Macro = 'TEST DE [MYCALL] K';
+			} else {
+				function1Name = data.function1_name;
+				function1Macro = data.function1_macro;
+				function2Name = data.function2_name;
+				function2Macro = data.function2_macro;
+				function3Name = data.function3_name;
+				function3Macro = data.function3_macro;
+				function4Name = data.function4_name;
+				function4Macro = data.function4_macro;
+				function5Name = data.function5_name;
+				function5Macro = data.function5_macro;
+				function6Name = data.function6_name;
+				function6Macro = data.function6_macro;
+				function7Name = data.function7_name;
+				function7Macro = data.function7_macro;
+				function8Name = data.function8_name;
+				function8Macro = data.function8_macro;
+				function9Name = data.function9_name;
+				function9Macro = data.function9_macro;
+				function10Name = data.function10_name;
+				function10Macro = data.function10_macro;
+			}
+
+			const morsekey_func1_Button = document.getElementById('morsekey_func1');
+			morsekey_func1_Button.textContent = 'F1 (' + function1Name + ')';
+
+			const morsekey_func2_Button = document.getElementById('morsekey_func2');
+			morsekey_func2_Button.textContent = 'F2 (' + function2Name + ')';
+
+			const morsekey_func3_Button = document.getElementById('morsekey_func3');
+			morsekey_func3_Button.textContent = 'F3 (' + function3Name + ')';
+
+			const morsekey_func4_Button = document.getElementById('morsekey_func4');
+			morsekey_func4_Button.textContent = 'F4 (' + function4Name + ')';
+
+			const morsekey_func5_Button = document.getElementById('morsekey_func5');
+			morsekey_func5_Button.textContent = 'F5 (' + function5Name + ')';
+
+			const morsekey_func6_Button = document.getElementById('morsekey_func6');
+			morsekey_func6_Button.textContent = 'F6 (' + function6Name + ')';
+
+			const morsekey_func7_Button = document.getElementById('morsekey_func7');
+			morsekey_func7_Button.textContent = 'F7 (' + function7Name + ')';
+
+			const morsekey_func8_Button = document.getElementById('morsekey_func8');
+			morsekey_func8_Button.textContent = 'F8 (' + function8Name + ')';
+
+			const morsekey_func9_Button = document.getElementById('morsekey_func9');
+			morsekey_func9_Button.textContent = 'F9 (' + function9Name + ')';
+
+			const morsekey_func10_Button = document.getElementById('morsekey_func10');
+			morsekey_func10_Button.textContent = 'F10 (' + function10Name + ')';
+		});
+	}
+
+	$('#winkey_settings').click(function (event) {
+		$.ajax({
+			url: base_url + 'index.php/qso/winkeysettings',
+			type: 'post',
+			success: function (html) {
+				BootstrapDialog.show({
+					title: 'Winkey Macros',
+					size: BootstrapDialog.SIZE_NORMAL,
+					cssClass: 'options',
+					nl2br: false,
+					message: html,
+					onshown: function(dialog) {
+					},
+					buttons: [{
+						label: 'Save',
+						cssClass: 'btn-primary btn-sm',
+						id: 'saveButton',
+						action: function (dialogItself) {
+							winkey_macro_save();
+							dialogItself.close();
+						}
+					},
+					{
+						label: lang_admin_close,
+						cssClass: 'btn-sm',
+						id: 'closeButton',
+						action: function (dialogItself) {
+							$('#optionButton').prop("disabled", false);
+							dialogItself.close();
+						}
+					}],
+					onhide: function(dialogRef){
 						$('#optionButton').prop("disabled", false);
-						dialogItself.close();
-					}
-				}],
-				onhide: function(dialogRef){
-					$('#optionButton').prop("disabled", false);
-				},
-			});
-		}
+					},
+				});
+			}
+		});
 	});
 });
 

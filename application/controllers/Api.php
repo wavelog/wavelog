@@ -74,23 +74,32 @@ class API extends CI_Controller {
 		} else {
 			// Success!
 
-			$this->api_model->update_key_description($this->input->post('api_key'), $this->input->post('api_desc'));
+			$this->api_model->update_key_description($this->input->post('api_key', true), $this->input->post('api_desc', true));
 
-			$this->session->set_flashdata('notice', sprintf(__("API Key %s description has been updated."), "<b>".$this->input->post('api_key')."</b>"));
+			$this->session->set_flashdata('notice', sprintf(__("API Key %s description has been updated."), "<b>" . htmlspecialchars($this->input->post('api_key', true), ENT_QUOTES, 'UTF-8') . "</b>"));
 
 			redirect('api');
 		}
 
 	}
 
-	function generate($rights) {
+	function generate() {
+		// CSRF mitigation: reject non-POST requests
+		if ($this->input->method() !== 'post') {
+			$this->session->set_flashdata('error', __("Invalid request method"));
+			redirect('api');
+			return;
+		}
+
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
+		$rights = $this->input->post('rights', TRUE);
 
 		if ($rights !== "r" && $rights !== "rw") {
 			$this->session->set_flashdata('error', __("Invalid API rights"));
 			redirect('api');
-			exit;
+			return;
 		}
 
 		$this->load->model('api_model');
@@ -109,16 +118,29 @@ class API extends CI_Controller {
 		redirect('api');
 	}
 
-	function delete($key) {
+	function delete() {
+		// CSRF mitigation: reject non-POST requests
+		if ($this->input->method() !== 'post') {
+			$this->session->set_flashdata('error', __("Invalid request method"));
+			redirect('api');
+			return;
+		}
+
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
+		$key = $this->input->post('key', TRUE);
+		if (empty($key)) {
+			$this->session->set_flashdata('error', __("Invalid API Key"));
+			redirect('api');
+			return;
+		}
 
 		$this->load->model('api_model');
 
 		$this->api_model->delete_key($key);
 
-		$this->session->set_flashdata('notice', sprintf(__("API Key %s has been deleted"), "<b>".$key."</b>" ));
+		$this->session->set_flashdata('notice', sprintf(__("API Key %s has been deleted"), "<b>" . htmlspecialchars($key, ENT_QUOTES, 'UTF-8') . "</b>" ));
 
 		redirect('api');
 	}
@@ -598,7 +620,7 @@ class API extends CI_Controller {
 					// Get associated station locations for mysql queries
 					$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($logbook_id);
 
-					if (!$logbooks_locations_array) {
+					if ($logbooks_locations_array[0] === -1) {
 						// Logbook not found
 						http_response_code(404);
 						echo json_encode(['status' => 'failed', 'reason' => "Empty Logbook"]);
@@ -684,7 +706,7 @@ class API extends CI_Controller {
 					// Get associated station locations for mysql queries
 					$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($logbook_id);
 
-					if (!$logbooks_locations_array) {
+					if ($logbooks_locations_array[0] === -1) {
 						// Logbook not found
 						http_response_code(404);
 						echo json_encode(['status' => 'failed', 'reason' => "Empty Logbook"]);
@@ -728,7 +750,7 @@ class API extends CI_Controller {
 
 	}
 
-	// API function to check if a grid is in the logbook already
+	// API function to get all worked grids for a band and confirmation method
 	function logbook_get_worked_grids() {
 		$arr = array();
 		header('Content-type: application/json');
@@ -748,13 +770,13 @@ class API extends CI_Controller {
 		   die();
 		}
 		$api_user_id = $this->api_model->key_userid($obj['key']);
-		if(!isset($obj['logbook_public_slug'])) {
+		if(!isset($obj['logbook_id'])) {
 		   http_response_code(400);
 		   echo json_encode(['status' => 'failed', 'reason' => "missing fields"]);
 			return;
 		}
-		if($obj['logbook_public_slug'] != "") {
-			$logbook_slug = $obj['logbook_public_slug'];
+		if($obj['logbook_id'] != "") {
+			$logbook_id = $obj['logbook_id'];
 			if(isset($obj['band'])) {
 				$band = $obj['band'];
 			} else {
@@ -766,38 +788,23 @@ class API extends CI_Controller {
 				$cnfm = null;
 			}
 			$this->load->model('logbooks_model');
-			if(!$this->logbooks_model->public_slug_belongs_to_user($logbook_slug, $api_user_id)) {
+			if(!$this->logbooks_model->logbook_id_belongs_to_user($logbook_id, $api_user_id)) {
 				http_response_code(403);
-				echo json_encode(['status' => 'failed', 'reason' => "logbook does not belong to this api key"]);
+				echo json_encode(['status' => 'failed', 'reason' => "logbook does not belong to this API key or logbook ID not found"]);
 				die();
 			}
-			if($this->logbooks_model->public_slug_exists($logbook_slug)) {
-				$logbook_id = $this->logbooks_model->public_slug_exists_logbook_id($logbook_slug);
-				if($logbook_id != false)
-				{
-					$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($logbook_id);
-					if (!$logbooks_locations_array) {
-						http_response_code(404);
-						echo json_encode(['status' => 'failed', 'reason' => "Empty Logbook"]);
-						die();
-					}
-				} else {
+			if ($this->logbooks_model->exists_logbook_id($logbook_id) != false) {
+				$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($logbook_id);
+				if ($logbooks_locations_array[0] === -1) {
 					http_response_code(404);
-					echo json_encode(['status' => 'failed', 'reason' => $logbook_slug." has no associated station locations"]);
+					echo json_encode(['status' => 'failed', 'reason' => "logbook with ID ".$logbook_id." has no associated station locations"]);
 					die();
+				} else {
+					$arr = $this->api_model->get_grids_worked_in_logbook($logbooks_locations_array, $band, $cnfm);
+					http_response_code(201);
+					echo json_encode($arr);
 				}
-				$this->load->model('logbook_model');
-
-				$arr = $this->api_model->get_grids_worked_in_logbook($logbooks_locations_array, $band, $cnfm);
-				http_response_code(201);
-				echo json_encode($arr);
-
-			} else {
-				http_response_code(404);
-				echo json_encode(['status' => 'failed', 'reason' => "logbook not found"]);
-				die();
 			}
-
 		}
 
 	}

@@ -105,7 +105,7 @@ class DxclusterCache {
 		$logbook_ids = $this->CI->logbooks_model->list_logbook_relationships($active_logbook);
 		$confirmation_prefs = $this->CI->session->userdata('user_default_confirmation') ?? '';
 
-		if (empty($logbook_ids)) return null;
+		if ($logbook_ids[0] === -1) return null;
 
 		return $this->get_logbook_key($user_id, $logbook_ids, $confirmation_prefs);
 	}

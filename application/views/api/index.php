@@ -78,7 +78,13 @@
 										<?php
 											$cfnm_delete = sprintf(__("Are you sure you want delete the API Key %s?"), '&quot;'.($row->description ?? '<noname>').'&quot;');
 										?>
-										<a href="<?php echo site_url('api/delete/' . $api_key); ?>" class="btn btn-danger btn-sm" onclick="return confirm('<?php echo $cfnm_delete; ?>');"><?= __("Delete"); ?></a>
+										<form method="post" action="<?php echo site_url('api/delete'); ?>" style="display:inline;">
+											<input type="hidden" name="key" value="<?php echo $api_key; ?>">
+											<button type="submit" class="btn btn-danger btn-sm"
+												onclick="return confirm('<?php echo $cfnm_delete; ?>');">
+												<?= __("Delete"); ?>
+											</button>
+										</form>
 									<?php } ?>
 								</td>
 
@@ -93,8 +99,18 @@
 			<?php } ?>
 
 			<p>
-				<a href="<?php echo site_url('api/generate/rw'); ?>" class="btn btn-primary "><i class="fas fa-plus"></i> <?= __("Create a read & write key"); ?></a>
-				<a href="<?php echo site_url('api/generate/r'); ?>" class="btn btn-primary"><i class="fas fa-plus"></i> <?= __("Create a read-only key"); ?></a>
+				<form method="post" action="<?php echo site_url('api/generate'); ?>" style="display:inline;">
+					<input type="hidden" name="rights" value="rw">
+					<button type="submit" class="btn btn-primary">
+						<i class="fas fa-plus"></i> <?= __("Create a read & write key"); ?>
+					</button>
+				</form>
+				<form method="post" action="<?php echo site_url('api/generate'); ?>" style="display:inline;">
+					<input type="hidden" name="rights" value="r">
+					<button type="submit" class="btn btn-primary">
+						<i class="fas fa-plus"></i> <?= __("Create a read-only key"); ?>
+					</button>
+				</form>
 			</p>
 
 		</div>

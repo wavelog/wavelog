@@ -11,6 +11,7 @@
 
 	    <form method="post" action="<?php echo site_url('user/delete')."/".$this->uri->segment(3); ?>" name="users">
 	    <input type="hidden" name="id" value="<?php echo $this->uri->segment(3); ?>" />
+	    <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>" />
 			<input class="btn btn-danger" type="submit" value="<?= __("Yes, delete this user"); ?>" /> <a href="<?php echo site_url('user'); ?>" class="btn btn-success"><?= __("No, do not delete this user"); ?></a>
 			</form>
 	  </div>

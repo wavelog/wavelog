@@ -10,6 +10,18 @@ DJ7NT - Docker Readiness - April 2024
 HB9HIL - Big UX and backend upgrade - July 2024
 */
 require_once('includes/install_config/install_lib.php');
+
+function convertToBytes(string $value): int {
+	$value = trim($value);
+	$num = (int) $value;
+	$unit = strtoupper(substr($value, -1));
+	switch ($unit) {
+		case 'G': return $num * 1024 * 1024 * 1024;
+		case 'M': return $num * 1024 * 1024;
+		case 'K': return $num * 1024;
+		default:  return $num;
+	}
+}
 $http_scheme = is_https() ? "https" : "http";
 
 $directory = ltrim(str_replace('/install', '', dirname($_SERVER['SCRIPT_NAME'])), '/');
@@ -171,7 +183,7 @@ if (!file_exists('.lock') && !file_exists('../application/config/config.php') &&
 													<td>
 														<?php
 														$maxUploadFileSize = ini_get('upload_max_filesize');
-														$maxUploadFileSizeBytes = (int)($maxUploadFileSize) * (1024 * 1024); // convert to bytes
+														$maxUploadFileSizeBytes = convertToBytes($maxUploadFileSize);
 														if ($maxUploadFileSizeBytes >= ($upload_max_filesize * 1024 * 1024)) { // compare with given value in bytes
 														?>
 															<span class="badge text-bg-success"><?php echo $maxUploadFileSize; ?></span>
@@ -190,7 +202,7 @@ if (!file_exists('.lock') && !file_exists('../application/config/config.php') &&
 													<td>
 														<?php
 														$maxUploadFileSize = ini_get('post_max_size');
-														$maxUploadFileSizeBytes = (int)($maxUploadFileSize) * (1024 * 1024); // convert to bytes
+														$maxUploadFileSizeBytes = convertToBytes($maxUploadFileSize);
 														if ($maxUploadFileSizeBytes >= ($post_max_size * 1024 * 1024)) { // compare with given value in bytes
 														?>
 															<span class="badge text-bg-success"><?php echo $maxUploadFileSize; ?></span>

@@ -350,7 +350,17 @@ $config['languages'] = array(
 		'direction' => 'ltr',
 		'code'      => 'tr',
 		'flag'      => 'tr',
-	)
+    ),
+    'ukrainian' => array(
+        'name'      => 'Українська',
+        'name_en'   => 'Ukrainian',
+        'folder'    => 'ukrainian',
+        'locale'    => 'uk',
+        'gettext'   => 'uk',
+        'direction' => 'ltr',
+        'code'      => 'uk',
+        'flag'      => 'ua',
+    )
 );
 
 /*

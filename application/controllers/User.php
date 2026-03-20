@@ -2,6 +2,8 @@
 
 class User extends CI_Controller {
 
+	private $pwd_placeholder = '**********';
+
 	public function index()
 	{
 		$this->load->model('user_model');
@@ -78,6 +80,11 @@ class User extends CI_Controller {
 		if ($this->user_model->exists_by_id($data['user_id']) && $modal != '') {
 			$user = $this->user_model->get_by_id($data['user_id'])->row();
 			$gettext = new Gettext;
+			
+			$data['auth_header_enable'] = $this->config->item('auth_header_enable') ?? false;
+			if ($data['auth_header_enable']) {
+				$this->config->load('sso', true, true);
+			}
 
 			$data['user_name'] = $user->user_name;
 			$data['user_callsign'] = $user->user_callsign;
@@ -90,6 +97,7 @@ class User extends CI_Controller {
 			$data['last_seen'] = $user->last_seen;
 			$data['custom_date_format'] = $custom_date_format;
 			$data['has_flossie'] = ($this->config->item('encryption_key') == 'flossie1234555541') ? true : false;
+			$data['auth_header_allow_direct_login'] = $this->config->item('auth_header_allow_direct_login', 'sso') ?? true;
 
 			$this->load->view('user/modals/'.$modal.'_modal', $data);
 		} else {
@@ -169,6 +177,14 @@ class User extends CI_Controller {
 
 		$data['clubstation'] = ($this->input->get('club') ?? '') == '1' ? true : false;
 
+		$data['external_account'] = NULL;
+		$data['auth_header_enable'] = $this->config->item('auth_header_enable') ?? false;
+		$data['auth_header_allow_direct_login']  = true;
+		$data['auth_header_hide_password_field'] = false;
+		$data['auth_header_locked_data_badge'] = "Not Visible In Add UI";
+		$data['auth_header_locked_data_tip'] = "You should not see this message";
+		$data['sso_claim_config'] = [];
+
 		// Get themes list
 		$data['themes'] = $this->user_model->getThemes();
 
@@ -192,6 +208,7 @@ class User extends CI_Controller {
 		if ($this->form_validation->run() == FALSE) {
 			$data['page_title'] = __("Add User");
 			$data['measurement_base'] = $this->config->item('measurement_base');
+			$data['csrf_token'] = $this->paths->csrf_generate($this->router->class.'_'.$this->router->method);
 
 			$this->load->view('interface_assets/header', $data);
 			if($this->input->post('user_name')) {
@@ -252,6 +269,12 @@ class User extends CI_Controller {
 			}
 			$this->load->view('interface_assets/footer', $footerData);
 		} else {
+			if (!$this->paths->csrf_verify($this->router->class.'_'.$this->router->method)) {
+				$this->session->set_flashdata('error', __("Invalid security token"));
+				redirect('user/add');
+				return;
+			}
+
 			switch($this->user_model->add($this->input->post('user_name'),
 				$this->input->post('user_password'),
 				$this->input->post('user_email'),
@@ -334,6 +357,7 @@ class User extends CI_Controller {
 					return;
 			}
 			$data['page_title'] = __("Users");
+			$data['csrf_token'] = $this->paths->csrf_generate($this->router->class.'_'.$this->router->method);
 
 			$this->load->view('interface_assets/header', $data);
 			$data['user_name'] = $this->input->post('user_name');
@@ -388,7 +412,6 @@ class User extends CI_Controller {
 		$query = $this->user_model->get_by_id($this->uri->segment(3));
 
 		$data['existing_languages'] = $this->config->item('languages');
-		$pwd_placeholder = '**********';
 
 		$this->load->model('bands');
 		$this->load->library('form_validation');
@@ -432,6 +455,19 @@ class User extends CI_Controller {
 		// Max value to be present in the "QSO page last QSO count" selectbox
 		$data['qso_page_last_qso_count_limit'] = QSO_PAGE_QSOS_COUNT_LIMIT;
 
+		// SSO / OIDC cases
+		$data['external_account'] = !empty($query->row()->external_account);
+		$data['auth_header_enable'] = $this->config->item('auth_header_enable') ?? false;
+		if ($data['auth_header_enable']) {
+			// expecting sso.php in the config folder
+			$this->config->load('sso', true, true);
+		}
+		$data['auth_header_allow_direct_login']  = $this->config->item('auth_header_allow_direct_login', 'sso') ?? true;
+		$data['auth_header_hide_password_field'] = $this->config->item('auth_header_hide_password_field', 'sso') ?? false;
+		$data['auth_header_locked_data_badge'] = $this->config->item('auth_header_locked_data_badge', 'sso') ?: 'IdP';
+		$data['auth_header_locked_data_tip'] = $this->config->item('auth_header_locked_data_tip', 'sso') ?: __("Can't be changed. Manage this through your Identity Provider.");
+		$data['sso_claim_config'] = $this->config->item('auth_headers_claim_config', 'sso') ?: [];
+
 		$data['page_title'] = __("Edit User");
 
 		if ($this->form_validation->run() == FALSE)
@@ -457,7 +493,7 @@ class User extends CI_Controller {
 				$data['user_password'] = $this->input->post('user_password',true);
 			} else {
 				if ($q->user_password !== '' && $q->user_password !== null) {
-					$data['user_password'] = $pwd_placeholder;
+					$data['user_password'] = $this->pwd_placeholder;
 				} else {
 					$data['user_password'] = '';
 				}
@@ -527,7 +563,7 @@ class User extends CI_Controller {
 				$data['user_clublog_password'] = $this->input->post('user_clublog_password', true);
 			} else {
 				if ($q->user_clublog_password !== '' && $q->user_clublog_password !== null) {
-					$data['user_clublog_password'] = $pwd_placeholder;
+					$data['user_clublog_password'] = $this->pwd_placeholder;
 				} else {
 					$data['user_clublog_password'] = '';
 				}
@@ -537,7 +573,7 @@ class User extends CI_Controller {
 				$data['user_lotw_password'] = $this->input->post('user_lotw_password', true);
 			} else {
 				if ($q->user_lotw_password !== '' && $q->user_lotw_password !== null) {
-					$data['user_lotw_password'] = $pwd_placeholder;
+					$data['user_lotw_password'] = $this->pwd_placeholder;
 				} else {
 					$data['user_lotw_password'] = '';
 				}
@@ -553,7 +589,7 @@ class User extends CI_Controller {
 				$data['user_eqsl_password'] = $this->input->post('user_eqsl_password', true);
 			} else {
 				if ($q->user_eqsl_password !== '' && $q->user_eqsl_password !== null) {
-					$data['user_eqsl_password'] = $pwd_placeholder;
+					$data['user_eqsl_password'] = $this->pwd_placeholder;
 				} else {
 					$data['user_eqsl_password'] = '';
 				}
@@ -931,14 +967,31 @@ class User extends CI_Controller {
 			$data['on_air_widget_show_only_most_recent_radio'] = ($this->user_options_model->get_options('widget', array('option_name'=>'on_air', 'option_key' => 'display_only_most_recent_radio'), $this->uri->segment(3))->row()->option_value ?? "true");
 			$data['on_air_widget_url'] = site_url('widgets/on_air/' . $q->slug);
 			$data['qso_widget_display_qso_time'] = ($this->user_options_model->get_options('widget', array('option_name'=>'qso', 'option_key' => 'display_qso_time'), $this->uri->segment(3))->row()->option_value ?? "false");
+			$data['csrf_token'] = $this->paths->csrf_generate($this->router->class.'_'.$this->router->method);
 
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('user/edit', $data);
 			$this->load->view('interface_assets/footer', $footerData);
 		} else {
 			// Data was submitted for saving - save updated options in DB
+			if (!$this->paths->csrf_verify($this->router->class.'_'.$this->router->method)) {
+				$this->session->set_flashdata('error', __("Invalid security token"));
+				redirect('user/edit/'.$this->uri->segment(3));
+				return;
+			}
+
 			unset($data);
-			switch($this->user_model->edit($this->input->post())) {
+
+			// SSO / OIDC: Override submitted values for fields managed by the IdP
+			$post_data = $this->input->post();
+			if (!empty($query->row()->external_account)) {
+				$post_data['user_name']  = $query->row()->user_name;
+				if (!($this->config->item('auth_header_allow_direct_login', 'sso') ?? true)) {
+					$post_data['user_password'] = $this->pwd_placeholder; // placeholder → model skips password update
+				}
+			}
+
+			switch($this->user_model->edit($post_data)) {
 				// Check for errors
 				case EUSERNAMEEXISTS:
 					$data['username_error'] = 'Username <b>'.$this->input->post('user_name', true).'</b> already in use!';
@@ -1000,6 +1053,7 @@ class User extends CI_Controller {
 					return;
 			}
 
+			$data['csrf_token'] = $this->paths->csrf_generate($this->router->class.'_'.$this->router->method);
 			$this->load->view('interface_assets/header', $data);
 			$data['user_name'] = $this->input->post('user_name', true);
 			$data['user_email'] = $this->input->post('user_email', true);
@@ -1086,17 +1140,20 @@ class User extends CI_Controller {
 		$data = $query->row();
 		$data->page_title = __("Delete User");
 
-		if ($this->form_validation->run() == FALSE)
-		{
+		if ($this->form_validation->run() == FALSE) {
+			$data->csrf_token = $this->paths->csrf_generate($this->router->class.'_'.$this->router->method);
 
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('user/delete');
 			$this->load->view('interface_assets/footer');
-		}
-		else
-		{
-			if($this->user_model->delete($data->user_id))
-			{
+		} else {
+			if (!$this->paths->csrf_verify($this->router->class.'_'.$this->router->method)) {
+				$this->session->set_flashdata('error', __("Invalid security token"));
+				redirect('user');
+				return;
+			}
+
+			if($this->user_model->delete($data->user_id)) {
 				$this->session->set_flashdata('notice', __("User deleted"));
 				redirect('user');
 			} else {
@@ -1224,6 +1281,15 @@ class User extends CI_Controller {
 		if ($this->form_validation->run() == FALSE) {
 			$data['page_title'] = __("Login");
 			$data['https_check'] = $this->https_check();
+
+			$data['auth_header_enable'] = $this->config->item('auth_header_enable') ?? false;
+			if ($data['auth_header_enable']) {
+				// expecting sso.php in the config folder
+				$this->config->load('sso', true, true);
+			}
+			$data['auth_header_text'] = $this->config->item('auth_header_text', 'sso') ?: '';
+			$data['hide_login_form'] = ($data['auth_header_enable'] && !($this->config->item('auth_header_allow_direct_login', 'sso') ?? true));
+
 			$this->load->view('interface_assets/mini_header', $data);
 			$this->load->view('user/login');
 			$this->load->view('interface_assets/footer');
@@ -1296,6 +1362,14 @@ class User extends CI_Controller {
 			$this->input->set_cookie('tmp_msg', json_encode([$custom_message[0], $custom_message[1]]), 10, '');
 		} else {
 			$this->input->set_cookie('tmp_msg', json_encode(['notice', sprintf(__("User %s logged out."), $user_name)]), 10, '');
+		}
+
+		if ($this->config->item('auth_header_enable')) {
+			$this->config->load('sso', true, true);
+			$logout = $this->config->item('auth_header_url_logout', 'sso') ?: null;
+			if ($logout !== null) {
+				redirect($logout);
+			}
 		}
 
 		redirect('user/login');
@@ -1470,7 +1544,14 @@ class User extends CI_Controller {
 
 					$check_email = $this->user_model->check_email_address($data->user_email);
 
-					if($check_email == TRUE) {
+					// Is local login allowed
+					$auth_header_enable = $this->config->item('auth_header_enable') ?? false;
+					if ($auth_header_enable) {
+						$this->config->load('sso', true, true);
+					}
+					$auth_header_allow_direct_login  = $this->config->item('auth_header_allow_direct_login', 'sso') ?? true;
+
+					if($check_email == TRUE && $auth_header_allow_direct_login) {
 						// Generate password reset code 50 characters long
 						$this->load->helper('string');
 						$reset_code = random_string('alnum', 50);

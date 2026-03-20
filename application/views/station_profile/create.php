@@ -43,6 +43,7 @@ if ($dxcc_list->result() > 0) {
 	<?php } ?>
 
 	<form method="post" action="<?php echo site_url('station/create'); ?>" name="create_profile">
+	<input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
 
 	<div class="row">
 		<!-- Basic Station Info -->

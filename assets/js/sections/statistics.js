@@ -45,28 +45,28 @@ function applyPreset(preset) {
 			break;
 
 		case 'thismonth':
-			const firstDayOfMonth = new Date(today.getUTCFullYear(), today.getUTCMonth(), 1);
+			const firstDayOfMonth = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), 1));
 			dateFrom.value = formatDate(firstDayOfMonth);
 			dateTo.value = formatDate(today);
 			break;
 
 		case 'lastmonth':
-			const firstDayOfLastMonth = new Date(today.getUTCFullYear(), today.getUTCMonth() - 1, 1);
-			const lastDayOfLastMonth = new Date(today.getUTCFullYear(), today.getUTCMonth(), 0);
+			const firstDayOfLastMonth = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth() - 1, 1));
+			const lastDayOfLastMonth = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), 0));
 			dateFrom.value = formatDate(firstDayOfLastMonth);
 			dateTo.value = formatDate(lastDayOfLastMonth);
 			break;
 
 		case 'thisyear':
-			const firstDayOfYear = new Date(today.getUTCFullYear(), 0, 1);
+			const firstDayOfYear = new Date(Date.UTC(today.getUTCFullYear(), 0, 1));
 			dateFrom.value = formatDate(firstDayOfYear);
 			dateTo.value = formatDate(today);
 			break;
 
 		case 'lastyear':
 			const lastYear = today.getUTCFullYear() - 1;
-			const firstDayOfLastYear = new Date(lastYear, 0, 1);
-			const lastDayOfLastYear = new Date(lastYear, 11, 31);
+			const firstDayOfLastYear = new Date(Date.UTC(lastYear, 0, 1));
+			const lastDayOfLastYear = new Date(Date.UTC(lastYear, 11, 31));
 			dateFrom.value = formatDate(firstDayOfLastYear);
 			dateTo.value = formatDate(lastDayOfLastYear);
 			break;
