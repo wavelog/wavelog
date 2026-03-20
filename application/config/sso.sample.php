@@ -221,6 +221,9 @@ $config['auth_headers_claim_config'] = [
  * Assigns users to clubstations during login or on user creation. Leave blank to disable.
  * 
  * It is recommended that "show full group path" is disabled to prevent leading slashes.
+ * Note that auth_header_clubstation_direct will override auth_header_clubstation_dynamic;
+ * lack of membership in clubstations in auth_header_clubstation_direct will remove the user 
+ * from the clubstation, even if membership is granted from auth_header_clubstation_dynamic.
  *
  * $config['auth_header_clubstation_claim'] should be set to the JWT claim that 
  * provides a multi-valued group attribute (RFC7643 4.1.2). The common claim 
