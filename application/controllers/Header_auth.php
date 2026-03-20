@@ -420,11 +420,15 @@ class Header_auth extends CI_Controller {
 
         $this->load->model('club_model');
         foreach ($member_ids as $club_id) {
-            $this->club_model->alter_member($club_id, $user_id, 3);
+            if ($this->club_model->get_permission_noui($club_id, $user_id) === 0) {
+                $this->club_model->alter_member($club_id, $user_id, 3);
+            }
         }
 
         foreach ($non_member_ids as $club_id) {
-            $this->club_model->delete_member($club_id, $user_id);
+            if ($this->club_model->get_permission_noui($club_id, $user_id) != 0) {
+                $this->club_model->delete_member($club_id, $user_id);
+            }
         }
             
 
