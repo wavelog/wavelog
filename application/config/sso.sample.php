@@ -258,9 +258,12 @@ $config['auth_headers_claim_config'] = [
  * 
  *  
  * For $config['auth_header_clubstation_dynamic'] each key is a JWT issuer, each 
- * array key is a group prefix and the value is if user membership should be updated 
+ * array key is a group prefix and value is if user membership should be updated 
  * on each login. If false user is only assigned on user creation. If true users are
  * added to clubstations on login. Recommended to be set to true.
+ * 
+ * The group names must be integers, excluding the prefix. For example the group 
+ * "wavelog_3" only works if the prefix is set to "wavelog_" and the clubstation is 3.
  * 
  * If the JWT issuer array key is set to an empty string, it applies to all JWT issuers.
  * 
