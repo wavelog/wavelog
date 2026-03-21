@@ -85,7 +85,7 @@ class Header_auth extends CI_Controller {
         $isNewUser = false;
 
         if (!$query || $query->num_rows() !== 1) {
-            if (ENVIRONMENT !== 'maintenance') {
+            if (ENVIRONMENT == 'maintenance') {
                 $this->_sso_error(__("Sorry. This instance is currently in maintenance mode."));
                 return;
             } elseif ($this->config->item('auth_header_create', 'sso')) {
