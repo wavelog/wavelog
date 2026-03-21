@@ -68,6 +68,7 @@ class Header_auth extends CI_Controller {
         foreach ($claim_map as $db_field => $cfg) {
             $mapped[$db_field] = $claims[$cfg['claim']] ?? null;
         }
+        $claim_groups_key = $this->config->item('auth_header_clubstation_claim', 'sso')?? '';
 
         // Build composite key: JSON {iss, sub} — uniquely identifies a user across IdP and user
         $iss = $claims['iss'] ?? '';
@@ -81,10 +82,16 @@ class Header_auth extends CI_Controller {
         $this->load->model('user_model');
         $query = $this->user_model->get_by_external_account($external_identifier);
 
+        $isNewUser = false;
+
         if (!$query || $query->num_rows() !== 1) {
-            if ($this->config->item('auth_header_create', 'sso')) {
+            if (ENVIRONMENT !== 'maintenance') {
+                $this->_sso_error(__("Sorry. This instance is currently in maintenance mode."));
+                return;
+            } elseif ($this->config->item('auth_header_create', 'sso')) {
                 $this->_create_user($mapped, $external_identifier);
                 $query = $this->user_model->get_by_external_account($external_identifier);
+                $isNewUser = true;
             } else {
                 $this->_sso_error(__("User not found."));
                 return;
@@ -117,10 +124,9 @@ class Header_auth extends CI_Controller {
         }
 
         // Clubstation
-        $claim_groups_key = $this->config->item('auth_header_clubstation_claim', 'sso')?? '';
         if (!empty($claim_groups_key)) {
             $groups = $claims[$claim_groups_key] ?? [];
-            $this -> _update_club_membership($user->user_id, $groups);
+            $this -> _update_club_membership($user->user_id, $groups, $isNewUser);
         }
 
 
@@ -359,10 +365,11 @@ class Header_auth extends CI_Controller {
      * 
      * @param int   $user_id
      * @param array $claim    JWT multi-valued group claim
+     * @param bool  $isCreate Is from create user
      * 
      * @return void
      */
-    private function _update_club_membership(int $user_id, array $claim) : void {
+    private function _update_club_membership(int $user_id, array $claim, bool $isCreate) : void {
         log_message('debug', "Header auth _update_club_membership for user " . $user_id . " claims: " . implode(',', $claim));
 
 
@@ -374,9 +381,14 @@ class Header_auth extends CI_Controller {
         }
 
         // Clubstation IDs listed directly to update
-        $direct_updates_id = array_keys(array_filter($directs, function ($item) {
-            return !empty($item['update_on_login']) && $item['update_on_login'] === true;
-        }));
+        if ($isCreate) {
+            $direct_updates_id = array_keys($directs);
+        } else {
+            $direct_updates_id = array_keys(array_filter($directs, function ($item) {
+                return !empty($item['update_on_login']) && $item['update_on_login'] === true;
+            }));
+        }
+
 
         // Get membership and nonmebership
         $member_ids = [];
@@ -398,7 +410,8 @@ class Header_auth extends CI_Controller {
             foreach ($group_prefixes as $prefix) {
 
                 // Check if group starts with prefix
-                if (strpos($group, $prefix) === 0) {
+                // Only add if is new user, or update on login true
+                if (strpos($group, $prefix) === 0 && ($dynamics[$prefix] || $isCreate)) {
 
                     // Remove prefix
                     $suffix = substr($group, strlen($prefix));
