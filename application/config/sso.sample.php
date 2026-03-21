@@ -221,16 +221,17 @@ $config['auth_headers_claim_config'] = [
  * Assigns users to clubstations during login or on user creation. Leave blank to disable.
  * 
  * It is recommended that "show full group path" is disabled to prevent leading slashes.
+ * 
  * Note that auth_header_clubstation_direct will override auth_header_clubstation_dynamic;
- * lack of membership in clubstations in auth_header_clubstation_direct will remove the user 
+ * lack of membership in auth_header_clubstation_direct will remove the user 
  * from the clubstation, even if membership is granted from auth_header_clubstation_dynamic.
  *
  * $config['auth_header_clubstation_claim'] should be set to the JWT claim that 
  * provides a multi-valued group attribute (RFC7643 4.1.2). The common claim 
  * is "groups" per RFC9068 2.2.3.1.
  * 
- * For $config['auth_header_clubstation_direct'] each key is a clubstation ID, 
- * the values are as follows:
+ * For $config['auth_header_clubstation_direct'] each key is a JWT issuer, 
+ * each array key below the issuer is a clubstation id, its values are as follows:
  * 
  *   'group'           => The name of the group defined in the IdP.
  * 
@@ -241,30 +242,33 @@ $config['auth_headers_claim_config'] = [
  * 
  *  Example:
  *  $config['auth_header_clubstation_direct'] = [
- *     9 => [
- *         'group' => 'wl_society_station_group',
- *         'update_on_login' => true
- *     ],
- *     15 => [
- *         'group' => 'wl_special_event_station',
- *         'update_on_login' => true
- *     ],
+ *      "https://idp.example.com/realms/acme" => [
+ *          9 => [
+ *              'group' => 'wl_society_station_group',
+ *              'update_on_login' => true
+ *          ],
+ *          15 => [
+ *              'group' => 'wl_special_event_station',
+ *              'update_on_login' => true
+ *          ],
+ *      ]
  *  ];
  *
  * 
  *  
- * For $config['auth_header_clubstation_dynamic'] each key is a group prefix
- * and the value is if user membership should be updated on each login. If 
- * false user is only assigned on user creation. If true users are removed and 
+ * For $config['auth_header_clubstation_dynamic'] each key is a JWT issuer, each 
+ * array key is a group prefix and the value is if user membership should be updated 
+ * on each login. If false user is only assigned on user creation. If true users are
  * added to clubstations on login. Recommended to be set to true.
  * 
  * It is strongly recommended that auth_header_clubstation_dynamic is not used 
- * as it WILL NOT REMOVE users from clubstations.
+ * as it WILL NOT REMOVE users from clubstations when IdP group membership is changed.
  * 
  *  Example:
  *  $config['auth_header_clubstation_dynamic'] = [
- *      'wavelog_' => true,
- *      'wl_' => true,
+ *      "https://idp.example.com/realms/acme" => [
+ *          'wavelog_' => true
+ *      ]
  *  ];
  */
 $config['auth_header_clubstation_claim'] = "";

@@ -375,13 +375,14 @@ class Header_auth extends CI_Controller {
 
 
         $directs_all = $this->config->item('auth_header_clubstation_direct', 'sso') ?: [];
-        $dynamics = $this->config->item('auth_header_clubstation_dynamic', 'sso') ?: [];
+        $dynamics_all = $this->config->item('auth_header_clubstation_dynamic', 'sso') ?: [];
 
         if (empty($directs) && empty($dynamics)) {
             return;
         }
 
-        $directs = $directs_all[$iss] ?? [];
+        $directs = $directs_all[$iss] ?? $directs_all[""] ??  [];
+        $dynamics = $dynamics_all[$iss] ?? $dynamics_all[""] ?? [];
 
         // Clubstation IDs listed directly to update
         if ($isCreate) {
