@@ -126,7 +126,7 @@ class Header_auth extends CI_Controller {
         // Clubstation
         if (!empty($claim_groups_key)) {
             $groups = $claims[$claim_groups_key] ?? [];
-            $this -> _update_club_membership($user->user_id, $groups, $isNewUser);
+            $this -> _update_club_membership($user->user_id, $iss, $groups, $isNewUser);
         }
 
 
@@ -363,22 +363,25 @@ class Header_auth extends CI_Controller {
     /**
      * Update clubstation membership.
      * 
-     * @param int   $user_id
-     * @param array $claim    JWT multi-valued group claim
-     * @param bool  $isCreate Is from create user
+     * @param int    $user_id
+     * @param string $iss      JWT issuer
+     * @param array  $claim    JWT multi-valued group claim
+     * @param bool   $isCreate Is from create user
      * 
      * @return void
      */
-    private function _update_club_membership(int $user_id, array $claim, bool $isCreate) : void {
+    private function _update_club_membership(int $user_id, string $iss, array $claim, bool $isCreate) : void {
         log_message('debug', "Header auth _update_club_membership for user " . $user_id . " claims: " . implode(',', $claim));
 
 
-        $directs = $this->config->item('auth_header_clubstation_direct', 'sso') ?: [];
+        $directs_all = $this->config->item('auth_header_clubstation_direct', 'sso') ?: [];
         $dynamics = $this->config->item('auth_header_clubstation_dynamic', 'sso') ?: [];
 
         if (empty($directs) && empty($dynamics)) {
             return;
         }
+
+        $directs = $directs_all[$iss] ?? [];
 
         // Clubstation IDs listed directly to update
         if ($isCreate) {
