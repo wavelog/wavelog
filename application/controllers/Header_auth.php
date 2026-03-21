@@ -68,7 +68,7 @@ class Header_auth extends CI_Controller {
         foreach ($claim_map as $db_field => $cfg) {
             $mapped[$db_field] = $claims[$cfg['claim']] ?? null;
         }
-        $claim_groups_key = $this->config->item('auth_header_clubstation_claim', 'sso')?? '';
+        $claim_groups_key = $this->config->item('auth_header_clubstation_claim', 'sso') ?? '';
 
         // Build composite key: JSON {iss, sub} — uniquely identifies a user across IdP and user
         $iss = $claims['iss'] ?? '';
@@ -124,7 +124,7 @@ class Header_auth extends CI_Controller {
         }
 
         // Clubstation
-        if (!empty($claim_groups_key)) {
+        if (!empty($claim_groups_key) && ENVIRONMENT !== 'maintenance') {
             $groups = $claims[$claim_groups_key] ?? [];
             $this -> _update_club_membership($user->user_id, $iss, $groups, $isNewUser);
         }
@@ -377,12 +377,13 @@ class Header_auth extends CI_Controller {
         $directs_all = $this->config->item('auth_header_clubstation_direct', 'sso') ?: [];
         $dynamics_all = $this->config->item('auth_header_clubstation_dynamic', 'sso') ?: [];
 
-        if (empty($directs) && empty($dynamics)) {
-            return;
-        }
 
         $directs = $directs_all[$iss] ?? $directs_all[""] ??  [];
         $dynamics = $dynamics_all[$iss] ?? $dynamics_all[""] ?? [];
+
+        if (empty($directs) && empty($dynamics)) {
+            return;
+        }
 
         // Clubstation IDs listed directly to update
         if ($isCreate) {

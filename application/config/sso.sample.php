@@ -230,8 +230,9 @@ $config['auth_headers_claim_config'] = [
  * provides a multi-valued group attribute (RFC7643 4.1.2). The common claim 
  * is "groups" per RFC9068 2.2.3.1.
  * 
- * For $config['auth_header_clubstation_direct'] each key is a JWT issuer, 
- * each array key below the issuer is a clubstation id, its values are as follows:
+ * For $config['auth_header_clubstation_direct'] each key is a JWT issuer.
+ * If the JWT issuer array key is set to an empty string, it applies to all JWT issuers.
+ * Each array key under the issuer is a clubstation id, its values are as follows:
  * 
  *   'group'           => The name of the group defined in the IdP.
  * 
@@ -260,6 +261,8 @@ $config['auth_headers_claim_config'] = [
  * array key is a group prefix and the value is if user membership should be updated 
  * on each login. If false user is only assigned on user creation. If true users are
  * added to clubstations on login. Recommended to be set to true.
+ * 
+ * If the JWT issuer array key is set to an empty string, it applies to all JWT issuers.
  * 
  * It is strongly recommended that auth_header_clubstation_dynamic is not used 
  * as it WILL NOT REMOVE users from clubstations when IdP group membership is changed.
