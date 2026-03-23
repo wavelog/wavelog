@@ -4,6 +4,7 @@
 			<option value="">-</option>
 			<optgroup label="<?= __("QSO details"); ?>">
 				<option value="band"><?= __("Band"); ?></option>
+				<option value="frequency"><?= __("Frequency"); ?></option>
 				<option value="comment"><?= __("Comment"); ?></option>
 				<option value="contest"><?= __("Contest"); ?></option>
 				<option value="stxstring"><?= __("Contest Exch (S)"); ?></option>
@@ -132,6 +133,12 @@
 				}
 			?>
 		</select>
+
+		<label style="display:none" id="editFrequencyTxLabel" class="mx-2 w-auto" for="editFrequency"><?= __("Frequency TX (Hz)"); ?></label>
+		<input style="display:none" class="form-control form-control-sm w-auto" id="editFrequency" type="text" name="editFrequency" placeholder="" aria-label="editFrequency">
+
+		<label style="display:none" id="editFrequencyRxLabel" class="mx-2 w-auto" for="editFrequencyRx"><?= __("Frequency RX (Hz)"); ?></label>
+		<input style="display:none" class="form-control form-control-sm w-auto" id="editFrequencyRx" type="text" name="editFrequencyRx" placeholder="" aria-label="editFrequencyRx">
 
 		<select style="display:none" id="editMode" class="form-select mode form-select-sm w-auto" name="editMode">
 		<?php

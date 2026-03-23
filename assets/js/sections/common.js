@@ -56,12 +56,20 @@ var PlatformDetection = {
 
 function setRst(mode) {
 	if(mode == 'JT65' || mode == 'JT65B' || mode == 'JT6C' || mode == 'JTMS' || mode == 'ISCAT' || mode == 'MSK144' || mode == 'JTMSK' || mode == 'QRA64' || mode == 'FT8' || mode == 'FT4' || mode == 'JS8' || mode == 'JT9' || mode == 'JT9-1' || mode == 'ROS'){
-		$('#rst_sent').val('-5');
-		$('#rst_rcvd').val('-5');
+		$('#rst_sent').val('-05');
+		$('#rst_rcvd').val('-05');
 	} else if (mode == 'FSK441' || mode == 'JT6M') {
 		$('#rst_sent').val('26');
 		$('#rst_rcvd').val('26');
-	} else if (mode == 'CW' || mode == 'RTTY' || mode == 'PSK31' || mode == 'PSK63') {
+	} else if (mode == 'CW') {
+		if ($('#selectPropagation :selected').val() == 'AUR') {
+			$('#rst_sent').val('59A');
+			$('#rst_rcvd').val('59A');
+		} else {
+			$('#rst_sent').val('599');
+			$('#rst_rcvd').val('599');
+		}
+	} else if (mode == 'RTTY' || mode == 'PSK31' || mode == 'PSK63') {
 		$('#rst_sent').val('599');
 		$('#rst_rcvd').val('599');
 	} else if (mode == 'SSTV' || mode == 'ATV') {
@@ -643,8 +651,8 @@ function qso_edit(id) {
 }
 
 function qso_save() {
-    var myform = $("#qsoform")[0];
-    var fd = new FormData(myform);
+    let myform = $("#qsoform")[0];
+    let fd = new FormData(myform);
     $.ajax({
         url: base_url + 'index.php/qso/qso_save_ajax',
         data: fd,
@@ -658,6 +666,10 @@ function qso_save() {
 			$(".qso-dialog").modal('hide');
 			if (reload_after_qso_safe == true) {
 				location.reload();
+			}
+			if (reload_qso_line == true) {
+				let qsoId = document.querySelector('input[name="id"]').value;
+				getQsos(qsoId);
 			}
 		} else {
 			$("#error-messages-qso-edit").html('<div class="alert alert-danger alert-dismissible fade show" role="alert">'+dataofconfirm.detail+'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');

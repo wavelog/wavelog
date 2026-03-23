@@ -1126,6 +1126,7 @@ class Logbookadvanced_model extends CI_Model {
 			case "rsts": $column = 'COL_RST_SENT'; break;
 			case "qslsentmethod": $column = 'COL_QSL_SENT_VIA'; break;
 			case "qslreceivedmethod": $column = 'COL_QSL_RCVD_VIA'; break;
+			case "frequency": $column = 'COL_FREQUENCY'; break;
 			default: return;
 		}
 
@@ -1186,6 +1187,23 @@ class Logbookadvanced_model extends CI_Model {
 			$frequencyBandRx = $bandrx == '' ? null : $this->frequency->defaultFrequencies[$bandrx]['CW'];
 
 			$query = $this->db->query($sql, array($value, $value2, $frequencyBand, $frequencyBandRx, json_decode($ids, true), $this->session->userdata('user_id')));
+		}  else if ($column == 'COL_FREQUENCY') {
+
+			if ($value == '') return;
+
+			if (trim($value2 ?? '') == '') { $value2=null; }
+
+			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
+			" SET " . $this->config->item('table_name').".COL_FREQ = ?" .
+			", " . $this->config->item('table_name').".COL_FREQ_RX = ?" .
+			", " . $this->config->item('table_name').".COL_BAND = ?" .
+			", " . $this->config->item('table_name').".COL_BAND_RX = ?" .
+			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+
+			$band = $this->frequency->GetBand($value);
+			$bandRx = $value2 == null ? null : $this->frequency->GetBand($value2);
+
+			$query = $this->db->query($sql, array($value, $value2, $band, $bandRx, json_decode($ids, true), $this->session->userdata('user_id')));
 		} else if ($column == 'COL_GRIDSQUARE') {
 			if ($value == '') {
 				$grid_value = null;

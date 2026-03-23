@@ -526,7 +526,7 @@ class API extends CI_Controller {
 		$offset = 0;
 
 		// Start building ADIF content
-		$adif_content = $this->adifhelper->getAdifHeader($this->config->item('app_name'),$this->optionslib->get_option('version'));
+		$adif_content = $this->adifhelper->getAdifHeader($this->config->item('app_name'),$this->optionslib->get_option('version'), $this->optionslib->get_option('adif_version'));
 
 		do {
 			// Calculate chunk size for this iteration

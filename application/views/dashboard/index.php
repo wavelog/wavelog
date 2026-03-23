@@ -443,7 +443,28 @@ function getDistance($distance) {
 		</table>
 		<?php } ?>
 
-		<?php if((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE)) { ?>
+		<?php if((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === false) && ($total_clublog_sent != 0 || $total_clublog_rcvd != 0)) { ?>
+	<table class="table table-striped border-top">
+		<tr class="titles">
+			<td colspan="2"><i class="fas fa-list"></i> Club Log</td>
+			<td colspan="1"><?= __("Today"); ?></td>
+		</tr>
+
+		<tr>
+			<td width="50%"><?= __("Sent"); ?></td>
+			<td width="25%"><?php echo $total_clublog_sent; ?></td>
+			<td width="25%"><?php echo $clublog_sent_today != 0 ? "<a href=\"javascript:displayContacts('','all','all','All','All','CLUBLOGSDATE','');\">".$clublog_sent_today."</a>" : "0"; ?></td>
+		</tr>
+
+		<tr>
+			<td width="50%"><?= __("Received"); ?></td>
+			<td width="25%"><?php echo $total_clublog_rcvd; ?></td>
+			<td width="25%"><?php echo $clublog_rcvd_today != 0 ? "<a href=\"javascript:displayContacts('','all','all','All','All','CLUBLOGRDATE','');\">".$clublog_rcvd_today."</a>" : "0"; ?></td>
+		</tr>
+	</table>
+	<?php } ?>
+
+	<?php if((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE)) { ?>
     	 <table class="table table-striped border-top">
         <tr class="titles">
             <td colspan="2"><i class="fas fa-globe-europe"></i> <?= __("VUCC-Grids"); ?></td>

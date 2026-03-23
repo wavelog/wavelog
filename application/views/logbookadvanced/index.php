@@ -906,6 +906,7 @@ $options = json_decode($options);
 		</div>
 
         </form>
+        <div id="csv-button-container" class="mb-2"></div>
         <table style="width:100%" class="table-sm table table-hover table-striped table-bordered table-condensed text-center" id="qsoList">
             <thead>
                 <tr>

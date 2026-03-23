@@ -262,9 +262,9 @@ class AdifHelper {
 		return $line;
 	}
 
-	function getAdifHeader($app_name,$version) {
+	function getAdifHeader($app_name,$version, $adif_version) {
 		$adif_header = "Wavelog ADIF export\n";
-		$adif_header .= "<ADIF_VER:5>3.1.6\n";
+		$adif_header .= "<ADIF_VER:".strlen($adif_version).">".$adif_version."\n";
 		$adif_header .= "<PROGRAMID:".strlen($app_name).">".$app_name."\r\n";
 		$adif_header .= "<PROGRAMVERSION:".strlen($version).">".$version."\r\n";
 		$adif_header .= "<EOH>\n\n";

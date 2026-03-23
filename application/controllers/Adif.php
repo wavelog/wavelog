@@ -103,7 +103,7 @@ class adif extends CI_Controller {
 		header('Content-Disposition: attachment; filename="'.$filename.'"');
 
 		// Output ADIF header // No chance to use exportall-view any longer, because of chunking logic
-		echo $this->adifhelper->getAdifHeader($this->config->item('app_name'),$this->optionslib->get_option('version'));
+		echo $this->adifhelper->getAdifHeader($this->config->item('app_name'),$this->optionslib->get_option('version'), $this->optionslib->get_option('adif_version'));
 
 		// Stream QSOs in 5K chunks
 		$offset = 0;
@@ -201,7 +201,7 @@ class adif extends CI_Controller {
 		header('Content-Type: text/plain; charset=utf-8');
 		header('Content-Disposition: attachment; filename="'.$filename.'"');
 
-		echo $this->adifhelper->getAdifHeader($this->config->item('app_name'),$this->optionslib->get_option('version'));
+		echo $this->adifhelper->getAdifHeader($this->config->item('app_name'),$this->optionslib->get_option('version'), $this->optionslib->get_option('adif_version'));
 
 		// Collect QSO IDs for LoTW marking (since we can't access all at once)
 		$qso_ids_for_lotw = [];

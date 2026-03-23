@@ -954,4 +954,26 @@ class Logbookadvanced extends CI_Controller {
 		print json_encode($data);
 	}
 
+	function getQsos() {
+		if(!clubaccess_check(9)) return;
+
+		$qsoID[] = $this->input->post('id', true);
+
+		$this->load->model('logbookadvanced_model');
+		$qso = $this->logbookadvanced_model->getQsosForAdif(json_encode($qsoID), $this->session->userdata('user_id'))->row_array();
+
+		$qsoObj = new QSO($qso);		// Redirection via Object to clean/convert QSO (get rid of cols)
+		$cleaned_qso = $qsoObj->toArray();	// And back to Array for the JSON
+
+		$flag = $this->dxccflag->get($qsoObj->getDXCCId());
+		if ($flag != null) {
+			$cleaned_qso['flag'] = ' ' . $flag;
+		} else {
+			$cleaned_qso['flag'] = '';
+		}
+
+		header("Content-Type: application/json");
+		echo json_encode($cleaned_qso);
+	}
+
 }

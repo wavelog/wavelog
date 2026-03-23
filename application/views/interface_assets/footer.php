@@ -2154,13 +2154,17 @@ $('#sats').change(function(){
 
 
 <script>
-    var reload_after_qso_safe = false;
+	let reload_qso_line = false;
+    let reload_after_qso_safe = false;
     <?php if (
 	$this->uri->segment(1) != "search" &&
 	$this->uri->segment(2) != "filter" &&
 	$this->uri->segment(1) != "qso" &&
 	$this->uri->segment(1) != "logbookadvanced") { ?>
 		reload_after_qso_safe = true;
+	<?php }
+	if ($this->uri->segment(1) == "logbookadvanced") { ?>
+		reload_qso_line = true;
 	<?php } ?>
 </script>
 

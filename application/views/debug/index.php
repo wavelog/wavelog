@@ -47,6 +47,11 @@
                         </tr>
                         <?php } ?>
                         <tr>
+                            <td><?= __("ADIF Version"); ?></td>
+                            <td><?php echo $this->optionslib->get_option('adif_version'); ?>
+                            </td>
+                        </tr>
+                        <tr>
                             <td><?= __("Language"); ?></td>
                             <td><?= __(ucfirst($this->config->item('language'))) . "\n"; ?></td>
                         </tr>

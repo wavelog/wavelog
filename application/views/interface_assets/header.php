@@ -252,6 +252,12 @@
 									</ul>
 								</li>
 								<div class="dropdown-divider"></div>
+								<li><a class="dropdown-item dropdown-toggle dropdown-toggle-submenu" data-bs-toggle="dropdown" href="#">🇮🇹 <?= __("Italy"); ?></a>
+									<ul class="submenu dropdown-menu">
+										<li><a class="dropdown-item" href="<?php echo site_url('awards/waip'); ?>"><i class="fas fa-trophy"></i> <?= __("WAIP"); ?></a></li>
+									</ul>
+								</li>
+								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item dropdown-toggle dropdown-toggle-submenu" data-bs-toggle="dropdown" href="#">🇯🇵 <?= __("Japan"); ?></a>
 									<ul class="submenu dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/waja'); ?>"><i class="fas fa-trophy"></i> <?= __("WAJA"); ?></a></li>

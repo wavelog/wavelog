@@ -168,6 +168,10 @@ function saveBatchEditQsos(id_list) {
 		value = $("#editBand").val();
 		value2 = $("#editBandRx").val();
 	}
+	if (column == 'frequency') {
+		value = $("#editFrequency").val();
+		value2 = $("#editFrequencyRx").val();
+	}
 	if (column == 'mode') {
 		value = $("#editMode").val();
 	}
@@ -277,6 +281,10 @@ function changeEditType(type) {
 	$('#editDokInput').hide();
 	$('#editGridsquareInput').hide();
 	$('#editQslMethod').hide();
+	$('#editFrequency').hide();
+	$('#editFrequencyRx').hide();
+	$('#editFrequencyTxLabel').hide();
+	$('#editFrequencyRxLabel').hide();
 	if (type == "dxcc") {
 		$('#editDxcc').show();
 	} else if (type == "iota") {
@@ -298,7 +306,7 @@ function changeEditType(type) {
 		$('#editBandTxLabel').show();
 		$('#editBandRx').show();
 		$('#editBandRxLabel').show();
-	}else if (type == "mode") {
+	} else if (type == "mode") {
 		$('#editMode').show();
 	} else if (type == "date") {
 		$('#editDate').show();
@@ -341,6 +349,11 @@ function changeEditType(type) {
 		$('#editDistanceInputLabel').show();
 	} else if (type == "qslsentmethod" || type == "qslreceivedmethod") {
 		$('#editQslMethod').show();
+	} else if (type == "frequency") {
+		$('#editFrequency').show();
+		$('#editFrequencyRx').show();
+		$('#editFrequencyTxLabel').show();
+		$('#editFrequencyRxLabel').show();
 	}
 }
 

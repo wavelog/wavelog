@@ -182,15 +182,52 @@ class ADIF_Parser
 
 			$a++; // past >
 
-			// Validate there are enough characters left
-			if (($a + $len) > $length) {
-				// Not enough characters for the value; skip this tag
-				break;
+			// Hybrid logic: Try character-based first (as before), fall back to byte-based, since there are ADIFs in the wild, which count bytes instead of chars
+			$value = "";
+			$consumed_chars = 0;
+
+			if (($a + $len) <= $length) {
+				// Character-based extraction (ADIF spec compliant)
+				$value = mb_substr($record, $a, $len, "UTF-8");
+				$consumed_chars = $len;
+
+				// Validate: check if next position starts with '<' (new tag) or end
+				$next_pos = $a + $consumed_chars;
+				if ($next_pos < $length) {
+					$next_char = mb_substr($record, $next_pos, 1, "UTF-8");
+					// If not '<' and not whitespace followed by '<', might be byte-length
+					if ($next_char !== '<' && !ctype_space($next_char)) {
+						// Character-based didn't land on tag boundary, try byte-based
+						$byte_length = strlen($record);
+						// Get byte offset for character position $a
+						$char_before = mb_substr($record, 0, $a, "UTF-8");
+						$byte_offset = strlen($char_before);
+
+						if ($byte_offset + $len <= $byte_length) {
+							// Extract by bytes
+							$byte_value = substr($record, $byte_offset, $len);
+							$value = $byte_value;
+							// Calculate how many characters we actually consumed
+							$consumed_chars = mb_strlen($value, "UTF-8");
+						}
+					}
+				}
+			} else { // length of string different than announced? try byte-based
+				$byte_length = strlen($record);
+				$char_before = mb_substr($record, 0, $a, "UTF-8");
+				$byte_offset = strlen($char_before);
+
+				if ($byte_offset + $len <= $byte_length) {
+					$value = substr($record, $byte_offset, $len);
+					$consumed_chars = mb_strlen($value, "UTF-8");
+				} else {
+					// Totally broken? skip the field
+					break;
+				}
 			}
 
-			$value = mb_substr($record, $a, $len, "UTF-8");
-			$a += $len - 1; // adjust for loop increment
-			$return[mb_strtolower($tag_name, "UTF-8")] = $value;
+			$a += $consumed_chars - 1; // adjust for loop increment
+			$return[mb_strtolower($tag_name, "UTF-8")] = rtrim($value);
 		}
 
 		// skip comments

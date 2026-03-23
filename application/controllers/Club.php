@@ -203,22 +203,19 @@ class Club extends CI_Controller
 				redirect('club/permissions/'.$club_id);
 		}
 		
-		if($this->optionslib->get_option('emailProtocol') == "smtp") {
-			$config = [
-				'protocol' => $this->optionslib->get_option('emailProtocol'),
-				'smtp_crypto' => $this->optionslib->get_option('smtpEncryption'),
-				'smtp_host' => $this->optionslib->get_option('smtpHost'),
-				'smtp_port' => $this->optionslib->get_option('smtpPort'),
-				'smtp_user' => $this->optionslib->get_option('smtpUsername'),
-				'smtp_pass' => $this->optionslib->get_option('smtpPassword'),
-				'crlf' => "\r\n",
-				'newline' => "\r\n"
-			];
-			$this->email->initialize($config);
-
-		} else {
-			log_message('error', "Club Notification; Can't notify user - Email settings not configured.");
-			$this->session->set_flashdata('error', __("Email settings not configured."));
+		$config = [
+			'protocol' => $this->optionslib->get_option('emailProtocol'),
+			'smtp_crypto' => $this->optionslib->get_option('smtpEncryption'),
+			'smtp_host' => $this->optionslib->get_option('smtpHost'),
+			'smtp_port' => $this->optionslib->get_option('smtpPort'),
+			'smtp_user' => $this->optionslib->get_option('smtpUsername'),
+			'smtp_pass' => $this->optionslib->get_option('smtpPassword'),
+			'crlf' => "\r\n",
+			'newline' => "\r\n"
+		];
+		if(!$this->email->initialize($config)) {
+			log_message('error', "Club Notification; Can't notify user - Email can't be initialized.");
+			$this->session->set_flashdata('error', __("Email can't be initialized. Check the email settings."));
 			redirect('club/permissions/'.$club_id);
 		}
 

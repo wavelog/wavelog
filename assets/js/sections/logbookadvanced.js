@@ -206,6 +206,10 @@ function loadQSOTable(rows) {
 
 	// Prevent initializing if already a DataTable
 	if ($.fn.DataTable.isDataTable($table)) {
+		// Remove ALL buttons containers to prevent duplicates
+		$('#qsoList').prev('.dt-buttons').remove();
+		$('#qsoList_wrapper').find('.dt-buttons').remove();
+		$('.dt-buttons').remove();
 		$table.DataTable().clear().destroy();
 	}
 
@@ -232,14 +236,15 @@ function loadQSOTable(rows) {
 				{ targets: $(".antennaelevation-column-sort").index(), type: "numbersort" },
 				{ targets: $(".stationpower-column-sort").index(), type: "numbersort" },
 			],
-			dom: 'Bfrtip',
+			dom: 'frtip',
 			buttons: [
 						{
 							extend: 'csv',
-							className: 'mb-1 btn btn-sm btn-primary', // Bootstrap classes
-								init: function(api, node, config) {
-									$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
-								},
+							text: 'CSV',
+							className: 'mb-1 btn btn-sm btn-primary',
+							filename: function() {
+								return 'qso_export_' + new Date().toISOString().slice(0,10);
+							},
 								exportOptions: {
 								columns: ':visible:not(:eq(0))', // export all visible except column 4
 								format: {
@@ -252,7 +257,7 @@ function loadQSOTable(rows) {
 											data = data.replace(/<[^>]*>/g, '');
 										}
 										// then replace Ø with 0 in specific columns
-										if (column === 1 || column === 2 || column === 3) {
+										if (column === 1 || column === 2 || column === 3 || column === 4) {
 											// remove a trailing "L" and trim whitespaces
 											data = data.replace(/\s*L\s*$/, '').trim();
 											if (typeof data === 'string' && data.includes('Ø')) {
@@ -274,6 +279,9 @@ function loadQSOTable(rows) {
 						}
                     ]
 		});
+
+		// Place buttons in custom container
+		table.buttons().container().appendTo('#csv-button-container');
 
 	for (i = 0; i < rows.length; i++) {
 		let qso = rows[i];
@@ -3197,4 +3205,17 @@ function saveOptions() {
 		} else {
 			window.map.setView([30, 0], 1.5);
 		}
+	}
+
+	function getQsos(id) {
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/getQsos',
+			type: 'post',
+			data: {
+				id: id
+			},
+			success: function (data) {
+				updateRow(data);
+			}
+		});
 	}

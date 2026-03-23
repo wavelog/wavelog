@@ -1448,6 +1448,86 @@ class Awards extends CI_Controller {
     }
 
 	/*
+        function WAIP
+
+        This displays the WAIP (Worked All Italian Provinces) award
+    */
+    public function waip() {
+		$data['active_station_logbook'] = $this->logbooks_model->find_name($this->session->userdata('active_station_logbook'));
+
+		$this->load->model('waip');
+		$this->load->model('bands');
+
+		// Get station location
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+		// Generate QSL string for displayContacts links (QSL only)
+		$postdata['qsl'] = 1;
+		$postdata['confirmed'] = 1;
+		$data['qsl_string'] = $this->genfunctions->gen_qsl_from_postdata($postdata);
+
+		if ($logbooks_locations_array) {
+			$location_list = "'".implode("','",$logbooks_locations_array)."'";
+
+			// All data comes from single efficient query
+			$data['waip_worked'] = $this->waip->get_waip_worked_by_modes($location_list);
+			$data['waip_array'] = $this->waip->get_waip_simple_by_modes($postdata, $location_list);
+			$data['waip_totals'] = $this->waip->get_waip_totals_by_modes($postdata, $location_list);
+
+			// Band-based data
+			$data['waip_worked_bands'] = $this->waip->get_waip_worked_by_bands($location_list);
+			$data['waip_array_bands'] = $this->waip->get_waip_simple_by_bands($postdata, $location_list);
+			$data['waip_totals_bands'] = $this->waip->get_waip_totals_by_bands($postdata, $location_list);
+		} else {
+			$location_list = null;
+			$data['waip_worked'] = null;
+			$data['waip_array'] = null;
+			$data['waip_totals'] = null;
+			$data['waip_worked_bands'] = null;
+			$data['waip_array_bands'] = null;
+			$data['waip_totals_bands'] = null;
+		}
+
+		// Pass postdata for use in view
+		$data['postdata'] = $postdata;
+
+		// Render page
+		$data['page_title'] = sprintf(__("Awards - %s"), __('WAIP'));
+		$data['user_map_custom'] = $this->optionslib->get_map_custom();
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('awards/waip/index');
+		$this->load->view('interface_assets/footer');
+    }
+
+	/*
+        function waip_map
+        Returns JSON data for WAIP Award map visualization
+    */
+    public function waip_map() {
+        $this->load->model('waip');
+
+		// Get category (MIXED, PHONE, CW, DIGI, or band like 20M)
+		$category = $this->security->xss_clean($this->input->post('category'));
+		if (!$category) {
+			$category = 'MIXED';
+		}
+
+        // QSL only
+        $postdata['qsl'] = 1;
+
+		// Get location list for active station
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$location_list = "'" . implode("','", $logbooks_locations_array) . "'";
+
+		// Get map status directly from model
+		$provinces = $this->waip->get_waip_map_status($category, $postdata, $location_list);
+
+        header('Content-Type: application/json');
+        echo json_encode($provinces);
+    }
+
+	/*
         function WAP_map
 
         This displays the WAP Worked All The Netherlands Provinces map and requires the $band_type and $mode_type
