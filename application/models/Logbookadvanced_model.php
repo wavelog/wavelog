@@ -1002,7 +1002,7 @@ class Logbookadvanced_model extends CI_Model {
 
 		$modes = array();
 
-		$sql = "SELECT distinct col_mode, col_submode FROM " . $this->config->item('table_name') . " thcv
+		$sql = "SELECT distinct col_mode, COALESCE(col_submode, '') AS col_submode FROM " . $this->config->item('table_name') . " thcv
 		JOIN station_profile on thcv.station_id = station_profile.station_id WHERE station_profile.user_id = ? ORDER BY col_mode, col_submode";
 
 		$query = $this->db->query($sql, array($this->session->userdata('user_id')));
