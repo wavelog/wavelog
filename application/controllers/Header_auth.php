@@ -408,34 +408,8 @@ class Header_auth extends CI_Controller {
             }
         }
 
-        // Prefixes to update (add only)
-        $group_prefixes = array_keys(array_filter($dynamics));
-        $dynamic_add_id = []; // Clubstations that start with a prefix with update on login
-        foreach ($claim as $group) {
-            foreach ($group_prefixes as $prefix) {
-
-                // Check if group starts with prefix
-                // Only add if is new user, or update on login true
-                if (strpos($group, $prefix) === 0 && ($dynamics[$prefix] || $isCreate)) {
-
-                    // Remove prefix
-                    $suffix = substr($group, strlen($prefix));
-
-                    // Keep only if suffix is an integer
-                    if (ctype_digit($suffix)) {
-                        $dynamic_add_id[] = (int)$suffix;
-                    }
-
-                    break; // Stop checking other prefixes
-                }
-            }
-        }
-        log_message('debug', "Header auth _update_club_membership group_prefixes " . implode(',', $group_prefixes) . " dynamic_add_id: " . implode(',', $dynamic_add_id));
-
 
         // TODO: Fix conflict resolution between add and remove when dynamic
-
-        $member_ids = array_merge($member_ids, $dynamic_add_id);
 
         log_message('debug', "Header auth _update_club_membership final member_ids " . implode(',', $member_ids));
         log_message('debug', "Header auth _update_club_membership final non_member_ids " . implode(',', $non_member_ids));
