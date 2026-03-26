@@ -126,7 +126,7 @@ class Header_auth extends CI_Controller {
         // Clubstation
         if (!empty($claim_groups_key) && ENVIRONMENT !== 'maintenance') {
             $groups = $claims[$claim_groups_key] ?? [];
-            $this -> _update_club_membership($user->user_id, $iss, $groups, $isNewUser);
+            $this -> _update_club_membership($user->user_id, $groups, $isNewUser);
         }
 
 
@@ -363,25 +363,17 @@ class Header_auth extends CI_Controller {
     /**
      * Update clubstation membership.
      * 
-     * @param int    $user_id
-     * @param string $iss      JWT issuer
-     * @param array  $claim    JWT multi-valued group claim
-     * @param bool   $isCreate Is from create user
+     * @param int   $user_id
+     * @param array $claim    JWT multi-valued group claim
+     * @param bool  $isCreate Is from create user
      * 
      * @return void
      */
-    private function _update_club_membership(int $user_id, string $iss, array $claim, bool $isCreate) : void {
-        log_message('debug', "Header auth _update_club_membership for user " . $user_id . " claims: " . implode(',', $claim));
+    private function _update_club_membership(int $user_id, array $claim, bool $isCreate) : void {
+        log_message('debug', "SSO Authentication Updating Clubstation for user " . $user_id . " claims: " . implode(',', $claim));
 
-
-        $directs_all = $this->config->item('auth_header_clubstation_direct', 'sso') ?: [];
-        $dynamics_all = $this->config->item('auth_header_clubstation_dynamic', 'sso') ?: [];
-
-
-        $directs = $directs_all[$iss] ?? $directs_all[""] ??  [];
-        $dynamics = $dynamics_all[$iss] ?? $dynamics_all[""] ?? [];
-
-        if (empty($directs) && empty($dynamics)) {
+        $directs = $this->config->item('auth_header_clubstation_direct', 'sso') ?: [];
+        if (empty($directs)) {
             return;
         }
 
@@ -393,7 +385,6 @@ class Header_auth extends CI_Controller {
                 return !empty($item['update_on_login']) && $item['update_on_login'] === true;
             }));
         }
-
 
         // Get membership and nonmebership
         $member_ids = [];
@@ -408,8 +399,6 @@ class Header_auth extends CI_Controller {
             }
         }
 
-
-        // TODO: Fix conflict resolution between add and remove when dynamic
 
         log_message('debug', "Header auth _update_club_membership final member_ids " . implode(',', $member_ids));
         log_message('debug', "Header auth _update_club_membership final non_member_ids " . implode(',', $non_member_ids));
