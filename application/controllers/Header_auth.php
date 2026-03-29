@@ -374,6 +374,7 @@ class Header_auth extends CI_Controller {
 
         $directs = $this->config->item('auth_header_clubstation_direct', 'sso') ?: [];
         if (empty($directs)) {
+            log_message('debug', "SSO Authentication Updating Clubstation empty");
             return;
         }
 
@@ -400,8 +401,8 @@ class Header_auth extends CI_Controller {
         }
 
 
-        log_message('debug', "Header auth _update_club_membership final member_ids " . implode(',', $member_ids));
-        log_message('debug', "Header auth _update_club_membership final non_member_ids " . implode(',', $non_member_ids));
+        log_message('debug', "SSO Authentication Updating Clubstation member_ids " . implode(',', $member_ids));
+        log_message('debug', "SSO Authentication Updating Clubstation non_member_ids " . implode(',', $non_member_ids));
 
         $this->load->model('club_model');
         foreach ($member_ids as $club_id) {

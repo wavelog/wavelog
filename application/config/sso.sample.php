@@ -220,19 +220,13 @@ $config['auth_headers_claim_config'] = [
  *
  * Assigns users to clubstations during login or on user creation. Leave blank to disable.
  * 
- * It is recommended that "show full group path" is disabled to prevent leading slashes.
+ * It is recommended that "show full group path" in Keycloak is disabled to prevent leading slashes.
  * 
- * Note that auth_header_clubstation_direct will override auth_header_clubstation_dynamic;
- * lack of membership in auth_header_clubstation_direct will remove the user 
- * from the clubstation, even if membership is granted from auth_header_clubstation_dynamic.
- *
  * $config['auth_header_clubstation_claim'] should be set to the JWT claim that 
  * provides a multi-valued group attribute (RFC7643 4.1.2). The common claim 
  * is "groups" per RFC9068 2.2.3.1.
  * 
- * For $config['auth_header_clubstation_direct'] each key is a JWT issuer.
- * If the JWT issuer array key is set to an empty string, it applies to all JWT issuers.
- * Each array key under the issuer is a clubstation id, its values are as follows:
+ * For $config['auth_header_clubstation_direct'] each key is a clubstation id, its values are:
  * 
  *   'group'           => The name of the group defined in the IdP.
  * 
@@ -243,16 +237,14 @@ $config['auth_headers_claim_config'] = [
  * 
  *  Example:
  *  $config['auth_header_clubstation_direct'] = [
- *      "https://idp.example.com/realms/acme" => [
- *          9 => [
- *              'group' => 'wl_society_station_group',
- *              'update_on_login' => true
- *          ],
- *          15 => [
- *              'group' => 'wl_special_event_station',
- *              'update_on_login' => true
- *          ],
- *      ]
+ *      9 => [
+ *          'group' => 'wl_society_station_group',
+ *          'update_on_login' => true
+ *      ],
+ *      15 => [
+ *          'group' => 'wl_special_event_station',
+ *          'update_on_login' => true
+ *      ],
  *  ];
  *
  *  
