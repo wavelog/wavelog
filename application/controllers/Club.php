@@ -41,6 +41,18 @@ class Club extends CI_Controller
 		$cid = $this->security->xss_clean($club_id);
 		$club = $this->user_model->get_by_id($cid)->row();
 
+		// Check if club managed by SSO
+		$ssoManaged = false;
+		if ($this->config->item('auth_header_enable') ?? false) {
+
+			$this->config->load('sso', true, true);
+			$directs = $this->config->item('auth_header_clubstation_direct', 'sso') ?: [];
+
+			if (!empty($directs)) {
+				$ssoManaged = key_exists($club_id, $directs);
+			}
+		}
+
 		if (!is_numeric($cid)) {
 			$this->session->set_flashdata('error', __("Invalid User ID!"));
 			redirect('user');
@@ -58,6 +70,7 @@ class Club extends CI_Controller
 		$data['club'] = $club;
 		$data['club_members'] = $this->club_model->get_club_members($cid);
 		$data['permissions'] = $this->permissions;
+		$data['sso_managed'] = $ssoManaged;
 
 		$footerData = [];
 		$footerData['scripts'] = [
