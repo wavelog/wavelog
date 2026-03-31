@@ -244,7 +244,7 @@ class API_Model extends CI_Model {
 	}
 
 	function get_callsigns_worked_in_logbook($StationLocationsArray = null, $band = null, $cnfm = null) {
-		$grid_array = [];
+		$callsign_array = [];
 		if ($StationLocationsArray == null) {
 			$this->load->model('logbooks_model');
 			$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -280,7 +280,6 @@ class API_Model extends CI_Model {
 		$sql .= $subsql;
 		$sql .= ' ORDER BY callsign ASC;';
 		$query = $this->db->query($sql,$bindings);
-		$callsign_array = array();
 		foreach($query->result() as $line) {
 			$callsign_array[] = $line->callsign;
 		}
