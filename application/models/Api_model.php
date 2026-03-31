@@ -242,4 +242,49 @@ class API_Model extends CI_Model {
 		sort ($grid_array);
 		return $grid_array;
 	}
+
+	function get_callsigns_worked_in_logbook($StationLocationsArray = null, $band = null, $cnfm = null) {
+		$grid_array = [];
+		if ($StationLocationsArray == null) {
+			$this->load->model('logbooks_model');
+			$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		} else {
+			$logbooks_locations_array = $StationLocationsArray;
+		}
+
+		$bindings = [];
+		$subsql = '';
+		$band = ($band == 'All') ? null : $band;
+		if ($band != null && $band != 'SAT') {
+			$subsql .= ' AND COL_BAND = ? AND COL_PROP_MODE != "SAT"';
+			$bindings[] = $band;
+		} else if ($band == 'SAT') {
+			$subsql .= ' AND COL_SAT_NAME != ""';
+		}
+		switch ($cnfm) {
+			case 'qsl':
+				$subsql .= ' AND COL_QSL_RCVD = "Y"';
+				break;
+			case 'lotw':
+				$subsql .= ' AND COL_LOTW_QSL_RCVD = "Y"';
+				break;
+			case 'eqsl':
+				$subsql .= ' AND COL_EQSL_QSL_RCVD = "Y"';
+				break;
+		}
+
+		$ids = array_map('intval', $logbooks_locations_array);
+		$sql = 'SELECT DISTINCT UPPER(COL_CALL) AS callsign FROM ' . $this->config->item('table_name') . ' thcv ';
+		$sql .= ' WHERE COL_CALL <> ""';
+		$sql .= ' AND station_id IN (' . implode(',', $ids) . ')';
+		$sql .= $subsql;
+		$sql .= ' ORDER BY callsign ASC;';
+		$query = $this->db->query($sql,$bindings);
+		$callsign_array = array();
+		foreach($query->result() as $line) {
+			$callsign_array[] = $line->callsign;
+		}
+		sort($callsign_array);
+		return $callsign_array;
+	}
 }

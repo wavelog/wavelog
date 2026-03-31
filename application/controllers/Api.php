@@ -806,7 +806,64 @@ class API extends CI_Controller {
 				}
 			}
 		}
+	}
 
+	// API function to get all worked callsigns for a band and confirmation method
+	function logbook_get_worked_callsigns() {
+		$arr = array();
+		header('Content-type: application/json');
+		$this->load->model('api_model');
+		$obj = json_decode(file_get_contents("php://input"), true);
+		if ($obj === NULL) {
+		    echo json_encode(['status' => 'failed', 'reason' => "wrong JSON"]);
+		    die();
+		}
+		// Check rate limit
+		$identifier = isset($obj['key']) ? $obj['key'] : null;
+		$this->check_rate_limit('logbook_get_worked_callsigns', $identifier);
+
+		if(!isset($obj['key']) || $this->api_model->authorize($obj['key']) == 0) {
+		   http_response_code(401);
+		   echo json_encode(['status' => 'failed', 'reason' => "missing api key"]);
+		   die();
+		}
+		$api_user_id = $this->api_model->key_userid($obj['key']);
+		if(!isset($obj['logbook_id'])) {
+		   http_response_code(400);
+		   echo json_encode(['status' => 'failed', 'reason' => "missing fields"]);
+			return;
+		}
+		if($obj['logbook_id'] != "") {
+			$logbook_id = $obj['logbook_id'];
+			if(isset($obj['band'])) {
+				$band = $obj['band'];
+			} else {
+				$band = null;
+			}
+			if(isset($obj['cnfm'])) {
+				$cnfm = $obj['cnfm'];
+			} else {
+				$cnfm = null;
+			}
+			$this->load->model('logbooks_model');
+			if(!$this->logbooks_model->logbook_id_belongs_to_user($logbook_id, $api_user_id)) {
+				http_response_code(403);
+				echo json_encode(['status' => 'failed', 'reason' => "logbook does not belong to this API key or logbook ID not found"]);
+				die();
+			}
+			if ($this->logbooks_model->exists_logbook_id($logbook_id) != false) {
+				$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($logbook_id);
+				if ($logbooks_locations_array[0] === -1) {
+					http_response_code(404);
+					echo json_encode(['status' => 'failed', 'reason' => "logbook with ID ".$logbook_id." has no associated station locations"]);
+					die();
+				} else {
+					$arr = $this->api_model->get_callsigns_worked_in_logbook($logbooks_locations_array, $band, $cnfm);
+					http_response_code(201);
+					echo json_encode($arr);
+				}
+			}
+		}
 	}
 
 	/* ENDPOINT for Rig Control */
