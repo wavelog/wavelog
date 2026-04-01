@@ -6,6 +6,7 @@ class Jcc_model extends Japan_award_model {
 
 	function __construct() {
 		parent::__construct();
+		$this->load_pref_data_from_json();
 		$this->load_jcc_data_from_json();
 		$this->load_ku_data_from_json();
 	}
@@ -59,117 +60,109 @@ class Jcc_model extends Japan_award_model {
 	}
 
 	/**
-	 * Get the JCC status array for display on the table
-	 * 	array[city][band] = 'C' if confirmed, 'W' if worked but not confirmed, '-' if not worked
+	 * Build grouped slot data for the JCC demo slot.
 	 *
-	 * @param array $bands The list of bands to include in the result
 	 * @param array $postdata The postdata containing filter options
 	 * @param array|null $entity_status The pre-query entity status to use
+	 * @return array Grouped slot data keyed by prefecture code
 	 */
-	function get_jcc_array($bands, $postdata, $entity_status = null) {
+	function get_jcc_grouped_slot($postdata, $entity_status = null) {
 		if ($entity_status === null) {
-			$entity_status = $this->query_jcc_entity_status($postdata, 'band');
+			$entity_status = $this->query_jcc_entity_status($postdata, 'none');
 		}
 
 		$jcc_list = $this->filter_entity_data($this->ja_cities, $postdata);
-
-		$cities = array();
-		// Initializing the array with all cities and bands
-		foreach ($jcc_list as $city => $city_data) {
-			$cities[$city]['Number'] = $city;
-			$cities[$city]['City'] = $city_data['name'];
-			$cities[$city]['count'] = 0;
-			foreach ($bands as $band) {
-				// Sets all to dash to indicate no result
-				$cities[$city][$band] = '-';
-			}
+		$slot_status = array();
+		foreach ($jcc_list as $entity => $city_data) {
+			$slot_status[$entity] = '-';
 		}
 
 		foreach ($entity_status as $row) {
+			$entity = $row['entity'];
+			$slot_status[$entity] = 'W';
 			if ($row['confirmed'] == 1) {
-				if ($postdata['confirmed'] != NULL) {
-					$cities[$row['entity']][$row['key_col']] = 'C';
-					$cities[$row['entity']]['count'] += 1;
-				}
-			} else {
-				if ($postdata['worked'] != NULL) {
-					$cities[$row['entity']][$row['key_col']] = 'W';
-					$cities[$row['entity']]['count'] += 1;
-				}
+				$slot_status[$entity] = 'C';
 			}
 		}
 
-		if ($postdata['notworked'] == NULL) {
-			foreach ($cities as $city => $city_data) {
-				if ($city_data['count'] == 0) {
-					unset($cities[$city]);
-				}
+		$groups = array();
+		foreach ($jcc_list as $entity => $city_data) {
+			$prefecture_code = substr((string) $entity, 0, 2);
+			if (!isset($groups[$prefecture_code])) {
+				$groups[$prefecture_code] = array(
+					'prefecture_code' => $prefecture_code,
+					'prefecture_name' => $this->get_ja_prefecture_name($prefecture_code),
+					'slots' => array(),
+				);
 			}
+
+			$status = $slot_status[$entity] ?? '-';
+
+			$groups[$prefecture_code]['slots'][] = array(
+				'entity' => $entity,
+				'short_number' => substr((string) $entity, 2),
+				'name' => $city_data['name'] ?? '',
+				'status' => $status,
+				'deleted' => !empty($city_data['deleted']),
+			);
 		}
 
-		if (!empty($cities)) {
-			return $cities;
-		} else {
-			return 0;
+		ksort($groups, SORT_STRING);
+		foreach ($groups as &$group) {
+			usort($group['slots'], function ($left, $right) {
+				return strcmp($left['entity'], $right['entity']);
+			});
 		}
+		unset($group);
+
+		return $groups;
 	}
 
-
 	/**
-	 * Get the JCC summary array for display on the table
-	 * 	array['worked'][band] = count of worked cities for the band
-	 * 	array['confirmed'][band] = count of confirmed cities for the band
+	 * Build the overall summary for the grouped JCC grid.
 	 *
-	 * @param array $bands The list of bands to include in the result
 	 * @param array $postdata The postdata containing filter options
 	 * @param array|null $entity_status The pre-query entity status to use
+	 * @return array The summary data for the grouped grid
 	 */
-	function get_jcc_summary($bands, $postdata, $entity_status = null) {
+	function get_jcc_summary($postdata, $entity_status = null) {
 		if ($entity_status === null) {
-			$entity_status = $this->query_jcc_entity_status($postdata, 'band');
+			$entity_status = $this->query_jcc_entity_status($postdata, 'none');
 		}
 
-		$summary = array(
-			'worked' => array(),
-			'confirmed' => array(),
-		);
-
-		// $worked_by_band = array();
-		// $confirmed_by_band = array();
-		foreach ($bands as $band) {
-			$summary['worked'][$band] = 0;
-			$summary['confirmed'][$band] = 0;
-		}
-
-		$worked_total = array();
-		$confirmed_total = array();
+		$jcc_list = $this->filter_entity_data($this->ja_cities, $postdata);
+		$worked_entities = array();
+		$confirmed_entities = array();
 
 		foreach ($entity_status as $row) {
-			$worked_total[$row['entity']] = true;
-			$summary['worked'][$row['key_col']] += 1;
+			$entity = $row['entity'];
+			$worked_entities[$entity] = true;
 			if ($row['confirmed'] == 1) {
-				$confirmed_total[$row['entity']] = true;
-				$summary['confirmed'][$row['key_col']] += 1;
+				$confirmed_entities[$entity] = true;
 			}
 		}
 
-		$summary['worked']['Total'] = count($worked_total);
-		$summary['confirmed']['Total'] = count($confirmed_total);
-
-		// make sure SAT is after Total
-		// I don't know why, but the origin design is such.
-		if (isset($summary['worked']['SAT']) && isset($summary['confirmed']['SAT'])) {
-			$summary_worked_sat = $summary['worked']['SAT'];
-			$summary_confirmed_sat = $summary['confirmed']['SAT'];
-
-			unset($summary['worked']['SAT']);
-			unset($summary['confirmed']['SAT']);
-
-			$summary['worked']['SAT'] = $summary_worked_sat;
-			$summary['confirmed']['SAT'] = $summary_confirmed_sat;
+		$total = count($jcc_list);
+		$deleted = 0;
+		foreach ($jcc_list as $city_data) {
+			if (!empty($city_data['deleted'])) {
+				$deleted += 1;
+			}
 		}
+		$worked = count($worked_entities);
+		$confirmed = count($confirmed_entities);
+		$worked_only = max(0, $worked - $confirmed);
 
-		return $summary;
+		return array(
+			'deleted' => $deleted,
+			'total' => $total,
+			'worked' => $worked,
+			'confirmed' => $confirmed,
+			'worked_only' => $worked_only,
+			'worked_percent' => $total > 0 ? round(($worked / $total) * 100, 1) : 0,
+			'confirmed_percent' => $total > 0 ? round(($confirmed / $total) * 100, 1) : 0,
+			'worked_only_percent' => $total > 0 ? round(($worked_only / $total) * 100, 1) : 0,
+		);
 	}
 
 	/**

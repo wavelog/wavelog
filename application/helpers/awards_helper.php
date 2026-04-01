@@ -96,3 +96,75 @@ if (!function_exists('awards_render_jcc_cell')) {
 		return '<div class="' . $class_name . '"><a href="' . html_escape($href) . '">' . $status . '</a></div>';
 	}
 }
+
+if (!function_exists('awards_render_jcc_grid_slot')) {
+	/**
+	 * Renders a slot for the grouped JCC demo grid.
+	 *
+	 * @param array $slot The slot metadata
+	 * @param array $postdata The postdata containing filter options
+	 * @return string The HTML string for the slot
+	 */
+	function awards_render_jcc_grid_slot($slot, $postdata) {
+		$classes = array(
+			'award-grid-slot',
+			'badge',
+			'border',
+			'd-inline-flex',
+			'align-items-center',
+			'justify-content-center',
+			'fw-semibold',
+			'text-decoration-none',
+		);
+		if (($slot['status'] ?? '-') === 'C') {
+			$classes[] = 'text-bg-success';
+		} elseif (($slot['status'] ?? '-') === 'W') {
+			$classes[] = 'text-bg-danger';
+		} else {
+			$classes[] = 'text-bg-light';
+		}
+		if (!empty($slot['deleted'])) {
+			$classes[] = 'award-grid-slot-deleted';
+		}
+
+		$tooltip_lines = array();
+		$title_parts = array();
+
+		if (!empty($slot['entity'])) {
+			$tooltip_lines[] = '<strong>' . html_escape($slot['entity']) . '</strong>';
+			$title_parts[] = $slot['entity'];
+		}
+		if (!empty($slot['name'])) {
+			$tooltip_lines[] = html_escape($slot['name']);
+			$title_parts[] = $slot['name'];
+		}
+		if (!empty($slot['deleted'])) {
+			$tooltip_lines[] = html_escape(__("Deleted"));
+			$title_parts[] = __("Deleted");
+		}
+
+		$tooltip_html = implode('<br>', $tooltip_lines);
+		$title = trim(implode(' - ', $title_parts));
+
+		$label = html_escape($slot['short_number'] ?? $slot['entity'] ?? '');
+		$class_name = html_escape(implode(' ', $classes));
+		$title_attr = html_escape($title);
+		$tooltip_attr = html_escape($tooltip_html);
+		$tooltip_data = ' data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" data-bs-title="' . $tooltip_attr . '" title="' . $title_attr . '"';
+
+		if (($slot['status'] ?? '-') === 'W' || ($slot['status'] ?? '-') === 'C') {
+			$qsl_string = ($slot['status'] ?? '-') === 'C' ? awards_build_qsl_string($postdata) : '';
+			$href = awards_build_display_contacts_href(
+				$slot['entity'] ?? '',
+				$postdata['band'] ?? 'All',
+				$postdata['mode'] ?? 'All',
+				'JCC',
+				$qsl_string,
+			);
+
+			return '<a class="' . $class_name . '" href="' . html_escape($href) . '"' . $tooltip_data . ' aria-label="' . $title_attr . '">' . $label . '</a>';
+		}
+
+		return '<span class="' . $class_name . '"' . $tooltip_data . ' aria-label="' . $title_attr . '">' . $label . '</span>';
+	}
+}

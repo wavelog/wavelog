@@ -13,16 +13,17 @@ if (typeof(user_map_custom.unworked) !== 'undefined') {
 }
 
 function load_jcc_map() {
-    $('.nav-tabs a[href="#jccmaptab"]').tab('show');
+    const map_tab = document.getElementById('jcc-map-tab');
+    if (map_tab && typeof bootstrap !== 'undefined') {
+        bootstrap.Tab.getOrCreateInstance(map_tab).show();
+    }
+
     $.ajax({
         url: base_url + 'index.php/awards/jcc_map',
         type: 'post',
         data: {
             band: $('#band2').val(),
             mode: $('#mode').val(),
-            worked: +$('#worked').prop('checked'),
-            confirmed: +$('#confirmed').prop('checked'),
-            notworked: +$('#notworked').prop('checked'),
             qsl: +$('#qsl').prop('checked'),
             lotw: +$('#lotw').prop('checked'),
             qrz: +$('#qrz').prop('checked'),
@@ -31,7 +32,7 @@ function load_jcc_map() {
 			includedeleted: +$('#includedeleted').prop('checked'),
         },
         success: function(data) {
-            load_jcc_map2(data, worked, confirmed, notworked);
+			load_jcc_map2(data);
         },
         error: function() {
 
@@ -39,7 +40,8 @@ function load_jcc_map() {
     });
 }
 
-function load_jcc_map2(data, worked, confirmed, notworked) {
+function load_jcc_map2(data) {
+	const include_deleted = $('#includedeleted').prop('checked');
 
     // If map is already initialized
     var container = L.DomUtil.get('jccmap');
@@ -47,7 +49,7 @@ function load_jcc_map2(data, worked, confirmed, notworked) {
     if(container != null){
         container._leaflet_id = null;
         container.remove();
-        $("#jccmaptab").append('<div id="jccmap" class="map-leaflet" ></div>');
+        $("#jcc-map-panel").append('<div id="jccmap" class="map-leaflet" ></div>');
     }
 
     var map = new L.Map('jccmap', {
@@ -65,6 +67,10 @@ function load_jcc_map2(data, worked, confirmed, notworked) {
         }
     ).addTo(map);
 
+    const confirmed_layer = L.layerGroup().addTo(map);
+    const worked_layer = L.layerGroup().addTo(map);
+    const notworked_layer = L.layerGroup();
+
     var notworkedcount = 0;
     var confirmedcount = 0;
     var workednotconfirmedcount = 0;
@@ -76,6 +82,9 @@ function load_jcc_map2(data, worked, confirmed, notworked) {
        async: false,
        success: function(result) {
           for (var item in result) {
+             if (!include_deleted && result[item]['deleted']) {
+                continue;
+             }
              var name = item.toString();
              jccstuff[name] = [result[item]['name'], result[item]['lat'], result[item]['lon']];
           }
@@ -83,50 +92,54 @@ function load_jcc_map2(data, worked, confirmed, notworked) {
     });
     for (const [key, value] of Object.entries(jccstuff)) {
        var D = [];
+         let mapColor = null;
        if (key in data) {
-          if (confirmed.checked == true) {
-             if (data[key][1] == 1) {
-                mapColor = confirmedColor;
-                D['prefix'] = key;
-                D['name'] = value[0];
-                D['lat'] = value[1];
-                D['long'] = value[2];
-                addMarker(L, D, mapColor, map);
-                confirmedcount++;
-                continue;
-             }
-          }
-          if (worked.checked == true) {
-             mapColor = workedColor;
-             D['prefix'] = key;
-             D['name'] = value[0];
-             D['lat'] = value[1];
-             D['long'] = value[2];
-             addMarker(L, D, mapColor, map);
-             workednotconfirmedcount++;
-          }
+           if (data[key][1] == 1) {
+              mapColor = confirmedColor;
+              D['prefix'] = key;
+              D['name'] = value[0];
+              D['lat'] = value[1];
+              D['long'] = value[2];
+			  addMarker(L, D, mapColor, confirmed_layer);
+              confirmedcount++;
+              continue;
+           }
+
+           mapColor = workedColor;
+           D['prefix'] = key;
+           D['name'] = value[0];
+           D['lat'] = value[1];
+           D['long'] = value[2];
+           addMarker(L, D, mapColor, worked_layer);
+           workednotconfirmedcount++;
        } else {
-          if (notworked.checked == true) {
-             mapColor = unworkedColor;
-             D['prefix'] = key;
-             D['name'] = value[0];
-             D['lat'] = value[1];
-             D['long'] = value[2];
-             addMarker(L, D, mapColor, map);
-             notworkedcount++;
-          }
+           mapColor = unworkedColor;
+           D['prefix'] = key;
+           D['name'] = value[0];
+           D['lat'] = value[1];
+           D['long'] = value[2];
+           addMarker(L, D, mapColor, notworked_layer);
+           notworkedcount++;
        }
     };
 
-    /*Legend specific*/
-    var legend = L.control({ position: "topright" });
+    L.control.layers(null, {
+        [lang_general_word_confirmed + ' (' + confirmedcount + ')']: confirmed_layer,
+        [lang_general_word_worked_not_confirmed + ' (' + workednotconfirmedcount + ')']: worked_layer,
+        [lang_general_word_not_worked + ' (' + notworkedcount + ')']: notworked_layer,
+    }, {
+        collapsed: false,
+        position: 'topright',
+    }).addTo(map);
 
-    legend.onAdd = function(map) {
-        var div = L.DomUtil.create("div", "legend");
-        div.innerHTML += "<h4>" + lang_general_word_colors + "</h4>";
-        div.innerHTML += "<i style='background: " + confirmedColor + "'></i><span>" + lang_general_word_confirmed + " (" + confirmedcount + ")</span><br>";
-        div.innerHTML += "<i style='background: " + workedColor + "'></i><span>" + lang_general_word_worked_not_confirmed + " (" + workednotconfirmedcount + ")</span><br>";
-        div.innerHTML += "<i style='background: " + unworkedColor + "'></i><span>" + lang_general_word_not_worked + " (" + notworkedcount + ")</span><br>";
+    var legend = L.control({ position: 'bottomright' });
+
+    legend.onAdd = function() {
+        var div = L.DomUtil.create('div', 'legend');
+        div.innerHTML += '<h4>' + lang_general_word_colors + '</h4>';
+        div.innerHTML += "<i style='background: " + confirmedColor + "'></i><span>" + lang_general_word_confirmed + "</span><br>";
+        div.innerHTML += "<i style='background: " + workedColor + "'></i><span>" + lang_general_word_worked_not_confirmed + "</span><br>";
+        div.innerHTML += "<i style='background: " + unworkedColor + "'></i><span>" + lang_general_word_not_worked + "</span><br>";
         return div;
     };
 
@@ -135,7 +148,7 @@ function load_jcc_map2(data, worked, confirmed, notworked) {
     map.setView([37.460, 139.452], 5);
 }
 
-function addMarker(L, D, mapColor, map) {
+function addMarker(L, D, mapColor, layer) {
     var title = '<span><font style="color: ' +mapColor+ '; text-shadow: 1px 0 #fff, -1px 0 #fff, 0 1px #fff, 0 -1px #fff, 1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;font-size: 14px; font-weight: 900;">' + D['prefix'] + '</font></span>';
     var myIcon = L.divIcon({className: 'my-div-icon', html: title});
 
@@ -163,7 +176,7 @@ function addMarker(L, D, mapColor, map) {
         prefix: D['prefix'],
         title: D['prefix'] + ' - ' + D['name'],
     }
-    ).addTo(map).on('click', onClick);
+    ).addTo(layer).on('click', onClick);
 
     L.marker(
         [D['lat'], D['long']], {
@@ -171,7 +184,7 @@ function addMarker(L, D, mapColor, map) {
             prefix: D['prefix'],
             title: D['prefix'] + ' - ' + D['name'],
         }
-        ).addTo(map).on('click', onClick);
+        ).addTo(layer).on('click', onClick);
 }
 
 function onClick(e) {
