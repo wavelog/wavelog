@@ -22,7 +22,7 @@ class Jcc_model extends Japan_award_model {
 	 */
 	private function build_jcc_query_groups($postdata) {
 		$jcc_data = $this->filter_entity_data($this->ja_cities, $postdata);
-		$ku_data = $this->filter_entity_data($this->ja_kus, $postdata);
+		$ku_data = $this->ja_kus;	// No need to filter deleted kus, as they could still count as its city
 		$jcc_in_list = $this->build_entity_in_list_sql($jcc_data);
 		$ku_in_list = $this->build_entity_in_list_sql($ku_data);
 
