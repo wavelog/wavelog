@@ -147,11 +147,7 @@ class Japan_award_model extends CI_Model {
 	 * @return string The SQL string for IN clause
 	 */
 	protected function build_entity_in_list_sql($entity_data) {
-		$keys = array_map(function ($key) {
-			return $this->db->escape((string) $key);
-		}, array_keys($entity_data));
-
-		return implode(',', $keys);
+		return implode(',', array_keys($entity_data));
 	}
 
 	/**
