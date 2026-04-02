@@ -14,80 +14,23 @@
         display: inline-block;
     }
 
-    .award-grid-legend-swatch-deleted {
-        background-image: repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.18) 0, rgba(0, 0, 0, 0.18) 2px, transparent 2px, transparent 6px);
-    }
-
     .award-grid-prefecture {
         min-width: 12rem;
-    }
-
-    .award-grid-slots {
-        align-content: flex-start;
-    }
-
-    .award-grid-slot {
-        --award-slot-hover-color: inherit;
-        --award-slot-hover-bg: transparent;
-        --award-slot-hover-border-color: currentColor;
-        --award-slot-focus-shadow: 0 0 0 0.25rem rgba(var(--bs-secondary-rgb), 0.15);
-        width: 3rem;
-        height: 2rem;
-        padding: 0 0.5rem;
-        border-radius: 0.375rem;
-        font-size: 0.9rem;
-        line-height: 1;
-        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-        .award-grid-slot {
-            transition: none;
-        }
-    }
-
-    .award-grid-slot:hover {
-        background-color: var(--award-slot-hover-bg) !important;
-        border-color: var(--award-slot-hover-border-color) !important;
-        text-decoration: none;
-        box-shadow: none;
-    }
-
-    .award-grid-slot:focus-visible {
-        outline: 0;
-        box-shadow: var(--award-slot-focus-shadow);
-    }
-
-    .award-grid-slot.text-bg-success {
-        --award-slot-hover-bg: color-mix(in srgb, var(--bs-success) 85%, black);
-        --award-slot-hover-border-color: color-mix(in srgb, var(--bs-success) 80%, black);
-        --award-slot-focus-shadow: 0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25);
-    }
-
-    .award-grid-slot.text-bg-danger {
-        --award-slot-hover-bg: color-mix(in srgb, var(--bs-danger) 85%, black);
-        --award-slot-hover-border-color: color-mix(in srgb, var(--bs-danger) 80%, black);
-        --award-slot-focus-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25);
-    }
-
-    .award-grid-slot.text-bg-light {
-        --award-slot-hover-bg: color-mix(in srgb, var(--bs-light) 85%, black);
-        --award-slot-hover-border-color: color-mix(in srgb, var(--bs-light) 80%, black);
-        --award-slot-focus-shadow: 0 0 0 0.25rem rgba(var(--bs-secondary-rgb), 0.15);
-    }
-
-    .award-grid-slot-deleted {
-        background-image: repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.18) 0, rgba(0, 0, 0, 0.18) 2px, transparent 2px, transparent 6px);
-    }
-
-    .award-grid-progress {
-        height: 0.5rem;
     }
 
     @media (max-width: 991.98px) {
         .award-grid-prefecture {
             min-width: 0;
         }
+    }
+
+    .award-grid-slot {
+        width: 3rem;
+        height: 2rem;
+    }
+
+    .award-grid-slot-deleted {
+        background-image: repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.18) 0, rgba(0, 0, 0, 0.18) 2px, transparent 2px, transparent 6px);
     }
 </style>
 
@@ -249,7 +192,7 @@
                             </div>
                             <?php if (($postdata['includedeleted'] ?? null) == 1) { ?>
                                 <div class="d-inline-flex align-items-center gap-2">
-                                    <span class="award-grid-legend-swatch award-grid-legend-swatch-deleted rounded border text-bg-light"></span>
+                                    <span class="award-grid-legend-swatch award-grid-slot-deleted rounded border text-bg-light"></span>
                                     <span><?= __("Deleted"); ?></span>
                                 </div>
                             <?php } ?>
@@ -282,10 +225,10 @@
                             <div class="award-grid-prefecture flex-shrink-0">
                                 <div class="d-flex align-items-center flex-wrap gap-2 mb-1">
                                     <span class="fs-5 fw-bold"><?php echo $group['prefecture_code']; ?></span>
-                                    <span class="fw-bold"><?php echo $group['prefecture_name']; ?></span>
+                                    <span><?php echo $group['prefecture_name']; ?></span>
                                 </div>
                             </div>
-                            <div class="award-grid-slots d-flex flex-wrap gap-2">
+                            <div class="d-flex flex-wrap gap-2">
                                 <?php foreach ($group['slots'] as $slot) {
                                     echo awards_render_jcc_grid_slot($slot, $postdata);
                                 } ?>

@@ -108,20 +108,18 @@ if (!function_exists('awards_render_jcc_grid_slot')) {
 	function awards_render_jcc_grid_slot($slot, $postdata) {
 		$classes = array(
 			'award-grid-slot',
-			'badge',
+			'btn',
 			'border',
 			'd-inline-flex',
 			'align-items-center',
 			'justify-content-center',
-			'fw-semibold',
-			'text-decoration-none',
 		);
 		if (($slot['status'] ?? '-') === 'C') {
-			$classes[] = 'text-bg-success';
+			$classes[] = 'btn-success';
 		} elseif (($slot['status'] ?? '-') === 'W') {
-			$classes[] = 'text-bg-danger';
+			$classes[] = 'btn-danger';
 		} else {
-			$classes[] = 'text-bg-light';
+			$classes[] = 'btn-light';
 		}
 		if (!empty($slot['deleted'])) {
 			$classes[] = 'award-grid-slot-deleted';
