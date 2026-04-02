@@ -306,7 +306,7 @@ class Logbook extends CI_Controller {
 				$this->load->model('logbook_model');
 				$this->db->where('COL_MODE', $this->logbook_model->get_main_mode_from_mode($mode));
 				$this->db->where('COL_BAND', $band);
-				$this->db->where('COL_PROP_MODE !=','SAT');
+				$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
 				if ($extrawhere != '') {
 					$this->db->where('('.$extrawhere.')');
 				} else {
@@ -343,7 +343,7 @@ class Logbook extends CI_Controller {
 			} else {
 				$this->db->where('COL_MODE', $this->logbook_model->get_main_mode_from_mode($mode));
 				$this->db->where('COL_BAND', $band);
-				$this->db->where('COL_PROP_MODE !=','SAT');
+				$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
 
 			}
 			$this->db->where_in('station_id', $logbooks_locations_array);
@@ -389,7 +389,7 @@ class Logbook extends CI_Controller {
 			$this->load->model('logbook_model');
 			$this->db->where('COL_MODE', $this->logbook_model->get_main_mode_from_mode($mode));
 			$this->db->where('COL_BAND', $band);
-			$this->db->where('COL_PROP_MODE !=','SAT');
+			$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
 
 		}
 
@@ -438,7 +438,7 @@ class Logbook extends CI_Controller {
 			$this->load->model('logbook_model');
 			$this->db->where('COL_MODE', $this->logbook_model->get_main_mode_from_mode($mode));
 			$this->db->where('COL_BAND', $band);
-			$this->db->where('COL_PROP_MODE !=','SAT');
+			$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
 			if ($extrawhere != '') {
 				$this->db->where('('.$extrawhere.')');
 			} else {
@@ -481,7 +481,7 @@ class Logbook extends CI_Controller {
 			} else {
 				$this->db->where('COL_MODE', $this->logbook_model->get_main_mode_from_mode($mode));
 				$this->db->where('COL_BAND', $band);
-				$this->db->where('COL_PROP_MODE !=','SAT');
+				$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
 
 			}
 
@@ -530,7 +530,7 @@ class Logbook extends CI_Controller {
 				$this->load->model('logbook_model');
 				$this->db->where('COL_MODE', $this->logbook_model->get_main_mode_from_mode($mode));
 				$this->db->where('COL_BAND', $band);
-				$this->db->where('COL_PROP_MODE !=','SAT');
+				$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
 				if ($extrawhere != '') {
 					$this->db->where('('.$extrawhere.')');
 				} else {
@@ -585,7 +585,7 @@ class Logbook extends CI_Controller {
 			} else {
 				$this->db->where('COL_MODE', $this->logbook_model->get_main_mode_from_mode($mode));
 				$this->db->where('COL_BAND', $band);
-				$this->db->where('COL_PROP_MODE !=','SAT');
+				$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
 
 			}
 
@@ -634,7 +634,7 @@ class Logbook extends CI_Controller {
 				$this->load->model('logbook_model');
 				$this->db->where('COL_MODE', $this->logbook_model->get_main_mode_from_mode($mode));
 				$this->db->where('COL_BAND', $band);
-				$this->db->where('COL_PROP_MODE !=','SAT');
+				$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
 				if ($extrawhere != '') {
 					$this->db->where('('.$extrawhere.')');
 				} else {

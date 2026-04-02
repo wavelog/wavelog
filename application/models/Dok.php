@@ -164,7 +164,7 @@ class DOK extends CI_Model {
 			$bandslots_list = "'".implode("','",$bandslots)."'";
 			$sql .= " AND thcv.COL_BAND in (" . $bandslots_list . ")";
 		} else {
-			$sql .= " AND thcv.COL_PROP_MODE !='SAT'";
+			$sql .= " AND (thcv.COL_PROP_MODE != 'SAT' OR thcv.COL_PROP_MODE IS NULL)";
 			$sql .= " AND thcv.COL_BAND = ?";
 			$bindings[]=$band;
 		}
@@ -190,7 +190,7 @@ class DOK extends CI_Model {
 			$bandslots_list = "'".implode("','",$bandslots)."'";
 			$sql .= " AND thcv.COL_BAND in (" . $bandslots_list . ")";
 		} else {
-			$sql .= " AND thcv.COL_PROP_MODE !='SAT'";
+			$sql .= " AND (thcv.COL_PROP_MODE != 'SAT' OR thcv.COL_PROP_MODE IS NULL)";
 			$sql .= " AND thcv.COL_BAND = ?";
 			$bindings[]=$band;
 		}

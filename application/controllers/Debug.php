@@ -314,7 +314,7 @@ class Debug extends CI_Controller
 		$migrate = $this->debug_model->migrate_userdata();
 
 		if ($migrate == true) {
-			$this->session->set_flashdata('success', __("File Migration was successfull, but please check also manually. If everything seems right you can delete the folders 'assets/qslcard' and 'images/eqsl_card_images'."));
+			$this->session->set_flashdata('success', __("File Migration was successful, but please check also manually. If everything seems right you can delete the folders 'assets/qslcard' and 'images/eqsl_card_images'."));
 			redirect('debug');
 		} else {
 			$this->session->set_flashdata('error', __("File Migration failed. Please check the Error Log."));

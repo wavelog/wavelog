@@ -488,7 +488,7 @@ class Logbook_model extends CI_Model {
 						$this->db->where("satellite.orbit", $orbit);
 					}
 				} else {
-					$this->db->where("COL_PROP_MODE !=", "SAT");
+					$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
 				}
 				break;
 			case 'IOTA':
@@ -530,7 +530,7 @@ class Logbook_model extends CI_Model {
 						$this->db->or_where("COL_PROP_MODE is null");
 						$this->db->group_end();
 					} elseif ($propagation == 'NoSAT') {
-						$this->db->where("COL_PROP_MODE != 'SAT'");
+						$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
 					} elseif ($propagation != '' && $propagation != null) {
 						$this->db->where("COL_PROP_MODE", $propagation);
 					}
@@ -551,12 +551,12 @@ class Logbook_model extends CI_Model {
 						$this->db->where("satellite.orbit", $orbit);
 					}
 				} else {
-					$this->db->where("COL_PROP_MODE !=", "SAT");
+					$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
 				}
 				break;
-			case 'ITU':
+			case 'ITUZone':
 				$this->db->where('COL_ITUZ', $searchphrase);
-				if ($band == 'SAT' && $type == 'ITU') {
+				if ($band == 'SAT' && $type == 'ITUZone') {
 					if ($sat != 'All' && $sat != null) {
 						$this->db->where("COL_SAT_NAME", $sat);
 					}
@@ -564,7 +564,7 @@ class Logbook_model extends CI_Model {
 						$this->db->where("satellite.orbit", $orbit);
 					}
 				} else {
-					$this->db->where("COL_PROP_MODE !=", "SAT");
+					$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
 				}
 				break;
 			case 'WAS':
@@ -590,7 +590,7 @@ class Logbook_model extends CI_Model {
 
 				// Exclude satellite contacts for Polska Award
 				$this->db->group_start();
-				$this->db->where('COL_PROP_MODE !=', 'SAT');
+				$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
 				$this->db->or_where('COL_PROP_MODE IS NULL');
 				$this->db->group_end();
 
@@ -618,7 +618,21 @@ class Logbook_model extends CI_Model {
 				}
 				break;
 			case 'JCC':
-				$this->db->where('COL_CNTY', $searchphrase);
+				$designated_cities = array(
+					'0101', '0601', '0801', '1101', '1103', '1110', '1201', '1344', '1801', '1802',
+					'2001', '2201', '2501', '2502', '2701', '3101', '3501', '4001', '4021', '4301',
+				);
+				if (in_array($searchphrase, $designated_cities, true)) {
+					$this->db->group_start();
+					$this->db->where('COL_CNTY', $searchphrase);
+					$this->db->or_group_start();
+					$this->db->like('COL_CNTY', $searchphrase, 'after');
+					$this->db->where('CHAR_LENGTH(COL_CNTY) = 6', null, false);
+					$this->db->group_end();
+					$this->db->group_end();
+				} else {
+					$this->db->where('COL_CNTY', $searchphrase);
+				}
 				$this->db->where('COL_DXCC', '339');
 				break;
 			case 'SOTA':
@@ -648,7 +662,7 @@ class Logbook_model extends CI_Model {
 			case 'WAIP':
 				// Exclude satellite contacts for Polska Award
 				$this->db->group_start();
-				$this->db->where('COL_PROP_MODE !=', 'SAT');
+				$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
 				$this->db->or_where('COL_PROP_MODE IS NULL');
 				$this->db->group_end();
 
@@ -738,7 +752,7 @@ class Logbook_model extends CI_Model {
 
 		if (strtolower($band) != 'all') {
 			if ($band != "SAT") {
-				$this->db->where('COL_PROP_MODE !=', 'SAT');
+				$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
 				$this->db->where('COL_BAND', $band);
 			} else {
 				$this->db->where('COL_PROP_MODE', "SAT");
@@ -836,7 +850,7 @@ class Logbook_model extends CI_Model {
 						break;
 				}
 			} else {
-				$this->db->where('COL_PROP_MODE !=', 'SAT');
+				$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
 				$this->db->where('col_band', $band);
 			}
 		}
@@ -3315,7 +3329,7 @@ class Logbook_model extends CI_Model {
 			if ($band == 'SAT') {
 				$this->db->where('COL_PROP_MODE', $band);
 			} else {
-				$this->db->where('COL_PROP_MODE != \'SAT\'');
+				$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
 				$this->db->where('COL_BAND', $band);
 			}
 		}
@@ -3802,7 +3816,7 @@ class Logbook_model extends CI_Model {
 		if ($searchCriteria['band'] !== '') {
 			if ($searchCriteria['band'] != "SAT") {
 				$this->db->where('COL_BAND', $searchCriteria['band']);
-				$this->db->where('COL_PROP_MODE != "SAT"');
+				$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
 			} else {
 				$this->db->where('COL_PROP_MODE', 'SAT');
 			}
@@ -4722,9 +4736,80 @@ class Logbook_model extends CI_Model {
 		return '1900-01-01 00:00:00.000';
 	}
 
-	function import_bulk($records, $station_id = "0", $skipDuplicate = true, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markEqsl = false, $markHrd = false, $markDcl = false, $skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false) {
+	/**
+	 * Get grid value from one ADIF record
+	 * According to ADIF standard, my_gridsquare, my_gridsquare_ext and my_vucc_grids are used.
+	 * 
+	 * @param array $record ADIF record as associative array
+	 * @return string|null Grid value to be used for this record, or null if no
+	 */
+	function get_adif_grid_value($record) {
+		if (isset($record['my_gridsquare']) && $record['my_gridsquare'] !== '') {
+			$grid = $record['my_gridsquare'];
+			if (strlen(trim($grid)) == 8) {
+				$grid .= $record['my_gridsquare_ext'] ?? '';
+			}
+			return $grid;
+		}
+		if (isset($record['my_vucc_grids']) && $record['my_vucc_grids'] !== '') {
+			return $record['my_vucc_grids'];
+		}
+		return '';
+	}
+
+	/**
+	 * Check whether the ADIF grid is consistent with station's
+	 * 
+	 * @param string|null $adif_grid Grid value from ADIF record
+	 * @param string|null $station_grid Grid value from station profile
+	 * @return bool True if ADIF grid is consistent with station's grid, false otherwise
+	 */
+	function adif_grid_check_location($adif_grid, $station_grid) {
+		$adif_grid = trim(strtoupper($adif_grid ?? ''));
+		$station_grid = trim(strtoupper($station_grid ?? ''));
+
+		$adif_is_margin = strpos($adif_grid, ',') !== false;
+		$station_is_margin = strpos($station_grid, ',') !== false;
+
+		if ($adif_is_margin && $station_is_margin) {
+			// Both are margin
+			// Check if they are exactly same
+			$adif_grid_parts = explode(',', $adif_grid);
+			$station_grid_parts = explode(',', $station_grid);
+			sort($adif_grid_parts);
+			sort($station_grid_parts);
+			return $adif_grid_parts === $station_grid_parts;
+
+		} else if ($adif_is_margin && !$station_is_margin) {
+			// ADIF is margin, station is normal grid.
+			// Not allowed
+			return false;
+
+		} else if (!$adif_is_margin && $station_is_margin) {
+			// ADIF is normal grid, station is margin.
+			// Check whether ADIF grid is "consistent" with station's margin.
+			$station_grid_parts = explode(',', $station_grid);
+			foreach ($station_grid_parts as $part) {
+				if (str_starts_with($adif_grid, $part)) {
+					return true;
+				}
+			}
+			return false;
+
+		} else {
+			// Both are normal grids
+			return str_starts_with($adif_grid, $station_grid) || str_starts_with($station_grid, $adif_grid);
+		} 
+		
+		return false;
+	}
+
+	function import_bulk($records, $station_id = "0", $skipDuplicate = true, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markEqsl = false, $markHrd = false, $markDcl = false, $skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false, $skipGridCheck = false) {
 		$this->load->model('user_model');
 		$custom_errors['errormessage'] = '';
+		$critical_errors = [];
+		$validation_errors = [];
+		$duplicate_errors = [];
 		$a_qsos = [];
 		$amsat_qsos = [];
 		$today = time();
@@ -4740,9 +4825,16 @@ class Logbook_model extends CI_Model {
 		$station_qslmsg = (isset($options_object[0]->option_value)) ? $options_object[0]->option_value : '';
 
 		foreach ($records as $record) {
-			$one_error = $this->import($record, $station_id, $skipDuplicate, $markClublog, $markLotw, $dxccAdif, $markQrz, $markEqsl, $markHrd, $markDcl, $skipexport, trim($operatorName), $apicall, $skipStationCheck, true, $station_id_ok, $station_profile, $station_qslmsg);
-			if ($one_error['error'] ?? '' != '') {
-				$custom_errors['errormessage'] .= $one_error['error'];
+			$one_error = $this->import($record, $station_id, $skipDuplicate, $markClublog, $markLotw, $dxccAdif, $markQrz, $markEqsl, $markHrd, $markDcl, $skipexport, trim($operatorName), $apicall, $skipStationCheck, true, $station_id_ok, $station_profile, $station_qslmsg, $skipGridCheck);
+			if (($one_error['error'] ?? '') != '') {
+				$category = $one_error['error_category'] ?? 'other';
+				if ($category === 'critical') {
+					$critical_errors[] = $one_error['error'];
+				} elseif ($category === 'duplicate') {
+					$duplicate_errors[] = $one_error['error'];
+				} else {
+					$validation_errors[] = $one_error['error'];
+				}
 			} else {	// No Errors / QSO doesn't exist so far
 				array_push($a_qsos, $one_error['raw_qso'] ?? '');
 				if (isset($record['prop_mode']) && (($record['prop_mode'] ?? '')== 'SAT') && (($record['sat_name'] ?? '') != '') && $amsat_status_upload) {
@@ -4763,6 +4855,14 @@ class Logbook_model extends CI_Model {
 				}
 			}
 		}
+
+		$custom_errors['errormessage'] = implode('', $critical_errors) . implode('', $validation_errors) . implode('', $duplicate_errors);
+
+		$custom_errors['structured_errors'] = [
+			'critical' => $critical_errors,
+			'validation' => $validation_errors,
+			'duplicate' => $duplicate_errors,
+		];
 
 		// if there are any static map images for this station, remove them so they can be regenerated
 		if (!$this->load->is_loaded('staticmap_model')) {
@@ -4791,7 +4891,7 @@ class Logbook_model extends CI_Model {
      * $markHrd - used in ADIF import to mark QSOs as exported to HRDLog.net Logbook when importing QSOs
      * $skipexport - used in ADIF import to skip the realtime upload to QRZ Logbook when importing QSOs from ADIF
      */
-	function import($record, $station_id = "0", $skipDuplicate = true, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markEqsl = false, $markHrd = false, $markDcl = false, $skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false, $batchmode = false, $station_id_ok = false, $station_profile = null, $station_qslmsg = null) {
+	function import($record, $station_id = "0", $skipDuplicate = true, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markEqsl = false, $markHrd = false, $markDcl = false, $skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false, $batchmode = false, $station_id_ok = false, $station_profile = null, $station_qslmsg = null, $skipGridCheck = false) {
 		// be sure that station belongs to user
 		$this->load->is_loaded('stations') ?: $this->load->model('stations');
 		if ($station_id_ok == false) {
@@ -4804,15 +4904,27 @@ class Logbook_model extends CI_Model {
 			$station_profile = $this->stations->profile_clean($station_id);
 		}
 		$station_profile_call = $station_profile->station_callsign;
+		$station_profile_grid = $station_profile->station_gridsquare;
+		$adif_grid = $this->get_adif_grid_value($record);
 
 		if (($station_id != 0) && (!(isset($record['station_callsign'])))) {
 			$record['station_callsign'] = $station_profile_call;
 		}
 		if ((!$skipStationCheck) && ($station_id != 0) && (trim(strtoupper($record['station_callsign'])) != trim(strtoupper($station_profile_call)))) {     // Check if station_call from import matches profile ONLY when submitting via GUI.
-			$returner['error'] = sprintf(__("Wrong station callsign %s while importing QSO with %s for %s: SKIPPED") .
+			$returner['error'] = sprintf(__("Differing station callsign %s while importing QSO with %s for %s: SKIPPED") .
 				"<br>",
 				'<b>'.htmlentities($record['station_callsign'] ?? '').'</b>',($record['call'] ?? ''),'<b>'.($station_profile_call ?? '').'</b>');
 			return ($returner);
+				$returner['error_category'] = 'critical';
+		}
+		if ((!$skipGridCheck) && ($station_id != 0) && ($adif_grid != '') && ($station_profile_grid != '')) {
+			if (!$this->adif_grid_check_location($adif_grid, $station_profile_grid)) {
+				$returner['error'] = sprintf(__("Differing locator %s while importing QSO with %s for station locator %s: SKIPPED") .
+					"<br>",
+					'<b>'.htmlentities($adif_grid ?? '').'</b>', ($record['call'] ?? ''), '<b>'.htmlentities($station_profile_grid ?? '').'</b>');
+				$returner['error_category'] = 'critical';
+				return ($returner);
+			}
 		}
 
 		$my_error = "";
@@ -4825,6 +4937,7 @@ class Logbook_model extends CI_Model {
 			log_message("Error", "Trying to import QSO with invalid date: " . $qso_date. " for station_id " . $station_id . ". Call: " . $call . " Mode: " . $mode . " Band: " . $band);
 			$returner['error']=__("You tried to import a QSO without valid date. This QSO wasn't imported. It's invalid") . ". Call: " . $call . ", Mode: " . $mode . ", Band: " . $band . "<br>";
 			return($returner);
+			$returner['error_category'] = 'validation';
 		}
 
 		// Join date+time
@@ -4834,6 +4947,7 @@ class Logbook_model extends CI_Model {
 			log_message("Error", "Trying to import QSO without Call for station_id " . $station_id . ". QSO Date/Time: " . $time_on . " Mode: " . ($record['mode'] ?? '') . " Band: " . ($record['band'] ?? ''));
 			$returner['error']=__("QSO on")." ".$time_on.": ".__("You tried to import a QSO without any given CALL. This QSO wasn't imported. It's invalid") . "<br>";
 			return($returner);
+			$returner['error_category'] = 'validation';
 		}
 
 		if (isset($record['time_off'])) {
@@ -4884,6 +4998,7 @@ class Logbook_model extends CI_Model {
 			$returner['error']=sprintf(__("QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't imported. It's invalid"), $time_on) . '<br>';
 
 			return($returner);
+			$returner['error_category'] = 'validation';
 		}
 
 		if (isset($record['band_rx'])) {
@@ -5604,7 +5719,9 @@ class Logbook_model extends CI_Model {
 
 		if ($batchmode) {
 			$returner['error'] = $my_error ?? '';
+			if (($my_error ?? '') != '') { $returner['error_category'] = 'duplicate'; }
 		} else {
+			if (($my_error ?? '') != '') { $returner['error_category'] = 'duplicate'; }
 			$returner = $my_error;
 		}
 		$record = [];
@@ -5756,8 +5873,13 @@ class Logbook_model extends CI_Model {
 		}
 
 		if ($pota_ref != '') {
-			$sql = "SELECT COL_PRIMARY_KEY, COL_POTA_REF FROM ".$this->config->item('table_name')." WHERE COL_CALL = ? AND COL_TIME_ON >= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL -15 MINUTE) AND COL_TIME_ON <= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL +15 MINUTE) AND UPPER(COL_BAND) = ? AND UPPER(COL_MODE) = ? AND station_id IN ?;";
-			$check = $this->db->query($sql, array($call, $time_on, $time_on, strtoupper($band), strtoupper($mode), $logbooks_locations_array));
+			if (substr(strtoupper($call), -2) == "/P") {
+				$sql = "SELECT COL_PRIMARY_KEY, COL_POTA_REF FROM ".$this->config->item('table_name')." WHERE COL_CALL = ? AND COL_TIME_ON >= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL -15 MINUTE) AND COL_TIME_ON <= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL +15 MINUTE) AND UPPER(COL_BAND) = ? AND UPPER(COL_MODE) = ? AND station_id IN ?;";
+				$check = $this->db->query($sql, array($call, $time_on, $time_on, strtoupper($band), strtoupper($mode), $logbooks_locations_array));
+			} else {
+				$sql = "SELECT COL_PRIMARY_KEY, COL_POTA_REF FROM ".$this->config->item('table_name')." WHERE (COL_CALL = ? OR COL_CALL = ?) AND COL_TIME_ON >= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL -15 MINUTE) AND COL_TIME_ON <= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL +15 MINUTE) AND UPPER(COL_BAND) = ? AND UPPER(COL_MODE) = ? AND station_id IN ?;";
+				$check = $this->db->query($sql, array($call, $call."/P", $time_on, $time_on, strtoupper($band), strtoupper($mode), $logbooks_locations_array));
+			}
 			if ($check->num_rows() != 1) {
 				return array(2, $result['message'] = "<tr><td>" . date($custom_date_format, strtotime($record['qso_date'])) . "</td><td>" . date('H:i', strtotime($record['time_on'])) . "</td><td>" . str_replace('0', 'Ø', $call) . "</td><td>" . $band . "</td><td>" . $mode . "</td><td></td><td><a href='https://pota.app/#/park/".$pota_ref."' _target='_blank'>".$pota_ref."</a></td><td>" . __("QSO could not be matched") . "</td></tr>");
 			} else {
@@ -6054,7 +6176,7 @@ class Logbook_model extends CI_Model {
 		$this->db->where_in($this->config->item('table_name') . '.station_id', $logbooks_locations_array);
 		$this->db->where('COL_STATE', $state);
 		$this->db->where('COL_CNTY', $county);
-		$this->db->where('COL_PROP_MODE !=', 'SAT');
+		$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
 
 		return $this->db->get($this->config->item('table_name'));
 	}

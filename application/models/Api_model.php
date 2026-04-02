@@ -194,7 +194,7 @@ class API_Model extends CI_Model {
 		$subsql = '';
 		$band = ($band == 'All') ? null : $band;
 		if ($band != null && $band != 'SAT') {
-			$subsql .= ' AND COL_BAND = ? AND COL_PROP_MODE != "SAT"';
+			$subsql .= ' AND COL_BAND = ? AND (COL_PROP_MODE != "SAT" OR COL_PROP_MODE IS NULL)';
 			$bindings[] = $band;
 		} else if ($band == 'SAT') {
 			$subsql .= ' AND COL_SAT_NAME != ""';

@@ -480,6 +480,72 @@ class API extends CI_Controller {
 			$limit = $obj['limit'];
 		}
 
+		// output_format (optional, default: adif)
+		$output_format = 'adif';
+		if (isset($obj['output_format'])) {
+			if (!in_array($obj['output_format'], ['adif', 'json'], true)) {
+				http_response_code(400);
+				echo json_encode(['status' => 'failed', 'reason' => 'Invalid output_format. Use "adif" or "json"']);
+				return;
+			}
+			$output_format = $obj['output_format'];
+		}
+
+		$fields = null;
+		if (isset($obj['fields'])) {
+			if ($output_format !== 'json') {
+				http_response_code(400);
+				echo json_encode(['status' => 'failed', 'reason' => '"fields" is only valid when output_format is "json"']);
+				return;
+			}
+			if (!is_array($obj['fields']) || empty($obj['fields'])) {
+				http_response_code(400);
+				echo json_encode(['status' => 'failed', 'reason' => '"fields" must be a non-empty array']);
+				return;
+			}
+			$requested_fields = array_map('strtoupper', $obj['fields']);
+			$valid_adif_fields = ['ADDRESS','AGE','A_INDEX','ANT_AZ','ANT_EL','ANT_PATH','ARRL_SECT','AWARD_GRANTED','AWARD_SUBMITTED','BAND','BAND_RX','BIOGRAPHY','CALL','CHECK','CLASS','CLUBLOG_QSO_UPLOAD_STATUS','CNTY','COMMENT','CONT','CONTACTED_OP','CONTEST_ID','COUNTRY','CQZ','CREDIT_GRANTED','CREDIT_SUBMITTED','DARC_DOK','DISTANCE','DXCC','EMAIL','EQ_CALL','EQSL_QSL_RCVD','EQSL_QSL_SENT','EQSL_STATUS','EQSL_AG','FISTS','FISTS_CC','FORCE_INIT','GRIDSQUARE','HEADING','IOTA','ITUZ','K_INDEX','LAT','LON','LOTW_QSL_RCVD','LOTW_QSL_SENT','LOTW_STATUS','MAX_BURSTS','MODE','MS_SHOWER','NAME','NOTES','NR_BURSTS','NR_PINGS','OPERATOR','OWNER_CALLSIGN','PFX','PRECEDENCE','PROP_MODE','PUBLIC_KEY','HRDLOG_QSO_UPLOAD_STATUS','QRZCOM_QSO_UPLOAD_STATUS','QSLMSG','QSL_RCVD','QSL_RCVD_VIA','QSL_SENT','QSL_SENT_VIA','QSL_VIA','QSO_COMPLETE','QSO_RANDOM','QTH','REGION','RIG','RST_RCVD','RST_SENT','RX_PWR','SAT_MODE','SAT_NAME','SFI','SILENT_KEY','SKCC','SOTA_REF','WWFF_REF','POTA_REF','SRX','SRX_STRING','STATE','STX','STX_STRING','SUBMODE','SWL','TEN_TEN','TX_PWR','UKSMG','USACA_COUNTIES','VUCC_GRIDS','WEB','CNTY_ALT','MY_CNTY_ALT','MY_DARC_DOK','MORSE_KEY_INFO','MORSE_KEY_TYPE','QSLMSG_RCVD','DCL_QSL_RCVD','DCL_QSL_SENT','EQSL_QSLRDATE','EQSL_QSLSDATE','LOTW_QSLRDATE','LOTW_QSLSDATE','QSLRDATE','QSLSDATE','CLUBLOG_QSO_UPLOAD_DATE','HRDLOG_QSO_UPLOAD_DATE','QRZCOM_QSO_UPLOAD_DATE','DCL_QSLRDATE','DCL_QSLSDATE','FREQ','FREQ_RX','QSO_DATE','TIME_ON','QSO_DATE_OFF','TIME_OFF','STATION_CALLSIGN','MY_CITY','MY_COUNTRY','MY_DXCC','MY_GRIDSQUARE','MY_VUCC_GRIDS','MY_IOTA','MY_SOTA_REF','MY_WWFF_REF','MY_POTA_REF','MY_CQ_ZONE','MY_ITU_ZONE','MY_STATE','MY_CNTY','MY_SIG','MY_SIG_INFO','SIG','SIG_INFO'];
+			$invalid_fields = array_diff($requested_fields, $valid_adif_fields);
+			if (!empty($invalid_fields)) {
+				http_response_code(400);
+				echo json_encode(['status' => 'failed', 'reason' => 'Unknown fields: ' . implode(', ', $invalid_fields)]);
+				return;
+			}
+			$fields = $requested_fields;
+		}
+
+		$qsl_filter = null;
+		if (isset($obj['qsl_filter'])) {
+			$allowed_qsl = ['lotw', 'qsl', 'eqsl', 'clublog'];
+			if (!is_array($obj['qsl_filter']) || empty($obj['qsl_filter'])) {
+				http_response_code(400);
+				echo json_encode(['status' => 'failed', 'reason' => '"qsl_filter" must be a non-empty array']);
+				return;
+			}
+			$qsl_filter_input = array_map('strtolower', $obj['qsl_filter']);
+			$invalid_qsl = array_diff($qsl_filter_input, $allowed_qsl);
+			if (!empty($invalid_qsl)) {
+				http_response_code(400);
+				echo json_encode(['status' => 'failed', 'reason' => 'Invalid qsl_filter values: ' . implode(', ', $invalid_qsl)]);
+				return;
+			}
+			$qsl_filter = $qsl_filter_input;
+		}
+
+		// band (optional)
+		$band = null;
+		if (isset($obj['band'])) {
+			$valid_bands = ['160m','80m','60m','40m','30m','20m','17m','15m','12m','10m','6m','4m','2m','1.25m','70cm','33cm','23cm','13cm','9cm','6cm','3cm','1.25cm','sat'];
+			$band_input = strtolower(trim($obj['band']));
+			if (!in_array($band_input, $valid_bands, true)) {
+				http_response_code(400);
+				echo json_encode(['status' => 'failed', 'reason' => 'Invalid band value']);
+				return;
+			}
+			// Normalize: SAT uppercase (matches COL_PROP_MODE stored value), others lowercase (matches COL_BAND)
+			$band = ($band_input === 'sat') ? 'SAT' : $band_input;
+		}
+
 		//check if goalpost is numeric as an additional layer of SQL injection prevention
 		if(!is_numeric($fetchfromid))
 		{
@@ -525,21 +591,38 @@ class API extends CI_Controller {
 		$remaining_limit = $limit;
 		$offset = 0;
 
-		// Start building ADIF content
-		$adif_content = $this->adifhelper->getAdifHeader($this->config->item('app_name'),$this->optionslib->get_option('version'), $this->optionslib->get_option('adif_version'));
+		$adif_content = ($output_format === 'adif') ? $this->adifhelper->getAdifHeader($this->config->item('app_name'), $this->optionslib->get_option('version'), $this->optionslib->get_option('adif_version')) : '';
+		$qso_rows = [];
+
+			$seen_keys = [];
 
 		do {
 			// Calculate chunk size for this iteration
 			$current_chunk_size = min($chunk_size, $remaining_limit);
 
 			// Fetch chunk
-			$qsos = $this->adif_data->export_past_id_chunked($station_id, $fetchfromid, $current_chunk_size, null, $offset, $current_chunk_size);
+			$qsos = $this->adif_data->export_past_id_chunked($station_id, $fetchfromid, $current_chunk_size, null, $offset, $current_chunk_size, $qsl_filter, $band);
 
 			if ($qsos && $qsos->num_rows() > 0) {
 				// Process chunk
 				foreach ($qsos->result() as $row) {
-					// Build ADIF content directly
-					$adif_content .= $this->adifhelper->getAdifLine($row);
+					if ($output_format === 'json') {
+						$qso_data = $this->_build_qso_array($row, $fields);
+						if ($fields !== null) {
+							$unique_key = '';
+							foreach ($fields as $field) {
+								$unique_key .= (isset($qso_data[$field]) ? $qso_data[$field] : '') . '|';
+							}
+							if (!isset($seen_keys[$unique_key])) {
+								$seen_keys[$unique_key] = true;
+								$qso_rows[] = $qso_data;
+							}
+						} else {
+							$qso_rows[] = $qso_data;
+						}
+					} else {
+						$adif_content .= $this->adifhelper->getAdifLine($row);
+					}
 
 					// Track data for response
 					$all_qso_ids[] = $row->COL_PRIMARY_KEY;
@@ -563,14 +646,90 @@ class API extends CI_Controller {
 			// Continue if we got a full chunk and haven't hit the limit
 		} while ($qsos && $qsos->num_rows() > 0 && $total_fetched < $limit);
 
-		// Return response (same format as original)
-		if($total_fetched <= 0) {
-			http_response_code(200);
-			echo json_encode(['status' => 'successfull', 'message' => 'No new QSOs available.', 'lastfetchedid' => $fetchfromid, 'exported_qsos' => 0, 'adif' => null]);
+		// Return response
+		http_response_code(200);
+		if ($total_fetched <= 0) {
+			echo json_encode(['status' => 'successful', 'message' => 'No new QSOs available.', 'lastfetchedid' => $fetchfromid, 'exported_qsos' => 0, 'adif' => null]);
+		} elseif ($output_format === 'json') {
+			echo json_encode(['status' => 'successful', 'message' => 'Export successful', 'lastfetchedid' => $lastfetchedid, 'exported_records' => count($qso_rows), 'qsos' => $qso_rows]);
 		} else {
-			http_response_code(200);
-			echo json_encode(['status' => 'successfull', 'message' => 'Export successfull', 'lastfetchedid' => $lastfetchedid, 'exported_qsos' => $total_fetched, 'adif' => $adif_content]);
+			echo json_encode(['status' => 'successful', 'message' => 'Export successful', 'lastfetchedid' => $lastfetchedid, 'exported_qsos' => $total_fetched, 'adif' => $adif_content]);
 		}
+	}
+
+
+	private function _build_qso_array($qso, $fields = null) {
+		$result = [];
+
+		$normalFields = ['ADDRESS','AGE','A_INDEX','ANT_AZ','ANT_EL','ANT_PATH','ARRL_SECT','AWARD_GRANTED','AWARD_SUBMITTED','BAND','BAND_RX','BIOGRAPHY','CALL','CHECK','CLASS','CLUBLOG_QSO_UPLOAD_STATUS','CNTY','COMMENT','CONT','CONTACTED_OP','CONTEST_ID','COUNTRY','CQZ','CREDIT_GRANTED','CREDIT_SUBMITTED','DARC_DOK','DISTANCE','DXCC','EMAIL','EQ_CALL','EQSL_QSL_RCVD','EQSL_QSL_SENT','EQSL_STATUS','EQSL_AG','FISTS','FISTS_CC','FORCE_INIT','GRIDSQUARE','HEADING','IOTA','ITUZ','K_INDEX','LAT','LON','LOTW_QSL_RCVD','LOTW_QSL_SENT','LOTW_STATUS','MAX_BURSTS','MODE','MS_SHOWER','NAME','NOTES','NR_BURSTS','NR_PINGS','OPERATOR','OWNER_CALLSIGN','PFX','PRECEDENCE','PROP_MODE','PUBLIC_KEY','HRDLOG_QSO_UPLOAD_STATUS','QRZCOM_QSO_UPLOAD_STATUS','QSLMSG','QSL_RCVD','QSL_RCVD_VIA','QSL_SENT','QSL_SENT_VIA','QSL_VIA','QSO_COMPLETE','QSO_RANDOM','QTH','REGION','RIG','RST_RCVD','RST_SENT','RX_PWR','SAT_MODE','SAT_NAME','SFI','SILENT_KEY','SKCC','SOTA_REF','WWFF_REF','POTA_REF','SRX','SRX_STRING','STATE','STX','STX_STRING','SUBMODE','SWL','TEN_TEN','TX_PWR','UKSMG','USACA_COUNTIES','VUCC_GRIDS','WEB','CNTY_ALT','MY_CNTY_ALT','MY_DARC_DOK','MORSE_KEY_INFO','MORSE_KEY_TYPE','QSLMSG_RCVD','DCL_QSL_RCVD','DCL_QSL_SENT'];
+		$dateFields   = ['EQSL_QSLRDATE','EQSL_QSLSDATE','LOTW_QSLRDATE','LOTW_QSLSDATE','QSLRDATE','QSLSDATE','CLUBLOG_QSO_UPLOAD_DATE','HRDLOG_QSO_UPLOAD_DATE','QRZCOM_QSO_UPLOAD_DATE','DCL_QSLRDATE','DCL_QSLSDATE'];
+
+		foreach ($normalFields as $f) {
+			$result[$f] = $qso->{'COL_' . $f};
+		}
+
+		foreach ($dateFields as $f) {
+			$val = $qso->{'COL_' . $f};
+			$result[$f] = $val ? date('Ymd', strtotime($val)) : null;
+		}
+
+		$result['FREQ']    = $qso->COL_FREQ    ? $qso->COL_FREQ    / 1000000 : null;
+		$result['FREQ_RX'] = $qso->COL_FREQ_RX ? $qso->COL_FREQ_RX / 1000000 : null;
+
+		if (isset($qso->COL_TIME_ON) && date('YmdHis', strtotime($qso->COL_TIME_ON)) !== '-00011130000000') {
+			$result['QSO_DATE'] = date('Ymd', strtotime($qso->COL_TIME_ON));
+			$result['TIME_ON']  = date('His', strtotime($qso->COL_TIME_ON));
+		} else {
+			$result['QSO_DATE'] = '19700101';
+			$result['TIME_ON']  = '000000';
+		}
+		if (isset($qso->COL_TIME_OFF) && date('YmdHis', strtotime($qso->COL_TIME_OFF)) !== '-00011130000000') {
+			$result['QSO_DATE_OFF'] = date('Ymd', strtotime($qso->COL_TIME_OFF));
+			$result['TIME_OFF']     = date('His', strtotime($qso->COL_TIME_OFF));
+		} else {
+			$result['QSO_DATE_OFF'] = '19700101';
+			$result['TIME_OFF']     = '000000';
+		}
+
+		$result['STATION_CALLSIGN'] = $qso->station_callsign;
+		$result['MY_CITY']          = $qso->station_city;
+		$result['MY_COUNTRY']       = $qso->station_country;
+		$result['MY_DXCC']          = $qso->station_dxcc;
+		if (strpos($qso->station_gridsquare, ',') !== false) {
+			$result['MY_VUCC_GRIDS'] = $qso->station_gridsquare;
+			$result['MY_GRIDSQUARE'] = null;
+		} else {
+			$result['MY_GRIDSQUARE'] = $qso->station_gridsquare;
+			$result['MY_VUCC_GRIDS'] = null;
+		}
+		$result['MY_IOTA']     = $qso->station_iota;
+		$result['MY_SOTA_REF'] = $qso->station_sota;
+		$result['MY_WWFF_REF'] = $qso->station_wwff;
+		$result['MY_POTA_REF'] = $qso->station_pota;
+		$result['MY_CQ_ZONE']  = $qso->station_cq;
+		$result['MY_ITU_ZONE'] = $qso->station_itu;
+		$result['MY_STATE']    = $qso->state;
+		if ($qso->station_cnty) {
+			switch ($qso->station_dxcc) {
+				case '6': case '110': case '291':
+					$result['MY_CNTY'] = trim($qso->state) . ',' . trim($qso->station_cnty);
+					break;
+				default:
+					$result['MY_CNTY'] = trim($qso->station_cnty);
+			}
+		} else {
+			$result['MY_CNTY'] = null;
+		}
+		$result['MY_SIG']      = $qso->station_sig;
+		$result['MY_SIG_INFO'] = $qso->station_sig_info;
+		$result['SIG']         = $qso->{'COL_SIG'};
+		$result['SIG_INFO']    = $qso->{'COL_SIG_INFO'};
+
+		if ($fields !== null) {
+			$result = array_intersect_key($result, array_flip($fields));
+		}
+
+		return $result;
 	}
 
 

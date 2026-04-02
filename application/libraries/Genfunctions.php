@@ -52,7 +52,7 @@ class Genfunctions
 				$sql .= " and col_prop_mode = ?";
 				$binding[]=$band;
 			} else {
-				$sql .= " and col_prop_mode !='SAT'";
+				$sql .= " and (col_prop_mode !='SAT' or col_prop_mode is NULL)";
 				$sql .= " and col_band = ?";
 				$binding[]=$band;
 			}

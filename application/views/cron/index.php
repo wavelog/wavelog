@@ -26,6 +26,7 @@
                 <div class="col-auto">
                     <p class="card-text">
                         <?= __("The Cron Manager assists the administrator in managing cron jobs without requiring CLI access."); ?>
+                        <?= __("All times are shown in UTC."); ?>
                     </p>
                     <?php if ($mastercron['status_class'] != 'success') { ?>
                         <p class="card-text">

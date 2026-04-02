@@ -21,11 +21,11 @@ class Timeplotter extends CI_Controller {
         $data['worked_bands'] = $this->bands->get_worked_bands();
 
         $this->load->model('dxcc');
-        $data['dxcc_list'] = $this->dxcc->list();
+        $data['dxcc_list'] = $this->dxcc->list_current('prefix');
 
-        $this->load->model('modes');
+        $this->load->model('Timeplotter_model');
 
-        $data['modes'] = $this->modes->active();
+        $data['modes'] = $this->Timeplotter_model->get_worked_modes();
 
         $this->load->view('interface_assets/header', $data);
         $this->load->view('timeplotter/index');

@@ -156,7 +156,7 @@ class Callstats_model extends CI_Model {
 
 		if (strtolower($band) != 'all') {
 			if ($band != "SAT") {
-				$this->db->where('COL_PROP_MODE !=', 'SAT');
+				$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
 				$this->db->where('COL_BAND', $band);
 			} else {
 				$this->db->where('COL_PROP_MODE', "SAT");
@@ -171,7 +171,7 @@ class Callstats_model extends CI_Model {
 			if ($propagation == 'None') {
 				$this->db->where('COL_PROP_MODE', '');
 			} else if ($propagation == 'NoSAT') {
-				$this->db->where('COL_PROP_MODE !=', 'SAT');
+				$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
 			} else {
 				$this->db->where('COL_PROP_MODE', $propagation);
 			}

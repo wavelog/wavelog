@@ -128,9 +128,9 @@ class helvetia_model extends CI_Model {
 			$bandslots_list = "'".implode("','",$bandslots)."'";
 
 			$sql .= " and thcv.col_band in (" . $bandslots_list . ")" .
-				" and thcv.col_prop_mode !='SAT'";
+				" and (thcv.col_prop_mode !='SAT' or thcv.col_prop_mode is NULL)";
 		} else {
-			$sql .= " and thcv.col_prop_mode !='SAT'";
+			$sql .= " and (thcv.col_prop_mode !='SAT' or thcv.col_prop_mode is NULL)";
 			$sql .= " and thcv.col_band = ?";
 			$binding[] = $band;
 		}
@@ -164,9 +164,9 @@ class helvetia_model extends CI_Model {
 			$bandslots_list = "'".implode("','",$bandslots)."'";
 
 			$sql .= " and thcv.col_band in (" . $bandslots_list . ")" .
-				" and thcv.col_prop_mode !='SAT'";
+				" and (thcv.col_prop_mode !='SAT' or thcv.col_prop_mode is NULL)";
 		} else {
-			$sql .= " and thcv.col_prop_mode !='SAT'";
+			$sql .= " and (thcv.col_prop_mode !='SAT' or thcv.col_prop_mode is NULL)";
 			$sql .= " and thcv.col_band = ?";
 			$binding[] = $band;
 		}

@@ -307,7 +307,7 @@ class Visitor extends CI_Controller {
 
 		$query_vucc = $this->gridmap_model->get_band_worked_vucc_squares('SAT', 'All', 'false', 'true', 'false', 'false', 'All', 'All', 'All', null, null, $logbooks_locations_array);
 
-		if ($query && $query_vucc->num_rows() > 0)
+		if ($query_vucc && $query_vucc->num_rows() > 0)
 		{
 			foreach ($query_vucc->result() as $row)
 			{
@@ -334,7 +334,7 @@ class Visitor extends CI_Controller {
 		// Confirmed Squares
 		$query_vucc = $this->gridmap_model->get_band_confirmed_vucc_squares('SAT', 'All', 'false', 'true', 'false', 'false', 'All', 'All', 'All', null, null, $logbooks_locations_array);
 
-		if ($query && $query_vucc->num_rows() > 0)
+		if ($query_vucc && $query_vucc->num_rows() > 0)
 		{
 			foreach ($query_vucc->result() as $row)
 			{

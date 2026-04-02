@@ -163,16 +163,26 @@
 										</div>
 										<div class="small form-text text-muted"><?= sprintf(__("If selected, Wavelog will try to import %sall%s QSOs from the ADIF, regardless if they match to the chosen station-location."), '<b>', '</b>'); ?></div>
 									</div>
+                                    <div class="col-md-6">
+                                        <div class="form-check-inline">
+                                            <input class="form-check-input" type="checkbox" name="skipGridCheck" value="1" id="skipGridCheck">
+                                            <label class="form-check-label" for="skipGridCheck"><span class="badge text-bg-warning"><?= __("DANGER") ?></span> <?= __("Ignore grid check on import") ?></label>
+                                        </div>
+                                        <div class="small form-text text-muted"><?= __("If selected, Wavelog will try to import QSOs even if the MY_GRIDSQUARE field in ADIF records does not match the locator of the chosen station-location.") ?></div>
+                                    </div>
+                                <?php } ?>
+                                </div>
 
-								<?php } if (($show_operator_question) && ($cd_p_level != 6)){ ?>
+                                <?php if (($show_operator_question) && ($cd_p_level != 6)){ ?>
+                                    <div class="mb-3 row">
 										<div class="col-md-6">
 											<div class="form-check-inline">
 												<input class="form-check-input" type="checkbox" name="operatorName" value="1" id="operatorName">
 												<label class="form-check-label" for="operatorName"><?= __("Always use the logged-in account callsign as the operator call during import") ?></label>
 											</div>
 										</div>
+                                    </div>
 								<?php } ?>
-								</div>
 							</div>
 						</div>
 
