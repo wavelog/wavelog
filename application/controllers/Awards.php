@@ -427,7 +427,7 @@ class Awards extends CI_Controller {
 		$data['bands'] = $bands; // Used for displaying selected band(s) in the table in the view
 
 		// Query the database for JCC status
-		$jcc_entity_status = $this->jcc_model->query_entity_status($postdata, 'band');
+		$jcc_entity_status = $this->jcc_model->query_jcc_entity_status($postdata, 'band');
 		
 		$data['jcc_array'] = $this->jcc_model->get_jcc_array($bands, $postdata, $jcc_entity_status);
 		$data['jcc_summary'] = $this->jcc_model->get_jcc_summary($bands, $postdata, $jcc_entity_status);
@@ -1938,7 +1938,7 @@ class Awards extends CI_Controller {
 	    $postdata['mode'] = $this->input->post('mode', true) ?? 'All';
 	    $postdata['prop_mode'] = $this->input->post('prop_mode', true) ?? 'All';
 
-	    $jcc_entity_status = $this->jcc_model->query_entity_status($postdata, 'none');
+	    $jcc_entity_status = $this->jcc_model->query_jcc_entity_status($postdata, 'none');
 	    $jccs = $this->jcc_model->get_jcc_map_array($postdata, $jcc_entity_status);
 
 	    header('Content-Type: application/json');
