@@ -13,6 +13,9 @@ if (empty($station_id)) {
 	$station_id = 'all';
 }
 
+?><form method="post" action="<?= site_url('qslpostcard/printqueue_selected') ?>" id="postcardQueueForm">
+<?php
+
 if ($qsos->result() != NULL) {
         echo '<div style="padding-top: 10px; margin-top: 0px;" class="container logbook mb-4">';
 	echo '<table style="width:100%" class="table table-sm table-bordered table-hover table-striped table-condensed qslprint" id="qslprint_table">
@@ -49,8 +52,8 @@ if ($qsos->result() != NULL) {
 
 	foreach ($qsos->result() as $qsl) {
 		echo '<tr id="qslprint_'.$qsl->COL_PRIMARY_KEY.'">';
-		echo '<td style=\'text-align: center\'><div class="form-check"><input class="form-check-input" type="checkbox" /></div></td>';
-                ?><td style='text-align: center'><span class="qso_call"><a id="edit_qso" href="javascript:displayQso(<?php echo $qsl->COL_PRIMARY_KEY; ?>);"><?php echo str_replace("0","&Oslash;",strtoupper($qsl->COL_CALL)); ?></a><a target="_blank" href="https://www.qrz.com/db/<?php echo strtoupper($qsl->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/qrz.png" alt="Lookup <?php echo strtoupper($qsl->COL_CALL); ?> on QRZ.com"></a> <a target="_blank" href="https://www.hamqth.com/<?php echo strtoupper($qsl->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/hamqth.png" alt="Lookup <?php echo strtoupper($qsl->COL_CALL); ?> on HamQTH"></a> <a target="_blank" href="https://www.eqsl.cc/Member.cfm?<?php echo strtoupper($qsl->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/eqsl.png" alt="Lookup <?php echo strtoupper($qsl->COL_CALL); ?> on eQSL.cc"></a></td><?php
+		echo '<td style=\'text-align: center\'><div class="form-check"><input class="form-check-input" type="checkbox" name="selected_qsos[]" value="'.$qsl->COL_PRIMARY_KEY.'" /></div></td>';
+                ?><td style='text-align: center'><span class="qso_call"><a id="edit_qso" href="javascript:displayQso(<?php echo $qsl->COL_PRIMARY_KEY; ?>);"><?php echo str_replace("0","&Oslash;",strtoupper($qsl->COL_CALL)); ?></a><a target="_blank" href="https://www.qrz.com/db/<?php echo strtoupper($qsl->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/qrz.png" alt="Lookup <?php echo strtoupper($qsl->COL_CALL); ?> on QRZ.com"></a> <a target="_blank" href="https://www.hamqth.com/<?php echo strtoupper($qsl->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/hamqth.png" alt="Lookup <?php echo strtoupper($qsl->COL_CALL); ?> on HamQTH"></a> <a target="_blank" href="http://www.eqsl.cc/Member.cfm?<?php echo strtoupper($qsl->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/eqsl.png" alt="Lookup <?php echo strtoupper($qsl->COL_CALL); ?> on eQSL.cc"></a></td><?php
 		echo '<td style=\'text-align: center\'>'; $timestamp = strtotime($qsl->COL_TIME_ON); echo date($custom_date_format, $timestamp); echo '</td>';
 		echo '<td style=\'text-align: center\'>'; $timestamp = strtotime($qsl->COL_TIME_ON); echo date('H:i', $timestamp); echo '</td>';
 		echo '<td style=\'text-align: center\'>'; echo $qsl->COL_SUBMODE==null?$qsl->COL_MODE:$qsl->COL_SUBMODE; echo '</td>';
@@ -103,7 +106,19 @@ if ($qsos->result() != NULL) {
 		<a href="<?php echo site_url('qslprint/exportadif/' . $station_id); ?>" title="<?= __("Export ADIF"); ?>" class="btn btn-primary"><?= __("Export requested QSLs to ADIF-file"); ?></a>
 		<a href="<?php echo site_url('qslprint/qsl_printed/' . $station_id); ?>" title="<?= __("Mark QSLs as printed"); ?>" class="btn btn-primary"><?= __("Mark requested QSLs as sent"); ?></a>
 	</p>
+	<p>
 
+<a class="btn btn-primary"
+   href="<?php echo site_url('qslpostcard/printqueue') . '?' . $_SERVER['QUERY_STRING']; ?>">
+   Print Postcards for all QSOs
+</a>
+<button type="submit"
+        formaction="<?php echo site_url('qslpostcard/printqueue_selected'); ?>"
+        class="btn btn-primary">
+    Print Selected QSO Postcards
+</button>
+</p>
+</form>
 <?php
 } else {
 	echo '<div class="alert alert-danger">' . __("No QSLs to print were found!") . '</div>';
