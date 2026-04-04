@@ -40,7 +40,7 @@ class Qslpostcard_model extends CI_Model {
     // v1 demo: fetch last N QSOs from the logbook table.
     // You will adjust table/column names based on your schema.
     public function get_sample_qsos($limit = 25) {
-        $table = 'TABLE_HRD_CONTACTS_V01';
+        $table = $this->config->item('table_name');
         // Try the table name you used first
         $q = $this->db->order_by('COL_TIME_ON', 'DESC')->limit((int)$limit)->get($table);
 
@@ -315,7 +315,6 @@ class Qslpostcard_model extends CI_Model {
             CURLOPT_USERAGENT => 'Wavelog-QSLPostcard/1.0',
         ]);
         $out = curl_exec($ch);
-        curl_close($ch);
         return $out ?: null;
     }
 

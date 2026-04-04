@@ -553,7 +553,7 @@
     drawRulers();
 
     async function loadTemplate(id) {
-        const r = await fetch(`<?= site_url('qslpostcard/get_template') ?>/${id}`);
+        const r = await fetch(base_url + 'index.php/qslpostcard/get_template/' + id);
         const tpl = await r.json();
 
         const layout = tpl.layout || {};
@@ -562,7 +562,7 @@
         elements = [];
 
         previewImagePath = tpl.preview_image || null;
-        previewImageUrl = previewImagePath ? `<?= base_url() ?>${previewImagePath}` : null;
+        previewImageUrl = previewImagePath ? base_url + previewImagePath : null;
 
         if (previewImageUrl) {
             stage.style.backgroundImage = `url('${previewImageUrl}')`;
@@ -593,7 +593,7 @@
         // set name
         const selText = e.target.options[e.target.selectedIndex].text;
         document.getElementById('tplName').value = selText;
-        document.getElementById('btnPdf').href = `<?= site_url('qslpostcard/pdf') ?>/${id}`;
+        document.getElementById('btnPdf').href = base_url + 'index.php/qslpostcard/pdf/' + id;
         await loadTemplate(id);
     });
 
@@ -606,7 +606,7 @@
             layout: buildLayout(),
             preview_image: previewImagePath
         };
-        const r = await fetch(`<?= site_url('qslpostcard/save_template') ?>`, {
+        const r = await fetch(base_url + 'index.php/qslpostcard/save_template', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
