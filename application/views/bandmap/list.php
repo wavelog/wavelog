@@ -118,6 +118,7 @@
 	var lang_bandmap_click_to_view_sotl = "<?= __("Click to view on SOTL.as"); ?>";
 	var lang_bandmap_click_to_view_wwff = "<?= __("Click to view on cqgma.org"); ?>";
 	var lang_bandmap_click_to_view_iota = "<?= __("Click to view on IOTA-World.org"); ?>";
+	var lang_bandmap_source = "<?= __("Source"); ?>";
 	var lang_bandmap_see_details_continent = "<?= __("See details for continent"); ?>";
 	var lang_bandmap_see_details_continent_value = "<?= __("See details for continent %s"); ?>";
 	var lang_bandmap_see_details_cqz = "<?= __("See details for CQ Zone"); ?>";
@@ -359,10 +360,10 @@
 								<option value="SA"><?= __("South America"); ?></option>
 							</select>
 						</div>
-						<!-- Column 5: Band -->
+						<!-- Column 5: Band + Source -->
 						<div class="mb-3 col-12 col-sm-6 col-md-4 col-lg">
 							<label class="form-label d-block filter-label-small" for="band"><?= __("Band"); ?></label>
-							<select id="band" class="form-select form-select-sm" name="band" multiple="multiple">
+							<select id="band" class="form-select form-select-sm filter-short" name="band" multiple="multiple">
 								<option value="All" selected><?= __("All"); ?></option>
 								<optgroup label="MF">
 									<option value="160m">160m</option>
@@ -401,6 +402,10 @@
 									<option value="2mm">2mm</option>
 									<option value="1mm">1mm</option>
 								</optgroup>
+							</select>
+							<label class="form-label d-block filter-label-small mt-3" for="sourceSelect"><?= __("Source"); ?></label>
+							<select id="sourceSelect" class="form-select form-select-sm filter-short" name="source" multiple="multiple">
+								<option value="All" selected><?= __("All"); ?></option>
 							</select>
 						</div>
 					</div>
