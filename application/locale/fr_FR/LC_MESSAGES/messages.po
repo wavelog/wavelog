@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-04-07 06:53+0000\n"
-"PO-Revision-Date: 2026-04-01 10:59+0000\n"
-"Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
+"PO-Revision-Date: 2026-04-08 06:46+0000\n"
+"Last-Translator: JONCOUX Philippe <joncoux@free.fr>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/fr/>\n"
 "Language: fr_FR\n"
@@ -3721,6 +3721,8 @@ msgstr "Le DXCC doit être un nombre"
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
+"Indicatif d'appel de station différent %s lors de l'importation de la "
+"liaison QSO avec %s pour %s : IGNORÉ"
 
 #: application/models/Logbook_model.php:4922
 #, php-format
@@ -3728,6 +3730,8 @@ msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
 "SKIPPED"
 msgstr ""
+"Localisateur différent %s lors de l'importation d'un QSO avec %s pour le "
+"localisateur de station %s : IGNORÉ"
 
 #: application/models/Logbook_model.php:4938
 msgid ""
@@ -4976,13 +4980,16 @@ msgstr ""
 
 #: application/views/adif/import.php:169
 msgid "Ignore grid check on import"
-msgstr ""
+msgstr "Ignorer la vérification de la grille lors de l'importation"
 
 #: application/views/adif/import.php:171
 msgid ""
 "If selected, Wavelog will try to import QSOs even if the MY_GRIDSQUARE field "
 "in ADIF records does not match the locator of the chosen station-location."
 msgstr ""
+"Si cette option est sélectionnée, Wavelog tentera d'importer les QSO même si "
+"le champ MY_GRIDSQUARE des enregistrements ADIF ne correspond pas au "
+"localisateur de l'emplacement de la station choisie."
 
 #: application/views/adif/import.php:181
 msgid ""
@@ -5326,15 +5333,15 @@ msgstr "Vérifie %s pour des indices sur les erreurs dans les fichiers ADIF."
 
 #: application/views/adif/import_success.php:61
 msgid "Critical Errors - Wrong Call/Location"
-msgstr ""
+msgstr "Erreurs critiques - Appel/Lieu incorrect"
 
 #: application/views/adif/import_success.php:70
 msgid "Validation Errors - Invalid Data"
-msgstr ""
+msgstr "Erreurs de validation - Données invalides"
 
 #: application/views/adif/import_success.php:79
 msgid "Duplicate QSOs"
-msgstr ""
+msgstr "QSO en double"
 
 #: application/views/adif/import_success.php:87
 msgid "You might have ADIF errors. Please check the following information:"
@@ -6870,7 +6877,7 @@ msgstr ""
 
 #: application/views/awards/jcc/index.php:76
 msgid "Deleted cities"
-msgstr ""
+msgstr "Villes supprimées"
 
 #: application/views/awards/jcc/index.php:127
 msgid "Show JCC Map"
@@ -6878,7 +6885,7 @@ msgstr "Afficher la carte JCC"
 
 #: application/views/awards/jcc/index.php:128
 msgid "Export confirmed QSOs"
-msgstr ""
+msgstr "QSO confirmés à l'exportation"
 
 #: application/views/awards/jcc/index.php:138
 #: application/views/public_search/empty.php:2
@@ -12625,6 +12632,8 @@ msgstr ""
 msgid ""
 "Location could not be determined as gridsquare is empty and DXCC is -NONE-"
 msgstr ""
+"Impossible de déterminer la position car la case de la grille est vide et le "
+"DXCC est NUL."
 
 #: application/views/interface_assets/footer.php:138
 msgid "Working without CAT connection"
@@ -18696,27 +18705,27 @@ msgstr ""
 
 #: application/views/timeplotter/index.php:90
 msgid "Best Band"
-msgstr ""
+msgstr "Meilleur groupe"
 
 #: application/views/timeplotter/index.php:99
 msgid "Best Mode"
-msgstr ""
+msgstr "Meilleur mode"
 
 #: application/views/timeplotter/index.php:108
 msgid "Total QSOs plotted"
-msgstr ""
+msgstr "Nombre total de QSO représentés"
 
 #: application/views/timeplotter/index.php:120
 msgid "Heatmap"
-msgstr ""
+msgstr "carte thermique"
 
 #: application/views/timeplotter/index.php:125
 msgid "Chart"
-msgstr ""
+msgstr "Carte"
 
 #: application/views/timeplotter/index.php:136
 msgid "Activity by Time of Day (UTC)"
-msgstr ""
+msgstr "Activité selon l'heure de la journée (UTC)"
 
 #: application/views/update/hamsofnote.php:7
 msgid "Name / Description"
