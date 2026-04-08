@@ -5,6 +5,8 @@ var scps = [];
 let lookupCall = null;
 let preventLookup = false;
 var submitTimeout = null; // Debounce timer for QSO submission
+var localTimeInterval = null; // Interval for updating local time display   
+
 
 // Calculate local time based on GMT offset
 function calculateLocalTime(gmtOffset) {
@@ -1648,7 +1650,7 @@ $("#callsign").on("focusout", function () {
 
 				// Set Map to Lat/Long
 				markers.clearLayers();
-				mymap.setZoom(8);
+				var zoom = 8;
 				// Remove previous banner (if any)
 				if (window.mapBanner) {
 					mymap.removeControl(window.mapBanner);
@@ -1656,14 +1658,22 @@ $("#callsign").on("focusout", function () {
 
 				if (typeof result.latlng !== "undefined" && result.latlng !== false) {
 					var marker = L.marker([result.latlng[0], result.latlng[1]], { icon: redIcon });
+					mymap.setZoom(zoom);
 					mymap.panTo([result.latlng[0], result.latlng[1]]);
-					mymap.setView([result.latlng[0], result.latlng[1]], 8);
+					mymap.setView([result.latlng[0], result.latlng[1]], zoom);
 					bannerText = "📡 "+lang_qso_location_is_fetched_from_provided_gridsquare+": " + result.callsign_qra.toUpperCase();
 					markers.addLayer(marker).addTo(mymap);
 				} else {
+					if (result.dxcc.adif != 0) {
+						mymap.setZoom(zoom);
+						bannerText = "🌍 "+lang_qso_location_is_fetched_from_dxcc_coordinates+": " + $('#dxcc_id option:selected').text();
+					} else {
+						zoom = 1;
+						mymap.setZoom(zoom);
+						bannerText = "🌍 "+lang_qso_dxcc_none_location;
+					}
 					mymap.panTo([result.dxcc.lat, result.dxcc.long]);
-					mymap.setView([result.dxcc.lat, result.dxcc.long], 8);
-					bannerText = "🌍 "+lang_qso_location_is_fetched_from_dxcc_coordinates+": " + $('#dxcc_id option:selected').text();
+					mymap.setView([result.dxcc.lat, result.dxcc.long], zoom);
 				}
 
 
@@ -1877,8 +1887,12 @@ $("#callsign").on("focusout", function () {
 						let localTime = calculateLocalTime(offsetHours);
 						profileInfo += '<p class="mb-1" id="profile-local-time" style="font-size: 0.875rem;"><i class="fas fa-clock me-1"></i>' + lang_qso_profile_local_time + ': ' + localTime + '</p>';
 
+                        // Clear any existing interval to prevent multiple timers
+                        if(localTimeInterval) {
+                            clearInterval(localTimeInterval);
+                        }   
 						// Set up auto-update every minute
-						setInterval(function() {
+						localTimeInterval = setInterval(function() {
 							let updatedTime = calculateLocalTime(offsetHours);
 							$('#profile-local-time').html('<i class="fas fa-clock me-1"></i>' + lang_qso_profile_local_time + ': ' + updatedTime);
 						}, 60000);
@@ -2711,7 +2725,7 @@ $("#locator").on("input focus", function () {
 						mymap.panTo([result[0], result[1]]);
 						mymap.setView([result[0], result[1]], 8);
 						markers.addLayer(marker).addTo(mymap);
-						bannerText = "📡 Location is fetched from provided gridsquare: " + qra;
+						bannerText = "📡 "+lang_qso_location_is_fetched_from_provided_gridsquare+": " + qra.toUpperCase();
 						window.mapBanner.addTo(mymap);
 					}
 				},
@@ -2838,16 +2852,23 @@ $('#dxcc_id').on('change', function () {
 
 			// Set Map to Lat/Long it locator is not empty
 			if ($('#locator').val() == "") {
-				var redIcon = L.icon({
-					iconUrl: icon_dot_url,
-					iconSize: [18, 18], // size of the icon
-				});
-
 				markers.clearLayers();
-				mymap.setZoom(8);
-				mymap.panTo([result.dxcc.lat, result.dxcc.long]);
-				bannerText = "🌍 Location is fetched from DXCC coordinates (no gridsquare provided): " + $('#dxcc_id option:selected').text();
-				window.mapBanner.addTo(mymap);
+				if (dxccadif != 0) {
+					var redIcon = L.icon({
+						iconUrl: icon_dot_url,
+						iconSize: [18, 18], // size of the icon
+					});
+
+					mymap.setZoom(8);
+					mymap.panTo([result.dxcc.lat, result.dxcc.long]);
+					bannerText = "🌍 "+lang_qso_location_is_fetched_from_dxcc_coordinates+": " + $('#dxcc_id option:selected').text();
+					window.mapBanner.addTo(mymap);
+				} else {
+					mymap.setZoom(1);
+					mymap.panTo([0, 0]);
+					bannerText = "🌍 "+lang_qso_dxcc_none_location;
+					window.mapBanner.addTo(mymap);
+				}
 			}
 		}
 	});

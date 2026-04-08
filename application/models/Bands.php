@@ -155,7 +155,7 @@ class Bands extends CI_Model {
 
 		// get all worked slots from database
 		$data = $this->db->query(
-			"SELECT distinct LOWER(`COL_BAND`) as `COL_BAND` FROM `".$this->config->item('table_name')."` WHERE station_id in (" . $location_list . ") AND COL_PROP_MODE != \"SAT\""
+			"SELECT distinct LOWER(`COL_BAND`) as `COL_BAND` FROM `".$this->config->item('table_name')."` WHERE station_id in (" . $location_list . ") AND (COL_PROP_MODE != \"SAT\" OR COL_PROP_MODE IS NULL)"
 		);
 		$worked_slots = array();
 		foreach($data->result() as $row){
@@ -391,7 +391,7 @@ class Bands extends CI_Model {
 
 		// get all worked slots from database
 		$data = $this->db->query(
-			"SELECT distinct LOWER(`COL_BAND`) as `COL_BAND` FROM `".$this->config->item('table_name')."` WHERE station_id = ? AND COL_PROP_MODE != \"SAT\"", $station_id
+			"SELECT distinct LOWER(`COL_BAND`) as `COL_BAND` FROM `".$this->config->item('table_name')."` WHERE station_id = ? AND (COL_PROP_MODE != \"SAT\" OR COL_PROP_MODE IS NULL)", $station_id
 		);
 		$worked_slots = array();
 		foreach($data->result() as $row){

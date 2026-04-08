@@ -81,6 +81,16 @@
 	let lang_gen_advanced_logbook_workedLabel = '<?= __("Non DXCC matching gridsquare"); ?>';
 	let lang_label_print_options = "<?= __("Label Print Options"); ?>";
 
+	let lang_gen_advanced_logbook_select_row_merge_qso = '<?= __("You need to select exactly 2 QSOs to merge!"); ?>';
+	let lang_gen_advanced_logbook_merge_qsos = '<?= __("Merge QSOs"); ?>';
+	let lang_gen_advanced_logbook_confirm_merge_qsos = '<?= __("Are you really sure you want to merge these QSOs? This operation CAN\'T be undone!"); ?>';
+	let lang_gen_advanced_logbook_danger = '<?= __("Danger"); ?>';
+	let lang_gen_advanced_logbook_cancel = '<?= __("Cancel"); ?>';
+	let lang_gen_advanced_logbook_yes_merge_qsos = '<?= __("Yes, Merge QSOs"); ?>';
+	let lang_gen_advanced_logbook_qsos_merged = '<?= __("QSOs merged successfully!"); ?>';
+	let lang_gen_advanced_logbook_error_merging_qsos = '<?= __("Error merging QSOs"); ?>';
+	let lang_gen_advanced_logbook_error_loading_merge_dialog = '<?= __("Error loading merge dialog"); ?>';
+
     let homegrid ='<?php echo strtoupper($homegrid[0]); ?>';
     <?php
     if (!isset($options)) {
@@ -839,6 +849,7 @@ $options = json_decode($options);
 										<button type="button" class="btn btn-sm btn-info dropdown-action" id="printLabel"><?= __("Print Label"); ?></button>
 										<button type="button" class="btn btn-sm btn-info dropdown-action" id="qslSlideshow"><?= __("QSL Slideshow"); ?></button>
 										<button type="button" class="btn btn-sm btn-success dropdown-action" id="fixState"><?= __("Fix State"); ?></button>
+										<button type="button" class="btn btn-sm btn-danger dropdown-action" id="mergeQsos"><?= __("Merge QSOs"); ?></button>
 									</div>
 								</div>
 							</div>

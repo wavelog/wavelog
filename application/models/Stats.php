@@ -1024,7 +1024,7 @@
 
 		if ($band !== 'All') {
 			if($band != "SAT") {
-				$conditions[] = "COL_BAND = ? and COL_PROP_MODE != 'SAT'";
+				$conditions[] = "COL_BAND = ? and (COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)";
 				$binding[] = trim($band);
 			} else {
 				$conditions[] = "COL_PROP_MODE = 'SAT'";

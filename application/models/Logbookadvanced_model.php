@@ -249,7 +249,7 @@ class Logbookadvanced_model extends CI_Model {
 		}
 		if ($searchCriteria['band'] !== '') {
 			if($searchCriteria['band'] != "SAT") {
-				$conditions[] = "COL_BAND = ? and COL_PROP_MODE != 'SAT'";
+				$conditions[] = "COL_BAND = ? and (COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)";
 				$binding[] = trim($searchCriteria['band']);
 			} else {
 				$conditions[] = "COL_PROP_MODE = 'SAT'";
@@ -1009,9 +1009,14 @@ class Logbookadvanced_model extends CI_Model {
 
 		foreach($query->result() as $mode){
 			if ($mode->col_submode == null || $mode->col_submode == "") {
-				array_push($modes, $mode->col_mode);
+				$newMode = $mode->col_mode;
 			} else {
-				array_push($modes, $mode->col_submode);
+				$newMode = $mode->col_submode;
+			}
+
+			// Case-insensitive check if mode already exists
+			if (!in_array(strtolower($newMode), array_map('strtolower', $modes))) {
+				array_push($modes, $newMode);
 			}
 		}
 
@@ -1021,7 +1026,7 @@ class Logbookadvanced_model extends CI_Model {
 	function get_worked_bands() {
 		// get all worked slots from database
 		$sql = "SELECT distinct `COL_BAND` as `COL_BAND` FROM `".$this->config->item('table_name')."` thcv
-			JOIN station_profile on thcv.station_id = station_profile.station_id WHERE station_profile.user_id = ? AND COL_PROP_MODE != \"SAT\" ORDER BY col_band";
+			JOIN station_profile on thcv.station_id = station_profile.station_id WHERE station_profile.user_id = ? AND (COL_PROP_MODE != \"SAT\" OR COL_PROP_MODE IS NULL) ORDER BY col_band";
 
 		$data = $this->db->query($sql, array($this->session->userdata('user_id')));
 
@@ -2375,5 +2380,137 @@ class Logbookadvanced_model extends CI_Model {
 		$row = $query->row();
 
 		return $row->grids;
+	}
+
+	function getQsoForMerge($qsoId) {
+		$qsoId = intval($qsoId);
+		$sql = "SELECT thcv.* FROM " . $this->config->item('table_name') . " thcv
+		join station_profile ON thcv.station_id = station_profile.station_id
+		WHERE thcv.COL_PRIMARY_KEY = ?
+		and station_profile.user_id = ?";
+
+		$query = $this->db->query($sql, array($qsoId, $this->session->userdata('user_id')));
+		return $query->row();
+	}
+
+	function mergeQsos($qsoId1, $qsoId2, $mergeData) {
+		$qsoId1 = intval($qsoId1);
+		$qsoId2 = intval($qsoId2);
+		$primaryId = intval($mergeData['primaryQso']);
+
+		if (!in_array($primaryId, [$qsoId1, $qsoId2])) {
+			return ['success' => false, 'message' => __("Invalid primary QSO ID, or you do not have permission to access one of the QSOs")];
+		}
+
+		$secondaryId = ($primaryId == $qsoId1) ? $qsoId2 : $qsoId1;
+
+		// Get both QSOs
+		$primaryQso = $this->getQsoForMerge($primaryId);
+		$secondaryQso = $this->getQsoForMerge($secondaryId);
+
+		if (!$primaryQso || !$secondaryQso) {
+			return ['success' => false, 'message' => __("QSO not found")];
+		}
+
+		// Merge the data
+		$updateData = [];
+		$mergeableFields = [
+			'COL_RST_SENT', 'COL_RST_RCVD',
+			'COL_NAME', 'COL_QTH', 'COL_GRID', 'COL_STATE',
+			'COL_CNTY', 'COL_COUNTRY', 'COL_DXCC',
+			'COL_CQZ', 'COL_ITUZ',
+			'COL_ADDRESS', 'COL_AGE',
+			'COL_ARRL_SECT', 'COL_BIOGRAPHY', 'COL_EMAIL',
+			'COL_IOTA', 'COL_POTA', 'COL_SOTA', 'COL_WWFF',
+			'COL_DARC_DOK', 'COL_SIG', 'COL_SIG_INFO',
+			'COL_FISTS', 'COL_FISTS_CC', 'COL_SKCC', 'COL_TEN_TEN', 'COL_UKSMG',
+			'COL_VUCC_GRIDS', 'COL_USACA_COUNTIES',
+			'COL_COMMENT', 'COL_QSL_VIA',
+			'COL_QSLMSG', 'COL_QSLMSG_RCVD', 'COL_QSLSDATE', 'COL_QSLRDATE',
+			'COL_QSL_SENT', 'COL_QSL_RCVD',
+			'COL_QSL_SENT_VIA', 'COL_QSL_RCVD_VIA',
+			'COL_LOTW_QSL_SENT', 'COL_LOTW_QSL_RCVD',
+			'COL_LOTW_QSLSDATE', 'COL_LOTW_QSLRDATE', 'COL_LOTW_STATUS',
+			'COL_CLUBLOG_QSO_UPLOAD_DATE', 'COL_CLUBLOG_QSO_UPLOAD_STATUS',
+			'COL_CLUBLOG_QSO_DOWNLOAD_DATE', 'COL_CLUBLOG_QSO_DOWNLOAD_STATUS',
+			'COL_EQSL_QSL_SENT', 'COL_EQSL_QSL_RCVD',
+			'COL_EQSL_QSLSDATE', 'COL_EQSL_QSLRDATE',
+			'COL_EQSL_AG', 'COL_EQSL_STATUS',
+			'COL_QRZCOM_QSO_UPLOAD_STATUS', 'COL_QRZCOM_QSO_UPLOAD_DATE',
+			'COL_QRZCOM_QSO_DOWNLOAD_DATE', 'COL_QRZCOM_QSO_DOWNLOAD_STATUS',
+			'COL_HRDLOG_QSO_UPLOAD_STATUS', 'COL_HRDLOG_QSO_UPLOAD_DATE',
+			'COL_DCL_QSL_SENT', 'COL_DCL_QSL_RCVD',
+			'COL_DCL_QSLSDATE', 'COL_DCL_QSLRDATE',
+			'COL_OPERATOR', 'COL_OWNER_CALLSIGN', 'COL_STATION_CALLSIGN',
+			'COL_MY_DXCC', 'COL_MY_COUNTRY', 'COL_MY_STATE',
+			'COL_MY_CNTY', 'COL_MY_CNTY_ALT', 'COL_MY_CQ_ZONE', 'COL_MY_ITU_ZONE',
+			'COL_MY_GRIDSQUARE', 'COL_MY_IOTA', 'COL_MY_IOTA_ISLAND_ID',
+			'COL_MY_SOTA_REF', 'COL_MY_POTA_REF', 'COL_MY_WWFF_REF',
+			'COL_MY_VUCC_GRIDS', 'COL_MY_DARC_DOK', 'COL_MY_FISTS',
+			'COL_MY_NAME', 'COL_MY_CITY', 'COL_MY_POSTAL_CODE', 'COL_MY_STREET',
+			'COL_MY_ANTENNA', 'COL_MY_RIG', 'COL_MY_SIG', 'COL_MY_SIG_INFO',
+			'COL_SAT_MODE', 'COL_SAT_NAME',
+			'COL_PROP_MODE', 'COL_BAND', 'COL_MODE', 'COL_SUBMODE',
+			'COL_FREQ', 'COL_FREQ_RX', 'COL_BAND_RX',
+			'COL_ANT_AZ', 'COL_ANT_EL', 'COL_ANT_PATH',
+			'COL_A_INDEX', 'COL_K_INDEX',
+			'COL_SFI', 'COL_TX_PWR', 'COL_RX_PWR',
+			'COL_STX', 'COL_STX_STRING',
+			'COL_SRX', 'COL_SRX_STRING', 'COL_CONTEST_ID',
+			'COL_PRECEDENCE', 'COL_MORSE_KEY_TYPE', 'COL_MORSE_KEY_INFO',
+			'COL_SILENT_KEY', 'COL_SWL', 'COL_WEB',
+			'COL_QSL_RCVD_VIA', 'COL_DISTANCE',
+			'COL_REGION', 'COL_RIG', 'COL_NOTES', 'COL_QSO_COMPLETE',
+			'COL_USER_DEFINED_0', 'COL_USER_DEFINED_1', 'COL_USER_DEFINED_2',
+			'COL_USER_DEFINED_3', 'COL_USER_DEFINED_4', 'COL_USER_DEFINED_5',
+			'COL_USER_DEFINED_6', 'COL_USER_DEFINED_7', 'COL_USER_DEFINED_8',
+			'COL_USER_DEFINED_9'
+		];
+
+		foreach ($mergeableFields as $field) {
+			$fieldName = substr($field, 4); // Remove 'COL_' prefix
+			if (isset($mergeData[$fieldName]) && $mergeData[$fieldName] != 'primary') {
+				$sourceQso = ($mergeData[$fieldName] == 'qso1') ?
+					($primaryId == $qsoId1 ? $primaryQso : $secondaryQso) :
+					($primaryId == $qsoId2 ? $primaryQso : $secondaryQso);
+
+				// Determine the source value
+				$sourceValue = isset($sourceQso->$field) ? $sourceQso->$field : null;
+				$primaryValue = isset($primaryQso->$field) ? $primaryQso->$field : null;
+
+				// Only update if:
+				// 1. Source has a value (not null/empty) - use that value
+				// 2. Source is empty BUT primary has a value - clear the field
+				// 3. Both are empty - skip (no change needed)
+				if ($sourceValue !== null && $sourceValue !== '') {
+					// Source has a value, use it
+					$updateData[$field] = $sourceValue;
+				} elseif (($sourceValue === null || $sourceValue === '') &&
+				          ($primaryValue !== null && $primaryValue !== '')) {
+					// Source is empty but primary has a value - clear the field
+					$updateData[$field] = '';
+				}
+				// If both are empty, skip this field
+			}
+		}
+
+		if (empty($updateData)) {
+			return ['success' => false, 'message' => __("No fields selected for merge or no differences between QSOs")];
+		}
+
+		// Update the primary QSO
+		$this->db->where('COL_PRIMARY_KEY', $primaryId);
+		$this->db->update($this->config->item('table_name'), $updateData);
+
+		// Delete the secondary QSO
+		$this->db->where('COL_PRIMARY_KEY', $secondaryId);
+		$this->db->delete($this->config->item('table_name'));
+
+		return [
+			'success' => true,
+			'message' => __("QSOs merged successfully"),
+			'primaryId' => $primaryId,
+			'deletedId' => $secondaryId
+		];
 	}
 }

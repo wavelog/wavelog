@@ -346,7 +346,7 @@ class WAE extends CI_Model {
 			$bindings[] = $postdata['dateTo'] . ' 23:59:59';
 		}
 
-		$sql .= " AND thcv.col_prop_mode != 'SAT'";
+		$sql .= " AND (thcv.col_prop_mode != 'SAT' or thcv.col_prop_mode is NULL)";
 
 		// Orbit filter
 		$sql .= $this->addOrbitToQuery($postdata, $bindings);
@@ -444,7 +444,7 @@ class WAE extends CI_Model {
 						$bindings[] = $postdata['sat'];
 					}
 				} else {
-					$sql .= " and col_prop_mode !='SAT'";
+					$sql .= " and (col_prop_mode !='SAT' or col_prop_mode is NULL)";
 					$sql .= " and col_band = ?";
 					$bindings[] = $postdata['band'];
 				}

@@ -28,6 +28,7 @@ function load_jcc_map() {
             qrz: +$('#qrz').prop('checked'),
             clublog: +$('#clublog').prop('checked'),
             eqsl: +$('#eqsl').prop('checked'),
+			includedeleted: +$('#includedeleted').prop('checked'),
         },
         success: function(data) {
             load_jcc_map2(data, worked, confirmed, notworked);
@@ -71,7 +72,7 @@ function load_jcc_map2(data, worked, confirmed, notworked) {
     var jccstuff = {};
     $.ajax({
        dataType: "json",
-       url: base_url + 'index.php/awards/jcc_cities',
+         url: base_url + 'assets/json/japan_award/jcc_list.json',
        async: false,
        success: function(result) {
           for (var item in result) {
@@ -175,5 +176,5 @@ function addMarker(L, D, mapColor, map) {
 
 function onClick(e) {
     var marker = e.target;
-    displayContactsOnMap($("#jccmap"),marker.options.prefix, $('#band2').val(), 'All', 'All', $('#mode').val(), 'JCC');
+    displayContactsOnMap($("#jccmap"), marker.options.prefix, $('#band2').val(), 'All', 'All', $('#mode').val(), 'JCC');
 }

@@ -314,6 +314,9 @@
 				if ($posted_band != 'SAT') {
 					echo '<td><b>' . __("Total (ex SAT)") . '</b></td>';
 				}
+				if ($posted_band == 'All') {
+					echo '<td>' . __("Slots") . '</td>';
+				}
 				echo '
 	</tr>
 	</thead>
@@ -327,6 +330,10 @@
 		}
 
 		if (($posted_band == 'SAT') && ($band == 'Total')) {
+			continue;
+		}
+
+		if (($posted_band != 'All') && ($band == 'Slots')) {
 			continue;
 		}
 
@@ -348,6 +355,10 @@
 		}
 
 		if (($posted_band == 'SAT') && ($band == 'Total')) {
+			continue;
+		}
+
+        if (($posted_band != 'All') && ($band == 'Slots')) {
 			continue;
 		}
 

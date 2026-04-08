@@ -33,7 +33,7 @@ class Wac extends CI_Model{
 			$bindings[] = $postdata['mode'];
 		}
 
-		$sql .= " AND thcv.col_prop_mode != 'SAT'";
+		$sql .= " AND (thcv.col_prop_mode != 'SAT' or thcv.col_prop_mode is NULL)";
 
 		$sql .= " GROUP BY thcv.col_cont, thcv.col_band";
 

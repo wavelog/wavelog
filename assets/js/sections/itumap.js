@@ -278,14 +278,14 @@ function style(feature) {
 
 function onClick(e) {
     var marker = e.target;
-    displayContactsOnMap($("#itumap"),marker.options.title, $('#band2').val(), 'All', 'All', $('#mode').val(), 'ITU');
+    displayContactsOnMap($("#itumap"),marker.options.title, $('#band2').val(), 'All', 'All', $('#mode').val(), 'ITUZone');
 }
 
 function onClick2(e) {
 	zoomToFeature(e);
 	console.log(e);
     var marker = e.target;
-    displayContactsOnMap($("#itumap"),marker.feature.properties.itu_zone_number, $('#band2').val(), 'All', 'All', $('#mode').val(), 'ITU');
+    displayContactsOnMap($("#itumap"),marker.feature.properties.itu_zone_number, $('#band2').val(), 'All', 'All', $('#mode').val(), 'ITUZone');
 }
 
 function createContentITU(zone, text){

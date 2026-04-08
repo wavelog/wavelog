@@ -1424,3 +1424,29 @@ svg text.month { fill: #AAA; }
 	user-select: none;
 }
 
+.heatmap-grid { 
+	display: grid; 
+	grid-template-columns: repeat(24, minmax(0, 1fr)); 
+	gap: 2px; 
+	max-width: 100%; 
+}
+.heatmap-header {
+	text-align: center;
+	padding: 6px 4px;
+}
+.heatmap-row-label {
+	font-weight: 600;
+	padding: 8px 4px;
+	text-align: left;
+	font-size: 0.85rem;
+}
+.heatmap-cell {
+	text-align: center;
+	padding: 8px 4px;
+	border-radius: 3px;
+	border: 1px solid #d1d5da;
+	cursor: default;
+	color: #000;
+}
+.legend-item { display: inline-flex; align-items: center; gap: 4px; font-size: 0.8rem;}
+.legend-swatch { width: 16px; height: 16px; border: 1px solid #d1d5da; border-radius: 3px; display: inline-block; }

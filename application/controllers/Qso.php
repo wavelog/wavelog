@@ -233,7 +233,7 @@ class QSO extends CI_Controller {
 			'start_time' => $this->input->post('start_time', TRUE),
 			'end_time' => $this->input->post('end_time', TRUE),
 			'callsign' => $this->input->post('callsign', TRUE),
-			'prop_mode' => $this->input->post('prop_mode', TRUE) ?? NULL,
+			'prop_mode' => $this->input->post('prop_mode', TRUE) ?? '',
 			'email' => $this->input->post('email', TRUE) ?? NULL,
 			'region' => $this->input->post('region', TRUE) ?? NULL,
 			'sat_name' => $this->input->post('sat_name', TRUE) ?? NULL,

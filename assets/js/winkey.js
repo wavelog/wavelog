@@ -1,3 +1,81 @@
+// Global variables for macros
+let function1Name, function1Macro, function2Name, function2Macro, function3Name, function3Macro, function4Name, function4Macro, function5Name, function5Macro, function6Name, function6Macro, function7Name, function7Macro, function8Name, function8Macro, function9Name, function9Macro, function10Name, function10Macro;
+
+// Call url and store the returned json data as variables
+function getMacros() {
+	fetch(base_url + 'index.php/qso/cwmacros_json')
+	.then(response => response.json())
+	.then(data => {
+		// Check if all fields are empty
+		const allEmpty = Object.values(data).every(value => value === "");
+
+		if (allEmpty) {
+			// Set default values
+			function1Name = 'CQ';
+			function1Macro = 'CQ CQ CQ DE [MYCALL] [MYCALL] K';
+			function2Name = 'REPT';
+			function2Macro = '[CALL] DE [MYCALL] [RSTS] [RSTS] K';
+			function3Name = 'TU';
+			function3Macro = '[CALL] TU 73 DE [MYCALL] K';
+			function4Name = 'QRZ';
+			function4Macro = 'QRZ DE [MYCALL] K';
+			function5Name = 'TEST';
+			function5Macro = 'TEST DE [MYCALL] K';
+		} else {
+			function1Name = data.function1_name;
+			function1Macro = data.function1_macro;
+			function2Name = data.function2_name;
+			function2Macro = data.function2_macro;
+			function3Name = data.function3_name;
+			function3Macro = data.function3_macro;
+			function4Name = data.function4_name;
+			function4Macro = data.function4_macro;
+			function5Name = data.function5_name;
+			function5Macro = data.function5_macro;
+			function6Name = data.function6_name;
+			function6Macro = data.function6_macro;
+			function7Name = data.function7_name;
+			function7Macro = data.function7_macro;
+			function8Name = data.function8_name;
+			function8Macro = data.function8_macro;
+			function9Name = data.function9_name;
+			function9Macro = data.function9_macro;
+			function10Name = data.function10_name;
+			function10Macro = data.function10_macro;
+		}
+
+		const morsekey_func1_Button = document.getElementById('morsekey_func1');
+		morsekey_func1_Button.textContent = 'F1 (' + function1Name + ')';
+
+		const morsekey_func2_Button = document.getElementById('morsekey_func2');
+		morsekey_func2_Button.textContent = 'F2 (' + function2Name + ')';
+
+		const morsekey_func3_Button = document.getElementById('morsekey_func3');
+		morsekey_func3_Button.textContent = 'F3 (' + function3Name + ')';
+
+		const morsekey_func4_Button = document.getElementById('morsekey_func4');
+		morsekey_func4_Button.textContent = 'F4 (' + function4Name + ')';
+
+		const morsekey_func5_Button = document.getElementById('morsekey_func5');
+		morsekey_func5_Button.textContent = 'F5 (' + function5Name + ')';
+
+		const morsekey_func6_Button = document.getElementById('morsekey_func6');
+		morsekey_func6_Button.textContent = 'F6 (' + function6Name + ')';
+
+		const morsekey_func7_Button = document.getElementById('morsekey_func7');
+		morsekey_func7_Button.textContent = 'F7 (' + function7Name + ')';
+
+		const morsekey_func8_Button = document.getElementById('morsekey_func8');
+		morsekey_func8_Button.textContent = 'F8 (' + function8Name + ')';
+
+		const morsekey_func9_Button = document.getElementById('morsekey_func9');
+		morsekey_func9_Button.textContent = 'F9 (' + function9Name + ')';
+
+		const morsekey_func10_Button = document.getElementById('morsekey_func10');
+		morsekey_func10_Button.textContent = 'F10 (' + function10Name + ')';
+	});
+}
+
 $(document).ready(function() {
     // Lets see if CW is selected
     const ModeSelected = document.getElementById('mode');
@@ -40,8 +118,6 @@ $(document).ready(function() {
 		// Send the command as hex bytes
 		sendHexToSerial(command);
 	});
-
-	let function1Name, function1Macro, function2Name, function2Macro, function3Name, function3Macro, function4Name, function4Macro, function5Name, function5Macro, function6Name, function6Macro, function7Name, function7Macro, function8Name, function8Macro, function9Name, function9Macro, function10Name, function10Macro;
 
 	getMacros();
 
@@ -183,19 +259,19 @@ $(document).ready(function() {
 		}
 	}
 
-	function stop_cw_sending() {
+	window.stop_cw_sending = function() {
 		sendHexToSerial("0A");
 		$("#send_carrier").attr("hidden", false);
 		$("#stop_carrier").attr("hidden", true);
 	}
 
-	function send_carrier() {
+	window.send_carrier = function() {
 		sendHexToSerial("0B 01");
 		$("#send_carrier").attr("hidden", true);
 		$("#stop_carrier").attr("hidden", false);
 	}
 
-	function stop_carrier() {
+	window.stop_carrier = function() {
 		sendHexToSerial("0B 00");
 		$("#send_carrier").attr("hidden", false);
 		$("#stop_carrier").attr("hidden", true);
@@ -295,53 +371,53 @@ $(document).ready(function() {
 
 	}
 
-	function morsekey_func1() {
+	window.morsekey_func1 = function() {
 		writeToStream(UpdateMacros(function1Macro));
 		//and clear the input field, so it's clear it has been sent
 		sendText.value = "";
 	}
 
-	function morsekey_func2() {
+	window.morsekey_func2 = function() {
 		writeToStream(UpdateMacros(function2Macro));
 		sendText.value = "";
 	}
 
-	function morsekey_func3() {
+	window.morsekey_func3 = function() {
 		writeToStream(UpdateMacros(function3Macro));
 		sendText.value = "";
 	}
 
-	function morsekey_func4() {
+	window.morsekey_func4 = function() {
 		writeToStream(UpdateMacros(function4Macro));
 		sendText.value = "";
 	}
 
-	function morsekey_func5() {
+	window.morsekey_func5 = function() {
 		writeToStream(UpdateMacros(function5Macro));
 		sendText.value = "";
 	}
 
-	function morsekey_func6() {
+	window.morsekey_func6 = function() {
 		writeToStream(UpdateMacros(function6Macro));
 		sendText.value = "";
 	}
 
-	function morsekey_func7() {
+	window.morsekey_func7 = function() {
 		writeToStream(UpdateMacros(function7Macro));
 		sendText.value = "";
 	}
 
-	function morsekey_func8() {
+	window.morsekey_func8 = function() {
 		writeToStream(UpdateMacros(function8Macro));
 		sendText.value = "";
 	}
 
-	function morsekey_func9() {
+	window.morsekey_func9 = function() {
 		writeToStream(UpdateMacros(function9Macro));
 		sendText.value = "";
 	}
 
-	function morsekey_func10() {
+	window.morsekey_func10 = function() {
 		writeToStream(UpdateMacros(function10Macro));
 		sendText.value = "";
 	}
@@ -376,81 +452,6 @@ $(document).ready(function() {
 		newString = newString.replace(/\[CALL\]/g, CALL);
 		newString = newString.replace(/\[RSTS\]/g, RSTS);
 		return newString;
-	}
-
-	// Call url and store the returned json data as variables
-	function getMacros() {
-		fetch(base_url + 'index.php/qso/cwmacros_json')
-		.then(response => response.json())
-		.then(data => {
-			// Check if all fields are empty
-			const allEmpty = Object.values(data).every(value => value === "");
-
-			if (allEmpty) {
-				// Set default values
-				function1Name = 'CQ';
-				function1Macro = 'CQ CQ CQ DE [MYCALL] [MYCALL] K';
-				function2Name = 'REPT';
-				function2Macro = '[CALL] DE [MYCALL] [RSTS] [RSTS] K';
-				function3Name = 'TU';
-				function3Macro = '[CALL] TU 73 DE [MYCALL] K';
-				function4Name = 'QRZ';
-				function4Macro = 'QRZ DE [MYCALL] K';
-				function5Name = 'TEST';
-				function5Macro = 'TEST DE [MYCALL] K';
-			} else {
-				function1Name = data.function1_name;
-				function1Macro = data.function1_macro;
-				function2Name = data.function2_name;
-				function2Macro = data.function2_macro;
-				function3Name = data.function3_name;
-				function3Macro = data.function3_macro;
-				function4Name = data.function4_name;
-				function4Macro = data.function4_macro;
-				function5Name = data.function5_name;
-				function5Macro = data.function5_macro;
-				function6Name = data.function6_name;
-				function6Macro = data.function6_macro;
-				function7Name = data.function7_name;
-				function7Macro = data.function7_macro;
-				function8Name = data.function8_name;
-				function8Macro = data.function8_macro;
-				function9Name = data.function9_name;
-				function9Macro = data.function9_macro;
-				function10Name = data.function10_name;
-				function10Macro = data.function10_macro;
-			}
-
-			const morsekey_func1_Button = document.getElementById('morsekey_func1');
-			morsekey_func1_Button.textContent = 'F1 (' + function1Name + ')';
-
-			const morsekey_func2_Button = document.getElementById('morsekey_func2');
-			morsekey_func2_Button.textContent = 'F2 (' + function2Name + ')';
-
-			const morsekey_func3_Button = document.getElementById('morsekey_func3');
-			morsekey_func3_Button.textContent = 'F3 (' + function3Name + ')';
-
-			const morsekey_func4_Button = document.getElementById('morsekey_func4');
-			morsekey_func4_Button.textContent = 'F4 (' + function4Name + ')';
-
-			const morsekey_func5_Button = document.getElementById('morsekey_func5');
-			morsekey_func5_Button.textContent = 'F5 (' + function5Name + ')';
-
-			const morsekey_func6_Button = document.getElementById('morsekey_func6');
-			morsekey_func6_Button.textContent = 'F6 (' + function6Name + ')';
-
-			const morsekey_func7_Button = document.getElementById('morsekey_func7');
-			morsekey_func7_Button.textContent = 'F7 (' + function7Name + ')';
-
-			const morsekey_func8_Button = document.getElementById('morsekey_func8');
-			morsekey_func8_Button.textContent = 'F8 (' + function8Name + ')';
-
-			const morsekey_func9_Button = document.getElementById('morsekey_func9');
-			morsekey_func9_Button.textContent = 'F9 (' + function9Name + ')';
-
-			const morsekey_func10_Button = document.getElementById('morsekey_func10');
-			morsekey_func10_Button.textContent = 'F10 (' + function10Name + ')';
-		});
 	}
 
 	$('#winkey_settings').click(function (event) {

@@ -62,7 +62,6 @@ class Subdivisions {
 				return _pgettext("Division Name (States in various countries).", "Canton");
 			case '291':
 				return _pgettext("Division Name (States in various countries).", "US State");
-			case '318':
 			case '339':
 				return _pgettext("Division Name (States in various countries).", "Prefecture");
 		}

@@ -12,7 +12,7 @@ class Waip extends CI_Model {
 	// Italian provinces mapping (2-letter codes to names)
 	private $province_names = array(
 		'AG' => 'Agrigento',
-		'AL' => 'Alexandria',
+		'AL' => 'Alessandria',
 		'AN' => 'Ancona',
 		'AO' => 'Aosta',
 		'AP' => 'Ascoli Piceno',
@@ -61,7 +61,7 @@ class Waip extends CI_Model {
 		'LO' => 'Lodi',
 		'LT' => 'Latina',
 		'LU' => 'Lucca',
-		'MB' => 'Monza and Brianza',
+		'MB' => 'Monza e Brianza',
 		'MC' => 'Macerata',
 		'ME' => 'Messina',
 		'MI' => 'Milano',

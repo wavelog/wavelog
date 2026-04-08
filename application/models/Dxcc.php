@@ -71,6 +71,9 @@ class DXCC extends CI_Model {
 		$summary['worked']['Total'] = 0;
 		$summary['confirmed']['Total'] = 0;
 
+     	$summary['worked']['Slots'] = 0;
+		$summary['confirmed']['Slots'] = 0;
+
 		// Track unique DXCC/band combinations for totals
 		$workedDxccs = [];  // [band][dxcc] => true
 		$confirmedDxccs = []; // [band][dxcc] => true
@@ -128,6 +131,7 @@ class DXCC extends CI_Model {
 				if (!isset($confirmedDxccs[$dxcc->col_band][$dxcc->dxcc])) {
 					$confirmedDxccs[$dxcc->col_band][$dxcc->dxcc] = true;
 					$summary['confirmed'][$dxcc->col_band]++;
+					$summary['confirmed']['Slots']++;
 				}
 			} else {
 				if ($postdata['worked'] != NULL) {
@@ -139,7 +143,8 @@ class DXCC extends CI_Model {
 			if (!isset($workedDxccs[$dxcc->col_band][$dxcc->dxcc])) {
 				$workedDxccs[$dxcc->col_band][$dxcc->dxcc] = true;
 				$summary['worked'][$dxcc->col_band]++;
-			}
+				$summary['worked']['Slots']++;
+            }
 		}
 
 		if ($postdata['band'] == 'SAT') {
@@ -323,7 +328,7 @@ class DXCC extends CI_Model {
 			$bindings[] = $postdata['dateTo'] . ' 23:59:59';
 		}
 
-		$sql .= " and thcv.col_prop_mode != 'SAT'";
+		$sql .= " and (thcv.col_prop_mode != 'SAT' or thcv.col_prop_mode is NULL)";
 
 		// Continent filters
 		$sql .= $this->addContinentsToQuery($postdata);

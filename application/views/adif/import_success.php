@@ -50,19 +50,48 @@
     </ul>
     <?php } ?>
        </div>
-
-	<!-- Display errors for ADIF import -->
-	<?php if($adif_errors): ?>
-		<div class="mt-2 ms-2 me-2">
-			<h3 class="text-danger"><?= __("Import details / possible problems") ?></h3>
-			<br> <?= sprintf(__("Check %s for hints about errors in ADIF files."), "<a target=\"_blank\" href=\"https://docs.wavelog.org/troubleshooting/adif-cant-import/\">Wavelog Wiki</a>") ?>
-			<p><?= __("You might have ADIF errors. Please check the following information:") ?></p>
-
-			<div class="border rounded bg-light p-3" style="max-height: 250px; overflow-y: auto;">
-				<pre class="mb-0"><?= $adif_errors ?></pre>
+		<!-- Display errors for ADIF import -->
+		<?php if($adif_errors): ?>
+			<div class="mt-2 ms-2 me-2">
+				<h3 class="text-danger"><?= __("Import details / possible problems") ?></h3>
+				<br> <?= sprintf(__("Check %s for hints about errors in ADIF files."), "<a target=\"_blank\" href=\"https://docs.wavelog.org/troubleshooting/adif-cant-import/\">Wavelog Wiki</a>") ?>
+				
+				<?php if(!empty($structured_errors["critical"])): ?>
+					<div class="mt-3">
+						<h5 class="text-danger"><i class="fas fa-exclamation-triangle"></i> <?= __("Critical Errors - Wrong Call/Location") ?> (<?= count($structured_errors["critical"]) ?>)</h5>
+						<div class="border rounded bg-danger bg-opacity-10 p-3 mb-3" style="max-height: 200px; overflow-y: auto;">
+							<pre class="mb-0"><?= implode("", $structured_errors["critical"]) ?></pre>
+						</div>
+					</div>
+				<?php endif; ?>
+				
+				<?php if(!empty($structured_errors["validation"])): ?>
+					<div class="mt-3">
+						<h5 class="text-warning"><i class="fas fa-exclamation-circle"></i> <?= __("Validation Errors - Invalid Data") ?> (<?= count($structured_errors["validation"]) ?>)</h5>
+						<div class="border rounded bg-warning bg-opacity-10 p-3 mb-3" style="max-height: 200px; overflow-y: auto;">
+							<pre class="mb-0"><?= implode("", $structured_errors["validation"]) ?></pre>
+						</div>
+					</div>
+				<?php endif; ?>
+				
+				<?php if(!empty($structured_errors["duplicate"])): ?>
+					<div class="mt-3">
+						<h5 class="text-info"><i class="fas fa-copy"></i> <?= __("Duplicate QSOs") ?> (<?= count($structured_errors["duplicate"]) ?>)</h5>
+						<div class="border rounded bg-info bg-opacity-10 p-3 mb-3" style="max-height: 200px; overflow-y: auto;">
+							<pre class="mb-0"><?= implode("", $structured_errors["duplicate"]) ?></pre>
+						</div>
+					</div>
+				<?php endif; ?>
+				
+				<?php if(empty($structured_errors["critical"]) && empty($structured_errors["validation"]) && empty($structured_errors["duplicate"])): ?>
+					<p><?= __("You might have ADIF errors. Please check the following information:") ?></p>
+					<div class="border rounded bg-light p-3" style="max-height: 250px; overflow-y: auto;">
+						<pre class="mb-0"><?= $adif_errors ?></pre>
+					</div>
+				<?php endif; ?>
 			</div>
-		</div>
-	<?php endif; ?>
+		<?php endif; ?>
+
 
         </div>
     </div>

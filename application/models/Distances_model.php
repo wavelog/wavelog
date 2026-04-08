@@ -279,7 +279,7 @@ class Distances_model extends CI_Model
 
 		if ($band != 'All') {
 			if($band != "sat") {
-				$this->db->where('COL_PROP_MODE !=', 'SAT');
+				$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
 				$this->db->where('COL_BAND', $band);
 			} else {
 				$this->db->where('COL_PROP_MODE', "SAT");

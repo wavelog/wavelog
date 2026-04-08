@@ -58,7 +58,7 @@
                         <label class="form-check-label" for="lotw"><?= __("LoTW"); ?></label>
                     </div>
                     <div class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="eqsl" value="1" id="eqsl" <?php if ($this->input->post('eqsl')) echo ' checked="checked"'; ?> >
+                        <input class="form-check-input" type="checkbox" name="eqsl" value="1" id="eqsl" <?php if ($this->input->post('eqsl') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
                         <label class="form-check-label" for="eqsl"><?= __("eQSL"); ?></label>
                     </div>
                     <div class="form-check-inline">
@@ -68,6 +68,16 @@
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="clublog" value="1" id="clublog" <?php if ($this->input->post('clublog')) echo ' checked="checked"'; ?> >
                         <label class="form-check-label" for="clublog"><?= __("Clublog"); ?></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <div class="col-md-2"><?= __("Deleted cities"); ?></div>
+                <div class="col-md-10">
+                    <div class="form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="includedeleted" value="1" id="includedeleted" <?php if ($this->input->post('includedeleted')) echo ' checked="checked"'; ?> >
+                        <label class="form-check-label" for="includedeleted"><?= __("Include deleted"); ?></label>
                     </div>
                 </div>
             </div>
@@ -90,7 +100,7 @@
                 <label class="col-md-2 control-label" for="mode"><?= __("Mode"); ?></label>
                 <div class="col-md-2">
                 <select id="mode" name="mode" class="form-select form-select-sm">
-                    <option value="All" <?php if ($this->input->post('mode') == "All" || $this->input->method() !== 'mode') echo ' selected'; ?>><?= __("All"); ?></option>
+                    <option value="All" <?php if ($this->input->post('mode') == "All" || $this->input->method() !== 'post') echo ' selected'; ?>><?= __("All"); ?></option>
                     <?php
                     foreach($modes->result() as $mode){
                         if ($mode->submode == null) {
@@ -115,7 +125,7 @@
                     <button id="button1id" type="submit" name="button1id" class="btn btn-sm btn-primary"><?= __("Show"); ?></button>
                     <?php if ($jcc_array) {?>
                     <button type="button" onclick="load_jcc_map();" class="btn btn-info btn-sm"><i class="fas fa-globe-asia"></i> <?= __("Show JCC Map"); ?></button>
-                    <button id="button3id" type="button" onclick="export_qsos();" name="button3id" class="btn btn-sm btn-info"><?= __("Export"); ?></button>
+					<button id="button3id" type="button" onclick="export_qsos();" name="button3id" class="btn btn-sm btn-info"><?= __("Export confirmed QSOs"); ?></button>
                     <?php } ?>
                 </div>
             </div>
@@ -161,8 +171,10 @@
                     <tbody>';
         foreach ($jcc_array as $jcc => $value) {      // Fills the table with the data
             echo '<tr>';
-            foreach ($value as $name => $key) {
-				echo '<td style="text-align: center">' . $key . '</td>';
+            echo '<td style="text-align: center">' . $value['Number'] . '</td>';
+            echo '<td style="text-align: center">' . $value['City'] . '</td>';
+            foreach ($bands as $band) {
+				echo '<td style="text-align: center">' . awards_render_jcc_cell($jcc, $band, $value[$band], $postdata) . '</td>';
             }
             echo '</tr>';
         }

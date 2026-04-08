@@ -132,6 +132,7 @@
     var lang_cat_websocket_radio = "<?= __("WebSocket Radio"); ?>";
     var lang_qso_location_is_fetched_from_provided_gridsquare = "<?= __("Location is fetched from provided gridsquare"); ?>";
     var lang_qso_location_is_fetched_from_dxcc_coordinates = "<?= __("Location is fetched from DXCC coordinates (no gridsquare provided)"); ?>";
+    var lang_qso_dxcc_none_location = "<?= __("Location could not be determined as gridsquare is empty and DXCC is -NONE-"); ?>";
 
     // CAT Offline Status Messages
     var lang_cat_working_offline = "<?= __("Working without CAT connection"); ?>";
