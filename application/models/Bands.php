@@ -99,7 +99,7 @@ class Bands extends CI_Model {
 
 	function get_all_bands_for_user() {
 		$sql = "
-			SELECT bands.*,
+			SELECT bands.id, bands.band, bands.bandgroup, bands.ssb, bands.data, bands.cw,
 				bandxuser.id as bxuid, bandxuser.active, bandxuser.cq, bandxuser.dok,
 				bandxuser.dxcc, bandxuser.helvetia, bandxuser.iota, bandxuser.jcc, bandxuser.pota,
 				bandxuser.rac, bandxuser.sig, bandxuser.sota, bandxuser.uscounties, bandxuser.vucc,

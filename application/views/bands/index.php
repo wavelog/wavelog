@@ -109,7 +109,7 @@ $wwff = 0;
 								</td>
 								<?php if($this->session->userdata('user_type') == '99') { ?>
 									<td style="text-align: center; vertical-align: middle;" >
-															<a href="javascript:editBandDialog('$band->id');" class="btn btn-outline-primary btn-sm" title="Edit"><i class="fas fa-edit"></i></a>
+															<a href="javascript:editBandDialog('<?php echo $band->id; ?>');" class="btn btn-outline-primary btn-sm" title="Edit"><i class="fas fa-edit"></i></a>
 									</td>
 									<td style="text-align: center; vertical-align: middle;" >
 										<a href="javascript:deleteBand('<?php echo $band->bxuid . '\',\'' . $band->band ?>');" class="btn btn-danger btn-sm" title="Delete"><i class="fas fa-trash-alt"></i></a>
