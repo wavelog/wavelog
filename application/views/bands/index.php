@@ -112,7 +112,7 @@ $wwff = 0;
 															<a href="javascript:editBandDialog('<?php echo $band->id; ?>');" class="btn btn-outline-primary btn-sm" title="Edit"><i class="fas fa-edit"></i></a>
 									</td>
 									<td style="text-align: center; vertical-align: middle;" >
-										<a href="javascript:deleteBand('<?php echo $band->bxuid . '\',\'' . $band->band ?>');" class="btn btn-danger btn-sm" title="Delete"><i class="fas fa-trash-alt"></i></a>
+										<a href="javascript:deleteBand('<?php echo $band->id . '\',\'' . $band->band ?>');" class="btn btn-danger btn-sm" title="Delete"><i class="fas fa-trash-alt"></i></a>
 									</td>
 								<?php } ?>
 							</tr>

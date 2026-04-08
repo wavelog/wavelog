@@ -311,7 +311,8 @@ class Bands extends CI_Model {
     }
 
 	function delete($id, $userid) {
-		$this->db->delete('bandxuser', array('id' => $id, 'userid' => $userid));
+		$this->db->delete('bandxuser', array('bandid' => $id));
+		$this->db->delete('bands', array('id' => $id));
 	}
 
 	function saveBand($id, $band) {
