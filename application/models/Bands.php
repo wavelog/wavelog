@@ -85,7 +85,6 @@ class Bands extends CI_Model {
 			$sql .= " AND (bandxuser.active IS NULL OR bandxuser.active = 1)";
 		}
 
-		$sql .= " ORDER BY bands.band";
 
 		$result = $this->db->query($sql, $params)->result();
 
@@ -107,7 +106,6 @@ class Bands extends CI_Model {
 				bandxuser.wap, bandxuser.wapc, bandxuser.waja, bandxuser.was, bandxuser.wwff
 			FROM bands
 			LEFT JOIN bandxuser ON bandxuser.bandid = bands.id AND bandxuser.userid = ?
-			ORDER BY bands.band
 		";
 
 		return $this->db->query($sql, [$this->session->userdata('user_id')])->result();
