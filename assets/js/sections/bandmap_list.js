@@ -199,7 +199,8 @@ $(function() {
 			band: $('#band').val() || [],
 			mode: $('#mode').val() || [],
 			additionalFlags: $('#additionalFlags').val() || [],
-			requiredFlags: ($('#requiredFlags').val() || []).filter(v => v !== 'None')
+			requiredFlags: ($('#requiredFlags').val() || []).filter(v => v !== 'None'),
+			source: $('#sourceSelect').val() || []
 		};
 	}
 
@@ -242,8 +243,9 @@ $(function() {
 		const isDefaultMode = isDefaultFilterValue(filters.mode);
 		const isDefaultFlags = isDefaultFilterValue(filters.additionalFlags);
 		const isDefaultRequired = filters.requiredFlags.length === 0;
+		const isDefaultSource = isDefaultFilterValue(filters.source);
 
-		return !(isDefaultCwn && isDefaultDecont && isDefaultContinent && isDefaultBand && isDefaultMode && isDefaultFlags && isDefaultRequired);
+		return !(isDefaultCwn && isDefaultDecont && isDefaultContinent && isDefaultBand && isDefaultMode && isDefaultFlags && isDefaultRequired && isDefaultSource);
 	}
 
 	/**
@@ -409,7 +411,7 @@ $(function() {
 		}
 
 		// List of all filter select IDs
-		const FILTER_SELECT_IDS = ['cwnSelect', 'decontSelect', 'continentSelect', 'band', 'mode', 'additionalFlags', 'requiredFlags'];
+		const FILTER_SELECT_IDS = ['cwnSelect', 'decontSelect', 'continentSelect', 'band', 'mode', 'additionalFlags', 'requiredFlags', 'sourceSelect'];
 
 		// Map of storage keys to select IDs
 		const FILTER_KEY_TO_SELECT = {
@@ -419,7 +421,8 @@ $(function() {
 			band: 'band',
 			mode: 'mode',
 			additionalFlags: 'additionalFlags',
-			requiredFlags: 'requiredFlags'
+			requiredFlags: 'requiredFlags',
+			source: 'sourceSelect'
 		};
 
 		// Map currentFilters keys to storage keys
@@ -430,7 +433,8 @@ $(function() {
 			band: 'band',
 			mode: 'mode',
 			additionalFlags: 'additionalFlags',
-			requiredFlags: 'requiredFlags'
+			requiredFlags: 'requiredFlags',
+			source: 'source'
 		};
 
 		/**
@@ -506,7 +510,7 @@ $(function() {
 		}
 
 		// Apply "All" handler to all filter dropdowns
-		['cwnSelect', 'decontSelect', 'continentSelect', 'band', 'mode', 'additionalFlags'].forEach(handleAllOption);
+		['cwnSelect', 'decontSelect', 'continentSelect', 'band', 'mode', 'additionalFlags', 'sourceSelect'].forEach(handleAllOption);
 
 		// Required flags filter - handle "None" option
 		$('#requiredFlags').on('change', function() {
@@ -671,7 +675,8 @@ $(function() {
 		cwn: ['All'],
 		mode: ['All'],
 		additionalFlags: ['All'],
-		requiredFlags: []
+		requiredFlags: [],
+		source: ['All']
 	};
 
 	// ========================================
@@ -972,6 +977,11 @@ $(function() {
 			});
 		}
 
+		// Source filter
+		if (currentFilters.source && !currentFilters.source.includes('All')) {
+			filters.push('"' + lang_bandmap_source + ': ' + currentFilters.source.join('/') + '"');
+		}
+
 		return filters;
 	}
 
@@ -1003,6 +1013,7 @@ $(function() {
 		let cwnSet = arrayToFilterSet(currentFilters.cwn);
 		let modeSet = arrayToFilterSet(currentFilters.mode);
 		let flagSet = arrayToFilterSet(currentFilters.additionalFlags);
+		let sourceSet = arrayToFilterSet(currentFilters.source);
 		let requiredFlags = currentFilters.requiredFlags || [];
 		const hasRequiredFlags = requiredFlags.length > 0;
 		const hasCwnFilter = cwnSet !== null;
@@ -1088,6 +1099,9 @@ $(function() {
 
 		// Apply mode filter (API already returns mode categories)
 		if (modeSet && (!single.mode || !modeSet.has(single.mode))) return;
+
+		// Apply source filter (backwards-compat: spots without a source field pass through)
+		if (sourceSet && single.source && !sourceSet.has(single.source)) return;
 
 		// Apply additional flags filter (POTA, SOTA, WWFF, IOTA, Contest, Fresh)
 		if (hasFlagFilter) {
@@ -1770,6 +1784,21 @@ $(function() {
 	// BACKEND DATA FETCH
 	// ========================================
 
+	// Rebuild #sourceSelect options from spot data, preserving current selection
+	function updateSourceOptions(spots) {
+		let sources = [...new Set(spots.map(s => s.source).filter(Boolean))].sort();
+		let $sel = $('#sourceSelect');
+		let currentVal = $sel.val() || ['All'];
+		$sel.find('option:not([value="All"])').remove();
+		sources.forEach(function(src) {
+			$sel.append($('<option>', { value: src, text: src }));
+		});
+		// Keep current selection; fall back to 'All' if selected sources no longer exist
+		let validVals = currentVal.filter(function(v) { return v === 'All' || sources.includes(v); });
+		$sel.val(validVals.length ? validVals : ['All']);
+		updateSelectCheckboxes('sourceSelect');
+	}
+
 	// Fetch spot data from DX cluster API
 	// Backend filters: band, de continent (where spotter is), mode
 	// Client filters applied after fetch: cwn, spotted continent, additionalFlags
@@ -1919,6 +1948,8 @@ $(function() {
 				cachedSpotData = [];
 			}
 
+			updateSourceOptions(cachedSpotData);  // Rebuild source filter options
+
 			lastFetchParams.timestamp = new Date();
 			isFetchInProgress = false;
 
@@ -2004,6 +2035,7 @@ $(function() {
 		let mode = getSelectedValues('mode');
 		let additionalFlags = getSelectedValues('additionalFlags');
 		let requiredFlags = ($('#requiredFlags').val() || []).filter(v => v !== 'None');  // Remove "None"
+		let source = getSelectedValues('sourceSelect');
 
 		let continentForAPI = 'Any';
 		if (de.length === 1 && !de.includes('Any')) {
@@ -2035,7 +2067,8 @@ $(function() {
 			cwn: cwn,
 			mode: mode,
 			requiredFlags: requiredFlags,
-			additionalFlags: additionalFlags
+			additionalFlags: additionalFlags,
+			source: source
 		};
 
 		if (backendParamsChanged) {
@@ -2078,7 +2111,8 @@ $(function() {
 			band: currentBand || ['All'],
 			mode: ['All'],
 			additionalFlags: ['All'],
-			requiredFlags: []
+			requiredFlags: [],
+			source: ['All']
 		});
 
 		// Update checkbox indicators for all selects
@@ -2115,6 +2149,7 @@ $(function() {
 		$('#mode').val(['All']).trigger('change');
 		$('#additionalFlags').val(['All']).trigger('change');
 		$('#requiredFlags').val([]).trigger('change');
+		$('#sourceSelect').val(['All']).trigger('change');
 
 		// Restore De Continent
 		$('#decontSelect').val(currentDecont).trigger('change');
