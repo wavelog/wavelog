@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-04-08 06:53+0000\n"
-"PO-Revision-Date: 2026-03-24 06:50+0000\n"
+"PO-Revision-Date: 2026-04-10 02:04+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -1046,6 +1046,9 @@ msgid ""
 "seems right you can delete the folders 'assets/qslcard' and 'images/"
 "eqsl_card_images'."
 msgstr ""
+"Миграция файлов прошла успешно, но, пожалуйста, всё же проверьте вручную. "
+"Если все в порядке, то можете удалить папки 'assets/qslcard' и 'images/"
+"eqsl_card_images'."
 
 #: application/controllers/Debug.php:320
 msgid "File Migration failed. Please check the Error Log."
@@ -3694,7 +3697,7 @@ msgstr "DXCC должен быть цифровым"
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
-msgstr ""
+msgstr "Отличающийся позывной %s при импорте QSO с %s для %s: ПРОПУЩЕНО"
 
 #: application/models/Logbook_model.php:4922
 #, php-format
@@ -3702,6 +3705,8 @@ msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
 "SKIPPED"
 msgstr ""
+"Отличающийся локатор %s при импорте QSO с %s от локатора в профиле QTH %s: "
+"ПРОПУЩЕНО"
 
 #: application/models/Logbook_model.php:4938
 msgid ""
@@ -3812,6 +3817,8 @@ msgid ""
 "Invalid primary QSO ID, or you do not have permission to access one of the "
 "QSOs"
 msgstr ""
+"Недействительный первичный идентификатор QSO или у вас нет прав доступа к "
+"одному из QSO"
 
 #: application/models/Logbookadvanced_model.php:2412
 #: application/views/view_log/qso.php:946
@@ -3820,11 +3827,11 @@ msgstr "QSO не найдено"
 
 #: application/models/Logbookadvanced_model.php:2498
 msgid "No fields selected for merge or no differences between QSOs"
-msgstr ""
+msgstr "Поля для объединения не выбраны или отсутствуют различия между QSO"
 
 #: application/models/Logbookadvanced_model.php:2511
 msgid "QSOs merged successfully"
-msgstr ""
+msgstr "QSO успешно объединены"
 
 #: application/models/Note.php:7
 msgid "Contacts"
@@ -4944,13 +4951,15 @@ msgstr ""
 
 #: application/views/adif/import.php:169
 msgid "Ignore grid check on import"
-msgstr ""
+msgstr "Игнорировать проверку локатора при импорте"
 
 #: application/views/adif/import.php:171
 msgid ""
 "If selected, Wavelog will try to import QSOs even if the MY_GRIDSQUARE field "
 "in ADIF records does not match the locator of the chosen station-location."
 msgstr ""
+"Если выбрано, Wavelog попытается импортировать QSOs, даже если поле "
+"MY_GRIDSQUARE в записях ADIF не совпадает с локатором выбранного профиля QTH."
 
 #: application/views/adif/import.php:181
 msgid ""
@@ -5286,15 +5295,15 @@ msgstr "Проверьте %s на наличие подсказок об оши
 
 #: application/views/adif/import_success.php:61
 msgid "Critical Errors - Wrong Call/Location"
-msgstr ""
+msgstr "Критические ошибки - неверная комбинация позывной/профиль QTH"
 
 #: application/views/adif/import_success.php:70
 msgid "Validation Errors - Invalid Data"
-msgstr ""
+msgstr "Ошибки проверки - неправильные данные"
 
 #: application/views/adif/import_success.php:79
 msgid "Duplicate QSOs"
-msgstr ""
+msgstr "Дублирующиеся QSO"
 
 #: application/views/adif/import_success.php:87
 msgid "You might have ADIF errors. Please check the following information:"
@@ -6441,7 +6450,7 @@ msgstr "Префикс"
 
 #: application/views/awards/dxcc/index.php:318
 msgid "Slots"
-msgstr ""
+msgstr "Слоты"
 
 #: application/views/awards/dxcc/index.php:380
 msgid "No results found for your search criteria. Please try again."
@@ -6824,7 +6833,7 @@ msgstr ""
 
 #: application/views/awards/jcc/index.php:76
 msgid "Deleted cities"
-msgstr ""
+msgstr "Удалённые города"
 
 #: application/views/awards/jcc/index.php:127
 msgid "Show JCC Map"
@@ -6832,7 +6841,7 @@ msgstr "Показать карту JCC"
 
 #: application/views/awards/jcc/index.php:128
 msgid "Export confirmed QSOs"
-msgstr ""
+msgstr "Экспорт подтверждённых QSO"
 
 #: application/views/awards/jcc/index.php:138
 #: application/views/public_search/empty.php:2
@@ -10362,7 +10371,7 @@ msgstr ""
 
 #: application/views/cron/index.php:29
 msgid "All times are shown in UTC."
-msgstr ""
+msgstr "Все время указано по UTC."
 
 #: application/views/cron/index.php:33
 msgid ""
@@ -12546,6 +12555,8 @@ msgstr "Местоположение извлечено из координат 
 msgid ""
 "Location could not be determined as gridsquare is empty and DXCC is -NONE-"
 msgstr ""
+"Местоположение не может быть определено, так как поле квадрата пустое, а "
+"DXCC -- -NONE-"
 
 #: application/views/interface_assets/footer.php:138
 msgid "Working without CAT connection"
@@ -14311,38 +14322,40 @@ msgstr "Квадрат, несоответствующий DXCC"
 
 #: application/views/logbookadvanced/index.php:84
 msgid "You need to select exactly 2 QSOs to merge!"
-msgstr ""
+msgstr "Нужно выбрать ровно 2 QSO для объединения!"
 
 #: application/views/logbookadvanced/index.php:85
 #: application/views/logbookadvanced/index.php:852
 msgid "Merge QSOs"
-msgstr ""
+msgstr "Объединить QSO"
 
 #: application/views/logbookadvanced/index.php:86
 msgid ""
 "Are you really sure you want to merge these QSOs? This operation CAN\\'T be "
 "undone!"
 msgstr ""
+"Вы действительно уверены, что хотите объединить эти QSO? Эту операцию НЕЛЬЗЯ "
+"отменить!"
 
 #: application/views/logbookadvanced/index.php:87
 msgid "Danger"
-msgstr ""
+msgstr "Опасность"
 
 #: application/views/logbookadvanced/index.php:89
 msgid "Yes, Merge QSOs"
-msgstr ""
+msgstr "Да, объединить QSO"
 
 #: application/views/logbookadvanced/index.php:90
 msgid "QSOs merged successfully!"
-msgstr ""
+msgstr "QSO успешно объединены!"
 
 #: application/views/logbookadvanced/index.php:91
 msgid "Error merging QSOs"
-msgstr ""
+msgstr "Ошибка при объединении QSO"
 
 #: application/views/logbookadvanced/index.php:92
 msgid "Error loading merge dialog"
-msgstr ""
+msgstr "Ошибка загрузки диалога объединения"
 
 #: application/views/logbookadvanced/index.php:338
 msgid "From"
@@ -14752,31 +14765,34 @@ msgstr "Выходная мощность"
 
 #: application/views/logbookadvanced/mergedialog.php:8
 msgid "Which QSO should be kept?"
-msgstr ""
+msgstr "Которое QSO следует сохранить?"
 
 #: application/views/logbookadvanced/mergedialog.php:9
 msgid ""
 "Select which QSO will remain after the merge. The other will be deleted."
 msgstr ""
+"Выберите, которое QSO останется после объединения. Другое будет удалено."
 
 #: application/views/logbookadvanced/mergedialog.php:22
 #: application/views/logbookadvanced/mergedialog.php:45
 msgid "Keep this QSO"
-msgstr ""
+msgstr "Сохранить это QSO"
 
 #: application/views/logbookadvanced/mergedialog.php:62
 msgid "Select which fields to keep from each QSO:"
-msgstr ""
+msgstr "Выберите, какие поля оставить из каждого QSO:"
 
 #: application/views/logbookadvanced/mergedialog.php:63
 msgid ""
 "The selected fields will be merged into the primary QSO. You can select "
 "different fields from each QSO."
 msgstr ""
+"Выбранные поля будут объединены с основным QSO. Вы можете выбрать разные "
+"поля из каждого QSO."
 
 #: application/views/logbookadvanced/mergedialog.php:71
 msgid "Field"
-msgstr ""
+msgstr "Поля"
 
 #: application/views/logbookadvanced/qslcarousel.php:59
 #: application/views/qslcard/qslcarousel.php:25
@@ -18547,31 +18563,31 @@ msgstr "Позывных сработано (максимум 5)"
 
 #: application/views/timeplotter/index.php:81
 msgid "Best Time Window"
-msgstr ""
+msgstr "Лучшее временное окно"
 
 #: application/views/timeplotter/index.php:90
 msgid "Best Band"
-msgstr ""
+msgstr "Лучший диапазон"
 
 #: application/views/timeplotter/index.php:99
 msgid "Best Mode"
-msgstr ""
+msgstr "Лучший вид модуляции"
 
 #: application/views/timeplotter/index.php:108
 msgid "Total QSOs plotted"
-msgstr ""
+msgstr "Всего QSO отображено"
 
 #: application/views/timeplotter/index.php:120
 msgid "Heatmap"
-msgstr ""
+msgstr "Тепловая карта"
 
 #: application/views/timeplotter/index.php:125
 msgid "Chart"
-msgstr ""
+msgstr "График"
 
 #: application/views/timeplotter/index.php:136
 msgid "Activity by Time of Day (UTC)"
-msgstr ""
+msgstr "Активность по времени суток (UTC)"
 
 #: application/views/update/hamsofnote.php:7
 msgid "Name / Description"
