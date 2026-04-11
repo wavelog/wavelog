@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-04-08 06:53+0000\n"
-"PO-Revision-Date: 2026-04-01 10:59+0000\n"
-"Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
+"PO-Revision-Date: 2026-04-09 10:17+0000\n"
+"Last-Translator: iv3cvn <ricentis@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/it/>\n"
 "Language: it_IT\n"
@@ -3004,8 +3004,9 @@ msgstr "QSO via satellite"
 
 #: application/controllers/Statistics.php:388
 #: application/views/interface_assets/header.php:182
+#, fuzzy
 msgid "EME Initials"
-msgstr "Prefissi EME"
+msgstr "EME Initials"
 
 #: application/controllers/Themes.php:27
 #: application/views/interface_assets/header.php:340
@@ -3697,6 +3698,8 @@ msgstr "DXCC deve essere numerico"
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
+"Callsign della stazione errato ( %s) durante l'importazione di QSO con %s "
+"per %s: SALTATO"
 
 #: application/models/Logbook_model.php:4922
 #, php-format
@@ -3704,6 +3707,8 @@ msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
 "SKIPPED"
 msgstr ""
+"Locatore diverso %s durante l'importazione del QSO con %s per il locatore "
+"della stazione %s: SALTATO"
 
 #: application/models/Logbook_model.php:4938
 msgid ""
@@ -4950,13 +4955,16 @@ msgstr ""
 
 #: application/views/adif/import.php:169
 msgid "Ignore grid check on import"
-msgstr ""
+msgstr "Ignora il controllo della griglia del locatore durante l'importazione"
 
 #: application/views/adif/import.php:171
 msgid ""
 "If selected, Wavelog will try to import QSOs even if the MY_GRIDSQUARE field "
 "in ADIF records does not match the locator of the chosen station-location."
 msgstr ""
+"Se selezionato, Wavelog tenterà di importare i QSO anche se il campo "
+"MY_GRIDSQUARE nel record ADIF non corrisponde al locatore della stazione "
+"scelta."
 
 #: application/views/adif/import.php:181
 msgid ""
@@ -5290,15 +5298,17 @@ msgstr "Controlla %s per suggerimenti sugli errori nei file ADIF."
 
 #: application/views/adif/import_success.php:61
 msgid "Critical Errors - Wrong Call/Location"
-msgstr ""
+msgstr "Errori critici - Nominativo/Località errata"
 
 #: application/views/adif/import_success.php:70
+#, fuzzy
 msgid "Validation Errors - Invalid Data"
-msgstr ""
+msgstr "Errori di convalida - Dati non validi"
 
 #: application/views/adif/import_success.php:79
+#, fuzzy
 msgid "Duplicate QSOs"
-msgstr ""
+msgstr "QSO duplicati"
 
 #: application/views/adif/import_success.php:87
 msgid "You might have ADIF errors. Please check the following information:"
@@ -6830,7 +6840,7 @@ msgstr ""
 
 #: application/views/awards/jcc/index.php:76
 msgid "Deleted cities"
-msgstr ""
+msgstr "Città eliminate"
 
 #: application/views/awards/jcc/index.php:127
 msgid "Show JCC Map"
@@ -6838,7 +6848,7 @@ msgstr "Mostra mappa JCC"
 
 #: application/views/awards/jcc/index.php:128
 msgid "Export confirmed QSOs"
-msgstr ""
+msgstr "Esporta i QSO confermati"
 
 #: application/views/awards/jcc/index.php:138
 #: application/views/public_search/empty.php:2
@@ -10365,7 +10375,7 @@ msgstr ""
 
 #: application/views/cron/index.php:29
 msgid "All times are shown in UTC."
-msgstr ""
+msgstr "Tutti gli orari sono mostrati in formato UTC."
 
 #: application/views/cron/index.php:33
 msgid ""
@@ -12554,6 +12564,8 @@ msgstr ""
 msgid ""
 "Location could not be determined as gridsquare is empty and DXCC is -NONE-"
 msgstr ""
+"La posizione non può essere determinata poiché il locatore è vuoto e il DXCC "
+"è -NONE-"
 
 #: application/views/interface_assets/footer.php:138
 msgid "Working without CAT connection"
@@ -16877,15 +16889,15 @@ msgstr "Indirizzo Operatore 2"
 
 #: application/views/reg1test/index.php:93
 msgid "Operator Address Postalcode"
-msgstr "Codice postale del operatore"
+msgstr "Codice postale dell' operatore"
 
 #: application/views/reg1test/index.php:97
 msgid "Operator Address City"
-msgstr "Città del operatore"
+msgstr "Città dell' operatore"
 
 #: application/views/reg1test/index.php:101
 msgid "Operator Address Country"
-msgstr "Paese del operatore"
+msgstr "Paese dell' operatore"
 
 #: application/views/reg1test/index.php:105
 msgid "Operator Phone Number"
@@ -17455,7 +17467,7 @@ msgstr "La chiamata della stazione non è selezionata"
 
 #: application/views/simplefle/index.php:30
 msgid "'Operator' Field is empty"
-msgstr "'Operatore' campo è vuoto"
+msgstr "Il campo \"Operatore\" è vuoto"
 
 #: application/views/simplefle/index.php:31
 msgid "Warning! Do you really want to reset everything?"
@@ -17550,8 +17562,7 @@ msgstr "e.g. OK2CQR"
 
 #: application/views/simplefle/index.php:120
 msgid "This is callsign of the operator. Without any pre- or suffixes."
-msgstr ""
-"Questo è il segnale distintivo dell'operatore. Senza prefissi o suffissi."
+msgstr "Questo è il nominativo dell'operatore. Senza prefissi o suffissi."
 
 #: application/views/simplefle/index.php:133
 msgid "Enter the Data"
@@ -17606,7 +17617,7 @@ msgid ""
 "first QSO, which is essentially the callsign."
 msgstr ""
 "Per iniziare, assicurati di aver già compilato il modulo a sinistra con la "
-"data, la chiamata della stazione e la chiamata dell'operatore. I dati "
+"data, la chiamata della stazione e il nominativodell'operatore. I dati "
 "principali includono la banda (o QRG in MHz, ad esempio, '7.145'), il modo e "
 "l'orario. Dopo l'orario, fornisci il primo QSO, che è essenzialmente il "
 "nominativo."
@@ -18581,28 +18592,33 @@ msgid "Best Time Window"
 msgstr ""
 
 #: application/views/timeplotter/index.php:90
+#, fuzzy
 msgid "Best Band"
-msgstr ""
+msgstr "Miglior banda"
 
 #: application/views/timeplotter/index.php:99
+#, fuzzy
 msgid "Best Mode"
-msgstr ""
+msgstr "Miglior Modo"
 
 #: application/views/timeplotter/index.php:108
+#, fuzzy
 msgid "Total QSOs plotted"
-msgstr ""
+msgstr "QSOs totali tracciati"
 
 #: application/views/timeplotter/index.php:120
 msgid "Heatmap"
 msgstr ""
 
 #: application/views/timeplotter/index.php:125
+#, fuzzy
 msgid "Chart"
-msgstr ""
+msgstr "Grafico"
 
 #: application/views/timeplotter/index.php:136
+#, fuzzy
 msgid "Activity by Time of Day (UTC)"
-msgstr ""
+msgstr "Attività per ora del giorno (UTC)"
 
 #: application/views/update/hamsofnote.php:7
 msgid "Name / Description"
