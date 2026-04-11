@@ -11,10 +11,13 @@
         </div>
         <div class="card-body">
             <?php if ($sso_managed == true) { ?>
-                <p><?= __("This club/special callsign is managed by a single sign on / identity provider. 
-                Permissions can be increased here, but access may be automatically removed or granted by the identity provider when users login.
-                There may be users not listed who have permissions for this club/special callsign."); ?></p> 
-                <p><?= __("To grant permissions above member level access: add the user to the identity provider group, then add the user to the table below with increased permissions."); ?></p>
+                <div class="alert alert-warning mt-2 mb-4" role="alert">
+                    <i class="fas fa-triangle-exclamation"></i>
+                    <p><?= __("This club/special callsign is managed by a single sign on / identity provider. 
+                    Permissions can be increased here, but access may be automatically removed or granted by the identity provider when users login.
+                    There may be users not listed who have permissions for this club/special callsign."); ?></p> 
+                    <p><?= __("To grant permissions above member level access: add the user to the identity provider group, then add the user to the table below with increased permissions."); ?></p>
+                </div>
             <?php } else { ?>
                 <p><?= __("In order for users to log QSOs with this club/special callsign, they need appropriate authorizations. Add users to the table below and set the appropriate permission."); ?></p>
             <?php } ?>
