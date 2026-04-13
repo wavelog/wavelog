@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-04-08 06:53+0000\n"
+"POT-Creation-Date: 2026-04-13 10:33+0000\n"
 "PO-Revision-Date: 2026-01-05 10:37+0000\n"
 "Last-Translator: Halil AYYILDIZ <ta2lghalil@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -39,9 +39,9 @@ msgstr ""
 #: application/controllers/Cabrillo.php:139
 #: application/controllers/Callstats.php:13
 #: application/controllers/Calltester.php:13
-#: application/controllers/Club.php:49 application/controllers/Club.php:75
-#: application/controllers/Club.php:123 application/controllers/Club.php:152
-#: application/controllers/Club.php:179 application/controllers/Clublog.php:81
+#: application/controllers/Club.php:61 application/controllers/Club.php:88
+#: application/controllers/Club.php:136 application/controllers/Club.php:165
+#: application/controllers/Club.php:192 application/controllers/Clublog.php:81
 #: application/controllers/Clublog.php:140
 #: application/controllers/Components.php:13
 #: application/controllers/Contestcalendar.php:15
@@ -748,55 +748,55 @@ msgstr "Kulüp Üyesi ADIF"
 msgid "Club Member"
 msgstr "Kulüp Üyesi"
 
-#: application/controllers/Club.php:45 application/models/Club_model.php:107
+#: application/controllers/Club.php:57 application/models/Club_model.php:107
 #: application/models/Club_model.php:181 application/models/Club_model.php:223
 msgid "Invalid User ID!"
 msgstr "Geçerisz Kullanıcı ID'si!"
 
-#: application/controllers/Club.php:53
+#: application/controllers/Club.php:65
 msgid "This user is not a club station."
 msgstr "Bu kullanıcı bir kulüp istasyonu değil."
 
-#: application/controllers/Club.php:57
+#: application/controllers/Club.php:69
 #: application/views/club/permissions.php:10
 #: application/views/user/index.php:215
 msgid "Club Permissions"
 msgstr "Kulüp Yetkileri"
 
-#: application/controllers/Club.php:119 application/controllers/Club.php:148
-#: application/controllers/Club.php:175 application/models/Club_model.php:22
+#: application/controllers/Club.php:132 application/controllers/Club.php:161
+#: application/controllers/Club.php:188 application/models/Club_model.php:22
 #: application/models/Club_model.php:102 application/models/Club_model.php:176
 #: application/models/Club_model.php:218
 msgid "Invalid Club ID!"
 msgstr "Geçersiz Kulüp ID!"
 
-#: application/controllers/Club.php:131
+#: application/controllers/Club.php:144
 msgid "User could not be notified. Please check your email settings."
 msgstr ""
 "Kullanıcıya bildirimde bulunulamadı. Lütfen e-posta ayarlarınızı kontrol "
 "edin."
 
-#: application/controllers/Club.php:135
+#: application/controllers/Club.php:148
 msgid "Club member permissions have been updated."
 msgstr "Kulüp üye izinleri güncellendi."
 
-#: application/controllers/Club.php:157
+#: application/controllers/Club.php:170
 msgid "User removed from club."
 msgstr "Kullanıcı kulüpten çıkarıldı."
 
-#: application/controllers/Club.php:159
+#: application/controllers/Club.php:172
 msgid "User could not be removed from club."
 msgstr "Kullanıcı kulüpten çıkarılamadı."
 
-#: application/controllers/Club.php:202
+#: application/controllers/Club.php:215
 msgid "Invalid message type."
 msgstr "Geçersiz mesaj türü."
 
-#: application/controllers/Club.php:218
+#: application/controllers/Club.php:231
 msgid "Email can't be initialized. Check the email settings."
 msgstr ""
 
-#: application/controllers/Club.php:225 application/views/api/index.php:68
+#: application/controllers/Club.php:238 application/views/api/index.php:68
 #: application/views/satellite/index.php:94
 #: application/views/satellite/satinfo.php:51
 msgid "Unknown"
@@ -1211,10 +1211,14 @@ msgid "SSO Authentication is disabled. Check your configuration."
 msgstr ""
 
 #: application/controllers/Header_auth.php:89
+msgid "Sorry. This instance is currently in maintenance mode."
+msgstr ""
+
+#: application/controllers/Header_auth.php:96
 msgid "User not found."
 msgstr ""
 
-#: application/controllers/Header_auth.php:104
+#: application/controllers/Header_auth.php:111
 #: application/controllers/User.php:1329
 msgid ""
 "You can't login to a clubstation directly. Use your personal account instead."
@@ -1222,18 +1226,18 @@ msgstr ""
 "Bir kulüp istasyonuna doğrudan giriş yapamazsın. Bunun yerine kişisel "
 "hesabını kullan."
 
-#: application/controllers/Header_auth.php:109
+#: application/controllers/Header_auth.php:116
 msgid ""
 "Sorry. This instance is currently in maintenance mode. Only administrators "
 "are currently allowed to log in."
 msgstr ""
 
-#: application/controllers/Header_auth.php:341
-#: application/controllers/Header_auth.php:345
+#: application/controllers/Header_auth.php:352
+#: application/controllers/Header_auth.php:356
 msgid "Something went terribly wrong. Check the error log."
 msgstr ""
 
-#: application/controllers/Header_auth.php:361
+#: application/controllers/Header_auth.php:432
 msgid "SSO Config Error. Check error log."
 msgstr ""
 
@@ -2550,7 +2554,7 @@ msgstr "son kullanılan"
 #: application/controllers/Radio.php:130
 #: application/controllers/Stationsetup.php:402
 #: application/views/api/index.php:74 application/views/bands/bandedges.php:32
-#: application/views/club/permissions.php:274
+#: application/views/club/permissions.php:287
 #: application/views/contesting/add.php:59 application/views/cron/index.php:72
 #: application/views/interface_assets/footer.php:682
 #: application/views/interface_assets/footer.php:691
@@ -2569,8 +2573,8 @@ msgstr "Düzenle"
 #: application/controllers/Radio.php:131
 #: application/controllers/Stationsetup.php:415
 #: application/views/api/index.php:85 application/views/bands/bandedges.php:33
-#: application/views/club/permissions.php:331
-#: application/views/club/permissions.php:353
+#: application/views/club/permissions.php:344
+#: application/views/club/permissions.php:366
 #: application/views/contesting/add.php:62
 #: application/views/interface_assets/footer.php:65
 #: application/views/interface_assets/footer.php:2643
@@ -3158,7 +3162,7 @@ msgid "Invalid Parameter!"
 msgstr "Geçersiz Parametre!"
 
 #: application/controllers/User.php:209
-#: application/views/club/permissions.php:178
+#: application/views/club/permissions.php:191
 msgid "Add User"
 msgstr "Kullanıcı Ekle"
 
@@ -3190,7 +3194,7 @@ msgid "Can't be changed. Manage this through your Identity Provider."
 msgstr ""
 
 #: application/controllers/User.php:471
-#: application/views/club/permissions.php:279
+#: application/views/club/permissions.php:292
 msgid "Edit User"
 msgstr "Kullanıcıyı Düzenle"
 
@@ -3204,7 +3208,7 @@ msgid "Profile"
 msgstr "Profil"
 
 #: application/controllers/User.php:1141
-#: application/views/club/permissions.php:336
+#: application/views/club/permissions.php:349
 msgid "Delete User"
 msgstr "Kullanıcıyı Sil"
 
@@ -4574,7 +4578,7 @@ msgstr "Hiçbir kayıt bulunamadı!"
 #: application/views/calltester/comparison_result.php:96
 #: application/views/calltester/comparison_result.php:132
 #: application/views/calltester/result.php:22
-#: application/views/club/permissions.php:246
+#: application/views/club/permissions.php:259
 #: application/views/components/hamsat/table.php:27
 #: application/views/contesting/index.php:171
 #: application/views/csv/index.php:23 application/views/dashboard/index.php:247
@@ -5327,8 +5331,8 @@ msgstr "Bu API'yi ne için kullandığınızı açıklayan basit bir açıklama.
 
 #: application/views/api/description.php:33
 #: application/views/bands/create.php:49 application/views/bands/edit.php:32
-#: application/views/club/permissions.php:228
-#: application/views/club/permissions.php:324
+#: application/views/club/permissions.php:241
+#: application/views/club/permissions.php:337
 #: application/views/contesting/edit.php:55 application/views/cron/edit.php:73
 #: application/views/interface_assets/footer.php:51
 #: application/views/interface_assets/footer.php:677
@@ -5448,7 +5452,7 @@ msgstr "Yetkiler"
 
 #: application/views/api/index.php:38
 #: application/views/awards/pl_polska/index.php:372
-#: application/views/club/permissions.php:250
+#: application/views/club/permissions.php:263
 #: application/views/clublog/export.php:39
 #: application/views/hrdlog/export.php:39
 #: application/views/logbookadvanced/index.php:822
@@ -8834,7 +8838,7 @@ msgid "Create a band"
 msgstr "Bant Oluştur"
 
 #: application/views/bands/index.php:160
-#: application/views/club/permissions.php:165
+#: application/views/club/permissions.php:175
 #: application/views/contesting/add.php:74
 #: application/views/contesting/index.php:93
 #: application/views/interface_assets/footer.php:50
@@ -9391,9 +9395,9 @@ msgid "Yes, switch over!"
 msgstr "Evet, geçiş yap!"
 
 #: application/views/club/clubswitch_modal.php:15
-#: application/views/club/permissions.php:229
-#: application/views/club/permissions.php:325
-#: application/views/club/permissions.php:354
+#: application/views/club/permissions.php:242
+#: application/views/club/permissions.php:338
+#: application/views/club/permissions.php:367
 #: application/views/cron/edit.php:74
 #: application/views/interface_assets/footer.php:40
 #: application/views/logbookadvanced/index.php:88
@@ -9412,7 +9416,24 @@ msgstr "%s için Kulüp Yetkileri"
 msgid "Go back"
 msgstr "Geri dön"
 
-#: application/views/club/permissions.php:13
+#: application/views/club/permissions.php:16
+msgid ""
+"This club/special callsign is managed by a single sign on / identity "
+"provider. \n"
+"                    Permissions can be increased here, but access may be "
+"automatically removed or granted by the identity provider when users login.\n"
+"                    There may be users not listed who have permissions for "
+"this club/special callsign."
+msgstr ""
+
+#: application/views/club/permissions.php:19
+msgid ""
+"To grant permissions above member level access: add the user to the identity "
+"provider group, then add the user to the table below with increased "
+"permissions."
+msgstr ""
+
+#: application/views/club/permissions.php:22
 msgid ""
 "In order for users to log QSOs with this club/special callsign, they need "
 "appropriate authorizations. Add users to the table below and set the "
@@ -9422,91 +9443,91 @@ msgstr ""
 "uygun yetkilere sahip olmaları gerekir. Aşağıdaki tabloya kullanıcı ekleyin "
 "ve uygun yetkiyi belirleyin."
 
-#: application/views/club/permissions.php:14
+#: application/views/club/permissions.php:24
 msgid "See available Permissions"
 msgstr "Mevcut Yetkileri Gör"
 
-#: application/views/club/permissions.php:19
+#: application/views/club/permissions.php:29
 msgid "Available Permissions"
 msgstr "Mevcut Yetkiler"
 
-#: application/views/club/permissions.php:26
+#: application/views/club/permissions.php:36
 #: application/views/eqsl/download.php:45
 #: application/views/logbookadvanced/statecheckresult.php:13
 msgid "Action"
 msgstr "Eylem"
 
-#: application/views/club/permissions.php:34
+#: application/views/club/permissions.php:44
 msgid "Log QSOs via Web GUI (live and post)"
 msgstr "QSO’ları Web Arayüzü üzerinden kaydet (canlı ve sonradan)"
 
-#: application/views/club/permissions.php:43
+#: application/views/club/permissions.php:53
 msgid "Log QSOs via API"
 msgstr "QSO’ları API üzerinden kaydet"
 
-#: application/views/club/permissions.php:52
+#: application/views/club/permissions.php:62
 msgid "Edit a QSO"
 msgstr "QSO düzenle"
 
-#: application/views/club/permissions.php:58
-#: application/views/club/permissions.php:79
+#: application/views/club/permissions.php:68
+#: application/views/club/permissions.php:89
 msgid "QSO was done by the operator"
 msgstr "Kendi yaptığı QSO'yu düzenle"
 
-#: application/views/club/permissions.php:64
-#: application/views/club/permissions.php:85
+#: application/views/club/permissions.php:74
+#: application/views/club/permissions.php:95
 msgid "QSO was done by another operator"
 msgstr "Başka operatörün yaptığı QSO'yu düzenle"
 
-#: application/views/club/permissions.php:73
+#: application/views/club/permissions.php:83
 msgid "Delete a QSO"
 msgstr "QSO Sil"
 
-#: application/views/club/permissions.php:94
+#: application/views/club/permissions.php:104
 msgid "Manage Stationsetup (edit/create logbooks and locations)"
 msgstr "Istasyon kurulumunu yönet (günlükleri ve konumları düzenle/oluştur)"
 
-#: application/views/club/permissions.php:103
+#: application/views/club/permissions.php:113
 msgid "Manage Third-Party services"
 msgstr "Üçüncü Taraf Servisleri Yönet"
 
-#: application/views/club/permissions.php:112
+#: application/views/club/permissions.php:122
 msgid "Import QSO per ADIF"
 msgstr "ADIF ile QSO'yu içe aktar"
 
-#: application/views/club/permissions.php:122
+#: application/views/club/permissions.php:132
 msgid "Export QSO per ADIF"
 msgstr "QSO'yu ADIF olarak dışa aktar"
 
-#: application/views/club/permissions.php:128
+#: application/views/club/permissions.php:138
 msgid "Export own QSO per ADIF"
 msgstr "Kendi QSO'larını ADIF olarak dışa aktar"
 
-#: application/views/club/permissions.php:137
+#: application/views/club/permissions.php:147
 msgid "User Management"
 msgstr "Kullanıcı Yönetimi"
 
-#: application/views/club/permissions.php:143
+#: application/views/club/permissions.php:153
 msgid "Can create new users in Wavelog"
 msgstr "Wavelog’da yeni kullanıcı oluşturabilir"
 
-#: application/views/club/permissions.php:149
+#: application/views/club/permissions.php:159
 msgid "Can edit other users in Wavelog"
 msgstr "Diğer kullanıcıları Wavelog'da düzenleyebilir"
 
-#: application/views/club/permissions.php:155
+#: application/views/club/permissions.php:165
 msgid "Can edit Club permissions and add/remove users"
 msgstr "Kulüp yetkilerini düzenleyebilir ve kullanıcı ekleyip/çıkarabilir"
 
-#: application/views/club/permissions.php:174
+#: application/views/club/permissions.php:184
 msgid "Users with Permissions"
 msgstr "Yetkili Kullanıcılar"
 
-#: application/views/club/permissions.php:184
+#: application/views/club/permissions.php:197
 msgid "Add new User to Club"
 msgstr "Bir Kullanıcıyı Kulübe Ekle"
 
-#: application/views/club/permissions.php:190
+#: application/views/club/permissions.php:203
 #, php-format
 msgid ""
 "You can only add users to the %s Clubstation if they already exist on this "
@@ -9515,7 +9536,7 @@ msgstr ""
 "%s Kulüp istasyonuna yalnızca bu Wavelog Sunucusunda var olan kullanıcıları "
 "ekleyebilirsiniz."
 
-#: application/views/club/permissions.php:191
+#: application/views/club/permissions.php:204
 msgid ""
 "If they don't exist, please ask your Wavelog Administrator to create an "
 "account for them."
@@ -9523,7 +9544,7 @@ msgstr ""
 "Eger mevcut degillerse, lütfen Wavelog Yöneticinizden onlar için bir hesap "
 "oluşturmasını isteyin."
 
-#: application/views/club/permissions.php:192
+#: application/views/club/permissions.php:205
 msgid ""
 "Search for the user by their callsign or first/lastname and select the "
 "permission level."
@@ -9531,74 +9552,74 @@ msgstr ""
 "Kullanıcıyı çağrı işareti veya ad/soyad ile arayın ve izin seviyesini "
 "ayarlayın."
 
-#: application/views/club/permissions.php:198
+#: application/views/club/permissions.php:211
 msgid "User (Callsign or Name)"
 msgstr "Kullanıcı (Çağrı İşareti veya İsim)"
 
-#: application/views/club/permissions.php:199
-#: application/views/club/permissions.php:249
-#: application/views/club/permissions.php:295
+#: application/views/club/permissions.php:212
+#: application/views/club/permissions.php:262
+#: application/views/club/permissions.php:308
 msgid "Permission"
 msgstr "Yetki"
 
-#: application/views/club/permissions.php:206
+#: application/views/club/permissions.php:219
 msgid "Type at least 2 characters."
 msgstr "En az 2 karakter yazın."
 
-#: application/views/club/permissions.php:218
+#: application/views/club/permissions.php:231
 msgid "Notify the user via email"
 msgstr "Kullanıcıyı e-posta ile bilgilendir"
 
-#: application/views/club/permissions.php:237
+#: application/views/club/permissions.php:250
 msgid "No users currently have access to this club station."
 msgstr "Su anda hiçbir kullanıcının bu kulüp istasyonuna erişimi yok."
 
-#: application/views/club/permissions.php:244
+#: application/views/club/permissions.php:257
 msgid "Firstname"
 msgstr "İsim"
 
-#: application/views/club/permissions.php:245
+#: application/views/club/permissions.php:258
 msgid "Lastname"
 msgstr "Soyisim"
 
-#: application/views/club/permissions.php:247
+#: application/views/club/permissions.php:260
 #: application/views/user/edit.php:66 application/views/user/index.php:152
 #: application/views/user/login.php:58 application/views/user/login.php:70
 #: application/views/user/login.php:71 application/views/user/profile.php:14
 msgid "Username"
 msgstr "Kullanıcı adı"
 
-#: application/views/club/permissions.php:248
+#: application/views/club/permissions.php:261
 msgid "E-Mail"
 msgstr "E-posta"
 
-#: application/views/club/permissions.php:270
+#: application/views/club/permissions.php:283
 msgid "Wavelog Administrator"
 msgstr "Wavelog Yöneticisi"
 
-#: application/views/club/permissions.php:287
+#: application/views/club/permissions.php:300
 msgid "You can modify the users permission level for this Clubstation."
 msgstr ""
 "Bu Kulüp İstasyonu için kullanıcıların yetki seviyesini değiştirebilirsiniz."
 
-#: application/views/club/permissions.php:294
+#: application/views/club/permissions.php:307
 msgid "User Callsign"
 msgstr "Kullanıcı Çağrı İşareti"
 
-#: application/views/club/permissions.php:313
+#: application/views/club/permissions.php:326
 msgid "Notify the user via email about the change"
 msgstr "Kullanıcıyı değişiklik hakkında e-posta ile bilgilendir"
 
-#: application/views/club/permissions.php:343
+#: application/views/club/permissions.php:356
 msgid "Are you sure you want to delete this user from the club?"
 msgstr "Bu kullanıcıyı kulüpten silmek istediğine, emin misin?"
 
-#: application/views/club/permissions.php:347
+#: application/views/club/permissions.php:360
 #, php-format
 msgid "Callsign: %s"
 msgstr "Çağrı işareti: %s"
 
-#: application/views/club/permissions.php:348
+#: application/views/club/permissions.php:361
 #, php-format
 msgid "Role: %s"
 msgstr "Rol: %s"
