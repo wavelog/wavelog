@@ -10,7 +10,17 @@
             <?= __("Club Permissions"); ?>
         </div>
         <div class="card-body">
-            <p><?= __("In order for users to log QSOs with this club/special callsign, they need appropriate authorizations. Add users to the table below and set the appropriate permission."); ?></p>
+            <?php if ($sso_managed == true) { ?>
+                <div class="alert alert-warning mt-2 mb-4" role="alert">
+                    <i class="fas fa-triangle-exclamation"></i>
+                    <p><?= __("This club/special callsign is managed by a single sign on / identity provider. 
+                    Permissions can be increased here, but access may be automatically removed or granted by the identity provider when users login.
+                    There may be users not listed who have permissions for this club/special callsign."); ?></p> 
+                    <p><?= __("To grant permissions above member level access: add the user to the identity provider group, then add the user to the table below with increased permissions."); ?></p>
+                </div>
+            <?php } else { ?>
+                <p><?= __("In order for users to log QSOs with this club/special callsign, they need appropriate authorizations. Add users to the table below and set the appropriate permission."); ?></p>
+            <?php } ?>
             <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#permissionsModal"><i class="fas fa-info-circle"></i> <?= __("See available Permissions"); ?></button>
             <div class="modal fade bg-black bg-opacity-50" id="permissionsModal" aria-labelledby="permissionsLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -172,6 +182,9 @@
     <div class="card mt-3">
         <div class="card-header">
             <?= __("Users with Permissions"); ?>
+            <?php if ($sso_managed == true) { ?>
+                <span class="badge bg-light ms-1"><i class="fa fa-lock"></i> Managed by Identity Provider</span>
+            <?php } ?>
         </div>
         <div class="card-body">
             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">
