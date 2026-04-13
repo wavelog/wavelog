@@ -65,6 +65,7 @@
                                         <div class="row gx-2">
                                             <div class="col-md-6">
                                                 <select class="form-select" id="stationCQZoneInput" name="station_cqz" required>
+                                                    <option value=""></option>
                                                     <?php
                                                     for ($i = 1; $i <= 40; $i++) {
                                                         echo '<option value="' . $i . '">' . $i . '</option>';
@@ -75,6 +76,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <select class="form-select" id="stationITUZoneInput" name="station_ituz" required>
+                                                    <option value=""></option>
                                                     <?php
                                                     for ($i = 1; $i <= 90; $i++) {
                                                         echo '<option value="' . $i . '">' . $i . '</option>';
@@ -133,9 +135,13 @@
                                 }
                                 if (result.dxcc && result.dxcc.cqz) {
                                     $("#stationCQZoneInput").val(result.dxcc.cqz);
+                                } else {
+                                    $("#stationCQZoneInput").val("");
                                 }
                                 if (result.callsign_ituz) {
                                     $("#stationITUZoneInput").val(result.callsign_ituz);
+                                } else {
+                                    $("#stationITUZoneInput").val("");
                                 }
                             }
                         }).fail(function() {
