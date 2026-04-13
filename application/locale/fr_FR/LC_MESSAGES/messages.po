@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-04-13 11:17+0000\n"
-"PO-Revision-Date: 2026-04-08 10:58+0000\n"
+"PO-Revision-Date: 2026-04-14 06:03+0000\n"
 "Last-Translator: JONCOUX Philippe <joncoux@free.fr>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/fr/>\n"
@@ -1226,7 +1226,7 @@ msgstr ""
 
 #: application/controllers/Header_auth.php:89
 msgid "Sorry. This instance is currently in maintenance mode."
-msgstr ""
+msgstr "Désolé. Cette instance est actuellement en maintenance."
 
 #: application/controllers/Header_auth.php:96
 msgid "User not found."
@@ -9554,6 +9554,12 @@ msgid ""
 "                    There may be users not listed who have permissions for "
 "this club/special callsign."
 msgstr ""
+"Ce club/indicatif spécial est géré par un fournisseur d'authentification "
+"unique. \n"
+"Les autorisations peuvent être étendues ici, mais l'accès peut être "
+"automatiquement supprimé ou accordé par le fournisseur d'identité lors de la "
+"connexion des utilisateurs. Certains utilisateurs non listés peuvent avoir "
+"accès à ce club/indicatif spécial."
 
 #: application/views/club/permissions.php:19
 msgid ""
@@ -9561,6 +9567,9 @@ msgid ""
 "provider group, then add the user to the table below with increased "
 "permissions."
 msgstr ""
+"Pour accorder des autorisations supérieures à l'accès de niveau membre : "
+"ajoutez l'utilisateur au groupe du fournisseur d'identité, puis ajoutez-le "
+"au tableau ci-dessous avec des autorisations accrues."
 
 #: application/views/club/permissions.php:22
 msgid ""
