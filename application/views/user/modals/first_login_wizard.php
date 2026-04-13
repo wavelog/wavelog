@@ -105,3 +105,45 @@
         </div>
     </div>
 </div>
+
+<script>
+(function() {
+    var checkJQuery = setInterval(function() {
+        if (window.jQuery) {
+            clearInterval(checkJQuery);
+            $(document).ready(function() {
+                $("#station_callsign").on("focusout", function() {
+                    if ($(this).val().length >= 3) {
+                        var callsign = $(this).val().toUpperCase().replaceAll('Ø', '0');
+                        var urlCallsign = callsign.replace(/\//g, "-");
+
+                        var url = base_url + "index.php/logbook/json/" + urlCallsign + "/0/0";
+
+                        $.getJSON(url, function(result) {
+                            if (callsign === result.callsign) {
+                                if (result.dxcc && result.dxcc.adif) {
+                                    if ($("#station_dxcc").data('multiselect')) {
+                                        $("#station_dxcc").multiselect('deselectAll', false);
+                                        $("#station_dxcc").multiselect('select', result.dxcc.adif.toString());
+                                        $("#station_dxcc").multiselect('refresh');
+                                    } else {
+                                        $("#station_dxcc").val(result.dxcc.adif);
+                                        $("#station_dxcc").trigger('change');
+                                    }
+                                }
+                                if (result.dxcc && result.dxcc.cqz) {
+                                    $("#stationCQZoneInput").val(result.dxcc.cqz);
+                                }
+                                if (result.callsign_ituz) {
+                                    $("#stationITUZoneInput").val(result.callsign_ituz);
+                                }
+                            }
+                        }).fail(function() {
+                        });
+                    }
+                });
+            });
+        }
+    }, 100);
+})();
+</script>
