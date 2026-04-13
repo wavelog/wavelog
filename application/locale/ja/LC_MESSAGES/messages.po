@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-04-13 11:17+0000\n"
-"PO-Revision-Date: 2026-04-03 00:53+0000\n"
+"PO-Revision-Date: 2026-04-14 06:03+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
@@ -1214,7 +1214,7 @@ msgstr "SSO認証が無効になっています。設定を確認してくださ
 
 #: application/controllers/Header_auth.php:89
 msgid "Sorry. This instance is currently in maintenance mode."
-msgstr ""
+msgstr "申し訳ありません。このインスタンスは現在メンテナンス中です。"
 
 #: application/controllers/Header_auth.php:96
 msgid "User not found."
@@ -9404,6 +9404,13 @@ msgid ""
 "                    There may be users not listed who have permissions for "
 "this club/special callsign."
 msgstr ""
+"このクラブ／特別コールサインは、シングルサインオン／IDプロバイダーによって管"
+"理されています。\n"
+"                    ここで権限を拡大することは可能ですが、ユーザーがログイン"
+"した際に、IDプロバイダーによってアクセス権が自動的に削除または付与される場合"
+"があります。\n"
+"                    このクラブ／特別コールサインに対する権限を持つユーザーの"
+"中には、ここにリストされていない人もいる可能性があります。"
 
 #: application/views/club/permissions.php:19
 msgid ""
@@ -9411,6 +9418,9 @@ msgid ""
 "provider group, then add the user to the table below with increased "
 "permissions."
 msgstr ""
+"メンバーレベル以上のアクセス権限を付与するには、まずユーザーをID"
+"プロバイダーグループに追加し、次に権限を引き上げた後、以下の表にユーザーを追"
+"加します。"
 
 #: application/views/club/permissions.php:22
 msgid ""
