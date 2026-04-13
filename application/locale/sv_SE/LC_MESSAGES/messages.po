@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-04-13 11:17+0000\n"
-"PO-Revision-Date: 2026-04-04 17:59+0000\n"
+"PO-Revision-Date: 2026-04-14 06:03+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sv/>\n"
@@ -1209,7 +1209,7 @@ msgstr "SSO-autentisering är inaktiverad. Kontrollera din konfiguration."
 
 #: application/controllers/Header_auth.php:89
 msgid "Sorry. This instance is currently in maintenance mode."
-msgstr ""
+msgstr "Tyvärr. Denna instans är för närvarande i underhållsläge."
 
 #: application/controllers/Header_auth.php:96
 msgid "User not found."
@@ -9428,6 +9428,12 @@ msgid ""
 "                    There may be users not listed who have permissions for "
 "this club/special callsign."
 msgstr ""
+"Denna klubb/specialanropssignal hanteras av en extern inloggning/"
+"identitetsleverantör.\n"
+"\t\t\t\t\t\tBehörigheter kan ökas här, men åtkomst kan automatiskt begränsas "
+"eller beviljas av identitetsleverantören när användare loggar in.\n"
+"\t\t\t\t\t\tDet kan finnas användare som inte är listade här som har "
+"behörigheter för denna klubb/specialanropssignal."
 
 #: application/views/club/permissions.php:19
 msgid ""
@@ -9435,6 +9441,9 @@ msgid ""
 "provider group, then add the user to the table below with increased "
 "permissions."
 msgstr ""
+"För att ge behörigheter över medlemsnivååtkomst: lägg till användaren i "
+"identitetsleverantörsgruppen, lägg sedan till användaren i tabellen nedan "
+"med ökade behörigheter."
 
 #: application/views/club/permissions.php:22
 msgid ""
