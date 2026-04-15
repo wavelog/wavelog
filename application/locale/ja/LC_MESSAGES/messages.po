@@ -7,12 +7,13 @@
 # "S.NAKAO(JG3HLX)" <hlx.nakao@gmail.com>, 2025, 2026.
 # "Xu, Zefan (BI1GHZ)" <ceba_robot@outlook.com>, 2026.
 # Florian Wolters <wavelog@df2et.de>, 2026.
+# JF9SOM <jf9som@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-04-13 11:17+0000\n"
-"PO-Revision-Date: 2026-04-14 06:03+0000\n"
-"Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
+"PO-Revision-Date: 2026-04-16 09:06+0000\n"
+"Last-Translator: JF9SOM <jf9som@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
 "Language: ja\n"
@@ -131,7 +132,7 @@ msgstr ""
 #: application/controllers/Zonechecker.php:17
 #: application/models/Club_model.php:52
 msgid "You're not allowed to do that!"
-msgstr "それは許されません！"
+msgstr "それは禁止です！"
 
 #: application/controllers/Accumulated.php:19
 #: application/views/interface_assets/header.php:174
@@ -141,7 +142,7 @@ msgstr "累積統計"
 #: application/controllers/Activated_gridmap.php:10
 #: application/views/activated_gridmap/index.php:9
 msgid "Activated Gridsquare Map"
-msgstr "アクティブ化されたグリッドロケーターマップ"
+msgstr "アクティブなグリッドロケーターマップ"
 
 #: application/controllers/Activated_gridmap.php:31
 #: application/controllers/Awards.php:1059
@@ -153,23 +154,23 @@ msgstr "アクティブ化されたグリッドロケーターマップ"
 #: application/views/visitor/layout/footer.php:12
 #: application/views/visitor/layout/header.php:68
 msgid "Gridsquares"
-msgstr "グリッドロケーター"
+msgstr "グリッドスクウェア"
 
 #: application/controllers/Activated_gridmap.php:32
 #: application/controllers/Gridmap.php:33
 #: application/controllers/Visitor.php:386
 msgid "Gridsquares confirmed"
-msgstr "グリッドロケーターが確認されました"
+msgstr "確認されたグリッドスクウェア"
 
 #: application/controllers/Activated_gridmap.php:33
 #: application/controllers/Gridmap.php:34
 #: application/controllers/Visitor.php:387
 msgid "Gridsquares not confirmed"
-msgstr "グリッドロケーターは確認されていません"
+msgstr "未確認のグリッドスクウェア"
 
 #: application/controllers/Activated_gridmap.php:34
 msgid "Total gridsquares activated"
-msgstr "アクティブ化されたグリッドロケーターの合計"
+msgstr "アクティブなグリッドスクウェア数"
 
 #: application/controllers/Activated_gridmap.php:36
 #: application/controllers/Gridmap.php:37
@@ -187,7 +188,7 @@ msgstr "確認されたフィールド"
 #: application/controllers/Gridmap.php:39
 #: application/controllers/Visitor.php:392
 msgid "Fields not confirmed"
-msgstr "フィールドは確認されていません"
+msgstr "確認されてないフィールド"
 
 #: application/controllers/Activated_gridmap.php:39
 #: application/controllers/Gridmap.php:40
@@ -199,7 +200,7 @@ msgstr "作業したフィールドの合計"
 #: application/views/activators/index.php:5
 #: application/views/interface_assets/header.php:164
 msgid "Gridsquare Activators"
-msgstr "グリッドロケーターアクティベーター"
+msgstr "グリッドロケーターのアクティベーター"
 
 #: application/controllers/Activatorsmap.php:17
 #: application/views/activators/index.php:2
@@ -212,7 +213,7 @@ msgstr "この機能にアクセスすることは許可されていません！
 
 #: application/controllers/Adif.php:80
 msgid "valid date"
-msgstr "有効日付"
+msgstr "有効な日付"
 
 #: application/controllers/Adif.php:82
 msgid "date incorrect"
@@ -276,7 +277,7 @@ msgstr "APIキーは必須です。このフィールドは変更しないでく
 
 #: application/controllers/Api.php:69
 msgid "Edit API Description"
-msgstr "APIの説明を編集する"
+msgstr "API説明の編集"
 
 #: application/controllers/Api.php:79
 #, php-format
@@ -342,7 +343,7 @@ msgstr "アワード"
 #: application/controllers/Awards.php:2629
 #, php-format
 msgid "Awards - %s"
-msgstr "アワード歴 - %s"
+msgstr "アワード - %s"
 
 #: application/controllers/Awards.php:101
 #: application/views/awards/dok/index.php:150
@@ -390,11 +391,11 @@ msgstr "DXCC"
 
 #: application/controllers/Awards.php:286
 msgid "Awards - WAPC"
-msgstr "アワード歴 - WAPC"
+msgstr "アワード - WAPC"
 
 #: application/controllers/Awards.php:366
 msgid "Awards - WAJA"
-msgstr "アワード歴- WAJA"
+msgstr "アワード- WAJA"
 
 #: application/controllers/Awards.php:436 application/views/bands/index.php:53
 #: application/views/interface_assets/header.php:262
@@ -425,7 +426,7 @@ msgstr "ログ表示"
 
 #: application/controllers/Awards.php:568
 msgid "and"
-msgstr "そして"
+msgstr "及び"
 
 #: application/controllers/Awards.php:569
 #: application/views/awards/cq/index.php:135
@@ -437,7 +438,7 @@ msgstr "そして"
 #: application/views/awards/wae/index.php:119
 #: application/views/awards/wpx/index.php:81
 msgid "Every band (w/o SAT)"
-msgstr "すべてのバンド（SATを除く）"
+msgstr "全バンド（SATを除く）"
 
 #: application/controllers/Awards.php:569
 msgid "band"
@@ -465,7 +466,7 @@ msgstr " とモード "
 #: application/controllers/Awards.php:585
 #: application/controllers/Callstats.php:117
 msgid " and "
-msgstr " そして "
+msgstr " 及び "
 
 #: application/controllers/Awards.php:603
 #: application/controllers/Logbook.php:1463
@@ -542,13 +543,13 @@ msgstr "POTA"
 
 #: application/controllers/Awards.php:721
 msgid "CQ WAZ (Worked All Zones)"
-msgstr "CQ WAZ（全ゾーンと交信済み）"
+msgstr "CQ WAZ（全ゾーン交信賞）"
 
 #: application/controllers/Awards.php:783
 #: application/views/accumulate/index.php:54
 #: application/views/timeline/index.php:45
 msgid "Worked All States (WAS)"
-msgstr "全州対応済み（WAS）"
+msgstr "米国全州交信賞（WAS）"
 
 #: application/controllers/Awards.php:845 application/views/bands/index.php:55
 #: application/views/interface_assets/header.php:228
@@ -567,7 +568,7 @@ msgstr "IOTA (Island On The Air)"
 #: application/controllers/Awards.php:1019
 #: application/views/interface_assets/header.php:294
 msgid "US Counties"
-msgstr "米国の郡"
+msgstr "米国・郡"
 
 #: application/controllers/Awards.php:1034
 msgid "Log View - Counties"
@@ -580,22 +581,22 @@ msgstr "アワード歴 - "
 #: application/controllers/Awards.php:1060
 #: application/controllers/Awards.php:1096
 msgid "Gridsquares worked"
-msgstr "グリッドスクエアは機能した"
+msgstr "交信したグリッドスクエア"
 
 #: application/controllers/Awards.php:1061
 #: application/controllers/Awards.php:1097
 msgid "Gridsquares confirmed on LoTW"
-msgstr "LoTWでグリッドスクエアを確認"
+msgstr "LoTWで確認されたグリッドスクエア"
 
 #: application/controllers/Awards.php:1062
 #: application/controllers/Awards.php:1098
 msgid "Gridsquares confirmed by paper QSL"
-msgstr "グリッドスクエアは紙のQSLで確認済み"
+msgstr "紙QSLで確認されたグリッドスクエア"
 
 #: application/controllers/Awards.php:1063
 #: application/controllers/Awards.php:1099
 msgid "Total Gridsquares worked"
-msgstr "作業したグリッドスクエアの合計"
+msgstr "交信したグリッドスクエア数"
 
 #: application/controllers/Awards.php:1080
 msgid "Fred Fish Memorial Award (FFMA)"
@@ -633,7 +634,7 @@ msgstr "ITUゾーン"
 #: application/views/awards/wac/index.php:8
 #: application/views/interface_assets/header.php:202
 msgid "Worked All Continents (WAC)"
-msgstr "Worked All Continents (WAC)"
+msgstr "全大陸交信賞 (WAC)"
 
 #: application/controllers/Awards.php:2399
 msgid "WAE"
@@ -719,7 +720,7 @@ msgstr " 及びバンド "
 
 #: application/controllers/Callstats.php:104
 msgid " and sat "
-msgstr " and sat "
+msgstr " 及び衛星 "
 
 #: application/controllers/Calltester.php:31
 msgid "Call Tester"
@@ -753,13 +754,13 @@ msgstr "無効なユーザーIDです！"
 
 #: application/controllers/Club.php:65
 msgid "This user is not a club station."
-msgstr "このユーザーはクラブステーションではありません。"
+msgstr "このユーザーはクラブ局ではありません。"
 
 #: application/controllers/Club.php:69
 #: application/views/club/permissions.php:10
 #: application/views/user/index.php:215
 msgid "Club Permissions"
-msgstr "クラブの権限"
+msgstr "クラブ権限"
 
 #: application/controllers/Club.php:132 application/controllers/Club.php:161
 #: application/controllers/Club.php:188 application/models/Club_model.php:22
