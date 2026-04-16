@@ -113,6 +113,9 @@ class Oqrs extends CI_Controller {
 		$data['callsign'] = $this->input->post('callsign', TRUE);
 		$data['userid'] = $this->input->post('userid', TRUE);
 		$data['slug'] = $this->input->post('slug', TRUE);
+		$data['oqrs_delivery_method'] = $this->user_options_model
+			->get_options('oqrs', array('option_name' => 'oqrs_delivery_method', 'option_key' => 'setting'), $userid)
+			->row()->option_value ?? 'both';
 
 		if($this->input->post('widget') != 'true') {
 			$this->load->view('oqrs/request_grouped', $data);
@@ -152,9 +155,15 @@ class Oqrs extends CI_Controller {
 	*/
 	public function request_form() {
 		$this->load->model('oqrs_model');
-		$data['result'] = $this->oqrs_model->getQueryData($this->input->post('station_id', TRUE), $this->input->post('callsign', TRUE));
+		$station_id = $this->input->post('station_id', TRUE);
+		$data['result'] = $this->oqrs_model->getQueryData($station_id, $this->input->post('callsign', TRUE));
 		$data['callsign'] = $this->input->post('callsign', TRUE);
-		$data['qslinfo'] =  $this->oqrs_model->getQslInfo($this->input->post('station_id', TRUE));
+		$data['qslinfo'] =  $this->oqrs_model->getQslInfo($station_id);
+
+		$owner_id = $this->oqrs_model->get_user_id_for_station($station_id);
+		$data['oqrs_delivery_method'] = $this->user_options_model
+			->get_options('oqrs', array('option_name' => 'oqrs_delivery_method', 'option_key' => 'setting'), $owner_id)
+			->row()->option_value ?? 'both';
 
 		$this->load->view('oqrs/request', $data);
 	}
