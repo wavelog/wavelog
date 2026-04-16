@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-04-13 11:17+0000\n"
-"PO-Revision-Date: 2026-04-16 09:06+0000\n"
+"PO-Revision-Date: 2026-04-16 09:58+0000\n"
 "Last-Translator: JF9SOM <jf9som@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
@@ -194,7 +194,7 @@ msgstr "確認されてないフィールド"
 #: application/controllers/Gridmap.php:40
 #: application/controllers/Visitor.php:393
 msgid "Total fields worked"
-msgstr "作業したフィールドの合計"
+msgstr "交信したフィールドの合計"
 
 #: application/controllers/Activators.php:20
 #: application/views/activators/index.php:5
@@ -1199,7 +1199,7 @@ msgstr "グリッドスクエアマップ"
 #: application/controllers/Gridmap.php:35
 #: application/controllers/Visitor.php:388
 msgid "Total gridsquares worked"
-msgstr "作業したグリッドスクエアの合計"
+msgstr "交信したグリッドスクエアの合計"
 
 #: application/controllers/Hamsat.php:59
 msgid "Hamsat - Satellite Roving"
@@ -3893,11 +3893,11 @@ msgstr "DXCCの累計交信数"
 
 #: application/views/accumulate/index.php:3
 msgid "Accumulated number of States worked"
-msgstr "作業した州の累計数"
+msgstr "交信した州の累計数"
 
 #: application/views/accumulate/index.php:4
 msgid "Accumulated number of IOTAs worked"
-msgstr "作業したIOTAの累計数"
+msgstr "交信したIOTAの累計数"
 
 #: application/views/accumulate/index.php:5
 msgid "Accumulated number of CQ Zones worked"
@@ -3905,11 +3905,11 @@ msgstr "累計CQゾーン数"
 
 #: application/views/accumulate/index.php:6
 msgid "Accumulated number of VUCC Grids worked"
-msgstr "稼働したVUCCグリッドの累計数"
+msgstr "交信したVUCCグリッドの累計数"
 
 #: application/views/accumulate/index.php:7
 msgid "Accumulated number of WAJA worked"
-msgstr "WAJAの累計稼働数"
+msgstr "WAJAの累計交信数"
 
 #: application/views/accumulate/index.php:8
 #: application/views/dashboard/index.php:320
@@ -4086,7 +4086,7 @@ msgstr "アイランズ・オン・ザ・エア（IOTA）"
 #: application/views/accumulate/index.php:56
 #: application/views/timeline/index.php:47
 msgid "Worked All Zones (WAZ)"
-msgstr "全ゾーン作業（WAZ）"
+msgstr "全ゾーン交信賞（WAZ）"
 
 #: application/views/accumulate/index.php:57
 #: application/views/timeline/index.php:48
@@ -4096,7 +4096,7 @@ msgstr "VHF / UHF センチュリークラブ (VUCC)"
 #: application/views/accumulate/index.php:58
 #: application/views/timeline/index.php:49
 msgid "Worked All Japan (WAJA)"
-msgstr "全国各地で活動（WAJA）"
+msgstr "全都道府県交信賞（WAJA）"
 
 #: application/views/accumulate/index.php:62
 msgid "Period"
@@ -5647,7 +5647,7 @@ msgstr ""
 
 #: application/views/awards/counties/index.php:22
 msgid "Counties Worked"
-msgstr "活動した郡"
+msgstr "交信した郡"
 
 #: application/views/awards/counties/index.php:23
 msgid "Counties Confirmed"
@@ -5734,9 +5734,9 @@ msgid ""
 "Magazine does no longer exists the CQ WAZ Awards is now managed directly by "
 "N4BAA."
 msgstr ""
-"WAZアワードは「Worked All Zones（全ゾーンで交信）」の略で、40のCQゾーン全てへ"
-"の無線交信とそれに伴う確認が必要です。CQマガジンが廃刊となったため、CQ WAZア"
-"ワードは現在N4BAAによって直接運営されています。"
+"WAZアワードは「Worked All Zones（全ゾーンで交信）」の略で、40のCQゾーン全てと"
+"の交信とその確認が必要です。CQマガジンが廃刊となったため、CQ WAZアワードは現"
+"在N4BAAによって直接運営されています。"
 
 #: application/views/awards/cq/index.php:35
 #, php-format
@@ -5915,7 +5915,7 @@ msgstr "確認済み"
 #: application/views/search/result.php:35
 #: application/views/visitor/index.php:266
 msgid "Worked"
-msgstr "作業した"
+msgstr "交信した"
 
 #: application/views/awards/cq/index.php:92
 #: application/views/awards/dok/index.php:42
@@ -5931,7 +5931,7 @@ msgstr "作業した"
 #: application/views/awards/wapc/index.php:41
 #: application/views/awards/was/index.php:43
 msgid "Show worked"
-msgstr "作業内容"
+msgstr "交信済を表示"
 
 #: application/views/awards/cq/index.php:96
 #: application/views/awards/dok/index.php:46
@@ -5962,7 +5962,7 @@ msgstr "確認済み"
 #: application/views/awards/wapc/index.php:49
 #: application/views/awards/was/index.php:51
 msgid "Show not worked"
-msgstr "表示が機能していません"
+msgstr "未交信を表示"
 
 #: application/views/awards/cq/index.php:106
 #: application/views/awards/dok/index.php:52
@@ -6124,7 +6124,7 @@ msgstr "合計（SATを除く）"
 #: application/views/awards/was/index.php:190
 #: application/views/awards/wpx/index.php:183
 msgid "Total worked"
-msgstr "合計作業時間"
+msgstr "合計交信数"
 
 #: application/views/awards/cq/index.php:255
 #: application/views/awards/dok/index.php:186
@@ -6215,7 +6215,7 @@ msgstr "DOK + SDOK"
 #: application/views/awards/wapc/index.php:37
 #: application/views/awards/was/index.php:39
 msgid "Worked / Confirmed"
-msgstr "動作確認済み"
+msgstr "交信済／確認済"
 
 #: application/views/awards/dok/index.php:81
 #: application/views/awards/helvetia/index.php:80
@@ -6254,7 +6254,7 @@ msgstr "DXCCアワード"
 
 #: application/views/awards/dxcc/index.php:28
 msgid "'How to Count Countries Worked, A New DX Scoring System'"
-msgstr "'How to Count Countries Worked, A New DX Scoring System'"
+msgstr "'交信した国数の計算方法, 新DXスコアリングシステム'"
 
 #: application/views/awards/dxcc/index.php:28
 #, php-format
@@ -6505,7 +6505,7 @@ msgstr "Webサイト"
 #: application/views/awards/gridmaster/index.php:15
 #: application/views/awards/gridmaster/index.php:21
 msgid "This map shows only QSOs worked on SAT."
-msgstr "このマップには、SAT で行われた QSO のみが表示されます。"
+msgstr "このマップには、衛星経由で交信した QSO のみが表示されます。"
 
 #: application/views/awards/gridmaster/index.php:16
 msgid ""
@@ -7229,8 +7229,8 @@ msgid ""
 "The VHF/UHF Century Club Award is given for a minimum number of worked and "
 "confirmed gridsquares on a desired band."
 msgstr ""
-"VHF/UHF センチュリー クラブアワードは、希望するバンドで最低限のグリッドスクエ"
-"アを運用し、確認した場合に授与されます。"
+"VHF/UHF センチュリー クラブアワードは、希望するバンドで最低限の"
+"グリッドスクエアと交信し、確認した場合に授与されます。"
 
 #: application/views/awards/vucc/index.php:9
 #: application/views/awards/wae/index.php:21
@@ -7252,7 +7252,7 @@ msgstr ""
 
 #: application/views/awards/vucc/index.php:23
 msgid "Grids Worked"
-msgstr "グリッドが機能した"
+msgstr "交信済グリッド"
 
 #: application/views/awards/vucc/index.php:24
 msgid "Grids Confirmed"
@@ -7260,7 +7260,7 @@ msgstr "グリッドを確認"
 
 #: application/views/awards/wab/index.php:13
 msgid "WAB - Worked All Britain Award"
-msgstr "WAB - 英国全土で活躍した人々へのアワード"
+msgstr "WAB - 全英国交信賞"
 
 #: application/views/awards/wab/index.php:14
 msgid ""
@@ -7314,7 +7314,7 @@ msgstr ""
 
 #: application/views/awards/wac/index.php:14
 msgid "Awards - Worked All Continents (WAC)"
-msgstr "アワード - すべての大陸で活動（WAC）"
+msgstr "全大陸交信賞（WAC）"
 
 #: application/views/awards/wac/index.php:142
 #: application/views/bandmap/list.php:101
@@ -7377,9 +7377,9 @@ msgid ""
 "making this a challenging and prestigious award."
 msgstr ""
 "WAIP（Worked All Italian Provinces：イタリア全州交信）アワードは、イタリアの"
-"各州から運用している局との交信に対して授与される賞です。イタリアには100以上の"
-"州があり、このアワードは難易度が高く、かつ非常に名誉あるアワードとなっていま"
-"す。"
+"各州で運用している局との交信に対して授与される賞です。イタリアには100以上の州"
+"があり、このアワードは難易度が高く、かつ非常に名誉あるアワードとなっています"
+"。"
 
 #: application/views/awards/waip/index.php:10
 msgid ""
@@ -7416,9 +7416,9 @@ msgid ""
 "QSL card confirmations are accepted. Green = Confirmed, Orange = Worked but "
 "not confirmed."
 msgstr ""
-"このアワードは、イタリアの各州における交信状況と確認状況を追跡します。QSLカー"
-"ドによる確認のみが認められます。緑色＝確認済み、オレンジ色＝交信済みだが未確"
-"認。"
+"このアワードは、イタリア各州との交信数と確認数に基づいて発行されます。QSL"
+"カードによる確認のみが認められます。緑色＝確認済み、オレンジ色＝交信済みだが"
+"未確認。"
 
 #: application/views/awards/waip/index.php:32
 msgid "Award Progress"
@@ -7426,7 +7426,7 @@ msgstr "アワードの進捗状況"
 
 #: application/views/awards/waip/index.php:34
 msgid "Progress toward working all Italian provinces:"
-msgstr "イタリア全州の取り組みに向けた進捗状況："
+msgstr "イタリア全州と交信に向けた進捗状況："
 
 #: application/views/awards/waip/index.php:40
 #: application/views/awards/waip/index.php:92
@@ -7471,15 +7471,15 @@ msgstr "マウスを都道府県の上に移動"
 
 #: application/views/awards/waja/index.php:22
 msgid "WAJA - Worked All Japan prefectures Award"
-msgstr "WAJA - 全日本都道府県制覇アワード"
+msgstr "WAJA - 全都道府県交信賞"
 
 #: application/views/awards/waja/index.php:23
 msgid ""
 "WAJA, Worked All Japan prefectures in Amateur Radio, encourages licensed ham "
 "radio operators to work all the prefectures in Japan."
 msgstr ""
-"WAJA（アマチュア無線で日本全国都道府県と交信）は、免許を取得したアマチュア無"
-"線家が日本全国すべての都道府県で交信することを奨励しています。"
+"WAJA（アマチュア無線で日本の全都道府県と交信）は、免許を取得したアマチュア無"
+"線家が日本の全都道府県と交信することが条件です。"
 
 #: application/views/awards/waja/index.php:24
 msgid ""
@@ -7572,7 +7572,7 @@ msgstr "都道府県"
 
 #: application/views/awards/wapc/index.php:22
 msgid "WAPC - Worked All Provinces of China"
-msgstr "WAPC - 中国のすべての省・自治区・直轄市を対象に活動を実施しました"
+msgstr "WAPC - 中国・全省・自治区・直轄市交信賞"
 
 #: application/views/awards/wapc/index.php:23
 msgid ""
@@ -8036,11 +8036,11 @@ msgstr "取得中..."
 #: application/views/bandmap/list.php:86 application/views/bandmap/list.php:301
 #: application/views/interface_assets/footer.php:47
 msgid "Not worked"
-msgstr "機能していません"
+msgstr "未交信"
 
 #: application/views/bandmap/list.php:89 application/views/bandmap/list.php:304
 msgid "Worked, not Confirmed"
-msgstr "動作したが、確認されていない"
+msgstr "交信済だが未確認"
 
 #: application/views/bandmap/list.php:90 application/views/bandmap/list.php:320
 #: application/views/lookup/lotwuser.php:2
@@ -8066,12 +8066,12 @@ msgstr "ニューカントリー"
 
 #: application/views/bandmap/list.php:94
 msgid "Worked Before"
-msgstr "以前に働いた"
+msgstr "以前に交信した"
 
 #: application/views/bandmap/list.php:95
 #, php-format
 msgid "Worked on %s with %s"
-msgstr "%s を %s と共同で作業しました"
+msgstr "%s を %s と共同で交信しました"
 
 #: application/views/bandmap/list.php:103
 #: application/views/bandmap/list.php:606
@@ -8119,11 +8119,11 @@ msgstr "詳細はこちら"
 
 #: application/views/bandmap/list.php:114
 msgid "Worked on"
-msgstr "作業した"
+msgstr "交信した"
 
 #: application/views/bandmap/list.php:115
 msgid "Not worked on this band"
-msgstr "このバンドでは働いていない"
+msgstr "未交信バンド"
 
 #: application/views/bandmap/list.php:116
 #, php-format
@@ -8408,7 +8408,7 @@ msgstr "必須フラグ"
 
 #: application/views/bandmap/list.php:324
 msgid "Worked Callsign"
-msgstr "運用コールサイン"
+msgstr "交信済コールサイン"
 
 #: application/views/bandmap/list.php:326
 msgid "DX Spot"
@@ -9735,7 +9735,7 @@ msgstr "空きがありません"
 
 #: application/views/components/dxwaterfall.php:24
 msgid "Cycle through unworked continents/DXCC"
-msgstr "未運用の大陸/DXCCを巡回"
+msgstr "未交信の大陸/DXCCを巡回"
 
 #: application/views/components/dxwaterfall.php:25
 msgid "DX Hunter"
@@ -9743,7 +9743,7 @@ msgstr "DXハンター"
 
 #: application/views/components/dxwaterfall.php:26
 msgid "No unworked continents/DXCC on this band"
-msgstr "このバンドには未運用の大陸/DXCCはありません"
+msgstr "このバンドには未交信の大陸/DXCCはありません"
 
 #: application/views/components/dxwaterfall.php:27
 msgid "Click to cycle or wait 1.5s to apply"
@@ -9893,7 +9893,7 @@ msgstr "グリッドスクエア"
 #: application/views/components/hamsat/table.php:32
 #: application/views/hamsat/index.php:35
 msgid "Workable"
-msgstr "実行可能"
+msgstr "交信可能"
 
 #: application/views/components/hamsat/table.php:134
 msgctxt "Hamsat - Track Satellites"
@@ -11592,7 +11592,7 @@ msgstr "距離は"
 
 #: application/views/distances/index.php:14
 msgid "Callsign(s) worked (max 5 shown)"
-msgstr "交信したコールサイン（最大5件表示）"
+msgstr "交信済コールサイン（最大5件表示）"
 
 #: application/views/distances/index.php:19
 msgid "Band selection"
@@ -11607,7 +11607,7 @@ msgid ""
 "Export your logbook for use in DX Atlas to display worked / confirmed "
 "gridsquares."
 msgstr ""
-"作業済み/確認済みのグリッドスクエアを表示するには、ログブックを DX Atlas 用に"
+"交信済/確認済のグリッドスクエアを表示するためログブックを DX Atlas 用に"
 "エクスポートします。"
 
 #: application/views/dxatlas/index.php:11 application/views/kml/index.php:11
@@ -12255,11 +12255,11 @@ msgstr "%s 宛てにメールを送信"
 #: application/views/interface_assets/footer.php:82
 msgid ""
 "Callsign was already worked and confirmed in the past on this band and mode!"
-msgstr "コールサインは過去にこのバンドとモードで既に交信済みかつ確認済みです！"
+msgstr "コールサインは、過去にこのバンドとモードで交信済かつ確認済です！"
 
 #: application/views/interface_assets/footer.php:83
 msgid "Callsign was already worked in the past on this band and mode!"
-msgstr "コールサインは、このバンドとモードで過去にすでに使用されていました！"
+msgstr "コールサインは、このバンドとモードで過去にすでに交信されていました！"
 
 #: application/views/interface_assets/footer.php:84
 msgid "New Callsign!"
@@ -12267,11 +12267,11 @@ msgstr "新しいコールサイン！"
 
 #: application/views/interface_assets/footer.php:85
 msgid "Grid was already worked and confirmed in the past"
-msgstr "グリッドは過去にすでに作業され確認されている"
+msgstr "グリッドは、すでに過去に交信済かつ確認済である"
 
 #: application/views/interface_assets/footer.php:86
 msgid "Grid was already worked in the past"
-msgstr "グリッドは過去にすでに機能していた"
+msgstr "グリッドは、過去にすでに交信済"
 
 #: application/views/interface_assets/footer.php:87
 msgid "New grid!"
@@ -12284,15 +12284,15 @@ msgstr "本当にお気に入りを削除しますか?"
 #: application/views/interface_assets/footer.php:89
 msgid ""
 "DXCC was already worked and confirmed in the past on this band and mode!"
-msgstr "DXCC は過去にこのバンドとモードですでに運用され、確認されています！"
+msgstr "DXCC は過去にこのバンドとモードですでに交信済かつ確認済です！"
 
 #: application/views/interface_assets/footer.php:90
 msgid "DXCC was already worked in the past on this band and mode!"
-msgstr "DXCC は過去にこのバンドとモードですでに動作していました！"
+msgstr "DXCC は、過去にこのバンドとモードですでに交信済！"
 
 #: application/views/interface_assets/footer.php:91
 msgid "New DXCC, not worked on this band and mode!"
-msgstr "新しい DXCC ですが、このバンドとモードでは動作しません！"
+msgstr "新しい DXCC ですが、このバンドとモードでは未交信です！"
 
 #: application/views/interface_assets/footer.php:92
 #, php-format
@@ -12724,11 +12724,11 @@ msgstr "ITU"
 
 #: application/views/interface_assets/header.php:200
 msgid "Worked All Europe (WAE)"
-msgstr "ヨーロッパ全域で活動（WAE）"
+msgstr "全ヨーロッパ交信賞（WAE）"
 
 #: application/views/interface_assets/header.php:204
 msgid "Worked All Prefixes (WPX)"
-msgstr "すべてのプレフィックスに対応 (WPX)"
+msgstr "全プレフィックス交信賞 (WPX)"
 
 #: application/views/interface_assets/header.php:226
 msgid "Canada"
@@ -12788,7 +12788,7 @@ msgstr "オランダ"
 
 #: application/views/interface_assets/header.php:288
 msgid "WAP Worked All Provinces"
-msgstr "WAPは全州で機能しました"
+msgstr "WAP　全州交信賞"
 
 #: application/views/interface_assets/header.php:292
 msgid "USA"
@@ -16375,11 +16375,11 @@ msgstr "以前の連絡先"
 
 #: application/views/qso/index.php:32
 msgid "times worked before"
-msgstr "以前に作業した回数"
+msgstr "交信済数"
 
 #: application/views/qso/index.php:33
 msgid "Not worked before"
-msgstr "以前は機能していなかった"
+msgstr "未交信"
 
 #: application/views/qso/index.php:34
 msgid "more"
@@ -17164,7 +17164,7 @@ msgstr "%s のコールブック検索"
 
 #: application/views/search/result.php:39
 msgid "Not Worked"
-msgstr "未実施"
+msgstr "未交信"
 
 #: application/views/search/result.php:58
 msgid "Grid is auto-detected by callbook and probably wrong"
@@ -17266,9 +17266,9 @@ msgid ""
 "session and now SimpleFLE is also available in Wavelog. Information about "
 "the syntax and how FLE works can be found %s."
 msgstr ""
-"一般的な使用例として、屋外セッションから紙のログをインポートする必要がある場"
-"合が挙げられます。現在、SimpleFLEはWavelogでも利用可能です。FLEの構文や動作に"
-"関する情報は%sでご確認いただけます。"
+"一般的な使用例として、移動運用時の紙のログをインポートする場合が挙げられます"
+"。現在、SimpleFLEはWavelogでも利用可能です。FLEの構文や動作に関する情報は%sで"
+"ご確認いただけます。"
 
 #: application/views/simplefle/index.php:17
 #: application/views/simplefle/index.php:184
@@ -18125,7 +18125,7 @@ msgstr "年間QSO数"
 
 #: application/views/statistics/index.php:20
 msgid "Number of QSOs worked each month"
-msgstr "毎月のQSO数"
+msgstr "月間QSO数"
 
 #: application/views/statistics/index.php:31
 msgid "January"
@@ -18405,7 +18405,7 @@ msgstr "時間配分"
 
 #: application/views/timeplotter/index.php:6
 msgid "Callsign(s) worked (max 5)"
-msgstr "有効なコールサイン（最大5つ）"
+msgstr "交信済コールサイン（最大5つ）"
 
 #: application/views/timeplotter/index.php:81
 msgid "Best Time Window"
@@ -18779,7 +18779,7 @@ msgstr "表示されない"
 
 #: application/views/user/edit.php:598
 msgid "QSO (worked, not confirmed)"
-msgstr "QSO（交信済み、未確認）"
+msgstr "QSO（交信済、未確認）"
 
 #: application/views/user/edit.php:617
 msgid "QSO (confirmed)"
@@ -18787,15 +18787,15 @@ msgstr "QSO（確認済み）"
 
 #: application/views/user/edit.php:618
 msgid "(If 'No', displayed as 'QSO (worked, not confirmed)')"
-msgstr "（「いいえ」の場合は「QSO（交信済み、未確認）」と表示されます）"
+msgstr "（「いいえ」の場合は「QSO（交信済、未確認）」と表示されます）"
 
 #: application/views/user/edit.php:637
 msgid "Unworked (e.g. Zones)"
-msgstr "未作業（例：ゾーン）"
+msgstr "未交信（例：ゾーン）"
 
 #: application/views/user/edit.php:638
 msgid "(Color for unworked zones)"
-msgstr "（未作業区域の色）"
+msgstr "（未交信区域の色）"
 
 #: application/views/user/edit.php:648
 msgid "Show Locator"
@@ -19344,9 +19344,8 @@ msgid ""
 "Location. You can find more information about how Station Locations and "
 "Logbooks work in our %sWiki here%s!"
 msgstr ""
-"QSOsの記録を開始する前に、まず最初のステーション位置を設定する必要がありま"
-"す。ステーション位置とログブックの仕組みについては、当社の%sWiki%sで詳細をご"
-"確認いただけます！"
+"QSOsの記録を開始する前に、まず最初に運用場所を設定する必要があります。運用場"
+"所とログブックの仕組みについては、当社の%sWiki%sで詳細をご確認いただけます！"
 
 #: application/views/user/modals/first_login_wizard.php:22
 msgid ""
