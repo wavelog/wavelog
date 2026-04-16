@@ -37,6 +37,7 @@ $config = [
 					</label>
 					<select id="radio-select" class="form-select">
 						<option value="0"><?= __("Manual - No Radio"); ?></option>
+						<option value="ws"><?= __("WebSocket (Real-time)"); ?></option>
 						<?php if (isset($radios) && $radios->num_rows() > 0): ?>
 							<?php foreach ($radios->result() as $row): ?>
 								<option value="<?php echo $row->id; ?>"><?php echo htmlspecialchars($row->radio); ?></option>

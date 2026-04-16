@@ -18,6 +18,11 @@ class RadioComponent {
 		this.selectedRadio = '0'; // '0' = None (manual mode)
 		this.manualMode = true;
 
+		this._websocket = null;
+		this._wsIntentionallyClosed = false;
+		this._wsReconnectAttempts = 0;
+		this._wsHasTriedFallback = false;
+
 		// Cache DOM elements
 		this.qrgUnitElement = document.getElementById('qrg_unit');
 		this.freqCalculated = document.getElementById('freq_calculated');
@@ -45,6 +50,9 @@ class RadioComponent {
 	registerSyncHandler() {
 		this.syncEngine.registerSyncHandler('radio.*', {
 			buildRequest: (key, dataStore) => {
+				// WebSocket mode handles radio updates itself — skip polling
+				if (this.selectedRadio === 'ws') return null;
+
 				// Extract radio ID from key: "radio.1.frequency" -> "1"
 				const parts = key.split('.');
 				const radioId = parts[1];
@@ -180,33 +188,23 @@ class RadioComponent {
 			);
 		}
 
-		// Update state
+		if (this.selectedRadio === 'ws') {
+			this._closeWebSocket();
+		}
+
 		this.selectedRadio = radioId;
 		this.manualMode = (radioId === '0');
 
 		if (this.manualMode) {
-			// Manual mode: clear display
 			this.clearDisplay();
 			this.showStatusInfo('Manual mode: Enter frequency/mode manually', 'info');
+		} else if (radioId === 'ws') {
+			this._subscribeToRadio('radio.ws');
+			this.clearDisplay();
+			this.showStatusInfo('Connecting to WebSocket radio...', 'info');
+			this._initWebSocket();
 		} else {
-			// Subscribe to new radio with realtime updates
-			this.dataStore.subscribe(
-				`radio.${radioId}.frequency`,
-				this.boundFrequencyCallback,
-				{ realtime: true }
-			);
-			this.dataStore.subscribe(
-				`radio.${radioId}.mode`,
-				this.boundModeCallback,
-				{ realtime: true }
-			);
-			this.dataStore.subscribe(
-				`radio.${radioId}.updated_minutes_ago`,
-				this.boundTimestampCallback,
-				{ realtime: true }
-			);
-
-			// Clear display and show waiting message
+			this._subscribeToRadio(`radio.${radioId}`);
 			this.clearDisplay();
 			this.showStatusInfo('Waiting for radio data...', 'info');
 		}
@@ -217,9 +215,10 @@ class RadioComponent {
 	 */
 	updateFrequencyDisplay(freq) {
 		if (this.manualMode) return;
-		
+
 		if (freq && this.frequency) {
-			this.frequency.value = this.formatFrequency(freq);
+			this.frequency.value = freq;
+			this.set_qrg();
 		}
 	}
 
@@ -587,6 +586,90 @@ class RadioComponent {
 		});
 
 		window.user_updating_frequency = false;
+	}
+
+	/**
+	 * Subscribe to DataStore updates for a radio key prefix
+	 * @param {string} prefix - e.g. 'radio.ws' or 'radio.1'
+	 */
+	_subscribeToRadio(prefix) {
+		this.dataStore.subscribe(`${prefix}.frequency`,          this.boundFrequencyCallback,  { realtime: true });
+		this.dataStore.subscribe(`${prefix}.mode`,               this.boundModeCallback,        { realtime: true });
+		this.dataStore.subscribe(`${prefix}.updated_minutes_ago`, this.boundTimestampCallback,  { realtime: true });
+	}
+
+	_initWebSocket() {
+		this._wsIntentionallyClosed = false;
+		const tryWss = !this._wsHasTriedFallback;
+		const protocol = tryWss ? 'wss' : 'ws';
+		const port     = tryWss ? '54323' : '54322';
+
+		try {
+			this._websocket = new WebSocket(`${protocol}://127.0.0.1:${port}`);
+		} catch (e) {
+			return;
+		}
+
+		this._websocket.onopen = () => {
+			this._wsReconnectAttempts = 0;
+			this.showStatusInfo('✓ WebSocket radio connected', 'success');
+		};
+
+		this._websocket.onmessage = (event) => {
+			try {
+				this._handleWsMessage(JSON.parse(event.data));
+			} catch (_) { /* ignore malformed frames */ }
+		};
+
+		this._websocket.onerror = () => {
+			// Try WS fallback once if WSS failed on first attempt
+			if (tryWss && !this._wsHasTriedFallback) {
+				this._wsHasTriedFallback = true;
+				if (this._websocket && this._websocket.readyState === WebSocket.CONNECTING) {
+					this._websocket.close();
+				}
+				setTimeout(() => this._initWebSocket(), 100);
+				return;
+			}
+			this.showStatusInfo('⚠ WebSocket connection error', 'warning');
+		};
+
+		this._websocket.onclose = () => {
+			if (this._wsIntentionallyClosed) {
+				this._wsHasTriedFallback = false;
+				return;
+			}
+			if (this._wsReconnectAttempts < 5) {
+				this.showStatusInfo('WebSocket disconnected – reconnecting...', 'warning');
+				setTimeout(() => {
+					this._wsReconnectAttempts++;
+					this._initWebSocket();
+				}, 2000 * (this._wsReconnectAttempts + 1));
+			} else {
+				this.showStatusInfo('⚠ WebSocket radio offline', 'warning');
+			}
+		};
+	}
+
+	_handleWsMessage(data) {
+		if (data.type !== 'radio_status' || !data.radio) return;
+		const minutesAgo = data.timestamp
+			? Math.floor((Date.now() - data.timestamp) / 60000)
+			: 0;
+		this.dataStore.set('radio.ws.frequency',           data.frequency);
+		this.dataStore.set('radio.ws.mode',                data.mode);
+		this.dataStore.set('radio.ws.timestamp',           data.timestamp || Date.now());
+		this.dataStore.set('radio.ws.updated_minutes_ago', minutesAgo);
+	}
+
+	_closeWebSocket() {
+		this._wsIntentionallyClosed = true;
+		this._wsReconnectAttempts = 0;
+		this._wsHasTriedFallback = false;
+		if (this._websocket) {
+			this._websocket.close();
+			this._websocket = null;
+		}
 	}
 
 	/**
