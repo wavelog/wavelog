@@ -51,6 +51,7 @@ class Note extends CI_Model {
 	// Add a new note for the logged-in user
 	function add($category, $title, $content, $local_time = null) {
 		$user_id = $this->session->userdata('user_id');
+		$title = $title ?? '';
 		$check_title = $title;
 		if ($category === 'Contacts') {
 			$check_title = trim(strtoupper($title));
@@ -74,6 +75,7 @@ class Note extends CI_Model {
 	// Edit an existing note for the logged-in user
 	function edit($note_id, $category, $title, $content, $local_time = null) {
 		$user_id = $this->session->userdata('user_id');
+		$title = $title ?? '';
 		$check_title = $title;
 
 		if($this->belongs_to_user($note_id, $user_id) === false) {
