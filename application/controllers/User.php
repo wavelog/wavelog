@@ -263,6 +263,7 @@ class User extends CI_Controller {
 				$data['oqrs_grouped_search_show_station_name'] = $this->input->post('oqrs_grouped_search_show_station_name') ?? 'off';
 				$data['oqrs_auto_matching'] = $this->input->post('oqrs_auto_matching') ?? 'on';
 				$data['oqrs_direct_auto_matching'] = $this->input->post('oqrs_direct_auto_matching') ?? 'on';
+				$data['oqrs_delivery_method'] = $this->input->post('oqrs_delivery_method') ?? 'both';
 				$this->load->view('user/edit', $data);
 			} else {
 				$this->load->view('user/edit', $data);
@@ -399,6 +400,7 @@ class User extends CI_Controller {
 			$data['oqrs_grouped_search_show_station_name'] = $this->input->post('oqrs_grouped_search_show_station_name') ?? 'off';
 			$data['oqrs_auto_matching'] = $this->input->post('oqrs_auto_matching') ?? 'on';
 			$data['oqrs_direct_auto_matching'] = $this->input->post('oqrs_direct_auto_matching') ?? 'on';
+			$data['oqrs_delivery_method'] = $this->input->post('oqrs_delivery_method') ?? 'both';
 			$data['user_dxwaterfall_enable'] = $this->input->post('user_dxwaterfall_enable') ?? 'N';
 			$this->load->view('user/edit', $data);
 			$this->load->view('interface_assets/footer', $footerData);
@@ -925,6 +927,15 @@ class User extends CI_Controller {
 				}
 			}
 
+			if($this->input->post('oqrs_delivery_method')) {
+				$data['oqrs_delivery_method'] = $this->input->post('oqrs_delivery_method', false);
+			} else {
+				$qkey_opt = $this->user_options_model->get_options('oqrs', array('option_name' => 'oqrs_delivery_method', 'option_key' => 'setting'), $this->uri->segment(3))->result();
+				if (count($qkey_opt) > 0) {
+					$data['oqrs_delivery_method'] = $qkey_opt[0]->option_value;
+				}
+			}
+
 			// [MAP Custom] GET user options //
 			$options_object = $this->user_options_model->get_options('map_custom')->result();
 			if (count($options_object)>0) {
@@ -1042,6 +1053,7 @@ class User extends CI_Controller {
 					$this->user_options_model->set_option('oqrs', 'oqrs_grouped_search_show_station_name', array('boolean'=>$this->input->post('oqrs_grouped_search_show_station_name', true)), $user_id);
 					$this->user_options_model->set_option('oqrs', 'oqrs_auto_matching', array('boolean'=>$this->input->post('oqrs_auto_matching', true)), $user_id);
 					$this->user_options_model->set_option('oqrs', 'oqrs_direct_auto_matching', array('boolean'=>$this->input->post('oqrs_direct_auto_matching', true)), $user_id);
+					$this->user_options_model->set_option('oqrs', 'oqrs_delivery_method', array('setting'=>$this->input->post('oqrs_delivery_method', true) ?? 'both'), $user_id);
 
 					if($this->session->userdata('user_id') == $user_id) {
 						$this->session->set_flashdata('success', sprintf(__("User %s edited"), $this->input->post('user_name', true)));
@@ -1102,6 +1114,7 @@ class User extends CI_Controller {
 			$data['oqrs_grouped_search_show_station_name'] = $this->input->post('oqrs_grouped_search_show_station_name', true);
 			$data['oqrs_auto_matching'] = $this->input->post('oqrs_auto_matching', true);
 			$data['oqrs_direct_auto_matching'] = $this->input->post('oqrs_direct_auto_matching', true);
+			$data['oqrs_delivery_method'] = $this->input->post('oqrs_delivery_method', true);
 			$data['user_qso_db_search_priority'] = $this->input->post('user_qso_db_search_priority', true);
 
 			$this->load->view('user/edit');

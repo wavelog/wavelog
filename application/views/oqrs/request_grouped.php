@@ -43,15 +43,19 @@
         <label class="form-check-label"><?= __("QSL Route"); ?></label>
     </div>
 
+    <?php if (($oqrs_delivery_method ?? 'both') !== 'direct'): ?>
     <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="qslroute" id="bureau" value="B" checked/>
         <label class="form-check-label" for="bureau"><?= __("Bureau"); ?></label>
     </div>
+    <?php endif; ?>
 
+    <?php if (($oqrs_delivery_method ?? 'both') !== 'bureau'): ?>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="qslroute" id="direct" value="D" />
+        <input class="form-check-input" type="radio" name="qslroute" id="direct" value="D" <?= (($oqrs_delivery_method ?? 'both') === 'direct') ? 'checked' : ''; ?>/>
         <label class="form-check-label" for="direct"><?= __("Direct (write address in message below)"); ?></label>
     </div>
+    <?php endif; ?>
     <br /><br />
     <div class="mb-3">
         <label for="message"><?= __("Message"); ?></label>
