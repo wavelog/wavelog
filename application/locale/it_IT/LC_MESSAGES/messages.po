@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-04-13 11:17+0000\n"
-"PO-Revision-Date: 2026-04-16 09:06+0000\n"
-"Last-Translator: iv3cvn <ricentis@gmail.com>\n"
+"PO-Revision-Date: 2026-04-16 22:17+0000\n"
+"Last-Translator: Luca <lucabennati1996@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/it/>\n"
 "Language: it_IT\n"
@@ -9532,6 +9532,7 @@ msgid "Go back"
 msgstr "Torna indietro"
 
 #: application/views/club/permissions.php:16
+#, fuzzy
 msgid ""
 "This club/special callsign is managed by a single sign on / identity "
 "provider. \n"
@@ -9540,6 +9541,11 @@ msgid ""
 "                    There may be users not listed who have permissions for "
 "this club/special callsign."
 msgstr ""
+"Questo nominativo speciale/club è gestito da un fornitore di identità/single "
+"sign on. I permessi possono essere aumentati qui, ma l'accesso potrebbe "
+"essere automaticamente rimosso o concesso dal fornitore di identità quando "
+"gli utenti effettuano il login. Potrebbero esserci utenti non elencati che "
+"hanno permessi per questo nominativo speciale/club."
 
 #: application/views/club/permissions.php:19
 msgid ""
@@ -9547,6 +9553,9 @@ msgid ""
 "provider group, then add the user to the table below with increased "
 "permissions."
 msgstr ""
+"Per concedere autorizzazioni oltre il livello di membro: aggiungi l'utente "
+"al gruppo del provider di identità, quindi aggiungi l'utente alla tabella "
+"qui sotto con autorizzazioni aumentate."
 
 #: application/views/club/permissions.php:22
 msgid ""
@@ -14418,7 +14427,7 @@ msgstr "Errore nell'unione dei QSO"
 
 #: application/views/logbookadvanced/index.php:92
 msgid "Error loading merge dialog"
-msgstr "Errore nel caricamento della finestra di dialogo di unione QSO"
+msgstr "Errore nel caricamento della finestra di unione dei collegamenti"
 
 #: application/views/logbookadvanced/index.php:338
 msgid "From"
@@ -18675,7 +18684,7 @@ msgstr "QSOs totali tracciati"
 
 #: application/views/timeplotter/index.php:120
 msgid "Heatmap"
-msgstr ""
+msgstr "Mappa di calore"
 
 #: application/views/timeplotter/index.php:125
 msgid "Chart"
@@ -20166,25 +20175,27 @@ msgstr "CQz geojson"
 
 #: application/views/user/edit.php:837
 msgid "QSL delivery methods offered via OQRS"
-msgstr ""
+msgstr "Metodi di consegna QSL offerti tramite OQRS"
 
 #: application/views/user/edit.php:839
 msgid "Bureau and Direct"
-msgstr ""
+msgstr "Bureau e Diretto"
 
 #: application/views/user/edit.php:840
 msgid "Bureau only"
-msgstr ""
+msgstr "Solo Bureau"
 
 #: application/views/user/edit.php:841
 msgid "Direct only"
-msgstr ""
+msgstr "Solo diretto"
 
 #: application/views/user/edit.php:843
 msgid ""
 "Restrict which QSL delivery methods requesters can choose on your public "
 "OQRS page."
 msgstr ""
+"Limita i metodi di invio QSL che i corrispondenti possono scegliere sulla "
+"tua pagina pubblica OQRS."
 
 #~ msgid ""
 #~ "The Timeplotter is used to analyze your logbook and find out at what "
