@@ -9,7 +9,7 @@
 # Ethan Edwards <ethan@ethancedwards.com>, 2024.
 # Ethan Carter Edwards <ethan@ethancedwards.com>, 2025.
 # Fabian Berg <fabian.berg@hb9hil.org>, 2025.
-# Luca <lucabennati1996@gmail.com>, 2025.
+# Luca <lucabennati1996@gmail.com>, 2025, 2026.
 # Fabian <fabian@eb1tr.com>, 2025.
 # Juan Pablo Tamayo <hj3kos@gmail.com>, 2026.
 # Miguel <micc@gmx.es>, 2026.
@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-04-16 18:32+0000\n"
-"PO-Revision-Date: 2026-02-20 14:54+0000\n"
-"Last-Translator: Juan Pablo Tamayo <hj3kos@gmail.com>\n"
+"PO-Revision-Date: 2026-04-16 22:17+0000\n"
+"Last-Translator: Luca <lucabennati1996@gmail.com>\n"
 "Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/es/>\n"
 "Language: es_ES\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.16\n"
+"X-Generator: Weblate 5.16.2\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -292,7 +292,7 @@ msgstr "La descripción de la API Key %s se ha actualizado."
 #: application/controllers/Api.php:89 application/controllers/Api.php:124
 #: application/controllers/Qso.php:577
 msgid "Invalid request method"
-msgstr ""
+msgstr "Método de solicitud no válido"
 
 #: application/controllers/Api.php:100
 msgid "Invalid API rights"
@@ -308,7 +308,7 @@ msgstr "No se pudo generar la clave API"
 
 #: application/controllers/Api.php:134
 msgid "Invalid API Key"
-msgstr ""
+msgstr "Clave API no válida"
 
 #: application/controllers/Api.php:143
 #, php-format
@@ -431,7 +431,7 @@ msgstr "Vista de registro"
 
 #: application/controllers/Awards.php:568
 msgid "and"
-msgstr ""
+msgstr "y"
 
 #: application/controllers/Awards.php:569
 #: application/views/awards/cq/index.php:135
@@ -447,7 +447,7 @@ msgstr "Todas las bandas (sin SAT)"
 
 #: application/controllers/Awards.php:569
 msgid "band"
-msgstr ""
+msgstr "banda"
 
 #: application/controllers/Awards.php:572
 msgid " and satellite "
@@ -628,7 +628,7 @@ msgstr "WAP"
 #: application/controllers/Awards.php:1488
 #: application/views/interface_assets/header.php:254
 msgid "WAIP"
-msgstr ""
+msgstr "WAIP"
 
 #: application/controllers/Awards.php:2195
 #: application/views/awards/itu/index.php:34
@@ -734,7 +734,7 @@ msgstr "Verificador de Llamada"
 #: application/controllers/Calltester.php:240
 #: application/controllers/Calltester.php:300
 msgid "CSV Call Tester"
-msgstr ""
+msgstr "Verificador de Llamada"
 
 #: application/controllers/Calltester.php:917
 msgid "Callsign Tester"
@@ -799,6 +799,8 @@ msgstr "Tipo de mensaje no válido."
 #: application/controllers/Club.php:231
 msgid "Email can't be initialized. Check the email settings."
 msgstr ""
+"No se puede inicializar el correo electrónico. Verifica la configuración del "
+"correo electrónico."
 
 #: application/controllers/Club.php:238 application/views/api/index.php:68
 #: application/views/satellite/index.php:94
@@ -1048,6 +1050,9 @@ msgid ""
 "seems right you can delete the folders 'assets/qslcard' and 'images/"
 "eqsl_card_images'."
 msgstr ""
+"La migración de archivos fue exitosa, pero por favor verifica también "
+"manualmente. Si todo parece correcto, puedes eliminar las carpetas 'assets/"
+"qslcard' y 'images/eqsl_card_images'."
 
 #: application/controllers/Debug.php:320
 msgid "File Migration failed. Please check the Error Log."
@@ -1211,19 +1216,19 @@ msgstr "Hamsat - Operación de satélites en movimiento"
 
 #: application/controllers/Header_auth.php:22
 msgid "SSO Authentication is disabled."
-msgstr ""
+msgstr "La autenticación SSO está deshabilitada."
 
 #: application/controllers/Header_auth.php:36
 msgid "SSO Authentication is disabled. Check your configuration."
-msgstr ""
+msgstr "La autenticación SSO está desactivada. Revisa tu configuración."
 
 #: application/controllers/Header_auth.php:89
 msgid "Sorry. This instance is currently in maintenance mode."
-msgstr ""
+msgstr "Lo siento. Esta instancia está actualmente en modo de mantenimiento."
 
 #: application/controllers/Header_auth.php:96
 msgid "User not found."
-msgstr ""
+msgstr "Usador no encontrado."
 
 #: application/controllers/Header_auth.php:111
 #: application/controllers/User.php:1342
@@ -1238,15 +1243,17 @@ msgid ""
 "Sorry. This instance is currently in maintenance mode. Only administrators "
 "are currently allowed to log in."
 msgstr ""
+"Lo siento. Esta instancia está actualmente en modo de mantenimiento. Solo "
+"los administradores pueden iniciar sesión en este momento."
 
 #: application/controllers/Header_auth.php:352
 #: application/controllers/Header_auth.php:356
 msgid "Something went terribly wrong. Check the error log."
-msgstr ""
+msgstr "Algo salió terriblemente mal. Revisa el registro de errores."
 
 #: application/controllers/Header_auth.php:432
 msgid "SSO Config Error. Check error log."
-msgstr ""
+msgstr "Error de configuración de SSO. Consulta el registro de errores."
 
 #: application/controllers/Hrdlog.php:70 application/controllers/Hrdlog.php:71
 msgid "HRD Log upload for this station is disabled."
@@ -2777,7 +2784,7 @@ msgstr "Crear Localización de Estación"
 #: application/controllers/Station.php:100 application/controllers/User.php:274
 #: application/controllers/User.php:989 application/controllers/User.php:1164
 msgid "Invalid security token"
-msgstr ""
+msgstr "Token de seguridad no válido"
 
 #: application/controllers/Station.php:89
 msgid "Edit Station Location: "
@@ -3211,6 +3218,7 @@ msgstr "Usuarios"
 #: application/controllers/User.php:470
 msgid "Can't be changed. Manage this through your Identity Provider."
 msgstr ""
+"No se puede cambiar. Gestiona esto a través de tu proveedor de identidad."
 
 #: application/controllers/User.php:473
 #: application/views/club/permissions.php:292
@@ -3708,6 +3716,7 @@ msgstr "DXCC tiene que ser numérico"
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
+"Distinto indicativo de estación %s al importar QSO con %s para %s: OMITIDO"
 
 #: application/models/Logbook_model.php:4922
 #, php-format
@@ -3715,6 +3724,8 @@ msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
 "SKIPPED"
 msgstr ""
+"Diferente localizador %s al importar QSO con %s para el localizador de "
+"estación %s: OMITIDO"
 
 #: application/models/Logbook_model.php:4938
 msgid ""
@@ -3827,6 +3838,8 @@ msgid ""
 "Invalid primary QSO ID, or you do not have permission to access one of the "
 "QSOs"
 msgstr ""
+"ID de QSO principal inválido, o no tienes permiso para acceder a uno de los "
+"QSOs"
 
 #: application/models/Logbookadvanced_model.php:2412
 #: application/views/view_log/qso.php:946
@@ -3836,10 +3849,11 @@ msgstr "QSO no encontrado"
 #: application/models/Logbookadvanced_model.php:2498
 msgid "No fields selected for merge or no differences between QSOs"
 msgstr ""
+"No se seleccionaron campos para combinar o no hay diferencias entre los QSOs"
 
 #: application/models/Logbookadvanced_model.php:2511
 msgid "QSOs merged successfully"
-msgstr ""
+msgstr "QSOs combinados con éxito"
 
 #: application/models/Note.php:7
 msgid "Contacts"
@@ -4960,13 +4974,16 @@ msgstr ""
 
 #: application/views/adif/import.php:169
 msgid "Ignore grid check on import"
-msgstr ""
+msgstr "Ignorar verificación de cuadrícula al importar"
 
 #: application/views/adif/import.php:171
 msgid ""
 "If selected, Wavelog will try to import QSOs even if the MY_GRIDSQUARE field "
 "in ADIF records does not match the locator of the chosen station-location."
 msgstr ""
+"Si se selecciona, Wavelog intentará importar QSO incluso si el campo "
+"MY_GRIDSQUARE en los registros ADIF no coincide con el locator de la "
+"ubicación de estación elegida."
 
 #: application/views/adif/import.php:181
 msgid ""
@@ -5304,15 +5321,15 @@ msgstr "Revisa %s para obtener pistas sobre errores en archivos ADIF."
 
 #: application/views/adif/import_success.php:61
 msgid "Critical Errors - Wrong Call/Location"
-msgstr ""
+msgstr "Errores críticos - Llamada/Ubicación incorrecta"
 
 #: application/views/adif/import_success.php:70
 msgid "Validation Errors - Invalid Data"
-msgstr ""
+msgstr "Errores de validación - Datos no válidos"
 
 #: application/views/adif/import_success.php:79
 msgid "Duplicate QSOs"
-msgstr ""
+msgstr "Contactos duplicados"
 
 #: application/views/adif/import_success.php:87
 msgid "You might have ADIF errors. Please check the following information:"
@@ -11653,7 +11670,7 @@ msgstr "Turco"
 
 #: application/views/debug/index.php:877
 msgid "Ukrainian"
-msgstr ""
+msgstr "Ucraniano"
 
 #: application/views/distancerecords/index.php:4
 msgid "This page lists distance records per satellite based on gridsquares."
