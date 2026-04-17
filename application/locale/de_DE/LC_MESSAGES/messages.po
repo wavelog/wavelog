@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-04-13 11:17+0000\n"
-"PO-Revision-Date: 2026-04-13 11:42+0000\n"
+"PO-Revision-Date: 2026-04-17 06:03+0000\n"
 "Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
@@ -9556,6 +9556,13 @@ msgid ""
 "                    There may be users not listed who have permissions for "
 "this club/special callsign."
 msgstr ""
+"Dieses Club-/Spezialrufzeichen wird mittels eines Single-Sign-On / Identity "
+"Anbieters verwaltet. \n"
+"                    Rechte können hier erweitert werden; der Zugriff könnte "
+"aber durch den Indentity Anbieter automatisch zurückgezogen oder gewährt "
+"werden, wenn Benutzer sich anmelden.\n"
+"                    Es könnte Benutzer geben, die nicht gelistet sind, aber "
+"dennoch Zugriffsrechte für dieses Club-/Spezialrufzeichen haben."
 
 #: application/views/club/permissions.php:19
 msgid ""
@@ -9563,6 +9570,9 @@ msgid ""
 "provider group, then add the user to the table below with increased "
 "permissions."
 msgstr ""
+"Um Zugriffsrechte über Clubmitglied zu gewähren: Füge den Benutzer zur "
+"Gruppe des Identity-Anbieters hinzu und ergänze den Benutzer dann in der "
+"untenstehenden Tabelle mit erweiterten Rechten."
 
 #: application/views/club/permissions.php:22
 msgid ""
@@ -20207,25 +20217,27 @@ msgstr "CQz geojson"
 
 #: application/views/user/edit.php:837
 msgid "QSL delivery methods offered via OQRS"
-msgstr ""
+msgstr "Via OQRS angebotene QSL-Versandwege"
 
 #: application/views/user/edit.php:839
 msgid "Bureau and Direct"
-msgstr ""
+msgstr "Büro und direkt"
 
 #: application/views/user/edit.php:840
 msgid "Bureau only"
-msgstr ""
+msgstr "Nur Büro"
 
 #: application/views/user/edit.php:841
 msgid "Direct only"
-msgstr ""
+msgstr "Nur direkt"
 
 #: application/views/user/edit.php:843
 msgid ""
 "Restrict which QSL delivery methods requesters can choose on your public "
 "OQRS page."
 msgstr ""
+"Beschränkung, welche QSL-Versandwege die QSO-Partner auf der öffentlichen "
+"OQRS-Seite auswählen können."
 
 #~ msgid ""
 #~ "The Timeplotter is used to analyze your logbook and find out at what "
