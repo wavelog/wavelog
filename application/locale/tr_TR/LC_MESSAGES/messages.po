@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-04-16 18:32+0000\n"
+"POT-Creation-Date: 2026-04-17 08:17+0000\n"
 "PO-Revision-Date: 2026-01-05 10:37+0000\n"
 "Last-Translator: Halil AYYILDIZ <ta2lghalil@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1270,59 +1270,59 @@ msgstr "QSL Kart Etiketleri"
 msgid "Create Label Type"
 msgstr "Etiket Türü Oluştur"
 
-#: application/controllers/Labels.php:78 application/controllers/Labels.php:423
+#: application/controllers/Labels.php:78 application/controllers/Labels.php:426
 #: application/views/labels/create.php:22 application/views/labels/edit.php:22
 msgid "Label Name"
 msgstr "Etiket adı"
 
-#: application/controllers/Labels.php:79 application/controllers/Labels.php:424
+#: application/controllers/Labels.php:79 application/controllers/Labels.php:427
 #: application/views/labels/create.php:28 application/views/labels/edit.php:28
 #: application/views/labels/index.php:77
 msgid "Paper Type"
 msgstr "Kağıt Tipi"
 
-#: application/controllers/Labels.php:80 application/controllers/Labels.php:425
+#: application/controllers/Labels.php:80 application/controllers/Labels.php:428
 #: application/views/labels/index.php:43 application/views/labels/index.php:78
 msgid "Measurement"
 msgstr "Ölçüm"
 
-#: application/controllers/Labels.php:81 application/controllers/Labels.php:426
+#: application/controllers/Labels.php:81 application/controllers/Labels.php:429
 msgid "Top Margin"
 msgstr "Üst boşluk"
 
-#: application/controllers/Labels.php:82 application/controllers/Labels.php:427
+#: application/controllers/Labels.php:82 application/controllers/Labels.php:430
 msgid "Left Margin"
 msgstr "Sol Kenar Boşluğu"
 
-#: application/controllers/Labels.php:83 application/controllers/Labels.php:428
+#: application/controllers/Labels.php:83 application/controllers/Labels.php:431
 msgid "QSLs Horizontally"
 msgstr "QSL'ler Yatay Olarak"
 
-#: application/controllers/Labels.php:84 application/controllers/Labels.php:429
+#: application/controllers/Labels.php:84 application/controllers/Labels.php:432
 msgid "QSLs Vertically"
 msgstr "QSL'ler Dikey Olarak"
 
-#: application/controllers/Labels.php:85 application/controllers/Labels.php:430
+#: application/controllers/Labels.php:85 application/controllers/Labels.php:433
 msgid "Horizontal Space"
 msgstr "Yatay Boşluk"
 
-#: application/controllers/Labels.php:86 application/controllers/Labels.php:431
+#: application/controllers/Labels.php:86 application/controllers/Labels.php:434
 msgid "Vertical Space"
 msgstr "Dikey Boşluk"
 
-#: application/controllers/Labels.php:87 application/controllers/Labels.php:432
+#: application/controllers/Labels.php:87 application/controllers/Labels.php:435
 msgid "Label width"
 msgstr "Etiket genişliği"
 
-#: application/controllers/Labels.php:88 application/controllers/Labels.php:433
+#: application/controllers/Labels.php:88 application/controllers/Labels.php:436
 msgid "Label height"
 msgstr "Etiket yüksekliği"
 
-#: application/controllers/Labels.php:89 application/controllers/Labels.php:434
+#: application/controllers/Labels.php:89 application/controllers/Labels.php:437
 msgid "Size of Font"
 msgstr "Yazı Tipi Boyutu"
 
-#: application/controllers/Labels.php:90 application/controllers/Labels.php:435
+#: application/controllers/Labels.php:90 application/controllers/Labels.php:438
 msgid "Number of QSOs on label"
 msgstr "Etiketteki QSO sayısı"
 
@@ -1331,40 +1331,40 @@ msgid "Create Paper Type"
 msgstr "Kağıt Tipi Oluştur"
 
 #: application/controllers/Labels.php:119
-#: application/controllers/Labels.php:482
+#: application/controllers/Labels.php:485
 msgid "Paper Name"
 msgstr "Kağıt Adı"
 
 #: application/controllers/Labels.php:120
-#: application/controllers/Labels.php:483
+#: application/controllers/Labels.php:486
 msgid "Paper Width"
 msgstr "Kağıt Adı"
 
 #: application/controllers/Labels.php:121
-#: application/controllers/Labels.php:484
+#: application/controllers/Labels.php:487
 msgid "Paper Height"
 msgstr "Kağıt Yüksekliği"
 
 #: application/controllers/Labels.php:132
-#: application/controllers/Labels.php:492
+#: application/controllers/Labels.php:495
 msgid ""
 "Your paper could not be saved. Remember that it can't have the same name as "
 "existing paper types."
 msgstr ""
 "Belge kaydedilemedi. Yeni belgenin adı, mevcut belge türleriyle aynı olamaz."
 
-#: application/controllers/Labels.php:210
-#: application/controllers/Labels.php:213
+#: application/controllers/Labels.php:212
+#: application/controllers/Labels.php:215
 msgid "You need to assign a paperType to the label before printing"
 msgstr "Etiketi yazdırmadan önce bir kağıt türü seçmeniz gerekiyor"
 
-#: application/controllers/Labels.php:220
-#: application/controllers/Labels.php:223
+#: application/controllers/Labels.php:222
+#: application/controllers/Labels.php:225
 msgid "You need to create a label and set it to be used for print."
 msgstr "Yazdırmak için kullanılacak bir etiket oluşturmalısınız."
 
-#: application/controllers/Labels.php:230
-#: application/controllers/Labels.php:233
+#: application/controllers/Labels.php:232
+#: application/controllers/Labels.php:235
 msgid ""
 "Something went wrong! The label could not be generated. Check label size and "
 "font size."
@@ -1372,31 +1372,31 @@ msgstr ""
 "Bir şeyler ters gitti! Etiket oluşturulamadı. Etiket boyutunu ve yazı tipi "
 "boyutunu kontrol et."
 
-#: application/controllers/Labels.php:256
+#: application/controllers/Labels.php:258
 msgid "0 QSOs found for print!"
 msgstr "Yazdırmak için QSO bulunamadı!"
 
-#: application/controllers/Labels.php:412
+#: application/controllers/Labels.php:415
 msgid "Edit Label"
 msgstr "Etiketi Düzenle"
 
-#: application/controllers/Labels.php:441
+#: application/controllers/Labels.php:444
 msgid "Label was saved."
 msgstr "Etiket kaydedildi."
 
-#: application/controllers/Labels.php:449
+#: application/controllers/Labels.php:452
 msgid "Label was deleted."
 msgstr "Etiket silindi."
 
-#: application/controllers/Labels.php:471
+#: application/controllers/Labels.php:474
 msgid "Edit Paper"
 msgstr "Kağıt tipini düzenle"
 
-#: application/controllers/Labels.php:496
+#: application/controllers/Labels.php:499
 msgid "Paper was saved."
 msgstr "Kağıt tipi kaydedildi."
 
-#: application/controllers/Labels.php:509
+#: application/controllers/Labels.php:512
 msgid "Paper was deleted."
 msgstr "Kağıt tipi silindi."
 
@@ -13160,7 +13160,7 @@ msgstr ""
 "seçin. Örneğin; Etiket stilini yansıtan bir isim."
 
 #: application/views/labels/index.php:2
-#: application/views/logbookadvanced/startatform.php:92
+#: application/views/logbookadvanced/startatform.php:104
 msgid "Mark QSL as printed"
 msgstr "QSL'yi yazdırıldı olarak işaretle"
 
@@ -13240,34 +13240,39 @@ msgstr ""
 
 #: application/views/labels/startatform.php:33
 #: application/views/logbookadvanced/startatform.php:32
-msgid "Include Grid?"
-msgstr "Grid Dahil Edilsin mi?"
+msgid "Include OP-Call? (if filled)"
+msgstr ""
 
 #: application/views/labels/startatform.php:45
 #: application/views/logbookadvanced/startatform.php:44
+msgid "Include Grid?"
+msgstr "Grid Dahil Edilsin mi?"
+
+#: application/views/labels/startatform.php:57
+#: application/views/logbookadvanced/startatform.php:56
 msgid ""
 "Include reference? (SIG, SOTA, POTA, IOTA, WWFF; If available in location)"
 msgstr "Referans dahil edilsin mi? (SIG, SOTA, POTA, IOTA, WWFF)"
 
-#: application/views/labels/startatform.php:57
+#: application/views/labels/startatform.php:69
 msgid "Include Via (if filled)?"
 msgstr "Aracı dahil edilsin mi? (doldurulmuşsa)"
 
-#: application/views/labels/startatform.php:69
+#: application/views/labels/startatform.php:81
 msgid "Include QSLMSG (if filled)?"
 msgstr "QSL Mesajı dahil edilsin mi? (doldurulmuşsa)"
 
-#: application/views/labels/startatform.php:81
+#: application/views/labels/startatform.php:93
 msgid "Include TNX message?"
 msgstr "Teşekkür mesajı eklensin mi?"
 
-#: application/views/labels/startatform.php:94
-#: application/views/logbookadvanced/startatform.php:105
+#: application/views/labels/startatform.php:106
+#: application/views/logbookadvanced/startatform.php:117
 msgid "Start printing at?"
 msgstr "Etiketin kağıttaki konumu"
 
-#: application/views/labels/startatform.php:100
-#: application/views/logbookadvanced/startatform.php:111
+#: application/views/labels/startatform.php:112
+#: application/views/logbookadvanced/startatform.php:123
 msgid "Enter the starting position for label printing"
 msgstr ""
 
@@ -14744,15 +14749,15 @@ msgstr "Gridsquare güncellemesinin sonuçları:"
 msgid "The number of QSOs updated for gridsquare is"
 msgstr "Gridsquare için güncellenen QSO sayısı şöyledir"
 
-#: application/views/logbookadvanced/startatform.php:56
+#: application/views/logbookadvanced/startatform.php:68
 msgid "Include Via"
 msgstr "QSL Yöneticisi Dahil Edilsin mi?"
 
-#: application/views/logbookadvanced/startatform.php:68
+#: application/views/logbookadvanced/startatform.php:80
 msgid "Include QSLMSG"
 msgstr "QSL Mesajını dahil et"
 
-#: application/views/logbookadvanced/startatform.php:80
+#: application/views/logbookadvanced/startatform.php:92
 msgid "Include TNX message"
 msgstr "Teşekkür mesajını dahil et"
 
