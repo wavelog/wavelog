@@ -27,6 +27,18 @@
             </div>
 
             <div class="option-item mb-3">
+                <i class="fas fa-user text-secondary mt-1"></i>
+                <div>
+                    <label for="opcall" class="form-label fw-bold mb-0">
+                        <?= __("Include OP-Call? (if filled)"); ?>
+                    </label>
+                </div>
+                <div class="form-check form-switch switch-container">
+                    <input class="form-check-input" type="checkbox" name="opcall" id="opcall" style="width: 3em; height: 1.5em;">
+                </div>
+            </div>
+
+            <div class="option-item mb-3">
                 <i class="fas fa-map-marker-alt text-success mt-1"></i>
                 <div>
                     <label for="grid" class="form-label fw-bold mb-0">
