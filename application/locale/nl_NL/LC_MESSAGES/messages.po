@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-04-17 08:17+0000\n"
-"PO-Revision-Date: 2026-04-16 09:06+0000\n"
-"Last-Translator: PE1PQX <Andre@pe1pqx.eu>\n"
+"PO-Revision-Date: 2026-04-19 19:15+0000\n"
+"Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/nl/>\n"
 "Language: nl_NL\n"
@@ -1212,7 +1212,7 @@ msgstr "SSO-authenticatie is uitgeschakeld. Controleer je configuratie."
 
 #: application/controllers/Header_auth.php:89
 msgid "Sorry. This instance is currently in maintenance mode."
-msgstr ""
+msgstr "Sorry. Dit logboek is momenteel in onderhoudsmodus."
 
 #: application/controllers/Header_auth.php:96
 msgid "User not found."
@@ -9467,6 +9467,13 @@ msgid ""
 "                    There may be users not listed who have permissions for "
 "this club/special callsign."
 msgstr ""
+"Deze club/speciale roepnaam wordt beheerd door een single sign on/identity "
+"provider. \n"
+"                    Rechten kunnen hier worden verhoogd, maar toegang kan "
+"automatisch worden verwijderd of verleend door de identity provider wanneer "
+"gebruikers inloggen. \n"
+"                    Er kunnen gebruikers zijn die niet vermeld staan maar "
+"toch rechten hebben voor deze club/speciale roepnaam."
 
 #: application/views/club/permissions.php:19
 msgid ""
@@ -9474,6 +9481,9 @@ msgid ""
 "provider group, then add the user to the table below with increased "
 "permissions."
 msgstr ""
+"Om boven het ledentoegangsniveau rechten te verlenen: voeg de gebruiker toe "
+"aan de identity provider-groep en voeg de gebruiker vervolgens toe aan de "
+"onderstaande tabel met verhoogde rechten."
 
 #: application/views/club/permissions.php:22
 msgid ""
@@ -13298,7 +13308,7 @@ msgstr "Voeg mijn roepnaam toe?"
 #: application/views/labels/startatform.php:33
 #: application/views/logbookadvanced/startatform.php:32
 msgid "Include OP-Call? (if filled)"
-msgstr ""
+msgstr "OP-Call meenemen? (indien ingevuld)"
 
 #: application/views/labels/startatform.php:45
 #: application/views/logbookadvanced/startatform.php:44
@@ -19092,25 +19102,27 @@ msgstr ""
 
 #: application/views/user/edit.php:837
 msgid "QSL delivery methods offered via OQRS"
-msgstr ""
+msgstr "QSL bezorgmethoden aangeboden via OQRS"
 
 #: application/views/user/edit.php:839
 msgid "Bureau and Direct"
-msgstr ""
+msgstr "Bureau en Direct"
 
 #: application/views/user/edit.php:840
 msgid "Bureau only"
-msgstr ""
+msgstr "Alleen bureau"
 
 #: application/views/user/edit.php:841
 msgid "Direct only"
-msgstr ""
+msgstr "Alleen Direct"
 
 #: application/views/user/edit.php:843
 msgid ""
 "Restrict which QSL delivery methods requesters can choose on your public "
 "OQRS page."
 msgstr ""
+"Beperk welke QSL-bezorgmethoden aanvragers kunnen kiezen op uw openbare OQRS-"
+"pagina."
 
 #: application/views/user/edit.php:859
 msgid "Default Values"
