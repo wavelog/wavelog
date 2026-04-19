@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-04-02 10:47+0000\n"
+"POT-Creation-Date: 2026-04-17 08:17+0000\n"
 "PO-Revision-Date: 2026-03-26 03:04+0000\n"
 "Last-Translator: \"Juuso W.\" <oh1jw@tuta.io>\n"
 "Language-Team: Finnish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -35,9 +35,9 @@ msgstr ""
 #: application/controllers/Cabrillo.php:139
 #: application/controllers/Callstats.php:13
 #: application/controllers/Calltester.php:13
-#: application/controllers/Club.php:49 application/controllers/Club.php:75
-#: application/controllers/Club.php:123 application/controllers/Club.php:152
-#: application/controllers/Club.php:179 application/controllers/Clublog.php:81
+#: application/controllers/Club.php:61 application/controllers/Club.php:88
+#: application/controllers/Club.php:136 application/controllers/Club.php:165
+#: application/controllers/Club.php:192 application/controllers/Clublog.php:81
 #: application/controllers/Clublog.php:140
 #: application/controllers/Components.php:13
 #: application/controllers/Contestcalendar.php:15
@@ -76,7 +76,7 @@ msgstr ""
 #: application/controllers/Mode.php:15 application/controllers/Notes.php:10
 #: application/controllers/Operator.php:13
 #: application/controllers/Options.php:14 application/controllers/Oqrs.php:15
-#: application/controllers/Oqrs.php:165 application/controllers/Qrbcalc.php:13
+#: application/controllers/Oqrs.php:174 application/controllers/Qrbcalc.php:13
 #: application/controllers/Qrz.php:199 application/controllers/Qrz.php:286
 #: application/controllers/Qsl.php:12 application/controllers/Qsl.php:13
 #: application/controllers/Qsl.php:49 application/controllers/Qsl.php:57
@@ -117,11 +117,11 @@ msgstr ""
 #: application/controllers/Update.php:22 application/controllers/User.php:16
 #: application/controllers/User.php:63 application/controllers/User.php:111
 #: application/controllers/User.php:129 application/controllers/User.php:153
-#: application/controllers/User.php:410 application/controllers/User.php:411
-#: application/controllers/User.php:1114 application/controllers/User.php:1133
-#: application/controllers/User.php:1385 application/controllers/User.php:1525
-#: application/controllers/User.php:1750 application/controllers/User.php:1766
-#: application/controllers/User.php:1792
+#: application/controllers/User.php:412 application/controllers/User.php:413
+#: application/controllers/User.php:1127 application/controllers/User.php:1146
+#: application/controllers/User.php:1398 application/controllers/User.php:1538
+#: application/controllers/User.php:1763 application/controllers/User.php:1779
+#: application/controllers/User.php:1805
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:11
@@ -467,7 +467,7 @@ msgstr " ja "
 
 #: application/controllers/Awards.php:603
 #: application/controllers/Logbook.php:1463
-#: application/views/awards/index.php:8 application/views/bandmap/list.php:327
+#: application/views/awards/index.php:8 application/views/bandmap/list.php:331
 #: application/views/bands/index.php:57 application/views/dashboard/index.php:9
 #: application/views/interface_assets/header.php:218
 #: application/views/logbookadvanced/edit.php:33
@@ -495,7 +495,7 @@ msgstr "SOTA"
 
 #: application/controllers/Awards.php:621
 #: application/controllers/Logbook.php:1464
-#: application/views/bandmap/list.php:329 application/views/bands/index.php:64
+#: application/views/bandmap/list.php:333 application/views/bands/index.php:64
 #: application/views/dashboard/index.php:10
 #: application/views/interface_assets/header.php:206
 #: application/views/logbookadvanced/edit.php:35
@@ -517,7 +517,7 @@ msgstr "WWFF"
 
 #: application/controllers/Awards.php:639
 #: application/controllers/Logbook.php:1465
-#: application/views/adif/import.php:60 application/views/bandmap/list.php:328
+#: application/views/adif/import.php:60 application/views/bandmap/list.php:332
 #: application/views/bands/index.php:54
 #: application/views/dashboard/index.php:11
 #: application/views/interface_assets/header.php:222
@@ -744,54 +744,54 @@ msgstr "Kerhon jäsenen ADIF"
 msgid "Club Member"
 msgstr "Kerhon jäsen"
 
-#: application/controllers/Club.php:45 application/models/Club_model.php:107
+#: application/controllers/Club.php:57 application/models/Club_model.php:107
 #: application/models/Club_model.php:181 application/models/Club_model.php:223
 msgid "Invalid User ID!"
 msgstr "Virheellinen käyttäjätunnus (ID)!"
 
-#: application/controllers/Club.php:53
+#: application/controllers/Club.php:65
 msgid "This user is not a club station."
 msgstr "Tämä käyttäjä ei ole kerhoasema."
 
-#: application/controllers/Club.php:57
+#: application/controllers/Club.php:69
 #: application/views/club/permissions.php:10
 #: application/views/user/index.php:215
 msgid "Club Permissions"
 msgstr "Kerhon oikeudet"
 
-#: application/controllers/Club.php:119 application/controllers/Club.php:148
-#: application/controllers/Club.php:175 application/models/Club_model.php:22
+#: application/controllers/Club.php:132 application/controllers/Club.php:161
+#: application/controllers/Club.php:188 application/models/Club_model.php:22
 #: application/models/Club_model.php:102 application/models/Club_model.php:176
 #: application/models/Club_model.php:218
 msgid "Invalid Club ID!"
 msgstr "Virheellinen kerhon käyttäjätunnus (ID)!"
 
-#: application/controllers/Club.php:131
+#: application/controllers/Club.php:144
 msgid "User could not be notified. Please check your email settings."
 msgstr ""
 "Käyttäjälle ei voitu lähettää ilmoitusta. Tarkista sähköpostiasetuksesi."
 
-#: application/controllers/Club.php:135
+#: application/controllers/Club.php:148
 msgid "Club member permissions have been updated."
 msgstr "Kerhon jäsenen oikeudet on päivitetty."
 
-#: application/controllers/Club.php:157
+#: application/controllers/Club.php:170
 msgid "User removed from club."
 msgstr "Käyttäjä on poistettu kerhosta."
 
-#: application/controllers/Club.php:159
+#: application/controllers/Club.php:172
 msgid "User could not be removed from club."
 msgstr "Käyttäjää ei voitu poistaa kerhosta."
 
-#: application/controllers/Club.php:202
+#: application/controllers/Club.php:215
 msgid "Invalid message type."
 msgstr "Virheellinen viestityyppi."
 
-#: application/controllers/Club.php:218
+#: application/controllers/Club.php:231
 msgid "Email can't be initialized. Check the email settings."
 msgstr "Sähköpostia ei voida lähettää. Tarkista sähköpostiasetuksesi."
 
-#: application/controllers/Club.php:225 application/views/api/index.php:68
+#: application/controllers/Club.php:238 application/views/api/index.php:68
 #: application/views/satellite/index.php:94
 #: application/views/satellite/satinfo.php:51
 msgid "Unknown"
@@ -833,7 +833,7 @@ msgstr "Yksikään käyttäjä ei ole määrittänyt Clublogia."
 #: application/views/station_profile/edit.php:350
 #: application/views/timeline/index.php:68
 #: application/views/update/index.php:16 application/views/user/edit.php:678
-#: application/views/user/edit.php:913
+#: application/views/user/edit.php:923
 #: application/views/view_log/partial/log_ajax.php:222
 #: application/views/view_log/qso.php:583
 #: application/views/view_log/qso.php:588
@@ -970,7 +970,7 @@ msgstr "DCL avaimen tuonti"
 #: application/views/logbookadvanced/useroptions.php:148
 #: application/views/qso/edit_ajax.php:435
 #: application/views/search/search_result_ajax.php:127
-#: application/views/user/edit.php:679 application/views/user/edit.php:921
+#: application/views/user/edit.php:679 application/views/user/edit.php:931
 #: application/views/view_log/partial/log_ajax.php:225
 #: application/views/view_log/qso.php:593
 #: application/views/view_log/qso.php:598
@@ -1205,18 +1205,22 @@ msgid "SSO Authentication is disabled. Check your configuration."
 msgstr "SSO-autentikointi on pois käytöstä. Tarkista asetuksesi."
 
 #: application/controllers/Header_auth.php:89
+msgid "Sorry. This instance is currently in maintenance mode."
+msgstr ""
+
+#: application/controllers/Header_auth.php:96
 msgid "User not found."
 msgstr "Käyttäjää ei löydy."
 
-#: application/controllers/Header_auth.php:104
-#: application/controllers/User.php:1329
+#: application/controllers/Header_auth.php:111
+#: application/controllers/User.php:1342
 msgid ""
 "You can't login to a clubstation directly. Use your personal account instead."
 msgstr ""
 "Et voi kirjautua suoraan klubiasemalle. Käytä sen sijaan henkilökohtaista "
 "tiliäsi."
 
-#: application/controllers/Header_auth.php:109
+#: application/controllers/Header_auth.php:116
 msgid ""
 "Sorry. This instance is currently in maintenance mode. Only administrators "
 "are currently allowed to log in."
@@ -1224,12 +1228,12 @@ msgstr ""
 "Pahoittelut. Tämä instanssi on tällä hetkellä ylläpitotilassa. Vain "
 "järjestelmänvalvojat voivat tällä hetkellä kirjautua sisään."
 
-#: application/controllers/Header_auth.php:341
-#: application/controllers/Header_auth.php:345
+#: application/controllers/Header_auth.php:352
+#: application/controllers/Header_auth.php:356
 msgid "Something went terribly wrong. Check the error log."
 msgstr "Jokin meni pahasti pieleen. Tarkista virheloki."
 
-#: application/controllers/Header_auth.php:361
+#: application/controllers/Header_auth.php:432
 msgid "SSO Config Error. Check error log."
 msgstr "SSO-konfikuraation virhe. Tarkista virheloki."
 
@@ -1262,59 +1266,59 @@ msgstr "QSL-korttitarrat"
 msgid "Create Label Type"
 msgstr "Luo tarratyyppi"
 
-#: application/controllers/Labels.php:78 application/controllers/Labels.php:423
+#: application/controllers/Labels.php:78 application/controllers/Labels.php:426
 #: application/views/labels/create.php:22 application/views/labels/edit.php:22
 msgid "Label Name"
 msgstr "Tarran nimi"
 
-#: application/controllers/Labels.php:79 application/controllers/Labels.php:424
+#: application/controllers/Labels.php:79 application/controllers/Labels.php:427
 #: application/views/labels/create.php:28 application/views/labels/edit.php:28
 #: application/views/labels/index.php:77
 msgid "Paper Type"
 msgstr "Paperityyppi"
 
-#: application/controllers/Labels.php:80 application/controllers/Labels.php:425
+#: application/controllers/Labels.php:80 application/controllers/Labels.php:428
 #: application/views/labels/index.php:43 application/views/labels/index.php:78
 msgid "Measurement"
 msgstr "Mittaus"
 
-#: application/controllers/Labels.php:81 application/controllers/Labels.php:426
+#: application/controllers/Labels.php:81 application/controllers/Labels.php:429
 msgid "Top Margin"
 msgstr "Yläreuna"
 
-#: application/controllers/Labels.php:82 application/controllers/Labels.php:427
+#: application/controllers/Labels.php:82 application/controllers/Labels.php:430
 msgid "Left Margin"
 msgstr "Vasen reuna"
 
-#: application/controllers/Labels.php:83 application/controllers/Labels.php:428
+#: application/controllers/Labels.php:83 application/controllers/Labels.php:431
 msgid "QSLs Horizontally"
 msgstr "QSL:t vaakatasossa"
 
-#: application/controllers/Labels.php:84 application/controllers/Labels.php:429
+#: application/controllers/Labels.php:84 application/controllers/Labels.php:432
 msgid "QSLs Vertically"
 msgstr "QSL:t pystysuunnassa"
 
-#: application/controllers/Labels.php:85 application/controllers/Labels.php:430
+#: application/controllers/Labels.php:85 application/controllers/Labels.php:433
 msgid "Horizontal Space"
 msgstr "Vaakasuora tila"
 
-#: application/controllers/Labels.php:86 application/controllers/Labels.php:431
+#: application/controllers/Labels.php:86 application/controllers/Labels.php:434
 msgid "Vertical Space"
 msgstr "Pystysuora tila"
 
-#: application/controllers/Labels.php:87 application/controllers/Labels.php:432
+#: application/controllers/Labels.php:87 application/controllers/Labels.php:435
 msgid "Label width"
 msgstr "Tarran leveys"
 
-#: application/controllers/Labels.php:88 application/controllers/Labels.php:433
+#: application/controllers/Labels.php:88 application/controllers/Labels.php:436
 msgid "Label height"
 msgstr "Tarran korkeus"
 
-#: application/controllers/Labels.php:89 application/controllers/Labels.php:434
+#: application/controllers/Labels.php:89 application/controllers/Labels.php:437
 msgid "Size of Font"
 msgstr "Fontin koko"
 
-#: application/controllers/Labels.php:90 application/controllers/Labels.php:435
+#: application/controllers/Labels.php:90 application/controllers/Labels.php:438
 msgid "Number of QSOs on label"
 msgstr "QSOjen määrä tarrassa"
 
@@ -1323,22 +1327,22 @@ msgid "Create Paper Type"
 msgstr "Luo paperityyppi"
 
 #: application/controllers/Labels.php:119
-#: application/controllers/Labels.php:482
+#: application/controllers/Labels.php:485
 msgid "Paper Name"
 msgstr "Paperityypin nimi"
 
 #: application/controllers/Labels.php:120
-#: application/controllers/Labels.php:483
+#: application/controllers/Labels.php:486
 msgid "Paper Width"
 msgstr "Paperin leveys"
 
 #: application/controllers/Labels.php:121
-#: application/controllers/Labels.php:484
+#: application/controllers/Labels.php:487
 msgid "Paper Height"
 msgstr "Paperin korkeus"
 
 #: application/controllers/Labels.php:132
-#: application/controllers/Labels.php:492
+#: application/controllers/Labels.php:495
 msgid ""
 "Your paper could not be saved. Remember that it can't have the same name as "
 "existing paper types."
@@ -1346,18 +1350,18 @@ msgstr ""
 "Paperityyppiä ei voitu tallentaa. Muista, että sillä ei voi olla samaa nimeä "
 "kuin olemassa olevillapaperityypeillä."
 
-#: application/controllers/Labels.php:210
-#: application/controllers/Labels.php:213
+#: application/controllers/Labels.php:212
+#: application/controllers/Labels.php:215
 msgid "You need to assign a paperType to the label before printing"
 msgstr "Sinun on määritettävä tarralle paperityyppi ennen tulostusta."
 
-#: application/controllers/Labels.php:220
-#: application/controllers/Labels.php:223
+#: application/controllers/Labels.php:222
+#: application/controllers/Labels.php:225
 msgid "You need to create a label and set it to be used for print."
 msgstr "Sinun täytyy luoda tarratyyppi ja asettaa se tulostettavaksi."
 
-#: application/controllers/Labels.php:230
-#: application/controllers/Labels.php:233
+#: application/controllers/Labels.php:232
+#: application/controllers/Labels.php:235
 msgid ""
 "Something went wrong! The label could not be generated. Check label size and "
 "font size."
@@ -1365,31 +1369,31 @@ msgstr ""
 "Jokin meni pieleen! Tarratyyppiä ei voitu luoda. Tarkista tarran ja fontin "
 "koko."
 
-#: application/controllers/Labels.php:256
+#: application/controllers/Labels.php:258
 msgid "0 QSOs found for print!"
 msgstr "0 QSOa löytyi tulostettavaksi!"
 
-#: application/controllers/Labels.php:412
+#: application/controllers/Labels.php:415
 msgid "Edit Label"
 msgstr "Muokkaa tarraa"
 
-#: application/controllers/Labels.php:441
+#: application/controllers/Labels.php:444
 msgid "Label was saved."
 msgstr "Tarratyyppi tallennettiin."
 
-#: application/controllers/Labels.php:449
+#: application/controllers/Labels.php:452
 msgid "Label was deleted."
 msgstr "Tarratyyppi poistettiin."
 
-#: application/controllers/Labels.php:471
+#: application/controllers/Labels.php:474
 msgid "Edit Paper"
 msgstr "Muokkaa paperia"
 
-#: application/controllers/Labels.php:496
+#: application/controllers/Labels.php:499
 msgid "Paper was saved."
 msgstr "Paperi tallennettiin."
 
-#: application/controllers/Labels.php:509
+#: application/controllers/Labels.php:512
 msgid "Paper was deleted."
 msgstr "Paperi poistettiin."
 
@@ -1440,7 +1444,7 @@ msgstr "Lokikirja"
 #: application/views/qslprint/qsolist.php:18
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:115
 #: application/views/timeline/index.php:56 application/views/user/edit.php:674
-#: application/views/user/edit.php:879
+#: application/views/user/edit.php:889
 msgid "QSL"
 msgstr "QSL"
 
@@ -1481,7 +1485,7 @@ msgstr "QSL"
 #: application/views/search/search_result_ajax.php:301
 #: application/views/search/search_result_ajax.php:316
 #: application/views/timeline/index.php:60 application/views/user/edit.php:675
-#: application/views/user/edit.php:889 application/views/view_log/qso.php:549
+#: application/views/user/edit.php:899 application/views/view_log/qso.php:549
 #: application/views/view_log/qso.php:554
 msgid "LoTW"
 msgstr "LoTW"
@@ -1519,7 +1523,7 @@ msgstr "LoTW"
 #: application/views/station_profile/create.php:276
 #: application/views/station_profile/edit.php:301
 #: application/views/timeline/index.php:64 application/views/user/edit.php:676
-#: application/views/user/edit.php:897 application/views/user/edit.php:971
+#: application/views/user/edit.php:907 application/views/user/edit.php:981
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1556,10 +1560,10 @@ msgstr ""
 #: application/views/awards/wpx/index.php:124
 #: application/views/awards/wpx/wpx_details.php:23
 #: application/views/bandmap/list.php:100
-#: application/views/bandmap/list.php:168
-#: application/views/bandmap/list.php:302
-#: application/views/bandmap/list.php:551
-#: application/views/bandmap/list.php:591
+#: application/views/bandmap/list.php:169
+#: application/views/bandmap/list.php:306
+#: application/views/bandmap/list.php:559
+#: application/views/bandmap/list.php:599
 #: application/views/bands/bandedges.php:31
 #: application/views/callstats/index.php:49
 #: application/views/components/hamsat/table.php:30
@@ -1714,7 +1718,7 @@ msgstr "Maa"
 
 #: application/controllers/Logbook.php:1462
 #: application/views/awards/iota/index.php:198
-#: application/views/bandmap/list.php:330 application/views/bands/index.php:52
+#: application/views/bandmap/list.php:334 application/views/bands/index.php:52
 #: application/views/dashboard/index.php:8
 #: application/views/interface_assets/header.php:220
 #: application/views/logbookadvanced/checkresult.php:394
@@ -1883,10 +1887,10 @@ msgstr "Etäisyys"
 #: application/views/awards/wpx/index.php:79
 #: application/views/awards/wpx/wpx_details.php:22
 #: application/views/awards/wwff/index.php:36
-#: application/views/bandmap/list.php:99 application/views/bandmap/list.php:169
-#: application/views/bandmap/list.php:364
-#: application/views/bandmap/list.php:549
-#: application/views/bandmap/list.php:589 application/views/bands/create.php:24
+#: application/views/bandmap/list.php:99 application/views/bandmap/list.php:170
+#: application/views/bandmap/list.php:368
+#: application/views/bandmap/list.php:557
+#: application/views/bandmap/list.php:597 application/views/bands/create.php:24
 #: application/views/bands/edit.php:7 application/views/bands/index.php:47
 #: application/views/callstats/index.php:7
 #: application/views/contesting/index.php:131
@@ -1952,9 +1956,9 @@ msgid "Band"
 msgstr "Bandi"
 
 #: application/controllers/Logbook.php:1470
-#: application/controllers/Radio.php:48 application/views/bandmap/list.php:167
-#: application/views/bandmap/list.php:550
-#: application/views/bandmap/list.php:590
+#: application/controllers/Radio.php:48 application/views/bandmap/list.php:168
+#: application/views/bandmap/list.php:558
+#: application/views/bandmap/list.php:598
 #: application/views/contesting/index.php:148
 #: application/views/dashboard/index.php:16
 #: application/views/logbookadvanced/edit.php:7
@@ -2057,7 +2061,7 @@ msgstr "Nopea haku"
 #: application/views/interface_assets/header.php:522
 #: application/views/lotw/import.php:3 application/views/lotw_views/index.php:9
 #: application/views/lotw_views/upload_cert.php:3
-#: application/views/user/edit.php:943 application/views/visitor/index.php:328
+#: application/views/user/edit.php:953 application/views/visitor/index.php:328
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
@@ -2393,7 +2397,7 @@ msgid "Unknown Public Page."
 msgstr "Tuntematon julkinen sivu."
 
 #: application/controllers/Oqrs.php:54 application/controllers/Oqrs.php:63
-#: application/controllers/Oqrs.php:121 application/controllers/Oqrs.php:133
+#: application/controllers/Oqrs.php:124 application/controllers/Oqrs.php:136
 msgid "Log Search & OQRS"
 msgstr "Lokihaku & OQRS"
 
@@ -2401,16 +2405,16 @@ msgstr "Lokihaku & OQRS"
 msgid "Invalid Station ID"
 msgstr "Virheellinen aseman ID"
 
-#: application/controllers/Oqrs.php:163
+#: application/controllers/Oqrs.php:172
 #: application/views/interface_assets/header.php:512
 msgid "OQRS Requests"
 msgstr "OQRS Pyynnöt"
 
-#: application/controllers/Oqrs.php:361
+#: application/controllers/Oqrs.php:370
 msgid "QSO match deleted successfully."
 msgstr "QSO-osuma poistettu onnistuneesti."
 
-#: application/controllers/Oqrs.php:370
+#: application/controllers/Oqrs.php:379
 msgid "QSO match added successfully."
 msgstr "QSO-valinta lisätty onnistuneesti."
 
@@ -2548,7 +2552,7 @@ msgstr "Aseta oletusradioksi"
 msgid "UNKNOWN"
 msgstr "TUNTEMATON"
 
-#: application/controllers/Radio.php:120 application/views/bandmap/list.php:243
+#: application/controllers/Radio.php:120 application/views/bandmap/list.php:247
 #: application/views/contesting/index.php:162
 #: application/views/qso/index.php:416
 msgid "last updated"
@@ -2557,7 +2561,7 @@ msgstr "viimeksi päivitetty"
 #: application/controllers/Radio.php:130
 #: application/controllers/Stationsetup.php:402
 #: application/views/api/index.php:74 application/views/bands/bandedges.php:32
-#: application/views/club/permissions.php:274
+#: application/views/club/permissions.php:287
 #: application/views/contesting/add.php:59 application/views/cron/index.php:72
 #: application/views/interface_assets/footer.php:682
 #: application/views/interface_assets/footer.php:691
@@ -2576,8 +2580,8 @@ msgstr "Muokkaa"
 #: application/controllers/Radio.php:131
 #: application/controllers/Stationsetup.php:415
 #: application/views/api/index.php:85 application/views/bands/bandedges.php:33
-#: application/views/club/permissions.php:331
-#: application/views/club/permissions.php:353
+#: application/views/club/permissions.php:344
+#: application/views/club/permissions.php:366
 #: application/views/contesting/add.php:62
 #: application/views/interface_assets/footer.php:65
 #: application/views/interface_assets/footer.php:2643
@@ -2704,7 +2708,7 @@ msgstr "tänne"
 msgid "Satellite Timers"
 msgstr "Satelliittiajastimet"
 
-#: application/controllers/Search.php:15 application/views/bandmap/list.php:567
+#: application/controllers/Search.php:15 application/views/bandmap/list.php:575
 #: application/views/continents/index.php:49
 #: application/views/interface_assets/footer.php:42
 #: application/views/interface_assets/header.php:398
@@ -2759,8 +2763,8 @@ msgid "Create Station Location"
 msgstr "Luo aseman sijainti"
 
 #: application/controllers/Station.php:75
-#: application/controllers/Station.php:100 application/controllers/User.php:273
-#: application/controllers/User.php:978 application/controllers/User.php:1151
+#: application/controllers/Station.php:100 application/controllers/User.php:274
+#: application/controllers/User.php:989 application/controllers/User.php:1164
 msgid "Invalid security token"
 msgstr "Virheellinen turvatunniste"
 
@@ -2793,7 +2797,7 @@ msgid "Duplicate Station Location:"
 msgstr "Monista aseman sijainti:"
 
 #: application/controllers/Station.php:234
-#: application/controllers/User.php:1406 application/controllers/User.php:1663
+#: application/controllers/User.php:1419 application/controllers/User.php:1676
 #, php-format
 msgid "Please check value for grid locator (%s)"
 msgstr "Tarkista lokaattori (%s)"
@@ -3163,69 +3167,69 @@ msgid "Invalid Parameter!"
 msgstr "Virheellinen parametri!"
 
 #: application/controllers/User.php:209
-#: application/views/club/permissions.php:178
+#: application/views/club/permissions.php:191
 msgid "Add User"
 msgstr "Lisää käyttäjä"
 
-#: application/controllers/User.php:345
+#: application/controllers/User.php:346
 #, php-format
 msgid "Username %s already in use!"
 msgstr "Käyttäjänimi %s on jo käytössä!"
 
-#: application/controllers/User.php:348
+#: application/controllers/User.php:349
 #, php-format
 msgid "E-mail %s already in use!"
 msgstr "Sähköposti %s on jo käytössä!"
 
-#: application/controllers/User.php:351
+#: application/controllers/User.php:352
 msgid "Invalid Password!"
 msgstr "Virheellinen salasana!"
 
-#: application/controllers/User.php:355
+#: application/controllers/User.php:356
 #, php-format
 msgid "User %s added!"
 msgstr "Käyttäjä %s lisätty!"
 
-#: application/controllers/User.php:359
+#: application/controllers/User.php:360
 msgid "Users"
 msgstr "Käyttäjät"
 
-#: application/controllers/User.php:468
+#: application/controllers/User.php:470
 msgid "Can't be changed. Manage this through your Identity Provider."
 msgstr "Ei voida muuttaa. Hallinnoi tätä identiteetintarjoajasi kautta."
 
-#: application/controllers/User.php:471
-#: application/views/club/permissions.php:279
+#: application/controllers/User.php:473
+#: application/views/club/permissions.php:292
 msgid "Edit User"
 msgstr "Muokkaa käyttäjää"
 
-#: application/controllers/User.php:1047 application/controllers/User.php:1050
+#: application/controllers/User.php:1059 application/controllers/User.php:1062
 #, php-format
 msgid "User %s edited"
 msgstr "Käyttäjä %s muokkasi"
 
-#: application/controllers/User.php:1117
+#: application/controllers/User.php:1130
 msgid "Profile"
 msgstr "Profiili"
 
-#: application/controllers/User.php:1141
-#: application/views/club/permissions.php:336
+#: application/controllers/User.php:1154
+#: application/views/club/permissions.php:349
 msgid "Delete User"
 msgstr "Poista käyttäjä"
 
-#: application/controllers/User.php:1157
+#: application/controllers/User.php:1170
 msgid "User deleted"
 msgstr "Käyttäjä poistettu"
 
-#: application/controllers/User.php:1160
+#: application/controllers/User.php:1173
 msgid "Could not delete user!"
 msgstr "Kkäyttäjää ei voitu poistaa!"
 
-#: application/controllers/User.php:1160
+#: application/controllers/User.php:1173
 msgid "Database error:"
 msgstr "Tietokantavirhe:"
 
-#: application/controllers/User.php:1185
+#: application/controllers/User.php:1198
 msgid ""
 "Congrats! Wavelog was successfully installed. You can now login for the "
 "first time."
@@ -3233,22 +3237,22 @@ msgstr ""
 "Onnittelut! Wavelog asennettiin onnistuneesti. Voit nyt kirjautua sisään "
 "ensimmäistä kertaa."
 
-#: application/controllers/User.php:1224
+#: application/controllers/User.php:1237
 msgid "This is not allowed!"
 msgstr "Tämä ei ole sallittua!"
 
-#: application/controllers/User.php:1261 application/controllers/User.php:1274
+#: application/controllers/User.php:1274 application/controllers/User.php:1287
 msgid "Login failed. Try again."
 msgstr "Kirjautuminen epäonnistui. Yritä uudelleen."
 
-#: application/controllers/User.php:1282
+#: application/controllers/User.php:1295
 #: application/views/interface_assets/header.php:418
 #: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:87
 msgid "Login"
 msgstr "Kirjaudu"
 
-#: application/controllers/User.php:1332
+#: application/controllers/User.php:1345
 msgid ""
 "Your account is locked, due to too many failed login-attempts. Please reset "
 "your password."
@@ -3256,7 +3260,7 @@ msgstr ""
 "Tilisi on lukittu liian monen epäonnistuneen kirjautumisyrityksen vuoksi. "
 "Nollaa salasanasi."
 
-#: application/controllers/User.php:1336
+#: application/controllers/User.php:1349
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
@@ -3266,22 +3270,22 @@ msgstr ""
 "ilmestyy odottamatta tai ilmestyy toistuvasti, ota yhteyttä ylläpitäjään. "
 "Vain ylläpitäjät voivat tällä hetkellä kirjautua sisään."
 
-#: application/controllers/User.php:1339
+#: application/controllers/User.php:1352
 msgid "Incorrect username or password!"
 msgstr "Virheellinen käyttäjänimi tai salasana!"
 
-#: application/controllers/User.php:1364
+#: application/controllers/User.php:1377
 #, php-format
 msgid "User %s logged out."
 msgstr "Käyttäjä %s kirjattu ulos."
 
-#: application/controllers/User.php:1388
+#: application/controllers/User.php:1401
 #: application/views/oqrs/request_grouped.php:16
 #: application/views/user/modals/first_login_wizard.php:26
 msgid "Station Name"
 msgstr "Aseman nimi"
 
-#: application/controllers/User.php:1389 application/views/debug/index.php:769
+#: application/controllers/User.php:1402 application/views/debug/index.php:769
 #: application/views/public_search/result.php:17
 #: application/views/station_profile/create.php:60
 #: application/views/station_profile/edit.php:77
@@ -3291,27 +3295,27 @@ msgstr "Aseman nimi"
 msgid "Station Callsign"
 msgstr "Asema kutsu"
 
-#: application/controllers/User.php:1390
+#: application/controllers/User.php:1403
 #: application/views/station_profile/create.php:82
 #: application/views/station_profile/edit.php:99
 #: application/views/user/modals/first_login_wizard.php:42
 msgid "Station DXCC"
 msgstr "Aseman DXCC"
 
-#: application/controllers/User.php:1391
+#: application/controllers/User.php:1404
 msgid "Station CQ Zone"
 msgstr "Aseman CQ-vyöhyke"
 
-#: application/controllers/User.php:1392
+#: application/controllers/User.php:1405
 msgid "Station ITU Zone"
 msgstr "Aseman ITU-alue"
 
-#: application/controllers/User.php:1393
-#: application/views/user/modals/first_login_wizard.php:91
+#: application/controllers/User.php:1406
+#: application/views/user/modals/first_login_wizard.php:93
 msgid "Station Locator"
 msgstr "Aseman lokaattoriruutu"
 
-#: application/controllers/User.php:1414
+#: application/controllers/User.php:1427
 #, php-format
 msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
@@ -3320,35 +3324,35 @@ msgstr ""
 "Asema luotu onnistuneesti! Tervetuloa Wavelogiin! Viimeistele aseman asennus "
 "napsauttamalla %stästä%s."
 
-#: application/controllers/User.php:1417
+#: application/controllers/User.php:1430
 msgid "Station setup failed! Please set up your station manually."
 msgstr "Aseman luonti epäonnistui! Ole hyvä ja luo asema manuaalisesti."
 
-#: application/controllers/User.php:1434
+#: application/controllers/User.php:1447
 msgid "Password Reset is disabled on the Demo!"
 msgstr "Salasanan palautus on poistettu käytöstä demossa!"
 
-#: application/controllers/User.php:1448
+#: application/controllers/User.php:1461
 msgid "Forgot Password"
 msgstr "Salasana unohtunut"
 
-#: application/controllers/User.php:1499
+#: application/controllers/User.php:1512
 #: application/views/user/modals/more_actions_modal.php:88
 msgid "Email settings are incorrect."
 msgstr "Sähköpostiasetukset ovat virheelliset."
 
-#: application/controllers/User.php:1503 application/controllers/User.php:1508
+#: application/controllers/User.php:1516 application/controllers/User.php:1521
 msgid "Password Reset Processed."
 msgstr "Salasanan palautus käsitelty."
 
-#: application/controllers/User.php:1616
+#: application/controllers/User.php:1629
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
 msgid "Reset Password"
 msgstr "Resetoi salasana"
 
-#: application/controllers/User.php:1637
+#: application/controllers/User.php:1650
 #, php-format
 msgid ""
 "Couldn't set account to this username. Please try another one than \"%s\"."
@@ -3356,7 +3360,7 @@ msgstr ""
 "Ei voitu luoda tiliä tälle käyttäjänimellä. Ole hyvä ja kokeile toista kuin "
 "\"%s\"."
 
-#: application/controllers/User.php:1646
+#: application/controllers/User.php:1659
 #, php-format
 msgid ""
 "Couldn't set account to this email. Please try another address than \"%s\"."
@@ -3364,7 +3368,7 @@ msgstr ""
 "Tälle sähköpostiosoitteelle ei voitu luoda tiliä. Yritä toista osoitetta "
 "kuin \"%s\"."
 
-#: application/controllers/User.php:1685
+#: application/controllers/User.php:1698
 #, php-format
 msgid ""
 "You currently can't impersonate another user. You need to set %s to %s in "
@@ -3373,7 +3377,7 @@ msgstr ""
 "Et voi tällä hetkellä esiintyä toisena käyttäjänä. Sinun täytyy asettaa %s "
 "paikalle %s tiedostossasi config.php!"
 
-#: application/controllers/User.php:1699
+#: application/controllers/User.php:1712
 #: application/views/user/modals/admin_impersonate_modal.php:36
 msgid ""
 "You currently can't impersonate another user. Please change the "
@@ -3382,15 +3386,15 @@ msgstr ""
 "Et voi tällä hetkellä esiintyä toisen käyttäjänä. Muuta ensin encryption_key-"
 "arvoasi config.php-tiedostossa!"
 
-#: application/controllers/User.php:1706
+#: application/controllers/User.php:1719
 msgid "Invalid Hash"
 msgstr "Invalid Hash"
 
-#: application/controllers/User.php:1719
+#: application/controllers/User.php:1732
 msgid "The impersonation hash is too old. Please try again."
 msgstr "The impersonation hash is too old. Please try again."
 
-#: application/controllers/User.php:1726
+#: application/controllers/User.php:1739
 msgid ""
 "You can't impersonate another user while you're not logged in as the source "
 "user"
@@ -3398,15 +3402,15 @@ msgstr ""
 "Et voi esiintyä toisena käyttäjänä, kun et ole kirjautunut sisään "
 "lähdekäyttäjänä"
 
-#: application/controllers/User.php:1732
+#: application/controllers/User.php:1745
 msgid "There was a problem with your session. Please try again."
 msgstr "Istunnossasi tapahtui virhe. Yritä uudelleen."
 
-#: application/controllers/User.php:1739
+#: application/controllers/User.php:1752
 msgid "The requested user to impersonate does not exist"
 msgstr "Pyydetty jäljiteltävä käyttäjä ei ole olemassa"
 
-#: application/controllers/User.php:1760
+#: application/controllers/User.php:1773
 msgid ""
 "Could not determine the correct permission level for the clubstation. Try "
 "again after re-login."
@@ -3414,13 +3418,13 @@ msgstr ""
 "Kerhoaseman oikeaa käyttöoikeustasoa ei voitu määrittää. Yritä uudelleen "
 "kirjautumisen jälkeen."
 
-#: application/controllers/User.php:1805 application/controllers/User.php:1817
-#: application/controllers/User.php:1823 application/controllers/User.php:1832
-#: application/controllers/User.php:1840
+#: application/controllers/User.php:1818 application/controllers/User.php:1830
+#: application/controllers/User.php:1836 application/controllers/User.php:1845
+#: application/controllers/User.php:1853
 msgid "Ups.. Something went wrong. Try to log back in."
 msgstr "Oho.. Jotain meni pieleen. Yritä kirjautua takaisin sisään."
 
-#: application/controllers/User.php:1846
+#: application/controllers/User.php:1859
 msgid ""
 "The ability to return quickly has been disabled after the security hash "
 "expired. Please log in again."
@@ -3428,7 +3432,7 @@ msgstr ""
 "The ability to return quickly has been disabled after the security hash "
 "expired. Please log in again."
 
-#: application/controllers/User.php:1862
+#: application/controllers/User.php:1875
 #, php-format
 msgid ""
 "You have been logged out of the account %s. Welcome back, %s, to your "
@@ -3827,7 +3831,7 @@ msgstr "Yleinen"
 msgid "Antennas"
 msgstr "Antennit"
 
-#: application/models/Note.php:61 application/models/Note.php:91
+#: application/models/Note.php:62 application/models/Note.php:93
 msgid "In Contacts category, the titles of the notes need to be unique."
 msgstr ""
 "Kontakti-kategoriassa muistiinpanojen otsikoiden on oltava ainutlaatuisia."
@@ -3973,12 +3977,13 @@ msgstr "Ero"
 #: application/views/awards/wpx/index.php:107
 #: application/views/awards/wpx/index.php:126
 #: application/views/bandmap/list.php:102
-#: application/views/bandmap/list.php:296
-#: application/views/bandmap/list.php:304
-#: application/views/bandmap/list.php:326
-#: application/views/bandmap/list.php:338
-#: application/views/bandmap/list.php:352
-#: application/views/bandmap/list.php:366 application/views/bands/index.php:123
+#: application/views/bandmap/list.php:300
+#: application/views/bandmap/list.php:308
+#: application/views/bandmap/list.php:330
+#: application/views/bandmap/list.php:342
+#: application/views/bandmap/list.php:356
+#: application/views/bandmap/list.php:370
+#: application/views/bandmap/list.php:411 application/views/bands/index.php:123
 #: application/views/cabrillo/index.php:69
 #: application/views/callstats/index.php:10
 #: application/views/callstats/index.php:24
@@ -4055,7 +4060,7 @@ msgstr "Ero"
 #: application/views/timeplotter/index.php:37
 #: application/views/timeplotter/index.php:49
 #: application/views/timeplotter/index.php:59
-#: application/views/user/edit.php:863
+#: application/views/user/edit.php:873
 #: application/views/visitor/layout/footer.php:168
 msgid "All"
 msgstr "Kaikki"
@@ -4491,7 +4496,7 @@ msgstr "Vahvistus"
 #: application/views/awards/wapc/index.php:71
 #: application/views/awards/was/index.php:73
 #: application/views/awards/wpx/index.php:40
-#: application/views/gridmap/index.php:202 application/views/user/edit.php:905
+#: application/views/gridmap/index.php:202 application/views/user/edit.php:915
 msgid "QRZ.com"
 msgstr "QRZ.com"
 
@@ -4573,15 +4578,15 @@ msgstr "Mitään ei löytynyt!"
 #: application/views/awards/sota/index.php:33
 #: application/views/awards/wpx/wpx_details.php:20
 #: application/views/awards/wwff/index.php:35
-#: application/views/bandmap/list.php:28 application/views/bandmap/list.php:166
-#: application/views/bandmap/list.php:555
+#: application/views/bandmap/list.php:28 application/views/bandmap/list.php:167
+#: application/views/bandmap/list.php:563
 #: application/views/cabrillo/index.php:31
 #: application/views/callstats/index.php:147
 #: application/views/calltester/comparison_result.php:60
 #: application/views/calltester/comparison_result.php:96
 #: application/views/calltester/comparison_result.php:132
 #: application/views/calltester/result.php:22
-#: application/views/club/permissions.php:246
+#: application/views/club/permissions.php:259
 #: application/views/components/hamsat/table.php:27
 #: application/views/contesting/index.php:171
 #: application/views/csv/index.php:23 application/views/dashboard/index.php:247
@@ -4744,7 +4749,7 @@ msgstr "Päivä"
 #: application/views/awards/pota/index.php:34
 #: application/views/awards/sota/index.php:32
 #: application/views/awards/wwff/index.php:34
-#: application/views/bandmap/list.php:137
+#: application/views/bandmap/list.php:138
 #: application/views/components/hamsat/table.php:26
 #: application/views/contesting/index.php:108
 #: application/views/contesting/index.php:262
@@ -5330,8 +5335,8 @@ msgstr "Yksinkertainen nimi, joka kuvaa, mihin tätä API:a käytetään."
 
 #: application/views/api/description.php:33
 #: application/views/bands/create.php:49 application/views/bands/edit.php:32
-#: application/views/club/permissions.php:228
-#: application/views/club/permissions.php:324
+#: application/views/club/permissions.php:241
+#: application/views/club/permissions.php:337
 #: application/views/contesting/edit.php:55 application/views/cron/edit.php:73
 #: application/views/interface_assets/footer.php:51
 #: application/views/interface_assets/footer.php:677
@@ -5452,7 +5457,7 @@ msgstr "Oikeudet"
 
 #: application/views/api/index.php:38
 #: application/views/awards/pl_polska/index.php:372
-#: application/views/club/permissions.php:250
+#: application/views/club/permissions.php:263
 #: application/views/clublog/export.php:39
 #: application/views/hrdlog/export.php:39
 #: application/views/logbookadvanced/index.php:822
@@ -5681,8 +5686,8 @@ msgstr "Yhteensä"
 
 #: application/views/awards/cq/index.php:3
 #: application/views/awards/cq/index.php:204
-#: application/views/bandmap/list.php:557
-#: application/views/bandmap/list.php:595 application/views/csv/index.php:80
+#: application/views/bandmap/list.php:565
+#: application/views/bandmap/list.php:603 application/views/csv/index.php:80
 #: application/views/dxatlas/index.php:80
 #: application/views/gridmap/index.php:236 application/views/kml/index.php:65
 #: application/views/logbookadvanced/checkresult.php:246
@@ -5698,7 +5703,7 @@ msgstr "Yhteensä"
 #: application/views/station_profile/edit.php:154
 #: application/views/timeline/index.php:351
 #: application/views/timeplotter/index.php:35
-#: application/views/user/modals/first_login_wizard.php:74
+#: application/views/user/modals/first_login_wizard.php:75
 #: application/views/zonechecker/index.php:17
 msgid "CQ Zone"
 msgstr "CQ-alue"
@@ -5895,7 +5900,7 @@ msgstr "Loppupäivämäärä"
 #: application/views/awards/waip/index.php:42
 #: application/views/awards/waip/index.php:64
 #: application/views/awards/wpx/wpx_details.php:24
-#: application/views/bandmap/list.php:88 application/views/bandmap/list.php:299
+#: application/views/bandmap/list.php:88 application/views/bandmap/list.php:303
 #: application/views/dashboard/index.php:342
 #: application/views/dashboard/index.php:481
 #: application/views/interface_assets/footer.php:45
@@ -5906,7 +5911,7 @@ msgstr "Kuitattu"
 
 #: application/views/awards/cq/index.php:88
 #: application/views/awards/itu/index.php:90
-#: application/views/bandmap/list.php:87 application/views/bandmap/list.php:298
+#: application/views/bandmap/list.php:87 application/views/bandmap/list.php:302
 #: application/views/dashboard/index.php:338
 #: application/views/dashboard/index.php:475
 #: application/views/search/result.php:35
@@ -6309,8 +6314,8 @@ msgstr "Sisällytä poistetut"
 #: application/views/awards/dxcc/index.php:143
 #: application/views/awards/iota/index.php:90
 #: application/views/awards/wpx/index.php:55
-#: application/views/bandmap/list.php:340
-#: application/views/bandmap/list.php:354
+#: application/views/bandmap/list.php:344
+#: application/views/bandmap/list.php:358
 #: application/views/logbookadvanced/edit.php:226
 #: application/views/logbookadvanced/index.php:519
 #: application/views/lookup/index.php:60
@@ -6323,8 +6328,8 @@ msgstr "Antarktis"
 #: application/views/awards/dxcc/index.php:147
 #: application/views/awards/iota/index.php:94
 #: application/views/awards/wpx/index.php:56
-#: application/views/bandmap/list.php:339
-#: application/views/bandmap/list.php:353
+#: application/views/bandmap/list.php:343
+#: application/views/bandmap/list.php:357
 #: application/views/logbookadvanced/edit.php:225
 #: application/views/logbookadvanced/index.php:518
 #: application/views/lookup/index.php:59
@@ -6337,8 +6342,8 @@ msgstr "Afrikka"
 #: application/views/awards/dxcc/index.php:151
 #: application/views/awards/iota/index.php:98
 #: application/views/awards/wpx/index.php:57
-#: application/views/bandmap/list.php:341
-#: application/views/bandmap/list.php:355
+#: application/views/bandmap/list.php:345
+#: application/views/bandmap/list.php:359
 #: application/views/logbookadvanced/edit.php:228
 #: application/views/logbookadvanced/index.php:521
 #: application/views/lookup/index.php:62
@@ -6351,8 +6356,8 @@ msgstr "Aasia"
 #: application/views/awards/dxcc/index.php:155
 #: application/views/awards/iota/index.php:102
 #: application/views/awards/wpx/index.php:58
-#: application/views/bandmap/list.php:342
-#: application/views/bandmap/list.php:356
+#: application/views/bandmap/list.php:346
+#: application/views/bandmap/list.php:360
 #: application/views/logbookadvanced/edit.php:229
 #: application/views/logbookadvanced/index.php:522
 #: application/views/lookup/index.php:63
@@ -6365,8 +6370,8 @@ msgstr "Eurooppa"
 #: application/views/awards/dxcc/index.php:159
 #: application/views/awards/iota/index.php:106
 #: application/views/awards/wpx/index.php:59
-#: application/views/bandmap/list.php:343
-#: application/views/bandmap/list.php:357
+#: application/views/bandmap/list.php:347
+#: application/views/bandmap/list.php:361
 #: application/views/logbookadvanced/edit.php:227
 #: application/views/logbookadvanced/index.php:520
 #: application/views/lookup/index.php:61
@@ -6379,8 +6384,8 @@ msgstr "Pohjois-Amerikka"
 #: application/views/awards/dxcc/index.php:163
 #: application/views/awards/iota/index.php:110
 #: application/views/awards/wpx/index.php:60
-#: application/views/bandmap/list.php:345
-#: application/views/bandmap/list.php:359
+#: application/views/bandmap/list.php:349
+#: application/views/bandmap/list.php:363
 #: application/views/logbookadvanced/edit.php:230
 #: application/views/logbookadvanced/index.php:523
 #: application/views/lookup/index.php:64
@@ -6393,8 +6398,8 @@ msgstr "Etelä-Amerikka"
 #: application/views/awards/dxcc/index.php:167
 #: application/views/awards/iota/index.php:114
 #: application/views/awards/wpx/index.php:61
-#: application/views/bandmap/list.php:344
-#: application/views/bandmap/list.php:358
+#: application/views/bandmap/list.php:348
+#: application/views/bandmap/list.php:362
 #: application/views/logbookadvanced/edit.php:231
 #: application/views/logbookadvanced/index.php:524
 #: application/views/lookup/index.php:65
@@ -6728,7 +6733,7 @@ msgstr "Poistettu"
 #: application/views/qso/edit_ajax.php:317 application/views/qso/index.php:523
 #: application/views/station_profile/create.php:144
 #: application/views/station_profile/edit.php:169
-#: application/views/user/modals/first_login_wizard.php:84
+#: application/views/user/modals/first_login_wizard.php:86
 #: application/views/zonechecker/index.php:18
 msgid "ITU Zone"
 msgstr "ITU-alue"
@@ -6985,7 +6990,7 @@ msgstr "PHONE"
 #: application/views/awards/pl_polska/index.php:206
 #: application/views/awards/pl_polska/index.php:347
 #: application/views/awards/waip/index.php:115
-#: application/views/bandmap/list.php:306
+#: application/views/bandmap/list.php:310
 #: application/views/components/dxwaterfall.php:33
 msgid "CW"
 msgstr "CW"
@@ -7333,8 +7338,8 @@ msgstr "Awardi - Worked All Continents (WAC)"
 
 #: application/views/awards/wac/index.php:142
 #: application/views/bandmap/list.php:101
-#: application/views/bandmap/list.php:556
-#: application/views/bandmap/list.php:594
+#: application/views/bandmap/list.php:564
+#: application/views/bandmap/list.php:602
 #: application/views/continents/index.php:62
 #: application/views/logbookadvanced/edit.php:24
 #: application/views/logbookadvanced/index.php:514
@@ -7801,7 +7806,7 @@ msgstr ""
 msgid "Click to prepare logging."
 msgstr "Napsauta valmistellaksesi lokitusta."
 
-#: application/views/bandmap/list.php:12 application/views/bandmap/list.php:132
+#: application/views/bandmap/list.php:12 application/views/bandmap/list.php:133
 msgid "to tune frequency"
 msgstr "virittää taajuuden"
 
@@ -7822,7 +7827,7 @@ msgstr "CAT-yhteys vaaditaan"
 msgid "Enable CAT connection to tune the radio"
 msgstr "Ota CAT-yhteys käyttöön radion viritystä varten"
 
-#: application/views/bandmap/list.php:19 application/views/bandmap/list.php:412
+#: application/views/bandmap/list.php:19 application/views/bandmap/list.php:420
 msgid "Clear Filters"
 msgstr "Tyhjennä suodattimet"
 
@@ -7858,11 +7863,11 @@ msgstr "QSO valmis"
 msgid "sent to logging form"
 msgstr "lähetetty QSO-ikkunaan"
 
-#: application/views/bandmap/list.php:30 application/views/bandmap/list.php:230
+#: application/views/bandmap/list.php:30 application/views/bandmap/list.php:234
 msgid "CAT Connection"
 msgstr "CAT-yhteys"
 
-#: application/views/bandmap/list.php:31 application/views/bandmap/list.php:229
+#: application/views/bandmap/list.php:31 application/views/bandmap/list.php:233
 msgid "Click to enable CAT connection"
 msgstr "Napsauta ottaaksesi CAT-yhteyden käyttöön"
 
@@ -7870,7 +7875,7 @@ msgstr "Napsauta ottaaksesi CAT-yhteyden käyttöön"
 msgid "CAT following radio - Click to disable"
 msgstr "CAT seuraa radiota - Napsauta poistaaksesi käytöstä"
 
-#: application/views/bandmap/list.php:33 application/views/bandmap/list.php:232
+#: application/views/bandmap/list.php:33 application/views/bandmap/list.php:236
 msgid "Click to enable band lock (requires CAT connection)"
 msgstr "Napsauta ottaaksesi kaistalukon käyttöön (vaatii CAT-yhteyden)"
 
@@ -7926,8 +7931,8 @@ msgstr ""
 msgid "Applied your favorite bands and modes"
 msgstr "Suosikkibandisii ja -modesi otettu käyttöön"
 
-#: application/views/bandmap/list.php:48 application/views/bandmap/list.php:315
-#: application/views/bandmap/list.php:480
+#: application/views/bandmap/list.php:48 application/views/bandmap/list.php:319
+#: application/views/bandmap/list.php:488
 msgid "My Submodes"
 msgstr "Submodet"
 
@@ -7961,26 +7966,26 @@ msgstr ""
 "Ei käytössä - tälle modelle ei ole käyttäjäasetuksissa otettu submodea "
 "käyttöön"
 
-#: application/views/bandmap/list.php:56 application/views/bandmap/list.php:469
+#: application/views/bandmap/list.php:56 application/views/bandmap/list.php:477
 #: application/views/components/dxwaterfall.php:32
 msgid "Toggle CW mode filter"
 msgstr "Vaihda CW-tilan suodinta"
 
-#: application/views/bandmap/list.php:57 application/views/bandmap/list.php:470
+#: application/views/bandmap/list.php:57 application/views/bandmap/list.php:478
 #: application/views/components/dxwaterfall.php:34
 msgid "Toggle Digital mode filter"
 msgstr "Vaihda digitaalisen tilan suodatin"
 
-#: application/views/bandmap/list.php:58 application/views/bandmap/list.php:471
+#: application/views/bandmap/list.php:58 application/views/bandmap/list.php:479
 #: application/views/components/dxwaterfall.php:30
 msgid "Toggle Phone mode filter"
 msgstr "Vaihda phone-tilan suodatin"
 
-#: application/views/bandmap/list.php:61 application/views/bandmap/list.php:422
+#: application/views/bandmap/list.php:61 application/views/bandmap/list.php:430
 msgid "Favorites"
 msgstr "Suosikit"
 
-#: application/views/bandmap/list.php:62 application/views/bandmap/list.php:425
+#: application/views/bandmap/list.php:62 application/views/bandmap/list.php:433
 msgid "Save Current Filters..."
 msgstr "Tallenna nykyiset suodattimet..."
 
@@ -8064,16 +8069,16 @@ msgstr "Aktiiviset suodattimet"
 msgid "Fetching..."
 msgstr "Noutaa..."
 
-#: application/views/bandmap/list.php:86 application/views/bandmap/list.php:297
+#: application/views/bandmap/list.php:86 application/views/bandmap/list.php:301
 #: application/views/interface_assets/footer.php:47
 msgid "Not worked"
 msgstr "Ei työskennelty"
 
-#: application/views/bandmap/list.php:89 application/views/bandmap/list.php:300
+#: application/views/bandmap/list.php:89 application/views/bandmap/list.php:304
 msgid "Worked, not Confirmed"
 msgstr "Työskennelty, ei vahvistettu"
 
-#: application/views/bandmap/list.php:90 application/views/bandmap/list.php:316
+#: application/views/bandmap/list.php:90 application/views/bandmap/list.php:320
 #: application/views/lookup/lotwuser.php:2
 #: application/views/lookup/lotwuser.php:12
 #: application/views/search/result.php:70
@@ -8081,17 +8086,17 @@ msgstr "Työskennelty, ei vahvistettu"
 msgid "LoTW User"
 msgstr "LoTW-käyttäjä"
 
-#: application/views/bandmap/list.php:91 application/views/bandmap/list.php:319
+#: application/views/bandmap/list.php:91 application/views/bandmap/list.php:323
 #: application/views/components/dxwaterfall.php:18
 msgid "New Callsign"
 msgstr "Uusi kutsumerkki"
 
-#: application/views/bandmap/list.php:92 application/views/bandmap/list.php:317
+#: application/views/bandmap/list.php:92 application/views/bandmap/list.php:321
 #: application/views/components/dxwaterfall.php:16
 msgid "New Continent"
 msgstr "Uusi manner"
 
-#: application/views/bandmap/list.php:93 application/views/bandmap/list.php:318
+#: application/views/bandmap/list.php:93 application/views/bandmap/list.php:322
 msgid "New Country"
 msgstr "Uusi maa"
 
@@ -8105,7 +8110,7 @@ msgid "Worked on %s with %s"
 msgstr "Työskennelty %s %s kanssa"
 
 #: application/views/bandmap/list.php:103
-#: application/views/bandmap/list.php:598
+#: application/views/bandmap/list.php:606
 msgid "de"
 msgstr "de"
 
@@ -8119,8 +8124,8 @@ msgstr "Tuore spottaus (< 5 minuuttia vanha)"
 
 #: application/views/bandmap/list.php:108
 #: application/views/bandmap/list.php:109
-#: application/views/bandmap/list.php:321
-#: application/views/bandmap/list.php:511
+#: application/views/bandmap/list.php:325
+#: application/views/bandmap/list.php:519
 #: application/views/contestcalendar/index.php:21
 #: application/views/logbookadvanced/edit.php:9
 #: application/views/logbookadvanced/index.php:510
@@ -8178,56 +8183,62 @@ msgid "Click to view on IOTA-World.org"
 msgstr "Napsauta nähdäksesi IOTA-World.org:ssa"
 
 #: application/views/bandmap/list.php:121
+#: application/views/bandmap/list.php:409
+#: application/views/dxcalendar/index.php:14
+msgid "Source"
+msgstr "Lähde"
+
+#: application/views/bandmap/list.php:122
 msgid "See details for continent"
 msgstr "Katso yksityiskohdat mantereesta"
 
-#: application/views/bandmap/list.php:122
+#: application/views/bandmap/list.php:123
 #, php-format
 msgid "See details for continent %s"
 msgstr "Katso yksityiskohdat mantereesta %s"
 
-#: application/views/bandmap/list.php:123
+#: application/views/bandmap/list.php:124
 msgid "See details for CQ Zone"
 msgstr "Katso yksityiskohdat CQ-zonesta"
 
-#: application/views/bandmap/list.php:124
+#: application/views/bandmap/list.php:125
 #, php-format
 msgid "See details for CQ Zone %s"
 msgstr "Katso yksityiskohdat CQ-zonesta %s"
 
-#: application/views/bandmap/list.php:125
+#: application/views/bandmap/list.php:126
 msgid "in"
 msgstr "in"
 
-#: application/views/bandmap/list.php:128
+#: application/views/bandmap/list.php:129
 msgid "Exit Fullscreen"
 msgstr "Poistu kokoruututilasta"
 
-#: application/views/bandmap/list.php:129
-#: application/views/bandmap/list.php:215
+#: application/views/bandmap/list.php:130
+#: application/views/bandmap/list.php:219
 msgid "Toggle Fullscreen"
 msgstr "Vaihda kokoruututilaan"
 
-#: application/views/bandmap/list.php:130
+#: application/views/bandmap/list.php:131
 msgid ""
 "Band filtering is controlled by your radio when CAT connection is enabled"
 msgstr "Bandin suodatusta ohjataan radiollasi, kun CAT-yhteys on käytössä"
 
-#: application/views/bandmap/list.php:131
+#: application/views/bandmap/list.php:132
 msgid "Click to prepare logging"
 msgstr "Napsauta valmistellaksesi loggausta"
 
-#: application/views/bandmap/list.php:133
+#: application/views/bandmap/list.php:134
 msgid "(requires CAT connection)"
 msgstr "(vaatii CAT-yhteyden)"
 
-#: application/views/bandmap/list.php:134
-#: application/views/bandmap/list.php:561
-#: application/views/bandmap/list.php:562
+#: application/views/bandmap/list.php:135
+#: application/views/bandmap/list.php:569
+#: application/views/bandmap/list.php:570
 msgid "Spotter"
 msgstr "Spottaaja"
 
-#: application/views/bandmap/list.php:135
+#: application/views/bandmap/list.php:136
 #: application/views/components/hamsat/table.php:28
 #: application/views/contesting/index.php:234
 #: application/views/hamsat/index.php:31
@@ -8240,110 +8251,110 @@ msgstr "Spottaaja"
 msgid "Comment"
 msgstr "Kommentti"
 
-#: application/views/bandmap/list.php:136
-#: application/views/bandmap/list.php:548
+#: application/views/bandmap/list.php:137
+#: application/views/bandmap/list.php:556
 #: application/views/contesting/index.php:65
 msgid "Age"
 msgstr "Ikä"
 
-#: application/views/bandmap/list.php:138
+#: application/views/bandmap/list.php:139
 msgid "Incoming"
 msgstr "Saapuva"
 
-#: application/views/bandmap/list.php:139
+#: application/views/bandmap/list.php:140
 msgid "Outgoing"
 msgstr "Lähtevä"
 
-#: application/views/bandmap/list.php:140
+#: application/views/bandmap/list.php:141
 #: application/views/components/dxwaterfall.php:15
 msgid "spots"
 msgstr "spotit"
 
-#: application/views/bandmap/list.php:141
+#: application/views/bandmap/list.php:142
 msgid "spot"
 msgstr "spotti"
 
-#: application/views/bandmap/list.php:142
+#: application/views/bandmap/list.php:143
 msgid "spotters"
 msgstr "spottaajat"
 
-#: application/views/bandmap/list.php:145
+#: application/views/bandmap/list.php:146
 msgid "Please Wait"
 msgstr "Ole hyvä ja odota"
 
-#: application/views/bandmap/list.php:146
+#: application/views/bandmap/list.php:147
 #, php-format
 msgid "Please wait %s seconds before sending another callsign to the QSO form"
 msgstr ""
 "Odota %s sekuntia ennen kuin lisäät toisen kutsumerkin QSO-lomakkeeseen"
 
-#: application/views/bandmap/list.php:149
+#: application/views/bandmap/list.php:150
 msgid "Loading spots..."
 msgstr "Ladataan spottauksia..."
 
-#: application/views/bandmap/list.php:150
+#: application/views/bandmap/list.php:151
 msgid "No spots found"
 msgstr "Spottauksia ei löytynyt"
 
-#: application/views/bandmap/list.php:151
+#: application/views/bandmap/list.php:152
 msgid "No data available"
 msgstr "Dataa ei saatavilla"
 
-#: application/views/bandmap/list.php:152
+#: application/views/bandmap/list.php:153
 msgid "No spots found for selected filters"
 msgstr "Valituilla suodattimilla ei löytynyt spotteja"
 
-#: application/views/bandmap/list.php:153
+#: application/views/bandmap/list.php:154
 msgid "Error loading spots. Please try again."
 msgstr "Virhe ladattaessa spottauksia. Yritä uudelleen."
 
-#: application/views/bandmap/list.php:156
+#: application/views/bandmap/list.php:157
 msgid "Show all modes"
 msgstr "Näytä kaikki modet"
 
-#: application/views/bandmap/list.php:157
+#: application/views/bandmap/list.php:158
 msgid "Show all spots"
 msgstr "Näytä kaikki spottaukset"
 
-#: application/views/bandmap/list.php:162
+#: application/views/bandmap/list.php:163
 msgid "Draw Spotters"
 msgstr "Näytä spottaajat"
 
-#: application/views/bandmap/list.php:163
+#: application/views/bandmap/list.php:164
 msgid "Extend Map"
 msgstr "Laajenna karttaa"
 
-#: application/views/bandmap/list.php:164
+#: application/views/bandmap/list.php:165
 msgid "Show Day/Night"
 msgstr "Näytä päivä/yö"
 
-#: application/views/bandmap/list.php:165
+#: application/views/bandmap/list.php:166
 msgid "Your QTH"
 msgstr "QTH:si"
 
-#: application/views/bandmap/list.php:201
+#: application/views/bandmap/list.php:205
 msgid "Return to Home"
 msgstr "Palaa kotiin"
 
-#: application/views/bandmap/list.php:204
+#: application/views/bandmap/list.php:208
 #: application/views/interface_assets/header.php:309
 msgid "DX Cluster"
 msgstr "DX-klusteri"
 
-#: application/views/bandmap/list.php:208
+#: application/views/bandmap/list.php:212
 msgid "DX Cluster Help"
 msgstr "DX-klusterin apu"
 
-#: application/views/bandmap/list.php:211
+#: application/views/bandmap/list.php:215
 msgid "Compact Mode - Hide/Show Menu"
 msgstr "Kompakti tila - Näytä/Piilota valikko"
 
-#: application/views/bandmap/list.php:238
+#: application/views/bandmap/list.php:242
 msgid "TRX:"
 msgstr "TRX:"
 
-#: application/views/bandmap/list.php:240
-#: application/views/bandmap/list.php:314
+#: application/views/bandmap/list.php:244
+#: application/views/bandmap/list.php:318
 #: application/views/contesting/index.php:24
 #: application/views/contesting/index.php:62
 #: application/views/contesting/index.php:159
@@ -8351,341 +8362,341 @@ msgstr "TRX:"
 msgid "None"
 msgstr "Ei mitään"
 
-#: application/views/bandmap/list.php:241
+#: application/views/bandmap/list.php:245
 #: application/views/contesting/index.php:160
 #: application/views/qso/index.php:414
 msgid "Live - WebSocket"
 msgstr "Live - WebSocket"
 
-#: application/views/bandmap/list.php:243 application/views/qso/index.php:416
+#: application/views/bandmap/list.php:247 application/views/qso/index.php:416
 msgid "Polling - "
 msgstr "Pollaus - "
 
-#: application/views/bandmap/list.php:252
+#: application/views/bandmap/list.php:256
 msgid "de:"
 msgstr "de:"
 
-#: application/views/bandmap/list.php:254
+#: application/views/bandmap/list.php:258
 msgid "Select all continents"
 msgstr "Valitse kaikki mantereet"
 
-#: application/views/bandmap/list.php:254
+#: application/views/bandmap/list.php:258
 msgid "World"
 msgstr "Maailma"
 
-#: application/views/bandmap/list.php:255
+#: application/views/bandmap/list.php:259
 msgid "Toggle Africa continent filter"
 msgstr "Vaihda Afrikan maanosasuodatin"
 
-#: application/views/bandmap/list.php:256
+#: application/views/bandmap/list.php:260
 msgid "Toggle Antarctica continent filter"
 msgstr "Vaihda Antarktiksen manteresuodatin"
 
-#: application/views/bandmap/list.php:257
+#: application/views/bandmap/list.php:261
 msgid "Toggle Asia continent filter"
 msgstr "Vaihda Aasian maanosan suodatin"
 
-#: application/views/bandmap/list.php:258
+#: application/views/bandmap/list.php:262
 msgid "Toggle Europe continent filter"
 msgstr "Vaihda Euroopan maanosasuodatin"
 
-#: application/views/bandmap/list.php:259
+#: application/views/bandmap/list.php:263
 msgid "Toggle North America continent filter"
 msgstr "Vaihda Pohjois-Amerikan maanosa-suodatin"
 
-#: application/views/bandmap/list.php:260
+#: application/views/bandmap/list.php:264
 msgid "Toggle Oceania continent filter"
 msgstr "Vaihda Oseania-manner suodatin"
 
-#: application/views/bandmap/list.php:261
+#: application/views/bandmap/list.php:265
 msgid "Toggle South America continent filter"
 msgstr "Vaihda Etelä-Amerikan maanosan suodatin"
 
-#: application/views/bandmap/list.php:274
+#: application/views/bandmap/list.php:278
 msgid "Advanced Filters"
 msgstr "Edistyneet suodattimet"
 
-#: application/views/bandmap/list.php:288
+#: application/views/bandmap/list.php:292
 msgid "Hold"
 msgstr "Pidä"
 
-#: application/views/bandmap/list.php:288
+#: application/views/bandmap/list.php:292
 msgid "and click to select multiple options"
 msgstr "ja napsauta valitaksesi useita vaihtoehtoja"
 
-#: application/views/bandmap/list.php:294
+#: application/views/bandmap/list.php:298
 msgid "DXCC-Status"
 msgstr "DXCC-status"
 
-#: application/views/bandmap/list.php:305
+#: application/views/bandmap/list.php:309
 #: application/views/components/dxwaterfall.php:31
 msgid "Phone"
 msgstr "Phone"
 
-#: application/views/bandmap/list.php:307
+#: application/views/bandmap/list.php:311
 #: application/views/components/dxwaterfall.php:35
 msgid "Digi"
 msgstr "Digi"
 
-#: application/views/bandmap/list.php:312
+#: application/views/bandmap/list.php:316
 msgid "Required Flags"
 msgstr "Vaaditut merkit"
 
-#: application/views/bandmap/list.php:320
+#: application/views/bandmap/list.php:324
 msgid "Worked Callsign"
 msgstr "Työskennelty kutsu"
 
-#: application/views/bandmap/list.php:322
+#: application/views/bandmap/list.php:326
 msgid "DX Spot"
 msgstr "DX-spotti"
 
-#: application/views/bandmap/list.php:324
+#: application/views/bandmap/list.php:328
 msgid "Additional Flags"
 msgstr "Lisämerkit"
 
-#: application/views/bandmap/list.php:331
+#: application/views/bandmap/list.php:335
 msgid "Fresh (< 5 min)"
 msgstr "Tuore (< 5 min)"
 
-#: application/views/bandmap/list.php:336
+#: application/views/bandmap/list.php:340
 msgid "Spots de Continent"
 msgstr "Mantere-spotit"
 
-#: application/views/bandmap/list.php:350
+#: application/views/bandmap/list.php:354
 msgid "Spotted Station Continent"
 msgstr "Havaitun aseman maanosa"
 
-#: application/views/bandmap/list.php:410
+#: application/views/bandmap/list.php:418
 msgid "Apply Filters"
 msgstr "Käytä suodatinta"
 
-#: application/views/bandmap/list.php:421
+#: application/views/bandmap/list.php:429
 msgid "Filter Favorites"
 msgstr "Suodata suosikit"
 
-#: application/views/bandmap/list.php:431
+#: application/views/bandmap/list.php:439
 msgid "Clear all filters except De Continent"
 msgstr "Tyhjennä kaikki suodattimet paitsi maanosa"
 
-#: application/views/bandmap/list.php:437
+#: application/views/bandmap/list.php:445
 msgid "Toggle 160m band filter"
 msgstr "Aktivoi 160 m:n suodatin"
 
-#: application/views/bandmap/list.php:441
+#: application/views/bandmap/list.php:449
 msgid "Toggle 80m band filter"
 msgstr "Aktivoi 80 m:n suodatin"
 
-#: application/views/bandmap/list.php:442
+#: application/views/bandmap/list.php:450
 msgid "Toggle 60m band filter"
 msgstr "Aktivoi 60 m:n suodatin"
 
-#: application/views/bandmap/list.php:443
+#: application/views/bandmap/list.php:451
 msgid "Toggle 40m band filter"
 msgstr "Aktivoi 40 m:n suodatin"
 
-#: application/views/bandmap/list.php:444
+#: application/views/bandmap/list.php:452
 msgid "Toggle 30m band filter"
 msgstr "Aktivoi 30 m:n suodatin"
 
-#: application/views/bandmap/list.php:445
+#: application/views/bandmap/list.php:453
 msgid "Toggle 20m band filter"
 msgstr "Aktivoi 20 m:n suodatin"
 
-#: application/views/bandmap/list.php:446
+#: application/views/bandmap/list.php:454
 msgid "Toggle 17m band filter"
 msgstr "Aktivoi 17m:n suodatin"
 
-#: application/views/bandmap/list.php:447
+#: application/views/bandmap/list.php:455
 msgid "Toggle 15m band filter"
 msgstr "Aktivoi 15 m:n suodatin"
 
-#: application/views/bandmap/list.php:448
+#: application/views/bandmap/list.php:456
 msgid "Toggle 12m band filter"
 msgstr "Aktivoi 12 m:n suodatin"
 
-#: application/views/bandmap/list.php:449
+#: application/views/bandmap/list.php:457
 msgid "Toggle 10m band filter"
 msgstr "Aktivoi 10 m:n suodatin"
 
-#: application/views/bandmap/list.php:453
+#: application/views/bandmap/list.php:461
 msgid "Toggle 6m band filter"
 msgstr "Aktivoi 6 m:n suodatin"
 
-#: application/views/bandmap/list.php:457
+#: application/views/bandmap/list.php:465
 msgid "Toggle VHF bands filter"
 msgstr "Aktivoi VHF bandin suodatin"
 
-#: application/views/bandmap/list.php:458
+#: application/views/bandmap/list.php:466
 msgid "Toggle UHF bands filter"
 msgstr "Aktivoi UHF bandin suodatin"
 
-#: application/views/bandmap/list.php:459
+#: application/views/bandmap/list.php:467
 msgid "Toggle SHF bands filter"
 msgstr "Aktivoi SHF bandin suodatin"
 
-#: application/views/bandmap/list.php:479
+#: application/views/bandmap/list.php:487
 msgid "Loading submodes..."
 msgstr "Lataa submodeja..."
 
-#: application/views/bandmap/list.php:484
+#: application/views/bandmap/list.php:492
 msgid "Toggle LoTW User filter"
 msgstr "Vaihda LoTW-käyttäjäsuodatin"
 
-#: application/views/bandmap/list.php:485
+#: application/views/bandmap/list.php:493
 msgid "LoTW users"
 msgstr "LoTW-käyttäjät"
 
-#: application/views/bandmap/list.php:491
+#: application/views/bandmap/list.php:499
 msgid "Toggle DX Spot filter (spotted continent ≠ spotter continent)"
 msgstr "Vaihda DX Spot -suodatinta (spotattumaanosa ≠ spotterin maanosa)"
 
-#: application/views/bandmap/list.php:492
-#: application/views/bandmap/list.php:593
+#: application/views/bandmap/list.php:500
+#: application/views/bandmap/list.php:601
 msgid "DX"
 msgstr "DX"
 
-#: application/views/bandmap/list.php:494
+#: application/views/bandmap/list.php:502
 msgid "Toggle New Continents filter"
 msgstr "Ota uusi mantere -suodatin käyttöön"
 
-#: application/views/bandmap/list.php:495
+#: application/views/bandmap/list.php:503
 msgid "New Continents"
 msgstr "Uudet mantereet"
 
-#: application/views/bandmap/list.php:497
+#: application/views/bandmap/list.php:505
 msgid "Toggle New Entities filter"
 msgstr "Vaihda uusien entiteettien suodatin"
 
-#: application/views/bandmap/list.php:498
+#: application/views/bandmap/list.php:506
 msgid "New Entities"
 msgstr "Uudet entiteetit"
 
-#: application/views/bandmap/list.php:500
+#: application/views/bandmap/list.php:508
 msgid "Toggle New Callsigns filter"
 msgstr "Vaihda uusien kutsumerkkien suodatin"
 
-#: application/views/bandmap/list.php:501
+#: application/views/bandmap/list.php:509
 msgid "New Callsigns"
 msgstr "Uudet kutsumerkit"
 
-#: application/views/bandmap/list.php:507
+#: application/views/bandmap/list.php:515
 msgid "Toggle Fresh spots filter (< 5 minutes old)"
 msgstr "Vaihda tuoreiden spotien suodatin (< 5 minuuttia vanhoja)"
 
-#: application/views/bandmap/list.php:508
+#: application/views/bandmap/list.php:516
 msgid "Fresh"
 msgstr "Tuore"
 
-#: application/views/bandmap/list.php:510
+#: application/views/bandmap/list.php:518
 msgid "Toggle Contest filter"
 msgstr "Vaihda kilpailusuodatin"
 
-#: application/views/bandmap/list.php:513
+#: application/views/bandmap/list.php:521
 msgid "Toggle Geo Hunter (POTA/SOTA/IOTA/WWFF)"
 msgstr "Vaihda Geo Huntteri (POTA/SOTA/IOTA/WWFF)"
 
-#: application/views/bandmap/list.php:514
+#: application/views/bandmap/list.php:522
 msgid "Referenced"
 msgstr "Viitattu"
 
-#: application/views/bandmap/list.php:520
+#: application/views/bandmap/list.php:528
 msgid "Open DX Map view"
 msgstr "Avaa DX-karttanäkymä"
 
-#: application/views/bandmap/list.php:521
+#: application/views/bandmap/list.php:529
 msgid "DX Map"
 msgstr "DX-kartta"
 
-#: application/views/bandmap/list.php:545
+#: application/views/bandmap/list.php:553
 msgid "Search Column"
 msgstr "Hakusarake"
 
-#: application/views/bandmap/list.php:546
+#: application/views/bandmap/list.php:554
 msgid "All Columns"
 msgstr "Kaikki sarakkeet"
 
-#: application/views/bandmap/list.php:547
+#: application/views/bandmap/list.php:555
 msgid "Spot Info"
 msgstr "Spot info"
 
-#: application/views/bandmap/list.php:552
-#: application/views/bandmap/list.php:592
+#: application/views/bandmap/list.php:560
+#: application/views/bandmap/list.php:600
 #: application/views/eqsl/analysis.php:40
 #: application/views/eqsl/download.php:40 application/views/eqsl/result.php:37
 msgid "Submode"
 msgstr "Submode"
 
-#: application/views/bandmap/list.php:554
+#: application/views/bandmap/list.php:562
 msgid "DX Station"
 msgstr "DX -asema"
 
-#: application/views/bandmap/list.php:558
-#: application/views/bandmap/list.php:597
+#: application/views/bandmap/list.php:566
+#: application/views/bandmap/list.php:605
 msgid "Entity"
 msgstr "Entiteetti"
 
-#: application/views/bandmap/list.php:559
-#: application/views/bandmap/list.php:603
+#: application/views/bandmap/list.php:567
+#: application/views/bandmap/list.php:611
 #: application/views/oqrs/notinlogform.php:28
-#: application/views/oqrs/request.php:54
-#: application/views/oqrs/request_grouped.php:57
+#: application/views/oqrs/request.php:58
+#: application/views/oqrs/request_grouped.php:61
 #: application/views/oqrs/status_info.php:5
 msgid "Message"
 msgstr "Viesti"
 
-#: application/views/bandmap/list.php:563
-#: application/views/bandmap/list.php:599
+#: application/views/bandmap/list.php:571
+#: application/views/bandmap/list.php:607
 msgid "Spotter Continent"
 msgstr "Spotterin manner"
 
-#: application/views/bandmap/list.php:564
-#: application/views/bandmap/list.php:600
+#: application/views/bandmap/list.php:572
+#: application/views/bandmap/list.php:608
 msgid "Spotter CQ Zone"
 msgstr "Spotterin CQ-alue"
 
-#: application/views/bandmap/list.php:567
+#: application/views/bandmap/list.php:575
 msgid "Search spots..."
 msgstr "Etsi spotteja..."
 
-#: application/views/bandmap/list.php:580
+#: application/views/bandmap/list.php:588
 msgid "Note: Map shows DXCC entity locations, not actual spot locations"
 msgstr ""
 "Huomautus: Kartta näyttää DXCC-entiteettien sijainnit, ei varsinaisia "
 "spottauslokaatioita"
 
-#: application/views/bandmap/list.php:588
+#: application/views/bandmap/list.php:596
 msgid "Age in minutes"
 msgstr "Ikä minuutteina"
 
-#: application/views/bandmap/list.php:590
+#: application/views/bandmap/list.php:598
 msgid "Freq"
 msgstr "Freq"
 
-#: application/views/bandmap/list.php:593
+#: application/views/bandmap/list.php:601
 msgid "Spotted Callsign"
 msgstr "Spotattu kutsu"
 
-#: application/views/bandmap/list.php:596
+#: application/views/bandmap/list.php:604
 msgid "Flag"
 msgstr "Lippu"
 
-#: application/views/bandmap/list.php:597
+#: application/views/bandmap/list.php:605
 msgid "DXCC Entity"
 msgstr "DXCC Entity"
 
-#: application/views/bandmap/list.php:598
+#: application/views/bandmap/list.php:606
 msgid "Spotter Callsign"
 msgstr "Spotterin kutsumerkki"
 
-#: application/views/bandmap/list.php:601
+#: application/views/bandmap/list.php:609
 msgid "Last QSO Date"
 msgstr "Viimeinen QSO-päivämäärä"
 
-#: application/views/bandmap/list.php:602
+#: application/views/bandmap/list.php:610
 msgid "Special"
 msgstr "Erityinen"
 
-#: application/views/bandmap/list.php:602
+#: application/views/bandmap/list.php:610
 msgid "Special Flags"
 msgstr "Erikoisliput"
 
@@ -8845,7 +8856,7 @@ msgid "Create a band"
 msgstr "Luo bandi"
 
 #: application/views/bands/index.php:160
-#: application/views/club/permissions.php:165
+#: application/views/club/permissions.php:175
 #: application/views/contesting/add.php:74
 #: application/views/contesting/index.php:93
 #: application/views/interface_assets/footer.php:50
@@ -9135,10 +9146,10 @@ msgstr ""
 #: application/views/user/edit.php:479 application/views/user/edit.php:520
 #: application/views/user/edit.php:531 application/views/user/edit.php:652
 #: application/views/user/edit.php:706 application/views/user/edit.php:744
-#: application/views/user/edit.php:1043 application/views/user/edit.php:1059
-#: application/views/user/edit.php:1067 application/views/user/edit.php:1087
-#: application/views/user/edit.php:1116 application/views/user/edit.php:1148
-#: application/views/user/edit.php:1173
+#: application/views/user/edit.php:1053 application/views/user/edit.php:1069
+#: application/views/user/edit.php:1077 application/views/user/edit.php:1097
+#: application/views/user/edit.php:1126 application/views/user/edit.php:1158
+#: application/views/user/edit.php:1183
 msgid "Yes"
 msgstr "Kyllä"
 
@@ -9207,9 +9218,9 @@ msgstr "Kyllä"
 #: application/views/user/edit.php:532 application/views/user/edit.php:623
 #: application/views/user/edit.php:627 application/views/user/edit.php:653
 #: application/views/user/edit.php:708 application/views/user/edit.php:745
-#: application/views/user/edit.php:1042 application/views/user/edit.php:1058
-#: application/views/user/edit.php:1086 application/views/user/edit.php:1117
-#: application/views/user/edit.php:1147 application/views/user/edit.php:1172
+#: application/views/user/edit.php:1052 application/views/user/edit.php:1068
+#: application/views/user/edit.php:1096 application/views/user/edit.php:1127
+#: application/views/user/edit.php:1157 application/views/user/edit.php:1182
 msgid "No"
 msgstr "Ei"
 
@@ -9399,9 +9410,9 @@ msgid "Yes, switch over!"
 msgstr "Kyllä, vaihda!"
 
 #: application/views/club/clubswitch_modal.php:15
-#: application/views/club/permissions.php:229
-#: application/views/club/permissions.php:325
-#: application/views/club/permissions.php:354
+#: application/views/club/permissions.php:242
+#: application/views/club/permissions.php:338
+#: application/views/club/permissions.php:367
 #: application/views/cron/edit.php:74
 #: application/views/interface_assets/footer.php:40
 #: application/views/logbookadvanced/index.php:88
@@ -9420,7 +9431,24 @@ msgstr "Klubin käyttöoikeudet käyttäjälle %s"
 msgid "Go back"
 msgstr "Takaisin"
 
-#: application/views/club/permissions.php:13
+#: application/views/club/permissions.php:16
+msgid ""
+"This club/special callsign is managed by a single sign on / identity "
+"provider. \n"
+"                    Permissions can be increased here, but access may be "
+"automatically removed or granted by the identity provider when users login.\n"
+"                    There may be users not listed who have permissions for "
+"this club/special callsign."
+msgstr ""
+
+#: application/views/club/permissions.php:19
+msgid ""
+"To grant permissions above member level access: add the user to the identity "
+"provider group, then add the user to the table below with increased "
+"permissions."
+msgstr ""
+
+#: application/views/club/permissions.php:22
 msgid ""
 "In order for users to log QSOs with this club/special callsign, they need "
 "appropriate authorizations. Add users to the table below and set the "
@@ -9430,91 +9458,91 @@ msgstr ""
 "tarvitsevat asianmukaiset luvat. Lisää käyttäjät alla olevaan taulukkoon ja "
 "aseta asianmukainen lupa."
 
-#: application/views/club/permissions.php:14
+#: application/views/club/permissions.php:24
 msgid "See available Permissions"
 msgstr "Katso saatavilla olevat käyttöoikeudet"
 
-#: application/views/club/permissions.php:19
+#: application/views/club/permissions.php:29
 msgid "Available Permissions"
 msgstr "Saatavilla olevat oikeudet"
 
-#: application/views/club/permissions.php:26
+#: application/views/club/permissions.php:36
 #: application/views/eqsl/download.php:45
 #: application/views/logbookadvanced/statecheckresult.php:13
 msgid "Action"
 msgstr "Toiminta"
 
-#: application/views/club/permissions.php:34
+#: application/views/club/permissions.php:44
 msgid "Log QSOs via Web GUI (live and post)"
 msgstr "Kirjaa QSOt Web-käyttöliittymän kautta (livenä ja jälkikäteen)"
 
-#: application/views/club/permissions.php:43
+#: application/views/club/permissions.php:53
 msgid "Log QSOs via API"
 msgstr "Kirjaa QSOt API:n kautta"
 
-#: application/views/club/permissions.php:52
+#: application/views/club/permissions.php:62
 msgid "Edit a QSO"
 msgstr "Muokkaa QSOa"
 
-#: application/views/club/permissions.php:58
-#: application/views/club/permissions.php:79
+#: application/views/club/permissions.php:68
+#: application/views/club/permissions.php:89
 msgid "QSO was done by the operator"
 msgstr "QSO tehtiin operaattorin toimesta"
 
-#: application/views/club/permissions.php:64
-#: application/views/club/permissions.php:85
+#: application/views/club/permissions.php:74
+#: application/views/club/permissions.php:95
 msgid "QSO was done by another operator"
 msgstr "QSO tehtiin toisen operaattorin toimesta"
 
-#: application/views/club/permissions.php:73
+#: application/views/club/permissions.php:83
 msgid "Delete a QSO"
 msgstr "Poista QSO"
 
-#: application/views/club/permissions.php:94
+#: application/views/club/permissions.php:104
 msgid "Manage Stationsetup (edit/create logbooks and locations)"
 msgstr "Hallitse asemakonfiguraatiota (muokkaa/luo lokikirjoja ja sijainteja)"
 
-#: application/views/club/permissions.php:103
+#: application/views/club/permissions.php:113
 msgid "Manage Third-Party services"
 msgstr "Hallitse kolmannen osapuolen palveluita"
 
-#: application/views/club/permissions.php:112
+#: application/views/club/permissions.php:122
 msgid "Import QSO per ADIF"
 msgstr "Tuo QSO ADIF-muodossa"
 
-#: application/views/club/permissions.php:122
+#: application/views/club/permissions.php:132
 msgid "Export QSO per ADIF"
 msgstr "Vie QSO ADIF-muodossa"
 
-#: application/views/club/permissions.php:128
+#: application/views/club/permissions.php:138
 msgid "Export own QSO per ADIF"
 msgstr "Vie omat QSO:t ADIF-muodossa"
 
-#: application/views/club/permissions.php:137
+#: application/views/club/permissions.php:147
 msgid "User Management"
 msgstr "Käyttäjien hallinta"
 
-#: application/views/club/permissions.php:143
+#: application/views/club/permissions.php:153
 msgid "Can create new users in Wavelog"
 msgstr "Voi luoda uusia käyttäjiä Wavelogissa"
 
-#: application/views/club/permissions.php:149
+#: application/views/club/permissions.php:159
 msgid "Can edit other users in Wavelog"
 msgstr "Voi muokata muita käyttäjiä Wavelogissa"
 
-#: application/views/club/permissions.php:155
+#: application/views/club/permissions.php:165
 msgid "Can edit Club permissions and add/remove users"
 msgstr "Voi muokata kerhon oikeuksia ja lisätä/poistaa käyttäjiä"
 
-#: application/views/club/permissions.php:174
+#: application/views/club/permissions.php:184
 msgid "Users with Permissions"
 msgstr "Käyttäjät, joilla on käyttöoikeudet"
 
-#: application/views/club/permissions.php:184
+#: application/views/club/permissions.php:197
 msgid "Add new User to Club"
 msgstr "Lisää uusi käyttäjä kerhoon"
 
-#: application/views/club/permissions.php:190
+#: application/views/club/permissions.php:203
 #, php-format
 msgid ""
 "You can only add users to the %s Clubstation if they already exist on this "
@@ -9523,14 +9551,14 @@ msgstr ""
 "Voit lisätä käyttäjiä %s kerhoasemalle vain, jos he ovat jo olemassa tällä "
 "Wavelog-palvelimella."
 
-#: application/views/club/permissions.php:191
+#: application/views/club/permissions.php:204
 msgid ""
 "If they don't exist, please ask your Wavelog Administrator to create an "
 "account for them."
 msgstr ""
 "Jos heitä ei ole, pyydä Wavelog-järjestelmänvalvojaasi luomaan heille tili."
 
-#: application/views/club/permissions.php:192
+#: application/views/club/permissions.php:205
 msgid ""
 "Search for the user by their callsign or first/lastname and select the "
 "permission level."
@@ -9538,74 +9566,74 @@ msgstr ""
 "Etsi käyttäjää heidän kutsumerkkinsä tai etu-/sukunimensä perusteella ja "
 "valitse haluttu käyttöoikeustaso."
 
-#: application/views/club/permissions.php:198
+#: application/views/club/permissions.php:211
 msgid "User (Callsign or Name)"
 msgstr "Käyttäjä (kutsu tai nimi)"
 
-#: application/views/club/permissions.php:199
-#: application/views/club/permissions.php:249
-#: application/views/club/permissions.php:295
+#: application/views/club/permissions.php:212
+#: application/views/club/permissions.php:262
+#: application/views/club/permissions.php:308
 msgid "Permission"
 msgstr "Lupa"
 
-#: application/views/club/permissions.php:206
+#: application/views/club/permissions.php:219
 msgid "Type at least 2 characters."
 msgstr "Kirjoita vähintään 2 merkkiä."
 
-#: application/views/club/permissions.php:218
+#: application/views/club/permissions.php:231
 msgid "Notify the user via email"
 msgstr "Ilmoita käyttäjälle sähköpostitse"
 
-#: application/views/club/permissions.php:237
+#: application/views/club/permissions.php:250
 msgid "No users currently have access to this club station."
 msgstr ""
 "Tällä hetkellä yhdelläkään käyttäjällä ei ole pääsyä tähän kerhoasemaan."
 
-#: application/views/club/permissions.php:244
+#: application/views/club/permissions.php:257
 msgid "Firstname"
 msgstr "Etunimi"
 
-#: application/views/club/permissions.php:245
+#: application/views/club/permissions.php:258
 msgid "Lastname"
 msgstr "Sukunimi"
 
-#: application/views/club/permissions.php:247
+#: application/views/club/permissions.php:260
 #: application/views/user/edit.php:66 application/views/user/index.php:152
 #: application/views/user/login.php:58 application/views/user/login.php:70
 #: application/views/user/login.php:71 application/views/user/profile.php:14
 msgid "Username"
 msgstr "Käyttäjänimi"
 
-#: application/views/club/permissions.php:248
+#: application/views/club/permissions.php:261
 msgid "E-Mail"
 msgstr "Sähköposti"
 
-#: application/views/club/permissions.php:270
+#: application/views/club/permissions.php:283
 msgid "Wavelog Administrator"
 msgstr "Wavelog-ylläpitäjä"
 
-#: application/views/club/permissions.php:287
+#: application/views/club/permissions.php:300
 msgid "You can modify the users permission level for this Clubstation."
 msgstr "Voit muokata käyttäjien oikeustasoja tälle kerhoasemalle."
 
-#: application/views/club/permissions.php:294
+#: application/views/club/permissions.php:307
 msgid "User Callsign"
 msgstr "Käyttäjän kutsumerkki"
 
-#: application/views/club/permissions.php:313
+#: application/views/club/permissions.php:326
 msgid "Notify the user via email about the change"
 msgstr "Ilmoita käyttäjälle muutoksesta sähköpostitse"
 
-#: application/views/club/permissions.php:343
+#: application/views/club/permissions.php:356
 msgid "Are you sure you want to delete this user from the club?"
 msgstr "Haluatko varmasti poistaa tämän käyttäjän kerhosta?"
 
-#: application/views/club/permissions.php:347
+#: application/views/club/permissions.php:360
 #, php-format
 msgid "Callsign: %s"
 msgstr "Kutsumerkki: %s"
 
-#: application/views/club/permissions.php:348
+#: application/views/club/permissions.php:361
 #, php-format
 msgid "Role: %s"
 msgstr "Rooli: %s"
@@ -10226,7 +10254,7 @@ msgstr "Tunniste"
 #: application/views/user/edit.php:499 application/views/user/edit.php:500
 #: application/views/user/edit.php:553 application/views/user/edit.php:562
 #: application/views/user/edit.php:717 application/views/user/edit.php:727
-#: application/views/user/edit.php:1039
+#: application/views/user/edit.php:1049
 msgid "Enabled"
 msgstr "Käytössä"
 
@@ -11616,10 +11644,6 @@ msgstr "Vain QSOt, joilla on määritelty lokaattori, viedään!"
 #: application/views/view_log/qso.php:507
 msgid "QSL Info"
 msgstr "QSL-info"
-
-#: application/views/dxcalendar/index.php:14
-msgid "Source"
-msgstr "Lähde"
 
 #: application/views/email/admin_reset_password.php:3
 #: application/views/email/forgot_password.php:3
@@ -13154,7 +13178,7 @@ msgstr ""
 "tyyliä."
 
 #: application/views/labels/index.php:2
-#: application/views/logbookadvanced/startatform.php:92
+#: application/views/logbookadvanced/startatform.php:104
 msgid "Mark QSL as printed"
 msgstr "Merkitse QSL tulostetuksi"
 
@@ -13234,36 +13258,41 @@ msgstr "Sisällytä oma kutsu?"
 
 #: application/views/labels/startatform.php:33
 #: application/views/logbookadvanced/startatform.php:32
-msgid "Include Grid?"
-msgstr "SIsällytä lokaattori?"
+msgid "Include OP-Call? (if filled)"
+msgstr ""
 
 #: application/views/labels/startatform.php:45
 #: application/views/logbookadvanced/startatform.php:44
+msgid "Include Grid?"
+msgstr "SIsällytä lokaattori?"
+
+#: application/views/labels/startatform.php:57
+#: application/views/logbookadvanced/startatform.php:56
 msgid ""
 "Include reference? (SIG, SOTA, POTA, IOTA, WWFF; If available in location)"
 msgstr ""
 "Sisällytä referenssi? (Sig, SOTA, POTA, IOTA, WWFF; jos saatavilla "
 "asemasijainnissa)"
 
-#: application/views/labels/startatform.php:57
+#: application/views/labels/startatform.php:69
 msgid "Include Via (if filled)?"
 msgstr "Sisällytä via (jos täytetty)?"
 
-#: application/views/labels/startatform.php:69
+#: application/views/labels/startatform.php:81
 msgid "Include QSLMSG (if filled)?"
 msgstr "Sisällytä QSLMSG (jos täytetty)?"
 
-#: application/views/labels/startatform.php:81
+#: application/views/labels/startatform.php:93
 msgid "Include TNX message?"
 msgstr "Sisällytä TNX-viesti?"
 
-#: application/views/labels/startatform.php:94
-#: application/views/logbookadvanced/startatform.php:105
+#: application/views/labels/startatform.php:106
+#: application/views/logbookadvanced/startatform.php:117
 msgid "Start printing at?"
 msgstr "Mistä tulostus aloitetaan?"
 
-#: application/views/labels/startatform.php:100
-#: application/views/logbookadvanced/startatform.php:111
+#: application/views/labels/startatform.php:112
+#: application/views/logbookadvanced/startatform.php:123
 msgid "Enter the starting position for label printing"
 msgstr "Anna tarratulostuksen aloituskohta"
 
@@ -13826,8 +13855,8 @@ msgstr "Direkti"
 #: application/views/logbookadvanced/index.php:606
 #: application/views/logbookadvanced/index.php:616
 #: application/views/oqrs/qsolist.php:70 application/views/oqrs/qsolist.php:112
-#: application/views/oqrs/request.php:45
-#: application/views/oqrs/request_grouped.php:48
+#: application/views/oqrs/request.php:46
+#: application/views/oqrs/request_grouped.php:49
 #: application/views/oqrs/showrequests.php:7
 #: application/views/qslprint/qslprint.php:6
 #: application/views/qslprint/qsolist.php:97
@@ -14772,15 +14801,15 @@ msgstr "Lokaattoriruutujen päivityksen tulokset:"
 msgid "The number of QSOs updated for gridsquare is"
 msgstr "Lokaattoriruudun osalta päivitettyjen QSOjen määrä on"
 
-#: application/views/logbookadvanced/startatform.php:56
+#: application/views/logbookadvanced/startatform.php:68
 msgid "Include Via"
 msgstr "Sisällytä Via"
 
-#: application/views/logbookadvanced/startatform.php:68
+#: application/views/logbookadvanced/startatform.php:80
 msgid "Include QSLMSG"
 msgstr "Sisällytä QSLMSG"
 
-#: application/views/logbookadvanced/startatform.php:80
+#: application/views/logbookadvanced/startatform.php:92
 msgid "Include TNX message"
 msgstr "Sisällytä TNX-viesti"
 
@@ -15653,14 +15682,14 @@ msgid "Add line"
 msgstr "Lisää rivi"
 
 #: application/views/oqrs/notinlogform.php:30
-#: application/views/oqrs/request.php:56
-#: application/views/oqrs/request_grouped.php:59
+#: application/views/oqrs/request.php:60
+#: application/views/oqrs/request_grouped.php:63
 msgid "Any extra information we need to know about?"
 msgstr "Onko mitään lisätietoa, josta meidän pitäisi tietää?"
 
 #: application/views/oqrs/notinlogform.php:34
-#: application/views/oqrs/request.php:60
-#: application/views/oqrs/request_grouped.php:63
+#: application/views/oqrs/request.php:64
+#: application/views/oqrs/request_grouped.php:67
 #: application/views/oqrs/showrequests.php:92
 #: application/views/qso/edit_ajax.php:275 application/views/qso/index.php:663
 #: application/views/user/index.php:29 application/views/user/index.php:154
@@ -15669,8 +15698,8 @@ msgid "E-mail"
 msgstr "Sähköposti"
 
 #: application/views/oqrs/notinlogform.php:36
-#: application/views/oqrs/request.php:62
-#: application/views/oqrs/request_grouped.php:65
+#: application/views/oqrs/request.php:66
+#: application/views/oqrs/request_grouped.php:69
 msgid "Your e-mail address where we can contact you"
 msgstr "Sähköpostiosoitteesi, johon voimme ottaa sinuun yhteyttä"
 
@@ -15717,17 +15746,17 @@ msgstr ""
 msgid "QSL Route"
 msgstr "QSL-Route"
 
-#: application/views/oqrs/request.php:50
-#: application/views/oqrs/request_grouped.php:53
+#: application/views/oqrs/request.php:53
+#: application/views/oqrs/request_grouped.php:56
 msgid "Direct (write address in message below)"
 msgstr "Direkti (kirjoita osoitteesi alla olevaan viestikenttään)"
 
-#: application/views/oqrs/request.php:66
-#: application/views/oqrs/request_grouped.php:69
+#: application/views/oqrs/request.php:70
+#: application/views/oqrs/request_grouped.php:73
 msgid "Submit request"
 msgstr "Lähetä pyyntö"
 
-#: application/views/oqrs/request_grouped.php:72
+#: application/views/oqrs/request_grouped.php:76
 #: application/views/oqrs/result.php:40
 msgid "No QSOs found in the log."
 msgstr "QSOja ei löytynyt lokista."
@@ -17781,7 +17810,7 @@ msgstr "Aseman erityisintressiryhmän info (esim. DA/NW-357)."
 
 #: application/views/station_profile/create.php:276
 #: application/views/station_profile/edit.php:301
-#: application/views/user/edit.php:971
+#: application/views/user/edit.php:981
 #, php-format
 msgid "Trouble? Check the %swiki%s."
 msgstr "Ongelma? Tarkista %swiki%s."
@@ -18966,59 +18995,81 @@ msgstr ""
 "Kun tämä on käytössä, direkti-pyyntöjen automaattinen OQRS-yhdistäminen "
 "suoritetaan."
 
-#: application/views/user/edit.php:849
+#: application/views/user/edit.php:837
+msgid "QSL delivery methods offered via OQRS"
+msgstr ""
+
+#: application/views/user/edit.php:839
+msgid "Bureau and Direct"
+msgstr ""
+
+#: application/views/user/edit.php:840
+msgid "Bureau only"
+msgstr ""
+
+#: application/views/user/edit.php:841
+msgid "Direct only"
+msgstr ""
+
+#: application/views/user/edit.php:843
+msgid ""
+"Restrict which QSL delivery methods requesters can choose on your public "
+"OQRS page."
+msgstr ""
+
+#: application/views/user/edit.php:859
 msgid "Default Values"
 msgstr "Oletusarvot"
 
-#: application/views/user/edit.php:857
+#: application/views/user/edit.php:867
 msgid "Settings for Default Band and Confirmation"
 msgstr "Oletusbandin ja vahvistuksen asetukset"
 
-#: application/views/user/edit.php:860
+#: application/views/user/edit.php:870
 msgid "Default Band"
 msgstr "Oletusbandi"
 
-#: application/views/user/edit.php:870
+#: application/views/user/edit.php:880
 msgid "Default QSL-Methods"
 msgstr "Oletus-QSL-menetelmät"
 
-#: application/views/user/edit.php:935
+#: application/views/user/edit.php:945
 msgid "Third Party Services"
 msgstr "Kolmannen osapuolen palvelut"
 
-#: application/views/user/edit.php:946
+#: application/views/user/edit.php:956
 msgid "Logbook of The World (LoTW) Username"
 msgstr "Logbook of The World (LoTW) Käyttäjänimi"
 
-#: application/views/user/edit.php:952
+#: application/views/user/edit.php:962
 msgid "Logbook of The World (LoTW) Password"
 msgstr "Logbook of The World (LoTW) Salasana"
 
-#: application/views/user/edit.php:956
+#: application/views/user/edit.php:966
 msgid "Test Login"
 msgstr "Testikirjautuminen"
 
-#: application/views/user/edit.php:974
+#: application/views/user/edit.php:984
 msgid "eQSL.cc Username"
 msgstr "eQSL.cc Käyttäjänimi"
 
-#: application/views/user/edit.php:980
+#: application/views/user/edit.php:990
 msgid "eQSL.cc Password"
 msgstr "eQSL.cc Salasana"
 
-#: application/views/user/edit.php:997
+#: application/views/user/edit.php:1007
 msgid "Club Log"
 msgstr "Club Log"
 
-#: application/views/user/edit.php:1000
+#: application/views/user/edit.php:1010
 msgid "Club Log Email"
 msgstr "Club Log sähköposti"
 
-#: application/views/user/edit.php:1006
+#: application/views/user/edit.php:1016
 msgid "Club Log Password"
 msgstr "Club Log Salasana"
 
-#: application/views/user/edit.php:1011
+#: application/views/user/edit.php:1021
 #, php-format
 msgid ""
 "If you have 2FA enabled at Clublog, you have to generate an App. Password to "
@@ -19028,15 +19079,15 @@ msgstr ""
 "sovelluskohtainen-salasana käyttääksesi Clublogia Wavelogissa. Vieraile "
 "%sclublog-asetussivullasi%s tehdäksesi niin."
 
-#: application/views/user/edit.php:1028
+#: application/views/user/edit.php:1038
 msgid "Widgets"
 msgstr "Widgetit"
 
-#: application/views/user/edit.php:1036
+#: application/views/user/edit.php:1046
 msgid "On-Air widget"
 msgstr "On-Air -widgetti"
 
-#: application/views/user/edit.php:1046
+#: application/views/user/edit.php:1056
 msgid ""
 "Note: In order to use this widget, you need to have at least one CAT radio "
 "configured and working."
@@ -19044,31 +19095,31 @@ msgstr ""
 "Huomaa: Jotta voit käyttää tätä widgettiä, sinulla täytyy olla vähintään "
 "yksi CAT-radio määritettynä ja toiminnassa."
 
-#: application/views/user/edit.php:1050
+#: application/views/user/edit.php:1060
 #, php-format
 msgid "When enabled, widget will be available at %s."
 msgstr "Kun tämä asetus on käytössä, löydät widgetin kohdasta %s."
 
-#: application/views/user/edit.php:1055
+#: application/views/user/edit.php:1065
 msgid "Display \"Last seen\" time"
 msgstr "Näytä ”Viimeksi nähty” -aika"
 
-#: application/views/user/edit.php:1061
+#: application/views/user/edit.php:1071
 msgid ""
 "This setting control whether the 'Last seen' time is displayed in widget or "
 "not."
 msgstr ""
 "Tämä asetus määrittää, näytetäänkö 'Viimeksi nähty' -aika widgetissä vai ei."
 
-#: application/views/user/edit.php:1064
+#: application/views/user/edit.php:1074
 msgid "Display only most recently updated radio"
 msgstr "Näytä vain viimeksi päivitetty CAT-radio"
 
-#: application/views/user/edit.php:1068
+#: application/views/user/edit.php:1078
 msgid "No, show all radios"
 msgstr "Ei, näytä kaikki CAT-radiot"
 
-#: application/views/user/edit.php:1070
+#: application/views/user/edit.php:1080
 msgid ""
 "If you have multiple CAT radios configured, this setting controls whether "
 "the widget should display all on-air radios of the user, or just the most "
@@ -19079,55 +19130,55 @@ msgstr ""
 "valita, näytetäänkö kaikki vai vain viimeksi päivitetty TRX. Jos sinulla on "
 "vain yksi CAT-radio, tällä asetuksella ei ole vaikutusta."
 
-#: application/views/user/edit.php:1080
+#: application/views/user/edit.php:1090
 msgid "QSOs widget"
 msgstr "QSO-widgetti"
 
-#: application/views/user/edit.php:1083
+#: application/views/user/edit.php:1093
 msgid "Display exact QSO time"
 msgstr "Näytä tarkka QSO-aika"
 
-#: application/views/user/edit.php:1089
+#: application/views/user/edit.php:1099
 msgid ""
 "This setting control whether exact QSO time should displayed in the QSO "
 "widget or not."
 msgstr ""
 "Tämä asetus määrittää, näytetäänkö tarkka QSO-aika QSO-widgetissä vai ei."
 
-#: application/views/user/edit.php:1102
+#: application/views/user/edit.php:1112
 msgid "Miscellaneous"
 msgstr "Sekalaiset"
 
-#: application/views/user/edit.php:1110
+#: application/views/user/edit.php:1120
 msgid "AMSAT Status Upload"
 msgstr "AMSAT Status -lähetys"
 
-#: application/views/user/edit.php:1113
+#: application/views/user/edit.php:1123
 msgid "Upload status of SAT QSOs to"
 msgstr "Lataa SAT-QSOjen tila palveluun"
 
-#: application/views/user/edit.php:1127
+#: application/views/user/edit.php:1137
 msgid "Mastodonserver"
 msgstr "Mastodon-palvelin"
 
-#: application/views/user/edit.php:1130
+#: application/views/user/edit.php:1140
 msgid "URL of Mastodonserver"
 msgstr "Mastodon-palvelimen URL-osoite"
 
-#: application/views/user/edit.php:1132
+#: application/views/user/edit.php:1142
 #, php-format
 msgid "Main URL of your Mastodon server, e.g. %s"
 msgstr "Mastodon-palvelimesi pää-URL, esim. %s"
 
-#: application/views/user/edit.php:1141
+#: application/views/user/edit.php:1151
 msgid "Winkeyer"
 msgstr "Winkeyer"
 
-#: application/views/user/edit.php:1144
+#: application/views/user/edit.php:1154
 msgid "Winkeyer Features Enabled"
 msgstr "Winkeyer-ominaisuudet käytössä"
 
-#: application/views/user/edit.php:1150
+#: application/views/user/edit.php:1160
 #, php-format
 msgid ""
 "Winkeyer support in Wavelog is very experimental. Read the wiki first at %s "
@@ -19136,25 +19187,25 @@ msgstr ""
 "Winkeyer-tuki Wavelogissa on hyvin kokeellinen. Lue ensin wiki osoitteessa "
 "%s ennen kuin otat sen käyttöön."
 
-#: application/views/user/edit.php:1161
+#: application/views/user/edit.php:1171
 msgid "Hams.at"
 msgstr "Hams.at"
 
-#: application/views/user/edit.php:1164
+#: application/views/user/edit.php:1174
 msgid "Private Feed Key"
 msgstr "Yksityinen syöteavain"
 
-#: application/views/user/edit.php:1166
+#: application/views/user/edit.php:1176
 #, php-format
 msgctxt "Hint for Hamsat API Key; uses Link"
 msgid "See your profile at %s."
 msgstr "Katso profiilisi osoitteessa %s."
 
-#: application/views/user/edit.php:1169
+#: application/views/user/edit.php:1179
 msgid "Show Workable Passes Only"
 msgstr "Näytä vain workittavissa olevat ylilennot"
 
-#: application/views/user/edit.php:1175
+#: application/views/user/edit.php:1185
 msgid ""
 "If enabled shows only workable passes based on the gridsquare set in your "
 "hams.at account. Requires private feed key to be set."
@@ -19163,7 +19214,7 @@ msgstr ""
 "perusteella workittavissa olevat ylilennot Tätä varten henkilökohtainen "
 "syöteavain (Private Feed Key) on oltava määritetty."
 
-#: application/views/user/edit.php:1187
+#: application/views/user/edit.php:1197
 msgid "Save Account"
 msgstr "Tallenna käyttäjätilin muutokset"
 
@@ -19396,14 +19447,14 @@ msgstr "Koti-QTH"
 msgid "Station Zones"
 msgstr "Asemavyöhykkeet"
 
-#: application/views/user/modals/first_login_wizard.php:74
-#: application/views/user/modals/first_login_wizard.php:84
+#: application/views/user/modals/first_login_wizard.php:75
+#: application/views/user/modals/first_login_wizard.php:86
 #, php-format
 msgctxt "zone lookup"
 msgid "%sLookup%s"
 msgstr "%sHae%s"
 
-#: application/views/user/modals/first_login_wizard.php:102
+#: application/views/user/modals/first_login_wizard.php:104
 msgid "Save and Start Logging"
 msgstr "Tallenna ja aloita yhteyksiesi lokikirjaus"
 

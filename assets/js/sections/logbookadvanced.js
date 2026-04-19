@@ -1982,7 +1982,8 @@ function printlabel(id_list) {
 				'tnxmsg': $('#tnxmsg')[0].checked,
 				'qslmsg': $('#qslmsg')[0].checked,
 				'reference': $('#reference')[0].checked,
-				'mycall': $('#mycall')[0].checked
+				'mycall': $('#mycall')[0].checked,
+				'opcall': $('#opcall')[0].checked
 			},
 		xhr:function(){
 			var xhr = new XMLHttpRequest();
