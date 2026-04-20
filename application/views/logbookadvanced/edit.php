@@ -32,6 +32,8 @@
 				<option value="region"><?= __("Region"); ?></option>
 				<option value="sota"><?= __("SOTA"); ?></option>
 				<option value="state"><?= __("State"); ?></option>
+				<option value="sig"><?= __("SIG"); ?></option>
+				<option value="sig_info"><?= __("SIG Info"); ?></option>
 				<option value="wwff"><?= __("WWFF"); ?></option>
 			</optgroup>
 

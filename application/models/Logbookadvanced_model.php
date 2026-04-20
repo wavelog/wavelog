@@ -1104,6 +1104,8 @@ class Logbookadvanced_model extends CI_Model {
 			case "pota": $column = 'COL_POTA_REF'; break;
 			case "sota": $column = 'COL_SOTA_REF'; break;
 			case "wwff": $column = 'COL_WWFF_REF'; break;
+			case "sig": $column = 'COL_SIG'; break;
+			case "sig_info": $column = 'COL_SIG_INFO'; break;
 			case "gridsquare": $column = 'COL_GRIDSQUARE'; break;
 			case "qslvia": $column = 'COL_QSL_VIA'; break;
 			case "satellite": $column = 'COL_SAT_NAME'; break;
@@ -1137,7 +1139,7 @@ class Logbookadvanced_model extends CI_Model {
 
 		$this->db->trans_start();
 
-		if ($column == 'COL_DARC_DOK') {
+		if ($column == 'COL_DARC_DOK' || $column == 'COL_SIG' || $column == 'COL_SIG_INFO') {
 			$value=strtoupper($value);
 		}
 		if ($column == 'station_id') {
