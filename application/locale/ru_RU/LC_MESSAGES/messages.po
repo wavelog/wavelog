@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-04-20 12:51+0000\n"
-"PO-Revision-Date: 2026-04-10 02:04+0000\n"
+"PO-Revision-Date: 2026-04-21 18:07+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -1219,7 +1219,7 @@ msgstr "Аутентификация через SSO отключена. Пров
 
 #: application/controllers/Header_auth.php:89
 msgid "Sorry. This instance is currently in maintenance mode."
-msgstr ""
+msgstr "Извините. Эта сервер сейчас находится в режиме обслуживания."
 
 #: application/controllers/Header_auth.php:96
 msgid "User not found."
@@ -9488,6 +9488,13 @@ msgid ""
 "                    There may be users not listed who have permissions for "
 "this club/special callsign."
 msgstr ""
+"Этот клубный/специальный позывной управляется с помощью единого входа/"
+"провайдера идентификации. \n"
+"                    Разрешения могут быть усилены здесь, но доступ может "
+"автоматически удаляться или предоставляться провайдером идентификации при "
+"входе пользователей. \n"
+"                    Вероятно, что есть пользователи, не указанные в списке, "
+"которые имеют разрешения для этого клубного/специального позывного."
 
 #: application/views/club/permissions.php:19
 msgid ""
@@ -9495,6 +9502,9 @@ msgid ""
 "provider group, then add the user to the table below with increased "
 "permissions."
 msgstr ""
+"Чтобы предоставить разрешения более высокого уровня, чем для участников: "
+"добавьте пользователя в группу провайдера идентификации, затем добавьте "
+"пользователя в таблицу ниже с повышенными разрешениями."
 
 #: application/views/club/permissions.php:22
 msgid ""
@@ -13343,7 +13353,7 @@ msgstr "Включить мой позывной?"
 #: application/views/labels/startatform.php:33
 #: application/views/logbookadvanced/startatform.php:32
 msgid "Include OP-Call? (if filled)"
-msgstr ""
+msgstr "Включать позывной оператора? (если заполнено)"
 
 #: application/views/labels/startatform.php:45
 #: application/views/logbookadvanced/startatform.php:44
@@ -13781,7 +13791,7 @@ msgstr "Регион"
 
 #: application/views/logbookadvanced/edit.php:35
 msgid "SIG / SIG_INFO"
-msgstr ""
+msgstr "SIG / информация SIG"
 
 #: application/views/logbookadvanced/edit.php:39
 msgid "QSL / LoTW / Clublog / eQSL / QRZ / DCL"
@@ -14048,11 +14058,11 @@ msgstr ""
 #: application/views/logbookadvanced/edit.php:254
 #: application/views/logbookadvanced/edit.php:257
 msgid "clear"
-msgstr ""
+msgstr "Очистить"
 
 #: application/views/logbookadvanced/edit.php:255
 msgid "SIG_INFO"
-msgstr ""
+msgstr "Информация SIG"
 
 #: application/views/logbookadvanced/help.php:2
 msgid "In the text input searches, you can search in the following way:"
@@ -19137,25 +19147,27 @@ msgstr ""
 
 #: application/views/user/edit.php:837
 msgid "QSL delivery methods offered via OQRS"
-msgstr ""
+msgstr "Методы доставки QSL, предлагаемые через OQRS"
 
 #: application/views/user/edit.php:839
 msgid "Bureau and Direct"
-msgstr ""
+msgstr "Через бюро и напрямую"
 
 #: application/views/user/edit.php:840
 msgid "Bureau only"
-msgstr ""
+msgstr "Только через бюро"
 
 #: application/views/user/edit.php:841
 msgid "Direct only"
-msgstr ""
+msgstr "Только напрямую"
 
 #: application/views/user/edit.php:843
 msgid ""
 "Restrict which QSL delivery methods requesters can choose on your public "
 "OQRS page."
 msgstr ""
+"Ограничьте, какие методы доставки QSL могут выбирать запрашивающие QSL на "
+"вашей публичной странице OQRS."
 
 #: application/views/user/edit.php:859
 msgid "Default Values"
