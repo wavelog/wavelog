@@ -1105,7 +1105,6 @@ class Logbookadvanced_model extends CI_Model {
 			case "sota": $column = 'COL_SOTA_REF'; break;
 			case "wwff": $column = 'COL_WWFF_REF'; break;
 			case "sig": $column = 'COL_SIG'; break;
-			case "sig_info": $column = 'COL_SIG_INFO'; break;
 			case "gridsquare": $column = 'COL_GRIDSQUARE'; break;
 			case "qslvia": $column = 'COL_QSL_VIA'; break;
 			case "satellite": $column = 'COL_SAT_NAME'; break;
@@ -1139,8 +1138,12 @@ class Logbookadvanced_model extends CI_Model {
 
 		$this->db->trans_start();
 
-		if ($column == 'COL_DARC_DOK' || $column == 'COL_SIG' || $column == 'COL_SIG_INFO') {
+		if ($column == 'COL_DARC_DOK') {
 			$value=strtoupper($value);
+		}
+		if ($column == 'COL_SIG') {
+			$value=strtoupper($value);
+			$value3=strtoupper($value3);
 		}
 		if ($column == 'station_id') {
 
@@ -1439,6 +1442,26 @@ class Logbookadvanced_model extends CI_Model {
 		} else if ($column == 'COL_DISTANCE' && $value == '') {
 			$this->update_distances($ids);
 			$skipqrzupdate = true;
+		} else if ($column == 'COL_SIG') {
+			$args = array();
+			if ($value != '' || $value2 == "true" || $value3 != '' || $value4 == "true") {
+				$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ".$this->config->item('table_name').".station_id = station_profile.station_id SET ";
+				if ($value != '' || $value2 == "true") {
+					$sql .= $this->config->item('table_name').".COL_SIG = ?";
+					$args[] = ($value2 == "true" ? '' : $value);
+				}
+				if ($value3 != '' || $value4 == "true") {
+					if ($value != '' || $value2 == "true") {
+						$sql .= ", ";
+					}
+					$sql .= $this->config->item('table_name').".COL_SIG_INFO = ?";
+					$args[] = ($value4 == "true" ? '' : $value3);
+				}
+				$sql .= " WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+				$args[] = json_decode($ids, true);
+				$args[] = $this->session->userdata('user_id');
+				$query = $this->db->query($sql, $args);
+			}
 		} else {
 
 			if ($value == "null") {
