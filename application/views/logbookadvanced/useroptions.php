@@ -252,6 +252,12 @@
 				</div>
 				<div class="col-md-6 col-lg-4">
 					<div class="form-check">
+						<input class="form-check-input" name="sig_info" type="checkbox" id="sig_info" <?php if (($options->sig_info->show ?? "false") == "true") { echo 'checked'; } ?>>
+						<label class="form-check-label" for="sig_info"><?= __("SIG Info"); ?></label>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-4">
+					<div class="form-check">
 						<input class="form-check-input" name="region" type="checkbox" id="region" <?php if (($options->region->show ?? "true") == "true") { echo 'checked'; } ?>>
 						<label class="form-check-label" for="region"><?= __("Region"); ?></label>
 					</div>
