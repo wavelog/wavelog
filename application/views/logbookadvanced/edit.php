@@ -256,4 +256,3 @@
 		<input style="display:none" class="form-control form-control-sm w-auto" id="editSigInfo" type="text" name="editSigInfo" placeholder="" aria-label="editSigInfo">
 		<input style="display:none" id="clearSigInfo" class="mx-2 w-auto" for="editSigInfo" type="checkbox" name="clearSigInfo"></input><?= __("clear"); ?>
 	</form>
-	</form>
