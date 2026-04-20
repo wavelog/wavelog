@@ -126,6 +126,7 @@
             \"dok\":{\"show\":\"true\"},
             \"wwff\":{\"show\":\"true\"},
             \"sig\":{\"show\":\"true\"},
+            \"sig_info\":{\"show\":\"false\"},
             \"continent\":{\"show\":\"true\"},
             \"qrz\":{\"show\":\"true\"},
             \"profilename\":{\"show\":\"true\"},
@@ -198,6 +199,10 @@
     }
     if (!isset($current_opts->sig)) {
         echo "\nvar o_template = { sig: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+    if (!isset($current_opts->sig_info)) {
+        echo "\nvar o_template = { sig_info: {show: 'false'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
     if (!isset($current_opts->continent)) {
@@ -1022,6 +1027,9 @@ $options = json_decode($options);
                     } ?>
                     <?php if (($options->sig->show ?? "true") == "true") {
                         echo '<th>SIG</th>';
+                    } ?>
+                    <?php if (($options->sig_info->show ?? "false") == "true") {
+                        echo '<th>' . __("SIG Info") . '</th>';
                     } ?>
                     <?php if (($options->region->show ?? "true") == "true") {
                         echo '<th>' . __("Region") . '</th>';
