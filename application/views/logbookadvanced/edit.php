@@ -32,8 +32,7 @@
 				<option value="region"><?= __("Region"); ?></option>
 				<option value="sota"><?= __("SOTA"); ?></option>
 				<option value="state"><?= __("State"); ?></option>
-				<option value="sig"><?= __("SIG"); ?></option>
-				<option value="sig_info"><?= __("SIG Info"); ?></option>
+				<option value="sig"><?= __("SIG / SIG_INFO"); ?></option>
 				<option value="wwff"><?= __("WWFF"); ?></option>
 			</optgroup>
 
@@ -249,4 +248,11 @@
 		<input style="display:none" class="form-control form-control-sm w-auto" id="editDistanceInput" type="text" name="editDistanceInput" placeholder="" aria-label="editDistanceInput">
 		<input style="display:none" class="form-control form-control-sm w-auto uppercase" id="editDokInput" type="text" name="editDokInput" placeholder="" aria-label="editDokInput">
 		<input style="display:none" class="form-control form-control-sm w-auto uppercase" id="editGridsquareInput" type="text" name="editGridsquareInput" placeholder="" aria-label="editGridsquareInput">
+
+		<label style="display:none" id="editSigLabel" class="mx-2 w-auto" for="editSig"><?= __("SIG"); ?></label>
+		<input style="display:none" class="form-control form-control-sm w-auto" id="editSig" type="text" name="editSig" placeholder="" aria-label="editSig">
+		<input style="display:none" id="clearSig" class="mx-2 w-auto" for="editSig" type="checkbox" name="clearSig"><?= __("clear"); ?>
+		<label style="display:none" id="editSigInfoLabel" class="mx-2 w-auto" for="editSigInfo"><?= __("SIG_INFO"); ?></label>
+		<input style="display:none" class="form-control form-control-sm w-auto" id="editSigInfo" type="text" name="editSigInfo" placeholder="" aria-label="editSigInfo">
+		<input style="display:none" id="clearSigInfo" class="mx-2 w-auto" for="editSigInfo" type="checkbox" name="clearSigInfo"><?= __("clear"); ?>
 	</form>
