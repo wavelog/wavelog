@@ -251,8 +251,8 @@
 
 		<label style="display:none" id="editSigLabel" class="mx-2 w-auto" for="editSig"><?= __("SIG"); ?></label>
 		<input style="display:none" class="form-control form-control-sm w-auto" id="editSig" type="text" name="editSig" placeholder="" aria-label="editSig">
-		<input style="display:none" id="clearSig" class="mx-2 w-auto" for="editSig" type="checkbox" name="clearSig"></input><?= __("clear"); ?>
+		<input style="display:none" id="clearSig" class="mx-2 w-auto" for="editSig" type="checkbox" name="clearSig"><?= __("clear"); ?>
 		<label style="display:none" id="editSigInfoLabel" class="mx-2 w-auto" for="editSigInfo"><?= __("SIG_INFO"); ?></label>
 		<input style="display:none" class="form-control form-control-sm w-auto" id="editSigInfo" type="text" name="editSigInfo" placeholder="" aria-label="editSigInfo">
-		<input style="display:none" id="clearSigInfo" class="mx-2 w-auto" for="editSigInfo" type="checkbox" name="clearSigInfo"></input><?= __("clear"); ?>
+		<input style="display:none" id="clearSigInfo" class="mx-2 w-auto" for="editSigInfo" type="checkbox" name="clearSigInfo"><?= __("clear"); ?>
 	</form>
