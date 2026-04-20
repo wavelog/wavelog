@@ -10,7 +10,7 @@
 				$prop_mode = $result['prop_mode'];
 			// For backward compatibility, SatPC32 does not set propergation mode
 			} else if (isset($result['sat_name'])) {
-				if (trim($prop_mode) != '') {	// Some Tools send an empty string - catch it!
+				if (trim($result['sat_name']) != '') {	// Some Tools send an empty string - catch it!
 					$prop_mode = "SAT";
 				} else {
 					$prop_mode = NULL;
