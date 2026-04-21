@@ -399,59 +399,20 @@ $(document).ready(function() {
         // Validate and normalize mode parameter
         const validModes = ['lsb', 'usb', 'cw', 'fm', 'am', 'rtty', 'pkt', 'dig', 'pktlsb', 'pktusb', 'pktfm'];
         const catMode = mode && validModes.includes(mode.toLowerCase()) ? mode.toLowerCase() : 'usb';
+        const requestUrl = catUrl + '/' + freqHz + '/' + catMode;
 
-        // Determine which protocol to try first
-        // If URL is already HTTPS, use it. If HTTP, upgrade to HTTPS for first attempt.
-        const isHttps = catUrl.startsWith('https://');
-        const httpsUrl = isHttps ? catUrl : catUrl.replace(/^http:\/\//, 'https://');
-        const httpUrl = isHttps ? catUrl.replace(/^https:\/\//, 'http://') : catUrl;
-
-        // Build the full URLs with frequency and mode
-        const httpsRequestUrl = httpsUrl + '/' + freqHz + '/' + catMode;
-        const httpRequestUrl = httpUrl + '/' + freqHz + '/' + catMode;
-
-        // Try HTTPS first (unless original URL was already HTTPS, then just try that)
-        const tryHttps = !isHttps;
-
-        // Function to attempt tuning with a specific URL
-        const tryTuning = function(url, isFallback) {
-            return fetch(url, {
-                method: 'GET'
-            })
+        fetch(requestUrl, { method: 'GET' })
             .then(response => {
                 if (response.ok) {
-                    // Success - HTTP 200-299, get response text
                     return response.text();
                 } else {
-                    // HTTP error status (4xx, 5xx)
                     throw new Error('HTTP ' + response.status);
                 }
             })
             .then(data => {
-                // Call success callback with response data
                 if (typeof onSuccess === 'function') {
                     onSuccess(data);
                 }
-                return data;
-            });
-        };
-
-        // Execute failover logic: try HTTPS first, then HTTP
-        const primaryUrl = tryHttps ? httpsRequestUrl : httpRequestUrl;
-        const fallbackUrl = tryHttps ? httpRequestUrl : null;
-
-        tryTuning(primaryUrl, false)
-            .catch(error => {
-                // If HTTPS was attempted and failed, try HTTP fallback
-                if (fallbackUrl !== null) {
-                    return tryTuning(fallbackUrl, true)
-                        .catch(fallbackError => {
-                            // Both HTTPS and HTTP failed
-                            throw fallbackError;
-                        });
-                }
-                // No fallback available (was already HTTPS or only one URL to try)
-                throw error;
             })
             .catch(error => {
                 // All attempts failed - show error
