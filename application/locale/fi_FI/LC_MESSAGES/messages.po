@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-04-20 12:51+0000\n"
-"PO-Revision-Date: 2026-03-26 03:04+0000\n"
+"PO-Revision-Date: 2026-04-21 18:06+0000\n"
 "Last-Translator: \"Juuso W.\" <oh1jw@tuta.io>\n"
 "Language-Team: Finnish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/fi/>\n"
@@ -1040,6 +1040,9 @@ msgid ""
 "seems right you can delete the folders 'assets/qslcard' and 'images/"
 "eqsl_card_images'."
 msgstr ""
+"Tiedostomigraatio onnistui, mutta tarkista se myös manuaalisesti. Jos kaikki "
+"näyttää olevan kunnossa, voit poistaa kansiot 'assets/qslcard' ja 'images/"
+"eqsl_card_images'."
 
 #: application/controllers/Debug.php:320
 msgid "File Migration failed. Please check the Error Log."
@@ -1207,7 +1210,7 @@ msgstr "SSO-autentikointi on pois käytöstä. Tarkista asetuksesi."
 
 #: application/controllers/Header_auth.php:89
 msgid "Sorry. This instance is currently in maintenance mode."
-msgstr ""
+msgstr "Pahoittelut. Tämä instanssi on tällä hetkellä huoltotilassa."
 
 #: application/controllers/Header_auth.php:96
 msgid "User not found."
@@ -3682,6 +3685,7 @@ msgstr "DXCC:n on oltava numeerinen"
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
+"Poikkeava aseman kutsumerkki %s tuotaessa QSO:ta %s päivälle %s: OHITETTU"
 
 #: application/models/Logbook_model.php:4922
 #, php-format
@@ -3689,6 +3693,7 @@ msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
 "SKIPPED"
 msgstr ""
+"Poikkeava lokaattori %s tuotaessa QSO:ta %s aseman lokaattorille %s: OHITETTU"
 
 #: application/models/Logbook_model.php:4938
 msgid ""
@@ -4934,13 +4939,15 @@ msgstr ""
 
 #: application/views/adif/import.php:169
 msgid "Ignore grid check on import"
-msgstr ""
+msgstr "Ohita lokaattoriruudun tarkistus tuonnissa"
 
 #: application/views/adif/import.php:171
 msgid ""
 "If selected, Wavelog will try to import QSOs even if the MY_GRIDSQUARE field "
 "in ADIF records does not match the locator of the chosen station-location."
 msgstr ""
+"Jos valittu, Wavelog yrittää tuoda QSOt, vaikka ADIF-tietueiden "
+"MY_GRIDSQUARE-kenttä ei vastaa valitun asemasijainnin lokaattoria."
 
 #: application/views/adif/import.php:181
 msgid ""
@@ -5270,15 +5277,15 @@ msgstr "Tarkista %s virhevihjeiden löytämiseksi ADIF-tiedostoista."
 
 #: application/views/adif/import_success.php:61
 msgid "Critical Errors - Wrong Call/Location"
-msgstr ""
+msgstr "Kriittiset virheet – väärä kutsumerkki/sijainti"
 
 #: application/views/adif/import_success.php:70
 msgid "Validation Errors - Invalid Data"
-msgstr ""
+msgstr "Validointivirhe – virheelliset tiedot"
 
 #: application/views/adif/import_success.php:79
 msgid "Duplicate QSOs"
-msgstr ""
+msgstr "Duplikaatti-QSOja"
 
 #: application/views/adif/import_success.php:87
 msgid "You might have ADIF errors. Please check the following information:"
@@ -6425,7 +6432,7 @@ msgstr "Prefiksi"
 
 #: application/views/awards/dxcc/index.php:318
 msgid "Slots"
-msgstr ""
+msgstr "Slotit"
 
 #: application/views/awards/dxcc/index.php:380
 msgid "No results found for your search criteria. Please try again."
@@ -6804,7 +6811,7 @@ msgstr ""
 
 #: application/views/awards/jcc/index.php:76
 msgid "Deleted cities"
-msgstr ""
+msgstr "Poistetut kaupungit"
 
 #: application/views/awards/jcc/index.php:127
 msgid "Show JCC Map"
@@ -6812,7 +6819,7 @@ msgstr "Näytä JCC-kartta"
 
 #: application/views/awards/jcc/index.php:128
 msgid "Export confirmed QSOs"
-msgstr ""
+msgstr "Vie vahvistetut QSO-yhteydet"
 
 #: application/views/awards/jcc/index.php:138
 #: application/views/public_search/empty.php:2
@@ -9441,6 +9448,13 @@ msgid ""
 "                    There may be users not listed who have permissions for "
 "this club/special callsign."
 msgstr ""
+"Tätä kerho-/erikoiskutsumerkkiä hallitaan kertakirjautumisen (SSO) / "
+"identiteetin tarjoajan kautta.\n"
+"                   Oikeuksia voidaan lisätä täällä, mutta identiteetin "
+"tarjoaja voi automaattisesti myöntää tai poistaa käyttöoikeuksia käyttäjien "
+"kirjautuessa.\n"
+"                   On mahdollista, että on käyttäjiä, joita ei ole listattu, "
+"mutta joilla on silti käyttöoikeudet tähän kerho-/erikoiskutsumerkkiin."
 
 #: application/views/club/permissions.php:19
 msgid ""
@@ -9448,6 +9462,9 @@ msgid ""
 "provider group, then add the user to the table below with increased "
 "permissions."
 msgstr ""
+"Myöntääksesi jäsentason ylittävät käyttöoikeudet: lisää käyttäjä "
+"identiteetin tarjoajan ryhmään ja lisää sitten käyttäjä alla olevaan "
+"taulukkoon korotetuilla oikeuksilla."
 
 #: application/views/club/permissions.php:22
 msgid ""
@@ -10325,7 +10342,7 @@ msgstr ""
 
 #: application/views/cron/index.php:29
 msgid "All times are shown in UTC."
-msgstr ""
+msgstr "Kaikki ajat näytetään UTC-ajassa."
 
 #: application/views/cron/index.php:33
 msgid ""
@@ -12500,6 +12517,8 @@ msgstr "Sijainti haetaan DXCC-koordinaateista (ei lokaattoria annettu)"
 msgid ""
 "Location could not be determined as gridsquare is empty and DXCC is -NONE-"
 msgstr ""
+"Sijaintia ei voitu määrittää, koska lokaattoriruutu on tyhjä ja DXCC on -"
+"NONE-"
 
 #: application/views/interface_assets/footer.php:138
 msgid "Working without CAT connection"
@@ -13260,7 +13279,7 @@ msgstr "Sisällytä oma kutsu?"
 #: application/views/labels/startatform.php:33
 #: application/views/logbookadvanced/startatform.php:32
 msgid "Include OP-Call? (if filled)"
-msgstr ""
+msgstr "Sisällytä operattorin kutsumerkki? (jos annettu)"
 
 #: application/views/labels/startatform.php:45
 #: application/views/logbookadvanced/startatform.php:44
@@ -13692,7 +13711,7 @@ msgstr "Alue"
 
 #: application/views/logbookadvanced/edit.php:35
 msgid "SIG / SIG_INFO"
-msgstr ""
+msgstr "SIG / SIG_INFO"
 
 #: application/views/logbookadvanced/edit.php:39
 msgid "QSL / LoTW / Clublog / eQSL / QRZ / DCL"
@@ -13959,11 +13978,11 @@ msgstr ""
 #: application/views/logbookadvanced/edit.php:254
 #: application/views/logbookadvanced/edit.php:257
 msgid "clear"
-msgstr ""
+msgstr "tyhjennä"
 
 #: application/views/logbookadvanced/edit.php:255
 msgid "SIG_INFO"
-msgstr ""
+msgstr "SIG_INFO"
 
 #: application/views/logbookadvanced/help.php:2
 msgid "In the text input searches, you can search in the following way:"
@@ -18482,31 +18501,31 @@ msgstr "Workitut kutsumerkit (enintään 5)"
 
 #: application/views/timeplotter/index.php:81
 msgid "Best Time Window"
-msgstr ""
+msgstr "Paras aikaikkuna"
 
 #: application/views/timeplotter/index.php:90
 msgid "Best Band"
-msgstr ""
+msgstr "Paras bandi"
 
 #: application/views/timeplotter/index.php:99
 msgid "Best Mode"
-msgstr ""
+msgstr "Paras mode"
 
 #: application/views/timeplotter/index.php:108
 msgid "Total QSOs plotted"
-msgstr ""
+msgstr "Kartalle piirrettyjen QSOjen määrä"
 
 #: application/views/timeplotter/index.php:120
 msgid "Heatmap"
-msgstr ""
+msgstr "Lämpökartta"
 
 #: application/views/timeplotter/index.php:125
 msgid "Chart"
-msgstr ""
+msgstr "Kaavio"
 
 #: application/views/timeplotter/index.php:136
 msgid "Activity by Time of Day (UTC)"
-msgstr ""
+msgstr "Aktiivisuus vuorokaudenajan mukaan (UTC)"
 
 #: application/views/update/hamsofnote.php:7
 msgid "Name / Description"
@@ -19012,25 +19031,27 @@ msgstr ""
 
 #: application/views/user/edit.php:837
 msgid "QSL delivery methods offered via OQRS"
-msgstr ""
+msgstr "OQRS:n kautta saatavilla olevat QSL-lähetystavat"
 
 #: application/views/user/edit.php:839
 msgid "Bureau and Direct"
-msgstr ""
+msgstr "Bureau ja direkti"
 
 #: application/views/user/edit.php:840
 msgid "Bureau only"
-msgstr ""
+msgstr "Vain bureau"
 
 #: application/views/user/edit.php:841
 msgid "Direct only"
-msgstr ""
+msgstr "Vain direkti"
 
 #: application/views/user/edit.php:843
 msgid ""
 "Restrict which QSL delivery methods requesters can choose on your public "
 "OQRS page."
 msgstr ""
+"Rajoita, mitä QSL-toimitustapoja pyytäjät voivat valita julkisella OQRS-"
+"sivullasi."
 
 #: application/views/user/edit.php:859
 msgid "Default Values"
