@@ -17,7 +17,7 @@ export class SyncEngine {
 		this.isPending = false; // Track if a sync request is currently in-flight
 		this.lastHeartbeatTime = 0; // Track when last request was sent
 		this.heartbeatStartTime = 0; // Track when heartbeat request started
-		this.heartbeatMaxDuration = 900; // Maximum acceptable duration in ms
+		this.heartbeatMaxDuration = 2000; // Maximum acceptable duration is 2 seconds (no parallel requests possible)
 		
 		// Handler system
 		this.syncHandlers = new Map(); // key pattern -> handler object
