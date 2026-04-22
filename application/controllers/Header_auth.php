@@ -68,6 +68,7 @@ class Header_auth extends CI_Controller {
         foreach ($claim_map as $db_field => $cfg) {
             $mapped[$db_field] = $claims[$cfg['claim']] ?? null;
         }
+        $claim_groups_key = $this->config->item('auth_header_clubstation_claim', 'sso') ?? '';
 
         // Build composite key: JSON {iss, sub} — uniquely identifies a user across IdP and user
         $iss = $claims['iss'] ?? '';
@@ -81,10 +82,16 @@ class Header_auth extends CI_Controller {
         $this->load->model('user_model');
         $query = $this->user_model->get_by_external_account($external_identifier);
 
+        $isNewUser = false;
+
         if (!$query || $query->num_rows() !== 1) {
-            if ($this->config->item('auth_header_create', 'sso')) {
+            if (ENVIRONMENT == 'maintenance') {
+                $this->_sso_error(__("Sorry. This instance is currently in maintenance mode."));
+                return;
+            } elseif ($this->config->item('auth_header_create', 'sso')) {
                 $this->_create_user($mapped, $external_identifier);
                 $query = $this->user_model->get_by_external_account($external_identifier);
+                $isNewUser = true;
             } else {
                 $this->_sso_error(__("User not found."));
                 return;
@@ -116,6 +123,11 @@ class Header_auth extends CI_Controller {
             $this->_update_user_from_claims($user->user_id, $mapped);
         }
 
+        // Clubstation
+        if (!empty($claim_groups_key) && ENVIRONMENT !== 'maintenance') {
+            $groups = $claims[$claim_groups_key] ?? [];
+            $this -> _update_club_membership($user->user_id, $groups, $isNewUser);
+        }
 
 
         // Establish session  
@@ -264,7 +276,6 @@ class Header_auth extends CI_Controller {
             $this->_sso_error();
         }
 
-        // $club_id = $this->config->item('auth_header_club_id', 'sso') ?: ''; // TODO: Add support to add a user to a clubstation
 
         $this->load->model('user_model');
         $result = $this->user_model->add(
@@ -347,6 +358,66 @@ class Header_auth extends CI_Controller {
             case OK:
                 return;
         }
+    }
+
+    /**
+     * Update clubstation membership.
+     * 
+     * @param int   $user_id
+     * @param array $claim    JWT multi-valued group claim
+     * @param bool  $isCreate Is from create user
+     * 
+     * @return void
+     */
+    private function _update_club_membership(int $user_id, array $claim, bool $isCreate) : void {
+        log_message('debug', "SSO Authentication Updating Clubstation for user " . $user_id . " claims: " . implode(',', $claim));
+
+        $directs = $this->config->item('auth_header_clubstation_direct', 'sso') ?: [];
+        if (empty($directs)) {
+            log_message('debug', "SSO Authentication Updating Clubstation empty");
+            return;
+        }
+
+        // Clubstation IDs listed directly to update
+        if ($isCreate) {
+            $direct_updates_id = array_keys($directs);
+        } else {
+            $direct_updates_id = array_keys(array_filter($directs, function ($item) {
+                return !empty($item['update_on_login']) && $item['update_on_login'] === true;
+            }));
+        }
+
+        // Get membership and nonmebership
+        $member_ids = [];
+        $non_member_ids = [];
+        foreach ($direct_updates_id as $id) {
+            $group = $directs[$id]['group'];
+
+            if (in_array($group, $claim, true)) {
+                $member_ids[] = $id;
+            } else {
+                $non_member_ids[] = $id;
+            }
+        }
+
+
+        log_message('debug', "SSO Authentication Updating Clubstation member_ids " . implode(',', $member_ids));
+        log_message('debug', "SSO Authentication Updating Clubstation non_member_ids " . implode(',', $non_member_ids));
+
+        $this->load->model('club_model');
+        foreach ($member_ids as $club_id) {
+            if ($this->club_model->get_permission_noui($club_id, $user_id) === 0) {
+                $this->club_model->alter_member($club_id, $user_id, 3);
+            }
+        }
+
+        foreach ($non_member_ids as $club_id) {
+            if ($this->club_model->get_permission_noui($club_id, $user_id) != 0) {
+                $this->club_model->delete_member($club_id, $user_id);
+            }
+        }
+            
+
     }
 
     /**

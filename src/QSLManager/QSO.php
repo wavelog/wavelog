@@ -1311,6 +1311,7 @@ class QSO
 			'dok' => $this->getFormattedDok(),
 			'wwff' => $this->getFormattedWwff(),
 			'sig' => $this->getFormattedSig(),
+			'sig_info' => $this->dxSigInfo,
 			'continent' => $this->getContinentLink(),
 			'profilename' => $this->profilename,
 			'stationpower' => empty($this->stationpower) ? null : $this->stationpower.' W',

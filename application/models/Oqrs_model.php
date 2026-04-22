@@ -8,6 +8,13 @@ class Oqrs_model extends CI_Model {
 		return $this->db->get('station_profile');
 	}
 
+	function get_user_id_for_station($station_id) {
+		$this->db->select('user_id');
+		$this->db->where('station_id', $station_id);
+		$this->db->where('oqrs', '1');
+		return $this->db->get('station_profile')->row()->user_id ?? null;
+	}
+
     function get_station_info($station_id) {
 
 		$binding = [];

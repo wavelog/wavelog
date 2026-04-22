@@ -832,6 +832,16 @@
 												</select>
 												<small id="oqrs_direct_auto_matching_help" class="form-text text-muted"><?= __("If this is on, automatic OQRS matching for direct request will happen."); ?></small>
 											</div>
+
+											<div class="mb-3">
+												<label for="oqrs_delivery_method"><?= __("QSL delivery methods offered via OQRS"); ?></label>
+												<select name="oqrs_delivery_method" class="form-select" id="oqrs_delivery_method">
+													<option value="both"   <?php if(($oqrs_delivery_method ?? 'both') == "both")   echo 'selected'; ?>><?= __("Bureau and Direct"); ?></option>
+													<option value="bureau" <?php if(($oqrs_delivery_method ?? 'both') == "bureau") echo 'selected'; ?>><?= __("Bureau only"); ?></option>
+													<option value="direct" <?php if(($oqrs_delivery_method ?? 'both') == "direct") echo 'selected'; ?>><?= __("Direct only"); ?></option>
+												</select>
+												<small class="form-text text-muted"><?= __("Restrict which QSL delivery methods requesters can choose on your public OQRS page."); ?></small>
+											</div>
 										</div>
 									</div>
 							</div>
