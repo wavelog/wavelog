@@ -48,6 +48,9 @@ $(document).ready(function() {
     // Cache for radio names to avoid repeated AJAX calls
     var radioNameCache = {};
 
+    // Session cache: remembers which protocol actually worked per stored catUrl (no persistence)
+    var catWorkingUrlCache = {};
+
     // Global CAT state - stores last received data from radio
     // This allows other components (like DX Waterfall) to read radio state
     // without depending on form fields
@@ -388,8 +391,8 @@ $(document).ready(function() {
     /**
      * Perform the actual radio tuning via CAT interface
      * Sends frequency and mode to radio via HTTP/HTTPS request with failover
-     * Tries HTTPS first, falls back to HTTP on failure
-     * @param {string} catUrl - CAT interface URL for the radio
+     * Uses the protocol from catUrl as primary; retries with the opposite protocol on failure
+     * @param {string} catUrl - CAT interface URL for the radio (must include http:// or https://)
      * @param {number} freqHz - Frequency in Hz
      * @param {string} mode - Radio mode (validated against supported modes)
      * @param {function} onSuccess - Callback on successful tuning
@@ -399,17 +402,29 @@ $(document).ready(function() {
         // Validate and normalize mode parameter
         const validModes = ['lsb', 'usb', 'cw', 'fm', 'am', 'rtty', 'pkt', 'dig', 'pktlsb', 'pktusb', 'pktfm'];
         const catMode = mode && validModes.includes(mode.toLowerCase()) ? mode.toLowerCase() : 'usb';
-        const requestUrl = catUrl + '/' + freqHz + '/' + catMode;
+        // Use cached working base URL if available (session-only, cleared on radio change)
+        const primaryBase = catWorkingUrlCache[catUrl] || catUrl;
+        const fallbackBase = primaryBase.startsWith('https://')
+            ? primaryBase.replace(/^https:\/\//, 'http://')
+            : primaryBase.replace(/^http:\/\//, 'https://');
+        const requestUrl = primaryBase + '/' + freqHz + '/' + catMode;
+        const fallbackUrl = fallbackBase + '/' + freqHz + '/' + catMode;
 
-        fetch(requestUrl, { method: 'GET' })
+        let successBase = primaryBase;
+
+        const tryFetch = (url) => fetch(url, { method: 'GET' })
             .then(response => {
                 if (response.ok) {
                     return response.text();
                 } else {
                     throw new Error('HTTP ' + response.status);
                 }
-            })
+            });
+
+        tryFetch(requestUrl)
+            .catch(() => { successBase = fallbackBase; return tryFetch(fallbackUrl); })
             .then(data => {
+                catWorkingUrlCache[catUrl] = successBase;  // remember working protocol for this session
                 if (typeof onSuccess === 'function') {
                     onSuccess(data);
                 }
@@ -1212,6 +1227,7 @@ $(document).ready(function() {
         // Clear both caches when radio changes
         radioCatUrlCache = {};
         radioNameCache = {};
+        catWorkingUrlCache = {};
 
         // Reset Hybrid Mode flag
         isHybridMode = false;
