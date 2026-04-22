@@ -89,6 +89,8 @@ $config = [
 							</div>
 
 						</div>
+						<!-- Worked before warning -->
+						<div id="qso-worked-before-warning" class="badge bg-danger fw-bold" style="display:none;" aria-live="assertive"></div>
 						<!-- DXCC info line -->
 						<div id="qso-dxcc-info" class="form-text text-muted small mt-1" aria-live="polite"></div>
 					</div>

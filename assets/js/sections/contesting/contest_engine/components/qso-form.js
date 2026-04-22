@@ -148,18 +148,21 @@ class QsoFormComponent {
 		const callsignInput = this.container.querySelector('#qso-callsign');
 		if (callsignInput) {
 			callsignInput.addEventListener('input', (e) => {
-				e.target.value = e.target.value.toUpperCase();
+				e.target.value = e.target.value.toUpperCase().trim();
+				const callsign = e.target.value;
 
-				if (this.lastDxccCallsign && e.target.value.trim().toUpperCase() !== this.lastDxccCallsign) {
+				if (this.lastDxccCallsign && callsign !== this.lastDxccCallsign) {
 					this.lastDxccCallsign = null;
 					this.lastDxccInfo = null;
 					this.updateDxccInfoDisplay(null);
 				}
 
+				this.updateWorkedBeforeWarning(callsign);
+
 				// Trigger SCP search if component is available
-				if (this.scpComponent && e.target.value.length >= 1) {
-					this.scpComponent.searchCallsign(e.target.value);
-				} else if (this.scpComponent && e.target.value.length === 0) {
+				if (this.scpComponent && callsign.length >= 1) {
+					this.scpComponent.searchCallsign(callsign);
+				} else if (this.scpComponent && callsign.length === 0) {
 					this.scpComponent.searchCallsign('');
 				}
 			});
@@ -176,6 +179,7 @@ class QsoFormComponent {
 			this.lastDxccCallsign = null;
 			this.lastDxccInfo = null;
 			this.updateDxccInfoDisplay(null);
+			this.updateWorkedBeforeWarning('');
 			this.writeDxccToView(null);
 			this.dataStore?.emit('qso_location_updated', null);
 			return;
@@ -307,6 +311,54 @@ class QsoFormComponent {
 		}
 
 		infoEl.textContent = `DXCC: ${entity} · ${cont} · CQ ${cqz}`;
+	}
+
+	checkWorkedBefore(callsign) {
+		if (!callsign || !this.dataStore || !this.radioComponent) {
+			return false;
+		}
+
+		const currentBand = this.radioComponent.getBand();
+		if (!currentBand) {
+			return false;
+		}
+
+		const currentMode = this.radioComponent.getMode();
+		if (!currentMode) {
+			return false;
+		}
+
+		for (const qso of this.dataStore.getPattern('qso.*').values()) {
+			if ((qso.callsign || '').toUpperCase() !== callsign) {
+				continue;
+			}
+			const qsoBand = qso.band || this.convertQrgToBand(parseInt(qso.frequency));
+			const qsoMode = qso.mode || this.convertQrgToMode(parseInt(qso.frequency));
+			if (qsoBand === currentBand && qsoMode === currentMode) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	updateWorkedBeforeWarning(callsign) {
+		const warning = this.container?.querySelector('#qso-worked-before-warning');
+		const qsoinput = this.container?.querySelector('#qso-callsign');
+		if (!warning) {
+			return;
+		}
+
+		if (callsign && this.checkWorkedBefore(callsign)) {
+			const band = this.radioComponent?.getBand() || '?';
+			const mode = this.radioComponent?.getMode()?.toUpperCase() || '?';
+			qsoinput?.classList.add('border-danger');
+			warning.textContent = `Already worked on ${band}/${mode}`;
+			warning.style.display = '';
+		} else {
+			qsoinput?.classList.remove('border-danger');
+			warning.textContent = '';
+			warning.style.display = 'none';
+		}
 	}
 
 	loadExistingQSOs() {
@@ -480,6 +532,7 @@ class QsoFormComponent {
 		this.lastDxccInfo = null;
 		this.updateDxccInfoDisplay(null);
 		this.writeDxccToView(null);
+		this.updateWorkedBeforeWarning('');
 	}
 
 	buildQsoCommands(dataStore) {
