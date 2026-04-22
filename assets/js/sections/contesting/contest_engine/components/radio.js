@@ -116,20 +116,7 @@ class RadioComponent {
 	 */
 	async setDefaultBand(band) {
 		this.selectedBand = band;
-
-		// Update band button UI
-		const bandButtons = document.querySelectorAll('.band-btn-compact');
-		bandButtons.forEach(btn => {
-			if (btn.dataset.band === band) {
-				btn.setAttribute('data-selected', 'true');
-				btn.classList.add('active');
-			} else {
-				btn.removeAttribute('data-selected');
-				btn.classList.remove('active');
-			}
-		});
-
-		// Load default frequency for this band
+		this.updateBandButtons(band, true);
 		await this.loadDefaultFrequencyForBand(band);
 	}
 
@@ -145,18 +132,12 @@ class RadioComponent {
 		const bandButtons = document.querySelectorAll('.band-btn-compact');
 		bandButtons.forEach(button => {
 			button.addEventListener('click', (e) => {
-				const selectedBand = e.target.dataset.band;
+				if (e.currentTarget.disabled) return;
+
+				const selectedBand = e.currentTarget.dataset.band;
 				this.selectedBand = selectedBand;
 
-				// Remove active state from all buttons
-				bandButtons.forEach(btn => {
-					btn.removeAttribute('data-selected');
-					btn.classList.remove('active');
-				});
-
-				// Set active state on clicked button
-				e.target.setAttribute('data-selected', 'true');
-				e.target.classList.add('active');
+				this.updateBandButtons(selectedBand, true);
 
 				// Store selected band in config namespace
 				this.dataStore.set('config.selected_band', selectedBand);
@@ -198,16 +179,33 @@ class RadioComponent {
 		if (this.manualMode) {
 			this.clearDisplay();
 			this.showStatusInfo(lang_radio_manual_mode, 'info');
+			this.updateBandButtons(this.selectedBand, true);
 		} else if (radioId === 'ws') {
 			this._subscribeToRadio('radio.ws');
 			this.clearDisplay();
 			this.showStatusInfo(lang_radio_ws_connecting, 'info');
+			this.updateBandButtons(null, false);
 			this._initWebSocket();
 		} else {
 			this._subscribeToRadio(`radio.${radioId}`);
 			this.clearDisplay();
 			this.showStatusInfo(lang_radio_waiting, 'info');
+			this.updateBandButtons(null, false);
 		}
+	}
+
+	/**
+	 * Update band button states: highlight active band, enable or disable all buttons.
+	 * @param {string|null} band - Active band name (e.g. '40m'), or null to clear
+	 * @param {boolean} enabled - Whether buttons should be clickable
+	 */
+	updateBandButtons(band, enabled) {
+		document.querySelectorAll('.band-btn-compact').forEach(btn => {
+			const isActive = band && btn.dataset.band === band;
+			btn.toggleAttribute('data-selected', !!isActive);
+			btn.classList.toggle('active', !!isActive);
+			btn.disabled = !enabled;
+		});
 	}
 
 	/**
@@ -216,10 +214,16 @@ class RadioComponent {
 	updateFrequencyDisplay(freq) {
 		if (this.manualMode) return;
 
-		if (freq && this.frequency) {
-			this.frequency.value = freq;
-			this.set_qrg();
+		if (!freq || !this.frequency) return;
+
+		const detectedBand = this.frequencyToBand(parseInt(freq));
+		if (detectedBand) {
+			this.selectedBand = detectedBand;
 		}
+
+		this.frequency.value = freq;
+		this.set_qrg();
+		this.updateBandButtons(this.selectedBand, false);
 	}
 
 	/**
@@ -573,17 +577,7 @@ class RadioComponent {
 		this.freqCalculated.value = parsed_qrg;
 		this.selectedBand = new_band;
 
-		// Update band button UI
-		const bandButtons = document.querySelectorAll('.band-btn-compact');
-		bandButtons.forEach(btn => {
-			if (btn.dataset.band === new_band) {
-				btn.setAttribute('data-selected', 'true');
-				btn.classList.add('active');
-			} else {
-				btn.removeAttribute('data-selected');
-				btn.classList.remove('active');
-			}
-		});
+		this.updateBandButtons(new_band, true);
 
 		window.user_updating_frequency = false;
 	}
