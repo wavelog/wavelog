@@ -124,7 +124,7 @@ class QsoFormComponent {
 	}
 
 	setupEventListeners() {
-		// Enter key in input fields
+		// Enter key in input fields logs QSO
 		const inputs = this.container.querySelectorAll('input[type="text"], input[type="number"]');
 		inputs.forEach(input => {
 			input.addEventListener('keydown', (e) => {
@@ -132,6 +132,16 @@ class QsoFormComponent {
 					this.logQso();
 				}
 			});
+		});
+
+		// Escape resets the form — fires on keyup so it wins over any browser default
+		// action on keydown (e.g. Chrome restoring input values on Escape)
+		document.addEventListener('keyup', (e) => {
+			if (e.key !== 'Escape') return;
+			const active = document.activeElement;
+			if (!active || active === document.body || this.container.contains(active)) {
+				this.clearForm();
+			}
 		});
 
 		// Auto-uppercase callsign
