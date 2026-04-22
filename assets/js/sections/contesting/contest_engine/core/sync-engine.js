@@ -119,8 +119,8 @@ export class SyncEngine {
 						const duration = Date.now() - this.heartbeatStartTime;
 						if (duration > this.heartbeatMaxDuration && this.windowManager) {
 							this.windowManager.showToast(
-								'Heartbeat Warning',
-								`Heartbeat request took ${duration}ms (threshold: ${this.heartbeatMaxDuration}ms)`, // TODO: Localize and add hint about WavelogWorker (not existing yet)
+								lang_heartbeat_warning,
+								lang_heartbeat_slow.replace('%1', duration).replace('%2', this.heartbeatMaxDuration),
 								'bg-warning text-dark',
 								4000
 							);

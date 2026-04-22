@@ -28,6 +28,13 @@
     let lang_layout_error_default = "<?= __("Error setting default layout"); ?>";
     let lang_layout_error_delete = "<?= __("Error deleting layout"); ?>";
     let lang_layout_error_reset = "<?= __("Error resetting layout"); ?>";
+    let lang_app_load_error = "<?= __("Error loading application. Please refresh the page.") ?>";
+    let lang_app_loading_component = "<?= __("Loading %s...") ?>";
+    let lang_app_init_datastore = "<?= __("Initializing data store...") ?>";
+    let lang_app_init_core = "<?= __("Initializing core systems...") ?>";
+    let lang_heartbeat_warning = "<?= __("Heartbeat Warning") ?>";
+    let lang_heartbeat_slow = "<?= __("Heartbeat request took %1 ms (threshold: %2 ms)") ?>";
+    let lang_window_default_title = "<?= __("Window") ?>";
 </script>
 
 <div>

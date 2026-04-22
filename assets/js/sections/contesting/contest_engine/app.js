@@ -37,7 +37,7 @@ import { ComponentManager } from './core/component-loader.js';
 
         if (componentNames.length > 0) {
             for (const name of componentNames) {
-                updateLoadingStatus(`Loading ${name}...`); // TODO: Localize
+                updateLoadingStatus(lang_app_loading_component.replace('%s', name));
                 // Artificial delay to test loading screen, May improve UX on slow connections
                 await new Promise(resolve => setTimeout(resolve, 200));
                 try {
@@ -48,7 +48,7 @@ import { ComponentManager } from './core/component-loader.js';
             }
         }
 
-        updateLoadingStatus('Initializing core systems...');
+        updateLoadingStatus(lang_app_init_core);
 
         async function tryInitAsync() {
 
@@ -82,11 +82,11 @@ import { ComponentManager } from './core/component-loader.js';
              * Hint: It is important that the SyncEngine is initialized after the DataStore and Transport,
              *
              */
-            updateLoadingStatus('Initializing data store...');
+            updateLoadingStatus(lang_app_init_datastore);
             const ds = new DataStore(`wl_contestdata_${storageKey}`);
             await ds.init(); // Opens IndexedDB, loads session data
 
-            updateLoadingStatus('Initializing core systems...');
+            updateLoadingStatus(lang_app_init_core);
             const wm = new WindowManager(workspaceSelector);
             const layout = window.ContestLoggerConfig?.layout || {};
             const cm = new ComponentManager(wm, layout);
@@ -139,7 +139,7 @@ import { ComponentManager } from './core/component-loader.js';
         console.error('ContestApp: Failed to initialize', error);
         const statusEl = document.getElementById('loading-status');
         if (statusEl) {
-            statusEl.textContent = 'Error loading application. Please refresh the page.';
+            statusEl.textContent = lang_app_load_error;
             statusEl.style.color = '#ff4444';
         }
     }

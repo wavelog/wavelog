@@ -20,6 +20,21 @@ $config = [
 ];
 ?>
 
+<?php // Translations for JS ?>
+<script>
+	let lang_dxcc_lookup = "<?= __("DXCC Lookup...") ?>";
+	let lang_dxcc_lookup_failed = "<?= __("DXCC Lookup fehlgeschlagen") ?>";
+	let lang_dxcc_not_found = "<?= __("DXCC: nicht gefunden") ?>";
+	let lang_worked_before = "<?= __("Already worked on %s") ?>";
+	let lang_radio_component_not_available = "<?= __("Radio component not available. Can not save QSO.") ?>";
+	let lang_frequency_or_mode_not_set = "<?= __("Frequency or Mode not set. Please check radio settings.") ?>";
+	let lang_error = "<?= __("Error") ?>";
+	let lang_status_new = "<?= __("New") ?>";
+	let lang_status_confirmed = "<?= __("Confirmed") ?>";
+	let lang_status_error = "<?= __("Error") ?>";
+	let lang_status_unknown = "<?= __("Unknown") ?>";
+</script>
+
 <?php // hide number input spinners ?>
 <style>
 .no-spinner::-webkit-outer-spin-button,

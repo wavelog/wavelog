@@ -290,12 +290,12 @@ class QsoFormComponent {
 		}
 
 		if (dxccInfo.status === 'loading') {
-			infoEl.textContent = 'DXCC Lookup...';
+			infoEl.textContent = lang_dxcc_lookup;
 			return;
 		}
 
 		if (dxccInfo.status === 'error') {
-			infoEl.textContent = 'DXCC Lookup fehlgeschlagen';
+			infoEl.textContent = lang_dxcc_lookup_failed;
 			return;
 		}
 
@@ -306,7 +306,7 @@ class QsoFormComponent {
 		const isUnknown = adif === 0 || entity.toUpperCase().includes('NONE');
 
 		if (isUnknown) {
-			infoEl.textContent = 'DXCC: nicht gefunden';
+			infoEl.textContent = lang_dxcc_not_found;
 			return;
 		}
 
@@ -352,7 +352,7 @@ class QsoFormComponent {
 			const band = this.radioComponent?.getBand() || '?';
 			const mode = this.radioComponent?.getMode()?.toUpperCase() || '?';
 			qsoinput?.classList.add('border-danger');
-			warning.textContent = `Already worked on ${band}/${mode}`;
+			warning.textContent = lang_worked_before.replace('%s', band + '/' + mode);
 			warning.style.display = '';
 		} else {
 			qsoinput?.classList.remove('border-danger');
@@ -404,13 +404,13 @@ class QsoFormComponent {
 
 	getStatusIndicator(state) {
 		if (state === 'pending') {
-			return '<span title="New" style="color: orange;">&#9679;</span>';
+			return `<span title="${lang_status_new}" style="color: orange;">&#9679;</span>`;
 		} else if (state === 'synced') {
-			return '<span title="Confirmed" style="color: green;">&#9679;</span>';
+			return `<span title="${lang_status_confirmed}" style="color: green;">&#9679;</span>`;
 		} else if (state === 'error') {
-			return '<span title="Error" style="color: red;">&#9679;</span>';
+			return `<span title="${lang_status_error}" style="color: red;">&#9679;</span>`;
 		} else {
-			return '<span title="Unknown" style="color: gray;">&#9679;</span>';
+			return `<span title="${lang_status_unknown}" style="color: gray;">&#9679;</span>`;
 		}
 	}
 
@@ -727,7 +727,7 @@ class QsoFormComponent {
 		// Get frequency and mode from RadioComponent
 		if (!this.radioComponent) {
 			console.error('QSO Form: RadioComponent not available');
-			this.windowmanager.showToast('Error', 'RadioComponent not available. Can not save QSO.', 'bg-danger text-white', 5000);
+			this.windowmanager.showToast(lang_error, lang_radio_component_not_available, 'bg-danger text-white', 5000);
 			return;
 		}
 
@@ -736,7 +736,7 @@ class QsoFormComponent {
 
 		if (!frequency || !mode) {
 			console.error('QSO Form: Frequency or Mode not available', { frequency, mode });
-			this.windowmanager.showToast('Error', 'Frequency or Mode not set. Please check radio settings.', 'bg-danger text-white', 5000);
+			this.windowmanager.showToast(lang_error, lang_frequency_or_mode_not_set, 'bg-danger text-white', 5000);
 			return;
 		}
 

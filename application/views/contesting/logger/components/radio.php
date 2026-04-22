@@ -20,6 +20,20 @@ $config = [
 ];
 ?>
 
+<?php // Translations for JS ?>
+<script>
+	let lang_radio_no_data = "<?= __("No radio data available") ?>";
+	let lang_radio_data_old = "<?= __("Radio data is %s minutes old") ?>";
+	let lang_radio_connected = "<?= __("Radio connected") ?>";
+	let lang_radio_manual_mode = "<?= __("Manual mode: Enter frequency/mode manually") ?>";
+	let lang_radio_ws_connecting = "<?= __("Connecting to WebSocket radio...") ?>";
+	let lang_radio_waiting = "<?= __("Waiting for radio data...") ?>";
+	let lang_radio_ws_connected = "<?= __("WebSocket radio connected") ?>";
+	let lang_radio_ws_error = "<?= __("WebSocket connection error") ?>";
+	let lang_radio_ws_reconnecting = "<?= __("WebSocket disconnected – reconnecting...") ?>";
+	let lang_radio_ws_offline = "<?= __("WebSocket radio offline") ?>";
+</script>
+
 <div class="window-component" data-component="<?php echo $config['component_name']; ?>" data-config="<?php echo htmlspecialchars(json_encode($config), ENT_QUOTES, 'UTF-8'); ?>">
 	<div class="window-header">
 		<div class="window-title fw-semibold"><?php echo $config['title']; ?></div>

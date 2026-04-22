@@ -41,7 +41,7 @@ export class WindowManager {
 
 		const title = document.createElement('div');
 		title.className = 'window-title';
-		title.textContent = config.title || 'Window';
+		title.textContent = config.title || lang_window_default_title;
 
 		const controls = document.createElement('div');
 		controls.className = 'window-controls';

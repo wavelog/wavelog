@@ -20,6 +20,16 @@ $config = [
 ];
 ?>
 
+<?php // Translations for JS ?>
+<script>
+	let lang_scp_loading = "<?= __("Loading SCP databases...") ?>";
+	let lang_scp_ready = "<?= __("Ready") ?>";
+	let lang_scp_error = "<?= __("Error loading database") ?>";
+	let lang_scp_loading_pct = "<?= __("Loading %s...") ?>";
+	let lang_scp_no_matches = "<?= __("No matches found for '%s'") ?>";
+	let lang_scp_hint = "<?= __("Enter a partial callsign to see matches") ?>";
+</script>
+
 <div class="window-component" data-component="<?php echo $config['component_name']; ?>" data-config="<?php echo htmlspecialchars(json_encode($config), ENT_QUOTES, 'UTF-8'); ?>">
 	<div class="window-header">
 		<div class="window-title fw-semibold">

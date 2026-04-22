@@ -197,16 +197,16 @@ class RadioComponent {
 
 		if (this.manualMode) {
 			this.clearDisplay();
-			this.showStatusInfo('Manual mode: Enter frequency/mode manually', 'info');
+			this.showStatusInfo(lang_radio_manual_mode, 'info');
 		} else if (radioId === 'ws') {
 			this._subscribeToRadio('radio.ws');
 			this.clearDisplay();
-			this.showStatusInfo('Connecting to WebSocket radio...', 'info');
+			this.showStatusInfo(lang_radio_ws_connecting, 'info');
 			this._initWebSocket();
 		} else {
 			this._subscribeToRadio(`radio.${radioId}`);
 			this.clearDisplay();
-			this.showStatusInfo('Waiting for radio data...', 'info');
+			this.showStatusInfo(lang_radio_waiting, 'info');
 		}
 	}
 
@@ -240,11 +240,11 @@ class RadioComponent {
 		if (this.manualMode) return;
 		
 		if (minutesAgo === null || minutesAgo === undefined) {
-			this.showStatusInfo('⚠️ No radio data available', 'warning');
+			this.showStatusInfo(`⚠️ ${lang_radio_no_data}`, 'warning');
 		} else if (minutesAgo > 5) {
-			this.showStatusInfo(`⚠️ Radio data is ${minutesAgo} minutes old`, 'warning');
+			this.showStatusInfo(`⚠️ ${lang_radio_data_old.replace('%s', minutesAgo)}`, 'warning');
 		} else {
-			this.showStatusInfo('✓ Radio connected', 'success');
+			this.showStatusInfo(`✓ ${lang_radio_connected}`, 'success');
 		}
 	}
 
@@ -612,7 +612,7 @@ class RadioComponent {
 
 		this._websocket.onopen = () => {
 			this._wsReconnectAttempts = 0;
-			this.showStatusInfo('✓ WebSocket radio connected', 'success');
+			this.showStatusInfo(`${lang_radio_ws_connected}`, 'success');
 		};
 
 		this._websocket.onmessage = (event) => {
@@ -631,7 +631,7 @@ class RadioComponent {
 				setTimeout(() => this._initWebSocket(), 100);
 				return;
 			}
-			this.showStatusInfo('⚠ WebSocket connection error', 'warning');
+			this.showStatusInfo(`${lang_radio_ws_error}`, 'warning');
 		};
 
 		this._websocket.onclose = () => {
@@ -640,13 +640,13 @@ class RadioComponent {
 				return;
 			}
 			if (this._wsReconnectAttempts < 5) {
-				this.showStatusInfo('WebSocket disconnected – reconnecting...', 'warning');
+				this.showStatusInfo(lang_radio_ws_reconnecting, 'warning');
 				setTimeout(() => {
 					this._wsReconnectAttempts++;
 					this._initWebSocket();
 				}, 2000 * (this._wsReconnectAttempts + 1));
 			} else {
-				this.showStatusInfo('⚠ WebSocket radio offline', 'warning');
+				this.showStatusInfo(`${lang_radio_ws_offline}`, 'warning');
 			}
 		};
 	}

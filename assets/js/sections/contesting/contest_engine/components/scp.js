@@ -142,7 +142,7 @@ class SCPComponent {
 
 	async loadSCPData() {
 		this.isLoading = true;
-		this.updateStatus('loading', 'Loading SCP databases...');
+		this.updateStatus('loading', lang_scp_loading);
 
 		try {
 			const maxAge = 7 * 24 * 60 * 60 * 1000; // 7 days (the SCP cron runs by default once a week)
@@ -159,7 +159,7 @@ class SCPComponent {
 
 				if (cachedCount > 0 && cacheAge < maxAge) {
 					await this.loadCallsignsFromIndexedDB();
-					this.updateStatus('ready', 'Ready');
+					this.updateStatus('ready', lang_scp_ready);
 					this.isLoading = false;
 					return;
 				}
@@ -219,12 +219,12 @@ class SCPComponent {
 				console.warn('SCPComponent: Could not clear localStorage cache', error);
 			}
 
-			this.updateStatus('ready', 'Ready');
+			this.updateStatus('ready', lang_scp_ready);
 			this.isLoading = false;
 
 		} catch (error) {
 			console.error('SCPComponent: Error loading SCP data', error);
-			this.updateStatus('error', 'Error loading database');
+			this.updateStatus('error', lang_scp_error);
 			this.isLoading = false;
 		}
 	}
@@ -287,7 +287,7 @@ class SCPComponent {
 				tx.oncomplete = () => {
 					savedCount = endIndex;
 					const percentage = Math.round((savedCount / callsignArray.length) * 100);
-					this.updateStatusText(`Loading ${percentage}%...`);
+					this.updateStatusText(lang_scp_loading_pct.replace('%s', percentage + '%'));
 					
 					// Schedule next batch
 					setTimeout(() => saveBatch(endIndex), 10);
@@ -430,7 +430,7 @@ class SCPComponent {
 			resultsContainer.innerHTML = `
 				<div class="scp-empty">
 					<i class="fas fa-search fa-2x mb-2"></i>
-					<p>No matches found for "${query}"</p>
+					<p>${lang_scp_no_matches.replace('%s', query)}</p>
 				</div>
 			`;
 			this.updateMatchCount(0);
@@ -515,7 +515,7 @@ class SCPComponent {
 		resultsContainer.innerHTML = `
 			<div class="text-center text-muted p-4">
 				<i class="fas fa-info-circle fa-2x mb-2"></i>
-				<p>Enter a partial callsign to see matches</p>
+				<p>${lang_scp_hint}</p>
 			</div>
 		`;
 		this.updateMatchCount(0);
