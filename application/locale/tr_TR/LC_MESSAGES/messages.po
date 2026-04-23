@@ -8,13 +8,13 @@
 # "Fatih ÖNDER (TB1TFO)" <fatih05onder@gmail.com>, 2024.
 # Fabian Berg <fabian.berg@hb9hil.org>, 2025.
 # Erkin <ekomeko066@gmail.com>, 2025.
-# "Erkin Mercan (TA4AQG-SP9AQG)" <ekomeko066@gmail.com>, 2025.
+# "Erkin Mercan (TA4AQG-SP9AQG)" <ekomeko066@gmail.com>, 2025, 2026.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-04-20 12:51+0000\n"
-"PO-Revision-Date: 2026-01-05 10:37+0000\n"
-"Last-Translator: Halil AYYILDIZ <ta2lghalil@gmail.com>\n"
+"PO-Revision-Date: 2026-04-24 05:57+0000\n"
+"Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/tr/>\n"
 "Language: tr_TR\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.14\n"
+"X-Generator: Weblate 5.16.2\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -288,7 +288,7 @@ msgstr "API Anahtarı %s açıklaması güncellendi."
 #: application/controllers/Api.php:89 application/controllers/Api.php:124
 #: application/controllers/Qso.php:577
 msgid "Invalid request method"
-msgstr ""
+msgstr "Geçersiz istek metodu"
 
 #: application/controllers/Api.php:100
 msgid "Invalid API rights"
@@ -304,7 +304,7 @@ msgstr "API anahtarı oluşturulamadı"
 
 #: application/controllers/Api.php:134
 msgid "Invalid API Key"
-msgstr ""
+msgstr "Geçersiz API Anahtarı"
 
 #: application/controllers/Api.php:143
 #, php-format
@@ -427,7 +427,7 @@ msgstr "Kayıt Görünümü"
 
 #: application/controllers/Awards.php:568
 msgid "and"
-msgstr ""
+msgstr "ve"
 
 #: application/controllers/Awards.php:569
 #: application/views/awards/cq/index.php:135
@@ -443,7 +443,7 @@ msgstr "Her bant (Uydu hariç)"
 
 #: application/controllers/Awards.php:569
 msgid "band"
-msgstr ""
+msgstr "band"
 
 #: application/controllers/Awards.php:572
 msgid " and satellite "
@@ -625,7 +625,7 @@ msgstr "WAP"
 #: application/controllers/Awards.php:1488
 #: application/views/interface_assets/header.php:254
 msgid "WAIP"
-msgstr ""
+msgstr "WAIP"
 
 #: application/controllers/Awards.php:2195
 #: application/views/awards/itu/index.php:34
@@ -735,7 +735,7 @@ msgstr ""
 
 #: application/controllers/Calltester.php:917
 msgid "Callsign Tester"
-msgstr ""
+msgstr "Çağrı İşareti Testi"
 
 #: application/controllers/Club.php:23
 msgid "Club Officer"
@@ -795,7 +795,7 @@ msgstr "Geçersiz mesaj türü."
 
 #: application/controllers/Club.php:231
 msgid "Email can't be initialized. Check the email settings."
-msgstr ""
+msgstr "E-posta hizmetinde sorun var. E-posta kurulumunu kontrol edin."
 
 #: application/controllers/Club.php:238 application/views/api/index.php:68
 #: application/views/satellite/index.php:94
@@ -1009,7 +1009,7 @@ msgstr "Anahtar(lar) Silindi."
 
 #: application/controllers/Debug.php:114
 msgid "(empty)"
-msgstr ""
+msgstr "(boş)"
 
 #: application/controllers/Debug.php:132
 msgid "Debug"
@@ -1045,6 +1045,9 @@ msgid ""
 "seems right you can delete the folders 'assets/qslcard' and 'images/"
 "eqsl_card_images'."
 msgstr ""
+"Dosya Taşıma işlemi başarılı oldu, ancak lütfen manuel olarak da kontrol "
+"edin. Her şey doğru görünüyorsa 'assets/qslcard' ve 'images/"
+"eqsl_card_images' klasörlerini silebilirsiniz."
 
 #: application/controllers/Debug.php:320
 msgid "File Migration failed. Please check the Error Log."
@@ -1205,19 +1208,19 @@ msgstr "Hamsat - Uydu Gezinti"
 
 #: application/controllers/Header_auth.php:22
 msgid "SSO Authentication is disabled."
-msgstr ""
+msgstr "2 Aşamalı Doğrulama devredışı."
 
 #: application/controllers/Header_auth.php:36
 msgid "SSO Authentication is disabled. Check your configuration."
-msgstr ""
+msgstr "2 Aşamalı Doğrulama devredışı. Kurulumunuzu kontrol edin."
 
 #: application/controllers/Header_auth.php:89
 msgid "Sorry. This instance is currently in maintenance mode."
-msgstr ""
+msgstr "Üzgünüz. Sistem şu anda bakım modunda."
 
 #: application/controllers/Header_auth.php:96
 msgid "User not found."
-msgstr ""
+msgstr "Kullanıcı bulunamadı."
 
 #: application/controllers/Header_auth.php:111
 #: application/controllers/User.php:1342
@@ -1232,15 +1235,17 @@ msgid ""
 "Sorry. This instance is currently in maintenance mode. Only administrators "
 "are currently allowed to log in."
 msgstr ""
+"Üzgünüz. Sistem şu anda bakım modunda. Şu anda sisteme sadece yöneticiler "
+"giriş yapabilir."
 
 #: application/controllers/Header_auth.php:352
 #: application/controllers/Header_auth.php:356
 msgid "Something went terribly wrong. Check the error log."
-msgstr ""
+msgstr "Amanın bir şeyler çok kötü gitti. Hata günlüğünü kontrol edin."
 
 #: application/controllers/Header_auth.php:432
 msgid "SSO Config Error. Check error log."
-msgstr ""
+msgstr "2 Aşamalı doğrulama yapılandırma hatası. Hata günlüğünü kontrol edin."
 
 #: application/controllers/Hrdlog.php:70 application/controllers/Hrdlog.php:71
 msgid "HRD Log upload for this station is disabled."
@@ -11566,7 +11571,7 @@ msgstr "Türkçe"
 
 #: application/views/debug/index.php:877
 msgid "Ukrainian"
-msgstr ""
+msgstr "Ukraynalı"
 
 #: application/views/distancerecords/index.php:4
 msgid "This page lists distance records per satellite based on gridsquares."
