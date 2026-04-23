@@ -311,9 +311,11 @@ function changeEditType(type) {
 	$('#editFrequencyRxLabel').hide();
 	$('#editSig').hide();
 	$('#clearSig').hide();
+	$('#clearSigLabel').hide();
 	$('#editSigLabel').hide();
 	$('#editSigInfo').hide();
 	$('#clearSigInfo').hide();
+	$('#clearSigInfoLabel').hide();
 	$('#editSigInfoLabel').hide();
 	if (type == "dxcc") {
 		$('#editDxcc').show();
@@ -387,9 +389,11 @@ function changeEditType(type) {
 	} else if (type == "sig") {
 		$('#editSig').show();
 		$('#clearSig').show();
+		$('#clearSigLabel').show();
 		$('#editSigLabel').show();
 		$('#editSigInfo').show();
 		$('#clearSigInfo').show();
+		$('#clearSigInfoLabel').show();
 		$('#editSigInfoLabel').show();
 	}
 }
