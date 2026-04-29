@@ -195,7 +195,7 @@ class Visitor extends CI_Controller {
 
                 $callsign = $this->security->xss_clean(trim($this->input->post('callsign') ?? ''));
 
-                $this->db->select('COL_TIME_ON, COL_CALL, COL_BAND, COL_MODE, COL_SUBMODE, COL_RST_SENT, COL_RST_RCVD, COL_QSL_SENT, COL_QSL_RCVD, COL_LOTW_QSL_SENT, COL_LOTW_QSL_RCVD');
+                $this->db->select('COL_TIME_ON, COL_CALL, COL_BAND, COL_MODE, COL_SUBMODE, COL_RST_SENT, COL_RST_RCVD, COL_QSL_SENT, COL_QSL_RCVD, COL_LOTW_QSL_SENT, COL_LOTW_QSL_RCVD, COL_PROP_MODE, COL_SAT_NAME');
                 $this->db->from($this->config->item('table_name'));
                 $this->db->where_in('station_id', $logbooks_locations_array);
                 if (!empty($callsign)) {

@@ -179,12 +179,12 @@ tr:hover td {
     <table>
       <thead>
         <tr>
-          <th>Date</th>
-          <th>CallSign</th>
-          <th>Band</th>
-          <th>Mode</th>
-          <th>LOTW</th>
-          <th>DIRECT</th>
+          <th><?= __('Date'); ?></th>
+          <th><?= __('Callsign'); ?></th>
+          <th><?= __('Band'); ?></th>
+          <th><?= __('Mode'); ?></th>
+          <th><?= __('LoTW'); ?></th>
+          <th><?= __('QSL'); ?></th>
         </tr>
       </thead>
       <tbody>
@@ -192,7 +192,7 @@ tr:hover td {
         <tr>
           <td><?php echo date('Y-m-d', strtotime($row->COL_TIME_ON)); ?></td>
           <td><?php echo str_replace("0", "&Oslash;", strtoupper($row->COL_CALL)); ?></td>
-          <td><?php echo strtolower($row->COL_BAND); ?></td>
+          <td><?php echo $row->COL_PROP_MODE == 'SAT' ? $row->COL_SAT_NAME : strtolower($row->COL_BAND); ?></td>
           <td><?php echo $row->COL_SUBMODE ?? $row->COL_MODE; ?></td>
           <td>
             <div class="status-icons">
@@ -211,7 +211,7 @@ tr:hover td {
       </tbody>
     </table>
     <?php else: ?>
-    <div class="no-data">no QSOs yet</div>
+    <div class="no-data"><?= __('No QSOs yet'); ?></div>
     <?php endif; ?>
   </div>
 </div>
