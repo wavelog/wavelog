@@ -12,7 +12,7 @@ class Visitor extends CI_Controller {
 		$this->qso_per_page = 25;
 	}
 
-    function _remap($method) {
+    function _remap($method, $params = []) {
         if($method == "config") {
             $this->$method();
         }
@@ -32,7 +32,11 @@ class Visitor extends CI_Controller {
             $this->mapqsos();
         }
         else {
-            $this->index($method);
+            if (!empty($params) && $params[0] == "mini") {
+                $this->mini($method);
+            } else {
+                $this->index($method);
+            }
         }
     }
 
@@ -150,6 +154,71 @@ class Visitor extends CI_Controller {
 
         }
 	}
+
+    public function mini($public_slug) {
+
+        // Check slug passed and is valid
+        if ($this->security->xss_clean($public_slug, TRUE) === FALSE) {
+
+            // Public Slug failed the XSS test
+            log_message('error', '[Visitor] XSS Attack detected on public_slug '. $public_slug);
+            show_404(__("Unknown Public Page."));
+
+        } else {
+
+            // Checked slug passed and clean
+            log_message('info', '[Visitor] public_slug '. $public_slug .' loaded (mini)');
+
+            // Load necessary models
+            $this->load->model('logbooks_model');
+
+            if($this->logbooks_model->public_slug_exists($public_slug)) {
+
+                // Load the public view
+                $logbook_id = $this->logbooks_model->public_slug_exists_logbook_id($public_slug);
+
+                if($logbook_id != false) {
+
+                    // Get associated station locations for mysql queries
+                    $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($logbook_id);
+
+                    if ($logbooks_locations_array[0] === -1) {
+                        show_404(__("Empty Logbook"));
+                    }
+
+                } else {
+                    log_message('error', $public_slug.' has no associated station locations');
+                    show_404(__("Unknown Public Page."));
+                }
+
+                $this->load->model('logbook_model');
+
+                $callsign = $this->security->xss_clean(trim($this->input->post('callsign')));
+
+                $this->db->select('COL_TIME_ON, COL_CALL, COL_BAND, COL_MODE, COL_SUBMODE, COL_RST_SENT, COL_RST_RCVD, COL_QSL_SENT, COL_QSL_RCVD, COL_LOTW_QSL_SENT, COL_LOTW_QSL_RCVD');
+                $this->db->from($this->config->item('table_name'));
+                $this->db->where_in('station_id', $logbooks_locations_array);
+                if (!empty($callsign)) {
+                    $this->db->where('COL_CALL', strtoupper($callsign));
+                }
+                $this->db->order_by('COL_TIME_ON', 'DESC');
+                $this->db->limit(10);
+                $query = $this->db->get();
+                $results = $query->result();
+
+                $data['slug'] = $public_slug;
+                $data['results'] = $results;
+                $data['search_callsign'] = $callsign;
+
+                $this->load->view('visitor/mini', $data);
+
+            } else {
+                log_message('error', '[Visitor] Public slug not found: '. $public_slug);
+                show_404(__("Unknown Public Page."));
+            }
+
+        }
+    }
 
     public function map() {
 		$this->load->model('logbook_model');
