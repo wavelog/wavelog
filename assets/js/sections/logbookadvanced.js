@@ -160,6 +160,9 @@ function updateRow(qso) {
 	if ((user_options.sig) && ((user_options.sig.show ?? 'true') == "true")){
 		cells.eq(c++).html(qso.sig);
 	}
+	if ((user_options.sig_info) && ((user_options.sig_info.show ?? 'false') == "true")){
+		cells.eq(c++).html(qso.sig_info);
+	}
 	if ((user_options.region) && ((user_options.region.show ?? 'true') == "true")){
 		cells.eq(c++).html(qso.region);
 	}
@@ -402,6 +405,9 @@ function loadQSOTable(rows) {
 		}
 		if ((user_options.sig.show ?? 'true') == "true"){
 			data.push(qso.sig);
+		}
+		if ((user_options.sig_info.show ?? 'false') == "true"){
+			data.push(qso.sig_info);
 		}
 		if ((user_options.region.show ?? 'true') == "true"){
 			data.push(qso.region);
@@ -1982,7 +1988,8 @@ function printlabel(id_list) {
 				'tnxmsg': $('#tnxmsg')[0].checked,
 				'qslmsg': $('#qslmsg')[0].checked,
 				'reference': $('#reference')[0].checked,
-				'mycall': $('#mycall')[0].checked
+				'mycall': $('#mycall')[0].checked,
+				'opcall': $('#opcall')[0].checked
 			},
 		xhr:function(){
 			var xhr = new XMLHttpRequest();
@@ -2067,6 +2074,7 @@ function saveOptions() {
 				dok: $('input[name="dok"]').is(':checked') ? true : false,
 				wwff: $('input[name="wwff"]').is(':checked') ? true : false,
 				sig: $('input[name="sig"]').is(':checked') ? true : false,
+				sig_info: $('input[name="sig_info"]').is(':checked') ? true : false,
 				region: $('input[name="region"]').is(':checked') ? true : false,
 				continent: $('input[name="continent"]').is(':checked') ? true : false,
 				distance: $('input[name="distance"]').is(':checked') ? true : false,
