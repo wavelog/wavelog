@@ -66,23 +66,9 @@ body {
   display: flex;
 }
 .table-wrapper {
-  height: 396px;
-  overflow-y: auto;
+  min-height: 400px;
+  overflow-y: hidden;
   border: 1px solid #e0e0e0;
-}
-.table-wrapper::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
-}
-.table-wrapper::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.05);
-}
-.table-wrapper::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 2px;
-}
-.table-wrapper::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(0, 0, 0, 0.4);
 }
 table {
   width: 100%;
@@ -149,10 +135,6 @@ tr:hover td {
   color: #666;
   font-style: italic;
 }
-.table-wrapper.no-scroll {
-  height: auto;
-  overflow-y: hidden;
-}
 
 @media (max-width: 540px) {
   th, td {
@@ -191,9 +173,8 @@ tr:hover td {
   </div>
   <?php
   $hasData = !empty($results) && count($results) > 0;
-  $wrapperClass = $hasData ? 'table-wrapper no-scroll' : 'table-wrapper';
   ?>
-  <div class="<?php echo $wrapperClass; ?>">
+  <div class="table-wrapper">
     <?php if ($hasData): ?>
     <table>
       <thead>
