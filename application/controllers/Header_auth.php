@@ -168,7 +168,11 @@ class Header_auth extends CI_Controller {
 
         if (!empty($jwksUri)) {
             try {
-                $jwksJson = file_get_contents($jwksUri);
+                $wavelog_version = $this->optionslib->get_option('version');
+                $user_agent  = array('http' => array('user_agent' => "Wavelog/$wavelog_version"));
+
+                $context  = stream_context_create($user_agent);
+                $jwksJson = file_get_contents($jwksUri, false, $context);
                 if ($jwksJson === false) {
                     log_message('error', 'SSO Authentication: Failed to fetch JWKS from ' . $jwksUri);
                     return null;
