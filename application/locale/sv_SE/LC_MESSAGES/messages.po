@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-04-30 06:22+0000\n"
-"PO-Revision-Date: 2026-04-19 10:53+0000\n"
+"POT-Creation-Date: 2026-04-20 12:51+0000\n"
+"PO-Revision-Date: 2026-04-22 22:06+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sv/>\n"
@@ -147,22 +147,25 @@ msgstr "Karta Aktiverade Lokatorrutor"
 #: application/controllers/Awards.php:1059
 #: application/controllers/Awards.php:1095
 #: application/controllers/Gridmap.php:32
-#: application/controllers/Visitor.php:454
+#: application/controllers/Visitor.php:385
 #: application/views/activators/index.php:100
 #: application/views/interface_assets/footer.php:49
 #: application/views/visitor/layout/footer.php:12
 #: application/views/visitor/layout/header.php:68
+#: application/controllers/Visitor.php:454
 msgid "Gridsquares"
 msgstr "Lokatorrutor"
 
 #: application/controllers/Activated_gridmap.php:32
 #: application/controllers/Gridmap.php:33
+#: application/controllers/Visitor.php:386
 #: application/controllers/Visitor.php:455
 msgid "Gridsquares confirmed"
 msgstr "Lokatorrutor bekräftade"
 
 #: application/controllers/Activated_gridmap.php:33
 #: application/controllers/Gridmap.php:34
+#: application/controllers/Visitor.php:387
 #: application/controllers/Visitor.php:456
 msgid "Gridsquares not confirmed"
 msgstr "Lokatorrutor inte bekräftade"
@@ -173,24 +176,28 @@ msgstr "Totalt aktiverade Lokatorrutor"
 
 #: application/controllers/Activated_gridmap.php:36
 #: application/controllers/Gridmap.php:37
+#: application/controllers/Visitor.php:390
 #: application/controllers/Visitor.php:459
 msgid "Fields"
 msgstr "Fält"
 
 #: application/controllers/Activated_gridmap.php:37
 #: application/controllers/Gridmap.php:38
+#: application/controllers/Visitor.php:391
 #: application/controllers/Visitor.php:460
 msgid "Fields confirmed"
 msgstr "Fält bekräftade"
 
 #: application/controllers/Activated_gridmap.php:38
 #: application/controllers/Gridmap.php:39
+#: application/controllers/Visitor.php:392
 #: application/controllers/Visitor.php:461
 msgid "Fields not confirmed"
 msgstr "Fält inte bekräftade"
 
 #: application/controllers/Activated_gridmap.php:39
 #: application/controllers/Gridmap.php:40
+#: application/controllers/Visitor.php:393
 #: application/controllers/Visitor.php:462
 msgid "Total fields worked"
 msgstr "Totalt antal fält kontaktade"
@@ -951,6 +958,7 @@ msgid "SOTA CSV Export"
 msgstr "SOTA CSV-export"
 
 #: application/controllers/Dashboard.php:161
+#: application/controllers/Visitor.php:134
 #: application/controllers/Visitor.php:138
 msgid "Dashboard"
 msgstr "Instrumentpanel"
@@ -1192,6 +1200,7 @@ msgid "Gridsquare Map"
 msgstr "Lokator karta"
 
 #: application/controllers/Gridmap.php:35
+#: application/controllers/Visitor.php:388
 #: application/controllers/Visitor.php:457
 msgid "Total gridsquares worked"
 msgstr "Totalt antal lokatorrutor kontaktade"
@@ -1232,11 +1241,13 @@ msgstr ""
 "Beklagar. Denna instans är för närvarande i underhållsläge. Endast "
 "administratörer har för närvarande tillåtelse att logga in."
 
+#: application/controllers/Header_auth.php:352
 #: application/controllers/Header_auth.php:356
 #: application/controllers/Header_auth.php:360
 msgid "Something went terribly wrong. Check the error log."
 msgstr "Något gick fruktansvärt fel. Kontrollera felloggen."
 
+#: application/controllers/Header_auth.php:432
 #: application/controllers/Header_auth.php:436
 msgid "SSO Config Error. Check error log."
 msgstr "SSO-konfigurationsfel. Kontrollera felloggen."
@@ -1635,7 +1646,7 @@ msgstr "Alla callbook-sökningar misslyckades eller gav inga resultat."
 #: application/views/view_log/partial/log.php:9
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
-#: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
+#: application/views/widgets/qsos.php:18 application/views/visitor/mini.php:185
 msgid "Mode"
 msgstr "Trafiksätt"
 
@@ -1954,7 +1965,7 @@ msgstr "Avstånd"
 #: application/views/view_log/partial/log.php:12
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
-#: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
+#: application/views/widgets/qsos.php:21 application/views/visitor/mini.php:184
 msgid "Band"
 msgstr "Band"
 
@@ -2388,6 +2399,13 @@ msgstr "Versionsinformation kommer inte att visas för någon användare"
 #: application/controllers/Oqrs.php:42 application/controllers/Staticmap.php:20
 #: application/controllers/Staticmap.php:25
 #: application/controllers/Staticmap.php:156
+#: application/controllers/Visitor.php:50
+#: application/controllers/Visitor.php:81
+#: application/controllers/Visitor.php:148
+#: application/controllers/Visitor.php:175
+#: application/controllers/Visitor.php:210
+#: application/controllers/Visitor.php:478
+#: application/controllers/Widgets.php:68
 #: application/controllers/Visitor.php:54
 #: application/controllers/Visitor.php:85
 #: application/controllers/Visitor.php:152
@@ -2397,7 +2415,6 @@ msgstr "Versionsinformation kommer inte att visas för någon användare"
 #: application/controllers/Visitor.php:244
 #: application/controllers/Visitor.php:279
 #: application/controllers/Visitor.php:547
-#: application/controllers/Widgets.php:68
 msgid "Unknown Public Page."
 msgstr "Okänd offentlig sida."
 
@@ -2754,12 +2771,16 @@ msgid "Simple Fast Log Entry"
 msgstr "Enkel snabb loggning"
 
 #: application/controllers/Staticmap.php:152
+#: application/controllers/Visitor.php:76
+#: application/controllers/Visitor.php:171
+#: application/controllers/Visitor.php:206
+#: application/controllers/Visitor.php:474
+#: application/controllers/Widgets.php:64
 #: application/controllers/Visitor.php:80
 #: application/controllers/Visitor.php:186
 #: application/controllers/Visitor.php:240
 #: application/controllers/Visitor.php:275
 #: application/controllers/Visitor.php:543
-#: application/controllers/Widgets.php:64
 msgid "Empty Logbook"
 msgstr "Tom loggbok"
 
@@ -3448,15 +3469,18 @@ msgstr ""
 "Du har loggats ut från kontot %s. Välkommen tillbaka, %s, till ditt "
 "personliga konto!"
 
+#: application/controllers/Visitor.php:216
 #: application/controllers/Visitor.php:285
 msgid "Satellite Gridsquare Map"
 msgstr "Satellit lokator-karta"
 
-#: application/controllers/Visitor.php:481
+#: application/controllers/Visitor.php:412
 #: application/views/stationsetup/stationsetup.php:39
+#: application/controllers/Visitor.php:481
 msgid "Public Search"
 msgstr "Offentlig sökning"
 
+#: application/controllers/Visitor.php:445
 #: application/controllers/Visitor.php:514
 msgid "Export Map"
 msgstr "Exportera karta"
@@ -4631,8 +4655,8 @@ msgstr "Inget hittades!"
 #: application/views/user/edit.php:175 application/views/user/index.php:28
 #: application/views/user/index.php:153 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:684
-#: application/views/visitor/mini.php:183
 #: application/views/zonechecker/result.php:50
+#: application/views/visitor/mini.php:183
 msgid "Callsign"
 msgstr "Anropssignal"
 
@@ -4745,7 +4769,7 @@ msgstr ""
 #: application/views/view_log/partial/log.php:4
 #: application/views/view_log/partial/log_ajax.php:196
 #: application/views/visitor/index.php:151
-#: application/views/visitor/mini.php:182 application/views/widgets/qsos.php:16
+#: application/views/widgets/qsos.php:16 application/views/visitor/mini.php:182
 msgid "Date"
 msgstr "Datum"
 
@@ -7625,8 +7649,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
-"Reef/506) och giltig stat (ADIF: DXCC och STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
+"506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/wapc/index.php:122
 msgid "Show WAPC Map"
@@ -13310,8 +13334,8 @@ msgid ""
 "We’ll keep the original value and add a more precise locator (e.g., JO90AB "
 "or JO90AB12) when a match is confident."
 msgstr ""
-"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator (t."
-"ex. JO90AB eller JO90AB12) när en matchning är säker."
+"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator "
+"(t.ex. JO90AB eller JO90AB12) när en matchning är säker."
 
 #: application/views/logbookadvanced/checkresult.php:42
 msgid "Distance Check Results"
@@ -13695,7 +13719,7 @@ msgstr "Region"
 
 #: application/views/logbookadvanced/edit.php:35
 msgid "SIG / SIG_INFO"
-msgstr ""
+msgstr "SIG / SIG_INFO"
 
 #: application/views/logbookadvanced/edit.php:39
 msgid "QSL / LoTW / Clublog / eQSL / QRZ / DCL"
@@ -13962,11 +13986,11 @@ msgstr ""
 #: application/views/logbookadvanced/edit.php:254
 #: application/views/logbookadvanced/edit.php:257
 msgid "clear"
-msgstr ""
+msgstr "rensa"
 
 #: application/views/logbookadvanced/edit.php:255
 msgid "SIG_INFO"
-msgstr ""
+msgstr "SIG_INFO"
 
 #: application/views/logbookadvanced/help.php:2
 msgid "In the text input searches, you can search in the following way:"
@@ -18437,8 +18461,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 (t."
-"ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
+"(t.ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
@@ -19833,10 +19857,6 @@ msgstr "Besök Wavelog på Github"
 msgid "Please enter a callsign!"
 msgstr "Vänligen ange en anropssignal!"
 
-#: application/views/visitor/mini.php:214
-msgid "No QSOs yet"
-msgstr ""
-
 #: application/views/webadif/export.php:22
 msgid ""
 "Here you can see and upload all QSOs which have not been previously uploaded "
@@ -20001,6 +20021,10 @@ msgstr "CQz"
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr "CQz geojson"
+
+#: application/views/visitor/mini.php:214
+msgid "No QSOs yet"
+msgstr ""
 
 #~ msgid ""
 #~ "The Timeplotter is used to analyze your logbook and find out at what "
