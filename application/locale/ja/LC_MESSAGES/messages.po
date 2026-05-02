@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-04-20 12:51+0000\n"
+"POT-Creation-Date: 2026-04-30 06:22+0000\n"
 "PO-Revision-Date: 2026-04-30 16:07+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
@@ -149,25 +149,22 @@ msgstr "アクティブなグリッドロケーターマップ"
 #: application/controllers/Awards.php:1059
 #: application/controllers/Awards.php:1095
 #: application/controllers/Gridmap.php:32
-#: application/controllers/Visitor.php:385
+#: application/controllers/Visitor.php:454
 #: application/views/activators/index.php:100
 #: application/views/interface_assets/footer.php:49
 #: application/views/visitor/layout/footer.php:12
 #: application/views/visitor/layout/header.php:68
-#: application/controllers/Visitor.php:454
 msgid "Gridsquares"
 msgstr "グリッドスクウェア"
 
 #: application/controllers/Activated_gridmap.php:32
 #: application/controllers/Gridmap.php:33
-#: application/controllers/Visitor.php:386
 #: application/controllers/Visitor.php:455
 msgid "Gridsquares confirmed"
 msgstr "確認されたグリッドスクウェア"
 
 #: application/controllers/Activated_gridmap.php:33
 #: application/controllers/Gridmap.php:34
-#: application/controllers/Visitor.php:387
 #: application/controllers/Visitor.php:456
 msgid "Gridsquares not confirmed"
 msgstr "未確認のグリッドスクウェア"
@@ -178,28 +175,24 @@ msgstr "アクティブなグリッドスクウェア数"
 
 #: application/controllers/Activated_gridmap.php:36
 #: application/controllers/Gridmap.php:37
-#: application/controllers/Visitor.php:390
 #: application/controllers/Visitor.php:459
 msgid "Fields"
 msgstr "フィールド"
 
 #: application/controllers/Activated_gridmap.php:37
 #: application/controllers/Gridmap.php:38
-#: application/controllers/Visitor.php:391
 #: application/controllers/Visitor.php:460
 msgid "Fields confirmed"
 msgstr "確認されたフィールド"
 
 #: application/controllers/Activated_gridmap.php:38
 #: application/controllers/Gridmap.php:39
-#: application/controllers/Visitor.php:392
 #: application/controllers/Visitor.php:461
 msgid "Fields not confirmed"
 msgstr "確認されてないフィールド"
 
 #: application/controllers/Activated_gridmap.php:39
 #: application/controllers/Gridmap.php:40
-#: application/controllers/Visitor.php:393
 #: application/controllers/Visitor.php:462
 msgid "Total fields worked"
 msgstr "交信したフィールドの合計"
@@ -962,7 +955,6 @@ msgid "SOTA CSV Export"
 msgstr "SOTA CSVエクスポート"
 
 #: application/controllers/Dashboard.php:161
-#: application/controllers/Visitor.php:134
 #: application/controllers/Visitor.php:138
 msgid "Dashboard"
 msgstr "ダッシュボード"
@@ -1206,7 +1198,6 @@ msgid "Gridsquare Map"
 msgstr "グリッドスクエアマップ"
 
 #: application/controllers/Gridmap.php:35
-#: application/controllers/Visitor.php:388
 #: application/controllers/Visitor.php:457
 msgid "Total gridsquares worked"
 msgstr "交信したグリッドスクエアの合計"
@@ -1247,13 +1238,11 @@ msgstr ""
 "申し訳ありません。このインスタンスは現在メンテナンス中です。管理者のみがログ"
 "インできます。"
 
-#: application/controllers/Header_auth.php:352
 #: application/controllers/Header_auth.php:356
 #: application/controllers/Header_auth.php:360
 msgid "Something went terribly wrong. Check the error log."
 msgstr "何かがひどく間違っています。エラーログを確認してください。"
 
-#: application/controllers/Header_auth.php:432
 #: application/controllers/Header_auth.php:436
 msgid "SSO Config Error. Check error log."
 msgstr "SSO設定エラー。エラーログを確認してください。"
@@ -1651,7 +1640,7 @@ msgstr "すべてのコールブック検索が失敗したか、結果が提供
 #: application/views/view_log/partial/log.php:9
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
-#: application/views/widgets/qsos.php:18 application/views/visitor/mini.php:185
+#: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
 msgid "Mode"
 msgstr "モード"
 
@@ -1970,7 +1959,7 @@ msgstr "距離"
 #: application/views/view_log/partial/log.php:12
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
-#: application/views/widgets/qsos.php:21 application/views/visitor/mini.php:184
+#: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
 msgid "Band"
 msgstr "バンド"
 
@@ -2404,13 +2393,6 @@ msgstr "バージョン情報はどのユーザーにも表示されません"
 #: application/controllers/Oqrs.php:42 application/controllers/Staticmap.php:20
 #: application/controllers/Staticmap.php:25
 #: application/controllers/Staticmap.php:156
-#: application/controllers/Visitor.php:50
-#: application/controllers/Visitor.php:81
-#: application/controllers/Visitor.php:148
-#: application/controllers/Visitor.php:175
-#: application/controllers/Visitor.php:210
-#: application/controllers/Visitor.php:478
-#: application/controllers/Widgets.php:68
 #: application/controllers/Visitor.php:54
 #: application/controllers/Visitor.php:85
 #: application/controllers/Visitor.php:152
@@ -2420,6 +2402,7 @@ msgstr "バージョン情報はどのユーザーにも表示されません"
 #: application/controllers/Visitor.php:244
 #: application/controllers/Visitor.php:279
 #: application/controllers/Visitor.php:547
+#: application/controllers/Widgets.php:68
 msgid "Unknown Public Page."
 msgstr "不明な公開ページ。"
 
@@ -2769,16 +2752,12 @@ msgid "Simple Fast Log Entry"
 msgstr "簡単で高速なログ入力"
 
 #: application/controllers/Staticmap.php:152
-#: application/controllers/Visitor.php:76
-#: application/controllers/Visitor.php:171
-#: application/controllers/Visitor.php:206
-#: application/controllers/Visitor.php:474
-#: application/controllers/Widgets.php:64
 #: application/controllers/Visitor.php:80
 #: application/controllers/Visitor.php:186
 #: application/controllers/Visitor.php:240
 #: application/controllers/Visitor.php:275
 #: application/controllers/Visitor.php:543
+#: application/controllers/Widgets.php:64
 msgid "Empty Logbook"
 msgstr "空のログブック"
 
@@ -3347,8 +3326,8 @@ msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
 "setup, click %shere%s."
 msgstr ""
-"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するには、"
-"%shere%sをクリックしてください。"
+"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するに"
+"は、%shere%sをクリックしてください。"
 
 #: application/controllers/User.php:1430
 msgid "Station setup failed! Please set up your station manually."
@@ -3467,18 +3446,15 @@ msgstr ""
 "アカウント「%s」からログアウトされました。%sさん、ご自身の個人アカウントへよ"
 "うこそ！"
 
-#: application/controllers/Visitor.php:216
 #: application/controllers/Visitor.php:285
 msgid "Satellite Gridsquare Map"
 msgstr "衛星グリッドスクエアマップ"
 
-#: application/controllers/Visitor.php:412
-#: application/views/stationsetup/stationsetup.php:39
 #: application/controllers/Visitor.php:481
+#: application/views/stationsetup/stationsetup.php:39
 msgid "Public Search"
 msgstr "パブリックサーチ"
 
-#: application/controllers/Visitor.php:445
 #: application/controllers/Visitor.php:514
 msgid "Export Map"
 msgstr "マップをエクスポート"
@@ -4655,8 +4631,8 @@ msgstr "何も見つかりません!"
 #: application/views/user/edit.php:175 application/views/user/index.php:28
 #: application/views/user/index.php:153 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:684
-#: application/views/zonechecker/result.php:50
 #: application/views/visitor/mini.php:183
+#: application/views/zonechecker/result.php:50
 msgid "Callsign"
 msgstr "コールサイン"
 
@@ -4769,7 +4745,7 @@ msgstr ""
 #: application/views/view_log/partial/log.php:4
 #: application/views/view_log/partial/log_ajax.php:196
 #: application/views/visitor/index.php:151
-#: application/views/widgets/qsos.php:16 application/views/visitor/mini.php:182
+#: application/views/visitor/mini.php:182 application/views/widgets/qsos.php:16
 msgid "Date"
 msgstr "日付"
 
@@ -19778,6 +19754,10 @@ msgstr "GithubのWavelogをご覧ください"
 msgid "Please enter a callsign!"
 msgstr "コールサインを入力してください！"
 
+#: application/views/visitor/mini.php:214
+msgid "No QSOs yet"
+msgstr "まだ交信はありません"
+
 #: application/views/webadif/export.php:22
 msgid ""
 "Here you can see and upload all QSOs which have not been previously uploaded "
@@ -19941,10 +19921,6 @@ msgstr "CQz"
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr "CQz geojson"
-
-#: application/views/visitor/mini.php:214
-msgid "No QSOs yet"
-msgstr "まだ交信はありません"
 
 #~ msgid ""
 #~ "The Timeplotter is used to analyze your logbook and find out at what "
@@ -20141,9 +20117,9 @@ msgstr "まだ交信はありません"
 #~ "processed. %s Please make sure you export the LoTW certificate from tqsl "
 #~ "application without password! %s"
 #~ msgstr ""
-#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できません。"
-#~ "%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パスワード"
-#~ "なしで実行してください！%s"
+#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できませ"
+#~ "ん。%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パス"
+#~ "ワードなしで実行してください！%s"
 
 #~ msgid "Column"
 #~ msgstr "カラム"
@@ -20477,8 +20453,8 @@ msgstr "まだ交信はありません"
 #~ "Your active Station Location isn't linked to your Logbook. Click %shere%s "
 #~ "to do it."
 #~ msgstr ""
-#~ "現在のステーション位置がログブックとリンクされていません。リンクするには、"
-#~ "%shere%s をクリックしてください。"
+#~ "現在のステーション位置がログブックとリンクされていません。リンクするに"
+#~ "は、%shere%s をクリックしてください。"
 
 #, php-format
 #~ msgctxt "Dashboard Warning"
