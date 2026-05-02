@@ -3876,9 +3876,12 @@ $(function() {
 				updateFromCAT();
 			}
 
-			// Show gradient if we have frequency data
-			if (window.lastCATData && window.lastCATData.frequency) {
-				updateFrequencyGradientColors();
+			// For websocket radios, replay cached data if fresh enough
+			if (selectedRadio === 'ws' && window.lastCATData && typeof window.updateCATui === 'function') {
+				var replayMinutes = typeof cat_timeout_minutes !== 'undefined' ? cat_timeout_minutes : 5;
+				if (window.lastCATData.updated_minutes_ago <= replayMinutes) {
+					window.updateCATui(window.lastCATData);
+				}
 			}
 
 			updateCatButtonVisual(true);
