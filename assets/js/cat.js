@@ -221,6 +221,16 @@ $(document).ready(function() {
 
         // Handle radio status updates
         if (data.type === 'radio_status' && data.radio && ($(".radios option:selected").val() == 'ws')) {
+            // Calculate age from timestamp, defaulting to 0 (fresh) if timestamp is missing
+            if (data.timestamp) {
+                data.updated_minutes_ago = Math.floor((Date.now() - data.timestamp) / 60000);
+            } else {
+                data.updated_minutes_ago = 0; // Assume fresh if no timestamp
+            }
+
+            // Cache data so it's available when CAT tracking is enabled later
+            window.lastCATData = data;
+
             // On bandmap page, check CAT Control state
             if (typeof window.isCatTrackingEnabled !== 'undefined') {
                 if (!window.isCatTrackingEnabled) {
@@ -232,13 +242,6 @@ $(document).ready(function() {
                 }
             }
 
-            // Calculate age from timestamp, defaulting to 0 (fresh) if timestamp is missing
-            if (data.timestamp) {
-                data.updated_minutes_ago = Math.floor((Date.now() - data.timestamp) / 60000);
-            } else {
-                data.updated_minutes_ago = 0; // Assume fresh if no timestamp
-            }
-            // Cache the radio data
             updateCATui(data);
         }
     }
