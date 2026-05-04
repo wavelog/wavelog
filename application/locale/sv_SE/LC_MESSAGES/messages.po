@@ -3797,10 +3797,12 @@ msgid "Bearing"
 msgstr "Bäring"
 
 #: application/models/Logbookadvanced_model.php:1807
+#: application/models/Logbookadvanced_model.php:1838
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
 msgstr "VuccLokator-tabellen är tom. Importera VUCC-lokatordata först."
 
 #: application/models/Logbookadvanced_model.php:2427
+#: application/models/Logbookadvanced_model.php:2458
 msgid ""
 "Invalid primary QSO ID, or you do not have permission to access one of the "
 "QSOs"
@@ -3810,14 +3812,17 @@ msgstr ""
 
 #: application/models/Logbookadvanced_model.php:2437
 #: application/views/view_log/qso.php:946
+#: application/models/Logbookadvanced_model.php:2468
 msgid "QSO not found"
 msgstr "QSO hittades inte"
 
 #: application/models/Logbookadvanced_model.php:2523
+#: application/models/Logbookadvanced_model.php:2554
 msgid "No fields selected for merge or no differences between QSOs"
 msgstr "Inga fält valda för sammanslagning eller inga skillnader mellan QSOs"
 
 #: application/models/Logbookadvanced_model.php:2536
+#: application/models/Logbookadvanced_model.php:2567
 msgid "QSOs merged successfully"
 msgstr "QSO:erna slogs ihop framgångsrikt"
 
@@ -7625,8 +7630,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
-"Reef/506) och giltig stat (ADIF: DXCC och STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
+"506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/wapc/index.php:122
 msgid "Show WAPC Map"
@@ -13310,8 +13315,8 @@ msgid ""
 "We’ll keep the original value and add a more precise locator (e.g., JO90AB "
 "or JO90AB12) when a match is confident."
 msgstr ""
-"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator (t."
-"ex. JO90AB eller JO90AB12) när en matchning är säker."
+"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator "
+"(t.ex. JO90AB eller JO90AB12) när en matchning är säker."
 
 #: application/views/logbookadvanced/checkresult.php:42
 msgid "Distance Check Results"
@@ -18437,8 +18442,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 (t."
-"ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
+"(t.ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
