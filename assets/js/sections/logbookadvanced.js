@@ -1019,7 +1019,7 @@ $(document).ready(function () {
 			reverse = false;
 			// Post data to URL which handles post request
 			xhttp.open("POST", site_url+'/logbookadvanced/export_to_adif', true);
-			if(event.ctrlKey) {
+			if(event.shiftKey) {
 				reverse = true;
 			}
 			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
