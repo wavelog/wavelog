@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-03-17 19:56+0000\n"
-"PO-Revision-Date: 2026-05-03 15:22+0000\n"
+"PO-Revision-Date: 2026-05-04 07:47+0000\n"
 "Last-Translator: Anton Tomanič <s57xz.toni@gmail.com>\n"
 "Language-Team: Slovenian <https://translate.wavelog.org/projects/wavelog/"
 "installer/sl/>\n"
@@ -673,120 +673,127 @@ msgid ""
 "Check which DXCC for this particular location is the correct one. If you are "
 "sure, ignore this warning."
 msgstr ""
+"Za trenutek se ustavite. Vaša izbrana DXCC je zastarela in ni več veljavna. "
+"Preverite, katera DXCC za to lokacijo je pravilna. Če ste prepričani, "
+"prezrite to opozorilo."
 
 #: install/index.php:1752
 msgid ""
 "The locator seems to be not in the correct format. Should look like AA11AA "
 "(6-char grid locator)."
 msgstr ""
+"Zdi se, da lokator ni v pravilni obliki. Izgledati bi moral kot AA11AA (6-"
+"mestni UL lokator)."
 
 #: install/index.php:1766
 msgid ""
 "The e-mail adress does not look correct. Make sure it's a valid e-mail "
 "address"
-msgstr ""
+msgstr "E-poštni naslov ni videti pravilen. Prepričajte se, da je veljaven"
 
 #: install/index.php:1793
 msgid "Password should be at least 8 characters long"
-msgstr ""
+msgstr "Geslo mora biti dolgo vsaj 8 znakov"
 
 #: install/index.php:1802
 msgid "Passwords do not match"
-msgstr ""
+msgstr "Gesli se ne ujemata"
 
 #: install/index.php:1858
 msgid "Install Now"
-msgstr ""
+msgstr "Namesti zdaj"
 
 #: install/index.php:1862
 msgid "Install not possible. Checklist incomplete."
-msgstr ""
+msgstr "Namestitev ni mogoča. Kontrolni seznam ni popoln."
 
 #: install/index.php:1974
 msgid "PHP Module missing"
-msgstr ""
+msgstr "PHP Modul manjka"
 
 #: install/index.php:1976
 msgid "The following PHP modules are missing:"
-msgstr ""
+msgstr "Manjkajo naslednji PHP moduli:"
 
 #: install/index.php:1977
 msgid "Without this module the Wavelog Installer does not work!"
-msgstr ""
+msgstr "Brez tega modula namestitveni program Wavelog ne deluje!"
 
 #: install/index.php:1978
 msgid "Please install the required modules and restart the webserver."
-msgstr ""
+msgstr "Namestite potrebne module in ponovno zaženite spletni strežnik."
 
 #: install/run.php:10
 msgid "Installation"
-msgstr ""
+msgstr "Namestitev"
 
 #: install/run.php:12
 msgid "Please wait..."
-msgstr ""
+msgstr "Prosim, počakajte..."
 
 #: install/run.php:15
 msgid "Copy config.php to application/config/"
-msgstr ""
+msgstr "Skopirajte config.php v application/config/"
 
 #: install/run.php:18
 msgid "Copy database.php to application/config/"
-msgstr ""
+msgstr "Skopirajte database.php v application/config/"
 
 #: install/run.php:21
 msgid "Creating database tables"
-msgstr ""
+msgstr "Ustvarjanje tabel baze podatkov"
 
 #: install/run.php:24
 msgid "Running database migrations"
-msgstr ""
+msgstr "Izvajanje selitev baze podatkov"
 
 #: install/run.php:27
 msgid "Updating DXCC data"
-msgstr ""
+msgstr "Posodabljam podatke DXCC"
 
 #: install/run.php:35
 msgid "Lock the installer"
-msgstr ""
+msgstr "Zaklenite namestitveni program"
 
 #: install/run.php:39
 #, php-format
 msgid "All install steps went through. Redirect to user login in %s seconds..."
 msgstr ""
+"Vsi koraki namestitve so bili uspešno izvedeni. Preusmeritev na prijavo "
+"uporabnika čez %s sekund..."
 
 #: install/run.php:42
 msgid "Done. Go to the user login ->"
-msgstr ""
+msgstr "Končano. Pojdite na prijavo uporabnika ->"
 
 #: install/run.php:46 install/run.php:125
 msgid "Show detailled debug log"
-msgstr ""
+msgstr "Prikaži podroben dnevnik odpravljanja napak"
 
 #: install/run.php:127
 msgid "Hide detailled debug log"
-msgstr ""
+msgstr "Skrij podroben dnevnik odpravljanja napak"
 
 #: install/run.php:182
 msgid "Could not create application/config/config.php"
-msgstr ""
+msgstr "Datoteke application/config/config.php ni bilo mogoče ustvariti"
 
 #: install/run.php:217
 msgid "Could not create application/config/database.php"
-msgstr ""
+msgstr "Datoteke application/config/database.php ni bilo mogoče ustvariti"
 
 #: install/run.php:251
 msgid "Could not create database tables"
-msgstr ""
+msgstr "Ni bilo mogoče ustvariti tabel baze podatkov"
 
 #: install/run.php:281
 msgid "Could not run database migrations"
-msgstr ""
+msgstr "Selitve baze podatkov ni bilo mogoče izvesti"
 
 #: install/run.php:309
 msgid "Could not update DXCC data"
-msgstr ""
+msgstr "Podatkov DXCC ni bilo mogoče posodobiti"
 
 #: install/run.php:342
 msgid "Could not create install/.lock file"
-msgstr ""
+msgstr "Datoteke install/.lock ni bilo mogoče ustvariti"
