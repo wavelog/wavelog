@@ -27,14 +27,16 @@
 # "Xu, Zefan (BI1GHZ)" <ceba_robot@outlook.com>, 2026.
 # "Shen RuiQin(BH4FJN)" <jerry19980425@gmail.com>, 2026.
 # Florian Wolters <wavelog@df2et.de>, 2026.
+# Weblate user 156 <tidy-elm-snuggle@users.noreply.translate.wavelog.org>, 2026.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-05-04 13:06+0000\n"
-"PO-Revision-Date: 2026-04-08 14:07+0000\n"
-"Last-Translator: Tao Xu <angelxutao@gmail.com>\n"
-"Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
-"org/projects/wavelog/main-translation/zh_Hans/>\n"
+"POT-Creation-Date: 2026-05-04 11:58+0000\n"
+"PO-Revision-Date: 2026-05-04 13:06+0000\n"
+"Last-Translator: Weblate user 156 <tidy-elm-"
+"snuggle@users.noreply.translate.wavelog.org>\n"
+"Language-Team: Chinese (Simplified Han script) <https://"
+"translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -581,7 +583,7 @@ msgstr "H26"
 
 #: application/controllers/Awards.php:992
 msgid "IOTA (Island On The Air)"
-msgstr "IOTA(空中之岛)"
+msgstr "IOTA (空中之岛)"
 
 #: application/controllers/Awards.php:1004
 #: application/controllers/Awards.php:1019
@@ -619,7 +621,7 @@ msgstr "已确认网格的总数"
 
 #: application/controllers/Awards.php:1080
 msgid "Fred Fish Memorial Award (FFMA)"
-msgstr "弗雷德·菲什纪念奖(FFMA)"
+msgstr "弗雷德·菲什纪念奖 (FFMA)"
 
 #: application/controllers/Awards.php:1286
 #: application/views/interface_assets/header.php:196
@@ -1198,7 +1200,7 @@ msgstr "eQSL 卡片图片下载"
 
 #: application/controllers/Eqsl.php:667
 msgid "All eQSLs marked as uploaded"
-msgstr "所有标记为已上传的 eQSL"
+msgstr "所有 eQSL 已标记为已上传"
 
 #: application/controllers/Generic_qsl.php:18
 msgid "Confirmations"
@@ -1212,7 +1214,7 @@ msgstr "网格地图"
 #: application/controllers/Gridmap.php:35
 #: application/controllers/Visitor.php:457
 msgid "Total gridsquares worked"
-msgstr "通联网格总数"
+msgstr "已通联网格总数"
 
 #: application/controllers/Hamsat.php:59
 msgid "Hamsat - Satellite Roving"
@@ -1228,7 +1230,7 @@ msgstr "SSO 认证已停用。请检查设置。"
 
 #: application/controllers/Header_auth.php:89
 msgid "Sorry. This instance is currently in maintenance mode."
-msgstr ""
+msgstr "抱歉。该示例目前处于维护模式。"
 
 #: application/controllers/Header_auth.php:96
 msgid "User not found."
@@ -2051,11 +2053,13 @@ msgstr "删除 DXCC 实体"
 msgid "Advanced logbook"
 msgstr "详细日志"
 
+#: application/controllers/Logbookadvanced.php:981
 #: application/controllers/Logbookadvanced.php:982
 #, php-format
 msgid "DXCC updated for %d QSO(s)."
 msgstr "已更新 %d 个 QSO 的 DXCC。"
 
+#: application/controllers/Logbookadvanced.php:997
 #: application/controllers/Logbookadvanced.php:998
 #, php-format
 msgid "Map for DXCC %s and gridsquare %s."
@@ -5199,15 +5203,15 @@ msgstr "请查看 ADIF 错误提示 %s。"
 
 #: application/views/adif/import_success.php:61
 msgid "Critical Errors - Wrong Call/Location"
-msgstr ""
+msgstr "严重错误 - 不正确的呼号/位置"
 
 #: application/views/adif/import_success.php:70
 msgid "Validation Errors - Invalid Data"
-msgstr ""
+msgstr "校验出错 - 无效的数据"
 
 #: application/views/adif/import_success.php:79
 msgid "Duplicate QSOs"
-msgstr ""
+msgstr "重复的 QSO"
 
 #: application/views/adif/import_success.php:87
 msgid "You might have ADIF errors. Please check the following information:"
@@ -5997,7 +6001,7 @@ msgstr "Clublog(C)"
 #: application/views/awards/wac/index.php:136
 #: application/views/awards/wae/index.php:195
 msgid "(W)orked"
-msgstr "已通联(W)"
+msgstr "已通联 (W)"
 
 #: application/views/awards/cq/index.php:224
 #: application/views/awards/dok/index.php:166
@@ -6989,8 +6993,8 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
-"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意"
-"的“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
+"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意的"
+"“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
 
 #: application/views/awards/sig/index.php:9
 msgid ""
@@ -9222,6 +9226,10 @@ msgid ""
 "                    There may be users not listed who have permissions for "
 "this club/special callsign."
 msgstr ""
+"该俱乐部/特殊呼号由单点登录/身份提供商管理。 \n"
+"                    可以在此处增加权限，但访问权限可能会在用户登录时自动删除"
+"或由身份提供商授予。\n"
+"                    未在此处列出的用户可能拥有此俱乐部/特殊呼号的权限。"
 
 #: application/views/club/permissions.php:19
 msgid ""
@@ -9229,6 +9237,8 @@ msgid ""
 "provider group, then add the user to the table below with increased "
 "permissions."
 msgstr ""
+"想要授予高于成员级别访问权限的权限：将用户添加到身份提供者组，然后将用户添加"
+"到下表并增加权限。"
 
 #: application/views/club/permissions.php:22
 msgid ""
@@ -12934,7 +12944,7 @@ msgstr "包含我的呼号？"
 #: application/views/labels/startatform.php:33
 #: application/views/logbookadvanced/startatform.php:32
 msgid "Include OP-Call? (if filled)"
-msgstr ""
+msgstr "包含操作员的呼号？（如果有）"
 
 #: application/views/labels/startatform.php:45
 #: application/views/logbookadvanced/startatform.php:44
@@ -13348,7 +13358,7 @@ msgstr "区"
 
 #: application/views/logbookadvanced/edit.php:35
 msgid "SIG / SIG_INFO"
-msgstr ""
+msgstr "SIG / SIG_INFO"
 
 #: application/views/logbookadvanced/edit.php:39
 msgid "QSL / LoTW / Clublog / eQSL / QRZ / DCL"
@@ -13613,11 +13623,11 @@ msgstr "距离（千米），留空以重新计算距离（只有设置了网格
 #: application/views/logbookadvanced/edit.php:254
 #: application/views/logbookadvanced/edit.php:257
 msgid "clear"
-msgstr ""
+msgstr "清空"
 
 #: application/views/logbookadvanced/edit.php:255
 msgid "SIG_INFO"
-msgstr ""
+msgstr "SIG_INFO"
 
 #: application/views/logbookadvanced/help.php:2
 msgid "In the text input searches, you can search in the following way:"
@@ -17928,8 +17938,8 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
-"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 '."
-"png'）"
+"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 "
+"'.png'）"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
@@ -18471,25 +18481,25 @@ msgstr "如果此功能启用，直接请求将自动进行OQRS匹配。"
 
 #: application/views/user/edit.php:837
 msgid "QSL delivery methods offered via OQRS"
-msgstr ""
+msgstr "OQRS 提供的 QSL 传递方式"
 
 #: application/views/user/edit.php:839
 msgid "Bureau and Direct"
-msgstr ""
+msgstr "卡片局和直邮"
 
 #: application/views/user/edit.php:840
 msgid "Bureau only"
-msgstr ""
+msgstr "仅卡片局"
 
 #: application/views/user/edit.php:841
 msgid "Direct only"
-msgstr ""
+msgstr "仅直邮"
 
 #: application/views/user/edit.php:843
 msgid ""
 "Restrict which QSL delivery methods requesters can choose on your public "
 "OQRS page."
-msgstr ""
+msgstr "限制请求者在你的公开 OQRS 页面上可以选择哪些 QSL 传递方式。"
 
 #: application/views/user/edit.php:859
 msgid "Default Values"
@@ -19252,7 +19262,7 @@ msgstr "请输入呼号！"
 
 #: application/views/visitor/mini.php:214
 msgid "No QSOs yet"
-msgstr ""
+msgstr "还没有 QSO"
 
 #: application/views/webadif/export.php:22
 msgid ""
@@ -20343,8 +20353,8 @@ msgstr "CQz geojson"
 #~ "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 #~ "filenames for the logos <b>without</b> the file extension '.png'"
 #~ msgstr ""
-#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带有 ."
-#~ "png 后缀名</b>）"
+#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带"
+#~ "有 .png 后缀名</b>）"
 
 #, php-format
 #~ msgid ""
