@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-05-04 13:06+0000\n"
-"PO-Revision-Date: 2026-05-04 13:06+0000\n"
+"PO-Revision-Date: 2026-05-04 17:32+0000\n"
 "Last-Translator: Anton Tomanič <s57xz.toni@gmail.com>\n"
 "Language-Team: Slovenian <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/sl/>\n"
@@ -935,16 +935,18 @@ msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
 "isn't running!%sIt should run every minute (* * * * *)."
 msgstr ""
+"Zadnji zagon se je zgodil pred več kot %s minutami.%sZdi se, da vaš "
+"Mastercron ne deluje!%sMoral bi se izvajati vsako minuto (* * * * *)."
 
 #: application/controllers/Cron.php:305 application/views/cron/index.php:43
 msgctxt "Master Cron"
 msgid "Not running"
-msgstr ""
+msgstr "Se ne izvaja"
 
 #: application/controllers/Csv.php:20 application/views/csv/index.php:3
 #: application/views/interface_assets/header.php:491
 msgid "SOTA CSV Export"
-msgstr ""
+msgstr "Izvoz SOTA CSV"
 
 #: application/controllers/Dashboard.php:161
 #: application/controllers/Visitor.php:138
@@ -3496,6 +3498,8 @@ msgid ""
 "No CAT interfaced radios found. You need to have at least one radio "
 "interface configured."
 msgstr ""
+"Ni najdenih radijskih naprav z vmesnikom CAT. Konfiguriran mora biti vsaj en "
+"radijski vmesnik."
 
 #: application/controllers/Widgets.php:423
 msgid "User not found by slug"
@@ -3511,111 +3515,113 @@ msgstr ""
 
 #: application/libraries/Callbook.php:60
 msgid "Lookup not configured. Please review configuration."
-msgstr ""
+msgstr "Iskanje ni konfigurirano. Prosimo, preglejte konfiguracijo."
 
 #: application/libraries/Callbook.php:61
 #, php-format
 msgid "Error obtaining a session key for callbook. Error: %s"
-msgstr ""
+msgstr "Napaka pri pridobivanju ključa seje za callbook. Napaka: %s"
 
 #: application/libraries/Callbook.php:200
 msgid "QRZCQ Error"
-msgstr ""
+msgstr "Napaka QRZCQ"
 
 #: application/libraries/Cbr_parser.php:111
 #: application/libraries/Cbr_parser.php:160
 msgid "Broken CBR file - no valid exchange or callsigns found"
 msgstr ""
+"Poškodovana datoteka CBR – ni bilo najdenih veljavnih raportov ali klicnih "
+"znakov"
 
 #: application/libraries/Cbr_parser.php:137
 msgid "Broken CBR file - no QSO data found."
-msgstr ""
+msgstr "Poškodovana datoteka CBR – podatki o QSO niso bili najdeni."
 
 #: application/libraries/Cbr_parser.php:147
 msgid "Broken CBR file - incomplete header found."
-msgstr ""
+msgstr "Poškodovana datoteka CBR - najdena nepopolna glava (header)."
 
 #: application/libraries/Subdivisions.php:31
 msgctxt "Division Name (States in various countries)."
 msgid "Province"
-msgstr ""
+msgstr "Provinca"
 
 #: application/libraries/Subdivisions.php:39
 msgctxt "Division Name (States in various countries)."
 msgid "Oblast"
-msgstr ""
+msgstr "Oblast"
 
 #: application/libraries/Subdivisions.php:41
 #: application/libraries/Subdivisions.php:47
 msgctxt "Division Name (States in various countries)."
 msgid "Region"
-msgstr ""
+msgstr "Regija"
 
 #: application/libraries/Subdivisions.php:45
 msgctxt "Division Name (States in various countries)."
 msgid "Department"
-msgstr ""
+msgstr "Departma"
 
 #: application/libraries/Subdivisions.php:49
 msgctxt "Division Name (States in various countries)."
 msgid "Municipality"
-msgstr ""
+msgstr "Občina"
 
 #: application/libraries/Subdivisions.php:51
 msgctxt "Division Name (States in various countries)."
 msgid "Federal State"
-msgstr ""
+msgstr "Zvezna država"
 
 #: application/libraries/Subdivisions.php:56
 #: application/libraries/Subdivisions.php:93
 msgctxt "Division Name (States in various countries)."
 msgid "County"
-msgstr ""
+msgstr "Dežela"
 
 #: application/libraries/Subdivisions.php:60
 #: application/libraries/Subdivisions.php:84
 msgctxt "Division Name (States in various countries)."
 msgid "District"
-msgstr ""
+msgstr "Okrožje"
 
 #: application/libraries/Subdivisions.php:62
 msgctxt "Division Name (States in various countries)."
 msgid "Canton"
-msgstr ""
+msgstr "Kanton"
 
 #: application/libraries/Subdivisions.php:64
 msgctxt "Division Name (States in various countries)."
 msgid "US State"
-msgstr ""
+msgstr "Ameriška država"
 
 #: application/libraries/Subdivisions.php:66
 msgctxt "Division Name (States in various countries)."
 msgid "Prefecture"
-msgstr ""
+msgstr "Prefektura"
 
 #: application/libraries/Subdivisions.php:68
 msgctxt "Division Name (States in various countries)."
 msgid "State"
-msgstr ""
+msgstr "Država"
 
 #: application/libraries/Subdivisions.php:77
 msgctxt "Division Name (States in various countries)."
 msgid "US County"
-msgstr ""
+msgstr "Okrožje v ZDA"
 
 #: application/libraries/Subdivisions.php:89
 msgctxt "Division Name (States in various countries)."
 msgid "DME"
-msgstr ""
+msgstr "DME"
 
 #: application/libraries/Subdivisions.php:91
 msgctxt "Division Name (States in various countries)."
 msgid "City / Ku / Gun"
-msgstr ""
+msgstr "Mesto / Okraj / Občina"
 
 #: application/models/Club_model.php:186
 msgid "Invalid Permission Level!"
-msgstr ""
+msgstr "Neveljavna raven dovoljenja!"
 
 #: application/models/Club_model.php:201
 msgid "Error adding Club Member!"
