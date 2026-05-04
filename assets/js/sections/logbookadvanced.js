@@ -997,6 +997,14 @@ $(document).ready(function () {
 	});
 
 	$('#exportAdif').click(function (event) {
+		if(event.ctrlKey) {
+			console.log("Ctrl+Click");
+			// your code goes here...
+		} else if(event.altKey) {
+			console.log("Alt+Click");
+		} else if(event.shiftKey) {
+			console.log("Shift+Click");
+		}
 		$('#exportAdif').prop("disabled", true);
 		const id_list = getSelectedIdsForMap();
 
