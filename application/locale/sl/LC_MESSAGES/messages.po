@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-04-30 06:22+0000\n"
-"PO-Revision-Date: 2026-05-04 07:47+0000\n"
+"PO-Revision-Date: 2026-05-04 10:16+0000\n"
 "Last-Translator: Anton Tomanič <s57xz.toni@gmail.com>\n"
 "Language-Team: Slovenian <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/sl/>\n"
@@ -129,7 +129,7 @@ msgstr ""
 #: application/controllers/Zonechecker.php:17
 #: application/models/Club_model.php:52
 msgid "You're not allowed to do that!"
-msgstr ""
+msgstr "To vam ni dovoljeno!"
 
 #: application/controllers/Accumulated.php:19
 #: application/views/interface_assets/header.php:174
@@ -725,111 +725,114 @@ msgstr ""
 
 #: application/controllers/Cabrillo.php:309
 msgid "CBR Data Imported"
-msgstr ""
+msgstr "CBR podatki uvoženi"
 
 #: application/controllers/Callstats.php:19
 #: application/views/callstats/index.php:2
 msgid "Callsign statistics"
-msgstr ""
+msgstr "Statistika pozivnih znakov"
 
 #: application/controllers/Callstats.php:101
 msgid " and band "
-msgstr ""
+msgstr " in band "
 
 #: application/controllers/Callstats.php:104
 msgid " and sat "
-msgstr ""
+msgstr " in sat "
 
 #: application/controllers/Calltester.php:31
 msgid "Call Tester"
-msgstr ""
+msgstr "Preverjanje pozivnega znaka"
 
 #: application/controllers/Calltester.php:240
 #: application/controllers/Calltester.php:300
 msgid "CSV Call Tester"
-msgstr ""
+msgstr "CSV preverjanje pozivnega znaka"
 
 #: application/controllers/Calltester.php:917
 msgid "Callsign Tester"
-msgstr ""
+msgstr "Preverjanje pozivnega znaka"
 
 #: application/controllers/Club.php:23
+#, fuzzy
 msgid "Club Officer"
-msgstr ""
+msgstr "Club Officer"
 
 #: application/controllers/Club.php:24
+#, fuzzy
 msgid "Club Member ADIF"
-msgstr ""
+msgstr "Club Member ADIF"
 
 #: application/controllers/Club.php:25
+#, fuzzy
 msgid "Club Member"
-msgstr ""
+msgstr "Club Member"
 
 #: application/controllers/Club.php:57 application/models/Club_model.php:107
 #: application/models/Club_model.php:181 application/models/Club_model.php:223
 msgid "Invalid User ID!"
-msgstr ""
+msgstr "Neveljaven ID uporabnika!"
 
 #: application/controllers/Club.php:65
 msgid "This user is not a club station."
-msgstr ""
+msgstr "Ta uporabnik ni klubska postaja."
 
 #: application/controllers/Club.php:69
 #: application/views/club/permissions.php:10
 #: application/views/user/index.php:215
 msgid "Club Permissions"
-msgstr ""
+msgstr "Dovoljenja kluba"
 
 #: application/controllers/Club.php:132 application/controllers/Club.php:161
 #: application/controllers/Club.php:188 application/models/Club_model.php:22
 #: application/models/Club_model.php:102 application/models/Club_model.php:176
 #: application/models/Club_model.php:218
 msgid "Invalid Club ID!"
-msgstr ""
+msgstr "Neveljaven ID kluba!"
 
 #: application/controllers/Club.php:144
 msgid "User could not be notified. Please check your email settings."
-msgstr ""
+msgstr "Uporabnika ni bilo mogoče obvestiti. Preverite nastavitve e-pošte."
 
 #: application/controllers/Club.php:148
 msgid "Club member permissions have been updated."
-msgstr ""
+msgstr "Dovoljenja članov kluba so bila posodobljena."
 
 #: application/controllers/Club.php:170
 msgid "User removed from club."
-msgstr ""
+msgstr "Uporabnik je bil odstranjen iz kluba."
 
 #: application/controllers/Club.php:172
 msgid "User could not be removed from club."
-msgstr ""
+msgstr "Uporabnika ni bilo mogoče odstraniti iz kluba."
 
 #: application/controllers/Club.php:215
 msgid "Invalid message type."
-msgstr ""
+msgstr "Neveljavna vrsta sporočila."
 
 #: application/controllers/Club.php:231
 msgid "Email can't be initialized. Check the email settings."
-msgstr ""
+msgstr "E-pošte ni mogoče inicializirati. Preverite nastavitve e-pošte."
 
 #: application/controllers/Club.php:238 application/views/api/index.php:68
 #: application/views/satellite/index.php:94
 #: application/views/satellite/satinfo.php:51
 msgid "Unknown"
-msgstr ""
+msgstr "Nepoznano"
 
 #: application/controllers/Clublog.php:15 application/controllers/Cron.php:12
 #: application/controllers/Dcl.php:13 application/controllers/Eqsl.php:13
 #: application/controllers/Hrdlog.php:19 application/controllers/Lotw.php:27
 #: application/controllers/Qrz.php:14 application/controllers/Update.php:15
 msgid "Maintenance Mode is active. Try again later."
-msgstr ""
+msgstr "Vzdrževalni način je aktiven. Poskusite znova pozneje."
 
 #: application/controllers/Clublog.php:44
 #: application/controllers/Clublog.php:70
 #: application/controllers/Clublog.php:123
 #: application/controllers/Clublog.php:160
 msgid "No user has configured Clublog."
-msgstr ""
+msgstr "Noben od uporabnikov nima konfiguriranega Clublog-a."
 
 #: application/controllers/Clublog.php:86
 #: application/controllers/Logbook.php:796
@@ -857,35 +860,36 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:222
 #: application/views/view_log/qso.php:583
 #: application/views/view_log/qso.php:588
+#, fuzzy
 msgid "Clublog"
-msgstr ""
+msgstr "Clublog"
 
 #: application/controllers/Clublog.php:142
 msgid "Clublog QSL Import"
-msgstr ""
+msgstr "Uvoz Clublog QSL"
 
 #: application/controllers/Contestcalendar.php:19
 #: application/views/interface_assets/header.php:313
 msgid "Contest Calendar"
-msgstr ""
+msgstr "Koledar tekmovanj"
 
 #: application/controllers/Contestcalendar.php:47
 msgid "Contestcalendar not reachable. Try again later"
-msgstr ""
+msgstr "Contestcalendar ni dostopen. Prosimo, poskusite kasneje"
 
 #: application/controllers/Contesting.php:57
 #: application/views/contesting/index.php:12
 msgid "Contest Logging"
-msgstr ""
+msgstr "Tekmovalni dnevnik"
 
 #: application/controllers/Contesting.php:128
 #: application/views/interface_assets/header.php:336
 msgid "Contests"
-msgstr ""
+msgstr "Tekmovanja"
 
 #: application/controllers/Contesting.php:142
 msgid "Update Contest"
-msgstr ""
+msgstr "Posodobi tekmovanje"
 
 #: application/controllers/Continents.php:26
 #: application/views/awards/dxcc/index.php:139
@@ -893,16 +897,17 @@ msgstr ""
 #: application/views/awards/wpx/index.php:51
 #: application/views/interface_assets/header.php:178
 msgid "Continents"
-msgstr ""
+msgstr "Kontinenti"
 
 #: application/controllers/Cron.php:38
 #: application/views/interface_assets/header.php:346
+#, fuzzy
 msgid "Cron Manager"
-msgstr ""
+msgstr "Cron Manager"
 
 #: application/controllers/Cron.php:169 application/views/cron/edit.php:5
 msgid "Edit Cronjob"
-msgstr ""
+msgstr "Uredi Cronjob"
 
 #: application/controllers/Cron.php:233 application/controllers/Cron.php:234
 #: application/views/cron/index.php:97 application/views/cron/index.php:99
@@ -913,32 +918,32 @@ msgstr ""
 #: application/views/debug/index.php:726 application/views/debug/index.php:732
 #: application/views/debug/index.php:738 application/views/debug/index.php:744
 msgid "never"
-msgstr ""
+msgstr "nikoli"
 
 #: application/controllers/Cron.php:234
 msgid "calculating..."
-msgstr ""
+msgstr "preračunavam..."
 
 #: application/controllers/Cron.php:245 application/views/cron/index.php:84
 msgid "healthy"
-msgstr ""
+msgstr "zdravi"
 
 #: application/controllers/Cron.php:247 application/views/cron/index.php:86
 msgid "failed"
-msgstr ""
+msgstr "neuspelo"
 
 #: application/controllers/Cron.php:249 application/views/cron/index.php:88
 msgid "pending"
-msgstr ""
+msgstr "na čakanju"
 
 #: application/controllers/Cron.php:254 application/views/cron/index.php:93
 msgid "disabled"
-msgstr ""
+msgstr "onemogočeno"
 
 #: application/controllers/Cron.php:293
 #: application/views/interface_assets/footer.php:41
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: application/controllers/Cron.php:297
 #, php-format
@@ -946,6 +951,8 @@ msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
 "It should run every minute (* * * * *)."
 msgstr ""
+"Zadnji zagon se je zgodil pred več kot %s sekundami.%sPreverite svoj master "
+"cron! Zagnati bi se moral vsako minuto (* * * * *)."
 
 #: application/controllers/Cron.php:300
 #, php-format
@@ -1381,12 +1388,12 @@ msgstr ""
 #: application/controllers/Labels.php:212
 #: application/controllers/Labels.php:215
 msgid "You need to assign a paperType to the label before printing"
-msgstr "Pred tiskanjem morate etiketi dodeliti vrsto papirja (paperType)."
+msgstr "Pred tiskanjem morate etiketi dodeliti vrsto papirja (paperType)"
 
 #: application/controllers/Labels.php:222
 #: application/controllers/Labels.php:225
 msgid "You need to create a label and set it to be used for print."
-msgstr ""
+msgstr "Ustvariti morate etiketo in jo nastaviti za tiskanje."
 
 #: application/controllers/Labels.php:232
 #: application/controllers/Labels.php:235
@@ -1394,52 +1401,56 @@ msgid ""
 "Something went wrong! The label could not be generated. Check label size and "
 "font size."
 msgstr ""
+"Prišlo je do napake! Etikete ni bilo mogoče ustvariti. Preverite velikost "
+"etikete in velikost pisave."
 
 #: application/controllers/Labels.php:258
 msgid "0 QSOs found for print!"
-msgstr ""
+msgstr "Najdenih 0 QSO za tiskanje!"
 
 #: application/controllers/Labels.php:415
 msgid "Edit Label"
-msgstr ""
+msgstr "Uredi etiketo"
 
 #: application/controllers/Labels.php:444
 msgid "Label was saved."
-msgstr ""
+msgstr "Etiketa je bila shranjena."
 
 #: application/controllers/Labels.php:452
 msgid "Label was deleted."
-msgstr ""
+msgstr "Etiketa je bila zbrisana."
 
 #: application/controllers/Labels.php:474
 msgid "Edit Paper"
-msgstr ""
+msgstr "Uredi papir"
 
 #: application/controllers/Labels.php:499
 msgid "Paper was saved."
-msgstr ""
+msgstr "Papir je bil shranjen."
 
 #: application/controllers/Labels.php:512
 msgid "Paper was deleted."
-msgstr ""
+msgstr "Papir je bil zbrisan."
 
 #: application/controllers/Logbook.php:38
 msgid ""
 "No logbooks were found. You need to define a logbook under Station Logbooks! "
 "Do it here:"
 msgstr ""
+"Ni bilo najdenih dnevnikov. Dnevnik morate določiti v razdelku Dnevniki "
+"postaje! To storite tukaj:"
 
 #: application/controllers/Logbook.php:38
 #: application/views/stationsetup/stationsetup.php:21
 msgid "Station Logbooks"
-msgstr ""
+msgstr "Dnevniki postaje"
 
 #: application/controllers/Logbook.php:59
 #: application/views/interface_assets/header.php:113
 #: application/views/logbookadvanced/useroptions.php:4
 #: application/views/view_log/index.php:11
 msgid "Logbook"
-msgstr ""
+msgstr "Dnevnik"
 
 #: application/controllers/Logbook.php:784
 #: application/controllers/Logbook.php:799
@@ -1470,7 +1481,7 @@ msgstr ""
 #: application/views/timeline/index.php:56 application/views/user/edit.php:674
 #: application/views/user/edit.php:889 application/views/visitor/mini.php:187
 msgid "QSL"
-msgstr ""
+msgstr "QSL"
 
 #: application/controllers/Logbook.php:787
 #: application/views/activated_gridmap/index.php:70
@@ -1512,8 +1523,9 @@ msgstr ""
 #: application/views/user/edit.php:899 application/views/view_log/qso.php:549
 #: application/views/view_log/qso.php:554
 #: application/views/visitor/mini.php:186
+#, fuzzy
 msgid "LoTW"
-msgstr ""
+msgstr "LoTW"
 
 #: application/controllers/Logbook.php:790
 #: application/views/activated_gridmap/index.php:78
@@ -1549,12 +1561,13 @@ msgstr ""
 #: application/views/station_profile/edit.php:301
 #: application/views/timeline/index.php:64 application/views/user/edit.php:676
 #: application/views/user/edit.php:907 application/views/user/edit.php:981
+#, fuzzy
 msgid "eQSL"
-msgstr ""
+msgstr "eQSL"
 
 #: application/controllers/Logbook.php:993
 msgid "All callbook lookups failed or provided no results."
-msgstr ""
+msgstr "Vsa iskanja v Callbooku so bila neuspešna ali niso dala rezultatov."
 
 #: application/controllers/Logbook.php:1458
 #: application/controllers/Radio.php:49
@@ -1657,7 +1670,7 @@ msgstr ""
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
 msgid "Mode"
-msgstr ""
+msgstr "Vrsta dela"
 
 #: application/controllers/Logbook.php:1459
 #: application/views/awards/73on73/index.php:38
@@ -1685,8 +1698,9 @@ msgstr ""
 #: application/views/view_log/partial/log.php:10
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:119 application/views/visitor/index.php:9
+#, fuzzy
 msgid "RST (S)"
-msgstr ""
+msgstr "RST (S)"
 
 #: application/controllers/Logbook.php:1460
 #: application/views/awards/73on73/index.php:37
@@ -1715,8 +1729,9 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:6
 #: application/views/view_log/qso.php:124
 #: application/views/visitor/index.php:12
+#, fuzzy
 msgid "RST (R)"
-msgstr ""
+msgstr "RST (R)"
 
 #: application/controllers/Logbook.php:1461
 #: application/views/dashboard/index.php:7
@@ -1737,7 +1752,7 @@ msgstr ""
 #: application/views/view_log/qso.php:705
 #: application/views/visitor/index.php:15
 msgid "Country"
-msgstr ""
+msgstr "Država"
 
 #: application/controllers/Logbook.php:1462
 #: application/views/awards/iota/index.php:198
@@ -1767,8 +1782,9 @@ msgstr ""
 #: application/views/user/edit.php:366 application/views/user/edit.php:390
 #: application/views/view_log/partial/log_ajax.php:8
 #: application/views/visitor/index.php:18
+#, fuzzy
 msgid "IOTA"
-msgstr ""
+msgstr "IOTA"
 
 #: application/controllers/Logbook.php:1466
 #: application/views/awards/counties/details.php:12
@@ -1799,7 +1815,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:12
 #: application/views/visitor/index.php:24
 msgid "State"
-msgstr ""
+msgstr "Država (state)"
 
 #: application/controllers/Logbook.php:1467
 #: application/views/activated_gridmap/index.php:110
@@ -1849,7 +1865,7 @@ msgstr ""
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:53
 msgid "Gridsquare"
-msgstr ""
+msgstr "UL polje"
 
 #: application/controllers/Logbook.php:1468
 #: application/views/activated_gridmap/index.php:112
@@ -1879,7 +1895,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:14
 #: application/views/visitor/index.php:30
 msgid "Distance"
-msgstr ""
+msgstr "Razdalja"
 
 #: application/controllers/Logbook.php:1469
 #: application/views/accumulate/index.php:21
@@ -1975,8 +1991,9 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
 #: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
+#, fuzzy
 msgid "Band"
-msgstr ""
+msgstr "Band"
 
 #: application/controllers/Logbook.php:1470
 #: application/controllers/Radio.php:48 application/views/bandmap/list.php:168
@@ -2005,7 +2022,7 @@ msgstr ""
 #: application/views/view_log/qso.php:101
 #: application/views/visitor/index.php:36
 msgid "Frequency"
-msgstr ""
+msgstr "Frekvenca"
 
 #: application/controllers/Logbook.php:1471
 #: application/controllers/Radio.php:46
@@ -2028,8 +2045,9 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:17
 #: application/views/view_log/qso.php:712
 #: application/views/visitor/index.php:39
+#, fuzzy
 msgid "Operator"
-msgstr ""
+msgstr "Operator"
 
 #: application/controllers/Logbook.php:1492
 #: application/controllers/Stationsetup.php:424
@@ -2058,25 +2076,25 @@ msgstr ""
 #: application/views/view_log/qso.php:353
 #: application/views/view_log/qso.php:706
 msgid "Deleted DXCC"
-msgstr ""
+msgstr "Izbrisane DXCC"
 
 #: application/controllers/Logbookadvanced.php:34
 msgid "Advanced logbook"
-msgstr ""
+msgstr "Napredni dnevnik"
 
 #: application/controllers/Logbookadvanced.php:981
 #, php-format
 msgid "DXCC updated for %d QSO(s)."
-msgstr ""
+msgstr "DXCC je posodobljen za %d QSO(jev)."
 
 #: application/controllers/Logbookadvanced.php:997
 #, php-format
 msgid "Map for DXCC %s and gridsquare %s."
-msgstr ""
+msgstr "Zemljevid DXCC %s in UL polja %s."
 
 #: application/controllers/Lookup.php:22
 msgid "Quick Lookup"
-msgstr ""
+msgstr "Hiter pogled"
 
 #: application/controllers/Lotw.php:64 application/controllers/Lotw.php:96
 #: application/controllers/Lotw.php:136
@@ -2085,20 +2103,21 @@ msgstr ""
 #: application/views/lotw/import.php:3 application/views/lotw_views/index.php:9
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:953 application/views/visitor/index.php:328
+#, fuzzy
 msgid "Logbook of the World"
-msgstr ""
+msgstr "Logbook of the World"
 
 #: application/controllers/Lotw.php:161
 msgid "Certificate Imported."
-msgstr ""
+msgstr "Certifikat uvožen."
 
 #: application/controllers/Lotw.php:168
 msgid "Certificate Updated."
-msgstr ""
+msgstr "Certifikat posodobljen."
 
 #: application/controllers/Lotw.php:416
 msgid "Certificate Deleted."
-msgstr ""
+msgstr "Certifikat izbrisan."
 
 #: application/controllers/Lotw.php:444
 #, php-format
@@ -2108,6 +2127,9 @@ msgid ""
 "application without password!%s For further information please visit the "
 "%sLoTW FAQ page%s in the Wavelog Wiki."
 msgstr ""
+"Potrdilo, najdeno v datoteki %s, vsebuje geslo in ga ni mogoče obdelati. "
+"%sProsimo, poskrbite, da izvozite potrdilo LoTW iz aplikacije tqsl brez "
+"gesla!%s Za več informacij obiščite stran %sLoTW FAQ page%s v Wavelog Wiki."
 
 #: application/controllers/Lotw.php:446
 #, php-format
@@ -2116,68 +2138,72 @@ msgid ""
 "contains 'key-only' this is typically a certificate request which has not "
 "been processed by LoTW yet."
 msgstr ""
+"Splošna napaka pri ekstrahiranju potrdila iz datoteke %s. Če ime datoteke "
+"vsebuje ''key-only', je to običajno zahteva za potrdilo, ki je LoTW še ni "
+"obdelal."
 
 #: application/controllers/Lotw.php:453
 #, php-format
 msgid "Generic error processing the certificate in file %s."
-msgstr ""
+msgstr "Splošna napaka pri obdelavi potrdila v datoteki %s."
 
 #: application/controllers/Lotw.php:465
 #, php-format
 msgid "Generic error extracting the private key from certificate in file %s."
 msgstr ""
+"Splošna napaka pri pridobivanju zasebnega ključa iz potrdila v datoteki %s."
 
 #: application/controllers/Lotw.php:681
 msgid "LoTW ADIF Information"
-msgstr ""
+msgstr "LoTW ADIF informacije"
 
 #: application/controllers/Lotw.php:977
 msgid "Connection to LoTW failed."
-msgstr ""
+msgstr "Povezava z LoTW ni uspela."
 
 #: application/controllers/Lotw.php:982
 #, php-format
 msgid "LoTW login failed for user %s: %s."
-msgstr ""
+msgstr "Prijava v LoTW ni uspela za uporabnika %s: %s."
 
 #: application/controllers/Lotw.php:982
 msgid "Username/password incorrect"
-msgstr ""
+msgstr "Napačno uporabniško ime/geslo"
 
 #: application/controllers/Lotw.php:985
 msgid "LoTW currently not available. Try again later."
-msgstr ""
+msgstr "LoTW trenutno ni na voljo. Poskusite znova pozneje."
 
 #: application/controllers/Lotw.php:989
 msgid "LoTW login OK!"
-msgstr ""
+msgstr "Prijava v LoTW OK!"
 
 #: application/controllers/Lotw.php:995
 msgid "No LoTW credentials provided."
-msgstr ""
+msgstr "Poverilnice za LoTW niso bile podane."
 
 #: application/controllers/Lotw.php:1013
 msgid "LoTW ADIF Import"
-msgstr ""
+msgstr "Uvoz LoTW ADIF"
 
 #: application/controllers/Lotw.php:1039
 msgid "You have not defined your ARRL LoTW credentials!"
-msgstr ""
+msgstr "Niste določili svojih poverilnic ARRL LoTW!"
 
 #: application/controllers/Map.php:48
 msgid "QSO Map"
-msgstr ""
+msgstr "Zemljevid QSO"
 
 #: application/controllers/Mode.php:25 application/controllers/Usermode.php:23
 #: application/views/interface_assets/header.php:334
 #: application/views/interface_assets/header.php:451
 #: application/views/mode/index.php:27 application/views/usermode/index.php:25
 msgid "Modes"
-msgstr ""
+msgstr "Vrste dela"
 
 #: application/controllers/Mode.php:62
 msgid "Edit Mode"
-msgstr ""
+msgstr "Uredi vrsto dela"
 
 #: application/controllers/Notes.php:32
 #: application/views/interface_assets/header.php:148
@@ -2187,63 +2213,65 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:410 application/views/qso/index.php:111
 #: application/views/view_log/qso.php:14 application/views/view_log/qso.php:774
 msgid "Notes"
-msgstr ""
+msgstr "Opombe"
 
 #: application/controllers/Notes.php:72
 msgid "Add Notes"
-msgstr ""
+msgstr "Dodaj opombe"
 
 #: application/controllers/Notes.php:98
 #: application/views/oqrs/showrequests.php:93
 msgid "Note"
-msgstr ""
+msgstr "Opomba"
 
 #: application/controllers/Notes.php:128 application/views/notes/edit.php:20
 #: application/views/notes/view.php:47 application/views/qso/index.php:799
 msgid "Edit Note"
-msgstr ""
+msgstr "Uredi opombo"
 
 #: application/controllers/Notes.php:221
 msgid ""
 "Duplicate note title for this category and user - not allowed for Contacts "
 "category."
 msgstr ""
+"Podvojen naslov opombe za to kategorijo in uporabnika - ni dovoljeno za "
+"kategorijo Stiki."
 
 #: application/controllers/Notes.php:286
 msgid "Not found or not allowed"
-msgstr ""
+msgstr "Ni najdeno ali ni dovoljeno"
 
 #: application/controllers/Notes.php:301
 msgid "Not found"
-msgstr ""
+msgstr "Ni najdeno"
 
 #: application/controllers/Notes.php:317
 msgid "Category and title are required"
-msgstr ""
+msgstr "Kategorija in naslov sta obvezna"
 
 #: application/controllers/Notes.php:331
 msgid "Note not found or not allowed"
-msgstr ""
+msgstr "Opombe ni mogoče najti ali ni dovoljena"
 
 #: application/controllers/Notes.php:338
 msgid "Note deleted"
-msgstr ""
+msgstr "Opomba izbrisana"
 
 #: application/controllers/Notes.php:342
 msgid "Note updated"
-msgstr ""
+msgstr "Opomba posodobljena"
 
 #: application/controllers/Notes.php:347
 msgid "Cannot create empty note"
-msgstr ""
+msgstr "Prazne opombe ni mogoče ustvariti"
 
 #: application/controllers/Notes.php:355
 msgid "A note with this callsign already exists"
-msgstr ""
+msgstr "Opomba s tem klicnim znakom že obstaja"
 
 #: application/controllers/Notes.php:365
 msgid "Note created"
-msgstr ""
+msgstr "Opomba ustvarjena"
 
 #: application/controllers/Notes.php:379 application/controllers/Notes.php:403
 #, php-format
@@ -2251,12 +2279,16 @@ msgid ""
 "Contacts note title must be a callsign only, without prefix/suffix. "
 "Suggested: %s"
 msgstr ""
+"Naslov opombe stika mora biti samo klicni znak, brez predpone/pripone. "
+"Predlagano: %s"
 
 #: application/controllers/Notes.php:385 application/controllers/Notes.php:411
 msgid ""
 "A note with this callsign already exists in your Contacts. Please enter a "
 "unique callsign."
 msgstr ""
+"Opomba s tem klicnim znakom že obstaja v vaših stikih. Vnesite edinstven "
+"klicni znak."
 
 #: application/controllers/Options.php:23
 #: application/controllers/Options.php:33
@@ -2274,13 +2306,13 @@ msgstr ""
 #: application/controllers/Options.php:456
 #: application/controllers/Options.php:466
 msgid "Wavelog Options"
-msgstr ""
+msgstr "Možnosti Wavelog"
 
 #: application/controllers/Options.php:34
 #: application/controllers/Options.php:49
 #: application/views/options/sidebar.php:4
 msgid "Appearance"
-msgstr ""
+msgstr "Videz"
 
 #: application/controllers/Options.php:67
 #: application/controllers/Options.php:75
@@ -2288,106 +2320,110 @@ msgstr ""
 #: application/controllers/Options.php:91
 #: application/controllers/Options.php:99
 msgid "Options saved"
-msgstr ""
+msgstr "Možnosti shranjene"
 
 #: application/controllers/Options.php:110
 #: application/controllers/Options.php:121
 #: application/views/options/sidebar.php:9
+#, fuzzy
 msgid "Hams Of Note"
-msgstr ""
+msgstr "Hams Of Note"
 
 #: application/controllers/Options.php:136
 msgid "Hams-Of-Note URL changed to "
-msgstr ""
+msgstr "Hams-Of-Note URL spremenjen na "
 
 #: application/controllers/Options.php:172
 msgid "de continent changed to "
-msgstr ""
+msgstr "de kontinent spremenjen na "
 
 #: application/controllers/Options.php:177
 msgid "Maximum age of spots changed to "
-msgstr ""
+msgstr "Najvišja starost spotov se je spremenila na "
 
 #: application/controllers/Options.php:182
 msgid "DXCluster Cache URL changed to "
-msgstr ""
+msgstr "URL predpomnilnika DXClusterja spremenjen v "
 
 #: application/controllers/Options.php:192
 #: application/controllers/Options.php:203
 msgid "Radio Settings"
-msgstr ""
+msgstr "Nastavitve postaje"
 
 #: application/controllers/Options.php:224
 msgid "Radio Timeout Warning changed to "
-msgstr ""
+msgstr "Opozorilo o časovni omejitvi postaje se je spremenilo v "
 
 #: application/controllers/Options.php:236
 #: application/controllers/Options.php:247
 #: application/views/options/sidebar.php:6
 msgid "Email"
-msgstr ""
+msgstr "El. pošta"
 
 #: application/controllers/Options.php:304
 msgid "The settings were saved successfully."
-msgstr ""
+msgstr "Nastavitve so bile uspešno shranjene."
 
 #: application/controllers/Options.php:306
 msgid "Something went wrong with saving the settings. Try again."
-msgstr ""
+msgstr "Pri shranjevanju nastavitev je prišlo do napake. Poskusite znova."
 
 #: application/controllers/Options.php:348
 #: application/controllers/Options.php:353
 msgid "Testmail failed. Something went wrong."
-msgstr ""
+msgstr "Pošiljanje preizkusnega sporočila ni uspelo. Nekaj je šlo narobe."
 
 #: application/controllers/Options.php:350
 msgid "Testmail sent. Email settings seem to be correct."
 msgstr ""
+"Preizkusno sporočilo poslano. Zdi se, da so nastavitve e-pošte pravilne."
 
 #: application/controllers/Options.php:362
 #: application/controllers/Options.php:381
 #: application/views/options/sidebar.php:8
 msgid "Maptiles Server"
-msgstr ""
+msgstr "Strežnik Maptiles"
 
 #: application/controllers/Options.php:440
 #, php-format
 msgid ""
 "Maptile cache could not be removed. Delete the folder manually. Path: %s"
 msgstr ""
+"Predpomnilnika Maptile ni bilo mogoče odstraniti. Mapo izbrišite ročno. Pot: "
+"%s"
 
 #: application/controllers/Options.php:444
 msgid "Maptile Options saved!"
-msgstr ""
+msgstr "Možnosti Maptile shranjene!"
 
 #: application/controllers/Options.php:446
 msgid "Maptile Options could not be saved!"
-msgstr ""
+msgstr "Možnosti Maptile ni bilo mogoče shraniti!"
 
 #: application/controllers/Options.php:457
 #: application/controllers/Options.php:467
 msgid "Version Info Settings"
-msgstr ""
+msgstr "Nastavitve informacij o različici"
 
 #: application/controllers/Options.php:473
 msgid "Version Info Header changed to"
-msgstr ""
+msgstr "Glava informacij o različici je bila spremenjena v"
 
 #: application/controllers/Options.php:477
 msgid "Version Info Mode changed to"
-msgstr ""
+msgstr "Informacije o različici spremenjene v"
 
 #: application/controllers/Options.php:482
 msgid "Version Info Custom Text saved!"
-msgstr ""
+msgstr "Informacije o različici besedilo po meri shranjeno!"
 
 #: application/controllers/Options.php:493
 msgid "Version Info will be shown to all users again"
-msgstr ""
+msgstr "Informacije o različici bodo ponovno prikazane vsem uporabnikom"
 
 #: application/controllers/Options.php:501
 msgid "Version Info will not be shown to any user"
-msgstr ""
+msgstr "Informacije o različici ne bodo prikazane nobenemu uporabniku"
 
 #: application/controllers/Oqrs.php:42 application/controllers/Staticmap.php:20
 #: application/controllers/Staticmap.php:25
@@ -2403,130 +2439,141 @@ msgstr ""
 #: application/controllers/Visitor.php:547
 #: application/controllers/Widgets.php:68
 msgid "Unknown Public Page."
-msgstr ""
+msgstr "Neznana javna stran."
 
 #: application/controllers/Oqrs.php:54 application/controllers/Oqrs.php:63
 #: application/controllers/Oqrs.php:124 application/controllers/Oqrs.php:136
 msgid "Log Search & OQRS"
-msgstr ""
+msgstr "Iskanje dnevnikov & OQRS"
 
 #: application/controllers/Oqrs.php:85
 msgid "Invalid Station ID"
-msgstr ""
+msgstr "Neveljaven ID postaje"
 
 #: application/controllers/Oqrs.php:172
 #: application/views/interface_assets/header.php:512
 msgid "OQRS Requests"
-msgstr ""
+msgstr "OQRS zahtevki"
 
 #: application/controllers/Oqrs.php:370
 msgid "QSO match deleted successfully."
-msgstr ""
+msgstr "QSO je bila uspešno izbrisana."
 
 #: application/controllers/Oqrs.php:379
 msgid "QSO match added successfully."
-msgstr ""
+msgstr "QSO je bila uspešno dodana."
 
 #: application/controllers/Qrbcalc.php:17
 msgid "QRB Calculator"
-msgstr ""
+msgstr "QRB Kalkulator"
 
 #: application/controllers/Qrbcalc.php:49
 #: application/controllers/Qrbcalc.php:50
 #, php-format
 msgid "Latitude: %s, Longitude: %s"
-msgstr ""
+msgstr "Zemljepisna širina: %s, Zemljepisna dolžina: %s"
 
 #: application/controllers/Qrbcalc.php:54
 #, php-format
 msgid "The distance between %s and %s is %s mile."
 msgid_plural "The distance between %s and %s is %s miles."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Razdalja med %s in %s je %s miljo."
+msgstr[1] "Razdalja med %s in %s je %s milji."
+msgstr[2] "Razdalja med %s in %s je %s milje."
+msgstr[3] "Razdalja med %s in %s je %s milj."
 
 #: application/controllers/Qrbcalc.php:57
 #, php-format
 msgid "The distance between %s and %s is %s nautical mile."
 msgid_plural "The distance between %s and %s is %s nautical miles."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Razdalja med %s in %s je %s milja."
+msgstr[1] "Razdalja med %s in %s je %s milji."
+msgstr[2] "Razdalja med %s in %s je %s milje."
+msgstr[3] "Razdalja med %s in %s je %s milj."
 
 #: application/controllers/Qrbcalc.php:60
 #, php-format
 msgid "The distance between %s and %s is %s kilometer."
 msgid_plural "The distance between %s and %s is %s kilometers."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Razdalja med %s in %s je %s kilometer."
+msgstr[1] "Razdalja med %s in %s je %s kilometra."
+msgstr[2] "Razdalja med %s in %s je %s kilometre."
+msgstr[3] "Razdalja med %s in %s je %s kilometrov."
 
 #: application/controllers/Qrbcalc.php:66
 #, php-format
 msgid "The bearing is %s."
-msgstr ""
+msgstr "Smer je %s."
 
 #: application/controllers/Qrbcalc.php:72
 msgid ""
 "Negative latitudes are south of the equator, negative longitudes are west of "
 "Greenwich."
 msgstr ""
+"Negativne zemljepisne širine so južno od ekvatorja, negativne zemljepisne "
+"dolžine pa zahodno od Greenwicha."
 
 #: application/controllers/Qrz.php:203
 #: application/views/interface_assets/header.php:525
+#, fuzzy
 msgid "QRZ Logbook"
-msgstr ""
+msgstr "QRZ Logbook"
 
 #: application/controllers/Qrz.php:288
 msgid "QRZ QSL Import"
-msgstr ""
+msgstr "Uvoz QRZ QSL"
 
 #: application/controllers/Qrz.php:345
 msgid "QRZ ADIF Information"
-msgstr ""
+msgstr "QRZ ADIF Informacije"
 
 #: application/controllers/Qsl.php:25 application/views/dashboard/index.php:342
 #: application/views/dashboard/index.php:359
 #: application/views/qslcard/index.php:5
 #: application/views/visitor/index.php:287
 msgid "QSL Cards"
-msgstr ""
+msgstr "QSL kartice"
 
 #: application/controllers/Qsl.php:40
 msgid "Upload QSL Cards"
-msgstr ""
+msgstr "Naloži QSL kartice"
 
 #: application/controllers/Qslprint.php:44
 msgid "Print Requested QSLs"
-msgstr ""
+msgstr "Natisni zahtevane QSL-ke"
 
 #: application/controllers/Qso.php:144
 msgid "Add QSO"
-msgstr ""
+msgstr "Dodaj QSO"
 
 #: application/controllers/Qso.php:847
 msgid "You have to be logged in to access this URL."
-msgstr ""
+msgstr "Za dostop do tega URL-ja morate biti prijavljeni."
 
 #: application/controllers/Qso.php:853
+#, fuzzy
 msgid "Call Transfer"
-msgstr ""
+msgstr "Preusmeritev klica"
 
 #: application/controllers/Qso.php:860
 msgid "No callsign provided."
-msgstr ""
+msgstr "Klicni znak ni bil naveden."
 
 #: application/controllers/Radio.php:17
 #: application/views/interface_assets/header.php:539
 msgid "Hardware Interfaces"
-msgstr ""
+msgstr "Strojni vmesniki"
 
 #: application/controllers/Radio.php:44 application/views/bandmap/list.php:21
 #: application/views/contesting/index.php:157
 #: application/views/qso/index.php:411 application/views/view_log/qso.php:726
+#, fuzzy
 msgid "Radio"
-msgstr ""
+msgstr "Radio"
 
 #: application/controllers/Radio.php:50
 msgid "Timestamp"
-msgstr ""
+msgstr "Časovni žig"
 
 #: application/controllers/Radio.php:52
 #: application/views/logbookadvanced/index.php:905
@@ -2535,34 +2582,35 @@ msgstr ""
 #: application/views/simplefle/index.php:185
 #: application/views/stationsetup/exportmapoptions.php:5
 msgid "Options"
-msgstr ""
+msgstr "Možnosti"
 
 #: application/controllers/Radio.php:53 application/views/debug/index.php:370
 #: application/views/qso/index.php:841
 msgid "Settings"
-msgstr ""
+msgstr "Nastavitve"
 
 #: application/controllers/Radio.php:59
+#, fuzzy
 msgid "WebSocket"
-msgstr ""
+msgstr "WebSocket"
 
 #: application/controllers/Radio.php:65 application/controllers/Radio.php:126
 msgid "Default (click to release)"
-msgstr ""
+msgstr "Privzeto (kliknite za sprostitev)"
 
 #: application/controllers/Radio.php:67 application/controllers/Radio.php:128
 msgid "Set as default radio"
-msgstr ""
+msgstr "Nastavi kot privzeto postajo"
 
 #: application/controllers/Radio.php:83
 msgid "UNKNOWN"
-msgstr ""
+msgstr "NEZNANO"
 
 #: application/controllers/Radio.php:120 application/views/bandmap/list.php:247
 #: application/views/contesting/index.php:162
 #: application/views/qso/index.php:416
 msgid "last updated"
-msgstr ""
+msgstr "nazadnje posodobljeno"
 
 #: application/controllers/Radio.php:130
 #: application/controllers/Stationsetup.php:402
@@ -2581,7 +2629,7 @@ msgstr ""
 #: application/views/themes/index.php:104 application/views/user/index.php:97
 #: application/views/user/index.php:203
 msgid "Edit"
-msgstr ""
+msgstr "Uredi"
 
 #: application/controllers/Radio.php:131
 #: application/controllers/Stationsetup.php:415
@@ -2610,35 +2658,36 @@ msgstr ""
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:797
 msgid "Delete"
-msgstr ""
+msgstr "Izbriši"
 
 #: application/controllers/Radio.php:138
 msgid "WebSocket is currently default (click to release)"
-msgstr ""
+msgstr "WebSocket je trenutno privzet (kliknite za sprostitev)"
 
 #: application/controllers/Radio.php:140
 msgid "Set WebSocket as default radio"
-msgstr ""
+msgstr "Nastavi WebSocket kot privzeti radijski sprejemnik"
 
 #: application/controllers/Radio.php:144
 msgid "No CAT interfaced radios found."
-msgstr ""
+msgstr "Ni najdenih radijskih postaj, povezanih s CAT."
 
 #: application/controllers/Radio.php:145
 msgid "You can still set the WebSocket option as your default radio."
 msgstr ""
+"Možnost WebSocket lahko še vedno nastavite kot privzeto radijsko postajo."
 
 #: application/controllers/Radio.php:162 application/views/radio/index.php:2
 msgid "Edit CAT Settings"
-msgstr ""
+msgstr "Uredi CAT Nastavitve"
 
 #: application/controllers/Radio.php:334
 msgid "Radio removed successfully"
-msgstr ""
+msgstr "Radijska postaja je bila uspešno odstranjena"
 
 #: application/controllers/Reg1test.php:22
 msgid "Export EDI"
-msgstr ""
+msgstr "Izvozi EDI"
 
 #: application/controllers/Satellite.php:41 application/models/Note.php:10
 #: application/views/interface_assets/header.php:338
@@ -2646,57 +2695,57 @@ msgstr ""
 #: application/views/statistics/index.php:85
 #: application/views/statistics/index.php:153
 msgid "Satellites"
-msgstr ""
+msgstr "Sateliti"
 
 #: application/controllers/Satellite.php:50
 msgid "Create Satellite"
-msgstr ""
+msgstr "Ustvari satelit"
 
 #: application/controllers/Satellite.php:76
 msgid "Edit Satellite"
-msgstr ""
+msgstr "Uredi satelit"
 
 #: application/controllers/Satellite.php:201
 #: application/views/interface_assets/header.php:319
 msgid "Satellite Flightpath"
-msgstr ""
+msgstr "Pot satelita"
 
 #: application/controllers/Satellite.php:253
 msgid "Satellite pass"
-msgstr ""
+msgstr "Prehod satelita"
 
 #: application/controllers/Satellite.php:310
 msgid "Failed to save pass settings!"
-msgstr ""
+msgstr "Shranjevanje nastavitev prehoda ni uspelo!"
 
 #: application/controllers/Satellite.php:313
 msgid "Pass settings saved!"
-msgstr ""
+msgstr "Nastavitve prehoda so shranjene!"
 
 #: application/controllers/Satellite.php:326
 msgid "No settings found!"
-msgstr ""
+msgstr "Ne najdem nastavitev!"
 
 #: application/controllers/Satellite.php:340
 msgid "Failed to delete pass settings!"
-msgstr ""
+msgstr "Nastavitev prehoda ni bilo mogoče izbrisati!"
 
 #: application/controllers/Satellite.php:342
 msgid "Pass settings deleted!"
-msgstr ""
+msgstr "Nastavitve prehoda so izbrisane!"
 
 #: application/controllers/Satellite.php:352
 msgid "Saved Pass Settings"
-msgstr ""
+msgstr "Shranjene nastavitve prehoda"
 
 #: application/controllers/Satellite.php:369
 msgid "No presets available"
-msgstr ""
+msgstr "Ni prednastavitev"
 
 #: application/controllers/Sattimers.php:45
 #, php-format
 msgid "You have no station locations. Go %s to create it!"
-msgstr ""
+msgstr "Nimate nastavljene lokacije postaje. Pojdite na %s, da jo ustvarite!"
 
 #: application/controllers/Sattimers.php:45
 #: application/views/awards/counties/index.php:8
@@ -2707,12 +2756,12 @@ msgstr ""
 #: application/views/awards/was/index.php:28
 #: application/views/simplefle/index.php:16
 msgid "here"
-msgstr ""
+msgstr "tukaj"
 
 #: application/controllers/Sattimers.php:48
 #: application/views/sattimers/index.php:13
 msgid "Satellite Timers"
-msgstr ""
+msgstr "Časovnice satelitov"
 
 #: application/controllers/Search.php:15 application/views/bandmap/list.php:575
 #: application/views/continents/index.php:49
@@ -2735,22 +2784,24 @@ msgstr ""
 #: application/views/visitor/layout/header.php:97
 #: application/views/visitor/layout/header.php:98
 msgid "Search"
-msgstr ""
+msgstr "Išči"
 
 #: application/controllers/Search.php:24
 msgid "Search & Filter Logbook"
-msgstr ""
+msgstr "Iskanje in filtriranje dnevnika"
 
 #: application/controllers/Search.php:52
 msgid ""
 "QSOs unconfirmed on LoTW, but the callsign has uploaded to LoTW after QSO "
 "date"
 msgstr ""
+"QSO niso potrjene na LoTW, vendar je bil klicni znak naložen na LoTW po "
+"datumu QSO-ja"
 
 #: application/controllers/Simplefle.php:24
 #: application/views/interface_assets/header.php:137
 msgid "Simple Fast Log Entry"
-msgstr ""
+msgstr "Preprost hiter vnos v dnevnik"
 
 #: application/controllers/Staticmap.php:152
 #: application/controllers/Visitor.php:80
@@ -2760,22 +2811,22 @@ msgstr ""
 #: application/controllers/Visitor.php:543
 #: application/controllers/Widgets.php:64
 msgid "Empty Logbook"
-msgstr ""
+msgstr "Prazen dnevnik"
 
 #: application/controllers/Station.php:38
 #: application/controllers/Stationsetup.php:252
 msgid "Create Station Location"
-msgstr ""
+msgstr "Ustvari lokacijo postaje"
 
 #: application/controllers/Station.php:75
 #: application/controllers/Station.php:100 application/controllers/User.php:274
 #: application/controllers/User.php:989 application/controllers/User.php:1164
 msgid "Invalid security token"
-msgstr ""
+msgstr "Neveljaven varnostni žeton"
 
 #: application/controllers/Station.php:89
 msgid "Edit Station Location: "
-msgstr ""
+msgstr "Uredi lokacijo postaje: "
 
 #: application/controllers/Station.php:106
 #: application/views/calltester/index.php:5 application/views/csv/index.php:19
@@ -2795,24 +2846,24 @@ msgstr ""
 #: application/views/webadif/export.php:115
 #: application/views/zonechecker/index.php:5
 msgid "Station Location"
-msgstr ""
+msgstr "Lokacija postaje"
 
 #: application/controllers/Station.php:125
 msgid "Duplicate Station Location:"
-msgstr ""
+msgstr "Podvojena lokacija postaje:"
 
 #: application/controllers/Station.php:234
 #: application/controllers/User.php:1419 application/controllers/User.php:1676
 #, php-format
 msgid "Please check value for grid locator (%s)"
-msgstr ""
+msgstr "Preverite vrednost UL lokatorja (%s)"
 
 #: application/controllers/Stationsetup.php:61
 #: application/views/interface_assets/header.php:447
 #: application/views/interface_assets/header.php:480
 #: application/views/interface_assets/header.php:614
 msgid "Station Setup"
-msgstr ""
+msgstr "Nastavitev postaje"
 
 #: application/controllers/Stationsetup.php:76
 #: application/controllers/Stationsetup.php:94
