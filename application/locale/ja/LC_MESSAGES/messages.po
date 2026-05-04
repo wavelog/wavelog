@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-04-30 06:22+0000\n"
+"POT-Creation-Date: 2026-05-04 13:06+0000\n"
 "PO-Revision-Date: 2026-05-04 07:47+0000\n"
 "Last-Translator: JF9SOM <jf9som@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
@@ -2049,13 +2049,11 @@ msgstr "DXCCを削除しました"
 msgid "Advanced logbook"
 msgstr "ログブックの詳細"
 
-#: application/controllers/Logbookadvanced.php:981
 #: application/controllers/Logbookadvanced.php:982
 #, php-format
 msgid "DXCC updated for %d QSO(s)."
 msgstr "DXCCが %d QSO 更新されました。"
 
-#: application/controllers/Logbookadvanced.php:997
 #: application/controllers/Logbookadvanced.php:998
 #, php-format
 msgid "Map for DXCC %s and gridsquare %s."
@@ -3328,8 +3326,8 @@ msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
 "setup, click %shere%s."
 msgstr ""
-"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するには、"
-"%shere%sをクリックしてください。"
+"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するに"
+"は、%shere%sをクリックしてください。"
 
 #: application/controllers/User.php:1430
 msgid "Station setup failed! Please set up your station manually."
@@ -3800,31 +3798,26 @@ msgstr "QSOが更新されました"
 msgid "Bearing"
 msgstr "方位"
 
-#: application/models/Logbookadvanced_model.php:1807
 #: application/models/Logbookadvanced_model.php:1838
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
 msgstr ""
 "VuccGridsテーブルが空です。まずVUCCグリッドデータをインポートしてください。"
 
-#: application/models/Logbookadvanced_model.php:2427
 #: application/models/Logbookadvanced_model.php:2458
 msgid ""
 "Invalid primary QSO ID, or you do not have permission to access one of the "
 "QSOs"
 msgstr "プライマリQSOIDが無効、またはQSOへのアクセス権限がない"
 
-#: application/models/Logbookadvanced_model.php:2437
-#: application/views/view_log/qso.php:946
 #: application/models/Logbookadvanced_model.php:2468
+#: application/views/view_log/qso.php:946
 msgid "QSO not found"
 msgstr "QSOが見つかりません"
 
-#: application/models/Logbookadvanced_model.php:2523
 #: application/models/Logbookadvanced_model.php:2554
 msgid "No fields selected for merge or no differences between QSOs"
 msgstr "統合用のフィールドが選択されていないか、QSO同士の違いもありません"
 
-#: application/models/Logbookadvanced_model.php:2536
 #: application/models/Logbookadvanced_model.php:2567
 msgid "QSOs merged successfully"
 msgstr "QSOの統合に成功しました"
@@ -20124,9 +20117,9 @@ msgstr "CQz geojson"
 #~ "processed. %s Please make sure you export the LoTW certificate from tqsl "
 #~ "application without password! %s"
 #~ msgstr ""
-#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できません。"
-#~ "%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パスワード"
-#~ "なしで実行してください！%s"
+#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できませ"
+#~ "ん。%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パス"
+#~ "ワードなしで実行してください！%s"
 
 #~ msgid "Column"
 #~ msgstr "カラム"
@@ -20460,8 +20453,8 @@ msgstr "CQz geojson"
 #~ "Your active Station Location isn't linked to your Logbook. Click %shere%s "
 #~ "to do it."
 #~ msgstr ""
-#~ "現在のステーション位置がログブックとリンクされていません。リンクするには、"
-#~ "%shere%s をクリックしてください。"
+#~ "現在のステーション位置がログブックとリンクされていません。リンクするに"
+#~ "は、%shere%s をクリックしてください。"
 
 #, php-format
 #~ msgctxt "Dashboard Warning"
