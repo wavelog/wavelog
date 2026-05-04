@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-04-30 06:22+0000\n"
-"PO-Revision-Date: 2026-05-04 10:16+0000\n"
+"PO-Revision-Date: 2026-05-04 11:58+0000\n"
 "Last-Translator: Anton Tomanič <s57xz.toni@gmail.com>\n"
 "Language-Team: Slovenian <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/sl/>\n"
@@ -2870,7 +2870,7 @@ msgstr "Nastavitev postaje"
 #: application/controllers/Stationsetup.php:438
 #: application/controllers/Stationsetup.php:452
 msgid "Not allowed"
-msgstr ""
+msgstr "Ni dovoljeno"
 
 #: application/controllers/Stationsetup.php:98
 #: application/controllers/Stationsetup.php:112
@@ -2883,28 +2883,28 @@ msgstr ""
 #: application/views/widgets/on_air.php:181
 #: application/views/widgets/on_air.php:243
 msgid "Error"
-msgstr ""
+msgstr "Napaka"
 
 #: application/controllers/Stationsetup.php:185
 #: application/views/stationsetup/stationsetup.php:25
 msgid "Create Station Logbook"
-msgstr ""
+msgstr "Ustvari dnevnik postaje"
 
 #: application/controllers/Stationsetup.php:192
 msgid "Edit container name"
-msgstr ""
+msgstr "Uredi ime vsebnika"
 
 #: application/controllers/Stationsetup.php:207
 msgid "Edit linked locations"
-msgstr ""
+msgstr "Urejanje povezanih lokacij"
 
 #: application/controllers/Stationsetup.php:216
 msgid "Edit visitor site"
-msgstr ""
+msgstr "Uredi spletno mesto za obiskovalce"
 
 #: application/controllers/Stationsetup.php:238
 msgid "Error. Link is already in use!"
-msgstr ""
+msgstr "Napaka. Povezava je že v uporabi!"
 
 #: application/controllers/Stationsetup.php:279
 #: application/views/options/appearance.php:58
@@ -2922,19 +2922,19 @@ msgstr ""
 #: application/views/user/edit.php:561 application/views/user/edit.php:718
 #: application/views/user/edit.php:728
 msgid "Disabled"
-msgstr ""
+msgstr "Onemogočeno"
 
 #: application/controllers/Stationsetup.php:287
 #: application/views/stationsetup/stationsetup.php:49
 msgid "Set as Active Logbook"
-msgstr ""
+msgstr "Nastavi kot aktivni dnevnik"
 
 #: application/controllers/Stationsetup.php:289
 #: application/views/interface_assets/header.php:612
 #: application/views/stationsetup/stationsetup.php:51
 #: application/views/view_log/index.php:4
 msgid "Active Logbook"
-msgstr ""
+msgstr "Aktivni dnevnik"
 
 #: application/controllers/Stationsetup.php:296
 #: application/views/stationsetup/stationsetup.php:60
@@ -2943,15 +2943,17 @@ msgid ""
 "Are you sure you want to delete the station logbook %s? You must re-link any "
 "locations linked here to another logbook."
 msgstr ""
+"Ali ste prepričani, da želite izbrisati dnevnik postaje %s? Vse lokacije, ki "
+"povezane s tem dnevnikom, morate ponovno povezati z drugim dnevnikom."
 
 #: application/controllers/Stationsetup.php:306
 #: application/views/stationsetup/stationsetup.php:70
 msgid "View Public Page for Logbook: "
-msgstr ""
+msgstr "Ogled javne strani za dnevnik: "
 
 #: application/controllers/Stationsetup.php:307
 msgid "Are you sure you want to delete the public slug?"
-msgstr ""
+msgstr "Ali ste prepričani, da želite izbrisati javno končnico URL naslova?"
 
 #: application/controllers/Stationsetup.php:392
 #: application/views/stationsetup/stationsetup.php:163
@@ -2959,16 +2961,18 @@ msgstr ""
 msgid ""
 "Are you sure you want to make the station profile %s the active station?"
 msgstr ""
+"Ali ste prepričani, da želite profil postaje %s nastaviti kot aktivno "
+"postajo?"
 
 #: application/controllers/Stationsetup.php:392
 #: application/views/stationsetup/stationsetup.php:163
 msgid "Set Active"
-msgstr ""
+msgstr "Nastavi aktivno"
 
 #: application/controllers/Stationsetup.php:394
 #: application/views/stationsetup/stationsetup.php:165
 msgid "Active Station"
-msgstr ""
+msgstr "Aktivna postaja"
 
 #: application/controllers/Stationsetup.php:397
 #: application/views/interface_assets/header.php:131
@@ -2981,25 +2985,27 @@ msgstr ""
 #: application/views/stationsetup/stationsetup.php:170
 #: application/views/user/index.php:82 application/views/user/index.php:86
 #: application/views/user/index.php:193 application/views/user/index.php:195
+#, fuzzy
 msgid "QSO"
-msgstr ""
+msgstr "QSO"
 
 #: application/controllers/Stationsetup.php:406
 #: application/views/stationsetup/stationsetup.php:194
 msgid "Are you sure you want to delete all QSOs within this station profile?"
 msgstr ""
+"Ali ste prepričani, da želite izbrisati vse QSO znotraj tega profila postaje?"
 
 #: application/controllers/Stationsetup.php:406
 #: application/views/stationsetup/stationsetup.php:144
 #: application/views/stationsetup/stationsetup.php:196
 msgid "Empty Log"
-msgstr ""
+msgstr "Prazen dnevnik"
 
 #: application/controllers/Stationsetup.php:410
 #: application/views/stationsetup/stationsetup.php:137
 #: application/views/stationsetup/stationsetup.php:177
 msgid "Copy"
-msgstr ""
+msgstr "Kopiraj"
 
 #: application/controllers/Stationsetup.php:415
 #: application/views/stationsetup/stationsetup.php:200
@@ -3008,6 +3014,8 @@ msgid ""
 "Are you sure you want delete station profile '%s'? This will delete all QSOs "
 "within this station profile."
 msgstr ""
+"Ali ste prepričani, da želite izbrisati profil postaje '%s'? S tem boste "
+"izbrisali vse QSO znotraj tega profila postaje."
 
 #: application/controllers/Stationsetup.php:422
 #: application/views/qso/edit_ajax.php:236
@@ -3016,297 +3024,301 @@ msgstr ""
 #: application/views/stationsetup/stationsetup.php:158
 #: application/views/user/modals/first_login_wizard.php:46
 msgid "Please select one"
-msgstr ""
+msgstr "Prosimo izberite eno"
 
 #: application/controllers/Stationsetup.php:505
 msgid "Edit Export Map options"
-msgstr ""
+msgstr "Urejanje možnosti izvoza zemljevida"
 
 #: application/controllers/Stationsetup.php:527
 msgid "Station location list"
-msgstr ""
+msgstr "Seznam lokacij postaj"
 
 #: application/controllers/Statistics.php:23
 #: application/views/interface_assets/header.php:154
 msgid "Statistics"
-msgstr ""
+msgstr "Statistika"
 
 #: application/controllers/Statistics.php:299
 #: application/views/interface_assets/header.php:158
 #: application/views/statistics/qsltable.php:5
 msgid "QSL Statistics"
-msgstr ""
+msgstr "QSL Statistika"
 
 #: application/controllers/Statistics.php:314
 #: application/views/interface_assets/header.php:156
 #: application/views/statistics/antennaanalytics.php:3
 msgid "Antenna Analytics"
-msgstr ""
+msgstr "Analiza antene"
 
 #: application/controllers/Statistics.php:372
 msgid "Satellite QSOs"
-msgstr ""
+msgstr "QSO preko satelitov"
 
 #: application/controllers/Statistics.php:388
 #: application/views/interface_assets/header.php:182
 msgid "EME Initials"
-msgstr ""
+msgstr "Prve zveze preko EME"
 
 #: application/controllers/Themes.php:27
 #: application/views/interface_assets/header.php:340
 msgid "Themes"
-msgstr ""
+msgstr "Teme"
 
 #: application/controllers/Themes.php:46
 msgid "Create Theme"
-msgstr ""
+msgstr "Ustvari temo"
 
 #: application/controllers/Themes.php:65
 msgid "Edit Theme"
-msgstr ""
+msgstr "Uredi temo"
 
 #: application/controllers/Timeline.php:15
 #: application/views/interface_assets/header.php:172
 #: application/views/timeline/index.php:2
 msgid "Timeline"
-msgstr ""
+msgstr "Časovnica"
 
 #: application/controllers/Timeplotter.php:17
 #: application/views/interface_assets/header.php:176
 #: application/views/timeplotter/index.php:10
 msgid "Timeplotter"
-msgstr ""
+msgstr "Časovni števec"
 
 #: application/controllers/Update.php:24
 msgid "Updates"
-msgstr ""
+msgstr "Posodobitve"
 
 #: application/controllers/Update.php:68
 msgid "Preparing DXCC-Entries: "
-msgstr ""
+msgstr "Priprava DXCC-Vnosov: "
 
 #: application/controllers/Update.php:133
 msgid "Preparing DXCC Exceptions: "
-msgstr ""
+msgstr "Priprava izjem DXCC: "
 
 #: application/controllers/Update.php:184
 msgid "Preparing DXCC Prefixes: "
-msgstr ""
+msgstr "Priprava DXCC prefiksov:: "
 
 #: application/controllers/Update.php:277
 msgid "DONE"
-msgstr ""
+msgstr "NAREJENO"
 
 #: application/controllers/Update.php:326
 msgid "Updating..."
-msgstr ""
+msgstr "Posodabljanje ..."
 
 #: application/controllers/Update.php:329
 msgid "Dxcc Entities:"
-msgstr ""
+msgstr "Dxcc Entitete:"
 
 #: application/controllers/Update.php:330
 msgid "Dxcc Exceptions:"
-msgstr ""
+msgstr "Dxcc izjeme:"
 
 #: application/controllers/Update.php:331
 msgid "Dxcc Prefixes:"
-msgstr ""
+msgstr "Dxcc Prefiksi:"
 
 #: application/controllers/Update.php:362
 msgid "SCP Update complete. Result: "
-msgstr ""
+msgstr "Posodobitev SCP končana. Rezultat: "
 
 #: application/controllers/Update.php:364
 msgid "SCP Update failed. Result: "
-msgstr ""
+msgstr "Posodobitev SCP ni uspela. Rezultat: "
 
 #: application/controllers/Update.php:401
 msgid "LoTW Users Update complete. Result: "
-msgstr ""
+msgstr "Posodobitev uporabnikov LoTW končana. Rezultat: "
 
 #: application/controllers/Update.php:403
 msgid "LoTW Users Update failed. Result: "
-msgstr ""
+msgstr "Posodobitev uporabnikov LoTW ni uspela. Rezultat: "
 
 #: application/controllers/Update.php:438
 msgid "DOK Update complete. Result: "
-msgstr ""
+msgstr "Posodobitev DOK je končana. Rezultat: "
 
 #: application/controllers/Update.php:440
 msgid "DOK Update failed. Result: "
-msgstr ""
+msgstr "Posodobitev DOK ni uspela. Rezultat: "
 
 #: application/controllers/Update.php:473
 msgid "SOTA Update complete. Result: "
-msgstr ""
+msgstr "Posodobitev SOTA je končana. Rezultat: "
 
 #: application/controllers/Update.php:475
 msgid "SOTA Update failed. Result: "
-msgstr ""
+msgstr "Posodobitev SOTA ni uspela. Rezultat: "
 
 #: application/controllers/Update.php:508
 msgid "WWFF Update complete. Result: "
-msgstr ""
+msgstr "Posodobitev WWFF je končana. Rezultat: "
 
 #: application/controllers/Update.php:510
 msgid "WWFF Update failed. Result: "
-msgstr ""
+msgstr "Posodobitev WWFF ni uspela. Rezultat: "
 
 #: application/controllers/Update.php:544
 msgid "HAMqsl Update complete. Result: "
-msgstr ""
+msgstr "Posodobitev HAMqsl je končana. Rezultat: "
 
 #: application/controllers/Update.php:546
 msgid "HAMqsl Update failed. Result: "
-msgstr ""
+msgstr "Posodobitev HAMqsl ni uspela. Rezultat: "
 
 #: application/controllers/Update.php:579
 msgid "POTA Update complete. Result: "
-msgstr ""
+msgstr "Posodobitev POTA je končana. Rezultat: "
 
 #: application/controllers/Update.php:581
 msgid "POTA Update failed. Result: "
-msgstr ""
+msgstr "Posodobitev POTA ni uspela. Rezultat: "
 
 #: application/controllers/Update.php:610
 msgid "TLE Update complete. Result: "
-msgstr ""
+msgstr "Posodobitev TLE je končana. Rezultat: "
 
 #: application/controllers/Update.php:612
 msgid "TLE Update failed. Result: "
-msgstr ""
+msgstr "Posodobitev TLE ni uspela. Rezultat: "
 
 #: application/controllers/Update.php:639
 msgid "LoTW SAT Update"
-msgstr ""
+msgstr "Posodobitev LoTW SAT"
 
 #: application/controllers/Update.php:667
 msgid "Update of Hams of Note"
-msgstr ""
+msgstr "Posodobitev Hams of Note"
 
 #: application/controllers/Update.php:707
 msgid "VUCC Grid file update complete. Result: "
-msgstr ""
+msgstr "Posodobitev datoteke VUCC Grid je končana. Rezultat: "
 
 #: application/controllers/Update.php:709
 msgid "VUCC Grid file update failed. Result: "
-msgstr ""
+msgstr "Posodobitev datoteke VUCC Grid ni uspela. Rezultat: "
 
 #: application/controllers/User.php:52
 #: application/views/interface_assets/header.php:330
 msgid "User Accounts"
-msgstr ""
+msgstr "Uporabniški računi"
 
 #: application/controllers/User.php:104
+#, fuzzy
 msgid "Invalid User ID or missing modal!"
-msgstr ""
+msgstr "Neveljaven uporabniški ID ali manjkajoče modalno okno!"
 
 #: application/controllers/User.php:115
 msgid "User unlocked!"
-msgstr ""
+msgstr "Uporabnik je odklenjen!"
 
 #: application/controllers/User.php:118
 msgid "Failed to unlock user!"
-msgstr ""
+msgstr "Uporabnika ni bilo mogoče odkleniti!"
 
 #: application/controllers/User.php:122
 msgid "User not found!"
-msgstr ""
+msgstr "Uporabnika ni bilo mogoče najti!"
 
 #: application/controllers/User.php:135
 msgid "Invalid Parameter!"
-msgstr ""
+msgstr "Neveljaven parameter!"
 
 #: application/controllers/User.php:209
 #: application/views/club/permissions.php:191
 msgid "Add User"
-msgstr ""
+msgstr "Dodaj uporabnika"
 
 #: application/controllers/User.php:346
 #, php-format
 msgid "Username %s already in use!"
-msgstr ""
+msgstr "Uporabniško ime %s je že v uporabi!"
 
 #: application/controllers/User.php:349
 #, php-format
 msgid "E-mail %s already in use!"
-msgstr ""
+msgstr "E-pošta %s je že v uporabi!"
 
 #: application/controllers/User.php:352
 msgid "Invalid Password!"
-msgstr ""
+msgstr "Neveljavno geslo!"
 
 #: application/controllers/User.php:356
 #, php-format
 msgid "User %s added!"
-msgstr ""
+msgstr "Uporabnik %s je bil dodan!"
 
 #: application/controllers/User.php:360
 msgid "Users"
-msgstr ""
+msgstr "Uporabniki"
 
 #: application/controllers/User.php:470
 msgid "Can't be changed. Manage this through your Identity Provider."
-msgstr ""
+msgstr "Ni mogoče spremeniti. To lahko uredite prek ponudnika identitete."
 
 #: application/controllers/User.php:473
 #: application/views/club/permissions.php:292
 msgid "Edit User"
-msgstr ""
+msgstr "Uredi uporabnika"
 
 #: application/controllers/User.php:1059 application/controllers/User.php:1062
 #, php-format
 msgid "User %s edited"
-msgstr ""
+msgstr "Uporabnik %s je urejen"
 
 #: application/controllers/User.php:1130
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #: application/controllers/User.php:1154
 #: application/views/club/permissions.php:349
 msgid "Delete User"
-msgstr ""
+msgstr "Izbriši uporabnika"
 
 #: application/controllers/User.php:1170
 msgid "User deleted"
-msgstr ""
+msgstr "Uporabnik izbrisan"
 
 #: application/controllers/User.php:1173
 msgid "Could not delete user!"
-msgstr ""
+msgstr "Uporabnika ni bilo mogoče izbrisati!"
 
 #: application/controllers/User.php:1173
 msgid "Database error:"
-msgstr ""
+msgstr "Napaka v zbirki podatkov:"
 
 #: application/controllers/User.php:1198
 msgid ""
 "Congrats! Wavelog was successfully installed. You can now login for the "
 "first time."
 msgstr ""
+"Čestitamo! Wavelog je bil uspešno nameščen. Zdaj se lahko prvič prijavite."
 
 #: application/controllers/User.php:1237
 msgid "This is not allowed!"
-msgstr ""
+msgstr "To ni dovoljeno!"
 
 #: application/controllers/User.php:1274 application/controllers/User.php:1287
 msgid "Login failed. Try again."
-msgstr ""
+msgstr "Prijava ni uspela. Poskusite znova."
 
 #: application/controllers/User.php:1295
 #: application/views/interface_assets/header.php:418
 #: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:87
 msgid "Login"
-msgstr ""
+msgstr "Prijava"
 
 #: application/controllers/User.php:1345
 msgid ""
 "Your account is locked, due to too many failed login-attempts. Please reset "
 "your password."
 msgstr ""
+"Vaš račun je zaklenjen zaradi preveč neuspelih poskusov prijave. Prosimo, "
+"ponastavite geslo."
 
 #: application/controllers/User.php:1349
 msgid ""
@@ -3314,21 +3326,24 @@ msgid ""
 "appears unexpectedly or keeps showing up, please contact an administrator. "
 "Only administrators are currently allowed to log in."
 msgstr ""
+"Oprostite. Ta instanca je trenutno v vzdrževalnem načinu. Če se to sporočilo "
+"nepričakovano pojavi ali se nenehno pojavlja, se obrnite na skrbnika. "
+"Trenutno se lahko prijavijo samo skrbniki."
 
 #: application/controllers/User.php:1352
 msgid "Incorrect username or password!"
-msgstr ""
+msgstr "Napačno uporabniško ime ali geslo!"
 
 #: application/controllers/User.php:1377
 #, php-format
 msgid "User %s logged out."
-msgstr ""
+msgstr "Uporabnik %s se je odjavil."
 
 #: application/controllers/User.php:1401
 #: application/views/oqrs/request_grouped.php:16
 #: application/views/user/modals/first_login_wizard.php:26
 msgid "Station Name"
-msgstr ""
+msgstr "Ime postaje"
 
 #: application/controllers/User.php:1402 application/views/debug/index.php:769
 #: application/views/public_search/result.php:17
@@ -3338,27 +3353,27 @@ msgstr ""
 #: application/views/stationsetup/stationsetup.php:130
 #: application/views/user/modals/first_login_wizard.php:34
 msgid "Station Callsign"
-msgstr ""
+msgstr "Klicni znak postaje"
 
 #: application/controllers/User.php:1403
 #: application/views/station_profile/create.php:82
 #: application/views/station_profile/edit.php:99
 #: application/views/user/modals/first_login_wizard.php:42
 msgid "Station DXCC"
-msgstr ""
+msgstr "DXCC postaje"
 
 #: application/controllers/User.php:1404
 msgid "Station CQ Zone"
-msgstr ""
+msgstr "CQ zona postaje"
 
 #: application/controllers/User.php:1405
 msgid "Station ITU Zone"
-msgstr ""
+msgstr "ITU zona postaje"
 
 #: application/controllers/User.php:1406
 #: application/views/user/modals/first_login_wizard.php:93
 msgid "Station Locator"
-msgstr ""
+msgstr "Lokator postaje"
 
 #: application/controllers/User.php:1427
 #, php-format
@@ -3366,46 +3381,52 @@ msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
 "setup, click %shere%s."
 msgstr ""
+"Postaja uspešno ustvarjena! Dobrodošli v Wavelogu! Za dokončanje nastavitve "
+"postaje kliknite %stukaj%s."
 
 #: application/controllers/User.php:1430
 msgid "Station setup failed! Please set up your station manually."
-msgstr ""
+msgstr "Nastavitev postaje ni uspela! Postajo nastavite ročno."
 
 #: application/controllers/User.php:1447
 msgid "Password Reset is disabled on the Demo!"
-msgstr ""
+msgstr "Ponastavitev gesla je v demo načinu onemogočena!"
 
 #: application/controllers/User.php:1461
 msgid "Forgot Password"
-msgstr ""
+msgstr "Pozabljeno geslo"
 
 #: application/controllers/User.php:1512
 #: application/views/user/modals/more_actions_modal.php:88
 msgid "Email settings are incorrect."
-msgstr ""
+msgstr "Nastavitve e-pošte so napačne."
 
 #: application/controllers/User.php:1516 application/controllers/User.php:1521
 msgid "Password Reset Processed."
-msgstr ""
+msgstr "Ponastavitev gesla obdelana."
 
 #: application/controllers/User.php:1629
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
 msgid "Reset Password"
-msgstr ""
+msgstr "Ponastavi geslo"
 
 #: application/controllers/User.php:1650
 #, php-format
 msgid ""
 "Couldn't set account to this username. Please try another one than \"%s\"."
 msgstr ""
+"Računa ni bilo mogoče nastaviti za to uporabniško ime. Poskusite z drugim, "
+"ne z \"%s\"."
 
 #: application/controllers/User.php:1659
 #, php-format
 msgid ""
 "Couldn't set account to this email. Please try another address than \"%s\"."
 msgstr ""
+"Računa ni bilo mogoče nastaviti za ta e-poštni naslov. Poskusite z drugim "
+"naslovom, ne z \"%s\"."
 
 #: application/controllers/User.php:1698
 #, php-format
@@ -3413,6 +3434,8 @@ msgid ""
 "You currently can't impersonate another user. You need to set %s to %s in "
 "your config.php!"
 msgstr ""
+"Trenutno se ne morete izdajati za drugega uporabnika. V datoteki config.php "
+"morate nastaviti %s na %s!"
 
 #: application/controllers/User.php:1712
 #: application/views/user/modals/admin_impersonate_modal.php:36
@@ -3420,46 +3443,56 @@ msgid ""
 "You currently can't impersonate another user. Please change the "
 "encryption_key in your config.php file first!"
 msgstr ""
+"Trenutno se ne morete izdajati za drugega uporabnika. Najprej spremenite "
+"šifrirni ključ v datoteki config.php!"
 
 #: application/controllers/User.php:1719
 msgid "Invalid Hash"
-msgstr ""
+msgstr "Neveljavna zgoščena vrednost"
 
 #: application/controllers/User.php:1732
 msgid "The impersonation hash is too old. Please try again."
-msgstr ""
+msgstr "Zgoščena vrednost za poosebljanje je prestara. Poskusite znova."
 
 #: application/controllers/User.php:1739
 msgid ""
 "You can't impersonate another user while you're not logged in as the source "
 "user"
 msgstr ""
+"Ne morete se izdajati za drugega uporabnika, če niste prijavljeni kot "
+"izvorni uporabnik"
 
 #: application/controllers/User.php:1745
 msgid "There was a problem with your session. Please try again."
-msgstr ""
+msgstr "Prišlo je do težave z vašo sejo. Poskusite znova."
 
 #: application/controllers/User.php:1752
+#, fuzzy
 msgid "The requested user to impersonate does not exist"
-msgstr ""
+msgstr "Zahtevani uporabnik za predstavljanje ne obstaja"
 
 #: application/controllers/User.php:1773
+#, fuzzy
 msgid ""
 "Could not determine the correct permission level for the clubstation. Try "
 "again after re-login."
 msgstr ""
+"Ni bilo mogoče določiti pravilne ravni dovoljenj za clubstation. Poskusite "
+"znova po ponovni prijavi."
 
 #: application/controllers/User.php:1818 application/controllers/User.php:1830
 #: application/controllers/User.php:1836 application/controllers/User.php:1845
 #: application/controllers/User.php:1853
 msgid "Ups.. Something went wrong. Try to log back in."
-msgstr ""
+msgstr "Ups ... Nekaj je šlo narobe. Poskusite se znova prijaviti."
 
 #: application/controllers/User.php:1859
 msgid ""
 "The ability to return quickly has been disabled after the security hash "
 "expired. Please log in again."
 msgstr ""
+"Možnost hitre vrnitve je bila onemogočena po izteku varnostne zgoščene "
+"vrednosti. Prosimo, prijavite se znova."
 
 #: application/controllers/User.php:1875
 #, php-format
@@ -3467,42 +3500,45 @@ msgid ""
 "You have been logged out of the account %s. Welcome back, %s, to your "
 "personal account!"
 msgstr ""
+"Odjavljeni ste iz računa %s. Dobrodošli nazaj %s, v vašem osebnem računu!"
 
 #: application/controllers/Visitor.php:285
 msgid "Satellite Gridsquare Map"
-msgstr ""
+msgstr "Zemljevid satelitov z UL"
 
 #: application/controllers/Visitor.php:481
 #: application/views/stationsetup/stationsetup.php:39
 msgid "Public Search"
-msgstr ""
+msgstr "Javno iskanje"
 
 #: application/controllers/Visitor.php:514
 msgid "Export Map"
-msgstr ""
+msgstr "Izvozi zemljevid"
 
 #: application/controllers/Webadif.php:105
 #: application/controllers/Webadif.php:152
 #: application/views/interface_assets/header.php:526
 msgid "QO-100 Dx Club Upload"
-msgstr ""
+msgstr "Nalaganje v QO-100 Dx Club"
 
 #: application/controllers/Widgets.php:21
 msgid "Unknown Public Page, please make sure the public slug is correct."
 msgstr ""
+"Neznana javna stran, prosim preverite, ali je javna končnica URL naslova "
+"pravilna."
 
 #: application/controllers/Widgets.php:92 application/views/oqrs/index.php:70
 msgid "No stations found that are using Wavelog OQRS."
-msgstr ""
+msgstr "Ni najdenih postaj, ki uporabljajo Wavelog OQRS."
 
 #: application/controllers/Widgets.php:147
 #: application/controllers/Widgets.php:158
 msgid "User slug not specified"
-msgstr ""
+msgstr "Uporabniška končnica URL naslova ni določena"
 
 #: application/controllers/Widgets.php:171
 msgid "User has on-air widget disabled"
-msgstr ""
+msgstr "Uporabnik ima onemogočen pripomoček za predvajanje"
 
 #: application/controllers/Widgets.php:229
 msgid ""
@@ -11048,124 +11084,153 @@ msgid "Everything ok"
 msgstr ""
 
 #: application/views/debug/index.php:848
+#, fuzzy
 msgid "Albanian"
-msgstr ""
+msgstr "Albanian"
 
 #: application/views/debug/index.php:849
+#, fuzzy
 msgid "Armenian"
-msgstr ""
+msgstr "Armenian"
 
 #: application/views/debug/index.php:850
+#, fuzzy
 msgid "Bosnian"
-msgstr ""
+msgstr "Bosnian"
 
 #: application/views/debug/index.php:851
+#, fuzzy
 msgid "Bulgarian"
-msgstr ""
+msgstr "Bulgarian"
 
 #: application/views/debug/index.php:852
+#, fuzzy
 msgid "Chinese (Simplified)"
-msgstr ""
+msgstr "Chinese (Simplified)"
 
 #: application/views/debug/index.php:853
+#, fuzzy
 msgid "Croatian"
-msgstr ""
+msgstr "Croatian"
 
 #: application/views/debug/index.php:854
+#, fuzzy
 msgid "Czech"
-msgstr ""
+msgstr "Czech"
 
 #: application/views/debug/index.php:855
+#, fuzzy
 msgid "Dutch"
-msgstr ""
+msgstr "Dutch"
 
 #: application/views/debug/index.php:856
+#, fuzzy
 msgid "English"
-msgstr ""
+msgstr "English"
 
 #: application/views/debug/index.php:857
+#, fuzzy
 msgid "Estonian"
-msgstr ""
+msgstr "Estonian"
 
 #: application/views/debug/index.php:858
+#, fuzzy
 msgid "Finnish"
-msgstr "Končano"
+msgstr "Finnish"
 
 #: application/views/debug/index.php:859
+#, fuzzy
 msgid "French"
-msgstr ""
+msgstr "French"
 
 #: application/views/debug/index.php:860
+#, fuzzy
 msgid "German"
-msgstr ""
+msgstr "German"
 
 #: application/views/debug/index.php:861
+#, fuzzy
 msgid "Greek"
-msgstr ""
+msgstr "Greek"
 
 #: application/views/debug/index.php:862
+#, fuzzy
 msgid "Hungarian"
-msgstr ""
+msgstr "Hungarian"
 
 #: application/views/debug/index.php:863
+#, fuzzy
 msgid "Italian"
-msgstr ""
+msgstr "Italian"
 
 #: application/views/debug/index.php:864
+#, fuzzy
 msgid "Japanese"
-msgstr ""
+msgstr "Japanese"
 
 #: application/views/debug/index.php:865
+#, fuzzy
 msgid "Latvian"
-msgstr ""
+msgstr "Latvian"
 
 #: application/views/debug/index.php:866
+#, fuzzy
 msgid "Lithuanian"
-msgstr ""
+msgstr "Lithuanian"
 
 #: application/views/debug/index.php:867
+#, fuzzy
 msgid "Montenegrin"
-msgstr ""
+msgstr "Montenegrin"
 
 #: application/views/debug/index.php:868
+#, fuzzy
 msgid "Polish"
-msgstr ""
+msgstr "Polish"
 
 #: application/views/debug/index.php:869
+#, fuzzy
 msgid "Portuguese"
-msgstr ""
+msgstr "Portuguese"
 
 #: application/views/debug/index.php:870
+#, fuzzy
 msgid "Russian"
-msgstr ""
+msgstr "Russian"
 
 #: application/views/debug/index.php:871
+#, fuzzy
 msgid "Serbian"
-msgstr ""
+msgstr "Serbian"
 
 #: application/views/debug/index.php:872
+#, fuzzy
 msgid "Slovak"
-msgstr ""
+msgstr "Slovak"
 
 #: application/views/debug/index.php:873
 msgid "Slovenian"
-msgstr ""
+msgstr "Slovenščina"
 
 #: application/views/debug/index.php:874
+#, fuzzy
 msgid "Spanish"
-msgstr ""
+msgstr "Spanish"
 
 #: application/views/debug/index.php:875
+#, fuzzy
 msgid "Swedish"
-msgstr ""
+msgstr "Swedish"
 
 #: application/views/debug/index.php:876
+#, fuzzy
 msgid "Turkish"
-msgstr ""
+msgstr "Turkish"
 
 #: application/views/debug/index.php:877
+#, fuzzy
 msgid "Ukrainian"
-msgstr ""
+msgstr "Ukrainian"
 
 #: application/views/distancerecords/index.php:4
 msgid "This page lists distance records per satellite based on gridsquares."
