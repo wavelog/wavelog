@@ -238,6 +238,7 @@ class Logbookadvanced extends CI_Controller {
 		$sortdirection = xss_clean($this->input->post('sortdirection'));
 		$user_id = (int)$this->session->userdata('user_id');
 
+		$data['reverse'] = (xss_clean($this->input->post('reverse')) == "true") ? true : false;
 		$data['qsos'] = $this->logbookadvanced_model->getQsosForAdif($ids, $user_id, $sortcolumn, $sortdirection);
 
 		$this->load->view('adif/data/exportall', $data);
