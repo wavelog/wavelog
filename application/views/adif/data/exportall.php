@@ -25,6 +25,8 @@ if (isset($reverse) && $reverse === true) {
       echo $CI->adifhelper->getAdifFieldLine("CALL", $qso->COL_STATION_CALLSIGN);
       echo $CI->adifhelper->getAdifFieldLine("MODE", $qso->COL_MODE);
       echo $CI->adifhelper->getAdifFieldLine("BAND", $qso->COL_BAND);
+      echo $CI->adifhelper->getAdifFieldLine("RST_SENT", $qso->COL_RST_RCVD);
+      echo $CI->adifhelper->getAdifFieldLine("RST_RCVD", $qso->COL_RST_SENT);
       echo $CI->adifhelper->getAdifFieldLine("SAT_NAME", $qso->COL_SAT_NAME);
       echo $CI->adifhelper->getAdifFieldLine("PROP_MODE", $qso->COL_PROP_MODE);
       if (str_contains($qso->station_gridsquare, ',')) {
