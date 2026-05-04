@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-04-30 06:22+0000\n"
-"PO-Revision-Date: 2026-05-03 15:22+0000\n"
+"PO-Revision-Date: 2026-05-04 07:47+0000\n"
 "Last-Translator: Anton Tomanič <s57xz.toni@gmail.com>\n"
 "Language-Team: Slovenian <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/sl/>\n"
@@ -967,18 +967,18 @@ msgstr ""
 #: application/controllers/Dashboard.php:161
 #: application/controllers/Visitor.php:138
 msgid "Dashboard"
-msgstr ""
+msgstr "Nadzorna plošča"
 
 #: application/controllers/Dayswithqso.php:17
 #: application/views/dayswithqso/index.php:2
 #: application/views/interface_assets/header.php:170
 msgid "Days with QSOs"
-msgstr ""
+msgstr "Dnevi z QSOji"
 
 #: application/controllers/Dcl.php:33
 #: application/views/dcl_views/key_import.php:3
 msgid "DCL Key Import"
-msgstr ""
+msgstr "Uvoz DCL Key"
 
 #: application/controllers/Dcl.php:68 application/views/dcl_views/import.php:3
 #: application/views/dcl_views/index.php:3
@@ -990,64 +990,66 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:225
 #: application/views/view_log/qso.php:593
 #: application/views/view_log/qso.php:598
+#, fuzzy
 msgid "DCL"
-msgstr ""
+msgstr "DCL"
 
 #: application/controllers/Dcl.php:139
+#, fuzzy
 msgid "No QSOs to upload."
-msgstr ""
+msgstr "Ni QSO-jev za upload."
 
 #: application/controllers/Dcl.php:186 application/controllers/Dcl.php:198
 msgid "Upload Failed"
-msgstr ""
+msgstr "Nalaganje ni uspelo"
 
 #: application/controllers/Dcl.php:188
 msgid "Timeout reached. Stopping subsequent uploads."
-msgstr ""
+msgstr "Časovna omejitev je potekla. Nadaljnja nalaganja se ustavljajo."
 
 #: application/controllers/Dcl.php:201
 msgid "Upload Successful"
-msgstr ""
+msgstr "Nalaganje uspešno"
 
 #: application/controllers/Dcl.php:211
 msgid "No Station Profiles found to upload to DCL"
-msgstr ""
+msgstr "Ni najdenih profilov postaj za nalaganje v DCL"
 
 #: application/controllers/Dcl.php:229
 msgid "Key(s) Deleted."
-msgstr ""
+msgstr "Ključ(i) izbrisani."
 
 #: application/controllers/Debug.php:114
 msgid "(empty)"
-msgstr ""
+msgstr "(prazno)"
 
 #: application/controllers/Debug.php:132
 msgid "Debug"
-msgstr ""
+msgstr "Odpravljanje napak"
 
 #: application/controllers/Debug.php:171
 msgid "Migrate data now"
-msgstr ""
+msgstr "Preseli podatke zdaj"
 
 #: application/controllers/Debug.php:174
 msgid "Migration already done. Run again?"
-msgstr ""
+msgstr "Selitev je že končana. Želite znova zagnati?"
 
 #: application/controllers/Debug.php:178
 msgid "No data to migrate"
-msgstr ""
+msgstr "Ni podatkov za selitev"
 
 #: application/controllers/Debug.php:182 application/controllers/Debug.php:187
 msgid "No migration possible"
-msgstr ""
+msgstr "Selitev ni možna"
 
 #: application/controllers/Debug.php:252
 msgid "Wavelog was updated successfully!"
-msgstr ""
+msgstr "Wavelog je bil uspešno posodobljen!"
 
 #: application/controllers/Debug.php:270
 msgid "Selfupdate() not available. Check the Error Log."
-msgstr ""
+msgstr "Selfupdate() ni na voljo. Preverite dnevnik napak."
 
 #: application/controllers/Debug.php:317
 msgid ""
@@ -1055,302 +1057,317 @@ msgid ""
 "seems right you can delete the folders 'assets/qslcard' and 'images/"
 "eqsl_card_images'."
 msgstr ""
+"Migracija datotek je bila uspešna, vendar preverite tudi ročno. Če se zdi "
+"vse v redu, lahko izbrišete mapi 'assets/qslcard' in 'images/"
+"eqsl_card_images'."
 
 #: application/controllers/Debug.php:320
 msgid "File Migration failed. Please check the Error Log."
-msgstr ""
+msgstr "Selitev datotek ni uspela. Preverite dnevnik napak."
 
 #: application/controllers/Distancerecords.php:68
 #: application/controllers/Distancerecords.php:87
 #: application/views/interface_assets/header.php:168
 msgid "Satellite Distance Records"
-msgstr ""
+msgstr "Rekordi oddaljenosti satelitov"
 
 #: application/controllers/Distances.php:17
 #: application/views/distances/index.php:5
 #: application/views/distances/index.php:8
 #: application/views/interface_assets/header.php:166
+#, fuzzy
 msgid "Distances Worked"
-msgstr ""
+msgstr "Delane razdalje"
 
 #: application/controllers/Distances.php:83
 #: application/views/distances/index.php:15
 msgid "QSOs with"
-msgstr ""
+msgstr "QSO-ji z"
 
 #: application/controllers/Distances.php:83
 msgid "and band"
-msgstr ""
+msgstr "in band"
 
 #: application/controllers/Distances.php:83
 msgid "and propagation"
-msgstr ""
+msgstr "in propagacije"
 
 #: application/controllers/Dxatlas.php:19
 #: application/views/interface_assets/header.php:489
 msgid "DX Atlas Gridsquare Export"
-msgstr ""
+msgstr "Izvoz DX Atlas UL polj"
 
 #: application/controllers/Dxcalendar.php:14
 #: application/views/interface_assets/header.php:311
 msgid "DX Calendar"
-msgstr ""
+msgstr "DX koledar"
 
 #: application/controllers/Eqsl.php:46
 #: application/views/dashboard/index.php:407
 #: application/views/eqslcard/index.php:5
 #: application/views/visitor/index.php:310
+#, fuzzy
 msgid "eQSL Cards"
-msgstr ""
+msgstr "eQSL Cards"
 
 #: application/controllers/Eqsl.php:56
 #, php-format
 msgid "Showing %d to %d of %d entries"
-msgstr ""
+msgstr "Prikazanih je od %d do %d od %d vnosov"
 
 #: application/controllers/Eqsl.php:83 application/controllers/Eqsl.php:173
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
-msgstr ""
+msgstr "Vzdevki eQSL v profilu postaje niso definirani!"
 
 #: application/controllers/Eqsl.php:106 application/controllers/Eqsl.php:192
 msgid "You have not defined your eQSL.cc credentials!"
-msgstr ""
+msgstr "Niste določili svojih poverilnic za eQSL.cc!"
 
 #: application/controllers/Eqsl.php:146
 msgid "eQSL Import"
-msgstr ""
+msgstr "Uvoz eQSL"
 
 #: application/controllers/Eqsl.php:156
 msgid "eQSL Import Information"
-msgstr ""
+msgstr "Informacije o uvozu eQSL"
 
 #: application/controllers/Eqsl.php:180
 msgid "eQSL QSO Upload"
-msgstr ""
+msgstr "Nalaganje eQSL QSO"
 
 #: application/controllers/Eqsl.php:214
 msgid "User/Pass wrong for eQSL"
-msgstr ""
+msgstr "Napačno uporabniško ime/geslo za eQSL"
 
 #: application/controllers/Eqsl.php:218
 #, php-format
 msgid "No such eQSL QTH Nickname: %s"
-msgstr ""
+msgstr "Ni takšnega vzdevka eQSL QTH: %s"
 
 #: application/controllers/Eqsl.php:335
 msgid "QSO not found or not accessible"
-msgstr ""
+msgstr "QSO ni bilo mogoče najti ali ni dostopna"
 
 #: application/controllers/Eqsl.php:353
 msgid "User not found"
-msgstr ""
+msgstr "Uporabnik ni bil najden"
 
 #: application/controllers/Eqsl.php:362
 msgid "eQSL password not configured for this user"
-msgstr ""
+msgstr "Geslo eQSL ni konfigurirano za tega uporabnika"
 
 #: application/controllers/Eqsl.php:379
 msgid "Failed to fetch eQSL image data"
-msgstr ""
+msgstr "Pridobivanje podatkov o sliki eQSL ni uspelo"
 
 #: application/controllers/Eqsl.php:398
 msgid "eQSL image not available"
-msgstr ""
+msgstr "Slika eQSL ni na voljo"
 
 #: application/controllers/Eqsl.php:416
 msgid "Failed to download eQSL image"
-msgstr ""
+msgstr "Prenos slike eQSL ni uspel"
 
 #: application/controllers/Eqsl.php:441
 msgid "Failed to load cached eQSL image"
-msgstr ""
+msgstr "Nalaganje predpomnjene slike eQSL ni uspelo"
 
 #: application/controllers/Eqsl.php:588
 msgid "eQSL Tools"
-msgstr ""
+msgstr "Orodja eQSL"
 
 #: application/controllers/Eqsl.php:618
 msgid "Limited to first 150 QSOs for this request. Please run again."
-msgstr ""
+msgstr "Omejeno na prvih 150 QSO za to zahtevo. Prosimo, ponovite."
 
 #: application/controllers/Eqsl.php:624
+#, fuzzy
 msgid " / Errors: "
-msgstr ""
+msgstr " / Errors: "
 
 #: application/controllers/Eqsl.php:624
 msgid "Successfully downloaded: "
-msgstr ""
+msgstr "Uspešno preneseno: "
 
 #: application/controllers/Eqsl.php:631
 msgid "eQSL rate limit reached. Please wait before running again."
 msgstr ""
+"Dosežena je omejitev števila dostopov do eQSL. Pred ponovnim zagonom "
+"počakajte."
 
 #: application/controllers/Eqsl.php:643
 msgid "eQSL Card Image Download"
-msgstr ""
+msgstr "Prenos slike kartice eQSL"
 
 #: application/controllers/Eqsl.php:667
 msgid "All eQSLs marked as uploaded"
-msgstr ""
+msgstr "Vsi eQSL-ji so označeni kot naloženi"
 
 #: application/controllers/Generic_qsl.php:18
 msgid "Confirmations"
-msgstr ""
+msgstr "Potrditve"
 
 #: application/controllers/Gridmap.php:10
 #: application/views/interface_assets/header.php:160
 msgid "Gridsquare Map"
-msgstr ""
+msgstr "Zemljevid UL"
 
 #: application/controllers/Gridmap.php:35
 #: application/controllers/Visitor.php:457
 msgid "Total gridsquares worked"
-msgstr ""
+msgstr "Skupno število delanih UL polj"
 
 #: application/controllers/Hamsat.php:59
 msgid "Hamsat - Satellite Roving"
-msgstr ""
+msgstr "Hamsat - gibanje satelita"
 
 #: application/controllers/Header_auth.php:22
 msgid "SSO Authentication is disabled."
-msgstr ""
+msgstr "Preverjanje pristnosti SSO je onemogočeno."
 
 #: application/controllers/Header_auth.php:36
 msgid "SSO Authentication is disabled. Check your configuration."
-msgstr ""
+msgstr "Preverjanje pristnosti SSO je onemogočeno. Preverite konfiguracijo."
 
 #: application/controllers/Header_auth.php:89
 msgid "Sorry. This instance is currently in maintenance mode."
-msgstr ""
+msgstr "Žal mi je. Ta instanca je trenutno v vzdrževalnem načinu."
 
 #: application/controllers/Header_auth.php:96
 msgid "User not found."
-msgstr ""
+msgstr "Uporabnik ni bil najden."
 
 #: application/controllers/Header_auth.php:111
 #: application/controllers/User.php:1342
+#, fuzzy
 msgid ""
 "You can't login to a clubstation directly. Use your personal account instead."
 msgstr ""
+"V clubstation se ne morete prijaviti neposredno. Uporabite svoj osebni račun."
 
 #: application/controllers/Header_auth.php:116
 msgid ""
 "Sorry. This instance is currently in maintenance mode. Only administrators "
 "are currently allowed to log in."
 msgstr ""
+"Žal je. Ta instanca je trenutno v vzdrževalnem načinu. Trenutno se lahko "
+"prijavijo samo skrbniki."
 
 #: application/controllers/Header_auth.php:356
 #: application/controllers/Header_auth.php:360
 msgid "Something went terribly wrong. Check the error log."
-msgstr ""
+msgstr "Nekaj je šlo hudo narobe. Preverite dnevnik napak."
 
 #: application/controllers/Header_auth.php:436
 msgid "SSO Config Error. Check error log."
-msgstr ""
+msgstr "Napaka konfiguracije SSO. Preverite dnevnik napak."
 
 #: application/controllers/Hrdlog.php:70 application/controllers/Hrdlog.php:71
 msgid "HRD Log upload for this station is disabled."
-msgstr ""
+msgstr "Nalaganje dnevnika HRD za to postajo je onemogočeno."
 
 #: application/controllers/Hrdlog.php:93
 #, php-format
 msgid "%d QSO is now uploaded to HRDlog"
 msgid_plural "%d QSOs are now uploaded to HRDlog"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d zveza je zdaj naložena v HRDlog"
+msgstr[1] "%d zvezi sta zdaj naloženi v HRDlog"
+msgstr[2] "%d zveze so zdaj naložene v HRDlog"
+msgstr[3] "%d zvez je zdaj naloženih v HRDlog"
 
 #: application/controllers/Hrdlog.php:98
 msgid "No QSOs found to upload."
-msgstr ""
+msgstr "Ni najdenih QSO za nalaganje."
 
 #: application/controllers/Kmlexport.php:24
 #: application/views/interface_assets/header.php:487
 #: application/views/kml/index.php:3
 msgid "KML Export"
-msgstr ""
+msgstr "Izvoz KML"
 
 #: application/controllers/Labels.php:40 application/views/labels/index.php:31
 msgid "QSL Card Labels"
-msgstr ""
+msgstr "Etikete QSL kartic"
 
 #: application/controllers/Labels.php:71
 msgid "Create Label Type"
-msgstr ""
+msgstr "Ustvari vrsto nalepke"
 
 #: application/controllers/Labels.php:78 application/controllers/Labels.php:426
 #: application/views/labels/create.php:22 application/views/labels/edit.php:22
 msgid "Label Name"
-msgstr ""
+msgstr "Ime etikete"
 
 #: application/controllers/Labels.php:79 application/controllers/Labels.php:427
 #: application/views/labels/create.php:28 application/views/labels/edit.php:28
 #: application/views/labels/index.php:77
 msgid "Paper Type"
-msgstr ""
+msgstr "Vrsta papirja"
 
 #: application/controllers/Labels.php:80 application/controllers/Labels.php:428
 #: application/views/labels/index.php:43 application/views/labels/index.php:78
+#, fuzzy
 msgid "Measurement"
-msgstr ""
+msgstr "Merjenje"
 
 #: application/controllers/Labels.php:81 application/controllers/Labels.php:429
 msgid "Top Margin"
-msgstr ""
+msgstr "Odmik zgoraj"
 
 #: application/controllers/Labels.php:82 application/controllers/Labels.php:430
 msgid "Left Margin"
-msgstr ""
+msgstr "Odmik levo"
 
 #: application/controllers/Labels.php:83 application/controllers/Labels.php:431
 msgid "QSLs Horizontally"
-msgstr ""
+msgstr "QSL-ke horizontalno"
 
 #: application/controllers/Labels.php:84 application/controllers/Labels.php:432
 msgid "QSLs Vertically"
-msgstr ""
+msgstr "QSL-ke navpično"
 
 #: application/controllers/Labels.php:85 application/controllers/Labels.php:433
 msgid "Horizontal Space"
-msgstr ""
+msgstr "Razmik vodoravno"
 
 #: application/controllers/Labels.php:86 application/controllers/Labels.php:434
 msgid "Vertical Space"
-msgstr ""
+msgstr "Razmik navpično"
 
 #: application/controllers/Labels.php:87 application/controllers/Labels.php:435
 msgid "Label width"
-msgstr ""
+msgstr "Širina etikete"
 
 #: application/controllers/Labels.php:88 application/controllers/Labels.php:436
 msgid "Label height"
-msgstr ""
+msgstr "Višina etikete"
 
 #: application/controllers/Labels.php:89 application/controllers/Labels.php:437
 msgid "Size of Font"
-msgstr ""
+msgstr "Velikost pisave"
 
 #: application/controllers/Labels.php:90 application/controllers/Labels.php:438
 msgid "Number of QSOs on label"
-msgstr ""
+msgstr "Število QSO-jev na nalepki"
 
 #: application/controllers/Labels.php:115
 msgid "Create Paper Type"
-msgstr ""
+msgstr "Ustvari vrsto papirja"
 
 #: application/controllers/Labels.php:119
 #: application/controllers/Labels.php:485
 msgid "Paper Name"
-msgstr ""
+msgstr "Ime papirja"
 
 #: application/controllers/Labels.php:120
 #: application/controllers/Labels.php:486
 msgid "Paper Width"
-msgstr ""
+msgstr "Širina papirja"
 
 #: application/controllers/Labels.php:121
 #: application/controllers/Labels.php:487
 msgid "Paper Height"
-msgstr ""
+msgstr "Višina papirja"
 
 #: application/controllers/Labels.php:132
 #: application/controllers/Labels.php:495
@@ -1358,11 +1375,13 @@ msgid ""
 "Your paper could not be saved. Remember that it can't have the same name as "
 "existing paper types."
 msgstr ""
+"Vašega imena papirja ni bilo mogoče shraniti. Ne pozabite, da ne sme imeti "
+"istega imena kot obstoječe vrste papirja."
 
 #: application/controllers/Labels.php:212
 #: application/controllers/Labels.php:215
 msgid "You need to assign a paperType to the label before printing"
-msgstr ""
+msgstr "Pred tiskanjem morate etiketi dodeliti vrsto papirja (paperType)."
 
 #: application/controllers/Labels.php:222
 #: application/controllers/Labels.php:225
@@ -12026,6 +12045,9 @@ msgid ""
 "Check which DXCC for this particular location is the correct one. If you are "
 "sure, ignore this warning."
 msgstr ""
+"Za trenutek se ustavite. Vaša izbrana DXCC je zastarela in ni več veljavna. "
+"Preverite, katera DXCC za to lokacijo je pravilna. Če ste prepričani, "
+"prezrite to opozorilo."
 
 #: application/views/interface_assets/footer.php:879
 msgid "Count: "
@@ -15973,7 +15995,7 @@ msgstr ""
 
 #: application/views/radio/index.php:35
 msgid "Please wait..."
-msgstr ""
+msgstr "Prosim, počakajte..."
 
 #: application/views/reg1test/index.php:6
 msgid "Select Band"
