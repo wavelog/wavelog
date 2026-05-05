@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-05-04 13:06+0000\n"
+"POT-Creation-Date: 2026-05-05 16:40+0000\n"
 "PO-Revision-Date: 2026-04-21 18:07+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -12986,6 +12986,8 @@ msgid "Switch to Clubstation:"
 msgstr "Переключиться на коллективную станцию:"
 
 #: application/views/interface_assets/header.php:460
+#: application/views/user/modals/first_login_wizard.php:119
+#: application/views/user/modals/first_login_wizard.php:133
 #, php-format
 msgid "Switch to %s"
 msgstr "Переключиться на %s"
@@ -19619,7 +19621,12 @@ msgctxt "zone lookup"
 msgid "%sLookup%s"
 msgstr "%sПоиск%s"
 
-#: application/views/user/modals/first_login_wizard.php:104
+#: application/views/user/modals/first_login_wizard.php:112
+#: application/views/user/modals/first_login_wizard.php:134
+msgid "Skip and Open Clubstation"
+msgstr ""
+
+#: application/views/user/modals/first_login_wizard.php:141
 msgid "Save and Start Logging"
 msgstr "Сохранить и начать вести журнал"
 
