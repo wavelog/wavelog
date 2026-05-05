@@ -103,7 +103,7 @@
             <div class="modal-footer">
 
                 <!-- Show more buttons if Clubstation enabled and user has rights -->
-                <?php if ($this->config->item('special_callsign') && !empty($this->session->userdata('available_clubstations'))) { ?>  
+                <?php if ($this->config->item('special_callsign') && is_array($this->session->userdata('available_clubstations'))) { ?>
                     <?php if (count($this->session->userdata('available_clubstations')) > 1) { ?> 
 
                         <!-- If user has more than 1 clubstation, use dropdown -->
