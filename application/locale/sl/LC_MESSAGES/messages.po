@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-05-04 13:06+0000\n"
-"PO-Revision-Date: 2026-05-04 17:32+0000\n"
+"PO-Revision-Date: 2026-05-05 08:54+0000\n"
 "Last-Translator: Anton Tomanič <s57xz.toni@gmail.com>\n"
 "Language-Team: Slovenian <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/sl/>\n"
@@ -3503,15 +3503,15 @@ msgstr ""
 
 #: application/controllers/Widgets.php:423
 msgid "User not found by slug"
-msgstr ""
+msgstr "Ne najdem uporabnika preko končnice URL"
 
 #: application/controllers/Widgets.php:426
 msgid "Multiple users found by slug"
-msgstr ""
+msgstr "Najdenih več uporabnikov preko končnice URL"
 
 #: application/controllers/Zonechecker.php:26
 msgid "Gridsquare Zone finder"
-msgstr ""
+msgstr "Iskalnik UL cone"
 
 #: application/libraries/Callbook.php:60
 msgid "Lookup not configured. Please review configuration."
@@ -3625,75 +3625,80 @@ msgstr "Neveljavna raven dovoljenja!"
 
 #: application/models/Club_model.php:201
 msgid "Error adding Club Member!"
-msgstr ""
+msgstr "Napaka pri dodajanju člana kluba!"
 
 #: application/models/Eqslmethods_model.php:291
 msgid "Your eQSL username and/or password is incorrect."
-msgstr ""
+msgstr "Vaše uporabniško ime in/ali geslo za eQSL je napačno."
 
 #: application/models/Eqslmethods_model.php:296
 msgid "Something went wrong with eQSL.cc!"
-msgstr ""
+msgstr "Nekaj je šlo narobe z eQSL.cc!"
 
 #: application/models/Eqslmethods_model.php:307
 msgid "QTH Nickname does not exist at eQSL"
-msgstr ""
+msgstr "Vzdevek QTH na eQSL ne obstaja"
 
 #: application/models/Eqslmethods_model.php:316
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
-msgstr ""
+msgstr "eQSL.cc ima težave. Poskusite izvoziti QSO-je pozneje."
 
 #: application/models/Eqslmethods_model.php:321
 msgid ""
 "There was an error in one of the QSOs. You might want to manually upload "
 "them."
 msgstr ""
+"Pri enem od QSO-jev je prišlo do napake. Morda ga boste želeli naložiti "
+"ročno."
 
 #: application/models/Eqslmethods_model.php:326
 msgid ""
 "It seems that the eQSL site has changed. Please open up an issue on GitHub."
 msgstr ""
+"Zdi se, da se je spletno mesto eQSL spremenilo. Prosim, odprite težavo na "
+"GitHubu."
 
 #: application/models/Eqslmethods_model.php:332
 msgid ""
 "An uncaught Error occured while uploading QSOs. Perhaps eQSL has hiccups"
 msgstr ""
+"Med nalaganjem zvez je prišlo do nezaznane napake. Morda ima eQSL težave"
 
 #: application/models/Hrdlog_model.php:22
 msgid ""
 "HRDlog: QSOs have been uploaded to hrdlog.net for the station callsign: "
-msgstr ""
+msgstr "HRDlog: Zveze so bile naložene na hrdlog.net za klicni znak postaje: "
 
 #: application/models/Hrdlog_model.php:25
 msgid "HRDlog: No QSOs found to upload for the station callsign: "
-msgstr ""
+msgstr "HRDlog: Za klicni znak postaje ni bilo najdenih zvez za nalaganje: "
 
 #: application/models/Hrdlog_model.php:31
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
-msgstr ""
+msgstr "HRDlog: Ni najdenih profilov postaj s poverilnicami HRDlog."
 
 #: application/models/Logbook_model.php:311
 msgid "Station not accessible"
-msgstr ""
+msgstr "Postaja ni dostopna"
 
 #: application/models/Logbook_model.php:1412
 msgid "Station ID not allowed"
-msgstr ""
+msgstr "ID postaje ni dovoljen"
 
 #: application/models/Logbook_model.php:1417
 msgid "No Call given"
-msgstr ""
+msgstr "Ni podanega pozivnega znaka"
 
 #: application/models/Logbook_model.php:1487
 #: application/models/Logbook_model.php:1691
 msgid "DXCC has to be Numeric"
-msgstr ""
+msgstr "DXCC mora biti numeričen"
 
 #: application/models/Logbook_model.php:4914
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
-msgstr ""
+msgstr "Različen klicni znak postaje %s med uvozom QSO z %s za %s: PRESKOČENO"
 
 #: application/models/Logbook_model.php:4922
 #, php-format
@@ -3701,22 +3706,27 @@ msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
 "SKIPPED"
 msgstr ""
+"Različen lokator %s med uvozom QSO z %s za lokator postaje %s: PRESKOČENO"
 
 #: application/models/Logbook_model.php:4938
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
 msgstr ""
+"Poskušali ste uvoziti QSO brez veljavnega datuma. Ta QSO ni bila uvožena. Je "
+"neveljavna"
 
 #: application/models/Logbook_model.php:4948
 msgid "QSO on"
-msgstr ""
+msgstr "Začetek QSO"
 
 #: application/models/Logbook_model.php:4948
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
 msgstr ""
+"Poskušali ste uvoziti QSO brez podanega klicnega znaka. Ta QSO ni bila "
+"uvožena. Je neveljavna"
 
 #: application/models/Logbook_model.php:4998
 #, php-format
@@ -3724,63 +3734,65 @@ msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
 "imported. It's invalid"
 msgstr ""
+"Zveza na %s: Poskušali ste uvoziti QSO brez podanega banda. Ta QSO ni bila "
+"uvožena. Je neveljavna"
 
 #: application/models/Logbook_model.php:5272
 msgid "the qslrdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "qslrdate je napačen (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:5283
 msgid "the qslsdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "qslsdate je napačen (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:5344
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "clublog_qso_upload_date je napačen (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:5717
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
-msgstr ""
+msgstr "Dvojnik za"
 
 #: application/models/Logbook_model.php:5784
 #: application/models/Logbook_model.php:5884
 msgid "QSO could not be matched"
-msgstr ""
+msgstr "QSO ni bilo mogoče najti"
 
 #: application/models/Logbook_model.php:5792
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
-msgstr ""
+msgstr "potrjeno od LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:5798
 msgid "confirmed by award manager"
-msgstr ""
+msgstr "potrjeno od award managerja"
 
 #: application/models/Logbook_model.php:5802
 msgid "confirmed by cross-check of DCL data"
-msgstr ""
+msgstr "potrjeno z navzkrižnim preverjanjem podatkov DCL"
 
 #: application/models/Logbook_model.php:5806
 msgid "confirmation pending"
-msgstr ""
+msgstr "potrditev čaka na"
 
 #: application/models/Logbook_model.php:5809
 msgid "unconfirmed"
-msgstr ""
+msgstr "nepotrjeno"
 
 #: application/models/Logbook_model.php:5812
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:305
 msgid "unknown"
-msgstr ""
+msgstr "neznano"
 
 #: application/models/Logbook_model.php:5887
 msgid "POTA reference already in log"
-msgstr ""
+msgstr "Referenca POTA je že v dnevniku"
 
 #: application/models/Logbook_model.php:5890
 msgid "QSO updated"
-msgstr ""
+msgstr "QSO posodobljena"
 
 #: application/models/Logbook_model.php:6287
 #: application/views/activated_gridmap/index.php:114
@@ -3794,34 +3806,36 @@ msgstr ""
 #: application/views/user/edit.php:375 application/views/user/edit.php:400
 #: application/views/view_log/partial/log_ajax.php:20
 msgid "Bearing"
-msgstr ""
+msgstr "Smer"
 
 #: application/models/Logbookadvanced_model.php:1838
 msgid "VuccGrids table is empty. Please import the VUCC grids data first."
-msgstr ""
+msgstr "Tabela VuccGrids je prazna. Najprej uvozite podatke mreže VUCC."
 
 #: application/models/Logbookadvanced_model.php:2458
 msgid ""
 "Invalid primary QSO ID, or you do not have permission to access one of the "
 "QSOs"
 msgstr ""
+"Neveljaven primarni ID QSO ali pa nimate dovoljenja za dostop do ene od QSO-"
+"jev"
 
 #: application/models/Logbookadvanced_model.php:2468
 #: application/views/view_log/qso.php:946
 msgid "QSO not found"
-msgstr ""
+msgstr "QSO ni najdena"
 
 #: application/models/Logbookadvanced_model.php:2554
 msgid "No fields selected for merge or no differences between QSOs"
-msgstr ""
+msgstr "Za združitev ni izbranih polj ali pa ni razlik med QSO-ji"
 
 #: application/models/Logbookadvanced_model.php:2567
 msgid "QSOs merged successfully"
-msgstr ""
+msgstr "QSO-ji so bili uspešno združeni"
 
 #: application/models/Note.php:7
 msgid "Contacts"
-msgstr ""
+msgstr "Stiki"
 
 #: application/models/Note.php:8
 #: application/views/interface_assets/footer.php:110
@@ -3829,89 +3843,89 @@ msgstr ""
 #: application/views/statistics/index.php:81
 #: application/views/user/edit.php:217
 msgid "General"
-msgstr ""
+msgstr "Splošno"
 
 #: application/models/Note.php:9
 msgid "Antennas"
-msgstr ""
+msgstr "Antene"
 
 #: application/models/Note.php:62 application/models/Note.php:93
 msgid "In Contacts category, the titles of the notes need to be unique."
-msgstr ""
+msgstr "V kategoriji Stiki morajo biti naslovi opomb edinstveni."
 
 #: application/models/Update_model.php:348
 msgid "Newer release available:"
-msgstr ""
+msgstr "Na voljo je novejša izdaja:"
 
 #: application/models/Update_model.php:352
 msgid "You are running the latest version."
-msgstr ""
+msgstr "Uporabljate najnovejšo različico."
 
 #: application/models/Update_model.php:440
 msgid "cURL error:"
-msgstr ""
+msgstr "napaka cURL:"
 
 #: application/models/Update_model.php:474
 msgid "SAT already existing. LoTW status updated."
-msgstr ""
+msgstr "SAT že obstaja. Status LoTW posodobljen."
 
 #: application/models/Update_model.php:477
 #: application/models/Update_model.php:506
 #, php-format
 msgid "LoTW status for %d QSO updated"
 msgid_plural "LoTW status for %d QSOs updated"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Status LoTW za %d QSO je bil posodobljen"
+msgstr[1] "Status LoTW za %d QSO-ja je bil posodobljen"
+msgstr[2] "Status LoTW za %d QSO-je je bil posodobljen"
+msgstr[3] "Status LoTW za %d QSO-je je bil posodobljen"
 
 #: application/models/Update_model.php:480
 msgid "SAT already existing. Updating LoTW status failed."
-msgstr ""
+msgstr "SAT že obstaja. Posodabljanje statusa LoTW ni uspelo."
 
 #: application/models/Update_model.php:483
 msgid "SAT already existing. Ignored."
-msgstr ""
+msgstr "SAT že obstaja. Prezrto."
 
 #: application/models/Update_model.php:490
 msgid "SAT already existing. Display name updated."
-msgstr ""
+msgstr "SAT že obstaja. Prikazno ime je posodobljeno."
 
 #: application/models/Update_model.php:492
 msgid "SAT already existing. Updating display name failed."
-msgstr ""
+msgstr "SAT že obstaja. Posodabljanje prikaznega imena ni uspelo."
 
 #: application/models/Update_model.php:502
 msgid "New SAT. Inserted."
-msgstr ""
+msgstr "Nov SAT. Vstavljanje uspelo."
 
 #: application/models/Update_model.php:510
 msgid "New SAT. Insert failed."
-msgstr ""
+msgstr "Nov SAT. Vstavljanje ni uspelo."
 
 #: application/views/accumulate/index.php:2
 msgid "Accumulated number of DXCCs worked"
-msgstr ""
+msgstr "Skupno število opravljenih DXCC-jev"
 
 #: application/views/accumulate/index.php:3
 msgid "Accumulated number of States worked"
-msgstr ""
+msgstr "Skupno število opravljenih zveznih držav"
 
 #: application/views/accumulate/index.php:4
 msgid "Accumulated number of IOTAs worked"
-msgstr ""
+msgstr "Skupno število opravljenih IOTA"
 
 #: application/views/accumulate/index.php:5
 msgid "Accumulated number of CQ Zones worked"
-msgstr ""
+msgstr "Skupno število opravljenih CQ zon"
 
 #: application/views/accumulate/index.php:6
 msgid "Accumulated number of VUCC Grids worked"
-msgstr ""
+msgstr "Skupno število opravljenih VUCC polj"
 
 #: application/views/accumulate/index.php:7
 msgid "Accumulated number of WAJA worked"
-msgstr ""
+msgstr "Skupno število opravljenih WAJA"
 
 #: application/views/accumulate/index.php:8
 #: application/views/dashboard/index.php:320
@@ -3921,29 +3935,29 @@ msgstr ""
 #: application/views/timeline/index.php:107
 #: application/views/visitor/index.php:250
 msgid "Year"
-msgstr ""
+msgstr "Leto"
 
 #: application/views/accumulate/index.php:9
 #: application/views/accumulate/index.php:67
 #: application/views/dayswithqso/index.php:15
 msgid "Yearly"
-msgstr ""
+msgstr "Letno"
 
 #: application/views/accumulate/index.php:10
 #: application/views/dashboard/index.php:325
 #: application/views/statistics/index.php:22
 #: application/views/visitor/index.php:255
 msgid "Month"
-msgstr ""
+msgstr "Mesec"
 
 #: application/views/accumulate/index.php:11
 #: application/views/accumulate/index.php:73
 msgid "Monthly"
-msgstr ""
+msgstr "Mesečno"
 
 #: application/views/accumulate/index.php:12
 msgid "Difference"
-msgstr ""
+msgstr "Razlika"
 
 #: application/views/accumulate/index.php:24
 #: application/views/accumulate/index.php:34
@@ -4068,41 +4082,41 @@ msgstr ""
 #: application/views/user/edit.php:873
 #: application/views/visitor/layout/footer.php:168
 msgid "All"
-msgstr ""
+msgstr "Vse"
 
 #: application/views/accumulate/index.php:50
 #: application/views/timeline/index.php:41
 msgid "Award"
-msgstr ""
+msgstr "Diploma"
 
 #: application/views/accumulate/index.php:53
 #: application/views/timeline/index.php:44
 msgid "DX Century Club (DXCC)"
-msgstr ""
+msgstr "DX Century Club (DXCC)"
 
 #: application/views/accumulate/index.php:55
 #: application/views/timeline/index.php:46
 msgid "Islands On The Air (IOTA)"
-msgstr ""
+msgstr "Islands On The Air (IOTA)"
 
 #: application/views/accumulate/index.php:56
 #: application/views/timeline/index.php:47
 msgid "Worked All Zones (WAZ)"
-msgstr ""
+msgstr "Worked All Zones (WAZ)"
 
 #: application/views/accumulate/index.php:57
 #: application/views/timeline/index.php:48
 msgid "VHF / UHF Century Club (VUCC)"
-msgstr ""
+msgstr "VHF / UHF Century Club (VUCC)"
 
 #: application/views/accumulate/index.php:58
 #: application/views/timeline/index.php:49
 msgid "Worked All Japan (WAJA)"
-msgstr ""
+msgstr "Worked All Japan (WAJA)"
 
 #: application/views/accumulate/index.php:62
 msgid "Period"
-msgstr ""
+msgstr "Obdobje"
 
 #: application/views/accumulate/index.php:80
 #: application/views/callstats/index.php:65
@@ -4116,13 +4130,13 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:21
 #: application/views/view_log/qso.php:248
 msgid "Propagation"
-msgstr ""
+msgstr "Pogoji"
 
 #: application/views/accumulate/index.php:84
 #: application/views/distances/index.php:57
 #: application/views/timeline/index.php:83
 msgid "All but SAT"
-msgstr ""
+msgstr "Vse razen SAT"
 
 #: application/views/accumulate/index.php:85
 #: application/views/callstats/index.php:69
@@ -4133,7 +4147,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:522
 #: application/views/timeline/index.php:84
 msgid "None/Empty"
-msgstr ""
+msgstr "Brez/Prazno"
 
 #: application/views/accumulate/index.php:86
 #: application/views/callstats/index.php:71 application/views/csv/index.php:96
@@ -4145,9 +4159,10 @@ msgstr ""
 #: application/views/timeline/index.php:85
 #: application/views/view_log/partial/log_ajax.php:55
 #: application/views/view_log/qso.php:251
+#, fuzzy
 msgctxt "Propagation Mode"
 msgid "Aircraft Scatter"
-msgstr ""
+msgstr "Aircraft Scatter"
 
 #: application/views/accumulate/index.php:87
 #: application/views/callstats/index.php:72 application/views/csv/index.php:97
@@ -4161,7 +4176,7 @@ msgstr ""
 #: application/views/view_log/qso.php:254
 msgctxt "Propagation Mode"
 msgid "Aurora"
-msgstr ""
+msgstr "Aurora"
 
 #: application/views/accumulate/index.php:88
 #: application/views/callstats/index.php:73 application/views/csv/index.php:98
@@ -4175,7 +4190,7 @@ msgstr ""
 #: application/views/view_log/qso.php:257
 msgctxt "Propagation Mode"
 msgid "Aurora-E"
-msgstr ""
+msgstr "Aurora-E"
 
 #: application/views/accumulate/index.php:89
 #: application/views/callstats/index.php:74 application/views/csv/index.php:99
@@ -4187,9 +4202,10 @@ msgstr ""
 #: application/views/timeline/index.php:88
 #: application/views/view_log/partial/log_ajax.php:64
 #: application/views/view_log/qso.php:260
+#, fuzzy
 msgctxt "Propagation Mode"
 msgid "Back scatter"
-msgstr ""
+msgstr "Back scatter"
 
 #: application/views/accumulate/index.php:90
 #: application/views/callstats/index.php:75 application/views/csv/index.php:100
@@ -4203,7 +4219,7 @@ msgstr ""
 #: application/views/view_log/qso.php:263
 msgctxt "Propagation Mode"
 msgid "EchoLink"
-msgstr ""
+msgstr "EchoLink"
 
 #: application/views/accumulate/index.php:91
 #: application/views/callstats/index.php:76 application/views/csv/index.php:101
@@ -4217,7 +4233,7 @@ msgstr ""
 #: application/views/view_log/qso.php:266
 msgctxt "Propagation Mode"
 msgid "Earth-Moon-Earth"
-msgstr ""
+msgstr "Earth-Moon-Earth"
 
 #: application/views/accumulate/index.php:92
 #: application/views/callstats/index.php:77 application/views/csv/index.php:102
@@ -4229,9 +4245,10 @@ msgstr ""
 #: application/views/timeline/index.php:91
 #: application/views/view_log/partial/log_ajax.php:73
 #: application/views/view_log/qso.php:269
+#, fuzzy
 msgctxt "Propagation Mode"
 msgid "Sporadic E"
-msgstr ""
+msgstr "E-sporadik"
 
 #: application/views/accumulate/index.php:93
 #: application/views/callstats/index.php:78 application/views/csv/index.php:103
@@ -4243,9 +4260,10 @@ msgstr ""
 #: application/views/timeline/index.php:92
 #: application/views/view_log/partial/log_ajax.php:76
 #: application/views/view_log/qso.php:272
+#, fuzzy
 msgctxt "Propagation Mode"
 msgid "Field Aligned Irregularities"
-msgstr ""
+msgstr "Field Aligned Irregularities"
 
 #: application/views/accumulate/index.php:94
 #: application/views/callstats/index.php:79 application/views/csv/index.php:104
@@ -4259,7 +4277,7 @@ msgstr ""
 #: application/views/view_log/qso.php:275
 msgctxt "Propagation Mode"
 msgid "F2 Reflection"
-msgstr ""
+msgstr "Odboj F2"
 
 #: application/views/accumulate/index.php:95
 #: application/views/callstats/index.php:80 application/views/csv/index.php:105
@@ -4273,7 +4291,7 @@ msgstr ""
 #: application/views/view_log/qso.php:278
 msgctxt "Propagation Mode"
 msgid "Internet-assisted"
-msgstr ""
+msgstr "Z internetno podporo"
 
 #: application/views/accumulate/index.php:96
 #: application/views/callstats/index.php:81 application/views/csv/index.php:106
@@ -4285,9 +4303,10 @@ msgstr ""
 #: application/views/timeline/index.php:95
 #: application/views/view_log/partial/log_ajax.php:85
 #: application/views/view_log/qso.php:281
+#, fuzzy
 msgctxt "Propagation Mode"
 msgid "Ionoscatter"
-msgstr ""
+msgstr "Ionoscatter"
 
 #: application/views/accumulate/index.php:97
 #: application/views/callstats/index.php:82 application/views/csv/index.php:107
@@ -4301,7 +4320,7 @@ msgstr ""
 #: application/views/view_log/qso.php:284
 msgctxt "Propagation Mode"
 msgid "IRLP"
-msgstr ""
+msgstr "IRLP"
 
 #: application/views/accumulate/index.php:98
 #: application/views/callstats/index.php:83 application/views/csv/index.php:108
@@ -4313,9 +4332,10 @@ msgstr ""
 #: application/views/timeline/index.php:97
 #: application/views/view_log/partial/log_ajax.php:91
 #: application/views/view_log/qso.php:287
+#, fuzzy
 msgctxt "Propagation Mode"
 msgid "Meteor scatter"
-msgstr ""
+msgstr "Meteor scatter"
 
 #: application/views/accumulate/index.php:99
 #: application/views/callstats/index.php:84 application/views/csv/index.php:109
@@ -4329,7 +4349,7 @@ msgstr ""
 #: application/views/view_log/qso.php:290
 msgctxt "Propagation Mode"
 msgid "Terrestrial or atmospheric repeater or transponder"
-msgstr ""
+msgstr "Zemeljski ali atmosferski repetitor ali transponder"
 
 #: application/views/accumulate/index.php:100
 #: application/views/callstats/index.php:85 application/views/csv/index.php:110
@@ -4341,9 +4361,10 @@ msgstr ""
 #: application/views/timeline/index.php:99
 #: application/views/view_log/partial/log_ajax.php:97
 #: application/views/view_log/qso.php:293
+#, fuzzy
 msgctxt "Propagation Mode"
 msgid "Rain scatter"
-msgstr ""
+msgstr "Rain scatter"
 
 #: application/views/accumulate/index.php:101
 #: application/views/callstats/index.php:86 application/views/csv/index.php:111
@@ -4357,7 +4378,7 @@ msgstr ""
 #: application/views/view_log/qso.php:296
 msgctxt "Propagation Mode"
 msgid "Satellite"
-msgstr ""
+msgstr "Satelit"
 
 #: application/views/accumulate/index.php:102
 #: application/views/callstats/index.php:87 application/views/csv/index.php:112
@@ -4371,7 +4392,7 @@ msgstr ""
 #: application/views/view_log/qso.php:299
 msgctxt "Propagation Mode"
 msgid "Trans-equatorial"
-msgstr ""
+msgstr "Transekvatorialna"
 
 #: application/views/accumulate/index.php:103
 #: application/views/callstats/index.php:88 application/views/csv/index.php:113
@@ -4383,9 +4404,10 @@ msgstr ""
 #: application/views/timeline/index.php:102
 #: application/views/view_log/partial/log_ajax.php:106
 #: application/views/view_log/qso.php:302
+#, fuzzy
 msgctxt "Propagation Mode"
 msgid "Tropospheric ducting"
-msgstr ""
+msgstr "Tropospheric ducting"
 
 #: application/views/accumulate/index.php:112
 #: application/views/activators/index.php:53
@@ -4422,7 +4444,7 @@ msgstr ""
 #: application/views/timeline/index.php:406
 #: application/views/timeplotter/index.php:71
 msgid "Show"
-msgstr ""
+msgstr "Prikaži"
 
 #: application/views/activated_gridmap/index.php:24
 #: application/views/awards/dxcc/index.php:187
@@ -4455,7 +4477,7 @@ msgstr ""
 #: application/views/timeline/index.php:353
 #: application/views/timeline/index.php:388
 msgid "Satellite"
-msgstr ""
+msgstr "Satelit"
 
 #: application/views/activated_gridmap/index.php:34
 #: application/views/awards/dxcc/index.php:203
@@ -4474,14 +4496,14 @@ msgstr ""
 #: application/views/statistics/antennaanalytics.php:60
 #: application/views/statistics/antennaanalytics.php:98
 msgid "Orbit"
-msgstr ""
+msgstr "Orbita"
 
 #: application/views/activated_gridmap/index.php:54
 #: application/views/awards/wab/index.php:66
 #: application/views/gridmap/index.php:169
 #: application/views/timeline/index.php:52
 msgid "Confirmation"
-msgstr ""
+msgstr "Potrditev"
 
 #: application/views/activated_gridmap/index.php:86
 #: application/views/awards/cq/index.php:122
@@ -4503,17 +4525,17 @@ msgstr ""
 #: application/views/awards/wpx/index.php:40
 #: application/views/gridmap/index.php:202 application/views/user/edit.php:915
 msgid "QRZ.com"
-msgstr ""
+msgstr "QRZ.com"
 
 #: application/views/activated_gridmap/index.php:90
 #: application/views/gridmap/index.php:20
 msgid "Plot"
-msgstr ""
+msgstr "Zaplet"
 
 #: application/views/activated_gridmap/index.php:91
 #: application/views/gridmap/index.php:21
 msgid "Clear Markers"
-msgstr ""
+msgstr "Počisti oznake"
 
 #: application/views/activated_gridmap/index.php:106
 #: application/views/awards/ffma/index.php:34
@@ -4522,7 +4544,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:10
 #: application/views/map/qso_map.php:59
 msgid "Latitude"
-msgstr ""
+msgstr "Zemljepisna širina"
 
 #: application/views/activated_gridmap/index.php:108
 #: application/views/awards/ffma/index.php:36
@@ -4531,17 +4553,17 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:11
 #: application/views/map/qso_map.php:61
 msgid "Longitude"
-msgstr ""
+msgstr "Zemljepisna dolžina"
 
 #: application/views/activators/index.php:26
 msgctxt "Orbiter LEO or GEO"
 msgid "Both"
-msgstr ""
+msgstr "Oboje"
 
 #: application/views/activators/index.php:33
 #: application/views/callstats/index.php:92
 msgid "Minimum Count"
-msgstr ""
+msgstr "Najmanjše število"
 
 #: application/views/activators/index.php:76
 #: application/views/awards/73on73/index.php:66
@@ -4573,7 +4595,7 @@ msgstr ""
 #: application/views/public_search/empty.php:3
 #: application/views/qrz/export.php:65 application/views/timeline/index.php:158
 msgid "Nothing found!"
-msgstr ""
+msgstr "Ničesar nisem našel!"
 
 #: application/views/activators/index.php:98
 #: application/views/adif/import.php:107 application/views/adif/import.php:278
@@ -4638,7 +4660,7 @@ msgstr "Pozivni znak"
 
 #: application/views/activators/index.php:99
 msgid "Count"
-msgstr ""
+msgstr "Štetje"
 
 #: application/views/activators/index.php:101
 #: application/views/callstats/index.php:151
@@ -4649,57 +4671,59 @@ msgstr ""
 #: application/views/timeline/index.php:355
 #: application/views/timeline/index.php:390
 msgid "Show QSOs"
-msgstr ""
+msgstr "Prikaži QSO-je"
 
 #: application/views/activators/index.php:102
 msgid "Show Map"
-msgstr ""
+msgstr "Prikaži zemljevid"
 
 #: application/views/adif/dcl_success.php:12
 msgid "Results of DCL DOK Update"
-msgstr ""
+msgstr "Rezultati posodobitve DCL DOK"
 
 #: application/views/adif/dcl_success.php:16
 #: application/views/adif/pota_success.php:16
 #: application/views/cabrillo/cbr_success.php:16
 msgid "Yay, its updated!"
-msgstr ""
+msgstr "Jupi, posodobljeno je!"
 
 #: application/views/adif/dcl_success.php:17
 msgid "DCL information for DOKs has been updated."
-msgstr ""
+msgstr "Informacije o DCL za DOK-e so bile posodobljene."
 
 #: application/views/adif/dcl_success.php:19
 #: application/views/adif/pota_success.php:19
 msgid "No QSOs found which could be updated."
-msgstr ""
+msgstr "Ni najdenih QSO-jev, ki bi jih bilo mogoče posodobiti."
 
 #: application/views/adif/dcl_success.php:22
 #: application/views/adif/pota_success.php:22
 #: application/views/cabrillo/cbr_success.php:22
 msgid "QSOs ignored"
-msgstr ""
+msgstr "QSO-ji prezrti"
 
 #: application/views/adif/dcl_success.php:22
 #: application/views/adif/pota_success.php:22
 msgid "QSOs unmatched"
-msgstr ""
+msgstr "QSO-ji neenaki"
 
 #: application/views/adif/dcl_success.php:22
 #: application/views/adif/pota_success.php:22
 #: application/views/cabrillo/cbr_success.php:22
 msgid "QSOs updated"
-msgstr ""
+msgstr "QSO-ji posodobljeni"
 
 #: application/views/adif/dcl_success.php:25
 msgid "DOK Errors"
-msgstr ""
+msgstr "Napake DOK"
 
 #: application/views/adif/dcl_success.php:26
 msgid ""
 "There is different data for DOK in your log compared to DCL or updates where "
 "not done because QSOs are not confirmed in DCL."
 msgstr ""
+"V vašem dnevniku so podatki za DOK drugačni kot za DCL ali pa posodobitve "
+"niso bile opravljene, ker QSO-ji niso potrjeni v DCL."
 
 #: application/views/adif/dcl_success.php:29
 #: application/views/adif/pota_success.php:29
@@ -4745,7 +4769,7 @@ msgstr ""
 #: application/views/visitor/index.php:151
 #: application/views/visitor/mini.php:182 application/views/widgets/qsos.php:16
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #: application/views/adif/dcl_success.php:30
 #: application/views/adif/pota_success.php:30
@@ -4779,7 +4803,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:198
 #: application/views/visitor/index.php:154
 msgid "Time"
-msgstr ""
+msgstr "Čas"
 
 #: application/views/adif/dcl_success.php:31
 #: application/views/adif/pota_success.php:31
@@ -4803,31 +4827,31 @@ msgstr ""
 #: application/views/visitor/index.php:156
 #: application/views/widgets/qsos.php:17
 msgid "Call"
-msgstr ""
+msgstr "Pozivni znak"
 
 #: application/views/adif/dcl_success.php:34
 msgid "DOK in Log"
-msgstr ""
+msgstr "DOK v dnevniku"
 
 #: application/views/adif/dcl_success.php:35
 msgid "DOK in DCL"
-msgstr ""
+msgstr "DOK v DCL"
 
 #: application/views/adif/dcl_success.php:36
 msgid "DCL QSL Status"
-msgstr ""
+msgstr "DCL QSL Status"
 
 #: application/views/adif/import.php:36
 msgid "ADIF Export"
-msgstr ""
+msgstr "Izvoz ADIF"
 
 #: application/views/adif/import.php:48 application/views/adif/import.php:352
 msgid "DARC DCL"
-msgstr ""
+msgstr "DARC DCL"
 
 #: application/views/adif/import.php:72
 msgid "CBR Import"
-msgstr ""
+msgstr "Uvoz CBR"
 
 #: application/views/adif/import.php:93 application/views/adif/import.php:400
 #: application/views/adif/import.php:423 application/views/api/index.php:22
@@ -4837,15 +4861,15 @@ msgstr ""
 #: application/views/lotw_views/index.php:4
 #: application/views/options/maptiles.php:48
 msgid "Important"
-msgstr ""
+msgstr "Pomembno"
 
 #: application/views/adif/import.php:93
 msgid "Log Files must have the file type *.adi"
-msgstr ""
+msgstr "Dnevniške datoteke morajo imeti vrsto datoteke *.adi"
 
 #: application/views/adif/import.php:94 application/views/view_log/qso.php:806
 msgid "Maximum file upload size is "
-msgstr ""
+msgstr "Največja velikost datoteke za nalaganje je "
 
 #: application/views/adif/import.php:94 application/views/adif/import.php:368
 #: application/views/clublog/export.php:70
@@ -4860,7 +4884,7 @@ msgstr ""
 #: application/views/webadif/export.php:34
 #: application/views/webadif/export.php:94
 msgid "Warning"
-msgstr ""
+msgstr "Opozorilo"
 
 #: application/views/adif/import.php:101 application/views/adif/import.php:103
 #: application/views/adif/import.php:270 application/views/eqsl/import.php:37
@@ -4868,59 +4892,61 @@ msgstr ""
 #: application/views/reg1test/index.php:30
 #: application/views/webadif/export.php:89
 msgid "Select Station Location"
-msgstr ""
+msgstr "Izberite lokacijo postaje"
 
 #: application/views/adif/import.php:111
 msgid "Choose ADIF File"
-msgstr ""
+msgstr "Izberite datoteko ADIF"
 
 #: application/views/adif/import.php:117
 msgid "Add QSOs to Contest"
-msgstr ""
+msgstr "Dodaj QSO-je v tekmovanje"
 
 #: application/views/adif/import.php:119 application/views/adif/import.php:430
 #: application/views/simplefle/index.php:86
 msgid "No Contest"
-msgstr ""
+msgstr "Brez tekmovanja"
 
 #: application/views/adif/import.php:129
 msgid ""
 "Type in the operators callsign of the imported QSOs. Leave empty to use the "
 "operator callsign in the ADIF file."
 msgstr ""
+"Vnesite klicni znak operaterja uvoženih zvez. Pustite prazno, če želite "
+"uporabiti klicni znak operaterja v datoteki ADIF."
 
 #: application/views/adif/import.php:137
 msgid "Basic Settings"
-msgstr ""
+msgstr "Osnovne nastavitve"
 
 #: application/views/adif/import.php:144
 msgid "Import duplicate QSOs"
-msgstr ""
+msgstr "Uvozi podvojene QSO-je"
 
 #: application/views/adif/import.php:146
 msgid "Select if QSOs shall be imported, even if they already exist."
-msgstr ""
+msgstr "Izberite, ali naj se QSO-ji uvozijo, tudi če že obstajajo."
 
 #: application/views/adif/import.php:151
 msgid "Use DXCC information from ADIF"
-msgstr ""
+msgstr "Uporabite informacije DXCC iz ADIF"
 
 #: application/views/adif/import.php:153
 msgid ""
 "If not selected, Wavelog will attempt to determine DXCC information "
 "automatically."
-msgstr ""
+msgstr "Če ni izbrano, bo Wavelog poskušal samodejno določiti podatke DXCC."
 
 #: application/views/adif/import.php:162 application/views/adif/import.php:169
 #: application/views/interface_assets/footer.php:34
 #: application/views/interface_assets/footer.php:642
 #: application/views/interface_assets/footer.php:2400
 msgid "DANGER"
-msgstr ""
+msgstr "NEVARNO"
 
 #: application/views/adif/import.php:162
 msgid "Ignore Station callsign on import"
-msgstr ""
+msgstr "Prezri klicni znak postaje pri uvozu"
 
 #: application/views/adif/import.php:164
 #, php-format
@@ -4928,59 +4954,66 @@ msgid ""
 "If selected, Wavelog will try to import %sall%s QSOs from the ADIF, "
 "regardless if they match to the chosen station-location."
 msgstr ""
+"Če je izbrano, bo Wavelog poskušal uvoziti %sall%s QSO-jev iz ADIF-a, ne "
+"glede na to, ali se ujemajo z izbrano lokacijo postaje."
 
 #: application/views/adif/import.php:169
 msgid "Ignore grid check on import"
-msgstr ""
+msgstr "Prezri preverjanje UL pri uvozu"
 
 #: application/views/adif/import.php:171
 msgid ""
 "If selected, Wavelog will try to import QSOs even if the MY_GRIDSQUARE field "
 "in ADIF records does not match the locator of the chosen station-location."
 msgstr ""
+"Če je izbrano, bo Wavelog poskušal uvoziti zveze, tudi če se polje "
+"MY_GRIDSQUARE v zapisih ADIF ne ujema z lokatorjem izbrane lokacije postaje."
 
 #: application/views/adif/import.php:181
 msgid ""
 "Always use the logged-in account callsign as the operator call during import"
 msgstr ""
+"Med uvozom vedno uporabite klicni znak prijavljenega računa kot klic "
+"operaterja"
 
 #: application/views/adif/import.php:192
 msgid "Mark QSOs as uploaded (This does NOT upload QSOs to these services!)"
 msgstr ""
+"Označi QSO-je kot naložene (S tem se QSO-ji NE naložijo na te storitve!)"
 
 #: application/views/adif/import.php:199
 msgid "Mark imported QSOs as uploaded to LoTW"
-msgstr ""
+msgstr "Označi uvožene QSO-ji kot naložene v LoTW"
 
 #: application/views/adif/import.php:201 application/views/adif/import.php:209
 #: application/views/adif/import.php:219 application/views/adif/import.php:227
 #: application/views/adif/import.php:237 application/views/adif/import.php:245
 msgid "Select if ADIF being imported does not contain this information."
-msgstr ""
+msgstr "Izberite, če uvoženi ADIF ne vsebuje teh podatkov."
 
 #: application/views/adif/import.php:207
 msgid "Mark imported QSOs as uploaded to eQSL Logbook"
-msgstr ""
+msgstr "Označite uvožene QSO-je kot naložene v dnevnik eQSL"
 
 #: application/views/adif/import.php:217
 msgid "Mark imported QSOs as uploaded to HRDLog.net Logbook"
-msgstr ""
+msgstr "Označite uvožene QSO-je kot naložene v dnevnik HRDLog.net"
 
 #: application/views/adif/import.php:225
 msgid "Mark imported QSOs as uploaded to QRZ Logbook"
-msgstr ""
+msgstr "Označite uvožene QSO-je kot naložene v dnevnik QRZ"
 
 #: application/views/adif/import.php:235
 msgid "Mark imported QSOs as uploaded to Clublog Logbook"
-msgstr ""
+msgstr "Označite uvožene QSO-je kot naložene v dnevnik Clublog"
 
 #: application/views/adif/import.php:243
 msgid "Mark imported QSOs as uploaded to DCL Logbook"
-msgstr ""
+msgstr "Označite uvožene QSO-je kot naložene v dnevnik DCL"
 
 #: application/views/adif/import.php:248
 msgid "Toggle all checkboxes"
-msgstr ""
+msgstr "Preklopi vsa potrditvena polja"
 
 #: application/views/adif/import.php:254 application/views/adif/import.php:383
 #: application/views/adif/import.php:405 application/views/adif/import.php:449
@@ -4988,17 +5021,19 @@ msgstr ""
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:55
 #: application/views/webadif/export.php:55
 msgid "Upload"
-msgstr ""
+msgstr "Naloži"
 
 #: application/views/adif/import.php:264
 msgid "Take your logbook file anywhere!"
-msgstr ""
+msgstr "Vzemite svojo datoteko dnevnika kamor koli!"
 
 #: application/views/adif/import.php:265
 msgid ""
 "Exporting ADIFs allows you to import contacts into third party applications "
 "like LoTW, Awards or just for keeping a backup."
 msgstr ""
+"Izvoz ADIF-ov vam omogoča uvoz stikov v aplikacije tretjih oseb, kot so "
+"LoTW, Awards ali samo za shranjevanje varnostnih kopij."
 
 #: application/views/adif/import.php:266
 #, php-format
@@ -5007,6 +5042,8 @@ msgid ""
 "If you need more filtering, you can use %sthe Advanced Logbook%s to filter "
 "and export!"
 msgstr ""
+"Če potrebujete več filtriranja, lahko za filtriranje in izvoz uporabite "
+"%sNapredni dnevnik%s!"
 
 #: application/views/adif/import.php:289
 #: application/views/clublog/export.php:73 application/views/csv/index.php:119
@@ -5016,7 +5053,7 @@ msgstr ""
 #: application/views/lotw/import.php:39 application/views/qrz/export.php:78
 #: application/views/qrz/export.php:99 application/views/webadif/export.php:97
 msgid "From date"
-msgstr ""
+msgstr "Od datuma"
 
 #: application/views/adif/import.php:293 application/views/csv/index.php:124
 #: application/views/dxatlas/index.php:123
@@ -5024,35 +5061,35 @@ msgstr ""
 #: application/views/qrz/export.php:104
 #: application/views/webadif/export.php:102
 msgid "To date"
-msgstr ""
+msgstr "Do datuma"
 
 #: application/views/adif/import.php:304
 msgid "Export options"
-msgstr ""
+msgstr "Možnosti izvoza"
 
 #: application/views/adif/import.php:312
 msgid "Mark exported QSOs as already uploaded to LoTW"
-msgstr ""
+msgstr "Označi izvožene QSO-je kot že naložene v LoTW"
 
 #: application/views/adif/import.php:321
 msgid "Export QSOs not uploaded to LoTW"
-msgstr ""
+msgstr "Izvoz QSO-jev, ki niso bili naloženi v LoTW"
 
 #: application/views/adif/import.php:328
 msgid "Export QSOs"
-msgstr ""
+msgstr "Izvozi QSO-je"
 
 #: application/views/adif/import.php:333
 msgid "Export Satellite-Only QSOs"
-msgstr ""
+msgstr "Izvoz samo satelitskih QSO-jev"
 
 #: application/views/adif/import.php:334
 msgid "Export All Satellite QSOs"
-msgstr ""
+msgstr "Izvoz QSO-jev preko vseh satelitov"
 
 #: application/views/adif/import.php:336
 msgid "Export All Satellite QSOs Confirmed on LoTW"
-msgstr ""
+msgstr "Izvoz QSO-jev preko vseh satelitov, potrjenih v LoTW"
 
 #: application/views/adif/import.php:352
 #, php-format
@@ -5062,6 +5099,10 @@ msgid ""
 "List). The downloaded ADIF file can be uploaded here in order to update QSOs "
 "with DOK info."
 msgstr ""
+"Pojdite na %s in izvozite svoj dnevnik s potrjenimi DOK-i. Za pospešitev "
+"postopka lahko izberete samo DL QSO-je za prenos (tj. v seznam predpon "
+"vnesete 'DL'). Preneseno datoteko ADIF lahko naložite tukaj, da posodobite "
+"QSO-je z informacijami DOK."
 
 #: application/views/adif/import.php:352
 #, php-format
@@ -5069,36 +5110,43 @@ msgid ""
 "More information regarding the confirmation status in DCL can be found on "
 "the %sDCL Confluence page%s."
 msgstr ""
+"Več informacij o stanju potrditve v DCL najdete na strani %sDCL Confluence%s."
 
 #: application/views/adif/import.php:359
 msgid "Only import DOK data from QSOs confirmed on DCL."
-msgstr ""
+msgstr "Uvozi samo podatke DOK iz QSO-jev, potrjenih na DCL."
 
 #: application/views/adif/import.php:361
 msgid ""
 "Uncheck if you also want to update DOK with data from unconfirmed QSOs in "
 "DCL."
 msgstr ""
+"Odznačite, če želite DOK posodobiti tudi s podatki iz nepotrjenih QSO-jev v "
+"DCL."
 
 #: application/views/adif/import.php:368
 msgid "Overwrites exisiting DOK in log by DCL (if different)."
-msgstr ""
+msgstr "Prepiše obstoječi DOK v dnevniku z DCL (če je drugačen)."
 
 #: application/views/adif/import.php:370
 msgid ""
 "If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL "
 "log."
 msgstr ""
+"Če je označeno, bo Wavelog prisilno prepisal obstoječi DOK z DOK iz dnevnika "
+"DCL."
 
 #: application/views/adif/import.php:377
 msgid "Ignore QSOs that cannot be matched."
-msgstr ""
+msgstr "Prezri QSO-je, ki se ne ujemajo."
 
 #: application/views/adif/import.php:379
 msgid ""
 "If unchecked, information about QSOs which could not be found in Wavelog "
 "will be displayed."
 msgstr ""
+"Če ni označeno, bodo prikazane informacije o QSO-jih, ki jih ni bilo mogoče "
+"najti v Wavelogu."
 
 #: application/views/adif/import.php:401
 #, php-format
@@ -5106,6 +5154,8 @@ msgid ""
 "An example for a tool to export the POTA hunter log in ADIF format is %s "
 "made by AF0G and available on GitHub."
 msgstr ""
+"Primer orodja za izvoz dnevnika lovca POTA v formatu ADIF je %s, ki ga je "
+"izdelal AF0G in je na voljo na GitHubu."
 
 #: application/views/adif/import.php:422
 msgid ""
@@ -5115,13 +5165,18 @@ msgid ""
 "can provide the Cabrillo file that this software also provides to rewrite "
 "that data in Wavelog."
 msgstr ""
+"Če ste uvozili datoteko ADIF tekmovanja, ki jo je zagotovila druga "
+"programska oprema za beleženje, se včasih, odvisno od te programske opreme, "
+"vaši raporti ne bodo pravilno uvozili iz datoteke ADIF te programske opreme. "
+"Če želite to popraviti, lahko uporabite datoteko Cabrillo, ki jo ponuja tudi "
+"ta programska oprema, da prepišete te podatke v Wavelog."
 
 #: application/views/adif/import.php:422
 #: application/views/adif/import_success.php:40
 #: application/views/dcl_views/index.php:76
 #: application/views/lotw_views/index.php:160
 msgid "Information"
-msgstr ""
+msgstr "Informacije"
 
 #: application/views/adif/import.php:423
 msgid ""
@@ -5130,42 +5185,54 @@ msgid ""
 "from both your already imported ADIF file, as well as the CBR file you are "
 "about to upload to match the QSOs and only correct relevant data."
 msgstr ""
+"Preden spremenite karkoli o QSO-jih v programu Wavelog, uporabite to "
+"funkcijo, saj ta funkcija uporablja ID tekmovanja ter podatke o datumu in "
+"času iz vaše že uvožene datoteke ADIF in datoteke CBR, ki jo boste naložili, "
+"da se ujema s QSO-ji in popravi le ustrezne podatke."
 
 #: application/views/adif/import.php:428
 msgid "Contest Name, only if Contest ID in CBR is different"
-msgstr ""
+msgstr "Ime tekmovanja, samo če je ID tekmovanja v CBR drugačen"
 
 #: application/views/adif/import.php:428
 msgid "Optional"
-msgstr ""
+msgstr "Neobvezno"
 
 #: application/views/adif/import.php:438
 msgid ""
 "The CBR file contains a TRX number at the end of each QSO line (for multi-op "
 "stations)"
 msgstr ""
+"Datoteka CBR vsebuje številko TRX na koncu vsake QSO linije (za postaje z "
+"več operaterji)"
 
 #: application/views/adif/import.php:442
 msgid ""
 "A serial number is ALWAYS part of the exchange for both parties in this "
 "contest."
 msgstr ""
+"Serijska številka je VEDNO del izmenjave za obe strani v tem tekmovanju."
 
 #: application/views/adif/import.php:444
 msgid ""
 "If you or your partner only sometimes exchange serial numbers, please leave "
 "this unchecked."
 msgstr ""
+"Če si s partnerjem serijske številke izmenjujete le občasno, prosimo, da "
+"tega polja ne označite."
 
 #: application/views/adif/import.php:445
 msgid ""
 "If unchecked, this will erase the default serial number that (for example) "
 "N1MM+ produces. If checked, it will correct the serial number if necessary."
 msgstr ""
+"Če ni označeno, bo to izbrisalo privzeto serijsko številko, ki jo (na "
+"primer) ustvari N1MM+. Če je označeno, bo serijska številka po potrebi "
+"popravljena."
 
 #: application/views/adif/import_failed.php:15
 msgid "The ADIF file could not be parsed correctly."
-msgstr ""
+msgstr "Datoteke ADIF ni bilo mogoče pravilno razčleniti."
 
 #: application/views/adif/import_failed.php:16
 msgid ""
@@ -5173,30 +5240,33 @@ msgid ""
 "database. Please check the imported ADIF file. You can use an online ADIF "
 "file checker. For example:"
 msgstr ""
+"Vsaj enega od polj ADIF ni bilo mogoče razčleniti in/ali vstaviti v "
+"podatkovno zbirko. Preverite uvoženo datoteko ADIF. Uporabite lahko spletni "
+"preverjevalnik datotek ADIF. Na primer:"
 
 #: application/views/adif/import_success.php:22
 msgid "Yay, it's imported!"
-msgstr ""
+msgstr "Jupi, uvoženo je!"
 
 #: application/views/adif/import_success.php:23
 msgid "The ADIF File has been imported."
-msgstr ""
+msgstr "Datoteka ADIF je bila uvožena."
 
 #: application/views/adif/import_success.php:25
 msgid "Number of QSOs imported:"
-msgstr ""
+msgstr "Število uvoženih QSO-jev:"
 
 #: application/views/adif/import_success.php:31
 msgid "Dupes were inserted!"
-msgstr ""
+msgstr "Dvojniki so bili vstavljeni!"
 
 #: application/views/adif/import_success.php:33
 msgid "Dupes were skipped."
-msgstr ""
+msgstr "Dvojniki so bili preskočeni."
 
 #: application/views/adif/import_success.php:40
 msgid "Contest logs imported"
-msgstr ""
+msgstr "Uvoženi dnevniki tekmovanj"
 
 #: application/views/adif/import_success.php:42
 msgid ""
@@ -5204,65 +5274,70 @@ msgid ""
 "not be imported properly from that softwares ADIF. If you like to correct "
 "that, switch to the CBR Import Tab of the ADIF Import page."
 msgstr ""
+"Včasih, odvisno od vaše programske opreme za beleženje tekmovanj, vaše "
+"izmenjave ne bodo pravilno uvožene iz ADIF-a te programske opreme. Če želite "
+"to popraviti, preklopite na zavihek Uvoz CBR na strani Uvoz ADIF."
 
 #: application/views/adif/import_success.php:42
 msgid "You imported at least 1 QSO containing a contest ID."
-msgstr ""
+msgstr "Uvozili ste vsaj 1 QSO, ki vsebuje ID tekmovanja."
 
 #: application/views/adif/import_success.php:43
 msgid "We found the following numbers of QSOs for the following contest IDs:"
-msgstr ""
+msgstr "Za naslednje ID-je tekmovanj smo našli naslednje število QSO-jev:"
 
 #: application/views/adif/import_success.php:56
 msgid "Import details / possible problems"
-msgstr ""
+msgstr "Podrobnosti o uvozu / morebitne težave"
 
 #: application/views/adif/import_success.php:57
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
-msgstr ""
+msgstr "Preverite %s za namige o napakah v datotekah ADIF."
 
 #: application/views/adif/import_success.php:61
 msgid "Critical Errors - Wrong Call/Location"
-msgstr ""
+msgstr "Kritične napake – napačen klicni znak/lokacija"
 
 #: application/views/adif/import_success.php:70
 msgid "Validation Errors - Invalid Data"
-msgstr ""
+msgstr "Napake pri preverjanju – neveljavni podatki"
 
 #: application/views/adif/import_success.php:79
 msgid "Duplicate QSOs"
-msgstr ""
+msgstr "Dvojni QSO-ji"
 
 #: application/views/adif/import_success.php:87
 msgid "You might have ADIF errors. Please check the following information:"
-msgstr ""
+msgstr "Morda imate napake ADIF. Preverite naslednje podatke:"
 
 #: application/views/adif/pota_success.php:12
 msgid "Results of POTA Update"
-msgstr ""
+msgstr "Rezultati posodobitve POTA"
 
 #: application/views/adif/pota_success.php:17
 msgid "POTA references for existing QSOs has been updated."
-msgstr ""
+msgstr "Posodobljen je bil seznam referenc POTA za obstoječe QSO-je."
 
 #: application/views/adif/pota_success.php:25
 msgid "POTA Update Errors"
-msgstr ""
+msgstr "Napake pri posodobitvi POTA"
 
 #: application/views/adif/pota_success.php:26
 msgid ""
 "There is different data for POTA references in your log compared to imported "
 "data or QSO data could not be matched"
 msgstr ""
+"V vašem dnevniku so podatki za reference POTA drugačni od uvoženih podatkov "
+"ali pa podatkov o QSO ni bilo mogoče uskladiti"
 
 #: application/views/adif/pota_success.php:34
 msgid "POTA REF in Log"
-msgstr ""
+msgstr "POTA REF v dnevniku"
 
 #: application/views/adif/pota_success.php:35
 msgid "POTA REF in ADIF"
-msgstr ""
+msgstr "POTA REF v ADIF"
 
 #: application/views/adif/pota_success.php:36
 #: application/views/api/index.php:37 application/views/cron/index.php:68
@@ -5276,15 +5351,15 @@ msgstr ""
 #: application/views/timeline/index.php:204
 #: application/views/usermode/index.php:41
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: application/views/api/description.php:15
 msgid "Editing Description for API Key"
-msgstr ""
+msgstr "Urejanje opisa za API Key"
 
 #: application/views/api/description.php:28
 msgid "Simple name to describe what you use this API for."
-msgstr ""
+msgstr "Preprosto ime za opis, za kaj uporabljate ta API."
 
 #: application/views/api/description.php:33
 #: application/views/bands/create.php:49 application/views/bands/edit.php:32
@@ -5305,12 +5380,12 @@ msgstr ""
 #: application/views/satellite/pass.php:115
 #: application/views/simplefle/index.php:22
 msgid "Save"
-msgstr ""
+msgstr "Shrani"
 
 #: application/views/api/index.php:8
 #: application/views/interface_assets/header.php:538
 msgid "API Keys"
-msgstr ""
+msgstr "API Keys"
 
 #: application/views/api/index.php:11
 msgid ""
@@ -5318,6 +5393,9 @@ msgid ""
 "access Wavelog in a controlled way. Access to the API is managed via API "
 "keys."
 msgstr ""
+"Wavelog API (vmesnik za programiranje aplikacij) omogoča sistemom tretjih "
+"oseb nadzorovan dostop do Waveloga. Dostop do API-ja se upravlja preko API "
+"keys."
 
 #: application/views/api/index.php:12
 msgid ""
@@ -5326,27 +5404,31 @@ msgid ""
 "Wavelog. Generate a read-only key if the application only needs to obtain "
 "data from Wavelog."
 msgstr ""
+"Za vsako orodje, ki ga želite uporabiti (npr. WLgate), boste morali "
+"ustvariti API key. Če mora aplikacija pošiljati podatke v Wavelog, ustvarite "
+"ključ za branje in pisanje. Če mora aplikacija od Waveloga pridobivati le "
+"podatke, ustvarite ključ samo za branje."
 
 #: application/views/api/index.php:13
 msgid "Links to 3rd-Party-Software which works with Wavelog:"
-msgstr ""
+msgstr "Povezave do programske opreme tretjih oseb, ki deluje z Wavelogom:"
 
 #: application/views/api/index.php:16
 msgid "More Tools"
-msgstr ""
+msgstr "Več orodij"
 
 #: application/views/api/index.php:19
 msgid "API URL"
-msgstr ""
+msgstr "API URL"
 
 #: application/views/api/index.php:19 application/views/api/index.php:54
 #: application/views/cron/index.php:36 application/views/debug/index.php:60
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Kopiraj v odložišče"
 
 #: application/views/api/index.php:19
 msgid "The API URL for this Wavelog instance is"
-msgstr ""
+msgstr "URL API-ja za to Wavelog instanco je"
 
 #: application/views/api/index.php:20 application/views/dxcalendar/index.php:15
 #: application/views/eqsl/export.php:33
@@ -5360,41 +5442,45 @@ msgstr ""
 #: application/views/sattimers/index.php:77
 #: application/views/search/filter.php:66
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: application/views/api/index.php:20
 msgid ""
 "It's good practice to delete a key if you are no longer using the associated "
 "application."
 msgstr ""
+"Dobra praksa je, da ključ izbrišete, če povezane aplikacije ne uporabljate "
+"več."
 
 #: application/views/api/index.php:22
 msgid ""
 "On Clubstations the API Keys are personal and not shared. Clubstation users "
 "can only see their own keys."
 msgstr ""
+"Na Clubstations so API Keys osebni in se ne delijo. Uporabniki Clubstation "
+"lahko vidijo samo svoje ključe."
 
 #: application/views/api/index.php:30
 msgid "API Key"
-msgstr ""
+msgstr "API Key"
 
 #: application/views/api/index.php:31 application/views/cron/edit.php:30
 #: application/views/cron/index.php:67
 #: application/views/search/stored_queries.php:8
 msgid "Description"
-msgstr ""
+msgstr "Opis"
 
 #: application/views/api/index.php:32
 msgid "Last Used"
-msgstr ""
+msgstr "Nazadnje uporabljeno"
 
 #: application/views/api/index.php:34
 msgid "Created By"
-msgstr ""
+msgstr "Ustvaril/a"
 
 #: application/views/api/index.php:36
 msgid "Permissions"
-msgstr ""
+msgstr "Dovoljenja"
 
 #: application/views/api/index.php:38
 #: application/views/awards/pl_polska/index.php:372
@@ -5406,36 +5492,36 @@ msgstr ""
 #: application/views/user/index.php:33 application/views/user/index.php:160
 #: application/views/webadif/export.php:45
 msgid "Actions"
-msgstr ""
+msgstr "Dejanja"
 
 #: application/views/api/index.php:64
 msgid "Read & Write"
-msgstr ""
+msgstr "Branje in pisanje"
 
 #: application/views/api/index.php:66
 msgid "Read-Only"
-msgstr ""
+msgstr "Samo za branje"
 
 #: application/views/api/index.php:76
 msgid "Test"
-msgstr ""
+msgstr "Test"
 
 #: application/views/api/index.php:79
 #, php-format
 msgid "Are you sure you want delete the API Key %s?"
-msgstr ""
+msgstr "Ali ste prepričani, da želite izbrisati API Key %s?"
 
 #: application/views/api/index.php:98
 msgid "You have no API Keys."
-msgstr ""
+msgstr "Nimate API Keys."
 
 #: application/views/api/index.php:105
 msgid "Create a read & write key"
-msgstr ""
+msgstr "Ustvari ključ za branje in pisanje"
 
 #: application/views/api/index.php:111
 msgid "Create a read-only key"
-msgstr ""
+msgstr "Ustvari ključ samo za branje"
 
 #: application/views/awards/73on73/index.php:6
 #: application/views/awards/73on73/index.php:14
@@ -5488,17 +5574,19 @@ msgstr ""
 #: application/views/awards/wwff/index.php:6
 #: application/views/awards/wwff/index.php:14
 msgid "Award Info"
-msgstr ""
+msgstr "Informacije o diplomi"
 
 #: application/views/awards/73on73/index.php:7
 msgid "73 on 73 Award"
-msgstr ""
+msgstr "73 on 73 Award"
 
 #: application/views/awards/73on73/index.php:8
 msgid ""
 "Paul Stoetzer N8HM is sponsoring an award for contacts made via the AO-73 "
 "(FUNcube-1) amateur radio satellite."
 msgstr ""
+"Paul Stoetzer N8HM sponzorira nagrado za zveze, vzpostavljene prek "
+"amaterskega radijskega satelita AO-73 (FUNcube-1)."
 
 #: application/views/awards/73on73/index.php:9
 #: application/views/awards/helvetia/index.php:26
@@ -5509,20 +5597,22 @@ msgstr ""
 #: application/views/awards/wwff/index.php:10
 #, php-format
 msgid "For more information, please visit: %s."
-msgstr ""
+msgstr "Za več informacij obiščite: %s."
 
 #: application/views/awards/73on73/index.php:11
 msgid ""
 "Fields taken for this Award: Propagation-Mode and SAT-Name (ADIF: "
 "PROP_MODE=SAT, SAT_NAME='AO-73')"
 msgstr ""
+"Polja, ki se uporabljajo za to diplomo: Propagation-Mode and SAT-Name (ADIF: "
+"PROP_MODE=SAT, SAT_NAME='AO-73')"
 
 #: application/views/awards/73on73/index.php:32
 #: application/views/awards/jcc/index.php:163
 #: application/views/awards/waja/index.php:157
 #: application/views/distancerecords/index.php:13
 msgid "Number"
-msgstr ""
+msgstr "Število"
 
 #: application/views/awards/counties/details.php:4
 #: application/views/awards/details.php:1
@@ -5531,18 +5621,18 @@ msgstr ""
 #: application/views/statistics/details.php:1
 #: application/views/timeline/details.php:2
 msgid "Filtering on"
-msgstr ""
+msgstr "Filtriranje vklopljeno"
 
 #: application/views/awards/counties/details.php:13
 #: application/views/logbookadvanced/index.php:477
 #: application/views/logbookadvanced/index.php:1005
 #: application/views/logbookadvanced/useroptions.php:187
 msgid "County"
-msgstr ""
+msgstr "County"
 
 #: application/views/awards/counties/index.php:7
 msgid "US County Award"
-msgstr ""
+msgstr "US County Award"
 
 #: application/views/awards/counties/index.php:8
 #, php-format
@@ -5552,6 +5642,10 @@ msgid ""
 "contacts with specified numbers of U.S. counties under rules and conditions "
 "you can find %s."
 msgstr ""
+"The United States of America Counties Award (USA-CA), ki jo sponzorira MARAC "
+"(Klub nagrad za mobilne amaterske radioamaterje), se podeljuje za potrjene "
+"dvosmerne radijske zveze z določenim številom okrožij ZDA v skladu s pravili "
+"in pogoji, ki jih najdete %s."
 
 #: application/views/awards/counties/index.php:9
 msgid ""
@@ -5559,24 +5653,29 @@ msgid ""
 "individuals for all county contacts made, regardless of callsigns used, "
 "operating locations, or dates."
 msgstr ""
+"Klicna oznaka USA-CA je na voljo vsem licenciranim amaterjem po vsem svetu "
+"in se izda posameznikom za vse opravljene zveze z okrožji, ne glede na "
+"uporabljene klicne znake, lokacije delovanja ali datume."
 
 #: application/views/awards/counties/index.php:10
 msgid "Special USA-CA awards are also available to SWLs on a heard basis."
-msgstr ""
+msgstr "Posebne diplome USA-CA so na voljo tudi SWL-jem na podlagi poslušanja."
 
 #: application/views/awards/counties/index.php:11
 msgid ""
 "Fields taken for this Award: State (ADIF: STATE), Stations County (ADIF: "
 "CNTY), DXCC (Must be one of 291 (U.S.A.) ,6 (ALASKA) or 110 (HAWAII))"
 msgstr ""
+"Polja, ki se prijavljajo za to diplomo: State (ADIF: STATE), Stations County "
+"(ADIF: CNTY), DXCC (Must be one of 291 (U.S.A.) ,6 (ALASKA) or 110 (HAWAII))"
 
 #: application/views/awards/counties/index.php:22
 msgid "Counties Worked"
-msgstr ""
+msgstr "Okrožja, ki so delana"
 
 #: application/views/awards/counties/index.php:23
 msgid "Counties Confirmed"
-msgstr ""
+msgstr "Okrožja, ki so potrjena"
 
 #: application/views/awards/counties/index.php:40
 #: application/views/awards/dok/index.php:175
@@ -5606,7 +5705,7 @@ msgstr ""
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
 msgid "Total"
-msgstr ""
+msgstr "Skupaj"
 
 #: application/views/awards/cq/index.php:3
 #: application/views/awards/cq/index.php:204
@@ -5630,16 +5729,16 @@ msgstr ""
 #: application/views/user/modals/first_login_wizard.php:75
 #: application/views/zonechecker/index.php:17
 msgid "CQ Zone"
-msgstr ""
+msgstr "CQ Zone"
 
 #: application/views/awards/cq/index.php:4
 #: application/views/awards/itu/index.php:4
 msgid "Hover over a zone"
-msgstr ""
+msgstr "Premaknite miško nad zono"
 
 #: application/views/awards/cq/index.php:32
 msgid "CQ WAZ (Worked All Zones) Award"
-msgstr ""
+msgstr "CQ WAZ (Worked All Zones) Award"
 
 #: application/views/awards/cq/index.php:33
 msgid ""
@@ -5648,6 +5747,10 @@ msgid ""
 "magazine first appeared in January 1945 and focuses on awards and the "
 "practical aspects of amateur radio."
 msgstr ""
+"Revija CQ Magazine je imela sedež v ZDA in je bila ena najbolj priljubljenih "
+"revij za radioamaterstvo na svetu. Prenehala je izhajati konec leta 2023. "
+"Revija je prvič izšla januarja 1945 in se je osredotočala na diplome ter "
+"praktične vidike radioamaterstva."
 
 #: application/views/awards/cq/index.php:34
 msgid ""
@@ -5656,19 +5759,22 @@ msgid ""
 "Magazine does no longer exists the CQ WAZ Awards is now managed directly by "
 "N4BAA."
 msgstr ""
+"Diploma WAZ pomeni »Worked All Zones« (Obdelano v vseh conah) in zahteva "
+"radijske zveze z vsemi 40 CQ conami skupaj z ustrezno potrditvijo. Ker "
+"revija CQ ne obstaja več, nagrade CQ WAZ zdaj neposredno upravlja N4BAA."
 
 #: application/views/awards/cq/index.php:35
 #, php-format
 msgid "You can find all the information and rules on the Website of N4BAA: %s"
-msgstr ""
+msgstr "Vse informacije in pravila najdete na spletni strani N4BAA: %s"
 
 #: application/views/awards/cq/index.php:36
 msgid "Fields taken for this Award: CQ-Zone (ADIF: CQZ)"
-msgstr ""
+msgstr "Polja, ki so uporabljena za to diplomo: CQ-Zone (ADIF: CQZ)"
 
 #: application/views/awards/cq/index.php:38
 msgid "Awards - CQ WAZ"
-msgstr ""
+msgstr "Diplome - CQ WAZ"
 
 #: application/views/awards/cq/index.php:45
 #: application/views/awards/dxcc/index.php:42
@@ -5679,11 +5785,11 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:321
 #: application/views/mode/index.php:80 application/views/usermode/index.php:68
 msgid "Filters"
-msgstr ""
+msgstr "Filtri"
 
 #: application/views/awards/cq/index.php:48
 msgid "Show CQ Zone Map"
-msgstr ""
+msgstr "Prikaži zemljevid CQ Zone"
 
 #: application/views/awards/cq/index.php:55
 #: application/views/awards/dxcc/index.php:52
@@ -5693,7 +5799,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:327
 #: application/views/statistics/index.php:54
 msgid "Date Presets"
-msgstr ""
+msgstr "Prednastavitve datuma"
 
 #: application/views/awards/cq/index.php:57
 #: application/views/awards/dxcc/index.php:54
@@ -5709,7 +5815,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:329
 #: application/views/statistics/index.php:56
 msgid "Today"
-msgstr ""
+msgstr "Danes"
 
 #: application/views/awards/cq/index.php:58
 #: application/views/awards/dxcc/index.php:55
@@ -5719,7 +5825,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:330
 #: application/views/statistics/index.php:57
 msgid "Yesterday"
-msgstr ""
+msgstr "Včeraj"
 
 #: application/views/awards/cq/index.php:59
 #: application/views/awards/dxcc/index.php:56
@@ -5729,7 +5835,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:331
 #: application/views/statistics/index.php:58
 msgid "Last 7 Days"
-msgstr ""
+msgstr "Zadnjih 7 dni"
 
 #: application/views/awards/cq/index.php:60
 #: application/views/awards/dxcc/index.php:57
@@ -5739,7 +5845,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:332
 #: application/views/statistics/index.php:59
 msgid "Last 30 Days"
-msgstr ""
+msgstr "Zadnjih 30 dni"
 
 #: application/views/awards/cq/index.php:61
 #: application/views/awards/dxcc/index.php:58
@@ -5749,7 +5855,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:333
 #: application/views/statistics/index.php:60
 msgid "This Month"
-msgstr ""
+msgstr "Ta mesec"
 
 #: application/views/awards/cq/index.php:62
 #: application/views/awards/dxcc/index.php:59
@@ -5759,7 +5865,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:334
 #: application/views/statistics/index.php:61
 msgid "Last Month"
-msgstr ""
+msgstr "Prejšnji mesec"
 
 #: application/views/awards/cq/index.php:63
 #: application/views/awards/dxcc/index.php:60
@@ -5769,7 +5875,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:335
 #: application/views/statistics/index.php:62
 msgid "This Year"
-msgstr ""
+msgstr "To leto"
 
 #: application/views/awards/cq/index.php:64
 #: application/views/awards/dxcc/index.php:61
@@ -5778,7 +5884,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:336
 #: application/views/statistics/index.php:63
 msgid "Last Year"
-msgstr ""
+msgstr "Prejšnje leto"
 
 #: application/views/awards/cq/index.php:65
 #: application/views/awards/dxcc/index.php:62
@@ -5789,7 +5895,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:337
 #: application/views/qso/index.php:767
 msgid "Clear"
-msgstr ""
+msgstr "Počisti"
 
 #: application/views/awards/cq/index.php:70
 #: application/views/awards/dxcc/index.php:67
@@ -5799,7 +5905,7 @@ msgstr ""
 #: application/views/gridmap/index.php:44
 #: application/views/statistics/index.php:68
 msgid "Date from"
-msgstr ""
+msgstr "Datum od"
 
 #: application/views/awards/cq/index.php:78
 #: application/views/awards/dxcc/index.php:75
@@ -5809,7 +5915,7 @@ msgstr ""
 #: application/views/gridmap/index.php:48
 #: application/views/statistics/index.php:72
 msgid "Date to"
-msgstr ""
+msgstr "Datum do"
 
 #: application/views/awards/cq/index.php:88
 #: application/views/awards/itu/index.php:90
@@ -5824,7 +5930,7 @@ msgstr ""
 #: application/views/search/result.php:32
 #: application/views/visitor/index.php:270
 msgid "Confirmed"
-msgstr ""
+msgstr "Potrjeno"
 
 #: application/views/awards/cq/index.php:88
 #: application/views/awards/itu/index.php:90
@@ -5834,7 +5940,7 @@ msgstr ""
 #: application/views/search/result.php:35
 #: application/views/visitor/index.php:266
 msgid "Worked"
-msgstr ""
+msgstr "Delano"
 
 #: application/views/awards/cq/index.php:92
 #: application/views/awards/dok/index.php:42
@@ -5850,7 +5956,7 @@ msgstr ""
 #: application/views/awards/wapc/index.php:41
 #: application/views/awards/was/index.php:43
 msgid "Show worked"
-msgstr ""
+msgstr "Prikaži delane"
 
 #: application/views/awards/cq/index.php:96
 #: application/views/awards/dok/index.php:46
@@ -5866,7 +5972,7 @@ msgstr ""
 #: application/views/awards/wapc/index.php:45
 #: application/views/awards/was/index.php:47
 msgid "Show confirmed"
-msgstr ""
+msgstr "Prikaži potrjene"
 
 #: application/views/awards/cq/index.php:100
 #: application/views/awards/dxcc/index.php:107
@@ -5881,7 +5987,7 @@ msgstr ""
 #: application/views/awards/wapc/index.php:49
 #: application/views/awards/was/index.php:51
 msgid "Show not worked"
-msgstr ""
+msgstr "Prikaži ne delane"
 
 #: application/views/awards/cq/index.php:106
 #: application/views/awards/dok/index.php:52
