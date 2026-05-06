@@ -92,9 +92,11 @@
                         <option value="ES"<?php if (($propmode ?? '') == 'ES') { echo ' selected="selected"'; } ?>><?= _pgettext("Propagation Mode","Sporadic E"); ?></option>
                         <option value="FAI"<?php if (($propmode ?? '') == 'FAI') { echo ' selected="selected"'; } ?>><?= _pgettext("Propagation Mode","Field Aligned Irregularities"); ?></option>
                         <option value="F2"<?php if (($propmode ?? '') == 'F2') { echo ' selected="selected"'; } ?>><?= _pgettext("Propagation Mode","F2 Reflection"); ?></option>
+                        <option value="GWAVE"<?php if (($propmode ?? '') == 'GWAVE') { echo ' selected="selected"'; } ?>><?= _pgettext("Propagation Mode","Ground Wave"); ?></option>
                         <option value="INTERNET"<?php if (($propmode ?? '') == 'INTERNET') { echo ' selected="selected"'; } ?>><?= _pgettext("Propagation Mode","Internet-assisted"); ?></option>
                         <option value="ION"<?php if (($propmode ?? '') == 'ION') { echo ' selected="selected"'; } ?>><?= _pgettext("Propagation Mode","Ionoscatter"); ?></option>
                         <option value="IRL"<?php if (($propmode ?? '') == 'IRL') { echo ' selected="selected"'; } ?>><?= _pgettext("Propagation Mode","IRLP"); ?></option>
+                        <option value="LOS"<?php if (($propmode ?? '') == 'LOS') { echo ' selected="selected"'; } ?>><?= _pgettext("Propagation Mode","Line of Sight (includes transmission through obstacles such as walls)"); ?></option>
                         <option value="MS"<?php if (($propmode ?? '') == 'MS') { echo ' selected="selected"'; } ?>><?= _pgettext("Propagation Mode","Meteor scatter"); ?></option>
                         <option value="RPT"<?php if (($propmode ?? '') == 'RPT') { echo ' selected="selected"'; } ?>><?= _pgettext("Propagation Mode","Terrestrial or atmospheric repeater or transponder"); ?></option>
                         <option value="RS"<?php if (($propmode ?? '') == 'RS') { echo ' selected="selected"'; } ?>><?= _pgettext("Propagation Mode","Rain scatter"); ?></option>

@@ -78,6 +78,9 @@ function echo_table_col($row, $name) {
 				case 'F2':
 					echo '<td>' . _pgettext("Propagation Mode","F2 Reflection") . '</td>';
 					break;
+				case 'GWAVE':
+					echo '<td>' . _pgettext("Propagation Mode","Ground Wave") . '</td>';
+					break;
 				case 'INTERNET':
 					echo '<td>' . _pgettext("Propagation Mode","Internet-assisted") . '</td>';
 					break;
@@ -86,6 +89,9 @@ function echo_table_col($row, $name) {
 					break;
 				case 'IRL':
 					echo '<td>' . _pgettext("Propagation Mode","IRLP") . '</td>';
+					break;
+				case 'LOS':
+					echo '<td>' . _pgettext("Propagation Mode","Line of Sight (includes transmission through obstacles such as walls)") . '</td>';
 					break;
 				case 'MS':
 					echo '<td>' . _pgettext("Propagation Mode","Meteor scatter") . '</td>';
