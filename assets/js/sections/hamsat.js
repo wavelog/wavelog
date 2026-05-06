@@ -73,7 +73,7 @@ function loadActivationsTable(rows, show_workable_only) {
 				"defaultContent": "-",
 				"targets": "_all"
 				},{
-				"targets": [8, 9, 10],
+				"targets": [8, 9, 10, 11],
 				"orderable": false
 				}
 			],	
@@ -186,6 +186,7 @@ function loadActivationsTable(rows, show_workable_only) {
 		} else {
 			data.push('');
 		}
+		data.push("<a href=\"https://www.satmatch.com/satellite/"+activation.sat_export_name+"/obs1/"+activation.grids[0]+"/obs2/"+activation.my_gridsquare+"\"i target=\"_blank\">SatMatch</a>");
 		data.id='activationID-' + activation.id;
 		let createdRow = table.row.add(data).index();
 		table.rows(createdRow).nodes().to$().data('activationID', activation.id);
