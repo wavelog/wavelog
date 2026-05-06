@@ -65,9 +65,11 @@
                         <option value="ES"><?= _pgettext("Propagation Mode","Sporadic E"); ?></option>
                         <option value="FAI"><?= _pgettext("Propagation Mode","Field Aligned Irregularities"); ?></option>
                         <option value="F2"><?= _pgettext("Propagation Mode","F2 Reflection"); ?></option>
+                        <option value="GWAVE"><?= _pgettext("Propagation Mode","Ground Wave"); ?></option>
                         <option value="INTERNET"><?= _pgettext("Propagation Mode","Internet-assisted"); ?></option>
                         <option value="ION"><?= _pgettext("Propagation Mode","Ionoscatter"); ?></option>
                         <option value="IRL"><?= _pgettext("Propagation Mode","IRLP"); ?></option>
+                        <option value="LOS"><?= _pgettext("Propagation Mode","Line of Sight (includes transmission through obstacles such as walls)"); ?></option>
                         <option value="MS"><?= _pgettext("Propagation Mode","Meteor scatter"); ?></option>
                         <option value="RPT"><?= _pgettext("Propagation Mode","Terrestrial or atmospheric repeater or transponder"); ?></option>
                         <option value="RS"><?= _pgettext("Propagation Mode","Rain scatter"); ?></option>

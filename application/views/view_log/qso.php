@@ -274,6 +274,9 @@
                             case 'F2':
                                 echo _pgettext("Propagation Mode", "F2 Reflection");
                                 break;
+                            case 'GWAVE':
+                                echo _pgettext("Propagation Mode", "Ground Wave");
+                                break;
                             case 'INTERNET':
                                 echo _pgettext("Propagation Mode", "Internet-assisted");
                                 break;
@@ -282,6 +285,9 @@
                                 break;
                             case 'IRL':
                                 echo _pgettext("Propagation Mode", "IRLP");
+                                break;
+                            case 'LOS':
+                                echo _pgettext("Propagation Mode", "Line of Sight (includes transmission through obstacles such as walls)");
                                 break;
                             case 'MS':
                                 echo _pgettext("Propagation Mode", "Meteor scatter");
