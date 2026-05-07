@@ -670,12 +670,16 @@ class Logbook extends CI_Controller {
 		if(!$this->load->is_loaded('Qra')) {
 			$this->load->library('Qra');
 		}
+		if(!$this->load->is_loaded('adif_modes')) {
+			$this->load->library('adif_modes');
+		}
 		$this->load->library('subdivisions');
 
 		$this->load->model('logbook_model');
 		$data['query'] = $this->logbook_model->get_qso($id);
 		if ($data['query']) {	// QSO not found // Skip fetching details
 			$data['dxccFlag'] = $this->dxccflag->get($data['query']->result()[0]->COL_DXCC);
+			$data['adif_modes'] = $this->adif_modes->get();
 
 			// Check for note for this callsign and current user
 			$callsign = $data['query']->result()[0]->COL_CALL;
