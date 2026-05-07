@@ -167,7 +167,7 @@ class Callstats_model extends CI_Model {
 
 		if (strtolower($band) != 'all') {
 			if ($band != "SAT") {
-				$sql .= "(AND COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)";
+				$sql .= "AND (COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)";
 				$sql .= "AND COL_BAND = ?";
 				$params[] = $band;
 			} else {
