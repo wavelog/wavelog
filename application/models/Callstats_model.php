@@ -29,7 +29,7 @@ class Callstats_model extends CI_Model {
 			min(col_time_on) as first_qso,
 			max(col_time_on) as last_qso
 				from " . $this->config->item('table_name') . "
-				left join satellite on ".$this->config->item('table_name').".COL_SAT_NAME = satellite.name
+				left outer join satellite on ".$this->config->item('table_name').".COL_PROP_MODE = 'SAT' and (".$this->config->item('table_name').".COL_SAT_NAME = satellite.name OR (satellite.displayname != '' AND ".$this->config->item('table_name').".COL_SAT_NAME = satellite.displayname))
 				where station_id in (" . $location_list . ")";
 		if ($band != 'All') {
 			if ($band == 'SAT') {
@@ -141,58 +141,69 @@ class Callstats_model extends CI_Model {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
-		$this->db->select($this->config->item('table_name').'.*, `station_profile`.*, `dxcc_entities`.*, `lotw_users`.*, `satellite.displayname` AS sat_displayname');
-		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
-		$this->db->join('dxcc_entities', 'dxcc_entities.adif = ' . $this->config->item('table_name') . '.COL_DXCC', 'left outer');
-		$this->db->join('lotw_users', 'lotw_users.callsign = ' . $this->config->item('table_name') . '.col_call', 'left outer');
+		$table = $this->config->item('table_name');
+		$params = [];
+		$sql = "
+			SELECT $table.*, station_profile.*, dxcc_entities.*, lotw_users.*, satellite.displayname AS sat_displayname
+			FROM $table
+			JOIN station_profile ON station_profile.station_id = $table.station_id
+			LEFT OUTER JOIN dxcc_entities ON dxcc_entities.adif = $table.COL_DXCC
+			LEFT OUTER JOIN lotw_users ON lotw_users.callsign = $table.col_call
+		";
 
 		if (isset($sat) || strtoupper($band) == 'ALL' || $band == 'SAT') {
-			$this->db->join('satellite', 'satellite.name = ' . $this->config->item('table_name') . '.col_sat_name', 'left outer');
+			$sql .= "
+				LEFT OUTER JOIN satellite
+				ON $table.COL_PROP_MODE = 'SAT'
+				AND ($table.COL_SAT_NAME = satellite.name
+					OR (satellite.displayname != '' AND $table.COL_SAT_NAME = satellite.displayname))
+			";
 		}
 
-		$this->db->where('COL_CALL', $searchphrase);
+		$sql .= " WHERE COL_CALL = ?";
+		$params[] = $searchphrase;
 
-		$this->db->where_in($this->config->item('table_name') . '.station_id', $logbooks_locations_array);
+		$sql .= " AND $table.station_id IN ('".implode("','", $logbooks_locations_array)."')";
 
 		if (strtolower($band) != 'all') {
 			if ($band != "SAT") {
-				$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
-				$this->db->where('COL_BAND', $band);
+				$sql .= "AND (COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)";
+				$sql .= "AND COL_BAND = ?";
+				$params[] = $band;
 			} else {
-				$this->db->where('COL_PROP_MODE', "SAT");
+				$sql .= " AND COL_PROP_MODE = 'SAT'";
 			}
 		}
 
 		if ($orbit != 'All') {
-			$this->db->where('orbit', $orbit);
+			$sql .= " AND orbit = ?";
+			$params[] = $orbit;
 		}
 
 		if ($propagation != '') {
 			if ($propagation == 'None') {
-				$this->db->where('COL_PROP_MODE', '');
+				$sql .= " AND COL_PROP_MODE = ''";
 			} else if ($propagation == 'NoSAT') {
-				$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
+				$sql .= " AND (COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)";
 			} else {
-				$this->db->where('COL_PROP_MODE', $propagation);
+				$sql .= " AND COL_PROP_MODE = ?";
+				$params[] = $propagation;
 			}
 		}
 
 		if ($mode != 'All') {
-			$this->db->group_start();
-			$this->db->where("COL_MODE", $mode);
-			$this->db->or_where("COL_SUBMODE", $mode);
-			$this->db->group_end();
+			$sql .= " AND (COL_MODE = ? OR COL_SUBMODE = ?)";
+			$params[] = $mode;
+			$params[] = $mode;
 		}
 
 		if ($sat != 'All') {
-			$this->db->where("COL_SAT_NAME", $sat);
+			$sql .= " AND COL_SAT_NAME = ?";
+			$params[] = $sat;
 		}
 
-		$this->db->order_by("COL_TIME_ON", "desc");
-		$this->db->order_by("COL_PRIMARY_KEY", "desc");
+		$sql .= " ORDER BY COL_TIME_ON desc, COL_PRIMARY_KEY desc LIMIT 500";
 
-		$this->db->limit(500);
-
-		return $this->db->get($this->config->item('table_name'));
+		return $this->db->query($sql, $params);
 	}
 }
