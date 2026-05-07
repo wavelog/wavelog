@@ -538,7 +538,7 @@ if (typeof window.DX_WATERFALL_FIELD_MAP === 'undefined') {
                   <select class="form-select" id="selectPropagation" name="prop_mode">
                     <option value="" <?php if(!empty($this->session->userdata('prop_mode'))) { echo "selected=\"selected\""; } ?>></option>
                     <?php foreach ($adif_modes as $mode => $desc) {
-                       echo "<option value=\"$mode\" ".($this->session->userdata('prop_mode') == "$mode" ? "selected=\"selected\"" : "").">"._pgettext("Propagation _mode", $desc)."</option>\n";
+                       echo "<option value=\"$mode\" ".($this->session->userdata('prop_mode') == "$mode" ? "selected=\"selected\"" : "").">"._pgettext("Propagation Mode", $desc)."</option>\n";
                     } ?>
                   </select>
                 </div>
