@@ -61,7 +61,6 @@ class Distances_model extends CI_Model
 
 				$this->db->where('station_id', $station_id);
 				$queryresult = $this->db->get($this->config->item('table_name'));
-            log_message('debug', 'SQL: '.$this->db->last_query());
 
 				if ($queryresult->result_array()) {
 					$temp = $this->plot($queryresult->result_array(), $gridsquare, $measurement_base);
