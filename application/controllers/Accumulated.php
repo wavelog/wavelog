@@ -19,6 +19,7 @@ class Accumulated extends CI_Controller
 	    $data['page_title'] = __("Accumulated Statistics");
 
 	    $this->load->model('bands');
+	    $this->load->library('adif_modes');
 
 	    $data['worked_bands'] = $this->bands->get_worked_bands(); // Used in the view for band select
 
@@ -36,6 +37,7 @@ class Accumulated extends CI_Controller
 
 
 	    $data['modes'] = $this->modes->active();
+	    $data['adif_modes'] = $this->adif_modes->get();
 
 	    $this->load->view('interface_assets/header', $data);
 	    $this->load->view('accumulate/index');

@@ -13,13 +13,15 @@ class Kmlexport extends CI_Controller {
         $this->load->model('user_model');
         $this->load->model('modes');
         $this->load->model('logbook_model');
-	$this->load->model('bands');
+        $this->load->model('bands');
+        $this->load->library('adif_modes');
 
-	if(!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+        if(!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
         $data['worked_bands'] = $this->bands->get_worked_bands(); // Used in the view for band select
         $data['modes'] = $this->modes->active(); // Used in the view for mode select
         $data['dxcc'] = $this->logbook_model->fetchDxcc(); // Used in the view for dxcc select
+        $data['adif_modes'] = $this->adif_modes->get();
 
         $data['page_title'] = __("KML Export");
 

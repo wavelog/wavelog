@@ -431,6 +431,7 @@ class QSO extends CI_Controller {
 		$this->load->model('contesting_model');
 
 		$this->load->library('form_validation');
+		$this->load->library('adif_modes');
 
 		if(!$this->user_model->authorize(2)) {
 			$this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard');
@@ -445,6 +446,8 @@ class QSO extends CI_Controller {
 		$data['modes'] = $this->modes->all();
 		$data['bands'] = $this->bands->get_user_bands_for_qso_entry(true);
 		$data['contest'] = $this->contesting_model->getActivecontests();
+
+		$data['adif_modes'] = $this->adif_modes->get();
 
 		$this->load->view('qso/edit_ajax', $data);
 	}

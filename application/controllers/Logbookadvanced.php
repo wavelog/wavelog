@@ -30,6 +30,8 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->model('dxcc');
 		$this->load->model('user_options_model');
 
+		$this->load->library('adif_modes');
+
 		$data = [];
 		$data['page_title'] = __("Advanced logbook");
 		$data['hasDatePicker'] = true;
@@ -47,6 +49,8 @@ class Logbookadvanced extends CI_Controller {
 
 		$data['mapoptions'] = $mapoptions;
 		$data['user_map_custom'] = $this->optionslib->get_map_custom();
+
+		$data['adif_modes'] = $this->adif_modes->get();
 
 		$active_station_id = $this->stations->find_active();
 		$station_profile = $this->stations->profile($active_station_id);
