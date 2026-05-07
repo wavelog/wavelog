@@ -148,7 +148,7 @@ class Callstats_model extends CI_Model {
 			FROM $table
 			JOIN station_profile ON station_profile.station_id = $table.station_id
 			LEFT OUTER JOIN dxcc_entities ON dxcc_entities.adif = $table.COL_DXCC
-			LEFT OUTER JOIN lotw_users ON lotw_users.callsign = TABLE_HRD_CONTACTS_V01.col_call
+			LEFT OUTER JOIN lotw_users ON lotw_users.callsign = $table.col_call
 		";
 
 		if (isset($sat) || strtoupper($band) == 'ALL' || $band == 'SAT') {
