@@ -189,7 +189,7 @@
                                             <label for="prop_mode"><?= __("Propagation Mode"); ?></label>
                                             <select class="form-select" id="prop_mode_edit" name="prop_mode">
                                                 <option value="" <?php if ($qso->COL_PROP_MODE == "") { echo "selected=\"selected\""; } ?>></option>
-                                                <?php foreach ($adif_modes as $mode => $desc) {
+                                                <?php foreach ($adif_propmodes as $mode => $desc) {
                                                     echo "<option value=\"$mode\" ".($qso->COL_PROP_MODE == "$mode" ? "selected=\"selected\"" : "").">"._pgettext("Propagation Mode", $desc)."</option>\n";
                                                 } ?>
                                             </select>

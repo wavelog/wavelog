@@ -56,7 +56,7 @@
                         <option value="All"><?= __("All"); ?></option>
                         <option value="NoSAT"><?= __("All but SAT"); ?></option>
                         <option value="None"><?= __("None/Empty"); ?></option>
-                        <?php foreach ($adif_modes as $mode => $desc) {
+                        <?php foreach ($adif_propmodes as $mode => $desc) {
                            echo "<option value=\"$mode\">"._pgettext("Propagation Mode", $desc)."</option>\n";
                         } ?>
                     </select>

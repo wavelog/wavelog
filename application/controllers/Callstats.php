@@ -20,7 +20,6 @@ class Callstats extends CI_Controller
 
 	    $this->load->model('bands');
 	    $this->load->model('Callstats_model');
-	    $this->load->library('adif_modes');
 
 	    if ($this->input->post('band') != NULL) {   // Band is not set when page first loads.
 		    $band = $this->input->post('band',true);
@@ -72,7 +71,7 @@ class Callstats extends CI_Controller
 	    $data['satselect'] = $sat;
 	    $data['propagationselect'] = $propagation;
 	    $data['user_default_band'] = $this->session->userdata('user_default_band');
-	    $data['adif_modes'] = $this->adif_modes->get();
+	    $data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
 	    $footerData = [];
 	    $footerData['scripts'] = [
@@ -89,7 +88,6 @@ class Callstats extends CI_Controller
 	 */
 	public function qso_details_callstats() {
 		$this->load->model('callstats_model');
-		$this->load->library('adif_modes');
 
 		$searchphrase = str_replace('"', "", $this->security->xss_clean($this->input->post("Searchphrase")));
 		$band = str_replace('"', "", $this->security->xss_clean($this->input->post("Band")));
@@ -98,7 +96,7 @@ class Callstats extends CI_Controller
 		$orbit = str_replace('"', "", $this->security->xss_clean($this->input->post("Orbit")));
 		$propagation = str_replace('"', "", $this->security->xss_clean($this->input->post("Propagation")) ?? '');
 		$data['results'] = $this->callstats_model->qso_details($searchphrase, $band, $mode, $sat, $orbit, $propagation);
-		$data['adif_modes'] = $this->adif_modes->get();
+		$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
 		// Render Page
 		$data['page_title'] = __("Log View");

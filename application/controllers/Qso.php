@@ -14,7 +14,6 @@ class QSO extends CI_Controller {
 	public function index() {
 		$this->load->model('cat');
 		$this->load->library('qra');
-		$this->load->library('adif_modes');
 		$this->load->model('stations');
 		$this->load->model('logbook_model');
 		$this->load->model('user_model');
@@ -135,7 +134,7 @@ class QSO extends CI_Controller {
 		// [eQSL default msg] GET user options (option_type='eqsl_default_qslmsg'; option_name='key_station_id'; option_key=station_id) //
 		$options_object = $this->user_options_model->get_options('eqsl_default_qslmsg',array('option_name'=>'key_station_id','option_key'=>$data['active_station_profile']))->result();
 		$data['qslmsg'] = (isset($options_object[0]->option_value))?$options_object[0]->option_value:'';
-		$data['adif_modes'] = $this->adif_modes->get();
+		$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
 		$footerData = [];
 		$footerData['scripts'] = [
@@ -431,7 +430,6 @@ class QSO extends CI_Controller {
 		$this->load->model('contesting_model');
 
 		$this->load->library('form_validation');
-		$this->load->library('adif_modes');
 
 		if(!$this->user_model->authorize(2)) {
 			$this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard');
@@ -447,7 +445,7 @@ class QSO extends CI_Controller {
 		$data['bands'] = $this->bands->get_user_bands_for_qso_entry(true);
 		$data['contest'] = $this->contesting_model->getActivecontests();
 
-		$data['adif_modes'] = $this->adif_modes->get();
+		$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
 		$this->load->view('qso/edit_ajax', $data);
 	}

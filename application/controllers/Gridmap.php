@@ -12,7 +12,6 @@ class Gridmap extends CI_Controller {
 		$this->load->model('bands');
 		$this->load->model('gridmap_model');
 		$this->load->model('stations');
-		$this->load->library('adif_modes');
 
 		$data['visitor'] = false;
 		$data['homegrid'] = explode(',', $this->stations->find_gridsquare());
@@ -42,7 +41,7 @@ class Gridmap extends CI_Controller {
 
 		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
-		$data['adif_modes'] = $this->adif_modes->get();
+		$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
 		$footerData = [];
 		$footerData['scripts'] = [

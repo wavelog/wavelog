@@ -13,8 +13,6 @@ class Distances extends CI_Controller {
 
     public function index()
     {
-        $this->load->library('adif_modes');
-
         // Render Page
         $data['page_title'] = __("Distances Worked");
 
@@ -23,7 +21,7 @@ class Distances extends CI_Controller {
         $data['sats_available'] = $this->bands->get_worked_sats();
         $data['orbits'] = $this->bands->get_worked_orbits();
         $data['user_default_band'] = $this->session->userdata('user_default_band');
-        $data['adif_modes'] = $this->adif_modes->get();
+        $data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
         $this->load->view('interface_assets/header', $data);
         $this->load->view('distances/index');
@@ -73,7 +71,6 @@ class Distances extends CI_Controller {
 
 	public function getDistanceQsos(){
 		$this->load->model('distances_model');
-		$this->load->library('adif_modes');
 
 		$distance = $this->security->xss_clean($this->input->post('distance'));
 		$band = $this->security->xss_clean($this->input->post('band'));
@@ -81,7 +78,7 @@ class Distances extends CI_Controller {
 		$propagation = $this->security->xss_clean($this->input->post('propagation'));
 
 		$data['results'] = $this->distances_model->qso_details($distance, $band, $sat, $propagation);
-		$data['adif_modes'] = $this->adif_modes->get();
+		$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
 		// Render Page
 		$data['page_title'] = "Log View - " . $distance;

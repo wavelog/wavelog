@@ -23,7 +23,7 @@ function echo_table_header_col($ctx, $name) {
 	}
 }
 
-function echo_table_col($row, $name, $adif_modes) {
+function echo_table_col($row, $name, $adif_propmodes) {
 	$ci =& get_instance();
 	switch($name) {
 		case 'Mode':    echo '<td>'; echo $row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE . '</td>'; break;
@@ -51,7 +51,7 @@ function echo_table_col($row, $name, $adif_modes) {
 		case 'Name':echo '<td>' . ($row->COL_NAME ?? '') . '</td>'; break;
 		case 'Propagation':
 			if (isset($row->COL_PROP_MODE)) {
-				echo '<td>' . _pgettext("Propagation Mode", $adif_modes[$row->COL_PROP_MODE]) . '</td>';
+				echo '<td>' . _pgettext("Propagation Mode", $adif_propmodes[$row->COL_PROP_MODE]) . '</td>';
 			} else {
 				echo '<td></td>';
 			}
@@ -210,11 +210,11 @@ function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
             </td>
 			<?php
 
-                echo_table_col($row, $this->session->userdata('user_column1')==""?'Mode':$this->session->userdata('user_column1'), $adif_modes);
-                echo_table_col($row, $this->session->userdata('user_column2')==""?'RSTS':$this->session->userdata('user_column2'), $adif_modes);
-                echo_table_col($row, $this->session->userdata('user_column3')==""?'RSTR':$this->session->userdata('user_column3'), $adif_modes);
-                echo_table_col($row, $this->session->userdata('user_column4')==""?'Band':$this->session->userdata('user_column4'), $adif_modes);
-                echo_table_col($row, $this->session->userdata('user_column5'), $adif_modes);
+                echo_table_col($row, $this->session->userdata('user_column1')==""?'Mode':$this->session->userdata('user_column1'), $adif_propmodes);
+                echo_table_col($row, $this->session->userdata('user_column2')==""?'RSTS':$this->session->userdata('user_column2'), $adif_propmodes);
+                echo_table_col($row, $this->session->userdata('user_column3')==""?'RSTR':$this->session->userdata('user_column3'), $adif_propmodes);
+                echo_table_col($row, $this->session->userdata('user_column4')==""?'Band':$this->session->userdata('user_column4'), $adif_propmodes);
+                echo_table_col($row, $this->session->userdata('user_column5'), $adif_propmodes);
 
 				if(($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) {
     		    			if ( strpos($this->session->userdata('user_default_confirmation'),'Q') !== false  ) { ?>

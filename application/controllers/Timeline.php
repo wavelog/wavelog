@@ -15,7 +15,6 @@ class Timeline extends CI_Controller {
 		$data['page_title'] = __("Timeline");
 
 		$this->load->model('Timeline_model');
-		$this->load->library('adif_modes');
 
 		if ($this->input->post('band') != NULL) {   // Band is not set when page first loads.
 			$band = $this->security->xss_clean($this->input->post('band'));
@@ -101,7 +100,7 @@ class Timeline extends CI_Controller {
 		$data['years'] = $this->Timeline_model->get_years();
 		$data['onlynew'] = $onlynew;
 		$data['selectedyear'] = $year;
-		$data['adif_modes'] = $this->adif_modes->get();;
+		$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
 		$footerData['scripts'] = [ 'assets/js/sections/timeline.js' ];
 		$this->load->view('interface_assets/header', $data);
@@ -112,7 +111,6 @@ class Timeline extends CI_Controller {
 	public function details() {
 		$this->load->model('logbook_model');
 		$this->load->model('timeline_model');
-		$this->load->library('adif_modes');
 
 		$querystring = str_replace('"', "", $this->security->xss_clean($this->input->post("Querystring")));
 
@@ -122,7 +120,7 @@ class Timeline extends CI_Controller {
 		$propmode = str_replace('"', "", $this->security->xss_clean($this->input->post("Propmode")));
 
 		$data['results'] = $this->timeline_model->timeline_qso_details($querystring, $band, $propmode, $mode, $type);
-		$data['adif_modes'] = $this->adif_modes->get();
+		$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
 
 		switch($type) {
