@@ -26,41 +26,51 @@ class Distances_model extends CI_Model
 			if ($station_gridsquare != null) {
 				$gridsquare = explode(',', $station_gridsquare); // We need to convert to an array, since a user can enter several gridsquares
 
-				$this->db->select('COL_PRIMARY_KEY,COL_DISTANCE,COL_ANT_PATH,col_call callsign, col_gridsquare grid');
-                 $this->db->join('satellite', $this->config->item('table_name').'.COL_PROP_MODE = "SAT" AND ('.$this->config->item('table_name').'.COL_SAT_NAME = satellite.name OR ' . '(satellite.displayname != "" AND ' . $this->config->item('table_name') . '.COL_SAT_NAME = satellite.displayname)' . ')', 'left outer');
-				$this->db->where('LENGTH(col_gridsquare) >', 0);
+				$table = $this->config->item('table_name');
+				$sql = "
+					SELECT COL_PRIMARY_KEY, COL_DISTANCE, COL_ANT_PATH, col_call callsign, col_gridsquare grid
+					FROM $table
+					LEFT OUTER JOIN satellite
+						ON $table.COL_PROP_MODE = 'SAT'
+						AND ($table.COL_SAT_NAME = satellite.name
+							OR (satellite.displayname != '' AND $table.COL_SAT_NAME = satellite.displayname))
+					WHERE LENGTH(col_gridsquare) > 0 AND station_id = ?
+				";
+
+				$params = array($station_id);
 
 				if ($clean_postdata['band'] != 'All') {
 					if ($clean_postdata['band'] == 'sat') {
-						$this->db->where('col_prop_mode', $clean_postdata['band']);
+						$sql .= " AND col_prop_mode = ?";
+						$params[] = $clean_postdata['band'];
 						if ($clean_postdata['sat'] != 'All') {
-							$this->db->where('col_sat_name', $clean_postdata['sat']);
+							$sql .= " AND col_sat_name = ?";
+							$params[] = $clean_postdata['sat'];
 						}
 					}
 					else {
-						$this->db->where('col_band', $clean_postdata['band']);
+						$sql .= " AND col_band = ?";
+						$params[] = $clean_postdata['band'];
 					}
 				}
 
 				if ($clean_postdata['orbit'] != 'All') {
-					$this->db->where('satellite.orbit', $clean_postdata['orbit']);
+					$sql .= " AND satellite.orbit = ?";
+					$params[] = $clean_postdata['orbit'];
 				}
 
 				if ( $clean_postdata['propagation'] == 'NoSAT' ) {		// All without SAT
-					$this->db->where('col_prop_mode !=', 'SAT');
+					$sql .= " AND col_prop_mode != 'SAT'";
 				} elseif ($clean_postdata['propagation'] == 'None') {	// Empty Propmode
-					$this->db->group_start();
-					$this->db->where('trim(col_prop_mode)', '');
-					$this->db->or_where('col_prop_mode is null');
-					$this->db->group_end();
+					$sql .= " AND (TRIM(col_prop_mode) = '' OR col_prop_mode IS NULL)";
 				} elseif ($clean_postdata['propagation'] == 'All') {		// Dont care for propmode
 					; // No Prop-Filter
 				} else {				// Propmode set, take care of it
-					$this->db->where('col_prop_mode', $clean_postdata['propagation']);
+					$sql .= " AND col_prop_mode = ?";
+					$params[] = $clean_postdata['propagation'];
 				}
 
-				$this->db->where('station_id', $station_id);
-				$queryresult = $this->db->get($this->config->item('table_name'));
+				$queryresult = $this->db->query($sql, $params);
 
 				if ($queryresult->result_array()) {
 					$temp = $this->plot($queryresult->result_array(), $gridsquare, $measurement_base);
@@ -258,52 +268,65 @@ class Distances_model extends CI_Model
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
-		$this->db->select('dxcc_entities.adif, lotw_users.callsign, COL_BAND, COL_CALL, COL_CLUBLOG_QSO_DOWNLOAD_DATE,
-			COL_CLUBLOG_QSO_DOWNLOAD_STATUS, COL_CLUBLOG_QSO_UPLOAD_DATE, COL_CLUBLOG_QSO_UPLOAD_STATUS, COL_CONTEST_ID, COL_DISTANCE,
-			COL_EQSL_QSL_RCVD, COL_EQSL_QSLRDATE, COL_EQSL_QSLSDATE, COL_EQSL_QSL_SENT, COL_FREQ, COL_GRIDSQUARE, COL_IOTA, COL_LOTW_QSL_RCVD,
-			COL_LOTW_QSLRDATE, COL_LOTW_QSLSDATE, COL_LOTW_QSL_SENT, COL_MODE, COL_NAME, COL_OPERATOR, COL_POTA_REF, COL_PRIMARY_KEY,
-			COL_QRZCOM_QSO_DOWNLOAD_DATE, COL_QRZCOM_QSO_DOWNLOAD_STATUS, COL_QRZCOM_QSO_UPLOAD_DATE, COL_QRZCOM_QSO_UPLOAD_STATUS,
-			COL_QSL_RCVD, COL_QSL_RCVD_VIA, COL_QSLRDATE, COL_QSLSDATE, COL_QSL_SENT, COL_QSL_SENT_VIA, COL_QSL_VIA, COL_RST_RCVD,
-			COL_RST_SENT, COL_SAT_NAME, COL_SOTA_REF, COL_SRX, COL_SRX_STRING, COL_STATE, COL_STX, COL_STX_STRING, COL_SUBMODE, COL_TIME_ON,
-			COL_VUCC_GRIDS, COL_WWFF_REF, COL_PROP_MODE, dxcc_entities.end, lotw_users.lastupload, dxcc_entities.name, satellite.displayname AS sat_displayname,
-			station_profile.station_callsign, station_profile.station_gridsquare, station_profile.station_profile_name');
-		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
-		$this->db->join('dxcc_entities', 'dxcc_entities.adif = '.$this->config->item('table_name').'.COL_DXCC', 'left outer');
-		$this->db->join('lotw_users', 'lotw_users.callsign = '.$this->config->item('table_name').'.col_call', 'left outer');
-		$this->db->join('satellite', $this->config->item('table_name').'.COL_PROP_MODE = "SAT" AND '.$this->config->item('table_name').'.COL_SAT_NAME = COALESCE(NULLIF(satellite.name, ""), NULLIF(satellite.displayname, ""))', 'left outer');
-		$this->db->where('COL_DISTANCE >=', $distarray[0]);
-		$this->db->where('COL_DISTANCE <=', $distarray[1]);
-		$this->db->where('LENGTH(col_gridsquare) >', 0);
+		$table = $this->config->item('table_name');
+		$sql = "
+			SELECT dxcc_entities.adif, lotw_users.callsign, COL_BAND, COL_CALL, COL_CLUBLOG_QSO_DOWNLOAD_DATE,
+				COL_CLUBLOG_QSO_DOWNLOAD_STATUS, COL_CLUBLOG_QSO_UPLOAD_DATE, COL_CLUBLOG_QSO_UPLOAD_STATUS, COL_CONTEST_ID, COL_DISTANCE,
+				COL_EQSL_QSL_RCVD, COL_EQSL_QSLRDATE, COL_EQSL_QSLSDATE, COL_EQSL_QSL_SENT, COL_FREQ, COL_GRIDSQUARE, COL_IOTA, COL_LOTW_QSL_RCVD,
+				COL_LOTW_QSLRDATE, COL_LOTW_QSLSDATE, COL_LOTW_QSL_SENT, COL_MODE, COL_NAME, COL_OPERATOR, COL_POTA_REF, COL_PRIMARY_KEY,
+				COL_QRZCOM_QSO_DOWNLOAD_DATE, COL_QRZCOM_QSO_DOWNLOAD_STATUS, COL_QRZCOM_QSO_UPLOAD_DATE, COL_QRZCOM_QSO_UPLOAD_STATUS,
+				COL_QSL_RCVD, COL_QSL_RCVD_VIA, COL_QSLRDATE, COL_QSLSDATE, COL_QSL_SENT, COL_QSL_SENT_VIA, COL_QSL_VIA, COL_RST_RCVD,
+				COL_RST_SENT, COL_SAT_NAME, COL_SOTA_REF, COL_SRX, COL_SRX_STRING, COL_STATE, COL_STX, COL_STX_STRING, COL_SUBMODE, COL_TIME_ON,
+				COL_VUCC_GRIDS, COL_WWFF_REF, COL_PROP_MODE, dxcc_entities.end, lotw_users.lastupload, dxcc_entities.name, satellite.displayname AS sat_displayname,
+				station_profile.station_callsign, station_profile.station_gridsquare, station_profile.station_profile_name
+			FROM $table
+			INNER JOIN station_profile ON station_profile.station_id = $table.station_id
+			LEFT OUTER JOIN dxcc_entities ON dxcc_entities.adif = $table.COL_DXCC
+			LEFT OUTER JOIN lotw_users ON lotw_users.callsign = $table.col_call
+			LEFT OUTER JOIN satellite
+				ON $table.COL_PROP_MODE = 'SAT'
+				AND ($table.COL_SAT_NAME = satellite.name
+					OR (satellite.displayname != '' AND $table.COL_SAT_NAME = satellite.displayname))
+			WHERE COL_DISTANCE >= ? AND COL_DISTANCE <= ? AND LENGTH(col_gridsquare) > 0
+		";
 
-		$this->db->where_in($this->config->item('table_name').'.station_id', $logbooks_locations_array);
+		$params = array($distarray[0], $distarray[1]);
+
+		$placeholders = '';
+		foreach ($logbooks_locations_array as $idx => $station_id) {
+			$placeholders .= $idx > 0 ? ',?' : '?';
+			$params[] = $station_id;
+		}
+		$sql .= " AND $table.station_id IN ($placeholders)";
 
 		if ($band != 'All') {
 			if($band != "sat") {
-				$this->db->where("(COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)");
-				$this->db->where('COL_BAND', $band);
+				$sql .= " AND (COL_PROP_MODE != 'SAT' OR COL_PROP_MODE IS NULL)";
+				$sql .= " AND COL_BAND = ?";
+				$params[] = $band;
 			} else {
-				$this->db->where('COL_PROP_MODE', "SAT");
+				$sql .= " AND COL_PROP_MODE = 'SAT'";
 				if ($sat != 'All') {
-					$this->db->where('COL_SAT_NAME', $sat);
+					$sql .= " AND COL_SAT_NAME = ?";
+					$params[] = $sat;
 				}
 			}
 		}
 
 		if ($propagation == 'NoSAT' ) {		// All without SAT
-			$this->db->where('col_prop_mode !=', 'SAT');
+			$sql .= " AND col_prop_mode != 'SAT'";
 		} elseif ($propagation == 'None') {	// Empty Propmode
-			$this->db->group_start();
-			$this->db->where('trim(col_prop_mode)', '');
-			$this->db->or_where('col_prop_mode is null');
-			$this->db->group_end();
+			$sql .= " AND (TRIM(col_prop_mode) = '' OR col_prop_mode IS NULL)";
 		} elseif ($propagation == 'All') {		// Dont care for propmode
 			; // No Prop-Filter
 		} else {				// Propmode set, take care of it
-			$this->db->where('col_prop_mode', $propagation);
+			$sql .= " AND col_prop_mode = ?";
+			$params[] = $propagation;
 		}
-		$this->db->order_by("COL_TIME_ON", "desc");
 
-		return $this->db->get($this->config->item('table_name'));
+		$sql .= " ORDER BY COL_TIME_ON DESC";
+
+		return $this->db->query($sql, $params);
 	}
 
 	function getdistparams($distance) {
