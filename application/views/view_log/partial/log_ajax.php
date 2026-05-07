@@ -51,7 +51,7 @@ function echo_table_col($row, $name, $adif_modes) {
 		case 'Name':echo '<td>' . ($row->COL_NAME ?? '') . '</td>'; break;
 		case 'Propagation':
 			if (isset($row->COL_PROP_MODE)) {
-				echo '<td>' . $adif_modes[$row->COL_PROP_MODE] . '</td>';
+				echo '<td>' . _pgettext("Propagation Mode", $adif_modes[$row->COL_PROP_MODE]) . '</td>';
 			} else {
 				echo '<td></td>';
 			}
