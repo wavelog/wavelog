@@ -605,8 +605,8 @@ function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
 
                 <?php if ( strpos($this->session->userdata('user_default_confirmation'),'D') !== false ) { ?>
                 <td class="dcl">
-                <span <?php if ($row->COL_DCL_QSL_SENT != "N") {
-                       switch ($row->COL_DCL_QSL_SENT) {
+                <span <?php if (($row->COL_DCL_QSL_SENT ?? 'N') != "N") {
+                       switch ($row->COL_DCL_QSL_SENT ?? 'N') {
                        case "Y":
                           echo "class=\"qsl-green\" data-bs-toggle=\"tooltip\" title=\"".__("Sent");
                           break;
@@ -623,13 +623,13 @@ function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
                           echo "class=\"qsl-red";
                           break;
                        }
-                        if ($row->COL_DCL_QSLSDATE != null) {
+                        if (!empty($row->COL_DCL_QSLSDATE)) {
                             $timestamp = strtotime($row->COL_DCL_QSLSDATE); echo " "  .($timestamp != '' ? date($custom_date_format, $timestamp) : '');
                         }
                      } else { echo "class=\"qsl-red"; }
                         echo "\">&#9650;</span>"; ?>
-                <span <?php if ($row->COL_DCL_QSL_RCVD != "N") {
-                       switch ($row->COL_DCL_QSL_RCVD) {
+                <span <?php if (($row->COL_DCL_QSL_RCVD ?? 'N') != "N") {
+                       switch ($row->COL_DCL_QSL_RCVD ?? 'N') {
                        case "Y":
                           echo "class=\"qsl-green\" data-bs-toggle=\"tooltip\" title=\"".__("Received");
                           break;
@@ -646,7 +646,7 @@ function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
                           echo "class=\"qsl-red";
                           break;
                        }
-                       if ($row->COL_DCL_QSLRDATE != null) {
+                       if (!empty($row->COL_DCL_QSLRDATE)) {
                             $timestamp = strtotime($row->COL_DCL_QSLRDATE); echo " "  .($timestamp != '' ? date($custom_date_format, $timestamp) : '');
                        }
                      } else { echo "class=\"qsl-red"; }
