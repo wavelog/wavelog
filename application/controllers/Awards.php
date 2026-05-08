@@ -537,6 +537,7 @@ class Awards extends CI_Controller {
 		$dateFrom = $this->security->xss_clean($this->input->post('dateFrom'));
 		$dateTo = $this->security->xss_clean($this->input->post('dateTo'));
 		$data['results'] = $this->logbook_model->qso_details($searchphrase, $band, $mode, $type, $qsl, $sat, $orbit, $searchmode, $propagation, $dateFrom, $dateTo);
+		$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
 		// This is done because we have two different ways to get dxcc info in Wavelog. Once is using the name (in awards), and the other one is using the ADIF DXCC.
 		// We replace the values to make it look a bit nicer
