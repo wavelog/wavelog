@@ -1358,7 +1358,7 @@ class User extends CI_Controller {
 		}
 	}
 
-	function logout($custom_message = null, $hard_logout = true) {
+	function logout($custom_message = null, $hard_logout = true, $enable_idp = true) {
 		$this->load->model('user_model');
 
 		$user_name = $this->session->userdata('user_name');
@@ -1377,7 +1377,7 @@ class User extends CI_Controller {
 			$this->input->set_cookie('tmp_msg', json_encode(['notice', sprintf(__("User %s logged out."), $user_name)]), 10, '');
 		}
 
-		if ($this->config->item('auth_header_enable')) {
+		if ($this->config->item('auth_header_enable') && $enable_idp) {
 			$this->config->load('sso', true, true);
 			$logout = $this->config->item('auth_header_url_logout', 'sso') ?: null;
 			if ($logout !== null) {
@@ -1873,6 +1873,6 @@ class User extends CI_Controller {
 
 		// log out on the regular way
 		$msg = ['notice', sprintf(__("You have been logged out of the account %s. Welcome back, %s, to your personal account!"), $club->user_callsign, $source_user->user_callsign)];
-		$this->logout($msg, false);
+		$this->logout($msg, false, false);
 	}
 }
