@@ -246,7 +246,7 @@
                     <?php if($row->COL_PROP_MODE != null and $row->COL_PROP_MODE != '') { ?>
                     <tr>
                         <td><?= __("Propagation"); ?></td>
-                        <td><?php echo _pgettext("Propagation Mode", $this->config->item('adif_propmodes')[$row->COL_PROP_MODE]); ?></td>
+                        <td><?php echo _pgettext("Propagation Mode", $this->config->item('adif_propmodes')[$row->COL_PROP_MODE] ?? $row->COL_PROP_MODE); ?></td>
                     </tr>
                     <?php } ?>
 
