@@ -42,19 +42,6 @@ if ($_POST['write_to_logfile'] ?? false == true) {
  * 
  */
 
-if ($_POST['check_lockfile'] ?? false == true) {
-
-	$lockfile = '../install/.lock';
-
-	if (file_exists($lockfile)) {
-		$result = 'installer_locked';
-	} else {
-		$result = 'no_lockfile';
-	}
-	echo $result;
-	exit;
-}
-
 // config_file()
 if ($_POST['run_config_file'] ?? false == true) {
 	sleep(1);
@@ -101,6 +88,7 @@ if ($_POST['run_database_tables'] ?? false == true) {
 
 if ($_POST['run_installer_lock'] ?? false == true) {
 	if (touch('.lock')) {
+		unset($_SESSION['installer_token']);
 		echo 'success';
 	} else {
 		echo 'error';
