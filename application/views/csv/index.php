@@ -94,7 +94,7 @@
 						<option value="All"><?= __("All"); ?></option>
 						<option value="NoRPT" selected="selected"><?= _pgettext("Propagation Mode","All but Repeater"); ?></option>
 						<?php foreach ($adif_propmodes as $mode => $desc) {
-							echo "<option value=\"$mode\">".htmlspecialchars_decode(_pgettext("Propagation Mode", $desc))."</option>\n";
+							echo "<option value=\"$mode\">".htmlspecialchars_decode($desc)."</option>\n";
 						} ?>
 					</select>
 				</div>

@@ -93,7 +93,7 @@
 					<select class="form-select" id="selectPropagation" name="prop_mode">
 						<option value="All"><?= __("All"); ?></option>
 						<?php foreach ($adif_propmodes as $mode => $desc) {
-							echo "<option value=\"$mode\">".htmlspecialchars_decode(_pgettext("Propagation Mode", $desc))."</option>\n";
+							echo "<option value=\"$mode\">".htmlspecialchars_decode($desc)."</option>\n";
 						} ?>
 					</select>
 				</div>
