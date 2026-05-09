@@ -190,7 +190,7 @@
                                             <select class="form-select" id="prop_mode_edit" name="prop_mode">
                                                 <option value="" <?php if ($qso->COL_PROP_MODE == "") { echo "selected=\"selected\""; } ?>></option>
                                                 <?php foreach ($adif_propmodes as $mode => $desc) {
-                                                    echo "<option value=\"$mode\" ".($qso->COL_PROP_MODE == "$mode" ? "selected=\"selected\"" : "").">"._pgettext("Propagation Mode", $desc)."</option>\n";
+                                                    echo "<option value=\"$mode\" ".($qso->COL_PROP_MODE == "$mode" ? "selected=\"selected\"" : "").">".htmlspecialchars_decode(_pgettext("Propagation Mode", $desc))."</option>\n";
                                                 } ?>
                                             </select>
                                             <small id="lotw_propmode_hint" class="form-text text-muted">

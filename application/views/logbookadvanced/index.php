@@ -428,7 +428,7 @@ $options = json_decode($options);
                                             <option value=""><?= __("All"); ?></option>
                                             <option value="None"><?= _pgettext("Propagation Mode", "None/Empty"); ?></option>
                                             <?php foreach ($adif_propmodes as $mode => $desc) {
-                                               echo "<option value=\"$mode\">"._pgettext("Propagation Mode", $desc)."</option>\n";
+                                               echo "<option value=\"$mode\">".htmlspecialchars_decode(_pgettext("Propagation Mode", $desc))."</option>\n";
                                             } ?>
                                         </select>
                                     </div>
