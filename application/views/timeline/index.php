@@ -83,7 +83,7 @@
 						<option value="NoSAT"<?php if (($propmode ?? '') == 'NoSAT') { echo 'selected="selected"'; } ?>><?= __("All but SAT"); ?></option>
 						<option value="None"<?php if (($propmode ?? '') == 'None') { echo ' selected="selected"'; } ?>><?= __("None/Empty"); ?></option>
 						<?php foreach ($adif_propmodes as $mode => $desc) {
-							echo "<option value=\"$mode\" ".((($propmode ?? '') == "$mode") ? "selected=\"selected\"" : "").">"._pgettext("Propagation Mode", $desc)."</option>\n";
+							echo "<option value=\"$mode\" ".((($propmode ?? '') == "$mode") ? "selected=\"selected\"" : "").">".htmlspecialchars_decode($desc)."</option>\n";
 						} ?>
 					</select>
 				</div>
