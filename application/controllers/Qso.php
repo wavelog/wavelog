@@ -134,6 +134,7 @@ class QSO extends CI_Controller {
 		// [eQSL default msg] GET user options (option_type='eqsl_default_qslmsg'; option_name='key_station_id'; option_key=station_id) //
 		$options_object = $this->user_options_model->get_options('eqsl_default_qslmsg',array('option_name'=>'key_station_id','option_key'=>$data['active_station_profile']))->result();
 		$data['qslmsg'] = (isset($options_object[0]->option_value))?$options_object[0]->option_value:'';
+		$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
 		$footerData = [];
 		$footerData['scripts'] = [
@@ -443,6 +444,8 @@ class QSO extends CI_Controller {
 		$data['modes'] = $this->modes->all();
 		$data['bands'] = $this->bands->get_user_bands_for_qso_entry(true);
 		$data['contest'] = $this->contesting_model->getActivecontests();
+
+		$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
 		$this->load->view('qso/edit_ajax', $data);
 	}

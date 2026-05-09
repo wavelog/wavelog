@@ -48,6 +48,8 @@ class Logbookadvanced extends CI_Controller {
 		$data['mapoptions'] = $mapoptions;
 		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
+		$data['adif_propmodes'] = $this->config->item('adif_propmodes');
+
 		$active_station_id = $this->stations->find_active();
 		$station_profile = $this->stations->profile($active_station_id);
 

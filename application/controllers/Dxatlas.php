@@ -17,6 +17,7 @@ class Dxatlas extends CI_Controller {
 		$data['dxcc'] = $this->logbook_model->fetchDxcc(); 			// Used in the view for dxcc select
 
 		$data['page_title'] = __("DX Atlas Gridsquare Export");
+		$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('dxatlas/index');
