@@ -16,6 +16,7 @@ class Csv extends CI_Controller {
 		$data['worked_bands'] = $this->bands->get_worked_bands(); 	// Used in the view for band select
 		$data['modes'] = $this->modes->active(); 					// Used in the view for mode select
 		$data['dxcc'] = $this->logbook_model->fetchDxcc(); 			// Used in the view for dxcc select
+		$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
 		$data['page_title'] = __("SOTA CSV Export");
 

@@ -1277,10 +1277,8 @@ class API extends CI_Controller {
 			}
 
 			$lotw_days=$this->logbook_model->check_last_lotw($lookup_callsign);
-			if ($lotw_days != null) {
+			if ($lotw_days !== null) {
 				$return['lotw_member']=$lotw_days;
-			} else {
-				$lotw_member="";
 			}
 
 			if ($return['dxcc_id'] ?? '' != '') {	// DXCC derivated before? if yes: check cnf-states
@@ -1400,10 +1398,8 @@ class API extends CI_Controller {
 			}
 
 			$lotw_days=$this->logbook_model->check_last_lotw($lookup_callsign);
-			if ($lotw_days != null) {
+			if ($lotw_days !== null) {
 				$return['lotw_member']=$lotw_days;
-			} else {
-				$lotw_member="";
 			}
 			echo json_encode($return, JSON_PRETTY_PRINT);
 		} else {

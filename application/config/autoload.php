@@ -80,7 +80,7 @@ $autoload['helper'] = array('url', 'security', 'language', 'club');
 |
 */
 
-$autoload['config'] = array('wavelog', 'bands', 'lotw', 'gettext');
+$autoload['config'] = array('wavelog', 'bands', 'lotw', 'gettext', 'adif_propmodes');
 
 /*
 | -------------------------------------------------------------------

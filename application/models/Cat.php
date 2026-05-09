@@ -8,8 +8,8 @@
 
 			if (isset($result['prop_mode'])) {
 				$prop_mode = $result['prop_mode'];
-			// For backward compatibility, SatPC32 does not set propergation mode
-			} else if (isset($result['sat_name'])) {
+			// For backward compatibility, SatPC32 does not set propagation mode
+			} else if (isset($result['sat_name']) && trim($result['sat_name']) != '') {
 				$prop_mode = "SAT";
 			} else {
 				$prop_mode = NULL;

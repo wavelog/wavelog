@@ -65,6 +65,7 @@
                                         <div class="row gx-2">
                                             <div class="col-md-6">
                                                 <select class="form-select" id="stationCQZoneInput" name="station_cqz" required>
+                                                    <option value=""></option>
                                                     <?php
                                                     for ($i = 1; $i <= 40; $i++) {
                                                         echo '<option value="' . $i . '">' . $i . '</option>';
@@ -75,6 +76,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <select class="form-select" id="stationITUZoneInput" name="station_ituz" required>
+                                                    <option value=""></option>
                                                     <?php
                                                     for ($i = 1; $i <= 90; $i++) {
                                                         echo '<option value="' . $i . '">' . $i . '</option>';
@@ -99,9 +101,92 @@
                     </div>
             </div>
             <div class="modal-footer">
+
+                <!-- Show more buttons if Clubstation enabled and user has rights -->
+                <?php if ($this->config->item('special_callsign') && is_array($this->session->userdata('available_clubstations'))) { ?>
+                    <?php if (count($this->session->userdata('available_clubstations')) > 1) { ?> 
+
+                        <!-- If user has more than 1 clubstation, use dropdown -->
+                        <div class="dropdown">  
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="skipClubstationDropdown" data-bs-toggle="dropdown" aria-expanded="false">  
+                                <?= __("Skip and Open Clubstation"); ?>  
+                            </button>  
+                            <ul class="dropdown-menu" aria-labelledby="skipClubstationDropdown">  
+                                <?php foreach ($this->session->userdata('available_clubstations') as $clubstation) { ?>  
+                                    <li>  
+                                        <a class="dropdown-item" href="#"   
+                                        onclick="clubswitch_modal('<?php echo $clubstation->user_id; ?>', '<?php echo $clubstation->user_callsign; ?>'); $('#firstLoginWizardModal').modal('hide'); return false;"  
+                                        title="<?= sprintf(__("Switch to %s"), $clubstation->user_callsign); ?>">  
+                                            <?php echo $clubstation->user_callsign; ?>  
+                                        </a>  
+                                    </li>  
+                                <?php } ?>  
+                            </ul>  
+                        </div>  
+
+                    <?php } else { ?>
+                        
+                        <!-- Only show button, if only one clubstation -->
+                        <?php foreach ($this->session->userdata('available_clubstations') as $clubstation) { ?>  
+                                <a class="btn btn-secondary" href="#"   
+                                onclick="clubswitch_modal('<?php echo $clubstation->user_id; ?>', '<?php echo $clubstation->user_callsign; ?>'); $('#firstLoginWizardModal').modal('hide'); return false;"  
+                                title="<?= sprintf(__("Switch to %s"), $clubstation->user_callsign); ?>">  
+                                    <?= __("Skip and Open Clubstation"); ?> <?php echo $clubstation->user_callsign; ?>  
+                                </a>  
+                        <?php } ?>  
+
+                    <?php } ?>
+
+                <?php } ?>
                 <button type="submit" class="btn btn-success"><?= __("Save and Start Logging"); ?></button>
             </div>
             </form>
         </div>
     </div>
 </div>
+
+<script>
+(function() {
+    var checkJQuery = setInterval(function() {
+        if (window.jQuery) {
+            clearInterval(checkJQuery);
+            $(document).ready(function() {
+                $("#station_callsign").on("focusout", function() {
+                    if ($(this).val().length >= 3) {
+                        var callsign = $(this).val().toUpperCase().replaceAll('Ø', '0');
+                        var urlCallsign = callsign.replace(/\//g, "-");
+
+                        var url = base_url + "index.php/logbook/json/" + urlCallsign + "/0/0";
+
+                        $.getJSON(url, function(result) {
+                            if (callsign === result.callsign) {
+                                if (result.dxcc && result.dxcc.adif) {
+                                    if ($("#station_dxcc").data('multiselect')) {
+                                        $("#station_dxcc").multiselect('deselectAll', false);
+                                        $("#station_dxcc").multiselect('select', result.dxcc.adif.toString());
+                                        $("#station_dxcc").multiselect('refresh');
+                                    } else {
+                                        $("#station_dxcc").val(result.dxcc.adif);
+                                        $("#station_dxcc").trigger('change');
+                                    }
+                                }
+                                if (result.dxcc && result.dxcc.cqz) {
+                                    $("#stationCQZoneInput").val(result.dxcc.cqz);
+                                } else {
+                                    $("#stationCQZoneInput").val("");
+                                }
+                                if (result.callsign_ituz) {
+                                    $("#stationITUZoneInput").val(result.callsign_ituz);
+                                } else {
+                                    $("#stationITUZoneInput").val("");
+                                }
+                            }
+                        }).fail(function() {
+                        });
+                    }
+                });
+            });
+        }
+    }, 100);
+})();
+</script>

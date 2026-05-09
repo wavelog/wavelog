@@ -16,11 +16,14 @@
 			}
 		});
 
-		// save data in the localstorage
+		// save data in the localstorage (password fields are excluded)
+		var _sensitiveFields = ['db_password', 'password', 'cnfm_password', 'callbook_password'];
 		$('#install_form input').on('input', function() {
 			var inputId = $(this).attr('id');
 			var inputValue = $(this).val();
-			localStorage.setItem(inputId, inputValue);
+			if (!_sensitiveFields.includes(inputId)) {
+				localStorage.setItem(inputId, inputValue);
+			}
 		});
 		$('#install_form select').on('input', function() {
 			var inputId = $(this).attr('id');

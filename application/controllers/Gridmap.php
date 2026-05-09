@@ -9,8 +9,8 @@ class Gridmap extends CI_Controller {
     public function index() {
 		$data['page_title'] = __("Gridsquare Map");
 
-        $this->load->model('bands');
-        $this->load->model('gridmap_model');
+		$this->load->model('bands');
+		$this->load->model('gridmap_model');
 		$this->load->model('stations');
 
 		$data['visitor'] = false;
@@ -41,7 +41,9 @@ class Gridmap extends CI_Controller {
 
 		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
-        $footerData = [];
+		$data['adif_propmodes'] = $this->config->item('adif_propmodes');
+
+		$footerData = [];
 		$footerData['scripts'] = [
 			'assets/js/leaflet/geocoding.js',
 			'assets/js/sections/gridmap.js',

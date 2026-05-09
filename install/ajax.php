@@ -1,5 +1,20 @@
 <?php
 
+session_start();
+
+if (file_exists('.lock')) {
+	http_response_code(403);
+	echo 'forbidden';
+	exit;
+}
+
+$token = $_SERVER['HTTP_X_INSTALLER_TOKEN'] ?? '';
+if (empty($token) || !isset($_SESSION['installer_token']) || !hash_equals($_SESSION['installer_token'], $token)) {
+	http_response_code(403);
+	echo 'forbidden';
+	exit;
+}
+
 // Target for Ajax Calls
 
 require_once('includes/install_config/install_lib.php');
