@@ -32,6 +32,7 @@ class Logbook extends CI_Controller {
 		//load the model and get results
 		$data['results'] = $this->logbook_model->get_qsos($config['per_page'],$this->uri->segment(3));
 
+		$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
 		if(!$data['results']) {
@@ -676,6 +677,7 @@ class Logbook extends CI_Controller {
 		$data['query'] = $this->logbook_model->get_qso($id);
 		if ($data['query']) {	// QSO not found // Skip fetching details
 			$data['dxccFlag'] = $this->dxccflag->get($data['query']->result()[0]->COL_DXCC);
+			$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
 			// Check for note for this callsign and current user
 			$callsign = $data['query']->result()[0]->COL_CALL;

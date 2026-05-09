@@ -189,26 +189,9 @@
                                             <label for="prop_mode"><?= __("Propagation Mode"); ?></label>
                                             <select class="form-select" id="prop_mode_edit" name="prop_mode">
                                                 <option value="" <?php if ($qso->COL_PROP_MODE == "") { echo "selected=\"selected\""; } ?>></option>
-                                                <option value="AS" <?php if ($qso->COL_PROP_MODE == "AS") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode", "Aircraft Scatter"); ?></option>
-                                                <option value="AUR" <?php if ($qso->COL_PROP_MODE == "AUR") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode", "Aurora"); ?></option>
-                                                <option value="AUE" <?php if ($qso->COL_PROP_MODE == "AUE") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode", "Aurora-E"); ?></option>
-                                                <option value="BS" <?php if ($qso->COL_PROP_MODE == "BS") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode", "Back scatter"); ?></option>
-                                                <option value="ECH" <?php if ($qso->COL_PROP_MODE == "ECH") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode", "EchoLink"); ?></option>
-                                                <option value="EME" <?php if ($qso->COL_PROP_MODE == "EME") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode", "Earth-Moon-Earth"); ?></option>
-                                                <option value="ES" <?php if ($qso->COL_PROP_MODE == "ES") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode", "Sporadic E"); ?></option>
-                                                <option value="FAI" <?php if ($qso->COL_PROP_MODE == "FAI") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode", "Field Aligned Irregularities"); ?></option>
-                                                <option value="F2" <?php if ($qso->COL_PROP_MODE == "F2") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode", "F2 Reflection"); ?></option>
-                                                <option value="GWAVE" <?php if ($qso->COL_PROP_MODE == "GWAVE") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode", "Ground Wave"); ?></option>
-                                                <option value="INTERNET" <?php if ($qso->COL_PROP_MODE == "INTERNET") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode", "Internet-assisted"); ?></option>
-                                                <option value="ION" <?php if ($qso->COL_PROP_MODE == "ION") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode", "Ionoscatter"); ?></option>
-                                                <option value="IRL" <?php if ($qso->COL_PROP_MODE == "IRL") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode", "IRLP"); ?></option>
-                                                <option value="LOS" <?php if ($qso->COL_PROP_MODE == "LOS") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode", "Line of Sight (includes transmission through obstacles such as walls)"); ?></option>
-                                                <option value="MS" <?php if ($qso->COL_PROP_MODE == "MS") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode", "Meteor scatter"); ?></option>
-                                                <option value="RPT" <?php if ($qso->COL_PROP_MODE == "RPT") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode", "Terrestrial or atmospheric repeater or transponder"); ?></option>
-                                                <option value="RS" <?php if ($qso->COL_PROP_MODE == "RS") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode", "Rain scatter"); ?></option>
-                                                <option value="SAT" <?php if ($qso->COL_PROP_MODE == "SAT") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode", "Satellite"); ?></option>
-                                                <option value="TEP" <?php if ($qso->COL_PROP_MODE == "TEP") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode", "Trans-equatorial"); ?></option>
-                                                <option value="TR" <?php if ($qso->COL_PROP_MODE == "TR") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode", "Tropospheric ducting"); ?></option>
+                                                <?php foreach ($adif_propmodes as $mode => $desc) {
+                                                    echo "<option value=\"$mode\" ".($qso->COL_PROP_MODE == "$mode" ? "selected=\"selected\"" : "").">"._pgettext("Propagation Mode", $desc)."</option>\n";
+                                                } ?>
                                             </select>
                                             <small id="lotw_propmode_hint" class="form-text text-muted">
                                                 <?php if (in_array($qso->COL_PROP_MODE, $this->config->item('lotw_unsupported_prop_modes'))) {

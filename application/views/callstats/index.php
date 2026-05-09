@@ -68,26 +68,9 @@
 					<option value="" <?php if ($propagationselect == '') echo ' selected'; ?>><?= __("All"); ?></option>
 					<option value="None" <?php if ($propagationselect == 'None') echo ' selected'; ?>><?= __("None/Empty"); ?></option>
 					<option value="NoSAT" <?php if ($propagationselect == 'NoSAT') echo ' selected'; ?>><?= __("All except SAT") ?></option>
-					<option value="AS" <?php if ($propagationselect == 'AS') echo ' selected'; ?>><?= _pgettext("Propagation Mode","Aircraft Scatter"); ?></option>
-					<option value="AUR" <?php if ($propagationselect == 'AUR') echo ' selected'; ?>><?= _pgettext("Propagation Mode","Aurora"); ?></option>
-					<option value="AUE" <?php if ($propagationselect == 'AUE') echo ' selected'; ?>><?= _pgettext("Propagation Mode","Aurora-E"); ?></option>
-					<option value="BS" <?php if ($propagationselect == 'BS') echo ' selected'; ?>><?= _pgettext("Propagation Mode","Back scatter"); ?></option>
-					<option value="ECH" <?php if ($propagationselect == 'ECH') echo ' selected'; ?>><?= _pgettext("Propagation Mode","EchoLink"); ?></option>
-					<option value="EME" <?php if ($propagationselect == 'EME') echo ' selected'; ?>><?= _pgettext("Propagation Mode","Earth-Moon-Earth"); ?></option>
-					<option value="ES" <?php if ($propagationselect == 'ES') echo ' selected'; ?>><?= _pgettext("Propagation Mode","Sporadic E"); ?></option>
-					<option value="FAI" <?php if ($propagationselect == 'FAI') echo ' selected'; ?>><?= _pgettext("Propagation Mode","Field Aligned Irregularities"); ?></option>
-					<option value="F2" <?php if ($propagationselect == 'F2') echo ' selected'; ?>><?= _pgettext("Propagation Mode","F2 Reflection"); ?></option>
-					<option value="GWAVE" <?php if ($propagationselect == 'F2') echo ' selected'; ?>><?= _pgettext("Propagation Mode","Ground Wave"); ?></option>
-					<option value="INTERNET" <?php if ($propagationselect == 'INTERNET') echo ' selected'; ?>><?= _pgettext("Propagation Mode","Internet-assisted"); ?></option>
-					<option value="ION" <?php if ($propagationselect == 'ION') echo ' selected'; ?>><?= _pgettext("Propagation Mode","Ionoscatter"); ?></option>
-					<option value="IRL" <?php if ($propagationselect == 'IRL') echo ' selected'; ?>><?= _pgettext("Propagation Mode","IRLP"); ?></option>
-					<option value="LOS" <?php if ($propagationselect == 'LOS') echo ' selected'; ?>><?= _pgettext("Propagation Mode","Line of Sight (includes transmission through obstacles such as walls)"); ?></option>
-					<option value="MS" <?php if ($propagationselect == 'MS') echo ' selected'; ?>><?= _pgettext("Propagation Mode","Meteor scatter"); ?></option>
-					<option value="RPT" <?php if ($propagationselect == 'RPT') echo ' selected'; ?>><?= _pgettext("Propagation Mode","Terrestrial or atmospheric repeater or transponder"); ?></option>
-					<option value="RS" <?php if ($propagationselect == 'RS') echo ' selected'; ?>><?= _pgettext("Propagation Mode","Rain scatter"); ?></option>
-					<option value="SAT" <?php if ($propagationselect == 'SAT') echo ' selected'; ?>><?= _pgettext("Propagation Mode","Satellite"); ?></option>
-					<option value="TEP" <?php if ($propagationselect == 'TEP') echo ' selected'; ?>><?= _pgettext("Propagation Mode","Trans-equatorial"); ?></option>
-					<option value="TR" <?php if ($propagationselect == 'TR') echo ' selected'; ?>><?= _pgettext("Propagation Mode","Tropospheric ducting"); ?></option>
+					<?php foreach ($adif_propmodes as $mode => $desc) {
+						echo "<option value=\"$mode\" ".((($propagationselect ?? '') == "$mode") ? "selected=\"selected\"" : "").">"._pgettext("Propagation Mode", $desc)."</option>\n";
+					} ?>
 				</select>
 			</div>
 

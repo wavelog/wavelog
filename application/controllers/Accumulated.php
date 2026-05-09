@@ -36,6 +36,7 @@ class Accumulated extends CI_Controller
 
 
 	    $data['modes'] = $this->modes->active();
+	    $data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
 	    $this->load->view('interface_assets/header', $data);
 	    $this->load->view('accumulate/index');

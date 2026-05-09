@@ -131,7 +131,13 @@ msgstr ""
 #: application/controllers/Webadif.php:11
 #: application/controllers/Webadif.php:101
 #: application/controllers/Zonechecker.php:17
-#: application/models/Club_model.php:52
+#: application/models/Club_model.php:52 application/controllers/Csv.php:32
+#: application/controllers/Dxatlas.php:30
+#: application/controllers/Dxatlas.php:52
+#: application/controllers/Dxatlas.php:109
+#: application/controllers/Kmlexport.php:34 application/controllers/Qso.php:304
+#: application/controllers/Qso.php:435 application/controllers/Qso.php:458
+#: application/controllers/Qso.php:481 application/controllers/Qso.php:789
 msgid "You're not allowed to do that!"
 msgstr "Bunu yapmanıza izin verilmiyor!"
 
@@ -154,6 +160,8 @@ msgstr "Aktif Grid Konum Haritası"
 #: application/views/interface_assets/footer.php:49
 #: application/views/visitor/layout/footer.php:12
 #: application/views/visitor/layout/header.php:68
+#: application/controllers/Awards.php:1060
+#: application/controllers/Awards.php:1096
 msgid "Gridsquares"
 msgstr "Grid Karesi"
 
@@ -286,7 +294,7 @@ msgid "API Key %s description has been updated."
 msgstr "API Anahtarı %s açıklaması güncellendi."
 
 #: application/controllers/Api.php:89 application/controllers/Api.php:124
-#: application/controllers/Qso.php:577
+#: application/controllers/Qso.php:577 application/controllers/Qso.php:580
 msgid "Invalid request method"
 msgstr "Geçersiz istek metodu"
 
@@ -342,6 +350,26 @@ msgstr "Ödüller"
 #: application/controllers/Awards.php:2412
 #: application/controllers/Awards.php:2487
 #: application/controllers/Awards.php:2629
+#: application/controllers/Awards.php:604
+#: application/controllers/Awards.php:622
+#: application/controllers/Awards.php:640
+#: application/controllers/Awards.php:722
+#: application/controllers/Awards.php:784
+#: application/controllers/Awards.php:846
+#: application/controllers/Awards.php:908
+#: application/controllers/Awards.php:993
+#: application/controllers/Awards.php:1005
+#: application/controllers/Awards.php:1081
+#: application/controllers/Awards.php:1287
+#: application/controllers/Awards.php:1438
+#: application/controllers/Awards.php:1489
+#: application/controllers/Awards.php:2047
+#: application/controllers/Awards.php:2196
+#: application/controllers/Awards.php:2326
+#: application/controllers/Awards.php:2400
+#: application/controllers/Awards.php:2413
+#: application/controllers/Awards.php:2488
+#: application/controllers/Awards.php:2630
 #, php-format
 msgid "Awards - %s"
 msgstr "Ödüller - %s"
@@ -359,6 +387,10 @@ msgstr "Ödüller - %s"
 #: application/views/qso/edit_ajax.php:404 application/views/qso/index.php:361
 #: application/views/qso/index.php:658 application/views/user/edit.php:773
 #: application/views/view_log/qso.php:484
+#: application/views/logbookadvanced/index.php:466
+#: application/views/logbookadvanced/index.php:1008
+#: application/views/qso/edit_ajax.php:387 application/views/qso/index.php:641
+#: application/views/view_log/qso.php:419
 msgid "DOK"
 msgstr "DOK (Almanya Bölge İşletme Kodu)"
 
@@ -387,6 +419,8 @@ msgstr "DOK (Almanya Bölge İşletme Kodu)"
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/stationsetup/linkedlocations.php:33
 #: application/views/timeplotter/index.php:17
+#: application/views/logbookadvanced/index.php:984
+#: application/views/qso/edit_ajax.php:219
 msgid "DXCC"
 msgstr "DXCC (Ülke)"
 
@@ -422,10 +456,19 @@ msgstr "Kayıt Görünümü - VUCC"
 #: application/controllers/Timeline.php:135
 #: application/controllers/Timeline.php:138
 #: application/controllers/Timeline.php:141
+#: application/controllers/Awards.php:568
+#: application/controllers/Callstats.php:102
+#: application/controllers/Timeline.php:128
+#: application/controllers/Timeline.php:131
+#: application/controllers/Timeline.php:134
+#: application/controllers/Timeline.php:137
+#: application/controllers/Timeline.php:140
+#: application/controllers/Timeline.php:143
 msgid "Log View"
 msgstr "Kayıt Görünümü"
 
 #: application/controllers/Awards.php:568
+#: application/controllers/Awards.php:569
 msgid "and"
 msgstr "ve"
 
@@ -438,34 +481,45 @@ msgstr "ve"
 #: application/views/awards/wac/index.php:51
 #: application/views/awards/wae/index.php:119
 #: application/views/awards/wpx/index.php:81
+#: application/controllers/Awards.php:570
 msgid "Every band (w/o SAT)"
 msgstr "Her band (Uydu hariç)"
 
 #: application/controllers/Awards.php:569
+#: application/controllers/Awards.php:570
 msgid "band"
 msgstr "band"
 
 #: application/controllers/Awards.php:572
+#: application/controllers/Awards.php:573
 msgid " and satellite "
 msgstr " ve uydu "
 
 #: application/controllers/Awards.php:575
 #: application/controllers/Callstats.php:107
+#: application/controllers/Awards.php:576
+#: application/controllers/Callstats.php:109
 msgid " and orbit type "
 msgstr " ve yörünge tipi "
 
 #: application/controllers/Awards.php:579
 #: application/controllers/Callstats.php:111
+#: application/controllers/Awards.php:580
+#: application/controllers/Callstats.php:113
 msgid " and propagation "
 msgstr " ve yayılma "
 
 #: application/controllers/Awards.php:582
 #: application/controllers/Callstats.php:114
+#: application/controllers/Awards.php:583
+#: application/controllers/Callstats.php:116
 msgid " and mode "
 msgstr " ve mod "
 
 #: application/controllers/Awards.php:585
 #: application/controllers/Callstats.php:117
+#: application/controllers/Awards.php:586
+#: application/controllers/Callstats.php:119
 msgid " and "
 msgstr " ve "
 
@@ -494,6 +548,11 @@ msgstr " ve "
 #: application/views/user/edit.php:391
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:21
+#: application/controllers/Awards.php:604
+#: application/controllers/Logbook.php:1465
+#: application/views/logbookadvanced/index.php:470
+#: application/views/qso/edit_ajax.php:362
+#: application/views/view_log/partial/log_ajax.php:10
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -516,6 +575,11 @@ msgstr "SOTA"
 #: application/views/user/edit.php:345 application/views/user/edit.php:368
 #: application/views/user/edit.php:392
 #: application/views/view_log/partial/log_ajax.php:10
+#: application/controllers/Awards.php:622
+#: application/controllers/Logbook.php:1466
+#: application/views/logbookadvanced/index.php:492
+#: application/views/qso/edit_ajax.php:372
+#: application/views/view_log/partial/log_ajax.php:11
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -539,67 +603,91 @@ msgstr "WWFF"
 #: application/views/user/edit.php:346 application/views/user/edit.php:369
 #: application/views/user/edit.php:393
 #: application/views/view_log/partial/log_ajax.php:11
+#: application/controllers/Awards.php:640
+#: application/controllers/Logbook.php:1467
+#: application/views/logbookadvanced/index.php:474
+#: application/views/logbookadvanced/index.php:1002
+#: application/views/qso/edit_ajax.php:368
+#: application/views/view_log/partial/log_ajax.php:12
 msgid "POTA"
 msgstr "POTA"
 
 #: application/controllers/Awards.php:721
+#: application/controllers/Awards.php:722
 msgid "CQ WAZ (Worked All Zones)"
 msgstr "CQ WAZ (Çalışılan Tüm Bölgeler)"
 
 #: application/controllers/Awards.php:783
 #: application/views/accumulate/index.php:54
 #: application/views/timeline/index.php:45
+#: application/controllers/Awards.php:784
 msgid "Worked All States (WAS)"
 msgstr "Worked All States (WAS)"
 
 #: application/controllers/Awards.php:845 application/views/bands/index.php:55
 #: application/views/interface_assets/header.php:228
+#: application/controllers/Awards.php:846
 msgid "RAC"
 msgstr "RAC"
 
 #: application/controllers/Awards.php:907 application/views/bands/index.php:51
+#: application/controllers/Awards.php:908
 msgid "H26"
 msgstr "H26"
 
 #: application/controllers/Awards.php:992
+#: application/controllers/Awards.php:993
 msgid "IOTA (Island On The Air)"
 msgstr "IOTA (Island On The Air)"
 
 #: application/controllers/Awards.php:1004
 #: application/controllers/Awards.php:1019
 #: application/views/interface_assets/header.php:294
+#: application/controllers/Awards.php:1005
+#: application/controllers/Awards.php:1020
 msgid "US Counties"
 msgstr "ABD Eyaletleri"
 
 #: application/controllers/Awards.php:1034
+#: application/controllers/Awards.php:1035
 msgid "Log View - Counties"
 msgstr "Kayıt Görünümü - İlçeler"
 
 #: application/controllers/Awards.php:1041
+#: application/controllers/Awards.php:1042
 msgid "Awards - "
 msgstr "Ödüller - "
 
 #: application/controllers/Awards.php:1060
 #: application/controllers/Awards.php:1096
+#: application/controllers/Awards.php:1061
+#: application/controllers/Awards.php:1097
 msgid "Gridsquares worked"
 msgstr "Çalışılan Grid Karesi"
 
 #: application/controllers/Awards.php:1061
 #: application/controllers/Awards.php:1097
+#: application/controllers/Awards.php:1062
+#: application/controllers/Awards.php:1098
 msgid "Gridsquares confirmed on LoTW"
 msgstr "Çalışılan Grid Karesi LoTW'de onaylandı"
 
 #: application/controllers/Awards.php:1062
 #: application/controllers/Awards.php:1098
+#: application/controllers/Awards.php:1063
+#: application/controllers/Awards.php:1099
 msgid "Gridsquares confirmed by paper QSL"
 msgstr "Çalışılan Grid Karesi kart QSL ile doğrulandı"
 
 #: application/controllers/Awards.php:1063
 #: application/controllers/Awards.php:1099
+#: application/controllers/Awards.php:1064
+#: application/controllers/Awards.php:1100
 msgid "Total Gridsquares worked"
 msgstr "Toplam çalışılan grid kareleri"
 
 #: application/controllers/Awards.php:1080
+#: application/controllers/Awards.php:1081
 msgid "Fred Fish Memorial Award (FFMA)"
 msgstr "Fred Fish Memorial Award (FFMA)"
 
@@ -611,50 +699,63 @@ msgstr "Fred Fish Memorial Award (FFMA)"
 #: application/views/qso/index.php:644 application/views/user/edit.php:769
 #: application/views/view_log/qso.php:449
 #: application/views/view_log/qso.php:767
+#: application/controllers/Awards.php:1287
+#: application/views/qso/edit_ajax.php:378 application/views/qso/index.php:627
+#: application/views/view_log/qso.php:384
+#: application/views/view_log/qso.php:702
 msgid "SIG"
 msgstr "SIG (Special Interest Group)"
 
 #: application/controllers/Awards.php:1305
+#: application/controllers/Awards.php:1306
 msgid "Awards - SIG - "
 msgstr "Ödüller - SIG (Special Interest Group) - "
 
 #: application/controllers/Awards.php:1437 application/views/bands/index.php:60
+#: application/controllers/Awards.php:1438
 msgid "WAP"
 msgstr "WAP"
 
 #: application/controllers/Awards.php:1488
 #: application/views/interface_assets/header.php:254
+#: application/controllers/Awards.php:1489
 msgid "WAIP"
 msgstr "WAIP"
 
 #: application/controllers/Awards.php:2195
 #: application/views/awards/itu/index.php:34
+#: application/controllers/Awards.php:2196
 msgid "ITU Zones"
 msgstr "ITU Bölgeleri"
 
 #: application/controllers/Awards.php:2325
 #: application/views/awards/wac/index.php:8
 #: application/views/interface_assets/header.php:202
+#: application/controllers/Awards.php:2326
 msgid "Worked All Continents (WAC)"
 msgstr "Tüm Kıtalarda Çalışıldı (WAC)"
 
 #: application/controllers/Awards.php:2399
+#: application/controllers/Awards.php:2400
 msgid "WAE"
 msgstr "WAE"
 
 #: application/controllers/Awards.php:2412
 #: application/views/interface_assets/header.php:212
+#: application/controllers/Awards.php:2413
 msgid "73 on 73"
 msgstr "73 on 73"
 
 #: application/controllers/Awards.php:2487
 #: application/views/awards/wpx/wpx_details.php:19
+#: application/controllers/Awards.php:2488
 msgid "WPX"
 msgstr "WPX"
 
 #: application/controllers/Awards.php:2629
 #: application/views/awards/pl_polska/index.php:37
 #: application/views/interface_assets/header.php:276
+#: application/controllers/Awards.php:2630
 msgid "\"Polska\" Award"
 msgstr "\"Polska\" Ödülü"
 
@@ -717,10 +818,12 @@ msgid "Callsign statistics"
 msgstr "Çağrı İşareti İstatistikleri"
 
 #: application/controllers/Callstats.php:101
+#: application/controllers/Callstats.php:103
 msgid " and band "
 msgstr " ve grup "
 
 #: application/controllers/Callstats.php:104
+#: application/controllers/Callstats.php:106
 msgid " and sat "
 msgstr " ve grup "
 
@@ -843,6 +946,11 @@ msgstr "Clublog'u hiçbir kullanıcı yapılandırmadı."
 #: application/views/view_log/partial/log_ajax.php:228
 #: application/views/view_log/qso.php:589
 #: application/views/view_log/qso.php:594
+#: application/controllers/Logbook.php:798
+#: application/views/qso/edit_ajax.php:417
+#: application/views/view_log/partial/log_ajax.php:165
+#: application/views/view_log/qso.php:524
+#: application/views/view_log/qso.php:529
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -951,6 +1059,7 @@ msgstr "Çalışmıyor"
 
 #: application/controllers/Csv.php:20 application/views/csv/index.php:3
 #: application/views/interface_assets/header.php:491
+#: application/controllers/Csv.php:21
 msgid "SOTA CSV Export"
 msgstr "SOTA CSV Dışa Aktarma"
 
@@ -980,6 +1089,11 @@ msgstr "DCL Anahtar İçe Aktarma"
 #: application/views/view_log/partial/log_ajax.php:231
 #: application/views/view_log/qso.php:599
 #: application/views/view_log/qso.php:604
+#: application/views/logbookadvanced/index.php:975
+#: application/views/qso/edit_ajax.php:420
+#: application/views/view_log/partial/log_ajax.php:168
+#: application/views/view_log/qso.php:534
+#: application/views/view_log/qso.php:539
 msgid "DCL"
 msgstr "DCL"
 
@@ -1069,14 +1183,17 @@ msgstr "QSO Mesafeleri"
 
 #: application/controllers/Distances.php:83
 #: application/views/distances/index.php:15
+#: application/controllers/Distances.php:85
 msgid "QSOs with"
 msgstr "QSO'lar ile"
 
 #: application/controllers/Distances.php:83
+#: application/controllers/Distances.php:85
 msgid "and band"
 msgstr "ve band"
 
 #: application/controllers/Distances.php:83
+#: application/controllers/Distances.php:85
 msgid "and propagation"
 msgstr "ve propagasyon"
 
@@ -1264,7 +1381,7 @@ msgstr "Yüklenecek QSO bulunamadı."
 
 #: application/controllers/Kmlexport.php:24
 #: application/views/interface_assets/header.php:487
-#: application/views/kml/index.php:3
+#: application/views/kml/index.php:3 application/controllers/Kmlexport.php:25
 msgid "KML Export"
 msgstr "KML Dışa Aktarma"
 
@@ -1407,6 +1524,7 @@ msgid "Paper was deleted."
 msgstr "Kağıt tipi silindi."
 
 #: application/controllers/Logbook.php:38
+#: application/controllers/Logbook.php:39
 msgid ""
 "No logbooks were found. You need to define a logbook under Station Logbooks! "
 "Do it here:"
@@ -1416,6 +1534,7 @@ msgstr ""
 
 #: application/controllers/Logbook.php:38
 #: application/views/stationsetup/stationsetup.php:21
+#: application/controllers/Logbook.php:39
 msgid "Station Logbooks"
 msgstr "İstasyon Logları"
 
@@ -1423,6 +1542,7 @@ msgstr "İstasyon Logları"
 #: application/views/interface_assets/header.php:113
 #: application/views/logbookadvanced/useroptions.php:4
 #: application/views/view_log/index.php:11
+#: application/controllers/Logbook.php:60
 msgid "Logbook"
 msgstr "Kayıt defteri"
 
@@ -1454,6 +1574,10 @@ msgstr "Kayıt defteri"
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:115
 #: application/views/timeline/index.php:56 application/views/user/edit.php:674
 #: application/views/user/edit.php:889 application/views/visitor/mini.php:187
+#: application/controllers/Logbook.php:786
+#: application/controllers/Logbook.php:801
+#: application/views/gridmap/index.php:163
+#: application/views/logbookadvanced/index.php:963
 msgid "QSL"
 msgstr "QSL"
 
@@ -1497,6 +1621,11 @@ msgstr "QSL"
 #: application/views/user/edit.php:899 application/views/view_log/qso.php:555
 #: application/views/view_log/qso.php:560
 #: application/views/visitor/mini.php:186
+#: application/controllers/Logbook.php:789
+#: application/views/gridmap/index.php:171
+#: application/views/qso/edit_ajax.php:411
+#: application/views/view_log/qso.php:490
+#: application/views/view_log/qso.php:495
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1534,10 +1663,14 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:301
 #: application/views/timeline/index.php:64 application/views/user/edit.php:676
 #: application/views/user/edit.php:907 application/views/user/edit.php:981
+#: application/controllers/Logbook.php:792
+#: application/views/gridmap/index.php:179
+#: application/views/qso/edit_ajax.php:408
 msgid "eQSL"
 msgstr "eQSL"
 
 #: application/controllers/Logbook.php:993
+#: application/controllers/Logbook.php:995
 msgid "All callbook lookups failed or provided no results."
 msgstr ""
 
@@ -1641,6 +1774,11 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
+#: application/controllers/Logbook.php:1460
+#: application/views/gridmap/index.php:126
+#: application/views/logbookadvanced/index.php:539
+#: application/views/logbookadvanced/index.php:933
+#: application/views/view_log/partial/log_ajax.php:5
 msgid "Mode"
 msgstr "Mod"
 
@@ -1670,6 +1808,9 @@ msgstr "Mod"
 #: application/views/view_log/partial/log.php:10
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:119 application/views/visitor/index.php:9
+#: application/controllers/Logbook.php:1461
+#: application/views/logbookadvanced/index.php:936
+#: application/views/view_log/partial/log_ajax.php:6
 msgid "RST (S)"
 msgstr "RST (G)"
 
@@ -1700,6 +1841,9 @@ msgstr "RST (G)"
 #: application/views/view_log/partial/log_ajax.php:6
 #: application/views/view_log/qso.php:124
 #: application/views/visitor/index.php:12
+#: application/controllers/Logbook.php:1462
+#: application/views/logbookadvanced/index.php:939
+#: application/views/view_log/partial/log_ajax.php:7
 msgid "RST (R)"
 msgstr "RST (A)"
 
@@ -1721,6 +1865,11 @@ msgstr "RST (A)"
 #: application/views/view_log/qso.php:355
 #: application/views/view_log/qso.php:711
 #: application/views/visitor/index.php:15
+#: application/controllers/Logbook.php:1463
+#: application/views/timeline/index.php:185
+#: application/views/view_log/partial/log_ajax.php:8
+#: application/views/view_log/qso.php:290
+#: application/views/view_log/qso.php:646
 msgid "Country"
 msgstr "Ülke"
 
@@ -1752,6 +1901,12 @@ msgstr "Ülke"
 #: application/views/user/edit.php:366 application/views/user/edit.php:390
 #: application/views/view_log/partial/log_ajax.php:8
 #: application/views/visitor/index.php:18
+#: application/controllers/Logbook.php:1464
+#: application/views/logbookadvanced/index.php:480
+#: application/views/logbookadvanced/index.php:999
+#: application/views/qso/edit_ajax.php:353
+#: application/views/timeline/index.php:298
+#: application/views/view_log/partial/log_ajax.php:9
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -1783,6 +1938,10 @@ msgstr "IOTA"
 #: application/views/user/edit.php:370 application/views/user/edit.php:394
 #: application/views/view_log/partial/log_ajax.php:12
 #: application/views/visitor/index.php:24
+#: application/controllers/Logbook.php:1468
+#: application/views/logbookadvanced/index.php:987
+#: application/views/timeline/index.php:262
+#: application/views/view_log/partial/log_ajax.php:13
 msgid "State"
 msgstr "Eyalet"
 
@@ -1833,6 +1992,12 @@ msgstr "Eyalet"
 #: application/views/view_log/qso.php:698
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:53
+#: application/controllers/Logbook.php:1469
+#: application/views/gridmap/index.php:215
+#: application/views/logbookadvanced/index.php:948
+#: application/views/timeline/index.php:371
+#: application/views/view_log/partial/log_ajax.php:14
+#: application/views/view_log/qso.php:633
 msgid "Gridsquare"
 msgstr "Gridsquare"
 
@@ -1863,6 +2028,11 @@ msgstr "Gridsquare"
 #: application/views/user/edit.php:396
 #: application/views/view_log/partial/log_ajax.php:14
 #: application/views/visitor/index.php:30
+#: application/controllers/Logbook.php:1470
+#: application/views/gridmap/index.php:217
+#: application/views/logbookadvanced/index.php:525
+#: application/views/logbookadvanced/index.php:1041
+#: application/views/view_log/partial/log_ajax.php:15
 msgid "Distance"
 msgstr "Mesafe"
 
@@ -1960,6 +2130,10 @@ msgstr "Mesafe"
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
 #: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
+#: application/controllers/Logbook.php:1471
+#: application/views/logbookadvanced/index.php:538
+#: application/views/logbookadvanced/index.php:942
+#: application/views/view_log/partial/log_ajax.php:16
 msgid "Band"
 msgstr "Band"
 
@@ -1989,6 +2163,9 @@ msgstr "Band"
 #: application/views/view_log/partial/log_ajax.php:16
 #: application/views/view_log/qso.php:101
 #: application/views/visitor/index.php:36
+#: application/controllers/Logbook.php:1472
+#: application/views/logbookadvanced/index.php:945
+#: application/views/view_log/partial/log_ajax.php:17
 msgid "Frequency"
 msgstr "Frekans"
 
@@ -2013,6 +2190,11 @@ msgstr "Frekans"
 #: application/views/view_log/partial/log_ajax.php:17
 #: application/views/view_log/qso.php:718
 #: application/views/visitor/index.php:39
+#: application/controllers/Logbook.php:1473
+#: application/views/logbookadvanced/index.php:496
+#: application/views/logbookadvanced/index.php:1023
+#: application/views/view_log/partial/log_ajax.php:18
+#: application/views/view_log/qso.php:653
 msgid "Operator"
 msgstr "Operatör"
 
@@ -2042,6 +2224,12 @@ msgstr "Operatör"
 #: application/views/view_log/partial/log_ajax.php:31
 #: application/views/view_log/qso.php:359
 #: application/views/view_log/qso.php:712
+#: application/controllers/Logbook.php:1494
+#: application/views/qso/edit_ajax.php:237
+#: application/views/timeline/index.php:207
+#: application/views/view_log/partial/log_ajax.php:32
+#: application/views/view_log/qso.php:294
+#: application/views/view_log/qso.php:647
 msgid "Deleted DXCC"
 msgstr "Silinmiş DXCC"
 
@@ -2050,11 +2238,13 @@ msgid "Advanced logbook"
 msgstr "Gelişmiş Kayıt Defteri"
 
 #: application/controllers/Logbookadvanced.php:982
+#: application/controllers/Logbookadvanced.php:984
 #, php-format
 msgid "DXCC updated for %d QSO(s)."
 msgstr "DXCC %d QSO için güncellendi."
 
 #: application/controllers/Logbookadvanced.php:998
+#: application/controllers/Logbookadvanced.php:1000
 #, php-format
 msgid "Map for DXCC %s and gridsquare %s."
 msgstr ""
@@ -2175,6 +2365,8 @@ msgstr "Modu Düzenle"
 #: application/views/qso/edit_ajax.php:37
 #: application/views/qso/edit_ajax.php:412 application/views/qso/index.php:111
 #: application/views/view_log/qso.php:14 application/views/view_log/qso.php:780
+#: application/views/qso/edit_ajax.php:395
+#: application/views/view_log/qso.php:715
 msgid "Notes"
 msgstr "Notlar"
 
@@ -2189,6 +2381,7 @@ msgstr "Not"
 
 #: application/controllers/Notes.php:128 application/views/notes/edit.php:20
 #: application/views/notes/view.php:47 application/views/qso/index.php:801
+#: application/views/qso/index.php:784
 msgid "Edit Note"
 msgstr "Notu düzenle"
 
@@ -2494,19 +2687,19 @@ msgstr "QSL Kartları yükle"
 msgid "Print Requested QSLs"
 msgstr "Talep edilen QSL kartları yazdır"
 
-#: application/controllers/Qso.php:144
+#: application/controllers/Qso.php:144 application/controllers/Qso.php:145
 msgid "Add QSO"
 msgstr "QSO ekle"
 
-#: application/controllers/Qso.php:847
+#: application/controllers/Qso.php:847 application/controllers/Qso.php:850
 msgid "You have to be logged in to access this URL."
 msgstr "Bu URL'ye erişmek için giriş yapmış olmanız gerekiyor."
 
-#: application/controllers/Qso.php:853
+#: application/controllers/Qso.php:853 application/controllers/Qso.php:856
 msgid "Call Transfer"
 msgstr "Çağrı Transferi"
 
-#: application/controllers/Qso.php:860
+#: application/controllers/Qso.php:860 application/controllers/Qso.php:863
 msgid "No callsign provided."
 msgstr "Çağrı işareti girilmedi."
 
@@ -2518,6 +2711,7 @@ msgstr "Donanım Arayüzleri"
 #: application/controllers/Radio.php:44 application/views/bandmap/list.php:21
 #: application/views/contesting/index.php:157
 #: application/views/qso/index.php:411 application/views/view_log/qso.php:732
+#: application/views/view_log/qso.php:667
 msgid "Radio"
 msgstr "Telsiz"
 
@@ -2531,11 +2725,12 @@ msgstr "Son Aktiflik"
 #: application/views/simplefle/index.php:20
 #: application/views/simplefle/index.php:185
 #: application/views/stationsetup/exportmapoptions.php:5
+#: application/views/logbookadvanced/index.php:890
 msgid "Options"
 msgstr "Seçenekler"
 
 #: application/controllers/Radio.php:53 application/views/debug/index.php:370
-#: application/views/qso/index.php:843
+#: application/views/qso/index.php:843 application/views/qso/index.php:826
 msgid "Settings"
 msgstr "Ayarlar"
 
@@ -2577,6 +2772,7 @@ msgstr "son kullanılan"
 #: application/views/stationsetup/stationsetup.php:174
 #: application/views/themes/index.php:104 application/views/user/index.php:97
 #: application/views/user/index.php:203
+#: application/views/logbookadvanced/index.php:877
 msgid "Edit"
 msgstr "Düzenle"
 
@@ -2606,6 +2802,8 @@ msgstr "Düzenle"
 #: application/views/stationsetup/stationsetup.php:201
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:803
+#: application/views/logbookadvanced/index.php:896
+#: application/views/view_log/qso.php:738
 msgid "Delete"
 msgstr "Sil"
 
@@ -2731,6 +2929,7 @@ msgstr "Uydu Zamanlayıcı"
 #: application/views/visitor/layout/footer.php:13
 #: application/views/visitor/layout/header.php:97
 #: application/views/visitor/layout/header.php:98
+#: application/views/logbookadvanced/index.php:866
 msgid "Search"
 msgstr "Ara"
 
@@ -2793,6 +2992,7 @@ msgstr "İstasyon Konumunu Güncelle: "
 #: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
 #: application/views/zonechecker/index.php:5
+#: application/views/view_log/partial/log_ajax.php:19
 msgid "Station Location"
 msgstr "İstasyon Konumu"
 
@@ -2829,7 +3029,7 @@ msgstr "İzin verilmiyor"
 #: application/controllers/Stationsetup.php:479
 #: application/views/qso/index.php:776 application/views/simplefle/index.php:39
 #: application/views/widgets/on_air.php:181
-#: application/views/widgets/on_air.php:243
+#: application/views/widgets/on_air.php:243 application/views/qso/index.php:759
 msgid "Error"
 msgstr "Hata"
 
@@ -2969,6 +3169,7 @@ msgstr ""
 #: application/views/station_profile/edit.php:102
 #: application/views/stationsetup/stationsetup.php:158
 #: application/views/user/modals/first_login_wizard.php:46
+#: application/views/qso/edit_ajax.php:221
 msgid "Please select one"
 msgstr "Lütfen birini seçin"
 
@@ -3793,6 +3994,8 @@ msgstr "QSO güncellendi"
 #: application/views/user/edit.php:329 application/views/user/edit.php:352
 #: application/views/user/edit.php:375 application/views/user/edit.php:400
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/views/gridmap/index.php:219
+#: application/views/view_log/partial/log_ajax.php:21
 msgid "Bearing"
 msgstr "Yön"
 
@@ -3808,6 +4011,7 @@ msgstr ""
 
 #: application/models/Logbookadvanced_model.php:2468
 #: application/views/view_log/qso.php:952
+#: application/views/view_log/qso.php:887
 msgid "QSO not found"
 msgstr "QSO bulunamadı"
 
@@ -3918,6 +4122,7 @@ msgstr "Toplam çalışılan WAJA sayısı"
 #: application/views/statistics/index.php:21
 #: application/views/timeline/index.php:109
 #: application/views/visitor/index.php:250
+#: application/views/timeline/index.php:92
 msgid "Year"
 msgstr "Bu Yıl"
 
@@ -4065,6 +4270,27 @@ msgstr "Fark"
 #: application/views/timeplotter/index.php:59
 #: application/views/user/edit.php:873
 #: application/views/visitor/layout/footer.php:168
+#: application/views/gridmap/index.php:100
+#: application/views/gridmap/index.php:115
+#: application/views/gridmap/index.php:129
+#: application/views/gridmap/index.php:143
+#: application/views/logbookadvanced/index.php:438
+#: application/views/logbookadvanced/index.php:452
+#: application/views/logbookadvanced/index.php:506
+#: application/views/logbookadvanced/index.php:573
+#: application/views/logbookadvanced/index.php:584
+#: application/views/logbookadvanced/index.php:595
+#: application/views/logbookadvanced/index.php:605
+#: application/views/logbookadvanced/index.php:617
+#: application/views/logbookadvanced/index.php:628
+#: application/views/logbookadvanced/index.php:640
+#: application/views/logbookadvanced/index.php:651
+#: application/views/logbookadvanced/index.php:664
+#: application/views/logbookadvanced/index.php:675
+#: application/views/logbookadvanced/index.php:686
+#: application/views/logbookadvanced/index.php:695
+#: application/views/logbookadvanced/index.php:718
+#: application/views/logbookadvanced/index.php:727
 msgid "All"
 msgstr "Tümü"
 
@@ -4113,6 +4339,8 @@ msgstr "Dönem"
 #: application/views/timeline/index.php:79 application/views/user/edit.php:401
 #: application/views/view_log/partial/log_ajax.php:21
 #: application/views/view_log/qso.php:248
+#: application/views/logbookadvanced/index.php:1029
+#: application/views/view_log/partial/log_ajax.php:22
 msgid "Propagation"
 msgstr "Propagasyon"
 
@@ -4130,6 +4358,7 @@ msgstr "Uydu hariç tümü"
 #: application/views/logbookadvanced/edit.php:225
 #: application/views/logbookadvanced/index.php:524
 #: application/views/timeline/index.php:84
+#: application/views/logbookadvanced/index.php:507
 msgid "None/Empty"
 msgstr "Yok/Boş"
 
@@ -4143,6 +4372,7 @@ msgstr "Yok/Boş"
 #: application/views/timeline/index.php:85
 #: application/views/view_log/partial/log_ajax.php:55
 #: application/views/view_log/qso.php:251
+#: application/config/adif_propmodes.php:7
 msgctxt "Propagation Mode"
 msgid "Aircraft Scatter"
 msgstr "Uçak Yansıması İletişimi"
@@ -4157,6 +4387,7 @@ msgstr "Uçak Yansıması İletişimi"
 #: application/views/timeline/index.php:86
 #: application/views/view_log/partial/log_ajax.php:58
 #: application/views/view_log/qso.php:254
+#: application/config/adif_propmodes.php:8
 msgctxt "Propagation Mode"
 msgid "Aurora"
 msgstr "Kutup Işıkları (Aurora) Yansımalı İletişim"
@@ -4171,6 +4402,7 @@ msgstr "Kutup Işıkları (Aurora) Yansımalı İletişim"
 #: application/views/timeline/index.php:87
 #: application/views/view_log/partial/log_ajax.php:61
 #: application/views/view_log/qso.php:257
+#: application/config/adif_propmodes.php:9
 msgctxt "Propagation Mode"
 msgid "Aurora-E"
 msgstr "Aurora-E İletişimi"
@@ -4185,6 +4417,7 @@ msgstr "Aurora-E İletişimi"
 #: application/views/timeline/index.php:88
 #: application/views/view_log/partial/log_ajax.php:64
 #: application/views/view_log/qso.php:260
+#: application/config/adif_propmodes.php:10
 msgctxt "Propagation Mode"
 msgid "Back scatter"
 msgstr "Yansımalı (Back scatter) İletişim"
@@ -4199,6 +4432,7 @@ msgstr "Yansımalı (Back scatter) İletişim"
 #: application/views/timeline/index.php:89
 #: application/views/view_log/partial/log_ajax.php:67
 #: application/views/view_log/qso.php:263
+#: application/config/adif_propmodes.php:11
 msgctxt "Propagation Mode"
 msgid "EchoLink"
 msgstr "EchoLink"
@@ -4213,6 +4447,7 @@ msgstr "EchoLink"
 #: application/views/timeline/index.php:90
 #: application/views/view_log/partial/log_ajax.php:70
 #: application/views/view_log/qso.php:266
+#: application/config/adif_propmodes.php:12
 msgctxt "Propagation Mode"
 msgid "Earth-Moon-Earth"
 msgstr "Dünya-Ay-Dünya"
@@ -4227,6 +4462,7 @@ msgstr "Dünya-Ay-Dünya"
 #: application/views/timeline/index.php:91
 #: application/views/view_log/partial/log_ajax.php:73
 #: application/views/view_log/qso.php:269
+#: application/config/adif_propmodes.php:13
 msgctxt "Propagation Mode"
 msgid "Sporadic E"
 msgstr "Geçici E-Tabakası (Sporadic E) Yansıması"
@@ -4241,6 +4477,7 @@ msgstr "Geçici E-Tabakası (Sporadic E) Yansıması"
 #: application/views/timeline/index.php:92
 #: application/views/view_log/partial/log_ajax.php:76
 #: application/views/view_log/qso.php:272
+#: application/config/adif_propmodes.php:14
 msgctxt "Propagation Mode"
 msgid "Field Aligned Irregularities"
 msgstr "Manyetik Alan Hizalanmış Düzensizlikler (FAI) İletişimi"
@@ -4255,6 +4492,7 @@ msgstr "Manyetik Alan Hizalanmış Düzensizlikler (FAI) İletişimi"
 #: application/views/timeline/index.php:93
 #: application/views/view_log/partial/log_ajax.php:79
 #: application/views/view_log/qso.php:275
+#: application/config/adif_propmodes.php:15
 msgctxt "Propagation Mode"
 msgid "F2 Reflection"
 msgstr "F2 Yansıtmalı İletişim"
@@ -4269,6 +4507,7 @@ msgstr "F2 Yansıtmalı İletişim"
 #: application/views/timeline/index.php:94
 #: application/views/view_log/partial/log_ajax.php:82
 #: application/views/view_log/qso.php:278
+#: application/config/adif_propmodes.php:16
 msgctxt "Propagation Mode"
 msgid "Ground Wave"
 msgstr ""
@@ -4283,6 +4522,7 @@ msgstr ""
 #: application/views/timeline/index.php:95
 #: application/views/view_log/partial/log_ajax.php:85
 #: application/views/view_log/qso.php:281
+#: application/config/adif_propmodes.php:17
 msgctxt "Propagation Mode"
 msgid "Internet-assisted"
 msgstr "İnternet-destekli"
@@ -4297,6 +4537,7 @@ msgstr "İnternet-destekli"
 #: application/views/timeline/index.php:96
 #: application/views/view_log/partial/log_ajax.php:88
 #: application/views/view_log/qso.php:284
+#: application/config/adif_propmodes.php:18
 msgctxt "Propagation Mode"
 msgid "Ionoscatter"
 msgstr "İyonosferik Saçılma (Ionoscatter) İletişimi"
@@ -4311,6 +4552,7 @@ msgstr "İyonosferik Saçılma (Ionoscatter) İletişimi"
 #: application/views/timeline/index.php:97
 #: application/views/view_log/partial/log_ajax.php:91
 #: application/views/view_log/qso.php:287
+#: application/config/adif_propmodes.php:19
 msgctxt "Propagation Mode"
 msgid "IRLP"
 msgstr "İnternet Tabanlı Radyo Bağlantısı (IRLP)"
@@ -4325,6 +4567,7 @@ msgstr "İnternet Tabanlı Radyo Bağlantısı (IRLP)"
 #: application/views/timeline/index.php:98
 #: application/views/view_log/partial/log_ajax.php:94
 #: application/views/view_log/qso.php:290
+#: application/config/adif_propmodes.php:20
 msgctxt "Propagation Mode"
 msgid "Line of Sight (includes transmission through obstacles such as walls)"
 msgstr ""
@@ -4339,6 +4582,7 @@ msgstr ""
 #: application/views/timeline/index.php:99
 #: application/views/view_log/partial/log_ajax.php:97
 #: application/views/view_log/qso.php:293
+#: application/config/adif_propmodes.php:21
 msgctxt "Propagation Mode"
 msgid "Meteor scatter"
 msgstr "Meteor Yansıması İletişimi"
@@ -4353,6 +4597,7 @@ msgstr "Meteor Yansıması İletişimi"
 #: application/views/timeline/index.php:100
 #: application/views/view_log/partial/log_ajax.php:100
 #: application/views/view_log/qso.php:296
+#: application/config/adif_propmodes.php:22
 msgctxt "Propagation Mode"
 msgid "Terrestrial or atmospheric repeater or transponder"
 msgstr "Röle/Aktarıcı Üzerinden İletişim"
@@ -4367,6 +4612,7 @@ msgstr "Röle/Aktarıcı Üzerinden İletişim"
 #: application/views/timeline/index.php:101
 #: application/views/view_log/partial/log_ajax.php:103
 #: application/views/view_log/qso.php:299
+#: application/config/adif_propmodes.php:23
 msgctxt "Propagation Mode"
 msgid "Rain scatter"
 msgstr "Yağmur Yansıması İletişimi"
@@ -4381,6 +4627,7 @@ msgstr "Yağmur Yansıması İletişimi"
 #: application/views/timeline/index.php:102
 #: application/views/view_log/partial/log_ajax.php:106
 #: application/views/view_log/qso.php:302
+#: application/config/adif_propmodes.php:24
 msgctxt "Propagation Mode"
 msgid "Satellite"
 msgstr "Uydu"
@@ -4395,6 +4642,7 @@ msgstr "Uydu"
 #: application/views/timeline/index.php:103
 #: application/views/view_log/partial/log_ajax.php:109
 #: application/views/view_log/qso.php:305
+#: application/config/adif_propmodes.php:25
 msgctxt "Propagation Mode"
 msgid "Trans-equatorial"
 msgstr "Ekvator Ötesi Yansımalı İletişim"
@@ -4409,6 +4657,7 @@ msgstr "Ekvator Ötesi Yansımalı İletişim"
 #: application/views/timeline/index.php:104
 #: application/views/view_log/partial/log_ajax.php:112
 #: application/views/view_log/qso.php:308
+#: application/config/adif_propmodes.php:26
 msgctxt "Propagation Mode"
 msgid "Tropospheric ducting"
 msgstr "Troposfer Kanal İletişimi"
@@ -4447,6 +4696,16 @@ msgstr "Troposfer Kanal İletişimi"
 #: application/views/timeline/index.php:372
 #: application/views/timeline/index.php:408
 #: application/views/timeplotter/index.php:71
+#: application/views/accumulate/index.php:97
+#: application/views/callstats/index.php:92
+#: application/views/distances/index.php:64
+#: application/views/timeline/index.php:113
+#: application/views/timeline/index.php:210
+#: application/views/timeline/index.php:247
+#: application/views/timeline/index.php:281
+#: application/views/timeline/index.php:321
+#: application/views/timeline/index.php:355
+#: application/views/timeline/index.php:391
 msgid "Show"
 msgstr "Göster"
 
@@ -4480,6 +4739,13 @@ msgstr "Göster"
 #: application/views/timeline/index.php:319
 #: application/views/timeline/index.php:355
 #: application/views/timeline/index.php:390
+#: application/views/gridmap/index.php:95
+#: application/views/timeline/index.php:187
+#: application/views/timeline/index.php:230
+#: application/views/timeline/index.php:264
+#: application/views/timeline/index.php:302
+#: application/views/timeline/index.php:338
+#: application/views/timeline/index.php:373
 msgid "Satellite"
 msgstr "Uydu"
 
@@ -4499,6 +4765,7 @@ msgstr "Uydu"
 #: application/views/satellite/satinfo.php:12
 #: application/views/statistics/antennaanalytics.php:60
 #: application/views/statistics/antennaanalytics.php:98
+#: application/views/gridmap/index.php:110
 msgid "Orbit"
 msgstr "Yörünge"
 
@@ -4506,6 +4773,7 @@ msgstr "Yörünge"
 #: application/views/awards/wab/index.php:66
 #: application/views/gridmap/index.php:171
 #: application/views/timeline/index.php:52
+#: application/views/gridmap/index.php:154
 msgid "Confirmation"
 msgstr "Onay"
 
@@ -4528,6 +4796,7 @@ msgstr "Onay"
 #: application/views/awards/was/index.php:73
 #: application/views/awards/wpx/index.php:40
 #: application/views/gridmap/index.php:204 application/views/user/edit.php:915
+#: application/views/gridmap/index.php:187
 msgid "QRZ.com"
 msgstr "QRZ.com"
 
@@ -4546,7 +4815,7 @@ msgstr "İşaretleri Temizle"
 #: application/views/awards/gridmaster/index.php:50
 #: application/views/gridmap/index.php:228
 #: application/views/logbookadvanced/index.php:10
-#: application/views/map/qso_map.php:59
+#: application/views/map/qso_map.php:59 application/views/gridmap/index.php:211
 msgid "Latitude"
 msgstr "Enlem"
 
@@ -4555,7 +4824,7 @@ msgstr "Enlem"
 #: application/views/awards/gridmaster/index.php:52
 #: application/views/gridmap/index.php:230
 #: application/views/logbookadvanced/index.php:11
-#: application/views/map/qso_map.php:61
+#: application/views/map/qso_map.php:61 application/views/gridmap/index.php:213
 msgid "Longitude"
 msgstr "Boylam"
 
@@ -4566,6 +4835,7 @@ msgstr "Her ikisi de"
 
 #: application/views/activators/index.php:33
 #: application/views/callstats/index.php:94
+#: application/views/callstats/index.php:77
 msgid "Minimum Count"
 msgstr "Minimum Sayı"
 
@@ -4598,6 +4868,8 @@ msgstr "Minimum Sayı"
 #: application/views/distancerecords/index.php:52
 #: application/views/public_search/empty.php:3
 #: application/views/qrz/export.php:65 application/views/timeline/index.php:160
+#: application/views/callstats/index.php:113
+#: application/views/timeline/index.php:143
 msgid "Nothing found!"
 msgstr "Hiçbir kayıt bulunamadı!"
 
@@ -4659,6 +4931,8 @@ msgstr "Hiçbir kayıt bulunamadı!"
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:690
 #: application/views/visitor/mini.php:183
 #: application/views/zonechecker/result.php:50
+#: application/views/callstats/index.php:132
+#: application/views/view_log/qso.php:625
 msgid "Callsign"
 msgstr "Çağrı işareti"
 
@@ -4674,6 +4948,13 @@ msgstr "Grid Sayısı"
 #: application/views/timeline/index.php:321
 #: application/views/timeline/index.php:357
 #: application/views/timeline/index.php:392
+#: application/views/callstats/index.php:136
+#: application/views/timeline/index.php:191
+#: application/views/timeline/index.php:232
+#: application/views/timeline/index.php:266
+#: application/views/timeline/index.php:304
+#: application/views/timeline/index.php:340
+#: application/views/timeline/index.php:375
 msgid "Show QSOs"
 msgstr "QSO'ları göster"
 
@@ -4770,6 +5051,13 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:202
 #: application/views/visitor/index.php:151
 #: application/views/visitor/mini.php:182 application/views/widgets/qsos.php:16
+#: application/views/timeline/index.php:183
+#: application/views/timeline/index.php:227
+#: application/views/timeline/index.php:261
+#: application/views/timeline/index.php:297
+#: application/views/timeline/index.php:335
+#: application/views/timeline/index.php:369
+#: application/views/view_log/partial/log_ajax.php:139
 msgid "Date"
 msgstr "Tarih"
 
@@ -4804,6 +5092,8 @@ msgstr "Tarih"
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:204
 #: application/views/visitor/index.php:154
+#: application/views/timeline/index.php:370
+#: application/views/view_log/partial/log_ajax.php:141
 msgid "Time"
 msgstr "Saat"
 
@@ -4828,6 +5118,7 @@ msgstr "Saat"
 #: application/views/view_log/partial/log_ajax.php:206
 #: application/views/visitor/index.php:156
 #: application/views/widgets/qsos.php:17
+#: application/views/view_log/partial/log_ajax.php:143
 msgid "Call"
 msgstr "QSO"
 
@@ -4870,6 +5161,7 @@ msgid "Log Files must have the file type *.adi"
 msgstr "Log dosyalarının, dosya türü .adi olmalıdır"
 
 #: application/views/adif/import.php:94 application/views/view_log/qso.php:812
+#: application/views/view_log/qso.php:747
 msgid "Maximum file upload size is "
 msgstr "Maksimum dosya yükleme boyutu: "
 
@@ -4885,6 +5177,7 @@ msgstr "Maksimum dosya yükleme boyutu: "
 #: application/views/view_log/qso.php:812
 #: application/views/webadif/export.php:34
 #: application/views/webadif/export.php:94
+#: application/views/view_log/qso.php:747
 msgid "Warning"
 msgstr "Uyarı"
 
@@ -5054,6 +5347,8 @@ msgstr ""
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:105
 #: application/views/lotw/import.php:39 application/views/qrz/export.php:78
 #: application/views/qrz/export.php:99 application/views/webadif/export.php:97
+#: application/views/csv/index.php:104 application/views/dxatlas/index.php:103
+#: application/views/kml/index.php:88
 msgid "From date"
 msgstr "Şu tarihten itibaren"
 
@@ -5061,7 +5356,8 @@ msgstr "Şu tarihten itibaren"
 #: application/views/dxatlas/index.php:125
 #: application/views/hrdlog/export.php:82 application/views/kml/index.php:110
 #: application/views/qrz/export.php:104
-#: application/views/webadif/export.php:102
+#: application/views/webadif/export.php:102 application/views/csv/index.php:109
+#: application/views/dxatlas/index.php:108 application/views/kml/index.php:93
 msgid "To date"
 msgstr "Şu tarihe kadar"
 
@@ -5358,6 +5654,7 @@ msgstr "ADIF dosyanızdaki POTA Referansı"
 #: application/views/stationsetup/stationsetup.php:35
 #: application/views/timeline/index.php:206
 #: application/views/usermode/index.php:41
+#: application/views/timeline/index.php:189
 msgid "Status"
 msgstr "Durum"
 
@@ -5499,6 +5796,7 @@ msgstr "Yetkiler"
 #: application/views/notes/main.php:77 application/views/qrz/export.php:44
 #: application/views/user/index.php:33 application/views/user/index.php:160
 #: application/views/webadif/export.php:45
+#: application/views/logbookadvanced/index.php:812
 msgid "Actions"
 msgstr "İşlemler"
 
@@ -5635,6 +5933,8 @@ msgstr "Filtre:"
 #: application/views/logbookadvanced/index.php:479
 #: application/views/logbookadvanced/index.php:1007
 #: application/views/logbookadvanced/useroptions.php:187
+#: application/views/logbookadvanced/index.php:462
+#: application/views/logbookadvanced/index.php:990
 msgid "County"
 msgstr "İdari Bölge"
 
@@ -5739,6 +6039,11 @@ msgstr "Toplam QSO"
 #: application/views/timeplotter/index.php:35
 #: application/views/user/modals/first_login_wizard.php:75
 #: application/views/zonechecker/index.php:17
+#: application/views/gridmap/index.php:221
+#: application/views/logbookadvanced/index.php:436
+#: application/views/logbookadvanced/index.php:993
+#: application/views/qso/edit_ajax.php:293
+#: application/views/timeline/index.php:336
 msgid "CQ Zone"
 msgstr "CQ Alanı"
 
@@ -5905,7 +6210,7 @@ msgstr "Geçen Yıl"
 #: application/views/gridmap/index.php:38
 #: application/views/interface_assets/footer.php:52
 #: application/views/logbookadvanced/index.php:337
-#: application/views/qso/index.php:769
+#: application/views/qso/index.php:769 application/views/qso/index.php:752
 msgid "Clear"
 msgstr "Temizle"
 
@@ -6027,6 +6332,7 @@ msgstr "QSO'yu QSL Türü ile göster"
 #: application/views/logbookadvanced/index.php:54
 #: application/views/qso/edit_ajax.php:422
 #: application/views/view_log/qso.php:25
+#: application/views/qso/edit_ajax.php:405
 msgid "QSL Card"
 msgstr "QSL Kartı"
 
@@ -6060,6 +6366,7 @@ msgstr "Tablo"
 #: application/views/logbookadvanced/checkresult.php:168
 #: application/views/logbookadvanced/index.php:899
 #: application/views/logbookadvanced/useroptions.php:7
+#: application/views/logbookadvanced/index.php:882
 msgid "Map"
 msgstr "Harita"
 
@@ -6282,6 +6589,8 @@ msgstr "Her band"
 #: application/views/oqrs/showrequests.php:70
 #: application/views/qrbcalc/index.php:19
 #: application/views/search/filter.php:37 application/views/user/edit.php:781
+#: application/views/logbookadvanced/index.php:900
+#: application/views/logbookadvanced/index.php:901
 msgid "Reset"
 msgstr "Sıfırla"
 
@@ -6358,6 +6667,9 @@ msgstr "Silinenleri dahil et"
 #: application/views/options/dxcluster.php:56
 #: application/views/qso/edit_ajax.php:268 application/views/qso/index.php:488
 #: application/views/view_log/qso.php:374
+#: application/views/logbookadvanced/index.php:509
+#: application/views/qso/edit_ajax.php:251
+#: application/views/view_log/qso.php:309
 msgid "Antarctica"
 msgstr "Antarktika"
 
@@ -6372,6 +6684,9 @@ msgstr "Antarktika"
 #: application/views/options/dxcluster.php:55
 #: application/views/qso/edit_ajax.php:267 application/views/qso/index.php:487
 #: application/views/view_log/qso.php:371
+#: application/views/logbookadvanced/index.php:508
+#: application/views/qso/edit_ajax.php:250
+#: application/views/view_log/qso.php:306
 msgid "Africa"
 msgstr "Afrika"
 
@@ -6386,6 +6701,9 @@ msgstr "Afrika"
 #: application/views/options/dxcluster.php:57
 #: application/views/qso/edit_ajax.php:269 application/views/qso/index.php:489
 #: application/views/view_log/qso.php:377
+#: application/views/logbookadvanced/index.php:511
+#: application/views/qso/edit_ajax.php:252
+#: application/views/view_log/qso.php:312
 msgid "Asia"
 msgstr "Asya"
 
@@ -6400,6 +6718,9 @@ msgstr "Asya"
 #: application/views/options/dxcluster.php:58
 #: application/views/qso/edit_ajax.php:270 application/views/qso/index.php:490
 #: application/views/view_log/qso.php:380
+#: application/views/logbookadvanced/index.php:512
+#: application/views/qso/edit_ajax.php:253
+#: application/views/view_log/qso.php:315
 msgid "Europe"
 msgstr "Avrupa"
 
@@ -6414,6 +6735,9 @@ msgstr "Avrupa"
 #: application/views/options/dxcluster.php:59
 #: application/views/qso/edit_ajax.php:271 application/views/qso/index.php:491
 #: application/views/view_log/qso.php:383
+#: application/views/logbookadvanced/index.php:510
+#: application/views/qso/edit_ajax.php:254
+#: application/views/view_log/qso.php:318
 msgid "North America"
 msgstr "Kuzey Amerika"
 
@@ -6428,6 +6752,9 @@ msgstr "Kuzey Amerika"
 #: application/views/options/dxcluster.php:61
 #: application/views/qso/edit_ajax.php:273 application/views/qso/index.php:493
 #: application/views/view_log/qso.php:389
+#: application/views/logbookadvanced/index.php:513
+#: application/views/qso/edit_ajax.php:256
+#: application/views/view_log/qso.php:324
 msgid "South America"
 msgstr "Güney Amerika"
 
@@ -6442,6 +6769,9 @@ msgstr "Güney Amerika"
 #: application/views/options/dxcluster.php:60
 #: application/views/qso/edit_ajax.php:272 application/views/qso/index.php:492
 #: application/views/view_log/qso.php:386
+#: application/views/logbookadvanced/index.php:514
+#: application/views/qso/edit_ajax.php:255
+#: application/views/view_log/qso.php:321
 msgid "Oceania"
 msgstr "Okyanusya"
 
@@ -6455,6 +6785,8 @@ msgstr "DXCC Adı"
 #: application/views/logbookadvanced/statecheckresult.php:10
 #: application/views/timeline/index.php:201
 #: application/views/timeline/index.php:317
+#: application/views/timeline/index.php:184
+#: application/views/timeline/index.php:300
 msgid "Prefix"
 msgstr "Prefix"
 
@@ -6746,6 +7078,10 @@ msgstr "IOTA Haritasını Göster"
 #: application/views/view_log/partial/log_ajax.php:19
 #: application/views/view_log/qso.php:232
 #: application/views/view_log/qso.php:694
+#: application/views/logbookadvanced/index.php:951
+#: application/views/timeline/index.php:299
+#: application/views/view_log/partial/log_ajax.php:20
+#: application/views/view_log/qso.php:629
 msgid "Name"
 msgstr "Ad"
 
@@ -6768,6 +7104,10 @@ msgstr "Silindi"
 #: application/views/station_profile/edit.php:169
 #: application/views/user/modals/first_login_wizard.php:86
 #: application/views/zonechecker/index.php:18
+#: application/views/gridmap/index.php:223
+#: application/views/logbookadvanced/index.php:450
+#: application/views/logbookadvanced/index.php:996
+#: application/views/qso/edit_ajax.php:302
 msgid "ITU Zone"
 msgstr "ITU Bölgesi"
 
@@ -6849,12 +7189,14 @@ msgstr ""
 #: application/views/public_search/empty.php:2
 #: application/views/public_search/result.php:2
 #: application/views/view_log/partial/log_ajax.php:717
+#: application/views/view_log/partial/log_ajax.php:654
 msgid "Results"
 msgstr "Sonuçlar"
 
 #: application/views/awards/jcc/index.php:164
 #: application/views/search/result.php:21
 #: application/views/view_log/qso.php:704
+#: application/views/view_log/qso.php:639
 msgid "City"
 msgstr "Şehir"
 
@@ -7064,6 +7406,7 @@ msgstr "band Kategorileri"
 #: application/views/awards/pl_polska/index.php:372
 #: application/views/logbookadvanced/dbtoolsdialog.php:77
 #: application/views/logbookadvanced/index.php:858
+#: application/views/logbookadvanced/index.php:841
 msgid "Fix State"
 msgstr "Durumu düzelt"
 
@@ -7137,7 +7480,9 @@ msgstr ""
 #: application/views/station_profile/create.php:242
 #: application/views/station_profile/edit.php:267
 #: application/views/user/edit.php:765 application/views/view_log/qso.php:427
-#: application/views/view_log/qso.php:760
+#: application/views/view_log/qso.php:760 application/views/qso/index.php:615
+#: application/views/view_log/qso.php:362
+#: application/views/view_log/qso.php:695
 msgid "POTA Reference(s)"
 msgstr "POTA Referansı"
 
@@ -7224,6 +7569,7 @@ msgstr "Referans"
 #: application/views/qso/components/previous_contacts.php:6
 #: application/views/search/lotw_unconfirmed_result.php:7
 #: application/views/view_log/qso.php:72
+#: application/views/logbookadvanced/index.php:918
 msgid "Date/Time"
 msgstr "Tarih/Saat"
 
@@ -7380,6 +7726,10 @@ msgstr "Ödüller - Worked All Continents (WAC)"
 #: application/views/lookup/index.php:4 application/views/qso/award_tabs.php:37
 #: application/views/qso/edit_ajax.php:264 application/views/qso/index.php:484
 #: application/views/view_log/qso.php:366
+#: application/views/logbookadvanced/index.php:504
+#: application/views/logbookadvanced/index.php:1038
+#: application/views/qso/edit_ajax.php:247
+#: application/views/view_log/qso.php:301
 msgid "Continent"
 msgstr "Kıta"
 
@@ -7548,6 +7898,7 @@ msgstr "WAJA Haritasını Göster"
 
 #: application/views/awards/waja/index.php:158
 #: application/views/timeline/index.php:245
+#: application/views/timeline/index.php:228
 msgid "Prefecture"
 msgstr "Şehir"
 
@@ -7767,7 +8118,9 @@ msgstr "Bu Ödül için Dikkate Alınan Alanlar: WWFF (ADIF: WWFF_REF)"
 #: application/views/station_profile/create.php:228
 #: application/views/station_profile/edit.php:253
 #: application/views/user/edit.php:761 application/views/view_log/qso.php:420
-#: application/views/view_log/qso.php:753
+#: application/views/view_log/qso.php:753 application/views/qso/index.php:602
+#: application/views/view_log/qso.php:355
+#: application/views/view_log/qso.php:688
 msgid "WWFF Reference"
 msgstr "WWFF Referansı"
 
@@ -8152,6 +8505,8 @@ msgstr "Yeni spot (< 5 dakika önce)"
 #: application/views/logbookadvanced/useroptions.php:296
 #: application/views/qso/edit_ajax.php:42
 #: application/views/simplefle/index.php:84
+#: application/views/logbookadvanced/index.php:500
+#: application/views/logbookadvanced/index.php:1032
 msgid "Contest"
 msgstr "Yarışma"
 
@@ -8269,6 +8624,8 @@ msgstr "Spotter"
 #: application/views/logbookadvanced/useroptions.php:284
 #: application/views/qso/edit_ajax.php:183 application/views/qso/index.php:386
 #: application/views/view_log/qso.php:240
+#: application/views/logbookadvanced/index.php:521
+#: application/views/logbookadvanced/index.php:1026
 msgid "Comment"
 msgstr "Yorum"
 
@@ -9002,6 +9359,7 @@ msgstr ""
 #: application/views/qso/index.php:369
 #: application/views/station_profile/create.php:78
 #: application/views/station_profile/edit.php:95
+#: application/views/logbookadvanced/index.php:856
 msgid "Location"
 msgstr "Konum"
 
@@ -9172,6 +9530,30 @@ msgstr ""
 #: application/views/user/edit.php:1077 application/views/user/edit.php:1097
 #: application/views/user/edit.php:1126 application/views/user/edit.php:1158
 #: application/views/user/edit.php:1183
+#: application/views/logbookadvanced/index.php:574
+#: application/views/logbookadvanced/index.php:585
+#: application/views/logbookadvanced/index.php:618
+#: application/views/logbookadvanced/index.php:629
+#: application/views/logbookadvanced/index.php:641
+#: application/views/logbookadvanced/index.php:652
+#: application/views/logbookadvanced/index.php:665
+#: application/views/logbookadvanced/index.php:676
+#: application/views/logbookadvanced/index.php:687
+#: application/views/logbookadvanced/index.php:696
+#: application/views/logbookadvanced/index.php:711
+#: application/views/logbookadvanced/index.php:719
+#: application/views/qso/edit_ajax.php:430
+#: application/views/qso/edit_ajax.php:463
+#: application/views/qso/edit_ajax.php:491
+#: application/views/qso/edit_ajax.php:504
+#: application/views/qso/edit_ajax.php:536
+#: application/views/qso/edit_ajax.php:549
+#: application/views/qso/edit_ajax.php:565
+#: application/views/qso/edit_ajax.php:579
+#: application/views/qso/edit_ajax.php:593
+#: application/views/qso/edit_ajax.php:605
+#: application/views/qso/edit_ajax.php:619
+#: application/views/qso/edit_ajax.php:631 application/views/qso/index.php:707
 msgid "Yes"
 msgstr "Evet"
 
@@ -9243,6 +9625,30 @@ msgstr "Evet"
 #: application/views/user/edit.php:1052 application/views/user/edit.php:1068
 #: application/views/user/edit.php:1096 application/views/user/edit.php:1127
 #: application/views/user/edit.php:1157 application/views/user/edit.php:1182
+#: application/views/logbookadvanced/index.php:575
+#: application/views/logbookadvanced/index.php:586
+#: application/views/logbookadvanced/index.php:619
+#: application/views/logbookadvanced/index.php:630
+#: application/views/logbookadvanced/index.php:642
+#: application/views/logbookadvanced/index.php:653
+#: application/views/logbookadvanced/index.php:666
+#: application/views/logbookadvanced/index.php:677
+#: application/views/logbookadvanced/index.php:688
+#: application/views/logbookadvanced/index.php:697
+#: application/views/logbookadvanced/index.php:712
+#: application/views/logbookadvanced/index.php:720
+#: application/views/qso/edit_ajax.php:429
+#: application/views/qso/edit_ajax.php:462
+#: application/views/qso/edit_ajax.php:490
+#: application/views/qso/edit_ajax.php:503
+#: application/views/qso/edit_ajax.php:535
+#: application/views/qso/edit_ajax.php:548
+#: application/views/qso/edit_ajax.php:564
+#: application/views/qso/edit_ajax.php:578
+#: application/views/qso/edit_ajax.php:592
+#: application/views/qso/edit_ajax.php:604
+#: application/views/qso/edit_ajax.php:618
+#: application/views/qso/edit_ajax.php:630 application/views/qso/index.php:706
 msgid "No"
 msgstr "Hayır"
 
@@ -9258,7 +9664,8 @@ msgstr "Kayıtlı grid'leri log’a dahil etmek ister misiniz?"
 
 #: application/views/cabrillo/index.php:209 application/views/csv/index.php:131
 #: application/views/dxatlas/index.php:130 application/views/kml/index.php:115
-#: application/views/reg1test/index.php:145
+#: application/views/reg1test/index.php:145 application/views/csv/index.php:114
+#: application/views/dxatlas/index.php:113 application/views/kml/index.php:98
 msgid "Export"
 msgstr "Dışa aktar"
 
@@ -9273,15 +9680,18 @@ msgid "All except SAT"
 msgstr "Hepsi (Uydu hariç)"
 
 #: application/views/callstats/index.php:150
+#: application/views/callstats/index.php:133
 msgid "#QSOs"
 msgstr "#QSO'lar"
 
 #: application/views/callstats/index.php:151
+#: application/views/callstats/index.php:134
 msgid "First QSO"
 msgstr "İlk QSO"
 
 #: application/views/callstats/index.php:152
 #: application/views/stationsetup/stationsetup.php:133
+#: application/views/callstats/index.php:135
 msgid "Last QSO"
 msgstr "Son QSO"
 
@@ -9394,6 +9804,7 @@ msgstr "Çağrı işareti DXCC tanımlaması"
 #: application/views/interface_assets/footer.php:878
 #: application/views/logbookadvanced/index.php:878
 #: application/views/zonechecker/index.php:10
+#: application/views/logbookadvanced/index.php:861
 msgid "Callsign: "
 msgstr "Çağrı işareti: "
 
@@ -9705,6 +10116,7 @@ msgstr ""
 #: application/views/qslprint/qslprint.php:32
 #: application/views/qslprint/qsolist.php:15
 #: application/views/webadif/export.php:41
+#: application/views/logbookadvanced/index.php:1050
 msgid "Profile name"
 msgstr "Profil adı"
 
@@ -10084,6 +10496,8 @@ msgstr "Oluştur"
 #: application/views/contesting/index.php:34
 #: application/views/qso/edit_ajax.php:690
 #: application/views/view_log/qso.php:399
+#: application/views/qso/edit_ajax.php:673
+#: application/views/view_log/qso.php:334
 msgid "Contest Name"
 msgstr "Yarışma İsmi"
 
@@ -10138,6 +10552,7 @@ msgstr "Seri + Grid + Exchange"
 #: application/views/contesting/index.php:45
 #: application/views/operator/index.php:5
 #: application/views/qso/edit_ajax.php:680 application/views/qso/index.php:454
+#: application/views/qso/edit_ajax.php:663
 msgid "Operator Callsign"
 msgstr "Operatör Çağrı İşareti"
 
@@ -10168,6 +10583,7 @@ msgstr "Konum kodu"
 #: application/views/logbookadvanced/index.php:971
 #: application/views/logbookadvanced/useroptions.php:97
 #: application/views/qso/edit_ajax.php:177
+#: application/views/logbookadvanced/index.php:954
 msgid "QTH"
 msgstr "QTH"
 
@@ -10216,6 +10632,7 @@ msgstr "Seri N."
 #: application/views/contesting/index.php:187
 #: application/views/contesting/index.php:270
 #: application/views/qso/edit_ajax.php:705
+#: application/views/qso/edit_ajax.php:688
 msgid "Serial (S)"
 msgstr "Seri No (G)"
 
@@ -10231,6 +10648,7 @@ msgstr "Exch (G)"
 #: application/views/contesting/index.php:211
 #: application/views/contesting/index.php:271
 #: application/views/qso/edit_ajax.php:700
+#: application/views/qso/edit_ajax.php:683
 msgid "Serial (R)"
 msgstr "Seri No (A)"
 
@@ -10248,7 +10666,7 @@ msgid "Reset QSO"
 msgstr "QSO'yu baştan başlat"
 
 #: application/views/contesting/index.php:240
-#: application/views/qso/index.php:775
+#: application/views/qso/index.php:775 application/views/qso/index.php:758
 msgid "Save QSO"
 msgstr "QSO'yu kaydet"
 
@@ -10553,7 +10971,7 @@ msgid "At least one of your certificates is expiring"
 msgstr "Sertifikalarından en az biri sona ermek üzere"
 
 #: application/views/dashboard/index.php:295
-#: application/views/qso/index.php:931
+#: application/views/qso/index.php:931 application/views/qso/index.php:914
 #, php-format
 msgid "Max. %d previous contact is shown"
 msgid_plural "Max. %d previous contacts are shown"
@@ -10609,7 +11027,18 @@ msgstr "Geriye Kalan"
 #: application/views/widgets/qsos.php:19 src/QSLManager/QSO.php:420
 #: src/QSLManager/QSO.php:521 src/QSLManager/QSO.php:575
 #: src/QSLManager/QSO.php:664 src/QSLManager/QSO.php:721
-#: src/QSLManager/QSO.php:810
+#: src/QSLManager/QSO.php:810 application/views/qso/edit_ajax.php:426
+#: application/views/qso/edit_ajax.php:487
+#: application/views/qso/edit_ajax.php:532
+#: application/views/qso/edit_ajax.php:561
+#: application/views/qso/edit_ajax.php:589
+#: application/views/qso/edit_ajax.php:615 application/views/qso/index.php:703
+#: application/views/view_log/partial/log_ajax.php:225
+#: application/views/view_log/partial/log_ajax.php:309
+#: application/views/view_log/partial/log_ajax.php:376
+#: application/views/view_log/partial/log_ajax.php:438
+#: application/views/view_log/partial/log_ajax.php:495
+#: application/views/view_log/partial/log_ajax.php:548
 msgid "Sent"
 msgstr "Gönderilen"
 
@@ -10646,7 +11075,18 @@ msgstr "Gönderilen"
 #: application/views/visitor/index.php:337 src/QSLManager/QSO.php:465
 #: src/QSLManager/QSO.php:548 src/QSLManager/QSO.php:625
 #: src/QSLManager/QSO.php:691 src/QSLManager/QSO.php:771
-#: src/QSLManager/QSO.php:838
+#: src/QSLManager/QSO.php:838 application/views/qso/edit_ajax.php:459
+#: application/views/qso/edit_ajax.php:500
+#: application/views/qso/edit_ajax.php:545
+#: application/views/qso/edit_ajax.php:575
+#: application/views/qso/edit_ajax.php:601
+#: application/views/qso/edit_ajax.php:627
+#: application/views/view_log/partial/log_ajax.php:263
+#: application/views/view_log/partial/log_ajax.php:340
+#: application/views/view_log/partial/log_ajax.php:407
+#: application/views/view_log/partial/log_ajax.php:469
+#: application/views/view_log/partial/log_ajax.php:526
+#: application/views/view_log/partial/log_ajax.php:571
 msgid "Received"
 msgstr "Alınan"
 
@@ -10691,7 +11131,34 @@ msgstr "Alınan"
 #: src/QSLManager/QSO.php:471 src/QSLManager/QSO.php:533
 #: src/QSLManager/QSO.php:556 src/QSLManager/QSO.php:670
 #: src/QSLManager/QSO.php:697 src/QSLManager/QSO.php:822
-#: src/QSLManager/QSO.php:847
+#: src/QSLManager/QSO.php:847 application/views/logbookadvanced/index.php:576
+#: application/views/logbookadvanced/index.php:587
+#: application/views/logbookadvanced/index.php:620
+#: application/views/logbookadvanced/index.php:631
+#: application/views/logbookadvanced/index.php:643
+#: application/views/logbookadvanced/index.php:654
+#: application/views/logbookadvanced/index.php:667
+#: application/views/logbookadvanced/index.php:678
+#: application/views/qso/edit_ajax.php:431
+#: application/views/qso/edit_ajax.php:464
+#: application/views/qso/edit_ajax.php:492
+#: application/views/qso/edit_ajax.php:505
+#: application/views/qso/edit_ajax.php:537
+#: application/views/qso/edit_ajax.php:550
+#: application/views/qso/edit_ajax.php:566
+#: application/views/qso/edit_ajax.php:580
+#: application/views/qso/edit_ajax.php:594
+#: application/views/qso/edit_ajax.php:606
+#: application/views/qso/edit_ajax.php:620
+#: application/views/qso/edit_ajax.php:632 application/views/qso/index.php:708
+#: application/views/view_log/partial/log_ajax.php:231
+#: application/views/view_log/partial/log_ajax.php:269
+#: application/views/view_log/partial/log_ajax.php:319
+#: application/views/view_log/partial/log_ajax.php:350
+#: application/views/view_log/partial/log_ajax.php:386
+#: application/views/view_log/partial/log_ajax.php:417
+#: application/views/view_log/partial/log_ajax.php:554
+#: application/views/view_log/partial/log_ajax.php:577
 msgid "Requested"
 msgstr "İstenen"
 
@@ -10831,6 +11298,7 @@ msgstr "Başlangıç Tarihi"
 #: application/views/dayswithqso/index.php:182
 #: application/views/lotw/satupdate.php:7
 #: application/views/timeline/index.php:207
+#: application/views/timeline/index.php:190
 msgid "End Date"
 msgstr "Bitiş Tarihi"
 
@@ -11666,6 +12134,7 @@ msgstr "Yalnızca grid bilgisi olan QSO'lar dışa aktarılacaktır!"
 
 #: application/views/dxcalendar/index.php:13
 #: application/views/view_log/qso.php:513
+#: application/views/view_log/qso.php:448
 msgid "QSL Info"
 msgstr "QSL Bilgileri"
 
@@ -11910,6 +12379,7 @@ msgstr ""
 #: application/views/eqsl/download.php:42
 #: application/views/eqslcard/index.php:34
 #: application/views/view_log/qso.php:568
+#: application/views/view_log/qso.php:503
 msgid "QSL Message"
 msgstr "QSL Mesajı"
 
@@ -12050,6 +12520,7 @@ msgstr "QSL Tarihi"
 #: application/views/interface_assets/footer.php:2701
 #: application/views/qslcard/index.php:77
 #: application/views/view_log/qso.php:804
+#: application/views/view_log/qso.php:739
 msgid "View"
 msgstr "Görüntüle"
 
@@ -12070,6 +12541,19 @@ msgstr "Görüntüle"
 #: application/views/logbookadvanced/index.php:543
 #: application/views/logbookadvanced/index.php:547
 #: application/views/logbookadvanced/index.php:722
+#: application/views/logbookadvanced/index.php:439
+#: application/views/logbookadvanced/index.php:453
+#: application/views/logbookadvanced/index.php:463
+#: application/views/logbookadvanced/index.php:467
+#: application/views/logbookadvanced/index.php:471
+#: application/views/logbookadvanced/index.php:475
+#: application/views/logbookadvanced/index.php:493
+#: application/views/logbookadvanced/index.php:497
+#: application/views/logbookadvanced/index.php:501
+#: application/views/logbookadvanced/index.php:522
+#: application/views/logbookadvanced/index.php:526
+#: application/views/logbookadvanced/index.php:530
+#: application/views/logbookadvanced/index.php:705
 msgid "Empty"
 msgstr "Boş"
 
@@ -12154,6 +12638,8 @@ msgstr "QSO’lar HRDLog Logbook’a aktarılmış olarak işaretlendi."
 #: application/views/view_log/partial/log.php:136
 #: application/views/view_log/partial/log_ajax.php:676
 #: application/views/view_log/qso.php:616
+#: application/views/view_log/partial/log_ajax.php:613
+#: application/views/view_log/qso.php:551
 msgid "Edit QSO"
 msgstr "QSO değiştirme"
 
@@ -12186,6 +12672,8 @@ msgstr "Çalışıldı fakat onaylanmadı"
 #: application/views/interface_assets/footer.php:53
 #: application/views/qso/edit_ajax.php:215
 #: application/views/qso/edit_ajax.php:571
+#: application/views/qso/edit_ajax.php:198
+#: application/views/qso/edit_ajax.php:554
 msgid "Propagation mode is not supported by LoTW. LoTW QSL fields disabled."
 msgstr ""
 "LoTW tarafından bu propagasyon modu desteklenmiyor. LoTW QSL alanları devre "
@@ -12684,6 +13172,7 @@ msgstr "eQSL Kartın Alıcısı: "
 #: application/views/interface_assets/footer.php:2655
 #: application/views/interface_assets/footer.php:2694
 #: application/views/view_log/qso.php:794
+#: application/views/view_log/qso.php:729
 msgid "QSL image file"
 msgstr "QSL kart görüntüsü"
 
@@ -12886,6 +13375,7 @@ msgstr "Kayıt"
 #: application/views/logbookadvanced/index.php:778
 #: application/views/oqrs/index.php:28 application/views/user/edit.php:541
 #: application/views/visitor/layout/header.php:95
+#: application/views/logbookadvanced/index.php:761
 msgid "Search Callsign"
 msgstr "Çağrı İşareti Ara"
 
@@ -12983,6 +13473,7 @@ msgstr ""
 
 #: application/views/interface_assets/header.php:554
 #: application/views/logbookadvanced/index.php:920
+#: application/views/logbookadvanced/index.php:903
 msgid "Help"
 msgstr "Yardım"
 
@@ -13481,6 +13972,22 @@ msgstr "DXCC CQ Bölgesi"
 #: application/views/view_log/qso.php:760
 #: application/views/view_log/qso.php:767
 #: application/views/view_log/qso.php:772
+#: application/views/view_log/partial/log_ajax.php:171
+#: application/views/view_log/qso.php:621
+#: application/views/view_log/qso.php:625
+#: application/views/view_log/qso.php:629
+#: application/views/view_log/qso.php:633
+#: application/views/view_log/qso.php:639
+#: application/views/view_log/qso.php:646
+#: application/views/view_log/qso.php:653
+#: application/views/view_log/qso.php:660
+#: application/views/view_log/qso.php:667
+#: application/views/view_log/qso.php:674
+#: application/views/view_log/qso.php:681
+#: application/views/view_log/qso.php:688
+#: application/views/view_log/qso.php:695
+#: application/views/view_log/qso.php:702
+#: application/views/view_log/qso.php:707
 msgid "Station"
 msgstr "İstasyon"
 
@@ -13686,6 +14193,9 @@ msgstr ""
 #: application/views/logbookadvanced/useroptions.php:263
 #: application/views/qso/edit_ajax.php:330 application/views/qso/index.php:497
 #: application/views/view_log/qso.php:499
+#: application/views/logbookadvanced/index.php:1020
+#: application/views/qso/edit_ajax.php:313
+#: application/views/view_log/qso.php:434
 msgid "Region"
 msgstr "Bölge"
 
@@ -13761,6 +14271,8 @@ msgstr "QSL Gönderim Yöntemi"
 #: application/views/logbookadvanced/index.php:721
 #: application/views/logbookadvanced/index.php:974
 #: application/views/logbookadvanced/useroptions.php:103
+#: application/views/logbookadvanced/index.php:704
+#: application/views/logbookadvanced/index.php:957
 msgid "QSL via"
 msgstr "QSL Bilgisi"
 
@@ -13794,6 +14306,8 @@ msgstr ""
 #: application/views/logbookadvanced/edit.php:212
 #: application/views/logbookadvanced/index.php:532
 #: application/views/logbookadvanced/index.php:890
+#: application/views/logbookadvanced/index.php:515
+#: application/views/logbookadvanced/index.php:873
 msgid "Invalid"
 msgstr "Geçersiz"
 
@@ -13825,6 +14339,24 @@ msgstr "Geçersiz"
 #: src/QSLManager/QSO.php:529 src/QSLManager/QSO.php:592
 #: src/QSLManager/QSO.php:667 src/QSLManager/QSO.php:694
 #: src/QSLManager/QSO.php:738 src/QSLManager/QSO.php:818
+#: application/views/logbookadvanced/index.php:577
+#: application/views/logbookadvanced/index.php:621
+#: application/views/logbookadvanced/index.php:644
+#: application/views/logbookadvanced/index.php:668
+#: application/views/qso/edit_ajax.php:432
+#: application/views/qso/edit_ajax.php:493
+#: application/views/qso/edit_ajax.php:538
+#: application/views/qso/edit_ajax.php:567
+#: application/views/qso/edit_ajax.php:595
+#: application/views/qso/edit_ajax.php:621 application/views/qso/index.php:709
+#: application/views/view_log/partial/log_ajax.php:228
+#: application/views/view_log/partial/log_ajax.php:266
+#: application/views/view_log/partial/log_ajax.php:324
+#: application/views/view_log/partial/log_ajax.php:391
+#: application/views/view_log/partial/log_ajax.php:448
+#: application/views/view_log/partial/log_ajax.php:505
+#: application/views/view_log/partial/log_ajax.php:551
+#: application/views/view_log/partial/log_ajax.php:574
 msgid "Queued"
 msgstr "Sıralanan"
 
@@ -13833,6 +14365,10 @@ msgstr "Sıralanan"
 #: application/views/logbookadvanced/index.php:650
 #: application/views/logbookadvanced/index.php:673
 #: application/views/logbookadvanced/index.php:697
+#: application/views/logbookadvanced/index.php:589
+#: application/views/logbookadvanced/index.php:633
+#: application/views/logbookadvanced/index.php:656
+#: application/views/logbookadvanced/index.php:680
 msgid "Verified"
 msgstr "Doğrulandı"
 
@@ -13852,6 +14388,12 @@ msgstr "Doğrulandı"
 #: application/views/view_log/partial/log_ajax.php:313
 #: application/views/view_log/partial/log_ajax.php:351
 #: src/QSLManager/QSO.php:449 src/QSLManager/QSO.php:492
+#: application/views/logbookadvanced/index.php:597
+#: application/views/logbookadvanced/index.php:607
+#: application/views/qso/edit_ajax.php:443
+#: application/views/qso/edit_ajax.php:476 application/views/qso/index.php:720
+#: application/views/view_log/partial/log_ajax.php:250
+#: application/views/view_log/partial/log_ajax.php:288
 msgid "Direct"
 msgstr "Direkt"
 
@@ -13873,6 +14415,12 @@ msgstr "Direkt"
 #: application/views/view_log/partial/log_ajax.php:310
 #: application/views/view_log/partial/log_ajax.php:348
 #: src/QSLManager/QSO.php:446 src/QSLManager/QSO.php:489
+#: application/views/logbookadvanced/index.php:596
+#: application/views/logbookadvanced/index.php:606
+#: application/views/qso/edit_ajax.php:444
+#: application/views/qso/edit_ajax.php:477 application/views/qso/index.php:721
+#: application/views/view_log/partial/log_ajax.php:247
+#: application/views/view_log/partial/log_ajax.php:285
 msgid "Bureau"
 msgstr "Büro"
 
@@ -13892,6 +14440,12 @@ msgstr "Büro"
 #: application/views/view_log/partial/log_ajax.php:319
 #: application/views/view_log/partial/log_ajax.php:357
 #: src/QSLManager/QSO.php:455 src/QSLManager/QSO.php:498
+#: application/views/logbookadvanced/index.php:598
+#: application/views/logbookadvanced/index.php:608
+#: application/views/qso/edit_ajax.php:445
+#: application/views/qso/edit_ajax.php:478 application/views/qso/index.php:722
+#: application/views/view_log/partial/log_ajax.php:256
+#: application/views/view_log/partial/log_ajax.php:294
 msgid "Electronic"
 msgstr "Elektronik"
 
@@ -13904,46 +14458,59 @@ msgstr "Elektronik"
 #: application/views/qso/edit_ajax.php:496 application/views/qso/index.php:740
 #: application/views/search/search_result_ajax.php:250
 #: application/views/view_log/partial/log_ajax.php:354
+#: application/views/logbookadvanced/index.php:599
+#: application/views/logbookadvanced/index.php:609
+#: application/views/qso/edit_ajax.php:446
+#: application/views/qso/edit_ajax.php:479 application/views/qso/index.php:723
+#: application/views/view_log/partial/log_ajax.php:291
 msgid "Manager"
 msgstr "Yönetici"
 
 #: application/views/logbookadvanced/edit.php:237
 #: application/views/qso/edit_ajax.php:333 application/views/qso/index.php:500
+#: application/views/qso/edit_ajax.php:316
 msgid "NONE"
 msgstr "HİÇBİRİ"
 
 #: application/views/logbookadvanced/edit.php:238
 #: application/views/qso/edit_ajax.php:334 application/views/qso/index.php:501
+#: application/views/qso/edit_ajax.php:317
 msgid "African Italy"
 msgstr "Afrikan-İtalya (Özel DXCC Varlığı)"
 
 #: application/views/logbookadvanced/edit.php:239
 #: application/views/qso/edit_ajax.php:335 application/views/qso/index.php:502
+#: application/views/qso/edit_ajax.php:318
 msgid "Bear Island"
 msgstr "Bear Island (Ayı Adası)"
 
 #: application/views/logbookadvanced/edit.php:240
 #: application/views/qso/edit_ajax.php:336 application/views/qso/index.php:503
+#: application/views/qso/edit_ajax.php:319
 msgid "European Turkey"
 msgstr "Türkiye'nin Avrupa Yakası"
 
 #: application/views/logbookadvanced/edit.php:241
 #: application/views/qso/edit_ajax.php:337 application/views/qso/index.php:504
+#: application/views/qso/edit_ajax.php:320
 msgid "ITU Vienna"
 msgstr "ITU Viyana"
 
 #: application/views/logbookadvanced/edit.php:242
 #: application/views/qso/edit_ajax.php:338 application/views/qso/index.php:505
+#: application/views/qso/edit_ajax.php:321
 msgid "Kosovo"
 msgstr "Kosova"
 
 #: application/views/logbookadvanced/edit.php:243
 #: application/views/qso/edit_ajax.php:339 application/views/qso/index.php:506
+#: application/views/qso/edit_ajax.php:322
 msgid "Shetland Islands"
 msgstr "Shetland Adaları"
 
 #: application/views/logbookadvanced/edit.php:244
 #: application/views/qso/edit_ajax.php:340 application/views/qso/index.php:507
+#: application/views/qso/edit_ajax.php:323
 msgid "Sicily"
 msgstr "Sicilya"
 
@@ -14267,6 +14834,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/index.php:85
 #: application/views/logbookadvanced/index.php:859
+#: application/views/logbookadvanced/index.php:842
 msgid "Merge QSOs"
 msgstr ""
 
@@ -14307,6 +14875,7 @@ msgstr "to"
 #: application/views/logbookadvanced/index.php:351
 #: application/views/logbookadvanced/index.php:947
 #: application/views/logbookadvanced/useroptions.php:40
+#: application/views/logbookadvanced/index.php:930
 msgid "Dx"
 msgstr "Çağrı İşareti (A)"
 
@@ -14316,6 +14885,7 @@ msgid "None/Empty"
 msgstr "Yok/Boş"
 
 #: application/views/logbookadvanced/index.php:542
+#: application/views/logbookadvanced/index.php:525
 msgid ""
 "Distance in kilometers. Search will look for distances greater than or equal "
 "to this value."
@@ -14330,50 +14900,63 @@ msgstr ""
 #: application/views/satellite/skedtable.php:10
 #: application/views/satellite/skedtable.php:37
 #: application/views/sattimers/index.php:46
+#: application/views/logbookadvanced/index.php:529
+#: application/views/logbookadvanced/index.php:921
 msgid "Duration"
 msgstr "Süre"
 
 #: application/views/logbookadvanced/index.php:546
+#: application/views/logbookadvanced/index.php:529
 msgid ""
 "Duration in minutes. Search will look for durations greater than or equal to "
 "this value."
 msgstr ""
 
 #: application/views/logbookadvanced/index.php:552
+#: application/views/logbookadvanced/index.php:535
 msgid "Sort column"
 msgstr "Sütunu sırala"
 
 #: application/views/logbookadvanced/index.php:554
 #: application/views/oqrs/showrequests.php:87
+#: application/views/logbookadvanced/index.php:537
 msgid "QSO Time"
 msgstr "QSO Saati"
 
 #: application/views/logbookadvanced/index.php:557
+#: application/views/logbookadvanced/index.php:540
 msgid "QSO Modified"
 msgstr "QSO Değiştirildi"
 
 #: application/views/logbookadvanced/index.php:561
+#: application/views/logbookadvanced/index.php:544
 msgid "Sort direction"
 msgstr "Sıralama yönü"
 
 #: application/views/logbookadvanced/index.php:563
+#: application/views/logbookadvanced/index.php:546
 msgid "Descending"
 msgstr "Azalan"
 
 #: application/views/logbookadvanced/index.php:564
+#: application/views/logbookadvanced/index.php:547
 msgid "Ascending"
 msgstr "Artan"
 
 #: application/views/logbookadvanced/index.php:572
 #: application/views/logbookadvanced/index.php:754
+#: application/views/logbookadvanced/index.php:555
+#: application/views/logbookadvanced/index.php:737
 msgid "Apply filters"
 msgstr "Filtreleri Uygula"
 
 #: application/views/logbookadvanced/index.php:582
+#: application/views/logbookadvanced/index.php:565
 msgid "QSL Filters"
 msgstr "QSL Filtresi"
 
 #: application/views/logbookadvanced/index.php:588
+#: application/views/logbookadvanced/index.php:571
 msgid "QSL sent"
 msgstr "QSL gönderildi"
 
@@ -14430,226 +15013,316 @@ msgstr "QSL gönderildi"
 #: src/QSLManager/QSO.php:673 src/QSLManager/QSO.php:700
 #: src/QSLManager/QSO.php:730 src/QSLManager/QSO.php:779
 #: src/QSLManager/QSO.php:814 src/QSLManager/QSO.php:843
+#: application/views/logbookadvanced/index.php:578
+#: application/views/logbookadvanced/index.php:588
+#: application/views/logbookadvanced/index.php:622
+#: application/views/logbookadvanced/index.php:632
+#: application/views/logbookadvanced/index.php:645
+#: application/views/logbookadvanced/index.php:655
+#: application/views/logbookadvanced/index.php:669
+#: application/views/logbookadvanced/index.php:679
+#: application/views/logbookadvanced/index.php:689
+#: application/views/logbookadvanced/index.php:698
+#: application/views/logbookadvanced/index.php:721
+#: application/views/logbookadvanced/index.php:730
+#: application/views/qso/edit_ajax.php:433
+#: application/views/qso/edit_ajax.php:465
+#: application/views/qso/edit_ajax.php:494
+#: application/views/qso/edit_ajax.php:506
+#: application/views/qso/edit_ajax.php:539
+#: application/views/qso/edit_ajax.php:551
+#: application/views/qso/edit_ajax.php:581
+#: application/views/qso/edit_ajax.php:596
+#: application/views/qso/edit_ajax.php:607
+#: application/views/qso/edit_ajax.php:622
+#: application/views/qso/edit_ajax.php:633 application/views/qso/index.php:710
+#: application/views/view_log/partial/log_ajax.php:234
+#: application/views/view_log/partial/log_ajax.php:272
+#: application/views/view_log/partial/log_ajax.php:314
+#: application/views/view_log/partial/log_ajax.php:345
+#: application/views/view_log/partial/log_ajax.php:381
+#: application/views/view_log/partial/log_ajax.php:412
+#: application/views/view_log/partial/log_ajax.php:443
+#: application/views/view_log/partial/log_ajax.php:474
+#: application/views/view_log/partial/log_ajax.php:500
+#: application/views/view_log/partial/log_ajax.php:531
+#: application/views/view_log/partial/log_ajax.php:557
+#: application/views/view_log/partial/log_ajax.php:580
 msgid "Invalid (Ignore)"
 msgstr "Geçersiz (Yok say)"
 
 #: application/views/logbookadvanced/index.php:599
+#: application/views/logbookadvanced/index.php:582
 msgid "QSL received"
 msgstr "QSL alındı"
 
 #: application/views/logbookadvanced/index.php:610
+#: application/views/logbookadvanced/index.php:593
 msgid "QSL send. method"
 msgstr "QSL gönderim yöntemi"
 
 #: application/views/logbookadvanced/index.php:620
+#: application/views/logbookadvanced/index.php:603
 msgid "QSL recv. method"
 msgstr "QSL alma yöntemi"
 
 #: application/views/logbookadvanced/index.php:632
+#: application/views/logbookadvanced/index.php:615
 msgid "LoTW sent"
 msgstr "LoTW gönderildi"
 
 #: application/views/logbookadvanced/index.php:643
+#: application/views/logbookadvanced/index.php:626
 msgid "LoTW received"
 msgstr "LoTW alındı"
 
 #: application/views/logbookadvanced/index.php:655
+#: application/views/logbookadvanced/index.php:638
 msgid "Clublog sent"
 msgstr "Clublog gönderildi"
 
 #: application/views/logbookadvanced/index.php:666
+#: application/views/logbookadvanced/index.php:649
 msgid "Clublog received"
 msgstr "Clublog alındı"
 
 #: application/views/logbookadvanced/index.php:679
+#: application/views/logbookadvanced/index.php:662
 msgid "eQSL sent"
 msgstr "eQSL gönderildi"
 
 #: application/views/logbookadvanced/index.php:690
+#: application/views/logbookadvanced/index.php:673
 msgid "eQSL received"
 msgstr "eQSL alındı"
 
 #: application/views/logbookadvanced/index.php:701
+#: application/views/logbookadvanced/index.php:684
 msgid "DCL sent"
 msgstr "DCL gönderildi"
 
 #: application/views/logbookadvanced/index.php:710
+#: application/views/logbookadvanced/index.php:693
 msgid "DCL received"
 msgstr "DCL alındı"
 
 #: application/views/logbookadvanced/index.php:725
+#: application/views/logbookadvanced/index.php:708
 msgid "QSL Images"
 msgstr "QSL Kart Görselleri"
 
 #: application/views/logbookadvanced/index.php:733
+#: application/views/logbookadvanced/index.php:716
 msgid "QRZ sent"
 msgstr "QRZ Aracılığıyla Gönderildi"
 
 #: application/views/logbookadvanced/index.php:742
+#: application/views/logbookadvanced/index.php:725
 msgid "QRZ received"
 msgstr "QRZ Aracılığıyla Alındı"
 
 #: application/views/logbookadvanced/index.php:765
+#: application/views/logbookadvanced/index.php:748
 msgid "Quickfilters"
 msgstr "Hızlı Filtreler"
 
 #: application/views/logbookadvanced/index.php:770
+#: application/views/logbookadvanced/index.php:753
 msgid "Quicksearch with selected: "
 msgstr "Kriterler ile hızlı arama: "
 
 #: application/views/logbookadvanced/index.php:775
+#: application/views/logbookadvanced/index.php:758
 msgid "Search Date"
 msgstr "Arama Tarihi"
 
 #: application/views/logbookadvanced/index.php:781
+#: application/views/logbookadvanced/index.php:764
 msgid "Search DXCC"
 msgstr "DXCC Ara"
 
 #: application/views/logbookadvanced/index.php:784
+#: application/views/logbookadvanced/index.php:767
 msgid "Search State"
 msgstr "Eyaleti Ara"
 
 #: application/views/logbookadvanced/index.php:787
+#: application/views/logbookadvanced/index.php:770
 msgid "Search Gridsquare"
 msgstr "Grid'i Ara"
 
 #: application/views/logbookadvanced/index.php:790
+#: application/views/logbookadvanced/index.php:773
 msgid "Search CQ Zone"
 msgstr "CQ Bölgesi Ara"
 
 #: application/views/logbookadvanced/index.php:793
+#: application/views/logbookadvanced/index.php:776
 msgid "Search ITU Zone"
 msgstr "ITU Bölgesi Ara"
 
 #: application/views/logbookadvanced/index.php:796
+#: application/views/logbookadvanced/index.php:779
 msgid "Search Mode"
 msgstr "Mod Ara"
 
 #: application/views/logbookadvanced/index.php:799
+#: application/views/logbookadvanced/index.php:782
 msgid "Search Band"
 msgstr "Band Ara"
 
 #: application/views/logbookadvanced/index.php:802
+#: application/views/logbookadvanced/index.php:785
 msgid "Search IOTA"
 msgstr "IOTA Ara"
 
 #: application/views/logbookadvanced/index.php:805
+#: application/views/logbookadvanced/index.php:788
 msgid "Search SOTA"
 msgstr "SOTA Ara"
 
 #: application/views/logbookadvanced/index.php:808
+#: application/views/logbookadvanced/index.php:791
 msgid "Search POTA"
 msgstr "POTA Ara"
 
 #: application/views/logbookadvanced/index.php:811
+#: application/views/logbookadvanced/index.php:794
 msgid "Search WWFF"
 msgstr "WWFF Ara"
 
 #: application/views/logbookadvanced/index.php:814
+#: application/views/logbookadvanced/index.php:797
 msgid "Search Operator"
 msgstr "Operatör Ara"
 
 #: application/views/logbookadvanced/index.php:833
+#: application/views/logbookadvanced/index.php:816
 msgid "Warning! Are you sure you want to delete the marked QSO(s)?"
 msgstr "Uyarı! İşaretlenen QSO(lar)ı silmek istediğinize emin misiniz?"
 
 #: application/views/logbookadvanced/index.php:834
+#: application/views/logbookadvanced/index.php:817
 msgid " QSO(s) will be deleted"
 msgstr " QSO(lar) silinecek"
 
 #: application/views/logbookadvanced/index.php:838
+#: application/views/logbookadvanced/index.php:821
 msgid "With selected: "
 msgstr "Seçilen öğelerle: "
 
 #: application/views/logbookadvanced/index.php:842
 #: application/views/qso/edit_ajax.php:728
+#: application/views/logbookadvanced/index.php:825
+#: application/views/qso/edit_ajax.php:711
 msgid "Update from Callbook"
 msgstr "Online Çağrı Defterinden Güncelle"
 
 #: application/views/logbookadvanced/index.php:843
+#: application/views/logbookadvanced/index.php:826
 msgid "Queue Bureau"
 msgstr "Büro ile Gönderim Sırası"
 
 #: application/views/logbookadvanced/index.php:844
+#: application/views/logbookadvanced/index.php:827
 msgid "Queue Direct"
 msgstr "Doğrudan Gönderim Kuyruğu"
 
 #: application/views/logbookadvanced/index.php:845
+#: application/views/logbookadvanced/index.php:828
 msgid "Queue Electronic"
 msgstr "Elektronik Gönderim Kuyruğu"
 
 #: application/views/logbookadvanced/index.php:846
+#: application/views/logbookadvanced/index.php:829
 msgid "Sent (Bureau)"
 msgstr "Gönderildi (Büro)"
 
 #: application/views/logbookadvanced/index.php:847
+#: application/views/logbookadvanced/index.php:830
 msgid "Sent (Direct)"
 msgstr "Gönderildi (Doğrudan)"
 
 #: application/views/logbookadvanced/index.php:848
+#: application/views/logbookadvanced/index.php:831
 msgid "Sent (Electronic)"
 msgstr "Gönderildi (Elektronik)"
 
 #: application/views/logbookadvanced/index.php:849
+#: application/views/logbookadvanced/index.php:832
 msgid "Not Sent"
 msgstr "Alınmadı (Elektronik)"
 
 #: application/views/logbookadvanced/index.php:850
+#: application/views/logbookadvanced/index.php:833
 msgid "QSL Not Required"
 msgstr "Alınmadı (Doğrudan)"
 
 #: application/views/logbookadvanced/index.php:851
+#: application/views/logbookadvanced/index.php:834
 msgid "Not Received"
 msgstr "Alınmadı"
 
 #: application/views/logbookadvanced/index.php:852
+#: application/views/logbookadvanced/index.php:835
 msgid "Received (Bureau)"
 msgstr "Alındı (Büro)"
 
 #: application/views/logbookadvanced/index.php:853
+#: application/views/logbookadvanced/index.php:836
 msgid "Received (Direct)"
 msgstr "Alındı (Doğrudan)"
 
 #: application/views/logbookadvanced/index.php:854
+#: application/views/logbookadvanced/index.php:837
 msgid "Received (Electronic)"
 msgstr "Alındı (Elektronik)"
 
 #: application/views/logbookadvanced/index.php:855
+#: application/views/logbookadvanced/index.php:838
 msgid "Create ADIF"
 msgstr "ADIF Oluştur"
 
 #: application/views/logbookadvanced/index.php:856
+#: application/views/logbookadvanced/index.php:839
 msgid "Print Label"
 msgstr "Etiketi Yazdır"
 
 #: application/views/logbookadvanced/index.php:857
+#: application/views/logbookadvanced/index.php:840
 msgid "QSL Slideshow"
 msgstr "QSL Kart Slayt Gösterisi"
 
 #: application/views/logbookadvanced/index.php:866
 #: application/views/oqrs/showrequests.php:58
+#: application/views/logbookadvanced/index.php:849
 msgid "# Results"
 msgstr "Gösterilecek Sonuç:"
 
 #: application/views/logbookadvanced/index.php:887
+#: application/views/logbookadvanced/index.php:870
 msgid "Dupes"
 msgstr "Tekrarlar"
 
 #: application/views/logbookadvanced/index.php:903
+#: application/views/logbookadvanced/index.php:886
 msgid "Globe map"
 msgstr "3D Harita"
 
 #: application/views/logbookadvanced/index.php:910
+#: application/views/logbookadvanced/index.php:893
 msgid "Database Tools"
 msgstr "Veritabanı Araçları"
 
 #: application/views/logbookadvanced/index.php:941
 #: application/views/logbookadvanced/useroptions.php:349
+#: application/views/logbookadvanced/index.php:924
 msgid "Last modified"
 msgstr "Son değişiklik"
 
 #: application/views/logbookadvanced/index.php:944
 #: application/views/logbookadvanced/useroptions.php:34
+#: application/views/logbookadvanced/index.php:927
 msgid "De"
 msgstr "De"
 
@@ -14657,18 +15330,24 @@ msgstr "De"
 #: application/views/logbookadvanced/useroptions.php:142
 #: application/views/qso/edit_ajax.php:431
 #: application/views/timeline/index.php:72 application/views/user/edit.php:677
+#: application/views/logbookadvanced/index.php:972
+#: application/views/qso/edit_ajax.php:414
 msgid "QRZ"
 msgstr "QRZ"
 
 #: application/views/logbookadvanced/index.php:995
 #: application/views/logbookadvanced/useroptions.php:154
 #: application/views/qso/edit_ajax.php:530
+#: application/views/logbookadvanced/index.php:978
+#: application/views/qso/edit_ajax.php:513
 msgid "QSL Msg (S)"
 msgstr "QSL Mesajı (G)"
 
 #: application/views/logbookadvanced/index.php:998
 #: application/views/logbookadvanced/useroptions.php:160
 #: application/views/qso/edit_ajax.php:539
+#: application/views/logbookadvanced/index.php:981
+#: application/views/qso/edit_ajax.php:522
 msgid "QSL Msg (R)"
 msgstr "QSL Mesajı (A)"
 
@@ -14677,34 +15356,44 @@ msgstr "QSL Mesajı (A)"
 #: application/views/qso/index.php:650 application/views/user/edit.php:769
 #: application/views/view_log/qso.php:465
 #: application/views/view_log/qso.php:772
+#: application/views/logbookadvanced/index.php:1017
+#: application/views/qso/edit_ajax.php:382 application/views/qso/index.php:633
+#: application/views/view_log/qso.php:400
+#: application/views/view_log/qso.php:707
 msgid "SIG Info"
 msgstr "SIG (Special Interest Group) Bilgisi"
 
 #: application/views/logbookadvanced/index.php:1052
 #: application/views/logbookadvanced/useroptions.php:302
+#: application/views/logbookadvanced/index.php:1035
 msgid "My Refs"
 msgstr "Konumum"
 
 #: application/views/logbookadvanced/index.php:1061
+#: application/views/logbookadvanced/index.php:1044
 msgid "Ant az"
 msgstr "Anten Azimut"
 
 #: application/views/logbookadvanced/index.php:1061
 #: application/views/logbookadvanced/useroptions.php:324
+#: application/views/logbookadvanced/index.php:1044
 msgid "Antenna azimuth"
 msgstr "Anten Yönü (Azimut)"
 
 #: application/views/logbookadvanced/index.php:1064
+#: application/views/logbookadvanced/index.php:1047
 msgid "Ant el"
 msgstr "Anten Yüksekliği"
 
 #: application/views/logbookadvanced/index.php:1064
 #: application/views/logbookadvanced/useroptions.php:330
+#: application/views/logbookadvanced/index.php:1047
 msgid "Antenna elevation"
 msgstr "Anten Yüksekliği"
 
 #: application/views/logbookadvanced/index.php:1070
 #: application/views/logbookadvanced/useroptions.php:342
+#: application/views/logbookadvanced/index.php:1053
 msgid "Station power"
 msgstr "İstasyon Gücü"
 
@@ -15052,6 +15741,7 @@ msgstr "Geçeriliğini Yitirme Tarihi"
 
 #: application/views/lotw_views/index.php:39
 #: application/views/view_log/qso.php:551
+#: application/views/view_log/qso.php:486
 msgid "Last Upload"
 msgstr "Son yükleme"
 
@@ -15232,7 +15922,7 @@ msgid "Note Contents"
 msgstr "Not içeriği"
 
 #: application/views/notes/add.php:67 application/views/notes/edit.php:63
-#: application/views/qso/index.php:802
+#: application/views/qso/index.php:802 application/views/qso/index.php:785
 msgid "Save Note"
 msgstr "Notu kaydet"
 
@@ -15707,6 +16397,8 @@ msgstr "Bilmemiz gereken ek bir bilgi var mı?"
 #: application/views/qso/edit_ajax.php:277 application/views/qso/index.php:665
 #: application/views/user/index.php:29 application/views/user/index.php:154
 #: application/views/user/profile.php:24 application/views/view_log/qso.php:506
+#: application/views/qso/edit_ajax.php:260 application/views/qso/index.php:648
+#: application/views/view_log/qso.php:441
 msgid "E-mail"
 msgstr "E-posta"
 
@@ -15727,7 +16419,8 @@ msgstr "Log’da Yok Talebini Gönder"
 #: application/views/qso/index.php:746
 #: application/views/search/search_result_ajax.php:208
 #: application/views/view_log/partial/log_ajax.php:316
-#: src/QSLManager/QSO.php:452
+#: src/QSLManager/QSO.php:452 application/views/qso/index.php:729
+#: application/views/view_log/partial/log_ajax.php:253
 msgid "Via"
 msgstr "QSL Yöneticisi"
 
@@ -16294,6 +16987,7 @@ msgstr "Gücü Watt olarak veriniz. Sadece rakamları giriniz."
 #: application/views/qso/edit_ajax.php:136 application/views/qso/index.php:447
 #: application/views/reg1test/index.php:114
 #: application/views/view_log/qso.php:725
+#: application/views/view_log/qso.php:660
 msgid "Transmit Power (W)"
 msgstr "Yayın Gücü (W)"
 
@@ -16302,75 +16996,93 @@ msgid "Used for VUCC MultiGrids"
 msgstr "VUCC Çoklu Grid'ler için kullanılır"
 
 #: application/views/qso/edit_ajax.php:223 application/views/qso/index.php:563
+#: application/views/qso/edit_ajax.php:206 application/views/qso/index.php:546
 msgid "Antenna Path"
 msgstr "Anten Yönü"
 
 #: application/views/qso/edit_ajax.php:226 application/views/qso/index.php:566
 #: application/views/view_log/qso.php:168
+#: application/views/qso/edit_ajax.php:209 application/views/qso/index.php:549
 msgid "Greyline"
 msgstr "Gri Çizgi (Greyline)"
 
 #: application/views/qso/edit_ajax.php:227 application/views/qso/index.php:567
+#: application/views/qso/edit_ajax.php:210 application/views/qso/index.php:550
 msgid "Other"
 msgstr "Diğer"
 
 #: application/views/qso/edit_ajax.php:228 application/views/qso/index.php:568
 #: application/views/view_log/qso.php:159
+#: application/views/qso/edit_ajax.php:211 application/views/qso/index.php:551
 msgid "Short Path"
 msgstr "Kısa Yol (Short Path)"
 
 #: application/views/qso/edit_ajax.php:229 application/views/qso/index.php:569
 #: application/views/view_log/qso.php:162
+#: application/views/qso/edit_ajax.php:212 application/views/qso/index.php:552
 msgid "Long Path"
 msgstr "Uzun Yol (Long Path)"
 
 #: application/views/qso/edit_ajax.php:286
+#: application/views/qso/edit_ajax.php:269
 msgid "Sat Name"
 msgstr "Uydu Adı"
 
 #: application/views/qso/edit_ajax.php:291
+#: application/views/qso/edit_ajax.php:274
 msgid "Sat Mode"
 msgstr "Uydu Modu"
 
 #: application/views/qso/edit_ajax.php:296 application/views/qso/index.php:695
+#: application/views/qso/edit_ajax.php:279 application/views/qso/index.php:678
 msgid "Antenna Azimuth (°)"
 msgstr "Anten Yönü (Azimut)(°)"
 
 #: application/views/qso/edit_ajax.php:296 application/views/qso/index.php:697
+#: application/views/qso/edit_ajax.php:279 application/views/qso/index.php:680
 msgid "Antenna azimuth in decimal degrees."
 msgstr "Ondalık derece cinsinden anten azimutu."
 
 #: application/views/qso/edit_ajax.php:301 application/views/qso/index.php:701
+#: application/views/qso/edit_ajax.php:284 application/views/qso/index.php:684
 msgid "Antenna Elevation (°)"
 msgstr "Anten Yüksekliği (°)"
 
 #: application/views/qso/edit_ajax.php:301 application/views/qso/index.php:703
+#: application/views/qso/edit_ajax.php:284 application/views/qso/index.php:686
 msgid "Antenna elevation in decimal degrees."
 msgstr "Ondalık derece cinsinden anten yüksekliği."
 
 #: application/views/qso/edit_ajax.php:364 application/views/qso/index.php:583
 #: application/views/station_profile/create.php:114
 #: application/views/station_profile/edit.php:139
+#: application/views/qso/edit_ajax.php:347 application/views/qso/index.php:566
 msgid "Station County"
 msgstr "İstasyon İdari Bölgesi"
 
 #: application/views/qso/edit_ajax.php:414
 #: application/views/qso/edit_ajax.php:533 application/views/qso/index.php:712
-#: application/views/qso/index.php:756
+#: application/views/qso/index.php:756 application/views/qso/edit_ajax.php:397
+#: application/views/qso/edit_ajax.php:516 application/views/qso/index.php:695
+#: application/views/qso/index.php:739
 msgid "Note: Gets exported to third-party services."
 msgstr "Not: Üçüncü taraf hizmetlere aktarılır."
 
 #: application/views/qso/edit_ajax.php:456
+#: application/views/qso/edit_ajax.php:439
 msgid "Sent Method"
 msgstr "Gönderim Yöntemi"
 
 #: application/views/qso/edit_ajax.php:459
 #: application/views/qso/edit_ajax.php:492 application/views/qso/index.php:733
-#: application/views/qso/index.php:736
+#: application/views/qso/index.php:736 application/views/qso/edit_ajax.php:442
+#: application/views/qso/edit_ajax.php:475 application/views/qso/index.php:716
+#: application/views/qso/index.php:719
 msgid "Method"
 msgstr "Metod"
 
 #: application/views/qso/edit_ajax.php:469
+#: application/views/qso/edit_ajax.php:452
 msgid "Sent Via"
 msgstr "Aracılığıyla gönderildi"
 
@@ -16380,18 +17092,27 @@ msgstr "Aracılığıyla gönderildi"
 #: application/views/qso/edit_ajax.php:599
 #: application/views/qso/edit_ajax.php:625
 #: application/views/qso/edit_ajax.php:651
+#: application/views/qso/edit_ajax.php:466
+#: application/views/qso/edit_ajax.php:507
+#: application/views/qso/edit_ajax.php:552
+#: application/views/qso/edit_ajax.php:582
+#: application/views/qso/edit_ajax.php:608
+#: application/views/qso/edit_ajax.php:634
 msgid "Verified (Match)"
 msgstr "Doğrulandı (Eşleşme)"
 
 #: application/views/qso/edit_ajax.php:489
+#: application/views/qso/edit_ajax.php:472
 msgid "Received Method"
 msgstr "Alınma Yöntemi"
 
 #: application/views/qso/edit_ajax.php:530 application/views/qso/index.php:753
+#: application/views/qso/edit_ajax.php:513 application/views/qso/index.php:736
 msgid "Get the default message for eQSL, for this station."
 msgstr "Bu istasyon için eQSL varsayılan mesajını al."
 
 #: application/views/qso/edit_ajax.php:542
+#: application/views/qso/edit_ajax.php:525
 msgid "Note: Not editable. Only displayed here."
 msgstr "Not: Düzenlenemez. Sadece burada görüntülenir."
 
@@ -16399,18 +17120,24 @@ msgstr "Not: Düzenlenemez. Sadece burada görüntülenir."
 #: application/views/view_log/partial/log_ajax.php:516
 #: application/views/view_log/partial/log_ajax.php:573
 #: src/QSLManager/QSO.php:600 src/QSLManager/QSO.php:746
+#: application/views/qso/edit_ajax.php:569
+#: application/views/view_log/partial/log_ajax.php:453
+#: application/views/view_log/partial/log_ajax.php:510
 msgid "Modified"
 msgstr "Değiştirilmiş"
 
 #: application/views/qso/edit_ajax.php:670
+#: application/views/qso/edit_ajax.php:653
 msgid "Change Station Profile"
 msgstr "İstasyon Profilini Değiştir"
 
 #: application/views/qso/edit_ajax.php:710
+#: application/views/qso/edit_ajax.php:693
 msgid "Exchange (R)"
 msgstr "Exchange (A)"
 
 #: application/views/qso/edit_ajax.php:715
+#: application/views/qso/edit_ajax.php:698
 msgid "Exchange (S)"
 msgstr "Exchange (G)"
 
@@ -16418,10 +17145,13 @@ msgstr "Exchange (G)"
 #: application/views/search/search_result_ajax.php:488
 #: application/views/view_log/partial/log.php:159
 #: application/views/view_log/partial/log_ajax.php:708
+#: application/views/qso/edit_ajax.php:710
+#: application/views/view_log/partial/log_ajax.php:645
 msgid "Delete QSO"
 msgstr "QSO'yu sil"
 
 #: application/views/qso/edit_ajax.php:730
+#: application/views/qso/edit_ajax.php:713
 msgid "Save changes"
 msgstr "Değişiklikleri kaydet"
 
@@ -16430,6 +17160,7 @@ msgid "TimeOff is less than TimeOn"
 msgstr "Bitiş Zamanı, Başlangıç Zamanından önce"
 
 #: application/views/qso/index.php:31 application/views/qso/index.php:917
+#: application/views/qso/index.php:900
 msgid "Previous Contacts"
 msgstr "Önceki Görüşmeler"
 
@@ -16522,7 +17253,9 @@ msgstr "DXCluster'da son Spot'u ara"
 #: application/views/station_profile/create.php:188
 #: application/views/station_profile/edit.php:213
 #: application/views/user/edit.php:753 application/views/view_log/qso.php:406
-#: application/views/view_log/qso.php:739
+#: application/views/view_log/qso.php:739 application/views/qso/index.php:572
+#: application/views/view_log/qso.php:341
+#: application/views/view_log/qso.php:674
 msgid "IOTA Reference"
 msgstr "IOTA Referansı"
 
@@ -16530,7 +17263,9 @@ msgstr "IOTA Referansı"
 #: application/views/station_profile/create.php:214
 #: application/views/station_profile/edit.php:239
 #: application/views/user/edit.php:757 application/views/view_log/qso.php:413
-#: application/views/view_log/qso.php:746
+#: application/views/view_log/qso.php:746 application/views/qso/index.php:589
+#: application/views/view_log/qso.php:348
+#: application/views/view_log/qso.php:681
 msgid "SOTA Reference"
 msgstr "SOTA Referansı"
 
@@ -16542,59 +17277,61 @@ msgstr "Frekans (RX)"
 msgid "Band (RX)"
 msgstr "Band (RX)"
 
-#: application/views/qso/index.php:608
+#: application/views/qso/index.php:608 application/views/qso/index.php:591
 msgid "For example: GM/NS-001."
 msgstr "Örnek: GM/NS-001."
 
-#: application/views/qso/index.php:621
+#: application/views/qso/index.php:621 application/views/qso/index.php:604
 msgid "For example: DLFF-0069."
 msgstr "Örnek: DLFF-0069."
 
-#: application/views/qso/index.php:634
+#: application/views/qso/index.php:634 application/views/qso/index.php:617
 msgid "For example: PA-0150. Multiple values allowed."
 msgstr "Örnek: PA-0150. Multiple values allowed."
 
-#: application/views/qso/index.php:646
+#: application/views/qso/index.php:646 application/views/qso/index.php:629
 msgid "For example: GMA"
 msgstr "Örnek: GMA"
 
-#: application/views/qso/index.php:652
+#: application/views/qso/index.php:652 application/views/qso/index.php:635
 msgid "For example: DA/NW-357"
 msgstr "Örnek: DA/NW-357"
 
-#: application/views/qso/index.php:660
+#: application/views/qso/index.php:660 application/views/qso/index.php:643
 msgid "For example: Q03"
 msgstr "Örnek: Q03"
 
-#: application/views/qso/index.php:670
+#: application/views/qso/index.php:670 application/views/qso/index.php:653
 msgid "E-mail address of QSO-partner"
 msgstr "Karşı Operatörün e-posta adresi"
 
 #: application/views/qso/index.php:677 application/views/view_log/qso.php:320
+#: application/views/qso/index.php:660 application/views/view_log/qso.php:255
 msgid "Satellite Name"
 msgstr "Uydu Adı"
 
 #: application/views/qso/index.php:687 application/views/view_log/qso.php:334
+#: application/views/qso/index.php:670 application/views/view_log/qso.php:269
 msgid "Satellite Mode"
 msgstr "Uydu Modu"
 
-#: application/views/qso/index.php:710
+#: application/views/qso/index.php:710 application/views/qso/index.php:693
 msgid "QSO Note"
 msgstr "QSO Notu"
 
-#: application/views/qso/index.php:753
+#: application/views/qso/index.php:753 application/views/qso/index.php:736
 msgid "QSL MSG"
 msgstr "QSL Mesajı"
 
-#: application/views/qso/index.php:772
+#: application/views/qso/index.php:772 application/views/qso/index.php:755
 msgid "Reset to Default"
 msgstr "Varsayılana Sıfırla"
 
-#: application/views/qso/index.php:789
+#: application/views/qso/index.php:789 application/views/qso/index.php:772
 msgid "Callsign Notes"
 msgstr "Çağrı İşareti Notları"
 
-#: application/views/qso/index.php:790
+#: application/views/qso/index.php:790 application/views/qso/index.php:773
 msgid ""
 "Store private information about your QSO partner. These notes are never "
 "shared or exported to external services."
@@ -16602,47 +17339,47 @@ msgstr ""
 "QSO partnerinizle ilgili özel bilgileri saklayın. Bu notlar asla paylaşılmaz "
 "veya harici hizmetlere aktarılmaz."
 
-#: application/views/qso/index.php:839
+#: application/views/qso/index.php:839 application/views/qso/index.php:822
 msgid "Winkey"
 msgstr "Winkey"
 
-#: application/views/qso/index.php:841
+#: application/views/qso/index.php:841 application/views/qso/index.php:824
 msgid "Connect"
 msgstr "Bağlan"
 
-#: application/views/qso/index.php:869
+#: application/views/qso/index.php:869 application/views/qso/index.php:852
 msgid "CW Speed"
 msgstr "CW Hızı"
 
-#: application/views/qso/index.php:871
+#: application/views/qso/index.php:871 application/views/qso/index.php:854
 msgid "Stop"
 msgstr "Durdur"
 
-#: application/views/qso/index.php:872
+#: application/views/qso/index.php:872 application/views/qso/index.php:855
 msgid "Tune"
 msgstr "Tune"
 
-#: application/views/qso/index.php:873
+#: application/views/qso/index.php:873 application/views/qso/index.php:856
 msgid "Stop Tune"
 msgstr "Tune Yapmayı Durdur"
 
-#: application/views/qso/index.php:878
+#: application/views/qso/index.php:878 application/views/qso/index.php:861
 msgid "Enter text..."
 msgstr "Metni girin..."
 
-#: application/views/qso/index.php:879
+#: application/views/qso/index.php:879 application/views/qso/index.php:862
 msgid "Send"
 msgstr "Gönder"
 
-#: application/views/qso/index.php:891
+#: application/views/qso/index.php:891 application/views/qso/index.php:874
 msgid "Suggestions"
 msgstr "Öneriler"
 
-#: application/views/qso/index.php:900
+#: application/views/qso/index.php:900 application/views/qso/index.php:883
 msgid "QSO Partner's Profile"
 msgstr "Karşı İstasyon Profili"
 
-#: application/views/qso/index.php:901
+#: application/views/qso/index.php:901 application/views/qso/index.php:884
 msgid ""
 "Profile picture and data fetched from third-party services. This information "
 "is not stored on your Wavelog instance."
@@ -17233,12 +17970,14 @@ msgstr "Kaynak arama defteri"
 #: application/views/search/search_result_ajax.php:463
 #: application/views/view_log/partial/log.php:142
 #: application/views/view_log/partial/log_ajax.php:683
+#: application/views/view_log/partial/log_ajax.php:620
 msgid "Mark QSL Sent (Bureau)"
 msgstr "QSL'i Gönderildi Olarak İşaretle (Ofis)"
 
 #: application/views/search/search_result_ajax.php:464
 #: application/views/view_log/partial/log.php:143
 #: application/views/view_log/partial/log_ajax.php:684
+#: application/views/view_log/partial/log_ajax.php:621
 msgid "Mark QSL Sent (Direct)"
 msgstr "QSL'i Gönderildi Olarak İşaretle (Doğrudan)"
 
@@ -17246,6 +17985,8 @@ msgstr "QSL'i Gönderildi Olarak İşaretle (Doğrudan)"
 #: application/views/view_log/partial/log.php:150
 #: application/views/view_log/partial/log_ajax.php:694
 #: application/views/view_log/qso.php:842
+#: application/views/view_log/partial/log_ajax.php:631
+#: application/views/view_log/qso.php:777
 msgid "Mark QSL Received (Bureau)"
 msgstr "QSL'i alındı Olarak İşaretle (Ofis)"
 
@@ -17253,6 +17994,8 @@ msgstr "QSL'i alındı Olarak İşaretle (Ofis)"
 #: application/views/view_log/partial/log.php:151
 #: application/views/view_log/partial/log_ajax.php:695
 #: application/views/view_log/qso.php:844
+#: application/views/view_log/partial/log_ajax.php:632
+#: application/views/view_log/qso.php:779
 msgid "Mark QSL Received (Direct)"
 msgstr "QSL'i alındı Olarak İşaretle (Doğrudan)"
 
@@ -17260,6 +18003,8 @@ msgstr "QSL'i alındı Olarak İşaretle (Doğrudan)"
 #: application/views/view_log/partial/log.php:152
 #: application/views/view_log/partial/log_ajax.php:685
 #: application/views/view_log/qso.php:852
+#: application/views/view_log/partial/log_ajax.php:622
+#: application/views/view_log/qso.php:787
 msgid "Mark QSL Card Requested (Bureau)"
 msgstr "QSL Kartı Talep Edildi (Büro) olarak işaretle"
 
@@ -17267,6 +18012,8 @@ msgstr "QSL Kartı Talep Edildi (Büro) olarak işaretle"
 #: application/views/view_log/partial/log.php:153
 #: application/views/view_log/partial/log_ajax.php:686
 #: application/views/view_log/qso.php:854
+#: application/views/view_log/partial/log_ajax.php:623
+#: application/views/view_log/qso.php:789
 msgid "Mark QSL Card Requested (Direct)"
 msgstr "QSL Kartı Talep Edildi (Direkt) olarak işaretle"
 
@@ -17274,16 +18021,20 @@ msgstr "QSL Kartı Talep Edildi (Direkt) olarak işaretle"
 #: application/views/view_log/partial/log.php:154
 #: application/views/view_log/partial/log_ajax.php:687
 #: application/views/view_log/qso.php:856
+#: application/views/view_log/partial/log_ajax.php:624
+#: application/views/view_log/qso.php:791
 msgid "Mark QSL Card Not Required"
 msgstr "QSL Kartı Gerekli Değil Olarak İşaretle"
 
 #: application/views/search/search_result_ajax.php:482
 #: application/views/view_log/partial/log_ajax.php:702
+#: application/views/view_log/partial/log_ajax.php:639
 msgid "Lookup on QRZ.com"
 msgstr "QRZ.com'da ara"
 
 #: application/views/search/search_result_ajax.php:484
 #: application/views/view_log/partial/log_ajax.php:704
+#: application/views/view_log/partial/log_ajax.php:641
 msgid "Lookup on HamQTH"
 msgstr "HamQTH'de ara"
 
@@ -18456,10 +19207,12 @@ msgid "Add a Theme"
 msgstr "Tema Ekle"
 
 #: application/views/timeline/index.php:113
+#: application/views/timeline/index.php:96
 msgid "All Years"
 msgstr "Tüm Yıllar"
 
 #: application/views/timeline/index.php:121
+#: application/views/timeline/index.php:104
 msgid "Only new in selected year"
 msgstr "Yalnızca seçilen yıldaki yeniler"
 
@@ -19652,10 +20405,13 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:516
 #: application/views/view_log/partial/log_ajax.php:573
 #: src/QSLManager/QSO.php:604 src/QSLManager/QSO.php:750
+#: application/views/view_log/partial/log_ajax.php:453
+#: application/views/view_log/partial/log_ajax.php:510
 msgid "last sent"
 msgstr "son gönderilen"
 
 #: application/views/view_log/partial/log_ajax.php:719
+#: application/views/view_log/partial/log_ajax.php:656
 msgid "Result"
 msgstr "Sonuç"
 
@@ -19686,54 +20442,67 @@ msgid ""
 msgstr ""
 
 #: application/views/view_log/qso.php:341
+#: application/views/view_log/qso.php:276
 msgid "Antenna Azimuth"
 msgstr "Anten Yönü (Azimut)"
 
 #: application/views/view_log/qso.php:348
+#: application/views/view_log/qso.php:283
 msgid "Antenna Elevation"
 msgstr "Anten Yüksekliği"
 
 #: application/views/view_log/qso.php:517
+#: application/views/view_log/qso.php:452
 msgid "QSL Card has been sent via the bureau"
 msgstr "QSL kartı büro üzerinden gönderildi"
 
 #: application/views/view_log/qso.php:519
+#: application/views/view_log/qso.php:454
 msgid "QSL Card has been sent via direct"
 msgstr "QSL kartı direkt gönderildi"
 
 #: application/views/view_log/qso.php:521
+#: application/views/view_log/qso.php:456
 msgid "QSL Card has been sent electronically"
 msgstr "QSL kart elektronik olarak gönderildi"
 
 #: application/views/view_log/qso.php:523
+#: application/views/view_log/qso.php:458
 msgid "QSL Card has been sent via manager"
 msgstr "QSL kart yönetici aracılığıyla gönderildi"
 
 #: application/views/view_log/qso.php:525
+#: application/views/view_log/qso.php:460
 msgid "QSL Card has been sent"
 msgstr "QSL kart gönderildi"
 
 #: application/views/view_log/qso.php:534
+#: application/views/view_log/qso.php:469
 msgid "QSL Card has been received via the bureau"
 msgstr "QSL kartı büro üzerinden alındı"
 
 #: application/views/view_log/qso.php:536
+#: application/views/view_log/qso.php:471
 msgid "QSL Card has been received via direct"
 msgstr "QSL kartı direkt alındı"
 
 #: application/views/view_log/qso.php:538
+#: application/views/view_log/qso.php:473
 msgid "QSL Card has been received electronically"
 msgstr "QSL kart elektronik olarak alindi"
 
 #: application/views/view_log/qso.php:540
+#: application/views/view_log/qso.php:475
 msgid "QSL Card has been received via manager"
 msgstr "QSL kartı yönetici aracılığıyla alındı"
 
 #: application/views/view_log/qso.php:542
+#: application/views/view_log/qso.php:477
 msgid "QSL Card has been received"
 msgstr "QSL kart alındı"
 
 #: application/views/view_log/qso.php:551
+#: application/views/view_log/qso.php:486
 msgid "This station uses LoTW."
 msgstr "Bu istasyon LoTW kullanıyor."
 
@@ -19742,58 +20511,76 @@ msgstr "Bu istasyon LoTW kullanıyor."
 #: application/views/view_log/qso.php:580
 #: application/views/view_log/qso.php:590
 #: application/views/view_log/qso.php:600
+#: application/views/view_log/qso.php:491
+#: application/views/view_log/qso.php:501
+#: application/views/view_log/qso.php:515
+#: application/views/view_log/qso.php:525
+#: application/views/view_log/qso.php:535
 msgid "This QSO was confirmed on"
 msgstr "Bu QSO'nun onaylandığı tarih"
 
 #: application/views/view_log/qso.php:561
+#: application/views/view_log/qso.php:496
 msgid "This QSO is confirmed on LoTW."
 msgstr "Bu QSO LoTW üzerinde onaylanmıştır."
 
 #: application/views/view_log/qso.php:575
+#: application/views/view_log/qso.php:510
 msgid "This QSO is confirmed on eQSL."
 msgstr "Bu QSO eQSL'de onaylandı."
 
 #: application/views/view_log/qso.php:585
+#: application/views/view_log/qso.php:520
 msgid "This QSO is confirmed on QRZ.com."
 msgstr "Bu QSO, QRZ.com'da onaylandı."
 
 #: application/views/view_log/qso.php:595
+#: application/views/view_log/qso.php:530
 msgid "This QSO is confirmed on Clublog."
 msgstr "Bu QSO Clublog'da onaylandı."
 
 #: application/views/view_log/qso.php:605
+#: application/views/view_log/qso.php:540
 msgid "This QSO is confirmed on DCL."
 msgstr "Bu QSO DCL üzerinde onaylandı."
 
 #: application/views/view_log/qso.php:618
+#: application/views/view_log/qso.php:553
 msgid "More QSOs"
 msgstr "Daha Fazla QSO"
 
 #: application/views/view_log/qso.php:680
+#: application/views/view_log/qso.php:615
 msgid "Share"
 msgstr "Paylaş"
 
 #: application/views/view_log/qso.php:686
+#: application/views/view_log/qso.php:621
 msgid "Details"
 msgstr "Detaylar"
 
 #: application/views/view_log/qso.php:820
+#: application/views/view_log/qso.php:755
 msgid "Uploaded QSL Card front image"
 msgstr "Yüklenen QSL kartının ön resmi"
 
 #: application/views/view_log/qso.php:825
+#: application/views/view_log/qso.php:760
 msgid "Upload QSL Card image"
 msgstr "QSL kardını yükle"
 
 #: application/views/view_log/qso.php:830
+#: application/views/view_log/qso.php:765
 msgid "Uploaded QSL Card back image"
 msgstr "Yüklenen QSL kartının arka resmi"
 
 #: application/views/view_log/qso.php:846
+#: application/views/view_log/qso.php:781
 msgid "Mark QSL Received (Electronic)"
 msgstr "QSL'i alındı Olarak İşaretle (Elektronik)"
 
 #: application/views/view_log/qso.php:869
+#: application/views/view_log/qso.php:804
 msgid "eQSL picture"
 msgstr "eQSL Kartı (eQSL.cc)"
 

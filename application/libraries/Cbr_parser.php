@@ -70,13 +70,13 @@ class CBR_Parser
 
                 //for those few contests who do not have signal exchange, synthesize one based on best efforts
                 if($count59s < 2 and isset($header['CALLSIGN'])){
-                    
+
                     //get own callsign from header
                     $own_callsign = $header['CALLSIGN'];
 
                     //get position of own callsign
                     $index = array_search($own_callsign, $qso_elements);
-                    
+
                     //add synthesized sent signal rapport after own callsign
                     if ($index !== false) {
                        array_splice($qso_elements, $index + 1, 0, "59");
@@ -141,7 +141,7 @@ class CBR_Parser
         //abort if basic things (Callsign and Contest ID) are not included in the header
         $header_fields = array_keys($header);
         if(!in_array('CALLSIGN', $header_fields) or !in_array('CONTEST', $header_fields)){
-            
+
             //return error result
             $result = [];
             $result['error'] = __("Broken CBR file - incomplete header found.");
@@ -154,7 +154,7 @@ class CBR_Parser
 
         //abort if position of sent and received signal exchange is identical
         if($sent_59_pos == $rcvd_59_pos){
-            
+
             //return error result
             $result = [];
             $result['error'] = __("Broken CBR file - no valid exchange or callsigns found");
