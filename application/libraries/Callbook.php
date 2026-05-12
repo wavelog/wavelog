@@ -39,6 +39,14 @@ class Callbook {
 	const QRZRU_SESSION_DURATION = 3300; // 55 minutes
 	private $qrzru_session_cachekey = null;
 
+	// QRZCALL.EU
+	// Issues JWT tokens valid for 8 hours. We cache slightly below that to allow
+	// for clock skew. On 401 the search() call reports 'Invalid session key' and
+	// the retry path below re-authenticates transparently.
+	// Ref.: https://qrzcall.eu/  (Data or Extra subscription required)
+	const QRZCALL_SESSION_DURATION = 25200; // 7 hours
+	private $qrzcall_session_cachekey = null;
+
 	// Some generic stuff
 	private $logbook_not_configured;
 	private $error_obtaining_sessionkey;
@@ -56,6 +64,7 @@ class Callbook {
 		$this->qrzcq_session_cachekey = 'qrzcq_session_key_'.$this->ci->config->item('qrzcq_username');
 		$this->hamqth_session_cachekey = 'hamqth_session_key_'.$this->ci->config->item('hamqth_username');
 		$this->qrzru_session_cachekey = 'qrzru_session_key_'.$this->ci->config->item('qrzru_username');
+		$this->qrzcall_session_cachekey = 'qrzcall_session_key_'.$this->ci->config->item('qrzcall_username');
 
 		$this->logbook_not_configured = __("Lookup not configured. Please review configuration.");
 		$this->error_obtaining_sessionkey = __("Error obtaining a session key for callbook. Error: %s");
@@ -123,6 +132,9 @@ class Callbook {
 				break;
 			case 'qrzru':
 				$callbook = $this->_qrzru($callsign);
+				break;
+			case 'qrzcall':
+				$callbook = $this->_qrzcall($callsign, $this->ci->config->item('use_fullname'));
 				break;
 			default:
 				$callbook['error'] = $this->logbook_not_configured;
@@ -309,6 +321,50 @@ class Callbook {
 				$plaincall = $this->get_plaincall($callsign);
 				// Now try again but give back reduced data, as we can't validate location and stuff (true at the end)
 				$callbook = $this->ci->qrzru->search($plaincall, $this->ci->cache->get($this->qrzru_session_cachekey), true);
+			}
+		}
+
+		return $callbook;
+	}
+
+	private function _qrzcall($callsign, $fullname) {
+		$this->ci->load->is_loaded('qrzcall') ?: $this->ci->load->library('qrzcall');
+
+		$callbook['source'] = $this->ci->qrzcall->sourcename();
+		$username = trim($this->ci->config->item('qrzcall_username') ?? '');
+		$password = trim($this->ci->config->item('qrzcall_password') ?? '');
+
+		if ($username == '' || $password == '') {
+			$callbook['error'] = $this->logbook_not_configured;
+		} else {
+
+			if (!$this->ci->cache->get($this->qrzcall_session_cachekey)) {
+				$qrzcall_session_key = $this->ci->qrzcall->session($username, $password);
+				if (!$this->_validate_sessionkey($qrzcall_session_key)) {
+					$callbook['error'] = sprintf($this->error_obtaining_sessionkey, $qrzcall_session_key);
+					$this->ci->cache->delete($this->qrzcall_session_cachekey);
+					return $callbook;
+				}
+				$this->ci->cache->save($this->qrzcall_session_cachekey, $qrzcall_session_key, self::QRZCALL_SESSION_DURATION);
+			}
+
+			$callbook = $this->ci->qrzcall->search($callsign, $this->ci->cache->get($this->qrzcall_session_cachekey), $fullname);
+
+			if (($callbook['error'] ?? '') == 'Invalid session key') {
+				$qrzcall_session_key = $this->ci->qrzcall->session($username, $password);
+				if (!$this->_validate_sessionkey($qrzcall_session_key)) {
+					$callbook['error'] = sprintf($this->error_obtaining_sessionkey, $qrzcall_session_key);
+					$this->ci->cache->delete($this->qrzcall_session_cachekey);
+					return $callbook;
+				}
+				$this->ci->cache->save($this->qrzcall_session_cachekey, $qrzcall_session_key, self::QRZCALL_SESSION_DURATION);
+				$callbook = $this->ci->qrzcall->search($callsign, $this->ci->cache->get($this->qrzcall_session_cachekey), $fullname);
+			}
+
+			if (strpos($callbook['error'] ?? '', 'not found') !== false && strpos($callsign, "/") !== false) {
+				$plaincall = $this->get_plaincall($callsign);
+				// Try again with the base callsign in reduced mode (location can't be trusted on /portable).
+				$callbook = $this->ci->qrzcall->search($plaincall, $this->ci->cache->get($this->qrzcall_session_cachekey), $fullname, true);
 			}
 		}
 

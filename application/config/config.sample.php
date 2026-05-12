@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 |	'app_name'		Name of the App 'Wavelog'
 |	'directory'		directory where wavelog is installed eg "logger"
-|	'callbook'		Selects which Callbook lookup to use defaults "hamqth" but also supports: "qrz", "qrzcq" and "qrzru"
+|	'callbook'		Selects which Callbook lookup to use defaults "hamqth" but also supports: "qrz", "qrzcq", "qrzru" and "qrzcall"
 */
 
 $config['app_name'] = 'Wavelog';
@@ -19,7 +19,7 @@ $config['directory'] = 'logbook';
 |--------------------------------------------------------------------------
 | Callbook Settings
 |--------------------------------------------------------------------------
-| Options are hamqth, qrz, qrzcq or qrzru
+| Options are hamqth, qrz, qrzcq, qrzru or qrzcall
 | For a single callbook configure just one value as string. Example:
 | $config['callbook'] = 'hamqth';
 | This can also be set to an array of callbooks to search sequentially until a match is found. Example:
@@ -89,6 +89,21 @@ $config['qrzcq_password'] = '';
 */
 $config['qrzru_username'] = '';
 $config['qrzru_password'] = '';
+
+/*
+|--------------------------------------------------------------------------
+| QRZCALL.EU Login Options
+|--------------------------------------------------------------------------
+|
+| 	'qrzcall_username'	QRZCALL.EU user login (callsign)
+|	'qrzcall_password'	QRZCALL.EU user password
+|
+| Requires a Data or Extra subscription on https://qrzcall.eu/ (ADMIN role
+| also works for testing). The integration logs in once per ~7h and caches
+| the resulting JWT.
+*/
+$config['qrzcall_username'] = '';
+$config['qrzcall_password'] = '';
 
 /*
 |--------------------------------------------------------------------------

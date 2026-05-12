@@ -241,7 +241,7 @@ class Core
 		$new  = str_replace("%directory%", $this->_sanitize($data['directory']), $new);
 		$new  = str_replace("%callbook%", $this->_sanitize($data['global_call_lookup']), $new);
 
-		$callbooks = ['qrz', 'hamqth', 'qrzcq', 'qrzru'];
+		$callbooks = ['qrz', 'hamqth', 'qrzcq', 'qrzru', 'qrzcall'];
 		
 		if (in_array($data['global_call_lookup'], $callbooks)) {
 			$c_username = '%' . $data['global_call_lookup'] . '_username%';
