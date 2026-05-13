@@ -3806,19 +3806,24 @@ msgid "Station not accessible"
 msgstr "Estación no accesible"
 
 #: application/models/Logbook_model.php:1412
+#: application/models/Logbook_model.php:1415
 msgid "Station ID not allowed"
 msgstr "ID de estación no permitida"
 
 #: application/models/Logbook_model.php:1417
+#: application/models/Logbook_model.php:1420
 msgid "No Call given"
 msgstr "Ningún indicativo dado"
 
 #: application/models/Logbook_model.php:1487
 #: application/models/Logbook_model.php:1691
+#: application/models/Logbook_model.php:1490
+#: application/models/Logbook_model.php:1694
 msgid "DXCC has to be Numeric"
 msgstr "DXCC tiene que ser numérico"
 
 #: application/models/Logbook_model.php:4914
+#: application/models/Logbook_model.php:4917
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -3826,6 +3831,7 @@ msgstr ""
 "Distinto indicativo de estación %s al importar QSO con %s para %s: OMITIDO"
 
 #: application/models/Logbook_model.php:4922
+#: application/models/Logbook_model.php:4925
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -3835,6 +3841,7 @@ msgstr ""
 "estación %s: OMITIDO"
 
 #: application/models/Logbook_model.php:4938
+#: application/models/Logbook_model.php:4941
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -3843,10 +3850,12 @@ msgstr ""
 "Es invalido"
 
 #: application/models/Logbook_model.php:4948
+#: application/models/Logbook_model.php:4951
 msgid "QSO on"
 msgstr "QSO en"
 
 #: application/models/Logbook_model.php:4948
+#: application/models/Logbook_model.php:4951
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3855,6 +3864,7 @@ msgstr ""
 "importado. Es inválido"
 
 #: application/models/Logbook_model.php:4998
+#: application/models/Logbook_model.php:5001
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -3864,58 +3874,72 @@ msgstr ""
 "importado. Es inválido"
 
 #: application/models/Logbook_model.php:5272
+#: application/models/Logbook_model.php:5275
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "la qslrfecha es inválida (AAAAMMDD)"
 
 #: application/models/Logbook_model.php:5283
+#: application/models/Logbook_model.php:5286
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "la qslfecha es inválida (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:5344
+#: application/models/Logbook_model.php:5347
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "la fecha de carga de clublog_qso es inválida (AAAAMMDD)"
 
 #: application/models/Logbook_model.php:5717
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:5720
 msgid "Duplicate for"
 msgstr "Duplicado para"
 
 #: application/models/Logbook_model.php:5784
 #: application/models/Logbook_model.php:5884
+#: application/models/Logbook_model.php:5787
+#: application/models/Logbook_model.php:5887
 msgid "QSO could not be matched"
 msgstr "QSOs que no concuerdan"
 
 #: application/models/Logbook_model.php:5792
+#: application/models/Logbook_model.php:5795
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmados por LoTW/Clublog/eQSL/Concurso"
 
 #: application/models/Logbook_model.php:5798
+#: application/models/Logbook_model.php:5801
 msgid "confirmed by award manager"
 msgstr "confirmados por el administrador del premio"
 
 #: application/models/Logbook_model.php:5802
+#: application/models/Logbook_model.php:5805
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmados al hacer chequeo cruzadoc on datos de DCL"
 
 #: application/models/Logbook_model.php:5806
+#: application/models/Logbook_model.php:5809
 msgid "confirmation pending"
 msgstr "pendiente de confirmación"
 
 #: application/models/Logbook_model.php:5809
+#: application/models/Logbook_model.php:5812
 msgid "unconfirmed"
 msgstr "sin confirmar"
 
 #: application/models/Logbook_model.php:5812
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
+#: application/models/Logbook_model.php:5815
 msgid "unknown"
 msgstr "desconocido"
 
 #: application/models/Logbook_model.php:5887
+#: application/models/Logbook_model.php:5890
 msgid "POTA reference already in log"
 msgstr "La referencia POTA ya se encuentra en el log"
 
 #: application/models/Logbook_model.php:5890
+#: application/models/Logbook_model.php:5893
 msgid "QSO updated"
 msgstr "QSO actualizado"
 
@@ -3930,6 +3954,7 @@ msgstr "QSO actualizado"
 #: application/views/user/edit.php:329 application/views/user/edit.php:352
 #: application/views/user/edit.php:375 application/views/user/edit.php:400
 #: application/views/view_log/partial/log_ajax.php:21
+#: application/models/Logbook_model.php:6290
 msgid "Bearing"
 msgstr "Dirección"
 
@@ -7555,9 +7580,9 @@ msgid ""
 "Macao/152, Taiwan/386, Pratas Isl./505 or Scarborough Reef/506) and valid "
 "State (ADIF: DXCC and STATE)"
 msgstr ""
-"Campos tomados para este Premio: DXCC (Debe ser uno de China/318, "
-"HongKong/321, Macao/152, Taiwán/386, Islas Pratas/505 o Arrecife "
-"Scarborough/506) y Estado válido (ADIF: DXCC y STATE)"
+"Campos tomados para este Premio: DXCC (Debe ser uno de China/318, HongKong/"
+"321, Macao/152, Taiwán/386, Islas Pratas/505 o Arrecife Scarborough/506) y "
+"Estado válido (ADIF: DXCC y STATE)"
 
 #: application/views/awards/wapc/index.php:122
 msgid "Show WAPC Map"
@@ -7622,8 +7647,8 @@ msgid ""
 "and STATE (Must contain a valid U.S. state abbreviation!)"
 msgstr ""
 "Campos tomados para este premio: DXCC (Debe ser uno de EE.UU., Alaska o "
-"Hawái) y ESTADO (¡Debe contener una abreviatura válida de un estado de EE."
-"UU.!)"
+"Hawái) y ESTADO (¡Debe contener una abreviatura válida de un estado de "
+"EE.UU.!)"
 
 #: application/views/awards/was/index.php:120
 msgid "Show WAS Map"
@@ -11149,8 +11174,8 @@ msgid ""
 "Go to your application/config Folder and compare config.sample.php with your "
 "config.php"
 msgstr ""
-"Ve a tu carpeta application/config y compara config.sample.php con tu config."
-"php"
+"Ve a tu carpeta application/config y compara config.sample.php con tu "
+"config.php"
 
 #: application/views/debug/index.php:216
 #, php-format
@@ -18465,8 +18490,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Crea una nueva carpeta en 'assets/css/' y sube un archivo 'bootstrap.min."
-"css' que contenga reglas de estilo básicas. Usamos los temas de %s"
+"Crea una nueva carpeta en 'assets/css/' y sube un archivo "
+"'bootstrap.min.css' que contenga reglas de estilo básicas. Usamos los temas "
+"de %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -18515,8 +18541,8 @@ msgid ""
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
 "Haz clic aquí en 'Agregar un tema' y escribe los datos necesarios. Escribe "
-"los nombres de archivo para los logotipos %ssin%s la extensión de archivo '."
-"png'"
+"los nombres de archivo para los logotipos %ssin%s la extensión de archivo "
+"'.png'"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"

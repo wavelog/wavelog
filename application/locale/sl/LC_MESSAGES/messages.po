@@ -3782,25 +3782,31 @@ msgid "Station not accessible"
 msgstr "Postaja ni dostopna"
 
 #: application/models/Logbook_model.php:1412
+#: application/models/Logbook_model.php:1415
 msgid "Station ID not allowed"
 msgstr "ID postaje ni dovoljen"
 
 #: application/models/Logbook_model.php:1417
+#: application/models/Logbook_model.php:1420
 msgid "No Call given"
 msgstr "Ni podanega pozivnega znaka"
 
 #: application/models/Logbook_model.php:1487
 #: application/models/Logbook_model.php:1691
+#: application/models/Logbook_model.php:1490
+#: application/models/Logbook_model.php:1694
 msgid "DXCC has to be Numeric"
 msgstr "DXCC mora biti numeričen"
 
 #: application/models/Logbook_model.php:4914
+#: application/models/Logbook_model.php:4917
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Različen klicni znak postaje %s med uvozom QSO z %s za %s: PRESKOČENO"
 
 #: application/models/Logbook_model.php:4922
+#: application/models/Logbook_model.php:4925
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -3809,6 +3815,7 @@ msgstr ""
 "Različen lokator %s med uvozom QSO z %s za lokator postaje %s: PRESKOČENO"
 
 #: application/models/Logbook_model.php:4938
+#: application/models/Logbook_model.php:4941
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -3817,10 +3824,12 @@ msgstr ""
 "neveljavna"
 
 #: application/models/Logbook_model.php:4948
+#: application/models/Logbook_model.php:4951
 msgid "QSO on"
 msgstr "Začetek QSO"
 
 #: application/models/Logbook_model.php:4948
+#: application/models/Logbook_model.php:4951
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3829,6 +3838,7 @@ msgstr ""
 "uvožena. Je neveljavna"
 
 #: application/models/Logbook_model.php:4998
+#: application/models/Logbook_model.php:5001
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -3838,58 +3848,72 @@ msgstr ""
 "uvožena. Je neveljavna"
 
 #: application/models/Logbook_model.php:5272
+#: application/models/Logbook_model.php:5275
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate je napačen (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:5283
+#: application/models/Logbook_model.php:5286
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate je napačen (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:5344
+#: application/models/Logbook_model.php:5347
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date je napačen (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:5717
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:5720
 msgid "Duplicate for"
 msgstr "Dvojnik za"
 
 #: application/models/Logbook_model.php:5784
 #: application/models/Logbook_model.php:5884
+#: application/models/Logbook_model.php:5787
+#: application/models/Logbook_model.php:5887
 msgid "QSO could not be matched"
 msgstr "QSO ni bilo mogoče najti"
 
 #: application/models/Logbook_model.php:5792
+#: application/models/Logbook_model.php:5795
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "potrjeno od LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:5798
+#: application/models/Logbook_model.php:5801
 msgid "confirmed by award manager"
 msgstr "potrjeno od award managerja"
 
 #: application/models/Logbook_model.php:5802
+#: application/models/Logbook_model.php:5805
 msgid "confirmed by cross-check of DCL data"
 msgstr "potrjeno z navzkrižnim preverjanjem podatkov DCL"
 
 #: application/models/Logbook_model.php:5806
+#: application/models/Logbook_model.php:5809
 msgid "confirmation pending"
 msgstr "potrditev čaka na"
 
 #: application/models/Logbook_model.php:5809
+#: application/models/Logbook_model.php:5812
 msgid "unconfirmed"
 msgstr "nepotrjeno"
 
 #: application/models/Logbook_model.php:5812
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
+#: application/models/Logbook_model.php:5815
 msgid "unknown"
 msgstr "neznano"
 
 #: application/models/Logbook_model.php:5887
+#: application/models/Logbook_model.php:5890
 msgid "POTA reference already in log"
 msgstr "Referenca POTA je že v dnevniku"
 
 #: application/models/Logbook_model.php:5890
+#: application/models/Logbook_model.php:5893
 msgid "QSO updated"
 msgstr "QSO posodobljena"
 
@@ -3904,6 +3928,7 @@ msgstr "QSO posodobljena"
 #: application/views/user/edit.php:329 application/views/user/edit.php:352
 #: application/views/user/edit.php:375 application/views/user/edit.php:400
 #: application/views/view_log/partial/log_ajax.php:21
+#: application/models/Logbook_model.php:6290
 msgid "Bearing"
 msgstr "Smer"
 
@@ -7475,9 +7500,9 @@ msgid ""
 "Macao/152, Taiwan/386, Pratas Isl./505 or Scarborough Reef/506) and valid "
 "State (ADIF: DXCC and STATE)"
 msgstr ""
-"Polja, uporabljena za to diplomo: DXCC (Must be one of China/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 or Scarborough "
-"Reef/506) and valid State (ADIF: DXCC and STATE)"
+"Polja, uporabljena za to diplomo: DXCC (Must be one of China/318, HongKong/"
+"321, Macao/152, Taiwan/386, Pratas Isl./505 or Scarborough Reef/506) and "
+"valid State (ADIF: DXCC and STATE)"
 
 #: application/views/awards/wapc/index.php:122
 msgid "Show WAPC Map"
@@ -9296,8 +9321,8 @@ msgid ""
 "                    There may be users not listed who have permissions for "
 "this club/special callsign."
 msgstr ""
-"Ta klubski/posebni klicni znak upravlja enotna prijava/ponudnik identitete. "
-"\n"
+"Ta klubski/posebni klicni znak upravlja enotna prijava/ponudnik "
+"identitete. \n"
 "                    Dovoljenja je mogoče tukaj povečati, vendar lahko "
 "ponudnik identitete dostop samodejno odvzame ali odobri, ko se uporabniki "
 "prijavijo.\n"

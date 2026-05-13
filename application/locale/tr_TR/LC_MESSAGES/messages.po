@@ -3771,25 +3771,31 @@ msgid "Station not accessible"
 msgstr ""
 
 #: application/models/Logbook_model.php:1412
+#: application/models/Logbook_model.php:1415
 msgid "Station ID not allowed"
 msgstr "İstasyon ID’sine izin verilmiyor"
 
 #: application/models/Logbook_model.php:1417
+#: application/models/Logbook_model.php:1420
 msgid "No Call given"
 msgstr "Çağrı işareti girilmedi"
 
 #: application/models/Logbook_model.php:1487
 #: application/models/Logbook_model.php:1691
+#: application/models/Logbook_model.php:1490
+#: application/models/Logbook_model.php:1694
 msgid "DXCC has to be Numeric"
 msgstr "DXCC sayısal olmalıdır"
 
 #: application/models/Logbook_model.php:4914
+#: application/models/Logbook_model.php:4917
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 
 #: application/models/Logbook_model.php:4922
+#: application/models/Logbook_model.php:4925
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -3797,6 +3803,7 @@ msgid ""
 msgstr ""
 
 #: application/models/Logbook_model.php:4938
+#: application/models/Logbook_model.php:4941
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -3805,10 +3812,12 @@ msgstr ""
 "aktarılmadı."
 
 #: application/models/Logbook_model.php:4948
+#: application/models/Logbook_model.php:4951
 msgid "QSO on"
 msgstr "Zaman"
 
 #: application/models/Logbook_model.php:4948
+#: application/models/Logbook_model.php:4951
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3817,6 +3826,7 @@ msgstr ""
 "aktarılmadı. Geçersiz"
 
 #: application/models/Logbook_model.php:4998
+#: application/models/Logbook_model.php:5001
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -3826,58 +3836,72 @@ msgstr ""
 "QSO içe aktarılmadı, geçersiz."
 
 #: application/models/Logbook_model.php:5272
+#: application/models/Logbook_model.php:5275
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate geçersiz (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:5283
+#: application/models/Logbook_model.php:5286
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate geçersiz (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:5344
+#: application/models/Logbook_model.php:5347
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date geçersiz (YYYYAAGG)"
 
 #: application/models/Logbook_model.php:5717
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:5720
 msgid "Duplicate for"
 msgstr "İçin yinelenen"
 
 #: application/models/Logbook_model.php:5784
 #: application/models/Logbook_model.php:5884
+#: application/models/Logbook_model.php:5787
+#: application/models/Logbook_model.php:5887
 msgid "QSO could not be matched"
 msgstr "QSO eşleştirilemedi"
 
 #: application/models/Logbook_model.php:5792
+#: application/models/Logbook_model.php:5795
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "LoTW/Clublog/eQSL/Yarışma tarafından onaylandı"
 
 #: application/models/Logbook_model.php:5798
+#: application/models/Logbook_model.php:5801
 msgid "confirmed by award manager"
 msgstr "Ödül yöneticisi tarafından onaylandı"
 
 #: application/models/Logbook_model.php:5802
+#: application/models/Logbook_model.php:5805
 msgid "confirmed by cross-check of DCL data"
 msgstr "DCL verileri karşılaştırılarak onaylandı"
 
 #: application/models/Logbook_model.php:5806
+#: application/models/Logbook_model.php:5809
 msgid "confirmation pending"
 msgstr "onay bekleniyor"
 
 #: application/models/Logbook_model.php:5809
+#: application/models/Logbook_model.php:5812
 msgid "unconfirmed"
 msgstr "onaylanmamış"
 
 #: application/models/Logbook_model.php:5812
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
+#: application/models/Logbook_model.php:5815
 msgid "unknown"
 msgstr "Bilinmiyor"
 
 #: application/models/Logbook_model.php:5887
+#: application/models/Logbook_model.php:5890
 msgid "POTA reference already in log"
 msgstr "POTA referansı zaten logda mevcut"
 
 #: application/models/Logbook_model.php:5890
+#: application/models/Logbook_model.php:5893
 msgid "QSO updated"
 msgstr "QSO güncellendi"
 
@@ -3892,6 +3916,7 @@ msgstr "QSO güncellendi"
 #: application/views/user/edit.php:329 application/views/user/edit.php:352
 #: application/views/user/edit.php:375 application/views/user/edit.php:400
 #: application/views/view_log/partial/log_ajax.php:21
+#: application/models/Logbook_model.php:6290
 msgid "Bearing"
 msgstr "Yön"
 

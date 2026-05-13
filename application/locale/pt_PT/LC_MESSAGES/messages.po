@@ -3793,15 +3793,19 @@ msgid "Station not accessible"
 msgstr "Estação inacessível"
 
 #: application/models/Logbook_model.php:1412
+#: application/models/Logbook_model.php:1415
 msgid "Station ID not allowed"
 msgstr "Identificação da estação não permitida"
 
 #: application/models/Logbook_model.php:1417
+#: application/models/Logbook_model.php:1420
 msgid "No Call given"
 msgstr "Nenhum indicativo fornecido"
 
 #: application/models/Logbook_model.php:1487
 #: application/models/Logbook_model.php:1691
+#: application/models/Logbook_model.php:1490
+#: application/models/Logbook_model.php:1694
 msgid "DXCC has to be Numeric"
 msgstr "DXCC tem de ser numérico"
 
@@ -3822,6 +3826,7 @@ msgstr ""
 "%s: IGNORADO"
 
 #: application/models/Logbook_model.php:4938
+#: application/models/Logbook_model.php:4941
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -3830,10 +3835,12 @@ msgstr ""
 "inválido"
 
 #: application/models/Logbook_model.php:4948
+#: application/models/Logbook_model.php:4951
 msgid "QSO on"
 msgstr "Contacto em"
 
 #: application/models/Logbook_model.php:4948
+#: application/models/Logbook_model.php:4951
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3842,6 +3849,7 @@ msgstr ""
 "importado. É inválido"
 
 #: application/models/Logbook_model.php:4998
+#: application/models/Logbook_model.php:5001
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -3851,58 +3859,72 @@ msgstr ""
 "importado. É inválido"
 
 #: application/models/Logbook_model.php:5272
+#: application/models/Logbook_model.php:5275
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "o qslrdate está inválido (AAAAMMDD)"
 
 #: application/models/Logbook_model.php:5283
+#: application/models/Logbook_model.php:5286
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "o qslsdate está inválido (AAAAMMDD)"
 
 #: application/models/Logbook_model.php:5344
+#: application/models/Logbook_model.php:5347
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "o clublog_qso_upload_date está inválido (AAAAMMDD)"
 
 #: application/models/Logbook_model.php:5717
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:5720
 msgid "Duplicate for"
 msgstr "Duplicado para"
 
 #: application/models/Logbook_model.php:5784
 #: application/models/Logbook_model.php:5884
+#: application/models/Logbook_model.php:5787
+#: application/models/Logbook_model.php:5887
 msgid "QSO could not be matched"
 msgstr "Não há correspondência de contactos"
 
 #: application/models/Logbook_model.php:5792
+#: application/models/Logbook_model.php:5795
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmado por LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:5798
+#: application/models/Logbook_model.php:5801
 msgid "confirmed by award manager"
 msgstr "confirmado pelo gestor do diploma"
 
 #: application/models/Logbook_model.php:5802
+#: application/models/Logbook_model.php:5805
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmado pelo controlo cruzado dos dados da DCL"
 
 #: application/models/Logbook_model.php:5806
+#: application/models/Logbook_model.php:5809
 msgid "confirmation pending"
 msgstr "confirmação pendente"
 
 #: application/models/Logbook_model.php:5809
+#: application/models/Logbook_model.php:5812
 msgid "unconfirmed"
 msgstr "não confirmado"
 
 #: application/models/Logbook_model.php:5812
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
+#: application/models/Logbook_model.php:5815
 msgid "unknown"
 msgstr "desconhecido"
 
 #: application/models/Logbook_model.php:5887
+#: application/models/Logbook_model.php:5890
 msgid "POTA reference already in log"
 msgstr "Referência POTA já no log"
 
 #: application/models/Logbook_model.php:5890
+#: application/models/Logbook_model.php:5893
 msgid "QSO updated"
 msgstr "QSO atualizado"
 
@@ -3917,6 +3939,7 @@ msgstr "QSO atualizado"
 #: application/views/user/edit.php:329 application/views/user/edit.php:352
 #: application/views/user/edit.php:375 application/views/user/edit.php:400
 #: application/views/view_log/partial/log_ajax.php:21
+#: application/models/Logbook_model.php:6290
 msgid "Bearing"
 msgstr "Direção"
 
@@ -3940,7 +3963,8 @@ msgstr "QSO não encontrado"
 
 #: application/models/Logbookadvanced_model.php:2554
 msgid "No fields selected for merge or no differences between QSOs"
-msgstr "Nenhuns campos selecionados para fundir ou nenhuma diferença entre QSOs"
+msgstr ""
+"Nenhuns campos selecionados para fundir ou nenhuma diferença entre QSOs"
 
 #: application/models/Logbookadvanced_model.php:2567
 msgid "QSOs merged successfully"
@@ -7249,7 +7273,8 @@ msgstr "Continente"
 
 #: application/views/awards/wac/index.php:227
 msgid "No QSOS found matching the criteria for this award!"
-msgstr "Nenhum QSOs encontrado que corresponda aos critérios para este diploma!"
+msgstr ""
+"Nenhum QSOs encontrado que corresponda aos critérios para este diploma!"
 
 #: application/views/awards/wae/index.php:18
 msgid "WAE Award"
@@ -7594,8 +7619,8 @@ msgid ""
 "and STATE (Must contain a valid U.S. state abbreviation!)"
 msgstr ""
 "Campos considerados para este diploma: DXCC (Deve ser um dos E.U.A., Alasca "
-"ou Havai) e ESTADO (Deve conter uma abreviatura válida de um estado dos E.U."
-"A.!)"
+"ou Havai) e ESTADO (Deve conter uma abreviatura válida de um estado dos "
+"E.U.A.!)"
 
 #: application/views/awards/was/index.php:120
 msgid "Show WAS Map"
@@ -12348,8 +12373,8 @@ msgstr "Formatação de quadrícula"
 msgid ""
 "Enter multiple (4-digit) grids separated with commas. For example: IO77,IO78"
 msgstr ""
-"Digite várias grelhas (4 dígitos) separadas por vírgulas. Por exemplo: IO77,"
-"IO78"
+"Digite várias grelhas (4 dígitos) separadas por vírgulas. Por exemplo: "
+"IO77,IO78"
 
 #: application/views/interface_assets/footer.php:115
 msgid "live"
@@ -15396,8 +15421,8 @@ msgid ""
 "The hostname of the mail server, e.g. 'mail.example.com' (without 'ssl://' "
 "or 'tls://')"
 msgstr ""
-"O nome do anfitrião do servidor de correio, por exemplo, “mail.example."
-"com” (sem 'ssl://' ou 'tls://')"
+"O nome do anfitrião do servidor de correio, por exemplo, “mail.example.com” "
+"(sem 'ssl://' ou 'tls://')"
 
 #: application/views/options/email.php:88
 msgid "SMTP Port"
@@ -18400,8 +18425,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Crie uma nova pasta em 'assets/css/' e carregue um ficheiro 'bootstrap.min."
-"css' que contém regras de estilo básicas. Utilizamos os temas de %s"
+"Crie uma nova pasta em 'assets/css/' e carregue um ficheiro "
+"'bootstrap.min.css' que contém regras de estilo básicas. Utilizamos os temas "
+"de %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -18730,8 +18756,8 @@ msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
-"Mostrar a imagem de perfil do parceiro de contacto do perfil QRZ.com/HamQTH."
-"com na secção de registo de contacto."
+"Mostrar a imagem de perfil do parceiro de contacto do perfil QRZ.com/"
+"HamQTH.com na secção de registo de contacto."
 
 #: application/views/user/edit.php:441
 msgid ""
