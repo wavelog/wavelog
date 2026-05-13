@@ -48,6 +48,8 @@ class Logbookadvanced extends CI_Controller {
 		$data['mapoptions'] = $mapoptions;
 		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
+		$data['adif_propmodes'] = $this->config->item('adif_propmodes');
+
 		$active_station_id = $this->stations->find_active();
 		$station_profile = $this->stations->profile($active_station_id);
 
@@ -238,6 +240,7 @@ class Logbookadvanced extends CI_Controller {
 		$sortdirection = xss_clean($this->input->post('sortdirection'));
 		$user_id = (int)$this->session->userdata('user_id');
 
+		$data['reverse'] = (xss_clean($this->input->post('reverse')) == "true") ? true : false;
 		$data['qsos'] = $this->logbookadvanced_model->getQsosForAdif($ids, $user_id, $sortcolumn, $sortdirection);
 
 		$this->load->view('adif/data/exportall', $data);

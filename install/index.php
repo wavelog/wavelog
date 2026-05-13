@@ -10,6 +10,12 @@ DJ7NT - Docker Readiness - April 2024
 HB9HIL - Big UX and backend upgrade - July 2024
 */
 require_once('includes/install_config/install_lib.php');
+require_once('includes/install_config/install_config.php');
+
+session_start();
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+	$_SESSION['form_token'] = bin2hex(random_bytes(32));
+}
 
 function convertToBytes(string $value): int {
 	$value = trim($value);
@@ -27,12 +33,13 @@ $http_scheme = is_https() ? "https" : "http";
 $directory = ltrim(str_replace('/install', '', dirname($_SERVER['SCRIPT_NAME'])), '/');
 $base_url = $http_scheme . '://' . $_SERVER['HTTP_HOST'] . ($directory !== '' ? '/' . $directory : '') . '/';
 
-if (!file_exists('.lock') && !file_exists('../application/config/config.php') && !file_exists('../application/config/docker/config.php')) {
+if (!file_exists('.lock') && !file_exists($db_config_path . 'config.php') && !file_exists($db_config_path . 'database.php')) {
 
 	include 'includes/interface_assets/header.php';
 
 	// php-mbstring has to be installed for the installer to work properly!!
 	// The other prechecks can be run within the installer.
+	/** @var array $required_php_modules */
 	if ($required_php_modules['php-mbstring']['condition'] && $required_php_modules['php-curl']['condition']) { ?>
 
 
@@ -66,6 +73,7 @@ if (!file_exists('.lock') && !file_exists('../application/config/config.php') &&
 
 					<div class="card-body">
 						<form id="install_form" method="post" action="run.php">
+							<input type="hidden" name="form_token" value="<?= $_SESSION['form_token'] ?>">
 							<div class="tab-content" id="myTabContent">
 
 								<!-- Tab 1: Welcome -->
@@ -1067,7 +1075,8 @@ if (!file_exists('.lock') && !file_exists('../application/config/config.php') &&
 										<div class="col-md-6 mb-2">
 											<label for="userlanguage" class="form-label"><?= __("Language"); ?></label>
 											<select class="form-select" id="userlanguage" name="userlanguage" tabindex="12">
-												<?php foreach ($languages as $lang) { ?>
+												<?php foreach ($languages as $lang) { 
+													/** @var array $language */ ?>
 													<option value="<?php echo $lang['folder']; ?>" <?php if ($lang['gettext'] == $language) {
 																										echo 'selected';
 																									} ?>><?= __($lang['name_en']); ?></option>
@@ -1088,6 +1097,8 @@ if (!file_exists('.lock') && !file_exists('../application/config/config.php') &&
 														<div class="col">
 															<p class="ms-2">
 																<a href="javascript:void(0);" class="text-decoration-none" onclick="openTab('precheck-tab')" style="color: inherit;">
+																	<?php /** @var string $prechecks_icon */ ?>
+																	<?php /** @var string $prechecks_color */ ?>
 																	<i id="checklist_prechecks" class="me-2 fas <?php echo $prechecks_icon; ?>" style="color: <?php echo $prechecks_color; ?>"></i><?= __("Pre-Checks"); ?>
 																</a>
 															</p>
@@ -1984,7 +1995,7 @@ if (!file_exists('.lock') && !file_exists('../application/config/config.php') &&
 	<?php } ?>
 
 <?php } else {
-	header('Location: '.$base_url, true, 301);
+	header('Location: '.$base_url.'index.php/dashboard', true, 301);
 	die();
 } ?>
 

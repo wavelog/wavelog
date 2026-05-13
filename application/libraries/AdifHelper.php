@@ -25,7 +25,6 @@ class AdifHelper {
 			'CONT',
 			'CONTACTED_OP',
 			'CONTEST_ID',
-			'COUNTRY',
 			'CQZ',
 			'CREDIT_GRANTED',
 			'CREDIT_SUBMITTED',
@@ -152,6 +151,10 @@ class AdifHelper {
 				$date = date('Ymd', $date);
 				$line .= $this->getAdifFieldLine($field, $date);
 			}
+		}
+
+		if ($qso->COL_DXCC != 0) {
+			$line .= $this->getAdifFieldLine("COUNTRY", $qso->COL_COUNTRY);
 		}
 
 		if ($qso->COL_FREQ != 0) {

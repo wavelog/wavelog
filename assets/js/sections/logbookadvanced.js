@@ -1016,12 +1016,16 @@ $(document).ready(function () {
 			};
 
 		if (id_list.length > 0) {
+			reverse = false;
 			// Post data to URL which handles post request
 			xhttp.open("POST", site_url+'/logbookadvanced/export_to_adif', true);
+			if(event.shiftKey) {
+				reverse = true;
+			}
 			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			// You should set responseType as blob for binary responses
 			xhttp.responseType = 'blob';
-			xhttp.send("id=" + JSON.stringify(id_list, null, 2)+"&sortcolumn=" +$('#sortcolumn').val()+"&sortdirection=" +$('#sortdirection').val());
+			xhttp.send("id=" + JSON.stringify(id_list, null, 2)+"&sortcolumn=" +$('#sortcolumn').val()+"&sortdirection=" +$('#sortdirection').val()+"&reverse="+reverse);
 		} else {
 
 			// Post data to URL which handles post request

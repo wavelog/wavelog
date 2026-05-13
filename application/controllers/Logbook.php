@@ -32,6 +32,7 @@ class Logbook extends CI_Controller {
 		//load the model and get results
 		$data['results'] = $this->logbook_model->get_qsos($config['per_page'],$this->uri->segment(3));
 
+		$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
 		if(!$data['results']) {
@@ -676,6 +677,7 @@ class Logbook extends CI_Controller {
 		$data['query'] = $this->logbook_model->get_qso($id);
 		if ($data['query']) {	// QSO not found // Skip fetching details
 			$data['dxccFlag'] = $this->dxccflag->get($data['query']->result()[0]->COL_DXCC);
+			$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
 			// Check for note for this callsign and current user
 			$callsign = $data['query']->result()[0]->COL_CALL;
@@ -1034,6 +1036,7 @@ class Logbook extends CI_Controller {
 
 			if ($query->num_rows() > 0) {
 				$data['results'] = $query;
+					$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 				$this->load->view('view_log/partial/log_ajax.php', $data);
 			} else {
 				$this->load->model('search');
@@ -1042,6 +1045,7 @@ class Logbook extends CI_Controller {
 
 				if ($iota_search->num_rows() > 0) {
 					$data['results'] = $iota_search;
+					$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 					$this->load->view('view_log/partial/log_ajax.php', $data);
 				} else {
 					if (!$this->load->is_loaded('callbook')) {
@@ -1076,6 +1080,7 @@ class Logbook extends CI_Controller {
 			}
 		} else {
 			$data['results'] = $query;
+			$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 			$this->load->view('view_log/partial/log_ajax.php', $data);
 		}
 	}
@@ -1086,6 +1091,7 @@ class Logbook extends CI_Controller {
 
 		$binding = array();
 		$sql = "SELECT dxcc_entities.adif, lotw_users.callsign, COL_BAND, COL_CALL, COL_CLUBLOG_QSO_DOWNLOAD_DATE, COL_DCL_QSLRDATE, COL_DCL_QSLSDATE, COL_DCL_QSL_SENT, COL_DCL_QSL_RCVD,
+			COL_PROP_MODE,
 			COL_CLUBLOG_QSO_DOWNLOAD_STATUS, COL_CLUBLOG_QSO_UPLOAD_DATE, COL_CLUBLOG_QSO_UPLOAD_STATUS,
 			COL_CONTEST_ID, COL_DISTANCE, COL_EQSL_QSL_RCVD, COL_EQSL_QSLRDATE, COL_EQSL_QSLSDATE, COL_EQSL_QSL_SENT,
 			COL_FREQ, COL_GRIDSQUARE, COL_IOTA, COL_LOTW_QSL_RCVD, COL_LOTW_QSLRDATE, COL_LOTW_QSLSDATE,

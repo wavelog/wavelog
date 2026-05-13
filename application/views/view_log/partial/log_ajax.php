@@ -1,4 +1,5 @@
 <?php
+
 function echo_table_header_col($ctx, $name) {
 	switch($name) {
 		case 'Mode': echo '<th>'.__("Mode").'</th>'; break;
@@ -22,7 +23,7 @@ function echo_table_header_col($ctx, $name) {
 	}
 }
 
-function echo_table_col($row, $name) {
+function echo_table_col($row, $name, $adif_propmodes) {
 	$ci =& get_instance();
 	switch($name) {
 		case 'Mode':    echo '<td>'; echo $row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE . '</td>'; break;
@@ -50,65 +51,7 @@ function echo_table_col($row, $name) {
 		case 'Name':echo '<td>' . ($row->COL_NAME ?? '') . '</td>'; break;
 		case 'Propagation':
 			if (isset($row->COL_PROP_MODE)) {
-				switch($row->COL_PROP_MODE) {
-				case 'AS':
-					echo '<td>' . _pgettext("Propagation Mode","Aircraft Scatter") . '</td>';
-					break;
-				case 'AUR':
-					echo '<td>' . _pgettext("Propagation Mode","Aurora") . '</td>';
-					break;
-				case 'AUE':
-					echo '<td>' . _pgettext("Propagation Mode","Aurora-E") . '</td>';
-					break;
-				case 'BS':
-					echo '<td>' . _pgettext("Propagation Mode","Back scatter") . '</td>';
-					break;
-				case 'ECH':
-					echo '<td>' . _pgettext("Propagation Mode","EchoLink") . '</td>';
-					break;
-				case 'EME':
-					echo '<td>' . _pgettext("Propagation Mode","Earth-Moon-Earth") . '</td>';
-					break;
-				case 'ES':
-					echo '<td>' . _pgettext("Propagation Mode","Sporadic E") . '</td>';
-					break;
-				case 'FAI':
-					echo '<td>' . _pgettext("Propagation Mode","Field Aligned Irregularities") . '</td>';
-					break;
-				case 'F2':
-					echo '<td>' . _pgettext("Propagation Mode","F2 Reflection") . '</td>';
-					break;
-				case 'INTERNET':
-					echo '<td>' . _pgettext("Propagation Mode","Internet-assisted") . '</td>';
-					break;
-				case 'ION':
-					echo '<td>' . _pgettext("Propagation Mode","Ionoscatter") . '</td>';
-					break;
-				case 'IRL':
-					echo '<td>' . _pgettext("Propagation Mode","IRLP") . '</td>';
-					break;
-				case 'MS':
-					echo '<td>' . _pgettext("Propagation Mode","Meteor scatter") . '</td>';
-					break;
-				case 'RPT':
-					echo '<td>' . _pgettext("Propagation Mode","Terrestrial or atmospheric repeater or transponder") . '</td>';
-					break;
-				case 'RS':
-					echo '<td>' . _pgettext("Propagation Mode","Rain scatter") . '</td>';
-					break;
-				case 'SAT':
-					echo '<td>' . _pgettext("Propagation Mode","Satellite") . '</td>';
-					break;
-				case 'TEP':
-					echo '<td>' . _pgettext("Propagation Mode","Trans-equatorial") . '</td>';
-					break;
-				case 'TR':
-					echo '<td>' . _pgettext("Propagation Mode","Tropospheric ducting") . '</td>';
-					break;
-				default:
-					echo '<td>' . htmlspecialchars($row->COL_PROP_MODE ?? '') . '</td>';
-					break;
-				}
+				echo '<td>' . htmlspecialchars_decode($adif_propmodes[$row->COL_PROP_MODE] ?? $row->COL_PROP_MODE) . '</td>';
 			} else {
 				echo '<td></td>';
 			}
@@ -267,11 +210,11 @@ function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
             </td>
 			<?php
 
-                echo_table_col($row, $this->session->userdata('user_column1')==""?'Mode':$this->session->userdata('user_column1'));
-                echo_table_col($row, $this->session->userdata('user_column2')==""?'RSTS':$this->session->userdata('user_column2'));
-                echo_table_col($row, $this->session->userdata('user_column3')==""?'RSTR':$this->session->userdata('user_column3'));
-                echo_table_col($row, $this->session->userdata('user_column4')==""?'Band':$this->session->userdata('user_column4'));
-                echo_table_col($row, $this->session->userdata('user_column5'));
+                echo_table_col($row, $this->session->userdata('user_column1')==""?'Mode':$this->session->userdata('user_column1'), $adif_propmodes);
+                echo_table_col($row, $this->session->userdata('user_column2')==""?'RSTS':$this->session->userdata('user_column2'), $adif_propmodes);
+                echo_table_col($row, $this->session->userdata('user_column3')==""?'RSTR':$this->session->userdata('user_column3'), $adif_propmodes);
+                echo_table_col($row, $this->session->userdata('user_column4')==""?'Band':$this->session->userdata('user_column4'), $adif_propmodes);
+                echo_table_col($row, $this->session->userdata('user_column5'), $adif_propmodes);
 
 				if(($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) {
     		    			if ( strpos($this->session->userdata('user_default_confirmation'),'Q') !== false  ) { ?>
@@ -599,8 +542,8 @@ function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
 
                 <?php if ( strpos($this->session->userdata('user_default_confirmation'),'D') !== false ) { ?>
                 <td class="dcl">
-                <span <?php if ($row->COL_DCL_QSL_SENT != "N") {
-                       switch ($row->COL_DCL_QSL_SENT) {
+                <span <?php if (($row->COL_DCL_QSL_SENT ?? 'N') != "N") {
+                       switch ($row->COL_DCL_QSL_SENT ?? 'N') {
                        case "Y":
                           echo "class=\"qsl-green\" data-bs-toggle=\"tooltip\" title=\"".__("Sent");
                           break;
@@ -617,13 +560,13 @@ function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
                           echo "class=\"qsl-red";
                           break;
                        }
-                        if ($row->COL_DCL_QSLSDATE != null) {
+                        if (!empty($row->COL_DCL_QSLSDATE)) {
                             $timestamp = strtotime($row->COL_DCL_QSLSDATE); echo " "  .($timestamp != '' ? date($custom_date_format, $timestamp) : '');
                         }
                      } else { echo "class=\"qsl-red"; }
                         echo "\">&#9650;</span>"; ?>
-                <span <?php if ($row->COL_DCL_QSL_RCVD != "N") {
-                       switch ($row->COL_DCL_QSL_RCVD) {
+                <span <?php if (($row->COL_DCL_QSL_RCVD ?? 'N') != "N") {
+                       switch ($row->COL_DCL_QSL_RCVD ?? 'N') {
                        case "Y":
                           echo "class=\"qsl-green\" data-bs-toggle=\"tooltip\" title=\"".__("Received");
                           break;
@@ -640,7 +583,7 @@ function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
                           echo "class=\"qsl-red";
                           break;
                        }
-                       if ($row->COL_DCL_QSLRDATE != null) {
+                       if (!empty($row->COL_DCL_QSLRDATE)) {
                             $timestamp = strtotime($row->COL_DCL_QSLRDATE); echo " "  .($timestamp != '' ? date($custom_date_format, $timestamp) : '');
                        }
                      } else { echo "class=\"qsl-red"; }
