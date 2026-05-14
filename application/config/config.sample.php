@@ -95,15 +95,14 @@ $config['qrzru_password'] = '';
 | QRZCALL.EU Login Options
 |--------------------------------------------------------------------------
 |
-| 	'qrzcall_username'	QRZCALL.EU user login (callsign)
-|	'qrzcall_password'	QRZCALL.EU user password
+| 	'qrzcall_token'	QRZCALL.EU Personal Access Token (starts with "pat_")
 |
-| Requires a Data or Extra subscription on https://qrzcall.eu/ (ADMIN role
-| also works for testing). The integration logs in once per ~7h and caches
-| the resulting JWT.
+| Generate the token at https://qrzcall.eu/ → My Profile → Account →
+| API Tokens. Requires a Data or Extra subscription. Tokens are
+| revocable individually so this Wavelog install can be locked out
+| without changing your QRZCALL.EU password or disturbing other clients.
 */
-$config['qrzcall_username'] = '';
-$config['qrzcall_password'] = '';
+$config['qrzcall_token'] = '';
 
 /*
 |--------------------------------------------------------------------------

@@ -407,7 +407,9 @@ if (!file_exists('.lock') && !file_exists($db_config_path . 'config.php') && !fi
 													<option value="qrzcall">QRZCALL.EU</option>
 												</select>
 											</div>
-											<div class="row">
+
+											<!-- Username/Password row: hidden when QRZCALL.EU is selected -->
+											<div class="row" id="callbook_userpass_row">
 												<div class="col-md-3">
 													<div class="mb-3">
 														<label for="callbook_username" class="form-label mt-2"><?= __("Username"); ?></label>
@@ -430,6 +432,26 @@ if (!file_exists('.lock') && !file_exists($db_config_path . 'config.php') && !fi
 												<div class="alert alert-info" id="qrz_hint" style="display: none; margin-top: 10px;">
 													<p><i class="fas fa-lightbulb"></i> <?= __("Good to know:"); ?></p>
 													<?= __("Use your callsign as your username for QRZ.com. The XML API does not support email addresses."); ?>
+												</div>
+											</div>
+
+											<!-- QRZCALL.EU token row: shown only when QRZCALL.EU is selected -->
+											<div class="row" id="callbook_token_row" style="display: none;">
+												<div class="col-md-3">
+													<div class="mb-3">
+														<label for="callbook_token" class="form-label mt-2"><?= __("API Token"); ?></label>
+													</div>
+												</div>
+												<div class="col-md-9">
+													<div class="mb-3">
+														<input type="text" id="callbook_token" placeholder="pat_…" class="form-control font-monospace" name="callbook_token" autocomplete="off" />
+													</div>
+												</div>
+												<div class="alert alert-info" id="qrzcall_hint" style="margin-top: 10px;">
+													<p><i class="fas fa-lightbulb"></i> <?= __("Good to know:"); ?></p>
+													<?= __("Generate a Personal Access Token at"); ?>
+													<a href="https://qrzcall.eu/" target="_blank" rel="noopener">qrzcall.eu</a> → My Profile → Account → API Tokens.
+													<?= __("Requires a Data or Extra subscription."); ?>
 												</div>
 											</div>
 											<a class="btn btn-sm btn-secondary" id="advancedSettingsButton"><?= __("Advanced Settings"); ?></a>
@@ -1439,20 +1461,33 @@ if (!file_exists('.lock') && !file_exists($db_config_path . 'config.php') && !fi
 				let callbook_type = $('#global_call_lookup');
 				let callbook_username = $('#callbook_username');
 				let callbook_password = $('#callbook_password');
+				let callbook_token = $('#callbook_token');
 
-				// On Page Load
-				$(document).ready(function() {
-
-					if (callbook_type.val() === 'qrz') {
-						$('#qrz_hint').show();
-					}
-
-					callbook_type.on('change', function() {
+				// Show username+password row for traditional providers; show the
+				// single token row when QRZCALL.EU is selected.
+				function applyCallbookRowVisibility() {
+					if (callbook_type.val() === 'qrzcall') {
+						$('#callbook_userpass_row').hide();
+						$('#callbook_token_row').show();
+						$('#qrz_hint').hide();
+					} else {
+						$('#callbook_userpass_row').show();
+						$('#callbook_token_row').hide();
 						if (callbook_type.val() === 'qrz') {
 							$('#qrz_hint').show();
 						} else {
 							$('#qrz_hint').hide();
 						}
+					}
+				}
+
+				// On Page Load
+				$(document).ready(function() {
+
+					applyCallbookRowVisibility();
+
+					callbook_type.on('change', function() {
+						applyCallbookRowVisibility();
 					});
 
 					$('#advancedSettingsButton').click(function() {
@@ -1481,6 +1516,21 @@ if (!file_exists('.lock') && !file_exists($db_config_path . 'config.php') && !fi
 
 				function callbook_combination() {
 					let check = true;
+
+					// QRZCALL.EU uses a single token field — username/password are not used.
+					if (callbook_type.val() === 'qrzcall') {
+						let t = callbook_token.val();
+						// Token is optional during install (can be added later), but if
+						// present must look like a PAT.
+						if (t !== '' && t.indexOf('pat_') !== 0) {
+							input_is_valid(callbook_token, 'is-invalid');
+							check = false;
+						} else if (t !== '') {
+							input_is_valid(callbook_token, 'is-valid');
+						}
+						return check;
+					}
+
 					let a = callbook_username.val();
 					let b = callbook_password.val();
 					if ((a == '' && b !== '') || (a !== '' && b == '')) {

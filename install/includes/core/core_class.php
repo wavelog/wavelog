@@ -241,26 +241,35 @@ class Core
 		$new  = str_replace("%directory%", $this->_sanitize($data['directory']), $new);
 		$new  = str_replace("%callbook%", $this->_sanitize($data['global_call_lookup']), $new);
 
-		$callbooks = ['qrz', 'hamqth', 'qrzcq', 'qrzru', 'qrzcall'];
-		
-		if (in_array($data['global_call_lookup'], $callbooks)) {
-			$c_username = '%' . $data['global_call_lookup'] . '_username%';
-			$c_password = '%' . $data['global_call_lookup'] . '_password%';
+		// Username/password-based providers
+		$callbooks_userpass = ['qrz', 'hamqth', 'qrzcq', 'qrzru'];
+		// Token-based providers (single "<provider>_token" placeholder)
+		$callbooks_token    = ['qrzcall'];
 
-			$rest_callbooks = array_diff($callbooks, [$data['global_call_lookup']]);
+		$selected = $data['global_call_lookup'] ?? '';
 
-			foreach ($rest_callbooks as $callbook) {
-				$new = str_replace('%' . $callbook . '_username%', '', $new);
-				$new = str_replace('%' . $callbook . '_password%', '', $new);
-			}
+		// Substitute the selected provider's credentials, blank out everything else.
+		if (in_array($selected, $callbooks_userpass, true)) {
+			$c_username = '%' . $selected . '_username%';
+			$c_password = '%' . $selected . '_password%';
+			$new = str_replace($c_username, $this->_sanitize($data['callbook_username'] ?? ''), $new);
+			$new = str_replace($c_password, $this->_sanitize($data['callbook_password'] ?? ''), $new);
+		}
+		if (in_array($selected, $callbooks_token, true)) {
+			$c_token = '%' . $selected . '_token%';
+			$new = str_replace($c_token, $this->_sanitize($data['callbook_token'] ?? ''), $new);
+		}
 
-			$new = str_replace($c_username, $this->_sanitize($data['callbook_username']), $new);
-			$new = str_replace($c_password, $this->_sanitize($data['callbook_password']), $new);
-		} else {
-			foreach ($callbooks as $callbook) {
-				$new = str_replace('%' . $callbook . '_username%', '', $new);
-				$new = str_replace('%' . $callbook . '_password%', '', $new);
-			}
+		// Blank out all non-selected provider placeholders so the generated
+		// config has empty strings for the inactive ones.
+		foreach ($callbooks_userpass as $cb) {
+			if ($cb === $selected) continue;
+			$new = str_replace('%' . $cb . '_username%', '', $new);
+			$new = str_replace('%' . $cb . '_password%', '', $new);
+		}
+		foreach ($callbooks_token as $cb) {
+			if ($cb === $selected) continue;
+			$new = str_replace('%' . $cb . '_token%', '', $new);
 		}
 
 		$new = str_replace("%encryptionkey%", $encryptionkey, $new);
