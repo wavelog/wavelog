@@ -1716,7 +1716,7 @@ $(document).ready(function(){
     $('.tabledxcc').DataTable({
         "pageLength": 25,
         responsive: false,
-        ordering: false,
+        ordering: true,
         "scrollY":        "400px",
         "scrollCollapse": true,
         "paging":         false,

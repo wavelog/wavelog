@@ -195,10 +195,14 @@ class Awards extends CI_Controller {
 			// Extract bands data and summary from the result
 			$data['dxcc_array'] = ($dxcc_result && isset($dxcc_result['matrix'])) ? $dxcc_result['matrix'] : null;
 			$data['dxcc_summary'] = ($dxcc_result && isset($dxcc_result['summary'])) ? $dxcc_result['summary'] : null;
+			$data['dxcc_continent_summary'] = ($dxcc_result && isset($dxcc_result['continent_summary'])) ? $dxcc_result['continent_summary'] : null;
+			$data['dxcc_mode_summary'] = ($dxcc_result && isset($dxcc_result['mode_summary'])) ? $dxcc_result['mode_summary'] : null;
 		} else {
 			$location_list = null;
 			$data['dxcc_array'] = null;
 			$data['dxcc_summary'] = null;
+			$data['dxcc_continent_summary'] = null;
+			$data['dxcc_mode_summary'] = null;
 		}
 
 		// Render Page
@@ -428,7 +432,7 @@ class Awards extends CI_Controller {
 
 		// Query the database for JCC status
 		$jcc_entity_status = $this->jcc_model->query_entity_status($postdata, 'band');
-		
+
 		$data['jcc_array'] = $this->jcc_model->get_jcc_array($bands, $postdata, $jcc_entity_status);
 		$data['jcc_summary'] = $this->jcc_model->get_jcc_summary($bands, $postdata, $jcc_entity_status);
 
@@ -461,11 +465,11 @@ class Awards extends CI_Controller {
 		fputcsv($fp, array('No', 'Callsign', 'Date', 'Band', 'Mode', 'Remarks'), escape: '\\');
 		foreach ($qsos as $qso) {
 			fputcsv($fp, array(
-				$i, 
-				$qso['COL_CALL'], 
-				$qso['COL_TIME_ON'], 
-				$qso['COL_BAND'] . ($qso['COL_PROP_MODE'] ? (' / ' . $qso['COL_PROP_MODE']) : ''), 
-				$qso['COL_MODE'], 
+				$i,
+				$qso['COL_CALL'],
+				$qso['COL_TIME_ON'],
+				$qso['COL_BAND'] . ($qso['COL_PROP_MODE'] ? (' / ' . $qso['COL_PROP_MODE']) : ''),
+				$qso['COL_MODE'],
 				$qso['entity'] . ' - ' . $qso['entity_name']
 			), escape: '\\');
 			$i++;
