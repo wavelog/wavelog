@@ -244,8 +244,7 @@ function markSelectedQsos() {
 		url: base_url + 'index.php/logbookadvanced/update_qsl',
 		type: 'post',
 		data: {'id': JSON.stringify(id_list, null, 2),
-			'sent' : 'Y',
-			'method' : ''
+			'sent' : 'Y'
 		},
 		success: function(data) {
 			if (data !== []) {
