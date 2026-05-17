@@ -34,6 +34,7 @@ class Contesting_model extends CI_Model {
 	/**
 	 * Check if contest associated with current user
 	 *
+	 * @param int $contest_session_id The ID of the contest session.
 	 * @return bool If user is associated with contest
 	 */
 	function check_user_contest($contest_session_id) {
