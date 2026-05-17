@@ -54,11 +54,9 @@ class Contesting extends CI_Controller {
 	}
 
 	public function quickstart() {
-		if ($this->session->userdata('clubstation') == 1) {
-			if (!clubaccess_check(9)) {
-				$this->session->set_flashdata('error', __("Officers must set up contests."));
-				redirect('contesting'); 
-			}
+		if (!clubaccess_check(9)) {
+			$this->session->set_flashdata('error', __("Officers must set up contests."));
+			redirect('contesting'); 
 		}
 
 		$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
@@ -210,11 +208,9 @@ class Contesting extends CI_Controller {
 				break;
 
 			case 'post':
-				if ($this->session->userdata('clubstation') == 1) {
-					if (!clubaccess_check(9)) {
-						$this->session->set_flashdata('error', __("Officers must set up contests."));
-						redirect('contesting'); 
-					}
+				if (!clubaccess_check(9)) {
+					$this->session->set_flashdata('error', __("Officers must set up contests."));
+					redirect('contesting'); 
 				}
 				$contest_adif_id = $this->input->post('contest_adif_id', true);
 				$session_start = $this->input->post('session_start', true);
