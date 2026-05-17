@@ -91,6 +91,12 @@
 	let lang_gen_advanced_logbook_error_merging_qsos = '<?= __("Error merging QSOs"); ?>';
 	let lang_gen_advanced_logbook_error_loading_merge_dialog = '<?= __("Error loading merge dialog"); ?>';
 
+    let lang_gen_advanced_logbook_least_one = '<?= __("You need at least 1 QSO!"); ?>';
+	let lang_gen_advanced_logbook_attach_qsos = '<?= __("Attach QSOs to Contest"); ?>';
+    let lang_gen_advanced_logbook_error_loading_attach_dialog = '<?= __("Error loading attach to contest dialog"); ?>';
+	let lang_gen_advanced_logbook_qsos_attached = '<?= __("QSOs attached to contest successfully!"); ?>';
+	let lang_gen_advanced_logbook_error_attaching = '<?= __("Error attaching QSOs"); ?>';
+
     let homegrid ='<?php echo strtoupper($homegrid[0]); ?>';
     <?php
     if (!isset($options)) {
@@ -840,6 +846,7 @@ $options = json_decode($options);
 										<button type="button" class="btn btn-sm btn-info dropdown-action" id="qslSlideshow"><?= __("QSL Slideshow"); ?></button>
 										<button type="button" class="btn btn-sm btn-success dropdown-action" id="fixState"><?= __("Fix State"); ?></button>
 										<button type="button" class="btn btn-sm btn-danger dropdown-action" id="mergeQsos"><?= __("Merge QSOs"); ?></button>
+										<button type="button" class="btn btn-sm btn-info dropdown-action" id="attachContest"><?= __("Attach to Contest"); ?></button>
 									</div>
 								</div>
 							</div>

@@ -1025,4 +1025,53 @@ class Logbookadvanced extends CI_Controller {
 		echo json_encode($cleaned_qso);
 	}
 
+
+	public function attachContestDialog() {
+		if(!clubaccess_check(9)) return;
+
+		$qsoIds = $this->input->post('qsoIds', true);
+		$data['qsoIds'] = $qsoIds;
+
+		$this->load->model('contesting_model');
+		$data['contests'] = $this->contesting_model->get_user_contests();
+		$data['custom_date_format'] = $this->session->userdata('user_date_format');
+
+		$this->load->view('logbookadvanced/attachContest', $data);
+	}
+
+	public function attachContestQsos() {
+		if(!clubaccess_check(9)) return;
+
+		$this->load->model('contesting_model');
+		$this->load->model('logbook_model');  
+
+		$qsoIds = $this->input->post('qsoIds', true);
+		$contestId = $this->input->post('selected_contest', true);
+
+		if (!is_array($qsoIds) || count($qsoIds) < 1) {
+			header("Content-Type: application/json");
+			echo json_encode(['success' => false, 'message' => 'Invalid QSO IDs']);
+			return;
+		}
+
+		// Check if permission on contest
+		if (!$this->contesting_model->check_user_contest($contestId)) {
+			header("Content-Type: application/json");
+			echo json_encode(['success' => false, 'message' => 'Invalid contest']);
+			return;	
+		}
+
+		foreach ($qsoIds as $qsoID) {
+			if ($this->logbook_model->check_qso_is_accessible($qsoID)) { // Check if user has permission on QSO
+				$result = $this->contesting_model->link_qso($qsoID, $contestId);
+			}
+		}
+
+
+		header("Content-Type: application/json");
+		echo json_encode(['success' => true]);
+		return;	
+
+	}
+
 }

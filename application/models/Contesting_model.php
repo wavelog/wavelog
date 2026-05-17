@@ -32,6 +32,26 @@ class Contesting_model extends CI_Model {
 	}
 
 	/**
+	 * Check if contest associated with current user
+	 *
+	 * @return bool If user is associated with contest
+	 */
+	function check_user_contest($contest_session_id) {
+		$user_id = $this->session->userdata('user_id');
+
+		$sql = "SELECT 
+					COUNT(*) AS cnt
+				FROM contest_session
+				WHERE id = ?
+				AND user_id = ?";
+
+		$query = $this->db->query($sql, [$contest_session_id, $user_id]);
+		$row = $query->row();
+
+		return ((int) $row->cnt === 1);
+	}
+
+	/**
 	 * Retrieves information about a specific contest session.
 	 *
 	 * @param int $contest_session_id The ID of the contest session.

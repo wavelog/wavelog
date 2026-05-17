@@ -1570,6 +1570,119 @@ $(document).ready(function () {
 		});
 	});
 
+	// Attach QSOs to Contest button handler
+	$('#attachContest').click(function (event) {
+		const id_list = getSelectedIds();
+
+		if (id_list.length === 0) {
+			BootstrapDialog.alert({
+				title: lang_gen_advanced_logbook_info,
+				message: lang_gen_advanced_logbook_least_one,
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
+			return;
+		}
+
+		// Load attach dialog
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/attachContestDialog',
+			type: 'post',
+			data: {
+				qsoIds: id_list
+			},
+			success: function (html) {
+				BootstrapDialog.show({
+					title: lang_gen_advanced_logbook_attach_qsos,
+					size: BootstrapDialog.SIZE_WIDE,
+					cssClass: 'attach-dialog',
+					nl2br: false,
+					message: html,
+					buttons: [
+					{
+						label: 'Attach QSOs <div class="ld ld-ring ld-spin"></div>',
+						cssClass: 'btn btn-sm btn-info ld-ext-right',
+						id: 'attachButton',
+						action: function (dialogItself) {
+							// User submitted, proceed with attachment
+							const formData = $('#attachForm').serialize();
+
+							$('#attachButton').prop("disabled", true).addClass("running");
+							$('#closeAttachButton').prop("disabled", true);
+
+							$.ajax({
+								url: base_url + 'index.php/logbookadvanced/attachContestQsos',
+								type: 'post',
+								data: formData,
+								dataType: 'json',
+								success: function (response) {
+									dialogItself.close();
+									if (response.success) {
+										BootstrapDialog.alert({
+											title: lang_gen_advanced_logbook_success,
+											message: lang_gen_advanced_logbook_qsos_attached,
+											type: BootstrapDialog.TYPE_SUCCESS,
+											closable: false,
+											draggable: false,
+											callback: function (result) {
+												$('#searchButton').click();
+											}
+										});
+									} else {
+										BootstrapDialog.alert({
+											title: lang_gen_advanced_logbook_error,
+											message: response.message || lang_gen_advanced_logbook_error_attaching,
+											type: BootstrapDialog.TYPE_DANGER,
+											closable: false,
+											draggable: false,
+											callback: function (result) {
+											}
+										});
+									}
+								},
+								error: function () {
+									dialogItself.close();
+									BootstrapDialog.alert({
+										title: lang_gen_advanced_logbook_error,
+										message: lang_gen_advanced_logbook_error_attaching,
+										type: BootstrapDialog.TYPE_DANGER,
+										closable: false,
+										draggable: false,
+										callback: function (result) {
+										}
+									});
+								}
+							});
+							
+						}
+					},
+					{
+						label: lang_admin_close,
+						cssClass: 'btn btn-sm btn-secondary',
+						id: 'closeAttachButton',
+						action: function (dialogItself) {
+							dialogItself.close();
+						}
+					}],
+				});
+			},
+			error: function () {
+				BootstrapDialog.alert({
+					title: lang_gen_advanced_logbook_error,
+					message: lang_gen_advanced_logbook_error_loading_attach_dialog,
+					type: BootstrapDialog.TYPE_DANGER,
+					closable: false,
+					draggable: false,
+					callback: function (result) {
+					}
+				});
+			}
+		});
+	});
+
 	function dupeSearchDialog() {
 		$.ajax({
 			url: base_url + 'index.php/logbookadvanced/dupeSearchDialog',
