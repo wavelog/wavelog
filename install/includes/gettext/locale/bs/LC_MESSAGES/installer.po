@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-05-08 11:33+0000\n"
+"POT-Creation-Date: 2026-05-17 12:36+0000\n"
 "PO-Revision-Date: 2024-11-14 11:41+0000\n"
 "Last-Translator: Samir <DL4DCO@users.noreply.translate.wavelog.org>\n"
 "Language-Team: Bosnian <https://translate.wavelog.org/projects/wavelog/"
@@ -209,7 +209,7 @@ msgstr "Wiki"
 msgid "Thank you for installing Wavelog!"
 msgstr "Hvala vam za instalalciju Wavelog-a!"
 
-#: install/index.php:91 install/index.php:94 install/index.php:1076
+#: install/index.php:91 install/index.php:94 install/index.php:1099
 msgid "Language"
 msgstr "Jezik"
 
@@ -217,7 +217,7 @@ msgstr "Jezik"
 msgid "Select a language"
 msgstr "Izaberi jedan od jezika"
 
-#: install/index.php:116 install/index.php:461
+#: install/index.php:116 install/index.php:484
 msgid "Close"
 msgstr "Zatvori"
 
@@ -350,63 +350,72 @@ msgid "Optional: Global Callbook Lookup"
 msgstr "Opcionalno: Globalna pretraga u pozivnoj knjizi Callbook-u"
 
 #: install/index.php:401
+#, php-format
 msgid ""
 "This configuration is optional. The callsign lookup will be available for "
-"all users of this installation. You can choose between QRZ.com and HamQTH. "
-"While HamQTH also works without username and password, you will need "
-"credentials for QRZ.com. To also get the Call Locator in QRZ.com you'll need "
-"an XML subscription. HamQTH does not always provide the locator information."
+"all users of this installation. You can choose between QRZ.com, HamQTH, "
+"QRZCQ, QRZ.ru and QRZCALL.EU. While HamQTH also works without username and "
+"password, you will need credentials for the other providers. QRZ.com needs "
+"an XML subscription for the Call Locator; QRZCALL.EU needs a Data or Extra "
+"subscription on %s. HamQTH does not always provide the locator information."
 msgstr ""
-"Ova konfiguracija je opcionalna. Traženje pozivnog znaka će biti dostupno za "
-"sve korisnike ove instalacije. Možete birati između QRZ.com i HamQTH. Iako "
-"HamQTH radi i bez korisničkog imena i lozinke, trebat će vam podatci "
-"pristupa za QRZ.com. Da biste također dobili lokator poziva na QRZ.com, "
-"trebat će vam XML pretplata. HamQTH ne pruža uvijek informacije o lokatoru."
 
-#: install/index.php:412 install/index.php:493 install/index.php:945
+#: install/index.php:415 install/index.php:516 install/index.php:968
 msgid "Username"
 msgstr "Korisničko Ime"
 
-#: install/index.php:415 install/index.php:497 install/index.php:955
+#: install/index.php:418 install/index.php:520 install/index.php:978
 msgid "Password"
 msgstr "Lozinka"
 
-#: install/index.php:420
+#: install/index.php:423
 msgid "Callbook Username"
 msgstr "Callbook korisničko ime"
 
-#: install/index.php:423
+#: install/index.php:426
 msgid "Callbook Password"
 msgstr "Callbook lozinka"
 
-#: install/index.php:425
+#: install/index.php:428
 #, php-format
 msgid "Password can't contain %s or be empty"
 msgstr "Lozinka ne može sadržavati %s ili biti prazna"
 
-#: install/index.php:430
+#: install/index.php:433 install/index.php:451
 msgid "Good to know:"
 msgstr ""
 
-#: install/index.php:431
+#: install/index.php:434
 msgid ""
 "Use your callsign as your username for QRZ.com. The XML API does not support "
 "email addresses."
 msgstr ""
 
-#: install/index.php:434 install/index.php:439
+#: install/index.php:442
+msgid "API Token"
+msgstr ""
+
+#: install/index.php:452
+msgid "Generate a Personal Access Token at"
+msgstr ""
+
+#: install/index.php:454
+msgid "Requires a Data or Extra subscription."
+msgstr ""
+
+#: install/index.php:457 install/index.php:462
 msgid "Advanced Settings"
 msgstr "Posebne postavke"
 
-#: install/index.php:442
+#: install/index.php:465
 msgid "These settings should only be set if you know what you're doing."
 msgstr "Ove postavke treba postaviti samo ako znate šta radite."
 
-#: install/index.php:445
+#: install/index.php:468
 msgid "Error Logs"
 msgstr "Protokol grešaka"
 
-#: install/index.php:446
+#: install/index.php:469
 msgid ""
 "Optional: Enable Error Logging by setting the log threshold bigger then 0. "
 "Only enable this if you really need it."
@@ -414,27 +423,27 @@ msgstr ""
 "Opcionalno: Omogućite evidentiranje grešaka tako što ćete postaviti prag "
 "evidencije veći od 0. Omogućite ovo samo ako vam je zaista potrebno."
 
-#: install/index.php:451
+#: install/index.php:474
 msgid "0 - No logs"
 msgstr "0 - nema protokola"
 
-#: install/index.php:452
+#: install/index.php:475
 msgid "1 - Error messages"
 msgstr "1 - Poruke grešaka"
 
-#: install/index.php:453
+#: install/index.php:476
 msgid "2 - Debug messages"
 msgstr "2 - Poruke za otklanjanje grešaka"
 
-#: install/index.php:454
+#: install/index.php:477
 msgid "3 - Info messages"
 msgstr "3 - Info poruke"
 
-#: install/index.php:455
+#: install/index.php:478
 msgid "4 - All messages"
 msgstr "4 - Sve poruke"
 
-#: install/index.php:477
+#: install/index.php:500
 msgid ""
 "To properly install Wavelog you already should have setup a mariadb/mysql "
 "database. Provide the parameters here."
@@ -442,11 +451,11 @@ msgstr ""
 "Da biste pravilno instalirali Wavelog, već biste trebali postaviti mariadb/"
 "mysql bazu podataka. Ovdje navedite parametre."
 
-#: install/index.php:481
+#: install/index.php:504
 msgid "Hostname or IP"
 msgstr "Ime hosta ili IP"
 
-#: install/index.php:481
+#: install/index.php:504
 msgid ""
 "Usually 'localhost'.<br>Optional with '[host]:[port]'. Default port: 3306."
 "<br>In a docker compose install type 'wavelog-db'."
@@ -454,28 +463,28 @@ msgstr ""
 "Obično 'localhost'.<br>Opcionalno sa '[host]:[port]'. Zadani port: 3306."
 "<br>U docker compose instalaciju upišite 'wavelog-db'."
 
-#: install/index.php:487
+#: install/index.php:510
 msgid "Database Name"
 msgstr "Ime baze podataka"
 
-#: install/index.php:487
+#: install/index.php:510
 msgid "Name of the Database"
 msgstr "Naziv baze podataka"
 
-#: install/index.php:493
+#: install/index.php:516
 msgid "Username of the Database User which has full access to the database."
 msgstr ""
 "Korisničko ime korisnika baze podataka koji ima pun pristup bazi podataka."
 
-#: install/index.php:497
+#: install/index.php:520
 msgid "Password of the Database User"
 msgstr "Lozinka korisnika baze podataka"
 
-#: install/index.php:501
+#: install/index.php:524
 msgid "Connection Test"
 msgstr "Test veze"
 
-#: install/index.php:512
+#: install/index.php:535
 msgid ""
 "Now you can create your first user in Wavelog. Fill out all fields and click "
 "continue. Make sure you use a safe password."
@@ -483,136 +492,136 @@ msgstr ""
 "Sada možete kreirati svog prvog korisnika u Wavelogu. Popunite sva polja i "
 "kliknite Nastavi. Obavezno koristite sigurnu lozinku."
 
-#: install/index.php:513
+#: install/index.php:536
 msgid "All fields are required!"
 msgstr "Sva polja su obavezna!"
 
-#: install/index.php:521
+#: install/index.php:544
 msgid "First Name"
 msgstr "Ime"
 
-#: install/index.php:525
+#: install/index.php:548
 msgid "DXCC"
 msgstr "DXCC"
 
-#: install/index.php:527
+#: install/index.php:550
 msgid "Please select one"
 msgstr "Izaberite jedno"
 
-#: install/index.php:528 install/index.php:534 install/index.php:558
-#: install/index.php:570 install/index.php:573 install/index.php:578
-#: install/index.php:579 install/index.php:588 install/index.php:592
-#: install/index.php:607 install/index.php:620 install/index.php:621
-#: install/index.php:625 install/index.php:646 install/index.php:653
-#: install/index.php:655 install/index.php:656 install/index.php:658
-#: install/index.php:662 install/index.php:663 install/index.php:664
-#: install/index.php:668 install/index.php:669 install/index.php:688
-#: install/index.php:696 install/index.php:702 install/index.php:709
-#: install/index.php:710 install/index.php:716 install/index.php:718
-#: install/index.php:720 install/index.php:738 install/index.php:743
-#: install/index.php:744 install/index.php:758 install/index.php:773
-#: install/index.php:774 install/index.php:778 install/index.php:789
-#: install/index.php:790 install/index.php:795 install/index.php:799
-#: install/index.php:801 install/index.php:802 install/index.php:809
-#: install/index.php:824 install/index.php:826 install/index.php:843
-#: install/index.php:846 install/index.php:851 install/index.php:854
-#: install/index.php:857 install/index.php:867 install/index.php:873
-#: install/index.php:877 install/index.php:883 install/index.php:886
-#: install/index.php:889 install/index.php:894 install/index.php:920
-#: install/index.php:926 install/index.php:928 install/index.php:1737
+#: install/index.php:551 install/index.php:557 install/index.php:581
+#: install/index.php:593 install/index.php:596 install/index.php:601
+#: install/index.php:602 install/index.php:611 install/index.php:615
+#: install/index.php:630 install/index.php:643 install/index.php:644
+#: install/index.php:648 install/index.php:669 install/index.php:676
+#: install/index.php:678 install/index.php:679 install/index.php:681
+#: install/index.php:685 install/index.php:686 install/index.php:687
+#: install/index.php:691 install/index.php:692 install/index.php:711
+#: install/index.php:719 install/index.php:725 install/index.php:732
+#: install/index.php:733 install/index.php:739 install/index.php:741
+#: install/index.php:743 install/index.php:761 install/index.php:766
+#: install/index.php:767 install/index.php:781 install/index.php:796
+#: install/index.php:797 install/index.php:801 install/index.php:812
+#: install/index.php:813 install/index.php:818 install/index.php:822
+#: install/index.php:824 install/index.php:825 install/index.php:832
+#: install/index.php:847 install/index.php:849 install/index.php:866
+#: install/index.php:869 install/index.php:874 install/index.php:877
+#: install/index.php:880 install/index.php:890 install/index.php:896
+#: install/index.php:900 install/index.php:906 install/index.php:909
+#: install/index.php:912 install/index.php:917 install/index.php:943
+#: install/index.php:949 install/index.php:951 install/index.php:1788
 msgid "Deleted DXCC"
 msgstr "Izbrisani DXCC"
 
-#: install/index.php:935
+#: install/index.php:958
 msgid "Last Name"
 msgstr "Prezime"
 
-#: install/index.php:939
+#: install/index.php:962
 msgid "Callsign"
 msgstr "Pozivni znak"
 
-#: install/index.php:949
+#: install/index.php:972
 msgid "Gridsquare/Locator"
 msgstr "QTH Lokator"
 
-#: install/index.php:959
+#: install/index.php:982
 msgid "City"
 msgstr "Grad"
 
-#: install/index.php:965
+#: install/index.php:988
 msgid "Confirm Password"
 msgstr "Potvrdite Lozinku"
 
-#: install/index.php:969
+#: install/index.php:992
 msgid "Timezone"
 msgstr "Vremenska zona"
 
-#: install/index.php:1072
+#: install/index.php:1095
 msgid "E-Mail Address"
 msgstr "E-Mail Adresa"
 
-#: install/index.php:1095
+#: install/index.php:1118
 msgid "Checklist"
 msgstr "Kontrolna lista"
 
-#: install/index.php:1102
+#: install/index.php:1125
 msgid "Pre-Checks"
 msgstr "Prethodne provjere"
 
-#: install/index.php:1111
+#: install/index.php:1134
 msgid "Configuration"
 msgstr "Konfiguracija"
 
-#: install/index.php:1120
+#: install/index.php:1143
 msgid "Database"
 msgstr "Baza podataka"
 
-#: install/index.php:1129
+#: install/index.php:1152
 msgid "First User"
 msgstr "Prvi korisnik"
 
-#: install/index.php:1139
+#: install/index.php:1162
 msgid "Nearly done!"
 msgstr "Skoro gotovo!"
 
-#: install/index.php:1141
+#: install/index.php:1164
 msgid "You prepared all neccessary steps."
 msgstr "Pripremili ste sve potrebne korake."
 
-#: install/index.php:1142
+#: install/index.php:1165
 msgid "We now can install Wavelog. This process can take a few minutes."
 msgstr ""
 "Sada možemo instalirati Wavelog. Ovaj proces može potrajati nekoliko minuta."
 
-#: install/index.php:1148
+#: install/index.php:1171
 msgid "Reset"
 msgstr "Resetovati"
 
-#: install/index.php:1153
+#: install/index.php:1176
 msgid "Installer Reset"
 msgstr "Resetovanje instalacije"
 
-#: install/index.php:1156
+#: install/index.php:1179
 msgid "Do you really want to reset all data and start from scratch?"
 msgstr "Da li zaista želite resetovati sve podatke i početi ispočetka?"
 
-#: install/index.php:1159
+#: install/index.php:1182
 msgid "Yes"
 msgstr "Da"
 
-#: install/index.php:1160
+#: install/index.php:1183
 msgid "No"
 msgstr "Ne"
 
-#: install/index.php:1170
+#: install/index.php:1193
 msgid "Back"
 msgstr "Nazad"
 
-#: install/index.php:1171
+#: install/index.php:1194
 msgid "Continue"
 msgstr "Nastavi"
 
-#: install/index.php:1249
+#: install/index.php:1272
 msgid ""
 "You can't continue. Solve the red marked issues, restart the webserver and "
 "reload this page."
@@ -620,11 +629,11 @@ msgstr ""
 "Ne možete nastaviti. Riješite crveno označene probleme, ponovo pokrenite web "
 "server i ponovo učitajte ovu stranicu."
 
-#: install/index.php:1376
+#: install/index.php:1399
 msgid "Password can't contain ' / \\ < >"
 msgstr "Lozinka ne može sadržavati ' / \\ < >"
 
-#: install/index.php:1380
+#: install/index.php:1403
 msgid ""
 "The callsign should not contain any pre- or suffixes as it is used as "
 "personal operator callsign."
@@ -632,7 +641,7 @@ msgstr ""
 "Pozivni znak ne bi trebao sadržavati nikakve pre- ili sufikse jer se koristi "
 "kao pozivni znak ličnog operatera."
 
-#: install/index.php:1392
+#: install/index.php:1415
 msgid ""
 "The callsign can not contain any special characters. It's your personal "
 "callsign without any pre- or suffixes."
@@ -640,22 +649,22 @@ msgstr ""
 "Pozivni znak ne može sadržavati nikakve posebne znakove. To je vaš lični "
 "pozivni znak bez pred- ili sufiksa."
 
-#: install/index.php:1525
+#: install/index.php:1576
 msgid "Error: At least Hostname/IP, Database Name and Username are required."
 msgstr ""
 "Greška: Potrebni su najmanje ime hosta/IP, naziv baze podataka i korisničko "
 "ime."
 
-#: install/index.php:1535
+#: install/index.php:1586
 msgid "Connecting..."
 msgstr "Povezivanje..."
 
-#: install/index.php:1559
+#: install/index.php:1610
 msgid "Connection was successful and your database should be compatible."
 msgstr ""
 "Konekcija je bila uspješna i vaša baza podataka bi trebala biti kompatibilna."
 
-#: install/index.php:1563
+#: install/index.php:1614
 msgid ""
 "Connection was successful but your database seems too old for Wavelog. You "
 "can try to continue but you could run into issues."
@@ -663,20 +672,20 @@ msgstr ""
 "Konekcija je bila uspješna, ali vaša baza podataka izgleda prestara za "
 "Wavelog. Možete pokušati da nastavite, ali možete naići na probleme."
 
-#: install/index.php:1563
+#: install/index.php:1614
 #, php-format
 msgid "The min. version for MySQL is %s, for MariaDB it's %s."
 msgstr "Min. verzija za MySQL je %s, za MariaDB je %s."
 
-#: install/index.php:1683
+#: install/index.php:1734
 msgid "Search"
 msgstr "Traži"
 
-#: install/index.php:1720
+#: install/index.php:1771
 msgid "At least one field is empty."
 msgstr "Najmanje jedno polje je prazno."
 
-#: install/index.php:1739
+#: install/index.php:1790
 msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
 "Check which DXCC for this particular location is the correct one. If you are "
@@ -686,7 +695,7 @@ msgstr ""
 "Provjerite koji je DXCC za ovu određenu lokaciju ispravan. Ako ste sigurni, "
 "zanemarite ovo upozorenje."
 
-#: install/index.php:1763
+#: install/index.php:1814
 msgid ""
 "The locator seems to be not in the correct format. Should look like AA11AA "
 "(6-char grid locator)."
@@ -694,42 +703,42 @@ msgstr ""
 "Čini se da lokator nije u ispravnom formatu. Trebalo bi izgledati kao AA11AA "
 "(lokator mreže od 6 znakova)."
 
-#: install/index.php:1777
+#: install/index.php:1828
 msgid ""
 "The e-mail adress does not look correct. Make sure it's a valid e-mail "
 "address"
 msgstr ""
 "E-mail adresa ne izgleda ispravno. Provjerite je li to važeća e-mail adresa"
 
-#: install/index.php:1804
+#: install/index.php:1855
 msgid "Password should be at least 8 characters long"
 msgstr "Lozinka treba da ima najmanje 8 znakova"
 
-#: install/index.php:1813
+#: install/index.php:1864
 msgid "Passwords do not match"
 msgstr "Lozinke se ne podudaraju"
 
-#: install/index.php:1869
+#: install/index.php:1920
 msgid "Install Now"
 msgstr "Instaliraj odmah"
 
-#: install/index.php:1873
+#: install/index.php:1924
 msgid "Install not possible. Checklist incomplete."
 msgstr "Instalacija nije moguća. Kontrolna lista je nepotpuna."
 
-#: install/index.php:1985
+#: install/index.php:2036
 msgid "PHP Module missing"
 msgstr "Nedostaje PHP modul"
 
-#: install/index.php:1987
+#: install/index.php:2038
 msgid "The following PHP modules are missing:"
 msgstr "Nedostaju sljedeći PHP moduli:"
 
-#: install/index.php:1988
+#: install/index.php:2039
 msgid "Without this module the Wavelog Installer does not work!"
 msgstr "Bez ovog modula Wavelog Installer ne radi!"
 
-#: install/index.php:1989
+#: install/index.php:2040
 msgid "Please install the required modules and restart the webserver."
 msgstr "Molimo instalirajte potrebne module i ponovo pokrenite web server."
 
@@ -807,6 +816,21 @@ msgstr "Nije moguće ažurirati DXCC podatke"
 #: install/run.php:333
 msgid "Could not create install/.lock file"
 msgstr "Nije moguće kreirati install/.lock fajl"
+
+#~ msgid ""
+#~ "This configuration is optional. The callsign lookup will be available for "
+#~ "all users of this installation. You can choose between QRZ.com and "
+#~ "HamQTH. While HamQTH also works without username and password, you will "
+#~ "need credentials for QRZ.com. To also get the Call Locator in QRZ.com "
+#~ "you'll need an XML subscription. HamQTH does not always provide the "
+#~ "locator information."
+#~ msgstr ""
+#~ "Ova konfiguracija je opcionalna. Traženje pozivnog znaka će biti dostupno "
+#~ "za sve korisnike ove instalacije. Možete birati između QRZ.com i HamQTH. "
+#~ "Iako HamQTH radi i bez korisničkog imena i lozinke, trebat će vam podatci "
+#~ "pristupa za QRZ.com. Da biste također dobili lokator poziva na QRZ.com, "
+#~ "trebat će vam XML pretplata. HamQTH ne pruža uvijek informacije o "
+#~ "lokatoru."
 
 #~ msgid "Directory"
 #~ msgstr "Imenik"
