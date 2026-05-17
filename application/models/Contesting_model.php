@@ -118,6 +118,12 @@ class Contesting_model extends CI_Model {
 	 * @return bool True on success, false on failure.
 	 */
 	function update_contest_session($contest_session_id, $contest_id, $time_start, $time_end, $station_id, $notes, $exchangetype = 'Exchange') {
+		if ($this->session->userdata('clubstation') == 1) {
+			if (!clubaccess_check(9)) {
+				$this->session->set_flashdata('error', __("Officers must edit contests."));
+				redirect('contesting');
+			}
+		}
 		$user_id = $this->session->userdata('user_id');
 
 		$settings = json_encode(['exchangetype' => $exchangetype]);
@@ -148,6 +154,12 @@ class Contesting_model extends CI_Model {
 	 * @return bool True on success, false on failure.
 	 */
 	function delete_contest_session($contest_session_id) {
+		if ($this->session->userdata('clubstation') == 1) {
+			if (!clubaccess_check(9)) {
+				$this->session->set_flashdata('error', __("Only clubstation officers can delete."));
+				redirect('contesting');
+			}
+		}
 		$user_id = $this->session->userdata('user_id');
 
 		// First, delete associated QSOs (this does not delete the QSOs themselves from the main logbook)
