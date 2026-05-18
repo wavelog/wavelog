@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-05-17 12:36+0000\n"
-"PO-Revision-Date: 2026-04-16 09:58+0000\n"
-"Last-Translator: JF9SOM <jf9som@gmail.com>\n"
+"PO-Revision-Date: 2026-05-18 19:18+0000\n"
+"Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
 "installer/ja/>\n"
 "Language: ja\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.16.2\n"
+"X-Generator: Weblate 5.17.1\n"
 
 #: install/includes/install_config/install_lib.php:123
 msgid "not detected"
@@ -361,6 +361,12 @@ msgid ""
 "an XML subscription for the Call Locator; QRZCALL.EU needs a Data or Extra "
 "subscription on %s. HamQTH does not always provide the locator information."
 msgstr ""
+"この設定はオプションです。コールサイン検索は、このインストール環境のすべての"
+"ユーザーが利用できます。QRZ.com、HamQTH、QRZCQ、QRZ.ru、QRZCALL.EU から選択で"
+"きます。HamQTH はユーザー名とパスワードなしでも動作しますが、他のプロバイダー"
+"では認証情報が必要です。QRZ.com ではコールロケーターの XML サブスクリプション"
+"が必要です。QRZCALL.EU ではデータまたはエクストラのサブスクリプションが必要で"
+"す。 %s 。HamQTH は必ずしもロケーター情報を提供するとは限りません。"
 
 #: install/index.php:415 install/index.php:516 install/index.php:968
 msgid "Username"
@@ -397,15 +403,15 @@ msgstr ""
 
 #: install/index.php:442
 msgid "API Token"
-msgstr ""
+msgstr "APIトークン"
 
 #: install/index.php:452
 msgid "Generate a Personal Access Token at"
-msgstr ""
+msgstr "個人アクセストークンを生成するには"
 
 #: install/index.php:454
 msgid "Requires a Data or Extra subscription."
-msgstr ""
+msgstr "データプランまたは追加プランへの加入が必要です。"
 
 #: install/index.php:457 install/index.php:462
 msgid "Advanced Settings"
