@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-05-17 12:36+0000\n"
-"PO-Revision-Date: 2026-03-18 08:45+0000\n"
+"PO-Revision-Date: 2026-05-18 19:18+0000\n"
 "Last-Translator: JONCOUX Philippe <joncoux@free.fr>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
 "installer/fr/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 5.16.2\n"
+"X-Generator: Weblate 5.17.1\n"
 
 #: install/includes/install_config/install_lib.php:123
 msgid "not detected"
@@ -369,6 +369,14 @@ msgid ""
 "an XML subscription for the Call Locator; QRZCALL.EU needs a Data or Extra "
 "subscription on %s. HamQTH does not always provide the locator information."
 msgstr ""
+"Cette configuration est facultative. La recherche d'indicatifs radio sera "
+"disponible pour tous les utilisateurs de cette installation. Vous pouvez "
+"choisir entre QRZ.com, HamQTH, QRZCQ, QRZ.ru et QRZCALL.EU. HamQTH "
+"fonctionne également sans identifiant ni mot de passe, tandis que les autres "
+"fournisseurs nécessitent des identifiants. QRZ.com requiert un abonnement "
+"XML pour le localisateur d'indicatifs ; QRZCALL.EU requiert un abonnement "
+"Data ou Extra sur %s. HamQTH ne fournit pas systématiquement les "
+"informations du localisateur."
 
 #: install/index.php:415 install/index.php:516 install/index.php:968
 msgid "Username"
@@ -405,15 +413,15 @@ msgstr ""
 
 #: install/index.php:442
 msgid "API Token"
-msgstr ""
+msgstr "Jeton API"
 
 #: install/index.php:452
 msgid "Generate a Personal Access Token at"
-msgstr ""
+msgstr "Générez un jeton d'accès personnel à"
 
 #: install/index.php:454
 msgid "Requires a Data or Extra subscription."
-msgstr ""
+msgstr "Nécessite un abonnement Data ou Extra."
 
 #: install/index.php:457 install/index.php:462
 msgid "Advanced Settings"
