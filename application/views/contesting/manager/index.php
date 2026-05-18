@@ -45,11 +45,11 @@
                                     $end   = !empty($row['time_end'])   ? strtotime($row['time_end'])   : null;
 
                                     if ($start && $start > $now) {
-                                        $status = __("Coming Up");
+                                        $status = '<span class="badge text-bg-primary me-1">' . __("Coming Up") . '</span>';
                                     } elseif ($start && $end && $now >= $start && $now <= $end) {
-                                        $status = __("In Progress");
+                                        $status = '<span class="badge text-bg-info me-1">' . __("In Progress") . '</span>';
                                     } elseif ($end && $end < $now) {
-                                        $status = __("Completed");
+                                        $status = '<span class="badge text-bg-secondary me-1">' . __("Completed") . '</span>';
                                     } else {
                                         $status = "-";
                                     }

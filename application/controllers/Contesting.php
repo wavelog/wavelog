@@ -117,16 +117,6 @@ class Contesting extends CI_Controller {
 			redirect('contesting');
 		}
 
-		// Check if contest active
-		$now   = time();
-		$start = !empty($data['session_info']['time_start']) ? strtotime($data['session_info']['time_start']) : null;
-		$end   = !empty($data['session_info']['time_end']) ? strtotime($data['session_info']['time_end']) : null;
-		$is_between = ($start && $end && $now >= $start && $now <= $end);
-		if (!$is_between) {
-			$this->session->set_flashdata('error', __("Contest not in progress."));
-			redirect('contesting');
-		}
-
 		// Generate storage key for localStorage. This needs to be collission free between different Wavelog Instances and different users
 		$data['storage_key'] = md5($this->config->item('base_url') . $contest_session_id . $this->session->userdata('user_id'));
 
