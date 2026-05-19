@@ -948,6 +948,12 @@ if (qso_manual == 0) {
 					$("#mode").val(ev.data.mode);
 				}
 
+				// Clear satellite/propagation fields when clicking bandmap spots (HF DX spots)
+				$("#selectPropagation").val("");
+				$("#sat_name").val("");
+				$("#sat_mode").val("");
+				stop_az_ele_ticker();    // Stop satellite position ticker if running
+
 				// Store sequence for validation in populatePendingReferences
 				$("#callsign").data('expected-refs-seq', seq);
 
