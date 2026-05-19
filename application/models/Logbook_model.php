@@ -929,6 +929,7 @@ class Logbook_model extends CI_Model {
 					(isset($creds->ucp) && isset($creds->ucn) && $creds->clublogrealtime == 1) ||
 					(isset($creds->hrdlog_code) && isset($creds->hrdlog_username) && $creds->hrdlogrealtime == 1) ||
 					(isset($creds->qrzapikey) && $creds->qrzrealtime == 1) ||
+					(isset($creds->qrzcallapikey) && $creds->qrzcallrealtime == 1) ||
 					(isset($creds->webadifapikey) && $creds->webadifrealtime == 1)
 					)
 				);
@@ -977,6 +978,20 @@ class Logbook_model extends CI_Model {
 					$result = $this->push_qso_to_qrz($creds->qrzapikey, $adif);
 					if (($result['status'] == 'OK') || (($result['status'] == 'error') && ($result['message'] == 'STATUS=FAIL&REASON=Unable to add QSO to database: duplicate&EXTENDED='))) {
 						$this->mark_qrz_qsos_sent($last_id);
+					}
+				}
+
+				// QRZCALL.EU export
+				if ($creds && isset($creds->qrzcallapikey) && $creds->qrzcallrealtime == 1) {
+					if (!$this->load->is_loaded('AdifHelper')) {
+						$this->load->library('AdifHelper');
+					}
+
+					$adif = $this->adifhelper->getAdifLine($qso[0]);
+					$result = $this->push_qso_to_qrzcall($creds->qrzcallapikey, $adif);
+					// A duplicate (QSO already in the QRZCALL.EU logbook) is treated as success.
+					if (($result['status'] == 'OK') || (($result['status'] == 'error') && (stristr($result['message'], 'RESULT=FAIL') && stristr($result['message'], 'duplicate')))) {
+						$this->mark_qrzcall_qsos_sent($last_id);
 					}
 				}
 
@@ -1064,6 +1079,24 @@ class Logbook_model extends CI_Model {
 	}
 
 	/*
+	 * Function checks if a QRZCALL.EU API token exists for the given station id
+	 */
+	function exists_qrzcall_api_key($station_id) {
+		$sql = 'select qrzcallapikey, qrzcallrealtime from station_profile
+            where station_id = ?';
+
+		$query = $this->db->query($sql, $station_id);
+
+		$result = $query->row();
+
+		if ($result) {
+			return $result;
+		} else {
+			return false;
+		}
+	}
+
+	/*
 	 * Function checks if a WebADIF API Key exists in the table with the given station id
 	*/
 	function exists_webadif_api_key($station_id) {
@@ -1089,6 +1122,7 @@ class Logbook_model extends CI_Model {
 		$sql = 'SELECT
 					prof.hrdlog_username, prof.hrdlog_code, prof.hrdlogrealtime,
 					prof.qrzapikey, prof.qrzrealtime,
+					prof.qrzcallapikey, prof.qrzcallrealtime,
 					prof.webadifapikey, prof.webadifapiurl, prof.webadifrealtime,
 					prof.clublogrealtime,
 					auth.user_clublog_name as ucn, auth.user_clublog_password as ucp
@@ -1207,6 +1241,50 @@ class Logbook_model extends CI_Model {
 	}
 
 	/*
+	 * Function uploads a QSO to QRZCALL.EU with the API token given.
+	 * QRZCALL.EU exposes a QRZ-compatible logbook endpoint, so this mirrors
+	 * push_qso_to_qrz(): one ADIF record per call, OPTION=REPLACE to update an
+	 * existing QSO. $adif contains one QSO ending with an <EOR>.
+	 */
+	function push_qso_to_qrzcall($apikey, $adif, $replaceoption = false) {
+		$url = 'https://api.qrzcall.eu/v1/pub/logbook_api.php';
+
+		$post_data['KEY'] = $apikey;
+		$post_data['ACTION'] = 'INSERT';
+		$post_data['ADIF'] = $adif;
+
+		if ($replaceoption) {
+			$post_data['OPTION'] = 'REPLACE';
+		}
+
+		$ch = curl_init($url);
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+		curl_setopt($ch, CURLOPT_HEADER, 0);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+		curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$this->optionslib->get_option('version'));
+		$content = curl_exec($ch);
+		if ($content) {
+			if (stristr($content, 'RESULT=OK') || stristr($content, 'RESULT=REPLACE')) {
+				$result['status'] = 'OK';
+				return $result;
+			} else {
+				$result['status'] = 'error';
+				$result['message'] = $content;
+				return $result;
+			}
+		}
+		if (curl_errno($ch)) {
+			$result['status'] = 'error';
+			$result['message'] = 'Curl error: ' . curl_errno($ch);
+			return $result;
+		}
+	}
+
+	/*
 	 * Function uploads a QSO to WebADIF consumer with the API given.
 	 * $adif contains a line with the QSO in the ADIF format.
 	 */
@@ -1280,6 +1358,23 @@ class Logbook_model extends CI_Model {
 		$data = array(
 			'COL_QRZCOM_QSO_UPLOAD_DATE' => date("Y-m-d H:i:s", strtotime("now")),
 			'COL_QRZCOM_QSO_UPLOAD_STATUS' => $state,
+		);
+
+		$this->db->where('COL_PRIMARY_KEY', $primarykey);
+
+		$this->db->update($this->config->item('table_name'), $data);
+
+		return true;
+	}
+
+	/*
+   * Function marks QSOs as uploaded to QRZCALL.EU.
+   * $primarykey is the unique id for that QSO in the logbook
+   */
+	function mark_qrzcall_qsos_sent($primarykey, $state = 'Y') {
+		$data = array(
+			'COL_QRZCALL_QSO_UPLOAD_DATE' => date("Y-m-d H:i:s", strtotime("now")),
+			'COL_QRZCALL_QSO_UPLOAD_STATUS' => $state,
 		);
 
 		$this->db->where('COL_PRIMARY_KEY', $primarykey);
@@ -1790,6 +1885,11 @@ class Logbook_model extends CI_Model {
 			$data['COL_QRZCOM_QSO_UPLOAD_STATUS'] = 'M';
 		}
 
+		$old_qrzcall=($qso->COL_QRZCALL_QSO_UPLOAD_STATUS ?? '');
+		if ( ($old_qrzcall == 'I' || $old_qrzcall == 'Y') && $this->exists_qrzcall_api_key($data['station_id']) ) {	// Re-upload an edited QSO to QRZCALL.EU (OPTION=REPLACE)
+			$data['COL_QRZCALL_QSO_UPLOAD_STATUS'] = 'M';
+		}
+
 		$this->db->where('COL_PRIMARY_KEY', $this->input->post('id'));
 		try {
 			$this->db->update($this->config->item('table_name'), $data);
@@ -2024,6 +2124,7 @@ class Logbook_model extends CI_Model {
 			$this->db->update($this->config->item('table_name'), $data);
 			if ($this->db->affected_rows()>0) {	// Only set to modified if REALLY modified
 				$this->set_qrzcom_modified($qso_id);
+			$this->set_qrzcall_modified($qso_id);
 			}
 
 		} else {
@@ -2055,6 +2156,7 @@ class Logbook_model extends CI_Model {
 
 			if ($this->db->affected_rows()>0) {	// Only set to modified if REALLY modified
 				$this->set_qrzcom_modified($qso_id);
+			$this->set_qrzcall_modified($qso_id);
 			}
 		} else {
 			return;
@@ -2082,6 +2184,7 @@ class Logbook_model extends CI_Model {
 
 			if ($this->db->affected_rows()>0) {	// Only set to modified if REALLY modified
 				$this->set_qrzcom_modified($qso_id);
+			$this->set_qrzcall_modified($qso_id);
 			}
 		} else {
 			return;
@@ -2104,6 +2207,7 @@ class Logbook_model extends CI_Model {
 
 			if ($this->db->affected_rows()>0) {	// Only set to modified if REALLY modified
 				$this->set_qrzcom_modified($qso_id);
+			$this->set_qrzcall_modified($qso_id);
 			}
 		} else {
 			return;
@@ -2318,6 +2422,30 @@ class Logbook_model extends CI_Model {
 		return $query;
 	}
 
+	/*
+     * Function returns the QSOs from the given station_id that have not yet
+     * been uploaded to QRZCALL.EU (or are marked modified / not-uploaded).
+	 */
+	function get_qrzcall_qsos($station_id, $trusted = false) {
+		$binding = [];
+		$this->load->model('stations');
+		if ((!$trusted) && (!$this->stations->check_station_is_accessible($station_id))) {
+			return;
+		}
+		$sql = 'select *, dxcc_entities.name as station_country from ' . $this->config->item('table_name') . ' thcv ' .
+			' left join station_profile on thcv.station_id = station_profile.station_id' .
+			' left outer join dxcc_entities on thcv.col_my_dxcc = dxcc_entities.adif' .
+			' where thcv.station_id = ?' .
+			' and (COL_QRZCALL_QSO_UPLOAD_STATUS is NULL
+		  or COL_QRZCALL_QSO_UPLOAD_STATUS = ""
+		  or COL_QRZCALL_QSO_UPLOAD_STATUS = "M"
+		  or COL_QRZCALL_QSO_UPLOAD_STATUS = "N")';
+		$binding[] = $station_id;
+
+		$query = $this->db->query($sql, $binding);
+		return $query;
+	}
+
 	/**
 	 * Generic function to set the QRZ.com Upload status to 'modified'
 	 *
@@ -2333,6 +2461,25 @@ class Logbook_model extends CI_Model {
 		$this->db->group_start();
 		$this->db->where('COL_QRZCOM_QSO_UPLOAD_STATUS', 'Y');
 		$this->db->or_where('COL_QRZCOM_QSO_UPLOAD_STATUS', 'I');
+		$this->db->group_end();
+		$this->db->update($this->config->item('table_name'), $data);
+	}
+
+	/**
+	 * Generic function to set the QRZCALL.EU Upload status to 'modified'
+	 *
+	 * @param int $qso_id  the QSO primary key (COL_PRIMARY_KEY)
+	 */
+
+	function set_qrzcall_modified($qso_id) {
+		$data = array(
+			'COL_QRZCALL_QSO_UPLOAD_STATUS' => 'M'
+		);
+
+		$this->db->where('COL_PRIMARY_KEY', $qso_id);
+		$this->db->group_start();
+		$this->db->where('COL_QRZCALL_QSO_UPLOAD_STATUS', 'Y');
+		$this->db->or_where('COL_QRZCALL_QSO_UPLOAD_STATUS', 'I');
 		$this->db->group_end();
 		$this->db->update($this->config->item('table_name'), $data);
 	}
@@ -2382,6 +2529,24 @@ class Logbook_model extends CI_Model {
 	function get_station_id_with_qrz_api() {
 		$sql = 'select station_id, qrzapikey, qrzrealtime from station_profile
 		  where coalesce(qrzapikey, "") <> ""';
+
+		$query = $this->db->query($sql);
+
+		$result = $query->result();
+
+		if ($result) {
+			return $result;
+		} else {
+			return null;
+		}
+	}
+
+	/*
+     * Function returns all the station_id's with a QRZCALL.EU API token
+     */
+	function get_station_id_with_qrzcall_api() {
+		$sql = 'select station_id, qrzcallapikey, qrzcallrealtime from station_profile
+		  where coalesce(qrzcallapikey, "") <> ""';
 
 		$query = $this->db->query($sql);
 

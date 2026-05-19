@@ -1707,6 +1707,9 @@ $(document).ready(function(){
     <?php if ($this->uri->segment(1) == "qrz") { ?>
 		<script src="<?php echo $this->paths->cache_buster('/assets/js/sections/qrzlogbook.js'); ?>"></script>
     <?php } ?>
+    <?php if ($this->uri->segment(1) == "qrzcallupload") { ?>
+		<script src="<?php echo $this->paths->cache_buster('/assets/js/sections/qrzcalllogbook.js'); ?>"></script>
+    <?php } ?>
 	<?php if ($this->uri->segment(1) == "webadif") { ?>
 		<script src="<?php echo $this->paths->cache_buster('/assets/js/sections/webadif.js'); ?>"></script>
 	<?php } ?>

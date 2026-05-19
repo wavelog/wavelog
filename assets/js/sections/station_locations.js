@@ -102,6 +102,40 @@ $(document).ready(function () {
 				},
 			});
 		});
+
+		$('#qrzcall_apitest_btn').click(function(){
+
+			var apikey = $('#qrzcallApiKey').val();
+			var msg_div = $('#qrzcall_apitest_msg');
+
+			msg_div.hide();
+			msg_div.removeClass('alert-success alert-danger')
+
+			$.ajax({
+				url: base_url+'index.php/qrzcallupload/qrzcall_apitest',
+				type: 'POST',
+				data: {
+					'APIKEY': apikey
+				},
+				success: function(res) {
+					if(res.status == 'OK') {
+						msg_div.addClass('alert-success');
+						msg_div.text('Your API Token works. You are good to go!');
+						msg_div.show();
+					} else {
+						msg_div.addClass('alert-danger');
+						msg_div.text('Your API Token failed. Are you sure you have a valid QRZCALL.EU Data or Extra subscription?');
+						msg_div.show();
+						$('#qrzcallrealtime').val(-1);
+					}
+				},
+				error: function(res) {
+					msg_div.addClass('alert-danger');
+					msg_div.text('ERROR: Something went wrong on serverside. We\'re sorry..');
+					msg_div.show();
+				},
+			});
+		});
 	}
 });
 

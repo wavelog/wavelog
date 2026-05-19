@@ -154,6 +154,8 @@ class Stations extends CI_Model {
 			'clublogrealtime' => xss_clean($this->input->post('clublogrealtime', true)),
 			'qrzapikey' => xss_clean($this->input->post('qrzapikey', true)),
 			'qrzrealtime' => xss_clean($this->input->post('qrzrealtime', true)),
+			'qrzcallapikey' => xss_clean($this->input->post('qrzcallapikey', true)),
+			'qrzcallrealtime' => xss_clean($this->input->post('qrzcallrealtime', true)),
 			'oqrs' => xss_clean($this->input->post('oqrs', true) ?? '0'),
 			'oqrs_email' => xss_clean($this->input->post('oqrsemail', true) ?? '0'),
 			'oqrs_text' => xss_clean($this->input->post('oqrstext', true)),
@@ -234,6 +236,8 @@ class Stations extends CI_Model {
 			'clublogrealtime' => xss_clean($this->input->post('clublogrealtime', true)),
 			'qrzapikey' => xss_clean($this->input->post('qrzapikey', true)),
 			'qrzrealtime' => xss_clean($this->input->post('qrzrealtime', true)),
+			'qrzcallapikey' => xss_clean($this->input->post('qrzcallapikey', true)),
+			'qrzcallrealtime' => xss_clean($this->input->post('qrzcallrealtime', true)),
 			'oqrs' => xss_clean($this->input->post('oqrs', true) ?? '0'),
 			'oqrs_email' => xss_clean($this->input->post('oqrsemail', true) ?? '0'),
 			'oqrs_text' => xss_clean($this->input->post('oqrstext', true)),
@@ -514,6 +518,42 @@ class Stations extends CI_Model {
 			group by station_id
 		) as totc on station_profile.station_id = totc.station_id
 		WHERE coalesce(station_profile.qrzapikey, '') <> ''
+		AND station_profile.user_id = ?";
+	    $bindings[]=$this->session->userdata('user_id');
+	    $query = $this->db->query($sql, $bindings);
+
+	    return $query;
+    }
+
+    /*
+     * Returns the user's station profiles that have a QRZCALL.EU API token
+     * set, with per-station counts of QSOs not uploaded / modified / uploaded.
+     * Mirrors stations_with_qrz_api_key().
+     */
+    function stations_with_qrzcall_api_key() {
+	    $bindings=[];
+	    $sql = "SELECT station_profile.station_id, station_profile.station_profile_name, station_profile.station_callsign, modc.modcount, notc.notcount, totc.totcount
+		    FROM station_profile
+		    LEFT OUTER JOIN (
+			    SELECT count(*) modcount, station_id
+			    FROM ". $this->config->item('table_name') .
+			    " WHERE COL_QRZCALL_QSO_UPLOAD_STATUS = 'M'
+			    group by station_id
+		) as modc on station_profile.station_id = modc.station_id
+		LEFT OUTER JOIN (
+			SELECT count(*) notcount, station_id
+			FROM " . $this->config->item('table_name') .
+			" WHERE (coalesce(COL_QRZCALL_QSO_UPLOAD_STATUS, '') = ''
+			or COL_QRZCALL_QSO_UPLOAD_STATUS = 'N')
+			group by station_id
+		) as notc on station_profile.station_id = notc.station_id
+		LEFT OUTER JOIN (
+			SELECT count(*) totcount, station_id
+			FROM " . $this->config->item('table_name') .
+			" WHERE COL_QRZCALL_QSO_UPLOAD_STATUS = 'Y'
+			group by station_id
+		) as totc on station_profile.station_id = totc.station_id
+		WHERE coalesce(station_profile.qrzcallapikey, '') <> ''
 		AND station_profile.user_id = ?";
 	    $bindings[]=$this->session->userdata('user_id');
 	    $query = $this->db->query($sql, $bindings);

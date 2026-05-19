@@ -341,6 +341,33 @@ if ($dxcc_list->result() > 0) {
 				</div>
 			</div>
 		</div>
+
+		<!-- QRZCALL.EU -->
+		<div class="col-md">
+			<div class="card">
+				<h5 class="card-header">QRZCALL.EU <span class="badge text-bg-warning"> <?= __("Subscription Required"); ?></span></h5> <!-- "QRZCALL.EU" does not need Multilanguage Support -->
+				<div class="card-body">
+					<div class="mb-3">
+						<label for="qrzcallApiKey"><?= __("QRZCALL.EU API Token"); ?></label>
+						<div class="input-group">
+							<input type="password" class="form-control" name="qrzcallapikey" placeholder="pat_…" id="qrzcallApiKey" aria-describedby="qrzcallApiKeyHelp" value="<?php if(set_value('qrzcallapikey') != "") { echo set_value('qrzcallapikey'); } else { echo $my_station_profile->qrzcallapikey; } ?>">
+							<span class="input-group-btn"><button class="btn btn-default btn-pwd-showhide" type="button"><i class="fa fa-eye-slash"></i></button></span>
+							<button class="btn btn-secondary" type="button" id="qrzcall_apitest_btn"><?= __("Test API-Token"); ?></button>
+						</div>
+						<div class="alert mt-3" style="display: none;" id="qrzcall_apitest_msg"></div>
+						<small id="qrzcallApiKeyHelp" class="form-text text-muted"><?= sprintf(_pgettext("the QRZCALL.EU API Tokens page", "Find your API token on %s"), "<a href='https://qrzcall.eu/' target='_blank'>".__("the QRZCALL.EU API Tokens page")."</a>"); ?></small>
+					</div>
+					<div class="mb-3">
+						<label for="qrzcallrealtime"><?= __("QRZCALL.EU Logbook Upload"); ?></label>
+						<select class="form-select" id="qrzcallrealtime" name="qrzcallrealtime">
+							<option value="-1" <?php if ($my_station_profile->qrzcallrealtime == -1) { echo ' selected'; } ?>><?= __("Disabled"); ?></option>
+							<option value="1" <?php if ($my_station_profile->qrzcallrealtime == 1) { echo ' selected'; } ?>><?= __("Realtime"); ?></option>
+							<option value="0" <?php if ($my_station_profile->qrzcallrealtime == 0) { echo ' selected'; } ?>><?= __("Enabled"); ?></option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<div class="row">
