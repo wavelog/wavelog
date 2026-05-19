@@ -39,9 +39,24 @@
                                 <?php foreach ($my_contests as $row) {
                                     $logging_token = $this->paths->create_contesting_logging_token($row['contest_session_id']);
                                 ?>
+                                    <?php
+                                    $now = time();
+                                    $start = !empty($row['time_start']) ? strtotime($row['time_start']) : null;
+                                    $end   = !empty($row['time_end'])   ? strtotime($row['time_end'])   : null;
+
+                                    if ($start && $start > $now) {
+                                        $status = '<span class="badge text-bg-primary me-1">' . __("Coming Up") . '</span>';
+                                    } elseif ($start && $end && $now >= $start && $now <= $end) {
+                                        $status = '<span class="badge text-bg-info me-1">' . __("In Progress") . '</span>';
+                                    } elseif ($end && $end < $now) {
+                                        $status = '<span class="badge text-bg-secondary me-1">' . __("Completed") . '</span>';
+                                    } else {
+                                        $status = "-";
+                                    }
+                                    ?>
                                     <tr>
                                         <td><a target="_blank" href="<?php echo site_url('contesting/logging_engine') . "/" . $logging_token; ?>" class="btn btn-success btn-sm"><i class="fas fa-play"></i> START</a></td>
-                                        <td>XYZ</td> <!-- TODO: Add status indicator -->
+                                        <td><?php echo $status; ?></td>
                                         <td><?php echo !empty($row['time_start']) ? date($custom_date_format . ' H:i', strtotime($row['time_start'])) : '-'; ?></td>
                                         <td><?php echo !empty($row['time_end']) ? date($custom_date_format . ' H:i', strtotime($row['time_end'])) : '-'; ?></td>
                                         <td><?php echo isset($row['contestname']) ? $row['contestname'] : '-'; ?></td>

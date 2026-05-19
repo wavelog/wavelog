@@ -54,6 +54,11 @@ class Contesting extends CI_Controller {
 	}
 
 	public function quickstart() {
+		if (!clubaccess_check(9)) {
+			$this->session->set_flashdata('error', __("Officers must set up contests."));
+			redirect('contesting'); 
+		}
+
 		$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
 		$this->load->is_loaded('stations') ?: $this->load->model('stations');
 
@@ -111,6 +116,7 @@ class Contesting extends CI_Controller {
 			$this->session->set_flashdata('error', __("Contest session not found."));
 			redirect('contesting');
 		}
+
 		// Generate storage key for localStorage. This needs to be collission free between different Wavelog Instances and different users
 		$data['storage_key'] = md5($this->config->item('base_url') . $contest_session_id . $this->session->userdata('user_id'));
 
@@ -192,20 +198,23 @@ class Contesting extends CI_Controller {
 				break;
 
 			case 'post':
-				$contest_session_id = $this->input->post('contest_session_id', true);
-				$time_start = $this->input->post('session_start', true);
-				$time_end = $this->input->post('session_end', true);
-				$station_id = $this->input->post('station_location', true);
-				$notes = $this->input->post('session_notes', true);
-				$contest_id = $this->input->post('contest_adif_id', true);
+				if (!clubaccess_check(9)) {
+					$this->session->set_flashdata('error', __("Officers must set up contests."));
+					redirect('contesting'); 
+				}
+				$contest_adif_id = $this->input->post('contest_adif_id', true);
+				$session_start = $this->input->post('session_start', true);
+				$session_end = $this->input->post('session_end', true);
+				$station_location = $this->input->post('station_location', true);
+				$session_notes = $this->input->post('session_notes', true);
 				$exchangetype = $this->input->post('exchangetype', true);
 
-				$result = $this->contesting_model->update_contest_session($contest_session_id, $contest_id, $time_start, $time_end, $station_id, $notes, $exchangetype);
+				$result = $this->contesting_model->create_contest_session($contest_adif_id, $session_start, $session_end, $station_location, $session_notes, false, $exchangetype);
 
 				if ($result) {
-					$this->session->set_flashdata('success', __("Contest session updated successfully."));
+					$this->session->set_flashdata('success', __("Contest session created successfully."));
 				} else {
-					$this->session->set_flashdata('error', __("There was an error updating the contest session. Please try again."));
+					$this->session->set_flashdata('error', __("There was an error creating the contest session. Please try again."));
 				}
 
 				redirect('contesting');
