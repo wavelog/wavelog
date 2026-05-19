@@ -218,6 +218,9 @@ class Oqrs extends CI_Controller {
 	}
 
 	public function search_log() {
+		$this->load->model('user_model');
+		if(!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
 		$this->load->model('oqrs_model');
 		$callsign = $this->input->post('callsign', TRUE);
 		$data['qsoid'] = $this->input->post('qsoid', TRUE);
@@ -229,6 +232,9 @@ class Oqrs extends CI_Controller {
 	}
 
 	public function search_log_time_date() {
+		$this->load->model('user_model');
+		if(!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
 		// Get user-preferred date format
 		if ($this->session->userdata('user_date_format')) {
 			$date_format = $this->session->userdata('user_date_format');

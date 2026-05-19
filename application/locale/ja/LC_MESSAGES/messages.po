@@ -231,7 +231,8 @@ msgstr "対流圏ダクト"
 #: application/controllers/Webadif.php:11
 #: application/controllers/Webadif.php:101
 #: application/controllers/Zonechecker.php:17
-#: application/models/Club_model.php:52
+#: application/models/Club_model.php:52 application/controllers/Oqrs.php:222
+#: application/controllers/Oqrs.php:236
 msgid "You're not allowed to do that!"
 msgstr "それは禁止です！"
 
@@ -2520,11 +2521,11 @@ msgstr "無効な無線局ID"
 msgid "OQRS Requests"
 msgstr "OQRSリクエスト"
 
-#: application/controllers/Oqrs.php:370
+#: application/controllers/Oqrs.php:370 application/controllers/Oqrs.php:376
 msgid "QSO match deleted successfully."
 msgstr "QSO マッチが正常に削除されました。"
 
-#: application/controllers/Oqrs.php:379
+#: application/controllers/Oqrs.php:379 application/controllers/Oqrs.php:385
 msgid "QSO match added successfully."
 msgstr "QSO マッチが正常に追加されました。"
 
