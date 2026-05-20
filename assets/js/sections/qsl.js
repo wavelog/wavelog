@@ -73,6 +73,8 @@ $(document).ready(function () {
 			includeSelectAllOption: true
 		});
 	}
-	getConfirmations(this.form,'false')
+	if (window.location.href.includes('generic_qsl/confirmations')) {
+		getConfirmations(this.form,'false')
+	}
 });
 
