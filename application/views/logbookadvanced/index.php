@@ -816,49 +816,49 @@ $options = json_decode($options);
 
 				<!-- End of Main Filters Dropdown -->
 
-				<?php if(clubaccess_check(9)) { ?>
-                    <!-- Actions Dropdown -->
-                    <div class="dropdown d-inline-block" data-bs-auto-close="outside">
-                        <button class="btn btn-sm btn-success dropdown-toggle me-1" type="button" id="actionsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-tasks"></i> <?= __("Actions"); ?>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-start" aria-labelledby="actionsDropdown" style="min-width: 300px;">
-                            <script>
-                                var lang_filter_actions_delete_warning = '<?= __("Warning! Are you sure you want to delete the marked QSO(s)?"); ?>';
-                                var lang_filter_actions_delete_warning_details = '<?= __(" QSO(s) will be deleted"); ?>';
-                            </script>
-                            <div class="card">
-								<div class="card-header p-2">
-									<span class="h6 w-100 mt-0 mb-0"><?= __("With selected: "); ?></span>
-								</div>
-								<div class="card-body p-2">
-									<div class="d-grid gap-2">
-										<button type="button" class="btn btn-sm btn-primary dropdown-action" id="btnUpdateFromCallbook"><?= __("Update from Callbook"); ?></button>
-										<button type="button" class="btn btn-sm btn-primary dropdown-action" id="queueBureau"><?= __("Queue Bureau"); ?></button>
-										<button type="button" class="btn btn-sm btn-primary dropdown-action" id="queueDirect"><?= __("Queue Direct"); ?></button>
-										<button type="button" class="btn btn-sm btn-primary dropdown-action" id="queueElectronic"><?= __("Queue Electronic"); ?></button>
-										<button type="button" class="btn btn-sm btn-success dropdown-action" id="sentBureau"><?= __("Sent (Bureau)"); ?></button>
-										<button type="button" class="btn btn-sm btn-success dropdown-action" id="sentDirect"><?= __("Sent (Direct)"); ?></button>
-										<button type="button" class="btn btn-sm btn-success dropdown-action" id="sentElectronic"><?= __("Sent (Electronic)"); ?></button>
-										<button type="button" class="btn btn-sm btn-danger dropdown-action" id="dontSend"><?= __("Not Sent"); ?></button>
-										<button type="button" class="btn btn-sm btn-danger dropdown-action" id="notRequired"><?= __("QSL Not Required"); ?></button>
-										<button type="button" class="btn btn-sm btn-danger dropdown-action" id="notReceived"><?= __("Not Received"); ?></button>
-										<button type="button" class="btn btn-sm btn-warning dropdown-action" id="receivedBureau"><?= __("Received (Bureau)"); ?></button>
-										<button type="button" class="btn btn-sm btn-warning dropdown-action" id="receivedDirect"><?= __("Received (Direct)"); ?></button>
-										<button type="button" class="btn btn-sm btn-warning dropdown-action" id="receivedElectronic"><?= __("Received (Electronic)"); ?></button>
-										<button type="button" class="btn btn-sm btn-info dropdown-action" id="exportAdif"><?= __("Create ADIF"); ?></button>
-										<button type="button" class="btn btn-sm btn-info dropdown-action" id="printLabel"><?= __("Print Label"); ?></button>
-										<button type="button" class="btn btn-sm btn-info dropdown-action" id="qslSlideshow"><?= __("QSL Slideshow"); ?></button>
-										<button type="button" class="btn btn-sm btn-success dropdown-action" id="fixState"><?= __("Fix State"); ?></button>
-										<button type="button" class="btn btn-sm btn-danger dropdown-action" id="mergeQsos"><?= __("Merge QSOs"); ?></button>
-										<button type="button" class="btn btn-sm btn-info dropdown-action" id="attachContest"><?= __("Attach to Contest"); ?></button>
-										<button type="button" class="btn btn-sm btn-info dropdown-action" id="detachContest"><?= __("Detach from Contest"); ?></button>
-									</div>
-								</div>
-							</div>
+                <!-- Actions Dropdown -->
+                <div class="dropdown d-inline-block" data-bs-auto-close="outside">
+                    <button class="btn btn-sm btn-success dropdown-toggle me-1" type="button" id="actionsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-tasks"></i> <?= __("Actions"); ?>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-start" aria-labelledby="actionsDropdown" style="min-width: 300px;">
+                        <script>
+                            var lang_filter_actions_delete_warning = '<?= __("Warning! Are you sure you want to delete the marked QSO(s)?"); ?>';
+                            var lang_filter_actions_delete_warning_details = '<?= __(" QSO(s) will be deleted"); ?>';
+                        </script>
+                        <div class="card">
+                            <div class="card-header p-2">
+                                <span class="h6 w-100 mt-0 mb-0"><?= __("With selected: "); ?></span>
+                            </div>
+                            <div class="card-body p-2">
+                                <div class="d-grid gap-2">
+                                    <?php if(clubaccess_check(9)) { ?>
+                                        <button type="button" class="btn btn-sm btn-primary dropdown-action" id="btnUpdateFromCallbook"><?= __("Update from Callbook"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-primary dropdown-action" id="queueBureau"><?= __("Queue Bureau"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-primary dropdown-action" id="queueDirect"><?= __("Queue Direct"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-primary dropdown-action" id="queueElectronic"><?= __("Queue Electronic"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-success dropdown-action" id="sentBureau"><?= __("Sent (Bureau)"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-success dropdown-action" id="sentDirect"><?= __("Sent (Direct)"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-success dropdown-action" id="sentElectronic"><?= __("Sent (Electronic)"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-danger dropdown-action" id="dontSend"><?= __("Not Sent"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-danger dropdown-action" id="notRequired"><?= __("QSL Not Required"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-danger dropdown-action" id="notReceived"><?= __("Not Received"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-warning dropdown-action" id="receivedBureau"><?= __("Received (Bureau)"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-warning dropdown-action" id="receivedDirect"><?= __("Received (Direct)"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-warning dropdown-action" id="receivedElectronic"><?= __("Received (Electronic)"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-info dropdown-action" id="exportAdif"><?= __("Create ADIF"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-info dropdown-action" id="printLabel"><?= __("Print Label"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-info dropdown-action" id="qslSlideshow"><?= __("QSL Slideshow"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-success dropdown-action" id="fixState"><?= __("Fix State"); ?></button>
+                                        <button type="button" class="btn btn-sm btn-danger dropdown-action" id="mergeQsos"><?= __("Merge QSOs"); ?></button>
+                                    <?php } ?>
+                                    <button type="button" class="btn btn-sm btn-info dropdown-action" id="attachContest"><?= __("Attach to Contest"); ?></button>
+                                    <button type="button" class="btn btn-sm btn-info dropdown-action" id="detachContest"><?= __("Detach from Contest"); ?></button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-				<?php } ?>
+                </div>
 				<label for="qsoResults" class="me-2" style="white-space: nowrap;"><?= __("# Results"); ?></label>
 				<select id="qsoResults" name="qsoresults" class="form-select form-select-sm w-auto me-2" style="height: calc(1.5em + .5rem + 2px) !important;">
 					<option value="250">250</option>

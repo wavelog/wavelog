@@ -1027,7 +1027,6 @@ class Logbookadvanced extends CI_Controller {
 
 
 	public function attachContestDialog() {
-		if(!clubaccess_check(9)) return;
 
 		$qsoIds = $this->input->post('qsoIds', true);
 		$data['qsoIds'] = $qsoIds;
@@ -1040,7 +1039,6 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	public function attachContestQsos() {
-		if(!clubaccess_check(9)) return;
 
 		$this->load->model('contesting_model');
 		$this->load->model('logbook_model');  
@@ -1065,8 +1063,9 @@ class Logbookadvanced extends CI_Controller {
 		foreach ($qsoIds as $qsoID) {
 
 			// Check if user has permission on QSO
-			if (!$this->logbook_model->check_qso_is_accessible($qsoID)) { 
+			if (clubaccess_check(3, $qsoID)) {
 				$error_count += 1;
+				continue;
 			}
 			
 			// Update Contest
@@ -1092,7 +1091,6 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	public function detachContestDialog() {
-		if(!clubaccess_check(9)) return;
 
 		$qsoIds = $this->input->post('qsoIds', true);
 		$data['qsoIds'] = $qsoIds;
@@ -1101,7 +1099,6 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	public function detachContestQsos() {
-		if(!clubaccess_check(9)) return;
 
 		$this->load->model('contesting_model');
 		$this->load->model('logbook_model');  
@@ -1118,7 +1115,7 @@ class Logbookadvanced extends CI_Controller {
 		$error_count = 0;
 		foreach ($qsoIds as $qsoID) {
 			// Check if user has permission on QSO
-			if (!$this->logbook_model->check_qso_is_accessible($qsoID)) { 
+			if (clubaccess_check(3, $qsoID)) {
 				$error_count += 1;
 				continue;
 			}
