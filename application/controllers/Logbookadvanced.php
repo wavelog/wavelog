@@ -1061,12 +1061,29 @@ class Logbookadvanced extends CI_Controller {
 			return;	
 		}
 
+		$error_count = 0;
 		foreach ($qsoIds as $qsoID) {
-			if ($this->logbook_model->check_qso_is_accessible($qsoID)) { // Check if user has permission on QSO
-				$result = $this->contesting_model->link_qso($qsoID, $contestId);
+
+			// Check if user has permission on QSO
+			if (!$this->logbook_model->check_qso_is_accessible($qsoID)) { 
+				$error_count += 1;
 			}
+			
+			// Update Contest
+			$this->contesting_model->link_qso($qsoID, $contestId);
+
+			// Update QSO
+			$contest_adif_id = $this->contesting_model->get_session_info($contestId)['contest_id'];
+			$this->logbook_model->set_contest($qsoID, $contest_adif_id);
 		}
 
+
+		if ($error_count > 0) {
+			$error_message = "Error on " . (string) $error_count . " records, success on " . (string) count($qsoIds) - $error_count;
+			header("Content-Type: application/json");
+			echo json_encode(['success' => false, 'message' => $error_message]);
+			return;
+		}
 
 		header("Content-Type: application/json");
 		echo json_encode(['success' => true]);
@@ -1074,4 +1091,63 @@ class Logbookadvanced extends CI_Controller {
 
 	}
 
+	public function detachContestDialog() {
+		if(!clubaccess_check(9)) return;
+
+		$qsoIds = $this->input->post('qsoIds', true);
+		$data['qsoIds'] = $qsoIds;
+
+		$this->load->view('logbookadvanced/detachContest', $data);
+	}
+
+	public function detachContestQsos() {
+		if(!clubaccess_check(9)) return;
+
+		$this->load->model('contesting_model');
+		$this->load->model('logbook_model');  
+
+		$qsoIds = $this->input->post('qsoIds', true);
+
+		if (!is_array($qsoIds) || count($qsoIds) < 1) {
+			header("Content-Type: application/json");
+			echo json_encode(['success' => false, 'message' => 'Invalid QSO IDs']);
+			return;
+		}
+
+
+		$error_count = 0;
+		foreach ($qsoIds as $qsoID) {
+			// Check if user has permission on QSO
+			if (!$this->logbook_model->check_qso_is_accessible($qsoID)) { 
+				$error_count += 1;
+				continue;
+			}
+
+			// Check if permission on contest
+			$contestId = $this->contesting_model->get_linked_contest($qsoID);
+			if ($contestId != 0 && !$this->contesting_model->check_user_contest($contestId)) {
+				$error_count += 1;
+				continue;
+			}
+
+			// Update Contest
+			$this->contesting_model->unlink_qso($qsoID, $contestId);
+
+			// Update QSO
+			$this->logbook_model->set_contest($qsoID, 0);
+			
+		}
+
+		if ($error_count > 0) {
+			$error_message = "Error on " . (string) $error_count . " records, success on " . (string) count($qsoIds) - $error_count;
+			header("Content-Type: application/json");
+			echo json_encode(['success' => false, 'message' => $error_message]);
+			return;
+		}
+
+		header("Content-Type: application/json");
+		echo json_encode(['success' => true]);
+		return;	
+
+	}
 }

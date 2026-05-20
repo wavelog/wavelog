@@ -190,6 +190,45 @@ class Contesting_model extends CI_Model {
 	}
 
 	/**
+	 * Delete a QSO from a contest. Does not delete QSO from main logbook.
+	 *
+	 * @param int $qso_id The ID of the QSO.
+	 * @param int $contest_session_id The ID of the contest session to delete.
+	 * @return bool True on success, false on failure.
+	 */
+	function unlink_qso($qso_id, $contest_session_id) {
+
+		// Delete associated QSOs (this does not delete the QSOs themselves from the main logbook)
+		// Could just use qso_id, but keep contest_session_id to ensure unlink_qso caller knows which contest is being modified
+		$sql_delete_qsos = "DELETE FROM contest_qsos WHERE contest_session_id = ? AND qso_id = ?";
+
+		$bindings_qsos = [$contest_session_id, $qso_id];
+		$this->db->query($sql_delete_qsos, $bindings_qsos);
+
+		return true;
+	}
+
+	/**
+	 * Get the contest that a QSO is linked to
+	 *
+	 * @param int $qso_id The ID of the QSO.
+	 * @return int The ID of the contest, otherwise zero
+	 */
+	function get_linked_contest($qso_id) {
+
+		$sql_get_qsos = "SELECT contest_session_id FROM contest_qsos WHERE qso_id = ?";
+
+		$bindings_qsos = [$qso_id];
+		$query = $this->db->query($sql_get_qsos, $bindings_qsos);
+
+        if ($query->num_rows() > 0) {
+            return $query->row()->contest_session_id;
+        } else {
+            return 0;
+        }
+	}
+
+	/**
 	 * Retrieves all QSOs associated with a specific contest session.
 	 *
 	 * @param int $contest_session_id The ID of the contest session.

@@ -97,6 +97,11 @@
 	let lang_gen_advanced_logbook_qsos_attached = '<?= __("QSOs attached to contest successfully!"); ?>';
 	let lang_gen_advanced_logbook_error_attaching = '<?= __("Error attaching QSOs"); ?>';
 
+	let lang_gen_advanced_logbook_detach_qsos = '<?= __("Detach QSOs to Contest"); ?>';
+    let lang_gen_advanced_logbook_error_loading_detach_dialog = '<?= __("Error loading detach to contest dialog"); ?>';
+	let lang_gen_advanced_logbook_qsos_detached = '<?= __("QSOs detached to contest successfully!"); ?>';
+	let lang_gen_advanced_logbook_error_detaching = '<?= __("Error detaching QSOs"); ?>';
+
     let homegrid ='<?php echo strtoupper($homegrid[0]); ?>';
     <?php
     if (!isset($options)) {
@@ -847,6 +852,7 @@ $options = json_decode($options);
 										<button type="button" class="btn btn-sm btn-success dropdown-action" id="fixState"><?= __("Fix State"); ?></button>
 										<button type="button" class="btn btn-sm btn-danger dropdown-action" id="mergeQsos"><?= __("Merge QSOs"); ?></button>
 										<button type="button" class="btn btn-sm btn-info dropdown-action" id="attachContest"><?= __("Attach to Contest"); ?></button>
+										<button type="button" class="btn btn-sm btn-info dropdown-action" id="detachContest"><?= __("Detach from Contest"); ?></button>
 									</div>
 								</div>
 							</div>
