@@ -28,6 +28,11 @@ class CBR_Parser
         //loop through each line
         foreach ($lines as $line) {
 
+            //if we encounter a line starting with "#", skip that line as comment
+            if (substr(ltrim($line), 0, 1) === '#') {
+                continue;
+            }
+
             //if we encounter "QSO" or "X-QSO" switch processing mode to QSO mode
             if (strpos($line, 'QSO:') === 0 or strpos($line, 'X-QSO:') === 0) {
                 $qso_mode = true;
