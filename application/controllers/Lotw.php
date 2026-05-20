@@ -699,7 +699,7 @@ class Lotw extends CI_Controller {
 		$scheme = strtolower(parse_url($url, PHP_URL_SCHEME) ?? '');
 		if ($scheme !== 'https') {
 			log_message('error', 'LoTW URL rejected – disallowed scheme: '.$scheme);
-			show_error('LoTW download URL is invalid (only http/https allowed).', 500);
+			show_error('LoTW download URL is invalid (only https allowed).', 500);
 		}
 	}
 
