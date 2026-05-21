@@ -7,7 +7,13 @@
 }
 </style>
 
-<div class="container">
+<div class="container" id="amsatRover"
+	data-base-points="<?php echo $summary['total_points'] ?? 0; ?>"
+	data-text-approved="<?php echo __("APPROVED"); ?>"
+	data-text-inprogress="<?php echo __("IN PROGRESS"); ?>"
+	data-text-generate-first="<?php echo __("Please generate the text first."); ?>"
+	data-export-text-url="<?php echo site_url('awards/amsat_rover_export_text'); ?>"
+	data-export-csv-url="<?php echo site_url('awards/amsat_rover_export_csv'); ?>">
 
 <br>
 
@@ -27,7 +33,7 @@
 <?php } ?>
 
 <!-- Filters Form -->
-<form class="form" action="<?php echo site_url('awards/amsat_rover'); ?>" method="post">
+<form id="amsatRoverForm" class="form" action="<?php echo site_url('awards/amsat_rover'); ?>" method="post">
 	<div class="card mb-4">
 		<div class="card-body">
 			<h5 class="card-title"><?php echo __("Filters"); ?></h5>
@@ -166,7 +172,7 @@
 				<?php
 				$percentage = min(($summary['total_points'] / 25) * 100, 100);
 				?>
-				<div class="progress-bar bg-<?php echo $summary['complete'] ? 'success' : 'warning'; ?>"
+				<div id="progressBar" class="progress-bar bg-<?php echo $summary['complete'] ? 'success' : 'warning'; ?>"
 					role="progressbar" style="width: <?php echo $percentage; ?>%">
 					<?php echo $summary['total_points']; ?> / 25
 				</div>
@@ -296,93 +302,3 @@
 
 </div>
 
-<script>
-// Bonus points calculation
-const BONUS_MAP = { bonus_social: 5, bonus_photos: 5, bonus_mm: 10, bonus_journal: 15 };
-
-function calculateBonus() {
-	let bonus = 0;
-	for (const [id, pts] of Object.entries(BONUS_MAP)) {
-		if (document.getElementById(id)?.checked) bonus += pts;
-	}
-	return bonus;
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-	const bonusCheckboxes = document.querySelectorAll('[id^="bonus_"]');
-	bonusCheckboxes.forEach(function(checkbox) {
-		checkbox.addEventListener('change', updateTotals);
-	});
-	updateTotals();
-});
-
-function updateTotals() {
-	const basePoints = parseInt(<?php echo $summary['total_points'] ?? 0; ?>) || 0;
-	const bonus = calculateBonus();
-	const total = basePoints + bonus;
-
-	const bonusEl = document.getElementById('bonusPoints');
-	const totalEl = document.getElementById('totalPoints');
-	const statusEl = document.getElementById('statusText');
-
-	if (bonusEl) bonusEl.textContent = bonus;
-	if (totalEl) {
-		totalEl.textContent = total;
-		totalEl.className = 'display-4 ' + (total >= 25 ? 'text-success' : 'text-warning');
-	}
-	if (statusEl) {
-		statusEl.textContent = total >= 25 ? '<?php echo __("APPROVED"); ?>' : '<?php echo __("IN PROGRESS"); ?>';
-		statusEl.className = 'h4 ' + (total >= 25 ? 'text-success' : 'text-warning');
-	}
-}
-
-function generateTextExport() {
-	const form = document.querySelector('form');
-	const formData = new FormData(form);
-
-	fetch('<?php echo site_url('awards/amsat_rover_export_text'); ?>', {
-		method: 'POST',
-		body: formData
-	})
-	.then(response => response.text())
-	.then(data => {
-		document.getElementById('exportText').value = data;
-	})
-	.catch(error => {
-		console.error('Error:', error);
-	});
-}
-
-function copyToClipboard() {
-	const textarea = document.getElementById('exportText');
-	if (!textarea.value) {
-		alert('<?php echo __("Please generate the text first."); ?>');
-		return;
-	}
-	navigator.clipboard.writeText(textarea.value);
-}
-
-function downloadCsv() {
-	const form = document.querySelector('form');
-	const formData = new FormData(form);
-
-	fetch('<?php echo site_url('awards/amsat_rover_export_csv'); ?>', {
-		method: 'POST',
-		body: formData
-	})
-	.then(response => response.blob())
-	.then(blob => {
-		const url = window.URL.createObjectURL(blob);
-		const a = document.createElement('a');
-		a.href = url;
-		a.download = 'amsat_rover_activations.csv';
-		document.body.appendChild(a);
-		a.click();
-		document.body.removeChild(a);
-		window.URL.revokeObjectURL(url);
-	})
-	.catch(error => {
-		console.error('Error:', error);
-	});
-}
-</script>

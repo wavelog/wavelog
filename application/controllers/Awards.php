@@ -2738,6 +2738,16 @@ class Awards extends CI_Controller {
 		            : "\nStatus: " . (25 - $total) . " more points needed\n")
 		      . "\nEvidence: LoTW screenshots/QSL cards attached\n";
 
+		if ($this->input->post('bonus_social')) {
+			$out .= "Social Media Evidence: [include link to social media post with @amsat tag]\n";
+		}
+		if ($this->input->post('bonus_photos')) {
+			$out .= "Photo Evidence: [include link to photo post with @amsat tag]\n";
+		}
+		if ($this->input->post('bonus_journal')) {
+			$out .= "AMSAT Journal Evidence: [reference to published article]\n";
+		}
+
 		header('Content-Type: text/plain; charset=utf-8');
 		echo $out;
 	}
