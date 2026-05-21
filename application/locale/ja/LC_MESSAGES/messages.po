@@ -488,6 +488,7 @@ msgstr "DOK"
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/stationsetup/linkedlocations.php:33
 #: application/views/timeplotter/index.php:17
+#: application/views/lotw_views/index.php:43
 msgid "DXCC"
 msgstr "DXCC"
 
@@ -2143,6 +2144,7 @@ msgstr "オペレーター"
 #: application/views/view_log/partial/log_ajax.php:32
 #: application/views/view_log/qso.php:294
 #: application/views/view_log/qso.php:647
+#: application/views/lotw_views/index.php:59
 msgid "Deleted DXCC"
 msgstr "DXCCを削除しました"
 
@@ -2171,6 +2173,7 @@ msgstr "クイック検索"
 #: application/views/lotw/import.php:3 application/views/lotw_views/index.php:9
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:953 application/views/visitor/index.php:328
+#: application/views/lotw_views/index.php:19
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
@@ -2633,6 +2636,7 @@ msgstr "タイムスタンプ"
 #: application/views/simplefle/index.php:20
 #: application/views/simplefle/index.php:185
 #: application/views/stationsetup/exportmapoptions.php:5
+#: application/views/lotw_views/index.php:50
 msgid "Options"
 msgstr "オプション"
 
@@ -2708,6 +2712,7 @@ msgstr "編集"
 #: application/views/stationsetup/stationsetup.php:201
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:738
+#: application/views/lotw_views/index.php:143
 msgid "Delete"
 msgstr "削除"
 
@@ -4510,6 +4515,7 @@ msgstr "何も見つかりません!"
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:625
 #: application/views/visitor/mini.php:183
 #: application/views/zonechecker/result.php:50
+#: application/views/lotw_views/index.php:42
 msgid "Callsign"
 msgstr "コールサイン"
 
@@ -5033,6 +5039,7 @@ msgstr ""
 #: application/views/adif/import_success.php:40
 #: application/views/dcl_views/index.php:76
 #: application/views/lotw_views/index.php:160
+#: application/views/lotw_views/index.php:169
 msgid "Information"
 msgstr "情報"
 
@@ -5207,6 +5214,7 @@ msgstr "ADIFにおけるPOTA参照"
 #: application/views/stationsetup/stationsetup.php:35
 #: application/views/timeline/index.php:189
 #: application/views/usermode/index.php:41
+#: application/views/lotw_views/index.php:48
 msgid "Status"
 msgstr "状態"
 
@@ -10744,11 +10752,13 @@ msgstr "DCL との次の自動同期は次の時間に行われます: "
 
 #: application/views/dcl_views/index.php:82
 #: application/views/lotw_views/index.php:166
+#: application/views/lotw_views/index.php:175
 msgid "Manual Sync"
 msgstr "手動同期"
 
 #: application/views/dcl_views/index.php:84
 #: application/views/lotw_views/index.php:168
+#: application/views/lotw_views/index.php:177
 msgid "running..."
 msgstr "実行中..."
 
@@ -11185,6 +11195,7 @@ msgstr "支店"
 #: application/views/debug/index.php:615 application/views/debug/index.php:626
 #: application/views/debug/index.php:636
 #: application/views/lotw_views/index.php:95
+#: application/views/lotw_views/index.php:104
 msgid "n/a"
 msgstr "該当なし"
 
@@ -14864,87 +14875,107 @@ msgid "Upload folder is not writable. Please contact your admin."
 msgstr "アップロードフォルダは書き込み不可です。管理者にお問い合わせください。"
 
 #: application/views/lotw_views/index.php:8
+#: application/views/lotw_views/index.php:18
 msgid "LoTW Import"
 msgstr "LoTWインポート"
 
 #: application/views/lotw_views/index.php:14
+#: application/views/lotw_views/index.php:24
 msgid "Available Certificates"
 msgstr "利用可能な証明書"
 
 #: application/views/lotw_views/index.php:14
+#: application/views/lotw_views/index.php:24
 msgid "Upload Certificate"
 msgstr "証明書をアップロード"
 
 #: application/views/lotw_views/index.php:34
+#: application/views/lotw_views/index.php:44
 msgid "QSO Start Date"
 msgstr "QSO開始日"
 
 #: application/views/lotw_views/index.php:35
+#: application/views/lotw_views/index.php:45
 msgid "QSO End Date"
 msgstr "QSO終了日"
 
 #: application/views/lotw_views/index.php:36
+#: application/views/lotw_views/index.php:46
 msgid "Date Created"
 msgstr "作成日"
 
 #: application/views/lotw_views/index.php:37
+#: application/views/lotw_views/index.php:47
 msgid "Date Expires"
 msgstr "有効期限"
 
 #: application/views/lotw_views/index.php:39
 #: application/views/view_log/qso.php:486
+#: application/views/lotw_views/index.php:49
 msgid "Last Upload"
 msgstr "最終アップロード"
 
 #: application/views/lotw_views/index.php:95
+#: application/views/lotw_views/index.php:104
 msgid "Last change:"
 msgstr "最終変更:"
 
 #: application/views/lotw_views/index.php:95
+#: application/views/lotw_views/index.php:104
 msgid "Serial number:"
 msgstr "シリアルナンバー："
 
 #: application/views/lotw_views/index.php:97
+#: application/views/lotw_views/index.php:106
 msgid "Certificate superseded"
 msgstr "証明書が置き換えられました"
 
 #: application/views/lotw_views/index.php:100
+#: application/views/lotw_views/index.php:109
 msgid "Certificate expired"
 msgstr "証明書の有効期限が切れました"
 
 #: application/views/lotw_views/index.php:102
+#: application/views/lotw_views/index.php:111
 msgid "Certificate expiring"
 msgstr "証明書の有効期限が切れます"
 
 #: application/views/lotw_views/index.php:104
+#: application/views/lotw_views/index.php:113
 msgid "Certificate valid"
 msgstr "証明書は有効"
 
 #: application/views/lotw_views/index.php:109
+#: application/views/lotw_views/index.php:118
 msgid "QSO end date nearing"
 msgstr "QSO終了期限が迫っています"
 
 #: application/views/lotw_views/index.php:121
+#: application/views/lotw_views/index.php:130
 #, php-format
 msgid "Last success: %s"
 msgstr "最後の成功: %s"
 
 #: application/views/lotw_views/index.php:124
+#: application/views/lotw_views/index.php:133
 #, php-format
 msgid "Last fail: %s"
 msgstr "最後の失敗: %s"
 
 #: application/views/lotw_views/index.php:130
+#: application/views/lotw_views/index.php:139
 msgid "Not Synced"
 msgstr "同期されていません"
 
 #: application/views/lotw_views/index.php:145
+#: application/views/lotw_views/index.php:154
 msgid "You need to upload some LoTW p12 certificates to use this area."
 msgstr ""
 "このエリアを使用するには、LoTW p12 証明書をいくつかアップロードする必要があり"
 "ます。"
 
 #: application/views/lotw_views/index.php:164
+#: application/views/lotw_views/index.php:173
 msgid "The next automatic sync with LoTW will happen at: "
 msgstr "LoTW との次の自動同期は次の時間に行われます: "
 

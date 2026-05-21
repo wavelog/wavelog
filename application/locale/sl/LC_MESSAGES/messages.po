@@ -484,6 +484,7 @@ msgstr "DOK"
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/stationsetup/linkedlocations.php:33
 #: application/views/timeplotter/index.php:17
+#: application/views/lotw_views/index.php:43
 msgid "DXCC"
 msgstr "DXCC"
 
@@ -2139,6 +2140,7 @@ msgstr "Operator"
 #: application/views/view_log/partial/log_ajax.php:32
 #: application/views/view_log/qso.php:294
 #: application/views/view_log/qso.php:647
+#: application/views/lotw_views/index.php:59
 msgid "Deleted DXCC"
 msgstr "Izbrisane DXCC"
 
@@ -2167,6 +2169,7 @@ msgstr "Hiter pogled"
 #: application/views/lotw/import.php:3 application/views/lotw_views/index.php:9
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:953 application/views/visitor/index.php:328
+#: application/views/lotw_views/index.php:19
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
@@ -2640,6 +2643,7 @@ msgstr "Časovni žig"
 #: application/views/simplefle/index.php:20
 #: application/views/simplefle/index.php:185
 #: application/views/stationsetup/exportmapoptions.php:5
+#: application/views/lotw_views/index.php:50
 msgid "Options"
 msgstr "Možnosti"
 
@@ -2715,6 +2719,7 @@ msgstr "Uredi"
 #: application/views/stationsetup/stationsetup.php:201
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:738
+#: application/views/lotw_views/index.php:143
 msgid "Delete"
 msgstr "Izbriši"
 
@@ -4524,6 +4529,7 @@ msgstr "Ničesar nisem našel!"
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:625
 #: application/views/visitor/mini.php:183
 #: application/views/zonechecker/result.php:50
+#: application/views/lotw_views/index.php:42
 msgid "Callsign"
 msgstr "Klicni znak"
 
@@ -5044,6 +5050,7 @@ msgstr ""
 #: application/views/adif/import_success.php:40
 #: application/views/dcl_views/index.php:76
 #: application/views/lotw_views/index.php:160
+#: application/views/lotw_views/index.php:169
 msgid "Information"
 msgstr "Informacije"
 
@@ -5219,6 +5226,7 @@ msgstr "POTA REF v ADIF"
 #: application/views/stationsetup/stationsetup.php:35
 #: application/views/timeline/index.php:189
 #: application/views/usermode/index.php:41
+#: application/views/lotw_views/index.php:48
 msgid "Status"
 msgstr "Status"
 
@@ -10785,11 +10793,13 @@ msgstr ""
 
 #: application/views/dcl_views/index.php:82
 #: application/views/lotw_views/index.php:166
+#: application/views/lotw_views/index.php:175
 msgid "Manual Sync"
 msgstr ""
 
 #: application/views/dcl_views/index.php:84
 #: application/views/lotw_views/index.php:168
+#: application/views/lotw_views/index.php:177
 msgid "running..."
 msgstr ""
 
@@ -11206,6 +11216,7 @@ msgstr ""
 #: application/views/debug/index.php:615 application/views/debug/index.php:626
 #: application/views/debug/index.php:636
 #: application/views/lotw_views/index.php:95
+#: application/views/lotw_views/index.php:104
 msgid "n/a"
 msgstr ""
 
@@ -14726,85 +14737,105 @@ msgid "Upload folder is not writable. Please contact your admin."
 msgstr ""
 
 #: application/views/lotw_views/index.php:8
+#: application/views/lotw_views/index.php:18
 msgid "LoTW Import"
 msgstr ""
 
 #: application/views/lotw_views/index.php:14
+#: application/views/lotw_views/index.php:24
 msgid "Available Certificates"
 msgstr ""
 
 #: application/views/lotw_views/index.php:14
+#: application/views/lotw_views/index.php:24
 msgid "Upload Certificate"
 msgstr ""
 
 #: application/views/lotw_views/index.php:34
+#: application/views/lotw_views/index.php:44
 msgid "QSO Start Date"
 msgstr ""
 
 #: application/views/lotw_views/index.php:35
+#: application/views/lotw_views/index.php:45
 msgid "QSO End Date"
 msgstr ""
 
 #: application/views/lotw_views/index.php:36
+#: application/views/lotw_views/index.php:46
 msgid "Date Created"
 msgstr ""
 
 #: application/views/lotw_views/index.php:37
+#: application/views/lotw_views/index.php:47
 msgid "Date Expires"
 msgstr ""
 
 #: application/views/lotw_views/index.php:39
 #: application/views/view_log/qso.php:486
+#: application/views/lotw_views/index.php:49
 msgid "Last Upload"
 msgstr ""
 
 #: application/views/lotw_views/index.php:95
+#: application/views/lotw_views/index.php:104
 msgid "Last change:"
 msgstr ""
 
 #: application/views/lotw_views/index.php:95
+#: application/views/lotw_views/index.php:104
 msgid "Serial number:"
 msgstr ""
 
 #: application/views/lotw_views/index.php:97
+#: application/views/lotw_views/index.php:106
 msgid "Certificate superseded"
 msgstr ""
 
 #: application/views/lotw_views/index.php:100
+#: application/views/lotw_views/index.php:109
 msgid "Certificate expired"
 msgstr ""
 
 #: application/views/lotw_views/index.php:102
+#: application/views/lotw_views/index.php:111
 msgid "Certificate expiring"
 msgstr ""
 
 #: application/views/lotw_views/index.php:104
+#: application/views/lotw_views/index.php:113
 msgid "Certificate valid"
 msgstr ""
 
 #: application/views/lotw_views/index.php:109
+#: application/views/lotw_views/index.php:118
 msgid "QSO end date nearing"
 msgstr ""
 
 #: application/views/lotw_views/index.php:121
+#: application/views/lotw_views/index.php:130
 #, php-format
 msgid "Last success: %s"
 msgstr ""
 
 #: application/views/lotw_views/index.php:124
+#: application/views/lotw_views/index.php:133
 #, php-format
 msgid "Last fail: %s"
 msgstr ""
 
 #: application/views/lotw_views/index.php:130
+#: application/views/lotw_views/index.php:139
 msgid "Not Synced"
 msgstr ""
 
 #: application/views/lotw_views/index.php:145
+#: application/views/lotw_views/index.php:154
 msgid "You need to upload some LoTW p12 certificates to use this area."
 msgstr ""
 
 #: application/views/lotw_views/index.php:164
+#: application/views/lotw_views/index.php:173
 msgid "The next automatic sync with LoTW will happen at: "
 msgstr ""
 
