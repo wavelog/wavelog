@@ -5,6 +5,9 @@
 	var dxcluster_maxage = <?php echo $this->optionslib->get_option('dxcluster_maxage') ?? 60; ?>;
 	var custom_date_format = "<?php echo $custom_date_format ?>";
 	var dxcluster_refresh_time = <?php echo $dxcluster_refresh_time; ?>;
+	var user_color_confirmed = "<?php echo $user_color_confirmed; ?>";
+	var user_color_worked = "<?php echo $user_color_worked; ?>";
+	var user_color_unworked = "<?php echo $user_color_unworked; ?>";
 
 	// Detect OS for proper keyboard shortcuts
 	var isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
