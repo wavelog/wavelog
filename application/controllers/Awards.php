@@ -2665,4 +2665,104 @@ class Awards extends CI_Controller {
         echo json_encode($voivodeships);
     }
 
+	/*
+	 * AMSAT Rover Award
+	 */
+	public function amsat_rover() {
+		$this->load->model('amsat_rover');
+
+		$data['page_title'] = __("Awards - AMSAT Rover");
+		$data['user_map_custom'] = $this->optionslib->get_map_custom();
+
+		$station_info = $this->amsat_rover->get_station_info();
+		$data += $station_info;
+
+		$filters = ($this->input->method() === 'post')
+			? $this->amsat_rover->get_filters()
+			: ['confirmations' => ['lotw', 'qsl']];
+		$data['filters'] = $filters;
+
+		foreach (['bonus_social', 'bonus_photos', 'bonus_mm', 'bonus_journal'] as $field) {
+			$data[$field] = (bool) $this->input->post($field);
+		}
+
+		$result = $this->amsat_rover->get_activations($filters, $station_info);
+		$data['activations'] = $result['activations'];
+		$data['summary'] = $result['summary'];
+
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('awards/amsat_rover/index');
+		$this->load->view('interface_assets/footer');
+	}
+
+	/*
+	 * AMSAT Rover Award - Export as plain text for email
+	 */
+	public function amsat_rover_export_text() {
+		$this->load->model('amsat_rover');
+
+		$station_info = $this->amsat_rover->get_station_info();
+		$result = $this->amsat_rover->get_activations($this->amsat_rover->get_filters(), $station_info);
+		$bonus = $this->amsat_rover->get_bonus();
+
+		$total = $result['summary']['total_points'] + $bonus['bonus'];
+
+		$out = "AMSAT Rover Award Application\n"
+		     . "============================\n\n"
+		     . "Call: {$station_info['station_callsign']}\n"
+		     . "Home Grid: {$station_info['home_grid']}\n\n"
+		     . "Grid Activations (Confirmed):\n"
+		     . "----------------------------\n";
+
+		if (empty($result['activations'])) {
+			$out .= "No confirmed satellite activations found.\n";
+		} else {
+			foreach ($result['activations'] as $a) {
+				$out .= sprintf("%s | %s | %s | %d pt | %s | %s | %s\n",
+					$a['my_grid'], $a['call_worked'], $a['mode_category'],
+					$a['points'], $a['confirmation'], $a['satellite'] ?? 'N/A',
+					date('Y-m-d H:i', strtotime($a['date'])) . ' UTC');
+			}
+		}
+
+		$out .= "\nSummary:\n--------\n"
+		      . "Base Points: {$result['summary']['total_points']}\n";
+		if ($bonus['bonus'] > 0) {
+			$out .= "Bonus Points: {$bonus['bonus']}\n"
+			      . implode("\n", $bonus['details']) . "\n";
+		}
+		$out .= "Total Points: {$total}\nTarget: 25\n"
+		      . ($total >= 25
+		            ? "\nStatus: APPROVED - Ready to submit!\n"
+		            : "\nStatus: " . (25 - $total) . " more points needed\n")
+		      . "\nEvidence: LoTW screenshots/QSL cards attached\n";
+
+		header('Content-Type: text/plain; charset=utf-8');
+		echo $out;
+	}
+
+	/*
+	 * AMSAT Rover Award - Export as CSV
+	 */
+	public function amsat_rover_export_csv() {
+		$this->load->model('amsat_rover');
+
+		$station_info = $this->amsat_rover->get_station_info();
+		$result = $this->amsat_rover->get_activations($this->amsat_rover->get_filters(), $station_info);
+
+		header('Content-Type: text/csv; charset=utf-8');
+		header('Content-Disposition: attachment; filename="amsat_rover_activations.csv"');
+
+		$fp = fopen('php://output', 'w');
+		fputcsv($fp, ['Grid', 'Mode', 'Category', 'Points', 'Confirmation', 'Satellite', 'Date', 'Callsign'], escape: '\\');
+		foreach ($result['activations'] as $a) {
+			fputcsv($fp, [
+				$a['my_grid'], $a['mode'], $a['mode_category'], $a['points'],
+				$a['confirmation'], $a['satellite'] ?? 'N/A',
+				date('Y-m-d H:i', strtotime($a['date'])) . ' UTC', $a['call_worked'],
+			], escape: '\\');
+		}
+		fclose($fp);
+	}
+
 }
