@@ -280,7 +280,8 @@
 					</div>
 					<p>
 						<strong><?php echo __("Send to"); ?>:</strong>
-						<a href="mailto:rover@amsat.org">rover@amsat.org</a>
+						<a href="mailto:kk5do@arrl.net">kk5do@arrl.net</a> or 
+						<a href="mailto:bpaige@amsat.org">bpaige@amsat.org</a>
 					</p>
 					<div class="mb-3">
 						<button type="button" class="btn btn-outline-primary me-2" onclick="generateTextExport()">
