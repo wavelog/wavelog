@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-05-08 11:33+0000\n"
+"POT-Creation-Date: 2026-05-17 12:36+0000\n"
 "PO-Revision-Date: 2026-03-18 08:45+0000\n"
 "Last-Translator: JONCOUX Philippe <joncoux@free.fr>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
@@ -214,7 +214,7 @@ msgstr "Wiki"
 msgid "Thank you for installing Wavelog!"
 msgstr "Merci d'avoir installé Wavelog !"
 
-#: install/index.php:91 install/index.php:94 install/index.php:1076
+#: install/index.php:91 install/index.php:94 install/index.php:1099
 msgid "Language"
 msgstr "Langue"
 
@@ -222,7 +222,7 @@ msgstr "Langue"
 msgid "Select a language"
 msgstr "Choisir une langue"
 
-#: install/index.php:116 install/index.php:461
+#: install/index.php:116 install/index.php:484
 msgid "Close"
 msgstr "Fermer"
 
@@ -360,47 +360,42 @@ msgid "Optional: Global Callbook Lookup"
 msgstr "Facultatif : recherche globale dans le répertoire d'indicatifs d'appel"
 
 #: install/index.php:401
+#, php-format
 msgid ""
 "This configuration is optional. The callsign lookup will be available for "
-"all users of this installation. You can choose between QRZ.com and HamQTH. "
-"While HamQTH also works without username and password, you will need "
-"credentials for QRZ.com. To also get the Call Locator in QRZ.com you'll need "
-"an XML subscription. HamQTH does not always provide the locator information."
+"all users of this installation. You can choose between QRZ.com, HamQTH, "
+"QRZCQ, QRZ.ru and QRZCALL.EU. While HamQTH also works without username and "
+"password, you will need credentials for the other providers. QRZ.com needs "
+"an XML subscription for the Call Locator; QRZCALL.EU needs a Data or Extra "
+"subscription on %s. HamQTH does not always provide the locator information."
 msgstr ""
-"Cette configuration est facultative. La recherche d'indicatif d'appel sera "
-"disponible pour tous les utilisateurs de cette installation. Vous pouvez "
-"choisir entre QRZ.com et HamQTH. Bien que HamQTH fonctionne également sans "
-"nom d'utilisateur ni mot de passe, vous aurez besoin d'informations "
-"d'identification pour QRZ.com. Pour obtenir également le locator des "
-"l'indicatifs d'appel sur QRZ.com, vous aurez besoin d'un abonnement XML. "
-"HamQTH ne fournit pas toujours les informations de localisation."
 
-#: install/index.php:412 install/index.php:493 install/index.php:945
+#: install/index.php:415 install/index.php:516 install/index.php:968
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
-#: install/index.php:415 install/index.php:497 install/index.php:955
+#: install/index.php:418 install/index.php:520 install/index.php:978
 msgid "Password"
 msgstr "Mot de passe"
 
-#: install/index.php:420
+#: install/index.php:423
 msgid "Callbook Username"
 msgstr "Nom d'utilisateur du carnet"
 
-#: install/index.php:423
+#: install/index.php:426
 msgid "Callbook Password"
 msgstr "Mot de passe du carnet"
 
-#: install/index.php:425
+#: install/index.php:428
 #, php-format
 msgid "Password can't contain %s or be empty"
 msgstr "Le mot de passe ne peut pas contenir %s ou être vide"
 
-#: install/index.php:430
+#: install/index.php:433 install/index.php:451
 msgid "Good to know:"
 msgstr "Bon à savoir:"
 
-#: install/index.php:431
+#: install/index.php:434
 msgid ""
 "Use your callsign as your username for QRZ.com. The XML API does not support "
 "email addresses."
@@ -408,20 +403,32 @@ msgstr ""
 "Utilisez votre indicatif d'appel comme nom d'utilisateur pour QRZ.com. L'API "
 "XML ne prend pas en charge les adresses e-mail."
 
-#: install/index.php:434 install/index.php:439
+#: install/index.php:442
+msgid "API Token"
+msgstr ""
+
+#: install/index.php:452
+msgid "Generate a Personal Access Token at"
+msgstr ""
+
+#: install/index.php:454
+msgid "Requires a Data or Extra subscription."
+msgstr ""
+
+#: install/index.php:457 install/index.php:462
 msgid "Advanced Settings"
 msgstr "Paramètres avancés"
 
-#: install/index.php:442
+#: install/index.php:465
 msgid "These settings should only be set if you know what you're doing."
 msgstr ""
 "Ces paramètres ne doivent être définis que si vous savez ce que vous faites."
 
-#: install/index.php:445
+#: install/index.php:468
 msgid "Error Logs"
 msgstr "Journaux d'erreurs"
 
-#: install/index.php:446
+#: install/index.php:469
 msgid ""
 "Optional: Enable Error Logging by setting the log threshold bigger then 0. "
 "Only enable this if you really need it."
@@ -430,27 +437,27 @@ msgstr ""
 "journalisation supérieur à 0. N'activez cela que si vous en avez vraiment "
 "besoin."
 
-#: install/index.php:451
+#: install/index.php:474
 msgid "0 - No logs"
 msgstr "0 - Pas de journaux"
 
-#: install/index.php:452
+#: install/index.php:475
 msgid "1 - Error messages"
 msgstr "1 - Messages d'erreur"
 
-#: install/index.php:453
+#: install/index.php:476
 msgid "2 - Debug messages"
 msgstr "2 - Messages de débogage"
 
-#: install/index.php:454
+#: install/index.php:477
 msgid "3 - Info messages"
 msgstr "3 - Messages d'info"
 
-#: install/index.php:455
+#: install/index.php:478
 msgid "4 - All messages"
 msgstr "4 - Tous les messages"
 
-#: install/index.php:477
+#: install/index.php:500
 msgid ""
 "To properly install Wavelog you already should have setup a mariadb/mysql "
 "database. Provide the parameters here."
@@ -458,11 +465,11 @@ msgstr ""
 "Pour installer correctement Wavelog, vous devez déjà avoir configuré une "
 "base de données mariaDB/MySQL. Fournissez les paramètres ici."
 
-#: install/index.php:481
+#: install/index.php:504
 msgid "Hostname or IP"
 msgstr "Nom d'hôte ou IP"
 
-#: install/index.php:481
+#: install/index.php:504
 msgid ""
 "Usually 'localhost'.<br>Optional with '[host]:[port]'. Default port: 3306."
 "<br>In a docker compose install type 'wavelog-db'."
@@ -470,29 +477,29 @@ msgstr ""
 "Habituellement 'localhost'.<br>Optionnel avec '[host]:[port]'. Port par "
 "défaut : 3306.<br>Dans une installation docker compose, tape 'wavelog-db'."
 
-#: install/index.php:487
+#: install/index.php:510
 msgid "Database Name"
 msgstr "Nom de la base de données"
 
-#: install/index.php:487
+#: install/index.php:510
 msgid "Name of the Database"
 msgstr "Nom de la base de données"
 
-#: install/index.php:493
+#: install/index.php:516
 msgid "Username of the Database User which has full access to the database."
 msgstr ""
 "Nom d'utilisateur de l'utilisateur de la base de données qui a un accès "
 "complet à la base de données."
 
-#: install/index.php:497
+#: install/index.php:520
 msgid "Password of the Database User"
 msgstr "Mot de passe de l'utilisateur de la base de données"
 
-#: install/index.php:501
+#: install/index.php:524
 msgid "Connection Test"
 msgstr "Test de connexion"
 
-#: install/index.php:512
+#: install/index.php:535
 msgid ""
 "Now you can create your first user in Wavelog. Fill out all fields and click "
 "continue. Make sure you use a safe password."
@@ -501,138 +508,138 @@ msgstr ""
 "Remplissez tous les champs et cliquez sur continuer.<br>Assurez-vous "
 "d'utiliser un mot de passe sécurisé."
 
-#: install/index.php:513
+#: install/index.php:536
 msgid "All fields are required!"
 msgstr "Tous les champs sont obligatoires !"
 
-#: install/index.php:521
+#: install/index.php:544
 msgid "First Name"
 msgstr "Prénom"
 
-#: install/index.php:525
+#: install/index.php:548
 msgid "DXCC"
 msgstr "DXCC"
 
-#: install/index.php:527
+#: install/index.php:550
 msgid "Please select one"
 msgstr "Veuillez en choisir un"
 
-#: install/index.php:528 install/index.php:534 install/index.php:558
-#: install/index.php:570 install/index.php:573 install/index.php:578
-#: install/index.php:579 install/index.php:588 install/index.php:592
-#: install/index.php:607 install/index.php:620 install/index.php:621
-#: install/index.php:625 install/index.php:646 install/index.php:653
-#: install/index.php:655 install/index.php:656 install/index.php:658
-#: install/index.php:662 install/index.php:663 install/index.php:664
-#: install/index.php:668 install/index.php:669 install/index.php:688
-#: install/index.php:696 install/index.php:702 install/index.php:709
-#: install/index.php:710 install/index.php:716 install/index.php:718
-#: install/index.php:720 install/index.php:738 install/index.php:743
-#: install/index.php:744 install/index.php:758 install/index.php:773
-#: install/index.php:774 install/index.php:778 install/index.php:789
-#: install/index.php:790 install/index.php:795 install/index.php:799
-#: install/index.php:801 install/index.php:802 install/index.php:809
-#: install/index.php:824 install/index.php:826 install/index.php:843
-#: install/index.php:846 install/index.php:851 install/index.php:854
-#: install/index.php:857 install/index.php:867 install/index.php:873
-#: install/index.php:877 install/index.php:883 install/index.php:886
-#: install/index.php:889 install/index.php:894 install/index.php:920
-#: install/index.php:926 install/index.php:928 install/index.php:1737
+#: install/index.php:551 install/index.php:557 install/index.php:581
+#: install/index.php:593 install/index.php:596 install/index.php:601
+#: install/index.php:602 install/index.php:611 install/index.php:615
+#: install/index.php:630 install/index.php:643 install/index.php:644
+#: install/index.php:648 install/index.php:669 install/index.php:676
+#: install/index.php:678 install/index.php:679 install/index.php:681
+#: install/index.php:685 install/index.php:686 install/index.php:687
+#: install/index.php:691 install/index.php:692 install/index.php:711
+#: install/index.php:719 install/index.php:725 install/index.php:732
+#: install/index.php:733 install/index.php:739 install/index.php:741
+#: install/index.php:743 install/index.php:761 install/index.php:766
+#: install/index.php:767 install/index.php:781 install/index.php:796
+#: install/index.php:797 install/index.php:801 install/index.php:812
+#: install/index.php:813 install/index.php:818 install/index.php:822
+#: install/index.php:824 install/index.php:825 install/index.php:832
+#: install/index.php:847 install/index.php:849 install/index.php:866
+#: install/index.php:869 install/index.php:874 install/index.php:877
+#: install/index.php:880 install/index.php:890 install/index.php:896
+#: install/index.php:900 install/index.php:906 install/index.php:909
+#: install/index.php:912 install/index.php:917 install/index.php:943
+#: install/index.php:949 install/index.php:951 install/index.php:1788
 msgid "Deleted DXCC"
 msgstr "DXCC supprimé"
 
-#: install/index.php:935
+#: install/index.php:958
 msgid "Last Name"
 msgstr "Nom de famille"
 
-#: install/index.php:939
+#: install/index.php:962
 msgid "Callsign"
 msgstr "Indicatif d'appel"
 
-#: install/index.php:949
+#: install/index.php:972
 msgid "Gridsquare/Locator"
 msgstr "Locator"
 
-#: install/index.php:959
+#: install/index.php:982
 msgid "City"
 msgstr "Ville"
 
-#: install/index.php:965
+#: install/index.php:988
 msgid "Confirm Password"
 msgstr "Confirmez le mot de passe"
 
-#: install/index.php:969
+#: install/index.php:992
 msgid "Timezone"
 msgstr "Fuseau horaire"
 
-#: install/index.php:1072
+#: install/index.php:1095
 msgid "E-Mail Address"
 msgstr "Adresse e-mail"
 
-#: install/index.php:1095
+#: install/index.php:1118
 msgid "Checklist"
 msgstr "Liste de verification"
 
-#: install/index.php:1102
+#: install/index.php:1125
 msgid "Pre-Checks"
 msgstr "Vérifications préalables"
 
-#: install/index.php:1111
+#: install/index.php:1134
 msgid "Configuration"
 msgstr "Configuration"
 
-#: install/index.php:1120
+#: install/index.php:1143
 msgid "Database"
 msgstr "Base de données"
 
-#: install/index.php:1129
+#: install/index.php:1152
 msgid "First User"
 msgstr "Premier utilisateur"
 
-#: install/index.php:1139
+#: install/index.php:1162
 msgid "Nearly done!"
 msgstr "Presque fini!"
 
-#: install/index.php:1141
+#: install/index.php:1164
 msgid "You prepared all neccessary steps."
 msgstr "Vous avez préparé toutes les étapes nécessaires."
 
-#: install/index.php:1142
+#: install/index.php:1165
 msgid "We now can install Wavelog. This process can take a few minutes."
 msgstr ""
 "Nous pouvons maintenant installer Wavelog. Ce processus peut prendre "
 "quelques minutes."
 
-#: install/index.php:1148
+#: install/index.php:1171
 msgid "Reset"
 msgstr "Réinitialiser"
 
-#: install/index.php:1153
+#: install/index.php:1176
 msgid "Installer Reset"
 msgstr "Réinitialiser l'installateur"
 
-#: install/index.php:1156
+#: install/index.php:1179
 msgid "Do you really want to reset all data and start from scratch?"
 msgstr ""
 "Voulez-vous vraiment réinitialiser toutes les données et recommencer à zéro ?"
 
-#: install/index.php:1159
+#: install/index.php:1182
 msgid "Yes"
 msgstr "Oui"
 
-#: install/index.php:1160
+#: install/index.php:1183
 msgid "No"
 msgstr "Non"
 
-#: install/index.php:1170
+#: install/index.php:1193
 msgid "Back"
 msgstr "Arrière"
 
-#: install/index.php:1171
+#: install/index.php:1194
 msgid "Continue"
 msgstr "Continuer"
 
-#: install/index.php:1249
+#: install/index.php:1272
 msgid ""
 "You can't continue. Solve the red marked issues, restart the webserver and "
 "reload this page."
@@ -640,11 +647,11 @@ msgstr ""
 "Vous ne pouvez pas continuer. Résolvez les problèmes marqués en rouge, "
 "redémarrez le serveur web et rechargez cette page."
 
-#: install/index.php:1376
+#: install/index.php:1399
 msgid "Password can't contain ' / \\ < >"
 msgstr "Le mot de passe ne peut pas contenir ' / \\ < >"
 
-#: install/index.php:1380
+#: install/index.php:1403
 msgid ""
 "The callsign should not contain any pre- or suffixes as it is used as "
 "personal operator callsign."
@@ -652,7 +659,7 @@ msgstr ""
 "L'indicatif ne doit pas contenir de préfixes ou de suffixes car il est "
 "utilisé comme indicatif personnel de l'opérateur."
 
-#: install/index.php:1392
+#: install/index.php:1415
 msgid ""
 "The callsign can not contain any special characters. It's your personal "
 "callsign without any pre- or suffixes."
@@ -660,22 +667,22 @@ msgstr ""
 "L'indicatif ne peut pas contenir de caractères spéciaux. C'est ton indicatif "
 "personnel sans préfixes ni suffixes."
 
-#: install/index.php:1525
+#: install/index.php:1576
 msgid "Error: At least Hostname/IP, Database Name and Username are required."
 msgstr ""
 "Erreur : Au moins le nom d'hôte/IP, le nom de la base de données et le nom "
 "d'utilisateur sont requis."
 
-#: install/index.php:1535
+#: install/index.php:1586
 msgid "Connecting..."
 msgstr "Connection..."
 
-#: install/index.php:1559
+#: install/index.php:1610
 msgid "Connection was successful and your database should be compatible."
 msgstr ""
 "La connexion a été réussie et votre base de données devrait être compatible."
 
-#: install/index.php:1563
+#: install/index.php:1614
 msgid ""
 "Connection was successful but your database seems too old for Wavelog. You "
 "can try to continue but you could run into issues."
@@ -684,20 +691,20 @@ msgstr ""
 "Wavelog. Vous pouvez essayer de continuer mais vous pourriez rencontrer des "
 "problèmes."
 
-#: install/index.php:1563
+#: install/index.php:1614
 #, php-format
 msgid "The min. version for MySQL is %s, for MariaDB it's %s."
 msgstr "La version min. pour MySQL est %s, pour MariaDB c'est %s."
 
-#: install/index.php:1683
+#: install/index.php:1734
 msgid "Search"
 msgstr "Chercher"
 
-#: install/index.php:1720
+#: install/index.php:1771
 msgid "At least one field is empty."
 msgstr "Au moins un champ est vide."
 
-#: install/index.php:1739
+#: install/index.php:1790
 msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
 "Check which DXCC for this particular location is the correct one. If you are "
@@ -707,7 +714,7 @@ msgstr ""
 "valide. Vérifiez quel DXCC pour cet emplacement particulier est le bon. Si "
 "vous êtes sûr, ignorez cet avertissement."
 
-#: install/index.php:1763
+#: install/index.php:1814
 msgid ""
 "The locator seems to be not in the correct format. Should look like AA11AA "
 "(6-char grid locator)."
@@ -715,7 +722,7 @@ msgstr ""
 "Le locator ne semble pas être au bon format. Il devrait ressembler à AA11AA "
 "(locator de grille à 6 caractères)."
 
-#: install/index.php:1777
+#: install/index.php:1828
 msgid ""
 "The e-mail adress does not look correct. Make sure it's a valid e-mail "
 "address"
@@ -723,35 +730,35 @@ msgstr ""
 "L'adresse e-mail ne semble pas correcte. Assurez-vous qu'il s'agit d'une "
 "adresse e-mail valide"
 
-#: install/index.php:1804
+#: install/index.php:1855
 msgid "Password should be at least 8 characters long"
 msgstr "Le mot de passe doit comporter au moins 8 caractères"
 
-#: install/index.php:1813
+#: install/index.php:1864
 msgid "Passwords do not match"
 msgstr "Les mots de passe ne correspondent pas"
 
-#: install/index.php:1869
+#: install/index.php:1920
 msgid "Install Now"
 msgstr "Installer maintenant"
 
-#: install/index.php:1873
+#: install/index.php:1924
 msgid "Install not possible. Checklist incomplete."
 msgstr "Installation impossible. Liste de verification incomplète."
 
-#: install/index.php:1985
+#: install/index.php:2036
 msgid "PHP Module missing"
 msgstr "Module PHP manquant"
 
-#: install/index.php:1987
+#: install/index.php:2038
 msgid "The following PHP modules are missing:"
 msgstr "Les modules PHP suivants sont manquants :"
 
-#: install/index.php:1988
+#: install/index.php:2039
 msgid "Without this module the Wavelog Installer does not work!"
 msgstr "Sans ce module, l'installateur Wavelog ne fonctionne pas !"
 
-#: install/index.php:1989
+#: install/index.php:2040
 msgid "Please install the required modules and restart the webserver."
 msgstr "Veuillez installer les modules requis et redémarrer le serveur web."
 
@@ -829,6 +836,23 @@ msgstr "Impossible de mettre à jour les données DXCC"
 #: install/run.php:333
 msgid "Could not create install/.lock file"
 msgstr "Impossible de créer le fichier install/.lock"
+
+#~ msgid ""
+#~ "This configuration is optional. The callsign lookup will be available for "
+#~ "all users of this installation. You can choose between QRZ.com and "
+#~ "HamQTH. While HamQTH also works without username and password, you will "
+#~ "need credentials for QRZ.com. To also get the Call Locator in QRZ.com "
+#~ "you'll need an XML subscription. HamQTH does not always provide the "
+#~ "locator information."
+#~ msgstr ""
+#~ "Cette configuration est facultative. La recherche d'indicatif d'appel "
+#~ "sera disponible pour tous les utilisateurs de cette installation. Vous "
+#~ "pouvez choisir entre QRZ.com et HamQTH. Bien que HamQTH fonctionne "
+#~ "également sans nom d'utilisateur ni mot de passe, vous aurez besoin "
+#~ "d'informations d'identification pour QRZ.com. Pour obtenir également le "
+#~ "locator des l'indicatifs d'appel sur QRZ.com, vous aurez besoin d'un "
+#~ "abonnement XML. HamQTH ne fournit pas toujours les informations de "
+#~ "localisation."
 
 #~ msgid "Directory"
 #~ msgstr "Répertoire"
