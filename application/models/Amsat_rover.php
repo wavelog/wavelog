@@ -80,6 +80,10 @@ class Amsat_rover extends CI_Model {
 		}
 
 		$safe_ids = array_map('intval', $location_ids);
+		$safe_ids = array_filter($safe_ids, function($id) { return $id > 0; });
+		if (empty($safe_ids)) {
+			return [];
+		}
 		$location_list = implode(',', $safe_ids);
 
 		$this->load->library('Genfunctions');

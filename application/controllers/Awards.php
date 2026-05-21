@@ -2675,7 +2675,8 @@ class Awards extends CI_Controller {
 		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
 		$station_info = $this->amsat_rover->get_station_info();
-		$data += $station_info;
+		$data['home_grid'] = $station_info['home_grid'];
+		$data['station_callsign'] = $station_info['station_callsign'];
 
 		$filters = ($this->input->method() === 'post')
 			? $this->amsat_rover->get_filters()
