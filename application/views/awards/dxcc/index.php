@@ -246,6 +246,9 @@
         <li class="nav-item">
             <a class="nav-link" id="map-tab" onclick="load_dxcc_map();" data-bs-toggle="tab" href="#dxccmaptab" role="tab" aria-controls="home" aria-selected="false"><?= __("Map"); ?></a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" id="progress-tab" data-bs-toggle="tab" href="#progress" role="tab" aria-controls="progress" aria-selected="false"><?= __("Progress"); ?></a>
+        </li>
     </ul>
     <br />
 
@@ -256,8 +259,7 @@
 
     </div>
 
-        <div class="tab-pane fade show active" id="table" role="tabpanel" aria-labelledby="table-tab">
-
+        <div class="tab-pane fade" id="progress" role="tabpanel" aria-labelledby="progress-tab">
     <?php
     $i = 1;
     if ($dxcc_array) {
@@ -432,7 +434,14 @@
     	echo '</div>'; // End card-body
 		echo '</div>'; // End collapse
     	echo '</div>'; // End card
+	}
+    ?>
+        </div>
 
+        <div class="tab-pane fade show active" id="table" role="tabpanel" aria-labelledby="table-tab">
+
+    <?php
+    if ($dxcc_array) {
 		echo __('Legend:');
 		echo '<pre>'.__("(Q)SL-Paper-Card").", ";
 		echo __("(L)oTW").", ";
