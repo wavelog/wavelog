@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-05-13 10:15+0000\n"
+"POT-Creation-Date: 2026-05-20 13:46+0000\n"
 "PO-Revision-Date: 2026-03-21 17:42+0000\n"
 "Last-Translator: Dariusz Koryto <dariusz@koryto.eu>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -178,7 +178,8 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Mode.php:15 application/controllers/Notes.php:10
 #: application/controllers/Operator.php:13
 #: application/controllers/Options.php:14 application/controllers/Oqrs.php:15
-#: application/controllers/Oqrs.php:174 application/controllers/Qrbcalc.php:13
+#: application/controllers/Oqrs.php:174 application/controllers/Oqrs.php:222
+#: application/controllers/Oqrs.php:236 application/controllers/Qrbcalc.php:13
 #: application/controllers/Qrz.php:199 application/controllers/Qrz.php:286
 #: application/controllers/Qsl.php:12 application/controllers/Qsl.php:13
 #: application/controllers/Qsl.php:49 application/controllers/Qsl.php:57
@@ -2495,11 +2496,11 @@ msgstr "Neispravan ID stanice"
 msgid "OQRS Requests"
 msgstr "OQRS zahtevi"
 
-#: application/controllers/Oqrs.php:370
+#: application/controllers/Oqrs.php:376
 msgid "QSO match deleted successfully."
 msgstr ""
 
-#: application/controllers/Oqrs.php:379
+#: application/controllers/Oqrs.php:385
 msgid "QSO match added successfully."
 msgstr ""
 
@@ -3574,30 +3575,30 @@ msgstr "Више корисника пронађено по токену"
 msgid "Gridsquare Zone finder"
 msgstr "Проналазач зона поља"
 
-#: application/libraries/Callbook.php:60
+#: application/libraries/Callbook.php:70
 msgid "Lookup not configured. Please review configuration."
 msgstr "Претрага није конфигурисана. Молимо прегледајте конфигурацију."
 
-#: application/libraries/Callbook.php:61
+#: application/libraries/Callbook.php:71
 #, php-format
 msgid "Error obtaining a session key for callbook. Error: %s"
 msgstr "Грешка приликом добијања сесијског кључа за позивну књигу. Грешка: %s"
 
-#: application/libraries/Callbook.php:200
+#: application/libraries/Callbook.php:213
 msgid "QRZCQ Error"
 msgstr "QRZCQ грешка"
 
-#: application/libraries/Cbr_parser.php:111
-#: application/libraries/Cbr_parser.php:160
+#: application/libraries/Cbr_parser.php:116
+#: application/libraries/Cbr_parser.php:165
 msgid "Broken CBR file - no valid exchange or callsigns found"
 msgstr ""
 "Оштећена CBR датотека - нису пронађени важећи размене или позивнизнакови"
 
-#: application/libraries/Cbr_parser.php:137
+#: application/libraries/Cbr_parser.php:142
 msgid "Broken CBR file - no QSO data found."
 msgstr "Оштећена CBR датотека - нису пронађени QSO подаци."
 
-#: application/libraries/Cbr_parser.php:147
+#: application/libraries/Cbr_parser.php:152
 msgid "Broken CBR file - incomplete header found."
 msgstr "Оштећена CBR датотека - пронађен је непотпун заглављ."
 
