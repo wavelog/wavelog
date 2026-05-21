@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-05-09 08:38+0000\n"
+"POT-Creation-Date: 2026-05-21 13:17+0000\n"
 "PO-Revision-Date: 2026-05-18 19:18+0000\n"
 "Last-Translator: Anton Tomanič <s57xz.toni@gmail.com>\n"
 "Language-Team: Slovenian <https://translate.wavelog.org/projects/wavelog/"
@@ -176,7 +176,8 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Mode.php:15 application/controllers/Notes.php:10
 #: application/controllers/Operator.php:13
 #: application/controllers/Options.php:14 application/controllers/Oqrs.php:15
-#: application/controllers/Oqrs.php:174 application/controllers/Qrbcalc.php:13
+#: application/controllers/Oqrs.php:174 application/controllers/Oqrs.php:222
+#: application/controllers/Oqrs.php:236 application/controllers/Qrbcalc.php:13
 #: application/controllers/Qrz.php:199 application/controllers/Qrz.php:286
 #: application/controllers/Qsl.php:12 application/controllers/Qsl.php:13
 #: application/controllers/Qsl.php:49 application/controllers/Qsl.php:57
@@ -227,8 +228,7 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Webadif.php:11
 #: application/controllers/Webadif.php:101
 #: application/controllers/Zonechecker.php:17
-#: application/models/Club_model.php:52 application/controllers/Oqrs.php:222
-#: application/controllers/Oqrs.php:236
+#: application/models/Club_model.php:52
 msgid "You're not allowed to do that!"
 msgstr "To vam ni dovoljeno!"
 
@@ -477,14 +477,13 @@ msgstr "DOK"
 #: application/views/logbookadvanced/statecheckresult.php:11
 #: application/views/logbookadvanced/useroptions.php:175
 #: application/views/lookup/index.php:5
-#: application/views/lotw_views/index.php:33
+#: application/views/lotw_views/index.php:43
 #: application/views/qso/award_tabs.php:29
 #: application/views/qso/edit_ajax.php:219 application/views/qso/index.php:464
 #: application/views/search/result.php:27
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/stationsetup/linkedlocations.php:33
 #: application/views/timeplotter/index.php:17
-#: application/views/lotw_views/index.php:43
 msgid "DXCC"
 msgstr "DXCC"
 
@@ -2125,7 +2124,7 @@ msgstr "Operator"
 #: application/views/kml/index.php:54
 #: application/views/logbookadvanced/index.php:368
 #: application/views/lookup/index.php:47
-#: application/views/lotw_views/index.php:50
+#: application/views/lotw_views/index.php:59
 #: application/views/qso/components/previous_contacts.php:59
 #: application/views/qso/edit_ajax.php:237 application/views/qso/index.php:473
 #: application/views/station_profile/create.php:87
@@ -2140,7 +2139,6 @@ msgstr "Operator"
 #: application/views/view_log/partial/log_ajax.php:32
 #: application/views/view_log/qso.php:294
 #: application/views/view_log/qso.php:647
-#: application/views/lotw_views/index.php:59
 msgid "Deleted DXCC"
 msgstr "Izbrisane DXCC"
 
@@ -2166,10 +2164,10 @@ msgstr "Hiter pogled"
 #: application/controllers/Lotw.php:136
 #: application/views/dcl_views/upload_cert.php:3
 #: application/views/interface_assets/header.php:522
-#: application/views/lotw/import.php:3 application/views/lotw_views/index.php:9
+#: application/views/lotw/import.php:3
+#: application/views/lotw_views/index.php:19
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:953 application/views/visitor/index.php:328
-#: application/views/lotw_views/index.php:19
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
@@ -2520,11 +2518,11 @@ msgstr "Neveljaven ID postaje"
 msgid "OQRS Requests"
 msgstr "OQRS zahtevki"
 
-#: application/controllers/Oqrs.php:370 application/controllers/Oqrs.php:376
+#: application/controllers/Oqrs.php:376
 msgid "QSO match deleted successfully."
 msgstr "QSO je bila uspešno izbrisana."
 
-#: application/controllers/Oqrs.php:379 application/controllers/Oqrs.php:385
+#: application/controllers/Oqrs.php:385
 msgid "QSO match added successfully."
 msgstr "QSO je bila uspešno dodana."
 
@@ -2639,11 +2637,10 @@ msgstr "Časovni žig"
 
 #: application/controllers/Radio.php:52
 #: application/views/logbookadvanced/index.php:890
-#: application/views/lotw_views/index.php:40
+#: application/views/lotw_views/index.php:50
 #: application/views/simplefle/index.php:20
 #: application/views/simplefle/index.php:185
 #: application/views/stationsetup/exportmapoptions.php:5
-#: application/views/lotw_views/index.php:50
 msgid "Options"
 msgstr "Možnosti"
 
@@ -2706,7 +2703,7 @@ msgstr "Uredi"
 #: application/views/interface_assets/footer.php:2700
 #: application/views/labels/index.php:49 application/views/labels/index.php:85
 #: application/views/logbookadvanced/index.php:896
-#: application/views/lotw_views/index.php:134
+#: application/views/lotw_views/index.php:143
 #: application/views/mode/index.php:67
 #: application/views/oqrs/showrequests.php:75
 #: application/views/qslcard/index.php:76
@@ -2719,7 +2716,6 @@ msgstr "Uredi"
 #: application/views/stationsetup/stationsetup.php:201
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:738
-#: application/views/lotw_views/index.php:143
 msgid "Delete"
 msgstr "Izbriši"
 
@@ -3619,22 +3615,19 @@ msgstr "Najdenih več uporabnikov preko končnice URL"
 msgid "Gridsquare Zone finder"
 msgstr "Iskalnik UL cone"
 
-#: application/libraries/Callbook.php:60 application/libraries/Callbook.php:70
+#: application/libraries/Callbook.php:70
 msgid "Lookup not configured. Please review configuration."
 msgstr "Iskanje ni konfigurirano. Prosimo, preglejte konfiguracijo."
 
-#: application/libraries/Callbook.php:61 application/libraries/Callbook.php:71
+#: application/libraries/Callbook.php:71
 #, php-format
 msgid "Error obtaining a session key for callbook. Error: %s"
 msgstr "Napaka pri pridobivanju ključa seje za callbook. Napaka: %s"
 
-#: application/libraries/Callbook.php:200
 #: application/libraries/Callbook.php:213
 msgid "QRZCQ Error"
 msgstr "Napaka QRZCQ"
 
-#: application/libraries/Cbr_parser.php:111
-#: application/libraries/Cbr_parser.php:160
 #: application/libraries/Cbr_parser.php:116
 #: application/libraries/Cbr_parser.php:165
 msgid "Broken CBR file - no valid exchange or callsigns found"
@@ -3642,12 +3635,10 @@ msgstr ""
 "Poškodovana datoteka CBR – ni bilo najdenih veljavnih raportov ali klicnih "
 "znakov"
 
-#: application/libraries/Cbr_parser.php:137
 #: application/libraries/Cbr_parser.php:142
 msgid "Broken CBR file - no QSO data found."
 msgstr "Poškodovana datoteka CBR – podatki o QSO niso bili najdeni."
 
-#: application/libraries/Cbr_parser.php:147
 #: application/libraries/Cbr_parser.php:152
 msgid "Broken CBR file - incomplete header found."
 msgstr "Poškodovana datoteka CBR - najdena nepopolna glava (header)."
@@ -3792,31 +3783,25 @@ msgstr "HRDlog: Ni najdenih profilov postaj s poverilnicami HRDlog."
 msgid "Station not accessible"
 msgstr "Postaja ni dostopna"
 
-#: application/models/Logbook_model.php:1412
 #: application/models/Logbook_model.php:1415
 msgid "Station ID not allowed"
 msgstr "ID postaje ni dovoljen"
 
-#: application/models/Logbook_model.php:1417
 #: application/models/Logbook_model.php:1420
 msgid "No Call given"
 msgstr "Ni podanega pozivnega znaka"
 
-#: application/models/Logbook_model.php:1487
-#: application/models/Logbook_model.php:1691
 #: application/models/Logbook_model.php:1490
 #: application/models/Logbook_model.php:1694
 msgid "DXCC has to be Numeric"
 msgstr "DXCC mora biti numeričen"
 
-#: application/models/Logbook_model.php:4914
 #: application/models/Logbook_model.php:4917
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Različen klicni znak postaje %s med uvozom QSO z %s za %s: PRESKOČENO"
 
-#: application/models/Logbook_model.php:4922
 #: application/models/Logbook_model.php:4925
 #, php-format
 msgid ""
@@ -3825,7 +3810,6 @@ msgid ""
 msgstr ""
 "Različen lokator %s med uvozom QSO z %s za lokator postaje %s: PRESKOČENO"
 
-#: application/models/Logbook_model.php:4938
 #: application/models/Logbook_model.php:4941
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
@@ -3834,12 +3818,10 @@ msgstr ""
 "Poskušali ste uvoziti QSO brez veljavnega datuma. Ta QSO ni bila uvožena. Je "
 "neveljavna"
 
-#: application/models/Logbook_model.php:4948
 #: application/models/Logbook_model.php:4951
 msgid "QSO on"
 msgstr "Začetek QSO"
 
-#: application/models/Logbook_model.php:4948
 #: application/models/Logbook_model.php:4951
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
@@ -3848,7 +3830,6 @@ msgstr ""
 "Poskušali ste uvoziti QSO brez podanega klicnega znaka. Ta QSO ni bila "
 "uvožena. Je neveljavna"
 
-#: application/models/Logbook_model.php:4998
 #: application/models/Logbook_model.php:5001
 #, php-format
 msgid ""
@@ -3858,77 +3839,63 @@ msgstr ""
 "Zveza na %s: Poskušali ste uvoziti QSO brez podanega banda. Ta QSO ni bila "
 "uvožena. Je neveljavna"
 
-#: application/models/Logbook_model.php:5272
 #: application/models/Logbook_model.php:5275
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate je napačen (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5283
 #: application/models/Logbook_model.php:5286
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate je napačen (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5344
 #: application/models/Logbook_model.php:5347
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date je napačen (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5717
-#: application/views/simplefle/index.php:41
 #: application/models/Logbook_model.php:5720
+#: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Dvojnik za"
 
-#: application/models/Logbook_model.php:5784
-#: application/models/Logbook_model.php:5884
 #: application/models/Logbook_model.php:5787
 #: application/models/Logbook_model.php:5887
 msgid "QSO could not be matched"
 msgstr "QSO ni bilo mogoče najti"
 
-#: application/models/Logbook_model.php:5792
 #: application/models/Logbook_model.php:5795
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "potrjeno od LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:5798
 #: application/models/Logbook_model.php:5801
 msgid "confirmed by award manager"
 msgstr "potrjeno od award managerja"
 
-#: application/models/Logbook_model.php:5802
 #: application/models/Logbook_model.php:5805
 msgid "confirmed by cross-check of DCL data"
 msgstr "potrjeno z navzkrižnim preverjanjem podatkov DCL"
 
-#: application/models/Logbook_model.php:5806
 #: application/models/Logbook_model.php:5809
 msgid "confirmation pending"
 msgstr "potrditev čaka na"
 
-#: application/models/Logbook_model.php:5809
 #: application/models/Logbook_model.php:5812
 msgid "unconfirmed"
 msgstr "nepotrjeno"
 
-#: application/models/Logbook_model.php:5812
+#: application/models/Logbook_model.php:5815
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
-#: application/models/Logbook_model.php:5815
 msgid "unknown"
 msgstr "neznano"
 
-#: application/models/Logbook_model.php:5887
 #: application/models/Logbook_model.php:5890
 msgid "POTA reference already in log"
 msgstr "Referenca POTA je že v dnevniku"
 
-#: application/models/Logbook_model.php:5890
 #: application/models/Logbook_model.php:5893
 msgid "QSO updated"
 msgstr "QSO posodobljena"
 
-#: application/models/Logbook_model.php:6287
+#: application/models/Logbook_model.php:6290
 #: application/views/activated_gridmap/index.php:114
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:58
@@ -3939,7 +3906,6 @@ msgstr "QSO posodobljena"
 #: application/views/user/edit.php:329 application/views/user/edit.php:352
 #: application/views/user/edit.php:375 application/views/user/edit.php:400
 #: application/views/view_log/partial/log_ajax.php:21
-#: application/models/Logbook_model.php:6290
 msgid "Bearing"
 msgstr "Smer"
 
@@ -4505,7 +4471,7 @@ msgstr "Ničesar nisem našel!"
 #: application/views/logbookadvanced/dbtoolsdialog.php:22
 #: application/views/logbookadvanced/qslcarousel.php:30
 #: application/views/logbookadvanced/showUpdateResult.php:43
-#: application/views/lotw_views/index.php:32
+#: application/views/lotw_views/index.php:42
 #: application/views/oqrs/qsolist.php:6
 #: application/views/oqrs/request_grouped.php:12
 #: application/views/qslcard/confirmationresult.php:15
@@ -4529,7 +4495,6 @@ msgstr "Ničesar nisem našel!"
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:625
 #: application/views/visitor/mini.php:183
 #: application/views/zonechecker/result.php:50
-#: application/views/lotw_views/index.php:42
 msgid "Callsign"
 msgstr "Klicni znak"
 
@@ -5049,7 +5014,6 @@ msgstr ""
 #: application/views/adif/import.php:422
 #: application/views/adif/import_success.php:40
 #: application/views/dcl_views/index.php:76
-#: application/views/lotw_views/index.php:160
 #: application/views/lotw_views/index.php:169
 msgid "Information"
 msgstr "Informacije"
@@ -5218,7 +5182,7 @@ msgstr "POTA REF v ADIF"
 #: application/views/adif/pota_success.php:36
 #: application/views/api/index.php:37 application/views/cron/index.php:68
 #: application/views/lotw/satupdate.php:7
-#: application/views/lotw_views/index.php:38
+#: application/views/lotw_views/index.php:48
 #: application/views/mode/index.php:43
 #: application/views/oqrs/showrequests.php:97
 #: application/views/oqrs/status_info.php:4
@@ -5226,7 +5190,6 @@ msgstr "POTA REF v ADIF"
 #: application/views/stationsetup/stationsetup.php:35
 #: application/views/timeline/index.php:189
 #: application/views/usermode/index.php:41
-#: application/views/lotw_views/index.php:48
 msgid "Status"
 msgstr "Status"
 
@@ -7514,9 +7477,9 @@ msgid ""
 "Macao/152, Taiwan/386, Pratas Isl./505 or Scarborough Reef/506) and valid "
 "State (ADIF: DXCC and STATE)"
 msgstr ""
-"Polja, uporabljena za to diplomo: DXCC (Must be one of China/318, HongKong/"
-"321, Macao/152, Taiwan/386, Pratas Isl./505 or Scarborough Reef/506) and "
-"valid State (ADIF: DXCC and STATE)"
+"Polja, uporabljena za to diplomo: DXCC (Must be one of China/318, "
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 or Scarborough "
+"Reef/506) and valid State (ADIF: DXCC and STATE)"
 
 #: application/views/awards/wapc/index.php:122
 msgid "Show WAPC Map"
@@ -8698,7 +8661,6 @@ msgstr ""
 "bandi pa bodo skriti in jih ne bo mogoče izbrati."
 
 #: application/views/bands/index.php:56
-#, fuzzy
 msgid "Sig"
 msgstr "Sig"
 
@@ -9152,7 +9114,6 @@ msgid "Last QSO"
 msgstr "Zadnja QSO"
 
 #: application/views/calltester/comparison_result.php:18
-#, fuzzy
 msgid "DXCC Class Results"
 msgstr "Rezultati razreda DXCC"
 
@@ -9172,7 +9133,6 @@ msgid "Issues found:"
 msgstr "Najdene težave:"
 
 #: application/views/calltester/comparison_result.php:30
-#, fuzzy
 msgid "Logbook Model Results"
 msgstr "Rezultati modela dnevnika"
 
@@ -9181,7 +9141,6 @@ msgid "Comparison Summary"
 msgstr "Povzetek primerjave"
 
 #: application/views/calltester/comparison_result.php:45
-#, fuzzy
 msgid "Only found in DXCC Class:"
 msgstr "Najdeno samo v razredu DXCC:"
 
@@ -9194,7 +9153,6 @@ msgid "Found in both methods:"
 msgstr "Najdeno v obeh metodah:"
 
 #: application/views/calltester/comparison_result.php:54
-#, fuzzy
 msgid "Issues found only in DXCC Class (not in Logbook Model):"
 msgstr "Težave, odkrite samo v razredu DXCC (ne v modelu dnevnika):"
 
@@ -9240,7 +9198,6 @@ msgid "Result ADIF"
 msgstr "Rezultat ADIF"
 
 #: application/views/calltester/comparison_result.php:90
-#, fuzzy
 msgid "Issues found only in Logbook Model (not in DXCC Class):"
 msgstr "Težave, odkrite samo v modelu dnevnika (ne v razredu DXCC):"
 
@@ -9634,7 +9591,6 @@ msgid "Tune to spot frequency and start logging QSO"
 msgstr "Uglasite se na spotirano frekvenco in začnite beležiti QSO"
 
 #: application/views/components/dxwaterfall.php:14
-#, fuzzy
 msgid "Cycle through nearby spots"
 msgstr "Kroženje med bližnjimi spoti"
 
@@ -9695,7 +9651,6 @@ msgid "Filter by mode"
 msgstr "Filter glede na vrsto dela"
 
 #: application/views/components/dxwaterfall.php:36
-#, fuzzy
 msgid "Zoom out"
 msgstr "Zoom out"
 
@@ -9704,7 +9659,6 @@ msgid "Reset zoom to default (3)"
 msgstr "Ponastavi povečavo na privzeto (3)"
 
 #: application/views/components/dxwaterfall.php:38
-#, fuzzy
 msgid "Zoom in"
 msgstr "Zoom in"
 
@@ -9838,7 +9792,6 @@ msgid "Sked"
 msgstr "Sked"
 
 #: application/views/components/radio_display_table.php:5
-#, fuzzy
 msgid "Radio Status"
 msgstr "Radio Status"
 
@@ -10287,7 +10240,6 @@ msgstr ""
 "da boste lahko uporabljali ta cron manager."
 
 #: application/views/cron/index.php:118
-#, fuzzy
 msgid ""
 "On a basic linux server with shell access use this command to edit your "
 "crons:"
@@ -10316,7 +10268,6 @@ msgstr "Izvoženi bodo samo QSO-ji s SOTA informacijami!"
 #: application/views/eqsl/download.php:43
 #: application/views/eqslcard/index.php:33 application/views/kml/index.php:77
 #: application/views/qso/edit_ajax.php:189 application/views/qso/index.php:537
-#, fuzzy
 msgid "Propagation Mode"
 msgstr "Propagation Mode"
 
@@ -10792,13 +10743,11 @@ msgid "The next automatic sync with DCL will happen at: "
 msgstr ""
 
 #: application/views/dcl_views/index.php:82
-#: application/views/lotw_views/index.php:166
 #: application/views/lotw_views/index.php:175
 msgid "Manual Sync"
 msgstr ""
 
 #: application/views/dcl_views/index.php:84
-#: application/views/lotw_views/index.php:168
 #: application/views/lotw_views/index.php:177
 msgid "running..."
 msgstr ""
@@ -11215,7 +11164,6 @@ msgstr ""
 
 #: application/views/debug/index.php:615 application/views/debug/index.php:626
 #: application/views/debug/index.php:636
-#: application/views/lotw_views/index.php:95
 #: application/views/lotw_views/index.php:104
 msgid "n/a"
 msgstr ""
@@ -14736,105 +14684,85 @@ msgstr ""
 msgid "Upload folder is not writable. Please contact your admin."
 msgstr ""
 
-#: application/views/lotw_views/index.php:8
 #: application/views/lotw_views/index.php:18
 msgid "LoTW Import"
 msgstr ""
 
-#: application/views/lotw_views/index.php:14
 #: application/views/lotw_views/index.php:24
 msgid "Available Certificates"
 msgstr ""
 
-#: application/views/lotw_views/index.php:14
 #: application/views/lotw_views/index.php:24
 msgid "Upload Certificate"
 msgstr ""
 
-#: application/views/lotw_views/index.php:34
 #: application/views/lotw_views/index.php:44
 msgid "QSO Start Date"
 msgstr ""
 
-#: application/views/lotw_views/index.php:35
 #: application/views/lotw_views/index.php:45
 msgid "QSO End Date"
 msgstr ""
 
-#: application/views/lotw_views/index.php:36
 #: application/views/lotw_views/index.php:46
 msgid "Date Created"
 msgstr ""
 
-#: application/views/lotw_views/index.php:37
 #: application/views/lotw_views/index.php:47
 msgid "Date Expires"
 msgstr ""
 
-#: application/views/lotw_views/index.php:39
-#: application/views/view_log/qso.php:486
 #: application/views/lotw_views/index.php:49
+#: application/views/view_log/qso.php:486
 msgid "Last Upload"
 msgstr ""
 
-#: application/views/lotw_views/index.php:95
 #: application/views/lotw_views/index.php:104
 msgid "Last change:"
 msgstr ""
 
-#: application/views/lotw_views/index.php:95
 #: application/views/lotw_views/index.php:104
 msgid "Serial number:"
 msgstr ""
 
-#: application/views/lotw_views/index.php:97
 #: application/views/lotw_views/index.php:106
 msgid "Certificate superseded"
 msgstr ""
 
-#: application/views/lotw_views/index.php:100
 #: application/views/lotw_views/index.php:109
 msgid "Certificate expired"
 msgstr ""
 
-#: application/views/lotw_views/index.php:102
 #: application/views/lotw_views/index.php:111
 msgid "Certificate expiring"
 msgstr ""
 
-#: application/views/lotw_views/index.php:104
 #: application/views/lotw_views/index.php:113
 msgid "Certificate valid"
 msgstr ""
 
-#: application/views/lotw_views/index.php:109
 #: application/views/lotw_views/index.php:118
 msgid "QSO end date nearing"
 msgstr ""
 
-#: application/views/lotw_views/index.php:121
 #: application/views/lotw_views/index.php:130
 #, php-format
 msgid "Last success: %s"
 msgstr ""
 
-#: application/views/lotw_views/index.php:124
 #: application/views/lotw_views/index.php:133
 #, php-format
 msgid "Last fail: %s"
 msgstr ""
 
-#: application/views/lotw_views/index.php:130
 #: application/views/lotw_views/index.php:139
 msgid "Not Synced"
 msgstr ""
 
-#: application/views/lotw_views/index.php:145
 #: application/views/lotw_views/index.php:154
 msgid "You need to upload some LoTW p12 certificates to use this area."
 msgstr ""
 
-#: application/views/lotw_views/index.php:164
 #: application/views/lotw_views/index.php:173
 msgid "The next automatic sync with LoTW will happen at: "
 msgstr ""

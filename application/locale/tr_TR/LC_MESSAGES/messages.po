@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-05-09 08:38+0000\n"
+"POT-Creation-Date: 2026-05-21 13:17+0000\n"
 "PO-Revision-Date: 2026-05-12 22:16+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -180,7 +180,8 @@ msgstr "Troposfer Kanal İletişimi"
 #: application/controllers/Mode.php:15 application/controllers/Notes.php:10
 #: application/controllers/Operator.php:13
 #: application/controllers/Options.php:14 application/controllers/Oqrs.php:15
-#: application/controllers/Oqrs.php:174 application/controllers/Qrbcalc.php:13
+#: application/controllers/Oqrs.php:174 application/controllers/Oqrs.php:222
+#: application/controllers/Oqrs.php:236 application/controllers/Qrbcalc.php:13
 #: application/controllers/Qrz.php:199 application/controllers/Qrz.php:286
 #: application/controllers/Qsl.php:12 application/controllers/Qsl.php:13
 #: application/controllers/Qsl.php:49 application/controllers/Qsl.php:57
@@ -231,8 +232,7 @@ msgstr "Troposfer Kanal İletişimi"
 #: application/controllers/Webadif.php:11
 #: application/controllers/Webadif.php:101
 #: application/controllers/Zonechecker.php:17
-#: application/models/Club_model.php:52 application/controllers/Oqrs.php:222
-#: application/controllers/Oqrs.php:236
+#: application/models/Club_model.php:52
 msgid "You're not allowed to do that!"
 msgstr "Bunu yapmanıza izin verilmiyor!"
 
@@ -481,14 +481,13 @@ msgstr "DOK (Almanya Bölge İşletme Kodu)"
 #: application/views/logbookadvanced/statecheckresult.php:11
 #: application/views/logbookadvanced/useroptions.php:175
 #: application/views/lookup/index.php:5
-#: application/views/lotw_views/index.php:33
+#: application/views/lotw_views/index.php:43
 #: application/views/qso/award_tabs.php:29
 #: application/views/qso/edit_ajax.php:219 application/views/qso/index.php:464
 #: application/views/search/result.php:27
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/stationsetup/linkedlocations.php:33
 #: application/views/timeplotter/index.php:17
-#: application/views/lotw_views/index.php:43
 msgid "DXCC"
 msgstr "DXCC (Ülke)"
 
@@ -2129,7 +2128,7 @@ msgstr "Operatör"
 #: application/views/kml/index.php:54
 #: application/views/logbookadvanced/index.php:368
 #: application/views/lookup/index.php:47
-#: application/views/lotw_views/index.php:50
+#: application/views/lotw_views/index.php:59
 #: application/views/qso/components/previous_contacts.php:59
 #: application/views/qso/edit_ajax.php:237 application/views/qso/index.php:473
 #: application/views/station_profile/create.php:87
@@ -2144,7 +2143,6 @@ msgstr "Operatör"
 #: application/views/view_log/partial/log_ajax.php:32
 #: application/views/view_log/qso.php:294
 #: application/views/view_log/qso.php:647
-#: application/views/lotw_views/index.php:59
 msgid "Deleted DXCC"
 msgstr "Silinmiş DXCC"
 
@@ -2170,10 +2168,10 @@ msgstr "Hızlı Sorgu"
 #: application/controllers/Lotw.php:136
 #: application/views/dcl_views/upload_cert.php:3
 #: application/views/interface_assets/header.php:522
-#: application/views/lotw/import.php:3 application/views/lotw_views/index.php:9
+#: application/views/lotw/import.php:3
+#: application/views/lotw_views/index.php:19
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:953 application/views/visitor/index.php:328
-#: application/views/lotw_views/index.php:19
 msgid "Logbook of the World"
 msgstr "LOTW (Logbook of the World)"
 
@@ -2518,11 +2516,11 @@ msgstr "Geçersiz İstasyon ID"
 msgid "OQRS Requests"
 msgstr "OQRS Talepleri"
 
-#: application/controllers/Oqrs.php:370 application/controllers/Oqrs.php:376
+#: application/controllers/Oqrs.php:376
 msgid "QSO match deleted successfully."
 msgstr "Eşleşen QSO'lar başarıyla silindi."
 
-#: application/controllers/Oqrs.php:379 application/controllers/Oqrs.php:385
+#: application/controllers/Oqrs.php:385
 msgid "QSO match added successfully."
 msgstr "QSO eşleşmesi başarıyla eklendi."
 
@@ -2631,11 +2629,10 @@ msgstr "Son Aktiflik"
 
 #: application/controllers/Radio.php:52
 #: application/views/logbookadvanced/index.php:890
-#: application/views/lotw_views/index.php:40
+#: application/views/lotw_views/index.php:50
 #: application/views/simplefle/index.php:20
 #: application/views/simplefle/index.php:185
 #: application/views/stationsetup/exportmapoptions.php:5
-#: application/views/lotw_views/index.php:50
 msgid "Options"
 msgstr "Seçenekler"
 
@@ -2698,7 +2695,7 @@ msgstr "Düzenle"
 #: application/views/interface_assets/footer.php:2700
 #: application/views/labels/index.php:49 application/views/labels/index.php:85
 #: application/views/logbookadvanced/index.php:896
-#: application/views/lotw_views/index.php:134
+#: application/views/lotw_views/index.php:143
 #: application/views/mode/index.php:67
 #: application/views/oqrs/showrequests.php:75
 #: application/views/qslcard/index.php:76
@@ -2711,7 +2708,6 @@ msgstr "Düzenle"
 #: application/views/stationsetup/stationsetup.php:201
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:738
-#: application/views/lotw_views/index.php:143
 msgid "Delete"
 msgstr "Sil"
 
@@ -3609,34 +3605,29 @@ msgstr "Sayfa Adı ile birden fazla kullanıcı bulundu"
 msgid "Gridsquare Zone finder"
 msgstr "Izgara Kare Bölge Bulucu"
 
-#: application/libraries/Callbook.php:60 application/libraries/Callbook.php:70
+#: application/libraries/Callbook.php:70
 msgid "Lookup not configured. Please review configuration."
 msgstr ""
 
-#: application/libraries/Callbook.php:61 application/libraries/Callbook.php:71
+#: application/libraries/Callbook.php:71
 #, php-format
 msgid "Error obtaining a session key for callbook. Error: %s"
 msgstr ""
 
-#: application/libraries/Callbook.php:200
 #: application/libraries/Callbook.php:213
 msgid "QRZCQ Error"
 msgstr "QRZCQ Hatası"
 
-#: application/libraries/Cbr_parser.php:111
-#: application/libraries/Cbr_parser.php:160
 #: application/libraries/Cbr_parser.php:116
 #: application/libraries/Cbr_parser.php:165
 msgid "Broken CBR file - no valid exchange or callsigns found"
 msgstr ""
 "Bozuk CBR dosyası – geçerli değişim bilgisi veya çağrı işareti bulunamadı"
 
-#: application/libraries/Cbr_parser.php:137
 #: application/libraries/Cbr_parser.php:142
 msgid "Broken CBR file - no QSO data found."
 msgstr "Bozuk CBR dosyası – QSO verisi bulunamadı."
 
-#: application/libraries/Cbr_parser.php:147
 #: application/libraries/Cbr_parser.php:152
 msgid "Broken CBR file - incomplete header found."
 msgstr "Bozuk CBR dosyası – eksik başlık bulundu."
@@ -3781,31 +3772,25 @@ msgstr "HRDlog: HRDlog Kimlik Bilgileriyle istasyon profili bulunamadı."
 msgid "Station not accessible"
 msgstr ""
 
-#: application/models/Logbook_model.php:1412
 #: application/models/Logbook_model.php:1415
 msgid "Station ID not allowed"
 msgstr "İstasyon ID’sine izin verilmiyor"
 
-#: application/models/Logbook_model.php:1417
 #: application/models/Logbook_model.php:1420
 msgid "No Call given"
 msgstr "Çağrı işareti girilmedi"
 
-#: application/models/Logbook_model.php:1487
-#: application/models/Logbook_model.php:1691
 #: application/models/Logbook_model.php:1490
 #: application/models/Logbook_model.php:1694
 msgid "DXCC has to be Numeric"
 msgstr "DXCC sayısal olmalıdır"
 
-#: application/models/Logbook_model.php:4914
 #: application/models/Logbook_model.php:4917
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 
-#: application/models/Logbook_model.php:4922
 #: application/models/Logbook_model.php:4925
 #, php-format
 msgid ""
@@ -3813,7 +3798,6 @@ msgid ""
 "SKIPPED"
 msgstr ""
 
-#: application/models/Logbook_model.php:4938
 #: application/models/Logbook_model.php:4941
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
@@ -3822,12 +3806,10 @@ msgstr ""
 "Geçerli tarih bilgisi içermeyen bir QSO'lar bulundu. Bu QSO'lar içe "
 "aktarılmadı."
 
-#: application/models/Logbook_model.php:4948
 #: application/models/Logbook_model.php:4951
 msgid "QSO on"
 msgstr "Zaman"
 
-#: application/models/Logbook_model.php:4948
 #: application/models/Logbook_model.php:4951
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
@@ -3836,7 +3818,6 @@ msgstr ""
 "Bir çağrı işareti olmadan bir QSO'yu içe aktarmaya çalıştın. Bu QSO içe "
 "aktarılmadı. Geçersiz"
 
-#: application/models/Logbook_model.php:4998
 #: application/models/Logbook_model.php:5001
 #, php-format
 msgid ""
@@ -3846,77 +3827,63 @@ msgstr ""
 "%s üzerindeki QSO: Band bilgisi olmadan bir QSO içe aktarmayı denediniz. Bu "
 "QSO içe aktarılmadı, geçersiz."
 
-#: application/models/Logbook_model.php:5272
 #: application/models/Logbook_model.php:5275
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate geçersiz (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5283
 #: application/models/Logbook_model.php:5286
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate geçersiz (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5344
 #: application/models/Logbook_model.php:5347
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date geçersiz (YYYYAAGG)"
 
-#: application/models/Logbook_model.php:5717
-#: application/views/simplefle/index.php:41
 #: application/models/Logbook_model.php:5720
+#: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "İçin yinelenen"
 
-#: application/models/Logbook_model.php:5784
-#: application/models/Logbook_model.php:5884
 #: application/models/Logbook_model.php:5787
 #: application/models/Logbook_model.php:5887
 msgid "QSO could not be matched"
 msgstr "QSO eşleştirilemedi"
 
-#: application/models/Logbook_model.php:5792
 #: application/models/Logbook_model.php:5795
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "LoTW/Clublog/eQSL/Yarışma tarafından onaylandı"
 
-#: application/models/Logbook_model.php:5798
 #: application/models/Logbook_model.php:5801
 msgid "confirmed by award manager"
 msgstr "Ödül yöneticisi tarafından onaylandı"
 
-#: application/models/Logbook_model.php:5802
 #: application/models/Logbook_model.php:5805
 msgid "confirmed by cross-check of DCL data"
 msgstr "DCL verileri karşılaştırılarak onaylandı"
 
-#: application/models/Logbook_model.php:5806
 #: application/models/Logbook_model.php:5809
 msgid "confirmation pending"
 msgstr "onay bekleniyor"
 
-#: application/models/Logbook_model.php:5809
 #: application/models/Logbook_model.php:5812
 msgid "unconfirmed"
 msgstr "onaylanmamış"
 
-#: application/models/Logbook_model.php:5812
+#: application/models/Logbook_model.php:5815
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
-#: application/models/Logbook_model.php:5815
 msgid "unknown"
 msgstr "Bilinmiyor"
 
-#: application/models/Logbook_model.php:5887
 #: application/models/Logbook_model.php:5890
 msgid "POTA reference already in log"
 msgstr "POTA referansı zaten logda mevcut"
 
-#: application/models/Logbook_model.php:5890
 #: application/models/Logbook_model.php:5893
 msgid "QSO updated"
 msgstr "QSO güncellendi"
 
-#: application/models/Logbook_model.php:6287
+#: application/models/Logbook_model.php:6290
 #: application/views/activated_gridmap/index.php:114
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:58
@@ -3927,7 +3894,6 @@ msgstr "QSO güncellendi"
 #: application/views/user/edit.php:329 application/views/user/edit.php:352
 #: application/views/user/edit.php:375 application/views/user/edit.php:400
 #: application/views/view_log/partial/log_ajax.php:21
-#: application/models/Logbook_model.php:6290
 msgid "Bearing"
 msgstr "Yön"
 
@@ -4489,7 +4455,7 @@ msgstr "Hiçbir kayıt bulunamadı!"
 #: application/views/logbookadvanced/dbtoolsdialog.php:22
 #: application/views/logbookadvanced/qslcarousel.php:30
 #: application/views/logbookadvanced/showUpdateResult.php:43
-#: application/views/lotw_views/index.php:32
+#: application/views/lotw_views/index.php:42
 #: application/views/oqrs/qsolist.php:6
 #: application/views/oqrs/request_grouped.php:12
 #: application/views/qslcard/confirmationresult.php:15
@@ -4513,7 +4479,6 @@ msgstr "Hiçbir kayıt bulunamadı!"
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:625
 #: application/views/visitor/mini.php:183
 #: application/views/zonechecker/result.php:50
-#: application/views/lotw_views/index.php:42
 msgid "Callsign"
 msgstr "Çağrı işareti"
 
@@ -5034,7 +4999,6 @@ msgstr ""
 #: application/views/adif/import.php:422
 #: application/views/adif/import_success.php:40
 #: application/views/dcl_views/index.php:76
-#: application/views/lotw_views/index.php:160
 #: application/views/lotw_views/index.php:169
 msgid "Information"
 msgstr "Bilgi"
@@ -5206,7 +5170,7 @@ msgstr "ADIF dosyanızdaki POTA Referansı"
 #: application/views/adif/pota_success.php:36
 #: application/views/api/index.php:37 application/views/cron/index.php:68
 #: application/views/lotw/satupdate.php:7
-#: application/views/lotw_views/index.php:38
+#: application/views/lotw_views/index.php:48
 #: application/views/mode/index.php:43
 #: application/views/oqrs/showrequests.php:97
 #: application/views/oqrs/status_info.php:4
@@ -5214,7 +5178,6 @@ msgstr "ADIF dosyanızdaki POTA Referansı"
 #: application/views/stationsetup/stationsetup.php:35
 #: application/views/timeline/index.php:189
 #: application/views/usermode/index.php:41
-#: application/views/lotw_views/index.php:48
 msgid "Status"
 msgstr "Durum"
 
@@ -10775,13 +10738,11 @@ msgid "The next automatic sync with DCL will happen at: "
 msgstr "DCL ile bir sonraki otomatik eşitleme şu zamanda gerçekleşecek: "
 
 #: application/views/dcl_views/index.php:82
-#: application/views/lotw_views/index.php:166
 #: application/views/lotw_views/index.php:175
 msgid "Manual Sync"
 msgstr "Manuel Senkronizasyon"
 
 #: application/views/dcl_views/index.php:84
-#: application/views/lotw_views/index.php:168
 #: application/views/lotw_views/index.php:177
 msgid "running..."
 msgstr "çalışıyor..."
@@ -11215,7 +11176,6 @@ msgstr "Branch"
 
 #: application/views/debug/index.php:615 application/views/debug/index.php:626
 #: application/views/debug/index.php:636
-#: application/views/lotw_views/index.php:95
 #: application/views/lotw_views/index.php:104
 msgid "n/a"
 msgstr "yok"
@@ -14882,106 +14842,86 @@ msgid "Upload folder is not writable. Please contact your admin."
 msgstr ""
 "Yükleme klasörü yazılabilir değil. Lütfen yöneticinizle iletişime geçin."
 
-#: application/views/lotw_views/index.php:8
 #: application/views/lotw_views/index.php:18
 msgid "LoTW Import"
 msgstr "LoTW İçe Aktarma"
 
-#: application/views/lotw_views/index.php:14
 #: application/views/lotw_views/index.php:24
 msgid "Available Certificates"
 msgstr "Mevcut Sertifikalar"
 
-#: application/views/lotw_views/index.php:14
 #: application/views/lotw_views/index.php:24
 msgid "Upload Certificate"
 msgstr "Sertifika Yükle"
 
-#: application/views/lotw_views/index.php:34
 #: application/views/lotw_views/index.php:44
 msgid "QSO Start Date"
 msgstr "Defterin Başlangıç Tarihi"
 
-#: application/views/lotw_views/index.php:35
 #: application/views/lotw_views/index.php:45
 msgid "QSO End Date"
 msgstr "Defterin Bitiş Tarihi"
 
-#: application/views/lotw_views/index.php:36
 #: application/views/lotw_views/index.php:46
 msgid "Date Created"
 msgstr "Oluşturma Tarihi"
 
-#: application/views/lotw_views/index.php:37
 #: application/views/lotw_views/index.php:47
 msgid "Date Expires"
 msgstr "Geçeriliğini Yitirme Tarihi"
 
-#: application/views/lotw_views/index.php:39
-#: application/views/view_log/qso.php:486
 #: application/views/lotw_views/index.php:49
+#: application/views/view_log/qso.php:486
 msgid "Last Upload"
 msgstr "Son yükleme"
 
-#: application/views/lotw_views/index.php:95
 #: application/views/lotw_views/index.php:104
 msgid "Last change:"
 msgstr "Son değişiklik:"
 
-#: application/views/lotw_views/index.php:95
 #: application/views/lotw_views/index.php:104
 msgid "Serial number:"
 msgstr "Seri numarası:"
 
-#: application/views/lotw_views/index.php:97
 #: application/views/lotw_views/index.php:106
 msgid "Certificate superseded"
 msgstr "Sertifika geçersiz kılındı"
 
-#: application/views/lotw_views/index.php:100
 #: application/views/lotw_views/index.php:109
 msgid "Certificate expired"
 msgstr "Sertifikanın süresi doldu"
 
-#: application/views/lotw_views/index.php:102
 #: application/views/lotw_views/index.php:111
 msgid "Certificate expiring"
 msgstr "Sertifikanın süresi doluyor"
 
-#: application/views/lotw_views/index.php:104
 #: application/views/lotw_views/index.php:113
 msgid "Certificate valid"
 msgstr "Sertifika geçerli"
 
-#: application/views/lotw_views/index.php:109
 #: application/views/lotw_views/index.php:118
 msgid "QSO end date nearing"
 msgstr "QSO bitiş tarihi yaklaşıyor"
 
-#: application/views/lotw_views/index.php:121
 #: application/views/lotw_views/index.php:130
 #, php-format
 msgid "Last success: %s"
 msgstr "Son başarılı: %s"
 
-#: application/views/lotw_views/index.php:124
 #: application/views/lotw_views/index.php:133
 #, php-format
 msgid "Last fail: %s"
 msgstr "Son başarısız: %s"
 
-#: application/views/lotw_views/index.php:130
 #: application/views/lotw_views/index.php:139
 msgid "Not Synced"
 msgstr "Senkronize Edilmedi"
 
-#: application/views/lotw_views/index.php:145
 #: application/views/lotw_views/index.php:154
 msgid "You need to upload some LoTW p12 certificates to use this area."
 msgstr ""
 "Bu alanı kullanmak için bazı LoTW p12 sertifikaları yüklemeniz gerekiyor."
 
-#: application/views/lotw_views/index.php:164
 #: application/views/lotw_views/index.php:173
 msgid "The next automatic sync with LoTW will happen at: "
 msgstr ""
