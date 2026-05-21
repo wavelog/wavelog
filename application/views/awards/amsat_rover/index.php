@@ -225,7 +225,7 @@
 								<tbody>
 									<?php foreach ($activations as $act): ?>
 									<tr>
-										<td><strong><?php echo htmlspecialchars($act['my_grid']); ?></strong></td>
+										<td><a href="javascript:displayRoverGridQsos('<?php echo $act['my_grid']; ?>')"><strong><?php echo htmlspecialchars($act['my_grid']); ?></strong></a></td>
 										<td><?php echo htmlspecialchars($act['mode']); ?></td>
 										<td>
 											<span class="badge bg-<?php
@@ -282,6 +282,7 @@
 
 </div>
 
+<script src="<?php echo base_url(); ?>assets/js/sections/amsat_award.js"></script>
 <script>
 // Bonus points calculation
 function calculateBonus() {
