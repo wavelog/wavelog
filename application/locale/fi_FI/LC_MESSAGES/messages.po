@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-05-20 13:46+0000\n"
+"POT-Creation-Date: 2026-05-21 13:17+0000\n"
 "PO-Revision-Date: 2026-05-05 08:54+0000\n"
 "Last-Translator: \"Juuso W.\" <oh1jw@tuta.io>\n"
 "Language-Team: Finnish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -477,7 +477,7 @@ msgstr "DOK"
 #: application/views/logbookadvanced/statecheckresult.php:11
 #: application/views/logbookadvanced/useroptions.php:175
 #: application/views/lookup/index.php:5
-#: application/views/lotw_views/index.php:33
+#: application/views/lotw_views/index.php:43
 #: application/views/qso/award_tabs.php:29
 #: application/views/qso/edit_ajax.php:219 application/views/qso/index.php:464
 #: application/views/search/result.php:27
@@ -2125,7 +2125,7 @@ msgstr "Operaattori"
 #: application/views/kml/index.php:54
 #: application/views/logbookadvanced/index.php:368
 #: application/views/lookup/index.php:47
-#: application/views/lotw_views/index.php:50
+#: application/views/lotw_views/index.php:59
 #: application/views/qso/components/previous_contacts.php:59
 #: application/views/qso/edit_ajax.php:237 application/views/qso/index.php:473
 #: application/views/station_profile/create.php:87
@@ -2165,7 +2165,8 @@ msgstr "Nopea haku"
 #: application/controllers/Lotw.php:136
 #: application/views/dcl_views/upload_cert.php:3
 #: application/views/interface_assets/header.php:522
-#: application/views/lotw/import.php:3 application/views/lotw_views/index.php:9
+#: application/views/lotw/import.php:3
+#: application/views/lotw_views/index.php:19
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:953 application/views/visitor/index.php:328
 msgid "Logbook of the World"
@@ -2633,7 +2634,7 @@ msgstr "Aikaleima"
 
 #: application/controllers/Radio.php:52
 #: application/views/logbookadvanced/index.php:890
-#: application/views/lotw_views/index.php:40
+#: application/views/lotw_views/index.php:50
 #: application/views/simplefle/index.php:20
 #: application/views/simplefle/index.php:185
 #: application/views/stationsetup/exportmapoptions.php:5
@@ -2699,7 +2700,7 @@ msgstr "Muokkaa"
 #: application/views/interface_assets/footer.php:2700
 #: application/views/labels/index.php:49 application/views/labels/index.php:85
 #: application/views/logbookadvanced/index.php:896
-#: application/views/lotw_views/index.php:134
+#: application/views/lotw_views/index.php:143
 #: application/views/mode/index.php:67
 #: application/views/oqrs/showrequests.php:75
 #: application/views/qslcard/index.php:76
@@ -4462,7 +4463,7 @@ msgstr "Mitään ei löytynyt!"
 #: application/views/logbookadvanced/dbtoolsdialog.php:22
 #: application/views/logbookadvanced/qslcarousel.php:30
 #: application/views/logbookadvanced/showUpdateResult.php:43
-#: application/views/lotw_views/index.php:32
+#: application/views/lotw_views/index.php:42
 #: application/views/oqrs/qsolist.php:6
 #: application/views/oqrs/request_grouped.php:12
 #: application/views/qslcard/confirmationresult.php:15
@@ -5007,7 +5008,7 @@ msgstr ""
 #: application/views/adif/import.php:422
 #: application/views/adif/import_success.php:40
 #: application/views/dcl_views/index.php:76
-#: application/views/lotw_views/index.php:160
+#: application/views/lotw_views/index.php:169
 msgid "Information"
 msgstr "Info"
 
@@ -5175,7 +5176,7 @@ msgstr "POTA REF:t ADIF:ssa"
 #: application/views/adif/pota_success.php:36
 #: application/views/api/index.php:37 application/views/cron/index.php:68
 #: application/views/lotw/satupdate.php:7
-#: application/views/lotw_views/index.php:38
+#: application/views/lotw_views/index.php:48
 #: application/views/mode/index.php:43
 #: application/views/oqrs/showrequests.php:97
 #: application/views/oqrs/status_info.php:4
@@ -10757,12 +10758,12 @@ msgid "The next automatic sync with DCL will happen at: "
 msgstr "Seuraava automaattinen synkronointi DCL:n kanssa tapahtuu: "
 
 #: application/views/dcl_views/index.php:82
-#: application/views/lotw_views/index.php:166
+#: application/views/lotw_views/index.php:175
 msgid "Manual Sync"
 msgstr "Synkronoi yhteydet manuaalisesti"
 
 #: application/views/dcl_views/index.php:84
-#: application/views/lotw_views/index.php:168
+#: application/views/lotw_views/index.php:177
 msgid "running..."
 msgstr "työskentelee..."
 
@@ -11204,7 +11205,7 @@ msgstr "Haara"
 
 #: application/views/debug/index.php:615 application/views/debug/index.php:626
 #: application/views/debug/index.php:636
-#: application/views/lotw_views/index.php:95
+#: application/views/lotw_views/index.php:104
 msgid "n/a"
 msgstr "n/a"
 
@@ -14904,88 +14905,88 @@ msgstr "Näyttönimi"
 msgid "Upload folder is not writable. Please contact your admin."
 msgstr "Lataushakemistoon ei voida kirjoittaa. Ota yhteyttä ylläpitäjään."
 
-#: application/views/lotw_views/index.php:8
+#: application/views/lotw_views/index.php:18
 msgid "LoTW Import"
 msgstr "LoTW Tuonti"
 
-#: application/views/lotw_views/index.php:14
+#: application/views/lotw_views/index.php:24
 msgid "Available Certificates"
 msgstr "Kutsumerkin varmenteet"
 
-#: application/views/lotw_views/index.php:14
+#: application/views/lotw_views/index.php:24
 msgid "Upload Certificate"
 msgstr "Lataa ja tuo kutsumerkin varmenne"
 
-#: application/views/lotw_views/index.php:34
+#: application/views/lotw_views/index.php:44
 msgid "QSO Start Date"
 msgstr "QSO aloituspäivä"
 
-#: application/views/lotw_views/index.php:35
+#: application/views/lotw_views/index.php:45
 msgid "QSO End Date"
 msgstr "QSO lopetuspäivä"
 
-#: application/views/lotw_views/index.php:36
+#: application/views/lotw_views/index.php:46
 msgid "Date Created"
 msgstr "Päivä jolloin luotu"
 
-#: application/views/lotw_views/index.php:37
+#: application/views/lotw_views/index.php:47
 msgid "Date Expires"
 msgstr "Päivä joloin vanhenee"
 
-#: application/views/lotw_views/index.php:39
+#: application/views/lotw_views/index.php:49
 #: application/views/view_log/qso.php:486
 msgid "Last Upload"
 msgstr "Last upload"
 
-#: application/views/lotw_views/index.php:95
+#: application/views/lotw_views/index.php:104
 msgid "Last change:"
 msgstr "Viimeisin muutos:"
 
-#: application/views/lotw_views/index.php:95
+#: application/views/lotw_views/index.php:104
 msgid "Serial number:"
 msgstr "Sarjanumero:"
 
-#: application/views/lotw_views/index.php:97
+#: application/views/lotw_views/index.php:106
 msgid "Certificate superseded"
 msgstr "Varmenne korvattu"
 
-#: application/views/lotw_views/index.php:100
+#: application/views/lotw_views/index.php:109
 msgid "Certificate expired"
 msgstr "Varmenne vanhentunut"
 
-#: application/views/lotw_views/index.php:102
+#: application/views/lotw_views/index.php:111
 msgid "Certificate expiring"
 msgstr "Varmenne vanhentuu pian"
 
-#: application/views/lotw_views/index.php:104
+#: application/views/lotw_views/index.php:113
 msgid "Certificate valid"
 msgstr "Varmenne voimassa"
 
-#: application/views/lotw_views/index.php:109
+#: application/views/lotw_views/index.php:118
 msgid "QSO end date nearing"
 msgstr "QSO:n päättymispäivä lähestyy"
 
-#: application/views/lotw_views/index.php:121
+#: application/views/lotw_views/index.php:130
 #, php-format
 msgid "Last success: %s"
 msgstr "Viimeisin onnistuminen: %s"
 
-#: application/views/lotw_views/index.php:124
+#: application/views/lotw_views/index.php:133
 #, php-format
 msgid "Last fail: %s"
 msgstr "Viimeisin epäonnistuminen: %s"
 
-#: application/views/lotw_views/index.php:130
+#: application/views/lotw_views/index.php:139
 msgid "Not Synced"
 msgstr "Ei synkronoitu"
 
-#: application/views/lotw_views/index.php:145
+#: application/views/lotw_views/index.php:154
 msgid "You need to upload some LoTW p12 certificates to use this area."
 msgstr ""
 "Sinun täytyy ladata ainakin yksi LoTW:n P12 tiedostomuotoinen kutsumerkin "
 "varmenne käyttääksesi tätä toimintoaluetta."
 
-#: application/views/lotw_views/index.php:164
+#: application/views/lotw_views/index.php:173
 msgid "The next automatic sync with LoTW will happen at: "
 msgstr ""
 "Seuraava automaatinen synkronointi LoTW:n kanssa on suunniteltu ajankohtaan: "
