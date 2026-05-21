@@ -9,6 +9,7 @@ function buildQslString() {
 
 function displayRoverGridQsos(grid) {
 	if (modalloading) return;
+	modalloading = true;
 	$.ajax({
 		url: base_url + 'index.php/awards/qso_details_ajax',
 		type: 'post',

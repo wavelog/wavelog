@@ -12,6 +12,23 @@
 
 class Amsat_rover extends CI_Model {
 
+	private ?array $mode_map = null;
+
+	/**
+	 * Pre-load mode→qrgmode mapping from adif_modes table
+	 */
+	private function load_mode_map() {
+		if ($this->mode_map !== null) return;
+		$this->mode_map = [];
+		$query = $this->db->query('SELECT mode, submode, qrgmode FROM adif_modes WHERE active = 1');
+		if ($query) {
+			foreach ($query->result() as $row) {
+				$key = strtoupper($row->mode) . '|' . strtoupper($row->submode ?? '');
+				$this->mode_map[$key] = strtoupper($row->qrgmode);
+			}
+		}
+	}
+
 	/**
 	 * Get active station profile info for the current user
 	 */
@@ -84,7 +101,6 @@ class Amsat_rover extends CI_Model {
 				qso.COL_TIME_ON,
 				qso.COL_CALL,
 				qso.COL_DXCC,
-				qso.COL_STATE,
 				sp.station_gridsquare AS home_grid,
 				sp.station_dxcc AS home_dxcc,
 				sp.station_callsign AS station_callsign
@@ -119,7 +135,7 @@ class Amsat_rover extends CI_Model {
 
 		$qsos = $this->get_satellite_qsos($locations, $filters);
 		$activations = $this->calculate_points(
-			$qsos, $station_info['home_grid'], $station_info['home_dxcc']
+			$qsos, $station_info['home_dxcc']
 		);
 
 		return [
@@ -152,9 +168,9 @@ class Amsat_rover extends CI_Model {
 	/**
 	 * Calculate points from QSO data
 	 *
-	 * Only ONE QSO per station_profile grid per mode category counts.
+	 * Only ONE QSO per grid per mode category per operator DXCC counts.
 	 */
-	function calculate_points($qsos, $home_grid, $home_dxcc) {
+	function calculate_points($qsos, $home_dxcc) {
 		$results = [];
 		$seen = [];
 
@@ -170,13 +186,13 @@ class Amsat_rover extends CI_Model {
 			}
 
 			$cat = $this->get_mode_category($qso->COL_MODE, $qso->COL_SUBMODE);
-			$key = $grid_4 . '_' . $cat;
+			$key = $grid_4 . '_' . $cat . '_' . ($qso->home_dxcc ?? '');
 			if (isset($seen[$key])) {
 				continue;
 			}
 			$seen[$key] = true;
 
-			$points = $this->get_mode_points($qso->COL_MODE, $qso->COL_SUBMODE);
+			$points = match ($cat) { 'FM' => 1, 'Digital' => 3, default => 2 };
 			if (!empty($home_dxcc) && !empty($qso->COL_DXCC) && $qso->COL_DXCC != $home_dxcc) {
 				$points += 1;
 			}
@@ -190,17 +206,13 @@ class Amsat_rover extends CI_Model {
 
 			$results[] = [
 				'my_grid'          => $grid_4,
-				'full_my_grid'     => $qso->home_grid,
 				'call_worked'      => $qso->COL_CALL,
 				'mode'             => strtoupper($qso->COL_MODE ?? ''),
-				'submode'          => strtoupper($qso->COL_SUBMODE ?? ''),
 				'mode_category'    => $cat,
 				'points'           => $points,
 				'confirmation'     => $confirmation,
 				'date'             => $qso->COL_TIME_ON,
 				'satellite'        => $qso->COL_SAT_NAME,
-				'dxcc'             => $qso->COL_DXCC,
-				'state'            => $qso->COL_STATE,
 				'station_callsign' => $qso->station_callsign ?? '',
 			];
 		}
@@ -216,27 +228,14 @@ class Amsat_rover extends CI_Model {
 
 	function get_mode_category($mode, $submode) {
 		$mode = strtoupper($mode ?? '');
+		if ($mode == 'FM') return 'FM';
+
+		$this->load_mode_map();
 		$submode = strtoupper($submode ?? '');
+		$key = $mode . '|' . $submode;
+		$qrgmode = $this->mode_map[$key] ?? $this->mode_map[$mode . '|'] ?? null;
 
-		if ($mode == 'FM') {
-			return 'FM';
-		}
-
-		$digital_modes = ['PSK', 'PKT', 'FSK', 'MFSK', 'GT', 'TOR', 'JT'];
-		$digital_submodes = ['PSK31', 'PSK63', 'FT4', 'FT8', 'JT65', 'JT9', 'QRA64', 'MSK144'];
-		if (in_array($mode, $digital_modes) || in_array($submode, $digital_submodes)) {
-			return 'Digital';
-		}
-
-		return 'Linear';
-	}
-
-	function get_mode_points($mode, $submode) {
-		return match ($this->get_mode_category($mode, $submode)) {
-			'FM'      => 1,
-			'Digital' => 3,
-			default   => 2,
-		};
+		return $qrgmode == 'DATA' ? 'Digital' : 'Linear';
 	}
 
 	function get_summary($activations) {

@@ -223,9 +223,18 @@
 									</tr>
 								</thead>
 								<tbody>
-									<?php foreach ($activations as $act): ?>
+									<?php foreach ($activations as $act):
+										$qso_date = date('Y-m-d', strtotime($act['date']));
+										$lotw_url = 'https://lotw.arrl.org/lotwuser/qsos?qso_query=1'
+											. '&qso_callsign=' . urlencode($act['call_worked'])
+											. '&qso_owncall=' . urlencode($act['station_callsign'])
+											. '&qso_startdate=' . urlencode($qso_date) . '&qso_starttime='
+											. '&qso_enddate=' . urlencode($qso_date) . '&qso_endtime='
+											. '&qso_mode=' . urlencode($act['mode'])
+											. '&qso_band=&qso_dxcc=&qso_sort=QSO+Date';
+									?>
 									<tr>
-										<td><a href="javascript:displayRoverGridQsos('<?php echo $act['my_grid']; ?>')"><strong><?php echo htmlspecialchars($act['my_grid']); ?></strong></a></td>
+										<td><a href="javascript:displayRoverGridQsos('<?php echo addslashes($act['my_grid']); ?>')"><strong><?php echo htmlspecialchars($act['my_grid']); ?></strong></a></td>
 										<td><?php echo htmlspecialchars($act['mode']); ?></td>
 										<td>
 											<span class="badge bg-<?php
@@ -238,8 +247,8 @@
 										<td><?php echo $act['points']; ?> <?php echo __("pts"); ?></td>
 										<td><?php echo htmlspecialchars($act['confirmation']); ?></td>
 										<td><?php echo htmlspecialchars($act['satellite'] ?? 'N/A'); ?></td>
-										<td><?php echo date('Y-m-d H:i', strtotime($act['date'])) . ' UTC'; ?></td>
-										<td><?php echo htmlspecialchars($act['call_worked']); ?></td>
+										<td><?php echo date('Y-m-d H:i', strtotime($act['date'])); ?> UTC</td>
+										<td><a href="<?php echo $lotw_url; ?>" target="_blank"><?php echo htmlspecialchars($act['call_worked']); ?></a></td>
 									</tr>
 									<?php endforeach; ?>
 								</tbody>
@@ -258,6 +267,11 @@
 					<p class="text-muted">
 						<?php echo __("Generate a copy-paste ready application for email submission to AMSAT."); ?>
 					</p>
+					<div class="alert alert-info">
+						<strong><?php echo __("Attaching evidence"); ?>:</strong><br>
+						<?php echo __("To add LoTW confirmation screenshots, click the callsign in the activations table above. Press Submit on the LoTW page and capture a screenshot. Attach the screenshots to your application email."); ?><br>
+						<?php echo __("If you have QSL cards instead, scan them and attach the scans."); ?>
+					</div>
 					<p>
 						<strong><?php echo __("Send to"); ?>:</strong>
 						<a href="mailto:rover@amsat.org">rover@amsat.org</a>
@@ -282,15 +296,15 @@
 
 </div>
 
-<script src="<?php echo base_url(); ?>assets/js/sections/amsat_award.js"></script>
 <script>
 // Bonus points calculation
+const BONUS_MAP = { bonus_social: 5, bonus_photos: 5, bonus_mm: 10, bonus_journal: 15 };
+
 function calculateBonus() {
 	let bonus = 0;
-	if (document.getElementById('bonus_social')?.checked) bonus += 5;
-	if (document.getElementById('bonus_photos')?.checked) bonus += 5;
-	if (document.getElementById('bonus_mm')?.checked) bonus += 10;
-	if (document.getElementById('bonus_journal')?.checked) bonus += 15;
+	for (const [id, pts] of Object.entries(BONUS_MAP)) {
+		if (document.getElementById(id)?.checked) bonus += pts;
+	}
 	return bonus;
 }
 
@@ -345,9 +359,7 @@ function copyToClipboard() {
 		alert('<?php echo __("Please generate the text first."); ?>');
 		return;
 	}
-	textarea.select();
-	document.execCommand('copy');
-	alert('<?php echo __("Copied to clipboard!"); ?>');
+	navigator.clipboard.writeText(textarea.value);
 }
 
 function downloadCsv() {
