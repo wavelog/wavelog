@@ -234,7 +234,7 @@
 											. '&qso_band=&qso_dxcc=&qso_sort=QSO+Date';
 									?>
 									<tr>
-										<td><a href="javascript:displayRoverGridQsos('<?php echo addslashes($act['my_grid']); ?>')"><strong><?php echo htmlspecialchars($act['my_grid']); ?></strong></a></td>
+										<td><a href="javascript:displayRoverGridQsos('<?php echo htmlspecialchars($act['my_grid'], ENT_QUOTES); ?>')"><strong><?php echo htmlspecialchars($act['my_grid']); ?></strong></a></td>
 										<td><?php echo htmlspecialchars($act['mode']); ?></td>
 										<td>
 											<span class="badge bg-<?php
