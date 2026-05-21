@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-05-17 12:36+0000\n"
-"PO-Revision-Date: 2026-03-26 03:04+0000\n"
+"PO-Revision-Date: 2026-05-18 19:18+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/"
 "installer/nl/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.16.2\n"
+"X-Generator: Weblate 5.17.1\n"
 
 #: install/includes/install_config/install_lib.php:123
 msgid "not detected"
@@ -361,6 +361,13 @@ msgid ""
 "an XML subscription for the Call Locator; QRZCALL.EU needs a Data or Extra "
 "subscription on %s. HamQTH does not always provide the locator information."
 msgstr ""
+"Deze configuratie is optioneel. De roepnaam opzoekfunctie zal beschikbaar "
+"zijn voor alle gebruikers van deze installatie. Je kunt kiezen tussen "
+"QRZ.com, HamQTH, QRZCQ, QRZ.ru en QRZCALL.EU. Terwijl HamQTH ook zonder "
+"gebruikersnaam en wachtwoord werkt, heb je inloggegevens nodig voor de "
+"andere aanbieders. QRZ.com vereist een XML-abonnement voor de Call Locator; "
+"QRZCALL.EU heeft een Data- of Extra-abonnement nodig op %s. HamQTH geeft "
+"niet altijd de locatorinformatie."
 
 #: install/index.php:415 install/index.php:516 install/index.php:968
 msgid "Username"
@@ -392,20 +399,20 @@ msgid ""
 "Use your callsign as your username for QRZ.com. The XML API does not support "
 "email addresses."
 msgstr ""
-"Gebruik uw call als gebruikersnaam voor QRZ.com. De XML API ondersteund geen "
-"e-mail adres."
+"Gebruik uw roepnaam als gebruikersnaam voor QRZ.com. De XML API ondersteund "
+"geen e-mail adres."
 
 #: install/index.php:442
 msgid "API Token"
-msgstr ""
+msgstr "API-token"
 
 #: install/index.php:452
 msgid "Generate a Personal Access Token at"
-msgstr ""
+msgstr "Genereer een Persoonlijk Toegangstoken bij"
 
 #: install/index.php:454
 msgid "Requires a Data or Extra subscription."
-msgstr ""
+msgstr "Vereist een Data- of Extra-abonnement."
 
 #: install/index.php:457 install/index.php:462
 msgid "Advanced Settings"

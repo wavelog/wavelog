@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-05-21 13:17+0000\n"
-"PO-Revision-Date: 2026-02-21 10:16+0000\n"
+"POT-Creation-Date: 2026-05-09 08:38+0000\n"
+"PO-Revision-Date: 2026-05-12 22:16+0000\n"
 "Last-Translator: David Quental <ct1drb72@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.16\n"
+"X-Generator: Weblate 5.17.1\n"
 
 #: application/config/adif_propmodes.php:7
 msgctxt "Propagation Mode"
@@ -71,7 +71,7 @@ msgstr "Reflexão F2"
 #: application/config/adif_propmodes.php:16
 msgctxt "Propagation Mode"
 msgid "Ground Wave"
-msgstr ""
+msgstr "Onda de Superfície"
 
 #: application/config/adif_propmodes.php:17
 msgctxt "Propagation Mode"
@@ -91,7 +91,7 @@ msgstr "IRLP"
 #: application/config/adif_propmodes.php:20
 msgctxt "Propagation Mode"
 msgid "Line of Sight (includes transmission through obstacles such as walls)"
-msgstr ""
+msgstr "Linha de Visão (inclui transmissão através de obstáculos como paredes)"
 
 #: application/config/adif_propmodes.php:21
 msgctxt "Propagation Mode"
@@ -179,8 +179,7 @@ msgstr "Ducting troposférico"
 #: application/controllers/Mode.php:15 application/controllers/Notes.php:10
 #: application/controllers/Operator.php:13
 #: application/controllers/Options.php:14 application/controllers/Oqrs.php:15
-#: application/controllers/Oqrs.php:174 application/controllers/Oqrs.php:222
-#: application/controllers/Oqrs.php:236 application/controllers/Qrbcalc.php:13
+#: application/controllers/Oqrs.php:174 application/controllers/Qrbcalc.php:13
 #: application/controllers/Qrz.php:199 application/controllers/Qrz.php:286
 #: application/controllers/Qsl.php:12 application/controllers/Qsl.php:13
 #: application/controllers/Qsl.php:49 application/controllers/Qsl.php:57
@@ -231,7 +230,8 @@ msgstr "Ducting troposférico"
 #: application/controllers/Webadif.php:11
 #: application/controllers/Webadif.php:101
 #: application/controllers/Zonechecker.php:17
-#: application/models/Club_model.php:52
+#: application/models/Club_model.php:52 application/controllers/Oqrs.php:222
+#: application/controllers/Oqrs.php:236
 msgid "You're not allowed to do that!"
 msgstr "Não é permitido fazer isso!"
 
@@ -388,7 +388,7 @@ msgstr "A descrição da chave API %s foi actualizada."
 #: application/controllers/Api.php:89 application/controllers/Api.php:124
 #: application/controllers/Qso.php:580
 msgid "Invalid request method"
-msgstr ""
+msgstr "Método de pedido inválido"
 
 #: application/controllers/Api.php:100
 msgid "Invalid API rights"
@@ -404,7 +404,7 @@ msgstr "A chave da API não pôde ser gerada"
 
 #: application/controllers/Api.php:134
 msgid "Invalid API Key"
-msgstr ""
+msgstr "Chave de API inválida"
 
 #: application/controllers/Api.php:143
 #, php-format
@@ -480,13 +480,14 @@ msgstr "DOK"
 #: application/views/logbookadvanced/statecheckresult.php:11
 #: application/views/logbookadvanced/useroptions.php:175
 #: application/views/lookup/index.php:5
-#: application/views/lotw_views/index.php:43
+#: application/views/lotw_views/index.php:33
 #: application/views/qso/award_tabs.php:29
 #: application/views/qso/edit_ajax.php:219 application/views/qso/index.php:464
 #: application/views/search/result.php:27
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/stationsetup/linkedlocations.php:33
 #: application/views/timeplotter/index.php:17
+#: application/views/lotw_views/index.php:43
 msgid "DXCC"
 msgstr "DXCC"
 
@@ -527,7 +528,7 @@ msgstr "Ver log"
 
 #: application/controllers/Awards.php:569
 msgid "and"
-msgstr ""
+msgstr "e"
 
 #: application/controllers/Awards.php:570
 #: application/views/awards/cq/index.php:135
@@ -543,7 +544,7 @@ msgstr "Todas as bandas (exceto SAT)"
 
 #: application/controllers/Awards.php:570
 msgid "band"
-msgstr ""
+msgstr "banda"
 
 #: application/controllers/Awards.php:573
 msgid " and satellite "
@@ -725,7 +726,7 @@ msgstr "WAP"
 #: application/controllers/Awards.php:1489
 #: application/views/interface_assets/header.php:254
 msgid "WAIP"
-msgstr ""
+msgstr "WAIP"
 
 #: application/controllers/Awards.php:2196
 #: application/views/awards/itu/index.php:34
@@ -831,7 +832,7 @@ msgstr "Chamada de quem testa"
 #: application/controllers/Calltester.php:240
 #: application/controllers/Calltester.php:300
 msgid "CSV Call Tester"
-msgstr ""
+msgstr "Teste de chamada CSV"
 
 #: application/controllers/Calltester.php:917
 msgid "Callsign Tester"
@@ -895,7 +896,7 @@ msgstr "Tipo de mensagem inválido."
 
 #: application/controllers/Club.php:231
 msgid "Email can't be initialized. Check the email settings."
-msgstr ""
+msgstr "Não é possível inicializar o email. Verifique as definições de email."
 
 #: application/controllers/Club.php:238 application/views/api/index.php:68
 #: application/views/satellite/index.php:94
@@ -1146,6 +1147,9 @@ msgid ""
 "seems right you can delete the folders 'assets/qslcard' and 'images/"
 "eqsl_card_images'."
 msgstr ""
+"A migração de ficheiros foi bem sucedida, mas também verifique manualmente. "
+"Se tudo parecer correto, pode apagar as pastas 'assets/qslcard' e 'images/"
+"eqsl_card_images'."
 
 #: application/controllers/Debug.php:320
 msgid "File Migration failed. Please check the Error Log."
@@ -1307,19 +1311,19 @@ msgstr "Hamsat - Satélite Roving"
 
 #: application/controllers/Header_auth.php:22
 msgid "SSO Authentication is disabled."
-msgstr ""
+msgstr "Autenticação SSO está desativada."
 
 #: application/controllers/Header_auth.php:36
 msgid "SSO Authentication is disabled. Check your configuration."
-msgstr ""
+msgstr "A autenticação SSO está desativada. Verifique a sua configuração."
 
 #: application/controllers/Header_auth.php:89
 msgid "Sorry. This instance is currently in maintenance mode."
-msgstr ""
+msgstr "Desculpe. Esta instância está atualmente em modo de manutenção."
 
 #: application/controllers/Header_auth.php:96
 msgid "User not found."
-msgstr ""
+msgstr "Utilizador não encontrado."
 
 #: application/controllers/Header_auth.php:111
 #: application/controllers/User.php:1342
@@ -1334,15 +1338,17 @@ msgid ""
 "Sorry. This instance is currently in maintenance mode. Only administrators "
 "are currently allowed to log in."
 msgstr ""
+"Desculpa. Esta instância está atualmente em modo de manutenção. Apenas os "
+"administradores têm permissão para iniciar sessão neste momento."
 
 #: application/controllers/Header_auth.php:356
 #: application/controllers/Header_auth.php:360
 msgid "Something went terribly wrong. Check the error log."
-msgstr ""
+msgstr "Algo correu terrivelmente mal. Verifique o registo de erros."
 
 #: application/controllers/Header_auth.php:436
 msgid "SSO Config Error. Check error log."
-msgstr ""
+msgstr "Erro de Configuração SSO. Verifique o registo de erros."
 
 #: application/controllers/Hrdlog.php:70 application/controllers/Hrdlog.php:71
 msgid "HRD Log upload for this station is disabled."
@@ -2126,7 +2132,7 @@ msgstr "Operador"
 #: application/views/kml/index.php:54
 #: application/views/logbookadvanced/index.php:368
 #: application/views/lookup/index.php:47
-#: application/views/lotw_views/index.php:59
+#: application/views/lotw_views/index.php:50
 #: application/views/qso/components/previous_contacts.php:59
 #: application/views/qso/edit_ajax.php:237 application/views/qso/index.php:473
 #: application/views/station_profile/create.php:87
@@ -2141,6 +2147,7 @@ msgstr "Operador"
 #: application/views/view_log/partial/log_ajax.php:32
 #: application/views/view_log/qso.php:294
 #: application/views/view_log/qso.php:647
+#: application/views/lotw_views/index.php:59
 msgid "Deleted DXCC"
 msgstr "DXCC cancelada"
 
@@ -2166,10 +2173,10 @@ msgstr "Consulta rápida"
 #: application/controllers/Lotw.php:136
 #: application/views/dcl_views/upload_cert.php:3
 #: application/views/interface_assets/header.php:522
-#: application/views/lotw/import.php:3
-#: application/views/lotw_views/index.php:19
+#: application/views/lotw/import.php:3 application/views/lotw_views/index.php:9
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:953 application/views/visitor/index.php:328
+#: application/views/lotw_views/index.php:19
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
@@ -2522,11 +2529,11 @@ msgstr "ID de estação inválido"
 msgid "OQRS Requests"
 msgstr "Pedidos OQRS"
 
-#: application/controllers/Oqrs.php:376
+#: application/controllers/Oqrs.php:370 application/controllers/Oqrs.php:376
 msgid "QSO match deleted successfully."
 msgstr "Correspondência do contacto eliminada com sucesso."
 
-#: application/controllers/Oqrs.php:385
+#: application/controllers/Oqrs.php:379 application/controllers/Oqrs.php:385
 msgid "QSO match added successfully."
 msgstr "Correspondência o contacto adicionada com sucesso."
 
@@ -2635,10 +2642,11 @@ msgstr "Registo de data e hora"
 
 #: application/controllers/Radio.php:52
 #: application/views/logbookadvanced/index.php:890
-#: application/views/lotw_views/index.php:50
+#: application/views/lotw_views/index.php:40
 #: application/views/simplefle/index.php:20
 #: application/views/simplefle/index.php:185
 #: application/views/stationsetup/exportmapoptions.php:5
+#: application/views/lotw_views/index.php:50
 msgid "Options"
 msgstr "Opções"
 
@@ -2701,7 +2709,7 @@ msgstr "Editar"
 #: application/views/interface_assets/footer.php:2700
 #: application/views/labels/index.php:49 application/views/labels/index.php:85
 #: application/views/logbookadvanced/index.php:896
-#: application/views/lotw_views/index.php:143
+#: application/views/lotw_views/index.php:134
 #: application/views/mode/index.php:67
 #: application/views/oqrs/showrequests.php:75
 #: application/views/qslcard/index.php:76
@@ -2714,6 +2722,7 @@ msgstr "Editar"
 #: application/views/stationsetup/stationsetup.php:201
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:738
+#: application/views/lotw_views/index.php:143
 msgid "Delete"
 msgstr "Apagar"
 
@@ -2878,7 +2887,7 @@ msgstr "Criar localização da estação"
 #: application/controllers/Station.php:100 application/controllers/User.php:274
 #: application/controllers/User.php:989 application/controllers/User.php:1164
 msgid "Invalid security token"
-msgstr ""
+msgstr "Token de segurança inválido"
 
 #: application/controllers/Station.php:89
 msgid "Edit Station Location: "
@@ -2912,7 +2921,7 @@ msgstr "Localização da estação duplicada:"
 #: application/controllers/User.php:1419 application/controllers/User.php:1676
 #, php-format
 msgid "Please check value for grid locator (%s)"
-msgstr "Por favor, verifique o valor do QTH locator (%s)"
+msgstr "Por favor, verifique o valor do locator (%s)"
 
 #: application/controllers/Stationsetup.php:61
 #: application/views/interface_assets/header.php:447
@@ -3167,15 +3176,15 @@ msgstr "A actualizar..."
 
 #: application/controllers/Update.php:329
 msgid "Dxcc Entities:"
-msgstr "Entidades DXCC:"
+msgstr "Entidades Dxcc:"
 
 #: application/controllers/Update.php:330
 msgid "Dxcc Exceptions:"
-msgstr "Excepções do DXCC:"
+msgstr "Excepções do Dxcc:"
 
 #: application/controllers/Update.php:331
 msgid "Dxcc Prefixes:"
-msgstr "Prefixos DXCC:"
+msgstr "Prefixos Dxcc:"
 
 #: application/controllers/Update.php:362
 msgid "SCP Update complete. Result: "
@@ -3313,6 +3322,7 @@ msgstr "Utilizadores"
 #: application/controllers/User.php:470
 msgid "Can't be changed. Manage this through your Identity Provider."
 msgstr ""
+"Não pode ser alterado. Gestione isso através do seu Fornecedor de Identidade."
 
 #: application/controllers/User.php:473
 #: application/views/club/permissions.php:292
@@ -3430,7 +3440,7 @@ msgstr "Zona ITU da Estação"
 #: application/controllers/User.php:1406
 #: application/views/user/modals/first_login_wizard.php:93
 msgid "Station Locator"
-msgstr "QTH Locator da Estação"
+msgstr "Locator da Estação"
 
 #: application/controllers/User.php:1427
 #, php-format
@@ -3617,28 +3627,33 @@ msgstr "Vários utilizadores encontrados pelo slug"
 msgid "Gridsquare Zone finder"
 msgstr "Localizador de Quadrícula"
 
-#: application/libraries/Callbook.php:70
+#: application/libraries/Callbook.php:60 application/libraries/Callbook.php:70
 msgid "Lookup not configured. Please review configuration."
 msgstr "Consulta não configurada. Por favor, reveja a configuração."
 
-#: application/libraries/Callbook.php:71
+#: application/libraries/Callbook.php:61 application/libraries/Callbook.php:71
 #, php-format
 msgid "Error obtaining a session key for callbook. Error: %s"
 msgstr "Erro ao obter uma chave de sessão para o callbook. Erro: %s"
 
+#: application/libraries/Callbook.php:200
 #: application/libraries/Callbook.php:213
 msgid "QRZCQ Error"
 msgstr "Erro QRZCQ"
 
+#: application/libraries/Cbr_parser.php:111
+#: application/libraries/Cbr_parser.php:160
 #: application/libraries/Cbr_parser.php:116
 #: application/libraries/Cbr_parser.php:165
 msgid "Broken CBR file - no valid exchange or callsigns found"
 msgstr "Arquivo CBR danificado - sem troca válida ou indicativos encontrados"
 
+#: application/libraries/Cbr_parser.php:137
 #: application/libraries/Cbr_parser.php:142
 msgid "Broken CBR file - no QSO data found."
 msgstr "Ficheiro CBR corrompido - nenhum dado QSO encontrado."
 
+#: application/libraries/Cbr_parser.php:147
 #: application/libraries/Cbr_parser.php:152
 msgid "Broken CBR file - incomplete header found."
 msgstr "Arquivo CBR corrompido - cabeçalho incompleto encontrado."
@@ -3788,32 +3803,40 @@ msgstr ""
 msgid "Station not accessible"
 msgstr "Estação inacessível"
 
+#: application/models/Logbook_model.php:1412
 #: application/models/Logbook_model.php:1415
 msgid "Station ID not allowed"
 msgstr "Identificação da estação não permitida"
 
+#: application/models/Logbook_model.php:1417
 #: application/models/Logbook_model.php:1420
 msgid "No Call given"
 msgstr "Nenhum indicativo fornecido"
 
+#: application/models/Logbook_model.php:1487
+#: application/models/Logbook_model.php:1691
 #: application/models/Logbook_model.php:1490
 #: application/models/Logbook_model.php:1694
 msgid "DXCC has to be Numeric"
 msgstr "DXCC tem de ser numérico"
 
-#: application/models/Logbook_model.php:4917
+#: application/models/Logbook_model.php:4914
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
+"Indicativo de estação errado %s ao importar QSO com %s para %s: IGNORADO"
 
-#: application/models/Logbook_model.php:4925
+#: application/models/Logbook_model.php:4922
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
 "SKIPPED"
 msgstr ""
+"Locator divergente %s ao importar QSO com %s para o localizador da estação "
+"%s: IGNORADO"
 
+#: application/models/Logbook_model.php:4938
 #: application/models/Logbook_model.php:4941
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
@@ -3822,10 +3845,12 @@ msgstr ""
 "Tentaste importar um QSO sem data válida. Este QSO não foi importado. É "
 "inválido"
 
+#: application/models/Logbook_model.php:4948
 #: application/models/Logbook_model.php:4951
 msgid "QSO on"
 msgstr "Contacto em"
 
+#: application/models/Logbook_model.php:4948
 #: application/models/Logbook_model.php:4951
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
@@ -3834,6 +3859,7 @@ msgstr ""
 "Tentou importar um contacto sem nenhum CALL dado. Este contacto não foi "
 "importado. É inválido"
 
+#: application/models/Logbook_model.php:4998
 #: application/models/Logbook_model.php:5001
 #, php-format
 msgid ""
@@ -3843,63 +3869,77 @@ msgstr ""
 "QSO em %s: Você tentou importar um QSO sem banda alguma. Este QSO não foi "
 "importado. É inválido"
 
+#: application/models/Logbook_model.php:5272
 #: application/models/Logbook_model.php:5275
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "o qslrdate está inválido (AAAAMMDD)"
 
+#: application/models/Logbook_model.php:5283
 #: application/models/Logbook_model.php:5286
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "o qslsdate está inválido (AAAAMMDD)"
 
+#: application/models/Logbook_model.php:5344
 #: application/models/Logbook_model.php:5347
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "o clublog_qso_upload_date está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:5720
+#: application/models/Logbook_model.php:5717
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:5720
 msgid "Duplicate for"
 msgstr "Duplicado para"
 
+#: application/models/Logbook_model.php:5784
+#: application/models/Logbook_model.php:5884
 #: application/models/Logbook_model.php:5787
 #: application/models/Logbook_model.php:5887
 msgid "QSO could not be matched"
 msgstr "Não há correspondência de contactos"
 
+#: application/models/Logbook_model.php:5792
 #: application/models/Logbook_model.php:5795
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmado por LoTW/Clublog/eQSL/Contest"
 
+#: application/models/Logbook_model.php:5798
 #: application/models/Logbook_model.php:5801
 msgid "confirmed by award manager"
 msgstr "confirmado pelo gestor do diploma"
 
+#: application/models/Logbook_model.php:5802
 #: application/models/Logbook_model.php:5805
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmado pelo controlo cruzado dos dados da DCL"
 
+#: application/models/Logbook_model.php:5806
 #: application/models/Logbook_model.php:5809
 msgid "confirmation pending"
 msgstr "confirmação pendente"
 
+#: application/models/Logbook_model.php:5809
 #: application/models/Logbook_model.php:5812
 msgid "unconfirmed"
 msgstr "não confirmado"
 
-#: application/models/Logbook_model.php:5815
+#: application/models/Logbook_model.php:5812
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
+#: application/models/Logbook_model.php:5815
 msgid "unknown"
 msgstr "desconhecido"
 
+#: application/models/Logbook_model.php:5887
 #: application/models/Logbook_model.php:5890
 msgid "POTA reference already in log"
 msgstr "Referência POTA já no log"
 
+#: application/models/Logbook_model.php:5890
 #: application/models/Logbook_model.php:5893
 msgid "QSO updated"
 msgstr "QSO atualizado"
 
-#: application/models/Logbook_model.php:6290
+#: application/models/Logbook_model.php:6287
 #: application/views/activated_gridmap/index.php:114
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:58
@@ -3910,6 +3950,7 @@ msgstr "QSO atualizado"
 #: application/views/user/edit.php:329 application/views/user/edit.php:352
 #: application/views/user/edit.php:375 application/views/user/edit.php:400
 #: application/views/view_log/partial/log_ajax.php:21
+#: application/models/Logbook_model.php:6290
 msgid "Bearing"
 msgstr "Direção"
 
@@ -3924,6 +3965,7 @@ msgid ""
 "Invalid primary QSO ID, or you do not have permission to access one of the "
 "QSOs"
 msgstr ""
+"ID de QSO primário inválido, ou não tem permissão para aceder a um dos QSOs"
 
 #: application/models/Logbookadvanced_model.php:2468
 #: application/views/view_log/qso.php:887
@@ -3933,10 +3975,11 @@ msgstr "QSO não encontrado"
 #: application/models/Logbookadvanced_model.php:2554
 msgid "No fields selected for merge or no differences between QSOs"
 msgstr ""
+"Nenhuns campos selecionados para fundir ou nenhuma diferença entre QSOs"
 
 #: application/models/Logbookadvanced_model.php:2567
 msgid "QSOs merged successfully"
-msgstr ""
+msgstr "QSOs fundidos com sucesso"
 
 #: application/models/Note.php:7
 msgid "Contacts"
@@ -4473,7 +4516,7 @@ msgstr "Nada encontrado!"
 #: application/views/logbookadvanced/dbtoolsdialog.php:22
 #: application/views/logbookadvanced/qslcarousel.php:30
 #: application/views/logbookadvanced/showUpdateResult.php:43
-#: application/views/lotw_views/index.php:42
+#: application/views/lotw_views/index.php:32
 #: application/views/oqrs/qsolist.php:6
 #: application/views/oqrs/request_grouped.php:12
 #: application/views/qslcard/confirmationresult.php:15
@@ -4497,6 +4540,7 @@ msgstr "Nada encontrado!"
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:625
 #: application/views/visitor/mini.php:183
 #: application/views/zonechecker/result.php:50
+#: application/views/lotw_views/index.php:42
 msgid "Callsign"
 msgstr "Indicativo"
 
@@ -4804,13 +4848,16 @@ msgstr ""
 
 #: application/views/adif/import.php:169
 msgid "Ignore grid check on import"
-msgstr ""
+msgstr "Ignorar a verificação da grelha ao importar"
 
 #: application/views/adif/import.php:171
 msgid ""
 "If selected, Wavelog will try to import QSOs even if the MY_GRIDSQUARE field "
 "in ADIF records does not match the locator of the chosen station-location."
 msgstr ""
+"Se selecionado, o Wavelog tentará importar QSOs mesmo que o campo "
+"MY_GRIDSQUARE nos registos ADIF não corresponda ao localizador da "
+"localização da estação escolhida."
 
 #: application/views/adif/import.php:181
 msgid ""
@@ -5019,6 +5066,7 @@ msgstr ""
 #: application/views/adif/import.php:422
 #: application/views/adif/import_success.php:40
 #: application/views/dcl_views/index.php:76
+#: application/views/lotw_views/index.php:160
 #: application/views/lotw_views/index.php:169
 msgid "Information"
 msgstr "Informação"
@@ -5146,15 +5194,15 @@ msgstr "Verifica %s para dicas sobre erros em ficheiros ADIF."
 
 #: application/views/adif/import_success.php:61
 msgid "Critical Errors - Wrong Call/Location"
-msgstr ""
+msgstr "Erros Críticos - Indicativo/Localização Errada"
 
 #: application/views/adif/import_success.php:70
 msgid "Validation Errors - Invalid Data"
-msgstr ""
+msgstr "Erros de Validação - Dados Inválidos"
 
 #: application/views/adif/import_success.php:79
 msgid "Duplicate QSOs"
-msgstr ""
+msgstr "QSOs duplicados"
 
 #: application/views/adif/import_success.php:87
 msgid "You might have ADIF errors. Please check the following information:"
@@ -5191,7 +5239,7 @@ msgstr "Referência POTA no ADIF"
 #: application/views/adif/pota_success.php:36
 #: application/views/api/index.php:37 application/views/cron/index.php:68
 #: application/views/lotw/satupdate.php:7
-#: application/views/lotw_views/index.php:48
+#: application/views/lotw_views/index.php:38
 #: application/views/mode/index.php:43
 #: application/views/oqrs/showrequests.php:97
 #: application/views/oqrs/status_info.php:4
@@ -5199,6 +5247,7 @@ msgstr "Referência POTA no ADIF"
 #: application/views/stationsetup/stationsetup.php:35
 #: application/views/timeline/index.php:189
 #: application/views/usermode/index.php:41
+#: application/views/lotw_views/index.php:48
 msgid "Status"
 msgstr "Estado"
 
@@ -5984,7 +6033,7 @@ msgstr "Resumo"
 #: application/views/awards/wac/index.php:175
 #: application/views/awards/wae/index.php:240
 msgid "Total (ex SAT)"
-msgstr ""
+msgstr "Total (ex SAT)"
 
 #: application/views/awards/cq/index.php:242
 #: application/views/awards/dok/index.php:179
@@ -6303,7 +6352,7 @@ msgstr "Prefixo"
 
 #: application/views/awards/dxcc/index.php:318
 msgid "Slots"
-msgstr ""
+msgstr "Slots"
 
 #: application/views/awards/dxcc/index.php:380
 msgid "No results found for your search criteria. Please try again."
@@ -6685,7 +6734,7 @@ msgstr ""
 
 #: application/views/awards/jcc/index.php:76
 msgid "Deleted cities"
-msgstr ""
+msgstr "Cidades eliminadas"
 
 #: application/views/awards/jcc/index.php:127
 msgid "Show JCC Map"
@@ -6693,7 +6742,7 @@ msgstr "Mostra o mapa JCC"
 
 #: application/views/awards/jcc/index.php:128
 msgid "Export confirmed QSOs"
-msgstr ""
+msgstr "Exportar QSOs confirmados"
 
 #: application/views/awards/jcc/index.php:138
 #: application/views/public_search/empty.php:2
@@ -7239,6 +7288,7 @@ msgstr "Continente"
 #: application/views/awards/wac/index.php:227
 msgid "No QSOS found matching the criteria for this award!"
 msgstr ""
+"Nenhum QSOs encontrado que corresponda aos critérios para este diploma!"
 
 #: application/views/awards/wae/index.php:18
 msgid "WAE Award"
@@ -7274,7 +7324,7 @@ msgstr "Nome WAE"
 
 #: application/views/awards/waip/index.php:8
 msgid "WAIP Award"
-msgstr ""
+msgstr "Diploma WAIP"
 
 #: application/views/awards/waip/index.php:9
 msgid ""
@@ -7282,6 +7332,9 @@ msgid ""
 "stations operating from Italian provinces. Italy has over 100 provinces, "
 "making this a challenging and prestigious award."
 msgstr ""
+"O diploma WAIP (Worked All Italian Provinces) é atribuído por contactos com "
+"estações que operam a partir de províncias italianas. A Itália tem mais de "
+"100 províncias, tornando este um prémio desafiante e prestigiado."
 
 #: application/views/awards/waip/index.php:10
 msgid ""
@@ -7290,21 +7343,29 @@ msgid ""
 "Requirements: COL_STATE (2-letter province code), COL_DXCC=248 (Italy) or "
 "225 (Sardinia), QSL card confirmation only. No satellite contacts allowed."
 msgstr ""
+"Categorias de prémios: FONIA (SSB/AM/FM/SSTV), CW, DIGI (RTTY/PSK/FT8/etc.) "
+"e bandas individuais. Todas as províncias devem ser confirmadas via cartão "
+"QSL. Requisitos: COL_STATE (código de província de 2 letras), COL_DXCC=248 "
+"(Itália) ou 225 (Sardenha), confirmação apenas por cartão QSL. Não são "
+"permitidos contactos via satélite."
 
 #: application/views/awards/waip/index.php:11
 msgid ""
 "Province codes are 2-letter abbreviations (e.g., RM=Roma, MI=Milano, "
 "NA=Napoli). See Italian provincial award references for complete list."
 msgstr ""
+"Os códigos das províncias são abreviaturas de 2 letras (por exemplo, "
+"RM=Roma, MI=Milano, NA=Napoli). Consulte as referências do prêmio provincial "
+"italiano para a lista completa."
 
 #: application/views/awards/waip/index.php:12
 #, php-format
 msgid "For more information about the WAIP award, visit: %s"
-msgstr ""
+msgstr "Para mais informações sobre o diploma WAIP, visite: %s"
 
 #: application/views/awards/waip/index.php:12
 msgid "WAIP Award Information"
-msgstr ""
+msgstr "Informação sobre o diploma WAIP"
 
 #: application/views/awards/waip/index.php:23
 msgid ""
@@ -7312,19 +7373,22 @@ msgid ""
 "QSL card confirmations are accepted. Green = Confirmed, Orange = Worked but "
 "not confirmed."
 msgstr ""
+"Este diploma rastreia o estado de trabalhado e confirmado para províncias "
+"italianas. Apenas são aceites confirmações por cartão QSL. Verde = "
+"Confirmado, Laranja = Trabalhado mas não confirmado."
 
 #: application/views/awards/waip/index.php:32
 msgid "Award Progress"
-msgstr ""
+msgstr "Progresso de diploma"
 
 #: application/views/awards/waip/index.php:34
 msgid "Progress toward working all Italian provinces:"
-msgstr ""
+msgstr "Progresso em direção a trabalhar todas as províncias italianas:"
 
 #: application/views/awards/waip/index.php:40
 #: application/views/awards/waip/index.php:92
 msgid "By Mode Category"
-msgstr ""
+msgstr "Por Categoria de Modo"
 
 #: application/views/awards/waip/index.php:42
 #: application/views/notes/add.php:47 application/views/notes/edit.php:42
@@ -7335,12 +7399,12 @@ msgstr "Categoria"
 #: application/views/awards/waip/index.php:42
 #: application/views/awards/waip/index.php:64
 msgid "Progress"
-msgstr ""
+msgstr "Progresso"
 
 #: application/views/awards/waip/index.php:62
 #: application/views/awards/waip/index.php:97
 msgid "By Band"
-msgstr ""
+msgstr "Por Banda"
 
 #: application/views/awards/waip/index.php:111
 #: application/views/awards/waip/index.php:169
@@ -7352,6 +7416,8 @@ msgstr "Província"
 #: application/views/awards/waip/index.php:233
 msgid "No QSOs found matching the criteria for the WAIP award!"
 msgstr ""
+"Não foram encontrados QSOs que correspondam aos critérios para o diploma "
+"WAIP!"
 
 #: application/views/awards/waja/index.php:3
 msgctxt "Japan Prefecture"
@@ -7468,7 +7534,7 @@ msgstr "Mostrar Mapa WAP"
 #: application/views/awards/wapc/index.php:3
 msgctxt "China Province"
 msgid "Province"
-msgstr ""
+msgstr "Província"
 
 #: application/views/awards/wapc/index.php:22
 msgid "WAPC - Worked All Provinces of China"
@@ -7507,7 +7573,7 @@ msgstr ""
 
 #: application/views/awards/wapc/index.php:122
 msgid "Show WAPC Map"
-msgstr ""
+msgstr "Mostrar mapa WAPC"
 
 #: application/views/awards/was/index.php:3
 msgctxt "USA State"
@@ -7567,8 +7633,8 @@ msgid ""
 "and STATE (Must contain a valid U.S. state abbreviation!)"
 msgstr ""
 "Campos considerados para este diploma: DXCC (Deve ser um dos E.U.A., Alasca "
-"ou Havai) e ESTADO (Deve conter uma abreviatura válida de um estado dos E.U."
-"A.!)"
+"ou Havai) e ESTADO (Deve conter uma abreviatura válida de um estado dos "
+"E.U.A.!)"
 
 #: application/views/awards/was/index.php:120
 msgid "Show WAS Map"
@@ -8630,7 +8696,7 @@ msgstr "Grupo de bandas"
 
 #: application/views/bands/create.php:31 application/views/bands/edit.php:14
 msgid "Name of bandgroup (E.g. hf, vhf, uhf, shf)"
-msgstr "Nome do grupo de bandas (Ex.: HF, VHF, UHF, SHF)"
+msgstr "Nome do grupo de bandas (Ex.: hf, vhf, uhf, shf)"
 
 #: application/views/bands/create.php:34 application/views/bands/edit.php:17
 #: application/views/bands/index.php:66
@@ -9322,6 +9388,13 @@ msgid ""
 "                    There may be users not listed who have permissions for "
 "this club/special callsign."
 msgstr ""
+"Este indicativo de clube/especial é gerido por um fornecedor de identidade/"
+"autenticação única.  \n"
+"                                          Permissões podem ser aumentadas "
+"aqui, mas o acesso pode ser automaticamente removido ou concedido pelo "
+"fornecedor de identidade quando os utilizadores fazem o login.\n"
+"                                          Pode haver utilizadores não "
+"listados que têm permissões para este indicativo de clube/especial."
 
 #: application/views/club/permissions.php:19
 msgid ""
@@ -9329,6 +9402,9 @@ msgid ""
 "provider group, then add the user to the table below with increased "
 "permissions."
 msgstr ""
+"Para conceder permissões acima do acesso ao nível de membro: adicione o "
+"utilizador ao grupo do fornecedor de identidade, depois adicione o "
+"utilizador à tabela abaixo com permissões aumentadas."
 
 #: application/views/club/permissions.php:22
 msgid ""
@@ -10214,7 +10290,7 @@ msgstr ""
 
 #: application/views/cron/index.php:29
 msgid "All times are shown in UTC."
-msgstr ""
+msgstr "Todos os horários são mostrados em UTC."
 
 #: application/views/cron/index.php:33
 msgid ""
@@ -10579,35 +10655,35 @@ msgstr "Dados fornecidos pela HAMqsl."
 
 #: application/views/dashboard/index.php:548
 msgid "K-index: Planetary geomagnetic activity (0-9)"
-msgstr ""
+msgstr "Índice K: Atividade geomagnética planetária (0-9)"
 
 #: application/views/dashboard/index.php:549
 msgid "A-index: Daily geomagnetic activity index"
-msgstr ""
+msgstr "Índice A: Índice diário de atividade geomagnética"
 
 #: application/views/dashboard/index.php:550
 msgid "Solar Flux Index"
-msgstr ""
+msgstr "Índice de Fluxo Solar"
 
 #: application/views/dashboard/index.php:551
 msgid "Solar Wind speed (km/s)"
-msgstr ""
+msgstr "Velocidade do vento solar (km/s)"
 
 #: application/views/dashboard/index.php:552
 msgid "Signal Noise ratio"
-msgstr ""
+msgstr "Relação sinal-ruído"
 
 #: application/views/dashboard/index.php:553
 msgid "X-Ray solar flux level"
-msgstr ""
+msgstr "Nível de fluxo solar de raios-X"
 
 #: application/views/dashboard/index.php:554
 msgid "Sunspot Number"
-msgstr ""
+msgstr "Número de Manchas Solares"
 
 #: application/views/dashboard/index.php:555
 msgid "Aurora activity level (Kp borealis)"
-msgstr ""
+msgstr "Nível de atividade da Aurora (Kp boreal)"
 
 #: application/views/dayswithqso/index.php:3
 msgid "Number of QSOs for this day of the week"
@@ -10778,11 +10854,13 @@ msgid "The next automatic sync with DCL will happen at: "
 msgstr "A próxima sincronização automática com DCL ocorrerá às: "
 
 #: application/views/dcl_views/index.php:82
+#: application/views/lotw_views/index.php:166
 #: application/views/lotw_views/index.php:175
 msgid "Manual Sync"
 msgstr "Sincronização manual"
 
 #: application/views/dcl_views/index.php:84
+#: application/views/lotw_views/index.php:168
 #: application/views/lotw_views/index.php:177
 msgid "running..."
 msgstr "a correr..."
@@ -10917,7 +10995,7 @@ msgstr "Último Lançamento"
 
 #: application/views/debug/index.php:50
 msgid "ADIF Version"
-msgstr ""
+msgstr "Versão ADIF"
 
 #: application/views/debug/index.php:55
 msgid "Language"
@@ -11011,11 +11089,11 @@ msgstr "Versão do MySQL"
 
 #: application/views/debug/index.php:129
 msgid "OpenSSL Version"
-msgstr ""
+msgstr "Versão do OpenSSL"
 
 #: application/views/debug/index.php:130
 msgid "not found"
-msgstr ""
+msgstr "não encontrado"
 
 #: application/views/debug/index.php:133
 msgid "Codeigniter Version"
@@ -11189,6 +11267,10 @@ msgid ""
 "unavailable. Check your file permissions, PHP extensions, and/or your "
 "network connection to the services (if using redis/memcached)."
 msgstr ""
+"O cache está atualmente a usar o adaptador de segurança porque o principal "
+"não está disponível. Verifique as permissões dos teus ficheiros, as "
+"extensões PHP e/ou a sua conexão de rede aos serviços (se estiver a usar "
+"redis/memcached)."
 
 #: application/views/debug/index.php:528
 #, php-format
@@ -11198,6 +11280,10 @@ msgid ""
 "services (if using redis/memcached). You can continue using Wavelog, but no "
 "values will be cached (which is bad)."
 msgstr ""
+"A cache não funciona! Atualmente o sistema está a usar um adaptador %s. "
+"Verifique as suas permissões de ficheiro, extensões PHP e/ou a sua ligação "
+"de rede aos serviços (se estiver a usar redis/memcached). Pode continuar a "
+"usar o Wavelog, mas nenhum valor será armazenado em cache (o que é mau)."
 
 #: application/views/debug/index.php:536
 msgid "Available Adapters"
@@ -11217,6 +11303,7 @@ msgstr "Ramo"
 
 #: application/views/debug/index.php:615 application/views/debug/index.php:626
 #: application/views/debug/index.php:636
+#: application/views/lotw_views/index.php:95
 #: application/views/lotw_views/index.php:104
 msgid "n/a"
 msgstr "n/d"
@@ -11468,7 +11555,7 @@ msgstr "Turco"
 
 #: application/views/debug/index.php:877
 msgid "Ukrainian"
-msgstr ""
+msgstr "Ucraniano"
 
 #: application/views/distancerecords/index.php:4
 msgid "This page lists distance records per satellite based on gridsquares."
@@ -12303,8 +12390,8 @@ msgstr "Formatação de quadrícula"
 msgid ""
 "Enter multiple (4-digit) grids separated with commas. For example: IO77,IO78"
 msgstr ""
-"Digite várias grelhas (4 dígitos) separadas por vírgulas. Por exemplo: IO77,"
-"IO78"
+"Digite várias grelhas (4 dígitos) separadas por vírgulas. Por exemplo: "
+"IO77,IO78"
 
 #: application/views/interface_assets/footer.php:115
 msgid "live"
@@ -12394,6 +12481,8 @@ msgstr ""
 msgid ""
 "Location could not be determined as gridsquare is empty and DXCC is -NONE-"
 msgstr ""
+"A localização não pode ser determinada porque o locator está vazio e o DXCC "
+"é -NONE-"
 
 #: application/views/interface_assets/footer.php:138
 msgid "Working without CAT connection"
@@ -12684,7 +12773,7 @@ msgstr "WAB"
 
 #: application/views/interface_assets/header.php:252
 msgid "Italy"
-msgstr ""
+msgstr "Itália"
 
 #: application/views/interface_assets/header.php:258
 msgid "Japan"
@@ -13092,7 +13181,7 @@ msgstr "Imprimir"
 #: application/views/labels/index.php:4
 #: application/views/logbookadvanced/index.php:82
 msgid "Label Print Options"
-msgstr ""
+msgstr "Opções de Impressão de Etiquetas"
 
 #: application/views/labels/index.php:34
 msgid "Create New Label Type"
@@ -13157,12 +13246,12 @@ msgstr "Ver contactos"
 #: application/views/labels/startatform.php:21
 #: application/views/logbookadvanced/startatform.php:20
 msgid "Include my call?"
-msgstr ""
+msgstr "Incluir o meu indicativo?"
 
 #: application/views/labels/startatform.php:33
 #: application/views/logbookadvanced/startatform.php:32
 msgid "Include OP-Call? (if filled)"
-msgstr ""
+msgstr "Incluir OP-Call? (se preenchido)"
 
 #: application/views/labels/startatform.php:45
 #: application/views/logbookadvanced/startatform.php:44
@@ -13196,7 +13285,7 @@ msgstr "Iniciar a impressão em?"
 #: application/views/labels/startatform.php:112
 #: application/views/logbookadvanced/startatform.php:123
 msgid "Enter the starting position for label printing"
-msgstr ""
+msgstr "Insira a posição inicial para impressão de etiquetas"
 
 #: application/views/logbookadvanced/callbookdialog.php:5
 msgid ""
@@ -13594,7 +13683,7 @@ msgstr "Região"
 
 #: application/views/logbookadvanced/edit.php:35
 msgid "SIG / SIG_INFO"
-msgstr ""
+msgstr "SIG / SIG_INFO"
 
 #: application/views/logbookadvanced/edit.php:39
 msgid "QSL / LoTW / Clublog / eQSL / QRZ / DCL"
@@ -13683,11 +13772,11 @@ msgstr "Banda RX"
 
 #: application/views/logbookadvanced/edit.php:138
 msgid "Frequency TX (Hz)"
-msgstr ""
+msgstr "Frequência TX (Hz)"
 
 #: application/views/logbookadvanced/edit.php:141
 msgid "Frequency RX (Hz)"
-msgstr ""
+msgstr "Frequência RX (Hz)"
 
 #: application/views/logbookadvanced/edit.php:179
 #: application/views/logbookadvanced/edit.php:187
@@ -13861,11 +13950,11 @@ msgstr ""
 #: application/views/logbookadvanced/edit.php:254
 #: application/views/logbookadvanced/edit.php:257
 msgid "clear"
-msgstr ""
+msgstr "limpar"
 
 #: application/views/logbookadvanced/edit.php:255
 msgid "SIG_INFO"
-msgstr ""
+msgstr "SIG_INFO"
 
 #: application/views/logbookadvanced/help.php:2
 msgid "In the text input searches, you can search in the following way:"
@@ -14172,38 +14261,40 @@ msgstr "Quadrícula não coincidente com DXCC"
 
 #: application/views/logbookadvanced/index.php:84
 msgid "You need to select exactly 2 QSOs to merge!"
-msgstr ""
+msgstr "Tem de seleccionar exatamente 2 QSOs para juntar!"
 
 #: application/views/logbookadvanced/index.php:85
 #: application/views/logbookadvanced/index.php:842
 msgid "Merge QSOs"
-msgstr ""
+msgstr "Juntar QSOs"
 
 #: application/views/logbookadvanced/index.php:86
 msgid ""
 "Are you really sure you want to merge these QSOs? This operation CAN\\'T be "
 "undone!"
 msgstr ""
+"Tem a certeza de que deseja mesmo juntar estes QSOs? Esta operação NÃO pode "
+"ser desfeita!"
 
 #: application/views/logbookadvanced/index.php:87
 msgid "Danger"
-msgstr ""
+msgstr "Perigo"
 
 #: application/views/logbookadvanced/index.php:89
 msgid "Yes, Merge QSOs"
-msgstr ""
+msgstr "Sim, juntar QSOs"
 
 #: application/views/logbookadvanced/index.php:90
 msgid "QSOs merged successfully!"
-msgstr ""
+msgstr "QSOs juntados com sucesso!"
 
 #: application/views/logbookadvanced/index.php:91
 msgid "Error merging QSOs"
-msgstr ""
+msgstr "Erro ao juntar QSOs"
 
 #: application/views/logbookadvanced/index.php:92
 msgid "Error loading merge dialog"
-msgstr ""
+msgstr "Erro ao carregar o diálogo da operação de juntar"
 
 #: application/views/logbookadvanced/index.php:343
 msgid "From"
@@ -14247,6 +14338,8 @@ msgid ""
 "Duration in minutes. Search will look for durations greater than or equal to "
 "this value."
 msgstr ""
+"Duração em minutos. A pesquisa procurará por durações maiores ou iguais a "
+"este valor."
 
 #: application/views/logbookadvanced/index.php:535
 msgid "Sort column"
@@ -14620,31 +14713,33 @@ msgstr "Potência da estação"
 
 #: application/views/logbookadvanced/mergedialog.php:8
 msgid "Which QSO should be kept?"
-msgstr ""
+msgstr "Qual QSO deve ser mantido?"
 
 #: application/views/logbookadvanced/mergedialog.php:9
 msgid ""
 "Select which QSO will remain after the merge. The other will be deleted."
-msgstr ""
+msgstr "Selecione que QSO permanecerá após a fusão. O outro será apagado."
 
 #: application/views/logbookadvanced/mergedialog.php:22
 #: application/views/logbookadvanced/mergedialog.php:45
 msgid "Keep this QSO"
-msgstr ""
+msgstr "Mantenha este QSO"
 
 #: application/views/logbookadvanced/mergedialog.php:62
 msgid "Select which fields to keep from each QSO:"
-msgstr ""
+msgstr "Selecione quais campos a manter de cada QSO:"
 
 #: application/views/logbookadvanced/mergedialog.php:63
 msgid ""
 "The selected fields will be merged into the primary QSO. You can select "
 "different fields from each QSO."
 msgstr ""
+"Os campos selecionados serão misturados no QSO principal. Pode selecionar "
+"campos diferentes de cada QSO."
 
 #: application/views/logbookadvanced/mergedialog.php:71
 msgid "Field"
-msgstr ""
+msgstr "Campo"
 
 #: application/views/logbookadvanced/qslcarousel.php:59
 #: application/views/qslcard/qslcarousel.php:25
@@ -14932,87 +15027,107 @@ msgstr "Nome de Exibição"
 msgid "Upload folder is not writable. Please contact your admin."
 msgstr "A pasta upload não pode ser escrita. Contacte o seu administrador."
 
+#: application/views/lotw_views/index.php:8
 #: application/views/lotw_views/index.php:18
 msgid "LoTW Import"
 msgstr "Importação LoTW"
 
+#: application/views/lotw_views/index.php:14
 #: application/views/lotw_views/index.php:24
 msgid "Available Certificates"
 msgstr "Certificados Disponíveis"
 
+#: application/views/lotw_views/index.php:14
 #: application/views/lotw_views/index.php:24
 msgid "Upload Certificate"
 msgstr "Carregar Certificado"
 
+#: application/views/lotw_views/index.php:34
 #: application/views/lotw_views/index.php:44
 msgid "QSO Start Date"
 msgstr "Data de Início do contacto"
 
+#: application/views/lotw_views/index.php:35
 #: application/views/lotw_views/index.php:45
 msgid "QSO End Date"
 msgstr "Data de fim do contacto"
 
+#: application/views/lotw_views/index.php:36
 #: application/views/lotw_views/index.php:46
 msgid "Date Created"
 msgstr "Data de criação"
 
+#: application/views/lotw_views/index.php:37
 #: application/views/lotw_views/index.php:47
 msgid "Date Expires"
 msgstr "Data de expiração"
 
-#: application/views/lotw_views/index.php:49
+#: application/views/lotw_views/index.php:39
 #: application/views/view_log/qso.php:486
+#: application/views/lotw_views/index.php:49
 msgid "Last Upload"
 msgstr "Último envio"
 
+#: application/views/lotw_views/index.php:95
 #: application/views/lotw_views/index.php:104
 msgid "Last change:"
 msgstr "Última mudança:"
 
+#: application/views/lotw_views/index.php:95
 #: application/views/lotw_views/index.php:104
 msgid "Serial number:"
 msgstr "Número de série:"
 
+#: application/views/lotw_views/index.php:97
 #: application/views/lotw_views/index.php:106
 msgid "Certificate superseded"
 msgstr "Certificado substituído"
 
+#: application/views/lotw_views/index.php:100
 #: application/views/lotw_views/index.php:109
 msgid "Certificate expired"
 msgstr "Certificado expirado"
 
+#: application/views/lotw_views/index.php:102
 #: application/views/lotw_views/index.php:111
 msgid "Certificate expiring"
 msgstr "Certificado a expirar"
 
+#: application/views/lotw_views/index.php:104
 #: application/views/lotw_views/index.php:113
 msgid "Certificate valid"
 msgstr "Certificado válido"
 
+#: application/views/lotw_views/index.php:109
 #: application/views/lotw_views/index.php:118
 msgid "QSO end date nearing"
 msgstr "A data de fim do QSO está a aproximar-se"
 
+#: application/views/lotw_views/index.php:121
 #: application/views/lotw_views/index.php:130
 #, php-format
 msgid "Last success: %s"
 msgstr "Último sucesso: %s"
 
+#: application/views/lotw_views/index.php:124
 #: application/views/lotw_views/index.php:133
 #, php-format
 msgid "Last fail: %s"
 msgstr "Última falha: %s"
 
+#: application/views/lotw_views/index.php:130
 #: application/views/lotw_views/index.php:139
 msgid "Not Synced"
 msgstr "Não sincronizado"
 
+#: application/views/lotw_views/index.php:145
 #: application/views/lotw_views/index.php:154
 msgid "You need to upload some LoTW p12 certificates to use this area."
 msgstr ""
 "É necessário carregar um ou mais certificados LoTW \".p12\" para utilizar "
 "esta área."
 
+#: application/views/lotw_views/index.php:164
 #: application/views/lotw_views/index.php:173
 msgid "The next automatic sync with LoTW will happen at: "
 msgstr "A próxima sincronização automática com o LoTW ocorrerá em: "
@@ -15343,8 +15458,8 @@ msgid ""
 "The hostname of the mail server, e.g. 'mail.example.com' (without 'ssl://' "
 "or 'tls://')"
 msgstr ""
-"O nome do anfitrião do servidor de correio, por exemplo, “mail.example."
-"com” (sem 'ssl://' ou 'tls://')"
+"O nome do anfitrião do servidor de correio, por exemplo, “mail.example.com” "
+"(sem 'ssl://' ou 'tls://')"
 
 #: application/views/options/email.php:88
 msgid "SMTP Port"
@@ -16133,7 +16248,7 @@ msgstr "Resumo de exibição para continentes"
 
 #: application/views/qso/award_tabs.php:12
 msgid "Showing summary for gridsquare"
-msgstr "Resumo de exibição para QTH locators"
+msgstr "Resumo de exibição para os locators"
 
 #: application/views/qso/award_tabs.php:13
 msgid "State input needs to be filled to show a summary!"
@@ -16165,8 +16280,7 @@ msgstr "O modo de propagação precisa ser 'SAT' para mostrar um resumo!"
 
 #: application/views/qso/award_tabs.php:20
 msgid "Gridsquare input needs to be filled to show a summary!"
-msgstr ""
-"A entrada do QTH Locator precisa ser preenchida para mostrar um resumo!"
+msgstr "A entrada do locator precisa ser preenchida para mostrar um resumo!"
 
 #: application/views/qso/award_tabs.php:21
 msgid "Summary only shows for the first POTA entered."
@@ -16174,7 +16288,7 @@ msgstr "Apenas o resumo do primeiro POTA inserido é exibido."
 
 #: application/views/qso/award_tabs.php:22
 msgid "Summary only shows for the first gridsquare entered."
-msgstr "Apenas o resumo do primeiro QTH Locator inserido é exibido."
+msgstr "Apenas o resumo do primeiro locator inserido é exibido."
 
 #: application/views/qso/award_tabs.php:23
 msgid "Summary only shows for US states."
@@ -18218,15 +18332,15 @@ msgstr "Não foram encontrados contactos EME."
 
 #: application/views/statistics/qsltable.php:7
 msgid "Absolute"
-msgstr ""
+msgstr "Absoluto"
 
 #: application/views/statistics/qsltable.php:8
 msgid "Percent"
-msgstr ""
+msgstr "Percentagem"
 
 #: application/views/statistics/qsltable.php:49
 msgid "Overall Stats by Mode"
-msgstr ""
+msgstr "Estatísticas Gerais por Modo"
 
 #: application/views/themes/add.php:4 application/views/themes/edit.php:4
 msgid "Theme Name"
@@ -18348,8 +18462,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Crie uma nova pasta em 'assets/css/' e carregue um ficheiro 'bootstrap.min."
-"css' que contém regras de estilo básicas. Utilizamos os temas de %s"
+"Crie uma nova pasta em 'assets/css/' e carregue um ficheiro "
+"'bootstrap.min.css' que contém regras de estilo básicas. Utilizamos os temas "
+"de %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -18434,31 +18549,31 @@ msgstr "Indicativo(s) contactado(s) (máx. 5)"
 
 #: application/views/timeplotter/index.php:81
 msgid "Best Time Window"
-msgstr ""
+msgstr "Melhor janela de tempo"
 
 #: application/views/timeplotter/index.php:90
 msgid "Best Band"
-msgstr ""
+msgstr "Melhor Banda"
 
 #: application/views/timeplotter/index.php:99
 msgid "Best Mode"
-msgstr ""
+msgstr "Melhor Modo"
 
 #: application/views/timeplotter/index.php:108
 msgid "Total QSOs plotted"
-msgstr ""
+msgstr "Total de QSOs traçados"
 
 #: application/views/timeplotter/index.php:120
 msgid "Heatmap"
-msgstr ""
+msgstr "Mapa de calor"
 
 #: application/views/timeplotter/index.php:125
 msgid "Chart"
-msgstr ""
+msgstr "Gráfico"
 
 #: application/views/timeplotter/index.php:136
 msgid "Activity by Time of Day (UTC)"
-msgstr ""
+msgstr "Atividade por Hora do Dia (UTC)"
 
 #: application/views/update/hamsofnote.php:7
 msgid "Name / Description"
@@ -18678,14 +18793,14 @@ msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
-"Mostrar a imagem de perfil do parceiro de contacto do perfil QRZ.com/HamQTH."
-"com na secção de registo de contacto."
+"Mostrar a imagem de perfil do parceiro de contacto do perfil QRZ.com/"
+"HamQTH.com na secção de registo de contacto."
 
 #: application/views/user/edit.php:441
 msgid ""
 "Please set your qrz.com/hamqth.com credentials in the general config file."
 msgstr ""
-"Defina as suas credenciais QRZ.com/HamQTH.com no ficheiro de configuração "
+"Defina as suas credenciais qrz.com/hamqth.com no ficheiro de configuração "
 "geral."
 
 #: application/views/user/edit.php:446
@@ -18889,7 +19004,7 @@ msgstr "Mostrar Campos no separador QSO"
 
 #: application/views/user/edit.php:741
 msgid "Show map at QSO-Window"
-msgstr ""
+msgstr "Mostrar mapa na janela QSO"
 
 #: application/views/user/edit.php:750
 msgid ""
@@ -18972,25 +19087,27 @@ msgstr ""
 
 #: application/views/user/edit.php:837
 msgid "QSL delivery methods offered via OQRS"
-msgstr ""
+msgstr "Métodos de entrega de QSL oferecidos via OQRS"
 
 #: application/views/user/edit.php:839
 msgid "Bureau and Direct"
-msgstr ""
+msgstr "Bureau e Direto"
 
 #: application/views/user/edit.php:840
 msgid "Bureau only"
-msgstr ""
+msgstr "Apenas Bureau"
 
 #: application/views/user/edit.php:841
 msgid "Direct only"
-msgstr ""
+msgstr "Apenas direto"
 
 #: application/views/user/edit.php:843
 msgid ""
 "Restrict which QSL delivery methods requesters can choose on your public "
 "OQRS page."
 msgstr ""
+"Restrinja quais métodos de entrega de QSL os solicitantes podem escolher na "
+"sua página pública de OQRS."
 
 #: application/views/user/edit.php:859
 msgid "Default Values"
@@ -19439,7 +19556,7 @@ msgstr "%sPesquisa%s"
 #: application/views/user/modals/first_login_wizard.php:112
 #: application/views/user/modals/first_login_wizard.php:134
 msgid "Skip and Open Clubstation"
-msgstr ""
+msgstr "Ignorar e Abrir Clubstation"
 
 #: application/views/user/modals/first_login_wizard.php:141
 msgid "Save and Start Logging"
@@ -19795,7 +19912,7 @@ msgstr "Por favor, introduza um indicativo!"
 
 #: application/views/visitor/mini.php:214
 msgid "No QSOs yet"
-msgstr ""
+msgstr "Ainda sem QSOs"
 
 #: application/views/webadif/export.php:22
 msgid ""
