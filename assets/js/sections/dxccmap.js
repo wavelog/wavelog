@@ -300,3 +300,57 @@ function onClick(e) {
         dateFrom.value = '';
         dateTo.value = '';
     }
+
+// Lazy load progress tab content
+let progressLoaded = false;
+
+document.getElementById('progress-tab').addEventListener('shown.bs.tab', function () {
+    if (!progressLoaded) {
+        loadProgressContent();
+    }
+});
+
+function loadProgressContent() {
+    const loadingEl = document.getElementById('progress-loading');
+    const contentEl = document.getElementById('progress-content');
+
+	$.ajax({
+        url: base_url + 'index.php/awards/dxcc_progress',
+        type: 'post',
+        data: {
+            band: $('#band2').val(),
+            mode: $('#mode').val(),
+            worked: +$('#worked').prop('checked'),
+            confirmed: +$('#confirmed').prop('checked'),
+            notworked: +$('#notworked').prop('checked'),
+            qsl: +$('#qsl').prop('checked'),
+            lotw: +$('#lotw').prop('checked'),
+            qrz: +$('#qrz').prop('checked'),
+            eqsl: +$('#eqsl').prop('checked'),
+            includedeleted: +$('#includedeleted').prop('checked'),
+            Africa: +$('#Africa').prop('checked'),
+            Asia: +$('#Asia').prop('checked'),
+            Europe: +$('#Europe').prop('checked'),
+            NorthAmerica: +$('#NorthAmerica').prop('checked'),
+            SouthAmerica: +$('#SouthAmerica').prop('checked'),
+            Oceania: +$('#Oceania').prop('checked'),
+            Antarctica: +$('#Antarctica').prop('checked'),
+            sat: $("#sats").val(),
+            orbit: $("#orbits").val(),
+			dateFrom: $('#dateFrom').val(),
+			dateTo: $('#dateTo').val(),
+        },
+        success: function(data) {
+            if (data.success) {
+            contentEl.innerHTML = data.html;
+            loadingEl.style.display = 'none';
+            progressLoaded = true;
+        } else {
+            loadingEl.innerHTML = '<div class="alert alert-danger">' + (data.message || 'Error loading progress data') + '</div>';
+        }
+        },
+        error: function() {
+
+        },
+    });
+}

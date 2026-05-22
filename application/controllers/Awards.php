@@ -196,13 +196,11 @@ class Awards extends CI_Controller {
 			$data['dxcc_array'] = ($dxcc_result && isset($dxcc_result['matrix'])) ? $dxcc_result['matrix'] : null;
 			$data['dxcc_summary'] = ($dxcc_result && isset($dxcc_result['summary'])) ? $dxcc_result['summary'] : null;
 			$data['dxcc_continent_summary'] = ($dxcc_result && isset($dxcc_result['continent_summary'])) ? $dxcc_result['continent_summary'] : null;
-			$data['dxcc_mode_summary'] = ($dxcc_result && isset($dxcc_result['mode_summary'])) ? $dxcc_result['mode_summary'] : null;
 		} else {
 			$location_list = null;
 			$data['dxcc_array'] = null;
 			$data['dxcc_summary'] = null;
 			$data['dxcc_continent_summary'] = null;
-			$data['dxcc_mode_summary'] = null;
 		}
 
 		// Render Page
@@ -211,6 +209,114 @@ class Awards extends CI_Controller {
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('awards/dxcc/index');
 		$this->load->view('interface_assets/footer');
+	}
+
+	public function dxcc_progress() {
+		try {
+			$this->load->model('dxcc');
+			$this->load->model('bands');
+			$this->load->model('logbooks_model');
+
+			$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+			// Get posted data
+			if($this->input->method() === 'post') {
+				$postdata['qsl'] = ($this->input->post('qsl',true) ?? 0) == 0 ? NULL: 1;
+				$postdata['lotw'] = ($this->input->post('lotw',true) ?? 0) == 0 ? NULL: 1;
+				$postdata['eqsl'] = ($this->input->post('eqsl',true) ?? 0) == 0 ? NULL: 1;
+				$postdata['qrz'] = ($this->input->post('qrz',true) ?? 0) == 0 ? NULL: 1;
+				$postdata['clublog'] = ($this->input->post('clublog',true) ?? 0) == 0 ? NULL: 1;
+				$postdata['worked'] = ($this->input->post('worked',true) ?? 0) == 0 ? NULL: 1;
+				$postdata['confirmed'] = ($this->input->post('confirmed',true) ?? 0)  == 0 ? NULL: 1;
+				$postdata['notworked'] = ($this->input->post('notworked',true) ?? 0)  == 0 ? NULL: 1;
+				$postdata['includedeleted'] = ($this->input->post('includedeleted',true) ?? 0) == 0 ? NULL: 1;
+				$postdata['Africa'] = ($this->input->post('Africa',true) ?? 0) == 0 ? NULL: 1;
+				$postdata['Asia'] = ($this->input->post('Asia',true) ?? 0) == 0 ? NULL: 1;
+				$postdata['Europe'] = ($this->input->post('Europe',true) ?? 0) == 0 ? NULL: 1;
+				$postdata['NorthAmerica'] = ($this->input->post('NorthAmerica',true) ?? 0) == 0 ? NULL: 1;
+				$postdata['SouthAmerica'] = ($this->input->post('SouthAmerica',true) ?? 0) == 0 ? NULL: 1;
+				$postdata['Oceania'] = ($this->input->post('Oceania',true) ?? 0) == 0 ? NULL: 1;
+				$postdata['Antarctica'] = ($this->input->post('Antarctica',true) ?? 0) == 0 ? NULL: 1;
+				$postdata['band'] = $this->security->xss_clean($this->input->post('band'));
+				$postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+				$postdata['sat'] = $this->security->xss_clean($this->input->post('sats'));
+				$postdata['orbit'] = $this->security->xss_clean($this->input->post('orbits'));
+				$postdata['dateFrom'] = $this->security->xss_clean($this->input->post('dateFrom'));
+				$postdata['dateTo'] = $this->security->xss_clean($this->input->post('dateTo'));
+			} else {
+				// Default values
+				$postdata['qsl'] = 1;
+				$postdata['lotw'] = 1;
+				$postdata['eqsl'] = NULL;
+				$postdata['qrz'] = NULL;
+				$postdata['clublog'] = NULL;
+				$postdata['worked'] = 1;
+				$postdata['confirmed'] = 1;
+				$postdata['notworked'] = 1;
+				$postdata['includedeleted'] = NULL;
+				$postdata['Africa'] = 1;
+				$postdata['Asia'] = 1;
+				$postdata['Europe'] = 1;
+				$postdata['NorthAmerica'] = 1;
+				$postdata['SouthAmerica'] = 1;
+				$postdata['Oceania'] = 1;
+				$postdata['Antarctica'] = 1;
+				$postdata['band'] = 'All';
+				$postdata['mode'] = 'All';
+				$postdata['sat'] = 'All';
+				$postdata['orbit'] = 'All';
+				$postdata['dateFrom'] = null;
+				$postdata['dateTo'] = null;
+			}
+
+			// Get bands
+			if ($this->input->post('band') != NULL) {
+				if ($this->input->post('band') == 'All') {
+					$bands = $this->bands->get_worked_bands('dxcc');
+				} else {
+					$bands[] = $this->security->xss_clean($this->input->post('band'));
+				}
+			} else {
+				$bands = $this->bands->get_worked_bands('dxcc');
+			}
+
+			$posted_band = $postdata['band'];
+
+			// Fetch DXCC data
+			if ($logbooks_locations_array) {
+				$location_list = "'".implode("','",$logbooks_locations_array)."'";
+				$dxcclist = $this->dxcc->fetchdxcc($postdata, $location_list);
+				if ($dxcclist && $dxcclist[0]->adif == "0") {
+					unset($dxcclist[0]);
+				}
+				if ($dxcclist && is_array($dxcclist) && count($dxcclist) > 0) {
+					$dxcc_mode_summary = $this->dxcc->mode_progress($dxcclist, $bands, $postdata, $location_list);
+					// $data['dxcc_mode_summary'] = ($dxcc_mode_summary && isset($dxcc_mode_summary['mode_summary'])) ? $dxcc_mode_summary['mode_summary'] : null;
+				} else {
+					$dxcc_mode_summary = null;
+				}
+			} else {
+				$dxcc_mode_summary = null;
+			}
+
+			// Generate HTML
+			$html = '';
+			if ($dxcc_mode_summary) {
+				$data['dxcc_mode_summary'] = $dxcc_mode_summary;
+				$html = $this->load->view('awards/dxcc/progress', $data, true);
+				$this->output
+					->set_content_type('application/json')
+					->set_output(json_encode(['success' => true, 'html' => $html]));
+			} else {
+				$this->output
+					->set_content_type('application/json')
+					->set_output(json_encode(['success' => true, 'html' => '']));
+			}
+		} catch (Exception $e) {
+			$this->output
+				->set_content_type('application/json')
+				->set_output(json_encode(['success' => false, 'message' => $e->getMessage()]));
+		}
 	}
 
 	public function wapc ()	{

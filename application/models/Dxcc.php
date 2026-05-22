@@ -201,21 +201,6 @@ class DXCC extends CI_Model {
 						}
 					}
 
-					// Track by mode (overall - deduplicated)
-					if (isset($dxcc->mode)) {
-						$mode = $dxcc->mode;
-						if (!isset($modeCounters['confirmed'][$mode][$dxcc->dxcc])) {
-							$modeCounters['confirmed'][$mode][$dxcc->dxcc] = true;
-						}
-					}
-
-					// Track by mode and band (for detailed breakdown)
-					if (isset($dxcc->mode)) {
-						$mode = $dxcc->mode;
-						if (isset($modeBandCounters['confirmed'][$dxcc->col_band]) && !isset($modeBandCounters['confirmed'][$dxcc->col_band][$mode][$dxcc->dxcc])) {
-							$modeBandCounters['confirmed'][$dxcc->col_band][$mode][$dxcc->dxcc] = true;
-						}
-					}
 				}
 			} else {
 				if ($postdata['worked'] != NULL) {
@@ -237,21 +222,6 @@ class DXCC extends CI_Model {
 					}
 				}
 
-				// Track by mode (overall - deduplicated)
-				if (isset($dxcc->mode)) {
-					$mode = $dxcc->mode;
-					if (!isset($modeCounters['worked'][$mode][$dxcc->dxcc])) {
-						$modeCounters['worked'][$mode][$dxcc->dxcc] = true;
-					}
-				}
-
-				// Track by mode and band (for detailed breakdown)
-				if (isset($dxcc->mode)) {
-					$mode = $dxcc->mode;
-					if (isset($modeBandCounters['worked'][$dxcc->col_band]) && !isset($modeBandCounters['worked'][$dxcc->col_band][$mode][$dxcc->dxcc])) {
-						$modeBandCounters['worked'][$dxcc->col_band][$mode][$dxcc->dxcc] = true;
-					}
-				}
             }
 		}
 
@@ -348,21 +318,6 @@ class DXCC extends CI_Model {
 						}
 					}
 
-					// Track by mode (overall - deduplicated)
-					if (isset($dxcc->mode)) {
-						$mode = $dxcc->mode;
-						if (!isset($modeCounters['worked'][$mode][$dxccKey])) {
-							$modeCounters['worked'][$mode][$dxccKey] = true;
-						}
-					}
-
-					// Track by mode and band (for detailed breakdown)
-					if (isset($dxcc->mode)) {
-						$mode = $dxcc->mode;
-						if (isset($modeBandCounters['worked'][$dxcc->col_band]) && !isset($modeBandCounters['worked'][$dxcc->col_band][$mode][$dxccKey])) {
-							$modeBandCounters['worked'][$dxcc->col_band][$mode][$dxccKey] = true;
-						}
-					}
 				}
 			}
 		}
@@ -532,68 +487,8 @@ class DXCC extends CI_Model {
 				}
 			}
 
-			// Calculate mode summary data
-			$modeSummary = [];
-
-			// Get accurate mode totals via database query
-			$modeTotals = $this->getModeDxccTotals($location_list, $postdata);
-
-			// Get unique modes from band counters (for per-band breakdown)
-			$allModes = [];
-			if (isset($modeBandCounters['worked']) && is_array($modeBandCounters['worked'])) {
-				foreach ($modeBandCounters['worked'] as $band => $modes) {
-					$allModes = array_merge($allModes, array_keys($modes));
-				}
-			}
-			if (isset($modeBandCounters['confirmed']) && is_array($modeBandCounters['confirmed'])) {
-				foreach ($modeBandCounters['confirmed'] as $band => $modes) {
-					$allModes = array_merge($allModes, array_keys($modes));
-				}
-			}
-			$allModes = array_unique($allModes);
-			sort($allModes);
-
-			foreach ($allModes as $mode) {
-				$modeSummary[$mode] = [
-					'name' => $mode,
-					'total' => $total_dxcc_entities,
-					'worked' => [],
-					'confirmed' => []
-				];
-
-				// Initialize worked/confirmed arrays for each band
-				foreach ($bands as $band) {
-					if (($postdata['band'] != 'SAT') && ($band == 'SAT')) {
-						continue;
-					}
-					$modeSummary[$mode]['worked'][$band] = 0;
-					$modeSummary[$mode]['confirmed'][$band] = 0;
-				}
-
-				// Count worked and confirmed per band (from band-specific counters)
-				if (isset($modeBandCounters['worked']) && is_array($modeBandCounters['worked'])) {
-					foreach ($modeBandCounters['worked'] as $band => $modes) {
-						if (isset($modes[$mode]) && isset($modeSummary[$mode]['worked'][$band])) {
-							$modeSummary[$mode]['worked'][$band] = count($modes[$mode]);
-						}
-					}
-				}
-
-				if (isset($modeBandCounters['confirmed']) && is_array($modeBandCounters['confirmed'])) {
-					foreach ($modeBandCounters['confirmed'] as $band => $modes) {
-						if (isset($modes[$mode]) && isset($modeSummary[$mode]['confirmed'][$band])) {
-							$modeSummary[$mode]['confirmed'][$band] = count($modes[$mode]);
-						}
-					}
-				}
-
-				// Use accurate totals from database query
-				$modeSummary[$mode]['worked']['Total'] = $modeTotals[$mode]['worked'] ?? 0;
-				$modeSummary[$mode]['confirmed']['Total'] = $modeTotals[$mode]['confirmed'] ?? 0;
-			}
-
-			// Return both the matrix data, summary, continent summary, and mode summary
-			return ['matrix' => $dxccMatrix, 'summary' => $summary, 'continent_summary' => $continentSummary, 'mode_summary' => $modeSummary];
+			// Return the matrix data, summary and continent summary
+			return ['matrix' => $dxccMatrix, 'summary' => $summary, 'continent_summary' => $continentSummary];
 		} else {
 			return 0;
 		}
@@ -1248,5 +1143,75 @@ class DXCC extends CI_Model {
         $query = $this->db->query($sql, $params);
 
 		return $query;
+	}
+
+	function mode_progress($dxcclist, $bands, $postdata, $location_list) {
+		// Initialize mode counters
+		$modeCounters = [
+			'worked' => [],
+			'confirmed' => []
+		];
+
+		// Initialize mode per-band counters for detailed breakdown
+		$modeBandCounters = [
+			'worked' => [],
+			'confirmed' => []
+		];
+
+		// Initialize all bands for each mode in mode band counters
+		foreach ($bands as $band) {
+			if (($postdata['band'] != 'SAT') && ($band == 'SAT')) {
+				continue;
+			}
+			foreach (['worked', 'confirmed'] as $status) {
+				$modeBandCounters[$status][$band] = [];
+			}
+		}
+
+		// Calculate mode summary data
+		$modeSummary = [];
+
+		// Get accurate mode totals via database query
+		$modeTotals = $this->getModeDxccTotals($location_list, $postdata);
+
+		// Populate mode counters from modeTotals data
+		foreach ($modeTotals as $mode => $data) {
+			// Populate overall confirmed counter
+			$modeCounters['confirmed'][$mode] = $data['confirmed'];
+
+			// Populate overall worked counter
+			$modeCounters['worked'][$mode] = $data['worked'];
+		}
+
+		// Get unique modes from modeTotals
+		$allModes = array_keys($modeTotals);
+		sort($allModes);
+
+		// Calculate total DXCC entities
+		$total_dxcc_entities = is_array($dxcclist) ? count($dxcclist) : 0;
+
+		foreach ($allModes as $mode) {
+			$modeSummary[$mode] = [
+				'name' => $mode,
+				'total' => $total_dxcc_entities,
+				'worked' => [],
+				'confirmed' => []
+			];
+
+			// Initialize worked/confirmed arrays for each band
+			foreach ($bands as $band) {
+				if (($postdata['band'] != 'SAT') && ($band == 'SAT')) {
+					continue;
+				}
+				$modeSummary[$mode]['worked'][$band] = 0;
+				$modeSummary[$mode]['confirmed'][$band] = 0;
+			}
+
+			// Use accurate totals from database query
+			$modeSummary[$mode]['worked']['Total'] = $modeTotals[$mode]['worked'] ?? 0;
+			$modeSummary[$mode]['confirmed']['Total'] = $modeTotals[$mode]['confirmed'] ?? 0;
+		}
+
+		return $modeSummary;
 	}
 }
