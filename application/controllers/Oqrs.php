@@ -61,8 +61,8 @@ class Oqrs extends CI_Controller {
 			$data['disable_oqrs'] = $this->config->item('disable_oqrs');
 			$data['stations'] = $this->oqrs_model->get_oqrs_stations($data['userid']);
 			$data['page_title'] = __("Log Search & OQRS");
-			$data['global_oqrs_text'] = $this->user_options_model->get_options('oqrs',array('option_name'=>'global_oqrs_text','option_key'=>'text'))->row()->option_value ?? '';
-			$data['groupedSearch'] = $this->user_options_model->get_options('oqrs',array('option_name'=>'oqrs_grouped_search','option_key'=>'boolean'), $data['userid'])->row()->option_value;
+			$data['global_oqrs_text'] = $this->user_options_model->get_options('oqrs',array('option_name'=>'global_oqrs_text','option_key'=>'text'))->row()?->option_value ?? '';
+			$data['groupedSearch'] = $this->user_options_model->get_options('oqrs',array('option_name'=>'oqrs_grouped_search','option_key'=>'boolean'), $data['userid'])->row()?->option_value ?? false;
 		}
 
 		$this->load->view('visitor/layout/header', $data);
@@ -107,7 +107,7 @@ class Oqrs extends CI_Controller {
 		$data['disable_oqrs'] = $this->config->item('disable_oqrs');
 		$data['oqrs_enabled'] = $this->oqrs_model->oqrs_enabled($slug);
 		$data['public_search_enabled'] = $this->publicsearch->public_search_enabled($slug);
-		$data['groupedSearchShowStationName'] = $this->user_options_model->get_options('oqrs',array('option_name'=>'oqrs_grouped_search_show_station_name','option_key'=>'boolean'), $userid)->row()->option_value;
+		$data['groupedSearchShowStationName'] = $this->user_options_model->get_options('oqrs',array('option_name'=>'oqrs_grouped_search_show_station_name','option_key'=>'boolean'), $userid)->row()?->option_value ?? false;
 
 		$data['result'] = $this->oqrs_model->getQueryDataGrouped($this->input->post('callsign', TRUE), $userid);
 		$data['callsign'] = $this->input->post('callsign', TRUE);
@@ -115,7 +115,7 @@ class Oqrs extends CI_Controller {
 		$data['slug'] = $this->input->post('slug', TRUE);
 		$data['oqrs_delivery_method'] = $this->user_options_model
 			->get_options('oqrs', array('option_name' => 'oqrs_delivery_method', 'option_key' => 'setting'), $userid)
-			->row()->option_value ?? 'both';
+			->row()?->option_value ?? 'both';
 
 		if($this->input->post('widget') != 'true') {
 			$this->load->view('oqrs/request_grouped', $data);
@@ -163,7 +163,7 @@ class Oqrs extends CI_Controller {
 		$owner_id = $this->oqrs_model->get_user_id_for_station($station_id);
 		$data['oqrs_delivery_method'] = $this->user_options_model
 			->get_options('oqrs', array('option_name' => 'oqrs_delivery_method', 'option_key' => 'setting'), $owner_id)
-			->row()->option_value ?? 'both';
+			->row()?->option_value ?? 'both';
 
 		$this->load->view('oqrs/request', $data);
 	}
