@@ -239,8 +239,8 @@ class Awards extends CI_Controller {
 				$postdata['Antarctica'] = ($this->input->post('Antarctica',true) ?? 0) == 0 ? NULL: 1;
 				$postdata['band'] = $this->security->xss_clean($this->input->post('band'));
 				$postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
-				$postdata['sat'] = $this->security->xss_clean($this->input->post('sats'));
-				$postdata['orbit'] = $this->security->xss_clean($this->input->post('orbits'));
+				$postdata['sat'] = $this->security->xss_clean($this->input->post('sat'));
+				$postdata['orbit'] = $this->security->xss_clean($this->input->post('orbit'));
 				$postdata['dateFrom'] = $this->security->xss_clean($this->input->post('dateFrom'));
 				$postdata['dateTo'] = $this->security->xss_clean($this->input->post('dateTo'));
 			} else {
@@ -291,7 +291,6 @@ class Awards extends CI_Controller {
 				}
 				if ($dxcclist && is_array($dxcclist) && count($dxcclist) > 0) {
 					$dxcc_mode_summary = $this->dxcc->mode_progress($dxcclist, $bands, $postdata, $location_list);
-					// $data['dxcc_mode_summary'] = ($dxcc_mode_summary && isset($dxcc_mode_summary['mode_summary'])) ? $dxcc_mode_summary['mode_summary'] : null;
 				} else {
 					$dxcc_mode_summary = null;
 				}

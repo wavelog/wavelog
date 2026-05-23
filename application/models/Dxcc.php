@@ -430,7 +430,7 @@ class DXCC extends CI_Model {
 					foreach ($dxccs as $dxcc => $true) {
 						if (!isset($totalWorked[$dxcc])) {
 							$totalWorked[$dxcc] = true;
-							if ($band !== 'SAT') {
+							if ($band !== 'SAT' || $postdata['band'] == 'SAT') {
 								$continentSummary[$code]['worked']['Total'] = ($continentSummary[$code]['worked']['Total'] ?? 0) + 1;
 							}
 						}
@@ -441,7 +441,7 @@ class DXCC extends CI_Model {
 					foreach ($dxccs as $dxcc => $true) {
 						if (!isset($totalConfirmed[$dxcc])) {
 							$totalConfirmed[$dxcc] = true;
-							if ($band !== 'SAT') {
+							if ($band !== 'SAT' || $postdata['band'] == 'SAT') {
 								$continentSummary[$code]['confirmed']['Total'] = ($continentSummary[$code]['confirmed']['Total'] ?? 0) + 1;
 							}
 						}
@@ -462,7 +462,6 @@ class DXCC extends CI_Model {
 	function getDxccData($location_list, $postdata) {
 		$bindings = [];
 		$sql = "SELECT thcv.col_dxcc as dxcc, thcv.col_band,
-			COALESCE(thcv.col_submode, thcv.col_mode) as mode,
 			MAX(case when thcv.col_lotw_qsl_rcvd ='Y' then 1 else 0 end) as lotw,
 			MAX(case when thcv.col_qsl_rcvd = 'Y' then 1 else 0 end) as qsl,
 			MAX(case when thcv.col_eqsl_qsl_rcvd = 'Y' then 1 else 0 end) as eqsl,
@@ -500,7 +499,7 @@ class DXCC extends CI_Model {
 			$sql .= " AND (SELECT end FROM dxcc_entities d WHERE d.adif = thcv.col_dxcc) IS NULL";
 		}
 
-		$sql .= " GROUP BY thcv.col_dxcc, thcv.col_band, COALESCE(thcv.col_submode, thcv.col_mode)";
+		$sql .= " GROUP BY thcv.col_dxcc, thcv.col_band";
 
 		$query = $this->db->query($sql, $bindings);
 		return $query->result();
@@ -594,6 +593,7 @@ class DXCC extends CI_Model {
 			COUNT(DISTINCT thcv.col_dxcc) as worked_count,
 			COUNT(DISTINCT CASE WHEN $confirmedCondition THEN thcv.col_dxcc END) as confirmed_count
 		FROM " . $this->config->item('table_name') . " thcv
+		LEFT JOIN satellite ON thcv.COL_SAT_NAME = satellite.name
 		WHERE station_id IN (" . $location_list . ") AND thcv.col_dxcc > 0";
 
 		// Mode filter
@@ -614,8 +614,15 @@ class DXCC extends CI_Model {
 			$bindings[] = $postdata['dateTo'] . ' 23:59:59';
 		}
 
-		// Satellite filter - exclude SAT if not looking at SAT band
-		if ($postdata['band'] != 'SAT') {
+		// Satellite filter
+		if ($postdata['band'] == 'SAT') {
+			$sql .= " AND thcv.col_prop_mode = 'SAT'";
+			if ($postdata['sat'] != 'All') {
+				$sql .= " AND thcv.col_sat_name = ?";
+				$bindings[] = $postdata['sat'];
+			}
+			$sql .= $this->addOrbitToQuery($postdata, $bindings);
+		} else {
 			$sql .= " AND (thcv.col_prop_mode != 'SAT' OR thcv.col_prop_mode IS NULL)";
 		}
 
@@ -1108,70 +1115,22 @@ class DXCC extends CI_Model {
 	}
 
 	function mode_progress($dxcclist, $bands, $postdata, $location_list) {
-		// Initialize mode counters
-		$modeCounters = [
-			'worked' => [],
-			'confirmed' => []
-		];
-
-		// Initialize mode per-band counters for detailed breakdown
-		$modeBandCounters = [
-			'worked' => [],
-			'confirmed' => []
-		];
-
-		// Initialize all bands for each mode in mode band counters
-		foreach ($bands as $band) {
-			if (($postdata['band'] != 'SAT') && ($band == 'SAT')) {
-				continue;
-			}
-			foreach (['worked', 'confirmed'] as $status) {
-				$modeBandCounters[$status][$band] = [];
-			}
-		}
-
-		// Calculate mode summary data
 		$modeSummary = [];
 
-		// Get accurate mode totals via database query
 		$modeTotals = $this->getModeDxccTotals($location_list, $postdata);
 
-		// Populate mode counters from modeTotals data
-		foreach ($modeTotals as $mode => $data) {
-			// Populate overall confirmed counter
-			$modeCounters['confirmed'][$mode] = $data['confirmed'];
-
-			// Populate overall worked counter
-			$modeCounters['worked'][$mode] = $data['worked'];
-		}
-
-		// Get unique modes from modeTotals
 		$allModes = array_keys($modeTotals);
 		sort($allModes);
 
-		// Calculate total DXCC entities
 		$total_dxcc_entities = is_array($dxcclist) ? count($dxcclist) : 0;
 
 		foreach ($allModes as $mode) {
 			$modeSummary[$mode] = [
 				'name' => $mode,
 				'total' => $total_dxcc_entities,
-				'worked' => [],
-				'confirmed' => []
+				'worked' => ['Total' => $modeTotals[$mode]['worked'] ?? 0],
+				'confirmed' => ['Total' => $modeTotals[$mode]['confirmed'] ?? 0],
 			];
-
-			// Initialize worked/confirmed arrays for each band
-			foreach ($bands as $band) {
-				if (($postdata['band'] != 'SAT') && ($band == 'SAT')) {
-					continue;
-				}
-				$modeSummary[$mode]['worked'][$band] = 0;
-				$modeSummary[$mode]['confirmed'][$band] = 0;
-			}
-
-			// Use accurate totals from database query
-			$modeSummary[$mode]['worked']['Total'] = $modeTotals[$mode]['worked'] ?? 0;
-			$modeSummary[$mode]['confirmed']['Total'] = $modeTotals[$mode]['confirmed'] ?? 0;
 		}
 
 		return $modeSummary;

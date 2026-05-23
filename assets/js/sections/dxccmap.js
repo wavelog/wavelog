@@ -85,7 +85,11 @@ function load_dxcc_map() {
             load_dxcc_map2(data, worked, confirmed, notworked);
         },
         error: function() {
-
+            BootstrapDialog.alert({
+                title: lang_general_word_error,
+                message: 'Error loading DXCC map data',
+                type: BootstrapDialog.TYPE_DANGER,
+            });
         },
     });
 }
@@ -352,7 +356,7 @@ function loadProgressContent() {
         }
         },
         error: function() {
-
+            loadingEl.innerHTML = '<div class="alert alert-danger">Error loading progress data</div>';
         },
     });
 }
