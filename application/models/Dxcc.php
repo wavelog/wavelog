@@ -72,25 +72,10 @@ class DXCC extends CI_Model {
 			}
 		}
 
-		// Initialize mode counters
-		$modeCounters = [
-			'worked' => [],
-			'confirmed' => []
-		];
-
-		// Initialize mode per-band counters for detailed breakdown
-		$modeBandCounters = [
-			'worked' => [],
-			'confirmed' => []
-		];
-
 		// Initialize all bands for each mode in mode band counters
 		foreach ($bands as $band) {
 			if (($postdata['band'] != 'SAT') && ($band == 'SAT')) {
 				continue;
-			}
-			foreach (['worked', 'confirmed'] as $status) {
-				$modeBandCounters[$status][$band] = [];
 			}
 		}
 
@@ -280,22 +265,6 @@ class DXCC extends CI_Model {
 							$continent = $dxccContinentLookup[$dxccKey];
 							if (!isset($continentCounters['confirmed'][$continent][$dxcc->col_band][$dxccKey])) {
 								$continentCounters['confirmed'][$continent][$dxcc->col_band][$dxccKey] = true;
-							}
-						}
-
-						// Track by mode (overall - deduplicated)
-						if (isset($dxcc->mode)) {
-							$mode = $dxcc->mode;
-							if (!isset($modeCounters['confirmed'][$mode][$dxccKey])) {
-								$modeCounters['confirmed'][$mode][$dxccKey] = true;
-							}
-						}
-
-						// Track by mode and band (for detailed breakdown)
-						if (isset($dxcc->mode)) {
-							$mode = $dxcc->mode;
-							if (isset($modeBandCounters['confirmed'][$dxcc->col_band]) && !isset($modeBandCounters['confirmed'][$dxcc->col_band][$mode][$dxccKey])) {
-								$modeBandCounters['confirmed'][$dxcc->col_band][$mode][$dxccKey] = true;
 							}
 						}
 					}
