@@ -14,7 +14,7 @@
 # Fabian Berg <fabian.berg@hb9hil.org>, 2024, 2025, 2026.
 # "Francisco (F4VSE)" <kikosgc@users.noreply.github.com>, 2024.
 # "Stefan (DB4SCW)" <dev@db4scw.de>, 2024, 2025.
-# "Joerg (DJ7NT)" <joerg+kennungen.github@dorgeist.com>, 2024.
+# "Joerg (DJ7NT)" <joerg+kennungen.github@dorgeist.com>, 2024, 2026.
 # Reiner Herrmann <reiner@reiner-h.de>, 2024.
 # Fabian Franz BSc <franz.fabian.94@gmail.com>, 2024, 2025.
 # David Quental <ct1drb72@gmail.com>, 2024.
@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-05-23 10:13+0000\n"
-"PO-Revision-Date: 2026-05-06 06:27+0000\n"
-"Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
+"PO-Revision-Date: 2026-05-23 18:24+0000\n"
+"Last-Translator: \"Joerg (DJ7NT)\" <joerg+kennungen.github@dorgeist.com>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
 "Language: de_DE\n"
@@ -36,7 +36,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.16.2\n"
+"X-Generator: Weblate 5.17.1\n"
 
 #: application/config/adif_propmodes.php:7
 msgctxt "Propagation Mode"
@@ -778,7 +778,7 @@ msgstr "\"Polska\" Diplom"
 
 #: application/controllers/Awards.php:2674
 msgid "Awards - AMSAT Rover"
-msgstr ""
+msgstr "Diplome - AMSAT Rover"
 
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:343
@@ -5523,36 +5523,41 @@ msgstr "Nummer"
 #: application/views/awards/amsat_rover/index.php:12
 #: application/views/awards/amsat_rover/index.php:161
 msgid "APPROVED"
-msgstr ""
+msgstr "ERREICHT"
 
 #: application/views/awards/amsat_rover/index.php:13
 #: application/views/awards/amsat_rover/index.php:161
 msgid "IN PROGRESS"
-msgstr ""
+msgstr "NOCH NICHT KOMPLETT"
 
 #: application/views/awards/amsat_rover/index.php:14
 msgid "Please generate the text first."
-msgstr ""
+msgstr "Bitte generiere zunächst den Text."
 
 #: application/views/awards/amsat_rover/index.php:22
 msgid ""
 "The AMSAT Rover Award is granted to stations who achieve a combined 25 "
 "points using satellite grid activations."
 msgstr ""
+"Das AMSAT Reover Diplom wird an Stationen ausgegeben, die mindestens 25 "
+"Punkte aufgrund von Aktivierungen in verschiedenen Lokatoren nachweisen "
+"können."
 
 #: application/views/awards/amsat_rover/index.php:23
 msgid "Official rules"
-msgstr ""
+msgstr "Offizielle Regeln"
 
 #: application/views/awards/amsat_rover/index.php:30
 msgid ""
 "Please set your home grid square in your station profile to calculate grid "
 "activations correctly."
 msgstr ""
+"Bitte setze deinen Lokator im Stationssetup korrekt, um die Aktivierungen zu "
+"errechnen."
 
 #: application/views/awards/amsat_rover/index.php:31
 msgid "Go to Station Profile"
-msgstr ""
+msgstr "Wechsele zum Stationsprofil"
 
 #: application/views/awards/amsat_rover/index.php:39
 #: application/views/awards/cq/index.php:45
@@ -5569,95 +5574,102 @@ msgstr "Filter"
 #: application/views/awards/amsat_rover/index.php:63
 #: application/views/awards/amsat_rover/index.php:140
 msgid "Bonus Points"
-msgstr ""
+msgstr "Bonuspunkte"
 
 #: application/views/awards/amsat_rover/index.php:72
 msgid "Social Media Promotion (+5)"
-msgstr ""
+msgstr "Socialmedia Posts (+5)"
 
 #: application/views/awards/amsat_rover/index.php:75
 msgid ""
 "Post must be made at least 24 hours before activation and include @amsat "
 "tag. Include link to post in your email."
 msgstr ""
+"Socialmedia-posts müssen mindesten 24h vor der Aktivierung gepostet werden "
+"und @amsat im Text enthalten. Füge den Link zu etwaigen Posts in die Mail an "
+"AMSAT ein."
 
 #: application/views/awards/amsat_rover/index.php:82
 msgid "Photo Posting (+5)"
-msgstr ""
+msgstr "Bildveröffentlichung (+5)"
 
 #: application/views/awards/amsat_rover/index.php:85
 msgid ""
 "Photos posted with @amsat tag. Include link to photo post in your email."
 msgstr ""
+"Veröffentliche Bilder mit @amsat Erwähnung. Füge einen Link zur "
+"Veröffentlichung in die Email ein."
 
 #: application/views/awards/amsat_rover/index.php:92
 msgid "Maritime Mobile (+10)"
-msgstr ""
+msgstr "Maritim Mobil Aktivierung (+10)"
 
 #: application/views/awards/amsat_rover/index.php:95
 msgid "Operation was conducted while maritime mobile (/MM)."
-msgstr ""
+msgstr "Aktivierung hat Maritim-Mobil stattgefunden (/MM)."
 
 #: application/views/awards/amsat_rover/index.php:102
 msgid "AMSAT Journal Article (+15)"
-msgstr ""
+msgstr "Artikel im AMSAT-Journal (+15)"
 
 #: application/views/awards/amsat_rover/index.php:105
 msgid "Published article about your rover operation in the AMSAT Journal."
 msgstr ""
+"Du hast einen Artikel im AMSAT-Journal über Deine Aktivierung veröffentlicht."
 
 #: application/views/awards/amsat_rover/index.php:117
 msgid "Show Results"
-msgstr ""
+msgstr "Zeige Ergebnisse"
 
 #: application/views/awards/amsat_rover/index.php:131
 msgid "Base Points"
-msgstr ""
+msgstr "Basispunkte"
 
 #: application/views/awards/amsat_rover/index.php:133
 #: application/views/awards/amsat_rover/index.php:191
 #: application/views/awards/amsat_rover/index.php:194
 #: application/views/awards/amsat_rover/index.php:197
 msgid "activations"
-msgstr ""
+msgstr "Aktivierungen"
 
 #: application/views/awards/amsat_rover/index.php:148
 msgid "Total Points"
-msgstr ""
+msgstr "Gesamtpunkte"
 
 #: application/views/awards/amsat_rover/index.php:152
 msgid "Target"
-msgstr ""
+msgstr "Ziel"
 
 #: application/views/awards/amsat_rover/index.php:188
 msgid "Activations by Mode"
-msgstr ""
+msgstr "Aktivierungen nach Mode"
 
 #: application/views/awards/amsat_rover/index.php:191
 msgid "FM"
-msgstr ""
+msgstr "FM"
 
 #: application/views/awards/amsat_rover/index.php:191
 #: application/views/awards/amsat_rover/index.php:194
 #: application/views/awards/amsat_rover/index.php:197
 msgid "pt"
-msgstr ""
+msgstr "Pkte"
 
 #: application/views/awards/amsat_rover/index.php:194
 msgid "Linear"
-msgstr ""
+msgstr "Linear"
 
 #: application/views/awards/amsat_rover/index.php:197
 msgid "Digital"
-msgstr ""
+msgstr "Digital"
 
 #: application/views/awards/amsat_rover/index.php:208
 msgid "No confirmed satellite QSOs found matching your filters."
 msgstr ""
+"Es wurde kein bestätigtes SAT-QSO gefunden, dass Deiner Filterung entspricht."
 
 #: application/views/awards/amsat_rover/index.php:216
 msgid "Grid Activations"
-msgstr ""
+msgstr "Lokator-Aktivierungen"
 
 #: application/views/awards/amsat_rover/index.php:221
 #: application/views/satellite/skedtable.php:34
@@ -5673,27 +5685,29 @@ msgstr "Kategorie"
 
 #: application/views/awards/amsat_rover/index.php:224
 msgid "Points"
-msgstr ""
+msgstr "Punkte"
 
 #: application/views/awards/amsat_rover/index.php:227
 msgid "Date / UTC"
-msgstr ""
+msgstr "Datum / Zeit UTC"
 
 #: application/views/awards/amsat_rover/index.php:253
 msgid "pts"
-msgstr ""
+msgstr "pkte"
 
 #: application/views/awards/amsat_rover/index.php:272
 msgid "Export for Application"
-msgstr ""
+msgstr "Exportieren um Antrag einzureichen"
 
 #: application/views/awards/amsat_rover/index.php:274
 msgid "Generate a copy-paste ready application for email submission to AMSAT."
 msgstr ""
+"Generiere einen fertigen email-text den Du für den Antrag zur AMSAT senden "
+"kannst."
 
 #: application/views/awards/amsat_rover/index.php:277
 msgid "Attaching evidence"
-msgstr ""
+msgstr "Füge Beweis hinzu"
 
 #: application/views/awards/amsat_rover/index.php:278
 msgid ""
@@ -5701,26 +5715,32 @@ msgid ""
 "table above. Press Submit on the LoTW page and capture a screenshot. Attach "
 "the screenshots to your application email."
 msgstr ""
+"Um die geforderten Screenshots zur LoTW-Bestätigung zu generieren, clicke "
+"auf das Rufzeichen in der obigen Tabelle. Drücke Submit auf der LoTW-Seite "
+"und mache eine Bildschirmkopie davon. Füge diese für jedes QSO Deiner "
+"Antrags-Mail hinzu."
 
 #: application/views/awards/amsat_rover/index.php:279
 msgid "If you have QSL cards instead, scan them and attach the scans."
 msgstr ""
+"Wenn Du stattdessen QSL-Papierkarten hast, scanne diese ein, und füge sie "
+"der Mail hinzu."
 
 #: application/views/awards/amsat_rover/index.php:282
 msgid "Send to"
-msgstr ""
+msgstr "Senden an"
 
 #: application/views/awards/amsat_rover/index.php:288
 msgid "Generate Text for Email"
-msgstr ""
+msgstr "Geniere Text für Email"
 
 #: application/views/awards/amsat_rover/index.php:291
 msgid "Copy to Clipboard"
-msgstr ""
+msgstr "In Zwischenablage kopieren"
 
 #: application/views/awards/amsat_rover/index.php:294
 msgid "Download CSV"
-msgstr ""
+msgstr "CSV herunterladen"
 
 #: application/views/awards/counties/details.php:4
 #: application/views/awards/details.php:1
@@ -12949,7 +12969,7 @@ msgstr "Worked All Prefixes (WPX)"
 
 #: application/views/interface_assets/header.php:213
 msgid "AMSAT Rover"
-msgstr ""
+msgstr "AMSAT Rover"
 
 #: application/views/interface_assets/header.php:227
 msgid "Canada"
