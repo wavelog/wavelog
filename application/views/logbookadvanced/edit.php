@@ -1,3 +1,7 @@
+<div class="alert alert-info" role="alert">
+	<i class="fas fa-exclamation-circle me-2"></i>
+	<?= __("Not all columns are available for batch editing. If you can't find the column you are looking for, use the regular QSO edit (click the callsign, then click the edit QSO button)."); ?>
+</div>
 <?= __("Please choose the column to be edited:"); ?><br/><br/>
 <form method="post" class="d-flex align-items-center">
 		<select id="editColumn" name="type" class="form-select form-select-sm w-auto me-2">

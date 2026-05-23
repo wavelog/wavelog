@@ -920,7 +920,7 @@ $(document).ready(function () {
 			success: function (html) {
 				BootstrapDialog.show({
 					title: lang_gen_advanced_logbook_help,
-					size: BootstrapDialog.SIZE_NORMAL,
+					size: BootstrapDialog.SIZE_WIDE,
 					cssClass: 'options',
 					nl2br: false,
 					message: html,
