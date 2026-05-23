@@ -104,6 +104,10 @@ class Oqrs extends CI_Controller {
 
 		$slug = $this->input->post('slug', TRUE);
 		$userid = $this->publicsearch->get_userid_for_slug($slug);
+		if ($userid === null) {
+			echo __("Invalid station slug");
+			return;
+		}
 		$data['disable_oqrs'] = $this->config->item('disable_oqrs');
 		$data['oqrs_enabled'] = $this->oqrs_model->oqrs_enabled($slug);
 		$data['public_search_enabled'] = $this->publicsearch->public_search_enabled($slug);
