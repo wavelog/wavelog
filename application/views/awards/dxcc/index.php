@@ -265,138 +265,159 @@
     if ($dxcc_array) {
     	// Progress summary
     	// Calculate total DXCC entities from the actual array (respects include deleted filter)
-    	$total_dxcc_entities = count($dxcc_array);
+		$total_dxcc_entities = count($dxcc_array); ?>
 
-    	echo '<div class="card mb-3">';
-    	echo '<div class="card-header" data-bs-toggle="collapse" data-bs-target="#awardProgressCollapse" style="cursor: pointer;"><h5 class="mb-0"><i class="fas fa-trophy"></i> ' . __("Award Progress") . '</h5></div>';
-    	echo '<div id="awardProgressCollapse" class="collapse show"><div class="card-body">';
-    	echo '<p class="mb-2">' . __("Progress toward working all DXCC entities:") . '</p>';
+		<div class="card mb-3">
+		<div class="card-header" data-bs-toggle="collapse" data-bs-target="#awardProgressCollapse" style="cursor: pointer;"><h5 class="mb-0"><i class="fas fa-trophy"></i> <?= __("Award Progress") ?> </h5></div>
+		<div id="awardProgressCollapse" class="collapse show"><div class="card-body">
+		<p class="mb-2"><?= __("Progress toward working all DXCC entities:") ?> </p>
 
-    	// Progress tabs navigation
-    	echo '<ul class="nav nav-tabs" id="progressTabs" role="tablist">';
-    	echo '<li class="nav-item">';
-    	echo '<button class="nav-link active" id="band-progress-tab" data-bs-toggle="tab" data-bs-target="#band-progress" type="button" role="tab" aria-controls="band-progress" aria-selected="true">' . __("By Band") . '</button>';
-    	echo '</li>';
-    	echo '<li class="nav-item">';
-    	echo '<button class="nav-link" id="continent-progress-tab" data-bs-toggle="tab" data-bs-target="#continent-progress" type="button" role="tab" aria-controls="continent-progress" aria-selected="false">' . __("By Continent") . '</button>';
-    	echo '</li>';
-    	echo '<li class="nav-item">';
-    	echo '<button class="nav-link" id="mode-progress-tab" data-bs-toggle="tab" data-bs-target="#mode-progress" type="button" role="tab" aria-controls="mode-progress" aria-selected="false">' . __("By Mode") . '</button>';
-    	echo '</li>';
-    	echo '</ul>';
+		<ul class="nav nav-tabs" id="progressTabs" role="tablist">
+			<li class="nav-item">
+				<button class="nav-link active" id="band-progress-tab" data-bs-toggle="tab" data-bs-target="#band-progress" type="button" role="tab" aria-controls="band-progress" aria-selected="true"><?= __("By Band") ?></button>
+			</li>
+			<li class="nav-item">
+				<button class="nav-link" id="continent-progress-tab" data-bs-toggle="tab" data-bs-target="#continent-progress" type="button" role="tab" aria-controls="continent-progress" aria-selected="false"><?= __("By Continent") ?></button>
+			</li>
+			<li class="nav-item">
+				<button class="nav-link" id="mode-progress-tab" data-bs-toggle="tab" data-bs-target="#mode-progress" type="button" role="tab" aria-controls="mode-progress" aria-selected="false"><?= __("By Mode") ?></button>
+			</li>
+		</ul>
 
-    	echo '<div class="tab-content mt-3" id="progressTabContent">';
+		<div class="tab-content mt-3" id="progressTabContent">
 
-    	// By Band Progress Tab
-    	echo '<div class="tab-pane fade show active" id="band-progress" role="tabpanel" aria-labelledby="band-progress-tab">';
-    	echo '<table class="table table-sm table-hover table-striped">';
-    	echo '<thead><tr><th>' . __("Band") . '</th><th>' . __("Worked") . '</th><th>' . __("Confirmed") . '</th><th>' . __("Worked Progress") . '</th><th>' . __("Confirmed Progress") . '</th></tr></thead>';
-    	echo '<tbody>';
+		<div class="tab-pane fade show active" id="band-progress" role="tabpanel" aria-labelledby="band-progress-tab">
+		<table class="table table-sm table-hover table-striped">
+			<thead>
+				<tr>
+					<th><?= __("Band") ?></th>
+					<th><?= __("Worked") ?></th>
+					<th><?= __("Confirmed") ?></th>
+					<th><?= __("Worked Progress") ?></th>
+					<th><?= __("Confirmed Progress") ?></th>
+				</tr>
+			</thead>
+		<tbody>
 
-    	foreach ($bands as $band) {
-    		if (($posted_band != 'SAT') && ($band == 'SAT')) {
-    			continue;
-    		}
+		<?php
+		foreach ($bands as $band) {
+			if (($posted_band != 'SAT') && ($band == 'SAT')) {
+				continue;
+			}
 
-    		// Skip if band is not in the posted data
-    		if (!isset($dxcc_summary['worked'][$band])) {
-    			continue;
-    		}
+			// Skip if band is not in the posted data
+			if (!isset($dxcc_summary['worked'][$band])) {
+				continue;
+			}
 
-    		$worked_count = $dxcc_summary['worked'][$band];
-    		$confirmed_count = isset($dxcc_summary['confirmed'][$band]) ? $dxcc_summary['confirmed'][$band] : 0;
+			$worked_count = $dxcc_summary['worked'][$band];
+			$confirmed_count = isset($dxcc_summary['confirmed'][$band]) ? $dxcc_summary['confirmed'][$band] : 0;
 
-    		$worked_percentage = ($worked_count / $total_dxcc_entities) * 100;
-    		$confirmed_percentage = ($confirmed_count / $total_dxcc_entities) * 100;
+			$worked_percentage = ($worked_count / $total_dxcc_entities) * 100;
+			$confirmed_percentage = ($confirmed_count / $total_dxcc_entities) * 100;
 
-    		$worked_progress_class = $worked_percentage == 100 ? 'success' : ($worked_percentage >= 50 ? 'warning' : 'danger');
-    		$confirmed_progress_class = $confirmed_percentage == 100 ? 'success' : ($confirmed_percentage >= 50 ? 'warning' : 'danger');
+			$worked_progress_class = $worked_percentage == 100 ? 'success' : ($worked_percentage >= 50 ? 'warning' : 'danger');
+			$confirmed_progress_class = $confirmed_percentage == 100 ? 'success' : ($confirmed_percentage >= 50 ? 'warning' : 'danger');
+			?>
 
-    		echo '<tr>';
-    		echo '<td><strong>' . $band . '</strong></td>';
-    		echo '<td>' . $worked_count . '/' . $total_dxcc_entities . ' (' . number_format($worked_percentage, 1) . '%)</td>';
-    		echo '<td>' . $confirmed_count . '/' . $total_dxcc_entities . ' (' . number_format($confirmed_percentage, 1) . '%)</td>';
-    		echo '<td><div class="progress" style="height: 20px; position: relative;"><div class="progress-bar bg-' . $worked_progress_class . '" role="progressbar" style="width: ' . number_format($worked_percentage, 2) . '%;">' . number_format($worked_percentage, 1) . '%' . '</div></div></td>';
-    		echo '<td><div class="progress" style="height: 20px; position: relative;"><div class="progress-bar bg-' . $confirmed_progress_class . '" role="progressbar" style="width: ' . number_format($confirmed_percentage, 2) . '%;">' . number_format($confirmed_percentage, 1) . '%' . '</div></div></td>';
-    		echo '</tr>';
-    	}
+			<tr>
+				<td><strong><?= $band ?></strong></td>
+				<td><?= $worked_count . '/' . $total_dxcc_entities . ' (' . number_format($worked_percentage, 1) . '%)' ?></td>
+				<td><?= $confirmed_count . '/' . $total_dxcc_entities . ' (' . number_format($confirmed_percentage, 1) . '%)' ?></td>
+				<td><div class="progress" style="height: 20px; position: relative;"><div class="progress-bar bg-<?= $worked_progress_class ?>" role="progressbar" style="width: <?= number_format($worked_percentage, 2) ?>%;"><?= number_format($worked_percentage, 1) ?>%</div></div></td>
+				<td><div class="progress" style="height: 20px; position: relative;"><div class="progress-bar bg-<?= $confirmed_progress_class ?>" role="progressbar" style="width: <?= number_format($confirmed_percentage, 2) ?>%;"><?= number_format($confirmed_percentage, 1) ?>%</div></div></td>
+			</tr>
+		<?php }
 
-    	// Add total row if applicable
-    	if ($posted_band != 'SAT' && isset($dxcc_summary['worked']['Total'])) {
-    		$worked_count = $dxcc_summary['worked']['Total'];
-    		$confirmed_count = isset($dxcc_summary['confirmed']['Total']) ? $dxcc_summary['confirmed']['Total'] : 0;
+		// Add total row if applicable
+		if ($posted_band != 'SAT' && isset($dxcc_summary['worked']['Total'])) {
+			$worked_count = $dxcc_summary['worked']['Total'];
+			$confirmed_count = isset($dxcc_summary['confirmed']['Total']) ? $dxcc_summary['confirmed']['Total'] : 0;
 
-    		$worked_percentage = ($worked_count / $total_dxcc_entities) * 100;
-    		$confirmed_percentage = ($confirmed_count / $total_dxcc_entities) * 100;
+			$worked_percentage = ($worked_count / $total_dxcc_entities) * 100;
+			$confirmed_percentage = ($confirmed_count / $total_dxcc_entities) * 100;
 
-    		$worked_progress_class = $worked_percentage == 100 ? 'success' : ($worked_percentage >= 50 ? 'warning' : 'danger');
-    		$confirmed_progress_class = $confirmed_percentage == 100 ? 'success' : ($confirmed_percentage >= 50 ? 'warning' : 'danger');
+			$worked_progress_class = $worked_percentage == 100 ? 'success' : ($worked_percentage >= 50 ? 'warning' : 'danger');
+			$confirmed_progress_class = $confirmed_percentage == 100 ? 'success' : ($confirmed_percentage >= 50 ? 'warning' : 'danger');
+			?>
 
-    		echo '<tr>';
-    		echo '<td><strong>' . __("Total (ex SAT)") . '</strong></td>';
-    		echo '<td>' . $worked_count . '/' . $total_dxcc_entities . ' (' . number_format($worked_percentage, 1) . '%)</td>';
-    		echo '<td>' . $confirmed_count . '/' . $total_dxcc_entities . ' (' . number_format($confirmed_percentage, 1) . '%)</td>';
-    		echo '<td><div class="progress" style="height: 20px; position: relative;"><div class="progress-bar bg-' . $worked_progress_class . '" role="progressbar" style="width: ' . number_format($worked_percentage, 2) . '%;">' . number_format($worked_percentage, 1) . '%' . '</div></div></td>';
-    		echo '<td><div class="progress" style="height: 20px; position: relative;"><div class="progress-bar bg-' . $confirmed_progress_class . '" role="progressbar" style="width: ' . number_format($confirmed_percentage, 2) . '%;">' . number_format($confirmed_percentage, 1) . '%' . '</div></div></td>';
-    		echo '</tr>';
-    	}
+			<tr>
+				<td><strong><?= __("Total (ex SAT)") ?></strong></td>
+				<td><?= $worked_count . '/' . $total_dxcc_entities . ' (' . number_format($worked_percentage, 1) . '%)' ?></td>
+				<td><?= $confirmed_count . '/' . $total_dxcc_entities . ' (' . number_format($confirmed_percentage, 1) . '%)' ?></td>
+				<td><div class="progress" style="height: 20px; position: relative;"><div class="progress-bar bg-<?= $worked_progress_class ?>" role="progressbar" style="width: <?= number_format($worked_percentage, 2) ?>%;"><?= number_format($worked_percentage, 1) ?>%</div></div></td>
+				<td><div class="progress" style="height: 20px; position: relative;"><div class="progress-bar bg-<?= $confirmed_progress_class ?>" role="progressbar" style="width: <?= number_format($confirmed_percentage, 2) ?>%;"><?= number_format($confirmed_percentage, 1) ?>%</div></div></td>
+			</tr>
 
-    	echo '</tbody></table>';
-    	echo '</div>'; // End band-progress tab
+		<?php } ?>
 
-    	// By Continent Progress Tab
-    	echo '<div class="tab-pane fade" id="continent-progress" role="tabpanel" aria-labelledby="continent-progress-tab">';
+		</tbody></table>
+		</div>
 
-    	// Add continent progress if available
-    	if (isset($dxcc_continent_summary) && is_array($dxcc_continent_summary)) {
-    		echo '<table class="table table-sm table-hover table-striped">';
-    		echo '<thead><tr><th>' . __("Continent") . '</th><th>' . __("Worked") . '</th><th>' . __("Confirmed") . '</th><th>' . __("Worked Progress") . '</th><th>' . __("Confirmed Progress") . '</th></tr></thead>';
-    		echo '<tbody>';
+		<div class="tab-pane fade" id="continent-progress" role="tabpanel" aria-labelledby="continent-progress-tab">
 
-    		$has_data = false;
-    		foreach ($dxcc_continent_summary as $continent_code => $continent_data) {
-    			// Skip if no total entities for this continent
-    			if (!isset($continent_data['total']) || $continent_data['total'] == 0) {
-    				continue;
-    			}
+		<?php
+		// Add continent progress if available
+		if (isset($dxcc_continent_summary) && is_array($dxcc_continent_summary)) {
+		?>
+			<table class="table table-sm table-hover table-striped">
+				<thead>
+					<tr>
+						<th><?= __("Continent") ?></th>
+						<th><?= __("Worked") ?></th>
+						<th><?= __("Confirmed") ?></th>
+						<th><?= __("Worked Progress") ?></th>
+						<th><?= __("Confirmed Progress") ?></th>
+					</tr>
+				</thead>
+			<tbody>
 
-    			$has_data = true;
+		<?php
+			$has_data = false;
+			foreach ($dxcc_continent_summary as $continent_code => $continent_data) {
+				// Skip if no total entities for this continent
+				if (!isset($continent_data['total']) || $continent_data['total'] == 0) {
+					continue;
+				}
 
-    			// Get totals for all bands combined
-    			$total_worked = isset($continent_data['worked']['Total']) ? $continent_data['worked']['Total'] : 0;
-    			$total_confirmed = isset($continent_data['confirmed']['Total']) ? $continent_data['confirmed']['Total'] : 0;
-    			$continent_total = $continent_data['total'];
+				$has_data = true;
 
-    			$worked_percentage = ($total_worked / $continent_total) * 100;
-    			$confirmed_percentage = ($total_confirmed / $continent_total) * 100;
+				// Get totals for all bands combined
+				$total_worked = isset($continent_data['worked']['Total']) ? $continent_data['worked']['Total'] : 0;
+				$total_confirmed = isset($continent_data['confirmed']['Total']) ? $continent_data['confirmed']['Total'] : 0;
+				$continent_total = $continent_data['total'];
 
-    			$worked_progress_class = $worked_percentage == 100 ? 'success' : ($worked_percentage >= 50 ? 'warning' : 'danger');
-    			$confirmed_progress_class = $confirmed_percentage == 100 ? 'success' : ($confirmed_percentage >= 50 ? 'warning' : 'danger');
+				$worked_percentage = ($total_worked / $continent_total) * 100;
+				$confirmed_percentage = ($total_confirmed / $continent_total) * 100;
 
-    			echo '<tr>';
-    			echo '<td><strong>' . htmlspecialchars($continent_data['name']) . '</strong></td>';
-    			echo '<td>' . $total_worked . '/' . $continent_total . ' (' . number_format($worked_percentage, 1) . '%)</td>';
-    			echo '<td>' . $total_confirmed . '/' . $continent_total . ' (' . number_format($confirmed_percentage, 1) . '%)</td>';
-    			echo '<td><div class="progress" style="height: 20px; position: relative;"><div class="progress-bar bg-' . $worked_progress_class . '" role="progressbar" style="width: ' . number_format($worked_percentage, 2) . '%;">' . number_format($worked_percentage, 1) . '%' . '</div></div></td>';
-    			echo '<td><div class="progress" style="height: 20px; position: relative;"><div class="progress-bar bg-' . $confirmed_progress_class . '" role="progressbar" style="width: ' . number_format($confirmed_percentage, 2) . '%;">' . number_format($confirmed_percentage, 1) . '%' . '</div></div></td>';
-    			echo '</tr>';
-    		}
+				$worked_progress_class = $worked_percentage == 100 ? 'success' : ($worked_percentage >= 50 ? 'warning' : 'danger');
+				$confirmed_progress_class = $confirmed_percentage == 100 ? 'success' : ($confirmed_percentage >= 50 ? 'warning' : 'danger');
 
-    		if (!$has_data) {
-    			echo '<tr><td colspan="5" class="text-center text-muted">No continent data available</td></tr>';
-    		}
+				?>
 
-    		echo '</tbody></table>';
-    	} else {
-    		echo '<div class="alert alert-info" role="alert">' . __("No continent data available.") . '</div>';
-    	}
+				<tr>
+					<td><strong> <?php echo htmlspecialchars($continent_data['name']); ?></strong></td>
+					<td><?php echo $total_worked . '/' . $continent_total . ' (' . number_format($worked_percentage, 1) . '%)'; ?></td>
+					<td><?php echo $total_confirmed . '/' . $continent_total . ' (' . number_format($confirmed_percentage, 1) . '%)'; ?></td>
+					<td><?php echo '<div class="progress" style="height: 20px; position: relative;"><div class="progress-bar bg-' . $worked_progress_class . '" role="progressbar" style="width: ' . number_format($worked_percentage, 2) . '%;">' . number_format($worked_percentage, 1) . '%' . '</div></div>'; ?></td>
+					<td><?php echo '<div class="progress" style="height: 20px; position: relative;"><div class="progress-bar bg-' . $confirmed_progress_class . '" role="progressbar" style="width: ' . number_format($confirmed_percentage, 2) . '%;">' . number_format($confirmed_percentage, 1) . '%' . '</div></div>'; ?></td>
+				</tr>
+			<?php }
 
-    	echo '</div>'; // End continent-progress tab
+			if (!$has_data) {
+				echo '<tr><td colspan="5" class="text-center text-muted">No continent data available</td></tr>';
+			}
 
-    	// By Mode Progress Tab
-    	echo '<div class="tab-pane fade" id="mode-progress" role="tabpanel" aria-labelledby="mode-progress-tab">'; ?>
+			echo '</tbody></table>';
+		} else {
+			echo '<div class="alert alert-info" role="alert">' . __("No continent data available.") . '</div>';
+		} ?>
 
-    	 <div id="progress-loading" class="text-center p-5">
+		</div>
+
+		<div class="tab-pane fade" id="mode-progress" role="tabpanel" aria-labelledby="mode-progress-tab">
+
+			<div id="progress-loading" class="text-center p-5">
             <div class="spinner-border text-primary" role="status">
                 <span class="visually-hidden"><?= __("Loading..."); ?></span>
             </div>
@@ -405,19 +426,17 @@
         <div id="progress-content"></div>
         </div>
 
-    	<?php echo '</div>'; // End mode-progress tab
+		</div>
 
-    	echo '</div>'; // End tab-content
-    	echo '</div>'; // End card-body
-		echo '</div>'; // End collapse
-    	echo '</div>'; // End card
-	}
-    ?>
+		</div>
+		</div>
+		</div>
+		</div>
         </div>
 
         <div class="tab-pane fade show active" id="table" role="tabpanel" aria-labelledby="table-tab">
 
-    <?php
+    <?php }
     $i = 1;
     if ($dxcc_array) {
 		echo __('Legend:');
