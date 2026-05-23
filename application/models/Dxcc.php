@@ -713,7 +713,7 @@ class DXCC extends CI_Model {
 	}
 
 	function countDxccEntities($postdata) {
-		$sql = "SELECT COUNT(*) as cnt FROM dxcc_entities WHERE 1=1";
+		$sql = "SELECT COUNT(*) as cnt FROM dxcc_entities WHERE adif > 0";
 		if ($postdata['includedeleted'] == NULL) {
 			$sql .= " AND end IS NULL";
 		}
