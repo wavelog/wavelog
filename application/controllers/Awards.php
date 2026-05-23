@@ -280,20 +280,12 @@ class Awards extends CI_Controller {
 				$bands = $this->bands->get_worked_bands('dxcc');
 			}
 
-			$posted_band = $postdata['band'];
 
-			// Fetch DXCC data
+			// Fetch mode progress
+			$total_dxcc_entities = $this->dxcc->countDxccEntities($postdata);
 			if ($logbooks_locations_array) {
 				$location_list = "'".implode("','",$logbooks_locations_array)."'";
-				$dxcclist = $this->dxcc->fetchdxcc($postdata, $location_list);
-				if ($dxcclist && $dxcclist[0]->adif == "0") {
-					unset($dxcclist[0]);
-				}
-				if ($dxcclist && is_array($dxcclist) && count($dxcclist) > 0) {
-					$dxcc_mode_summary = $this->dxcc->mode_progress($dxcclist, $bands, $postdata, $location_list);
-				} else {
-					$dxcc_mode_summary = null;
-				}
+				$dxcc_mode_summary = $this->dxcc->mode_progress($total_dxcc_entities, $postdata, $location_list);
 			} else {
 				$dxcc_mode_summary = null;
 			}

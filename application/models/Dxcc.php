@@ -712,6 +712,16 @@ class DXCC extends CI_Model {
 		return $query->result();
 	}
 
+	function countDxccEntities($postdata) {
+		$sql = "SELECT COUNT(*) as cnt FROM dxcc_entities WHERE 1=1";
+		if ($postdata['includedeleted'] == NULL) {
+			$sql .= " AND end IS NULL";
+		}
+		$sql .= $this->addContinentsToQuery($postdata);
+		$query = $this->db->query($sql);
+		return $query->row()->cnt;
+	}
+
 	// Made function instead of repeating this several times
 	function addContinentsToQuery($postdata) {
 		$sql = '';
@@ -1114,15 +1124,13 @@ class DXCC extends CI_Model {
 		return $query;
 	}
 
-	function mode_progress($dxcclist, $bands, $postdata, $location_list) {
+	function mode_progress($total_dxcc_entities, $postdata, $location_list) {
 		$modeSummary = [];
 
 		$modeTotals = $this->getModeDxccTotals($location_list, $postdata);
 
 		$allModes = array_keys($modeTotals);
 		sort($allModes);
-
-		$total_dxcc_entities = is_array($dxcclist) ? count($dxcclist) : 0;
 
 		foreach ($allModes as $mode) {
 			$modeSummary[$mode] = [
