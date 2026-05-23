@@ -589,7 +589,7 @@ class DXCC extends CI_Model {
 
 		// Base SQL - get unique DXCC counts per mode with confirmation status
 		$sql = "SELECT
-			COALESCE(thcv.col_submode, thcv.col_mode) as mode,
+			COALESCE(NULLIF(thcv.col_submode, ''), thcv.col_mode) as mode,
 			COUNT(DISTINCT thcv.col_dxcc) as worked_count,
 			COUNT(DISTINCT CASE WHEN $confirmedCondition THEN thcv.col_dxcc END) as confirmed_count
 		FROM " . $this->config->item('table_name') . " thcv
