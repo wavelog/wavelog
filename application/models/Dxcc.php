@@ -72,13 +72,6 @@ class DXCC extends CI_Model {
 			}
 		}
 
-		// Initialize all bands for each mode in mode band counters
-		foreach ($bands as $band) {
-			if (($postdata['band'] != 'SAT') && ($band == 'SAT')) {
-				continue;
-			}
-		}
-
 		// Initialize matrix with all DXCC entities
 		foreach ($dxccArray as $dxcc) {
 			$adif = $dxcc->adif ?? '0';
