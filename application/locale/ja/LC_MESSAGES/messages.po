@@ -233,7 +233,8 @@ msgstr "対流圏ダクト"
 #: application/controllers/Webadif.php:101
 #: application/controllers/Zonechecker.php:17
 #: application/models/Club_model.php:52 application/controllers/Lotw.php:939
-#: application/controllers/Lotw.php:1026
+#: application/controllers/Lotw.php:1026 application/controllers/Oqrs.php:178
+#: application/controllers/Oqrs.php:226 application/controllers/Oqrs.php:240
 msgid "You're not allowed to do that!"
 msgstr "それは禁止です！"
 
@@ -2540,6 +2541,7 @@ msgstr "不明な公開ページ。"
 
 #: application/controllers/Oqrs.php:54 application/controllers/Oqrs.php:63
 #: application/controllers/Oqrs.php:124 application/controllers/Oqrs.php:136
+#: application/controllers/Oqrs.php:128 application/controllers/Oqrs.php:140
 msgid "Log Search & OQRS"
 msgstr "ログ検索とOQRS"
 
@@ -2550,14 +2552,15 @@ msgstr "無効な無線局ID"
 #: application/controllers/Oqrs.php:172
 #: application/views/interface_assets/header.php:512
 #: application/views/interface_assets/header.php:513
+#: application/controllers/Oqrs.php:176
 msgid "OQRS Requests"
 msgstr "OQRSリクエスト"
 
-#: application/controllers/Oqrs.php:376
+#: application/controllers/Oqrs.php:376 application/controllers/Oqrs.php:380
 msgid "QSO match deleted successfully."
 msgstr "QSO マッチが正常に削除されました。"
 
-#: application/controllers/Oqrs.php:385
+#: application/controllers/Oqrs.php:385 application/controllers/Oqrs.php:389
 msgid "QSO match added successfully."
 msgstr "QSO マッチが正常に追加されました。"
 
@@ -20230,6 +20233,10 @@ msgstr "CSVファイルをダウンロード"
 #: application/views/interface_assets/header.php:213
 msgid "AMSAT Rover"
 msgstr "AMSATローバー"
+
+#: application/controllers/Oqrs.php:108
+msgid "Invalid station slug"
+msgstr ""
 
 #~ msgid "In the text input searches, you can search in the following way:"
 #~ msgstr "テキスト検索画面での検索方法は、以下のとおりです。"

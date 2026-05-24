@@ -251,7 +251,8 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Webadif.php:11
 #: application/controllers/Webadif.php:101
 #: application/controllers/Zonechecker.php:17
-#: application/models/Club_model.php:52
+#: application/models/Club_model.php:52 application/controllers/Oqrs.php:178
+#: application/controllers/Oqrs.php:226 application/controllers/Oqrs.php:240
 msgid "You're not allowed to do that!"
 msgstr "请不要这样操作！"
 
@@ -2511,6 +2512,7 @@ msgstr "未知的公开页面。"
 
 #: application/controllers/Oqrs.php:54 application/controllers/Oqrs.php:63
 #: application/controllers/Oqrs.php:124 application/controllers/Oqrs.php:136
+#: application/controllers/Oqrs.php:128 application/controllers/Oqrs.php:140
 msgid "Log Search & OQRS"
 msgstr "搜索日志 & OQRS"
 
@@ -2520,14 +2522,15 @@ msgstr "无效站台 ID"
 
 #: application/controllers/Oqrs.php:172
 #: application/views/interface_assets/header.php:513
+#: application/controllers/Oqrs.php:176
 msgid "OQRS Requests"
 msgstr "OQRS"
 
-#: application/controllers/Oqrs.php:376
+#: application/controllers/Oqrs.php:376 application/controllers/Oqrs.php:380
 msgid "QSO match deleted successfully."
 msgstr "QSO 匹配已成功删除。"
 
-#: application/controllers/Oqrs.php:385
+#: application/controllers/Oqrs.php:385 application/controllers/Oqrs.php:389
 msgid "QSO match added successfully."
 msgstr "QSO 匹配已成功添加。"
 
@@ -5434,7 +5437,8 @@ msgstr "社交媒体推广（+5）"
 msgid ""
 "Post must be made at least 24 hours before activation and include @amsat "
 "tag. Include link to post in your email."
-msgstr "帖文必须在激活前至少 24 小时发布，包含 @asmat 标签。请在邮件中附上贴文链接。"
+msgstr ""
+"帖文必须在激活前至少 24 小时发布，包含 @asmat 标签。请在邮件中附上贴文链接。"
 
 #: application/views/awards/amsat_rover/index.php:82
 msgid "Photo Posting (+5)"
@@ -5443,7 +5447,8 @@ msgstr "发布照片（+5）"
 #: application/views/awards/amsat_rover/index.php:85
 msgid ""
 "Photos posted with @amsat tag. Include link to photo post in your email."
-msgstr "在社交媒体上发布照片，并带有 @amsat 标签。请在邮件中附上照片贴文的链接。"
+msgstr ""
+"在社交媒体上发布照片，并带有 @amsat 标签。请在邮件中附上照片贴文的链接。"
 
 #: application/views/awards/amsat_rover/index.php:92
 msgid "Maritime Mobile (+10)"
@@ -7048,8 +7053,8 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
-"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意"
-"的“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
+"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意的"
+"“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
 
 #: application/views/awards/sig/index.php:9
 msgid ""
@@ -13392,8 +13397,8 @@ msgid ""
 "column you are looking for, use the regular QSO edit (click the callsign, "
 "then click the edit QSO button)."
 msgstr ""
-"并非所有字段都支持批量编辑。如果您找不到所需字段，请使用常规的 QSO 编辑功能（"
-"点击呼号，然后点击“编辑 QSO” 按钮）。"
+"并非所有字段都支持批量编辑。如果您找不到所需字段，请使用常规的 QSO 编辑功能"
+"（点击呼号，然后点击“编辑 QSO” 按钮）。"
 
 #: application/views/logbookadvanced/edit.php:5
 msgid "Please choose the column to be edited:"
@@ -13827,7 +13832,8 @@ msgstr "ADIF 导出使用与普通搜索相同的搜索条件。"
 msgid ""
 "All QSOs will be exported (all for selected location), unless you have "
 "checked one or more QSOs."
-msgstr "所有 QSO 都将被导出（对于所有选定的位置），除非您勾选了一个或多个 QSO。"
+msgstr ""
+"所有 QSO 都将被导出（对于所有选定的位置），除非您勾选了一个或多个 QSO。"
 
 #: application/views/logbookadvanced/index.php:16
 #: application/views/stationsetup/exportmapoptions.php:23
@@ -18061,8 +18067,8 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
-"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 '."
-"png'）"
+"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 "
+"'.png'）"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
@@ -19545,6 +19551,10 @@ msgstr "CQz"
 msgid "CQz geojson"
 msgstr "CQz geojson"
 
+#: application/controllers/Oqrs.php:108
+msgid "Invalid station slug"
+msgstr ""
+
 #~ msgid "In the text input searches, you can search in the following way:"
 #~ msgstr "在文本输入搜索中，你可以通过以下方式进行搜索："
 
@@ -20537,8 +20547,8 @@ msgstr "CQz geojson"
 #~ "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 #~ "filenames for the logos <b>without</b> the file extension '.png'"
 #~ msgstr ""
-#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带有 ."
-#~ "png 后缀名</b>）"
+#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带"
+#~ "有 .png 后缀名</b>）"
 
 #, php-format
 #~ msgid ""

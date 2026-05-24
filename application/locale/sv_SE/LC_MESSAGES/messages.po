@@ -230,7 +230,8 @@ msgstr "Troposfärisk ducting"
 #: application/controllers/Webadif.php:11
 #: application/controllers/Webadif.php:101
 #: application/controllers/Zonechecker.php:17
-#: application/models/Club_model.php:52
+#: application/models/Club_model.php:52 application/controllers/Oqrs.php:178
+#: application/controllers/Oqrs.php:226 application/controllers/Oqrs.php:240
 msgid "You're not allowed to do that!"
 msgstr "Det är inte tillåtet!"
 
@@ -2515,6 +2516,7 @@ msgstr "Okänd offentlig sida."
 
 #: application/controllers/Oqrs.php:54 application/controllers/Oqrs.php:63
 #: application/controllers/Oqrs.php:124 application/controllers/Oqrs.php:136
+#: application/controllers/Oqrs.php:128 application/controllers/Oqrs.php:140
 msgid "Log Search & OQRS"
 msgstr "Loggsökning & OQRS"
 
@@ -2524,14 +2526,15 @@ msgstr "Ogiltigt stations-ID"
 
 #: application/controllers/Oqrs.php:172
 #: application/views/interface_assets/header.php:513
+#: application/controllers/Oqrs.php:176
 msgid "OQRS Requests"
 msgstr "OQRS Förfrågningar"
 
-#: application/controllers/Oqrs.php:376
+#: application/controllers/Oqrs.php:376 application/controllers/Oqrs.php:380
 msgid "QSO match deleted successfully."
 msgstr "QSO-matchning raderades framgångsrikt."
 
-#: application/controllers/Oqrs.php:385
+#: application/controllers/Oqrs.php:385 application/controllers/Oqrs.php:389
 msgid "QSO match added successfully."
 msgstr "QSO-matchning har lagts till framgångsrikt."
 
@@ -7686,8 +7689,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
-"Reef/506) och giltig stat (ADIF: DXCC och STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
+"506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/wapc/index.php:122
 msgid "Show WAPC Map"
@@ -13379,8 +13382,8 @@ msgid ""
 "We’ll keep the original value and add a more precise locator (e.g., JO90AB "
 "or JO90AB12) when a match is confident."
 msgstr ""
-"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator (t."
-"ex. JO90AB eller JO90AB12) när en matchning är säker."
+"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator "
+"(t.ex. JO90AB eller JO90AB12) när en matchning är säker."
 
 #: application/views/logbookadvanced/checkresult.php:42
 msgid "Distance Check Results"
@@ -18576,8 +18579,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 (t."
-"ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
+"(t.ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
@@ -20145,6 +20148,10 @@ msgstr "CQz"
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr "CQz geojson"
+
+#: application/controllers/Oqrs.php:108
+msgid "Invalid station slug"
+msgstr ""
 
 #~ msgid "In the text input searches, you can search in the following way:"
 #~ msgstr "I textinmatningssökningar kan du söka på följande sätt:"
