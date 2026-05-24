@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-05-23 10:13+0000\n"
+"POT-Creation-Date: 2026-05-24 06:19+0000\n"
 "PO-Revision-Date: 2026-05-12 22:16+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -180,8 +180,8 @@ msgstr "Troposfer Kanal İletişimi"
 #: application/controllers/Mode.php:15 application/controllers/Notes.php:10
 #: application/controllers/Operator.php:13
 #: application/controllers/Options.php:14 application/controllers/Oqrs.php:15
-#: application/controllers/Oqrs.php:174 application/controllers/Oqrs.php:222
-#: application/controllers/Oqrs.php:236 application/controllers/Qrbcalc.php:13
+#: application/controllers/Oqrs.php:178 application/controllers/Oqrs.php:226
+#: application/controllers/Oqrs.php:240 application/controllers/Qrbcalc.php:13
 #: application/controllers/Qrz.php:199 application/controllers/Qrz.php:286
 #: application/controllers/Qsl.php:12 application/controllers/Qsl.php:13
 #: application/controllers/Qsl.php:49 application/controllers/Qsl.php:57
@@ -2513,7 +2513,7 @@ msgid "Unknown Public Page."
 msgstr "Bilinmeyen Sayfa."
 
 #: application/controllers/Oqrs.php:54 application/controllers/Oqrs.php:63
-#: application/controllers/Oqrs.php:124 application/controllers/Oqrs.php:136
+#: application/controllers/Oqrs.php:128 application/controllers/Oqrs.php:140
 msgid "Log Search & OQRS"
 msgstr "Kayıt Arama & OQRS"
 
@@ -2521,16 +2521,20 @@ msgstr "Kayıt Arama & OQRS"
 msgid "Invalid Station ID"
 msgstr "Geçersiz İstasyon ID"
 
-#: application/controllers/Oqrs.php:172
+#: application/controllers/Oqrs.php:108
+msgid "Invalid station slug"
+msgstr ""
+
+#: application/controllers/Oqrs.php:176
 #: application/views/interface_assets/header.php:513
 msgid "OQRS Requests"
 msgstr "OQRS Talepleri"
 
-#: application/controllers/Oqrs.php:376
+#: application/controllers/Oqrs.php:380
 msgid "QSO match deleted successfully."
 msgstr "Eşleşen QSO'lar başarıyla silindi."
 
-#: application/controllers/Oqrs.php:385
+#: application/controllers/Oqrs.php:389
 msgid "QSO match added successfully."
 msgstr "QSO eşleşmesi başarıyla eklendi."
 

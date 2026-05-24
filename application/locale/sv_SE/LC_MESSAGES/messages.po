@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-05-23 10:13+0000\n"
+"POT-Creation-Date: 2026-05-24 06:19+0000\n"
 "PO-Revision-Date: 2026-05-07 11:41+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -178,8 +178,8 @@ msgstr "Troposfärisk ducting"
 #: application/controllers/Mode.php:15 application/controllers/Notes.php:10
 #: application/controllers/Operator.php:13
 #: application/controllers/Options.php:14 application/controllers/Oqrs.php:15
-#: application/controllers/Oqrs.php:174 application/controllers/Oqrs.php:222
-#: application/controllers/Oqrs.php:236 application/controllers/Qrbcalc.php:13
+#: application/controllers/Oqrs.php:178 application/controllers/Oqrs.php:226
+#: application/controllers/Oqrs.php:240 application/controllers/Qrbcalc.php:13
 #: application/controllers/Qrz.php:199 application/controllers/Qrz.php:286
 #: application/controllers/Qsl.php:12 application/controllers/Qsl.php:13
 #: application/controllers/Qsl.php:49 application/controllers/Qsl.php:57
@@ -2514,7 +2514,7 @@ msgid "Unknown Public Page."
 msgstr "Okänd offentlig sida."
 
 #: application/controllers/Oqrs.php:54 application/controllers/Oqrs.php:63
-#: application/controllers/Oqrs.php:124 application/controllers/Oqrs.php:136
+#: application/controllers/Oqrs.php:128 application/controllers/Oqrs.php:140
 msgid "Log Search & OQRS"
 msgstr "Loggsökning & OQRS"
 
@@ -2522,16 +2522,20 @@ msgstr "Loggsökning & OQRS"
 msgid "Invalid Station ID"
 msgstr "Ogiltigt stations-ID"
 
-#: application/controllers/Oqrs.php:172
+#: application/controllers/Oqrs.php:108
+msgid "Invalid station slug"
+msgstr ""
+
+#: application/controllers/Oqrs.php:176
 #: application/views/interface_assets/header.php:513
 msgid "OQRS Requests"
 msgstr "OQRS Förfrågningar"
 
-#: application/controllers/Oqrs.php:376
+#: application/controllers/Oqrs.php:380
 msgid "QSO match deleted successfully."
 msgstr "QSO-matchning raderades framgångsrikt."
 
-#: application/controllers/Oqrs.php:385
+#: application/controllers/Oqrs.php:389
 msgid "QSO match added successfully."
 msgstr "QSO-matchning har lagts till framgångsrikt."
 

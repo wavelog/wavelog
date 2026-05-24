@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-05-23 10:13+0000\n"
+"POT-Creation-Date: 2026-05-24 06:19+0000\n"
 "PO-Revision-Date: 2026-05-23 09:58+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
@@ -180,8 +180,8 @@ msgstr "対流圏ダクト"
 #: application/controllers/Mode.php:15 application/controllers/Notes.php:10
 #: application/controllers/Operator.php:13
 #: application/controllers/Options.php:14 application/controllers/Oqrs.php:15
-#: application/controllers/Oqrs.php:174 application/controllers/Oqrs.php:222
-#: application/controllers/Oqrs.php:236 application/controllers/Qrbcalc.php:13
+#: application/controllers/Oqrs.php:178 application/controllers/Oqrs.php:226
+#: application/controllers/Oqrs.php:240 application/controllers/Qrbcalc.php:13
 #: application/controllers/Qrz.php:199 application/controllers/Qrz.php:286
 #: application/controllers/Qsl.php:12 application/controllers/Qsl.php:13
 #: application/controllers/Qsl.php:49 application/controllers/Qsl.php:57
@@ -2519,7 +2519,7 @@ msgid "Unknown Public Page."
 msgstr "不明な公開ページ。"
 
 #: application/controllers/Oqrs.php:54 application/controllers/Oqrs.php:63
-#: application/controllers/Oqrs.php:124 application/controllers/Oqrs.php:136
+#: application/controllers/Oqrs.php:128 application/controllers/Oqrs.php:140
 msgid "Log Search & OQRS"
 msgstr "ログ検索とOQRS"
 
@@ -2527,16 +2527,20 @@ msgstr "ログ検索とOQRS"
 msgid "Invalid Station ID"
 msgstr "無効な無線局ID"
 
-#: application/controllers/Oqrs.php:172
+#: application/controllers/Oqrs.php:108
+msgid "Invalid station slug"
+msgstr ""
+
+#: application/controllers/Oqrs.php:176
 #: application/views/interface_assets/header.php:513
 msgid "OQRS Requests"
 msgstr "OQRSリクエスト"
 
-#: application/controllers/Oqrs.php:376
+#: application/controllers/Oqrs.php:380
 msgid "QSO match deleted successfully."
 msgstr "QSO マッチが正常に削除されました。"
 
-#: application/controllers/Oqrs.php:385
+#: application/controllers/Oqrs.php:389
 msgid "QSO match added successfully."
 msgstr "QSO マッチが正常に追加されました。"
 
