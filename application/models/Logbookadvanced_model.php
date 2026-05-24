@@ -865,14 +865,18 @@ class Logbookadvanced_model extends CI_Model {
 				SET
 				COL_QSLSDATE = CURRENT_TIMESTAMP,
 				COL_QSL_SENT = ?,
-				COL_QSL_SENT_VIA = ?,
+				COL_QSL_SENT_VIA = COALESCE(
+					NULLIF(?, ''),
+					NULLIF(COL_QSL_SENT_VIA, ''),
+					'B'
+				),
 				COL_QRZCOM_QSO_UPLOAD_STATUS = CASE
-				WHEN COL_QRZCOM_QSO_UPLOAD_STATUS IN ('Y', 'I') THEN 'M'
-				ELSE COL_QRZCOM_QSO_UPLOAD_STATUS
+					WHEN COL_QRZCOM_QSO_UPLOAD_STATUS IN ('Y', 'I') THEN 'M'
+					ELSE COL_QRZCOM_QSO_UPLOAD_STATUS
 				END
 				WHERE COL_PRIMARY_KEY IN (".implode(',', $sanitized_ids).")";
 			$binding[] = $sent;
-			$binding[] = $method;
+			$binding[] = $method ?? '';
 			$this->db->query($sql, $binding);
 
 			return array('message' => 'OK');
