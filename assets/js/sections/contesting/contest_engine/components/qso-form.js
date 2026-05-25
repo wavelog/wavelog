@@ -124,6 +124,23 @@ class QsoFormComponent {
 	}
 
 	setupEventListeners() {
+		// Space in callsign: prevent inserting a space; if callsign has a value,
+		// jump to the first empty visible input after it
+		const callsignInputEl = this.container.querySelector('#qso-callsign');
+		if (callsignInputEl) {
+			callsignInputEl.addEventListener('keydown', (e) => {
+				if (e.key !== ' ') return;
+				e.preventDefault();
+				if (!callsignInputEl.value.trim()) return;
+				const visibleInputs = Array.from(
+					this.container.querySelectorAll('input[type="text"], input[type="number"]')
+				).filter(el => el.offsetParent !== null);
+				const callsignIdx = visibleInputs.indexOf(callsignInputEl);
+				const next = visibleInputs.slice(callsignIdx + 1).find(el => !el.value.trim());
+				if (next) next.focus();
+			});
+		}
+
 		// Enter key in input fields logs QSO
 		const inputs = this.container.querySelectorAll('input[type="text"], input[type="number"]');
 		inputs.forEach(input => {
