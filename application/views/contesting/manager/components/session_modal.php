@@ -65,6 +65,20 @@
                         <small class="text-muted d-block mt-2"><?= __("Defines which exchange fields are used in this contest"); ?></small>
                     </div>
                     <div class="mb-4">
+                        <label for="copyexchangeto" class="form-label"><?= __("Copy Exchange to Field") ?></label>
+                        <select class="form-select" id="copyexchangeto" name="copyexchangeto">
+                            <option value="" <?php if (!isset($session_info) || ($session_info['copyexchangeto'] ?? '') === '') echo 'selected'; ?>><?= __("— None —") ?></option>
+                            <option value="dok"     <?php if (isset($session_info) && ($session_info['copyexchangeto'] ?? '') === 'dok')     echo 'selected'; ?>><?= __("DOK") ?></option>
+                            <option value="locator" <?php if (isset($session_info) && ($session_info['copyexchangeto'] ?? '') === 'locator') echo 'selected'; ?>><?= __("Gridquare") ?></option>
+                            <option value="qth"     <?php if (isset($session_info) && ($session_info['copyexchangeto'] ?? '') === 'qth')     echo 'selected'; ?>><?= __("QTH") ?></option>
+                            <option value="name"    <?php if (isset($session_info) && ($session_info['copyexchangeto'] ?? '') === 'name')    echo 'selected'; ?>><?= __("Name") ?></option>
+                            <option value="age"     <?php if (isset($session_info) && ($session_info['copyexchangeto'] ?? '') === 'age')     echo 'selected'; ?>><?= __("Age") ?></option>
+                            <option value="state"   <?php if (isset($session_info) && ($session_info['copyexchangeto'] ?? '') === 'state')   echo 'selected'; ?>><?= __("State") ?></option>
+                            <option value="power"   <?php if (isset($session_info) && ($session_info['copyexchangeto'] ?? '') === 'power')   echo 'selected'; ?>><?= __("RX Power (W)") ?></option>
+                        </select>
+                        <small class="text-muted d-block mt-2"><?= __("The received Exchange (Exch R) value will be copied to this logbook field.") ?></small>
+                    </div>
+                    <div class="mb-4">
                         <label for="session_notes" class="form-label"><?= __("Session Notes") ?></label>
                         <textarea class="form-control" id="session_notes" name="session_notes" rows="3" placeholder="<?= __("Add any additional information about this session..."); ?>"><?php if (isset($session_info)) echo htmlspecialchars($session_info['comment'] ?? ''); ?></textarea>
                         <small class="text-muted d-block mt-2"><?= __("Optional: Any additional details or notes"); ?></small>

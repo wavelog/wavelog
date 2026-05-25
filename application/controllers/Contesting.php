@@ -208,8 +208,9 @@ class Contesting extends CI_Controller {
 				$station_location = $this->input->post('station_location', true);
 				$session_notes = $this->input->post('session_notes', true);
 				$exchangetype = $this->input->post('exchangetype', true);
+				$copyexchangeto = $this->input->post('copyexchangeto', true) ?? '';
 
-				$result = $this->contesting_model->create_contest_session($contest_adif_id, $session_start, $session_end, $station_location, $session_notes, false, $exchangetype);
+				$result = $this->contesting_model->create_contest_session($contest_adif_id, $session_start, $session_end, $station_location, $session_notes, false, $exchangetype, $copyexchangeto);
 
 				if ($result) {
 					$this->session->set_flashdata('success', __("Contest session created successfully."));
@@ -255,8 +256,9 @@ class Contesting extends CI_Controller {
 				$notes = $this->input->post('session_notes', true);
 				$contest_id = $this->input->post('contest_adif_id', true);
 				$exchangetype = $this->input->post('exchangetype', true);
+				$copyexchangeto = $this->input->post('copyexchangeto', true) ?? '';
 
-				$result = $this->contesting_model->update_contest_session($contest_session_id, $contest_id, $time_start, $time_end, $station_id, $notes, $exchangetype);
+				$result = $this->contesting_model->update_contest_session($contest_session_id, $contest_id, $time_start, $time_end, $station_id, $notes, $exchangetype, $copyexchangeto);
 
 				if ($result) {
 					$this->session->set_flashdata('success', __("Contest session updated successfully."));
@@ -440,7 +442,8 @@ class Contesting extends CI_Controller {
 					'cqz' => $command['data']['cqz'] ?? NULL,
 					'operator_callsign' => $this->session->userdata('user_callsign'),
 					'contestname' => $session_info['contest_adifname'],
-					'exchangetype' => $session_info['exchangetype'] ?? 'Exchange'
+					'exchangetype' => $session_info['exchangetype'] ?? 'Exchange',
+					'copyexchangeto' => $session_info['copyexchangeto'] ?? NULL
 				];
 
 				// Save QSO to database
