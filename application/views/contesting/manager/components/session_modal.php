@@ -61,6 +61,7 @@
                             <option value="Serialexchange" <?php if (isset($session_info) && ($session_info['exchangetype'] ?? '') === 'Serialexchange') echo 'selected'; ?>><?= __("Serial number + Exchange"); ?></option>
                             <option value="Serialgridsquare" <?php if (isset($session_info) && ($session_info['exchangetype'] ?? '') === 'Serialgridsquare') echo 'selected'; ?>><?= __("Serial number + Grid Square"); ?></option>
                             <option value="SerialGridExchange" <?php if (isset($session_info) && ($session_info['exchangetype'] ?? '') === 'SerialGridExchange') echo 'selected'; ?>><?= __("Serial number + Grid + Exchange"); ?></option>
+                            <option value="Exchangegridsquare" <?php if (isset($session_info) && ($session_info['exchangetype'] ?? '') === 'Exchangegridsquare') echo 'selected'; ?>><?= __("Exchange + Grid Square"); ?></option>
                         </select>
                         <small class="text-muted d-block mt-2"><?= __("Defines which exchange fields are used in this contest"); ?></small>
                     </div>

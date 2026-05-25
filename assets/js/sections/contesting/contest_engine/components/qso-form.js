@@ -75,7 +75,7 @@ class QsoFormComponent {
 
 		const hasSerial = ['Serial', 'Serialgridsquare', 'Serialexchange', 'SerialGridExchange']
 			.includes(this.exchangeType);
-		const hasTextExchange = ['Exchange', 'Serialexchange', 'SerialGridExchange']
+		const hasTextExchange = ['Exchange', 'Serialexchange', 'SerialGridExchange', 'Exchangegridsquare']
 			.includes(this.exchangeType);
 
 		this.container.querySelectorAll('.serial-field').forEach(el => {
@@ -91,7 +91,7 @@ class QsoFormComponent {
 			el.style.display = hasTextExchange ? '' : 'none';
 		});
 
-		const hasGridsquare = ['Serialgridsquare', 'SerialGridExchange'].includes(this.exchangeType);
+		const hasGridsquare = ['Serialgridsquare', 'SerialGridExchange', 'Exchangegridsquare'].includes(this.exchangeType);
 		this.container.querySelectorAll('.gridsquare-field').forEach(el => {
 			el.style.display = hasGridsquare ? '' : 'none';
 		});
@@ -478,7 +478,7 @@ class QsoFormComponent {
 		const qrg_mhz = qso.frequency ? (parseInt(qso.frequency) / 1e6).toFixed(3) + ' MHz' : '';
 		const hasSerial = ['Serial', 'Serialgridsquare', 'Serialexchange', 'SerialGridExchange']
 			.includes(this.exchangeType);
-		const hasTextExchange = ['Exchange', 'Serialexchange', 'SerialGridExchange']
+		const hasTextExchange = ['Exchange', 'Serialexchange', 'SerialGridExchange', 'Exchangegridsquare']
 			.includes(this.exchangeType);
 		const hasGridsquare = ['Serialgridsquare', 'SerialGridExchange']
 			.includes(this.exchangeType);
