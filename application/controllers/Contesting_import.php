@@ -34,7 +34,7 @@ class Contesting_import extends CI_Controller {
 		$groups = $this->contesting_import_model->get_legacy_contest_groups();
 
 		if (empty($groups)) {
-			$this->session->set_flashdata('message', __("No historical contests found that could be imported."));
+			$this->session->set_flashdata('error', __("No historical contests found that could be imported."));
 			redirect('contesting');
 		}
 
@@ -102,7 +102,7 @@ class Contesting_import extends CI_Controller {
 		$groups = $this->contesting_import_model->get_all_legacy_contest_groups();
 
 		if (empty($groups)) {
-			$this->session->set_flashdata('message', __("No historical contests found that could be imported."));
+			$this->session->set_flashdata('error', __("No historical contests found that could be imported."));
 			redirect('contesting');
 		}
 
