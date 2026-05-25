@@ -241,6 +241,11 @@
 .window-resize-tl:active {
   opacity: 1;
 }
+/* Bootstrap min-h-0 utility missing in some builds */
+.min-h-0 {
+  min-height: 0 !important;
+}
+
 /* ===== Band Selection Tabs Styles ===== */
 
 .nav-tabs-sm {
