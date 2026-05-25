@@ -468,6 +468,105 @@ class Contesting extends CI_Controller {
 	}
 
 	/**
+	 * Inline QSO edit endpoint.
+	 * Endpoint: POST /contesting/update_qso
+	 *
+	 * Accepts JSON: { contest_session_id, qso_id, callsign?, mode?, frequency?,
+	 *                 rst_sent?, rst_rcvd?, serial_sent?, serial_rcvd?,
+	 *                 exchange_sent?, exchange_rcvd?, gridsquare_rcvd? }
+	 *
+	 * Authorization: PHP session user must own the contest session AND be the
+	 * operator recorded on the QSO (operator check).
+	 */
+	public function update_qso() {
+		if ($this->input->method() !== 'post') {
+			$this->_teapot();
+			return;
+		}
+
+		header('Content-Type: application/json');
+
+		try {
+			$payload = json_decode($this->input->raw_input_stream, true);
+			if (!$payload) {
+				throw new Exception('Invalid JSON payload');
+			}
+
+			$contest_session_id = (int)($payload['contest_session_id'] ?? 0);
+			$qso_id = (int)($payload['qso_id'] ?? 0);
+
+			if (!$contest_session_id || !$qso_id) {
+				throw new Exception('Missing contest_session_id or qso_id');
+			}
+
+			$this->load->model('contesting_model');
+
+			// Session ownership check
+			if (!$this->contesting_model->userCanAccessSession($contest_session_id)) {
+				http_response_code(403);
+				echo json_encode(['success' => false, 'error' => 'Access denied']);
+				return;
+			}
+
+			// Verify QSO belongs to this session and get its operator
+			$qso = $this->contesting_model->get_contest_qso($qso_id, $contest_session_id);
+			if (!$qso) {
+				http_response_code(404);
+				echo json_encode(['success' => false, 'error' => 'QSO not found in this session']);
+				return;
+			}
+
+			// Operator check: only the user who logged the QSO may edit it
+			$current_callsign = strtoupper(trim($this->session->userdata('user_callsign')));
+			$qso_operator = strtoupper(trim($qso['operator'] ?? ''));
+			if ($qso_operator !== $current_callsign) {
+				http_response_code(403);
+				echo json_encode(['success' => false, 'error' => 'You can only edit QSOs you logged']);
+				return;
+			}
+
+			// Whitelist of editable columns
+			$allowed = [
+				'callsign'      => 'COL_CALL',
+				'mode'          => 'COL_MODE',
+				'frequency'     => 'COL_FREQ',
+				'band'          => 'COL_BAND',
+				'rst_sent'      => 'COL_RST_SENT',
+				'rst_rcvd'      => 'COL_RST_RCVD',
+				'serial_sent'   => 'COL_STX',
+				'serial_rcvd'   => 'COL_SRX',
+				'exchange_sent' => 'COL_STX_STRING',
+				'exchange_rcvd' => 'COL_SRX_STRING',
+				'gridsquare_rcvd' => 'COL_GRIDSQUARE',
+			];
+
+			$fields = [];
+			foreach ($allowed as $key => $col) {
+				if (array_key_exists($key, $payload)) {
+					$val = $payload[$key];
+					if (in_array($key, ['callsign', 'mode', 'band', 'rst_sent', 'rst_rcvd',
+					                    'serial_sent', 'serial_rcvd', 'exchange_sent',
+					                    'exchange_rcvd', 'gridsquare_rcvd'])) {
+						$val = $val !== null ? strtoupper(trim((string)$val)) : null;
+					}
+					$fields[$col] = $val;
+				}
+			}
+
+			if (empty($fields)) {
+				throw new Exception('No editable fields provided');
+			}
+
+			$this->contesting_model->update_contest_qso($qso_id, $fields);
+
+			echo json_encode(['success' => true, 'qso_id' => $qso_id]);
+		} catch (Exception $e) {
+			http_response_code(400);
+			echo json_encode(['success' => false, 'error' => $e->getMessage()]);
+		}
+	}
+
+	/**
 	 * Sync Endpoint for Contest Engine
 	 * Handles bidirectional communication (Commands + Requests)
 	 * Endpoint: POST /contesting/heartbeat
@@ -686,6 +785,30 @@ class Contesting extends CI_Controller {
 					log_message('info', "Resync triggered for session {$session_info['contest_session_id']}: Client={$client_qso_count} + Saved=" . count($response['data']['saved_qsos']) . " = {$expected_client_count}, Server={$server_qso_count}");
 				} else {
 					$response['data']['needs_resync'] = false;
+				}
+
+				// Timestamp-based edit detection: resync when any QSO was modified after the
+				// client's last known sync time (catches inline edits that don't change QSO count).
+				// Skip when QSOs were saved in this same heartbeat — their last_modified being
+				// newer than lastSyncTime is expected and the count-check already handled them.
+				$last_sync_time_ms = (int)($request['last_sync_time'] ?? 0);
+				$just_saved = count($response['data']['saved_qsos'] ?? []) > 0;
+				if ($last_sync_time_ms > 0 && !$response['data']['needs_resync'] && !$just_saved) {
+					$server_last_update = $this->contesting_model->get_session_last_update($session_info['contest_session_id']);
+					if ($server_last_update > $last_sync_time_ms) {
+						$response['data']['needs_resync'] = true;
+						if (!isset($response['data']['all_qsos'])) {
+							$all_qsos = $this->contesting_model->get_session_qsos($session_info['contest_session_id']);
+							if (is_array($all_qsos)) {
+								$all_qsos = array_map(function ($qso) {
+									$qso['id'] = $qso['qso_id'];
+									return $qso;
+								}, $all_qsos);
+							}
+							$response['data']['all_qsos'] = $all_qsos;
+						}
+						log_message('info', "Edit-resync triggered for session {$session_info['contest_session_id']}: server_last_update={$server_last_update} > client_last_sync={$last_sync_time_ms}");
+					}
 				}
 				break;
 

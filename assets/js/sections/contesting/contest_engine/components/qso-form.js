@@ -37,8 +37,12 @@ class QsoFormComponent {
 		if (this.isInitialized) return;
 		this.isInitialized = true;
 
+		this.lastSyncTime = Date.now();
+		this.currentOperator = (window.ContestLoggerConfig?.operator ?? '').toUpperCase();
+
 		this.registerSyncHandler();
 		this.setupEventListeners();
+		this.setupEditListeners();
 		this.initExchangeType();
 		this.loadExistingQSOs();
 		this.applyRstDefaults();
@@ -161,7 +165,8 @@ class QsoFormComponent {
 			buildRequest: () => null,
 			buildRequests: (dataStore) => [{
 				type: 'check_sync',
-				client_qso_count: dataStore.getSyncedQSOCount()
+				client_qso_count: dataStore.getSyncedQSOCount(),
+				last_sync_time: this.lastSyncTime ?? 0
 			}],
 			buildCommands: (dataStore) => this.buildQsoCommands(dataStore),
 			canHandle: (responseData) => {
@@ -253,6 +258,156 @@ class QsoFormComponent {
 			callsignInput.addEventListener('blur', (e) => {
 				this.handleCallsignBlur(e);
 			});
+		}
+	}
+
+	setupEditListeners() {
+		const tbody = this.container?.querySelector('#qso-tbody');
+		if (!tbody) return;
+
+		tbody.addEventListener('dblclick', (e) => {
+			const row = e.target.closest('tr');
+			if (row && row.dataset.serverId) this.startEditMode(row);
+		});
+	}
+
+	startEditMode(row) {
+		if (!row || row.dataset.editing === 'true') return;
+		const serverId = parseInt(row.dataset.serverId);
+		if (!serverId) return;
+
+		// Find QSO in DataStore by serverId
+		const allQsos = Array.from(this.dataStore.getPattern('qso.*').values());
+		const qso = allQsos.find(q => q.serverId === serverId);
+		if (!qso) return;
+
+		row.dataset.editing = 'true';
+
+		const fields = this.exchangeFields ?? ['exchange'];
+		const hasSerial      = fields.includes('serial');
+		const hasTextExchange = fields.includes('exchange');
+		const hasGridsquare  = fields.includes('gridsquare');
+		const serialHide = hasSerial ? '' : 'display:none;';
+
+		const inp = (val, name, cls = '') =>
+			`<input type="text" class="form-control form-control-sm p-0 px-1 ${cls}" style="min-width:3rem;" name="${name}" value="${this._esc(val ?? '')}">`;
+
+		row.innerHTML = `
+			<td class="text-nowrap" style="font-size:0.75rem;">${(qso.time || '').substring(0, 5)}</td>
+			<td>${inp(qso.callsign, 'callsign', 'fw-bold text-uppercase')}</td>
+			<td>${inp(qso.band, 'band', 'text-uppercase')}</td>
+			<td>${inp(qso.mode, 'mode', 'text-uppercase')}</td>
+			<td>${inp(qso.rst_rcvd, 'rst_rcvd')}</td>
+			<td class="serial-col" style="${serialHide}">${inp(qso.serial_sent, 'serial_sent')}</td>
+			<td class="serial-col" style="${serialHide}">${inp(qso.serial_rcvd ?? qso.serial_recv, 'serial_rcvd')}</td>
+			<td class="gridsquare-col" style="${hasGridsquare ? '' : 'display:none;'}">${inp(qso.gridsquare_rcvd, 'gridsquare_rcvd', 'text-uppercase')}</td>
+			<td class="exchange-text-col" style="${hasTextExchange ? '' : 'display:none;'}">${inp(qso.exchange_rcvd, 'exchange_rcvd')}</td>
+			<td class="text-nowrap">
+				<button class="btn btn-sm btn-success contest-qso-save-btn" style="line-height:1;" title="Save">&#10003;</button>
+				<button class="btn btn-sm btn-secondary contest-qso-cancel-btn ms-1" style="line-height:1;" title="Cancel">&#10007;</button>
+			</td>
+		`;
+
+		row.querySelector('[name="callsign"]')?.focus();
+
+		row.querySelector('.contest-qso-save-btn').addEventListener('click', () => this.saveEdit(row, qso));
+		row.querySelector('.contest-qso-cancel-btn').addEventListener('click', () => {
+			row.dataset.editing = 'false';
+			this._renderQsoRow(row, qso); // restore display HTML in-place
+		});
+
+		// Enter key saves, Escape cancels
+		row.addEventListener('keydown', (e) => {
+			if (e.key === 'Enter') { e.preventDefault(); this.saveEdit(row, qso); }
+			if (e.key === 'Escape') { e.preventDefault(); row.querySelector('.contest-qso-cancel-btn').click(); }
+		});
+	}
+
+	_esc(str) {
+		return String(str).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+	}
+
+	_renderQsoRow(row, qso) {
+		const fields = this.exchangeFields ?? ['exchange'];
+		const hasSerial      = fields.includes('serial');
+		const hasTextExchange = fields.includes('exchange');
+		const hasGridsquare  = fields.includes('gridsquare');
+		const serialHide = hasSerial ? '' : 'display:none;';
+		const band = qso.band || this.convertQrgToBand(parseInt(qso.frequency));
+		const qrg_mhz = qso.frequency ? (parseInt(qso.frequency) / 1e6).toFixed(3) + ' MHz' : '';
+		const timeStr = (qso.time || '').substring(0, 5);
+		row.dataset.qsoId = qso.tmpId || qso.serverId;
+		if (qso.serverId) row.dataset.serverId = qso.serverId;
+
+		const qsoOperator = (qso.operator ?? '').toUpperCase();
+		const isEditable = !!qso.serverId && qsoOperator === this.currentOperator;
+		if (isEditable) row.style.cursor = 'pointer';
+
+		row.innerHTML = `
+			<td class="text-nowrap">${timeStr}</td>
+			<td class="fw-bold">${qso.callsign}</td>
+			<td title="${qrg_mhz}">${band || '-'}</td>
+			<td>${qso.mode || '-'}</td>
+			<td>${qso.rst_rcvd || '-'}</td>
+			<td class="serial-col" style="${serialHide}">${qso.serial_sent ?? ''}</td>
+			<td class="serial-col" style="${serialHide}">${qso.serial_rcvd ?? qso.serial_recv ?? ''}</td>
+			<td class="gridsquare-col" style="${hasGridsquare ? '' : 'display:none;'}">${qso.gridsquare_rcvd || ''}</td>
+			<td class="exchange-text-col" style="${hasTextExchange ? '' : 'display:none;'}">${qso.exchange_rcvd || ''}</td>
+			<td class="text-center">${this.getStatusIndicator(qso.state)}</td>
+		`;
+	}
+
+	async saveEdit(row, qso) {
+		const inputs = row.querySelectorAll('input[name]');
+		const data = { qso_id: qso.serverId };
+		inputs.forEach(input => {
+			// Skip inputs inside hidden cells — their empty values would overwrite DB data
+			if (input.closest('td')?.offsetParent !== null) {
+				data[input.name] = input.value.trim().toUpperCase();
+			}
+		});
+
+		const sessionInfo = window.ContestLoggerConfig?.sessionInfo ?? {};
+		data.contest_session_id = sessionInfo.contest_session_id;
+
+		const saveBtn = row.querySelector('.contest-qso-save-btn');
+		if (saveBtn) { saveBtn.disabled = true; saveBtn.textContent = '…'; }
+
+		try {
+			const resp = await fetch(base_url + 'index.php/contesting/update_qso', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(data)
+			});
+			const result = await resp.json();
+
+			if (!result.success) throw new Error(result.error || 'Server error');
+
+			// Update local DataStore
+			const updated = { ...qso, ...data, operator: qso.operator };
+			// Normalize field names to match DataStore conventions
+			if (data.serial_rcvd !== undefined) updated.serial_rcvd = data.serial_rcvd;
+			if (data.exchange_rcvd !== undefined) updated.exchange_rcvd = data.exchange_rcvd;
+			this.dataStore.set(`qso.${qso.tmpId}`, updated);
+
+			// Prevent self-resync since we already have the fresh data
+			this.lastSyncTime = Date.now();
+
+			row.dataset.editing = 'false';
+			this._renderQsoRow(row, updated);
+
+		} catch (err) {
+			console.error('QSO edit failed:', err);
+			if (saveBtn) { saveBtn.disabled = false; saveBtn.textContent = '✓'; }
+			const lastCell = row.querySelector('td:last-child');
+			if (lastCell) {
+				const errSpan = document.createElement('span');
+				errSpan.className = 'text-danger ms-1';
+				errSpan.title = err.message;
+				errSpan.innerHTML = '<i class="bi bi-exclamation-triangle"></i>';
+				lastCell.appendChild(errSpan);
+				setTimeout(() => errSpan.remove(), 3000);
+			}
 		}
 	}
 
@@ -504,31 +659,7 @@ class QsoFormComponent {
 		if (!tbody) return;
 
 		const row = document.createElement('tr');
-		row.dataset.qsoId = qso.tmpId || qso.serverId;
-		const band = this.convertQrgToBand(parseInt(qso.frequency));
-		const qrg_mhz = qso.frequency ? (parseInt(qso.frequency) / 1e6).toFixed(3) + ' MHz' : '';
-		const fields = this.exchangeFields ?? ['exchange'];
-		const hasSerial      = fields.includes('serial');
-		const hasTextExchange = fields.includes('exchange');
-		const hasGridsquare  = fields.includes('gridsquare');
-
-		const timeStr = (qso.time || '').substring(0, 5);
-
-		const serialHide = hasSerial ? '' : 'display:none;';
-
-		row.innerHTML = `
-			<td class="text-nowrap">${timeStr}</td>
-			<td class="fw-bold">${qso.callsign}</td>
-			<td title="${qrg_mhz}">${band || '-'}</td>
-			<td>${qso.mode || '-'}</td>
-			<td>${qso.rst_rcvd || '-'}</td>
-			<td class="serial-col" style="${serialHide}">${qso.serial_sent ?? ''}</td>
-			<td class="serial-col" style="${serialHide}">${qso.serial_rcvd ?? qso.serial_recv ?? ''}</td>
-			<td class="gridsquare-col" style="${hasGridsquare ? '' : 'display:none;'}">${qso.gridsquare_rcvd || ''}</td>
-			<td class="exchange-text-col" style="${hasTextExchange ? '' : 'display:none;'}">${qso.exchange_rcvd || ''}</td>
-			<td class="text-center">${this.getStatusIndicator(qso.state)}</td>
-		`;
-
+		this._renderQsoRow(row, qso);
 		tbody.insertBefore(row, tbody.firstChild);
 	}
 
@@ -547,8 +678,17 @@ class QsoFormComponent {
 			return;
 		}
 
-		existingRow.dataset.qsoId = qsoId;
+		if (existingRow.dataset.editing === 'true') return;
 
+		// Update data attributes so the edit mode can find the server ID
+		existingRow.dataset.qsoId = qsoId;
+		if (qso.serverId) existingRow.dataset.serverId = qso.serverId;
+
+		// Show pointer cursor once the QSO is editable (synced + own operator)
+		const isEditable = !!qso.serverId && (qso.operator ?? '').toUpperCase() === this.currentOperator;
+		existingRow.style.cursor = isEditable ? 'pointer' : '';
+
+		// Only update the status indicator — leave all data cells untouched
 		const statusCell = existingRow.querySelector('td:last-child');
 		if (statusCell) {
 			statusCell.innerHTML = this.getStatusIndicator(qso.state);
@@ -666,6 +806,8 @@ class QsoFormComponent {
 		} else if (responseData.needs_resync) {
 			console.error('QSO Form: needs_resync=true but all_qsos missing!');
 		}
+
+		this.lastSyncTime = Date.now();
 	}
 
 	processSavedQsos(savedQsos, dataStore) {

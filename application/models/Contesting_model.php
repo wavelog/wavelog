@@ -66,9 +66,11 @@ class Contesting_model extends CI_Model {
 			$settings = json_decode($row['settings'], true) ?? [];
 			$row['copyexchangeto'] = $settings['copyexchangeto'] ?? '';
 			$row['exchangefields'] = $settings['exchangefields'] ?? ['exchange'];
+			$row['exchangetype']   = $settings['exchangetype']   ?? 'Exchange';
 		} else {
 			$row['copyexchangeto'] = '';
 			$row['exchangefields'] = ['exchange'];
+			$row['exchangetype']   = 'Exchange';
 		}
 		unset($row['settings']);
 		return $row;
@@ -188,7 +190,7 @@ class Contesting_model extends CI_Model {
 	 */
 	function get_session_qsos($contest_session_id) {
 		$bindings = [$contest_session_id];
-		$sql = "SELECT 
+		$sql = "SELECT
 					lb.COL_PRIMARY_KEY AS qso_id,
 					lb.COL_CALL AS callsign,
 					lb.COL_TIME_ON AS time_on,
@@ -202,7 +204,8 @@ class Contesting_model extends CI_Model {
 					lb.COL_SRX AS serial_recv,
 					lb.COL_STX_STRING AS exch_sent,
 					lb.COL_SRX_STRING AS exch_recv,
-					lb.COL_GRIDSQUARE AS locator
+					lb.COL_GRIDSQUARE AS locator,
+					lb.COL_OPERATOR AS operator
 				FROM contest_qsos cq
 				JOIN contest_session cs ON cs.id = cq.contest_session_id
 				JOIN " . $this->config->item('table_name') . " lb ON lb.COL_PRIMARY_KEY = cq.qso_id
@@ -211,6 +214,57 @@ class Contesting_model extends CI_Model {
 
 		$query = $this->db->query($sql, $bindings);
 		return $query->result_array();
+	}
+
+	/**
+	 * Fetches a single QSO, verifying it belongs to the given contest session.
+	 * Returns the row (including operator_callsign) or null if not found.
+	 *
+	 * @param int $qso_id
+	 * @param int $contest_session_id
+	 * @return array|null
+	 */
+	function get_contest_qso($qso_id, $contest_session_id) {
+		$table = $this->config->item('table_name');
+		$sql = "SELECT lb.COL_PRIMARY_KEY AS qso_id, lb.COL_OPERATOR AS operator
+				FROM contest_qsos cq
+				JOIN {$table} lb ON lb.COL_PRIMARY_KEY = cq.qso_id
+				WHERE cq.qso_id = ? AND cq.contest_session_id = ?
+				LIMIT 1";
+		$query = $this->db->query($sql, [$qso_id, $contest_session_id]);
+		return $query->num_rows() > 0 ? $query->row_array() : null;
+	}
+
+	/**
+	 * Updates a subset of editable fields on a contest QSO.
+	 * MySQL's ON UPDATE CURRENT_TIMESTAMP on last_modified handles the timestamp automatically.
+	 *
+	 * @param int   $qso_id
+	 * @param array $fields  Whitelisted column → value pairs
+	 * @return bool
+	 */
+	function update_contest_qso($qso_id, $fields) {
+		$table = $this->config->item('table_name');
+		$this->db->where('COL_PRIMARY_KEY', $qso_id)->update($table, $fields);
+		return $this->db->affected_rows() > 0;
+	}
+
+	/**
+	 * Returns the maximum last_modified timestamp (in milliseconds) across all QSOs
+	 * in the session. Used by check_sync to detect edits across browsers.
+	 *
+	 * @param int $contest_session_id
+	 * @return int Unix timestamp in ms, or 0 if no QSOs exist
+	 */
+	function get_session_last_update($contest_session_id) {
+		$table = $this->config->item('table_name');
+		$sql = "SELECT UNIX_TIMESTAMP(MAX(lb.last_modified)) * 1000 AS ts
+				FROM contest_qsos cq
+				JOIN {$table} lb ON lb.COL_PRIMARY_KEY = cq.qso_id
+				WHERE cq.contest_session_id = ?";
+		$query = $this->db->query($sql, [$contest_session_id]);
+		$row = $query->row_array();
+		return (int)($row['ts'] ?? 0);
 	}
 
 	/**
