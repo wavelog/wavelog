@@ -1298,7 +1298,7 @@ class Logbookadvanced_model extends CI_Model {
 			" SET " . $this->config->item('table_name').".COL_QSL_VIA = ?" .
 			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
 
-			$query = $this->db->query($sql, array(mb_convert_encoding($value, 'UTF-8', 'UTF-8') ?: NULL, json_decode($ids, true), $this->session->userdata('user_id')));
+			$query = $this->db->query($sql, array(mb_convert_encoding($value ?? '', 'UTF-8', 'UTF-8') ?: NULL, json_decode($ids, true), $this->session->userdata('user_id')));
 		} else if ($column == 'COL_TIME_ON') {
 
 			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .

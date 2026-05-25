@@ -24,6 +24,10 @@ class Logbook_model extends CI_Model {
 		}
 	}
 
+	private function sanitize_utf8(array $data): array {
+		return array_map(fn($v) => is_string($v) ? mb_convert_encoding($v, 'UTF-8', 'UTF-8') : $v, $data);
+	}
+
 	/* Add QSO to Logbook */
 	function create_qso($qso_data, $use_custom_date_format = true) {
 		// Get user-preferred date format
@@ -260,7 +264,7 @@ class Logbook_model extends CI_Model {
 			'COL_QSL_RCVD' => $qsl_rcvd,
 			'COL_QSL_SENT_VIA' => $qso_data['qsl_sent_method'] ?? NULL,
 			'COL_QSL_RCVD_VIA' => $qso_data['qsl_rcvd_method'] ?? NULL,
-			'COL_QSL_VIA' => mb_convert_encoding($qso_data['qsl_via'] ?? '', 'UTF-8', 'UTF-8') ?: NULL,
+			'COL_QSL_VIA' => $qso_data['qsl_via'] ?? NULL,
 			'COL_QSLMSG' => $qso_data['qslmsg'] ?? NULL,
 			'COL_OPERATOR' => strtoupper(trim($qso_data['operator_callsign'] ?? $this->session->userdata('operator_callsign'))),
 			'COL_QTH' => $qso_qth,
@@ -906,8 +910,9 @@ class Logbook_model extends CI_Model {
 
 		// Add QSO to database
 		if ($batchmode) {
-			return $data;
+			return $this->sanitize_utf8($data);
 		} else {
+			$data = $this->sanitize_utf8($data);
 			$this->db->insert($this->config->item('table_name'), $data);
 
 			$last_id = $this->db->insert_id();
@@ -1763,7 +1768,7 @@ class Logbook_model extends CI_Model {
 			'COL_STX' => $stx_string,
 			'COL_SRX' => $srx_string,
 			'COL_CONTEST_ID' => $this->input->post('contest_name'),
-			'COL_QSL_VIA' => mb_convert_encoding($this->input->post('qsl_via_callsign') ?? '', 'UTF-8', 'UTF-8') ?: NULL,
+			'COL_QSL_VIA' => $this->input->post('qsl_via_callsign'),
 			'COL_ANT_AZ' => $this->input->post('ant_az') != '' ? $this->input->post('ant_az') : null,
 			'COL_ANT_EL' => $this->input->post('ant_el') != '' ? $this->input->post('ant_el') : null,
 			'station_id' => $stationId,
@@ -1791,6 +1796,7 @@ class Logbook_model extends CI_Model {
 		}
 
 		$this->db->where('COL_PRIMARY_KEY', $this->input->post('id'));
+		$data = $this->sanitize_utf8($data);
 		try {
 			$this->db->update($this->config->item('table_name'), $data);
 			$retvals['success']=true;
