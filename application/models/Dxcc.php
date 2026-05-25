@@ -634,7 +634,7 @@ class DXCC extends CI_Model {
 			$sql .= " AND (SELECT end FROM dxcc_entities d WHERE d.adif = thcv.col_dxcc) IS NULL";
 		}
 
-		$sql .= " GROUP BY COALESCE(thcv.col_submode, thcv.col_mode)";
+		$sql .= " GROUP BY 1";
 
 		$query = $this->db->query($sql, $bindings);
 		$result = [];

@@ -324,8 +324,8 @@
 				<td><strong><?= $band ?></strong></td>
 				<td><?= $worked_count . '/' . $total_dxcc_entities . ' (' . number_format($worked_percentage, 1) . '%)' ?></td>
 				<td><?= $confirmed_count . '/' . $total_dxcc_entities . ' (' . number_format($confirmed_percentage, 1) . '%)' ?></td>
-				<td><div class="progress" style="height: 20px; position: relative;"><div class="progress-bar bg-<?= $worked_progress_class ?>" role="progressbar" style="width: <?= number_format($worked_percentage, 2) ?>%;"><?= number_format($worked_percentage, 1) ?>%</div></div></td>
-				<td><div class="progress" style="height: 20px; position: relative;"><div class="progress-bar bg-<?= $confirmed_progress_class ?>" role="progressbar" style="width: <?= number_format($confirmed_percentage, 2) ?>%;"><?= number_format($confirmed_percentage, 1) ?>%</div></div></td>
+				<td><div class="progress" style="height: 20px; position: relative;"><div class="progress-bar bg-<?= $worked_progress_class ?>" role="progressbar" style="width: <?= number_format($worked_percentage, 2) ?>%; font-size: 14px;"><?= number_format($worked_percentage, 1) ?>%</div></div></td>
+				<td><div class="progress" style="height: 20px; position: relative;"><div class="progress-bar bg-<?= $confirmed_progress_class ?>" role="progressbar" style="width: <?= number_format($confirmed_percentage, 2) ?>%; font-size: 14px;"><?= number_format($confirmed_percentage, 1) ?>%</div></div></td>
 			</tr>
 		<?php }
 
@@ -345,8 +345,8 @@
 				<td><strong><?= __("Total (ex SAT)") ?></strong></td>
 				<td><?= $worked_count . '/' . $total_dxcc_entities . ' (' . number_format($worked_percentage, 1) . '%)' ?></td>
 				<td><?= $confirmed_count . '/' . $total_dxcc_entities . ' (' . number_format($confirmed_percentage, 1) . '%)' ?></td>
-				<td><div class="progress" style="height: 20px; position: relative;"><div class="progress-bar bg-<?= $worked_progress_class ?>" role="progressbar" style="width: <?= number_format($worked_percentage, 2) ?>%;"><?= number_format($worked_percentage, 1) ?>%</div></div></td>
-				<td><div class="progress" style="height: 20px; position: relative;"><div class="progress-bar bg-<?= $confirmed_progress_class ?>" role="progressbar" style="width: <?= number_format($confirmed_percentage, 2) ?>%;"><?= number_format($confirmed_percentage, 1) ?>%</div></div></td>
+				<td><div class="progress" style="height: 20px; position: relative;"><div class="progress-bar bg-<?= $worked_progress_class ?>" role="progressbar" style="width: <?= number_format($worked_percentage, 2) ?>%; font-size: 14px;"><?= number_format($worked_percentage, 1) ?>%</div></div></td>
+				<td><div class="progress" style="height: 20px; position: relative;"><div class="progress-bar bg-<?= $confirmed_progress_class ?>" role="progressbar" style="width: <?= number_format($confirmed_percentage, 2) ?>%; font-size: 14px;"><?= number_format($confirmed_percentage, 1) ?>%</div></div></td>
 			</tr>
 
 		<?php } ?>
@@ -399,8 +399,8 @@
 					<td><strong> <?php echo htmlspecialchars($continent_data['name']); ?></strong></td>
 					<td><?php echo $total_worked . '/' . $continent_total . ' (' . number_format($worked_percentage, 1) . '%)'; ?></td>
 					<td><?php echo $total_confirmed . '/' . $continent_total . ' (' . number_format($confirmed_percentage, 1) . '%)'; ?></td>
-					<td><?php echo '<div class="progress" style="height: 20px; position: relative;"><div class="progress-bar bg-' . $worked_progress_class . '" role="progressbar" style="width: ' . number_format($worked_percentage, 2) . '%;">' . number_format($worked_percentage, 1) . '%' . '</div></div>'; ?></td>
-					<td><?php echo '<div class="progress" style="height: 20px; position: relative;"><div class="progress-bar bg-' . $confirmed_progress_class . '" role="progressbar" style="width: ' . number_format($confirmed_percentage, 2) . '%;">' . number_format($confirmed_percentage, 1) . '%' . '</div></div>'; ?></td>
+					<td><?php echo '<div class="progress" style="height: 20px; position: relative;"><div class="progress-bar bg-' . $worked_progress_class . '" role="progressbar" style="width: ' . number_format($worked_percentage, 2) . '%; font-size: 14px;">' . number_format($worked_percentage, 1) . '%' . '</div></div>'; ?></td>
+					<td><?php echo '<div class="progress" style="height: 20px; position: relative;"><div class="progress-bar bg-' . $confirmed_progress_class . '" role="progressbar" style="width: ' . number_format($confirmed_percentage, 2) . '%; font-size: 14px;">' . number_format($confirmed_percentage, 1) . '%' . '</div></div>'; ?></td>
 				</tr>
 			<?php }
 

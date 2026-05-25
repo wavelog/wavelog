@@ -21,8 +21,8 @@ if (isset($dxcc_mode_summary) && is_array($dxcc_mode_summary) && !empty($dxcc_mo
 		echo '<td><strong>' . htmlspecialchars($mode_data['name']) . '</strong></td>';
 		echo '<td>' . $total_worked . '/' . $mode_total . ' (' . number_format($worked_percentage, 1) . '%)</td>';
 		echo '<td>' . $total_confirmed . '/' . $mode_total . ' (' . number_format($confirmed_percentage, 1) . '%)</td>';
-		echo '<td><div class="progress" style="height: 20px; position: relative;"><div class="progress-bar bg-' . $worked_progress_class . '" role="progressbar" style="width: ' . number_format($worked_percentage, 2) . '%;">' . number_format($worked_percentage, 1) . '%' . '</div></div></td>';
-		echo '<td><div class="progress" style="height: 20px; position: relative;"><div class="progress-bar bg-' . $confirmed_progress_class . '" role="progressbar" style="width: ' . number_format($confirmed_percentage, 2) . '%;">' . number_format($confirmed_percentage, 1) . '%' . '</div></div></td>';
+		echo '<td><div class="progress" style="height: 20px; position: relative;"><div class="progress-bar bg-' . $worked_progress_class . '" role="progressbar" style="width: ' . number_format($worked_percentage, 2) . '%; font-size: 14px;">' . number_format($worked_percentage, 1) . '%' . '</div></div></td>';
+		echo '<td><div class="progress" style="height: 20px; position: relative;"><div class="progress-bar bg-' . $confirmed_progress_class . '" role="progressbar" style="width: ' . number_format($confirmed_percentage, 2) . '%; font-size: 14px;">' . number_format($confirmed_percentage, 1) . '%' . '</div></div></td>';
 		echo '</tr>';
 	}
 
