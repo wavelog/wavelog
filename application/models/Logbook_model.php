@@ -24,6 +24,10 @@ class Logbook_model extends CI_Model {
 		}
 	}
 
+	private function sanitize_utf8(array $data): array {
+		return array_map(fn($v) => is_string($v) ? mb_convert_encoding($v, 'UTF-8', 'UTF-8') : $v, $data);
+	}
+
 	/* Add QSO to Logbook */
 	function create_qso($qso_data, $use_custom_date_format = true) {
 		// Get user-preferred date format
@@ -906,8 +910,9 @@ class Logbook_model extends CI_Model {
 
 		// Add QSO to database
 		if ($batchmode) {
-			return $data;
+			return $this->sanitize_utf8($data);
 		} else {
+			$data = $this->sanitize_utf8($data);
 			$this->db->insert($this->config->item('table_name'), $data);
 
 			$last_id = $this->db->insert_id();
@@ -1791,6 +1796,7 @@ class Logbook_model extends CI_Model {
 		}
 
 		$this->db->where('COL_PRIMARY_KEY', $this->input->post('id'));
+		$data = $this->sanitize_utf8($data);
 		try {
 			$this->db->update($this->config->item('table_name'), $data);
 			$retvals['success']=true;
