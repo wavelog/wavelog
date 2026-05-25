@@ -21,12 +21,13 @@
                     <p class="text-muted mb-4"><?= __("Enter all required information to create a new contest session."); ?></p>
                     <div class="mb-4">
                         <label for="contest_adif_id" class="form-label"><?= __("Contest") ?> <span class="text-danger">*</span></label>
-                        <select class="form-select" id="contest_adif_id" name="contest_adif_id" required>
+                        <select class="form-select p-0" id="contest_adif_id" name="contest_adif_id" required>
                             <option value=""><?= __("Please select a contest"); ?></option>
                             <?php foreach ($available_contests as $contest) { ?>
-                                <option value="<?= $contest['id']; ?>" <?php if (isset($session_info) && $session_info['contest_id'] == $contest['id']) echo 'selected'; ?>><?= htmlspecialchars($contest['name']); ?></option> <!-- TODO: Make Dropdown searchable -->
+                                <option value="<?= $contest['id']; ?>" <?php if (isset($session_info) && $session_info['contest_id'] == $contest['id']) echo 'selected'; ?>><?= htmlspecialchars($contest['name']); ?></option>
                             <?php } ?>
                         </select>
+                        <div id="contest-error" class="text-danger small mt-1" style="display:none;"><?= __("Please select a contest.") ?></div>
                         <small class="text-muted d-block mt-2"><?= __("Select the contest for this session"); ?></small>
                     </div>
                     <hr class="my-4">
@@ -158,8 +159,19 @@
 
     document.getElementById('contestSessionForm').addEventListener('submit', function (e) {
         var active = serialize();
-        if (active.length === 0) {
+        var contestVal = document.getElementById('contest_adif_id').value;
+        var prevent = false;
+
+        if (!contestVal) {
             e.preventDefault();
+            document.getElementById('contest-error').style.display = '';
+            prevent = true;
+        } else {
+            document.getElementById('contest-error').style.display = 'none';
+        }
+
+        if (active.length === 0) {
+            if (!prevent) e.preventDefault();
             errorDiv.style.display = '';
         } else {
             errorDiv.style.display = 'none';

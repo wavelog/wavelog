@@ -12,7 +12,7 @@ class Contest_admin_model extends CI_Model {
 
 	function getActiveContests() {
 
-		$sql = "SELECT id, name, adifname FROM contest WHERE active = 1 ORDER BY name ASC";
+		$sql = "SELECT id, name, adifname FROM contest WHERE active = 1 ORDER BY (id = 1) DESC, name ASC";
 
 		$data = $this->db->query($sql);
 

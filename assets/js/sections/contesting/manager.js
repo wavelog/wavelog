@@ -7,12 +7,24 @@ $(document).ready(function () {
     });
 });
 
+function initContestDropdown() {
+    var $select = $('#contest_adif_id');
+    if ($select.length && !$select[0].selectize) {
+        $select.selectize({
+            create: false,
+            closeAfterSelect: true,
+            allowEmptyOption: true,
+        });
+    }
+}
+
 function create_modal() {
     $.ajax({
         url: base_url + 'index.php/contesting/create_session',
         type: 'GET',
         success: function (response) {
             $('#contestSessionModal-container').html(response);
+            initContestDropdown();
             $('#contestCreateSessionModal').modal('show');
         },
         error: function () {
@@ -27,6 +39,7 @@ function edit_modal(session_id) {
         type: 'GET',
         success: function (response) {
             $('#contestSessionModal-container').html(response);
+            initContestDropdown();
             $('#contestCreateSessionModal').modal('show');
         },
         error: function () {
