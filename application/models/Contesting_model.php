@@ -32,6 +32,27 @@ class Contesting_model extends CI_Model {
 	}
 
 	/**
+	 * Check if contest associated with current user
+	 *
+	 * @param int $contest_session_id The ID of the contest session.
+	 * @return bool If user is associated with contest
+	 */
+	function check_user_contest($contest_session_id) {
+		$user_id = $this->session->userdata('user_id');
+
+		$sql = "SELECT 
+					COUNT(*) AS cnt
+				FROM contest_session
+				WHERE id = ?
+				AND user_id = ?";
+
+		$query = $this->db->query($sql, [$contest_session_id, $user_id]);
+		$row = $query->row();
+
+		return ((int) $row->cnt === 1);
+	}
+
+	/**
 	 * Retrieves information about a specific contest session.
 	 *
 	 * @param int $contest_session_id The ID of the contest session.
@@ -183,6 +204,45 @@ class Contesting_model extends CI_Model {
 	}
 
 	/**
+	 * Delete a QSO from a contest. Does not delete QSO from main logbook.
+	 *
+	 * @param int $qso_id The ID of the QSO.
+	 * @param int $contest_session_id The ID of the contest session to delete.
+	 * @return bool True on success, false on failure.
+	 */
+	function unlink_qso($qso_id, $contest_session_id) {
+
+		// Delete associated QSOs (this does not delete the QSOs themselves from the main logbook)
+		// Could just use qso_id, but keep contest_session_id to ensure unlink_qso caller knows which contest is being modified
+		$sql_delete_qsos = "DELETE FROM contest_qsos WHERE contest_session_id = ? AND qso_id = ?";
+
+		$bindings_qsos = [$contest_session_id, $qso_id];
+		$this->db->query($sql_delete_qsos, $bindings_qsos);
+
+		return true;
+	}
+
+	/**
+	 * Get the contest that a QSO is linked to
+	 *
+	 * @param int $qso_id The ID of the QSO.
+	 * @return int The ID of the contest, otherwise zero
+	 */
+	function get_linked_contest($qso_id) {
+
+		$sql_get_qsos = "SELECT contest_session_id FROM contest_qsos WHERE qso_id = ?";
+
+		$bindings_qsos = [$qso_id];
+		$query = $this->db->query($sql_get_qsos, $bindings_qsos);
+
+        if ($query->num_rows() > 0) {
+            return $query->row()->contest_session_id;
+        } else {
+            return 0;
+        }
+	}
+
+	/**
 	 * Retrieves all QSOs associated with a specific contest session.
 	 *
 	 * @param int $contest_session_id The ID of the contest session.
@@ -303,19 +363,6 @@ class Contesting_model extends CI_Model {
 		$query = $this->db->query($sql, $binding);
 		$result = $query->row_array();
 		return (int)$result['qso_count'];
-	}
-
-	/**
-	 * Checks whether the current user owns a given contest session.
-	 *
-	 * @param int $contest_session_id
-	 * @return bool
-	 */
-	function userCanAccessSession($contest_session_id) {
-		$user_id = $this->session->userdata('user_id');
-		$sql = "SELECT id FROM contest_session WHERE id = ? AND user_id = ? LIMIT 1";
-		$query = $this->db->query($sql, [$contest_session_id, $user_id]);
-		return $query->num_rows() > 0;
 	}
 
 	/**
