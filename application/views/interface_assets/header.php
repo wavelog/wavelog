@@ -213,6 +213,7 @@
 								<li><a class="dropdown-item dropdown-toggle dropdown-toggle-submenu" data-bs-toggle="dropdown" href="#"><i class="fas fa-satellite"></i> <?= __("Satellite"); ?></a>
 									<ul class="submenu dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/seven3on73'); ?>"><i class="fas fa-trophy"></i> <?= __("73 on 73"); ?></a></li>
+									<li><a class="dropdown-item" href="<?php echo site_url('awards/amsat_rover'); ?>"><i class="fas fa-trophy"></i> <?= __("AMSAT Rover"); ?></a></li>
 									</ul>
 								</li>
 								<div class="dropdown-divider"></div>
@@ -493,7 +494,7 @@
 
 										<li><a class="dropdown-item" href="<?php echo site_url('csv'); ?>" title="SOTA CSV Export"><i class="fas fa-sync"></i> <?= __("SOTA CSV Export"); ?></a></li>
 
-										<li><a class="dropdown-item" href="<?php echo site_url('cabrillo'); ?>" title="Cabrillo Export"><i class="fas fa-sync"></i> <?= __("Cabrillo Export"); ?></a></li>
+										<li><a class="dropdown-item" href="<?php echo site_url('contesting'); ?>" title="Cabrillo Export"><i class="fas fa-sync"></i> <?= __("Cabrillo Export"); ?></a></li>
 
 										<li><a class="dropdown-item" href="<?php echo site_url('reg1test'); ?>" title="EDI Export"><i class="fas fa-sync"></i> <?= __("EDI Export"); ?></a></li>
 									</ul>

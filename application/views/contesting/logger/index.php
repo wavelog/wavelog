@@ -67,7 +67,7 @@
         <div class="mb-4">
             <h6 class="text-muted mb-3"><i class="fas fa-trophy"></i> <?= __("Contest"); ?></h6>
             <button class="btn btn-danger w-100" id="btnEndContest">
-                <i class="fas fa-times-circle"></i> <?= __("End Contest"); ?>
+                <i class="fas fa-times-circle"></i> <?= __("End Session"); ?>
             </button>
         </div>
         <div class="mb-4">

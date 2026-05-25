@@ -16,8 +16,8 @@
 
 .scp-result-item {
 	padding: 0.25rem 0.5rem;
-	border-right: 1px solid rgba(255, 255, 255, 0.08);
-	border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+	border-right: 1px solid var(--cl-contest-scp-border, rgba(255, 255, 255, 0.08));
+	border-bottom: 1px solid var(--cl-contest-scp-border, rgba(255, 255, 255, 0.08));
 	cursor: pointer;
 	transition: all 0.15s ease;
 	letter-spacing: 0.5px;
@@ -30,28 +30,28 @@
 }
 
 .scp-result-item:hover {
-	background-color: rgba(255, 255, 255, 0.12);
+	background-color: var(--cl-contest-scp-hover-bg, rgba(255, 255, 255, 0.12));
 	padding-top: 0.35rem;
 	padding-bottom: 0.35rem;
-	border-top: 2px solid #0dcaf0;
+	border-top: 2px solid var(--bs-info);
 }
 
 .scp-result-item:active {
-	background-color: rgba(255, 255, 255, 0.18);
+	background-color: var(--cl-contest-scp-active-bg, rgba(255, 255, 255, 0.18));
 }
 
 .scp-result-item:nth-child(even) {
-	border-right: 1px solid rgba(255, 255, 255, 0.08);
+	border-right: 1px solid var(--cl-contest-scp-border, rgba(255, 255, 255, 0.08));
 }
 
 .scp-result-item .scp-callsign {
 	font-weight: bold;
-	color: #fff;
+	color: var(--bs-body-color);
 	letter-spacing: 2px;
 }
 
 .scp-result-item .scp-highlight {
-	color: #0dcaf0;
+	color: var(--bs-info);
 	font-weight: bold;
 	text-decoration: underline;
 	text-decoration-thickness: 2px;
@@ -59,7 +59,7 @@
 }
 
 .scp-result-item .scp-wildcard {
-	color: #ffc107; /* Bootstrap warning color - yellow for wildcards */
+	color: var(--bs-warning);
 	font-weight: bold;
 	text-decoration: underline;
 	text-decoration-thickness: 2px;

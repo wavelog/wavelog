@@ -470,6 +470,7 @@ class Lotw extends CI_Controller {
 					$data['pem_key'] = $result;
 
 					// Read Cert Data
+					/** @var mixed $certdata */
 					$certdata= openssl_x509_parse($results['cert'],0);
 
 					// Store Variables
@@ -691,6 +692,17 @@ class Lotw extends CI_Controller {
 		}
 	}
 
+	/**
+	 * Helper function to validate lotw url
+	 */
+	private function _validate_url(string $url) {
+		$scheme = strtolower(parse_url($url, PHP_URL_SCHEME) ?? '');
+		if ($scheme !== 'https') {
+			log_message('error', 'LoTW URL rejected – disallowed scheme: '.$scheme);
+			show_error('LoTW download URL is invalid (only https allowed).', 500);
+		}
+	}
+
 	/*
 	|--------------------------------------------------------------------------
 	| Function: lotw_download
@@ -714,6 +726,7 @@ class Lotw extends CI_Controller {
 			$url_query = $this->db->query('SELECT lotw_download_url FROM config');
 			$q = $url_query->row();
 			$lotw_base_url = $q->lotw_download_url;
+			$this->_validate_url($lotw_base_url); // fails with 500 error if URL is invalid
 
 			// Single-user mode: fall back to sequential download
 			if ($sync_user_id != null) {
@@ -752,8 +765,13 @@ class Lotw extends CI_Controller {
 					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 					curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
 					$content = curl_exec($ch);
+					$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 					if(curl_errno($ch)) {
 						$result = "LoTW download failed for user ".$user->user_lotw_name.": ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).").";
+						continue;
+					} else if ($http_code !== 200) {
+						$result = "LoTW download failed for user ".$user->user_lotw_name.": unexpected HTTP status ".$http_code.".";
+						log_message('error', 'LoTW download failed for user '.$user->user_name.': unexpected HTTP status '.$http_code);
 						continue;
 					} else if(str_contains(substr($content,0 , 2000),"Username/password incorrect</I>")) {
 						$result = "LoTW download failed for user ".$user->user_lotw_name.": Username/password incorrect";
@@ -860,13 +878,14 @@ class Lotw extends CI_Controller {
 					if ($errno) {
 						log_message('error', 'LoTW download failed for user '.$user->user_name.': '.curl_strerror($errno));
 						curl_multi_remove_handle($mh, $ch);
-						curl_close($ch);
 					} else {
+						$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 						$content = curl_multi_getcontent($ch);
 						curl_multi_remove_handle($mh, $ch);
-						curl_close($ch);
 
-						if (str_contains(substr($content, 0, 2000), "Username/password incorrect</I>")) {
+						if ($http_code !== 200) {
+							log_message('error', 'LoTW download failed for user '.$user->user_name.': unexpected HTTP status '.$http_code);
+						} else if (str_contains(substr($content, 0, 2000), "Username/password incorrect</I>")) {
 							log_message('error', 'LoTW download failed for user '.$user->user_name.': Username/password incorrect');
 							if ($this->Lotw_model->remove_lotw_credentials($user->user_id)) {
 								log_message('error', 'LoTW credentials deleted for user '.$user->user_name);
@@ -1032,6 +1051,7 @@ class Lotw extends CI_Controller {
 			$query = $query = $this->db->query('SELECT lotw_download_url FROM config');
 			$q = $query->row();
 			$lotw_url = $q->lotw_download_url;
+			$this->_validate_url($lotw_url);  // fails with 500 error if URL is invalid
 
 			// Validate that LoTW credentials are not empty
 			// TODO: We don't actually see the error message
@@ -1067,8 +1087,11 @@ class Lotw extends CI_Controller {
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
 				$content = curl_exec($ch);
+				$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 				if(curl_errno($ch)) {
 					print "LoTW download failed for user ".$data['user_lotw_name'].": ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).").";
+				} else if ($http_code !== 200) {
+					print "LoTW download failed for user ".$data['user_lotw_name'].": unexpected HTTP status ".$http_code.".";
 				} else if (str_contains($content,"Username/password incorrect</I>")) {
 					print "LoTW download failed for user ".$data['user_lotw_name'].": Username/password incorrect";
 				} else {

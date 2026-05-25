@@ -240,6 +240,19 @@ class API extends CI_Controller {
 				$result['station_callsign']=$row->station_callsign;;
 				$result['station_active']=$row->station_active;
 				$result['station_uuid']=$row->station_uuid;
+				$result['station_city']=$row->station_city;
+				$result['station_iota']=$row->station_iota;
+				$result['station_sota']=$row->station_sota;
+				$result['station_wwff']=$row->station_wwff;
+				$result['station_pota']=$row->station_pota;
+				$result['station_sig']=$row->station_sig;
+				$result['station_sig_info']=$row->station_sig_info;
+				$result['station_dxcc']=$row->station_dxcc;
+				$result['station_cnty']=$row->station_cnty;
+				$result['station_cq']=$row->station_cq;
+				$result['station_itu']=$row->station_itu;
+				$result['station_state']=$row->state;
+				$result['station_country']=$row->station_country;
 				array_push($station_ids, $result);
 			}
 			echo json_encode($station_ids);

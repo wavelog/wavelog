@@ -44,7 +44,7 @@ $config = [
 		<div class="scp-container" style="display: flex; flex-direction: column; flex: 1; overflow: hidden;">
 
 			<!-- Status Bar -->
-			<div class="card bg-dark border-secondary mb-3" style="flex-shrink: 0;">
+			<div class="card border mb-3" style="flex-shrink: 0;">
 				<div class="card-body p-2">
 					<div class="d-flex justify-content-between align-items-center">
 						<div>
@@ -62,8 +62,8 @@ $config = [
 			</div>
 
 			<!-- Results List -->
-			<div class="card bg-dark border-secondary" style="flex: 1; display: flex; flex-direction: column; min-height: 0;">
-				<div class="card-header bg-secondary d-flex justify-content-between align-items-center" style="flex-shrink: 0;">
+			<div class="card border" style="flex: 1; display: flex; flex-direction: column; min-height: 0;">
+				<div class="card-header d-flex justify-content-between align-items-center" style="flex-shrink: 0;">
 					<h6 class="mb-0 fw-bold"><?= __("Matches"); ?></h6>
 					<span class="badge bg-primary" id="scp-match-count">0</span>
 				</div>

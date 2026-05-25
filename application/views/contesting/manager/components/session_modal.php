@@ -54,15 +54,50 @@
                         <small class="text-muted d-block mt-2"><?= __("Choose one of your stations"); ?></small>
                     </div>
                     <div class="mb-4">
-                        <label for="exchangetype" class="form-label"><?= __("Exchange Type") ?> <span class="text-danger">*</span></label>
-                        <select class="form-select" id="exchangetype" name="exchangetype" required>
-                            <option value="Exchange" <?php if (!isset($session_info) || ($session_info['exchangetype'] ?? '') === 'Exchange') echo 'selected'; ?>><?= __("Exchange (free text only)"); ?></option>
-                            <option value="Serial" <?php if (isset($session_info) && ($session_info['exchangetype'] ?? '') === 'Serial') echo 'selected'; ?>><?= __("Serial number only"); ?></option>
-                            <option value="Serialexchange" <?php if (isset($session_info) && ($session_info['exchangetype'] ?? '') === 'Serialexchange') echo 'selected'; ?>><?= __("Serial number + Exchange"); ?></option>
-                            <option value="Serialgridsquare" <?php if (isset($session_info) && ($session_info['exchangetype'] ?? '') === 'Serialgridsquare') echo 'selected'; ?>><?= __("Serial number + Grid Square"); ?></option>
-                            <option value="SerialGridExchange" <?php if (isset($session_info) && ($session_info['exchangetype'] ?? '') === 'SerialGridExchange') echo 'selected'; ?>><?= __("Serial number + Grid + Exchange"); ?></option>
+                        <label class="form-label"><?= __("Exchange Fields") ?> <span class="text-danger">*</span></label>
+                        <small class="text-muted d-block mb-2"><?= __("Toggle fields on/off and drag to set the tab order in the logger.") ?></small>
+                        <?php
+                        $allFields = [
+                            'serial'     => __("Serial Number"),
+                            'gridsquare' => __("Grid Square"),
+                            'exchange'   => __("Exchange (text)"),
+                        ];
+                        $activeFields = isset($session_info) ? ($session_info['exchangefields'] ?? ['exchange']) : ['exchange'];
+                        // Render active fields first (in saved order), then inactive ones
+                        $ordered = [];
+                        foreach ($activeFields as $f) {
+                            if (isset($allFields[$f])) $ordered[$f] = $allFields[$f];
+                        }
+                        foreach ($allFields as $f => $label) {
+                            if (!isset($ordered[$f])) $ordered[$f] = $label;
+                        }
+                        ?>
+                        <ul id="exchange-field-list" class="list-group" style="cursor:grab;">
+                            <?php foreach ($ordered as $field => $label) { ?>
+                            <li class="list-group-item d-flex align-items-center gap-2 py-2" draggable="true" data-field="<?php echo $field ?>">
+                                <i class="fas fa-grip-vertical text-muted"></i>
+                                <input type="checkbox" class="form-check-input flex-shrink-0" id="ef-<?php echo $field ?>"
+                                       <?php if (in_array($field, $activeFields)) echo 'checked'; ?>>
+                                <label for="ef-<?php echo $field ?>" class="mb-0 flex-grow-1" style="cursor:pointer;"><?php echo $label ?></label>
+                            </li>
+                            <?php } ?>
+                        </ul>
+                        <input type="hidden" id="exchangefields-input" name="exchangefields" value="">
+                        <div id="exchangefields-error" class="text-danger small mt-1" style="display:none;"><?= __("Please enable at least one exchange field.") ?></div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="copyexchangeto" class="form-label"><?= __("Copy Exchange to Field") ?></label>
+                        <select class="form-select" id="copyexchangeto" name="copyexchangeto">
+                            <option value="" <?php if (!isset($session_info) || ($session_info['copyexchangeto'] ?? '') === '') echo 'selected'; ?>><?= __("— None —") ?></option>
+                            <option value="dok"     <?php if (isset($session_info) && ($session_info['copyexchangeto'] ?? '') === 'dok')     echo 'selected'; ?>><?= __("DOK") ?></option>
+                            <option value="locator" <?php if (isset($session_info) && ($session_info['copyexchangeto'] ?? '') === 'locator') echo 'selected'; ?>><?= __("Gridquare") ?></option>
+                            <option value="qth"     <?php if (isset($session_info) && ($session_info['copyexchangeto'] ?? '') === 'qth')     echo 'selected'; ?>><?= __("QTH") ?></option>
+                            <option value="name"    <?php if (isset($session_info) && ($session_info['copyexchangeto'] ?? '') === 'name')    echo 'selected'; ?>><?= __("Name") ?></option>
+                            <option value="age"     <?php if (isset($session_info) && ($session_info['copyexchangeto'] ?? '') === 'age')     echo 'selected'; ?>><?= __("Age") ?></option>
+                            <option value="state"   <?php if (isset($session_info) && ($session_info['copyexchangeto'] ?? '') === 'state')   echo 'selected'; ?>><?= __("State") ?></option>
+                            <option value="power"   <?php if (isset($session_info) && ($session_info['copyexchangeto'] ?? '') === 'power')   echo 'selected'; ?>><?= __("RX Power (W)") ?></option>
                         </select>
-                        <small class="text-muted d-block mt-2"><?= __("Defines which exchange fields are used in this contest"); ?></small>
+                        <small class="text-muted d-block mt-2"><?= __("The received Exchange (Exch R) value will be copied to this logbook field.") ?></small>
                     </div>
                     <div class="mb-4">
                         <label for="session_notes" class="form-label"><?= __("Session Notes") ?></label>
@@ -81,3 +116,54 @@
         </div>
     </div>
 </div>
+<script>
+(function () {
+    var list = document.getElementById('exchange-field-list');
+    var hiddenInput = document.getElementById('exchangefields-input');
+    var errorDiv = document.getElementById('exchangefields-error');
+    var dragEl = null;
+
+    function serialize() {
+        var active = [];
+        list.querySelectorAll('li').forEach(function (li) {
+            if (li.querySelector('input[type=checkbox]').checked) {
+                active.push(li.dataset.field);
+            }
+        });
+        hiddenInput.value = JSON.stringify(active);
+        return active;
+    }
+
+    list.querySelectorAll('li').forEach(function (li) {
+        li.addEventListener('dragstart', function (e) {
+            dragEl = li;
+            e.dataTransfer.effectAllowed = 'move';
+            setTimeout(function () { li.classList.add('opacity-50'); }, 0);
+        });
+        li.addEventListener('dragend', function () {
+            li.classList.remove('opacity-50');
+            dragEl = null;
+        });
+        li.addEventListener('dragover', function (e) {
+            e.preventDefault();
+            if (!dragEl || dragEl === li) return;
+            var rect = li.getBoundingClientRect();
+            if (e.clientY < rect.top + rect.height / 2) {
+                list.insertBefore(dragEl, li);
+            } else {
+                list.insertBefore(dragEl, li.nextSibling);
+            }
+        });
+    });
+
+    document.getElementById('contestSessionForm').addEventListener('submit', function (e) {
+        var active = serialize();
+        if (active.length === 0) {
+            e.preventDefault();
+            errorDiv.style.display = '';
+        } else {
+            errorDiv.style.display = 'none';
+        }
+    });
+})();
+</script>

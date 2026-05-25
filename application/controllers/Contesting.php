@@ -54,6 +54,11 @@ class Contesting extends CI_Controller {
 	}
 
 	public function quickstart() {
+		if (!clubaccess_check(9)) {
+			$this->session->set_flashdata('error', __("Officers must set up contests."));
+			redirect('contesting'); 
+		}
+
 		$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
 		$this->load->is_loaded('stations') ?: $this->load->model('stations');
 
@@ -82,11 +87,161 @@ class Contesting extends CI_Controller {
 	public function export($contest_session_id) {
 		$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
 
-		$data['page_title'] = __("Export Contest Data");
+		if (!$this->contesting_model->userCanAccessSession($contest_session_id)) {
+			$this->session->set_flashdata('error', __("Contest session not found."));
+			redirect('contesting');
+		}
+
+		$this->load->is_loaded('user_model') ?: $this->load->model('user_model');
+
+		$session_info = $this->contesting_model->get_session_info($contest_session_id);
+		$cabrillo     = $this->contesting_model->get_cabrillo_settings($contest_session_id);
+		$userinfo     = $this->user_model->get_by_id($this->session->userdata('user_id'))->row();
+
+		$session_operators = $this->contesting_model->get_session_operators($contest_session_id);
+
+		$data['page_title']         = sprintf(__("Export: %s"), $session_info['contest_name']);
+		$data['session_info']       = $session_info;
+		$data['cabrillo']           = $cabrillo;
+		$data['qso_count']          = $this->contesting_model->get_session_qso_count($contest_session_id);
+		$data['user_name']          = trim($userinfo->user_firstname . ' ' . $userinfo->user_lastname);
+		$data['user_email']         = $userinfo->user_email;
+		$data['session_operators']  = $session_operators;
+		$data['contest_session_id'] = $contest_session_id;
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('contesting/manager/export');
 		$this->load->view('interface_assets/footer');
+	}
+
+	/**
+	 * ADIF export for a specific contest session.
+	 * POST /contesting/export_adif/<id>
+	 */
+	public function export_adif($contest_session_id) {
+		$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
+
+		if (!$this->contesting_model->userCanAccessSession($contest_session_id) || !clubaccess_check(6)) {
+			show_404();
+		}
+
+		$session_info = $this->contesting_model->get_session_info($contest_session_id);
+		$qsos         = $this->contesting_model->get_session_qsos_for_adif($contest_session_id);
+
+		$callsign = strtoupper(str_replace('/', '-', $session_info['station_callsign'] ?? 'STATION'));
+		$contest  = strtoupper($session_info['contest_adifname'] ?? 'CONTEST');
+		$filename = $callsign . '-' . $contest . '-' . date('Ymd') . '.adi';
+
+		$this->load->library('AdifHelper');
+
+		header('Content-Type: application/octet-stream');
+		header('Content-Disposition: attachment; filename="' . $filename . '"');
+
+		echo $this->adifhelper->getAdifHeader(
+			$this->config->item('app_name'),
+			$this->optionslib->get_option('version'),
+			$this->optionslib->get_option('adif_version')
+		);
+
+		foreach ($qsos->result() as $qso) {
+			echo $this->adifhelper->getAdifLine($qso);
+		}
+	}
+
+	/**
+	 * Cabrillo export for a specific contest session.
+	 * Saves Cabrillo category settings back to the session before streaming the file.
+	 * POST /contesting/export_cabrillo/<id>
+	 */
+	public function export_cabrillo($contest_session_id) {
+		$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
+
+		if (!$this->contesting_model->userCanAccessSession($contest_session_id) || !clubaccess_check(6)) {
+			show_404();
+		}
+
+		$cabrillo = [
+			'category_operator'    => $this->input->post('categoryoperator', true)    ?? 'SINGLE-OP',
+			'category_assisted'    => $this->input->post('categoryassisted', true)    ?? 'NON-ASSISTED',
+			'category_band'        => $this->input->post('categoryband', true)        ?? 'ALL',
+			'category_mode'        => $this->input->post('categorymode', true)        ?? 'MIXED',
+			'category_power'       => $this->input->post('categorypower', true)       ?? 'LOW',
+			'category_station'     => $this->input->post('categorystation', true)     ?? 'FIXED',
+			'category_transmitter' => $this->input->post('categorytransmitter', true) ?? 'ONE',
+			'category_time'        => $this->input->post('categorytime', true)        ?? '',
+			'category_overlay'     => $this->input->post('categoryoverlay', true)     ?? '',
+			'club'                 => $this->input->post('club', true)                ?? '',
+			'location'             => $this->input->post('location', true)            ?? '',
+			'operators'            => $this->input->post('operators', true)           ?? '',
+			'name'                 => $this->input->post('cbr_name', true)            ?? '',
+			'email'                => $this->input->post('cbr_email', true)           ?? '',
+			'address'              => $this->input->post('address', true)             ?? '',
+			'addresscity'          => $this->input->post('addresscity', true)         ?? '',
+			'addressprovince'      => $this->input->post('addressprovince', true)     ?? '',
+			'addresspostalcode'    => $this->input->post('addresspostalcode', true)   ?? '',
+			'addresscountry'       => $this->input->post('addresscountry', true)      ?? '',
+			'soapbox'              => $this->input->post('soapbox', true)             ?? '',
+			'certificate'          => $this->input->post('certificate', true)         ?? '',
+			'grid_export'          => $this->input->post('grid_export', true)         ?? '0',
+			'grid_precision'       => $this->input->post('grid_precision', true) === '6' ? '6' : '4',
+		];
+
+		$this->contesting_model->save_cabrillo_settings($contest_session_id, $cabrillo);
+
+		$session_info = $this->contesting_model->get_session_info($contest_session_id);
+		$qsos         = $this->contesting_model->get_session_qsos_for_cabrillo($contest_session_id);
+
+		$this->load->is_loaded('user_model') ?: $this->load->model('user_model');
+		$userinfo = $this->user_model->get_by_id($this->session->userdata('user_id'))->row();
+
+		$contest_id = $session_info['contest_adifname'];
+		$callsign   = strtoupper(str_replace('/', '-', $session_info['station_callsign'] ?? 'STATION'));
+		$filename   = $callsign . '-' . $contest_id . '-' . date('Ymd-Hi') . '.cbr';
+
+		$this->load->library('Cabrilloformat');
+
+		header('Content-Type: text/plain; charset=utf-8');
+		header('Content-Disposition: attachment; filename="' . $filename . '"');
+
+		$grid_export = ($cabrillo['grid_export'] === '1');
+		$grid_chars  = (int)($cabrillo['grid_precision'] ?? 4);
+
+		$cbr_name  = $cabrillo['name']  ?: trim($userinfo->user_firstname . ' ' . $userinfo->user_lastname);
+		$cbr_email = $cabrillo['email'] ?: $userinfo->user_email;
+
+		echo $this->cabrilloformat->header(
+			$contest_id,
+			$callsign,
+			null,
+			$cabrillo['operators'] ?: $callsign,
+			$cabrillo['club']      ?: null,
+			$cabrillo['location']  ?: null,
+			$cbr_name,
+			$cabrillo['address']           ?? '',
+			$cabrillo['addresscity']       ?? '',
+			$cabrillo['addressprovince']   ?? '',
+			$cabrillo['addresspostalcode'] ?? '',
+			$cabrillo['addresscountry']    ?? '',
+			$cabrillo['soapbox']  ?: '',
+			$session_info['station_gridsquare'] ?: null,
+			$cabrillo['category_overlay']     ?: '',
+			$cabrillo['category_transmitter'],
+			$cabrillo['category_time']        ?: '',
+			$cabrillo['category_station'],
+			$cabrillo['category_power'],
+			$cabrillo['category_mode'],
+			$cabrillo['category_band'],
+			$cabrillo['category_assisted'],
+			$cabrillo['category_operator'],
+			$cbr_email,
+			$cabrillo['certificate'] ?: null
+		);
+
+		foreach ($qsos->result() as $qso) {
+			echo $this->cabrilloformat->qso($qso, $grid_export, $grid_chars);
+		}
+
+		echo $this->cabrilloformat->footer();
 	}
 
 	/**
@@ -111,6 +266,7 @@ class Contesting extends CI_Controller {
 			$this->session->set_flashdata('error', __("Contest session not found."));
 			redirect('contesting');
 		}
+
 		// Generate storage key for localStorage. This needs to be collission free between different Wavelog Instances and different users
 		$data['storage_key'] = md5($this->config->item('base_url') . $contest_session_id . $this->session->userdata('user_id'));
 
@@ -192,20 +348,25 @@ class Contesting extends CI_Controller {
 				break;
 
 			case 'post':
-				$contest_session_id = $this->input->post('contest_session_id', true);
-				$time_start = $this->input->post('session_start', true);
-				$time_end = $this->input->post('session_end', true);
-				$station_id = $this->input->post('station_location', true);
-				$notes = $this->input->post('session_notes', true);
-				$contest_id = $this->input->post('contest_adif_id', true);
-				$exchangetype = $this->input->post('exchangetype', true);
+				if (!clubaccess_check(9)) {
+					$this->session->set_flashdata('error', __("Officers must set up contests."));
+					redirect('contesting'); 
+				}
+				$contest_adif_id = $this->input->post('contest_adif_id', true);
+				$session_start = $this->input->post('session_start', true);
+				$session_end = $this->input->post('session_end', true);
+				$station_location = $this->input->post('station_location', true);
+				$session_notes = $this->input->post('session_notes', true);
+				$exchangefields = $this->_parseExchangeFields($this->input->post('exchangefields', true));
+				$exchangetype   = $this->_fieldsToLegacyType($exchangefields);
+				$copyexchangeto = $this->input->post('copyexchangeto', true) ?? '';
 
-				$result = $this->contesting_model->update_contest_session($contest_session_id, $contest_id, $time_start, $time_end, $station_id, $notes, $exchangetype);
+				$result = $this->contesting_model->create_contest_session($contest_adif_id, $session_start, $session_end, $station_location, $session_notes, false, $exchangetype, $copyexchangeto, $exchangefields);
 
 				if ($result) {
-					$this->session->set_flashdata('success', __("Contest session updated successfully."));
+					$this->session->set_flashdata('success', __("Contest session created successfully."));
 				} else {
-					$this->session->set_flashdata('error', __("There was an error updating the contest session. Please try again."));
+					$this->session->set_flashdata('error', __("There was an error creating the contest session. Please try again."));
 				}
 
 				redirect('contesting');
@@ -245,9 +406,11 @@ class Contesting extends CI_Controller {
 				$station_id = $this->input->post('station_location', true);
 				$notes = $this->input->post('session_notes', true);
 				$contest_id = $this->input->post('contest_adif_id', true);
-				$exchangetype = $this->input->post('exchangetype', true);
+				$exchangefields = $this->_parseExchangeFields($this->input->post('exchangefields', true));
+				$exchangetype   = $this->_fieldsToLegacyType($exchangefields);
+				$copyexchangeto = $this->input->post('copyexchangeto', true) ?? '';
 
-				$result = $this->contesting_model->update_contest_session($contest_session_id, $contest_id, $time_start, $time_end, $station_id, $notes, $exchangetype);
+				$result = $this->contesting_model->update_contest_session($contest_session_id, $contest_id, $time_start, $time_end, $station_id, $notes, $exchangetype, $copyexchangeto, $exchangefields);
 
 				if ($result) {
 					$this->session->set_flashdata('success', __("Contest session updated successfully."));
@@ -301,6 +464,105 @@ class Contesting extends CI_Controller {
 			default:
 				$this->session->set_flashdata('error', __("Invalid request method."));
 				redirect('contesting');
+		}
+	}
+
+	/**
+	 * Inline QSO edit endpoint.
+	 * Endpoint: POST /contesting/update_qso
+	 *
+	 * Accepts JSON: { contest_session_id, qso_id, callsign?, mode?, frequency?,
+	 *                 rst_sent?, rst_rcvd?, serial_sent?, serial_rcvd?,
+	 *                 exchange_sent?, exchange_rcvd?, gridsquare_rcvd? }
+	 *
+	 * Authorization: PHP session user must own the contest session AND be the
+	 * operator recorded on the QSO (operator check).
+	 */
+	public function update_qso() {
+		if ($this->input->method() !== 'post') {
+			$this->_teapot();
+			return;
+		}
+
+		header('Content-Type: application/json');
+
+		try {
+			$payload = json_decode($this->input->raw_input_stream, true);
+			if (!$payload) {
+				throw new Exception('Invalid JSON payload');
+			}
+
+			$contest_session_id = (int)($payload['contest_session_id'] ?? 0);
+			$qso_id = (int)($payload['qso_id'] ?? 0);
+
+			if (!$contest_session_id || !$qso_id) {
+				throw new Exception('Missing contest_session_id or qso_id');
+			}
+
+			$this->load->model('contesting_model');
+
+			// Session ownership check
+			if (!$this->contesting_model->userCanAccessSession($contest_session_id)) {
+				http_response_code(403);
+				echo json_encode(['success' => false, 'error' => 'Access denied']);
+				return;
+			}
+
+			// Verify QSO belongs to this session and get its operator
+			$qso = $this->contesting_model->get_contest_qso($qso_id, $contest_session_id);
+			if (!$qso) {
+				http_response_code(404);
+				echo json_encode(['success' => false, 'error' => 'QSO not found in this session']);
+				return;
+			}
+
+			// Operator check: only the user who logged the QSO may edit it
+			$current_callsign = strtoupper(trim($this->session->userdata('user_callsign')));
+			$qso_operator = strtoupper(trim($qso['operator'] ?? ''));
+			if ($qso_operator !== $current_callsign) {
+				http_response_code(403);
+				echo json_encode(['success' => false, 'error' => 'You can only edit QSOs you logged']);
+				return;
+			}
+
+			// Whitelist of editable columns
+			$allowed = [
+				'callsign'      => 'COL_CALL',
+				'mode'          => 'COL_MODE',
+				'frequency'     => 'COL_FREQ',
+				'band'          => 'COL_BAND',
+				'rst_sent'      => 'COL_RST_SENT',
+				'rst_rcvd'      => 'COL_RST_RCVD',
+				'serial_sent'   => 'COL_STX',
+				'serial_rcvd'   => 'COL_SRX',
+				'exchange_sent' => 'COL_STX_STRING',
+				'exchange_rcvd' => 'COL_SRX_STRING',
+				'gridsquare_rcvd' => 'COL_GRIDSQUARE',
+			];
+
+			$fields = [];
+			foreach ($allowed as $key => $col) {
+				if (array_key_exists($key, $payload)) {
+					$val = $payload[$key];
+					if (in_array($key, ['callsign', 'mode', 'band', 'rst_sent', 'rst_rcvd',
+					                    'serial_sent', 'serial_rcvd', 'exchange_sent',
+					                    'exchange_rcvd', 'gridsquare_rcvd'])) {
+						$val = $val !== null ? strtoupper(trim((string)$val)) : null;
+					}
+					$fields[$col] = $val;
+				}
+			}
+
+			if (empty($fields)) {
+				throw new Exception('No editable fields provided');
+			}
+
+			$this->contesting_model->update_contest_qso($qso_id, $fields);
+
+			echo json_encode(['success' => true, 'qso_id' => $qso_id]);
+		} catch (Exception $e) {
+			http_response_code(400);
+			echo json_encode(['success' => false, 'error' => $e->getMessage()]);
 		}
 	}
 
@@ -424,13 +686,15 @@ class Contesting extends CI_Controller {
 					'exch_serial_r' => $command['data']['serial_rcvd'] ?? NULL,
 					'exch_sent' => $command['data']['exchange_sent'] ?? NULL,
 					'exch_rcvd' => $command['data']['exchange_rcvd'] ?? NULL,
+					'locator' => $command['data']['gridsquare_rcvd'] ?? NULL,
 					'country' => $command['data']['country'] ?? NULL,
 					'continent' => $command['data']['continent'] ?? NULL,
 					'dxcc_id' => $command['data']['dxcc_id'] ?? NULL,
 					'cqz' => $command['data']['cqz'] ?? NULL,
-					'operator_callsign' => $this->session->userdata('user_callsign'),
+					'operator_callsign' => $command['data']['operator'] ?: $this->session->userdata('user_callsign'),
 					'contestname' => $session_info['contest_adifname'],
-					'exchangetype' => $session_info['exchangetype'] ?? 'Exchange'
+					'exchangetype' => $session_info['exchangetype'] ?? 'Exchange',
+					'copyexchangeto' => $session_info['copyexchangeto'] ?? NULL
 				];
 
 				// Save QSO to database
@@ -521,6 +785,30 @@ class Contesting extends CI_Controller {
 					log_message('info', "Resync triggered for session {$session_info['contest_session_id']}: Client={$client_qso_count} + Saved=" . count($response['data']['saved_qsos']) . " = {$expected_client_count}, Server={$server_qso_count}");
 				} else {
 					$response['data']['needs_resync'] = false;
+				}
+
+				// Timestamp-based edit detection: resync when any QSO was modified after the
+				// client's last known sync time (catches inline edits that don't change QSO count).
+				// Skip when QSOs were saved in this same heartbeat — their last_modified being
+				// newer than lastSyncTime is expected and the count-check already handled them.
+				$last_sync_time_ms = (int)($request['last_sync_time'] ?? 0);
+				$just_saved = count($response['data']['saved_qsos'] ?? []) > 0;
+				if ($last_sync_time_ms > 0 && !$response['data']['needs_resync'] && !$just_saved) {
+					$server_last_update = $this->contesting_model->get_session_last_update($session_info['contest_session_id']);
+					if ($server_last_update > $last_sync_time_ms) {
+						$response['data']['needs_resync'] = true;
+						if (!isset($response['data']['all_qsos'])) {
+							$all_qsos = $this->contesting_model->get_session_qsos($session_info['contest_session_id']);
+							if (is_array($all_qsos)) {
+								$all_qsos = array_map(function ($qso) {
+									$qso['id'] = $qso['qso_id'];
+									return $qso;
+								}, $all_qsos);
+							}
+							$response['data']['all_qsos'] = $all_qsos;
+						}
+						log_message('info', "Edit-resync triggered for session {$session_info['contest_session_id']}: server_last_update={$server_last_update} > client_last_sync={$last_sync_time_ms}");
+					}
 				}
 				break;
 
@@ -788,6 +1076,28 @@ class Contesting extends CI_Controller {
 
 		header('Content-Type: application/json');
 		echo json_encode($result);
+	}
+
+	private function _parseExchangeFields($json) {
+		$allowed = ['serial', 'gridsquare', 'exchange'];
+		$decoded = json_decode($json ?? '', true);
+		if (!is_array($decoded)) {
+			return ['exchange'];
+		}
+		$fields = array_values(array_filter($decoded, fn($f) => in_array($f, $allowed)));
+		return $fields ?: ['exchange'];
+	}
+
+	private function _fieldsToLegacyType($fields) {
+		$s = in_array('serial',    $fields);
+		$g = in_array('gridsquare', $fields);
+		$e = in_array('exchange',  $fields);
+		if ($s && $g && $e) return 'SerialGridExchange';
+		if ($s && $g)       return 'Serialgridsquare';
+		if ($s && $e)       return 'Serialexchange';
+		if ($e && $g)       return 'Exchangegridsquare';
+		if ($s)             return 'Serial';
+		return 'Exchange';
 	}
 
 	private function _teapot() {
