@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-05-25 10:40+0000\n"
-"PO-Revision-Date: 2026-05-25 18:06+0000\n"
+"PO-Revision-Date: 2026-05-26 06:31+0000\n"
 "Last-Translator: \"Juuso W.\" <oh1jw@tuta.io>\n"
 "Language-Team: Finnish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/fi/>\n"
@@ -6567,13 +6567,13 @@ msgstr "Tilamoodin mukaan"
 #: application/views/awards/dxcc/index.php:369
 #: application/views/awards/dxcc/progress.php:5
 msgid "Worked Progress"
-msgstr ""
+msgstr "Työskennellyt (Worked) edistyminen"
 
 #: application/views/awards/dxcc/index.php:297
 #: application/views/awards/dxcc/index.php:370
 #: application/views/awards/dxcc/progress.php:5
 msgid "Confirmed Progress"
-msgstr ""
+msgstr "Vahvistusten (confirmed) edistyminen"
 
 #: application/views/awards/dxcc/index.php:366
 #: application/views/awards/wac/index.php:142
@@ -6593,15 +6593,15 @@ msgstr "Manner"
 
 #: application/views/awards/dxcc/index.php:413
 msgid "No continent data available."
-msgstr ""
+msgstr "Ei maanosatietoja saatavilla."
 
 #: application/views/awards/dxcc/index.php:422
 msgid "Loading..."
-msgstr ""
+msgstr "Ladataan..."
 
 #: application/views/awards/dxcc/index.php:424
 msgid "Loading progress data..."
-msgstr ""
+msgstr "Ladataan edistymistietoja..."
 
 #: application/views/awards/dxcc/index.php:454
 msgid "DXCC Name"
@@ -6626,7 +6626,7 @@ msgstr "Ei tuloksia hakuehdoillasi. Yritä uudelleen."
 
 #: application/views/awards/dxcc/progress.php:31
 msgid "No mode data available."
-msgstr ""
+msgstr "Mode-tietoa ei saatavilla."
 
 #: application/views/awards/ffma/index.php:11
 #: application/views/interface_assets/header.php:301
@@ -7627,7 +7627,7 @@ msgstr ""
 
 #: application/views/awards/waip/index.php:34
 msgid "Progress towards working all Italian provinces:"
-msgstr ""
+msgstr "Edistyminen kaikkien Italian provinssien työskentelyssä:"
 
 #: application/views/awards/waip/index.php:40
 #: application/views/awards/waip/index.php:92
@@ -12939,7 +12939,7 @@ msgstr "Worked All Prefixes (WPX)"
 
 #: application/views/interface_assets/header.php:213
 msgid "AMSAT Rover"
-msgstr ""
+msgstr "AMSAT Rover"
 
 #: application/views/interface_assets/header.php:227
 msgid "Canada"
@@ -13851,6 +13851,9 @@ msgid ""
 "column you are looking for, use the regular QSO edit (click the callsign, "
 "then click the edit QSO button)."
 msgstr ""
+"Kaikki sarakkeet eivät ole käytettävissä massamuokkaukseen. Jos et löydä "
+"etsimääsi saraketta, käytä tavallista QSO-muokkausta (napsauta kutsumerkkiä "
+"ja sen jälkeen ”Muokkaa QSO” -painiketta)."
 
 #: application/views/logbookadvanced/edit.php:5
 msgid "Please choose the column to be edited:"
@@ -14157,23 +14160,23 @@ msgstr "SIG_INFO"
 
 #: application/views/logbookadvanced/help.php:7
 msgid "Search Tips"
-msgstr ""
+msgstr "Hakuvinkit"
 
 #: application/views/logbookadvanced/help.php:10
 msgid "Use these special operators in text input searches:"
-msgstr ""
+msgstr "Käytä näitä erikoisoperaattoreita tekstihakukentissä:"
 
 #: application/views/logbookadvanced/help.php:14
 msgid "Search for everything"
-msgstr ""
+msgstr "Etsi kaikkea"
 
 #: application/views/logbookadvanced/help.php:18
 msgid "Search where column is empty"
-msgstr ""
+msgstr "Hae rivit, joissa sarake on tyhjä"
 
 #: application/views/logbookadvanced/help.php:22
 msgid "Search where column is not empty"
-msgstr ""
+msgstr "Hae rivit, joissa sarake ei ole tyhjä"
 
 #: application/views/logbookadvanced/help.php:33
 #: application/views/logbookadvanced/index.php:74
@@ -14182,109 +14185,117 @@ msgstr "Duplikaattien etsintä"
 
 #: application/views/logbookadvanced/help.php:36
 msgid "The dupe search checks for duplicate QSOs with the same:"
-msgstr ""
+msgstr "Duplikaattihaku tarkistaa kaksois-QSOt, joissa on sama:"
 
 #: application/views/logbookadvanced/help.php:39
 msgid "Mode / Submode"
-msgstr ""
+msgstr "Mode / Submode"
 
 #: application/views/logbookadvanced/help.php:45
 msgid "Time window:"
-msgstr ""
+msgstr "Aikaväli:"
 
 #: application/views/logbookadvanced/help.php:54
 msgid "Invalid Search"
-msgstr ""
+msgstr "Virheellinen haku"
 
 #: application/views/logbookadvanced/help.php:57
 msgid "Checks for the following conditions:"
-msgstr ""
+msgstr "Tarkistaa seuraavat ehdot:"
 
 #: application/views/logbookadvanced/help.php:59
 msgid "Mode is blank or set to 0"
-msgstr ""
+msgstr "Mode on tyhjä tai asetettu arvoon 0"
 
 #: application/views/logbookadvanced/help.php:60
 msgid "Band is blank"
-msgstr ""
+msgstr "Bandi on tyhjä"
 
 #: application/views/logbookadvanced/help.php:61
 msgid "Callsign is blank"
-msgstr ""
+msgstr "Kutsumerkki on tyhjä"
 
 #: application/views/logbookadvanced/help.php:62
 msgid "Time and date is not set"
-msgstr ""
+msgstr "Aikaa ja päivämäärää ei ole asetettu"
 
 #: application/views/logbookadvanced/help.php:63
 msgid "Date is set to 1970-01-01"
-msgstr ""
+msgstr "Päivämääräksi on asetettu 1970-01-01"
 
 #: application/views/logbookadvanced/help.php:64
 msgid "Continent is invalid (not AF, AN, AS, EU, NA, OC, or SA)"
-msgstr ""
+msgstr "Manner on virheellinen (ei AF, AN, AS, EU, NA, OC tai SA)"
 
 #: application/views/logbookadvanced/help.php:74
 msgid "Map View"
-msgstr ""
+msgstr "Karttanäkymä"
 
 #: application/views/logbookadvanced/help.php:77
 msgid "The map uses the same search criteria as the normal search."
-msgstr ""
+msgstr "Kartta käyttää samoja hakukriteerejä kuin normaali haku."
 
 #: application/views/logbookadvanced/help.php:78
 msgid ""
 "All QSOs in the search result will be mapped, unless you have checked one or "
 "more QSOs."
 msgstr ""
+"Kaikki hakutuloksen QSOt näytetään kartalla, ellet ole valinnut yhtä tai "
+"useampaa QSOa."
 
 #: application/views/logbookadvanced/help.php:78
 #: application/views/logbookadvanced/help.php:99
 #: application/views/logbookadvanced/help.php:112
 msgid "Note:"
-msgstr ""
+msgstr "Huomautus:"
 
 #: application/views/logbookadvanced/help.php:87
 msgid "Batch Edit"
-msgstr ""
+msgstr "Massamuokkaus"
 
 #: application/views/logbookadvanced/help.php:90
 msgid ""
 "Batch edit allows you to modify a single column across all checked QSOs at "
 "once."
 msgstr ""
+"Massamuokkauksen avulla voit muokata yhtä saraketta kaikissa valituissa "
+"QSOissa kerralla."
 
 #: application/views/logbookadvanced/help.php:91
 msgid "Available edit categories:"
-msgstr ""
+msgstr "Saatavilla olevat muokkauskategoriat:"
 
 #: application/views/logbookadvanced/help.php:93
 msgid "QSO Details:"
-msgstr ""
+msgstr "QSO-tiedot:"
 
 #: application/views/logbookadvanced/help.php:94
 msgid "Awards:"
-msgstr ""
+msgstr "Awardit:"
 
 #: application/views/logbookadvanced/help.php:95
 msgid "Confirmations:"
-msgstr ""
+msgstr "Vahvistukset:"
 
 #: application/views/logbookadvanced/help.php:99
 msgid ""
 "You must check one or more QSOs before using batch edit. For complex "
 "changes, use the regular QSO edit instead."
 msgstr ""
+"Sinun on valittava yksi tai useampi QSO ennen massamuokkauksen käyttöä. "
+"Monimutkaisempia muutoksia varten käytä tavallista QSO-muokkausta."
 
 #: application/views/logbookadvanced/help.php:111
 msgid "The ADIF export uses the same search criteria as the normal search."
-msgstr ""
+msgstr "ADIF-vienti käyttää samoja hakukriteerejä kuin normaali haku."
 
 #: application/views/logbookadvanced/help.php:112
 msgid ""
 "All QSOs will be exported (all for selected location), unless you have "
 "checked one or more QSOs."
 msgstr ""
+"Kaikki QSO:t viedään (kaikki valitusta sijainnista), ellet ole valinnut yhtä "
+"tai useampia QSOja."
 
 #: application/views/logbookadvanced/index.php:16
 #: application/views/stationsetup/exportmapoptions.php:23
