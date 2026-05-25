@@ -90,6 +90,22 @@ class QsoFormComponent {
 		this.container.querySelectorAll('.exchange-text-col').forEach(el => {
 			el.style.display = hasTextExchange ? '' : 'none';
 		});
+
+		const hasGridsquare = ['Serialgridsquare', 'SerialGridExchange'].includes(this.exchangeType);
+		this.container.querySelectorAll('.gridsquare-field').forEach(el => {
+			el.style.display = hasGridsquare ? '' : 'none';
+		});
+		this.container.querySelectorAll('.gridsquare-col').forEach(el => {
+			el.style.display = hasGridsquare ? '' : 'none';
+		});
+
+		if (hasGridsquare) {
+			const gridSentInput = this.container.querySelector('#qso-gridsquare-sent');
+			if (gridSentInput) {
+				gridSentInput.value = (sessionInfo.station_gridsquare ?? '').toUpperCase();
+				gridSentInput.disabled = true;
+			}
+		}
 	}
 
 	computeNextSerial() {
@@ -464,6 +480,8 @@ class QsoFormComponent {
 			.includes(this.exchangeType);
 		const hasTextExchange = ['Exchange', 'Serialexchange', 'SerialGridExchange']
 			.includes(this.exchangeType);
+		const hasGridsquare = ['Serialgridsquare', 'SerialGridExchange']
+			.includes(this.exchangeType);
 
 		const timeStr = (qso.time || '').substring(0, 5);
 
@@ -477,6 +495,7 @@ class QsoFormComponent {
 			<td>${qso.rst_rcvd || '-'}</td>
 			<td class="serial-col" style="${serialHide}">${qso.serial_sent ?? ''}</td>
 			<td class="serial-col" style="${serialHide}">${qso.serial_rcvd ?? qso.serial_recv ?? ''}</td>
+			<td class="gridsquare-col" style="${hasGridsquare ? '' : 'display:none;'}">${qso.gridsquare_rcvd || ''}</td>
 			<td class="exchange-text-col" style="${hasTextExchange ? '' : 'display:none;'}">${qso.exchange_rcvd || ''}</td>
 			<td class="text-center">${this.getStatusIndicator(qso.state)}</td>
 		`;
@@ -564,6 +583,9 @@ class QsoFormComponent {
 		const serialRcvdInput = this.container.querySelector('#qso-serial-received');
 		if (serialRcvdInput) serialRcvdInput.value = '';
 
+		const gridsquareRcvdInput = this.container.querySelector('#qso-gridsquare-received');
+		if (gridsquareRcvdInput) gridsquareRcvdInput.value = '';
+
 		this.lastDxccCallsign = null;
 		this.lastDxccInfo = null;
 		this.updateDxccInfoDisplay(null);
@@ -593,6 +615,8 @@ class QsoFormComponent {
 				exchange_rcvd: qso.exchange_rcvd,
 				serial_sent: qso.serial_sent ?? null,
 				serial_rcvd: qso.serial_rcvd ?? null,
+				gridsquare_sent: qso.gridsquare_sent ?? null,
+				gridsquare_rcvd: qso.gridsquare_rcvd ?? null,
 				operator: qso.operator,
 				country: qso.country || qso.entity || null,
 				continent: qso.continent || qso.cont || null,
@@ -693,7 +717,7 @@ class QsoFormComponent {
 				serial_recv: sq.serial_recv,
 				exchange_sent: sq.exchange_sent ?? sq.exch_sent ?? '',
 				exchange_rcvd: sq.exchange_rcvd ?? sq.exch_recv ?? '',
-				locator: sq.locator,
+				gridsquare_rcvd: sq.locator ?? null,
 				operator: sq.operator,
 				state: 'synced'
 			};
@@ -745,6 +769,8 @@ class QsoFormComponent {
 		const exchangeRcvd = this.container.querySelector('#qso-exchange-received')?.value.trim();
 		const serialSent = this.container.querySelector('#qso-serial-sent')?.value || null;
 		const serialRcvd = this.container.querySelector('#qso-serial-received')?.value || null;
+		const gridsquareSent = this.container.querySelector('#qso-gridsquare-sent')?.value.trim().toUpperCase() || null;
+		const gridsquareRcvd = this.container.querySelector('#qso-gridsquare-received')?.value.trim().toUpperCase() || null;
 		const dxccAdif = this.container.querySelector('#qso-dxcc-adif')?.value.trim();
 		const dxccCont = this.container.querySelector('#qso-dxcc-cont')?.value.trim();
 		const dxccEntity = this.container.querySelector('#qso-dxcc-entity')?.value.trim();
@@ -786,6 +812,8 @@ class QsoFormComponent {
 			exchange_rcvd: exchangeRcvd,
 			serial_sent: serialSent,
 			serial_rcvd: serialRcvd,
+			gridsquare_sent: gridsquareSent,
+			gridsquare_rcvd: gridsquareRcvd,
 			frequency: frequency,
 			mode: mode,
 			date: new Date().toISOString().split('T')[0],

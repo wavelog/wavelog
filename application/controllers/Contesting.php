@@ -433,6 +433,7 @@ class Contesting extends CI_Controller {
 					'exch_serial_r' => $command['data']['serial_rcvd'] ?? NULL,
 					'exch_sent' => $command['data']['exchange_sent'] ?? NULL,
 					'exch_rcvd' => $command['data']['exchange_rcvd'] ?? NULL,
+					'locator' => $command['data']['gridsquare_rcvd'] ?? NULL,
 					'country' => $command['data']['country'] ?? NULL,
 					'continent' => $command['data']['continent'] ?? NULL,
 					'dxcc_id' => $command['data']['dxcc_id'] ?? NULL,

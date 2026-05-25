@@ -35,11 +35,12 @@ $config = [
 	let lang_status_unknown = "<?= __("Unknown") ?>";
 </script>
 
-<?php // hide number input spinners ?>
+<?php // hide number input spinners, qso form field sizing ?>
 <style>
 .no-spinner::-webkit-outer-spin-button,
 .no-spinner::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 .no-spinner { -moz-appearance: textfield; appearance: textfield; }
+#qso-gridsquare-sent, #qso-gridsquare-received { text-transform: uppercase; }
 </style>
 
 <div class="window-component" data-component="<?php echo $config['component_name']; ?>" data-config="<?php echo htmlspecialchars(json_encode($config), ENT_QUOTES, 'UTF-8'); ?>">
@@ -59,7 +60,7 @@ $config = [
 						<div class="row g-2 align-items-end flex-nowrap">
 
 							<!-- Callsign -->
-							<div class="col-3">
+							<div class="col-2">
 								<label for="qso-callsign" class="form-label fw-bold mb-1 small text-uppercase"><?= __("Callsign"); ?></label>
 								<input type="text" id="qso-callsign" name="callsign" class="form-control fw-bold" autocomplete="off" style="letter-spacing: 2px;">
 								<input type="hidden" id="qso-dxcc" name="dxcc_id" value="">
@@ -86,21 +87,31 @@ $config = [
 							<!-- Serial Sent / Received (shown only when exchangetype has serial) -->
 							<div class="serial-field col-1" style="display:none;">
 								<label for="qso-serial-sent" class="form-label fw-bold mb-1 small text-uppercase"><?= __("Nr. S"); ?></label>
-								<input type="number" id="qso-serial-sent" name="serial_sent" class="form-control text-center fw-bold no-spinner" placeholder="1" min="1">
+								<input type="number" id="qso-serial-sent" name="serial_sent" class="form-control text-center fw-bold no-spinner" min="1">
 							</div>
 							<div class="serial-field col-1" style="display:none;">
 								<label for="qso-serial-received" class="form-label fw-bold mb-1 small text-uppercase"><?= __("Nr. R"); ?></label>
-								<input type="number" id="qso-serial-received" name="serial_received" class="form-control text-center fw-bold no-spinner" placeholder="1" min="1">
+								<input type="number" id="qso-serial-received" name="serial_received" class="form-control text-center fw-bold no-spinner" min="1">
+							</div>
+
+							<!-- Gridsquare Sent / Received (shown only when exchangetype has gridsquare) -->
+							<div class="gridsquare-field col-1" style="display:none;">
+								<label for="qso-gridsquare-sent" class="form-label fw-bold mb-1 small text-uppercase"><?= __("Grid S"); ?></label>
+								<input type="text" id="qso-gridsquare-sent" name="gridsquare_sent" class="form-control text-center fw-bold" maxlength="10">
+							</div>
+							<div class="gridsquare-field col-1" style="display:none;">
+								<label for="qso-gridsquare-received" class="form-label fw-bold mb-1 small text-uppercase"><?= __("Grid R"); ?></label>
+								<input type="text" id="qso-gridsquare-received" name="gridsquare_received" class="form-control text-center fw-bold" maxlength="10">
 							</div>
 
 							<!-- Exchange Sent / Received (shown only when exchangetype has text exchange) -->
-							<div class="exchange-text-field col-2">
+							<div class="exchange-text-field col">
 								<label for="qso-exchange-sent" class="form-label fw-bold mb-1 small text-uppercase"><?= __("Exch S"); ?></label>
-								<input type="text" id="qso-exchange-sent" name="exchange_sent" class="form-control text-center fw-bold" placeholder="">
+								<input type="text" id="qso-exchange-sent" name="exchange_sent" class="form-control text-center fw-bold">
 							</div>
-							<div class="exchange-text-field col-2">
+							<div class="exchange-text-field col">
 								<label for="qso-exchange-received" class="form-label fw-bold mb-1 small text-uppercase"><?= __("Exch R"); ?></label>
-								<input type="text" id="qso-exchange-received" name="exchange_received" class="form-control text-center fw-bold" placeholder="">
+								<input type="text" id="qso-exchange-received" name="exchange_received" class="form-control text-center fw-bold">
 							</div>
 
 						</div>
@@ -130,6 +141,7 @@ $config = [
 									<th class="fw-bold"><?= __("RST"); ?></th>
 									<th class="fw-bold serial-col" style="display:none;"><?= __("Nr. S"); ?></th>
 									<th class="fw-bold serial-col" style="display:none;"><?= __("Nr. R"); ?></th>
+									<th class="fw-bold gridsquare-col" style="display:none;"><?= __("Grid"); ?></th>
 									<th class="fw-bold exchange-text-col"><?= __("Exch"); ?></th>
 									<th class="fw-bold text-center"></th>
 								</tr>

@@ -49,7 +49,8 @@ class Contesting_model extends CI_Model {
 				c.name AS contest_name,
 				c.id AS contest_id,
 				c.adifname AS contest_adifname,
-				sp.station_id AS station_id
+				sp.station_id AS station_id,
+				sp.station_gridsquare AS station_gridsquare
 			FROM contest_session cs
 			JOIN contest c ON c.id = cs.contest_adif_id
 			JOIN station_profile sp ON sp.station_id = cs.station_id
