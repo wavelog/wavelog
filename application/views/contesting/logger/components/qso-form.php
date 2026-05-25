@@ -77,17 +77,17 @@ $config = [
 							<!-- RST Sent / Received -->
 							<div class="col-1">
 								<label for="qso-rst-sent" class="form-label fw-bold mb-1 small text-uppercase"><?= __("RST S"); ?></label>
-								<input type="text" id="qso-rst-sent" name="rst_sent" class="form-control text-center fw-bold" value="59" placeholder="59" maxlength="3">
+								<input type="text" id="qso-rst-sent" name="rst_sent" class="form-control text-center fw-bold" value="59" placeholder="59" maxlength="3" tabindex="-1">
 							</div>
 							<div class="col-1">
 								<label for="qso-rst-received" class="form-label fw-bold mb-1 small text-uppercase"><?= __("RST R"); ?></label>
-								<input type="text" id="qso-rst-received" name="rst_received" class="form-control text-center fw-bold" value="59" placeholder="59" maxlength="3">
+								<input type="text" id="qso-rst-received" name="rst_received" class="form-control text-center fw-bold" value="59" placeholder="59" maxlength="3" tabindex="-1">
 							</div>
 
 							<!-- Serial Sent / Received (shown only when exchangetype has serial) -->
 							<div class="serial-field col-1" style="display:none;">
 								<label for="qso-serial-sent" class="form-label fw-bold mb-1 small text-uppercase"><?= __("Nr. S"); ?></label>
-								<input type="number" id="qso-serial-sent" name="serial_sent" class="form-control text-center fw-bold no-spinner" min="1">
+								<input type="number" id="qso-serial-sent" name="serial_sent" class="form-control text-center fw-bold no-spinner" min="1" tabindex="-1">
 							</div>
 							<div class="serial-field col-1" style="display:none;">
 								<label for="qso-serial-received" class="form-label fw-bold mb-1 small text-uppercase"><?= __("Nr. R"); ?></label>
@@ -107,7 +107,7 @@ $config = [
 							<!-- Exchange Sent / Received (shown only when exchangetype has text exchange) -->
 							<div class="exchange-text-field col">
 								<label for="qso-exchange-sent" class="form-label fw-bold mb-1 small text-uppercase"><?= __("Exch S"); ?></label>
-								<input type="text" id="qso-exchange-sent" name="exchange_sent" class="form-control text-center fw-bold">
+								<input type="text" id="qso-exchange-sent" name="exchange_sent" class="form-control text-center fw-bold" tabindex="-1">
 							</div>
 							<div class="exchange-text-field col">
 								<label for="qso-exchange-received" class="form-label fw-bold mb-1 small text-uppercase"><?= __("Exch R"); ?></label>
