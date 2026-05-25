@@ -102,7 +102,7 @@ if (($this->config->item('contest_legacy_import') ?? true) && clubaccess_check(9
         <a href="<?= site_url('contesting_import') ?>"><?= __("Import historical contests from logbook") ?></a>
         <?php if ($this->user_model->authorize(99)): ?>
             |
-            <a href="<?= site_url('contesting_import/all') ?>"><?= __("Import for all users") ?></a>
+            <a href="<?= site_url('contesting_import/all') ?>"><?= __("Import for all users of this instance. You can do that because you are an administrator.") ?></a>
         <?php endif; ?>
     </p>
 </div>
