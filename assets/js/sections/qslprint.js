@@ -50,21 +50,7 @@ function openQsoList(callsign) {
 }
 
 function addQsoToPrintQueue(id) {
-    $.ajax({
-		url: base_url + 'index.php/qslprint/get_previous_qsl',
-        type: 'post',
-        data: { 'id': id },
-        success: function(result) {
-            let prev_qsl = result;
-            let prev_qsl_html;
-
-            if (prev_qsl > 0) {
-                prev_qsl_html = '<span class="badge bg-warning">' + prev_qsl + '</span>';
-            } else {
-                prev_qsl_html = '<span class="badge bg-success">0</span>';
-            }
-
-            $.ajax({
+	$.ajax({
         url: base_url + 'index.php/qslprint/add_qso_to_print_queue',
         type: 'post',
 		data: {'id': id},
@@ -94,14 +80,12 @@ function addQsoToPrintQueue(id) {
                     line += '</a>';
                     line += '</span>';
                     line += '</td>';
-
 					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(1)").text()+'</td>';
 					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(2)").text()+'</td>';
 					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(3)").text()+'</td>';
 					if (freq_or_band === 'band') {
 						line += '<td class=\'col-band\' style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(4)").text()+'</td>';
 						line += '<td class=\'col-freq\' style=\'text-align: center; display:none;\'>'+$("#qsolist_"+id).find("td:eq(5)").text()+'</td>';
-
 					} else if (freq_or_band === 'frequency') {
 						line += '<td class=\'col-band\' style=\'text-align: center; display:none;\'>'+$("#qsolist_"+id).find("td:eq(4)").text()+'</td>';
 						line += '<td class=\'col-freq\' style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(5)").text()+'</td>';
@@ -115,6 +99,7 @@ function addQsoToPrintQueue(id) {
 					line += '<td style=\'text-align: center\'><span class="badge text-bg-light">'+$("#qsolist_"+id).find("td:eq(8)").text()+'</span></td>';
 					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(9)").text()+'</td>';
 					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(11)").text()+'</td>';
+					let prev_qsl_html = $("#qsolist_"+id).find("td:eq(12)").html();
 					line += '<td style=\'text-align: center; white-space: nowrap;\'>'+prev_qsl_html+'</td>';
 					line += '<td style=\'text-align: center\'><button onclick="mark_qsl_sent('+id+', \'B\')" class="btn btn-sm btn-success"><i class="fa fa-check"></i></button></td>';
 					line += '<td style=\'text-align: center\'><button onclick="deleteFromQslQueue('+id+')" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button></td></td>';
@@ -127,11 +112,6 @@ function addQsoToPrintQueue(id) {
 					console.error('Error adding QSO to print queue.');
 				}
             });
-        },
-        error: function() {
-            console.error('Error fetching previous QSL.');
-		}
-});
 }
 
 $(".station_id").change(function(){
