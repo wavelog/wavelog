@@ -87,7 +87,7 @@ class Contesting extends CI_Controller {
 	public function export($contest_session_id) {
 		$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
 
-		if (!$this->contesting_model->userCanAccessSession($contest_session_id)) {
+		if (!$this->contesting_model->check_user_contest($contest_session_id)) {
 			$this->session->set_flashdata('error', __("Contest session not found."));
 			redirect('contesting');
 		}
@@ -121,7 +121,7 @@ class Contesting extends CI_Controller {
 	public function export_adif($contest_session_id) {
 		$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
 
-		if (!$this->contesting_model->userCanAccessSession($contest_session_id) || !clubaccess_check(6)) {
+		if (!$this->contesting_model->check_user_contest($contest_session_id) || !clubaccess_check(6)) {
 			show_404();
 		}
 
@@ -156,7 +156,7 @@ class Contesting extends CI_Controller {
 	public function export_cabrillo($contest_session_id) {
 		$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
 
-		if (!$this->contesting_model->userCanAccessSession($contest_session_id) || !clubaccess_check(6)) {
+		if (!$this->contesting_model->check_user_contest($contest_session_id) || !clubaccess_check(6)) {
 			show_404();
 		}
 
@@ -502,7 +502,7 @@ class Contesting extends CI_Controller {
 			$this->load->model('contesting_model');
 
 			// Session ownership check
-			if (!$this->contesting_model->userCanAccessSession($contest_session_id)) {
+			if (!$this->contesting_model->check_user_contest($contest_session_id)) {
 				http_response_code(403);
 				echo json_encode(['success' => false, 'error' => 'Access denied']);
 				return;

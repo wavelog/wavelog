@@ -366,19 +366,6 @@ class Contesting_model extends CI_Model {
 	}
 
 	/**
-	 * Checks whether the current user owns a given contest session.
-	 *
-	 * @param int $contest_session_id
-	 * @return bool
-	 */
-	function userCanAccessSession($contest_session_id) {
-		$user_id = $this->session->userdata('user_id');
-		$sql = "SELECT id FROM contest_session WHERE id = ? AND user_id = ? LIMIT 1";
-		$query = $this->db->query($sql, [$contest_session_id, $user_id]);
-		return $query->num_rows() > 0;
-	}
-
-	/**
 	 * Returns the Cabrillo-specific settings sub-array stored in the session's settings JSON.
 	 *
 	 * @param int $contest_session_id
