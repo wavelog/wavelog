@@ -28,7 +28,7 @@
                             <?php } ?>
                         </select>
                         <div id="contest-error" class="text-danger small mt-1" style="display:none;"><?= __("Please select a contest.") ?></div>
-                        <small class="text-muted d-block mt-2"><?= __("Select the contest for this session"); ?></small>
+                        <small class="text-muted d-block mt-2"><?= sprintf(__("Select the contest for this session. If you can't find the contest, please choose %s."), "'Other'"); ?></small>
                     </div>
                     <hr class="my-4">
                     <div class="row g-3 mb-4">
