@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-05-17 12:36+0000\n"
-"PO-Revision-Date: 2026-03-24 10:41+0000\n"
+"PO-Revision-Date: 2026-05-25 10:53+0000\n"
 "Last-Translator: iv3cvn <ricentis@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/"
 "installer/it/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.16.2\n"
+"X-Generator: Weblate 5.17.1\n"
 
 #: install/includes/install_config/install_lib.php:123
 msgid "not detected"
@@ -364,6 +364,13 @@ msgid ""
 "an XML subscription for the Call Locator; QRZCALL.EU needs a Data or Extra "
 "subscription on %s. HamQTH does not always provide the locator information."
 msgstr ""
+"Questa configurazione è opzionale. La ricerca del nominativo sarà "
+"disponibile per tutti gli utenti di questa installazione. Puoi scegliere tra "
+"QRZ.com, HamQTH, QRZCQ, QRZ.ru e QRZCALL.EU. Mentre HamQTH funziona anche "
+"senza nome utente e password, avrai bisogno delle credenziali per gli altri "
+"fornitori. QRZ.com richiede un abbonamento XML per il localizzatore di "
+"chiamate; QRZCALL.EU ha bisogno di un abbonamento Data o Extra su %s. HamQTH "
+"non sempre fornisce informazioni sul localizzatore."
 
 #: install/index.php:415 install/index.php:516 install/index.php:968
 msgid "Username"
@@ -400,15 +407,15 @@ msgstr ""
 
 #: install/index.php:442
 msgid "API Token"
-msgstr ""
+msgstr "Token API"
 
 #: install/index.php:452
 msgid "Generate a Personal Access Token at"
-msgstr ""
+msgstr "Genera un Personal Access Token a"
 
 #: install/index.php:454
 msgid "Requires a Data or Extra subscription."
-msgstr ""
+msgstr "Richiede un abbonamento data o extra."
 
 #: install/index.php:457 install/index.php:462
 msgid "Advanced Settings"
