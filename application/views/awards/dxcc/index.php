@@ -270,7 +270,7 @@
 		<div class="card mb-3">
 		<div class="card-header" data-bs-toggle="collapse" data-bs-target="#awardProgressCollapse" style="cursor: pointer;"><h5 class="mb-0"><i class="fas fa-trophy"></i> <?= __("Award Progress") ?> </h5></div>
 		<div id="awardProgressCollapse" class="collapse show"><div class="card-body">
-		<p class="mb-2"><?= __("Progress toward working all DXCC entities:") ?> </p>
+		<p class="mb-2"><?= __("Progress towards working all DXCC entities:") ?> </p>
 
 		<ul class="nav nav-tabs" id="progressTabs" role="tablist">
 			<li class="nav-item">

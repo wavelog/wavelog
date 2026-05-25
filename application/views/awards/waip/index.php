@@ -31,7 +31,7 @@ if ($waip_array) {
     echo '<div class="card mb-3">';
     echo '<div class="card-header"><h5 class="mb-0"><i class="fas fa-trophy"></i> ' . __("Award Progress") . '</h5></div>';
     echo '<div class="card-body">';
-    echo '<p class="mb-2">' . __("Progress toward working all Italian provinces:") . '</p>';
+    echo '<p class="mb-2">' . __("Progress towards working all Italian provinces:") . '</p>';
 
     $total_provinces = count($waip_array);
 
