@@ -41,8 +41,20 @@ class QsoFormComponent {
 		this.setupEventListeners();
 		this.initExchangeType();
 		this.loadExistingQSOs();
+		this.applyRstDefaults();
+	}
 
-		// console.info('QsoFormComponent: Initialized');
+	defaultRst() {
+		const mode = (this.radioComponent?.getMode() || '').toUpperCase();
+		return (mode === 'CW') ? '599' : '59';
+	}
+
+	applyRstDefaults() {
+		const rst = this.defaultRst();
+		const rstSent = this.container.querySelector('#qso-rst-sent');
+		const rstRcvd = this.container.querySelector('#qso-rst-received');
+		if (rstSent) { rstSent.value = rst; rstSent.placeholder = rst; }
+		if (rstRcvd) { rstRcvd.value = rst; rstRcvd.placeholder = rst; }
 	}
 
 	async waitForRadioComponent(timeoutMs = 1000, intervalMs = 50) {
@@ -150,6 +162,13 @@ class QsoFormComponent {
 				}
 			});
 		});
+
+		// Update RST defaults when mode changes (covers both manual select and CAT-driven updates)
+		const modeSelect = document.getElementById('mode');
+		if (modeSelect) {
+			modeSelect.addEventListener('change', () => this.applyRstDefaults());
+		}
+		window.addEventListener('radioComponentReady', () => this.applyRstDefaults());
 
 		// Escape resets the form — fires on keyup so it wins over any browser default
 		// action on keydown (e.g. Chrome restoring input values on Escape)
@@ -550,6 +569,7 @@ class QsoFormComponent {
 		this.updateDxccInfoDisplay(null);
 		this.writeDxccToView(null);
 		this.updateWorkedBeforeWarning('');
+		this.applyRstDefaults();
 	}
 
 	buildQsoCommands(dataStore) {
@@ -760,8 +780,8 @@ class QsoFormComponent {
 		// Create QSO data object
 		const qsoData = {
 			callsign,
-			rst_sent: rstSent || '59',
-			rst_rcvd: rstReceived || '59',
+			rst_sent: rstSent || this.defaultRst(),
+			rst_rcvd: rstReceived || this.defaultRst(),
 			exchange_sent: exchangeSent,
 			exchange_rcvd: exchangeRcvd,
 			serial_sent: serialSent,
