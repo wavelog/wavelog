@@ -197,14 +197,14 @@ document.addEventListener("DOMContentLoaded", function() {
 			<table style="width:100%" class="table-sm table tabledxcc table-bordered table-hover table-striped table-condensed text-center">
 				<thead>
 				<tr>
-					<td>#</td>
-					<td>' . __("WAE Name") . '</td>
-					<td>' . __("Prefix") . '</td>';
+					<th>#</th>
+					<th>' . __("WAE Name") . '</th>
+					<th>' . __("Prefix") . '</th>';
         foreach($bands as $band) {
 			if (($posted_band != 'SAT') && ($band == 'SAT')) {
 				continue;
 			}
-            echo '<td>' . $band . '</td>';
+            echo '<th>' . $band . '</th>';
         }
         echo '</tr>
                     </thead>
