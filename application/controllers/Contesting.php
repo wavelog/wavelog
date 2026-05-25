@@ -357,10 +357,11 @@ class Contesting extends CI_Controller {
 				$session_end = $this->input->post('session_end', true);
 				$station_location = $this->input->post('station_location', true);
 				$session_notes = $this->input->post('session_notes', true);
-				$exchangetype = $this->input->post('exchangetype', true);
+				$exchangefields = $this->_parseExchangeFields($this->input->post('exchangefields', true));
+				$exchangetype   = $this->_fieldsToLegacyType($exchangefields);
 				$copyexchangeto = $this->input->post('copyexchangeto', true) ?? '';
 
-				$result = $this->contesting_model->create_contest_session($contest_adif_id, $session_start, $session_end, $station_location, $session_notes, false, $exchangetype, $copyexchangeto);
+				$result = $this->contesting_model->create_contest_session($contest_adif_id, $session_start, $session_end, $station_location, $session_notes, false, $exchangetype, $copyexchangeto, $exchangefields);
 
 				if ($result) {
 					$this->session->set_flashdata('success', __("Contest session created successfully."));
@@ -405,10 +406,11 @@ class Contesting extends CI_Controller {
 				$station_id = $this->input->post('station_location', true);
 				$notes = $this->input->post('session_notes', true);
 				$contest_id = $this->input->post('contest_adif_id', true);
-				$exchangetype = $this->input->post('exchangetype', true);
+				$exchangefields = $this->_parseExchangeFields($this->input->post('exchangefields', true));
+				$exchangetype   = $this->_fieldsToLegacyType($exchangefields);
 				$copyexchangeto = $this->input->post('copyexchangeto', true) ?? '';
 
-				$result = $this->contesting_model->update_contest_session($contest_session_id, $contest_id, $time_start, $time_end, $station_id, $notes, $exchangetype, $copyexchangeto);
+				$result = $this->contesting_model->update_contest_session($contest_session_id, $contest_id, $time_start, $time_end, $station_id, $notes, $exchangetype, $copyexchangeto, $exchangefields);
 
 				if ($result) {
 					$this->session->set_flashdata('success', __("Contest session updated successfully."));
@@ -951,6 +953,28 @@ class Contesting extends CI_Controller {
 
 		header('Content-Type: application/json');
 		echo json_encode($result);
+	}
+
+	private function _parseExchangeFields($json) {
+		$allowed = ['serial', 'gridsquare', 'exchange'];
+		$decoded = json_decode($json ?? '', true);
+		if (!is_array($decoded)) {
+			return ['exchange'];
+		}
+		$fields = array_values(array_filter($decoded, fn($f) => in_array($f, $allowed)));
+		return $fields ?: ['exchange'];
+	}
+
+	private function _fieldsToLegacyType($fields) {
+		$s = in_array('serial',    $fields);
+		$g = in_array('gridsquare', $fields);
+		$e = in_array('exchange',  $fields);
+		if ($s && $g && $e) return 'SerialGridExchange';
+		if ($s && $g)       return 'Serialgridsquare';
+		if ($s && $e)       return 'Serialexchange';
+		if ($e && $g)       return 'Exchangegridsquare';
+		if ($s)             return 'Serial';
+		return 'Exchange';
 	}
 
 	private function _teapot() {

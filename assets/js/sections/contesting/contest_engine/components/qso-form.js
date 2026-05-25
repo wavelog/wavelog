@@ -71,41 +71,72 @@ class QsoFormComponent {
 
 	initExchangeType() {
 		const sessionInfo = window.ContestLoggerConfig?.sessionInfo ?? {};
-		this.exchangeType = sessionInfo.exchangetype ?? 'Exchange';
 
-		const hasSerial = ['Serial', 'Serialgridsquare', 'Serialexchange', 'SerialGridExchange']
-			.includes(this.exchangeType);
-		const hasTextExchange = ['Exchange', 'Serialexchange', 'SerialGridExchange', 'Exchangegridsquare']
-			.includes(this.exchangeType);
+		let fields = Array.isArray(sessionInfo.exchangefields) && sessionInfo.exchangefields.length > 0
+			? sessionInfo.exchangefields
+			: ['exchange'];
 
-		this.container.querySelectorAll('.serial-field').forEach(el => {
+		this.exchangeFields = fields;
+
+		const hasSerial    = fields.includes('serial');
+		const hasGrid      = fields.includes('gridsquare');
+		const hasExchange  = fields.includes('exchange');
+
+		this.container.querySelectorAll('.serial-field, .serial-col').forEach(el => {
 			el.style.display = hasSerial ? '' : 'none';
 		});
-		this.container.querySelectorAll('.exchange-text-field').forEach(el => {
-			el.style.display = hasTextExchange ? '' : 'none';
+		this.container.querySelectorAll('.gridsquare-field, .gridsquare-col').forEach(el => {
+			el.style.display = hasGrid ? '' : 'none';
 		});
-		this.container.querySelectorAll('.serial-col').forEach(el => {
-			el.style.display = hasSerial ? '' : 'none';
-		});
-		this.container.querySelectorAll('.exchange-text-col').forEach(el => {
-			el.style.display = hasTextExchange ? '' : 'none';
+		this.container.querySelectorAll('.exchange-text-field, .exchange-text-col').forEach(el => {
+			el.style.display = hasExchange ? '' : 'none';
 		});
 
-		const hasGridsquare = ['Serialgridsquare', 'SerialGridExchange', 'Exchangegridsquare'].includes(this.exchangeType);
-		this.container.querySelectorAll('.gridsquare-field').forEach(el => {
-			el.style.display = hasGridsquare ? '' : 'none';
-		});
-		this.container.querySelectorAll('.gridsquare-col').forEach(el => {
-			el.style.display = hasGridsquare ? '' : 'none';
-		});
-
-		if (hasGridsquare) {
+		if (hasGrid) {
 			const gridSentInput = this.container.querySelector('#qso-gridsquare-sent');
 			if (gridSentInput) {
 				gridSentInput.value = (sessionInfo.station_gridsquare ?? '').toUpperCase();
 				gridSentInput.disabled = true;
 			}
 		}
+
+		this._applyFieldOrder(fields);
+	}
+
+	_applyFieldOrder(fields) {
+		const row = this.container.querySelector('#qso-form .row');
+		if (!row) return;
+
+		// Group variable field elements by type
+		const groups = {
+			serial:     [...row.querySelectorAll('.serial-field')],
+			gridsquare: [...row.querySelectorAll('.gridsquare-field')],
+			exchange:   [...row.querySelectorAll('.exchange-text-field')],
+		};
+
+		// Detach all variable groups, then re-append in the configured order
+		Object.values(groups).flat().forEach(el => el.remove());
+		fields.forEach(field => {
+			(groups[field] ?? []).forEach(el => row.appendChild(el));
+		});
+
+		// Assign tabindex: callsign=1, received inputs in field order starting at 2.
+		// Callsign must be explicit tabindex=1 so it stays in the positive-tabindex cycle
+		// alongside the received fields — without it, callsign falls into tabindex=0 and
+		// browsers visit it after all positive-tabindex elements on the whole page.
+		const callsignInput = this.container.querySelector('#qso-callsign');
+		if (callsignInput) callsignInput.setAttribute('tabindex', '1');
+
+		const receivedIds = {
+			serial:     '#qso-serial-received',
+			gridsquare: '#qso-gridsquare-received',
+			exchange:   '#qso-exchange-received',
+		};
+		let tabIdx = 2;
+		fields.forEach(field => {
+			const input = row.querySelector(receivedIds[field]);
+			if (input) input.setAttribute('tabindex', tabIdx++);
+		});
 	}
 
 	computeNextSerial() {
@@ -476,12 +507,10 @@ class QsoFormComponent {
 		row.dataset.qsoId = qso.tmpId || qso.serverId;
 		const band = this.convertQrgToBand(parseInt(qso.frequency));
 		const qrg_mhz = qso.frequency ? (parseInt(qso.frequency) / 1e6).toFixed(3) + ' MHz' : '';
-		const hasSerial = ['Serial', 'Serialgridsquare', 'Serialexchange', 'SerialGridExchange']
-			.includes(this.exchangeType);
-		const hasTextExchange = ['Exchange', 'Serialexchange', 'SerialGridExchange', 'Exchangegridsquare']
-			.includes(this.exchangeType);
-		const hasGridsquare = ['Serialgridsquare', 'SerialGridExchange']
-			.includes(this.exchangeType);
+		const fields = this.exchangeFields ?? ['exchange'];
+		const hasSerial      = fields.includes('serial');
+		const hasTextExchange = fields.includes('exchange');
+		const hasGridsquare  = fields.includes('gridsquare');
 
 		const timeStr = (qso.time || '').substring(0, 5);
 
