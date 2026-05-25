@@ -83,3 +83,29 @@
     var custom_date_format = "<?php echo $custom_date_format ?>";
     var lang_admin_contest_add_contest = '<?= __("Add a Contest"); ?>';
 </script>
+<?php 
+/**
+ * The following code block is for the legacy import feature. It allows users to import historical contest data from their logbook into the contesting module.
+ * 
+ * This can be disabled by setting 'contest_legacy_import' to false in the configuration. Access to this feature is restricted to users with club access level 9 or higher.
+ * 
+ * This feature will get removed in the future. For a complete removal delete the following code block beside the following files:
+ * - application/controllers/Contesting_import.php
+ * - application/models/Contesting_import_model.php
+ * - application/views/contesting/manager/import.php
+ * 
+ * Vy 73 de HB9HIL
+ */
+if (($this->config->item('contest_legacy_import') ?? true) && clubaccess_check(9)): ?>
+<div class="container mt-2 mb-4">
+    <p class="text-muted small mb-0">
+        <a href="<?= site_url('contesting_import') ?>"><?= __("Import historical contests from logbook") ?></a>
+        <?php if ($this->user_model->authorize(99)): ?>
+            |
+            <a href="<?= site_url('contesting_import/all') ?>"><?= __("Import for all users") ?></a>
+        <?php endif; ?>
+    </p>
+</div>
+<?php endif; 
+// END of legacy import block
+?>
