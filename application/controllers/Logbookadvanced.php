@@ -1063,7 +1063,7 @@ class Logbookadvanced extends CI_Controller {
 		foreach ($qsoIds as $qsoID) {
 
 			// Check if user has permission on QSO
-			if (clubaccess_check(3, $qsoID)) {
+			if (!clubaccess_check(3, $qsoID)) {
 				$error_count += 1;
 				continue;
 			}
@@ -1115,7 +1115,7 @@ class Logbookadvanced extends CI_Controller {
 		$error_count = 0;
 		foreach ($qsoIds as $qsoID) {
 			// Check if user has permission on QSO
-			if (clubaccess_check(3, $qsoID)) {
+			if (!clubaccess_check(3, $qsoID)) {
 				$error_count += 1;
 				continue;
 			}
