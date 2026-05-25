@@ -3743,23 +3743,29 @@ msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog：无台站配置信息。"
 
 #: application/models/Logbook_model.php:311
+#: application/models/Logbook_model.php:315
 msgid "Station not accessible"
 msgstr "台站不可用"
 
 #: application/models/Logbook_model.php:1415
+#: application/models/Logbook_model.php:1420
 msgid "Station ID not allowed"
 msgstr "集体台站 ID 有误"
 
 #: application/models/Logbook_model.php:1420
+#: application/models/Logbook_model.php:1425
 msgid "No Call given"
 msgstr "未提供呼号"
 
 #: application/models/Logbook_model.php:1490
 #: application/models/Logbook_model.php:1694
+#: application/models/Logbook_model.php:1495
+#: application/models/Logbook_model.php:1699
 msgid "DXCC has to be Numeric"
 msgstr "DXCC 应该是数字"
 
 #: application/models/Logbook_model.php:4917
+#: application/models/Logbook_model.php:4923
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -3768,6 +3774,7 @@ msgstr ""
 "为 %s：已跳过"
 
 #: application/models/Logbook_model.php:4925
+#: application/models/Logbook_model.php:4931
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -3777,22 +3784,26 @@ msgstr ""
 "为 %s：已跳过"
 
 #: application/models/Logbook_model.php:4941
+#: application/models/Logbook_model.php:4947
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
 msgstr "导入QSO时使用了无效日期，该QSO未被导入。这是无效的"
 
 #: application/models/Logbook_model.php:4951
+#: application/models/Logbook_model.php:4957
 msgid "QSO on"
 msgstr "QSO 时间"
 
 #: application/models/Logbook_model.php:4951
+#: application/models/Logbook_model.php:4957
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
 msgstr "试图导入的 QSO 不存在对方呼号（CALL）。此 QSO 无效，未导入"
 
 #: application/models/Logbook_model.php:5001
+#: application/models/Logbook_model.php:5007
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -3801,58 +3812,72 @@ msgstr ""
 "在 %s 上的 QSO：你尝试导入一个未指定频段的 QSO。该 QSO 未被导入。此 QSO 无效"
 
 #: application/models/Logbook_model.php:5275
+#: application/models/Logbook_model.php:5281
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate 字段错误（YYYYMMDD）"
 
 #: application/models/Logbook_model.php:5286
+#: application/models/Logbook_model.php:5292
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate 字段错误（YYYYMMDD）"
 
 #: application/models/Logbook_model.php:5347
+#: application/models/Logbook_model.php:5353
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date 字段错误（ YYYYMMDD）"
 
 #: application/models/Logbook_model.php:5720
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:5726
 msgid "Duplicate for"
 msgstr "内容重复"
 
 #: application/models/Logbook_model.php:5787
 #: application/models/Logbook_model.php:5887
+#: application/models/Logbook_model.php:5793
+#: application/models/Logbook_model.php:5893
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
 #: application/models/Logbook_model.php:5795
+#: application/models/Logbook_model.php:5801
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
 #: application/models/Logbook_model.php:5801
+#: application/models/Logbook_model.php:5807
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
 #: application/models/Logbook_model.php:5805
+#: application/models/Logbook_model.php:5811
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
 #: application/models/Logbook_model.php:5809
+#: application/models/Logbook_model.php:5815
 msgid "confirmation pending"
 msgstr "等待确认"
 
 #: application/models/Logbook_model.php:5812
+#: application/models/Logbook_model.php:5818
 msgid "unconfirmed"
 msgstr "未确认"
 
 #: application/models/Logbook_model.php:5815
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
+#: application/models/Logbook_model.php:5821
 msgid "unknown"
 msgstr "未知"
 
 #: application/models/Logbook_model.php:5890
+#: application/models/Logbook_model.php:5896
 msgid "POTA reference already in log"
 msgstr "日志中已存在 POTA 编号"
 
 #: application/models/Logbook_model.php:5893
+#: application/models/Logbook_model.php:5899
 msgid "QSO updated"
 msgstr "QSO已上传"
 
@@ -3867,6 +3892,7 @@ msgstr "QSO已上传"
 #: application/views/user/edit.php:329 application/views/user/edit.php:352
 #: application/views/user/edit.php:375 application/views/user/edit.php:400
 #: application/views/view_log/partial/log_ajax.php:21
+#: application/models/Logbook_model.php:6296
 msgid "Bearing"
 msgstr "方位角"
 
