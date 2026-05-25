@@ -39,6 +39,15 @@ class Callbook {
 	const QRZRU_SESSION_DURATION = 3300; // 55 minutes
 	private $qrzru_session_cachekey = null;
 
+	// QRZCALL.EU
+	// Uses a single long-lived Personal Access Token (PAT) instead of a
+	// session-key dance, so no caching/refresh logic is needed here.
+	// The user generates the token at https://qrzcall.eu/ → Account → API
+	// Tokens and pastes it into $config['qrzcall_token']. Revoking the
+	// token in the QRZCALL.EU SPA locks out this Wavelog install without
+	// affecting any other client.
+	// Ref.: https://qrzcall.eu/  (Data or Extra subscription required to mint tokens)
+
 	// Some generic stuff
 	private $logbook_not_configured;
 	private $error_obtaining_sessionkey;
@@ -56,6 +65,7 @@ class Callbook {
 		$this->qrzcq_session_cachekey = 'qrzcq_session_key_'.$this->ci->config->item('qrzcq_username');
 		$this->hamqth_session_cachekey = 'hamqth_session_key_'.$this->ci->config->item('hamqth_username');
 		$this->qrzru_session_cachekey = 'qrzru_session_key_'.$this->ci->config->item('qrzru_username');
+		// QRZCALL.EU uses a single PAT — no session cache needed.
 
 		$this->logbook_not_configured = __("Lookup not configured. Please review configuration.");
 		$this->error_obtaining_sessionkey = __("Error obtaining a session key for callbook. Error: %s");
@@ -123,6 +133,9 @@ class Callbook {
 				break;
 			case 'qrzru':
 				$callbook = $this->_qrzru($callsign);
+				break;
+			case 'qrzcall':
+				$callbook = $this->_qrzcall($callsign, $this->ci->config->item('use_fullname'));
 				break;
 			default:
 				$callbook['error'] = $this->logbook_not_configured;
@@ -310,6 +323,32 @@ class Callbook {
 				// Now try again but give back reduced data, as we can't validate location and stuff (true at the end)
 				$callbook = $this->ci->qrzru->search($plaincall, $this->ci->cache->get($this->qrzru_session_cachekey), true);
 			}
+		}
+
+		return $callbook;
+	}
+
+	private function _qrzcall($callsign, $fullname) {
+		$this->ci->load->is_loaded('qrzcall') ?: $this->ci->load->library('qrzcall');
+
+		$callbook = ['source' => $this->ci->qrzcall->sourcename()];
+		$token    = trim($this->ci->config->item('qrzcall_token') ?? '');
+
+		if ($token === '') {
+			$callbook['error'] = $this->logbook_not_configured;
+			return $callbook;
+		}
+
+		// PAT auth — no session dance, just Bearer the token on every request.
+		// Revocation of the token in QRZCALL.EU's UI immediately locks out this
+		// install; subsequent search() calls will return 'Invalid or revoked
+		// QRZCALL.EU API token' and the user updates the config.
+		$callbook = $this->ci->qrzcall->search($callsign, $token, $fullname);
+
+		// /portable retry in reduced mode (location fields can't be trusted)
+		if (strpos($callbook['error'] ?? '', 'not found') !== false && strpos($callsign, "/") !== false) {
+			$plaincall = $this->get_plaincall($callsign);
+			$callbook  = $this->ci->qrzcall->search($plaincall, $token, $fullname, true);
 		}
 
 		return $callbook;

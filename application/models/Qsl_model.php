@@ -82,7 +82,7 @@ class Qsl_model extends CI_Model {
 		// We cannot call del_image_for_qso here, since this one only deletes ONE QSL-Card (Multiple QSL-Cards can belong to one QSO)
 		$path = $this->get_imagePath('p');
 		$file = $this->getFilename($clean_id)->row();
-		$filename = $file->filename;
+		$filename = basename($file->filename);
 		unlink($path.'/'.$filename);
 		// Delete Mode
 		$this->db->delete('qsl_images', array('id' => $clean_id));
@@ -122,17 +122,17 @@ class Qsl_model extends CI_Model {
 	}
 
 	function addQsotoQsl($qsoid, $filename) {
-		$clean_qsoid = $this->security->xss_clean($qsoid);
-		$clean_filename = $this->security->xss_clean($filename);
+		// xss_clean already done in controller
+		$clean_filename = basename($filename);
 
 		// be sure that QSO belongs to user
 		$this->load->model('logbook_model');
-		if (!$this->logbook_model->check_qso_is_accessible($clean_qsoid)) {
+		if (!$this->logbook_model->check_qso_is_accessible($qsoid)) {
 			return;
 		}
 
 		$data = array(
-			'qsoid' => $clean_qsoid,
+			'qsoid' => $qsoid,
 			'filename' => $clean_filename
 		);
 
