@@ -590,7 +590,7 @@ class Contesting extends CI_Controller {
 					'continent' => $command['data']['continent'] ?? NULL,
 					'dxcc_id' => $command['data']['dxcc_id'] ?? NULL,
 					'cqz' => $command['data']['cqz'] ?? NULL,
-					'operator_callsign' => $this->session->userdata('user_callsign'),
+					'operator_callsign' => $command['data']['operator'] ?: $this->session->userdata('user_callsign'),
 					'contestname' => $session_info['contest_adifname'],
 					'exchangetype' => $session_info['exchangetype'] ?? 'Exchange',
 					'copyexchangeto' => $session_info['copyexchangeto'] ?? NULL
