@@ -54,7 +54,7 @@ $config = [
 	<div class="window-body d-flex flex-column overflow-hidden">
 		<div class="qso-form-container d-flex flex-column flex-grow-1 overflow-hidden">
 			<!-- QSO Entry Form -->
-			<div class="card bg-dark border-secondary mb-2 flex-shrink-0">
+			<div class="card border mb-2 flex-shrink-0">
 				<div class="card-body p-2">
 					<div id="qso-form" class="qso-form">
 						<div class="row g-2 align-items-end flex-nowrap">
@@ -124,14 +124,14 @@ $config = [
 			</div>
 
 			<!-- QSO List -->
-			<div class="card bg-dark border-secondary d-flex flex-column flex-grow-1 min-h-0">
-				<div class="card-header bg-secondary d-flex justify-content-between align-items-center flex-shrink-0">
+			<div class="card border d-flex flex-column flex-grow-1 min-h-0">
+				<div class="card-header d-flex justify-content-between align-items-center flex-shrink-0">
 					<h6 class="mb-0 fw-bold"><?= __("Recent QSOs"); ?></h6>
 					<span class="badge bg-success" id="qso-count-badge">0</span>
 				</div>
 				<div class="card-body p-0 d-flex flex-column flex-grow-1 overflow-hidden">
 					<div class="qso-table-scroll table-responsive flex-grow-1 overflow-y-auto">
-						<table class="table table-dark table-hover table-sm mb-0 qso-table" id="qso-table">
+						<table class="table table-hover table-sm mb-0 qso-table" id="qso-table">
 							<thead class="table-secondary sticky-top">
 								<tr>
 									<th class="fw-bold"><?= __("Time"); ?></th>

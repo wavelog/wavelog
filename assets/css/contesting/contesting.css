@@ -7,7 +7,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  background: var(--cl-contest-loading-bg, linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,15 +22,15 @@
 
 .contest-loading-content {
   text-align: center;
-  color: #fff;
+  color: var(--bs-body-color);
 }
 
 .contest-loading-spinner {
   width: 60px;
   height: 60px;
   margin: 0 auto 20px;
-  border: 4px solid rgba(255, 255, 255, 0.1);
-  border-top-color: #4a9eff;
+  border: 4px solid var(--cl-contest-border, rgba(255, 255, 255, 0.12));
+  border-top-color: var(--bs-primary);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -52,7 +52,7 @@
   width: 100vw;
   height: 100vh;
   position: relative;
-  background: linear-gradient(135deg, #101010 0%, #1d1d1d 100%);
+  background: var(--cl-contest-workspace-bg, linear-gradient(135deg, #101010 0%, #1d1d1d 100%));
 }
 
 /* ===== Control Panel Styles ===== */
@@ -84,27 +84,27 @@
 }
 
 .control-panel-time {
-  text-shadow: 0 0 10px rgba(74, 158, 255, 0.5);
+  text-shadow: 0 0 10px rgba(var(--bs-primary-rgb), 0.5);
 }
 
 #controlPanel h6 {
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid var(--cl-contest-border, rgba(255, 255, 255, 0.12));
   padding-bottom: 8px;
 }
 
 
 #controlPanel .form-select:focus {
-  box-shadow: 0 0 0 0.2rem rgba(74, 158, 255, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(var(--bs-primary-rgb), 0.25);
 }
 
 /* ===== Window Styles ===== */
 
 .window {
   position: absolute;
-  background: #2a2a2a;
-  border: 1px solid #444;
+  background: var(--cl-contest-window-bg, var(--bs-body-bg));
+  border: 1px solid var(--cl-contest-border, rgba(255, 255, 255, 0.12));
   border-radius: 6px;
   display: flex;
   flex-direction: column;
@@ -113,8 +113,8 @@
 
 .window-header {
   padding: 0px 16px;
-  background: #1f1f1f;
-  border-bottom: 1px solid #444;
+  background: var(--cl-contest-window-header-bg, #1f1f1f);
+  border-bottom: 1px solid var(--cl-contest-border, rgba(255, 255, 255, 0.12));
   border-radius: 6px 6px 0 0;
   cursor: move;
   display: flex;
@@ -153,18 +153,22 @@
 }
 
 .window-btn:hover {
-  background: #3a3a3a;
-  color: #fff;
+  background: var(--cl-contest-btn-hover-bg, #3a3a3a);
+  color: var(--bs-body-color);
 }
 
 .window-btn.close:hover {
-  background: #d32f2f;
+  background: var(--bs-danger);
 }
 
 .window-body {
   flex: 1;
   padding: 16px;
   overflow: auto;
+}
+
+.window .card {
+  border-color: var(--cl-contest-border, rgba(255, 255, 255, 0.12)) !important;
 }
 
 .window-body::-webkit-scrollbar {
@@ -176,12 +180,12 @@
 }
 
 .window-body::-webkit-scrollbar-thumb {
-  background: #555;
+  background: var(--cl-contest-scrollbar, #555);
   border-radius: 4px;
 }
 
 .window-body::-webkit-scrollbar-thumb:hover {
-  background: #777;
+  background: var(--cl-contest-scrollbar-hover, #777);
 }
 
 /* Resize Handles */
@@ -240,7 +244,7 @@
 /* ===== Band Selection Tabs Styles ===== */
 
 .nav-tabs-sm {
-  border-bottom: 1px solid #444;
+  border-bottom: 1px solid var(--cl-contest-border, rgba(255, 255, 255, 0.12));
 }
 
 .nav-tabs-sm .nav-link {
@@ -252,15 +256,15 @@
 }
 
 .nav-tabs-sm .nav-link:hover {
-  color: #fff;
-  border-color: #444 #444 transparent;
-  background-color: #2a2a2a;
+  color: var(--bs-body-color);
+  border-color: var(--cl-contest-border, rgba(255, 255, 255, 0.12)) var(--cl-contest-border, rgba(255, 255, 255, 0.12)) transparent;
+  background-color: var(--bs-body-bg);
 }
 
 .nav-tabs-sm .nav-link.active {
-  color: #fff;
-  background-color: #333;
-  border-color: #444 #444 transparent;
+  color: var(--bs-body-color);
+  background-color: var(--cl-contest-btn-hover-bg, #333);
+  border-color: var(--cl-contest-border, rgba(255, 255, 255, 0.12)) var(--cl-contest-border, rgba(255, 255, 255, 0.12)) transparent;
   font-weight: 600;
 }
 
@@ -272,31 +276,32 @@
 }
 
 .band-btn-compact {
-  border-color: #555;
-  color: #ccc;
+  border-color: var(--cl-contest-border, rgba(255, 255, 255, 0.12));
+  color: var(--bs-body-color);
   background-color: transparent;
   transition: all 0.15s;
   white-space: nowrap;
 }
 
 .band-btn-compact:hover {
-  background-color: #3a3a3a;
-  border-color: #777;
-  color: #fff;
+  background-color: var(--cl-contest-btn-hover-bg, #3a3a3a);
+  border-color: var(--cl-contest-border, rgba(255, 255, 255, 0.12));
+  color: var(--bs-body-color);
   transform: translateY(-1px);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .band-btn-compact[data-selected="true"],
 .band-btn-compact.active {
-  background-color: #4a9eff;
-  border-color: #4a9eff;
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
   color: #fff;
   font-weight: 600;
 }
 
 .band-btn-compact[data-selected="true"]:hover,
 .band-btn-compact.active:hover {
-  background-color: #3a8eef;
-  border-color: #3a8eef;
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+  filter: brightness(0.9);
 }
