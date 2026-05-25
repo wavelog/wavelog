@@ -622,6 +622,10 @@ class DXCC extends CI_Model {
 				$bindings[] = $postdata['sat'];
 			}
 			$sql .= $this->addOrbitToQuery($postdata, $bindings);
+		} else if ($postdata['band'] != 'All') {
+			$sql .= " AND (thcv.col_prop_mode != 'SAT' OR thcv.col_prop_mode IS NULL)";
+			$sql .= " AND thcv.col_band = ?";
+			$bindings[] = $postdata['band'];
 		} else {
 			$sql .= " AND (thcv.col_prop_mode != 'SAT' OR thcv.col_prop_mode IS NULL)";
 		}
