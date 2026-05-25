@@ -217,8 +217,9 @@ class RadioComponent {
 		if (!freq || !this.frequency) return;
 
 		const detectedBand = this.frequencyToBand(parseInt(freq));
-		if (detectedBand) {
+		if (detectedBand && detectedBand !== this.selectedBand) {
 			this.selectedBand = detectedBand;
+			this.dataStore.set('config.selected_band', detectedBand);
 		}
 
 		this.frequency.value = freq;

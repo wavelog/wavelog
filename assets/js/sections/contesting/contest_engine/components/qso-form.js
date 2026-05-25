@@ -215,12 +215,26 @@ class QsoFormComponent {
 			});
 		});
 
-		// Update RST defaults when mode changes (covers both manual select and CAT-driven updates)
+		// Update RST defaults and re-check worked-before when mode changes
 		const modeSelect = document.getElementById('mode');
 		if (modeSelect) {
-			modeSelect.addEventListener('change', () => this.applyRstDefaults());
+			modeSelect.addEventListener('change', () => {
+				this.applyRstDefaults();
+				const callsign = this.container.querySelector('#qso-callsign')?.value.trim().toUpperCase() || '';
+				this.updateWorkedBeforeWarning(callsign);
+			});
 		}
-		window.addEventListener('radioComponentReady', () => this.applyRstDefaults());
+		window.addEventListener('radioComponentReady', () => {
+			this.applyRstDefaults();
+			const callsign = this.container.querySelector('#qso-callsign')?.value.trim().toUpperCase() || '';
+			this.updateWorkedBeforeWarning(callsign);
+		});
+
+		// Re-check worked-before when band changes
+		this.dataStore.subscribe('config.selected_band', () => {
+			const callsign = this.container.querySelector('#qso-callsign')?.value.trim().toUpperCase() || '';
+			this.updateWorkedBeforeWarning(callsign);
+		});
 
 		// Escape resets the form — fires on keyup so it wins over any browser default
 		// action on keydown (e.g. Chrome restoring input values on Escape)
