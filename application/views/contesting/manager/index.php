@@ -47,7 +47,7 @@
                                     if ($start && $start > $now) {
                                         $status = '<span class="badge text-bg-primary me-1">' . __("Coming Up") . '</span>';
                                     } elseif ($start && $end && $now >= $start && $now <= $end) {
-                                        $status = '<span class="badge text-bg-info me-1">' . __("In Progress") . '</span>';
+                                        $status = '<span class="badge text-bg-warning me-1">' . __("In Progress") . '</span>';
                                     } elseif ($end && $end < $now) {
                                         $status = '<span class="badge text-bg-secondary me-1">' . __("Completed") . '</span>';
                                     } else {
@@ -64,9 +64,9 @@
                                         <td><?php echo isset($row['comment']) ? $row['comment'] : '-'; ?></td>
                                         <td><?php echo isset($row['qso_count']) ? $row['qso_count'] : '0'; ?></td>
                                         <td>
-                                            <button onclick="edit_modal('<?php echo $row['contest_session_id']; ?>');" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
-                                            <button onclick="delete_modal('<?php echo $row['contest_session_id']; ?>');" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
-                                            <a href="<?php echo site_url('contesting/export') . "/" . $row['contest_session_id']; ?>" class="btn btn-outline-secondary btn-sm"><i class="fas fa-file-export"></i></a>
+                                            <button onclick="edit_modal('<?php echo $row['contest_session_id']; ?>');" class="btn btn-primary btn-sm" data-bs-toggle="tooltip" title="<?= __("Edit") ?>"><i class="fas fa-edit"></i></button>
+                                            <button onclick="delete_modal('<?php echo $row['contest_session_id']; ?>');" class="btn btn-outline-danger btn-sm" data-bs-toggle="tooltip" title="<?= __("Delete") ?>"><i class="fas fa-trash-alt"></i></button>
+                                            <a href="<?php echo site_url('contesting/export') . "/" . $row['contest_session_id']; ?>" class="btn btn-secondary btn-sm" data-bs-toggle="tooltip" title="<?= __("Export") ?>"><i class="fas fa-file-export"></i></a>
                                         </td>
                                     </tr>
                                 <?php } ?>

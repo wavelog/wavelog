@@ -87,11 +87,161 @@ class Contesting extends CI_Controller {
 	public function export($contest_session_id) {
 		$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
 
-		$data['page_title'] = __("Export Contest Data");
+		if (!$this->contesting_model->userCanAccessSession($contest_session_id)) {
+			$this->session->set_flashdata('error', __("Contest session not found."));
+			redirect('contesting');
+		}
+
+		$this->load->is_loaded('user_model') ?: $this->load->model('user_model');
+
+		$session_info = $this->contesting_model->get_session_info($contest_session_id);
+		$cabrillo     = $this->contesting_model->get_cabrillo_settings($contest_session_id);
+		$userinfo     = $this->user_model->get_by_id($this->session->userdata('user_id'))->row();
+
+		$session_operators = $this->contesting_model->get_session_operators($contest_session_id);
+
+		$data['page_title']         = sprintf(__("Export: %s"), $session_info['contest_name']);
+		$data['session_info']       = $session_info;
+		$data['cabrillo']           = $cabrillo;
+		$data['qso_count']          = $this->contesting_model->get_session_qso_count($contest_session_id);
+		$data['user_name']          = trim($userinfo->user_firstname . ' ' . $userinfo->user_lastname);
+		$data['user_email']         = $userinfo->user_email;
+		$data['session_operators']  = $session_operators;
+		$data['contest_session_id'] = $contest_session_id;
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('contesting/manager/export');
 		$this->load->view('interface_assets/footer');
+	}
+
+	/**
+	 * ADIF export for a specific contest session.
+	 * POST /contesting/export_adif/<id>
+	 */
+	public function export_adif($contest_session_id) {
+		$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
+
+		if (!$this->contesting_model->userCanAccessSession($contest_session_id) || !clubaccess_check(6)) {
+			show_404();
+		}
+
+		$session_info = $this->contesting_model->get_session_info($contest_session_id);
+		$qsos         = $this->contesting_model->get_session_qsos_for_adif($contest_session_id);
+
+		$callsign = strtoupper(str_replace('/', '-', $session_info['station_callsign'] ?? 'STATION'));
+		$contest  = strtoupper($session_info['contest_adifname'] ?? 'CONTEST');
+		$filename = $callsign . '-' . $contest . '-' . date('Ymd') . '.adi';
+
+		$this->load->library('AdifHelper');
+
+		header('Content-Type: application/octet-stream');
+		header('Content-Disposition: attachment; filename="' . $filename . '"');
+
+		echo $this->adifhelper->getAdifHeader(
+			$this->config->item('app_name'),
+			$this->optionslib->get_option('version'),
+			$this->optionslib->get_option('adif_version')
+		);
+
+		foreach ($qsos->result() as $qso) {
+			echo $this->adifhelper->getAdifLine($qso);
+		}
+	}
+
+	/**
+	 * Cabrillo export for a specific contest session.
+	 * Saves Cabrillo category settings back to the session before streaming the file.
+	 * POST /contesting/export_cabrillo/<id>
+	 */
+	public function export_cabrillo($contest_session_id) {
+		$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
+
+		if (!$this->contesting_model->userCanAccessSession($contest_session_id) || !clubaccess_check(6)) {
+			show_404();
+		}
+
+		$cabrillo = [
+			'category_operator'    => $this->input->post('categoryoperator', true)    ?? 'SINGLE-OP',
+			'category_assisted'    => $this->input->post('categoryassisted', true)    ?? 'NON-ASSISTED',
+			'category_band'        => $this->input->post('categoryband', true)        ?? 'ALL',
+			'category_mode'        => $this->input->post('categorymode', true)        ?? 'MIXED',
+			'category_power'       => $this->input->post('categorypower', true)       ?? 'LOW',
+			'category_station'     => $this->input->post('categorystation', true)     ?? 'FIXED',
+			'category_transmitter' => $this->input->post('categorytransmitter', true) ?? 'ONE',
+			'category_time'        => $this->input->post('categorytime', true)        ?? '',
+			'category_overlay'     => $this->input->post('categoryoverlay', true)     ?? '',
+			'club'                 => $this->input->post('club', true)                ?? '',
+			'location'             => $this->input->post('location', true)            ?? '',
+			'operators'            => $this->input->post('operators', true)           ?? '',
+			'name'                 => $this->input->post('cbr_name', true)            ?? '',
+			'email'                => $this->input->post('cbr_email', true)           ?? '',
+			'address'              => $this->input->post('address', true)             ?? '',
+			'addresscity'          => $this->input->post('addresscity', true)         ?? '',
+			'addressprovince'      => $this->input->post('addressprovince', true)     ?? '',
+			'addresspostalcode'    => $this->input->post('addresspostalcode', true)   ?? '',
+			'addresscountry'       => $this->input->post('addresscountry', true)      ?? '',
+			'soapbox'              => $this->input->post('soapbox', true)             ?? '',
+			'certificate'          => $this->input->post('certificate', true)         ?? '',
+			'grid_export'          => $this->input->post('grid_export', true)         ?? '0',
+			'grid_precision'       => $this->input->post('grid_precision', true) === '6' ? '6' : '4',
+		];
+
+		$this->contesting_model->save_cabrillo_settings($contest_session_id, $cabrillo);
+
+		$session_info = $this->contesting_model->get_session_info($contest_session_id);
+		$qsos         = $this->contesting_model->get_session_qsos_for_cabrillo($contest_session_id);
+
+		$this->load->is_loaded('user_model') ?: $this->load->model('user_model');
+		$userinfo = $this->user_model->get_by_id($this->session->userdata('user_id'))->row();
+
+		$contest_id = $session_info['contest_adifname'];
+		$callsign   = strtoupper(str_replace('/', '-', $session_info['station_callsign'] ?? 'STATION'));
+		$filename   = $callsign . '-' . $contest_id . '-' . date('Ymd-Hi') . '.cbr';
+
+		$this->load->library('Cabrilloformat');
+
+		header('Content-Type: text/plain; charset=utf-8');
+		header('Content-Disposition: attachment; filename="' . $filename . '"');
+
+		$grid_export = ($cabrillo['grid_export'] === '1');
+		$grid_chars  = (int)($cabrillo['grid_precision'] ?? 4);
+
+		$cbr_name  = $cabrillo['name']  ?: trim($userinfo->user_firstname . ' ' . $userinfo->user_lastname);
+		$cbr_email = $cabrillo['email'] ?: $userinfo->user_email;
+
+		echo $this->cabrilloformat->header(
+			$contest_id,
+			$callsign,
+			null,
+			$cabrillo['operators'] ?: $callsign,
+			$cabrillo['club']      ?: null,
+			$cabrillo['location']  ?: null,
+			$cbr_name,
+			$cabrillo['address']           ?? '',
+			$cabrillo['addresscity']       ?? '',
+			$cabrillo['addressprovince']   ?? '',
+			$cabrillo['addresspostalcode'] ?? '',
+			$cabrillo['addresscountry']    ?? '',
+			$cabrillo['soapbox']  ?: '',
+			$session_info['station_gridsquare'] ?: null,
+			$cabrillo['category_overlay']     ?: '',
+			$cabrillo['category_transmitter'],
+			$cabrillo['category_time']        ?: '',
+			$cabrillo['category_station'],
+			$cabrillo['category_power'],
+			$cabrillo['category_mode'],
+			$cabrillo['category_band'],
+			$cabrillo['category_assisted'],
+			$cabrillo['category_operator'],
+			$cbr_email,
+			$cabrillo['certificate'] ?: null
+		);
+
+		foreach ($qsos->result() as $qso) {
+			echo $this->cabrilloformat->qso($qso, $grid_export, $grid_chars);
+		}
+
+		echo $this->cabrilloformat->footer();
 	}
 
 	/**
