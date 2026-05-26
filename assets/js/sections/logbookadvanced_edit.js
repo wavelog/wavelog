@@ -364,8 +364,10 @@ function changeEditType(type) {
 		$('#editEqsl').show();
 	} else if (type == "continent") {
 		$('#editContinent').show();
-	} else if (type == "sota" || type == "wwff" || type == "operator" || type == "pota" || type == "comment" || type == "qslvia" || type == "contest" || type == "qslmsg" || type == "stationpower" || type == 'stxstring' || type == 'rsts' || type == 'rstr') {
-		$('#editTextInput').show();
+	} else if (type == "stationpower") {
+		$('#editTextInput').attr('type', 'number').attr('step', 'any').show();
+	} else if (type == "sota" || type == "wwff" || type == "operator" || type == "pota" || type == "comment" || type == "qslvia" || type == "contest" || type == "qslmsg" || type == 'stxstring' || type == 'rsts' || type == 'rstr') {
+		$('#editTextInput').attr('type', 'text').removeAttr('step').show();
 	} else if (type == "region") {
 		$('#editRegion').show();
 	} else if (type == "clublogsent"  || type == "clublogreceived") {

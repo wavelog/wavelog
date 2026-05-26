@@ -372,6 +372,7 @@ class Statistics extends CI_Controller {
 		$data['page_title'] = __("Log View")." - " . __("Satellite QSOs");
 		$data['filter'] = $sat;
 		$data['ispopup'] = true;
+		$data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
 		$this->load->view('statistics/details', $data);
 	}
