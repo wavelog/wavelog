@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-05-25 18:05+0000\n"
-"PO-Revision-Date: 2026-05-11 20:19+0000\n"
+"POT-Creation-Date: 2026-05-25 10:40+0000\n"
+"PO-Revision-Date: 2026-05-25 18:06+0000\n"
 "Last-Translator: iv3cvn <ricentis@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/it/>\n"
@@ -762,7 +762,7 @@ msgstr "Diploma \"Polska\""
 
 #: application/controllers/Awards.php:2775
 msgid "Awards - AMSAT Rover"
-msgstr ""
+msgstr "Diplomi - AMSAT Rover"
 
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:343
@@ -2536,7 +2536,7 @@ msgstr "ID di stazione non valido"
 
 #: application/controllers/Oqrs.php:108
 msgid "Invalid station slug"
-msgstr ""
+msgstr "Slug della stazione non valido"
 
 #: application/controllers/Oqrs.php:176
 #: application/views/interface_assets/header.php:513
@@ -3805,23 +3805,29 @@ msgstr "HRDlog: nessun QSO trovato da caricare per il nominativo di stazione: "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: nessun profilo di stazione con credenziali HRDlog trovate."
 
+#: application/models/Logbook_model.php:311
 #: application/models/Logbook_model.php:315
 msgid "Station not accessible"
 msgstr "Stazione non accessibile"
 
+#: application/models/Logbook_model.php:1415
 #: application/models/Logbook_model.php:1420
 msgid "Station ID not allowed"
 msgstr "ID stazione non consentito"
 
+#: application/models/Logbook_model.php:1420
 #: application/models/Logbook_model.php:1425
 msgid "No Call given"
 msgstr "Nessun nominatio fornito"
 
+#: application/models/Logbook_model.php:1490
+#: application/models/Logbook_model.php:1694
 #: application/models/Logbook_model.php:1495
 #: application/models/Logbook_model.php:1699
 msgid "DXCC has to be Numeric"
 msgstr "DXCC deve essere numerico"
 
+#: application/models/Logbook_model.php:4917
 #: application/models/Logbook_model.php:4923
 #, php-format
 msgid ""
@@ -3830,6 +3836,7 @@ msgstr ""
 "Callsign della stazione errato ( %s) durante l'importazione di QSO con %s "
 "per %s: SALTATO"
 
+#: application/models/Logbook_model.php:4925
 #: application/models/Logbook_model.php:4931
 #, php-format
 msgid ""
@@ -3839,6 +3846,7 @@ msgstr ""
 "Locatore diverso %s durante l'importazione del QSO con %s per il locatore "
 "della stazione %s: SALTATO"
 
+#: application/models/Logbook_model.php:4941
 #: application/models/Logbook_model.php:4947
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
@@ -3847,10 +3855,12 @@ msgstr ""
 "Hai cercato di importare un QSO senza una data valida. Questo QSO non è "
 "stato importato. Non è valido"
 
+#: application/models/Logbook_model.php:4951
 #: application/models/Logbook_model.php:4957
 msgid "QSO on"
 msgstr "QSO alle"
 
+#: application/models/Logbook_model.php:4951
 #: application/models/Logbook_model.php:4957
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
@@ -3859,6 +3869,7 @@ msgstr ""
 "Hai tentato di importare un QSO senza alcun nominativo di chiamata. Questo "
 "QSO non è stato importato perchè non valido"
 
+#: application/models/Logbook_model.php:5001
 #: application/models/Logbook_model.php:5007
 #, php-format
 msgid ""
@@ -3868,63 +3879,77 @@ msgstr ""
 "QSO su %s: Hai provato a importare un QSO senza una banda specificata. "
 "Questo QSO non è stato importato. È non valido"
 
+#: application/models/Logbook_model.php:5275
 #: application/models/Logbook_model.php:5281
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "La data di ricezione QSL non è valida (AAAAMMGG)"
 
+#: application/models/Logbook_model.php:5286
 #: application/models/Logbook_model.php:5292
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "La data di invio QSL non è valida (AAAAMMGG)"
 
+#: application/models/Logbook_model.php:5347
 #: application/models/Logbook_model.php:5353
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "La data di upload Clublog non è valida (AAAAMMGG)"
 
-#: application/models/Logbook_model.php:5726
+#: application/models/Logbook_model.php:5720
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:5726
 msgid "Duplicate for"
 msgstr "Duplicata"
 
+#: application/models/Logbook_model.php:5787
+#: application/models/Logbook_model.php:5887
 #: application/models/Logbook_model.php:5793
 #: application/models/Logbook_model.php:5893
 msgid "QSO could not be matched"
 msgstr "Impossibile abbinare QSO"
 
+#: application/models/Logbook_model.php:5795
 #: application/models/Logbook_model.php:5801
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confermato da LoTW/Clublog/eQSL/Contest"
 
+#: application/models/Logbook_model.php:5801
 #: application/models/Logbook_model.php:5807
 msgid "confirmed by award manager"
 msgstr "confermato dal responsabile del premio"
 
+#: application/models/Logbook_model.php:5805
 #: application/models/Logbook_model.php:5811
 msgid "confirmed by cross-check of DCL data"
 msgstr "confermato dal controllo incrociato dei dati DCL"
 
+#: application/models/Logbook_model.php:5809
 #: application/models/Logbook_model.php:5815
 msgid "confirmation pending"
 msgstr "Conferma in sospeso"
 
+#: application/models/Logbook_model.php:5812
 #: application/models/Logbook_model.php:5818
 msgid "unconfirmed"
 msgstr "Non confermato"
 
-#: application/models/Logbook_model.php:5821
+#: application/models/Logbook_model.php:5815
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
+#: application/models/Logbook_model.php:5821
 msgid "unknown"
 msgstr "sconosciuto"
 
+#: application/models/Logbook_model.php:5890
 #: application/models/Logbook_model.php:5896
 msgid "POTA reference already in log"
 msgstr "Riferimento POTA già presente nel registro di stazione"
 
+#: application/models/Logbook_model.php:5893
 #: application/models/Logbook_model.php:5899
 msgid "QSO updated"
 msgstr "QSO aggiornato"
 
-#: application/models/Logbook_model.php:6296
+#: application/models/Logbook_model.php:6290
 #: application/views/activated_gridmap/index.php:114
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:58
@@ -3935,6 +3960,7 @@ msgstr "QSO aggiornato"
 #: application/views/user/edit.php:329 application/views/user/edit.php:352
 #: application/views/user/edit.php:375 application/views/user/edit.php:400
 #: application/views/view_log/partial/log_ajax.php:21
+#: application/models/Logbook_model.php:6296
 msgid "Bearing"
 msgstr "Direzione"
 
@@ -5501,26 +5527,28 @@ msgstr "Numero"
 #: application/views/awards/amsat_rover/index.php:12
 #: application/views/awards/amsat_rover/index.php:161
 msgid "APPROVED"
-msgstr ""
+msgstr "APPROVATO"
 
 #: application/views/awards/amsat_rover/index.php:13
 #: application/views/awards/amsat_rover/index.php:161
 msgid "IN PROGRESS"
-msgstr ""
+msgstr "IN CORSO"
 
 #: application/views/awards/amsat_rover/index.php:14
 msgid "Please generate the text first."
-msgstr ""
+msgstr "Per favore, genera prima il testo."
 
 #: application/views/awards/amsat_rover/index.php:22
 msgid ""
 "The AMSAT Rover Award is granted to stations who achieve a combined 25 "
 "points using satellite grid activations."
 msgstr ""
+"Il diploma Rover di AMSAT viene assegnato alle stazioni che raggiungono un "
+"totale di 25 punti utilizzando le attivazioni delle grid satellitari."
 
 #: application/views/awards/amsat_rover/index.php:23
 msgid "Official rules"
-msgstr ""
+msgstr "Regole ufficiali"
 
 #: application/views/awards/amsat_rover/index.php:30
 msgid ""
@@ -5530,7 +5558,7 @@ msgstr ""
 
 #: application/views/awards/amsat_rover/index.php:31
 msgid "Go to Station Profile"
-msgstr ""
+msgstr "Vai al Profilo della Stazione"
 
 #: application/views/awards/amsat_rover/index.php:39
 #: application/views/awards/cq/index.php:45
@@ -5547,91 +5575,96 @@ msgstr "Filtri"
 #: application/views/awards/amsat_rover/index.php:63
 #: application/views/awards/amsat_rover/index.php:140
 msgid "Bonus Points"
-msgstr ""
+msgstr "Punti bonus"
 
 #: application/views/awards/amsat_rover/index.php:72
 msgid "Social Media Promotion (+5)"
-msgstr ""
+msgstr "Promozione sui social media (+5)"
 
 #: application/views/awards/amsat_rover/index.php:75
 msgid ""
 "Post must be made at least 24 hours before activation and include @amsat "
 "tag. Include link to post in your email."
 msgstr ""
+"Il post deve essere fatto almeno 24 ore prima dell'attivazione e includere "
+"il tag @amsat. Includi il link al post nella tua email."
 
 #: application/views/awards/amsat_rover/index.php:82
 msgid "Photo Posting (+5)"
-msgstr ""
+msgstr "Pubblicazione foto (+5)"
 
 #: application/views/awards/amsat_rover/index.php:85
 msgid ""
 "Photos posted with @amsat tag. Include link to photo post in your email."
 msgstr ""
+"Foto pubblicate con il tag @amsat. Includi il link al post della foto nella "
+"tua email."
 
 #: application/views/awards/amsat_rover/index.php:92
 msgid "Maritime Mobile (+10)"
-msgstr ""
+msgstr "Mobile marittimo (+10)"
 
 #: application/views/awards/amsat_rover/index.php:95
 msgid "Operation was conducted while maritime mobile (/MM)."
-msgstr ""
+msgstr "L'operazione è stata condotta mentre si era mobile marittimo (/MM)."
 
 #: application/views/awards/amsat_rover/index.php:102
 msgid "AMSAT Journal Article (+15)"
-msgstr ""
+msgstr "Articolo AMSAT Journal (+15)"
 
 #: application/views/awards/amsat_rover/index.php:105
 msgid "Published article about your rover operation in the AMSAT Journal."
-msgstr ""
+msgstr "Articolo pubblicato sulla tua operazione rover nell'AMSAT Journal."
 
 #: application/views/awards/amsat_rover/index.php:117
 msgid "Show Results"
-msgstr ""
+msgstr "Mostra risultati"
 
 #: application/views/awards/amsat_rover/index.php:131
 msgid "Base Points"
-msgstr ""
+msgstr "Punti base"
 
 #: application/views/awards/amsat_rover/index.php:133
 #: application/views/awards/amsat_rover/index.php:191
 #: application/views/awards/amsat_rover/index.php:194
 #: application/views/awards/amsat_rover/index.php:197
 msgid "activations"
-msgstr ""
+msgstr "attivazioni"
 
 #: application/views/awards/amsat_rover/index.php:148
 msgid "Total Points"
-msgstr ""
+msgstr "Punti Totali"
 
 #: application/views/awards/amsat_rover/index.php:152
 msgid "Target"
-msgstr ""
+msgstr "Obiettivo"
 
 #: application/views/awards/amsat_rover/index.php:188
 msgid "Activations by Mode"
-msgstr ""
+msgstr "Attivazioni per Modalità"
 
 #: application/views/awards/amsat_rover/index.php:191
 msgid "FM"
-msgstr ""
+msgstr "FM"
 
 #: application/views/awards/amsat_rover/index.php:191
 #: application/views/awards/amsat_rover/index.php:194
 #: application/views/awards/amsat_rover/index.php:197
 msgid "pt"
-msgstr ""
+msgstr "pt"
 
 #: application/views/awards/amsat_rover/index.php:194
 msgid "Linear"
-msgstr ""
+msgstr "Lineare"
 
 #: application/views/awards/amsat_rover/index.php:197
 msgid "Digital"
-msgstr ""
+msgstr "Digitale"
 
 #: application/views/awards/amsat_rover/index.php:208
 msgid "No confirmed satellite QSOs found matching your filters."
 msgstr ""
+"Nessun QSO satellitare confermato trovato che corrisponda ai tuoi filtri."
 
 #: application/views/awards/amsat_rover/index.php:216
 msgid "Grid Activations"
@@ -5651,15 +5684,15 @@ msgstr "Categoria"
 
 #: application/views/awards/amsat_rover/index.php:224
 msgid "Points"
-msgstr ""
+msgstr "Punti"
 
 #: application/views/awards/amsat_rover/index.php:227
 msgid "Date / UTC"
-msgstr ""
+msgstr "Data / UTC"
 
 #: application/views/awards/amsat_rover/index.php:253
 msgid "pts"
-msgstr ""
+msgstr "pts"
 
 #: application/views/awards/amsat_rover/index.php:272
 msgid "Export for Application"
@@ -5668,10 +5701,12 @@ msgstr ""
 #: application/views/awards/amsat_rover/index.php:274
 msgid "Generate a copy-paste ready application for email submission to AMSAT."
 msgstr ""
+"Genera un'applicazione pronta per il copia-incolla per l'invio tramite email "
+"ad AMSAT."
 
 #: application/views/awards/amsat_rover/index.php:277
 msgid "Attaching evidence"
-msgstr ""
+msgstr "Allegare prove"
 
 #: application/views/awards/amsat_rover/index.php:278
 msgid ""
@@ -5679,26 +5714,30 @@ msgid ""
 "table above. Press Submit on the LoTW page and capture a screenshot. Attach "
 "the screenshots to your application email."
 msgstr ""
+"Per aggiungere gli screenshot di conferma LoTW, fai clic sul nominativo "
+"nella tabella delle attivazioni sopra. Premi Invia nella pagina LoTW e "
+"cattura uno screenshot. Allega gli screenshot alla tua email di richiesta."
 
 #: application/views/awards/amsat_rover/index.php:279
 msgid "If you have QSL cards instead, scan them and attach the scans."
 msgstr ""
+"Se invece hai delle cartoline QSL, scannerizzale e allega le scansioni."
 
 #: application/views/awards/amsat_rover/index.php:282
 msgid "Send to"
-msgstr ""
+msgstr "Invia a"
 
 #: application/views/awards/amsat_rover/index.php:288
 msgid "Generate Text for Email"
-msgstr ""
+msgstr "Genera testo per email"
 
 #: application/views/awards/amsat_rover/index.php:291
 msgid "Copy to Clipboard"
-msgstr ""
+msgstr "Copia negli appunti"
 
 #: application/views/awards/amsat_rover/index.php:294
 msgid "Download CSV"
-msgstr ""
+msgstr "Scarica CSV"
 
 #: application/views/awards/counties/details.php:4
 #: application/views/awards/details.php:1
@@ -6534,7 +6573,7 @@ msgstr "Avanzamento del diploma"
 
 #: application/views/awards/dxcc/index.php:273
 msgid "Progress towards working all DXCC entities:"
-msgstr ""
+msgstr "Progresso nella lavorazione di tutte le entità DXCC:"
 
 #: application/views/awards/dxcc/index.php:277
 #: application/views/awards/waip/index.php:62
@@ -6544,23 +6583,23 @@ msgstr "Per banda"
 
 #: application/views/awards/dxcc/index.php:280
 msgid "By Continent"
-msgstr ""
+msgstr "Per continente"
 
 #: application/views/awards/dxcc/index.php:283
 msgid "By Mode"
-msgstr ""
+msgstr "Per Modalità"
 
 #: application/views/awards/dxcc/index.php:296
 #: application/views/awards/dxcc/index.php:369
 #: application/views/awards/dxcc/progress.php:5
 msgid "Worked Progress"
-msgstr ""
+msgstr "Progresso lavorati"
 
 #: application/views/awards/dxcc/index.php:297
 #: application/views/awards/dxcc/index.php:370
 #: application/views/awards/dxcc/progress.php:5
 msgid "Confirmed Progress"
-msgstr ""
+msgstr "Progresso confermati"
 
 #: application/views/awards/dxcc/index.php:366
 #: application/views/awards/wac/index.php:142
@@ -6580,15 +6619,16 @@ msgstr "Continente"
 
 #: application/views/awards/dxcc/index.php:413
 msgid "No continent data available."
-msgstr ""
+msgstr "Nessun dato sul continente disponibile nel tuo log."
 
 #: application/views/awards/dxcc/index.php:422
 msgid "Loading..."
-msgstr ""
+msgstr "Caricamento..."
 
 #: application/views/awards/dxcc/index.php:424
+#, fuzzy
 msgid "Loading progress data..."
-msgstr ""
+msgstr "Caricamento dei dati di progresso..."
 
 #: application/views/awards/dxcc/index.php:454
 msgid "DXCC Name"
@@ -6614,7 +6654,7 @@ msgstr ""
 
 #: application/views/awards/dxcc/progress.php:31
 msgid "No mode data available."
-msgstr ""
+msgstr "Nessun dato sulla modalità disponibile."
 
 #: application/views/awards/ffma/index.php:11
 #: application/views/interface_assets/header.php:301
@@ -7621,7 +7661,7 @@ msgstr ""
 
 #: application/views/awards/waip/index.php:34
 msgid "Progress towards working all Italian provinces:"
-msgstr ""
+msgstr "Progresso delle province italiane lavorate:"
 
 #: application/views/awards/waip/index.php:40
 #: application/views/awards/waip/index.php:92
@@ -7855,8 +7895,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be one of U.S.A., Alaska or Hawaii) "
 "and STATE (Must contain a valid U.S. state abbreviation!)"
 msgstr ""
-"Campi presi in considerazione per questo premio: DXCC (Deve essere uno tra U."
-"S.A., Alaska o Hawaii) e STATE (Deve contenere una valida abbreviazione di "
+"Campi presi in considerazione per questo premio: DXCC (Deve essere uno tra "
+"U.S.A., Alaska o Hawaii) e STATE (Deve contenere una valida abbreviazione di "
 "uno stato U.S.A.!)"
 
 #: application/views/awards/was/index.php:120
@@ -12977,7 +13017,7 @@ msgstr "Worked All Prefixes (WPX)"
 
 #: application/views/interface_assets/header.php:213
 msgid "AMSAT Rover"
-msgstr ""
+msgstr "Rover AMSAT"
 
 #: application/views/interface_assets/header.php:227
 msgid "Canada"
@@ -14194,7 +14234,7 @@ msgstr ""
 #: application/views/logbookadvanced/edit.php:258
 #: application/views/logbookadvanced/edit.php:261
 msgid "clear"
-msgstr ""
+msgstr "Pulisci"
 
 #: application/views/logbookadvanced/edit.php:259
 msgid "SIG_INFO"
@@ -14202,7 +14242,7 @@ msgstr "SIG_INFO"
 
 #: application/views/logbookadvanced/help.php:7
 msgid "Search Tips"
-msgstr ""
+msgstr "Suggerimenti per la ricerca"
 
 #: application/views/logbookadvanced/help.php:10
 msgid "Use these special operators in text input searches:"
@@ -18366,7 +18406,7 @@ msgstr "Seleziona le posizioni delle stazioni disponibili"
 
 #: application/views/stationsetup/linkedlocations.php:25
 msgid "Link Location"
-msgstr "Posizione del link"
+msgstr "Collega posizione"
 
 #: application/views/stationsetup/linkedlocations.php:31
 #: application/views/stationsetup/stationsetup.php:129
@@ -18375,7 +18415,7 @@ msgstr "Nome Profilo"
 
 #: application/views/stationsetup/linkedlocations.php:34
 msgid "Unlink Station Location"
-msgstr "Disconnetti posizione della stazione"
+msgstr "Scollega posizione della stazione"
 
 #: application/views/stationsetup/stationsetup.php:24
 msgid ""
@@ -18729,8 +18769,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Crea una nuova cartella in 'assets/css/' e carica un file 'bootstrap.min."
-"css' che contiene regole di stile di base. Utilizziamo i temi di %s"
+"Crea una nuova cartella in 'assets/css/' e carica un file "
+"'bootstrap.min.css' che contiene regole di stile di base. Utilizziamo i temi "
+"di %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
