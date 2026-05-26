@@ -228,11 +228,7 @@ class Stationsetup_model extends CI_Model {
 		left join " . $this->config->item('table_name') . " on station_profile.station_id = " . $this->config->item('table_name') . ".station_id
 		left outer join dxcc_entities on station_profile.station_dxcc = dxcc_entities.adif
 		where user_id = ?
-		group by station_profile.hrdlog_code, station_profile.webadifapiurl, station_profile.webadifapikey, station_profile.user_id, station_profile.qrzapikey, station_profile.station_id,
-		dxcc_entities.end, dxcc_entities.adif, station_profile.station_profile_name, station_profile.hrdlog_username, station_profile.station_gridsquare, station_profile.station_city,
-		station_profile.station_iota, station_profile.station_sota, station_profile.station_callsign, station_profile.station_power, station_profile.station_dxcc, dxcc_entities.name,
-		dxcc_entities.prefix, station_cnty, station_cq, station_itu, station_active, eqslqthnickname, state, county, station_sig, station_sig_info, qrzrealtime, station_wwff, station_pota,
-		oqrs, oqrs_text, oqrs_email, webadifrealtime, clublogrealtime, clublogignore, hrdlogrealtime, station_profile.creation_date, station_profile.last_modified, station_uuid";
+		group by station_profile.station_id, dxcc_entities.adif";
 
 		return $this->db->query($sql, array($this->session->userdata('user_id')));
 	}
@@ -243,7 +239,7 @@ class Stationsetup_model extends CI_Model {
 		left join ".$this->config->item('table_name')." on station_profile.station_id = ".$this->config->item('table_name').".station_id
 		left outer join dxcc_entities on station_profile.station_dxcc = dxcc_entities.adif
 		where user_id = ?
-		group by dxcc_entities.end, station_profile.station_id, station_profile_name, station_profile.hrdlog_username, station_gridsquare, station_city, station_iota, station_sota, station_callsign, station_power, station_dxcc, dxcc_entities.name, dxcc_entities.prefix, station_cnty, station_cq, station_itu, station_active, eqslqthnickname, state, county, station_sig, station_sig_info, qrzrealtime, station_wwff, station_pota, oqrs, oqrs_text, oqrs_email, webadifrealtime, clublogrealtime, clublogignore, hrdlogrealtime, station_profile.creation_date, station_profile.last_modified, station_uuid;";
+		group by station_profile.station_id, dxcc_entities.adif;";
 
 		$query = $this->db->query($sql, array($this->session->userdata('user_id')));
 
