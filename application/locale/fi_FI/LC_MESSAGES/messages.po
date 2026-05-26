@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-05-25 18:05+0000\n"
-"PO-Revision-Date: 2026-05-25 18:06+0000\n"
+"POT-Creation-Date: 2026-05-25 10:40+0000\n"
+"PO-Revision-Date: 2026-05-26 06:31+0000\n"
 "Last-Translator: \"Juuso W.\" <oh1jw@tuta.io>\n"
 "Language-Team: Finnish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/fi/>\n"
@@ -3789,23 +3789,29 @@ msgstr "HRDlog: Ei ladattavia QSOja aseman kutsumerkille: "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: Yhtään asemaprofiilia ei HRDlog-tunnuksilla löytynyt."
 
+#: application/models/Logbook_model.php:311
 #: application/models/Logbook_model.php:315
 msgid "Station not accessible"
 msgstr "Asema ei ole käytettävissä"
 
+#: application/models/Logbook_model.php:1415
 #: application/models/Logbook_model.php:1420
 msgid "Station ID not allowed"
 msgstr "Aseman ID ei sallittu"
 
+#: application/models/Logbook_model.php:1420
 #: application/models/Logbook_model.php:1425
 msgid "No Call given"
 msgstr "Kutsumerkkiä ei ole annettu"
 
+#: application/models/Logbook_model.php:1490
+#: application/models/Logbook_model.php:1694
 #: application/models/Logbook_model.php:1495
 #: application/models/Logbook_model.php:1699
 msgid "DXCC has to be Numeric"
 msgstr "DXCC:n on oltava numeerinen"
 
+#: application/models/Logbook_model.php:4917
 #: application/models/Logbook_model.php:4923
 #, php-format
 msgid ""
@@ -3813,6 +3819,7 @@ msgid ""
 msgstr ""
 "Poikkeava aseman kutsumerkki %s tuotaessa QSO:ta %s päivälle %s: OHITETTU"
 
+#: application/models/Logbook_model.php:4925
 #: application/models/Logbook_model.php:4931
 #, php-format
 msgid ""
@@ -3821,6 +3828,7 @@ msgid ""
 msgstr ""
 "Poikkeava lokaattori %s tuotaessa QSO:ta %s aseman lokaattorille %s: OHITETTU"
 
+#: application/models/Logbook_model.php:4941
 #: application/models/Logbook_model.php:4947
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
@@ -3829,10 +3837,12 @@ msgstr ""
 "Yritit tuoda QSOa ilman kelvollista päivämäärää. Tätä QSOa ei tuotu. Se on "
 "virheellinen"
 
+#: application/models/Logbook_model.php:4951
 #: application/models/Logbook_model.php:4957
 msgid "QSO on"
 msgstr "QSO alkoi"
 
+#: application/models/Logbook_model.php:4951
 #: application/models/Logbook_model.php:4957
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
@@ -3841,6 +3851,7 @@ msgstr ""
 "Yritit tuoda QSOa ilman annettua KUTSUA. Tätä QSOa ei tuotu. Se on "
 "virheellinen"
 
+#: application/models/Logbook_model.php:5001
 #: application/models/Logbook_model.php:5007
 #, php-format
 msgid ""
@@ -3850,63 +3861,77 @@ msgstr ""
 "QSO ajassa %s: Yritit tuoda QSO:n ilman merkittyä bandia. Tätä QSO:ta ei "
 "tuotu. Se on virheellinen"
 
+#: application/models/Logbook_model.php:5275
 #: application/models/Logbook_model.php:5281
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate on virheellinen (YYYYMMDD)"
 
+#: application/models/Logbook_model.php:5286
 #: application/models/Logbook_model.php:5292
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate on virheellinen (YYYYMMDD)"
 
+#: application/models/Logbook_model.php:5347
 #: application/models/Logbook_model.php:5353
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "the clublog_qso_upload_date on virheellinen (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:5726
+#: application/models/Logbook_model.php:5720
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:5726
 msgid "Duplicate for"
 msgstr "Kaksoiskappale"
 
+#: application/models/Logbook_model.php:5787
+#: application/models/Logbook_model.php:5887
 #: application/models/Logbook_model.php:5793
 #: application/models/Logbook_model.php:5893
 msgid "QSO could not be matched"
 msgstr "QSOa ei voitu yhdistää"
 
+#: application/models/Logbook_model.php:5795
 #: application/models/Logbook_model.php:5801
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "vahvistettu LoTW:n/Clublogin/eQSL:n/kilpailun kautta"
 
+#: application/models/Logbook_model.php:5801
 #: application/models/Logbook_model.php:5807
 msgid "confirmed by award manager"
 msgstr "vahvistettu awardimanagerin toimesta"
 
+#: application/models/Logbook_model.php:5805
 #: application/models/Logbook_model.php:5811
 msgid "confirmed by cross-check of DCL data"
 msgstr "varmistettu DCL-datan ristivertailulla"
 
+#: application/models/Logbook_model.php:5809
 #: application/models/Logbook_model.php:5815
 msgid "confirmation pending"
 msgstr "vahvistus odottaa"
 
+#: application/models/Logbook_model.php:5812
 #: application/models/Logbook_model.php:5818
 msgid "unconfirmed"
 msgstr "vahvistamaton"
 
-#: application/models/Logbook_model.php:5821
+#: application/models/Logbook_model.php:5815
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
+#: application/models/Logbook_model.php:5821
 msgid "unknown"
 msgstr "tuntematon"
 
+#: application/models/Logbook_model.php:5890
 #: application/models/Logbook_model.php:5896
 msgid "POTA reference already in log"
 msgstr "POTA-referenssi on jo lokissa"
 
+#: application/models/Logbook_model.php:5893
 #: application/models/Logbook_model.php:5899
 msgid "QSO updated"
 msgstr "QSO päivitetty"
 
-#: application/models/Logbook_model.php:6296
+#: application/models/Logbook_model.php:6290
 #: application/views/activated_gridmap/index.php:114
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:58
@@ -3917,6 +3942,7 @@ msgstr "QSO päivitetty"
 #: application/views/user/edit.php:329 application/views/user/edit.php:352
 #: application/views/user/edit.php:375 application/views/user/edit.php:400
 #: application/views/view_log/partial/log_ajax.php:21
+#: application/models/Logbook_model.php:6296
 msgid "Bearing"
 msgstr "Suuntima"
 
@@ -6541,13 +6567,13 @@ msgstr "Tilamoodin mukaan"
 #: application/views/awards/dxcc/index.php:369
 #: application/views/awards/dxcc/progress.php:5
 msgid "Worked Progress"
-msgstr ""
+msgstr "Työskennellyt (Worked) edistyminen"
 
 #: application/views/awards/dxcc/index.php:297
 #: application/views/awards/dxcc/index.php:370
 #: application/views/awards/dxcc/progress.php:5
 msgid "Confirmed Progress"
-msgstr ""
+msgstr "Vahvistusten (confirmed) edistyminen"
 
 #: application/views/awards/dxcc/index.php:366
 #: application/views/awards/wac/index.php:142
@@ -6567,15 +6593,15 @@ msgstr "Manner"
 
 #: application/views/awards/dxcc/index.php:413
 msgid "No continent data available."
-msgstr ""
+msgstr "Ei maanosatietoja saatavilla."
 
 #: application/views/awards/dxcc/index.php:422
 msgid "Loading..."
-msgstr ""
+msgstr "Ladataan..."
 
 #: application/views/awards/dxcc/index.php:424
 msgid "Loading progress data..."
-msgstr ""
+msgstr "Ladataan edistymistietoja..."
 
 #: application/views/awards/dxcc/index.php:454
 msgid "DXCC Name"
@@ -6600,7 +6626,7 @@ msgstr "Ei tuloksia hakuehdoillasi. Yritä uudelleen."
 
 #: application/views/awards/dxcc/progress.php:31
 msgid "No mode data available."
-msgstr ""
+msgstr "Mode-tietoa ei saatavilla."
 
 #: application/views/awards/ffma/index.php:11
 #: application/views/interface_assets/header.php:301
@@ -7406,8 +7432,8 @@ msgstr ""
 "on oma yhdistyksensä, joka määrittelee kyseisen yhdistyksen SOTA-huiput. "
 "Jokaisesta huipusta saa aktivaattoreille ja hunttereille pisteitä, jotka "
 "liittyvät huipun korkeuteen. Erilaisista pistemääristä saa todistuksia, "
-"jotka johtavat arvostettuihin 'Mountain Goat' ja 'Shack Sloth' -"
-"palkintoihin. Aktivaattoreiden ja hunttereiden kunniataulukkoa ylläpidetään "
+"jotka johtavat arvostettuihin 'Mountain Goat' ja 'Shack Sloth' "
+"-palkintoihin. Aktivaattoreiden ja hunttereiden kunniataulukkoa ylläpidetään "
 "SOTAn online-tietokannassa."
 
 #: application/views/awards/vucc/index.php:7
@@ -7601,7 +7627,7 @@ msgstr ""
 
 #: application/views/awards/waip/index.php:34
 msgid "Progress towards working all Italian provinces:"
-msgstr ""
+msgstr "Edistyminen kaikkien Italian provinssien työskentelyssä:"
 
 #: application/views/awards/waip/index.php:40
 #: application/views/awards/waip/index.php:92
@@ -12561,8 +12587,8 @@ msgstr "Lokaattorin muotoilu"
 msgid ""
 "Enter multiple (4-digit) grids separated with commas. For example: IO77,IO78"
 msgstr ""
-"Syötä useita (4-numeroisia) ruutuja pilkulla erotettuna. Esimerkiksi: IO77,"
-"IO78"
+"Syötä useita (4-numeroisia) ruutuja pilkulla erotettuna. Esimerkiksi: "
+"IO77,IO78"
 
 #: application/views/interface_assets/footer.php:115
 msgid "live"
@@ -12648,8 +12674,8 @@ msgstr "Sijainti haetaan DXCC-koordinaateista (ei lokaattoria annettu)"
 msgid ""
 "Location could not be determined as gridsquare is empty and DXCC is -NONE-"
 msgstr ""
-"Sijaintia ei voitu määrittää, koska lokaattoriruutu on tyhjä ja DXCC on -"
-"NONE-"
+"Sijaintia ei voitu määrittää, koska lokaattoriruutu on tyhjä ja DXCC on "
+"-NONE-"
 
 #: application/views/interface_assets/footer.php:138
 msgid "Working without CAT connection"
@@ -12913,7 +12939,7 @@ msgstr "Worked All Prefixes (WPX)"
 
 #: application/views/interface_assets/header.php:213
 msgid "AMSAT Rover"
-msgstr ""
+msgstr "AMSAT Rover"
 
 #: application/views/interface_assets/header.php:227
 msgid "Canada"
@@ -13681,8 +13707,8 @@ msgid ""
 "Results depends on the correct DXCC, and it will only be checked against "
 "current DXCC. False positive results may occur."
 msgstr ""
-"Tulokset riippuvat oikeasta DXCC:stä, ja ne tarkistetaan vain nykyistä DXCC:"
-"tä vastaan. Virheellisiä positiivisia tuloksia voi esiintyä."
+"Tulokset riippuvat oikeasta DXCC:stä, ja ne tarkistetaan vain nykyistä "
+"DXCC:tä vastaan. Virheellisiä positiivisia tuloksia voi esiintyä."
 
 #: application/views/logbookadvanced/checkresult.php:393
 msgid "QSO DXCC"
@@ -13825,6 +13851,9 @@ msgid ""
 "column you are looking for, use the regular QSO edit (click the callsign, "
 "then click the edit QSO button)."
 msgstr ""
+"Kaikki sarakkeet eivät ole käytettävissä massamuokkaukseen. Jos et löydä "
+"etsimääsi saraketta, käytä tavallista QSO-muokkausta (napsauta kutsumerkkiä "
+"ja sen jälkeen ”Muokkaa QSO” -painiketta)."
 
 #: application/views/logbookadvanced/edit.php:5
 msgid "Please choose the column to be edited:"
@@ -14131,23 +14160,23 @@ msgstr "SIG_INFO"
 
 #: application/views/logbookadvanced/help.php:7
 msgid "Search Tips"
-msgstr ""
+msgstr "Hakuvinkit"
 
 #: application/views/logbookadvanced/help.php:10
 msgid "Use these special operators in text input searches:"
-msgstr ""
+msgstr "Käytä näitä erikoisoperaattoreita tekstihakukentissä:"
 
 #: application/views/logbookadvanced/help.php:14
 msgid "Search for everything"
-msgstr ""
+msgstr "Etsi kaikkea"
 
 #: application/views/logbookadvanced/help.php:18
 msgid "Search where column is empty"
-msgstr ""
+msgstr "Hae rivit, joissa sarake on tyhjä"
 
 #: application/views/logbookadvanced/help.php:22
 msgid "Search where column is not empty"
-msgstr ""
+msgstr "Hae rivit, joissa sarake ei ole tyhjä"
 
 #: application/views/logbookadvanced/help.php:33
 #: application/views/logbookadvanced/index.php:74
@@ -14156,109 +14185,117 @@ msgstr "Duplikaattien etsintä"
 
 #: application/views/logbookadvanced/help.php:36
 msgid "The dupe search checks for duplicate QSOs with the same:"
-msgstr ""
+msgstr "Duplikaattihaku tarkistaa kaksois-QSOt, joissa on sama:"
 
 #: application/views/logbookadvanced/help.php:39
 msgid "Mode / Submode"
-msgstr ""
+msgstr "Mode / Submode"
 
 #: application/views/logbookadvanced/help.php:45
 msgid "Time window:"
-msgstr ""
+msgstr "Aikaväli:"
 
 #: application/views/logbookadvanced/help.php:54
 msgid "Invalid Search"
-msgstr ""
+msgstr "Virheellinen haku"
 
 #: application/views/logbookadvanced/help.php:57
 msgid "Checks for the following conditions:"
-msgstr ""
+msgstr "Tarkistaa seuraavat ehdot:"
 
 #: application/views/logbookadvanced/help.php:59
 msgid "Mode is blank or set to 0"
-msgstr ""
+msgstr "Mode on tyhjä tai asetettu arvoon 0"
 
 #: application/views/logbookadvanced/help.php:60
 msgid "Band is blank"
-msgstr ""
+msgstr "Bandi on tyhjä"
 
 #: application/views/logbookadvanced/help.php:61
 msgid "Callsign is blank"
-msgstr ""
+msgstr "Kutsumerkki on tyhjä"
 
 #: application/views/logbookadvanced/help.php:62
 msgid "Time and date is not set"
-msgstr ""
+msgstr "Aikaa ja päivämäärää ei ole asetettu"
 
 #: application/views/logbookadvanced/help.php:63
 msgid "Date is set to 1970-01-01"
-msgstr ""
+msgstr "Päivämääräksi on asetettu 1970-01-01"
 
 #: application/views/logbookadvanced/help.php:64
 msgid "Continent is invalid (not AF, AN, AS, EU, NA, OC, or SA)"
-msgstr ""
+msgstr "Manner on virheellinen (ei AF, AN, AS, EU, NA, OC tai SA)"
 
 #: application/views/logbookadvanced/help.php:74
 msgid "Map View"
-msgstr ""
+msgstr "Karttanäkymä"
 
 #: application/views/logbookadvanced/help.php:77
 msgid "The map uses the same search criteria as the normal search."
-msgstr ""
+msgstr "Kartta käyttää samoja hakukriteerejä kuin normaali haku."
 
 #: application/views/logbookadvanced/help.php:78
 msgid ""
 "All QSOs in the search result will be mapped, unless you have checked one or "
 "more QSOs."
 msgstr ""
+"Kaikki hakutuloksen QSOt näytetään kartalla, ellet ole valinnut yhtä tai "
+"useampaa QSOa."
 
 #: application/views/logbookadvanced/help.php:78
 #: application/views/logbookadvanced/help.php:99
 #: application/views/logbookadvanced/help.php:112
 msgid "Note:"
-msgstr ""
+msgstr "Huomautus:"
 
 #: application/views/logbookadvanced/help.php:87
 msgid "Batch Edit"
-msgstr ""
+msgstr "Massamuokkaus"
 
 #: application/views/logbookadvanced/help.php:90
 msgid ""
 "Batch edit allows you to modify a single column across all checked QSOs at "
 "once."
 msgstr ""
+"Massamuokkauksen avulla voit muokata yhtä saraketta kaikissa valituissa "
+"QSOissa kerralla."
 
 #: application/views/logbookadvanced/help.php:91
 msgid "Available edit categories:"
-msgstr ""
+msgstr "Saatavilla olevat muokkauskategoriat:"
 
 #: application/views/logbookadvanced/help.php:93
 msgid "QSO Details:"
-msgstr ""
+msgstr "QSO-tiedot:"
 
 #: application/views/logbookadvanced/help.php:94
 msgid "Awards:"
-msgstr ""
+msgstr "Awardit:"
 
 #: application/views/logbookadvanced/help.php:95
 msgid "Confirmations:"
-msgstr ""
+msgstr "Vahvistukset:"
 
 #: application/views/logbookadvanced/help.php:99
 msgid ""
 "You must check one or more QSOs before using batch edit. For complex "
 "changes, use the regular QSO edit instead."
 msgstr ""
+"Sinun on valittava yksi tai useampi QSO ennen massamuokkauksen käyttöä. "
+"Monimutkaisempia muutoksia varten käytä tavallista QSO-muokkausta."
 
 #: application/views/logbookadvanced/help.php:111
 msgid "The ADIF export uses the same search criteria as the normal search."
-msgstr ""
+msgstr "ADIF-vienti käyttää samoja hakukriteerejä kuin normaali haku."
 
 #: application/views/logbookadvanced/help.php:112
 msgid ""
 "All QSOs will be exported (all for selected location), unless you have "
 "checked one or more QSOs."
 msgstr ""
+"Kaikki QSO:t viedään (kaikki valitusta sijainnista), ellet ole valinnut yhtä "
+"tai useampia QSOja."
 
 #: application/views/logbookadvanced/index.php:16
 #: application/views/stationsetup/exportmapoptions.php:23
@@ -19549,8 +19586,8 @@ msgid ""
 "events to handle multiple operators. A clubstation is basically a normal "
 "user account with some special features and some restrictions."
 msgstr ""
-"Kerhoasemat Wavelogissa ovat ainutlaatuinen tapa kerhoille ja erikoiskutsu -"
-"tapahtumille hallita useita operaattoreita. Kerhoasema on periaatteessa "
+"Kerhoasemat Wavelogissa ovat ainutlaatuinen tapa kerhoille ja erikoiskutsu "
+"-tapahtumille hallita useita operaattoreita. Kerhoasema on periaatteessa "
 "tavallinen käyttäjätili, jossa on joitakin erityistoimintoja ja rajoituksia."
 
 #: application/views/user/index.php:143
