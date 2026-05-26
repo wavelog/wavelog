@@ -239,7 +239,7 @@ class Stationsetup_model extends CI_Model {
 		left join ".$this->config->item('table_name')." on station_profile.station_id = ".$this->config->item('table_name').".station_id
 		left outer join dxcc_entities on station_profile.station_dxcc = dxcc_entities.adif
 		where user_id = ?
-		group by station_profile.station_id;";
+		group by station_profile.station_id, dxcc_entities.adif;";
 
 		$query = $this->db->query($sql, array($this->session->userdata('user_id')));
 

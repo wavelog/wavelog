@@ -88,7 +88,7 @@ class Labels_model extends CI_Model {
 	}
 
 	function fetchPapertypes($user_id) {
-		$sql="SELECT p.paper_id,p.user_id,p.paper_name,p.metric,p.width,p.height,p.last_modified, p.orientation,COUNT(DISTINCT l.id) AS lbl_cnt FROM paper_types p  LEFT OUTER JOIN  label_types l ON (p.paper_id = l.paper_type_id and p.user_id=l.user_id) WHERE p.user_id = ? group by p.paper_id,p.user_id,p.paper_name,p.metric,p.width,p.height,p.last_modified;";
+		$sql="SELECT p.paper_id,p.user_id,p.paper_name,p.metric,p.width,p.height,p.last_modified, p.orientation,COUNT(DISTINCT l.id) AS lbl_cnt FROM paper_types p  LEFT OUTER JOIN  label_types l ON (p.paper_id = l.paper_type_id and p.user_id=l.user_id) WHERE p.user_id = ? group by p.paper_id,p.user_id,p.paper_name,p.metric,p.width,p.height,p.last_modified,p.orientation;";
         	$query = $this->db->query($sql, $this->session->userdata('user_id'));
         	return $query->result();
 	}
