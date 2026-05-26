@@ -329,6 +329,15 @@ class Contesting extends CI_Controller {
 			],
 		];
 
+		if ($this->session->userdata('isWinkeyEnabled')) {
+			$data['components']['winkeyer'] = [
+				'x'      => 73,
+				'y'      => 63,
+				'width'  => 26,
+				'height' => 35,
+			];
+		}
+
 		$this->load->view('contesting/logger/header', $data);
 		$this->load->view('contesting/logger/index');
 		$this->load->view('contesting/logger/footer');

@@ -63,6 +63,13 @@
             echo "WL Contest Engine";
         } ?>
     </title>
+
+    <?php if ($this->session->userdata('isWinkeyEnabled')): ?>
+    <script src="<?php echo $this->paths->cache_buster('/assets/js/jquery-3.3.1.min.js'); ?>"></script>
+    <script src="<?php echo $this->paths->cache_buster('/assets/js/bootstrap.bundle.min.js'); ?>"></script>
+    <script src="<?php echo $this->paths->cache_buster('/assets/js/bootstrapdialog/js/bootstrap-dialog.min.js'); ?>"></script>
+    <script src="<?php echo $this->paths->cache_buster('/assets/js/winkey.js'); ?>"></script>
+    <?php endif; ?>
 </head>
 
 <body>

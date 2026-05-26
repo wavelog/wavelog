@@ -366,6 +366,7 @@ class QSO extends CI_Controller {
 			$cwmacros['macro5'] = ['name' => 'TEST', 'macro' => 'TEST DE [MYCALL] K'];
 		}
 
+		$cwmacros['contest_context'] = (bool) $this->input->post('contest', true);
 		$this->load->view('qso/components/winkeysettings', $cwmacros);
 	}
 
