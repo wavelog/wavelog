@@ -15,6 +15,7 @@ if ($qsos->result() != NULL) {
 	<th style=\'text-align: center\'>' . __("Profile name") . '</th>
 	<th style=\'text-align: center\'>' . __("QSL") . ' ' . __("Via") . '</th>
 	<th style=\'text-align: center\'>' . __("Send Method") . '</th>
+	<th style=\'text-align: center; white-space: nowrap;\'>' . __("Previous QSL") . '</th>
 	<th style=\'text-align: center\'>' . __("QSL") . '</th>';
 	if ($this->session->userdata('user_eqsl_name') != "") {
 		echo '<th style=\'text-align: center\'>' . __("eQSL") . '</th>';
@@ -65,6 +66,11 @@ if ($qsos->result() != NULL) {
 		echo '<td style=\'text-align: center\'>' . $qsl->station_profile_name . '</span></td>';
 		echo '<td style=\'text-align: center\'>' . $qsl->COL_QSL_VIA . '</td>';
 		echo '<td style=\'text-align: center\'>'; echo_qsl_sent_via($qsl->COL_QSL_SENT_VIA); echo '</td>';
+		echo '<td style=\'text-align: center; white-space: nowrap;\'>';
+		echo '<span class="badge ' . ($qsl->previous_qsl > 0 ? 'bg-warning' : 'bg-success') . '" data-bs-toggle="tooltip" data-bs-title="' . __("Previous QSL sent (same band/mode)") . '">' . $qsl->previous_qsl . '</span> / ';
+		echo '<span class="badge bg-info" data-bs-toggle="tooltip" data-bs-title="' . __("QSL sent to callsign (total)") . '">' . $qsl->qsl_sent_to_call . '</span> / ';
+		echo '<span class="badge bg-info" data-bs-toggle="tooltip" data-bs-title="' . __("QSL received from callsign (total)") . '">' . $qsl->qsl_rcvd_from_call . '</span>';
+		echo '</td>';
 		echo '<td style=\'text-align: center\' class="qsl">';
 		echo '<span ';
 		if ($qsl->COL_QSL_SENT != "N") {
