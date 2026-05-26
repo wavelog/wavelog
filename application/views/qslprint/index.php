@@ -16,9 +16,10 @@
 	    <?= __("Export Requested QSLs for Printing"); ?>
 	  </div>
 		<div class="card-body">
-			<form class="form" action="<?php echo site_url('adif/import'); ?>" method="post" enctype="multipart/form-data">
-				<label for="station_profile" class="me-2"><?= __("Station Location"); ?>:</label>	
-				<select name="station_profile" class="station_id form-select mb-3 me-sm-3" style="width: 20%;">
+			<div class="row">
+			<form class="form col-md-6 col-lg-4 col-xl-4 col-xxl-2" action="<?php echo site_url('adif/import'); ?>" method="post" enctype="multipart/form-data">
+				<label for="station_profile" class="me-2"><?= __("Station Location"); ?>:</label>
+				<select name="station_profile" class="station_id form-select">
 					<option value="All"><?= __("All"); ?></option>
 					<?php foreach ($station_profile->result() as $station) { ?>
 						<option <?php if ($station->station_id == $station_id) { echo "selected "; } ?>value="<?php echo $station->station_id; ?>"><?= __("Callsign"); ?>: <?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)</option>
@@ -27,13 +28,14 @@
 			</form>
 
 			<!-- Switch Band or Frequency display -->
-			<div>
+			<div class="col-md-6 col-lg-4 col-xl-4 col-xxl-2">
 				<label for="frequency_or_band" class="me-2"><?= __("Show Band or Frequency:"); ?></label>
-  				<select id="frequency_or_band" class="form-select mb-3 me-sm-3" style="width: 20%;">
+				<select id="frequency_or_band" class="form-select">
 					<option value="band" selected><?= __("Band"); ?></option>
 					<option value="frequency"><?= __("Frequency"); ?></option>
 					<option value="both"><?= __("Band & Frequency"); ?></option>
 				</select>
+			</div>
 			</div>
 
 	    <p class="card-text"><?= __("Here you can export requested QSLs as CSV or ADIF files for printing and, optionally, mark them as sent."); ?></p>
@@ -43,9 +45,9 @@
 		</p>
 
 		<div class="resulttable">
-		<?php 
+		<?php
 			$data2['qsos'] = $qsos;
-			$this->load->view('qslprint/qslprint', $data2); 
+			$this->load->view('qslprint/qslprint', $data2);
 		?>
 			</div>
 		</div>
