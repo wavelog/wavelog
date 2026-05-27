@@ -222,24 +222,28 @@ class Stationsetup_model extends CI_Model {
 	}
 
 	function get_all_locations() {
-		$this->db->select('station_profile.*, dxcc_entities.name as station_country, dxcc_entities.end as dxcc_end, count('.$this->config->item('table_name').'.station_id) as qso_total, max(col_time_on) as lastqsodate, exists(select 1 from station_logbooks_relationship where station_location_id = station_profile.station_id and station_logbook_id = '.($this->session->userdata('active_station_logbook') ?? 0).') as linked');
-		$this->db->from('station_profile');
-		$this->db->join($this->config->item('table_name'),'station_profile.station_id = '.$this->config->item('table_name').'.station_id','left');
-		$this->db->join('dxcc_entities','station_profile.station_dxcc = dxcc_entities.adif','left outer');
-		$this->db->group_by('station_profile.station_id');
-		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
-		$this->db->or_where('station_profile.user_id =', NULL);
+		$sql = "select station_profile.*, dxcc_entities.name as station_country, dxcc_entities.end as dxcc_end,
+		(select count(*) from " . $this->config->item('table_name') . " where station_id = station_profile.station_id) as qso_total,
+		(select max(col_time_on) as lastqsodate from " . $this->config->item('table_name') . " where station_id = station_profile.station_id) as lastqsodate,
+		exists (select 1 from station_logbooks_relationship where station_location_id = station_profile.station_id and station_logbook_id = " . ($this->session->userdata('active_station_logbook') ?? 0) . ") as linked
+		from station_profile
+		left outer join dxcc_entities on station_profile.station_dxcc = dxcc_entities.adif
+		where station_profile.user_id = ?";
 
-		return $this->db->get();
+		return $this->db->query($sql, array($this->session->userdata('user_id')));
 	}
 
 	function list_all_locations() {
-		$sql = "select dxcc_entities.end, station_profile.station_id, station_profile_name, count(".$this->config->item('table_name').".station_id) as qso_total, station_profile.hrdlog_username, station_gridsquare, station_city, station_iota, station_sota, station_callsign, station_power, station_dxcc, dxcc_entities.name as dxccname, dxcc_entities.prefix as dxccprefix, station_cnty, station_cq, station_itu, station_active, eqslqthnickname, state, county, station_sig, station_sig_info, qrzrealtime, station_wwff, station_pota, oqrs, oqrs_text, oqrs_email, webadifrealtime, clublogrealtime, clublogignore, hrdlogrealtime, station_profile.creation_date, station_profile.last_modified, station_uuid
+		$sql = "select dxcc_entities.end, station_profile.station_id, station_profile_name,
+		(select count(*) from " . $this->config->item('table_name') . " where station_id = station_profile.station_id) as qso_total,
+		station_profile.hrdlog_username, station_gridsquare, station_city, station_iota, station_sota, station_callsign,
+		station_power, station_dxcc, dxcc_entities.name as dxccname, dxcc_entities.prefix as dxccprefix, station_cnty,
+		station_cq, station_itu, station_active, eqslqthnickname, state, county, station_sig, station_sig_info, qrzrealtime, station_wwff,
+		station_pota, oqrs, oqrs_text, oqrs_email, webadifrealtime, clublogrealtime, clublogignore, hrdlogrealtime, station_profile.creation_date,
+		station_profile.last_modified, station_uuid
 		from station_profile
-		left join ".$this->config->item('table_name')." on station_profile.station_id = ".$this->config->item('table_name').".station_id
 		left outer join dxcc_entities on station_profile.station_dxcc = dxcc_entities.adif
-		where user_id = ?
-		group by station_profile.station_id;";
+		where station_profile.user_id = ?";
 
 		$query = $this->db->query($sql, array($this->session->userdata('user_id')));
 
