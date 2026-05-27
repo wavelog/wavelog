@@ -251,7 +251,7 @@ class Contesting extends CI_Controller {
 		$this->load->model('contesting_model');
 		$this->load->model('user_model');
 
-		// Logging Token dekodieren
+		// Decode logging token
 		$decoded_token = $this->paths->decode_contesting_logging_token($logging_token);
 		if (!$decoded_token || !isset($decoded_token['contest_session_id'])) {
 			$this->session->set_flashdata('error', __("Invalid logging token."));
@@ -260,14 +260,14 @@ class Contesting extends CI_Controller {
 
 		$contest_session_id = $decoded_token['contest_session_id'];
 
-		// Session-Daten laden
+		// Load session data
 		$data['session_info'] = $this->contesting_model->get_session_info($contest_session_id);
 		if (!$data['session_info']) {
 			$this->session->set_flashdata('error', __("Contest session not found."));
 			redirect('contesting');
 		}
 
-		// Generate storage key for localStorage. This needs to be collission free between different Wavelog Instances and different users
+		// Generate storage key for localStorage. This needs to be collision-free between different Wavelog Instances and different users
 		$data['storage_key'] = md5($this->config->item('base_url') . $contest_session_id . $this->session->userdata('user_id'));
 
 		$data['operator'] = $this->user_model->get_by_id($decoded_token['user_id'])->row()->user_callsign;
