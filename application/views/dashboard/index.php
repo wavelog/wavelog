@@ -225,7 +225,7 @@ function echo_table_header_col($name) {
 </div>
 
 <!-- KPI Stat Cards -->
-<div class="container-fluid dashboard px-3 px-lg-4 mt-3 mb-3">
+<div class="container-fluid dashboard px-3 px-lg-4 mt-3 mb-3" style="max-width: 2000px; margin: 0 auto;">
 	<div class="row g-3">
 		<div class="col-6 col-md-4 col-lg-2">
 			<div class="card h-100">
@@ -322,14 +322,14 @@ function echo_table_header_col($name) {
 
 
 <style>
-@media (min-width: 992px) and (max-width: 1399.98px) {
+@media (min-width: 992px) and (max-width: 1599.98px) {
 	.map-breakout {
 		width: calc(150% + 1.5rem);
 		margin-left: -0.5rem;
 	}
 }
 </style>
-<div class="container-fluid dashboard px-3 px-lg-4">
+<div class="container-fluid dashboard px-3 px-lg-4" style="max-width: 2000px; margin: 0 auto;">
 
 <!-- Log Data -->
 <div class="row g-3 logdata">
