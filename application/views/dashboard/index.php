@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 function echo_table_header_col($name) {
 	switch($name) {
 		case 'Mode': echo '<th>'.__("Mode").'</th>'; break;
@@ -320,12 +320,14 @@ function echo_table_header_col($name) {
 	</div>
 </div>
 
+
 <div class="container-fluid dashboard px-3 px-lg-4">
 
 <!-- Log Data -->
 <div class="row g-3 logdata">
-  <div class="col-lg-8">
 
+	<!-- Left column: Map + QSOs -->
+	<div class="col-12 col-lg-8">
 		<?php if($dashboard_map != "N" && $dashboard_map != "map_at_right") { ?>
 		<div class="card mb-3">
 			<div class="card-header py-2">
@@ -344,11 +346,9 @@ function echo_table_header_col($name) {
 			<div class="card-body p-0">
 				<div class="table-responsive">
 					<table class="table table-striped table-hover mb-0">
-
 						<thead>
 							<tr>
 								<th><?= __("Date"); ?></th>
-
 								<?php if(($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE || ($this->config->item('show_time'))) { ?>
 								<th><?= __("Time"); ?></th>
 								<?php } ?>
@@ -361,30 +361,21 @@ function echo_table_header_col($name) {
 							?>
 							</tr>
 						</thead>
-
 						<?php
 						$i = 0;
 						if(!empty($last_qsos_list) > 0) {
 						foreach ($last_qsos_list->result() as $row) { ?>
 							<?php  echo '<tr id="qso_'.$row->COL_PRIMARY_KEY.'" class="tr'.($i & 1).'">'; ?>
-
 								<?php
-
-								// Get Date format
 								if($this->session->userdata('user_date_format')) {
-									// If Logged in and session exists
 									$custom_date_format = $this->session->userdata('user_date_format');
 								} else {
-									// Get Default date format from /config/wavelog.php
 									$custom_date_format = $this->config->item('qso_date_format');
 								}
-
 								?>
-
 								<td><?php $timestamp = strtotime($row->COL_TIME_ON ?? '1970-01-01 00:00:00'); echo date($custom_date_format, $timestamp); ?></td>
 								<?php if(($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE || ($this->config->item('show_time'))) { ?>
 								<td><?php $timestamp = strtotime($row->COL_TIME_ON ?? '1970-01-01 00:00:00'); echo date('H:i', $timestamp); ?></td>
-
 								<?php } ?>
 								<td>
 									<a id="edit_qso" href="javascript:displayQso(<?php echo $row->COL_PRIMARY_KEY; ?>)"><?php echo str_replace("0","&Oslash;",strtoupper($row->COL_CALL)); ?></a>
@@ -404,22 +395,22 @@ function echo_table_header_col($name) {
 		<small class="mb-3 me-2" style="float: right;">
 			<?= sprintf(_ngettext("Max. %d previous contact is shown", "Max. %d previous contacts are shown", intval($last_qso_count)), intval($last_qso_count)); ?>
 		</small>
-  </div>
-
-  <div class="col-lg-4">
-  	<?php if($dashboard_map == "map_at_right") { ?>
-	<!-- Map at Right -->
-	<div class="card mb-3">
-		<div class="card-header py-2">
-			<h6 class="mb-0"><i class="fas fa-map-marked-alt"></i> <?= __("Map"); ?></h6>
-		</div>
-		<div class="card-body p-0">
-			<div id="map" class="map-leaflet" style="width: 100%; height: 350px;"></div>
-		</div>
 	</div>
-	<?php } ?>
 
-	<div id="radio_display" hx-get="<?php echo site_url('dashboard/radio_display_component'); ?>" hx-trigger="load, every 5s"></div>
+	<!-- Right column: cards -->
+	<div class="col-12 col-lg-4">
+		<?php if($dashboard_map == "map_at_right") { ?>
+		<div class="card mb-3">
+			<div class="card-header py-2">
+				<h6 class="mb-0"><i class="fas fa-map-marked-alt"></i> <?= __("Map"); ?></h6>
+			</div>
+			<div class="card-body p-0">
+				<div id="map" class="map-leaflet" style="width: 100%; height: 350px;"></div>
+			</div>
+		</div>
+		<?php } ?>
+
+		<div id="radio_display" hx-get="<?php echo site_url('dashboard/radio_display_component'); ?>" hx-trigger="load, every 5s"></div>
 
 		<div class="card mb-3">
 			<div class="card-header py-2">
@@ -439,7 +430,6 @@ function echo_table_header_col($name) {
 							<?php echo $total_countries_confirmed_eqsl; ?>
 						</td>
 					</tr>
-
 					<tr>
 						<td width="50%"><?= __("Needed"); ?></td>
 						<td width="50%"><?php echo $total_countries_needed; ?></td>
@@ -467,13 +457,11 @@ function echo_table_header_col($name) {
 						<td width="25%"><?php echo $total_qsl_sent; ?></td>
 						<td width="25%"><?php echo $qsl_sent_today != 0 ? "<a href=\"javascript:displayContacts('','All','All','All','All','QSLSDATE','');\">".$qsl_sent_today."</a>" : "0"; ?></td>
 					</tr>
-
 					<tr>
 						<td width="50%"><?= __("Received"); ?></td>
 						<td width="25%"><?php echo $total_qsl_rcvd; ?></td>
 						<td width="25%"><?php echo $qsl_rcvd_today != 0 ? "<a href=\"javascript:displayContacts('','All','All','All','All','QSLRDATE','');\">".$qsl_rcvd_today."</a>" : "0"; ?></td>
 					</tr>
-
 					<tr>
 						<td width="50%"><?= __("Requested"); ?></td>
 						<td width="25%"><?php echo $total_qsl_requested; ?></td>
@@ -503,7 +491,6 @@ function echo_table_header_col($name) {
 						<td width="25%"><?php echo $total_lotw_sent; ?></td>
 						<td width="25%"><?php echo $lotw_sent_today != 0 ? "<a href=\"javascript:displayContacts('','all','all','All','All','LOTWSDATE','');\">".$lotw_sent_today."</a>" : "0"; ?></td>
 					</tr>
-
 					<tr>
 						<td width="50%"><?= __("Received"); ?></td>
 						<td width="25%"><?php echo $total_lotw_rcvd; ?></td>
@@ -533,7 +520,6 @@ function echo_table_header_col($name) {
 						<td width="25%"><?php echo $total_eqsl_sent; ?></td>
 						<td width="25%"><?php echo $eqsl_sent_today != 0 ? "<a href=\"javascript:displayContacts('','All','All','All','All','EQSLSDATE','');\">".$eqsl_sent_today."</a>" : "0"; ?></td>
 					</tr>
-
 					<tr>
 						<td width="50%"><?= __("Received"); ?></td>
 						<td width="25%"><?php echo $total_eqsl_rcvd; ?></td>
@@ -563,7 +549,6 @@ function echo_table_header_col($name) {
 						<td width="25%"><?php echo $total_qrz_sent; ?></td>
 						<td width="25%"><?php echo $qrz_sent_today != 0 ? "<a href=\"javascript:displayContacts('','all','all','All','All','QRZSDATE','');\">".$qrz_sent_today."</a>" : "0"; ?></td>
 					</tr>
-
 					<tr>
 						<td width="50%"><?= __("Received"); ?></td>
 						<td width="25%"><?php echo $total_qrz_rcvd; ?></td>
@@ -593,7 +578,6 @@ function echo_table_header_col($name) {
 						<td width="25%"><?php echo $total_clublog_sent; ?></td>
 						<td width="25%"><?php echo $clublog_sent_today != 0 ? "<a href=\"javascript:displayContacts('','all','all','All','All','CLUBLOGSDATE','');\">".$clublog_sent_today."</a>" : "0"; ?></td>
 					</tr>
-
 					<tr>
 						<td width="50%"><?= __("Received"); ?></td>
 						<td width="25%"><?php echo $total_clublog_rcvd; ?></td>
@@ -623,7 +607,6 @@ function echo_table_header_col($name) {
 						<td width="25%"><?php echo $vucc['All']['worked']; ?></td>
 						<td width="25%"><?php echo $vuccSAT['SAT']['worked'] ?? '0'; ?></td>
 					</tr>
-
 					<tr>
 						<td width="50%"><?= __("Confirmed"); ?></td>
 						<td width="25%"><?php echo $vucc['All']['confirmed']; ?></td>
@@ -634,7 +617,7 @@ function echo_table_header_col($name) {
 		</div>
 		<?php } ?>
 
-	<?php if ((($solar_bandconditions ?? '') != '') && (($solar_solardata ?? '') != '')){ ?>
+		<?php if ((($solar_bandconditions ?? '') != '') && (($solar_solardata ?? '') != '')){ ?>
 		<div class="card mb-3">
 			<div class="card-header py-2">
 				<div class="d-flex justify-content-between align-items-center">
@@ -710,9 +693,10 @@ function echo_table_header_col($name) {
 				</table>
 			</div>
 		</div>
-	<?php } ?>
+		<?php } ?>
 
-  </div>
+	</div>
+
 </div>
 <?php echo $firstloginwizard; ?>
 </div>
