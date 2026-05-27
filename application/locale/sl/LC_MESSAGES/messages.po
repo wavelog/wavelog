@@ -1558,6 +1558,8 @@ msgstr "Dnevnik"
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:115
 #: application/views/timeline/index.php:56 application/views/user/edit.php:674
 #: application/views/user/edit.php:889 application/views/visitor/mini.php:187
+#: application/views/qslprint/qslprint.php:38
+#: application/views/qslprint/qsolist.php:19
 msgid "QSL"
 msgstr "QSL"
 
@@ -1602,6 +1604,9 @@ msgstr "QSL"
 #: application/views/user/edit.php:899 application/views/view_log/qso.php:490
 #: application/views/view_log/qso.php:495
 #: application/views/visitor/mini.php:186
+#: application/views/qslprint/qsolist.php:24
+#: application/views/qslprint/qsolist.php:193
+#: application/views/qslprint/qsolist.php:208
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1639,6 +1644,9 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:301
 #: application/views/timeline/index.php:64 application/views/user/edit.php:676
 #: application/views/user/edit.php:907 application/views/user/edit.php:981
+#: application/views/qslprint/qsolist.php:21
+#: application/views/qslprint/qsolist.php:164
+#: application/views/qslprint/qsolist.php:177
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1748,6 +1756,7 @@ msgstr "Vsa iskanja v Callbooku so bila neuspešna ali niso dala rezultatov."
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
+#: application/views/qslprint/qslprint.php:33
 msgid "Mode"
 msgstr "Vrsta dela"
 
@@ -1777,6 +1786,7 @@ msgstr "Vrsta dela"
 #: application/views/view_log/partial/log.php:10
 #: application/views/view_log/partial/log_ajax.php:6
 #: application/views/view_log/qso.php:119 application/views/visitor/index.php:9
+#: application/views/qslprint/qslprint.php:36
 msgid "RST (S)"
 msgstr "RST (S)"
 
@@ -1807,6 +1817,7 @@ msgstr "RST (S)"
 #: application/views/view_log/partial/log_ajax.php:7
 #: application/views/view_log/qso.php:124
 #: application/views/visitor/index.php:12
+#: application/views/qslprint/qslprint.php:37
 msgid "RST (R)"
 msgstr "RST (R)"
 
@@ -2070,6 +2081,8 @@ msgstr "Razdalja"
 #: application/views/view_log/partial/log_ajax.php:16
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
 #: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
+#: application/views/qslprint/index.php:34
+#: application/views/qslprint/qslprint.php:34
 msgid "Band"
 msgstr "Band"
 
@@ -2099,6 +2112,8 @@ msgstr "Band"
 #: application/views/view_log/partial/log_ajax.php:17
 #: application/views/view_log/qso.php:101
 #: application/views/visitor/index.php:36
+#: application/views/qslprint/index.php:35
+#: application/views/qslprint/qslprint.php:35
 msgid "Frequency"
 msgstr "Frekvenca"
 
@@ -2921,6 +2936,7 @@ msgstr "Uredi lokacijo postaje: "
 #: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
 #: application/views/zonechecker/index.php:5
+#: application/views/qslprint/index.php:21
 msgid "Station Location"
 msgstr "Lokacija postaje"
 
@@ -3132,6 +3148,7 @@ msgstr "QSO preko satelitov"
 
 #: application/controllers/Statistics.php:388
 #: application/views/interface_assets/header.php:182
+#: application/controllers/Statistics.php:389
 msgid "EME Initials"
 msgstr "Prve zveze preko EME"
 
@@ -4199,6 +4216,8 @@ msgstr "Razlika"
 #: application/views/timeplotter/index.php:59
 #: application/views/user/edit.php:873
 #: application/views/visitor/layout/footer.php:168
+#: application/views/qslprint/index.php:23
+#: application/views/qslprint/qslprint.php:86
 msgid "All"
 msgstr "Vse"
 
@@ -4517,6 +4536,8 @@ msgstr "Ničesar nisem našel!"
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:625
 #: application/views/visitor/mini.php:183
 #: application/views/zonechecker/result.php:50
+#: application/views/qslprint/index.php:25
+#: application/views/qslprint/qslprint.php:30
 msgid "Callsign"
 msgstr "Klicni znak"
 
@@ -4630,6 +4651,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:139
 #: application/views/visitor/index.php:151
 #: application/views/visitor/mini.php:182 application/views/widgets/qsos.php:16
+#: application/views/qslprint/qslprint.php:31
 msgid "Date"
 msgstr "Datum"
 
@@ -4664,6 +4686,7 @@ msgstr "Datum"
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:141
 #: application/views/visitor/index.php:154
+#: application/views/qslprint/qslprint.php:32
 msgid "Time"
 msgstr "Čas"
 
@@ -5508,7 +5531,8 @@ msgstr "Uradna pravila"
 msgid ""
 "Please set your home grid square in your station profile to calculate grid "
 "activations correctly."
-msgstr "Za pravilen izračun aktivacij UL nastavite domači UL v profilu postaje."
+msgstr ""
+"Za pravilen izračun aktivacij UL nastavite domači UL v profilu postaje."
 
 #: application/views/awards/amsat_rover/index.php:31
 msgid "Go to Station Profile"
@@ -7004,6 +7028,11 @@ msgstr "Mesto"
 #: application/views/qslprint/qsolist.php:50
 #: application/views/qslprint/qsolist.php:57
 #: application/views/qslprint/qsolist.php:59
+#: application/views/qslprint/qslprint.php:59
+#: application/views/qslprint/qsolist.php:49
+#: application/views/qslprint/qsolist.php:51
+#: application/views/qslprint/qsolist.php:58
+#: application/views/qslprint/qsolist.php:60
 msgid "SAT"
 msgstr "SAT"
 
@@ -7751,9 +7780,9 @@ msgid ""
 "Macao/152, Taiwan/386, Pratas Isl./505 or Scarborough Reef/506) and valid "
 "State (ADIF: DXCC and STATE)"
 msgstr ""
-"Polja, uporabljena za to diplomo: DXCC (Must be one of China/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 or Scarborough "
-"Reef/506) and valid State (ADIF: DXCC and STATE)"
+"Polja, uporabljena za to diplomo: DXCC (Must be one of China/318, HongKong/"
+"321, Macao/152, Taiwan/386, Pratas Isl./505 or Scarborough Reef/506) and "
+"valid State (ADIF: DXCC and STATE)"
 
 #: application/views/awards/wapc/index.php:122
 msgid "Show WAPC Map"
@@ -9818,6 +9847,7 @@ msgstr ""
 #: application/views/qslprint/qslprint.php:32
 #: application/views/qslprint/qsolist.php:15
 #: application/views/webadif/export.php:41
+#: application/views/qslprint/qslprint.php:40
 msgid "Profile name"
 msgstr "Ime profila"
 
@@ -10718,7 +10748,9 @@ msgstr ""
 #: application/views/widgets/qsos.php:19 src/QSLManager/QSO.php:420
 #: src/QSLManager/QSO.php:521 src/QSLManager/QSO.php:575
 #: src/QSLManager/QSO.php:664 src/QSLManager/QSO.php:721
-#: src/QSLManager/QSO.php:810
+#: src/QSLManager/QSO.php:810 application/views/qslprint/qsolist.php:84
+#: application/views/qslprint/qsolist.php:164
+#: application/views/qslprint/qsolist.php:193
 msgid "Sent"
 msgstr ""
 
@@ -10755,7 +10787,9 @@ msgstr ""
 #: application/views/visitor/index.php:337 src/QSLManager/QSO.php:465
 #: src/QSLManager/QSO.php:548 src/QSLManager/QSO.php:625
 #: src/QSLManager/QSO.php:691 src/QSLManager/QSO.php:771
-#: src/QSLManager/QSO.php:838
+#: src/QSLManager/QSO.php:838 application/views/qslprint/qsolist.php:126
+#: application/views/qslprint/qsolist.php:177
+#: application/views/qslprint/qsolist.php:208
 msgid "Received"
 msgstr ""
 
@@ -10800,7 +10834,8 @@ msgstr ""
 #: src/QSLManager/QSO.php:471 src/QSLManager/QSO.php:533
 #: src/QSLManager/QSO.php:556 src/QSLManager/QSO.php:670
 #: src/QSLManager/QSO.php:697 src/QSLManager/QSO.php:822
-#: src/QSLManager/QSO.php:847
+#: src/QSLManager/QSO.php:847 application/views/qslprint/qsolist.php:90
+#: application/views/qslprint/qsolist.php:132
 msgid "Requested"
 msgstr ""
 
@@ -13462,6 +13497,7 @@ msgstr ""
 #: application/views/view_log/qso.php:695
 #: application/views/view_log/qso.php:702
 #: application/views/view_log/qso.php:707
+#: application/views/qslprint/qslprint.php:39
 msgid "Station"
 msgstr ""
 
@@ -13814,6 +13850,8 @@ msgstr ""
 #: src/QSLManager/QSO.php:529 src/QSLManager/QSO.php:592
 #: src/QSLManager/QSO.php:667 src/QSLManager/QSO.php:694
 #: src/QSLManager/QSO.php:738 src/QSLManager/QSO.php:818
+#: application/views/qslprint/qsolist.php:87
+#: application/views/qslprint/qsolist.php:129
 msgid "Queued"
 msgstr ""
 
@@ -13841,6 +13879,9 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:250
 #: application/views/view_log/partial/log_ajax.php:288
 #: src/QSLManager/QSO.php:449 src/QSLManager/QSO.php:492
+#: application/views/qslprint/qsolist.php:106
+#: application/views/qslprint/qsolist.php:148
+#: application/views/qslprint/qsolist.php:237
 msgid "Direct"
 msgstr ""
 
@@ -13862,6 +13903,9 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:247
 #: application/views/view_log/partial/log_ajax.php:285
 #: src/QSLManager/QSO.php:446 src/QSLManager/QSO.php:489
+#: application/views/qslprint/qsolist.php:103
+#: application/views/qslprint/qsolist.php:145
+#: application/views/qslprint/qsolist.php:236
 msgid "Bureau"
 msgstr ""
 
@@ -13881,6 +13925,9 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:256
 #: application/views/view_log/partial/log_ajax.php:294
 #: src/QSLManager/QSO.php:455 src/QSLManager/QSO.php:498
+#: application/views/qslprint/qsolist.php:112
+#: application/views/qslprint/qsolist.php:154
+#: application/views/qslprint/qsolist.php:238
 msgid "Electronic"
 msgstr ""
 
@@ -13893,6 +13940,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:479 application/views/qso/index.php:723
 #: application/views/search/search_result_ajax.php:250
 #: application/views/view_log/partial/log_ajax.php:291
+#: application/views/qslprint/qsolist.php:151
 msgid "Manager"
 msgstr ""
 
@@ -14465,6 +14513,10 @@ msgstr ""
 #: src/QSLManager/QSO.php:673 src/QSLManager/QSO.php:700
 #: src/QSLManager/QSO.php:730 src/QSLManager/QSO.php:779
 #: src/QSLManager/QSO.php:814 src/QSLManager/QSO.php:843
+#: application/views/qslprint/qsolist.php:93
+#: application/views/qslprint/qsolist.php:135
+#: application/views/qslprint/qsolist.php:200
+#: application/views/qslprint/qsolist.php:215
 msgid "Invalid (Ignore)"
 msgstr ""
 
@@ -15693,7 +15745,8 @@ msgstr ""
 #: application/views/qso/index.php:729
 #: application/views/search/search_result_ajax.php:208
 #: application/views/view_log/partial/log_ajax.php:253
-#: src/QSLManager/QSO.php:452
+#: src/QSLManager/QSO.php:452 application/views/qslprint/qslprint.php:38
+#: application/views/qslprint/qsolist.php:109
 msgid "Via"
 msgstr ""
 
@@ -15704,6 +15757,7 @@ msgstr ""
 #: application/views/oqrs/qsolist.php:203
 #: application/views/oqrs/showrequests.php:72
 #: application/views/qslprint/qsolist.php:216
+#: application/views/qslprint/qsolist.php:222
 msgid "Add to print queue"
 msgstr ""
 
@@ -15992,20 +16046,24 @@ msgid "Export Requested QSLs for Printing"
 msgstr ""
 
 #: application/views/qslprint/index.php:31
+#: application/views/qslprint/index.php:32
 msgid "Show Band or Frequency:"
 msgstr ""
 
 #: application/views/qslprint/index.php:35
+#: application/views/qslprint/index.php:36
 msgid "Band & Frequency"
 msgstr ""
 
 #: application/views/qslprint/index.php:39
+#: application/views/qslprint/index.php:41
 msgid ""
 "Here you can export requested QSLs as CSV or ADIF files for printing and, "
 "optionally, mark them as sent."
 msgstr ""
 
 #: application/views/qslprint/index.php:41
+#: application/views/qslprint/index.php:43
 msgid ""
 "Requested QSLs are any QSOs with a value of 'Requested' or 'Queued' in their "
 "'QSL Sent' field."
@@ -16013,10 +16071,14 @@ msgstr ""
 
 #: application/views/qslprint/index.php:42
 #: application/views/qslprint/qslprint.php:34
+#: application/views/qslprint/index.php:44
+#: application/views/qslprint/qslprint.php:42
+#: application/views/qslprint/qsolist.php:18
 msgid "Previous QSL"
 msgstr ""
 
 #: application/views/qslprint/index.php:42
+#: application/views/qslprint/index.php:44
 #, php-format
 msgid ""
 "The column %s shows how many QSLs have been sent to the same station before "
@@ -16025,79 +16087,98 @@ msgstr ""
 
 #: application/views/qslprint/qslprint.php:33
 #: application/views/qslprint/qsolist.php:17
+#: application/views/qslprint/qslprint.php:41
 msgid "Send Method"
 msgstr ""
 
 #: application/views/qslprint/qslprint.php:35
+#: application/views/qslprint/qslprint.php:43
 msgid "Mark as sent"
 msgstr ""
 
 #: application/views/qslprint/qslprint.php:36
+#: application/views/qslprint/qslprint.php:44
 msgid "Remove"
 msgstr ""
 
 #: application/views/qslprint/qslprint.php:37
 #: application/views/simplefle/index.php:147
+#: application/views/qslprint/qslprint.php:45
 msgid "QSO List"
 msgstr ""
 
 #: application/views/qslprint/qslprint.php:78
+#: application/views/qslprint/qslprint.php:83
 msgid "Mark QSOs for a certain QSL Method:"
 msgstr ""
 
 #: application/views/qslprint/qslprint.php:86
+#: application/views/qslprint/qslprint.php:91
 msgid "Mark all QSOs for the chosen QSL method"
 msgstr ""
 
 #: application/views/qslprint/qslprint.php:87
+#: application/views/qslprint/qslprint.php:92
 msgid "Unmark every QSO"
 msgstr ""
 
 #: application/views/qslprint/qslprint.php:92
+#: application/views/qslprint/qslprint.php:97
 msgid "Update QSOs"
 msgstr ""
 
 #: application/views/qslprint/qslprint.php:95
+#: application/views/qslprint/qslprint.php:100
 msgid "Mark selected QSOs as sent"
 msgstr ""
 
 #: application/views/qslprint/qslprint.php:96
+#: application/views/qslprint/qslprint.php:101
 msgid "Remove selected QSOs from the queue"
 msgstr ""
 
 #: application/views/qslprint/qslprint.php:97
+#: application/views/qslprint/qslprint.php:102
 msgid "Export selected QSOs to ADIF-file"
 msgstr ""
 
 #: application/views/qslprint/qslprint.php:102
+#: application/views/qslprint/qslprint.php:107
 msgid "Export CSV-file"
 msgstr ""
 
 #: application/views/qslprint/qslprint.php:102
+#: application/views/qslprint/qslprint.php:107
 msgid "Export requested QSLs to CSV-file"
 msgstr ""
 
 #: application/views/qslprint/qslprint.php:103
+#: application/views/qslprint/qslprint.php:108
 msgid "Export ADIF"
 msgstr ""
 
 #: application/views/qslprint/qslprint.php:103
+#: application/views/qslprint/qslprint.php:108
 msgid "Export requested QSLs to ADIF-file"
 msgstr ""
 
 #: application/views/qslprint/qslprint.php:104
+#: application/views/qslprint/qslprint.php:109
 msgid "Mark QSLs as printed"
 msgstr ""
 
 #: application/views/qslprint/qslprint.php:104
+#: application/views/qslprint/qslprint.php:109
 msgid "Mark requested QSLs as sent"
 msgstr ""
 
 #: application/views/qslprint/qslprint.php:109
+#: application/views/qslprint/qslprint.php:114
 msgid "No QSLs to print were found!"
 msgstr ""
 
 #: application/views/qslprint/qsolist.php:225
+#: application/views/qslprint/qsolist.php:231
 msgid ""
 "No additional QSOs were found. That means they are probably already in the "
 "queue."
@@ -19685,6 +19766,21 @@ msgstr ""
 
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
+msgstr ""
+
+#: application/views/qslprint/qslprint.php:67
+#: application/views/qslprint/qsolist.php:70
+msgid "Previous QSL sent (same band/mode)"
+msgstr ""
+
+#: application/views/qslprint/qslprint.php:68
+#: application/views/qslprint/qsolist.php:71
+msgid "QSL sent to callsign (total)"
+msgstr ""
+
+#: application/views/qslprint/qslprint.php:69
+#: application/views/qslprint/qsolist.php:72
+msgid "QSL received from callsign (total)"
 msgstr ""
 
 #~ msgid "Progress toward working all Italian provinces:"
