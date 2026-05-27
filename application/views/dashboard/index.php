@@ -1,3 +1,32 @@
+<style>
+@media (min-width: 992px) {
+	.logdata {
+		display: grid;
+		grid-template-columns: 2fr 1fr;
+		/* gap: 1rem; */
+		column-gap: 1rem;
+		margin: 0;
+	}
+	.logdata > * {
+		padding: 0;
+		width: auto;
+	}
+}
+@media (min-width: 992px) and (max-width: 1599.98px) {
+	.map-breakout {
+		grid-column: 1 / -1;
+	}
+}
+@media (min-width: 1600px) {
+	.has-map > .col-lg-8 {
+		grid-row: 2;
+	}
+	.has-map > .col-lg-4 {
+		grid-row: 1 / span 2;
+	}
+}
+</style>
+
 <?php
 function echo_table_header_col($name) {
 	switch($name) {
@@ -24,8 +53,8 @@ function echo_table_header_col($name) {
 		$ci =& get_instance();
 		switch($name) {
 			case 'Mode':    echo '<td>'; echo $row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE . '</td>'; break;
-	      	case 'RSTS':    echo '<td class="d-none d-sm-table-cell">' . $row->COL_RST_SENT; if ($row->COL_STX) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">'; printf("%03d", $row->COL_STX); echo '</span>';} if ($row->COL_STX_STRING) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">' . $row->COL_STX_STRING . '</span>';} echo '</td>'; break;
-	      	case 'RSTR':    echo '<td class="d-none d-sm-table-cell">' . $row->COL_RST_RCVD; if ($row->COL_SRX) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">'; printf("%03d", $row->COL_SRX); echo '</span>';} if ($row->COL_SRX_STRING) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">' . $row->COL_SRX_STRING . '</span>';} echo '</td>'; break;
+			case 'RSTS':    echo '<td class="d-none d-sm-table-cell">' . $row->COL_RST_SENT; if ($row->COL_STX) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">'; printf("%03d", $row->COL_STX); echo '</span>';} if ($row->COL_STX_STRING) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">' . $row->COL_STX_STRING . '</span>';} echo '</td>'; break;
+			case 'RSTR':    echo '<td class="d-none d-sm-table-cell">' . $row->COL_RST_RCVD; if ($row->COL_SRX) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">'; printf("%03d", $row->COL_SRX); echo '</span>';} if ($row->COL_SRX_STRING) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">' . $row->COL_SRX_STRING . '</span>';} echo '</td>'; break;
 			case 'Country': echo '<td>' . ucwords(strtolower(($row->COL_COUNTRY))); if ($row->end != NULL) echo ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>'  . '</td>'; break;
 			case 'IOTA':    echo '<td>' . ($row->COL_IOTA) . '</td>'; break;
 			case 'SOTA':    echo '<td>' . ($row->COL_SOTA_REF) . '</td>'; break;
@@ -270,7 +299,7 @@ function echo_table_header_col($name) {
 		<div class="col-6 col-md-4 col-lg-2">
 			<div class="card h-100">
 				<div class="card-header py-2">
-					<h6 class="mb-0"><i class="fas fa-globe"></i> <?= __("DXCC Worked"); ?></h6>
+					<h6 class="mb-0 text-nowrap"><i class="fas fa-globe"></i> <?= __("DXCC Worked"); ?></h6>
 				</div>
 				<div class="card-body p-0">
 					<h4 class="fw-bold mb-0 px-3 py-2"><?php echo $total_countries; ?></h4>
@@ -280,7 +309,7 @@ function echo_table_header_col($name) {
 		<div class="col-6 col-md-4 col-lg-2">
 			<div class="card h-100">
 				<div class="card-header py-2">
-					<h6 class="mb-0"><i class="fas fa-map-marker-alt"></i> <?= __("DXCC Needed"); ?></h6>
+					<h6 class="mb-0 text-nowrap"><i class="fas fa-map-marker-alt"></i> <?= __("DXCC Needed"); ?></h6>
 				</div>
 				<div class="card-body p-0">
 					<h4 class="fw-bold mb-0 px-3 py-2"><?php echo $total_countries_needed; ?></h4>
@@ -290,34 +319,6 @@ function echo_table_header_col($name) {
 	</div>
 	</div>
 
-
-<style>
-@media (min-width: 992px) {
-	.logdata {
-		display: grid;
-		grid-template-columns: 2fr 1fr;
-		gap: 1rem;
-		margin: 0;
-	}
-	.logdata > * {
-		padding: 0;
-		width: auto;
-	}
-}
-@media (min-width: 992px) and (max-width: 1599.98px) {
-	.map-breakout {
-		grid-column: 1 / -1;
-	}
-}
-@media (min-width: 1600px) {
-	.has-map > .col-lg-8 {
-		grid-row: 2;
-	}
-	.has-map > .col-lg-4 {
-		grid-row: 1 / span 2;
-	}
-}
-</style>
 <div class="container-fluid dashboard px-3 px-lg-4" style="max-width: 2000px; margin: 0 auto;">
 
 <!-- Log Data -->
@@ -326,7 +327,7 @@ function echo_table_header_col($name) {
 	<!-- Map -->
 		<?php if($dashboard_map != "N" && $dashboard_map != "map_at_right") { ?>
 		<div class="col-12 map-breakout">
-			<div class="card mb-3">
+			<div class="card">
 				<div class="card-header py-2">
 					<h6 class="mb-0"><i class="fas fa-map-marked-alt"></i> <?= __("Map"); ?></h6>
 				</div>
@@ -340,7 +341,7 @@ function echo_table_header_col($name) {
 		<!-- Left column: QSOs -->
 	<div class="col-12 col-lg-8">
 
-		<div class="card mb-3">
+		<div class="card">
 			<div class="card-header py-2">
 				<h6 class="mb-0"><i class="fas fa-list"></i> <?= __("Recent QSOs"); ?></h6>
 			</div>
