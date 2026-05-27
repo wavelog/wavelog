@@ -292,32 +292,53 @@ function echo_table_header_col($name) {
 
 
 <style>
+@media (min-width: 992px) {
+	.logdata {
+		display: grid;
+		grid-template-columns: 2fr 1fr;
+		gap: 1rem;
+		margin: 0;
+	}
+	.logdata > * {
+		padding: 0;
+		width: auto;
+	}
+}
 @media (min-width: 992px) and (max-width: 1599.98px) {
 	.map-breakout {
-		width: calc(150% + 1.5rem);
-		margin-left: -0.5rem;
+		grid-column: 1 / -1;
+	}
+}
+@media (min-width: 1600px) {
+	.has-map > .col-lg-8 {
+		grid-row: 2;
+	}
+	.has-map > .col-lg-4 {
+		grid-row: 1 / span 2;
 	}
 }
 </style>
 <div class="container-fluid dashboard px-3 px-lg-4" style="max-width: 2000px; margin: 0 auto;">
 
 <!-- Log Data -->
-<div class="row g-3 logdata">
+<div class="row g-3 logdata<?php if($dashboard_map != "N" && $dashboard_map != "map_at_right") { ?> has-map<?php } ?>">
 
-	<!-- Left column: Map + QSOs -->
-	<div class="col-12 col-lg-8">
+	<!-- Map -->
 		<?php if($dashboard_map != "N" && $dashboard_map != "map_at_right") { ?>
-		<div class="map-breakout">
-		<div class="card mb-3">
-			<div class="card-header py-2">
-				<h6 class="mb-0"><i class="fas fa-map-marked-alt"></i> <?= __("Map"); ?></h6>
+		<div class="col-12 map-breakout">
+			<div class="card mb-3">
+				<div class="card-header py-2">
+					<h6 class="mb-0"><i class="fas fa-map-marked-alt"></i> <?= __("Map"); ?></h6>
+				</div>
+				<div class="card-body p-0">
+					<div id="map" class="map-leaflet" style="width: 100%; height: 350px"></div>
+				</div>
 			</div>
-			<div class="card-body p-0">
-				<div id="map" class="map-leaflet" style="width: 100%; height: 350px"></div>
-			</div>
-		</div>
 		</div>
 		<?php } ?>
+
+		<!-- Left column: QSOs -->
+	<div class="col-12 col-lg-8">
 
 		<div class="card mb-3">
 			<div class="card-header py-2">
