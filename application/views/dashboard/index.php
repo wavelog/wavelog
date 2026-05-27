@@ -229,96 +229,66 @@ function echo_table_header_col($name) {
 	<div class="row g-3">
 		<div class="col-6 col-md-4 col-lg-2">
 			<div class="card h-100">
-				<div class="card-body py-2 px-3">
-					<div class="d-flex justify-content-between align-items-center">
-						<div>
-							<div class="text-muted small"><?= __("Total QSOs"); ?></div>
-							<h4 class="fw-bold mb-0"><?php echo $total_qsos; ?></h4>
-						</div>
-						<div class="text-body-secondary opacity-50">
-							<i class="fas fa-list-ol fa-lg"></i>
-						</div>
-					</div>
+				<div class="card-header py-2">
+					<h6 class="mb-0"><i class="fas fa-list-ol"></i> <?= __("Total QSOs"); ?></h6>
+				</div>
+				<div class="card-body p-0">
+					<h4 class="fw-bold mb-0 px-3 py-2"><?php echo $total_qsos; ?></h4>
 				</div>
 			</div>
 		</div>
 		<div class="col-6 col-md-4 col-lg-2">
 			<div class="card h-100">
-				<div class="card-body py-2 px-3">
-					<div class="d-flex justify-content-between align-items-center">
-						<div>
-							<div class="text-muted small"><?= __("Year"); ?></div>
-							<h4 class="fw-bold mb-0"><?php echo $year_qsos; ?></h4>
-						</div>
-						<div class="text-body-secondary opacity-50">
-							<i class="fas fa-calendar fa-lg"></i>
-						</div>
-					</div>
+				<div class="card-header py-2">
+					<h6 class="mb-0"><i class="fas fa-calendar"></i> <?= __("Year"); ?></h6>
+				</div>
+				<div class="card-body p-0">
+					<h4 class="fw-bold mb-0 px-3 py-2"><?php echo $year_qsos; ?></h4>
 				</div>
 			</div>
 		</div>
 		<div class="col-6 col-md-4 col-lg-2">
 			<div class="card h-100">
-				<div class="card-body py-2 px-3">
-					<div class="d-flex justify-content-between align-items-center">
-						<div>
-							<div class="text-muted small"><?= __("Month"); ?></div>
-							<h4 class="fw-bold mb-0"><?php echo $month_qsos; ?></h4>
-						</div>
-						<div class="text-body-secondary opacity-50">
-							<i class="fas fa-calendar-day fa-lg"></i>
-						</div>
-					</div>
+				<div class="card-header py-2">
+					<h6 class="mb-0"><i class="fas fa-calendar-day"></i> <?= __("Month"); ?></h6>
+				</div>
+				<div class="card-body p-0">
+					<h4 class="fw-bold mb-0 px-3 py-2"><?php echo $month_qsos; ?></h4>
 				</div>
 			</div>
 		</div>
 		<div class="col-6 col-md-4 col-lg-2">
 			<div class="card h-100">
-				<div class="card-body py-2 px-3">
-					<div class="d-flex justify-content-between align-items-center">
-						<div>
-							<div class="text-muted small"><?= __("Today"); ?></div>
-							<h4 class="fw-bold mb-0"><?php echo $todays_qsos; ?></h4>
-						</div>
-						<div class="text-body-secondary opacity-50">
-							<i class="fas fa-clock fa-lg"></i>
-						</div>
-					</div>
+				<div class="card-header py-2">
+					<h6 class="mb-0"><i class="fas fa-clock"></i> <?= __("Today"); ?></h6>
+				</div>
+				<div class="card-body p-0">
+					<h4 class="fw-bold mb-0 px-3 py-2"><?php echo $todays_qsos; ?></h4>
 				</div>
 			</div>
 		</div>
 		<div class="col-6 col-md-4 col-lg-2">
 			<div class="card h-100">
-				<div class="card-body py-2 px-3">
-					<div class="d-flex justify-content-between align-items-center">
-						<div>
-							<div class="text-muted small"><?= __("DXCC Worked"); ?></div>
-							<h4 class="fw-bold mb-0"><?php echo $total_countries; ?></h4>
-						</div>
-						<div class="text-body-secondary opacity-50">
-							<i class="fas fa-globe fa-lg"></i>
-						</div>
-					</div>
+				<div class="card-header py-2">
+					<h6 class="mb-0"><i class="fas fa-globe"></i> <?= __("DXCC Worked"); ?></h6>
+				</div>
+				<div class="card-body p-0">
+					<h4 class="fw-bold mb-0 px-3 py-2"><?php echo $total_countries; ?></h4>
 				</div>
 			</div>
 		</div>
 		<div class="col-6 col-md-4 col-lg-2">
 			<div class="card h-100">
-				<div class="card-body py-2 px-3">
-					<div class="d-flex justify-content-between align-items-center">
-						<div>
-							<div class="text-muted small"><?= __("DXCC Needed"); ?></div>
-							<h4 class="fw-bold mb-0"><?php echo $total_countries_needed; ?></h4>
-						</div>
-						<div class="text-body-secondary opacity-50">
-							<i class="fas fa-map-marker-alt fa-lg"></i>
-						</div>
-					</div>
+				<div class="card-header py-2">
+					<h6 class="mb-0"><i class="fas fa-map-marker-alt"></i> <?= __("DXCC Needed"); ?></h6>
+				</div>
+				<div class="card-body p-0">
+					<h4 class="fw-bold mb-0 px-3 py-2"><?php echo $total_countries_needed; ?></h4>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
+	</div>
 
 
 <style>
@@ -710,4 +680,3 @@ function echo_table_header_col($name) {
 </div>
 <?php echo $firstloginwizard; ?>
 </div>
-
