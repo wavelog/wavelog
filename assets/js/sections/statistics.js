@@ -1,6 +1,16 @@
 totalSatQsos();
 totalQsosPerYear();
 
+// Activate tab from URL hash (e.g. #uniquetab)
+$(function() {
+	if (window.location.hash) {
+		var triggerEl = document.querySelector('a[data-bs-toggle="tab"][href="' + window.location.hash + '"]');
+		if (triggerEl) {
+			bootstrap.Tab.getOrCreateInstance(triggerEl).show();
+		}
+	}
+});
+
 var activeTab='totalQsosPerYear()';
 
 // Preset functionality
