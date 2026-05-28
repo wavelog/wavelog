@@ -422,11 +422,11 @@ function echo_table_header_col($name) {
 						<td width="50%"><a href="<?php echo site_url('awards/dxcc'); ?>"><?php echo $total_countries; ?></a></td>
 					</tr>
 					<tr>
-						<td width="50%"><a href="#" onclick="return false" title="<?= __("QSL Cards") ." / ". __("LoTW") ." / " . __("eQSL"); ?>" data-bs-toggle="tooltip"><?= __("Confirmed"); ?></a></td>
+						<td width="50%"><?= __("Confirmed"); ?></td>
 						<td width="50%">
-							<?php echo $total_countries_confirmed_paper; ?> /
-							<?php echo $total_countries_confirmed_lotw; ?> /
-							<?php echo $total_countries_confirmed_eqsl; ?>
+							<span title="<?= __("QSL Cards"); ?>" data-bs-toggle="tooltip"><?php echo $total_countries_confirmed_paper; ?></span> /
+							<span title="<?= __("LoTW"); ?>" data-bs-toggle="tooltip"><?php echo $total_countries_confirmed_lotw; ?></span> /
+							<span title="<?= __("eQSL"); ?>" data-bs-toggle="tooltip"><?php echo $total_countries_confirmed_eqsl; ?></span>
 						</td>
 					</tr>
 					<tr>
