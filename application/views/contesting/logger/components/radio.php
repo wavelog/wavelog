@@ -143,7 +143,7 @@ $config = [
 									<div class="tab-pane fade<?php echo !$hasHF ? ' show active' : ''; ?>" id="vhf-bands" role="tabpanel">
 										<div class="band-buttons-compact small">
 											<?php foreach ($vhf_uhf as $band): ?>
-												<button type="button" class="btn btn-outline-secondary band-btn-compact"
+												<button type="button" class="btn btn-sm btn-outline-secondary band-btn-compact"
 													data-band="<?php echo htmlspecialchars($band); ?>"
 													<?php if ($this->session->userdata('band') == $band): ?>data-selected="true" <?php endif; ?>>
 													<?php echo htmlspecialchars($band); ?>
@@ -156,7 +156,7 @@ $config = [
 									<div class="tab-pane fade<?php echo (!$hasHF && !$hasVHF) ? ' show active' : ''; ?>" id="mw-bands" role="tabpanel">
 										<div class="band-buttons-compact small">
 											<?php foreach ($microwave as $band): ?>
-												<button type="button" class="btn btn-outline-secondary band-btn-compact"
+												<button type="button" class="btn btn-sm btn-outline-secondary band-btn-compact"
 													data-band="<?php echo htmlspecialchars($band); ?>"
 													<?php if ($this->session->userdata('band') == $band): ?>data-selected="true" <?php endif; ?>>
 													<?php echo htmlspecialchars($band); ?>
