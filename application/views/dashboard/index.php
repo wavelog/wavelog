@@ -413,7 +413,7 @@ function echo_table_header_col($name) {
 
 		<div class="card mb-3">
 			<div class="card-header py-2">
-				<h6 class="mb-0"><i class="fas fa-globe-europe"></i> <?= __("DXCCs Breakdown"); ?></h6>
+				<h6 class="mb-0"><i class="fas fa-globe-europe"></i> <?= __("DXCCs Breakdown"); ?> <a href="<?php echo site_url('awards/dxcc'); ?>"><i class="fa-solid fa-link"></i></a></h6>
 			</div>
 			<div class="card-body p-0">
 				<table class="table table-striped mb-0">
@@ -590,7 +590,7 @@ function echo_table_header_col($name) {
 		<?php if((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE)) { ?>
 		<div class="card mb-3">
 			<div class="card-header py-2">
-				<h6 class="mb-0"><i class="fas fa-globe-europe"></i> <?= __("VUCC-Grids"); ?></h6>
+				<h6 class="mb-0"><i class="fas fa-globe-europe"></i> <?= __("VUCC-Grids"); ?> <a href="<?php echo site_url('awards/vucc'); ?>"><i class="fa-solid fa-link"></i></a></h6>
 			</div>
 			<div class="card-body p-0">
 				<table class="table table-striped mb-0">
