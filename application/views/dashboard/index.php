@@ -3,12 +3,9 @@
 	.logdata {
 		display: grid;
 		grid-template-columns: 2fr 1fr;
-		/* gap: 1rem; */
-		column-gap: 1rem;
-		margin: 0;
+		column-gap: 0;
 	}
 	.logdata > * {
-		padding: 0;
 		width: auto;
 	}
 }
