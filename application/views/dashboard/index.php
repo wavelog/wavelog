@@ -419,7 +419,7 @@ function echo_table_header_col($name) {
 				<table class="table table-striped mb-0">
 					<tr>
 						<td width="50%"><?= __("Worked"); ?></td>
-						<td width="50%"><?php echo $total_countries; ?></td>
+						<td width="50%"><a href="<?php echo site_url('awards/dxcc'); ?>"><?php echo $total_countries; ?></a></td>
 					</tr>
 					<tr>
 						<td width="50%"><a href="#" onclick="return false" title="<?= __("QSL Cards") ." / ". __("LoTW") ." / " . __("eQSL"); ?>" data-bs-toggle="tooltip"><?= __("Confirmed"); ?></a></td>
@@ -491,7 +491,7 @@ function echo_table_header_col($name) {
 						<td width="25%"><?php echo $lotw_sent_today != 0 ? "<a href=\"javascript:displayContacts('','all','all','All','All','LOTWSDATE','');\">".$lotw_sent_today."</a>" : "0"; ?></td>
 					</tr>
 					<tr>
-						<td width="50%"><?= __("Received"); ?></td>
+						<td width="50%"><a href="<?php echo site_url('generic_qsl/confirmations/lotw'); ?>"><?= __("Received"); ?></a></td>
 						<td width="25%"><?php echo $total_lotw_rcvd; ?></td>
 						<td width="25%"><?php echo $lotw_rcvd_today != 0 ? "<a href=\"javascript:displayContacts('','all','all','All','All','LOTWRDATE','');\">".$lotw_rcvd_today."</a>" : "0"; ?></td>
 					</tr>
@@ -520,7 +520,7 @@ function echo_table_header_col($name) {
 						<td width="25%"><?php echo $eqsl_sent_today != 0 ? "<a href=\"javascript:displayContacts('','All','All','All','All','EQSLSDATE','');\">".$eqsl_sent_today."</a>" : "0"; ?></td>
 					</tr>
 					<tr>
-						<td width="50%"><?= __("Received"); ?></td>
+						<td width="50%"><a href="<?php echo site_url('generic_qsl/confirmations/eqsl'); ?>"><?= __("Received"); ?></a></td>
 						<td width="25%"><?php echo $total_eqsl_rcvd; ?></td>
 						<td width="25%"><?php echo $eqsl_rcvd_today != 0 ? "<a href=\"javascript:displayContacts('','All','All','All','All','EQSLRDATE','');\">".$eqsl_rcvd_today."</a>" : "0"; ?></td>
 					</tr>
@@ -549,7 +549,7 @@ function echo_table_header_col($name) {
 						<td width="25%"><?php echo $qrz_sent_today != 0 ? "<a href=\"javascript:displayContacts('','all','all','All','All','QRZSDATE','');\">".$qrz_sent_today."</a>" : "0"; ?></td>
 					</tr>
 					<tr>
-						<td width="50%"><?= __("Received"); ?></td>
+						<td width="50%"><a href="<?php echo site_url('generic_qsl/confirmations/qrz'); ?>"><?= __("Received"); ?></a></td>
 						<td width="25%"><?php echo $total_qrz_rcvd; ?></td>
 						<td width="25%"><?php echo $qrz_rcvd_today != 0 ? "<a href=\"javascript:displayContacts('','all','all','All','All','QRZRDATE','');\">".$qrz_rcvd_today."</a>" : "0"; ?></td>
 					</tr>
@@ -578,7 +578,7 @@ function echo_table_header_col($name) {
 						<td width="25%"><?php echo $clublog_sent_today != 0 ? "<a href=\"javascript:displayContacts('','all','all','All','All','CLUBLOGSDATE','');\">".$clublog_sent_today."</a>" : "0"; ?></td>
 					</tr>
 					<tr>
-						<td width="50%"><?= __("Received"); ?></td>
+						<td width="50%"><a href="<?php echo site_url('generic_qsl/confirmations/clublog'); ?>"><?= __("Received"); ?></a></td>
 						<td width="25%"><?php echo $total_clublog_rcvd; ?></td>
 						<td width="25%"><?php echo $clublog_rcvd_today != 0 ? "<a href=\"javascript:displayContacts('','all','all','All','All','CLUBLOGRDATE','');\">".$clublog_rcvd_today."</a>" : "0"; ?></td>
 					</tr>
