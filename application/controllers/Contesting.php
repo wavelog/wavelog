@@ -16,6 +16,11 @@ class Contesting extends CI_Controller {
 	 */
 	private $new_qsos = [];
 
+	/**
+	 * Active Station Location
+	 */
+	private $active_station_location = null;
+
 	function __construct() {
 		parent::__construct();
 
@@ -24,12 +29,17 @@ class Contesting extends CI_Controller {
 			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 		}
+
+		if ($this->session->userdata('station_profile_id') ?? 0) {	// Last Station from session accessible? Take it!
+			$this->active_station_location = $this->session->userdata('station_profile_id');
+		} else {
+			$this->active_station_location = $this->stations->find_active();
+		}
 	}
 
 	/**
 	 * Contest Management Dashboard
 	 */
-
 	public function index() {
 		$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
 		$this->load->is_loaded('form_validation') ?: $this->load->library('form_validation');
@@ -71,7 +81,7 @@ class Contesting extends CI_Controller {
 		$contest_adif_id = 1; // Contest "Other"
 		$session_start = date('Y-m-d H:i');
 		$session_end = date('Y-m-d H:i', strtotime('+48 hours')); // 48 hours from now
-		$station_location = $this->stations->find_active();
+		$station_location = $this->active_station_location;
 		$session_notes = sprintf(__("Quickstart Session: %s"), date($custom_date_format . ' H:i'));
 
 		$session_id = $this->contesting_model->create_contest_session($contest_adif_id, $session_start, $session_end, $station_location, $session_notes, true);
@@ -352,6 +362,7 @@ class Contesting extends CI_Controller {
 
 				$data['available_contests'] = $this->contest_admin_model->getActiveContests();
 				$data['stations'] = $this->stations->all_of_user();
+				$data['active_station_location'] = $this->active_station_location;
 
 				$this->load->view('contesting/manager/components/session_modal', $data);
 				break;
@@ -404,6 +415,7 @@ class Contesting extends CI_Controller {
 
 				$data['available_contests'] = $this->contest_admin_model->getActiveContests();
 				$data['stations'] = $this->stations->all_of_user();
+				$data['active_station_location'] = $this->active_station_location;
 
 				$this->load->view('contesting/manager/components/session_modal', $data);
 				break;
@@ -453,6 +465,7 @@ class Contesting extends CI_Controller {
 
 				$data['available_contests'] = $this->contest_admin_model->getActiveContests();
 				$data['stations'] = $this->stations->all_of_user();
+				$data['active_station_location'] = $this->active_station_location;
 
 				$this->load->view('contesting/manager/components/confirm_delete', $data);
 				break;	
