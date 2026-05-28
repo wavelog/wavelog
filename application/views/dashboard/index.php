@@ -207,8 +207,8 @@ function echo_table_header_col($name) {
 	<?php } else { ?>
 		<div class="alert alert-warning alert-dismissible fade show" role="alert" style="margin-top: 1rem;">
 			<span class="badge text-bg-info"><?= __("Important"); ?></span> <i class="fas fa-broadcast-tower"></i>
-			<?php if (($current_streak ?? 0)>0) {
-				echo sprintf(__("Don't lose your streak - You have already had at least one QSO for the last %s consecutive days."),$current_streak);
+			<?php if (($almost_current_streak ?? 0)>0) {
+				echo sprintf(__("Don't lose your streak - You have already had at least one QSO for the last %s consecutive days."),$almost_current_streak);
 			} else {
 				echo __("You have made no QSOs today; time to turn on the radio!");
 			} ?>
@@ -299,10 +299,10 @@ function echo_table_header_col($name) {
 		<div class="col-6 col-md-4 col-lg-2">
 			<div class="card h-100">
 				<div class="card-header py-2">
-					<h6 class="mb-0 text-nowrap"><i class="fas fa-globe"></i> <?= __("DXCC Worked"); ?></h6>
+					<h6 class="mb-0 text-nowrap"><i class="fas fa-fire"></i> <?= __("Current Streak"); ?></h6>
 				</div>
 				<div class="card-body p-0">
-					<h4 class="fw-bold mb-0 px-3 py-2"><?php echo $total_countries; ?></h4>
+					<h4 class="fw-bold mb-0 px-3 py-2"><?php echo $current_streak . ' ' . __("days"); ?></h4>
 				</div>
 			</div>
 		</div>

@@ -104,12 +104,19 @@ class Dashboard extends CI_Controller {
 		$data['month_qsos'] = $qso_counts['month'];
 		$data['year_qsos'] = $qso_counts['year'];
 
-		$rawstreak=$this->dayswithqso_model->getAlmostCurrentStreak();
+		$rawstreak=$this->dayswithqso_model->getCurrentStreak();
 		if (is_array($rawstreak)) {
 			$data['current_streak']=$rawstreak['highstreak'];
 		} else {
-			$data['current_streak']=0;
+			$rawstreak=$this->dayswithqso_model->getAlmostCurrentStreak();
+			if (is_array($rawstreak)) {
+				$data['current_streak']=$rawstreak['highstreak'];
+			} else {
+				$data['current_streak']=0;
+			}
 		}
+
+		$data['almost_current_streak']=$data['current_streak'];
 
 		// Load Dashboard stats (countries + QSL stats in one query)
 		$stats = $this->logbook_model->dashboard_stats_batch($logbooks_locations_array);
