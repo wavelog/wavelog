@@ -604,7 +604,7 @@ function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
             <?php if(($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) { ?>
                 <td>
                     <div class="dropdown">
-                        <div class="btn btn-sm btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="btn btn-sm btn-secondary dropdown-toggle text-nowrap" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-cog"></i>
                         </div>
 
@@ -612,7 +612,7 @@ function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
                             <?php if (clubaccess_check(3, $row->COL_PRIMARY_KEY)) { ?>
                             <a class="dropdown-item" id="edit_qso" href="javascript:qso_edit(<?php echo $row->COL_PRIMARY_KEY; ?>)"><i class="fas fa-edit"></i> <?= __("Edit QSO"); ?></a>
                             <?php } ?>
-                            
+
                             <?php if (clubaccess_check(9)) { ?>
                                 <?php if($row->COL_QSL_SENT !='Y') { ?>
                                     <div class="qsl_sent_<?php echo $row->COL_PRIMARY_KEY; ?>">
@@ -649,11 +649,11 @@ function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
                 </td>
             <?php } ?>
             </tr>
-            <?php $i++; } 
+            <?php $i++; }
 		if ($i>1) {
-			echo '<caption>'.$i.' '.__("Results").'</caption>'; 
+			echo '<caption>'.$i.' '.__("Results").'</caption>';
 		} elseif ($i==1) {
-			echo '<caption>'.$i.' '.__("Result").'</caption>'; 
+			echo '<caption>'.$i.' '.__("Result").'</caption>';
 		}
 	    ?>
                             </tbody>
