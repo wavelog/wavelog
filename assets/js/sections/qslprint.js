@@ -130,6 +130,10 @@ $(".station_id").change(function(){
 $('#qslprint_table').DataTable({
 	"stateSave": true,
 	ordering: true,
+	lengthMenu: [
+		[10, 25, 50, 100, -1],
+		[10, 25, 50, 100, lang_export_qslprint_pagination_all]
+	],
 	paging: 'pagination',
 	"language": {
 		url: getDataTablesLanguageUrl(),

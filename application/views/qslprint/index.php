@@ -1,3 +1,7 @@
+<script>
+	var lang_export_qslprint_pagination_all = '<?= __("All") ?>';
+</script>
+
 <div class="container">
 
 	<br>
@@ -29,7 +33,7 @@
 
 			<!-- Switch Band or Frequency display -->
 			<div class="col-md-6 col-lg-4 col-xl-4 col-xxl-2">
-				<label for="frequency_or_band" class="me-2"><?= __("Show Band or Frequency:"); ?></label>
+				<label for="frequency_or_band" class="me-4 text-nowrap"><?= __("Show Band or Frequency:"); ?></label>
 				<select id="frequency_or_band" class="form-select">
 					<option value="band" selected><?= __("Band"); ?></option>
 					<option value="frequency"><?= __("Frequency"); ?></option>
