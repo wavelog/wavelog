@@ -622,74 +622,86 @@ function echo_table_header_col($name) {
 				<div class="d-flex justify-content-between align-items-center">
 					<div>
 						<h6 class="mb-0"><i class="fas fa-sun"></i> <?= __("Solar Data & Propagation"); ?></h6>
-						<small class="fst-italic text-muted">
-							<?= sprintf(__("Last update at %s."), $solar_solardata['updated']); ?>
-						</small>
+						<small class="text-muted"><?= sprintf(__("Last update at %s."), $solar_solardata['updated']); ?></small>
 					</div>
 					<a class="ms-2 text-body fas fa-info-circle float-end"
-						data-bs-toggle="tooltip"
-						data-bs-placement="top"
-						data-bs-html="true"
-						href="https://www.hamqsl.com/"
-						target="_blank"
-						title="<?= __("Data provided by HAMqsl."); ?>"
-						style="cursor: pointer;">
+						data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true"
+						href="https://www.hamqsl.com/" target="_blank"
+						title="<?= __("Data provided by HAMqsl."); ?>" style="cursor: pointer;">
 					</a>
 				</div>
 			</div>
-			<div class="card-body p-0">
-				<table class="table table-sm small text-center table-striped mb-0">
-					<tr>
-						<th width="20%">&nbsp;</th>
-						<th width="20%">80m-40m</th>
-						<th width="20%">30m-20m</th>
-						<th width="20%">17m-15m</th>
-						<th width="20%">12m-10m</th>
-					</tr>
-					<?php
-					function bandcondition_dot($condition) {
-						$colors = ['Good' => 'text-success', 'Fair' => 'text-warning', 'Poor' => 'text-danger', 'n/a' => 'text-secondary'];
-						$color = $colors[$condition] ?? '';
-						return $condition ? '<span class="' . $color . '">&#9679;</span> ' . $condition : ($condition ?? '');
-					}
-					?>
-					<tr>
-						<td>Day</td>
-						<td><?= bandcondition_dot($solar_bandconditions['80m-40m']['day'] ?: 'n/a') ?></td>
-						<td><?= bandcondition_dot($solar_bandconditions['30m-20m']['day'] ?: 'n/a') ?></td>
-						<td><?= bandcondition_dot($solar_bandconditions['17m-15m']['day'] ?: 'n/a') ?></td>
-						<td><?= bandcondition_dot($solar_bandconditions['12m-10m']['day'] ?: 'n/a') ?></td>
-					</tr>
-					<tr>
-						<td>Night</td>
-						<td><?= bandcondition_dot($solar_bandconditions['80m-40m']['night'] ?: 'n/a') ?></td>
-						<td><?= bandcondition_dot($solar_bandconditions['30m-20m']['night'] ?: 'n/a') ?></td>
-						<td><?= bandcondition_dot($solar_bandconditions['17m-15m']['night'] ?: 'n/a') ?></td>
-						<td><?= bandcondition_dot($solar_bandconditions['12m-10m']['night'] ?: 'n/a') ?></td>
-					</tr>
+			<div class="card-body p-2">
+				<?php
+				function bandcondition_badge($condition) {
+					$classes = ['Good' => 'text-bg-success', 'Fair' => 'text-bg-warning', 'Poor' => 'text-bg-danger', 'n/a' => 'text-bg-secondary'];
+					$class = $classes[$condition] ?? 'text-bg-secondary';
+					$label = $condition ?: 'n/a';
+					return '<span class="badge rounded-pill ' . $class . '">' . $label . '</span>';
+				}
+				?>
+				<table class="table table-borderless table-sm mb-0 small text-center align-middle">
+					<thead>
+						<tr>
+							<th class="text-start border-0 pb-1" style="width:16%"></th>
+							<th class="border-0 pb-1" style="width:21%">80-40m</th>
+							<th class="border-0 pb-1" style="width:21%">30-20m</th>
+							<th class="border-0 pb-1" style="width:21%">17-15m</th>
+							<th class="border-0 pb-1" style="width:21%">12-10m</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="text-start text-muted"><?= __("Day"); ?></td>
+							<td><?= bandcondition_badge($solar_bandconditions['80m-40m']['day'] ?: 'n/a') ?></td>
+							<td><?= bandcondition_badge($solar_bandconditions['30m-20m']['day'] ?: 'n/a') ?></td>
+							<td><?= bandcondition_badge($solar_bandconditions['17m-15m']['day'] ?: 'n/a') ?></td>
+							<td><?= bandcondition_badge($solar_bandconditions['12m-10m']['day'] ?: 'n/a') ?></td>
+						</tr>
+						<tr>
+							<td class="text-start text-muted"><?= __("Night"); ?></td>
+							<td><?= bandcondition_badge($solar_bandconditions['80m-40m']['night'] ?: 'n/a') ?></td>
+							<td><?= bandcondition_badge($solar_bandconditions['30m-20m']['night'] ?: 'n/a') ?></td>
+							<td><?= bandcondition_badge($solar_bandconditions['17m-15m']['night'] ?: 'n/a') ?></td>
+							<td><?= bandcondition_badge($solar_bandconditions['12m-10m']['night'] ?: 'n/a') ?></td>
+						</tr>
+					</tbody>
 				</table>
-				<table class="table table-sm small text-center table-striped mb-0">
-					<tr>
-						<th width="5%" data-bs-toggle="tooltip" title="<?= __("K-index: Planetary geomagnetic activity (0-9)") ?>">Kp</th>
-						<th width="5%" data-bs-toggle="tooltip" title="<?= __("A-index: Daily geomagnetic activity index") ?>">A</th>
-						<th width="15%" data-bs-toggle="tooltip" title="<?= __("Solar Flux Index") ?>">SFI</th>
-						<th width="15%" data-bs-toggle="tooltip" title="<?= __("Solar Wind speed (km/s)") ?>">SW</th>
-						<th width="15%" data-bs-toggle="tooltip" title="<?= __("Signal Noise ratio") ?>">SS</th>
-						<th width="15%" data-bs-toggle="tooltip" title="<?= __("X-Ray solar flux level") ?>">X</th>
-						<th width="20%" data-bs-toggle="tooltip" title="<?= __("Sunspot Number") ?>">SSN</th>
-						<th width="20%" data-bs-toggle="tooltip" title="<?= __("Aurora activity level (Kp borealis)") ?>">Aurora</th>
-					</tr>
-					<tr>
-						<td><?= $solar_solardata['kindex'] ?></td>
-						<td><?= $solar_solardata['aindex'] ?></td>
-						<td><?= $solar_solardata['solarflux'] ?></td>
-						<td><?= $solar_solardata['solarwind'] ?></td>
-						<td><?= $solar_solardata['signalnoise'] ?></td>
-						<td><?= $solar_solardata['xray'] ?></td>
-						<td><?= $solar_solardata['sunspots'] ?></td>
-						<td><?= $solar_solardata['aurora'] ?></td>
-					</tr>
-				</table>
+				<hr class="my-2">
+				<div class="row g-0 text-center small">
+					<div class="col-3 py-1" data-bs-toggle="tooltip" title="<?= __("Solar Flux Index") ?>">
+						<small class="text-muted d-block">SFI</small>
+						<strong><?= $solar_solardata['solarflux'] ?></strong>
+					</div>
+					<div class="col-3 py-1" data-bs-toggle="tooltip" title="<?= __("Sunspot Number") ?>">
+						<small class="text-muted d-block">SSN</small>
+						<strong><?= $solar_solardata['sunspots'] ?></strong>
+					</div>
+					<div class="col-3 py-1" data-bs-toggle="tooltip" title="<?= __("K-index: Planetary geomagnetic activity (0-9)") ?>">
+						<small class="text-muted d-block">Kp</small>
+						<strong><?= $solar_solardata['kindex'] ?></strong>
+					</div>
+					<div class="col-3 py-1" data-bs-toggle="tooltip" title="<?= __("A-index: Daily geomagnetic activity index") ?>">
+						<small class="text-muted d-block">A</small>
+						<strong><?= $solar_solardata['aindex'] ?></strong>
+					</div>
+					<div class="col-3 py-1" data-bs-toggle="tooltip" title="<?= __("Solar Wind speed (km/s)") ?>">
+						<small class="text-muted d-block">SW</small>
+						<strong><?= $solar_solardata['solarwind'] ?></strong>
+					</div>
+					<div class="col-3 py-1" data-bs-toggle="tooltip" title="<?= __("Signal Noise ratio") ?>">
+						<small class="text-muted d-block">SS</small>
+						<strong><?= $solar_solardata['signalnoise'] ?></strong>
+					</div>
+					<div class="col-3 py-1" data-bs-toggle="tooltip" title="<?= __("X-Ray solar flux level") ?>">
+						<small class="text-muted d-block">X</small>
+						<strong><?= $solar_solardata['xray'] ?></strong>
+					</div>
+					<div class="col-3 py-1" data-bs-toggle="tooltip" title="<?= __("Aurora activity level (Kp borealis)") ?>">
+						<small class="text-muted d-block">Aurora</small>
+						<strong><?= $solar_solardata['aurora'] ?></strong>
+					</div>
+				</div>
 			</div>
 		</div>
 		<?php } ?>
