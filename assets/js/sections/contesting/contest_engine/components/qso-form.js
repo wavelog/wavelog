@@ -307,7 +307,7 @@ class QsoFormComponent {
 			`<input type="text" class="form-control form-control-sm p-0 px-1 ${cls}" style="min-width:3rem;" name="${name}" value="${this._esc(val ?? '')}">`;
 
 		row.innerHTML = `
-			<td class="text-nowrap" style="font-size:0.75rem;">${(qso.time || '').substring(0, 5)}</td>
+			<td class="text-nowrap" style="font-size:0.75rem;"><input type="text" class="form-control form-control-sm p-0 px-1" style="min-width:4rem;" name="time_on" placeholder="HH:MM" maxlength="5" value="${(qso.time || qso.time_on?.split(' ')?.[1] || '').substring(0, 5)}"></td>
 			<td>${inp(qso.callsign, 'callsign', 'fw-bold text-uppercase')}</td>
 			<td>${inp(qso.band, 'band', 'text-uppercase')}</td>
 			<td>${inp(qso.mode, 'mode', 'text-uppercase')}</td>
@@ -381,10 +381,21 @@ class QsoFormComponent {
 			}
 		});
 
+		const saveBtn = row.querySelector('.contest-qso-save-btn');
+
+		if (data.time_on !== undefined) {
+			if (!/^\d{2}:\d{2}$/.test(data.time_on)) {
+				const input = row.querySelector('[name="time_on"]');
+				if (input) { input.classList.add('is-invalid'); input.focus(); }
+				return;
+			}
+			const datePart = (qso.time_on || '').split(' ')[0] || qso.date || '';
+			data.time_on = `${datePart} ${data.time_on}:00`;
+		}
+
 		const sessionInfo = window.ContestLoggerConfig?.sessionInfo ?? {};
 		data.contest_session_id = sessionInfo.contest_session_id;
 
-		const saveBtn = row.querySelector('.contest-qso-save-btn');
 		if (saveBtn) { saveBtn.disabled = true; saveBtn.textContent = '…'; }
 
 		try {
@@ -402,6 +413,7 @@ class QsoFormComponent {
 			// Normalize field names to match DataStore conventions
 			if (data.serial_rcvd !== undefined) updated.serial_rcvd = data.serial_rcvd;
 			if (data.exchange_rcvd !== undefined) updated.exchange_rcvd = data.exchange_rcvd;
+			if (data.time_on !== undefined) updated.time = data.time_on.split(' ')[1];
 			this.dataStore.set(`qso.${qso.tmpId}`, updated);
 
 			// Prevent self-resync since we already have the fresh data

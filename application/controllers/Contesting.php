@@ -560,6 +560,7 @@ class Contesting extends CI_Controller {
 				'exchange_sent' => 'COL_STX_STRING',
 				'exchange_rcvd' => 'COL_SRX_STRING',
 				'gridsquare_rcvd' => 'COL_GRIDSQUARE',
+				'time_on'         => 'COL_TIME_ON',
 			];
 
 			$fields = [];
@@ -571,7 +572,13 @@ class Contesting extends CI_Controller {
 					                    'exchange_rcvd', 'gridsquare_rcvd'])) {
 						$val = $val !== null ? strtoupper(trim((string)$val)) : null;
 					}
+					if ($key === 'time_on' && $val !== null) {
+						$dt = DateTime::createFromFormat('Y-m-d H:i:s', trim((string)$val));
+						if (!$dt) throw new Exception('Invalid time_on format');
+						$val = $dt->format('Y-m-d H:i:s');
+					}
 					$fields[$col] = $val;
+					if ($key === 'time_on') $fields['COL_TIME_OFF'] = $val;
 				}
 			}
 
