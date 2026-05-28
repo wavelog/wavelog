@@ -419,7 +419,7 @@ function echo_table_header_col($name) {
 				<table class="table table-striped mb-0">
 					<tr>
 						<td width="50%"><?= __("Worked"); ?></td>
-						<td width="50%"><a href="<?php echo site_url('awards/dxcc'); ?>"><?php echo $total_countries; ?></a></td>
+						<td width="50%"><?php echo $total_countries; ?></td>
 					</tr>
 					<tr>
 						<td width="50%"><?= __("Confirmed"); ?></td>
