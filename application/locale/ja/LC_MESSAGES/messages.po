@@ -2074,6 +2074,7 @@ msgstr "距離"
 #: application/views/view_log/partial/log_ajax.php:16
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
 #: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
+#: application/views/qslprint/index.php:38
 msgid "Band"
 msgstr "バンド"
 
@@ -2103,6 +2104,7 @@ msgstr "バンド"
 #: application/views/view_log/partial/log_ajax.php:17
 #: application/views/view_log/qso.php:101
 #: application/views/visitor/index.php:36
+#: application/views/qslprint/index.php:39
 msgid "Frequency"
 msgstr "周波数"
 
@@ -2912,6 +2914,7 @@ msgstr "局の所在地を編集: "
 #: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
 #: application/views/zonechecker/index.php:5
+#: application/views/qslprint/index.php:25
 msgid "Station Location"
 msgstr "局の所在地"
 
@@ -3445,8 +3448,8 @@ msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
 "setup, click %shere%s."
 msgstr ""
-"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するに"
-"は、%shere%sをクリックしてください。"
+"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するには、"
+"%shere%sをクリックしてください。"
 
 #: application/controllers/User.php:1430
 msgid "Station setup failed! Please set up your station manually."
@@ -4185,6 +4188,8 @@ msgstr "違い"
 #: application/views/timeplotter/index.php:59
 #: application/views/user/edit.php:873
 #: application/views/visitor/layout/footer.php:168
+#: application/views/qslprint/index.php:2
+#: application/views/qslprint/index.php:27
 msgid "All"
 msgstr "全て"
 
@@ -4503,6 +4508,7 @@ msgstr "何も見つかりません!"
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:625
 #: application/views/visitor/mini.php:183
 #: application/views/zonechecker/result.php:50
+#: application/views/qslprint/index.php:29
 msgid "Callsign"
 msgstr "コールサイン"
 
@@ -16196,18 +16202,22 @@ msgid "Add to QSL"
 msgstr "QSLに追加"
 
 #: application/views/qslprint/index.php:16
+#: application/views/qslprint/index.php:20
 msgid "Export Requested QSLs for Printing"
 msgstr "印刷用にリクエストされたQSLをエクスポートする"
 
 #: application/views/qslprint/index.php:32
+#: application/views/qslprint/index.php:36
 msgid "Show Band or Frequency:"
 msgstr "バンドまたは周波数を表示:"
 
 #: application/views/qslprint/index.php:36
+#: application/views/qslprint/index.php:40
 msgid "Band & Frequency"
 msgstr "バンドと周波数"
 
 #: application/views/qslprint/index.php:41
+#: application/views/qslprint/index.php:45
 msgid ""
 "Here you can export requested QSLs as CSV or ADIF files for printing and, "
 "optionally, mark them as sent."
@@ -16216,6 +16226,7 @@ msgstr ""
 "トし、必要に応じて送信済みとしてマークすることができます。"
 
 #: application/views/qslprint/index.php:43
+#: application/views/qslprint/index.php:47
 msgid ""
 "Requested QSLs are any QSOs with a value of 'Requested' or 'Queued' in their "
 "'QSL Sent' field."
@@ -16226,10 +16237,12 @@ msgstr ""
 #: application/views/qslprint/index.php:44
 #: application/views/qslprint/qslprint.php:42
 #: application/views/qslprint/qsolist.php:18
+#: application/views/qslprint/index.php:48
 msgid "Previous QSL"
 msgstr "以前のQSL"
 
 #: application/views/qslprint/index.php:44
+#: application/views/qslprint/index.php:48
 #, php-format
 msgid ""
 "The column %s shows how many QSLs have been sent to the same station before "
@@ -20401,9 +20414,9 @@ msgstr "CQz geojson"
 #~ "processed. %s Please make sure you export the LoTW certificate from tqsl "
 #~ "application without password! %s"
 #~ msgstr ""
-#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できませ"
-#~ "ん。%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パス"
-#~ "ワードなしで実行してください！%s"
+#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できません。"
+#~ "%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パスワード"
+#~ "なしで実行してください！%s"
 
 #~ msgid "Column"
 #~ msgstr "カラム"
@@ -20737,8 +20750,8 @@ msgstr "CQz geojson"
 #~ "Your active Station Location isn't linked to your Logbook. Click %shere%s "
 #~ "to do it."
 #~ msgstr ""
-#~ "現在のステーション位置がログブックとリンクされていません。リンクするに"
-#~ "は、%shere%s をクリックしてください。"
+#~ "現在のステーション位置がログブックとリンクされていません。リンクするには、"
+#~ "%shere%s をクリックしてください。"
 
 #, php-format
 #~ msgctxt "Dashboard Warning"

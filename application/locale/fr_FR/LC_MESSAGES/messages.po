@@ -2105,6 +2105,7 @@ msgstr "Distance"
 #: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
 #: application/views/qslprint/index.php:34
 #: application/views/qslprint/qslprint.php:34
+#: application/views/qslprint/index.php:38
 msgid "Band"
 msgstr "Bande"
 
@@ -2136,6 +2137,7 @@ msgstr "Bande"
 #: application/views/visitor/index.php:36
 #: application/views/qslprint/index.php:35
 #: application/views/qslprint/qslprint.php:35
+#: application/views/qslprint/index.php:39
 msgid "Frequency"
 msgstr "Frequence"
 
@@ -2958,6 +2960,7 @@ msgstr "Modifier l'emplacement de la station : "
 #: application/views/webadif/export.php:115
 #: application/views/zonechecker/index.php:5
 #: application/views/qslprint/index.php:21
+#: application/views/qslprint/index.php:25
 msgid "Station Location"
 msgstr "Profil de la Station"
 
@@ -4256,6 +4259,8 @@ msgstr "Différence"
 #: application/views/visitor/layout/footer.php:168
 #: application/views/qslprint/index.php:23
 #: application/views/qslprint/qslprint.php:86
+#: application/views/qslprint/index.php:2
+#: application/views/qslprint/index.php:27
 msgid "All"
 msgstr "Tout"
 
@@ -4576,6 +4581,7 @@ msgstr "Rien trouvé !"
 #: application/views/zonechecker/result.php:50
 #: application/views/qslprint/index.php:25
 #: application/views/qslprint/qslprint.php:30
+#: application/views/qslprint/index.php:29
 msgid "Callsign"
 msgstr "Indicatif"
 
@@ -5755,8 +5761,8 @@ msgid ""
 "the screenshots to your application email."
 msgstr ""
 "Pour ajouter des captures d'écran de confirmation LoTW, cliquez sur "
-"l'indicatif d'appel dans le tableau des activations ci-dessus. Cliquez sur « "
-"Soumettre » sur la page LoTW et effectuez une capture d'écran. Joignez les "
+"l'indicatif d'appel dans le tableau des activations ci-dessus. Cliquez sur "
+"« Soumettre » sur la page LoTW et effectuez une capture d'écran. Joignez les "
 "captures d'écran à votre courriel de candidature."
 
 #: application/views/awards/amsat_rover/index.php:279
@@ -6618,8 +6624,8 @@ msgstr "Progrès de l'attribution"
 #: application/views/awards/dxcc/index.php:273
 msgid "Progress towards working all DXCC entities:"
 msgstr ""
-"Progrès accomplis dans le cadre du fonctionnement de toutes les entités DXCC "
-":"
+"Progrès accomplis dans le cadre du fonctionnement de toutes les entités "
+"DXCC :"
 
 #: application/views/awards/dxcc/index.php:277
 #: application/views/awards/waip/index.php:62
@@ -16537,21 +16543,25 @@ msgid "Add to QSL"
 msgstr "Ajouter aux QSL"
 
 #: application/views/qslprint/index.php:16
+#: application/views/qslprint/index.php:20
 msgid "Export Requested QSLs for Printing"
 msgstr "Demande d'exportation de QSL pour impression"
 
 #: application/views/qslprint/index.php:31
 #: application/views/qslprint/index.php:32
+#: application/views/qslprint/index.php:36
 msgid "Show Band or Frequency:"
 msgstr "Afficher la bande ou la fréquence :"
 
 #: application/views/qslprint/index.php:35
 #: application/views/qslprint/index.php:36
+#: application/views/qslprint/index.php:40
 msgid "Band & Frequency"
 msgstr "Bande et fréquence"
 
 #: application/views/qslprint/index.php:39
 #: application/views/qslprint/index.php:41
+#: application/views/qslprint/index.php:45
 msgid ""
 "Here you can export requested QSLs as CSV or ADIF files for printing and, "
 "optionally, mark them as sent."
@@ -16561,6 +16571,7 @@ msgstr ""
 
 #: application/views/qslprint/index.php:41
 #: application/views/qslprint/index.php:43
+#: application/views/qslprint/index.php:47
 msgid ""
 "Requested QSLs are any QSOs with a value of 'Requested' or 'Queued' in their "
 "'QSL Sent' field."
@@ -16573,11 +16584,13 @@ msgstr ""
 #: application/views/qslprint/index.php:44
 #: application/views/qslprint/qslprint.php:42
 #: application/views/qslprint/qsolist.php:18
+#: application/views/qslprint/index.php:48
 msgid "Previous QSL"
 msgstr "QSL précédente"
 
 #: application/views/qslprint/index.php:42
 #: application/views/qslprint/index.php:44
+#: application/views/qslprint/index.php:48
 #, php-format
 msgid ""
 "The column %s shows how many QSLs have been sent to the same station before "

@@ -2083,6 +2083,7 @@ msgstr "Razdalja"
 #: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
 #: application/views/qslprint/index.php:34
 #: application/views/qslprint/qslprint.php:34
+#: application/views/qslprint/index.php:38
 msgid "Band"
 msgstr "Band"
 
@@ -2114,6 +2115,7 @@ msgstr "Band"
 #: application/views/visitor/index.php:36
 #: application/views/qslprint/index.php:35
 #: application/views/qslprint/qslprint.php:35
+#: application/views/qslprint/index.php:39
 msgid "Frequency"
 msgstr "Frekvenca"
 
@@ -2937,6 +2939,7 @@ msgstr "Uredi lokacijo postaje: "
 #: application/views/webadif/export.php:115
 #: application/views/zonechecker/index.php:5
 #: application/views/qslprint/index.php:21
+#: application/views/qslprint/index.php:25
 msgid "Station Location"
 msgstr "Lokacija postaje"
 
@@ -4218,6 +4221,8 @@ msgstr "Razlika"
 #: application/views/visitor/layout/footer.php:168
 #: application/views/qslprint/index.php:23
 #: application/views/qslprint/qslprint.php:86
+#: application/views/qslprint/index.php:2
+#: application/views/qslprint/index.php:27
 msgid "All"
 msgstr "Vse"
 
@@ -4538,6 +4543,7 @@ msgstr "Ničesar nisem našel!"
 #: application/views/zonechecker/result.php:50
 #: application/views/qslprint/index.php:25
 #: application/views/qslprint/qslprint.php:30
+#: application/views/qslprint/index.php:29
 msgid "Callsign"
 msgstr "Klicni znak"
 
@@ -16042,21 +16048,25 @@ msgid "Add to QSL"
 msgstr ""
 
 #: application/views/qslprint/index.php:16
+#: application/views/qslprint/index.php:20
 msgid "Export Requested QSLs for Printing"
 msgstr ""
 
 #: application/views/qslprint/index.php:31
 #: application/views/qslprint/index.php:32
+#: application/views/qslprint/index.php:36
 msgid "Show Band or Frequency:"
 msgstr ""
 
 #: application/views/qslprint/index.php:35
 #: application/views/qslprint/index.php:36
+#: application/views/qslprint/index.php:40
 msgid "Band & Frequency"
 msgstr ""
 
 #: application/views/qslprint/index.php:39
 #: application/views/qslprint/index.php:41
+#: application/views/qslprint/index.php:45
 msgid ""
 "Here you can export requested QSLs as CSV or ADIF files for printing and, "
 "optionally, mark them as sent."
@@ -16064,6 +16074,7 @@ msgstr ""
 
 #: application/views/qslprint/index.php:41
 #: application/views/qslprint/index.php:43
+#: application/views/qslprint/index.php:47
 msgid ""
 "Requested QSLs are any QSOs with a value of 'Requested' or 'Queued' in their "
 "'QSL Sent' field."
@@ -16074,11 +16085,13 @@ msgstr ""
 #: application/views/qslprint/index.php:44
 #: application/views/qslprint/qslprint.php:42
 #: application/views/qslprint/qsolist.php:18
+#: application/views/qslprint/index.php:48
 msgid "Previous QSL"
 msgstr ""
 
 #: application/views/qslprint/index.php:42
 #: application/views/qslprint/index.php:44
+#: application/views/qslprint/index.php:48
 #, php-format
 msgid ""
 "The column %s shows how many QSLs have been sent to the same station before "
