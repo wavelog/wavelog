@@ -13,7 +13,7 @@ function initContestDropdown() {
         $select.selectize({
             create: false,
             closeAfterSelect: true,
-            allowEmptyOption: true,
+            placeholder: $select.attr('placeholder'),
         });
     }
 }

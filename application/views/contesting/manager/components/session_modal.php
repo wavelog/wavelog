@@ -21,8 +21,8 @@
                     <p class="text-muted mb-4"><?= __("Enter all required information to create a new contest session."); ?></p>
                     <div class="mb-4">
                         <label for="contest_adif_id" class="form-label"><?= __("Contest") ?> <span class="text-danger">*</span></label>
-                        <select class="form-select p-0" id="contest_adif_id" name="contest_adif_id" required>
-                            <option value=""><?= __("Please select a contest"); ?></option>
+                        <select class="form-select p-0" id="contest_adif_id" name="contest_adif_id" required placeholder="<?= htmlspecialchars(__("Please select a contest")); ?>">
+                            <option value=""></option>
                             <?php foreach ($available_contests as $contest) { ?>
                                 <option value="<?= $contest['id']; ?>" <?php if (isset($session_info) && $session_info['contest_id'] == $contest['id']) echo 'selected'; ?>><?= htmlspecialchars($contest['name']); ?></option>
                             <?php } ?>
@@ -47,7 +47,7 @@
                     <div class="mb-4">
                         <label for="station_location" class="form-label"><?= __("Station Location") ?> <span class="text-danger">*</span></label>
                         <select class="form-select form-control form-control-sm" id="station_location" name="station_location" required>
-                            <option value=""><?= __("Please select a station"); ?></option>
+                            <option value="" disabled selected><?= __("Please select a station"); ?></option>
                             <?php foreach ($stations->result() as $stationrow) { ?>
                                 <option value="<?= $stationrow->station_id; ?>" <?php if (isset($session_info) && $session_info['station_id'] == $stationrow->station_id) echo 'selected'; ?>><?= htmlspecialchars($stationrow->station_profile_name) . " (" . htmlspecialchars($stationrow->station_callsign) . ")"; ?></option>
                             <?php } ?>
