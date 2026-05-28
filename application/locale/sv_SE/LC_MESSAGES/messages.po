@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-05-27 04:26+0000\n"
+"POT-Creation-Date: 2026-05-28 10:46+0000\n"
 "PO-Revision-Date: 2026-05-28 08:16+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -2047,7 +2047,7 @@ msgstr "Avstånd"
 #: application/views/qslcard/searchresult.php:53
 #: application/views/qslcard/searchresult.php:69
 #: application/views/qslcard/searchresult.php:85
-#: application/views/qslprint/index.php:34
+#: application/views/qslprint/index.php:38
 #: application/views/qslprint/qslprint.php:34
 #: application/views/qslprint/qsolist.php:10
 #: application/views/qso/components/previous_contacts.php:88
@@ -2069,7 +2069,6 @@ msgstr "Avstånd"
 #: application/views/view_log/partial/log_ajax.php:16
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
 #: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
-#: application/views/qslprint/index.php:38
 msgid "Band"
 msgstr "Band"
 
@@ -2087,7 +2086,7 @@ msgstr "Band"
 #: application/views/qslcard/searchresult.php:54
 #: application/views/qslcard/searchresult.php:70
 #: application/views/qslcard/searchresult.php:86
-#: application/views/qslprint/index.php:35
+#: application/views/qslprint/index.php:39
 #: application/views/qslprint/qslprint.php:35
 #: application/views/qslprint/qsolist.php:11
 #: application/views/qso/components/previous_contacts.php:89
@@ -2099,7 +2098,6 @@ msgstr "Band"
 #: application/views/view_log/partial/log_ajax.php:17
 #: application/views/view_log/qso.php:101
 #: application/views/visitor/index.php:36
-#: application/views/qslprint/index.php:39
 msgid "Frequency"
 msgstr "Frekvens"
 
@@ -2906,7 +2904,7 @@ msgstr "Redigera stationsplats: "
 #: application/views/logbookadvanced/dbtoolsdialog.php:16
 #: application/views/logbookadvanced/edit.php:23
 #: application/views/logbookadvanced/showMissingDxccQsos.php:26
-#: application/views/qslprint/index.php:21 application/views/qso/index.php:137
+#: application/views/qslprint/index.php:25 application/views/qso/index.php:137
 #: application/views/qso/index.php:398
 #: application/views/search/search_result_ajax.php:18
 #: application/views/station_profile/create.php:431
@@ -2916,7 +2914,6 @@ msgstr "Redigera stationsplats: "
 #: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
 #: application/views/zonechecker/index.php:5
-#: application/views/qslprint/index.php:25
 msgid "Station Location"
 msgstr "Stationsplats"
 
@@ -4169,7 +4166,8 @@ msgstr "Skillnad"
 #: application/views/oqrs/showrequests.php:33
 #: application/views/oqrs/showrequests.php:49
 #: application/views/oqrs/showrequests.php:64
-#: application/views/qslprint/index.php:23
+#: application/views/qslprint/index.php:2
+#: application/views/qslprint/index.php:27
 #: application/views/qslprint/qslprint.php:86
 #: application/views/search/lotw_unconfirmed.php:28
 #: application/views/stationsetup/exportmapoptions.php:33
@@ -4188,8 +4186,6 @@ msgstr "Skillnad"
 #: application/views/timeplotter/index.php:59
 #: application/views/user/edit.php:873
 #: application/views/visitor/layout/footer.php:168
-#: application/views/qslprint/index.php:2
-#: application/views/qslprint/index.php:27
 msgid "All"
 msgstr "Alla"
 
@@ -4490,7 +4486,7 @@ msgstr "Inget hittades!"
 #: application/views/qslcard/confirmationresult.php:15
 #: application/views/qslcard/index.php:39
 #: application/views/qslcard/searchform.php:3
-#: application/views/qslprint/index.php:25
+#: application/views/qslprint/index.php:29
 #: application/views/qslprint/qslprint.php:30
 #: application/views/qslprint/qsolist.php:6
 #: application/views/qso/edit_ajax.php:64 application/views/qso/index.php:214
@@ -4508,7 +4504,6 @@ msgstr "Inget hittades!"
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:625
 #: application/views/visitor/mini.php:183
 #: application/views/zonechecker/result.php:50
-#: application/views/qslprint/index.php:29
 msgid "Callsign"
 msgstr "Anropssignal"
 
@@ -7750,8 +7745,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
-"506) och giltig stat (ADIF: DXCC och STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
+"Reef/506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/wapc/index.php:122
 msgid "Show WAPC Map"
@@ -13443,8 +13438,8 @@ msgid ""
 "We’ll keep the original value and add a more precise locator (e.g., JO90AB "
 "or JO90AB12) when a match is confident."
 msgstr ""
-"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator "
-"(t.ex. JO90AB eller JO90AB12) när en matchning är säker."
+"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator (t."
+"ex. JO90AB eller JO90AB12) när en matchning är säker."
 
 #: application/views/logbookadvanced/checkresult.php:42
 msgid "Distance Check Results"
@@ -16256,22 +16251,18 @@ msgstr "Lägg till QSOs"
 msgid "Add to QSL"
 msgstr "Lägg till i QSL"
 
-#: application/views/qslprint/index.php:16
 #: application/views/qslprint/index.php:20
 msgid "Export Requested QSLs for Printing"
 msgstr "Exportera begärda QSL-kort för utskrift"
 
-#: application/views/qslprint/index.php:32
 #: application/views/qslprint/index.php:36
 msgid "Show Band or Frequency:"
 msgstr "Visa band eller frekvens:"
 
-#: application/views/qslprint/index.php:36
 #: application/views/qslprint/index.php:40
 msgid "Band & Frequency"
 msgstr "Band & Frekvens"
 
-#: application/views/qslprint/index.php:41
 #: application/views/qslprint/index.php:45
 msgid ""
 "Here you can export requested QSLs as CSV or ADIF files for printing and, "
@@ -16280,7 +16271,6 @@ msgstr ""
 "Här kan du exportera begärda QSL som CSV- eller ADIF-filer för utskrift och, "
 "om du vill, markera dem som skickade."
 
-#: application/views/qslprint/index.php:43
 #: application/views/qslprint/index.php:47
 msgid ""
 "Requested QSLs are any QSOs with a value of 'Requested' or 'Queued' in their "
@@ -16289,14 +16279,12 @@ msgstr ""
 "Begärda QSL är alla QSOs med ett värde av 'Begärt' eller 'I kö' i deras 'QSL "
 "skickat'-fält."
 
-#: application/views/qslprint/index.php:44
+#: application/views/qslprint/index.php:48
 #: application/views/qslprint/qslprint.php:42
 #: application/views/qslprint/qsolist.php:18
-#: application/views/qslprint/index.php:48
 msgid "Previous QSL"
 msgstr "Föregående QSL"
 
-#: application/views/qslprint/index.php:44
 #: application/views/qslprint/index.php:48
 #, php-format
 msgid ""
@@ -18663,8 +18651,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
-"(t.ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 (t."
+"ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
