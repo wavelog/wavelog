@@ -457,7 +457,7 @@ function echo_table_header_col($name) {
 						<td width="25%"><?php echo $qsl_sent_today != 0 ? "<a href=\"javascript:displayContacts('','All','All','All','All','QSLSDATE','');\">".$qsl_sent_today."</a>" : "0"; ?></td>
 					</tr>
 					<tr>
-						<td width="50%"><?= __("Received"); ?></td>
+						<td width="50%"><a href="<?php echo site_url('generic_qsl/confirmations/qsl'); ?>"><?= __("Received"); ?></a></td>
 						<td width="25%"><?php echo $total_qsl_rcvd; ?></td>
 						<td width="25%"><?php echo $qsl_rcvd_today != 0 ? "<a href=\"javascript:displayContacts('','All','All','All','All','QSLRDATE','');\">".$qsl_rcvd_today."</a>" : "0"; ?></td>
 					</tr>
