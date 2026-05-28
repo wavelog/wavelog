@@ -1,5 +1,5 @@
 <script>
-	var lang_export_qslprint_pagination_all = '<?= __("All") ?>';
+	var lang_export_qslprint_pagination_all = "<?= __("All") ?>";
 </script>
 
 <div class="container">
