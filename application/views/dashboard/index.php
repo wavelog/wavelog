@@ -299,7 +299,7 @@ function echo_table_header_col($name) {
 					<h6 class="mb-0 text-nowrap"><i class="fas fa-fire"></i> <?= __("Current Streak"); ?> <a href="<?php echo site_url('dayswithqso'); ?>"><i class="fa-solid fa-up-right-from-square"></i></a></h6>
 				</div>
 				<div class="card-body p-0">
-					<h4 class="fw-bold mb-0 px-3 py-2"><?php echo $current_streak . ' ' . __("days"); ?></h4>
+					<h4 class="fw-bold mb-0 px-3 py-2"><?php echo $current_streak . ' ' . __("Days"); ?></h4>
 				</div>
 			</div>
 		</div>
