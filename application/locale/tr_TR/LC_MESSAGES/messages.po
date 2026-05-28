@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-05-27 04:26+0000\n"
+"POT-Creation-Date: 2026-05-28 10:46+0000\n"
 "PO-Revision-Date: 2026-05-12 22:16+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -2052,7 +2052,7 @@ msgstr "Mesafe"
 #: application/views/qslcard/searchresult.php:53
 #: application/views/qslcard/searchresult.php:69
 #: application/views/qslcard/searchresult.php:85
-#: application/views/qslprint/index.php:34
+#: application/views/qslprint/index.php:38
 #: application/views/qslprint/qslprint.php:34
 #: application/views/qslprint/qsolist.php:10
 #: application/views/qso/components/previous_contacts.php:88
@@ -2091,7 +2091,7 @@ msgstr "Band"
 #: application/views/qslcard/searchresult.php:54
 #: application/views/qslcard/searchresult.php:70
 #: application/views/qslcard/searchresult.php:86
-#: application/views/qslprint/index.php:35
+#: application/views/qslprint/index.php:39
 #: application/views/qslprint/qslprint.php:35
 #: application/views/qslprint/qsolist.php:11
 #: application/views/qso/components/previous_contacts.php:89
@@ -2902,7 +2902,7 @@ msgstr "İstasyon Konumunu Güncelle: "
 #: application/views/logbookadvanced/dbtoolsdialog.php:16
 #: application/views/logbookadvanced/edit.php:23
 #: application/views/logbookadvanced/showMissingDxccQsos.php:26
-#: application/views/qslprint/index.php:21 application/views/qso/index.php:137
+#: application/views/qslprint/index.php:25 application/views/qso/index.php:137
 #: application/views/qso/index.php:398
 #: application/views/search/search_result_ajax.php:18
 #: application/views/station_profile/create.php:431
@@ -4164,7 +4164,8 @@ msgstr "Fark"
 #: application/views/oqrs/showrequests.php:33
 #: application/views/oqrs/showrequests.php:49
 #: application/views/oqrs/showrequests.php:64
-#: application/views/qslprint/index.php:23
+#: application/views/qslprint/index.php:2
+#: application/views/qslprint/index.php:27
 #: application/views/qslprint/qslprint.php:86
 #: application/views/search/lotw_unconfirmed.php:28
 #: application/views/stationsetup/exportmapoptions.php:33
@@ -4483,7 +4484,7 @@ msgstr "Hiçbir kayıt bulunamadı!"
 #: application/views/qslcard/confirmationresult.php:15
 #: application/views/qslcard/index.php:39
 #: application/views/qslcard/searchform.php:3
-#: application/views/qslprint/index.php:25
+#: application/views/qslprint/index.php:29
 #: application/views/qslprint/qslprint.php:30
 #: application/views/qslprint/qsolist.php:6
 #: application/views/qso/edit_ajax.php:64 application/views/qso/index.php:214
@@ -16182,19 +16183,19 @@ msgstr "QSO Ekle"
 msgid "Add to QSL"
 msgstr "QSL'ye ekle"
 
-#: application/views/qslprint/index.php:16
+#: application/views/qslprint/index.php:20
 msgid "Export Requested QSLs for Printing"
 msgstr "Yazdırma için Talep Edilen QSL’leri Dışa Aktar"
 
-#: application/views/qslprint/index.php:32
+#: application/views/qslprint/index.php:36
 msgid "Show Band or Frequency:"
 msgstr "Band veya Frekans Göster:"
 
-#: application/views/qslprint/index.php:36
+#: application/views/qslprint/index.php:40
 msgid "Band & Frequency"
 msgstr "Band & Frekans"
 
-#: application/views/qslprint/index.php:41
+#: application/views/qslprint/index.php:45
 msgid ""
 "Here you can export requested QSLs as CSV or ADIF files for printing and, "
 "optionally, mark them as sent."
@@ -16202,7 +16203,7 @@ msgstr ""
 "Burada istenen QSL'leri CSV veya ADIF dosyaları olarak dışa aktarabilir ve "
 "isteğe bağlı olarak gönderildi olarak işaretleyebilirsin."
 
-#: application/views/qslprint/index.php:43
+#: application/views/qslprint/index.php:47
 msgid ""
 "Requested QSLs are any QSOs with a value of 'Requested' or 'Queued' in their "
 "'QSL Sent' field."
@@ -16210,13 +16211,13 @@ msgstr ""
 "İstenen QSL'ler, 'QSL Gönderildi' alanında 'İstendi' veya 'Kuyrukta' değeri "
 "bulunan tüm QSO'lardır."
 
-#: application/views/qslprint/index.php:44
+#: application/views/qslprint/index.php:48
 #: application/views/qslprint/qslprint.php:42
 #: application/views/qslprint/qsolist.php:18
 msgid "Previous QSL"
 msgstr "QSL Talep Sayısı"
 
-#: application/views/qslprint/index.php:44
+#: application/views/qslprint/index.php:48
 #, php-format
 msgid ""
 "The column %s shows how many QSLs have been sent to the same station before "
