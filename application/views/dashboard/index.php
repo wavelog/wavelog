@@ -104,7 +104,7 @@ function echo_table_header_col($name) {
 	let user_map_custom = JSON.parse('<?php echo $user_map_custom; ?>');
 </script>
 
-<div class="container-fluid dashboard px-3 px-lg-4 mt-3 mb-3" style="max-width: 2000px; margin: 0 auto;">
+<div class="container dashboard px-3 px-lg-4 mt-3 mb-3">
 <?php if(($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE) { ?>
 
 	<?php if (version_compare(PHP_VERSION, '8.0.0') <= 0) { ?>
@@ -226,7 +226,7 @@ function echo_table_header_col($name) {
 </div>
 
 <!-- KPI Stat Cards -->
-<div class="container-fluid dashboard px-3 px-lg-4 mt-3 mb-3" style="max-width: 2000px; margin: 0 auto;">
+<div class="container dashboard px-3 px-lg-4 mt-3 mb-3">
 	<div class="row g-3">
 		<div class="col-6 col-md-4 col-lg-2">
 			<div class="card h-100">
@@ -291,7 +291,7 @@ function echo_table_header_col($name) {
 	</div>
 	</div>
 
-<div class="container-fluid dashboard px-3 px-lg-4 mt-3 mb-3" style="max-width: 2000px; margin: 0 auto;">
+<div class="container dashboard px-3 px-lg-4 mt-3 mb-3">
 
 <!-- Log Data -->
 <div class="row g-3 logdata<?php if($dashboard_map != "N" && $dashboard_map != "map_at_right") { ?> has-map<?php } ?>">
