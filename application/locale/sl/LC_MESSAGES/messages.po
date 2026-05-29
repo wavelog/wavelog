@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-05-28 10:46+0000\n"
-"PO-Revision-Date: 2026-05-27 04:26+0000\n"
+"PO-Revision-Date: 2026-05-30 11:16+0000\n"
 "Last-Translator: Anton Tomanič <s57xz.toni@gmail.com>\n"
 "Language-Team: Slovenian <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/sl/>\n"
@@ -758,7 +758,7 @@ msgstr "\"Polska\" Award"
 
 #: application/controllers/Awards.php:2775
 msgid "Awards - AMSAT Rover"
-msgstr ""
+msgstr "Diplome - AMSAT Rover"
 
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:343
@@ -2528,7 +2528,7 @@ msgstr "Neveljaven ID postaje"
 
 #: application/controllers/Oqrs.php:108
 msgid "Invalid station slug"
-msgstr ""
+msgstr "Neveljavna končnica URL naslova postaje"
 
 #: application/controllers/Oqrs.php:176
 #: application/views/interface_assets/header.php:513
@@ -5482,16 +5482,16 @@ msgstr "Število"
 #: application/views/awards/amsat_rover/index.php:12
 #: application/views/awards/amsat_rover/index.php:161
 msgid "APPROVED"
-msgstr ""
+msgstr "ODOBRENO"
 
 #: application/views/awards/amsat_rover/index.php:13
 #: application/views/awards/amsat_rover/index.php:161
 msgid "IN PROGRESS"
-msgstr ""
+msgstr "V TEKU"
 
 #: application/views/awards/amsat_rover/index.php:14
 msgid "Please generate the text first."
-msgstr ""
+msgstr "Najprej ustvarite besedilo."
 
 #: application/views/awards/amsat_rover/index.php:22
 msgid ""
@@ -10629,17 +10629,19 @@ msgstr ""
 
 #: application/views/dashboard/index.php:184
 msgid "You have made no QSOs today; time to turn on the radio!"
-msgstr ""
+msgstr "Danes nisi opravil nobene zveze; čas je, da vklopiš postajo!"
 
 #: application/views/dashboard/index.php:193
 msgid "Attention: you need to set an active station location."
-msgstr ""
+msgstr "Pozor: nastaviti morate aktivno lokacijo postaje."
 
 #: application/views/dashboard/index.php:200
 msgid ""
 "You have themes without defined theme mode. Please ask the admin to edit the "
 "themes."
 msgstr ""
+"Imate teme brez definiranega načina teme. Prosim, prosite administratorja, "
+"da uredi teme."
 
 #: application/views/dashboard/index.php:213
 #, php-format
@@ -10648,39 +10650,41 @@ msgid ""
 "LoTW Warning: There is an issue with at least one of your %sLoTW "
 "certificates%s!"
 msgstr ""
+"Opozorilo LoTW: Prišlo je do težave z vsaj enim od vaših %sLoTW potrdil%s!"
 
 #: application/views/dashboard/index.php:216
 msgid "At least one of your certificates is expired"
-msgstr ""
+msgstr "Vsaj eno od vaših potrdil je poteklo"
 
 #: application/views/dashboard/index.php:217
 msgid "At least one of your certificates is expiring"
-msgstr ""
+msgstr "Vsaj enemu od vaših potrdil poteče veljavnost"
 
 #: application/views/dashboard/index.php:295
 #: application/views/qso/index.php:914
 #, php-format
 msgid "Max. %d previous contact is shown"
 msgid_plural "Max. %d previous contacts are shown"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Prikazana je največ %d prejšnja zveza"
+msgstr[1] "Prikazani sta največ %d prejšnji zvezi"
+msgstr[2] "Prikazane so največ %d prejšnje zveze"
+msgstr[3] "Prikazanih je največ %d prejšnjih zvez"
 
 #: application/views/dashboard/index.php:311
 #: application/views/visitor/index.php:241
+#, fuzzy
 msgid "QSOs Breakdown"
-msgstr ""
+msgstr "Razčlenitev zvez"
 
 #: application/views/dashboard/index.php:334
 #: application/views/visitor/index.php:262
 msgid "DXCCs Breakdown"
-msgstr ""
+msgstr "Razčlenitev DXCC-jev"
 
 #: application/views/dashboard/index.php:351
 #: application/views/visitor/index.php:279
 msgid "Needed"
-msgstr ""
+msgstr "Potrebne"
 
 #: application/views/dashboard/index.php:364
 #: application/views/dashboard/index.php:391
@@ -10718,7 +10722,7 @@ msgstr ""
 #: src/QSLManager/QSO.php:664 src/QSLManager/QSO.php:721
 #: src/QSLManager/QSO.php:810
 msgid "Sent"
-msgstr ""
+msgstr "Poslano"
 
 #: application/views/dashboard/index.php:370
 #: application/views/dashboard/index.php:397
@@ -10755,7 +10759,7 @@ msgstr ""
 #: src/QSLManager/QSO.php:691 src/QSLManager/QSO.php:771
 #: src/QSLManager/QSO.php:838
 msgid "Received"
-msgstr ""
+msgstr "Prejeto"
 
 #: application/views/dashboard/index.php:376
 #: application/views/logbookadvanced/edit.php:182
@@ -10800,127 +10804,128 @@ msgstr ""
 #: src/QSLManager/QSO.php:697 src/QSLManager/QSO.php:822
 #: src/QSLManager/QSO.php:847
 msgid "Requested"
-msgstr ""
+msgstr "Zahtevano"
 
 #: application/views/dashboard/index.php:386
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
-msgstr ""
+msgstr "Logbook of the World"
 
 #: application/views/dashboard/index.php:470
 msgid "VUCC-Grids"
-msgstr ""
+msgstr "VUCC-Grids"
 
 #: application/views/dashboard/index.php:495
 msgid "Solar Data & Propagation"
-msgstr ""
+msgstr "Podatki o sončni aktivnosti in propagacije"
 
 #: application/views/dashboard/index.php:497
 #, php-format
 msgid "Last update at %s."
-msgstr ""
+msgstr "Zadnja posodobitev ob %s."
 
 #: application/views/dashboard/index.php:506
 msgid "Data provided by HAMqsl."
-msgstr ""
+msgstr "Podatke je zagotovil HAMqsl."
 
 #: application/views/dashboard/index.php:548
 msgid "K-index: Planetary geomagnetic activity (0-9)"
-msgstr ""
+msgstr "K-indeks: Planetarna geomagnetna aktivnost (0–9)"
 
 #: application/views/dashboard/index.php:549
 msgid "A-index: Daily geomagnetic activity index"
-msgstr ""
+msgstr "A-indeks: Dnevni indeks geomagnetne aktivnosti"
 
 #: application/views/dashboard/index.php:550
 msgid "Solar Flux Index"
-msgstr ""
+msgstr "Indeks sončnega toka"
 
 #: application/views/dashboard/index.php:551
 msgid "Solar Wind speed (km/s)"
-msgstr ""
+msgstr "Hitrost sončnega vetra (km/s)"
 
 #: application/views/dashboard/index.php:552
 msgid "Signal Noise ratio"
-msgstr ""
+msgstr "Razmerje signal-šum"
 
 #: application/views/dashboard/index.php:553
+#, fuzzy
 msgid "X-Ray solar flux level"
-msgstr ""
+msgstr "Raven sončnega fluksa rentgenskih žarkov"
 
 #: application/views/dashboard/index.php:554
 msgid "Sunspot Number"
-msgstr ""
+msgstr "Število sončnih peg"
 
 #: application/views/dashboard/index.php:555
 msgid "Aurora activity level (Kp borealis)"
-msgstr ""
+msgstr "Stopnja aktivnosti aurore (Kp borealis)"
 
 #: application/views/dayswithqso/index.php:3
 msgid "Number of QSOs for this day of the week"
-msgstr ""
+msgstr "Število zvez za ta dan v tednu"
 
 #: application/views/dayswithqso/index.php:4
 msgid "Number of QSOs for this month of the year"
-msgstr ""
+msgstr "Število zvez za ta mesec v letu"
 
 #: application/views/dayswithqso/index.php:18
 msgid "Days of the week"
-msgstr ""
+msgstr "Dnevi v tednu"
 
 #: application/views/dayswithqso/index.php:21
 msgid "Months of the year"
-msgstr ""
+msgstr "Meseci v letu"
 
 #: application/views/dayswithqso/index.php:24
 msgid "Streaks"
-msgstr ""
+msgstr "Nizi"
 
 #: application/views/dayswithqso/index.php:27
 msgid "QSOs of Year"
-msgstr ""
+msgstr "Zveze leta"
 
 #: application/views/dayswithqso/index.php:35
 msgid "Number of days with QSOs each year"
-msgstr ""
+msgstr "Število dni z zvezami vsako leto"
 
 #: application/views/dayswithqso/index.php:51
 msgid "Days"
-msgstr ""
+msgstr "Dnevi"
 
 #: application/views/dayswithqso/index.php:67
 msgid "QSOs breakdown by day of the week"
-msgstr ""
+msgstr "Razčlenitev zvez po dnevih v tednu"
 
 #: application/views/dayswithqso/index.php:73
 msgid "QSOs breakdown by month of the year"
-msgstr ""
+msgstr "Razčlenitev zvez po mesecih v letu"
 
 #: application/views/dayswithqso/index.php:87
 msgid "QSOs per Year"
-msgstr ""
+msgstr "Zvez na leto"
 
 #: application/views/dayswithqso/index.php:95
 #: application/views/timeplotter/index.php:140
 msgid "Less"
-msgstr ""
+msgstr "Manj"
 
 #: application/views/dayswithqso/index.php:100
 #: application/views/timeplotter/index.php:146
 msgid "More"
-msgstr ""
+msgstr "Več"
 
 #: application/views/dayswithqso/index.php:102
 msgid "Calendar with QSOs"
-msgstr ""
+msgstr "Koledar zvez"
 
 #: application/views/dayswithqso/index.php:111
 msgid "Longest streak with QSOs in the log"
-msgstr ""
+msgstr "Najdaljši niz zvez v dnevniku"
 
 #: application/views/dayswithqso/index.php:112
 msgid "A maximum of the 10 longest streaks are shown!"
-msgstr ""
+msgstr "Prikazanih je največ 10 najdaljših nizov!"
 
 #: application/views/dayswithqso/index.php:130
 msgid "Streak (continuous days with QSOs)"
