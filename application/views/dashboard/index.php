@@ -129,7 +129,7 @@ function echo_table_header_col($name) {
 	let user_map_custom = JSON.parse('<?php echo $user_map_custom; ?>');
 </script>
 
-<div class="container-fluid dashboard px-3 px-lg-4">
+<div class="container-fluid dashboard px-3 px-lg-4" style="max-width: 2000px; margin: 0 auto;">
 <?php if(($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE) { ?>
 
 	<?php if (version_compare(PHP_VERSION, '8.0.0') <= 0) { ?>
