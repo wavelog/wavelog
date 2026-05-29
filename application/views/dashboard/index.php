@@ -1,28 +1,3 @@
-<style>
-@media (min-width: 992px) {
-	.logdata {
-		display: grid;
-		grid-template-columns: 2fr 1fr;
-		column-gap: 0;
-	}
-	.logdata > * {
-		width: auto;
-	}
-}
-@media (min-width: 992px) and (max-width: 1599.98px) {
-	.map-breakout {
-		grid-column: 1 / -1;
-	}
-}
-@media (min-width: 1600px) {
-	.has-map > .col-lg-8 {
-		grid-row: 2;
-	}
-	.has-map > .col-lg-4 {
-		grid-row: 1 / span 2;
-	}
-}
-</style>
 
 <?php
 function echo_table_header_col($name) {
