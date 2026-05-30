@@ -34,13 +34,23 @@
                     <div class="row g-3 mb-4">
                         <div class="col-md-6">
                             <label for="session_start" class="form-label"><?= __("Start Date/Time") ?> <span class="text-danger">*</span></label>
-                            <input type="datetime-local" class="form-control" id="session_start" name="session_start" required value="<?php if (isset($session_info)) echo htmlspecialchars($session_info['time_start']); ?>">
+                            <input type="datetime-local" class="form-control" id="session_start" name="session_start" required value="<?php if (isset($session_info)) echo htmlspecialchars(str_replace(' ', 'T', substr($session_info['time_start'], 0, 16))); ?>">
                             <small class="text-muted d-block mt-2"><?= __("When should the session start?"); ?></small>
+                            <div class="mt-2 d-flex gap-1">
+                                <button type="button" class="btn btn-sm btn-primary" id="preset_start_now"><?= __("Now") ?></button>
+                                <button type="button" class="btn btn-sm btn-primary" id="preset_start_friday"><?= __("Friday 12:00") ?></button>
+                                <button type="button" class="btn btn-sm btn-primary" id="preset_start_saturday"><?= __("Saturday 12:00") ?></button>
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <label for="session_end" class="form-label"><?= __("End Date/Time") ?> <span class="text-danger">*</span></label>
-                            <input type="datetime-local" class="form-control" id="session_end" name="session_end" required value="<?php if (isset($session_info)) echo htmlspecialchars($session_info['time_end']); ?>">
+                            <input type="datetime-local" class="form-control" id="session_end" name="session_end" required value="<?php if (isset($session_info)) echo htmlspecialchars(str_replace(' ', 'T', substr($session_info['time_end'], 0, 16))); ?>">
                             <small class="text-muted d-block mt-2"><?= __("When should the session end?"); ?></small>
+                            <div class="mt-2 d-flex gap-1">
+                                <button type="button" class="btn btn-sm btn-primary" id="preset_end_4h">+4h</button>
+                                <button type="button" class="btn btn-sm btn-primary" id="preset_end_12h">+12h</button>
+                                <button type="button" class="btn btn-sm btn-primary" id="preset_end_24h">+24h</button>
+                            </div>
                         </div>
                     </div>
                     <hr class="my-4">
@@ -128,6 +138,46 @@
     </div>
 </div>
 <script>
+(function () {
+    function formatDatetimeLocal(d) {
+        return d.getUTCFullYear() + '-' +
+            String(d.getUTCMonth() + 1).padStart(2, '0') + '-' +
+            String(d.getUTCDate()).padStart(2, '0') + 'T' +
+            String(d.getUTCHours()).padStart(2, '0') + ':' +
+            String(d.getUTCMinutes()).padStart(2, '0');
+    }
+
+    function nextWeekday(dayOfWeek, hour) {
+        var now = new Date();
+        var d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), hour, 0, 0));
+        var diff = (dayOfWeek - d.getUTCDay() + 7) % 7 || 7;
+        d.setUTCDate(d.getUTCDate() + diff);
+        return d;
+    }
+
+    document.getElementById('preset_start_now').addEventListener('click', function () {
+        document.getElementById('session_start').value = formatDatetimeLocal(new Date());
+    });
+    document.getElementById('preset_start_friday').addEventListener('click', function () {
+        document.getElementById('session_start').value = formatDatetimeLocal(nextWeekday(5, 12));
+    });
+    document.getElementById('preset_start_saturday').addEventListener('click', function () {
+        document.getElementById('session_start').value = formatDatetimeLocal(nextWeekday(6, 12));
+    });
+
+    function addHoursToStart(hours) {
+        var startVal = document.getElementById('session_start').value;
+        if (!startVal) return;
+        var d = new Date(startVal + ':00Z');
+        d.setUTCHours(d.getUTCHours() + hours);
+        document.getElementById('session_end').value = formatDatetimeLocal(d);
+    }
+
+    document.getElementById('preset_end_4h').addEventListener('click', function () { addHoursToStart(4); });
+    document.getElementById('preset_end_12h').addEventListener('click', function () { addHoursToStart(12); });
+    document.getElementById('preset_end_24h').addEventListener('click', function () { addHoursToStart(24); });
+})();
+
 (function () {
     var list = document.getElementById('exchange-field-list');
     var hiddenInput = document.getElementById('exchangefields-input');
