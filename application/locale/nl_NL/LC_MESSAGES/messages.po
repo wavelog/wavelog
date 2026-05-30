@@ -1521,6 +1521,7 @@ msgstr ""
 
 #: application/controllers/Logbook.php:39
 #: application/views/stationsetup/stationsetup.php:21
+#: application/views/stationsetup/stationsetup.php:22
 msgid "Station Logbooks"
 msgstr "Stationlogboeken"
 
@@ -1830,6 +1831,7 @@ msgstr "RST (R)"
 #: application/views/view_log/qso.php:290
 #: application/views/view_log/qso.php:646
 #: application/views/visitor/index.php:15
+#: application/views/stationsetup/stationsetup.php:132
 msgid "Country"
 msgstr "Land"
 
@@ -1942,6 +1944,7 @@ msgstr "Staat/Provincie"
 #: application/views/view_log/qso.php:633
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:53
+#: application/views/stationsetup/stationsetup.php:133
 msgid "Gridsquare"
 msgstr "Locatorvak"
 
@@ -2154,6 +2157,7 @@ msgstr "Operator"
 #: application/views/view_log/partial/log_ajax.php:32
 #: application/views/view_log/qso.php:294
 #: application/views/view_log/qso.php:647
+#: application/views/stationsetup/stationsetup.php:159
 msgid "Deleted DXCC"
 msgstr "Verwijderde DXCC"
 
@@ -2703,6 +2707,8 @@ msgstr "laatst bijgewerkt"
 #: application/views/stationsetup/stationsetup.php:174
 #: application/views/themes/index.php:104 application/views/user/index.php:97
 #: application/views/user/index.php:203
+#: application/views/stationsetup/stationsetup.php:137
+#: application/views/stationsetup/stationsetup.php:175
 msgid "Edit"
 msgstr "Bewerken"
 
@@ -2732,6 +2738,9 @@ msgstr "Bewerken"
 #: application/views/stationsetup/stationsetup.php:201
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:738
+#: application/views/stationsetup/stationsetup.php:38
+#: application/views/stationsetup/stationsetup.php:146
+#: application/views/stationsetup/stationsetup.php:202
 msgid "Delete"
 msgstr "Verwijderen"
 
@@ -2961,6 +2970,7 @@ msgstr "Fout"
 
 #: application/controllers/Stationsetup.php:185
 #: application/views/stationsetup/stationsetup.php:25
+#: application/views/stationsetup/stationsetup.php:26
 msgid "Create Station Logbook"
 msgstr "Maak stationlogboek aan"
 
@@ -2995,11 +3005,13 @@ msgstr "Fout. Link is al in gebruik!"
 #: application/views/user/edit.php:501 application/views/user/edit.php:552
 #: application/views/user/edit.php:561 application/views/user/edit.php:718
 #: application/views/user/edit.php:728
+#: application/views/stationsetup/stationsetup.php:82
 msgid "Disabled"
 msgstr "Uitgeschakeld"
 
 #: application/controllers/Stationsetup.php:287
 #: application/views/stationsetup/stationsetup.php:49
+#: application/views/stationsetup/stationsetup.php:50
 msgid "Set as Active Logbook"
 msgstr "Instellen als actief logboek"
 
@@ -3007,11 +3019,13 @@ msgstr "Instellen als actief logboek"
 #: application/views/interface_assets/header.php:613
 #: application/views/stationsetup/stationsetup.php:51
 #: application/views/view_log/index.php:4
+#: application/views/stationsetup/stationsetup.php:52
 msgid "Active Logbook"
 msgstr "Actief logboek"
 
 #: application/controllers/Stationsetup.php:296
 #: application/views/stationsetup/stationsetup.php:60
+#: application/views/stationsetup/stationsetup.php:61
 #, php-format
 msgid ""
 "Are you sure you want to delete the station logbook %s? You must re-link any "
@@ -3022,6 +3036,7 @@ msgstr ""
 
 #: application/controllers/Stationsetup.php:306
 #: application/views/stationsetup/stationsetup.php:70
+#: application/views/stationsetup/stationsetup.php:71
 msgid "View Public Page for Logbook: "
 msgstr "Bekijk openbare pagina voor logboek: "
 
@@ -3031,6 +3046,7 @@ msgstr "Weet je zeker dat je de openbare slug wilt verwijderen?"
 
 #: application/controllers/Stationsetup.php:392
 #: application/views/stationsetup/stationsetup.php:163
+#: application/views/stationsetup/stationsetup.php:164
 #, php-format
 msgid ""
 "Are you sure you want to make the station profile %s the active station?"
@@ -3039,11 +3055,13 @@ msgstr ""
 
 #: application/controllers/Stationsetup.php:392
 #: application/views/stationsetup/stationsetup.php:163
+#: application/views/stationsetup/stationsetup.php:164
 msgid "Set Active"
 msgstr "Actief maken"
 
 #: application/controllers/Stationsetup.php:394
 #: application/views/stationsetup/stationsetup.php:165
+#: application/views/stationsetup/stationsetup.php:166
 msgid "Active Station"
 msgstr "Actief station"
 
@@ -3058,11 +3076,13 @@ msgstr "Actief station"
 #: application/views/stationsetup/stationsetup.php:170
 #: application/views/user/index.php:82 application/views/user/index.php:86
 #: application/views/user/index.php:193 application/views/user/index.php:195
+#: application/views/stationsetup/stationsetup.php:171
 msgid "QSO"
 msgstr "QSO"
 
 #: application/controllers/Stationsetup.php:406
 #: application/views/stationsetup/stationsetup.php:194
+#: application/views/stationsetup/stationsetup.php:195
 msgid "Are you sure you want to delete all QSOs within this station profile?"
 msgstr ""
 "Weet je zeker dat je alle QSO's binnen dit stationprofiel wilt verwijderen?"
@@ -3070,17 +3090,22 @@ msgstr ""
 #: application/controllers/Stationsetup.php:406
 #: application/views/stationsetup/stationsetup.php:144
 #: application/views/stationsetup/stationsetup.php:196
+#: application/views/stationsetup/stationsetup.php:145
+#: application/views/stationsetup/stationsetup.php:197
 msgid "Empty Log"
 msgstr "Leeg logboek"
 
 #: application/controllers/Stationsetup.php:410
 #: application/views/stationsetup/stationsetup.php:137
 #: application/views/stationsetup/stationsetup.php:177
+#: application/views/stationsetup/stationsetup.php:138
+#: application/views/stationsetup/stationsetup.php:178
 msgid "Copy"
 msgstr "Kopiëren"
 
 #: application/controllers/Stationsetup.php:415
 #: application/views/stationsetup/stationsetup.php:200
+#: application/views/stationsetup/stationsetup.php:201
 #, php-format
 msgid ""
 "Are you sure you want delete station profile '%s'? This will delete all QSOs "
@@ -3095,6 +3120,7 @@ msgstr ""
 #: application/views/station_profile/edit.php:102
 #: application/views/stationsetup/stationsetup.php:158
 #: application/views/user/modals/first_login_wizard.php:46
+#: application/views/stationsetup/stationsetup.php:159
 msgid "Please select one"
 msgstr "Kies er één"
 
@@ -3424,6 +3450,7 @@ msgstr "Stationsnaam"
 #: application/views/stationsetup/linkedlocations.php:32
 #: application/views/stationsetup/stationsetup.php:130
 #: application/views/user/modals/first_login_wizard.php:34
+#: application/views/stationsetup/stationsetup.php:131
 msgid "Station Callsign"
 msgstr "Stationsroepnaam"
 
@@ -3579,6 +3606,7 @@ msgstr "Satelliet locatorvak kaart"
 
 #: application/controllers/Visitor.php:481
 #: application/views/stationsetup/stationsetup.php:39
+#: application/views/stationsetup/stationsetup.php:40
 msgid "Public Search"
 msgstr "Openbare zoekopdracht"
 
@@ -4744,6 +4772,7 @@ msgstr "Maximale bestandsgrootte voor uploaden is "
 #: application/views/view_log/qso.php:747
 #: application/views/webadif/export.php:34
 #: application/views/webadif/export.php:94
+#: application/views/stationsetup/stationsetup.php:119
 msgid "Warning"
 msgstr "Waarschuwing"
 
@@ -5222,6 +5251,7 @@ msgstr "POTA REF in ADIF"
 #: application/views/stationsetup/stationsetup.php:35
 #: application/views/timeline/index.php:189
 #: application/views/usermode/index.php:41
+#: application/views/stationsetup/stationsetup.php:36
 msgid "Status"
 msgstr "Status"
 
@@ -6901,6 +6931,7 @@ msgstr "Toon IOTA-kaart"
 #: application/views/view_log/partial/log_ajax.php:20
 #: application/views/view_log/qso.php:232
 #: application/views/view_log/qso.php:629
+#: application/views/stationsetup/stationsetup.php:35
 msgid "Name"
 msgstr "Naam"
 
@@ -9416,6 +9447,7 @@ msgstr "Eerste QSO"
 
 #: application/views/callstats/index.php:135
 #: application/views/stationsetup/stationsetup.php:133
+#: application/views/stationsetup/stationsetup.php:134
 msgid "Last QSO"
 msgstr "Laatste QSO"
 
@@ -10433,6 +10465,7 @@ msgstr "Identificator"
 #: application/views/user/edit.php:553 application/views/user/edit.php:562
 #: application/views/user/edit.php:717 application/views/user/edit.php:727
 #: application/views/user/edit.php:1049
+#: application/views/stationsetup/stationsetup.php:79
 msgid "Enabled"
 msgstr "Ingeschakeld"
 
@@ -10533,6 +10566,8 @@ msgstr "Cronlijst"
 #: application/views/cron/index.php:66
 #: application/views/stationsetup/stationsetup.php:33
 #: application/views/stationsetup/stationsetup.php:128
+#: application/views/stationsetup/stationsetup.php:34
+#: application/views/stationsetup/stationsetup.php:129
 msgid "ID"
 msgstr "ID"
 
@@ -13022,6 +13057,7 @@ msgstr "Satellietovergang"
 
 #: application/views/interface_assets/header.php:328
 #: application/views/stationsetup/stationsetup.php:120
+#: application/views/stationsetup/stationsetup.php:121
 msgid "Admin"
 msgstr "Beheerder"
 
@@ -18359,6 +18395,7 @@ msgstr "Link locatie"
 
 #: application/views/stationsetup/linkedlocations.php:31
 #: application/views/stationsetup/stationsetup.php:129
+#: application/views/stationsetup/stationsetup.php:130
 msgid "Profile Name"
 msgstr "Profielnaam"
 
@@ -18367,6 +18404,7 @@ msgid "Unlink Station Location"
 msgstr "Stationslocatie ontkoppelen"
 
 #: application/views/stationsetup/stationsetup.php:24
+#: application/views/stationsetup/stationsetup.php:25
 msgid ""
 "Station Logbooks allow you to group Station Locations, this allows you to "
 "see all the locations across one session from the logbook areas to the "
@@ -18379,18 +18417,22 @@ msgstr ""
 "uitmaken van dezelfde DXCC of VUCC-cirkel."
 
 #: application/views/stationsetup/stationsetup.php:36
+#: application/views/stationsetup/stationsetup.php:37
 msgid "Edit Linked locations"
 msgstr "Gelinkte locaties bewerken"
 
 #: application/views/stationsetup/stationsetup.php:38
+#: application/views/stationsetup/stationsetup.php:39
 msgid "Visitor site"
 msgstr "Bezoekerssite"
 
 #: application/views/stationsetup/stationsetup.php:96
+#: application/views/stationsetup/stationsetup.php:97
 msgid "Station Locations"
 msgstr "Stationslocaties"
 
 #: application/views/stationsetup/stationsetup.php:100
+#: application/views/stationsetup/stationsetup.php:101
 msgid ""
 "Station Locations define operating locations, such as your QTH, a friends "
 "QTH, or a portable station."
@@ -18399,11 +18441,13 @@ msgstr ""
 "vriend, of een draagbaar station."
 
 #: application/views/stationsetup/stationsetup.php:101
+#: application/views/stationsetup/stationsetup.php:102
 msgid "Similar to logbooks, a station profile keeps a set of QSOs together."
 msgstr ""
 "Net als logboeken houdt een stationprofiel een set van QSO's bij elkaar."
 
 #: application/views/stationsetup/stationsetup.php:102
+#: application/views/stationsetup/stationsetup.php:103
 msgid ""
 "Only one station may be active at a time. In the table below this is shown "
 "with the -Active Station- badge."
@@ -18412,6 +18456,7 @@ msgstr ""
 "dit aangegeven met het -Actief Station- badge."
 
 #: application/views/stationsetup/stationsetup.php:103
+#: application/views/stationsetup/stationsetup.php:104
 msgid ""
 "The 'Linked' column shows if the station location is linked with the Active "
 "Logbook selected above."
@@ -18420,22 +18465,27 @@ msgstr ""
 "het hierboven geselecteerde Actief Logboek."
 
 #: application/views/stationsetup/stationsetup.php:106
+#: application/views/stationsetup/stationsetup.php:107
 msgid "Create a Station Location"
 msgstr "Maak een stationslocatie"
 
 #: application/views/stationsetup/stationsetup.php:106
+#: application/views/stationsetup/stationsetup.php:107
 msgid "Show only locations from the active logbook"
 msgstr "Toon alleen locaties uit het actieve logboek"
 
 #: application/views/stationsetup/stationsetup.php:107
+#: application/views/stationsetup/stationsetup.php:108
 msgid "Show all locations"
 msgstr "Toon alle locaties"
 
 #: application/views/stationsetup/stationsetup.php:108
+#: application/views/stationsetup/stationsetup.php:109
 msgid "Show a location list"
 msgstr "Toon een locatielijst"
 
 #: application/views/stationsetup/stationsetup.php:112
+#: application/views/stationsetup/stationsetup.php:113
 msgid ""
 "Attention: You need to set an active station location. Go to Callsign-"
 ">Station Location to select one."
@@ -18444,6 +18494,7 @@ msgstr ""
 ">Stationslocatie om er een te selecteren."
 
 #: application/views/stationsetup/stationsetup.php:118
+#: application/views/stationsetup/stationsetup.php:119
 msgid ""
 "Due to recent changes within Wavelog you need to reassign QSOs to your "
 "station profiles."
@@ -18452,22 +18503,27 @@ msgstr ""
 "aan je stationprofielen."
 
 #: application/views/stationsetup/stationsetup.php:120
+#: application/views/stationsetup/stationsetup.php:121
 msgid "Maintenance"
 msgstr "Onderhoud"
 
 #: application/views/stationsetup/stationsetup.php:120
+#: application/views/stationsetup/stationsetup.php:121
 msgid "Please reassign them at "
 msgstr "Wijs ze alsjeblieft opnieuw toe aan "
 
 #: application/views/stationsetup/stationsetup.php:135
+#: application/views/stationsetup/stationsetup.php:136
 msgid "Linked"
 msgstr "Gekoppeld"
 
 #: application/views/stationsetup/stationsetup.php:142
+#: application/views/stationsetup/stationsetup.php:143
 msgid "Favorite"
 msgstr "Favoriet"
 
 #: application/views/stationsetup/stationsetup.php:189
+#: application/views/stationsetup/stationsetup.php:190
 msgid "mark/unmark as favorite"
 msgstr "als favoriet markeren/demarkeren"
 
@@ -20338,6 +20394,10 @@ msgstr "CQz"
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr "CQz geojson"
+
+#: application/views/stationsetup/stationsetup.php:3
+msgid "Invalid characters entered in link! Enter only the slug."
+msgstr ""
 
 #~ msgid "Progress toward working all Italian provinces:"
 #~ msgstr "Voortgang geboekt bij het werken in alle Italiaanse provincies:"
