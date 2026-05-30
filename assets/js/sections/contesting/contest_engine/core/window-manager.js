@@ -66,13 +66,13 @@ export class WindowManager {
 		body.className = 'window-body';
 		body.innerHTML = config.content || '';
 
-		// Resize Handles for all 4 corners
-		const corners = ['tl', 'tr', 'bl', 'br']; // top-left, top-right, bottom-left, bottom-right
-		corners.forEach(corner => {
-			const handle = document.createElement('div');
-			handle.className = `window-resize window-resize-${corner}`;
-			windowEl.appendChild(handle);
-			handle.addEventListener('mousedown', (e) => this.handleResizeStart(e, id, corner));
+		// Resize handles: 4 corners + 4 edges
+		const handles = ['tl', 'tr', 'bl', 'br', 't', 'b', 'l', 'r'];
+		handles.forEach(handle => {
+			const el = document.createElement('div');
+			el.className = `window-resize window-resize-${handle}`;
+			windowEl.appendChild(el);
+			el.addEventListener('mousedown', (e) => this.handleResizeStart(e, id, handle));
 		});
 
 		windowEl.appendChild(header);
@@ -181,13 +181,11 @@ export class WindowManager {
 		const deltaX = e.clientX - this.resizeState.startX;
 		const deltaY = e.clientY - this.resizeState.startY;
 
-		// Handle different corners
-		if (corner === 'br' || corner === 'bl') {
-			// Bottom corners - resize height normally
+		// Handle resize direction based on handle
+		if (corner === 'br' || corner === 'bl' || corner === 'b') {
 			newHeight = Math.max(minHeight, this.resizeState.startHeight + deltaY);
 		}
-		if (corner === 'tl' || corner === 'tr') {
-			// Top corners - resize height and move top
+		if (corner === 'tl' || corner === 'tr' || corner === 't') {
 			const heightDelta = this.resizeState.startHeight - deltaY;
 			if (heightDelta >= minHeight) {
 				newHeight = heightDelta;
@@ -195,12 +193,10 @@ export class WindowManager {
 			}
 		}
 
-		if (corner === 'br' || corner === 'tr') {
-			// Right corners - resize width normally
+		if (corner === 'br' || corner === 'tr' || corner === 'r') {
 			newWidth = Math.max(minWidth, this.resizeState.startWidth + deltaX);
 		}
-		if (corner === 'tl' || corner === 'bl') {
-			// Left corners - resize width and move left
+		if (corner === 'tl' || corner === 'bl' || corner === 'l') {
 			const widthDelta = this.resizeState.startWidth - deltaX;
 			if (widthDelta >= minWidth) {
 				newWidth = widthDelta;
@@ -366,23 +362,23 @@ export class WindowManager {
 
 		// Snap to workspace edges
 		// Left edge
-		if (Math.abs(left - 0) <= this.snapThreshold && (corner === 'tl' || corner === 'bl')) {
+		if (Math.abs(left - 0) <= this.snapThreshold && (corner === 'tl' || corner === 'bl' || corner === 'l')) {
 			const diff = snappedX - 0;
 			snappedX = 0;
 			snappedWidth += diff;
 		}
 		// Top edge
-		if (Math.abs(top - 0) <= this.snapThreshold && (corner === 'tl' || corner === 'tr')) {
+		if (Math.abs(top - 0) <= this.snapThreshold && (corner === 'tl' || corner === 'tr' || corner === 't')) {
 			const diff = snappedY - 0;
 			snappedY = 0;
 			snappedHeight += diff;
 		}
 		// Right edge
-		if (Math.abs(wsRect.width - right) <= this.snapThreshold && (corner === 'tr' || corner === 'br')) {
+		if (Math.abs(wsRect.width - right) <= this.snapThreshold && (corner === 'tr' || corner === 'br' || corner === 'r')) {
 			snappedWidth = wsRect.width - snappedX;
 		}
 		// Bottom edge
-		if (Math.abs(wsRect.height - bottom) <= this.snapThreshold && (corner === 'bl' || corner === 'br')) {
+		if (Math.abs(wsRect.height - bottom) <= this.snapThreshold && (corner === 'bl' || corner === 'br' || corner === 'b')) {
 			snappedHeight = wsRect.height - snappedY;
 		}
 
@@ -398,28 +394,28 @@ export class WindowManager {
 
 			// Horizontal snapping
 			// Left edge to other right edge
-			if ((corner === 'tl' || corner === 'bl') && Math.abs(currentLeft - r.right) <= this.snapThreshold &&
+			if ((corner === 'tl' || corner === 'bl' || corner === 'l') && Math.abs(currentLeft - r.right) <= this.snapThreshold &&
 				this.verticalOverlap(currentTop, currentBottom, r.top, r.bottom)) {
 				const diff = snappedX - r.right;
 				snappedX = r.right;
 				snappedWidth += diff;
 			}
 			// Right edge to other left edge
-			if ((corner === 'tr' || corner === 'br') && Math.abs(currentRight - r.left) <= this.snapThreshold &&
+			if ((corner === 'tr' || corner === 'br' || corner === 'r') && Math.abs(currentRight - r.left) <= this.snapThreshold &&
 				this.verticalOverlap(currentTop, currentBottom, r.top, r.bottom)) {
 				snappedWidth = r.left - snappedX;
 			}
 
 			// Vertical snapping
 			// Top edge to other bottom edge
-			if ((corner === 'tl' || corner === 'tr') && Math.abs(currentTop - r.bottom) <= this.snapThreshold &&
+			if ((corner === 'tl' || corner === 'tr' || corner === 't') && Math.abs(currentTop - r.bottom) <= this.snapThreshold &&
 				this.horizontalOverlap(currentLeft, currentRight, r.left, r.right)) {
 				const diff = snappedY - r.bottom;
 				snappedY = r.bottom;
 				snappedHeight += diff;
 			}
 			// Bottom edge to other top edge
-			if ((corner === 'bl' || corner === 'br') && Math.abs(currentBottom - r.top) <= this.snapThreshold &&
+			if ((corner === 'bl' || corner === 'br' || corner === 'b') && Math.abs(currentBottom - r.top) <= this.snapThreshold &&
 				this.horizontalOverlap(currentLeft, currentRight, r.left, r.right)) {
 				snappedHeight = r.top - snappedY;
 			}

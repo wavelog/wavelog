@@ -241,6 +241,63 @@
 .window-resize-tl:active {
   opacity: 1;
 }
+
+/* Edge resize handles */
+.window-resize-t,
+.window-resize-b,
+.window-resize-l,
+.window-resize-r {
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.2s;
+  z-index: 1;
+}
+
+.window-resize-t {
+  top: 0;
+  left: 20px;
+  right: 20px;
+  height: 6px;
+  cursor: ns-resize;
+}
+
+.window-resize-b {
+  bottom: 0;
+  left: 20px;
+  right: 20px;
+  height: 6px;
+  cursor: ns-resize;
+}
+
+.window-resize-l {
+  left: 0;
+  top: 20px;
+  bottom: 20px;
+  width: 6px;
+  cursor: ew-resize;
+}
+
+.window-resize-r {
+  right: 0;
+  top: 20px;
+  bottom: 20px;
+  width: 6px;
+  cursor: ew-resize;
+}
+
+.window:hover .window-resize-t,
+.window:hover .window-resize-b,
+.window:hover .window-resize-l,
+.window:hover .window-resize-r {
+  opacity: 1;
+}
+
+.window-resize-t:active,
+.window-resize-b:active,
+.window-resize-l:active,
+.window-resize-r:active {
+  opacity: 1;
+}
 /* Bootstrap min-h-0 utility missing in some builds */
 .min-h-0 {
   min-height: 0 !important;
