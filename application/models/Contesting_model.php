@@ -306,17 +306,33 @@ class Contesting_model extends CI_Model {
 	function update_contest_qso($qso_id, $fields) {
 		$table = $this->config->item('table_name');
 		$this->db->where('COL_PRIMARY_KEY', $qso_id)->update($table, $fields);
-		return $this->db->affected_rows() > 0;
+		$affected = $this->db->affected_rows() > 0;
+		if ($affected) {
+			$session_id = $this->_get_session_id_for_qso($qso_id);
+			if ($session_id) {
+				$this->_invalidate_last_update_cache($session_id);
+			}
+		}
+		return $affected;
 	}
 
 	/**
 	 * Returns the maximum last_modified timestamp (in milliseconds) across all QSOs
 	 * in the session. Used by check_sync to detect edits across browsers.
+	 * Result is cached for 120 seconds; invalidated by link_qso() and update_contest_qso().
 	 *
 	 * @param int $contest_session_id
 	 * @return int Unix timestamp in ms, or 0 if no QSOs exist
 	 */
 	function get_session_last_update($contest_session_id) {
+		$this->_load_cache();
+		$cache_key = $this->_last_update_cache_key($contest_session_id);
+
+		$cached = $this->cache->get($cache_key);
+		if ($cached !== false) {
+			return (int)$cached;
+		}
+
 		$table = $this->config->item('table_name');
 		$sql = "SELECT UNIX_TIMESTAMP(MAX(lb.last_modified)) * 1000 AS ts
 				FROM contest_qsos cq
@@ -324,7 +340,10 @@ class Contesting_model extends CI_Model {
 				WHERE cq.contest_session_id = ?";
 		$query = $this->db->query($sql, [$contest_session_id]);
 		$row = $query->row_array();
-		return (int)($row['ts'] ?? 0);
+		$ts = (int)($row['ts'] ?? 0);
+
+		$this->cache->save($cache_key, $ts, 120);
+		return $ts;
 	}
 
 	/**
@@ -344,6 +363,7 @@ class Contesting_model extends CI_Model {
 		];
 
 		$this->db->query($sql, $bindings);
+		$this->_invalidate_last_update_cache($contest_session_id);
 		return true;
 	}
 
@@ -451,6 +471,41 @@ class Contesting_model extends CI_Model {
 		$query = $this->db->query($sql, [$contest_session_id, $user_id]);
 		$ops   = array_column($query->result_array(), 'operator');
 		return implode(' ', $ops);
+	}
+
+	// =========================================================================
+	// CACHE HELPERS
+	// =========================================================================
+
+	private function _last_update_cache_key($contest_session_id) {
+		$prefix = $this->config->item('cache_key_prefix') ?? '';
+		return $prefix . 'contesting_last_update_' . (int)$contest_session_id;
+	}
+
+	private function _load_cache() {
+		if (!isset($this->cache)) {
+			$this->load->driver('cache', [
+				'adapter' => $this->config->item('cache_adapter') ?? 'file',
+				'backup'  => $this->config->item('cache_backup')  ?? 'file',
+			]);
+		}
+	}
+
+	private function _invalidate_last_update_cache($contest_session_id) {
+		$this->_load_cache();
+		$this->cache->delete($this->_last_update_cache_key($contest_session_id));
+	}
+
+	/**
+	 * Returns the contest_session_id for a given QSO. Used for cache invalidation after edits.
+	 */
+	private function _get_session_id_for_qso($qso_id) {
+		$query = $this->db->query(
+			"SELECT contest_session_id FROM contest_qsos WHERE qso_id = ? LIMIT 1",
+			[(int)$qso_id]
+		);
+		$row = $query->row_array();
+		return $row ? (int)$row['contest_session_id'] : null;
 	}
 
 	/**
