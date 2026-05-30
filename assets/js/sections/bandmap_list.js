@@ -2456,6 +2456,24 @@ $(function() {
 		bc_qsowin.postMessage('ping');
 	},500);
 
+	let contest_window_last_seen = Date.now() - 3600;
+	let contest_pong_rcvd = false;
+	let bc_contestwin = new BroadcastChannel('contest_window');
+
+	bc_contestwin.onmessage = function (ev) {
+		if (ev.data === 'pong') {
+			contest_window_last_seen = Date.now();
+			contest_pong_rcvd = true;
+		}
+	};
+
+	setInterval(function () {
+		if (contest_window_last_seen < (Date.now() - 1000)) {
+			contest_pong_rcvd = false;
+		}
+		bc_contestwin.postMessage('ping');
+	}, 500);
+
 	let bc2qso = new BroadcastChannel('qso_wish');
 
 	let wait4pong = 2000;
@@ -2583,6 +2601,13 @@ $(function() {
 		}
 
 
+
+		// Contest logger takes priority — send directly and skip QSO window flow
+		if (contest_pong_rcvd || ((Date.now() - contest_window_last_seen) < wait4pong)) {
+			bc2qso.postMessage(message);
+			showToast(lang_bandmap_qso_prepared, `${lang_bandmap_callsign_sent} ${call} ${lang_bandmap_sent_to_form}`, 'bg-success text-white', 3000);
+			return;
+		}
 
 		let check_pong = setInterval(function() {
 			if (pong_rcvd || ((Date.now() - qso_window_last_seen) < wait4pong)) {

@@ -46,6 +46,27 @@ class QsoFormComponent {
 		this.initExchangeType();
 		this.loadExistingQSOs();
 		this.applyRstDefaults();
+		this._setupBandmapListener();
+	}
+
+	_setupBandmapListener() {
+		const bc = new BroadcastChannel('qso_wish');
+		bc.onmessage = (ev) => {
+			const data = ev.data;
+			if (!data || !data.call) return;
+
+			const callsignInput = this.container.querySelector('#qso-callsign');
+			if (!callsignInput) return;
+
+			callsignInput.value = data.call.toUpperCase();
+			callsignInput.dispatchEvent(new Event('input', { bubbles: true }));
+			callsignInput.dispatchEvent(new Event('blur', { bubbles: true }));
+		};
+
+		const bcWin = new BroadcastChannel('contest_window');
+		bcWin.onmessage = (ev) => {
+			if (ev.data === 'ping') bcWin.postMessage('pong');
+		};
 	}
 
 	defaultRst() {
