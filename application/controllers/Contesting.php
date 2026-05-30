@@ -596,6 +596,66 @@ class Contesting extends CI_Controller {
 	}
 
 	/**
+	 * Delete a single QSO from a contest session and from the main logbook.
+	 * Endpoint: POST /contesting/delete_qso
+	 *
+	 * Accepts JSON: { contest_session_id, qso_id }
+	 */
+	public function delete_qso() {
+		if ($this->input->method() !== 'post') {
+			$this->_teapot();
+			return;
+		}
+
+		header('Content-Type: application/json');
+
+		try {
+			$payload = json_decode($this->input->raw_input_stream, true);
+			if (!$payload) {
+				throw new Exception('Invalid JSON payload');
+			}
+
+			$contest_session_id = (int)($payload['contest_session_id'] ?? 0);
+			$qso_id             = (int)($payload['qso_id'] ?? 0);
+
+			if (!$contest_session_id || !$qso_id) {
+				throw new Exception('Missing contest_session_id or qso_id');
+			}
+
+			$this->load->model('contesting_model');
+
+			if (!$this->contesting_model->check_user_contest($contest_session_id)) {
+				http_response_code(403);
+				echo json_encode(['success' => false, 'error' => 'Access denied']);
+				return;
+			}
+
+			$qso = $this->contesting_model->get_contest_qso($qso_id, $contest_session_id);
+			if (!$qso) {
+				http_response_code(404);
+				echo json_encode(['success' => false, 'error' => 'QSO not found in this session']);
+				return;
+			}
+
+			$current_callsign = strtoupper(trim($this->session->userdata('user_callsign')));
+			$qso_operator     = strtoupper(trim($qso['operator'] ?? ''));
+			if ($qso_operator !== $current_callsign) {
+				http_response_code(403);
+				echo json_encode(['success' => false, 'error' => 'You can only delete QSOs you logged']);
+				return;
+			}
+
+			$this->load->model('logbook_model');
+			$this->logbook_model->delete($qso_id);
+
+			echo json_encode(['success' => true, 'qso_id' => $qso_id]);
+		} catch (Exception $e) {
+			http_response_code(400);
+			echo json_encode(['success' => false, 'error' => $e->getMessage()]);
+		}
+	}
+
+	/**
 	 * Sync Endpoint for Contest Engine
 	 * Handles bidirectional communication (Commands + Requests)
 	 * Endpoint: POST /contesting/heartbeat

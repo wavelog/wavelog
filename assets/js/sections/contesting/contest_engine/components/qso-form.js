@@ -304,7 +304,70 @@ class QsoFormComponent {
 			const row = e.target.closest('tr');
 			if (row && row.dataset.serverId) this.startEditMode(row);
 		});
+
+		// Delegated click handler for hamburger dropdown items
+		tbody.addEventListener('click', (e) => {
+			const editBtn   = e.target.closest('.qso-action-edit');
+			const deleteBtn = e.target.closest('.qso-action-delete');
+			if (!editBtn && !deleteBtn) return;
+
+			e.preventDefault();
+			e.stopPropagation();
+			const row = e.target.closest('tr[data-qso-id]');
+			if (!row) return;
+
+			if (editBtn)   this.startEditMode(row);
+			if (deleteBtn) this.deleteQso(row);
+		});
 	}
+
+	_renderQsoDropdown() {
+		return `<div class="dropdown d-inline-block ms-1">
+			<div class="btn btn-secondary py-0 px-1" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:1rem; width:1.8rem; height:1.8rem; display:inline-flex; align-items:center; justify-content:center;">&#9776;</div>
+			<div class="dropdown-menu dropdown-menu-end">
+				<a class="dropdown-item qso-action-edit" href="#"><i class="fas fa-edit me-1"></i>${lang_qso_edit}</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item text-danger qso-action-delete" href="#"><i class="fas fa-trash me-1"></i>${lang_qso_delete}</a>
+			</div>
+		</div>`;
+	}
+
+	async deleteQso(row) {
+		const qsoId    = row.dataset.qsoId;
+		const serverId = row.dataset.serverId ? parseInt(row.dataset.serverId) : null;
+		const sessionId = window.ContestLoggerConfig?.sessionInfo?.contest_session_id;
+
+		if (!confirm(lang_delete_qso_confirm)) return;
+
+		if (!serverId) {
+			// Pending QSO not yet synced to server — remove locally only
+			this.dataStore.delete(`qso.${qsoId}`);
+			row.remove();
+			this.updateQSOCount();
+			return;
+		}
+
+		try {
+			const resp = await fetch(base_url + 'contesting/delete_qso', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ contest_session_id: sessionId, qso_id: serverId }),
+			});
+
+			if (!resp.ok) {
+				const data = await resp.json().catch(() => ({}));
+				throw new Error(data.error ?? `HTTP ${resp.status}`);
+			}
+
+			this.dataStore.delete(`qso.${qsoId}`);
+			row.remove();
+			this.updateQSOCount();
+		} catch (err) {
+			console.error('deleteQso failed:', err);
+			alert('Failed to delete QSO: ' + err.message);
+		}
+	}
+
 
 	startEditMode(row) {
 		if (!row || row.dataset.editing === 'true') return;
@@ -388,7 +451,7 @@ class QsoFormComponent {
 			<td class="serial-col" style="${serialHide}">${qso.serial_rcvd ?? qso.serial_recv ?? ''}</td>
 			<td class="gridsquare-col" style="${hasGridsquare ? '' : 'display:none;'}">${qso.gridsquare_rcvd || ''}</td>
 			<td class="exchange-text-col" style="${hasTextExchange ? '' : 'display:none;'}">${qso.exchange_rcvd || ''}</td>
-			<td class="text-center">${this.getStatusIndicator(qso.state)}</td>
+			<td class="text-nowrap text-center">${this.getStatusIndicator(qso.state)}${isEditable ? this._renderQsoDropdown() : ''}</td>
 		`;
 	}
 
