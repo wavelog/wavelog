@@ -757,7 +757,7 @@ class QsoFormComponent {
 		if (state === 'pending') {
 			return `<span title="${lang_status_new}" style="color: orange;">&#9679;</span>`;
 		} else if (state === 'synced') {
-			return `<span title="${lang_status_confirmed}" style="color: green;">&#9679;</span>`;
+			return `<span title="${lang_status_synced}" style="color: green;">&#9679;</span>`;
 		} else if (state === 'error') {
 			return `<span title="${lang_status_error}" style="color: red;">&#9679;</span>`;
 		} else {
