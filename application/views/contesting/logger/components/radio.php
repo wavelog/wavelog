@@ -90,7 +90,7 @@ $config = [
 						<label class="form-label mb-1"><?= __("Band"); ?></label>
 						<?php if (isset($bands) && is_array($bands) && count($bands) > 0): ?>
 							<?php
-							// Gruppiere Bänder in logische Kategorien
+							// Group bands into logical categories
 							$hf_mf = [];
 							$vhf_uhf = [];
 							$microwave = [];
