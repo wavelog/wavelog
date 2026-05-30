@@ -17,7 +17,8 @@ class Migration_add_new_contesting extends CI_Migration
             `contest_adif_id` int unsigned NOT NULL,
             `creation_date` timestamp NOT NULL DEFAULT current_timestamp(),
             `last_modified` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-            PRIMARY KEY (`id`)
+            PRIMARY KEY (`id`),
+            KEY `idx_user_id` (`user_id`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;");
 
         // We need a table which refeers qsos to contest sessions
