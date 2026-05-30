@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-05-30 13:53+0000\n"
-"PO-Revision-Date: 2026-05-25 18:06+0000\n"
+"PO-Revision-Date: 2026-05-31 06:05+0000\n"
 "Last-Translator: iv3cvn <ricentis@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/it/>\n"
@@ -5530,6 +5530,8 @@ msgid ""
 "Please set your home grid square in your station profile to calculate grid "
 "activations correctly."
 msgstr ""
+"Per favore, imposta il tuo locatore di casa nel profilo della tua stazione "
+"per calcolare correttamente le attivazioni dei locatori."
 
 #: application/views/awards/amsat_rover/index.php:31
 msgid "Go to Station Profile"
@@ -5643,7 +5645,7 @@ msgstr ""
 
 #: application/views/awards/amsat_rover/index.php:216
 msgid "Grid Activations"
-msgstr ""
+msgstr "Locatori attivati"
 
 #: application/views/awards/amsat_rover/index.php:221
 #: application/views/satellite/skedtable.php:34
@@ -5671,7 +5673,7 @@ msgstr "pts"
 
 #: application/views/awards/amsat_rover/index.php:272
 msgid "Export for Application"
-msgstr ""
+msgstr "Esporta per applicazione"
 
 #: application/views/awards/amsat_rover/index.php:274
 msgid "Generate a copy-paste ready application for email submission to AMSAT."
@@ -9634,10 +9636,12 @@ msgid ""
 "this club/special callsign."
 msgstr ""
 "Questo nominativo speciale/club è gestito da un fornitore di identità/single "
-"sign on. I permessi possono essere aumentati qui, ma l'accesso potrebbe "
-"essere automaticamente rimosso o concesso dal fornitore di identità quando "
-"gli utenti effettuano il login. Potrebbero esserci utenti non elencati che "
-"hanno permessi per questo nominativo speciale/club."
+"sign on.\n"
+"                     I permessi possono essere aumentati qui, ma l'accesso "
+"potrebbe essere automaticamente rimosso o concesso dal fornitore di identità "
+"quando gli utenti effettuano il login.\n"
+"                     Potrebbero esserci utenti non elencati che hanno "
+"permessi per questo nominativo speciale/club."
 
 #: application/views/club/permissions.php:19
 msgid ""
@@ -13910,6 +13914,9 @@ msgid ""
 "column you are looking for, use the regular QSO edit (click the callsign, "
 "then click the edit QSO button)."
 msgstr ""
+"Non tutte le colonne sono disponibili per la modifica in batch. Se non "
+"riesci a trovare la colonna che cerchi, usa la modifica standard del QSO "
+"(clicca sul nominativo, poi clicca sul pulsante di modifica del QSO)."
 
 #: application/views/logbookadvanced/edit.php:5
 msgid "Please choose the column to be edited:"
@@ -14220,19 +14227,19 @@ msgstr "Suggerimenti per la ricerca"
 
 #: application/views/logbookadvanced/help.php:10
 msgid "Use these special operators in text input searches:"
-msgstr ""
+msgstr "Usa questi operatori speciali nelle ricerche di input del testo:"
 
 #: application/views/logbookadvanced/help.php:14
 msgid "Search for everything"
-msgstr ""
+msgstr "Cerca tutto"
 
 #: application/views/logbookadvanced/help.php:18
 msgid "Search where column is empty"
-msgstr ""
+msgstr "Cerca dove la colonna è vuota"
 
 #: application/views/logbookadvanced/help.php:22
 msgid "Search where column is not empty"
-msgstr ""
+msgstr "Cerca dove la colonna non è vuota"
 
 #: application/views/logbookadvanced/help.php:33
 #: application/views/logbookadvanced/index.php:74
@@ -14241,109 +14248,119 @@ msgstr "Ricerca duplicati"
 
 #: application/views/logbookadvanced/help.php:36
 msgid "The dupe search checks for duplicate QSOs with the same:"
-msgstr ""
+msgstr "La ricerca di duplicati controlla i QSO con lo stesso:"
 
 #: application/views/logbookadvanced/help.php:39
 msgid "Mode / Submode"
-msgstr ""
+msgstr "Modo/ Submodo"
 
 #: application/views/logbookadvanced/help.php:45
 msgid "Time window:"
-msgstr ""
+msgstr "Finestra di tempo:"
 
 #: application/views/logbookadvanced/help.php:54
 msgid "Invalid Search"
-msgstr ""
+msgstr "Ricerca non valida"
 
 #: application/views/logbookadvanced/help.php:57
 msgid "Checks for the following conditions:"
-msgstr ""
+msgstr "Controlla le seguenti condizioni:"
 
 #: application/views/logbookadvanced/help.php:59
 msgid "Mode is blank or set to 0"
-msgstr ""
+msgstr "Il modo è vuoto o impostato su 0"
 
 #: application/views/logbookadvanced/help.php:60
 msgid "Band is blank"
-msgstr ""
+msgstr "La banda è vuota"
 
 #: application/views/logbookadvanced/help.php:61
 msgid "Callsign is blank"
-msgstr ""
+msgstr "Il nominativo è vuoto"
 
 #: application/views/logbookadvanced/help.php:62
 msgid "Time and date is not set"
-msgstr ""
+msgstr "Ora e data non sono impostate"
 
 #: application/views/logbookadvanced/help.php:63
 msgid "Date is set to 1970-01-01"
-msgstr ""
+msgstr "La data è impostata su 1970-01-01"
 
 #: application/views/logbookadvanced/help.php:64
 msgid "Continent is invalid (not AF, AN, AS, EU, NA, OC, or SA)"
-msgstr ""
+msgstr "Il continente non è valido (non è AF, AN, AS, EU, NA, OC o SA)"
 
 #: application/views/logbookadvanced/help.php:74
 msgid "Map View"
-msgstr ""
+msgstr "Vista mappa"
 
 #: application/views/logbookadvanced/help.php:77
 msgid "The map uses the same search criteria as the normal search."
-msgstr ""
+msgstr "La mappa utilizza gli stessi criteri di ricerca della ricerca normale."
 
 #: application/views/logbookadvanced/help.php:78
 msgid ""
 "All QSOs in the search result will be mapped, unless you have checked one or "
 "more QSOs."
 msgstr ""
+"Tutti i QSO nei risultati di ricerca saranno mappati, a meno che non sia "
+"stato selezionato uno o più QSO."
 
 #: application/views/logbookadvanced/help.php:78
 #: application/views/logbookadvanced/help.php:99
 #: application/views/logbookadvanced/help.php:112
 msgid "Note:"
-msgstr ""
+msgstr "Nota:"
 
 #: application/views/logbookadvanced/help.php:87
 msgid "Batch Edit"
-msgstr ""
+msgstr "Modifica in blocco"
 
 #: application/views/logbookadvanced/help.php:90
 msgid ""
 "Batch edit allows you to modify a single column across all checked QSOs at "
 "once."
 msgstr ""
+"La modifica in blocco ti permette di modificare una singola colonna su tutti "
+"i QSO selezionati contemporaneamente."
 
 #: application/views/logbookadvanced/help.php:91
 msgid "Available edit categories:"
-msgstr ""
+msgstr "Categorie di modifica disponibili:"
 
 #: application/views/logbookadvanced/help.php:93
 msgid "QSO Details:"
-msgstr ""
+msgstr "Dettagli QSO:"
 
 #: application/views/logbookadvanced/help.php:94
 msgid "Awards:"
-msgstr ""
+msgstr "Diplomi:"
 
 #: application/views/logbookadvanced/help.php:95
 msgid "Confirmations:"
-msgstr ""
+msgstr "Conferme:"
 
 #: application/views/logbookadvanced/help.php:99
 msgid ""
 "You must check one or more QSOs before using batch edit. For complex "
 "changes, use the regular QSO edit instead."
 msgstr ""
+"Devi selezionare uno o più QSO prima di utilizzare la modifica in blocco. "
+"Per modifiche complesse, utilizza invece la normale modifica QSO."
 
 #: application/views/logbookadvanced/help.php:111
 msgid "The ADIF export uses the same search criteria as the normal search."
 msgstr ""
+"L'esportazione ADIF utilizza gli stessi criteri di ricerca della ricerca "
+"normale."
 
 #: application/views/logbookadvanced/help.php:112
 msgid ""
 "All QSOs will be exported (all for selected location), unless you have "
 "checked one or more QSOs."
 msgstr ""
+"Tutti i QSO verranno esportati (tutti per la posizione selezionata), a meno "
+"che non abbiate selezionato uno o più QSO."
 
 #: application/views/logbookadvanced/index.php:16
 #: application/views/stationsetup/exportmapoptions.php:23
@@ -16433,17 +16450,17 @@ msgstr "Elenco QSO"
 #: application/views/qslprint/qslprint.php:67
 #: application/views/qslprint/qsolist.php:70
 msgid "Previous QSL sent (same band/mode)"
-msgstr ""
+msgstr "Precedente QSL inviata (stessa banda/modo)"
 
 #: application/views/qslprint/qslprint.php:68
 #: application/views/qslprint/qsolist.php:71
 msgid "QSL sent to callsign (total)"
-msgstr ""
+msgstr "QSL inviata al nominativo (totale)"
 
 #: application/views/qslprint/qslprint.php:69
 #: application/views/qslprint/qsolist.php:72
 msgid "QSL received from callsign (total)"
-msgstr ""
+msgstr "QSL ricevuta da nominativo (totale)"
 
 #: application/views/qslprint/qslprint.php:83
 msgid "Mark QSOs for a certain QSL Method:"
@@ -18409,7 +18426,7 @@ msgstr "Scollega posizione della stazione"
 
 #: application/views/stationsetup/stationsetup.php:3
 msgid "Invalid characters entered in link! Enter only the slug."
-msgstr ""
+msgstr "Caratteri non validi inseriti nel link! Inserisci solo lo slug."
 
 #: application/views/stationsetup/stationsetup.php:25
 msgid ""
@@ -20163,7 +20180,7 @@ msgstr "Questo QSO è confermato su DCL."
 
 #: application/views/view_log/qso.php:553
 msgid "More QSOs"
-msgstr "Più QSO"
+msgstr "Altri QSO"
 
 #: application/views/view_log/qso.php:615
 msgid "Share"
