@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-05-27 04:26+0000\n"
-"PO-Revision-Date: 2026-05-18 19:18+0000\n"
+"POT-Creation-Date: 2026-05-28 10:46+0000\n"
+"PO-Revision-Date: 2026-05-27 04:26+0000\n"
 "Last-Translator: Anton Tomanič <s57xz.toni@gmail.com>\n"
 "Language-Team: Slovenian <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/sl/>\n"
@@ -2048,7 +2048,7 @@ msgstr "Razdalja"
 #: application/views/qslcard/searchresult.php:53
 #: application/views/qslcard/searchresult.php:69
 #: application/views/qslcard/searchresult.php:85
-#: application/views/qslprint/index.php:34
+#: application/views/qslprint/index.php:38
 #: application/views/qslprint/qslprint.php:34
 #: application/views/qslprint/qsolist.php:10
 #: application/views/qso/components/previous_contacts.php:88
@@ -2087,7 +2087,7 @@ msgstr "Band"
 #: application/views/qslcard/searchresult.php:54
 #: application/views/qslcard/searchresult.php:70
 #: application/views/qslcard/searchresult.php:86
-#: application/views/qslprint/index.php:35
+#: application/views/qslprint/index.php:39
 #: application/views/qslprint/qslprint.php:35
 #: application/views/qslprint/qsolist.php:11
 #: application/views/qso/components/previous_contacts.php:89
@@ -2911,7 +2911,7 @@ msgstr "Uredi lokacijo postaje: "
 #: application/views/logbookadvanced/dbtoolsdialog.php:16
 #: application/views/logbookadvanced/edit.php:23
 #: application/views/logbookadvanced/showMissingDxccQsos.php:26
-#: application/views/qslprint/index.php:21 application/views/qso/index.php:137
+#: application/views/qslprint/index.php:25 application/views/qso/index.php:137
 #: application/views/qso/index.php:398
 #: application/views/search/search_result_ajax.php:18
 #: application/views/station_profile/create.php:431
@@ -4180,7 +4180,8 @@ msgstr "Razlika"
 #: application/views/oqrs/showrequests.php:33
 #: application/views/oqrs/showrequests.php:49
 #: application/views/oqrs/showrequests.php:64
-#: application/views/qslprint/index.php:23
+#: application/views/qslprint/index.php:2
+#: application/views/qslprint/index.php:27
 #: application/views/qslprint/qslprint.php:86
 #: application/views/search/lotw_unconfirmed.php:28
 #: application/views/stationsetup/exportmapoptions.php:33
@@ -4499,7 +4500,7 @@ msgstr "Ničesar nisem našel!"
 #: application/views/qslcard/confirmationresult.php:15
 #: application/views/qslcard/index.php:39
 #: application/views/qslcard/searchform.php:3
-#: application/views/qslprint/index.php:25
+#: application/views/qslprint/index.php:29
 #: application/views/qslprint/qslprint.php:30
 #: application/views/qslprint/qsolist.php:6
 #: application/views/qso/edit_ajax.php:64 application/views/qso/index.php:214
@@ -5497,20 +5498,23 @@ msgid ""
 "The AMSAT Rover Award is granted to stations who achieve a combined 25 "
 "points using satellite grid activations."
 msgstr ""
+"Diplima AMSAT Rover se podeljuje postajam, ki z aktivacijami UL preko "
+"satelita dosežejo skupaj 25 točk."
 
 #: application/views/awards/amsat_rover/index.php:23
 msgid "Official rules"
-msgstr ""
+msgstr "Uradna pravila"
 
 #: application/views/awards/amsat_rover/index.php:30
 msgid ""
 "Please set your home grid square in your station profile to calculate grid "
 "activations correctly."
 msgstr ""
+"Za pravilen izračun aktivacij UL nastavite domači UL v profilu postaje."
 
 #: application/views/awards/amsat_rover/index.php:31
 msgid "Go to Station Profile"
-msgstr ""
+msgstr "Pojdi na profil postaje"
 
 #: application/views/awards/amsat_rover/index.php:39
 #: application/views/awards/cq/index.php:45
@@ -5527,100 +5531,104 @@ msgstr "Filtri"
 #: application/views/awards/amsat_rover/index.php:63
 #: application/views/awards/amsat_rover/index.php:140
 msgid "Bonus Points"
-msgstr ""
+msgstr "Dodatne točke"
 
 #: application/views/awards/amsat_rover/index.php:72
 msgid "Social Media Promotion (+5)"
-msgstr ""
+msgstr "Promocija na družbenih omrežjih (+5)"
 
 #: application/views/awards/amsat_rover/index.php:75
 msgid ""
 "Post must be made at least 24 hours before activation and include @amsat "
 "tag. Include link to post in your email."
 msgstr ""
+"Objava mora biti oddana vsaj 24 ur pred aktivacijo in mora vsebovati oznako "
+"@amsat. V e-poštno sporočilo vključite povezavo do objave."
 
 #: application/views/awards/amsat_rover/index.php:82
 msgid "Photo Posting (+5)"
-msgstr ""
+msgstr "Objava fotografij (+5)"
 
 #: application/views/awards/amsat_rover/index.php:85
 msgid ""
 "Photos posted with @amsat tag. Include link to photo post in your email."
 msgstr ""
+"Fotografije objavljene z oznako @amsat. V e-poštno sporočilo vključite "
+"povezavo do objave fotografije."
 
 #: application/views/awards/amsat_rover/index.php:92
 msgid "Maritime Mobile (+10)"
-msgstr ""
+msgstr "Maritime Mobile (+10)"
 
 #: application/views/awards/amsat_rover/index.php:95
 msgid "Operation was conducted while maritime mobile (/MM)."
-msgstr ""
+msgstr "Operacija je bila izvedena med pomorsko mobilnostjo (/MM)."
 
 #: application/views/awards/amsat_rover/index.php:102
 msgid "AMSAT Journal Article (+15)"
-msgstr ""
+msgstr "Članek v reviji AMSAT (+15)"
 
 #: application/views/awards/amsat_rover/index.php:105
 msgid "Published article about your rover operation in the AMSAT Journal."
-msgstr ""
+msgstr "Objavljen članek o vašem delovanju preko roverja v reviji AMSAT."
 
 #: application/views/awards/amsat_rover/index.php:117
 msgid "Show Results"
-msgstr ""
+msgstr "Prikaži rezultate"
 
 #: application/views/awards/amsat_rover/index.php:131
 msgid "Base Points"
-msgstr ""
+msgstr "Osnovne točke"
 
 #: application/views/awards/amsat_rover/index.php:133
 #: application/views/awards/amsat_rover/index.php:191
 #: application/views/awards/amsat_rover/index.php:194
 #: application/views/awards/amsat_rover/index.php:197
 msgid "activations"
-msgstr ""
+msgstr "aktivacije"
 
 #: application/views/awards/amsat_rover/index.php:148
 msgid "Total Points"
-msgstr ""
+msgstr "Skupno število točk"
 
 #: application/views/awards/amsat_rover/index.php:152
 msgid "Target"
-msgstr ""
+msgstr "Cilj"
 
 #: application/views/awards/amsat_rover/index.php:188
 msgid "Activations by Mode"
-msgstr ""
+msgstr "Aktivacije po načinu dela"
 
 #: application/views/awards/amsat_rover/index.php:191
 msgid "FM"
-msgstr ""
+msgstr "FM"
 
 #: application/views/awards/amsat_rover/index.php:191
 #: application/views/awards/amsat_rover/index.php:194
 #: application/views/awards/amsat_rover/index.php:197
 msgid "pt"
-msgstr ""
+msgstr "točke"
 
 #: application/views/awards/amsat_rover/index.php:194
 msgid "Linear"
-msgstr ""
+msgstr "Linear"
 
 #: application/views/awards/amsat_rover/index.php:197
 msgid "Digital"
-msgstr ""
+msgstr "Digital"
 
 #: application/views/awards/amsat_rover/index.php:208
 msgid "No confirmed satellite QSOs found matching your filters."
-msgstr ""
+msgstr "Ni najdenih potrjenih satelitskih zvez, ki bi ustrezale vašim filtrom."
 
 #: application/views/awards/amsat_rover/index.php:216
 msgid "Grid Activations"
-msgstr ""
+msgstr "Aktivacije UL"
 
 #: application/views/awards/amsat_rover/index.php:221
 #: application/views/satellite/skedtable.php:34
 msgid "Grid"
-msgstr ""
+msgstr "Mreža"
 
 #: application/views/awards/amsat_rover/index.php:223
 #: application/views/awards/waip/index.php:42
@@ -5631,27 +5639,29 @@ msgstr "Kategorija"
 
 #: application/views/awards/amsat_rover/index.php:224
 msgid "Points"
-msgstr ""
+msgstr "Točke"
 
 #: application/views/awards/amsat_rover/index.php:227
 msgid "Date / UTC"
-msgstr ""
+msgstr "Datum / UTC"
 
 #: application/views/awards/amsat_rover/index.php:253
 msgid "pts"
-msgstr ""
+msgstr "točk"
 
 #: application/views/awards/amsat_rover/index.php:272
 msgid "Export for Application"
-msgstr ""
+msgstr "Izvoz za aplikacijo"
 
 #: application/views/awards/amsat_rover/index.php:274
 msgid "Generate a copy-paste ready application for email submission to AMSAT."
 msgstr ""
+"Ustvarite aplikacijo, pripravljeno za kopiranje in lepljenje, za pošiljanje "
+"po e-pošti na AMSAT."
 
 #: application/views/awards/amsat_rover/index.php:277
 msgid "Attaching evidence"
-msgstr ""
+msgstr "Prilaganje dokazov"
 
 #: application/views/awards/amsat_rover/index.php:278
 msgid ""
@@ -5659,26 +5669,29 @@ msgid ""
 "table above. Press Submit on the LoTW page and capture a screenshot. Attach "
 "the screenshots to your application email."
 msgstr ""
+"Če želite dodati potrditvene posnetke zaslona LoTW, kliknite klicni znak v "
+"zgornji tabeli aktivacij. Na strani LoTW pritisnite Pošlji in zajemite "
+"posnetek zaslona. Posnetke zaslona priložite e-poštnemu sporočilu s prijavo."
 
 #: application/views/awards/amsat_rover/index.php:279
 msgid "If you have QSL cards instead, scan them and attach the scans."
-msgstr ""
+msgstr "Če imate namesto tega QSL kartice, jih skenirajte in priložite skene."
 
 #: application/views/awards/amsat_rover/index.php:282
 msgid "Send to"
-msgstr ""
+msgstr "Pošlji"
 
 #: application/views/awards/amsat_rover/index.php:288
 msgid "Generate Text for Email"
-msgstr ""
+msgstr "Ustvari besedilo za e-pošto"
 
 #: application/views/awards/amsat_rover/index.php:291
 msgid "Copy to Clipboard"
-msgstr ""
+msgstr "Kopiraj v odložišče"
 
 #: application/views/awards/amsat_rover/index.php:294
 msgid "Download CSV"
-msgstr ""
+msgstr "Prenesi CSV"
 
 #: application/views/awards/counties/details.php:4
 #: application/views/awards/details.php:1
@@ -6509,7 +6522,7 @@ msgstr "Napredek pri diplomi"
 
 #: application/views/awards/dxcc/index.php:273
 msgid "Progress towards working all DXCC entities:"
-msgstr ""
+msgstr "Napredek pri delu z vsemi DXCC entitetami:"
 
 #: application/views/awards/dxcc/index.php:277
 #: application/views/awards/waip/index.php:62
@@ -6519,23 +6532,23 @@ msgstr "Po bandu"
 
 #: application/views/awards/dxcc/index.php:280
 msgid "By Continent"
-msgstr ""
+msgstr "Po celini"
 
 #: application/views/awards/dxcc/index.php:283
 msgid "By Mode"
-msgstr ""
+msgstr "Po načinu dela"
 
 #: application/views/awards/dxcc/index.php:296
 #: application/views/awards/dxcc/index.php:369
 #: application/views/awards/dxcc/progress.php:5
 msgid "Worked Progress"
-msgstr ""
+msgstr "Napredek delane"
 
 #: application/views/awards/dxcc/index.php:297
 #: application/views/awards/dxcc/index.php:370
 #: application/views/awards/dxcc/progress.php:5
 msgid "Confirmed Progress"
-msgstr ""
+msgstr "Napredek potrjene"
 
 #: application/views/awards/dxcc/index.php:366
 #: application/views/awards/wac/index.php:142
@@ -6555,15 +6568,15 @@ msgstr "Celina"
 
 #: application/views/awards/dxcc/index.php:413
 msgid "No continent data available."
-msgstr ""
+msgstr "Podatki o celini niso na voljo."
 
 #: application/views/awards/dxcc/index.php:422
 msgid "Loading..."
-msgstr ""
+msgstr "Nalagam..."
 
 #: application/views/awards/dxcc/index.php:424
 msgid "Loading progress data..."
-msgstr ""
+msgstr "Nalaganje podatkov o napredku..."
 
 #: application/views/awards/dxcc/index.php:454
 msgid "DXCC Name"
@@ -6589,7 +6602,7 @@ msgstr ""
 
 #: application/views/awards/dxcc/progress.php:31
 msgid "No mode data available."
-msgstr ""
+msgstr "Podatki o načinu dela niso na voljo."
 
 #: application/views/awards/ffma/index.php:11
 #: application/views/interface_assets/header.php:301
@@ -7575,7 +7588,7 @@ msgstr ""
 
 #: application/views/awards/waip/index.php:34
 msgid "Progress towards working all Italian provinces:"
-msgstr ""
+msgstr "Napredek pri delanju vseh italijanskih provinc:"
 
 #: application/views/awards/waip/index.php:40
 #: application/views/awards/waip/index.php:92
@@ -9974,7 +9987,7 @@ msgstr "Prosim, počakajte"
 
 #: application/views/components/dxwaterfall.php:50
 msgid "Cycle label size"
-msgstr ""
+msgstr "Velikost oznake cikla"
 
 #: application/views/components/dxwaterfall.php:51
 msgid "X-Small"
@@ -10612,6 +10625,7 @@ msgid ""
 "Don't lose your streak - You have already had at least one QSO for the last "
 "%s consecutive days."
 msgstr ""
+"Ne izgubite niza - V zadnjih %s zaporednih dneh ste že imeli vsaj eno zvezo."
 
 #: application/views/dashboard/index.php:184
 msgid "You have made no QSOs today; time to turn on the radio!"
@@ -15971,37 +15985,37 @@ msgstr ""
 msgid "Add to QSL"
 msgstr ""
 
-#: application/views/qslprint/index.php:16
+#: application/views/qslprint/index.php:20
 msgid "Export Requested QSLs for Printing"
 msgstr ""
 
-#: application/views/qslprint/index.php:32
+#: application/views/qslprint/index.php:36
 msgid "Show Band or Frequency:"
 msgstr ""
 
-#: application/views/qslprint/index.php:36
+#: application/views/qslprint/index.php:40
 msgid "Band & Frequency"
 msgstr ""
 
-#: application/views/qslprint/index.php:41
+#: application/views/qslprint/index.php:45
 msgid ""
 "Here you can export requested QSLs as CSV or ADIF files for printing and, "
 "optionally, mark them as sent."
 msgstr ""
 
-#: application/views/qslprint/index.php:43
+#: application/views/qslprint/index.php:47
 msgid ""
 "Requested QSLs are any QSOs with a value of 'Requested' or 'Queued' in their "
 "'QSL Sent' field."
 msgstr ""
 
-#: application/views/qslprint/index.php:44
+#: application/views/qslprint/index.php:48
 #: application/views/qslprint/qslprint.php:42
 #: application/views/qslprint/qsolist.php:18
 msgid "Previous QSL"
 msgstr ""
 
-#: application/views/qslprint/index.php:44
+#: application/views/qslprint/index.php:48
 #, php-format
 msgid ""
 "The column %s shows how many QSLs have been sent to the same station before "

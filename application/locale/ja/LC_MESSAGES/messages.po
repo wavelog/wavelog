@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-05-27 04:26+0000\n"
-"PO-Revision-Date: 2026-05-26 06:31+0000\n"
+"POT-Creation-Date: 2026-05-28 10:46+0000\n"
+"PO-Revision-Date: 2026-05-28 08:16+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
@@ -2052,7 +2052,7 @@ msgstr "距離"
 #: application/views/qslcard/searchresult.php:53
 #: application/views/qslcard/searchresult.php:69
 #: application/views/qslcard/searchresult.php:85
-#: application/views/qslprint/index.php:34
+#: application/views/qslprint/index.php:38
 #: application/views/qslprint/qslprint.php:34
 #: application/views/qslprint/qsolist.php:10
 #: application/views/qso/components/previous_contacts.php:88
@@ -2091,7 +2091,7 @@ msgstr "バンド"
 #: application/views/qslcard/searchresult.php:54
 #: application/views/qslcard/searchresult.php:70
 #: application/views/qslcard/searchresult.php:86
-#: application/views/qslprint/index.php:35
+#: application/views/qslprint/index.php:39
 #: application/views/qslprint/qslprint.php:35
 #: application/views/qslprint/qsolist.php:11
 #: application/views/qso/components/previous_contacts.php:89
@@ -2902,7 +2902,7 @@ msgstr "局の所在地を編集: "
 #: application/views/logbookadvanced/dbtoolsdialog.php:16
 #: application/views/logbookadvanced/edit.php:23
 #: application/views/logbookadvanced/showMissingDxccQsos.php:26
-#: application/views/qslprint/index.php:21 application/views/qso/index.php:137
+#: application/views/qslprint/index.php:25 application/views/qso/index.php:137
 #: application/views/qso/index.php:398
 #: application/views/search/search_result_ajax.php:18
 #: application/views/station_profile/create.php:431
@@ -4166,7 +4166,8 @@ msgstr "違い"
 #: application/views/oqrs/showrequests.php:33
 #: application/views/oqrs/showrequests.php:49
 #: application/views/oqrs/showrequests.php:64
-#: application/views/qslprint/index.php:23
+#: application/views/qslprint/index.php:2
+#: application/views/qslprint/index.php:27
 #: application/views/qslprint/qslprint.php:86
 #: application/views/search/lotw_unconfirmed.php:28
 #: application/views/stationsetup/exportmapoptions.php:33
@@ -4485,7 +4486,7 @@ msgstr "何も見つかりません!"
 #: application/views/qslcard/confirmationresult.php:15
 #: application/views/qslcard/index.php:39
 #: application/views/qslcard/searchform.php:3
-#: application/views/qslprint/index.php:25
+#: application/views/qslprint/index.php:29
 #: application/views/qslprint/qslprint.php:30
 #: application/views/qslprint/qsolist.php:6
 #: application/views/qso/edit_ajax.php:64 application/views/qso/index.php:214
@@ -16195,19 +16196,19 @@ msgstr "QSOを追加"
 msgid "Add to QSL"
 msgstr "QSLに追加"
 
-#: application/views/qslprint/index.php:16
+#: application/views/qslprint/index.php:20
 msgid "Export Requested QSLs for Printing"
 msgstr "印刷用にリクエストされたQSLをエクスポートする"
 
-#: application/views/qslprint/index.php:32
+#: application/views/qslprint/index.php:36
 msgid "Show Band or Frequency:"
 msgstr "バンドまたは周波数を表示:"
 
-#: application/views/qslprint/index.php:36
+#: application/views/qslprint/index.php:40
 msgid "Band & Frequency"
 msgstr "バンドと周波数"
 
-#: application/views/qslprint/index.php:41
+#: application/views/qslprint/index.php:45
 msgid ""
 "Here you can export requested QSLs as CSV or ADIF files for printing and, "
 "optionally, mark them as sent."
@@ -16215,7 +16216,7 @@ msgstr ""
 "ここでは、要求された QSL を印刷用に CSV または ADIF ファイルとしてエクスポー"
 "トし、必要に応じて送信済みとしてマークすることができます。"
 
-#: application/views/qslprint/index.php:43
+#: application/views/qslprint/index.php:47
 msgid ""
 "Requested QSLs are any QSOs with a value of 'Requested' or 'Queued' in their "
 "'QSL Sent' field."
@@ -16223,13 +16224,13 @@ msgstr ""
 "リクエストされた QSL とは、「QSL 送信」フィールドに「リクエスト済み」または"
 "「キューに登録済み」の値を持つ QSO のことです。"
 
-#: application/views/qslprint/index.php:44
+#: application/views/qslprint/index.php:48
 #: application/views/qslprint/qslprint.php:42
 #: application/views/qslprint/qsolist.php:18
 msgid "Previous QSL"
 msgstr "以前のQSL"
 
-#: application/views/qslprint/index.php:44
+#: application/views/qslprint/index.php:48
 #, php-format
 msgid ""
 "The column %s shows how many QSLs have been sent to the same station before "
@@ -16258,17 +16259,17 @@ msgstr "QSOリスト"
 #: application/views/qslprint/qslprint.php:67
 #: application/views/qslprint/qsolist.php:70
 msgid "Previous QSL sent (same band/mode)"
-msgstr ""
+msgstr "以前送付したQSLカード（同じバンド／モード）"
 
 #: application/views/qslprint/qslprint.php:68
 #: application/views/qslprint/qsolist.php:71
 msgid "QSL sent to callsign (total)"
-msgstr ""
+msgstr "コールサイン宛に送付されたQSLカード（合計）"
 
 #: application/views/qslprint/qslprint.php:69
 #: application/views/qslprint/qsolist.php:72
 msgid "QSL received from callsign (total)"
-msgstr ""
+msgstr "コールサインから受け取ったQSLカード（合計）"
 
 #: application/views/qslprint/qslprint.php:83
 msgid "Mark QSOs for a certain QSL Method:"
