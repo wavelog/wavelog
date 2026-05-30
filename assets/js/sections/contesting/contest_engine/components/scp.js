@@ -427,6 +427,7 @@ class SCPComponent {
 		if (!resultsContainer) return;
 
 		if (matches.length === 0) {
+			resultsContainer.style.display = 'flex';
 			resultsContainer.innerHTML = `
 				<div class="scp-empty">
 					<i class="fas fa-search fa-2x mb-2"></i>
@@ -437,6 +438,7 @@ class SCPComponent {
 			return;
 		}
 
+		resultsContainer.style.display = 'block';
 		resultsContainer.innerHTML = matches.map(callsign => {
 			// Highlight matching prefix
 			const highlighted = this.highlightMatch(callsign, query);
@@ -512,6 +514,7 @@ class SCPComponent {
 		const resultsContainer = this.container.querySelector('#scp-results');
 		if (!resultsContainer) return;
 
+		resultsContainer.style.display = 'flex';
 		resultsContainer.innerHTML = `
 			<div class="text-center text-muted p-4">
 				<i class="fas fa-info-circle fa-2x mb-2"></i>

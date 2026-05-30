@@ -68,7 +68,7 @@ $config = [
 					<span class="badge bg-primary" id="scp-match-count">0</span>
 				</div>
 				<div class="card-body p-0" style="flex: 1; overflow: hidden;">
-					<div id="scp-results" class="scp-results" style="overflow-y: auto; height: 100%;">
+					<div id="scp-results" class="scp-results" style="overflow-y: auto; height: 100%; display: flex; align-items: center; justify-content: center;">
 						<div class="text-center text-muted p-4">
 							<i class="fas fa-info-circle fa-2x mb-2"></i>
 							<p><?= __("Enter a partial callsign to see matches"); ?></p>
