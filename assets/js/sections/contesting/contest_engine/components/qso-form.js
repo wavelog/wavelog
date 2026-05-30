@@ -801,10 +801,10 @@ class QsoFormComponent {
 		const isEditable = !!qso.serverId && (qso.operator ?? '').toUpperCase() === this.currentOperator;
 		existingRow.style.cursor = isEditable ? 'pointer' : '';
 
-		// Only update the status indicator — leave all data cells untouched
+		// Update status indicator and dropdown in last cell
 		const statusCell = existingRow.querySelector('td:last-child');
 		if (statusCell) {
-			statusCell.innerHTML = this.getStatusIndicator(qso.state);
+			statusCell.innerHTML = this.getStatusIndicator(qso.state) + (isEditable ? this._renderQsoDropdown() : '');
 		}
 	}
 
