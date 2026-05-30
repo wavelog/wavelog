@@ -40,7 +40,8 @@ $config = [
 .no-spinner::-webkit-outer-spin-button,
 .no-spinner::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 .no-spinner { -moz-appearance: textfield; appearance: textfield; }
-#qso-gridsquare-sent, #qso-gridsquare-received { text-transform: uppercase; }
+#qso-gridsquare-sent, #qso-gridsquare-received,
+#qso-exchange-sent, #qso-exchange-received { text-transform: uppercase; }
 </style>
 
 <div class="window-component" data-component="<?php echo $config['component_name']; ?>" data-config="<?php echo htmlspecialchars(json_encode($config), ENT_QUOTES, 'UTF-8'); ?>">

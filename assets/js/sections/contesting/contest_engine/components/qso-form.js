@@ -658,6 +658,9 @@ class QsoFormComponent {
 		this.nextSerialSent = this.computeNextSerial();
 		this.updateSerialSentDisplay();
 
+		const exchangeSentInput = this.container.querySelector('#qso-exchange-sent');
+		if (exchangeSentInput) exchangeSentInput.value = this.getLastExchangeSent();
+
 		// Listen for QSO state changes
 		this.dataStore.on('qso_state_changed', (eventData) => this.handleQSOStateChanged(eventData));
 
@@ -983,8 +986,8 @@ class QsoFormComponent {
 		const callsign = this.container.querySelector('#qso-callsign')?.value.trim().toUpperCase();
 		const rstSent = this.container.querySelector('#qso-rst-sent')?.value.trim();
 		const rstReceived = this.container.querySelector('#qso-rst-received')?.value.trim();
-		const exchangeSent = this.container.querySelector('#qso-exchange-sent')?.value.trim();
-		const exchangeRcvd = this.container.querySelector('#qso-exchange-received')?.value.trim();
+		const exchangeSent = this.container.querySelector('#qso-exchange-sent')?.value.trim().toUpperCase();
+		const exchangeRcvd = this.container.querySelector('#qso-exchange-received')?.value.trim().toUpperCase();
 		const serialSent = this.container.querySelector('#qso-serial-sent')?.value || null;
 		const serialRcvd = this.container.querySelector('#qso-serial-received')?.value || null;
 		const gridsquareSent = this.container.querySelector('#qso-gridsquare-sent')?.value.trim().toUpperCase() || null;
