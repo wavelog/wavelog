@@ -663,11 +663,6 @@ class Contesting extends CI_Controller {
 				}
 			}
 
-			// Add server QSO count for client reference if not already set by request handlers
-			if (!isset($response['server_qso_count'])) {
-				$response['server_qso_count'] = $this->contesting_model->get_session_qso_count($session_info['contest_session_id']);
-			}
-
 			echo json_encode($response);
 		} catch (Exception $e) {
 			http_response_code(400);
