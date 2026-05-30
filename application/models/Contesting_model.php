@@ -218,7 +218,7 @@ class Contesting_model extends CI_Model {
 
 		$bindings_qsos = [$contest_session_id, $qso_id];
 		$this->db->query($sql_delete_qsos, $bindings_qsos);
-
+		$this->_invalidate_session_cache($contest_session_id);
 		return true;
 	}
 
@@ -310,7 +310,7 @@ class Contesting_model extends CI_Model {
 		if ($affected) {
 			$session_id = $this->_get_session_id_for_qso($qso_id);
 			if ($session_id) {
-				$this->_invalidate_last_update_cache($session_id);
+				$this->_invalidate_session_cache($session_id);
 			}
 		}
 		return $affected;
@@ -363,7 +363,7 @@ class Contesting_model extends CI_Model {
 		];
 
 		$this->db->query($sql, $bindings);
-		$this->_invalidate_last_update_cache($contest_session_id);
+		$this->_invalidate_session_cache($contest_session_id);
 		return true;
 	}
 
@@ -374,15 +374,20 @@ class Contesting_model extends CI_Model {
 	 * @return int The total number of QSOs in the session.
 	 */
 	function get_session_qso_count($contest_session_id) {
-		$binding = [];
-		$sql = "SELECT COUNT(*) AS qso_count
-				FROM contest_qsos
-				WHERE contest_session_id = ?";
-		$binding[] = $contest_session_id;
+		$this->_load_cache();
+		$cache_key = $this->_qso_count_cache_key($contest_session_id);
 
-		$query = $this->db->query($sql, $binding);
-		$result = $query->row_array();
-		return (int)$result['qso_count'];
+		$cached = $this->cache->get($cache_key);
+		if ($cached !== false) {
+			return (int)$cached;
+		}
+
+		$sql = "SELECT COUNT(*) AS qso_count FROM contest_qsos WHERE contest_session_id = ?";
+		$query = $this->db->query($sql, [$contest_session_id]);
+		$count = (int)$query->row_array()['qso_count'];
+
+		$this->cache->save($cache_key, $count, 60);
+		return $count;
 	}
 
 	/**
@@ -478,22 +483,25 @@ class Contesting_model extends CI_Model {
 	// =========================================================================
 
 	private function _last_update_cache_key($contest_session_id) {
-		$prefix = $this->config->item('cache_key_prefix') ?? '';
-		return $prefix . 'contesting_last_update_' . (int)$contest_session_id;
+		return 'contesting_last_update_' . (int)$contest_session_id;
+	}
+
+	private function _qso_count_cache_key($contest_session_id) {
+		return 'contesting_qso_count_' . (int)$contest_session_id;
 	}
 
 	private function _load_cache() {
-		if (!isset($this->cache)) {
-			$this->load->driver('cache', [
-				'adapter' => $this->config->item('cache_adapter') ?? 'file',
-				'backup'  => $this->config->item('cache_backup')  ?? 'file',
-			]);
-		}
+		$this->load->is_loaded('cache') ?: $this->load->driver('cache', [
+			'adapter'    => $this->config->item('cache_adapter')    ?? 'file',
+			'backup'     => $this->config->item('cache_backup')     ?? 'file',
+			'key_prefix' => $this->config->item('cache_key_prefix') ?? '',
+		]);
 	}
 
-	private function _invalidate_last_update_cache($contest_session_id) {
+	private function _invalidate_session_cache($contest_session_id) {
 		$this->_load_cache();
 		$this->cache->delete($this->_last_update_cache_key($contest_session_id));
+		$this->cache->delete($this->_qso_count_cache_key($contest_session_id));
 	}
 
 	/**
