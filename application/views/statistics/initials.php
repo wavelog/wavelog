@@ -1,4 +1,4 @@
-<div class="container oqrs px-3 px-lg-4 mt-3 mb-3">
+<div class="container px-3 px-lg-4 mt-3 mb-3">
     <h2><?php echo $page_title; ?></h2>
 	<div class="card">
 		<div class="card-header">
