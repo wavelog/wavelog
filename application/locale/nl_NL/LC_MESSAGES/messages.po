@@ -1752,6 +1752,7 @@ msgstr "Alle callbook opzoekingen zijn mislukt of leverden geen resultaten op."
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
 #: application/views/oqrs/showrequests.php:94
+#: application/views/statistics/initials.php:21
 msgid "Mode"
 msgstr "Modus"
 
@@ -2077,6 +2078,7 @@ msgstr "Afstand"
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
 #: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
 #: application/views/oqrs/showrequests.php:93
+#: application/views/statistics/initials.php:12
 msgid "Band"
 msgstr "Band"
 
@@ -4233,6 +4235,7 @@ msgstr "Verschil"
 #: application/views/oqrs/showrequests.php:38
 #: application/views/oqrs/showrequests.php:54
 #: application/views/oqrs/showrequests.php:69
+#: application/views/statistics/initials.php:24
 msgid "All"
 msgstr "Alles"
 
@@ -4335,6 +4338,7 @@ msgstr "Geen/Leeg"
 #: application/views/timeline/index.php:355
 #: application/views/timeline/index.php:391
 #: application/views/timeplotter/index.php:71
+#: application/views/statistics/initials.php:34
 msgid "Show"
 msgstr "Toon"
 
@@ -18669,6 +18673,7 @@ msgstr "Unieke vakken"
 
 #: application/views/statistics/initialresult.php:44
 #: application/views/statistics/initials.php:36
+#: application/views/statistics/initials.php:40
 msgid "No EME QSOs were found."
 msgstr "Er werden geen EME-QSOs gevonden."
 
@@ -20433,6 +20438,12 @@ msgstr ""
 
 #: application/views/oqrs/showrequests.php:29
 msgid "Manage OQRS Requests"
+msgstr ""
+
+#: application/views/statistics/initials.php:5
+msgid ""
+"This page allows you to view the initials of all EME QSOs you have worked. "
+"You can select a band and mode to filter the results."
 msgstr ""
 
 #~ msgid "Progress toward working all Italian provinces:"
