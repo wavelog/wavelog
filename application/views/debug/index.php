@@ -859,31 +859,35 @@
                     container.innerHTML = '<span class="badge rounded-pill text-bg-warning"><?= __("Unreachable"); ?></span> <?= __("Worker is configured but did not respond."); ?>';
                     return;
                 }
-                var items = data.workers.map(function (w, i) {
+                var hasCluster = data.workers.some(function (w) {
+                    return w.cluster_nodes !== null && w.cluster_nodes >= 0;
+                });
+                var rows = data.workers.map(function (w) {
                     var badge = w.alive
                         ? '<span class="badge rounded-pill text-bg-success"><?= __("Online"); ?></span>'
                         : '<span class="badge rounded-pill text-bg-danger"><?= __("Offline"); ?></span>';
-                    var topics  = w.active_topics     !== null ? w.active_topics     : '—';
-                    var clients = w.connected_clients !== null ? w.connected_clients : '—';
-                    var uptime  = w.worker_uptime     !== null ? w.worker_uptime     : '—';
-                    var id = 'worker-acc-' + i;
-                    return '<div class="accordion-item">'
-                        + '<h2 class="accordion-header">'
-                        + '<button class="accordion-button' + (i > 0 ? ' collapsed' : '') + '" type="button" data-bs-toggle="collapse" data-bs-target="#' + id + '">'
-                        + badge + '&nbsp;&nbsp;' + w.public_url
-                        + '<span class="ms-3 text-muted small">'
-                        + '&nbsp;' + topics + ' <?= __("Topics"); ?> &middot; ' + clients + ' <?= __("Clients"); ?>'
-                        + '</span>'
-                        + '</button></h2>'
-                        + '<div id="' + id + '" class="accordion-collapse collapse' + (i === 0 ? ' show' : '') + '">'
-                        + '<div class="accordion-body p-0">'
-                        + '<table width="100%" class="table table-sm mb-0">'
-                        + '<tr><td><?= __("Version"); ?></td><td>' + (w.version ? w.version : '—') + '</td></tr>'
-                        + '<tr><td><?= __("Uptime"); ?></td><td>' + uptime + '</td></tr>'
-                        + '</table>'
-                        + '</div></div></div>';
+                    var clusterCell = hasCluster
+                        ? '<td>' + (w.cluster_nodes >= 0 ? w.cluster_nodes : '—') + '</td>'
+                        : '';
+                    return '<tr>'
+                        + '<td>' + badge + '&nbsp;&nbsp;' + w.public_url + '</td>'
+                        + '<td>' + (w.active_topics     !== null ? w.active_topics     : '—') + '</td>'
+                        + '<td>' + (w.connected_clients !== null ? w.connected_clients : '—') + '</td>'
+                        + '<td>' + (w.version           !== null ? w.version           : '—') + '</td>'
+                        + '<td>' + (w.worker_uptime     !== null ? w.worker_uptime     : '—') + '</td>'
+                        + clusterCell
+                        + '</tr>';
                 });
-                container.innerHTML = '<div class="accordion">' + items.join('') + '</div>';
+                var clusterTh = hasCluster ? '<th><?= __("Nodes"); ?></th>' : '';
+                var thead = '<thead><tr>'
+                    + '<th><?= __("Worker"); ?></th>'
+                    + '<th><?= __("Topics"); ?></th>'
+                    + '<th><?= __("Clients"); ?></th>'
+                    + '<th><?= __("Version"); ?></th>'
+                    + '<th><?= __("Uptime"); ?></th>'
+                    + clusterTh
+                    + '</tr></thead>';
+                container.innerHTML = '<table class="table table-sm mb-0">' + thead + '<tbody>' + rows.join('') + '</tbody></table>';
             })
             .catch(function () {
                 document.getElementById('worker-status-container').innerHTML =

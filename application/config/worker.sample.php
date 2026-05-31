@@ -15,9 +15,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 // Enable or disable the Worker integration entirely.
 $config['worker_enabled'] = false;
 
-// Internal URL of wavelog_worker (PHP -> Worker, HTTP).
-// Example: 'http://127.0.0.1:9001'
-$config['worker_url'] = 'http://127.0.0.1:9001';
+// Internal URLs of wavelog_worker instances (PHP -> Worker, HTTP).
+// Single instance: one entry. Cluster: one entry per node.
+// PHP publishes to the first entry; the debug page shows status of all nodes.
+$config['worker_urls'] = [
+    'http://127.0.0.1:9001',
+];
 
 // Shared secret — must match worker_secret in the worker's config.yaml.
 // Generate with: openssl rand -hex 32

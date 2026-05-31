@@ -29,7 +29,10 @@ class Worker_publisher {
 		$this->secret     = (string) $CI->config->item('worker_secret', 'worker');
 		$timeout_seconds  = (float)  $CI->config->item('worker_timeout', 'worker');
 		$this->timeout_ms = (int) max(100, $timeout_seconds * 1000);
-		$this->url        = rtrim((string) $CI->config->item('worker_url', 'worker'), '/');
+
+		$urls_cfg  = $CI->config->item('worker_urls', 'worker');
+		$this->url = is_array($urls_cfg) && !empty($urls_cfg) ? rtrim($urls_cfg[0], '/') : '';
+
 		$this->enabled    = (bool) $CI->config->item('worker_enabled', 'worker')
 		                    && $this->url !== ''
 		                    && $this->secret !== '';

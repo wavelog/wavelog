@@ -29,41 +29,42 @@ class Worker extends CI_Controller {
 			return;
 		}
 
-		$worker_url = rtrim((string) $this->config->item('worker_url', 'worker'), '/');
-		$secret     = (string) $this->config->item('worker_secret', 'worker');
+		$secret = (string) $this->config->item('worker_secret', 'worker');
 
-		if ($worker_url === '' || $secret === '') {
+		$urls_cfg    = $this->config->item('worker_urls', 'worker');
+		$worker_urls = is_array($urls_cfg) ? array_map(fn($u) => rtrim($u, '/'), $urls_cfg) : [];
+
+		if (empty($worker_urls) || $secret === '') {
 			echo json_encode(['success' => true, 'disabled' => true, 'workers' => []]);
 			return;
 		}
 
-		// Fetch live stats directly from the configured worker URL
-		$status_url = $worker_url . '/internal/status';
-		$ch = curl_init($status_url);
-		curl_setopt_array($ch, [
-			CURLOPT_RETURNTRANSFER    => true,
-			CURLOPT_CONNECTTIMEOUT_MS => 300,
-			CURLOPT_TIMEOUT_MS        => 800,
-			CURLOPT_HTTPHEADER        => ['X-Worker-Secret: ' . $secret],
-		]);
-		$raw       = curl_exec($ch);
-		$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-		curl_close($ch);
+		$workers = [];
+		foreach ($worker_urls as $url) {
+			$ch = curl_init($url . '/internal/status');
+			curl_setopt_array($ch, [
+				CURLOPT_RETURNTRANSFER    => true,
+				CURLOPT_CONNECTTIMEOUT_MS => 300,
+				CURLOPT_TIMEOUT_MS        => 800,
+				CURLOPT_HTTPHEADER        => ['X-Worker-Secret: ' . $secret],
+			]);
+			$raw       = curl_exec($ch);
+			$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+			curl_close($ch);
 
-		$stats = ($http_code === 200 && $raw) ? json_decode($raw, true) : null;
-		$alive = $http_code === 200;
-
-		echo json_encode([
-			'success' => true,
-			'workers' => [[
-				'public_url'        => $worker_url,
-				'alive'             => $alive,
+			$stats = ($http_code === 200 && $raw) ? json_decode($raw, true) : null;
+			$workers[] = [
+				'public_url'        => $url,
+				'alive'             => $http_code === 200,
 				'version'           => $stats['version']           ?? null,
 				'active_topics'     => $stats['active_topics']     ?? null,
 				'connected_clients' => $stats['connected_clients'] ?? null,
 				'worker_uptime'     => $stats['uptime']            ?? null,
-			]],
-		]);
+				'cluster_nodes'     => $stats['cluster_nodes']     ?? null,
+			];
+		}
+
+		echo json_encode(['success' => true, 'workers' => $workers]);
 	}
 
 }
