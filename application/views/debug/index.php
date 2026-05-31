@@ -859,33 +859,24 @@
                     container.innerHTML = '<span class="badge rounded-pill text-bg-warning"><?= __("Unreachable"); ?></span> <?= __("Worker is configured but did not respond."); ?>';
                     return;
                 }
-                var hasCluster = data.workers.some(function (w) {
-                    return w.cluster_nodes !== null && w.cluster_nodes >= 0;
-                });
                 var rows = data.workers.map(function (w) {
                     var badge = w.alive
                         ? '<span class="badge rounded-pill text-bg-success"><?= __("Online"); ?></span>'
                         : '<span class="badge rounded-pill text-bg-danger"><?= __("Offline"); ?></span>';
-                    var clusterCell = hasCluster
-                        ? '<td>' + (w.cluster_nodes >= 0 ? w.cluster_nodes : '—') + '</td>'
-                        : '';
                     return '<tr>'
                         + '<td>' + badge + '&nbsp;&nbsp;' + w.public_url + '</td>'
                         + '<td>' + (w.active_topics     !== null ? w.active_topics     : '—') + '</td>'
                         + '<td>' + (w.connected_clients !== null ? w.connected_clients : '—') + '</td>'
                         + '<td>' + (w.version           !== null ? w.version           : '—') + '</td>'
                         + '<td>' + (w.worker_uptime     !== null ? w.worker_uptime     : '—') + '</td>'
-                        + clusterCell
                         + '</tr>';
                 });
-                var clusterTh = hasCluster ? '<th><?= __("Nodes"); ?></th>' : '';
                 var thead = '<thead><tr>'
                     + '<th><?= __("Worker"); ?></th>'
                     + '<th><?= __("Topics"); ?></th>'
                     + '<th><?= __("Clients"); ?></th>'
                     + '<th><?= __("Version"); ?></th>'
                     + '<th><?= __("Uptime"); ?></th>'
-                    + clusterTh
                     + '</tr></thead>';
                 container.innerHTML = '<table class="table table-sm mb-0">' + thead + '<tbody>' + rows.join('') + '</tbody></table>';
             })
