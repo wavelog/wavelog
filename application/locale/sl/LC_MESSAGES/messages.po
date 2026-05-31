@@ -1749,6 +1749,7 @@ msgstr "Vsa iskanja v Callbooku so bila neuspešna ali niso dala rezultatov."
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
+#: application/views/oqrs/showrequests.php:94
 msgid "Mode"
 msgstr "Vrsta dela"
 
@@ -2073,6 +2074,7 @@ msgstr "Razdalja"
 #: application/views/view_log/partial/log_ajax.php:16
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
 #: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
+#: application/views/oqrs/showrequests.php:93
 msgid "Band"
 msgstr "Band"
 
@@ -2302,6 +2304,7 @@ msgstr "Dodaj opombe"
 
 #: application/controllers/Notes.php:98
 #: application/views/oqrs/showrequests.php:93
+#: application/views/oqrs/showrequests.php:98
 msgid "Note"
 msgstr "Opomba"
 
@@ -2742,6 +2745,7 @@ msgstr "Uredi"
 #: application/views/stationsetup/stationsetup.php:38
 #: application/views/stationsetup/stationsetup.php:146
 #: application/views/stationsetup/stationsetup.php:202
+#: application/views/oqrs/showrequests.php:80
 msgid "Delete"
 msgstr "Izbriši"
 
@@ -2868,6 +2872,7 @@ msgstr "Časovnice satelitov"
 #: application/views/visitor/layout/footer.php:13
 #: application/views/visitor/layout/header.php:97
 #: application/views/visitor/layout/header.php:98
+#: application/views/oqrs/showrequests.php:74
 msgid "Search"
 msgstr "Išči"
 
@@ -4228,6 +4233,9 @@ msgstr "Razlika"
 #: application/views/timeplotter/index.php:59
 #: application/views/user/edit.php:873
 #: application/views/visitor/layout/footer.php:168
+#: application/views/oqrs/showrequests.php:38
+#: application/views/oqrs/showrequests.php:54
+#: application/views/oqrs/showrequests.php:69
 msgid "All"
 msgstr "Vse"
 
@@ -5245,6 +5253,7 @@ msgstr "POTA REF v ADIF"
 #: application/views/timeline/index.php:189
 #: application/views/usermode/index.php:41
 #: application/views/stationsetup/stationsetup.php:36
+#: application/views/oqrs/showrequests.php:102
 msgid "Status"
 msgstr "Status"
 
@@ -6376,6 +6385,7 @@ msgstr "Vsi bandi"
 #: application/views/oqrs/showrequests.php:70
 #: application/views/qrbcalc/index.php:19
 #: application/views/search/filter.php:37 application/views/user/edit.php:781
+#: application/views/oqrs/showrequests.php:75
 msgid "Reset"
 msgstr "Reset"
 
@@ -7866,6 +7876,7 @@ msgstr "Band / Satelit / Orbita"
 #: application/views/oqrs/showrequests.php:86
 #: application/views/simplefle/index.php:78
 #: application/views/zonechecker/result.php:51
+#: application/views/oqrs/showrequests.php:91
 msgid "QSO Date"
 msgstr "Datum QSO"
 
@@ -9137,6 +9148,7 @@ msgstr ""
 #: application/views/qso/index.php:369
 #: application/views/station_profile/create.php:78
 #: application/views/station_profile/edit.php:95
+#: application/views/oqrs/showrequests.php:36
 msgid "Location"
 msgstr "Lokacija"
 
@@ -9857,6 +9869,7 @@ msgstr "Ime profila"
 #: application/views/logbookadvanced/help.php:40
 #: application/views/oqrs/showrequests.php:91
 #: application/views/qrz/export.php:40 application/views/webadif/export.php:42
+#: application/views/oqrs/showrequests.php:96
 msgid "Station callsign"
 msgstr "Klicni znak postaje"
 
@@ -14419,6 +14432,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/index.php:537
 #: application/views/oqrs/showrequests.php:87
+#: application/views/oqrs/showrequests.php:92
 msgid "QSO Time"
 msgstr ""
 
@@ -14702,6 +14716,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/index.php:849
 #: application/views/oqrs/showrequests.php:58
+#: application/views/oqrs/showrequests.php:63
 msgid "# Results"
 msgstr ""
 
@@ -15712,6 +15727,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:260 application/views/qso/index.php:648
 #: application/views/user/index.php:29 application/views/user/index.php:154
 #: application/views/user/profile.php:24 application/views/view_log/qso.php:441
+#: application/views/oqrs/showrequests.php:97
 msgid "E-mail"
 msgstr ""
 
@@ -15743,6 +15759,7 @@ msgstr ""
 #: application/views/oqrs/qsolist.php:203
 #: application/views/oqrs/showrequests.php:72
 #: application/views/qslprint/qsolist.php:222
+#: application/views/oqrs/showrequests.php:77
 msgid "Add to print queue"
 msgstr ""
 
@@ -15807,12 +15824,14 @@ msgstr ""
 #: application/views/oqrs/showrequests.php:2
 #: application/views/oqrs/showrequests.php:50
 #: application/views/oqrs/status_info.php:10
+#: application/views/oqrs/showrequests.php:55
 msgid "Open request"
 msgstr ""
 
 #: application/views/oqrs/showrequests.php:3
 #: application/views/oqrs/showrequests.php:51
 #: application/views/oqrs/status_info.php:14
+#: application/views/oqrs/showrequests.php:56
 msgid "Not in log request"
 msgstr ""
 
@@ -15856,53 +15875,66 @@ msgstr ""
 
 #: application/views/oqrs/showrequests.php:42
 #: application/views/oqrs/showrequests.php:90
+#: application/views/oqrs/showrequests.php:47
+#: application/views/oqrs/showrequests.php:95
 msgid "Request callsign"
 msgstr ""
 
 #: application/views/oqrs/showrequests.php:47
+#: application/views/oqrs/showrequests.php:52
 msgid "OQRS Status"
 msgstr ""
 
 #: application/views/oqrs/showrequests.php:52
 #: application/views/oqrs/status_info.php:18
+#: application/views/oqrs/showrequests.php:57
 msgid "Done / sent"
 msgstr ""
 
 #: application/views/oqrs/showrequests.php:53
 #: application/views/oqrs/status_info.php:22
+#: application/views/oqrs/showrequests.php:58
 msgid "Pending"
 msgstr ""
 
 #: application/views/oqrs/showrequests.php:54
 #: application/views/oqrs/status_info.php:26
+#: application/views/oqrs/showrequests.php:59
 msgid "Rejected"
 msgstr ""
 
 #: application/views/oqrs/showrequests.php:71
+#: application/views/oqrs/showrequests.php:76
 msgid "With selected"
 msgstr ""
 
 #: application/views/oqrs/showrequests.php:73
+#: application/views/oqrs/showrequests.php:78
 msgid "Mark as done"
 msgstr ""
 
 #: application/views/oqrs/showrequests.php:74
+#: application/views/oqrs/showrequests.php:79
 msgid "Reject"
 msgstr ""
 
 #: application/views/oqrs/showrequests.php:85
+#: application/views/oqrs/showrequests.php:90
 msgid "Time of request"
 msgstr ""
 
 #: application/views/oqrs/showrequests.php:94
+#: application/views/oqrs/showrequests.php:99
 msgid "QSL route"
 msgstr ""
 
 #: application/views/oqrs/showrequests.php:95
+#: application/views/oqrs/showrequests.php:100
 msgid "Check log"
 msgstr ""
 
 #: application/views/oqrs/showrequests.php:96
+#: application/views/oqrs/showrequests.php:101
 msgid "QSO Match"
 msgstr ""
 
@@ -19764,6 +19796,10 @@ msgstr ""
 
 #: application/views/stationsetup/stationsetup.php:3
 msgid "Invalid characters entered in link! Enter only the slug."
+msgstr ""
+
+#: application/views/oqrs/showrequests.php:29
+msgid "Manage OQRS Requests"
 msgstr ""
 
 #~ msgid "Progress toward working all Italian provinces:"

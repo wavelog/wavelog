@@ -1752,6 +1752,7 @@ msgstr "すべてのコールブック検索が失敗したか、結果が提供
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
+#: application/views/oqrs/showrequests.php:94
 msgid "Mode"
 msgstr "モード"
 
@@ -2074,6 +2075,7 @@ msgstr "距離"
 #: application/views/view_log/partial/log_ajax.php:16
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
 #: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
+#: application/views/oqrs/showrequests.php:93
 msgid "Band"
 msgstr "バンド"
 
@@ -2303,6 +2305,7 @@ msgstr "メモを追加"
 
 #: application/controllers/Notes.php:98
 #: application/views/oqrs/showrequests.php:93
+#: application/views/oqrs/showrequests.php:98
 msgid "Note"
 msgstr "メモ"
 
@@ -2726,6 +2729,7 @@ msgstr "編集"
 #: application/views/stationsetup/stationsetup.php:202
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:738
+#: application/views/oqrs/showrequests.php:80
 msgid "Delete"
 msgstr "削除"
 
@@ -2851,6 +2855,7 @@ msgstr "衛星タイマー"
 #: application/views/visitor/layout/footer.php:13
 #: application/views/visitor/layout/header.php:97
 #: application/views/visitor/layout/header.php:98
+#: application/views/oqrs/showrequests.php:74
 msgid "Search"
 msgstr "検索"
 
@@ -3445,8 +3450,8 @@ msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
 "setup, click %shere%s."
 msgstr ""
-"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するに"
-"は、%shere%sをクリックしてください。"
+"無線局が正常に作成されました！Wavelogへようこそ！無線局の設定を完了するには、"
+"%shere%sをクリックしてください。"
 
 #: application/controllers/User.php:1430
 msgid "Station setup failed! Please set up your station manually."
@@ -4186,6 +4191,9 @@ msgstr "違い"
 #: application/views/timeplotter/index.php:59
 #: application/views/user/edit.php:873
 #: application/views/visitor/layout/footer.php:168
+#: application/views/oqrs/showrequests.php:38
+#: application/views/oqrs/showrequests.php:54
+#: application/views/oqrs/showrequests.php:69
 msgid "All"
 msgstr "全て"
 
@@ -5203,6 +5211,7 @@ msgstr "ADIFにおけるPOTA参照"
 #: application/views/stationsetup/stationsetup.php:36
 #: application/views/timeline/index.php:189
 #: application/views/usermode/index.php:41
+#: application/views/oqrs/showrequests.php:102
 msgid "Status"
 msgstr "状態"
 
@@ -6331,6 +6340,7 @@ msgstr "どのバンドも"
 #: application/views/oqrs/showrequests.php:70
 #: application/views/qrbcalc/index.php:19
 #: application/views/search/filter.php:37 application/views/user/edit.php:781
+#: application/views/oqrs/showrequests.php:75
 msgid "Reset"
 msgstr "リセット"
 
@@ -7807,6 +7817,7 @@ msgstr "バンド / 衛星 / 軌道"
 #: application/views/oqrs/showrequests.php:86
 #: application/views/simplefle/index.php:78
 #: application/views/zonechecker/result.php:51
+#: application/views/oqrs/showrequests.php:91
 msgid "QSO Date"
 msgstr "QSO日付"
 
@@ -9068,6 +9079,7 @@ msgstr ""
 #: application/views/qso/index.php:369
 #: application/views/station_profile/create.php:78
 #: application/views/station_profile/edit.php:95
+#: application/views/oqrs/showrequests.php:36
 msgid "Location"
 msgstr "位置"
 
@@ -9782,6 +9794,7 @@ msgstr "プロフィール名"
 #: application/views/logbookadvanced/help.php:40
 #: application/views/oqrs/showrequests.php:91
 #: application/views/qrz/export.php:40 application/views/webadif/export.php:42
+#: application/views/oqrs/showrequests.php:96
 msgid "Station callsign"
 msgstr "局のコールサイン"
 
@@ -14516,6 +14529,7 @@ msgstr "列の並べ替え"
 
 #: application/views/logbookadvanced/index.php:537
 #: application/views/oqrs/showrequests.php:87
+#: application/views/oqrs/showrequests.php:92
 msgid "QSO Time"
 msgstr "QSO時間"
 
@@ -14799,6 +14813,7 @@ msgstr "QSLスライドショー"
 
 #: application/views/logbookadvanced/index.php:849
 #: application/views/oqrs/showrequests.php:58
+#: application/views/oqrs/showrequests.php:63
 msgid "# Results"
 msgstr "＃ 結果"
 
@@ -15875,6 +15890,7 @@ msgstr "追加で知っておくべき情報はありますか?"
 #: application/views/qso/edit_ajax.php:260 application/views/qso/index.php:648
 #: application/views/user/index.php:29 application/views/user/index.php:154
 #: application/views/user/profile.php:24 application/views/view_log/qso.php:441
+#: application/views/oqrs/showrequests.php:97
 msgid "E-mail"
 msgstr "Eメール"
 
@@ -15907,6 +15923,7 @@ msgstr ""
 #: application/views/oqrs/qsolist.php:203
 #: application/views/oqrs/showrequests.php:72
 #: application/views/qslprint/qsolist.php:222
+#: application/views/oqrs/showrequests.php:77
 msgid "Add to print queue"
 msgstr "印刷キューに追加"
 
@@ -15970,12 +15987,14 @@ msgstr "ログにありませんか?"
 #: application/views/oqrs/showrequests.php:2
 #: application/views/oqrs/showrequests.php:50
 #: application/views/oqrs/status_info.php:10
+#: application/views/oqrs/showrequests.php:55
 msgid "Open request"
 msgstr "オープンリクエスト"
 
 #: application/views/oqrs/showrequests.php:3
 #: application/views/oqrs/showrequests.php:51
 #: application/views/oqrs/status_info.php:14
+#: application/views/oqrs/showrequests.php:56
 msgid "Not in log request"
 msgstr "ログリクエストに含まれていません"
 
@@ -16019,53 +16038,66 @@ msgstr "警告! QSO マッチを削除してもよろしいですか?"
 
 #: application/views/oqrs/showrequests.php:42
 #: application/views/oqrs/showrequests.php:90
+#: application/views/oqrs/showrequests.php:47
+#: application/views/oqrs/showrequests.php:95
 msgid "Request callsign"
 msgstr "コールサインをリクエスト"
 
 #: application/views/oqrs/showrequests.php:47
+#: application/views/oqrs/showrequests.php:52
 msgid "OQRS Status"
 msgstr "OQRSステータス"
 
 #: application/views/oqrs/showrequests.php:52
 #: application/views/oqrs/status_info.php:18
+#: application/views/oqrs/showrequests.php:57
 msgid "Done / sent"
 msgstr "完了/送信済み"
 
 #: application/views/oqrs/showrequests.php:53
 #: application/views/oqrs/status_info.php:22
+#: application/views/oqrs/showrequests.php:58
 msgid "Pending"
 msgstr "保留中"
 
 #: application/views/oqrs/showrequests.php:54
 #: application/views/oqrs/status_info.php:26
+#: application/views/oqrs/showrequests.php:59
 msgid "Rejected"
 msgstr "拒否"
 
 #: application/views/oqrs/showrequests.php:71
+#: application/views/oqrs/showrequests.php:76
 msgid "With selected"
 msgstr "選択した"
 
 #: application/views/oqrs/showrequests.php:73
+#: application/views/oqrs/showrequests.php:78
 msgid "Mark as done"
 msgstr "完了としてマーク"
 
 #: application/views/oqrs/showrequests.php:74
+#: application/views/oqrs/showrequests.php:79
 msgid "Reject"
 msgstr "拒否する"
 
 #: application/views/oqrs/showrequests.php:85
+#: application/views/oqrs/showrequests.php:90
 msgid "Time of request"
 msgstr "リクエスト時間"
 
 #: application/views/oqrs/showrequests.php:94
+#: application/views/oqrs/showrequests.php:99
 msgid "QSL route"
 msgstr "QSLルート"
 
 #: application/views/oqrs/showrequests.php:95
+#: application/views/oqrs/showrequests.php:100
 msgid "Check log"
 msgstr "ログを確認する"
 
 #: application/views/oqrs/showrequests.php:96
+#: application/views/oqrs/showrequests.php:101
 msgid "QSO Match"
 msgstr "QSOマッチ"
 
@@ -20148,6 +20180,10 @@ msgstr "CQz"
 msgid "CQz geojson"
 msgstr "CQz geojson"
 
+#: application/views/oqrs/showrequests.php:29
+msgid "Manage OQRS Requests"
+msgstr ""
+
 #~ msgid "Progress toward working all DXCC entities:"
 #~ msgstr "DXCCの全組織との連携に向けた進捗状況："
 
@@ -20406,9 +20442,9 @@ msgstr "CQz geojson"
 #~ "processed. %s Please make sure you export the LoTW certificate from tqsl "
 #~ "application without password! %s"
 #~ msgstr ""
-#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できませ"
-#~ "ん。%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パス"
-#~ "ワードなしで実行してください！%s"
+#~ "ファイル %s 内の証明書にはパスワードが含まれており、処理できません。"
+#~ "%stqsl アプリケーションから LoTW 証明書をエクスポートする際は、パスワード"
+#~ "なしで実行してください！%s"
 
 #~ msgid "Column"
 #~ msgstr "カラム"
@@ -20742,8 +20778,8 @@ msgstr "CQz geojson"
 #~ "Your active Station Location isn't linked to your Logbook. Click %shere%s "
 #~ "to do it."
 #~ msgstr ""
-#~ "現在のステーション位置がログブックとリンクされていません。リンクするに"
-#~ "は、%shere%s をクリックしてください。"
+#~ "現在のステーション位置がログブックとリンクされていません。リンクするには、"
+#~ "%shere%s をクリックしてください。"
 
 #, php-format
 #~ msgctxt "Dashboard Warning"

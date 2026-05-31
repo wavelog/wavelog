@@ -1754,6 +1754,7 @@ msgstr "Tutte le ricerche del nominativo non hanno prodotto alcun risultato."
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:114 application/views/visitor/index.php:6
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
+#: application/views/oqrs/showrequests.php:94
 msgid "Mode"
 msgstr "Modo"
 
@@ -2076,6 +2077,7 @@ msgstr "Distanza"
 #: application/views/view_log/partial/log_ajax.php:16
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:33
 #: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
+#: application/views/oqrs/showrequests.php:93
 msgid "Band"
 msgstr "Banda"
 
@@ -2306,6 +2308,7 @@ msgstr "Aggiungi nota"
 
 #: application/controllers/Notes.php:98
 #: application/views/oqrs/showrequests.php:93
+#: application/views/oqrs/showrequests.php:98
 msgid "Note"
 msgstr "Note"
 
@@ -2735,6 +2738,7 @@ msgstr "Modifica"
 #: application/views/stationsetup/stationsetup.php:202
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:738
+#: application/views/oqrs/showrequests.php:80
 msgid "Delete"
 msgstr "Elimina"
 
@@ -2861,6 +2865,7 @@ msgstr "Orari satelliti"
 #: application/views/visitor/layout/footer.php:13
 #: application/views/visitor/layout/header.php:97
 #: application/views/visitor/layout/header.php:98
+#: application/views/oqrs/showrequests.php:74
 msgid "Search"
 msgstr "Cerca"
 
@@ -4212,6 +4217,9 @@ msgstr "Differenza"
 #: application/views/timeplotter/index.php:59
 #: application/views/user/edit.php:873
 #: application/views/visitor/layout/footer.php:168
+#: application/views/oqrs/showrequests.php:38
+#: application/views/oqrs/showrequests.php:54
+#: application/views/oqrs/showrequests.php:69
 msgid "All"
 msgstr "Tutti"
 
@@ -5235,6 +5243,7 @@ msgstr "Referenze POTA in ADIF"
 #: application/views/stationsetup/stationsetup.php:36
 #: application/views/timeline/index.php:189
 #: application/views/usermode/index.php:41
+#: application/views/oqrs/showrequests.php:102
 msgid "Status"
 msgstr "Stato"
 
@@ -6373,6 +6382,7 @@ msgstr "Ogni banda"
 #: application/views/oqrs/showrequests.php:70
 #: application/views/qrbcalc/index.php:19
 #: application/views/search/filter.php:37 application/views/user/edit.php:781
+#: application/views/oqrs/showrequests.php:75
 msgid "Reset"
 msgstr "Resetta"
 
@@ -7871,8 +7881,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be one of U.S.A., Alaska or Hawaii) "
 "and STATE (Must contain a valid U.S. state abbreviation!)"
 msgstr ""
-"Campi presi in considerazione per questo premio: DXCC (Deve essere uno tra U."
-"S.A., Alaska o Hawaii) e STATE (Deve contenere una valida abbreviazione di "
+"Campi presi in considerazione per questo premio: DXCC (Deve essere uno tra "
+"U.S.A., Alaska o Hawaii) e STATE (Deve contenere una valida abbreviazione di "
 "uno stato U.S.A.!)"
 
 #: application/views/awards/was/index.php:120
@@ -7894,6 +7904,7 @@ msgstr "Banda / Satellite / Orbita"
 #: application/views/oqrs/showrequests.php:86
 #: application/views/simplefle/index.php:78
 #: application/views/zonechecker/result.php:51
+#: application/views/oqrs/showrequests.php:91
 msgid "QSO Date"
 msgstr "Data QSO"
 
@@ -9173,6 +9184,7 @@ msgstr ""
 #: application/views/qso/index.php:369
 #: application/views/station_profile/create.php:78
 #: application/views/station_profile/edit.php:95
+#: application/views/oqrs/showrequests.php:36
 msgid "Location"
 msgstr "Luogo"
 
@@ -9897,6 +9909,7 @@ msgstr "Nome del profilo"
 #: application/views/logbookadvanced/help.php:40
 #: application/views/oqrs/showrequests.php:91
 #: application/views/qrz/export.php:40 application/views/webadif/export.php:42
+#: application/views/oqrs/showrequests.php:96
 msgid "Station callsign"
 msgstr "Callsign della stazione"
 
@@ -14673,6 +14686,7 @@ msgstr "Ordina per colonna"
 
 #: application/views/logbookadvanced/index.php:537
 #: application/views/oqrs/showrequests.php:87
+#: application/views/oqrs/showrequests.php:92
 msgid "QSO Time"
 msgstr "Orario QSO"
 
@@ -14956,6 +14970,7 @@ msgstr "Presentazione QSL"
 
 #: application/views/logbookadvanced/index.php:849
 #: application/views/oqrs/showrequests.php:58
+#: application/views/oqrs/showrequests.php:63
 msgid "# Results"
 msgstr "# Risultati"
 
@@ -16051,6 +16066,7 @@ msgstr "C'è qualche informazione aggiuntiva che dobbiamo sapere?"
 #: application/views/qso/edit_ajax.php:260 application/views/qso/index.php:648
 #: application/views/user/index.php:29 application/views/user/index.php:154
 #: application/views/user/profile.php:24 application/views/view_log/qso.php:441
+#: application/views/oqrs/showrequests.php:97
 msgid "E-mail"
 msgstr "E-mail"
 
@@ -16082,6 +16098,7 @@ msgstr "Nessun QSO trovato. Sembra che tu non fossi attivo in questo momento."
 #: application/views/oqrs/qsolist.php:203
 #: application/views/oqrs/showrequests.php:72
 #: application/views/qslprint/qsolist.php:222
+#: application/views/oqrs/showrequests.php:77
 msgid "Add to print queue"
 msgstr "Aggiungi alla coda di stampa"
 
@@ -16148,12 +16165,14 @@ msgstr "Non nel registro?"
 #: application/views/oqrs/showrequests.php:2
 #: application/views/oqrs/showrequests.php:50
 #: application/views/oqrs/status_info.php:10
+#: application/views/oqrs/showrequests.php:55
 msgid "Open request"
 msgstr "Richiesta aperta"
 
 #: application/views/oqrs/showrequests.php:3
 #: application/views/oqrs/showrequests.php:51
 #: application/views/oqrs/status_info.php:14
+#: application/views/oqrs/showrequests.php:56
 msgid "Not in log request"
 msgstr "Richiedi not in log"
 
@@ -16205,53 +16224,66 @@ msgstr "Attenzione! Sei sicuro di voler eliminare la corrispondenza QSO?"
 
 #: application/views/oqrs/showrequests.php:42
 #: application/views/oqrs/showrequests.php:90
+#: application/views/oqrs/showrequests.php:47
+#: application/views/oqrs/showrequests.php:95
 msgid "Request callsign"
 msgstr "Richiedi nominativo"
 
 #: application/views/oqrs/showrequests.php:47
+#: application/views/oqrs/showrequests.php:52
 msgid "OQRS Status"
 msgstr "Stato OQRS"
 
 #: application/views/oqrs/showrequests.php:52
 #: application/views/oqrs/status_info.php:18
+#: application/views/oqrs/showrequests.php:57
 msgid "Done / sent"
 msgstr "Fatto / inviato"
 
 #: application/views/oqrs/showrequests.php:53
 #: application/views/oqrs/status_info.php:22
+#: application/views/oqrs/showrequests.php:58
 msgid "Pending"
 msgstr "in attesa"
 
 #: application/views/oqrs/showrequests.php:54
 #: application/views/oqrs/status_info.php:26
+#: application/views/oqrs/showrequests.php:59
 msgid "Rejected"
 msgstr "Rifiutato"
 
 #: application/views/oqrs/showrequests.php:71
+#: application/views/oqrs/showrequests.php:76
 msgid "With selected"
 msgstr "Con selezionato"
 
 #: application/views/oqrs/showrequests.php:73
+#: application/views/oqrs/showrequests.php:78
 msgid "Mark as done"
 msgstr "Segna come fatto"
 
 #: application/views/oqrs/showrequests.php:74
+#: application/views/oqrs/showrequests.php:79
 msgid "Reject"
 msgstr "Rifiuta"
 
 #: application/views/oqrs/showrequests.php:85
+#: application/views/oqrs/showrequests.php:90
 msgid "Time of request"
 msgstr "Orario della richiesta"
 
 #: application/views/oqrs/showrequests.php:94
+#: application/views/oqrs/showrequests.php:99
 msgid "QSL route"
 msgstr "Percorso QSL"
 
 #: application/views/oqrs/showrequests.php:95
+#: application/views/oqrs/showrequests.php:100
 msgid "Check log"
 msgstr "Controlla il registro"
 
 #: application/views/oqrs/showrequests.php:96
+#: application/views/oqrs/showrequests.php:101
 msgid "QSO Match"
 msgstr "Corrispondenza QSO"
 
@@ -18780,8 +18812,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Crea una nuova cartella in 'assets/css/' e carica un file 'bootstrap.min."
-"css' che contiene regole di stile di base. Utilizziamo i temi di %s"
+"Crea una nuova cartella in 'assets/css/' e carica un file "
+"'bootstrap.min.css' che contiene regole di stile di base. Utilizziamo i temi "
+"di %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -20403,6 +20436,10 @@ msgstr "CQz"
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr "CQz geojson"
+
+#: application/views/oqrs/showrequests.php:29
+msgid "Manage OQRS Requests"
+msgstr ""
 
 #~ msgid "Progress toward working all Italian provinces:"
 #~ msgstr "Progresso delle province italiane lavorate:"
