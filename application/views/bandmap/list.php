@@ -197,7 +197,7 @@
 
 <link rel="stylesheet" type="text/css" href="<?php echo $this->paths->cache_buster('/assets/css/bandmap_list.css'); ?>" />
 
-<div class="container-fluid" id="bandmapContainer">
+<div class="container px-3 px-lg-4 mt-3 mb-3" id="bandmapContainer">
 	<!-- Messages -->
 	<div class="messages my-1 mx-3"></div>
 
