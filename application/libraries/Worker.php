@@ -2,20 +2,20 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Worker_publisher
+ * Worker
  *
- * Thin HTTP client that manages topics and broadcasts events to the wavelog_worker Go service.
+ * Manages communication with the wavelog_worker Go service.
  *
  * Usage:
- *     $this->load->library('Worker_publisher');
- *     $this->worker_publisher->register_topic('session.42');
- *     $this->worker_publisher->publish('session.42', ['event' => 'qso_updated', ...]);
- *     $this->worker_publisher->unregister_topic('session.42');
+ *     $this->load->library('Worker');
+ *     $this->worker->register_topic('contest_session.abc123');
+ *     $this->worker->publish('contest_session.abc123', ['event' => 'qso_updated', ...]);
+ *     $this->worker->unregister_topic('contest_session.abc123');
  *
- * If not configured, all methods are no-ops. Errors are intentionally swallowed — the
- * worker is an optional layer and must never cause a successful QSO save to appear failed.
+ * If not configured or disabled, all methods are no-ops. Errors are intentionally
+ * swallowed — the worker is optional and must never cause a QSO save to appear failed.
  */
-class Worker_publisher {
+class Worker {
 
 	private string $url;
 	private string $secret;
@@ -39,7 +39,7 @@ class Worker_publisher {
 	}
 
 	/**
-	 * Availability check for the worker. Can be used in controllers to conditionally load stuff or not.
+	 * Returns true if the Worker is configured and enabled.
 	 */
 	public function is_enabled(): bool {
 		return $this->enabled;
@@ -47,10 +47,9 @@ class Worker_publisher {
 
 	/**
 	 * Registers a topic with the Worker so browsers can connect to it.
-	 * Call when a contest session becomes active (e.g. logging_engine page load).
 	 * Idempotent — safe to call on every page load.
 	 *
-	 * @param string $topic        e.g. "session.42"
+	 * @param string $topic          e.g. "contest_session.abc123"
 	 * @param bool   $require_token  Whether browsers must present a valid HMAC token.
 	 */
 	public function register_topic(string $topic, bool $require_token = true): void {
@@ -63,8 +62,6 @@ class Worker_publisher {
 	/**
 	 * Unregisters a topic. Call when the session is deleted.
 	 * Idempotent — safe even if the Worker does not know the topic.
-	 *
-	 * @param string $topic  e.g. "session.42"
 	 */
 	public function unregister_topic(string $topic): void {
 		$this->_internal_post('/internal/unregister', ['topic' => $topic]);
@@ -74,8 +71,8 @@ class Worker_publisher {
 	 * Broadcasts a payload to all clients subscribed to topic.
 	 * If the Worker returns 404 (unknown topic after a restart), re-registers and retries once.
 	 *
-	 * @param string $topic   e.g. "session.42"
-	 * @param array  $payload Forwarded as-is as the push envelope payload.
+	 * @param string $topic
+	 * @param array  $payload  Forwarded as-is as the push envelope payload.
 	 */
 	public function publish(string $topic, array $payload): void {
 		if (!$this->enabled) {
@@ -105,7 +102,7 @@ class Worker_publisher {
 		curl_close($ch);
 
 		if ($curl_err !== '') {
-			log_message('error', 'Worker_publisher: publish(' . $topic . ') failed: ' . $curl_err);
+			log_message('error', 'Worker: publish(' . $topic . ') failed: ' . $curl_err);
 			return;
 		}
 
@@ -117,8 +114,70 @@ class Worker_publisher {
 		}
 
 		if ($http_code !== 200) {
-			log_message('error', 'Worker_publisher: publish(' . $topic . ') returned HTTP ' . $http_code);
+			log_message('error', 'Worker: publish(' . $topic . ') returned HTTP ' . $http_code);
 		}
+	}
+
+	/**
+	 * Returns the public WebSocket URL for the browser (worker_client_url from config).
+	 * Empty string if not configured.
+	 */
+	public function client_url(): string {
+		$CI =& get_instance();
+		return (string) $CI->config->item('worker_client_url', 'worker');
+	}
+
+	/**
+	 * Generates a signed HMAC token for browser WebSocket authentication.
+	 * The Go worker verifies this locally — no PHP callback needed.
+	 * Returns empty string if the worker secret is not configured.
+	 *
+	 * @param int $contest_session_id
+	 * @param int $ttl_seconds  Default 24h
+	 */
+	public function create_token(int $contest_session_id, int $ttl_seconds = 86400): string {
+		if ($this->secret === '') {
+			return '';
+		}
+
+		$CI =& get_instance();
+		$user_id = intval($CI->session->userdata('source_uid') ?: $CI->session->userdata('user_id'));
+
+		$claims  = [
+			'user_id'    => $user_id,
+			'session_id' => $contest_session_id,
+			'expires'    => time() + $ttl_seconds,
+		];
+
+		$encoded = bin2hex(json_encode($claims));
+		$sig     = hash_hmac('sha256', $encoded, $this->secret);
+		return $encoded . '.' . $sig;
+	}
+
+	/**
+	 * Verifies a signed HMAC token. Returns the claims array or null on failure.
+	 */
+	public function verify_token(string $token): ?array {
+		if ($this->secret === '' || $token === '') {
+			return null;
+		}
+
+		$parts = explode('.', $token, 2);
+		if (count($parts) !== 2) {
+			return null;
+		}
+		[$encoded, $sig] = $parts;
+
+		if (!hash_equals(hash_hmac('sha256', $encoded, $this->secret), $sig)) {
+			return null;
+		}
+
+		$claims = json_decode(hex2bin($encoded), true);
+		if (!$claims || ($claims['expires'] ?? 0) < time()) {
+			return null;
+		}
+
+		return $claims;
 	}
 
 	/**
@@ -152,9 +211,9 @@ class Worker_publisher {
 		curl_close($ch);
 
 		if ($curl_err !== '') {
-			log_message('error', 'Worker_publisher: POST ' . $path . ' failed: ' . $curl_err);
+			log_message('error', 'Worker: POST ' . $path . ' failed: ' . $curl_err);
 		} elseif ($http_code !== 200) {
-			log_message('error', 'Worker_publisher: POST ' . $path . ' returned HTTP ' . $http_code);
+			log_message('error', 'Worker: POST ' . $path . ' returned HTTP ' . $http_code);
 		}
 	}
 }

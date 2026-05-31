@@ -268,6 +268,19 @@ class Contesting extends CI_Controller {
 			redirect('contesting');
 		}
 
+		// setting up worker if available
+		$this->load->library('Worker');
+		$worker_topic = 'contest_session.' . md5($logging_token . $this->session->session_id); // unique topic per contest session and user session
+		if ($this->worker->is_enabled()) {
+			$this->worker->register_topic($worker_topic);
+		}
+
+		if ($this->worker->is_enabled() && $decoded_token) {
+			$data['worker_client_url'] = $this->worker->client_url();
+			$data['worker_topic']      = $worker_topic;
+			$data['worker_token']      = $this->worker->create_token((int) $decoded_token['contest_session_id']);
+		}
+
 		$contest_session_id = $decoded_token['contest_session_id'];
 
 		// Load session data

@@ -18,6 +18,7 @@
 // Core Imports
 import { DataStore } from './core/data-store.js';
 import { AjaxTransport } from './core/ajax-transport.js';
+import { WsTransport } from './core/ws-transport.js';
 import { SyncEngine } from './core/sync-engine.js';
 import { WindowManager } from './core/window-manager.js';
 import { ComponentManager } from './core/component-loader.js';
@@ -109,6 +110,17 @@ import { ComponentManager } from './core/component-loader.js';
 
             // Start synchronization
             syncEngine.start();
+
+            // Connect to Worker WebSocket if configured
+            const workerCfg = window.ContestLoggerConfig?.worker;
+            if (workerCfg?.url && workerCfg?.topic && workerCfg?.token) {
+                const wsTransport = new WsTransport(ajaxTransport, workerCfg.url, workerCfg.topic, workerCfg.token);
+                wsTransport.onPush = (payload) => {
+                    console.debug('[WsTransport] push received:', payload);
+                };
+                wsTransport.connect();
+                window.contestApp.wsTransport = wsTransport;
+            }
 
             // Hide loading screen after a brief delay to allow components to initialize
             setTimeout(() => {
