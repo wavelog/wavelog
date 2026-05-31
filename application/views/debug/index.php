@@ -138,6 +138,15 @@
             </div>
 
             <div class="card">
+                <div class="card-header"><?= __("Wavelog Worker Backend"); ?></div>
+                <div class="card-body">
+                    <div id="worker-status-container">
+                        <span class="text-muted"><?= __("Loading..."); ?></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
                 <div class="card-header"><?= __("Folder Permissions"); ?></div>
                 <div class="card-body">
                     <p><?= __("This verifies that the folders used by Wavelog have read and write permissions by PHP."); ?></p>
@@ -835,6 +844,52 @@
     <?php } else { ?>
         var local_branch = 'n/a';
     <?php } ?>
+
+    (function () {
+        fetch('<?= site_url('worker/debug_status'); ?>')
+            .then(r => r.json())
+            .then(function (data) {
+                var container = document.getElementById('worker-status-container');
+                if (!data.success) { return; }
+                if (data.disabled) {
+                    container.innerHTML = '<span class="badge rounded-pill text-bg-secondary"><?= __("Disabled"); ?></span> <?= __("Worker backend is not configured."); ?>';
+                    return;
+                }
+                if (!data.workers || data.workers.length === 0) {
+                    container.innerHTML = '<span class="badge rounded-pill text-bg-warning"><?= __("Unreachable"); ?></span> <?= __("Worker is configured but did not respond."); ?>';
+                    return;
+                }
+                var items = data.workers.map(function (w, i) {
+                    var badge = w.alive
+                        ? '<span class="badge rounded-pill text-bg-success"><?= __("Online"); ?></span>'
+                        : '<span class="badge rounded-pill text-bg-danger"><?= __("Offline"); ?></span>';
+                    var topics  = w.active_topics     !== null ? w.active_topics     : '—';
+                    var clients = w.connected_clients !== null ? w.connected_clients : '—';
+                    var uptime  = w.worker_uptime     !== null ? w.worker_uptime     : '—';
+                    var id = 'worker-acc-' + i;
+                    return '<div class="accordion-item">'
+                        + '<h2 class="accordion-header">'
+                        + '<button class="accordion-button' + (i > 0 ? ' collapsed' : '') + '" type="button" data-bs-toggle="collapse" data-bs-target="#' + id + '">'
+                        + badge + '&nbsp;&nbsp;' + w.public_url
+                        + '<span class="ms-3 text-muted small">'
+                        + '&nbsp;' + topics + ' <?= __("Topics"); ?> &middot; ' + clients + ' <?= __("Clients"); ?>'
+                        + '</span>'
+                        + '</button></h2>'
+                        + '<div id="' + id + '" class="accordion-collapse collapse' + (i === 0 ? ' show' : '') + '">'
+                        + '<div class="accordion-body p-0">'
+                        + '<table width="100%" class="table table-sm mb-0">'
+                        + '<tr><td><?= __("Version"); ?></td><td>' + (w.version ? w.version : '—') + '</td></tr>'
+                        + '<tr><td><?= __("Uptime"); ?></td><td>' + uptime + '</td></tr>'
+                        + '</table>'
+                        + '</div></div></div>';
+                });
+                container.innerHTML = '<div class="accordion">' + items.join('') + '</div>';
+            })
+            .catch(function () {
+                document.getElementById('worker-status-container').innerHTML =
+                    '<span class="badge rounded-pill text-bg-warning"><?= __("Error"); ?></span> <?= __("Could not fetch worker status."); ?>';
+            });
+    })();
 </script>
 
 <?php
