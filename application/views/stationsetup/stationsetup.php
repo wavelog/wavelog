@@ -1,5 +1,6 @@
 <script type="text/javascript">
     var custom_date_format = "<?php echo $custom_date_format ?>";
+	var lang_invalid_characters = "<?= __("Invalid characters entered in link! Enter only the slug.") ?>";
 </script>
 <div class="container">
 
