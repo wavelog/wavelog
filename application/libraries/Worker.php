@@ -30,8 +30,15 @@ class Worker {
 		$timeout_seconds  = (float)  $CI->config->item('worker_timeout', 'worker');
 		$this->timeout_ms = (int) max(100, $timeout_seconds * 1000);
 
+		$vip_cfg   = (string) $CI->config->item('worker_vip', 'worker');
 		$urls_cfg  = $CI->config->item('worker_urls', 'worker');
-		$this->url = is_array($urls_cfg) && !empty($urls_cfg) ? rtrim($urls_cfg[0], '/') : '';
+		if ($vip_cfg !== '') {
+			$this->url = rtrim($vip_cfg, '/');
+		} elseif (is_array($urls_cfg) && !empty($urls_cfg)) {
+			$this->url = rtrim($urls_cfg[0], '/');
+		} else {
+			$this->url = '';
+		}
 
 		$this->enabled    = (bool) $CI->config->item('worker_enabled', 'worker')
 		                    && $this->url !== ''
