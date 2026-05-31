@@ -1,9 +1,12 @@
-<div class="container">
-
-	<br>
+<div class="container px-3 px-lg-4 mt-3 mb-3">
 
 	<h2><?php echo $page_title; ?></h2>
-	<?= __("A maximum of 1000 rows are shown in the table. This is for performance reasons."); ?>
+
+	<div class="card">
+	  <div class="card-header">
+	    <?= __("View QSO Confirmations"); ?> - <?= __("A maximum of 1000 rows are shown in the table. This is for performance reasons."); ?>
+	  </div>
+	  <div class="card-body">
 
 <div class="d-flex mt-2">
 	<form class="form confirmationform">
@@ -24,4 +27,7 @@
 </div>
 <div id="searchresult"></div>
 
+
+	  </div>
+	</div>
 </div>

@@ -991,19 +991,36 @@ label {
     bottom: 0;
     left: 0;
     width: 100%;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, 200px);
 	justify-content: center;
-    align-items: stretch;
+	gap: 0 1rem;
+}
+
+.coord-pair {
+	white-space: nowrap;
+}
+
+.coord-pair .text-success {
+	display: inline-block;
+	width: 120px;
 }
 
 .cohidden {
     display:none;
 }
 
-#latDeg, #lngDeg {
-    width: 170px;
-}
-#locator, #distance, #bearing, #ituzonedisplay, #cqzonedisplay{
-    width: 120px;
+@media (min-width: 1920px) {
+	.coordinates {
+		display: flex;
+		gap: 0 1rem;
+	}
+	#latDeg, #lngDeg {
+		width: 170px;
+	}
+	#locator, #distance, #bearing, #ituzonedisplay, #cqzonedisplay{
+		width: 120px;
+	}
 }
 
 .hamsatBgLin {
@@ -1450,3 +1467,9 @@ svg text.month { fill: #AAA; }
 }
 .legend-item { display: inline-flex; align-items: center; gap: 4px; font-size: 0.8rem;}
 .legend-swatch { width: 16px; height: 16px; border: 1px solid #d1d5da; border-radius: 3px; display: inline-block; }
+
+.my-div-icon {
+	white-space: nowrap;
+	background: transparent !important;
+	border: none !important;
+}

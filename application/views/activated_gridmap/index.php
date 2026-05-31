@@ -2,11 +2,16 @@
 	let user_map_custom = JSON.parse('<?php echo $user_map_custom; ?>');
 </script>
 
-<div class="container gridsquare_map_form">
+<div class="container gridsquare_map_form px-3 px-lg-4 mt-3 mb-3">
 
-	<br>
 
 	<h2><?= __("Activated Gridsquare Map"); ?></h2>
+
+	<div class="card">
+	  <div class="card-header">
+	    <?= __("Activated Gridsquares"); ?>
+	  </div>
+	  <div class="card-body">
 
 <form class="d-flex align-items-center">
             <label class="my-1 me-2" for="band"><?= __("Band"); ?></label>
@@ -96,6 +101,8 @@
 			<div class="alert-message error">
 			  <p><?php echo $this->session->flashdata('message'); ?></p>
 			</div>
+	  </div>
+	</div>
 		<?php } ?>
 </div>
 

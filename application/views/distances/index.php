@@ -1,6 +1,4 @@
-<div class="container">
-
-    <br>
+<div class="container px-3 px-lg-4 mt-3 mb-3">
 
     <h2><?= __("Distances Worked"); ?></h2>
     <script>
@@ -14,6 +12,12 @@
         var lang_statistics_distances_callsigns_worked = '<?= __("Callsign(s) worked (max 5 shown)"); ?>';
         var lang_statistics_distances_qsos_with = '<?= __("QSOs with"); ?>';
     </script>
+
+	    <div class="card">
+	      <div class="card-header">
+	        <?= __("Distances Worked"); ?>
+	      </div>
+	      <div class="card-body">
     <div id="distances_div">
         <form class="d-flex align-items-center">
             <label class="my-1 me-2" for="distplot_bands"><?= __("Band selection"); ?></label>
@@ -65,4 +69,6 @@
         </form>
     </div>
 
+	      </div>
+	    </div>
 </div>

@@ -1,6 +1,4 @@
-<div class="container-fluid">
-
-    <br>
+<div class="container px-3 px-lg-4 mt-3 mb-3">
 
     <h2><?= __("eQSL Cards"); ?></h2>
 
@@ -10,6 +8,12 @@
             <?= sprintf(__("You are using %s of disk space to store eQSL Card assets"), $storage_used ); ?>
         </div>
     <?php } ?>
+
+    <div class="card">
+		<div class="card-header">
+			<?= __("View eQSL Cards"); ?>
+		</div>
+		<div class="card-body">
 
     <?php
 
@@ -100,5 +104,8 @@
             <?php } ?>
         </div>
 	<?php } ?>
+
+      </div>
+    </div>
 
 </div>
