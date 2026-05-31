@@ -39,6 +39,13 @@ class Worker_publisher {
 	}
 
 	/**
+	 * Availability check for the worker. Can be used in controllers to conditionally load stuff or not.
+	 */
+	public function is_enabled(): bool {
+		return $this->enabled;
+	}
+
+	/**
 	 * Registers a topic with the Worker so browsers can connect to it.
 	 * Call when a contest session becomes active (e.g. logging_engine page load).
 	 * Idempotent — safe to call on every page load.
