@@ -15,6 +15,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 // Enable or disable the Worker integration entirely.
 $config['worker_enabled'] = false;
 
+// Optional VIP/load-balancer URL shown as a connectivity check in the debug page.
+// Leave empty for single-instance setups.
+$config['worker_vip'] = '';
+
 // Internal URLs of wavelog_worker instances (PHP -> Worker, HTTP).
 // Single instance: one entry. Cluster: one entry per node.
 // PHP publishes to the first entry; the debug page shows status of all nodes.

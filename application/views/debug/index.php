@@ -859,6 +859,18 @@
                     container.innerHTML = '<span class="badge rounded-pill text-bg-warning"><?= __("Unreachable"); ?></span> <?= __("Worker is configured but did not respond."); ?>';
                     return;
                 }
+
+                var html = '';
+
+                if (data.vip) {
+                    var vipBadge = data.vip.alive
+                        ? '<span class="badge rounded-pill text-bg-success"><?= __("Available"); ?></span>'
+                        : '<span class="badge rounded-pill text-bg-danger"><?= __("Offline"); ?></span>';
+                    html += '<div class="mb-2">'
+                        + '<strong>VIP</strong>&nbsp;&nbsp;' + vipBadge + '&nbsp;&nbsp;<code>' + data.vip.url + '</code>'
+                        + '</div>';
+                }
+
                 var rows = data.workers.map(function (w) {
                     var badge = w.alive
                         ? '<span class="badge rounded-pill text-bg-success"><?= __("Online"); ?></span>'
@@ -878,7 +890,8 @@
                     + '<th><?= __("Version"); ?></th>'
                     + '<th><?= __("Uptime"); ?></th>'
                     + '</tr></thead>';
-                container.innerHTML = '<table class="table table-sm mb-0">' + thead + '<tbody>' + rows.join('') + '</tbody></table>';
+                html += '<table class="table table-sm mb-0">' + thead + '<tbody>' + rows.join('') + '</tbody></table>';
+                container.innerHTML = html;
             })
             .catch(function () {
                 document.getElementById('worker-status-container').innerHTML =

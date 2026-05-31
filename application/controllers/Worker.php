@@ -39,6 +39,22 @@ class Worker extends CI_Controller {
 			return;
 		}
 
+		$vip_url = rtrim((string) $this->config->item('worker_vip', 'worker'), '/');
+		$vip     = null;
+		if ($vip_url !== '') {
+			$ch = curl_init($vip_url . '/internal/status');
+			curl_setopt_array($ch, [
+				CURLOPT_RETURNTRANSFER    => true,
+				CURLOPT_CONNECTTIMEOUT_MS => 300,
+				CURLOPT_TIMEOUT_MS        => 800,
+				CURLOPT_HTTPHEADER        => ['X-Worker-Secret: ' . $secret],
+			]);
+			curl_exec($ch);
+			$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+			curl_close($ch);
+			$vip = ['url' => $vip_url, 'alive' => $http_code === 200];
+		}
+
 		$workers = [];
 		foreach ($worker_urls as $url) {
 			$ch = curl_init($url . '/internal/status');
@@ -64,7 +80,7 @@ class Worker extends CI_Controller {
 			];
 		}
 
-		echo json_encode(['success' => true, 'workers' => $workers]);
+		echo json_encode(['success' => true, 'vip' => $vip, 'workers' => $workers]);
 	}
 
 }
