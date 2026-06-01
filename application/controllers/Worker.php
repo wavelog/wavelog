@@ -29,6 +29,11 @@ class Worker extends CI_Controller {
 			return;
 		}
 
+		if (!$this->config->item('worker_enabled', 'worker')) {
+			echo json_encode(['success' => true, 'disabled' => true, 'workers' => []]);
+			return;
+		}
+
 		$secret = (string) $this->config->item('worker_secret', 'worker');
 
 		$urls_cfg    = $this->config->item('worker_urls', 'worker');
