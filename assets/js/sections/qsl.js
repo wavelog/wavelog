@@ -72,9 +72,19 @@ $(document).ready(function () {
 			inheritClass: true,
 			includeSelectAllOption: true
 		});
+
+		var pathParts = window.location.pathname.replace(/\/+$/, '').split('/');
+		var confirmIndex = pathParts.indexOf('confirmations');
+		if (confirmIndex !== -1 && pathParts.length > confirmIndex + 1) {
+			var requestedType = pathParts[confirmIndex + 1];
+			if ($('#confirmationtype option[value="' + requestedType + '"]').length) {
+				$('#confirmationtype option').prop('selected', false);
+				$('#confirmationtype option[value="' + requestedType + '"]').prop('selected', true);
+				$('#confirmationtype').multiselect('refresh');
+			}
+		}
 	}
 	if (window.location.href.includes('generic_qsl/confirmations')) {
 		getConfirmations(this.form,'false')
 	}
 });
-
