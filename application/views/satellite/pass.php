@@ -1,10 +1,12 @@
 <script type="text/javascript">
     var user_id = <?php echo $this->session->userdata('user_id'); ?>;
 </script>
-<div class="container container-fluid">
-<br>
+<div class="container px-3 px-lg-4 mt-3 mb-3">
 <h2><?= __("Satellite passes"); ?></h2>
 <div class="card">
+	<div class="card-header">
+			<?= __("Look for satellite passes"); ?>
+	</div>
 	<div class="card-body">
 		<form class="d-flex align-items-center">
 		<div class="row">
