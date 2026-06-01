@@ -54,6 +54,8 @@ export class DataStore {
 		if (this.shouldPersist(key)) {
 			this._persistKey(key, value);
 		}
+
+		this.requestSync(key);
 	}
 
 	/**

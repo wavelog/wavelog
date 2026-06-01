@@ -17,6 +17,11 @@ class Contesting extends CI_Controller {
 	private $new_qsos = [];
 
 	/**
+	 * Worker availability
+	 */
+	private $worker_available = false;
+
+	/**
 	 * Active Station Location
 	 */
 	private $active_station_location = null;
@@ -35,6 +40,9 @@ class Contesting extends CI_Controller {
 		} else {
 			$this->active_station_location = $this->stations->find_active();
 		}
+
+		$this->load->is_loaded('Worker') ?: $this->load->library('Worker');
+		$this->worker_available = $this->worker->is_enabled();
 	}
 
 	/**
@@ -269,13 +277,12 @@ class Contesting extends CI_Controller {
 		}
 
 		// setting up worker if available
-		$this->load->library('Worker');
-		$worker_topic = 'contest_session.' . md5($logging_token . $this->session->session_id); // unique topic per contest session and user session
-		if ($this->worker->is_enabled()) {
+		$worker_topic = 'contest_session.' . $decoded_token['contest_session_id']; // shared topic for all operators in this contest session
+		if ($this->worker_available) {
 			$this->worker->register_topic($worker_topic);
 		}
 
-		if ($this->worker->is_enabled() && $decoded_token) {
+		if ($this->worker_available && $decoded_token) {
 			$data['worker_client_url'] = $this->worker->client_url();
 			$data['worker_topic']      = $worker_topic;
 			$data['worker_token']      = $this->worker->create_token((int) $decoded_token['contest_session_id']);
@@ -800,6 +807,11 @@ class Contesting extends CI_Controller {
 				// Link QSO to contest session
 				if ($save_result['qso_id']) {
 					$this->contesting_model->link_qso($save_result['qso_id'], $session_info['contest_session_id']);
+					// Notify worker clients about new QSO if worker is available
+					if ($this->worker_available) {
+						$this->worker->publish('contest_session.' . $session_info['contest_session_id'], ['type' => 'sync_required']);
+						log_message('debug', 'published sync_required for contest session ' . $session_info['contest_session_id']);
+					}
 				} else {
 					throw new Exception('Failed to save QSO');;
 				}

@@ -18,13 +18,15 @@ export class SyncEngine {
 		this.lastHeartbeatTime = 0; // Track when last request was sent
 		this.heartbeatStartTime = 0; // Track when heartbeat request started
 		this.heartbeatMaxDuration = 2000; // Maximum acceptable duration is 2 seconds (no parallel requests possible)
-		
+		this._workerDriven  = false; // When true, heartbeat only fires on triggerNow(), not on a timer
+		this._pendingTrigger = false; // A triggerNow() arrived while a request was in-flight
+
 		// Handler system
 		this.syncHandlers = new Map(); // key pattern -> handler object
 
 		// Listen for sync requests from DataStore
 		this.dataStore.on('sync_requested', (key) => {
-			// Sync will be picked up in next heartbeat
+			if (this._workerDriven) this.triggerNow();
 		});
 	}
 
@@ -67,6 +69,36 @@ export class SyncEngine {
 	}
 
 	/**
+	 * Switch to worker-driven mode: disable the periodic timer.
+	 * Heartbeats will only fire via triggerNow().
+	 * @param {boolean} flag
+	 */
+	setWorkerDriven(flag) {
+		this._workerDriven = flag;
+		if (flag && this.heartbeatInterval) {
+			clearTimeout(this.heartbeatInterval);
+			this.heartbeatInterval = null;
+		}
+	}
+
+	/**
+	 * Trigger a heartbeat immediately (bypasses the periodic timer).
+	 * Safe to call while a request is in-flight — queues one follow-up.
+	 */
+	triggerNow() {
+		if (!this.isRunning) return;
+		if (this.isPending) {
+			this._pendingTrigger = true;
+			return;
+		}
+		if (this.heartbeatInterval) {
+			clearTimeout(this.heartbeatInterval);
+			this.heartbeatInterval = null;
+		}
+		this._heartbeat();
+	}
+
+	/**
 	 * Stop the sync heartbeat
 	 */
 	stop() {
@@ -86,13 +118,13 @@ export class SyncEngine {
 
 		// We don't need to run the heartbeat if the tab is not active/visible
 		if (document.hidden) {
-			this.heartbeatInterval = setTimeout(() => this._heartbeat(), this.syncInterval);
+			if (!this._workerDriven) this.heartbeatInterval = setTimeout(() => this._heartbeat(), this.syncInterval);
 			return;
 		}
 
 		// If a request is pending, wait for it to complete
 		if (this.isPending) {
-			this.heartbeatInterval = setTimeout(() => this._heartbeat(), 100);
+			if (!this._workerDriven) this.heartbeatInterval = setTimeout(() => this._heartbeat(), 100);
 			return;
 		}
 
@@ -101,7 +133,11 @@ export class SyncEngine {
 		const delayNeeded = Math.max(0, this.syncInterval - timeSinceLastHeartbeat);
 
 		if (delayNeeded > 0) {
-			this.heartbeatInterval = setTimeout(() => this._heartbeat(), delayNeeded);
+			// Always schedule a deferred heartbeat — in worker mode this ensures pending
+			// commands (e.g. a QSO saved right after the last heartbeat) are not lost.
+			if (!this.heartbeatInterval) {
+				this.heartbeatInterval = setTimeout(() => this._heartbeat(), delayNeeded);
+			}
 			return;
 		}
 
@@ -130,7 +166,12 @@ export class SyncEngine {
 					.catch(err => this._handleError(err))
 					.finally(() => {
 						this.isPending = false;
-						this.heartbeatInterval = setTimeout(() => this._heartbeat(), 0);
+						if (!this._workerDriven) {
+							this.heartbeatInterval = setTimeout(() => this._heartbeat(), 0);
+						} else if (this._pendingTrigger) {
+							this._pendingTrigger = false;
+							this._heartbeat();
+						}
 					});
 				return;
 			}
@@ -139,7 +180,7 @@ export class SyncEngine {
 		}
 
 		// Schedule next heartbeat
-		this.heartbeatInterval = setTimeout(() => this._heartbeat(), this.syncInterval);
+		if (!this._workerDriven) this.heartbeatInterval = setTimeout(() => this._heartbeat(), this.syncInterval);
 	}
 
 	/**

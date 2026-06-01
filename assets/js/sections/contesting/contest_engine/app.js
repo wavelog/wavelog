@@ -116,10 +116,13 @@ import { ComponentManager } from './core/component-loader.js';
             if (workerCfg?.url && workerCfg?.topic && workerCfg?.token) {
                 const wsTransport = new WsTransport(ajaxTransport, workerCfg.url, workerCfg.topic, workerCfg.token);
                 wsTransport.onPush = (payload) => {
-                    console.debug('[WsTransport] push received:', payload);
+                    if (payload?.type === 'sync_required') {
+                        syncEngine.triggerNow();
+                    }
                 };
                 wsTransport.connect();
                 window.contestApp.wsTransport = wsTransport;
+                syncEngine.setWorkerDriven(true);
             }
 
             // Hide loading screen after a brief delay to allow components to initialize
