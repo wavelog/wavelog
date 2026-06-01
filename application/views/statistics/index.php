@@ -43,7 +43,7 @@
 		};
 </script>
 
-<div class="container statistics px-3 px-lg-4 mt-3 mb-3">
+<div class="container px-3 px-lg-4 mt-3 mb-3">
 
 	<h2>
 		<?php echo $page_title; ?>
