@@ -846,7 +846,7 @@
     <?php } ?>
 
     (function () {
-        fetch('<?= site_url('worker/debug_status'); ?>')
+        fetch('<?= site_url('debug/worker_status'); ?>')
             .then(r => r.json())
             .then(function (data) {
                 var container = document.getElementById('worker-status-container');
