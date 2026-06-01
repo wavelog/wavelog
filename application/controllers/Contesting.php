@@ -297,6 +297,19 @@ class Contesting extends CI_Controller {
 			redirect('contesting');
 		}
 
+		// Per-user map preferences (night shadow / path line / station marker).
+		// Stored in user_options (bound to user_id), default all on.
+		$this->load->model('user_options_model');
+		$map_prefs = ['nightshadow' => true, 'pathline' => true, 'station' => true];
+		$pref_row = $this->user_options_model->get_options('contest_logger_settings', ['option_name' => 'map_prefs']);
+		if ($pref_row && $pref_row->num_rows() > 0) {
+			$stored = json_decode($pref_row->row()->option_value, true);
+			if (is_array($stored)) {
+				$map_prefs = array_merge($map_prefs, $stored);
+			}
+		}
+		$data['map_prefs'] = $map_prefs;
+
 		// Generate storage key for localStorage. This needs to be collision-free between different Wavelog Instances and different users
 		$data['storage_key'] = md5($this->config->item('base_url') . $contest_session_id . $this->session->userdata('user_id'));
 
@@ -1027,6 +1040,50 @@ class Contesting extends CI_Controller {
 				'success' => true,
 				'message' => 'Default layout set successfully'
 			]);
+		} catch (Exception $e) {
+			http_response_code(400);
+			echo json_encode([
+				'success' => false,
+				'error' => $e->getMessage()
+			]);
+		}
+	}
+
+	/**
+	 * Save per-user contest map preferences (night shadow / path line / station marker).
+	 * POST: /contesting/save_map_prefs
+	 * Stored per-user in user_options (bound to user_id), so other users on the same
+	 * device do not inherit them.
+	 */
+	public function save_map_prefs() {
+		header('Content-Type: application/json');
+
+		if ($this->input->method() !== 'post') {
+			$this->_teapot();
+			return;
+		}
+
+		try {
+			$payload = json_decode($this->input->raw_input_stream, true);
+			if (!is_array($payload)) {
+				throw new Exception('Invalid payload');
+			}
+
+			// Whitelist + normalise to booleans
+			$prefs = [
+				'nightshadow' => !empty($payload['nightshadow']),
+				'pathline'    => !empty($payload['pathline']),
+				'station'     => !empty($payload['station']),
+			];
+
+			$this->load->model('user_options_model');
+			$this->user_options_model->set_option(
+				'contest_logger_settings',
+				'map_prefs',
+				['value' => json_encode($prefs)]
+			);
+
+			echo json_encode(['success' => true]);
 		} catch (Exception $e) {
 			http_response_code(400);
 			echo json_encode([

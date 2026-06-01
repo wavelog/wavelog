@@ -1,0 +1,23 @@
+/* Dim dot for already-logged QSOs (the trail) */
+.contest-map-trail-dot span {
+	display: block;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: #1e6fff;
+	opacity: 0.5;
+	border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+/* Own station marker (star) */
+.contest-map-station {
+	color: #d6a400;
+	font-size: 16px;
+	line-height: 16px;
+	text-shadow: 0 0 2px #fff, 0 0 2px #fff;
+}
+
+/* Layer toggle control (night shadow / path line / station) */
+.contest-map-toggles label {
+	margin: 0;
+}

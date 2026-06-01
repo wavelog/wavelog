@@ -264,6 +264,13 @@ class QsoFormComponent {
 			this.updateWorkedBeforeWarning(callsign);
 		});
 
+		// Live map preview: re-emit location when the received gridsquare changes, so the
+		// map can plot the exact grid (with the current DXCC info as fallback).
+		const gridRcvd = this.container.querySelector('#qso-gridsquare-received');
+		if (gridRcvd) {
+			gridRcvd.addEventListener('input', () => this.emitQsoLocation(this.lastDxccInfo));
+		}
+
 		// Escape resets the form — fires on keyup so it wins over any browser default
 		// action on keydown (e.g. Chrome restoring input values on Escape)
 		document.addEventListener('keyup', (e) => {
@@ -599,15 +606,7 @@ class QsoFormComponent {
 			this.updateDxccInfoDisplay(dxccInfo);
 			this.writeDxccToView(dxccInfo);
 
-			const latValue = dxccInfo?.lat ?? dxccInfo?.latitude;
-			const lonValue = dxccInfo?.long ?? dxccInfo?.lon ?? dxccInfo?.longitude;
-			const lat = parseFloat(latValue);
-			const lon = parseFloat(lonValue);
-			if (Number.isFinite(lat) && Number.isFinite(lon)) {
-				this.dataStore?.emit('qso_location_updated', { lat, lon });
-			} else {
-				this.dataStore?.emit('qso_location_updated', null);
-			}
+			this.emitQsoLocation(dxccInfo);
 		} catch (error) {
 			if (lookupToken !== this.dxccLookupToken) return;
 			console.error('QSO Form: DXCC lookup failed', error);
@@ -615,6 +614,30 @@ class QsoFormComponent {
 			this.writeDxccToView(null);
 			this.dataStore?.emit('qso_location_updated', null);
 		}
+	}
+
+	/**
+	 * Emit the current QSO's map location. Prefers the entered gridsquare (precise);
+	 * the map decodes it. Falls back to the DXCC country center from the lookup.
+	 * Passing the raw grid lets the map plot the exact field instead of the country.
+	 * @param {Object|null} dxccInfo
+	 */
+	emitQsoLocation(dxccInfo) {
+		if (!this.dataStore) return;
+		const grid = this.container?.querySelector('#qso-gridsquare-received')?.value.trim().toUpperCase() || '';
+		const lat = parseFloat(dxccInfo?.lat ?? dxccInfo?.latitude);
+		const lon = parseFloat(dxccInfo?.long ?? dxccInfo?.lon ?? dxccInfo?.longitude);
+		const hasDxcc = Number.isFinite(lat) && Number.isFinite(lon);
+
+		if (!grid && !hasDxcc) {
+			this.dataStore.emit('qso_location_updated', null);
+			return;
+		}
+		this.dataStore.emit('qso_location_updated', {
+			grid: grid || null,
+			lat: hasDxcc ? lat : null,
+			lon: hasDxcc ? lon : null
+		});
 	}
 
 	writeDxccToView(dxccInfo) {

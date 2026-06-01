@@ -15,7 +15,8 @@
             'url'   => $worker_client_url,
             'topic' => $worker_topic,
             'token' => $worker_token,
-        ] : null); ?>
+        ] : null); ?>,
+        mapPrefs: <?php echo json_encode($map_prefs ?? ['nightshadow' => true, 'pathline' => true, 'station' => true]); ?>
     };
 
     // Language
@@ -41,6 +42,9 @@
     let lang_heartbeat_warning = "<?= __("Heartbeat Warning") ?>";
     let lang_heartbeat_slow = "<?= __("Heartbeat request took %1 ms (threshold: %2 ms)") ?>";
     let lang_window_default_title = "<?= __("Window") ?>";
+    let lang_map_nightshadow = "<?= __("Night") ?>";
+    let lang_map_pathline = "<?= __("Path") ?>";
+    let lang_map_station = "<?= __("Station") ?>";
 </script>
 
 <div>

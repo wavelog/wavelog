@@ -47,7 +47,8 @@ $config = [
 				"assets/js/leaflet/leaflet.js",
 				"assets/js/leaflet/Control.FullScreen.js",
 				"assets/js/leaflet/L.Maidenhead.qrb.js",
-				"assets/js/leaflet/leaflet.geodesic.js"
+				"assets/js/leaflet/leaflet.geodesic.js",
+				"assets/js/leaflet/L.Terminator.js"
 			];
 			$output = [];
 			foreach ($leafletAssets as $asset) {
