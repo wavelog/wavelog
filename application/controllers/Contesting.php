@@ -608,6 +608,10 @@ class Contesting extends CI_Controller {
 
 			$this->contesting_model->update_contest_qso($qso_id, $fields);
 
+			if ($this->worker_available) {
+				$this->worker->publish('contest_session.' . $contest_session_id, ['type' => 'sync_required']);
+			}
+
 			echo json_encode(['success' => true, 'qso_id' => $qso_id]);
 		} catch (Exception $e) {
 			http_response_code(400);
@@ -665,8 +669,14 @@ class Contesting extends CI_Controller {
 				return;
 			}
 
+			$this->contesting_model->unlink_qso($qso_id, $contest_session_id);
+
 			$this->load->model('logbook_model');
 			$this->logbook_model->delete($qso_id);
+
+			if ($this->worker_available) {
+				$this->worker->publish('contest_session.' . $contest_session_id, ['type' => 'sync_required']);
+			}
 
 			echo json_encode(['success' => true, 'qso_id' => $qso_id]);
 		} catch (Exception $e) {
@@ -904,7 +914,10 @@ class Contesting extends CI_Controller {
 				$just_saved = count($response['data']['saved_qsos'] ?? []) > 0;
 				if ($last_sync_time_ms > 0 && !$response['data']['needs_resync'] && !$just_saved) {
 					$server_last_update = $this->contesting_model->get_session_last_update($session_info['contest_session_id']);
-					if ($server_last_update > $last_sync_time_ms) {
+					// Compare at second precision: DB stores last_modified as DATETIME (no sub-second),
+					// while the client sends Date.now() in ms. Using >= prevents missed edits when the
+					// edit and the last heartbeat land in the same DB second.
+					if ((int)($server_last_update / 1000) >= (int)($last_sync_time_ms / 1000)) {
 						$response['data']['needs_resync'] = true;
 						if (!isset($response['data']['all_qsos'])) {
 							$all_qsos = $this->contesting_model->get_session_qsos($session_info['contest_session_id']);
@@ -916,7 +929,6 @@ class Contesting extends CI_Controller {
 							}
 							$response['data']['all_qsos'] = $all_qsos;
 						}
-						log_message('info', "Edit-resync triggered for session {$session_info['contest_session_id']}: server_last_update={$server_last_update} > client_last_sync={$last_sync_time_ms}");
 					}
 				}
 				break;

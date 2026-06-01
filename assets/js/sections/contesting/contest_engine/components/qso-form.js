@@ -938,7 +938,7 @@ class QsoFormComponent {
 						state: 'synced'
 					};
 
-					dataStore.set(`qso.${saved.tmp_id}`, updated);
+					dataStore.setLocal(`qso.${saved.tmp_id}`, updated);
 
 					dataStore.emit('qso_state_changed', {
 						qso: updated,
@@ -1006,7 +1006,7 @@ class QsoFormComponent {
 				state: 'synced'
 			};
 
-			dataStore.set(`qso.${tmpId}`, qso);
+			dataStore.setLocal(`qso.${tmpId}`, qso);
 		});
 
 		dataStore.emit('qsos_resynced', {

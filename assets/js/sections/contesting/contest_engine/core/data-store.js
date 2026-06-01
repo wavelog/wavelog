@@ -59,6 +59,21 @@ export class DataStore {
 	}
 
 	/**
+	 * Set data without triggering a sync request.
+	 * Use this for writes that originate from server responses — they are already
+	 * confirmed by the server and must not cause a new outbound heartbeat.
+	 * @param {string} key
+	 * @param {*} value
+	 */
+	setLocal(key, value) {
+		this.data.set(key, value);
+		this.notify(key, value);
+		if (this.shouldPersist(key)) {
+			this._persistKey(key, value);
+		}
+	}
+
+	/**
 	 * Delete data by key
 	 * @param {string} key - Data key
 	 * @returns {boolean} True if deleted
