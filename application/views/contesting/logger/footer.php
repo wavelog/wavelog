@@ -14,10 +14,11 @@ $ce = '/assets/js/sections/contesting/contest_engine/';
 
 // define the core files
 $core_files = [
-    'data-store', 
+    'data-store',
     'sync-engine',
     'transport-adapter',
-    'ajax-transport', 
+    'ajax-transport',
+    'ws-transport',
     'window-manager',
     'component-loader'
 ];

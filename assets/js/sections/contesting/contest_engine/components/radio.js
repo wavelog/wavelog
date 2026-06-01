@@ -79,24 +79,24 @@ class RadioComponent {
 					
 					// Update datastore with radio data (only in-memory, not persisted)
 					if (status.frequency !== undefined) {
-						dataStore.set(`radio.${radioId}.frequency`, status.frequency);
+						dataStore.setLocal(`radio.${radioId}.frequency`, status.frequency);
 					}
 					if (status.mode !== undefined) {
-						dataStore.set(`radio.${radioId}.mode`, status.mode);
+						dataStore.setLocal(`radio.${radioId}.mode`, status.mode);
 					}
 					if (status.timestamp !== undefined) {
-						dataStore.set(`radio.${radioId}.timestamp`, status.timestamp);
+						dataStore.setLocal(`radio.${radioId}.timestamp`, status.timestamp);
 					}
 					if (status.updated_minutes_ago !== undefined) {
-						dataStore.set(`radio.${radioId}.updated_minutes_ago`, status.updated_minutes_ago);
+						dataStore.setLocal(`radio.${radioId}.updated_minutes_ago`, status.updated_minutes_ago);
 					}
 				} else {
 					// No data from radio - clear values
 					const radioId = this.selectedRadio;
-					dataStore.set(`radio.${radioId}.frequency`, null);
-					dataStore.set(`radio.${radioId}.mode`, null);
-					dataStore.set(`radio.${radioId}.timestamp`, null);
-					dataStore.set(`radio.${radioId}.updated_minutes_ago`, null);
+					dataStore.setLocal(`radio.${radioId}.frequency`, null);
+					dataStore.setLocal(`radio.${radioId}.mode`, null);
+					dataStore.setLocal(`radio.${radioId}.timestamp`, null);
+					dataStore.setLocal(`radio.${radioId}.updated_minutes_ago`, null);
 				}
 			}
 		});
@@ -219,7 +219,7 @@ class RadioComponent {
 		const detectedBand = this.frequencyToBand(parseInt(freq));
 		if (detectedBand && detectedBand !== this.selectedBand) {
 			this.selectedBand = detectedBand;
-			this.dataStore.set('config.selected_band', detectedBand);
+			this.dataStore.setLocal('config.selected_band', detectedBand);
 		}
 
 		this.frequency.value = freq;
@@ -652,10 +652,10 @@ class RadioComponent {
 		const minutesAgo = data.timestamp
 			? Math.floor((Date.now() - data.timestamp) / 60000)
 			: 0;
-		this.dataStore.set('radio.ws.frequency',           data.frequency);
-		this.dataStore.set('radio.ws.mode',                data.mode);
-		this.dataStore.set('radio.ws.timestamp',           data.timestamp || Date.now());
-		this.dataStore.set('radio.ws.updated_minutes_ago', minutesAgo);
+		this.dataStore.setLocal('radio.ws.frequency',           data.frequency);
+		this.dataStore.setLocal('radio.ws.mode',                data.mode);
+		this.dataStore.setLocal('radio.ws.timestamp',           data.timestamp || Date.now());
+		this.dataStore.setLocal('radio.ws.updated_minutes_ago', minutesAgo);
 	}
 
 	_closeWebSocket() {

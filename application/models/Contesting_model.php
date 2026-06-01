@@ -277,6 +277,67 @@ class Contesting_model extends CI_Model {
 	}
 
 	/**
+	 * Retrieves QSOs of a session that changed after the client's watermark (delta sync).
+	 * Relies on the main table's last_modified column (ON UPDATE CURRENT_TIMESTAMP),
+	 * which is bumped path-independently by any UPDATE that changes a value — so this
+	 * catches contest edits as well as edits made through the regular logbook.
+	 *
+	 * The query is session-bounded: it walks contest_qsos via its session index and
+	 * joins the logbook on the primary key, so cost scales with session size, not
+	 * total logbook size. There is no index on last_modified, but the filter only
+	 * runs over the rows already fetched by primary key, so that is fine.
+	 *
+	 * The watermark is a (second, qso_id) pair, not just a timestamp, because
+	 * last_modified is a TIMESTAMP (1s resolution): a bulk import lands many QSOs in the
+	 * same second. A plain >= would re-send all of them on every heartbeat. The pair
+	 * compares as: strictly later second, OR same second with a higher qso_id. This still
+	 * cannot miss an edit (an edit bumps last_modified into a later second), but within
+	 * the boundary second it only returns QSOs the client has not seen yet.
+	 *
+	 * @param int $contest_session_id
+	 * @param int $since_ts Unix timestamp in ms; 0 returns all QSOs (initial load)
+	 * @param int $since_id Highest qso_id already seen within the since_ts second
+	 * @return array List of QSOs including last_modified_ms
+	 */
+	function get_session_qsos_since($contest_session_id, $since_ts, $since_id = 0) {
+		// Compare on the numeric side (UNIX_TIMESTAMP) rather than FROM_UNIXTIME(?):
+		// FROM_UNIXTIME(0) returns NULL under non-UTC server time zones, which would make
+		// the initial load (since_ts = 0) match no rows. Floor to whole seconds because
+		// last_modified is a TIMESTAMP with 1s resolution.
+		$since_sec = (int)($since_ts / 1000);
+		$bindings = [$contest_session_id, $since_sec, $since_sec, (int)$since_id];
+		$sql = "SELECT
+					lb.COL_PRIMARY_KEY AS qso_id,
+					lb.COL_CALL AS callsign,
+					lb.COL_TIME_ON AS time_on,
+					lb.COL_BAND AS band,
+					lb.COL_FREQ AS frequency,
+					lb.COL_MODE AS mode,
+					lb.COL_SUBMODE AS submode,
+					lb.COL_RST_SENT AS rst_sent,
+					lb.COL_RST_RCVD AS rst_recv,
+					lb.COL_STX AS serial_sent,
+					lb.COL_SRX AS serial_recv,
+					lb.COL_STX_STRING AS exch_sent,
+					lb.COL_SRX_STRING AS exch_recv,
+					lb.COL_GRIDSQUARE AS locator,
+					lb.COL_OPERATOR AS operator,
+					UNIX_TIMESTAMP(lb.last_modified) * 1000 AS last_modified_ms
+				FROM contest_qsos cq
+				JOIN contest_session cs ON cs.id = cq.contest_session_id
+				JOIN " . $this->config->item('table_name') . " lb ON lb.COL_PRIMARY_KEY = cq.qso_id
+				WHERE cq.contest_session_id = ?
+				  AND (
+				        UNIX_TIMESTAMP(lb.last_modified) > ?
+				        OR (UNIX_TIMESTAMP(lb.last_modified) = ? AND cq.qso_id > ?)
+				      )
+				ORDER BY lb.last_modified ASC, cq.qso_id ASC";
+
+		$query = $this->db->query($sql, $bindings);
+		return $query->result_array();
+	}
+
+	/**
 	 * Fetches a single QSO, verifying it belongs to the given contest session.
 	 * Returns the row (including operator_callsign) or null if not found.
 	 *
@@ -314,36 +375,6 @@ class Contesting_model extends CI_Model {
 			}
 		}
 		return $affected;
-	}
-
-	/**
-	 * Returns the maximum last_modified timestamp (in milliseconds) across all QSOs
-	 * in the session. Used by check_sync to detect edits across browsers.
-	 * Result is cached for 120 seconds; invalidated by link_qso() and update_contest_qso().
-	 *
-	 * @param int $contest_session_id
-	 * @return int Unix timestamp in ms, or 0 if no QSOs exist
-	 */
-	function get_session_last_update($contest_session_id) {
-		$this->_load_cache();
-		$cache_key = $this->_last_update_cache_key($contest_session_id);
-
-		$cached = $this->cache->get($cache_key);
-		if ($cached !== false) {
-			return (int)$cached;
-		}
-
-		$table = $this->config->item('table_name');
-		$sql = "SELECT UNIX_TIMESTAMP(MAX(lb.last_modified)) * 1000 AS ts
-				FROM contest_qsos cq
-				JOIN {$table} lb ON lb.COL_PRIMARY_KEY = cq.qso_id
-				WHERE cq.contest_session_id = ?";
-		$query = $this->db->query($sql, [$contest_session_id]);
-		$row = $query->row_array();
-		$ts = (int)($row['ts'] ?? 0);
-
-		$this->cache->save($cache_key, $ts, 120);
-		return $ts;
 	}
 
 	/**
@@ -482,10 +513,6 @@ class Contesting_model extends CI_Model {
 	// CACHE HELPERS
 	// =========================================================================
 
-	private function _last_update_cache_key($contest_session_id) {
-		return 'contesting_last_update_' . (int)$contest_session_id;
-	}
-
 	private function _qso_count_cache_key($contest_session_id) {
 		return 'contesting_qso_count_' . (int)$contest_session_id;
 	}
@@ -500,7 +527,6 @@ class Contesting_model extends CI_Model {
 
 	private function _invalidate_session_cache($contest_session_id) {
 		$this->_load_cache();
-		$this->cache->delete($this->_last_update_cache_key($contest_session_id));
 		$this->cache->delete($this->_qso_count_cache_key($contest_session_id));
 	}
 

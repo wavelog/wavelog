@@ -9,7 +9,12 @@
         layout: <?php echo json_encode($components ?? []); ?>,
         operator: <?php echo json_encode($operator); ?>,
         measurement_base: 'K', // In hamradio you usually use kilometers
-        custom_date_format: <?php echo isset($custom_date_format) ? json_encode($custom_date_format) : 'null'; ?>
+        custom_date_format: <?php echo isset($custom_date_format) ? json_encode($custom_date_format) : 'null'; ?>,
+        worker: <?php echo json_encode(isset($worker_client_url) ? [
+            'url'   => $worker_client_url,
+            'topic' => $worker_topic,
+            'token' => $worker_token,
+        ] : null); ?>
     };
 
     // Language

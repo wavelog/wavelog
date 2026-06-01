@@ -37,7 +37,12 @@ class QsoFormComponent {
 		if (this.isInitialized) return;
 		this.isInitialized = true;
 
-		this.lastSyncTime = Date.now();
+		// Watermark of the highest change we have seen from the server, as a
+		// (last_modified ms, serverId) pair. The serverId breaks ties within the same
+		// 1-second last_modified bucket so a bulk import in one second is not re-sent on
+		// every heartbeat. Both start at 0 so the first check_sync pulls the full set.
+		this.lastSeenTs = 0;
+		this.lastSeenId = 0;
 		this.currentOperator = (window.ContestLoggerConfig?.operator ?? '').toUpperCase();
 
 		this.registerSyncHandler();
@@ -187,7 +192,8 @@ class QsoFormComponent {
 			buildRequests: (dataStore) => [{
 				type: 'check_sync',
 				client_qso_count: dataStore.getSyncedQSOCount(),
-				last_sync_time: this.lastSyncTime ?? 0
+				since_ts: this.lastSeenTs ?? 0,
+				since_id: this.lastSeenId ?? 0
 			}],
 			buildCommands: (dataStore) => this.buildQsoCommands(dataStore),
 			canHandle: (responseData) => {
@@ -197,6 +203,7 @@ class QsoFormComponent {
 				this.processQsoSyncResponse(responseData, dataStore);
 			}
 		});
+		this.syncEngine.triggerNow();
 	}
 
 	// Getters to avoid race conditions
@@ -323,7 +330,7 @@ class QsoFormComponent {
 
 	_renderQsoDropdown() {
 		return `<div class="dropdown d-inline-block ms-1">
-			<div class="btn btn-secondary py-0 px-1" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:1rem; width:1.8rem; height:1.8rem; display:inline-flex; align-items:center; justify-content:center;">&#9776;</div>
+			<div class="btn btn-secondary py-0 px-1" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:1rem; width:1.8rem; height:1.8rem; display:inline-flex; align-items:center; justify-content:center;">&#9776;</div>
 			<div class="dropdown-menu dropdown-menu-end">
 				<a class="dropdown-item qso-action-edit" href="#"><i class="fas fa-edit me-1"></i>${lang_qso_edit}</a>
 				<div class="dropdown-divider"></div>
@@ -391,7 +398,7 @@ class QsoFormComponent {
 			`<input type="text" class="form-control form-control-sm p-0 px-1 ${cls}" style="min-width:3rem;" name="${name}" value="${this._esc(val ?? '')}">`;
 
 		row.innerHTML = `
-			<td class="text-nowrap" style="font-size:0.75rem;"><input type="text" class="form-control form-control-sm p-0 px-1" style="min-width:4rem;" name="time_on" placeholder="HH:MM" maxlength="5" value="${(qso.time || qso.time_on?.split(' ')?.[1] || '').substring(0, 5)}"></td>
+			<td class="text-nowrap" style="font-size:0.75rem;"><input type="text" class="form-control form-control-sm p-0 px-1" style="min-width:5rem;" name="time_on" placeholder="HH:MM:SS" maxlength="8" value="${(qso.time || qso.time_on?.split(' ')?.[1] || '').substring(0, 8)}"></td>
 			<td>${inp(qso.callsign, 'callsign', 'fw-bold text-uppercase')}</td>
 			<td>${inp(qso.band, 'band', 'text-uppercase')}</td>
 			<td>${inp(qso.mode, 'mode', 'text-uppercase')}</td>
@@ -425,6 +432,19 @@ class QsoFormComponent {
 		return String(str).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 	}
 
+	/**
+	 * Builds a signature of the fields shown in a QSO row. Used to skip re-rendering
+	 * rows whose displayed data has not changed (deltas re-send unchanged rows due to
+	 * the >= watermark overlap), which avoids destroying an open dropdown mid-click.
+	 */
+	_qsoRowSignature(qso) {
+		return [
+			qso.time, qso.callsign, qso.band, qso.frequency, qso.mode, qso.rst_rcvd,
+			qso.serial_sent, qso.serial_rcvd ?? qso.serial_recv,
+			qso.gridsquare_rcvd, qso.exchange_rcvd, qso.state, qso.serverId
+		].join('|');
+	}
+
 	_renderQsoRow(row, qso) {
 		const fields = this.exchangeFields ?? ['exchange'];
 		const hasSerial      = fields.includes('serial');
@@ -433,9 +453,10 @@ class QsoFormComponent {
 		const serialHide = hasSerial ? '' : 'display:none;';
 		const band = qso.band || this.convertQrgToBand(parseInt(qso.frequency));
 		const qrg_mhz = qso.frequency ? (parseInt(qso.frequency) / 1e6).toFixed(3) + ' MHz' : '';
-		const timeStr = (qso.time || '').substring(0, 5);
+		const timeStr = (qso.time || '').substring(0, 8);
 		row.dataset.qsoId = qso.tmpId || qso.serverId;
 		if (qso.serverId) row.dataset.serverId = qso.serverId;
+		row.dataset.sig = this._qsoRowSignature(qso);
 
 		const qsoOperator = (qso.operator ?? '').toUpperCase();
 		const isEditable = !!qso.serverId && qsoOperator === this.currentOperator;
@@ -468,13 +489,15 @@ class QsoFormComponent {
 		const saveBtn = row.querySelector('.contest-qso-save-btn');
 
 		if (data.time_on !== undefined) {
-			if (!/^\d{2}:\d{2}$/.test(data.time_on)) {
+			// Accept HH:MM:SS (contest precision) or HH:MM (seconds default to :00).
+			const m = data.time_on.match(/^(\d{2}):(\d{2})(?::(\d{2}))?$/);
+			if (!m) {
 				const input = row.querySelector('[name="time_on"]');
 				if (input) { input.classList.add('is-invalid'); input.focus(); }
 				return;
 			}
 			const datePart = (qso.time_on || '').split(' ')[0] || qso.date || '';
-			data.time_on = `${datePart} ${data.time_on}:00`;
+			data.time_on = `${datePart} ${m[1]}:${m[2]}:${m[3] ?? '00'}`;
 		}
 
 		const sessionInfo = window.ContestLoggerConfig?.sessionInfo ?? {};
@@ -500,8 +523,8 @@ class QsoFormComponent {
 			if (data.time_on !== undefined) updated.time = data.time_on.split(' ')[1];
 			this.dataStore.set(`qso.${qso.tmpId}`, updated);
 
-			// Prevent self-resync since we already have the fresh data
-			this.lastSyncTime = Date.now();
+			// No need to guard against a self-resync: the next check_sync may return this
+			// QSO again, but applyDelta() upserts by serverId and is idempotent.
 
 			row.dataset.editing = 'false';
 			this._renderQsoRow(row, updated);
@@ -622,7 +645,7 @@ class QsoFormComponent {
 
 		const result = await response.json();
 		if (this.dataStore && result) {
-			this.dataStore.set(cacheKey, result);
+			this.dataStore.setLocal(cacheKey, result);
 		}
 
 		return result;
@@ -733,6 +756,19 @@ class QsoFormComponent {
 
 	handleQSOsResynced(eventData) {
 		if (!this.dataStore) return;
+
+		// Defer the destructive table rebuild while the user is interacting with a row:
+		// an open edit form (data-editing) or an open action dropdown would otherwise be
+		// wiped under the user. The data is already in the DataStore; the next heartbeat
+		// after the interaction finishes will re-render.
+		const tbody = this.container?.querySelector('#qso-tbody');
+		if (tbody && (
+			tbody.querySelector('tr[data-editing="true"]') ||
+			tbody.querySelector('.dropdown-menu.show') ||
+			tbody.querySelector('[data-bs-toggle="dropdown"][aria-expanded="true"]')
+		)) {
+			return;
+		}
 
 		this.clearTable();
 		const allQsos = Array.from(this.dataStore.getPattern('qso.*').values());
@@ -915,12 +951,14 @@ class QsoFormComponent {
 		}
 
 		if (responseData.needs_resync && responseData.all_qsos) {
+			// Count mismatch (e.g. a delete elsewhere): replace local state with the full set.
 			this.resyncWithServer(responseData.all_qsos, responseData.saved_qsos || [], dataStore);
 		} else if (responseData.needs_resync) {
 			console.error('QSO Form: needs_resync=true but all_qsos missing!');
+		} else if (responseData.changed_qsos && responseData.changed_qsos.length > 0) {
+			// Normal case: apply only the QSOs changed since our watermark.
+			this.applyDelta(responseData.changed_qsos, dataStore);
 		}
-
-		this.lastSyncTime = Date.now();
 	}
 
 	processSavedQsos(savedQsos, dataStore) {
@@ -938,7 +976,11 @@ class QsoFormComponent {
 						state: 'synced'
 					};
 
-					dataStore.set(`qso.${saved.tmp_id}`, updated);
+					dataStore.setLocal(`qso.${saved.tmp_id}`, updated);
+
+					// Advance the watermark so the next check_sync does not pull this QSO
+					// back as a delta.
+					this._advanceWatermark(saved.last_modified_ms, updated.serverId);
 
 					dataStore.emit('qso_state_changed', {
 						qso: updated,
@@ -958,6 +1000,69 @@ class QsoFormComponent {
 		return band === '??' ? null : band;
 	}
 
+	/**
+	 * Maps a server QSO row to a local DataStore QSO object (state 'synced').
+	 * @param {Object} sq Server QSO row
+	 * @param {string} tmpId Local key to assign
+	 * @returns {Object}
+	 */
+	_mapServerQso(sq, tmpId) {
+		const timeOn = sq.time_on || '';
+		const [datePart, timePart] = timeOn.includes(' ')
+			? timeOn.split(' ')
+			: [sq.date, sq.time];
+
+		const freq = sq.frequency === undefined
+			? undefined
+			: typeof sq.frequency === 'string'
+				? Number(sq.frequency) || sq.frequency
+				: sq.frequency;
+
+		return {
+			serverId: parseInt(sq.id ?? sq.qso_id),
+			tmpId: tmpId,
+			callsign: sq.callsign || sq.call,
+			frequency: freq,
+			mode: sq.mode,
+			submode: sq.submode,
+			band: sq.band,
+			date: sq.date || datePart,
+			time: sq.time || timePart,
+			time_on: sq.time_on,
+			time_off: sq.time_off,
+			rst_sent: sq.rst_sent,
+			rst_rcvd: sq.rst_rcvd ?? sq.rst_recv,
+			serial_sent: sq.serial_sent,
+			serial_recv: sq.serial_recv,
+			exchange_sent: sq.exchange_sent ?? sq.exch_sent ?? '',
+			exchange_rcvd: sq.exchange_rcvd ?? sq.exch_recv ?? '',
+			gridsquare_rcvd: sq.locator ?? null,
+			operator: sq.operator,
+			state: 'synced'
+		};
+	}
+
+	/**
+	 * Advances the (lastSeenTs, lastSeenId) watermark for one server QSO.
+	 * Within the same last_modified second the higher serverId wins; a newer second
+	 * resets the id baseline. Mirrors the server-side (second, qso_id) comparison.
+	 */
+	_advanceWatermark(lastModifiedMs, serverId) {
+		const ms = Number(lastModifiedMs) || 0;
+		const id = parseInt(serverId) || 0;
+		if (ms > this.lastSeenTs) {
+			this.lastSeenTs = ms;
+			this.lastSeenId = id;
+		} else if (ms === this.lastSeenTs && id > this.lastSeenId) {
+			this.lastSeenId = id;
+		}
+	}
+
+	/**
+	 * Full replace of synced QSOs with the server's complete set.
+	 * Only used on count mismatch (e.g. a delete elsewhere). Pending (unconfirmed
+	 * local) QSOs are preserved.
+	 */
 	resyncWithServer(serverQsos, savedQsos = [], dataStore) {
 		const localPendingQsos = Array.from(dataStore.getPattern('qso.*').values()).filter(q => q.state === 'pending');
 		const tmpIdMap = new Map(savedQsos.map(s => [s.tmp_id, s.server_id]));
@@ -969,50 +1074,79 @@ class QsoFormComponent {
 		}
 
 		serverQsos.forEach((sq) => {
-			const timeOn = sq.time_on || '';
-			const [datePart, timePart] = timeOn.includes(' ')
-				? timeOn.split(' ')
-				: [sq.date, sq.time];
-
-			const freq = sq.frequency === undefined
-				? undefined
-				: typeof sq.frequency === 'string'
-					? Number(sq.frequency) || sq.frequency
-					: sq.frequency;
-
-			const serverId = parseInt(sq.id ?? sq.qso_id);
 			const tmpId = dataStore.generateId();
-
-			const qso = {
-				serverId: serverId,
-				tmpId: tmpId,
-				callsign: sq.callsign || sq.call,
-				frequency: freq,
-				mode: sq.mode,
-				submode: sq.submode,
-				band: sq.band,
-				date: sq.date || datePart,
-				time: sq.time || timePart,
-				time_on: sq.time_on,
-				time_off: sq.time_off,
-				rst_sent: sq.rst_sent,
-				rst_rcvd: sq.rst_rcvd ?? sq.rst_recv,
-				serial_sent: sq.serial_sent,
-				serial_recv: sq.serial_recv,
-				exchange_sent: sq.exchange_sent ?? sq.exch_sent ?? '',
-				exchange_rcvd: sq.exchange_rcvd ?? sq.exch_recv ?? '',
-				gridsquare_rcvd: sq.locator ?? null,
-				operator: sq.operator,
-				state: 'synced'
-			};
-
-			dataStore.set(`qso.${tmpId}`, qso);
+			const qso = this._mapServerQso(sq, tmpId);
+			dataStore.setLocal(`qso.${tmpId}`, qso);
+			this._advanceWatermark(sq.last_modified_ms, qso.serverId);
 		});
 
 		dataStore.emit('qsos_resynced', {
 			server: serverQsos.length,
 			protected: protectedNewQsos.length
 		});
+	}
+
+	/**
+	 * Applies an incremental set of changed QSOs (adds + edits) without touching
+	 * unrelated local QSOs. Idempotent: matches existing QSOs by serverId so a row
+	 * re-sent due to the >= watermark overlap simply overwrites itself.
+	 * Pending (unconfirmed local) QSOs are never touched.
+	 */
+	applyDelta(changedQsos, dataStore) {
+		// Index existing local QSOs by serverId for upsert lookup
+		const keyByServerId = new Map();
+		for (const [key, qso] of dataStore.getPattern('qso.*').entries()) {
+			if (qso.serverId) keyByServerId.set(parseInt(qso.serverId), key);
+		}
+
+		changedQsos.forEach((sq) => {
+			const serverId = parseInt(sq.id ?? sq.qso_id);
+			const existingKey = keyByServerId.get(serverId);
+			const tmpId = existingKey ? dataStore.get(existingKey).tmpId : dataStore.generateId();
+			const key = existingKey ?? `qso.${tmpId}`;
+			const qso = this._mapServerQso(sq, tmpId);
+
+			dataStore.setLocal(key, qso);
+			this._advanceWatermark(sq.last_modified_ms, qso.serverId);
+
+			// Render only this row instead of rebuilding the whole table — the delta
+			// usually carries a single QSO, so we touch O(changed) rows, not O(all).
+			this._upsertQsoRow(qso);
+		});
+
+		this.updateQSOCount();
+		this.nextSerialSent = this.computeNextSerial();
+		this.updateSerialSentDisplay();
+	}
+
+	/**
+	 * Inserts or updates a single QSO row in place, without rebuilding the table.
+	 * Matches the existing row by serverId, falling back to the local tmpId key.
+	 * Skips the row if it is currently being edited or its action menu is open, so a
+	 * background delta cannot wipe the user's interaction (the next delta re-renders it).
+	 */
+	_upsertQsoRow(qso) {
+		const tbody = this.container?.querySelector('#qso-tbody');
+		if (!tbody) return;
+
+		const existingRow = (qso.serverId && tbody.querySelector(`tr[data-server-id="${qso.serverId}"]`)) ||
+			tbody.querySelector(`tr[data-qso-id="${qso.tmpId}"]`);
+
+		if (existingRow) {
+			// Skip if the displayed data is unchanged — avoids needless re-renders that
+			// would destroy an open dropdown mid-interaction (deltas re-send unchanged rows).
+			if (existingRow.dataset.sig === this._qsoRowSignature(qso)) return;
+
+			// Do not disturb a row the user is interacting with
+			if (existingRow.dataset.editing === 'true' ||
+				existingRow.querySelector('.dropdown-menu.show') ||
+				existingRow.querySelector('[data-bs-toggle="dropdown"][aria-expanded="true"]')) {
+				return;
+			}
+			this._renderQsoRow(existingRow, qso);
+		} else {
+			this.addQSOToTable(qso);
+		}
 	}
 
 	convertQrgToBand(frequency) {

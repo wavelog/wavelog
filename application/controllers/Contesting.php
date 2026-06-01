@@ -17,6 +17,11 @@ class Contesting extends CI_Controller {
 	private $new_qsos = [];
 
 	/**
+	 * Worker availability
+	 */
+	private $worker_available = false;
+
+	/**
 	 * Active Station Location
 	 */
 	private $active_station_location = null;
@@ -35,6 +40,9 @@ class Contesting extends CI_Controller {
 		} else {
 			$this->active_station_location = $this->stations->find_active();
 		}
+
+		$this->load->is_loaded('Worker') ?: $this->load->library('Worker');
+		$this->worker_available = $this->worker->is_enabled();
 	}
 
 	/**
@@ -266,6 +274,18 @@ class Contesting extends CI_Controller {
 		if (!$decoded_token || !isset($decoded_token['contest_session_id'])) {
 			$this->session->set_flashdata('error', __("Invalid logging token."));
 			redirect('contesting');
+		}
+
+		// setting up worker if available
+		$worker_topic = 'contest_session.' . $decoded_token['contest_session_id']; // shared topic for all operators in this contest session
+		if ($this->worker_available) {
+			$this->worker->register_topic($worker_topic);
+		}
+
+		if ($this->worker_available && $decoded_token) {
+			$data['worker_client_url'] = $this->worker->client_url();
+			$data['worker_topic']      = $worker_topic;
+			$data['worker_token']      = $this->worker->create_token((int) $decoded_token['contest_session_id']);
 		}
 
 		$contest_session_id = $decoded_token['contest_session_id'];
@@ -588,6 +608,10 @@ class Contesting extends CI_Controller {
 
 			$this->contesting_model->update_contest_qso($qso_id, $fields);
 
+			if ($this->worker_available) {
+				$this->worker->publish('contest_session.' . $contest_session_id, ['type' => 'sync_required']);
+			}
+
 			echo json_encode(['success' => true, 'qso_id' => $qso_id]);
 		} catch (Exception $e) {
 			http_response_code(400);
@@ -645,8 +669,14 @@ class Contesting extends CI_Controller {
 				return;
 			}
 
+			$this->contesting_model->unlink_qso($qso_id, $contest_session_id);
+
 			$this->load->model('logbook_model');
 			$this->logbook_model->delete($qso_id);
+
+			if ($this->worker_available) {
+				$this->worker->publish('contest_session.' . $contest_session_id, ['type' => 'sync_required']);
+			}
 
 			echo json_encode(['success' => true, 'qso_id' => $qso_id]);
 		} catch (Exception $e) {
@@ -693,7 +723,8 @@ class Contesting extends CI_Controller {
 				'data' => [
 					'saved_qsos' => [],
 					'needs_resync' => false,
-					'all_qsos' => null
+					'all_qsos' => null,
+					'changed_qsos' => []
 				],
 				'errors' => []
 			];
@@ -787,15 +818,25 @@ class Contesting extends CI_Controller {
 				// Link QSO to contest session
 				if ($save_result['qso_id']) {
 					$this->contesting_model->link_qso($save_result['qso_id'], $session_info['contest_session_id']);
+					// Notify worker clients about new QSO if worker is available
+					if ($this->worker_available) {
+						$this->worker->publish('contest_session.' . $session_info['contest_session_id'], ['type' => 'sync_required']);
+						log_message('debug', 'published sync_required for contest session ' . $session_info['contest_session_id']);
+					}
 				} else {
 					throw new Exception('Failed to save QSO');;
 				}
 
 				// Store mapping of tmp_id to real ID for client response
-				// This will be sent back to the client to update local state
+				// This will be sent back to the client to update local state.
+				// last_modified_ms lets the client advance its since_ts watermark so the
+				// next check_sync does not pull this QSO back as a delta. The row was just
+				// inserted with last_modified = NOW(), so the current server time in ms
+				// matches it at the second precision the delta query compares on.
 				$this->new_qsos[] = [
 					'tmp_id' => $command['data']['tmp_id'],
-					'server_id' => $save_result['qso_id']
+					'server_id' => $save_result['qso_id'],
+					'last_modified_ms' => time() * 1000
 				];
 
 				return 1; // 1 command processed
@@ -838,61 +879,39 @@ class Contesting extends CI_Controller {
 				break;
 
 			case 'check_sync':
-				// Count-based sync check (replaces get_new_qsos)
+				// Incremental sync: deliver only QSOs changed since the client's watermark.
+				// Adds and edits (contest editor AND external logbook/ADIF/QSL edits) bump
+				// last_modified, so the delta query catches them all. Deletes do not bump
+				// anything (the row is gone), so they are caught by the QSO count check below,
+				// which falls back to a one-off full resync — rare and acceptable.
 				$client_qso_count = $request['client_qso_count'] ?? 0;
+				$since_ts         = (int)($request['since_ts'] ?? 0);
+				$since_id         = (int)($request['since_id'] ?? 0);
 
-				// Get current server count (includes just-saved QSOs)
 				$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
 				$server_qso_count = $this->contesting_model->get_session_qso_count($session_info['contest_session_id']);
 
-				// Make server count available to response without extra query later
+				// Make server count available to response without an extra query later
 				$response['server_qso_count'] = $server_qso_count;
 
-				// Calculate expected client count after processing saved_qsos
+				// Expected client count after the client applies the QSOs saved this heartbeat
 				$expected_client_count = $client_qso_count + count($response['data']['saved_qsos']);
 
-				// If counts don't match, trigger full resync
 				if ($expected_client_count !== $server_qso_count) {
+					// Count mismatch → a delete (or a gap we cannot express as a delta) happened.
+					// Send the full set so the client can replace its local state.
 					$response['data']['needs_resync'] = true;
-					$all_qsos = $this->contesting_model->get_session_qsos($session_info['contest_session_id']);
-
-					// Map qso_id to id for frontend compatibility
-					if (is_array($all_qsos)) {
-						$all_qsos = array_map(function ($qso) {
-							$qso['id'] = $qso['qso_id'];
-							return $qso;
-						}, $all_qsos);
-					}
-
-					$response['data']['all_qsos'] = $all_qsos;
+					$response['data']['all_qsos'] = $this->_map_qso_ids(
+						$this->contesting_model->get_session_qsos_since($session_info['contest_session_id'], 0, 0)
+					);
 
 					log_message('info', "Resync triggered for session {$session_info['contest_session_id']}: Client={$client_qso_count} + Saved=" . count($response['data']['saved_qsos']) . " = {$expected_client_count}, Server={$server_qso_count}");
 				} else {
+					// Normal case → only the QSOs changed since the client's watermark.
 					$response['data']['needs_resync'] = false;
-				}
-
-				// Timestamp-based edit detection: resync when any QSO was modified after the
-				// client's last known sync time (catches inline edits that don't change QSO count).
-				// Skip when QSOs were saved in this same heartbeat — their last_modified being
-				// newer than lastSyncTime is expected and the count-check already handled them.
-				$last_sync_time_ms = (int)($request['last_sync_time'] ?? 0);
-				$just_saved = count($response['data']['saved_qsos'] ?? []) > 0;
-				if ($last_sync_time_ms > 0 && !$response['data']['needs_resync'] && !$just_saved) {
-					$server_last_update = $this->contesting_model->get_session_last_update($session_info['contest_session_id']);
-					if ($server_last_update > $last_sync_time_ms) {
-						$response['data']['needs_resync'] = true;
-						if (!isset($response['data']['all_qsos'])) {
-							$all_qsos = $this->contesting_model->get_session_qsos($session_info['contest_session_id']);
-							if (is_array($all_qsos)) {
-								$all_qsos = array_map(function ($qso) {
-									$qso['id'] = $qso['qso_id'];
-									return $qso;
-								}, $all_qsos);
-							}
-							$response['data']['all_qsos'] = $all_qsos;
-						}
-						log_message('info', "Edit-resync triggered for session {$session_info['contest_session_id']}: server_last_update={$server_last_update} > client_last_sync={$last_sync_time_ms}");
-					}
+					$response['data']['changed_qsos'] = $this->_map_qso_ids(
+						$this->contesting_model->get_session_qsos_since($session_info['contest_session_id'], $since_ts, $since_id)
+					);
 				}
 				break;
 
@@ -904,6 +923,21 @@ class Contesting extends CI_Controller {
 			default:
 				throw new Exception("Unknown request type: {$request['type']}");
 		}
+	}
+
+	/**
+	 * Maps each QSO's qso_id to an id field for frontend compatibility.
+	 * @param array|mixed $qsos Result of a get_session_qsos* query
+	 * @return array
+	 */
+	private function _map_qso_ids($qsos) {
+		if (!is_array($qsos)) {
+			return [];
+		}
+		return array_map(function ($qso) {
+			$qso['id'] = $qso['qso_id'];
+			return $qso;
+		}, $qsos);
 	}
 
 	/**
