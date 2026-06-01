@@ -114,6 +114,7 @@ export class SyncEngine {
 	 * @private
 	 */
 	_heartbeat() {
+		this.heartbeatInterval = null; // Clear our own timer reference — we are now executing
 		if (!this.isRunning) return;
 
 		// We don't need to run the heartbeat if the tab is not active/visible
