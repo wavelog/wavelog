@@ -37,7 +37,9 @@ class QsoFormComponent {
 		if (this.isInitialized) return;
 		this.isInitialized = true;
 
-		this.lastSyncTime = Date.now();
+		// Highest last_modified (ms) we have seen from the server. Starts at 0 so the
+		// first check_sync pulls the full set of existing QSOs as the initial load.
+		this.lastSeenTs = 0;
 		this.currentOperator = (window.ContestLoggerConfig?.operator ?? '').toUpperCase();
 
 		this.registerSyncHandler();
@@ -187,7 +189,7 @@ class QsoFormComponent {
 			buildRequests: (dataStore) => [{
 				type: 'check_sync',
 				client_qso_count: dataStore.getSyncedQSOCount(),
-				last_sync_time: this.lastSyncTime ?? 0
+				since_ts: this.lastSeenTs ?? 0
 			}],
 			buildCommands: (dataStore) => this.buildQsoCommands(dataStore),
 			canHandle: (responseData) => {
@@ -501,8 +503,8 @@ class QsoFormComponent {
 			if (data.time_on !== undefined) updated.time = data.time_on.split(' ')[1];
 			this.dataStore.set(`qso.${qso.tmpId}`, updated);
 
-			// Prevent self-resync since we already have the fresh data
-			this.lastSyncTime = Date.now();
+			// No need to guard against a self-resync: the next check_sync may return this
+			// QSO again, but applyDelta() upserts by serverId and is idempotent.
 
 			row.dataset.editing = 'false';
 			this._renderQsoRow(row, updated);
@@ -916,14 +918,14 @@ class QsoFormComponent {
 		}
 
 		if (responseData.needs_resync && responseData.all_qsos) {
+			// Count mismatch (e.g. a delete elsewhere): replace local state with the full set.
 			this.resyncWithServer(responseData.all_qsos, responseData.saved_qsos || [], dataStore);
 		} else if (responseData.needs_resync) {
 			console.error('QSO Form: needs_resync=true but all_qsos missing!');
+		} else if (responseData.changed_qsos && responseData.changed_qsos.length > 0) {
+			// Normal case: apply only the QSOs changed since our watermark.
+			this.applyDelta(responseData.changed_qsos, dataStore);
 		}
-
-		// Advance by 1001ms after a save so the next heartbeat's last_sync_time crosses
-		// the DB second boundary and avoids a spurious timestamp-based resync.
-		this.lastSyncTime = Date.now() + (responseData.saved_qsos?.length > 0 ? 1001 : 0);
 	}
 
 	processSavedQsos(savedQsos, dataStore) {
@@ -943,6 +945,12 @@ class QsoFormComponent {
 
 					dataStore.setLocal(`qso.${saved.tmp_id}`, updated);
 
+					// Advance the watermark so the next check_sync does not pull this QSO
+					// back as a delta.
+					if (saved.last_modified_ms) {
+						this.lastSeenTs = Math.max(this.lastSeenTs, saved.last_modified_ms);
+					}
+
 					dataStore.emit('qso_state_changed', {
 						qso: updated,
 						oldState,
@@ -961,6 +969,53 @@ class QsoFormComponent {
 		return band === '??' ? null : band;
 	}
 
+	/**
+	 * Maps a server QSO row to a local DataStore QSO object (state 'synced').
+	 * @param {Object} sq Server QSO row
+	 * @param {string} tmpId Local key to assign
+	 * @returns {Object}
+	 */
+	_mapServerQso(sq, tmpId) {
+		const timeOn = sq.time_on || '';
+		const [datePart, timePart] = timeOn.includes(' ')
+			? timeOn.split(' ')
+			: [sq.date, sq.time];
+
+		const freq = sq.frequency === undefined
+			? undefined
+			: typeof sq.frequency === 'string'
+				? Number(sq.frequency) || sq.frequency
+				: sq.frequency;
+
+		return {
+			serverId: parseInt(sq.id ?? sq.qso_id),
+			tmpId: tmpId,
+			callsign: sq.callsign || sq.call,
+			frequency: freq,
+			mode: sq.mode,
+			submode: sq.submode,
+			band: sq.band,
+			date: sq.date || datePart,
+			time: sq.time || timePart,
+			time_on: sq.time_on,
+			time_off: sq.time_off,
+			rst_sent: sq.rst_sent,
+			rst_rcvd: sq.rst_rcvd ?? sq.rst_recv,
+			serial_sent: sq.serial_sent,
+			serial_recv: sq.serial_recv,
+			exchange_sent: sq.exchange_sent ?? sq.exch_sent ?? '',
+			exchange_rcvd: sq.exchange_rcvd ?? sq.exch_recv ?? '',
+			gridsquare_rcvd: sq.locator ?? null,
+			operator: sq.operator,
+			state: 'synced'
+		};
+	}
+
+	/**
+	 * Full replace of synced QSOs with the server's complete set.
+	 * Only used on count mismatch (e.g. a delete elsewhere). Pending (unconfirmed
+	 * local) QSOs are preserved.
+	 */
 	resyncWithServer(serverQsos, savedQsos = [], dataStore) {
 		const localPendingQsos = Array.from(dataStore.getPattern('qso.*').values()).filter(q => q.state === 'pending');
 		const tmpIdMap = new Map(savedQsos.map(s => [s.tmp_id, s.server_id]));
@@ -972,49 +1027,47 @@ class QsoFormComponent {
 		}
 
 		serverQsos.forEach((sq) => {
-			const timeOn = sq.time_on || '';
-			const [datePart, timePart] = timeOn.includes(' ')
-				? timeOn.split(' ')
-				: [sq.date, sq.time];
-
-			const freq = sq.frequency === undefined
-				? undefined
-				: typeof sq.frequency === 'string'
-					? Number(sq.frequency) || sq.frequency
-					: sq.frequency;
-
-			const serverId = parseInt(sq.id ?? sq.qso_id);
 			const tmpId = dataStore.generateId();
-
-			const qso = {
-				serverId: serverId,
-				tmpId: tmpId,
-				callsign: sq.callsign || sq.call,
-				frequency: freq,
-				mode: sq.mode,
-				submode: sq.submode,
-				band: sq.band,
-				date: sq.date || datePart,
-				time: sq.time || timePart,
-				time_on: sq.time_on,
-				time_off: sq.time_off,
-				rst_sent: sq.rst_sent,
-				rst_rcvd: sq.rst_rcvd ?? sq.rst_recv,
-				serial_sent: sq.serial_sent,
-				serial_recv: sq.serial_recv,
-				exchange_sent: sq.exchange_sent ?? sq.exch_sent ?? '',
-				exchange_rcvd: sq.exchange_rcvd ?? sq.exch_recv ?? '',
-				gridsquare_rcvd: sq.locator ?? null,
-				operator: sq.operator,
-				state: 'synced'
-			};
-
-			dataStore.setLocal(`qso.${tmpId}`, qso);
+			dataStore.setLocal(`qso.${tmpId}`, this._mapServerQso(sq, tmpId));
+			if (sq.last_modified_ms) {
+				this.lastSeenTs = Math.max(this.lastSeenTs, sq.last_modified_ms);
+			}
 		});
 
 		dataStore.emit('qsos_resynced', {
 			server: serverQsos.length,
 			protected: protectedNewQsos.length
+		});
+	}
+
+	/**
+	 * Applies an incremental set of changed QSOs (adds + edits) without touching
+	 * unrelated local QSOs. Idempotent: matches existing QSOs by serverId so a row
+	 * re-sent due to the >= watermark overlap simply overwrites itself.
+	 * Pending (unconfirmed local) QSOs are never touched.
+	 */
+	applyDelta(changedQsos, dataStore) {
+		// Index existing local QSOs by serverId for upsert lookup
+		const keyByServerId = new Map();
+		for (const [key, qso] of dataStore.getPattern('qso.*').entries()) {
+			if (qso.serverId) keyByServerId.set(parseInt(qso.serverId), key);
+		}
+
+		changedQsos.forEach((sq) => {
+			const serverId = parseInt(sq.id ?? sq.qso_id);
+			const existingKey = keyByServerId.get(serverId);
+			const tmpId = existingKey ? dataStore.get(existingKey).tmpId : dataStore.generateId();
+			const key = existingKey ?? `qso.${tmpId}`;
+
+			dataStore.setLocal(key, this._mapServerQso(sq, tmpId));
+			if (sq.last_modified_ms) {
+				this.lastSeenTs = Math.max(this.lastSeenTs, sq.last_modified_ms);
+			}
+		});
+
+		dataStore.emit('qsos_resynced', {
+			server: changedQsos.length,
+			protected: 0
 		});
 	}
 
