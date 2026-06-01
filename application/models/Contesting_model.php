@@ -218,7 +218,6 @@ class Contesting_model extends CI_Model {
 
 		$bindings_qsos = [$contest_session_id, $qso_id];
 		$this->db->query($sql_delete_qsos, $bindings_qsos);
-		$this->_invalidate_session_cache($contest_session_id);
 		return true;
 	}
 
@@ -367,14 +366,7 @@ class Contesting_model extends CI_Model {
 	function update_contest_qso($qso_id, $fields) {
 		$table = $this->config->item('table_name');
 		$this->db->where('COL_PRIMARY_KEY', $qso_id)->update($table, $fields);
-		$affected = $this->db->affected_rows() > 0;
-		if ($affected) {
-			$session_id = $this->_get_session_id_for_qso($qso_id);
-			if ($session_id) {
-				$this->_invalidate_session_cache($session_id);
-			}
-		}
-		return $affected;
+		return $this->db->affected_rows() > 0;
 	}
 
 	/**
@@ -394,7 +386,6 @@ class Contesting_model extends CI_Model {
 		];
 
 		$this->db->query($sql, $bindings);
-		$this->_invalidate_session_cache($contest_session_id);
 		return true;
 	}
 
@@ -405,20 +396,9 @@ class Contesting_model extends CI_Model {
 	 * @return int The total number of QSOs in the session.
 	 */
 	function get_session_qso_count($contest_session_id) {
-		$this->_load_cache();
-		$cache_key = $this->_qso_count_cache_key($contest_session_id);
-
-		$cached = $this->cache->get($cache_key);
-		if ($cached !== false) {
-			return (int)$cached;
-		}
-
 		$sql = "SELECT COUNT(*) AS qso_count FROM contest_qsos WHERE contest_session_id = ?";
 		$query = $this->db->query($sql, [$contest_session_id]);
-		$count = (int)$query->row_array()['qso_count'];
-
-		$this->cache->save($cache_key, $count, 60);
-		return $count;
+		return (int)$query->row_array()['qso_count'];
 	}
 
 	/**
@@ -507,39 +487,6 @@ class Contesting_model extends CI_Model {
 		$query = $this->db->query($sql, [$contest_session_id, $user_id]);
 		$ops   = array_column($query->result_array(), 'operator');
 		return implode(' ', $ops);
-	}
-
-	// =========================================================================
-	// CACHE HELPERS
-	// =========================================================================
-
-	private function _qso_count_cache_key($contest_session_id) {
-		return 'contesting_qso_count_' . (int)$contest_session_id;
-	}
-
-	private function _load_cache() {
-		$this->load->is_loaded('cache') ?: $this->load->driver('cache', [
-			'adapter'    => $this->config->item('cache_adapter')    ?? 'file',
-			'backup'     => $this->config->item('cache_backup')     ?? 'file',
-			'key_prefix' => $this->config->item('cache_key_prefix') ?? '',
-		]);
-	}
-
-	private function _invalidate_session_cache($contest_session_id) {
-		$this->_load_cache();
-		$this->cache->delete($this->_qso_count_cache_key($contest_session_id));
-	}
-
-	/**
-	 * Returns the contest_session_id for a given QSO. Used for cache invalidation after edits.
-	 */
-	private function _get_session_id_for_qso($qso_id) {
-		$query = $this->db->query(
-			"SELECT contest_session_id FROM contest_qsos WHERE qso_id = ? LIMIT 1",
-			[(int)$qso_id]
-		);
-		$row = $query->row_array();
-		return $row ? (int)$row['contest_session_id'] : null;
 	}
 
 	/**
