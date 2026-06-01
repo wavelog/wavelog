@@ -592,6 +592,7 @@ msgstr " in "
 #: application/views/user/edit.php:391
 #: application/views/view_log/partial/log_ajax.php:10
 #: application/views/visitor/index.php:21
+#: application/views/dashboard/index.php:10
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -614,6 +615,7 @@ msgstr "SOTA"
 #: application/views/user/edit.php:345 application/views/user/edit.php:368
 #: application/views/user/edit.php:392
 #: application/views/view_log/partial/log_ajax.php:11
+#: application/views/dashboard/index.php:11
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -637,6 +639,7 @@ msgstr "WWFF"
 #: application/views/user/edit.php:346 application/views/user/edit.php:369
 #: application/views/user/edit.php:393
 #: application/views/view_log/partial/log_ajax.php:12
+#: application/views/dashboard/index.php:12
 msgid "POTA"
 msgstr "POTA"
 
@@ -1056,6 +1059,7 @@ msgstr "Izvoz SOTA CSV"
 
 #: application/controllers/Dashboard.php:161
 #: application/controllers/Visitor.php:138
+#: application/controllers/Dashboard.php:169
 msgid "Dashboard"
 msgstr "Nadzorna plošča"
 
@@ -1193,6 +1197,7 @@ msgstr "DX koledar"
 #: application/views/dashboard/index.php:407
 #: application/views/eqslcard/index.php:5
 #: application/views/visitor/index.php:310
+#: application/views/dashboard/index.php:481
 msgid "eQSL Cards"
 msgstr "eQSL Cards"
 
@@ -1603,6 +1608,7 @@ msgstr "QSL"
 #: application/views/user/edit.php:899 application/views/view_log/qso.php:490
 #: application/views/view_log/qso.php:495
 #: application/views/visitor/mini.php:186
+#: application/views/dashboard/index.php:403
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1640,6 +1646,7 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:301
 #: application/views/timeline/index.php:64 application/views/user/edit.php:676
 #: application/views/user/edit.php:907 application/views/user/edit.php:981
+#: application/views/dashboard/index.php:404
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1751,6 +1758,7 @@ msgstr "Vsa iskanja v Callbooku so bila neuspešna ali niso dala rezultatov."
 #: application/views/visitor/mini.php:185 application/views/widgets/qsos.php:18
 #: application/views/oqrs/showrequests.php:94
 #: application/views/statistics/initials.php:21
+#: application/views/dashboard/index.php:5
 msgid "Mode"
 msgstr "Vrsta dela"
 
@@ -1832,6 +1840,7 @@ msgstr "RST (R)"
 #: application/views/view_log/qso.php:646
 #: application/views/visitor/index.php:15
 #: application/views/stationsetup/stationsetup.php:132
+#: application/views/dashboard/index.php:8
 msgid "Country"
 msgstr "Država"
 
@@ -1863,6 +1872,7 @@ msgstr "Država"
 #: application/views/user/edit.php:366 application/views/user/edit.php:390
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:18
+#: application/views/dashboard/index.php:9
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -1894,6 +1904,7 @@ msgstr "IOTA"
 #: application/views/user/edit.php:370 application/views/user/edit.php:394
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/visitor/index.php:24
+#: application/views/dashboard/index.php:13
 msgid "State"
 msgstr "Država (state)"
 
@@ -1945,6 +1956,7 @@ msgstr "Država (state)"
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:53
 #: application/views/stationsetup/stationsetup.php:133
+#: application/views/dashboard/index.php:14
 msgid "Gridsquare"
 msgstr "UL polje"
 
@@ -1975,6 +1987,7 @@ msgstr "UL polje"
 #: application/views/user/edit.php:396
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/visitor/index.php:30
+#: application/views/dashboard/index.php:15
 msgid "Distance"
 msgstr "Razdalja"
 
@@ -2077,6 +2090,7 @@ msgstr "Razdalja"
 #: application/views/visitor/mini.php:184 application/views/widgets/qsos.php:21
 #: application/views/oqrs/showrequests.php:93
 #: application/views/statistics/initials.php:12
+#: application/views/dashboard/index.php:16
 msgid "Band"
 msgstr "Band"
 
@@ -2106,6 +2120,7 @@ msgstr "Band"
 #: application/views/view_log/partial/log_ajax.php:17
 #: application/views/view_log/qso.php:101
 #: application/views/visitor/index.php:36
+#: application/views/dashboard/index.php:17
 msgid "Frequency"
 msgstr "Frekvenca"
 
@@ -2130,6 +2145,7 @@ msgstr "Frekvenca"
 #: application/views/view_log/partial/log_ajax.php:18
 #: application/views/view_log/qso.php:653
 #: application/views/visitor/index.php:39
+#: application/views/dashboard/index.php:18
 msgid "Operator"
 msgstr "Operator"
 
@@ -2160,6 +2176,7 @@ msgstr "Operator"
 #: application/views/view_log/qso.php:294
 #: application/views/view_log/qso.php:647
 #: application/views/stationsetup/stationsetup.php:159
+#: application/views/dashboard/index.php:30
 msgid "Deleted DXCC"
 msgstr "Izbrisane DXCC"
 
@@ -2619,6 +2636,8 @@ msgstr "QRZ ADIF Informacije"
 #: application/views/dashboard/index.php:359
 #: application/views/qslcard/index.php:5
 #: application/views/visitor/index.php:287
+#: application/views/dashboard/index.php:402
+#: application/views/dashboard/index.php:418
 msgid "QSL Cards"
 msgstr "QSL kartice"
 
@@ -3849,12 +3868,14 @@ msgid "DXCC has to be Numeric"
 msgstr "DXCC mora biti numeričen"
 
 #: application/models/Logbook_model.php:4923
+#: application/models/Logbook_model.php:4926
 #, php-format
 msgid ""
 "Differing station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Različen klicni znak postaje %s med uvozom QSO z %s za %s: PRESKOČENO"
 
 #: application/models/Logbook_model.php:4931
+#: application/models/Logbook_model.php:4934
 #, php-format
 msgid ""
 "Differing locator %s while importing QSO with %s for station locator %s: "
@@ -3863,6 +3884,7 @@ msgstr ""
 "Različen lokator %s med uvozom QSO z %s za lokator postaje %s: PRESKOČENO"
 
 #: application/models/Logbook_model.php:4947
+#: application/models/Logbook_model.php:4950
 msgid ""
 "You tried to import a QSO without valid date. This QSO wasn't imported. It's "
 "invalid"
@@ -3871,10 +3893,12 @@ msgstr ""
 "neveljavna"
 
 #: application/models/Logbook_model.php:4957
+#: application/models/Logbook_model.php:4960
 msgid "QSO on"
 msgstr "Začetek QSO"
 
 #: application/models/Logbook_model.php:4957
+#: application/models/Logbook_model.php:4960
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3883,6 +3907,7 @@ msgstr ""
 "uvožena. Je neveljavna"
 
 #: application/models/Logbook_model.php:5007
+#: application/models/Logbook_model.php:5010
 #, php-format
 msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
@@ -3892,58 +3917,72 @@ msgstr ""
 "uvožena. Je neveljavna"
 
 #: application/models/Logbook_model.php:5281
+#: application/models/Logbook_model.php:5284
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate je napačen (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:5292
+#: application/models/Logbook_model.php:5295
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate je napačen (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:5353
+#: application/models/Logbook_model.php:5356
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date je napačen (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:5726
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:5729
 msgid "Duplicate for"
 msgstr "Dvojnik za"
 
 #: application/models/Logbook_model.php:5793
 #: application/models/Logbook_model.php:5893
+#: application/models/Logbook_model.php:5796
+#: application/models/Logbook_model.php:5896
 msgid "QSO could not be matched"
 msgstr "QSO ni bilo mogoče najti"
 
 #: application/models/Logbook_model.php:5801
+#: application/models/Logbook_model.php:5804
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "potrjeno od LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:5807
+#: application/models/Logbook_model.php:5810
 msgid "confirmed by award manager"
 msgstr "potrjeno od award managerja"
 
 #: application/models/Logbook_model.php:5811
+#: application/models/Logbook_model.php:5814
 msgid "confirmed by cross-check of DCL data"
 msgstr "potrjeno z navzkrižnim preverjanjem podatkov DCL"
 
 #: application/models/Logbook_model.php:5815
+#: application/models/Logbook_model.php:5818
 msgid "confirmation pending"
 msgstr "potrditev čaka na"
 
 #: application/models/Logbook_model.php:5818
+#: application/models/Logbook_model.php:5821
 msgid "unconfirmed"
 msgstr "nepotrjeno"
 
 #: application/models/Logbook_model.php:5821
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
+#: application/models/Logbook_model.php:5824
 msgid "unknown"
 msgstr "neznano"
 
 #: application/models/Logbook_model.php:5896
+#: application/models/Logbook_model.php:5899
 msgid "POTA reference already in log"
 msgstr "Referenca POTA je že v dnevniku"
 
 #: application/models/Logbook_model.php:5899
+#: application/models/Logbook_model.php:5902
 msgid "QSO updated"
 msgstr "QSO posodobljena"
 
@@ -3958,6 +3997,8 @@ msgstr "QSO posodobljena"
 #: application/views/user/edit.php:329 application/views/user/edit.php:352
 #: application/views/user/edit.php:375 application/views/user/edit.php:400
 #: application/views/view_log/partial/log_ajax.php:21
+#: application/models/Logbook_model.php:6299
+#: application/views/dashboard/index.php:20
 msgid "Bearing"
 msgstr "Smer"
 
@@ -4087,6 +4128,7 @@ msgstr "Skupno število opravljenih WAJA"
 #: application/views/statistics/index.php:21
 #: application/views/timeline/index.php:92
 #: application/views/visitor/index.php:250
+#: application/views/dashboard/index.php:244
 msgid "Year"
 msgstr "Leto"
 
@@ -4100,6 +4142,7 @@ msgstr "Letno"
 #: application/views/dashboard/index.php:325
 #: application/views/statistics/index.php:22
 #: application/views/visitor/index.php:255
+#: application/views/dashboard/index.php:254
 msgid "Month"
 msgstr "Mesec"
 
@@ -4239,6 +4282,7 @@ msgstr "Razlika"
 #: application/views/oqrs/showrequests.php:54
 #: application/views/oqrs/showrequests.php:69
 #: application/views/statistics/initials.php:24
+#: application/views/dashboard/index.php:575
 msgid "All"
 msgstr "Vse"
 
@@ -4558,6 +4602,7 @@ msgstr "Ničesar nisem našel!"
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:625
 #: application/views/visitor/mini.php:183
 #: application/views/zonechecker/result.php:50
+#: application/views/dashboard/index.php:329
 msgid "Callsign"
 msgstr "Klicni znak"
 
@@ -4671,6 +4716,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:139
 #: application/views/visitor/index.php:151
 #: application/views/visitor/mini.php:182 application/views/widgets/qsos.php:16
+#: application/views/dashboard/index.php:325
 msgid "Date"
 msgstr "Datum"
 
@@ -4705,6 +4751,7 @@ msgstr "Datum"
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:141
 #: application/views/visitor/index.php:154
+#: application/views/dashboard/index.php:327
 msgid "Time"
 msgstr "Čas"
 
@@ -4764,6 +4811,8 @@ msgstr "Uvoz CBR"
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
 #: application/views/lotw_views/index.php:4
 #: application/views/options/maptiles.php:48
+#: application/views/dashboard/index.php:181
+#: application/views/dashboard/index.php:214
 msgid "Important"
 msgstr "Pomembno"
 
@@ -5826,6 +5875,11 @@ msgstr "Okrožja, ki so potrjena"
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
+#: application/views/dashboard/index.php:425
+#: application/views/dashboard/index.php:459
+#: application/views/dashboard/index.php:488
+#: application/views/dashboard/index.php:517
+#: application/views/dashboard/index.php:546
 msgid "Total"
 msgstr "Skupaj"
 
@@ -5925,6 +5979,12 @@ msgstr "Prednastavitve datuma"
 #: application/views/gridmap/index.php:31
 #: application/views/logbookadvanced/index.php:329
 #: application/views/statistics/index.php:56
+#: application/views/dashboard/index.php:264
+#: application/views/dashboard/index.php:426
+#: application/views/dashboard/index.php:460
+#: application/views/dashboard/index.php:489
+#: application/views/dashboard/index.php:518
+#: application/views/dashboard/index.php:547
 msgid "Today"
 msgstr "Danes"
 
@@ -6043,6 +6103,8 @@ msgstr "Datum do"
 #: application/views/interface_assets/footer.php:45
 #: application/views/search/result.php:32
 #: application/views/visitor/index.php:270
+#: application/views/dashboard/index.php:400
+#: application/views/dashboard/index.php:585
 msgid "Confirmed"
 msgstr "Potrjeno"
 
@@ -6056,6 +6118,8 @@ msgstr "Potrjeno"
 #: application/views/dashboard/index.php:475
 #: application/views/search/result.php:35
 #: application/views/visitor/index.php:266
+#: application/views/dashboard/index.php:396
+#: application/views/dashboard/index.php:580
 msgid "Worked"
 msgstr "Delano"
 
@@ -6165,6 +6229,8 @@ msgstr "Tabela"
 #: application/views/logbookadvanced/checkresult.php:168
 #: application/views/logbookadvanced/index.php:882
 #: application/views/logbookadvanced/useroptions.php:7
+#: application/views/dashboard/index.php:304
+#: application/views/dashboard/index.php:379
 msgid "Map"
 msgstr "Zemljevid"
 
@@ -6927,6 +6993,7 @@ msgstr "Prikaži zemljevid IOTA"
 #: application/views/view_log/qso.php:232
 #: application/views/view_log/qso.php:629
 #: application/views/stationsetup/stationsetup.php:35
+#: application/views/dashboard/index.php:19
 msgid "Name"
 msgstr "Ime"
 
@@ -7048,6 +7115,7 @@ msgstr "Mesto"
 #: application/views/qslprint/qsolist.php:51
 #: application/views/qslprint/qsolist.php:58
 #: application/views/qslprint/qsolist.php:60
+#: application/views/dashboard/index.php:576
 msgid "SAT"
 msgstr "SAT"
 
@@ -10604,14 +10672,17 @@ msgid "All but Repeater"
 msgstr "Vsi razen repetitorja"
 
 #: application/views/dashboard/index.php:5
+#: application/views/dashboard/index.php:6
 msgid "RSTS"
 msgstr "RSTS"
 
 #: application/views/dashboard/index.php:6
+#: application/views/dashboard/index.php:7
 msgid "RSTR"
 msgstr "RSTR"
 
 #: application/views/dashboard/index.php:111
+#: application/views/dashboard/index.php:112
 #, php-format
 msgid ""
 "You need to upgrade your PHP version. Minimum version is %s. Your version "
@@ -10621,30 +10692,35 @@ msgstr ""
 "različica je: %s."
 
 #: application/views/dashboard/index.php:118
+#: application/views/dashboard/index.php:119
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "A new version of Wavelog has been published. See: %s."
 msgstr "Objavljena je bila nova različica programa Wavelog. Glejte: %s."
 
 #: application/views/dashboard/index.php:127
+#: application/views/dashboard/index.php:128
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You need to update country files! Click %shere%s to do it."
 msgstr "Posodobiti morate datoteke držav! Kliknite %stukaj%s, da to storite."
 
 #: application/views/dashboard/index.php:136
+#: application/views/dashboard/index.php:137
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station locations. Click %shere%s to do it."
 msgstr "Nimate lokacij postaj. Kliknite %stukaj%s, da to storite."
 
 #: application/views/dashboard/index.php:145
+#: application/views/dashboard/index.php:146
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station logbook. Click %shere%s to do it."
 msgstr "Nimate dnevnika postaje. Kliknite %stukaj%s, da ga naredite."
 
 #: application/views/dashboard/index.php:154
+#: application/views/dashboard/index.php:155
 #, php-format
 msgctxt "Dashboard Warning"
 msgid ""
@@ -10655,6 +10731,7 @@ msgstr ""
 "Kliknite %stukaj%s, da to storite."
 
 #: application/views/dashboard/index.php:163
+#: application/views/dashboard/index.php:164
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station linked to your logbook. Click %shere%s to do it."
@@ -10663,6 +10740,7 @@ msgstr ""
 "storite."
 
 #: application/views/dashboard/index.php:173
+#: application/views/dashboard/index.php:174
 #, php-format
 msgid "You have had %d QSO today"
 msgid_plural "You have had %d QSOs today"
@@ -10672,6 +10750,7 @@ msgstr[2] "Danes ste imeli %d zveze"
 msgstr[3] "Danes ste imeli %d zvez"
 
 #: application/views/dashboard/index.php:182
+#: application/views/dashboard/index.php:183
 #, php-format
 msgid ""
 "Don't lose your streak - You have already had at least one QSO for the last "
@@ -10901,6 +10980,7 @@ msgid "Signal Noise ratio"
 msgstr "Razmerje signal-šum"
 
 #: application/views/dashboard/index.php:553
+#: application/views/dashboard/index.php:671
 #, fuzzy
 msgid "X-Ray solar flux level"
 msgstr "Raven sončnega fluksa rentgenskih žarkov"
@@ -18178,6 +18258,7 @@ msgstr ""
 
 #: application/views/statistics/index.php:114
 #: application/views/statistics/index.php:159
+#: application/views/dashboard/index.php:284
 msgid "Unique callsigns"
 msgstr ""
 
@@ -19811,6 +19892,35 @@ msgstr ""
 msgid ""
 "This page allows you to view the initials of all EME QSOs you have worked. "
 "You can select a band and mode to filter the results."
+msgstr ""
+
+#: application/views/dashboard/index.php:234
+msgid "Total QSOs"
+msgstr ""
+
+#: application/views/dashboard/index.php:274
+msgid "Current Streak"
+msgstr ""
+
+#: application/views/dashboard/index.php:277
+#, php-format
+msgid "%d Day"
+msgid_plural "%d Days"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: application/views/dashboard/index.php:318
+msgid "Recent QSOs"
+msgstr ""
+
+#: application/views/dashboard/index.php:630
+msgid "Day"
+msgstr ""
+
+#: application/views/dashboard/index.php:637
+msgid "Night"
 msgstr ""
 
 #~ msgid "Progress toward working all Italian provinces:"
