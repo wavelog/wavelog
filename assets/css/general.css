@@ -189,10 +189,6 @@ thead > tr > td {
 	padding-top: none;
 }
 
-.row.logdata {
-	padding-top: 15px;
-}
-
 .statistics {
 	padding-top: 15px;
 }
@@ -1450,3 +1446,9 @@ svg text.month { fill: #AAA; }
 }
 .legend-item { display: inline-flex; align-items: center; gap: 4px; font-size: 0.8rem;}
 .legend-swatch { width: 16px; height: 16px; border: 1px solid #d1d5da; border-radius: 3px; display: inline-block; }
+
+.my-div-icon {
+	white-space: nowrap;
+	background: transparent !important;
+	border: none !important;
+}
