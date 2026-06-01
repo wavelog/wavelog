@@ -37,9 +37,12 @@ class QsoFormComponent {
 		if (this.isInitialized) return;
 		this.isInitialized = true;
 
-		// Highest last_modified (ms) we have seen from the server. Starts at 0 so the
-		// first check_sync pulls the full set of existing QSOs as the initial load.
+		// Watermark of the highest change we have seen from the server, as a
+		// (last_modified ms, serverId) pair. The serverId breaks ties within the same
+		// 1-second last_modified bucket so a bulk import in one second is not re-sent on
+		// every heartbeat. Both start at 0 so the first check_sync pulls the full set.
 		this.lastSeenTs = 0;
+		this.lastSeenId = 0;
 		this.currentOperator = (window.ContestLoggerConfig?.operator ?? '').toUpperCase();
 
 		this.registerSyncHandler();
@@ -189,7 +192,8 @@ class QsoFormComponent {
 			buildRequests: (dataStore) => [{
 				type: 'check_sync',
 				client_qso_count: dataStore.getSyncedQSOCount(),
-				since_ts: this.lastSeenTs ?? 0
+				since_ts: this.lastSeenTs ?? 0,
+				since_id: this.lastSeenId ?? 0
 			}],
 			buildCommands: (dataStore) => this.buildQsoCommands(dataStore),
 			canHandle: (responseData) => {
@@ -976,9 +980,7 @@ class QsoFormComponent {
 
 					// Advance the watermark so the next check_sync does not pull this QSO
 					// back as a delta.
-					if (saved.last_modified_ms) {
-						this.lastSeenTs = Math.max(this.lastSeenTs, saved.last_modified_ms);
-					}
+					this._advanceWatermark(saved.last_modified_ms, updated.serverId);
 
 					dataStore.emit('qso_state_changed', {
 						qso: updated,
@@ -1041,6 +1043,22 @@ class QsoFormComponent {
 	}
 
 	/**
+	 * Advances the (lastSeenTs, lastSeenId) watermark for one server QSO.
+	 * Within the same last_modified second the higher serverId wins; a newer second
+	 * resets the id baseline. Mirrors the server-side (second, qso_id) comparison.
+	 */
+	_advanceWatermark(lastModifiedMs, serverId) {
+		const ms = Number(lastModifiedMs) || 0;
+		const id = parseInt(serverId) || 0;
+		if (ms > this.lastSeenTs) {
+			this.lastSeenTs = ms;
+			this.lastSeenId = id;
+		} else if (ms === this.lastSeenTs && id > this.lastSeenId) {
+			this.lastSeenId = id;
+		}
+	}
+
+	/**
 	 * Full replace of synced QSOs with the server's complete set.
 	 * Only used on count mismatch (e.g. a delete elsewhere). Pending (unconfirmed
 	 * local) QSOs are preserved.
@@ -1057,10 +1075,9 @@ class QsoFormComponent {
 
 		serverQsos.forEach((sq) => {
 			const tmpId = dataStore.generateId();
-			dataStore.setLocal(`qso.${tmpId}`, this._mapServerQso(sq, tmpId));
-			if (sq.last_modified_ms) {
-				this.lastSeenTs = Math.max(this.lastSeenTs, sq.last_modified_ms);
-			}
+			const qso = this._mapServerQso(sq, tmpId);
+			dataStore.setLocal(`qso.${tmpId}`, qso);
+			this._advanceWatermark(sq.last_modified_ms, qso.serverId);
 		});
 
 		dataStore.emit('qsos_resynced', {
@@ -1090,9 +1107,7 @@ class QsoFormComponent {
 			const qso = this._mapServerQso(sq, tmpId);
 
 			dataStore.setLocal(key, qso);
-			if (sq.last_modified_ms) {
-				this.lastSeenTs = Math.max(this.lastSeenTs, sq.last_modified_ms);
-			}
+			this._advanceWatermark(sq.last_modified_ms, qso.serverId);
 
 			// Render only this row instead of rebuilding the whole table — the delta
 			// usually carries a single QSO, so we touch O(changed) rows, not O(all).

@@ -277,7 +277,7 @@ class Contesting_model extends CI_Model {
 	}
 
 	/**
-	 * Retrieves QSOs of a session that changed at or after $since_ts (delta sync).
+	 * Retrieves QSOs of a session that changed after the client's watermark (delta sync).
 	 * Relies on the main table's last_modified column (ON UPDATE CURRENT_TIMESTAMP),
 	 * which is bumped path-independently by any UPDATE that changes a value — so this
 	 * catches contest edits as well as edits made through the regular logbook.
@@ -287,20 +287,25 @@ class Contesting_model extends CI_Model {
 	 * total logbook size. There is no index on last_modified, but the filter only
 	 * runs over the rows already fetched by primary key, so that is fine.
 	 *
-	 * Comparison is >= at second precision on purpose: last_modified is a TIMESTAMP
-	 * (1s resolution). Using >= together with an idempotent upsert on the client means
-	 * two edits in the same second cannot be missed — at worst one QSO is re-sent.
+	 * The watermark is a (second, qso_id) pair, not just a timestamp, because
+	 * last_modified is a TIMESTAMP (1s resolution): a bulk import lands many QSOs in the
+	 * same second. A plain >= would re-send all of them on every heartbeat. The pair
+	 * compares as: strictly later second, OR same second with a higher qso_id. This still
+	 * cannot miss an edit (an edit bumps last_modified into a later second), but within
+	 * the boundary second it only returns QSOs the client has not seen yet.
 	 *
 	 * @param int $contest_session_id
 	 * @param int $since_ts Unix timestamp in ms; 0 returns all QSOs (initial load)
+	 * @param int $since_id Highest qso_id already seen within the since_ts second
 	 * @return array List of QSOs including last_modified_ms
 	 */
-	function get_session_qsos_since($contest_session_id, $since_ts) {
+	function get_session_qsos_since($contest_session_id, $since_ts, $since_id = 0) {
 		// Compare on the numeric side (UNIX_TIMESTAMP) rather than FROM_UNIXTIME(?):
 		// FROM_UNIXTIME(0) returns NULL under non-UTC server time zones, which would make
 		// the initial load (since_ts = 0) match no rows. Floor to whole seconds because
 		// last_modified is a TIMESTAMP with 1s resolution.
-		$bindings = [$contest_session_id, (int)($since_ts / 1000)];
+		$since_sec = (int)($since_ts / 1000);
+		$bindings = [$contest_session_id, $since_sec, $since_sec, (int)$since_id];
 		$sql = "SELECT
 					lb.COL_PRIMARY_KEY AS qso_id,
 					lb.COL_CALL AS callsign,
@@ -322,8 +327,11 @@ class Contesting_model extends CI_Model {
 				JOIN contest_session cs ON cs.id = cq.contest_session_id
 				JOIN " . $this->config->item('table_name') . " lb ON lb.COL_PRIMARY_KEY = cq.qso_id
 				WHERE cq.contest_session_id = ?
-				  AND UNIX_TIMESTAMP(lb.last_modified) >= ?
-				ORDER BY lb.last_modified ASC, cq.id ASC";
+				  AND (
+				        UNIX_TIMESTAMP(lb.last_modified) > ?
+				        OR (UNIX_TIMESTAMP(lb.last_modified) = ? AND cq.qso_id > ?)
+				      )
+				ORDER BY lb.last_modified ASC, cq.qso_id ASC";
 
 		$query = $this->db->query($sql, $bindings);
 		return $query->result_array();

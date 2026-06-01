@@ -886,6 +886,7 @@ class Contesting extends CI_Controller {
 				// which falls back to a one-off full resync — rare and acceptable.
 				$client_qso_count = $request['client_qso_count'] ?? 0;
 				$since_ts         = (int)($request['since_ts'] ?? 0);
+				$since_id         = (int)($request['since_id'] ?? 0);
 
 				$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
 				$server_qso_count = $this->contesting_model->get_session_qso_count($session_info['contest_session_id']);
@@ -901,7 +902,7 @@ class Contesting extends CI_Controller {
 					// Send the full set so the client can replace its local state.
 					$response['data']['needs_resync'] = true;
 					$response['data']['all_qsos'] = $this->_map_qso_ids(
-						$this->contesting_model->get_session_qsos_since($session_info['contest_session_id'], 0)
+						$this->contesting_model->get_session_qsos_since($session_info['contest_session_id'], 0, 0)
 					);
 
 					log_message('info', "Resync triggered for session {$session_info['contest_session_id']}: Client={$client_qso_count} + Saved=" . count($response['data']['saved_qsos']) . " = {$expected_client_count}, Server={$server_qso_count}");
@@ -909,7 +910,7 @@ class Contesting extends CI_Controller {
 					// Normal case → only the QSOs changed since the client's watermark.
 					$response['data']['needs_resync'] = false;
 					$response['data']['changed_qsos'] = $this->_map_qso_ids(
-						$this->contesting_model->get_session_qsos_since($session_info['contest_session_id'], $since_ts)
+						$this->contesting_model->get_session_qsos_since($session_info['contest_session_id'], $since_ts, $since_id)
 					);
 				}
 				break;
