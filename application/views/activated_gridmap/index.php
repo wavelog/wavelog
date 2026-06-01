@@ -13,7 +13,7 @@
 	  </div>
 	  <div class="card-body">
 
-<form class="d-flex align-items-center">
+        <form class="d-flex align-items-center">
             <label class="my-1 me-2" for="band"><?= __("Band"); ?></label>
             <select class="form-select my-1 me-sm-2 w-auto"  id="band">
                 <option value="All"><?= __("All")?></option>
@@ -101,25 +101,20 @@
 			<div class="alert-message error">
 			  <p><?php echo $this->session->flashdata('message'); ?></p>
 			</div>
-	  </div>
-	</div>
-		<?php } ?>
-</div>
+            <?php } ?>
 
-<div id="gridmapcontainer">
-	<div id="gridsquare_map" class="map-leaflet" style="width: 100%;"></div>
-</div>
-<div class="coordinates d-flex">
-        <div class="cohidden"><?= __("Latitude")?>:&nbsp;</div>
-        <div class="cohidden col-auto text-success fw-bold" id="latDeg"></div>
-        <div class="cohidden"><?= __("Longitude")?>:&nbsp;</div>
-        <div class="cohidden col-auto text-success fw-bold" id="lngDeg"></div>
-        <div class="cohidden"><?= __("Gridsquare")?>:&nbsp;</div>
-        <div class="cohidden col-auto text-success fw-bold" id="locator"></div>
-        <div class="cohidden"><?= __("Distance")?>:&nbsp;</div>
-        <div class="cohidden col-auto text-success fw-bold" id="distance"></div>
-        <div class="cohidden"><?= __("Bearing")?>:&nbsp;</div>
-        <div class="cohidden col-auto text-success fw-bold" id="bearing"></div>
+            <div id="gridmapcontainer">
+                <div id="gridsquare_map" class="map-leaflet" style="width: 100%;"></div>
+            </div>
+        	<div class="coordinates" style="position: static;">
+                <div class="cohidden coord-pair"><span><?= __("Latitude") ?>:&nbsp;</span><span class="text-success fw-bold" id="latDeg"></span></div>
+                <div class="cohidden coord-pair"><span><?= __("Longitude") ?>:&nbsp;</span><span class="text-success fw-bold" id="lngDeg"></span></div>
+                <div class="cohidden coord-pair"><span><?= __("Gridsquare") ?>:&nbsp;</span><span class="text-success fw-bold" id="locator"></span></div>
+                <div class="cohidden coord-pair"><span><?= __("Distance") ?>:&nbsp;</span><span class="text-success fw-bold" id="distance"></span></div>
+                <div class="cohidden coord-pair"><span><?= __("Bearing") ?>:&nbsp;</span><span class="text-success fw-bold" id="bearing"></span></div>
+            </div>
+        </div>
+    </div>
 </div>
 <script>
 var gridsquaremap = true;
