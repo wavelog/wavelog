@@ -81,7 +81,7 @@ class Paths
     // Creates contesting logging token
     function create_contesting_logging_token($contest_session_id) {
         $CI = &get_instance();
-
+        
         // In case of clubstation, we need the source_uid so we can determine the actual operator
         // Is there no source_uid, we either clubstation support is disabled or the user is not operating in it's own account and we can use the user_id
         $user_id = $CI->session->userdata('source_uid') ?: $CI->session->userdata('user_id');
@@ -100,5 +100,4 @@ class Paths
         $decoded_token = $CI->security->xss_clean(json_decode(base64_decode(urldecode($logging_token)), true));
         return $decoded_token;
     }
-
 }
