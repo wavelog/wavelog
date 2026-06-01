@@ -197,6 +197,7 @@ class QsoFormComponent {
 				this.processQsoSyncResponse(responseData, dataStore);
 			}
 		});
+		this.syncEngine.triggerNow();
 	}
 
 	// Getters to avoid race conditions
@@ -920,7 +921,9 @@ class QsoFormComponent {
 			console.error('QSO Form: needs_resync=true but all_qsos missing!');
 		}
 
-		this.lastSyncTime = Date.now();
+		// Advance by 1001ms after a save so the next heartbeat's last_sync_time crosses
+		// the DB second boundary and avoids a spurious timestamp-based resync.
+		this.lastSyncTime = Date.now() + (responseData.saved_qsos?.length > 0 ? 1001 : 0);
 	}
 
 	processSavedQsos(savedQsos, dataStore) {
