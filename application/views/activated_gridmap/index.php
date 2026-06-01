@@ -11,9 +11,9 @@
 		</div>
 		<div class="card-body">
 
-			<form class="d-flex align-items-center">
+			<form class="d-flex flex-wrap align-items-center gap-1">
 				<label class="my-1 me-2" for="band"><?= __("Band"); ?></label>
-				<select class="form-select my-1 me-sm-2 w-auto"  id="band">
+				<select class="form-select form-select-sm my-1 me-sm-2 w-auto"  id="band">
 					<option value="All"><?= __("All")?></option>
 					<?php foreach($bands as $band) {
 						echo '<option value="'.$band.'"';
@@ -25,7 +25,7 @@
 				</select>
 				<?php if (count($sats_available) != 0) { ?>
 					<label class="my-1 me-2" for="distplot_sats" id="satslabel" <?php if ($user_default_band != "SAT") { ?>style="display: none;"<?php } ?>><?= __("Satellite"); ?></label>
-					<select class="form-select my-1 me-sm-2 w-auto"  id="sats" <?php if ($user_default_band != "SAT") { ?>style="display: none;"<?php } ?>>
+					<select class="form-select form-select-sm my-1 me-sm-2 w-auto"  id="sats" <?php if ($user_default_band != "SAT") { ?>style="display: none;"<?php } ?>>
 						<option value="All"><?= __("All")?></option>
 						<?php foreach($sats_available as $sat) {
 							echo '<option value="' . $sat . '"' . '>' . $sat . '</option>'."\n";
@@ -35,7 +35,7 @@
 					<input id="sats" type="hidden" value="All"></input>
 				<?php } ?>
 					<label class="my-1 me-2" id="orbitslabel" for="orbits" <?php if ($user_default_band != "SAT") { ?>style="display: none;"<?php } ?>><?= __("Orbit"); ?></label>
-					<select class="form-select my-1 me-sm-2 w-auto"  id="orbits" <?php if ($user_default_band != "SAT") { ?>style="display: none;"<?php } ?>>
+					<select class="form-select form-select-sm my-1 me-sm-2 w-auto"  id="orbits" <?php if ($user_default_band != "SAT") { ?>style="display: none;"<?php } ?>>
 						<option value="All"><?= __("All")?></option>
 						<?php
 						foreach($orbits as $orbit){
@@ -44,7 +44,7 @@
 						?>
 				</select>
 				<label class="my-1 me-2" for="mode"><?= __("Mode"); ?></label>
-				<select class="form-select my-1 me-sm-2 w-auto"  id="mode">
+				<select class="form-select form-select-sm my-1 me-sm-2 w-auto"  id="mode">
 				<option value="All"><?= __("All")?></option>
 						<?php
 						foreach($modes as $mode){
@@ -90,8 +90,8 @@
 						</div>
 					</div>
 
-				<button id="plot" type="button" name="plot" class="btn btn-primary me-1 ld-ext-right ld-ext-right-plot" onclick="gridPlot(this.form,<?php echo $visitor == true ? "true" : "false"; ?>)"><?= __("Plot"); ?><div class="ld ld-ring ld-spin"></div></button>
-				<button id="clear" type="button" name="clear" class="btn btn-primary me-1 ld-ext-right ld-ext-right-clear" onclick="clearMarkers()"><?= __("Clear Markers"); ?><div class="ld ld-ring ld-spin"></div></button>
+				<button id="plot" type="button" name="plot" class="btn btn-sm btn-primary me-1 ld-ext-right ld-ext-right-plot" onclick="gridPlot(this.form,<?php echo $visitor == true ? "true" : "false"; ?>)"><?= __("Plot"); ?><div class="ld ld-ring ld-spin"></div></button>
+				<button id="clear" type="button" name="clear" class="btn btn-sm btn-primary me-1 ld-ext-right ld-ext-right-clear" onclick="clearMarkers()"><?= __("Clear Markers"); ?><div class="ld ld-ring ld-spin"></div></button>
 			</form>
 
 		<?php if($this->session->flashdata('message')) { ?>
