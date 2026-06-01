@@ -623,7 +623,7 @@ class QsoFormComponent {
 
 		const result = await response.json();
 		if (this.dataStore && result) {
-			this.dataStore.set(cacheKey, result);
+			this.dataStore.setLocal(cacheKey, result);
 		}
 
 		return result;
