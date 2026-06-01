@@ -326,7 +326,7 @@ class QsoFormComponent {
 
 	_renderQsoDropdown() {
 		return `<div class="dropdown d-inline-block ms-1">
-			<div class="btn btn-secondary py-0 px-1" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:1rem; width:1.8rem; height:1.8rem; display:inline-flex; align-items:center; justify-content:center;">&#9776;</div>
+			<div class="btn btn-secondary py-0 px-1" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:1rem; width:1.8rem; height:1.8rem; display:inline-flex; align-items:center; justify-content:center;">&#9776;</div>
 			<div class="dropdown-menu dropdown-menu-end">
 				<a class="dropdown-item qso-action-edit" href="#"><i class="fas fa-edit me-1"></i>${lang_qso_edit}</a>
 				<div class="dropdown-divider"></div>
@@ -428,6 +428,19 @@ class QsoFormComponent {
 		return String(str).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 	}
 
+	/**
+	 * Builds a signature of the fields shown in a QSO row. Used to skip re-rendering
+	 * rows whose displayed data has not changed (deltas re-send unchanged rows due to
+	 * the >= watermark overlap), which avoids destroying an open dropdown mid-click.
+	 */
+	_qsoRowSignature(qso) {
+		return [
+			qso.time, qso.callsign, qso.band, qso.frequency, qso.mode, qso.rst_rcvd,
+			qso.serial_sent, qso.serial_rcvd ?? qso.serial_recv,
+			qso.gridsquare_rcvd, qso.exchange_rcvd, qso.state, qso.serverId
+		].join('|');
+	}
+
 	_renderQsoRow(row, qso) {
 		const fields = this.exchangeFields ?? ['exchange'];
 		const hasSerial      = fields.includes('serial');
@@ -439,6 +452,7 @@ class QsoFormComponent {
 		const timeStr = (qso.time || '').substring(0, 8);
 		row.dataset.qsoId = qso.tmpId || qso.serverId;
 		if (qso.serverId) row.dataset.serverId = qso.serverId;
+		row.dataset.sig = this._qsoRowSignature(qso);
 
 		const qsoOperator = (qso.operator ?? '').toUpperCase();
 		const isEditable = !!qso.serverId && qsoOperator === this.currentOperator;
@@ -738,6 +752,19 @@ class QsoFormComponent {
 
 	handleQSOsResynced(eventData) {
 		if (!this.dataStore) return;
+
+		// Defer the destructive table rebuild while the user is interacting with a row:
+		// an open edit form (data-editing) or an open action dropdown would otherwise be
+		// wiped under the user. The data is already in the DataStore; the next heartbeat
+		// after the interaction finishes will re-render.
+		const tbody = this.container?.querySelector('#qso-tbody');
+		if (tbody && (
+			tbody.querySelector('tr[data-editing="true"]') ||
+			tbody.querySelector('.dropdown-menu.show') ||
+			tbody.querySelector('[data-bs-toggle="dropdown"][aria-expanded="true"]')
+		)) {
+			return;
+		}
 
 		this.clearTable();
 		const allQsos = Array.from(this.dataStore.getPattern('qso.*').values());
@@ -1060,17 +1087,51 @@ class QsoFormComponent {
 			const existingKey = keyByServerId.get(serverId);
 			const tmpId = existingKey ? dataStore.get(existingKey).tmpId : dataStore.generateId();
 			const key = existingKey ?? `qso.${tmpId}`;
+			const qso = this._mapServerQso(sq, tmpId);
 
-			dataStore.setLocal(key, this._mapServerQso(sq, tmpId));
+			dataStore.setLocal(key, qso);
 			if (sq.last_modified_ms) {
 				this.lastSeenTs = Math.max(this.lastSeenTs, sq.last_modified_ms);
 			}
+
+			// Render only this row instead of rebuilding the whole table — the delta
+			// usually carries a single QSO, so we touch O(changed) rows, not O(all).
+			this._upsertQsoRow(qso);
 		});
 
-		dataStore.emit('qsos_resynced', {
-			server: changedQsos.length,
-			protected: 0
-		});
+		this.updateQSOCount();
+		this.nextSerialSent = this.computeNextSerial();
+		this.updateSerialSentDisplay();
+	}
+
+	/**
+	 * Inserts or updates a single QSO row in place, without rebuilding the table.
+	 * Matches the existing row by serverId, falling back to the local tmpId key.
+	 * Skips the row if it is currently being edited or its action menu is open, so a
+	 * background delta cannot wipe the user's interaction (the next delta re-renders it).
+	 */
+	_upsertQsoRow(qso) {
+		const tbody = this.container?.querySelector('#qso-tbody');
+		if (!tbody) return;
+
+		const existingRow = (qso.serverId && tbody.querySelector(`tr[data-server-id="${qso.serverId}"]`)) ||
+			tbody.querySelector(`tr[data-qso-id="${qso.tmpId}"]`);
+
+		if (existingRow) {
+			// Skip if the displayed data is unchanged — avoids needless re-renders that
+			// would destroy an open dropdown mid-interaction (deltas re-send unchanged rows).
+			if (existingRow.dataset.sig === this._qsoRowSignature(qso)) return;
+
+			// Do not disturb a row the user is interacting with
+			if (existingRow.dataset.editing === 'true' ||
+				existingRow.querySelector('.dropdown-menu.show') ||
+				existingRow.querySelector('[data-bs-toggle="dropdown"][aria-expanded="true"]')) {
+				return;
+			}
+			this._renderQsoRow(existingRow, qso);
+		} else {
+			this.addQSOToTable(qso);
+		}
 	}
 
 	convertQrgToBand(frequency) {
