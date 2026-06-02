@@ -678,7 +678,8 @@ class QsoFormComponent {
 		const cached = this.dataStore?.get(cacheKey);
 		if (cached !== undefined) return cached;
 
-		const url = `${base_url}index.php/contesting/callbook?call=${encodeURIComponent(callsign)}`;
+		const callbookEnabled = window.ContestLoggerConfig?.sessionInfo?.callbook_lookup !== false;
+		const url = `${base_url}index.php/contesting/callbook?call=${encodeURIComponent(callsign)}${callbookEnabled ? '' : '&dxcc_only=1'}`;
 		const response = await fetch(url, {
 			method: 'GET',
 			headers: { 'X-Requested-With': 'XMLHttpRequest' }

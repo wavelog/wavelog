@@ -414,8 +414,9 @@ class Contesting extends CI_Controller {
 				$exchangefields = $this->_parseExchangeFields($this->input->post('exchangefields', true));
 				$exchangetype   = $this->_fieldsToLegacyType($exchangefields);
 				$copyexchangeto = $this->input->post('copyexchangeto', true) ?? '';
+				$callbook_lookup  = (bool) $this->input->post('callbook_lookup', true);
 
-				$result = $this->contesting_model->create_contest_session($contest_adif_id, $session_start, $session_end, $station_location, $session_notes, false, $exchangetype, $copyexchangeto, $exchangefields);
+				$result = $this->contesting_model->create_contest_session($contest_adif_id, $session_start, $session_end, $station_location, $session_notes, false, $exchangetype, $copyexchangeto, $exchangefields, $callbook_lookup);
 
 				if ($result) {
 					$this->session->set_flashdata('success', __("Contest session created successfully."));
@@ -464,8 +465,9 @@ class Contesting extends CI_Controller {
 				$exchangefields = $this->_parseExchangeFields($this->input->post('exchangefields', true));
 				$exchangetype   = $this->_fieldsToLegacyType($exchangefields);
 				$copyexchangeto = $this->input->post('copyexchangeto', true) ?? '';
+				$callbook_lookup  = (bool) $this->input->post('callbook_lookup', true);
 
-				$result = $this->contesting_model->update_contest_session($contest_session_id, $contest_id, $time_start, $time_end, $station_id, $notes, $exchangetype, $copyexchangeto, $exchangefields);
+				$result = $this->contesting_model->update_contest_session($contest_session_id, $contest_id, $time_start, $time_end, $station_id, $notes, $exchangetype, $copyexchangeto, $exchangefields, $callbook_lookup);
 
 				if ($result) {
 					$this->session->set_flashdata('success', __("Contest session updated successfully."));
@@ -1249,13 +1251,14 @@ class Contesting extends CI_Controller {
 	 * the callbook has more specific data. Result is cached server-side for 4 hours.
 	 */
 	public function callbook() {
+		$this->load->library('callbook');
 		$call = $this->input->get('call', TRUE);
 		if (!$call || strlen($call) < 3) {
 			http_response_code(400);
 			echo json_encode(['error' => 'invalid call']);
 			return;
 		}
-		$call = strtoupper(str_replace(['-', 'Ø'], ['/', '0'], $call));
+		$call = $this->callbook->get_plaincall($call);
 
 		$this->load->driver('cache', [
 			'adapter'    => $this->config->item('cache_adapter')    ?? 'file',
@@ -1263,7 +1266,10 @@ class Contesting extends CI_Controller {
 			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
 		]);
 
-		$cache_key = 'contesting_callbook_' . preg_replace('/[^A-Z0-9]/', '_', $call);
+		$dxcc_only = $this->input->get('dxcc_only', TRUE) === '1' ? true : false;
+
+		// Use separate cache keys so switching the option hits fresh data
+		$cache_key = ($dxcc_only ? 'contesting_dxcc_' : 'contesting_callbook_') . md5($call);
 		$payload   = $this->cache->get($cache_key);
 
 		if ($payload === FALSE) {
@@ -1273,35 +1279,33 @@ class Contesting extends CI_Controller {
 			$dxcc    = $dxccobj->dxcc_lookup($call, $date);
 
 			$payload = [
-				'name'    => null,
-				'qth'     => null,
-				'grid'    => null,
-				'ituz'    => null,
-				'dxcc'    => $dxcc['adif']   ?? null,
-				'cqz'     => $dxcc['cqz']    ?? null,
-				'cont'    => $dxcc['cont']   ?? null,
-				'entity'  => $dxcc['entity'] ?? null,
-				'lat'     => $dxcc['lat']    ?? null,
-				'long'    => $dxcc['long']   ?? null,
-				'source'  => null,
+				'name'   => null,
+				'qth'    => null,
+				'grid'   => null,
+				'ituz'   => null,
+				'dxcc'   => $dxcc['adif']   ?? null,
+				'cqz'    => $dxcc['cqz']    ?? null,
+				'cont'   => $dxcc['cont']   ?? null,
+				'entity' => $dxcc['entity'] ?? null,
+				'lat'    => $dxcc['lat']    ?? null,
+				'long'   => $dxcc['long']   ?? null,
+				'source' => null,
 			];
 
-			// Callbook lookup — overrides DXCC fields where more specific data is available
-			$this->load->model('logbook_model');
-			$this->load->library('callbook');
+			if (!$dxcc_only) {
+				// Callbook lookup — overrides DXCC fields where more specific data is available
+				$this->load->model('logbook_model');
+				$cb = $this->logbook_model->loadCallBook($call);
 
-			$plain_call = $this->callbook->get_plaincall($call);
-			$cb = $this->logbook_model->loadCallBook($plain_call);
-
-			if (!empty($cb)) {
-				$payload['name']   = $cb['name']       ?? null;
-				$payload['qth']    = $cb['city']        ?? null;
-				$payload['grid']   = $cb['gridsquare']  ?? null;
-				$payload['ituz']   = $cb['ituz']        ?? null;
-				$payload['source'] = $cb['source']      ?? null;
-				// Callbook DXCC/CQZ takes precedence if present
-				if (!empty($cb['dxcc'])) $payload['dxcc'] = $cb['dxcc'];
-				if (!empty($cb['cqz']))  $payload['cqz']  = $cb['cqz'];
+				if (!empty($cb)) {
+					$payload['name']   = $cb['name']      ?? null;
+					$payload['qth']    = $cb['city']       ?? null;
+					$payload['grid']   = $cb['gridsquare'] ?? null;
+					$payload['ituz']   = $cb['ituz']       ?? null;
+					$payload['source'] = $cb['source']     ?? null;
+					if (!empty($cb['dxcc'])) $payload['dxcc'] = $cb['dxcc'];
+					if (!empty($cb['cqz']))  $payload['cqz']  = $cb['cqz'];
+				}
 			}
 
 			$this->cache->save($cache_key, $payload, 14400); // 4h

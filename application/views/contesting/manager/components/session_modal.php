@@ -121,6 +121,14 @@
                         <small class="text-muted d-block mt-2"><?= __("The received Exchange (Exch R) value will be copied to this logbook field.") ?></small>
                     </div>
                     <div class="mb-4">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="callbook_lookup" name="callbook_lookup" value="1"
+                                <?php if (!isset($session_info) || ($session_info['callbook_lookup'] ?? true)) echo 'checked'; ?>>
+                            <label class="form-check-label" for="callbook_lookup"><?= __("Callbook Lookup") ?></label>
+                        </div>
+                        <small class="text-muted d-block mt-1"><?= __("Look up callbook data (name, QTH, grid) on callsign entry. If disabled only the dxcc gets calculated.") ?></small>
+                    </div>
+                    <div class="mb-4">
                         <label for="session_notes" class="form-label"><?= __("Session Notes") ?></label>
                         <textarea class="form-control" id="session_notes" name="session_notes" rows="3" placeholder="<?= __("Add any additional information about this session..."); ?>"><?php if (isset($session_info)) echo htmlspecialchars($session_info['comment'] ?? ''); ?></textarea>
                         <small class="text-muted d-block mt-2"><?= __("Optional: Any additional details or notes"); ?></small>

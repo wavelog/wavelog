@@ -85,13 +85,15 @@ class Contesting_model extends CI_Model {
 		$row = $query->row_array();
 		if ($row && !empty($row['settings'])) {
 			$settings = json_decode($row['settings'], true) ?? [];
-			$row['copyexchangeto'] = $settings['copyexchangeto'] ?? '';
-			$row['exchangefields'] = $settings['exchangefields'] ?? ['exchange'];
-			$row['exchangetype']   = $settings['exchangetype']   ?? 'Exchange';
+			$row['copyexchangeto']  = $settings['copyexchangeto']  ?? '';
+			$row['exchangefields']  = $settings['exchangefields']  ?? ['exchange'];
+			$row['exchangetype']    = $settings['exchangetype']    ?? 'Exchange';
+			$row['callbook_lookup'] = $settings['callbook_lookup'] ?? true;
 		} else {
-			$row['copyexchangeto'] = '';
-			$row['exchangefields'] = ['exchange'];
-			$row['exchangetype']   = 'Exchange';
+			$row['copyexchangeto']  = '';
+			$row['exchangefields']  = ['exchange'];
+			$row['exchangetype']    = 'Exchange';
+			$row['callbook_lookup'] = true;
 		}
 		unset($row['settings']);
 		return $row;
@@ -107,10 +109,10 @@ class Contesting_model extends CI_Model {
 	 * @param string $session_notes Notes for the session.
 	 * @return bool True on success, false on failure. If $return_id is true, returns the inserted session ID instead.
 	 */
-	function create_contest_session($contest_adif_id, $session_start, $session_end, $station_location, $session_notes, $return_id = false, $exchangetype = 'Serial', $copyexchangeto = '', $exchangefields = ["serial"]) {
+	function create_contest_session($contest_adif_id, $session_start, $session_end, $station_location, $session_notes, $return_id = false, $exchangetype = 'Serial', $copyexchangeto = '', $exchangefields = ["serial"], $callbook_lookup = true) {
 		$user_id = $this->session->userdata('user_id');
 
-		$settings = json_encode(['exchangetype' => $exchangetype, 'copyexchangeto' => $copyexchangeto, 'exchangefields' => $exchangefields]);
+		$settings = json_encode(['exchangetype' => $exchangetype, 'copyexchangeto' => $copyexchangeto, 'exchangefields' => $exchangefields, 'callbook_lookup' => $callbook_lookup]);
 
 		$sql = "INSERT INTO contest_session (user_id, contest_adif_id, time_start, time_end, station_id, comment, settings)
 				VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -144,14 +146,14 @@ class Contesting_model extends CI_Model {
 	 * @param string $notes Notes for the session.
 	 * @return bool True on success, false on failure.
 	 */
-	function update_contest_session($contest_session_id, $contest_id, $time_start, $time_end, $station_id, $notes, $exchangetype = 'Serial', $copyexchangeto = '', $exchangefields = ["serial"]) {
+	function update_contest_session($contest_session_id, $contest_id, $time_start, $time_end, $station_id, $notes, $exchangetype = 'Serial', $copyexchangeto = '', $exchangefields = ["serial"], $callbook_lookup = true) {
 		if (!clubaccess_check(9)) {
 			$this->session->set_flashdata('error', __("Officers must edit contests."));
 			redirect('contesting');
 		}
 		$user_id = $this->session->userdata('user_id');
 
-		$settings = json_encode(['exchangetype' => $exchangetype, 'copyexchangeto' => $copyexchangeto, 'exchangefields' => $exchangefields]);
+		$settings = json_encode(['exchangetype' => $exchangetype, 'copyexchangeto' => $copyexchangeto, 'exchangefields' => $exchangefields, 'callbook_lookup' => $callbook_lookup]);
 
 		$sql = "UPDATE contest_session
 				SET contest_adif_id = ?, time_start = ?, time_end = ?, station_id = ?, comment = ?, settings = ?
