@@ -83,7 +83,7 @@
                             'gridsquare' => __("Grid Square"),
                             'exchange'   => __("Exchange (text)"),
                         ];
-                        $activeFields = isset($session_info) ? ($session_info['exchangefields'] ?? ['exchange']) : ['exchange'];
+                        $activeFields = isset($session_info) ? ($session_info['exchangefields'] ?? ['serial']) : ['serial'];
                         // Render active fields first (in saved order), then inactive ones
                         $ordered = [];
                         foreach ($activeFields as $f) {

@@ -107,7 +107,7 @@ class Contesting_model extends CI_Model {
 	 * @param string $session_notes Notes for the session.
 	 * @return bool True on success, false on failure. If $return_id is true, returns the inserted session ID instead.
 	 */
-	function create_contest_session($contest_adif_id, $session_start, $session_end, $station_location, $session_notes, $return_id = false, $exchangetype = 'Exchange', $copyexchangeto = '', $exchangefields = []) {
+	function create_contest_session($contest_adif_id, $session_start, $session_end, $station_location, $session_notes, $return_id = false, $exchangetype = 'Serial', $copyexchangeto = '', $exchangefields = ["serial"]) {
 		$user_id = $this->session->userdata('user_id');
 
 		$settings = json_encode(['exchangetype' => $exchangetype, 'copyexchangeto' => $copyexchangeto, 'exchangefields' => $exchangefields]);
@@ -144,7 +144,7 @@ class Contesting_model extends CI_Model {
 	 * @param string $notes Notes for the session.
 	 * @return bool True on success, false on failure.
 	 */
-	function update_contest_session($contest_session_id, $contest_id, $time_start, $time_end, $station_id, $notes, $exchangetype = 'Exchange', $copyexchangeto = '', $exchangefields = []) {
+	function update_contest_session($contest_session_id, $contest_id, $time_start, $time_end, $station_id, $notes, $exchangetype = 'Serial', $copyexchangeto = '', $exchangefields = ["serial"]) {
 		if (!clubaccess_check(9)) {
 			$this->session->set_flashdata('error', __("Officers must edit contests."));
 			redirect('contesting');
