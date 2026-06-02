@@ -9,6 +9,16 @@
 	border: 1px solid rgba(255, 255, 255, 0.8);
 }
 
+/* Last-logged QSO while a preview callsign is active in the form */
+.contest-map-current-qso span {
+	display: block;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: #1e6fff;
+	border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
 /* Own station marker (star) */
 .contest-map-station {
 	color: #d6a400;

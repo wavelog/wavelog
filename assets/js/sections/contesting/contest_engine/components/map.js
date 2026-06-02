@@ -168,6 +168,11 @@ class MapComponent {
 			html: '&#9733;', // star
 			iconSize: [18, 18]
 		});
+		this.blueIcon = L.divIcon({
+			className: 'contest-map-current-qso',
+			html: '<span></span>',
+			iconSize: [8, 8]
+		});
 
 		// Per-QSO markers, keyed by serverId or tmpId, so edits move a marker instead of
 		// duplicating it. Mirrors how the QSO table tracks rows.
@@ -184,7 +189,8 @@ class MapComponent {
 		this.prefs = {
 			nightshadow: prefs.nightshadow !== false,
 			pathline: prefs.pathline !== false,
-			station: prefs.station !== false
+			station: prefs.station !== false,
+			autofit: prefs.autofit !== false
 		};
 
 		// Initialize Leaflet map
@@ -351,7 +357,11 @@ class MapComponent {
 		const marker = this.qsoMarkers.get(key);
 		if (marker) marker.setIcon(this.redIcon);
 		if (latlng) {
-			this.map.panTo(latlng);
+			if (this.prefs.autofit) {
+				this.fitAllMarkers();
+			} else {
+				this.map.panTo(latlng);
+			}
 			this.updatePathLine(latlng);
 		}
 	}
@@ -364,22 +374,39 @@ class MapComponent {
 		if (!this.map) return;
 		const latlng = this.resolveLatLng(location);
 
-		if (!this._previewMarker) {
-			this._previewMarker = null;
-		}
-		// Remove old preview
+		// Remove old preview marker
 		if (this._previewMarker) {
 			this.markers.removeLayer(this._previewMarker);
 			this._previewMarker = null;
 		}
 
 		if (!latlng) {
+			// No preview active: restore last logged QSO to red
+			if (this.currentKey) {
+				const m = this.qsoMarkers.get(this.currentKey);
+				if (m) m.setIcon(this.redIcon);
+			}
 			this.clearPathLine();
+			// Redraw path to last logged QSO if it has a known position
+			if (this.currentKey) {
+				const m = this.qsoMarkers.get(this.currentKey);
+				if (m) this.updatePathLine(m.getLatLng());
+			}
 			return;
 		}
 
+		// Preview active: dim the last logged QSO to blue, show preview in red
+		if (this.currentKey) {
+			const m = this.qsoMarkers.get(this.currentKey);
+			if (m) m.setIcon(this.blueIcon);
+		}
+
 		this._previewMarker = L.marker(latlng, { icon: this.redIcon }).addTo(this.markers);
-		this.map.panTo(latlng);
+		if (this.prefs.autofit) {
+			this.fitAllMarkers(latlng);
+		} else {
+			this.map.panTo(latlng);
+		}
 		this.updatePathLine(latlng);
 	}
 
@@ -409,6 +436,31 @@ class MapComponent {
 	}
 
 	/**
+	 * Fit the map view so all QSO markers, the own station, and an optional extra point
+	 * are visible with padding. Falls back to setView for a single point.
+	 * @param {[number,number]|null} extraLatLng  Additional coordinate to include (e.g. preview)
+	 */
+	fitAllMarkers(extraLatLng = null) {
+		if (!this.map) return;
+		const points = [];
+		this.qsoMarkers.forEach((m) => points.push(m.getLatLng()));
+		if (extraLatLng) {
+			points.push(Array.isArray(extraLatLng)
+				? L.latLng(extraLatLng[0], extraLatLng[1])
+				: extraLatLng);
+		}
+		if (this.stationLatLng) {
+			points.push(L.latLng(this.stationLatLng[0], this.stationLatLng[1]));
+		}
+		if (points.length === 0) return;
+		if (points.length === 1) {
+			this.map.setView(points[0], Math.max(this.map.getZoom(), 5));
+			return;
+		}
+		this.map.fitBounds(L.latLngBounds(points), { padding: [40, 40], maxZoom: 12 });
+	}
+
+	/**
 	 * Re-plot all QSOs from the DataStore as the trail, highlighting the newest as current.
 	 */
 	plotAllQsos() {
@@ -422,14 +474,22 @@ class MapComponent {
 		const qsos = Array.from(this.dataStore.getPattern('qso.*').values());
 		qsos.forEach((qso) => this.upsertQsoMarker(qso, false));
 
-		// Highlight the most recent QSO as current (by created/time_on if available)
+		// Highlight the most recent QSO (visual only, no pan — fitAllMarkers handles navigation)
 		if (qsos.length) {
 			const newest = qsos.reduce((a, b) =>
 				(this._qsoTime(b) >= this._qsoTime(a) ? b : a));
 			const key = this._qsoKey(newest);
 			const latlng = this.resolveLatLng(newest);
-			if (key && latlng) this.setCurrent(key, latlng);
+			if (key && latlng) {
+				this.currentKey = key;
+				const marker = this.qsoMarkers.get(key);
+				if (marker) marker.setIcon(this.redIcon);
+				this.updatePathLine(latlng);
+			}
 		}
+
+		// Always fit all markers on initial load / full resync
+		this.fitAllMarkers();
 	}
 
 	_qsoTime(q) {
@@ -458,7 +518,8 @@ class MapComponent {
 				div.innerHTML =
 					row('nightshadow', lang_map_nightshadow ?? 'Night', self.prefs.nightshadow) +
 					row('pathline', lang_map_pathline ?? 'Path', self.prefs.pathline) +
-					row('station', lang_map_station ?? 'Station', self.prefs.station);
+					row('station', lang_map_station ?? 'Station', self.prefs.station) +
+					row('autofit', lang_map_autofit ?? 'Auto-fit', self.prefs.autofit);
 
 				L.DomEvent.disableClickPropagation(div);
 				div.querySelectorAll('input[data-pref]').forEach((cb) => {
@@ -492,6 +553,8 @@ class MapComponent {
 				const m = this.qsoMarkers.get(this.currentKey);
 				if (m) this.updatePathLine(m.getLatLng());
 			}
+		} else if (pref === 'autofit') {
+			if (enabled) this.fitAllMarkers();
 		}
 
 		this.saveMapPrefs();

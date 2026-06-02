@@ -16,7 +16,7 @@
             'topic' => $worker_topic,
             'token' => $worker_token,
         ] : null); ?>,
-        mapPrefs: <?php echo json_encode($map_prefs ?? ['nightshadow' => true, 'pathline' => true, 'station' => true]); ?>
+        mapPrefs: <?php echo json_encode($map_prefs ?? ['nightshadow' => true, 'pathline' => true, 'station' => true, 'autofit' => true]); ?>
     };
 
     // Language
@@ -45,6 +45,7 @@
     let lang_map_nightshadow = "<?= __("Night") ?>";
     let lang_map_pathline = "<?= __("Path") ?>";
     let lang_map_station = "<?= __("Station") ?>";
+    let lang_map_autofit = "<?= __("Auto-fit") ?>";
 </script>
 
 <div>

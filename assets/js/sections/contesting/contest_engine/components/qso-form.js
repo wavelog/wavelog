@@ -1068,6 +1068,9 @@ class QsoFormComponent {
 				? Number(sq.frequency) || sq.frequency
 				: sq.frequency;
 
+		const dxccLat = parseFloat(sq.dxcc_lat);
+		const dxccLon = parseFloat(sq.dxcc_lon);
+
 		return {
 			serverId: parseInt(sq.id ?? sq.qso_id),
 			tmpId: tmpId,
@@ -1087,6 +1090,8 @@ class QsoFormComponent {
 			exchange_sent: sq.exchange_sent ?? sq.exch_sent ?? '',
 			exchange_rcvd: sq.exchange_rcvd ?? sq.exch_recv ?? '',
 			gridsquare_rcvd: sq.locator ?? null,
+			lat: Number.isFinite(dxccLat) ? dxccLat : undefined,
+			lon: Number.isFinite(dxccLon) ? dxccLon : undefined,
 			operator: sq.operator,
 			state: 'synced'
 		};

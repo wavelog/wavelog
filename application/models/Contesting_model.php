@@ -321,10 +321,13 @@ class Contesting_model extends CI_Model {
 					lb.COL_SRX_STRING AS exch_recv,
 					lb.COL_GRIDSQUARE AS locator,
 					lb.COL_OPERATOR AS operator,
-					UNIX_TIMESTAMP(lb.last_modified) * 1000 AS last_modified_ms
+					UNIX_TIMESTAMP(lb.last_modified) * 1000 AS last_modified_ms,
+					de.lat AS dxcc_lat,
+					de.long AS dxcc_lon
 				FROM contest_qsos cq
 				JOIN contest_session cs ON cs.id = cq.contest_session_id
 				JOIN " . $this->config->item('table_name') . " lb ON lb.COL_PRIMARY_KEY = cq.qso_id
+				LEFT JOIN dxcc_entities de ON de.adif = lb.COL_DXCC
 				WHERE cq.contest_session_id = ?
 				  AND (
 				        UNIX_TIMESTAMP(lb.last_modified) > ?
