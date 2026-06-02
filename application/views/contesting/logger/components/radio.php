@@ -64,7 +64,7 @@ $config = [
 						<div class="col-7">
 							<label for="frequency" class="form-label"><?= __("Frequency"); ?></label>
 							<div class="input-group">
-								<input type="text" tabindex="3" class="form-control font-monospace" id="freq_calculated" name="freq_calculated" value="0" />
+								<input type="text" tabindex="-1" class="form-control font-monospace" id="freq_calculated" name="freq_calculated" value="0" />
 								<span class="input-group-text btn-included-on-field" id="qrg_unit">...</span>
 							</div>
 							<input style="display: none;" type="text" class="form-control" id="frequency" name="freq_display" value="<?php echo $this->session->userdata('freq'); ?>" />
