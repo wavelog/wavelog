@@ -79,6 +79,10 @@ $config = [
 								<input type="hidden" id="qso-dxcc-long" name="dxcc_long" value="">
 								<input type="hidden" id="qso-dxcc-start" name="dxcc_start" value="">
 								<input type="hidden" id="qso-dxcc-end" name="dxcc_end" value="">
+								<input type="hidden" id="qso-callbook-name" name="callbook_name" value="">
+								<input type="hidden" id="qso-callbook-qth" name="callbook_qth" value="">
+								<input type="hidden" id="qso-callbook-grid" name="callbook_grid" value="">
+								<input type="hidden" id="qso-callbook-ituz" name="callbook_ituz" value="">
 							</div>
 
 							<!-- RST Sent / Received -->
@@ -126,6 +130,8 @@ $config = [
 						<div id="qso-worked-before-warning" class="badge bg-danger fw-bold" style="display:none;" aria-live="assertive"></div>
 						<!-- DXCC info line -->
 						<div id="qso-dxcc-info" class="form-text text-muted small mt-1" aria-live="polite"></div>
+						<!-- Callbook info line (name / QTH) -->
+						<div id="qso-callbook-info" class="form-text text-info small" style="display:none;" aria-live="polite"></div>
 					</div>
 				</div>
 			</div>

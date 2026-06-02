@@ -13,6 +13,7 @@ class QsoFormComponent {
 		this.lastDxccCallsign = null;
 		this._bearingInfo = null;
 		this.dxccLookupToken = 0;
+		this.callbookLookupToken = 0;
 		this.nextSerialSent = 1;
 		this.exchangeType = null;
 
@@ -608,6 +609,20 @@ class QsoFormComponent {
 			this.writeDxccToView(dxccInfo);
 
 			this.emitQsoLocation(dxccInfo);
+
+			// Callbook lookup runs in parallel — fires and does not block DXCC display
+			const callbookToken = ++this.callbookLookupToken;
+			this.lookupCallbook(callsign).then(cbResult => {
+				if (callbookToken !== this.callbookLookupToken) return;
+				this.writeCallbookToView(cbResult);
+				// If callbook returns a DXCC adif, override the DXCC-lookup result
+				if (cbResult?.dxcc) {
+					const overrideDxcc = { ...this.lastDxccInfo, adif: parseInt(cbResult.dxcc, 10) || cbResult.dxcc };
+					this.writeDxccToView(overrideDxcc);
+					this.lastDxccInfo = overrideDxcc;
+				}
+				this.emitQsoLocation(this.lastDxccInfo);
+			}).catch(() => {});
 		} catch (error) {
 			if (lookupToken !== this.dxccLookupToken) return;
 			console.error('QSO Form: DXCC lookup failed', error);
@@ -699,6 +714,55 @@ class QsoFormComponent {
 		}
 
 		return result;
+	}
+
+	async lookupCallbook(callsign) {
+		if (!callsign) return null;
+
+		const cacheKey = `callbook.${callsign}`;
+		const cached = this.dataStore?.get(cacheKey);
+		if (cached !== undefined) return cached;
+
+		const url = `${base_url}index.php/contesting/callbook?call=${encodeURIComponent(callsign)}`;
+		const response = await fetch(url, {
+			method: 'GET',
+			headers: { 'X-Requested-With': 'XMLHttpRequest' }
+		});
+		if (!response.ok) return null;
+		const result = await response.json();
+		if (this.dataStore && result) {
+			this.dataStore.setLocal(cacheKey, result);
+		}
+		return result;
+	}
+
+	writeCallbookToView(result) {
+		if (!this.container) return;
+
+		const fields = {
+			'#qso-callbook-name': result?.name ?? '',
+			'#qso-callbook-qth':  result?.qth  ?? '',
+			'#qso-callbook-grid': result?.grid  ?? '',
+			'#qso-callbook-ituz': result?.ituz  ?? '',
+		};
+		Object.entries(fields).forEach(([sel, val]) => {
+			const el = this.container.querySelector(sel);
+			if (el) el.value = val;
+		});
+
+		// Prefill gridsquare-received if currently empty
+		const gridInput = this.container.querySelector('#qso-gridsquare-received');
+		if (gridInput && !gridInput.value && result?.grid) {
+			gridInput.value = result.grid;
+		}
+
+		// Show callbook info line (name · QTH)
+		const infoEl = this.container.querySelector('#qso-callbook-info');
+		if (infoEl) {
+			const parts = [result?.name, result?.qth].filter(Boolean);
+			infoEl.textContent = parts.join(' · ');
+			infoEl.style.display = parts.length ? '' : 'none';
+		}
 	}
 
 	updateDxccInfoDisplay(dxccInfo) {
@@ -982,6 +1046,13 @@ class QsoFormComponent {
 		this.writeDxccToView(null);
 		this.updateWorkedBeforeWarning('');
 		this.applyRstDefaults();
+
+		// Clear callbook fields and invalidate any in-flight lookup
+		['#qso-callbook-name', '#qso-callbook-qth', '#qso-callbook-grid', '#qso-callbook-ituz']
+			.forEach(sel => { const el = this.container.querySelector(sel); if (el) el.value = ''; });
+		const cbInfo = this.container.querySelector('#qso-callbook-info');
+		if (cbInfo) { cbInfo.textContent = ''; cbInfo.style.display = 'none'; }
+		this.callbookLookupToken++;
 	}
 
 	buildQsoCommands(dataStore) {
@@ -1011,7 +1082,10 @@ class QsoFormComponent {
 				country: qso.country || qso.entity || null,
 				continent: qso.continent || qso.cont || null,
 				dxcc_id: qso.dxcc_id || qso.dxcc || null,
-				cqz: qso.cqz || null
+				cqz: qso.cqz || null,
+				name: qso.name || null,
+				qth:  qso.qth  || null,
+				ituz: qso.ituz || null,
 			}
 		}));
 	}
@@ -1332,6 +1406,13 @@ class QsoFormComponent {
 		if (dxccEntity) qsoData.entity = dxccEntity;
 		if (dxccStart) qsoData.start = dxccStart;
 		if (dxccEnd) qsoData.end = dxccEnd;
+
+		const cbName = this.container.querySelector('#qso-callbook-name')?.value || null;
+		const cbQth  = this.container.querySelector('#qso-callbook-qth')?.value  || null;
+		const cbItuz = this.container.querySelector('#qso-callbook-ituz')?.value || null;
+		if (cbName) qsoData.name = cbName;
+		if (cbQth)  qsoData.qth  = cbQth;
+		if (cbItuz) qsoData.ituz = cbItuz;
 
 		// Save to DataStore using new API
 		const tmpId = this.dataStore.generateId();

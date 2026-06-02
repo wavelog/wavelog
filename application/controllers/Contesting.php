@@ -820,6 +820,9 @@ class Contesting extends CI_Controller {
 					'exch_sent' => $command['data']['exchange_sent'] ?? NULL,
 					'exch_rcvd' => $command['data']['exchange_rcvd'] ?? NULL,
 					'locator' => $command['data']['gridsquare_rcvd'] ?? NULL,
+					'name'    => $command['data']['name']          ?? NULL,
+					'qth'     => $command['data']['qth']           ?? NULL,
+					'ituz'    => $command['data']['ituz']          ?? NULL,
 					'country' => $command['data']['country'] ?? NULL,
 					'continent' => $command['data']['continent'] ?? NULL,
 					'dxcc_id' => $command['data']['dxcc_id'] ?? NULL,
@@ -1258,6 +1261,52 @@ class Contesting extends CI_Controller {
 
 		header('Content-Type: application/json');
 		echo json_encode($result);
+	}
+
+	/*
+	 * Callbook lookup for contest engine — returns name, QTH, grid, ITU zone and DXCC.
+	 * Respects the user's callbook priority setting (DB-first vs. external-first).
+	 */
+	public function callbook() {
+		$call = $this->input->get('call', TRUE);
+		if (!$call || strlen($call) < 3) {
+			http_response_code(400);
+			echo json_encode(['error' => 'invalid call']);
+			return;
+		}
+		$call = strtoupper(str_replace(['-', 'Ø'], ['/', '0'], $call));
+
+		$this->load->driver('cache', [
+			'adapter'    => $this->config->item('cache_adapter')    ?? 'file',
+			'backup'     => $this->config->item('cache_backup')     ?? 'file',
+			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
+		]);
+
+		$cache_key = 'contesting_callbook_' . preg_replace('/[^A-Z0-9]/', '_', $call);
+		$payload   = $this->cache->get($cache_key);
+
+		if ($payload === FALSE) {
+			$this->load->model('logbook_model');
+			$this->load->library('callbook');
+
+			$plain_call = $this->callbook->get_plaincall($call);
+			$data = $this->logbook_model->loadCallBook($plain_call);
+
+			$payload = [
+				'name'   => $data['name']       ?? null,
+				'qth'    => $data['city']        ?? null,
+				'grid'   => $data['gridsquare']  ?? null,
+				'ituz'   => $data['ituz']        ?? null,
+				'dxcc'   => $data['dxcc']        ?? null,
+				'cqz'    => $data['cqz']         ?? null,
+				'source' => $data['source']      ?? null,
+			];
+
+			$this->cache->save($cache_key, $payload, 14400); // 4h
+		}
+
+		header('Content-Type: application/json');
+		echo json_encode($payload);
 	}
 
 	private function _parseExchangeFields($json) {
