@@ -594,6 +594,9 @@ class Contesting extends CI_Controller {
 					                    'exchange_rcvd', 'gridsquare_rcvd'])) {
 						$val = $val !== null ? strtoupper(trim((string)$val)) : null;
 					}
+					if (in_array($key, ['serial_sent', 'serial_rcvd']) && $val === '') {
+						$val = null;
+					}
 					if ($key === 'time_on' && $val !== null) {
 						$dt = DateTime::createFromFormat('Y-m-d H:i:s', trim((string)$val));
 						if (!$dt) throw new Exception('Invalid time_on format');
