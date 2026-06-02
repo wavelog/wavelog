@@ -11,6 +11,7 @@ class QsoFormComponent {
 		this.isInitialized = false;
 		this.lastDxccInfo = null;
 		this.lastDxccCallsign = null;
+		this._bearingInfo = null;
 		this.dxccLookupToken = 0;
 		this.nextSerialSent = 1;
 		this.exchangeType = null;
@@ -730,7 +731,11 @@ class QsoFormComponent {
 			return;
 		}
 
-		infoEl.textContent = `DXCC: ${entity} · ${cont} · CQ ${cqz}`;
+		let infoText = `DXCC: ${entity} · ${cont} · CQ ${cqz}`;
+		if (this._bearingInfo) {
+			infoText += ` · D ${this._bearingInfo.distance} km · Az ${this._bearingInfo.azimuth}°`;
+		}
+		infoEl.textContent = infoText;
 	}
 
 	checkWorkedBefore(callsign) {
@@ -795,6 +800,12 @@ class QsoFormComponent {
 
 		const exchangeSentInput = this.container.querySelector('#qso-exchange-sent');
 		if (exchangeSentInput) exchangeSentInput.value = this.getLastExchangeSent();
+
+		// Bearing/distance from map component (emitted when qso_location_updated resolves)
+		this.dataStore.on('qso_bearing_updated', (data) => {
+			this._bearingInfo = data;
+			this.updateDxccInfoDisplay(this.lastDxccInfo);
+		});
 
 		// Listen for QSO state changes
 		this.dataStore.on('qso_state_changed', (eventData) => this.handleQSOStateChanged(eventData));
