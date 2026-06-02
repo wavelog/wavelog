@@ -22,6 +22,8 @@ $config['worker_vip'] = '';
 // Internal URLs of wavelog_worker instances (PHP -> Worker, HTTP).
 // Single instance: one entry. Cluster: one entry per node.
 // PHP publishes to the first entry; the debug page shows status of all nodes.
+// Keep in Mind: If you enter more than one worker url, it means you run a cluster. In this case you need 
+// a Redis / Valkey instance. More info you can find in the wavelog_worker sample config.yaml.
 $config['worker_urls'] = [
     'http://127.0.0.1:9001',
 ];
