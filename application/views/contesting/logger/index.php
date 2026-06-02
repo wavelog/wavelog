@@ -8,6 +8,7 @@
         storageKey: <?php echo json_encode($storage_key); ?>,
         layout: <?php echo json_encode($components ?? []); ?>,
         operator: <?php echo json_encode($operator); ?>,
+        isClubStation: <?php echo json_encode($is_club_station ?? false); ?>,
         measurement_base: 'K', // In hamradio you usually use kilometers
         custom_date_format: <?php echo isset($custom_date_format) ? json_encode($custom_date_format) : 'null'; ?>,
         worker: <?php echo json_encode(isset($worker_client_url) ? [

@@ -302,6 +302,7 @@ class Contesting extends CI_Controller {
 
 		$data['operator'] = $this->user_model->get_by_id($decoded_token['user_id'])->row()->user_callsign;
 		$data['page_title'] = $data['session_info']['contest_name'];
+		$data['is_club_station'] = (bool) ($this->session->userdata('clubstation') ?? false);
 
 		// Load available radios for CAT control
 		$this->load->model('cat');

@@ -147,6 +147,10 @@ $config = [
 									<th class="fw-bold serial-col" style="display:none;"><?= __("Nr. R"); ?></th>
 									<th class="fw-bold gridsquare-col" style="display:none;"><?= __("Grid"); ?></th>
 									<th class="fw-bold exchange-text-col"><?= __("Exch"); ?></th>
+									<?php if (!empty($is_club_station)): ?>
+									<th class="fw-bold operator-col"><?= __("Operator"); ?></th>
+									<?php endif; ?>
+									<th class="fw-bold text-center"></th>
 									<th class="fw-bold text-center"></th>
 								</tr>
 							</thead>

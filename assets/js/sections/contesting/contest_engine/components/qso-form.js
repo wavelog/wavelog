@@ -407,10 +407,12 @@ class QsoFormComponent {
 			<td class="serial-col" style="${serialHide}">${inp(qso.serial_rcvd ?? qso.serial_recv, 'serial_rcvd')}</td>
 			<td class="gridsquare-col" style="${hasGridsquare ? '' : 'display:none;'}">${inp(qso.gridsquare_rcvd, 'gridsquare_rcvd', 'text-uppercase')}</td>
 			<td class="exchange-text-col" style="${hasTextExchange ? '' : 'display:none;'}">${inp(qso.exchange_rcvd, 'exchange_rcvd')}</td>
-			<td class="text-nowrap">
+			${window.ContestLoggerConfig?.isClubStation ? `<td class="operator-col"></td>` : ''}
+			<td class="text-nowrap text-end">
 				<button class="btn btn-sm btn-success contest-qso-save-btn" style="line-height:1;" title="Save">&#10003;</button>
 				<button class="btn btn-sm btn-secondary contest-qso-cancel-btn ms-1" style="line-height:1;" title="Cancel">&#10007;</button>
 			</td>
+			<td class="text-nowrap text-center">${this.getStatusIndicator(qso.state)}</td>
 		`;
 
 		row.querySelector('[name="callsign"]')?.focus();
@@ -460,6 +462,7 @@ class QsoFormComponent {
 
 		const qsoOperator = (qso.operator ?? '').toUpperCase();
 		const isEditable = !!qso.serverId && qsoOperator === this.currentOperator;
+		const isClubStation = !!(window.ContestLoggerConfig?.isClubStation);
 		if (isEditable) row.style.cursor = 'pointer';
 
 		row.innerHTML = `
@@ -472,7 +475,9 @@ class QsoFormComponent {
 			<td class="serial-col" style="${serialHide}">${qso.serial_rcvd ?? qso.serial_recv ?? ''}</td>
 			<td class="gridsquare-col" style="${hasGridsquare ? '' : 'display:none;'}">${qso.gridsquare_rcvd || ''}</td>
 			<td class="exchange-text-col" style="${hasTextExchange ? '' : 'display:none;'}">${qso.exchange_rcvd || ''}</td>
-			<td class="text-nowrap text-center">${this.getStatusIndicator(qso.state)}${isEditable ? this._renderQsoDropdown() : ''}</td>
+			${isClubStation ? `<td class="operator-col">${qsoOperator || '-'}</td>` : ''}
+			<td class="text-nowrap text-end">${isEditable ? this._renderQsoDropdown() : ''}</td>
+			<td class="text-nowrap text-center">${this.getStatusIndicator(qso.state)}</td>
 		`;
 	}
 
@@ -837,11 +842,12 @@ class QsoFormComponent {
 		const isEditable = !!qso.serverId && (qso.operator ?? '').toUpperCase() === this.currentOperator;
 		existingRow.style.cursor = isEditable ? 'pointer' : '';
 
-		// Update status indicator and dropdown in last cell
-		const statusCell = existingRow.querySelector('td:last-child');
-		if (statusCell) {
-			statusCell.innerHTML = this.getStatusIndicator(qso.state) + (isEditable ? this._renderQsoDropdown() : '');
-		}
+		// Update dropdown and status indicator in their respective cells
+		const cells = existingRow.querySelectorAll('td');
+		const statusCell   = cells[cells.length - 1];
+		const dropdownCell = cells[cells.length - 2];
+		if (statusCell)   statusCell.innerHTML   = this.getStatusIndicator(qso.state);
+		if (dropdownCell) dropdownCell.innerHTML = isEditable ? this._renderQsoDropdown() : '';
 	}
 
 	clearTable() {
