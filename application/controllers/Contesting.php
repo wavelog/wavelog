@@ -298,9 +298,9 @@ class Contesting extends CI_Controller {
 		}
 
 		// Per-user map preferences (night shadow / path line / station marker).
-		// Stored in user_options (bound to user_id), default all on.
+		// Stored in user_options (bound to user_id), default all on except grid (needs more ressources)
 		$this->load->model('user_options_model');
-		$map_prefs = ['nightshadow' => true, 'pathline' => true, 'station' => true, 'autofit' => true];
+		$map_prefs = ['nightshadow' => true, 'pathline' => true, 'station' => true, 'autofit' => true, 'grid' => false];
 		$pref_row = $this->user_options_model->get_options('contest_logger_settings', ['option_name' => 'map_prefs']);
 		if ($pref_row && $pref_row->num_rows() > 0) {
 			$stored = json_decode($pref_row->row()->option_value, true);
@@ -1075,6 +1075,7 @@ class Contesting extends CI_Controller {
 				'pathline'    => !empty($payload['pathline']),
 				'station'     => !empty($payload['station']),
 				'autofit'     => !empty($payload['autofit']),
+				'grid'        => !empty($payload['grid']),
 			];
 
 			$this->load->model('user_options_model');

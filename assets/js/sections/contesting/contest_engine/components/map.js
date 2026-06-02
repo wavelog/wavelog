@@ -190,7 +190,8 @@ class MapComponent {
 			nightshadow: prefs.nightshadow !== false,
 			pathline: prefs.pathline !== false,
 			station: prefs.station !== false,
-			autofit: prefs.autofit !== false
+			autofit: prefs.autofit !== false,
+			grid: prefs.grid !== false
 		};
 
 		// Initialize Leaflet map
@@ -255,6 +256,12 @@ class MapComponent {
 		if (this.stationLatLng && this.prefs.station) {
 			this.stationMarker = L.marker(this.stationLatLng, { icon: this.stationIcon })
 				.addTo(this.map);
+		}
+
+		// Maidenhead grid overlay
+		if (typeof L.maidenheadqrb === 'function') {
+			this.gridLayer = L.maidenheadqrb();
+			if (this.prefs.grid) this.gridLayer.addTo(this.map);
 		}
 
 		// Night shadow (day/night terminator)
@@ -519,7 +526,8 @@ class MapComponent {
 					row('nightshadow', lang_map_nightshadow ?? 'Night', self.prefs.nightshadow) +
 					row('pathline', lang_map_pathline ?? 'Path', self.prefs.pathline) +
 					row('station', lang_map_station ?? 'Station', self.prefs.station) +
-					row('autofit', lang_map_autofit ?? 'Auto-fit', self.prefs.autofit);
+					row('autofit', lang_map_autofit ?? 'Auto-fit', self.prefs.autofit) +
+					row('grid', lang_map_grid ?? 'Grid', self.prefs.grid);
 
 				L.DomEvent.disableClickPropagation(div);
 				div.querySelectorAll('input[data-pref]').forEach((cb) => {
@@ -555,6 +563,9 @@ class MapComponent {
 			}
 		} else if (pref === 'autofit') {
 			if (enabled) this.fitAllMarkers();
+		} else if (pref === 'grid' && this.gridLayer) {
+			if (enabled) this.gridLayer.addTo(this.map);
+			else this.map.removeLayer(this.gridLayer);
 		}
 
 		this.saveMapPrefs();
