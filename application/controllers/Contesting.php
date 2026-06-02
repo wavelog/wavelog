@@ -1243,29 +1243,10 @@ class Contesting extends CI_Controller {
 	}
 
 	/*
-	 * Provide a dxcc search, returning results json encoded
-	 */
-	public function dxcheck() {
-
-		$call = $this->input->get('call') ?? NULL;
-		$date = $this->input->get('date') ?? date("Y-m-d");
-
-		if (!$call) {
-			http_response_code(400);
-			echo json_encode(['success' => false, 'error' => 'Missing required parameter: call']);
-			return;
-		}
-
-		$dxccobj = new Dxcc($date);
-		$result = $dxccobj->dxcc_lookup($call, $date);
-
-		header('Content-Type: application/json');
-		echo json_encode($result);
-	}
-
-	/*
-	 * Callbook lookup for contest engine — returns name, QTH, grid, ITU zone and DXCC.
-	 * Respects the user's callbook priority setting (DB-first vs. external-first).
+	 * Combined DXCC + callbook lookup for the contest engine.
+	 * DXCC comes from the local library (fast, no network). Callbook data (name, QTH,
+	 * grid, etc.) is fetched externally and merged on top, overriding DXCC fields where
+	 * the callbook has more specific data. Result is cached server-side for 4 hours.
 	 */
 	public function callbook() {
 		$call = $this->input->get('call', TRUE);
@@ -1286,21 +1267,42 @@ class Contesting extends CI_Controller {
 		$payload   = $this->cache->get($cache_key);
 
 		if ($payload === FALSE) {
+			// Local DXCC lookup — always available, no network needed
+			$date    = date("Y-m-d");
+			$dxccobj = new Dxcc($date);
+			$dxcc    = $dxccobj->dxcc_lookup($call, $date);
+
+			$payload = [
+				'name'    => null,
+				'qth'     => null,
+				'grid'    => null,
+				'ituz'    => null,
+				'dxcc'    => $dxcc['adif']   ?? null,
+				'cqz'     => $dxcc['cqz']    ?? null,
+				'cont'    => $dxcc['cont']   ?? null,
+				'entity'  => $dxcc['entity'] ?? null,
+				'lat'     => $dxcc['lat']    ?? null,
+				'long'    => $dxcc['long']   ?? null,
+				'source'  => null,
+			];
+
+			// Callbook lookup — overrides DXCC fields where more specific data is available
 			$this->load->model('logbook_model');
 			$this->load->library('callbook');
 
 			$plain_call = $this->callbook->get_plaincall($call);
-			$data = $this->logbook_model->loadCallBook($plain_call);
+			$cb = $this->logbook_model->loadCallBook($plain_call);
 
-			$payload = [
-				'name'   => $data['name']       ?? null,
-				'qth'    => $data['city']        ?? null,
-				'grid'   => $data['gridsquare']  ?? null,
-				'ituz'   => $data['ituz']        ?? null,
-				'dxcc'   => $data['dxcc']        ?? null,
-				'cqz'    => $data['cqz']         ?? null,
-				'source' => $data['source']      ?? null,
-			];
+			if (!empty($cb)) {
+				$payload['name']   = $cb['name']       ?? null;
+				$payload['qth']    = $cb['city']        ?? null;
+				$payload['grid']   = $cb['gridsquare']  ?? null;
+				$payload['ituz']   = $cb['ituz']        ?? null;
+				$payload['source'] = $cb['source']      ?? null;
+				// Callbook DXCC/CQZ takes precedence if present
+				if (!empty($cb['dxcc'])) $payload['dxcc'] = $cb['dxcc'];
+				if (!empty($cb['cqz']))  $payload['cqz']  = $cb['cqz'];
+			}
 
 			$this->cache->save($cache_key, $payload, 14400); // 4h
 		}

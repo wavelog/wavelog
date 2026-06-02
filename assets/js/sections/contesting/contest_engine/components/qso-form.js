@@ -12,7 +12,6 @@ class QsoFormComponent {
 		this.lastDxccInfo = null;
 		this.lastDxccCallsign = null;
 		this._bearingInfo = null;
-		this.dxccLookupToken = 0;
 		this.callbookLookupToken = 0;
 		this.nextSerialSent = 1;
 		this.exchangeType = null;
@@ -587,45 +586,27 @@ class QsoFormComponent {
 			this.updateDxccInfoDisplay(null);
 			this.updateWorkedBeforeWarning('');
 			this.writeDxccToView(null);
+			this.writeCallbookToView(null);
 			this.dataStore?.emit('qso_location_updated', null);
 			return;
 		}
 
-		const lookupToken = ++this.dxccLookupToken;
+		const lookupToken = ++this.callbookLookupToken;
 		this.updateDxccInfoDisplay({ status: 'loading' });
 
-		// Get band and mode from the radio component (if available)
-		const radio = await this.waitForRadioComponent();
-		const band = radio.getBand();
-		const mode = radio.getMode();
-
 		try {
-			const dxccInfo = await this.lookupDxcc(callsign, band, mode);
-			if (lookupToken !== this.dxccLookupToken) return;
+			const result = await this.lookupCallbook(callsign);
+			if (lookupToken !== this.callbookLookupToken) return;
 
 			this.lastDxccCallsign = callsign;
-			this.lastDxccInfo = dxccInfo || null;
-			this.updateDxccInfoDisplay(dxccInfo);
-			this.writeDxccToView(dxccInfo);
-
-			this.emitQsoLocation(dxccInfo);
-
-			// Callbook lookup runs in parallel — fires and does not block DXCC display
-			const callbookToken = ++this.callbookLookupToken;
-			this.lookupCallbook(callsign).then(cbResult => {
-				if (callbookToken !== this.callbookLookupToken) return;
-				this.writeCallbookToView(cbResult);
-				// If callbook returns a DXCC adif, override the DXCC-lookup result
-				if (cbResult?.dxcc) {
-					const overrideDxcc = { ...this.lastDxccInfo, adif: parseInt(cbResult.dxcc, 10) || cbResult.dxcc };
-					this.writeDxccToView(overrideDxcc);
-					this.lastDxccInfo = overrideDxcc;
-				}
-				this.emitQsoLocation(this.lastDxccInfo);
-			}).catch(() => {});
+			this.lastDxccInfo = result || null;
+			this.updateDxccInfoDisplay(result);
+			this.writeDxccToView(result);
+			this.writeCallbookToView(result);
+			this.emitQsoLocation(result);
 		} catch (error) {
-			if (lookupToken !== this.dxccLookupToken) return;
-			console.error('QSO Form: DXCC lookup failed', error);
+			if (lookupToken !== this.callbookLookupToken) return;
+			console.error('QSO Form: callbook lookup failed', error);
 			this.updateDxccInfoDisplay({ status: 'error' });
 			this.writeDxccToView(null);
 			this.dataStore?.emit('qso_location_updated', null);
@@ -688,32 +669,6 @@ class QsoFormComponent {
 			const el = this.container.querySelector(selector);
 			if (el) el.value = value ?? '';
 		});
-	}
-
-	async lookupDxcc(callsign, band, mode) {
-		if (!callsign) return null;
-
-		const cacheKey = `dxcc.${callsign}.${band || 'all'}.${mode || 'all'}`;
-		const cached = this.dataStore?.get(cacheKey);
-		if (cached) return cached;
-
-		const url = `${base_url}index.php/contesting/dxcheck?call=${encodeURIComponent(callsign)}`;
-		const response = await fetch(url, {
-			method: 'GET',
-			headers: {
-				'X-Requested-With': 'XMLHttpRequest'
-			}
-		});
-		if (!response.ok) {
-			throw new Error(`DXCC lookup failed: HTTP ${response.status}`);
-		}
-
-		const result = await response.json();
-		if (this.dataStore && result) {
-			this.dataStore.setLocal(cacheKey, result);
-		}
-
-		return result;
 	}
 
 	async lookupCallbook(callsign) {
