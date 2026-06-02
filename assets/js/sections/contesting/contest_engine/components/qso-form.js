@@ -805,6 +805,17 @@ class QsoFormComponent {
 		this.dataStore.on('qso_bearing_updated', (data) => {
 			this._bearingInfo = data;
 			this.updateDxccInfoDisplay(this.lastDxccInfo);
+			if (data) {
+				this.radioComponent?.sendLookupResult({
+					callsign: this.lastDxccCallsign,
+					dxcc_id:  this.lastDxccInfo?.adif  ?? null,
+					name:     this.lastDxccInfo?.name  ?? null,
+					grid:     this.lastDxccInfo?.grid  ?? null,
+					bearing:  `${data.azimuth}° ${data.distance} km`,
+					azimuth:  data.azimuth,
+					distance: data.distance,
+				});
+			}
 		});
 
 		// Listen for QSO state changes

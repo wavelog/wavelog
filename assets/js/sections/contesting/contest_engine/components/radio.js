@@ -668,6 +668,26 @@ class RadioComponent {
 		}
 	}
 
+	sendLookupResult(data) {
+		const ws = this._websocket;
+		if (!ws || ws.readyState !== WebSocket.OPEN) return;
+		try {
+			ws.send(JSON.stringify({
+				type: 'lookup_result',
+				timestamp: new Date().toISOString(),
+				payload: {
+					callsign: data.callsign ?? null,
+					dxcc_id:  data.dxcc_id  ?? null,
+					name:     data.name     ?? null,
+					grid:     data.grid     ?? null,
+					bearing:  data.bearing  ?? null,
+					azimuth:  data.azimuth  ?? null,
+					distance: data.distance ?? null,
+				}
+			}));
+		} catch (e) { /* ignore */ }
+	}
+
 	/**
 	 * Attach QRG-related event listeners
 	 */
