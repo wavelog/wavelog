@@ -559,8 +559,9 @@ class Contesting extends CI_Controller {
 				return;
 			}
 
-			// Operator check: only the user who logged the QSO may edit it
-			$current_callsign = strtoupper(trim($this->session->userdata('user_callsign')));
+			// Operator check: only the user who logged the QSO may edit it.
+			// In club-station mode user_callsign is the club callsign; operator_callsign holds the personal callsign that was written to COL_OPERATOR.
+			$current_callsign = strtoupper(trim($this->session->userdata('operator_callsign') ?: $this->session->userdata('user_callsign')));
 			$qso_operator = strtoupper(trim($qso['operator'] ?? ''));
 			if ($qso_operator !== $current_callsign) {
 				http_response_code(403);
@@ -662,7 +663,7 @@ class Contesting extends CI_Controller {
 				return;
 			}
 
-			$current_callsign = strtoupper(trim($this->session->userdata('user_callsign')));
+			$current_callsign = strtoupper(trim($this->session->userdata('operator_callsign') ?: $this->session->userdata('user_callsign')));
 			$qso_operator     = strtoupper(trim($qso['operator'] ?? ''));
 			if ($qso_operator !== $current_callsign) {
 				http_response_code(403);
