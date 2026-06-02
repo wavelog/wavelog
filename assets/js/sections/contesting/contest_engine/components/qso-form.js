@@ -309,7 +309,7 @@ class QsoFormComponent {
 
 		tbody.addEventListener('dblclick', (e) => {
 			const row = e.target.closest('tr');
-			if (row && row.dataset.serverId) this.startEditMode(row);
+			if (row && row.querySelector('.qso-action-edit')) this.startEditMode(row);
 		});
 
 		// Delegated click handler for hamburger dropdown items
@@ -328,7 +328,12 @@ class QsoFormComponent {
 		});
 	}
 
-	_renderQsoDropdown() {
+	_renderQsoDropdown(enabled = true) {
+		if (!enabled) {
+			return `<span title="${lang_qso_not_own}" style="display:inline-flex;">` +
+				`<div class="btn btn-secondary py-0 px-1" style="font-size:1rem; width:1.8rem; height:1.8rem; display:inline-flex; align-items:center; justify-content:center; opacity:0.4; cursor:not-allowed; pointer-events:none;">&#9776;</div>` +
+				`</span>`;
+		}
 		return `<div class="dropdown d-inline-block ms-1">
 			<div class="btn btn-secondary py-0 px-1" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:1rem; width:1.8rem; height:1.8rem; display:inline-flex; align-items:center; justify-content:center;">&#9776;</div>
 			<div class="dropdown-menu dropdown-menu-end">
@@ -381,36 +386,17 @@ class QsoFormComponent {
 		const serverId = parseInt(row.dataset.serverId);
 		if (!serverId) return;
 
-		// Find QSO in DataStore by serverId
 		const allQsos = Array.from(this.dataStore.getPattern('qso.*').values());
 		const qso = allQsos.find(q => q.serverId === serverId);
 		if (!qso) return;
 
 		row.dataset.editing = 'true';
 
-		const fields = this.exchangeFields ?? ['exchange'];
-		const hasSerial      = fields.includes('serial');
-		const hasTextExchange = fields.includes('exchange');
-		const hasGridsquare  = fields.includes('gridsquare');
-		const serialHide = hasSerial ? '' : 'display:none;';
-
-		const inp = (val, name, cls = '') =>
-			`<input type="text" class="form-control form-control-sm p-0 px-1 ${cls}" style="min-width:3rem;" name="${name}" value="${this._esc(val ?? '')}">`;
-
 		row.innerHTML = `
-			<td class="text-nowrap" style="font-size:0.75rem;"><input type="text" class="form-control form-control-sm p-0 px-1" style="min-width:5rem;" name="time_on" placeholder="HH:MM:SS" maxlength="8" value="${(qso.time || qso.time_on?.split(' ')?.[1] || '').substring(0, 8)}"></td>
-			<td>${inp(qso.callsign, 'callsign', 'fw-bold text-uppercase')}</td>
-			<td>${inp(qso.band, 'band', 'text-uppercase')}</td>
-			<td>${inp(qso.mode, 'mode', 'text-uppercase')}</td>
-			<td>${inp(qso.rst_rcvd, 'rst_rcvd')}</td>
-			<td class="serial-col" style="${serialHide}">${inp(qso.serial_sent, 'serial_sent')}</td>
-			<td class="serial-col" style="${serialHide}">${inp(qso.serial_rcvd ?? qso.serial_recv, 'serial_rcvd')}</td>
-			<td class="gridsquare-col" style="${hasGridsquare ? '' : 'display:none;'}">${inp(qso.gridsquare_rcvd, 'gridsquare_rcvd', 'text-uppercase')}</td>
-			<td class="exchange-text-col" style="${hasTextExchange ? '' : 'display:none;'}">${inp(qso.exchange_rcvd, 'exchange_rcvd')}</td>
-			${window.ContestLoggerConfig?.isClubStation ? `<td class="operator-col"></td>` : ''}
+			${this._buildDataCells(qso, true)}
 			<td class="text-nowrap text-end">
-				<button class="btn btn-sm btn-success contest-qso-save-btn" style="line-height:1;" title="Save">&#10003;</button>
-				<button class="btn btn-sm btn-secondary contest-qso-cancel-btn ms-1" style="line-height:1;" title="Cancel">&#10007;</button>
+				<button class="btn btn-sm btn-success contest-qso-save-btn" style="line-height:1;" title="${lang_qso_save}">&#10003;</button>
+				<button class="btn btn-sm btn-secondary contest-qso-cancel-btn ms-1" style="line-height:1;" title="${lang_qso_cancel}">&#10007;</button>
 			</td>
 			<td class="text-nowrap text-center">${this.getStatusIndicator(qso.state)}</td>
 		`;
@@ -420,10 +406,9 @@ class QsoFormComponent {
 		row.querySelector('.contest-qso-save-btn').addEventListener('click', () => this.saveEdit(row, qso));
 		row.querySelector('.contest-qso-cancel-btn').addEventListener('click', () => {
 			row.dataset.editing = 'false';
-			this._renderQsoRow(row, qso); // restore display HTML in-place
+			this._renderQsoRow(row, qso);
 		});
 
-		// Enter key saves, Escape cancels
 		row.addEventListener('keydown', (e) => {
 			if (e.key === 'Enter') { e.preventDefault(); this.saveEdit(row, qso); }
 			if (e.key === 'Escape') { e.preventDefault(); row.querySelector('.contest-qso-cancel-btn').click(); }
@@ -447,36 +432,72 @@ class QsoFormComponent {
 		].join('|');
 	}
 
-	_renderQsoRow(row, qso) {
-		const fields = this.exchangeFields ?? ['exchange'];
-		const hasSerial      = fields.includes('serial');
+	_buildDataCells(qso, editMode) {
+		const fields          = this.exchangeFields ?? ['exchange'];
+		const hasSerial       = fields.includes('serial');
 		const hasTextExchange = fields.includes('exchange');
-		const hasGridsquare  = fields.includes('gridsquare');
-		const serialHide = hasSerial ? '' : 'display:none;';
-		const band = qso.band || this.convertQrgToBand(parseInt(qso.frequency));
+		const hasGridsquare   = fields.includes('gridsquare');
+		const isClubStation   = !!(window.ContestLoggerConfig?.isClubStation);
+
+		const band    = qso.band || this.convertQrgToBand(parseInt(qso.frequency));
 		const qrg_mhz = qso.frequency ? (parseInt(qso.frequency) / 1e6).toFixed(3) + ' MHz' : '';
 		const timeStr = (qso.time || '').substring(0, 8);
+		const op      = (qso.operator ?? '').toUpperCase();
+
+		const inp = (val, name, cls = '') =>
+			`<input type="text" class="form-control form-control-sm p-0 px-1 ${cls}" style="min-width:3rem;" name="${name}" value="${this._esc(val ?? '')}">`;
+
+		const cols = [
+			{ cls: 'text-nowrap', style: editMode ? 'font-size:0.75rem;' : '',
+			  display: timeStr,
+			  edit: `<input type="text" class="form-control form-control-sm p-0 px-1" style="min-width:5rem;" name="time_on" placeholder="HH:MM:SS" maxlength="8" value="${(qso.time || qso.time_on?.split(' ')?.[1] || '').substring(0, 8)}">` },
+			{ cls: editMode ? '' : 'fw-bold',
+			  display: qso.callsign,
+			  edit: inp(qso.callsign, 'callsign', 'fw-bold text-uppercase') },
+			{ title: editMode ? '' : qrg_mhz,
+			  display: band || '-',
+			  edit: inp(qso.band, 'band', 'text-uppercase') },
+			{ display: qso.mode || '-',
+			  edit: inp(qso.mode, 'mode', 'text-uppercase') },
+			{ display: qso.rst_rcvd || '-',
+			  edit: inp(qso.rst_rcvd, 'rst_rcvd') },
+			{ cls: 'serial-col', style: hasSerial ? '' : 'display:none;',
+			  display: qso.serial_sent ?? '',
+			  edit: inp(qso.serial_sent, 'serial_sent') },
+			{ cls: 'serial-col', style: hasSerial ? '' : 'display:none;',
+			  display: qso.serial_rcvd ?? qso.serial_recv ?? '',
+			  edit: inp(qso.serial_rcvd ?? qso.serial_recv, 'serial_rcvd') },
+			{ cls: 'gridsquare-col', style: hasGridsquare ? '' : 'display:none;',
+			  display: qso.gridsquare_rcvd || '',
+			  edit: inp(qso.gridsquare_rcvd, 'gridsquare_rcvd', 'text-uppercase') },
+			{ cls: 'exchange-text-col', style: hasTextExchange ? '' : 'display:none;',
+			  display: qso.exchange_rcvd || '',
+			  edit: inp(qso.exchange_rcvd, 'exchange_rcvd') },
+			...isClubStation ? [{ cls: 'operator-col', display: op || '-', edit: '' }] : [],
+		];
+
+		return cols.map(({ cls, style, title, display, edit }) => {
+			const attrs = [
+				cls   ? `class="${cls}"`   : '',
+				style ? `style="${style}"` : '',
+				title ? `title="${title}"` : '',
+			].filter(Boolean).join(' ');
+			return `<td${attrs ? ' ' + attrs : ''}>${editMode ? edit : display}</td>`;
+		}).join('\n\t\t\t');
+	}
+
+	_renderQsoRow(row, qso) {
 		row.dataset.qsoId = qso.tmpId || qso.serverId;
 		if (qso.serverId) row.dataset.serverId = qso.serverId;
 		row.dataset.sig = this._qsoRowSignature(qso);
 
 		const qsoOperator = (qso.operator ?? '').toUpperCase();
 		const isEditable = !!qso.serverId && qsoOperator === this.currentOperator;
-		const isClubStation = !!(window.ContestLoggerConfig?.isClubStation);
 		if (isEditable) row.style.cursor = 'pointer';
 
 		row.innerHTML = `
-			<td class="text-nowrap">${timeStr}</td>
-			<td class="fw-bold">${qso.callsign}</td>
-			<td title="${qrg_mhz}">${band || '-'}</td>
-			<td>${qso.mode || '-'}</td>
-			<td>${qso.rst_rcvd || '-'}</td>
-			<td class="serial-col" style="${serialHide}">${qso.serial_sent ?? ''}</td>
-			<td class="serial-col" style="${serialHide}">${qso.serial_rcvd ?? qso.serial_recv ?? ''}</td>
-			<td class="gridsquare-col" style="${hasGridsquare ? '' : 'display:none;'}">${qso.gridsquare_rcvd || ''}</td>
-			<td class="exchange-text-col" style="${hasTextExchange ? '' : 'display:none;'}">${qso.exchange_rcvd || ''}</td>
-			${isClubStation ? `<td class="operator-col">${qsoOperator || '-'}</td>` : ''}
-			<td class="text-nowrap text-end">${isEditable ? this._renderQsoDropdown() : ''}</td>
+			${this._buildDataCells(qso, false)}
+			<td class="text-nowrap text-end">${qso.serverId ? this._renderQsoDropdown(isEditable) : ''}</td>
 			<td class="text-nowrap text-center">${this.getStatusIndicator(qso.state)}</td>
 		`;
 	}
@@ -847,7 +868,7 @@ class QsoFormComponent {
 		const statusCell   = cells[cells.length - 1];
 		const dropdownCell = cells[cells.length - 2];
 		if (statusCell)   statusCell.innerHTML   = this.getStatusIndicator(qso.state);
-		if (dropdownCell) dropdownCell.innerHTML = isEditable ? this._renderQsoDropdown() : '';
+		if (dropdownCell) dropdownCell.innerHTML = qso.serverId ? this._renderQsoDropdown(isEditable) : '';
 	}
 
 	clearTable() {

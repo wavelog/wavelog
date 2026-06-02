@@ -34,8 +34,11 @@ $config = [
 	let lang_status_error = "<?= __("Error") ?>";
 	let lang_status_unknown = "<?= __("Unknown") ?>";
 	let lang_delete_qso_confirm = "<?= __("Delete this QSO?") ?>";
+	let lang_qso_save = "<?= __("Save") ?>";
 	let lang_qso_edit = "<?= __("Edit") ?>";
 	let lang_qso_delete = "<?= __("Delete") ?>";
+	let lang_qso_cancel = "<?= __("Cancel") ?>";
+	let lang_qso_not_own = "<?= __("You can only edit your own QSOs") ?>";
 </script>
 
 <?php // hide number input spinners, qso form field sizing ?>
