@@ -294,10 +294,10 @@ function echo_table_header_col($name) {
 <div class="container dashboard px-3 px-lg-4 mt-3 mb-3">
 
 <!-- Log Data -->
-<div class="row g-3 logdata<?php if($dashboard_map != "N" && $dashboard_map != "map_at_right") { ?> has-map<?php } ?>">
+<div class="row g-3 logdata<?php if($dashboard_map == "Y") { ?> has-map<?php } ?>">
 
 	<!-- Map -->
-		<?php if($dashboard_map != "N" && $dashboard_map != "map_at_right") { ?>
+		<?php if($dashboard_map == "Y") { ?>
 		<div class="col-12 map-breakout">
 			<div class="card">
 				<div class="card-header py-2">
@@ -313,6 +313,16 @@ function echo_table_header_col($name) {
 		<!-- Left column: QSOs -->
 	<div class="col-12 col-lg-8">
 
+		<?php if($dashboard_map == "map_at_left") { ?>
+		<div class="card mb-3">
+			<div class="card-header py-2">
+				<h6 class="mb-0"><i class="fas fa-map-marked-alt"></i> <?= __("Map"); ?></h6>
+			</div>
+			<div class="card-body p-0">
+				<div id="map" class="map-leaflet" style="width: 100%; height: 350px;"></div>
+			</div>
+		</div>
+		<?php } ?>
 		<div class="card">
 			<div class="card-header py-2">
 				<h6 class="mb-0"><i class="fas fa-list"></i> <?= __("Recent QSOs"); ?></h6>
