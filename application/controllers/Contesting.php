@@ -711,7 +711,6 @@ class Contesting extends CI_Controller {
 	 * Handles bidirectional communication (Commands + Requests)
 	 * Endpoint: POST /contesting/heartbeat
 	 */
-	// TODO: Add Link to documentation
 	public function heartbeat() {
 		// Only accept POST requests
 		if ($this->input->method() !== 'post') {
