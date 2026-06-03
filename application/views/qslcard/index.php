@@ -1,6 +1,4 @@
-<div class="container">
-
-	<br>
+<div class="container px-3 px-lg-4 mt-3 mb-3">
 
 	<h2><?= __("QSL Cards"); ?></h2>
 
@@ -10,6 +8,12 @@
 			<?= sprintf(__("You are using %s of disk space to store QSL Card assets"), $storage_used ); ?>
 		</div>
 	<?php } ?>
+
+	<div class="card">
+	  <div class="card-header">
+	    <?= __("View QSL Cards"); ?>
+	  </div>
+	  <div class="card-body">
 
 	<!-- View toggle buttons -->
 	<div class="mb-3">
@@ -133,6 +137,8 @@
 		</div>
 	</div>
 
+	  </div>
+	</div>
 </div>
 
 <script>
