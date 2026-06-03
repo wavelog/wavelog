@@ -726,7 +726,12 @@ class QsoFormComponent {
 		if (!infoEl) return;
 
 		if (!dxccInfo) {
-			infoEl.textContent = '';
+			// No callsign lookup yet — still show bearing if available (grid-only case)
+			if (this._bearingInfo) {
+				infoEl.textContent = `D ${this._bearingInfo.distance} km · Az ${this._bearingInfo.azimuth}°`;
+			} else {
+				infoEl.textContent = '';
+			}
 			return;
 		}
 
@@ -826,11 +831,12 @@ class QsoFormComponent {
 			this._bearingInfo = data;
 			this.updateDxccInfoDisplay(this.lastDxccInfo);
 			if (data) {
+				const grid = this.container?.querySelector('#qso-gridsquare-received')?.value.trim().toUpperCase() || null;
 				this.radioComponent?.sendLookupResult({
-					callsign: this.lastDxccCallsign,
+					callsign: this.lastDxccCallsign ?? null,
 					dxcc_id:  this.lastDxccInfo?.adif  ?? null,
 					name:     this.lastDxccInfo?.name  ?? null,
-					grid:     this.lastDxccInfo?.grid  ?? null,
+					grid:     grid ?? this.lastDxccInfo?.grid ?? null,
 					bearing:  `${data.azimuth}° ${data.distance} km`,
 					azimuth:  data.azimuth,
 					distance: data.distance,
