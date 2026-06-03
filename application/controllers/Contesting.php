@@ -508,8 +508,9 @@ class Contesting extends CI_Controller {
 
 			case 'post':
 				$contest_session_id = $this->input->post('contest_session_id', true);
+				$delete_qsos = (bool) $this->input->post('delete_qsos', true);
 
-				$result = $this->contesting_model->delete_contest_session($contest_session_id);
+				$result = $this->contesting_model->delete_contest_session($contest_session_id, $delete_qsos);
 
 				if ($result) {
 					$this->session->set_flashdata('success', __("Contest session deleted successfully."));

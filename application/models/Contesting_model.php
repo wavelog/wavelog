@@ -180,28 +180,25 @@ class Contesting_model extends CI_Model {
 	 * @param int $contest_session_id The ID of the contest session to delete.
 	 * @return bool True on success, false on failure.
 	 */
-	function delete_contest_session($contest_session_id) {
+	function delete_contest_session($contest_session_id, $delete_qsos = false) {
 		if (!clubaccess_check(9)) {
 			$this->session->set_flashdata('error', __("Only clubstation officers can delete."));
 			redirect('contesting');
 		}
 		$user_id = $this->session->userdata('user_id');
 
-		// First, delete associated QSOs (this does not delete the QSOs themselves from the main logbook)
-		$sql_delete_qsos = "DELETE FROM contest_qsos WHERE contest_session_id = ?";
+		if ($delete_qsos) {
+			$this->load->is_loaded('logbook_model') ?: $this->load->model('logbook_model');
+			$query = $this->db->query("SELECT qso_id FROM contest_qsos WHERE contest_session_id = ?", [$contest_session_id]);
+			foreach ($query->result() as $row) {
+				$this->logbook_model->delete($row->qso_id);
+			}
+			// contest_qsos rows are cascade-deleted via FK when logbook rows are removed
+		} else {
+			$this->db->query("DELETE FROM contest_qsos WHERE contest_session_id = ?", [$contest_session_id]);
+		}
 
-		$bindings_qsos = [$contest_session_id];
-		$this->db->query($sql_delete_qsos, $bindings_qsos);
-
-		// Then, delete the contest session
-		$sql_delete_session = "DELETE FROM contest_session WHERE id = ? AND user_id = ?";
-
-		$bindings_session = [
-			$contest_session_id,
-			$user_id
-		];
-
-		$this->db->query($sql_delete_session, $bindings_session);
+		$this->db->query("DELETE FROM contest_session WHERE id = ? AND user_id = ?", [$contest_session_id, $user_id]);
 		return true;
 	}
 
