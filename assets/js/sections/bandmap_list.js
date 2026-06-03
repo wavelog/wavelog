@@ -4011,13 +4011,11 @@ $(function() {
 			$('.spottable th:nth-child(8), .spottable td:nth-child(8)').addClass('column-hidden'); // CQZ
 			$('.spottable th:nth-child(12), .spottable td:nth-child(12)').addClass('column-hidden'); // de Cont
 			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de CQZ
-			$('.spottable th:nth-child(14), .spottable td:nth-child(14)').addClass('column-hidden'); // Last QSO
 		} else if (containerWidth <= 1374) {
 			// Hide: CQZ, de CQZ, Last QSO, Mode
 			$('.spottable th:nth-child(4), .spottable td:nth-child(4)').addClass('column-hidden'); // Mode
 			$('.spottable th:nth-child(8), .spottable td:nth-child(8)').addClass('column-hidden'); // CQZ
 			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de CQZ
-			$('.spottable th:nth-child(14), .spottable td:nth-child(14)').addClass('column-hidden'); // Last QSO
 		}
 		// else: containerWidth > 1374 - show all columns (already reset above)
 

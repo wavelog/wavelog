@@ -1,5 +1,5 @@
-<div class="container">
-<br />
+<div class="container px-3 px-lg-4 mt-3 mb-3">
+<h2><?php echo $page_title; ?></h2>
 <div class="card">
 	<div class="card-header d-flex justify-content-between align-items-center">
 		<span><?= __("QSL Statistics"); ?></span>
@@ -8,6 +8,7 @@
 			<button type="button" class="btn btn-outline-primary" id="qsl_pct" onclick="qslSetDisplay(true)"><?= __("Percent"); ?></button>
 		</div>
 	</div>
+	<div class="card-body">
 	<?php
 	if ($qsoarray) {
 		$modeTotals = [];
@@ -215,6 +216,7 @@
 	}
 	?>
 	</div>
+</div>
 </div>
 </div>
 <script>

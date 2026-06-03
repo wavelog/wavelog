@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-01 08:37+0000\n"
+"POT-Creation-Date: 2026-06-03 05:44+0000\n"
 "PO-Revision-Date: 2026-03-20 07:25+0000\n"
 "Last-Translator: Viliam Petrik <tatralom@gmail.com>\n"
 "Language-Team: Slovak <https://translate.wavelog.org/projects/wavelog/main-"
@@ -234,12 +234,13 @@ msgid "You're not allowed to do that!"
 msgstr "To nesmieš robiť!"
 
 #: application/controllers/Accumulated.php:19
+#: application/views/accumulate/index.php:19
 #: application/views/interface_assets/header.php:174
 msgid "Accumulated Statistics"
 msgstr "Kumulatívne štatistiky"
 
 #: application/controllers/Activated_gridmap.php:10
-#: application/views/activated_gridmap/index.php:9
+#: application/views/activated_gridmap/index.php:6
 #: application/views/awards/amsat_rover/index.php:25
 msgid "Activated Gridsquare Map"
 msgstr "Mapa aktivovaných lokátorov"
@@ -249,7 +250,7 @@ msgstr "Mapa aktivovaných lokátorov"
 #: application/controllers/Awards.php:1197
 #: application/controllers/Gridmap.php:32
 #: application/controllers/Visitor.php:454
-#: application/views/activators/index.php:100
+#: application/views/activators/index.php:106
 #: application/views/interface_assets/footer.php:49
 #: application/views/visitor/layout/footer.php:12
 #: application/views/visitor/layout/header.php:68
@@ -298,6 +299,7 @@ msgstr "Celkový počet veľkých lokátorov"
 
 #: application/controllers/Activators.php:20
 #: application/views/activators/index.php:5
+#: application/views/activators/index.php:9
 #: application/views/interface_assets/header.php:164
 msgid "Gridsquare Activators"
 msgstr "Aktivátori lokátorov"
@@ -464,7 +466,7 @@ msgstr "DOK"
 #: application/controllers/Awards.php:207 application/views/awards/index.php:7
 #: application/views/bandmap/list.php:101 application/views/bands/index.php:50
 #: application/views/csv/index.php:58 application/views/dxatlas/index.php:58
-#: application/views/dxcalendar/index.php:11
+#: application/views/dxcalendar/index.php:16
 #: application/views/interface_assets/header.php:192
 #: application/views/kml/index.php:47
 #: application/views/logbookadvanced/checkresult.php:165
@@ -485,7 +487,7 @@ msgstr "DOK"
 #: application/views/search/result.php:27
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/stationsetup/linkedlocations.php:33
-#: application/views/timeplotter/index.php:17
+#: application/views/timeplotter/index.php:21
 msgid "DXCC"
 msgstr "DXCC"
 
@@ -647,8 +649,8 @@ msgid "CQ WAZ (Worked All Zones)"
 msgstr "CQ WAZ (Worked All Zones)"
 
 #: application/controllers/Awards.php:885
-#: application/views/accumulate/index.php:54
-#: application/views/timeline/index.php:45
+#: application/views/accumulate/index.php:60
+#: application/views/timeline/index.php:51
 msgid "Worked All States (WAS)"
 msgstr "Worked All States (WAS)"
 
@@ -775,7 +777,7 @@ msgstr "Poznámky - záloha"
 #: application/views/bands/index.php:30 application/views/bands/index.php:34
 #: application/views/interface_assets/header.php:450
 #: application/views/statistics/index.php:17
-#: application/views/statistics/index.php:105
+#: application/views/statistics/index.php:110
 msgid "Bands"
 msgstr "Pásma"
 
@@ -945,7 +947,7 @@ msgstr "Žiadny používateľ nekonfiguroval Clublog."
 #: application/views/search/search_result_ajax.php:124
 #: application/views/station_profile/create.php:324
 #: application/views/station_profile/edit.php:350
-#: application/views/timeline/index.php:68
+#: application/views/timeline/index.php:74
 #: application/views/update/index.php:16 application/views/user/edit.php:678
 #: application/views/user/edit.php:923
 #: application/views/view_log/partial/log_ajax.php:165
@@ -1079,6 +1081,7 @@ msgstr "Dashboard"
 
 #: application/controllers/Dayswithqso.php:17
 #: application/views/dayswithqso/index.php:2
+#: application/views/dayswithqso/index.php:12
 #: application/views/interface_assets/header.php:170
 msgid "Days with QSOs"
 msgstr "Dni s QSO"
@@ -1170,19 +1173,21 @@ msgstr "Migrácia súborov zlyhala. Skontroluj error log."
 
 #: application/controllers/Distancerecords.php:68
 #: application/controllers/Distancerecords.php:87
+#: application/views/distancerecords/index.php:6
 #: application/views/interface_assets/header.php:168
 msgid "Satellite Distance Records"
 msgstr "Rekordy vzdialeností cez satelity"
 
 #: application/controllers/Distances.php:17
-#: application/views/distances/index.php:5
-#: application/views/distances/index.php:8
+#: application/views/distances/index.php:3
+#: application/views/distances/index.php:6
+#: application/views/distances/index.php:18
 #: application/views/interface_assets/header.php:166
 msgid "Distances Worked"
 msgstr "Vzdialenosti"
 
 #: application/controllers/Distances.php:85
-#: application/views/distances/index.php:15
+#: application/views/distances/index.php:13
 msgid "QSOs with"
 msgstr "QSOs s"
 
@@ -1200,13 +1205,14 @@ msgid "DX Atlas Gridsquare Export"
 msgstr "DX Atlas export lokátorov"
 
 #: application/controllers/Dxcalendar.php:14
+#: application/views/dxcalendar/index.php:7
 #: application/views/interface_assets/header.php:312
 msgid "DX Calendar"
 msgstr "DX kalendár"
 
 #: application/controllers/Eqsl.php:46
 #: application/views/dashboard/index.php:481
-#: application/views/eqslcard/index.php:5
+#: application/views/eqslcard/index.php:3
 #: application/views/visitor/index.php:310
 msgid "eQSL Cards"
 msgstr "eQSL karty"
@@ -1551,13 +1557,13 @@ msgstr "Staničné denníky"
 #: application/controllers/Logbook.php:60
 #: application/views/interface_assets/header.php:113
 #: application/views/logbookadvanced/useroptions.php:4
-#: application/views/view_log/index.php:11
+#: application/views/view_log/index.php:2
 msgid "Logbook"
 msgstr "Logbook"
 
 #: application/controllers/Logbook.php:786
 #: application/controllers/Logbook.php:801
-#: application/views/activated_gridmap/index.php:62
+#: application/views/activated_gridmap/index.php:61
 #: application/views/awards/amsat_rover/index.php:52
 #: application/views/awards/dok/index.php:56
 #: application/views/awards/dxcc/index.php:117
@@ -1573,7 +1579,7 @@ msgstr "Logbook"
 #: application/views/awards/wapc/index.php:59
 #: application/views/awards/was/index.php:61
 #: application/views/awards/wpx/index.php:28
-#: application/views/gridmap/index.php:163
+#: application/views/gridmap/index.php:174
 #: application/views/interface_assets/footer.php:106
 #: application/views/logbookadvanced/index.php:963
 #: application/views/logbookadvanced/useroptions.php:124
@@ -1582,13 +1588,13 @@ msgstr "Logbook"
 #: application/views/qslprint/qsolist.php:16
 #: application/views/qslprint/qsolist.php:19
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:115
-#: application/views/timeline/index.php:56 application/views/user/edit.php:674
+#: application/views/timeline/index.php:62 application/views/user/edit.php:674
 #: application/views/user/edit.php:889 application/views/visitor/mini.php:187
 msgid "QSL"
 msgstr "QSL"
 
 #: application/controllers/Logbook.php:789
-#: application/views/activated_gridmap/index.php:70
+#: application/views/activated_gridmap/index.php:69
 #: application/views/awards/amsat_rover/index.php:47
 #: application/views/awards/cq/index.php:114
 #: application/views/awards/dok/index.php:60
@@ -1609,7 +1615,7 @@ msgstr "QSL"
 #: application/views/awards/was/index.php:65
 #: application/views/awards/wpx/index.php:32
 #: application/views/dashboard/index.php:403
-#: application/views/gridmap/index.php:171
+#: application/views/gridmap/index.php:182
 #: application/views/logbookadvanced/checkresult.php:105
 #: application/views/logbookadvanced/checkresult.php:163
 #: application/views/logbookadvanced/checkresult.php:391
@@ -1624,7 +1630,7 @@ msgstr "QSL"
 #: application/views/satellite/satinfo.php:13
 #: application/views/search/search_result_ajax.php:301
 #: application/views/search/search_result_ajax.php:316
-#: application/views/timeline/index.php:60 application/views/user/edit.php:675
+#: application/views/timeline/index.php:66 application/views/user/edit.php:675
 #: application/views/user/edit.php:899 application/views/view_log/qso.php:490
 #: application/views/view_log/qso.php:495
 #: application/views/visitor/mini.php:186
@@ -1632,7 +1638,7 @@ msgid "LoTW"
 msgstr "LoTW"
 
 #: application/controllers/Logbook.php:792
-#: application/views/activated_gridmap/index.php:78
+#: application/views/activated_gridmap/index.php:77
 #: application/views/awards/cq/index.php:118
 #: application/views/awards/dok/index.php:64
 #: application/views/awards/dxcc/index.php:125
@@ -1651,7 +1657,7 @@ msgstr "LoTW"
 #: application/views/awards/was/index.php:69
 #: application/views/awards/wpx/index.php:36
 #: application/views/dashboard/index.php:404
-#: application/views/gridmap/index.php:179
+#: application/views/gridmap/index.php:190
 #: application/views/logbookadvanced/useroptions.php:130
 #: application/views/oqrs/qsolist.php:14 application/views/oqrs/qsolist.php:131
 #: application/views/oqrs/qsolist.php:144
@@ -1663,7 +1669,7 @@ msgstr "LoTW"
 #: application/views/search/search_result_ajax.php:276
 #: application/views/station_profile/create.php:276
 #: application/views/station_profile/edit.php:301
-#: application/views/timeline/index.php:64 application/views/user/edit.php:676
+#: application/views/timeline/index.php:70 application/views/user/edit.php:676
 #: application/views/user/edit.php:907 application/views/user/edit.php:981
 msgid "eQSL"
 msgstr "eQSL"
@@ -1676,8 +1682,8 @@ msgstr ""
 
 #: application/controllers/Logbook.php:1464
 #: application/controllers/Radio.php:49
-#: application/views/accumulate/index.php:31
-#: application/views/activated_gridmap/index.php:43
+#: application/views/accumulate/index.php:37
+#: application/views/activated_gridmap/index.php:44
 #: application/views/adif/dcl_success.php:33
 #: application/views/adif/pota_success.php:33
 #: application/views/awards/73on73/index.php:36
@@ -1708,20 +1714,20 @@ msgstr ""
 #: application/views/bandmap/list.php:562
 #: application/views/bandmap/list.php:602
 #: application/views/bands/bandedges.php:31
-#: application/views/callstats/index.php:49
+#: application/views/callstats/index.php:54
 #: application/views/components/hamsat/table.php:30
 #: application/views/contesting/index.php:118
 #: application/views/contesting/index.php:265
-#: application/views/continents/index.php:39 application/views/csv/index.php:42
+#: application/views/continents/index.php:44 application/views/csv/index.php:42
 #: application/views/dashboard/index.php:5
 #: application/views/debug/index.php:767
-#: application/views/distancerecords/index.php:19
+#: application/views/distancerecords/index.php:23
 #: application/views/dxatlas/index.php:42
 #: application/views/eqsl/analysis.php:39
 #: application/views/eqsl/download.php:39 application/views/eqsl/result.php:36
-#: application/views/eqslcard/index.php:29
-#: application/views/gridmap/index.php:126
-#: application/views/hamsat/index.php:33
+#: application/views/eqslcard/index.php:33
+#: application/views/gridmap/index.php:138
+#: application/views/hamsat/index.php:38
 #: application/views/interface_assets/footer.php:121
 #: application/views/kml/index.php:31
 #: application/views/logbookadvanced/checkresult.php:104
@@ -1747,7 +1753,7 @@ msgstr ""
 #: application/views/oqrs/showrequests.php:94
 #: application/views/public_search/result.php:15
 #: application/views/qslcard/confirmationresult.php:17
-#: application/views/qslcard/index.php:40
+#: application/views/qslcard/index.php:44
 #: application/views/qslcard/searchresult.php:12
 #: application/views/qslcard/searchresult.php:28
 #: application/views/qslcard/searchresult.php:44
@@ -1761,14 +1767,14 @@ msgstr ""
 #: application/views/search/lotw_unconfirmed_result.php:8
 #: application/views/search/search_result_ajax.php:4
 #: application/views/simplefle/index.php:158
-#: application/views/statistics/antennaanalytics.php:31
+#: application/views/statistics/antennaanalytics.php:35
 #: application/views/statistics/index.php:16
 #: application/views/statistics/index.php:24
-#: application/views/statistics/index.php:102
+#: application/views/statistics/index.php:107
 #: application/views/statistics/initialresult.php:19
 #: application/views/statistics/initials.php:21
-#: application/views/timeline/index.php:19
-#: application/views/timeplotter/index.php:57
+#: application/views/timeline/index.php:25
+#: application/views/timeplotter/index.php:61
 #: application/views/user/edit.php:293 application/views/user/edit.php:316
 #: application/views/user/edit.php:339 application/views/user/edit.php:362
 #: application/views/user/edit.php:386 application/views/usermode/index.php:38
@@ -1848,7 +1854,7 @@ msgstr "RST (R)"
 #: application/views/qso/components/previous_contacts.php:80
 #: application/views/search/search_result_ajax.php:7
 #: application/views/stationsetup/stationsetup.php:132
-#: application/views/timeline/index.php:185 application/views/user/edit.php:296
+#: application/views/timeline/index.php:193 application/views/user/edit.php:296
 #: application/views/user/edit.php:319 application/views/user/edit.php:342
 #: application/views/user/edit.php:365 application/views/user/edit.php:389
 #: application/views/view_log/partial/log.php:13
@@ -1882,7 +1888,7 @@ msgstr "Krajina"
 #: application/views/search/search_result_ajax.php:8
 #: application/views/station_profile/create.php:185
 #: application/views/station_profile/edit.php:210
-#: application/views/timeline/index.php:298 application/views/user/edit.php:297
+#: application/views/timeline/index.php:306 application/views/user/edit.php:297
 #: application/views/user/edit.php:320 application/views/user/edit.php:343
 #: application/views/user/edit.php:366 application/views/user/edit.php:390
 #: application/views/view_log/partial/log_ajax.php:9
@@ -1913,7 +1919,7 @@ msgstr "IOTA"
 #: application/views/qso/components/previous_contacts.php:85
 #: application/views/search/search_result_ajax.php:12
 #: application/views/statistics/initialresult.php:21
-#: application/views/timeline/index.php:262 application/views/user/edit.php:301
+#: application/views/timeline/index.php:270 application/views/user/edit.php:301
 #: application/views/user/edit.php:324 application/views/user/edit.php:347
 #: application/views/user/edit.php:370 application/views/user/edit.php:394
 #: application/views/view_log/partial/log_ajax.php:13
@@ -1922,14 +1928,14 @@ msgid "State"
 msgstr "Štát"
 
 #: application/controllers/Logbook.php:1473
-#: application/views/activated_gridmap/index.php:110
+#: application/views/activated_gridmap/index.php:107
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:54
 #: application/views/awards/vucc/band.php:12
 #: application/views/contesting/index.php:26
 #: application/views/contesting/index.php:272
 #: application/views/dashboard/index.php:14
-#: application/views/gridmap/index.php:215
+#: application/views/gridmap/index.php:226
 #: application/views/labels/index.php:126
 #: application/views/logbookadvanced/checkresult.php:166
 #: application/views/logbookadvanced/checkresult.php:245
@@ -1953,14 +1959,14 @@ msgstr "Štát"
 #: application/views/qso/award_tabs.php:45
 #: application/views/qso/components/previous_contacts.php:86
 #: application/views/qso/edit_ajax.php:157 application/views/qso/index.php:376
-#: application/views/satellite/pass.php:46
-#: application/views/satellite/pass.php:85
+#: application/views/satellite/pass.php:48
+#: application/views/satellite/pass.php:87
 #: application/views/search/result.php:49
 #: application/views/search/search_result_ajax.php:13
 #: application/views/simplefle/index.php:161
 #: application/views/stationsetup/stationsetup.php:133
 #: application/views/statistics/initialresult.php:20
-#: application/views/timeline/index.php:371 application/views/user/edit.php:188
+#: application/views/timeline/index.php:379 application/views/user/edit.php:188
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:348 application/views/user/edit.php:371
 #: application/views/user/edit.php:395 application/views/user/profile.php:34
@@ -1972,13 +1978,13 @@ msgid "Gridsquare"
 msgstr "Lokátor"
 
 #: application/controllers/Logbook.php:1474
-#: application/views/activated_gridmap/index.php:112
+#: application/views/activated_gridmap/index.php:108
 #: application/views/awards/ffma/index.php:40
 #: application/views/awards/gridmaster/index.php:56
 #: application/views/dashboard/index.php:15
-#: application/views/distancerecords/index.php:15
-#: application/views/distances/index.php:13
-#: application/views/gridmap/index.php:217
+#: application/views/distancerecords/index.php:19
+#: application/views/distances/index.php:11
+#: application/views/gridmap/index.php:227
 #: application/views/logbookadvanced/edit.php:16
 #: application/views/logbookadvanced/index.php:14
 #: application/views/logbookadvanced/index.php:525
@@ -2002,9 +2008,9 @@ msgid "Distance"
 msgstr "Vzdialenosť"
 
 #: application/controllers/Logbook.php:1475
-#: application/views/accumulate/index.php:21
-#: application/views/activated_gridmap/index.php:12
-#: application/views/activators/index.php:10
+#: application/views/accumulate/index.php:27
+#: application/views/activated_gridmap/index.php:15
+#: application/views/activators/index.php:16
 #: application/views/adif/dcl_success.php:32
 #: application/views/adif/pota_success.php:32
 #: application/views/awards/cq/index.php:132
@@ -2037,15 +2043,15 @@ msgstr "Vzdialenosť"
 #: application/views/bandmap/list.php:560
 #: application/views/bandmap/list.php:600 application/views/bands/create.php:24
 #: application/views/bands/edit.php:7 application/views/bands/index.php:47
-#: application/views/callstats/index.php:7
+#: application/views/callstats/index.php:12
 #: application/views/contesting/index.php:131
 #: application/views/contesting/index.php:264
-#: application/views/continents/index.php:30 application/views/csv/index.php:31
+#: application/views/continents/index.php:35 application/views/csv/index.php:31
 #: application/views/dashboard/index.php:16
 #: application/views/debug/index.php:768 application/views/dxatlas/index.php:31
 #: application/views/eqsl/download.php:41
-#: application/views/eqslcard/index.php:32
-#: application/views/gridmap/index.php:63 application/views/kml/index.php:19
+#: application/views/eqslcard/index.php:36
+#: application/views/gridmap/index.php:78 application/views/kml/index.php:19
 #: application/views/logbookadvanced/checkresult.php:103
 #: application/views/logbookadvanced/checkresult.php:161
 #: application/views/logbookadvanced/checkresult.php:244
@@ -2069,7 +2075,7 @@ msgstr "Vzdialenosť"
 #: application/views/oqrs/showrequests.php:93
 #: application/views/public_search/result.php:16
 #: application/views/qslcard/confirmationresult.php:18
-#: application/views/qslcard/index.php:43
+#: application/views/qslcard/index.php:47
 #: application/views/qslcard/searchresult.php:21
 #: application/views/qslcard/searchresult.php:37
 #: application/views/qslcard/searchresult.php:39
@@ -2085,12 +2091,12 @@ msgstr "Vzdialenosť"
 #: application/views/search/search_result_ajax.php:15
 #: application/views/simplefle/index.php:157
 #: application/views/stationsetup/exportmapoptions.php:31
-#: application/views/statistics/antennaanalytics.php:19
+#: application/views/statistics/antennaanalytics.php:23
 #: application/views/statistics/index.php:25
 #: application/views/statistics/initialresult.php:18
 #: application/views/statistics/initials.php:12
-#: application/views/timeline/index.php:7
-#: application/views/timeplotter/index.php:47
+#: application/views/timeline/index.php:13
+#: application/views/timeplotter/index.php:51
 #: application/views/user/edit.php:291 application/views/user/edit.php:314
 #: application/views/user/edit.php:337 application/views/user/edit.php:360
 #: application/views/user/edit.php:384
@@ -2174,8 +2180,8 @@ msgstr "Operátor"
 #: application/views/stationsetup/linkedlocations.php:45
 #: application/views/stationsetup/locationlist.php:75
 #: application/views/stationsetup/stationsetup.php:159
-#: application/views/timeline/index.php:207
-#: application/views/timeplotter/index.php:25
+#: application/views/timeline/index.php:215
+#: application/views/timeplotter/index.php:29
 #: application/views/user/modals/first_login_wizard.php:52
 #: application/views/view_log/partial/log_ajax.php:32
 #: application/views/view_log/qso.php:294
@@ -2668,7 +2674,7 @@ msgstr "QRZ ADIF informácie"
 
 #: application/controllers/Qsl.php:25 application/views/dashboard/index.php:402
 #: application/views/dashboard/index.php:418
-#: application/views/qslcard/index.php:5
+#: application/views/qslcard/index.php:3
 #: application/views/visitor/index.php:287
 msgid "QSL Cards"
 msgstr "QSL karty"
@@ -2783,8 +2789,8 @@ msgstr "Upraviť"
 #: application/views/lotw_views/index.php:143
 #: application/views/mode/index.php:67
 #: application/views/oqrs/showrequests.php:80
-#: application/views/qslcard/index.php:76
-#: application/views/qslcard/index.php:125
+#: application/views/qslcard/index.php:80
+#: application/views/qslcard/index.php:129
 #: application/views/satellite/edit.php:57
 #: application/views/satellite/index.php:59
 #: application/views/search/stored_queries.php:22
@@ -2827,8 +2833,8 @@ msgstr "EDI export"
 #: application/controllers/Satellite.php:41 application/models/Note.php:10
 #: application/views/interface_assets/header.php:339
 #: application/views/satellite/index.php:40
-#: application/views/statistics/index.php:85
-#: application/views/statistics/index.php:153
+#: application/views/statistics/index.php:90
+#: application/views/statistics/index.php:158
 msgid "Satellites"
 msgstr "Satelity"
 
@@ -2894,12 +2900,13 @@ msgid "here"
 msgstr "tu"
 
 #: application/controllers/Sattimers.php:48
-#: application/views/sattimers/index.php:13
+#: application/views/sattimers/index.php:12
+#: application/views/sattimers/index.php:16
 msgid "Satellite Timers"
 msgstr "Satelitné časovače"
 
 #: application/controllers/Search.php:15 application/views/bandmap/list.php:578
-#: application/views/continents/index.php:49
+#: application/views/continents/index.php:54
 #: application/views/interface_assets/footer.php:42
 #: application/views/interface_assets/header.php:399
 #: application/views/interface_assets/header.php:406
@@ -3067,7 +3074,7 @@ msgstr "Nastaviť ako aktívny denník"
 #: application/controllers/Stationsetup.php:289
 #: application/views/interface_assets/header.php:613
 #: application/views/stationsetup/stationsetup.php:52
-#: application/views/view_log/index.php:4
+#: application/views/view_log/index.php:6
 msgid "Active Logbook"
 msgstr "Aktívny denník"
 
@@ -3182,7 +3189,7 @@ msgstr "QSL štatistiky"
 
 #: application/controllers/Statistics.php:314
 #: application/views/interface_assets/header.php:156
-#: application/views/statistics/antennaanalytics.php:3
+#: application/views/statistics/antennaanalytics.php:2
 msgid "Antenna Analytics"
 msgstr "Analýza antén"
 
@@ -3976,11 +3983,11 @@ msgid "QSO updated"
 msgstr "QSO aktualizované"
 
 #: application/models/Logbook_model.php:6299
-#: application/views/activated_gridmap/index.php:114
+#: application/views/activated_gridmap/index.php:109
 #: application/views/awards/ffma/index.php:42
 #: application/views/awards/gridmaster/index.php:58
 #: application/views/dashboard/index.php:20
-#: application/views/gridmap/index.php:219
+#: application/views/gridmap/index.php:228
 #: application/views/logbookadvanced/index.php:15
 #: application/views/map/qso_map.php:67 application/views/user/edit.php:306
 #: application/views/user/edit.php:329 application/views/user/edit.php:352
@@ -4021,7 +4028,7 @@ msgstr "Spojenia"
 #: application/models/Note.php:8
 #: application/views/interface_assets/footer.php:110
 #: application/views/qso/index.php:101
-#: application/views/statistics/index.php:81
+#: application/views/statistics/index.php:86
 #: application/views/user/edit.php:217
 msgid "General"
 msgstr "Všeobecné"
@@ -4109,17 +4116,17 @@ msgstr "Naakumulovaný počet urobených WAJA"
 
 #: application/views/accumulate/index.php:8
 #: application/views/dashboard/index.php:244
-#: application/views/dayswithqso/index.php:42
-#: application/views/dayswithqso/index.php:82
+#: application/views/dayswithqso/index.php:47
+#: application/views/dayswithqso/index.php:87
 #: application/views/statistics/index.php:21
-#: application/views/timeline/index.php:92
+#: application/views/timeline/index.php:98
 #: application/views/visitor/index.php:250
 msgid "Year"
 msgstr "Rok"
 
 #: application/views/accumulate/index.php:9
-#: application/views/accumulate/index.php:67
-#: application/views/dayswithqso/index.php:15
+#: application/views/accumulate/index.php:73
+#: application/views/dayswithqso/index.php:20
 msgid "Yearly"
 msgstr "Ročne"
 
@@ -4131,7 +4138,7 @@ msgid "Month"
 msgstr "Mesiac"
 
 #: application/views/accumulate/index.php:11
-#: application/views/accumulate/index.php:73
+#: application/views/accumulate/index.php:79
 msgid "Monthly"
 msgstr "Mesačne"
 
@@ -4139,14 +4146,14 @@ msgstr "Mesačne"
 msgid "Difference"
 msgstr "Rozdiel"
 
-#: application/views/accumulate/index.php:24
-#: application/views/accumulate/index.php:34
-#: application/views/accumulate/index.php:83
-#: application/views/activated_gridmap/index.php:14
-#: application/views/activated_gridmap/index.php:26
-#: application/views/activated_gridmap/index.php:36
-#: application/views/activated_gridmap/index.php:45
-#: application/views/activators/index.php:13
+#: application/views/accumulate/index.php:30
+#: application/views/accumulate/index.php:40
+#: application/views/accumulate/index.php:89
+#: application/views/activated_gridmap/index.php:17
+#: application/views/activated_gridmap/index.php:29
+#: application/views/activated_gridmap/index.php:39
+#: application/views/activated_gridmap/index.php:46
+#: application/views/activators/index.php:19
 #: application/views/adif/import.php:272
 #: application/views/awards/cq/index.php:148
 #: application/views/awards/dok/index.php:95
@@ -4184,33 +4191,33 @@ msgstr "Rozdiel"
 #: application/views/bandmap/list.php:373
 #: application/views/bandmap/list.php:414 application/views/bands/index.php:123
 #: application/views/cabrillo/index.php:69
-#: application/views/callstats/index.php:10
-#: application/views/callstats/index.php:24
-#: application/views/callstats/index.php:38
-#: application/views/callstats/index.php:52
-#: application/views/callstats/index.php:68
-#: application/views/continents/index.php:32
-#: application/views/continents/index.php:41 application/views/csv/index.php:21
+#: application/views/callstats/index.php:15
+#: application/views/callstats/index.php:29
+#: application/views/callstats/index.php:43
+#: application/views/callstats/index.php:57
+#: application/views/callstats/index.php:73
+#: application/views/continents/index.php:37
+#: application/views/continents/index.php:46 application/views/csv/index.php:21
 #: application/views/csv/index.php:33 application/views/csv/index.php:44
 #: application/views/csv/index.php:60 application/views/csv/index.php:82
 #: application/views/csv/index.php:94 application/views/dashboard/index.php:575
 #: application/views/dcl_views/import.php:43
-#: application/views/distances/index.php:21
-#: application/views/distances/index.php:36
-#: application/views/distances/index.php:46
-#: application/views/distances/index.php:56
+#: application/views/distances/index.php:25
+#: application/views/distances/index.php:40
+#: application/views/distances/index.php:50
+#: application/views/distances/index.php:60
 #: application/views/dxatlas/index.php:21
 #: application/views/dxatlas/index.php:33
 #: application/views/dxatlas/index.php:44
 #: application/views/dxatlas/index.php:60
 #: application/views/dxatlas/index.php:82
 #: application/views/dxatlas/index.php:94
-#: application/views/gridmap/index.php:66
 #: application/views/gridmap/index.php:81
-#: application/views/gridmap/index.php:100
-#: application/views/gridmap/index.php:115
-#: application/views/gridmap/index.php:129
-#: application/views/gridmap/index.php:143
+#: application/views/gridmap/index.php:94
+#: application/views/gridmap/index.php:112
+#: application/views/gridmap/index.php:127
+#: application/views/gridmap/index.php:141
+#: application/views/gridmap/index.php:155
 #: application/views/interface_assets/footer.php:48
 #: application/views/interface_assets/footer.php:1525
 #: application/views/interface_assets/footer.php:1664
@@ -4248,91 +4255,91 @@ msgstr "Rozdiel"
 #: application/views/qslprint/qslprint.php:86
 #: application/views/search/lotw_unconfirmed.php:28
 #: application/views/stationsetup/exportmapoptions.php:33
-#: application/views/statistics/antennaanalytics.php:22
-#: application/views/statistics/antennaanalytics.php:34
-#: application/views/statistics/antennaanalytics.php:48
-#: application/views/statistics/antennaanalytics.php:88
-#: application/views/statistics/index.php:64
+#: application/views/statistics/antennaanalytics.php:26
+#: application/views/statistics/antennaanalytics.php:38
+#: application/views/statistics/antennaanalytics.php:52
+#: application/views/statistics/antennaanalytics.php:92
+#: application/views/statistics/index.php:69
 #: application/views/statistics/initials.php:24
-#: application/views/timeline/index.php:10
-#: application/views/timeline/index.php:22
-#: application/views/timeline/index.php:82
-#: application/views/timeplotter/index.php:19
-#: application/views/timeplotter/index.php:37
-#: application/views/timeplotter/index.php:49
-#: application/views/timeplotter/index.php:59
+#: application/views/timeline/index.php:16
+#: application/views/timeline/index.php:28
+#: application/views/timeline/index.php:88
+#: application/views/timeplotter/index.php:23
+#: application/views/timeplotter/index.php:41
+#: application/views/timeplotter/index.php:53
+#: application/views/timeplotter/index.php:63
 #: application/views/user/edit.php:873
 #: application/views/visitor/layout/footer.php:168
 msgid "All"
 msgstr "Všetko"
 
-#: application/views/accumulate/index.php:50
-#: application/views/timeline/index.php:41
+#: application/views/accumulate/index.php:56
+#: application/views/timeline/index.php:47
 msgid "Award"
 msgstr "Diplom"
 
-#: application/views/accumulate/index.php:53
-#: application/views/timeline/index.php:44
+#: application/views/accumulate/index.php:59
+#: application/views/timeline/index.php:50
 msgid "DX Century Club (DXCC)"
 msgstr "DX Century Club (DXCC)"
 
-#: application/views/accumulate/index.php:55
-#: application/views/timeline/index.php:46
+#: application/views/accumulate/index.php:61
+#: application/views/timeline/index.php:52
 msgid "Islands On The Air (IOTA)"
 msgstr "Islands On The Air (IOTA)"
 
-#: application/views/accumulate/index.php:56
-#: application/views/timeline/index.php:47
+#: application/views/accumulate/index.php:62
+#: application/views/timeline/index.php:53
 msgid "Worked All Zones (WAZ)"
 msgstr "Worked All Zones (WAZ)"
 
-#: application/views/accumulate/index.php:57
-#: application/views/timeline/index.php:48
+#: application/views/accumulate/index.php:63
+#: application/views/timeline/index.php:54
 msgid "VHF / UHF Century Club (VUCC)"
 msgstr "VHF / UHF Century Club (VUCC)"
 
-#: application/views/accumulate/index.php:58
-#: application/views/timeline/index.php:49
+#: application/views/accumulate/index.php:64
+#: application/views/timeline/index.php:55
 msgid "Worked All Japan (WAJA)"
 msgstr "Worked All Japan (WAJA)"
 
-#: application/views/accumulate/index.php:62
+#: application/views/accumulate/index.php:68
 msgid "Period"
 msgstr "Obdobie"
 
-#: application/views/accumulate/index.php:80
-#: application/views/callstats/index.php:65
-#: application/views/distances/index.php:53
-#: application/views/gridmap/index.php:78
+#: application/views/accumulate/index.php:86
+#: application/views/callstats/index.php:70
+#: application/views/distances/index.php:57
+#: application/views/gridmap/index.php:91
 #: application/views/logbookadvanced/edit.php:19
 #: application/views/logbookadvanced/index.php:426
 #: application/views/logbookadvanced/index.php:1029
 #: application/views/logbookadvanced/useroptions.php:290
-#: application/views/timeline/index.php:79 application/views/user/edit.php:401
+#: application/views/timeline/index.php:85 application/views/user/edit.php:401
 #: application/views/view_log/partial/log_ajax.php:22
 #: application/views/view_log/qso.php:248
 msgid "Propagation"
 msgstr "Šírenie"
 
-#: application/views/accumulate/index.php:84
-#: application/views/distances/index.php:57
-#: application/views/timeline/index.php:83
+#: application/views/accumulate/index.php:90
+#: application/views/distances/index.php:61
+#: application/views/timeline/index.php:89
 msgid "All but SAT"
 msgstr "Všetko okrem SAT"
 
-#: application/views/accumulate/index.php:85
-#: application/views/callstats/index.php:69
-#: application/views/distances/index.php:58
-#: application/views/gridmap/index.php:82
+#: application/views/accumulate/index.php:91
+#: application/views/callstats/index.php:74
+#: application/views/distances/index.php:62
+#: application/views/gridmap/index.php:95
 #: application/views/logbookadvanced/edit.php:221
 #: application/views/logbookadvanced/edit.php:229
 #: application/views/logbookadvanced/index.php:507
-#: application/views/timeline/index.php:84
+#: application/views/timeline/index.php:90
 msgid "None/Empty"
 msgstr "Žiadne/prázdne"
 
-#: application/views/accumulate/index.php:97
-#: application/views/activators/index.php:53
+#: application/views/accumulate/index.php:103
+#: application/views/activators/index.php:58
 #: application/views/awards/cq/index.php:46
 #: application/views/awards/dok/index.php:128
 #: application/views/awards/dxcc/index.php:43
@@ -4349,87 +4356,93 @@ msgstr "Žiadne/prázdne"
 #: application/views/awards/wapc/index.php:120
 #: application/views/awards/was/index.php:118
 #: application/views/awards/wpx/index.php:14
-#: application/views/callstats/index.php:92
-#: application/views/distances/index.php:64
+#: application/views/callstats/index.php:97
+#: application/views/distances/index.php:68
 #: application/views/lookup/index.php:94
-#: application/views/qslcard/confirmations.php:21
+#: application/views/qslcard/confirmations.php:24
 #: application/views/stationsetup/exportmapoptions.php:6
-#: application/views/statistics/antennaanalytics.php:74
-#: application/views/statistics/antennaanalytics.php:110
+#: application/views/statistics/antennaanalytics.php:78
+#: application/views/statistics/antennaanalytics.php:114
 #: application/views/statistics/initials.php:34
-#: application/views/timeline/index.php:113
-#: application/views/timeline/index.php:210
-#: application/views/timeline/index.php:247
-#: application/views/timeline/index.php:281
-#: application/views/timeline/index.php:321
-#: application/views/timeline/index.php:355
-#: application/views/timeline/index.php:391
-#: application/views/timeplotter/index.php:71
+#: application/views/timeline/index.php:119
+#: application/views/timeline/index.php:218
+#: application/views/timeline/index.php:255
+#: application/views/timeline/index.php:289
+#: application/views/timeline/index.php:329
+#: application/views/timeline/index.php:363
+#: application/views/timeline/index.php:399
+#: application/views/timeplotter/index.php:75
 msgid "Show"
 msgstr "Ukáž"
 
-#: application/views/activated_gridmap/index.php:24
+#: application/views/activated_gridmap/index.php:10
+#: application/views/interface_assets/header.php:162
+msgid "Activated Gridsquares"
+msgstr "Aktivované lokátorové štvorce"
+
+#: application/views/activated_gridmap/index.php:27
 #: application/views/awards/amsat_rover/index.php:226
 #: application/views/awards/dxcc/index.php:187
 #: application/views/awards/wab/index.php:36
 #: application/views/awards/wac/index.php:63
 #: application/views/awards/wae/index.php:130
 #: application/views/awards/wpx/index.php:91
-#: application/views/callstats/index.php:21
+#: application/views/callstats/index.php:26
 #: application/views/components/hamsat/table.php:29
-#: application/views/distancerecords/index.php:14
-#: application/views/distances/index.php:34
-#: application/views/gridmap/index.php:95 application/views/hamsat/index.php:32
+#: application/views/distancerecords/index.php:18
+#: application/views/distances/index.php:38
+#: application/views/gridmap/index.php:107
+#: application/views/hamsat/index.php:37
 #: application/views/interface_assets/header.php:210
 #: application/views/logbookadvanced/dupesearchdialog.php:41
 #: application/views/logbookadvanced/edit.php:22
 #: application/views/logbookadvanced/help.php:42
 #: application/views/logbookadvanced/index.php:408
 #: application/views/qso/award_tabs.php:69
-#: application/views/satellite/flightpath.php:40
-#: application/views/satellite/pass.php:16
+#: application/views/satellite/flightpath.php:43
+#: application/views/satellite/pass.php:18
 #: application/views/satellite/passtable.php:6
 #: application/views/satellite/skedtable.php:6
 #: application/views/satellite/skedtable.php:35
-#: application/views/sattimers/index.php:38
+#: application/views/sattimers/index.php:43
 #: application/views/statistics/index.php:27
-#: application/views/timeline/index.php:187
-#: application/views/timeline/index.php:230
-#: application/views/timeline/index.php:264
-#: application/views/timeline/index.php:302
-#: application/views/timeline/index.php:338
-#: application/views/timeline/index.php:373
+#: application/views/timeline/index.php:195
+#: application/views/timeline/index.php:238
+#: application/views/timeline/index.php:272
+#: application/views/timeline/index.php:310
+#: application/views/timeline/index.php:346
+#: application/views/timeline/index.php:381
 msgid "Satellite"
 msgstr "Satelit"
 
-#: application/views/activated_gridmap/index.php:34
+#: application/views/activated_gridmap/index.php:37
 #: application/views/awards/dxcc/index.php:203
 #: application/views/awards/wab/index.php:46
 #: application/views/awards/wac/index.php:79
 #: application/views/awards/wae/index.php:146
 #: application/views/awards/wpx/index.php:105
-#: application/views/callstats/index.php:35
-#: application/views/distances/index.php:44
-#: application/views/gridmap/index.php:110
+#: application/views/callstats/index.php:40
+#: application/views/distances/index.php:48
+#: application/views/gridmap/index.php:122
 #: application/views/logbookadvanced/index.php:417
 #: application/views/satellite/create.php:35
 #: application/views/satellite/edit.php:19
 #: application/views/satellite/index.php:54
 #: application/views/satellite/satinfo.php:12
-#: application/views/statistics/antennaanalytics.php:60
-#: application/views/statistics/antennaanalytics.php:98
+#: application/views/statistics/antennaanalytics.php:64
+#: application/views/statistics/antennaanalytics.php:102
 msgid "Orbit"
 msgstr "Obežná dráha"
 
-#: application/views/activated_gridmap/index.php:54
+#: application/views/activated_gridmap/index.php:53
 #: application/views/awards/amsat_rover/index.php:225
 #: application/views/awards/wab/index.php:66
-#: application/views/gridmap/index.php:154
-#: application/views/timeline/index.php:52
+#: application/views/gridmap/index.php:165
+#: application/views/timeline/index.php:58
 msgid "Confirmation"
 msgstr "Potvrdenie"
 
-#: application/views/activated_gridmap/index.php:86
+#: application/views/activated_gridmap/index.php:85
 #: application/views/awards/cq/index.php:122
 #: application/views/awards/dok/index.php:68
 #: application/views/awards/dxcc/index.php:129
@@ -4447,49 +4460,49 @@ msgstr "Potvrdenie"
 #: application/views/awards/wapc/index.php:71
 #: application/views/awards/was/index.php:73
 #: application/views/awards/wpx/index.php:40
-#: application/views/gridmap/index.php:187 application/views/user/edit.php:915
+#: application/views/gridmap/index.php:198 application/views/user/edit.php:915
 msgid "QRZ.com"
 msgstr "QRZ.com"
 
-#: application/views/activated_gridmap/index.php:90
-#: application/views/gridmap/index.php:20
+#: application/views/activated_gridmap/index.php:89
+#: application/views/gridmap/index.php:36
 msgid "Plot"
 msgstr "Zobraziť"
 
-#: application/views/activated_gridmap/index.php:91
-#: application/views/gridmap/index.php:21
+#: application/views/activated_gridmap/index.php:90
+#: application/views/gridmap/index.php:37
 msgid "Clear Markers"
 msgstr "Vymazať značky"
 
-#: application/views/activated_gridmap/index.php:106
+#: application/views/activated_gridmap/index.php:105
 #: application/views/awards/ffma/index.php:34
 #: application/views/awards/gridmaster/index.php:50
-#: application/views/gridmap/index.php:211
+#: application/views/gridmap/index.php:224
 #: application/views/logbookadvanced/index.php:10
 #: application/views/map/qso_map.php:59
 msgid "Latitude"
 msgstr "Zemepisná šírka"
 
-#: application/views/activated_gridmap/index.php:108
+#: application/views/activated_gridmap/index.php:106
 #: application/views/awards/ffma/index.php:36
 #: application/views/awards/gridmaster/index.php:52
-#: application/views/gridmap/index.php:213
+#: application/views/gridmap/index.php:225
 #: application/views/logbookadvanced/index.php:11
 #: application/views/map/qso_map.php:61
 msgid "Longitude"
 msgstr "Zemepisná dĺžka"
 
-#: application/views/activators/index.php:26
+#: application/views/activators/index.php:32
 msgctxt "Orbiter LEO or GEO"
 msgid "Both"
 msgstr "Oboje"
 
-#: application/views/activators/index.php:33
-#: application/views/callstats/index.php:77
+#: application/views/activators/index.php:39
+#: application/views/callstats/index.php:82
 msgid "Minimum Count"
 msgstr "Minimálny počet"
 
-#: application/views/activators/index.php:76
+#: application/views/activators/index.php:81
 #: application/views/awards/73on73/index.php:66
 #: application/views/awards/counties/details.php:27
 #: application/views/awards/counties/index.php:47
@@ -4513,15 +4526,14 @@ msgstr "Minimálny počet"
 #: application/views/awards/was/index.php:207
 #: application/views/awards/wpx/index.php:228
 #: application/views/awards/wwff/index.php:65
-#: application/views/callstats/index.php:113
+#: application/views/callstats/index.php:118
 #: application/views/clublog/export.php:60
-#: application/views/distancerecords/index.php:52
 #: application/views/public_search/empty.php:3
-#: application/views/qrz/export.php:65 application/views/timeline/index.php:143
+#: application/views/qrz/export.php:65 application/views/timeline/index.php:149
 msgid "Nothing found!"
 msgstr "Nič sa nenašlo!"
 
-#: application/views/activators/index.php:98
+#: application/views/activators/index.php:104
 #: application/views/adif/import.php:107 application/views/adif/import.php:278
 #: application/views/awards/73on73/index.php:35
 #: application/views/awards/amsat_rover/index.php:228
@@ -4533,7 +4545,7 @@ msgstr "Nič sa nenašlo!"
 #: application/views/bandmap/list.php:31 application/views/bandmap/list.php:170
 #: application/views/bandmap/list.php:566
 #: application/views/cabrillo/index.php:31
-#: application/views/callstats/index.php:132
+#: application/views/callstats/index.php:139
 #: application/views/calltester/comparison_result.php:60
 #: application/views/calltester/comparison_result.php:96
 #: application/views/calltester/comparison_result.php:132
@@ -4543,10 +4555,10 @@ msgstr "Nič sa nenašlo!"
 #: application/views/contesting/index.php:171
 #: application/views/csv/index.php:23 application/views/dashboard/index.php:329
 #: application/views/dcl_views/index.php:27
-#: application/views/distancerecords/index.php:18
+#: application/views/distancerecords/index.php:22
 #: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:42
-#: application/views/eqslcard/index.php:28
-#: application/views/gridmap/index.php:56 application/views/hamsat/index.php:30
+#: application/views/eqslcard/index.php:32
+#: application/views/gridmap/index.php:71 application/views/hamsat/index.php:35
 #: application/views/labels/index.php:124
 #: application/views/logbookadvanced/checkresult.php:101
 #: application/views/logbookadvanced/checkresult.php:159
@@ -4561,7 +4573,7 @@ msgstr "Nič sa nenašlo!"
 #: application/views/oqrs/qsolist.php:6
 #: application/views/oqrs/request_grouped.php:12
 #: application/views/qslcard/confirmationresult.php:15
-#: application/views/qslcard/index.php:39
+#: application/views/qslcard/index.php:43
 #: application/views/qslcard/searchform.php:3
 #: application/views/qslprint/index.php:29
 #: application/views/qslprint/qslprint.php:30
@@ -4584,22 +4596,22 @@ msgstr "Nič sa nenašlo!"
 msgid "Callsign"
 msgstr "Volacia značka"
 
-#: application/views/activators/index.php:99
+#: application/views/activators/index.php:105
 msgid "Count"
 msgstr "Počet"
 
-#: application/views/activators/index.php:101
-#: application/views/callstats/index.php:136
-#: application/views/timeline/index.php:191
-#: application/views/timeline/index.php:232
-#: application/views/timeline/index.php:266
-#: application/views/timeline/index.php:304
-#: application/views/timeline/index.php:340
-#: application/views/timeline/index.php:375
+#: application/views/activators/index.php:107
+#: application/views/callstats/index.php:143
+#: application/views/timeline/index.php:199
+#: application/views/timeline/index.php:240
+#: application/views/timeline/index.php:274
+#: application/views/timeline/index.php:312
+#: application/views/timeline/index.php:348
+#: application/views/timeline/index.php:383
 msgid "Show QSOs"
 msgstr "Ukáž QSOs"
 
-#: application/views/activators/index.php:102
+#: application/views/activators/index.php:108
 msgid "Show Map"
 msgstr "Zobraziť mapu"
 
@@ -4663,11 +4675,11 @@ msgstr ""
 #: application/views/contesting/index.php:262
 #: application/views/dashboard/index.php:325
 #: application/views/debug/index.php:764
-#: application/views/distancerecords/index.php:16
+#: application/views/distancerecords/index.php:20
 #: application/views/eqsl/analysis.php:36
 #: application/views/eqsl/download.php:36 application/views/eqsl/result.php:33
-#: application/views/eqslcard/index.php:30
-#: application/views/hamsat/index.php:28
+#: application/views/eqslcard/index.php:34
+#: application/views/hamsat/index.php:33
 #: application/views/logbookadvanced/checkresult.php:241
 #: application/views/logbookadvanced/checkresult.php:317
 #: application/views/logbookadvanced/dupesearchdialog.php:14
@@ -4676,21 +4688,21 @@ msgstr ""
 #: application/views/oqrs/qsolist.php:7 application/views/oqrs/request.php:15
 #: application/views/oqrs/request_grouped.php:8
 #: application/views/public_search/result.php:13
-#: application/views/qslcard/index.php:41
+#: application/views/qslcard/index.php:45
 #: application/views/qslcard/searchresult.php:4
 #: application/views/qslprint/qslprint.php:31
 #: application/views/qslprint/qsolist.php:7 application/views/qso/index.php:154
-#: application/views/qso/index.php:190 application/views/satellite/pass.php:50
+#: application/views/qso/index.php:190 application/views/satellite/pass.php:52
 #: application/views/satellite/skedtable.php:7
 #: application/views/search/search_result_ajax.php:89
 #: application/views/simplefle/index.php:154
 #: application/views/statistics/initialresult.php:15
-#: application/views/timeline/index.php:183
-#: application/views/timeline/index.php:227
-#: application/views/timeline/index.php:261
-#: application/views/timeline/index.php:297
-#: application/views/timeline/index.php:335
-#: application/views/timeline/index.php:369
+#: application/views/timeline/index.php:191
+#: application/views/timeline/index.php:235
+#: application/views/timeline/index.php:269
+#: application/views/timeline/index.php:305
+#: application/views/timeline/index.php:343
+#: application/views/timeline/index.php:377
 #: application/views/view_log/partial/log.php:4
 #: application/views/view_log/partial/log_ajax.php:139
 #: application/views/visitor/index.php:151
@@ -4710,21 +4722,21 @@ msgstr "Dátum"
 #: application/views/contesting/index.php:262
 #: application/views/dashboard/index.php:327
 #: application/views/debug/index.php:765
-#: application/views/distancerecords/index.php:17
+#: application/views/distancerecords/index.php:21
 #: application/views/eqsl/analysis.php:37
 #: application/views/eqsl/download.php:37 application/views/eqsl/result.php:34
-#: application/views/eqslcard/index.php:31
-#: application/views/hamsat/index.php:29
+#: application/views/eqslcard/index.php:35
+#: application/views/hamsat/index.php:34
 #: application/views/logbookadvanced/checkresult.php:242
 #: application/views/logbookadvanced/checkresult.php:318
-#: application/views/oqrs/qsolist.php:8 application/views/qslcard/index.php:42
+#: application/views/oqrs/qsolist.php:8 application/views/qslcard/index.php:46
 #: application/views/qslcard/searchresult.php:6
 #: application/views/qslprint/qslprint.php:32
 #: application/views/qslprint/qsolist.php:8 application/views/qso/index.php:195
 #: application/views/search/search_result_ajax.php:91
 #: application/views/simplefle/index.php:155
 #: application/views/statistics/initialresult.php:16
-#: application/views/timeline/index.php:370
+#: application/views/timeline/index.php:378
 #: application/views/timeplotter/index.php:5
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:141
@@ -4738,7 +4750,7 @@ msgstr "Čas"
 #: application/views/contesting/index.php:263
 #: application/views/dcl_views/key_import.php:45
 #: application/views/debug/index.php:766 application/views/debug/index.php:801
-#: application/views/dxcalendar/index.php:12
+#: application/views/dxcalendar/index.php:17
 #: application/views/eqsl/analysis.php:38
 #: application/views/eqsl/download.php:38 application/views/eqsl/result.php:35
 #: application/views/logbookadvanced/mergedialog.php:28
@@ -5313,9 +5325,9 @@ msgstr "POTA REF v ADIF"
 #: application/views/mode/index.php:43
 #: application/views/oqrs/showrequests.php:102
 #: application/views/oqrs/status_info.php:4
-#: application/views/sattimers/index.php:39
+#: application/views/sattimers/index.php:44
 #: application/views/stationsetup/stationsetup.php:36
-#: application/views/timeline/index.php:189
+#: application/views/timeline/index.php:197
 #: application/views/usermode/index.php:41
 msgid "Status"
 msgstr "Stav"
@@ -5344,7 +5356,7 @@ msgstr "Jednoduché pomenovanie významu tohto API."
 #: application/views/options/radios.php:45
 #: application/views/options/version_dialog.php:78
 #: application/views/satellite/create.php:82
-#: application/views/satellite/pass.php:115
+#: application/views/satellite/pass.php:117
 #: application/views/simplefle/index.php:22
 msgid "Save"
 msgstr "Uložiť"
@@ -5404,16 +5416,16 @@ msgstr "Kopírovať do schránky"
 msgid "The API URL for this Wavelog instance is"
 msgstr "URL API pre túto instanciu Wavelogu je"
 
-#: application/views/api/index.php:20 application/views/dxcalendar/index.php:15
+#: application/views/api/index.php:20 application/views/dxcalendar/index.php:20
 #: application/views/eqsl/export.php:33
 #: application/views/interface_assets/footer.php:39
 #: application/views/qso/index.php:45 application/views/radio/index.php:30
-#: application/views/sattimers/index.php:67
-#: application/views/sattimers/index.php:69
-#: application/views/sattimers/index.php:71
-#: application/views/sattimers/index.php:73
-#: application/views/sattimers/index.php:75
-#: application/views/sattimers/index.php:77
+#: application/views/sattimers/index.php:72
+#: application/views/sattimers/index.php:74
+#: application/views/sattimers/index.php:76
+#: application/views/sattimers/index.php:78
+#: application/views/sattimers/index.php:80
+#: application/views/sattimers/index.php:82
 #: application/views/search/filter.php:66
 msgid "Info"
 msgstr "Info"
@@ -5588,7 +5600,7 @@ msgstr ""
 #: application/views/awards/73on73/index.php:32
 #: application/views/awards/jcc/index.php:163
 #: application/views/awards/waja/index.php:157
-#: application/views/distancerecords/index.php:13
+#: application/views/distancerecords/index.php:17
 msgid "Number"
 msgstr "Číslo"
 
@@ -5632,7 +5644,7 @@ msgstr ""
 #: application/views/awards/itu/index.php:47
 #: application/views/awards/wae/index.php:32
 #: application/views/awards/wpx/index.php:13
-#: application/views/gridmap/index.php:19
+#: application/views/gridmap/index.php:35
 #: application/views/logbookadvanced/index.php:321
 #: application/views/mode/index.php:80 application/views/usermode/index.php:68
 msgid "Filters"
@@ -5885,9 +5897,9 @@ msgstr "Potvrdené okresy"
 #: application/views/dashboard/index.php:517
 #: application/views/dashboard/index.php:546
 #: application/views/simplefle/index.php:27
-#: application/views/statistics/qsltable.php:87
-#: application/views/statistics/qsltable.php:149
-#: application/views/statistics/qsltable.php:206
+#: application/views/statistics/qsltable.php:88
+#: application/views/statistics/qsltable.php:150
+#: application/views/statistics/qsltable.php:207
 #: application/views/statistics/qsotable.php:10
 #: application/views/statistics/qsotable.php:23
 #: application/views/statistics/satqsotable.php:10
@@ -5907,7 +5919,7 @@ msgstr "Celkovo"
 #: application/views/bandmap/list.php:568
 #: application/views/bandmap/list.php:606 application/views/csv/index.php:80
 #: application/views/dxatlas/index.php:80
-#: application/views/gridmap/index.php:221 application/views/kml/index.php:65
+#: application/views/gridmap/index.php:229 application/views/kml/index.php:65
 #: application/views/logbookadvanced/checkresult.php:246
 #: application/views/logbookadvanced/edit.php:29
 #: application/views/logbookadvanced/index.php:22
@@ -5919,8 +5931,8 @@ msgstr "Celkovo"
 #: application/views/qso/edit_ajax.php:293 application/views/qso/index.php:513
 #: application/views/station_profile/create.php:129
 #: application/views/station_profile/edit.php:154
-#: application/views/timeline/index.php:336
-#: application/views/timeplotter/index.php:35
+#: application/views/timeline/index.php:344
+#: application/views/timeplotter/index.php:39
 #: application/views/user/modals/first_login_wizard.php:75
 #: application/views/zonechecker/index.php:17
 msgid "CQ Zone"
@@ -5985,9 +5997,9 @@ msgstr "Zobraziť mapu CQ zón"
 #: application/views/awards/dxcc/index.php:52
 #: application/views/awards/itu/index.php:57
 #: application/views/awards/wae/index.php:39
-#: application/views/gridmap/index.php:28
+#: application/views/gridmap/index.php:44
 #: application/views/logbookadvanced/index.php:327
-#: application/views/statistics/index.php:54
+#: application/views/statistics/index.php:59
 msgid "Date Presets"
 msgstr "Predvolené dátumy"
 
@@ -5995,16 +6007,16 @@ msgstr "Predvolené dátumy"
 #: application/views/awards/dxcc/index.php:54
 #: application/views/awards/itu/index.php:59
 #: application/views/awards/wae/index.php:41
-#: application/views/contestcalendar/index.php:45
+#: application/views/contestcalendar/index.php:44
 #: application/views/dashboard/index.php:264
 #: application/views/dashboard/index.php:426
 #: application/views/dashboard/index.php:460
 #: application/views/dashboard/index.php:489
 #: application/views/dashboard/index.php:518
 #: application/views/dashboard/index.php:547
-#: application/views/gridmap/index.php:31
+#: application/views/gridmap/index.php:47
 #: application/views/logbookadvanced/index.php:329
-#: application/views/statistics/index.php:56
+#: application/views/statistics/index.php:61
 msgid "Today"
 msgstr "Dnes"
 
@@ -6012,9 +6024,9 @@ msgstr "Dnes"
 #: application/views/awards/dxcc/index.php:55
 #: application/views/awards/itu/index.php:60
 #: application/views/awards/wae/index.php:42
-#: application/views/gridmap/index.php:32
+#: application/views/gridmap/index.php:48
 #: application/views/logbookadvanced/index.php:330
-#: application/views/statistics/index.php:57
+#: application/views/statistics/index.php:62
 msgid "Yesterday"
 msgstr "Včera"
 
@@ -6022,9 +6034,9 @@ msgstr "Včera"
 #: application/views/awards/dxcc/index.php:56
 #: application/views/awards/itu/index.php:61
 #: application/views/awards/wae/index.php:43
-#: application/views/gridmap/index.php:33
+#: application/views/gridmap/index.php:49
 #: application/views/logbookadvanced/index.php:331
-#: application/views/statistics/index.php:58
+#: application/views/statistics/index.php:63
 msgid "Last 7 Days"
 msgstr "Posledných 7 dní"
 
@@ -6032,9 +6044,9 @@ msgstr "Posledných 7 dní"
 #: application/views/awards/dxcc/index.php:57
 #: application/views/awards/itu/index.php:62
 #: application/views/awards/wae/index.php:44
-#: application/views/gridmap/index.php:34
+#: application/views/gridmap/index.php:50
 #: application/views/logbookadvanced/index.php:332
-#: application/views/statistics/index.php:59
+#: application/views/statistics/index.php:64
 msgid "Last 30 Days"
 msgstr "Posledných 30 dní"
 
@@ -6042,9 +6054,9 @@ msgstr "Posledných 30 dní"
 #: application/views/awards/dxcc/index.php:58
 #: application/views/awards/itu/index.php:63
 #: application/views/awards/wae/index.php:45
-#: application/views/gridmap/index.php:35
+#: application/views/gridmap/index.php:51
 #: application/views/logbookadvanced/index.php:333
-#: application/views/statistics/index.php:60
+#: application/views/statistics/index.php:65
 msgid "This Month"
 msgstr "Tento mesiac"
 
@@ -6052,9 +6064,9 @@ msgstr "Tento mesiac"
 #: application/views/awards/dxcc/index.php:59
 #: application/views/awards/itu/index.php:64
 #: application/views/awards/wae/index.php:46
-#: application/views/gridmap/index.php:36
+#: application/views/gridmap/index.php:52
 #: application/views/logbookadvanced/index.php:334
-#: application/views/statistics/index.php:61
+#: application/views/statistics/index.php:66
 msgid "Last Month"
 msgstr "Minulý mesiac"
 
@@ -6062,9 +6074,9 @@ msgstr "Minulý mesiac"
 #: application/views/awards/dxcc/index.php:60
 #: application/views/awards/itu/index.php:65
 #: application/views/awards/wae/index.php:47
-#: application/views/gridmap/index.php:37
+#: application/views/gridmap/index.php:53
 #: application/views/logbookadvanced/index.php:335
-#: application/views/statistics/index.php:62
+#: application/views/statistics/index.php:67
 msgid "This Year"
 msgstr "Tento rok"
 
@@ -6073,7 +6085,7 @@ msgstr "Tento rok"
 #: application/views/awards/itu/index.php:66
 #: application/views/awards/wae/index.php:48
 #: application/views/logbookadvanced/index.php:336
-#: application/views/statistics/index.php:63
+#: application/views/statistics/index.php:68
 msgid "Last Year"
 msgstr "Minulý rok"
 
@@ -6081,7 +6093,7 @@ msgstr "Minulý rok"
 #: application/views/awards/dxcc/index.php:62
 #: application/views/awards/itu/index.php:67
 #: application/views/awards/wae/index.php:49
-#: application/views/gridmap/index.php:38
+#: application/views/gridmap/index.php:54
 #: application/views/interface_assets/footer.php:52
 #: application/views/logbookadvanced/index.php:337
 #: application/views/qso/index.php:752
@@ -6092,9 +6104,9 @@ msgstr "Vyčistiť"
 #: application/views/awards/dxcc/index.php:67
 #: application/views/awards/itu/index.php:72
 #: application/views/awards/wae/index.php:54
-#: application/views/dxcalendar/index.php:9
-#: application/views/gridmap/index.php:44
-#: application/views/statistics/index.php:68
+#: application/views/dxcalendar/index.php:14
+#: application/views/gridmap/index.php:60
+#: application/views/statistics/index.php:73
 msgid "Date from"
 msgstr "Dátum od"
 
@@ -6102,9 +6114,9 @@ msgstr "Dátum od"
 #: application/views/awards/dxcc/index.php:75
 #: application/views/awards/itu/index.php:80
 #: application/views/awards/wae/index.php:62
-#: application/views/dxcalendar/index.php:10
-#: application/views/gridmap/index.php:48
-#: application/views/statistics/index.php:72
+#: application/views/dxcalendar/index.php:15
+#: application/views/gridmap/index.php:64
+#: application/views/statistics/index.php:77
 msgid "Date to"
 msgstr "Dátum do"
 
@@ -6514,7 +6526,7 @@ msgstr "Každé pásmo"
 #: application/views/awards/wapc/index.php:119
 #: application/views/awards/was/index.php:117
 #: application/views/awards/wpx/index.php:148
-#: application/views/continents/index.php:50
+#: application/views/continents/index.php:55
 #: application/views/logbookadvanced/index.php:900
 #: application/views/logbookadvanced/index.php:901
 #: application/views/oqrs/showrequests.php:75
@@ -6751,7 +6763,7 @@ msgstr ""
 #: application/views/bandmap/list.php:104
 #: application/views/bandmap/list.php:567
 #: application/views/bandmap/list.php:605
-#: application/views/continents/index.php:62
+#: application/views/continents/index.php:67
 #: application/views/logbookadvanced/edit.php:28
 #: application/views/logbookadvanced/index.php:504
 #: application/views/logbookadvanced/index.php:1038
@@ -6782,8 +6794,8 @@ msgstr "DXCC názov"
 #: application/views/awards/iota/index.php:199
 #: application/views/awards/wae/index.php:202
 #: application/views/logbookadvanced/statecheckresult.php:10
-#: application/views/timeline/index.php:184
-#: application/views/timeline/index.php:300
+#: application/views/timeline/index.php:192
+#: application/views/timeline/index.php:308
 msgid "Prefix"
 msgstr "Prefix"
 
@@ -7165,7 +7177,7 @@ msgstr "Zobraziť IOTA mapu"
 #: application/views/search/search_result_ajax.php:19
 #: application/views/stationsetup/stationsetup.php:35
 #: application/views/themes/index.php:82
-#: application/views/timeline/index.php:299 application/views/user/edit.php:305
+#: application/views/timeline/index.php:307 application/views/user/edit.php:305
 #: application/views/user/edit.php:328 application/views/user/edit.php:351
 #: application/views/user/edit.php:374 application/views/user/edit.php:398
 #: application/views/view_log/partial/log_ajax.php:20
@@ -7180,7 +7192,7 @@ msgstr "Zrušené"
 
 #: application/views/awards/itu/index.php:3
 #: application/views/awards/itu/index.php:206
-#: application/views/gridmap/index.php:223
+#: application/views/gridmap/index.php:230
 #: application/views/logbookadvanced/checkresult.php:322
 #: application/views/logbookadvanced/edit.php:34
 #: application/views/logbookadvanced/index.php:21
@@ -7293,7 +7305,7 @@ msgstr "Mesto"
 
 #: application/views/awards/jcc/index.php:201
 #: application/views/dashboard/index.php:576
-#: application/views/distances/index.php:23
+#: application/views/distances/index.php:27
 #: application/views/qslprint/qslprint.php:58
 #: application/views/qslprint/qslprint.php:59
 #: application/views/qslprint/qsolist.php:49
@@ -7673,8 +7685,8 @@ msgid "Special Interest Group"
 msgstr "Special Interest Group"
 
 #: application/views/awards/sig/index.php:22
-#: application/views/continents/index.php:17
-#: application/views/distances/index.php:12
+#: application/views/continents/index.php:23
+#: application/views/distances/index.php:10
 #: application/views/timeplotter/index.php:4
 msgid "Number of QSOs"
 msgstr "Počet spojení"
@@ -8017,7 +8029,7 @@ msgid "Show WAJA Map"
 msgstr "Zobraziť WAJA mapu"
 
 #: application/views/awards/waja/index.php:158
-#: application/views/timeline/index.php:228
+#: application/views/timeline/index.php:236
 msgid "Prefecture"
 msgstr "Prefektúra"
 
@@ -8656,7 +8668,7 @@ msgstr "Čerstvý spot (< 5 minút staré)"
 #: application/views/bandmap/list.php:112
 #: application/views/bandmap/list.php:328
 #: application/views/bandmap/list.php:522
-#: application/views/contestcalendar/index.php:21
+#: application/views/contestcalendar/index.php:20
 #: application/views/logbookadvanced/edit.php:13
 #: application/views/logbookadvanced/index.php:500
 #: application/views/logbookadvanced/index.php:1032
@@ -8714,7 +8726,7 @@ msgstr "Klikni na zobrazenie na IOTA-World.org"
 
 #: application/views/bandmap/list.php:124
 #: application/views/bandmap/list.php:412
-#: application/views/dxcalendar/index.php:14
+#: application/views/dxcalendar/index.php:19
 msgid "Source"
 msgstr "Zdroj"
 
@@ -8772,7 +8784,7 @@ msgstr "Spotter"
 #: application/views/bandmap/list.php:139
 #: application/views/components/hamsat/table.php:28
 #: application/views/contesting/index.php:234
-#: application/views/hamsat/index.php:31
+#: application/views/hamsat/index.php:36
 #: application/views/logbookadvanced/edit.php:12
 #: application/views/logbookadvanced/index.php:521
 #: application/views/logbookadvanced/index.php:1026
@@ -9589,7 +9601,7 @@ msgstr "Kategória Overlay"
 #: application/views/cabrillo/index.php:164
 #: application/views/reg1test/index.php:70
 #: application/views/statistics/index.php:18
-#: application/views/statistics/index.php:111
+#: application/views/statistics/index.php:116
 msgid "Operators"
 msgstr "Operátori"
 
@@ -9795,20 +9807,24 @@ msgstr "Exportovať"
 msgid "No contests were found in your log."
 msgstr "Nenašli sa žiadne contesty vo vašom logu."
 
-#: application/views/callstats/index.php:70
-#: application/views/gridmap/index.php:83
+#: application/views/callstats/index.php:5
+msgid "View statistics for worked callsigns"
+msgstr ""
+
+#: application/views/callstats/index.php:75
+#: application/views/gridmap/index.php:96
 msgid "All except SAT"
 msgstr "Všetko okrem SAT"
 
-#: application/views/callstats/index.php:133
+#: application/views/callstats/index.php:140
 msgid "#QSOs"
 msgstr "#QSOs"
 
-#: application/views/callstats/index.php:134
+#: application/views/callstats/index.php:141
 msgid "First QSO"
 msgstr "Prvé QSO"
 
-#: application/views/callstats/index.php:135
+#: application/views/callstats/index.php:142
 #: application/views/stationsetup/stationsetup.php:134
 msgid "Last QSO"
 msgstr "Posledné QSO"
@@ -9969,7 +9985,7 @@ msgstr "Áno, prepnúť!"
 #: application/views/cron/edit.php:74
 #: application/views/interface_assets/footer.php:40
 #: application/views/logbookadvanced/index.php:88
-#: application/views/satellite/pass.php:114
+#: application/views/satellite/pass.php:116
 #: application/views/user/modals/admin_impersonate_modal.php:45
 #: application/views/user/modals/stop_impersonate_modal.php:14
 msgid "Cancel"
@@ -10452,14 +10468,14 @@ msgid "DX Waterfall Help"
 msgstr "DX Waterfall nápoveda"
 
 #: application/views/components/hamsat/table.php:3
-#: application/views/hamsat/index.php:7
+#: application/views/hamsat/index.php:6
 msgid "Hamsat - Satellite Rovers"
 msgstr "Hamsat - Satellite Rovers"
 
 #: application/views/components/hamsat/table.php:4
-#: application/views/contestcalendar/index.php:11
-#: application/views/dxcalendar/index.php:4
-#: application/views/hamsat/index.php:8
+#: application/views/contestcalendar/index.php:10
+#: application/views/dxcalendar/index.php:3
+#: application/views/hamsat/index.php:13
 msgid "This data comes from"
 msgstr "Tieto údaje pochádzajú z"
 
@@ -10480,12 +10496,12 @@ msgstr ""
 "nadchádzajúce aktivácie neboli nájdené. Skontrolujte to prosím neskôr."
 
 #: application/views/components/hamsat/table.php:31
-#: application/views/hamsat/index.php:34
+#: application/views/hamsat/index.php:39
 msgid "Gridsquare(s)"
 msgstr "Lokátor(y)"
 
 #: application/views/components/hamsat/table.php:32
-#: application/views/hamsat/index.php:35
+#: application/views/hamsat/index.php:40
 msgid "Workable"
 msgstr "Urobiteľné"
 
@@ -10502,31 +10518,31 @@ msgstr "Sked"
 msgid "Radio Status"
 msgstr "Stav rádia"
 
-#: application/views/contestcalendar/index.php:16
+#: application/views/contestcalendar/index.php:15
 msgid "No Contests"
 msgstr "Žiadne contesty"
 
-#: application/views/contestcalendar/index.php:22
+#: application/views/contestcalendar/index.php:21
 msgid "Start"
 msgstr "Štart"
 
-#: application/views/contestcalendar/index.php:23
+#: application/views/contestcalendar/index.php:22
 msgid "End"
 msgstr "Koniec"
 
-#: application/views/contestcalendar/index.php:24
+#: application/views/contestcalendar/index.php:23
 msgid "Link"
 msgstr "Odkaz"
 
-#: application/views/contestcalendar/index.php:33
+#: application/views/contestcalendar/index.php:32
 msgid "Show Details"
 msgstr "Zobraziť podrobnosti"
 
-#: application/views/contestcalendar/index.php:55
+#: application/views/contestcalendar/index.php:54
 msgid "Weekend"
 msgstr "Víkend"
 
-#: application/views/contestcalendar/index.php:66
+#: application/views/contestcalendar/index.php:65
 msgid "Next Week"
 msgstr "Budúci týždeň"
 
@@ -10809,7 +10825,11 @@ msgstr "Contestový denník"
 msgid "VUCC Gridsquare"
 msgstr "VUCC lokátor"
 
-#: application/views/continents/index.php:63
+#: application/views/continents/index.php:14
+msgid "View continent statistics"
+msgstr ""
+
+#: application/views/continents/index.php:68
 #: application/views/statistics/index.php:23
 msgid "# of QSOs worked"
 msgstr "# urobených QSO"
@@ -10985,7 +11005,7 @@ msgstr "Budú exportované iba spojenia s informáciami SOTA!"
 
 #: application/views/csv/index.php:92 application/views/dxatlas/index.php:92
 #: application/views/eqsl/download.php:43
-#: application/views/eqslcard/index.php:33 application/views/kml/index.php:77
+#: application/views/eqslcard/index.php:37 application/views/kml/index.php:77
 #: application/views/qso/edit_ajax.php:189 application/views/qso/index.php:537
 msgid "Propagation Mode"
 msgstr "Spôsob šírenia"
@@ -11124,12 +11144,13 @@ msgstr[1] ""
 msgstr[2] ""
 
 #: application/views/dashboard/index.php:284
-#: application/views/statistics/index.php:114
-#: application/views/statistics/index.php:159
+#: application/views/statistics/index.php:119
+#: application/views/statistics/index.php:164
 msgid "Unique callsigns"
 msgstr "Unikátne volacie značky"
 
 #: application/views/dashboard/index.php:318
+#: application/views/view_log/index.php:26
 msgid "Recent QSOs"
 msgstr ""
 
@@ -11342,98 +11363,98 @@ msgstr "Počet QSOs pre tento deň v týždni"
 msgid "Number of QSOs for this month of the year"
 msgstr "Počet počet spojení za tento mesiac roka"
 
-#: application/views/dayswithqso/index.php:18
+#: application/views/dayswithqso/index.php:23
 msgid "Days of the week"
 msgstr "Dni v týždni"
 
-#: application/views/dayswithqso/index.php:21
+#: application/views/dayswithqso/index.php:26
 msgid "Months of the year"
 msgstr "Mesiace v roku"
 
-#: application/views/dayswithqso/index.php:24
+#: application/views/dayswithqso/index.php:29
 msgid "Streaks"
 msgstr "Série"
 
-#: application/views/dayswithqso/index.php:27
+#: application/views/dayswithqso/index.php:32
 msgid "QSOs of Year"
 msgstr "Spojenia roka"
 
-#: application/views/dayswithqso/index.php:35
+#: application/views/dayswithqso/index.php:40
 msgid "Number of days with QSOs each year"
 msgstr "Počet dní s QSO každý rok"
 
-#: application/views/dayswithqso/index.php:51
+#: application/views/dayswithqso/index.php:56
 msgid "Days"
 msgstr "Dni"
 
-#: application/views/dayswithqso/index.php:67
+#: application/views/dayswithqso/index.php:72
 msgid "QSOs breakdown by day of the week"
 msgstr "Rozpis spojení podľa dní v týždni"
 
-#: application/views/dayswithqso/index.php:73
+#: application/views/dayswithqso/index.php:78
 msgid "QSOs breakdown by month of the year"
 msgstr "Členenie QSOs podľa mesiacov v roku"
 
-#: application/views/dayswithqso/index.php:87
+#: application/views/dayswithqso/index.php:92
 msgid "QSOs per Year"
 msgstr "Spojenia za rok"
 
-#: application/views/dayswithqso/index.php:95
-#: application/views/timeplotter/index.php:140
+#: application/views/dayswithqso/index.php:100
+#: application/views/timeplotter/index.php:152
 msgid "Less"
 msgstr "Menej"
 
-#: application/views/dayswithqso/index.php:100
-#: application/views/timeplotter/index.php:146
+#: application/views/dayswithqso/index.php:105
+#: application/views/timeplotter/index.php:158
 msgid "More"
 msgstr "Viac"
 
-#: application/views/dayswithqso/index.php:102
+#: application/views/dayswithqso/index.php:107
 msgid "Calendar with QSOs"
 msgstr "Kalendár so spojeniami"
 
-#: application/views/dayswithqso/index.php:111
+#: application/views/dayswithqso/index.php:116
 msgid "Longest streak with QSOs in the log"
 msgstr "Najdlhšia séria so spojeniami v denníku"
 
-#: application/views/dayswithqso/index.php:112
+#: application/views/dayswithqso/index.php:117
 msgid "A maximum of the 10 longest streaks are shown!"
 msgstr "Zobrazuje sa maximálne 10 najdlhších sérií!"
 
-#: application/views/dayswithqso/index.php:130
+#: application/views/dayswithqso/index.php:135
 msgid "Streak (continuous days with QSOs)"
 msgstr "Séria (počet po sebe idúcich dní s QSO)"
 
-#: application/views/dayswithqso/index.php:131
-#: application/views/dayswithqso/index.php:159
-#: application/views/dayswithqso/index.php:181
+#: application/views/dayswithqso/index.php:136
+#: application/views/dayswithqso/index.php:164
+#: application/views/dayswithqso/index.php:186
 #: application/views/lotw/satupdate.php:7
 msgid "Start Date"
 msgstr "Dátum začatia"
 
-#: application/views/dayswithqso/index.php:132
-#: application/views/dayswithqso/index.php:160
-#: application/views/dayswithqso/index.php:182
+#: application/views/dayswithqso/index.php:137
+#: application/views/dayswithqso/index.php:165
+#: application/views/dayswithqso/index.php:187
 #: application/views/lotw/satupdate.php:7
-#: application/views/timeline/index.php:190
+#: application/views/timeline/index.php:198
 msgid "End Date"
 msgstr "Dátum ukončenia"
 
-#: application/views/dayswithqso/index.php:148
+#: application/views/dayswithqso/index.php:153
 msgctxt "Days with QSOs"
 msgid "No streak found!"
 msgstr "Žiadna séria sa nenašla!"
 
-#: application/views/dayswithqso/index.php:152
+#: application/views/dayswithqso/index.php:157
 msgid "Current streak with QSOs in the log"
 msgstr "Aktuálna séria so spojeniami v denníku"
 
-#: application/views/dayswithqso/index.php:158
-#: application/views/dayswithqso/index.php:180
+#: application/views/dayswithqso/index.php:163
+#: application/views/dayswithqso/index.php:185
 msgid "Current streak (continuous days with QSOs)"
 msgstr "Súčasná séria (nepretržité dni so spojeniami)"
 
-#: application/views/dayswithqso/index.php:175
+#: application/views/dayswithqso/index.php:180
 msgid ""
 "If you make a QSO today, you can continue to extend your streak... or else "
 "your current streak will be broken!"
@@ -11442,7 +11463,7 @@ msgstr ""
 "bude vaša súčasná séria prerušená!Ak dnes nadviažeš QSO, môžeš naďalej "
 "predlžovať svoju sériu... inak sa tvoja aktuálna séria preruší!"
 
-#: application/views/dayswithqso/index.php:196
+#: application/views/dayswithqso/index.php:201
 msgid "No current streak found!"
 msgstr "Žiadna aktuálna séria nebola nájdená!"
 
@@ -12221,45 +12242,49 @@ msgstr "Turečtina"
 msgid "Ukrainian"
 msgstr "Ukrajinský"
 
-#: application/views/distancerecords/index.php:4
+#: application/views/distancerecords/index.php:6
 msgid "This page lists distance records per satellite based on gridsquares."
 msgstr ""
 "Táto stránka uvádza rekordy vzdialeností podľa satelitov na základe "
 "lokátorov.Táto stránka uvádza rekordy vzdialenosti podľa satelitu na základe "
 "lokátorových štvorcov."
 
-#: application/views/distancerecords/index.php:20
+#: application/views/distancerecords/index.php:24
 msgid "My Gridsquare"
 msgstr "Môj lokátorový štvorec"
 
-#: application/views/distancerecords/index.php:21
+#: application/views/distancerecords/index.php:25
 msgid "DX Gridsquare"
 msgstr "DX lokátorový štvorec"
 
-#: application/views/distances/index.php:7
+#: application/views/distancerecords/index.php:56
+msgid "No QSOs found matching the criteria for this page!"
+msgstr ""
+
+#: application/views/distances/index.php:5
 #: application/views/interface_assets/footer.php:31
 #: application/views/simplefle/index.php:72
 msgid "QSO Data"
 msgstr "Údaje o spojení"
 
-#: application/views/distances/index.php:9
+#: application/views/distances/index.php:7
 #, php-format
 msgid "contacts were plotted.%s Your furthest contact was with"
 msgstr "spojenia boli zakreslené.%s Vaše najvzdialenejšie spojenie bol s"
 
-#: application/views/distances/index.php:10
+#: application/views/distances/index.php:8
 msgid "in gridsquare"
 msgstr "v lokátore"
 
-#: application/views/distances/index.php:11
+#: application/views/distances/index.php:9
 msgid "the distance was"
 msgstr "vzdialenosť bola"
 
-#: application/views/distances/index.php:14
+#: application/views/distances/index.php:12
 msgid "Callsign(s) worked (max 5 shown)"
 msgstr "Urobené volacie značky (zobrazených max. 5)"
 
-#: application/views/distances/index.php:19
+#: application/views/distances/index.php:23
 msgid "Band selection"
 msgstr "Výber pásma"
 
@@ -12280,7 +12305,7 @@ msgstr ""
 msgid "Only QSOs with a gridsquare defined will be exported!"
 msgstr "Exportované budú iba spojenia so zadefinovaným lokátorom!"
 
-#: application/views/dxcalendar/index.php:13
+#: application/views/dxcalendar/index.php:18
 #: application/views/view_log/qso.php:448
 msgid "QSL Info"
 msgstr "QSL informácie"
@@ -12551,7 +12576,7 @@ msgstr ""
 "ale obrázky QSL ešte neboli stiahnuté."
 
 #: application/views/eqsl/download.php:42
-#: application/views/eqslcard/index.php:34
+#: application/views/eqslcard/index.php:38
 #: application/views/view_log/qso.php:503
 msgid "QSL Message"
 msgstr "QSL správa"
@@ -12699,28 +12724,37 @@ msgstr ""
 "vypršaniu časového limitu servera.Použi to, ak máš množstvo QSO na nahranie "
 "do eQSL, ušetrí to čas servera."
 
-#: application/views/eqslcard/index.php:10
+#: application/views/eqslcard/index.php:8
 #, php-format
 msgid "You are using %s of disk space to store eQSL Card assets"
 msgstr "Používaš %s úložného priestoru na disku na uloženie eQSL kariet"
 
-#: application/views/eqslcard/index.php:35
-#: application/views/qslcard/index.php:44
-#: application/views/qslcard/index.php:120
+#: application/views/eqslcard/index.php:14
+#: application/views/interface_assets/header.php:123
+msgid "View eQSL Cards"
+msgstr "Zobraziť eQSL karty"
+
+#: application/views/eqslcard/index.php:39
+#: application/views/qslcard/index.php:48
+#: application/views/qslcard/index.php:124
 msgid "QSL Date"
 msgstr "Dátum QSL"
 
-#: application/views/eqslcard/index.php:64
+#: application/views/eqslcard/index.php:68
 #: application/views/interface_assets/footer.php:2648
 #: application/views/interface_assets/footer.php:2666
 #: application/views/interface_assets/footer.php:2687
 #: application/views/interface_assets/footer.php:2705
-#: application/views/qslcard/index.php:77
+#: application/views/qslcard/index.php:81
 #: application/views/view_log/qso.php:739
 msgid "View"
 msgstr "Zobraziť"
 
-#: application/views/gridmap/index.php:58
+#: application/views/gridmap/index.php:27
+msgid "View a map of worked / confirmed gridsquares"
+msgstr ""
+
+#: application/views/gridmap/index.php:73
 #: application/views/logbookadvanced/index.php:352
 #: application/views/logbookadvanced/index.php:377
 #: application/views/logbookadvanced/index.php:383
@@ -12740,7 +12774,11 @@ msgstr "Zobraziť"
 msgid "Empty"
 msgstr "Prázdny"
 
-#: application/views/hamsat/index.php:22
+#: application/views/hamsat/index.php:10
+msgid "Satellite Rovers"
+msgstr ""
+
+#: application/views/hamsat/index.php:27
 #, php-format
 msgid ""
 "Cannot filter workable passes only without private feed key. Please set the "
@@ -12750,7 +12788,7 @@ msgstr ""
 "Prosím, nastavte kľúč feedu v %s.Nie je možné filtrovať len použiteľné "
 "prelety bez súkromného kľúča feed-u. Nastavte prosím kľúč feed-u v %s."
 
-#: application/views/hamsat/index.php:22
+#: application/views/hamsat/index.php:27
 msgid "your profile"
 msgstr "tvoj profil"
 
@@ -13402,12 +13440,9 @@ msgid "Overview"
 msgstr "Prehľad"
 
 #: application/views/interface_assets/header.php:120
+#: application/views/qslcard/index.php:14
 msgid "View QSL Cards"
 msgstr "Zobraziť QSL karty"
-
-#: application/views/interface_assets/header.php:123
-msgid "View eQSL Cards"
-msgstr "Zobraziť eQSL karty"
 
 #: application/views/interface_assets/header.php:125
 msgid "View last confirmations"
@@ -13432,10 +13467,6 @@ msgstr "Dodatočné contestové logovanie"
 #: application/views/interface_assets/header.php:152
 msgid "Analytics"
 msgstr "Analytika"
-
-#: application/views/interface_assets/header.php:162
-msgid "Activated Gridsquares"
-msgstr "Aktivované lokátorové štvorce"
 
 #: application/views/interface_assets/header.php:180
 msgid "Callsign Statistics"
@@ -13939,8 +13970,8 @@ msgstr "Typy štítkov"
 #: application/views/labels/index.php:82
 #: application/views/logbookadvanced/statecheckresult.php:12
 #: application/views/map/qso_map.php:21
-#: application/views/statistics/index.php:108
-#: application/views/statistics/index.php:156
+#: application/views/statistics/index.php:113
+#: application/views/statistics/index.php:161
 msgid "QSOs"
 msgstr "Spojenia"
 
@@ -15136,7 +15167,7 @@ msgstr ""
 #: application/views/satellite/passtable.php:9
 #: application/views/satellite/skedtable.php:10
 #: application/views/satellite/skedtable.php:37
-#: application/views/sattimers/index.php:46
+#: application/views/sattimers/index.php:51
 msgid "Duration"
 msgstr "Trvanie"
 
@@ -15466,7 +15497,7 @@ msgstr "de"
 #: application/views/logbookadvanced/index.php:972
 #: application/views/logbookadvanced/useroptions.php:142
 #: application/views/qso/edit_ajax.php:414
-#: application/views/timeline/index.php:72 application/views/user/edit.php:677
+#: application/views/timeline/index.php:78 application/views/user/edit.php:677
 msgid "QRZ"
 msgstr "QRZ"
 
@@ -16872,7 +16903,7 @@ msgstr "Typ"
 msgid "No confirmations found."
 msgstr "Neboli nájdené žiadne potvrdenia."
 
-#: application/views/qslcard/confirmations.php:6
+#: application/views/qslcard/confirmations.php:7
 msgid ""
 "A maximum of 1000 rows are shown in the table. This is for performance "
 "reasons."
@@ -16880,25 +16911,29 @@ msgstr ""
 "V tabuľke sa zobrazuje maximálne 1000 riadkov. Je to z dôvodov výkonu.V "
 "tabuľke je zobrazených maximálne 1000 riadkov. Je to z dôvodu výkonu."
 
-#: application/views/qslcard/confirmations.php:11
+#: application/views/qslcard/confirmations.php:7
+msgid "View QSO Confirmations"
+msgstr ""
+
+#: application/views/qslcard/confirmations.php:14
 msgid "Confirmation type"
 msgstr "Typ potvrdenia"
 
-#: application/views/qslcard/index.php:10
+#: application/views/qslcard/index.php:8
 #, php-format
 msgid "You are using %s of disk space to store QSL Card assets"
 msgstr "Používaš %s miesta na disku na ukladanie QSL kariet"
 
-#: application/views/qslcard/index.php:17
+#: application/views/qslcard/index.php:21
 msgid "List View"
 msgstr "Zobraziť zoznam"
 
-#: application/views/qslcard/index.php:18
+#: application/views/qslcard/index.php:22
 msgid "Gallery View"
 msgstr "Zobrazenie galérie"
 
-#: application/views/qslcard/index.php:78
-#: application/views/qslcard/index.php:126
+#: application/views/qslcard/index.php:82
+#: application/views/qslcard/index.php:130
 msgid "Add Qsos"
 msgstr "Pridať spojenia"
 
@@ -17402,8 +17437,8 @@ msgid "POST"
 msgstr "DODATOČNE"
 
 #: application/views/qso/index.php:106
-#: application/views/statistics/antennaanalytics.php:45
-#: application/views/statistics/antennaanalytics.php:85
+#: application/views/statistics/antennaanalytics.php:49
+#: application/views/statistics/antennaanalytics.php:89
 msgid "Sat"
 msgstr "Sat"
 
@@ -17883,7 +17918,11 @@ msgstr "Uložiť satelit"
 msgid "Add satellite mode"
 msgstr "Pridať satelitný mód"
 
-#: application/views/satellite/flightpath.php:51
+#: application/views/satellite/flightpath.php:38
+msgid "View a map with satellite flightpaths"
+msgstr ""
+
+#: application/views/satellite/flightpath.php:54
 msgid ""
 "No satellites with TLE found. Please update via CRON or satellite page. If "
 "you have no access to do this, ask your admin!"
@@ -17909,66 +17948,70 @@ msgstr "Aktualizuj TLE satelitu"
 msgid "TLE"
 msgstr "TLE"
 
-#: application/views/satellite/pass.php:6
+#: application/views/satellite/pass.php:5
 msgid "Satellite passes"
 msgstr "Prelety satelitov"
 
-#: application/views/satellite/pass.php:13
+#: application/views/satellite/pass.php:8
+msgid "Look for satellite passes"
+msgstr ""
+
+#: application/views/satellite/pass.php:15
 msgid "Your station"
 msgstr "Tvoja stanica"
 
-#: application/views/satellite/pass.php:26
-#: application/views/satellite/pass.php:65
+#: application/views/satellite/pass.php:28
+#: application/views/satellite/pass.php:67
 msgid "Min. Satellite Elevation"
 msgstr "Min. elevácia satelitu"
 
-#: application/views/satellite/pass.php:30
-#: application/views/satellite/pass.php:69
+#: application/views/satellite/pass.php:32
+#: application/views/satellite/pass.php:71
 msgid "Min. Azimuth"
 msgstr "Min. azimut"
 
-#: application/views/satellite/pass.php:38
-#: application/views/satellite/pass.php:77
+#: application/views/satellite/pass.php:40
+#: application/views/satellite/pass.php:79
 msgid "Max. Azimuth"
 msgstr "Max. azimut"
 
-#: application/views/satellite/pass.php:54
+#: application/views/satellite/pass.php:56
 msgid "Min. time"
 msgstr "Min. čas"
 
-#: application/views/satellite/pass.php:63
+#: application/views/satellite/pass.php:65
 msgid "Sked partner"
 msgstr "Sked partner"
 
-#: application/views/satellite/pass.php:91
+#: application/views/satellite/pass.php:93
 msgid "Load predictions"
 msgstr "Nahraj predikcie"
 
-#: application/views/satellite/pass.php:92
+#: application/views/satellite/pass.php:94
 msgid "Add sked partner"
 msgstr "Pridať sked partnera"
 
-#: application/views/satellite/pass.php:94
+#: application/views/satellite/pass.php:96
 msgid "Presets"
 msgstr "Prednastavenia"
 
-#: application/views/satellite/pass.php:96
+#: application/views/satellite/pass.php:98
 msgid "Save current settings"
 msgstr "Ulož aktuálne nastavenia"
 
-#: application/views/satellite/pass.php:105
+#: application/views/satellite/pass.php:107
 msgid "Save Settings"
 msgstr "Uložiť nastavenia"
 
-#: application/views/satellite/pass.php:109
+#: application/views/satellite/pass.php:111
 msgid "Settings Name"
 msgstr "Názov nastavení"
 
-#: application/views/satellite/pass.php:110
+#: application/views/satellite/pass.php:112
 msgid "Enter a name"
 msgstr "Zadaj meno"
 
-#: application/views/satellite/pass.php:121
+#: application/views/satellite/pass.php:123
 msgid "No TLE information detected. Please update TLE's."
 msgstr "Neboli zistené žiadne informácie TLE. Prosím, aktualizuj TLE."
 
@@ -18027,7 +18070,7 @@ msgid "Sked LOS Time"
 msgstr "Čas straty signálu (LOS) pre dohodnuté spojenie"
 
 #: application/views/satellite/skedtable.php:39
-#: application/views/sattimers/index.php:45
+#: application/views/sattimers/index.php:50
 msgid "Max Elevation"
 msgstr "Max elevácia"
 
@@ -18056,7 +18099,7 @@ msgstr "Neboli nájdené žiadne TLE informácie pre %s"
 msgid "Add TLE"
 msgstr "Pridať TLE"
 
-#: application/views/sattimers/index.php:15
+#: application/views/sattimers/index.php:20
 #, php-format
 msgid ""
 "This data comes from %s and is calculated for the current stationlocation "
@@ -18066,13 +18109,13 @@ msgstr ""
 "stanice %s.Tieto údaje pochádzajú z %s a sú vypočítané pre aktuálny lokátor "
 "stanice %s."
 
-#: application/views/sattimers/index.php:40
+#: application/views/sattimers/index.php:45
 msgid "Time(d)-Out"
 msgstr "Časový limit vypršal"
 
-#: application/views/sattimers/index.php:43
-#: application/views/sattimers/index.php:44
-#: application/views/statistics/antennaanalytics.php:8
+#: application/views/sattimers/index.php:48
+#: application/views/sattimers/index.php:49
+#: application/views/statistics/antennaanalytics.php:12
 msgid "Azimuth"
 msgstr "Azimut"
 
@@ -19151,17 +19194,21 @@ msgstr "Zadajte verejný slug podľa vlastného výberu"
 msgid "Visit Public Page"
 msgstr "Navštív verejnú stránku"
 
-#: application/views/statistics/antennaanalytics.php:11
+#: application/views/statistics/antennaanalytics.php:5
+msgid "View azimuth and elevation data"
+msgstr ""
+
+#: application/views/statistics/antennaanalytics.php:15
 msgid "Elevation"
 msgstr "Elevácia"
 
 #: application/views/statistics/index.php:14
-#: application/views/statistics/index.php:96
+#: application/views/statistics/index.php:101
 msgid "Years"
 msgstr "rokov"
 
 #: application/views/statistics/index.php:15
-#: application/views/statistics/index.php:99
+#: application/views/statistics/index.php:104
 msgid "Months"
 msgstr "Mesiace"
 
@@ -19222,10 +19269,11 @@ msgid "December"
 msgstr "december"
 
 #: application/views/statistics/index.php:50
+#: application/views/statistics/index.php:55
 msgid "Explore the logbook."
 msgstr "Preskúmaj dennník."
 
-#: application/views/statistics/index.php:162
+#: application/views/statistics/index.php:167
 msgid "Unique Grids"
 msgstr "Unikátne lokátory"
 
@@ -19248,7 +19296,7 @@ msgstr "Absolútny"
 msgid "Percent"
 msgstr "Percento"
 
-#: application/views/statistics/qsltable.php:49
+#: application/views/statistics/qsltable.php:50
 msgid "Overall Stats by Mode"
 msgstr "Celkové štatistiky podľa módu"
 
@@ -19446,11 +19494,15 @@ msgstr "Prosím upraviť"
 msgid "Add a Theme"
 msgstr "Pridaj tému"
 
-#: application/views/timeline/index.php:96
+#: application/views/timeline/index.php:6
+msgid "View timeline statistics"
+msgstr ""
+
+#: application/views/timeline/index.php:102
 msgid "All Years"
 msgstr "Všetky roky"
 
-#: application/views/timeline/index.php:104
+#: application/views/timeline/index.php:110
 msgid "Only new in selected year"
 msgstr "Iba nové vo vybranom roku"
 
@@ -19466,31 +19518,35 @@ msgstr "Časové rozloženie"
 msgid "Callsign(s) worked (max 5)"
 msgstr "Urobené značky (max 5)"
 
-#: application/views/timeplotter/index.php:81
+#: application/views/timeplotter/index.php:14
+msgid "View a heatmap or a chart of QSOs"
+msgstr ""
+
+#: application/views/timeplotter/index.php:85
 msgid "Best Time Window"
 msgstr ""
 
-#: application/views/timeplotter/index.php:90
+#: application/views/timeplotter/index.php:96
 msgid "Best Band"
 msgstr ""
 
-#: application/views/timeplotter/index.php:99
+#: application/views/timeplotter/index.php:107
 msgid "Best Mode"
 msgstr ""
 
-#: application/views/timeplotter/index.php:108
-msgid "Total QSOs plotted"
+#: application/views/timeplotter/index.php:118
+msgid "Total QSOs Plotted"
 msgstr ""
 
-#: application/views/timeplotter/index.php:120
+#: application/views/timeplotter/index.php:132
 msgid "Heatmap"
 msgstr ""
 
-#: application/views/timeplotter/index.php:125
+#: application/views/timeplotter/index.php:137
 msgid "Chart"
 msgstr ""
 
-#: application/views/timeplotter/index.php:136
+#: application/views/timeplotter/index.php:148
 msgid "Activity by Time of Day (UTC)"
 msgstr ""
 
@@ -20693,7 +20749,7 @@ msgstr "Chyba pri získavaní údajov z GitHub-u."
 msgid "Don't show again"
 msgstr "Nezobrazovať znova"
 
-#: application/views/view_log/index.php:4
+#: application/views/view_log/index.php:6
 msgid ""
 "Displaying all QSOs of station locations which are linked to this logbook"
 msgstr ""

@@ -1,7 +1,12 @@
-<div class="container">
-	<br>
+<div class="container px-3 px-lg-4 mt-3 mb-3">
 	<h2><?php echo $page_title; ?></h2>
 	<p><?= __("This data comes from"); ?> <a target="_blank" href="https://ng3k.com/">https://ng3k.com/</a></p>
+
+		<div class="card">
+		  <div class="card-header">
+		    <?= __("DX Calendar"); ?>
+		  </div>
+		  <div class="card-body">
 
 		<table style="width:100%" class="table-sm table table-bordered table-hover table-striped table-condensed dxcalendar">
 			<thead>
@@ -63,4 +68,6 @@ foreach($rss as $item) {
 		</tbody>
 	</table>
 
+		  </div>
+		</div>
 </div>

@@ -2,9 +2,14 @@
     /* Define custom date format */
     var custom_date_format = "<?php echo $custom_date_format ?>";
 </script>
-<div class="container">
-    <br>
+<div class="container px-3 px-lg-4 mt-3 mb-3">
     <h2><?= __("Hamsat - Satellite Rovers"); ?></h2>
+
+	    <div class="card">
+	      <div class="card-header">
+	        <?= __("Satellite Rovers"); ?>
+	      </div>
+	      <div class="card-body">
     <p><?= __("This data comes from"); ?> <a target="_blank" href="https://hams.at/">https://hams.at/</a>.
     <script type="text/javascript">
        var workable_preset = <?php echo $user_hamsat_workable_only; ?>;
@@ -42,4 +47,6 @@
     <tbody>
     </tbody>
 </table>
+	      </div>
+	    </div>
 </div>
