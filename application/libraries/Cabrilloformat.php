@@ -44,7 +44,7 @@ class Cabrilloformat {
       $cab_header .= "EMAIL: ".$email."\r\n";
       $cab_header .= "SOAPBOX: ".$soapbox."\r\n";
       
-      if ($certificate != null || $certificate != "") {
+      if (!empty($certificate)) {
          $cab_header .= "CERTIFICATE: ".$certificate."\r\n";
       }
 
