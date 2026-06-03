@@ -47,6 +47,7 @@
     let lang_map_station = "<?= __("Station") ?>";
     let lang_map_autofit = "<?= __("Auto-fit") ?>";
     let lang_map_grid = "<?= __("Gridsquares") ?>";
+    let lang_unknown_error = "<?= __("Unknown error") ?>";
 </script>
 
 <div>

@@ -5,7 +5,7 @@ $config = [
 	 */
 
 	"component_name" => "map",
-	"title" => "Map",
+	"title" => __("Map"),
 	"version" => "1.0",
 	"author" => "WaveLog Development Team",
 	"default_size" => [

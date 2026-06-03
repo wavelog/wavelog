@@ -28,7 +28,7 @@ function create_modal() {
             $('#contestCreateSessionModal').modal('show');
         },
         error: function () {
-            alert('Error');
+            alert(lang_error);
         }
     });
 }
@@ -43,7 +43,7 @@ function edit_modal(session_id) {
             $('#contestCreateSessionModal').modal('show');
         },
         error: function () {
-            alert('Error');
+            alert(lang_error);
         }
     });
 }
@@ -57,7 +57,7 @@ function delete_modal(session_id) {
             $('#contestDeleteSessionModal').modal('show');
         },
         error: function () {
-            alert('Error');
+            alert(lang_error);
         }
     })
 }

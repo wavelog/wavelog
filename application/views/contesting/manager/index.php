@@ -55,7 +55,7 @@
                                     }
                                     ?>
                                     <tr>
-                                        <td><a target="_blank" href="<?php echo site_url('contesting/logging_engine') . "/" . $logging_token; ?>" class="btn btn-success btn-sm"><i class="fas fa-play"></i> START</a></td>
+                                        <td><a target="_blank" href="<?php echo site_url('contesting/logging_engine') . "/" . $logging_token; ?>" class="btn btn-success btn-sm"><i class="fas fa-play"></i> <?= __("START") ?></a></td>
                                         <td><?php echo $status; ?></td>
                                         <td><?php echo !empty($row['time_start']) ? date($custom_date_format . ' H:i', strtotime($row['time_start'])) : '-'; ?></td>
                                         <td><?php echo !empty($row['time_end']) ? date($custom_date_format . ' H:i', strtotime($row['time_end'])) : '-'; ?></td>
@@ -82,6 +82,7 @@
 <script>
     var custom_date_format = "<?php echo $custom_date_format ?>";
     var lang_admin_contest_add_contest = '<?= __("Add a Contest"); ?>';
+    var lang_error = "<?= __("Error") ?>";
 </script>
 <?php 
 /**

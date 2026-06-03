@@ -384,7 +384,7 @@ class QsoFormComponent {
 			this.updateQSOCount();
 		} catch (err) {
 			console.error('deleteQso failed:', err);
-			alert('Failed to delete QSO: ' + err.message);
+			alert(lang_qso_delete_failed + " " + err.message);
 		}
 	}
 

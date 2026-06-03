@@ -389,7 +389,7 @@ async function saveUserLayout(windowManager, layoutName) {
             }, 2000);
         } else {
             console.error('Failed to save layout:', data.error);
-            alert(lang_layout_save_error + ': ' + (data.error || 'Unknown error'));
+            alert(lang_layout_save_error + ': ' + (data.error || lang_unknown_error));
         }
     } catch (error) {
         console.error('Error saving layout:', error);
@@ -451,7 +451,7 @@ async function setDefaultLayout(windowManager, layoutName) {
             loadSavedLayoutsList(windowManager);
         } else {
             console.error('Failed to set default layout:', data.error);
-            alert(lang_layout_error_default + ': ' + (data.error || 'Unknown error'));
+            alert(lang_layout_error_default + ': ' + (data.error || lang_unknown_error));
         }
     } catch (error) {
         console.error('Error setting default layout:', error);
@@ -487,7 +487,7 @@ async function deleteUserLayout(windowManager, layoutName) {
             loadSavedLayoutsList(windowManager);
         } else {
             console.error('Failed to delete layout:', data.error);
-            alert(lang_layout_error_delete + ': ' + (data.error || 'Unknown error'));
+            alert(lang_layout_error_delete + ': ' + (data.error || lang_unknown_error));
         }
     } catch (error) {
         console.error('Error deleting layout:', error);

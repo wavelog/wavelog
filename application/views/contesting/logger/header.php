@@ -60,7 +60,7 @@
         <?php if (isset($page_title)) {
             echo $page_title . " - Wavelog";
         } else {
-            echo "WL Contest Engine";
+            echo "WL Contest Engine"; // brand name. We keep this ;-)
         } ?>
     </title>
 

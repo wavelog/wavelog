@@ -57,7 +57,7 @@ function createContest(form) {
 	var adifcontestname = form.adifcontestname.value.trim();
 
 	if (contestname === '' || adifcontestname === '') {
-		$('#create_contest').prepend('<div class="alert alert-danger" role="alert">Please provide contest name and ADIF name.</div>');
+		$('#create_contest').prepend('<div class="alert alert-danger" role="alert">' + lang_contest_provide_name + '</div>');
 		return;
 	}
 

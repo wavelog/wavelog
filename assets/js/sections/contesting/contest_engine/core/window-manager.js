@@ -87,7 +87,7 @@ export class WindowManager {
 		this.windows.set(id, {
 			element: windowEl,
 			config: config,
-			title: config.title || 'Window'
+			title: config.title || lang_window_default_title
 		});
 
 		this.focusWindow(id);
@@ -287,7 +287,7 @@ export class WindowManager {
 		this.windows.forEach((data, id) => {
 			windows.push({
 				id: id,
-				title: data.title || 'Window',
+				title: data.title || lang_window_default_title,
 				isHidden: data.isHidden || false
 			});
 		});

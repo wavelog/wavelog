@@ -21,6 +21,7 @@
 			<p>
 				<script>
 					var lang_admin_contest_add_contest = '<?= __("Add a Contest"); ?>';
+					var lang_contest_provide_name = '<?= __("Please provide contest name and ADIF name.") ?>';
 				</script>
 				<button onclick="createContestDialog();" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> <?= __("Add a Contest"); ?></button>
 				<button onclick="activateAllContests();" class="btn btn-primary btn-sm"><?= __("Activate All"); ?></button>
