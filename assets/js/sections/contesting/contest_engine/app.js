@@ -55,7 +55,7 @@ import { ComponentManager } from './core/component-loader.js';
 
             const workspaceSelector = '#logger-workspace';
             const workspace = document.querySelector(workspaceSelector);
-            const custom_date_format = window.ContestLoggerConfig?.custom_date_format || 'Y-m-d'; // TODO: Implement the custom date format usage for various fields
+            const custom_date_format = window.ContestLoggerConfig?.custom_date_format || 'Y-m-d';
 
             if (!workspace) {
                 console.error('ContestApp: workspace not found:', workspaceSelector);

@@ -26,7 +26,6 @@ export class TransportAdapter {
 	/**
 	 * Cleanup resources
 	 */
-	// TODO: Do we need this? Ajax transport might not need cleanup. Websocket transport would. Really?
 	disconnect() {
 		// Optional - override if needed
 	}

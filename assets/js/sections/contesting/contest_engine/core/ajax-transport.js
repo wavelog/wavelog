@@ -7,7 +7,7 @@ import { TransportAdapter } from './transport-adapter.js';
 export class AjaxTransport extends TransportAdapter {
 	constructor() {
 		super();
-		this.endpoint = base_url + 'index.php/contesting/heartbeat';  // TODO: This is configured in multiple places. Centralize?
+		this.endpoint = base_url + 'index.php/contesting/heartbeat';
 		this.retryCount = 0;
 		this.maxRetries = 3;
 	}
@@ -43,7 +43,6 @@ export class AjaxTransport extends TransportAdapter {
 	 * Handle sync errors with retry logic
 	 * @private
 	 */
-	// TODO: Test!
 	_handleError(err, payload) {
 		this.retryCount++;
 
