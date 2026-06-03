@@ -795,9 +795,7 @@ class Contesting extends CI_Controller {
 		}
 
 		switch ($command['type']) {
-			case 'save_qso': 
-				// TODO: Make this one faster
-				// TODO: Add better error handling
+			case 'save_qso':
 				if (!isset($command['data'])) {
 					throw new Exception('save_qso command missing data');
 				}
