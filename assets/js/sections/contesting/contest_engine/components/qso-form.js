@@ -1010,6 +1010,7 @@ class QsoFormComponent {
 		if (cbInfo) { cbInfo.textContent = ''; cbInfo.style.display = 'none'; }
 		this.callbookLookupToken++;
 		this.dataStore?.emit('qso_location_updated', null);
+		this.scpComponent?.clearResults();
 	}
 
 	buildQsoCommands(dataStore) {
