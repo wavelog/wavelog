@@ -1253,55 +1253,66 @@ class Contesting extends CI_Controller {
 		}
 		$call = $this->callbook->get_plaincall($call);
 
-		$this->load->driver('cache', [
-			'adapter'    => $this->config->item('cache_adapter')    ?? 'file',
-			'backup'     => $this->config->item('cache_backup')     ?? 'file',
-			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
-		]);
+		$offline_lookup = $this->input->get('offline', TRUE) === '1' ? true : false;
 
-		$dxcc_only = $this->input->get('dxcc_only', TRUE) === '1' ? true : false;
+		// Local DXCC lookup — always available, no network needed
+		$date    = date("Y-m-d");
+		$dxccobj = new Dxcc($date);
+		$dxcc    = $dxccobj->dxcc_lookup($call, $date);
 
-		// Use separate cache keys so switching the option hits fresh data
-		$cache_key = ($dxcc_only ? 'contesting_dxcc_' : 'contesting_callbook_') . md5($call);
-		$payload   = $this->cache->get($cache_key);
+		$payload = [
+			'name'   => null,
+			'qth'    => null,
+			'grid'   => null,
+			'ituz'   => null,
+			'dxcc'   => $dxcc['adif']   ?? null,
+			'cqz'    => $dxcc['cqz']    ?? null,
+			'cont'   => $dxcc['cont']   ?? null,
+			'entity' => $dxcc['entity'] ?? null,
+			'lat'    => $dxcc['lat']    ?? null,
+			'long'   => $dxcc['long']   ?? null,
+			'source' => null,
+		];
 
-		if ($payload === FALSE) {
-			// Local DXCC lookup — always available, no network needed
-			$date    = date("Y-m-d");
-			$dxccobj = new Dxcc($date);
-			$dxcc    = $dxccobj->dxcc_lookup($call, $date);
+		$this->load->model('logbook_model');
 
-			$payload = [
-				'name'   => null,
-				'qth'    => null,
-				'grid'   => null,
-				'ituz'   => null,
-				'dxcc'   => $dxcc['adif']   ?? null,
-				'cqz'    => $dxcc['cqz']    ?? null,
-				'cont'   => $dxcc['cont']   ?? null,
-				'entity' => $dxcc['entity'] ?? null,
-				'lat'    => $dxcc['lat']    ?? null,
-				'long'   => $dxcc['long']   ?? null,
-				'source' => null,
-			];
+		// DB-first: get all available info from own log
+		$db_info = $this->logbook_model->get_callsign_all_info($call);
 
-			if (!$dxcc_only) {
-				// Callbook lookup — overrides DXCC fields where more specific data is available
-				$this->load->model('logbook_model');
-				$cb = $this->logbook_model->loadCallBook($call);
+		$payload['name'] = $db_info['name'] ?: null;
+		$payload['qth']  = $db_info['qth']  ?: null;
+		$payload['grid'] = $db_info['qra']  ?: null;
+		$payload['ituz'] = $db_info['ituz'] ?: null;
+		if (!empty($db_info['cqz'])) $payload['cqz'] = $db_info['cqz'];
+		if ($payload['grid']) $payload['source'] = 'log';
 
-				if (!empty($cb)) {
-					$payload['name']   = $cb['name']      ?? null;
-					$payload['qth']    = $cb['city']       ?? null;
-					$payload['grid']   = $cb['gridsquare'] ?? null;
-					$payload['ituz']   = $cb['ituz']       ?? null;
-					$payload['source'] = $cb['source']     ?? null;
-					if (!empty($cb['dxcc'])) $payload['dxcc'] = $cb['dxcc'];
-					if (!empty($cb['cqz']))  $payload['cqz']  = $cb['cqz'];
+		if (!$offline_lookup) {
+			// we want to cache callbook lookups :)
+			$this->load->driver('cache', [
+				'adapter'    => $this->config->item('cache_adapter')    ?? 'file',
+				'backup'     => $this->config->item('cache_backup')     ?? 'file',
+				'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
+			]);
+
+			$cache_key = 'contesting_callbook_' . strtolower($call);
+			$cbdata = $this->cache->get($cache_key);
+
+			if ($cbdata === FALSE) {
+				$cbdata = $this->logbook_model->loadCallBook($call);
+				if (!empty($cbdata)) {
+					$this->cache->save($cache_key, $cbdata, 14400); // 4h cache time for online lookups
 				}
 			}
 
-			$this->cache->save($cache_key, $payload, 14400); // 4h
+			if (!empty($cbdata)) {
+				if (empty($payload['name']))   $payload['name']   = $cbdata['name']       ?? null;
+				if (empty($payload['qth']))    $payload['qth']    = $cbdata['city']        ?? null;
+				if (!empty($cbdata['gridsquare'])) $payload['grid']   = $cbdata['gridsquare'];
+				if (empty($payload['ituz']))   $payload['ituz']   = $cbdata['ituz']        ?? null;
+				$payload['source'] = $cbdata['source'] ?? null;
+				if (!empty($cbdata['dxcc'])) $payload['dxcc'] = $cbdata['dxcc'];
+				if (!empty($cbdata['cqz']))  $payload['cqz']  = $cbdata['cqz'];
+			}
 		}
 
 		header('Content-Type: application/json');

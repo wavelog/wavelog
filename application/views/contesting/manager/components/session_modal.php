@@ -124,9 +124,9 @@
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" id="callbook_lookup" name="callbook_lookup" value="1"
                                 <?php if (!isset($session_info) || ($session_info['callbook_lookup'] ?? true)) echo 'checked'; ?>>
-                            <label class="form-check-label" for="callbook_lookup"><?= __("Callbook Lookup") ?></label>
+                            <label class="form-check-label" for="callbook_lookup"><?= __("Callbook Lookup (Online)") ?></label>
                         </div>
-                        <small class="text-muted d-block mt-1"><?= __("Look up callbook data (name, QTH, grid) on callsign entry. If disabled only the dxcc gets calculated.") ?></small>
+                        <small class="text-muted d-block mt-1"><?= __("Lookup callbook data in the configured online callbook service. If disabled, only existing log data from previous qsos with this callsign will be used. Log data is always prioritized.") ?></small>
                     </div>
                     <div class="mb-4">
                         <label for="session_notes" class="form-label"><?= __("Session Notes") ?></label>
