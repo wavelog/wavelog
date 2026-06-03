@@ -1009,6 +1009,7 @@ class QsoFormComponent {
 		const cbInfo = this.container.querySelector('#qso-callbook-info');
 		if (cbInfo) { cbInfo.textContent = ''; cbInfo.style.display = 'none'; }
 		this.callbookLookupToken++;
+		this.dataStore?.emit('qso_location_updated', null);
 	}
 
 	buildQsoCommands(dataStore) {
