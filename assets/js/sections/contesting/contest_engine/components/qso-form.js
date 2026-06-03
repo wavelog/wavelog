@@ -440,6 +440,26 @@ class QsoFormComponent {
 		].join('|');
 	}
 
+	_buildBandSelect(currentBand) {
+		const bands = Object.keys(window.ContestLoggerConfig?.bandDefaults ?? {});
+		const opts = bands.map(b => {
+			const sel = b === currentBand ? ' selected' : '';
+			return `<option value="${this._esc(b)}"${sel}>${this._esc(b)}</option>`;
+		}).join('');
+		return `<select class="form-select form-select-sm p-0 px-1" style="min-width:4rem;" name="band">${opts}</select>`;
+	}
+
+	_buildModeSelect(currentMode) {
+		const modeEl = document.getElementById('mode');
+		const opts = modeEl
+			? Array.from(modeEl.options).map(o => {
+				const sel = o.value === currentMode ? ' selected' : '';
+				return `<option value="${this._esc(o.value)}"${sel}>${this._esc(o.text.replace(/^⇒\s*/, ''))}</option>`;
+			}).join('')
+			: `<option value="${this._esc(currentMode ?? '')}" selected>${this._esc(currentMode ?? '')}</option>`;
+		return `<select class="form-select form-select-sm p-0 px-1" style="min-width:4rem;" name="mode">${opts}</select>`;
+	}
+
 	_buildDataCells(qso, editMode) {
 		const fields          = this.exchangeFields ?? ['exchange'];
 		const hasSerial       = fields.includes('serial');
@@ -464,9 +484,9 @@ class QsoFormComponent {
 			  edit: inp(qso.callsign, 'callsign', 'fw-bold text-uppercase') },
 			{ title: editMode ? '' : qrg_mhz,
 			  display: band || '-',
-			  edit: inp(qso.band, 'band', 'text-uppercase') },
+			  edit: this._buildBandSelect(band) },
 			{ display: qso.mode || '-',
-			  edit: inp(qso.mode, 'mode', 'text-uppercase') },
+			  edit: this._buildModeSelect(qso.mode) },
 			{ display: qso.rst_rcvd || '-',
 			  edit: inp(qso.rst_rcvd, 'rst_rcvd') },
 			{ cls: 'serial-col', style: hasSerial ? '' : 'display:none;',
@@ -511,7 +531,7 @@ class QsoFormComponent {
 	}
 
 	async saveEdit(row, qso) {
-		const inputs = row.querySelectorAll('input[name]');
+		const inputs = row.querySelectorAll('input[name], select[name]');
 		const data = { qso_id: qso.serverId };
 		inputs.forEach(input => {
 			// Skip inputs inside hidden cells — their empty values would overwrite DB data
@@ -523,15 +543,28 @@ class QsoFormComponent {
 		const saveBtn = row.querySelector('.contest-qso-save-btn');
 
 		if (data.time_on !== undefined) {
-			// Accept HH:MM:SS (contest precision) or HH:MM (seconds default to :00).
+			// Accept HH:MM:SS or HH:MM; validate ranges strictly.
 			const m = data.time_on.match(/^(\d{2}):(\d{2})(?::(\d{2}))?$/);
-			if (!m) {
+			const h = m ? parseInt(m[1], 10) : -1;
+			const min = m ? parseInt(m[2], 10) : -1;
+			const sec = m ? parseInt(m[3] ?? '0', 10) : -1;
+			const valid = m && h <= 23 && min <= 59 && sec <= 59;
+			if (!valid) {
 				const input = row.querySelector('[name="time_on"]');
 				if (input) { input.classList.add('is-invalid'); input.focus(); }
 				return;
 			}
 			const datePart = (qso.time_on || '').split(' ')[0] || qso.date || '';
 			data.time_on = `${datePart} ${m[1]}:${m[2]}:${m[3] ?? '00'}`;
+		}
+
+		// Update frequency when band changed, using the configured default for the current mode
+		if (data.band !== undefined && data.band !== (qso.band || '')) {
+			const mode = (data.mode || qso.mode || 'SSB').toUpperCase();
+			const modeKey = ['SSB', 'CW', 'DATA'].includes(mode) ? mode : 'SSB';
+			const defaults = window.ContestLoggerConfig?.bandDefaults?.[data.band];
+			const freq = defaults?.[modeKey] || defaults?.['SSB'];
+			if (freq) data.frequency = freq;
 		}
 
 		const sessionInfo = window.ContestLoggerConfig?.sessionInfo ?? {};
