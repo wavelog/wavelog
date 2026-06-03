@@ -938,11 +938,6 @@ class Contesting extends CI_Controller {
 				}
 				break;
 
-			case 'get_propagation_info':
-				// TODO: Implement propagation info
-				$response['data']['propagation_info'] = null;
-				break;
-
 			default:
 				throw new Exception("Unknown request type: {$request['type']}");
 		}
