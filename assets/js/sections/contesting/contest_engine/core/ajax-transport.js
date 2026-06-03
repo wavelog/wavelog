@@ -10,6 +10,7 @@ export class AjaxTransport extends TransportAdapter {
 		this.endpoint = base_url + 'index.php/contesting/heartbeat';
 		this.retryCount = 0;
 		this.maxRetries = 3;
+		this.timeout = 4000;
 	}
 
 	/**
@@ -21,15 +22,19 @@ export class AjaxTransport extends TransportAdapter {
 		if (!this.isConnected()) {
 			return this._handleError(new Error('Offline'), payload);
 		}
+		const controller = new AbortController();
+		const timeoutId = setTimeout(() => controller.abort(), this.timeout);
 		return fetch(this.endpoint, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 				'X-Requested-With': 'XMLHttpRequest'
 			},
-			body: JSON.stringify(payload)
+			body: JSON.stringify(payload),
+			signal: controller.signal
 		})
 			.then(response => {
+				clearTimeout(timeoutId);
 				if (!response.ok) {
 					throw new Error(`HTTP ${response.status}: ${response.statusText}`);
 				}
