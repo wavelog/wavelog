@@ -1299,21 +1299,7 @@ class QsoFormComponent {
 
 	convertQrgToBand(frequency) {
 		if (!frequency) return null;
-		if (frequency >= 1800000 && frequency < 2000000) return '160m';
-		if (frequency >= 3500000 && frequency < 4000000) return '80m';
-		if (frequency >= 5300000 && frequency < 5400000) return '60m';
-		if (frequency >= 7000000 && frequency < 7300000) return '40m';
-		if (frequency >= 10000000 && frequency < 10150000) return '30m';
-		if (frequency >= 14000000 && frequency < 14350000) return '20m';
-		if (frequency >= 18000000 && frequency < 18200000) return '17m';
-		if (frequency >= 21000000 && frequency < 21450000) return '15m';
-		if (frequency >= 24000000 && frequency < 24990000) return '12m';
-		if (frequency >= 28000000 && frequency < 29700000) return '10m';
-		if (frequency >= 50000000 && frequency < 54000000) return '6m';
-		if (frequency >= 144000000 && frequency < 148000000) return '2m';
-		if (frequency >= 222000000 && frequency < 225000000) return '1.25m';
-		if (frequency >= 420000000 && frequency < 450000000) return '70cm';
-		return '??';
+		return this.radioComponent?.frequencyToBand(frequency) ?? '??';
 	}
 
 	logQso() {
