@@ -5930,7 +5930,7 @@ class Logbook_model extends CI_Model {
 			$getName = "SELECT id, name FROM contest WHERE active = 1 AND id = ?;";
 			$nameQuery = $this->db->query($getName, $contest_adif_id);
 
-			$nameRow = $nameQuery->row()->name;
+			$nameRow = $nameQuery->row() ? $nameQuery->row()->name : '';
 
 		} else {
 			$nameRow = '';
