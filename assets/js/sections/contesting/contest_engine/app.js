@@ -11,7 +11,7 @@
  * @url https://www.github.com/wavelog/wavelog
  * @url https://www.wavelog.org
  * 
- * @documentation https://github.com/wavelog/wavelog/wiki/Contesting
+ * @documentation https://docs.wavelog.org/user-guide/contesting/
  */
 
 
