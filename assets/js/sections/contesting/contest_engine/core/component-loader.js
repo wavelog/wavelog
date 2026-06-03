@@ -95,7 +95,7 @@ export class ComponentManager {
 			}
 
 			// Hide original element (only needed for loading)
-			componentEl.remove(); // Komplett entfernen statt nur verstecken
+			componentEl.remove(); // Remove completely instead of just hiding
 		});
 	}
 }

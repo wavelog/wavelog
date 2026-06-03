@@ -39,7 +39,7 @@ import { ComponentManager } from './core/component-loader.js';
         if (componentNames.length > 0) {
             for (const name of componentNames) {
                 updateLoadingStatus(lang_app_loading_component.replace('%s', name));
-                // Artificial delay to test loading screen, May improve UX on slow connections
+                // Artificial delay to improve UX on slow connections
                 await new Promise(resolve => setTimeout(resolve, 200));
                 try {
                     await import(`./components/${name}.js`);
@@ -63,7 +63,6 @@ import { ComponentManager } from './core/component-loader.js';
             }
 
             // Get contest session ID from global config (is defined in PHP view)
-            console.log('ContestApp: sessionInfo', window.ContestLoggerConfig?.sessionInfo);
             const contestSessionId = window.ContestLoggerConfig?.sessionInfo?.contest_session_id;
             const storageKey = window.ContestLoggerConfig?.storageKey;
             if (!contestSessionId) {
@@ -420,7 +419,6 @@ async function loadUserLayout(windowManager, layoutName) {
         if (data.success && data.layout) {
             // Apply saved layout
             windowManager.loadLayout(data.layout);
-            // console.log('Layout "' + layoutName + '" loaded successfully'); // TODO: Replace with toast
         } else if (!data.success) {
             console.error('Failed to load layout:', data.error);
         }
