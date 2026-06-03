@@ -1,44 +1,74 @@
 /* QSO Form Component Styles */
 
 .qso-form-container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	width: 100%;
 }
 
 /* QSO Entry Form - fixed at top */
 .qso-form {
-  flex-shrink: 0;
+	flex-shrink: 0;
 }
 
 /* QSO List Container - takes remaining space */
 .qso-list-container {
-  flex: 1;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  min-height: 0; /* Important for flex child with overflow */
+	flex: 1;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	min-height: 0; /* Important for flex child with overflow */
 }
 
 /* Scrollable table wrapper - takes all available space */
 .qso-table-scroll {
-  flex: 1;
-  overflow-y: auto;
-  overflow-x: auto;
-  min-height: 0;
+	flex: 1;
+	overflow-y: auto;
+	overflow-x: auto;
+	min-height: 0;
 }
 
 /* Sticky table header */
 .qso-table thead {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background-color: var(--bs-table-bg, #212529);
+	position: sticky;
+	top: 0;
+	z-index: 10;
+	background-color: var(--bs-table-bg, #212529);
 }
 
 /* Total count - fixed at bottom */
 .qso-total-count {
-  flex-shrink: 0;
-  padding-top: 0.5rem;
+	flex-shrink: 0;
+	padding-top: 0.5rem;
+}
+
+ /* hide number input spinners, qso form field sizing */
+.no-spinner::-webkit-outer-spin-button,
+.no-spinner::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+.no-spinner {
+	-moz-appearance: textfield;
+	appearance: textfield;
+}
+#qso-gridsquare-sent,
+#qso-gridsquare-received,
+#qso-exchange-sent,
+#qso-exchange-received {
+	text-transform: uppercase;
+}
+
+/* Distribute available space across visible form fields */
+#qso-form .row {
+	flex-wrap: nowrap;
+}
+#qso-form .col-field {
+	flex: 1 1 0;
+	min-width: 60px;
+}
+#qso-form .col-field-wide {
+	flex: 2 1 0;
+	min-width: 100px;
 }
