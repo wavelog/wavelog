@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-06-01 08:37+0000\n"
-"PO-Revision-Date: 2026-05-07 11:41+0000\n"
+"PO-Revision-Date: 2026-06-03 05:44+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.16.2\n"
+"X-Generator: Weblate 5.17.1\n"
 
 #: application/config/adif_propmodes.php:7
 msgctxt "Propagation Mode"
@@ -765,7 +765,7 @@ msgstr "\"Polska\" Award"
 
 #: application/controllers/Awards.php:2775
 msgid "Awards - AMSAT Rover"
-msgstr ""
+msgstr "Дипломы - AMSAT Rover"
 
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:343
@@ -2539,7 +2539,7 @@ msgstr "Недействительный идентификатор станци
 
 #: application/controllers/Oqrs.php:108
 msgid "Invalid station slug"
-msgstr ""
+msgstr "Недействительный идентификатор станции"
 
 #: application/controllers/Oqrs.php:176
 #: application/views/interface_assets/header.php:513
@@ -5504,36 +5504,40 @@ msgstr "Номер"
 #: application/views/awards/amsat_rover/index.php:12
 #: application/views/awards/amsat_rover/index.php:161
 msgid "APPROVED"
-msgstr ""
+msgstr "УТВЕРЖДЕНО"
 
 #: application/views/awards/amsat_rover/index.php:13
 #: application/views/awards/amsat_rover/index.php:161
 msgid "IN PROGRESS"
-msgstr ""
+msgstr "В РАБОТЕ"
 
 #: application/views/awards/amsat_rover/index.php:14
 msgid "Please generate the text first."
-msgstr ""
+msgstr "Сначала сгенерируйте текст."
 
 #: application/views/awards/amsat_rover/index.php:22
 msgid ""
 "The AMSAT Rover Award is granted to stations who achieve a combined 25 "
 "points using satellite grid activations."
 msgstr ""
+"Диплом AMSAT Rover присуждается станциям, набравшим, в общей сложности, 25 "
+"очков, используя активизацию квадратов через спутники."
 
 #: application/views/awards/amsat_rover/index.php:23
 msgid "Official rules"
-msgstr ""
+msgstr "Официальные правила"
 
 #: application/views/awards/amsat_rover/index.php:30
 msgid ""
 "Please set your home grid square in your station profile to calculate grid "
 "activations correctly."
 msgstr ""
+"Пожалуйста, укажите свой домашний квадрат в профиле вашего QTH, чтобы "
+"правильно рассчитать активации."
 
 #: application/views/awards/amsat_rover/index.php:31
 msgid "Go to Station Profile"
-msgstr ""
+msgstr "Перейти к профилю QTH"
 
 #: application/views/awards/amsat_rover/index.php:39
 #: application/views/awards/cq/index.php:45
@@ -5550,95 +5554,100 @@ msgstr "Фильтры"
 #: application/views/awards/amsat_rover/index.php:63
 #: application/views/awards/amsat_rover/index.php:140
 msgid "Bonus Points"
-msgstr ""
+msgstr "Бонусные очки"
 
 #: application/views/awards/amsat_rover/index.php:72
 msgid "Social Media Promotion (+5)"
-msgstr ""
+msgstr "Продвижение в социальных сетях (+5)"
 
 #: application/views/awards/amsat_rover/index.php:75
 msgid ""
 "Post must be made at least 24 hours before activation and include @amsat "
 "tag. Include link to post in your email."
 msgstr ""
+"Сообщение должно быть размещено, как минимум, за 24 часа до активации и "
+"содержать тег @amsat. Включите ссылку на сообщение в ваш емэйл."
 
 #: application/views/awards/amsat_rover/index.php:82
 msgid "Photo Posting (+5)"
-msgstr ""
+msgstr "Публикация фото (+5)"
 
 #: application/views/awards/amsat_rover/index.php:85
 msgid ""
 "Photos posted with @amsat tag. Include link to photo post in your email."
 msgstr ""
+"Фотографии должны быть опубликованы с тегом @amsat. Включите ссылку на пост "
+"с фотографией в ваш емэйл."
 
 #: application/views/awards/amsat_rover/index.php:92
 msgid "Maritime Mobile (+10)"
-msgstr ""
+msgstr "/MM (+10)"
 
 #: application/views/awards/amsat_rover/index.php:95
 msgid "Operation was conducted while maritime mobile (/MM)."
-msgstr ""
+msgstr "Работа проводилась с морского судна (/MM)."
 
 #: application/views/awards/amsat_rover/index.php:102
 msgid "AMSAT Journal Article (+15)"
-msgstr ""
+msgstr "Статья в AMSAT Journal (+15)"
 
 #: application/views/awards/amsat_rover/index.php:105
 msgid "Published article about your rover operation in the AMSAT Journal."
-msgstr ""
+msgstr "Опубликована статья о вашей работе в журнале AMSAT."
 
 #: application/views/awards/amsat_rover/index.php:117
 msgid "Show Results"
-msgstr ""
+msgstr "Показать результаты"
 
 #: application/views/awards/amsat_rover/index.php:131
 msgid "Base Points"
-msgstr ""
+msgstr "Базовые очки"
 
 #: application/views/awards/amsat_rover/index.php:133
 #: application/views/awards/amsat_rover/index.php:191
 #: application/views/awards/amsat_rover/index.php:194
 #: application/views/awards/amsat_rover/index.php:197
 msgid "activations"
-msgstr ""
+msgstr "активации"
 
 #: application/views/awards/amsat_rover/index.php:148
 msgid "Total Points"
-msgstr ""
+msgstr "Общее количество очков"
 
 #: application/views/awards/amsat_rover/index.php:152
 msgid "Target"
-msgstr ""
+msgstr "Цель"
 
 #: application/views/awards/amsat_rover/index.php:188
 msgid "Activations by Mode"
-msgstr ""
+msgstr "Активации по виду модуляции"
 
 #: application/views/awards/amsat_rover/index.php:191
 msgid "FM"
-msgstr ""
+msgstr "ЧМ"
 
 #: application/views/awards/amsat_rover/index.php:191
 #: application/views/awards/amsat_rover/index.php:194
 #: application/views/awards/amsat_rover/index.php:197
 msgid "pt"
-msgstr ""
+msgstr "очков"
 
 #: application/views/awards/amsat_rover/index.php:194
 msgid "Linear"
-msgstr ""
+msgstr "Линейный"
 
 #: application/views/awards/amsat_rover/index.php:197
 msgid "Digital"
-msgstr ""
+msgstr "Цифровой"
 
 #: application/views/awards/amsat_rover/index.php:208
 msgid "No confirmed satellite QSOs found matching your filters."
 msgstr ""
+"Не найдено подтверждённых QSO через спутники, соответствующих вашим фильтрам."
 
 #: application/views/awards/amsat_rover/index.php:216
 msgid "Grid Activations"
-msgstr ""
+msgstr "Активации квадратов"
 
 #: application/views/awards/amsat_rover/index.php:221
 #: application/views/satellite/skedtable.php:34
@@ -5654,27 +5663,29 @@ msgstr "Категория"
 
 #: application/views/awards/amsat_rover/index.php:224
 msgid "Points"
-msgstr ""
+msgstr "Очки"
 
 #: application/views/awards/amsat_rover/index.php:227
 msgid "Date / UTC"
-msgstr ""
+msgstr "Дата / UTC"
 
 #: application/views/awards/amsat_rover/index.php:253
 msgid "pts"
-msgstr ""
+msgstr "очквов"
 
 #: application/views/awards/amsat_rover/index.php:272
 msgid "Export for Application"
-msgstr ""
+msgstr "Экспорт для заявки"
 
 #: application/views/awards/amsat_rover/index.php:274
 msgid "Generate a copy-paste ready application for email submission to AMSAT."
 msgstr ""
+"Создание готовой к копированию и вставке заявки для отправки по емэйл в "
+"AMSAT."
 
 #: application/views/awards/amsat_rover/index.php:277
 msgid "Attaching evidence"
-msgstr ""
+msgstr "Прикрепление доказательств"
 
 #: application/views/awards/amsat_rover/index.php:278
 msgid ""
@@ -5682,26 +5693,29 @@ msgid ""
 "table above. Press Submit on the LoTW page and capture a screenshot. Attach "
 "the screenshots to your application email."
 msgstr ""
+"Чтобы добавить скриншоты подтверждений LoTW, кликните по позывному в таблице "
+"активаций выше. Нажмите \"Submit\" на странице LoTW и сделайте скриншот. "
+"Прикрепите скриншоты к своей заявке по емэйл."
 
 #: application/views/awards/amsat_rover/index.php:279
 msgid "If you have QSL cards instead, scan them and attach the scans."
-msgstr ""
+msgstr "Если у вас есть QSL-карточки, отсканируйте их и приложите сканы."
 
 #: application/views/awards/amsat_rover/index.php:282
 msgid "Send to"
-msgstr ""
+msgstr "Отправить"
 
 #: application/views/awards/amsat_rover/index.php:288
 msgid "Generate Text for Email"
-msgstr ""
+msgstr "Сгенерировать текст для емэйл"
 
 #: application/views/awards/amsat_rover/index.php:291
 msgid "Copy to Clipboard"
-msgstr ""
+msgstr "Скопировать в буфер обмена"
 
 #: application/views/awards/amsat_rover/index.php:294
 msgid "Download CSV"
-msgstr ""
+msgstr "Скачать CSV"
 
 #: application/views/awards/counties/details.php:4
 #: application/views/awards/details.php:1
@@ -6540,7 +6554,7 @@ msgstr "Прогресс выполнения"
 
 #: application/views/awards/dxcc/index.php:273
 msgid "Progress towards working all DXCC entities:"
-msgstr ""
+msgstr "Прогресс в проведении QSO со всеми DXCC:"
 
 #: application/views/awards/dxcc/index.php:277
 #: application/views/awards/waip/index.php:62
@@ -6550,23 +6564,23 @@ msgstr "По диапазонам"
 
 #: application/views/awards/dxcc/index.php:280
 msgid "By Continent"
-msgstr ""
+msgstr "По континентам"
 
 #: application/views/awards/dxcc/index.php:283
 msgid "By Mode"
-msgstr ""
+msgstr "По виду модуляции"
 
 #: application/views/awards/dxcc/index.php:296
 #: application/views/awards/dxcc/index.php:369
 #: application/views/awards/dxcc/progress.php:5
 msgid "Worked Progress"
-msgstr ""
+msgstr "Прогресс (сработано)"
 
 #: application/views/awards/dxcc/index.php:297
 #: application/views/awards/dxcc/index.php:370
 #: application/views/awards/dxcc/progress.php:5
 msgid "Confirmed Progress"
-msgstr ""
+msgstr "Прогресс (подтверждено)"
 
 #: application/views/awards/dxcc/index.php:366
 #: application/views/awards/wac/index.php:142
@@ -6586,15 +6600,15 @@ msgstr "Континент"
 
 #: application/views/awards/dxcc/index.php:413
 msgid "No continent data available."
-msgstr ""
+msgstr "Данные о континентах недоступны."
 
 #: application/views/awards/dxcc/index.php:422
 msgid "Loading..."
-msgstr ""
+msgstr "Загрузка..."
 
 #: application/views/awards/dxcc/index.php:424
 msgid "Loading progress data..."
-msgstr ""
+msgstr "Загрузка данных о прогрессе..."
 
 #: application/views/awards/dxcc/index.php:454
 msgid "DXCC Name"
@@ -6619,7 +6633,7 @@ msgstr "По вашему запросу ничего не найдено. По�
 
 #: application/views/awards/dxcc/progress.php:31
 msgid "No mode data available."
-msgstr ""
+msgstr "Нет данных о виде модуляции."
 
 #: application/views/awards/ffma/index.php:11
 #: application/views/interface_assets/header.php:301
@@ -7621,7 +7635,7 @@ msgstr ""
 
 #: application/views/awards/waip/index.php:34
 msgid "Progress towards working all Italian provinces:"
-msgstr ""
+msgstr "Прогресс в проведении QSO со всеми итальянскими провинциями:"
 
 #: application/views/awards/waip/index.php:40
 #: application/views/awards/waip/index.php:92
@@ -10733,19 +10747,19 @@ msgstr ""
 
 #: application/views/dashboard/index.php:234
 msgid "Total QSOs"
-msgstr ""
+msgstr "Всего QSO"
 
 #: application/views/dashboard/index.php:274
 msgid "Current Streak"
-msgstr ""
+msgstr "Текущая серия"
 
 #: application/views/dashboard/index.php:277
 #, php-format
 msgid "%d Day"
 msgid_plural "%d Days"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d день"
+msgstr[1] "%d дня"
+msgstr[2] "%d дней"
 
 #: application/views/dashboard/index.php:284
 #: application/views/statistics/index.php:114
@@ -10755,7 +10769,7 @@ msgstr "Уникальные позывные"
 
 #: application/views/dashboard/index.php:318
 msgid "Recent QSOs"
-msgstr ""
+msgstr "Последние QSO"
 
 #: application/views/dashboard/index.php:370
 #: application/views/qso/index.php:914
@@ -10920,11 +10934,11 @@ msgstr "Данные предоставлены HAMqsl."
 
 #: application/views/dashboard/index.php:630
 msgid "Day"
-msgstr ""
+msgstr "День"
 
 #: application/views/dashboard/index.php:637
 msgid "Night"
-msgstr ""
+msgstr "Ночь"
 
 #: application/views/dashboard/index.php:647
 msgid "Solar Flux Index"
@@ -13010,7 +13024,7 @@ msgstr "Worked All Prefixes (WPX)"
 
 #: application/views/interface_assets/header.php:213
 msgid "AMSAT Rover"
-msgstr ""
+msgstr "AMSAT Rover"
 
 #: application/views/interface_assets/header.php:227
 msgid "Canada"
@@ -13930,6 +13944,9 @@ msgid ""
 "column you are looking for, use the regular QSO edit (click the callsign, "
 "then click the edit QSO button)."
 msgstr ""
+"Не все столбцы доступны для массового редактирования. Если вы не можете "
+"найти нужный столбец, используйте обычное редактирование QSO (нажмите на "
+"позывной, затем нажмите на кнопку редактирования QSO)."
 
 #: application/views/logbookadvanced/edit.php:5
 msgid "Please choose the column to be edited:"
@@ -14236,23 +14253,23 @@ msgstr "Информация SIG"
 
 #: application/views/logbookadvanced/help.php:7
 msgid "Search Tips"
-msgstr ""
+msgstr "Советы по поиску"
 
 #: application/views/logbookadvanced/help.php:10
 msgid "Use these special operators in text input searches:"
-msgstr ""
+msgstr "Используйте эти специальные операторы в поисковых запросах:"
 
 #: application/views/logbookadvanced/help.php:14
 msgid "Search for everything"
-msgstr ""
+msgstr "Искать всё"
 
 #: application/views/logbookadvanced/help.php:18
 msgid "Search where column is empty"
-msgstr ""
+msgstr "Искать, где столбец пуст"
 
 #: application/views/logbookadvanced/help.php:22
 msgid "Search where column is not empty"
-msgstr ""
+msgstr "Искать, где столбец не пуст"
 
 #: application/views/logbookadvanced/help.php:33
 #: application/views/logbookadvanced/index.php:74
@@ -14261,23 +14278,23 @@ msgstr "Поиск дубликатов"
 
 #: application/views/logbookadvanced/help.php:36
 msgid "The dupe search checks for duplicate QSOs with the same:"
-msgstr ""
+msgstr "Поиск дубликатов проверяет на наличие повторяющихся QSO с тем же:"
 
 #: application/views/logbookadvanced/help.php:39
 msgid "Mode / Submode"
-msgstr ""
+msgstr "Видом / Подвидом модуляции"
 
 #: application/views/logbookadvanced/help.php:45
 msgid "Time window:"
-msgstr ""
+msgstr "Временное окно:"
 
 #: application/views/logbookadvanced/help.php:54
 msgid "Invalid Search"
-msgstr ""
+msgstr "Неверный поиск"
 
 #: application/views/logbookadvanced/help.php:57
 msgid "Checks for the following conditions:"
-msgstr ""
+msgstr "Проверки следующих условий:"
 
 #: application/views/logbookadvanced/help.php:59
 msgid "Mode is blank or set to 0"
