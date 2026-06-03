@@ -19,6 +19,7 @@
                 <div class="card-body">
                     <p class="card-text"><?= __("Here you can manage your contests, create new, edit or export them in various formats.") ?></p>
                     <button class="btn btn-primary btn-sm" onclick="create_modal();"><i class="fas fa-plus"></i> <?= __("Create New Contest") ?></button>
+                    <a class="btn btn-primary btn-sm" href="<?php echo site_url('contesting/quickstart'); ?>" target="_blank"><i class="fas fa-play"></i> <?= __("Quick Start") ?></a>
                     <hr>
                     <div class="table-responsive">
                         <table id="user_contests_table" class="table-sm table table-hover table-striped table-condensed">
