@@ -11,8 +11,14 @@
     var lang_general_word_monthly = '<?= html_entity_decode(__("Monthly")); ?>';
     var lang_general_word_diff = '<?= __("Difference"); ?>';
 </script>
-<div class="container">
-    <h2><?php echo $page_title; ?></h1>
+<div class="container px-3 px-lg-4 mt-3 mb-3">
+    <h2><?php echo $page_title; ?></h2>
+
+	    <div class="card">
+	      <div class="card-header">
+	        <?= __("Accumulated Statistics"); ?>
+	      </div>
+	      <div class="card-body">
 
         <form class="form">
 
@@ -106,4 +112,6 @@
             <div id="accumulateTable" class="mt-2"></div>
         </div>
 
+	      </div>
+	    </div>
 </div>

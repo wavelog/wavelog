@@ -43,37 +43,42 @@
 		};
 </script>
 
-<div class="container statistics">
+<div class="container px-3 px-lg-4 mt-3 mb-3">
 
 	<h2>
 		<?php echo $page_title; ?>
 		<small class="text-muted"><?= __("Explore the logbook."); ?></small>
 	</h2>
-		<br/>
+
+	<div class="card">
+	  <div class="card-header">
+	    <?= __("Explore the logbook."); ?>
+	  </div>
+	  <div class="card-body">
 		<div class="mb-3" id="dateFilterContainer" style="display:none;">
-		<label class="form-label"><?= __("Date Presets") . ": " ?></label>
-		<div class="d-flex gap-1 d-flex flex-wrap mb-2">
-			<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('today')"><?= __("Today") ?></button>
-			<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('yesterday')"><?= __("Yesterday") ?></button>
-			<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('last7days')"><?= __("Last 7 Days") ?></button>
-			<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('last30days')"><?= __("Last 30 Days") ?></button>
-			<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('thismonth')"><?= __("This Month") ?></button>
-			<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('lastmonth')"><?= __("Last Month") ?></button>
-			<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('thisyear')"><?= __("This Year") ?></button>
-			<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('lastyear')"><?= __("Last Year") ?></button>
-			<button type="button" class="btn btn-danger btn-sm flex-shrink-0" onclick="resetDates()"><i class="fas fa-times"></i> <?= __("All") ?></button>
-		</div>
-		<div class="row g-2">
-			<div class="col-auto">
-				<label class="col-form-label col-form-label-sm" for="dateFrom"><?= __("Date from") ?></label>
-				<input name="dateFrom" id="dateFrom" type="date" class="form-control form-control-sm w-auto border border-secondary">
+			<label class="form-label"><?= __("Date Presets") . ": " ?></label>
+			<div class="d-flex gap-1 d-flex flex-wrap mb-2">
+				<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('today')"><?= __("Today") ?></button>
+				<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('yesterday')"><?= __("Yesterday") ?></button>
+				<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('last7days')"><?= __("Last 7 Days") ?></button>
+				<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('last30days')"><?= __("Last 30 Days") ?></button>
+				<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('thismonth')"><?= __("This Month") ?></button>
+				<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('lastmonth')"><?= __("Last Month") ?></button>
+				<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('thisyear')"><?= __("This Year") ?></button>
+				<button type="button" class="btn btn-primary btn-sm flex-shrink-0" onclick="applyPreset('lastyear')"><?= __("Last Year") ?></button>
+				<button type="button" class="btn btn-danger btn-sm flex-shrink-0" onclick="resetDates()"><i class="fas fa-times"></i> <?= __("All") ?></button>
 			</div>
-			<div class="col-auto">
-				<label class="col-form-label col-form-label-sm" for="dateTo"><?= __("Date to") ?></label>
-				<input name="dateTo" id="dateTo" type="date" class="form-control form-control-sm w-auto border border-secondary">
+			<div class="row g-2">
+				<div class="col-auto">
+					<label class="col-form-label col-form-label-sm" for="dateFrom"><?= __("Date from") ?></label>
+					<input name="dateFrom" id="dateFrom" type="date" class="form-control form-control-sm w-auto border border-secondary">
+				</div>
+				<div class="col-auto">
+					<label class="col-form-label col-form-label-sm" for="dateTo"><?= __("Date to") ?></label>
+					<input name="dateTo" id="dateTo" type="date" class="form-control form-control-sm w-auto border border-secondary">
+				</div>
 			</div>
 		</div>
-	</div>
 	<br>
 	<div hidden class="tabs">
 		<ul class="nav nav-tabs" id="myTab" role="tablist">

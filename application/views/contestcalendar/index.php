@@ -1,5 +1,4 @@
-<div class="container">
-	<br>
+<div class="container px-3 px-lg-4 mt-3 mb-3">
 	<?php if ($this->session->flashdata('error')) { ?>
 		<!-- Display Message -->
 		<div class="alert alert-danger">
@@ -42,7 +41,7 @@
 		<div class="col">
 			<div class="card">
 				<div class="card-header">
-					<h4><?= __("Today"); ?></h4>
+					<h5><?= __("Today"); ?></h5>
 				</div>
 				<div class="card-body">
 					<?php generateTableRows($contestsToday, $custom_date_format); ?>
@@ -52,7 +51,7 @@
 		<div class="col">
 			<div class="card">
 				<div class="card-header">
-					<h4><?= __("Weekend"); ?></h4>
+					<h5><?= __("Weekend"); ?></h5>
 				</div>
 				<div class="card-body">
 					<?php generateTableRows($contestsNextWeekend, $custom_date_format); ?>
@@ -63,7 +62,7 @@
 	<div class="border-1">
 		<div class="card">
 			<div class="card-header">
-				<h4><?= __("Next Week"); ?></h4>
+				<h5><?= __("Next Week"); ?></h5>
 			</div>
 			<div class="card-body">
 				<?php generateTableRows($contestsNextWeek, $custom_date_format); ?>
