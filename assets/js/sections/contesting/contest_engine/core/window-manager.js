@@ -213,8 +213,14 @@ export class WindowManager {
 
 		// Apply viewport constraints
 		// Ensure window stays within workspace bounds
-		if (newLeft < 0) newLeft = 0;
-		if (newTop < 0) newTop = 0;
+		if (newLeft < 0) {
+			newWidth = newLeft + newWidth; // preserve right edge
+			newLeft = 0;
+		}
+		if (newTop < 0) {
+			newHeight = newTop + newHeight; // preserve bottom edge
+			newTop = 0;
+		}
 		if (newLeft + newWidth > wsRect.width) {
 			newWidth = wsRect.width - newLeft;
 		}
