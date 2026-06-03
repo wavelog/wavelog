@@ -778,7 +778,7 @@ class QsoFormComponent {
 				continue;
 			}
 			const qsoBand = qso.band || this.convertQrgToBand(parseInt(qso.frequency));
-			const qsoMode = qso.mode || this.convertQrgToMode(parseInt(qso.frequency));
+			const qsoMode = qso.mode || null;
 			if (qsoBand === currentBand && qsoMode === currentMode) {
 				return true;
 			}

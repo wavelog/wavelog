@@ -1078,7 +1078,7 @@ class Logbookadvanced extends CI_Controller {
 
 
 		if ($error_count > 0) {
-			$error_message = "Error on " . (string) $error_count . " records, success on " . (string) count($qsoIds) - $error_count;
+			$error_message = "Error on " . (string) $error_count . " records, success on " . (string) (count($qsoIds) - $error_count);
 			header("Content-Type: application/json");
 			echo json_encode(['success' => false, 'message' => $error_message]);
 			return;
@@ -1086,7 +1086,7 @@ class Logbookadvanced extends CI_Controller {
 
 		header("Content-Type: application/json");
 		echo json_encode(['success' => true]);
-		return;	
+		return;
 
 	}
 
@@ -1136,7 +1136,7 @@ class Logbookadvanced extends CI_Controller {
 		}
 
 		if ($error_count > 0) {
-			$error_message = "Error on " . (string) $error_count . " records, success on " . (string) count($qsoIds) - $error_count;
+			$error_message = "Error on " . (string) $error_count . " records, success on " . (string) (count($qsoIds) - $error_count);
 			header("Content-Type: application/json");
 			echo json_encode(['success' => false, 'message' => $error_message]);
 			return;
