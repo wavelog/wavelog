@@ -18,6 +18,22 @@ function initContestDropdown() {
     }
 }
 
+function initCopyExchangeToggle() {
+    var exchangeCheckbox = document.getElementById('ef-exchange');
+    var copyExchangeTo = document.getElementById('copyexchangeto');
+    if (!exchangeCheckbox || !copyExchangeTo) return;
+
+    function syncState() {
+        copyExchangeTo.disabled = !exchangeCheckbox.checked;
+        if (!exchangeCheckbox.checked) {
+            copyExchangeTo.value = '';
+        }
+    }
+
+    exchangeCheckbox.addEventListener('change', syncState);
+    syncState();
+}
+
 function create_modal() {
     $.ajax({
         url: base_url + 'index.php/contesting/create_session',
@@ -25,6 +41,7 @@ function create_modal() {
         success: function (response) {
             $('#contestSessionModal-container').html(response);
             initContestDropdown();
+            initCopyExchangeToggle();
             $('#contestCreateSessionModal').modal('show');
         },
         error: function () {
@@ -40,6 +57,7 @@ function edit_modal(session_id) {
         success: function (response) {
             $('#contestSessionModal-container').html(response);
             initContestDropdown();
+            initCopyExchangeToggle();
             $('#contestCreateSessionModal').modal('show');
         },
         error: function () {
