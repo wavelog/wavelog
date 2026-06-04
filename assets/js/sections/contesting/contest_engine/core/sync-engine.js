@@ -17,7 +17,7 @@ export class SyncEngine {
 		this.isPending = false; // Track if a sync request is currently in-flight
 		this.lastHeartbeatTime = 0; // Track when last request was sent
 		this.heartbeatStartTime = 0; // Track when heartbeat request started
-		this.heartbeatMaxDuration = 2000; // Maximum acceptable duration is 2 seconds (no parallel requests possible)
+		this.heartbeatMaxDuration = 4000; // Maximum acceptable duration is 4 seconds (no parallel requests possible)
 		this._workerDriven  = false; // When true, heartbeat only fires on triggerNow(), not on a timer
 		this._pendingTrigger = false; // A triggerNow() arrived while a request was in-flight
 
