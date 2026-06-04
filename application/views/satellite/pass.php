@@ -118,7 +118,7 @@
 		<div class="collapse show" id="settingsBody">
 			<div class="card-body">
 				<div class="row g-2 mb-3">
-					<div class="col-md-3">
+					<div class="col-md-4">
 						<label class="form-label" for="satlist"><?= __("Satellite"); ?>
 							<i class="fa fa-question-circle" aria-hidden="true" data-bs-toggle="tooltip" title="<?= __("Only satellites with TLE data are shown here!"); ?>"></i>
 						</label>
@@ -128,11 +128,11 @@
 							<?php endforeach; ?>
 						</select>
 					</div>
-					<div class="col-md-3">
+					<div class="col-md-4">
 						<label class="form-label" for="date"><?= __("Date"); ?></label>
 						<input name="date" id="date" type="date" class="form-control form-control-sm" value="<?= date('Y-m-d'); ?>">
 					</div>
-					<div class="col-md-3">
+					<div class="col-md-4">
 						<label class="form-label" for="mintime"><?= __("Min. time"); ?></label>
 						<select class="form-select form-select-sm" id="mintime" name="mintime">
 							<?php for ($i = 0; $i <= 24; $i += 1): ?>
@@ -143,7 +143,7 @@
 				</div>
 
 				<!-- Control Buttons -->
-				<div class="d-flex justify-content-center gap-3">
+				<div class="d-flex justify-content-center gap-1">
 					<button id="plot" type="button" name="searchpass" class="btn btn-primary px-4 me-1 ld-ext-right ld-ext-right-plot" onclick="searchpasses()"><i class="fas fa-search"></i> <?= __("Load predictions"); ?><div class="ld ld-ring ld-spin"></div></button>
 					<div class="btn-group me-1">
 						<button id="loadsettings" type="button" class="btn btn-secondary px-4 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-download"></i> <?= __("Presets"); ?></button>
