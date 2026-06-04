@@ -19,35 +19,42 @@
         mapPrefs: <?php echo json_encode($map_prefs ?? ['nightshadow' => true, 'pathline' => true, 'station' => true, 'autofit' => true, 'grid' => true]); ?>
     };
 
+    // Decode HTML entities produced by the gettext encoder for use in JS string contexts
+    function decodeHtml(html) {
+        const txt = document.createElement('textarea');
+        txt.innerHTML = html;
+        return txt.value;
+    }
+
     // Language
-    let lang_really_end_contest = "<?= __("Are you sure you want to end the contest?"); ?>";
-    let lang_layout_reset_default = "<?= __("Layout reset to default!"); ?>";
-    let lang_layout_saved = "<?= __("Layout saved!"); ?>";
-    let lang_layout_deleted = "<?= __("Layout deleted!"); ?>";
-    let lang_layout_delete_confirm = "<?= __("Are you sure you want to delete the layout '%s'?"); ?>";
-    let lang_layout_reset_prompt = "<?= __("Are you sure you want to reset the layout to default?"); ?>";
-    let lang_layout_name_prompt = "<?= __("Enter a name for this layout:"); ?>";
-    let lang_layout_no_layouts = "<?= __("No saved layouts found."); ?>";
-    let lang_layout_default_name = "<?= __("Default"); ?>";
-    let lang_layout_default_layout = "<?= __("Default layout"); ?>";
-    let lang_layout_set_default = "<?= __("Set as default"); ?>";
-    let lang_layout_save_error = "<?= __("Error saving layout"); ?>";
-    let lang_layout_error_default = "<?= __("Error setting default layout"); ?>";
-    let lang_layout_error_delete = "<?= __("Error deleting layout"); ?>";
-    let lang_layout_error_reset = "<?= __("Error resetting layout"); ?>";
-    let lang_app_load_error = "<?= __("Error loading application. Please refresh the page.") ?>";
-    let lang_app_loading_component = "<?= __("Loading %s...") ?>";
-    let lang_app_init_datastore = "<?= __("Initializing data store...") ?>";
-    let lang_app_init_core = "<?= __("Initializing core systems...") ?>";
-    let lang_heartbeat_warning = "<?= __("Heartbeat Warning") ?>";
-    let lang_heartbeat_slow = "<?= __("Heartbeat request took %1 ms (threshold: %2 ms)") ?>";
-    let lang_window_default_title = "<?= __("Window") ?>";
-    let lang_map_nightshadow = "<?= __("Night") ?>";
-    let lang_map_pathline = "<?= __("Path") ?>";
-    let lang_map_station = "<?= __("Station") ?>";
-    let lang_map_autofit = "<?= __("Auto-fit") ?>";
-    let lang_map_grid = "<?= __("Gridsquares") ?>";
-    let lang_unknown_error = "<?= __("Unknown error") ?>";
+    let lang_really_end_contest = decodeHtml("<?= __("Are you sure you want to end the contest?"); ?>");
+    let lang_layout_reset_default = decodeHtml("<?= __("Layout reset to default!"); ?>");
+    let lang_layout_saved = decodeHtml("<?= __("Layout saved!"); ?>");
+    let lang_layout_deleted = decodeHtml("<?= __("Layout deleted!"); ?>");
+    let lang_layout_delete_confirm = decodeHtml("<?= __("Are you sure you want to delete the layout '%s'?"); ?>");
+    let lang_layout_reset_prompt = decodeHtml("<?= __("Are you sure you want to reset the layout to default?"); ?>");
+    let lang_layout_name_prompt = decodeHtml("<?= __("Enter a name for this layout:"); ?>");
+    let lang_layout_no_layouts = decodeHtml("<?= __("No saved layouts found."); ?>");
+    let lang_layout_default_name = decodeHtml("<?= __("Default"); ?>");
+    let lang_layout_default_layout = decodeHtml("<?= __("Default layout"); ?>");
+    let lang_layout_set_default = decodeHtml("<?= __("Set as default"); ?>");
+    let lang_layout_save_error = decodeHtml("<?= __("Error saving layout"); ?>");
+    let lang_layout_error_default = decodeHtml("<?= __("Error setting default layout"); ?>");
+    let lang_layout_error_delete = decodeHtml("<?= __("Error deleting layout"); ?>");
+    let lang_layout_error_reset = decodeHtml("<?= __("Error resetting layout"); ?>");
+    let lang_app_load_error = decodeHtml("<?= __("Error loading application. Please refresh the page.") ?>");
+    let lang_app_loading_component = decodeHtml("<?= __("Loading %s...") ?>");
+    let lang_app_init_datastore = decodeHtml("<?= __("Initializing data store...") ?>");
+    let lang_app_init_core = decodeHtml("<?= __("Initializing core systems...") ?>");
+    let lang_heartbeat_warning = decodeHtml("<?= __("Heartbeat Warning") ?>");
+    let lang_heartbeat_slow = decodeHtml("<?= __("Heartbeat request took %1 ms (threshold: %2 ms)") ?>");
+    let lang_window_default_title = decodeHtml("<?= __("Window") ?>");
+    let lang_map_nightshadow = decodeHtml("<?= __("Night") ?>");
+    let lang_map_pathline = decodeHtml("<?= __("Path") ?>");
+    let lang_map_station = decodeHtml("<?= __("Station") ?>");
+    let lang_map_autofit = decodeHtml("<?= __("Auto-fit") ?>");
+    let lang_map_grid = decodeHtml("<?= __("Gridsquares") ?>");
+    let lang_unknown_error = decodeHtml("<?= __("Unknown error") ?>");
 </script>
 
 <div>
