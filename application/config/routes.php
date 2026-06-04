@@ -49,7 +49,7 @@
 */
 
 $route['default_controller'] = "dashboard";
-$route['404_override'] = '';
+$route['404_override'] = 'errors/show_404';
 $route['translate_uri_dashes'] = FALSE;
 
 
