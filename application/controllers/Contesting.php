@@ -962,7 +962,7 @@ class Contesting extends CI_Controller {
 				$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
 				$cache_key = self::CACHE_KEY_SESSION_SETTINGS . $session_info['contest_session_id'];
 				$cached_settings = $this->cache->get($cache_key);
-				log_message('error', "Cache lookup for session settings with key {$cache_key}: " . ($cached_settings ? 'HIT' : 'MISS'));
+				log_message('info', "Cache lookup for session settings with key {$cache_key}: " . ($cached_settings ? 'HIT' : 'MISS'));
 				if ($cached_settings) {
 					$response['data']['session_settings'] = $cached_settings;
 					break;
