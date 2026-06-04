@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-03 11:00+0000\n"
-"PO-Revision-Date: 2026-01-11 07:07+0000\n"
+"POT-Creation-Date: 2026-06-03 08:08+0000\n"
+"PO-Revision-Date: 2026-06-03 11:00+0000\n"
 "Last-Translator: marin <wavelog@marin.fyi>\n"
 "Language-Team: Croatian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/hr/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.14\n"
+"X-Generator: Weblate 5.17.1\n"
 
 #: application/config/adif_propmodes.php:7
 msgctxt "Propagation Mode"
@@ -90,7 +90,7 @@ msgstr "IRLP"
 #: application/config/adif_propmodes.php:20
 msgctxt "Propagation Mode"
 msgid "Line of Sight (includes transmission through obstacles such as walls)"
-msgstr ""
+msgstr "Linija vida (uključuje prenose kroz prepreke poput zidova)"
 
 #: application/config/adif_propmodes.php:21
 msgctxt "Propagation Mode"
@@ -100,7 +100,7 @@ msgstr "Meteorsko raspršenje"
 #: application/config/adif_propmodes.php:22
 msgctxt "Propagation Mode"
 msgid "Terrestrial or atmospheric repeater or transponder"
-msgstr ""
+msgstr "Zemaljski ili atmosferski repetitor ili transponder"
 
 #: application/config/adif_propmodes.php:23
 msgctxt "Propagation Mode"
@@ -115,7 +115,7 @@ msgstr "Satelit"
 #: application/config/adif_propmodes.php:25
 msgctxt "Propagation Mode"
 msgid "Trans-equatorial"
-msgstr ""
+msgstr "Transekvatorska"
 
 #: application/config/adif_propmodes.php:26
 msgctxt "Propagation Mode"
@@ -390,7 +390,7 @@ msgstr "Opis API ključa %s je ažuriran."
 #: application/controllers/Api.php:89 application/controllers/Api.php:124
 #: application/controllers/Qso.php:580
 msgid "Invalid request method"
-msgstr ""
+msgstr "Nepravilna metoda zahtjeva"
 
 #: application/controllers/Api.php:100
 msgid "Invalid API rights"
@@ -406,7 +406,7 @@ msgstr "Nije moguće generirati API ključ"
 
 #: application/controllers/Api.php:134
 msgid "Invalid API Key"
-msgstr ""
+msgstr "Neispravan API ključ"
 
 #: application/controllers/Api.php:143
 #, php-format
@@ -529,7 +529,7 @@ msgstr "Pregled loga"
 
 #: application/controllers/Awards.php:670
 msgid "and"
-msgstr ""
+msgstr "i"
 
 #: application/controllers/Awards.php:671
 #: application/views/awards/cq/index.php:135
@@ -541,11 +541,11 @@ msgstr ""
 #: application/views/awards/wae/index.php:119
 #: application/views/awards/wpx/index.php:81
 msgid "Every band (w/o SAT)"
-msgstr ""
+msgstr "Svaki opseg (bez SAT)"
 
 #: application/controllers/Awards.php:671
 msgid "band"
-msgstr ""
+msgstr "opseg"
 
 #: application/controllers/Awards.php:674
 msgid " and satellite "
@@ -700,7 +700,7 @@ msgstr "Polja potvrđena QSL kartama"
 #: application/controllers/Awards.php:1165
 #: application/controllers/Awards.php:1201
 msgid "Total Gridsquares worked"
-msgstr ""
+msgstr "Ukupno odrađenih lokatora"
 
 #: application/controllers/Awards.php:1182
 msgid "Fred Fish Memorial Award (FFMA)"
@@ -728,7 +728,7 @@ msgstr "WAP"
 #: application/controllers/Awards.php:1590
 #: application/views/interface_assets/header.php:255
 msgid "WAIP"
-msgstr ""
+msgstr "WAIP"
 
 #: application/controllers/Awards.php:2297
 #: application/views/awards/itu/index.php:34
@@ -763,7 +763,7 @@ msgstr "\"Polska\" Award"
 
 #: application/controllers/Awards.php:2775
 msgid "Awards - AMSAT Rover"
-msgstr ""
+msgstr "Diplome - AMSAT Rover"
 
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:343
@@ -850,7 +850,7 @@ msgstr "Kordinator kluba"
 
 #: application/controllers/Club.php:24
 msgid "Club Member ADIF"
-msgstr ""
+msgstr "ADIF Člana kluba"
 
 #: application/controllers/Club.php:25
 msgid "Club Member"
@@ -863,13 +863,13 @@ msgstr "Neispravan ID korisnika!"
 
 #: application/controllers/Club.php:65
 msgid "This user is not a club station."
-msgstr ""
+msgstr "Ovaj korisnki nije klupska postaja."
 
 #: application/controllers/Club.php:69
 #: application/views/club/permissions.php:10
 #: application/views/user/index.php:215
 msgid "Club Permissions"
-msgstr ""
+msgstr "Dozvole kluba"
 
 #: application/controllers/Club.php:132 application/controllers/Club.php:161
 #: application/controllers/Club.php:188 application/models/Club_model.php:22
@@ -3884,6 +3884,7 @@ msgstr ""
 msgid "Antennas"
 msgstr ""
 
+#: application/models/Note.php:62 application/models/Note.php:93
 #: application/models/Note.php:63 application/models/Note.php:94
 msgid "In Contacts category, the titles of the notes need to be unique."
 msgstr ""
@@ -11140,7 +11141,7 @@ msgstr "Albanski"
 
 #: application/views/debug/index.php:849
 msgid "Armenian"
-msgstr ""
+msgstr "Armenski"
 
 #: application/views/debug/index.php:850
 msgid "Bosnian"
@@ -11152,7 +11153,7 @@ msgstr "Bugarski"
 
 #: application/views/debug/index.php:852
 msgid "Chinese (Simplified)"
-msgstr "Kineski (pojednostavljeni)"
+msgstr "Kineski (Pojednostavljeni)"
 
 #: application/views/debug/index.php:853
 msgid "Croatian"
@@ -11160,7 +11161,7 @@ msgstr "Hrvatski"
 
 #: application/views/debug/index.php:854
 msgid "Czech"
-msgstr "Češka"
+msgstr "Češki"
 
 #: application/views/debug/index.php:855
 msgid "Dutch"
