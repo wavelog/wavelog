@@ -434,9 +434,9 @@ class MapComponent {
 		if (!this.prefs.pathline || !this.stationLatLng || !toLatLng) return;
 		if (typeof L.geodesic !== 'function') return;
 		this.pathLine = L.geodesic([this.stationLatLng, toLatLng], {
-			color: '#ff9900',
-			weight: 1,
-			opacity: 0.6,
+			color: '#ff0000',
+			weight: 1.2,
+			opacity: 1,
 			dashArray: '5, 5',
 			wrap: false,
 			steps: 50
