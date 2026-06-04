@@ -705,7 +705,10 @@ class QsoFormComponent {
 	}
 
 	async lookupCallbook(callsign) {
-		if (!callsign) return null;
+		if (!callsign) {
+			this.windowmanager.showToast(lang_error, lang_invalid_callsign, 'bg-danger text-white', 5000);
+			return null;
+		}
 
 		const cacheKey = `callbook.${callsign}`;
 		const cached = this.dataStore?.get(cacheKey);
@@ -717,7 +720,10 @@ class QsoFormComponent {
 			method: 'GET',
 			headers: { 'X-Requested-With': 'XMLHttpRequest' }
 		});
-		if (!response.ok) return null;
+		if (!response.ok) {
+			this.windowmanager.showToast(lang_error, lang_callbook_lookup_failed, 'bg-danger text-white', 5000);
+			return null;
+		}
 		const result = await response.json();
 		if (this.dataStore && result) {
 			this.dataStore.setLocal(cacheKey, result);

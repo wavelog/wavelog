@@ -40,6 +40,8 @@ $config = [
 	let lang_qso_cancel = "<?= __("Cancel") ?>";
 	let lang_qso_not_own = "<?= __("You can only edit your own QSOs") ?>";
 	let lang_qso_delete_failed = "<?= __("Failed to delete QSO:") ?>";
+	let lang_invalid_callsign = "<?= __("Invalid callsign") ?>";
+	let lang_callbook_lookup_failed = "<?= __("Callbook lookup failed") ?>";
 </script>
 
 
