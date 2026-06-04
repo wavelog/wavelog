@@ -148,10 +148,6 @@ class StatisticsComponent {
 		const qsos  = this.getQsos();
 		const nowMs = Date.now();
 
-		// 288 five-minute buckets per day (index = floor(utcMinuteOfDay / 5))
-		const bandBuckets    = new Map(); // band → Array(288) total
-		const bandBucketsOwn = new Map(); // band → Array(288) own only
-
 		let rate60 = 0, rate10 = 0, ownTotal = 0;
 		let firstTs = Infinity, lastTs = 0;
 
@@ -167,18 +163,9 @@ class StatisticsComponent {
 				ownTotal++;
 			}
 
-			const band = this.resolveBand(qso) || '??';
-			if (!bandBuckets.has(band)) {
-				bandBuckets.set(band,    new Array(288).fill(0));
-				bandBucketsOwn.set(band, new Array(288).fill(0));
-			}
 			if (ts > 0) {
 				if (ts < firstTs) firstTs = ts;
 				if (ts > lastTs)  lastTs  = ts;
-				const dt  = new Date(ts);
-				const idx = Math.floor((dt.getUTCHours() * 60 + dt.getUTCMinutes()) / 5);
-				bandBuckets.get(band)[idx]++;
-				if (isOwn) bandBucketsOwn.get(band)[idx]++;
 			}
 		}
 
@@ -186,9 +173,7 @@ class StatisticsComponent {
 			total: qsos.length,
 			ownTotal,
 			rate60,
-			rate10:      rate10 * 6,
-			bandBuckets,
-			bandBucketsOwn,
+			rate10:  rate10 * 6,
 			firstTs: firstTs === Infinity ? 0 : firstTs,
 			lastTs,
 		};
@@ -218,211 +203,46 @@ class StatisticsComponent {
 		const canvas = this.container.querySelector('#stats-combined-chart');
 		if (!canvas) return;
 
-		if (this.timeWindow === 0) {
-			this._renderAbsoluteChart(canvas, stats);
-			return;
-		}
-
-		const sortedBands = [...stats.bandBuckets.keys()].sort((a, b) => {
-			const ai = this.bandOrder.indexOf(a);
-			const bi = this.bandOrder.indexOf(b);
-			if (ai === -1 && bi === -1) return a.localeCompare(b);
-			if (ai === -1) return 1;
-			if (bi === -1) return -1;
-			return ai - bi;
-		});
-
-		const groups       = this._getWindow();
-		const windowLabels = groups.map(g => this._bucketLabel(g[0]));
-		const resMin       = this.RESOLUTION[this.timeWindow] ?? 60;
-
-		// Current 5-min bucket drives the sliding window key
-		const now           = new Date();
-		const currentBucket = Math.floor((now.getUTCHours() * 60 + now.getUTCMinutes()) / 5);
-		const chartKey      = `${sortedBands.join(',')}|${this.timeWindow}|${currentBucket}`;
-
-		// Update data in place when structure is unchanged
-		if (this.chart && this._lastChartKey === chartKey) {
-			let dsIdx = 0;
-			for (const band of sortedBands) {
-				this.chart.data.datasets[dsIdx].data = this._aggregateWindow(
-					this.isClubStation ? stats.bandBucketsOwn.get(band) : stats.bandBuckets.get(band),
-					groups
-				);
-				dsIdx++;
-			}
-			if (this.isClubStation) {
-				this.chart.data.datasets[dsIdx].data = this._aggregateWindow(
-					this._othersBuckets(stats), groups
-				);
-			}
-			this.chart.update('none');
-			return;
-		}
-
-		// Full rebuild: first render, new band appeared, window changed, or bucket rolled over
-		if (this.chart) {
-			this.chart.destroy();
-			this.chart = null;
-		}
-		this._lastChartKey = chartKey;
-
-		// CSS variables are not resolved in canvas context — read via getComputedStyle
-		const tickColor = getComputedStyle(document.documentElement)
-			.getPropertyValue('--bs-body-color').trim() || '#dee2e6';
-
-		const datasets = sortedBands.map(band => {
-			const color       = this.BAND_COLORS[band] ?? 'rgba(108,117,125,0.85)';
-			const borderColor = color.replace(/[\d.]+\)$/, '1)');
-			return {
-				label:            band,
-				data:             this._aggregateWindow(
-					this.isClubStation ? stats.bandBucketsOwn.get(band) : stats.bandBuckets.get(band),
-					groups
-				),
-				backgroundColor:  color,
-				borderColor:      borderColor,
-				borderWidth:      1.5,
-				fill:             true,
-				tension:          0.3,
-				pointRadius:      2,
-				pointHoverRadius: 4,
-			};
-		});
-
-		if (this.isClubStation) {
-			datasets.push({
-				label:            lang_stats_others_col,
-				data:             this._aggregateWindow(this._othersBuckets(stats), groups),
-				backgroundColor:  'rgba(108,117,125,0.35)',
-				borderColor:      'rgba(108,117,125,0.7)',
-				borderWidth:      1.5,
-				fill:             true,
-				tension:          0.3,
-				pointRadius:      2,
-				pointHoverRadius: 4,
-			});
-		}
-
-		// Thin tick labels only when there are many points (24h view has 24 labels)
-		const tickStep = windowLabels.length > 16 ? 4 : (windowLabels.length > 8 ? 2 : 1);
-
-		this.chart = new Chart(canvas, {
-			type: 'line',
-			data: { labels: windowLabels, datasets },
-			options: {
-				responsive:          true,
-				maintainAspectRatio: false,
-				animation:           false,
-				plugins: {
-					legend: {
-						display:  sortedBands.length > 0,
-						position: 'bottom',
-						labels: {
-							color:    tickColor,
-							boxWidth: 10,
-							padding:  6,
-							font:     { size: 10 },
-						},
-					},
-					tooltip: {
-						mode: 'index',
-						callbacks: {
-							title: items => items[0].label + ' UTC',
-							label: item  => item.dataset.label + ': ' + item.raw,
-						},
-					},
-				},
-				scales: {
-					x: {
-						ticks: {
-							color:       tickColor,
-							maxRotation: 0,
-							callback:    (val, idx) => idx % tickStep === 0 ? windowLabels[idx] : '',
-						},
-						grid: { color: 'rgba(128,128,128,0.15)' },
-					},
-					y: {
-						stacked:     true,
-						beginAtZero: true,
-						ticks: {
-							color:     tickColor,
-							precision: 0,
-						},
-						grid: { color: 'rgba(128,128,128,0.15)' },
-					},
-				},
-			},
-		});
+		// Both views build identical charts from {startMs, endMs, resMin} groups —
+		// they differ only in how the time groups are derived.
+		const groups = this.timeWindow === 0
+			? this._getAbsoluteGroups(stats.firstTs, stats.lastTs)
+			: this._getWindowGroups();
+		this._renderChart(canvas, groups, this.timeWindow === 0 ? 'all' : String(this.timeWindow));
 	}
 
-	// ── Window / aggregation helpers ───────────────────────────────────────────
+	// ── Window helpers ──────────────────────────────────────────────────────────
 
-	_getWindow() {
-		const resMin        = this.RESOLUTION[this.timeWindow] ?? 60;
-		const bucketsPerPt  = resMin / 5; // how many 5-min buckets make one chart point
-		const totalPoints   = (this.timeWindow * 60) / resMin;
-
-		const now           = new Date();
-		const currentBucket = Math.floor((now.getUTCHours() * 60 + now.getUTCMinutes()) / 5);
-
-		const groups = [];
-		for (let i = totalPoints - 1; i >= 0; i--) {
-			// last bucket of this group, counting back from now
-			const lastBucket = (currentBucket - i * bucketsPerPt + 288) % 288;
-			const group = [];
-			for (let j = bucketsPerPt - 1; j >= 0; j--) {
-				group.push((lastBucket - j + 288) % 288);
-			}
-			groups.push(group);
+	// Fixed sliding window [now − timeWindow h, now] at the configured resolution.
+	// Returns the same {startMs, endMs, resMin} group format as _getAbsoluteGroups,
+	// so it shares the band aggregation, labelling and rendering paths.
+	_getWindowGroups() {
+		const resMin  = this.RESOLUTION[this.timeWindow] ?? 60;
+		const stepMs  = resMin * 60000;
+		const endMs   = Math.ceil(Date.now() / stepMs) * stepMs; // align to grid
+		const startMs = endMs - this.timeWindow * 3600000;
+		const groups  = [];
+		for (let t = startMs; t < endMs; t += stepMs) {
+			groups.push({ startMs: t, endMs: t + stepMs, resMin });
 		}
 		return groups;
-	}
-
-	_aggregateWindow(fullArray, groups) {
-		return groups.map(buckets =>
-			buckets.reduce((sum, idx) => sum + (fullArray?.[idx] ?? 0), 0)
-		);
-	}
-
-	_bucketLabel(bucketIdx) {
-		const resMin   = this.RESOLUTION[this.timeWindow] ?? 60;
-		const totalMin = (bucketIdx * 5) % 1440;
-		const h        = Math.floor(totalMin / 60);
-		const m        = totalMin % 60;
-		if (resMin >= 60) {
-			return String(h).padStart(2, '0') + 'z';
-		}
-		return String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0') + 'z';
-	}
-
-	_othersBuckets(stats) {
-		const result = new Array(288).fill(0);
-		for (const [band, buckets] of stats.bandBuckets) {
-			const own = stats.bandBucketsOwn.get(band) ?? [];
-			for (let i = 0; i < 288; i++) {
-				result[i] += (buckets[i] ?? 0) - (own[i] ?? 0);
-			}
-		}
-		return result;
 	}
 
 	// ── Absolute (all-QSO) view ────────────────────────────────────────────────
 
 	_getAbsoluteGroups(firstTs, lastTs) {
 		if (!firstTs || firstTs >= lastTs) return [];
-		const spanMin = (lastTs - firstTs) / 60000;
-		let resMin;
-		if      (spanMin <=   60) resMin = 5;
-		else if (spanMin <=  120) resMin = 10;
-		else if (spanMin <=  240) resMin = 15;
-		else if (spanMin <=  480) resMin = 30;
-		else if (spanMin <= 1440) resMin = 60;
-		else                      resMin = Math.ceil(spanMin / 24 / 5) * 5; // ~24 pts for any span
 
-		const stepMs   = resMin * 60000;
+		// Full view always uses fixed one-hour buckets aligned to the UTC hour
+		// grid: one point per hour, so the hour label maps 1:1 to the data and a
+		// 21:xx QSO shows under "21z" — not aggregated into a wider, mislabelled block.
+		const resMin   = 60;
+		const stepMs    = resMin * 60000;
 		const startMs  = Math.floor(firstTs / stepMs) * stepMs;
-		const endMs    = Math.ceil(lastTs   / stepMs) * stepMs;
+		// End one step past the bucket that contains lastTs, so a QSO landing
+		// exactly on a bucket boundary (e.g. 21:00:00) is still included instead
+		// of being dropped and mislabelled to the previous bucket.
+		const endMs    = Math.floor(lastTs / stepMs) * stepMs + stepMs;
 		const groups   = [];
 		for (let t = startMs; t < endMs; t += stepMs) {
 			groups.push({ startMs: t, endMs: t + stepMs, resMin });
@@ -458,8 +278,10 @@ class StatisticsComponent {
 		return { bandData, bandDataOwn };
 	}
 
-	_renderAbsoluteChart(canvas, stats) {
-		const groups       = this._getAbsoluteGroups(stats.firstTs, stats.lastTs);
+	// Renders the band-stacked line chart from {startMs, endMs, resMin} time groups.
+	// Shared by both the sliding-window and absolute views; keyPrefix scopes the
+	// rebuild-vs-update cache key (window size or 'all').
+	_renderChart(canvas, groups, keyPrefix) {
 		const windowLabels = groups.map(g => this._absGroupLabel(g));
 
 		const { bandData, bandDataOwn } = this._computeAbsoluteBands(groups);
@@ -473,8 +295,8 @@ class StatisticsComponent {
 		});
 
 		const chartKey = groups.length === 0
-			? 'all|empty'
-			: `${sortedBands.join(',')}|all|${groups[0].startMs}|${groups[groups.length - 1].endMs}`;
+			? `${keyPrefix}|empty`
+			: `${sortedBands.join(',')}|${keyPrefix}|${groups[0].startMs}|${groups[groups.length - 1].endMs}`;
 
 		const activeData = band => (this.isClubStation ? bandDataOwn : bandData).get(band);
 
