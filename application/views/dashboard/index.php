@@ -271,7 +271,7 @@ function echo_table_header_col($name) {
 		<div class="col-6 col-md-4 col-lg-2">
 			<div class="card h-100">
 				<div class="card-header py-2">
-					<h6 class="mb-0 text-nowrap"><i class="fas fa-fire"></i> <?= __("Current Streak"); ?> <a href="<?php echo site_url('dayswithqso'); ?>#streaks"><i class="fa-solid fa-up-right-from-square"></i></a></h6>
+					<h6 class="mb-0"><i class="fas fa-fire"></i> <?= __("Current Streak"); ?> <a href="<?php echo site_url('dayswithqso'); ?>#streaks"><i class="fa-solid fa-up-right-from-square"></i></a></h6>
 				</div>
 				<div class="card-body p-0">
 					<h4 class="fw-bold mb-0 px-3 py-2"><?= sprintf(_ngettext("%d Day", "%d Days", (int) $current_streak), (int) $current_streak) ?></h4>
@@ -281,7 +281,7 @@ function echo_table_header_col($name) {
 		<div class="col-6 col-md-4 col-lg-2">
 			<div class="card h-100">
 				<div class="card-header py-2">
-					<h6 class="mb-0 text-nowrap"><i class="fas fa-users"></i> <?= __("Unique callsigns"); ?> <a href="<?php echo site_url('statistics'); ?>#uniquetab"><i class="fa-solid fa-up-right-from-square"></i></a></h6>
+					<h6 class="mb-0"><i class="fas fa-users"></i> <?= __("Unique callsigns"); ?> <a href="<?php echo site_url('statistics'); ?>#uniquetab"><i class="fa-solid fa-up-right-from-square"></i></a></h6>
 				</div>
 				<div class="card-body p-0">
 					<h4 class="fw-bold mb-0 px-3 py-2"><?php echo $unique_callsigns; ?></h4>
