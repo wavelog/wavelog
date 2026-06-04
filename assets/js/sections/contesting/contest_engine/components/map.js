@@ -304,6 +304,17 @@ class MapComponent {
 			resizeObserver.observe(this.container.parentElement);
 			this._resizeObserver = resizeObserver;
 		}
+
+		// Reveal coordinate bar (elements start hidden via .cohidden)
+		const mapContainer = this.container.closest('.map-container');
+		if (mapContainer) {
+			mapContainer.querySelectorAll('.cohidden').forEach(el => el.classList.remove('cohidden'));
+		}
+
+		// Live coordinate bar: update on mouse move
+		this.map.on('mousemove', (e) => {
+			this._updateCoordinateBar(e.latlng.lat, e.latlng.lng);
+		});
 	}
 
 	/**
@@ -588,6 +599,51 @@ class MapComponent {
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(this.prefs)
 		}).catch((err) => console.warn('MapComponent: failed to save map prefs', err));
+	}
+
+	_latLngToLocator(lat, lng) {
+		if (lng < -180) lng += 360;
+		if (lng > 180)  lng -= 360;
+		const longitude = lng + 180;
+		const latitude  = lat + 90;
+		const C = 65;
+		const squareLat = Math.floor(latitude % 10);
+		return String.fromCharCode(C + Math.floor(longitude / 20)) +
+			String.fromCharCode(C + Math.floor(latitude / 10)) +
+			Math.floor(longitude % 20 / 2) +
+			squareLat +
+			String.fromCharCode(C + Math.floor((longitude % 20 % 2) * 12)).toLowerCase() +
+			String.fromCharCode(C + Math.floor((latitude % 10 - squareLat) * 24)).toLowerCase();
+	}
+
+	_updateCoordinateBar(lat, lng) {
+		if (lng < -180) lng += 360;
+		if (lng > 180)  lng -= 360;
+
+		const pad = (n, w) => String(Math.floor(Math.abs(n))).padStart(w, '0');
+		const dms = (val, pos, neg, degW) => {
+			const abs = Math.abs(val) + 1e-9;
+			const deg = Math.floor(abs);
+			const minFull = (abs % 1) * 60;
+			const min = Math.floor(minFull);
+			const sec = Math.floor((minFull % 1) * 6000) / 100;
+			return (val < 0 ? neg : pos) + ' ' + pad(deg, degW) + '° ' + pad(min, 2) + "' " + sec + '"';
+		};
+
+		const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+		set('latDeg', dms(lat, 'N', 'S', 2));
+		set('lngDeg', dms(lng, 'E', 'W', 3));
+		set('locator', this._latLngToLocator(lat, lng));
+
+		if (this.stationLatLng) {
+			const cfg = window.ContestLoggerConfig;
+			const base = cfg?.measurement_base || 'K';
+			const km = this._haversineKm(this.stationLatLng, [lat, lng]);
+			const dist = base === 'M' ? km * 0.621371 : (base === 'N' ? km * 0.539957 : km);
+			const unit = base === 'M' ? 'mi' : (base === 'N' ? 'nmi' : 'km');
+			set('distance', Math.round(dist * 10) / 10 + ' ' + unit);
+			set('bearing', Math.round(this._bearing(this.stationLatLng, [lat, lng])) + '°');
+		}
 	}
 
 	_haversineKm([lat1, lon1], [lat2, lon2]) {

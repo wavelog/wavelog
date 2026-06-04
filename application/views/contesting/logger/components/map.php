@@ -72,6 +72,18 @@ $config = [
 		<div class="map-container" style="width: 100%; height: 100%;">
 			<div class="map-leaflet" id="map-display" style="width: 100%; height: 100%;">
 			</div>
+			<div class="coordinates d-flex">
+				<div class="cohidden"><?= __("Latitude") ?>:&nbsp;</div>
+				<div class="cohidden col-auto text-success fw-bold" id="latDeg"></div>
+				<div class="cohidden"><?= __("Longitude") ?>:&nbsp;</div>
+				<div class="cohidden col-auto text-success fw-bold" id="lngDeg"></div>
+				<div class="cohidden"><?= __("Gridsquare") ?>:&nbsp;</div>
+				<div class="cohidden col-auto text-success fw-bold" id="locator"></div>
+				<div class="cohidden"><?= __("Distance") ?>:&nbsp;</div>
+				<div class="cohidden col-auto text-success fw-bold" id="distance"></div>
+				<div class="cohidden"><?= __("Bearing") ?>:&nbsp;</div>
+				<div class="cohidden col-auto text-success fw-bold" id="bearing"></div>
+			</div>
 		</div>
 	</div>
 </div>

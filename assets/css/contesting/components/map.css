@@ -31,3 +31,45 @@
 .contest-map-toggles label {
 	margin: 0;
 }
+
+/* Coordinate bar docked below the map */
+.map-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.map-container #map-display {
+	flex: 1;
+	min-height: 0;
+}
+
+.map-container .coordinates {
+	position: static;
+	flex-shrink: 0;
+	padding: 2px 6px;
+	font-size: 11px;
+	flex-wrap: wrap;
+	gap: 0 0.6rem;
+}
+
+/* Fixed-width value cells — prevents layout shift as numbers change */
+.map-container #latDeg,
+.map-container #lngDeg {
+	min-width: 130px;
+	font-variant-numeric: tabular-nums;
+}
+
+.map-container #locator {
+	min-width: 48px;
+	font-variant-numeric: tabular-nums;
+}
+
+.map-container #distance {
+	min-width: 72px;
+	font-variant-numeric: tabular-nums;
+}
+
+.map-container #bearing {
+	min-width: 34px;
+	font-variant-numeric: tabular-nums;
+}
