@@ -611,16 +611,47 @@ class QsoFormComponent {
 		}
 	}
 
+	/**
+	 * Minimal sanity check before hitting the callbook.
+	 * Real calls: >=3 chars, only A-Z/0-9 and "/" for portable suffixes,
+	 * no wildcards ("?"), and at least one letter and one digit.
+	 * @param {string} callsign already trimmed + uppercased
+	 * @returns {boolean}
+	 */
+	isValidCallsign(callsign) {
+		if (!callsign || callsign.length < 3) return false;
+		if (!/^[A-Z0-9/]+$/.test(callsign)) return false;      // no "?" / wildcards
+		if (!/[A-Z]/.test(callsign)) return false;             // at least one letter
+		if (!/[0-9]/.test(callsign)) return false;             // at least one digit
+		// A bare 3-char string ending in a digit is a prefix, not a call (e.g. "ZL3")
+		if (callsign.length === 3 && !/[A-Z]$/.test(callsign)) return false;
+		return true;
+	}
+
+	/**
+	 * Clear DXCC/callbook display and location state, e.g. when the callsign
+	 * is empty or invalid and no lookup should run.
+	 */
+	resetLookupState() {
+		this.lastDxccCallsign = null;
+		this.lastDxccInfo = null;
+		this.updateDxccInfoDisplay(null);
+		this.writeDxccToView(null);
+		this.writeCallbookToView(null);
+		this.dataStore?.emit('qso_location_updated', null);
+	}
+
 	async handleCallsignBlur(e) {
 		const callsign = e.target.value.trim().toUpperCase();
 		if (!callsign) {
-			this.lastDxccCallsign = null;
-			this.lastDxccInfo = null;
-			this.updateDxccInfoDisplay(null);
+			this.resetLookupState();
 			this.updateWorkedBeforeWarning('');
-			this.writeDxccToView(null);
-			this.writeCallbookToView(null);
-			this.dataStore?.emit('qso_location_updated', null);
+			return;
+		}
+
+		// Skip the lookup silently for malformed calls (too short, wildcards, ...)
+		if (!this.isValidCallsign(callsign)) {
+			this.resetLookupState();
 			return;
 		}
 
