@@ -1334,16 +1334,19 @@ class Contesting extends CI_Controller {
 
 			if ($cbdata === FALSE) {
 				$cbdata = $this->logbook_model->loadCallBook($call);
-				if (!empty($cbdata) && empty($cbdata['error'])) {
+				if (!empty($cbdata)) {
 					$this->cache->save($cache_key, $cbdata, 14400); // 4h cache time for online lookups
-					if (empty($payload['name']))   $payload['name']   = $cbdata['name']       ?? null;
-					if (empty($payload['qth']))    $payload['qth']    = $cbdata['city']        ?? null;
-					if (!empty($cbdata['gridsquare'])) $payload['grid']   = $cbdata['gridsquare'];
-					if (empty($payload['ituz']))   $payload['ituz']   = $cbdata['ituz']        ?? null;
-					if (!empty($cbdata['dxcc'])) $payload['dxcc'] = $cbdata['dxcc'];
-					if (!empty($cbdata['cqz']))  $payload['cqz']  = $cbdata['cqz'];
-					$payload['source'] = $cbdata['source'] ?? null;
 				}
+			}
+
+			if (!empty($cbdata)) {
+				if (empty($payload['name']))   $payload['name']   = $cbdata['name']       ?? null;
+				if (empty($payload['qth']))    $payload['qth']    = $cbdata['city']        ?? null;
+				if (!empty($cbdata['gridsquare'])) $payload['grid']   = $cbdata['gridsquare'];
+				if (empty($payload['ituz']))   $payload['ituz']   = $cbdata['ituz']        ?? null;
+				$payload['source'] = $cbdata['source'] ?? null;
+				if (!empty($cbdata['dxcc'])) $payload['dxcc'] = $cbdata['dxcc'];
+				if (!empty($cbdata['cqz']))  $payload['cqz']  = $cbdata['cqz'];
 			}
 		}
 
