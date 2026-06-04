@@ -30,7 +30,7 @@ $config = [
 	let lang_radio_waiting = "<?= __("Waiting for radio data...") ?>";
 	let lang_radio_ws_connected = "<?= __("WebSocket radio connected") ?>";
 	let lang_radio_ws_error = "<?= __("WebSocket connection error") ?>";
-	let lang_radio_ws_reconnecting = "<?= __("WebSocket disconnected – reconnecting...") ?>";
+	let lang_radio_ws_reconnecting = "<?= __("WebSocket disconnected - reconnecting...") ?>";
 	let lang_radio_ws_offline = "<?= __("WebSocket radio offline") ?>";
 </script>
 
