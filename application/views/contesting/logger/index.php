@@ -55,6 +55,10 @@
     let lang_map_autofit = decodeHtml("<?= __("Auto-fit") ?>");
     let lang_map_grid = decodeHtml("<?= __("Gridsquares") ?>");
     let lang_unknown_error = decodeHtml("<?= __("Unknown error") ?>");
+    let lang_warning = decodeHtml("<?= __("Warning") ?>");
+    let lang_settings_changed = decodeHtml("<?= __("Contest settings have been changed. Please refresh the page to apply the new settings.") ?>");
+    let lang_reload_now = decodeHtml("<?= __("Reload now") ?>");
+    let lang_close = decodeHtml("<?= __("Close") ?>");
 </script>
 
 <div>
@@ -77,7 +81,7 @@
         <h5 class="offcanvas-title" id="controlPanelLabel">
             <img src="<?php echo base_url(); ?>assets/logo/<?php echo $this->optionslib->get_logo('header_logo'); ?>.png" alt="Wavelog" class="control-panel-logo" /> <?= __("Control Panel"); ?>
         </h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="<?= __("Close"); ?>"></button>
     </div>
     <div class="offcanvas-body">
         <div class="mb-4 text-center">

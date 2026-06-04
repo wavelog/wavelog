@@ -22,6 +22,7 @@ import { WsTransport } from './core/ws-transport.js';
 import { SyncEngine } from './core/sync-engine.js';
 import { WindowManager } from './core/window-manager.js';
 import { ComponentManager } from './core/component-loader.js';
+import { SettingsSyncHandler } from './core/settings-sync.js';
 
 // Application Initialization as IIFE (async for dynamic component loading)
 (async function () {
@@ -110,12 +111,18 @@ import { ComponentManager } from './core/component-loader.js';
             // Start synchronization
             syncEngine.start();
 
+            // Always-on: live reload of session settings via heartbeat
+            new SettingsSyncHandler(ds, syncEngine);
+
             // Connect to Worker WebSocket if configured
             const workerCfg = window.ContestLoggerConfig?.worker;
             if (workerCfg?.url && workerCfg?.topic && workerCfg?.token) {
                 const wsTransport = new WsTransport(ajaxTransport, workerCfg.url, workerCfg.topic, workerCfg.token);
                 wsTransport.onPush = (payload) => {
                     if (payload?.type === 'sync_required') {
+                        syncEngine.triggerNow();
+                    }
+                    if (payload?.type === 'settings_changed') {
                         syncEngine.triggerNow();
                     }
                 };

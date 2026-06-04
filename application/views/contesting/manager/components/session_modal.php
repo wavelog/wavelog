@@ -9,7 +9,7 @@
                         echo __("Create Contest Session");
                     } ?>
                 </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="flex-shrink: 0;"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?= __("Close"); ?>" style="flex-shrink: 0;"></button>
             </div>
             <?php if (isset($session_info)) {
                 $method = 'edit_session';

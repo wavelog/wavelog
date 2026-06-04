@@ -527,7 +527,7 @@ export class WindowManager {
       <div class="toast-body">
         <strong>${title}</strong><br>${text}
       </div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="${lang_close}"></button>
       </div>
     `;
 

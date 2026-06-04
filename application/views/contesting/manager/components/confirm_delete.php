@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header border-bottom d-flex justify-content-between align-items-center">
                 <h5 class="modal-title" id="contestSessionLabel"><i class="fas fa-plus-circle me-2"></i><?= __("Delete Contest Session"); ?></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="flex-shrink: 0;"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?= __("Close"); ?>" style="flex-shrink: 0;"></button>
             </div>
             <form action="<?= site_url('contesting/delete_session'); ?>" method="post" id="contestSessionForm">
                 <div class="modal-body">

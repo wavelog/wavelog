@@ -26,6 +26,11 @@ class Contesting extends CI_Controller {
 	 */
 	private $active_station_location = null;
 
+	/**
+	 * Cache keys
+	 */
+	const CACHE_KEY_SESSION_SETTINGS = 'contest_session_settings_';
+
 	function __construct() {
 		parent::__construct();
 
@@ -43,6 +48,12 @@ class Contesting extends CI_Controller {
 
 		$this->load->is_loaded('Worker') ?: $this->load->library('Worker');
 		$this->worker_available = $this->worker->is_enabled();
+
+		$this->load->driver('cache', [
+			'adapter'    => $this->config->item('cache_adapter')    ?? 'file',
+			'backup'     => $this->config->item('cache_backup')     ?? 'file',
+			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
+		]);
 	}
 
 	/**
@@ -476,6 +487,10 @@ class Contesting extends CI_Controller {
 				$result = $this->contesting_model->update_contest_session($contest_session_id, $contest_id, $time_start, $time_end, $station_id, $notes, $exchangetype, $copyexchangeto, $exchangefields, $callbook_lookup);
 
 				if ($result) {
+					$this->cache->delete(self::CACHE_KEY_SESSION_SETTINGS . $contest_session_id); // Clear session cache to reflect changes immediately
+					if ($this->worker_available) {
+						$this->worker->publish('contest_session.' . $contest_session_id, ['type' => 'settings_changed']);
+					}
 					$this->session->set_flashdata('success', __("Contest session updated successfully."));
 				} else {
 					$this->session->set_flashdata('error', __("There was an error updating the contest session. Please try again."));
@@ -943,6 +958,25 @@ class Contesting extends CI_Controller {
 				}
 				break;
 
+			case 'get_session_settings':
+				$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
+				$cache_key = self::CACHE_KEY_SESSION_SETTINGS . $session_info['contest_session_id'];
+				$cached_settings = $this->cache->get($cache_key);
+				log_message('error', "Cache lookup for session settings with key {$cache_key}: " . ($cached_settings ? 'HIT' : 'MISS'));
+				if ($cached_settings) {
+					$response['data']['session_settings'] = $cached_settings;
+					break;
+				}
+				$fresh = $this->contesting_model->get_session_info($session_info['contest_session_id']);
+				$response['data']['session_settings'] = [
+					'exchangefields'  => $fresh['exchangefields'],
+					'exchangetype'    => $fresh['exchangetype'],
+					'copyexchangeto'  => $fresh['copyexchangeto'],
+					'callbook_lookup' => $fresh['callbook_lookup'],
+				];
+				$this->cache->save($cache_key, $response['data']['session_settings'], 3600); // Cache for 1h
+				break;
+
 			default:
 				throw new Exception("Unknown request type: {$request['type']}");
 		}
@@ -1295,12 +1329,6 @@ class Contesting extends CI_Controller {
 
 		if (!$offline_lookup) {
 			// we want to cache callbook lookups :)
-			$this->load->driver('cache', [
-				'adapter'    => $this->config->item('cache_adapter')    ?? 'file',
-				'backup'     => $this->config->item('cache_backup')     ?? 'file',
-				'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
-			]);
-
 			$cache_key = 'contesting_callbook_' . strtolower($call);
 			$cbdata = $this->cache->get($cache_key);
 
