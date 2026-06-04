@@ -501,7 +501,13 @@ class SCPComponent {
 		const qsoCallsignInput = document.querySelector('#qso-callsign');
 		if (qsoCallsignInput) {
 			qsoCallsignInput.value = callsign;
-			qsoCallsignInput.focus();
+			// Simulate a Tab press: fire blur (triggers the callbook lookup) and
+			// move focus to the next field in tab order (tabindex=2), so the
+			// operator can keep logging without pressing an extra Tab key.
+			qsoCallsignInput.dispatchEvent(new Event('blur', { bubbles: true }));
+			const nextField = document.querySelector('[tabindex="2"]');
+			if (nextField) nextField.focus();
+			else qsoCallsignInput.focus();
 		}
 
 		// Emit event for other components
