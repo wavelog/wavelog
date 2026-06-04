@@ -41,6 +41,8 @@ foreach (array_keys($components ?? []) as $c) {
 }
 ?>
 
+<script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/chart.js'); ?>"></script>
+
 <script type="importmap">
 {
     "imports": {

@@ -371,6 +371,12 @@ class Contesting extends CI_Controller {
 				'width' => 26, // 26% of workspace width
 				'height' => 67, // 67% of workspace height
 			],
+			'statistics' => [
+				'x'      => 1,      // 1% from left, below clock
+				'y'      => 76,     // clock ends at y=75 (63+12), so 1% gap
+				'width'  => 20,     // same width as clock for visual alignment
+				'height' => 22,     // fills down to ~98%
+			]
 		];
 
 		if ($this->session->userdata('isWinkeyEnabled')) {
