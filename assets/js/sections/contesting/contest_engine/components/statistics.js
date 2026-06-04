@@ -70,10 +70,18 @@ class StatisticsComponent {
 			refreshBtn.addEventListener('click', () => this.refresh());
 		}
 
+		const stored = this.ds.get('config.stats_time_window');
+		if (stored !== undefined) {
+			this.timeWindow = stored;
+			this.container.querySelectorAll('#stats-window-btns [data-window]')
+				.forEach(b => b.classList.toggle('active', parseInt(b.dataset.window, 10) === stored));
+		}
+
 		this.container.querySelector('#stats-window-btns')?.addEventListener('click', (e) => {
 			const btn = e.target.closest('[data-window]');
 			if (!btn) return;
 			this.timeWindow = parseInt(btn.dataset.window, 10);
+			this.ds.setLocal('config.stats_time_window', this.timeWindow);
 			this.container.querySelectorAll('#stats-window-btns [data-window]')
 				.forEach(b => b.classList.toggle('active', b === btn));
 			this._lastChartKey = null; // force chart rebuild
