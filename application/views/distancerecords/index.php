@@ -1,7 +1,11 @@
-<div class="container">
-	<br>
+<div class="container px-3 px-lg-4 mt-3 mb-3">
 		<h2><?php echo $page_title; ?></h2>
-	<p><?= __("This page lists distance records per satellite based on gridsquares."); ?>
+
+		<div class="card">
+		  <div class="card-header">
+		    <?= __("Satellite Distance Records"); ?> - <?= __("This page lists distance records per satellite based on gridsquares."); ?>
+		  </div>
+		  <div class="card-body">
 	<?php
 		if ($distances) {
 	?>
@@ -49,6 +53,8 @@
 	</tbody>
 	</table>
 	<?php } else {
-        echo '<div class="alert alert-danger" role="alert">' . __("Nothing found!") . '</div>';
+        echo '<div class="alert alert-danger" role="alert">' . __("No QSOs found matching the criteria for this page!") . '</div>';
     }?>
+		  </div>
+		</div>
 </div>
