@@ -1,6 +1,6 @@
 <?php
 if (!empty($overlaps)) {
-	echo '<table style="width:100%" class="table-sm table table-bordered table-hover table-striped table-condensed text-center">';
+	echo '<div class="table-responsive"><table style="width:100%" class="table-sm table table-bordered table-hover table-striped table-condensed text-center">';
 	echo '<thead>
 	<tr>
 	<th>' . __("Satellite") . '</th>
@@ -28,7 +28,9 @@ if (!empty($overlaps)) {
 		echo "<td>" . returntimediff(Predict_Time::daynum2readable($skedAOS, $zone ?? 'UTC', $format), Predict_Time::daynum2readable($skedLOS, $zone ?? 'UTC', $format), $format) . "</td>";
 		echo "</tr>";
 	}
-	echo '<table style="width:100%" class="table-sm table table-bordered table-hover table-striped table-condensed text-center">';
+	echo '</tbody></table></div>';
+
+	echo '<div class="table-responsive"><table style="width:100%" class="table-sm table table-bordered table-hover table-striped table-condensed text-center">';
 	echo '<thead>
 	<tr>
 	<th>' . __("Grid") . '</th>
@@ -75,9 +77,7 @@ if (!empty($overlaps)) {
 		echo "<tr><td colspan='8'>---</td></tr>"; // Separator row
 	}
 
-	echo "</tbody>";
-	echo "</table>";
-	echo "</div>";
+	echo "</tbody></table></div>";
 
 } else {
 	echo '<div style="text-align: center !important">';
