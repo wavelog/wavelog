@@ -17,11 +17,11 @@ $config = [
 
 <?php // Translations for JS ?>
 <script>
-	let lang_stats_total      = "<?= __("Total QSOs") ?>";
-	let lang_stats_rate60     = "<?= __("Rate/h (60 min)") ?>";
-	let lang_stats_rate10     = "<?= __("Rate/h (10 min)") ?>";
-	let lang_stats_own_col    = "<?= __("Own") ?>";
-	let lang_stats_others_col = "<?= __("Others") ?>";
+	let lang_stats_total      = decodeHtml("<?= __("Total QSOs") ?>");
+	let lang_stats_rate60     = decodeHtml("<?= __("Rate/h (60 min)") ?>");
+	let lang_stats_rate10     = decodeHtml("<?= __("Rate/h (10 min)") ?>");
+	let lang_stats_own_col    = decodeHtml("<?= __("Own") ?>");
+	let lang_stats_others_col = decodeHtml("<?= __("Others") ?>");
 </script>
 
 <div class="window-component" data-component="<?php echo $config['component_name']; ?>" data-config="<?php echo htmlspecialchars(json_encode($config), ENT_QUOTES, 'UTF-8'); ?>">
@@ -43,19 +43,19 @@ $config = [
 		<div class="row g-1 mb-2">
 			<div class="col-4 text-center">
 				<div class="stats-counter-box">
-					<div class="stats-counter-value" id="stats-total">–</div>
+					<div class="stats-counter-value" id="stats-total">-</div>
 					<div class="stats-counter-label" id="lbl-stats-total"></div>
 				</div>
 			</div>
 			<div class="col-4 text-center">
 				<div class="stats-counter-box">
-					<div class="stats-counter-value text-info" id="stats-rate60">–</div>
+					<div class="stats-counter-value text-info" id="stats-rate60">-</div>
 					<div class="stats-counter-label" id="lbl-stats-rate60"></div>
 				</div>
 			</div>
 			<div class="col-4 text-center">
 				<div class="stats-counter-box">
-					<div class="stats-counter-value text-warning" id="stats-rate10">–</div>
+					<div class="stats-counter-value text-warning" id="stats-rate10">-</div>
 					<div class="stats-counter-label" id="lbl-stats-rate10"></div>
 				</div>
 			</div>
@@ -70,6 +70,7 @@ $config = [
 				<button type="button" class="btn btn-outline-secondary" data-window="8">8h</button>
 				<button type="button" class="btn btn-outline-secondary" data-window="12">12h</button>
 				<button type="button" class="btn btn-outline-secondary" data-window="24">24h</button>
+				<button type="button" class="btn btn-outline-secondary" data-window="0"><?= __("All") ?></button>
 			</div>
 		</div>
 

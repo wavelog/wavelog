@@ -10,6 +10,7 @@
  *   8h  → 60 min/point  (8 points)
  *   12h → 60 min/point (12 points)
  *   24h → 60 min/point (24 points)
+ *   0   → absolute view: auto-scaled from first to last QSO (bypasses bucket system)
  *
  * Club mode: own-operator bars are coloured, other operators stacked on top in gray.
  */
@@ -144,6 +145,7 @@ class StatisticsComponent {
 		const bandBucketsOwn = new Map(); // band → Array(288) own only
 
 		let rate60 = 0, rate10 = 0, ownTotal = 0;
+		let firstTs = Infinity, lastTs = 0;
 
 		for (const qso of qsos) {
 			const ts    = this.getQsoTimestamp(qso);
@@ -163,6 +165,8 @@ class StatisticsComponent {
 				bandBucketsOwn.set(band, new Array(288).fill(0));
 			}
 			if (ts > 0) {
+				if (ts < firstTs) firstTs = ts;
+				if (ts > lastTs)  lastTs  = ts;
 				const dt  = new Date(ts);
 				const idx = Math.floor((dt.getUTCHours() * 60 + dt.getUTCMinutes()) / 5);
 				bandBuckets.get(band)[idx]++;
@@ -177,6 +181,8 @@ class StatisticsComponent {
 			rate10:      rate10 * 6,
 			bandBuckets,
 			bandBucketsOwn,
+			firstTs: firstTs === Infinity ? 0 : firstTs,
+			lastTs,
 		};
 	}
 
@@ -203,6 +209,11 @@ class StatisticsComponent {
 
 		const canvas = this.container.querySelector('#stats-combined-chart');
 		if (!canvas) return;
+
+		if (this.timeWindow === 0) {
+			this._renderAbsoluteChart(canvas, stats);
+			return;
+		}
 
 		const sortedBands = [...stats.bandBuckets.keys()].sort((a, b) => {
 			const ai = this.bandOrder.indexOf(a);
@@ -386,6 +397,157 @@ class StatisticsComponent {
 			}
 		}
 		return result;
+	}
+
+	// ── Absolute (all-QSO) view ────────────────────────────────────────────────
+
+	_getAbsoluteGroups(firstTs, lastTs) {
+		if (!firstTs || firstTs >= lastTs) return [];
+		const spanMin = (lastTs - firstTs) / 60000;
+		let resMin;
+		if      (spanMin <=   60) resMin = 5;
+		else if (spanMin <=  120) resMin = 10;
+		else if (spanMin <=  240) resMin = 15;
+		else if (spanMin <=  480) resMin = 30;
+		else if (spanMin <= 1440) resMin = 60;
+		else                      resMin = Math.ceil(spanMin / 24 / 5) * 5; // ~24 pts for any span
+
+		const stepMs   = resMin * 60000;
+		const startMs  = Math.floor(firstTs / stepMs) * stepMs;
+		const endMs    = Math.ceil(lastTs   / stepMs) * stepMs;
+		const groups   = [];
+		for (let t = startMs; t < endMs; t += stepMs) {
+			groups.push({ startMs: t, endMs: t + stepMs, resMin });
+		}
+		return groups;
+	}
+
+	_absGroupLabel(group) {
+		const d = new Date(group.startMs);
+		const h = String(d.getUTCHours()).padStart(2, '0');
+		const m = String(d.getUTCMinutes()).padStart(2, '0');
+		return group.resMin >= 60 ? h + 'z' : h + ':' + m + 'z';
+	}
+
+	_computeAbsoluteBands(groups) {
+		const bandData    = new Map();
+		const bandDataOwn = new Map();
+		for (const qso of this.getQsos()) {
+			const ts = this.getQsoTimestamp(qso);
+			if (!ts) continue;
+			const band  = this.resolveBand(qso) || '??';
+			const isOwn = !this.isClubStation ||
+				(qso.operator ?? '').toUpperCase() === this.ownOperator;
+			const gi = groups.findIndex(g => ts >= g.startMs && ts < g.endMs);
+			if (gi === -1) continue;
+			if (!bandData.has(band)) {
+				bandData.set(band,    new Array(groups.length).fill(0));
+				bandDataOwn.set(band, new Array(groups.length).fill(0));
+			}
+			bandData.get(band)[gi]++;
+			if (isOwn) bandDataOwn.get(band)[gi]++;
+		}
+		return { bandData, bandDataOwn };
+	}
+
+	_renderAbsoluteChart(canvas, stats) {
+		const groups       = this._getAbsoluteGroups(stats.firstTs, stats.lastTs);
+		const windowLabels = groups.map(g => this._absGroupLabel(g));
+
+		const { bandData, bandDataOwn } = this._computeAbsoluteBands(groups);
+		const sortedBands = [...bandData.keys()].sort((a, b) => {
+			const ai = this.bandOrder.indexOf(a);
+			const bi = this.bandOrder.indexOf(b);
+			if (ai === -1 && bi === -1) return a.localeCompare(b);
+			if (ai === -1) return 1;
+			if (bi === -1) return -1;
+			return ai - bi;
+		});
+
+		const chartKey = groups.length === 0
+			? 'all|empty'
+			: `${sortedBands.join(',')}|all|${groups[0].startMs}|${groups[groups.length - 1].endMs}`;
+
+		const activeData = band => (this.isClubStation ? bandDataOwn : bandData).get(band);
+
+		if (this.chart && this._lastChartKey === chartKey) {
+			let dsIdx = 0;
+			for (const band of sortedBands) { this.chart.data.datasets[dsIdx++].data = activeData(band); }
+			if (this.isClubStation) {
+				const others = new Array(groups.length).fill(0);
+				for (const [band, counts] of bandData) {
+					const own = bandDataOwn.get(band) ?? [];
+					for (let i = 0; i < groups.length; i++) others[i] += (counts[i] ?? 0) - (own[i] ?? 0);
+				}
+				this.chart.data.datasets[dsIdx].data = others;
+			}
+			this.chart.update('none');
+			return;
+		}
+
+		if (this.chart) { this.chart.destroy(); this.chart = null; }
+		this._lastChartKey = chartKey;
+
+		const tickColor = getComputedStyle(document.documentElement)
+			.getPropertyValue('--bs-body-color').trim() || '#dee2e6';
+
+		const datasets = sortedBands.map(band => {
+			const color       = this.BAND_COLORS[band] ?? 'rgba(108,117,125,0.85)';
+			const borderColor = color.replace(/[\d.]+\)$/, '1)');
+			return {
+				label: band, data: activeData(band),
+				backgroundColor: color, borderColor, borderWidth: 1.5,
+				fill: true, tension: 0.3, pointRadius: 2, pointHoverRadius: 4,
+			};
+		});
+
+		if (this.isClubStation) {
+			const others = new Array(groups.length).fill(0);
+			for (const [band, counts] of bandData) {
+				const own = bandDataOwn.get(band) ?? [];
+				for (let i = 0; i < groups.length; i++) others[i] += (counts[i] ?? 0) - (own[i] ?? 0);
+			}
+			datasets.push({
+				label: lang_stats_others_col, data: others,
+				backgroundColor: 'rgba(108,117,125,0.35)', borderColor: 'rgba(108,117,125,0.7)',
+				borderWidth: 1.5, fill: true, tension: 0.3, pointRadius: 2, pointHoverRadius: 4,
+			});
+		}
+
+		const tickStep = windowLabels.length > 16 ? 4 : (windowLabels.length > 8 ? 2 : 1);
+		this.chart = new Chart(canvas, {
+			type: 'line',
+			data: { labels: windowLabels, datasets },
+			options: {
+				responsive: true, maintainAspectRatio: false, animation: false,
+				plugins: {
+					legend: {
+						display:  sortedBands.length > 0,
+						position: 'bottom',
+						labels: { color: tickColor, boxWidth: 10, padding: 6, font: { size: 10 } },
+					},
+					tooltip: {
+						mode: 'index',
+						callbacks: {
+							title: items => items[0].label + ' UTC',
+							label: item  => item.dataset.label + ': ' + item.raw,
+						},
+					},
+				},
+				scales: {
+					x: {
+						ticks: { color: tickColor, maxRotation: 0,
+							callback: (val, idx) => idx % tickStep === 0 ? windowLabels[idx] : '' },
+						grid: { color: 'rgba(128,128,128,0.15)' },
+					},
+					y: {
+						stacked: true, beginAtZero: true,
+						ticks: { color: tickColor, precision: 0 },
+						grid: { color: 'rgba(128,128,128,0.15)' },
+					},
+				},
+			},
+		});
 	}
 
 	// ── Misc helpers ───────────────────────────────────────────────────────────
