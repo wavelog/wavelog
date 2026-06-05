@@ -4,6 +4,8 @@
  * Uses subscribe pattern for real-time updates from DataStore
  */
 
+import { WsTransport } from '../core/ws-transport.js';
+
 class RadioComponent {
 	constructor(containerId, dataStore, syncEngine, radios = []) {
 		this.container = document.getElementById(containerId);
@@ -22,6 +24,7 @@ class RadioComponent {
 		this._wsIntentionallyClosed = false;
 		this._wsReconnectAttempts = 0;
 		this._wsHasTriedFallback = false;
+		this._radioWsTransport = null;
 
 		// Cache DOM elements
 		this.qrgUnitElement = document.getElementById('qrg_unit');
@@ -173,6 +176,8 @@ class RadioComponent {
 			this._closeWebSocket();
 		}
 
+		this._disconnectFromWorkerTopic();
+
 		this.selectedRadio = radioId;
 		this.manualMode = (radioId === '0');
 
@@ -191,6 +196,7 @@ class RadioComponent {
 			this.clearDisplay();
 			this.showStatusInfo(lang_radio_waiting, 'info');
 			this.updateBandButtons(null, false);
+			this._connectToWorkerTopic(radioId);
 		}
 	}
 
@@ -665,6 +671,33 @@ class RadioComponent {
 		if (this._websocket) {
 			this._websocket.close();
 			this._websocket = null;
+		}
+	}
+
+	_connectToWorkerTopic(radioId) {
+		this._disconnectFromWorkerTopic();
+		const workerCfg = window.ContestLoggerConfig?.worker;
+		if (!workerCfg?.url || !workerCfg?.radio_topics?.[radioId]) return;
+
+		const { topic, token } = workerCfg.radio_topics[radioId];
+		const ws = new WsTransport(window.contestApp?.ajaxTransport ?? null, workerCfg.url, topic, token);
+		ws.onPush = (payload) => {
+			if (payload?.type !== 'radio_updated' || !payload.radio_status) return;
+			const s = payload.radio_status;
+			const prefix = `radio.${radioId}`;
+			if (s.frequency           !== undefined) this.dataStore.setLocal(`${prefix}.frequency`,           s.frequency);
+			if (s.mode                !== undefined) this.dataStore.setLocal(`${prefix}.mode`,                s.mode);
+			if (s.timestamp           !== undefined) this.dataStore.setLocal(`${prefix}.timestamp`,           s.timestamp);
+			if (s.updated_minutes_ago !== undefined) this.dataStore.setLocal(`${prefix}.updated_minutes_ago`, s.updated_minutes_ago);
+		};
+		ws.connect();
+		this._radioWsTransport = ws;
+	}
+
+	_disconnectFromWorkerTopic() {
+		if (this._radioWsTransport) {
+			this._radioWsTransport.disconnect();
+			this._radioWsTransport = null;
 		}
 	}
 

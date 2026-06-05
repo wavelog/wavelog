@@ -12,9 +12,10 @@
         measurement_base: 'K', // In hamradio you usually use kilometers
         custom_date_format: <?php echo isset($custom_date_format) ? json_encode($custom_date_format) : 'null'; ?>,
         worker: <?php echo json_encode(isset($worker_client_url) ? [
-            'url'   => $worker_client_url,
-            'topic' => $worker_topic,
-            'token' => $worker_token,
+            'url'          => $worker_client_url,
+            'topic'        => $worker_topic,
+            'token'        => $worker_token,
+            'radio_topics' => $radio_worker_topics ?? [],
         ] : null); ?>,
         mapPrefs: <?php echo json_encode($map_prefs ?? ['nightshadow' => true, 'pathline' => true, 'station' => true, 'autofit' => true, 'grid' => true]); ?>
     };

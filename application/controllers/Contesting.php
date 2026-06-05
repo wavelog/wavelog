@@ -332,6 +332,20 @@ class Contesting extends CI_Controller {
 		$this->load->model('cat');
 		$data['radios'] = $this->cat->radios();
 
+		// Register a worker topic per radio so the browser can subscribe for real-time CAT updates
+		$radio_worker_topics = [];
+		if ($this->worker_available) {
+			foreach ($data['radios']->result() as $radio) {
+				$radio_topic = 'radio.' . $radio->id;
+				$this->worker->register_topic($radio_topic);
+				$radio_worker_topics[$radio->id] = [
+					'topic' => $radio_topic,
+					'token' => $this->worker->create_token((int) $radio->id),
+				];
+			}
+		}
+		$data['radio_worker_topics'] = $radio_worker_topics;
+
 		// Load available modes for manual frequency/mode entry
 		$this->load->model('usermodes');
 		$data['modes'] = $this->usermodes->active();
