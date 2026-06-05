@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-03 11:00+0000\n"
+"POT-Creation-Date: 2026-06-05 07:10+0000\n"
 "PO-Revision-Date: 2026-06-03 11:00+0000\n"
 "Last-Translator: Anton Tomanič <s57xz.toni@gmail.com>\n"
 "Language-Team: Slovenian <https://translate.wavelog.org/projects/wavelog/"
@@ -1294,6 +1294,18 @@ msgstr "Prenos slike kartice eQSL"
 #: application/controllers/Eqsl.php:667
 msgid "All eQSLs marked as uploaded"
 msgstr "Vsi eQSL-ji so označeni kot naloženi"
+
+#: application/controllers/Errors.php:22
+msgid "Page Not Found"
+msgstr ""
+
+#: application/controllers/Errors.php:23
+msgid "QRZ? ... no reply."
+msgstr ""
+
+#: application/controllers/Errors.php:24
+msgid "Nobody is transmitting on this frequency."
+msgstr ""
 
 #: application/controllers/Generic_qsl.php:18
 #: application/views/awards/amsat_rover/index.php:43
@@ -12166,6 +12178,10 @@ msgstr ""
 #: application/views/qslcard/index.php:81
 #: application/views/view_log/qso.php:739
 msgid "View"
+msgstr ""
+
+#: application/views/errors/html/error_404.php:82
+msgid "Go Back to Dashboard"
 msgstr ""
 
 #: application/views/gridmap/index.php:27

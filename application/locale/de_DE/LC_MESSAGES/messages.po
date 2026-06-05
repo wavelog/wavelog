@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-03 11:00+0000\n"
+"POT-Creation-Date: 2026-06-05 07:10+0000\n"
 "PO-Revision-Date: 2026-06-03 08:23+0000\n"
 "Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1318,6 +1318,18 @@ msgstr "eQSL-Karten Bilder Download"
 #: application/controllers/Eqsl.php:667
 msgid "All eQSLs marked as uploaded"
 msgstr "Alle eQSLs als hochgeladen markiert"
+
+#: application/controllers/Errors.php:22
+msgid "Page Not Found"
+msgstr ""
+
+#: application/controllers/Errors.php:23
+msgid "QRZ? ... no reply."
+msgstr ""
+
+#: application/controllers/Errors.php:24
+msgid "Nobody is transmitting on this frequency."
+msgstr ""
 
 #: application/controllers/Generic_qsl.php:18
 #: application/views/awards/amsat_rover/index.php:43
@@ -12347,6 +12359,10 @@ msgstr "QSL-Datum"
 #: application/views/view_log/qso.php:739
 msgid "View"
 msgstr "Ansicht"
+
+#: application/views/errors/html/error_404.php:82
+msgid "Go Back to Dashboard"
+msgstr ""
 
 #: application/views/gridmap/index.php:27
 msgid "View a map of worked / confirmed gridsquares"
