@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-06 12:24+0000\n"
-"PO-Revision-Date: 2026-06-04 08:35+0000\n"
+"POT-Creation-Date: 2026-06-05 07:10+0000\n"
+"PO-Revision-Date: 2026-06-06 10:26+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sv/>\n"
@@ -1297,15 +1297,15 @@ msgstr "Alla eQSLs markerade som uppladdade"
 
 #: application/controllers/Errors.php:22
 msgid "Page Not Found"
-msgstr ""
+msgstr "Sidan kunde inte hittas"
 
 #: application/controllers/Errors.php:23
 msgid "QRZ? ... no reply."
-msgstr ""
+msgstr "QRZ? ... inget svar."
 
 #: application/controllers/Errors.php:24
 msgid "Nobody is transmitting on this frequency."
-msgstr ""
+msgstr "Ingen sänder på denna frekvens."
 
 #: application/controllers/Generic_qsl.php:18
 #: application/views/awards/amsat_rover/index.php:43
@@ -1943,8 +1943,8 @@ msgstr "Delstat"
 #: application/views/qso/award_tabs.php:45
 #: application/views/qso/components/previous_contacts.php:86
 #: application/views/qso/edit_ajax.php:157 application/views/qso/index.php:376
-#: application/views/satellite/pass.php:38
-#: application/views/satellite/pass.php:80
+#: application/views/satellite/pass.php:48
+#: application/views/satellite/pass.php:87
 #: application/views/search/result.php:49
 #: application/views/search/search_result_ajax.php:13
 #: application/views/simplefle/index.php:161
@@ -1958,6 +1958,8 @@ msgstr "Delstat"
 #: application/views/view_log/qso.php:633
 #: application/views/visitor/index.php:27
 #: application/views/zonechecker/result.php:53
+#: application/views/satellite/pass.php:38
+#: application/views/satellite/pass.php:80
 msgid "Gridsquare"
 msgstr "Lokatorruta"
 
@@ -2177,11 +2179,13 @@ msgstr "Struket DXCC"
 msgid "Advanced logbook"
 msgstr "Avancerad loggbok"
 
+#: application/controllers/Logbookadvanced.php:984
 #: application/controllers/Logbookadvanced.php:968
 #, php-format
 msgid "DXCC updated for %d QSO(s)."
 msgstr "DXCC uppdaterad för %d QSO(s)."
 
+#: application/controllers/Logbookadvanced.php:1000
 #: application/controllers/Logbookadvanced.php:984
 #, php-format
 msgid "Map for DXCC %s and gridsquare %s."
@@ -4337,10 +4341,10 @@ msgstr "Aktiverade Lokatorrutor"
 #: application/views/logbookadvanced/index.php:408
 #: application/views/qso/award_tabs.php:69
 #: application/views/satellite/flightpath.php:43
-#: application/views/satellite/pass.php:122
+#: application/views/satellite/pass.php:18
 #: application/views/satellite/passtable.php:6
 #: application/views/satellite/skedtable.php:6
-#: application/views/satellite/skedtable.php:41
+#: application/views/satellite/skedtable.php:35
 #: application/views/sattimers/index.php:43
 #: application/views/statistics/index.php:27
 #: application/views/timeline/index.php:195
@@ -4349,6 +4353,8 @@ msgstr "Aktiverade Lokatorrutor"
 #: application/views/timeline/index.php:310
 #: application/views/timeline/index.php:346
 #: application/views/timeline/index.php:381
+#: application/views/satellite/pass.php:122
+#: application/views/satellite/skedtable.php:41
 msgid "Satellite"
 msgstr "Satellit"
 
@@ -4628,9 +4634,8 @@ msgstr ""
 #: application/views/qslcard/searchresult.php:4
 #: application/views/qslprint/qslprint.php:31
 #: application/views/qslprint/qsolist.php:7 application/views/qso/index.php:154
-#: application/views/qso/index.php:190 application/views/satellite/pass.php:132
-#: application/views/satellite/skedtable.php:12
-#: application/views/satellite/skedtable.php:14
+#: application/views/qso/index.php:190 application/views/satellite/pass.php:52
+#: application/views/satellite/skedtable.php:7
 #: application/views/search/search_result_ajax.php:89
 #: application/views/simplefle/index.php:154
 #: application/views/statistics/initialresult.php:15
@@ -4644,6 +4649,9 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:139
 #: application/views/visitor/index.php:151
 #: application/views/visitor/mini.php:182 application/views/widgets/qsos.php:16
+#: application/views/satellite/pass.php:132
+#: application/views/satellite/skedtable.php:12
+#: application/views/satellite/skedtable.php:14
 msgid "Date"
 msgstr "Datum"
 
@@ -4670,8 +4678,6 @@ msgstr "Datum"
 #: application/views/qslcard/searchresult.php:6
 #: application/views/qslprint/qslprint.php:32
 #: application/views/qslprint/qsolist.php:8 application/views/qso/index.php:195
-#: application/views/satellite/skedtable.php:13
-#: application/views/satellite/skedtable.php:15
 #: application/views/search/search_result_ajax.php:91
 #: application/views/simplefle/index.php:155
 #: application/views/statistics/initialresult.php:16
@@ -4680,6 +4686,8 @@ msgstr "Datum"
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:141
 #: application/views/visitor/index.php:154
+#: application/views/satellite/skedtable.php:13
+#: application/views/satellite/skedtable.php:15
 msgid "Time"
 msgstr "Tid"
 
@@ -5261,8 +5269,9 @@ msgstr "Enkelt namn för att beskriva vad du använder detta API till."
 #: application/views/options/radios.php:45
 #: application/views/options/version_dialog.php:78
 #: application/views/satellite/create.php:82
-#: application/views/satellite/pass.php:185
+#: application/views/satellite/pass.php:117
 #: application/views/simplefle/index.php:22
+#: application/views/satellite/pass.php:185
 msgid "Save"
 msgstr "Spara"
 
@@ -5646,6 +5655,7 @@ msgid "Grid Activations"
 msgstr "Locator aktiveringar"
 
 #: application/views/awards/amsat_rover/index.php:221
+#: application/views/satellite/skedtable.php:34
 #: application/views/satellite/skedtable.php:40
 msgid "Grid"
 msgstr "Lokatorrutor"
@@ -7782,8 +7792,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
-"Reef/506) och giltig stat (ADIF: DXCC och STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
+"506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/wapc/index.php:122
 msgid "Show WAPC Map"
@@ -9572,9 +9582,10 @@ msgstr "Ja, byt över!"
 #: application/views/cron/edit.php:74
 #: application/views/interface_assets/footer.php:40
 #: application/views/logbookadvanced/index.php:88
-#: application/views/satellite/pass.php:184
+#: application/views/satellite/pass.php:116
 #: application/views/user/modals/admin_impersonate_modal.php:45
 #: application/views/user/modals/stop_impersonate_modal.php:14
+#: application/views/satellite/pass.php:184
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -12233,7 +12244,7 @@ msgstr "Visa"
 
 #: application/views/errors/html/error_404.php:82
 msgid "Go Back to Dashboard"
-msgstr ""
+msgstr "Gå tillbaka till instrumentpanelen"
 
 #: application/views/gridmap/index.php:27
 msgid "View a map of worked / confirmed gridsquares"
@@ -13525,8 +13536,8 @@ msgid ""
 "We’ll keep the original value and add a more precise locator (e.g., JO90AB "
 "or JO90AB12) when a match is confident."
 msgstr ""
-"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator (t."
-"ex. JO90AB eller JO90AB12) när en matchning är säker."
+"Vi behåller det ursprungliga värdet och lägger till en mer exakt lokator "
+"(t.ex. JO90AB eller JO90AB12) när en matchning är säker."
 
 #: application/views/logbookadvanced/checkresult.php:42
 msgid "Distance Check Results"
@@ -14624,9 +14635,11 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:921
 #: application/views/logbookadvanced/useroptions.php:28
 #: application/views/satellite/passtable.php:9
+#: application/views/satellite/skedtable.php:10
+#: application/views/satellite/skedtable.php:37
+#: application/views/sattimers/index.php:51
 #: application/views/satellite/skedtable.php:9
 #: application/views/satellite/skedtable.php:43
-#: application/views/sattimers/index.php:51
 msgid "Duration"
 msgstr "Varaktighet"
 
@@ -17317,79 +17330,98 @@ msgstr "Uppdatera satellit TLE"
 msgid "TLE"
 msgstr "TLE"
 
+#: application/views/satellite/pass.php:5
 #: application/views/satellite/pass.php:21
 msgid "Satellite passes"
 msgstr "Satellitpassager"
 
+#: application/views/satellite/pass.php:8
+msgid "Look for satellite passes"
+msgstr "Håll utkik efter satellitpass"
+
+#: application/views/satellite/pass.php:15
 #: application/views/satellite/pass.php:32
 msgid "Your station"
 msgstr "Din station"
 
+#: application/views/satellite/pass.php:28
+#: application/views/satellite/pass.php:67
 #: application/views/satellite/pass.php:42
 #: application/views/satellite/pass.php:84
 msgid "Min. Satellite Elevation"
 msgstr "Min. satellit elevation"
 
+#: application/views/satellite/pass.php:32
+#: application/views/satellite/pass.php:71
 #: application/views/satellite/pass.php:49
 #: application/views/satellite/pass.php:91
 msgid "Min. Azimuth"
 msgstr "Min. azimut"
 
+#: application/views/satellite/pass.php:40
+#: application/views/satellite/pass.php:79
 #: application/views/satellite/pass.php:57
 #: application/views/satellite/pass.php:99
 msgid "Max. Azimuth"
 msgstr "Max. Azimut"
 
-#: application/views/satellite/pass.php:74
-msgid "Sked partner"
-msgstr "Sked-partner"
-
-#: application/views/satellite/pass.php:123
-msgid "Only satellites with TLE data are shown here!"
-msgstr ""
-
+#: application/views/satellite/pass.php:56
 #: application/views/satellite/pass.php:136
 msgid "Min. time"
 msgstr "Min. tid"
 
+#: application/views/satellite/pass.php:65
+#: application/views/satellite/pass.php:74
+msgid "Sked partner"
+msgstr "Sked-partner"
+
+#: application/views/satellite/pass.php:93
 #: application/views/satellite/pass.php:147
 msgid "Load predictions"
 msgstr "Lastprognoser"
 
+#: application/views/satellite/pass.php:94
+msgid "Add sked partner"
+msgstr "Lägg till skedpartner"
+
+#: application/views/satellite/pass.php:96
 #: application/views/satellite/pass.php:149
 msgid "Presets"
 msgstr "Förinställningar"
 
+#: application/views/satellite/pass.php:98
 #: application/views/satellite/pass.php:151
 msgid "Save current settings"
 msgstr "Spara aktuella inställningar"
 
-#: application/views/satellite/pass.php:165
-msgid "Pass Predictions"
-msgstr ""
-
+#: application/views/satellite/pass.php:107
 #: application/views/satellite/pass.php:175
 msgid "Save Settings"
 msgstr "Spara inställningar"
 
+#: application/views/satellite/pass.php:111
 #: application/views/satellite/pass.php:179
 msgid "Settings Name"
 msgstr "Inställningsnamn"
 
+#: application/views/satellite/pass.php:112
 #: application/views/satellite/pass.php:180
 msgid "Enter a name"
 msgstr "Ange ett namn"
 
+#: application/views/satellite/pass.php:123
 #: application/views/satellite/pass.php:192
 msgid "No TLE information detected. Please update TLE's."
 msgstr "Ingen TLE-information upptäckt. Uppdatera TLE:erna."
 
 #: application/views/satellite/passtable.php:7
+#: application/views/satellite/skedtable.php:36
 #: application/views/satellite/skedtable.php:42
 msgid "AOS Time"
 msgstr "AOS-tid"
 
 #: application/views/satellite/passtable.php:8
+#: application/views/satellite/skedtable.php:40
 #: application/views/satellite/skedtable.php:46
 msgid "LOS Time"
 msgstr "LOS-tid"
@@ -17403,16 +17435,19 @@ msgid "Max Elevation (Azimuth)"
 msgstr "Max Elevation (Azimuth)"
 
 #: application/views/satellite/passtable.php:12
+#: application/views/satellite/skedtable.php:38
 #: application/views/satellite/skedtable.php:44
 msgid "AOS Azimuth"
 msgstr "AOS Azimut"
 
 #: application/views/satellite/passtable.php:13
+#: application/views/satellite/skedtable.php:41
 #: application/views/satellite/skedtable.php:47
 msgid "LOS Azimuth"
 msgstr "LOS-azimut"
 
 #: application/views/satellite/passtable.php:55
+#: application/views/satellite/skedtable.php:84
 #: application/views/satellite/skedtable.php:88
 msgid "Search failed!"
 msgstr "Sökning misslyckades!"
@@ -17422,6 +17457,7 @@ msgid "No passes found. Please check the input parameters."
 msgstr "Inga pass hittades. Kontrollera inmatningsparametrarna."
 
 #: application/views/satellite/passtable.php:73
+#: application/views/satellite/skedtable.php:94
 #: application/views/satellite/skedtable.php:98
 msgid "min"
 msgstr "min"
@@ -17430,19 +17466,23 @@ msgstr "min"
 msgid "TLE date"
 msgstr "TLE-datum"
 
+#: application/views/satellite/skedtable.php:8
 #: application/views/satellite/skedtable.php:7
 msgid "Sked AOS Time"
 msgstr "Sked AOS-tid"
 
+#: application/views/satellite/skedtable.php:9
 #: application/views/satellite/skedtable.php:8
 msgid "Sked LOS Time"
 msgstr "Sked LOS-tid"
 
-#: application/views/satellite/skedtable.php:45
+#: application/views/satellite/skedtable.php:39
 #: application/views/sattimers/index.php:50
+#: application/views/satellite/skedtable.php:45
 msgid "Max Elevation"
 msgstr "Max Elevation"
 
+#: application/views/satellite/skedtable.php:85
 #: application/views/satellite/skedtable.php:89
 msgid "No overlapping passes found. Please check the input parameters."
 msgstr "Inga överlappande pass hittades. Kontrollera inmatningsparametrarna."
@@ -18766,8 +18806,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 (t."
-"ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
+"(t.ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
@@ -20356,11 +20396,13 @@ msgstr "CQz"
 msgid "CQz geojson"
 msgstr "CQz geojson"
 
-#~ msgid "Look for satellite passes"
-#~ msgstr "Håll utkik efter satellitpass"
+#: application/views/satellite/pass.php:123
+msgid "Only satellites with TLE data are shown here!"
+msgstr ""
 
-#~ msgid "Add sked partner"
-#~ msgstr "Lägg till skedpartner"
+#: application/views/satellite/pass.php:165
+msgid "Pass Predictions"
+msgstr ""
 
 #~ msgid "Total QSOs plotted"
 #~ msgstr "Totalt antal QSOs kartlagda"
