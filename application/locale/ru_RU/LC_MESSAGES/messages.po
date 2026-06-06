@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-05 07:10+0000\n"
+"POT-Creation-Date: 2026-06-06 10:25+0000\n"
 "PO-Revision-Date: 2026-06-03 05:44+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1954,8 +1954,8 @@ msgstr "Область/штат"
 #: application/views/qso/award_tabs.php:45
 #: application/views/qso/components/previous_contacts.php:86
 #: application/views/qso/edit_ajax.php:157 application/views/qso/index.php:376
-#: application/views/satellite/pass.php:48
-#: application/views/satellite/pass.php:87
+#: application/views/satellite/pass.php:38
+#: application/views/satellite/pass.php:80
 #: application/views/search/result.php:49
 #: application/views/search/search_result_ajax.php:13
 #: application/views/simplefle/index.php:161
@@ -2688,7 +2688,7 @@ msgid "Options"
 msgstr "Опции"
 
 #: application/controllers/Radio.php:53 application/views/debug/index.php:370
-#: application/views/qso/index.php:826
+#: application/views/qso/index.php:826 application/views/satellite/pass.php:116
 msgid "Settings"
 msgstr "Настройки"
 
@@ -4361,10 +4361,10 @@ msgstr "Активированные квадраты"
 #: application/views/logbookadvanced/index.php:408
 #: application/views/qso/award_tabs.php:69
 #: application/views/satellite/flightpath.php:43
-#: application/views/satellite/pass.php:18
+#: application/views/satellite/pass.php:122
 #: application/views/satellite/passtable.php:6
 #: application/views/satellite/skedtable.php:6
-#: application/views/satellite/skedtable.php:35
+#: application/views/satellite/skedtable.php:41
 #: application/views/sattimers/index.php:43
 #: application/views/statistics/index.php:27
 #: application/views/timeline/index.php:195
@@ -4652,8 +4652,9 @@ msgstr ""
 #: application/views/qslcard/searchresult.php:4
 #: application/views/qslprint/qslprint.php:31
 #: application/views/qslprint/qsolist.php:7 application/views/qso/index.php:154
-#: application/views/qso/index.php:190 application/views/satellite/pass.php:52
-#: application/views/satellite/skedtable.php:7
+#: application/views/qso/index.php:190 application/views/satellite/pass.php:132
+#: application/views/satellite/skedtable.php:12
+#: application/views/satellite/skedtable.php:14
 #: application/views/search/search_result_ajax.php:89
 #: application/views/simplefle/index.php:154
 #: application/views/statistics/initialresult.php:15
@@ -4693,6 +4694,8 @@ msgstr "Дата"
 #: application/views/qslcard/searchresult.php:6
 #: application/views/qslprint/qslprint.php:32
 #: application/views/qslprint/qsolist.php:8 application/views/qso/index.php:195
+#: application/views/satellite/skedtable.php:13
+#: application/views/satellite/skedtable.php:15
 #: application/views/search/search_result_ajax.php:91
 #: application/views/simplefle/index.php:155
 #: application/views/statistics/initialresult.php:16
@@ -5288,7 +5291,7 @@ msgstr "Простое название, описывающее назначен
 #: application/views/options/radios.php:45
 #: application/views/options/version_dialog.php:78
 #: application/views/satellite/create.php:82
-#: application/views/satellite/pass.php:117
+#: application/views/satellite/pass.php:185
 #: application/views/simplefle/index.php:22
 msgid "Save"
 msgstr "Сохранить"
@@ -5674,7 +5677,7 @@ msgid "Grid Activations"
 msgstr "Активации квадратов"
 
 #: application/views/awards/amsat_rover/index.php:221
-#: application/views/satellite/skedtable.php:34
+#: application/views/satellite/skedtable.php:40
 msgid "Grid"
 msgstr "Квадрат"
 
@@ -9632,7 +9635,7 @@ msgstr "Да, переключиться!"
 #: application/views/cron/edit.php:74
 #: application/views/interface_assets/footer.php:40
 #: application/views/logbookadvanced/index.php:88
-#: application/views/satellite/pass.php:116
+#: application/views/satellite/pass.php:184
 #: application/views/user/modals/admin_impersonate_modal.php:45
 #: application/views/user/modals/stop_impersonate_modal.php:14
 msgid "Cancel"
@@ -14725,8 +14728,8 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:921
 #: application/views/logbookadvanced/useroptions.php:28
 #: application/views/satellite/passtable.php:9
-#: application/views/satellite/skedtable.php:10
-#: application/views/satellite/skedtable.php:37
+#: application/views/satellite/skedtable.php:9
+#: application/views/satellite/skedtable.php:43
 #: application/views/sattimers/index.php:51
 msgid "Duration"
 msgstr "Продолжительность"
@@ -17438,80 +17441,80 @@ msgstr "Обновить TLE"
 msgid "TLE"
 msgstr "TLE"
 
-#: application/views/satellite/pass.php:5
+#: application/views/satellite/pass.php:21
 msgid "Satellite passes"
 msgstr "Прохождения спутника"
 
-#: application/views/satellite/pass.php:8
-msgid "Look for satellite passes"
-msgstr ""
-
-#: application/views/satellite/pass.php:15
+#: application/views/satellite/pass.php:32
 msgid "Your station"
 msgstr "Ваша станция"
 
-#: application/views/satellite/pass.php:28
-#: application/views/satellite/pass.php:67
+#: application/views/satellite/pass.php:42
+#: application/views/satellite/pass.php:84
 msgid "Min. Satellite Elevation"
 msgstr "Мин. возвышение спутника"
 
-#: application/views/satellite/pass.php:32
-#: application/views/satellite/pass.php:71
+#: application/views/satellite/pass.php:49
+#: application/views/satellite/pass.php:91
 msgid "Min. Azimuth"
 msgstr "Мин. азимут"
 
-#: application/views/satellite/pass.php:40
-#: application/views/satellite/pass.php:79
+#: application/views/satellite/pass.php:57
+#: application/views/satellite/pass.php:99
 msgid "Max. Azimuth"
 msgstr "Макс. азимут"
 
-#: application/views/satellite/pass.php:56
-msgid "Min. time"
-msgstr "Мин. время"
-
-#: application/views/satellite/pass.php:65
+#: application/views/satellite/pass.php:74
 msgid "Sked partner"
 msgstr "Партнер по скеду"
 
-#: application/views/satellite/pass.php:93
+#: application/views/satellite/pass.php:123
+msgid "Only satellites with TLE data are shown here!"
+msgstr ""
+
+#: application/views/satellite/pass.php:136
+msgid "Min. time"
+msgstr "Мин. время"
+
+#: application/views/satellite/pass.php:147
 msgid "Load predictions"
 msgstr "Загрузить прогнозы"
 
-#: application/views/satellite/pass.php:94
-msgid "Add sked partner"
-msgstr "Добавить корреспондента по скеду"
-
-#: application/views/satellite/pass.php:96
+#: application/views/satellite/pass.php:149
 msgid "Presets"
 msgstr "Предустановки"
 
-#: application/views/satellite/pass.php:98
+#: application/views/satellite/pass.php:151
 msgid "Save current settings"
 msgstr "Сохранить текущие настройки"
 
-#: application/views/satellite/pass.php:107
+#: application/views/satellite/pass.php:165
+msgid "Pass Predictions"
+msgstr ""
+
+#: application/views/satellite/pass.php:175
 msgid "Save Settings"
 msgstr "Сохранить настройки"
 
-#: application/views/satellite/pass.php:111
+#: application/views/satellite/pass.php:179
 msgid "Settings Name"
 msgstr "Название настроек"
 
-#: application/views/satellite/pass.php:112
+#: application/views/satellite/pass.php:180
 msgid "Enter a name"
 msgstr "Введите название"
 
-#: application/views/satellite/pass.php:123
+#: application/views/satellite/pass.php:192
 msgid "No TLE information detected. Please update TLE's."
 msgstr "Информация о TLE не обнаружена. Пожалуйста, обновите TLE."
 
 #: application/views/satellite/passtable.php:7
-#: application/views/satellite/skedtable.php:36
+#: application/views/satellite/skedtable.php:42
 msgid "AOS Time"
 msgstr "Время AOS"
 
 #: application/views/satellite/passtable.php:8
-#: application/views/satellite/skedtable.php:40
+#: application/views/satellite/skedtable.php:46
 msgid "LOS Time"
 msgstr "Время LOS"
 
@@ -17524,17 +17527,17 @@ msgid "Max Elevation (Azimuth)"
 msgstr "Максимальное возвышение (азимут)"
 
 #: application/views/satellite/passtable.php:12
-#: application/views/satellite/skedtable.php:38
+#: application/views/satellite/skedtable.php:44
 msgid "AOS Azimuth"
 msgstr "Азимут появления спутника над горизонтом (AOS)"
 
 #: application/views/satellite/passtable.php:13
-#: application/views/satellite/skedtable.php:41
+#: application/views/satellite/skedtable.php:47
 msgid "LOS Azimuth"
 msgstr "Азимут захода спутника за горизонт (LOS)"
 
 #: application/views/satellite/passtable.php:55
-#: application/views/satellite/skedtable.php:84
+#: application/views/satellite/skedtable.php:88
 msgid "Search failed!"
 msgstr "Поиск не удался!"
 
@@ -17543,7 +17546,7 @@ msgid "No passes found. Please check the input parameters."
 msgstr "Видимые орбиты не найдены. Пожалуйста, проверьте исходные параметры."
 
 #: application/views/satellite/passtable.php:73
-#: application/views/satellite/skedtable.php:94
+#: application/views/satellite/skedtable.php:98
 msgid "min"
 msgstr "мин"
 
@@ -17551,20 +17554,20 @@ msgstr "мин"
 msgid "TLE date"
 msgstr "Дата TLE"
 
-#: application/views/satellite/skedtable.php:8
+#: application/views/satellite/skedtable.php:7
 msgid "Sked AOS Time"
 msgstr "Время AOS для скеда"
 
-#: application/views/satellite/skedtable.php:9
+#: application/views/satellite/skedtable.php:8
 msgid "Sked LOS Time"
 msgstr "Время LOS для скеда"
 
-#: application/views/satellite/skedtable.php:39
+#: application/views/satellite/skedtable.php:45
 #: application/views/sattimers/index.php:50
 msgid "Max Elevation"
 msgstr "Возвышение"
 
-#: application/views/satellite/skedtable.php:85
+#: application/views/satellite/skedtable.php:89
 msgid "No overlapping passes found. Please check the input parameters."
 msgstr ""
 "Перекрывающихся орбит не найдено. Пожалуйста, проверьте исходные параметры."
@@ -20485,6 +20488,9 @@ msgstr "CQ"
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr "CQ geojson"
+
+#~ msgid "Add sked partner"
+#~ msgstr "Добавить корреспондента по скеду"
 
 #~ msgid "Total QSOs plotted"
 #~ msgstr "Всего QSO отображено"

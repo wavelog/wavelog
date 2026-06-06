@@ -7,11 +7,12 @@ $(document).ready(function() {
 		enableCaseInsensitiveFiltering: true,
 		filterPlaceholder: lang_general_word_search,
 		templates: {
-		  button: '<button type="button" class="multiselect dropdown-toggle btn btn-sm btn-secondary me-2 w-auto" data-bs-toggle="dropdown" aria-expanded="false"><span class="multiselect-selected-text"></span></button>',
+		  button: '<button type="button" class="multiselect dropdown-toggle btn btn-sm btn-secondary" data-bs-toggle="dropdown" aria-expanded="false"><span class="multiselect-selected-text"></span></button>',
 		},
 		numberDisplayed: 1,
 		inheritClass: true,
-		includeSelectAllOption: true
+		includeSelectAllOption: true,
+		buttonTextAlignment: 'left'
 	});
 
 	if (localStorage.hasOwnProperty(`user_${user_id}_selectedsatellites`)) {
@@ -36,20 +37,14 @@ function searchpasses() {
 		$(".ld-ext-right-plot").addClass('running');
 		$(".ld-ext-right-plot").prop('disabled', true);
 		$('#searchpass').prop("disabled", true);
-		if ($('#addskedpartner').is(':hidden')) {
-			loadPasses();
-		} else {
-			let skedgrid = $("#skedgrid").val();
-			if (skedgrid == '') {
-				$(".ld-ext-right-plot").removeClass('running');
-				$(".ld-ext-right-plot").prop('disabled', false);
-				$('#searchpass').prop("disabled", false);
-				return;
-			}
+		let skedgrid = $("#skedgrid").val();
+		if (skedgrid != '') {
 			loadSkedPasses();
+		} else {
+			loadPasses();
 		}
+		return;
 	}
-	return;
 
 }
 
@@ -67,6 +62,7 @@ function loadPasses() {
 			'maxtime': $("#maxtime").val(),
 		},
 		success: function (html) {
+			$("#resultsCard").show();
 			$("#resultpasses").html(html);
 			$(".ld-ext-right-plot").removeClass('running');
 			$(".ld-ext-right-plot").prop('disabled', false);
@@ -125,6 +121,7 @@ function loadSkedPasses() {
 			'minskedelevation': $("#minskedelevation").val(),
         },
         success: function (html) {
+			$("#resultsCard").show();
             $("#resultpasses").html(html);
 			$(".ld-ext-right-plot").removeClass('running');
             $(".ld-ext-right-plot").prop('disabled', false);
