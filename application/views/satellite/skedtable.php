@@ -1,47 +1,53 @@
 <?php
 if (!empty($overlaps)) {
-	echo '<table style="width:100%" class="table-sm table table-bordered table-hover table-striped table-condensed text-center">';
+	echo '<div class="table-responsive"><table style="width:100%" class="table-sm table table-bordered table-hover table-striped table-condensed text-center">';
 	echo '<thead>
-	<tr>
-	<th>' . __("Satellite") . '</th>
-	<th>' . __("Date") . '</th>
-	<th>' . __("Sked AOS Time") . '</th>
-	<th>' . __("Sked LOS Time") . '</th>
-	<th>' . __("Duration") . '</th>
-	</tr>
-	</thead>
-	<tbody>';
+		<tr>
+		<th rowspan="2">' . __("Satellite") . '</th>
+		<th colspan="2">' . __("Sked AOS Time") . '</th>
+		<th colspan="2">' . __("Sked LOS Time") . '</th>
+		<th rowspan="2">' . __("Duration") . '</th>
+		</tr>
+		<tr>
+		<th>' . __("Date") . '</th>
+		<th>' . __("Time") . '</th>
+		<th>' . __("Date") . '</th>
+		<th>' . __("Time") . '</th>
+		</tr>
+		</thead>
+		<tbody>';
 
 	foreach ($overlaps as $overlap) {
 		$satellite = $overlap['grid1']->satname;
-		$skedDate = Predict_Time::daynum2readable($overlap['grid1']->visible_aos, $zone ?? 'UTC', $format);
 
 		$skedAOS = $overlap['grid1']->visible_aos < $overlap['grid2']->visible_aos ? $overlap['grid2']->visible_aos : $overlap['grid1']->visible_aos;
 		$skedLOS = $overlap['grid1']->visible_los < $overlap['grid2']->visible_los ? $overlap['grid1']->visible_los : $overlap['grid2']->visible_los;
-		$timestamp = strtotime($date);
 
 		echo '<tr>';
 		echo "<td>". $satellite . "</td>";
-		echo "<td>" . date($custom_date_format, $timestamp) . "</td>";
-		echo "<td>" . Predict_Time::daynum2readable($skedAOS, $zone ?? 'UTC', $format) . "</td>";
-		echo "<td>" . Predict_Time::daynum2readable($skedLOS, $zone ?? 'UTC', $format) . "</td>";
+		echo "<td>" . Predict_Time::daynum2readable($skedAOS, $zone ?? 'UTC', $custom_date_format) . "</td>";
+		echo "<td>" . Predict_Time::daynum2readable($skedAOS, $zone ?? 'UTC', 'H:i:s') . "</td>";
+		echo "<td>" . Predict_Time::daynum2readable($skedLOS, $zone ?? 'UTC', $custom_date_format) . "</td>";
+		echo "<td>" . Predict_Time::daynum2readable($skedLOS, $zone ?? 'UTC', 'H:i:s') . "</td>";
 		echo "<td>" . returntimediff(Predict_Time::daynum2readable($skedAOS, $zone ?? 'UTC', $format), Predict_Time::daynum2readable($skedLOS, $zone ?? 'UTC', $format), $format) . "</td>";
 		echo "</tr>";
 	}
-	echo '<table style="width:100%" class="table-sm table table-bordered table-hover table-striped table-condensed text-center">';
+	echo '</tbody></table></div>';
+
+	echo '<div class="table-responsive"><table style="width:100%" class="table-sm table table-bordered table-hover table-striped table-condensed text-center">';
 	echo '<thead>
-	<tr>
-	<th>' . __("Grid") . '</th>
-	<th>' . __("Satellite") . '</th>
-	<th>' . __("AOS Time") . '</th>
-	<th>' . __("Duration") . '</th>
-	<th>' . __("AOS Azimuth") . '</th>
-	<th>' . __("Max Elevation") . '</th>
-	<th>' . __("LOS Time") . '</th>
-	<th>' . __("LOS Azimuth") . '</th>
-	</tr>
-	</thead>
-	<tbody>';
+		<tr>
+		<th>' . __("Grid") . '</th>
+		<th>' . __("Satellite") . '</th>
+		<th>' . __("AOS Time") . '</th>
+		<th>' . __("Duration") . '</th>
+		<th>' . __("AOS Azimuth") . '</th>
+		<th>' . __("Max Elevation") . '</th>
+		<th>' . __("LOS Time") . '</th>
+		<th>' . __("LOS Azimuth") . '</th>
+		</tr>
+		</thead>
+		<tbody>';
 
 	foreach ($overlaps as $overlap) {
 		echo '<tr>';
@@ -75,9 +81,7 @@ if (!empty($overlaps)) {
 		echo "<tr><td colspan='8'>---</td></tr>"; // Separator row
 	}
 
-	echo "</tbody>";
-	echo "</table>";
-	echo "</div>";
+	echo "</tbody></table></div>";
 
 } else {
 	echo '<div style="text-align: center !important">';
