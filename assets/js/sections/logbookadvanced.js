@@ -225,6 +225,7 @@ function loadQSOTable(rows) {
 			searching: false,
 			responsive: false,
 			ordering: true,
+			order: [],
 			scrollY: window.innerHeight - $('#searchForm').innerHeight() - 250,
 			scrollCollapse: true,
 			paging: false,
@@ -920,7 +921,7 @@ $(document).ready(function () {
 			success: function (html) {
 				BootstrapDialog.show({
 					title: lang_gen_advanced_logbook_help,
-					size: BootstrapDialog.SIZE_NORMAL,
+					size: BootstrapDialog.SIZE_WIDE,
 					cssClass: 'options',
 					nl2br: false,
 					message: html,

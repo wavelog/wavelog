@@ -168,38 +168,38 @@ class QSLPrint extends CI_Controller {
 	}
 
 	public function delete_from_qsl_queue() {
-		$id = $this->input->post('id');
+		$id = $this->input->post('id', true);
 		$this->load->model('qslprint_model');
 
-		$this->qslprint_model->delete_from_qsl_queue($this->security->xss_clean($id));
+		$this->qslprint_model->delete_from_qsl_queue($id);
 	}
 
 	public function get_qsos_for_print_ajax() {
-		$station_id = $this->input->post('station_id');
+		$station_id = $this->input->post('station_id', true);
 		$this->load->model('qslprint_model');
 
-		$data['qsos'] = $this->qslprint_model->get_qsos_for_print_ajax($this->security->xss_clean($station_id));
+		$data['qsos'] = $this->qslprint_model->get_qsos_for_print_ajax($station_id);
 		$data['station_id'] = $station_id;
 		$this->load->view('qslprint/qslprint', $data);
 	}
 
 	public function open_qso_list() {
-		$callsign = $this->input->post('callsign');
+		$callsign = $this->input->post('callsign', true);
 		$this->load->model('qslprint_model');
 
-		$data['qsos'] = $this->qslprint_model->open_qso_list($this->security->xss_clean($callsign));
+		$data['qsos'] = $this->qslprint_model->open_qso_list($callsign);
 		$this->load->view('qslprint/qsolist', $data);
 	}
 
 	public function add_qso_to_print_queue() {
-		$id = $this->input->post('id');
+		$id = $this->input->post('id', true);
 		$this->load->model('qslprint_model');
 
-		$this->qslprint_model->add_qso_to_print_queue($this->security->xss_clean($id));
+		$this->qslprint_model->add_qso_to_print_queue($id);
 	}
 
 	public function show_oqrs() {
-		$id = $this->security->xss_clean($this->input->post('id'));
+		$id = $this->input->post('id', true);
 
 		$this->load->model('qslprint_model');
 
@@ -207,17 +207,4 @@ class QSLPrint extends CI_Controller {
 		$this->load->view('oqrs/showoqrs', $data);
 	}
 
-	public function get_previous_qsl() {
-		$id = $this->security->xss_clean($this->input->post('id'));
-
-		$this->load->model('qslprint_model');
-
-		$number_qsls = $this->qslprint_model->get_previous_qsls($id);
-		header('Content-Type: application/json');
-		echo json_encode($number_qsls);
-	}
-
 }
-
-/* End of file Qslprint.php */
-/* Location: ./application/controllers/Qslprint.php */

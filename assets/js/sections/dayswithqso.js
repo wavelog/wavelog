@@ -2,6 +2,14 @@ daysPerYear();
 weekDays();
 months();
 
+// Activate tab from URL hash (e.g. #streaks)
+if (window.location.hash) {
+	var triggerEl = document.querySelector('.nav-tabs a[href="' + window.location.hash + '"]');
+	if (triggerEl) {
+		bootstrap.Tab.getOrCreateInstance(triggerEl).show();
+	}
+}
+
 function daysPerYear() {
 	$.ajax({
 		url: base_url + 'index.php/dayswithqso/get_days',

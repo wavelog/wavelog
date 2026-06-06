@@ -5,6 +5,9 @@
 	var dxcluster_maxage = <?php echo $this->optionslib->get_option('dxcluster_maxage') ?? 60; ?>;
 	var custom_date_format = "<?php echo $custom_date_format ?>";
 	var dxcluster_refresh_time = <?php echo $dxcluster_refresh_time; ?>;
+	var user_color_confirmed = "<?php echo $user_color_confirmed; ?>";
+	var user_color_worked = "<?php echo $user_color_worked; ?>";
+	var user_color_unworked = "<?php echo $user_color_unworked; ?>";
 
 	// Detect OS for proper keyboard shortcuts
 	var isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
@@ -194,7 +197,7 @@
 
 <link rel="stylesheet" type="text/css" href="<?php echo $this->paths->cache_buster('/assets/css/bandmap_list.css'); ?>" />
 
-<div class="container-fluid" id="bandmapContainer">
+<div class="container px-3 px-lg-4 mt-3 mb-3" id="bandmapContainer">
 	<!-- Messages -->
 	<div class="messages my-1 mx-3"></div>
 

@@ -4,9 +4,14 @@
     var lang_qsos_this_month = "<?= __('Number of QSOs for this month of the year'); ?>";
 </script>
 
-<div class="container">
-    <br>
+<div class="container px-3 px-lg-4 mt-3 mb-3">
     <h2><?php echo $page_title; ?></h2>
+
+	    <div class="card">
+	      <div class="card-header">
+	        <?= __("Days with QSOs"); ?>
+	      </div>
+	      <div class="card-body">
 
     <br>
 	<div class="tabs">
@@ -199,4 +204,6 @@
         </div>
 
     </div>
+	      </div>
+	    </div>
 </div>

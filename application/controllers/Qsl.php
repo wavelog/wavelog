@@ -153,8 +153,8 @@ class Qsl extends CI_Controller {
 	}
 
 	function addQsoToQsl() {
-		$qsoid = $this->input->post('qsoid');
-		$filename = $this->input->post('filename');
+		$qsoid = $this->input->post('qsoid', TRUE);
+		$filename = $this->input->post('filename', TRUE);
 
 		$this->load->model('Qsl_model');
 		$insertid = $this->Qsl_model->addQsotoQsl($qsoid, $filename);

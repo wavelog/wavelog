@@ -715,7 +715,7 @@ function plot_sat() {
 
 	amap = $('#sat_map').val();
 	if (amap == undefined) {
-		$("#satcontainer").append('<div id="sat_map" class="map-leaflet" style="width: 100%; height: 85vh"></div>');
+		$("#satcontainer").append('<div id="sat_map" class="map-leaflet" style="width: 100%; height: 80vh"></div>');
 	}
 
 	$.ajax({

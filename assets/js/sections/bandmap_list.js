@@ -91,6 +91,11 @@ $(function() {
 
 	// Debounced applyFilters
 	let applyFiltersTimer = null;
+
+	function statusColor(confirmed, worked) {
+		return confirmed ? user_color_confirmed : worked ? user_color_worked : user_color_unworked;
+	}
+
 	function debouncedApplyFilters(delay = 150) {
 		if (applyFiltersTimer) clearTimeout(applyFiltersTimer);
 		applyFiltersTimer = setTimeout(() => {
@@ -1131,23 +1136,9 @@ $(function() {
 		// Build table row data
 		spots2render++;
 		var data = [];
-		var dxcc_wked_info, wked_info;			// Color code DXCC entity: green=confirmed, yellow=worked, red=new
 
-			if (single.cnfmd_dxcc) {
-				dxcc_wked_info = "text-success";
-			} else if (single.worked_dxcc) {
-				dxcc_wked_info = "text-warning";
-			} else {
-				dxcc_wked_info = "text-danger";
-			}
-		// Color code callsign: green=confirmed, yellow=worked, red=new
-		if (single.cnfmd_call) {
-			wked_info = "text-success";
-		} else if (single.worked_call) {
-			wked_info = "text-warning";
-		} else {
-			wked_info = "text-danger";
-		}		// Build LoTW badge with color coding based on last upload age
+		var dxcc_wked_info = statusColor(single.cnfmd_dxcc, single.worked_dxcc);
+		var wked_info = statusColor(single.cnfmd_call, single.worked_call);		// Build LoTW badge with color coding based on last upload age
 		var lotw_badge = '';
 		if (single.dxcc_spotted && single.dxcc_spotted.lotw_user) {
 			let lclass = '';
@@ -1243,22 +1234,15 @@ $(function() {
 	let submode = (single.submode && single.submode !== '') ? single.submode : '';
 	data[0].push(submode);		// Callsign column: wrap in callstats link with color coding
 		let callstatsLink = '<a href="javascript:displayCallstatsContacts(\'' + single.spotted + '\',\'All\',\'All\',\'All\',\'All\',\'\');" onclick="event.stopPropagation();">' + single.spotted + '</a>';
-		wked_info = ((wked_info != '' ? '<span class="' + wked_info + '">' : '') + callstatsLink + (wked_info != '' ? '</span>' : ''));
+		wked_info = '<span style="color:' + wked_info + '">' + callstatsLink + '</span>';
 		var spotted = wked_info;
 		data[0].push(spotted);
 
 	// Continent column: color code based on worked/confirmed status
-	var continent_wked_info;
-	if (single.cnfmd_continent) {
-		continent_wked_info = "text-success";
-	} else if (single.worked_continent) {
-		continent_wked_info = "text-warning";
-	} else {
-		continent_wked_info = "text-danger";
-	}
+	var continent_wked_info = statusColor(single.cnfmd_continent, single.worked_continent);
 	let continent_value = (single.dxcc_spotted && single.dxcc_spotted.cont) ? single.dxcc_spotted.cont : '';
 	if (continent_value) {
-		let continent_display = (continent_wked_info != '' ? '<span class="' + continent_wked_info + '">' : '') + continent_value + (continent_wked_info != '' ? '</span>' : '');
+		let continent_display = '<span style="color:' + continent_wked_info + '">' + continent_value + '</span>';
 		continent_wked_info = '<a href="javascript:spawnLookupModal(\'' + continent_value.toLowerCase() + '\',\'continent\')"; data-bs-toggle="tooltip" title="' + lang_bandmap_see_details_continent + ' ' + continent_value + '">' + continent_display + '</a>';
 	} else {
 		continent_wked_info = '';
@@ -1287,7 +1271,7 @@ $(function() {
 
 	// Entity column: entity name with color coding (no flag)
 	let dxcc_entity_full = single.dxcc_spotted ? (single.dxcc_spotted.entity || '') : '';
-	let entity_colored = dxcc_entity_full ? ((dxcc_wked_info != '' ? '<span class="' + dxcc_wked_info + '">' : '') + dxcc_entity_full + (dxcc_wked_info != '' ? '</span>' : '')) : '';
+	let entity_colored = dxcc_entity_full ? '<span style="color:' + dxcc_wked_info + '">' + dxcc_entity_full + '</span>' : '';
 	if (single.dxcc_spotted && single.dxcc_spotted.dxcc_id && dxcc_entity_full) {
 		data[0].push('<a href="javascript:spawnLookupModal(\'' + single.dxcc_spotted.dxcc_id + '\',\'dxcc\')"; data-bs-toggle="tooltip" title="' + lang_bandmap_see_details + ' ' + dxcc_entity_full + '">' + entity_colored + '</a>');
 	} else {
@@ -4002,13 +3986,11 @@ $(function() {
 			$('.spottable th:nth-child(8), .spottable td:nth-child(8)').addClass('column-hidden'); // CQZ
 			$('.spottable th:nth-child(12), .spottable td:nth-child(12)').addClass('column-hidden'); // de Cont
 			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de CQZ
-			$('.spottable th:nth-child(14), .spottable td:nth-child(14)').addClass('column-hidden'); // Last QSO
 		} else if (containerWidth <= 1374) {
 			// Hide: CQZ, de CQZ, Last QSO, Mode
 			$('.spottable th:nth-child(4), .spottable td:nth-child(4)').addClass('column-hidden'); // Mode
 			$('.spottable th:nth-child(8), .spottable td:nth-child(8)').addClass('column-hidden'); // CQZ
 			$('.spottable th:nth-child(13), .spottable td:nth-child(13)').addClass('column-hidden'); // de CQZ
-			$('.spottable th:nth-child(14), .spottable td:nth-child(14)').addClass('column-hidden'); // Last QSO
 		}
 		// else: containerWidth > 1374 - show all columns (already reset above)
 
@@ -4364,32 +4346,6 @@ $(function() {
 	}
 
 	/**
-	 * Get border color based on continent status (matching bandmap table colors)
-	 */
-	function getContinentStatusColor(cnfmdContinent, workedContinent) {
-		// Green = confirmed, Yellow = worked (not confirmed), Red = new (not worked)
-		if (cnfmdContinent) {
-			return '#28a745'; // Bootstrap success green (confirmed)
-		} else if (workedContinent) {
-			return '#ffc107'; // Bootstrap warning yellow (worked but not confirmed)
-		}
-		return '#dc3545'; // Bootstrap danger red (new/not worked)
-	}
-
-	/**
-	 * Get fill color based on DXCC status (matching bandmap table colors)
-	 */
-	function getDxccStatusColor(cnfmdDxcc, workedDxcc) {
-		// Green = confirmed, Yellow = worked (not confirmed), Red = new (not worked)
-		if (cnfmdDxcc) {
-			return '#28a745'; // Bootstrap success green (confirmed)
-		} else if (workedDxcc) {
-			return '#ffc107'; // Bootstrap warning yellow (worked but not confirmed)
-		}
-		return '#dc3545'; // Bootstrap danger red (new/not worked)
-	}
-
-	/**
 	 * Get darker border color for map markers (30% darker than fill)
 	 */
 	function getDarkerBorderColor(fillColor) {
@@ -4546,8 +4502,8 @@ $(function() {
 				}
 			});
 
-			const borderColor = getContinentStatusColor(bestContinentConfirmed, bestContinentWorked);
-			const fillColor = getDxccStatusColor(bestDxccConfirmed, bestDxccWorked);
+			const borderColor = statusColor(bestContinentConfirmed, bestContinentWorked);
+			const fillColor = statusColor(bestDxccConfirmed, bestDxccWorked);
 			// Use darker border to ensure visibility even when border and fill are the same
 			const darkerBorder = getDarkerBorderColor(fillColor);
 

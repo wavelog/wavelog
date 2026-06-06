@@ -86,6 +86,7 @@ class Distancerecords extends CI_Controller {
 
         $data['page_title'] = __("Log View")." - " . __("Satellite Distance Records");
         $data['filter'] = $sat;
+        $data['adif_propmodes'] = $this->config->item('adif_propmodes');
 
         $this->load->view('distancerecords/details', $data);
     }

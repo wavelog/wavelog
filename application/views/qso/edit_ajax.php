@@ -71,12 +71,12 @@
                                     <div class="row">
                                         <div class="mb-3 col-sm-6">
                                             <label for="freq"><?= __("Frequency"); ?></label>
-                                            <input type="text" class="form-control" id="freq" name="freq" value="<?php echo $qso->COL_FREQ; ?>">
+                                            <input type="number" step="1" class="form-control" id="freq" name="freq" value="<?php echo $qso->COL_FREQ; ?>">
                                         </div>
 
                                         <div class="mb-3 col-sm-6">
                                             <label for="freq"><?= __("RX Frequency"); ?></label>
-                                            <input type="text" class="form-control" id="freqrx" name="freq_display_rx" value="<?php if ($qso->COL_FREQ_RX != "0") { echo $qso->COL_FREQ_RX; } ?>">
+                                            <input type="number" step="1" class="form-control" id="freqrx" name="freq_display_rx" value="<?php if ($qso->COL_FREQ_RX != "0") { echo $qso->COL_FREQ_RX; } ?>">
                                         </div>
                                     </div>
 
