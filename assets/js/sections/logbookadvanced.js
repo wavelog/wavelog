@@ -225,6 +225,7 @@ function loadQSOTable(rows) {
 			searching: false,
 			responsive: false,
 			ordering: true,
+			order: [[1, 'asc']],
 			scrollY: window.innerHeight - $('#searchForm').innerHeight() - 250,
 			scrollCollapse: true,
 			paging: false,
@@ -233,7 +234,7 @@ function loadQSOTable(rows) {
 				$(row).attr('id', data.id);
 			},
 			columnDefs: [
-				{ orderable: false, targets: 0 },
+				{ orderable: false, targets: 0, className: 'no-sort' },
 				{ targets: $(".distance-column-sort").index(), type: "numbersort" },
 				{ targets: $(".antennaazimuth-column-sort").index(), type: "numbersort" },
 				{ targets: $(".antennaelevation-column-sort").index(), type: "numbersort" },

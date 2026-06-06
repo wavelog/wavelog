@@ -178,7 +178,7 @@ class Logbookadvanced extends CI_Controller {
 			$qsoArray = $qso->toArray();
 			$flag = $this->dxccflag->get($qso->getDXCCId());
 			if ($flag != null) {
-				$qsoArray['flag'] = ' '.$flag;
+				$qsoArray['flag'] = ' <span class="flag-emoji">'.$flag.'</span>';
 			} else {
 				$qsoArray['flag'] = '';
 			}
@@ -219,7 +219,7 @@ class Logbookadvanced extends CI_Controller {
 
 		$flag = $this->dxccflag->get($qsoObj->getDXCCId());
 		if ($flag != null) {
-			$cleaned_qso['flag'] = ' ' . $flag;
+			$cleaned_qso['flag'] = ' <span class="flag-emoji">'.$flag.'</span>';
 		} else {
 			$cleaned_qso['flag'] = '';
 		}
@@ -287,7 +287,7 @@ class Logbookadvanced extends CI_Controller {
 			$singleQso = $qso->toArray();
 			$flag = $this->dxccflag->get($qso->getDXCCId());
 			if ($flag != null) {
-				$singleQso['flag'] = ' '.$flag;
+				$singleQso['flag'] = ' <span class="flag-emoji">'.$flag.'</span>';
 			} else {
 				$singleQso['flag'] = '';
 			}
@@ -324,7 +324,7 @@ class Logbookadvanced extends CI_Controller {
 			$singleQso = $qso->toArray();
 			$flag = $this->dxccflag->get($qso->getDXCCId());
 			if ($flag != null) {
-				$singleQso['flag'] = ' '.$flag;
+				$singleQso['flag'] = ' <span class="flag-emoji">'.$flag.'</span>';
 			} else {
 				$singleQso['flag'] = '';
 			}
