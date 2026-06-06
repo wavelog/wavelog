@@ -225,6 +225,7 @@ function loadQSOTable(rows) {
 			searching: false,
 			responsive: false,
 			ordering: true,
+			order: [],
 			scrollY: window.innerHeight - $('#searchForm').innerHeight() - 250,
 			scrollCollapse: true,
 			paging: false,

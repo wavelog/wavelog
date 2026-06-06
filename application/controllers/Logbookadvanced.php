@@ -177,11 +177,7 @@ class Logbookadvanced extends CI_Controller {
 		foreach ($this->logbookadvanced_model->searchQsos($searchCriteria) as $qso) {
 			$qsoArray = $qso->toArray();
 			$flag = $this->dxccflag->get($qso->getDXCCId());
-			if ($flag != null) {
-				$qsoArray['flag'] = ' '.$flag;
-			} else {
-				$qsoArray['flag'] = '';
-			}
+			$qsoArray['flag'] = $this->flag_html($flag);
 			$qsos[] = $qsoArray;
 		}
 
@@ -218,11 +214,7 @@ class Logbookadvanced extends CI_Controller {
 		$cleaned_qso = $qsoObj->toArray();	// And back to Array for the JSON
 
 		$flag = $this->dxccflag->get($qsoObj->getDXCCId());
-		if ($flag != null) {
-			$cleaned_qso['flag'] = ' ' . $flag;
-		} else {
-			$cleaned_qso['flag'] = '';
-		}
+		$cleaned_qso['flag'] = $this->flag_html($flag);
 
 		header("Content-Type: application/json");
 		echo json_encode($cleaned_qso);
@@ -286,11 +278,7 @@ class Logbookadvanced extends CI_Controller {
 		foreach ($qsos as $qso) {
 			$singleQso = $qso->toArray();
 			$flag = $this->dxccflag->get($qso->getDXCCId());
-			if ($flag != null) {
-				$singleQso['flag'] = ' '.$flag;
-			} else {
-				$singleQso['flag'] = '';
-			}
+			$singleQso['flag'] = $this->flag_html($flag);
 			$q[]=$singleQso;
 		}
 
@@ -323,11 +311,7 @@ class Logbookadvanced extends CI_Controller {
 		foreach ($qsos as $qso) {
 			$singleQso = $qso->toArray();
 			$flag = $this->dxccflag->get($qso->getDXCCId());
-			if ($flag != null) {
-				$singleQso['flag'] = ' '.$flag;
-			} else {
-				$singleQso['flag'] = '';
-			}
+			$singleQso['flag'] = $this->flag_html($flag);
 			$q[]=$singleQso;
 		}
 
@@ -1023,6 +1007,14 @@ class Logbookadvanced extends CI_Controller {
 
 		header("Content-Type: application/json");
 		echo json_encode($cleaned_qso);
+	}
+
+	private function flag_html($flag) {
+		if ($flag != null) {
+			return ' <span class="flag-emoji">'.$flag.'</span>';
+		} else {
+			return '';
+		}
 	}
 
 
