@@ -730,6 +730,17 @@
 											</select>
 											<small id="user_dashboard_solar_Help" class="form-text text-muted"><?= __("This switches the display of the solar and propagation data on the dashboard."); ?></small>
 										</div>
+									<div class="mb-3">
+										<label><?= __("Dashboard Cards"); ?></label>
+										<div class="form-check form-switch">
+											<input name="user_dashboard_show_dxpeditions" class="form-check-input" type="checkbox" role="switch" id="dashboardShowDxpeditions" <?php if ($user_dashboard_show_dxpeditions ?? true) { echo 'checked'; } ?>>
+											<label class="form-check-label" for="dashboardShowDxpeditions"><?= __("Active Expeditions"); ?></label>
+										</div>
+										<div class="form-check form-switch">
+											<input name="user_dashboard_show_contests" class="form-check-input" type="checkbox" role="switch" id="dashboardShowContests" <?php if ($user_dashboard_show_contests ?? true) { echo 'checked'; } ?>>
+											<label class="form-check-label" for="dashboardShowContests"><?= __("Active Contests"); ?></label>
+										</div>
+									</div>
 									</div>
 								</div>
 							</div>

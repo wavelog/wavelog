@@ -226,6 +226,11 @@ class Dashboard extends CI_Controller {
 			}
 		}
 
+		// Active Expeditions and Contests for Dashboard cards
+		$this->load->model('Calendar_model');
+		$data['active_dxpeditions'] = $this->Calendar_model->get_active_dxpeditions();
+		$data['active_contests'] = $this->Calendar_model->get_contests_today();
+
 		// Load the views
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('dashboard/index');
