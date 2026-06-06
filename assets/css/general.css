@@ -1473,3 +1473,11 @@ svg text.month { fill: #AAA; }
 #gridsquare_map {
 	height: calc(100vh - 350px) !important; 
 }
+
+.lbatable thead tr th:nth-child(1),
+.lbatable tbody tr td:nth-child(1) {
+	padding-left: 10px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
