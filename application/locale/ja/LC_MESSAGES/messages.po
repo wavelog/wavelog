@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-03 11:00+0000\n"
-"PO-Revision-Date: 2026-06-02 11:16+0000\n"
+"POT-Creation-Date: 2026-06-06 12:24+0000\n"
+"PO-Revision-Date: 2026-06-06 19:20+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
@@ -1301,6 +1301,18 @@ msgstr "eQSLカード画像のダウンロード"
 msgid "All eQSLs marked as uploaded"
 msgstr "すべてのeQSLがアップロード済みとしてマークされています"
 
+#: application/controllers/Errors.php:22
+msgid "Page Not Found"
+msgstr "ページが見つかりません"
+
+#: application/controllers/Errors.php:23
+msgid "QRZ? ... no reply."
+msgstr "QRZ？…返信なし。"
+
+#: application/controllers/Errors.php:24
+msgid "Nobody is transmitting on this frequency."
+msgstr "この周波数帯で送信している人はいません。"
+
 #: application/controllers/Generic_qsl.php:18
 #: application/views/awards/amsat_rover/index.php:43
 msgid "Confirmations"
@@ -1936,8 +1948,8 @@ msgstr "州"
 #: application/views/qso/award_tabs.php:45
 #: application/views/qso/components/previous_contacts.php:86
 #: application/views/qso/edit_ajax.php:157 application/views/qso/index.php:376
-#: application/views/satellite/pass.php:48
-#: application/views/satellite/pass.php:87
+#: application/views/satellite/pass.php:38
+#: application/views/satellite/pass.php:80
 #: application/views/search/result.php:49
 #: application/views/search/search_result_ajax.php:13
 #: application/views/simplefle/index.php:161
@@ -2170,12 +2182,12 @@ msgstr "DXCCを削除しました"
 msgid "Advanced logbook"
 msgstr "ログブックの詳細"
 
-#: application/controllers/Logbookadvanced.php:984
+#: application/controllers/Logbookadvanced.php:968
 #, php-format
 msgid "DXCC updated for %d QSO(s)."
 msgstr "DXCCが %d QSO 更新されました。"
 
-#: application/controllers/Logbookadvanced.php:1000
+#: application/controllers/Logbookadvanced.php:984
 #, php-format
 msgid "Map for DXCC %s and gridsquare %s."
 msgstr "DXCC %s およびグリッドスクエア %s のマップ。"
@@ -2662,7 +2674,7 @@ msgid "Options"
 msgstr "オプション"
 
 #: application/controllers/Radio.php:53 application/views/debug/index.php:370
-#: application/views/qso/index.php:826
+#: application/views/qso/index.php:826 application/views/satellite/pass.php:116
 msgid "Settings"
 msgstr "設定"
 
@@ -4325,10 +4337,10 @@ msgstr "アクティブ化されたグリッドスクエア"
 #: application/views/logbookadvanced/index.php:408
 #: application/views/qso/award_tabs.php:69
 #: application/views/satellite/flightpath.php:43
-#: application/views/satellite/pass.php:18
+#: application/views/satellite/pass.php:122
 #: application/views/satellite/passtable.php:6
 #: application/views/satellite/skedtable.php:6
-#: application/views/satellite/skedtable.php:35
+#: application/views/satellite/skedtable.php:41
 #: application/views/sattimers/index.php:43
 #: application/views/statistics/index.php:27
 #: application/views/timeline/index.php:195
@@ -4616,8 +4628,9 @@ msgstr ""
 #: application/views/qslcard/searchresult.php:4
 #: application/views/qslprint/qslprint.php:31
 #: application/views/qslprint/qsolist.php:7 application/views/qso/index.php:154
-#: application/views/qso/index.php:190 application/views/satellite/pass.php:52
-#: application/views/satellite/skedtable.php:7
+#: application/views/qso/index.php:190 application/views/satellite/pass.php:132
+#: application/views/satellite/skedtable.php:12
+#: application/views/satellite/skedtable.php:14
 #: application/views/search/search_result_ajax.php:89
 #: application/views/simplefle/index.php:154
 #: application/views/statistics/initialresult.php:15
@@ -4657,6 +4670,8 @@ msgstr "日付"
 #: application/views/qslcard/searchresult.php:6
 #: application/views/qslprint/qslprint.php:32
 #: application/views/qslprint/qsolist.php:8 application/views/qso/index.php:195
+#: application/views/satellite/skedtable.php:13
+#: application/views/satellite/skedtable.php:15
 #: application/views/search/search_result_ajax.php:91
 #: application/views/simplefle/index.php:155
 #: application/views/statistics/initialresult.php:16
@@ -5244,7 +5259,7 @@ msgstr "この API の用途を説明する簡単な名前。"
 #: application/views/options/radios.php:45
 #: application/views/options/version_dialog.php:78
 #: application/views/satellite/create.php:82
-#: application/views/satellite/pass.php:117
+#: application/views/satellite/pass.php:185
 #: application/views/simplefle/index.php:22
 msgid "Save"
 msgstr "保存"
@@ -5628,7 +5643,7 @@ msgid "Grid Activations"
 msgstr "グリッドアクティベーション"
 
 #: application/views/awards/amsat_rover/index.php:221
-#: application/views/satellite/skedtable.php:34
+#: application/views/satellite/skedtable.php:40
 msgid "Grid"
 msgstr "グリッド"
 
@@ -9356,7 +9371,7 @@ msgstr "ログにコンテストが見つかりませんでした。"
 
 #: application/views/callstats/index.php:5
 msgid "View statistics for worked callsigns"
-msgstr ""
+msgstr "運用されたコールサインの統計情報を表示する"
 
 #: application/views/callstats/index.php:75
 #: application/views/gridmap/index.php:96
@@ -9531,7 +9546,7 @@ msgstr "はい、切り替えます！"
 #: application/views/cron/edit.php:74
 #: application/views/interface_assets/footer.php:40
 #: application/views/logbookadvanced/index.php:88
-#: application/views/satellite/pass.php:116
+#: application/views/satellite/pass.php:184
 #: application/views/user/modals/admin_impersonate_modal.php:45
 #: application/views/user/modals/stop_impersonate_modal.php:14
 msgid "Cancel"
@@ -10360,7 +10375,7 @@ msgstr "VUCC グリッドスクエア"
 
 #: application/views/continents/index.php:14
 msgid "View continent statistics"
-msgstr ""
+msgstr "大陸統計を見る"
 
 #: application/views/continents/index.php:68
 #: application/views/statistics/index.php:23
@@ -11752,7 +11767,7 @@ msgstr "DXグリッドスクエア"
 
 #: application/views/distancerecords/index.php:56
 msgid "No QSOs found matching the criteria for this page!"
-msgstr ""
+msgstr "このページに掲載されている条件に一致する交信は見つかりませんでした！"
 
 #: application/views/distances/index.php:5
 #: application/views/interface_assets/footer.php:31
@@ -12191,9 +12206,13 @@ msgstr "QSL日付"
 msgid "View"
 msgstr "ビュー"
 
+#: application/views/errors/html/error_404.php:82
+msgid "Go Back to Dashboard"
+msgstr "ダッシュボードに戻る"
+
 #: application/views/gridmap/index.php:27
 msgid "View a map of worked / confirmed gridsquares"
-msgstr ""
+msgstr "作業済み／確認済みのグリッドマス目の地図を表示する"
 
 #: application/views/gridmap/index.php:73
 #: application/views/logbookadvanced/index.php:352
@@ -12217,7 +12236,7 @@ msgstr "空"
 
 #: application/views/hamsat/index.php:10
 msgid "Satellite Rovers"
-msgstr ""
+msgstr "衛星探査機"
 
 #: application/views/hamsat/index.php:27
 #, php-format
@@ -14565,8 +14584,8 @@ msgstr "距離（キロメートル単位）。この値以上の距離を検索
 #: application/views/logbookadvanced/index.php:921
 #: application/views/logbookadvanced/useroptions.php:28
 #: application/views/satellite/passtable.php:9
-#: application/views/satellite/skedtable.php:10
-#: application/views/satellite/skedtable.php:37
+#: application/views/satellite/skedtable.php:9
+#: application/views/satellite/skedtable.php:43
 #: application/views/sattimers/index.php:51
 msgid "Duration"
 msgstr "間隔"
@@ -16243,7 +16262,7 @@ msgstr ""
 
 #: application/views/qslcard/confirmations.php:7
 msgid "View QSO Confirmations"
-msgstr ""
+msgstr "交信確認を見る"
 
 #: application/views/qslcard/confirmations.php:14
 msgid "Confirmation type"
@@ -17213,7 +17232,7 @@ msgstr "衛星モードを追加"
 
 #: application/views/satellite/flightpath.php:38
 msgid "View a map with satellite flightpaths"
-msgstr ""
+msgstr "衛星の飛行経路を示す地図を表示する"
 
 #: application/views/satellite/flightpath.php:54
 msgid ""
@@ -17239,80 +17258,80 @@ msgstr "衛星TLEの更新"
 msgid "TLE"
 msgstr "TLE"
 
-#: application/views/satellite/pass.php:5
+#: application/views/satellite/pass.php:21
 msgid "Satellite passes"
 msgstr "衛星パス"
 
-#: application/views/satellite/pass.php:8
-msgid "Look for satellite passes"
-msgstr ""
-
-#: application/views/satellite/pass.php:15
+#: application/views/satellite/pass.php:32
 msgid "Your station"
 msgstr "使用する衛星の情報"
 
-#: application/views/satellite/pass.php:28
-#: application/views/satellite/pass.php:67
+#: application/views/satellite/pass.php:42
+#: application/views/satellite/pass.php:84
 msgid "Min. Satellite Elevation"
 msgstr "最小衛星仰角"
 
-#: application/views/satellite/pass.php:32
-#: application/views/satellite/pass.php:71
+#: application/views/satellite/pass.php:49
+#: application/views/satellite/pass.php:91
 msgid "Min. Azimuth"
 msgstr "最小方位角"
 
-#: application/views/satellite/pass.php:40
-#: application/views/satellite/pass.php:79
+#: application/views/satellite/pass.php:57
+#: application/views/satellite/pass.php:99
 msgid "Max. Azimuth"
 msgstr "最大方位角"
 
-#: application/views/satellite/pass.php:56
-msgid "Min. time"
-msgstr "時刻"
-
-#: application/views/satellite/pass.php:65
+#: application/views/satellite/pass.php:74
 msgid "Sked partner"
 msgstr "Sked partner"
 
-#: application/views/satellite/pass.php:93
+#: application/views/satellite/pass.php:123
+msgid "Only satellites with TLE data are shown here!"
+msgstr "ここでは、TLEデータを持つ衛星のみが表示されます！"
+
+#: application/views/satellite/pass.php:136
+msgid "Min. time"
+msgstr "時刻"
+
+#: application/views/satellite/pass.php:147
 msgid "Load predictions"
 msgstr "軌道予測"
 
-#: application/views/satellite/pass.php:94
-msgid "Add sked partner"
-msgstr "スケジューリングパートナーを追加する"
-
-#: application/views/satellite/pass.php:96
+#: application/views/satellite/pass.php:149
 msgid "Presets"
 msgstr "プリセット"
 
-#: application/views/satellite/pass.php:98
+#: application/views/satellite/pass.php:151
 msgid "Save current settings"
 msgstr "現在の設定を保存する"
 
-#: application/views/satellite/pass.php:107
+#: application/views/satellite/pass.php:165
+msgid "Pass Predictions"
+msgstr "パス予測"
+
+#: application/views/satellite/pass.php:175
 msgid "Save Settings"
 msgstr "設定を保存"
 
-#: application/views/satellite/pass.php:111
+#: application/views/satellite/pass.php:179
 msgid "Settings Name"
 msgstr "設定名"
 
-#: application/views/satellite/pass.php:112
+#: application/views/satellite/pass.php:180
 msgid "Enter a name"
 msgstr "名前を入力してください"
 
-#: application/views/satellite/pass.php:123
+#: application/views/satellite/pass.php:192
 msgid "No TLE information detected. Please update TLE's."
 msgstr "TLE情報が検出されませんでした。TLEを更新してください。"
 
 #: application/views/satellite/passtable.php:7
-#: application/views/satellite/skedtable.php:36
+#: application/views/satellite/skedtable.php:42
 msgid "AOS Time"
 msgstr "AOS時間"
 
 #: application/views/satellite/passtable.php:8
-#: application/views/satellite/skedtable.php:40
+#: application/views/satellite/skedtable.php:46
 msgid "LOS Time"
 msgstr "LOS時間"
 
@@ -17325,17 +17344,17 @@ msgid "Max Elevation (Azimuth)"
 msgstr "最大仰角（方位角）"
 
 #: application/views/satellite/passtable.php:12
-#: application/views/satellite/skedtable.php:38
+#: application/views/satellite/skedtable.php:44
 msgid "AOS Azimuth"
 msgstr "AOS方位角"
 
 #: application/views/satellite/passtable.php:13
-#: application/views/satellite/skedtable.php:41
+#: application/views/satellite/skedtable.php:47
 msgid "LOS Azimuth"
 msgstr "方位角"
 
 #: application/views/satellite/passtable.php:55
-#: application/views/satellite/skedtable.php:84
+#: application/views/satellite/skedtable.php:88
 msgid "Search failed!"
 msgstr "検索に失敗しました!"
 
@@ -17344,7 +17363,7 @@ msgid "No passes found. Please check the input parameters."
 msgstr "パスが見つかりません。入力パラメータを確認してください。"
 
 #: application/views/satellite/passtable.php:73
-#: application/views/satellite/skedtable.php:94
+#: application/views/satellite/skedtable.php:98
 msgid "min"
 msgstr "分"
 
@@ -17352,20 +17371,20 @@ msgstr "分"
 msgid "TLE date"
 msgstr "TLE日付"
 
-#: application/views/satellite/skedtable.php:8
+#: application/views/satellite/skedtable.php:7
 msgid "Sked AOS Time"
 msgstr "スケッドAOS時間"
 
-#: application/views/satellite/skedtable.php:9
+#: application/views/satellite/skedtable.php:8
 msgid "Sked LOS Time"
 msgstr "予定LOS時間"
 
-#: application/views/satellite/skedtable.php:39
+#: application/views/satellite/skedtable.php:45
 #: application/views/sattimers/index.php:50
 msgid "Max Elevation"
 msgstr "最大仰角"
 
-#: application/views/satellite/skedtable.php:85
+#: application/views/satellite/skedtable.php:89
 msgid "No overlapping passes found. Please check the input parameters."
 msgstr "重複するパスが見つかりません。入力パラメータを確認してください。"
 
@@ -18419,7 +18438,7 @@ msgstr "公開ページにアクセス"
 
 #: application/views/statistics/antennaanalytics.php:5
 msgid "View azimuth and elevation data"
-msgstr ""
+msgstr "方位角と仰角のデータを表示する"
 
 #: application/views/statistics/antennaanalytics.php:15
 msgid "Elevation"
@@ -18709,7 +18728,7 @@ msgstr "テーマを追加する"
 
 #: application/views/timeline/index.php:6
 msgid "View timeline statistics"
-msgstr ""
+msgstr "タイムライン統計を表示"
 
 #: application/views/timeline/index.php:102
 msgid "All Years"
@@ -18733,7 +18752,7 @@ msgstr "交信済コールサイン（最大5つ）"
 
 #: application/views/timeplotter/index.php:14
 msgid "View a heatmap or a chart of QSOs"
-msgstr ""
+msgstr "交信状況のヒートマップまたはチャートを表示する"
 
 #: application/views/timeplotter/index.php:85
 msgid "Best Time Window"
@@ -18749,7 +18768,7 @@ msgstr "ベストモード"
 
 #: application/views/timeplotter/index.php:118
 msgid "Total QSOs Plotted"
-msgstr ""
+msgstr "プロットされた総交信数"
 
 #: application/views/timeplotter/index.php:132
 msgid "Heatmap"
@@ -19155,11 +19174,11 @@ msgstr "ダッシュボードマップを表示"
 
 #: application/views/user/edit.php:706
 msgid "Map on top"
-msgstr ""
+msgstr "上部に地図を表示"
 
 #: application/views/user/edit.php:707
 msgid "Map at left"
-msgstr ""
+msgstr "左側の地図"
 
 #: application/views/user/edit.php:708
 msgid "Map at right"
@@ -20258,6 +20277,12 @@ msgstr "CQz"
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr "CQz geojson"
+
+#~ msgid "Look for satellite passes"
+#~ msgstr "衛星の通過経路を確認する"
+
+#~ msgid "Add sked partner"
+#~ msgstr "スケジューリングパートナーを追加する"
 
 #~ msgid "Total QSOs plotted"
 #~ msgstr "プロットされたQSOの総数"

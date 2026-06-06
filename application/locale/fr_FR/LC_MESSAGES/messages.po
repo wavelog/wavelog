@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-03 11:00+0000\n"
-"PO-Revision-Date: 2026-05-31 12:50+0000\n"
+"POT-Creation-Date: 2026-06-06 12:24+0000\n"
+"PO-Revision-Date: 2026-06-04 22:43+0000\n"
 "Last-Translator: JONCOUX Philippe <joncoux@free.fr>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/fr/>\n"
@@ -1313,6 +1313,18 @@ msgstr "eQSL : Téléchargement des cartes/images"
 msgid "All eQSLs marked as uploaded"
 msgstr "Toutes les eQSL marquées comme téléchargées"
 
+#: application/controllers/Errors.php:22
+msgid "Page Not Found"
+msgstr ""
+
+#: application/controllers/Errors.php:23
+msgid "QRZ? ... no reply."
+msgstr ""
+
+#: application/controllers/Errors.php:24
+msgid "Nobody is transmitting on this frequency."
+msgstr ""
+
 #: application/controllers/Generic_qsl.php:18
 #: application/views/awards/amsat_rover/index.php:43
 msgid "Confirmations"
@@ -1954,8 +1966,8 @@ msgstr "Etat"
 #: application/views/qso/award_tabs.php:45
 #: application/views/qso/components/previous_contacts.php:86
 #: application/views/qso/edit_ajax.php:157 application/views/qso/index.php:376
-#: application/views/satellite/pass.php:48
-#: application/views/satellite/pass.php:87
+#: application/views/satellite/pass.php:38
+#: application/views/satellite/pass.php:80
 #: application/views/search/result.php:49
 #: application/views/search/search_result_ajax.php:13
 #: application/views/simplefle/index.php:161
@@ -2188,12 +2200,12 @@ msgstr "DXCC Supprimé"
 msgid "Advanced logbook"
 msgstr "Journal avancé"
 
-#: application/controllers/Logbookadvanced.php:984
+#: application/controllers/Logbookadvanced.php:968
 #, php-format
 msgid "DXCC updated for %d QSO(s)."
 msgstr "DXCC mis à jour pour %d QSO(s)."
 
-#: application/controllers/Logbookadvanced.php:1000
+#: application/controllers/Logbookadvanced.php:984
 #, php-format
 msgid "Map for DXCC %s and gridsquare %s."
 msgstr "Carte pour DXCC %s et grille %s."
@@ -2688,7 +2700,7 @@ msgid "Options"
 msgstr "Options"
 
 #: application/controllers/Radio.php:53 application/views/debug/index.php:370
-#: application/views/qso/index.php:826
+#: application/views/qso/index.php:826 application/views/satellite/pass.php:116
 msgid "Settings"
 msgstr "Paramètres"
 
@@ -4377,10 +4389,10 @@ msgstr "Locators activés"
 #: application/views/logbookadvanced/index.php:408
 #: application/views/qso/award_tabs.php:69
 #: application/views/satellite/flightpath.php:43
-#: application/views/satellite/pass.php:18
+#: application/views/satellite/pass.php:122
 #: application/views/satellite/passtable.php:6
 #: application/views/satellite/skedtable.php:6
-#: application/views/satellite/skedtable.php:35
+#: application/views/satellite/skedtable.php:41
 #: application/views/sattimers/index.php:43
 #: application/views/statistics/index.php:27
 #: application/views/timeline/index.php:195
@@ -4669,8 +4681,9 @@ msgstr ""
 #: application/views/qslcard/searchresult.php:4
 #: application/views/qslprint/qslprint.php:31
 #: application/views/qslprint/qsolist.php:7 application/views/qso/index.php:154
-#: application/views/qso/index.php:190 application/views/satellite/pass.php:52
-#: application/views/satellite/skedtable.php:7
+#: application/views/qso/index.php:190 application/views/satellite/pass.php:132
+#: application/views/satellite/skedtable.php:12
+#: application/views/satellite/skedtable.php:14
 #: application/views/search/search_result_ajax.php:89
 #: application/views/simplefle/index.php:154
 #: application/views/statistics/initialresult.php:15
@@ -4710,6 +4723,8 @@ msgstr "Date"
 #: application/views/qslcard/searchresult.php:6
 #: application/views/qslprint/qslprint.php:32
 #: application/views/qslprint/qsolist.php:8 application/views/qso/index.php:195
+#: application/views/satellite/skedtable.php:13
+#: application/views/satellite/skedtable.php:15
 #: application/views/search/search_result_ajax.php:91
 #: application/views/simplefle/index.php:155
 #: application/views/statistics/initialresult.php:16
@@ -5316,7 +5331,7 @@ msgstr "Nom simple pour décrire l'utilisation de cette API."
 #: application/views/options/radios.php:45
 #: application/views/options/version_dialog.php:78
 #: application/views/satellite/create.php:82
-#: application/views/satellite/pass.php:117
+#: application/views/satellite/pass.php:185
 #: application/views/simplefle/index.php:22
 msgid "Save"
 msgstr "Enregistrer"
@@ -5703,7 +5718,7 @@ msgid "Grid Activations"
 msgstr "Activations de la grille"
 
 #: application/views/awards/amsat_rover/index.php:221
-#: application/views/satellite/skedtable.php:34
+#: application/views/satellite/skedtable.php:40
 msgid "Grid"
 msgstr "Locator"
 
@@ -9515,7 +9530,7 @@ msgstr "Aucun concours trouvé dans votre journal de trafic."
 
 #: application/views/callstats/index.php:5
 msgid "View statistics for worked callsigns"
-msgstr ""
+msgstr "Consulter les statistiques des indicatifs d'appel utilisés"
 
 #: application/views/callstats/index.php:75
 #: application/views/gridmap/index.php:96
@@ -9694,7 +9709,7 @@ msgstr "Oui, passer à autre chose !"
 #: application/views/cron/edit.php:74
 #: application/views/interface_assets/footer.php:40
 #: application/views/logbookadvanced/index.php:88
-#: application/views/satellite/pass.php:116
+#: application/views/satellite/pass.php:184
 #: application/views/user/modals/admin_impersonate_modal.php:45
 #: application/views/user/modals/stop_impersonate_modal.php:14
 msgid "Cancel"
@@ -10538,7 +10553,7 @@ msgstr "Locator VUCC"
 
 #: application/views/continents/index.php:14
 msgid "View continent statistics"
-msgstr ""
+msgstr "Consulter les statistiques du continent"
 
 #: application/views/continents/index.php:68
 #: application/views/statistics/index.php:23
@@ -10836,18 +10851,18 @@ msgstr "Au moins un de vos certificats expire"
 
 #: application/views/dashboard/index.php:234
 msgid "Total QSOs"
-msgstr ""
+msgstr "QSOs totaux"
 
 #: application/views/dashboard/index.php:274
 msgid "Current Streak"
-msgstr ""
+msgstr "Série actuelle"
 
 #: application/views/dashboard/index.php:277
 #, php-format
 msgid "%d Day"
 msgid_plural "%d Days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Jour"
+msgstr[1] "%d jours"
 
 #: application/views/dashboard/index.php:284
 #: application/views/statistics/index.php:119
@@ -10858,7 +10873,7 @@ msgstr "Indicatif unique /Bandes /Modes"
 #: application/views/dashboard/index.php:328
 #: application/views/view_log/index.php:26
 msgid "Recent QSOs"
-msgstr ""
+msgstr "QSO récents"
 
 #: application/views/dashboard/index.php:380
 #: application/views/qso/index.php:914
@@ -11022,11 +11037,11 @@ msgstr "Données fournies par HAMqsl."
 
 #: application/views/dashboard/index.php:640
 msgid "Day"
-msgstr ""
+msgstr "Jour"
 
 #: application/views/dashboard/index.php:647
 msgid "Night"
-msgstr ""
+msgstr "Nuit"
 
 #: application/views/dashboard/index.php:657
 msgid "Solar Flux Index"
@@ -11946,7 +11961,7 @@ msgstr "Grille DX"
 
 #: application/views/distancerecords/index.php:56
 msgid "No QSOs found matching the criteria for this page!"
-msgstr ""
+msgstr "Aucun QSO correspondant aux critères de cette page n'a été trouvé !"
 
 #: application/views/distances/index.php:5
 #: application/views/interface_assets/footer.php:31
@@ -12395,9 +12410,13 @@ msgstr "Date de la QSL"
 msgid "View"
 msgstr "Voir"
 
+#: application/views/errors/html/error_404.php:82
+msgid "Go Back to Dashboard"
+msgstr ""
+
 #: application/views/gridmap/index.php:27
 msgid "View a map of worked / confirmed gridsquares"
-msgstr ""
+msgstr "Afficher une carte des cases de la grille travaillées/confirmées"
 
 #: application/views/gridmap/index.php:73
 #: application/views/logbookadvanced/index.php:352
@@ -12421,7 +12440,7 @@ msgstr "Vide"
 
 #: application/views/hamsat/index.php:10
 msgid "Satellite Rovers"
-msgstr ""
+msgstr "Rovers satellites"
 
 #: application/views/hamsat/index.php:27
 #, php-format
@@ -14823,8 +14842,8 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:921
 #: application/views/logbookadvanced/useroptions.php:28
 #: application/views/satellite/passtable.php:9
-#: application/views/satellite/skedtable.php:10
-#: application/views/satellite/skedtable.php:37
+#: application/views/satellite/skedtable.php:9
+#: application/views/satellite/skedtable.php:43
 #: application/views/sattimers/index.php:51
 msgid "Duration"
 msgstr "Durée"
@@ -16544,7 +16563,7 @@ msgstr ""
 
 #: application/views/qslcard/confirmations.php:7
 msgid "View QSO Confirmations"
-msgstr ""
+msgstr "Afficher les confirmations QSO"
 
 #: application/views/qslcard/confirmations.php:14
 msgid "Confirmation type"
@@ -17524,7 +17543,7 @@ msgstr "Ajouter le mode satellite"
 
 #: application/views/satellite/flightpath.php:38
 msgid "View a map with satellite flightpaths"
-msgstr ""
+msgstr "Afficher une carte avec les trajectoires de vol des satellites"
 
 #: application/views/satellite/flightpath.php:54
 msgid ""
@@ -17551,80 +17570,80 @@ msgstr "Mise à jour du satellite TLE"
 msgid "TLE"
 msgstr "TLE"
 
-#: application/views/satellite/pass.php:5
+#: application/views/satellite/pass.php:21
 msgid "Satellite passes"
 msgstr "Passages de satellite"
 
-#: application/views/satellite/pass.php:8
-msgid "Look for satellite passes"
-msgstr ""
-
-#: application/views/satellite/pass.php:15
+#: application/views/satellite/pass.php:32
 msgid "Your station"
 msgstr "Votre station"
 
-#: application/views/satellite/pass.php:28
-#: application/views/satellite/pass.php:67
+#: application/views/satellite/pass.php:42
+#: application/views/satellite/pass.php:84
 msgid "Min. Satellite Elevation"
 msgstr "Elévation minimal du satellite"
 
-#: application/views/satellite/pass.php:32
-#: application/views/satellite/pass.php:71
+#: application/views/satellite/pass.php:49
+#: application/views/satellite/pass.php:91
 msgid "Min. Azimuth"
 msgstr "Azimuth minimum"
 
-#: application/views/satellite/pass.php:40
-#: application/views/satellite/pass.php:79
+#: application/views/satellite/pass.php:57
+#: application/views/satellite/pass.php:99
 msgid "Max. Azimuth"
 msgstr "Azimuth maximum"
 
-#: application/views/satellite/pass.php:56
-msgid "Min. time"
-msgstr "Heure minimale"
-
-#: application/views/satellite/pass.php:65
+#: application/views/satellite/pass.php:74
 msgid "Sked partner"
 msgstr "Partenaire de Sked"
 
-#: application/views/satellite/pass.php:93
+#: application/views/satellite/pass.php:123
+msgid "Only satellites with TLE data are shown here!"
+msgstr ""
+
+#: application/views/satellite/pass.php:136
+msgid "Min. time"
+msgstr "Heure minimale"
+
+#: application/views/satellite/pass.php:147
 msgid "Load predictions"
 msgstr "Prédictions de chargement"
 
-#: application/views/satellite/pass.php:94
-msgid "Add sked partner"
-msgstr "Ajouter un partenaire de Sked"
-
-#: application/views/satellite/pass.php:96
+#: application/views/satellite/pass.php:149
 msgid "Presets"
 msgstr "Préréglages"
 
-#: application/views/satellite/pass.php:98
+#: application/views/satellite/pass.php:151
 msgid "Save current settings"
 msgstr "Enregistrer les paramètres actuels"
 
-#: application/views/satellite/pass.php:107
+#: application/views/satellite/pass.php:165
+msgid "Pass Predictions"
+msgstr ""
+
+#: application/views/satellite/pass.php:175
 msgid "Save Settings"
 msgstr "Enregistrer les paramètres"
 
-#: application/views/satellite/pass.php:111
+#: application/views/satellite/pass.php:179
 msgid "Settings Name"
 msgstr "Nom des paramètres"
 
-#: application/views/satellite/pass.php:112
+#: application/views/satellite/pass.php:180
 msgid "Enter a name"
 msgstr "Entrer un nom"
 
-#: application/views/satellite/pass.php:123
+#: application/views/satellite/pass.php:192
 msgid "No TLE information detected. Please update TLE's."
 msgstr "Aucune information TLE détectée. Veuillez mettre à jour les TLE."
 
 #: application/views/satellite/passtable.php:7
-#: application/views/satellite/skedtable.php:36
+#: application/views/satellite/skedtable.php:42
 msgid "AOS Time"
 msgstr "Heure AOS"
 
 #: application/views/satellite/passtable.php:8
-#: application/views/satellite/skedtable.php:40
+#: application/views/satellite/skedtable.php:46
 msgid "LOS Time"
 msgstr "Heure LOS"
 
@@ -17637,17 +17656,17 @@ msgid "Max Elevation (Azimuth)"
 msgstr "Elévation maximale (Azimuth)"
 
 #: application/views/satellite/passtable.php:12
-#: application/views/satellite/skedtable.php:38
+#: application/views/satellite/skedtable.php:44
 msgid "AOS Azimuth"
 msgstr "Azimuth AOS"
 
 #: application/views/satellite/passtable.php:13
-#: application/views/satellite/skedtable.php:41
+#: application/views/satellite/skedtable.php:47
 msgid "LOS Azimuth"
 msgstr "Azimuth LOS"
 
 #: application/views/satellite/passtable.php:55
-#: application/views/satellite/skedtable.php:84
+#: application/views/satellite/skedtable.php:88
 msgid "Search failed!"
 msgstr "Echec de la recherche !"
 
@@ -17656,7 +17675,7 @@ msgid "No passes found. Please check the input parameters."
 msgstr "Aucun passage trouvé. Veuillez vérifier les paramètres d'entrée."
 
 #: application/views/satellite/passtable.php:73
-#: application/views/satellite/skedtable.php:94
+#: application/views/satellite/skedtable.php:98
 msgid "min"
 msgstr "Min"
 
@@ -17664,20 +17683,20 @@ msgstr "Min"
 msgid "TLE date"
 msgstr "Date TLE"
 
-#: application/views/satellite/skedtable.php:8
+#: application/views/satellite/skedtable.php:7
 msgid "Sked AOS Time"
 msgstr "Heure du Sked AOS"
 
-#: application/views/satellite/skedtable.php:9
+#: application/views/satellite/skedtable.php:8
 msgid "Sked LOS Time"
 msgstr "Heure du Sked LOS"
 
-#: application/views/satellite/skedtable.php:39
+#: application/views/satellite/skedtable.php:45
 #: application/views/sattimers/index.php:50
 msgid "Max Elevation"
 msgstr "Elévation maximale"
 
-#: application/views/satellite/skedtable.php:85
+#: application/views/satellite/skedtable.php:89
 msgid "No overlapping passes found. Please check the input parameters."
 msgstr ""
 "Aucun chevauchement de passages n'a été détecté. Veuillez vérifier les "
@@ -18771,7 +18790,7 @@ msgstr "Visitez la page publique"
 
 #: application/views/statistics/antennaanalytics.php:5
 msgid "View azimuth and elevation data"
-msgstr ""
+msgstr "Afficher les données d'azimut et d'élévation"
 
 #: application/views/statistics/antennaanalytics.php:15
 msgid "Elevation"
@@ -19066,7 +19085,7 @@ msgstr "Ajouter un thème"
 
 #: application/views/timeline/index.php:6
 msgid "View timeline statistics"
-msgstr ""
+msgstr "Afficher les statistiques de la chronologie"
 
 #: application/views/timeline/index.php:102
 msgid "All Years"
@@ -19090,7 +19109,7 @@ msgstr "Indicatif(s) contacté(s) (max 5)"
 
 #: application/views/timeplotter/index.php:14
 msgid "View a heatmap or a chart of QSOs"
-msgstr ""
+msgstr "Consultez une carte thermique ou un graphique des QSO"
 
 #: application/views/timeplotter/index.php:85
 msgid "Best Time Window"
@@ -19106,7 +19125,7 @@ msgstr "Meilleur mode"
 
 #: application/views/timeplotter/index.php:118
 msgid "Total QSOs Plotted"
-msgstr ""
+msgstr "Nombre total de QSO représentés"
 
 #: application/views/timeplotter/index.php:132
 msgid "Heatmap"
@@ -19522,11 +19541,11 @@ msgstr "Afficher la carte du tableau de bord"
 
 #: application/views/user/edit.php:706
 msgid "Map on top"
-msgstr ""
+msgstr "Carte en haut"
 
 #: application/views/user/edit.php:707
 msgid "Map at left"
-msgstr ""
+msgstr "Carte à gauche"
 
 #: application/views/user/edit.php:708
 msgid "Map at right"
@@ -20653,6 +20672,12 @@ msgstr "CQz"
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr "CQz geojson"
+
+#~ msgid "Look for satellite passes"
+#~ msgstr "Recherchez les passages des satellites"
+
+#~ msgid "Add sked partner"
+#~ msgstr "Ajouter un partenaire de Sked"
 
 #~ msgid "Total QSOs plotted"
 #~ msgstr "Nombre total de QSO représentés"

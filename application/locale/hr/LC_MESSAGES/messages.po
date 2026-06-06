@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-03 11:00+0000\n"
-"PO-Revision-Date: 2026-01-11 07:07+0000\n"
+"POT-Creation-Date: 2026-06-06 12:24+0000\n"
+"PO-Revision-Date: 2026-06-03 11:00+0000\n"
 "Last-Translator: marin <wavelog@marin.fyi>\n"
 "Language-Team: Croatian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/hr/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.14\n"
+"X-Generator: Weblate 5.17.1\n"
 
 #: application/config/adif_propmodes.php:7
 msgctxt "Propagation Mode"
@@ -90,7 +90,7 @@ msgstr "IRLP"
 #: application/config/adif_propmodes.php:20
 msgctxt "Propagation Mode"
 msgid "Line of Sight (includes transmission through obstacles such as walls)"
-msgstr ""
+msgstr "Linija vida (uključuje prenose kroz prepreke poput zidova)"
 
 #: application/config/adif_propmodes.php:21
 msgctxt "Propagation Mode"
@@ -100,7 +100,7 @@ msgstr "Meteorsko raspršenje"
 #: application/config/adif_propmodes.php:22
 msgctxt "Propagation Mode"
 msgid "Terrestrial or atmospheric repeater or transponder"
-msgstr ""
+msgstr "Zemaljski ili atmosferski repetitor ili transponder"
 
 #: application/config/adif_propmodes.php:23
 msgctxt "Propagation Mode"
@@ -115,7 +115,7 @@ msgstr "Satelit"
 #: application/config/adif_propmodes.php:25
 msgctxt "Propagation Mode"
 msgid "Trans-equatorial"
-msgstr ""
+msgstr "Transekvatorska"
 
 #: application/config/adif_propmodes.php:26
 msgctxt "Propagation Mode"
@@ -390,7 +390,7 @@ msgstr "Opis API ključa %s je ažuriran."
 #: application/controllers/Api.php:89 application/controllers/Api.php:124
 #: application/controllers/Qso.php:580
 msgid "Invalid request method"
-msgstr ""
+msgstr "Nepravilna metoda zahtjeva"
 
 #: application/controllers/Api.php:100
 msgid "Invalid API rights"
@@ -406,7 +406,7 @@ msgstr "Nije moguće generirati API ključ"
 
 #: application/controllers/Api.php:134
 msgid "Invalid API Key"
-msgstr ""
+msgstr "Neispravan API ključ"
 
 #: application/controllers/Api.php:143
 #, php-format
@@ -529,7 +529,7 @@ msgstr "Pregled loga"
 
 #: application/controllers/Awards.php:670
 msgid "and"
-msgstr ""
+msgstr "i"
 
 #: application/controllers/Awards.php:671
 #: application/views/awards/cq/index.php:135
@@ -541,11 +541,11 @@ msgstr ""
 #: application/views/awards/wae/index.php:119
 #: application/views/awards/wpx/index.php:81
 msgid "Every band (w/o SAT)"
-msgstr ""
+msgstr "Svaki opseg (bez SAT)"
 
 #: application/controllers/Awards.php:671
 msgid "band"
-msgstr ""
+msgstr "opseg"
 
 #: application/controllers/Awards.php:674
 msgid " and satellite "
@@ -700,7 +700,7 @@ msgstr "Polja potvrđena QSL kartama"
 #: application/controllers/Awards.php:1165
 #: application/controllers/Awards.php:1201
 msgid "Total Gridsquares worked"
-msgstr ""
+msgstr "Ukupno odrađenih lokatora"
 
 #: application/controllers/Awards.php:1182
 msgid "Fred Fish Memorial Award (FFMA)"
@@ -728,7 +728,7 @@ msgstr "WAP"
 #: application/controllers/Awards.php:1590
 #: application/views/interface_assets/header.php:255
 msgid "WAIP"
-msgstr ""
+msgstr "WAIP"
 
 #: application/controllers/Awards.php:2297
 #: application/views/awards/itu/index.php:34
@@ -763,7 +763,7 @@ msgstr "\"Polska\" Award"
 
 #: application/controllers/Awards.php:2775
 msgid "Awards - AMSAT Rover"
-msgstr ""
+msgstr "Diplome - AMSAT Rover"
 
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:343
@@ -850,7 +850,7 @@ msgstr "Kordinator kluba"
 
 #: application/controllers/Club.php:24
 msgid "Club Member ADIF"
-msgstr ""
+msgstr "ADIF Člana kluba"
 
 #: application/controllers/Club.php:25
 msgid "Club Member"
@@ -863,13 +863,13 @@ msgstr "Neispravan ID korisnika!"
 
 #: application/controllers/Club.php:65
 msgid "This user is not a club station."
-msgstr ""
+msgstr "Ovaj korisnki nije klupska postaja."
 
 #: application/controllers/Club.php:69
 #: application/views/club/permissions.php:10
 #: application/views/user/index.php:215
 msgid "Club Permissions"
-msgstr ""
+msgstr "Dozvole kluba"
 
 #: application/controllers/Club.php:132 application/controllers/Club.php:161
 #: application/controllers/Club.php:188 application/models/Club_model.php:22
@@ -1286,6 +1286,18 @@ msgstr ""
 
 #: application/controllers/Eqsl.php:667
 msgid "All eQSLs marked as uploaded"
+msgstr ""
+
+#: application/controllers/Errors.php:22
+msgid "Page Not Found"
+msgstr ""
+
+#: application/controllers/Errors.php:23
+msgid "QRZ? ... no reply."
+msgstr ""
+
+#: application/controllers/Errors.php:24
+msgid "Nobody is transmitting on this frequency."
 msgstr ""
 
 #: application/controllers/Generic_qsl.php:18
@@ -1915,8 +1927,8 @@ msgstr ""
 #: application/views/qso/award_tabs.php:45
 #: application/views/qso/components/previous_contacts.php:86
 #: application/views/qso/edit_ajax.php:157 application/views/qso/index.php:376
-#: application/views/satellite/pass.php:48
-#: application/views/satellite/pass.php:87
+#: application/views/satellite/pass.php:38
+#: application/views/satellite/pass.php:80
 #: application/views/search/result.php:49
 #: application/views/search/search_result_ajax.php:13
 #: application/views/simplefle/index.php:161
@@ -2149,12 +2161,12 @@ msgstr ""
 msgid "Advanced logbook"
 msgstr ""
 
-#: application/controllers/Logbookadvanced.php:984
+#: application/controllers/Logbookadvanced.php:968
 #, php-format
 msgid "DXCC updated for %d QSO(s)."
 msgstr ""
 
-#: application/controllers/Logbookadvanced.php:1000
+#: application/controllers/Logbookadvanced.php:984
 #, php-format
 msgid "Map for DXCC %s and gridsquare %s."
 msgstr ""
@@ -2631,7 +2643,7 @@ msgid "Options"
 msgstr ""
 
 #: application/controllers/Radio.php:53 application/views/debug/index.php:370
-#: application/views/qso/index.php:826
+#: application/views/qso/index.php:826 application/views/satellite/pass.php:116
 msgid "Settings"
 msgstr ""
 
@@ -4247,10 +4259,10 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:408
 #: application/views/qso/award_tabs.php:69
 #: application/views/satellite/flightpath.php:43
-#: application/views/satellite/pass.php:18
+#: application/views/satellite/pass.php:122
 #: application/views/satellite/passtable.php:6
 #: application/views/satellite/skedtable.php:6
-#: application/views/satellite/skedtable.php:35
+#: application/views/satellite/skedtable.php:41
 #: application/views/sattimers/index.php:43
 #: application/views/statistics/index.php:27
 #: application/views/timeline/index.php:195
@@ -4536,8 +4548,9 @@ msgstr ""
 #: application/views/qslcard/searchresult.php:4
 #: application/views/qslprint/qslprint.php:31
 #: application/views/qslprint/qsolist.php:7 application/views/qso/index.php:154
-#: application/views/qso/index.php:190 application/views/satellite/pass.php:52
-#: application/views/satellite/skedtable.php:7
+#: application/views/qso/index.php:190 application/views/satellite/pass.php:132
+#: application/views/satellite/skedtable.php:12
+#: application/views/satellite/skedtable.php:14
 #: application/views/search/search_result_ajax.php:89
 #: application/views/simplefle/index.php:154
 #: application/views/statistics/initialresult.php:15
@@ -4577,6 +4590,8 @@ msgstr "Datum"
 #: application/views/qslcard/searchresult.php:6
 #: application/views/qslprint/qslprint.php:32
 #: application/views/qslprint/qsolist.php:8 application/views/qso/index.php:195
+#: application/views/satellite/skedtable.php:13
+#: application/views/satellite/skedtable.php:15
 #: application/views/search/search_result_ajax.php:91
 #: application/views/simplefle/index.php:155
 #: application/views/statistics/initialresult.php:16
@@ -5111,7 +5126,7 @@ msgstr ""
 #: application/views/options/radios.php:45
 #: application/views/options/version_dialog.php:78
 #: application/views/satellite/create.php:82
-#: application/views/satellite/pass.php:117
+#: application/views/satellite/pass.php:185
 #: application/views/simplefle/index.php:22
 msgid "Save"
 msgstr ""
@@ -5473,7 +5488,7 @@ msgid "Grid Activations"
 msgstr ""
 
 #: application/views/awards/amsat_rover/index.php:221
-#: application/views/satellite/skedtable.php:34
+#: application/views/satellite/skedtable.php:40
 msgid "Grid"
 msgstr ""
 
@@ -9126,7 +9141,7 @@ msgstr ""
 #: application/views/cron/edit.php:74
 #: application/views/interface_assets/footer.php:40
 #: application/views/logbookadvanced/index.php:88
-#: application/views/satellite/pass.php:116
+#: application/views/satellite/pass.php:184
 #: application/views/user/modals/admin_impersonate_modal.php:45
 #: application/views/user/modals/stop_impersonate_modal.php:14
 msgid "Cancel"
@@ -11140,7 +11155,7 @@ msgstr "Albanski"
 
 #: application/views/debug/index.php:849
 msgid "Armenian"
-msgstr ""
+msgstr "Armenski"
 
 #: application/views/debug/index.php:850
 msgid "Bosnian"
@@ -11152,7 +11167,7 @@ msgstr "Bugarski"
 
 #: application/views/debug/index.php:852
 msgid "Chinese (Simplified)"
-msgstr "Kineski (pojednostavljeni)"
+msgstr "Kineski (Pojednostavljeni)"
 
 #: application/views/debug/index.php:853
 msgid "Croatian"
@@ -11160,7 +11175,7 @@ msgstr "Hrvatski"
 
 #: application/views/debug/index.php:854
 msgid "Czech"
-msgstr "Češka"
+msgstr "Češki"
 
 #: application/views/debug/index.php:855
 msgid "Dutch"
@@ -11635,6 +11650,10 @@ msgstr ""
 #: application/views/qslcard/index.php:81
 #: application/views/view_log/qso.php:739
 msgid "View"
+msgstr ""
+
+#: application/views/errors/html/error_404.php:82
+msgid "Go Back to Dashboard"
 msgstr ""
 
 #: application/views/gridmap/index.php:27
@@ -13934,8 +13953,8 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:921
 #: application/views/logbookadvanced/useroptions.php:28
 #: application/views/satellite/passtable.php:9
-#: application/views/satellite/skedtable.php:10
-#: application/views/satellite/skedtable.php:37
+#: application/views/satellite/skedtable.php:9
+#: application/views/satellite/skedtable.php:43
 #: application/views/sattimers/index.php:51
 msgid "Duration"
 msgstr ""
@@ -16501,80 +16520,80 @@ msgstr ""
 msgid "TLE"
 msgstr ""
 
-#: application/views/satellite/pass.php:5
+#: application/views/satellite/pass.php:21
 msgid "Satellite passes"
 msgstr ""
 
-#: application/views/satellite/pass.php:8
-msgid "Look for satellite passes"
-msgstr ""
-
-#: application/views/satellite/pass.php:15
+#: application/views/satellite/pass.php:32
 msgid "Your station"
 msgstr ""
 
-#: application/views/satellite/pass.php:28
-#: application/views/satellite/pass.php:67
+#: application/views/satellite/pass.php:42
+#: application/views/satellite/pass.php:84
 msgid "Min. Satellite Elevation"
 msgstr ""
 
-#: application/views/satellite/pass.php:32
-#: application/views/satellite/pass.php:71
+#: application/views/satellite/pass.php:49
+#: application/views/satellite/pass.php:91
 msgid "Min. Azimuth"
 msgstr ""
 
-#: application/views/satellite/pass.php:40
-#: application/views/satellite/pass.php:79
+#: application/views/satellite/pass.php:57
+#: application/views/satellite/pass.php:99
 msgid "Max. Azimuth"
 msgstr ""
 
-#: application/views/satellite/pass.php:56
-msgid "Min. time"
-msgstr ""
-
-#: application/views/satellite/pass.php:65
+#: application/views/satellite/pass.php:74
 msgid "Sked partner"
 msgstr ""
 
-#: application/views/satellite/pass.php:93
+#: application/views/satellite/pass.php:123
+msgid "Only satellites with TLE data are shown here!"
+msgstr ""
+
+#: application/views/satellite/pass.php:136
+msgid "Min. time"
+msgstr ""
+
+#: application/views/satellite/pass.php:147
 msgid "Load predictions"
 msgstr ""
 
-#: application/views/satellite/pass.php:94
-msgid "Add sked partner"
-msgstr ""
-
-#: application/views/satellite/pass.php:96
+#: application/views/satellite/pass.php:149
 msgid "Presets"
 msgstr ""
 
-#: application/views/satellite/pass.php:98
+#: application/views/satellite/pass.php:151
 msgid "Save current settings"
 msgstr ""
 
-#: application/views/satellite/pass.php:107
+#: application/views/satellite/pass.php:165
+msgid "Pass Predictions"
+msgstr ""
+
+#: application/views/satellite/pass.php:175
 msgid "Save Settings"
 msgstr ""
 
-#: application/views/satellite/pass.php:111
+#: application/views/satellite/pass.php:179
 msgid "Settings Name"
 msgstr ""
 
-#: application/views/satellite/pass.php:112
+#: application/views/satellite/pass.php:180
 msgid "Enter a name"
 msgstr ""
 
-#: application/views/satellite/pass.php:123
+#: application/views/satellite/pass.php:192
 msgid "No TLE information detected. Please update TLE's."
 msgstr ""
 
 #: application/views/satellite/passtable.php:7
-#: application/views/satellite/skedtable.php:36
+#: application/views/satellite/skedtable.php:42
 msgid "AOS Time"
 msgstr ""
 
 #: application/views/satellite/passtable.php:8
-#: application/views/satellite/skedtable.php:40
+#: application/views/satellite/skedtable.php:46
 msgid "LOS Time"
 msgstr ""
 
@@ -16587,17 +16606,17 @@ msgid "Max Elevation (Azimuth)"
 msgstr ""
 
 #: application/views/satellite/passtable.php:12
-#: application/views/satellite/skedtable.php:38
+#: application/views/satellite/skedtable.php:44
 msgid "AOS Azimuth"
 msgstr ""
 
 #: application/views/satellite/passtable.php:13
-#: application/views/satellite/skedtable.php:41
+#: application/views/satellite/skedtable.php:47
 msgid "LOS Azimuth"
 msgstr ""
 
 #: application/views/satellite/passtable.php:55
-#: application/views/satellite/skedtable.php:84
+#: application/views/satellite/skedtable.php:88
 msgid "Search failed!"
 msgstr ""
 
@@ -16606,7 +16625,7 @@ msgid "No passes found. Please check the input parameters."
 msgstr ""
 
 #: application/views/satellite/passtable.php:73
-#: application/views/satellite/skedtable.php:94
+#: application/views/satellite/skedtable.php:98
 msgid "min"
 msgstr ""
 
@@ -16614,20 +16633,20 @@ msgstr ""
 msgid "TLE date"
 msgstr ""
 
-#: application/views/satellite/skedtable.php:8
+#: application/views/satellite/skedtable.php:7
 msgid "Sked AOS Time"
 msgstr ""
 
-#: application/views/satellite/skedtable.php:9
+#: application/views/satellite/skedtable.php:8
 msgid "Sked LOS Time"
 msgstr ""
 
-#: application/views/satellite/skedtable.php:39
+#: application/views/satellite/skedtable.php:45
 #: application/views/sattimers/index.php:50
 msgid "Max Elevation"
 msgstr ""
 
-#: application/views/satellite/skedtable.php:85
+#: application/views/satellite/skedtable.php:89
 msgid "No overlapping passes found. Please check the input parameters."
 msgstr ""
 

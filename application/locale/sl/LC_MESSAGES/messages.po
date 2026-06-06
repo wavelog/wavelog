@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-03 11:00+0000\n"
-"PO-Revision-Date: 2026-05-30 11:16+0000\n"
+"POT-Creation-Date: 2026-06-06 12:24+0000\n"
+"PO-Revision-Date: 2026-06-03 11:00+0000\n"
 "Last-Translator: Anton Tomanič <s57xz.toni@gmail.com>\n"
 "Language-Team: Slovenian <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/sl/>\n"
@@ -1295,6 +1295,18 @@ msgstr "Prenos slike kartice eQSL"
 msgid "All eQSLs marked as uploaded"
 msgstr "Vsi eQSL-ji so označeni kot naloženi"
 
+#: application/controllers/Errors.php:22
+msgid "Page Not Found"
+msgstr ""
+
+#: application/controllers/Errors.php:23
+msgid "QRZ? ... no reply."
+msgstr ""
+
+#: application/controllers/Errors.php:24
+msgid "Nobody is transmitting on this frequency."
+msgstr ""
+
 #: application/controllers/Generic_qsl.php:18
 #: application/views/awards/amsat_rover/index.php:43
 msgid "Confirmations"
@@ -1932,8 +1944,8 @@ msgstr "Država (state)"
 #: application/views/qso/award_tabs.php:45
 #: application/views/qso/components/previous_contacts.php:86
 #: application/views/qso/edit_ajax.php:157 application/views/qso/index.php:376
-#: application/views/satellite/pass.php:48
-#: application/views/satellite/pass.php:87
+#: application/views/satellite/pass.php:38
+#: application/views/satellite/pass.php:80
 #: application/views/search/result.php:49
 #: application/views/search/search_result_ajax.php:13
 #: application/views/simplefle/index.php:161
@@ -2166,12 +2178,12 @@ msgstr "Izbrisane DXCC"
 msgid "Advanced logbook"
 msgstr "Napredni dnevnik"
 
-#: application/controllers/Logbookadvanced.php:984
+#: application/controllers/Logbookadvanced.php:968
 #, php-format
 msgid "DXCC updated for %d QSO(s)."
 msgstr "DXCC je posodobljen za %d QSO(jev)."
 
-#: application/controllers/Logbookadvanced.php:1000
+#: application/controllers/Logbookadvanced.php:984
 #, php-format
 msgid "Map for DXCC %s and gridsquare %s."
 msgstr "Zemljevid DXCC %s in UL polja %s."
@@ -2669,7 +2681,7 @@ msgid "Options"
 msgstr "Možnosti"
 
 #: application/controllers/Radio.php:53 application/views/debug/index.php:370
-#: application/views/qso/index.php:826
+#: application/views/qso/index.php:826 application/views/satellite/pass.php:116
 msgid "Settings"
 msgstr "Nastavitve"
 
@@ -4317,7 +4329,7 @@ msgstr "Prikaži"
 #: application/views/activated_gridmap/index.php:10
 #: application/views/interface_assets/header.php:162
 msgid "Activated Gridsquares"
-msgstr ""
+msgstr "Aktivirana UL polja"
 
 #: application/views/activated_gridmap/index.php:27
 #: application/views/awards/amsat_rover/index.php:226
@@ -4339,10 +4351,10 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:408
 #: application/views/qso/award_tabs.php:69
 #: application/views/satellite/flightpath.php:43
-#: application/views/satellite/pass.php:18
+#: application/views/satellite/pass.php:122
 #: application/views/satellite/passtable.php:6
 #: application/views/satellite/skedtable.php:6
-#: application/views/satellite/skedtable.php:35
+#: application/views/satellite/skedtable.php:41
 #: application/views/sattimers/index.php:43
 #: application/views/statistics/index.php:27
 #: application/views/timeline/index.php:195
@@ -4630,8 +4642,9 @@ msgstr ""
 #: application/views/qslcard/searchresult.php:4
 #: application/views/qslprint/qslprint.php:31
 #: application/views/qslprint/qsolist.php:7 application/views/qso/index.php:154
-#: application/views/qso/index.php:190 application/views/satellite/pass.php:52
-#: application/views/satellite/skedtable.php:7
+#: application/views/qso/index.php:190 application/views/satellite/pass.php:132
+#: application/views/satellite/skedtable.php:12
+#: application/views/satellite/skedtable.php:14
 #: application/views/search/search_result_ajax.php:89
 #: application/views/simplefle/index.php:154
 #: application/views/statistics/initialresult.php:15
@@ -4671,6 +4684,8 @@ msgstr "Datum"
 #: application/views/qslcard/searchresult.php:6
 #: application/views/qslprint/qslprint.php:32
 #: application/views/qslprint/qsolist.php:8 application/views/qso/index.php:195
+#: application/views/satellite/skedtable.php:13
+#: application/views/satellite/skedtable.php:15
 #: application/views/search/search_result_ajax.php:91
 #: application/views/simplefle/index.php:155
 #: application/views/statistics/initialresult.php:16
@@ -5256,7 +5271,7 @@ msgstr "Preprosto ime za opis, za kaj uporabljate ta API."
 #: application/views/options/radios.php:45
 #: application/views/options/version_dialog.php:78
 #: application/views/satellite/create.php:82
-#: application/views/satellite/pass.php:117
+#: application/views/satellite/pass.php:185
 #: application/views/simplefle/index.php:22
 msgid "Save"
 msgstr "Shrani"
@@ -5640,7 +5655,7 @@ msgid "Grid Activations"
 msgstr "Aktivacije UL"
 
 #: application/views/awards/amsat_rover/index.php:221
-#: application/views/satellite/skedtable.php:34
+#: application/views/satellite/skedtable.php:40
 msgid "Grid"
 msgstr "Mreža"
 
@@ -9392,7 +9407,7 @@ msgstr "V vašem dnevniku ni bilo najdenih nobenih tekmovanj."
 
 #: application/views/callstats/index.php:5
 msgid "View statistics for worked callsigns"
-msgstr ""
+msgstr "Ogled statistike za delane klicne znake"
 
 #: application/views/callstats/index.php:75
 #: application/views/gridmap/index.php:96
@@ -9567,7 +9582,7 @@ msgstr "Da, preklopi!"
 #: application/views/cron/edit.php:74
 #: application/views/interface_assets/footer.php:40
 #: application/views/logbookadvanced/index.php:88
-#: application/views/satellite/pass.php:116
+#: application/views/satellite/pass.php:184
 #: application/views/user/modals/admin_impersonate_modal.php:45
 #: application/views/user/modals/stop_impersonate_modal.php:14
 msgid "Cancel"
@@ -10397,7 +10412,7 @@ msgstr "VUCC UL"
 
 #: application/views/continents/index.php:14
 msgid "View continent statistics"
-msgstr ""
+msgstr "Ogled statistike po celinah"
 
 #: application/views/continents/index.php:68
 #: application/views/statistics/index.php:23
@@ -10691,31 +10706,31 @@ msgstr "Vsaj enemu od vaših potrdil poteče veljavnost"
 
 #: application/views/dashboard/index.php:234
 msgid "Total QSOs"
-msgstr ""
+msgstr "Skupaj QSO"
 
 #: application/views/dashboard/index.php:274
 msgid "Current Streak"
-msgstr ""
+msgstr "Trenutni niz"
 
 #: application/views/dashboard/index.php:277
 #, php-format
 msgid "%d Day"
 msgid_plural "%d Days"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%d dan"
+msgstr[1] "%d dneva"
+msgstr[2] "%d dnevi"
+msgstr[3] "%d dni"
 
 #: application/views/dashboard/index.php:284
 #: application/views/statistics/index.php:119
 #: application/views/statistics/index.php:164
 msgid "Unique callsigns"
-msgstr ""
+msgstr "Edinstveni klicni znaki"
 
 #: application/views/dashboard/index.php:328
 #: application/views/view_log/index.php:26
 msgid "Recent QSOs"
-msgstr ""
+msgstr "Nedavne zveze"
 
 #: application/views/dashboard/index.php:380
 #: application/views/qso/index.php:914
@@ -10881,11 +10896,11 @@ msgstr "Podatke je zagotovil HAMqsl."
 
 #: application/views/dashboard/index.php:640
 msgid "Day"
-msgstr ""
+msgstr "Dan"
 
 #: application/views/dashboard/index.php:647
 msgid "Night"
-msgstr ""
+msgstr "Noč"
 
 #: application/views/dashboard/index.php:657
 msgid "Solar Flux Index"
@@ -10987,14 +11002,14 @@ msgstr "Prikazanih je največ 10 najdaljših nizov!"
 
 #: application/views/dayswithqso/index.php:135
 msgid "Streak (continuous days with QSOs)"
-msgstr ""
+msgstr "Niz (neprekinjeni dnevi s QSO-ji)"
 
 #: application/views/dayswithqso/index.php:136
 #: application/views/dayswithqso/index.php:164
 #: application/views/dayswithqso/index.php:186
 #: application/views/lotw/satupdate.php:7
 msgid "Start Date"
-msgstr ""
+msgstr "Začetni datum"
 
 #: application/views/dayswithqso/index.php:137
 #: application/views/dayswithqso/index.php:165
@@ -11002,44 +11017,46 @@ msgstr ""
 #: application/views/lotw/satupdate.php:7
 #: application/views/timeline/index.php:198
 msgid "End Date"
-msgstr ""
+msgstr "Končni datum"
 
 #: application/views/dayswithqso/index.php:153
 msgctxt "Days with QSOs"
 msgid "No streak found!"
-msgstr ""
+msgstr "Ni najdenega niza!"
 
 #: application/views/dayswithqso/index.php:157
 msgid "Current streak with QSOs in the log"
-msgstr ""
+msgstr "Trenutna serija zvez v dnevniku"
 
 #: application/views/dayswithqso/index.php:163
 #: application/views/dayswithqso/index.php:185
 msgid "Current streak (continuous days with QSOs)"
-msgstr ""
+msgstr "Trenutni niz (neprekinjeni dnevi s QSO-ji)"
 
 #: application/views/dayswithqso/index.php:180
 msgid ""
 "If you make a QSO today, you can continue to extend your streak... or else "
 "your current streak will be broken!"
 msgstr ""
+"Če danes opraviš zvezo, lahko podaljšaš svoj niz... sicer bo tvoj trenutni "
+"niz prekinjen!"
 
 #: application/views/dayswithqso/index.php:201
 msgid "No current streak found!"
-msgstr ""
+msgstr "Trenutnega niza ni bilo mogoče najti!"
 
 #: application/views/dcl_views/import.php:12
 #: application/views/lotw/import.php:12
 msgid "Import Options"
-msgstr ""
+msgstr "Možnosti uvoza"
 
 #: application/views/dcl_views/import.php:25
 msgid "Pull DCL data for me"
-msgstr ""
+msgstr "Pridobi podatke DCL zame"
 
 #: application/views/dcl_views/import.php:36
 msgid "Select callsign to pull DCL confirmations for."
-msgstr ""
+msgstr "Izberite klicni znak, za katerega želite pridobiti potrditve DCL."
 
 #: application/views/dcl_views/import.php:50
 msgid ""
@@ -11048,160 +11065,168 @@ msgid ""
 "confirmations since chosen date, or since your last DCL confirmation "
 "(fetched from your log), up until now."
 msgstr ""
+"Wavelog bo uporabil ključe DCL, shranjene v vašem uporabniškem profilu, da "
+"vam prenese poročilo iz DCL. Poročilo o prenosih Wavelog bo imelo vse "
+"potrditve od izbranega datuma ali od vaše zadnje potrditve DCL (pridobljene "
+"iz vašega dnevnika) do zdaj."
 
 #: application/views/dcl_views/import.php:54
 msgid "Import DCL Matches"
-msgstr ""
+msgstr "Uvozi ujemanja DCL"
 
 #: application/views/dcl_views/index.php:8
 msgid "Delete Keys"
-msgstr ""
+msgstr "Izbriši ključe"
 
 #: application/views/dcl_views/index.php:9
 msgid "Available DCL-Keys"
-msgstr ""
+msgstr "Razpoložljivi DCL-ključi"
 
 #: application/views/dcl_views/index.php:9
 msgid "Request DCL Key"
-msgstr ""
+msgstr "Zahteva za ključ DCL"
 
 #: application/views/dcl_views/index.php:28
 msgid "Valid from"
-msgstr ""
+msgstr "Veljavno od"
 
 #: application/views/dcl_views/index.php:29
 msgid "Valid till"
-msgstr ""
+msgstr "Veljavno do"
 
 #: application/views/dcl_views/index.php:61
 msgid "You need to request DCL keys to use this function."
-msgstr ""
+msgstr "Za uporabo te funkcije morate zahtevati ključe DCL."
 
 #: application/views/dcl_views/index.php:80
 msgid "The next automatic sync with DCL will happen at: "
-msgstr ""
+msgstr "Naslednja samodejna sinhronizacija z DCL se bo zgodila ob: "
 
 #: application/views/dcl_views/index.php:82
 #: application/views/lotw_views/index.php:175
 msgid "Manual Sync"
-msgstr ""
+msgstr "Ročna sinhronizacija"
 
 #: application/views/dcl_views/index.php:84
 #: application/views/lotw_views/index.php:177
 msgid "running..."
-msgstr ""
+msgstr "poteka..."
 
 #: application/views/dcl_views/key_import.php:8
 msgid "DCL Key Management"
-msgstr ""
+msgstr "Upravljanje ključev DCL"
 
 #: application/views/dcl_views/key_import.php:13
 msgid "Import Key"
-msgstr ""
+msgstr "Uvozi ključ"
 
 #: application/views/dcl_views/key_import.php:14
 msgid ""
 "You requested a key for DCL-Dataexchange, which was successful. The "
 "following data has been imported"
 msgstr ""
+"Zahtevali ste ključ za DCL-Dataexchange, kar je bilo uspešno. Uvoženi so "
+"bili naslednji podatki"
 
 #: application/views/dcl_views/key_import.php:19
 msgid "Received a valid DCL-Key"
-msgstr ""
+msgstr "Prejel veljaven DCL-ključ"
 
 #: application/views/dcl_views/key_import.php:20
 msgid "DOK History"
-msgstr ""
+msgstr "Zgodovina DOK"
 
 #: application/views/dcl_views/key_import.php:24
 #: application/views/dcl_views/key_import.php:46
 msgid "Validity"
-msgstr ""
+msgstr "Veljavnost"
 
 #: application/views/dcl_views/key_import.php:42
 msgid "Call History"
-msgstr ""
+msgstr "Zgodovina pozivnih znakov"
 
 #: application/views/dcl_views/key_import.php:63
 msgid "Received an invalid DCL-Key. Please check your DCL-Login, and try again"
 msgstr ""
+"Prejel sem neveljaven ključ DCL. Preverite svojo prijavo v DCL in poskusite "
+"znova"
 
 #: application/views/dcl_views/upload_cert.php:8
 #: application/views/dcl_views/upload_cert.php:33
 #: application/views/lotw_views/upload_cert.php:8
 #: application/views/lotw_views/upload_cert.php:34
 msgid "Upload Logbook of the World .p12 Certificate"
-msgstr ""
+msgstr "Naloži Logbook of the World .p12 Certifikat"
 
 #: application/views/dcl_views/upload_cert.php:19
 #: application/views/lotw_views/upload_cert.php:19
 msgid "Export .p12 File Instructions"
-msgstr ""
+msgstr "Navodila za izvoz datoteke .p12"
 
 #: application/views/dcl_views/upload_cert.php:22
 #: application/views/lotw_views/upload_cert.php:22
 msgid "Use at least version 2.7 of TQSL"
-msgstr ""
+msgstr "Uporabite različico TQSL vsaj 2.7"
 
 #: application/views/dcl_views/upload_cert.php:23
 #: application/views/lotw_views/upload_cert.php:23
 msgid "Open TQSL and go to the Callsign Certificates Tab"
-msgstr ""
+msgstr "Odprite TQSL in pojdite na zavihek Callsign Certificates"
 
 #: application/views/dcl_views/upload_cert.php:24
 #: application/views/lotw_views/upload_cert.php:24
 msgid "Right click on desired Callsign"
-msgstr ""
+msgstr "Desni klik na želeni klicni znak"
 
 #: application/views/dcl_views/upload_cert.php:25
 #: application/views/lotw_views/upload_cert.php:25
 msgid "Click 'Save Callsign Certificate File'"
-msgstr ""
+msgstr "Kliknite 'Save Callsign Certificate File'"
 
 #: application/views/dcl_views/upload_cert.php:26
 #: application/views/lotw_views/upload_cert.php:26
 msgid "Do not add a password"
-msgstr ""
+msgstr "Ne dodajaj gesla"
 
 #: application/views/dcl_views/upload_cert.php:27
 #: application/views/lotw_views/upload_cert.php:27
 msgid "Upload File below"
-msgstr ""
+msgstr "Naloži datoteko spodaj"
 
 #: application/views/dcl_views/upload_cert.php:37
 #: application/views/lotw_views/upload_cert.php:38
 msgid "Upload File"
-msgstr ""
+msgstr "Naloži datoteko"
 
 #: application/views/debug/index.php:2
 msgid "Are you sure you want to clear the cache?"
-msgstr ""
+msgstr "Ali ste prepričani, da želite počistiti predpomnilnik?"
 
 #: application/views/debug/index.php:3
 msgid "Failed to clear cache!"
-msgstr ""
+msgstr "Brisanje predpomnilnika ni uspelo!"
 
 #: application/views/debug/index.php:4
 #, php-format
 msgid "Last version check: %s"
-msgstr ""
+msgstr "Preverjanje zadnje različice: %s"
 
 #: application/views/debug/index.php:5
 msgid "Wavelog is up to date!"
-msgstr ""
+msgstr "Wavelog je posodobljen!"
 
 #: application/views/debug/index.php:6
 #, php-format
 msgid "There is a newer version available: %s"
-msgstr ""
+msgstr "Na voljo je novejša različica: %s"
 
 #: application/views/debug/index.php:7
 msgid "The Remote Repository doesn't know your branch."
-msgstr ""
+msgstr "Oddaljeni repozitorij ne pozna vaše veje."
 
 #: application/views/debug/index.php:32
 msgid "Wavelog Information"
-msgstr ""
+msgstr "Informacije o Wavelog"
 
 #: application/views/debug/index.php:36
 msgid "Version"
@@ -11209,15 +11234,15 @@ msgstr "Verzija"
 
 #: application/views/debug/index.php:39
 msgid "Latest Version"
-msgstr ""
+msgstr "Najnovejša različica"
 
 #: application/views/debug/index.php:45
 msgid "Latest Release"
-msgstr ""
+msgstr "Najnovejša izdaja"
 
 #: application/views/debug/index.php:50
 msgid "ADIF Version"
-msgstr ""
+msgstr "Različica ADIF"
 
 #: application/views/debug/index.php:55
 msgid "Language"
@@ -11225,19 +11250,19 @@ msgstr "Jezik"
 
 #: application/views/debug/index.php:59
 msgid "Base URL"
-msgstr ""
+msgstr "Osnovni URL"
 
 #: application/views/debug/index.php:63
 msgid "Migration"
-msgstr ""
+msgstr "Migracija"
 
 #: application/views/debug/index.php:64
 msgid "There is something wrong with your Migration in Database!"
-msgstr ""
+msgstr "Nekaj je narobe z vašo migracijo v zbirki podatkov!"
 
 #: application/views/debug/index.php:69
 msgid "Migration is outdated and locked!"
-msgstr ""
+msgstr "Migracija je zastarela in zaklenjena!"
 
 #: application/views/debug/index.php:70
 #, php-format
@@ -11247,16 +11272,20 @@ msgid ""
 "locked due to a previously failed process. Delete the file %s to force the "
 "migration to run again."
 msgstr ""
+"Trenutna migracija ni različica, ki bi morala biti. Ponovno naložite to "
+"stran čez %s sekund. Če to opozorilo ne izgine, je vaša migracija verjetno "
+"zaklenjena zaradi prejšnjega neuspelega postopka. Izbrišite datoteko %s, da "
+"se migracija znova zažene."
 
 #: application/views/debug/index.php:71
 #, php-format
 msgid "Check this wiki article %shere%s for more information."
-msgstr ""
+msgstr "Za več informacij si oglejte ta wiki članek %stukaj%s."
 
 #: application/views/debug/index.php:72
 #, php-format
 msgid "Current migration is %s"
-msgstr ""
+msgstr "Trenutna migracija je %s"
 
 #: application/views/debug/index.php:73
 #, php-format
@@ -11265,67 +11294,71 @@ msgstr ""
 
 #: application/views/debug/index.php:78
 msgid "Environment"
-msgstr ""
+msgstr "Okolje"
 
 #: application/views/debug/index.php:82
 msgid "System Time"
-msgstr ""
+msgstr "Sistemski čas"
 
 #: application/views/debug/index.php:90
 msgid "Total QSO on this instance"
-msgstr ""
+msgstr "Skupno število zvez v tej instanci"
 
 #: application/views/debug/index.php:94
 msgid "Total User"
-msgstr ""
+msgstr "Skupaj uporabnik"
 
 #: application/views/debug/index.php:95 application/views/user/index.php:27
 msgid "User"
 msgid_plural "Users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Uporabnik"
+msgstr[1] "Uporabnika"
+msgstr[2] "Uporabniki"
+msgstr[3] "Uporabnikov"
 
 #: application/views/debug/index.php:102
 msgid "Server Information"
-msgstr ""
+msgstr "Informacije o strežniku"
 
 #: application/views/debug/index.php:106
 msgid "Server Software"
-msgstr ""
+msgstr "Strežniška programska oprema"
 
 #: application/views/debug/index.php:111
 msgid "PHP Version"
-msgstr ""
+msgstr "Različica PHP"
 
 #: application/views/debug/index.php:117
 msgid "Deprecated"
-msgstr ""
+msgstr "Zastarelo"
 
 #: application/views/debug/index.php:124
 msgid "MySQL Version"
-msgstr ""
+msgstr "Različica MySQL-a"
 
 #: application/views/debug/index.php:129
 msgid "OpenSSL Version"
-msgstr ""
+msgstr "Različica OpenSSL"
 
 #: application/views/debug/index.php:130
 msgid "not found"
-msgstr ""
+msgstr "ni najdeno"
 
 #: application/views/debug/index.php:133
 msgid "Codeigniter Version"
-msgstr ""
+msgstr "Različica CodeIgniter"
 
 #: application/views/debug/index.php:141
 msgid "Folder Permissions"
-msgstr ""
+msgstr "Dovoljenja za mape"
 
 #: application/views/debug/index.php:143
 msgid ""
 "This verifies that the folders used by Wavelog have read and write "
 "permissions by PHP."
 msgstr ""
+"To preveri, ali imajo mape, ki jih uporablja Wavelog, dovoljenja za branje "
+"in pisanje s strani PHP."
 
 #: application/views/debug/index.php:149 application/views/debug/index.php:160
 #: application/views/debug/index.php:171 application/views/debug/index.php:182
@@ -11343,43 +11376,45 @@ msgstr "Neuspešno"
 
 #: application/views/debug/index.php:206
 msgid "Config Maintenance"
-msgstr ""
+msgstr "Vzdrževanje konfiguracije"
 
 #: application/views/debug/index.php:212
 msgid "Your authentication mode is outdated and possibly unsafe"
-msgstr ""
+msgstr "Vaš način preverjanja pristnosti je zastarel in morda nevaren"
 
 #: application/views/debug/index.php:214 application/views/debug/index.php:231
 #, php-format
 msgid "Please edit your %s File:"
-msgstr ""
+msgstr "Prosimo, uredite svojo datoteko %s:"
 
 #: application/views/debug/index.php:215
 msgid ""
 "Go to your application/config Folder and compare config.sample.php with your "
 "config.php"
 msgstr ""
+"Pojdite v mapo application/config in primerjajte datoteko config.sample.php "
+"z vašo datoteko config.php"
 
 #: application/views/debug/index.php:216
 #, php-format
 msgid "Change %s to the value %s (Strongly recommended)"
-msgstr ""
+msgstr "Spremenite %s na vrednost %s (zelo priporočljivo)"
 
 #: application/views/debug/index.php:222
 msgid "Authentication Mode is set correctly"
-msgstr ""
+msgstr "Način preverjanja pristnosti je pravilno nastavljen"
 
 #: application/views/debug/index.php:222 application/views/debug/index.php:239
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: application/views/debug/index.php:229
 msgid "You use the default encryption key. You should change it!"
-msgstr ""
+msgstr "Uporabljate privzeti šifrirni ključ. Spremeniti ga morate!"
 
 #: application/views/debug/index.php:232
 msgid "This will also enable the 'Keep me logged in' feature."
-msgstr ""
+msgstr "S tem boste omogočili tudi funkcijo 'Naj ostanem prijavljen'."
 
 #: application/views/debug/index.php:233
 #, php-format
@@ -11387,24 +11422,28 @@ msgid ""
 "Change the value of %s to a new encryption key other then "
 "'flossie1234555541'. Choose a safe and long password. (Strongly recommended)"
 msgstr ""
+"Spremenite vrednost %s v nov šifrirni ključ, ki ni 'flossie1234555541'. "
+"Izberite varno in dolgo geslo. (Zelo priporočljivo)"
 
 #: application/views/debug/index.php:239
 msgid "You do not use the default encryption key"
-msgstr ""
+msgstr "Ne uporabljate privzetega šifrirnega ključa"
 
 #: application/views/debug/index.php:246
 msgid "Migrate Userdata"
-msgstr ""
+msgstr "Migracija uporabniških podatkov"
 
 #: application/views/debug/index.php:248
 msgid ""
 "Here you can migrate existing QSL cards and eQSL cards to the new userdata "
 "folder."
 msgstr ""
+"Here you can migrate existing QSL cards and eQSL cards to the new userdata "
+"folder."
 
 #: application/views/debug/index.php:261
 msgid "Modules"
-msgstr ""
+msgstr "Moduli"
 
 #: application/views/debug/index.php:267 application/views/debug/index.php:278
 #: application/views/debug/index.php:289 application/views/debug/index.php:300
@@ -11424,50 +11463,50 @@ msgstr "Ni nameščeno"
 
 #: application/views/debug/index.php:462
 msgid "Cache Information"
-msgstr ""
+msgstr "Informacije o predpomnilniku"
 
 #: application/views/debug/index.php:466
 msgid "Current Configuration"
-msgstr ""
+msgstr "Trenutna konfiguracija"
 
 #: application/views/debug/index.php:469
 msgctxt "Cache Adapter"
 msgid "Primary adapter"
-msgstr ""
+msgstr "Primarni adapter"
 
 #: application/views/debug/index.php:480
 msgctxt "Cache Backup Adapter (Fallback)"
 msgid "Backup adapter"
-msgstr ""
+msgstr "Rezervni adapter"
 
 #: application/views/debug/index.php:491
 #, php-format
 msgctxt "Cache Path"
 msgid "Path for %s adapter"
-msgstr ""
+msgstr "Pot za adapter %s"
 
 #: application/views/debug/index.php:495
 msgctxt "Cache Key Prefix"
 msgid "Key Prefix"
-msgstr ""
+msgstr "Predpona ključa"
 
 #: application/views/debug/index.php:501
 msgid "Cache Details"
-msgstr ""
+msgstr "Podrobnosti predpomnilnika"
 
 #: application/views/debug/index.php:504
 msgctxt "Cache Details"
 msgid "Total Size"
-msgstr ""
+msgstr "Skupna velikost"
 
 #: application/views/debug/index.php:510
 msgctxt "Cache Key"
 msgid "Number of Keys"
-msgstr ""
+msgstr "Število ključev"
 
 #: application/views/debug/index.php:520
 msgid "Cache is working properly. Everything okay!"
-msgstr ""
+msgstr "Predpomnilnik deluje pravilno. Vse je v redu!"
 
 #: application/views/debug/index.php:524
 msgid ""
@@ -11475,6 +11514,9 @@ msgid ""
 "unavailable. Check your file permissions, PHP extensions, and/or your "
 "network connection to the services (if using redis/memcached)."
 msgstr ""
+"Predpomnilnik trenutno uporablja rezervni adapter, ker primarni ni na voljo. "
+"Preverite dovoljenja za datoteke, razširitve PHP in/ali omrežno povezavo s "
+"storitvami (če uporabljate redis/memcached)."
 
 #: application/views/debug/index.php:528
 #, php-format
@@ -11484,44 +11526,48 @@ msgid ""
 "services (if using redis/memcached). You can continue using Wavelog, but no "
 "values will be cached (which is bad)."
 msgstr ""
+"Predpomnilnik ne deluje! Trenutno sistem uporablja adapter %s. Preverite "
+"dovoljenja za datoteke, razširitve PHP in/ali omrežno povezavo s storitvami "
+"(če uporabljate redis/memcached). Wavelog lahko uporabljate še naprej, "
+"vendar nobene vrednosti ne bodo shranjene v predpomnilnik (kar je slabo)."
 
 #: application/views/debug/index.php:536
 msgid "Available Adapters"
-msgstr ""
+msgstr "Razpoložljivi adapterji"
 
 #: application/views/debug/index.php:553
 msgid "Clear Cache"
-msgstr ""
+msgstr "Počisti predpomnilnik"
 
 #: application/views/debug/index.php:600
 msgid "Git Information"
-msgstr ""
+msgstr "Informacije o Git"
 
 #: application/views/debug/index.php:604
 msgid "Branch"
-msgstr ""
+msgstr "Veja"
 
 #: application/views/debug/index.php:615 application/views/debug/index.php:626
 #: application/views/debug/index.php:636
 #: application/views/lotw_views/index.php:104
 msgid "n/a"
-msgstr ""
+msgstr "n/a"
 
 #: application/views/debug/index.php:621
 msgid "Commit"
-msgstr ""
+msgstr "Zapiši"
 
 #: application/views/debug/index.php:631
 msgid "Tag"
-msgstr ""
+msgstr "Označi"
 
 #: application/views/debug/index.php:641
 msgid "Last Fetch"
-msgstr ""
+msgstr "Zadnji prevzem"
 
 #: application/views/debug/index.php:653
 msgid "Check for new version"
-msgstr ""
+msgstr "Preveri novo različico"
 
 #: application/views/debug/index.php:654
 #: application/views/logbookadvanced/checkresult.php:52
@@ -11529,23 +11575,23 @@ msgstr ""
 #: application/views/logbookadvanced/checkresult.php:78
 #: application/views/logbookadvanced/index.php:57
 msgid "Update now"
-msgstr ""
+msgstr "Posodobi zdaj"
 
 #: application/views/debug/index.php:672
 msgid "File download date"
-msgstr ""
+msgstr "Datum prenosa datoteke"
 
 #: application/views/debug/index.php:676
 msgid "File"
-msgstr ""
+msgstr "Datoteka"
 
 #: application/views/debug/index.php:677
 msgid "Last update"
-msgstr ""
+msgstr "Zadnja posodobitev"
 
 #: application/views/debug/index.php:681
 msgid "DXCC update from Club Log"
-msgstr ""
+msgstr "Posodobitev DXCC iz Club Log"
 
 #: application/views/debug/index.php:684 application/views/debug/index.php:691
 #: application/views/debug/index.php:697 application/views/debug/index.php:703
@@ -11555,80 +11601,84 @@ msgstr ""
 #: application/views/debug/index.php:745
 #: application/views/station_profile/edit.php:53
 msgid "Update"
-msgstr ""
+msgstr "Posodobitev"
 
 #: application/views/debug/index.php:688
 msgid "DOK file download"
-msgstr ""
+msgstr "Prenos datoteke DOK"
 
 #: application/views/debug/index.php:694
 msgid "LoTW users download"
-msgstr ""
+msgstr "Prenos LoTW uporabniki"
 
 #: application/views/debug/index.php:700
 msgid "POTA file download"
-msgstr ""
+msgstr "Prenos datoteke POTA"
 
 #: application/views/debug/index.php:706
 msgid "SCP file download"
-msgstr ""
+msgstr "Prenos datoteke SCP"
 
 #: application/views/debug/index.php:712
 msgid "SOTA file download"
-msgstr ""
+msgstr "Prenos datoteke SOTA"
 
 #: application/views/debug/index.php:718
 msgid "WWFF file download"
-msgstr ""
+msgstr "Prenos datoteke WWFF"
 
 #: application/views/debug/index.php:724
 msgid "TLE update"
-msgstr ""
+msgstr "Posodobitev TLE"
 
 #: application/views/debug/index.php:730
 msgid "Hams Of Note update"
-msgstr ""
+msgstr "Posodobitev Hams of Note"
 
 #: application/views/debug/index.php:736
 msgid "HAMqsl"
-msgstr ""
+msgstr "HAMqsl"
 
 #: application/views/debug/index.php:742
 msgid "VUCC Grids"
-msgstr ""
+msgstr "VUCC polja"
 
 #: application/views/debug/index.php:752
 msgid "QSO-DB Maintenance"
-msgstr ""
+msgstr "Vzdrževanje QSO-DB"
 
 #: application/views/debug/index.php:756
 #, php-format
 msgid "The Database contains %d QSO without a station-profile (location)"
 msgid_plural ""
 "The Database contains %d QSOs without a station-profile (location)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Baza podatkov vsebuje %d zvezo brez profila postaje (lokacije)"
+msgstr[1] "Baza podatkov vsebuje %d zvezi brez profila postaje (lokacije)"
+msgstr[2] "Baza podatkov vsebuje %d zveze brez profila postaje (lokacije)"
+msgstr[3] "Baza podatkov vsebuje %d zvez brez profila postaje (lokacije)"
 
 #: application/views/debug/index.php:794
 msgid "Please mark QSOs and reassign them to an existing station location:"
 msgstr ""
+"Prosimo, označite zveze in jih prerazporedite na obstoječo lokacijo postaje:"
 
 #: application/views/debug/index.php:802
 msgctxt "Stationlocation"
 msgid "Target Location"
-msgstr ""
+msgstr "Ciljna lokacija"
 
 #: application/views/debug/index.php:803 application/views/debug/index.php:814
 msgid "Reassign"
-msgstr ""
+msgstr "Prerazporedi"
 
 #: application/views/debug/index.php:823
 msgid "Every QSO in your Database is assigned to a station-profile (location)"
 msgstr ""
+"Vsaka zveza v vaši bazi podatkov je dodeljena profilu postaje (lokaciji)"
 
 #: application/views/debug/index.php:823
 msgid "Everything ok"
-msgstr ""
+msgstr "Vse v redu"
 
 #: application/views/debug/index.php:848
 msgid "Albanian"
@@ -12131,6 +12181,10 @@ msgstr ""
 #: application/views/qslcard/index.php:81
 #: application/views/view_log/qso.php:739
 msgid "View"
+msgstr ""
+
+#: application/views/errors/html/error_404.php:82
+msgid "Go Back to Dashboard"
 msgstr ""
 
 #: application/views/gridmap/index.php:27
@@ -14433,8 +14487,8 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:921
 #: application/views/logbookadvanced/useroptions.php:28
 #: application/views/satellite/passtable.php:9
-#: application/views/satellite/skedtable.php:10
-#: application/views/satellite/skedtable.php:37
+#: application/views/satellite/skedtable.php:9
+#: application/views/satellite/skedtable.php:43
 #: application/views/sattimers/index.php:51
 msgid "Duration"
 msgstr ""
@@ -16997,80 +17051,80 @@ msgstr ""
 msgid "TLE"
 msgstr ""
 
-#: application/views/satellite/pass.php:5
+#: application/views/satellite/pass.php:21
 msgid "Satellite passes"
 msgstr ""
 
-#: application/views/satellite/pass.php:8
-msgid "Look for satellite passes"
-msgstr ""
-
-#: application/views/satellite/pass.php:15
+#: application/views/satellite/pass.php:32
 msgid "Your station"
 msgstr ""
 
-#: application/views/satellite/pass.php:28
-#: application/views/satellite/pass.php:67
+#: application/views/satellite/pass.php:42
+#: application/views/satellite/pass.php:84
 msgid "Min. Satellite Elevation"
 msgstr ""
 
-#: application/views/satellite/pass.php:32
-#: application/views/satellite/pass.php:71
+#: application/views/satellite/pass.php:49
+#: application/views/satellite/pass.php:91
 msgid "Min. Azimuth"
 msgstr ""
 
-#: application/views/satellite/pass.php:40
-#: application/views/satellite/pass.php:79
+#: application/views/satellite/pass.php:57
+#: application/views/satellite/pass.php:99
 msgid "Max. Azimuth"
 msgstr ""
 
-#: application/views/satellite/pass.php:56
-msgid "Min. time"
-msgstr ""
-
-#: application/views/satellite/pass.php:65
+#: application/views/satellite/pass.php:74
 msgid "Sked partner"
 msgstr ""
 
-#: application/views/satellite/pass.php:93
+#: application/views/satellite/pass.php:123
+msgid "Only satellites with TLE data are shown here!"
+msgstr ""
+
+#: application/views/satellite/pass.php:136
+msgid "Min. time"
+msgstr ""
+
+#: application/views/satellite/pass.php:147
 msgid "Load predictions"
 msgstr ""
 
-#: application/views/satellite/pass.php:94
-msgid "Add sked partner"
-msgstr ""
-
-#: application/views/satellite/pass.php:96
+#: application/views/satellite/pass.php:149
 msgid "Presets"
 msgstr ""
 
-#: application/views/satellite/pass.php:98
+#: application/views/satellite/pass.php:151
 msgid "Save current settings"
 msgstr ""
 
-#: application/views/satellite/pass.php:107
+#: application/views/satellite/pass.php:165
+msgid "Pass Predictions"
+msgstr ""
+
+#: application/views/satellite/pass.php:175
 msgid "Save Settings"
 msgstr ""
 
-#: application/views/satellite/pass.php:111
+#: application/views/satellite/pass.php:179
 msgid "Settings Name"
 msgstr ""
 
-#: application/views/satellite/pass.php:112
+#: application/views/satellite/pass.php:180
 msgid "Enter a name"
 msgstr ""
 
-#: application/views/satellite/pass.php:123
+#: application/views/satellite/pass.php:192
 msgid "No TLE information detected. Please update TLE's."
 msgstr ""
 
 #: application/views/satellite/passtable.php:7
-#: application/views/satellite/skedtable.php:36
+#: application/views/satellite/skedtable.php:42
 msgid "AOS Time"
 msgstr ""
 
 #: application/views/satellite/passtable.php:8
-#: application/views/satellite/skedtable.php:40
+#: application/views/satellite/skedtable.php:46
 msgid "LOS Time"
 msgstr ""
 
@@ -17083,17 +17137,17 @@ msgid "Max Elevation (Azimuth)"
 msgstr ""
 
 #: application/views/satellite/passtable.php:12
-#: application/views/satellite/skedtable.php:38
+#: application/views/satellite/skedtable.php:44
 msgid "AOS Azimuth"
 msgstr ""
 
 #: application/views/satellite/passtable.php:13
-#: application/views/satellite/skedtable.php:41
+#: application/views/satellite/skedtable.php:47
 msgid "LOS Azimuth"
 msgstr ""
 
 #: application/views/satellite/passtable.php:55
-#: application/views/satellite/skedtable.php:84
+#: application/views/satellite/skedtable.php:88
 msgid "Search failed!"
 msgstr ""
 
@@ -17102,7 +17156,7 @@ msgid "No passes found. Please check the input parameters."
 msgstr ""
 
 #: application/views/satellite/passtable.php:73
-#: application/views/satellite/skedtable.php:94
+#: application/views/satellite/skedtable.php:98
 msgid "min"
 msgstr ""
 
@@ -17110,20 +17164,20 @@ msgstr ""
 msgid "TLE date"
 msgstr ""
 
-#: application/views/satellite/skedtable.php:8
+#: application/views/satellite/skedtable.php:7
 msgid "Sked AOS Time"
 msgstr ""
 
-#: application/views/satellite/skedtable.php:9
+#: application/views/satellite/skedtable.php:8
 msgid "Sked LOS Time"
 msgstr ""
 
-#: application/views/satellite/skedtable.php:39
+#: application/views/satellite/skedtable.php:45
 #: application/views/sattimers/index.php:50
 msgid "Max Elevation"
 msgstr ""
 
-#: application/views/satellite/skedtable.php:85
+#: application/views/satellite/skedtable.php:89
 msgid "No overlapping passes found. Please check the input parameters."
 msgstr ""
 
