@@ -1070,8 +1070,8 @@ class User extends CI_Controller {
 					$this->user_options_model->set_option('oqrs', 'oqrs_auto_matching', array('boolean'=>$this->input->post('oqrs_auto_matching', true)), $user_id);
 					$this->user_options_model->set_option('oqrs', 'oqrs_direct_auto_matching', array('boolean'=>$this->input->post('oqrs_direct_auto_matching', true)), $user_id);
 					$this->user_options_model->set_option('oqrs', 'oqrs_delivery_method', array('setting'=>$this->input->post('oqrs_delivery_method', true) ?? 'both'), $user_id);
-					$this->user_options_model->set_option('dashboard', 'show_dxpeditions', array('boolean'=>$this->input->post('user_dashboard_show_dxpeditions', true)), $user_id);
-					$this->user_options_model->set_option('dashboard', 'show_contests', array('boolean'=>$this->input->post('user_dashboard_show_contests', true)), $user_id);
+					$this->user_options_model->set_option('dashboard', 'show_dxpeditions', array('boolean'=>($this->input->post('user_dashboard_show_dxpeditions') !== null ? '1' : '0')), $user_id);
+					$this->user_options_model->set_option('dashboard', 'show_contests', array('boolean'=>($this->input->post('user_dashboard_show_contests') !== null ? '1' : '0')), $user_id);
 
 					if($this->session->userdata('user_id') == $user_id) {
 						$this->session->set_flashdata('success', sprintf(__("User %s edited"), $this->input->post('user_name', true)));
