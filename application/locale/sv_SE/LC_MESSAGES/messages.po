@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-06 12:24+0000\n"
+"POT-Creation-Date: 2026-06-08 07:58+0000\n"
 "PO-Revision-Date: 2026-06-06 10:26+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -177,9 +177,8 @@ msgstr "Troposfärisk ducting"
 #: application/controllers/Map.php:12 application/controllers/Map.php:27
 #: application/controllers/Mode.php:15 application/controllers/Notes.php:10
 #: application/controllers/Operator.php:13
-#: application/controllers/Options.php:14 application/controllers/Oqrs.php:15
-#: application/controllers/Oqrs.php:178 application/controllers/Oqrs.php:226
-#: application/controllers/Oqrs.php:240 application/controllers/Qrbcalc.php:13
+#: application/controllers/Options.php:14 application/controllers/Oqrs.php:12
+#: application/controllers/Oqrs.php:397 application/controllers/Qrbcalc.php:13
 #: application/controllers/Qrz.php:199 application/controllers/Qrz.php:286
 #: application/controllers/Qsl.php:12 application/controllers/Qsl.php:13
 #: application/controllers/Qsl.php:49 application/controllers/Qsl.php:57
@@ -995,7 +994,7 @@ msgstr "Cronhanterare"
 msgid "Edit Cronjob"
 msgstr "Redigera Cronjob"
 
-#: application/controllers/Cron.php:233 application/controllers/Cron.php:234
+#: application/controllers/Cron.php:238 application/controllers/Cron.php:239
 #: application/views/cron/index.php:97 application/views/cron/index.php:99
 #: application/views/cron/index.php:101 application/views/debug/index.php:683
 #: application/views/debug/index.php:690 application/views/debug/index.php:696
@@ -1006,32 +1005,32 @@ msgstr "Redigera Cronjob"
 msgid "never"
 msgstr "aldrig"
 
-#: application/controllers/Cron.php:234
+#: application/controllers/Cron.php:239
 msgid "calculating..."
 msgstr "beräknar..."
 
-#: application/controllers/Cron.php:245 application/views/cron/index.php:84
+#: application/controllers/Cron.php:250 application/views/cron/index.php:84
 msgid "healthy"
 msgstr "hälsosam"
 
-#: application/controllers/Cron.php:247 application/views/cron/index.php:86
+#: application/controllers/Cron.php:252 application/views/cron/index.php:86
 msgid "failed"
 msgstr "misslyckades"
 
-#: application/controllers/Cron.php:249 application/views/cron/index.php:88
+#: application/controllers/Cron.php:254 application/views/cron/index.php:88
 msgid "pending"
 msgstr "väntande"
 
-#: application/controllers/Cron.php:254 application/views/cron/index.php:93
+#: application/controllers/Cron.php:259 application/views/cron/index.php:93
 msgid "disabled"
 msgstr "inaktiverad"
 
-#: application/controllers/Cron.php:293
+#: application/controllers/Cron.php:298
 #: application/views/interface_assets/footer.php:41
 msgid "OK"
 msgstr "OK"
 
-#: application/controllers/Cron.php:297
+#: application/controllers/Cron.php:302
 #, php-format
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
@@ -1040,7 +1039,7 @@ msgstr ""
 "Senaste körningen inträffade för mer än %s sekunder sedan.%sVänligen "
 "kontrollera din master-cron! Den bör köras varje minut (* * * * *)."
 
-#: application/controllers/Cron.php:300
+#: application/controllers/Cron.php:305
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
@@ -1049,7 +1048,7 @@ msgstr ""
 "Senaste körningen skedde för mer än %s minuter sedan.%sDet verkar som att "
 "din Mastercron inte körs!%sDen bör köras varje minut (* * * * *)."
 
-#: application/controllers/Cron.php:305 application/views/cron/index.php:43
+#: application/controllers/Cron.php:310 application/views/cron/index.php:43
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr "Inte igång"
@@ -2519,7 +2518,7 @@ msgstr "Versionsinformation kommer att visas för alla användare igen"
 msgid "Version Info will not be shown to any user"
 msgstr "Versionsinformation kommer inte att visas för någon användare"
 
-#: application/controllers/Oqrs.php:42 application/controllers/Staticmap.php:20
+#: application/controllers/Oqrs.php:39 application/controllers/Staticmap.php:20
 #: application/controllers/Staticmap.php:25
 #: application/controllers/Staticmap.php:156
 #: application/controllers/Visitor.php:54
@@ -2535,29 +2534,29 @@ msgstr "Versionsinformation kommer inte att visas för någon användare"
 msgid "Unknown Public Page."
 msgstr "Okänd offentlig sida."
 
-#: application/controllers/Oqrs.php:54 application/controllers/Oqrs.php:63
-#: application/controllers/Oqrs.php:128 application/controllers/Oqrs.php:140
+#: application/controllers/Oqrs.php:51 application/controllers/Oqrs.php:60
+#: application/controllers/Oqrs.php:125 application/controllers/Oqrs.php:137
 msgid "Log Search & OQRS"
 msgstr "Loggsökning & OQRS"
 
-#: application/controllers/Oqrs.php:85
+#: application/controllers/Oqrs.php:82
 msgid "Invalid Station ID"
 msgstr "Ogiltigt stations-ID"
 
-#: application/controllers/Oqrs.php:108
+#: application/controllers/Oqrs.php:105
 msgid "Invalid station slug"
 msgstr "Ogiltig stationsslug"
 
-#: application/controllers/Oqrs.php:176
+#: application/controllers/Oqrs.php:174
 #: application/views/interface_assets/header.php:513
 msgid "OQRS Requests"
 msgstr "OQRS Förfrågningar"
 
-#: application/controllers/Oqrs.php:380
+#: application/controllers/Oqrs.php:381
 msgid "QSO match deleted successfully."
 msgstr "QSO-matchning raderades framgångsrikt."
 
-#: application/controllers/Oqrs.php:389
+#: application/controllers/Oqrs.php:391
 msgid "QSO match added successfully."
 msgstr "QSO-matchning har lagts till framgångsrikt."
 

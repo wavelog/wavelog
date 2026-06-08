@@ -31,7 +31,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-06 12:24+0000\n"
+"POT-Creation-Date: 2026-06-08 07:58+0000\n"
 "PO-Revision-Date: 2026-06-02 11:16+0000\n"
 "Last-Translator: \"Shen RuiQin(BH4FJN)\" <jerry19980425@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -198,9 +198,8 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Map.php:12 application/controllers/Map.php:27
 #: application/controllers/Mode.php:15 application/controllers/Notes.php:10
 #: application/controllers/Operator.php:13
-#: application/controllers/Options.php:14 application/controllers/Oqrs.php:15
-#: application/controllers/Oqrs.php:178 application/controllers/Oqrs.php:226
-#: application/controllers/Oqrs.php:240 application/controllers/Qrbcalc.php:13
+#: application/controllers/Options.php:14 application/controllers/Oqrs.php:12
+#: application/controllers/Oqrs.php:397 application/controllers/Qrbcalc.php:13
 #: application/controllers/Qrz.php:199 application/controllers/Qrz.php:286
 #: application/controllers/Qsl.php:12 application/controllers/Qsl.php:13
 #: application/controllers/Qsl.php:49 application/controllers/Qsl.php:57
@@ -1016,7 +1015,7 @@ msgstr "计划任务管理器"
 msgid "Edit Cronjob"
 msgstr "编辑计划任务"
 
-#: application/controllers/Cron.php:233 application/controllers/Cron.php:234
+#: application/controllers/Cron.php:238 application/controllers/Cron.php:239
 #: application/views/cron/index.php:97 application/views/cron/index.php:99
 #: application/views/cron/index.php:101 application/views/debug/index.php:683
 #: application/views/debug/index.php:690 application/views/debug/index.php:696
@@ -1027,32 +1026,32 @@ msgstr "编辑计划任务"
 msgid "never"
 msgstr "从不"
 
-#: application/controllers/Cron.php:234
+#: application/controllers/Cron.php:239
 msgid "calculating..."
 msgstr "计算中…"
 
-#: application/controllers/Cron.php:245 application/views/cron/index.php:84
+#: application/controllers/Cron.php:250 application/views/cron/index.php:84
 msgid "healthy"
 msgstr "成功"
 
-#: application/controllers/Cron.php:247 application/views/cron/index.php:86
+#: application/controllers/Cron.php:252 application/views/cron/index.php:86
 msgid "failed"
 msgstr "失败"
 
-#: application/controllers/Cron.php:249 application/views/cron/index.php:88
+#: application/controllers/Cron.php:254 application/views/cron/index.php:88
 msgid "pending"
 msgstr "待处理"
 
-#: application/controllers/Cron.php:254 application/views/cron/index.php:93
+#: application/controllers/Cron.php:259 application/views/cron/index.php:93
 msgid "disabled"
 msgstr "禁用"
 
-#: application/controllers/Cron.php:293
+#: application/controllers/Cron.php:298
 #: application/views/interface_assets/footer.php:41
 msgid "OK"
 msgstr "OK"
 
-#: application/controllers/Cron.php:297
+#: application/controllers/Cron.php:302
 #, php-format
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
@@ -1060,7 +1059,7 @@ msgid ""
 msgstr ""
 "上次执行在 %s 秒前。%s请检查你的主计划任务！它应当每分钟运行一次(* * * * *)。"
 
-#: application/controllers/Cron.php:300
+#: application/controllers/Cron.php:305
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
@@ -1069,7 +1068,7 @@ msgstr ""
 "上次执行是 %s 分钟之前。 %s 你的 计划任务似乎没有配置好，%s 它应当设置为每分"
 "钟执行 (* * * * *)。"
 
-#: application/controllers/Cron.php:305 application/views/cron/index.php:43
+#: application/controllers/Cron.php:310 application/views/cron/index.php:43
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr "未运行"
@@ -2515,7 +2514,7 @@ msgstr "版本信息将会重新向用户显示"
 msgid "Version Info will not be shown to any user"
 msgstr "版本信息不再会向用户显示"
 
-#: application/controllers/Oqrs.php:42 application/controllers/Staticmap.php:20
+#: application/controllers/Oqrs.php:39 application/controllers/Staticmap.php:20
 #: application/controllers/Staticmap.php:25
 #: application/controllers/Staticmap.php:156
 #: application/controllers/Visitor.php:54
@@ -2531,29 +2530,29 @@ msgstr "版本信息不再会向用户显示"
 msgid "Unknown Public Page."
 msgstr "未知的公开页面。"
 
-#: application/controllers/Oqrs.php:54 application/controllers/Oqrs.php:63
-#: application/controllers/Oqrs.php:128 application/controllers/Oqrs.php:140
+#: application/controllers/Oqrs.php:51 application/controllers/Oqrs.php:60
+#: application/controllers/Oqrs.php:125 application/controllers/Oqrs.php:137
 msgid "Log Search & OQRS"
 msgstr "搜索日志 & OQRS"
 
-#: application/controllers/Oqrs.php:85
+#: application/controllers/Oqrs.php:82
 msgid "Invalid Station ID"
 msgstr "无效站台 ID"
 
-#: application/controllers/Oqrs.php:108
+#: application/controllers/Oqrs.php:105
 msgid "Invalid station slug"
 msgstr "无效的台站标识符"
 
-#: application/controllers/Oqrs.php:176
+#: application/controllers/Oqrs.php:174
 #: application/views/interface_assets/header.php:513
 msgid "OQRS Requests"
 msgstr "OQRS"
 
-#: application/controllers/Oqrs.php:380
+#: application/controllers/Oqrs.php:381
 msgid "QSO match deleted successfully."
 msgstr "QSO 匹配已成功删除。"
 
-#: application/controllers/Oqrs.php:389
+#: application/controllers/Oqrs.php:391
 msgid "QSO match added successfully."
 msgstr "QSO 匹配已成功添加。"
 
