@@ -31,7 +31,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-08 17:32+0000\n"
+"POT-Creation-Date: 2026-06-08 19:44+0000\n"
 "PO-Revision-Date: 2026-06-02 11:16+0000\n"
 "Last-Translator: \"Shen RuiQin(BH4FJN)\" <jerry19980425@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -165,8 +165,9 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Components.php:13
 #: application/controllers/Contestcalendar.php:8
 #: application/controllers/Contesting.php:14
-#: application/controllers/Cron.php:26 application/controllers/Cron.php:177
-#: application/controllers/Csv.php:8 application/controllers/Csv.php:32
+#: application/controllers/Cron.php:26 application/controllers/Cron.php:167
+#: application/controllers/Cron.php:181 application/controllers/Csv.php:8
+#: application/controllers/Csv.php:32
 #: application/controllers/Dayswithqso.php:11
 #: application/controllers/Dcl.php:10 application/controllers/Dcl.php:19
 #: application/controllers/Dcl.php:24 application/controllers/Dcl.php:50
@@ -1012,11 +1013,11 @@ msgstr "大洲列表"
 msgid "Cron Manager"
 msgstr "计划任务管理器"
 
-#: application/controllers/Cron.php:169 application/views/cron/edit.php:5
+#: application/controllers/Cron.php:173 application/views/cron/edit.php:5
 msgid "Edit Cronjob"
 msgstr "编辑计划任务"
 
-#: application/controllers/Cron.php:238 application/controllers/Cron.php:239
+#: application/controllers/Cron.php:247 application/controllers/Cron.php:248
 #: application/views/cron/index.php:97 application/views/cron/index.php:99
 #: application/views/cron/index.php:101 application/views/debug/index.php:683
 #: application/views/debug/index.php:690 application/views/debug/index.php:696
@@ -1027,32 +1028,32 @@ msgstr "编辑计划任务"
 msgid "never"
 msgstr "从不"
 
-#: application/controllers/Cron.php:239
+#: application/controllers/Cron.php:248
 msgid "calculating..."
 msgstr "计算中…"
 
-#: application/controllers/Cron.php:250 application/views/cron/index.php:84
+#: application/controllers/Cron.php:259 application/views/cron/index.php:84
 msgid "healthy"
 msgstr "成功"
 
-#: application/controllers/Cron.php:252 application/views/cron/index.php:86
+#: application/controllers/Cron.php:261 application/views/cron/index.php:86
 msgid "failed"
 msgstr "失败"
 
-#: application/controllers/Cron.php:254 application/views/cron/index.php:88
+#: application/controllers/Cron.php:263 application/views/cron/index.php:88
 msgid "pending"
 msgstr "待处理"
 
-#: application/controllers/Cron.php:259 application/views/cron/index.php:93
+#: application/controllers/Cron.php:268 application/views/cron/index.php:93
 msgid "disabled"
 msgstr "禁用"
 
-#: application/controllers/Cron.php:298
+#: application/controllers/Cron.php:307
 #: application/views/interface_assets/footer.php:41
 msgid "OK"
 msgstr "OK"
 
-#: application/controllers/Cron.php:302
+#: application/controllers/Cron.php:311
 #, php-format
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
@@ -1060,7 +1061,7 @@ msgid ""
 msgstr ""
 "上次执行在 %s 秒前。%s请检查你的主计划任务！它应当每分钟运行一次(* * * * *)。"
 
-#: application/controllers/Cron.php:305
+#: application/controllers/Cron.php:314
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
@@ -1069,7 +1070,7 @@ msgstr ""
 "上次执行是 %s 分钟之前。 %s 你的 计划任务似乎没有配置好，%s 它应当设置为每分"
 "钟执行 (* * * * *)。"
 
-#: application/controllers/Cron.php:310 application/views/cron/index.php:43
+#: application/controllers/Cron.php:319 application/views/cron/index.php:43
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr "未运行"
