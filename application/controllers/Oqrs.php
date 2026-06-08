@@ -148,7 +148,7 @@ class Oqrs extends CI_Controller {
 		$this->load->model('oqrs_model');
 		$this->oqrs_model->save_not_in_log($postdata);
 		array_push($station_ids, $this->input->post('station_id', TRUE));
-		$this->alert_oqrs_request($postdata, $station_ids);
+		$this->_alert_oqrs_request($postdata, $station_ids);
 	}
 
 	/*
@@ -170,9 +170,8 @@ class Oqrs extends CI_Controller {
 	}
 
 	public function requests() {
+		$this->_check_auth();
 		$data['page_title'] = __("OQRS Requests");
-		$this->load->model('user_model');
-		if(!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -196,14 +195,14 @@ class Oqrs extends CI_Controller {
 		$postdata = $this->input->post(NULL, TRUE); // index is null means we get all postdata, TRUE means we XSS clean everything
 		$this->load->model('oqrs_model');
 		$station_ids = $this->oqrs_model->save_oqrs_request($postdata);
-		$this->alert_oqrs_request($postdata, $station_ids);
+		$this->_alert_oqrs_request($postdata, $station_ids);
 	}
 
 	public function save_oqrs_request_grouped() {
 		$postdata = $this->input->post(NULL, TRUE); // index is null means we get all postdata, TRUE means we XSS clean everything
 		$this->load->model('oqrs_model');
 		$station_ids = $this->oqrs_model->save_oqrs_request_grouped($postdata);
-		$this->alert_oqrs_request($postdata, $station_ids);
+		$this->_alert_oqrs_request($postdata, $station_ids);
 	}
 
 	public function delete_oqrs_line() {
@@ -262,7 +261,7 @@ class Oqrs extends CI_Controller {
 		$this->load->view('oqrs/qsolist', $data);
 	}
 
-	public function alert_oqrs_request($postdata, $station_ids) {
+	private function _alert_oqrs_request($postdata, $station_ids) {
 		foreach ($station_ids as $id) {
 			$this->load->model('user_model');
 
