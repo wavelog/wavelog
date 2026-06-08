@@ -244,10 +244,22 @@ class Contesting_model extends CI_Model {
 	 * Retrieves all QSOs associated with a specific contest session.
 	 *
 	 * @param int $contest_session_id The ID of the contest session.
+	 * @param string $band A valid band
 	 * @return array List of QSOs in the session.
 	 */
-	function get_session_qsos($contest_session_id) {
-		$bindings = [$contest_session_id];
+	function get_session_qsos($contest_session_id, $band = "all") {
+
+		//load band contraint
+		$band_contraint = $band != 'all' ? " AND lb.COL_BAND = ?" : '';
+
+		//prepare bindings
+		if($band != 'all'){
+			$bindings = [$contest_session_id, $band];
+		}else
+		{
+			$bindings = [$contest_session_id];
+		}
+		
 		$sql = "SELECT
 					lb.COL_PRIMARY_KEY AS qso_id,
 					lb.COL_CALL AS callsign,
@@ -263,11 +275,14 @@ class Contesting_model extends CI_Model {
 					lb.COL_STX_STRING AS exch_sent,
 					lb.COL_SRX_STRING AS exch_recv,
 					lb.COL_GRIDSQUARE AS locator,
-					lb.COL_OPERATOR AS operator
+					lb.COL_OPERATOR AS operator,
+					lb.COL_GRIDSQUARE as gridsquare_recv,
+					lb.COL_ANT_PATH as antenna_path,
+					lb.COL_DXCC as dxcc
 				FROM contest_qsos cq
 				JOIN contest_session cs ON cs.id = cq.contest_session_id
 				JOIN " . $this->config->item('table_name') . " lb ON lb.COL_PRIMARY_KEY = cq.qso_id
-				WHERE cq.contest_session_id = ?
+				WHERE cq.contest_session_id = ? {$band_contraint}
 				ORDER BY cq.id ASC";
 
 		$query = $this->db->query($sql, $bindings);
@@ -404,31 +419,33 @@ class Contesting_model extends CI_Model {
 	}
 
 	/**
-	 * Returns the Cabrillo-specific settings sub-array stored in the session's settings JSON.
+	 * Returns the Export-Format-specific settings sub-array stored in the session's settings JSON.
 	 *
 	 * @param int $contest_session_id
+	 * @param string $exportformat
 	 * @return array
 	 */
-	function get_cabrillo_settings($contest_session_id) {
+	function get_exportformat_settings($contest_session_id, $exportformat) {
 		$user_id = $this->session->userdata('user_id');
 		$sql = "SELECT settings FROM contest_session WHERE id = ? AND user_id = ? LIMIT 1";
 		$query = $this->db->query($sql, [$contest_session_id, $user_id]);
 		$row = $query->row_array();
 		if ($row && !empty($row['settings'])) {
 			$settings = json_decode($row['settings'], true) ?? [];
-			return $settings['cabrillo'] ?? [];
+			return $settings[$exportformat] ?? [];
 		}
 		return [];
 	}
 
 	/**
-	 * Merges Cabrillo settings into the session's settings JSON without overwriting other fields.
+	 * Merges exportformat settings into the session's settings JSON without overwriting other fields.
 	 *
 	 * @param int $contest_session_id
-	 * @param array $cabrillo_settings
+	 * @param string $exportformat
+	 * @param array $exportformat_settings
 	 * @return bool
 	 */
-	function save_cabrillo_settings($contest_session_id, $cabrillo_settings) {
+	function save_exportformat_settings($contest_session_id, $exportformat, $exportformat_settings) {
 		$user_id = $this->session->userdata('user_id');
 		$sql_sel = "SELECT settings FROM contest_session WHERE id = ? AND user_id = ? LIMIT 1";
 		$query = $this->db->query($sql_sel, [$contest_session_id, $user_id]);
@@ -438,7 +455,7 @@ class Contesting_model extends CI_Model {
 		if ($row && !empty($row['settings'])) {
 			$settings = json_decode($row['settings'], true) ?? [];
 		}
-		$settings['cabrillo'] = $cabrillo_settings;
+		$settings[$exportformat] = $exportformat_settings;
 
 		$sql_upd = "UPDATE contest_session SET settings = ? WHERE id = ? AND user_id = ?";
 		$this->db->query($sql_upd, [json_encode($settings), $contest_session_id, $user_id]);
@@ -492,15 +509,43 @@ class Contesting_model extends CI_Model {
 	}
 
 	/**
+	 * Returns a sorted array of bands logged in a contest session.
+	 * Returns empty array if no qsos
+	 *
+	 * @param int $contest_session_id
+	 * @return array e.g. ["160m", "80m", "70cm"]
+	 */
+	function get_session_bands($contest_session_id) {
+		$user_id = $this->session->userdata('user_id');
+		$table   = $this->config->item('table_name');
+
+		$sql = "SELECT DISTINCT bands.band as band
+				FROM contest_qsos cq
+				JOIN contest_session cs ON cs.id = cq.contest_session_id
+				JOIN {$table} ON {$table}.COL_PRIMARY_KEY = cq.qso_id
+				JOIN bands ON bands.band = {$table}.COL_BAND
+				WHERE cq.contest_session_id = ? AND cs.user_id = ? and bands.band != ?
+				ORDER BY bands.ssb ASC";
+
+		$query = $this->db->query($sql, [$contest_session_id, $user_id, "SAT"]);
+		$bands   = array_column($query->result_array(), 'band');
+		return $bands;
+	}
+
+
+	/**
 	 * Returns all QSOs of a contest session as a CI DB result object suitable for Cabrilloformat::qso().
 	 * Selects only the columns required for Cabrillo output.
 	 *
 	 * @param int $contest_session_id
+	 * @param string $band
 	 * @return CI_DB_result
 	 */
-	function get_session_qsos_for_cabrillo($contest_session_id) {
+	function get_session_qsos_for_exportformat($contest_session_id, $band = "all") {
 		$user_id = $this->session->userdata('user_id');
 		$table = $this->config->item('table_name');
+
+		$band_contraint = $band != 'all' ? " AND {$table}.COL_BAND = ?" : '';
 
 		$sql = "SELECT {$table}.COL_FREQ, {$table}.COL_MODE, {$table}.COL_TIME_ON,
 					   {$table}.COL_CALL, {$table}.COL_RST_SENT, {$table}.COL_RST_RCVD,
@@ -512,9 +557,14 @@ class Contesting_model extends CI_Model {
 				JOIN contest_session cs ON cs.id = cq.contest_session_id
 				JOIN {$table} ON {$table}.COL_PRIMARY_KEY = cq.qso_id
 				JOIN station_profile ON station_profile.station_id = {$table}.station_id
-				WHERE cq.contest_session_id = ? AND cs.user_id = ?
+				WHERE cq.contest_session_id = ? AND cs.user_id = ? {$band_contraint}
 				ORDER BY {$table}.COL_TIME_ON ASC";
 
-		return $this->db->query($sql, [$contest_session_id, $user_id]);
+		if($band != 'all'){
+			return $this->db->query($sql, [$contest_session_id, $user_id, $band_contraint]);
+		}else{
+			return $this->db->query($sql, [$contest_session_id, $user_id]);
+		}
+		
 	}
 }

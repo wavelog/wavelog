@@ -111,9 +111,9 @@ class Contesting extends CI_Controller {
 	}
 
 	/**
-	 * Export Page for contests
+	 * CBR Export Page for contests
 	 */
-	public function export($contest_session_id) {
+	public function export_cbr($contest_session_id) {
 		$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
 
 		if (!$this->contesting_model->check_user_contest($contest_session_id)) {
@@ -124,12 +124,12 @@ class Contesting extends CI_Controller {
 		$this->load->is_loaded('user_model') ?: $this->load->model('user_model');
 
 		$session_info = $this->contesting_model->get_session_info($contest_session_id);
-		$cabrillo     = $this->contesting_model->get_cabrillo_settings($contest_session_id);
+		$cabrillo     = $this->contesting_model->get_exportformat_settings($contest_session_id, "cabrillo");
 		$userinfo     = $this->user_model->get_by_id($this->session->userdata('user_id'))->row();
 
 		$session_operators = $this->contesting_model->get_session_operators($contest_session_id);
 
-		$data['page_title']         = sprintf(__("Export: %s"), $session_info['contest_name']);
+		$data['page_title']         = sprintf(__("CBR Export: %s"), $session_info['contest_name']) . ($session_info['comment'] != '' ? ' - '. $session_info['comment'] : '');
 		$data['session_info']       = $session_info;
 		$data['cabrillo']           = $cabrillo;
 		$data['qso_count']          = $this->contesting_model->get_session_qso_count($contest_session_id);
@@ -139,7 +139,42 @@ class Contesting extends CI_Controller {
 		$data['contest_session_id'] = $contest_session_id;
 
 		$this->load->view('interface_assets/header', $data);
-		$this->load->view('contesting/manager/export');
+		$this->load->view('contesting/manager/export_cbr');
+		$this->load->view('interface_assets/footer');
+	}
+
+	/**
+	 * EDI Export Page for contests
+	 */
+	public function export_edi($contest_session_id) {
+		$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
+
+		if (!$this->contesting_model->check_user_contest($contest_session_id)) {
+			$this->session->set_flashdata('error', __("Contest session not found."));
+			redirect('contesting');
+		}
+
+		$this->load->is_loaded('user_model') ?: $this->load->model('user_model');
+
+		$session_info = $this->contesting_model->get_session_info($contest_session_id);
+		$reg1test     = $this->contesting_model->get_exportformat_settings($contest_session_id, "reg1test");
+		$userinfo     = $this->user_model->get_by_id($this->session->userdata('user_id'))->row();
+
+		$session_operators = $this->contesting_model->get_session_operators($contest_session_id);
+		$session_bands = $this->contesting_model->get_session_bands($contest_session_id);
+
+		$data['page_title']         = sprintf(__("Export: %s"), $session_info['contest_name']) . ($session_info['comment'] != '' ? ' - '. $session_info['comment'] : '');
+		$data['session_info']       = $session_info;
+		$data['reg1test']           = $reg1test;
+		$data['bands']				= $session_bands;
+		$data['qso_count']          = $this->contesting_model->get_session_qso_count($contest_session_id);
+		$data['user_name']          = trim($userinfo->user_firstname . ' ' . $userinfo->user_lastname);
+		$data['user_email']         = $userinfo->user_email;
+		$data['session_operators']  = $session_operators;
+		$data['contest_session_id'] = $contest_session_id;
+
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('contesting/manager/export_edi');
 		$this->load->view('interface_assets/footer');
 	}
 
@@ -215,10 +250,10 @@ class Contesting extends CI_Controller {
 			'grid_precision'       => $this->input->post('grid_precision', true) === '6' ? '6' : '4',
 		];
 
-		$this->contesting_model->save_cabrillo_settings($contest_session_id, $cabrillo);
+		$this->contesting_model->save_exportformat_settings($contest_session_id, "cabrillo", $cabrillo);
 
 		$session_info = $this->contesting_model->get_session_info($contest_session_id);
-		$qsos         = $this->contesting_model->get_session_qsos_for_cabrillo($contest_session_id);
+		$qsos         = $this->contesting_model->get_session_qsos_for_exportformat($contest_session_id);
 
 		$this->load->is_loaded('user_model') ?: $this->load->model('user_model');
 		$userinfo = $this->user_model->get_by_id($this->session->userdata('user_id'))->row();
@@ -271,6 +306,130 @@ class Contesting extends CI_Controller {
 		}
 
 		echo $this->cabrilloformat->footer();
+	}
+
+	/**
+	 * EDI (Reg1Test) export for a specific contest session.
+	 * Saves Reg1Test settings back to the session before streaming the file.
+	 * POST /contesting/export_reg1test/<id>
+	 */
+	public function export_reg1test($contest_session_id) {
+		
+		//load contesting model
+		$this->load->is_loaded('contesting_model') ?: $this->load->model('contesting_model');
+
+		//security checks
+		if (!$this->contesting_model->check_user_contest($contest_session_id) || !clubaccess_check(6)) {
+			show_404();
+		}
+
+		//load distance calculator
+		$this->load->library('Qra');
+
+		//load user model
+		$this->load->is_loaded('user_model') ?: $this->load->model('user_model');
+
+		//load userinfo
+		$userinfo = $this->user_model->get_by_id($this->session->userdata('user_id'))->row();
+
+		//get session information
+		$session_info = $this->contesting_model->get_session_info($contest_session_id);
+
+		//get reg1test settings from user input
+		$reg1test_settings = [
+			'contestband'    		=> $this->input->post('contestband', true),
+			'sentexchange'    		=> $this->input->post('sentexchange', true)    		?? '',
+			'contestaddress1'       => $this->input->post('contestaddress1', true)      ?? '',
+			'contestaddress2'       => $this->input->post('contestaddress2', true)      ?? '',
+			'categoryoperator'      => $this->input->post('categoryoperator', true)     ?? 'SINGLE-OP',
+			'club'     				=> $this->input->post('club', true)     			?? '',
+			'responsible_operator' 	=> $this->input->post('responsible_operator', true) ?? '',
+			'address1'        		=> $this->input->post('address1', true)        		?? '',
+			'address2'     			=> $this->input->post('address2', true)     		?? '',
+			'addresspostalcode'     => $this->input->post('addresspostalcode', true)    ?? '',
+			'addresscity'           => $this->input->post('addresscity', true)          ?? '',
+			'addresscountry'        => $this->input->post('addresscountry', true)       ?? '',
+			'operatorphone'         => $this->input->post('operatorphone', true)        ?? '',
+			'operators'             => $this->input->post('operators', true)            ?? '',
+			'txequipment'           => $this->input->post('txequipment', true)          ?? '',
+			'power'         		=> $this->input->post('power', true)         		?? '',
+			'rxequipment'      		=> $this->input->post('rxequipment', true)     		?? '',
+			'antenna'    			=> $this->input->post('antenna', true)   			?? '',
+			'antennaheight'       	=> $this->input->post('antennaheight', true)        ?? '',
+			'soapbox'              	=> $this->input->post('soapbox', true)              ?? '',
+			'bandmultiplicator'     => $this->input->post('bandmultiplicator', true)    ?? '',
+		];
+
+		//save reg1test settings
+		$this->contesting_model->save_exportformat_settings($contest_session_id, "reg1test", $reg1test_settings);
+
+		//take reg1testsettings and use that as base for export data structure
+		$data = $reg1test_settings;
+
+		//get qsos and set qso data for export
+		$data['qsos'] = $this->contesting_model->get_session_qsos($contest_session_id, $data['contestband']);
+
+		//set contest header data for export
+		$data['band'] = $this->input->post('contestband', true);
+		$data['qso_count'] = count($data['qsos']);
+		$data['contest_id'] = $session_info['contest_adifname'];
+		$data['callsign'] = strtoupper(str_replace('/', '-', $session_info['station_callsign'] ?? 'STATION'));
+		$data['gridlocator'] = $session_info['station_gridsquare'];
+		$data['name'] = trim($userinfo->user_firstname . ' ' . $userinfo->user_lastname);
+		$data['maxdistanceqso'] = $this->qra->getMaxDistanceQSO($session_info['station_gridsquare'], $data['qsos'], "K");
+		$data['from'] = date('Ymd', strtotime($session_info['time_start']));
+		$data['to'] = date('Ymd', strtotime($session_info['time_end']));
+
+		//Load distance calculator
+		$this->load->library('Reg1testformat');
+
+		//Set headers
+		header('Content-Type: text/plain; charset=utf-8');
+		header('Content-Disposition: attachment; filename="' .  $data['callsign'] . '-' . $data['contest_id'] . '-' . date('Ymd-Hi') . '-' . $this->reg1testformat->reg1testbandstring($data['band']) . '.edi"');
+
+		//calculate qso details
+		$qsodetails = $this->reg1testformat->qsos($data['qsos'], $data['gridlocator'], $data['bandmultiplicator']);
+
+		//get header
+		echo $this->reg1testformat->header(
+			$data['contest_id'],
+			$data['from'],
+			$data['to'],
+			$data['callsign'],
+			$data['gridlocator'],
+			$data['contestaddress1'],
+			$data['contestaddress2'],
+			$data['categoryoperator'],
+			$data['band'],
+			$data['club'],
+			$data['name'],
+			$data['responsible_operator'],
+			$data['address1'],
+			$data['address2'],
+			$data['addresspostalcode'],
+			$data['addresscity'],
+			$data['addresscountry'],
+			$data['operatorphone'],
+			$data['operators'],
+			$data['soapbox'],
+			$data['qso_count'],
+			$data['sentexchange'],
+			$data['txequipment'],
+			$data['power'],
+			$data['rxequipment'],
+			$data['antenna'],
+			$data['antennaheight'],
+			$data['maxdistanceqso'],
+			$data['bandmultiplicator'],
+			$qsodetails['claimedpoints']
+		);
+
+		//write QSO details
+		echo $qsodetails['formatted_qso'];
+
+		//get seperate footer if QSO details won't provide one
+		echo $data['qso_count'] < 1 ? $this->reg1testformat->footer() : '';
+
 	}
 
 	/**
