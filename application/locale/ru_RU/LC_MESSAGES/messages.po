@@ -241,7 +241,8 @@ msgstr "Тропосферное прохождение"
 #: application/controllers/User.php:1145 application/controllers/User.php:1164
 #: application/controllers/User.php:1416 application/controllers/User.php:1556
 #: application/controllers/User.php:1781 application/controllers/User.php:1797
-#: application/controllers/User.php:1823
+#: application/controllers/User.php:1823 application/controllers/Cron.php:167
+#: application/controllers/Cron.php:181
 msgid "You're not allowed to do that!"
 msgstr "Вам нельзя это делать!"
 
@@ -1009,6 +1010,7 @@ msgid "Cron Manager"
 msgstr "Диспетчер задач"
 
 #: application/controllers/Cron.php:169 application/views/cron/edit.php:5
+#: application/controllers/Cron.php:173
 msgid "Edit Cronjob"
 msgstr "Редактирование задачи"
 
@@ -1021,40 +1023,43 @@ msgstr "Редактирование задачи"
 #: application/views/debug/index.php:726 application/views/debug/index.php:732
 #: application/views/debug/index.php:738 application/views/debug/index.php:744
 #: application/controllers/Cron.php:238 application/controllers/Cron.php:239
+#: application/controllers/Cron.php:247 application/controllers/Cron.php:248
 msgid "never"
 msgstr "никогда"
 
 #: application/controllers/Cron.php:234 application/controllers/Cron.php:239
+#: application/controllers/Cron.php:248
 msgid "calculating..."
 msgstr "расчёт..."
 
 #: application/controllers/Cron.php:245 application/views/cron/index.php:84
-#: application/controllers/Cron.php:250
+#: application/controllers/Cron.php:250 application/controllers/Cron.php:259
 msgid "healthy"
 msgstr "норма"
 
 #: application/controllers/Cron.php:247 application/views/cron/index.php:86
-#: application/controllers/Cron.php:252
+#: application/controllers/Cron.php:252 application/controllers/Cron.php:261
 msgid "failed"
 msgstr "ошибка"
 
 #: application/controllers/Cron.php:249 application/views/cron/index.php:88
-#: application/controllers/Cron.php:254
+#: application/controllers/Cron.php:254 application/controllers/Cron.php:263
 msgid "pending"
 msgstr "в ожидании"
 
 #: application/controllers/Cron.php:254 application/views/cron/index.php:93
-#: application/controllers/Cron.php:259
+#: application/controllers/Cron.php:259 application/controllers/Cron.php:268
 msgid "disabled"
 msgstr "отключено"
 
 #: application/controllers/Cron.php:293
 #: application/views/interface_assets/footer.php:41
-#: application/controllers/Cron.php:298
+#: application/controllers/Cron.php:298 application/controllers/Cron.php:307
 msgid "OK"
 msgstr "ОК"
 
 #: application/controllers/Cron.php:297 application/controllers/Cron.php:302
+#: application/controllers/Cron.php:311
 #, php-format
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
@@ -1064,6 +1069,7 @@ msgstr ""
 "cron! Он должен запускаться каждую минуту (* * * * *)."
 
 #: application/controllers/Cron.php:300 application/controllers/Cron.php:305
+#: application/controllers/Cron.php:314
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
@@ -1073,7 +1079,7 @@ msgstr ""
 "работает!%sОн должен запускаться каждую минуту (* * * * *)."
 
 #: application/controllers/Cron.php:305 application/views/cron/index.php:43
-#: application/controllers/Cron.php:310
+#: application/controllers/Cron.php:310 application/controllers/Cron.php:319
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr "Не работает"

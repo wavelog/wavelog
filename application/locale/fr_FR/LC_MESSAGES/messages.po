@@ -246,7 +246,8 @@ msgstr "Tropospheric ducting"
 #: application/controllers/User.php:1145 application/controllers/User.php:1164
 #: application/controllers/User.php:1416 application/controllers/User.php:1556
 #: application/controllers/User.php:1781 application/controllers/User.php:1797
-#: application/controllers/User.php:1823
+#: application/controllers/User.php:1823 application/controllers/Cron.php:167
+#: application/controllers/Cron.php:181
 msgid "You're not allowed to do that!"
 msgstr "Vous n'êtes pas autorisé à faire cela !"
 
@@ -1015,6 +1016,7 @@ msgid "Cron Manager"
 msgstr "Gestion des Cron"
 
 #: application/controllers/Cron.php:169 application/views/cron/edit.php:5
+#: application/controllers/Cron.php:173
 msgid "Edit Cronjob"
 msgstr "Modifier les traitements Cron"
 
@@ -1026,35 +1028,41 @@ msgstr "Modifier les traitements Cron"
 #: application/views/debug/index.php:714 application/views/debug/index.php:720
 #: application/views/debug/index.php:726 application/views/debug/index.php:732
 #: application/views/debug/index.php:738 application/views/debug/index.php:744
+#: application/controllers/Cron.php:247 application/controllers/Cron.php:248
 msgid "never"
 msgstr "jamais"
 
-#: application/controllers/Cron.php:239
+#: application/controllers/Cron.php:239 application/controllers/Cron.php:248
 msgid "calculating..."
 msgstr "calcul en cours..."
 
 #: application/controllers/Cron.php:250 application/views/cron/index.php:84
+#: application/controllers/Cron.php:259
 msgid "healthy"
 msgstr "sain"
 
 #: application/controllers/Cron.php:252 application/views/cron/index.php:86
+#: application/controllers/Cron.php:261
 msgid "failed"
 msgstr "échoué"
 
 #: application/controllers/Cron.php:254 application/views/cron/index.php:88
+#: application/controllers/Cron.php:263
 msgid "pending"
 msgstr "en attente"
 
 #: application/controllers/Cron.php:259 application/views/cron/index.php:93
+#: application/controllers/Cron.php:268
 msgid "disabled"
 msgstr "désactivé"
 
 #: application/controllers/Cron.php:298
 #: application/views/interface_assets/footer.php:41
+#: application/controllers/Cron.php:307
 msgid "OK"
 msgstr "OK"
 
-#: application/controllers/Cron.php:302
+#: application/controllers/Cron.php:302 application/controllers/Cron.php:311
 #, php-format
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
@@ -1063,7 +1071,7 @@ msgstr ""
 "La dernière exécution a eu lieu il y a plus de %s secondes.%sVeuillez "
 "vérifier votre cron maître ! Il devrait s'exécuter chaque minute (* * * * *)."
 
-#: application/controllers/Cron.php:305
+#: application/controllers/Cron.php:305 application/controllers/Cron.php:314
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
@@ -1074,6 +1082,7 @@ msgstr ""
 "* * * *)."
 
 #: application/controllers/Cron.php:310 application/views/cron/index.php:43
+#: application/controllers/Cron.php:319
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr "Ne fonctionne pas"
