@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-06 12:24+0000\n"
+"POT-Creation-Date: 2026-06-08 07:58+0000\n"
 "PO-Revision-Date: 2026-06-03 11:00+0000\n"
 "Last-Translator: Anton Tomanič <s57xz.toni@gmail.com>\n"
 "Language-Team: Slovenian <https://translate.wavelog.org/projects/wavelog/"
@@ -175,9 +175,8 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Map.php:12 application/controllers/Map.php:27
 #: application/controllers/Mode.php:15 application/controllers/Notes.php:10
 #: application/controllers/Operator.php:13
-#: application/controllers/Options.php:14 application/controllers/Oqrs.php:15
-#: application/controllers/Oqrs.php:178 application/controllers/Oqrs.php:226
-#: application/controllers/Oqrs.php:240 application/controllers/Qrbcalc.php:13
+#: application/controllers/Options.php:14 application/controllers/Oqrs.php:12
+#: application/controllers/Oqrs.php:397 application/controllers/Qrbcalc.php:13
 #: application/controllers/Qrz.php:199 application/controllers/Qrz.php:286
 #: application/controllers/Qsl.php:12 application/controllers/Qsl.php:13
 #: application/controllers/Qsl.php:49 application/controllers/Qsl.php:57
@@ -993,7 +992,7 @@ msgstr "Cron Manager"
 msgid "Edit Cronjob"
 msgstr "Uredi Cronjob"
 
-#: application/controllers/Cron.php:233 application/controllers/Cron.php:234
+#: application/controllers/Cron.php:238 application/controllers/Cron.php:239
 #: application/views/cron/index.php:97 application/views/cron/index.php:99
 #: application/views/cron/index.php:101 application/views/debug/index.php:683
 #: application/views/debug/index.php:690 application/views/debug/index.php:696
@@ -1004,32 +1003,32 @@ msgstr "Uredi Cronjob"
 msgid "never"
 msgstr "nikoli"
 
-#: application/controllers/Cron.php:234
+#: application/controllers/Cron.php:239
 msgid "calculating..."
 msgstr "preračunavam..."
 
-#: application/controllers/Cron.php:245 application/views/cron/index.php:84
+#: application/controllers/Cron.php:250 application/views/cron/index.php:84
 msgid "healthy"
 msgstr "zdravi"
 
-#: application/controllers/Cron.php:247 application/views/cron/index.php:86
+#: application/controllers/Cron.php:252 application/views/cron/index.php:86
 msgid "failed"
 msgstr "neuspelo"
 
-#: application/controllers/Cron.php:249 application/views/cron/index.php:88
+#: application/controllers/Cron.php:254 application/views/cron/index.php:88
 msgid "pending"
 msgstr "na čakanju"
 
-#: application/controllers/Cron.php:254 application/views/cron/index.php:93
+#: application/controllers/Cron.php:259 application/views/cron/index.php:93
 msgid "disabled"
 msgstr "onemogočeno"
 
-#: application/controllers/Cron.php:293
+#: application/controllers/Cron.php:298
 #: application/views/interface_assets/footer.php:41
 msgid "OK"
 msgstr "OK"
 
-#: application/controllers/Cron.php:297
+#: application/controllers/Cron.php:302
 #, php-format
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
@@ -1038,7 +1037,7 @@ msgstr ""
 "Zadnji zagon se je zgodil pred več kot %s sekundami.%sPreverite svoj master "
 "cron! Zagnati bi se moral vsako minuto (* * * * *)."
 
-#: application/controllers/Cron.php:300
+#: application/controllers/Cron.php:305
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
@@ -1047,7 +1046,7 @@ msgstr ""
 "Zadnji zagon se je zgodil pred več kot %s minutami.%sZdi se, da vaš "
 "Mastercron ne deluje!%sMoral bi se izvajati vsako minuto (* * * * *)."
 
-#: application/controllers/Cron.php:305 application/views/cron/index.php:43
+#: application/controllers/Cron.php:310 application/views/cron/index.php:43
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr "Se ne izvaja"
@@ -2520,7 +2519,7 @@ msgstr "Informacije o različici bodo ponovno prikazane vsem uporabnikom"
 msgid "Version Info will not be shown to any user"
 msgstr "Informacije o različici ne bodo prikazane nobenemu uporabniku"
 
-#: application/controllers/Oqrs.php:42 application/controllers/Staticmap.php:20
+#: application/controllers/Oqrs.php:39 application/controllers/Staticmap.php:20
 #: application/controllers/Staticmap.php:25
 #: application/controllers/Staticmap.php:156
 #: application/controllers/Visitor.php:54
@@ -2536,29 +2535,29 @@ msgstr "Informacije o različici ne bodo prikazane nobenemu uporabniku"
 msgid "Unknown Public Page."
 msgstr "Neznana javna stran."
 
-#: application/controllers/Oqrs.php:54 application/controllers/Oqrs.php:63
-#: application/controllers/Oqrs.php:128 application/controllers/Oqrs.php:140
+#: application/controllers/Oqrs.php:51 application/controllers/Oqrs.php:60
+#: application/controllers/Oqrs.php:125 application/controllers/Oqrs.php:137
 msgid "Log Search & OQRS"
 msgstr "Iskanje dnevnikov & OQRS"
 
-#: application/controllers/Oqrs.php:85
+#: application/controllers/Oqrs.php:82
 msgid "Invalid Station ID"
 msgstr "Neveljaven ID postaje"
 
-#: application/controllers/Oqrs.php:108
+#: application/controllers/Oqrs.php:105
 msgid "Invalid station slug"
 msgstr "Neveljavna končnica URL naslova postaje"
 
-#: application/controllers/Oqrs.php:176
+#: application/controllers/Oqrs.php:174
 #: application/views/interface_assets/header.php:513
 msgid "OQRS Requests"
 msgstr "OQRS zahtevki"
 
-#: application/controllers/Oqrs.php:380
+#: application/controllers/Oqrs.php:381
 msgid "QSO match deleted successfully."
 msgstr "QSO je bila uspešno izbrisana."
 
-#: application/controllers/Oqrs.php:389
+#: application/controllers/Oqrs.php:391
 msgid "QSO match added successfully."
 msgstr "QSO je bila uspešno dodana."
 
