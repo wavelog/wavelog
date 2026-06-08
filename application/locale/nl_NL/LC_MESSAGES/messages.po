@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-03 11:00+0000\n"
-"PO-Revision-Date: 2026-05-30 11:16+0000\n"
+"POT-Creation-Date: 2026-06-08 07:58+0000\n"
+"PO-Revision-Date: 2026-06-05 20:28+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/nl/>\n"
@@ -177,9 +177,8 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Map.php:12 application/controllers/Map.php:27
 #: application/controllers/Mode.php:15 application/controllers/Notes.php:10
 #: application/controllers/Operator.php:13
-#: application/controllers/Options.php:14 application/controllers/Oqrs.php:15
-#: application/controllers/Oqrs.php:178 application/controllers/Oqrs.php:226
-#: application/controllers/Oqrs.php:240 application/controllers/Qrbcalc.php:13
+#: application/controllers/Options.php:14 application/controllers/Oqrs.php:12
+#: application/controllers/Oqrs.php:397 application/controllers/Qrbcalc.php:13
 #: application/controllers/Qrz.php:199 application/controllers/Qrz.php:286
 #: application/controllers/Qsl.php:12 application/controllers/Qsl.php:13
 #: application/controllers/Qsl.php:49 application/controllers/Qsl.php:57
@@ -997,7 +996,7 @@ msgstr "Cron Manager"
 msgid "Edit Cronjob"
 msgstr "Cronjob bewerken"
 
-#: application/controllers/Cron.php:233 application/controllers/Cron.php:234
+#: application/controllers/Cron.php:238 application/controllers/Cron.php:239
 #: application/views/cron/index.php:97 application/views/cron/index.php:99
 #: application/views/cron/index.php:101 application/views/debug/index.php:683
 #: application/views/debug/index.php:690 application/views/debug/index.php:696
@@ -1008,32 +1007,32 @@ msgstr "Cronjob bewerken"
 msgid "never"
 msgstr "nooit"
 
-#: application/controllers/Cron.php:234
+#: application/controllers/Cron.php:239
 msgid "calculating..."
 msgstr "berekenen..."
 
-#: application/controllers/Cron.php:245 application/views/cron/index.php:84
+#: application/controllers/Cron.php:250 application/views/cron/index.php:84
 msgid "healthy"
 msgstr "gezond"
 
-#: application/controllers/Cron.php:247 application/views/cron/index.php:86
+#: application/controllers/Cron.php:252 application/views/cron/index.php:86
 msgid "failed"
 msgstr "mislukt"
 
-#: application/controllers/Cron.php:249 application/views/cron/index.php:88
+#: application/controllers/Cron.php:254 application/views/cron/index.php:88
 msgid "pending"
 msgstr "in behandeling"
 
-#: application/controllers/Cron.php:254 application/views/cron/index.php:93
+#: application/controllers/Cron.php:259 application/views/cron/index.php:93
 msgid "disabled"
 msgstr "uitgeschakeld"
 
-#: application/controllers/Cron.php:293
+#: application/controllers/Cron.php:298
 #: application/views/interface_assets/footer.php:41
 msgid "OK"
 msgstr "Oké"
 
-#: application/controllers/Cron.php:297
+#: application/controllers/Cron.php:302
 #, php-format
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
@@ -1042,7 +1041,7 @@ msgstr ""
 "Laatste uitvoering vond meer dan %s seconden geleden plaats.%sControleer je "
 "master cron! Deze zou elke minuut moeten draaien (* * * * *)."
 
-#: application/controllers/Cron.php:300
+#: application/controllers/Cron.php:305
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
@@ -1052,7 +1051,7 @@ msgstr ""
 "erop dat je Mastercron niet draait!%s Deze zou elke minuut moeten draaien (* "
 "* * * *)."
 
-#: application/controllers/Cron.php:305 application/views/cron/index.php:43
+#: application/controllers/Cron.php:310 application/views/cron/index.php:43
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr "Draait niet"
@@ -1297,6 +1296,18 @@ msgstr "eQSL-kaart afbeelding downloaden"
 #: application/controllers/Eqsl.php:667
 msgid "All eQSLs marked as uploaded"
 msgstr "Alle eQSL's gemarkeerd als geüpload"
+
+#: application/controllers/Errors.php:22
+msgid "Page Not Found"
+msgstr "Pagina niet gevonden"
+
+#: application/controllers/Errors.php:23
+msgid "QRZ? ... no reply."
+msgstr "QRZ? ... geen antwoord."
+
+#: application/controllers/Errors.php:24
+msgid "Nobody is transmitting on this frequency."
+msgstr "Niemand is aan het uitzenden op deze frequentie."
 
 #: application/controllers/Generic_qsl.php:18
 #: application/views/awards/amsat_rover/index.php:43
@@ -1934,8 +1945,8 @@ msgstr "Staat/Provincie"
 #: application/views/qso/award_tabs.php:45
 #: application/views/qso/components/previous_contacts.php:86
 #: application/views/qso/edit_ajax.php:157 application/views/qso/index.php:376
-#: application/views/satellite/pass.php:48
-#: application/views/satellite/pass.php:87
+#: application/views/satellite/pass.php:38
+#: application/views/satellite/pass.php:80
 #: application/views/search/result.php:49
 #: application/views/search/search_result_ajax.php:13
 #: application/views/simplefle/index.php:161
@@ -2168,12 +2179,12 @@ msgstr "Verwijderde DXCC"
 msgid "Advanced logbook"
 msgstr "Geavanceerd logboek"
 
-#: application/controllers/Logbookadvanced.php:984
+#: application/controllers/Logbookadvanced.php:968
 #, php-format
 msgid "DXCC updated for %d QSO(s)."
 msgstr "DXCC bijgewerkt voor %d QSO's."
 
-#: application/controllers/Logbookadvanced.php:1000
+#: application/controllers/Logbookadvanced.php:984
 #, php-format
 msgid "Map for DXCC %s and gridsquare %s."
 msgstr "Kaart voor DXCC %s en locatorvak %s."
@@ -2513,7 +2524,7 @@ msgstr "Versie-informatie wordt weer aan alle gebruikers getoond"
 msgid "Version Info will not be shown to any user"
 msgstr "Versie-informatie wordt niet aan gebruikers getoond"
 
-#: application/controllers/Oqrs.php:42 application/controllers/Staticmap.php:20
+#: application/controllers/Oqrs.php:39 application/controllers/Staticmap.php:20
 #: application/controllers/Staticmap.php:25
 #: application/controllers/Staticmap.php:156
 #: application/controllers/Visitor.php:54
@@ -2529,29 +2540,29 @@ msgstr "Versie-informatie wordt niet aan gebruikers getoond"
 msgid "Unknown Public Page."
 msgstr "Onbekende openbare pagina."
 
-#: application/controllers/Oqrs.php:54 application/controllers/Oqrs.php:63
-#: application/controllers/Oqrs.php:128 application/controllers/Oqrs.php:140
+#: application/controllers/Oqrs.php:51 application/controllers/Oqrs.php:60
+#: application/controllers/Oqrs.php:125 application/controllers/Oqrs.php:137
 msgid "Log Search & OQRS"
 msgstr "Log Zoeken & OQRS"
 
-#: application/controllers/Oqrs.php:85
+#: application/controllers/Oqrs.php:82
 msgid "Invalid Station ID"
 msgstr "Ongeldige station-ID"
 
-#: application/controllers/Oqrs.php:108
+#: application/controllers/Oqrs.php:105
 msgid "Invalid station slug"
 msgstr "Ongeldige stationsslug"
 
-#: application/controllers/Oqrs.php:176
+#: application/controllers/Oqrs.php:174
 #: application/views/interface_assets/header.php:513
 msgid "OQRS Requests"
 msgstr "OQRS-verzoeken"
 
-#: application/controllers/Oqrs.php:380
+#: application/controllers/Oqrs.php:381
 msgid "QSO match deleted successfully."
 msgstr "Overeenkomstige QSO succesvol verwijderd."
 
-#: application/controllers/Oqrs.php:389
+#: application/controllers/Oqrs.php:391
 msgid "QSO match added successfully."
 msgstr "Overeenkomstige QSO met succes toegevoegd."
 
@@ -2668,7 +2679,7 @@ msgid "Options"
 msgstr "Opties"
 
 #: application/controllers/Radio.php:53 application/views/debug/index.php:370
-#: application/views/qso/index.php:826
+#: application/views/qso/index.php:826 application/views/satellite/pass.php:116
 msgid "Settings"
 msgstr "Instellingen"
 
@@ -4336,10 +4347,10 @@ msgstr "Geactiveerde locatorvakken"
 #: application/views/logbookadvanced/index.php:408
 #: application/views/qso/award_tabs.php:69
 #: application/views/satellite/flightpath.php:43
-#: application/views/satellite/pass.php:18
+#: application/views/satellite/pass.php:122
 #: application/views/satellite/passtable.php:6
 #: application/views/satellite/skedtable.php:6
-#: application/views/satellite/skedtable.php:35
+#: application/views/satellite/skedtable.php:41
 #: application/views/sattimers/index.php:43
 #: application/views/statistics/index.php:27
 #: application/views/timeline/index.php:195
@@ -4627,8 +4638,9 @@ msgstr ""
 #: application/views/qslcard/searchresult.php:4
 #: application/views/qslprint/qslprint.php:31
 #: application/views/qslprint/qsolist.php:7 application/views/qso/index.php:154
-#: application/views/qso/index.php:190 application/views/satellite/pass.php:52
-#: application/views/satellite/skedtable.php:7
+#: application/views/qso/index.php:190 application/views/satellite/pass.php:132
+#: application/views/satellite/skedtable.php:12
+#: application/views/satellite/skedtable.php:14
 #: application/views/search/search_result_ajax.php:89
 #: application/views/simplefle/index.php:154
 #: application/views/statistics/initialresult.php:15
@@ -4668,6 +4680,8 @@ msgstr "Datum"
 #: application/views/qslcard/searchresult.php:6
 #: application/views/qslprint/qslprint.php:32
 #: application/views/qslprint/qsolist.php:8 application/views/qso/index.php:195
+#: application/views/satellite/skedtable.php:13
+#: application/views/satellite/skedtable.php:15
 #: application/views/search/search_result_ajax.php:91
 #: application/views/simplefle/index.php:155
 #: application/views/statistics/initialresult.php:16
@@ -5263,7 +5277,7 @@ msgstr "Eenvoudige naam om te beschrijven waarvoor je deze API gebruikt."
 #: application/views/options/radios.php:45
 #: application/views/options/version_dialog.php:78
 #: application/views/satellite/create.php:82
-#: application/views/satellite/pass.php:117
+#: application/views/satellite/pass.php:185
 #: application/views/simplefle/index.php:22
 msgid "Save"
 msgstr "Opslaan"
@@ -5649,7 +5663,7 @@ msgid "Grid Activations"
 msgstr "Locatorvak activaties"
 
 #: application/views/awards/amsat_rover/index.php:221
-#: application/views/satellite/skedtable.php:34
+#: application/views/satellite/skedtable.php:40
 msgid "Grid"
 msgstr "Vak"
 
@@ -9424,7 +9438,7 @@ msgstr "Er werden geen contesten in je logboek gevonden."
 
 #: application/views/callstats/index.php:5
 msgid "View statistics for worked callsigns"
-msgstr ""
+msgstr "Bekijk statistieken voor gewerkte roepnamen"
 
 #: application/views/callstats/index.php:75
 #: application/views/gridmap/index.php:96
@@ -9599,7 +9613,7 @@ msgstr "Ja, overschakelen!"
 #: application/views/cron/edit.php:74
 #: application/views/interface_assets/footer.php:40
 #: application/views/logbookadvanced/index.php:88
-#: application/views/satellite/pass.php:116
+#: application/views/satellite/pass.php:184
 #: application/views/user/modals/admin_impersonate_modal.php:45
 #: application/views/user/modals/stop_impersonate_modal.php:14
 msgid "Cancel"
@@ -10439,7 +10453,7 @@ msgstr "VUCC Locatorvak"
 
 #: application/views/continents/index.php:14
 msgid "View continent statistics"
-msgstr ""
+msgstr "Bekijk continentstatistieken"
 
 #: application/views/continents/index.php:68
 #: application/views/statistics/index.php:23
@@ -10730,18 +10744,18 @@ msgstr "Ten minste een van je certificaten verloopt"
 
 #: application/views/dashboard/index.php:234
 msgid "Total QSOs"
-msgstr ""
+msgstr "Totaal aantal QSOs"
 
 #: application/views/dashboard/index.php:274
 msgid "Current Streak"
-msgstr ""
+msgstr "Huidige reeks"
 
 #: application/views/dashboard/index.php:277
 #, php-format
 msgid "%d Day"
 msgid_plural "%d Days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d dag"
+msgstr[1] "%d dagen"
 
 #: application/views/dashboard/index.php:284
 #: application/views/statistics/index.php:119
@@ -10752,7 +10766,7 @@ msgstr "Unieke roepnamen"
 #: application/views/dashboard/index.php:328
 #: application/views/view_log/index.php:26
 msgid "Recent QSOs"
-msgstr ""
+msgstr "Recente QSO's"
 
 #: application/views/dashboard/index.php:380
 #: application/views/qso/index.php:914
@@ -10916,11 +10930,11 @@ msgstr "Gegevens verstrekt door HAMqsl."
 
 #: application/views/dashboard/index.php:640
 msgid "Day"
-msgstr ""
+msgstr "Dag"
 
 #: application/views/dashboard/index.php:647
 msgid "Night"
-msgstr ""
+msgstr "Nacht"
 
 #: application/views/dashboard/index.php:657
 msgid "Solar Flux Index"
@@ -11832,7 +11846,7 @@ msgstr "DX Locatorvak"
 
 #: application/views/distancerecords/index.php:56
 msgid "No QSOs found matching the criteria for this page!"
-msgstr ""
+msgstr "Geen QSOs gevonden die aan de criteria voor deze pagina voldoen!"
 
 #: application/views/distances/index.php:5
 #: application/views/interface_assets/footer.php:31
@@ -12274,9 +12288,13 @@ msgstr "QSL Datum"
 msgid "View"
 msgstr "Bekijken"
 
+#: application/views/errors/html/error_404.php:82
+msgid "Go Back to Dashboard"
+msgstr "Ga terug naar dashboard"
+
 #: application/views/gridmap/index.php:27
 msgid "View a map of worked / confirmed gridsquares"
-msgstr ""
+msgstr "Bekijk een kaart van de bewerkte/bevestigde locatorvakken"
 
 #: application/views/gridmap/index.php:73
 #: application/views/logbookadvanced/index.php:352
@@ -12300,7 +12318,7 @@ msgstr "Leeg"
 
 #: application/views/hamsat/index.php:10
 msgid "Satellite Rovers"
-msgstr ""
+msgstr "Satellietrovers"
 
 #: application/views/hamsat/index.php:27
 #, php-format
@@ -14666,8 +14684,8 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:921
 #: application/views/logbookadvanced/useroptions.php:28
 #: application/views/satellite/passtable.php:9
-#: application/views/satellite/skedtable.php:10
-#: application/views/satellite/skedtable.php:37
+#: application/views/satellite/skedtable.php:9
+#: application/views/satellite/skedtable.php:43
 #: application/views/sattimers/index.php:51
 msgid "Duration"
 msgstr "Duur"
@@ -16222,7 +16240,7 @@ msgstr ""
 
 #: application/views/oqrs/showrequests.php:29
 msgid "Manage OQRS Requests"
-msgstr ""
+msgstr "OQRS-verzoeken beheren"
 
 #: application/views/oqrs/showrequests.php:47
 #: application/views/oqrs/showrequests.php:95
@@ -16380,7 +16398,7 @@ msgstr ""
 
 #: application/views/qslcard/confirmations.php:7
 msgid "View QSO Confirmations"
-msgstr ""
+msgstr "Bekijk QSO-bevestigingen"
 
 #: application/views/qslcard/confirmations.php:14
 msgid "Confirmation type"
@@ -17357,7 +17375,7 @@ msgstr "Satellietmodus toevoegen"
 
 #: application/views/satellite/flightpath.php:38
 msgid "View a map with satellite flightpaths"
-msgstr ""
+msgstr "Bekijk een kaart met de routes van satellieten"
 
 #: application/views/satellite/flightpath.php:54
 msgid ""
@@ -17383,80 +17401,80 @@ msgstr "Satelliet TLE bijwerken"
 msgid "TLE"
 msgstr "TLE"
 
-#: application/views/satellite/pass.php:5
+#: application/views/satellite/pass.php:21
 msgid "Satellite passes"
 msgstr "Satelliet passages"
 
-#: application/views/satellite/pass.php:8
-msgid "Look for satellite passes"
-msgstr ""
-
-#: application/views/satellite/pass.php:15
+#: application/views/satellite/pass.php:32
 msgid "Your station"
 msgstr "Jouw station"
 
-#: application/views/satellite/pass.php:28
-#: application/views/satellite/pass.php:67
+#: application/views/satellite/pass.php:42
+#: application/views/satellite/pass.php:84
 msgid "Min. Satellite Elevation"
 msgstr "Min. Satelliet Elevatie"
 
-#: application/views/satellite/pass.php:32
-#: application/views/satellite/pass.php:71
+#: application/views/satellite/pass.php:49
+#: application/views/satellite/pass.php:91
 msgid "Min. Azimuth"
 msgstr "Min. Azimut"
 
-#: application/views/satellite/pass.php:40
-#: application/views/satellite/pass.php:79
+#: application/views/satellite/pass.php:57
+#: application/views/satellite/pass.php:99
 msgid "Max. Azimuth"
 msgstr "Max. Azimut"
 
-#: application/views/satellite/pass.php:56
-msgid "Min. time"
-msgstr "Min. tijd"
-
-#: application/views/satellite/pass.php:65
+#: application/views/satellite/pass.php:74
 msgid "Sked partner"
 msgstr "Sked-partner"
 
-#: application/views/satellite/pass.php:93
+#: application/views/satellite/pass.php:123
+msgid "Only satellites with TLE data are shown here!"
+msgstr ""
+
+#: application/views/satellite/pass.php:136
+msgid "Min. time"
+msgstr "Min. tijd"
+
+#: application/views/satellite/pass.php:147
 msgid "Load predictions"
 msgstr "Laad voorspellingen"
 
-#: application/views/satellite/pass.php:94
-msgid "Add sked partner"
-msgstr "Voeg sked-partner toe"
-
-#: application/views/satellite/pass.php:96
+#: application/views/satellite/pass.php:149
 msgid "Presets"
 msgstr "Voorkeuze"
 
-#: application/views/satellite/pass.php:98
+#: application/views/satellite/pass.php:151
 msgid "Save current settings"
 msgstr "Huidige instellingen opslaan"
 
-#: application/views/satellite/pass.php:107
+#: application/views/satellite/pass.php:165
+msgid "Pass Predictions"
+msgstr ""
+
+#: application/views/satellite/pass.php:175
 msgid "Save Settings"
 msgstr "Instellingen opslaan"
 
-#: application/views/satellite/pass.php:111
+#: application/views/satellite/pass.php:179
 msgid "Settings Name"
 msgstr "Instellingen Naam"
 
-#: application/views/satellite/pass.php:112
+#: application/views/satellite/pass.php:180
 msgid "Enter a name"
 msgstr "Voer een naam in"
 
-#: application/views/satellite/pass.php:123
+#: application/views/satellite/pass.php:192
 msgid "No TLE information detected. Please update TLE's."
 msgstr "Geen TLE-informatie gedetecteerd. Werk de TLE's bij."
 
 #: application/views/satellite/passtable.php:7
-#: application/views/satellite/skedtable.php:36
+#: application/views/satellite/skedtable.php:42
 msgid "AOS Time"
 msgstr "AOS Tijd"
 
 #: application/views/satellite/passtable.php:8
-#: application/views/satellite/skedtable.php:40
+#: application/views/satellite/skedtable.php:46
 msgid "LOS Time"
 msgstr "LOS-tijd"
 
@@ -17469,17 +17487,17 @@ msgid "Max Elevation (Azimuth)"
 msgstr "Maximale elevatie (azimut)"
 
 #: application/views/satellite/passtable.php:12
-#: application/views/satellite/skedtable.php:38
+#: application/views/satellite/skedtable.php:44
 msgid "AOS Azimuth"
 msgstr "AOS Azimut"
 
 #: application/views/satellite/passtable.php:13
-#: application/views/satellite/skedtable.php:41
+#: application/views/satellite/skedtable.php:47
 msgid "LOS Azimuth"
 msgstr "LOS Azimut"
 
 #: application/views/satellite/passtable.php:55
-#: application/views/satellite/skedtable.php:84
+#: application/views/satellite/skedtable.php:88
 msgid "Search failed!"
 msgstr "Zoeken mislukt!"
 
@@ -17488,7 +17506,7 @@ msgid "No passes found. Please check the input parameters."
 msgstr "Geen passages gevonden. Controleer de invoerparameters."
 
 #: application/views/satellite/passtable.php:73
-#: application/views/satellite/skedtable.php:94
+#: application/views/satellite/skedtable.php:98
 msgid "min"
 msgstr "min"
 
@@ -17496,20 +17514,20 @@ msgstr "min"
 msgid "TLE date"
 msgstr "TLE datum"
 
-#: application/views/satellite/skedtable.php:8
+#: application/views/satellite/skedtable.php:7
 msgid "Sked AOS Time"
 msgstr "Sked AOS Tijd"
 
-#: application/views/satellite/skedtable.php:9
+#: application/views/satellite/skedtable.php:8
 msgid "Sked LOS Time"
 msgstr "Sked LOS Tijd"
 
-#: application/views/satellite/skedtable.php:39
+#: application/views/satellite/skedtable.php:45
 #: application/views/sattimers/index.php:50
 msgid "Max Elevation"
 msgstr "Maximale Elevatie"
 
-#: application/views/satellite/skedtable.php:85
+#: application/views/satellite/skedtable.php:89
 msgid "No overlapping passes found. Please check the input parameters."
 msgstr "Geen overlappende passages gevonden. Controleer de invoerparameters."
 
@@ -18452,7 +18470,7 @@ msgstr "Stationslocatie ontkoppelen"
 
 #: application/views/stationsetup/stationsetup.php:3
 msgid "Invalid characters entered in link! Enter only the slug."
-msgstr ""
+msgstr "Ongeldige tekens ingevoerd in de link! Voer alleen de slug in."
 
 #: application/views/stationsetup/stationsetup.php:25
 msgid ""
@@ -18586,7 +18604,7 @@ msgstr "Bezoek openbare pagina"
 
 #: application/views/statistics/antennaanalytics.php:5
 msgid "View azimuth and elevation data"
-msgstr ""
+msgstr "Bekijk azimut- en elevatiegegevens"
 
 #: application/views/statistics/antennaanalytics.php:15
 msgid "Elevation"
@@ -18677,6 +18695,9 @@ msgid ""
 "This page allows you to view the initials of all EME QSOs you have worked. "
 "You can select a band and mode to filter the results."
 msgstr ""
+"Deze pagina stelt je in staat om de initialen te bekijken van alle EME QSO's "
+"die je hebt gewerkt. Je kunt een band en modus selecteren om de resultaten "
+"te filteren."
 
 #: application/views/statistics/qsltable.php:7
 msgid "Absolute"
@@ -18876,7 +18897,7 @@ msgstr "Een thema toevoegen"
 
 #: application/views/timeline/index.php:6
 msgid "View timeline statistics"
-msgstr ""
+msgstr "Bekijk tijdlijnstatistieken"
 
 #: application/views/timeline/index.php:102
 msgid "All Years"
@@ -18900,7 +18921,7 @@ msgstr "Gewerkte roepnamen (maximaal 5)"
 
 #: application/views/timeplotter/index.php:14
 msgid "View a heatmap or a chart of QSOs"
-msgstr ""
+msgstr "Bekijk een heatmap of een grafiek van QSO's"
 
 #: application/views/timeplotter/index.php:85
 msgid "Best Time Window"
@@ -18916,7 +18937,7 @@ msgstr "Beste modus"
 
 #: application/views/timeplotter/index.php:118
 msgid "Total QSOs Plotted"
-msgstr ""
+msgstr "Totaal aantal QSOs in kaart gebracht"
 
 #: application/views/timeplotter/index.php:132
 msgid "Heatmap"
@@ -19328,11 +19349,11 @@ msgstr "Dashboardkaart weergeven"
 
 #: application/views/user/edit.php:706
 msgid "Map on top"
-msgstr ""
+msgstr "Kaart bovenaan"
 
 #: application/views/user/edit.php:707
 msgid "Map at left"
-msgstr ""
+msgstr "Kaart aan de linkerkant"
 
 #: application/views/user/edit.php:708
 msgid "Map at right"
@@ -20452,6 +20473,12 @@ msgstr "CQz"
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr "CQz geojson"
+
+#~ msgid "Look for satellite passes"
+#~ msgstr "Zoek naar satellietovergangen"
+
+#~ msgid "Add sked partner"
+#~ msgstr "Voeg sked-partner toe"
 
 #~ msgid "Total QSOs plotted"
 #~ msgstr "Totaal aantal QSOs in kaart gebracht"

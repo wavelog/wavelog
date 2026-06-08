@@ -4,15 +4,15 @@
 #
 # "Francisco (F4VSE)" <kikosgc@users.noreply.github.com>, 2024, 2025.
 # Ethan Edwards <ethan@ethancedwards.com>, 2024.
-# David Quental <ct1drb72@gmail.com>, 2025.
+# David Quental <ct1drb72@gmail.com>, 2025, 2026.
 # Ethan Carter Edwards <ethan@ethancedwards.com>, 2025.
 # Luca <lucabennati1996@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2026-05-17 12:36+0000\n"
-"PO-Revision-Date: 2026-04-16 22:17+0000\n"
-"Last-Translator: Luca <lucabennati1996@gmail.com>\n"
+"PO-Revision-Date: 2026-06-04 08:35+0000\n"
+"Last-Translator: David Quental <ct1drb72@gmail.com>\n"
 "Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/"
 "installer/es/>\n"
 "Language: es_ES\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.16.2\n"
+"X-Generator: Weblate 5.17.1\n"
 
 #: install/includes/install_config/install_lib.php:123
 msgid "not detected"
@@ -365,6 +365,13 @@ msgid ""
 "an XML subscription for the Call Locator; QRZCALL.EU needs a Data or Extra "
 "subscription on %s. HamQTH does not always provide the locator information."
 msgstr ""
+"Esta configuración es opcional. La búsqueda de indicativos estará disponible "
+"para todos los usuarios de esta instalación. Puedes elegir entre QRZ.com, "
+"HamQTH, QRZCQ, QRZ.ru y QRZCALL.EU. Aunque HamQTH también funciona sin "
+"nombre de usuario y contraseña, necesitarás credenciales para los demás "
+"proveedores. QRZ.com necesita una suscripción XML para el Localizador de "
+"Indicativos; QRZCALL.EU necesita una suscripción Data o Extra en %s. HamQTH "
+"no siempre proporciona la información del localizador."
 
 #: install/index.php:415 install/index.php:516 install/index.php:968
 msgid "Username"
@@ -401,15 +408,15 @@ msgstr ""
 
 #: install/index.php:442
 msgid "API Token"
-msgstr ""
+msgstr "Token de API"
 
 #: install/index.php:452
 msgid "Generate a Personal Access Token at"
-msgstr ""
+msgstr "Genera un token de acceso personal en"
 
 #: install/index.php:454
 msgid "Requires a Data or Extra subscription."
-msgstr ""
+msgstr "Requiere una suscripción de Datos o Extra."
 
 #: install/index.php:457 install/index.php:462
 msgid "Advanced Settings"

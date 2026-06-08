@@ -149,7 +149,7 @@ class API extends CI_Controller {
 	function auth($key = '') {
 		$this->load->model('api_model');
 			header("Content-type: text/xml");
-		if($this->api_model->access($key) == "No Key Found" || $this->api_model->access($key) == "Key Disabled") {
+		if($this->api_model->authorize($key) == 0) {
 			echo "<auth>";
 			echo "<message>Key Invalid - either not found or disabled</message>";
 			echo "</auth>";
@@ -165,9 +165,20 @@ class API extends CI_Controller {
 	function create_station($key = '') {
 		$this->load->model('api_model');
 
-		if ($this->api_model->access($key) == "No Key Found" || $this->api_model->access($key) == "Key Disabled") {
-			$this->output->set_status_header(401)->set_content_type('application/json')->set_output(json_encode(['status' => 'error', 'message' => 'Auth Error, invalid key']));
-			return;
+		$apiKeyResponse = $this->api_model->authorize($key ?? '');
+
+		if ($apiKeyResponse == 0) {
+			http_response_code(401);
+			log_message("Debug",'API Call 401. Invalid API Key: '.($obj['key'] ?? 'N/A'));
+			echo json_encode(['status' => 'error', 'reason' => "missing or wrong api key"]);
+			die();
+		}
+
+		if ($apiKeyResponse == 1) {
+			http_response_code(403);
+			log_message("Debug",'API Call 403. Insufficient permissions for API Key');
+			echo json_encode(['status' => 'error', 'reason' => "API key does not have write permissions"]);
+			die();
 		}
 
 		$this->load->model('club_model');
@@ -228,7 +239,7 @@ class API extends CI_Controller {
 		$this->load->model('api_model');
 		$this->load->model('stations');
 		header("Content-type: application/json");
-		if(substr($this->api_model->access($key),0,1) == 'r') { /* Check permission for reading */
+		if($this->api_model->authorize($key) > 0) { /* Check permission for reading */
 			$this->api_model->update_last_used($key);
 			$userid = $this->api_model->key_userid($key);
 			$station_ids = array();
@@ -264,7 +275,7 @@ class API extends CI_Controller {
 
 	function check_auth($key = '') {
 		$this->load->model('api_model');
-		if($this->api_model->access($key ?? '') == "No Key Found" || $this->api_model->access($key ?? '') == "Key Disabled") {
+		if($this->api_model->authorize($key ?? '') == 0) {
 			// set the content type as json
 			header("Content-type: application/json");
 
@@ -324,11 +335,20 @@ class API extends CI_Controller {
 
 		$raw='';
 
-		if(!isset($obj['key']) || $this->api_model->authorize($obj['key']) == 0) {
+		$apiKeyResponse = $this->api_model->authorize($obj['key'] ?? '');
+
+		if (!isset($obj['key']) || $apiKeyResponse == 0) {
 		   http_response_code(401);
 		   log_message("Debug",'API Call 401. Invalid API Key: '.($obj['key'] ?? 'N/A'));
 		   echo json_encode(['status' => 'failed', 'reason' => "missing or wrong api key"]);
 		   die();
+		}
+
+		if ($apiKeyResponse == 1) {
+			http_response_code(403);
+			log_message("Debug",'API Call 403. Insufficient permissions for API Key');
+			echo json_encode(['status' => 'failed', 'reason' => "API key does not have write permissions"]);
+			die();
 		}
 
 		$userid = $this->api_model->key_userid($obj['key']);
@@ -1019,6 +1039,12 @@ class API extends CI_Controller {
 			die();
 		}
 
+		if($this->api_model->authorize($obj['key']) == 1) {
+			http_response_code(403);
+			echo json_encode(['status' => 'failed', 'reason' => "API key does not have write permissions"]);
+			die();
+		}
+
 		if(!isset($obj['radio'])) {
 			http_response_code(404);
 			echo json_encode(['status' => 'failed', 'reason' => "missing radio element in payload"]);
@@ -1088,7 +1114,7 @@ class API extends CI_Controller {
 
 	function statistics($key = null) {
 		$this->load->model('api_model');
-		if ((($key ?? '') != '') && ($this->api_model->authorize($key) != 0)) {
+		if ((($key ?? '') != '') && ($this->api_model->authorize($key) > 0)) {
 			$this->load->model('logbook_model');
 			$qso_counts = $this->logbook_model->get_qso_counts(null, $key);
 			$data['todays_qsos'] = $qso_counts['today'];
@@ -1436,7 +1462,7 @@ class API extends CI_Controller {
 
 		if (!empty($data['key'])) {
 			$this->load->model('api_model');
-			if (substr($this->api_model->access($data['key']), 0, 1) == 'r') {
+			if ($this->api_model->authorize($data['key']) > 0) { /* Check permission for reading */
 				$valid = true;
 			}
 		}
@@ -1504,7 +1530,7 @@ class API extends CI_Controller {
 
 		// Load cache driver
 		$this->load->driver('cache', [
-			'adapter' => $this->config->item('cache_adapter') ?? 'file', 
+			'adapter' => $this->config->item('cache_adapter') ?? 'file',
 			'backup' => $this->config->item('cache_backup')	 ?? 'file',
 			'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
 		]);
@@ -1556,7 +1582,7 @@ class API extends CI_Controller {
 		return $url;
 	}
 
-	/* ** 
+	/* **
 	* List members of a clubstation
 	* API key needs to be of a club officer (permission level 9)
 	* returns array of club member details
@@ -1574,7 +1600,7 @@ class API extends CI_Controller {
 			return;
 		}
 
-		if ($this->api_model->access($obj['key']) == "No Key Found" || $this->api_model->access($obj['key']) == "Key Disabled") {
+		if ($this->api_model->authorize($obj['key']) == 0) {
 			http_response_code(401);
 			echo json_encode(['status' => 'error', 'message' => 'Auth Error, invalid key']);
 			return;

@@ -31,7 +31,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2026-06-03 11:00+0000\n"
+"POT-Creation-Date: 2026-06-08 07:58+0000\n"
 "PO-Revision-Date: 2026-06-02 11:16+0000\n"
 "Last-Translator: \"Shen RuiQin(BH4FJN)\" <jerry19980425@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -198,9 +198,8 @@ msgstr "Tropospheric ducting"
 #: application/controllers/Map.php:12 application/controllers/Map.php:27
 #: application/controllers/Mode.php:15 application/controllers/Notes.php:10
 #: application/controllers/Operator.php:13
-#: application/controllers/Options.php:14 application/controllers/Oqrs.php:15
-#: application/controllers/Oqrs.php:178 application/controllers/Oqrs.php:226
-#: application/controllers/Oqrs.php:240 application/controllers/Qrbcalc.php:13
+#: application/controllers/Options.php:14 application/controllers/Oqrs.php:12
+#: application/controllers/Oqrs.php:397 application/controllers/Qrbcalc.php:13
 #: application/controllers/Qrz.php:199 application/controllers/Qrz.php:286
 #: application/controllers/Qsl.php:12 application/controllers/Qsl.php:13
 #: application/controllers/Qsl.php:49 application/controllers/Qsl.php:57
@@ -1016,7 +1015,7 @@ msgstr "计划任务管理器"
 msgid "Edit Cronjob"
 msgstr "编辑计划任务"
 
-#: application/controllers/Cron.php:233 application/controllers/Cron.php:234
+#: application/controllers/Cron.php:238 application/controllers/Cron.php:239
 #: application/views/cron/index.php:97 application/views/cron/index.php:99
 #: application/views/cron/index.php:101 application/views/debug/index.php:683
 #: application/views/debug/index.php:690 application/views/debug/index.php:696
@@ -1027,32 +1026,32 @@ msgstr "编辑计划任务"
 msgid "never"
 msgstr "从不"
 
-#: application/controllers/Cron.php:234
+#: application/controllers/Cron.php:239
 msgid "calculating..."
 msgstr "计算中…"
 
-#: application/controllers/Cron.php:245 application/views/cron/index.php:84
+#: application/controllers/Cron.php:250 application/views/cron/index.php:84
 msgid "healthy"
 msgstr "成功"
 
-#: application/controllers/Cron.php:247 application/views/cron/index.php:86
+#: application/controllers/Cron.php:252 application/views/cron/index.php:86
 msgid "failed"
 msgstr "失败"
 
-#: application/controllers/Cron.php:249 application/views/cron/index.php:88
+#: application/controllers/Cron.php:254 application/views/cron/index.php:88
 msgid "pending"
 msgstr "待处理"
 
-#: application/controllers/Cron.php:254 application/views/cron/index.php:93
+#: application/controllers/Cron.php:259 application/views/cron/index.php:93
 msgid "disabled"
 msgstr "禁用"
 
-#: application/controllers/Cron.php:293
+#: application/controllers/Cron.php:298
 #: application/views/interface_assets/footer.php:41
 msgid "OK"
 msgstr "OK"
 
-#: application/controllers/Cron.php:297
+#: application/controllers/Cron.php:302
 #, php-format
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
@@ -1060,7 +1059,7 @@ msgid ""
 msgstr ""
 "上次执行在 %s 秒前。%s请检查你的主计划任务！它应当每分钟运行一次(* * * * *)。"
 
-#: application/controllers/Cron.php:300
+#: application/controllers/Cron.php:305
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
@@ -1069,7 +1068,7 @@ msgstr ""
 "上次执行是 %s 分钟之前。 %s 你的 计划任务似乎没有配置好，%s 它应当设置为每分"
 "钟执行 (* * * * *)。"
 
-#: application/controllers/Cron.php:305 application/views/cron/index.php:43
+#: application/controllers/Cron.php:310 application/views/cron/index.php:43
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr "未运行"
@@ -1313,6 +1312,18 @@ msgstr "eQSL 卡片图片下载"
 #: application/controllers/Eqsl.php:667
 msgid "All eQSLs marked as uploaded"
 msgstr "所有 eQSL 已标记为已上传"
+
+#: application/controllers/Errors.php:22
+msgid "Page Not Found"
+msgstr ""
+
+#: application/controllers/Errors.php:23
+msgid "QRZ? ... no reply."
+msgstr ""
+
+#: application/controllers/Errors.php:24
+msgid "Nobody is transmitting on this frequency."
+msgstr ""
 
 #: application/controllers/Generic_qsl.php:18
 #: application/views/awards/amsat_rover/index.php:43
@@ -1939,8 +1950,8 @@ msgstr "州"
 #: application/views/qso/award_tabs.php:45
 #: application/views/qso/components/previous_contacts.php:86
 #: application/views/qso/edit_ajax.php:157 application/views/qso/index.php:376
-#: application/views/satellite/pass.php:48
-#: application/views/satellite/pass.php:87
+#: application/views/satellite/pass.php:38
+#: application/views/satellite/pass.php:80
 #: application/views/search/result.php:49
 #: application/views/search/search_result_ajax.php:13
 #: application/views/simplefle/index.php:161
@@ -2173,12 +2184,12 @@ msgstr "删除 DXCC 实体"
 msgid "Advanced logbook"
 msgstr "详细日志"
 
-#: application/controllers/Logbookadvanced.php:984
+#: application/controllers/Logbookadvanced.php:968
 #, php-format
 msgid "DXCC updated for %d QSO(s)."
 msgstr "已更新 %d 个 QSO 的 DXCC。"
 
-#: application/controllers/Logbookadvanced.php:1000
+#: application/controllers/Logbookadvanced.php:984
 #, php-format
 msgid "Map for DXCC %s and gridsquare %s."
 msgstr "为 DXCC %s 和网格 %s 的地图。"
@@ -2503,7 +2514,7 @@ msgstr "版本信息将会重新向用户显示"
 msgid "Version Info will not be shown to any user"
 msgstr "版本信息不再会向用户显示"
 
-#: application/controllers/Oqrs.php:42 application/controllers/Staticmap.php:20
+#: application/controllers/Oqrs.php:39 application/controllers/Staticmap.php:20
 #: application/controllers/Staticmap.php:25
 #: application/controllers/Staticmap.php:156
 #: application/controllers/Visitor.php:54
@@ -2519,29 +2530,29 @@ msgstr "版本信息不再会向用户显示"
 msgid "Unknown Public Page."
 msgstr "未知的公开页面。"
 
-#: application/controllers/Oqrs.php:54 application/controllers/Oqrs.php:63
-#: application/controllers/Oqrs.php:128 application/controllers/Oqrs.php:140
+#: application/controllers/Oqrs.php:51 application/controllers/Oqrs.php:60
+#: application/controllers/Oqrs.php:125 application/controllers/Oqrs.php:137
 msgid "Log Search & OQRS"
 msgstr "搜索日志 & OQRS"
 
-#: application/controllers/Oqrs.php:85
+#: application/controllers/Oqrs.php:82
 msgid "Invalid Station ID"
 msgstr "无效站台 ID"
 
-#: application/controllers/Oqrs.php:108
+#: application/controllers/Oqrs.php:105
 msgid "Invalid station slug"
 msgstr "无效的台站标识符"
 
-#: application/controllers/Oqrs.php:176
+#: application/controllers/Oqrs.php:174
 #: application/views/interface_assets/header.php:513
 msgid "OQRS Requests"
 msgstr "OQRS"
 
-#: application/controllers/Oqrs.php:380
+#: application/controllers/Oqrs.php:381
 msgid "QSO match deleted successfully."
 msgstr "QSO 匹配已成功删除。"
 
-#: application/controllers/Oqrs.php:389
+#: application/controllers/Oqrs.php:391
 msgid "QSO match added successfully."
 msgstr "QSO 匹配已成功添加。"
 
@@ -2653,7 +2664,7 @@ msgid "Options"
 msgstr "设置"
 
 #: application/controllers/Radio.php:53 application/views/debug/index.php:370
-#: application/views/qso/index.php:826
+#: application/views/qso/index.php:826 application/views/satellite/pass.php:116
 msgid "Settings"
 msgstr "设置"
 
@@ -4278,10 +4289,10 @@ msgstr "激活的网格"
 #: application/views/logbookadvanced/index.php:408
 #: application/views/qso/award_tabs.php:69
 #: application/views/satellite/flightpath.php:43
-#: application/views/satellite/pass.php:18
+#: application/views/satellite/pass.php:122
 #: application/views/satellite/passtable.php:6
 #: application/views/satellite/skedtable.php:6
-#: application/views/satellite/skedtable.php:35
+#: application/views/satellite/skedtable.php:41
 #: application/views/sattimers/index.php:43
 #: application/views/statistics/index.php:27
 #: application/views/timeline/index.php:195
@@ -4569,8 +4580,9 @@ msgstr ""
 #: application/views/qslcard/searchresult.php:4
 #: application/views/qslprint/qslprint.php:31
 #: application/views/qslprint/qsolist.php:7 application/views/qso/index.php:154
-#: application/views/qso/index.php:190 application/views/satellite/pass.php:52
-#: application/views/satellite/skedtable.php:7
+#: application/views/qso/index.php:190 application/views/satellite/pass.php:132
+#: application/views/satellite/skedtable.php:12
+#: application/views/satellite/skedtable.php:14
 #: application/views/search/search_result_ajax.php:89
 #: application/views/simplefle/index.php:154
 #: application/views/statistics/initialresult.php:15
@@ -4610,6 +4622,8 @@ msgstr "日期"
 #: application/views/qslcard/searchresult.php:6
 #: application/views/qslprint/qslprint.php:32
 #: application/views/qslprint/qsolist.php:8 application/views/qso/index.php:195
+#: application/views/satellite/skedtable.php:13
+#: application/views/satellite/skedtable.php:15
 #: application/views/search/search_result_ajax.php:91
 #: application/views/simplefle/index.php:155
 #: application/views/statistics/initialresult.php:16
@@ -5165,7 +5179,7 @@ msgstr "如用于描述用途的名字。"
 #: application/views/options/radios.php:45
 #: application/views/options/version_dialog.php:78
 #: application/views/satellite/create.php:82
-#: application/views/satellite/pass.php:117
+#: application/views/satellite/pass.php:185
 #: application/views/simplefle/index.php:22
 msgid "Save"
 msgstr "保存"
@@ -5539,7 +5553,7 @@ msgid "Grid Activations"
 msgstr "网格激活"
 
 #: application/views/awards/amsat_rover/index.php:221
-#: application/views/satellite/skedtable.php:34
+#: application/views/satellite/skedtable.php:40
 msgid "Grid"
 msgstr "网格"
 
@@ -9338,7 +9352,7 @@ msgstr "是的，切换！"
 #: application/views/cron/edit.php:74
 #: application/views/interface_assets/footer.php:40
 #: application/views/logbookadvanced/index.php:88
-#: application/views/satellite/pass.php:116
+#: application/views/satellite/pass.php:184
 #: application/views/user/modals/admin_impersonate_modal.php:45
 #: application/views/user/modals/stop_impersonate_modal.php:14
 msgid "Cancel"
@@ -11916,6 +11930,10 @@ msgstr "QSL 日期"
 msgid "View"
 msgstr "查看"
 
+#: application/views/errors/html/error_404.php:82
+msgid "Go Back to Dashboard"
+msgstr ""
+
 #: application/views/gridmap/index.php:27
 msgid "View a map of worked / confirmed gridsquares"
 msgstr ""
@@ -14242,8 +14260,8 @@ msgstr "距离（公里）。搜索将查找大于或等于此值的项目。"
 #: application/views/logbookadvanced/index.php:921
 #: application/views/logbookadvanced/useroptions.php:28
 #: application/views/satellite/passtable.php:9
-#: application/views/satellite/skedtable.php:10
-#: application/views/satellite/skedtable.php:37
+#: application/views/satellite/skedtable.php:9
+#: application/views/satellite/skedtable.php:43
 #: application/views/sattimers/index.php:51
 msgid "Duration"
 msgstr "持续时间"
@@ -16832,80 +16850,80 @@ msgstr "更新星历"
 msgid "TLE"
 msgstr "TLE"
 
-#: application/views/satellite/pass.php:5
+#: application/views/satellite/pass.php:21
 msgid "Satellite passes"
 msgstr "卫星过境"
 
-#: application/views/satellite/pass.php:8
-msgid "Look for satellite passes"
-msgstr ""
-
-#: application/views/satellite/pass.php:15
+#: application/views/satellite/pass.php:32
 msgid "Your station"
 msgstr "你的台站"
 
-#: application/views/satellite/pass.php:28
-#: application/views/satellite/pass.php:67
+#: application/views/satellite/pass.php:42
+#: application/views/satellite/pass.php:84
 msgid "Min. Satellite Elevation"
 msgstr "最低仰角"
 
-#: application/views/satellite/pass.php:32
-#: application/views/satellite/pass.php:71
+#: application/views/satellite/pass.php:49
+#: application/views/satellite/pass.php:91
 msgid "Min. Azimuth"
 msgstr "最小方位角"
 
-#: application/views/satellite/pass.php:40
-#: application/views/satellite/pass.php:79
+#: application/views/satellite/pass.php:57
+#: application/views/satellite/pass.php:99
 msgid "Max. Azimuth"
 msgstr "最大方位角"
 
-#: application/views/satellite/pass.php:56
-msgid "Min. time"
-msgstr "最小时间"
-
-#: application/views/satellite/pass.php:65
+#: application/views/satellite/pass.php:74
 msgid "Sked partner"
 msgstr "预约通联友台"
 
-#: application/views/satellite/pass.php:93
+#: application/views/satellite/pass.php:123
+msgid "Only satellites with TLE data are shown here!"
+msgstr ""
+
+#: application/views/satellite/pass.php:136
+msgid "Min. time"
+msgstr "最小时间"
+
+#: application/views/satellite/pass.php:147
 msgid "Load predictions"
 msgstr "加载预测"
 
-#: application/views/satellite/pass.php:94
-msgid "Add sked partner"
-msgstr "添加通联友台"
-
-#: application/views/satellite/pass.php:96
+#: application/views/satellite/pass.php:149
 msgid "Presets"
 msgstr "预设"
 
-#: application/views/satellite/pass.php:98
+#: application/views/satellite/pass.php:151
 msgid "Save current settings"
 msgstr "保存当前设置"
 
-#: application/views/satellite/pass.php:107
+#: application/views/satellite/pass.php:165
+msgid "Pass Predictions"
+msgstr ""
+
+#: application/views/satellite/pass.php:175
 msgid "Save Settings"
 msgstr "保存设置"
 
-#: application/views/satellite/pass.php:111
+#: application/views/satellite/pass.php:179
 msgid "Settings Name"
 msgstr "设置名称"
 
-#: application/views/satellite/pass.php:112
+#: application/views/satellite/pass.php:180
 msgid "Enter a name"
 msgstr "输入一个名称"
 
-#: application/views/satellite/pass.php:123
+#: application/views/satellite/pass.php:192
 msgid "No TLE information detected. Please update TLE's."
 msgstr "没有找到 TLE 信息，请更新 TLE 信息。"
 
 #: application/views/satellite/passtable.php:7
-#: application/views/satellite/skedtable.php:36
+#: application/views/satellite/skedtable.php:42
 msgid "AOS Time"
 msgstr "AOS 时间"
 
 #: application/views/satellite/passtable.php:8
-#: application/views/satellite/skedtable.php:40
+#: application/views/satellite/skedtable.php:46
 msgid "LOS Time"
 msgstr "LOS 时间"
 
@@ -16918,17 +16936,17 @@ msgid "Max Elevation (Azimuth)"
 msgstr "最大仰角（方向角）"
 
 #: application/views/satellite/passtable.php:12
-#: application/views/satellite/skedtable.php:38
+#: application/views/satellite/skedtable.php:44
 msgid "AOS Azimuth"
 msgstr "AOS 方位角"
 
 #: application/views/satellite/passtable.php:13
-#: application/views/satellite/skedtable.php:41
+#: application/views/satellite/skedtable.php:47
 msgid "LOS Azimuth"
 msgstr "LOS 方位角"
 
 #: application/views/satellite/passtable.php:55
-#: application/views/satellite/skedtable.php:84
+#: application/views/satellite/skedtable.php:88
 msgid "Search failed!"
 msgstr "搜索失败！"
 
@@ -16937,7 +16955,7 @@ msgid "No passes found. Please check the input parameters."
 msgstr "没有找到卫星通过。请检查输入参数。"
 
 #: application/views/satellite/passtable.php:73
-#: application/views/satellite/skedtable.php:94
+#: application/views/satellite/skedtable.php:98
 msgid "min"
 msgstr "分钟"
 
@@ -16945,20 +16963,20 @@ msgstr "分钟"
 msgid "TLE date"
 msgstr "TLE date"
 
-#: application/views/satellite/skedtable.php:8
+#: application/views/satellite/skedtable.php:7
 msgid "Sked AOS Time"
 msgstr "预计信号捕获时间"
 
-#: application/views/satellite/skedtable.php:9
+#: application/views/satellite/skedtable.php:8
 msgid "Sked LOS Time"
 msgstr "预计信号消失时间"
 
-#: application/views/satellite/skedtable.php:39
+#: application/views/satellite/skedtable.php:45
 #: application/views/sattimers/index.php:50
 msgid "Max Elevation"
 msgstr "最大仰角"
 
-#: application/views/satellite/skedtable.php:85
+#: application/views/satellite/skedtable.php:89
 msgid "No overlapping passes found. Please check the input parameters."
 msgstr "未发现重叠传输。请检查输入参数。"
 
@@ -19736,6 +19754,9 @@ msgstr "CQz"
 #: application/views/zonechecker/result.php:59
 msgid "CQz geojson"
 msgstr "CQz geojson"
+
+#~ msgid "Add sked partner"
+#~ msgstr "添加通联友台"
 
 #~ msgid "Total QSOs plotted"
 #~ msgstr "绘制的QSO总数"
