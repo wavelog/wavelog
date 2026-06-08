@@ -227,8 +227,8 @@ class Dashboard extends CI_Controller {
 		}
 
 		// Active Expeditions and Contests for Dashboard cards
-		$data['dashboard_show_dxpeditions'] = ($this->session->userdata('user_dashboard_show_dxpeditions') ?? '1') != '0';
-		$data['dashboard_show_contests'] = ($this->session->userdata('user_dashboard_show_contests') ?? '1') != '0';
+		$data['dashboard_show_dxpeditions'] = ($this->session->userdata('user_dashboard_show_dxpeditions') ?? '0') == '1' ? true : false;
+		$data['dashboard_show_contests'] = ($this->session->userdata('user_dashboard_show_contests') ?? '0') == '1' ? true : false;
 		$data['active_dxpeditions'] = false;
 		$data['active_contests'] = false;
 

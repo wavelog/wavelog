@@ -733,15 +733,15 @@
 										<div class="mb-3">
 											<label class="form-label" for="dashboardShowDxpeditions"><?= __("Active Expeditions"); ?></label>
 											<select name="user_dashboard_show_dxpeditions" class="form-select" id="dashboardShowDxpeditions">
-												<option value="1" <?php if ($user_dashboard_show_dxpeditions ?? true) { echo 'selected="selected"'; } ?>><?= __("Enabled"); ?></option>
 												<option value="0" <?php if (!($user_dashboard_show_dxpeditions ?? true)) { echo 'selected="selected"'; } ?>><?= __("Disabled"); ?></option>
+												<option value="1" <?php if ($user_dashboard_show_dxpeditions ?? true) { echo 'selected="selected"'; } ?>><?= __("Enabled"); ?></option>
 											</select>
 										</div>
 										<div class="mb-3">
 											<label class="form-label" for="dashboardShowContests"><?= __("Active Contests"); ?></label>
 											<select name="user_dashboard_show_contests" class="form-select" id="dashboardShowContests">
-												<option value="1" <?php if ($user_dashboard_show_contests ?? true) { echo 'selected="selected"'; } ?>><?= __("Enabled"); ?></option>
 												<option value="0" <?php if (!($user_dashboard_show_contests ?? true)) { echo 'selected="selected"'; } ?>><?= __("Disabled"); ?></option>
+												<option value="1" <?php if ($user_dashboard_show_contests ?? true) { echo 'selected="selected"'; } ?>><?= __("Enabled"); ?></option>
 											</select>
 										</div>
 									</div>

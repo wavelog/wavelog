@@ -786,7 +786,7 @@ class User extends CI_Controller {
 				$data['user_dashboard_show_dxpeditions'] = $this->input->post('user_dashboard_show_dxpeditions', false);
 			} else {
 				$dkey_opt=$this->user_options_model->get_options('dashboard',array('option_name'=>'show_dxpeditions','option_key'=>'boolean'), $this->uri->segment(3))->result();
-				$data['user_dashboard_show_dxpeditions'] = (count($dkey_opt)>0) ? $dkey_opt[0]->option_value : true;
+				$data['user_dashboard_show_dxpeditions'] = (count($dkey_opt)>0) ? $dkey_opt[0]->option_value : false;
 			}
 
 			// Dashboard show contests
@@ -794,7 +794,7 @@ class User extends CI_Controller {
 				$data['user_dashboard_show_contests'] = $this->input->post('user_dashboard_show_contests', false);
 			} else {
 				$dkey_opt=$this->user_options_model->get_options('dashboard',array('option_name'=>'show_contests','option_key'=>'boolean'), $this->uri->segment(3))->result();
-				$data['user_dashboard_show_contests'] = (count($dkey_opt)>0) ? $dkey_opt[0]->option_value : true;
+				$data['user_dashboard_show_contests'] = (count($dkey_opt)>0) ? $dkey_opt[0]->option_value : false;
 			}
 
 			// DX Waterfall enable option
